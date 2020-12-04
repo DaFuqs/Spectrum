@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "package": "de.dafuqs.spectrum.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "SpawnerBlockMixin",
+    "MobSpawnerBlockEntityMixin"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

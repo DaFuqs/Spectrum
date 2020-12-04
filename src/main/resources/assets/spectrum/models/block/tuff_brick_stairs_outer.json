@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "bottom": "spectrum:block/tuff_bricks",
+    "top": "spectrum:block/tuff_bricks",
+    "side": "spectrum:block/tuff_bricks"
+  }
+}

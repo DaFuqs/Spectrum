@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/stem_fruit",
+  "textures": {
+    "stem": "spectrum:block/glistering_melon_stem",
+    "upperstem": "spectrum:block/attached_glistering_melon_stem"
+  }
+}

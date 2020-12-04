@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "WWW",
+        "WXW",
+        "WWW"
+    ],
+    "key": {
+        "W": {
+	        "item": "spectrum:polished_calcite"
+        },
+        "X": {
+	        "item": "spectrum:topaz_cluster"
+        }
+    },
+    "result": {
+    "item": "spectrum:topaz_chiseled_calcite",
+    "count": 4
+    }
+}

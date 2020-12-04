@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "XWX",
+        "WXW",
+        "XWX"
+    ],
+    "key": {
+        "W": {
+	        "item": "spectrum:polished_calcite"
+        },
+        "X": {
+	        "item": "minecraft:amethyst_shard"
+        }
+    },
+    "result": {
+    "item": "spectrum:amethyst_chiseled_calcite",
+    "count": 1
+    }
+}

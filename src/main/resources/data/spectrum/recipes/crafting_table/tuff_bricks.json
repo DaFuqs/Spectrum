@@ -1,0 +1,16 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "WW",
+        "WW"
+    ],
+    "key": {
+        "W": {
+	        "item": "spectrum:polished_tuff"
+        }
+    },
+    "result": {
+    "item": "spectrum:tuff_bricks",
+    "count": 4
+    }
+}

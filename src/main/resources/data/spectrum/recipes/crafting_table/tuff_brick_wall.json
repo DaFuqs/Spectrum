@@ -1,0 +1,16 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "WWW",
+        "WWW"
+    ],
+    "key": {
+        "W": {
+	        "item": "spectrum:tuff_bricks"
+        }
+    },
+    "result": {
+    "item": "spectrum:tuff_brick_wall",
+    "count": 6
+    }
+}

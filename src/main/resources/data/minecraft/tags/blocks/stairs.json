@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+		"spectrum:tuff_stairs",
+		"spectrum:polished_tuff_stairs",
+		"spectrum:tuff_brick_stairs",
+		"spectrum:calcite_stairs",
+		"spectrum:polished_calcite_stairs",
+		"spectrum:calcite_brick_stairs"
+  ]
+}

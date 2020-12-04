@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+		"spectrum:tuff_slab",
+		"spectrum:polished_tuff_slab",
+		"spectrum:tuff_brick_slab",
+		"spectrum:calcite_slab",
+		"spectrum:polished_calcite_slab",
+		"spectrum:calcite_brick_slab"
+  ]
+}

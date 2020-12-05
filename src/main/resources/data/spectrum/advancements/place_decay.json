@@ -1,0 +1,22 @@
+{
+  "display": {
+    "icon": {
+        "item": "spectrum:decay1"
+    },
+    "title": {
+      "translate": "advancements.spectrum.place_decay.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.place_decay.description"
+    }
+  },
+  "parent": "spectrum:spectrum",
+  "criteria": {
+    "started": {
+      "trigger":"minecraft:placed_block",
+      "conditions": {
+        "block": "spectrum:decay1"
+      }
+    }
+  }
+}

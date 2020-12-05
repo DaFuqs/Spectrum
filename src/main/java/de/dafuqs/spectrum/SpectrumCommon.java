@@ -1,12 +1,17 @@
 package de.dafuqs.spectrum;
 
+import de.dafuqs.spectrum.blocks.SpectrumBlockTags;
 import de.dafuqs.spectrum.blocks.SpectrumBlocks;
+import de.dafuqs.spectrum.sounds.SpectrumSoundEvents;
 import de.dafuqs.spectrum.config.SpectrumConfig;
 import de.dafuqs.spectrum.enchantments.SpectrumEnchantments;
 import de.dafuqs.spectrum.items.SpectrumItems;
 import me.sargunvohra.mcmods.autoconfig1u.AutoConfig;
 import me.sargunvohra.mcmods.autoconfig1u.serializer.JanksonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerWorldEvents;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.world.ServerWorld;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -15,6 +20,9 @@ public class SpectrumCommon implements ModInitializer {
     public static final String MOD_ID = "spectrum";
     public static SpectrumConfig GLOBAL_SPAWN_CONFIG;
     public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
+
+    public static MinecraftServer minecraftServer;
+    public static ServerWorld serverWorld;
 
     @Override
     public void onInitialize() {
@@ -25,9 +33,19 @@ public class SpectrumCommon implements ModInitializer {
         GLOBAL_SPAWN_CONFIG = AutoConfig.getConfigHolder(SpectrumConfig.class).getConfig();
         LOGGER.info("Finished loading config file.");
 
+        SpectrumSoundEvents.register();
+        SpectrumBlockTags.register();
         SpectrumBlocks.register();
         SpectrumItems.register();
         SpectrumEnchantments.register();
+
+        ServerWorldEvents.LOAD.register(new ServerWorldEvents.Load() {
+            @Override
+            public void onWorldLoad(MinecraftServer minecraftServer, ServerWorld serverWorld) {
+                SpectrumCommon.minecraftServer = minecraftServer;
+                SpectrumCommon.serverWorld = serverWorld;
+            }
+        });
     }
 
 }

@@ -1,15 +1,19 @@
 package de.dafuqs.spectrum.blocks;
 
 import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.blocks.BuddingBlocks.BuddingCitrineBlock;
-import de.dafuqs.spectrum.blocks.BuddingBlocks.BuddingMoonstoneBlock;
-import de.dafuqs.spectrum.blocks.BuddingBlocks.BuddingOnyxBlock;
-import de.dafuqs.spectrum.blocks.BuddingBlocks.BuddingTopazBlock;
+import de.dafuqs.spectrum.blocks.buddingblocks.BuddingCitrineBlock;
+import de.dafuqs.spectrum.blocks.buddingblocks.BuddingMoonstoneBlock;
+import de.dafuqs.spectrum.blocks.buddingblocks.BuddingOnyxBlock;
+import de.dafuqs.spectrum.blocks.buddingblocks.BuddingTopazBlock;
+import de.dafuqs.spectrum.blocks.decay.DecayBlock1;
+import de.dafuqs.spectrum.blocks.decay.DecayBlock2;
+import de.dafuqs.spectrum.blocks.decay.DecayBlock3;
 import de.dafuqs.spectrum.blocks.melon.AttachedGlisteringStemBlock;
 import de.dafuqs.spectrum.blocks.melon.GlisteringMelonBlock;
 import de.dafuqs.spectrum.blocks.melon.GlisteringStemBlock;
 import de.dafuqs.spectrum.items.SpectrumItemSettings;
 import de.dafuqs.spectrum.items.SpectrumItems;
+import de.dafuqs.spectrum.misc.SpectrumMaterial;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
@@ -19,6 +23,7 @@ import net.minecraft.client.render.RenderLayer;
 import net.minecraft.item.BlockItem;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.state.property.Properties;
+import net.minecraft.tag.BlockTags;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
@@ -108,6 +113,14 @@ public class SpectrumBlocks {
     public static final Block GLISTERING_MELON = new GlisteringMelonBlock(FabricBlockSettings.of(Material.GOURD, MapColor.LIME).strength(1.0F).sounds(BlockSoundGroup.WOOD));
     public static final Block GLISTERING_MELON_STEM = new GlisteringStemBlock((GourdBlock) GLISTERING_MELON, () -> SpectrumItems.GLISTERING_MELON_SEEDS, FabricBlockSettings.of(Material.PLANT).noCollision().nonOpaque().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.STEM));
     public static final Block ATTACHED_GLISTERING_MELON_STEM = new AttachedGlisteringStemBlock((GourdBlock) GLISTERING_MELON, () -> SpectrumItems.GLISTERING_MELON_SEEDS, FabricBlockSettings.of(Material.PLANT).nonOpaque().noCollision().breakInstantly().sounds(BlockSoundGroup.WOOD));
+
+    // DECAY
+    private static final FabricBlockSettings decaySettings = FabricBlockSettings.of(SpectrumMaterial.DECAY, MapColor.BLACK)
+            .ticksRandomly().requiresTool().breakByTool(FabricToolTags.PICKAXES);
+    public static final Block DECAY1 = new DecayBlock1(decaySettings.hardness(0.5F).resistance(0.5F), BlockTags.LEAVES, null,1,  1F);
+    public static final Block DECAY2 = new DecayBlock2(decaySettings.hardness(20.0F).resistance(50.0F), null, SpectrumBlockTags.DECAY2_SAFE, 2,  2.5F);
+    public static final Block DECAY3 = new DecayBlock3(decaySettings.hardness(100.0F).resistance(3600000.0F), null, SpectrumBlockTags.DECAY3_SAFE, 3, 5F);
+
 
     private static void registerBlock(String name, Block block) {
         Registry.register(Registry.BLOCK, new Identifier(SpectrumCommon.MOD_ID, name), block);
@@ -233,10 +246,19 @@ public class SpectrumBlocks {
         registerBlock("rainbow_moonstone_block", RAINBOW_MOONSTONE_BLOCK);
         registerBlockItem("rainbow_moonstone_block", new BlockItem(RAINBOW_MOONSTONE_BLOCK, blockItemSettings));
 
+        // GLISTERING MELON
         registerBlock("glistering_melon", GLISTERING_MELON);
         registerBlockItem("glistering_melon", new BlockItem(GLISTERING_MELON, blockItemSettings));
         registerBlock("glistering_melon_stem", GLISTERING_MELON_STEM);
         registerBlock("attached_glistering_melon_stem", ATTACHED_GLISTERING_MELON_STEM);
+
+        // DECAY
+        registerBlock("decay1", DECAY1);
+        registerBlockItem("decay1", new BlockItem(DECAY1, blockItemSettings));
+        registerBlock("decay2", DECAY2);
+        registerBlockItem("decay2", new BlockItem(DECAY2, blockItemSettings));
+        registerBlock("decay3", DECAY3);
+        registerBlockItem("decay3", new BlockItem(DECAY3, blockItemSettings));
     }
 
     public static void registerClient() {

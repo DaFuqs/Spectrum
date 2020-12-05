@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+        "item": "minecraft:amethyst_shard"
+    },
+    "title": {
+      "translate": "advancements.spectrum.spectrum.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.spectrum.description"
+    },
+    "background": "spectrum:textures/advancement_background.png"
+  },
+  "criteria": {
+    "started": {
+      "trigger":"minecraft:inventory_changed",
+      "conditions":{
+        "items":[
+          {
+            "item":"minecraft:amethyst_shard"
+          }
+        ]
+      }
+    }
+  }
+}

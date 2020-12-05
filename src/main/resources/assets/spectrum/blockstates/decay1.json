@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "decay_state=default": { "model": "spectrum:block/decay1_default" },
+        "decay_state=leaves": { "model": "spectrum:block/decay1_leaves" }
+    }
+}

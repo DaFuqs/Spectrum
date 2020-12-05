@@ -1,0 +1,20 @@
+{
+  "decay1_placed": {
+    "subtitle": "spectrum.subtitles.block.decay1.place",
+    "sounds": [
+      "spectrum:block.decay1.place"
+    ]
+  },
+  "decay2_placed": {
+    "subtitle": "spectrum.subtitles.block.decay2.place",
+    "sounds": [
+      "spectrum:block.decay2.place"
+    ]
+  },
+  "decay3_placed": {
+    "subtitle": "spectrum.subtitles.block.decay3.place",
+    "sounds": [
+      "spectrum:block.decay3.place"
+    ]
+  }
+}

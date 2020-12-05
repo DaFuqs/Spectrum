@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "decay_state=default": { "model": "spectrum:block/decay2_default" },
+        "decay_state=obsidian": { "model": "spectrum:block/decay2_obsidian" }
+    }
+}

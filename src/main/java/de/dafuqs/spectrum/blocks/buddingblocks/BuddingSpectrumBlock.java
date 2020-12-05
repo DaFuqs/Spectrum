@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.blocks.BuddingBlocks;
+package de.dafuqs.spectrum.blocks.buddingblocks;
 
 import net.minecraft.block.AmethystClusterBlock;
 import net.minecraft.block.Block;

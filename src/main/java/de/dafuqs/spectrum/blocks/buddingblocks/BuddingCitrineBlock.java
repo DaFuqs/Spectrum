@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.blocks.BuddingBlocks;
+package de.dafuqs.spectrum.blocks.buddingblocks;
 
 import de.dafuqs.spectrum.blocks.SpectrumBlocks;
 import net.minecraft.block.Block;

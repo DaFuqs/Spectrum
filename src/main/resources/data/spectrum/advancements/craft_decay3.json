@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+        "item": "spectrum:decay3"
+    },
+    "title": {
+      "translate": "advancements.spectrum.craft_decay3.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.craft_decay3.description"
+    }
+  },
+  "parent": "spectrum:spectrum",
+  "criteria": {
+    "started": {
+      "trigger":"minecraft:inventory_changed",
+      "conditions": {
+        "items":[
+          {
+            "item":"spectrum:decay3"
+          }
+        ]
+      }
+    }
+  }
+}

@@ -20,7 +20,7 @@ public class MixinHandler {
 
     public static boolean checkResonanceForSpawnerMining(World world, PlayerEntity entity, BlockPos pos, BlockState blockState, @Nullable BlockEntity blockEntity, ItemStack stack) {
         if (blockState.equals(Blocks.SPAWNER.getDefaultState())) {
-            if (EnchantmentHelper.getLevel(SpectrumEnchantments.SUPER_SILK, stack) > 0) {
+            if (EnchantmentHelper.getLevel(SpectrumEnchantments.RESONANCE, stack) > 0) {
                 if (blockEntity instanceof MobSpawnerBlockEntity) {
                     ItemStack itemStack = Spawner.fromBlockEntity(blockEntity);
 

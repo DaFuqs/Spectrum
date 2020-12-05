@@ -15,8 +15,8 @@ import net.minecraft.util.registry.Registry;
 
 public class SpectrumItems {
 
-    public static FabricItemSettings bedrockItemSettings = new FabricItemSettings().group(SpectrumItemSettings.ITEM_GROUP).rarity(Rarity.RARE);
-    public static FabricItemSettings buildingBlockSettings = new FabricItemSettings().group(SpectrumItemSettings.ITEM_GROUP_BUILDING);
+    public static FabricItemSettings bedrockItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP).rarity(Rarity.RARE);
+    public static FabricItemSettings buildingBlockSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_BUILDING);
 
     // Bedrock Tools
     public static ToolItem BEDROCK_PICKAXE = new BedrockPickaxeItem(BedrockToolMaterial.INSTANCE, 1, -2.8F, bedrockItemSettings);

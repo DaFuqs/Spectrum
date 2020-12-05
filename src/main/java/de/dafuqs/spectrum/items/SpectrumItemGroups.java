@@ -7,7 +7,7 @@ import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
 
-public class SpectrumItemSettings {
+public class SpectrumItemGroups {
 
     public static final ItemGroup ITEM_GROUP = FabricItemGroupBuilder.build(
             new Identifier(SpectrumCommon.MOD_ID, "general"),
@@ -16,6 +16,5 @@ public class SpectrumItemSettings {
     public static final ItemGroup ITEM_GROUP_BUILDING = FabricItemGroupBuilder.build(
             new Identifier(SpectrumCommon.MOD_ID, "building"),
             () -> new ItemStack(SpectrumBlocks.CITRINE_BLOCK));
-
 
 }

@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.blocks;
+package de.dafuqs.spectrum.blocks.base;
 
 import net.minecraft.block.PillarBlock;
 import net.minecraft.util.math.Direction;

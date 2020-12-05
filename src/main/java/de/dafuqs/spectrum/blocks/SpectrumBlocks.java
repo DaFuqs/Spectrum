@@ -1,6 +1,8 @@
 package de.dafuqs.spectrum.blocks;
 
 import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.blocks.base.DirectionalBlock;
+import de.dafuqs.spectrum.blocks.base.SpectrumStairsBlock;
 import de.dafuqs.spectrum.blocks.buddingblocks.BuddingCitrineBlock;
 import de.dafuqs.spectrum.blocks.buddingblocks.BuddingMoonstoneBlock;
 import de.dafuqs.spectrum.blocks.buddingblocks.BuddingOnyxBlock;
@@ -11,7 +13,7 @@ import de.dafuqs.spectrum.blocks.decay.DecayBlock3;
 import de.dafuqs.spectrum.blocks.melon.AttachedGlisteringStemBlock;
 import de.dafuqs.spectrum.blocks.melon.GlisteringMelonBlock;
 import de.dafuqs.spectrum.blocks.melon.GlisteringStemBlock;
-import de.dafuqs.spectrum.items.SpectrumItemSettings;
+import de.dafuqs.spectrum.items.SpectrumItemGroups;
 import de.dafuqs.spectrum.items.SpectrumItems;
 import de.dafuqs.spectrum.misc.SpectrumMaterial;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
@@ -37,7 +39,7 @@ public class SpectrumBlocks {
         };
     }
 
-    public static FabricItemSettings blockItemSettings = new FabricItemSettings().group(SpectrumItemSettings.ITEM_GROUP_BUILDING);
+    public static FabricItemSettings blockItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_BUILDING);
 
     // TODO: hardness
     public static final Block CITRINE_BLOCK = new AmethystBlock(FabricBlockSettings.of(Material.AMETHYST, MapColor.YELLOW).hardness(1.5f).sounds(BlockSoundGroup.AMETHYST_BLOCK).requiresTool().breakByTool(FabricToolTags.PICKAXES, 2));

@@ -14,7 +14,7 @@ public class Support {
         return tag.contains(type.getBlock());
     }
 
-    public static void grantAdvancement(ServerPlayerEntity serverPlayerEntity, String advancementString, String criterion) {
+    public static void grantAdvancementCriterion(ServerPlayerEntity serverPlayerEntity, String advancementString, String criterion) {
         ServerAdvancementLoader sal = SpectrumCommon.minecraftServer.getAdvancementLoader();
         PlayerAdvancementTracker tracker = serverPlayerEntity.getAdvancementTracker();
 

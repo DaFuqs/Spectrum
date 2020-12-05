@@ -2,10 +2,11 @@ package de.dafuqs.spectrum;
 
 import de.dafuqs.spectrum.blocks.SpectrumBlockTags;
 import de.dafuqs.spectrum.blocks.SpectrumBlocks;
-import de.dafuqs.spectrum.sounds.SpectrumSoundEvents;
 import de.dafuqs.spectrum.config.SpectrumConfig;
 import de.dafuqs.spectrum.enchantments.SpectrumEnchantments;
 import de.dafuqs.spectrum.items.SpectrumItems;
+import de.dafuqs.spectrum.sounds.SpectrumSoundEvents;
+import de.dafuqs.spectrum.worldgen.SpectrumFeatures;
 import me.sargunvohra.mcmods.autoconfig1u.AutoConfig;
 import me.sargunvohra.mcmods.autoconfig1u.serializer.JanksonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
@@ -38,13 +39,11 @@ public class SpectrumCommon implements ModInitializer {
         SpectrumBlocks.register();
         SpectrumItems.register();
         SpectrumEnchantments.register();
+        SpectrumFeatures.register();
 
-        ServerWorldEvents.LOAD.register(new ServerWorldEvents.Load() {
-            @Override
-            public void onWorldLoad(MinecraftServer minecraftServer, ServerWorld serverWorld) {
-                SpectrumCommon.minecraftServer = minecraftServer;
-                SpectrumCommon.serverWorld = serverWorld;
-            }
+        ServerWorldEvents.LOAD.register((minecraftServer, serverWorld) -> {
+            SpectrumCommon.minecraftServer = minecraftServer;
+            SpectrumCommon.serverWorld = serverWorld;
         });
     }
 

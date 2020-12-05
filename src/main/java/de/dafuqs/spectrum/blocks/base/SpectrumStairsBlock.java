@@ -5,7 +5,7 @@ import net.minecraft.block.StairsBlock;
 
 public class SpectrumStairsBlock extends StairsBlock {
 
-    protected SpectrumStairsBlock(BlockState baseBlockState, Settings settings) {
+    public SpectrumStairsBlock(BlockState baseBlockState, Settings settings) {
         super(baseBlockState, settings);
     }
 

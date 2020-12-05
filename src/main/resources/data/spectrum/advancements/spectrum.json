@@ -12,7 +12,7 @@
     "background": "spectrum:textures/advancement_background.png"
   },
   "criteria": {
-    "started": {
+    "has_amethyst_shard": {
       "trigger":"minecraft:inventory_changed",
       "conditions":{
         "items":[
@@ -21,6 +21,55 @@
           }
         ]
       }
+    },
+    "has_citrine_shard": {
+      "trigger":"minecraft:inventory_changed",
+      "conditions":{
+        "items":[
+          {
+            "item":"spectrum:citrine_shard"
+          }
+        ]
+      }
+    },
+    "has_topaz_shard": {
+      "trigger":"minecraft:inventory_changed",
+      "conditions":{
+        "items":[
+          {
+            "item":"spectrum:topaz_shard"
+          }
+        ]
+      }
+    },
+    "has_moonstone_shard": {
+      "trigger":"minecraft:inventory_changed",
+      "conditions":{
+        "items":[
+          {
+            "item":"spectrum:moonstone_shard"
+          }
+        ]
+      }
+    },
+    "has_onyx_shard": {
+      "trigger":"minecraft:inventory_changed",
+      "conditions":{
+        "items":[
+          {
+            "item":"spectrum:onyx_shard"
+          }
+        ]
+      }
     }
-  }
+  },
+  "requirements": [
+    [
+      "has_amethyst_shard",
+      "has_citrine_shard",
+      "has_topaz_shard",
+      "has_moonstone_shard",
+      "has_onyx_shard"
+    ]
+  ]
 }

@@ -12,7 +12,7 @@
   },
   "parent": "spectrum:spectrum",
   "criteria": {
-    "started": {
+    "gotten_decay": {
       "trigger":"minecraft:inventory_changed",
       "conditions": {
         "items":[

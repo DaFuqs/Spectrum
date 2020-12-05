@@ -12,7 +12,7 @@
   },
   "parent": "spectrum:spectrum",
   "criteria": {
-    "started": {
+    "placed_decay": {
       "trigger":"minecraft:placed_block",
       "conditions": {
         "block": "spectrum:decay3"

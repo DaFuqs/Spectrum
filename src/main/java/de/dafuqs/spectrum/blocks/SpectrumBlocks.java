@@ -116,6 +116,10 @@ public class SpectrumBlocks {
     public static final Block GLISTERING_MELON_STEM = new GlisteringStemBlock((GourdBlock) GLISTERING_MELON, () -> SpectrumItems.GLISTERING_MELON_SEEDS, FabricBlockSettings.of(Material.PLANT).noCollision().nonOpaque().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.STEM));
     public static final Block ATTACHED_GLISTERING_MELON_STEM = new AttachedGlisteringStemBlock((GourdBlock) GLISTERING_MELON, () -> SpectrumItems.GLISTERING_MELON_SEEDS, FabricBlockSettings.of(Material.PLANT).nonOpaque().noCollision().breakInstantly().sounds(BlockSoundGroup.WOOD));
 
+    // SAPLING
+    private static final FabricBlockSettings saplingSettings = FabricBlockSettings.of(Material.PLANT).noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.GRASS);
+    public static final Block OMINOUS_SAPLING = new OminousSaplingBlock(saplingSettings);
+
     // DECAY
     private static final FabricBlockSettings decaySettings = FabricBlockSettings.of(SpectrumMaterial.DECAY, MapColor.BLACK)
             .ticksRandomly().requiresTool().breakByTool(FabricToolTags.PICKAXES);
@@ -254,6 +258,10 @@ public class SpectrumBlocks {
         registerBlock("glistering_melon_stem", GLISTERING_MELON_STEM);
         registerBlock("attached_glistering_melon_stem", ATTACHED_GLISTERING_MELON_STEM);
 
+        // SAPLING
+        registerBlock("ominous_sapling", OMINOUS_SAPLING);
+        registerBlockItem("ominous_sapling", new OminousSaplingBlockItem(OMINOUS_SAPLING, blockItemSettings));
+
         // DECAY
         registerBlock("decay1", DECAY1);
         registerBlockItem("decay1", new BlockItem(DECAY1, blockItemSettings));
@@ -286,5 +294,6 @@ public class SpectrumBlocks {
 
         BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.GLISTERING_MELON_STEM, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.ATTACHED_GLISTERING_MELON_STEM, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.OMINOUS_SAPLING, RenderLayer.getCutout());
     }
 }

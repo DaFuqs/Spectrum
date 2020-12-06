@@ -1,0 +1,19 @@
+{
+  "display": {
+    "icon": {
+        "item": "spectrum:ominous_sapling"
+    },
+    "title": {
+      "translate": "advancements.spectrum.grow_ominous_sapling.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.grow_ominous_sapling.description"
+    }
+  },
+  "parent": "spectrum:plant_ominous_sapling",
+  "criteria": {
+    "grow": {
+      "trigger":"minecraft:impossible"
+    }
+  }
+}

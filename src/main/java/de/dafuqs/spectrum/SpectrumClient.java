@@ -9,4 +9,5 @@ public class SpectrumClient implements ClientModInitializer {
     public void onInitializeClient() {
         SpectrumBlocks.registerClient();
     }
+
 }

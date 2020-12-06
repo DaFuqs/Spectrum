@@ -103,6 +103,8 @@
   "block.spectrum.decay2": "Failing",
   "block.spectrum.decay3": "Ruin",
 
+  "block.spectrum.ominous_sapling": "Ominous Sapling",
+
   "advancements.spectrum.spectrum.title": "Spectrum",
   "advancements.spectrum.spectrum.description": "A story about magic, colors, and chaos.",
   "advancements.spectrum.collect_all_basic.title": "How many are there?",
@@ -117,17 +119,22 @@
 
   "advancements.spectrum.place_decay.title": "Organic Matter",
   "advancements.spectrum.place_decay.description": "Feed it leaves, lean back and watch it devour.",
-  "advancements.spectrum.place_decay2.title": "Place Black Decay",
+  "advancements.spectrum.place_decay2.title": "It... feeds on Obsidian?",
   "advancements.spectrum.place_decay2.description": "It's WAY more powerful than your first experiment. It seems to destroy everything it touches after a while. Is there something sturdy enough to withstand it's destructive potential?",
   "advancements.spectrum.place_decay3.title": "What have you done",
   "advancements.spectrum.place_decay3.description": "There is no going back... (for now?)",
 
+  "advancements.spectrum.plant_glistering_melon_seeds.title": "A sign of Prosperity",
+  "advancements.spectrum.plant_glistering_melon_seeds.description": "Get a glistering melon.. plant!",
+
+  "advancements.spectrum.get_ominous_sapling.title": "Let it grow, let it grow!",
+  "advancements.spectrum.get_ominous_sapling.description": "You're sure combining the remains of the decayed leaves with a young sapling will yield something interesting.",
+  "advancements.spectrum.plant_ominous_sapling.title": "A failed experiment?",
+  "advancements.spectrum.plant_ominous_sapling.description": "It looks... kinda dead?",
+  "advancements.spectrum.grow_ominous_sapling.title": "A successful experiment!",
+  "advancements.spectrum.grow_ominous_sapling.description": "It grew! ...somewhat.",
 
   "______done_until_here" : "TODO:",
-  "advancements.spectrum.find_geode.title": "Cracking open a cold one",
-  "advancements.spectrum.find_geode.description": "Find a geode underground.",
-  "advancements.spectrum.harvest_gem.title": "Shiny",
-  "advancements.spectrum.harvest_gem.description": "Harvest a gem.",
   "advancements.spectrum.craft_energy_collector.title": "Roger that",
   "advancements.spectrum.craft_energy_collector.description": "Construct a collector powerful enough to harvest energy from gem geodes.",
   "advancements.spectrum.place_energy_collector.title": "A new form of energy",
@@ -138,24 +145,16 @@
 
   "advancements.spectrum.drop_decay.title": "I don't need no Transmutation",
   "advancements.spectrum.drop_decay.description": "",
-  "advancements.spectrum.drop_decay2.title": "It... feeds on Obsidian?",
+  "advancements.spectrum.drop_decay2.title": "",
   "advancements.spectrum.drop_decay2.description": "Obsidian doesn't seem to stop it, either. But the result of your little experiment is pretty interesting nonetheless!",
-
   "advancements.spectrum.mine_bedrock.title": "Groundbreaking",
   "advancements.spectrum.mine_bedrock.description": "Break decayed bedrock by using a Netherite Pickaxe.",
+
   "advancements.spectrum.enter_dimension.title": "What was once impenetrable",
   "advancements.spectrum.enter_dimension.description": "Find out what lies between the once impenetrable floor",
 
-  "advancements.spectrum.craft_sapling.title": "Let it grow, let it grow!",
-  "advancements.spectrum.craft_sapling.description": "You're sure combining the remains of the decayed leaves with a young sapling will yield something interesting.",
-  "advancements.spectrum.plant_sapling.title": "A failed experiment?",
-  "advancements.spectrum.plant_sapling.description": "It looks... kinda dead?",
-  "advancements.spectrum.grow_sapling.title": "A successful experiment!",
-  "advancements.spectrum.grow_sapling.description": "It grew! ...somewhat.",
-
-  "advancements.spectrum.burning_curiosity.title": "Burning Curoisity",
-  "advancements.spectrum.burning_curiosity.description": ".",
-  "advancements.spectrum.grow_glistering_melon_plant.title": "A sign of Prosperity",
-  "advancements.spectrum.grow_glistering_melon_plant.description": "Get a glistering melon.. plant!"
+  "______open_until_here" : "DISCARD:",
+  "advancements.spectrum.find_geode.title": "Cracking open a cold one",
+  "advancements.spectrum.find_geode.description": "Find a geode underground."
 
 }

@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum;
 
+import de.dafuqs.spectrum.blocks.SpectrumBlockEntityType;
 import de.dafuqs.spectrum.blocks.SpectrumBlockTags;
 import de.dafuqs.spectrum.blocks.SpectrumBlocks;
 import de.dafuqs.spectrum.config.SpectrumConfig;
@@ -38,6 +39,7 @@ public class SpectrumCommon implements ModInitializer {
         SpectrumBlockTags.register();
         SpectrumBlocks.register();
         SpectrumItems.register();
+        SpectrumBlockEntityType.register();
         SpectrumEnchantments.register();
         SpectrumFeatures.register();
 

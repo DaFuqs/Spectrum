@@ -10,7 +10,7 @@
       "translate": "advancements.spectrum.place_decay.description"
     }
   },
-  "parent": "spectrum:spectrum",
+  "parent": "spectrum:craft_decay",
   "criteria": {
     "placed_decay": {
       "trigger":"minecraft:placed_block",

@@ -21,7 +21,7 @@ public class AltarScreenHandler extends ScreenHandler {
     //The client will call the other constructor with an empty Inventory and the screenHandler will automatically
     //sync this empty inventory with the inventory on the server.
     public AltarScreenHandler(int syncId, PlayerInventory playerInventory) {
-        this(syncId, playerInventory, new SimpleInventory(14));
+        this(syncId, playerInventory, new SimpleInventory(craftingRows * craftingColumns + gemColumns));
     }
 
     //This constructor gets called from the BlockEntity on the server without calling the other constructor first, the server knows the inventory of the container
@@ -31,10 +31,9 @@ public class AltarScreenHandler extends ScreenHandler {
 
         checkSize(inventory, craftingRows * craftingColumns + gemColumns);
         this.inventory = inventory;
-
         inventory.onOpen(playerInventory.player);
-        int i = (craftingRows - 4) * 18;
 
+        int i = (craftingRows - 4) * 18;
         int n;
         int m;
         for(n = 0; n < craftingRows; ++n) {

@@ -10,7 +10,7 @@ import net.minecraft.util.Identifier;
 
 public class AltarScreen extends HandledScreen<AltarScreenHandler> {
 
-    private static final Identifier TEXTURE_CALCITE = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/container/altar.png");
+    private static final Identifier BACKGROUND = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/container/altar.png");
 
     public AltarScreen(AltarScreenHandler handler, PlayerInventory playerInventory, Text title) {
         super(handler, playerInventory, title);
@@ -19,24 +19,23 @@ public class AltarScreen extends HandledScreen<AltarScreenHandler> {
 
     @Override
     protected void drawForeground(MatrixStack matrices, int mouseX, int mouseY) {
-        this.textRenderer.draw(matrices, this.title.asString(), 8.0F, 6.0F, 4210752);
-        this.textRenderer.draw(matrices, this.playerInventory.getDisplayName().asString(), 8.0F, (float) (this.backgroundHeight - 96 + 2), 4210752);
+        // don't draw "title" and "inventory" texts
     }
 
     @Override
     protected void drawBackground(MatrixStack matrices, float delta, int mouseX, int mouseY) {
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        client.getTextureManager().bindTexture(TEXTURE_CALCITE);
+        client.getTextureManager().bindTexture(BACKGROUND);
         int x = (width - backgroundWidth) / 2;
         int y = (height - backgroundHeight) / 2;
         drawTexture(matrices, x, y, 0, 0, backgroundWidth, backgroundHeight);
     }
 
     @Override
-    protected void init() {
-        super.init();
-        // Center the title
-        titleX = (backgroundWidth - textRenderer.getWidth(title)) / 2;
+    public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
+        renderBackground(matrices);
+        super.render(matrices, mouseX, mouseY, delta);
+        drawMouseoverTooltip(matrices, mouseX, mouseY);
     }
 
 }

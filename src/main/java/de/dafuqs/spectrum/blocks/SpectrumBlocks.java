@@ -16,7 +16,7 @@ import de.dafuqs.spectrum.blocks.melon.GlisteringMelonBlock;
 import de.dafuqs.spectrum.blocks.melon.GlisteringStemBlock;
 import de.dafuqs.spectrum.blocks.tree.OminousSaplingBlock;
 import de.dafuqs.spectrum.blocks.tree.OminousSaplingBlockItem;
-import de.dafuqs.spectrum.fluid.SpectrumFluidBlock;
+import de.dafuqs.spectrum.fluid.LiquidCrystalBlock;
 import de.dafuqs.spectrum.fluid.SpectrumFluids;
 import de.dafuqs.spectrum.items.SpectrumItemGroups;
 import de.dafuqs.spectrum.items.SpectrumItems;
@@ -157,8 +157,7 @@ public class SpectrumBlocks {
     public static final Block ALTAR = new AltarBlock(altarSettings);
 
     // FLUIDS
-    private static final FabricBlockSettings liquidCrystalBlockSettings = FabricBlockSettings.copyOf(Blocks.WATER);
-    public static final Block LIQUID_CRYSTAL = new SpectrumFluidBlock(SpectrumFluids.STILL_LIQUID_CRYSTAL, liquidCrystalBlockSettings);
+    public static final Block LIQUID_CRYSTAL = new LiquidCrystalBlock(SpectrumFluids.STILL_LIQUID_CRYSTAL, FabricBlockSettings.copyOf(Blocks.WATER).luminance((state) -> 8));
 
     private static void registerBlock(String name, Block block) {
         Registry.register(Registry.BLOCK, new Identifier(SpectrumCommon.MOD_ID, name), block);

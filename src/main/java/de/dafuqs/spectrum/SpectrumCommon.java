@@ -7,6 +7,7 @@ import de.dafuqs.spectrum.blocks.altar.SpectrumContainers;
 import de.dafuqs.spectrum.blocks.altar.SpectrumScreenHandlers;
 import de.dafuqs.spectrum.config.SpectrumConfig;
 import de.dafuqs.spectrum.enchantments.SpectrumEnchantments;
+import de.dafuqs.spectrum.fluid.SpectrumFluidTags;
 import de.dafuqs.spectrum.fluid.SpectrumFluids;
 import de.dafuqs.spectrum.items.SpectrumItems;
 import de.dafuqs.spectrum.sounds.SpectrumSoundEvents;
@@ -39,6 +40,7 @@ public class SpectrumCommon implements ModInitializer {
         LOGGER.info("Finished loading config file.");
 
         SpectrumSoundEvents.register();
+        SpectrumFluidTags.register();
         SpectrumBlockTags.register();
         SpectrumFluids.register();
         SpectrumBlocks.register();

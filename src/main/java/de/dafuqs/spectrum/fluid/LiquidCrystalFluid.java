@@ -2,12 +2,23 @@ package de.dafuqs.spectrum.fluid;
 
 import de.dafuqs.spectrum.blocks.SpectrumBlocks;
 import de.dafuqs.spectrum.items.SpectrumItems;
+import de.dafuqs.spectrum.sounds.SpectrumSoundEvents;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.block.BlockState;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.item.Item;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvent;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.Properties;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+
+import java.util.Optional;
+import java.util.Random;
 
 public abstract class LiquidCrystalFluid extends SpectrumFluid {
 
@@ -32,11 +43,48 @@ public abstract class LiquidCrystalFluid extends SpectrumFluid {
 		return SpectrumBlocks.LIQUID_CRYSTAL.getDefaultState().with(Properties.LEVEL_15, method_15741(fluidState));
 	}
 
+	@Override
+	public boolean matchesType(Fluid fluid) {
+		return fluid == SpectrumFluids.STILL_LIQUID_CRYSTAL || fluid == SpectrumFluids.FLOWING_LIQUID_CRYSTAL;
+	}
+
+	public Optional<SoundEvent> getFillSound() {
+		return Optional.of(SoundEvents.ITEM_BUCKET_FILL);
+	}
+
+
+
+	/*protected void flow(WorldAccess world, BlockPos pos, BlockState state, Direction direction, FluidState fluidState) {
+		if (this.isIn(SpectrumFluidTags.LIQUID_CRYSTAL)) {
+			FluidState fluidState2 = world.getFluidState(pos);
+			if(fluidState2.isIn(FluidTags.WATER)) {
+				if (state.getBlock() instanceof FluidBlock) {
+					world.setBlockState(pos, Blocks.CALCITE.getDefaultState(), 3);
+				}
+				return;
+			} else if(fluidState2.isIn(FluidTags.LAVA)) {
+				if (state.getBlock() instanceof FluidBlock) {
+					world.setBlockState(pos, Blocks.TUFF.getDefaultState(), 3);
+				}
+				return;
+			}
+		}
+
+		super.flow(world, pos, state, direction, fluidState);
+	}*/
+
+	// TODO: Other particle and ambient sound
+	@Environment(EnvType.CLIENT)
+	public void randomDisplayTick(World world, BlockPos pos, FluidState state, Random random) {
+		if (random.nextInt(150) == 0) {
+			world.playSound(pos.getX(), pos.getY(), pos.getZ(), SpectrumSoundEvents.LIQUID_CRYSTAL_AMBIENT_EVENT, SoundCategory.BLOCKS, 0.2F + random.nextFloat() * 0.2F, 0.9F + random.nextFloat() * 0.15F, false);
+		}
+	}
+
 	public static class FlowingLiquidCrystal extends LiquidCrystalFluid {
 
 		@Override
-		protected void appendProperties(StateManager.Builder<Fluid, FluidState> builder)
-		{
+		protected void appendProperties(StateManager.Builder<Fluid, FluidState> builder) {
 			super.appendProperties(builder);
 			builder.add(LEVEL);
 		}
@@ -64,6 +112,5 @@ public abstract class LiquidCrystalFluid extends SpectrumFluid {
 		public boolean isStill(FluidState fluidState) {
 			return true;
 		}
-
 	}
 }

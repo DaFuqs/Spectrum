@@ -69,13 +69,13 @@ public abstract class DecayBlock extends Block {
 
             switch (this.tier) {
                 case 1:
-                    soundEvent = SpectrumSoundEvents.DECAY1_PLACED_EVENT;
+                    soundEvent = SpectrumSoundEvents.DECAY1_PLACED;
                     break;
                 case 2:
-                    soundEvent = SpectrumSoundEvents.DECAY2_PLACED_EVENT;
+                    soundEvent = SpectrumSoundEvents.DECAY2_PLACED;
                     break;
                 default:
-                    soundEvent = SpectrumSoundEvents.DECAY3_PLACED_EVENT;
+                    soundEvent = SpectrumSoundEvents.DECAY3_PLACED;
                     break;
             }
             world.playSound(null, pos, soundEvent, SoundCategory.BLOCKS, 0.5F, 2.6F + (world.random.nextFloat() - world.random.nextFloat()) * 0.8F);

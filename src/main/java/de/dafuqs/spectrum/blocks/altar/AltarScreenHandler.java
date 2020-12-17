@@ -10,15 +10,16 @@ import net.minecraft.screen.slot.Slot;
 
 public class AltarScreenHandler extends ScreenHandler {
 
-    private static final int rows = 3;
-    private static final int columns = 3;
+    private static final int craftingRows = 3;
+    private static final int craftingColumns = 3;
+    private static final int gemColumns = 5;
     private final Inventory inventory;
 
     //This constructor gets called on the client when the server wants it to open the screenHandler,
     //The client will call the other constructor with an empty Inventory and the screenHandler will automatically
     //sync this empty inventory with the inventory on the server.
     public AltarScreenHandler(int syncId, PlayerInventory playerInventory) {
-        this(syncId, playerInventory, new SimpleInventory(9));
+        this(syncId, playerInventory, new SimpleInventory(14));
     }
 
     //This constructor gets called from the BlockEntity on the server without calling the other constructor first, the server knows the inventory of the container
@@ -26,18 +27,22 @@ public class AltarScreenHandler extends ScreenHandler {
     public AltarScreenHandler(int syncId, PlayerInventory playerInventory, Inventory inventory) {
         super(SpectrumScreenHandlers.ALTAR, syncId); // Since we didn't create a ScreenHandlerType, we will place null here.
 
-        checkSize(inventory, rows * columns);
+        checkSize(inventory, craftingRows * craftingColumns + gemColumns);
         this.inventory = inventory;
 
         inventory.onOpen(playerInventory.player);
-        int i = (rows - 4) * 18;
+        int i = (craftingRows - 4) * 18;
 
         int n;
         int m;
-        for(n = 0; n < rows; ++n) {
-            for(m = 0; m < columns; ++m) {
-                this.addSlot(new Slot(inventory, m + n * rows, 62 + m * 18, 13 + n * 18));
+        for(n = 0; n < craftingRows; ++n) {
+            for(m = 0; m < craftingColumns; ++m) {
+                this.addSlot(new Slot(inventory, m + n * craftingRows, 62 + m * 18, 13 + n * 18));
             }
+        }
+
+        for(m = 0; m < gemColumns; ++m) {
+            this.addSlot(new Slot(inventory, 9 + m, 44 + m * 18, 21 + n * 18));
         }
 
         for(n = 0; n < 3; ++n) {

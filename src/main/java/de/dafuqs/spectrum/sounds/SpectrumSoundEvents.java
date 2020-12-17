@@ -6,17 +6,20 @@ import net.minecraft.util.registry.Registry;
 
 public class SpectrumSoundEvents {
 
-    public static final Identifier DECAY1_PLACED_ID = new Identifier("spectrum:decay1_placed");
-    public static SoundEvent DECAY1_PLACED_EVENT = new SoundEvent(DECAY1_PLACED_ID);
+    private static final Identifier DECAY1_PLACED_ID = new Identifier("spectrum:decay1_placed");
+    public static SoundEvent DECAY1_PLACED = new SoundEvent(DECAY1_PLACED_ID);
 
-    public static final Identifier DECAY2_PLACED_ID = new Identifier("spectrum:decay2_placed");
-    public static SoundEvent DECAY2_PLACED_EVENT = new SoundEvent(DECAY2_PLACED_ID);
+    private static final Identifier DECAY2_PLACED_ID = new Identifier("spectrum:decay2_placed");
+    public static SoundEvent DECAY2_PLACED = new SoundEvent(DECAY2_PLACED_ID);
 
-    public static final Identifier DECAY3_PLACED_ID = new Identifier("spectrum:decay3_placed");
-    public static SoundEvent DECAY3_PLACED_EVENT = new SoundEvent(DECAY3_PLACED_ID);
+    private static final Identifier DECAY3_PLACED_ID = new Identifier("spectrum:decay3_placed");
+    public static SoundEvent DECAY3_PLACED = new SoundEvent(DECAY3_PLACED_ID);
 
-    public static final Identifier LIQUID_CRYSTAL_AMBIENT_ID = new Identifier("spectrum:liquid_crystal_ambient");
-    public static SoundEvent LIQUID_CRYSTAL_AMBIENT_EVENT = new SoundEvent(LIQUID_CRYSTAL_AMBIENT_ID);
+    private static final Identifier LIQUID_CRYSTAL_AMBIENT_ID = new Identifier("spectrum:liquid_crystal_ambient");
+    public static SoundEvent LIQUID_CRYSTAL_AMBIENT = new SoundEvent(LIQUID_CRYSTAL_AMBIENT_ID);
+
+    private static final Identifier ALTAR_USE_ID = new Identifier("spectrum:altar_use");
+    public static SoundEvent ALTAR_USE = new SoundEvent(ALTAR_USE_ID);
 
 
     private static void register(Identifier identifier, SoundEvent soundEvent) {
@@ -24,11 +27,12 @@ public class SpectrumSoundEvents {
     }
 
     public static void register() {
-        register(DECAY1_PLACED_ID, DECAY1_PLACED_EVENT);
-        register(DECAY2_PLACED_ID, DECAY2_PLACED_EVENT);
-        register(DECAY3_PLACED_ID, DECAY3_PLACED_EVENT);
+        register(DECAY1_PLACED_ID, DECAY1_PLACED);
+        register(DECAY2_PLACED_ID, DECAY2_PLACED);
+        register(DECAY3_PLACED_ID, DECAY3_PLACED);
 
-        register(LIQUID_CRYSTAL_AMBIENT_ID, LIQUID_CRYSTAL_AMBIENT_EVENT);
+        register(LIQUID_CRYSTAL_AMBIENT_ID, LIQUID_CRYSTAL_AMBIENT); // TODO: sound
+        register(ALTAR_USE_ID, ALTAR_USE); // TODO: sound
     }
 
 }

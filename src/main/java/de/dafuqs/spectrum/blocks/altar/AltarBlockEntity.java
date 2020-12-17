@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.blocks.altar;
 
 import de.dafuqs.spectrum.blocks.SpectrumBlockEntityType;
+import de.dafuqs.spectrum.sounds.SpectrumSoundEvents;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.ChestStateManager;
 import net.minecraft.block.entity.LootableContainerBlockEntity;
@@ -14,7 +15,6 @@ import net.minecraft.screen.GenericContainerScreenHandler;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.collection.DefaultedList;
@@ -28,14 +28,16 @@ public class AltarBlockEntity extends LootableContainerBlockEntity {
 
     public AltarBlockEntity(BlockPos pos, BlockState state) {
         super(SpectrumBlockEntityType.ALTAR_BLOCK_ENTITY_TYPE, pos, state);
-        this.inventory = DefaultedList.ofSize(9, ItemStack.EMPTY);
+
+        this.inventory = DefaultedList.ofSize(this.size(), ItemStack.EMPTY);
+
         this.stateManager = new ChestStateManager() {
             protected void onChestOpened(World world, BlockPos pos, BlockState state) {
-                playSound(state, SoundEvents.BLOCK_BARREL_OPEN);
+                playSound(state, SpectrumSoundEvents.ALTAR_USE);
             }
 
             protected void onChestClosed(World world, BlockPos pos, BlockState state) {
-                playSound(state, SoundEvents.BLOCK_BARREL_CLOSE);
+                playSound(state, SpectrumSoundEvents.ALTAR_USE);
             }
 
             protected void onInteracted(World world, BlockPos pos, BlockState state, int oldViewerCount, int newViewerCount) {
@@ -57,7 +59,6 @@ public class AltarBlockEntity extends LootableContainerBlockEntity {
         if (!this.serializeLootTable(tag)) {
             Inventories.toTag(tag, this.inventory);
         }
-
         return tag;
     }
 
@@ -67,11 +68,10 @@ public class AltarBlockEntity extends LootableContainerBlockEntity {
         if (!this.deserializeLootTable(compoundTag)) {
             Inventories.fromTag(compoundTag, this.inventory);
         }
-
     }
 
     public int size() {
-        return 9;
+        return 14; // 0-8: crafting grid, 9-13: gems
     }
 
     protected DefaultedList<ItemStack> getInvStackList() {

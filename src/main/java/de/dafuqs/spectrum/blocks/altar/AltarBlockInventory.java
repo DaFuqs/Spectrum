@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.blocks.altar;
+/*package de.dafuqs.spectrum.blocks.altar;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventories;
@@ -9,16 +9,14 @@ import net.minecraft.util.collection.DefaultedList;
 public class AltarBlockInventory implements Inventory {
 
     private final int size;
-    private final DefaultedList<ItemStack> stacks;
+    private final DefaultedList<ItemStack> crafting;
+    private final DefaultedList<ItemStack> gems;
 
 
-    private AltarBlockInventory(int size) {
-        this.size = size;
-        this.stacks = DefaultedList.ofSize(size, ItemStack.EMPTY);
-    }
-
-    public static AltarBlockInventory of(int size) {
-        return new AltarBlockInventory(size);
+    private AltarBlockInventory() {
+        this.crafting = DefaultedList.ofSize(9, ItemStack.EMPTY);
+        this.gems = DefaultedList.ofSize(5, ItemStack.EMPTY);
+        this.size = crafting.size() + gems.size();
     }
 
     @Override
@@ -28,13 +26,16 @@ public class AltarBlockInventory implements Inventory {
 
     @Override
     public boolean isEmpty() {
-        return this.stacks.stream().allMatch(ItemStack::isEmpty);
+        return this.crafting.stream().allMatch(ItemStack::isEmpty) && this.gems.stream().allMatch(ItemStack::isEmpty);
     }
 
     @Override
     public ItemStack getStack(int slot) {
-        if (slot >= 0 && slot < size) {
-            return stacks.get(slot);
+        if(slot < size) {
+            if (slot >= 9) {
+                return gems.get(slot - 9);
+            }
+            return crafting.get(slot);
         } else {
             throw new ArrayIndexOutOfBoundsException("Cannot access slot bigger than inventory size");
         }
@@ -42,7 +43,12 @@ public class AltarBlockInventory implements Inventory {
 
     @Override
     public ItemStack removeStack(int slot, int amount) {
-        ItemStack stack = Inventories.splitStack(this.stacks, slot, amount);
+        ItemStack stack;
+        if (slot >= 9) {
+            stack = Inventories.splitStack(this.gems, slot - 9, amount);
+        } else {
+            stack = Inventories.splitStack(this.crafting, slot, amount);
+        }
         if (!stack.isEmpty()) {
             this.markDirty();
         }
@@ -51,12 +57,17 @@ public class AltarBlockInventory implements Inventory {
 
     @Override
     public ItemStack removeStack(int slot) {
-        ItemStack stack = stacks.get(slot);
+        ItemStack stack;
+        if (slot >= 9) {
+            stack = gems.get(slot - 9);
+        } else {
+            stack = crafting.get(slot);
+        }
 
         if (stack.isEmpty()) {
             return ItemStack.EMPTY;
         } else {
-            stacks.set(slot, ItemStack.EMPTY);
+            crafting.set(slot, ItemStack.EMPTY);
             markDirty();
             return stack;
         }
@@ -69,9 +80,13 @@ public class AltarBlockInventory implements Inventory {
      *              this inventory ({@link Inventory#getMaxCountPerStack()}),
      *              it gets resized to this inventory's maximum amount.
      */
-    @Override
+    /*@Override
     public void setStack(int slot, ItemStack stack) {
-        stacks.set(slot, stack);
+        if (slot >= 9) {
+            gems.set(slot - 9, stack);
+        } else {
+            crafting.set(slot, stack);
+        }
 
         if (stack.getCount() > getMaxCountPerStack()) {
             stack.setCount(getMaxCountPerStack());
@@ -90,7 +105,7 @@ public class AltarBlockInventory implements Inventory {
      * Must be called after changes in the inventory, so that the game can properly save
      * the inventory contents and notify neighboring blocks of inventory changes.
      */
-    @Override
+    /*@Override
     public void markDirty() {
 
     }
@@ -108,3 +123,4 @@ public class AltarBlockInventory implements Inventory {
         markDirty();
     }
 }
+*/

@@ -1,0 +1,32 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "FAF",
+        "CTM",
+        "EEE"
+    ],
+    "key": {
+        "C": {
+	        "item": "spectrum:citrine_shard"
+        },
+        "T": {
+	        "item": "spectrum:topaz_shard"
+        },
+        "M": {
+	        "item": "spectrum:moonstone_shard"
+        },
+        "A": {
+	        "item": "minecraft:amethyst_shard"
+        },
+        "E": {
+	        "item": "spectrum:polished_calcite"
+        },
+        "F": {
+	        "item": "spectrum:polished_tuff"
+        }
+    },
+    "result": {
+        "item": "spectrum:altar",
+        "count": 1
+    }
+}

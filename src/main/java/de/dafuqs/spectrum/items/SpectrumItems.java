@@ -46,7 +46,14 @@ public class SpectrumItems {
     public static final Item TOPAZ_SHARD_ITEM = new Item(buildingBlockSettings);
     public static final Item ONYX_SHARD_ITEM = new Item(buildingBlockSettings);
     public static final Item MOONSTONE_SHARD_ITEM = new Item(buildingBlockSettings);
-    public static final Item RAINBOW_MOONSTONE_SHARD_ITEM = new Item(buildingBlockSettings);
+    public static final Item RAINBOW_MOONSTONE_ITEM = new Item(buildingBlockSettings);
+
+    // DECAY DROPS
+    public static final Item VEGETAL = new Item(buildingBlockSettings);
+    public static final Item CORRUPTED_OBSIDIAN_DUST = new Item(buildingBlockSettings);
+    public static final Item CORRUPTED_BEDROCK_DUST = new Item(buildingBlockSettings);
+
+
 
     private static void registerItem(String name, Item item) {
         Registry.register(Registry.ITEM, new Identifier(SpectrumCommon.MOD_ID, name), item);
@@ -71,7 +78,11 @@ public class SpectrumItems {
         registerItem("topaz_shard", TOPAZ_SHARD_ITEM);
         registerItem("onyx_shard", ONYX_SHARD_ITEM);
         registerItem("moonstone_shard", MOONSTONE_SHARD_ITEM);
-        registerItem("rainbow_moonstone_shard", RAINBOW_MOONSTONE_SHARD_ITEM);
+        registerItem("rainbow_moonstone_shard", RAINBOW_MOONSTONE_ITEM);
+
+        registerItem("vegetal", VEGETAL);
+        registerItem("corrupted_obsidian_dust", CORRUPTED_OBSIDIAN_DUST);
+        registerItem("corrupted_bedrock_dust", CORRUPTED_BEDROCK_DUST);
     }
 
 

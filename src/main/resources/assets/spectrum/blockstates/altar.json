@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "state=default": {
+      "model": "spectrum:block/altar"
+    },
+    "state=redstone": {
+      "model": "spectrum:block/altar_redstone"
+    }
+  }
+}

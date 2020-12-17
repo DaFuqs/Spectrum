@@ -34,6 +34,10 @@
   "item.spectrum.moonstone_shard": "Moonstone Shard",
   "item.spectrum.rainbow_moonstone_shard": "Rainbow Moonstone Shard",
 
+  "item.spectrum.vegetal": "Vegetal",
+  "item.spectrum.corrupted_obsidian_dust": "Corrupted Obsidian Dust",
+  "item.spectrum.corrupted_bedrock_dust": "Corrupted Bedrock Dust",
+
   "item.spectrum.glistering_melon_seeds": "Glistering Melon Seeds",
   "block.spectrum.glistering_melon": "Glistering Melon",
   "block.spectrum.glistering_melon_stem": "Glistering Melon Stem",
@@ -99,11 +103,32 @@
   "block.spectrum.onyx_chiseled_calcite": "Onyx Chiseled Calcite",
   "block.spectrum.moonstone_chiseled_calcite": "Moonstone Chiseled Calcite",
 
+  "block.spectrum.amethyst_glass": "Amethyst Glass",
+  "block.spectrum.topaz_glass": "Topaz Glass",
+  "block.spectrum.citrine_glass": "Citrine Glass",
+  "block.spectrum.onyx_glass": "Onyx Glass",
+  "block.spectrum.moonstone_glass": "Moonstone Glass",
+  
+  "block.spectrum.amethyst_calcite_lamp": "Amethyst Calcite Lamp",
+  "block.spectrum.topaz_calcite_lamp": "Topaz Calcite Lamp",
+  "block.spectrum.citrine_calcite_lamp": "Citrine Calcite Lamp",
+  "block.spectrum.onyx_calcite_lamp": "Onyx Calcite Lamp",
+  "block.spectrum.moonstone_calcite_lamp": "Moonstone Calcite Lamp",
+
+  "block.spectrum.amethyst_tuff_lamp": "Amethyst Tuff Lamp",
+  "block.spectrum.topaz_tuff_lamp": "Topaz Tuff Lamp",
+  "block.spectrum.citrine_tuff_lamp": "Citrine Tuff Lamp",
+  "block.spectrum.onyx_tuff_lamp": "Onyx Tuff Lamp",
+  "block.spectrum.moonstone_tuff_lamp": "Moonstone Tuff Lamp",
+
   "block.spectrum.decay1": "Fading",
   "block.spectrum.decay2": "Failing",
   "block.spectrum.decay3": "Ruin",
 
+  "block.spectrum.altar": "Altar",
   "block.spectrum.ominous_sapling": "Ominous Sapling",
+
+  "spectrum.container.altar": "Altar",
 
   "advancements.spectrum.spectrum.title": "Spectrum",
   "advancements.spectrum.spectrum.description": "A story about magic, colors, and chaos.",

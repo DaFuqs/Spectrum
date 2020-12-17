@@ -1,7 +1,8 @@
-package de.dafuqs.spectrum.blocks;
+package de.dafuqs.spectrum.blocks.tree;
 
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.Support;
+import de.dafuqs.spectrum.blocks.SpectrumBlockEntityType;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockEntityProvider;
 import net.minecraft.block.BlockState;
@@ -25,7 +26,7 @@ import java.util.UUID;
 
 public class OminousSaplingBlock extends Block implements BlockEntityProvider {
 
-    protected OminousSaplingBlock(Settings settings) {
+    public OminousSaplingBlock(Settings settings) {
         super(settings);
     }
 

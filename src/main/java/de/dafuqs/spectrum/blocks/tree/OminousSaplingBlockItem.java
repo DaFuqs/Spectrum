@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.blocks;
+package de.dafuqs.spectrum.blocks.tree;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.entity.BlockEntity;

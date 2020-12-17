@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "CSC",
+        "SGS",
+        "CSC"
+    ],
+    "key": {
+        "C": {
+	        "item": "spectrum:polished_calcite"
+        },
+        "G": {
+	        "item": "minecraft:glowstone_dust"
+        },
+        "S": {
+	        "item": "spectrum:moonstone_shard"
+        }
+    },
+    "result": {
+        "item": "spectrum:moonstone_calcite_lamp",
+        "count": 4
+    }
+}

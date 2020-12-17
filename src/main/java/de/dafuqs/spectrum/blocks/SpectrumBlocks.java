@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.blocks;
 
 import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.blocks.altar.AltarBlock;
 import de.dafuqs.spectrum.blocks.base.DirectionalBlock;
 import de.dafuqs.spectrum.blocks.base.SpectrumStairsBlock;
 import de.dafuqs.spectrum.blocks.buddingblocks.BuddingCitrineBlock;
@@ -13,6 +14,8 @@ import de.dafuqs.spectrum.blocks.decay.DecayBlock3;
 import de.dafuqs.spectrum.blocks.melon.AttachedGlisteringStemBlock;
 import de.dafuqs.spectrum.blocks.melon.GlisteringMelonBlock;
 import de.dafuqs.spectrum.blocks.melon.GlisteringStemBlock;
+import de.dafuqs.spectrum.blocks.tree.OminousSaplingBlock;
+import de.dafuqs.spectrum.blocks.tree.OminousSaplingBlockItem;
 import de.dafuqs.spectrum.items.SpectrumItemGroups;
 import de.dafuqs.spectrum.items.SpectrumItems;
 import de.dafuqs.spectrum.misc.SpectrumMaterial;
@@ -112,6 +115,26 @@ public class SpectrumBlocks {
     public static final Block ONYX_CHISELED_CALCITE = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f).luminance(3));
     public static final Block MOONSTONE_CHISELED_CALCITE = new DirectionalBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f).luminance(12));
 
+    // LAMPS
+    public static final Block AMETHYST_CALCITE_LAMP = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f).luminance(15).nonOpaque());
+    public static final Block TOPAZ_CALCITE_LAMP = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f).luminance(15).nonOpaque());
+    public static final Block CITRINE_CALCITE_LAMP = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f).luminance(15).nonOpaque());
+    public static final Block ONYX_CALCITE_LAMP = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f).luminance(15).nonOpaque());
+    public static final Block MOONSTONE_CALCITE_LAMP = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f).luminance(15).nonOpaque());
+    public static final Block AMETHYST_TUFF_LAMP = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f).luminance(15).nonOpaque());
+    public static final Block TOPAZ_TUFF_LAMP = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f).luminance(15).nonOpaque());
+    public static final Block CITRINE_TUFF_LAMP = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f).luminance(15).nonOpaque());
+    public static final Block ONYX_TUFF_LAMP = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f).luminance(15).nonOpaque());
+    public static final Block MOONSTONE_TUFF_LAMP = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f).luminance(15).nonOpaque());
+
+    // GLASS
+    public static final Block AMETHYST_GLASS = new GlassBlock(FabricBlockSettings.copy(Blocks.GLASS));
+    public static final Block TOPAZ_GLASS = new GlassBlock(FabricBlockSettings.copy(Blocks.GLASS));
+    public static final Block CITRINE_GLASS = new GlassBlock(FabricBlockSettings.copy(Blocks.GLASS));
+    public static final Block ONYX_GLASS = new GlassBlock(FabricBlockSettings.copy(Blocks.GLASS));
+    public static final Block MOONSTONE_GLASS = new GlassBlock(FabricBlockSettings.copy(Blocks.GLASS));
+
+    // MELON
     public static final Block GLISTERING_MELON = new GlisteringMelonBlock(FabricBlockSettings.of(Material.GOURD, MapColor.LIME).strength(1.0F).sounds(BlockSoundGroup.WOOD));
     public static final Block GLISTERING_MELON_STEM = new GlisteringStemBlock((GourdBlock) GLISTERING_MELON, () -> SpectrumItems.GLISTERING_MELON_SEEDS, FabricBlockSettings.of(Material.PLANT).noCollision().nonOpaque().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.STEM));
     public static final Block ATTACHED_GLISTERING_MELON_STEM = new AttachedGlisteringStemBlock((GourdBlock) GLISTERING_MELON, () -> SpectrumItems.GLISTERING_MELON_SEEDS, FabricBlockSettings.of(Material.PLANT).nonOpaque().noCollision().breakInstantly().sounds(BlockSoundGroup.WOOD));
@@ -127,6 +150,10 @@ public class SpectrumBlocks {
     public static final Block DECAY2 = new DecayBlock2(decaySettings.hardness(20.0F).resistance(50.0F), null, SpectrumBlockTags.DECAY2_SAFE, 2,  2.5F);
     public static final Block DECAY3 = new DecayBlock3(decaySettings.hardness(100.0F).resistance(3600000.0F), null, SpectrumBlockTags.DECAY3_SAFE, 3, 5F);
 
+    // ALTAR
+    private static final FabricBlockSettings altarSettings = FabricBlockSettings.of(Material.STONE).breakByTool(FabricToolTags.PICKAXES).requiresTool().hardness(5.0F).resistance(20.0F);
+    public static final Block ALTAR = new AltarBlock(altarSettings);
+    
 
     private static void registerBlock(String name, Block block) {
         Registry.register(Registry.BLOCK, new Identifier(SpectrumCommon.MOD_ID, name), block);
@@ -252,6 +279,40 @@ public class SpectrumBlocks {
         registerBlock("rainbow_moonstone_block", RAINBOW_MOONSTONE_BLOCK);
         registerBlockItem("rainbow_moonstone_block", new BlockItem(RAINBOW_MOONSTONE_BLOCK, blockItemSettings));
 
+        // LAMPS
+        registerBlock("amethyst_calcite_lamp", AMETHYST_CALCITE_LAMP);
+        registerBlockItem("amethyst_calcite_lamp", new BlockItem(AMETHYST_CALCITE_LAMP, blockItemSettings));
+        registerBlock("topaz_calcite_lamp", TOPAZ_CALCITE_LAMP);
+        registerBlockItem("topaz_calcite_lamp", new BlockItem(TOPAZ_CALCITE_LAMP, blockItemSettings));
+        registerBlock("citrine_calcite_lamp", CITRINE_CALCITE_LAMP);
+        registerBlockItem("citrine_calcite_lamp", new BlockItem(CITRINE_CALCITE_LAMP, blockItemSettings));
+        registerBlock("onyx_calcite_lamp", ONYX_CALCITE_LAMP);
+        registerBlockItem("onyx_calcite_lamp", new BlockItem(ONYX_CALCITE_LAMP, blockItemSettings));
+        registerBlock("moonstone_calcite_lamp", MOONSTONE_CALCITE_LAMP);
+        registerBlockItem("moonstone_calcite_lamp", new BlockItem(MOONSTONE_CALCITE_LAMP, blockItemSettings));
+        registerBlock("amethyst_tuff_lamp", AMETHYST_TUFF_LAMP);
+        registerBlockItem("amethyst_tuff_lamp", new BlockItem(AMETHYST_TUFF_LAMP, blockItemSettings));
+        registerBlock("topaz_tuff_lamp", TOPAZ_TUFF_LAMP);
+        registerBlockItem("topaz_tuff_lamp", new BlockItem(TOPAZ_TUFF_LAMP, blockItemSettings));
+        registerBlock("citrine_tuff_lamp", CITRINE_TUFF_LAMP);
+        registerBlockItem("citrine_tuff_lamp", new BlockItem(CITRINE_TUFF_LAMP, blockItemSettings));
+        registerBlock("onyx_tuff_lamp", ONYX_TUFF_LAMP);
+        registerBlockItem("onyx_tuff_lamp", new BlockItem(ONYX_TUFF_LAMP, blockItemSettings));
+        registerBlock("moonstone_tuff_lamp", MOONSTONE_TUFF_LAMP);
+        registerBlockItem("moonstone_tuff_lamp", new BlockItem(MOONSTONE_TUFF_LAMP, blockItemSettings));
+
+        // GLASS
+        registerBlock("amethyst_glass", AMETHYST_GLASS);
+        registerBlockItem("amethyst_glass", new BlockItem(AMETHYST_GLASS, blockItemSettings));
+        registerBlock("topaz_glass", TOPAZ_GLASS);
+        registerBlockItem("topaz_glass", new BlockItem(TOPAZ_GLASS, blockItemSettings));
+        registerBlock("citrine_glass", CITRINE_GLASS);
+        registerBlockItem("citrine_glass", new BlockItem(CITRINE_GLASS, blockItemSettings));
+        registerBlock("onyx_glass", ONYX_GLASS);
+        registerBlockItem("onyx_glass", new BlockItem(ONYX_GLASS, blockItemSettings));
+        registerBlock("moonstone_glass", MOONSTONE_GLASS);
+        registerBlockItem("moonstone_glass", new BlockItem(MOONSTONE_GLASS, blockItemSettings));
+
         // GLISTERING MELON
         registerBlock("glistering_melon", GLISTERING_MELON);
         registerBlockItem("glistering_melon", new BlockItem(GLISTERING_MELON, blockItemSettings));
@@ -269,6 +330,10 @@ public class SpectrumBlocks {
         registerBlockItem("decay2", new BlockItem(DECAY2, blockItemSettings));
         registerBlock("decay3", DECAY3);
         registerBlockItem("decay3", new BlockItem(DECAY3, blockItemSettings));
+
+        // ALTAR
+        registerBlock("altar", ALTAR);
+        registerBlockItem("altar", new BlockItem(ALTAR, blockItemSettings));
     }
 
     public static void registerClient() {
@@ -295,5 +360,23 @@ public class SpectrumBlocks {
         BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.GLISTERING_MELON_STEM, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.ATTACHED_GLISTERING_MELON_STEM, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.OMINOUS_SAPLING, RenderLayer.getCutout());
+
+        BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.AMETHYST_GLASS, RenderLayer.getTranslucent());
+        BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.CITRINE_GLASS, RenderLayer.getTranslucent());
+        BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.TOPAZ_GLASS, RenderLayer.getTranslucent());
+        BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.MOONSTONE_GLASS, RenderLayer.getTranslucent());
+        BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.ONYX_GLASS, RenderLayer.getTranslucent());
+
+        BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.AMETHYST_CALCITE_LAMP, RenderLayer.getTranslucent());
+        BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.CITRINE_CALCITE_LAMP, RenderLayer.getTranslucent());
+        BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.TOPAZ_CALCITE_LAMP, RenderLayer.getTranslucent());
+        BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.MOONSTONE_CALCITE_LAMP, RenderLayer.getTranslucent());
+        BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.ONYX_CALCITE_LAMP, RenderLayer.getTranslucent());
+
+        BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.AMETHYST_TUFF_LAMP, RenderLayer.getTranslucent());
+        BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.CITRINE_TUFF_LAMP, RenderLayer.getTranslucent());
+        BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.TOPAZ_TUFF_LAMP, RenderLayer.getTranslucent());
+        BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.MOONSTONE_TUFF_LAMP, RenderLayer.getTranslucent());
+        BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.ONYX_TUFF_LAMP, RenderLayer.getTranslucent());
     }
 }

@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "spectrum:decay3"
+          "name": "spectrum:corrupted_bedrock_dust"
         }
       ],
       "conditions": [
@@ -26,8 +26,8 @@
       "function": "minecraft:set_count",
       "count": {
         "type": "minecraft:uniform",
-        "min": 2.0,
-        "max": 4.0
+        "min": 1.0,
+        "max": 2.0
       },
       "add": false
     }

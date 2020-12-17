@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "GSG",
+        "SSS",
+        "GSG"
+    ],
+    "key": {
+        "G": {
+	        "item": "minecraft:glass"
+        },
+        "S": {
+	        "item": "spectrum:moonstone_shard"
+        }
+    },
+    "result": {
+        "item": "spectrum:moonstone_glass",
+        "count": 4
+    }
+}

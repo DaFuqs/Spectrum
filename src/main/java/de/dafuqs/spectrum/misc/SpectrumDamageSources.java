@@ -9,11 +9,10 @@ public class SpectrumDamageSources {
 
     public static final DamageSource DECAY = new DecayDamageSource("spectrum_decay");
 
-
     public static class DecayDamageSource extends DamageSource {
 
-        private boolean bypassesArmor;
-        private boolean unblockable;
+        private final boolean bypassesArmor;
+        private final boolean unblockable;
 
         protected DecayDamageSource(String name) {
             super(name);
@@ -34,7 +33,7 @@ public class SpectrumDamageSources {
         public Text getDeathMessage(LivingEntity entity) {
             LivingEntity livingEntity = entity.getPrimeAdversary();
             String string = "death.attack." + this.name;
-            return livingEntity != null ? new TranslatableText(string, new Object[]{entity.getDisplayName(), livingEntity.getDisplayName()}) : new TranslatableText(string, new Object[]{entity.getDisplayName()});
+            return livingEntity != null ? new TranslatableText(string, entity.getDisplayName(), livingEntity.getDisplayName()) : new TranslatableText(string, entity.getDisplayName());
         }
 
 

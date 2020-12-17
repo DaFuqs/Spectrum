@@ -3,6 +3,8 @@ package de.dafuqs.spectrum;
 import de.dafuqs.spectrum.blocks.SpectrumBlockEntityType;
 import de.dafuqs.spectrum.blocks.SpectrumBlockTags;
 import de.dafuqs.spectrum.blocks.SpectrumBlocks;
+import de.dafuqs.spectrum.blocks.altar.SpectrumContainers;
+import de.dafuqs.spectrum.blocks.altar.SpectrumScreenHandlers;
 import de.dafuqs.spectrum.config.SpectrumConfig;
 import de.dafuqs.spectrum.enchantments.SpectrumEnchantments;
 import de.dafuqs.spectrum.items.SpectrumItems;
@@ -42,6 +44,9 @@ public class SpectrumCommon implements ModInitializer {
         SpectrumBlockEntityType.register();
         SpectrumEnchantments.register();
         SpectrumFeatures.register();
+
+        SpectrumContainers.register();
+        SpectrumScreenHandlers.register();
 
         ServerWorldEvents.LOAD.register((minecraftServer, serverWorld) -> {
             SpectrumCommon.minecraftServer = minecraftServer;

@@ -1,6 +1,7 @@
-package de.dafuqs.spectrum.blocks;
+package de.dafuqs.spectrum.blocks.tree;
 
-import de.dafuqs.spectrum.PlayerOwned;
+import de.dafuqs.spectrum.interfaces.PlayerOwned;
+import de.dafuqs.spectrum.blocks.SpectrumBlockEntityType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;

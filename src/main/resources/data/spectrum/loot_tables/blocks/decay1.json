@@ -3,11 +3,10 @@
   "pools": [
     {
       "rolls": 1.0,
-      "bonus_rolls": 0.0,
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "spectrum:decay1"
+          "name": "spectrum:vegetal"
         }
       ],
       "conditions": [
@@ -18,18 +17,47 @@
             "decay_state": "leaves"
           }
         }
+      ],
+      "functions": [
+        {
+          "function": "minecraft:set_count",
+          "count": {
+            "type": "minecraft:uniform",
+            "min": 1.0,
+            "max": 2.0
+          },
+          "add": false
+        }
       ]
-    }
-  ],
-  "functions": [
+    },
     {
-      "function": "minecraft:set_count",
-      "count": {
-        "type": "minecraft:uniform",
-        "min": 2.0,
-        "max": 4.0
-      },
-      "add": false
+      "rolls": 1.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:vegetal"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:block_state_property",
+          "block": "spectrum:decay1",
+          "properties": {
+            "decay_state": "magic_leaves"
+          }
+        }
+      ],
+      "functions": [
+        {
+          "function": "minecraft:set_count",
+          "count": {
+            "type": "minecraft:uniform",
+            "min": 8.0,
+            "max": 12.0
+          },
+          "add": false
+        }
+      ]
     }
   ]
 }

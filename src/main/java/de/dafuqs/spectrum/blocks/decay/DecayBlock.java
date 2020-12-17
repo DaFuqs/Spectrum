@@ -4,8 +4,6 @@ import de.dafuqs.spectrum.Support;
 import de.dafuqs.spectrum.blocks.SpectrumBlockTags;
 import de.dafuqs.spectrum.misc.SpectrumDamageSources;
 import de.dafuqs.spectrum.sounds.SpectrumSoundEvents;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.network.ClientPlayerEntity;
@@ -62,12 +60,6 @@ public abstract class DecayBlock extends Block {
     public DecayBlock addDecayConversion(Tag<Block> sourceBlockTag, BlockState decayConversion) {
         this.decayConversions.put(sourceBlockTag, decayConversion);
         return this;
-    }
-
-    @Environment(EnvType.CLIENT)
-    public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
-        // spwn particles? => may result in a lot of lag
-        //world.spawnParticles(ParticleTypes.LARGE_SMOKE, (double)blockPos.getX() + 0.5D, (double)blockPos.getY() + 0.25D, (double)blockPos.getZ() + 0.5D, 8, 0.5D, 0.25D, 0.5D, 0.0D);
     }
 
     public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {

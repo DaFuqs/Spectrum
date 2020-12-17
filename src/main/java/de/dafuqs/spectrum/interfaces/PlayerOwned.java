@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum;
+package de.dafuqs.spectrum.interfaces;
 
 import java.util.UUID;
 

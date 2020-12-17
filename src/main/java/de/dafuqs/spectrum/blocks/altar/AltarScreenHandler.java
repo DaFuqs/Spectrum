@@ -1,10 +1,12 @@
 package de.dafuqs.spectrum.blocks.altar;
 
+import de.dafuqs.spectrum.items.SpectrumItems;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.slot.Slot;
 
@@ -42,7 +44,12 @@ public class AltarScreenHandler extends ScreenHandler {
         }
 
         for(m = 0; m < gemColumns; ++m) {
-            this.addSlot(new Slot(inventory, 9 + m, 44 + m * 18, 21 + n * 18));
+            int finalM = m;
+            this.addSlot(new Slot(inventory, 9 + finalM, 44 + finalM * 18, 21 + n * 18) {
+                public boolean canInsert(ItemStack stack) {
+                    return isItemStackValidForSlot(finalM, stack);
+                }
+            });
         }
 
         for(n = 0; n < 3; ++n) {
@@ -54,6 +61,22 @@ public class AltarScreenHandler extends ScreenHandler {
         for(n = 0; n < 9; ++n) {
             this.addSlot(new Slot(playerInventory, n, 8 + n * 18, 177 + i));
         }
+    }
+
+    private boolean isItemStackValidForSlot(int gemSlotId, ItemStack itemStack) {
+        switch (gemSlotId) {
+            case 0:
+                return itemStack.isOf(Items.AMETHYST_SHARD);
+            case 1:
+                return itemStack.isOf(SpectrumItems.CITRINE_SHARD_ITEM);
+            case 2:
+                return itemStack.isOf(SpectrumItems.TOPAZ_SHARD_ITEM);
+            case 3:
+                return itemStack.isOf(SpectrumItems.MOONSTONE_SHARD_ITEM);
+            case 4:
+                return itemStack.isOf(SpectrumItems.ONYX_SHARD_ITEM);
+        }
+        return false;
     }
 
     public boolean canUse(PlayerEntity player) {

@@ -52,27 +52,6 @@ public abstract class LiquidCrystalFluid extends SpectrumFluid {
 		return Optional.of(SoundEvents.ITEM_BUCKET_FILL);
 	}
 
-
-
-	/*protected void flow(WorldAccess world, BlockPos pos, BlockState state, Direction direction, FluidState fluidState) {
-		if (this.isIn(SpectrumFluidTags.LIQUID_CRYSTAL)) {
-			FluidState fluidState2 = world.getFluidState(pos);
-			if(fluidState2.isIn(FluidTags.WATER)) {
-				if (state.getBlock() instanceof FluidBlock) {
-					world.setBlockState(pos, Blocks.CALCITE.getDefaultState(), 3);
-				}
-				return;
-			} else if(fluidState2.isIn(FluidTags.LAVA)) {
-				if (state.getBlock() instanceof FluidBlock) {
-					world.setBlockState(pos, Blocks.TUFF.getDefaultState(), 3);
-				}
-				return;
-			}
-		}
-
-		super.flow(world, pos, state, direction, fluidState);
-	}*/
-
 	// TODO: Other particle and ambient sound
 	@Environment(EnvType.CLIENT)
 	public void randomDisplayTick(World world, BlockPos pos, FluidState state, Random random) {

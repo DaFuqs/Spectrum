@@ -33,6 +33,13 @@ public class LiquidCrystalBlock extends FluidBlock {
 
     }
 
+    /**
+     *
+     * @param world The world
+     * @param pos The position in the world
+     * @param state BlockState of the liquid crystal. Included the height/fluid level
+     * @return Dunno, actually. I just mod things.
+     */
     private boolean receiveNeighborFluids(World world, BlockPos pos, BlockState state) {
         Direction[] var5 = Direction.values();
         int var6 = var5.length;

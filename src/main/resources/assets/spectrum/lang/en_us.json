@@ -112,6 +112,13 @@
   "block.spectrum.citrine_glass": "Citrine Glass",
   "block.spectrum.onyx_glass": "Onyx Glass",
   "block.spectrum.moonstone_glass": "Moonstone Glass",
+
+  "block.spectrum.vanilla_player_only_glass": "Semi-Permeable Glass",
+  "block.spectrum.amethyst_player_only_glass": "Semi-Permeable Amethyst Glass",
+  "block.spectrum.topaz_player_only_glass": "Semi-Permeable Topaz Glass",
+  "block.spectrum.citrine_player_only_glass": "Semi-Permeable Citrine Glass",
+  "block.spectrum.onyx_player_only_glass": "Semi-Permeable Onyx Glass",
+  "block.spectrum.moonstone_player_only_glass": "Semi-Permeable Moonstone Glass",
   
   "block.spectrum.amethyst_calcite_lamp": "Amethyst Calcite Lamp",
   "block.spectrum.topaz_calcite_lamp": "Topaz Calcite Lamp",
@@ -162,6 +169,9 @@
   "advancements.spectrum.plant_ominous_sapling.description": "It looks... kinda dead?",
   "advancements.spectrum.grow_ominous_sapling.title": "A successful experiment!",
   "advancements.spectrum.grow_ominous_sapling.description": "It grew! ...somewhat.",
+
+  "advancements.spectrum.get_player_only_glass.title": "Peace and satisfaction",
+  "advancements.spectrum.get_player_only_glass.description": "You spend more time keeping those pesky monsters out of your base than you care to admit. It's a waste of time to even bother with these low-life ruffians. You remember the jar recipe you thought up earlier. With a bit of magical energy, it should be no problem to make it not only transparent for you (not for them!), but also passable. Bonus: If you make it look exactly like regular glass you might even be able to fool your competition.\n\nTranslated with www.DeepL.com/Translator (free version)",
 
   "______done_until_here" : "TODO:",
   "advancements.spectrum.craft_energy_collector.title": "Roger that",

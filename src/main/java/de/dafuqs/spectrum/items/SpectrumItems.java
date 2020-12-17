@@ -17,7 +17,7 @@ import static de.dafuqs.spectrum.fluid.SpectrumFluids.STILL_LIQUID_CRYSTAL;
 
 public class SpectrumItems {
 
-    public static FabricItemSettings spectrumItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP);
+    public static FabricItemSettings spectrumItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP).rarity(Rarity.COMMON);
     public static FabricItemSettings spectrumUncommonItemSettings = spectrumItemSettings.rarity(Rarity.UNCOMMON);
     public static FabricItemSettings spectrumRareItemSettings = spectrumItemSettings.rarity(Rarity.RARE);
 

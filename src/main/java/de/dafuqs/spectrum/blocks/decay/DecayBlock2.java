@@ -65,7 +65,7 @@ public class DecayBlock2 extends DecayBlock {
     public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
 
         if(CRYING_OBSIDIAN_BLOCKSTATE == null) {
-            CRYING_OBSIDIAN_BLOCKSTATE = SpectrumBlocks.DECAY1.getDefaultState().with(DecayBlock2.DECAY_STATE, DecayConversion.CRYING_OBSIDIAN);
+            CRYING_OBSIDIAN_BLOCKSTATE = SpectrumBlocks.DECAY2.getDefaultState().with(DecayBlock2.DECAY_STATE, DecayConversion.CRYING_OBSIDIAN);
         }
 
         if (world.getBlockState(pos).equals(CRYING_OBSIDIAN_BLOCKSTATE)) {

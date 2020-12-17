@@ -16,6 +16,8 @@ import de.dafuqs.spectrum.blocks.melon.GlisteringMelonBlock;
 import de.dafuqs.spectrum.blocks.melon.GlisteringStemBlock;
 import de.dafuqs.spectrum.blocks.tree.OminousSaplingBlock;
 import de.dafuqs.spectrum.blocks.tree.OminousSaplingBlockItem;
+import de.dafuqs.spectrum.fluid.SpectrumFluidBlock;
+import de.dafuqs.spectrum.fluid.SpectrumFluids;
 import de.dafuqs.spectrum.items.SpectrumItemGroups;
 import de.dafuqs.spectrum.items.SpectrumItems;
 import de.dafuqs.spectrum.misc.SpectrumMaterial;
@@ -153,7 +155,10 @@ public class SpectrumBlocks {
     // ALTAR
     private static final FabricBlockSettings altarSettings = FabricBlockSettings.of(Material.STONE).breakByTool(FabricToolTags.PICKAXES).requiresTool().hardness(5.0F).resistance(20.0F);
     public static final Block ALTAR = new AltarBlock(altarSettings);
-    
+
+    // FLUIDS
+    private static final FabricBlockSettings liquidCrystalBlockSettings = FabricBlockSettings.copyOf(Blocks.WATER);
+    public static final Block LIQUID_CRYSTAL = new SpectrumFluidBlock(SpectrumFluids.STILL_LIQUID_CRYSTAL, liquidCrystalBlockSettings);
 
     private static void registerBlock(String name, Block block) {
         Registry.register(Registry.BLOCK, new Identifier(SpectrumCommon.MOD_ID, name), block);
@@ -334,6 +339,9 @@ public class SpectrumBlocks {
         // ALTAR
         registerBlock("altar", ALTAR);
         registerBlockItem("altar", new BlockItem(ALTAR, blockItemSettings));
+
+        // FLUIDS
+        registerBlock("liquid_crystal.json", LIQUID_CRYSTAL);
     }
 
     public static void registerClient() {

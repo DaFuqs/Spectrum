@@ -38,6 +38,10 @@
   "item.spectrum.corrupted_obsidian_dust": "Corrupted Obsidian Dust",
   "item.spectrum.corrupted_bedrock_dust": "Corrupted Bedrock Dust",
 
+  "item.spectrum.liquid_crystal_bucket": "Liquid Crystal Bucket",
+  "block.spectrum.still_liquid_crystal": "Liquid Crystal",
+  "block.spectrum.flowing_liquid_crystal": "Liquid Crystal",
+
   "item.spectrum.glistering_melon_seeds": "Glistering Melon Seeds",
   "block.spectrum.glistering_melon": "Glistering Melon",
   "block.spectrum.glistering_melon_stem": "Glistering Melon Stem",

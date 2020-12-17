@@ -13,17 +13,20 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
 import net.minecraft.util.registry.Registry;
 
+import static de.dafuqs.spectrum.fluid.SpectrumFluids.STILL_LIQUID_CRYSTAL;
+
 public class SpectrumItems {
 
-    public static FabricItemSettings bedrockItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP).rarity(Rarity.RARE);
-    public static FabricItemSettings buildingBlockSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_BUILDING);
+    public static FabricItemSettings spectrumItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP);
+    public static FabricItemSettings spectrumUncommonItemSettings = spectrumItemSettings.rarity(Rarity.UNCOMMON);
+    public static FabricItemSettings spectrumRareItemSettings = spectrumItemSettings.rarity(Rarity.RARE);
 
     // Bedrock Tools
-    public static ToolItem BEDROCK_PICKAXE = new BedrockPickaxeItem(BedrockToolMaterial.INSTANCE, 1, -2.8F, bedrockItemSettings);
-    public static ToolItem BEDROCK_AXE = new BedrockAxeItem(BedrockToolMaterial.INSTANCE, 6, -3.0F, bedrockItemSettings);
-    public static ToolItem BEDROCK_SHOVEL = new BedrockShovelItem(BedrockToolMaterial.INSTANCE, 2, -3.0F, bedrockItemSettings);
-    public static ToolItem BEDROCK_SWORD = new BedrockSwordItem(BedrockToolMaterial.INSTANCE, 5, -2.4F, bedrockItemSettings);
-    public static ToolItem BEDROCK_HOE = new BedrockHoeItem(BedrockToolMaterial.INSTANCE, -2, -0.0F, bedrockItemSettings);
+    public static ToolItem BEDROCK_PICKAXE = new BedrockPickaxeItem(BedrockToolMaterial.INSTANCE, 1, -2.8F, spectrumRareItemSettings);
+    public static ToolItem BEDROCK_AXE = new BedrockAxeItem(BedrockToolMaterial.INSTANCE, 6, -3.0F, spectrumRareItemSettings);
+    public static ToolItem BEDROCK_SHOVEL = new BedrockShovelItem(BedrockToolMaterial.INSTANCE, 2, -3.0F, spectrumRareItemSettings);
+    public static ToolItem BEDROCK_SWORD = new BedrockSwordItem(BedrockToolMaterial.INSTANCE, 5, -2.4F, spectrumRareItemSettings);
+    public static ToolItem BEDROCK_HOE = new BedrockHoeItem(BedrockToolMaterial.INSTANCE, -2, -0.0F, spectrumRareItemSettings);
 
     // General bedrock tools
     /*public static ToolItem BEDROCK_SHEARS = new ShearsItem(BedrockToolMaterial.INSTANCE, 3, -2.4F, new Item.Settings().group(ItemGroup.COMBAT));
@@ -34,24 +37,28 @@ public class SpectrumItems {
 
     // Bedrock Armor
     public static final BedrockArmorMaterial BEDROCK_ARMOR_MATERIAL = new BedrockArmorMaterial();
-    public static final Item BEDROCK_HELMET = new ArmorItem(BEDROCK_ARMOR_MATERIAL, EquipmentSlot.HEAD, bedrockItemSettings);
-    public static final Item BEDROCK_CHESTPLATE = new ArmorItem(BEDROCK_ARMOR_MATERIAL, EquipmentSlot.CHEST, bedrockItemSettings);
-    public static final Item BEDROCK_LEGGINGS = new ArmorItem(BEDROCK_ARMOR_MATERIAL, EquipmentSlot.LEGS, bedrockItemSettings);
-    public static final Item BEDROCK_BOOTS = new ArmorItem(BEDROCK_ARMOR_MATERIAL, EquipmentSlot.FEET, bedrockItemSettings);
+    public static final Item BEDROCK_HELMET = new ArmorItem(BEDROCK_ARMOR_MATERIAL, EquipmentSlot.HEAD, spectrumRareItemSettings);
+    public static final Item BEDROCK_CHESTPLATE = new ArmorItem(BEDROCK_ARMOR_MATERIAL, EquipmentSlot.CHEST, spectrumRareItemSettings);
+    public static final Item BEDROCK_LEGGINGS = new ArmorItem(BEDROCK_ARMOR_MATERIAL, EquipmentSlot.LEGS, spectrumRareItemSettings);
+    public static final Item BEDROCK_BOOTS = new ArmorItem(BEDROCK_ARMOR_MATERIAL, EquipmentSlot.FEET, spectrumRareItemSettings);
 
-    public static final Item SPAWNER = new Spawner(Blocks.SPAWNER, bedrockItemSettings.maxCount(64));
-    public static final Item GLISTERING_MELON_SEEDS = new AliasedBlockItem(SpectrumBlocks.GLISTERING_MELON_STEM, bedrockItemSettings.maxCount(64));
+    public static final Item SPAWNER = new Spawner(Blocks.SPAWNER, spectrumUncommonItemSettings.maxCount(64));
 
-    public static final Item CITRINE_SHARD_ITEM = new Item(buildingBlockSettings);
-    public static final Item TOPAZ_SHARD_ITEM = new Item(buildingBlockSettings);
-    public static final Item ONYX_SHARD_ITEM = new Item(buildingBlockSettings);
-    public static final Item MOONSTONE_SHARD_ITEM = new Item(buildingBlockSettings);
-    public static final Item RAINBOW_MOONSTONE_ITEM = new Item(buildingBlockSettings);
+    public static final Item GLISTERING_MELON_SEEDS = new AliasedBlockItem(SpectrumBlocks.GLISTERING_MELON_STEM, spectrumUncommonItemSettings.maxCount(64));
+
+    public static final Item CITRINE_SHARD_ITEM = new Item(spectrumItemSettings);
+    public static final Item TOPAZ_SHARD_ITEM = new Item(spectrumItemSettings);
+    public static final Item ONYX_SHARD_ITEM = new Item(spectrumItemSettings);
+    public static final Item MOONSTONE_SHARD_ITEM = new Item(spectrumItemSettings);
+    public static final Item RAINBOW_MOONSTONE_ITEM = new Item(spectrumItemSettings);
 
     // DECAY DROPS
-    public static final Item VEGETAL = new Item(buildingBlockSettings);
-    public static final Item CORRUPTED_OBSIDIAN_DUST = new Item(buildingBlockSettings);
-    public static final Item CORRUPTED_BEDROCK_DUST = new Item(buildingBlockSettings);
+    public static final Item VEGETAL = new Item(spectrumItemSettings);
+    public static final Item CORRUPTED_OBSIDIAN_DUST = new Item(spectrumUncommonItemSettings);
+    public static final Item CORRUPTED_BEDROCK_DUST = new Item(spectrumRareItemSettings);
+
+    // FLUIDS
+    public static final Item LIQUID_CRYSTAL_BUCKET = new BucketItem(STILL_LIQUID_CRYSTAL, spectrumItemSettings.recipeRemainder(Items.BUCKET).maxCount(1));
 
 
 
@@ -83,6 +90,8 @@ public class SpectrumItems {
         registerItem("vegetal", VEGETAL);
         registerItem("corrupted_obsidian_dust", CORRUPTED_OBSIDIAN_DUST);
         registerItem("corrupted_bedrock_dust", CORRUPTED_BEDROCK_DUST);
+
+        registerItem("liquid_crystal_bucket", LIQUID_CRYSTAL_BUCKET);
     }
 
 

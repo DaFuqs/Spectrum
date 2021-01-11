@@ -1,12 +1,21 @@
-## About GlobalSpawn
+## About Spectrum
+Spectrum is a magic mod about colors (The CMYK color space, to be precise).
+It is progression based and tries to not give everything away at first glance.
+Every step in your journey through the mod will be hinted at via advancements.
+There is powerful treasure to uncover, but your path will be plastered with lots of hurdles - some of them more dangerous than others.
 
-Global spawn lets you set a default spawn for all players.
-Unlike vanialla that spawn can even be in a separate dimension.
-Useful for modpacks that start in the Nether or other dimensions. 
+Your final goal? Discovering what's waiting for you beneath the bedrock floor.
 
-## Features
 
-Configure the global spawn via:
-- Config file
-- Mod Menu
-- or "/globalspawn" command
+## Getting Started
+You are able to begin your journey to the spectrum mod as soon as you encounter your first geode.
+This will allow you to craft your Spectrum Altar, where most blocks and items in the mod are crafted in.
+Stuck in the progression? Take a look at the next advancements to unlock.
+
+## Features  (spoilers included)
+- Additional, different colored gems with lots of building blocks
+- More Tuff and Calcite block variants: Polished and bricks. Including slabs, stairs and walls.
+- A new way of crafting using gems (also able to be used as an autocrafter for vanilla recipes)
+- Different forms of decay - from tame to world ending. Handle with care!
+- A possibility to get blocks that are otherwise unobtainable in vanilla. That includes mob spawners and a way to change the spawners data.
+- Lots of magical machines and tools to help you on your journey, from useful to you to deadly to others.

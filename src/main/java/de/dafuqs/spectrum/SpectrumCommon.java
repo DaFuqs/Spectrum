@@ -10,6 +10,8 @@ import de.dafuqs.spectrum.enchantments.SpectrumEnchantments;
 import de.dafuqs.spectrum.fluid.SpectrumFluidTags;
 import de.dafuqs.spectrum.fluid.SpectrumFluids;
 import de.dafuqs.spectrum.items.SpectrumItems;
+import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
+import de.dafuqs.spectrum.recipe.util.IngredientManager;
 import de.dafuqs.spectrum.sounds.SpectrumSoundEvents;
 import de.dafuqs.spectrum.worldgen.SpectrumFeatures;
 import me.sargunvohra.mcmods.autoconfig1u.AutoConfig;
@@ -48,6 +50,9 @@ public class SpectrumCommon implements ModInitializer {
         SpectrumBlockEntityType.register();
         SpectrumEnchantments.register();
         SpectrumFeatures.register();
+
+        IngredientManager.setup();
+        SpectrumRecipeTypes.register();
 
         SpectrumContainers.register();
         SpectrumScreenHandlers.register();

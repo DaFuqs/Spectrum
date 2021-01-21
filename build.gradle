@@ -10,10 +10,6 @@ archivesBaseName = project.archives_base_name
 version = project.mod_version
 group = project.maven_group
 
-minecraft {
-	//accessWidener = file("src/main/resources/starry_sky.accesswidener")
-}
-
 repositories {
 	maven {
 		name = "Ladysnake Libs"
@@ -26,7 +22,6 @@ repositories {
 		name "cotton-config"
 		url 'http://server.bbkr.space:8081/artifactory/libs-release'
 	}
-
 }
 
 dependencies {
@@ -56,7 +51,6 @@ dependencies {
 	modImplementation ("io.github.prospector:modmenu:${project.mod_menu_version}"){
 		exclude module: 'fabric-api'
 	}
-
 }
 
 processResources {

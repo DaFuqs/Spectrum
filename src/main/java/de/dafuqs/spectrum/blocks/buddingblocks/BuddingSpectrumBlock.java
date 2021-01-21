@@ -31,7 +31,7 @@ public abstract class BuddingSpectrumBlock extends BuddingAmethystBlock {
             BlockPos blockPos = pos.offset(direction);
             BlockState blockState = world.getBlockState(blockPos);
             Block block = null;
-            if (BuddingAmethystBlock.method_31626(blockState)) {
+            if (BuddingAmethystBlock.canGrowIn(blockState)) {
                 block = getSmall();
             } else if (blockState.isOf(getSmall()) && blockState.get(AmethystClusterBlock.FACING) == direction) {
                 block = getMedium();

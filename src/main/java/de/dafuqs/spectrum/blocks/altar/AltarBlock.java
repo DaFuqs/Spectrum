@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.blocks.altar;
 
+import de.dafuqs.spectrum.blocks.SpectrumBlockEntityType;
 import de.dafuqs.spectrum.blocks.SpectrumBlocks;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -8,14 +9,13 @@ import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.BlockWithEntity;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.entity.LivingEntity;
+import net.minecraft.block.entity.BlockEntityTicker;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
-import net.minecraft.item.ItemStack;
 import net.minecraft.particle.DustParticleEffect;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.screen.ScreenHandler;
-import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.EnumProperty;
 import net.minecraft.util.ActionResult;
@@ -25,7 +25,7 @@ import net.minecraft.util.StringIdentifiable;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.Vec3f;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -33,7 +33,7 @@ import java.util.Random;
 
 public class AltarBlock extends BlockWithEntity {
 
-    private static final EnumProperty<AltarState> STATE = EnumProperty.of("state", AltarState.class);
+    public static final EnumProperty<AltarState> STATE = EnumProperty.of("state", AltarState.class);
 
     public enum AltarState implements StringIdentifiable {
         DEFAULT("default"),
@@ -57,6 +57,17 @@ public class AltarBlock extends BlockWithEntity {
     public AltarBlock(Settings settings) {
         super(settings);
         setDefaultState(getStateManager().getDefaultState().with(STATE, AltarState.DEFAULT));
+    }
+
+    @Nullable
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
+        return method_31617(world, type, SpectrumBlockEntityType.ALTAR_BLOCK_ENTITY_TYPE);
+    }
+
+    @Nullable
+    protected static <T extends BlockEntity> BlockEntityTicker<T> method_31617(World world, BlockEntityType<T> blockEntityType, BlockEntityType blockEntityType2) {
+        // block does not need to tick on clients
+        return world.isClient ? null : checkType(blockEntityType, blockEntityType2, AltarBlockEntity::tick);
     }
 
     @Override
@@ -90,13 +101,6 @@ public class AltarBlock extends BlockWithEntity {
         }
     }
 
-    public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        BlockEntity blockEntity = world.getBlockEntity(pos);
-        if (blockEntity instanceof AltarBlockEntity) {
-            ((AltarBlockEntity)blockEntity).tick();
-        }
-    }
-
     @Nullable
     public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
         return new AltarBlockEntity(pos, state);
@@ -106,12 +110,11 @@ public class AltarBlock extends BlockWithEntity {
         return BlockRenderType.MODEL;
     }
 
-    public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
+    /*public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
         if (itemStack.hasCustomName()) {
             BlockEntity blockEntity = world.getBlockEntity(pos);
         }
-
-    }
+    }*/
 
     public boolean hasComparatorOutput(BlockState state) {
         return true;
@@ -172,10 +175,10 @@ public class AltarBlock extends BlockWithEntity {
     @Environment(EnvType.CLIENT)
     public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
         if (world.getBlockState(pos).equals(SpectrumBlocks.ALTAR.getDefaultState().with(AltarBlock.STATE, AltarState.REDSTONE))) {
-            Vec3d vec3d = new Vec3d(0.5, 0.5, 0.5);
+            Vec3f vec3f = new Vec3f(0.5F, 0.5F, 0.5F);
             float xOffset = random.nextFloat();
             float zOffset = random.nextFloat();
-            world.addParticle(new DustParticleEffect(vec3d, 1.0F), pos.getX() + xOffset, pos.getY() + 1, pos.getZ() + zOffset, 0.0D, 0.0D, 0.0D);
+            world.addParticle(new DustParticleEffect(vec3f, 1.0F), pos.getX() + xOffset, pos.getY() + 1, pos.getZ() + zOffset, 0.0D, 0.0D, 0.0D);
         }
     }
 

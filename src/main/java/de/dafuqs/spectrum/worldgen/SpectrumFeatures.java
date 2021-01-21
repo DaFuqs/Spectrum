@@ -53,7 +53,7 @@ public class SpectrumFeatures {
         BlockState LARGE_MOONSTONE_BUD = SpectrumBlocks.LARGE_MOONSTONE_BUD.getDefaultState();
         BlockState MOONSTONE_CLUSTER = SpectrumBlocks.MOONSTONE_CLUSTER.getDefaultState();
         
-        CITRINE_GEODE   = (Feature.GEODE.configure(new GeodeFeatureConfig(
+        CITRINE_GEODE = (Feature.GEODE.configure(new GeodeFeatureConfig(
                         new GeodeLayerConfig(
                                 new SimpleBlockStateProvider(AIR),
                                 new SimpleBlockStateProvider(CITRINE_BLOCK),

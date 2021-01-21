@@ -1,0 +1,27 @@
+{
+  "type": "spectrum:altar",
+  "time": 200,
+  "tier": 1,
+  "cyan": 0,
+  "magenta": 0,
+  "yellow": 0,
+  "white": 0,
+  "black": 4,
+  "pattern": [
+    "XXX",
+    "XWX",
+    "XXX"
+  ],
+  "key": {
+    "W": {
+      "item": "spectrum:onyx_shard"
+    },
+    "X": {
+      "item": "minecraft:glass"
+    }
+  },
+  "result" : {
+    "item": "spectrum:onyx_glass",
+    "count": 4
+  }
+}

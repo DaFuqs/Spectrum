@@ -9,7 +9,6 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.class_5714;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
@@ -73,10 +72,11 @@ public class OminousSaplingBlock extends Block implements BlockEntityProvider {
         return null;
     }
 
+    /*
     @Override
     public @Nullable <T extends BlockEntity> class_5714 method_32896(World world, T blockEntity) {
         return null;
-    }
+    }*/
 
     private OminousSaplingBlockEntity getBlockEntity(World world, BlockPos blockPos) {
         BlockEntity saplingBlockEntity = world.getBlockEntity(blockPos);

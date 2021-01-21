@@ -1,7 +1,9 @@
 package de.dafuqs.spectrum.blocks.altar;
 
 import de.dafuqs.spectrum.blocks.SpectrumBlockEntityType;
+import de.dafuqs.spectrum.blocks.SpectrumBlocks;
 import de.dafuqs.spectrum.items.SpectrumItems;
+import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.sounds.SpectrumSoundEvents;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
@@ -13,6 +15,8 @@ import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.recipe.Recipe;
+import net.minecraft.recipe.RecipeType;
 import net.minecraft.screen.GenericContainerScreenHandler;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.screen.ScreenHandler;
@@ -78,10 +82,6 @@ public class AltarBlockEntity extends BlockEntity implements NamedScreenHandlerF
         return 14; // 0-8: crafting grid, 9-13: gems
     }
 
-    public void tick() {
-        this.stateManager.updateViewerCount(this.getWorld(), this.getPos(), this.getCachedState());
-    }
-
     public void playSound(BlockState state, SoundEvent soundEvent) {
         double d = (double)this.pos.getX() + 0.5D;
         double e = (double)this.pos.getY() + 0.5D;
@@ -101,15 +101,11 @@ public class AltarBlockEntity extends BlockEntity implements NamedScreenHandlerF
             return true;
         }
 
-        if(slot == 9 && stack.getItem().equals(Items.AMETHYST_SHARD)
+        return slot == 9 && stack.getItem().equals(Items.AMETHYST_SHARD)
                 || slot == 10 && stack.getItem().equals(SpectrumItems.CITRINE_SHARD_ITEM)
                 || slot == 11 && stack.getItem().equals(SpectrumItems.TOPAZ_SHARD_ITEM)
                 || slot == 12 && stack.getItem().equals(SpectrumItems.MOONSTONE_SHARD_ITEM)
-                || slot == 13 && stack.getItem().equals(SpectrumItems.ONYX_SHARD_ITEM)) {
-            return true;
-        }
-
-        return false;
+                || slot == 13 && stack.getItem().equals(SpectrumItems.ONYX_SHARD_ITEM);
     }
 
     @Override
@@ -122,5 +118,25 @@ public class AltarBlockEntity extends BlockEntity implements NamedScreenHandlerF
         //We provide *this* to the screenHandler as our class Implements Inventory
         //Only the Server has the Inventory at the start, this will be synced to the client in the ScreenHandler
         return new AltarScreenHandler(syncId, playerInventory, this);
+    }
+
+    public int getTier() {
+        return 1;
+    }
+
+    public static void tick(World world, BlockPos blockPos, BlockState blockState, AltarBlockEntity altarBlockEntity) {
+
+        // only craft stuff if redstone powered
+        if(world.getBlockState(blockPos) == SpectrumBlocks.ALTAR.getDefaultState().with(AltarBlock.STATE, AltarBlock.AltarState.REDSTONE)) {
+            altarBlockEntity.stateManager.updateViewerCount(altarBlockEntity.getWorld(), altarBlockEntity.getPos(), altarBlockEntity.getCachedState());
+
+            RecipeType recipeType = SpectrumRecipeTypes.ALTAR;
+            Recipe<?> recipe = (Recipe) world.getRecipeManager().getFirstMatch(recipeType, altarBlockEntity, world).orElse(null);
+
+            if(recipe != null) {
+                altarBlockEntity.markDirty();
+            }
+        }
+
     }
 }

@@ -4,7 +4,9 @@
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "SpawnerBlockMixin",
-    "MobSpawnerBlockEntityMixin"
+    "MobSpawnerBlockEntityMixin",
+    "AccessorRecipeManager",
+    "AccessorShapedRecipe"
   ],
   "client": [
     "TransparentBlockMixin"

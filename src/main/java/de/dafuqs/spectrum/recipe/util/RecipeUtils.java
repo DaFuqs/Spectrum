@@ -4,9 +4,6 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.mojang.serialization.Dynamic;
 import com.mojang.serialization.JsonOps;
-import de.dafuqs.spectrum.mixin.AccessorRecipeManager;
-import de.dafuqs.spectrum.recipe.SpectrumRecipe;
-import de.dafuqs.spectrum.recipe.SpectrumRecipeType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -16,17 +13,8 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.registry.Registry;
-import net.minecraft.world.World;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class RecipeUtils {
-	@SuppressWarnings("unchecked")
-	public static <T extends SpectrumRecipe> List<T> getRecipes(World world, SpectrumRecipeType<?> type) {
-		AccessorRecipeManager accessorRecipeManager = (AccessorRecipeManager) world.getRecipeManager();
-		return new ArrayList<>(accessorRecipeManager.getAll(type).values());
-	}
 
 	public static DefaultedList<ItemStack> deserializeItems(JsonElement jsonObject) {
 		if (jsonObject.isJsonArray()) {

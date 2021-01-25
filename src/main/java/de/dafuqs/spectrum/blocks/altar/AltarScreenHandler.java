@@ -1,33 +1,116 @@
 package de.dafuqs.spectrum.blocks.altar;
 
-import de.dafuqs.spectrum.items.SpectrumItems;
+import de.dafuqs.spectrum.blocks.SpectrumBlocks;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.inventory.SimpleInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.screen.ScreenHandler;
+import net.minecraft.inventory.CraftingResultInventory;
+import net.minecraft.recipe.Recipe;
+import net.minecraft.recipe.RecipeFinder;
+import net.minecraft.recipe.book.RecipeBookCategory;
+import net.minecraft.screen.AbstractRecipeScreenHandler;
+import net.minecraft.screen.ScreenHandlerContext;
+import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.screen.slot.Slot;
 
-public class AltarScreenHandler extends ScreenHandler {
+public class AltarScreenHandler extends AbstractRecipeScreenHandler<AltarBlockInventory> {
 
-    private static final int craftingRows = 3;
-    private static final int craftingColumns = 3;
-    private static final int gemColumns = 5;
-    private final Inventory inventory;
+    private final AltarBlockInventory input;
+    private final CraftingResultInventory result;
+    private final ScreenHandlerContext context;
+    private final PlayerEntity player;
 
     //This constructor gets called on the client when the server wants it to open the screenHandler,
     //The client will call the other constructor with an empty Inventory and the screenHandler will automatically
     //sync this empty inventory with the inventory on the server.
     public AltarScreenHandler(int syncId, PlayerInventory playerInventory) {
-        this(syncId, playerInventory, new SimpleInventory(craftingRows * craftingColumns + gemColumns));
+        this(syncId, playerInventory, ScreenHandlerContext.EMPTY);
     }
 
+    public AltarScreenHandler(int syncId, PlayerInventory playerInventory, ScreenHandlerContext context) {
+        super(ScreenHandlerType.CRAFTING, syncId);
+        this.input = new AltarBlockInventory(this, 3, 3);
+        this.result = new CraftingResultInventory();
+        this.context = context;
+        this.player = playerInventory.player;
+        //this.addSlot(new CraftingResultSlot(playerInventory.player, this.input, this.result, 0, 124, 35));
+
+        int m;
+        int l;
+        for(m = 0; m < 3; ++m) {
+            for(l = 0; l < 3; ++l) {
+                this.addSlot(new Slot(this.input, l + m * 3, 30 + l * 18, 17 + m * 18));
+            }
+        }
+
+        for(m = 0; m < 3; ++m) {
+            for(l = 0; l < 9; ++l) {
+                this.addSlot(new Slot(playerInventory, l + m * 9 + 9, 8 + l * 18, 84 + m * 18));
+            }
+        }
+
+        for(m = 0; m < 9; ++m) {
+            this.addSlot(new Slot(playerInventory, m, 8 + m * 18, 142));
+        }
+
+    }
+
+    @Override
+    public void populateRecipeFinder(RecipeFinder finder) {
+        this.input.provideRecipeInputs(finder);
+    }
+
+    @Override
+    public void clearCraftingSlots() {
+        this.input.clear();
+        this.result.clear();
+    }
+
+    @Override
+    public boolean matches(Recipe<? super AltarBlockInventory> recipe) {
+        return recipe.matches(this.input, this.player.world);
+    }
+
+    @Override
+    public int getCraftingResultSlotIndex() {
+        return 13; // TODO: Spawn item in world instead
+    }
+
+    @Override
+    public int getCraftingWidth() {
+        return this.input.getWidth();
+    }
+
+    @Override
+    public int getCraftingHeight() {
+        return this.input.getHeight();
+    }
+
+    @Override
+    public int getCraftingSlotCount() {
+        return 9 + 5; // crafting + gems
+    }
+
+    @Override
+    public RecipeBookCategory getCategory() {
+        return null;
+    }
+
+    @Override
+    public boolean method_32339(int i) {
+        return i != this.getCraftingResultSlotIndex();
+    }
+
+    @Override
+    public boolean canUse(PlayerEntity player) {
+        return canUse(this.context, player, SpectrumBlocks.ALTAR);
+    }
+
+
+    /*
     //This constructor gets called from the BlockEntity on the server without calling the other constructor first, the server knows the inventory of the container
     //and can therefore directly provide it as an argument. This inventory will then be synced to the client.
     public AltarScreenHandler(int syncId, PlayerInventory playerInventory, Inventory inventory) {
-        super(SpectrumScreenHandlers.ALTAR, syncId); // Since we didn't create a ScreenHandlerType, we will place null here.
+        super(SpectrumScreenHandlerTypes.ALTAR_SCREEN_HANDLER, syncId); // Since we didn't create a ScreenHandlerType, we will place null here.
 
         checkSize(inventory, craftingRows * craftingColumns + gemColumns);
         this.inventory = inventory;
@@ -111,5 +194,5 @@ public class AltarScreenHandler extends ScreenHandler {
         super.close(player);
         this.inventory.onClose(player);
     }
-
+*/
 }

@@ -157,7 +157,6 @@ public class SpectrumBlocks {
     public static final Block ONYX_PLAYER_ONLY_GLASS = new PlayerOnlyGlassBlock(FabricBlockSettings.copy(SpectrumBlocks.ONYX_GLASS).nonOpaque().allowsSpawning(SpectrumBlocks::never).solidBlock(SpectrumBlocks::never).suffocates(SpectrumBlocks::never).blockVision(SpectrumBlocks::never));
     public static final Block MOONSTONE_PLAYER_ONLY_GLASS = new PlayerOnlyGlassBlock(FabricBlockSettings.copy(SpectrumBlocks.MOONSTONE_GLASS).nonOpaque().allowsSpawning(SpectrumBlocks::never).solidBlock(SpectrumBlocks::never).suffocates(SpectrumBlocks::never).blockVision(SpectrumBlocks::never));
 
-
     // MELON
     public static final Block GLISTERING_MELON = new GlisteringMelonBlock(FabricBlockSettings.of(Material.GOURD, MapColor.LIME).strength(1.0F).sounds(BlockSoundGroup.WOOD));
     public static final Block GLISTERING_MELON_STEM = new GlisteringStemBlock((GourdBlock) GLISTERING_MELON, () -> SpectrumItems.GLISTERING_MELON_SEEDS, FabricBlockSettings.of(Material.PLANT).noCollision().nonOpaque().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.STEM));
@@ -180,6 +179,58 @@ public class SpectrumBlocks {
 
     // FLUIDS
     public static final Block LIQUID_CRYSTAL = new LiquidCrystalBlock(SpectrumFluids.STILL_LIQUID_CRYSTAL, FabricBlockSettings.copyOf(Blocks.WATER).luminance((state) -> 8));
+
+    // COLORED TREES
+    public static final Block BLACK_LOG = new PillarBlock(FabricBlockSettings.copyOf(Blocks.OAK_LOG));
+    public static final Block BLUE_LOG = new PillarBlock(FabricBlockSettings.copyOf(Blocks.OAK_LOG));
+    public static final Block BROWN_LOG = new PillarBlock(FabricBlockSettings.copyOf(Blocks.OAK_LOG));
+    public static final Block CYAN_LOG = new PillarBlock(FabricBlockSettings.copyOf(Blocks.OAK_LOG));
+    public static final Block GRAY_LOG = new PillarBlock(FabricBlockSettings.copyOf(Blocks.OAK_LOG));
+    public static final Block GREEN_LOG = new PillarBlock(FabricBlockSettings.copyOf(Blocks.OAK_LOG));
+    public static final Block LIGHT_BLUE_LOG = new PillarBlock(FabricBlockSettings.copyOf(Blocks.OAK_LOG));
+    public static final Block LIGHT_GRAY_LOG = new PillarBlock(FabricBlockSettings.copyOf(Blocks.OAK_LOG));
+    public static final Block LIME_LOG = new PillarBlock(FabricBlockSettings.copyOf(Blocks.OAK_LOG));
+    public static final Block MAGENTA_LOG = new PillarBlock(FabricBlockSettings.copyOf(Blocks.OAK_LOG));
+    public static final Block ORANGE_LOG = new PillarBlock(FabricBlockSettings.copyOf(Blocks.OAK_LOG));
+    public static final Block PINK_LOG = new PillarBlock(FabricBlockSettings.copyOf(Blocks.OAK_LOG));
+    public static final Block PURPLE_LOG = new PillarBlock(FabricBlockSettings.copyOf(Blocks.OAK_LOG));
+    public static final Block RED_LOG = new PillarBlock(FabricBlockSettings.copyOf(Blocks.OAK_LOG));
+    public static final Block WHITE_LOG = new PillarBlock(FabricBlockSettings.copyOf(Blocks.OAK_LOG));
+    public static final Block YELLOW_LOG = new PillarBlock(FabricBlockSettings.copyOf(Blocks.OAK_LOG));
+
+    public static final Block BLACK_LEAVES = new LeavesBlock(FabricBlockSettings.copyOf(Blocks.OAK_LEAVES));
+    public static final Block BLUE_LEAVES = new LeavesBlock(FabricBlockSettings.copyOf(Blocks.OAK_LEAVES));
+    public static final Block BROWN_LEAVES = new LeavesBlock(FabricBlockSettings.copyOf(Blocks.OAK_LEAVES));
+    public static final Block CYAN_LEAVES = new LeavesBlock(FabricBlockSettings.copyOf(Blocks.OAK_LEAVES));
+    public static final Block GRAY_LEAVES = new LeavesBlock(FabricBlockSettings.copyOf(Blocks.OAK_LEAVES));
+    public static final Block GREEN_LEAVES = new LeavesBlock(FabricBlockSettings.copyOf(Blocks.OAK_LEAVES));
+    public static final Block LIGHT_BLUE_LEAVES = new LeavesBlock(FabricBlockSettings.copyOf(Blocks.OAK_LEAVES));
+    public static final Block LIGHT_GRAY_LEAVES = new LeavesBlock(FabricBlockSettings.copyOf(Blocks.OAK_LEAVES));
+    public static final Block LIME_LEAVES = new LeavesBlock(FabricBlockSettings.copyOf(Blocks.OAK_LEAVES));
+    public static final Block MAGENTA_LEAVES = new LeavesBlock(FabricBlockSettings.copyOf(Blocks.OAK_LEAVES));
+    public static final Block ORANGE_LEAVES = new LeavesBlock(FabricBlockSettings.copyOf(Blocks.OAK_LEAVES));
+    public static final Block PINK_LEAVES = new LeavesBlock(FabricBlockSettings.copyOf(Blocks.OAK_LEAVES));
+    public static final Block PURPLE_LEAVES = new LeavesBlock(FabricBlockSettings.copyOf(Blocks.OAK_LEAVES));
+    public static final Block RED_LEAVES = new LeavesBlock(FabricBlockSettings.copyOf(Blocks.OAK_LEAVES));
+    public static final Block WHITE_LEAVES = new LeavesBlock(FabricBlockSettings.copyOf(Blocks.OAK_LEAVES));
+    public static final Block YELLOW_LEAVES = new LeavesBlock(FabricBlockSettings.copyOf(Blocks.OAK_LEAVES));
+
+    public static final Block BLACK_SAPLING = new Block(FabricBlockSettings.copyOf(Blocks.OAK_SAPLING));
+    public static final Block BLUE_SAPLING = new Block(FabricBlockSettings.copyOf(Blocks.OAK_SAPLING));
+    public static final Block BROWN_SAPLING = new Block(FabricBlockSettings.copyOf(Blocks.OAK_SAPLING));
+    public static final Block CYAN_SAPLING = new Block(FabricBlockSettings.copyOf(Blocks.OAK_SAPLING));
+    public static final Block GRAY_SAPLING = new Block(FabricBlockSettings.copyOf(Blocks.OAK_SAPLING));
+    public static final Block GREEN_SAPLING = new Block(FabricBlockSettings.copyOf(Blocks.OAK_SAPLING));
+    public static final Block LIGHT_BLUE_SAPLING = new Block(FabricBlockSettings.copyOf(Blocks.OAK_SAPLING));
+    public static final Block LIGHT_GRAY_SAPLING = new Block(FabricBlockSettings.copyOf(Blocks.OAK_SAPLING));
+    public static final Block LIME_SAPLING = new Block(FabricBlockSettings.copyOf(Blocks.OAK_SAPLING));
+    public static final Block MAGENTA_SAPLING = new Block(FabricBlockSettings.copyOf(Blocks.OAK_SAPLING));
+    public static final Block ORANGE_SAPLING = new Block(FabricBlockSettings.copyOf(Blocks.OAK_SAPLING));
+    public static final Block PINK_SAPLING = new Block(FabricBlockSettings.copyOf(Blocks.OAK_SAPLING));
+    public static final Block PURPLE_SAPLING = new Block(FabricBlockSettings.copyOf(Blocks.OAK_SAPLING));
+    public static final Block RED_SAPLING = new Block(FabricBlockSettings.copyOf(Blocks.OAK_SAPLING));
+    public static final Block WHITE_SAPLING = new Block(FabricBlockSettings.copyOf(Blocks.OAK_SAPLING));
+    public static final Block YELLOW_SAPLING = new Block(FabricBlockSettings.copyOf(Blocks.OAK_SAPLING));
 
     private static void registerBlock(String name, Block block) {
         Registry.register(Registry.BLOCK, new Identifier(SpectrumCommon.MOD_ID, name), block);
@@ -377,6 +428,107 @@ public class SpectrumBlocks {
 
         // FLUIDS
         registerBlock("liquid_crystal.json", LIQUID_CRYSTAL);
+
+        // COLORED TREES
+        registerBlock("black_log", BLACK_LOG);
+        registerBlockItem("black_log", new BlockItem(BLACK_LOG, blockItemSettings));
+        registerBlock("blue_log", BLUE_LOG);
+        registerBlockItem("blue_log", new BlockItem(BLUE_LOG, blockItemSettings));
+        registerBlock("brown_log", BROWN_LOG);
+        registerBlockItem("brown_log", new BlockItem(BROWN_LOG, blockItemSettings));
+        registerBlock("cyan_log", CYAN_LOG);
+        registerBlockItem("cyan_log", new BlockItem(CYAN_LOG, blockItemSettings));
+        registerBlock("gray_log", GRAY_LOG);
+        registerBlockItem("gray_log", new BlockItem(GRAY_LOG, blockItemSettings));
+        registerBlock("green_log", GREEN_LOG);
+        registerBlockItem("green_log", new BlockItem(GREEN_LOG, blockItemSettings));
+        registerBlock("light_blue_log", LIGHT_BLUE_LOG);
+        registerBlockItem("light_blue_log", new BlockItem(LIGHT_BLUE_LOG, blockItemSettings));
+        registerBlock("light_gray_log", LIGHT_GRAY_LOG);
+        registerBlockItem("light_gray_log", new BlockItem(LIGHT_GRAY_LOG, blockItemSettings));
+        registerBlock("lime_log", LIME_LOG);
+        registerBlockItem("lime_log", new BlockItem(LIME_LOG, blockItemSettings));
+        registerBlock("magenta_log", MAGENTA_LOG);
+        registerBlockItem("magenta_log", new BlockItem(MAGENTA_LOG, blockItemSettings));
+        registerBlock("orange_log", ORANGE_LOG);
+        registerBlockItem("orange_log", new BlockItem(ORANGE_LOG, blockItemSettings));
+        registerBlock("pink_log", PINK_LOG);
+        registerBlockItem("pink_log", new BlockItem(PINK_LOG, blockItemSettings));
+        registerBlock("purple_log", PURPLE_LOG);
+        registerBlockItem("purple_log", new BlockItem(PURPLE_LOG, blockItemSettings));
+        registerBlock("red_log", RED_LOG);
+        registerBlockItem("red_log", new BlockItem(RED_LOG, blockItemSettings));
+        registerBlock("white_log", WHITE_LOG);
+        registerBlockItem("white_log", new BlockItem(WHITE_LOG, blockItemSettings));
+        registerBlock("yellow_log", YELLOW_LOG);
+        registerBlockItem("yellow_log", new BlockItem(YELLOW_LOG, blockItemSettings));
+
+        registerBlock("black_leaves", BLACK_LEAVES);
+        registerBlockItem("black_leaves", new BlockItem(BLACK_LEAVES, blockItemSettings));
+        registerBlock("blue_leaves", BLUE_LEAVES);
+        registerBlockItem("blue_leaves", new BlockItem(BLUE_LEAVES, blockItemSettings));
+        registerBlock("brown_leaves", BROWN_LEAVES);
+        registerBlockItem("brown_leaves", new BlockItem(BROWN_LEAVES, blockItemSettings));
+        registerBlock("cyan_leaves", CYAN_LEAVES);
+        registerBlockItem("cyan_leaves", new BlockItem(CYAN_LEAVES, blockItemSettings));
+        registerBlock("gray_leaves", GRAY_LEAVES);
+        registerBlockItem("gray_leaves", new BlockItem(GRAY_LEAVES, blockItemSettings));
+        registerBlock("green_leaves", GREEN_LEAVES);
+        registerBlockItem("green_leaves", new BlockItem(GREEN_LEAVES, blockItemSettings));
+        registerBlock("light_blue_leaves", LIGHT_BLUE_LEAVES);
+        registerBlockItem("light_blue_leaves", new BlockItem(LIGHT_BLUE_LEAVES, blockItemSettings));
+        registerBlock("light_gray_leaves", LIGHT_GRAY_LEAVES);
+        registerBlockItem("light_gray_leaves", new BlockItem(LIGHT_GRAY_LEAVES, blockItemSettings));
+        registerBlock("lime_leaves", LIME_LEAVES);
+        registerBlockItem("lime_leaves", new BlockItem(LIME_LEAVES, blockItemSettings));
+        registerBlock("magenta_leaves", MAGENTA_LEAVES);
+        registerBlockItem("magenta_leaves", new BlockItem(MAGENTA_LEAVES, blockItemSettings));
+        registerBlock("orange_leaves", ORANGE_LEAVES);
+        registerBlockItem("orange_leaves", new BlockItem(ORANGE_LEAVES, blockItemSettings));
+        registerBlock("pink_leaves", PINK_LEAVES);
+        registerBlockItem("pink_leaves", new BlockItem(PINK_LEAVES, blockItemSettings));
+        registerBlock("purple_leaves", PURPLE_LEAVES);
+        registerBlockItem("purple_leaves", new BlockItem(PURPLE_LEAVES, blockItemSettings));
+        registerBlock("red_leaves", RED_LEAVES);
+        registerBlockItem("red_leaves", new BlockItem(RED_LEAVES, blockItemSettings));
+        registerBlock("white_leaves", WHITE_LEAVES);
+        registerBlockItem("white_leaves", new BlockItem(WHITE_LEAVES, blockItemSettings));
+        registerBlock("yellow_leaves", YELLOW_LEAVES);
+        registerBlockItem("yellow_leaves", new BlockItem(YELLOW_LEAVES, blockItemSettings));
+
+
+        registerBlock("black_sapling", BLACK_SAPLING);
+        registerBlockItem("black_sapling", new BlockItem(BLACK_SAPLING, blockItemSettings));
+        registerBlock("blue_sapling", BLUE_SAPLING);
+        registerBlockItem("blue_sapling", new BlockItem(BLUE_SAPLING, blockItemSettings));
+        registerBlock("brown_sapling", BROWN_SAPLING);
+        registerBlockItem("brown_sapling", new BlockItem(BROWN_SAPLING, blockItemSettings));
+        registerBlock("cyan_sapling", CYAN_SAPLING);
+        registerBlockItem("cyan_sapling", new BlockItem(CYAN_SAPLING, blockItemSettings));
+        registerBlock("gray_sapling", GRAY_SAPLING);
+        registerBlockItem("gray_sapling", new BlockItem(GRAY_SAPLING, blockItemSettings));
+        registerBlock("green_sapling", GREEN_SAPLING);
+        registerBlockItem("green_sapling", new BlockItem(GREEN_SAPLING, blockItemSettings));
+        registerBlock("light_blue_sapling", LIGHT_BLUE_SAPLING);
+        registerBlockItem("light_blue_sapling", new BlockItem(LIGHT_BLUE_SAPLING, blockItemSettings));
+        registerBlock("light_gray_sapling", LIGHT_GRAY_SAPLING);
+        registerBlockItem("light_gray_sapling", new BlockItem(LIGHT_GRAY_SAPLING, blockItemSettings));
+        registerBlock("lime_sapling", LIME_SAPLING);
+        registerBlockItem("lime_sapling", new BlockItem(LIME_SAPLING, blockItemSettings));
+        registerBlock("magenta_sapling", MAGENTA_SAPLING);
+        registerBlockItem("magenta_sapling", new BlockItem(MAGENTA_SAPLING, blockItemSettings));
+        registerBlock("orange_sapling", ORANGE_SAPLING);
+        registerBlockItem("orange_sapling", new BlockItem(ORANGE_SAPLING, blockItemSettings));
+        registerBlock("pink_sapling", PINK_SAPLING);
+        registerBlockItem("pink_sapling", new BlockItem(PINK_SAPLING, blockItemSettings));
+        registerBlock("purple_sapling", PURPLE_SAPLING);
+        registerBlockItem("purple_sapling", new BlockItem(PURPLE_SAPLING, blockItemSettings));
+        registerBlock("red_sapling", RED_SAPLING);
+        registerBlockItem("red_sapling", new BlockItem(RED_SAPLING, blockItemSettings));
+        registerBlock("white_sapling", WHITE_SAPLING);
+        registerBlockItem("white_sapling", new BlockItem(WHITE_SAPLING, blockItemSettings));
+        registerBlock("yellow_sapling", YELLOW_SAPLING);
+        registerBlockItem("yellow_sapling", new BlockItem(YELLOW_SAPLING, blockItemSettings));
     }
 
     public static void registerClient() {
@@ -429,5 +581,23 @@ public class SpectrumBlocks {
         BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.TOPAZ_TUFF_LAMP, RenderLayer.getTranslucent());
         BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.MOONSTONE_TUFF_LAMP, RenderLayer.getTranslucent());
         BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.ONYX_TUFF_LAMP, RenderLayer.getTranslucent());
+
+        // SAPLINGS
+        BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.BLACK_SAPLING, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.BLUE_SAPLING, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.BROWN_SAPLING, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.CYAN_SAPLING, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.GRAY_SAPLING, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.GREEN_SAPLING, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.LIGHT_BLUE_SAPLING, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.LIGHT_GRAY_SAPLING, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.LIME_SAPLING, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.MAGENTA_SAPLING, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.ORANGE_SAPLING, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.PINK_SAPLING, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.PURPLE_SAPLING, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.RED_SAPLING, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.WHITE_SAPLING, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.YELLOW_SAPLING, RenderLayer.getCutout());
     }
 }

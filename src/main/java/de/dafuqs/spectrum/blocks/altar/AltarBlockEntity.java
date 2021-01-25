@@ -1,35 +1,23 @@
 package de.dafuqs.spectrum.blocks.altar;
 
 import de.dafuqs.spectrum.blocks.SpectrumBlockEntityType;
-import de.dafuqs.spectrum.blocks.SpectrumBlocks;
-import de.dafuqs.spectrum.items.SpectrumItems;
-import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.sounds.SpectrumSoundEvents;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.ChestStateManager;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventories;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.recipe.Recipe;
-import net.minecraft.recipe.RecipeType;
 import net.minecraft.screen.GenericContainerScreenHandler;
-import net.minecraft.screen.NamedScreenHandlerFactory;
-import net.minecraft.screen.ScreenHandler;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
-import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
 
-public class AltarBlockEntity extends BlockEntity implements NamedScreenHandlerFactory, AltarBlockInventory {
+public class AltarBlockEntity extends BlockEntity {
 
     private final DefaultedList<ItemStack> inventory;
     private final ChestStateManager stateManager;
@@ -73,11 +61,6 @@ public class AltarBlockEntity extends BlockEntity implements NamedScreenHandlerF
         Inventories.fromTag(compoundTag, this.inventory);
     }
 
-    @Override
-    public DefaultedList<ItemStack> getItems() {
-        return inventory;
-    }
-
     public int size() {
         return 14; // 0-8: crafting grid, 9-13: gems
     }
@@ -89,13 +72,7 @@ public class AltarBlockEntity extends BlockEntity implements NamedScreenHandlerF
         this.world.playSound(null, d, e, f, soundEvent, SoundCategory.BLOCKS, 0.5F, this.world.random.nextFloat() * 0.1F + 0.9F);
     }
 
-    /**
-     * Used for hoppers and other stuff
-     * @param slot The slot to place item in
-     * @param stack The item stack to place
-     * @return If the item can be placed in the slot
-     */
-    @Override
+    /*@Override
     public boolean isValid(int slot, ItemStack stack) {
         if(slot < 9) {
             return true;
@@ -106,37 +83,44 @@ public class AltarBlockEntity extends BlockEntity implements NamedScreenHandlerF
                 || slot == 11 && stack.getItem().equals(SpectrumItems.TOPAZ_SHARD_ITEM)
                 || slot == 12 && stack.getItem().equals(SpectrumItems.MOONSTONE_SHARD_ITEM)
                 || slot == 13 && stack.getItem().equals(SpectrumItems.ONYX_SHARD_ITEM);
-    }
+    }*/
 
-    @Override
+    /*@Override
     public Text getDisplayName() {
         return new TranslatableText("Altar display name");
     }
 
+    @Nullable
     @Override
+    public ScreenHandler createMenu(int syncId, PlayerInventory playerInventory, PlayerEntity player) {
+        //We provide *this* to the screenHandler as our class Implements Inventory
+        //Only the Server has the Inventory at the start, this will be synced to the client in the ScreenHandler
+        return new AltarScreenHandler(syncId, playerInventory, this);
+    }*/
+
+    /*@Override
     public @Nullable ScreenHandler createMenu(int syncId, PlayerInventory playerInventory, PlayerEntity player) {
         //We provide *this* to the screenHandler as our class Implements Inventory
         //Only the Server has the Inventory at the start, this will be synced to the client in the ScreenHandler
         return new AltarScreenHandler(syncId, playerInventory, this);
-    }
+    }*/
 
-    public int getTier() {
+    /*public int getTier() {
         return 1;
-    }
+    }*/
 
-    public static void tick(World world, BlockPos blockPos, BlockState blockState, AltarBlockEntity altarBlockEntity) {
+    /*public static void tick(World world, BlockPos blockPos, BlockState blockState, AltarBlockEntity altarBlockEntity) {
 
         // only craft stuff if redstone powered
         if(world.getBlockState(blockPos) == SpectrumBlocks.ALTAR.getDefaultState().with(AltarBlock.STATE, AltarBlock.AltarState.REDSTONE)) {
             altarBlockEntity.stateManager.updateViewerCount(altarBlockEntity.getWorld(), altarBlockEntity.getPos(), altarBlockEntity.getCachedState());
 
-            RecipeType recipeType = SpectrumRecipeTypes.ALTAR;
+            RecipeType recipeType = SpectrumRecipeTypes.ALTAR_RECIPE_TYPE;
             Recipe<?> recipe = (Recipe) world.getRecipeManager().getFirstMatch(recipeType, altarBlockEntity, world).orElse(null);
 
             if(recipe != null) {
                 altarBlockEntity.markDirty();
             }
         }
-
-    }
+    }*/
 }

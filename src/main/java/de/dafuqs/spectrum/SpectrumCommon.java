@@ -4,14 +4,13 @@ import de.dafuqs.spectrum.blocks.SpectrumBlockEntityType;
 import de.dafuqs.spectrum.blocks.SpectrumBlockTags;
 import de.dafuqs.spectrum.blocks.SpectrumBlocks;
 import de.dafuqs.spectrum.blocks.altar.SpectrumContainers;
-import de.dafuqs.spectrum.blocks.altar.SpectrumScreenHandlers;
+import de.dafuqs.spectrum.blocks.altar.SpectrumScreenHandlerTypes;
 import de.dafuqs.spectrum.config.SpectrumConfig;
 import de.dafuqs.spectrum.enchantments.SpectrumEnchantments;
 import de.dafuqs.spectrum.fluid.SpectrumFluidTags;
 import de.dafuqs.spectrum.fluid.SpectrumFluids;
 import de.dafuqs.spectrum.items.SpectrumItems;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
-import de.dafuqs.spectrum.recipe.util.IngredientManager;
 import de.dafuqs.spectrum.sounds.SpectrumSoundEvents;
 import de.dafuqs.spectrum.worldgen.SpectrumFeatures;
 import me.sargunvohra.mcmods.autoconfig1u.AutoConfig;
@@ -51,11 +50,10 @@ public class SpectrumCommon implements ModInitializer {
         SpectrumEnchantments.register();
         SpectrumFeatures.register();
 
-        IngredientManager.setup();
         SpectrumRecipeTypes.register();
 
         SpectrumContainers.register();
-        SpectrumScreenHandlers.register();
+        SpectrumScreenHandlerTypes.register();
 
         ServerWorldEvents.LOAD.register((minecraftServer, serverWorld) -> {
             SpectrumCommon.minecraftServer = minecraftServer;

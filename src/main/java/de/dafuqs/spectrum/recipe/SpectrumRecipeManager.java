@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.recipe;
+/*package de.dafuqs.spectrum.recipe;
 
 import com.google.common.collect.ImmutableMap;
 import net.minecraft.recipe.Recipe;
@@ -47,6 +47,6 @@ public class SpectrumRecipeManager {
 
 	private <C extends Inventory, T extends Recipe<C>> Map<Identifier, Recipe<C>> getAllOfType(RecipeType<T> type) {
 		return (Map)this.recipes.getOrDefault(type, Collections.emptyMap());
-	}*/
+	}
 	
-}
+}*/

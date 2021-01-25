@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.recipe;
+/*package de.dafuqs.spectrum.recipe;
 
 import com.google.gson.JsonObject;
 import de.dafuqs.spectrum.blocks.altar.AltarBlockEntity;
@@ -72,7 +72,6 @@ public class AltarRecipe extends ShapedRecipe {
 		return altarBlockEntity.getTier() >= tier;
 	}
 
-
 	public static class Serializer implements RecipeSerializer<AltarRecipe> {
 
 		public AltarRecipe read(Identifier identifier, JsonObject jsonObject) {
@@ -138,4 +137,4 @@ public class AltarRecipe extends ShapedRecipe {
 		}
 	}
 
-}
+}*/

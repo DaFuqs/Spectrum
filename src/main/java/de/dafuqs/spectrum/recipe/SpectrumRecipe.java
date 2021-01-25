@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.recipe;
+/*package de.dafuqs.spectrum.recipe;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -115,10 +115,6 @@ public class SpectrumRecipe implements Recipe<Inventory> {
 		return time;
 	}
 
-	/**
-	 * @param blockEntity the blockEntity that is doing the crafting
-	 * @return return true if fluid was taken and should craft
-	 */
 	public boolean onCraft(BlockEntity blockEntity) {
 		return true;
 	}
@@ -151,4 +147,4 @@ public class SpectrumRecipe implements Recipe<Inventory> {
 		throw new UnsupportedOperationException();
 	}
 
-}
+}*/

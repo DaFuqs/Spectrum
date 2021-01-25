@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.recipe;
+/*package de.dafuqs.spectrum.recipe;
 
 import com.google.gson.JsonObject;
 import de.dafuqs.spectrum.SpectrumCommon;
@@ -91,4 +91,4 @@ public class SpectrumRecipeType<R extends SpectrumRecipe> implements RecipeType,
 		return RecipeUtils.getRecipes(world, this);
 	}
 
-}
+}*/

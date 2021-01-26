@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.recipe.util;
 
 import com.google.gson.JsonObject;
-import de.dafuqs.spectrum.mixin.AccessorShapedRecipe;
+import de.dafuqs.spectrum.accessor.AccessorShapedRecipe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.recipe.Ingredient;

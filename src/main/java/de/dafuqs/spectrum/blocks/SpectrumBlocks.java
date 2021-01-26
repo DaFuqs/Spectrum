@@ -200,7 +200,7 @@ public class SpectrumBlocks {
     public static final Block BLACK_LOG = new PillarBlock(coloredLogBlockSettings);
     public static final Block BLACK_LEAVES = new LeavesBlock(coloredLeavesBlockSettings);
     public static final Block BLACK_SAPLING = new ColoredSaplingBlock(new ColoredSaplingGenerator(DyeColor.BLACK), coloredSaplingBlockSettings);
-    public static final Block BLACK_PLANKS = new Block(FabricBlockSettings.copyOf(Blocks.OAK_PLANKS));
+    public static final Block BLACK_PLANKS = new TransparencyTestBlock(FabricBlockSettings.copyOf(Blocks.OAK_PLANKS));
     public static final Block BLACK_STAIRS = new SpectrumStairsBlock(BLACK_PLANKS.getDefaultState(), FabricBlockSettings.copyOf(Blocks.OAK_STAIRS));
     public static final Block BLACK_PRESSURE_PLATE = new SpectrumPressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, FabricBlockSettings.copyOf(Blocks.OAK_PRESSURE_PLATE));
     public static final Block BLACK_FENCE = new FenceBlock(FabricBlockSettings.copyOf(Blocks.OAK_FENCE));

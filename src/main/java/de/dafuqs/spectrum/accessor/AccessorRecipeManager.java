@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.mixin;
+package de.dafuqs.spectrum.accessor;
 
 import net.minecraft.inventory.Inventory;
 import net.minecraft.recipe.Recipe;

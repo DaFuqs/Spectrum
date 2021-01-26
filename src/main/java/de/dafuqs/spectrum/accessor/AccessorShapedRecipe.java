@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.mixin;
+package de.dafuqs.spectrum.accessor;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;

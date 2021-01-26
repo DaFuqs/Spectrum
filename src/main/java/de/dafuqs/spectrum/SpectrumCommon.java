@@ -33,7 +33,6 @@ public class SpectrumCommon implements ModInitializer {
 
     @Override
     public void onInitialize() {
-
         //Set up config
         LOGGER.info("Loading config file...");
         AutoConfig.register(SpectrumConfig.class, JanksonConfigSerializer::new);

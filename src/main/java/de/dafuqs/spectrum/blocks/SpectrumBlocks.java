@@ -51,6 +51,10 @@ public class SpectrumBlocks {
         return false;
     }
 
+    private static Boolean always(BlockState state, BlockView world, BlockPos pos) {
+        return true;
+    }
+
     private static boolean never(BlockState state, BlockView world, BlockPos pos) {
         return false;
     }
@@ -181,39 +185,44 @@ public class SpectrumBlocks {
     public static final Block LIQUID_CRYSTAL = new LiquidCrystalBlock(SpectrumFluids.STILL_LIQUID_CRYSTAL, FabricBlockSettings.copyOf(Blocks.WATER).luminance((state) -> 8));
 
     // COLORED TREES
-    public static final Block BLACK_LOG = new PillarBlock(FabricBlockSettings.copyOf(Blocks.OAK_LOG));
-    public static final Block BLUE_LOG = new PillarBlock(FabricBlockSettings.copyOf(Blocks.OAK_LOG));
-    public static final Block BROWN_LOG = new PillarBlock(FabricBlockSettings.copyOf(Blocks.OAK_LOG));
-    public static final Block CYAN_LOG = new PillarBlock(FabricBlockSettings.copyOf(Blocks.OAK_LOG));
-    public static final Block GRAY_LOG = new PillarBlock(FabricBlockSettings.copyOf(Blocks.OAK_LOG));
-    public static final Block GREEN_LOG = new PillarBlock(FabricBlockSettings.copyOf(Blocks.OAK_LOG));
-    public static final Block LIGHT_BLUE_LOG = new PillarBlock(FabricBlockSettings.copyOf(Blocks.OAK_LOG));
-    public static final Block LIGHT_GRAY_LOG = new PillarBlock(FabricBlockSettings.copyOf(Blocks.OAK_LOG));
-    public static final Block LIME_LOG = new PillarBlock(FabricBlockSettings.copyOf(Blocks.OAK_LOG));
-    public static final Block MAGENTA_LOG = new PillarBlock(FabricBlockSettings.copyOf(Blocks.OAK_LOG));
-    public static final Block ORANGE_LOG = new PillarBlock(FabricBlockSettings.copyOf(Blocks.OAK_LOG));
-    public static final Block PINK_LOG = new PillarBlock(FabricBlockSettings.copyOf(Blocks.OAK_LOG));
-    public static final Block PURPLE_LOG = new PillarBlock(FabricBlockSettings.copyOf(Blocks.OAK_LOG));
-    public static final Block RED_LOG = new PillarBlock(FabricBlockSettings.copyOf(Blocks.OAK_LOG));
-    public static final Block WHITE_LOG = new PillarBlock(FabricBlockSettings.copyOf(Blocks.OAK_LOG));
-    public static final Block YELLOW_LOG = new PillarBlock(FabricBlockSettings.copyOf(Blocks.OAK_LOG));
+    private static final FabricBlockSettings coloredLogBlockSettings = FabricBlockSettings.copyOf(Blocks.OAK_LOG).luminance((state) -> {
+        return 3;
+    }).postProcess(SpectrumBlocks::always).emissiveLighting(SpectrumBlocks::always);
 
-    public static final Block BLACK_LEAVES = new LeavesBlock(FabricBlockSettings.copyOf(Blocks.OAK_LEAVES));
-    public static final Block BLUE_LEAVES = new LeavesBlock(FabricBlockSettings.copyOf(Blocks.OAK_LEAVES));
-    public static final Block BROWN_LEAVES = new LeavesBlock(FabricBlockSettings.copyOf(Blocks.OAK_LEAVES));
-    public static final Block CYAN_LEAVES = new LeavesBlock(FabricBlockSettings.copyOf(Blocks.OAK_LEAVES));
-    public static final Block GRAY_LEAVES = new LeavesBlock(FabricBlockSettings.copyOf(Blocks.OAK_LEAVES));
-    public static final Block GREEN_LEAVES = new LeavesBlock(FabricBlockSettings.copyOf(Blocks.OAK_LEAVES));
-    public static final Block LIGHT_BLUE_LEAVES = new LeavesBlock(FabricBlockSettings.copyOf(Blocks.OAK_LEAVES));
-    public static final Block LIGHT_GRAY_LEAVES = new LeavesBlock(FabricBlockSettings.copyOf(Blocks.OAK_LEAVES));
-    public static final Block LIME_LEAVES = new LeavesBlock(FabricBlockSettings.copyOf(Blocks.OAK_LEAVES));
-    public static final Block MAGENTA_LEAVES = new LeavesBlock(FabricBlockSettings.copyOf(Blocks.OAK_LEAVES));
-    public static final Block ORANGE_LEAVES = new LeavesBlock(FabricBlockSettings.copyOf(Blocks.OAK_LEAVES));
-    public static final Block PINK_LEAVES = new LeavesBlock(FabricBlockSettings.copyOf(Blocks.OAK_LEAVES));
-    public static final Block PURPLE_LEAVES = new LeavesBlock(FabricBlockSettings.copyOf(Blocks.OAK_LEAVES));
-    public static final Block RED_LEAVES = new LeavesBlock(FabricBlockSettings.copyOf(Blocks.OAK_LEAVES));
-    public static final Block WHITE_LEAVES = new LeavesBlock(FabricBlockSettings.copyOf(Blocks.OAK_LEAVES));
-    public static final Block YELLOW_LEAVES = new LeavesBlock(FabricBlockSettings.copyOf(Blocks.OAK_LEAVES));
+    public static final Block BLACK_LOG = new PillarBlock(coloredLogBlockSettings);
+    public static final Block BLUE_LOG = new PillarBlock(coloredLogBlockSettings);
+    public static final Block BROWN_LOG = new PillarBlock(coloredLogBlockSettings);
+    public static final Block CYAN_LOG = new PillarBlock(coloredLogBlockSettings);
+    public static final Block GRAY_LOG = new PillarBlock(coloredLogBlockSettings);
+    public static final Block GREEN_LOG = new PillarBlock(coloredLogBlockSettings);
+    public static final Block LIGHT_BLUE_LOG = new PillarBlock(coloredLogBlockSettings);
+    public static final Block LIGHT_GRAY_LOG = new PillarBlock(coloredLogBlockSettings);
+    public static final Block LIME_LOG = new PillarBlock(coloredLogBlockSettings);
+    public static final Block MAGENTA_LOG = new PillarBlock(coloredLogBlockSettings);
+    public static final Block ORANGE_LOG = new PillarBlock(coloredLogBlockSettings);
+    public static final Block PINK_LOG = new PillarBlock(coloredLogBlockSettings);
+    public static final Block PURPLE_LOG = new PillarBlock(coloredLogBlockSettings);
+    public static final Block RED_LOG = new PillarBlock(coloredLogBlockSettings);
+    public static final Block WHITE_LOG = new PillarBlock(coloredLogBlockSettings);
+    public static final Block YELLOW_LOG = new PillarBlock(coloredLogBlockSettings);
+
+    private static final FabricBlockSettings coloredLeavesBlockSettings = FabricBlockSettings.copyOf(Blocks.OAK_LEAVES).luminance((state) -> { return 5; });
+    public static final Block BLACK_LEAVES = new LeavesBlock(coloredLeavesBlockSettings);
+    public static final Block BLUE_LEAVES = new LeavesBlock(coloredLeavesBlockSettings);
+    public static final Block BROWN_LEAVES = new LeavesBlock(coloredLeavesBlockSettings);
+    public static final Block CYAN_LEAVES = new LeavesBlock(coloredLeavesBlockSettings);
+    public static final Block GRAY_LEAVES = new LeavesBlock(coloredLeavesBlockSettings);
+    public static final Block GREEN_LEAVES = new LeavesBlock(coloredLeavesBlockSettings);
+    public static final Block LIGHT_BLUE_LEAVES = new LeavesBlock(coloredLeavesBlockSettings);
+    public static final Block LIGHT_GRAY_LEAVES = new LeavesBlock(coloredLeavesBlockSettings);
+    public static final Block LIME_LEAVES = new LeavesBlock(coloredLeavesBlockSettings);
+    public static final Block MAGENTA_LEAVES = new LeavesBlock(coloredLeavesBlockSettings);
+    public static final Block ORANGE_LEAVES = new LeavesBlock(coloredLeavesBlockSettings);
+    public static final Block PINK_LEAVES = new LeavesBlock(coloredLeavesBlockSettings);
+    public static final Block PURPLE_LEAVES = new LeavesBlock(coloredLeavesBlockSettings);
+    public static final Block RED_LEAVES = new LeavesBlock(coloredLeavesBlockSettings);
+    public static final Block WHITE_LEAVES = new LeavesBlock(coloredLeavesBlockSettings);
+    public static final Block YELLOW_LEAVES = new LeavesBlock(coloredLeavesBlockSettings);
 
     public static final Block BLACK_SAPLING = new Block(FabricBlockSettings.copyOf(Blocks.OAK_SAPLING));
     public static final Block BLUE_SAPLING = new Block(FabricBlockSettings.copyOf(Blocks.OAK_SAPLING));

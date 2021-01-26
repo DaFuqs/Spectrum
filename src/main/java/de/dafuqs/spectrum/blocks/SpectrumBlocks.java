@@ -16,6 +16,8 @@ import de.dafuqs.spectrum.blocks.melon.GlisteringMelonBlock;
 import de.dafuqs.spectrum.blocks.melon.GlisteringStemBlock;
 import de.dafuqs.spectrum.blocks.tree.OminousSaplingBlock;
 import de.dafuqs.spectrum.blocks.tree.OminousSaplingBlockItem;
+import de.dafuqs.spectrum.colored_trees.ColoredSaplingBlock;
+import de.dafuqs.spectrum.colored_trees.ColoredSaplingGenerator;
 import de.dafuqs.spectrum.fluid.LiquidCrystalBlock;
 import de.dafuqs.spectrum.fluid.SpectrumFluids;
 import de.dafuqs.spectrum.items.SpectrumItemGroups;
@@ -32,6 +34,7 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.state.property.Properties;
 import net.minecraft.tag.BlockTags;
+import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
@@ -224,22 +227,23 @@ public class SpectrumBlocks {
     public static final Block WHITE_LEAVES = new LeavesBlock(coloredLeavesBlockSettings);
     public static final Block YELLOW_LEAVES = new LeavesBlock(coloredLeavesBlockSettings);
 
-    public static final Block BLACK_SAPLING = new Block(FabricBlockSettings.copyOf(Blocks.OAK_SAPLING));
-    public static final Block BLUE_SAPLING = new Block(FabricBlockSettings.copyOf(Blocks.OAK_SAPLING));
-    public static final Block BROWN_SAPLING = new Block(FabricBlockSettings.copyOf(Blocks.OAK_SAPLING));
-    public static final Block CYAN_SAPLING = new Block(FabricBlockSettings.copyOf(Blocks.OAK_SAPLING));
-    public static final Block GRAY_SAPLING = new Block(FabricBlockSettings.copyOf(Blocks.OAK_SAPLING));
-    public static final Block GREEN_SAPLING = new Block(FabricBlockSettings.copyOf(Blocks.OAK_SAPLING));
-    public static final Block LIGHT_BLUE_SAPLING = new Block(FabricBlockSettings.copyOf(Blocks.OAK_SAPLING));
-    public static final Block LIGHT_GRAY_SAPLING = new Block(FabricBlockSettings.copyOf(Blocks.OAK_SAPLING));
-    public static final Block LIME_SAPLING = new Block(FabricBlockSettings.copyOf(Blocks.OAK_SAPLING));
-    public static final Block MAGENTA_SAPLING = new Block(FabricBlockSettings.copyOf(Blocks.OAK_SAPLING));
-    public static final Block ORANGE_SAPLING = new Block(FabricBlockSettings.copyOf(Blocks.OAK_SAPLING));
-    public static final Block PINK_SAPLING = new Block(FabricBlockSettings.copyOf(Blocks.OAK_SAPLING));
-    public static final Block PURPLE_SAPLING = new Block(FabricBlockSettings.copyOf(Blocks.OAK_SAPLING));
-    public static final Block RED_SAPLING = new Block(FabricBlockSettings.copyOf(Blocks.OAK_SAPLING));
-    public static final Block WHITE_SAPLING = new Block(FabricBlockSettings.copyOf(Blocks.OAK_SAPLING));
-    public static final Block YELLOW_SAPLING = new Block(FabricBlockSettings.copyOf(Blocks.OAK_SAPLING));
+    private static final FabricBlockSettings coloredSaplingBlockSettings = FabricBlockSettings.copyOf(Blocks.OAK_SAPLING);
+    public static final Block BLACK_SAPLING = new ColoredSaplingBlock(new ColoredSaplingGenerator(DyeColor.BLACK), coloredSaplingBlockSettings);
+    public static final Block BLUE_SAPLING = new ColoredSaplingBlock(new ColoredSaplingGenerator(DyeColor.BLUE), coloredSaplingBlockSettings);
+    public static final Block BROWN_SAPLING = new ColoredSaplingBlock(new ColoredSaplingGenerator(DyeColor.BROWN), coloredSaplingBlockSettings);
+    public static final Block CYAN_SAPLING = new ColoredSaplingBlock(new ColoredSaplingGenerator(DyeColor.CYAN), coloredSaplingBlockSettings);
+    public static final Block GRAY_SAPLING = new ColoredSaplingBlock(new ColoredSaplingGenerator(DyeColor.GRAY), coloredSaplingBlockSettings);
+    public static final Block GREEN_SAPLING = new ColoredSaplingBlock(new ColoredSaplingGenerator(DyeColor.GREEN), coloredSaplingBlockSettings);
+    public static final Block LIGHT_BLUE_SAPLING = new ColoredSaplingBlock(new ColoredSaplingGenerator(DyeColor.LIGHT_BLUE), coloredSaplingBlockSettings);
+    public static final Block LIGHT_GRAY_SAPLING = new ColoredSaplingBlock(new ColoredSaplingGenerator(DyeColor.LIGHT_GRAY), coloredSaplingBlockSettings);
+    public static final Block LIME_SAPLING = new ColoredSaplingBlock(new ColoredSaplingGenerator(DyeColor.LIME), coloredSaplingBlockSettings);
+    public static final Block MAGENTA_SAPLING = new ColoredSaplingBlock(new ColoredSaplingGenerator(DyeColor.MAGENTA), coloredSaplingBlockSettings);
+    public static final Block ORANGE_SAPLING = new ColoredSaplingBlock(new ColoredSaplingGenerator(DyeColor.ORANGE), coloredSaplingBlockSettings);
+    public static final Block PINK_SAPLING = new ColoredSaplingBlock(new ColoredSaplingGenerator(DyeColor.PINK), coloredSaplingBlockSettings);
+    public static final Block PURPLE_SAPLING = new ColoredSaplingBlock(new ColoredSaplingGenerator(DyeColor.PURPLE), coloredSaplingBlockSettings);
+    public static final Block RED_SAPLING = new ColoredSaplingBlock(new ColoredSaplingGenerator(DyeColor.RED), coloredSaplingBlockSettings);
+    public static final Block WHITE_SAPLING = new ColoredSaplingBlock(new ColoredSaplingGenerator(DyeColor.WHITE), coloredSaplingBlockSettings);
+    public static final Block YELLOW_SAPLING = new ColoredSaplingBlock(new ColoredSaplingGenerator(DyeColor.YELLOW), coloredSaplingBlockSettings);
 
     private static void registerBlock(String name, Block block) {
         Registry.register(Registry.BLOCK, new Identifier(SpectrumCommon.MOD_ID, name), block);
@@ -504,8 +508,7 @@ public class SpectrumBlocks {
         registerBlockItem("white_leaves", new BlockItem(WHITE_LEAVES, blockItemSettings));
         registerBlock("yellow_leaves", YELLOW_LEAVES);
         registerBlockItem("yellow_leaves", new BlockItem(YELLOW_LEAVES, blockItemSettings));
-
-
+        
         registerBlock("black_sapling", BLACK_SAPLING);
         registerBlockItem("black_sapling", new BlockItem(BLACK_SAPLING, blockItemSettings));
         registerBlock("blue_sapling", BLUE_SAPLING);
@@ -608,5 +611,83 @@ public class SpectrumBlocks {
         BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.RED_SAPLING, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.WHITE_SAPLING, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.YELLOW_SAPLING, RenderLayer.getCutout());
+    }
+
+    public static Block getColoredLog(DyeColor dyeColor) {
+        switch (dyeColor) {
+            case RED:
+                return RED_LOG;
+            case BROWN:
+                return BROWN_LOG;
+            case CYAN:
+                return CYAN_LOG;
+            case GRAY:
+                return GRAY_LOG;
+            case GREEN:
+                return GREEN_LOG;
+            case LIGHT_BLUE:
+                return LIGHT_BLUE_LOG;
+            case LIGHT_GRAY:
+                return LIGHT_GRAY_LOG;
+            case BLUE:
+                return BLUE_LOG;
+            case LIME:
+                return LIME_LOG;
+            case ORANGE:
+                return ORANGE_LOG;
+            case PINK:
+                return PINK_LOG;
+            case PURPLE:
+                return PURPLE_LOG;
+            case WHITE:
+                return WHITE_LOG;
+            case YELLOW:
+                return YELLOW_LOG;
+            case BLACK:
+                return BLACK_LOG;
+            case MAGENTA:
+                return MAGENTA_LOG;
+            default:
+                return null;
+        }
+    }
+
+    public static Block getColoredLeaves(DyeColor dyeColor) {
+        switch (dyeColor) {
+            case RED:
+                return RED_LEAVES;
+            case BROWN:
+                return BROWN_LEAVES;
+            case CYAN:
+                return CYAN_LEAVES;
+            case GRAY:
+                return GRAY_LEAVES;
+            case GREEN:
+                return GREEN_LEAVES;
+            case LIGHT_BLUE:
+                return LIGHT_BLUE_LEAVES;
+            case LIGHT_GRAY:
+                return LIGHT_GRAY_LEAVES;
+            case BLUE:
+                return BLUE_LEAVES;
+            case LIME:
+                return LIME_LEAVES;
+            case ORANGE:
+                return ORANGE_LEAVES;
+            case PINK:
+                return PINK_LEAVES;
+            case PURPLE:
+                return PURPLE_LEAVES;
+            case WHITE:
+                return WHITE_LEAVES;
+            case YELLOW:
+                return YELLOW_LEAVES;
+            case BLACK:
+                return BLACK_LEAVES;
+            case MAGENTA:
+                return MAGENTA_LEAVES;
+            default:
+                return null;
+        }
     }
 }

@@ -32,6 +32,7 @@ import net.fabricmc.fabric.api.tool.attribute.v1.FabricToolTags;
 import net.minecraft.block.*;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItem;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.state.property.Properties;
@@ -40,6 +41,8 @@ import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 
 import java.util.function.ToIntFunction;
@@ -200,7 +203,28 @@ public class SpectrumBlocks {
     public static final Block BLACK_LOG = new PillarBlock(coloredLogBlockSettings);
     public static final Block BLACK_LEAVES = new LeavesBlock(coloredLeavesBlockSettings);
     public static final Block BLACK_SAPLING = new ColoredSaplingBlock(new ColoredSaplingGenerator(DyeColor.BLACK), coloredSaplingBlockSettings);
-    public static final Block BLACK_PLANKS = new TransparencyTestBlock(FabricBlockSettings.copyOf(Blocks.OAK_PLANKS));
+    public static final Block BLACK_PLANKS = new ConditionallyVisibleBlock(FabricBlockSettings.copyOf(Blocks.OAK_PLANKS)) {
+
+        @Override
+        public boolean isVisible(PlayerEntity playerEntity, BlockState state) {
+            return playerEntity.getArmor() > 0;
+        }
+
+        @Override
+        public boolean isVisibleOnServer() {
+            return false;
+        }
+
+        @Override
+        public VoxelShape getVisibleCollisionShape() {
+            return VoxelShapes.fullCube();
+        }
+
+        @Override
+        public VoxelShape getVisibleOutlineShape() {
+            return VoxelShapes.fullCube();
+        }
+    };
     public static final Block BLACK_STAIRS = new SpectrumStairsBlock(BLACK_PLANKS.getDefaultState(), FabricBlockSettings.copyOf(Blocks.OAK_STAIRS));
     public static final Block BLACK_PRESSURE_PLATE = new SpectrumPressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, FabricBlockSettings.copyOf(Blocks.OAK_PRESSURE_PLATE));
     public static final Block BLACK_FENCE = new FenceBlock(FabricBlockSettings.copyOf(Blocks.OAK_FENCE));
@@ -372,7 +396,6 @@ public class SpectrumBlocks {
     public static final Block YELLOW_FENCE_GATE = new FenceGateBlock(FabricBlockSettings.copyOf(Blocks.OAK_FENCE_GATE));
     public static final Block YELLOW_BUTTON = new SpectrumWoodenButtonBlock(FabricBlockSettings.copyOf(Blocks.OAK_BUTTON));
     public static final Block YELLOW_SLAB = new SlabBlock(FabricBlockSettings.copyOf(Blocks.OAK_SLAB));
-
 
     private static void registerBlock(String name, Block block) {
         Registry.register(Registry.BLOCK, new Identifier(SpectrumCommon.MOD_ID, name), block);

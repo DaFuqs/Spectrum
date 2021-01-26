@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    {
+      "item": "spectrum:yellow_log"
+    }
+  ],
+  "result": {
+    "item": "spectrum:yellow_planks",
+    "count": 4
+  }
+}

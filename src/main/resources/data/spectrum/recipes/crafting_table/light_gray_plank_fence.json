@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wooden_fence",
+  "pattern": [
+    "W#W",
+    "W#W"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:stick"
+    },
+    "W": {
+      "item": "spectrum:light_gray_planks"
+    }
+  },
+  "result": {
+    "item": "spectrum:light_gray_plank_fence",
+    "count": 3
+  }
+}

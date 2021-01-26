@@ -17,4 +17,8 @@ public class SpectrumItemGroups {
             new Identifier(SpectrumCommon.MOD_ID, "building"),
             () -> new ItemStack(SpectrumBlocks.CITRINE_BLOCK));
 
+    public static final ItemGroup ITEM_GROUP_COLORED_WOOD = FabricItemGroupBuilder.build(
+            new Identifier(SpectrumCommon.MOD_ID, "colored_wood"),
+            () -> new ItemStack(SpectrumBlocks.MAGENTA_LOG));
+
 }

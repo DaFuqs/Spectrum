@@ -39,7 +39,6 @@ public abstract class LiquidCrystalFluid extends SpectrumFluid {
 
 	@Override
 	protected BlockState toBlockState(FluidState fluidState) {
-		// method_15741 converts the LEVEL_1_8 of the fluid state to the LEVEL_15 the fluid block uses
 		return SpectrumBlocks.LIQUID_CRYSTAL.getDefaultState().with(Properties.LEVEL_15, method_15741(fluidState));
 	}
 
@@ -52,7 +51,6 @@ public abstract class LiquidCrystalFluid extends SpectrumFluid {
 		return Optional.of(SoundEvents.ITEM_BUCKET_FILL);
 	}
 
-	// TODO: Other particle and ambient sound
 	@Environment(EnvType.CLIENT)
 	public void randomDisplayTick(World world, BlockPos pos, FluidState state, Random random) {
 		if (random.nextInt(150) == 0) {
@@ -91,5 +89,6 @@ public abstract class LiquidCrystalFluid extends SpectrumFluid {
 		public boolean isStill(FluidState fluidState) {
 			return true;
 		}
+
 	}
 }

@@ -1,8 +1,8 @@
 package de.dafuqs.spectrum.blocks;
 
 import com.mojang.datafixers.types.Type;
-import de.dafuqs.spectrum.blocks.altar.AltarBlockEntity;
-import de.dafuqs.spectrum.blocks.tree.OminousSaplingBlockEntity;
+import de.dafuqs.spectrum.blocks.types.altar.AltarBlockEntity;
+import de.dafuqs.spectrum.blocks.types.tree.OminousSaplingBlockEntity;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;

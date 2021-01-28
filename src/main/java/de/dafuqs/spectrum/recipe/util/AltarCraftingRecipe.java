@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.recipe.util;
 
 import de.dafuqs.spectrum.blocks.SpectrumBlocks;
-import de.dafuqs.spectrum.blocks.altar.AltarBlockInventory;
+import de.dafuqs.spectrum.inventories.AltarBlockInventory;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Ingredient;

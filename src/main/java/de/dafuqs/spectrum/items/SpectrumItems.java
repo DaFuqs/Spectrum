@@ -17,9 +17,9 @@ import static de.dafuqs.spectrum.fluid.SpectrumFluids.STILL_LIQUID_CRYSTAL;
 
 public class SpectrumItems {
 
-    public static FabricItemSettings spectrumItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP).rarity(Rarity.COMMON);
-    public static FabricItemSettings spectrumUncommonItemSettings = spectrumItemSettings.rarity(Rarity.UNCOMMON);
-    public static FabricItemSettings spectrumRareItemSettings = spectrumItemSettings.rarity(Rarity.RARE);
+    public static FabricItemSettings toolItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_TOOLS).rarity(Rarity.COMMON);
+    public static FabricItemSettings spectrumUncommonItemSettings = toolItemSettings.rarity(Rarity.UNCOMMON);
+    public static FabricItemSettings spectrumRareItemSettings = toolItemSettings.rarity(Rarity.RARE);
 
     // Bedrock Tools
     public static ToolItem BEDROCK_PICKAXE = new BedrockPickaxeItem(BedrockToolMaterial.INSTANCE, 1, -2.8F, spectrumRareItemSettings);
@@ -46,19 +46,19 @@ public class SpectrumItems {
 
     public static final Item GLISTERING_MELON_SEEDS = new AliasedBlockItem(SpectrumBlocks.GLISTERING_MELON_STEM, spectrumUncommonItemSettings.maxCount(64));
 
-    public static final Item CITRINE_SHARD_ITEM = new Item(spectrumItemSettings);
-    public static final Item TOPAZ_SHARD_ITEM = new Item(spectrumItemSettings);
-    public static final Item ONYX_SHARD_ITEM = new Item(spectrumItemSettings);
-    public static final Item MOONSTONE_SHARD_ITEM = new Item(spectrumItemSettings);
-    public static final Item RAINBOW_MOONSTONE_ITEM = new Item(spectrumItemSettings);
+    public static final Item CITRINE_SHARD_ITEM = new Item(toolItemSettings);
+    public static final Item TOPAZ_SHARD_ITEM = new Item(toolItemSettings);
+    public static final Item ONYX_SHARD_ITEM = new Item(toolItemSettings);
+    public static final Item MOONSTONE_SHARD_ITEM = new Item(toolItemSettings);
+    public static final Item RAINBOW_MOONSTONE_ITEM = new Item(toolItemSettings);
 
     // DECAY DROPS
-    public static final Item VEGETAL = new Item(spectrumItemSettings);
+    public static final Item VEGETAL = new Item(toolItemSettings);
     public static final Item CORRUPTED_OBSIDIAN_DUST = new Item(spectrumUncommonItemSettings);
     public static final Item CORRUPTED_BEDROCK_DUST = new Item(spectrumRareItemSettings);
 
     // FLUIDS
-    public static final Item LIQUID_CRYSTAL_BUCKET = new BucketItem(STILL_LIQUID_CRYSTAL, spectrumItemSettings.recipeRemainder(Items.BUCKET).maxCount(1));
+    public static final Item LIQUID_CRYSTAL_BUCKET = new BucketItem(STILL_LIQUID_CRYSTAL, toolItemSettings.recipeRemainder(Items.BUCKET).maxCount(1));
 
 
 

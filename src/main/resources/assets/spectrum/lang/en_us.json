@@ -1,6 +1,7 @@
 {
-  "itemGroup.spectrum.general": "Spectrum General",
-  "itemGroup.spectrum.building": "Spectrum Blocks",
+  "itemGroup.spectrum.tools": "Spectrum Tools",
+  "itemGroup.spectrum.functional": "Spectrum Blocks",
+  "itemGroup.spectrum.decoration": "Spectrum Decorations",
   "itemGroup.spectrum.colored_wood": "Spectrum Colored Wood",
 
   "enchantment.spectrum.resonance": "Resonance",
@@ -59,6 +60,23 @@
   "block.spectrum.yellow_sapling": "Yellow Sapling",
   "block.spectrum.yellow_log": "Yellow Log",
   "block.spectrum.yellow_leaves": "Yellow Leaves",
+
+  "block.spectrum.black_flat_colored_block": "Black Antiblock",
+  "block.spectrum.blue_flat_colored_block": "Blue Antiblock",
+  "block.spectrum.brown_flat_colored_block": "Brown Antiblock",
+  "block.spectrum.cyan_flat_colored_block": "Cyan Antiblock",
+  "block.spectrum.gray_flat_colored_block": "Gray Antiblock",
+  "block.spectrum.green_flat_colored_block": "Green Antiblock",
+  "block.spectrum.light_blue_flat_colored_block": "Light Blue Antiblock",
+  "block.spectrum.light_gray_flat_colored_block": "Light Gray Antiblock",
+  "block.spectrum.lime_flat_colored_block": "Lime Antiblock",
+  "block.spectrum.magenta_flat_colored_block": "Magenta Antiblock",
+  "block.spectrum.orange_flat_colored_block": "Orange Antiblock",
+  "block.spectrum.pink_flat_colored_block": "Pink Antiblock",
+  "block.spectrum.purple_flat_colored_block": "Purple Antiblock",
+  "block.spectrum.red_flat_colored_block": "Red Antiblock",
+  "block.spectrum.white_flat_colored_block": "White Antiblock",
+  "block.spectrum.yellow_flat_colored_block": "Yellow Antiblock",
 
   "block.spectrum.black_planks": "Black Planks",
   "block.spectrum.black_plank_button": "Black Plank Button",

@@ -1,9 +1,9 @@
-package de.dafuqs.spectrum.recipe.util;
+package de.dafuqs.spectrum.recipe;
 
-import de.dafuqs.spectrum.enums.GemColor;
 import de.dafuqs.spectrum.blocks.SpectrumBlocks;
-import de.dafuqs.spectrum.inventories.AltarBlockInventory;
+import de.dafuqs.spectrum.enums.GemColor;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
+import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.Recipe;
@@ -15,7 +15,7 @@ import net.minecraft.world.World;
 
 import java.util.HashMap;
 
-public class AltarCraftingRecipe implements Recipe<AltarBlockInventory> {
+public class AltarCraftingRecipe implements Recipe<Inventory> {
 
     protected final Identifier id;
     protected final String group;
@@ -47,12 +47,12 @@ public class AltarCraftingRecipe implements Recipe<AltarBlockInventory> {
     }
 
     @Override
-    public boolean matches(AltarBlockInventory inv, World world) {
+    public boolean matches(Inventory inv, World world) {
         return false;
     }
 
     @Override
-    public ItemStack craft(AltarBlockInventory inv) {
+    public ItemStack craft(Inventory inv) {
         return null;
     }
 
@@ -83,10 +83,14 @@ public class AltarCraftingRecipe implements Recipe<AltarBlockInventory> {
 
     @Override
     public RecipeType<?> getType() {
-        return SpectrumRecipeTypes.ALTAR_RECIPE_TYPE;
+        return SpectrumRecipeTypes.ALTAR;
     }
 
     public int getGemColor(GemColor gemColor) {
         return gemInputs.getOrDefault(gemColor, 0);
+    }
+
+    public int getCraftingTime() {
+        return craftingTime;
     }
 }

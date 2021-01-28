@@ -56,40 +56,31 @@ public class AltarBlock extends BlockWithEntity {
         setDefaultState(getStateManager().getDefaultState().with(STATE, AltarState.DEFAULT));
     }
 
-    /*@Nullable
-    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        return method_31617(world, type, SpectrumBlockEntityType.ALTAR_BLOCK_ENTITY_TYPE);
-    }*/
-
-    /*@Nullable
-    protected static <T extends BlockEntity> BlockEntityTicker<T> method_31617(World world, BlockEntityType<T> blockEntityType, BlockEntityType blockEntityType2) {
-        // block does not need to tick on clients
-        return world.isClient ? null : checkType(blockEntityType, blockEntityType2, AltarBlockEntity::tick);
-    }*/
-
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> stateManager) {
         stateManager.add(STATE);
     }
 
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        if (!world.isClient) {
-            //This will call the createScreenHandlerFactory method from BlockWithEntity, which will return our blockEntity casted to
-            //a namedScreenHandlerFactory. If your block class does not extend BlockWithEntity, it needs to implement createScreenHandlerFactory.
-            NamedScreenHandlerFactory screenHandlerFactory = state.createScreenHandlerFactory(world, pos);
-
-            if (screenHandlerFactory != null) {
-                //With this call the server will request the client to open the appropriate Screenhandler
-                player.openHandledScreen(screenHandlerFactory);
-            }
+        if (world.isClient) {
+            return ActionResult.SUCCESS;
+        } else {
+            this.openScreen(world, pos, player);
+            return ActionResult.CONSUME;
         }
-        return ActionResult.SUCCESS;
+    }
+
+    protected void openScreen(World world, BlockPos pos, PlayerEntity player) {
+        BlockEntity blockEntity = world.getBlockEntity(pos);
+        if (blockEntity instanceof AltarBlockEntity) {
+            player.openHandledScreen((NamedScreenHandlerFactory)blockEntity);
+        }
     }
 
     public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
         if (!state.isOf(newState.getBlock())) {
             BlockEntity blockEntity = world.getBlockEntity(pos);
-            if (blockEntity instanceof Inventory) {
+            if (blockEntity instanceof AltarBlockEntity) {
                 ItemScatterer.spawn(world, pos, (Inventory)blockEntity);
                 world.updateComparators(pos, this);
             }
@@ -106,12 +97,6 @@ public class AltarBlock extends BlockWithEntity {
     public BlockRenderType getRenderType(BlockState state) {
         return BlockRenderType.MODEL;
     }
-
-    /*public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
-        if (itemStack.hasCustomName()) {
-            BlockEntity blockEntity = world.getBlockEntity(pos);
-        }
-    }*/
 
     public boolean hasComparatorOutput(BlockState state) {
         return true;

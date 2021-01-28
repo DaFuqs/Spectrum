@@ -16,6 +16,6 @@ public class SpectrumClient implements ClientModInitializer {
         SpectrumFluids.registerClient();
 
         SpectrumContainers.register();
-        ScreenRegistry.register(SpectrumScreenHandlerTypes.ALTAR_SCREEN_HANDLER, AltarScreen::new);
+        ScreenRegistry.register(SpectrumScreenHandlerTypes.ALTAR, AltarScreen::new);
     }
 }

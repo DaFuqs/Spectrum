@@ -5,10 +5,10 @@ import net.minecraft.screen.ScreenHandlerType;
 
 public class SpectrumScreenHandlerTypes {
 
-    public static ScreenHandlerType<AltarScreenHandler> ALTAR_SCREEN_HANDLER;
+    public static ScreenHandlerType<AltarCraftingScreenHandler> ALTAR;
 
     public static void register() {
-        ALTAR_SCREEN_HANDLER = ScreenHandlerRegistry.registerSimple(SpectrumContainers.ALTAR, ((syncId, inventory) -> new AltarScreenHandler(syncId, inventory)));
+        ALTAR = ScreenHandlerRegistry.registerSimple(SpectrumContainers.ALTAR, (AltarCraftingScreenHandler::new));
     }
 
 }

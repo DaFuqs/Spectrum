@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.recipe.util;
+package de.dafuqs.spectrum.recipe;
 
 import com.google.gson.JsonObject;
 import de.dafuqs.spectrum.enums.GemColor;

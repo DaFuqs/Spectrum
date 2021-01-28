@@ -1,5 +1,5 @@
 {
     "textures": {
-        "particle": "block/liquid_crystal_still"
+        "particle": "spectrum:block/liquid_crystal_still"
     }
 }

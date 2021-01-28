@@ -419,7 +419,23 @@ public class SpectrumBlocks {
     public static final Block WHITE_FLAT_COLORED_BLOCK = new Block(flatColoredBlockBlockSettings);
     public static final Block YELLOW_FLAT_COLORED_BLOCK = new Block(flatColoredBlockBlockSettings);
 
-
+    // COLORED LAMPS // TODO: Culling when side is obstructed
+    public static final Block BLACK_LAMP = new RedstoneLampBlock(FabricBlockSettings.copyOf(Blocks.REDSTONE_LAMP));
+    public static final Block BLUE_LAMP = new RedstoneLampBlock(FabricBlockSettings.copyOf(Blocks.REDSTONE_LAMP));
+    public static final Block BROWN_LAMP = new RedstoneLampBlock(FabricBlockSettings.copyOf(Blocks.REDSTONE_LAMP));
+    public static final Block CYAN_LAMP = new RedstoneLampBlock(FabricBlockSettings.copyOf(Blocks.REDSTONE_LAMP));
+    public static final Block GRAY_LAMP = new RedstoneLampBlock(FabricBlockSettings.copyOf(Blocks.REDSTONE_LAMP));
+    public static final Block GREEN_LAMP = new RedstoneLampBlock(FabricBlockSettings.copyOf(Blocks.REDSTONE_LAMP));
+    public static final Block LIGHT_BLUE_LAMP = new RedstoneLampBlock(FabricBlockSettings.copyOf(Blocks.REDSTONE_LAMP));
+    public static final Block LIGHT_GRAY_LAMP = new RedstoneLampBlock(FabricBlockSettings.copyOf(Blocks.REDSTONE_LAMP));
+    public static final Block LIME_LAMP = new RedstoneLampBlock(FabricBlockSettings.copyOf(Blocks.REDSTONE_LAMP));
+    public static final Block MAGENTA_LAMP = new RedstoneLampBlock(FabricBlockSettings.copyOf(Blocks.REDSTONE_LAMP));
+    public static final Block ORANGE_LAMP = new RedstoneLampBlock(FabricBlockSettings.copyOf(Blocks.REDSTONE_LAMP));
+    public static final Block PINK_LAMP = new RedstoneLampBlock(FabricBlockSettings.copyOf(Blocks.REDSTONE_LAMP));
+    public static final Block PURPLE_LAMP = new RedstoneLampBlock(FabricBlockSettings.copyOf(Blocks.REDSTONE_LAMP));
+    public static final Block RED_LAMP = new RedstoneLampBlock(FabricBlockSettings.copyOf(Blocks.REDSTONE_LAMP));
+    public static final Block WHITE_LAMP = new RedstoneLampBlock(FabricBlockSettings.copyOf(Blocks.REDSTONE_LAMP));
+    public static final Block YELLOW_LAMP = new RedstoneLampBlock(FabricBlockSettings.copyOf(Blocks.REDSTONE_LAMP));
 
 
     private static void registerBlock(String name, Block block) {
@@ -436,6 +452,7 @@ public class SpectrumBlocks {
         registerStoneBlocks(decorationItemSettings);
         registerRunes(decorationItemSettings);
         registerStoneLamps(decorationItemSettings);
+        registerColoredLamps(decorationItemSettings);
         registerGemGlass(decorationItemSettings);
         registerPlayerOnlyGlass(functionalItemSettings);
         registerFlatColoredBlocks(decorationItemSettings);
@@ -463,7 +480,42 @@ public class SpectrumBlocks {
         registerBlockItem("decay3", new BlockItem(DECAY3, functionalItemSettings));
 
         // FLUIDS
-        registerBlock("liquid_crystal.json", LIQUID_CRYSTAL);
+        registerBlock("liquid_crystal", LIQUID_CRYSTAL);
+    }
+
+    private static void registerColoredLamps(FabricItemSettings fabricItemSettings) {
+        registerBlock("black_lamp", BLACK_LAMP);
+        registerBlockItem("black_lamp", new BlockItem(BLACK_LAMP, fabricItemSettings));
+        registerBlock("blue_lamp", BLUE_LAMP);
+        registerBlockItem("blue_lamp", new BlockItem(BLUE_LAMP, fabricItemSettings));
+        registerBlock("brown_lamp", BROWN_LAMP);
+        registerBlockItem("brown_lamp", new BlockItem(BROWN_LAMP, fabricItemSettings));
+        registerBlock("cyan_lamp", CYAN_LAMP);
+        registerBlockItem("cyan_lamp", new BlockItem(CYAN_LAMP, fabricItemSettings));
+        registerBlock("gray_lamp", GRAY_LAMP);
+        registerBlockItem("gray_lamp", new BlockItem(GRAY_LAMP, fabricItemSettings));
+        registerBlock("green_lamp", GREEN_LAMP);
+        registerBlockItem("green_lamp", new BlockItem(GREEN_LAMP, fabricItemSettings));
+        registerBlock("light_blue_lamp", LIGHT_BLUE_LAMP);
+        registerBlockItem("light_blue_lamp", new BlockItem(LIGHT_BLUE_LAMP, fabricItemSettings));
+        registerBlock("light_gray_lamp", LIGHT_GRAY_LAMP);
+        registerBlockItem("light_gray_lamp", new BlockItem(LIGHT_GRAY_LAMP, fabricItemSettings));
+        registerBlock("lime_lamp", LIME_LAMP);
+        registerBlockItem("lime_lamp", new BlockItem(LIME_LAMP, fabricItemSettings));
+        registerBlock("magenta_lamp", MAGENTA_LAMP);
+        registerBlockItem("magenta_lamp", new BlockItem(MAGENTA_LAMP, fabricItemSettings));
+        registerBlock("orange_lamp", ORANGE_LAMP);
+        registerBlockItem("orange_lamp", new BlockItem(ORANGE_LAMP, fabricItemSettings));
+        registerBlock("pink_lamp", PINK_LAMP);
+        registerBlockItem("pink_lamp", new BlockItem(PINK_LAMP, fabricItemSettings));
+        registerBlock("purple_lamp", PURPLE_LAMP);
+        registerBlockItem("purple_lamp", new BlockItem(PURPLE_LAMP, fabricItemSettings));
+        registerBlock("red_lamp", RED_LAMP);
+        registerBlockItem("red_lamp", new BlockItem(RED_LAMP, fabricItemSettings));
+        registerBlock("white_lamp", WHITE_LAMP);
+        registerBlockItem("white_lamp", new BlockItem(WHITE_LAMP, fabricItemSettings));
+        registerBlock("yellow_lamp", YELLOW_LAMP);
+        registerBlockItem("yellow_lamp", new BlockItem(YELLOW_LAMP, fabricItemSettings));
     }
 
     private static void registerGemGlass(FabricItemSettings fabricItemSettings) {
@@ -1044,7 +1096,6 @@ public class SpectrumBlocks {
         BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.MOONSTONE_PLAYER_ONLY_GLASS, RenderLayer.getTranslucent());
         BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.ONYX_PLAYER_ONLY_GLASS, RenderLayer.getTranslucent());
 
-
         BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.AMETHYST_CALCITE_LAMP, RenderLayer.getTranslucent());
         BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.CITRINE_CALCITE_LAMP, RenderLayer.getTranslucent());
         BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.TOPAZ_CALCITE_LAMP, RenderLayer.getTranslucent());
@@ -1074,6 +1125,23 @@ public class SpectrumBlocks {
         BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.RED_SAPLING, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.WHITE_SAPLING, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.YELLOW_SAPLING, RenderLayer.getCutout());
+
+        BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.BLACK_LAMP, RenderLayer.getTranslucent());
+        BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.BLUE_LAMP, RenderLayer.getTranslucent());
+        BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.BROWN_LAMP, RenderLayer.getTranslucent());
+        BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.CYAN_LAMP, RenderLayer.getTranslucent());
+        BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.GRAY_LAMP, RenderLayer.getTranslucent());
+        BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.GREEN_LAMP, RenderLayer.getTranslucent());
+        BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.LIGHT_BLUE_LAMP, RenderLayer.getTranslucent());
+        BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.LIGHT_GRAY_LAMP, RenderLayer.getTranslucent());
+        BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.LIME_LAMP, RenderLayer.getTranslucent());
+        BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.MAGENTA_LAMP, RenderLayer.getTranslucent());
+        BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.ORANGE_LAMP, RenderLayer.getTranslucent());
+        BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.PINK_LAMP, RenderLayer.getTranslucent());
+        BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.PURPLE_LAMP, RenderLayer.getTranslucent());
+        BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.RED_LAMP, RenderLayer.getTranslucent());
+        BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.WHITE_LAMP, RenderLayer.getTranslucent());
+        BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.YELLOW_LAMP, RenderLayer.getTranslucent());
     }
 
     public static Block getColoredLog(DyeColor dyeColor) {

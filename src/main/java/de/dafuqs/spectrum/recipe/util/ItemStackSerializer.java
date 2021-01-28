@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.recipe.util;
+/*package de.dafuqs.spectrum.recipe.util;
 
 import com.google.gson.*;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
@@ -71,4 +71,4 @@ public class ItemStackSerializer implements JsonSerializer<ItemStack>, JsonDeser
 
 		return JsonNull.INSTANCE;
 	}
-}
+}*/

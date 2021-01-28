@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.recipe.util;
+/*package de.dafuqs.spectrum.recipe.util;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -106,4 +106,4 @@ public final class ConditionManager {
 		}
 
 	}
-}
+}*/

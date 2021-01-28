@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.fluid;
+package de.dafuqs.spectrum.blocks.fluid;
 
 import de.dafuqs.spectrum.SpectrumCommon;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;

@@ -1,6 +1,6 @@
-package de.dafuqs.spectrum.recipe.util;
+package de.dafuqs.spectrum.enums;
 
-enum GemColor {
+public enum GemColor {
     MAGENTA,
     CYAN,
     YELLOW,

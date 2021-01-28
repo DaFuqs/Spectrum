@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.recipe.util;
+/*package de.dafuqs.spectrum.recipe.util;
 
 import net.minecraft.tag.Tag;
 
@@ -22,4 +22,4 @@ public class SimpleTag<T> implements Tag<T> {
 	public List<T> values() {
 		return Collections.unmodifiableList(entries);
 	}
-}
+}*/

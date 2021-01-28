@@ -13,7 +13,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
 import net.minecraft.util.registry.Registry;
 
-import static de.dafuqs.spectrum.fluid.SpectrumFluids.STILL_LIQUID_CRYSTAL;
+import static de.dafuqs.spectrum.blocks.fluid.SpectrumFluids.STILL_LIQUID_CRYSTAL;
 
 public class SpectrumItems {
 

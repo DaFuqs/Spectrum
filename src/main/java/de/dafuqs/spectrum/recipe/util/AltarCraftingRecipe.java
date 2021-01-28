@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.recipe.util;
 
+import de.dafuqs.spectrum.enums.GemColor;
 import de.dafuqs.spectrum.blocks.SpectrumBlocks;
 import de.dafuqs.spectrum.inventories.AltarBlockInventory;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;

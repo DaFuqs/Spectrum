@@ -4,7 +4,7 @@ import de.dafuqs.spectrum.blocks.SpectrumBlocks;
 import de.dafuqs.spectrum.inventories.AltarScreen;
 import de.dafuqs.spectrum.inventories.SpectrumContainers;
 import de.dafuqs.spectrum.inventories.SpectrumScreenHandlerTypes;
-import de.dafuqs.spectrum.fluid.SpectrumFluids;
+import de.dafuqs.spectrum.blocks.fluid.SpectrumFluids;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.screenhandler.v1.ScreenRegistry;
 

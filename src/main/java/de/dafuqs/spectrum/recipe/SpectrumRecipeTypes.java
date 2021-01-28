@@ -17,7 +17,7 @@ public class SpectrumRecipeTypes {
     }
 
     public static void register() {
-        ALTAR_RECIPE_SERIALIZER = register("altar", new AltarCraftingRecipeSerializer(AltarCraftingRecipe::new));
+        ALTAR_RECIPE_SERIALIZER = register("spectrum_altar", new AltarCraftingRecipeSerializer(AltarCraftingRecipe::new));
         ALTAR_RECIPE_TYPE = Registry.register(Registry.RECIPE_TYPE, new Identifier(SpectrumCommon.MOD_ID, "altar"), new RecipeType<AltarCraftingRecipe>() {
             @Override
             public String toString() {return "altar";}

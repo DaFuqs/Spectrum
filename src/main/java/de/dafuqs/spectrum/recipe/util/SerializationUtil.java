@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.recipe.util;
+/*package de.dafuqs.spectrum.recipe.util;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -36,4 +36,4 @@ public class SerializationUtil {
 		return array;
 	}
 
-}
+}*/

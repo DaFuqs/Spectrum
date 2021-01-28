@@ -2,7 +2,7 @@
 
 import com.google.gson.JsonObject;
 import de.dafuqs.spectrum.blocks.customblocks.altar.AltarBlockEntity;
-import de.dafuqs.spectrum.accessor.AccessorShapedRecipe;
+import de.dafuqs.spectrum.mixin.AccessorShapedRecipe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.recipe.Ingredient;

@@ -1,5 +1,5 @@
 {
-  "type": "spectrum:altar",
+  "type": "spectrum_altar",
   "time": 200,
   "tier": 1,
   "cyan": 0,
@@ -18,7 +18,7 @@
       "item": "spectrum:onyx_shard"
     },
     "W": {
-      "item": "tag:flowers"
+      "tag": "flowers"
     },
     "X": {
       "item": "minecraft:glass"

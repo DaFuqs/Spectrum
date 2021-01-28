@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.fluid;
+package de.dafuqs.spectrum.blocks.fluid;
 
 import de.dafuqs.spectrum.blocks.SpectrumBlocks;
 import de.dafuqs.spectrum.items.SpectrumItems;

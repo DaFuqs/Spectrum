@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.accessor;
+package de.dafuqs.spectrum.mixin;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -14,22 +14,22 @@ import java.util.Map;
 public interface AccessorShapedRecipe {
 
 	@Invoker(value = "getIngredients")
-	static DefaultedList<Ingredient> getIngredients(String[] pattern, Map<String, Ingredient> key, int width, int height) {
+	static DefaultedList<Ingredient> invokeGetIngredients(String[] pattern, Map<String, Ingredient> key, int width, int height) {
 		throw new AssertionError();
 	}
 
 	@Invoker(value = "combinePattern")
-	static String[] combinePattern(String... lines) {
+	static String[] invokeCombinePattern(String... lines) {
 		throw new AssertionError();
 	}
 
 	@Invoker(value = "getPattern")
-	static String[] getPattern(JsonArray json) {
+	static String[] invokeGetPattern(JsonArray json) {
 		throw new AssertionError();
 	}
 
 	@Invoker(value = "getComponents")
-	static Map<String, Ingredient> getComponents(JsonObject json) {
+	static Map<String, Ingredient> invokeGetComponents(JsonObject json) {
 		throw new AssertionError();
 	}
 

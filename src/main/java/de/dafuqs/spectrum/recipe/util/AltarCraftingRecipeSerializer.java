@@ -1,7 +1,8 @@
 package de.dafuqs.spectrum.recipe.util;
 
 import com.google.gson.JsonObject;
-import de.dafuqs.spectrum.accessor.AccessorShapedRecipe;
+import de.dafuqs.spectrum.enums.GemColor;
+import de.dafuqs.spectrum.mixin.AccessorShapedRecipe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.recipe.Ingredient;
@@ -26,11 +27,11 @@ public class AltarCraftingRecipeSerializer<T extends AltarCraftingRecipe> implem
     @Override
     public T read(Identifier identifier, JsonObject jsonObject) {
         String group = JsonHelper.getString(jsonObject, "group", "");
-        Map<String, Ingredient> map = AccessorShapedRecipe.getComponents(JsonHelper.getObject(jsonObject, "key"));
-        String[] strings = AccessorShapedRecipe.combinePattern(AccessorShapedRecipe.getPattern(JsonHelper.getArray(jsonObject, "pattern")));
+        Map<String, Ingredient> map = AccessorShapedRecipe.invokeGetComponents(JsonHelper.getObject(jsonObject, "key"));
+        String[] strings = AccessorShapedRecipe.invokeCombinePattern(AccessorShapedRecipe.invokeGetPattern(JsonHelper.getArray(jsonObject, "pattern")));
         int width = strings[0].length();
         int height = strings.length;
-        DefaultedList<Ingredient> craftingInputs = AccessorShapedRecipe.getIngredients(strings, map, width, height);
+        DefaultedList<Ingredient> craftingInputs = AccessorShapedRecipe.invokeGetIngredients(strings, map, width, height);
         ItemStack output = ShapedRecipe.getItemStack(JsonHelper.getObject(jsonObject, "result"));
 
         int tier = JsonHelper.getInt(jsonObject, "tier", 0);

@@ -5,7 +5,8 @@
   "mixins": [
     "SpawnerBlockMixin",
     "MobSpawnerBlockEntityMixin",
-    "WorldRendererMixin"
+    "WorldRendererMixin",
+    "AccessorShapedRecipe"
   ],
   "client": [
     "TransparentBlockMixin"

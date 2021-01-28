@@ -4,7 +4,7 @@ import de.dafuqs.spectrum.SpectrumCommon;
 import net.minecraft.util.Identifier;
 
 public class SpectrumContainers {
-    
+
     public static Identifier ALTAR;
 
     public static void register() {

@@ -5,7 +5,7 @@ import net.minecraft.block.BlockState;
 
 import java.util.HashMap;
 
-public class SpectrumModelSwapper {
+public class SpectrumBlockCloaker {
 
     private HashMap<BlockState, BlockState> modelSwapper = new HashMap<>();
 

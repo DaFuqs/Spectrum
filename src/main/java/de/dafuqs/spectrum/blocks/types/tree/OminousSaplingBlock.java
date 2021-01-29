@@ -39,7 +39,6 @@ public class OminousSaplingBlock extends Block implements BlockEntityProvider {
                 player.sendMessage(Text.of("Sapling block entity putt :("), false);
             }
         }
-
         return ActionResult.SUCCESS;
     }
 
@@ -71,12 +70,6 @@ public class OminousSaplingBlock extends Block implements BlockEntityProvider {
     public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
         return null;
     }
-
-    /*
-    @Override
-    public @Nullable <T extends BlockEntity> class_5714 method_32896(World world, T blockEntity) {
-        return null;
-    }*/
 
     private OminousSaplingBlockEntity getBlockEntity(World world, BlockPos blockPos) {
         BlockEntity saplingBlockEntity = world.getBlockEntity(blockPos);

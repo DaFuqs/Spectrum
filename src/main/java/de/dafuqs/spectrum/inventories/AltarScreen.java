@@ -27,7 +27,7 @@ public class AltarScreen extends HandledScreen<AltarCraftingScreenHandler> {
         int intInventoryY = 100;
 
         this.textRenderer.draw(matrices, title, titleX, titleY, 4210752);
-        this.textRenderer.draw(matrices, this.playerInventory.getDisplayName(), inventoryX, intInventoryY, 4210752);
+        this.textRenderer.draw(matrices, this.playerInventory.getName(), inventoryX, intInventoryY, 4210752);
     }
 
     @Override

@@ -76,6 +76,12 @@ public class AltarBlock extends BlockWithEntity {
     protected void openScreen(World world, BlockPos pos, PlayerEntity player) {
         BlockEntity blockEntity = world.getBlockEntity(pos);
         if (blockEntity instanceof AltarBlockEntity) {
+            AltarBlockEntity altarBlockEntity = (AltarBlockEntity) blockEntity;
+
+            if(altarBlockEntity.getPlayerUUID() == null) {
+                altarBlockEntity.setPlayerData(player.getUuid(), player.getName());
+            }
+
             player.openHandledScreen((NamedScreenHandlerFactory)blockEntity);
         }
     }

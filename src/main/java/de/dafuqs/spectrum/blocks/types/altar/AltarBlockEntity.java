@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.blocks.types.altar;
 
 import de.dafuqs.spectrum.blocks.SpectrumBlockEntityType;
 import de.dafuqs.spectrum.blocks.SpectrumBlocks;
+import de.dafuqs.spectrum.interfaces.PlayerOwned;
 import de.dafuqs.spectrum.inventories.AltarCraftingScreenHandler;
 import de.dafuqs.spectrum.items.SpectrumItems;
 import de.dafuqs.spectrum.recipe.AltarCraftingRecipe;
@@ -29,6 +30,7 @@ import net.minecraft.screen.ScreenHandler;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.collection.DefaultedList;
@@ -39,10 +41,11 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Iterator;
 import java.util.Random;
+import java.util.UUID;
 
-public class AltarBlockEntity extends LockableContainerBlockEntity implements RecipeInputProvider, SidedInventory {
+public class AltarBlockEntity extends LockableContainerBlockEntity implements RecipeInputProvider, SidedInventory, PlayerOwned {
 
-    private Text customName;
+    private UUID playerUUID;
     protected DefaultedList<ItemStack> inventory;
 
     private int craftingTime;
@@ -88,7 +91,7 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
 
     @Override
     public Text getContainerName() {
-        return new TranslatableText("block.container.altar");
+        return new TranslatableText("block.spectrum.altar");
     }
 
     @Override
@@ -170,19 +173,21 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
         Inventories.fromTag(tag, this.inventory);
         this.craftingTime = tag.getShort("CraftingTime");
         this.craftingTimeTotal = tag.getShort("CraftingTimeTotal");
-        if (tag.contains("CustomName", 8)) {
+        this.playerUUID = tag.getUuid("UUID");
+        /*if (tag.contains("CustomName", 8)) {
             this.customName = Text.Serializer.fromJson(tag.getString("CustomName"));
-        }
+        }*/
     }
 
     public CompoundTag toTag(CompoundTag tag) {
         super.toTag(tag);
         tag.putShort("CraftingTime", (short)this.craftingTime);
         tag.putShort("CraftingTimeTotal", (short)this.craftingTimeTotal);
+        tag.putUuid("UUID", this.playerUUID);
         Inventories.toTag(tag, this.inventory);
-        if (this.customName != null) {
+        /*if (this.customName != null) {
             tag.putString("CustomName", Text.Serializer.toJson(this.customName));
-        }
+        }*/
         return tag;
     }
 
@@ -196,7 +201,6 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
     }
 
     public static void tick(World world, BlockPos blockPos, BlockState blockState, AltarBlockEntity altarBlockEntity) {
-
         // check recipe crafted last tick => performance
         AltarCraftingRecipe recipe;
         if (altarBlockEntity.lastRecipe != null && altarBlockEntity.lastRecipe.matches(altarBlockEntity, world)) {
@@ -331,11 +335,6 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
     }
 
     @Override
-    public Text getDisplayName() {
-        return new TranslatableText("block.spectrum.altar");
-    }
-
-    @Override
     public int[] getAvailableSlots(Direction side) {
         if(side == Direction.DOWN) {
             return new int[]{15};
@@ -358,5 +357,20 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
     @Override
     public boolean canExtract(int slot, ItemStack stack, Direction dir) {
         return slot == 15;
+    }
+
+    @Override
+    public void setPlayerUUID(UUID playerUUID) {
+        this.playerUUID = playerUUID;
+    }
+
+    @Override
+    public UUID getPlayerUUID() {
+        return this.playerUUID;
+    }
+
+    public void setPlayerData(UUID uuid, Text name) {
+        this.setPlayerUUID(uuid);
+        setCustomName(new LiteralText("Altar of " + name.asString())); // TODO: translate
     }
 }

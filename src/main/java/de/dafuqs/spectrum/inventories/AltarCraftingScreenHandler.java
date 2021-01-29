@@ -66,7 +66,7 @@ public class AltarCraftingScreenHandler extends AbstractRecipeScreenHandler<Inve
         this.addSlot(new StackFilterSlot(inventory, 13, 44 + 4 * 18, 77, SpectrumItems.MOONSTONE_SHARD_ITEM));
 
         // preview slot
-        this.addSlot(new ReadOnlySlot(inventory, 14, 124, 37));
+        this.addSlot(new ReadOnlySlot(inventory, 14, 127, 37));
 
         // player inventory
         int l;

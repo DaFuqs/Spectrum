@@ -1,12 +1,17 @@
 package de.dafuqs.spectrum.blocks;
 
 import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.blocks.fluid.LiquidCrystalBlock;
+import de.dafuqs.spectrum.blocks.fluid.SpectrumFluids;
 import de.dafuqs.spectrum.blocks.types.*;
 import de.dafuqs.spectrum.blocks.types.altar.AltarBlock;
 import de.dafuqs.spectrum.blocks.types.budding.BuddingCitrineBlock;
 import de.dafuqs.spectrum.blocks.types.budding.BuddingMoonstoneBlock;
 import de.dafuqs.spectrum.blocks.types.budding.BuddingOnyxBlock;
 import de.dafuqs.spectrum.blocks.types.budding.BuddingTopazBlock;
+import de.dafuqs.spectrum.blocks.types.conditional.ColoredLeavesBlock;
+import de.dafuqs.spectrum.blocks.types.conditional.ColoredLogBlock;
+import de.dafuqs.spectrum.blocks.types.conditional.ConditionallyVisibleBlock;
 import de.dafuqs.spectrum.blocks.types.decay.DecayBlock1;
 import de.dafuqs.spectrum.blocks.types.decay.DecayBlock2;
 import de.dafuqs.spectrum.blocks.types.decay.DecayBlock3;
@@ -15,21 +20,19 @@ import de.dafuqs.spectrum.blocks.types.melon.GlisteringMelonBlock;
 import de.dafuqs.spectrum.blocks.types.melon.GlisteringStemBlock;
 import de.dafuqs.spectrum.blocks.types.tree.OminousSaplingBlock;
 import de.dafuqs.spectrum.blocks.types.tree.OminousSaplingBlockItem;
-import de.dafuqs.spectrum.blocks.types.ColoredSaplingBlock;
-import de.dafuqs.spectrum.worldgen.ColoredSaplingGenerator;
-import de.dafuqs.spectrum.blocks.fluid.LiquidCrystalBlock;
-import de.dafuqs.spectrum.blocks.fluid.SpectrumFluids;
 import de.dafuqs.spectrum.items.SpectrumItemGroups;
 import de.dafuqs.spectrum.items.SpectrumItems;
 import de.dafuqs.spectrum.misc.SpectrumMaterial;
+import de.dafuqs.spectrum.worldgen.ColoredSaplingGenerator;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
+import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.tool.attribute.v1.FabricToolTags;
 import net.minecraft.block.*;
+import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItem;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.state.property.Properties;
@@ -193,31 +196,10 @@ public class SpectrumBlocks {
         return 3;
     }).postProcess(SpectrumBlocks::always).emissiveLighting(SpectrumBlocks::always);
 
-    public static final Block BLACK_LOG = new PillarBlock(coloredLogBlockSettings);
-    public static final Block BLACK_LEAVES = new LeavesBlock(coloredLeavesBlockSettings);
+    public static final Block BLACK_LOG = new ColoredLogBlock(coloredLogBlockSettings);
+    public static final Block BLACK_LEAVES = new ColoredLeavesBlock(coloredLeavesBlockSettings);
     public static final Block BLACK_SAPLING = new ColoredSaplingBlock(new ColoredSaplingGenerator(DyeColor.BLACK), coloredSaplingBlockSettings);
-    public static final Block BLACK_PLANKS = new ConditionallyVisibleBlock(FabricBlockSettings.copyOf(Blocks.OAK_PLANKS)) {
-
-        @Override
-        public boolean isVisible(PlayerEntity playerEntity, BlockState state) {
-            return playerEntity.getArmor() > 0;
-        }
-
-        @Override
-        public boolean isVisibleOnServer() {
-            return false;
-        }
-
-        @Override
-        public VoxelShape getVisibleCollisionShape() {
-            return VoxelShapes.fullCube();
-        }
-
-        @Override
-        public VoxelShape getVisibleOutlineShape() {
-            return VoxelShapes.fullCube();
-        }
-    };
+    public static final Block BLACK_PLANKS = new Block(FabricBlockSettings.copyOf(Blocks.OAK_PLANKS));
     public static final Block BLACK_STAIRS = new SpectrumStairsBlock(BLACK_PLANKS.getDefaultState(), FabricBlockSettings.copyOf(Blocks.OAK_STAIRS));
     public static final Block BLACK_PRESSURE_PLATE = new SpectrumPressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, FabricBlockSettings.copyOf(Blocks.OAK_PRESSURE_PLATE));
     public static final Block BLACK_FENCE = new FenceBlock(FabricBlockSettings.copyOf(Blocks.OAK_FENCE));
@@ -225,8 +207,8 @@ public class SpectrumBlocks {
     public static final Block BLACK_BUTTON = new SpectrumWoodenButtonBlock(FabricBlockSettings.copyOf(Blocks.OAK_BUTTON));
     public static final Block BLACK_SLAB = new SlabBlock(FabricBlockSettings.copyOf(Blocks.OAK_SLAB));
 
-    public static final Block BLUE_LOG = new PillarBlock(coloredLogBlockSettings);
-    public static final Block BLUE_LEAVES = new LeavesBlock(coloredLeavesBlockSettings);
+    public static final Block BLUE_LOG = new ColoredLogBlock(coloredLogBlockSettings);
+    public static final Block BLUE_LEAVES = new ColoredLeavesBlock(coloredLeavesBlockSettings);
     public static final Block BLUE_SAPLING = new ColoredSaplingBlock(new ColoredSaplingGenerator(DyeColor.BLUE), coloredSaplingBlockSettings);
     public static final Block BLUE_PLANKS = new Block(FabricBlockSettings.copyOf(Blocks.OAK_PLANKS));
     public static final Block BLUE_STAIRS = new SpectrumStairsBlock(BLACK_PLANKS.getDefaultState(), FabricBlockSettings.copyOf(Blocks.OAK_STAIRS));
@@ -236,8 +218,8 @@ public class SpectrumBlocks {
     public static final Block BLUE_BUTTON = new SpectrumWoodenButtonBlock(FabricBlockSettings.copyOf(Blocks.OAK_BUTTON));
     public static final Block BLUE_SLAB = new SlabBlock(FabricBlockSettings.copyOf(Blocks.OAK_SLAB));
 
-    public static final Block BROWN_LOG = new PillarBlock(coloredLogBlockSettings);
-    public static final Block BROWN_LEAVES = new LeavesBlock(coloredLeavesBlockSettings);
+    public static final Block BROWN_LOG = new ColoredLogBlock(coloredLogBlockSettings);
+    public static final Block BROWN_LEAVES = new ColoredLeavesBlock(coloredLeavesBlockSettings);
     public static final Block BROWN_SAPLING = new ColoredSaplingBlock(new ColoredSaplingGenerator(DyeColor.BROWN), coloredSaplingBlockSettings);
     public static final Block BROWN_PLANKS = new Block(FabricBlockSettings.copyOf(Blocks.OAK_PLANKS));
     public static final Block BROWN_STAIRS = new SpectrumStairsBlock(BLACK_PLANKS.getDefaultState(), FabricBlockSettings.copyOf(Blocks.OAK_STAIRS));
@@ -247,8 +229,8 @@ public class SpectrumBlocks {
     public static final Block BROWN_BUTTON = new SpectrumWoodenButtonBlock(FabricBlockSettings.copyOf(Blocks.OAK_BUTTON));
     public static final Block BROWN_SLAB = new SlabBlock(FabricBlockSettings.copyOf(Blocks.OAK_SLAB));
 
-    public static final Block CYAN_LOG = new PillarBlock(coloredLogBlockSettings);
-    public static final Block CYAN_LEAVES = new LeavesBlock(coloredLeavesBlockSettings);
+    public static final Block CYAN_LOG = new ColoredLogBlock(coloredLogBlockSettings);
+    public static final Block CYAN_LEAVES = new ColoredLeavesBlock(coloredLeavesBlockSettings);
     public static final Block CYAN_SAPLING = new ColoredSaplingBlock(new ColoredSaplingGenerator(DyeColor.CYAN), coloredSaplingBlockSettings);
     public static final Block CYAN_PLANKS = new Block(FabricBlockSettings.copyOf(Blocks.OAK_PLANKS));
     public static final Block CYAN_STAIRS = new SpectrumStairsBlock(BLACK_PLANKS.getDefaultState(), FabricBlockSettings.copyOf(Blocks.OAK_STAIRS));
@@ -258,8 +240,8 @@ public class SpectrumBlocks {
     public static final Block CYAN_BUTTON = new SpectrumWoodenButtonBlock(FabricBlockSettings.copyOf(Blocks.OAK_BUTTON));
     public static final Block CYAN_SLAB = new SlabBlock(FabricBlockSettings.copyOf(Blocks.OAK_SLAB));
 
-    public static final Block GRAY_LOG = new PillarBlock(coloredLogBlockSettings);
-    public static final Block GRAY_LEAVES = new LeavesBlock(coloredLeavesBlockSettings);
+    public static final Block GRAY_LOG = new ColoredLogBlock(coloredLogBlockSettings);
+    public static final Block GRAY_LEAVES = new ColoredLeavesBlock(coloredLeavesBlockSettings);
     public static final Block GRAY_SAPLING = new ColoredSaplingBlock(new ColoredSaplingGenerator(DyeColor.GRAY), coloredSaplingBlockSettings);
     public static final Block GRAY_PLANKS = new Block(FabricBlockSettings.copyOf(Blocks.OAK_PLANKS));
     public static final Block GRAY_STAIRS = new SpectrumStairsBlock(BLACK_PLANKS.getDefaultState(), FabricBlockSettings.copyOf(Blocks.OAK_STAIRS));
@@ -269,8 +251,8 @@ public class SpectrumBlocks {
     public static final Block GRAY_BUTTON = new SpectrumWoodenButtonBlock(FabricBlockSettings.copyOf(Blocks.OAK_BUTTON));
     public static final Block GRAY_SLAB = new SlabBlock(FabricBlockSettings.copyOf(Blocks.OAK_SLAB));
 
-    public static final Block GREEN_LOG = new PillarBlock(coloredLogBlockSettings);
-    public static final Block GREEN_LEAVES = new LeavesBlock(coloredLeavesBlockSettings);
+    public static final Block GREEN_LOG = new ColoredLogBlock(coloredLogBlockSettings);
+    public static final Block GREEN_LEAVES = new ColoredLeavesBlock(coloredLeavesBlockSettings);
     public static final Block GREEN_SAPLING = new ColoredSaplingBlock(new ColoredSaplingGenerator(DyeColor.GREEN), coloredSaplingBlockSettings);
     public static final Block GREEN_PLANKS = new Block(FabricBlockSettings.copyOf(Blocks.OAK_PLANKS));
     public static final Block GREEN_STAIRS = new SpectrumStairsBlock(BLACK_PLANKS.getDefaultState(), FabricBlockSettings.copyOf(Blocks.OAK_STAIRS));
@@ -280,8 +262,8 @@ public class SpectrumBlocks {
     public static final Block GREEN_BUTTON = new SpectrumWoodenButtonBlock(FabricBlockSettings.copyOf(Blocks.OAK_BUTTON));
     public static final Block GREEN_SLAB = new SlabBlock(FabricBlockSettings.copyOf(Blocks.OAK_SLAB));
 
-    public static final Block LIGHT_BLUE_LOG = new PillarBlock(coloredLogBlockSettings);
-    public static final Block LIGHT_BLUE_LEAVES = new LeavesBlock(coloredLeavesBlockSettings);
+    public static final Block LIGHT_BLUE_LOG = new ColoredLogBlock(coloredLogBlockSettings);
+    public static final Block LIGHT_BLUE_LEAVES = new ColoredLeavesBlock(coloredLeavesBlockSettings);
     public static final Block LIGHT_BLUE_SAPLING = new ColoredSaplingBlock(new ColoredSaplingGenerator(DyeColor.LIGHT_BLUE), coloredSaplingBlockSettings);
     public static final Block LIGHT_BLUE_PLANKS = new Block(FabricBlockSettings.copyOf(Blocks.OAK_PLANKS));
     public static final Block LIGHT_BLUE_STAIRS = new SpectrumStairsBlock(BLACK_PLANKS.getDefaultState(), FabricBlockSettings.copyOf(Blocks.OAK_STAIRS));
@@ -291,8 +273,8 @@ public class SpectrumBlocks {
     public static final Block LIGHT_BLUE_BUTTON = new SpectrumWoodenButtonBlock(FabricBlockSettings.copyOf(Blocks.OAK_BUTTON));
     public static final Block LIGHT_BLUE_SLAB = new SlabBlock(FabricBlockSettings.copyOf(Blocks.OAK_SLAB));
 
-    public static final Block LIGHT_GRAY_LOG = new PillarBlock(coloredLogBlockSettings);
-    public static final Block LIGHT_GRAY_LEAVES = new LeavesBlock(coloredLeavesBlockSettings);
+    public static final Block LIGHT_GRAY_LOG = new ColoredLogBlock(coloredLogBlockSettings);
+    public static final Block LIGHT_GRAY_LEAVES = new ColoredLeavesBlock(coloredLeavesBlockSettings);
     public static final Block LIGHT_GRAY_SAPLING = new ColoredSaplingBlock(new ColoredSaplingGenerator(DyeColor.LIGHT_GRAY), coloredSaplingBlockSettings);
     public static final Block LIGHT_GRAY_PLANKS = new Block(FabricBlockSettings.copyOf(Blocks.OAK_PLANKS));
     public static final Block LIGHT_GRAY_STAIRS = new SpectrumStairsBlock(BLACK_PLANKS.getDefaultState(), FabricBlockSettings.copyOf(Blocks.OAK_STAIRS));
@@ -302,8 +284,8 @@ public class SpectrumBlocks {
     public static final Block LIGHT_GRAY_BUTTON = new SpectrumWoodenButtonBlock(FabricBlockSettings.copyOf(Blocks.OAK_BUTTON));
     public static final Block LIGHT_GRAY_SLAB = new SlabBlock(FabricBlockSettings.copyOf(Blocks.OAK_SLAB));
 
-    public static final Block LIME_LOG = new PillarBlock(coloredLogBlockSettings);
-    public static final Block LIME_LEAVES = new LeavesBlock(coloredLeavesBlockSettings);
+    public static final Block LIME_LOG = new ColoredLogBlock(coloredLogBlockSettings);
+    public static final Block LIME_LEAVES = new ColoredLeavesBlock(coloredLeavesBlockSettings);
     public static final Block LIME_SAPLING = new ColoredSaplingBlock(new ColoredSaplingGenerator(DyeColor.LIME), coloredSaplingBlockSettings);
     public static final Block LIME_PLANKS = new Block(FabricBlockSettings.copyOf(Blocks.OAK_PLANKS));
     public static final Block LIME_STAIRS = new SpectrumStairsBlock(BLACK_PLANKS.getDefaultState(), FabricBlockSettings.copyOf(Blocks.OAK_STAIRS));
@@ -313,8 +295,8 @@ public class SpectrumBlocks {
     public static final Block LIME_BUTTON = new SpectrumWoodenButtonBlock(FabricBlockSettings.copyOf(Blocks.OAK_BUTTON));
     public static final Block LIME_SLAB = new SlabBlock(FabricBlockSettings.copyOf(Blocks.OAK_SLAB));
 
-    public static final Block MAGENTA_LOG = new PillarBlock(coloredLogBlockSettings);
-    public static final Block MAGENTA_LEAVES = new LeavesBlock(coloredLeavesBlockSettings);
+    public static final Block MAGENTA_LOG = new ColoredLogBlock(coloredLogBlockSettings);
+    public static final Block MAGENTA_LEAVES = new ColoredLeavesBlock(coloredLeavesBlockSettings);
     public static final Block MAGENTA_SAPLING = new ColoredSaplingBlock(new ColoredSaplingGenerator(DyeColor.MAGENTA), coloredSaplingBlockSettings);
     public static final Block MAGENTA_PLANKS = new Block(FabricBlockSettings.copyOf(Blocks.OAK_PLANKS));
     public static final Block MAGENTA_STAIRS = new SpectrumStairsBlock(BLACK_PLANKS.getDefaultState(), FabricBlockSettings.copyOf(Blocks.OAK_STAIRS));
@@ -324,8 +306,8 @@ public class SpectrumBlocks {
     public static final Block MAGENTA_BUTTON = new SpectrumWoodenButtonBlock(FabricBlockSettings.copyOf(Blocks.OAK_BUTTON));
     public static final Block MAGENTA_SLAB = new SlabBlock(FabricBlockSettings.copyOf(Blocks.OAK_SLAB));
 
-    public static final Block ORANGE_LOG = new PillarBlock(coloredLogBlockSettings);
-    public static final Block ORANGE_LEAVES = new LeavesBlock(coloredLeavesBlockSettings);
+    public static final Block ORANGE_LOG = new ColoredLogBlock(coloredLogBlockSettings);
+    public static final Block ORANGE_LEAVES = new ColoredLeavesBlock(coloredLeavesBlockSettings);
     public static final Block ORANGE_SAPLING = new ColoredSaplingBlock(new ColoredSaplingGenerator(DyeColor.ORANGE), coloredSaplingBlockSettings);
     public static final Block ORANGE_PLANKS = new Block(FabricBlockSettings.copyOf(Blocks.OAK_PLANKS));
     public static final Block ORANGE_STAIRS = new SpectrumStairsBlock(BLACK_PLANKS.getDefaultState(), FabricBlockSettings.copyOf(Blocks.OAK_STAIRS));
@@ -335,8 +317,8 @@ public class SpectrumBlocks {
     public static final Block ORANGE_BUTTON = new SpectrumWoodenButtonBlock(FabricBlockSettings.copyOf(Blocks.OAK_BUTTON));
     public static final Block ORANGE_SLAB = new SlabBlock(FabricBlockSettings.copyOf(Blocks.OAK_SLAB));
 
-    public static final Block PINK_LOG = new PillarBlock(coloredLogBlockSettings);
-    public static final Block PINK_LEAVES = new LeavesBlock(coloredLeavesBlockSettings);
+    public static final Block PINK_LOG = new ColoredLogBlock(coloredLogBlockSettings);
+    public static final Block PINK_LEAVES = new ColoredLeavesBlock(coloredLeavesBlockSettings);
     public static final Block PINK_SAPLING = new ColoredSaplingBlock(new ColoredSaplingGenerator(DyeColor.PINK), coloredSaplingBlockSettings);
     public static final Block PINK_PLANKS = new Block(FabricBlockSettings.copyOf(Blocks.OAK_PLANKS));
     public static final Block PINK_STAIRS = new SpectrumStairsBlock(BLACK_PLANKS.getDefaultState(), FabricBlockSettings.copyOf(Blocks.OAK_STAIRS));
@@ -346,8 +328,8 @@ public class SpectrumBlocks {
     public static final Block PINK_BUTTON = new SpectrumWoodenButtonBlock(FabricBlockSettings.copyOf(Blocks.OAK_BUTTON));
     public static final Block PINK_SLAB = new SlabBlock(FabricBlockSettings.copyOf(Blocks.OAK_SLAB));
 
-    public static final Block PURPLE_LOG = new PillarBlock(coloredLogBlockSettings);
-    public static final Block PURPLE_LEAVES = new LeavesBlock(coloredLeavesBlockSettings);
+    public static final Block PURPLE_LOG = new ColoredLogBlock(coloredLogBlockSettings);
+    public static final Block PURPLE_LEAVES = new ColoredLeavesBlock(coloredLeavesBlockSettings);
     public static final Block PURPLE_SAPLING = new ColoredSaplingBlock(new ColoredSaplingGenerator(DyeColor.PURPLE), coloredSaplingBlockSettings);
     public static final Block PURPLE_PLANKS = new Block(FabricBlockSettings.copyOf(Blocks.OAK_PLANKS));
     public static final Block PURPLE_STAIRS = new SpectrumStairsBlock(BLACK_PLANKS.getDefaultState(), FabricBlockSettings.copyOf(Blocks.OAK_STAIRS));
@@ -357,8 +339,8 @@ public class SpectrumBlocks {
     public static final Block PURPLE_BUTTON = new SpectrumWoodenButtonBlock(FabricBlockSettings.copyOf(Blocks.OAK_BUTTON));
     public static final Block PURPLE_SLAB = new SlabBlock(FabricBlockSettings.copyOf(Blocks.OAK_SLAB));
 
-    public static final Block RED_LOG = new PillarBlock(coloredLogBlockSettings);
-    public static final Block RED_LEAVES = new LeavesBlock(coloredLeavesBlockSettings);
+    public static final Block RED_LOG = new ColoredLogBlock(coloredLogBlockSettings);
+    public static final Block RED_LEAVES = new ColoredLeavesBlock(coloredLeavesBlockSettings);
     public static final Block RED_SAPLING = new ColoredSaplingBlock(new ColoredSaplingGenerator(DyeColor.RED), coloredSaplingBlockSettings);
     public static final Block RED_PLANKS = new Block(FabricBlockSettings.copyOf(Blocks.OAK_PLANKS));
     public static final Block RED_STAIRS = new SpectrumStairsBlock(BLACK_PLANKS.getDefaultState(), FabricBlockSettings.copyOf(Blocks.OAK_STAIRS));
@@ -368,8 +350,8 @@ public class SpectrumBlocks {
     public static final Block RED_BUTTON = new SpectrumWoodenButtonBlock(FabricBlockSettings.copyOf(Blocks.OAK_BUTTON));
     public static final Block RED_SLAB = new SlabBlock(FabricBlockSettings.copyOf(Blocks.OAK_SLAB));
 
-    public static final Block WHITE_LOG = new PillarBlock(coloredLogBlockSettings);
-    public static final Block WHITE_LEAVES = new LeavesBlock(coloredLeavesBlockSettings);
+    public static final Block WHITE_LOG = new ColoredLogBlock(coloredLogBlockSettings);
+    public static final Block WHITE_LEAVES = new ColoredLeavesBlock(coloredLeavesBlockSettings);
     public static final Block WHITE_SAPLING = new ColoredSaplingBlock(new ColoredSaplingGenerator(DyeColor.WHITE), coloredSaplingBlockSettings);
     public static final Block WHITE_PLANKS = new Block(FabricBlockSettings.copyOf(Blocks.OAK_PLANKS));
     public static final Block WHITE_STAIRS = new SpectrumStairsBlock(BLACK_PLANKS.getDefaultState(), FabricBlockSettings.copyOf(Blocks.OAK_STAIRS));
@@ -379,8 +361,8 @@ public class SpectrumBlocks {
     public static final Block WHITE_BUTTON = new SpectrumWoodenButtonBlock(FabricBlockSettings.copyOf(Blocks.OAK_BUTTON));
     public static final Block WHITE_SLAB = new SlabBlock(FabricBlockSettings.copyOf(Blocks.OAK_SLAB));
 
-    public static final Block YELLOW_LOG = new PillarBlock(coloredLogBlockSettings);
-    public static final Block YELLOW_LEAVES = new LeavesBlock(coloredLeavesBlockSettings);
+    public static final Block YELLOW_LOG = new ColoredLogBlock(coloredLogBlockSettings);
+    public static final Block YELLOW_LEAVES = new ColoredLeavesBlock(coloredLeavesBlockSettings);
     public static final Block YELLOW_SAPLING = new ColoredSaplingBlock(new ColoredSaplingGenerator(DyeColor.YELLOW), coloredSaplingBlockSettings);
     public static final Block YELLOW_PLANKS = new Block(FabricBlockSettings.copyOf(Blocks.OAK_PLANKS));
     public static final Block YELLOW_STAIRS = new SpectrumStairsBlock(BLACK_PLANKS.getDefaultState(), FabricBlockSettings.copyOf(Blocks.OAK_STAIRS));
@@ -434,6 +416,29 @@ public class SpectrumBlocks {
     public static final Block WHITE_LAMP = new RedstoneLampBlock(FabricBlockSettings.copyOf(Blocks.REDSTONE_LAMP));
     public static final Block YELLOW_LAMP = new RedstoneLampBlock(FabricBlockSettings.copyOf(Blocks.REDSTONE_LAMP));
 
+    public static final Block ENDER_BLOCK = new ConditionallyVisibleBlock(FabricBlockSettings.copyOf(Blocks.OAK_PLANKS)) { // TODO
+
+        @Override
+        protected boolean isVisible(ClientPlayerEntity clientPlayerEntity, BlockState state) {
+            return clientPlayerEntity.getArmor() > 0;
+        }
+
+        @Override
+        public boolean isVisibleOnServer() {
+            return false;
+        }
+
+        @Override
+        public VoxelShape getVisibleCollisionShape() {
+            return VoxelShapes.fullCube();
+        }
+
+        @Override
+        public VoxelShape getVisibleOutlineShape() {
+            return VoxelShapes.fullCube();
+        }
+    };
+
 
     private static void registerBlock(String name, Block block) {
         Registry.register(Registry.BLOCK, new Identifier(SpectrumCommon.MOD_ID, name), block);
@@ -454,7 +459,7 @@ public class SpectrumBlocks {
         registerPlayerOnlyGlass(functionalItemSettings);
         registerFlatColoredBlocks(decorationItemSettings);
 
-        // ALTAR
+        // TEST
         registerBlock("altar", ALTAR);
         registerBlockItem("altar", new BlockItem(ALTAR, functionalItemSettings));
 
@@ -1139,6 +1144,25 @@ public class SpectrumBlocks {
         BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.RED_LAMP, RenderLayer.getTranslucent());
         BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.WHITE_LAMP, RenderLayer.getTranslucent());
         BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.YELLOW_LAMP, RenderLayer.getTranslucent());
+
+        // Biome Colors for colored leaves
+        // They don't use it, but their decay as oak leaves do
+        ColorProviderRegistry.BLOCK.register((state, view, pos, tintIndex) -> 0x48B518, BLACK_LEAVES);
+        ColorProviderRegistry.BLOCK.register((state, view, pos, tintIndex) -> 0x48B518, BLUE_LEAVES);
+        ColorProviderRegistry.BLOCK.register((state, view, pos, tintIndex) -> 0x48B518, BROWN_LEAVES);
+        ColorProviderRegistry.BLOCK.register((state, view, pos, tintIndex) -> 0x48B518, CYAN_LEAVES);
+        ColorProviderRegistry.BLOCK.register((state, view, pos, tintIndex) -> 0x48B518, GRAY_LEAVES);
+        ColorProviderRegistry.BLOCK.register((state, view, pos, tintIndex) -> 0x48B518, GREEN_LEAVES);
+        ColorProviderRegistry.BLOCK.register((state, view, pos, tintIndex) -> 0x48B518, LIGHT_BLUE_LEAVES);
+        ColorProviderRegistry.BLOCK.register((state, view, pos, tintIndex) -> 0x48B518, LIGHT_GRAY_LEAVES);
+        ColorProviderRegistry.BLOCK.register((state, view, pos, tintIndex) -> 0x48B518, LIME_LEAVES);
+        ColorProviderRegistry.BLOCK.register((state, view, pos, tintIndex) -> 0x48B518, MAGENTA_LEAVES);
+        ColorProviderRegistry.BLOCK.register((state, view, pos, tintIndex) -> 0x48B518, ORANGE_LEAVES);
+        ColorProviderRegistry.BLOCK.register((state, view, pos, tintIndex) -> 0x48B518, PINK_LEAVES);
+        ColorProviderRegistry.BLOCK.register((state, view, pos, tintIndex) -> 0x48B518, PURPLE_LEAVES);
+        ColorProviderRegistry.BLOCK.register((state, view, pos, tintIndex) -> 0x48B518, RED_LEAVES);
+        ColorProviderRegistry.BLOCK.register((state, view, pos, tintIndex) -> 0x48B518, WHITE_LEAVES);
+        ColorProviderRegistry.BLOCK.register((state, view, pos, tintIndex) -> 0x48B518, YELLOW_LEAVES);
     }
 
     public static Block getColoredLog(DyeColor dyeColor) {

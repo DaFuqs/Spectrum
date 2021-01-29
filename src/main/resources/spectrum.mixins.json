@@ -9,7 +9,8 @@
     "AccessorShapedRecipe"
   ],
   "client": [
-    "TransparentBlockMixin"
+    "TransparentBlockMixin",
+    "BlockModelsMixin"
   ],
   "injectors": {
     "defaultRequire": 1

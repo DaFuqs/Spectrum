@@ -1,14 +1,16 @@
 package de.dafuqs.spectrum;
 
 import de.dafuqs.spectrum.blocks.SpectrumBlocks;
+import de.dafuqs.spectrum.blocks.fluid.SpectrumFluids;
 import de.dafuqs.spectrum.inventories.AltarScreen;
 import de.dafuqs.spectrum.inventories.SpectrumContainers;
 import de.dafuqs.spectrum.inventories.SpectrumScreenHandlerTypes;
-import de.dafuqs.spectrum.blocks.fluid.SpectrumFluids;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.screenhandler.v1.ScreenRegistry;
 
 public class SpectrumClient implements ClientModInitializer {
+
+    private static SpectrumModelSwapper spectrumModelSwapper;
 
     @Override
     public void onInitializeClient() {
@@ -17,5 +19,14 @@ public class SpectrumClient implements ClientModInitializer {
 
         SpectrumContainers.register();
         ScreenRegistry.register(SpectrumScreenHandlerTypes.ALTAR, AltarScreen::new);
+
+        spectrumModelSwapper = new SpectrumModelSwapper();
     }
+
+    public static SpectrumModelSwapper getModelSwapper() {
+        return spectrumModelSwapper;
+    }
+
+
+
 }

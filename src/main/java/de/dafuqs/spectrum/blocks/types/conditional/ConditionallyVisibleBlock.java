@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.blocks.types;
+package de.dafuqs.spectrum.blocks.types.conditional;
 
 import de.dafuqs.spectrum.accessor.WorldRendererAccessor;
 import net.fabricmc.api.EnvType;
@@ -10,7 +10,6 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.render.WorldRenderer;
 import net.minecraft.client.world.ClientWorld;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
@@ -21,11 +20,11 @@ public abstract class ConditionallyVisibleBlock extends Block {
 
     boolean couldSeeLast = true;
 
+    protected abstract boolean isVisible(ClientPlayerEntity clientPlayerEntity, BlockState state);
+
     public ConditionallyVisibleBlock(Settings settings) {
         super(settings);
     }
-
-    public abstract boolean isVisible(PlayerEntity playerEntity, BlockState state);
 
     /**
      * If true the server calculates shadows, lighting and collisions for the block
@@ -34,7 +33,6 @@ public abstract class ConditionallyVisibleBlock extends Block {
     public abstract boolean isVisibleOnServer();
     public abstract VoxelShape getVisibleCollisionShape();
     public abstract VoxelShape getVisibleOutlineShape();
-
 
     /**
      * Hit box for walking against the block
@@ -54,12 +52,13 @@ public abstract class ConditionallyVisibleBlock extends Block {
             if (isVisible != couldSeeLast) {
                 if (clientPlayerEntity != null && MinecraftClient.getInstance().world != null) {
                     if (MinecraftClient.getInstance().worldRenderer != null && MinecraftClient.getInstance().player != null) {
-
                         WorldRenderer renderer = MinecraftClient.getInstance().worldRenderer;
                         ((WorldRendererAccessor) renderer).rebuildAllChunks();
                     }
                 }
                 couldSeeLast = isVisible;
+
+
             }
         } else {
             isVisible = isVisibleOnServer();

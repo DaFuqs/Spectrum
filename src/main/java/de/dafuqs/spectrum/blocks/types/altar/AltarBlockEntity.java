@@ -172,10 +172,11 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
         Inventories.fromTag(tag, this.inventory);
         this.craftingTime = tag.getShort("CraftingTime");
         this.craftingTimeTotal = tag.getShort("CraftingTimeTotal");
-        this.playerUUID = tag.getUuid("UUID");
-        /*if (tag.contains("CustomName", 8)) {
-            this.customName = Text.Serializer.fromJson(tag.getString("CustomName"));
-        }*/
+        if(tag.contains("UUID")) {
+            this.playerUUID = tag.getUuid("UUID");
+        } else {
+            this.playerUUID = null;
+        }
     }
 
     public CompoundTag toTag(CompoundTag tag) {
@@ -184,9 +185,6 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
         tag.putShort("CraftingTimeTotal", (short)this.craftingTimeTotal);
         tag.putUuid("UUID", this.playerUUID);
         Inventories.toTag(tag, this.inventory);
-        /*if (this.customName != null) {
-            tag.putString("CustomName", Text.Serializer.toJson(this.customName));
-        }*/
         return tag;
     }
 

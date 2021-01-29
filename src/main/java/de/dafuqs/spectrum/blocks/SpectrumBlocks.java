@@ -193,8 +193,8 @@ public class SpectrumBlocks {
     private static final FabricBlockSettings coloredSaplingBlockSettings = FabricBlockSettings.copyOf(Blocks.OAK_SAPLING);
     private static final FabricBlockSettings coloredLeavesBlockSettings = FabricBlockSettings.copyOf(Blocks.OAK_LEAVES).luminance((state) -> { return 5; });
     private static final FabricBlockSettings coloredLogBlockSettings = FabricBlockSettings.copyOf(Blocks.OAK_LOG).luminance((state) -> {
-        return 3;
-    }).postProcess(SpectrumBlocks::always).emissiveLighting(SpectrumBlocks::always);
+        return 10;
+    }); //.postProcess(SpectrumBlocks::always).emissiveLighting(SpectrumBlocks::always);
 
     public static final Block BLACK_LOG = new ColoredLogBlock(coloredLogBlockSettings);
     public static final Block BLACK_LEAVES = new ColoredLeavesBlock(coloredLeavesBlockSettings);

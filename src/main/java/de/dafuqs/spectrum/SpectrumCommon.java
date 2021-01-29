@@ -31,6 +31,8 @@ public class SpectrumCommon implements ModInitializer {
     public static MinecraftServer minecraftServer;
     public static ServerWorld serverWorld;
 
+    private static SpectrumModelSwapper spectrumModelSwapper;
+
     @Override
     public void onInitialize() {
         //Set up config
@@ -58,6 +60,12 @@ public class SpectrumCommon implements ModInitializer {
             SpectrumCommon.minecraftServer = minecraftServer;
             SpectrumCommon.serverWorld = serverWorld;
         });
+
+        spectrumModelSwapper = new SpectrumModelSwapper();
+    }
+
+    public static SpectrumModelSwapper getModelSwapper() {
+        return spectrumModelSwapper;
     }
 
 }

@@ -10,8 +10,6 @@ import net.fabricmc.fabric.api.client.screenhandler.v1.ScreenRegistry;
 
 public class SpectrumClient implements ClientModInitializer {
 
-    private static SpectrumModelSwapper spectrumModelSwapper;
-
     @Override
     public void onInitializeClient() {
         SpectrumBlocks.registerClient();
@@ -20,12 +18,8 @@ public class SpectrumClient implements ClientModInitializer {
         SpectrumContainers.register();
         ScreenRegistry.register(SpectrumScreenHandlerTypes.ALTAR, AltarScreen::new);
 
-        spectrumModelSwapper = new SpectrumModelSwapper();
     }
 
-    public static SpectrumModelSwapper getModelSwapper() {
-        return spectrumModelSwapper;
-    }
 
 
 

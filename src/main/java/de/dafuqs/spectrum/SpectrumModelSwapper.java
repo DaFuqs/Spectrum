@@ -27,12 +27,12 @@ public class SpectrumModelSwapper {
         modelSwapper = modelSwapperCopy;
     }
 
-    public boolean isSwapped(BlockState identifier) {
-        return modelSwapper.containsKey(identifier);
+    public boolean isSwapped(BlockState blockState) {
+        return modelSwapper.containsKey(blockState);
     }
 
-    public BlockState getTarget(BlockState identifier) {
-        return this.modelSwapper.get(identifier);
+    public BlockState getTarget(BlockState blockState) {
+        return this.modelSwapper.get(blockState);
     }
 
 }

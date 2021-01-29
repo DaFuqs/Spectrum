@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.blocks.types.conditional;
 
-import de.dafuqs.spectrum.SpectrumClient;
+import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.SpectrumBlocks;
 import de.dafuqs.spectrum.interfaces.Cloakable;
 import net.fabricmc.api.EnvType;
@@ -9,9 +9,13 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.PillarBlock;
-import net.minecraft.client.network.ClientPlayerEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.loot.context.LootContext;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.math.Direction;
+
+import java.util.List;
 
 public class ColoredLogBlock extends PillarBlock implements Cloakable {
 
@@ -22,8 +26,8 @@ public class ColoredLogBlock extends PillarBlock implements Cloakable {
     }
 
     @Override
-    public boolean isCloaked(ClientPlayerEntity clientPlayerEntity, BlockState blockState) {
-        return clientPlayerEntity.getArmor() > 0;
+    public boolean isCloaked(PlayerEntity playerEntity, BlockState blockState) {
+        return playerEntity.getArmor() < 1;
     }
 
     @Override
@@ -48,15 +52,20 @@ public class ColoredLogBlock extends PillarBlock implements Cloakable {
         BlockState cloakDefaultState = Blocks.OAK_LOG.getDefaultState();
         for(DyeColor dyeColor : DyeColor.values()) {
             BlockState defaultState = SpectrumBlocks.getColoredLog(dyeColor).getDefaultState();
-            SpectrumClient.getModelSwapper().swapModel(defaultState, cloakDefaultState);
+            SpectrumCommon.getModelSwapper().swapModel(defaultState, cloakDefaultState);
         }
     }
 
     public void setUncloaked() {
         for(DyeColor dyeColor : DyeColor.values()) {
             Block block = SpectrumBlocks.getColoredLog(dyeColor);
-            SpectrumClient.getModelSwapper().unswapAllBlockStates(block);
+            SpectrumCommon.getModelSwapper().unswapAllBlockStates(block);
         }
+    }
+
+    @Deprecated
+    public List<ItemStack> getDroppedStacks(BlockState state, LootContext.Builder builder) {
+        return getCloakedDroppedStacks(state, builder);
     }
 
 }

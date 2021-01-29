@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.mixin;
 
-import de.dafuqs.spectrum.SpectrumClient;
+import de.dafuqs.spectrum.SpectrumCommon;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.render.block.BlockModels;
 import net.minecraft.client.render.model.BakedModel;
@@ -27,8 +27,8 @@ public class BlockModelsMixin {
 
     @Inject(at = @At("HEAD"), method = "getModel", cancellable = true)
     private void getModel(BlockState blockState, CallbackInfoReturnable<BakedModel> callbackInfoReturnable) {
-        if(SpectrumClient.getModelSwapper().isSwapped(blockState)) {
-            BlockState destinationBlockState = SpectrumClient.getModelSwapper().getTarget(blockState);
+        if(SpectrumCommon.getModelSwapper().isSwapped(blockState)) {
+            BlockState destinationBlockState = SpectrumCommon.getModelSwapper().getTarget(blockState);
             BakedModel overriddenModel = this.models.getOrDefault(destinationBlockState, modelManager.getMissingModel());
             callbackInfoReturnable.setReturnValue(overriddenModel);
         }

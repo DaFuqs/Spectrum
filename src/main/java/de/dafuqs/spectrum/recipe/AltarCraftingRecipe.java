@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.recipe;
 
 import de.dafuqs.spectrum.blocks.SpectrumBlocks;
 import de.dafuqs.spectrum.enums.GemColor;
-import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Ingredient;
@@ -48,22 +47,34 @@ public class AltarCraftingRecipe implements Recipe<Inventory> {
 
     @Override
     public boolean matches(Inventory inv, World world) {
-        return false;
+        for(int i = 0; i < 9; i++) {
+            if(!this.craftingInputs.get(i).test(inv.getStack(i))) {
+                return false;
+            }
+        }
+        return true;
     }
 
     @Override
     public ItemStack craft(Inventory inv) {
-        return null;
+        return this.output.copy();
     }
+
+    public DefaultedList<Ingredient> getPreviewInputs() {
+        DefaultedList<Ingredient> defaultedList = DefaultedList.of();
+        defaultedList.addAll(this.craftingInputs);
+        return defaultedList;
+    }
+
 
     @Override
     public boolean fits(int width, int height) {
-        return false;
+        return true;
     }
 
     @Override
     public ItemStack getOutput() {
-        return null;
+        return this.output;
     }
 
     @Override
@@ -72,8 +83,13 @@ public class AltarCraftingRecipe implements Recipe<Inventory> {
     }
 
     @Override
+    public boolean isIgnoredInRecipeBook() {
+        return true;
+    }
+
+    @Override
     public Identifier getId() {
-        return null;
+        return this.id;
     }
 
     @Override

@@ -1,8 +1,8 @@
 package de.dafuqs.spectrum.inventories;
 
 import de.dafuqs.spectrum.items.SpectrumItems;
-import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.recipe.AltarCraftingRecipe;
+import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.entity.player.PlayerEntity;
@@ -28,59 +28,60 @@ public class AltarCraftingScreenHandler extends AbstractRecipeScreenHandler<Inve
     private final Inventory inventory;
     private final PropertyDelegate propertyDelegate;
     protected final World world;
-    private final RecipeType<? extends AltarCraftingRecipe> recipeType;
     private final RecipeBookCategory category;
 
+    public AltarCraftingScreenHandler(int syncId, PlayerInventory playerInventory) {
+        this(SpectrumScreenHandlerTypes.ALTAR, SpectrumRecipeTypes.ALTAR, RecipeBookCategory.CRAFTING, syncId, playerInventory);
+    }
+
     protected AltarCraftingScreenHandler(ScreenHandlerType<?> type, RecipeType<? extends AltarCraftingRecipe> recipeType, RecipeBookCategory recipeBookCategory, int i, PlayerInventory playerInventory) {
-        this(type, recipeType, recipeBookCategory, i, playerInventory, new SimpleInventory(14), new ArrayPropertyDelegate(2));
+        this(type, recipeType, recipeBookCategory, i, playerInventory, new SimpleInventory(15), new ArrayPropertyDelegate(2));
     }
 
     public AltarCraftingScreenHandler(int syncId, PlayerInventory playerInventory, Inventory inventory, PropertyDelegate propertyDelegate) {
         this(SpectrumScreenHandlerTypes.ALTAR, SpectrumRecipeTypes.ALTAR, RecipeBookCategory.CRAFTING, syncId, playerInventory, inventory, propertyDelegate);
     }
 
-    public AltarCraftingScreenHandler(int syncId, PlayerInventory playerInventory) {
-        this(SpectrumScreenHandlerTypes.ALTAR, SpectrumRecipeTypes.ALTAR, RecipeBookCategory.CRAFTING, syncId, playerInventory);
-    }
-
-
     protected AltarCraftingScreenHandler(ScreenHandlerType<?> type, RecipeType<? extends AltarCraftingRecipe> recipeType, RecipeBookCategory recipeBookCategory, int i, PlayerInventory playerInventory, Inventory inventory, PropertyDelegate propertyDelegate) {
         super(type, i);
-        this.recipeType = recipeType;
         this.category = recipeBookCategory;
-        checkSize(inventory, 9+5);
-        checkDataCount(propertyDelegate, 2);
         this.inventory = inventory;
         this.propertyDelegate = propertyDelegate;
         this.world = playerInventory.player.world;
+
+        checkSize(inventory, 9+5);
+        checkDataCount(propertyDelegate, 2);
 
         // crafting slots
         int m;
         int n;
         for(m = 0; m < 3; ++m) {
             for(n = 0; n < 3; ++n) {
-                this.addSlot(new Slot(inventory, n + m * 3, 62 + n * 18, 13 + m * 18));
+                this.addSlot(new Slot(inventory, n + m * 3, 30 + n * 18, 19 + m * 18));
             }
         }
 
         // gem slots
-        this.addSlot(new StackFilterSlot(inventory, 9,  44 + 0 * 18, 75, Items.AMETHYST_SHARD));
-        this.addSlot(new StackFilterSlot(inventory, 10, 44 + 1 * 18, 75, SpectrumItems.CITRINE_SHARD_ITEM));
-        this.addSlot(new StackFilterSlot(inventory, 11, 44 + 2 * 18, 75, SpectrumItems.TOPAZ_SHARD_ITEM));
-        this.addSlot(new StackFilterSlot(inventory, 12, 44 + 3 * 18, 75, SpectrumItems.ONYX_SHARD_ITEM));
-        this.addSlot(new StackFilterSlot(inventory, 13, 44 + 4 * 18, 75, SpectrumItems.MOONSTONE_SHARD_ITEM));
+        this.addSlot(new StackFilterSlot(inventory, 9,  44 + 0 * 18, 77, Items.AMETHYST_SHARD));
+        this.addSlot(new StackFilterSlot(inventory, 10, 44 + 1 * 18, 77, SpectrumItems.CITRINE_SHARD_ITEM));
+        this.addSlot(new StackFilterSlot(inventory, 11, 44 + 2 * 18, 77, SpectrumItems.TOPAZ_SHARD_ITEM));
+        this.addSlot(new StackFilterSlot(inventory, 12, 44 + 3 * 18, 77, SpectrumItems.ONYX_SHARD_ITEM));
+        this.addSlot(new StackFilterSlot(inventory, 13, 44 + 4 * 18, 77, SpectrumItems.MOONSTONE_SHARD_ITEM));
+
+        // preview slot
+        this.addSlot(new ReadOnlySlot(inventory, 14, 124, 37));
 
         // player inventory
         int l;
         for(l = 0; l < 3; ++l) {
             for(int k = 0; k < 9; ++k) {
-                this.addSlot(new Slot(playerInventory, k + l * 9 + 9, 8 + k * 18, 101 + l * 18));
+                this.addSlot(new Slot(playerInventory, k + l * 9 + 9, 8 + k * 18, 112 + l * 18));
             }
         }
 
         // player hotbar
         for(l = 0; l < 9; ++l) {
-            this.addSlot(new Slot(playerInventory, l, 8 + l * 18, 159));
+            this.addSlot(new Slot(playerInventory, l, 8 + l * 18, 170));
         }
 
         this.addProperties(propertyDelegate);
@@ -102,7 +103,7 @@ public class AltarCraftingScreenHandler extends AbstractRecipeScreenHandler<Inve
     }
 
     public int getCraftingResultSlotIndex() {
-        return 2; //todo
+        return 15;
     }
 
     public int getCraftingWidth() {
@@ -114,13 +115,17 @@ public class AltarCraftingScreenHandler extends AbstractRecipeScreenHandler<Inve
     }
 
     public int getCraftingSlotCount() {
-        return 3;
+        return 9;
     }
 
     public boolean canUse(PlayerEntity player) {
         return this.inventory.canPlayerUse(player);
     }
 
+    /**
+     * Handle Shift-Clicking
+     * TODO
+     */
     public ItemStack transferSlot(PlayerEntity player, int index) {
         ItemStack itemStack = ItemStack.EMPTY;
         Slot slot = this.slots.get(index);
@@ -133,15 +138,7 @@ public class AltarCraftingScreenHandler extends AbstractRecipeScreenHandler<Inve
                 }
                 slot.onStackChanged(itemStack2, itemStack);
             } else if (index != 1 && index != 0) {
-                /*if (this.isSmeltable(itemStack2)) {
-                    if (!this.insertItem(itemStack2, 0, 1, false)) {
-                        return ItemStack.EMPTY;
-                    }
-                } else if (this.isFuel(itemStack2)) {
-                    if (!this.insertItem(itemStack2, 1, 2, false)) {
-                        return ItemStack.EMPTY;
-                    }
-                } else*/ if (index >= 3 && index < 30) {
+                if (index >= 3 && index < 30) {
                     if (!this.insertItem(itemStack2, 30, 39, false)) {
                         return ItemStack.EMPTY;
                     }
@@ -176,16 +173,6 @@ public class AltarCraftingScreenHandler extends AbstractRecipeScreenHandler<Inve
     }
 
     @Environment(EnvType.CLIENT)
-    public int getFuelProgress() {
-        int i = this.propertyDelegate.get(1);
-        if (i == 0) {
-            i = 200;
-        }
-
-        return this.propertyDelegate.get(0) * 13 / i;
-    }
-
-    @Environment(EnvType.CLIENT)
     public boolean isBurning() {
         return this.propertyDelegate.get(0) > 0;
     }
@@ -199,4 +186,7 @@ public class AltarCraftingScreenHandler extends AbstractRecipeScreenHandler<Inve
         return i != 1;
     }
 
+    /*public Text getTitle() {
+        return new TranslatableText("block.spectrum.altar");
+    }*/
 }

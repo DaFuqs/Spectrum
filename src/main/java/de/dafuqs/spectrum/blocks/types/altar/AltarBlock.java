@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.blocks.types.altar;
 
+import de.dafuqs.spectrum.blocks.SpectrumBlockEntityType;
 import de.dafuqs.spectrum.blocks.SpectrumBlocks;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -8,6 +9,8 @@ import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.BlockWithEntity;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityTicker;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.particle.DustParticleEffect;
@@ -104,6 +107,16 @@ public class AltarBlock extends BlockWithEntity {
 
     public int getComparatorOutput(BlockState state, World world, BlockPos pos) {
         return ScreenHandler.calculateComparatorOutput(world.getBlockEntity(pos));
+    }
+
+    @Override
+    @Nullable
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
+        if(world.isClient) {
+            return null;
+        } else {
+            return checkType(type, SpectrumBlockEntityType.ALTAR_BLOCK_ENTITY_TYPE, AltarBlockEntity::tick);
+        }
     }
 
     @Override

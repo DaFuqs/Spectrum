@@ -19,7 +19,15 @@ public class AltarScreen extends HandledScreen<AltarCraftingScreenHandler> {
 
     @Override
     protected void drawForeground(MatrixStack matrices, int mouseX, int mouseY) {
-        // don't draw "title" and "inventory" texts
+        // draw "title" and "inventory" texts
+        int titleX = 8;
+        int titleY = 7;
+        Text title = this.title;
+        int inventoryX = 8;
+        int intInventoryY = 100;
+
+        this.textRenderer.draw(matrices, title, titleX, titleY, 4210752);
+        this.textRenderer.draw(matrices, this.playerInventory.getDisplayName(), inventoryX, intInventoryY, 4210752);
     }
 
     @Override
@@ -37,5 +45,6 @@ public class AltarScreen extends HandledScreen<AltarCraftingScreenHandler> {
         super.render(matrices, mouseX, mouseY, delta);
         drawMouseoverTooltip(matrices, mouseX, mouseY);
     }
+
 
 }

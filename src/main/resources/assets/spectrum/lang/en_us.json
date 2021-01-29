@@ -350,6 +350,7 @@
   "block.spectrum.decay3": "Ruin",
 
   "block.spectrum.altar": "Altar",
+  "block.spectrum.altar.title_with_owner": "Altar of %s",
   "block.spectrum.ominous_sapling": "Ominous Sapling",
 
   "advancements.spectrum.spectrum.title": "Spectrum",

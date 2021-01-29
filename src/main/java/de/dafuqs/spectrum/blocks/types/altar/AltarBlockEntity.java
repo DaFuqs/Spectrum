@@ -30,7 +30,6 @@ import net.minecraft.screen.ScreenHandler;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.collection.DefaultedList;
@@ -371,6 +370,6 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
 
     public void setPlayerData(UUID uuid, Text name) {
         this.setPlayerUUID(uuid);
-        setCustomName(new LiteralText("Altar of " + name.asString())); // TODO: translate
+        setCustomName(new TranslatableText("block.spectrum.altar.title_with_owner", name.asString()));
     }
 }

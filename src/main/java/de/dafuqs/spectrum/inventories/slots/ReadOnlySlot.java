@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.inventories;
+package de.dafuqs.spectrum.inventories.slots;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;

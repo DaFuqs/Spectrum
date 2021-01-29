@@ -1,5 +1,7 @@
 package de.dafuqs.spectrum.inventories;
 
+import de.dafuqs.spectrum.inventories.slots.ReadOnlySlot;
+import de.dafuqs.spectrum.inventories.slots.StackFilterSlot;
 import de.dafuqs.spectrum.items.SpectrumItems;
 import de.dafuqs.spectrum.recipe.AltarCraftingRecipe;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;

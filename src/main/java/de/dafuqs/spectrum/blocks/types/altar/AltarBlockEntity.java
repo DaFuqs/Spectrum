@@ -14,6 +14,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventories;
 import net.minecraft.inventory.Inventory;
+import net.minecraft.inventory.SidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundTag;
@@ -32,13 +33,14 @@ import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Iterator;
 import java.util.Random;
 
-public class AltarBlockEntity extends LockableContainerBlockEntity implements RecipeInputProvider {
+public class AltarBlockEntity extends LockableContainerBlockEntity implements RecipeInputProvider, SidedInventory {
 
     private Text customName;
     protected DefaultedList<ItemStack> inventory;
@@ -333,4 +335,28 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
         return new TranslatableText("block.spectrum.altar");
     }
 
+    @Override
+    public int[] getAvailableSlots(Direction side) {
+        if(side == Direction.DOWN) {
+            return new int[]{15};
+        } else if(side == Direction.UP) {
+            return new int[]{9, 10, 11, 12, 13};
+        } else {
+            return new int[]{0, 1, 2, 3, 4, 5, 6, 7, 8};
+        }
+    }
+
+    @Override
+    public boolean canInsert(int slot, ItemStack stack, @Nullable Direction dir) {
+        if(slot < 14) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public boolean canExtract(int slot, ItemStack stack, Direction dir) {
+        return slot == 15;
+    }
 }

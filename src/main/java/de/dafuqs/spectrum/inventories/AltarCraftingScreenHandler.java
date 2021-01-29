@@ -120,49 +120,6 @@ public class AltarCraftingScreenHandler extends AbstractRecipeScreenHandler<Inve
         return this.inventory.canPlayerUse(player);
     }
 
-    /**
-     * Handle Shift-Clicking
-     * TODO
-     */
-    public ItemStack transferSlot(PlayerEntity player, int index) {
-        ItemStack itemStack = ItemStack.EMPTY;
-        Slot slot = this.slots.get(index);
-        if (slot.hasStack()) {
-            ItemStack itemStack2 = slot.getStack();
-            itemStack = itemStack2.copy();
-            if (index == 2) {
-                if (!this.insertItem(itemStack2, 3, 39, true)) {
-                    return ItemStack.EMPTY;
-                }
-                slot.onStackChanged(itemStack2, itemStack);
-            } else if (index != 1 && index != 0) {
-                if (index >= 3 && index < 30) {
-                    if (!this.insertItem(itemStack2, 30, 39, false)) {
-                        return ItemStack.EMPTY;
-                    }
-                } else if (index >= 30 && index < 39 && !this.insertItem(itemStack2, 3, 30, false)) {
-                    return ItemStack.EMPTY;
-                }
-            } else if (!this.insertItem(itemStack2, 3, 39, false)) {
-                return ItemStack.EMPTY;
-            }
-
-            if (itemStack2.isEmpty()) {
-                slot.setStack(ItemStack.EMPTY);
-            } else {
-                slot.markDirty();
-            }
-
-            if (itemStack2.getCount() == itemStack.getCount()) {
-                return ItemStack.EMPTY;
-            }
-
-            slot.onTakeItem(player, itemStack2);
-        }
-
-        return itemStack;
-    }
-
     @Environment(EnvType.CLIENT)
     public int getCraftingProgress() {
         int craftingTime = this.propertyDelegate.get(0); // craftingTime

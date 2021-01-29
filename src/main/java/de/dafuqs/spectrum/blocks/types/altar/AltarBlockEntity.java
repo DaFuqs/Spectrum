@@ -17,6 +17,8 @@ import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.particle.BlockStateParticleEffect;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeFinder;
 import net.minecraft.recipe.RecipeInputProvider;
@@ -241,6 +243,7 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
                     itemEntity.addVelocity(0, 0.1, 0);
                     world.spawnEntity(itemEntity);
                     altarBlockEntity.inventory.set(15, ItemStack.EMPTY);
+                    altarBlockEntity.spawnCraftingFinishedParticles(world, blockPos);
                     altarBlockEntity.playSound(SoundEvents.BLOCK_AMETHYST_CLUSTER_FALL); // TODO: custom sound
                 } else {
                     altarBlockEntity.playSound(SoundEvents.BLOCK_LAVA_EXTINGUISH); // TODO: custom sound
@@ -251,6 +254,11 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
                 markDirty(world, blockPos, blockState);
             }
         }
+    }
+
+    // TODO: doesn't spawn on client?
+    public void spawnCraftingFinishedParticles(World world, BlockPos pos) {
+        world.addParticle(new BlockStateParticleEffect(ParticleTypes.BLOCK, SpectrumBlocks.ALTAR.getDefaultState()), pos.getX() + 0.5, pos.getY() + 1.1, pos.getZ() + 0.5, 0, 0.5D, 0);
     }
 
     private void playSound(SoundEvent soundEvent) {

@@ -16,10 +16,7 @@ import net.minecraft.recipe.RecipeFinder;
 import net.minecraft.recipe.RecipeInputProvider;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.recipe.book.RecipeBookCategory;
-import net.minecraft.screen.AbstractRecipeScreenHandler;
-import net.minecraft.screen.ArrayPropertyDelegate;
-import net.minecraft.screen.PropertyDelegate;
-import net.minecraft.screen.ScreenHandlerType;
+import net.minecraft.screen.*;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.world.World;
 
@@ -94,8 +91,9 @@ public class AltarCraftingScreenHandler extends AbstractRecipeScreenHandler<Inve
     }
 
     public void clearCraftingSlots() {
-        this.getSlot(0).setStack(ItemStack.EMPTY);
-        this.getSlot(2).setStack(ItemStack.EMPTY);
+        for(int i = 0; i < 9; i++) {
+            this.getSlot(i).setStack(ItemStack.EMPTY);
+        }
     }
 
     public boolean matches(Recipe<? super Inventory> recipe) {
@@ -166,15 +164,14 @@ public class AltarCraftingScreenHandler extends AbstractRecipeScreenHandler<Inve
     }
 
     @Environment(EnvType.CLIENT)
-    public int getCookProgress() {
-        int i = this.propertyDelegate.get(2);
-        int j = this.propertyDelegate.get(3);
-        return j != 0 && i != 0 ? i * 24 / j : 0;
+    public int getCraftingProgress() {
+        int craftingTime = this.propertyDelegate.get(0); // craftingTime
+        int craftingTimeTotal = this.propertyDelegate.get(1); // craftingTimeTotal
+        return craftingTimeTotal != 0 && craftingTime != 0 ? craftingTime * 24 / craftingTimeTotal : 0;
     }
 
-    @Environment(EnvType.CLIENT)
-    public boolean isBurning() {
-        return this.propertyDelegate.get(0) > 0;
+    public boolean isCrafting() {
+        return this.propertyDelegate.get(0) > 0; // craftingTime
     }
 
     @Environment(EnvType.CLIENT)
@@ -186,7 +183,4 @@ public class AltarCraftingScreenHandler extends AbstractRecipeScreenHandler<Inve
         return i != 1;
     }
 
-    /*public Text getTitle() {
-        return new TranslatableText("block.spectrum.altar");
-    }*/
 }

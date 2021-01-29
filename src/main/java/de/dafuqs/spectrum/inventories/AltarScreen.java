@@ -14,13 +14,13 @@ public class AltarScreen extends HandledScreen<AltarCraftingScreenHandler> {
 
     public AltarScreen(AltarCraftingScreenHandler handler, PlayerInventory playerInventory, Text title) {
         super(handler, playerInventory, title);
-        this.backgroundHeight = 114 + 6 * 18;
+        this.backgroundHeight = 194;
     }
 
     @Override
     protected void drawForeground(MatrixStack matrices, int mouseX, int mouseY) {
         // draw "title" and "inventory" texts
-        int titleX = 8;
+        int titleX = (backgroundWidth - textRenderer.getWidth(title)) / 2; // 8;
         int titleY = 7;
         Text title = this.title;
         int inventoryX = 8;
@@ -37,6 +37,13 @@ public class AltarScreen extends HandledScreen<AltarCraftingScreenHandler> {
         int x = (width - backgroundWidth) / 2;
         int y = (height - backgroundHeight) / 2;
         drawTexture(matrices, x, y, 0, 0, backgroundWidth, backgroundHeight);
+
+        boolean isCrafting = this.handler.isCrafting();
+        if(isCrafting) {
+            int progressWidth = (this.handler).getCraftingProgress();
+            // x+y: destination, u+v: original coords in texture file
+            this.drawTexture(matrices, x + 88, y + 37, 176, 0, progressWidth + 1, 16);
+        }
     }
 
     @Override

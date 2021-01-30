@@ -14,13 +14,16 @@ import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.UniformIntDistribution;
-import net.minecraft.world.gen.decorator.Decorator;
-import net.minecraft.world.gen.decorator.RangeDecoratorConfig;
+import net.minecraft.world.gen.decorator.*;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.feature.size.TwoLayersFeatureSize;
 import net.minecraft.world.gen.foliage.BlobFoliagePlacer;
 import net.minecraft.world.gen.stateprovider.SimpleBlockStateProvider;
 import net.minecraft.world.gen.trunk.StraightTrunkPlacer;
+
+import java.util.HashMap;
+
+import static net.minecraft.world.gen.feature.ConfiguredFeatures.OAK;
 
 public class SpectrumFeatures {
 
@@ -28,63 +31,78 @@ public class SpectrumFeatures {
     public static ConfiguredFeature<?, ?> TOPAZ_GEODE;
     public static ConfiguredFeature<?, ?> MOONSTONE_GEODE;
 
-    public static ConfiguredFeature<TreeFeatureConfig, ?> BLACK_TREE;
-    public static ConfiguredFeature<TreeFeatureConfig, ?> BLUE_TREE;
-    public static ConfiguredFeature<TreeFeatureConfig, ?> BROWN_TREE;
-    public static ConfiguredFeature<TreeFeatureConfig, ?> CYAN_TREE;
-    public static ConfiguredFeature<TreeFeatureConfig, ?> GRAY_TREE;
-    public static ConfiguredFeature<TreeFeatureConfig, ?> GREEN_TREE;
-    public static ConfiguredFeature<TreeFeatureConfig, ?> LIGHT_BLUE_TREE;
-    public static ConfiguredFeature<TreeFeatureConfig, ?> LIGHT_GRAY_TREE;
-    public static ConfiguredFeature<TreeFeatureConfig, ?> LIME_TREE;
-    public static ConfiguredFeature<TreeFeatureConfig, ?> MAGENTA_TREE;
-    public static ConfiguredFeature<TreeFeatureConfig, ?> ORANGE_TREE;
-    public static ConfiguredFeature<TreeFeatureConfig, ?> PINK_TREE;
-    public static ConfiguredFeature<TreeFeatureConfig, ?> PURPLE_TREE;
-    public static ConfiguredFeature<TreeFeatureConfig, ?> RED_TREE;
-    public static ConfiguredFeature<TreeFeatureConfig, ?> WHITE_TREE;
-    public static ConfiguredFeature<TreeFeatureConfig, ?> YELLOW_TREE;
+    // COLORED TREES
+    public static HashMap<DyeColor, ConfiguredFeature<TreeFeatureConfig, ?>> COLORED_TREE_FEATURES = new HashMap<>(); // FOR SAPLINGS
+    //public static HashMap<DyeColor, ConfiguredFeature<?, ?>> DECORATED_TREE_FEATURES = new HashMap<>(); // WOR WORLD GEN
 
-    private static <FC extends FeatureConfig> ConfiguredFeature<FC, ?> register(String id, ConfiguredFeature<FC, ?> configuredFeature) {
-        return Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, id, configuredFeature);
-    }
-    
+    public static ConfiguredFeature<?, ?> DECORATED_TREES; // WOR WORLD GEN
+
     public static void register() {
         registerGeodes();
         registerColoredTrees();
-
-
     }
 
-    private static ConfiguredFeature<TreeFeatureConfig, ?> registerColoredTree(DyeColor dyeColor) {
-        // TODO: add custom tree feature config (currently: OAK)
-        return register(dyeColor.toString() + "_tree", Feature.TREE.configure(
+    private static void registerColoredTree(DyeColor dyeColor) {
+        String identifierString = dyeColor.toString() + "_tree";
+        RegistryKey<ConfiguredFeature<?, ?>> configuredFeatureRegistryKey = RegistryKey.of(Registry.CONFIGURED_FEATURE_WORLDGEN, new Identifier(SpectrumCommon.MOD_ID, identifierString));
+        //RegistryKey<ConfiguredFeature<?, ?>> decoratedFeatureRegistryKey = RegistryKey.of(Registry.CONFIGURED_FEATURE_WORLDGEN, new Identifier(SpectrumCommon.MOD_ID, identifierString + "_decorated"));
+
+        // TODO: add custom tree feature config (currently generates exactly like oak)
+        // how the colored tree will look when generated
+        ConfiguredFeature<TreeFeatureConfig, ?> configuredFeature = Feature.TREE.configure(
                 (new TreeFeatureConfig.Builder(
                         new SimpleBlockStateProvider(SpectrumBlocks.getColoredLog(dyeColor).getDefaultState()),
                         new SimpleBlockStateProvider(SpectrumBlocks.getColoredLeaves(dyeColor).getDefaultState()),
                         new BlobFoliagePlacer(UniformIntDistribution.of(2), UniformIntDistribution.of(0), 3),
                         new StraightTrunkPlacer(4, 2, 0),
                         new TwoLayersFeatureSize(1, 0, 1)))
-                        .ignoreVines().build()));
+                        .ignoreVines().build());
+
+        // how often the tree will generate naturally
+        // generate ~every 100 chunks
+        //ChanceDecoratorConfig chanceDecoratorConfig = new ChanceDecoratorConfig(20 + dyeColor.getId());
+        //ConfiguredFeature<?, ?> decoratedFeatureConfig = configuredFeature.decorate(Decorator.CHANCE.configure(chanceDecoratorConfig));
+        // In which biomes the tree will generate
+        //BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Feature.VEGETAL_DECORATION, decoratedFeatureRegistryKey);
+
+        COLORED_TREE_FEATURES.put(dyeColor, Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, configuredFeatureRegistryKey.getValue(), configuredFeature));
+        //DECORATED_TREE_FEATURES.put(dyeColor, Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, decoratedFeatureRegistryKey.getValue(), decoratedFeatureConfig));
     }
 
+    /*private static <FC extends FeatureConfig> ConfiguredFeature<FC, ?> registerFeature(String id, ConfiguredFeature<FC, ?> configuredFeature) {
+        return Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, id, configuredFeature);
+    }*/
+
     private static void registerColoredTrees() {
-        BLACK_TREE = registerColoredTree(DyeColor.BLACK);
-        BLUE_TREE = registerColoredTree(DyeColor.BLUE);
-        BROWN_TREE = registerColoredTree(DyeColor.BROWN);
-        CYAN_TREE = registerColoredTree(DyeColor.CYAN);
-        GRAY_TREE = registerColoredTree(DyeColor.GRAY);
-        GREEN_TREE = registerColoredTree(DyeColor.GREEN);
-        LIGHT_BLUE_TREE = registerColoredTree(DyeColor.LIGHT_BLUE);
-        LIGHT_GRAY_TREE = registerColoredTree(DyeColor.LIGHT_GRAY);
-        LIME_TREE = registerColoredTree(DyeColor.LIME);
-        MAGENTA_TREE = registerColoredTree(DyeColor.MAGENTA);
-        ORANGE_TREE = registerColoredTree(DyeColor.ORANGE);
-        PINK_TREE = registerColoredTree(DyeColor.PINK);
-        PURPLE_TREE = registerColoredTree(DyeColor.PURPLE);
-        RED_TREE = registerColoredTree(DyeColor.RED);
-        WHITE_TREE = registerColoredTree(DyeColor.WHITE);
-        YELLOW_TREE = registerColoredTree(DyeColor.YELLOW);
+        for(DyeColor dyeColor : DyeColor.values()) {
+            registerColoredTree(dyeColor);
+        }
+
+        ConfiguredFeature<?, ?> configuredFeature = Feature.RANDOM_SELECTOR.configure(
+                new RandomFeatureConfig(ImmutableList.of(
+                        COLORED_TREE_FEATURES.get(DyeColor.BLACK).withChance(0.025F),
+                        COLORED_TREE_FEATURES.get(DyeColor.BLUE).withChance(0.025F),
+                        COLORED_TREE_FEATURES.get(DyeColor.BROWN).withChance(0.025F),
+                        COLORED_TREE_FEATURES.get(DyeColor.CYAN).withChance(0.025F),
+                        COLORED_TREE_FEATURES.get(DyeColor.GRAY).withChance(0.025F),
+                        COLORED_TREE_FEATURES.get(DyeColor.GREEN).withChance(0.025F),
+                        COLORED_TREE_FEATURES.get(DyeColor.LIGHT_BLUE).withChance(0.025F),
+                        COLORED_TREE_FEATURES.get(DyeColor.LIGHT_GRAY).withChance(0.025F),
+                        COLORED_TREE_FEATURES.get(DyeColor.LIME).withChance(0.025F),
+                        COLORED_TREE_FEATURES.get(DyeColor.MAGENTA).withChance(0.025F),
+                        COLORED_TREE_FEATURES.get(DyeColor.ORANGE).withChance(0.025F),
+                        COLORED_TREE_FEATURES.get(DyeColor.PINK).withChance(0.025F),
+                        COLORED_TREE_FEATURES.get(DyeColor.PURPLE).withChance(0.025F),
+                        COLORED_TREE_FEATURES.get(DyeColor.RED).withChance(0.025F),
+                        COLORED_TREE_FEATURES.get(DyeColor.WHITE).withChance(0.025F),
+                        COLORED_TREE_FEATURES.get(DyeColor.YELLOW).withChance(0.025F)
+                        ), OAK)).decorate(Decorator.DARK_OAK_TREE.configure(DecoratorConfig.DEFAULT).applyChance(20));
+
+        RegistryKey<ConfiguredFeature<?, ?>> decoratedFeatureRegistryKey = RegistryKey.of(Registry.CONFIGURED_FEATURE_WORLDGEN, new Identifier(SpectrumCommon.MOD_ID, "random_colored_trees"));
+        Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, decoratedFeatureRegistryKey.getValue(), configuredFeature);
+
+        // Add generation to world
+        BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Feature.VEGETAL_DECORATION, decoratedFeatureRegistryKey);
     }
 
     private static void registerGeodes() {
@@ -151,15 +169,15 @@ public class SpectrumFeatures {
 
         RegistryKey<ConfiguredFeature<?, ?>> CITRINE_GEODE_KEY = RegistryKey.of(Registry.CONFIGURED_FEATURE_WORLDGEN, new Identifier(SpectrumCommon.MOD_ID, "citrine_geode"));
         Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, CITRINE_GEODE_KEY.getValue(), CITRINE_GEODE);
-        BiomeModifications.addFeature(BiomeSelectors.all(), GenerationStep.Feature.UNDERGROUND_STRUCTURES, CITRINE_GEODE_KEY);
+        BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Feature.UNDERGROUND_STRUCTURES, CITRINE_GEODE_KEY);
 
         RegistryKey<ConfiguredFeature<?, ?>> TOPAZ_GEODE_KEY = RegistryKey.of(Registry.CONFIGURED_FEATURE_WORLDGEN, new Identifier(SpectrumCommon.MOD_ID, "topaz_geode"));
         Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, TOPAZ_GEODE_KEY.getValue(), TOPAZ_GEODE);
-        BiomeModifications.addFeature(BiomeSelectors.all(), GenerationStep.Feature.UNDERGROUND_STRUCTURES, TOPAZ_GEODE_KEY);
+        BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Feature.UNDERGROUND_STRUCTURES, TOPAZ_GEODE_KEY);
 
         RegistryKey<ConfiguredFeature<?, ?>> MOONSTONE_GEODE_KEY = RegistryKey.of(Registry.CONFIGURED_FEATURE_WORLDGEN, new Identifier(SpectrumCommon.MOD_ID, "moonstone_geode"));
         Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, MOONSTONE_GEODE_KEY.getValue(), MOONSTONE_GEODE);
-        BiomeModifications.addFeature(BiomeSelectors.all(), GenerationStep.Feature.UNDERGROUND_STRUCTURES, MOONSTONE_GEODE_KEY);
+        BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Feature.UNDERGROUND_STRUCTURES, MOONSTONE_GEODE_KEY);
     }
 
 

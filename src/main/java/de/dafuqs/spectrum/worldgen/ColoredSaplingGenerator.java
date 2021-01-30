@@ -23,42 +23,7 @@ public class ColoredSaplingGenerator extends SaplingGenerator {
     }
     
     private ConfiguredFeature<TreeFeatureConfig, ?> getConfiguredFeature(DyeColor dyeColor) {
-        switch (dyeColor) {
-            case RED:
-                return SpectrumFeatures.RED_TREE;
-            case BROWN:
-                return SpectrumFeatures.BROWN_TREE;
-            case CYAN:
-                return SpectrumFeatures.CYAN_TREE;
-            case GRAY:
-                return SpectrumFeatures.GRAY_TREE;
-            case GREEN:
-                return SpectrumFeatures.GREEN_TREE;
-            case LIGHT_BLUE:
-                return SpectrumFeatures.LIGHT_BLUE_TREE;
-            case LIGHT_GRAY:
-                return SpectrumFeatures.LIGHT_GRAY_TREE;
-            case BLUE:
-                return SpectrumFeatures.BLUE_TREE;
-            case LIME:
-                return SpectrumFeatures.LIME_TREE;
-            case ORANGE:
-                return SpectrumFeatures.ORANGE_TREE;
-            case PINK:
-                return SpectrumFeatures.PINK_TREE;
-            case PURPLE:
-                return SpectrumFeatures.PURPLE_TREE;
-            case WHITE:
-                return SpectrumFeatures.WHITE_TREE;
-            case YELLOW:
-                return SpectrumFeatures.YELLOW_TREE;
-            case BLACK:
-                return SpectrumFeatures.BLACK_TREE;
-            case MAGENTA:
-                return SpectrumFeatures.MAGENTA_TREE;
-            default:
-                return null;
-        }
+        return SpectrumFeatures.COLORED_TREE_FEATURES.get(dyeColor);
     }
 
 }

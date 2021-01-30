@@ -1,6 +1,7 @@
 {
   "parent": "minecraft:block/leaves",
   "textures": {
+    "all": "spectrum:block/yellow_leaves"
   },
   "elements": [
     {

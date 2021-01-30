@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.mixin;
 import de.dafuqs.spectrum.blocks.SpectrumBlocks;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.mob.EndermanEntity;
+import net.minecraft.server.world.ServerWorld;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -19,7 +20,7 @@ public class EndermanEntityMixin {
     @Inject(at = @At("TAIL"), method = "<init>")
     private void init(CallbackInfo info) {
         EndermanEntity endermanEntity = ((EndermanEntity)(Object) this);
-        if(endermanEntity.getEntityWorld() != null) {
+        if(endermanEntity.getEntityWorld() != null && endermanEntity.getEntityWorld() instanceof ServerWorld) {
             Random random = endermanEntity.getEntityWorld().random;
             if(random.nextFloat() < carriedBlockChance) {
                 if (endermanEntity.getCarriedBlock() == null) {

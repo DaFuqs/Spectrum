@@ -51,11 +51,15 @@ public interface Cloakable {
     }
 
     default PlayerEntity getLootPlayerEntity(LootContext.Builder lootContextBuilder) {
-        Entity entity = lootContextBuilder.get(LootContextParameters.THIS_ENTITY);
-        if(entity instanceof PlayerEntity) {
-            return (PlayerEntity) entity;
-        } else {
+        if(lootContextBuilder.getNullable(LootContextParameters.THIS_ENTITY) == null) {
             return null;
+        } else {
+            Entity entity = lootContextBuilder.get(LootContextParameters.THIS_ENTITY);
+            if(entity instanceof PlayerEntity) {
+                return (PlayerEntity) entity;
+            } else {
+                return null;
+            }
         }
     }
 
@@ -67,7 +71,11 @@ public interface Cloakable {
         BlockState cloakedBlockState = null;
         if(lootPlayerEntity == null || isCloaked(lootPlayerEntity, state)) {
             cloakedBlockState = SpectrumCommon.getModelSwapper().getTarget(state);
-            identifier = cloakedBlockState.getBlock().getLootTableId();
+            if(cloakedBlockState == null) {
+                identifier = state.getBlock().getLootTableId();
+            } else {
+                identifier = cloakedBlockState.getBlock().getLootTableId();
+            }
         } else {
             identifier = state.getBlock().getLootTableId();
         }

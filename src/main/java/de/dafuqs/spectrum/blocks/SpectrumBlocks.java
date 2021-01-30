@@ -25,7 +25,6 @@ import de.dafuqs.spectrum.items.SpectrumItems;
 import de.dafuqs.spectrum.misc.SpectrumMaterial;
 import de.dafuqs.spectrum.worldgen.ColoredSaplingGenerator;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
-import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.tool.attribute.v1.FabricToolTags;
@@ -44,6 +43,7 @@ import net.minecraft.util.registry.Registry;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.function.ToIntFunction;
 
@@ -1144,27 +1144,9 @@ public class SpectrumBlocks {
         BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.RED_LAMP, RenderLayer.getTranslucent());
         BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.WHITE_LAMP, RenderLayer.getTranslucent());
         BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.YELLOW_LAMP, RenderLayer.getTranslucent());
-
-        // Biome Colors for colored leaves
-        // They don't use it, but their decay as oak leaves do
-        ColorProviderRegistry.BLOCK.register((state, view, pos, tintIndex) -> 0x48B518, BLACK_LEAVES);
-        ColorProviderRegistry.BLOCK.register((state, view, pos, tintIndex) -> 0x48B518, BLUE_LEAVES);
-        ColorProviderRegistry.BLOCK.register((state, view, pos, tintIndex) -> 0x48B518, BROWN_LEAVES);
-        ColorProviderRegistry.BLOCK.register((state, view, pos, tintIndex) -> 0x48B518, CYAN_LEAVES);
-        ColorProviderRegistry.BLOCK.register((state, view, pos, tintIndex) -> 0x48B518, GRAY_LEAVES);
-        ColorProviderRegistry.BLOCK.register((state, view, pos, tintIndex) -> 0x48B518, GREEN_LEAVES);
-        ColorProviderRegistry.BLOCK.register((state, view, pos, tintIndex) -> 0x48B518, LIGHT_BLUE_LEAVES);
-        ColorProviderRegistry.BLOCK.register((state, view, pos, tintIndex) -> 0x48B518, LIGHT_GRAY_LEAVES);
-        ColorProviderRegistry.BLOCK.register((state, view, pos, tintIndex) -> 0x48B518, LIME_LEAVES);
-        ColorProviderRegistry.BLOCK.register((state, view, pos, tintIndex) -> 0x48B518, MAGENTA_LEAVES);
-        ColorProviderRegistry.BLOCK.register((state, view, pos, tintIndex) -> 0x48B518, ORANGE_LEAVES);
-        ColorProviderRegistry.BLOCK.register((state, view, pos, tintIndex) -> 0x48B518, PINK_LEAVES);
-        ColorProviderRegistry.BLOCK.register((state, view, pos, tintIndex) -> 0x48B518, PURPLE_LEAVES);
-        ColorProviderRegistry.BLOCK.register((state, view, pos, tintIndex) -> 0x48B518, RED_LEAVES);
-        ColorProviderRegistry.BLOCK.register((state, view, pos, tintIndex) -> 0x48B518, WHITE_LEAVES);
-        ColorProviderRegistry.BLOCK.register((state, view, pos, tintIndex) -> 0x48B518, YELLOW_LEAVES);
     }
 
+    @NotNull
     public static Block getColoredLog(DyeColor dyeColor) {
         switch (dyeColor) {
             case RED:
@@ -1197,13 +1179,12 @@ public class SpectrumBlocks {
                 return YELLOW_LOG;
             case BLACK:
                 return BLACK_LOG;
-            case MAGENTA:
-                return MAGENTA_LOG;
             default:
-                return null;
+                return MAGENTA_LOG;
         }
     }
 
+    @NotNull
     public static Block getColoredLeaves(DyeColor dyeColor) {
         switch (dyeColor) {
             case RED:
@@ -1236,10 +1217,8 @@ public class SpectrumBlocks {
                 return YELLOW_LEAVES;
             case BLACK:
                 return BLACK_LEAVES;
-            case MAGENTA:
-                return MAGENTA_LEAVES;
             default:
-                return null;
+                return MAGENTA_LEAVES;
         }
     }
 }

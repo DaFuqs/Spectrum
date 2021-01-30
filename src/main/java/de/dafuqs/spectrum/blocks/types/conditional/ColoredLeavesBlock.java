@@ -11,6 +11,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.LeavesBlock;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.loot.context.LootContext;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.math.Direction;
@@ -51,7 +52,7 @@ public class ColoredLeavesBlock extends LeavesBlock implements Cloakable {
         // Colored Leaves => Oak Leaves
         BlockState cloakDefaultState = Blocks.OAK_LEAVES.getDefaultState();
         for(DyeColor dyeColor : DyeColor.values()) {
-            BlockState defaultState = SpectrumBlocks.getColoredLeaves(dyeColor).getDefaultState();
+            BlockState defaultState = SpectrumBlocks.getColoredLeavesBlock(dyeColor).getDefaultState();
             SpectrumCommon.getModelSwapper().swapModel(defaultState, cloakDefaultState);
             SpectrumCommon.getModelSwapper().swapModel(defaultState.with(LeavesBlock.DISTANCE, 1).with(LeavesBlock.PERSISTENT, false), cloakDefaultState.with(LeavesBlock.DISTANCE, 1).with(LeavesBlock.PERSISTENT, false));
             SpectrumCommon.getModelSwapper().swapModel(defaultState.with(LeavesBlock.DISTANCE, 2).with(LeavesBlock.PERSISTENT, false), cloakDefaultState.with(LeavesBlock.DISTANCE, 2).with(LeavesBlock.PERSISTENT, false));
@@ -61,13 +62,15 @@ public class ColoredLeavesBlock extends LeavesBlock implements Cloakable {
             SpectrumCommon.getModelSwapper().swapModel(defaultState.with(LeavesBlock.DISTANCE, 2).with(LeavesBlock.PERSISTENT, true), cloakDefaultState.with(LeavesBlock.DISTANCE, 2).with(LeavesBlock.PERSISTENT, true));
             SpectrumCommon.getModelSwapper().swapModel(defaultState.with(LeavesBlock.DISTANCE, 3).with(LeavesBlock.PERSISTENT, true), cloakDefaultState.with(LeavesBlock.DISTANCE, 3).with(LeavesBlock.PERSISTENT, true));
             SpectrumCommon.getModelSwapper().swapModel(defaultState.with(LeavesBlock.DISTANCE, 4).with(LeavesBlock.PERSISTENT, true), cloakDefaultState.with(LeavesBlock.DISTANCE, 4).with(LeavesBlock.PERSISTENT, true));
+            SpectrumCommon.getModelSwapper().swapModel(SpectrumBlocks.getColoredLeavesItem(dyeColor), Items.OAK_LEAVES); // item
         }
     }
 
     public void setUncloaked() {
         for(DyeColor dyeColor : DyeColor.values()) {
-            Block block = SpectrumBlocks.getColoredLeaves(dyeColor);
+            Block block = SpectrumBlocks.getColoredLeavesBlock(dyeColor);
             SpectrumCommon.getModelSwapper().unswapAllBlockStates(block);
+            SpectrumCommon.getModelSwapper().unswapModel(SpectrumBlocks.getColoredLeavesItem(dyeColor));
         }
     }
 

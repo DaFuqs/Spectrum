@@ -51,8 +51,8 @@ public class SpectrumFeatures {
         // how the colored tree will look when generated
         ConfiguredFeature<TreeFeatureConfig, ?> configuredFeature = Feature.TREE.configure(
                 (new TreeFeatureConfig.Builder(
-                        new SimpleBlockStateProvider(SpectrumBlocks.getColoredLog(dyeColor).getDefaultState()),
-                        new SimpleBlockStateProvider(SpectrumBlocks.getColoredLeaves(dyeColor).getDefaultState()),
+                        new SimpleBlockStateProvider(SpectrumBlocks.getColoredLogBlock(dyeColor).getDefaultState()),
+                        new SimpleBlockStateProvider(SpectrumBlocks.getColoredLeavesBlock(dyeColor).getDefaultState()),
                         new BlobFoliagePlacer(UniformIntDistribution.of(2), UniformIntDistribution.of(0), 3),
                         new StraightTrunkPlacer(4, 2, 0),
                         new TwoLayersFeatureSize(1, 0, 1)))

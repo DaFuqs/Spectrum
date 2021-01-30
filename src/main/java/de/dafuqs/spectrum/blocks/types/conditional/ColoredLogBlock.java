@@ -11,6 +11,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.PillarBlock;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.loot.context.LootContext;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.math.Direction;
@@ -51,15 +52,17 @@ public class ColoredLogBlock extends PillarBlock implements Cloakable {
         // Colored Logs => Oak logs
         BlockState cloakDefaultState = Blocks.OAK_LOG.getDefaultState();
         for(DyeColor dyeColor : DyeColor.values()) {
-            BlockState defaultState = SpectrumBlocks.getColoredLog(dyeColor).getDefaultState();
-            SpectrumCommon.getModelSwapper().swapModel(defaultState, cloakDefaultState);
+            BlockState defaultState = SpectrumBlocks.getColoredLogBlock(dyeColor).getDefaultState();
+            SpectrumCommon.getModelSwapper().swapModel(defaultState, cloakDefaultState); // block
+            SpectrumCommon.getModelSwapper().swapModel(SpectrumBlocks.getColoredLogItem(dyeColor), Items.OAK_LOG); // item
         }
     }
 
     public void setUncloaked() {
         for(DyeColor dyeColor : DyeColor.values()) {
-            Block block = SpectrumBlocks.getColoredLog(dyeColor);
+            Block block = SpectrumBlocks.getColoredLogBlock(dyeColor);
             SpectrumCommon.getModelSwapper().unswapAllBlockStates(block);
+            SpectrumCommon.getModelSwapper().unswapModel(SpectrumBlocks.getColoredLogItem(dyeColor));
         }
     }
 

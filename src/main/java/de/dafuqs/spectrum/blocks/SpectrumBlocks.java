@@ -33,6 +33,7 @@ import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.BlockItem;
+import net.minecraft.item.Item;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.state.property.Properties;
 import net.minecraft.tag.BlockTags;
@@ -1147,7 +1148,7 @@ public class SpectrumBlocks {
     }
 
     @NotNull
-    public static Block getColoredLog(DyeColor dyeColor) {
+    public static Block getColoredLogBlock(DyeColor dyeColor) {
         switch (dyeColor) {
             case RED:
                 return RED_LOG;
@@ -1185,7 +1186,7 @@ public class SpectrumBlocks {
     }
 
     @NotNull
-    public static Block getColoredLeaves(DyeColor dyeColor) {
+    public static Block getColoredLeavesBlock(DyeColor dyeColor) {
         switch (dyeColor) {
             case RED:
                 return RED_LEAVES;
@@ -1220,5 +1221,15 @@ public class SpectrumBlocks {
             default:
                 return MAGENTA_LEAVES;
         }
+    }
+
+    @NotNull
+    public static Item getColoredLogItem(DyeColor dyeColor) {
+        return getColoredLogBlock(dyeColor).asItem();
+    }
+
+    @NotNull
+    public static Item getColoredLeavesItem(DyeColor dyeColor) {
+        return getColoredLeavesBlock(dyeColor).asItem();
     }
 }

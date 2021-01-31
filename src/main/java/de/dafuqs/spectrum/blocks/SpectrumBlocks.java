@@ -11,6 +11,7 @@ import de.dafuqs.spectrum.blocks.types.budding.BuddingOnyxBlock;
 import de.dafuqs.spectrum.blocks.types.budding.BuddingTopazBlock;
 import de.dafuqs.spectrum.blocks.types.conditional.ColoredLeavesBlock;
 import de.dafuqs.spectrum.blocks.types.conditional.ColoredLogBlock;
+import de.dafuqs.spectrum.blocks.types.conditional.SparklestoneOreBlock;
 import de.dafuqs.spectrum.blocks.types.decay.DecayBlock1;
 import de.dafuqs.spectrum.blocks.types.decay.DecayBlock2;
 import de.dafuqs.spectrum.blocks.types.decay.DecayBlock3;
@@ -415,7 +416,7 @@ public class SpectrumBlocks {
     public static final Block YELLOW_LAMP = new RedstoneLampBlock(FabricBlockSettings.copyOf(Blocks.REDSTONE_LAMP));
 
     // ORES TODO / Disguise
-    public static final Block SPARKLESTONE_ORE = new OreBlock(FabricBlockSettings.copyOf(Blocks.STONE), IntRange.between(2, 4)); // drops sparklestone gems
+    public static final Block SPARKLESTONE_ORE = new SparklestoneOreBlock(FabricBlockSettings.copyOf(Blocks.STONE), IntRange.between(2, 4)); // drops sparklestone gems
     public static final Block SPARKLESTONE_BLOCK = new Block(FabricBlockSettings.of(Material.GLASS, MapColor.YELLOW).strength(2.0F).sounds(BlockSoundGroup.GLASS).luminance((state) -> 15).emissiveLighting(SpectrumBlocks::always).postProcess(SpectrumBlocks::always));
     public static final Block KOENIGSBLAU_ORE = new OreBlock(FabricBlockSettings.copyOf(Blocks.DIAMOND_ORE), IntRange.between(4, 7)); // needs smelting
     public static final Block KOENIGSBLAU_BLOCK = new Block(FabricBlockSettings.copyOf(Blocks.DIAMOND_BLOCK));

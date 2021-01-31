@@ -10,7 +10,6 @@ import net.minecraft.block.OreBlock;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.item.ToolItem;
 import net.minecraft.loot.context.LootContext;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.IntRange;
@@ -27,7 +26,7 @@ public class SparklestoneOreBlock extends OreBlock implements Cloakable {
 
     @Override
     public boolean isCloaked(PlayerEntity playerEntity, BlockState blockState) {
-        return !(playerEntity.getMainHandStack().getItem() instanceof ToolItem);
+        return !playerEntity.isGlowing();
     }
 
     @Override

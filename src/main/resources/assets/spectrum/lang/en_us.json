@@ -1,6 +1,6 @@
 {
-  "itemGroup.spectrum.tools": "Spectrum Tools",
-  "itemGroup.spectrum.functional": "Spectrum Blocks",
+  "itemGroup.spectrum.general": "Spectrum",
+  "itemGroup.spectrum.worldgen": "Spectrum Worldgen",
   "itemGroup.spectrum.decoration": "Spectrum Decorations",
   "itemGroup.spectrum.colored_wood": "Spectrum Colored Wood",
 
@@ -11,6 +11,14 @@
   "spectrum.subtitles.block.decay1.place": "High pitched screeching",
   "spectrum.subtitles.block.decay2.place": "High pitched screeching",
   "spectrum.subtitles.block.decay3.place": "High pitched screeching",
+
+  "block.spectrum.sparklestone_ore": "Sparklestone Ore",
+  "block.spectrum.sparklestone_block": "Sparklestone Block",
+  "block.spectrum.koenigsblau_ore": "Königsblau Ore",
+  "block.spectrum.koenigsblau_block": "Königsblau Block",
+  "item.spectrum.sparklestone_gem": "Sparklestone Gem",
+  "item.spectrum.raw_koenigsblau": "Raw Koenigsblau",
+  "item.spectrum.shaped_koenigsblau": "Saturated Königsblau",
 
   "block.spectrum.black_sapling": "Black Sapling",
   "block.spectrum.black_log": "Black Log",
@@ -252,7 +260,7 @@
   "item.spectrum.topaz_shard": "Topaz Shard",
   "item.spectrum.onyx_shard": "Onyx Shard",
   "item.spectrum.moonstone_shard": "Moonstone Shard",
-  "item.spectrum.rainbow_moonstone_shard": "Rainbow Moonstone Shard",
+  "item.spectrum.rainbow_moonstone_shard": "Glistering Moonstone Shard",
 
   "item.spectrum.vegetal": "Vegetal",
   "item.spectrum.corrupted_obsidian_dust": "Corrupted Obsidian Dust",
@@ -267,7 +275,7 @@
   "block.spectrum.glistering_melon_stem": "Glistering Melon Stem",
   "block.spectrum.attached_glistering_melon_stem": "Glistering Melon Stem",
 
-  "block.spectrum.rainbow_moonstone_block": "Block of Rainbow Moonstone",
+  "block.spectrum.rainbow_moonstone_block": "Block of Glistering Moonstone",
   "block.spectrum.small_citrine_bud": "Small Citrine Bud",
   "block.spectrum.medium_citrine_bud": "Medium Citrine Bud",
   "block.spectrum.large_citrine_bud": "Large Citrine Bud",

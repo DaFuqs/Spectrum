@@ -9,24 +9,21 @@ import net.minecraft.util.Identifier;
 
 public class SpectrumItemGroups {
 
-    public static final ItemGroup ITEM_GROUP_TOOLS = FabricItemGroupBuilder.build(
-            new Identifier(SpectrumCommon.MOD_ID, "tools"),
-            () -> new ItemStack(SpectrumItems.BEDROCK_PICKAXE));
-
-    public static final ItemGroup ITEM_GROUP_FUNCTIONAL = FabricItemGroupBuilder.build(
-            new Identifier(SpectrumCommon.MOD_ID, "functional"),
+    public static final ItemGroup ITEM_GROUP_GENERAL = FabricItemGroupBuilder.build(
+            new Identifier(SpectrumCommon.MOD_ID, "general"),
             () -> new ItemStack(SpectrumBlocks.ALTAR));
 
-    public static final ItemGroup ITEM_GROUP_DECORATION = FabricItemGroupBuilder.build(
-            new Identifier(SpectrumCommon.MOD_ID, "decoration"),
+    public static final ItemGroup ITEM_GROUP_WORLDGEN = FabricItemGroupBuilder.build(
+            new Identifier(SpectrumCommon.MOD_ID, "worldgen"),
             () -> new ItemStack(SpectrumBlocks.CITRINE_BLOCK));
 
     public static final ItemGroup ITEM_GROUP_COLORED_WOOD = FabricItemGroupBuilder.build(
             new Identifier(SpectrumCommon.MOD_ID, "colored_wood"),
-            () -> new ItemStack(SpectrumBlocks.MAGENTA_LOG));
+            () -> new ItemStack(SpectrumBlocks.LIME_LOG));
 
-    public static final ItemGroup ITEM_GROUP_GEMS = FabricItemGroupBuilder.build(
-            new Identifier(SpectrumCommon.MOD_ID, "gems"),
-            () -> new ItemStack(SpectrumBlocks.MAGENTA_LOG));
+    public static final ItemGroup ITEM_GROUP_DECORATION = FabricItemGroupBuilder.build(
+            new Identifier(SpectrumCommon.MOD_ID, "decoration"),
+            () -> new ItemStack(SpectrumBlocks.MOONSTONE_CHISELED_CALCITE));
+
 
 }

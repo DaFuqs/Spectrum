@@ -38,6 +38,7 @@ import net.minecraft.tag.BlockTags;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.IntRange;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.BlockView;
 import org.jetbrains.annotations.NotNull;
@@ -56,10 +57,10 @@ public class SpectrumBlocks {
         return false;
     }
 
-    public static FabricItemSettings functionalItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_FUNCTIONAL);
+    public static FabricItemSettings generalItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL);
+    public static FabricItemSettings worldgenItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_WORLDGEN);
     public static FabricItemSettings decorationItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_DECORATION);
     public static FabricItemSettings coloredWoodItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_COLORED_WOOD);
-    public static FabricItemSettings gemItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GEMS);
 
     private static ToIntFunction<BlockState> createLightLevelFromBlockState(int litLevel) {
         return (blockState) -> (Boolean)blockState.get(Properties.LIT) ? litLevel : 0;
@@ -413,10 +414,12 @@ public class SpectrumBlocks {
     public static final Block WHITE_LAMP = new RedstoneLampBlock(FabricBlockSettings.copyOf(Blocks.REDSTONE_LAMP));
     public static final Block YELLOW_LAMP = new RedstoneLampBlock(FabricBlockSettings.copyOf(Blocks.REDSTONE_LAMP));
 
-    // ORES TODO
-    /*public static final Block SPARKLESTONE_ORE = new RedstoneLampBlock(FabricBlockSettings.copyOf(Blocks.REDSTONE_LAMP));
-    public static final Block FAKE_DIAMONS_ORE = new RedstoneLampBlock(FabricBlockSettings.copyOf(Blocks.REDSTONE_LAMP));
-    public static final Block CLAY_ORE = new RedstoneLampBlock(FabricBlockSettings.copyOf(Blocks.REDSTONE_LAMP));
+    // ORES TODO / Disguise
+    public static final Block SPARKLESTONE_ORE = new OreBlock(FabricBlockSettings.copyOf(Blocks.STONE), IntRange.between(2, 4)); // drops sparklestone gems
+    public static final Block SPARKLESTONE_BLOCK = new Block(FabricBlockSettings.of(Material.GLASS, MapColor.YELLOW).strength(2.0F).sounds(BlockSoundGroup.GLASS).luminance((state) -> 15).emissiveLighting(SpectrumBlocks::always).postProcess(SpectrumBlocks::always));
+    public static final Block KOENIGSBLAU_ORE = new OreBlock(FabricBlockSettings.copyOf(Blocks.DIAMOND_ORE), IntRange.between(4, 7)); // needs smelting
+    public static final Block KOENIGSBLAU_BLOCK = new Block(FabricBlockSettings.copyOf(Blocks.DIAMOND_BLOCK));
+    /*public static final Block CLAY_ORE = new RedstoneLampBlock(FabricBlockSettings.copyOf(Blocks.REDSTONE_LAMP));
     public static final Block NETHER_ORE = new RedstoneLampBlock(FabricBlockSettings.copyOf(Blocks.REDSTONE_LAMP));
     public static final Block END_ORE = new RedstoneLampBlock(FabricBlockSettings.copyOf(Blocks.REDSTONE_LAMP));*/
 
@@ -459,39 +462,53 @@ public class SpectrumBlocks {
 
     public static void register() {
         registerColoredWood(coloredWoodItemSettings);
-        registerGemBlocks(gemItemSettings);
+        registerGemBlocks(worldgenItemSettings);
+        registerOreBlocks(worldgenItemSettings);
         registerStoneBlocks(decorationItemSettings);
         registerRunes(decorationItemSettings);
         registerStoneLamps(decorationItemSettings);
         registerColoredLamps(decorationItemSettings);
         registerGemGlass(decorationItemSettings);
-        registerPlayerOnlyGlass(functionalItemSettings);
+        registerPlayerOnlyGlass(generalItemSettings);
         registerFlatColoredBlocks(decorationItemSettings);
 
         // TEST
         registerBlock("altar", ALTAR);
-        registerBlockItem("altar", new BlockItem(ALTAR, functionalItemSettings));
+        registerBlockItem("altar", new BlockItem(ALTAR, generalItemSettings));
 
         // GLISTERING MELON
         registerBlock("glistering_melon", GLISTERING_MELON);
-        registerBlockItem("glistering_melon", new BlockItem(GLISTERING_MELON, functionalItemSettings));
+        registerBlockItem("glistering_melon", new BlockItem(GLISTERING_MELON, generalItemSettings));
         registerBlock("glistering_melon_stem", GLISTERING_MELON_STEM);
         registerBlock("attached_glistering_melon_stem", ATTACHED_GLISTERING_MELON_STEM);
 
         // SAPLING
         registerBlock("ominous_sapling", OMINOUS_SAPLING);
-        registerBlockItem("ominous_sapling", new OminousSaplingBlockItem(OMINOUS_SAPLING, functionalItemSettings));
+        registerBlockItem("ominous_sapling", new OminousSaplingBlockItem(OMINOUS_SAPLING, generalItemSettings));
 
         // DECAY
         registerBlock("decay1", DECAY1);
-        registerBlockItem("decay1", new BlockItem(DECAY1, functionalItemSettings));
+        registerBlockItem("decay1", new BlockItem(DECAY1, generalItemSettings));
         registerBlock("decay2", DECAY2);
-        registerBlockItem("decay2", new BlockItem(DECAY2, functionalItemSettings));
+        registerBlockItem("decay2", new BlockItem(DECAY2, generalItemSettings));
         registerBlock("decay3", DECAY3);
-        registerBlockItem("decay3", new BlockItem(DECAY3, functionalItemSettings));
+        registerBlockItem("decay3", new BlockItem(DECAY3, generalItemSettings));
 
         // FLUIDS
         registerBlock("liquid_crystal", LIQUID_CRYSTAL);
+    }
+
+    private static void registerOreBlocks(FabricItemSettings decorationItemSettings) {
+        registerBlock("sparklestone_ore", SPARKLESTONE_ORE);
+        registerBlockItem("sparklestone_ore", new BlockItem(SPARKLESTONE_ORE, decorationItemSettings));
+        registerBlock("sparklestone_block", SPARKLESTONE_BLOCK);
+        registerBlockItem("sparklestone_block", new BlockItem(SPARKLESTONE_BLOCK, decorationItemSettings));
+
+        registerBlock("koenigsblau_ore", KOENIGSBLAU_ORE);
+        registerBlockItem("koenigsblau_ore", new BlockItem(KOENIGSBLAU_ORE, decorationItemSettings));
+        registerBlock("koenigsblau_block", KOENIGSBLAU_BLOCK);
+        registerBlockItem("koenigsblau_block", new BlockItem(KOENIGSBLAU_BLOCK, decorationItemSettings));
+
     }
 
     private static void registerColoredLamps(FabricItemSettings fabricItemSettings) {

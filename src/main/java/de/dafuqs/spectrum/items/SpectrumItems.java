@@ -17,10 +17,11 @@ import static de.dafuqs.spectrum.blocks.fluid.SpectrumFluids.STILL_LIQUID_CRYSTA
 
 public class SpectrumItems {
 
-    public static FabricItemSettings toolItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_TOOLS).rarity(Rarity.COMMON);
-    public static FabricItemSettings spectrumUncommonItemSettings = toolItemSettings.rarity(Rarity.UNCOMMON);
-    public static FabricItemSettings spectrumRareItemSettings = toolItemSettings.rarity(Rarity.RARE);
-    public static FabricItemSettings spectrumBedrockItemSettings = toolItemSettings.rarity(Rarity.RARE).fireproof();
+    public static FabricItemSettings generalItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL);
+    public static FabricItemSettings spectrumWorldgenItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_WORLDGEN);
+    public static FabricItemSettings spectrumUncommonItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).rarity(Rarity.UNCOMMON);
+    public static FabricItemSettings spectrumRareItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).rarity(Rarity.RARE);
+    public static FabricItemSettings spectrumBedrockItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).rarity(Rarity.RARE).fireproof();
 
     // Bedrock Tools
     public static ToolItem BEDROCK_PICKAXE = new BedrockPickaxeItem(BedrockToolMaterial.INSTANCE, 1, -2.8F, spectrumBedrockItemSettings);
@@ -43,24 +44,27 @@ public class SpectrumItems {
     public static final Item BEDROCK_BOOTS = new ArmorItem(BEDROCK_ARMOR_MATERIAL, EquipmentSlot.FEET, spectrumBedrockItemSettings);
 
     // Gem shards
-    public static final Item CITRINE_SHARD_ITEM = new Item(toolItemSettings);
-    public static final Item TOPAZ_SHARD_ITEM = new Item(toolItemSettings);
-    public static final Item ONYX_SHARD_ITEM = new Item(toolItemSettings);
-    public static final Item MOONSTONE_SHARD_ITEM = new Item(toolItemSettings);
-    public static final Item RAINBOW_MOONSTONE_ITEM = new Item(toolItemSettings);
+    public static final Item CITRINE_SHARD_ITEM = new Item(spectrumWorldgenItemSettings);
+    public static final Item TOPAZ_SHARD_ITEM = new Item(spectrumWorldgenItemSettings);
+    public static final Item ONYX_SHARD_ITEM = new Item(spectrumWorldgenItemSettings);
+    public static final Item MOONSTONE_SHARD_ITEM = new Item(spectrumWorldgenItemSettings);
+    public static final Item RAINBOW_MOONSTONE_ITEM = new Item(spectrumWorldgenItemSettings);
 
     // DECAY DROPS
-    public static final Item VEGETAL = new Item(toolItemSettings);
+    public static final Item VEGETAL = new Item(generalItemSettings);
     public static final Item CORRUPTED_OBSIDIAN_DUST = new Item(spectrumUncommonItemSettings);
     public static final Item CORRUPTED_BEDROCK_DUST = new Item(spectrumRareItemSettings);
 
     // FLUIDS
-    public static final Item LIQUID_CRYSTAL_BUCKET = new BucketItem(STILL_LIQUID_CRYSTAL, toolItemSettings.recipeRemainder(Items.BUCKET).maxCount(1));
+    public static final Item LIQUID_CRYSTAL_BUCKET = new BucketItem(STILL_LIQUID_CRYSTAL, generalItemSettings.recipeRemainder(Items.BUCKET).maxCount(1));
 
     public static final Item SPAWNER = new Spawner(Blocks.SPAWNER, spectrumUncommonItemSettings.maxCount(64));
     public static final Item GLISTERING_MELON_SEEDS = new AliasedBlockItem(SpectrumBlocks.GLISTERING_MELON_STEM, spectrumUncommonItemSettings.maxCount(64));
 
-
+    // ORE
+    public static final Item SPARKLESTONE_GEM = new Item(spectrumWorldgenItemSettings);
+    public static final Item RAW_KOENIGSBLAU = new Item(spectrumWorldgenItemSettings);
+    public static final Item SHAPED_KOENIGSBLAU = new Item(spectrumWorldgenItemSettings);
 
     private static void registerItem(String name, Item item) {
         Registry.register(Registry.ITEM, new Identifier(SpectrumCommon.MOD_ID, name), item);
@@ -97,6 +101,10 @@ public class SpectrumItems {
         registerItem("corrupted_bedrock_dust", CORRUPTED_BEDROCK_DUST);
 
         registerItem("liquid_crystal_bucket", LIQUID_CRYSTAL_BUCKET);
+
+        registerItem("sparklestone_gem", SPARKLESTONE_GEM);
+        registerItem("raw_koenigsblau", RAW_KOENIGSBLAU);
+        registerItem("shaped_koenigsblau", SHAPED_KOENIGSBLAU);
     }
 
 

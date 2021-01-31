@@ -33,9 +33,7 @@ public class SpectrumFeatures {
 
     // COLORED TREES
     public static HashMap<DyeColor, ConfiguredFeature<TreeFeatureConfig, ?>> COLORED_TREE_FEATURES = new HashMap<>(); // FOR SAPLINGS
-    //public static HashMap<DyeColor, ConfiguredFeature<?, ?>> DECORATED_TREE_FEATURES = new HashMap<>(); // WOR WORLD GEN
-
-    public static ConfiguredFeature<?, ?> DECORATED_TREES; // WOR WORLD GEN
+    public static ConfiguredFeature<?, ?> DECORATED_TREES; // FOR WORLD GEN
 
     public static void register() {
         registerGeodes();
@@ -54,24 +52,13 @@ public class SpectrumFeatures {
                         new SimpleBlockStateProvider(SpectrumBlocks.getColoredLogBlock(dyeColor).getDefaultState()),
                         new SimpleBlockStateProvider(SpectrumBlocks.getColoredLeavesBlock(dyeColor).getDefaultState()),
                         new BlobFoliagePlacer(UniformIntDistribution.of(2), UniformIntDistribution.of(0), 3),
-                        new StraightTrunkPlacer(4, 2, 0),
+                        new StraightTrunkPlacer(4, 2, 2), // 4-8 height
                         new TwoLayersFeatureSize(1, 0, 1)))
                         .ignoreVines().build());
 
-        // how often the tree will generate naturally
-        // generate ~every 100 chunks
-        //ChanceDecoratorConfig chanceDecoratorConfig = new ChanceDecoratorConfig(20 + dyeColor.getId());
-        //ConfiguredFeature<?, ?> decoratedFeatureConfig = configuredFeature.decorate(Decorator.CHANCE.configure(chanceDecoratorConfig));
-        // In which biomes the tree will generate
-        //BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Feature.VEGETAL_DECORATION, decoratedFeatureRegistryKey);
-
         COLORED_TREE_FEATURES.put(dyeColor, Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, configuredFeatureRegistryKey.getValue(), configuredFeature));
-        //DECORATED_TREE_FEATURES.put(dyeColor, Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, decoratedFeatureRegistryKey.getValue(), decoratedFeatureConfig));
     }
 
-    /*private static <FC extends FeatureConfig> ConfiguredFeature<FC, ?> registerFeature(String id, ConfiguredFeature<FC, ?> configuredFeature) {
-        return Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, id, configuredFeature);
-    }*/
 
     private static void registerColoredTrees() {
         for(DyeColor dyeColor : DyeColor.values()) {

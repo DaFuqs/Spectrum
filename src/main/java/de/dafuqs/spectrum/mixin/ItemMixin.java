@@ -21,8 +21,11 @@ public abstract class ItemMixin {
     public void getName(ItemStack stack, CallbackInfoReturnable<Text> callbackInfoReturnable) {
         Item thisItem = (Item) (Object) this;
         if(SpectrumCommon.getModelSwapper().isSwapped(thisItem)) {
+
+            // Get the localized name of the item and scatter it via §k
             Language language = Language.getInstance();
             LiteralText newText = new LiteralText("§k" + language.get(thisItem.getTranslationKey()));
+
             callbackInfoReturnable.setReturnValue(newText);
         }
     }

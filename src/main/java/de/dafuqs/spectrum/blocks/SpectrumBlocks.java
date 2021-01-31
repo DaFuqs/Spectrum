@@ -11,7 +11,6 @@ import de.dafuqs.spectrum.blocks.types.budding.BuddingOnyxBlock;
 import de.dafuqs.spectrum.blocks.types.budding.BuddingTopazBlock;
 import de.dafuqs.spectrum.blocks.types.conditional.ColoredLeavesBlock;
 import de.dafuqs.spectrum.blocks.types.conditional.ColoredLogBlock;
-import de.dafuqs.spectrum.blocks.types.conditional.ConditionallyVisibleBlock;
 import de.dafuqs.spectrum.blocks.types.decay.DecayBlock1;
 import de.dafuqs.spectrum.blocks.types.decay.DecayBlock2;
 import de.dafuqs.spectrum.blocks.types.decay.DecayBlock3;
@@ -29,7 +28,6 @@ import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.tool.attribute.v1.FabricToolTags;
 import net.minecraft.block.*;
-import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.BlockItem;
@@ -41,8 +39,6 @@ import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
-import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import org.jetbrains.annotations.NotNull;
 
@@ -417,6 +413,18 @@ public class SpectrumBlocks {
     public static final Block WHITE_LAMP = new RedstoneLampBlock(FabricBlockSettings.copyOf(Blocks.REDSTONE_LAMP));
     public static final Block YELLOW_LAMP = new RedstoneLampBlock(FabricBlockSettings.copyOf(Blocks.REDSTONE_LAMP));
 
+    // ORES TODO
+    /*public static final Block SPARKLESTONE_ORE = new RedstoneLampBlock(FabricBlockSettings.copyOf(Blocks.REDSTONE_LAMP));
+    public static final Block FAKE_DIAMONS_ORE = new RedstoneLampBlock(FabricBlockSettings.copyOf(Blocks.REDSTONE_LAMP));
+    public static final Block CLAY_ORE = new RedstoneLampBlock(FabricBlockSettings.copyOf(Blocks.REDSTONE_LAMP));
+    public static final Block NETHER_ORE = new RedstoneLampBlock(FabricBlockSettings.copyOf(Blocks.REDSTONE_LAMP));
+    public static final Block END_ORE = new RedstoneLampBlock(FabricBlockSettings.copyOf(Blocks.REDSTONE_LAMP));*/
+
+    // PLANTS
+    /*public static final Block MAGIC_SEA_GRASS = new RedstoneLampBlock(FabricBlockSettings.copyOf(Blocks.REDSTONE_LAMP));
+    public static final Block MAGIC_BEET_ROOTS = new RedstoneLampBlock(FabricBlockSettings.copyOf(Blocks.REDSTONE_LAMP));
+    public static final Block MAGIC_SUGAR_CANE = new RedstoneLampBlock(FabricBlockSettings.copyOf(Blocks.REDSTONE_LAMP));
+
     public static final Block ENDER_BLOCK = new ConditionallyVisibleBlock(FabricBlockSettings.copyOf(Blocks.OAK_PLANKS)) { // TODO
 
         @Override
@@ -438,7 +446,7 @@ public class SpectrumBlocks {
         public VoxelShape getVisibleOutlineShape() {
             return VoxelShapes.fullCube();
         }
-    };
+    };*/
 
 
     private static void registerBlock(String name, Block block) {

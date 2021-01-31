@@ -3,17 +3,19 @@
   "package": "de.dafuqs.spectrum.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "SpawnerBlockMixin",
-    "MobSpawnerBlockEntityMixin",
-    "WorldRendererMixin",
     "AccessorShapedRecipe",
     "EndermanEntityMixin",
+    "FishingBobberEntityMixin",
+    "FishingBobberEntityRendererMixin",
+    "ItemMixin",
     "ItemModelsMixin",
-    "ItemMixin"
+    "MobSpawnerBlockEntityMixin",
+    "SpawnerBlockMixin",
+    "WorldRendererMixin"
   ],
   "client": [
-    "TransparentBlockMixin",
-    "BlockModelsMixin"
+    "BlockModelsMixin",
+    "TransparentBlockMixin"
   ],
   "injectors": {
     "defaultRequire": 1

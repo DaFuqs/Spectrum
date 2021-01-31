@@ -20,32 +20,29 @@ public class SpectrumItems {
     public static FabricItemSettings toolItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_TOOLS).rarity(Rarity.COMMON);
     public static FabricItemSettings spectrumUncommonItemSettings = toolItemSettings.rarity(Rarity.UNCOMMON);
     public static FabricItemSettings spectrumRareItemSettings = toolItemSettings.rarity(Rarity.RARE);
+    public static FabricItemSettings spectrumBedrockItemSettings = toolItemSettings.rarity(Rarity.RARE).fireproof();
 
     // Bedrock Tools
-    public static ToolItem BEDROCK_PICKAXE = new BedrockPickaxeItem(BedrockToolMaterial.INSTANCE, 1, -2.8F, spectrumRareItemSettings);
-    public static ToolItem BEDROCK_AXE = new BedrockAxeItem(BedrockToolMaterial.INSTANCE, 6, -3.0F, spectrumRareItemSettings);
-    public static ToolItem BEDROCK_SHOVEL = new BedrockShovelItem(BedrockToolMaterial.INSTANCE, 2, -3.0F, spectrumRareItemSettings);
-    public static ToolItem BEDROCK_SWORD = new BedrockSwordItem(BedrockToolMaterial.INSTANCE, 5, -2.4F, spectrumRareItemSettings);
-    public static ToolItem BEDROCK_HOE = new BedrockHoeItem(BedrockToolMaterial.INSTANCE, -2, -0.0F, spectrumRareItemSettings);
+    public static ToolItem BEDROCK_PICKAXE = new BedrockPickaxeItem(BedrockToolMaterial.INSTANCE, 1, -2.8F, spectrumBedrockItemSettings);
+    public static ToolItem BEDROCK_AXE = new BedrockAxeItem(BedrockToolMaterial.INSTANCE, 6, -3.0F, spectrumBedrockItemSettings);
+    public static ToolItem BEDROCK_SHOVEL = new BedrockShovelItem(BedrockToolMaterial.INSTANCE, 2, -3.0F, spectrumBedrockItemSettings);
+    public static ToolItem BEDROCK_SWORD = new BedrockSwordItem(BedrockToolMaterial.INSTANCE, 5, -2.4F, spectrumBedrockItemSettings);
+    public static ToolItem BEDROCK_HOE = new BedrockHoeItem(BedrockToolMaterial.INSTANCE, -2, -0.0F, spectrumBedrockItemSettings);
 
-    // General bedrock tools
-    /*public static ToolItem BEDROCK_SHEARS = new ShearsItem(BedrockToolMaterial.INSTANCE, 3, -2.4F, new Item.Settings().group(ItemGroup.COMBAT));
-    public static ToolItem FLINT_AND_BEDROCK = new SwordItem(BedrockToolMaterial.INSTANCE, 3, -2.4F, new Item.Settings().group(ItemGroup.COMBAT));
-    public static ToolItem BEDROCK_FISHING_ROD = new SwordItem(BedrockToolMaterial.INSTANCE, 3, -2.4F, new Item.Settings().group(ItemGroup.COMBAT));
-    public static ToolItem BEDROCK_SHIELD = new ShieldItem(BedrockToolMaterial.INSTANCE, 3, -2.4F, new Item.Settings().group(ItemGroup.COMBAT));
-    public static ToolItem BEDROCK_BOW = new SwordItem(BedrockToolMaterial.INSTANCE, 3, -2.4F, new Item.Settings().group(ItemGroup.COMBAT));*/
+    // Bedrock Items
+    public static BedrockBowItem BEDROCK_BOW = new BedrockBowItem(spectrumBedrockItemSettings);
+    public static BedrockCrossbowItem BEDROCK_CROSSBOW = new BedrockCrossbowItem(spectrumBedrockItemSettings);
+    public static BedrockShearsItem BEDROCK_SHEARS = new BedrockShearsItem(spectrumBedrockItemSettings); // TODO: wait for fabric pull request to get shears drop: https://github.com/FabricMC/fabric/pull/1287
+    public static FishingRodItem BEDROCK_FISHING_ROD = new BedrockFishingRodItem(spectrumBedrockItemSettings);
 
     // Bedrock Armor
     public static final BedrockArmorMaterial BEDROCK_ARMOR_MATERIAL = new BedrockArmorMaterial();
-    public static final Item BEDROCK_HELMET = new ArmorItem(BEDROCK_ARMOR_MATERIAL, EquipmentSlot.HEAD, spectrumRareItemSettings);
-    public static final Item BEDROCK_CHESTPLATE = new ArmorItem(BEDROCK_ARMOR_MATERIAL, EquipmentSlot.CHEST, spectrumRareItemSettings);
-    public static final Item BEDROCK_LEGGINGS = new ArmorItem(BEDROCK_ARMOR_MATERIAL, EquipmentSlot.LEGS, spectrumRareItemSettings);
-    public static final Item BEDROCK_BOOTS = new ArmorItem(BEDROCK_ARMOR_MATERIAL, EquipmentSlot.FEET, spectrumRareItemSettings);
+    public static final Item BEDROCK_HELMET = new ArmorItem(BEDROCK_ARMOR_MATERIAL, EquipmentSlot.HEAD, spectrumBedrockItemSettings);
+    public static final Item BEDROCK_CHESTPLATE = new ArmorItem(BEDROCK_ARMOR_MATERIAL, EquipmentSlot.CHEST, spectrumBedrockItemSettings);
+    public static final Item BEDROCK_LEGGINGS = new ArmorItem(BEDROCK_ARMOR_MATERIAL, EquipmentSlot.LEGS, spectrumBedrockItemSettings);
+    public static final Item BEDROCK_BOOTS = new ArmorItem(BEDROCK_ARMOR_MATERIAL, EquipmentSlot.FEET, spectrumBedrockItemSettings);
 
-    public static final Item SPAWNER = new Spawner(Blocks.SPAWNER, spectrumUncommonItemSettings.maxCount(64));
-
-    public static final Item GLISTERING_MELON_SEEDS = new AliasedBlockItem(SpectrumBlocks.GLISTERING_MELON_STEM, spectrumUncommonItemSettings.maxCount(64));
-
+    // Gem shards
     public static final Item CITRINE_SHARD_ITEM = new Item(toolItemSettings);
     public static final Item TOPAZ_SHARD_ITEM = new Item(toolItemSettings);
     public static final Item ONYX_SHARD_ITEM = new Item(toolItemSettings);
@@ -60,6 +57,9 @@ public class SpectrumItems {
     // FLUIDS
     public static final Item LIQUID_CRYSTAL_BUCKET = new BucketItem(STILL_LIQUID_CRYSTAL, toolItemSettings.recipeRemainder(Items.BUCKET).maxCount(1));
 
+    public static final Item SPAWNER = new Spawner(Blocks.SPAWNER, spectrumUncommonItemSettings.maxCount(64));
+    public static final Item GLISTERING_MELON_SEEDS = new AliasedBlockItem(SpectrumBlocks.GLISTERING_MELON_STEM, spectrumUncommonItemSettings.maxCount(64));
+
 
 
     private static void registerItem(String name, Item item) {
@@ -72,6 +72,11 @@ public class SpectrumItems {
         registerItem("bedrock_shovel", BEDROCK_SHOVEL);
         registerItem("bedrock_sword", BEDROCK_SWORD);
         registerItem("bedrock_hoe", BEDROCK_HOE);
+
+        registerItem("bedrock_bow", BEDROCK_BOW);
+        registerItem("bedrock_crossbow", BEDROCK_CROSSBOW);
+        registerItem("bedrock_shears", BEDROCK_SHEARS);
+        registerItem("bedrock_fishing_rod", BEDROCK_FISHING_ROD);
 
         registerItem("bedrock_helmet", BEDROCK_HELMET);
         registerItem("bedrock_chestplate", BEDROCK_CHESTPLATE);

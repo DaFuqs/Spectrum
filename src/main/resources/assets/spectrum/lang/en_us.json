@@ -228,6 +228,13 @@
   "item.spectrum.bedrock_sword": "Bedrock Sword",
   "item.spectrum.bedrock_shovel": "Bedrock Shovel",
   "item.spectrum.bedrock_hoe": "Bedrock Hoe",
+
+  "item.spectrum.bedrock_bow": "Bedrock Bow",
+  "item.spectrum.bedrock_crossbow": "Bedrock Crossbow",
+  "item.spectrum.bedrock_fishing_rod": "Bedrock Fishing Rod",
+  "item.spectrum.bedrock_shears": "Bedrock Shears",
+  "item.spectrum.bedrock_shield": "Bedrock Shield",
+
   "item.spectrum.bedrock_helmet": "Bedrock Helmet",
   "item.spectrum.bedrock_chestplate": "Bedrock Chestplate",
   "item.spectrum.bedrock_leggings": "Bedrock Leggings",

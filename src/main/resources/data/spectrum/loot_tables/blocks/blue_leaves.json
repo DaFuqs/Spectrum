@@ -36,7 +36,7 @@
                   ]
                 }
               ],
-              "name": "spectrum:blue_leaves"
+              "name": "pigment:blue_leaves"
             },
             {
               "type": "minecraft:item",
@@ -55,7 +55,7 @@
                   ]
                 }
               ],
-              "name": "spectrum:blue_sapling"
+              "name": "pigment:blue_sapling"
             }
           ]
         }

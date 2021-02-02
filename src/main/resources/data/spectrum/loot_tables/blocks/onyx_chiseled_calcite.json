@@ -6,7 +6,7 @@
     "entries": [
     {
         "type": "minecraft:item",
-        "name": "spectrum:onyx_chiseled_calcite"
+        "name": "pigment:onyx_chiseled_calcite"
     }
     ],
     "conditions": [

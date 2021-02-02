@@ -6,11 +6,11 @@
     ],
     "key": {
         "W": {
-	        "item": "spectrum:citrine_shard"
+	        "item": "pigment:citrine_shard"
         }
     },
     "result": {
-    "item": "spectrum:citrine_block",
+    "item": "pigment:citrine_block",
     "count": 1
     }
 }

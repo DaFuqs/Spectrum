@@ -7,17 +7,17 @@
     ],
     "key": {
         "T": {
-	        "item": "spectrum:polished_tuff"
+	        "item": "pigment:polished_tuff"
         },
         "G": {
 	        "item": "minecraft:glowstone_dust"
         },
         "S": {
-	        "item": "spectrum:citrine_shard"
+	        "item": "pigment:citrine_shard"
         }
     },
     "result": {
-        "item": "spectrum:citrine_tuff_lamp",
+        "item": "pigment:citrine_tuff_lamp",
         "count": 4
     }
 }

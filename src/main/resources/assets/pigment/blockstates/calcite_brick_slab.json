@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "pigment:block/calcite_brick_slab"
+    },
+    "type=double": {
+      "model": "pigment:block/calcite_bricks"
+    },
+    "type=top": {
+      "model": "pigment:block/calcite_brick_slab_top"
+    }
+  }
+}

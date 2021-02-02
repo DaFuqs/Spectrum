@@ -3,6 +3,6 @@
     "ingredient": {
         "item": "minecraft:calcite"
     },
-    "result": "spectrum:calcite_stairs",
+    "result": "pigment:calcite_stairs",
     "count": 1
 }

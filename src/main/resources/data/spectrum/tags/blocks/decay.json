@@ -1,7 +1,7 @@
 {
 	"values": [
-		"spectrum:decay1",
-		"spectrum:decay2",
-		"spectrum:decay3"
+		"pigment:decay1",
+		"pigment:decay2",
+		"pigment:decay3"
 	]
 }

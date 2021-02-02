@@ -6,10 +6,10 @@
   ],
   "key": {
     "#": {
-      "item": "spectrum:white_planks"
+      "item": "pigment:white_planks"
     }
   },
   "result": {
-    "item": "spectrum:white_plank_pressure_plate"
+    "item": "pigment:white_plank_pressure_plate"
   }
 }

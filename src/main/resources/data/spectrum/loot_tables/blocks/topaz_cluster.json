@@ -16,7 +16,7 @@
                   "predicate": {
                     "enchantments": [
                       {
-                        "enchantment": "spectrum:resonance",
+                        "enchantment": "pigment:resonance",
                         "levels": {
                           "min": 1
                         }
@@ -25,7 +25,7 @@
                   }
                 }
               ],
-              "name": "spectrum:topaz_cluster"
+              "name": "pigment:topaz_cluster"
             },
             {
               "type": "minecraft:item",
@@ -44,7 +44,7 @@
                   }
                 }
               ],
-              "name": "spectrum:topaz_cluster"
+              "name": "pigment:topaz_cluster"
             },
             {
               "type": "minecraft:item",
@@ -63,7 +63,7 @@
                   "function": "minecraft:explosion_decay"
                 }
               ],
-              "name": "spectrum:topaz_shard"
+              "name": "pigment:topaz_shard"
             }
           ]
         }

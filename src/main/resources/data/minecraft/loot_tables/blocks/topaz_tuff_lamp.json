@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "spectrum:topaz_tuff_lamp"
+          "name": "pigment:topaz_tuff_lamp"
         }
       ],
       "conditions": [

@@ -6,7 +6,7 @@
     "entries": [
     {
         "type": "minecraft:item",
-        "name": "spectrum:calcite_bricks"
+        "name": "pigment:calcite_bricks"
     }
     ],
     "conditions": [

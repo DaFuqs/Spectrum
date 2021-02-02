@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab_top",
+  "textures": {
+    "bottom": "pigment:block/purple_planks",
+    "top": "pigment:block/purple_planks",
+    "side": "pigment:block/purple_planks"
+  }
+}

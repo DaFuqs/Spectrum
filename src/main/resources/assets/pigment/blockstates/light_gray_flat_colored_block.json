@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "pigment:block/light_gray_flat_colored_block"
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "pigment:block/attached_glistering_melon_stem",
+      "y": 180
+    },
+    "facing=north": {
+      "model": "pigment:block/attached_glistering_melon_stem",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "pigment:block/attached_glistering_melon_stem",
+      "y": 270
+    },
+    "facing=west": {
+      "model": "pigment:block/attached_glistering_melon_stem"
+    }
+  }
+}

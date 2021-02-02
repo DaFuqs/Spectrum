@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "spectrum:light_blue_log"
+          "name": "pigment:light_blue_log"
         }
       ],
       "conditions": [

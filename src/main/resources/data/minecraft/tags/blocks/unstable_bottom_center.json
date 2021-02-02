@@ -1,21 +1,21 @@
 {
   "replace": false,
   "values": [
-    "spectrum:black_plank_fence_gate",
-    "spectrum:blue_plank_fence_gate",
-    "spectrum:brown_plank_fence_gate",
-    "spectrum:cyan_plank_fence_gate",
-    "spectrum:gray_plank_fence_gate",
-    "spectrum:green_plank_fence_gate",
-    "spectrum:light_blue_plank_fence_gate",
-    "spectrum:light_gray_plank_fence_gate",
-    "spectrum:lime_plank_fence_gate",
-    "spectrum:magenta_plank_fence_gate",
-    "spectrum:orange_plank_fence_gate",
-    "spectrum:pink_plank_fence_gate",
-    "spectrum:purple_plank_fence_gate",
-    "spectrum:red_plank_fence_gate",
-    "spectrum:white_plank_fence_gate",
-    "spectrum:yellow_plank_fence_gate"
+    "pigment:black_plank_fence_gate",
+    "pigment:blue_plank_fence_gate",
+    "pigment:brown_plank_fence_gate",
+    "pigment:cyan_plank_fence_gate",
+    "pigment:gray_plank_fence_gate",
+    "pigment:green_plank_fence_gate",
+    "pigment:light_blue_plank_fence_gate",
+    "pigment:light_gray_plank_fence_gate",
+    "pigment:lime_plank_fence_gate",
+    "pigment:magenta_plank_fence_gate",
+    "pigment:orange_plank_fence_gate",
+    "pigment:pink_plank_fence_gate",
+    "pigment:purple_plank_fence_gate",
+    "pigment:red_plank_fence_gate",
+    "pigment:white_plank_fence_gate",
+    "pigment:yellow_plank_fence_gate"
   ]
 }

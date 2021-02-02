@@ -6,7 +6,7 @@
     "entries": [
     {
         "type": "minecraft:item",
-        "name": "spectrum:polished_calcite"
+        "name": "pigment:polished_calcite"
     }
     ],
     "conditions": [

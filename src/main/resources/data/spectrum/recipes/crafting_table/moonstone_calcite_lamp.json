@@ -7,17 +7,17 @@
     ],
     "key": {
         "C": {
-	        "item": "spectrum:polished_calcite"
+	        "item": "pigment:polished_calcite"
         },
         "G": {
 	        "item": "minecraft:glowstone_dust"
         },
         "S": {
-	        "item": "spectrum:moonstone_shard"
+	        "item": "pigment:moonstone_shard"
         }
     },
     "result": {
-        "item": "spectrum:moonstone_calcite_lamp",
+        "item": "pigment:moonstone_calcite_lamp",
         "count": 4
     }
 }

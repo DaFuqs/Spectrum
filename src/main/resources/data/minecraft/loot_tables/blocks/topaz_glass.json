@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "spectrum:topaz_glass"
+          "name": "pigment:topaz_glass"
         }
       ],
       "conditions": [

@@ -6,11 +6,11 @@
     ],
     "key": {
         "W": {
-	        "item": "spectrum:calcite_bricks"
+	        "item": "pigment:calcite_bricks"
         }
     },
     "result": {
-    "item": "spectrum:calcite_brick_wall",
+    "item": "pigment:calcite_brick_wall",
     "count": 6
     }
 }

@@ -13,7 +13,7 @@
               "conditions": [
                 {
                   "condition": "minecraft:block_state_property",
-                  "block": "spectrum:polished_tuff_slab",
+                  "block": "pigment:polished_tuff_slab",
                   "properties": {
                     "type": "double"
                   }
@@ -26,7 +26,7 @@
               "function": "minecraft:explosion_decay"
             }
           ],
-          "name": "spectrum:polished_tuff_slab"
+          "name": "pigment:polished_tuff_slab"
         }
       ]
     }

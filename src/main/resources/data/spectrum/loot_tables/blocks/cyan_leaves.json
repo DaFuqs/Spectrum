@@ -36,7 +36,7 @@
                   ]
                 }
               ],
-              "name": "spectrum:cyan_leaves"
+              "name": "pigment:cyan_leaves"
             },
             {
               "type": "minecraft:item",
@@ -55,7 +55,7 @@
                   ]
                 }
               ],
-              "name": "spectrum:cyan_sapling"
+              "name": "pigment:cyan_sapling"
             }
           ]
         }

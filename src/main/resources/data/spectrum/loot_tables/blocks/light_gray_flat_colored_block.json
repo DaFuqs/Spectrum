@@ -6,7 +6,7 @@
         "entries": [
             {
                 "type": "minecraft:item",
-                "name": "spectrum:light_gray_flat_colored_block"
+                "name": "pigment:light_gray_flat_colored_block"
             }
             ],
             "conditions": [

@@ -10,11 +10,11 @@
       "item": "minecraft:stick"
     },
     "W": {
-      "item": "spectrum:yellow_planks"
+      "item": "pigment:yellow_planks"
     }
   },
   "result": {
-    "item": "spectrum:yellow_plank_fence",
+    "item": "pigment:yellow_plank_fence",
     "count": 3
   }
 }

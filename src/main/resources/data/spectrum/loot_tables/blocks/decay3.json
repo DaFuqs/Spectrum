@@ -7,13 +7,13 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "spectrum:corrupted_bedrock_dust"
+          "name": "pigment:corrupted_bedrock_dust"
         }
       ],
       "conditions": [
         {
           "condition": "minecraft:block_state_property",
-          "block": "spectrum:decay3",
+          "block": "pigment:decay3",
           "properties": {
             "decay_state": "bedrock"
           }

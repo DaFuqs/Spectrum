@@ -1,9 +1,9 @@
 {
     "type": "minecraft:blasting",
     "ingredient": {
-        "item": "spectrum:tuff_bricks"
+        "item": "pigment:tuff_bricks"
     },
-    "result": "spectrum:polished_tuff",
+    "result": "pigment:polished_tuff",
     "experience": 0.1,
     "cookingtime": 100
 }

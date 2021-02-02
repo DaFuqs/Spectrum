@@ -7,14 +7,14 @@
     ],
     "key": {
         "W": {
-	        "item": "spectrum:polished_tuff"
+	        "item": "pigment:polished_tuff"
         },
         "X": {
 	        "item": "minecraft:amethyst_shard"
         }
     },
     "result": {
-    "item": "spectrum:amethyst_chiseled_tuff",
+    "item": "pigment:amethyst_chiseled_tuff",
     "count": 1
     }
 }

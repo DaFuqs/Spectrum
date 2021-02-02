@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "decay_state=default": { "model": "pigment:block/decay2_default" },
+        "decay_state=obsidian": { "model": "pigment:block/decay2_obsidian" },
+        "decay_state=crying_obsidian": { "model": "pigment:block/decay2_obsidian" }
+    }
+}

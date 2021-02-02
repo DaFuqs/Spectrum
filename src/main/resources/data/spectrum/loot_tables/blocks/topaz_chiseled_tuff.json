@@ -6,7 +6,7 @@
     "entries": [
     {
         "type": "minecraft:item",
-        "name": "spectrum:topaz_chiseled_tuff"
+        "name": "pigment:topaz_chiseled_tuff"
     }
     ],
     "conditions": [

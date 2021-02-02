@@ -7,7 +7,7 @@
     ],
     "key": {
         "C": {
-	        "item": "spectrum:polished_calcite"
+	        "item": "pigment:polished_calcite"
         },
         "G": {
 	        "item": "minecraft:glowstone_dust"
@@ -17,7 +17,7 @@
         }
     },
     "result": {
-        "item": "spectrum:amethyst_calcite_lamp",
+        "item": "pigment:amethyst_calcite_lamp",
         "count": 4
     }
 }

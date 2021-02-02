@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "spectrum:black_log"
+          "name": "pigment:black_log"
         }
       ],
       "conditions": [

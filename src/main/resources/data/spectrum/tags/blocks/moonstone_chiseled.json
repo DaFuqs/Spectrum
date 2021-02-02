@@ -1,6 +1,6 @@
 {
 	"values": [
-		"spectrum:moonstone_chiseled_tuff",
-		"spectrum:moonstone_chiseled_calcite"
+		"pigment:moonstone_chiseled_tuff",
+		"pigment:moonstone_chiseled_calcite"
 	]
 }

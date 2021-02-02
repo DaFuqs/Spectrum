@@ -3,6 +3,6 @@
     "ingredient": {
         "item": "minecraft:tuff"
     },
-    "result": "spectrum:tuff_slab",
+    "result": "pigment:tuff_slab",
     "count": 2
 }

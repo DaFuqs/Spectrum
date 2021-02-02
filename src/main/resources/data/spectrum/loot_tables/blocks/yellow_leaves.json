@@ -36,7 +36,7 @@
                   ]
                 }
               ],
-              "name": "spectrum:yellow_leaves"
+              "name": "pigment:yellow_leaves"
             },
             {
               "type": "minecraft:item",
@@ -55,7 +55,7 @@
                   ]
                 }
               ],
-              "name": "spectrum:yellow_sapling"
+              "name": "pigment:yellow_sapling"
             }
           ]
         }

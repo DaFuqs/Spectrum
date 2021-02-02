@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "pigment:block/brown_plank_slab"
+    },
+    "type=double": {
+      "model": "pigment:block/brown_planks"
+    },
+    "type=top": {
+      "model": "pigment:block/brown_plank_slab_top"
+    }
+  }
+}

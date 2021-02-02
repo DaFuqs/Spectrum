@@ -1,6 +1,0 @@
-{
-    "parent": "minecraft:block/cross",
-    "textures": {
-    "cross": "spectrum:block/topaz_cluster"
-    }
-}

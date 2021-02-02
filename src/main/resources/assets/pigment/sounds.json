@@ -1,0 +1,20 @@
+{
+  "decay1_placed": {
+    "subtitle": "pigment.subtitles.block.decay1.place",
+    "sounds": [
+      "pigment:block.decay1.place"
+    ]
+  },
+  "decay2_placed": {
+    "subtitle": "pigment.subtitles.block.decay2.place",
+    "sounds": [
+      "pigment:block.decay2.place"
+    ]
+  },
+  "decay3_placed": {
+    "subtitle": "pigment.subtitles.block.decay3.place",
+    "sounds": [
+      "pigment:block.decay3.place"
+    ]
+  }
+}

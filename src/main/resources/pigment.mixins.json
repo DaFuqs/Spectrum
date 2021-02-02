@@ -1,0 +1,23 @@
+{
+  "required": true,
+  "package": "de.dafuqs.pigment.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "AccessorShapedRecipe",
+    "EndermanEntityMixin",
+    "FishingBobberEntityMixin",
+    "FishingBobberEntityRendererMixin",
+    "ItemMixin",
+    "ItemModelsMixin",
+    "MobSpawnerBlockEntityMixin",
+    "SpawnerBlockMixin",
+    "WorldRendererMixin"
+  ],
+  "client": [
+    "BlockModelsMixin",
+    "TransparentBlockMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

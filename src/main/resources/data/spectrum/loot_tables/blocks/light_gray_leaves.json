@@ -36,7 +36,7 @@
                   ]
                 }
               ],
-              "name": "spectrum:light_gray_leaves"
+              "name": "pigment:light_gray_leaves"
             },
             {
               "type": "minecraft:item",
@@ -55,7 +55,7 @@
                   ]
                 }
               ],
-              "name": "spectrum:light_gray_sapling"
+              "name": "pigment:light_gray_sapling"
             }
           ]
         }

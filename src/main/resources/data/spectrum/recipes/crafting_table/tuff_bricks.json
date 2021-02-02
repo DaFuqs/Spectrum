@@ -6,11 +6,11 @@
     ],
     "key": {
         "W": {
-	        "item": "spectrum:polished_tuff"
+	        "item": "pigment:polished_tuff"
         }
     },
     "result": {
-    "item": "spectrum:tuff_bricks",
+    "item": "pigment:tuff_bricks",
     "count": 4
     }
 }

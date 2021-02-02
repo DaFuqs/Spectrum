@@ -3,10 +3,10 @@
   "group": "wooden_button",
   "ingredients": [
     {
-      "item": "spectrum:magenta_planks"
+      "item": "pigment:magenta_planks"
     }
   ],
   "result": {
-    "item": "spectrum:magenta_plank_button"
+    "item": "pigment:magenta_plank_button"
   }
 }

@@ -6,13 +6,13 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "spectrum:corrupted_obsidian_dust"
+          "name": "pigment:corrupted_obsidian_dust"
         }
       ],
       "conditions": [
         {
           "condition": "minecraft:block_state_property",
-          "block": "spectrum:decay2",
+          "block": "pigment:decay2",
           "properties": {
             "decay_state": "obsidian"
           }
@@ -35,13 +35,13 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "spectrum:corrupted_obsidian_dust"
+          "name": "pigment:corrupted_obsidian_dust"
         }
       ],
       "conditions": [
         {
           "condition": "minecraft:block_state_property",
-          "block": "spectrum:decay2",
+          "block": "pigment:decay2",
           "properties": {
             "decay_state": "crying_obsidian"
           }

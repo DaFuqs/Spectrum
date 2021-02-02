@@ -7,11 +7,11 @@
     ],
     "key": {
         "W": {
-	        "item": "spectrum:polished_calcite"
+	        "item": "pigment:polished_calcite"
         }
     },
     "result": {
-    "item": "spectrum:polished_calcite_stairs",
+    "item": "pigment:polished_calcite_stairs",
     "count": 4
     }
 }

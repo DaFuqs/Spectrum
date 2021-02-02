@@ -3,11 +3,11 @@
   "group": "planks",
   "ingredients": [
     {
-      "item": "spectrum:black_log"
+      "item": "pigment:black_log"
     }
   ],
   "result": {
-    "item": "spectrum:black_planks",
+    "item": "pigment:black_planks",
     "count": 4
   }
 }

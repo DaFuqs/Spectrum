@@ -6,7 +6,7 @@
         "entries": [
             {
                 "type": "minecraft:item",
-                "name": "spectrum:yellow_lamp"
+                "name": "pigment:yellow_lamp"
             }
             ],
             "conditions": [

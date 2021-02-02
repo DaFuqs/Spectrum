@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "spectrum:light_gray_plank_stairs"
+          "name": "pigment:light_gray_plank_stairs"
         }
       ]
     }

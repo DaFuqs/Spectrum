@@ -6,7 +6,7 @@
         "entries": [
             {
                 "type": "minecraft:item",
-                "name": "spectrum:pink_lamp"
+                "name": "pigment:pink_lamp"
             }
             ],
             "conditions": [

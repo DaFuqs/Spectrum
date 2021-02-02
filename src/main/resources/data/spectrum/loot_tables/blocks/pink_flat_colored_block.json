@@ -6,7 +6,7 @@
         "entries": [
             {
                 "type": "minecraft:item",
-                "name": "spectrum:pink_flat_colored_block"
+                "name": "pigment:pink_flat_colored_block"
             }
             ],
             "conditions": [

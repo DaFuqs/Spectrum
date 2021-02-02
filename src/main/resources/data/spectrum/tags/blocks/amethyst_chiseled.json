@@ -1,6 +1,6 @@
 {
 	"values": [
-		"spectrum:amethyst_chiseled_tuff",
-		"spectrum:amethyst_chiseled_calcite"
+		"pigment:amethyst_chiseled_tuff",
+		"pigment:amethyst_chiseled_calcite"
 	]
 }

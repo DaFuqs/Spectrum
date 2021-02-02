@@ -36,7 +36,7 @@
                   ]
                 }
               ],
-              "name": "spectrum:black_leaves"
+              "name": "pigment:black_leaves"
             },
             {
               "type": "minecraft:item",
@@ -55,7 +55,7 @@
                   ]
                 }
               ],
-              "name": "spectrum:black_sapling"
+              "name": "pigment:black_sapling"
             }
           ]
         }

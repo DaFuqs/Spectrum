@@ -10,11 +10,11 @@
       "item": "minecraft:stick"
     },
     "W": {
-      "item": "spectrum:cyan_planks"
+      "item": "pigment:cyan_planks"
     }
   },
   "result": {
-    "item": "spectrum:cyan_plank_fence",
+    "item": "pigment:cyan_plank_fence",
     "count": 3
   }
 }

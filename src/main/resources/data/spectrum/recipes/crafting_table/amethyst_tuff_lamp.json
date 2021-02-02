@@ -7,7 +7,7 @@
     ],
     "key": {
         "T": {
-	        "item": "spectrum:polished_tuff"
+	        "item": "pigment:polished_tuff"
         },
         "G": {
 	        "item": "minecraft:glowstone_dust"
@@ -17,7 +17,7 @@
         }
     },
     "result": {
-        "item": "spectrum:amethyst_tuff_lamp",
+        "item": "pigment:amethyst_tuff_lamp",
         "count": 4
     }
 }

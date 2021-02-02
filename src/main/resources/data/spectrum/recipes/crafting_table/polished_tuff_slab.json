@@ -5,11 +5,11 @@
     ],
     "key": {
         "W": {
-	        "item": "spectrum:polished_tuff"
+	        "item": "pigment:polished_tuff"
         }
     },
     "result": {
-    "item": "spectrum:polished_tuff_slab",
+    "item": "pigment:polished_tuff_slab",
     "count": 6
     }
 }

@@ -1,21 +1,21 @@
 {
   "display": {
     "icon": {
-        "item": "spectrum:decay1"
+        "item": "pigment:decay1"
     },
     "title": {
-      "translate": "advancements.spectrum.place_decay.title"
+      "translate": "advancements.pigment.place_decay.title"
     },
     "description": {
-      "translate": "advancements.spectrum.place_decay.description"
+      "translate": "advancements.pigment.place_decay.description"
     }
   },
-  "parent": "spectrum:craft_decay",
+  "parent": "pigment:craft_decay",
   "criteria": {
     "placed_decay": {
       "trigger":"minecraft:placed_block",
       "conditions": {
-        "block": "spectrum:decay1"
+        "block": "pigment:decay1"
       }
     }
   }

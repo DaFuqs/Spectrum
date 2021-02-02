@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "lit=false": {
+      "model": "pigment:block/cyan_lamp"
+    },
+    "lit=true": {
+      "model": "pigment:block/cyan_lamp_on"
+    }
+  }
+}

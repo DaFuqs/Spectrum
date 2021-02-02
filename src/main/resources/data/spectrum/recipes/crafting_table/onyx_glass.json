@@ -10,11 +10,11 @@
 	        "item": "minecraft:glass"
         },
         "S": {
-	        "item": "spectrum:onyx_shard"
+	        "item": "pigment:onyx_shard"
         }
     },
     "result": {
-        "item": "spectrum:onyx_glass",
+        "item": "pigment:onyx_glass",
         "count": 4
     }
 }

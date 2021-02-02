@@ -1,5 +1,5 @@
 {
-  "type": "spectrum_altar",
+  "type": "pigment_altar",
   "time": 20,
   "tier": 1,
   "cyan": 0,
@@ -15,7 +15,7 @@
   ],
   "key": {
     "F": {
-      "item": "spectrum:onyx_shard"
+      "item": "pigment:onyx_shard"
     },
     "W": {
       "tag": "flowers"
@@ -25,7 +25,7 @@
     }
   },
   "result" : {
-    "item": "spectrum:onyx_glass",
+    "item": "pigment:onyx_glass",
     "count": 4
   }
 }

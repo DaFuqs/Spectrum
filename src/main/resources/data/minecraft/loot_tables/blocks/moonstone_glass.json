@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "spectrum:moonstone_glass"
+          "name": "pigment:moonstone_glass"
         }
       ],
       "conditions": [

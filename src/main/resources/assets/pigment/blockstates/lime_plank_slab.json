@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "pigment:block/lime_plank_slab"
+    },
+    "type=double": {
+      "model": "pigment:block/lime_planks"
+    },
+    "type=top": {
+      "model": "pigment:block/lime_plank_slab_top"
+    }
+  }
+}

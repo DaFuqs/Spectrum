@@ -6,7 +6,7 @@
     "entries": [
     {
         "type": "minecraft:item",
-        "name": "spectrum:tuff_wall"
+        "name": "pigment:tuff_wall"
     }
     ],
     "conditions": [

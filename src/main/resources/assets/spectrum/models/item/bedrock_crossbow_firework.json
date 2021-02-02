@@ -1,6 +1,0 @@
-{
-    "parent": "item/crossbow",
-    "textures": {
-        "layer0": "spectrum:item/bedrock_crossbow_firework"
-    }
-}

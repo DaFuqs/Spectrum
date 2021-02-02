@@ -6,7 +6,7 @@
     "entries": [
     {
         "type": "minecraft:item",
-        "name": "spectrum:calcite_wall"
+        "name": "pigment:calcite_wall"
     }
     ],
     "conditions": [

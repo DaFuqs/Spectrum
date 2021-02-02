@@ -1,6 +1,6 @@
 {
 	"values": [
-		"spectrum:citrine_chiseled_tuff",
-		"spectrum:citrine_chiseled_calcite"
+		"pigment:citrine_chiseled_tuff",
+		"pigment:citrine_chiseled_calcite"
 	]
 }

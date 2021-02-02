@@ -16,7 +16,7 @@
                   "predicate": {
                     "enchantments": [
                       {
-                        "enchantment": "spectrum:resonance",
+                        "enchantment": "pigment:resonance",
                         "levels": {
                           "min": 1
                         }
@@ -25,7 +25,7 @@
                   }
                 }
               ],
-              "name": "spectrum:large_citrine_bud"
+              "name": "pigment:large_citrine_bud"
             },
             {
               "type": "minecraft:item",
@@ -44,7 +44,7 @@
                   }
                 }
               ],
-              "name": "spectrum:large_citrine_bud"
+              "name": "pigment:large_citrine_bud"
             }
           ]
         }

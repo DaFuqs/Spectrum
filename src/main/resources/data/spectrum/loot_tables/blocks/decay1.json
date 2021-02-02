@@ -6,13 +6,13 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "spectrum:vegetal"
+          "name": "pigment:vegetal"
         }
       ],
       "conditions": [
         {
           "condition": "minecraft:block_state_property",
-          "block": "spectrum:decay1",
+          "block": "pigment:decay1",
           "properties": {
             "decay_state": "leaves"
           }
@@ -35,13 +35,13 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "spectrum:vegetal"
+          "name": "pigment:vegetal"
         }
       ],
       "conditions": [
         {
           "condition": "minecraft:block_state_property",
-          "block": "spectrum:decay1",
+          "block": "pigment:decay1",
           "properties": {
             "decay_state": "magic_leaves"
           }

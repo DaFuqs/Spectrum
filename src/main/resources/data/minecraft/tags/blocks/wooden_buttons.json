@@ -1,21 +1,21 @@
 {
   "replace": false,
   "values": [
-    "spectrum:black_plank_button",
-    "spectrum:blue_plank_button",
-    "spectrum:brown_plank_button",
-    "spectrum:cyan_plank_button",
-    "spectrum:gray_plank_button",
-    "spectrum:green_plank_button",
-    "spectrum:light_blue_plank_button",
-    "spectrum:light_gray_plank_button",
-    "spectrum:lime_plank_button",
-    "spectrum:magenta_plank_button",
-    "spectrum:orange_plank_button",
-    "spectrum:pink_plank_button",
-    "spectrum:purple_plank_button",
-    "spectrum:red_plank_button",
-    "spectrum:white_plank_button",
-    "spectrum:yellow_plank_button"
+    "pigment:black_plank_button",
+    "pigment:blue_plank_button",
+    "pigment:brown_plank_button",
+    "pigment:cyan_plank_button",
+    "pigment:gray_plank_button",
+    "pigment:green_plank_button",
+    "pigment:light_blue_plank_button",
+    "pigment:light_gray_plank_button",
+    "pigment:lime_plank_button",
+    "pigment:magenta_plank_button",
+    "pigment:orange_plank_button",
+    "pigment:pink_plank_button",
+    "pigment:purple_plank_button",
+    "pigment:red_plank_button",
+    "pigment:white_plank_button",
+    "pigment:yellow_plank_button"
   ]
 }

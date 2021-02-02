@@ -7,14 +7,14 @@
     ],
     "key": {
         "W": {
-	        "item": "spectrum:polished_tuff"
+	        "item": "pigment:polished_tuff"
         },
         "X": {
-	        "item": "spectrum:onyx_cluster"
+	        "item": "pigment:onyx_cluster"
         }
     },
     "result": {
-    "item": "spectrum:onyx_chiseled_tuff",
+    "item": "pigment:onyx_chiseled_tuff",
     "count": 4
     }
 }

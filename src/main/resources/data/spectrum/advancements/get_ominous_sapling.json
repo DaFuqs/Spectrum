@@ -1,23 +1,23 @@
 {
   "display": {
     "icon": {
-        "item": "spectrum:ominous_sapling"
+        "item": "pigment:ominous_sapling"
     },
     "title": {
-      "translate": "advancements.spectrum.get_ominous_sapling.title"
+      "translate": "advancements.pigment.get_ominous_sapling.title"
     },
     "description": {
-      "translate": "advancements.spectrum.get_ominous_sapling.description"
+      "translate": "advancements.pigment.get_ominous_sapling.description"
     }
   },
-  "parent": "spectrum:spectrum",
+  "parent": "pigment:pigment",
   "criteria": {
     "gotten_decay": {
       "trigger":"minecraft:inventory_changed",
       "conditions": {
         "items":[
           {
-            "item":"spectrum:ominous_sapling"
+            "item":"pigment:ominous_sapling"
           }
         ]
       }

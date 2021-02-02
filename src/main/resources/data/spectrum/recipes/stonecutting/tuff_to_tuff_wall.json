@@ -3,6 +3,6 @@
     "ingredient": {
         "item": "minecraft:tuff"
     },
-    "result": "spectrum:tuff_wall",
+    "result": "pigment:tuff_wall",
     "count": 1
 }

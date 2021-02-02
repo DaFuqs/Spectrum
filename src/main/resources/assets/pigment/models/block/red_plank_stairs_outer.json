@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "bottom": "pigment:block/red_planks",
+    "top": "pigment:block/red_planks",
+    "side": "pigment:block/red_planks"
+  }
+}

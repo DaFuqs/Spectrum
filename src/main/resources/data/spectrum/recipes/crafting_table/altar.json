@@ -7,26 +7,26 @@
     ],
     "key": {
         "C": {
-	        "item": "spectrum:citrine_shard"
+	        "item": "pigment:citrine_shard"
         },
         "T": {
-	        "item": "spectrum:topaz_shard"
+	        "item": "pigment:topaz_shard"
         },
         "M": {
-	        "item": "spectrum:moonstone_shard"
+	        "item": "pigment:moonstone_shard"
         },
         "A": {
 	        "item": "minecraft:amethyst_shard"
         },
         "E": {
-	        "item": "spectrum:polished_calcite"
+	        "item": "pigment:polished_calcite"
         },
         "F": {
-	        "item": "spectrum:polished_tuff"
+	        "item": "pigment:polished_tuff"
         }
     },
     "result": {
-        "item": "spectrum:altar",
+        "item": "pigment:altar",
         "count": 1
     }
 }

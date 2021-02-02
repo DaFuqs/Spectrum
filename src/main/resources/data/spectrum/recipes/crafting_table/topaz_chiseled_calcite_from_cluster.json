@@ -7,14 +7,14 @@
     ],
     "key": {
         "W": {
-	        "item": "spectrum:polished_calcite"
+	        "item": "pigment:polished_calcite"
         },
         "X": {
-	        "item": "spectrum:topaz_cluster"
+	        "item": "pigment:topaz_cluster"
         }
     },
     "result": {
-    "item": "spectrum:topaz_chiseled_calcite",
+    "item": "pigment:topaz_chiseled_calcite",
     "count": 4
     }
 }

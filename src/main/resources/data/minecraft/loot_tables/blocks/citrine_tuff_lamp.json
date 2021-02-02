@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "spectrum:citrine_tuff_lamp"
+          "name": "pigment:citrine_tuff_lamp"
         }
       ],
       "conditions": [

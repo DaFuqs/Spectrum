@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "spectrum:citrine_glass"
+          "name": "pigment:citrine_glass"
         }
       ],
       "conditions": [

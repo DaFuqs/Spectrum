@@ -10,10 +10,10 @@
       "item": "minecraft:stick"
     },
     "W": {
-      "item": "spectrum:pink_planks"
+      "item": "pigment:pink_planks"
     }
   },
   "result": {
-    "item": "spectrum:pink_plank_fence_gate"
+    "item": "pigment:pink_plank_fence_gate"
   }
 }

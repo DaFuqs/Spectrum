@@ -1,0 +1,30 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "pigment:block/citrine_cluster",
+      "x": 180
+    },
+    "facing=east": {
+      "model": "pigment:block/citrine_cluster",
+      "x": 90,
+      "y": 90
+    },
+    "facing=north": {
+      "model": "pigment:block/citrine_cluster",
+      "x": 90
+    },
+    "facing=south": {
+      "model": "pigment:block/citrine_cluster",
+      "x": 90,
+      "y": 180
+    },
+    "facing=up": {
+      "model": "pigment:block/citrine_cluster"
+    },
+    "facing=west": {
+      "model": "pigment:block/citrine_cluster",
+      "x": 90,
+      "y": 270
+    }
+  }
+}

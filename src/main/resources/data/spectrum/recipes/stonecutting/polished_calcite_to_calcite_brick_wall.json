@@ -1,8 +1,8 @@
 {
     "type": "minecraft:stonecutting",
     "ingredient": {
-        "item": "spectrum:polished_calcite"
+        "item": "pigment:polished_calcite"
     },
-    "result": "spectrum:calcite_brick_wall",
+    "result": "pigment:calcite_brick_wall",
     "count": 1
 }

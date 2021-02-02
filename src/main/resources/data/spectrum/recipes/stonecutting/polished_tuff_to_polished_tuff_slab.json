@@ -1,8 +1,8 @@
 {
     "type": "minecraft:stonecutting",
     "ingredient": {
-        "item": "spectrum:polished_tuff"
+        "item": "pigment:polished_tuff"
     },
-    "result": "spectrum:polished_tuff_slab",
+    "result": "pigment:polished_tuff_slab",
     "count": 2
 }

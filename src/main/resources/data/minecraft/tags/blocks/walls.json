@@ -1,11 +1,11 @@
 {
   "replace": false,
   "values": [
-		"spectrum:tuff_wall",
-		"spectrum:polished_tuff_wall",
-		"spectrum:tuff_brick_wall",
-		"spectrum:calcite_wall",
-		"spectrum:polished_calcite_wall",
-		"spectrum:calcite_brick_wall"
+		"pigment:tuff_wall",
+		"pigment:polished_tuff_wall",
+		"pigment:tuff_brick_wall",
+		"pigment:calcite_wall",
+		"pigment:polished_calcite_wall",
+		"pigment:calcite_brick_wall"
   ]
 }

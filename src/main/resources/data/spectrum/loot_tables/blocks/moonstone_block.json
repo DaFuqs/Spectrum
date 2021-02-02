@@ -6,7 +6,7 @@
     "entries": [
     {
         "type": "minecraft:item",
-        "name": "spectrum:moonstone_block"
+        "name": "pigment:moonstone_block"
     }
     ],
     "conditions": [

@@ -6,11 +6,11 @@
     ],
     "key": {
         "W": {
-	        "item": "spectrum:topaz_shard"
+	        "item": "pigment:topaz_shard"
         }
     },
     "result": {
-    "item": "spectrum:topaz_block",
+    "item": "pigment:topaz_block",
     "count": 1
     }
 }

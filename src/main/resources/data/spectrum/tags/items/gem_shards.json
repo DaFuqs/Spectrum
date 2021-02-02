@@ -1,10 +1,10 @@
 {
 	"values": [
 		"minecraft:amethyst_shard",
-		"spectrum:citrine_shard",
-		"spectrum:topaz_shard",
-		"spectrum:moonstone_shard",
-		"spectrum:onyx_shard",
-		"spectrum:rainbow_moonstone_shard"
+		"pigment:citrine_shard",
+		"pigment:topaz_shard",
+		"pigment:moonstone_shard",
+		"pigment:onyx_shard",
+		"pigment:rainbow_moonstone_shard"
 	]
 }

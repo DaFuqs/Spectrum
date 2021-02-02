@@ -7,14 +7,14 @@
     ],
     "key": {
         "W": {
-	        "item": "spectrum:polished_tuff"
+	        "item": "pigment:polished_tuff"
         },
         "X": {
-	        "item": "spectrum:citrine_cluster"
+	        "item": "pigment:citrine_cluster"
         }
     },
     "result": {
-    "item": "spectrum:citrine_chiseled_tuff",
+    "item": "pigment:citrine_chiseled_tuff",
     "count": 4
     }
 }

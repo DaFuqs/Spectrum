@@ -3,7 +3,7 @@
     "ingredient": {
         "item": "minecraft:tuff"
     },
-    "result": "spectrum:polished_tuff",
+    "result": "pigment:polished_tuff",
     "experience": 0.1,
     "cookingtime": 100
 }

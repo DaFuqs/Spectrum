@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "spectrum:onyx_tuff_lamp"
+          "name": "pigment:onyx_tuff_lamp"
         }
       ],
       "conditions": [

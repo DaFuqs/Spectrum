@@ -1,0 +1,6 @@
+{
+    "parent": "minecraft:block/cross",
+    "textures": {
+    "cross": "pigment:block/medium_topaz_bud"
+    }
+}

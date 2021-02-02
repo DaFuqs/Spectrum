@@ -16,7 +16,7 @@
                   "predicate": {
                     "enchantments": [
                       {
-                        "enchantment": "spectrum:resonance",
+                        "enchantment": "pigment:resonance",
                         "levels": {
                           "min": 1
                         }
@@ -25,7 +25,7 @@
                   }
                 }
               ],
-              "name": "spectrum:small_onyx_bud"
+              "name": "pigment:small_onyx_bud"
             },
             {
               "type": "minecraft:item",
@@ -44,7 +44,7 @@
                   }
                 }
               ],
-              "name": "spectrum:small_onyx_bud"
+              "name": "pigment:small_onyx_bud"
             }
           ]
         }

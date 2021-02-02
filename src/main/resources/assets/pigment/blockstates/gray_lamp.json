@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "lit=false": {
+      "model": "pigment:block/gray_lamp"
+    },
+    "lit=true": {
+      "model": "pigment:block/gray_lamp_on"
+    }
+  }
+}

@@ -10,11 +10,11 @@
 	        "item": "minecraft:glass"
         },
         "S": {
-	        "item": "spectrum:moonstone_shard"
+	        "item": "pigment:moonstone_shard"
         }
     },
     "result": {
-        "item": "spectrum:moonstone_glass",
+        "item": "pigment:moonstone_glass",
         "count": 4
     }
 }

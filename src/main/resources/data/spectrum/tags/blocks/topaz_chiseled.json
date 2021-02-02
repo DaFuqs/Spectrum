@@ -1,6 +1,6 @@
 {
 	"values": [
-		"spectrum:topaz_chiseled_tuff",
-		"spectrum:topaz_chiseled_calcite"
+		"pigment:topaz_chiseled_tuff",
+		"pigment:topaz_chiseled_calcite"
 	]
 }

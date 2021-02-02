@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "spectrum:brown_log"
+          "name": "pigment:brown_log"
         }
       ],
       "conditions": [

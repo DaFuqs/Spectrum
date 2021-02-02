@@ -7,17 +7,17 @@
     ],
     "key": {
         "T": {
-	        "item": "spectrum:polished_tuff"
+	        "item": "pigment:polished_tuff"
         },
         "G": {
 	        "item": "minecraft:glowstone_dust"
         },
         "S": {
-	        "item": "spectrum:topaz_shard"
+	        "item": "pigment:topaz_shard"
         }
     },
     "result": {
-        "item": "spectrum:topaz_tuff_lamp",
+        "item": "pigment:topaz_tuff_lamp",
         "count": 4
     }
 }

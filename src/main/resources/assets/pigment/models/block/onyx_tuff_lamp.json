@@ -1,0 +1,33 @@
+{   "parent": "block/block",
+    "textures": {
+        "particle": "pigment:block/onyx_tuff_lamp",
+        "vertical": "pigment:block/polished_tuff",
+        "side_outer": "pigment:block/onyx_tuff_lamp",
+        "inner": "pigment:block/onyx_block"
+    },
+    "elements": [
+        {   "from": [ 0, 0, 0 ],
+            "to": [ 16, 16, 16 ],
+            "faces": {
+                "down":  { "texture": "#vertical", "cullface": "down" },
+                "up":    { "texture": "#vertical", "cullface": "up" },
+                "north": { "texture": "#side_outer", "cullface": "north" },
+                "south": { "texture": "#side_outer", "cullface": "south" },
+                "west":  { "texture": "#side_outer", "cullface": "west" },
+                "east":  { "texture": "#side_outer", "cullface": "east" }
+            }
+        },
+        {   "from": [ 1, 1, 1 ],
+            "to": [ 15, 15, 15 ],
+            "faces": {
+                "down":  { "uv": [ 0, 0, 16, 16 ], "texture": "#inner"},
+                "up":    { "uv": [ 0, 0, 16, 16 ], "texture": "#inner"},
+                "north": { "uv": [ 0, 0, 16, 16 ], "texture": "#inner"},
+                "south": { "uv": [ 0, 0, 16, 16 ], "texture": "#inner"},
+                "west":  { "uv": [ 0, 0, 16, 16 ], "texture": "#inner"},
+                "east":  { "uv": [ 0, 0, 16, 16 ], "texture": "#inner"}
+            }
+        }
+    ]
+}
+

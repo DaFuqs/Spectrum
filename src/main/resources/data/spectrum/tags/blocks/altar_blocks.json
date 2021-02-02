@@ -1,8 +1,8 @@
 {
 	"values": [
-		"spectrum:polished_tuff",
-		"spectrum:tuff_bricks",
-		"spectrum:polished_calcite",
-		"spectrum:calcite_bricks"
+		"pigment:polished_tuff",
+		"pigment:tuff_bricks",
+		"pigment:polished_calcite",
+		"pigment:calcite_bricks"
 	]
 }

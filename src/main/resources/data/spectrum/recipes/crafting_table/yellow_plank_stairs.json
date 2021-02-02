@@ -8,11 +8,11 @@
   ],
   "key": {
     "#": {
-      "item": "spectrum:yellow_planks"
+      "item": "pigment:yellow_planks"
     }
   },
   "result": {
-    "item": "spectrum:yellow_plank_stairs",
+    "item": "pigment:yellow_plank_stairs",
     "count": 4
   }
 }

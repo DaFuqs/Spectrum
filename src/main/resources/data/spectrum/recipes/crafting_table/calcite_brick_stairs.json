@@ -7,11 +7,11 @@
     ],
     "key": {
         "W": {
-	        "item": "spectrum:calcite_bricks"
+	        "item": "pigment:calcite_bricks"
         }
     },
     "result": {
-    "item": "spectrum:calcite_brick_stairs",
+    "item": "pigment:calcite_brick_stairs",
     "count": 4
     }
 }

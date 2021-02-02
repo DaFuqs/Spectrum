@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/cube_all",
-  "textures": {
-    "all": "spectrum:block/white_flat_colored_block"
-  }
-}

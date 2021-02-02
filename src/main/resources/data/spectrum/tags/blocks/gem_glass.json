@@ -1,10 +1,10 @@
 {
   "replace": false,
   "values": [
-    "spectrum:amethyst_glass",
-    "spectrum:citrine_glass",
-    "spectrum:topaz_glass",
-    "spectrum:moonstone_glass",
-    "spectrum:onyx_glass"
+    "pigment:amethyst_glass",
+    "pigment:citrine_glass",
+    "pigment:topaz_glass",
+    "pigment:moonstone_glass",
+    "pigment:onyx_glass"
   ]
 }

@@ -4,19 +4,19 @@
         "item": "minecraft:dead_bush"
     },
     "title": {
-      "translate": "advancements.spectrum.plant_ominous_sapling.title"
+      "translate": "advancements.pigment.plant_ominous_sapling.title"
     },
     "description": {
-      "translate": "advancements.spectrum.plant_ominous_sapling.description"
+      "translate": "advancements.pigment.plant_ominous_sapling.description"
     }
   },
-  "parent": "spectrum:get_ominous_sapling",
+  "parent": "pigment:get_ominous_sapling",
   "criteria": {
     "planted_ominous_sapling": {
       "trigger": "minecraft:item_used_on_block",
       "conditions": {
         "item": {
-          "item": "spectrum:ominous_sapling"
+          "item": "pigment:ominous_sapling"
         }
       }
     }

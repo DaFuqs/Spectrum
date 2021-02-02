@@ -7,11 +7,11 @@
     ],
     "key": {
         "W": {
-	        "item": "spectrum:tuff_bricks"
+	        "item": "pigment:tuff_bricks"
         }
     },
     "result": {
-    "item": "spectrum:tuff_brick_stairs",
+    "item": "pigment:tuff_brick_stairs",
     "count": 4
     }
 }

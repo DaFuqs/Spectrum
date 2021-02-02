@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "spectrum:red_plank_button"
+          "name": "pigment:red_plank_button"
         }
       ]
     }

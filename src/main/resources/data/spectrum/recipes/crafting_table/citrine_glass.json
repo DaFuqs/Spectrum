@@ -10,11 +10,11 @@
 	        "item": "minecraft:glass"
         },
         "S": {
-	        "item": "spectrum:citrine_shard"
+	        "item": "pigment:citrine_shard"
         }
     },
     "result": {
-        "item": "spectrum:citrine_glass",
+        "item": "pigment:citrine_glass",
         "count": 4
     }
 }

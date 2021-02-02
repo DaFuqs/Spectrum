@@ -10,11 +10,11 @@
 	        "item": "minecraft:glass"
         },
         "S": {
-	        "item": "spectrum:topaz_shard"
+	        "item": "pigment:topaz_shard"
         }
     },
     "result": {
-        "item": "spectrum:topaz_glass",
+        "item": "pigment:topaz_glass",
         "count": 4
     }
 }

@@ -6,11 +6,11 @@
     ],
     "key": {
         "W": {
-	        "item": "spectrum:rainbow_moonstone_shard"
+	        "item": "pigment:rainbow_moonstone_shard"
         }
     },
     "result": {
-    "item": "spectrum:rainbow_moonstone_block",
+    "item": "pigment:rainbow_moonstone_block",
     "count": 1
     }
 }

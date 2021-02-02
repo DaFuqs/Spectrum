@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column_horizontal",
+  "textures": {
+    "end": "pigment:block/orange_log_top",
+    "side": "pigment:block/orange_log"
+  }
+}

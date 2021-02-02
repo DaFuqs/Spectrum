@@ -3,11 +3,11 @@
   "group": "planks",
   "ingredients": [
     {
-      "item": "spectrum:lime_log"
+      "item": "pigment:lime_log"
     }
   ],
   "result": {
-    "item": "spectrum:lime_planks",
+    "item": "pigment:lime_planks",
     "count": 4
   }
 }

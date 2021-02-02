@@ -6,11 +6,11 @@
   ],
   "key": {
     "#": {
-      "item": "spectrum:lime_planks"
+      "item": "pigment:lime_planks"
     }
   },
   "result": {
-    "item": "spectrum:lime_plank_slab",
+    "item": "pigment:lime_plank_slab",
     "count": 6
   }
 }

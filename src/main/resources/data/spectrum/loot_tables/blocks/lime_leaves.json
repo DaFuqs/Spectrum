@@ -36,7 +36,7 @@
                   ]
                 }
               ],
-              "name": "spectrum:lime_leaves"
+              "name": "pigment:lime_leaves"
             },
             {
               "type": "minecraft:item",
@@ -55,7 +55,7 @@
                   ]
                 }
               ],
-              "name": "spectrum:lime_sapling"
+              "name": "pigment:lime_sapling"
             }
           ]
         }

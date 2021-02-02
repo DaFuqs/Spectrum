@@ -6,7 +6,7 @@
     "entries": [
     {
         "type": "minecraft:item",
-        "name": "spectrum:polished_calcite_stairs"
+        "name": "pigment:polished_calcite_stairs"
     }
     ],
     "conditions": [

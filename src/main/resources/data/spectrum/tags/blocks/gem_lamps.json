@@ -1,15 +1,15 @@
 {
   "replace": false,
   "values": [
-    "spectrum:amethyst_tuff_lamp",
-    "spectrum:citrine_tuff_lamp",
-    "spectrum:topaz_tuff_lamp",
-    "spectrum:moonstone_tuff_lamp",
-    "spectrum:onyx_tuff_lamp",
-    "spectrum:amethyst_calcite_lamp",
-    "spectrum:citrine_calcite_lamp",
-    "spectrum:topaz_calcite_lamp",
-    "spectrum:moonstone_calcite_lamp",
-    "spectrum:onyx_calcite_lamp"
+    "pigment:amethyst_tuff_lamp",
+    "pigment:citrine_tuff_lamp",
+    "pigment:topaz_tuff_lamp",
+    "pigment:moonstone_tuff_lamp",
+    "pigment:onyx_tuff_lamp",
+    "pigment:amethyst_calcite_lamp",
+    "pigment:citrine_calcite_lamp",
+    "pigment:topaz_calcite_lamp",
+    "pigment:moonstone_calcite_lamp",
+    "pigment:onyx_calcite_lamp"
   ]
 }

@@ -13,7 +13,7 @@
               "predicate": {
                 "enchantments": [
                   {
-                    "enchantment": "spectrum:resonance",
+                    "enchantment": "pigment:resonance",
                     "levels": {
                       "min": 1
                     }
@@ -22,7 +22,7 @@
               }
             }
           ],
-          "name": "spectrum:budding_moonstone"
+          "name": "pigment:budding_moonstone"
         }
       ]
     }

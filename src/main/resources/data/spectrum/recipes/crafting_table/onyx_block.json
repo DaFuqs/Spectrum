@@ -6,11 +6,11 @@
     ],
     "key": {
         "W": {
-	        "item": "spectrum:onyx_shard"
+	        "item": "pigment:onyx_shard"
         }
     },
     "result": {
-    "item": "spectrum:onyx_block",
+    "item": "pigment:onyx_block",
     "count": 1
     }
 }

@@ -3,6 +3,6 @@
     "ingredient": {
         "item": "minecraft:calcite"
     },
-    "result": "spectrum:calcite_slab",
+    "result": "pigment:calcite_slab",
     "count": 2
 }

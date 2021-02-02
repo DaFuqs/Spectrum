@@ -1,23 +1,23 @@
 {
   "display": {
     "icon": {
-        "item": "spectrum:decay2"
+        "item": "pigment:decay2"
     },
     "title": {
-      "translate": "advancements.spectrum.craft_decay2.title"
+      "translate": "advancements.pigment.craft_decay2.title"
     },
     "description": {
-      "translate": "advancements.spectrum.craft_decay2.description"
+      "translate": "advancements.pigment.craft_decay2.description"
     }
   },
-  "parent": "spectrum:spectrum",
+  "parent": "pigment:pigment",
   "criteria": {
     "gotten_decay": {
       "trigger":"minecraft:inventory_changed",
       "conditions": {
         "items":[
           {
-            "item":"spectrum:decay2"
+            "item":"pigment:decay2"
           }
         ]
       }

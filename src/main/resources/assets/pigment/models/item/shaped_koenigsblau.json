@@ -1,6 +1,6 @@
 {
   "parent": "builtin/generated",
   "textures": {
-    "layer0": "pigment:item/citrine_shard"
+    "layer0": "pigment:item/shaped_koenigsblau"
   }
 }

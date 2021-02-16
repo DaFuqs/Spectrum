@@ -1,0 +1,74 @@
+{
+  "display": {
+    "icon": {
+        "item": "pigment:magenta_pigment"
+    },
+    "title": {
+      "translate": "advancements.pigment.get_pigment.title"
+    },
+    "description": {
+      "translate": "advancements.pigment.get_pigment.description"
+    }
+  },
+  "criteria": {
+    "has_magenta_pigment": {
+      "trigger":"minecraft:inventory_changed",
+      "conditions":{
+        "items":[
+          {
+            "item":"minecraft:magenta_pigment"
+          }
+        ]
+      }
+    },
+    "has_yellow_pigment": {
+      "trigger":"minecraft:inventory_changed",
+      "conditions":{
+        "items":[
+          {
+            "item":"pigment:yellow_pigment"
+          }
+        ]
+      }
+    },
+    "has_cyan_pigment": {
+      "trigger":"minecraft:inventory_changed",
+      "conditions":{
+        "items":[
+          {
+            "item":"pigment:cyan_pigment"
+          }
+        ]
+      }
+    },
+    "has_white_pigment": {
+      "trigger":"minecraft:inventory_changed",
+      "conditions":{
+        "items":[
+          {
+            "item":"pigment:white_pigment"
+          }
+        ]
+      }
+    },
+    "has_black_pigment": {
+      "trigger":"minecraft:inventory_changed",
+      "conditions":{
+        "items":[
+          {
+            "item":"pigment:black_pigment"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_amethyst_shard",
+      "has_citrine_shard",
+      "has_topaz_shard",
+      "has_moonstone_shard",
+      "has_onyx_shard"
+    ]
+  ]
+}

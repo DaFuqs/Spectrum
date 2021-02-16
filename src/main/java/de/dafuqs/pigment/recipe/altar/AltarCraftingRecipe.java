@@ -1,9 +1,11 @@
 package de.dafuqs.pigment.recipe.altar;
 
 import de.dafuqs.pigment.PigmentBlocks;
-import de.dafuqs.pigment.enums.GemColor;
+import de.dafuqs.pigment.enums.PigmentColor;
+import de.dafuqs.pigment.items.PigmentItems;
 import de.dafuqs.pigment.recipe.PigmentRecipeTypes;
 import net.minecraft.inventory.Inventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.Recipe;
@@ -25,12 +27,12 @@ public class AltarCraftingRecipe implements Recipe<Inventory> {
 
     protected final int tier;
     protected final DefaultedList<Ingredient> craftingInputs;
-    protected final HashMap<GemColor, Integer> gemInputs;
+    protected final HashMap<PigmentColor, Integer> pigmentInputs;
     protected final ItemStack output;
     protected final float experience;
     protected final int craftingTime;
 
-    public AltarCraftingRecipe(Identifier id, String group, int tier, int width, int height, DefaultedList<Ingredient> craftingInputs, HashMap<GemColor, Integer> gemInputs, ItemStack output, float experience, int craftingTime) {
+    public AltarCraftingRecipe(Identifier id, String group, int tier, int width, int height, DefaultedList<Ingredient> craftingInputs, HashMap<PigmentColor, Integer> pigmentInputs, ItemStack output, float experience, int craftingTime) {
         this.id = id;
         this.group = group;
         this.tier = tier;
@@ -39,11 +41,10 @@ public class AltarCraftingRecipe implements Recipe<Inventory> {
         this.height = height;
 
         this.craftingInputs = craftingInputs;
-        this.gemInputs = gemInputs;
+        this.pigmentInputs = pigmentInputs;
         this.output = output;
         this.experience = experience;
         this.craftingTime = craftingTime;
-
     }
 
     @Override
@@ -53,7 +54,22 @@ public class AltarCraftingRecipe implements Recipe<Inventory> {
                 return false;
             }
         }
-        return true;
+        
+        int magentaPigmentCount = this.pigmentInputs.get(PigmentColor.MAGENTA);
+        int yellowPigmentCount = this.pigmentInputs.get(PigmentColor.YELLOW);
+        int cyanPigmentCount = this.pigmentInputs.get(PigmentColor.CYAN);
+        int blackPigmentCount = this.pigmentInputs.get(PigmentColor.BLACK);
+        int whitePigmentCount = this.pigmentInputs.get(PigmentColor.WHITE);
+
+        return ((magentaPigmentCount == 0 || isStackAtLeast(inv.getStack(9), PigmentItems.MAGENTA_PIGMENT, magentaPigmentCount))
+            && (yellowPigmentCount == 0 || isStackAtLeast(inv.getStack(10), PigmentItems.YELLOW_PIGMENT, yellowPigmentCount))
+            && (cyanPigmentCount == 0 || isStackAtLeast(inv.getStack(11), PigmentItems.CYAN_PIGMENT, cyanPigmentCount))
+            && (blackPigmentCount == 0 || isStackAtLeast(inv.getStack(12), PigmentItems.BLACK_PIGMENT, blackPigmentCount))
+            && (whitePigmentCount == 0 || isStackAtLeast(inv.getStack(13), PigmentItems.WHITE_PIGMENT, magentaPigmentCount)));
+    }
+
+    private boolean isStackAtLeast(ItemStack sourceItemStack, Item item, int amount) {
+        return sourceItemStack.getItem().equals(item) && sourceItemStack.getCount() >= amount;
     }
 
     @Override
@@ -66,7 +82,6 @@ public class AltarCraftingRecipe implements Recipe<Inventory> {
         defaultedList.addAll(this.craftingInputs);
         return defaultedList;
     }
-
 
     @Override
     public boolean fits(int width, int height) {
@@ -103,8 +118,8 @@ public class AltarCraftingRecipe implements Recipe<Inventory> {
         return PigmentRecipeTypes.ALTAR;
     }
 
-    public int getGemColor(GemColor gemColor) {
-        return gemInputs.getOrDefault(gemColor, 0);
+    public int getPigmentColor(PigmentColor pigmentColor) {
+        return pigmentInputs.getOrDefault(pigmentColor, 0);
     }
 
     public int getCraftingTime() {

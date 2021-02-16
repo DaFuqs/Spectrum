@@ -1,6 +1,6 @@
 package de.dafuqs.pigment.enums;
 
-public enum GemColor {
+public enum PigmentColor {
     MAGENTA,
     CYAN,
     YELLOW,

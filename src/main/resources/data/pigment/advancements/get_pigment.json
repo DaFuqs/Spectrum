@@ -64,11 +64,11 @@
   },
   "requirements": [
     [
-      "has_amethyst_shard",
-      "has_citrine_shard",
-      "has_topaz_shard",
-      "has_moonstone_shard",
-      "has_onyx_shard"
+      "has_magenta_pigment",
+      "has_yellow_pigment",
+      "has_cyan_pigment",
+      "has_white_pigment",
+      "has_black_pigment"
     ]
   ]
 }

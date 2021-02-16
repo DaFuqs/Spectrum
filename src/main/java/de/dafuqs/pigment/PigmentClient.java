@@ -28,8 +28,6 @@ public class PigmentClient implements ClientModInitializer {
 
         PigmentContainers.register();
         ScreenRegistry.register(PigmentScreenHandlerTypes.ALTAR, AltarScreen::new);
-        // TODO
-        //ScreenRegistry.register(ScreenHandlerType.GENERIC_9X3, GenericContainerScreen::new);
 
         registerBowPredicates(PigmentItems.BEDROCK_BOW);
         registerCrossbowPredicates(PigmentItems.BEDROCK_CROSSBOW);

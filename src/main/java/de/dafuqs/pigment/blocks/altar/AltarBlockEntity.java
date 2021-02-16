@@ -2,8 +2,9 @@ package de.dafuqs.pigment.blocks.altar;
 
 import de.dafuqs.pigment.PigmentBlockEntityType;
 import de.dafuqs.pigment.PigmentBlocks;
+import de.dafuqs.pigment.enums.PigmentColor;
 import de.dafuqs.pigment.interfaces.PlayerOwned;
-import de.dafuqs.pigment.inventories.AltarCraftingScreenHandler;
+import de.dafuqs.pigment.inventories.AltarScreenHandler;
 import de.dafuqs.pigment.items.PigmentItems;
 import de.dafuqs.pigment.recipe.PigmentRecipeTypes;
 import de.dafuqs.pigment.recipe.altar.AltarCraftingRecipe;
@@ -16,14 +17,13 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventories;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SidedInventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.particle.BlockStateParticleEffect;
 import net.minecraft.particle.ParticleTypes;
-import net.minecraft.recipe.Recipe;
-import net.minecraft.recipe.RecipeFinder;
-import net.minecraft.recipe.RecipeInputProvider;
-import net.minecraft.recipe.RecipeType;
+import net.minecraft.recipe.*;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.sound.SoundCategory;
@@ -93,7 +93,7 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
 
     @Override
     protected ScreenHandler createScreenHandler(int syncId, PlayerInventory playerInventory) {
-        return new AltarCraftingScreenHandler(syncId, playerInventory, this, this.propertyDelegate);
+        return new AltarScreenHandler(syncId, playerInventory, this, this.propertyDelegate);
     }
 
     @Override
@@ -214,8 +214,7 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
 
         // only craft when there is redstone power
         Block block = world.getBlockState(blockPos).getBlock();
-        if(block.equals(PigmentBlocks.ALTAR)
-                && ((AltarBlock)block).isGettingPowered(world, blockPos)) {
+        if(block.equals(PigmentBlocks.ALTAR) && ((AltarBlock)block).isGettingPowered(world, blockPos)) {
 
             int maxCountPerStack = altarBlockEntity.getMaxCountPerStack();
             boolean crafting = altarBlockEntity.isCrafting();
@@ -225,7 +224,7 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
                 altarBlockEntity.craftingTime++;
                 if (altarBlockEntity.craftingTime == altarBlockEntity.craftingTimeTotal) {
                     altarBlockEntity.craftingTime = 0;
-                    craftRecipe(recipe, altarBlockEntity.inventory, maxCountPerStack);
+                    altarBlockEntity.craftRecipe(recipe, altarBlockEntity.inventory, maxCountPerStack);
                     shouldMarkDirty = true;
                 }
             } else {
@@ -293,12 +292,19 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
         }
     }
 
-    private static boolean craftRecipe(@Nullable Recipe<?> recipe, DefaultedList<ItemStack> defaultedList, int maxCountPerStack) {
+    private boolean craftRecipe(@Nullable AltarCraftingRecipe recipe, DefaultedList<ItemStack> defaultedList, int maxCountPerStack) {
         if (canAcceptRecipeOutput(recipe, defaultedList, maxCountPerStack)) {
 
+            // -1 for all crafting inputs
             for(int i = 0; i < 9; i++) {
                 ItemStack itemStack = defaultedList.get(i);
                 itemStack.decrement(1);
+            }
+
+            // -X for all the pigment inputs
+            for(PigmentColor pigmentColor : PigmentColor.values()) {
+                int pigmentAmount = recipe.getPigmentColor(pigmentColor);
+                inventory.get(getSlotForPigmentColor(pigmentColor)).decrement(pigmentAmount);
             }
 
             ItemStack output = recipe.getOutput();
@@ -322,11 +328,39 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
             return true;
         }
 
-        return slot == 9 && stack.getItem().equals(PigmentItems.MAGENTA_PIGMENT)
-                || slot == 10 && stack.getItem().equals(PigmentItems.YELLOW_PIGMENT)
-                || slot == 11 && stack.getItem().equals(PigmentItems.CYAN_PIGMENT)
-                || slot == 12 && stack.getItem().equals(PigmentItems.BLACK_PIGMENT)
-                || slot == 13 && stack.getItem().equals(PigmentItems.WHITE_PIGMENT);
+        return stack.getItem().equals(getPigmentItemForSlot(slot));
+    }
+
+    public static Item getPigmentItemForSlot(int slot) {
+        switch (slot) {
+            case 9:
+                return PigmentItems.MAGENTA_PIGMENT;
+            case 10:
+                return PigmentItems.YELLOW_PIGMENT;
+            case 11:
+                return PigmentItems.CYAN_PIGMENT;
+            case 12:
+                return PigmentItems.BLACK_PIGMENT;
+            case 13:
+                return PigmentItems.WHITE_PIGMENT;
+            default:
+                return Items.AIR;
+        }
+    }
+
+    public static int getSlotForPigmentColor(PigmentColor pigmentColor) {
+        switch (pigmentColor) {
+            case MAGENTA:
+                return 9;
+            case YELLOW:
+                return 10;
+            case CYAN:
+                return 11;
+            case BLACK:
+                return 12;
+            default: // WHITE
+                return 13;
+        }
     }
 
     @Override

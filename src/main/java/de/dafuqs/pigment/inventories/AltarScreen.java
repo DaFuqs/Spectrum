@@ -8,11 +8,11 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
-public class AltarScreen extends HandledScreen<AltarCraftingScreenHandler> {
+public class AltarScreen extends HandledScreen<AltarScreenHandler> {
 
     private static final Identifier BACKGROUND = new Identifier(PigmentCommon.MOD_ID, "textures/gui/container/altar.png");
 
-    public AltarScreen(AltarCraftingScreenHandler handler, PlayerInventory playerInventory, Text title) {
+    public AltarScreen(AltarScreenHandler handler, PlayerInventory playerInventory, Text title) {
         super(handler, playerInventory, title);
         this.backgroundHeight = 194;
     }

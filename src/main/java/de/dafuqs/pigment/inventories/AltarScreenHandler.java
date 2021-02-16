@@ -24,26 +24,26 @@ import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.world.World;
 
-public class AltarCraftingScreenHandler extends AbstractRecipeScreenHandler<Inventory> {
+public class AltarScreenHandler extends AbstractRecipeScreenHandler<Inventory> {
 
     private final Inventory inventory;
     private final PropertyDelegate propertyDelegate;
     protected final World world;
     private final RecipeBookCategory category;
 
-    public AltarCraftingScreenHandler(int syncId, PlayerInventory playerInventory) {
+    public AltarScreenHandler(int syncId, PlayerInventory playerInventory) {
         this(PigmentScreenHandlerTypes.ALTAR, PigmentRecipeTypes.ALTAR, RecipeBookCategory.CRAFTING, syncId, playerInventory);
     }
 
-    protected AltarCraftingScreenHandler(ScreenHandlerType<?> type, RecipeType<? extends AltarCraftingRecipe> recipeType, RecipeBookCategory recipeBookCategory, int i, PlayerInventory playerInventory) {
+    protected AltarScreenHandler(ScreenHandlerType<?> type, RecipeType<? extends AltarCraftingRecipe> recipeType, RecipeBookCategory recipeBookCategory, int i, PlayerInventory playerInventory) {
         this(type, recipeType, recipeBookCategory, i, playerInventory, new SimpleInventory(15), new ArrayPropertyDelegate(2));
     }
 
-    public AltarCraftingScreenHandler(int syncId, PlayerInventory playerInventory, Inventory inventory, PropertyDelegate propertyDelegate) {
+    public AltarScreenHandler(int syncId, PlayerInventory playerInventory, Inventory inventory, PropertyDelegate propertyDelegate) {
         this(PigmentScreenHandlerTypes.ALTAR, PigmentRecipeTypes.ALTAR, RecipeBookCategory.CRAFTING, syncId, playerInventory, inventory, propertyDelegate);
     }
 
-    protected AltarCraftingScreenHandler(ScreenHandlerType<?> type, RecipeType<? extends AltarCraftingRecipe> recipeType, RecipeBookCategory recipeBookCategory, int i, PlayerInventory playerInventory, Inventory inventory, PropertyDelegate propertyDelegate) {
+    protected AltarScreenHandler(ScreenHandlerType<?> type, RecipeType<? extends AltarCraftingRecipe> recipeType, RecipeBookCategory recipeBookCategory, int i, PlayerInventory playerInventory, Inventory inventory, PropertyDelegate propertyDelegate) {
         super(type, i);
         this.category = recipeBookCategory;
         this.inventory = inventory;
@@ -62,7 +62,7 @@ public class AltarCraftingScreenHandler extends AbstractRecipeScreenHandler<Inve
             }
         }
 
-        // gem slots
+        // pigment slots
         this.addSlot(new StackFilterSlot(inventory, 9,  44 + 0 * 18, 77, PigmentItems.MAGENTA_PIGMENT));
         this.addSlot(new StackFilterSlot(inventory, 10, 44 + 1 * 18, 77, PigmentItems.YELLOW_PIGMENT));
         this.addSlot(new StackFilterSlot(inventory, 11, 44 + 2 * 18, 77, PigmentItems.CYAN_PIGMENT));

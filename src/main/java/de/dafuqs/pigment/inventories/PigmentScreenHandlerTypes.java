@@ -5,10 +5,10 @@ import net.minecraft.screen.ScreenHandlerType;
 
 public class PigmentScreenHandlerTypes {
 
-    public static ScreenHandlerType<AltarCraftingScreenHandler> ALTAR;
+    public static ScreenHandlerType<AltarScreenHandler> ALTAR;
 
     public static void register() {
-        ALTAR = ScreenHandlerRegistry.registerSimple(PigmentContainers.ALTAR, (AltarCraftingScreenHandler::new));
+        ALTAR = ScreenHandlerRegistry.registerSimple(PigmentContainers.ALTAR, (AltarScreenHandler::new));
     }
 
 }

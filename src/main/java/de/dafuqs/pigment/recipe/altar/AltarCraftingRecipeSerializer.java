@@ -1,7 +1,7 @@
 package de.dafuqs.pigment.recipe.altar;
 
 import com.google.gson.JsonObject;
-import de.dafuqs.pigment.enums.GemColor;
+import de.dafuqs.pigment.enums.PigmentColor;
 import de.dafuqs.pigment.mixin.AccessorShapedRecipe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
@@ -38,26 +38,26 @@ public class AltarCraftingRecipeSerializer<T extends AltarCraftingRecipe> implem
         float experience = JsonHelper.getFloat(jsonObject, "experience", 0);
         int craftingTime = JsonHelper.getInt(jsonObject, "time", 200);
 
-        HashMap<GemColor, Integer> gemInputs = new HashMap<>();
+        HashMap<PigmentColor, Integer> gemInputs = new HashMap<>();
         if(JsonHelper.hasPrimitive(jsonObject, "cyan")) {
             int amount = JsonHelper.getInt(jsonObject, "cyan", 0);
-            gemInputs.put(GemColor.CYAN, amount);
+            gemInputs.put(PigmentColor.CYAN, amount);
         }
         if(JsonHelper.hasPrimitive(jsonObject, "magenta")) {
             int amount = JsonHelper.getInt(jsonObject, "magenta", 0);
-            gemInputs.put(GemColor.MAGENTA, amount);
+            gemInputs.put(PigmentColor.MAGENTA, amount);
         }
         if(JsonHelper.hasPrimitive(jsonObject, "yellow")) {
             int amount = JsonHelper.getInt(jsonObject, "yellow", 0);
-            gemInputs.put(GemColor.YELLOW, amount);
+            gemInputs.put(PigmentColor.YELLOW, amount);
         }
         if(JsonHelper.hasPrimitive(jsonObject, "white")) {
             int amount = JsonHelper.getInt(jsonObject, "white", 0);
-            gemInputs.put(GemColor.WHITE, amount);
+            gemInputs.put(PigmentColor.WHITE, amount);
         }
         if(JsonHelper.hasPrimitive(jsonObject, "black")) {
             int amount = JsonHelper.getInt(jsonObject, "black", 0);
-            gemInputs.put(GemColor.BLACK, amount);
+            gemInputs.put(PigmentColor.BLACK, amount);
         }
 
         return this.recipeFactory.create(identifier, group, tier, width, height, craftingInputs, gemInputs, output, experience, craftingTime);
@@ -83,12 +83,12 @@ public class AltarCraftingRecipeSerializer<T extends AltarCraftingRecipe> implem
         int black = packetByteBuf.readVarInt();
         int white = packetByteBuf.readVarInt();
 
-        HashMap<GemColor, Integer> gemInputs = new HashMap<>();
-        if(magenta > 0) { gemInputs.put(GemColor.MAGENTA, magenta); }
-        if(cyan > 0   ) { gemInputs.put(GemColor.CYAN, cyan); }
-        if(yellow > 0 ) { gemInputs.put(GemColor.YELLOW, yellow); }
-        if(black > 0  ) { gemInputs.put(GemColor.BLACK, black); }
-        if(white > 0  ) { gemInputs.put(GemColor.WHITE, white); }
+        HashMap<PigmentColor, Integer> gemInputs = new HashMap<>();
+        if(magenta > 0) { gemInputs.put(PigmentColor.MAGENTA, magenta); }
+        if(cyan > 0   ) { gemInputs.put(PigmentColor.CYAN, cyan); }
+        if(yellow > 0 ) { gemInputs.put(PigmentColor.YELLOW, yellow); }
+        if(black > 0  ) { gemInputs.put(PigmentColor.BLACK, black); }
+        if(white > 0  ) { gemInputs.put(PigmentColor.WHITE, white); }
 
         float experience = packetByteBuf.readFloat();
         int craftingTime = packetByteBuf.readVarInt();
@@ -111,18 +111,18 @@ public class AltarCraftingRecipeSerializer<T extends AltarCraftingRecipe> implem
         packetByteBuf.writeItemStack(altarCraftingRecipe.output);
 
         packetByteBuf.writeInt(altarCraftingRecipe.tier);
-        packetByteBuf.writeInt(altarCraftingRecipe.getGemColor(GemColor.MAGENTA));
-        packetByteBuf.writeInt(altarCraftingRecipe.getGemColor(GemColor.CYAN));
-        packetByteBuf.writeInt(altarCraftingRecipe.getGemColor(GemColor.YELLOW));
-        packetByteBuf.writeInt(altarCraftingRecipe.getGemColor(GemColor.BLACK));
-        packetByteBuf.writeInt(altarCraftingRecipe.getGemColor(GemColor.WHITE));
+        packetByteBuf.writeInt(altarCraftingRecipe.getPigmentColor(PigmentColor.MAGENTA));
+        packetByteBuf.writeInt(altarCraftingRecipe.getPigmentColor(PigmentColor.CYAN));
+        packetByteBuf.writeInt(altarCraftingRecipe.getPigmentColor(PigmentColor.YELLOW));
+        packetByteBuf.writeInt(altarCraftingRecipe.getPigmentColor(PigmentColor.BLACK));
+        packetByteBuf.writeInt(altarCraftingRecipe.getPigmentColor(PigmentColor.WHITE));
 
         packetByteBuf.writeFloat(altarCraftingRecipe.experience);
         packetByteBuf.writeInt(altarCraftingRecipe.craftingTime);
     }
 
     public interface RecipeFactory<T extends AltarCraftingRecipe> {
-        T create(Identifier id, String group, int tier, int width, int height, DefaultedList<Ingredient> craftingInputs, HashMap<GemColor, Integer> gemInputs, ItemStack output, float experience, int craftingTime);
+        T create(Identifier id, String group, int tier, int width, int height, DefaultedList<Ingredient> craftingInputs, HashMap<PigmentColor, Integer> gemInputs, ItemStack output, float experience, int craftingTime);
     }
 
 }

@@ -1,6 +1,8 @@
 package de.dafuqs.pigment.mixin;
 
 import de.dafuqs.pigment.PigmentCommon;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.LiteralText;
@@ -12,10 +14,12 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+@Environment(EnvType.CLIENT)
 @Mixin(Item.class)
 public abstract class ItemMixin {
 
-    @Shadow public abstract Text getName();
+    @Shadow
+    public abstract Text getName();
 
     @Inject(at = @At("HEAD"), method = "Lnet/minecraft/item/Item;getName(Lnet/minecraft/item/ItemStack;)Lnet/minecraft/text/Text;", cancellable = true)
     public void getName(ItemStack stack, CallbackInfoReturnable<Text> callbackInfoReturnable) {

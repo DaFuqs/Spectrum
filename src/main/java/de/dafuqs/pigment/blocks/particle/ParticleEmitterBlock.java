@@ -19,10 +19,18 @@ public class ParticleEmitterBlock extends Block {
 
     ParticleEffect particleEffect;
     int randomEveryXTicks;
-    Vector3d sourcePositionOffset;
-    Vector3d randomPositionOffset;
-    Vector3d sourceVelocity;
-    Vector3d randomVelocity;
+    double sourcePositionOffsetX;
+    double sourcePositionOffsetY;
+    double sourcePositionOffsetZ;
+    double randomPositionOffsetX;
+    double randomPositionOffsetY;
+    double randomPositionOffsetZ;
+    double sourceVelocityX;
+    double sourceVelocityY;
+    double sourceVelocityZ;
+    double randomVelocityX;
+    double randomVelocityY;
+    double randomVelocityZ;
 
     public ParticleEmitterBlock(FabricBlockSettings of) {
         super(of);
@@ -32,30 +40,38 @@ public class ParticleEmitterBlock extends Block {
 
         this.particleEffect = ParticleTypes.FLAME;
         this.randomEveryXTicks = 1;
-        this.sourcePositionOffset = new Vector3d(0, 3, 0);
-        this.randomPositionOffset = new Vector3d(1, 0, 1);
-        this.sourceVelocity = new Vector3d(0, 0.1, 0);
-        this.randomVelocity = new Vector3d(0.3, 0.1, 0);
+        this.sourcePositionOffsetX = 0;
+        this.sourcePositionOffsetY = 3;
+        this.sourcePositionOffsetZ = 0;
+        this.randomPositionOffsetX = 1;
+        this.randomPositionOffsetY = 0;
+        this.randomPositionOffsetZ = 1;
+        this.sourceVelocityX = 0;
+        this.sourceVelocityY = 0.1;
+        this.sourceVelocityZ = 0;
+        this.randomVelocityX = 0.2;
+        this.randomVelocityY = 0.1;
+        this.randomVelocityZ = 0;
     }
 
     @Environment(EnvType.CLIENT)
     public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
         if (random.nextInt(this.randomEveryXTicks) == 0) {
-            double randomOffsetX = randomPositionOffset.x == 0 ? 0 : randomPositionOffset.x - random.nextDouble() * randomPositionOffset.x * 2.0D;
-            double randomOffsetY = randomPositionOffset.y == 0 ? 0 : randomPositionOffset.y - random.nextDouble() * randomPositionOffset.y * 2.0D;
-            double randomOffsetZ = randomPositionOffset.z == 0 ? 0 : randomPositionOffset.z - random.nextDouble() * randomPositionOffset.z * 2.0D;
+            double randomOffsetX = randomPositionOffsetX == 0 ? 0 : randomPositionOffsetX - random.nextDouble() * randomPositionOffsetX * 2.0D;
+            double randomOffsetY = randomPositionOffsetY == 0 ? 0 : randomPositionOffsetY - random.nextDouble() * randomPositionOffsetY * 2.0D;
+            double randomOffsetZ = randomPositionOffsetZ == 0 ? 0 : randomPositionOffsetZ - random.nextDouble() * randomPositionOffsetZ * 2.0D;
 
-            double randomVelocityX = randomVelocity.x == 0 ? 0 : randomVelocity.x * random.nextDouble();
-            double randomVelocityY = randomVelocity.y == 0 ? 0 : randomVelocity.y * random.nextDouble();
-            double randomVelocityZ = randomVelocity.z == 0 ? 0 : randomVelocity.z * random.nextDouble();
+            double randomVelocityX = this.randomVelocityX == 0 ? 0 : this.randomVelocityX * random.nextDouble();
+            double randomVelocityY = this.randomVelocityY == 0 ? 0 : this.randomVelocityY * random.nextDouble();
+            double randomVelocityZ = this.randomVelocityZ == 0 ? 0 : this.randomVelocityZ * random.nextDouble();
             
             world.addParticle(particleEffect, 
-                    (double) pos.getX() + sourcePositionOffset.x + randomOffsetX,
-                    (double) pos.getY() + sourcePositionOffset.y + randomOffsetY,
-                    (double) pos.getZ() + sourcePositionOffset.z + randomOffsetZ,
-                    sourceVelocity.x + randomVelocityX,
-                    sourceVelocity.y + randomVelocityY,
-                    sourceVelocity.z + randomVelocityZ);
+                    (double) pos.getX() + sourcePositionOffsetX + randomOffsetX,
+                    (double) pos.getY() + sourcePositionOffsetY + randomOffsetY,
+                    (double) pos.getZ() + sourcePositionOffsetZ + randomOffsetZ,
+                    sourceVelocityX + randomVelocityX,
+                    sourceVelocityY + randomVelocityY,
+                    sourceVelocityZ + randomVelocityZ);
         }
     }
 

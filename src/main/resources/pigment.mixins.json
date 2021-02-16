@@ -7,7 +7,6 @@
     "EndermanEntityMixin",
     "FishingBobberEntityMixin",
     "FishingBobberEntityRendererMixin",
-    "ItemMixin",
     "ItemModelsMixin",
     "MobSpawnerBlockEntityMixin",
     "SpawnerBlockMixin",
@@ -16,7 +15,8 @@
   ],
   "client": [
     "BlockModelsMixin",
-    "TransparentBlockMixin"
+    "TransparentBlockMixin",
+    "ItemMixin"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -9,6 +9,7 @@ import net.fabricmc.api.Environment;
 import net.minecraft.block.BlockState;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
+import net.minecraft.fluid.WaterFluid;
 import net.minecraft.item.Item;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
@@ -40,7 +41,7 @@ public abstract class LiquidCrystalFluid extends PigmentFluid {
 
 	@Override
 	protected BlockState toBlockState(FluidState fluidState) {
-		return PigmentBlocks.LIQUID_CRYSTAL.getDefaultState().with(Properties.LEVEL_15, method_15741(fluidState));
+		return PigmentBlocks.LIQUID_CRYSTAL.getDefaultState().with(Properties.LEVEL_15, getBlockStateLevel(fluidState));
 	}
 
 	@Override

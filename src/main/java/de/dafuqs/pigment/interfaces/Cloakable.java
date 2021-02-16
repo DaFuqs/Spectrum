@@ -22,12 +22,13 @@ import java.util.List;
 
 public interface Cloakable {
 
-    abstract boolean isCloaked(PlayerEntity playerEntity, BlockState blockState);
-    abstract void setCloaked();
-    abstract void setUncloaked();
-    abstract boolean wasLastCloaked();
-    abstract void setLastCloaked(boolean lastCloaked);
+    boolean isCloaked(PlayerEntity playerEntity, BlockState blockState);
+    void setCloaked();
+    void setUncloaked();
+    boolean wasLastCloaked();
+    void setLastCloaked(boolean lastCloaked);
 
+    // TODO: Way to check this on the server without ClientPlayerEntity
     default void checkCloak(BlockState state) {
         ClientPlayerEntity clientPlayerEntity = MinecraftClient.getInstance().player;
 

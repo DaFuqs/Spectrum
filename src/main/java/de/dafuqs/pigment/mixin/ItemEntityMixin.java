@@ -1,19 +1,26 @@
 package de.dafuqs.pigment.mixin;
 
+import de.dafuqs.pigment.inventories.AutoCraftingInventory;
+import de.dafuqs.pigment.recipe.PigmentRecipeTypes;
+import de.dafuqs.pigment.recipe.anvil_crushing.AnvilCrushingRecipe;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.data.TrackedData;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.recipe.RecipeType;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.particle.ParticleEffect;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvent;
+import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+
+import java.util.Optional;
 
 @Mixin(ItemEntity.class)
 public abstract class ItemEntityMixin {
@@ -24,54 +31,58 @@ public abstract class ItemEntityMixin {
 
     @Shadow public abstract boolean damage(DamageSource source, float amount);
 
-    @Inject(at=@At("HEAD"), method="Lnet/minecraft/entity/ItemEntity;damage(Lnet/minecraft/entity/damage/DamageSource;F)Z")
-    public void doAnvilCrafting(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
+    @Inject(at=@At("HEAD"), method="Lnet/minecraft/entity/ItemEntity;damage(Lnet/minecraft/entity/damage/DamageSource;F)Z", cancellable = true)
+    public void doAnvilCrafting(DamageSource source, float amount, CallbackInfoReturnable<Boolean> callbackInfoReturnable) {
         if(DamageSource.ANVIL.equals(source)) {
             ItemEntity thisEntity = (ItemEntity) (Object) this;
             ItemStack thisItemStack = thisEntity.getStack();
-            Item thisItem = thisItemStack.getItem();
+            World world = thisEntity.getEntityWorld();
 
-            RecipeType anvilCraftingRecipeType = Registry.RECIPE_TYPE.get(Identifier.tryParse("pigment_anvil_crushing"));
-            // TODO: crafting
-            /*if (thisItem instanceof AnvilCrushable) {
+            AutoCraftingInventory autoCraftingInventory = new AutoCraftingInventory();
+            autoCraftingInventory.setCompacting(AutoCraftingInventory.AutoCraftingMode.OnexOne, thisItemStack);
+
+            Optional<AnvilCrushingRecipe> optionalAnvilCrushingRecipe = world.getServer().getRecipeManager().getFirstMatch(PigmentRecipeTypes.ANVIL_CRUSHING, autoCraftingInventory, world);
+            if(optionalAnvilCrushingRecipe.isPresent()) {
                 // Item can be crafted via anvil. Do anvil crafting
+                AnvilCrushingRecipe recipe = optionalAnvilCrushingRecipe.get();
 
                 int itemStackAmount = thisEntity.getStack().getCount();
-                int craftingInputAmount = Math.min(itemStackAmount, ((AnvilCrushable) thisItem).getAnvilCrushingAmount(amount));
-                int craftingResultAmount = ((AnvilCrushable) thisItem).getAnvilCraftingResultAmount(craftingInputAmount);
+                int crushingInputAmount = Math.min (itemStackAmount, (int) (recipe.getCrushedItemsPerPointOfDamage() * amount));
 
-                if(craftingResultAmount > 0) {
+                if(crushingInputAmount > 0) {
+                    ItemStack crushingOutput = recipe.getOutputItemStack();
+                    crushingOutput.setCount(crushingOutput.getCount() * crushingInputAmount);
+
                     // Remove the input amount from the source stack
-                    int remainingItemStackAmount = thisItemStack.getCount() - craftingInputAmount;
+                    // Or the source stack altogether if it would be empty
+                    int remainingItemStackAmount = itemStackAmount - crushingInputAmount;
                     if (remainingItemStackAmount > 0) {
-                        thisItemStack.setCount(thisItemStack.getCount() - craftingInputAmount);
+                        thisItemStack.setCount(remainingItemStackAmount);
                     } else {
                         thisEntity.remove(Entity.RemovalReason.DISCARDED);
                     }
 
                     // Spawn the resulting item stack in the world
-                    World world = thisEntity.getEntityWorld();
                     Vec3d position = thisEntity.getPos();
-                    Item craftedItem = ((AnvilCrushable) thisItem).getAnvilCrushingItem();
-                    ItemStack craftedItemStack = new ItemStack(craftedItem, craftingResultAmount);
-                    ItemEntity craftedEntity = new ItemEntity(world, position.x, position.y, position.z, craftedItemStack);
+                    ItemEntity craftedEntity = new ItemEntity(world, position.x, position.y, position.z, crushingOutput);
                     world.spawnEntity(craftedEntity);
 
                     // TODO: SEND SOUND AND PARTICLES TO CLIENTS
                     // Play sound
-                    SoundEvent soundEvent = ((AnvilCrushable) thisItem).getCraftingSoundEvent();
+                    SoundEvent soundEvent = recipe.getSoundEvent();
                     float randomVolume = 0.9F + world.getRandom().nextFloat() * 0.2F;
                     float randomPitch = 0.9F + world.getRandom().nextFloat() * 0.2F;
                     world.playSound(position.x, position.y, position.z, soundEvent, SoundCategory.BLOCKS, randomVolume, randomPitch, false);
 
                     // Particle Effect
-                    ParticleEffect particleType = ((AnvilCrushable) thisItem).getCraftingParticleType();
-                    world.addParticle(particleType, position.x, position.y, position.z, 0.2, 0, 0);
-                    world.addParticle(particleType, position.x, position.y, position.z, 0, 0, 0.2);
-                    world.addParticle(particleType, position.x, position.y, position.z, -0.2, 0, 0);
-                    world.addParticle(particleType, position.x, position.y, position.z, 0, 0, -0.2);
+                    ParticleEffect particleEffect = recipe.getParticleEffect();
+                    world.addParticle(particleEffect, position.x, position.y, position.z, 0, 0, 0);
                 }
-            }*/
+
+                // prevent the source itemStack taking damage.
+                // ItemEntities have a health of 5 and can actually get killed by a falling anvil
+                callbackInfoReturnable.setReturnValue(true);
+            }
         }
     }
 

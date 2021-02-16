@@ -11,7 +11,8 @@
     "ItemModelsMixin",
     "MobSpawnerBlockEntityMixin",
     "SpawnerBlockMixin",
-    "WorldRendererMixin"
+    "WorldRendererMixin",
+    "ItemEntityMixin"
   ],
   "client": [
     "BlockModelsMixin",

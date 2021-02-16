@@ -29,6 +29,7 @@ public class CompressorBlockEntity extends LootableContainerBlockEntity {
 
     private DefaultedList<ItemStack> inventory;
 
+    AutoCraftingInventory autoCraftingInventory = new AutoCraftingInventory();
     ItemStack lastCraftingItemStack;// cache
     CraftingRecipe lastCraftingRecipe; // cache
     boolean hasToCraft;
@@ -108,7 +109,6 @@ public class CompressorBlockEntity extends LootableContainerBlockEntity {
                 }
 
                 if(craftingStacks != null) {
-                    AutoCraftingInventory autoCraftingInventory = new AutoCraftingInventory();
                     autoCraftingInventory.setCompacting(AutoCraftingInventory.AutoCraftingMode.ThreeXTree, craftingStacks.get(0).copy());
                     optionalCraftingRecipe = world.getServer().getRecipeManager().getFirstMatch(RecipeType.CRAFTING, autoCraftingInventory, world);
                     if(!optionalCraftingRecipe.isPresent() || optionalCraftingRecipe.get().getOutput().isEmpty()) {

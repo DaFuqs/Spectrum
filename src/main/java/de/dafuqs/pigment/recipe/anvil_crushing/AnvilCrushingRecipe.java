@@ -4,11 +4,15 @@ import de.dafuqs.pigment.recipe.PigmentRecipeTypes;
 import net.minecraft.block.Blocks;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.particle.ParticleEffect;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.RecipeType;
+import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 
 public class AnvilCrushingRecipe implements Recipe<Inventory> {
@@ -70,4 +74,20 @@ public class AnvilCrushingRecipe implements Recipe<Inventory> {
         return PigmentRecipeTypes.ANVIL_CRUSHING;
     }
 
+    public float getCrushedItemsPerPointOfDamage() {
+        return crushedItemsPerPointOfDamage;
+    }
+
+    public ItemStack getOutputItemStack() {
+        return outputItemStack.copy();
+    }
+
+    public SoundEvent getSoundEvent() {
+        return Registry.SOUND_EVENT.get(soundEvent);
+    }
+
+    public ParticleEffect getParticleEffect() {
+        return ParticleTypes.EFFECT; //TODO
+        //return Registry.E.get(particleEffect);
+    }
 }

@@ -7,23 +7,23 @@ import net.minecraft.item.ItemStack;
 public class AutoCraftingInventory extends CraftingInventory {
 
     public enum AutoCraftingMode {
+        OnexOne,
         TwoXTwo,
         ThreeXTree
     }
 
     private AutoCraftingMode autoCraftingMode;
-    ItemStack compactingItemStack;
+    ItemStack inputItemStack;
 
     public AutoCraftingInventory() {
         super(null, 3, 3);
-        this.compactingItemStack = ItemStack.EMPTY;
+        this.inputItemStack = ItemStack.EMPTY;
         this.autoCraftingMode = AutoCraftingMode.ThreeXTree;
     }
 
     public void setCompacting(AutoCraftingMode autoCraftingMode, ItemStack itemStack) {
         this.autoCraftingMode = autoCraftingMode;
-        this.compactingItemStack = itemStack;
-        this.compactingItemStack.setCount(1);
+        this.inputItemStack = itemStack;
     }
 
     @Override
@@ -38,7 +38,7 @@ public class AutoCraftingInventory extends CraftingInventory {
 
     @Override
     public ItemStack getStack(int slot) {
-        return compactingItemStack;
+        return inputItemStack;
     }
 
     @Override
@@ -67,6 +67,8 @@ public class AutoCraftingInventory extends CraftingInventory {
 
     private int getSize() {
         switch (this.autoCraftingMode) {
+            case OnexOne:
+                return 1;
             case TwoXTwo:
                 return 2;
             default:

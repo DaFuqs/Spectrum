@@ -231,6 +231,12 @@
   "block.pigment.yellow_plank_slab": "Yellow Plank Slab",
   "block.pigment.yellow_plank_fence_gate": "Yellow Plank Fence Gate",
 
+  "item.pigment.magenta_pigment": "Magenta Pigment",
+  "item.pigment.yellow_pigment": "Yellow Pigment",
+  "item.pigment.cyan_pigment": "Cyan Pigment",
+  "item.pigment.white_pigment": "White Pigment",
+  "item.pigment.black_pigment": "Black Pigment",
+
   "item.pigment.bedrock_pickaxe": "Bedrock Pickaxe",
   "item.pigment.bedrock_axe": "Bedrock Axe",
   "item.pigment.bedrock_sword": "Bedrock Sword",

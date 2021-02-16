@@ -16,7 +16,7 @@
       "conditions":{
         "items":[
           {
-            "item":"minecraft:magenta_pigment"
+            "item":"pigment:magenta_pigment"
           }
         ]
       }

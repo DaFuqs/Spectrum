@@ -1,7 +1,7 @@
 {
   "type": "pigment_anvil_crushing",
   "ingredient": {
-    "item": "minecraft:moonstone_shard"
+    "item": "pigment:moonstone_shard"
   },
   "crushedItemsPerPointOfDamage": 1,
   "experience": 0.4,

@@ -1,7 +1,7 @@
 package de.dafuqs.pigment.items;
 
 import de.dafuqs.pigment.PigmentCommon;
-import de.dafuqs.pigment.blocks.PigmentBlocks;
+import de.dafuqs.pigment.PigmentBlocks;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;

@@ -1,0 +1,6 @@
+{
+    "parent": "block/cube_all",
+    "textures": {
+    "all": "pigment:block/chiseled_polished_calcite"
+    }
+}

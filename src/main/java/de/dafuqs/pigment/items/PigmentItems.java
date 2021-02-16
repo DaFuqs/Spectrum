@@ -1,7 +1,7 @@
 package de.dafuqs.pigment.items;
 
 import de.dafuqs.pigment.PigmentCommon;
-import de.dafuqs.pigment.blocks.PigmentBlocks;
+import de.dafuqs.pigment.PigmentBlocks;
 import de.dafuqs.pigment.items.armor.BedrockArmorMaterial;
 import de.dafuqs.pigment.items.misc.Spawner;
 import de.dafuqs.pigment.items.tools.*;
@@ -13,7 +13,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
 import net.minecraft.util.registry.Registry;
 
-import static de.dafuqs.pigment.blocks.fluid.PigmentFluids.STILL_LIQUID_CRYSTAL;
+import static de.dafuqs.pigment.PigmentFluids.STILL_LIQUID_CRYSTAL;
 
 public class PigmentItems {
 
@@ -22,6 +22,13 @@ public class PigmentItems {
     public static FabricItemSettings pigmentUncommonItemSettings = new FabricItemSettings().group(PigmentItemGroups.ITEM_GROUP_GENERAL).rarity(Rarity.UNCOMMON);
     public static FabricItemSettings pigmentRareItemSettings = new FabricItemSettings().group(PigmentItemGroups.ITEM_GROUP_GENERAL).rarity(Rarity.RARE);
     public static FabricItemSettings pigmentBedrockItemSettings = new FabricItemSettings().group(PigmentItemGroups.ITEM_GROUP_GENERAL).rarity(Rarity.RARE).fireproof();
+
+    // Pigment
+    public static Item MAGENTA_PIGMENT = new Item(generalItemSettings);
+    public static Item YELLOW_PIGMENT = new Item(generalItemSettings);
+    public static Item CYAN_PIGMENT = new Item(generalItemSettings);
+    public static Item BLACK_PIGMENT = new Item(generalItemSettings);
+    public static Item WHITE_PIGMENT = new Item(generalItemSettings);
 
     // Bedrock Tools
     public static ToolItem BEDROCK_PICKAXE = new BedrockPickaxeItem(BedrockToolMaterial.INSTANCE, 1, -2.8F, pigmentBedrockItemSettings);
@@ -71,6 +78,12 @@ public class PigmentItems {
     }
 
     public static void register() {
+        registerItem("magenta_pigment", MAGENTA_PIGMENT);
+        registerItem("yellow_pigment", YELLOW_PIGMENT);
+        registerItem("cyan_pigment", CYAN_PIGMENT);
+        registerItem("black_pigment", BLACK_PIGMENT);
+        registerItem("white_pigment", WHITE_PIGMENT);
+
         registerItem("bedrock_pickaxe", BEDROCK_PICKAXE);
         registerItem("bedrock_axe", BEDROCK_AXE);
         registerItem("bedrock_shovel", BEDROCK_SHOVEL);

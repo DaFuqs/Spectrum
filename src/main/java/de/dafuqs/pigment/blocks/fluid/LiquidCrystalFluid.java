@@ -1,6 +1,7 @@
 package de.dafuqs.pigment.blocks.fluid;
 
-import de.dafuqs.pigment.blocks.PigmentBlocks;
+import de.dafuqs.pigment.PigmentBlocks;
+import de.dafuqs.pigment.PigmentFluids;
 import de.dafuqs.pigment.items.PigmentItems;
 import de.dafuqs.pigment.sounds.PigmentSoundEvents;
 import net.fabricmc.api.EnvType;
@@ -20,7 +21,7 @@ import net.minecraft.world.World;
 import java.util.Optional;
 import java.util.Random;
 
-public abstract class LiquidCrystalFluid extends SpectrumFluid {
+public abstract class LiquidCrystalFluid extends PigmentFluid {
 
 	@Override
 	public Fluid getStill() {

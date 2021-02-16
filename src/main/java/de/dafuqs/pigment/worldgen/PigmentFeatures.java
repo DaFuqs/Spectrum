@@ -2,7 +2,7 @@ package de.dafuqs.pigment.worldgen;
 
 import com.google.common.collect.ImmutableList;
 import de.dafuqs.pigment.PigmentCommon;
-import de.dafuqs.pigment.blocks.PigmentBlocks;
+import de.dafuqs.pigment.PigmentBlocks;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.minecraft.block.BlockState;

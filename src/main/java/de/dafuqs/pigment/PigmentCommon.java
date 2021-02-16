@@ -1,10 +1,5 @@
 package de.dafuqs.pigment;
 
-import de.dafuqs.pigment.blocks.PigmentBlockEntityType;
-import de.dafuqs.pigment.blocks.PigmentBlockTags;
-import de.dafuqs.pigment.blocks.PigmentBlocks;
-import de.dafuqs.pigment.blocks.fluid.PigmentFluidTags;
-import de.dafuqs.pigment.blocks.fluid.PigmentFluids;
 import de.dafuqs.pigment.config.PigmentConfig;
 import de.dafuqs.pigment.enchantments.PigmentEnchantments;
 import de.dafuqs.pigment.inventories.PigmentContainers;

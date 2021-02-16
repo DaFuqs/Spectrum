@@ -1,7 +1,5 @@
 package de.dafuqs.pigment;
 
-import de.dafuqs.pigment.blocks.PigmentBlocks;
-import de.dafuqs.pigment.blocks.fluid.PigmentFluids;
 import de.dafuqs.pigment.inventories.AltarScreen;
 import de.dafuqs.pigment.inventories.PigmentContainers;
 import de.dafuqs.pigment.inventories.PigmentScreenHandlerTypes;
@@ -30,6 +28,8 @@ public class PigmentClient implements ClientModInitializer {
 
         PigmentContainers.register();
         ScreenRegistry.register(PigmentScreenHandlerTypes.ALTAR, AltarScreen::new);
+        // TODO
+        //ScreenRegistry.register(ScreenHandlerType.GENERIC_9X3, GenericContainerScreen::new);
 
         registerBowPredicates(PigmentItems.BEDROCK_BOW);
         registerCrossbowPredicates(PigmentItems.BEDROCK_CROSSBOW);

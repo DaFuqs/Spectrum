@@ -1,6 +1,6 @@
 package de.dafuqs.pigment.mixin;
 
-import de.dafuqs.pigment.blocks.PigmentBlocks;
+import de.dafuqs.pigment.PigmentBlocks;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.mob.EndermanEntity;
 import net.minecraft.server.world.ServerWorld;

@@ -381,6 +381,8 @@
 
   "advancements.pigment.get_pigment.title": "He said it!",
   "advancements.pigment.get_pigment.description": "Is there a more straightforward way to crush something into dust?",
+  "advancements.pigment.craft_using_altar.title": "Strangely familiar",
+  "advancements.pigment.craft_using_altar.description": "Use your personal altar to craft an item. It seems to react to power?",
 
   "advancements.pigment.craft_decay.title": "That which should not be",
   "advancements.pigment.craft_decay.description": "The alchemists were wrong. There is no universal solvent. But you're sure there is something else...",

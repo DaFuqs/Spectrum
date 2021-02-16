@@ -2,12 +2,15 @@ package de.dafuqs.pigment.blocks.altar;
 
 import de.dafuqs.pigment.PigmentBlockEntityType;
 import de.dafuqs.pigment.PigmentBlocks;
+import de.dafuqs.pigment.PigmentCommon;
 import de.dafuqs.pigment.enums.PigmentColor;
 import de.dafuqs.pigment.interfaces.PlayerOwned;
 import de.dafuqs.pigment.inventories.AltarScreenHandler;
 import de.dafuqs.pigment.items.PigmentItems;
 import de.dafuqs.pigment.recipe.PigmentRecipeTypes;
 import de.dafuqs.pigment.recipe.altar.AltarCraftingRecipe;
+import net.fabricmc.loader.game.MinecraftGameProvider;
+import net.minecraft.advancement.Advancement;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.LockableContainerBlockEntity;
@@ -26,11 +29,14 @@ import net.minecraft.particle.ParticleTypes;
 import net.minecraft.recipe.*;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -316,9 +322,20 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
                 existingOutput.increment(output.getCount());
             }
 
+            grantPlayerCraftingAdvancement();
+
             return true;
         } else {
             return false;
+        }
+    }
+
+    private void grantPlayerCraftingAdvancement() {
+        Advancement advancement = PigmentCommon.minecraftServer.getAdvancementLoader().get(new Identifier(PigmentCommon.MOD_ID, "craft_using_altar"));
+        ServerPlayerEntity serverPlayerEntity = PigmentCommon.minecraftServer.getPlayerManager().getPlayer(this.playerUUID);
+
+        if(advancement != null && serverPlayerEntity != null) {
+            serverPlayerEntity.getAdvancementTracker().grantCriterion(advancement, "craft");
         }
     }
 

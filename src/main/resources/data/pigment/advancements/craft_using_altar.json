@@ -1,0 +1,19 @@
+{
+  "display": {
+    "icon": {
+        "item": "pigment:altar"
+    },
+    "title": {
+      "translate": "advancements.pigment.craft_using_altar.title"
+    },
+    "description": {
+      "translate": "advancements.pigment.craft_using_altar.description"
+    }
+  },
+  "parent": "pigment:pigment",
+  "criteria": {
+    "craft": {
+      "trigger":"minecraft:impossible"
+    }
+  }
+}

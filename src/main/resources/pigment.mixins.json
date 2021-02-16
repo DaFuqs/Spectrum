@@ -11,7 +11,8 @@
     "MobSpawnerBlockEntityMixin",
     "SpawnerBlockMixin",
     "WorldRendererMixin",
-    "ItemEntityMixin"
+    "ItemEntityMixin",
+    "AnvilBlockMixin"
   ],
   "client": [
     "BlockModelsMixin",

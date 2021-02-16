@@ -90,4 +90,8 @@ public class AnvilCrushingRecipe implements Recipe<Inventory> {
         return ParticleTypes.EFFECT; //TODO
         //return Registry.E.get(particleEffect);
     }
+
+    public float getExperience() {
+        return experience;
+    }
 }

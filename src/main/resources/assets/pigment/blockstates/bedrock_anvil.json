@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "pigment:block/bedrock_anvil",
+      "y": 270
+    },
+    "facing=north": {
+      "model": "pigment:block/bedrock_anvil",
+      "y": 180
+    },
+    "facing=south": {
+      "model": "pigment:block/bedrock_anvil"
+    },
+    "facing=west": {
+      "model": "pigment:block/bedrock_anvil",
+      "y": 90
+    }
+  }
+}

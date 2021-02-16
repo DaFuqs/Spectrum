@@ -373,6 +373,7 @@
   "block.pigment.altar": "Altar",
   "block.pigment.altar.title_with_owner": "Altar of %s",
   "block.pigment.ominous_sapling": "Ominous Sapling",
+  "block.pigment.bedrock_anvil": "Bedrock Anvil",
 
   "advancements.pigment.pigment.title": "Pigment",
   "advancements.pigment.pigment.description": "A story about magic, colors, and chaos.",

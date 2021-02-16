@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/template_anvil",
+  "textures": {
+    "top": "pigment:block/bedrock_anvil_top"
+  }
+}

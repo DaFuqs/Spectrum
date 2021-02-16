@@ -26,7 +26,7 @@ public class PigmentBlockEntityType<T extends BlockEntity> {
     public static void register() {
         OMINOUS_SAPLING_BLOCK_ENTITY_TYPE = create("ominous_sapling_block_entity", FabricBlockEntityTypeBuilder.create(OminousSaplingBlockEntity::new, PigmentBlocks.OMINOUS_SAPLING));
         ALTAR_BLOCK_ENTITY_TYPE = create("altar_block_entity", FabricBlockEntityTypeBuilder.create(AltarBlockEntity::new, PigmentBlocks.ALTAR));
-        COMPRESSOR_BLOCK_ENTITY_TYPE = create("compressor", FabricBlockEntityTypeBuilder.create(CompressorBlockEntity::new, PigmentBlocks.COMPRESSOR_BLOCK));
+        COMPRESSOR_BLOCK_ENTITY_TYPE = create("compressor", FabricBlockEntityTypeBuilder.create(CompressorBlockEntity::new, PigmentBlocks.COMPRESSOR));
     }
 
 }

@@ -3,7 +3,9 @@ package de.dafuqs.pigment.mixin;
 import de.dafuqs.pigment.inventories.AutoCraftingInventory;
 import de.dafuqs.pigment.recipe.PigmentRecipeTypes;
 import de.dafuqs.pigment.recipe.anvil_crushing.AnvilCrushingRecipe;
+import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.ExperienceOrbEntity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.data.TrackedData;
@@ -66,6 +68,14 @@ public abstract class ItemEntityMixin {
                     Vec3d position = thisEntity.getPos();
                     ItemEntity craftedEntity = new ItemEntity(world, position.x, position.y, position.z, crushingOutput);
                     world.spawnEntity(craftedEntity);
+
+                    // Spawn XP depending on how much is crafted, but at least 1
+                    float craftingXP = recipe.getExperience() * crushingInputAmount;
+                    if(craftingXP < 0) {
+                        craftingXP = 1;
+                    }
+                    ExperienceOrbEntity experienceOrbEntity = new ExperienceOrbEntity(world, position.x, position.y, position.z, (int) craftingXP);
+                    world.spawnEntity(experienceOrbEntity);
 
                     // TODO: SEND SOUND AND PARTICLES TO CLIENTS
                     // Play sound

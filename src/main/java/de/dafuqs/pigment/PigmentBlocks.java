@@ -424,8 +424,9 @@ public class PigmentBlocks {
     public static final Block KOENIGSBLAU_ORE = new OreBlock(FabricBlockSettings.copyOf(Blocks.DIAMOND_ORE), IntRange.between(4, 7)); // needs smelting
     public static final Block KOENIGSBLAU_BLOCK = new Block(FabricBlockSettings.copyOf(Blocks.DIAMOND_BLOCK));
 
-    public static final Block PARTICLE_EMITTER_BLOCK = new ParticleEmitterBlock(FabricBlockSettings.of(Material.METAL));
-    public static final Block COMPRESSOR_BLOCK = new CompressorBlock(FabricBlockSettings.of(Material.METAL));;
+    public static final Block PARTICLE_EMITTER = new ParticleEmitterBlock(FabricBlockSettings.of(Material.METAL));
+    public static final Block COMPRESSOR = new CompressorBlock(FabricBlockSettings.of(Material.METAL));
+    public static final Block BEDROCK_ANVIL = new BedrockAnvilBlock(FabricBlockSettings.copyOf(Blocks.ANVIL).hardness(8));
 
     /*public static final Block CLAY_ORE = new RedstoneLampBlock(FabricBlockSettings.copyOf(Blocks.REDSTONE_LAMP));
     public static final Block NETHER_ORE = new RedstoneLampBlock(FabricBlockSettings.copyOf(Blocks.REDSTONE_LAMP));
@@ -505,11 +506,13 @@ public class PigmentBlocks {
         // FLUIDS
         registerBlock("liquid_crystal", LIQUID_CRYSTAL);
 
-        registerBlock("particle_emitter", PARTICLE_EMITTER_BLOCK);
-        registerBlockItem("particle_emitter", new BlockItem(PARTICLE_EMITTER_BLOCK, generalItemSettings));
+        registerBlock("particle_emitter", PARTICLE_EMITTER);
+        registerBlockItem("particle_emitter", new BlockItem(PARTICLE_EMITTER, generalItemSettings));
 
-        registerBlock("compressor", COMPRESSOR_BLOCK);
-        registerBlockItem("compressor", new BlockItem(COMPRESSOR_BLOCK, generalItemSettings));
+        registerBlock("compressor", COMPRESSOR);
+        registerBlockItem("compressor", new BlockItem(COMPRESSOR, generalItemSettings));
+        registerBlock("bedrock_anvil", BEDROCK_ANVIL);
+        registerBlockItem("bedrock_anvil", new BlockItem(BEDROCK_ANVIL, generalItemSettings));
     }
 
     private static void registerOreBlocks(FabricItemSettings decorationItemSettings) {

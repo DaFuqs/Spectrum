@@ -3,8 +3,8 @@ package de.dafuqs.pigment.inventories;
 import de.dafuqs.pigment.inventories.slots.ReadOnlySlot;
 import de.dafuqs.pigment.inventories.slots.StackFilterSlot;
 import de.dafuqs.pigment.items.PigmentItems;
-import de.dafuqs.pigment.recipe.altar.AltarCraftingRecipe;
 import de.dafuqs.pigment.recipe.PigmentRecipeTypes;
+import de.dafuqs.pigment.recipe.altar.AltarCraftingRecipe;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.entity.player.PlayerEntity;
@@ -12,13 +12,15 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeFinder;
 import net.minecraft.recipe.RecipeInputProvider;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.recipe.book.RecipeBookCategory;
-import net.minecraft.screen.*;
+import net.minecraft.screen.AbstractRecipeScreenHandler;
+import net.minecraft.screen.ArrayPropertyDelegate;
+import net.minecraft.screen.PropertyDelegate;
+import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.world.World;
 
@@ -61,11 +63,11 @@ public class AltarCraftingScreenHandler extends AbstractRecipeScreenHandler<Inve
         }
 
         // gem slots
-        this.addSlot(new StackFilterSlot(inventory, 9,  44 + 0 * 18, 77, Items.AMETHYST_SHARD));
-        this.addSlot(new StackFilterSlot(inventory, 10, 44 + 1 * 18, 77, PigmentItems.CITRINE_SHARD_ITEM));
-        this.addSlot(new StackFilterSlot(inventory, 11, 44 + 2 * 18, 77, PigmentItems.TOPAZ_SHARD_ITEM));
-        this.addSlot(new StackFilterSlot(inventory, 12, 44 + 3 * 18, 77, PigmentItems.ONYX_SHARD_ITEM));
-        this.addSlot(new StackFilterSlot(inventory, 13, 44 + 4 * 18, 77, PigmentItems.MOONSTONE_SHARD_ITEM));
+        this.addSlot(new StackFilterSlot(inventory, 9,  44 + 0 * 18, 77, PigmentItems.MAGENTA_PIGMENT));
+        this.addSlot(new StackFilterSlot(inventory, 10, 44 + 1 * 18, 77, PigmentItems.YELLOW_PIGMENT));
+        this.addSlot(new StackFilterSlot(inventory, 11, 44 + 2 * 18, 77, PigmentItems.CYAN_PIGMENT));
+        this.addSlot(new StackFilterSlot(inventory, 12, 44 + 3 * 18, 77, PigmentItems.BLACK_PIGMENT));
+        this.addSlot(new StackFilterSlot(inventory, 13, 44 + 4 * 18, 77, PigmentItems.WHITE_PIGMENT));
 
         // preview slot
         this.addSlot(new ReadOnlySlot(inventory, 14, 127, 37));

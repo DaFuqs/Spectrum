@@ -17,7 +17,6 @@ import net.minecraft.inventory.Inventories;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SidedInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.particle.BlockStateParticleEffect;
 import net.minecraft.particle.ParticleTypes;
@@ -323,11 +322,11 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
             return true;
         }
 
-        return slot == 9 && stack.getItem().equals(Items.AMETHYST_SHARD)
-                || slot == 10 && stack.getItem().equals(PigmentItems.CITRINE_SHARD_ITEM)
-                || slot == 11 && stack.getItem().equals(PigmentItems.TOPAZ_SHARD_ITEM)
-                || slot == 12 && stack.getItem().equals(PigmentItems.ONYX_SHARD_ITEM)
-                || slot == 13 && stack.getItem().equals(PigmentItems.MOONSTONE_SHARD_ITEM);
+        return slot == 9 && stack.getItem().equals(PigmentItems.MAGENTA_PIGMENT)
+                || slot == 10 && stack.getItem().equals(PigmentItems.YELLOW_PIGMENT)
+                || slot == 11 && stack.getItem().equals(PigmentItems.CYAN_PIGMENT)
+                || slot == 12 && stack.getItem().equals(PigmentItems.BLACK_PIGMENT)
+                || slot == 13 && stack.getItem().equals(PigmentItems.WHITE_PIGMENT);
     }
 
     @Override

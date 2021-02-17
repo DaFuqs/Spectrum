@@ -2,7 +2,7 @@ package de.dafuqs.pigment.recipe.altar;
 
 import de.dafuqs.pigment.PigmentBlocks;
 import de.dafuqs.pigment.enums.PigmentColor;
-import de.dafuqs.pigment.items.PigmentItems;
+import de.dafuqs.pigment.PigmentItems;
 import de.dafuqs.pigment.recipe.PigmentRecipeTypes;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.Item;

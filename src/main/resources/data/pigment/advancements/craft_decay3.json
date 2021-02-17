@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-        "item": "pigment:decay3"
+        "item": "pigment:decay_3_placer"
     },
     "title": {
       "translate": "advancements.pigment.craft_decay3.title"
@@ -17,7 +17,7 @@
       "conditions": {
         "items":[
           {
-            "item":"pigment:decay3"
+            "item":"pigment:decay_3_placer"
           }
         ]
       }

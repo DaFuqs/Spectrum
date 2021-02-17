@@ -4,7 +4,6 @@ import de.dafuqs.pigment.config.PigmentConfig;
 import de.dafuqs.pigment.enchantments.PigmentEnchantments;
 import de.dafuqs.pigment.inventories.PigmentContainers;
 import de.dafuqs.pigment.inventories.PigmentScreenHandlerTypes;
-import de.dafuqs.pigment.items.PigmentItems;
 import de.dafuqs.pigment.recipe.PigmentRecipeTypes;
 import de.dafuqs.pigment.sounds.PigmentSoundEvents;
 import de.dafuqs.pigment.worldgen.PigmentFeatures;

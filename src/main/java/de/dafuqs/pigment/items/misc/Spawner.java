@@ -1,6 +1,6 @@
 package de.dafuqs.pigment.items.misc;
 
-import de.dafuqs.pigment.items.PigmentItems;
+import de.dafuqs.pigment.PigmentItems;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.entity.BlockEntity;

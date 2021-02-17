@@ -1,4 +1,4 @@
-package de.dafuqs.pigment.items;
+package de.dafuqs.pigment;
 
 import de.dafuqs.pigment.PigmentCommon;
 import de.dafuqs.pigment.PigmentBlocks;

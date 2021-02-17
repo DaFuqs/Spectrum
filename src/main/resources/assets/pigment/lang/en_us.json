@@ -366,6 +366,9 @@
   "block.pigment.onyx_tuff_lamp": "Onyx Tuff Lamp",
   "block.pigment.moonstone_tuff_lamp": "Moonstone Tuff Lamp",
 
+  "block.pigment.decay_1_player": "Bottle of Fading",
+  "block.pigment.decay_2_player": "Bottle of Failing",
+  "block.pigment.decay_3_player": "Bottle of Ruin",
   "block.pigment.decay1": "Fading",
   "block.pigment.decay2": "Failing",
   "block.pigment.decay3": "Ruin",

@@ -20,8 +20,6 @@ import de.dafuqs.pigment.blocks.melon.AttachedGlisteringStemBlock;
 import de.dafuqs.pigment.blocks.melon.GlisteringMelonBlock;
 import de.dafuqs.pigment.blocks.melon.GlisteringStemBlock;
 import de.dafuqs.pigment.blocks.particle.ParticleEmitterBlock;
-import de.dafuqs.pigment.items.PigmentItemGroups;
-import de.dafuqs.pigment.items.PigmentItems;
 import de.dafuqs.pigment.misc.PigmentMaterial;
 import de.dafuqs.pigment.worldgen.ColoredSaplingGenerator;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
@@ -497,11 +495,8 @@ public class PigmentBlocks {
 
         // DECAY
         registerBlock("decay1", DECAY1);
-        registerBlockItem("decay1", new BlockItem(DECAY1, generalItemSettings));
         registerBlock("decay2", DECAY2);
-        registerBlockItem("decay2", new BlockItem(DECAY2, generalItemSettings));
         registerBlock("decay3", DECAY3);
-        registerBlockItem("decay3", new BlockItem(DECAY3, generalItemSettings));
 
         // FLUIDS
         registerBlock("liquid_crystal", LIQUID_CRYSTAL);

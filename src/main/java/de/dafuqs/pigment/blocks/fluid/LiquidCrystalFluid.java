@@ -2,14 +2,13 @@ package de.dafuqs.pigment.blocks.fluid;
 
 import de.dafuqs.pigment.PigmentBlocks;
 import de.dafuqs.pigment.PigmentFluids;
-import de.dafuqs.pigment.items.PigmentItems;
+import de.dafuqs.pigment.PigmentItems;
 import de.dafuqs.pigment.sounds.PigmentSoundEvents;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.BlockState;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
-import net.minecraft.fluid.WaterFluid;
 import net.minecraft.item.Item;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;

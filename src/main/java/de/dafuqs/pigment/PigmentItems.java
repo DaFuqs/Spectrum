@@ -1,7 +1,5 @@
-package de.dafuqs.pigment.items;
+package de.dafuqs.pigment;
 
-import de.dafuqs.pigment.PigmentCommon;
-import de.dafuqs.pigment.PigmentBlocks;
 import de.dafuqs.pigment.items.armor.BedrockArmorMaterial;
 import de.dafuqs.pigment.items.misc.Spawner;
 import de.dafuqs.pigment.items.tools.*;
@@ -68,6 +66,11 @@ public class PigmentItems {
     public static final Item SPAWNER = new Spawner(Blocks.SPAWNER, pigmentUncommonItemSettings.maxCount(64));
     public static final Item GLISTERING_MELON_SEEDS = new AliasedBlockItem(PigmentBlocks.GLISTERING_MELON_STEM, pigmentUncommonItemSettings.maxCount(64));
 
+    // DECAY
+    public static final Item DECAY_1_PLACER = new AliasedBlockItem(PigmentBlocks.DECAY1, generalItemSettings);
+    public static final Item DECAY_2_PLACER = new AliasedBlockItem(PigmentBlocks.DECAY2, generalItemSettings);
+    public static final Item DECAY_3_PLACER = new AliasedBlockItem(PigmentBlocks.DECAY3, generalItemSettings);
+
     // ORE
     public static final Item SPARKLESTONE_GEM = new Item(pigmentWorldgenItemSettings);
     public static final Item RAW_KOENIGSBLAU = new Item(pigmentWorldgenItemSettings);
@@ -114,6 +117,10 @@ public class PigmentItems {
         registerItem("corrupted_bedrock_dust", CORRUPTED_BEDROCK_DUST);
 
         registerItem("liquid_crystal_bucket", LIQUID_CRYSTAL_BUCKET);
+
+        registerItem("decay_1_placer", DECAY_1_PLACER);
+        registerItem("decay_2_placer", DECAY_2_PLACER);
+        registerItem("decay_3_placer", DECAY_3_PLACER);
 
         registerItem("sparklestone_gem", SPARKLESTONE_GEM);
         registerItem("raw_koenigsblau", RAW_KOENIGSBLAU);

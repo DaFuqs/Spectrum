@@ -15,7 +15,7 @@ import de.dafuqs.pigment.blocks.conditional.SparklestoneOreBlock;
 import de.dafuqs.pigment.blocks.decay.DecayBlock1;
 import de.dafuqs.pigment.blocks.decay.DecayBlock2;
 import de.dafuqs.pigment.blocks.decay.DecayBlock3;
-import de.dafuqs.pigment.blocks.fluid.LiquidCrystalBlock;
+import de.dafuqs.pigment.blocks.fluid.LiquidCrystalFluidBlock;
 import de.dafuqs.pigment.blocks.melon.AttachedGlisteringStemBlock;
 import de.dafuqs.pigment.blocks.melon.GlisteringMelonBlock;
 import de.dafuqs.pigment.blocks.melon.GlisteringStemBlock;
@@ -186,7 +186,7 @@ public class PigmentBlocks {
     public static final Block ALTAR = new AltarBlock(altarSettings);
 
     // FLUIDS
-    public static final Block LIQUID_CRYSTAL = new LiquidCrystalBlock(PigmentFluids.STILL_LIQUID_CRYSTAL, FabricBlockSettings.copyOf(Blocks.WATER).luminance((state) -> 8));
+    public static final Block LIQUID_CRYSTAL = new LiquidCrystalFluidBlock(PigmentFluids.STILL_LIQUID_CRYSTAL, FabricBlockSettings.copyOf(Blocks.WATER).luminance((state) -> 8));
 
     // COLORED TREES
     private static final FabricBlockSettings coloredSaplingBlockSettings = FabricBlockSettings.copyOf(Blocks.OAK_SAPLING);
@@ -426,6 +426,11 @@ public class PigmentBlocks {
     public static final Block COMPACTOR = new CompactorBlock(FabricBlockSettings.of(Material.METAL));
     public static final Block BEDROCK_ANVIL = new BedrockAnvilBlock(FabricBlockSettings.copyOf(Blocks.ANVIL).hardness(8));
 
+    // SOLID LIQUID CRYSTAL
+    public static final Block FROSTBITE_CRYSTAL = new Block(FabricBlockSettings.copyOf(Blocks.DIAMOND_BLOCK)); // TODO
+    public static final Block BLAZING_CRYSTAL = new Block(FabricBlockSettings.copyOf(Blocks.DIAMOND_BLOCK)); // TODO
+    public static final Block RESONANT_LILY = new Block(FabricBlockSettings.copyOf(Blocks.DIAMOND_BLOCK)); // TODO
+
     /*public static final Block CLAY_ORE = new RedstoneLampBlock(FabricBlockSettings.copyOf(Blocks.REDSTONE_LAMP));
     public static final Block NETHER_ORE = new RedstoneLampBlock(FabricBlockSettings.copyOf(Blocks.REDSTONE_LAMP));
     public static final Block END_ORE = new RedstoneLampBlock(FabricBlockSettings.copyOf(Blocks.REDSTONE_LAMP));*/
@@ -498,8 +503,14 @@ public class PigmentBlocks {
         registerBlock("decay2", DECAY2);
         registerBlock("decay3", DECAY3);
 
-        // FLUIDS
+        // LIQUID CRYSTAL + PRODUCTS
         registerBlock("liquid_crystal", LIQUID_CRYSTAL);
+        registerBlock("frostbite_crystal", FROSTBITE_CRYSTAL);
+        registerBlockItem("frostbite_crystal", new BlockItem(FROSTBITE_CRYSTAL, generalItemSettings));
+        registerBlock("blazing_crystal", BLAZING_CRYSTAL);
+        registerBlockItem("blazing_crystal", new BlockItem(BLAZING_CRYSTAL, generalItemSettings));
+        registerBlock("resonant_lily", RESONANT_LILY);
+        registerBlockItem("resonant_lily", new BlockItem(RESONANT_LILY, generalItemSettings));
 
         registerBlock("particle_emitter", PARTICLE_EMITTER);
         registerBlockItem("particle_emitter", new BlockItem(PARTICLE_EMITTER, generalItemSettings));
@@ -508,6 +519,7 @@ public class PigmentBlocks {
         registerBlockItem("compactor", new BlockItem(COMPACTOR, generalItemSettings));
         registerBlock("bedrock_anvil", BEDROCK_ANVIL);
         registerBlockItem("bedrock_anvil", new BlockItem(BEDROCK_ANVIL, generalItemSettings));
+
     }
 
     private static void registerOreBlocks(FabricItemSettings decorationItemSettings) {

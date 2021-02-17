@@ -366,9 +366,9 @@
   "block.pigment.onyx_tuff_lamp": "Onyx Tuff Lamp",
   "block.pigment.moonstone_tuff_lamp": "Moonstone Tuff Lamp",
 
-  "block.pigment.decay_1_player": "Bottle of Fading",
-  "block.pigment.decay_2_player": "Bottle of Failing",
-  "block.pigment.decay_3_player": "Bottle of Ruin",
+  "item.pigment.decay_1_player": "Bottle of Fading",
+  "item.pigment.decay_2_player": "Bottle of Failing",
+  "item.pigment.decay_3_player": "Bottle of Ruin",
   "block.pigment.decay1": "Fading",
   "block.pigment.decay2": "Failing",
   "block.pigment.decay3": "Ruin",
@@ -378,6 +378,10 @@
   "block.pigment.altar.title_with_owner": "Altar of %s",
   "block.pigment.ominous_sapling": "Ominous Sapling",
   "block.pigment.bedrock_anvil": "Bedrock Anvil",
+
+  "block.pigment.blazing_crystal": "Blazing Crystal",
+  "block.pigment.frostbite_crystal": "Frostbite Crystal",
+  "block.pigment.resonant_lily": "Resonant Lily",
 
   "advancements.pigment.pigment.title": "Pigment",
   "advancements.pigment.pigment.description": "A story about magic, colors, and chaos.",

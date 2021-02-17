@@ -1,5 +1,6 @@
 package de.dafuqs.pigment.blocks.fluid;
 
+import de.dafuqs.pigment.PigmentBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -11,9 +12,9 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 
-public class LiquidCrystalBlock extends FluidBlock {
+public class LiquidCrystalFluidBlock extends FluidBlock {
 
-    public LiquidCrystalBlock(FlowableFluid fluid, Settings settings) {
+    public LiquidCrystalFluidBlock(FlowableFluid fluid, Settings settings) {
         super(fluid, settings);
     }
 
@@ -30,7 +31,6 @@ public class LiquidCrystalBlock extends FluidBlock {
         if (this.receiveNeighborFluids(world, pos, state)) {
             world.getFluidTickScheduler().schedule(pos, state.getFluidState().getFluid(), this.fluid.getTickRate(world));
         }
-
     }
 
     /**
@@ -47,12 +47,13 @@ public class LiquidCrystalBlock extends FluidBlock {
             Direction direction = var5[var7];
             BlockPos blockPos = pos.offset(direction);
             if (world.getFluidState(blockPos).isIn(FluidTags.WATER)) {
-                world.setBlockState(pos, Blocks.CALCITE.getDefaultState());
+                Block block = world.getFluidState(pos).isStill() ? PigmentBlocks.FROSTBITE_CRYSTAL : Blocks.CALCITE;
+                world.setBlockState(pos, block.getDefaultState());
                 this.playExtinguishSound(world, pos);
                 return false;
             }
             if (world.getFluidState(blockPos).isIn(FluidTags.LAVA)) {
-                Block block = world.getFluidState(pos).isStill() ? Blocks.OBSIDIAN : Blocks.TUFF;
+                Block block = world.getFluidState(pos).isStill() ? PigmentBlocks.BLAZING_CRYSTAL : Blocks.TUFF;
                 world.setBlockState(pos, block.getDefaultState());
                 this.playExtinguishSound(world, pos);
                 return false;

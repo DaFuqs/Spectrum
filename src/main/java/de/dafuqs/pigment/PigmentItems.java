@@ -12,6 +12,7 @@ import net.minecraft.util.Rarity;
 import net.minecraft.util.registry.Registry;
 
 import static de.dafuqs.pigment.PigmentFluids.STILL_LIQUID_CRYSTAL;
+import static de.dafuqs.pigment.PigmentFluids.STILL_MUD;
 
 public class PigmentItems {
 
@@ -62,6 +63,7 @@ public class PigmentItems {
 
     // FLUIDS
     public static final Item LIQUID_CRYSTAL_BUCKET = new BucketItem(STILL_LIQUID_CRYSTAL, generalItemSettings.recipeRemainder(Items.BUCKET).maxCount(1));
+    public static final Item MUD_BUCKET = new BucketItem(STILL_MUD, generalItemSettings.recipeRemainder(Items.BUCKET).maxCount(1));
 
     public static final Item SPAWNER = new Spawner(Blocks.SPAWNER, pigmentUncommonItemSettings.maxCount(64));
     public static final Item GLISTERING_MELON_SEEDS = new AliasedBlockItem(PigmentBlocks.GLISTERING_MELON_STEM, pigmentUncommonItemSettings.maxCount(64));
@@ -117,6 +119,7 @@ public class PigmentItems {
         registerItem("corrupted_bedrock_dust", CORRUPTED_BEDROCK_DUST);
 
         registerItem("liquid_crystal_bucket", LIQUID_CRYSTAL_BUCKET);
+        registerItem("mud_bucket", MUD_BUCKET);
 
         registerItem("decay_1_placer", DECAY_1_PLACER);
         registerItem("decay_2_placer", DECAY_2_PLACER);

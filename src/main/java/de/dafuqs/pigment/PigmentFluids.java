@@ -2,6 +2,7 @@ package de.dafuqs.pigment;
 
 import de.dafuqs.pigment.PigmentCommon;
 import de.dafuqs.pigment.blocks.fluid.LiquidCrystalFluid;
+import de.dafuqs.pigment.blocks.fluid.MudFluid;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandler;
 import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandlerRegistry;
@@ -26,9 +27,13 @@ import java.util.function.Function;
 
 public class PigmentFluids {
 
-    // FLUID
+    // LIQUID CRYSTAL
     public static final FlowableFluid STILL_LIQUID_CRYSTAL = new LiquidCrystalFluid.StillLiquidCrystal();
     public static final FlowableFluid FLOWING_LIQUID_CRYSTAL = new LiquidCrystalFluid.FlowingLiquidCrystal();
+
+    // MUD
+    public static final FlowableFluid STILL_MUD = new MudFluid.StillMud();
+    public static final FlowableFluid FLOWING_MUD = new MudFluid.FlowingMud();
 
     private static void registerFluid(String name, Fluid fluid) {
         Registry.register(Registry.FLUID, new Identifier(PigmentCommon.MOD_ID, name), fluid);
@@ -37,11 +42,16 @@ public class PigmentFluids {
     public static void register() {
         registerFluid("still_liquid_crystal", STILL_LIQUID_CRYSTAL);
         registerFluid("flowing_liquid_crystal", FLOWING_LIQUID_CRYSTAL);
+        registerFluid("still_mud", STILL_MUD);
+        registerFluid("flowing_mud", FLOWING_MUD);
     }
 
     public static void registerClient() {
         setupFluidRendering(STILL_LIQUID_CRYSTAL, FLOWING_LIQUID_CRYSTAL, new Identifier(PigmentCommon.MOD_ID, "liquid_crystal"), 0xcbbbcb);
         BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getTranslucent(), STILL_LIQUID_CRYSTAL, FLOWING_LIQUID_CRYSTAL);
+
+        setupFluidRendering(STILL_MUD, FLOWING_MUD, new Identifier(PigmentCommon.MOD_ID, "mud"), 0x4e2e0a);
+        BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getTranslucent(), STILL_MUD, FLOWING_MUD);
     }
 
     public static void setupFluidRendering(final Fluid still, final Fluid flowing, final Identifier textureFluidId, final int color) {

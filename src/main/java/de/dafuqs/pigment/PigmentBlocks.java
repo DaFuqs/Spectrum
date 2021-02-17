@@ -16,6 +16,7 @@ import de.dafuqs.pigment.blocks.decay.DecayBlock1;
 import de.dafuqs.pigment.blocks.decay.DecayBlock2;
 import de.dafuqs.pigment.blocks.decay.DecayBlock3;
 import de.dafuqs.pigment.blocks.fluid.LiquidCrystalFluidBlock;
+import de.dafuqs.pigment.blocks.fluid.MudFluidBlock;
 import de.dafuqs.pigment.blocks.melon.AttachedGlisteringStemBlock;
 import de.dafuqs.pigment.blocks.melon.GlisteringMelonBlock;
 import de.dafuqs.pigment.blocks.melon.GlisteringStemBlock;
@@ -187,6 +188,7 @@ public class PigmentBlocks {
 
     // FLUIDS
     public static final Block LIQUID_CRYSTAL = new LiquidCrystalFluidBlock(PigmentFluids.STILL_LIQUID_CRYSTAL, FabricBlockSettings.copyOf(Blocks.WATER).luminance((state) -> 8));
+    public static final Block MUD = new MudFluidBlock(PigmentFluids.STILL_MUD, FabricBlockSettings.copyOf(Blocks.WATER));
 
     // COLORED TREES
     private static final FabricBlockSettings coloredSaplingBlockSettings = FabricBlockSettings.copyOf(Blocks.OAK_SAPLING);

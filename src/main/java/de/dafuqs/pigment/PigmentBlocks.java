@@ -188,7 +188,7 @@ public class PigmentBlocks {
 
     // FLUIDS
     public static final Block LIQUID_CRYSTAL = new LiquidCrystalFluidBlock(PigmentFluids.STILL_LIQUID_CRYSTAL, FabricBlockSettings.copyOf(Blocks.WATER).luminance((state) -> 8));
-    public static final Block MUD = new MudFluidBlock(PigmentFluids.STILL_MUD, FabricBlockSettings.copyOf(Blocks.WATER));
+    public static final Block MUD = new MudFluidBlock(PigmentFluids.STILL_MUD, FabricBlockSettings.of(Material.LAVA).strength(100.0F).suffocates(PigmentBlocks::always).dropsNothing());
 
     // COLORED TREES
     private static final FabricBlockSettings coloredSaplingBlockSettings = FabricBlockSettings.copyOf(Blocks.OAK_SAPLING);
@@ -505,7 +505,8 @@ public class PigmentBlocks {
         registerBlock("decay2", DECAY2);
         registerBlock("decay3", DECAY3);
 
-        // LIQUID CRYSTAL + PRODUCTS
+        // FLUIDS + PRODUCTS
+        registerBlock("mud", MUD);
         registerBlock("liquid_crystal", LIQUID_CRYSTAL);
         registerBlock("frostbite_crystal", FROSTBITE_CRYSTAL);
         registerBlockItem("frostbite_crystal", new BlockItem(FROSTBITE_CRYSTAL, generalItemSettings));

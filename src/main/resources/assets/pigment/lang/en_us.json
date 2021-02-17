@@ -275,6 +275,10 @@
   "item.pigment.liquid_crystal_bucket": "Liquid Crystal Bucket",
   "block.pigment.still_liquid_crystal": "Liquid Crystal",
   "block.pigment.flowing_liquid_crystal": "Liquid Crystal",
+  
+  "item.pigment.mud_bucket": "Bucket of Mud",
+  "block.pigment.still_mud": "Mud",
+  "block.pigment.flowing_mud": "Mud",
 
   "item.pigment.glistering_melon_seeds": "Glistering Melon Seeds",
   "block.pigment.glistering_melon": "Glistering Melon",

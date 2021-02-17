@@ -10,12 +10,12 @@
   "experience": 2,
   "pattern": [
     "FCF",
-    "CLC",
+    "CSC",
     "FCF"
   ],
   "key": {
-	"L": {
-	  "item": "pigment:ominous_leaves"
+	"S": {
+	  "item": "minecraft:spore_blossom"
 	},
     "F": {
       "item": "minecraft:fermented_spider_eye"

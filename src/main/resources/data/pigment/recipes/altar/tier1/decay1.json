@@ -1,0 +1,31 @@
+{
+  "type": "pigment_altar",
+  "time": 2000,
+  "tier": 1,
+  "cyan": 4,
+  "magenta": 4,
+  "yellow": 4,
+  "white": 0,
+  "black": 0,
+  "experience": 2,
+  "pattern": [
+    "FCF",
+    "CLC",
+    "FCF"
+  ],
+  "key": {
+	"L": {
+	  "item": "pigment:ominous_leaves"
+	},
+    "F": {
+      "item": "minecraft:fermented_spider_eye"
+    },
+    "C": {
+      "item": "minecraft:fire_charge"
+    }
+  },
+  "result" : {
+    "item": "pigment:decay_placer1",
+    "count": 1
+  }
+}

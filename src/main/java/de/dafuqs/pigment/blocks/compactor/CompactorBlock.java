@@ -1,4 +1,4 @@
-package de.dafuqs.pigment.blocks.compressor;
+package de.dafuqs.pigment.blocks.compactor;
 
 import de.dafuqs.pigment.PigmentBlockEntityType;
 import de.dafuqs.pigment.blocks.altar.AltarBlockEntity;
@@ -18,15 +18,15 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-public class CompressorBlock extends BlockWithEntity {
+public class CompactorBlock extends BlockWithEntity {
 
-    public CompressorBlock(Settings settings) {
+    public CompactorBlock(Settings settings) {
         super(settings);
     }
 
     @Nullable
     public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
-        return new CompressorBlockEntity(pos, state);
+        return new CompactorBlockEntity(pos, state);
     }
 
     @Override
@@ -45,13 +45,13 @@ public class CompressorBlock extends BlockWithEntity {
         if(world.isClient) {
             return null;
         } else {
-            return checkType(type, PigmentBlockEntityType.COMPRESSOR_BLOCK_ENTITY_TYPE, CompressorBlockEntity::tick);
+            return checkType(type, PigmentBlockEntityType.COMPACTOR_BLOCK_ENTITY_TYPE, CompactorBlockEntity::tick);
         }
     }
 
     protected void openScreen(World world, BlockPos pos, PlayerEntity player) {
         BlockEntity blockEntity = world.getBlockEntity(pos);
-        if (blockEntity instanceof CompressorBlockEntity) {
+        if (blockEntity instanceof CompactorBlockEntity) {
             player.openHandledScreen((NamedScreenHandlerFactory) blockEntity);
         }
     }

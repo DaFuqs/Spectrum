@@ -8,7 +8,7 @@ import de.dafuqs.pigment.blocks.budding.BuddingOnyxBlock;
 import de.dafuqs.pigment.blocks.budding.BuddingTopazBlock;
 import de.dafuqs.pigment.blocks.chromatic_tree.OminousSaplingBlock;
 import de.dafuqs.pigment.blocks.chromatic_tree.OminousSaplingBlockItem;
-import de.dafuqs.pigment.blocks.compressor.CompressorBlock;
+import de.dafuqs.pigment.blocks.compactor.CompactorBlock;
 import de.dafuqs.pigment.blocks.conditional.ColoredLeavesBlock;
 import de.dafuqs.pigment.blocks.conditional.ColoredLogBlock;
 import de.dafuqs.pigment.blocks.conditional.SparklestoneOreBlock;
@@ -425,7 +425,7 @@ public class PigmentBlocks {
     public static final Block KOENIGSBLAU_BLOCK = new Block(FabricBlockSettings.copyOf(Blocks.DIAMOND_BLOCK));
 
     public static final Block PARTICLE_EMITTER = new ParticleEmitterBlock(FabricBlockSettings.of(Material.METAL));
-    public static final Block COMPRESSOR = new CompressorBlock(FabricBlockSettings.of(Material.METAL));
+    public static final Block COMPACTOR = new CompactorBlock(FabricBlockSettings.of(Material.METAL));
     public static final Block BEDROCK_ANVIL = new BedrockAnvilBlock(FabricBlockSettings.copyOf(Blocks.ANVIL).hardness(8));
 
     /*public static final Block CLAY_ORE = new RedstoneLampBlock(FabricBlockSettings.copyOf(Blocks.REDSTONE_LAMP));
@@ -509,8 +509,8 @@ public class PigmentBlocks {
         registerBlock("particle_emitter", PARTICLE_EMITTER);
         registerBlockItem("particle_emitter", new BlockItem(PARTICLE_EMITTER, generalItemSettings));
 
-        registerBlock("compressor", COMPRESSOR);
-        registerBlockItem("compressor", new BlockItem(COMPRESSOR, generalItemSettings));
+        registerBlock("compactor", COMPACTOR);
+        registerBlockItem("compactor", new BlockItem(COMPACTOR, generalItemSettings));
         registerBlock("bedrock_anvil", BEDROCK_ANVIL);
         registerBlockItem("bedrock_anvil", new BlockItem(BEDROCK_ANVIL, generalItemSettings));
     }

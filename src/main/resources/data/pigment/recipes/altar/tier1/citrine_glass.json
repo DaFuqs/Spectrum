@@ -1,0 +1,28 @@
+{
+  "type": "pigment_altar",
+  "time": 20,
+  "tier": 1,
+  "magenta": 0,
+  "yellow": 4,
+  "cyan": 0,
+  "black": 0,
+  "white": 0,
+  "experience": 1,
+  "pattern": [
+    "GGG",
+    "GPG",
+    "GGG"
+  ],
+  "key": {
+    "P": {
+      "item": "pigment:yellow_pigment"
+    },
+    "G": {
+      "item": "minecraft:glass"
+    }
+  },
+  "result" : {
+    "item": "pigment:citrine_glass",
+    "count": 8
+  }
+}

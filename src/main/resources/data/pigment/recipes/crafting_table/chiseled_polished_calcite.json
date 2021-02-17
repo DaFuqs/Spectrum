@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "pigment:polished_calcite_slab"
+    }
+  },
+  "result": {
+    "item": "pigment:chiseled_polished_calcite"
+  }
+}

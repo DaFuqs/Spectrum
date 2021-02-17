@@ -1,0 +1,28 @@
+{
+  "type": "pigment_altar",
+  "time": 40,
+  "tier": 1,
+  "cyan": 0,
+  "magenta": 0,
+  "yellow": 0,
+  "white": 0,
+  "black": 4,
+  "experience": 0.3,
+  "pattern": [
+    "TBT",
+    "BBB",
+    "TBT"
+  ],
+  "key": {
+    "B": {
+      "item": "pigment:onyx_block"
+    },
+    "T": {
+      "item": "pigment:polished_tuff"
+    }
+  },
+  "result" : {
+    "item": "pigment:onyx_tuff_lamp",
+    "count": 4
+  }
+}

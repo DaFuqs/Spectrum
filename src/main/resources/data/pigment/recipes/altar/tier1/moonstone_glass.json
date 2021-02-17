@@ -5,27 +5,24 @@
   "cyan": 0,
   "magenta": 0,
   "yellow": 0,
-  "white": 0,
-  "black": 4,
+  "white": 4,
+  "black": 0,
   "experience": 1,
   "pattern": [
-    "XFX",
-    "XWX",
-    "XXX"
+    "GGG",
+    "GPG",
+    "GGG"
   ],
   "key": {
-    "F": {
-      "item": "pigment:onyx_shard"
+    "P": {
+      "item": "pigment:white_pigment"
     },
-    "W": {
-      "tag": "flowers"
-    },
-    "X": {
+    "G": {
       "item": "minecraft:glass"
     }
   },
   "result" : {
-    "item": "pigment:onyx_glass",
-    "count": 4
+    "item": "pigment:moonstone_glass",
+    "count": 8
   }
 }

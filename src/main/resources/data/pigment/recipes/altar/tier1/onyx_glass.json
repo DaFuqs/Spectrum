@@ -1,0 +1,28 @@
+{
+  "type": "pigment_altar",
+  "time": 20,
+  "tier": 1,
+  "cyan": 0,
+  "magenta": 0,
+  "yellow": 0,
+  "white": 0,
+  "black": 4,
+  "experience": 1,
+  "pattern": [
+    "GGG",
+    "GPG",
+    "GGG"
+  ],
+  "key": {
+    "P": {
+      "item": "pigment:black_pigment"
+    },
+    "G": {
+      "item": "minecraft:glass"
+    }
+  },
+  "result" : {
+    "item": "pigment:onyx_glass",
+    "count": 8
+  }
+}

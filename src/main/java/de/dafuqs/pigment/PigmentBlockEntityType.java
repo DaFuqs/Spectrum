@@ -3,7 +3,7 @@ package de.dafuqs.pigment;
 import com.mojang.datafixers.types.Type;
 import de.dafuqs.pigment.blocks.altar.AltarBlockEntity;
 import de.dafuqs.pigment.blocks.chromatic_tree.OminousSaplingBlockEntity;
-import de.dafuqs.pigment.blocks.compressor.CompressorBlockEntity;
+import de.dafuqs.pigment.blocks.compactor.CompactorBlockEntity;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
@@ -16,7 +16,7 @@ public class PigmentBlockEntityType<T extends BlockEntity> {
 
     public static BlockEntityType<OminousSaplingBlockEntity> OMINOUS_SAPLING_BLOCK_ENTITY_TYPE;
     public static BlockEntityType<AltarBlockEntity> ALTAR_BLOCK_ENTITY_TYPE;
-    public static BlockEntityType<CompressorBlockEntity> COMPRESSOR_BLOCK_ENTITY_TYPE;
+    public static BlockEntityType<CompactorBlockEntity> COMPACTOR_BLOCK_ENTITY_TYPE;
 
     private static <T extends BlockEntity> BlockEntityType<T> create(String string, FabricBlockEntityTypeBuilder<T> builder) {
         Type<?> type = Util.getChoiceType(TypeReferences.BLOCK_ENTITY, string);
@@ -26,7 +26,7 @@ public class PigmentBlockEntityType<T extends BlockEntity> {
     public static void register() {
         OMINOUS_SAPLING_BLOCK_ENTITY_TYPE = create("ominous_sapling_block_entity", FabricBlockEntityTypeBuilder.create(OminousSaplingBlockEntity::new, PigmentBlocks.OMINOUS_SAPLING));
         ALTAR_BLOCK_ENTITY_TYPE = create("altar_block_entity", FabricBlockEntityTypeBuilder.create(AltarBlockEntity::new, PigmentBlocks.ALTAR));
-        COMPRESSOR_BLOCK_ENTITY_TYPE = create("compressor", FabricBlockEntityTypeBuilder.create(CompressorBlockEntity::new, PigmentBlocks.COMPRESSOR));
+        COMPACTOR_BLOCK_ENTITY_TYPE = create("compactor", FabricBlockEntityTypeBuilder.create(CompactorBlockEntity::new, PigmentBlocks.COMPACTOR));
     }
 
 }

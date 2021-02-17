@@ -1,0 +1,28 @@
+{
+  "type": "pigment_altar",
+  "time": 40,
+  "tier": 1,
+  "cyan": 4,
+  "magenta": 0,
+  "yellow": 0,
+  "white": 0,
+  "black": 0,
+  "experience": 0.3,
+  "pattern": [
+    "CBC",
+    "BBB",
+    "CBC"
+  ],
+  "key": {
+    "B": {
+      "item": "pigment:topaz_block"
+    },
+    "C": {
+      "item": "pigment:polished_calcite"
+    }
+  },
+  "result" : {
+    "item": "pigment:topaz_calcite_lamp",
+    "count": 4
+  }
+}

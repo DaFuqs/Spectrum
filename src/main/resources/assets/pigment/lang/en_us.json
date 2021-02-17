@@ -370,6 +370,7 @@
   "block.pigment.decay2": "Failing",
   "block.pigment.decay3": "Ruin",
 
+  "block.pigment.compactor": "Compacting Chest",
   "block.pigment.altar": "Altar",
   "block.pigment.altar.title_with_owner": "Altar of %s",
   "block.pigment.ominous_sapling": "Ominous Sapling",

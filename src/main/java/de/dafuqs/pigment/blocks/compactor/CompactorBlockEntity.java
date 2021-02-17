@@ -1,4 +1,4 @@
-package de.dafuqs.pigment.blocks.compressor;
+package de.dafuqs.pigment.blocks.compactor;
 
 import de.dafuqs.pigment.PigmentBlockEntityType;
 import de.dafuqs.pigment.inventories.AutoCraftingInventory;
@@ -25,7 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class CompressorBlockEntity extends LootableContainerBlockEntity {
+public class CompactorBlockEntity extends LootableContainerBlockEntity {
 
     private DefaultedList<ItemStack> inventory;
 
@@ -34,8 +34,8 @@ public class CompressorBlockEntity extends LootableContainerBlockEntity {
     CraftingRecipe lastCraftingRecipe; // cache
     boolean hasToCraft;
 
-    public CompressorBlockEntity(BlockPos blockPos, BlockState blockState) {
-        super(PigmentBlockEntityType.COMPRESSOR_BLOCK_ENTITY_TYPE, blockPos, blockState);
+    public CompactorBlockEntity(BlockPos blockPos, BlockState blockState) {
+        super(PigmentBlockEntityType.COMPACTOR_BLOCK_ENTITY_TYPE, blockPos, blockState);
         this.inventory = DefaultedList.ofSize(27, ItemStack.EMPTY);
         this.lastCraftingItemStack = ItemStack.EMPTY;
         this.lastCraftingRecipe = null;
@@ -43,7 +43,7 @@ public class CompressorBlockEntity extends LootableContainerBlockEntity {
     }
 
     protected Text getContainerName() {
-        return new TranslatableText("container.compressor");
+        return new TranslatableText("block.pigment.compactor");
     }
 
     @Override
@@ -51,11 +51,11 @@ public class CompressorBlockEntity extends LootableContainerBlockEntity {
         return GenericContainerScreenHandler.createGeneric9x3(syncId, playerInventory, this);
     }
 
-    public static void tick(World world, BlockPos pos, BlockState state, CompressorBlockEntity compressorBlockEntity) {
-        if(compressorBlockEntity.hasToCraft) {
-            boolean couldCraft = compressorBlockEntity.tryCraftOnce();
+    public static void tick(World world, BlockPos pos, BlockState state, CompactorBlockEntity compactorBlockEntity) {
+        if(compactorBlockEntity.hasToCraft) {
+            boolean couldCraft = compactorBlockEntity.tryCraftOnce();
             if(!couldCraft) {
-                compressorBlockEntity.hasToCraft = false;
+                compactorBlockEntity.hasToCraft = false;
             }
         }
     }

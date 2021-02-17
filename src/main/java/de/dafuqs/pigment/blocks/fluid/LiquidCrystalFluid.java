@@ -12,6 +12,8 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.item.Item;
+import net.minecraft.particle.ParticleEffect;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
@@ -69,6 +71,11 @@ public abstract class LiquidCrystalFluid extends PigmentFluid {
 			final BlockEntity blockEntity = state.hasBlockEntity() ? world.getBlockEntity(pos) : null;
 			Block.dropStacks(state, world, pos, blockEntity);
 		}
+	}
+
+	@Override
+	public ParticleEffect getParticle() {
+		return ParticleTypes.DRIPPING_WATER;
 	}
 
 	public static class FlowingLiquidCrystal extends LiquidCrystalFluid {

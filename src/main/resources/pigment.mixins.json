@@ -4,20 +4,21 @@
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "AccessorShapedRecipe",
+    "AnvilBlockMixin",
+    "BlockOverlayRendererMixin",
     "EndermanEntityMixin",
     "FishingBobberEntityMixin",
     "FishingBobberEntityRendererMixin",
+    "ItemEntityMixin",
     "ItemModelsMixin",
     "MobSpawnerBlockEntityMixin",
     "SpawnerBlockMixin",
-    "WorldRendererMixin",
-    "ItemEntityMixin",
-    "AnvilBlockMixin"
+    "WorldRendererMixin"
   ],
   "client": [
     "BlockModelsMixin",
-    "TransparentBlockMixin",
-    "ItemMixin"
+    "ItemMixin",
+    "TransparentBlockMixin"
   ],
   "injectors": {
     "defaultRequire": 1

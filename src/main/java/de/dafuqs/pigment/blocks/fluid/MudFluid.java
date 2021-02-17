@@ -12,6 +12,8 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.item.Item;
+import net.minecraft.particle.ParticleEffect;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.Properties;
@@ -71,6 +73,11 @@ public abstract class MudFluid extends PigmentFluid {
 	@Override
 	public int getTickRate(WorldView worldView) {
 		return 50;
+	}
+
+	@Override
+	public ParticleEffect getParticle() {
+		return ParticleTypes.DRIPPING_WATER;
 	}
 
 	public static class FlowingMud extends MudFluid {

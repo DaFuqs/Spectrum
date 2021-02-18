@@ -465,6 +465,7 @@ public class PigmentBlocks {
         }
     };*/
 
+    public static final Block CRACKED_END_PORTAL_FRAME = new CrackedEndPortalFrameBlock(FabricBlockSettings.copyOf(Blocks.END_PORTAL_FRAME));
 
     private static void registerBlock(String name, Block block) {
         Registry.register(Registry.BLOCK, new Identifier(PigmentCommon.MOD_ID, name), block);
@@ -523,6 +524,8 @@ public class PigmentBlocks {
         registerBlock("bedrock_anvil", BEDROCK_ANVIL);
         registerBlockItem("bedrock_anvil", new BlockItem(BEDROCK_ANVIL, generalItemSettings));
 
+        registerBlock("cracked_end_portal_frame", CRACKED_END_PORTAL_FRAME);
+        registerBlockItem("cracked_end_portal_frame", new BlockItem(CRACKED_END_PORTAL_FRAME, generalItemSettings));
     }
 
     private static void registerOreBlocks(FabricItemSettings decorationItemSettings) {

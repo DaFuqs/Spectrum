@@ -1,6 +1,8 @@
 package de.dafuqs.pigment;
 
 import de.dafuqs.pigment.items.armor.BedrockArmorMaterial;
+import de.dafuqs.pigment.items.armor.MultiToolMaterial;
+import de.dafuqs.pigment.items.misc.EndPortalCrackerItem;
 import de.dafuqs.pigment.items.misc.Spawner;
 import de.dafuqs.pigment.items.tools.*;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
@@ -78,6 +80,15 @@ public class PigmentItems {
     public static final Item RAW_KOENIGSBLAU = new Item(pigmentWorldgenItemSettings);
     public static final Item SHAPED_KOENIGSBLAU = new Item(pigmentWorldgenItemSettings);
 
+    // SPECIAL TOOLS
+    public static final MultiToolMaterial MULTI_TOOL_MATERIAL = new MultiToolMaterial();
+    public static final Item MULTITOOL = new PigmentPickaxeItem(MULTI_TOOL_MATERIAL, 1, -2.8F, generalItemSettings);
+    public static final Item SILKER_PICKAXE = new PigmentPickaxeItem(MULTI_TOOL_MATERIAL, 1, -2.8F, generalItemSettings);
+    public static final Item FORTUNE_PICKAXE = new PigmentPickaxeItem(MULTI_TOOL_MATERIAL, 1, -2.8F, generalItemSettings);
+    public static final Item LOOTING_FALCHION = new SwordItem(MULTI_TOOL_MATERIAL, 4, -2.2F, generalItemSettings);
+
+    public static final Item END_PORTAL_CRACKER = new EndPortalCrackerItem(generalItemSettings);
+
     private static void registerItem(String name, Item item) {
         Registry.register(Registry.ITEM, new Identifier(PigmentCommon.MOD_ID, name), item);
     }
@@ -128,6 +139,11 @@ public class PigmentItems {
         registerItem("sparklestone_gem", SPARKLESTONE_GEM);
         registerItem("raw_koenigsblau", RAW_KOENIGSBLAU);
         registerItem("shaped_koenigsblau", SHAPED_KOENIGSBLAU);
+
+        registerItem("multitool", MULTITOOL);
+        registerItem("silker_pickaxe", SILKER_PICKAXE);
+        registerItem("fortune_pickaxe", FORTUNE_PICKAXE);
+        registerItem("looting_falchion", LOOTING_FALCHION);
     }
 
 

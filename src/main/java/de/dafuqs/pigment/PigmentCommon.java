@@ -11,6 +11,7 @@ import me.sargunvohra.mcmods.autoconfig1u.AutoConfig;
 import me.sargunvohra.mcmods.autoconfig1u.serializer.JanksonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerWorldEvents;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.server.MinecraftServer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -34,6 +35,7 @@ public class PigmentCommon implements ModInitializer {
         PIGMENT_CONFIG = AutoConfig.getConfigHolder(PigmentConfig.class).getConfig();
         LOGGER.info("Finished loading config file.");
 
+        // Register ALL the stuff
         PigmentSoundEvents.register();
         PigmentFluidTags.register();
         PigmentBlockTags.register();
@@ -49,11 +51,19 @@ public class PigmentCommon implements ModInitializer {
         PigmentContainers.register();
         PigmentScreenHandlerTypes.register();
 
+        registerDefaultEnchants();
+
         pigmentBlockCloaker = new PigmentBlockCloaker();
 
         ServerWorldEvents.LOAD.register((minecraftServer, serverWorld) -> {
             PigmentCommon.minecraftServer = minecraftServer;
         });
+    }
+
+    private void registerDefaultEnchants() {
+        DefaultEnchants.addDefaultEnchantment(PigmentItems.LOOTING_FALCHION, Enchantments.LOOTING, 3);
+        DefaultEnchants.addDefaultEnchantment(PigmentItems.SILKER_PICKAXE, Enchantments.SILK_TOUCH, 1);
+        DefaultEnchants.addDefaultEnchantment(PigmentItems.FORTUNE_PICKAXE, Enchantments.FORTUNE, 3);
     }
 
     public static PigmentBlockCloaker getModelSwapper() {

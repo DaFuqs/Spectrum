@@ -20,7 +20,7 @@ public class FluidClientOverlay {
             renderOverlay(matrixStack, TEXTURE_IN_LIQUID_CRYSTAL, 0.42F);
             return true;
         } else if(player.world.getBlockState(new BlockPos(player.getCameraPosVec(1))).getBlock() == PigmentBlocks.MUD) {
-            renderOverlay(matrixStack, TEXTURE_IN_MUD, 0.95F);
+            renderOverlay(matrixStack, TEXTURE_IN_MUD, 0.98F);
             return true;
         }
         return false;

@@ -13,7 +13,8 @@
     "ItemModelsMixin",
     "MobSpawnerBlockEntityMixin",
     "SpawnerBlockMixin",
-    "WorldRendererMixin"
+    "WorldRendererMixin",
+    "EnderEyeItemMixin"
   ],
   "client": [
     "BlockModelsMixin",

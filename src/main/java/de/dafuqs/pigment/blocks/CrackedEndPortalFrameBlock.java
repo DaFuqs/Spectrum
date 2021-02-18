@@ -1,0 +1,183 @@
+package de.dafuqs.pigment.blocks;
+
+import com.google.common.base.Predicates;
+import de.dafuqs.pigment.PigmentBlocks;
+import net.minecraft.block.*;
+import net.minecraft.block.pattern.BlockPattern;
+import net.minecraft.block.pattern.BlockPatternBuilder;
+import net.minecraft.block.pattern.CachedBlockPosition;
+import net.minecraft.entity.ai.pathing.NavigationType;
+import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.particle.ParticleTypes;
+import net.minecraft.predicate.block.BlockPredicate;
+import net.minecraft.predicate.block.BlockStatePredicate;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.state.StateManager;
+import net.minecraft.state.property.*;
+import net.minecraft.util.BlockMirror;
+import net.minecraft.util.BlockRotation;
+import net.minecraft.util.StringIdentifiable;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
+import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.util.shape.VoxelShapes;
+import net.minecraft.world.BlockView;
+import net.minecraft.world.World;
+import net.minecraft.world.explosion.Explosion;
+
+import java.util.Random;
+
+public class CrackedEndPortalFrameBlock extends Block {
+
+    public enum EndPortalFrameEye implements StringIdentifiable {
+        NONE("none"),
+        EYE_OF_ENDER("ender"),
+        END_PORTAL_CRACKER("cracker");
+
+        private final String name;
+
+        private EndPortalFrameEye(String name) {
+            this.name = name;
+        }
+
+        public String toString() {
+            return this.name;
+        }
+
+        public String asString() {
+            return this.name;
+        }
+    }
+
+    public static final BooleanProperty FACING_VERTICAL;
+    public static final EnumProperty<EndPortalFrameEye> EYE_TYPE;
+    protected static final VoxelShape FRAME_SHAPE;
+    protected static final VoxelShape EYE_SHAPE;
+    protected static final VoxelShape FRAME_WITH_EYE_SHAPE;
+    private static BlockPattern COMPLETED_FRAME;
+    private static BlockPattern END_PORTAL;
+
+    public CrackedEndPortalFrameBlock(Settings settings) {
+        super(settings);
+        this.setDefaultState(((
+                this.stateManager.getDefaultState())
+                .with(FACING_VERTICAL, false))
+                .with(EYE_TYPE, EndPortalFrameEye.NONE));
+    }
+
+    public boolean hasSidedTransparency(BlockState state) {
+        return true;
+    }
+
+    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+        return state.get(EYE_TYPE).equals(EndPortalFrameEye.NONE) ? FRAME_SHAPE : FRAME_WITH_EYE_SHAPE;
+    }
+
+    public BlockState getPlacementState(ItemPlacementContext ctx) {
+        Direction facing = ctx.getPlayerFacing();
+        boolean facingVertical = facing.equals(Direction.EAST) || facing.equals(Direction.WEST);
+        return (this.getDefaultState().with(FACING_VERTICAL, facingVertical).with(EYE_TYPE, EndPortalFrameEye.NONE));
+    }
+
+    public BlockState rotate(BlockState state, BlockRotation rotation) {
+        return state.with(FACING_VERTICAL, !state.get(FACING_VERTICAL));
+    }
+
+    public BlockState mirror(BlockState state, BlockMirror mirror) {
+        return state;
+    }
+
+    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+        builder.add(FACING_VERTICAL, EYE_TYPE);
+    }
+
+    public boolean canPathfindThrough(BlockState state, BlockView world, BlockPos pos, NavigationType type) {
+        return false;
+    }
+
+    @Deprecated
+    public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
+        if(!newState.getBlock().equals(this)) {
+            searchAndDeleteEndPortals(world, pos);
+        }
+    }
+
+    private void searchAndDeleteEndPortals(World world, BlockPos pos) {
+        // destroy end portal
+        BlockPattern.Result result = CrackedEndPortalFrameBlock.getEndPortalPattern().searchAround(world, pos);
+
+        if (result != null) {
+            BlockPos blockPos = result.getFrontTopLeft().add(-3, 0, -3);
+            for (int i = 0; i < 3; ++i) {
+                for (int j = 0; j < 3; ++j) {
+                    world.setBlockState(blockPos.add(i, 0, j), Blocks.PINK_CONCRETE.getDefaultState(), 2);
+                }
+            }
+        }
+    }
+
+    @Override
+    @Deprecated
+    public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
+        // when placed via end portal cracker => fuse
+        if(state.get(EYE_TYPE).equals(EndPortalFrameEye.END_PORTAL_CRACKER)) {
+            world.getBlockTickScheduler().schedule(pos, this, 60);
+        }
+    }
+
+    @Deprecated
+    public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
+        if(state.get(EYE_TYPE).equals(EndPortalFrameEye.END_PORTAL_CRACKER)) {
+            // 10% chance to break portal
+            float randomFloat = random.nextFloat();
+            if(random.nextFloat() < 0.1) {
+                // TODO: smoke + particles + sound
+                world.createExplosion(null, pos.getX(), pos.getY(), pos.getZ(), 2, Explosion.DestructionType.BREAK);
+                world.breakBlock(pos, true);
+            } else if(random.nextFloat() < 0.2) {
+                world.createExplosion(null, pos.getX(), pos.getY(), pos.getZ(), 1, Explosion.DestructionType.BREAK);
+            } else {
+                // TODO: smoke + particles + sound
+                double d = (double) pos.getX() + random.nextDouble();
+                double e = (double) pos.getY() + 0.8D;
+                double f = (double) pos.getZ() + random.nextDouble();
+                world.addParticle(ParticleTypes.SMOKE, d, e, f, 0.0D, 0.0D, 0.0D);
+            }
+        }
+        world.getBlockTickScheduler().schedule(pos, this, 10);
+    }
+
+    public static BlockPattern getCompletedFramePattern() {
+        if (COMPLETED_FRAME == null) {
+            COMPLETED_FRAME = BlockPatternBuilder.start()
+                    .aisle("?hhh?", "v???v", "v???v", "v???v", "?hhh?")
+                    .where('?', CachedBlockPosition.matchesBlockState(BlockStatePredicate.ANY))
+                    .where('h', CachedBlockPosition.matchesBlockState(BlockStatePredicate.forBlock(PigmentBlocks.CRACKED_END_PORTAL_FRAME)
+                            .with(EYE_TYPE, Predicates.equalTo(EndPortalFrameEye.EYE_OF_ENDER))
+                            .with(FACING_VERTICAL, Predicates.equalTo(false))))
+                    .where('v', CachedBlockPosition.matchesBlockState(BlockStatePredicate.forBlock(PigmentBlocks.CRACKED_END_PORTAL_FRAME)
+                            .with(EYE_TYPE, Predicates.equalTo(EndPortalFrameEye.EYE_OF_ENDER))
+                            .with(FACING_VERTICAL, Predicates.equalTo(true)))).build();
+        }
+        return COMPLETED_FRAME;
+    }
+
+    public static BlockPattern getEndPortalPattern() {
+        if (END_PORTAL == null) {
+            END_PORTAL = BlockPatternBuilder.start()
+                    .aisle("eee", "eee", "eee")
+                    .where('e', CachedBlockPosition.matchesBlockState(BlockPredicate.make(Blocks.END_PORTAL)))
+                    .build();
+        }
+        return END_PORTAL;
+    }
+
+    static {
+        FACING_VERTICAL = BooleanProperty.of("facing_vertical");
+        EYE_TYPE = EnumProperty.of("eye_type", CrackedEndPortalFrameBlock.EndPortalFrameEye.class);
+        FRAME_SHAPE = Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 13.0D, 16.0D);
+        EYE_SHAPE = Block.createCuboidShape(4.0D, 13.0D, 4.0D, 12.0D, 16.0D, 12.0D);
+        FRAME_WITH_EYE_SHAPE = VoxelShapes.union(FRAME_SHAPE, EYE_SHAPE);
+    }
+
+}

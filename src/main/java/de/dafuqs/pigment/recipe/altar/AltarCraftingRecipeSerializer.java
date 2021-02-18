@@ -1,8 +1,10 @@
 package de.dafuqs.pigment.recipe.altar;
 
 import com.google.gson.JsonObject;
+import de.dafuqs.pigment.DefaultEnchants;
 import de.dafuqs.pigment.enums.PigmentColor;
 import de.dafuqs.pigment.mixin.AccessorShapedRecipe;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.recipe.Ingredient;
@@ -33,6 +35,11 @@ public class AltarCraftingRecipeSerializer<T extends AltarCraftingRecipe> implem
         int height = strings.length;
         DefaultedList<Ingredient> craftingInputs = AccessorShapedRecipe.invokeGetIngredients(strings, map, width, height);
         ItemStack output = ShapedRecipe.getItemStack(JsonHelper.getObject(jsonObject, "result"));
+
+        if(DefaultEnchants.hasDefaultEnchants(output.getItem())) {
+            DefaultEnchants.DefaultEnchantment enchantData = DefaultEnchants.getDefaultEnchantment(output.getItem());
+            output.addEnchantment(enchantData.enchantment, enchantData.level);
+        }
 
         int tier = JsonHelper.getInt(jsonObject, "tier", 0);
         float experience = JsonHelper.getFloat(jsonObject, "experience", 0);
@@ -101,10 +108,8 @@ public class AltarCraftingRecipeSerializer<T extends AltarCraftingRecipe> implem
         packetByteBuf.writeVarInt(altarCraftingRecipe.width);
         packetByteBuf.writeVarInt(altarCraftingRecipe.height);
         packetByteBuf.writeString(altarCraftingRecipe.group);
-        Iterator var3 = altarCraftingRecipe.craftingInputs.iterator();
 
-        while(var3.hasNext()) {
-            Ingredient ingredient = (Ingredient)var3.next();
+        for (Ingredient ingredient : altarCraftingRecipe.craftingInputs) {
             ingredient.write(packetByteBuf);
         }
 

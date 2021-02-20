@@ -2,30 +2,30 @@
   "type": "pigment_altar",
   "time": 400,
   "tier": 1,
-  "cyan": 0,
+  "cyan": 4,
   "magenta": 0,
-  "yellow": 4,
+  "yellow": 0,
   "white": 0,
   "black": 0,
   "experience": 0.5,
   "pattern": [
-    "CGC",
-    " S ",
+    " T ",
+    " G ",
     " S "
   ],
   "key": {
 	"S": {
 	  "item": "minecraft:stick"
 	},
-    "C": {
-      "item": "pigment:citrine_shard"
+    "T": {
+      "item": "pigment:topaz_shard"
     },
     "G": {
       "item": "pigment:sparklestone_gem"
     }
   },
   "result" : {
-    "item": "pigment:fortune_pickaxe",
+    "item": "pigment:looting_falchion",
     "count": 1
   }
 }

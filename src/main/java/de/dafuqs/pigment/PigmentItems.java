@@ -19,6 +19,7 @@ import static de.dafuqs.pigment.PigmentFluids.STILL_MUD;
 public class PigmentItems {
 
     public static FabricItemSettings generalItemSettings = new FabricItemSettings().group(PigmentItemGroups.ITEM_GROUP_GENERAL);
+    public static FabricItemSettings preEnchantedItemSettings = new FabricItemSettings().group(PigmentItemGroups.ITEM_GROUP_PREENCHANTED);
     public static FabricItemSettings pigmentWorldgenItemSettings = new FabricItemSettings().group(PigmentItemGroups.ITEM_GROUP_WORLDGEN);
     public static FabricItemSettings pigmentUncommonItemSettings = new FabricItemSettings().group(PigmentItemGroups.ITEM_GROUP_GENERAL).rarity(Rarity.UNCOMMON);
     public static FabricItemSettings pigmentRareItemSettings = new FabricItemSettings().group(PigmentItemGroups.ITEM_GROUP_GENERAL).rarity(Rarity.RARE);
@@ -83,9 +84,9 @@ public class PigmentItems {
     // SPECIAL TOOLS
     public static final MultiToolMaterial MULTI_TOOL_MATERIAL = new MultiToolMaterial();
     public static final Item MULTITOOL = new PigmentPickaxeItem(MULTI_TOOL_MATERIAL, 1, -2.8F, generalItemSettings);
-    public static final Item SILKER_PICKAXE = new PigmentPickaxeItem(MULTI_TOOL_MATERIAL, 1, -2.8F, generalItemSettings);
-    public static final Item FORTUNE_PICKAXE = new PigmentPickaxeItem(MULTI_TOOL_MATERIAL, 1, -2.8F, generalItemSettings);
-    public static final Item LOOTING_FALCHION = new SwordItem(MULTI_TOOL_MATERIAL, 4, -2.2F, generalItemSettings);
+    public static final Item SILKER_PICKAXE = new PigmentPickaxeItem(MULTI_TOOL_MATERIAL, 1, -2.8F, preEnchantedItemSettings);
+    public static final Item FORTUNE_PICKAXE = new PigmentPickaxeItem(MULTI_TOOL_MATERIAL, 1, -2.8F, preEnchantedItemSettings);
+    public static final Item LOOTING_FALCHION = new SwordItem(MULTI_TOOL_MATERIAL, 4, -2.2F, preEnchantedItemSettings);
 
     public static final Item END_PORTAL_CRACKER = new EndPortalCrackerItem(generalItemSettings);
 

@@ -7,7 +7,7 @@ public class MultiToolMaterial implements ToolMaterial {
 
     @Override
     public int getDurability() {
-        return 10;
+        return 8;
     }
 
     @Override

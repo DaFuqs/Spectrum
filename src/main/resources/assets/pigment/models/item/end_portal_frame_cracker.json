@@ -1,0 +1,6 @@
+{
+  "parent": "builtin/generated",
+  "textures": {
+    "layer0": "pigment:item/end_portal_frame_cracker"
+  }
+}

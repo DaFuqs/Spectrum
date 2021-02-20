@@ -18,9 +18,9 @@ import net.minecraft.util.math.IntRange;
 
 import java.util.List;
 
-public class SparklestoneOreBlock extends ConditionallyVisibleOreBlock {
+public class KoenigsblauOreBlock extends ConditionallyVisibleOreBlock {
 
-    public SparklestoneOreBlock(Settings settings, IntRange intRange) {
+    public KoenigsblauOreBlock(Settings settings, IntRange intRange) {
         super(settings, intRange);
     }
 
@@ -31,8 +31,8 @@ public class SparklestoneOreBlock extends ConditionallyVisibleOreBlock {
 
     public void setCloaked() {
         // Cloaks as stone
-        PigmentCommon.getModelSwapper().swapModel(this.getDefaultState(), Blocks.STONE.getDefaultState()); // block
-        PigmentCommon.getModelSwapper().swapModel(this.asItem(), Items.STONE); // item
+        PigmentCommon.getModelSwapper().swapModel(this.getDefaultState(), Blocks.LAPIS_ORE.getDefaultState()); // block
+        PigmentCommon.getModelSwapper().swapModel(this.asItem(), Items.LAPIS_ORE); // item
     }
 
     public void setUncloaked() {
@@ -44,5 +44,6 @@ public class SparklestoneOreBlock extends ConditionallyVisibleOreBlock {
     public List<ItemStack> getDroppedStacks(BlockState state, LootContext.Builder builder) {
         return getCloakedDroppedStacks(state, builder);
     }
+
 
 }

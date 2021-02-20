@@ -18,15 +18,34 @@ import net.minecraft.util.math.IntRange;
 
 import java.util.List;
 
-public class SparklestoneOreBlock extends ConditionallyVisibleOreBlock {
+public class ConditionallyVisibleOreBlock extends OreBlock implements Cloakable {
 
-    public SparklestoneOreBlock(Settings settings, IntRange intRange) {
+    private boolean wasLastCloaked;
+
+    public ConditionallyVisibleOreBlock(Settings settings, IntRange intRange) {
         super(settings, intRange);
     }
 
     @Override
     public boolean isCloaked(PlayerEntity playerEntity, BlockState blockState) {
         return !playerEntity.isGlowing();
+    }
+
+    @Override
+    public boolean wasLastCloaked() {
+        return wasLastCloaked;
+    }
+
+    @Override
+    public void setLastCloaked(boolean lastCloaked) {
+        wasLastCloaked = lastCloaked;
+    }
+
+    @Deprecated
+    @Environment(EnvType.CLIENT)
+    public boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
+        checkCloak(state);
+        return super.isSideInvisible(state, stateFrom, direction);
     }
 
     public void setCloaked() {
@@ -43,6 +62,14 @@ public class SparklestoneOreBlock extends ConditionallyVisibleOreBlock {
     @Deprecated
     public List<ItemStack> getDroppedStacks(BlockState state, LootContext.Builder builder) {
         return getCloakedDroppedStacks(state, builder);
+    }
+
+    // only drop xp when not cloaked
+    @Override
+    public void onStacksDropped(BlockState state, ServerWorld world, BlockPos pos, ItemStack stack) {
+        if(!wasLastCloaked) {
+            super.onStacksDropped(state, world, pos, stack);
+        }
     }
 
 }

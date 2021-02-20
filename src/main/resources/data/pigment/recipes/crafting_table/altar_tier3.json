@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "FMF",
+    "MMM",
+    "EAE"
+  ],
+  "key": {
+    "M": {
+      "item": "pigment:moonstone_shard"
+    },
+    "A": {
+      "item": "pigment:altar2"
+    },
+    "E": {
+      "item": "pigment:polished_calcite"
+    },
+    "F": {
+      "item": "pigment:polished_tuff"
+    }
+  },
+  "result": {
+    "item": "pigment:altar3",
+    "count": 1
+  }
+}

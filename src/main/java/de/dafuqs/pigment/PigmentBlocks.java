@@ -11,6 +11,7 @@ import de.dafuqs.pigment.blocks.chromatic_tree.OminousSaplingBlockItem;
 import de.dafuqs.pigment.blocks.compactor.CompactorBlock;
 import de.dafuqs.pigment.blocks.conditional.ColoredLeavesBlock;
 import de.dafuqs.pigment.blocks.conditional.ColoredLogBlock;
+import de.dafuqs.pigment.blocks.conditional.KoenigsblauOreBlock;
 import de.dafuqs.pigment.blocks.conditional.SparklestoneOreBlock;
 import de.dafuqs.pigment.blocks.decay.DecayBlock1;
 import de.dafuqs.pigment.blocks.decay.DecayBlock2;
@@ -158,6 +159,12 @@ public class PigmentBlocks {
     public static final Block ONYX_GLASS = new GemGlassBlock(FabricBlockSettings.copy(Blocks.GLASS));
     public static final Block MOONSTONE_GLASS = new GemGlassBlock(FabricBlockSettings.copy(Blocks.GLASS));
 
+    // ALTAR
+    private static final FabricBlockSettings altarSettings = FabricBlockSettings.of(Material.STONE).breakByTool(FabricToolTags.PICKAXES).requiresTool().hardness(5.0F).resistance(20.0F);
+    public static final Block ALTAR = new AltarBlock(altarSettings);
+    public static final Block ALTAR2 = new AltarBlock(altarSettings);
+    public static final Block ALTAR3 = new AltarBlock(altarSettings);
+
     // PLAYER GLASS
     public static final Block VANILLA_PLAYER_ONLY_GLASS = new PlayerOnlyGlassBlock(FabricBlockSettings.copy(Blocks.GLASS).nonOpaque().allowsSpawning(PigmentBlocks::never).solidBlock(PigmentBlocks::never).suffocates(PigmentBlocks::never).blockVision(PigmentBlocks::never));
     public static final Block AMETHYST_PLAYER_ONLY_GLASS = new PlayerOnlyGlassBlock(FabricBlockSettings.copy(PigmentBlocks.AMETHYST_GLASS).nonOpaque().allowsSpawning(PigmentBlocks::never).solidBlock(PigmentBlocks::never).suffocates(PigmentBlocks::never).blockVision(PigmentBlocks::never));
@@ -181,10 +188,6 @@ public class PigmentBlocks {
     public static final Block DECAY1 = new DecayBlock1(decaySettings.hardness(0.5F).resistance(0.5F), BlockTags.LEAVES, null,1,  1F);
     public static final Block DECAY2 = new DecayBlock2(decaySettings.hardness(20.0F).resistance(50.0F), null, PigmentBlockTags.DECAY2_SAFE, 2,  2.5F);
     public static final Block DECAY3 = new DecayBlock3(decaySettings.hardness(100.0F).resistance(3600000.0F), null, PigmentBlockTags.DECAY3_SAFE, 3, 5F);
-
-    // ALTAR
-    private static final FabricBlockSettings altarSettings = FabricBlockSettings.of(Material.STONE).breakByTool(FabricToolTags.PICKAXES).requiresTool().hardness(5.0F).resistance(20.0F);
-    public static final Block ALTAR = new AltarBlock(altarSettings);
 
     // FLUIDS
     public static final Block LIQUID_CRYSTAL = new LiquidCrystalFluidBlock(PigmentFluids.STILL_LIQUID_CRYSTAL, FabricBlockSettings.copyOf(Blocks.WATER).luminance((state) -> 8));
@@ -420,8 +423,8 @@ public class PigmentBlocks {
     public static final Block SPARKLESTONE_ORE = new SparklestoneOreBlock(FabricBlockSettings.copyOf(Blocks.STONE), IntRange.between(2, 4)); // drops sparklestone gems
     public static final Block SPARKLESTONE_BLOCK = new Block(FabricBlockSettings.of(Material.GLASS, MapColor.YELLOW).strength(2.0F).sounds(BlockSoundGroup.GLASS).luminance((state) -> 15));
 
-    // ORES TODO / Disguise
-    public static final Block KOENIGSBLAU_ORE = new OreBlock(FabricBlockSettings.copyOf(Blocks.DIAMOND_ORE), IntRange.between(4, 7)); // needs smelting
+    // ORES
+    public static final Block KOENIGSBLAU_ORE = new KoenigsblauOreBlock(FabricBlockSettings.copyOf(Blocks.DIAMOND_ORE), IntRange.between(4, 7)); // needs smelting
     public static final Block KOENIGSBLAU_BLOCK = new Block(FabricBlockSettings.copyOf(Blocks.DIAMOND_BLOCK));
 
     public static final Block PARTICLE_EMITTER = new ParticleEmitterBlock(FabricBlockSettings.of(Material.METAL));
@@ -476,6 +479,13 @@ public class PigmentBlocks {
     }
 
     public static void register() {
+        registerBlock("altar", ALTAR);
+        registerBlockItem("altar", new BlockItem(ALTAR, generalItemSettings));
+        registerBlock("altar2", ALTAR2);
+        registerBlockItem("altar2", new BlockItem(ALTAR2, generalItemSettings));
+        registerBlock("altar3", ALTAR3);
+        registerBlockItem("altar3", new BlockItem(ALTAR3, generalItemSettings));
+
         registerColoredWood(coloredWoodItemSettings);
         registerGemBlocks(worldgenItemSettings);
         registerOreBlocks(worldgenItemSettings);
@@ -486,11 +496,7 @@ public class PigmentBlocks {
         registerGemGlass(decorationItemSettings);
         registerPlayerOnlyGlass(generalItemSettings);
         registerFlatColoredBlocks(decorationItemSettings);
-
-        // TEST
-        registerBlock("altar", ALTAR);
-        registerBlockItem("altar", new BlockItem(ALTAR, generalItemSettings));
-
+        
         // GLISTERING MELON
         registerBlock("glistering_melon", GLISTERING_MELON);
         registerBlockItem("glistering_melon", new BlockItem(GLISTERING_MELON, generalItemSettings));
@@ -1064,6 +1070,10 @@ public class PigmentBlocks {
     }
 
     private static void registerGemBlocks(FabricItemSettings fabricItemSettings) {
+        registerBlock("citrine_block", CITRINE_BLOCK);
+        registerBlockItem("citrine_block", new BlockItem(CITRINE_BLOCK, fabricItemSettings));
+        registerBlock("budding_citrine", BUDDING_CITRINE);
+        registerBlockItem("budding_citrine", new BlockItem(BUDDING_CITRINE, fabricItemSettings));
         registerBlock("small_citrine_bud", SMALL_CITRINE_BUD);
         registerBlockItem("small_citrine_bud", new BlockItem(SMALL_CITRINE_BUD, fabricItemSettings));
         registerBlock("medium_citrine_bud", MEDIUM_CITRINE_BUD);
@@ -1072,11 +1082,11 @@ public class PigmentBlocks {
         registerBlockItem("large_citrine_bud", new BlockItem(LARGE_CITRINE_BUD, fabricItemSettings));
         registerBlock("citrine_cluster", CITRINE_CLUSTER);
         registerBlockItem("citrine_cluster", new BlockItem(CITRINE_CLUSTER, fabricItemSettings));
-        registerBlock("citrine_block", CITRINE_BLOCK);
-        registerBlockItem("citrine_block", new BlockItem(CITRINE_BLOCK, fabricItemSettings));
-        registerBlock("budding_citrine", BUDDING_CITRINE);
-        registerBlockItem("budding_citrine", new BlockItem(BUDDING_CITRINE, fabricItemSettings));
-        
+
+        registerBlock("topaz_block", TOPAZ_BLOCK);
+        registerBlockItem("topaz_block", new BlockItem(TOPAZ_BLOCK, fabricItemSettings));
+        registerBlock("budding_topaz", BUDDING_TOPAZ);
+        registerBlockItem("budding_topaz", new BlockItem(BUDDING_TOPAZ, fabricItemSettings));
         registerBlock("small_topaz_bud", SMALL_TOPAZ_BUD);
         registerBlockItem("small_topaz_bud", new BlockItem(SMALL_TOPAZ_BUD, fabricItemSettings));
         registerBlock("medium_topaz_bud", MEDIUM_TOPAZ_BUD);
@@ -1085,11 +1095,11 @@ public class PigmentBlocks {
         registerBlockItem("large_topaz_bud", new BlockItem(LARGE_TOPAZ_BUD, fabricItemSettings));
         registerBlock("topaz_cluster", TOPAZ_CLUSTER);
         registerBlockItem("topaz_cluster", new BlockItem(TOPAZ_CLUSTER, fabricItemSettings));
-        registerBlock("topaz_block", TOPAZ_BLOCK);
-        registerBlockItem("topaz_block", new BlockItem(TOPAZ_BLOCK, fabricItemSettings));
-        registerBlock("budding_topaz", BUDDING_TOPAZ);
-        registerBlockItem("budding_topaz", new BlockItem(BUDDING_TOPAZ, fabricItemSettings));
 
+        registerBlock("onyx_block", ONYX_BLOCK);
+        registerBlockItem("onyx_block", new BlockItem(ONYX_BLOCK, fabricItemSettings));
+        registerBlock("budding_onyx", BUDDING_ONYX);
+        registerBlockItem("budding_onyx", new BlockItem(BUDDING_ONYX, fabricItemSettings));
         registerBlock("small_onyx_bud", SMALL_ONYX_BUD);
         registerBlockItem("small_onyx_bud", new BlockItem(SMALL_ONYX_BUD, fabricItemSettings));
         registerBlock("medium_onyx_bud", MEDIUM_ONYX_BUD);
@@ -1098,11 +1108,11 @@ public class PigmentBlocks {
         registerBlockItem("large_onyx_bud", new BlockItem(LARGE_ONYX_BUD, fabricItemSettings));
         registerBlock("onyx_cluster", ONYX_CLUSTER);
         registerBlockItem("onyx_cluster", new BlockItem(ONYX_CLUSTER, fabricItemSettings));
-        registerBlock("onyx_block", ONYX_BLOCK);
-        registerBlockItem("onyx_block", new BlockItem(ONYX_BLOCK, fabricItemSettings));
-        registerBlock("budding_onyx", BUDDING_ONYX);
-        registerBlockItem("budding_onyx", new BlockItem(BUDDING_ONYX, fabricItemSettings));
 
+        registerBlock("moonstone_block", MOONSTONE_BLOCK);
+        registerBlockItem("moonstone_block", new BlockItem(MOONSTONE_BLOCK, fabricItemSettings));
+        registerBlock("budding_moonstone", BUDDING_MOONSTONE);
+        registerBlockItem("budding_moonstone", new BlockItem(BUDDING_MOONSTONE, fabricItemSettings));
         registerBlock("small_moonstone_bud", SMALL_MOONSTONE_BUD);
         registerBlockItem("small_moonstone_bud", new BlockItem(SMALL_MOONSTONE_BUD, fabricItemSettings));
         registerBlock("medium_moonstone_bud", MEDIUM_MOONSTONE_BUD);
@@ -1111,10 +1121,6 @@ public class PigmentBlocks {
         registerBlockItem("large_moonstone_bud", new BlockItem(LARGE_MOONSTONE_BUD, fabricItemSettings));
         registerBlock("moonstone_cluster", MOONSTONE_CLUSTER);
         registerBlockItem("moonstone_cluster", new BlockItem(MOONSTONE_CLUSTER, fabricItemSettings));
-        registerBlock("moonstone_block", MOONSTONE_BLOCK);
-        registerBlockItem("moonstone_block", new BlockItem(MOONSTONE_BLOCK, fabricItemSettings));
-        registerBlock("budding_moonstone", BUDDING_MOONSTONE);
-        registerBlockItem("budding_moonstone", new BlockItem(BUDDING_MOONSTONE, fabricItemSettings));
 
         registerBlock("rainbow_moonstone_block", RAINBOW_MOONSTONE_BLOCK);
         registerBlockItem("rainbow_moonstone_block", new BlockItem(RAINBOW_MOONSTONE_BLOCK, fabricItemSettings));

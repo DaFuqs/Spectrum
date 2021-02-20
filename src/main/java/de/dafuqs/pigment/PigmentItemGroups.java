@@ -25,7 +25,7 @@ public class PigmentItemGroups {
             new Identifier(PigmentCommon.MOD_ID, "decoration"),
             () -> new ItemStack(PigmentBlocks.MOONSTONE_CHISELED_CALCITE));
 
-    public static final ItemGroup ITEM_GROUP_TOOLS = FabricItemGroupBuilder.create(
+    public static final ItemGroup ITEM_GROUP_PREENCHANTED = FabricItemGroupBuilder.create(
             new Identifier(PigmentCommon.MOD_ID, "tools"))
             .icon(() -> new ItemStack(PigmentBlocks.ALTAR))
             .appendItems(stacks -> {

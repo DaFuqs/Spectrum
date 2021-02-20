@@ -1,22 +1,13 @@
 {
     "type": "minecraft:crafting_shaped",
     "pattern": [
-        "FAF",
-        "CTM",
+        "FSF",
+        "SSS",
         "EEE"
     ],
     "key": {
-        "C": {
-	        "item": "pigment:citrine_shard"
-        },
-        "T": {
-	        "item": "pigment:topaz_shard"
-        },
-        "M": {
-	        "item": "pigment:moonstone_shard"
-        },
-        "A": {
-	        "item": "minecraft:amethyst_shard"
+        "S": {
+	        "tag": "pigment:gem_shards"
         },
         "E": {
 	        "item": "pigment:polished_calcite"

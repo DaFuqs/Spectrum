@@ -1,6 +1,7 @@
 package de.dafuqs.pigment;
 
 import de.dafuqs.pigment.config.PigmentConfig;
+import de.dafuqs.pigment.dimension.DeeperDownBiomeProvider;
 import de.dafuqs.pigment.enchantments.PigmentEnchantments;
 import de.dafuqs.pigment.inventories.PigmentContainers;
 import de.dafuqs.pigment.inventories.PigmentScreenHandlerTypes;
@@ -13,6 +14,7 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerWorldEvents;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.server.MinecraftServer;
+import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -26,6 +28,10 @@ public class PigmentCommon implements ModInitializer {
     public static MinecraftServer minecraftServer;
 
     private static PigmentBlockCloaker pigmentBlockCloaker;
+
+    public static void log(Level logLevel, String message) {
+        LOGGER.log(logLevel, "[Pigment] " + message);
+    }
 
     @Override
     public void onInitialize() {
@@ -46,13 +52,21 @@ public class PigmentCommon implements ModInitializer {
         PigmentEnchantments.register();
         PigmentFeatures.register();
 
+        // Dimension
+        DeeperDownDimension.register();
+        DeeperDownBiomeProvider.register();
+
+        // Recipes
         PigmentRecipeTypes.register();
 
+        // GUI
         PigmentContainers.register();
         PigmentScreenHandlerTypes.register();
 
-        registerDefaultEnchants();
+        // Default enchantments for some items
+        PigmentDefaultEnchantments.registerDefaultEnchantments();
 
+        // Block cloaking logic
         pigmentBlockCloaker = new PigmentBlockCloaker();
 
         ServerWorldEvents.LOAD.register((minecraftServer, serverWorld) -> {
@@ -60,13 +74,7 @@ public class PigmentCommon implements ModInitializer {
         });
     }
 
-    private void registerDefaultEnchants() {
-        DefaultEnchants.addDefaultEnchantment(PigmentItems.LOOTING_FALCHION, Enchantments.LOOTING, 3);
-        DefaultEnchants.addDefaultEnchantment(PigmentItems.SILKER_PICKAXE, Enchantments.SILK_TOUCH, 1);
-        DefaultEnchants.addDefaultEnchantment(PigmentItems.FORTUNE_PICKAXE, Enchantments.FORTUNE, 3);
-    }
-
-    public static PigmentBlockCloaker getModelSwapper() {
+    public static PigmentBlockCloaker getBlockCloaker() {
         return pigmentBlockCloaker;
     }
 

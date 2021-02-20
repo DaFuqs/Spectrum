@@ -35,9 +35,43 @@ public class PigmentFeatures {
     public static HashMap<DyeColor, ConfiguredFeature<TreeFeatureConfig, ?>> COLORED_TREE_FEATURES = new HashMap<>(); // FOR SAPLINGS
     public static ConfiguredFeature<?, ?> DECORATED_TREES; // FOR WORLD GEN
 
+    private static ConfiguredFeature<?, ?> SPARKLESTONE_ORE;
+    private static ConfiguredFeature<?, ?> KOENIGSBLAU_ORE;
+
+    public static ConfiguredFeature<?, ?> ORE_COAL;
+
     public static void register() {
         registerGeodes();
+        registerOres();
         registerColoredTrees();
+    }
+
+    private static <FC extends FeatureConfig> ConfiguredFeature<FC, ?> registerOre(Identifier identifier, ConfiguredFeature<FC, ?> configuredFeature) {
+        return Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, identifier, configuredFeature);
+    }
+
+    private static void registerOres() {
+        BlockState sparklestoneOre = PigmentBlocks.SPARKLESTONE_ORE.getDefaultState();
+        BlockState koenigsblauOre = PigmentBlocks.KOENIGSBLAU_ORE.getDefaultState();
+
+        Identifier sparklestoneOreIdentifier = new Identifier(PigmentCommon.MOD_ID, "sparklestone_ore");
+        Identifier koenigsblauOreIdentifier = new Identifier(PigmentCommon.MOD_ID, "koenigsblau_ore");
+
+        SPARKLESTONE_ORE = registerOre(sparklestoneOreIdentifier,
+                ((Feature.ORE.configure(new OreFeatureConfig(OreFeatureConfig.Rules.BASE_STONE_OVERWORLD, sparklestoneOre, 17)) // vein size
+                        .rangeOf(96, 192)) // min and max height
+                        .spreadHorizontally())
+                        .repeat(6)); // number of veins per chunk
+
+        // SPARKLESTONE ORE
+        KOENIGSBLAU_ORE = registerOre(koenigsblauOreIdentifier,
+                ((Feature.ORE.configure(new OreFeatureConfig(OreFeatureConfig.Rules.BASE_STONE_OVERWORLD, koenigsblauOre, 5)) // vein size
+                        .rangeOf(-64, 0)) // min and max height
+                        .spreadHorizontally())
+                        .repeat(4)); // number of veins per chunk
+
+        BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Feature.UNDERGROUND_ORES, RegistryKey.of(Registry.CONFIGURED_FEATURE_WORLDGEN, sparklestoneOreIdentifier));
+        BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Feature.UNDERGROUND_ORES, RegistryKey.of(Registry.CONFIGURED_FEATURE_WORLDGEN, koenigsblauOreIdentifier));
     }
 
     private static void registerColoredTree(DyeColor dyeColor) {
@@ -128,7 +162,7 @@ public class PigmentFeatures {
                         ImmutableList.of(SMALL_CITRINE_BUD, MEDIUM_CITRINE_BUD, LARGE_CITRINE_BUD, CITRINE_CLUSTER)),
                 new GeodeLayerThicknessConfig(1.7D, 2.2D, 3.2D, 4.2D),
                 new GeodeCrackConfig(0.95D, 2.0D, 2), 0.35D, 0.083D, true, 4, 7, 3, 5, 1, 3, -16, 16, 0.05D))
-                .decorate(Decorator.RANGE.configure(new RangeDecoratorConfig(6, 0, 47))).spreadHorizontally()).applyChance(48);
+                .rangeOf(-58, 47).spreadHorizontally().applyChance(30));
 
         TOPAZ_GEODE = (Feature.GEODE.configure(new GeodeFeatureConfig(
                 new GeodeLayerConfig(
@@ -140,7 +174,7 @@ public class PigmentFeatures {
                         ImmutableList.of(SMALL_TOPAZ_BUD, MEDIUM_TOPAZ_BUD, LARGE_TOPAZ_BUD, TOPAZ_CLUSTER)),
                 new GeodeLayerThicknessConfig(1.7D, 2.2D, 3.2D, 4.2D),
                 new GeodeCrackConfig(0.95D, 2.0D, 2), 0.35D, 0.083D, true, 4, 7, 3, 5, 1, 3, -16, 16, 0.05D))
-                .decorate(Decorator.RANGE.configure(new RangeDecoratorConfig(6, 0, 47))).spreadHorizontally()).applyChance(48);
+                .rangeOf(-58, 47).spreadHorizontally().applyChance(30));
 
         MOONSTONE_GEODE = (Feature.GEODE.configure(new GeodeFeatureConfig(
                 new GeodeLayerConfig(
@@ -152,7 +186,7 @@ public class PigmentFeatures {
                         ImmutableList.of(SMALL_MOONSTONE_BUD, MEDIUM_MOONSTONE_BUD, LARGE_MOONSTONE_BUD, MOONSTONE_CLUSTER)),
                 new GeodeLayerThicknessConfig(1.7D, 2.2D, 3.2D, 4.2D),
                 new GeodeCrackConfig(0.95D, 2.0D, 2), 0.35D, 0.083D, true, 4, 7, 3, 5, 1, 3, -16, 16, 0.05D))
-                .decorate(Decorator.RANGE.configure(new RangeDecoratorConfig(6, 0, 47))).spreadHorizontally()).applyChance(48);
+                .rangeOf(-58, 47).spreadHorizontally().applyChance(30));
 
         RegistryKey<ConfiguredFeature<?, ?>> CITRINE_GEODE_KEY = RegistryKey.of(Registry.CONFIGURED_FEATURE_WORLDGEN, new Identifier(PigmentCommon.MOD_ID, "citrine_geode"));
         Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, CITRINE_GEODE_KEY.getValue(), CITRINE_GEODE);
@@ -164,7 +198,7 @@ public class PigmentFeatures {
 
         RegistryKey<ConfiguredFeature<?, ?>> MOONSTONE_GEODE_KEY = RegistryKey.of(Registry.CONFIGURED_FEATURE_WORLDGEN, new Identifier(PigmentCommon.MOD_ID, "moonstone_geode"));
         Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, MOONSTONE_GEODE_KEY.getValue(), MOONSTONE_GEODE);
-        BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Feature.UNDERGROUND_STRUCTURES, MOONSTONE_GEODE_KEY);
+        BiomeModifications.addFeature(BiomeSelectors.includeByKey(), GenerationStep.Feature.UNDERGROUND_STRUCTURES, MOONSTONE_GEODE_KEY);
     }
 
 

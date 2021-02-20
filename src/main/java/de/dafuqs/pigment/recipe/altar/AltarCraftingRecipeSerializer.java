@@ -1,10 +1,9 @@
 package de.dafuqs.pigment.recipe.altar;
 
 import com.google.gson.JsonObject;
-import de.dafuqs.pigment.DefaultEnchants;
+import de.dafuqs.pigment.PigmentDefaultEnchantments;
 import de.dafuqs.pigment.enums.PigmentColor;
 import de.dafuqs.pigment.mixin.AccessorShapedRecipe;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.recipe.Ingredient;
@@ -15,7 +14,6 @@ import net.minecraft.util.JsonHelper;
 import net.minecraft.util.collection.DefaultedList;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 public class AltarCraftingRecipeSerializer<T extends AltarCraftingRecipe> implements RecipeSerializer<T> {
@@ -36,8 +34,8 @@ public class AltarCraftingRecipeSerializer<T extends AltarCraftingRecipe> implem
         DefaultedList<Ingredient> craftingInputs = AccessorShapedRecipe.invokeGetIngredients(strings, map, width, height);
         ItemStack output = ShapedRecipe.getItemStack(JsonHelper.getObject(jsonObject, "result"));
 
-        if(DefaultEnchants.hasDefaultEnchants(output.getItem())) {
-            DefaultEnchants.DefaultEnchantment enchantData = DefaultEnchants.getDefaultEnchantment(output.getItem());
+        if(PigmentDefaultEnchantments.hasDefaultEnchants(output.getItem())) {
+            PigmentDefaultEnchantments.DefaultEnchantment enchantData = PigmentDefaultEnchantments.getDefaultEnchantment(output.getItem());
             output.addEnchantment(enchantData.enchantment, enchantData.level);
         }
 

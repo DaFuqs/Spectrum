@@ -53,16 +53,16 @@ public class ColoredLogBlock extends PillarBlock implements Cloakable {
         BlockState cloakDefaultState = Blocks.OAK_LOG.getDefaultState();
         for(DyeColor dyeColor : DyeColor.values()) {
             BlockState defaultState = PigmentBlocks.getColoredLogBlock(dyeColor).getDefaultState();
-            PigmentCommon.getModelSwapper().swapModel(defaultState, cloakDefaultState); // block
-            PigmentCommon.getModelSwapper().swapModel(PigmentBlocks.getColoredLogItem(dyeColor), Items.OAK_LOG); // item
+            PigmentCommon.getBlockCloaker().swapModel(defaultState, cloakDefaultState); // block
+            PigmentCommon.getBlockCloaker().swapModel(PigmentBlocks.getColoredLogItem(dyeColor), Items.OAK_LOG); // item
         }
     }
 
     public void setUncloaked() {
         for(DyeColor dyeColor : DyeColor.values()) {
             Block block = PigmentBlocks.getColoredLogBlock(dyeColor);
-            PigmentCommon.getModelSwapper().unswapAllBlockStates(block);
-            PigmentCommon.getModelSwapper().unswapModel(PigmentBlocks.getColoredLogItem(dyeColor));
+            PigmentCommon.getBlockCloaker().unswapAllBlockStates(block);
+            PigmentCommon.getBlockCloaker().unswapModel(PigmentBlocks.getColoredLogItem(dyeColor));
         }
     }
 

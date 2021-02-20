@@ -27,8 +27,8 @@ public class BlockModelsMixin {
 
     @Inject(at = @At("HEAD"), method = "getModel", cancellable = true)
     private void getModel(BlockState blockState, CallbackInfoReturnable<BakedModel> callbackInfoReturnable) {
-        if(PigmentCommon.getModelSwapper().isSwapped(blockState)) {
-            BlockState destinationBlockState = PigmentCommon.getModelSwapper().getTarget(blockState);
+        if(PigmentCommon.getBlockCloaker().isSwapped(blockState)) {
+            BlockState destinationBlockState = PigmentCommon.getBlockCloaker().getTarget(blockState);
             BakedModel overriddenModel = this.models.getOrDefault(destinationBlockState, modelManager.getMissingModel());
             callbackInfoReturnable.setReturnValue(overriddenModel);
         }

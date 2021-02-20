@@ -71,7 +71,7 @@ public interface Cloakable {
         Identifier identifier;
         BlockState cloakedBlockState = null;
         if(lootPlayerEntity == null || isCloaked(lootPlayerEntity, state)) {
-            cloakedBlockState = PigmentCommon.getModelSwapper().getTarget(state);
+            cloakedBlockState = PigmentCommon.getBlockCloaker().getTarget(state);
             if(cloakedBlockState == null) {
                 identifier = state.getBlock().getLootTableId();
             } else {

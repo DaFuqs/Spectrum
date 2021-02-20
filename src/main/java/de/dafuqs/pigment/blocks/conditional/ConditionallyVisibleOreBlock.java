@@ -50,13 +50,13 @@ public class ConditionallyVisibleOreBlock extends OreBlock implements Cloakable 
 
     public void setCloaked() {
         // Cloaks as stone
-        PigmentCommon.getModelSwapper().swapModel(this.getDefaultState(), Blocks.STONE.getDefaultState()); // block
-        PigmentCommon.getModelSwapper().swapModel(this.asItem(), Items.STONE); // item
+        PigmentCommon.getBlockCloaker().swapModel(this.getDefaultState(), Blocks.STONE.getDefaultState()); // block
+        PigmentCommon.getBlockCloaker().swapModel(this.asItem(), Items.STONE); // item
     }
 
     public void setUncloaked() {
-        PigmentCommon.getModelSwapper().unswapAllBlockStates(this);
-        PigmentCommon.getModelSwapper().unswapModel(this.asItem());
+        PigmentCommon.getBlockCloaker().unswapAllBlockStates(this);
+        PigmentCommon.getBlockCloaker().unswapModel(this.asItem());
     }
 
     @Deprecated

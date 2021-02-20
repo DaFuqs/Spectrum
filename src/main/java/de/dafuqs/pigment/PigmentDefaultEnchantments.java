@@ -1,14 +1,13 @@
 package de.dafuqs.pigment;
 
 import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
 
 import java.util.HashMap;
 
-public class DefaultEnchants {
+public class PigmentDefaultEnchantments {
 
     private static final HashMap<Item, DefaultEnchantment> defaultEnchantments = new HashMap<>();
 
@@ -20,9 +19,14 @@ public class DefaultEnchants {
             this.enchantment = enchantment;
             this.level = level;
         }
-
-
     }
+
+    static void registerDefaultEnchantments() {
+        PigmentDefaultEnchantments.addDefaultEnchantment(PigmentItems.LOOTING_FALCHION, Enchantments.LOOTING, 3);
+        PigmentDefaultEnchantments.addDefaultEnchantment(PigmentItems.SILKER_PICKAXE, Enchantments.SILK_TOUCH, 1);
+        PigmentDefaultEnchantments.addDefaultEnchantment(PigmentItems.FORTUNE_PICKAXE, Enchantments.FORTUNE, 3);
+    }
+
 
     public static void addDefaultEnchantment(Item item, Enchantment enchantment, int level) {
         defaultEnchantments.put(item, new DefaultEnchantment(enchantment, level));

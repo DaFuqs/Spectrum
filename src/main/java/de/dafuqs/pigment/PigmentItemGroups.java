@@ -1,7 +1,5 @@
 package de.dafuqs.pigment;
 
-import de.dafuqs.pigment.PigmentCommon;
-import de.dafuqs.pigment.PigmentBlocks;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -29,9 +27,9 @@ public class PigmentItemGroups {
             new Identifier(PigmentCommon.MOD_ID, "tools"))
             .icon(() -> new ItemStack(PigmentBlocks.ALTAR))
             .appendItems(stacks -> {
-                stacks.add(DefaultEnchants.getEnchantedItemStack(PigmentItems.LOOTING_FALCHION));
-                stacks.add(DefaultEnchants.getEnchantedItemStack(PigmentItems.SILKER_PICKAXE));
-                stacks.add(DefaultEnchants.getEnchantedItemStack(PigmentItems.FORTUNE_PICKAXE));
+                stacks.add(PigmentDefaultEnchantments.getEnchantedItemStack(PigmentItems.LOOTING_FALCHION));
+                stacks.add(PigmentDefaultEnchantments.getEnchantedItemStack(PigmentItems.SILKER_PICKAXE));
+                stacks.add(PigmentDefaultEnchantments.getEnchantedItemStack(PigmentItems.FORTUNE_PICKAXE));
             })
             .build();
 

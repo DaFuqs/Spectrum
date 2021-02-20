@@ -1,7 +1,6 @@
 package de.dafuqs.pigment.blocks.conditional;
 
 import de.dafuqs.pigment.PigmentCommon;
-import de.dafuqs.pigment.PigmentFluidTags;
 import de.dafuqs.pigment.interfaces.Cloakable;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -18,7 +17,6 @@ import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.state.property.Properties;
-import net.minecraft.state.property.Property;
 import net.minecraft.tag.FluidTags;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -64,14 +62,14 @@ public class QuitoxicReedsBlock extends SugarCaneBlock implements Cloakable, Wat
 
     public void setCloaked() {
         // Colored Logs => Oak logs
-        PigmentCommon.getModelSwapper().swapModel(this.getDefaultState().with(WATERLOGGED, false), Blocks.AIR.getDefaultState()); // block
-        PigmentCommon.getModelSwapper().swapModel(this.getDefaultState().with(WATERLOGGED, true), Blocks.WATER.getDefaultState()); // block
-        PigmentCommon.getModelSwapper().swapModel(this.asItem(), Items.SUGAR_CANE); // item
+        PigmentCommon.getBlockCloaker().swapModel(this.getDefaultState().with(WATERLOGGED, false), Blocks.AIR.getDefaultState()); // block
+        PigmentCommon.getBlockCloaker().swapModel(this.getDefaultState().with(WATERLOGGED, true), Blocks.WATER.getDefaultState()); // block
+        PigmentCommon.getBlockCloaker().swapModel(this.asItem(), Items.SUGAR_CANE); // item
     }
 
     public void setUncloaked() {
-        PigmentCommon.getModelSwapper().unswapAllBlockStates(this);
-        PigmentCommon.getModelSwapper().unswapModel(this.asItem());
+        PigmentCommon.getBlockCloaker().unswapAllBlockStates(this);
+        PigmentCommon.getBlockCloaker().unswapModel(this.asItem());
     }
 
     @Deprecated

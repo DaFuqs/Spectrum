@@ -34,8 +34,8 @@ public class OminousSaplingBlockEntity extends BlockEntity implements PlayerOwne
 
     // Serialize the BlockEntity
     @Override
-    public CompoundTag toTag(CompoundTag tag) {
-        super.toTag(tag);
+    public CompoundTag writeNbt(CompoundTag tag) {
+        super.writeNbt(tag);
 
         // Save the current value of the number to the tag
         tag.putUuid ("uuid", this.ownerUUID);
@@ -45,8 +45,8 @@ public class OminousSaplingBlockEntity extends BlockEntity implements PlayerOwne
 
     // Deserialize the BlockEntity
     @Override
-    public void fromTag(CompoundTag tag) {
-        super.fromTag(tag);
+    public void readNbt(CompoundTag tag) {
+        super.readNbt(tag);
         this.ownerUUID = tag.getUuid("uuid");
     }
 

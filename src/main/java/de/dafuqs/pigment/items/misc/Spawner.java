@@ -54,7 +54,7 @@ public class Spawner extends BlockItem {
         ItemStack itemStack = new ItemStack(PigmentItems.SPAWNER, 1);
 
         CompoundTag blockEntityTag = new CompoundTag();
-        blockEntity.toTag(blockEntityTag);
+        blockEntity.writeNbt(blockEntityTag);
 
         blockEntityTag.remove("x");
         blockEntityTag.remove("y");

@@ -168,10 +168,10 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
         }
     }
 
-    public void fromTag(CompoundTag tag) {
-        super.fromTag(tag);
+    public void readNbt(CompoundTag tag) {
+        super.readNbt(tag);
         this.inventory = DefaultedList.ofSize(9+5+1+1, ItemStack.EMPTY);
-        Inventories.fromTag(tag, this.inventory);
+        Inventories.readNbt(tag, this.inventory);
         this.craftingTime = tag.getShort("CraftingTime");
         this.craftingTimeTotal = tag.getShort("CraftingTimeTotal");
         if(tag.contains("UUID")) {
@@ -181,12 +181,12 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
         }
     }
 
-    public CompoundTag toTag(CompoundTag tag) {
-        super.toTag(tag);
+    public CompoundTag writeNbt(CompoundTag tag) {
+        super.writeNbt(tag);
         tag.putShort("CraftingTime", (short)this.craftingTime);
         tag.putShort("CraftingTimeTotal", (short)this.craftingTimeTotal);
         tag.putUuid("UUID", this.playerUUID);
-        Inventories.toTag(tag, this.inventory);
+        Inventories.writeNbt(tag, this.inventory);
         return tag;
     }
 

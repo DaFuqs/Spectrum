@@ -9,10 +9,7 @@ import de.dafuqs.pigment.blocks.budding.BuddingTopazBlock;
 import de.dafuqs.pigment.blocks.chromatic_tree.OminousSaplingBlock;
 import de.dafuqs.pigment.blocks.chromatic_tree.OminousSaplingBlockItem;
 import de.dafuqs.pigment.blocks.compactor.CompactorBlock;
-import de.dafuqs.pigment.blocks.conditional.ColoredLeavesBlock;
-import de.dafuqs.pigment.blocks.conditional.ColoredLogBlock;
-import de.dafuqs.pigment.blocks.conditional.KoenigsblauOreBlock;
-import de.dafuqs.pigment.blocks.conditional.SparklestoneOreBlock;
+import de.dafuqs.pigment.blocks.conditional.*;
 import de.dafuqs.pigment.blocks.decay.DecayBlock1;
 import de.dafuqs.pigment.blocks.decay.DecayBlock2;
 import de.dafuqs.pigment.blocks.decay.DecayBlock3;
@@ -436,6 +433,8 @@ public class PigmentBlocks {
     public static final Block BLAZING_CRYSTAL = new Block(FabricBlockSettings.copyOf(Blocks.DIAMOND_BLOCK)); // TODO
     public static final Block RESONANT_LILY = new Block(FabricBlockSettings.copyOf(Blocks.DIAMOND_BLOCK)); // TODO
 
+    public static final Block QUITOXIC_REEDS = new QuitoxicReedsBlock(FabricBlockSettings.copyOf(Blocks.SUGAR_CANE).luminance(3));
+
     /*public static final Block CLAY_ORE = new RedstoneLampBlock(FabricBlockSettings.copyOf(Blocks.REDSTONE_LAMP));
     public static final Block NETHER_ORE = new RedstoneLampBlock(FabricBlockSettings.copyOf(Blocks.REDSTONE_LAMP));
     public static final Block END_ORE = new RedstoneLampBlock(FabricBlockSettings.copyOf(Blocks.REDSTONE_LAMP));*/
@@ -496,7 +495,7 @@ public class PigmentBlocks {
         registerGemGlass(decorationItemSettings);
         registerPlayerOnlyGlass(generalItemSettings);
         registerFlatColoredBlocks(decorationItemSettings);
-        
+
         // GLISTERING MELON
         registerBlock("glistering_melon", GLISTERING_MELON);
         registerBlockItem("glistering_melon", new BlockItem(GLISTERING_MELON, generalItemSettings));
@@ -521,6 +520,8 @@ public class PigmentBlocks {
         registerBlockItem("blazing_crystal", new BlockItem(BLAZING_CRYSTAL, generalItemSettings));
         registerBlock("resonant_lily", RESONANT_LILY);
         registerBlockItem("resonant_lily", new BlockItem(RESONANT_LILY, generalItemSettings));
+        registerBlock("quitoxic_reeds", QUITOXIC_REEDS);
+        registerBlockItem("quitoxic_reeds", new BlockItem(QUITOXIC_REEDS, generalItemSettings));
 
         registerBlock("particle_emitter", PARTICLE_EMITTER);
         registerBlockItem("particle_emitter", new BlockItem(PARTICLE_EMITTER, generalItemSettings));
@@ -1210,6 +1211,8 @@ public class PigmentBlocks {
         BlockRenderLayerMap.INSTANCE.putBlock(PigmentBlocks.RED_LAMP, RenderLayer.getTranslucent());
         BlockRenderLayerMap.INSTANCE.putBlock(PigmentBlocks.WHITE_LAMP, RenderLayer.getTranslucent());
         BlockRenderLayerMap.INSTANCE.putBlock(PigmentBlocks.YELLOW_LAMP, RenderLayer.getTranslucent());
+
+        BlockRenderLayerMap.INSTANCE.putBlock(PigmentBlocks.QUITOXIC_REEDS, RenderLayer.getTranslucent());
     }
 
     @NotNull

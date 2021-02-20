@@ -89,6 +89,7 @@ public class PigmentItems {
     public static final Item LOOTING_FALCHION = new SwordItem(MULTI_TOOL_MATERIAL, 4, -2.2F, preEnchantedItemSettings);
 
     public static final Item END_PORTAL_CRACKER = new EndPortalCrackerItem(generalItemSettings);
+    public static final Item QUITOXIC_POWDER = new Item(generalItemSettings);
 
     private static void registerItem(String name, Item item) {
         Registry.register(Registry.ITEM, new Identifier(PigmentCommon.MOD_ID, name), item);
@@ -140,6 +141,7 @@ public class PigmentItems {
         registerItem("sparklestone_gem", SPARKLESTONE_GEM);
         registerItem("raw_koenigsblau", RAW_KOENIGSBLAU);
         registerItem("shaped_koenigsblau", SHAPED_KOENIGSBLAU);
+        registerItem("quitoxic_powder", QUITOXIC_POWDER);
 
         registerItem("multitool", MULTITOOL);
         registerItem("silker_pickaxe", SILKER_PICKAXE);

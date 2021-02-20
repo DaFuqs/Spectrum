@@ -111,7 +111,7 @@ public class QuitoxicReedsBlock extends SugarCaneBlock implements Cloakable, Wat
             for(i = 1; world.getBlockState(pos.down(i)).isOf(this); ++i) {
             }
 
-            if (i < 3) {
+            if (i < 8) {
                 int j = state.get(AGE);
                 if (j == 15) {
                     world.setBlockState(pos.up(), this.getDefaultState());
@@ -138,7 +138,7 @@ public class QuitoxicReedsBlock extends SugarCaneBlock implements Cloakable, Wat
             return true;
         } else {
             BlockState topBlockState = world.getBlockState(pos.up());
-            if (bottomBlockState.isOf(Blocks.CLAY) && (topBlockState.isAir() || topBlockState.isOf(this))) {
+            if (bottomBlockState.isOf(Blocks.CLAY) && (world.isAir(pos) || topBlockState.isOf(this))) {
                 // check next to fluid
                 FluidState fluidState = world.getFluidState(pos);
                 return fluidState.isIn(FluidTags.WATER); // || fluidState.isIn(PigmentFluidTags.LIQUID_CRYSTAL); // todo: liquid crstal logged

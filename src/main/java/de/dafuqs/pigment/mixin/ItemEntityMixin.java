@@ -1,9 +1,12 @@
 package de.dafuqs.pigment.mixin;
 
+import de.dafuqs.pigment.PigmentItemStackImmunities;
 import de.dafuqs.pigment.inventories.AutoCraftingInventory;
 import de.dafuqs.pigment.recipe.PigmentRecipeTypes;
 import de.dafuqs.pigment.recipe.anvil_crushing.AnvilCrushingRecipe;
 import net.minecraft.block.Blocks;
+import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ExperienceOrbEntity;
 import net.minecraft.entity.ItemEntity;
@@ -91,6 +94,18 @@ public abstract class ItemEntityMixin {
 
                 // prevent the source itemStack taking damage.
                 // ItemEntities have a health of 5 and can actually get killed by a falling anvil
+                callbackInfoReturnable.setReturnValue(true);
+            }
+        }
+    }
+
+    @Inject(method="Lnet/minecraft/entity/ItemEntity;damage(Lnet/minecraft/entity/damage/DamageSource;F)Z", at=@At("HEAD"), cancellable = true)
+    private void isDamageProof(DamageSource source, float amount, CallbackInfoReturnable<Boolean> callbackInfoReturnable) {
+        ItemStack itemStack = ((ItemEntity)(Object) this).getStack();
+
+        if(itemStack != ItemStack.EMPTY) {
+            boolean isImmune = PigmentItemStackImmunities.isDamageImmune(itemStack.getItem(), source);
+            if(isImmune) {
                 callbackInfoReturnable.setReturnValue(true);
             }
         }

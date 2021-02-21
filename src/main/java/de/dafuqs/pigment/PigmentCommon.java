@@ -66,6 +66,7 @@ public class PigmentCommon implements ModInitializer {
         PigmentScreenHandlerTypes.register();
 
         // Default enchantments for some items
+        PigmentItemStackImmunities.registerDefaultItemStackImmunities();
         PigmentDefaultEnchantments.registerDefaultEnchantments();
 
         // Block cloaking logic

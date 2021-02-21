@@ -1,0 +1,12 @@
+{
+    "parent": "minecraft:block/cube",
+    "textures": {
+        "particle": "pigment:block/altar3_north",
+        "north": "pigment:block/altar3_north",
+        "south": "pigment:block/altar3_south",
+        "east": "pigment:block/altar3_east",
+        "west": "pigment:block/altar3_west",
+        "up": "pigment:block/altar3_up",
+        "down": "pigment:block/altar_down"
+    }
+}

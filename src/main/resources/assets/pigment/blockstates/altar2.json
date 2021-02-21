@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "state=default": {
+      "model": "pigment:block/altar2"
+    },
+    "state=redstone": {
+      "model": "pigment:block/altar2_redstone"
+    }
+  }
+}

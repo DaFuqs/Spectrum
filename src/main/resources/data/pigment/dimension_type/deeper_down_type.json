@@ -1,5 +1,6 @@
 {
-  "logical_height" : 256,
+  "height" : 128,
+  "logical_height" : 128,
   "infiniburn": "minecraft:infiniburn_overworld",
   "effects": "pigment:deeper_down",
   "ambient_light": 0.0,

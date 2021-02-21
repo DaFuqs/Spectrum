@@ -15,32 +15,35 @@ import net.minecraft.world.biome.source.BiomeSource;
 
 import java.util.List;
 
-public class DeeperDownBiomeProvider extends BiomeSource {
+import static org.apache.logging.log4j.Level.INFO;
 
-    public static final Identifier DEEPER_DOWN_BIOME_IDENTIFIER = new Identifier(PigmentCommon.MOD_ID, "deeper_down");
+public class DeeperDownBiomeSource extends BiomeSource {
 
-    public static void register() {
-        Registry.register(Registry.BIOME_SOURCE, new Identifier(PigmentCommon.MOD_ID, "biome_source"), DeeperDownBiomeProvider.CODEC);
-    }
+    public static final Identifier DEEPER_DOWN_BIOME_IDENTIFIER = new Identifier(PigmentCommon.MOD_ID, "deeper_down_biome");
 
-    public static final Codec<DeeperDownBiomeProvider> CODEC =
+    public static final Codec<DeeperDownBiomeSource> CODEC =
             RecordCodecBuilder.create((instance) -> instance.group(
                     Codec.LONG.fieldOf("seed").stable().forGetter((StarrySkyBiomeProvider) -> StarrySkyBiomeProvider.SEED),
                     RegistryLookupCodec.of(Registry.BIOME_KEY).forGetter((vanillaLayeredBiomeSource) -> vanillaLayeredBiomeSource.BIOME_REGISTRY))
-            .apply(instance, instance.stable(DeeperDownBiomeProvider::new)));
+            .apply(instance, instance.stable(DeeperDownBiomeSource::new)));
 
     private final long SEED;
     private final Registry<Biome> BIOME_REGISTRY;
     public static Registry<Biome> layersBiomeRegistry;
 
-    private static final List<RegistryKey<Biome>> BIOMES = ImmutableList.of(
-            RegistryKey.of(Registry.BIOME_KEY, DEEPER_DOWN_BIOME_IDENTIFIER));
+    private static final List<RegistryKey<Biome>> BIOMES = ImmutableList.of(RegistryKey.of(Registry.BIOME_KEY, DEEPER_DOWN_BIOME_IDENTIFIER));
 
-    public DeeperDownBiomeProvider(long seed, Registry<Biome> biomeRegistry) {
-        super(BIOMES.stream().map((registryKey) -> () -> (Biome)biomeRegistry.get(registryKey)));
+    // reference: VanillaLayeredBiomeSource
+    public DeeperDownBiomeSource(long seed, Registry<Biome> biomeRegistry) {
+        super(BIOMES.stream().map((key) -> () -> (Biome) biomeRegistry.getOrThrow(key)));
         this.SEED = seed;
         this.BIOME_REGISTRY = biomeRegistry;
-        DeeperDownBiomeProvider.layersBiomeRegistry = biomeRegistry;
+        DeeperDownBiomeSource.layersBiomeRegistry = biomeRegistry;
+    }
+
+    public static void register() {
+        PigmentCommon.log(INFO, "Registering the Deeper Down biome source...");
+        Registry.register(Registry.BIOME_SOURCE, new Identifier(PigmentCommon.MOD_ID, "deeper_down_biome_source"), DeeperDownBiomeSource.CODEC);
     }
 
     public Biome getBiomeForNoiseGen(int x, int y, int z) {
@@ -55,7 +58,7 @@ public class DeeperDownBiomeProvider extends BiomeSource {
     @Override
     @Environment(EnvType.CLIENT)
     public BiomeSource withSeed(long seed) {
-        return new DeeperDownBiomeProvider(seed, this.BIOME_REGISTRY);
+        return new DeeperDownBiomeSource(seed, this.BIOME_REGISTRY);
     }
 
 }

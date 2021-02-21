@@ -186,7 +186,7 @@ public class PigmentFeatures {
                         ImmutableList.of(SMALL_MOONSTONE_BUD, MEDIUM_MOONSTONE_BUD, LARGE_MOONSTONE_BUD, MOONSTONE_CLUSTER)),
                 new GeodeLayerThicknessConfig(1.7D, 2.2D, 3.2D, 4.2D),
                 new GeodeCrackConfig(0.95D, 2.0D, 2), 0.35D, 0.083D, true, 4, 7, 3, 5, 1, 3, -16, 16, 0.05D))
-                .rangeOf(YOffset.getBottom(), YOffset.getTop()).spreadHorizontally().applyChance(30));
+                .rangeOf(YOffset.aboveBottom(10), YOffset.belowTop(10)).spreadHorizontally().applyChance(30));
 
         RegistryKey<ConfiguredFeature<?, ?>> CITRINE_GEODE_KEY = RegistryKey.of(Registry.CONFIGURED_FEATURE_WORLDGEN, new Identifier(PigmentCommon.MOD_ID, "citrine_geode"));
         Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, CITRINE_GEODE_KEY.getValue(), CITRINE_GEODE);

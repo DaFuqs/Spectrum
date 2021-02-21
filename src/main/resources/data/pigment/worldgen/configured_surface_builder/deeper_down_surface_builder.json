@@ -1,0 +1,14 @@
+{
+  "config": {
+    "top_material": {
+      "Name": "minecraft:grimstone"
+    },
+    "under_material": {
+      "Name": "minecraft:grimstone"
+    },
+    "underwater_material": {
+      "Name": "minecraft:grimstone"
+    }
+  },
+  "type": "pigment:deeper_down_surface_builder"
+}

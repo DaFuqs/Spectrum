@@ -1,7 +1,9 @@
 package de.dafuqs.pigment;
 
 import de.dafuqs.pigment.config.PigmentConfig;
-import de.dafuqs.pigment.dimension.DeeperDownBiomeProvider;
+import de.dafuqs.pigment.dimension.DeeperDownBiomeSource;
+import de.dafuqs.pigment.dimension.DeeperDownDimension;
+import de.dafuqs.pigment.dimension.PigmentSurfaceBuilders;
 import de.dafuqs.pigment.enchantments.PigmentEnchantments;
 import de.dafuqs.pigment.inventories.PigmentContainers;
 import de.dafuqs.pigment.inventories.PigmentScreenHandlerTypes;
@@ -12,7 +14,6 @@ import me.sargunvohra.mcmods.autoconfig1u.AutoConfig;
 import me.sargunvohra.mcmods.autoconfig1u.serializer.JanksonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerWorldEvents;
-import net.minecraft.enchantment.Enchantments;
 import net.minecraft.server.MinecraftServer;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
@@ -53,8 +54,7 @@ public class PigmentCommon implements ModInitializer {
         PigmentFeatures.register();
 
         // Dimension
-        DeeperDownDimension.register();
-        DeeperDownBiomeProvider.register();
+        DeeperDownDimension.setup();
 
         // Recipes
         PigmentRecipeTypes.register();

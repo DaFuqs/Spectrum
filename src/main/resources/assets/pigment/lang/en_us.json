@@ -1,5 +1,6 @@
 {
   "itemGroup.pigment.general": "Pigment",
+  "itemGroup.pigment.tools": "Pigment Tools",
   "itemGroup.pigment.worldgen": "Pigment Worldgen",
   "itemGroup.pigment.decoration": "Pigment Decorations",
   "itemGroup.pigment.colored_wood": "Pigment Colored Wood",
@@ -19,6 +20,11 @@
   "item.pigment.sparklestone_gem": "Sparklestone Gem",
   "item.pigment.raw_koenigsblau": "Raw Koenigsblau",
   "item.pigment.shaped_koenigsblau": "Saturated Königsblau",
+  "block.pigment.quitoxic_reeds": "Quitoxic Reeds",
+  "item.pigment.quitoxic_powder": "Quitoxic Powder",
+  "block.pigment.mermaids_brush": "Mermaids Brush",
+  "item.pigment.mermaids_gem": "Mermaids Gem",
+  "item.pigment.end_portal_cracker": "End Portal Cracker",
 
   "block.pigment.black_sapling": "Black Sapling",
   "block.pigment.black_log": "Black Log",

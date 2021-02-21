@@ -1,7 +1,30 @@
 {
   "variants": {
-    "": {
+    "facing=down": {
+      "model": "pigment:block/koenigsblau_block",
+      "x": 180
+    },
+    "facing=east": {
+      "model": "pigment:block/koenigsblau_block",
+      "x": 90,
+      "y": 90
+    },
+    "facing=north": {
+      "model": "pigment:block/koenigsblau_block",
+      "x": 90
+    },
+    "facing=south": {
+      "model": "pigment:block/koenigsblau_block",
+      "x": 90,
+      "y": 180
+    },
+    "facing=up": {
       "model": "pigment:block/koenigsblau_block"
+    },
+    "facing=west": {
+      "model": "pigment:block/koenigsblau_block",
+      "x": 90,
+      "y": 270
     }
   }
 }

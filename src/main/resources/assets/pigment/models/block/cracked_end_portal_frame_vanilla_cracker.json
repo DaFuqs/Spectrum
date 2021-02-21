@@ -1,9 +1,9 @@
 {
   "textures": {
-    "particle": "pigment:block/purple_end_portal_frame_side",
+    "particle": "pigment:block/cracked_end_portal_frame_side",
     "bottom": "block/end_stone",
-    "top": "pigment:block/purple_end_portal_frame_top_cracks",
-    "side": "pigment:block/purple_end_portal_frame_side_cracks",
+    "top": "pigment:block/cracked_end_portal_frame_top",
+    "side": "pigment:block/cracked_end_portal_frame_side",
     "eye": "pigment:block/cracked_end_portal_frame_eye"
   },
   "elements": [

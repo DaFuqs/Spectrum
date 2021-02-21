@@ -9,7 +9,6 @@ import net.minecraft.block.pattern.CachedBlockPosition;
 import net.minecraft.entity.ai.pathing.NavigationType;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.particle.ParticleTypes;
-import net.minecraft.predicate.block.BlockPredicate;
 import net.minecraft.predicate.block.BlockStatePredicate;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
@@ -30,9 +29,10 @@ import java.util.Random;
 public class CrackedEndPortalFrameBlock extends Block {
 
     public enum EndPortalFrameEye implements StringIdentifiable {
+        VANILLA_WITH_END_PORTAL_CRACKER("vanilla_cracker"),
         NONE("none"),
-        EYE_OF_ENDER("ender"),
-        END_PORTAL_CRACKER("cracker");
+        WITH_EYE_OF_ENDER("ender"),
+        WITH_END_PORTAL_CRACKER("cracker");
 
         private final String name;
 
@@ -97,22 +97,37 @@ public class CrackedEndPortalFrameBlock extends Block {
 
     @Deprecated
     public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
-        if(!newState.getBlock().equals(this)) {
-            searchAndDeleteEndPortals(world, pos);
-        }
+
     }
 
-    private void searchAndDeleteEndPortals(World world, BlockPos pos) {
-        // destroy end portal
-        BlockPattern.Result result = CrackedEndPortalFrameBlock.getEndPortalPattern().searchAround(world, pos);
+    public boolean hasComparatorOutput(BlockState state) {
+        return true;
+    }
 
+    public int getComparatorOutput(BlockState state, World world, BlockPos pos) {
+        return state.get(EYE_TYPE).equals(EndPortalFrameEye.WITH_EYE_OF_ENDER) ? 15 : 0;
+    }
+
+    public static void checkAndFillEndPortal(World world, BlockPos blockPos, BlockState fillBlockState) {
+        BlockPattern.Result result = CrackedEndPortalFrameBlock.getCompletedFramePattern().searchAround(world, blockPos);
         if (result != null) {
-            BlockPos blockPos = result.getFrontTopLeft().add(-3, 0, -3);
+            // since the custom portal does not have
+            // fixed directions we can estimate the
+            // portal position based on some simple checks instead
+            BlockPos portalTopLeft = result.getFrontTopLeft().add(-3, 0, -3);
+            if(world.getBlockState(portalTopLeft.add(7, 0, 0)).getBlock().equals(PigmentBlocks.CRACKED_END_PORTAL_FRAME)) {
+                portalTopLeft = portalTopLeft.add(4, 0, 0);
+            } else if(world.getBlockState(portalTopLeft.add(0, 0, 7)).getBlock().equals(PigmentBlocks.CRACKED_END_PORTAL_FRAME)) {
+                portalTopLeft = portalTopLeft.add(0, 0, 4);
+            }
+
             for (int i = 0; i < 3; ++i) {
                 for (int j = 0; j < 3; ++j) {
-                    world.setBlockState(blockPos.add(i, 0, j), Blocks.PINK_CONCRETE.getDefaultState(), 2);
+                    world.setBlockState(portalTopLeft.add(i, 0, j), fillBlockState, 2);
                 }
             }
+
+            world.syncGlobalEvent(1038, portalTopLeft.add(1, 0, 1), 0);
         }
     }
 
@@ -120,22 +135,28 @@ public class CrackedEndPortalFrameBlock extends Block {
     @Deprecated
     public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
         // when placed via end portal cracker => fuse
-        if(state.get(EYE_TYPE).equals(EndPortalFrameEye.END_PORTAL_CRACKER)) {
-            world.getBlockTickScheduler().schedule(pos, this, 60);
+        if(isVolatile(state)) {
+            world.getBlockTickScheduler().schedule(pos, this, 40);
         }
+    }
+
+    public boolean isVolatile(BlockState blockState) {
+        EndPortalFrameEye endPortalFrameEye = blockState.get(EYE_TYPE);
+        return endPortalFrameEye.equals(EndPortalFrameEye.VANILLA_WITH_END_PORTAL_CRACKER) || endPortalFrameEye.equals(EndPortalFrameEye.WITH_END_PORTAL_CRACKER);
     }
 
     @Deprecated
     public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        if(state.get(EYE_TYPE).equals(EndPortalFrameEye.END_PORTAL_CRACKER)) {
+        if(isVolatile(state)) {
             // 10% chance to break portal
             float randomFloat = random.nextFloat();
-            if(random.nextFloat() < 0.1) {
+            if(randomFloat < 0.05) {
                 // TODO: smoke + particles + sound
-                world.createExplosion(null, pos.getX(), pos.getY(), pos.getZ(), 2, Explosion.DestructionType.BREAK);
+                world.createExplosion(null, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 2, Explosion.DestructionType.BREAK);
+                checkAndFillEndPortal(world, pos, Blocks.AIR.getDefaultState()); // TODO: Make it work
                 world.breakBlock(pos, true);
-            } else if(random.nextFloat() < 0.2) {
-                world.createExplosion(null, pos.getX(), pos.getY(), pos.getZ(), 1, Explosion.DestructionType.BREAK);
+            } else if(randomFloat < 0.2) {
+                world.createExplosion(null, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 1, Explosion.DestructionType.BREAK);
             } else {
                 // TODO: smoke + particles + sound
                 double d = (double) pos.getX() + random.nextDouble();
@@ -153,16 +174,16 @@ public class CrackedEndPortalFrameBlock extends Block {
                     .aisle("?hhh?", "v???v", "v???v", "v???v", "?hhh?")
                     .where('?', CachedBlockPosition.matchesBlockState(BlockStatePredicate.ANY))
                     .where('h', CachedBlockPosition.matchesBlockState(BlockStatePredicate.forBlock(PigmentBlocks.CRACKED_END_PORTAL_FRAME)
-                            .with(EYE_TYPE, Predicates.equalTo(EndPortalFrameEye.EYE_OF_ENDER))
+                            .with(EYE_TYPE, Predicates.equalTo(EndPortalFrameEye.WITH_EYE_OF_ENDER))
                             .with(FACING_VERTICAL, Predicates.equalTo(false))))
                     .where('v', CachedBlockPosition.matchesBlockState(BlockStatePredicate.forBlock(PigmentBlocks.CRACKED_END_PORTAL_FRAME)
-                            .with(EYE_TYPE, Predicates.equalTo(EndPortalFrameEye.EYE_OF_ENDER))
+                            .with(EYE_TYPE, Predicates.equalTo(EndPortalFrameEye.WITH_EYE_OF_ENDER))
                             .with(FACING_VERTICAL, Predicates.equalTo(true)))).build();
         }
         return COMPLETED_FRAME;
     }
 
-    public static BlockPattern getEndPortalPattern() {
+    /*public static BlockPattern getEndPortalPattern() {
         if (END_PORTAL == null) {
             END_PORTAL = BlockPatternBuilder.start()
                     .aisle("eee", "eee", "eee")
@@ -170,7 +191,7 @@ public class CrackedEndPortalFrameBlock extends Block {
                     .build();
         }
         return END_PORTAL;
-    }
+    }*/
 
     static {
         FACING_VERTICAL = BooleanProperty.of("facing_vertical");

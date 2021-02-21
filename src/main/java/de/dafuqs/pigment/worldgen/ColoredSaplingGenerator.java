@@ -23,7 +23,7 @@ public class ColoredSaplingGenerator extends SaplingGenerator {
     }
     
     private ConfiguredFeature<TreeFeatureConfig, ?> getConfiguredFeature(DyeColor dyeColor) {
-        return PigmentFeatures.COLORED_TREE_FEATURES.get(dyeColor);
+        return PigmentConfiguredFeatures.COLORED_TREE_FEATURES.get(dyeColor);
     }
 
 }

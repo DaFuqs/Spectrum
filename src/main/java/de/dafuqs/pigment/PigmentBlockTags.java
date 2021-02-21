@@ -7,6 +7,11 @@ import net.minecraft.util.Identifier;
 
 public class PigmentBlockTags {
 
+    // PLANTS
+    public static Tag<Block> MERMAIDS_BRUSH_PLANTABLE;
+    public static Tag<Block> QUITOXIC_REEDS_PLANTABLE;
+
+    // DECAY
     public static Tag<Block> DECAY;
     public static Tag<Block> DECAY_MAGICAL_LEAVES;
     public static Tag<Block> DECAY2_SAFE;
@@ -15,11 +20,17 @@ public class PigmentBlockTags {
     public static Tag<Block> DECAY3_SAFE;
     public static Tag<Block> DECAY_BEDROCK_CONVERSIONS;
 
+
     private static Tag<Block> register(String id) {
         return TagRegistry.block(new Identifier(PigmentCommon.MOD_ID, id));
     }
 
     public static void register() {
+        // PLANTS
+        MERMAIDS_BRUSH_PLANTABLE = register("mermaids_brush_plantable");
+        QUITOXIC_REEDS_PLANTABLE = register("quitoxic_reeds_plantable");
+
+        // DECAY
         DECAY = register("decay");
         DECAY2_SAFE = register("decay2_safe");
         DECAY_MAGICAL_LEAVES = register("magical_leaves");

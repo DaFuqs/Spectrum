@@ -434,6 +434,7 @@ public class PigmentBlocks {
     public static final Block RESONANT_LILY = new Block(FabricBlockSettings.copyOf(Blocks.DIAMOND_BLOCK)); // TODO
 
     public static final Block QUITOXIC_REEDS = new QuitoxicReedsBlock(FabricBlockSettings.copyOf(Blocks.SUGAR_CANE).luminance(3));
+    public static final Block MERMAIDS_BRUSH = new MermaidsBrushBlock(FabricBlockSettings.copyOf(Blocks.SEAGRASS).luminance(2));
 
     /*public static final Block CLAY_ORE = new RedstoneLampBlock(FabricBlockSettings.copyOf(Blocks.REDSTONE_LAMP));
     public static final Block NETHER_ORE = new RedstoneLampBlock(FabricBlockSettings.copyOf(Blocks.REDSTONE_LAMP));
@@ -522,6 +523,8 @@ public class PigmentBlocks {
         registerBlockItem("resonant_lily", new BlockItem(RESONANT_LILY, generalItemSettings));
         registerBlock("quitoxic_reeds", QUITOXIC_REEDS);
         registerBlockItem("quitoxic_reeds", new BlockItem(QUITOXIC_REEDS, generalItemSettings));
+        registerBlock("mermaids_brush", MERMAIDS_BRUSH);
+        registerBlockItem("mermaids_brush", new BlockItem(MERMAIDS_BRUSH, generalItemSettings));
 
         registerBlock("particle_emitter", PARTICLE_EMITTER);
         registerBlockItem("particle_emitter", new BlockItem(PARTICLE_EMITTER, generalItemSettings));
@@ -1213,6 +1216,7 @@ public class PigmentBlocks {
         BlockRenderLayerMap.INSTANCE.putBlock(PigmentBlocks.YELLOW_LAMP, RenderLayer.getTranslucent());
 
         BlockRenderLayerMap.INSTANCE.putBlock(PigmentBlocks.QUITOXIC_REEDS, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(PigmentBlocks.MERMAIDS_BRUSH, RenderLayer.getCutout());
     }
 
     @NotNull

@@ -90,6 +90,7 @@ public class PigmentItems {
 
     public static final Item END_PORTAL_CRACKER = new EndPortalCrackerItem(generalItemSettings);
     public static final Item QUITOXIC_POWDER = new Item(generalItemSettings);
+    public static final Item MERMAIDS_GEM = new Item(generalItemSettings);
 
     private static void registerItem(String name, Item item) {
         Registry.register(Registry.ITEM, new Identifier(PigmentCommon.MOD_ID, name), item);
@@ -142,7 +143,9 @@ public class PigmentItems {
         registerItem("raw_koenigsblau", RAW_KOENIGSBLAU);
         registerItem("shaped_koenigsblau", SHAPED_KOENIGSBLAU);
         registerItem("quitoxic_powder", QUITOXIC_POWDER);
+        registerItem("mermaids_gem", MERMAIDS_GEM);
 
+        registerItem("end_portal_cracker", END_PORTAL_CRACKER);
         registerItem("multitool", MULTITOOL);
         registerItem("silker_pickaxe", SILKER_PICKAXE);
         registerItem("fortune_pickaxe", FORTUNE_PICKAXE);

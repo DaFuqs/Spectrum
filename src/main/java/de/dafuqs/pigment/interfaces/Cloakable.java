@@ -2,6 +2,7 @@ package de.dafuqs.pigment.interfaces;
 
 import de.dafuqs.pigment.PigmentCommon;
 import de.dafuqs.pigment.accessor.WorldRendererAccessor;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
@@ -16,11 +17,14 @@ import net.minecraft.loot.context.LootContextParameters;
 import net.minecraft.loot.context.LootContextTypes;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.shape.VoxelShape;
 
 import java.util.Collections;
 import java.util.List;
 
 public interface Cloakable {
+
+    VoxelShape EMPTY_SHAPE = Block.createCuboidShape(0.0D, 0.0D, 0.0D, 0.0D, 0.0D, 0.0D);
 
     boolean isCloaked(PlayerEntity playerEntity, BlockState blockState);
     void setCloaked();

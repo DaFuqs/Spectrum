@@ -9,6 +9,7 @@ import de.dafuqs.pigment.inventories.PigmentContainers;
 import de.dafuqs.pigment.inventories.PigmentScreenHandlerTypes;
 import de.dafuqs.pigment.recipe.PigmentRecipeTypes;
 import de.dafuqs.pigment.sounds.PigmentSoundEvents;
+import de.dafuqs.pigment.worldgen.PigmentConfiguredFeatures;
 import de.dafuqs.pigment.worldgen.PigmentFeatures;
 import me.sargunvohra.mcmods.autoconfig1u.AutoConfig;
 import me.sargunvohra.mcmods.autoconfig1u.serializer.JanksonConfigSerializer;
@@ -52,6 +53,7 @@ public class PigmentCommon implements ModInitializer {
         PigmentBlockEntityType.register();
         PigmentEnchantments.register();
         PigmentFeatures.register();
+        PigmentConfiguredFeatures.register();
 
         // Dimension
         DeeperDownDimension.setup();

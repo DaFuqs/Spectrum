@@ -21,6 +21,8 @@ import net.minecraft.state.property.Properties;
 import net.minecraft.tag.FluidTags;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.world.BlockView;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
 import org.jetbrains.annotations.Nullable;
@@ -28,15 +30,16 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.Random;
 
-public class QuitoxicReedsBlock extends SugarCaneBlock implements Cloakable, Waterloggable {
+public class MermaidsBrushBlock extends PlantBlock implements Cloakable, Waterloggable {
+
+    protected static final VoxelShape SHAPE = Block.createCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 12.0D, 14.0D);
 
     public static final IntProperty AGE = Properties.AGE_15;
-    public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
     private boolean wasLastCloaked;
 
-    public QuitoxicReedsBlock(Settings settings) {
+    public MermaidsBrushBlock(Settings settings) {
         super(settings);
-        this.setDefaultState(this.stateManager.getDefaultState().with(WATERLOGGED, false).with(AGE, 0));
+        this.setDefaultState(this.stateManager.getDefaultState().with(AGE, 0));
     }
 
     @Override
@@ -63,14 +66,21 @@ public class QuitoxicReedsBlock extends SugarCaneBlock implements Cloakable, Wat
 
     public void setCloaked() {
         // Colored Logs => Oak logs
-        PigmentCommon.getBlockCloaker().swapModel(this.getDefaultState().with(WATERLOGGED, false), Blocks.AIR.getDefaultState()); // block
-        PigmentCommon.getBlockCloaker().swapModel(this.getDefaultState().with(WATERLOGGED, true), Blocks.WATER.getDefaultState()); // block
-        PigmentCommon.getBlockCloaker().swapModel(this.asItem(), Items.SUGAR_CANE); // item
+        PigmentCommon.getBlockCloaker().swapModel(this.getDefaultState(), Blocks.WATER.getDefaultState()); // block
+        PigmentCommon.getBlockCloaker().swapModel(this.asItem(), Items.SEAGRASS); // item
     }
 
     public void setUncloaked() {
         PigmentCommon.getBlockCloaker().unswapAllBlockStates(this);
         PigmentCommon.getBlockCloaker().unswapModel(this.asItem());
+    }
+
+    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+        if(wasLastCloaked) {
+            return EMPTY_SHAPE;
+        } else {
+            return SHAPE;
+        }
     }
 
     @Deprecated
@@ -82,26 +92,24 @@ public class QuitoxicReedsBlock extends SugarCaneBlock implements Cloakable, Wat
     public BlockState getPlacementState(ItemPlacementContext ctx) {
         FluidState fluidState = ctx.getWorld().getFluidState(ctx.getBlockPos());
         boolean bl = fluidState.getFluid() == Fluids.WATER;
-        return super.getPlacementState(ctx).with(WATERLOGGED, bl);
+        return super.getPlacementState(ctx);
     }
 
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
         if (!state.canPlaceAt(world, pos)) {
             return Blocks.AIR.getDefaultState();
         } else {
-            if (state.get(WATERLOGGED)) {
-                world.getFluidTickScheduler().schedule(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
-            }
+            world.getFluidTickScheduler().schedule(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
             return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
         }
     }
 
     public FluidState getFluidState(BlockState state) {
-        return state.get(WATERLOGGED) ? Fluids.WATER.getStill(false) : super.getFluidState(state);
+        return Fluids.WATER.getStill(false);
     }
 
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(AGE, WATERLOGGED);
+        builder.add(AGE);
     }
 
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
@@ -120,7 +128,6 @@ public class QuitoxicReedsBlock extends SugarCaneBlock implements Cloakable, Wat
                 }
             }
         }
-
     }
 
     /**
@@ -132,18 +139,8 @@ public class QuitoxicReedsBlock extends SugarCaneBlock implements Cloakable, Wat
      */
     @Override
     public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
-        BlockState bottomBlockState = world.getBlockState(pos.down());
-        if (bottomBlockState.isOf(this)) {
-            return true;
-        } else {
-            BlockState topBlockState = world.getBlockState(pos.up());
-            if (bottomBlockState.isIn(PigmentBlockTags.QUITOXIC_REEDS_PLANTABLE) && (world.isAir(pos.up()) || topBlockState.isOf(this))) {
-                // check next to fluid
-                FluidState fluidState = world.getFluidState(pos);
-                return fluidState.isIn(FluidTags.WATER); // || fluidState.isIn(PigmentFluidTags.LIQUID_CRYSTAL); // todo: liquid crystal logged
-            }
-            return false;
-        }
+        FluidState fluidState = world.getFluidState(pos);
+        return fluidState.isIn(FluidTags.WATER) && world.getBlockState(pos.down()).isIn(PigmentBlockTags.MERMAIDS_BRUSH_PLANTABLE);
     }
 
 }

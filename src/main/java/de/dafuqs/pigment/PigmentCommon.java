@@ -1,9 +1,7 @@
 package de.dafuqs.pigment;
 
 import de.dafuqs.pigment.config.PigmentConfig;
-import de.dafuqs.pigment.dimension.DeeperDownBiomeSource;
 import de.dafuqs.pigment.dimension.DeeperDownDimension;
-import de.dafuqs.pigment.dimension.PigmentSurfaceBuilders;
 import de.dafuqs.pigment.enchantments.PigmentEnchantments;
 import de.dafuqs.pigment.inventories.PigmentContainers;
 import de.dafuqs.pigment.inventories.PigmentScreenHandlerTypes;
@@ -66,8 +64,9 @@ public class PigmentCommon implements ModInitializer {
         PigmentScreenHandlerTypes.register();
 
         // Default enchantments for some items
-        PigmentItemStackImmunities.registerDefaultItemStackImmunities();
+        PigmentItemStackDamageImmunities.registerDefaultItemStackImmunities();
         PigmentDefaultEnchantments.registerDefaultEnchantments();
+        PigmentResonanceDrops.setup();
 
         // Block cloaking logic
         pigmentBlockCloaker = new PigmentBlockCloaker();

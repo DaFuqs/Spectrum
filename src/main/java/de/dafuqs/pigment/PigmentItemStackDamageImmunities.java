@@ -7,14 +7,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class PigmentItemStackImmunities {
+public class PigmentItemStackDamageImmunities {
 
     private static final HashMap<String, List<Item>> damageSourceImmunities = new HashMap<>();
 
     static void registerDefaultItemStackImmunities() {
-        PigmentItemStackImmunities.addImmunity(PigmentBlocks.CRACKED_END_PORTAL_FRAME.asItem(), "explosion");
-        PigmentItemStackImmunities.addImmunity(PigmentBlocks.CRACKED_END_PORTAL_FRAME.asItem(), DamageSource.IN_FIRE);
-        PigmentItemStackImmunities.addImmunity(PigmentBlocks.CRACKED_END_PORTAL_FRAME.asItem(), DamageSource.LAVA);
+        PigmentItemStackDamageImmunities.addImmunity(PigmentBlocks.CRACKED_END_PORTAL_FRAME.asItem(), "explosion");
+        PigmentItemStackDamageImmunities.addImmunity(PigmentBlocks.CRACKED_END_PORTAL_FRAME.asItem(), DamageSource.IN_FIRE);
+        PigmentItemStackDamageImmunities.addImmunity(PigmentBlocks.CRACKED_END_PORTAL_FRAME.asItem(), DamageSource.LAVA);
     }
 
     public static void addImmunity(Item item, DamageSource damageSource) {

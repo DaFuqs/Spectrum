@@ -6,15 +6,16 @@
     "AccessorShapedRecipe",
     "AnvilBlockMixin",
     "BlockOverlayRendererMixin",
+    "EnderEyeItemMixin",
     "EndermanEntityMixin",
     "FishingBobberEntityMixin",
     "FishingBobberEntityRendererMixin",
+    "InfestedBlockMixin",
     "ItemEntityMixin",
     "ItemModelsMixin",
     "MobSpawnerBlockEntityMixin",
     "SpawnerBlockMixin",
-    "WorldRendererMixin",
-    "EnderEyeItemMixin"
+    "WorldRendererMixin"
   ],
   "client": [
     "BlockModelsMixin",

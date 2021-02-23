@@ -2,10 +2,12 @@ package de.dafuqs.pigment.blocks.conditional;
 
 import de.dafuqs.pigment.PigmentBlockTags;
 import de.dafuqs.pigment.PigmentCommon;
+import de.dafuqs.pigment.PigmentItems;
 import de.dafuqs.pigment.interfaces.Cloakable;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.*;
+import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
@@ -13,6 +15,7 @@ import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.loot.context.LootContext;
+import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
@@ -25,6 +28,7 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
+import net.minecraft.world.gen.feature.SimpleBlockFeature;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -34,7 +38,7 @@ public class MermaidsBrushBlock extends PlantBlock implements Cloakable, Waterlo
 
     protected static final VoxelShape SHAPE = Block.createCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 12.0D, 14.0D);
 
-    public static final IntProperty AGE = Properties.AGE_15;
+    public static final IntProperty AGE = Properties.AGE_7;
     private boolean wasLastCloaked;
 
     public MermaidsBrushBlock(Settings settings) {
@@ -58,23 +62,27 @@ public class MermaidsBrushBlock extends PlantBlock implements Cloakable, Waterlo
     }
 
     @Deprecated
+    @Override
     @Environment(EnvType.CLIENT)
     public boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
         checkCloak(state);
         return super.isSideInvisible(state, stateFrom, direction);
     }
 
+    @Override
     public void setCloaked() {
         // Colored Logs => Oak logs
         PigmentCommon.getBlockCloaker().swapModel(this.getDefaultState(), Blocks.WATER.getDefaultState()); // block
         PigmentCommon.getBlockCloaker().swapModel(this.asItem(), Items.SEAGRASS); // item
     }
 
+    @Override
     public void setUncloaked() {
         PigmentCommon.getBlockCloaker().unswapAllBlockStates(this);
         PigmentCommon.getBlockCloaker().unswapModel(this.asItem());
     }
 
+    @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         if(wasLastCloaked) {
             return EMPTY_SHAPE;
@@ -90,11 +98,10 @@ public class MermaidsBrushBlock extends PlantBlock implements Cloakable, Waterlo
 
     @Nullable
     public BlockState getPlacementState(ItemPlacementContext ctx) {
-        FluidState fluidState = ctx.getWorld().getFluidState(ctx.getBlockPos());
-        boolean bl = fluidState.getFluid() == Fluids.WATER;
         return super.getPlacementState(ctx);
     }
 
+    @Override
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
         if (!state.canPlaceAt(world, pos)) {
             return Blocks.AIR.getDefaultState();
@@ -104,28 +111,25 @@ public class MermaidsBrushBlock extends PlantBlock implements Cloakable, Waterlo
         }
     }
 
+    @Override
     public FluidState getFluidState(BlockState state) {
         return Fluids.WATER.getStill(false);
     }
 
+    @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(AGE);
     }
 
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        if (world.isAir(pos.up())) {
-            int i;
-            for(i = 1; world.getBlockState(pos.down(i)).isOf(this); ++i) {
-            }
-
-            if (i < 8) {
-                int j = state.get(AGE);
-                if (j == 15) {
-                    world.setBlockState(pos.up(), this.getDefaultState());
-                    world.setBlockState(pos, state.with(AGE, 0), 4);
-                } else {
-                    world.setBlockState(pos, state.with(AGE, j + 1), 4);
-                }
+        int age = state.get(AGE);
+        if (age == 7) {
+            ItemEntity pearlEntity = new ItemEntity(world, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, new ItemStack(PigmentItems.MERMAIDS_GEM, 1));
+            world.spawnEntity(pearlEntity);
+            world.setBlockState(pos, state.with(AGE, 0), 4);
+        } else {
+            if(random.nextFloat() < 0.1) {
+                world.setBlockState(pos, state.with(AGE, age + 1), 4);
             }
         }
     }

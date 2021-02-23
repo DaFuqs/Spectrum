@@ -1,6 +1,7 @@
 package de.dafuqs.pigment;
 
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
@@ -23,13 +24,30 @@ public class PigmentItemGroups {
             new Identifier(PigmentCommon.MOD_ID, "decoration"),
             () -> new ItemStack(PigmentBlocks.MOONSTONE_CHISELED_CALCITE));
 
-    public static final ItemGroup ITEM_GROUP_PREENCHANTED = FabricItemGroupBuilder.create(
+    public static final ItemGroup ITEM_GROUP_PREENCHANTED_TOOLS = FabricItemGroupBuilder.create(
             new Identifier(PigmentCommon.MOD_ID, "tools"))
             .icon(() -> new ItemStack(PigmentBlocks.ALTAR))
             .appendItems(stacks -> {
+                // early game tools
                 stacks.add(PigmentDefaultEnchantments.getEnchantedItemStack(PigmentItems.LOOTING_FALCHION));
                 stacks.add(PigmentDefaultEnchantments.getEnchantedItemStack(PigmentItems.SILKER_PICKAXE));
                 stacks.add(PigmentDefaultEnchantments.getEnchantedItemStack(PigmentItems.FORTUNE_PICKAXE));
+
+                // bedrock tools
+                stacks.add(PigmentDefaultEnchantments.getEnchantedItemStack(PigmentItems.BEDROCK_PICKAXE));
+                stacks.add(PigmentDefaultEnchantments.getEnchantedItemStack(PigmentItems.BEDROCK_AXE));
+                stacks.add(PigmentDefaultEnchantments.getEnchantedItemStack(PigmentItems.BEDROCK_SHOVEL));
+                stacks.add(PigmentDefaultEnchantments.getEnchantedItemStack(PigmentItems.BEDROCK_SWORD));
+                stacks.add(PigmentDefaultEnchantments.getEnchantedItemStack(PigmentItems.BEDROCK_HOE));
+                stacks.add(PigmentDefaultEnchantments.getEnchantedItemStack(PigmentItems.BEDROCK_BOW));
+                stacks.add(PigmentDefaultEnchantments.getEnchantedItemStack(PigmentItems.BEDROCK_CROSSBOW));
+                stacks.add(PigmentDefaultEnchantments.getEnchantedItemStack(PigmentItems.BEDROCK_SHEARS));
+                stacks.add(PigmentDefaultEnchantments.getEnchantedItemStack(PigmentItems.BEDROCK_FISHING_ROD));
+                // bedrock armor
+                stacks.add(PigmentDefaultEnchantments.getEnchantedItemStack(PigmentItems.BEDROCK_HELMET));
+                stacks.add(PigmentDefaultEnchantments.getEnchantedItemStack(PigmentItems.BEDROCK_CHESTPLATE));
+                stacks.add(PigmentDefaultEnchantments.getEnchantedItemStack(PigmentItems.BEDROCK_LEGGINGS));
+                stacks.add(PigmentDefaultEnchantments.getEnchantedItemStack(PigmentItems.BEDROCK_BOOTS));
             })
             .build();
 

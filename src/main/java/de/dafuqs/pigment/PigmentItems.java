@@ -18,12 +18,15 @@ import static de.dafuqs.pigment.PigmentFluids.STILL_MUD;
 
 public class PigmentItems {
 
-    public static FabricItemSettings generalItemSettings = new FabricItemSettings().group(PigmentItemGroups.ITEM_GROUP_GENERAL);
-    public static FabricItemSettings preEnchantedItemSettings = new FabricItemSettings().group(PigmentItemGroups.ITEM_GROUP_PREENCHANTED);
-    public static FabricItemSettings pigmentWorldgenItemSettings = new FabricItemSettings().group(PigmentItemGroups.ITEM_GROUP_WORLDGEN);
-    public static FabricItemSettings pigmentUncommonItemSettings = new FabricItemSettings().group(PigmentItemGroups.ITEM_GROUP_GENERAL).rarity(Rarity.UNCOMMON);
-    public static FabricItemSettings pigmentRareItemSettings = new FabricItemSettings().group(PigmentItemGroups.ITEM_GROUP_GENERAL).rarity(Rarity.RARE);
-    public static FabricItemSettings pigmentBedrockItemSettings = new FabricItemSettings().group(PigmentItemGroups.ITEM_GROUP_GENERAL).rarity(Rarity.RARE).fireproof();
+    public static FabricItemSettings generalItemSettings = new FabricItemSettings().group(PigmentItemGroups.ITEM_GROUP_GENERAL).maxCount(64);
+    public static FabricItemSettings fluidBucketItemSettings = new FabricItemSettings().group(PigmentItemGroups.ITEM_GROUP_GENERAL).maxCount(1);
+    public static FabricItemSettings pigmentWorldgenItemSettings = new FabricItemSettings().group(PigmentItemGroups.ITEM_GROUP_WORLDGEN).maxCount(64);
+    public static FabricItemSettings pigmentUncommonItemSettings = new FabricItemSettings().group(PigmentItemGroups.ITEM_GROUP_GENERAL).rarity(Rarity.UNCOMMON).maxCount(64);
+    public static FabricItemSettings pigmentRareItemSettings = new FabricItemSettings().group(PigmentItemGroups.ITEM_GROUP_GENERAL).rarity(Rarity.RARE).maxCount(64);
+    public static FabricItemSettings decayPlacerItemSettings = new FabricItemSettings().group(PigmentItemGroups.ITEM_GROUP_GENERAL).maxCount(16);
+
+    public static FabricItemSettings preEnchantedItemSettings = new FabricItemSettings().group(PigmentItemGroups.ITEM_GROUP_PREENCHANTED_TOOLS);
+    public static FabricItemSettings pigmentBedrockItemSettings = new FabricItemSettings().group(PigmentItemGroups.ITEM_GROUP_PREENCHANTED_TOOLS).rarity(Rarity.RARE).fireproof();
 
     // Pigment
     public static Item MAGENTA_PIGMENT = new Item(generalItemSettings);
@@ -65,16 +68,16 @@ public class PigmentItems {
     public static final Item CORRUPTED_BEDROCK_DUST = new Item(pigmentRareItemSettings);
 
     // FLUIDS
-    public static final Item LIQUID_CRYSTAL_BUCKET = new BucketItem(STILL_LIQUID_CRYSTAL, generalItemSettings.recipeRemainder(Items.BUCKET).maxCount(1));
-    public static final Item MUD_BUCKET = new BucketItem(STILL_MUD, generalItemSettings.recipeRemainder(Items.BUCKET).maxCount(1));
+    public static final Item LIQUID_CRYSTAL_BUCKET = new BucketItem(STILL_LIQUID_CRYSTAL, fluidBucketItemSettings);
+    public static final Item MUD_BUCKET = new BucketItem(STILL_MUD, fluidBucketItemSettings);
 
-    public static final Item SPAWNER = new Spawner(Blocks.SPAWNER, pigmentUncommonItemSettings.maxCount(64));
-    public static final Item GLISTERING_MELON_SEEDS = new AliasedBlockItem(PigmentBlocks.GLISTERING_MELON_STEM, pigmentUncommonItemSettings.maxCount(64));
+    public static final Item SPAWNER = new Spawner(Blocks.SPAWNER, pigmentUncommonItemSettings);
+    public static final Item GLISTERING_MELON_SEEDS = new AliasedBlockItem(PigmentBlocks.GLISTERING_MELON_STEM, pigmentUncommonItemSettings);
 
     // DECAY
-    public static final Item DECAY_1_PLACER = new AliasedBlockItem(PigmentBlocks.DECAY1, generalItemSettings);
-    public static final Item DECAY_2_PLACER = new AliasedBlockItem(PigmentBlocks.DECAY2, generalItemSettings);
-    public static final Item DECAY_3_PLACER = new AliasedBlockItem(PigmentBlocks.DECAY3, generalItemSettings);
+    public static final Item DECAY_1_PLACER = new AliasedBlockItem(PigmentBlocks.DECAY1, decayPlacerItemSettings);
+    public static final Item DECAY_2_PLACER = new AliasedBlockItem(PigmentBlocks.DECAY2, decayPlacerItemSettings);
+    public static final Item DECAY_3_PLACER = new AliasedBlockItem(PigmentBlocks.DECAY3, decayPlacerItemSettings);
 
     // ORE
     public static final Item SPARKLESTONE_GEM = new Item(pigmentWorldgenItemSettings);
@@ -83,7 +86,7 @@ public class PigmentItems {
 
     // SPECIAL TOOLS
     public static final MultiToolMaterial MULTI_TOOL_MATERIAL = new MultiToolMaterial();
-    public static final Item MULTITOOL = new PigmentPickaxeItem(MULTI_TOOL_MATERIAL, 1, -2.8F, generalItemSettings);
+    public static final Item MULTITOOL = new PigmentPickaxeItem(MULTI_TOOL_MATERIAL, 1, -2.8F, preEnchantedItemSettings);
     public static final Item SILKER_PICKAXE = new PigmentPickaxeItem(MULTI_TOOL_MATERIAL, 1, -2.8F, preEnchantedItemSettings);
     public static final Item FORTUNE_PICKAXE = new PigmentPickaxeItem(MULTI_TOOL_MATERIAL, 1, -2.8F, preEnchantedItemSettings);
     public static final Item LOOTING_FALCHION = new SwordItem(MULTI_TOOL_MATERIAL, 4, -2.2F, preEnchantedItemSettings);

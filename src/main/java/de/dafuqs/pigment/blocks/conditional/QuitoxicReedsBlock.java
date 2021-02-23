@@ -110,7 +110,7 @@ public class QuitoxicReedsBlock extends SugarCaneBlock implements Cloakable, Wat
             for(i = 1; world.getBlockState(pos.down(i)).isOf(this); ++i) {
             }
 
-            if (i < 8) {
+            if (i < 6) {
                 int j = state.get(AGE);
                 if (j == 15) {
                     world.setBlockState(pos.up(), this.getDefaultState());

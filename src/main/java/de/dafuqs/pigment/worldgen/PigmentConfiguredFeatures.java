@@ -1,10 +1,12 @@
 package de.dafuqs.pigment.worldgen;
 
 import com.google.common.collect.ImmutableList;
+import com.ibm.icu.impl.CollectionSet;
 import de.dafuqs.pigment.PigmentBlocks;
 import de.dafuqs.pigment.PigmentCommon;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.DyeColor;
@@ -12,18 +14,24 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.BuiltinRegistries;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryKey;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.BiomeKeys;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.UniformIntDistribution;
 import net.minecraft.world.gen.YOffset;
+import net.minecraft.world.gen.decorator.CarvingMaskDecoratorConfig;
 import net.minecraft.world.gen.decorator.Decorator;
 import net.minecraft.world.gen.decorator.DecoratorConfig;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.feature.size.TwoLayersFeatureSize;
 import net.minecraft.world.gen.foliage.BlobFoliagePlacer;
+import net.minecraft.world.gen.placer.ColumnPlacer;
+import net.minecraft.world.gen.placer.DoublePlantPlacer;
+import net.minecraft.world.gen.placer.SimpleBlockPlacer;
 import net.minecraft.world.gen.stateprovider.SimpleBlockStateProvider;
 import net.minecraft.world.gen.trunk.StraightTrunkPlacer;
 
-import java.util.HashMap;
+import java.util.*;
 
 import static net.minecraft.world.gen.feature.ConfiguredFeatures.OAK;
 
@@ -40,13 +48,17 @@ public class PigmentConfiguredFeatures {
     private static ConfiguredFeature<?, ?> SPARKLESTONE_ORE;
     private static ConfiguredFeature<?, ?> KOENIGSBLAU_ORE;
 
+    private static ConfiguredFeature<?, ?> QUITOXIC_REEDS;
+    private static ConfiguredFeature<?, ?> MERMAIDS_BRUSH;
+
     public static void register() {
         registerGeodes();
         registerOres();
         registerColoredTrees();
+        registerPlants();
     }
 
-    private static <FC extends FeatureConfig> ConfiguredFeature<FC, ?> registerOre(Identifier identifier, ConfiguredFeature<FC, ?> configuredFeature) {
+    private static <FC extends FeatureConfig> ConfiguredFeature<FC, ?> registerConfiguredFeature(Identifier identifier, ConfiguredFeature<FC, ?> configuredFeature) {
         return Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, identifier, configuredFeature);
     }
 
@@ -57,13 +69,13 @@ public class PigmentConfiguredFeatures {
         Identifier sparklestoneOreIdentifier = new Identifier(PigmentCommon.MOD_ID, "sparklestone_ore");
         Identifier koenigsblauOreIdentifier = new Identifier(PigmentCommon.MOD_ID, "koenigsblau_ore");
 
-        SPARKLESTONE_ORE = registerOre(sparklestoneOreIdentifier,
+        SPARKLESTONE_ORE = registerConfiguredFeature(sparklestoneOreIdentifier,
         ((Feature.ORE.configure(new OreFeatureConfig(OreFeatureConfig.Rules.BASE_STONE_OVERWORLD, sparklestoneOre, 17)) // vein size
                 .rangeOf(YOffset.fixed(92), YOffset.fixed(192))) // min and max height
                 .spreadHorizontally())
                 .repeat(6)); // number of veins per chunk
 
-        KOENIGSBLAU_ORE = registerOre(koenigsblauOreIdentifier,
+        KOENIGSBLAU_ORE = registerConfiguredFeature(koenigsblauOreIdentifier,
                 ((Feature.ORE.configure(new OreFeatureConfig(OreFeatureConfig.Rules.BASE_STONE_OVERWORLD, koenigsblauOre, 5)) // vein size
                         .rangeOf(YOffset.getBottom(), YOffset.aboveBottom(64))) // min and max height
                         .spreadHorizontally())
@@ -91,7 +103,6 @@ public class PigmentConfiguredFeatures {
 
         COLORED_TREE_FEATURES.put(dyeColor, Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, configuredFeatureRegistryKey.getValue(), configuredFeature));
     }
-
 
     private static void registerColoredTrees() {
         for(DyeColor dyeColor : DyeColor.values()) {
@@ -197,6 +208,65 @@ public class PigmentConfiguredFeatures {
 
         RegistryKey<ConfiguredFeature<?, ?>> MOONSTONE_GEODE_KEY = RegistryKey.of(Registry.CONFIGURED_FEATURE_WORLDGEN, new Identifier(PigmentCommon.MOD_ID, "moonstone_geode"));
         Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, MOONSTONE_GEODE_KEY.getValue(), MOONSTONE_GEODE);
+    }
+
+    private static void registerPlants() {
+        // TODO: Does not work (always tries to place stuff in air or under y-64)??
+        /*// MERMAIDS BRUSH
+        Identifier mermaidsBrushIdentifier = new Identifier(PigmentCommon.MOD_ID, "mermaids_brush");
+
+        ConfiguredFeature mermaidsBrushFeature = Feature.RANDOM_PATCH.configure((
+                new RandomPatchFeatureConfig.Builder(
+                        new SimpleBlockStateProvider(PigmentBlocks.MERMAIDS_BRUSH.getDefaultState()),
+                        SimpleBlockPlacer.INSTANCE))
+                .tries(64)
+                .cannotProject().build());
+
+        MERMAIDS_BRUSH = registerConfiguredFeature(mermaidsBrushIdentifier, mermaidsBrushFeature)
+                .decorate(Decorator.CARVING_MASK.configure(new CarvingMaskDecoratorConfig(GenerationStep.Carver.LIQUID)));
+
+        Collection<RegistryKey<Biome>> deepOceans = new ArrayList<>();
+        deepOceans.add(BiomeKeys.DEEP_OCEAN);
+        deepOceans.add(BiomeKeys.DEEP_COLD_OCEAN);
+        deepOceans.add(BiomeKeys.DEEP_FROZEN_OCEAN);
+        deepOceans.add(BiomeKeys.DEEP_WARM_OCEAN);
+        deepOceans.add(BiomeKeys.DEEP_LUKEWARM_OCEAN);
+        BiomeModifications.addFeature(
+                BiomeSelectors.includeByKey(deepOceans),
+                GenerationStep.Feature.VEGETAL_DECORATION,
+                RegistryKey.of(Registry.CONFIGURED_FEATURE_WORLDGEN, mermaidsBrushIdentifier)
+        );
+
+        // QUITOXIC REEDS
+        Identifier quitoxicReedsIdentifier = new Identifier(PigmentCommon.MOD_ID, "quitoxic_reeds");
+        HashSet<Block> quitoxicReedsWhiteList = new HashSet();
+        quitoxicReedsWhiteList.add(Blocks.WATER);
+        quitoxicReedsWhiteList.add(Blocks.CLAY);
+        RandomPatchFeatureConfig QUITOXIC_REEDS_CONFIG = (
+                new RandomPatchFeatureConfig.Builder(
+                        new SimpleBlockStateProvider(PigmentBlocks.QUITOXIC_REEDS.getDefaultState()),
+                        new ColumnPlacer(2, 4)))
+                .tries(20)
+                .whitelist(quitoxicReedsWhiteList)
+                .spreadX(4)
+                .spreadY(0)
+                .spreadZ(4)
+                .build();
+
+        QUITOXIC_REEDS = registerConfiguredFeature(quitoxicReedsIdentifier,
+                (ConfiguredFeature)Feature.RANDOM_PATCH
+                        .configure(QUITOXIC_REEDS_CONFIG)
+                        .decorate(ConfiguredFeatures.Decorators.SQUARE_HEIGHTMAP_SPREAD_DOUBLE)
+                        .repeat(20));
+
+        Collection<RegistryKey<Biome>> swamps = new ArrayList<>();
+        swamps.add(BiomeKeys.SWAMP);
+        swamps.add(BiomeKeys.SWAMP_HILLS);
+        BiomeModifications.addFeature(
+                BiomeSelectors.includeByKey(swamps),
+                GenerationStep.Feature.VEGETAL_DECORATION,
+                RegistryKey.of(Registry.CONFIGURED_FEATURE_WORLDGEN, quitoxicReedsIdentifier)
+        );*/
     }
 
 }

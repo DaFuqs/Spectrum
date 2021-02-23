@@ -433,8 +433,8 @@ public class PigmentBlocks {
     public static final Block BLAZING_CRYSTAL = new Block(FabricBlockSettings.copyOf(Blocks.DIAMOND_BLOCK)); // TODO
     public static final Block RESONANT_LILY = new Block(FabricBlockSettings.copyOf(Blocks.DIAMOND_BLOCK)); // TODO
 
-    public static final Block QUITOXIC_REEDS = new QuitoxicReedsBlock(FabricBlockSettings.copyOf(Blocks.SUGAR_CANE).luminance(3));
-    public static final Block MERMAIDS_BRUSH = new MermaidsBrushBlock(FabricBlockSettings.copyOf(Blocks.SEAGRASS).luminance(2));
+    public static final Block QUITOXIC_REEDS = new QuitoxicReedsBlock(AbstractBlock.Settings.of(Material.PLANT).noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.GRASS).ticksRandomly());
+    public static final Block MERMAIDS_BRUSH = new MermaidsBrushBlock(AbstractBlock.Settings.of(Material.REPLACEABLE_UNDERWATER_PLANT).noCollision().breakInstantly().sounds(BlockSoundGroup.WET_GRASS).ticksRandomly().luminance(value -> 2));
 
     /*public static final Block CLAY_ORE = new RedstoneLampBlock(FabricBlockSettings.copyOf(Blocks.REDSTONE_LAMP));
     public static final Block NETHER_ORE = new RedstoneLampBlock(FabricBlockSettings.copyOf(Blocks.REDSTONE_LAMP));

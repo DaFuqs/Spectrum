@@ -22,9 +22,28 @@ public class PigmentDefaultEnchantments {
     }
 
     static void registerDefaultEnchantments() {
+        // early game tools
         PigmentDefaultEnchantments.addDefaultEnchantment(PigmentItems.LOOTING_FALCHION, Enchantments.LOOTING, 3);
         PigmentDefaultEnchantments.addDefaultEnchantment(PigmentItems.SILKER_PICKAXE, Enchantments.SILK_TOUCH, 1);
         PigmentDefaultEnchantments.addDefaultEnchantment(PigmentItems.FORTUNE_PICKAXE, Enchantments.FORTUNE, 3);
+
+        // Bedrock tools
+        PigmentDefaultEnchantments.addDefaultEnchantment(PigmentItems.BEDROCK_PICKAXE, Enchantments.SILK_TOUCH, 1);
+        PigmentDefaultEnchantments.addDefaultEnchantment(PigmentItems.BEDROCK_AXE, Enchantments.EFFICIENCY, 5);
+        PigmentDefaultEnchantments.addDefaultEnchantment(PigmentItems.BEDROCK_SHOVEL, Enchantments.EFFICIENCY, 5);
+        PigmentDefaultEnchantments.addDefaultEnchantment(PigmentItems.BEDROCK_SWORD, Enchantments.LOOTING, 3);
+        PigmentDefaultEnchantments.addDefaultEnchantment(PigmentItems.BEDROCK_BOW, Enchantments.POWER, 5);
+        PigmentDefaultEnchantments.addDefaultEnchantment(PigmentItems.BEDROCK_CROSSBOW, Enchantments.QUICK_CHARGE, 3);
+        PigmentDefaultEnchantments.addDefaultEnchantment(PigmentItems.BEDROCK_SHEARS, Enchantments.SILK_TOUCH, 5);
+        PigmentDefaultEnchantments.addDefaultEnchantment(PigmentItems.BEDROCK_HOE, Enchantments.FORTUNE, 3);
+        PigmentDefaultEnchantments.addDefaultEnchantment(PigmentItems.BEDROCK_FISHING_ROD, Enchantments.LUCK_OF_THE_SEA, 3);
+
+        // bedrock armor
+        PigmentDefaultEnchantments.addDefaultEnchantment(PigmentItems.BEDROCK_HELMET, Enchantments.PROJECTILE_PROTECTION, 4);
+        PigmentDefaultEnchantments.addDefaultEnchantment(PigmentItems.BEDROCK_CHESTPLATE, Enchantments.PROTECTION, 4);
+        PigmentDefaultEnchantments.addDefaultEnchantment(PigmentItems.BEDROCK_LEGGINGS, Enchantments.BLAST_PROTECTION, 4);
+        PigmentDefaultEnchantments.addDefaultEnchantment(PigmentItems.BEDROCK_BOOTS, Enchantments.FIRE_PROTECTION, 4);
+
     }
 
 

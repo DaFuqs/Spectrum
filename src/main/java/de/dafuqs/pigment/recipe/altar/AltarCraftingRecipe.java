@@ -125,4 +125,9 @@ public class AltarCraftingRecipe implements Recipe<Inventory> {
     public int getCraftingTime() {
         return craftingTime;
     }
+
+    public float getExperience() {
+        return this.experience;
+    }
+
 }

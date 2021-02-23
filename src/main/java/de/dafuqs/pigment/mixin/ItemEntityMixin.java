@@ -1,6 +1,7 @@
 package de.dafuqs.pigment.mixin;
 
 import de.dafuqs.pigment.PigmentItemStackDamageImmunities;
+import de.dafuqs.pigment.Support;
 import de.dafuqs.pigment.inventories.AutoCraftingInventory;
 import de.dafuqs.pigment.recipe.PigmentRecipeTypes;
 import de.dafuqs.pigment.recipe.anvil_crushing.AnvilCrushingRecipe;
@@ -70,11 +71,10 @@ public abstract class ItemEntityMixin {
                     world.spawnEntity(craftedEntity);
 
                     // Spawn XP depending on how much is crafted, but at least 1
-                    float craftingXP = recipe.getExperience() * crushingInputAmount;
-                    if(craftingXP < 0) {
-                        craftingXP = 1;
-                    }
-                    ExperienceOrbEntity experienceOrbEntity = new ExperienceOrbEntity(world, position.x, position.y, position.z, (int) craftingXP);
+                    float craftingXPFloat = recipe.getExperience() * crushingInputAmount;
+                    int craftingXP = Support.getWholeIntFromFloatWithChance(craftingXPFloat, world.random);
+
+                    ExperienceOrbEntity experienceOrbEntity = new ExperienceOrbEntity(world, position.x, position.y, position.z, craftingXP);
                     world.spawnEntity(experienceOrbEntity);
 
                     // TODO: SEND SOUND AND PARTICLES TO CLIENTS

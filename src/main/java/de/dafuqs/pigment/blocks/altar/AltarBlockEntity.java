@@ -1,18 +1,16 @@
 package de.dafuqs.pigment.blocks.altar;
 
-import de.dafuqs.pigment.PigmentBlockEntityType;
-import de.dafuqs.pigment.PigmentBlocks;
-import de.dafuqs.pigment.PigmentCommon;
+import de.dafuqs.pigment.*;
 import de.dafuqs.pigment.enums.PigmentColor;
 import de.dafuqs.pigment.interfaces.PlayerOwned;
 import de.dafuqs.pigment.inventories.AltarScreenHandler;
-import de.dafuqs.pigment.PigmentItems;
 import de.dafuqs.pigment.recipe.PigmentRecipeTypes;
 import de.dafuqs.pigment.recipe.altar.AltarCraftingRecipe;
 import net.minecraft.advancement.Advancement;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.LockableContainerBlockEntity;
+import net.minecraft.entity.ExperienceOrbEntity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -50,6 +48,7 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
     private UUID playerUUID;
     protected DefaultedList<ItemStack> inventory;
 
+    private float storedXP;
     private int craftingTime;
     private int craftingTimeTotal;
 
@@ -172,6 +171,7 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
         super.readNbt(tag);
         this.inventory = DefaultedList.ofSize(9+5+1+1, ItemStack.EMPTY);
         Inventories.readNbt(tag, this.inventory);
+        this.storedXP = tag.getFloat("StoredXP");
         this.craftingTime = tag.getShort("CraftingTime");
         this.craftingTimeTotal = tag.getShort("CraftingTimeTotal");
         if(tag.contains("UUID")) {
@@ -183,6 +183,7 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
 
     public CompoundTag writeNbt(CompoundTag tag) {
         super.writeNbt(tag);
+        tag.putFloat("StoredXP", this.storedXP);
         tag.putShort("CraftingTime", (short)this.craftingTime);
         tag.putShort("CraftingTimeTotal", (short)this.craftingTimeTotal);
         tag.putUuid("UUID", this.playerUUID);
@@ -243,10 +244,20 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
             ItemStack outputItemStack = altarBlockEntity.inventory.get(15);
             if (outputItemStack != ItemStack.EMPTY) {
                 if (world.getBlockState(blockPos.up()).isAir()) {
+                    // spawn crafting output
                     ItemEntity itemEntity = new ItemEntity(world, altarBlockEntity.pos.getX() + 0.5, altarBlockEntity.pos.getY() + 1, altarBlockEntity.pos.getZ() + 0.5, outputItemStack);
                     itemEntity.addVelocity(0, 0.1, 0);
                     world.spawnEntity(itemEntity);
                     altarBlockEntity.inventory.set(15, ItemStack.EMPTY);
+
+                    // spawn XP
+                    if(altarBlockEntity.storedXP > 0) {
+                        int spawnedXPAmount = Support.getWholeIntFromFloatWithChance(altarBlockEntity.storedXP, altarBlockEntity.getWorld().random);
+                        ExperienceOrbEntity experienceOrbEntity = new ExperienceOrbEntity(world, altarBlockEntity.pos.getX() + 0.5, altarBlockEntity.pos.getY() + 1, altarBlockEntity.pos.getZ() + 0.5, spawnedXPAmount);
+                        world.spawnEntity(experienceOrbEntity);
+                        altarBlockEntity.storedXP = 0;
+                    }
+
                     altarBlockEntity.spawnCraftingFinishedParticles(world, blockPos);
                     altarBlockEntity.playSound(SoundEvents.BLOCK_AMETHYST_CLUSTER_FALL); // TODO: custom sound
                 } else {
@@ -319,6 +330,10 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
             } else if (existingOutput.isOf(output.getItem())) {
                 existingOutput.increment(output.getCount());
             }
+
+            // Add recipe XP
+            float newXP = recipe.getExperience();
+            storedXP += newXP;
 
             grantPlayerCraftingAdvancement();
 

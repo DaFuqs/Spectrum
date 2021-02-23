@@ -396,6 +396,7 @@
   "block.pigment.altar.title_with_owner": "Altar of %s",
   "block.pigment.ominous_sapling": "Ominous Sapling",
   "block.pigment.bedrock_anvil": "Bedrock Anvil",
+  "block.pigment.ender_treasure": "Radiating Ender",
 
   "block.pigment.blazing_crystal": "Blazing Crystal",
   "block.pigment.frostbite_crystal": "Frostbite Crystal",
@@ -405,6 +406,9 @@
   "advancements.pigment.pigment.description": "A story about magic, colors, and chaos.",
   "advancements.pigment.collect_all_basic.title": "How many are there?",
   "advancements.pigment.collect_all_basic.description": "Collect all types of naturally generating gems.",
+
+  "advancements.pigment.get_ender_treasure.title": "Torn from cold, dead hands",
+  "advancements.pigment.get_ender_treasure.description": "Some Endermen that appear in your world carry with them blocks that seem to radiate an eerie aura. Now that you hold one in your hands... they are pretty much everywhere! How didn't you notice earlier?",
 
   "advancements.pigment.get_pigment.title": "He said it!",
   "advancements.pigment.get_pigment.description": "Is there a more straightforward way to crush something into dust?",

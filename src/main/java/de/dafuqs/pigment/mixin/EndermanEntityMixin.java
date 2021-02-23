@@ -14,8 +14,8 @@ import java.util.Random;
 @Mixin(EndermanEntity.class)
 public class EndermanEntityMixin {
 
-    float carriedBlockChance = 0.5F;
-    BlockState carriedBlockState = PigmentBlocks.CITRINE_BLOCK.getDefaultState();
+    float carriedBlockChance = 0.1F;
+    BlockState carriedBlockState = PigmentBlocks.ENDER_TREASURE.getDefaultState();
 
     @Inject(at = @At("TAIL"), method = "<init>")
     private void init(CallbackInfo info) {

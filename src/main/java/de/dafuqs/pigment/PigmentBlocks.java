@@ -436,38 +436,7 @@ public class PigmentBlocks {
     public static final Block QUITOXIC_REEDS = new QuitoxicReedsBlock(AbstractBlock.Settings.of(Material.PLANT).noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.GRASS).ticksRandomly());
     public static final Block MERMAIDS_BRUSH = new MermaidsBrushBlock(AbstractBlock.Settings.of(Material.REPLACEABLE_UNDERWATER_PLANT).noCollision().breakInstantly().sounds(BlockSoundGroup.WET_GRASS).ticksRandomly().luminance(value -> 2));
 
-    /*public static final Block CLAY_ORE = new RedstoneLampBlock(FabricBlockSettings.copyOf(Blocks.REDSTONE_LAMP));
-    public static final Block NETHER_ORE = new RedstoneLampBlock(FabricBlockSettings.copyOf(Blocks.REDSTONE_LAMP));
-    public static final Block END_ORE = new RedstoneLampBlock(FabricBlockSettings.copyOf(Blocks.REDSTONE_LAMP));*/
-
-    // PLANTS
-    /*public static final Block MAGIC_SEA_GRASS = new RedstoneLampBlock(FabricBlockSettings.copyOf(Blocks.REDSTONE_LAMP));
-    public static final Block MAGIC_BEET_ROOTS = new RedstoneLampBlock(FabricBlockSettings.copyOf(Blocks.REDSTONE_LAMP));
-    public static final Block MAGIC_SUGAR_CANE = new RedstoneLampBlock(FabricBlockSettings.copyOf(Blocks.REDSTONE_LAMP));
-
-    public static final Block ENDER_BLOCK = new ConditionallyVisibleBlock(FabricBlockSettings.copyOf(Blocks.OAK_PLANKS)) { // TODO
-
-        @Override
-        protected boolean isVisible(ClientPlayerEntity clientPlayerEntity, BlockState state) {
-            return clientPlayerEntity.getArmor() > 0;
-        }
-
-        @Override
-        public boolean isVisibleOnServer() {
-            return false;
-        }
-
-        @Override
-        public VoxelShape getVisibleCollisionShape() {
-            return VoxelShapes.fullCube();
-        }
-
-        @Override
-        public VoxelShape getVisibleOutlineShape() {
-            return VoxelShapes.fullCube();
-        }
-    };*/
-
+    public static final Block ENDER_TREASURE = new EnderTreasureBlock(FabricBlockSettings.copyOf(Blocks.EMERALD_BLOCK));
     public static final Block CRACKED_END_PORTAL_FRAME = new CrackedEndPortalFrameBlock(FabricBlockSettings.copyOf(Blocks.END_PORTAL_FRAME));
 
     private static void registerBlock(String name, Block block) {
@@ -536,6 +505,9 @@ public class PigmentBlocks {
 
         registerBlock("cracked_end_portal_frame", CRACKED_END_PORTAL_FRAME);
         registerBlockItem("cracked_end_portal_frame", new BlockItem(CRACKED_END_PORTAL_FRAME, generalItemSettings));
+
+        registerBlock("ender_treasure", ENDER_TREASURE);
+        registerBlockItem("ender_treasure", new BlockItem(ENDER_TREASURE, generalItemSettings));
     }
 
     private static void registerOreBlocks(FabricItemSettings decorationItemSettings) {

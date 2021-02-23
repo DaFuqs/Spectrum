@@ -10,6 +10,7 @@
       "translate": "advancements.pigment.get_pigment.description"
     }
   },
+  "parent": "pigment:pigment",
   "criteria": {
     "has_magenta_pigment": {
       "trigger":"minecraft:inventory_changed",

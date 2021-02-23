@@ -1,15 +1,21 @@
 package de.dafuqs.pigment.blocks.conditional;
 
 import de.dafuqs.pigment.PigmentCommon;
+import de.dafuqs.pigment.Support;
 import de.dafuqs.pigment.interfaces.Cloakable;
+import de.dafuqs.pigment.misc.PigmentClientAdvancements;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.advancement.Advancement;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.context.LootContext;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Direction;
 
 import java.util.List;
@@ -24,7 +30,7 @@ public class EnderTreasureBlock extends Block implements Cloakable {
 
     @Override
     public boolean isCloaked(PlayerEntity playerEntity, BlockState blockState) {
-        return playerEntity.getArmor() < 1;
+        return !Support.hasAdvancement(playerEntity, new Identifier(PigmentCommon.MOD_ID, "get_ender_treasure"));
     }
 
     @Override
@@ -46,7 +52,7 @@ public class EnderTreasureBlock extends Block implements Cloakable {
 
     public void setCloaked() {
         // Colored Logs => Oak logs
-        PigmentCommon.getBlockCloaker().swapModel(this.getDefaultState(), Blocks.GRASS_BLOCK.getDefaultState()); // block
+        PigmentCommon.getBlockCloaker().swapModel(this.getDefaultState(), Blocks.COBBLESTONE.getDefaultState()); // block
         //PigmentCommon.getBlockCloaker().swapModel(this.asItem(), Items.OAK_LOG); // item is always visible
     }
 

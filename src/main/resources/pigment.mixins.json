@@ -15,12 +15,15 @@
     "ItemModelsMixin",
     "MobSpawnerBlockEntityMixin",
     "SpawnerBlockMixin",
-    "WorldRendererMixin"
+    "WorldRendererMixin",
   ],
   "client": [
-    "BlockModelsMixin",
-    "ItemMixin",
-    "TransparentBlockMixin"
+    "client.AccessorClientAdvancementManager",
+    "client.BlockModelsMixin",
+    "client.ItemMixin",
+    "client.TransparentBlockMixin",
+    "client.MixinClientAdvancementManager",
+    "client.MixinMinecraftClient"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -1,8 +1,11 @@
 package de.dafuqs.pigment;
 
+import de.dafuqs.pigment.misc.PigmentClientAdvancements;
 import net.minecraft.advancement.Advancement;
 import net.minecraft.advancement.PlayerAdvancementTracker;
 import net.minecraft.block.BlockState;
+import net.minecraft.client.network.ClientPlayerEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.ServerAdvancementLoader;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.tag.Tag;
@@ -34,6 +37,17 @@ public class Support {
             return ((int) f) + 1;
         } else {
             return (int) f;
+        }
+    }
+
+    public static boolean hasAdvancement(PlayerEntity playerEntity, Identifier advancementIdentifier) {
+        if (playerEntity instanceof ClientPlayerEntity) {
+            return PigmentClientAdvancements.hasDone(advancementIdentifier);
+        } else if (playerEntity instanceof ServerPlayerEntity) {
+            Advancement advancement = PigmentCommon.minecraftServer.getAdvancementLoader().get(advancementIdentifier);
+            return ((ServerPlayerEntity) playerEntity).getAdvancementTracker().getProgress(advancement).isDone();
+        } else {
+            return false;
         }
     }
 

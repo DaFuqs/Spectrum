@@ -1,4 +1,4 @@
-package de.dafuqs.pigment.mixin;
+package de.dafuqs.pigment.mixin.client;
 
 import de.dafuqs.pigment.PigmentCommon;
 import net.minecraft.block.BlockState;

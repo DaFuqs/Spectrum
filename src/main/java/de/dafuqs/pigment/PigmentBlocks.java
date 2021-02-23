@@ -1304,4 +1304,45 @@ public class PigmentBlocks {
     public static Item getColoredLeavesItem(DyeColor dyeColor) {
         return getColoredLeavesBlock(dyeColor).asItem();
     }
+
+    public static Block getColoredSaplingBlock(DyeColor dyeColor) {
+        switch (dyeColor) {
+            case RED:
+                return RED_SAPLING;
+            case BROWN:
+                return BROWN_SAPLING;
+            case CYAN:
+                return CYAN_SAPLING;
+            case GRAY:
+                return GRAY_SAPLING;
+            case GREEN:
+                return GREEN_SAPLING;
+            case LIGHT_BLUE:
+                return LIGHT_BLUE_SAPLING;
+            case LIGHT_GRAY:
+                return LIGHT_GRAY_SAPLING;
+            case BLUE:
+                return BLUE_SAPLING;
+            case LIME:
+                return LIME_SAPLING;
+            case ORANGE:
+                return ORANGE_SAPLING;
+            case PINK:
+                return PINK_SAPLING;
+            case PURPLE:
+                return PURPLE_SAPLING;
+            case WHITE:
+                return WHITE_SAPLING;
+            case YELLOW:
+                return YELLOW_SAPLING;
+            case BLACK:
+                return BLACK_SAPLING;
+            default:
+                return MAGENTA_SAPLING;
+        }
+    }
+
+    public static Item getColoredSaplingItem(DyeColor dyeColor) {
+        return getColoredSaplingBlock(dyeColor).asItem();
+    }
 }

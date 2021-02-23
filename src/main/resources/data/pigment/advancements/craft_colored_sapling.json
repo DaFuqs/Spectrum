@@ -1,13 +1,13 @@
 {
   "display": {
     "icon": {
-        "item": "pigment:decay_2_placer"
+      "item": "pigment:orange_sapling"
     },
     "title": {
-      "translate": "advancements.pigment.craft_decay2.title"
+      "translate": "advancements.pigment.craft_colored_sapling.title"
     },
     "description": {
-      "translate": "advancements.pigment.craft_decay2.description"
+      "translate": "advancements.pigment.craft_colored_sapling.description"
     }
   },
   "parent": "pigment:pigment",

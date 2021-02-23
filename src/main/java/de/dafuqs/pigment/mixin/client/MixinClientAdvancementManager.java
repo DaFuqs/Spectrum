@@ -20,7 +20,7 @@ public abstract class MixinClientAdvancementManager {
 	 */
 	@Inject(at = @At("RETURN"), method = "onAdvancements")
 	public void onAdvancementSync(AdvancementUpdateS2CPacket packet, CallbackInfo info) {
-		PigmentClientAdvancements.onClientPacket();
+		PigmentClientAdvancements.onClientPacket(packet);
 	}
 
 }

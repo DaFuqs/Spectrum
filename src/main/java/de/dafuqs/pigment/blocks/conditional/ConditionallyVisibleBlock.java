@@ -1,6 +1,5 @@
 package de.dafuqs.pigment.blocks.conditional;
 
-import de.dafuqs.pigment.accessor.WorldRendererAccessor;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.Block;
@@ -8,7 +7,6 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
-import net.minecraft.client.render.WorldRenderer;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -48,18 +46,7 @@ public abstract class ConditionallyVisibleBlock extends Block {
         if(world instanceof ClientWorld) {
             ClientPlayerEntity clientPlayerEntity = MinecraftClient.getInstance().player;
             isVisible = isVisible(clientPlayerEntity, state);
-
-            if (isVisible != couldSeeLast) {
-                if (clientPlayerEntity != null && MinecraftClient.getInstance().world != null) {
-                    if (MinecraftClient.getInstance().worldRenderer != null && MinecraftClient.getInstance().player != null) {
-                        WorldRenderer renderer = MinecraftClient.getInstance().worldRenderer;
-                        ((WorldRendererAccessor) renderer).rebuildAllChunks();
-                    }
-                }
-                couldSeeLast = isVisible;
-
-
-            }
+            couldSeeLast = isVisible;
         } else {
             isVisible = isVisibleOnServer();
         }

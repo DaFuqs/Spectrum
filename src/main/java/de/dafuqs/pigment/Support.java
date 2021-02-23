@@ -10,6 +10,7 @@ import net.minecraft.server.ServerAdvancementLoader;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.tag.Tag;
 import net.minecraft.util.Identifier;
+import org.apache.logging.log4j.Level;
 
 import java.util.Random;
 
@@ -45,7 +46,12 @@ public class Support {
             return PigmentClientAdvancements.hasDone(advancementIdentifier);
         } else if (playerEntity instanceof ServerPlayerEntity) {
             Advancement advancement = PigmentCommon.minecraftServer.getAdvancementLoader().get(advancementIdentifier);
-            return ((ServerPlayerEntity) playerEntity).getAdvancementTracker().getProgress(advancement).isDone();
+            if(advancement == null) {
+                PigmentCommon.log(Level.ERROR, "Player " + playerEntity.getName() + " was getting an advancement check for an advancement that does not exist: " + advancementIdentifier.toString());
+                return false;
+            } else {
+                return ((ServerPlayerEntity) playerEntity).getAdvancementTracker().getProgress(advancement).isDone();
+            }
         } else {
             return false;
         }

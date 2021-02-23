@@ -10,7 +10,7 @@
       "translate": "advancements.pigment.plant_ominous_sapling.description"
     }
   },
-  "parent": "pigment:get_ominous_sapling",
+  "parent": "pigment:craft_ominous_sapling",
   "criteria": {
     "planted_ominous_sapling": {
       "trigger": "minecraft:item_used_on_block",

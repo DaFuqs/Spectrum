@@ -1,8 +1,6 @@
 package de.dafuqs.pigment.blocks.conditional;
 
-import de.dafuqs.pigment.PigmentBlockTags;
-import de.dafuqs.pigment.PigmentCommon;
-import de.dafuqs.pigment.PigmentItems;
+import de.dafuqs.pigment.*;
 import de.dafuqs.pigment.interfaces.Cloakable;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -22,6 +20,7 @@ import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.tag.FluidTags;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
@@ -36,59 +35,32 @@ import java.util.Random;
 
 public class MermaidsBrushBlock extends PlantBlock implements Cloakable, Waterloggable {
 
-    protected static final VoxelShape SHAPE = Block.createCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 12.0D, 14.0D);
-
     public static final IntProperty AGE = Properties.AGE_7;
-    private boolean wasLastCloaked;
 
     public MermaidsBrushBlock(Settings settings) {
         super(settings);
         this.setDefaultState(this.stateManager.getDefaultState().with(AGE, 0));
+        setupCloak();
     }
 
     @Override
-    public boolean isCloaked(PlayerEntity playerEntity, BlockState blockState) {
-        return playerEntity.getArmor() < 1;
-    }
-
-    @Override
-    public boolean wasLastCloaked() {
-        return wasLastCloaked;
-    }
-
-    @Override
-    public void setLastCloaked(boolean lastCloaked) {
-        wasLastCloaked = lastCloaked;
-    }
-
-    @Deprecated
-    @Override
-    @Environment(EnvType.CLIENT)
-    public boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
-        checkCloak(state);
-        return super.isSideInvisible(state, stateFrom, direction);
+    public Identifier getCloakAdvancementIdentifier() {
+        return new Identifier(PigmentCommon.MOD_ID, "craft_colored_sapling"); // TODO
     }
 
     @Override
     public void setCloaked() {
-        // Colored Logs => Oak logs
-        PigmentCommon.getBlockCloaker().swapModel(this.getDefaultState(), Blocks.WATER.getDefaultState()); // block
-        PigmentCommon.getBlockCloaker().swapModel(this.asItem(), Items.SEAGRASS); // item
+        // cloak for all 8 "AGE" block states
+        for(int i = 0; i < 8; i++){
+            PigmentBlockCloaker.swapModel(this.getDefaultState().with(AGE, i), Blocks.WATER.getDefaultState());
+        }
+        PigmentBlockCloaker.swapModel(this.asItem(), Items.SEAGRASS); // item
     }
 
     @Override
     public void setUncloaked() {
-        PigmentCommon.getBlockCloaker().unswapAllBlockStates(this);
-        PigmentCommon.getBlockCloaker().unswapModel(this.asItem());
-    }
-
-    @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        if(wasLastCloaked) {
-            return EMPTY_SHAPE;
-        } else {
-            return SHAPE;
-        }
+        PigmentBlockCloaker.unswapAllBlockStates(this);
+        PigmentBlockCloaker.unswapModel(this.asItem());
     }
 
     @Deprecated
@@ -134,13 +106,6 @@ public class MermaidsBrushBlock extends PlantBlock implements Cloakable, Waterlo
         }
     }
 
-    /**
-     * Can be placed in 1 high water / liquid crystal, growing on clay only
-     * @param state
-     * @param world
-     * @param pos
-     * @return
-     */
     @Override
     public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
         FluidState fluidState = world.getFluidState(pos);

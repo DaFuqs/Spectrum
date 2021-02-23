@@ -1,5 +1,6 @@
 package de.dafuqs.pigment.mixin.client;
 
+import de.dafuqs.pigment.PigmentBlockCloaker;
 import de.dafuqs.pigment.PigmentCommon;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.render.block.BlockModels;
@@ -27,8 +28,8 @@ public class BlockModelsMixin {
 
     @Inject(at = @At("HEAD"), method = "getModel", cancellable = true)
     private void getModel(BlockState blockState, CallbackInfoReturnable<BakedModel> callbackInfoReturnable) {
-        if(PigmentCommon.getBlockCloaker().isSwapped(blockState)) {
-            BlockState destinationBlockState = PigmentCommon.getBlockCloaker().getTarget(blockState);
+        if(PigmentBlockCloaker.isSwapped(blockState)) {
+            BlockState destinationBlockState = PigmentBlockCloaker.getTarget(blockState);
             BakedModel overriddenModel = this.models.getOrDefault(destinationBlockState, modelManager.getMissingModel());
             callbackInfoReturnable.setReturnValue(overriddenModel);
         }

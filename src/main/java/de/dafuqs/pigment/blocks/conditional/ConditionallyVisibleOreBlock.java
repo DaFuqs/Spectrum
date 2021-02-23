@@ -1,62 +1,34 @@
 package de.dafuqs.pigment.blocks.conditional;
 
-import de.dafuqs.pigment.PigmentCommon;
+import de.dafuqs.pigment.PigmentBlockCloaker;
 import de.dafuqs.pigment.interfaces.Cloakable;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.OreBlock;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.loot.context.LootContext;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.IntRange;
 
 import java.util.List;
 
-public class ConditionallyVisibleOreBlock extends OreBlock implements Cloakable {
-
-    private boolean wasLastCloaked;
+public abstract class ConditionallyVisibleOreBlock extends OreBlock implements Cloakable {
 
     public ConditionallyVisibleOreBlock(Settings settings, IntRange intRange) {
         super(settings, intRange);
     }
 
-    @Override
-    public boolean isCloaked(PlayerEntity playerEntity, BlockState blockState) {
-        return !playerEntity.isGlowing();
-    }
-
-    @Override
-    public boolean wasLastCloaked() {
-        return wasLastCloaked;
-    }
-
-    @Override
-    public void setLastCloaked(boolean lastCloaked) {
-        wasLastCloaked = lastCloaked;
-    }
-
-    @Deprecated
-    @Environment(EnvType.CLIENT)
-    public boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
-        checkCloak(state);
-        return super.isSideInvisible(state, stateFrom, direction);
-    }
-
     public void setCloaked() {
         // Cloaks as stone
-        PigmentCommon.getBlockCloaker().swapModel(this.getDefaultState(), Blocks.STONE.getDefaultState()); // block
-        PigmentCommon.getBlockCloaker().swapModel(this.asItem(), Items.STONE); // item
+        PigmentBlockCloaker.swapModel(this.getDefaultState(), Blocks.STONE.getDefaultState()); // block
+        PigmentBlockCloaker.swapModel(this.asItem(), Items.STONE); // item
     }
 
     public void setUncloaked() {
-        PigmentCommon.getBlockCloaker().unswapAllBlockStates(this);
-        PigmentCommon.getBlockCloaker().unswapModel(this.asItem());
+        PigmentBlockCloaker.unswapAllBlockStates(this);
+        PigmentBlockCloaker.unswapModel(this.asItem());
     }
 
     @Deprecated
@@ -67,9 +39,10 @@ public class ConditionallyVisibleOreBlock extends OreBlock implements Cloakable 
     // only drop xp when not cloaked
     @Override
     public void onStacksDropped(BlockState state, ServerWorld world, BlockPos pos, ItemStack stack) {
-        if(!wasLastCloaked) {
+        // TODO: Don't drop XP if broken by cloaked player
+        //if(!isCloaked()) {
             super.onStacksDropped(state, world, pos, stack);
-        }
+        //}
     }
 
 }

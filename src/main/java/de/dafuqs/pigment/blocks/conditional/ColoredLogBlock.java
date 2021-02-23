@@ -1,7 +1,9 @@
 package de.dafuqs.pigment.blocks.conditional;
 
+import de.dafuqs.pigment.PigmentBlockCloaker;
 import de.dafuqs.pigment.PigmentCommon;
 import de.dafuqs.pigment.PigmentBlocks;
+import de.dafuqs.pigment.Support;
 import de.dafuqs.pigment.interfaces.Cloakable;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -14,38 +16,21 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.loot.context.LootContext;
 import net.minecraft.util.DyeColor;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Direction;
 
 import java.util.List;
 
 public class ColoredLogBlock extends PillarBlock implements Cloakable {
 
-    private boolean wasLastCloaked;
-
     public ColoredLogBlock(Settings settings) {
         super(settings);
+        setupCloak();
     }
 
     @Override
-    public boolean isCloaked(PlayerEntity playerEntity, BlockState blockState) {
-        return playerEntity.getArmor() < 1;
-    }
-
-    @Override
-    public boolean wasLastCloaked() {
-        return wasLastCloaked;
-    }
-
-    @Override
-    public void setLastCloaked(boolean lastCloaked) {
-        wasLastCloaked = lastCloaked;
-    }
-
-    @Deprecated
-    @Environment(EnvType.CLIENT)
-    public boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
-        checkCloak(state);
-        return super.isSideInvisible(state, stateFrom, direction);
+    public Identifier getCloakAdvancementIdentifier() {
+        return new Identifier(PigmentCommon.MOD_ID, "craft_colored_sapling");
     }
 
     public void setCloaked() {
@@ -53,16 +38,16 @@ public class ColoredLogBlock extends PillarBlock implements Cloakable {
         BlockState cloakDefaultState = Blocks.OAK_LOG.getDefaultState();
         for(DyeColor dyeColor : DyeColor.values()) {
             BlockState defaultState = PigmentBlocks.getColoredLogBlock(dyeColor).getDefaultState();
-            PigmentCommon.getBlockCloaker().swapModel(defaultState, cloakDefaultState); // block
-            PigmentCommon.getBlockCloaker().swapModel(PigmentBlocks.getColoredLogItem(dyeColor), Items.OAK_LOG); // item
+            PigmentBlockCloaker.swapModel(defaultState, cloakDefaultState); // block
+            PigmentBlockCloaker.swapModel(PigmentBlocks.getColoredLogItem(dyeColor), Items.OAK_LOG); // item
         }
     }
 
     public void setUncloaked() {
         for(DyeColor dyeColor : DyeColor.values()) {
             Block block = PigmentBlocks.getColoredLogBlock(dyeColor);
-            PigmentCommon.getBlockCloaker().unswapAllBlockStates(block);
-            PigmentCommon.getBlockCloaker().unswapModel(PigmentBlocks.getColoredLogItem(dyeColor));
+            PigmentBlockCloaker.unswapAllBlockStates(block);
+            PigmentBlockCloaker.unswapModel(PigmentBlocks.getColoredLogItem(dyeColor));
         }
     }
 

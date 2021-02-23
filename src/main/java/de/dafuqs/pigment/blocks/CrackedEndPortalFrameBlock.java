@@ -176,7 +176,7 @@ public class CrackedEndPortalFrameBlock extends Block {
             if(randomFloat < 0.05) {
                 // TODO: smoke + particles + sound
                 world.createExplosion(null, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 2, Explosion.DestructionType.BREAK);
-                destroyPortals(world, pos); // TODO: Make it work
+                destroyPortals(world, pos);
                 world.breakBlock(pos, true);
             } else if(randomFloat < 0.2) {
                 world.createExplosion(null, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 1, Explosion.DestructionType.BREAK);

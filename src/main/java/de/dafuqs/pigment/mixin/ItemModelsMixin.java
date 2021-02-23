@@ -1,5 +1,6 @@
 package de.dafuqs.pigment.mixin;
 
+import de.dafuqs.pigment.PigmentBlockCloaker;
 import de.dafuqs.pigment.PigmentCommon;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.client.render.item.ItemModels;
@@ -27,8 +28,8 @@ public class ItemModelsMixin {
 
     @Inject(at = @At("HEAD"), method = "Lnet/minecraft/client/render/item/ItemModels;getModel(Lnet/minecraft/item/ItemStack;)Lnet/minecraft/client/render/model/BakedModel;", cancellable = true)
     private void getModel(ItemStack itemStack, CallbackInfoReturnable<BakedModel> callbackInfoReturnable) {
-        if(PigmentCommon.getBlockCloaker().isSwapped(itemStack.getItem())) {
-            Item destinationItem = PigmentCommon.getBlockCloaker().getTarget(itemStack.getItem());
+        if(PigmentBlockCloaker.isSwapped(itemStack.getItem())) {
+            Item destinationItem = PigmentBlockCloaker.getTarget(itemStack.getItem());
 
             BakedModel overriddenModel = this.models.getOrDefault(getTheModelId(destinationItem), modelManager.getMissingModel());
             callbackInfoReturnable.setReturnValue(overriddenModel);

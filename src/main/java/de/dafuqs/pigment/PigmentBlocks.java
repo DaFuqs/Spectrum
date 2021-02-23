@@ -421,7 +421,7 @@ public class PigmentBlocks {
     public static final Block SPARKLESTONE_BLOCK = new Block(FabricBlockSettings.of(Material.GLASS, MapColor.YELLOW).strength(2.0F).sounds(BlockSoundGroup.GLASS).luminance((state) -> 15));
 
     // ORES
-    public static final Block KOENIGSBLAU_ORE = new KoenigsblauOreBlock(FabricBlockSettings.copyOf(Blocks.LAPIS_ORE), IntRange.between(4, 7)); // TODO: needs refining
+    public static final Block KOENIGSBLAU_ORE = new KoenigsblauOreBlock(FabricBlockSettings.copyOf(Blocks.LAPIS_ORE), IntRange.between(4, 7));
     public static final Block KOENIGSBLAU_BLOCK = new PigmentFacingBlock(FabricBlockSettings.copyOf(Blocks.LAPIS_BLOCK));
 
     public static final Block PARTICLE_EMITTER = new ParticleEmitterBlock(FabricBlockSettings.of(Material.METAL));
@@ -429,9 +429,9 @@ public class PigmentBlocks {
     public static final Block BEDROCK_ANVIL = new BedrockAnvilBlock(FabricBlockSettings.copyOf(Blocks.ANVIL).hardness(8));
 
     // SOLID LIQUID CRYSTAL
-    public static final Block FROSTBITE_CRYSTAL = new Block(FabricBlockSettings.copyOf(Blocks.DIAMOND_BLOCK)); // TODO
-    public static final Block BLAZING_CRYSTAL = new Block(FabricBlockSettings.copyOf(Blocks.DIAMOND_BLOCK)); // TODO
-    public static final Block RESONANT_LILY = new Block(FabricBlockSettings.copyOf(Blocks.DIAMOND_BLOCK)); // TODO
+    public static final Block FROSTBITE_CRYSTAL = new Block(FabricBlockSettings.copyOf(Blocks.GLOWSTONE));
+    public static final Block BLAZING_CRYSTAL = new Block(FabricBlockSettings.copyOf(Blocks.GLOWSTONE));
+    public static final Block RESONANT_LILY = new Block(FabricBlockSettings.copyOf(Blocks.POPPY));
 
     public static final Block QUITOXIC_REEDS = new QuitoxicReedsBlock(AbstractBlock.Settings.of(Material.PLANT).noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.GRASS).ticksRandomly());
     public static final Block MERMAIDS_BRUSH = new MermaidsBrushBlock(AbstractBlock.Settings.of(Material.REPLACEABLE_UNDERWATER_PLANT).noCollision().breakInstantly().sounds(BlockSoundGroup.WET_GRASS).ticksRandomly().luminance(value -> 2));

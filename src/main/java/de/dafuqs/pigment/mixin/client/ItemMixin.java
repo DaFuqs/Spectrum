@@ -1,5 +1,6 @@
 package de.dafuqs.pigment.mixin.client;
 
+import de.dafuqs.pigment.PigmentBlockCloaker;
 import de.dafuqs.pigment.PigmentCommon;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -24,7 +25,7 @@ public abstract class ItemMixin {
     @Inject(at = @At("HEAD"), method = "Lnet/minecraft/item/Item;getName(Lnet/minecraft/item/ItemStack;)Lnet/minecraft/text/Text;", cancellable = true)
     public void getName(ItemStack stack, CallbackInfoReturnable<Text> callbackInfoReturnable) {
         Item thisItem = (Item) (Object) this;
-        if(PigmentCommon.getBlockCloaker().isSwapped(thisItem)) {
+        if(PigmentBlockCloaker.isSwapped(thisItem)) {
 
             // Get the localized name of the item and scatter it via §k
             Language language = Language.getInstance();

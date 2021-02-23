@@ -12,15 +12,8 @@
   },
   "parent": "pigment:pigment",
   "criteria": {
-    "gotten_decay": {
-      "trigger":"minecraft:inventory_changed",
-      "conditions": {
-        "items":[
-          {
-            "item":"pigment:decay_3_placer"
-          }
-        ]
-      }
+    "craft": {
+      "trigger":"minecraft:impossible"
     }
   }
 }

@@ -1,7 +1,9 @@
 package de.dafuqs.pigment.blocks.conditional;
 
+import de.dafuqs.pigment.PigmentBlockCloaker;
 import de.dafuqs.pigment.PigmentBlockTags;
 import de.dafuqs.pigment.PigmentCommon;
+import de.dafuqs.pigment.Support;
 import de.dafuqs.pigment.interfaces.Cloakable;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -19,6 +21,7 @@ import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.tag.FluidTags;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.WorldAccess;
@@ -32,45 +35,27 @@ public class QuitoxicReedsBlock extends SugarCaneBlock implements Cloakable, Wat
 
     public static final IntProperty AGE = Properties.AGE_15;
     public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
-    private boolean wasLastCloaked;
 
     public QuitoxicReedsBlock(Settings settings) {
         super(settings);
         this.setDefaultState(this.stateManager.getDefaultState().with(WATERLOGGED, false).with(AGE, 0));
+        setupCloak();
     }
 
     @Override
-    public boolean isCloaked(PlayerEntity playerEntity, BlockState blockState) {
-        return playerEntity.getArmor() < 1;
-    }
-
-    @Override
-    public boolean wasLastCloaked() {
-        return wasLastCloaked;
-    }
-
-    @Override
-    public void setLastCloaked(boolean lastCloaked) {
-        wasLastCloaked = lastCloaked;
-    }
-
-    @Deprecated
-    @Environment(EnvType.CLIENT)
-    public boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
-        checkCloak(state);
-        return super.isSideInvisible(state, stateFrom, direction);
+    public Identifier getCloakAdvancementIdentifier() {
+        return new Identifier(PigmentCommon.MOD_ID, "craft_colored_sapling"); // TODO
     }
 
     public void setCloaked() {
-        // Colored Logs => Oak logs
-        PigmentCommon.getBlockCloaker().swapModel(this.getDefaultState().with(WATERLOGGED, false), Blocks.AIR.getDefaultState()); // block
-        PigmentCommon.getBlockCloaker().swapModel(this.getDefaultState().with(WATERLOGGED, true), Blocks.WATER.getDefaultState()); // block
-        PigmentCommon.getBlockCloaker().swapModel(this.asItem(), Items.SUGAR_CANE); // item
+        PigmentBlockCloaker.swapModel(this.getDefaultState().with(WATERLOGGED, false), Blocks.AIR.getDefaultState());
+        PigmentBlockCloaker.swapModel(this.getDefaultState().with(WATERLOGGED, true), Blocks.WATER.getDefaultState());
+        PigmentBlockCloaker.swapModel(this.asItem(), Items.SUGAR_CANE); // item
     }
 
     public void setUncloaked() {
-        PigmentCommon.getBlockCloaker().unswapAllBlockStates(this);
-        PigmentCommon.getBlockCloaker().unswapModel(this.asItem());
+        PigmentBlockCloaker.unswapAllBlockStates(this);
+        PigmentBlockCloaker.unswapModel(this.asItem());
     }
 
     @Deprecated
@@ -138,7 +123,6 @@ public class QuitoxicReedsBlock extends SugarCaneBlock implements Cloakable, Wat
         } else {
             BlockState topBlockState = world.getBlockState(pos.up());
             if (bottomBlockState.isIn(PigmentBlockTags.QUITOXIC_REEDS_PLANTABLE) && (world.isAir(pos.up()) || topBlockState.isOf(this))) {
-                // check next to fluid
                 FluidState fluidState = world.getFluidState(pos);
                 return fluidState.isIn(FluidTags.WATER); // || fluidState.isIn(PigmentFluidTags.LIQUID_CRYSTAL); // todo: liquid crystal logged
             }

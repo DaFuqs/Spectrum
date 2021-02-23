@@ -37,8 +37,10 @@ import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
+import org.apache.logging.log4j.Level;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Random;
 import java.util.UUID;
@@ -186,7 +188,10 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
         tag.putFloat("StoredXP", this.storedXP);
         tag.putShort("CraftingTime", (short)this.craftingTime);
         tag.putShort("CraftingTimeTotal", (short)this.craftingTimeTotal);
-        tag.putUuid("UUID", this.playerUUID);
+
+        if(this.playerUUID !=  null) {
+            tag.putUuid("UUID", this.playerUUID);
+        }
         Inventories.writeNbt(tag, this.inventory);
         return tag;
     }
@@ -335,7 +340,7 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
             float newXP = recipe.getExperience();
             storedXP += newXP;
 
-            grantPlayerCraftingAdvancement();
+            grantPlayerCraftingAdvancement(output.getItem());
 
             return true;
         } else {
@@ -343,12 +348,26 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
         }
     }
 
-    private void grantPlayerCraftingAdvancement() {
-        Advancement advancement = PigmentCommon.minecraftServer.getAdvancementLoader().get(new Identifier(PigmentCommon.MOD_ID, "craft_using_altar"));
+    private void grantPlayerCraftingAdvancement(Item craftedItem) {
         ServerPlayerEntity serverPlayerEntity = PigmentCommon.minecraftServer.getPlayerManager().getPlayer(this.playerUUID);
 
-        if(advancement != null && serverPlayerEntity != null) {
-            serverPlayerEntity.getAdvancementTracker().grantCriterion(advancement, "craft");
+        // General altar crafting advancement
+        Advancement craftingAdvancement = PigmentCommon.minecraftServer.getAdvancementLoader().get(new Identifier(PigmentCommon.MOD_ID, "craft_using_altar"));
+
+        if(serverPlayerEntity != null) {
+            if(craftingAdvancement != null) {
+                serverPlayerEntity.getAdvancementTracker().grantCriterion(craftingAdvancement, "craft");
+            }
+
+            // Advancement specific for the crafted item
+            boolean itemHasAdvancement = PigmentAltarCraftingAdvancements.hasCraftingAdvancement(craftedItem);
+            if(itemHasAdvancement) {
+                Advancement itemAdvancement = PigmentAltarCraftingAdvancements.getCraftingAdvancement(craftedItem);
+                if(itemAdvancement != null) {
+                    serverPlayerEntity.getAdvancementTracker().grantCriterion(itemAdvancement, "craft");
+                }
+            }
+
         }
     }
 

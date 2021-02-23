@@ -403,7 +403,7 @@
   "block.pigment.resonant_lily": "Resonant Lily",
 
   "advancements.pigment.pigment.title": "Pigment",
-  "advancements.pigment.pigment.description": "A story about magic, colors, and chaos.",
+  "advancements.pigment.pigment.description": "A story about magic, colors and chaos.",
   "advancements.pigment.collect_all_basic.title": "How many are there?",
   "advancements.pigment.collect_all_basic.description": "Collect all types of naturally generating gems.",
 
@@ -432,8 +432,8 @@
   "advancements.pigment.plant_glistering_melon_seeds.title": "A sign of Prosperity",
   "advancements.pigment.plant_glistering_melon_seeds.description": "Get a glistering melon.. plant!",
 
-  "advancements.pigment.get_ominous_sapling.title": "Let it grow, let it grow!",
-  "advancements.pigment.get_ominous_sapling.description": "You're sure combining the remains of the decayed leaves with a young sapling will yield something interesting.",
+  "advancements.pigment.craft_ominous_sapling.title": "Let it grow, let it grow!",
+  "advancements.pigment.craft_ominous_sapling.description": "You're sure combining the remains of the decayed leaves with a young sapling will yield something interesting.",
   "advancements.pigment.plant_ominous_sapling.title": "A failed experiment?",
   "advancements.pigment.plant_ominous_sapling.description": "It looks... kinda dead?",
   "advancements.pigment.grow_ominous_sapling.title": "A successful experiment!",

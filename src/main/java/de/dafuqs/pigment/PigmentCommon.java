@@ -13,6 +13,8 @@ import me.sargunvohra.mcmods.autoconfig1u.AutoConfig;
 import me.sargunvohra.mcmods.autoconfig1u.serializer.JanksonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerWorldEvents;
+import net.fabricmc.fabric.mixin.event.lifecycle.client.ClientWorldMixin;
+import net.minecraft.client.world.ClientWorld;
 import net.minecraft.server.MinecraftServer;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
@@ -26,8 +28,6 @@ public class PigmentCommon implements ModInitializer {
     public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
 
     public static MinecraftServer minecraftServer;
-
-    private static PigmentBlockCloaker pigmentBlockCloaker;
 
     public static void log(Level logLevel, String message) {
         LOGGER.log(logLevel, "[Pigment] " + message);
@@ -67,17 +67,12 @@ public class PigmentCommon implements ModInitializer {
         PigmentItemStackDamageImmunities.registerDefaultItemStackImmunities();
         PigmentDefaultEnchantments.registerDefaultEnchantments();
         PigmentResonanceDrops.setup();
-
-        // Block cloaking logic
-        pigmentBlockCloaker = new PigmentBlockCloaker();
+        PigmentAltarCraftingAdvancements.setup(); // altar crafting grants enchantments
 
         ServerWorldEvents.LOAD.register((minecraftServer, serverWorld) -> {
             PigmentCommon.minecraftServer = minecraftServer;
         });
-    }
 
-    public static PigmentBlockCloaker getBlockCloaker() {
-        return pigmentBlockCloaker;
     }
 
 }

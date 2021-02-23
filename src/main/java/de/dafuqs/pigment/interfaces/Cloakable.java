@@ -1,6 +1,8 @@
 package de.dafuqs.pigment.interfaces;
 
+import de.dafuqs.pigment.PigmentBlockCloaker;
 import de.dafuqs.pigment.PigmentCommon;
+import de.dafuqs.pigment.Support;
 import de.dafuqs.pigment.accessor.WorldRendererAccessor;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -26,33 +28,16 @@ public interface Cloakable {
 
     VoxelShape EMPTY_SHAPE = Block.createCuboidShape(0.0D, 0.0D, 0.0D, 0.0D, 0.0D, 0.0D);
 
-    boolean isCloaked(PlayerEntity playerEntity, BlockState blockState);
     void setCloaked();
     void setUncloaked();
-    boolean wasLastCloaked();
-    void setLastCloaked(boolean lastCloaked);
+    Identifier getCloakAdvancementIdentifier();
 
-    // TODO: Way to check this on the server without ClientPlayerEntity
-    default void checkCloak(BlockState state) {
-        ClientPlayerEntity clientPlayerEntity = MinecraftClient.getInstance().player;
+    default void setupCloak() {
+        PigmentBlockCloaker.registerAdvancementSwap(this, getCloakAdvancementIdentifier());
+    }
 
-        boolean isCloaked = isCloaked(clientPlayerEntity, state);
-        if (isCloaked != wasLastCloaked()) {
-            if (clientPlayerEntity != null && MinecraftClient.getInstance().world != null) {
-                if (MinecraftClient.getInstance().worldRenderer != null && MinecraftClient.getInstance().player != null) {
-
-                    if(isCloaked) {
-                        setCloaked();
-                    } else {
-                        setUncloaked();
-                    }
-
-                    WorldRenderer renderer = MinecraftClient.getInstance().worldRenderer;
-                    ((WorldRendererAccessor) renderer).rebuildAllChunks();
-                }
-            }
-            setLastCloaked(isCloaked);
-        }
+    default boolean isCloaked(PlayerEntity playerEntity) {
+        return !Support.hasAdvancement(playerEntity, getCloakAdvancementIdentifier());
     }
 
     default PlayerEntity getLootPlayerEntity(LootContext.Builder lootContextBuilder) {
@@ -74,8 +59,8 @@ public interface Cloakable {
 
         Identifier identifier;
         BlockState cloakedBlockState = null;
-        if(lootPlayerEntity == null || isCloaked(lootPlayerEntity, state)) {
-            cloakedBlockState = PigmentCommon.getBlockCloaker().getTarget(state);
+        if(lootPlayerEntity == null || isCloaked(lootPlayerEntity)) {
+            cloakedBlockState = PigmentBlockCloaker.getTarget(state);
             if(cloakedBlockState == null) {
                 identifier = state.getBlock().getLootTableId();
             } else {

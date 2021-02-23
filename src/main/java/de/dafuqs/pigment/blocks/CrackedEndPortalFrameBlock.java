@@ -138,9 +138,11 @@ public class CrackedEndPortalFrameBlock extends Block {
             // fixed directions we can estimate the
             // portal position based on some simple checks instead
             BlockPos portalTopLeft = result.getFrontTopLeft().add(-3, 0, -3);
-            if(world.getBlockState(portalTopLeft.add(7, 0, 0)).getBlock().equals(PigmentBlocks.CRACKED_END_PORTAL_FRAME)) {
+            Block b1 = world.getBlockState(portalTopLeft.add(7, 0, 0)).getBlock();
+            Block b2 = world.getBlockState(portalTopLeft.add(0, 0, 7)).getBlock();
+            if(b1.equals(PigmentBlocks.CRACKED_END_PORTAL_FRAME) || b1.equals(Blocks.END_PORTAL_FRAME)) {
                 portalTopLeft = portalTopLeft.add(4, 0, 0);
-            } else if(world.getBlockState(portalTopLeft.add(0, 0, 7)).getBlock().equals(PigmentBlocks.CRACKED_END_PORTAL_FRAME)) {
+            } else if(b2.equals(PigmentBlocks.CRACKED_END_PORTAL_FRAME) || b2.equals(Blocks.END_PORTAL_FRAME)) {
                 portalTopLeft = portalTopLeft.add(0, 0, 4);
             }
 

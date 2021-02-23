@@ -2,7 +2,8 @@ package de.dafuqs.pigment.mixin;
 
 import de.dafuqs.pigment.PigmentItemStackDamageImmunities;
 import de.dafuqs.pigment.Support;
-import de.dafuqs.pigment.inventories.AutoCraftingInventory;
+import de.dafuqs.pigment.inventories.AutoCompactingInventory;
+import de.dafuqs.pigment.inventories.AutoInventory;
 import de.dafuqs.pigment.recipe.PigmentRecipeTypes;
 import de.dafuqs.pigment.recipe.anvil_crushing.AnvilCrushingRecipe;
 import net.minecraft.entity.Entity;
@@ -41,10 +42,10 @@ public abstract class ItemEntityMixin {
             ItemStack thisItemStack = thisEntity.getStack();
             World world = thisEntity.getEntityWorld();
 
-            AutoCraftingInventory autoCraftingInventory = new AutoCraftingInventory();
-            autoCraftingInventory.setCompacting(AutoCraftingInventory.AutoCraftingMode.OnexOne, thisItemStack);
+            AutoCompactingInventory autoCompactingInventory = new AutoCompactingInventory();
+            autoCompactingInventory.setCompacting(AutoCompactingInventory.AutoCraftingMode.OnexOne, thisItemStack);
 
-            Optional<AnvilCrushingRecipe> optionalAnvilCrushingRecipe = world.getServer().getRecipeManager().getFirstMatch(PigmentRecipeTypes.ANVIL_CRUSHING, autoCraftingInventory, world);
+            Optional<AnvilCrushingRecipe> optionalAnvilCrushingRecipe = world.getServer().getRecipeManager().getFirstMatch(PigmentRecipeTypes.ANVIL_CRUSHING, autoCompactingInventory, world);
             if(optionalAnvilCrushingRecipe.isPresent()) {
                 // Item can be crafted via anvil. Do anvil crafting
                 AnvilCrushingRecipe recipe = optionalAnvilCrushingRecipe.get();

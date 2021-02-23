@@ -1,34 +1,28 @@
 package de.dafuqs.pigment.inventories;
 
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.CraftingInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.collection.DefaultedList;
 
-public class AutoCraftingInventory extends CraftingInventory {
+import java.util.ArrayList;
+import java.util.List;
 
-    public enum AutoCraftingMode {
-        OnexOne,
-        TwoXTwo,
-        ThreeXTree
-    }
+public class AutoCraftingInventory extends AutoInventory {
 
-    private AutoCraftingMode autoCraftingMode;
-    ItemStack inputItemStack;
+    List<ItemStack> inputInventory;
 
     public AutoCraftingInventory() {
-        super(null, 3, 3);
-        this.inputItemStack = ItemStack.EMPTY;
-        this.autoCraftingMode = AutoCraftingMode.ThreeXTree;
+        super();
+        inputInventory = DefaultedList.ofSize(9, ItemStack.EMPTY);
     }
 
-    public void setCompacting(AutoCraftingMode autoCraftingMode, ItemStack itemStack) {
-        this.autoCraftingMode = autoCraftingMode;
-        this.inputItemStack = itemStack;
+    public void setInputInventory(List<ItemStack> inputInventory) {
+        this.inputInventory = inputInventory;
     }
 
     @Override
     public int size() {
-        return getSize() * getSize();
+        return 9;
     }
 
     @Override
@@ -38,7 +32,7 @@ public class AutoCraftingInventory extends CraftingInventory {
 
     @Override
     public ItemStack getStack(int slot) {
-        return inputItemStack;
+        return inputInventory.get(slot);
     }
 
     @Override
@@ -57,23 +51,12 @@ public class AutoCraftingInventory extends CraftingInventory {
 
     @Override
     public int getHeight() {
-        return getSize();
+        return 3;
     }
 
     @Override
     public int getWidth() {
-        return getSize();
-    }
-
-    private int getSize() {
-        switch (this.autoCraftingMode) {
-            case OnexOne:
-                return 1;
-            case TwoXTwo:
-                return 2;
-            default:
-                return 3;
-        }
+        return 3;
     }
 
 }

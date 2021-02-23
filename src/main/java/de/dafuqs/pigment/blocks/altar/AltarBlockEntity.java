@@ -4,6 +4,7 @@ import de.dafuqs.pigment.*;
 import de.dafuqs.pigment.enums.PigmentColor;
 import de.dafuqs.pigment.interfaces.PlayerOwned;
 import de.dafuqs.pigment.inventories.AltarScreenHandler;
+import de.dafuqs.pigment.inventories.AutoCraftingInventory;
 import de.dafuqs.pigment.recipe.PigmentRecipeTypes;
 import de.dafuqs.pigment.recipe.altar.AltarCraftingRecipe;
 import net.minecraft.advancement.Advancement;
@@ -37,10 +38,8 @@ import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
-import org.apache.logging.log4j.Level;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Random;
 import java.util.UUID;
@@ -56,10 +55,16 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
 
     protected final PropertyDelegate propertyDelegate;
     private static final RecipeType<? extends AltarCraftingRecipe> recipeType = PigmentRecipeTypes.ALTAR;
-    private AltarCraftingRecipe lastRecipe;
+    private Object lastRecipe;
+
+    private static AutoCraftingInventory autoCraftingInventory;
 
     public AltarBlockEntity(BlockPos blockPos, BlockState blockState) {
         super(PigmentBlockEntityType.ALTAR_BLOCK_ENTITY_TYPE, blockPos, blockState);
+
+        if(autoCraftingInventory == null) {
+            autoCraftingInventory = new AutoCraftingInventory();
+        }
 
         this.inventory = DefaultedList.ofSize(9+5+1+1, ItemStack.EMPTY); // 9 crafting, 5 gems, 1 preview, 1 output
 
@@ -207,18 +212,33 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
 
     public static void tick(World world, BlockPos blockPos, BlockState blockState, AltarBlockEntity altarBlockEntity) {
         // check recipe crafted last tick => performance
-        AltarCraftingRecipe recipe;
-        if (altarBlockEntity.lastRecipe != null && altarBlockEntity.lastRecipe.matches(altarBlockEntity, world)) {
-            recipe = altarBlockEntity.lastRecipe;
+        AltarCraftingRecipe altarCraftingRecipe = null;
+        CraftingRecipe craftingRecipe = null;
+        if (altarBlockEntity.lastRecipe instanceof AltarCraftingRecipe && ((AltarCraftingRecipe) altarBlockEntity.lastRecipe).matches(altarBlockEntity, world)) {
+            altarCraftingRecipe = (AltarCraftingRecipe) altarBlockEntity.lastRecipe;
         } else {
-            recipe = world.getRecipeManager().getFirstMatch(recipeType, altarBlockEntity, world).orElse(null);
-            altarBlockEntity.lastRecipe = recipe;
-            altarBlockEntity.craftingTime = 0;
-            if (recipe != null) {
-                altarBlockEntity.craftingTimeTotal = recipe.getCraftingTime();
-                altarBlockEntity.inventory.set(14, recipe.getOutput());
+            autoCraftingInventory.setInputInventory(altarBlockEntity.inventory.subList(0, 9));
+            if(altarBlockEntity.lastRecipe instanceof CraftingRecipe && ((CraftingRecipe) altarBlockEntity.lastRecipe).matches(autoCraftingInventory, world)) {
+                craftingRecipe = (CraftingRecipe) altarBlockEntity.lastRecipe;
             } else {
-                altarBlockEntity.inventory.set(14, ItemStack.EMPTY);
+                // current inventory does not match last recipe
+                altarBlockEntity.craftingTime = 0;
+
+                altarCraftingRecipe = world.getRecipeManager().getFirstMatch(recipeType, altarBlockEntity, world).orElse(null);
+                if (altarCraftingRecipe != null) {
+                    altarBlockEntity.lastRecipe = altarCraftingRecipe;
+                    altarBlockEntity.craftingTimeTotal = altarCraftingRecipe.getCraftingTime();
+                    altarBlockEntity.inventory.set(14, altarCraftingRecipe.getOutput());
+                } else {
+                    craftingRecipe = world.getRecipeManager().getFirstMatch(RecipeType.CRAFTING, autoCraftingInventory, world).orElse(null);
+                    if (craftingRecipe != null) {
+                        altarBlockEntity.lastRecipe = craftingRecipe;
+                        altarBlockEntity.craftingTimeTotal = 20;
+                        altarBlockEntity.inventory.set(14, craftingRecipe.getOutput());
+                    } else {
+                        altarBlockEntity.inventory.set(14, ItemStack.EMPTY);
+                    }
+                }
             }
         }
 
@@ -230,13 +250,23 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
             boolean crafting = altarBlockEntity.isCrafting();
             boolean shouldMarkDirty = false;
 
-            if (canAcceptRecipeOutput(recipe, altarBlockEntity.inventory, maxCountPerStack)) {
+            // Altar crafting
+            if (canAcceptRecipeOutput(altarCraftingRecipe, altarBlockEntity.inventory, maxCountPerStack)) {
                 altarBlockEntity.craftingTime++;
                 if (altarBlockEntity.craftingTime == altarBlockEntity.craftingTimeTotal) {
                     altarBlockEntity.craftingTime = 0;
-                    altarBlockEntity.craftRecipe(recipe, altarBlockEntity.inventory, maxCountPerStack);
+                    altarBlockEntity.craftAltarRecipe(altarCraftingRecipe, altarBlockEntity.inventory, maxCountPerStack);
                     shouldMarkDirty = true;
                 }
+            // Vanilla crafting
+            } else if(canAcceptRecipeOutput(craftingRecipe, altarBlockEntity.inventory, maxCountPerStack)) {
+                altarBlockEntity.craftingTime++;
+                if (altarBlockEntity.craftingTime == altarBlockEntity.craftingTimeTotal) {
+                    altarBlockEntity.craftingTime = 0;
+                    altarBlockEntity.craftVanillaRecipe(craftingRecipe, altarBlockEntity.inventory, maxCountPerStack);
+                    shouldMarkDirty = true;
+                }
+            // No crafting
             } else {
                 altarBlockEntity.craftingTime = 0;
             }
@@ -312,13 +342,20 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
         }
     }
 
-    private boolean craftRecipe(@Nullable AltarCraftingRecipe recipe, DefaultedList<ItemStack> defaultedList, int maxCountPerStack) {
+    private boolean craftAltarRecipe(@Nullable AltarCraftingRecipe recipe, DefaultedList<ItemStack> defaultedList, int maxCountPerStack) {
         if (canAcceptRecipeOutput(recipe, defaultedList, maxCountPerStack)) {
 
             // -1 for all crafting inputs
             for(int i = 0; i < 9; i++) {
                 ItemStack itemStack = defaultedList.get(i);
-                itemStack.decrement(1);
+                if(!itemStack.isEmpty()) {
+                    Item recipeReminderItem = itemStack.getItem().getRecipeRemainder();
+                    if(recipeReminderItem == null) {
+                        itemStack.decrement(1);
+                    } else {
+                        inventory.set(i, new ItemStack(recipeReminderItem, 1));
+                    }
+                }
             }
 
             // -X for all the pigment inputs
@@ -341,6 +378,37 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
             storedXP += newXP;
 
             grantPlayerCraftingAdvancement(output.getItem());
+
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private boolean craftVanillaRecipe(@Nullable CraftingRecipe recipe, DefaultedList<ItemStack> defaultedList, int maxCountPerStack) {
+        if (canAcceptRecipeOutput(recipe, defaultedList, maxCountPerStack)) {
+
+            // -1 for all crafting inputs
+            for(int i = 0; i < 9; i++) {
+                ItemStack itemStack = defaultedList.get(i);
+                if(!itemStack.isEmpty()) {
+                    Item recipeReminderItem = itemStack.getItem().getRecipeRemainder();
+                    if(recipeReminderItem == null) {
+                        itemStack.decrement(1);
+                    } else {
+                        inventory.set(i, new ItemStack(recipeReminderItem, 1));
+                    }
+                }
+            }
+
+            ItemStack output = recipe.getOutput();
+
+            ItemStack existingOutput = defaultedList.get(15);
+            if (existingOutput.isEmpty()) {
+                defaultedList.set(15, output.copy());
+            } else if (existingOutput.isOf(output.getItem())) {
+                existingOutput.increment(output.getCount());
+            }
 
             return true;
         } else {

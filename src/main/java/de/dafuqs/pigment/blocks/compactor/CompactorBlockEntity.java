@@ -1,7 +1,8 @@
 package de.dafuqs.pigment.blocks.compactor;
 
 import de.dafuqs.pigment.PigmentBlockEntityType;
-import de.dafuqs.pigment.inventories.AutoCraftingInventory;
+import de.dafuqs.pigment.inventories.AutoCompactingInventory;
+import de.dafuqs.pigment.inventories.AutoInventory;
 import de.dafuqs.pigment.inventories.InventoryHelper;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.LootableContainerBlockEntity;
@@ -29,7 +30,7 @@ public class CompactorBlockEntity extends LootableContainerBlockEntity {
 
     private DefaultedList<ItemStack> inventory;
 
-    AutoCraftingInventory autoCraftingInventory = new AutoCraftingInventory();
+    AutoCompactingInventory autoCompactingInventory = new AutoCompactingInventory();
     ItemStack lastCraftingItemStack;// cache
     CraftingRecipe lastCraftingRecipe; // cache
     boolean hasToCraft;
@@ -109,8 +110,8 @@ public class CompactorBlockEntity extends LootableContainerBlockEntity {
                 }
 
                 if(craftingStacks != null) {
-                    autoCraftingInventory.setCompacting(AutoCraftingInventory.AutoCraftingMode.ThreeXTree, craftingStacks.get(0).copy());
-                    optionalCraftingRecipe = world.getServer().getRecipeManager().getFirstMatch(RecipeType.CRAFTING, autoCraftingInventory, world);
+                    autoCompactingInventory.setCompacting(AutoCompactingInventory.AutoCraftingMode.ThreeXTree, craftingStacks.get(0).copy());
+                    optionalCraftingRecipe = world.getServer().getRecipeManager().getFirstMatch(RecipeType.CRAFTING, autoCompactingInventory, world);
                     if(!optionalCraftingRecipe.isPresent() || optionalCraftingRecipe.get().getOutput().isEmpty()) {
                         optionalCraftingRecipe = Optional.empty();
                     } else {

@@ -214,6 +214,8 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
         // check recipe crafted last tick => performance
         AltarCraftingRecipe altarCraftingRecipe = null;
         CraftingRecipe craftingRecipe = null;
+        boolean shouldMarkDirty = false;
+
         if (altarBlockEntity.lastRecipe instanceof AltarCraftingRecipe && ((AltarCraftingRecipe) altarBlockEntity.lastRecipe).matches(altarBlockEntity, world)) {
             altarCraftingRecipe = (AltarCraftingRecipe) altarBlockEntity.lastRecipe;
         } else {
@@ -222,6 +224,7 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
                 craftingRecipe = (CraftingRecipe) altarBlockEntity.lastRecipe;
             } else {
                 // current inventory does not match last recipe
+                // => search valid recipe
                 altarBlockEntity.craftingTime = 0;
 
                 altarCraftingRecipe = world.getRecipeManager().getFirstMatch(recipeType, altarBlockEntity, world).orElse(null);
@@ -229,14 +232,20 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
                     altarBlockEntity.lastRecipe = altarCraftingRecipe;
                     altarBlockEntity.craftingTimeTotal = altarCraftingRecipe.getCraftingTime();
                     altarBlockEntity.inventory.set(14, altarCraftingRecipe.getOutput());
+                    shouldMarkDirty = true;
                 } else {
                     craftingRecipe = world.getRecipeManager().getFirstMatch(RecipeType.CRAFTING, autoCraftingInventory, world).orElse(null);
                     if (craftingRecipe != null) {
                         altarBlockEntity.lastRecipe = craftingRecipe;
                         altarBlockEntity.craftingTimeTotal = 20;
                         altarBlockEntity.inventory.set(14, craftingRecipe.getOutput());
+                        shouldMarkDirty = true;
                     } else {
-                        altarBlockEntity.inventory.set(14, ItemStack.EMPTY);
+                        altarBlockEntity.lastRecipe = null;
+                        if(!altarBlockEntity.inventory.get(14).isEmpty()) {
+                            altarBlockEntity.inventory.set(14, ItemStack.EMPTY);
+                            shouldMarkDirty = true;
+                        }
                     }
                 }
             }
@@ -248,7 +257,6 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
 
             int maxCountPerStack = altarBlockEntity.getMaxCountPerStack();
             boolean crafting = altarBlockEntity.isCrafting();
-            boolean shouldMarkDirty = false;
 
             // Altar crafting
             if (canAcceptRecipeOutput(altarCraftingRecipe, altarBlockEntity.inventory, maxCountPerStack)) {
@@ -485,9 +493,9 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
         if(side == Direction.DOWN) {
             return new int[]{15};
         } else if(side == Direction.UP) {
-            return new int[]{9, 10, 11, 12, 13};
-        } else {
             return new int[]{0, 1, 2, 3, 4, 5, 6, 7, 8};
+        } else {
+            return new int[]{9, 10, 11, 12, 13};
         }
     }
 

@@ -155,7 +155,7 @@ public class AltarScreenHandler extends AbstractRecipeScreenHandler<Inventory> {
             clickedStackCopy = clickedStack.copy();
 
             if(index < 14) {
-                if (!this.insertItem(clickedStack, 15, 50, false)) {
+                if (!this.insertItem(clickedStack, 15, 51, false)) {
                     return ItemStack.EMPTY;
                 }
             } else if(clickedStackCopy.isOf(PigmentItems.MAGENTA_PIGMENT)) {

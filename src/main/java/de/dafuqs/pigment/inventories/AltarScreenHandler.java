@@ -17,10 +17,7 @@ import net.minecraft.recipe.RecipeFinder;
 import net.minecraft.recipe.RecipeInputProvider;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.recipe.book.RecipeBookCategory;
-import net.minecraft.screen.AbstractRecipeScreenHandler;
-import net.minecraft.screen.ArrayPropertyDelegate;
-import net.minecraft.screen.PropertyDelegate;
-import net.minecraft.screen.ScreenHandlerType;
+import net.minecraft.screen.*;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.world.World;
 
@@ -143,5 +140,66 @@ public class AltarScreenHandler extends AbstractRecipeScreenHandler<Inventory> {
     public boolean method_32339(int i) {
         return i != 1;
     }
+
+    // Shift-Clicking
+    // 0-8: crafting slots
+    // 9-13: pigment slots
+    // 14: preview slot
+    // 15: output slot
+    @Override
+    public ItemStack transferSlot(PlayerEntity player, int index) {
+        ItemStack clickedStackCopy = ItemStack.EMPTY;
+        Slot slot = this.slots.get(index);
+        if (slot.hasStack()) {
+            ItemStack clickedStack = slot.getStack();
+            clickedStackCopy = clickedStack.copy();
+
+            if(index < 14) {
+                if (!this.insertItem(clickedStack, 15, 50, false)) {
+                    return ItemStack.EMPTY;
+                }
+            } else if(clickedStackCopy.isOf(PigmentItems.MAGENTA_PIGMENT)) {
+                if(!this.insertItem(clickedStack, 9, 10, false)) {
+                    return ItemStack.EMPTY;
+                }
+            } else if(clickedStackCopy.isOf(PigmentItems.YELLOW_PIGMENT)) {
+                if(!this.insertItem(clickedStack, 10, 11, false)) {
+                    return ItemStack.EMPTY;
+                }
+            } else if(clickedStackCopy.isOf(PigmentItems.CYAN_PIGMENT)) {
+                if(!this.insertItem(clickedStack, 11, 12, false)) {
+                    return ItemStack.EMPTY;
+                }
+            } else if(clickedStackCopy.isOf(PigmentItems.BLACK_PIGMENT)) {
+                if(!this.insertItem(clickedStack, 12, 13, false)) {
+                    return ItemStack.EMPTY;
+                }
+            } else if(clickedStackCopy.isOf(PigmentItems.WHITE_PIGMENT)) {
+                if(!this.insertItem(clickedStack, 13, 14, false)) {
+                    return ItemStack.EMPTY;
+                }
+            }
+
+            // crafting table
+            if (!this.insertItem(clickedStack, 0, 8, false)) {
+                return ItemStack.EMPTY;
+            }
+
+            if (clickedStack.isEmpty()) {
+                slot.setStack(ItemStack.EMPTY);
+            } else {
+                slot.markDirty();
+            }
+
+            if (clickedStack.getCount() == clickedStackCopy.getCount()) {
+                return ItemStack.EMPTY;
+            }
+
+            slot.onTakeItem(player, clickedStack);
+        }
+
+        return clickedStackCopy;
+    }
+
 
 }

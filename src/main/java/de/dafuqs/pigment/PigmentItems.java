@@ -1,5 +1,6 @@
 package de.dafuqs.pigment;
 
+import de.dafuqs.pigment.items.EnderOreItem;
 import de.dafuqs.pigment.items.armor.BedrockArmorMaterial;
 import de.dafuqs.pigment.items.armor.MultiToolMaterial;
 import de.dafuqs.pigment.items.misc.EndPortalCrackerItem;
@@ -95,6 +96,8 @@ public class PigmentItems {
     public static final Item QUITOXIC_POWDER = new Item(generalItemSettings);
     public static final Item MERMAIDS_GEM = new Item(generalItemSettings);
 
+    public static final Item ENDER_ORE = new EnderOreItem(generalItemSettings);
+
     private static void registerItem(String name, Item item) {
         Registry.register(Registry.ITEM, new Identifier(PigmentCommon.MOD_ID, name), item);
     }
@@ -147,6 +150,8 @@ public class PigmentItems {
         registerItem("shaped_koenigsblau", SHAPED_KOENIGSBLAU);
         registerItem("quitoxic_powder", QUITOXIC_POWDER);
         registerItem("mermaids_gem", MERMAIDS_GEM);
+
+        registerItem("ender_ore", ENDER_ORE);
 
         registerItem("end_portal_cracker", END_PORTAL_CRACKER);
         registerItem("multitool", MULTITOOL);

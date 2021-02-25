@@ -19,6 +19,9 @@ import de.dafuqs.pigment.blocks.melon.AttachedGlisteringStemBlock;
 import de.dafuqs.pigment.blocks.melon.GlisteringMelonBlock;
 import de.dafuqs.pigment.blocks.melon.GlisteringStemBlock;
 import de.dafuqs.pigment.blocks.particle.ParticleEmitterBlock;
+import de.dafuqs.pigment.items.GravityBlock;
+import de.dafuqs.pigment.items.GravityBlockItem;
+import de.dafuqs.pigment.items.GravityItem;
 import de.dafuqs.pigment.misc.PigmentMaterial;
 import de.dafuqs.pigment.worldgen.ColoredSaplingGenerator;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
@@ -424,6 +427,12 @@ public class PigmentBlocks {
     public static final Block KOENIGSBLAU_ORE = new KoenigsblauOreBlock(FabricBlockSettings.copyOf(Blocks.LAPIS_ORE), IntRange.between(4, 7));
     public static final Block KOENIGSBLAU_BLOCK = new PigmentFacingBlock(FabricBlockSettings.copyOf(Blocks.LAPIS_BLOCK));
 
+    public static final Block PALETUR_ORE = new OreBlock(FabricBlockSettings.of(Material.STONE).requiresTool().strength(3.0F, 3.0F), IntRange.between(2, 4));
+    public static final GravityBlock PALETUR_FRAGMENT_BLOCK = new GravityBlock(FabricBlockSettings.of(Material.METAL, MapColor.DARK_CRIMSON).requiresTool().strength(5.0F, 6.0F).sounds(BlockSoundGroup.METAL), 0.02F);
+    public static final Block CRIMSON_ORE = new OreBlock(FabricBlockSettings.of(Material.STONE).requiresTool().strength(3.0F, 3.0F), IntRange.between(3, 5));
+    public static final GravityBlock CRIMSON_FRAGMENT_BLOCK = new GravityBlock(FabricBlockSettings.of(Material.METAL, MapColor.DARK_CRIMSON).requiresTool().strength(5.0F, 6.0F).sounds(BlockSoundGroup.METAL), -0.02F);
+
+    // FUNCTIONAL BLOCKS
     public static final Block PARTICLE_EMITTER = new ParticleEmitterBlock(FabricBlockSettings.of(Material.METAL));
     public static final Block COMPACTOR = new CompactorBlock(FabricBlockSettings.of(Material.METAL));
     public static final Block BEDROCK_ANVIL = new BedrockAnvilBlock(FabricBlockSettings.copyOf(Blocks.ANVIL).hardness(8));
@@ -507,7 +516,7 @@ public class PigmentBlocks {
         registerBlockItem("cracked_end_portal_frame", new BlockItem(CRACKED_END_PORTAL_FRAME, generalItemSettings));
 
         registerBlock("ender_treasure", ENDER_TREASURE);
-        registerBlockItem("ender_treasure", new BlockItem(ENDER_TREASURE, generalItemSettings));
+        registerBlockItem("ender_treasure", new BlockItem(ENDER_TREASURE, coloredWoodItemSettings));
     }
 
     private static void registerOreBlocks(FabricItemSettings decorationItemSettings) {
@@ -521,6 +530,14 @@ public class PigmentBlocks {
         registerBlock("koenigsblau_block", KOENIGSBLAU_BLOCK);
         registerBlockItem("koenigsblau_block", new BlockItem(KOENIGSBLAU_BLOCK, decorationItemSettings));
 
+        registerBlock("paletur_ore", PALETUR_ORE);
+        registerBlockItem("paletur_ore", new BlockItem(PALETUR_ORE, worldgenItemSettings));
+        registerBlock("paletur_fragment_block", PALETUR_FRAGMENT_BLOCK);
+        registerBlockItem("paletur_fragment_block", new GravityBlockItem(PALETUR_FRAGMENT_BLOCK, worldgenItemSettings, PALETUR_FRAGMENT_BLOCK.getGravityMod()));
+        registerBlock("crimson_ore", CRIMSON_ORE);
+        registerBlockItem("crimson_ore", new BlockItem(CRIMSON_ORE, worldgenItemSettings));
+        registerBlock("crimson_fragment_block", CRIMSON_FRAGMENT_BLOCK);
+        registerBlockItem("crimson_fragment_block", new GravityBlockItem(CRIMSON_FRAGMENT_BLOCK, worldgenItemSettings, CRIMSON_FRAGMENT_BLOCK.getGravityMod()));
     }
 
     private static void registerColoredLamps(FabricItemSettings fabricItemSettings) {

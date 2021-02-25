@@ -287,6 +287,17 @@
   "block.pigment.still_mud": "Mud",
   "block.pigment.flowing_mud": "Mud",
 
+  "block.pigment.paletur_ore": "Paletur Ore",
+  "block.pigment.paletur_fragment_block": "Shattered Paletur Fragment Block",
+  "block.pigment.crimson_ore": "Crimson Ore",
+  "block.pigment.crimson_fragment_block": "Shattered Crimson Fragment Block",
+
+  "item.pigment.shattered_paletur_fragments": "Shattered Paletur Fragments",
+  "item.pigment.paletur_gem": "Paletur Gem",
+  "item.pigment.shattered_crimson_fragments": "Shattered Crimson Fragments",
+  "item.pigment.crimson_gem": "Crimson Gem",
+
+
   "item.pigment.glistering_melon_seeds": "Glistering Melon Seeds",
   "block.pigment.glistering_melon": "Glistering Melon",
   "block.pigment.glistering_melon_stem": "Glistering Melon Stem",
@@ -393,6 +404,8 @@
 
   "block.pigment.compactor": "Compacting Chest",
   "block.pigment.altar": "Altar",
+  "block.pigment.altar2": "Altar",
+  "block.pigment.altar3": "Altar",
   "block.pigment.altar.title_with_owner": "Altar of %s",
   "block.pigment.ominous_sapling": "Ominous Sapling",
   "block.pigment.bedrock_anvil": "Bedrock Anvil",

@@ -1,6 +1,6 @@
 package de.dafuqs.pigment;
 
-import de.dafuqs.pigment.items.EnderOreItem;
+import de.dafuqs.pigment.items.GravityItem;
 import de.dafuqs.pigment.items.armor.BedrockArmorMaterial;
 import de.dafuqs.pigment.items.armor.MultiToolMaterial;
 import de.dafuqs.pigment.items.misc.EndPortalCrackerItem;
@@ -85,6 +85,11 @@ public class PigmentItems {
     public static final Item RAW_KOENIGSBLAU = new Item(pigmentWorldgenItemSettings);
     public static final Item SHAPED_KOENIGSBLAU = new Item(pigmentWorldgenItemSettings);
 
+    public static final Item SHATTERED_PALETUR_FRAGMENTS = new GravityItem(generalItemSettings, 0.003F);
+    public static final Item PALETUR_GEM = new GravityItem(generalItemSettings, 0.02F);
+    public static final Item SHATTERED_CRIMSON_FRAGMENTS = new GravityItem(generalItemSettings, -0.003F);
+    public static final Item CRIMSON_GEM = new GravityItem(generalItemSettings, -0.02F);
+
     // SPECIAL TOOLS
     public static final MultiToolMaterial MULTI_TOOL_MATERIAL = new MultiToolMaterial();
     public static final Item MULTITOOL = new PigmentPickaxeItem(MULTI_TOOL_MATERIAL, 1, -2.8F, preEnchantedItemSettings);
@@ -96,7 +101,8 @@ public class PigmentItems {
     public static final Item QUITOXIC_POWDER = new Item(generalItemSettings);
     public static final Item MERMAIDS_GEM = new Item(generalItemSettings);
 
-    public static final Item ENDER_ORE = new EnderOreItem(generalItemSettings);
+
+
 
     private static void registerItem(String name, Item item) {
         Registry.register(Registry.ITEM, new Identifier(PigmentCommon.MOD_ID, name), item);
@@ -148,10 +154,15 @@ public class PigmentItems {
         registerItem("sparklestone_gem", SPARKLESTONE_GEM);
         registerItem("raw_koenigsblau", RAW_KOENIGSBLAU);
         registerItem("shaped_koenigsblau", SHAPED_KOENIGSBLAU);
+
+        registerItem("shattered_paletur_fragments", SHATTERED_PALETUR_FRAGMENTS);
+        registerItem("paletur_gem", PALETUR_GEM);
+        registerItem("shattered_crimson_fragments", SHATTERED_CRIMSON_FRAGMENTS);
+        registerItem("crimson_gem", CRIMSON_GEM);
+
         registerItem("quitoxic_powder", QUITOXIC_POWDER);
         registerItem("mermaids_gem", MERMAIDS_GEM);
 
-        registerItem("ender_ore", ENDER_ORE);
 
         registerItem("end_portal_cracker", END_PORTAL_CRACKER);
         registerItem("multitool", MULTITOOL);

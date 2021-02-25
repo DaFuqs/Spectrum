@@ -1,27 +1,27 @@
 {
   "type": "pigment_altar",
-  "time": 400,
+  "time": 1000,
   "tier": 1,
-  "cyan": 0,
+  "cyan": 8,
   "magenta": 0,
-  "yellow": 4,
+  "yellow": 0,
   "white": 0,
   "black": 0,
-  "experience": 0.5,
+  "experience": 2,
   "pattern": [
-    "CGC",
+    "TKT",
     " S ",
     " S "
   ],
   "key": {
-	"S": {
-	  "item": "minecraft:stick"
-	},
-    "C": {
-      "item": "pigment:citrine_shard"
+    "S": {
+      "item": "minecraft:stick"
     },
-    "G": {
-      "item": "pigment:sparklestone_gem"
+    "T": {
+      "item": "pigment:topaz_shard"
+    },
+    "K": {
+      "item": "pigment:raw_koenigsblau"
     }
   },
   "result" : {

@@ -1,24 +1,24 @@
 {
   "type": "pigment_altar",
-  "time": 400,
+  "time": 1000,
   "tier": 1,
   "cyan": 0,
-  "magenta": 4,
-  "yellow": 0,
+  "magenta": 0,
+  "yellow": 8,
   "white": 0,
   "black": 0,
-  "experience": 0.5,
+  "experience": 2,
   "pattern": [
-    "AGA",
+    "CGC",
     " S ",
     " S "
   ],
   "key": {
-	"S": {
-	  "item": "minecraft:stick"
-	},
-    "A": {
-      "item": "minecraft:amethyst_shard"
+    "S": {
+      "item": "minecraft:stick"
+    },
+    "C": {
+      "item": "pigment:citrine_shard"
     },
     "G": {
       "item": "pigment:sparklestone_gem"

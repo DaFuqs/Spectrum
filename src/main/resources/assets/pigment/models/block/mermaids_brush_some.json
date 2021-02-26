@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cross",
   "textures": {
-    "cross": "pigment:block/mermaids_brush"
+    "cross": "pigment:block/mermaids_brush_some"
   }
 }

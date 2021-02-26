@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "pigment:bedrock_shovel"
+    "pigment:bedrock_shovel",
+    "pigment:multitool"
   ]
 }

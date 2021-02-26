@@ -26,6 +26,7 @@ public class PigmentDefaultEnchantments {
         PigmentDefaultEnchantments.addDefaultEnchantment(PigmentItems.LOOTING_FALCHION, Enchantments.LOOTING, 3);
         PigmentDefaultEnchantments.addDefaultEnchantment(PigmentItems.SILKER_PICKAXE, Enchantments.SILK_TOUCH, 1);
         PigmentDefaultEnchantments.addDefaultEnchantment(PigmentItems.FORTUNE_PICKAXE, Enchantments.FORTUNE, 3);
+        PigmentDefaultEnchantments.addDefaultEnchantment(PigmentItems.MULTITOOL, Enchantments.EFFICIENCY, 1);
 
         // Bedrock tools
         PigmentDefaultEnchantments.addDefaultEnchantment(PigmentItems.BEDROCK_PICKAXE, Enchantments.SILK_TOUCH, 1);
@@ -43,6 +44,7 @@ public class PigmentDefaultEnchantments {
         PigmentDefaultEnchantments.addDefaultEnchantment(PigmentItems.BEDROCK_CHESTPLATE, Enchantments.PROTECTION, 4);
         PigmentDefaultEnchantments.addDefaultEnchantment(PigmentItems.BEDROCK_LEGGINGS, Enchantments.BLAST_PROTECTION, 4);
         PigmentDefaultEnchantments.addDefaultEnchantment(PigmentItems.BEDROCK_BOOTS, Enchantments.FIRE_PROTECTION, 4);
+
 
     }
 

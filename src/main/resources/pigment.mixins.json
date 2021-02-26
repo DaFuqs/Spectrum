@@ -14,12 +14,15 @@
     "ItemEntityMixin",
     "ItemModelsMixin",
     "MobSpawnerBlockEntityMixin",
+    "ServerWorldMixin",
     "SpawnerBlockMixin",
     "WorldRendererMixin"
   ],
   "client": [
     "client.AccessorClientAdvancementManager",
     "client.BlockModelsMixin",
+    "client.ClientPlayerEntityMixin",
+    "client.ClientWorldMixin",
     "client.ItemMixin",
     "client.MixinClientAdvancementManager",
     "client.MixinMinecraftClient",

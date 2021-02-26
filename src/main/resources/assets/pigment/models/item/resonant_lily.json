@@ -1,3 +1,6 @@
 {
-    "parent": "pigment:block/resonant_lily"
+    "parent": "minecraft:item/generated",
+    "textures": {
+        "layer0": "pigment:block/resonant_lily"
+    }
 }

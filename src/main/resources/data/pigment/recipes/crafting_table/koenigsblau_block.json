@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "pigment:raw_koenigsblau"
+    }
+  },
+  "result": {
+    "item": "pigment:koenigsblau_block",
+    "count": 1
+  }
+}

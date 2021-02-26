@@ -32,6 +32,11 @@ public class PigmentClient implements ClientModInitializer {
         registerCrossbowPredicates(PigmentItems.BEDROCK_CROSSBOW);
         registerFishingRodPredicates(PigmentItems.BEDROCK_FISHING_ROD);
 
+        PigmentEntityTypes.registerClient();
+        PigmentEntityRenderers.registerClient();
+
+        PigmentClientsidePacketRegistry.initClient();
+
         ClientLifecycleEvents.CLIENT_STARTED.register(minecraftClient -> {
             registerColorProviders();
         });

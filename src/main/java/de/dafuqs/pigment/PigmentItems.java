@@ -1,8 +1,8 @@
 package de.dafuqs.pigment;
 
-import de.dafuqs.pigment.items.GravityItem;
+import de.dafuqs.pigment.gravity.GravityItem;
 import de.dafuqs.pigment.items.armor.BedrockArmorMaterial;
-import de.dafuqs.pigment.items.armor.MultiToolMaterial;
+import de.dafuqs.pigment.items.armor.LowHealthMaterial;
 import de.dafuqs.pigment.items.misc.EndPortalCrackerItem;
 import de.dafuqs.pigment.items.misc.Spawner;
 import de.dafuqs.pigment.items.tools.*;
@@ -91,18 +91,15 @@ public class PigmentItems {
     public static final Item CRIMSON_GEM = new GravityItem(generalItemSettings, -0.02F);
 
     // SPECIAL TOOLS
-    public static final MultiToolMaterial MULTI_TOOL_MATERIAL = new MultiToolMaterial();
-    public static final Item MULTITOOL = new PigmentPickaxeItem(MULTI_TOOL_MATERIAL, 1, -2.8F, preEnchantedItemSettings);
-    public static final Item SILKER_PICKAXE = new PigmentPickaxeItem(MULTI_TOOL_MATERIAL, 1, -2.8F, preEnchantedItemSettings);
-    public static final Item FORTUNE_PICKAXE = new PigmentPickaxeItem(MULTI_TOOL_MATERIAL, 1, -2.8F, preEnchantedItemSettings);
-    public static final Item LOOTING_FALCHION = new SwordItem(MULTI_TOOL_MATERIAL, 4, -2.2F, preEnchantedItemSettings);
+    public static final LowHealthMaterial LOW_HEALTH_MATERIAL = new LowHealthMaterial();
+    public static final Item MULTITOOL = new MultiToolItem(ToolMaterials.IRON, 2, -2.4F, preEnchantedItemSettings);
+    public static final Item SILKER_PICKAXE = new PigmentPickaxeItem(LOW_HEALTH_MATERIAL, 1, -2.8F, preEnchantedItemSettings);
+    public static final Item FORTUNE_PICKAXE = new PigmentPickaxeItem(LOW_HEALTH_MATERIAL, 1, -2.8F, preEnchantedItemSettings);
+    public static final Item LOOTING_FALCHION = new SwordItem(LOW_HEALTH_MATERIAL, 4, -2.2F, preEnchantedItemSettings);
 
     public static final Item END_PORTAL_CRACKER = new EndPortalCrackerItem(generalItemSettings);
     public static final Item QUITOXIC_POWDER = new Item(generalItemSettings);
     public static final Item MERMAIDS_GEM = new Item(generalItemSettings);
-
-
-
 
     private static void registerItem(String name, Item item) {
         Registry.register(Registry.ITEM, new Identifier(PigmentCommon.MOD_ID, name), item);
@@ -162,7 +159,6 @@ public class PigmentItems {
 
         registerItem("quitoxic_powder", QUITOXIC_POWDER);
         registerItem("mermaids_gem", MERMAIDS_GEM);
-
 
         registerItem("end_portal_cracker", END_PORTAL_CRACKER);
         registerItem("multitool", MULTITOOL);

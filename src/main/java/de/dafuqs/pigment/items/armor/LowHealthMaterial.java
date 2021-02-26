@@ -3,7 +3,7 @@ package de.dafuqs.pigment.items.armor;
 import net.minecraft.item.ToolMaterial;
 import net.minecraft.recipe.Ingredient;
 
-public class MultiToolMaterial implements ToolMaterial {
+public class LowHealthMaterial implements ToolMaterial {
 
     @Override
     public int getDurability() {

@@ -1,0 +1,14 @@
+{
+  "type": "pigment_anvil_crushing",
+  "ingredient": {
+    "item": "pigment:crimson_gem"
+  },
+  "crushedItemsPerPointOfDamage": 1,
+  "experience": 0.5,
+  "result" : {
+    "item": "pigment:shattered_crimson_fragments",
+    "count": 8
+  },
+  "particleEffectIdentifier": "cloud",
+  "soundEventIdentifier": "block.small_amethyst_bud.break"
+}

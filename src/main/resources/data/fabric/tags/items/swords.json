@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "pigment:bedrock_sword"
+    "pigment:bedrock_sword",
+    "pigment:looting_falchion"
   ]
 }

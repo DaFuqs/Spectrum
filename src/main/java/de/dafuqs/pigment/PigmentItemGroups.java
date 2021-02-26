@@ -29,6 +29,7 @@ public class PigmentItemGroups {
             .icon(() -> new ItemStack(PigmentBlocks.ALTAR))
             .appendItems(stacks -> {
                 // early game tools
+                stacks.add(PigmentDefaultEnchantments.getEnchantedItemStack(PigmentItems.MULTITOOL));
                 stacks.add(PigmentDefaultEnchantments.getEnchantedItemStack(PigmentItems.LOOTING_FALCHION));
                 stacks.add(PigmentDefaultEnchantments.getEnchantedItemStack(PigmentItems.SILKER_PICKAXE));
                 stacks.add(PigmentDefaultEnchantments.getEnchantedItemStack(PigmentItems.FORTUNE_PICKAXE));
@@ -43,6 +44,7 @@ public class PigmentItemGroups {
                 stacks.add(PigmentDefaultEnchantments.getEnchantedItemStack(PigmentItems.BEDROCK_CROSSBOW));
                 stacks.add(PigmentDefaultEnchantments.getEnchantedItemStack(PigmentItems.BEDROCK_SHEARS));
                 stacks.add(PigmentDefaultEnchantments.getEnchantedItemStack(PigmentItems.BEDROCK_FISHING_ROD));
+
                 // bedrock armor
                 stacks.add(PigmentDefaultEnchantments.getEnchantedItemStack(PigmentItems.BEDROCK_HELMET));
                 stacks.add(PigmentDefaultEnchantments.getEnchantedItemStack(PigmentItems.BEDROCK_CHESTPLATE));

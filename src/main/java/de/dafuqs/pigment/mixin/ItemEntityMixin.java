@@ -2,26 +2,28 @@ package de.dafuqs.pigment.mixin;
 
 import de.dafuqs.pigment.PigmentItemStackDamageImmunities;
 import de.dafuqs.pigment.Support;
+import de.dafuqs.pigment.gravity.GravityBlockItem;
+import de.dafuqs.pigment.interfaces.GravitableItem;
 import de.dafuqs.pigment.inventories.AutoCompactingInventory;
-import de.dafuqs.pigment.inventories.AutoInventory;
+import de.dafuqs.pigment.gravity.GravityItem;
 import de.dafuqs.pigment.recipe.PigmentRecipeTypes;
 import de.dafuqs.pigment.recipe.anvil_crushing.AnvilCrushingRecipe;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ExperienceOrbEntity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.data.TrackedData;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.Optional;
@@ -29,11 +31,7 @@ import java.util.Optional;
 @Mixin(ItemEntity.class)
 public abstract class ItemEntityMixin {
 
-    @Shadow
-    @Final
-    private static TrackedData<ItemStack> STACK;
-
-    @Shadow public abstract boolean damage(DamageSource source, float amount);
+    @Shadow public abstract ItemStack getStack();
 
     @Inject(at=@At("HEAD"), method="Lnet/minecraft/entity/ItemEntity;damage(Lnet/minecraft/entity/damage/DamageSource;F)Z", cancellable = true)
     public void doAnvilCrafting(DamageSource source, float amount, CallbackInfoReturnable<Boolean> callbackInfoReturnable) {
@@ -109,5 +107,29 @@ public abstract class ItemEntityMixin {
         }
     }
 
+    @Redirect(method = "Lnet/minecraft/entity/ItemEntity;tick()V",
+            at = @At(
+                value = "INVOKE",
+                target = "Lnet/minecraft/util/math/Vec3d;add(DDD)Lnet/minecraft/util/math/Vec3d;")
+    )
+    public Vec3d addVelocity(Vec3d vec3d, double x, double y, double z) {
+        ItemEntity itemEntity = ((ItemEntity)(Object) this);
+        Item item = itemEntity.getStack().getItem();
+        if(item instanceof GravitableItem) {
+            float grav = ((GravitableItem) item).getGravityMod();
+            if(grav < 0) {
+                return vec3d.add(x, y * (1+grav), z);
+            } else {
+                // if the stack if floating really high => delete it
+                if(itemEntity.getPos().getY() > itemEntity.getEntityWorld().getTopY() + 200) {
+                    itemEntity.discard();
+                }
+                return vec3d.add(x, -y * (1+grav), z);
+            }
+
+        } else {
+            return vec3d.add(x, y, z);
+        }
+    }
 
 }

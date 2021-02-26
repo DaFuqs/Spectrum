@@ -9,6 +9,10 @@ import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.structure.rule.BlockMatchRuleTest;
+import net.minecraft.structure.rule.RuleTest;
+import net.minecraft.structure.rule.TagMatchRuleTest;
+import net.minecraft.tag.BlockTags;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.BuiltinRegistries;
@@ -47,6 +51,8 @@ public class PigmentConfiguredFeatures {
 
     private static ConfiguredFeature<?, ?> SPARKLESTONE_ORE;
     private static ConfiguredFeature<?, ?> KOENIGSBLAU_ORE;
+    private static ConfiguredFeature<?, ?> PALETUR_ORE;
+    private static ConfiguredFeature<?, ?> CRIMSON_ORE;
 
     private static ConfiguredFeature<?, ?> QUITOXIC_REEDS;
     private static ConfiguredFeature<?, ?> MERMAIDS_BRUSH;
@@ -65,24 +71,42 @@ public class PigmentConfiguredFeatures {
     private static void registerOres() {
         BlockState sparklestoneOre = PigmentBlocks.SPARKLESTONE_ORE.getDefaultState();
         BlockState koenigsblauOre = PigmentBlocks.KOENIGSBLAU_ORE.getDefaultState();
+        BlockState crimsonOre = PigmentBlocks.CRIMSON_ORE.getDefaultState();
+        BlockState paleturOre = PigmentBlocks.PALETUR_ORE.getDefaultState();
 
         Identifier sparklestoneOreIdentifier = new Identifier(PigmentCommon.MOD_ID, "sparklestone_ore");
         Identifier koenigsblauOreIdentifier = new Identifier(PigmentCommon.MOD_ID, "koenigsblau_ore");
+        Identifier crimsonOreIdentifier = new Identifier(PigmentCommon.MOD_ID, "crimson_ore");
+        Identifier paleturOreIdentifier = new Identifier(PigmentCommon.MOD_ID, "paletur_ore");
 
         SPARKLESTONE_ORE = registerConfiguredFeature(sparklestoneOreIdentifier,
-        ((Feature.ORE.configure(new OreFeatureConfig(OreFeatureConfig.Rules.BASE_STONE_OVERWORLD, sparklestoneOre, 17)) // vein size
-                .rangeOf(YOffset.fixed(92), YOffset.fixed(192))) // min and max height
-                .spreadHorizontally())
+        Feature.ORE.configure(new OreFeatureConfig(OreFeatureConfig.Rules.BASE_STONE_OVERWORLD, sparklestoneOre, 17)) // vein size
+                .rangeOf(YOffset.fixed(92), YOffset.fixed(192)) // min and max height
+                .spreadHorizontally()
                 .repeat(6)); // number of veins per chunk
 
         KOENIGSBLAU_ORE = registerConfiguredFeature(koenigsblauOreIdentifier,
-                ((Feature.ORE.configure(new OreFeatureConfig(OreFeatureConfig.Rules.BASE_STONE_OVERWORLD, koenigsblauOre, 5)) // vein size
-                        .rangeOf(YOffset.getBottom(), YOffset.aboveBottom(64))) // min and max height
-                        .spreadHorizontally())
+                Feature.ORE.configure(new OreFeatureConfig(OreFeatureConfig.Rules.BASE_STONE_OVERWORLD, koenigsblauOre, 5)) // vein size
+                        .rangeOf(YOffset.getBottom(), YOffset.aboveBottom(64)) // min and max height
+                        .spreadHorizontally()
                         .repeat(4)); // number of veins per chunk
+
+        CRIMSON_ORE = registerConfiguredFeature(crimsonOreIdentifier,
+                Feature.ORE.configure(new OreFeatureConfig(OreFeatureConfig.Rules.BASE_STONE_NETHER, crimsonOre, 6)) // vein size
+                        .range(ConfiguredFeatures.Decorators.BOTTOM_TO_TOP_OFFSET_10) // min and max height
+                        .spreadHorizontally()
+                        .repeat(8)); // number of veins per chunk
+
+        PALETUR_ORE = registerConfiguredFeature(paleturOreIdentifier,
+                Feature.ORE.configure(new OreFeatureConfig(Rules.END_STONE, paleturOre, 4, 0.3F)) // vein size + discard on air exposure
+                        .rangeOf(YOffset.getBottom(), YOffset.aboveBottom(80)) // min and max height
+                        .spreadHorizontally()
+                        .repeat(6)); // number of veins per chunk
 
         BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Feature.UNDERGROUND_ORES, RegistryKey.of(Registry.CONFIGURED_FEATURE_WORLDGEN, sparklestoneOreIdentifier));
         BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Feature.UNDERGROUND_ORES, RegistryKey.of(Registry.CONFIGURED_FEATURE_WORLDGEN, koenigsblauOreIdentifier));
+        BiomeModifications.addFeature(BiomeSelectors.foundInTheNether(), GenerationStep.Feature.UNDERGROUND_ORES, RegistryKey.of(Registry.CONFIGURED_FEATURE_WORLDGEN, crimsonOreIdentifier));
+        BiomeModifications.addFeature(BiomeSelectors.foundInTheEnd(), GenerationStep.Feature.UNDERGROUND_ORES, RegistryKey.of(Registry.CONFIGURED_FEATURE_WORLDGEN, paleturOreIdentifier));
     }
 
     private static void registerColoredTree(DyeColor dyeColor) {
@@ -171,8 +195,10 @@ public class PigmentConfiguredFeatures {
                         new SimpleBlockStateProvider(TUFF),
                         ImmutableList.of(SMALL_CITRINE_BUD, MEDIUM_CITRINE_BUD, LARGE_CITRINE_BUD, CITRINE_CLUSTER)),
                 new GeodeLayerThicknessConfig(1.7D, 2.2D, 3.2D, 4.2D),
-                new GeodeCrackConfig(0.95D, 2.0D, 2), 0.35D, 0.083D, true, 4, 7, 3, 5, 1, 3, -16, 16, 0.05D))
-                .rangeOf(YOffset.aboveBottom(32), YOffset.aboveBottom(96)).spreadHorizontally().applyChance(30));
+                new GeodeCrackConfig(0.95D, 2.0D, 2), 0.35D, 0.083D, true, 4, 7, 3, 5, 1, 3, -16, 16, 0.05D, 1))
+                .rangeOf(YOffset.aboveBottom(32), YOffset.aboveBottom(96))
+                .spreadHorizontally()
+                .applyChance(30));
 
         TOPAZ_GEODE = (PigmentFeatures.SOLID_BLOCKS_GEODE.configure(new GeodeFeatureConfig(
                 new GeodeLayerConfig(
@@ -183,8 +209,10 @@ public class PigmentConfiguredFeatures {
                         new SimpleBlockStateProvider(TUFF),
                         ImmutableList.of(SMALL_TOPAZ_BUD, MEDIUM_TOPAZ_BUD, LARGE_TOPAZ_BUD, TOPAZ_CLUSTER)),
                 new GeodeLayerThicknessConfig(1.7D, 2.2D, 3.2D, 4.2D),
-                new GeodeCrackConfig(0.95D, 2.0D, 2), 0.35D, 0.083D, true, 4, 7, 3, 5, 1, 3, -16, 16, 0.05D))
-                .rangeOf(YOffset.fixed(64), YOffset.fixed(128)).spreadHorizontally().applyChance(30));
+                new GeodeCrackConfig(0.95D, 2.0D, 2), 0.35D, 0.083D, true, 4, 7, 3, 5, 1, 3, -16, 16, 0.05D, 1))
+                .rangeOf(YOffset.fixed(64), YOffset.fixed(128))
+                .spreadHorizontally()
+                .applyChance(30));
 
         MOONSTONE_GEODE = (Feature.GEODE.configure(new GeodeFeatureConfig(
                 new GeodeLayerConfig(
@@ -195,8 +223,10 @@ public class PigmentConfiguredFeatures {
                         new SimpleBlockStateProvider(TUFF),
                         ImmutableList.of(SMALL_MOONSTONE_BUD, MEDIUM_MOONSTONE_BUD, LARGE_MOONSTONE_BUD, MOONSTONE_CLUSTER)),
                 new GeodeLayerThicknessConfig(1.7D, 2.2D, 3.2D, 4.2D),
-                new GeodeCrackConfig(0.25D, 1.5D, 2), 0.35D, 0.083D, true, 4, 7, 3, 5, 1, 3, -16, 16, 0.05D))
-                .rangeOf(YOffset.aboveBottom(10), YOffset.belowTop(10)).spreadHorizontally().applyChance(30));
+                new GeodeCrackConfig(0.95D, 2.0D, 2), 0.35D, 0.083D, true, 4, 7, 3, 5, 1, 3, -16, 16, 0.05D, 1))
+                .rangeOf(YOffset.aboveBottom(10), YOffset.belowTop(10))
+                .spreadHorizontally()
+                .applyChance(30));
 
         RegistryKey<ConfiguredFeature<?, ?>> CITRINE_GEODE_KEY = RegistryKey.of(Registry.CONFIGURED_FEATURE_WORLDGEN, new Identifier(PigmentCommon.MOD_ID, "citrine_geode"));
         Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, CITRINE_GEODE_KEY.getValue(), CITRINE_GEODE);
@@ -267,6 +297,14 @@ public class PigmentConfiguredFeatures {
                 GenerationStep.Feature.VEGETAL_DECORATION,
                 RegistryKey.of(Registry.CONFIGURED_FEATURE_WORLDGEN, quitoxicReedsIdentifier)
         );*/
+    }
+
+    public static final class Rules {
+        public static final RuleTest END_STONE;
+
+        static {
+            END_STONE = new BlockMatchRuleTest(Blocks.END_STONE);
+        }
     }
 
 }

@@ -1,8 +1,12 @@
 package de.dafuqs.pigment.misc;
 
+import de.dafuqs.pigment.RevelationToast;
 import de.dafuqs.pigment.accessor.WorldRendererAccessor;
 import de.dafuqs.pigment.interfaces.Cloakable;
 import de.dafuqs.pigment.misc.PigmentClientAdvancements;
+import de.dafuqs.pigment.registries.PigmentBlocks;
+import de.dafuqs.pigment.registries.PigmentItems;
+import de.dafuqs.pigment.registries.PigmentSoundEvents;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.advancement.Advancement;
@@ -12,7 +16,10 @@ import net.minecraft.block.BlockState;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.WorldRenderer;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.network.packet.s2c.play.AdvancementUpdateS2CPacket;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
 
 import java.util.ArrayList;
@@ -56,12 +63,17 @@ public class PigmentBlockCloaker {
         }
 
         if(cloakableBlocksToTrigger.size() > 0) {
+            // uncloak the blocks
             for (Cloakable cloakableBlocks : cloakableBlocksToTrigger) {
                 cloakableBlocks.setUncloaked();
             }
 
+            // rerender chunks to show newly swapped blocks
             WorldRenderer renderer = MinecraftClient.getInstance().worldRenderer;
             ((WorldRendererAccessor) renderer).rebuildAllChunks();
+
+            // popup for user
+            RevelationToast.showRevelationToast(MinecraftClient.getInstance(), new ItemStack(PigmentBlocks.ALTAR.asItem()), PigmentSoundEvents.NEW_REVELATION);
 
             return true;
         } else {

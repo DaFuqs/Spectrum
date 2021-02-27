@@ -5,6 +5,7 @@ import de.dafuqs.pigment.blocks.gravity.GravityItem;
 import de.dafuqs.pigment.items.armor.BedrockArmorMaterial;
 import de.dafuqs.pigment.items.armor.LowHealthMaterial;
 import de.dafuqs.pigment.items.misc.EndPortalCrackerItem;
+import de.dafuqs.pigment.items.misc.PigmentMusicDiscItem;
 import de.dafuqs.pigment.items.misc.Spawner;
 import de.dafuqs.pigment.items.tools.*;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
@@ -26,6 +27,7 @@ public class PigmentItems {
     public static FabricItemSettings pigmentUncommonItemSettings = new FabricItemSettings().group(PigmentItemGroups.ITEM_GROUP_GENERAL).rarity(Rarity.UNCOMMON).maxCount(64);
     public static FabricItemSettings pigmentRareItemSettings = new FabricItemSettings().group(PigmentItemGroups.ITEM_GROUP_GENERAL).rarity(Rarity.RARE).maxCount(64);
     public static FabricItemSettings decayPlacerItemSettings = new FabricItemSettings().group(PigmentItemGroups.ITEM_GROUP_GENERAL).maxCount(16);
+    public static FabricItemSettings musicDiscItemSettings = new FabricItemSettings().group(PigmentItemGroups.ITEM_GROUP_GENERAL).maxCount(1).rarity(Rarity.RARE);
 
     public static FabricItemSettings preEnchantedItemSettings = new FabricItemSettings().group(PigmentItemGroups.ITEM_GROUP_PREENCHANTED_TOOLS);
     public static FabricItemSettings pigmentBedrockItemSettings = new FabricItemSettings().group(PigmentItemGroups.ITEM_GROUP_PREENCHANTED_TOOLS).rarity(Rarity.RARE).fireproof();
@@ -88,8 +90,8 @@ public class PigmentItems {
 
     public static final Item SHATTERED_PALETUR_FRAGMENTS = new GravityItem(generalItemSettings, 0.003F);
     public static final Item PALETUR_GEM = new GravityItem(generalItemSettings, 0.02F);
-    public static final Item SHATTERED_CRIMSON_FRAGMENTS = new GravityItem(generalItemSettings, -0.003F);
-    public static final Item CRIMSON_GEM = new GravityItem(generalItemSettings, -0.02F);
+    public static final Item SHATTERED_SCARLET_FRAGMENTS = new GravityItem(generalItemSettings, -0.003F);
+    public static final Item SCARLET_GEM = new GravityItem(generalItemSettings, -0.02F);
 
     // SPECIAL TOOLS
     public static final LowHealthMaterial LOW_HEALTH_MATERIAL = new LowHealthMaterial();
@@ -101,6 +103,8 @@ public class PigmentItems {
     public static final Item END_PORTAL_CRACKER = new EndPortalCrackerItem(generalItemSettings);
     public static final Item QUITOXIC_POWDER = new Item(generalItemSettings);
     public static final Item MERMAIDS_GEM = new Item(generalItemSettings);
+
+    public static final Item MUSIC_DISC_PIGMENT_THEME = new PigmentMusicDiscItem(1,PigmentSoundEvents.PIGMENT_THEME, (musicDiscItemSettings));
 
     private static void registerItem(String name, Item item) {
         Registry.register(Registry.ITEM, new Identifier(PigmentCommon.MOD_ID, name), item);
@@ -155,8 +159,8 @@ public class PigmentItems {
 
         registerItem("shattered_paletur_fragments", SHATTERED_PALETUR_FRAGMENTS);
         registerItem("paletur_gem", PALETUR_GEM);
-        registerItem("shattered_crimson_fragments", SHATTERED_CRIMSON_FRAGMENTS);
-        registerItem("crimson_gem", CRIMSON_GEM);
+        registerItem("shattered_scarlet_fragments", SHATTERED_SCARLET_FRAGMENTS);
+        registerItem("scarlet_gem", SCARLET_GEM);
 
         registerItem("quitoxic_powder", QUITOXIC_POWDER);
         registerItem("mermaids_gem", MERMAIDS_GEM);
@@ -166,6 +170,8 @@ public class PigmentItems {
         registerItem("silker_pickaxe", SILKER_PICKAXE);
         registerItem("fortune_pickaxe", FORTUNE_PICKAXE);
         registerItem("looting_falchion", LOOTING_FALCHION);
+
+        registerItem("music_disc_pigment_theme", MUSIC_DISC_PIGMENT_THEME);
     }
 
 

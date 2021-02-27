@@ -42,7 +42,7 @@ public class PigmentConfiguredFeatures {
     private static ConfiguredFeature<?, ?> SPARKLESTONE_ORE;
     private static ConfiguredFeature<?, ?> KOENIGSBLAU_ORE;
     private static ConfiguredFeature<?, ?> PALETUR_ORE;
-    private static ConfiguredFeature<?, ?> CRIMSON_ORE;
+    private static ConfiguredFeature<?, ?> SCARLET_ORE;
 
     private static ConfiguredFeature<?, ?> QUITOXIC_REEDS;
     private static ConfiguredFeature<?, ?> MERMAIDS_BRUSH;
@@ -61,12 +61,12 @@ public class PigmentConfiguredFeatures {
     private static void registerOres() {
         BlockState sparklestoneOre = PigmentBlocks.SPARKLESTONE_ORE.getDefaultState();
         BlockState koenigsblauOre = PigmentBlocks.KOENIGSBLAU_ORE.getDefaultState();
-        BlockState crimsonOre = PigmentBlocks.CRIMSON_ORE.getDefaultState();
+        BlockState scarletOre = PigmentBlocks.SCARLET_ORE.getDefaultState();
         BlockState paleturOre = PigmentBlocks.PALETUR_ORE.getDefaultState();
 
         Identifier sparklestoneOreIdentifier = new Identifier(PigmentCommon.MOD_ID, "sparklestone_ore");
         Identifier koenigsblauOreIdentifier = new Identifier(PigmentCommon.MOD_ID, "koenigsblau_ore");
-        Identifier crimsonOreIdentifier = new Identifier(PigmentCommon.MOD_ID, "crimson_ore");
+        Identifier scarletOreIdentifier = new Identifier(PigmentCommon.MOD_ID, "scarlet_ore");
         Identifier paleturOreIdentifier = new Identifier(PigmentCommon.MOD_ID, "paletur_ore");
 
         SPARKLESTONE_ORE = registerConfiguredFeature(sparklestoneOreIdentifier,
@@ -81,8 +81,8 @@ public class PigmentConfiguredFeatures {
                         .spreadHorizontally()
                         .repeat(4)); // number of veins per chunk
 
-        CRIMSON_ORE = registerConfiguredFeature(crimsonOreIdentifier,
-                Feature.ORE.configure(new OreFeatureConfig(OreFeatureConfig.Rules.BASE_STONE_NETHER, crimsonOre, 6)) // vein size
+        SCARLET_ORE = registerConfiguredFeature(scarletOreIdentifier,
+                Feature.ORE.configure(new OreFeatureConfig(OreFeatureConfig.Rules.BASE_STONE_NETHER, scarletOre, 6)) // vein size
                         .range(ConfiguredFeatures.Decorators.BOTTOM_TO_TOP_OFFSET_10) // min and max height
                         .spreadHorizontally()
                         .repeat(8)); // number of veins per chunk
@@ -95,7 +95,7 @@ public class PigmentConfiguredFeatures {
 
         BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Feature.UNDERGROUND_ORES, RegistryKey.of(Registry.CONFIGURED_FEATURE_WORLDGEN, sparklestoneOreIdentifier));
         BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Feature.UNDERGROUND_ORES, RegistryKey.of(Registry.CONFIGURED_FEATURE_WORLDGEN, koenigsblauOreIdentifier));
-        BiomeModifications.addFeature(BiomeSelectors.foundInTheNether(), GenerationStep.Feature.UNDERGROUND_ORES, RegistryKey.of(Registry.CONFIGURED_FEATURE_WORLDGEN, crimsonOreIdentifier));
+        BiomeModifications.addFeature(BiomeSelectors.foundInTheNether(), GenerationStep.Feature.UNDERGROUND_ORES, RegistryKey.of(Registry.CONFIGURED_FEATURE_WORLDGEN, scarletOreIdentifier));
         BiomeModifications.addFeature(BiomeSelectors.foundInTheEnd(), GenerationStep.Feature.UNDERGROUND_ORES, RegistryKey.of(Registry.CONFIGURED_FEATURE_WORLDGEN, paleturOreIdentifier));
     }
 

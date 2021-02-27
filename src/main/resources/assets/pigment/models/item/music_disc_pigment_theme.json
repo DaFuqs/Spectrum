@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "pigment:item/shattered_crimson_fragments"
+    "layer0": "pigment:item/music_disc_pigment_theme"
   }
 }

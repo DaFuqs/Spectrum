@@ -12,9 +12,9 @@ import net.minecraft.util.math.IntRange;
 
 import java.util.List;
 
-public class CrimsonOreBlock extends ConditionallyVisibleOreBlock {
+public class ScarletOreBlock extends ConditionallyVisibleOreBlock {
 
-    public CrimsonOreBlock(Settings settings, IntRange intRange) {
+    public ScarletOreBlock(Settings settings, IntRange intRange) {
         super(settings, intRange);
         setupCloak();
     }

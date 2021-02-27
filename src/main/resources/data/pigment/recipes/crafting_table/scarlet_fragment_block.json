@@ -7,11 +7,11 @@
   ],
   "key": {
     "#": {
-      "item": "pigment:shattered_crimson_fragments"
+      "item": "pigment:shattered_scarlet_fragments"
     }
   },
   "result": {
-    "item": "pigment:crimson_fragment_block",
+    "item": "pigment:scarlet_fragment_block",
     "count": 1
   }
 }

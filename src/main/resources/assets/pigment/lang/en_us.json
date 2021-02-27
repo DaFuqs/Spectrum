@@ -13,6 +13,14 @@
   "pigment.subtitles.block.decay1.place": "High pitched screeching",
   "pigment.subtitles.block.decay2.place": "High pitched screeching",
   "pigment.subtitles.block.decay3.place": "High pitched screeching",
+  "pigment.subtitles.theme_plays": "Pigment theme plays",
+  "pigment.subtitles.dimension_ambient": "Cave howling",
+
+  "pigment.toast.revelation.title": "You have gained more knowledge about the world",
+  "pigment.toast.revelation.text": "New things in the world reveal themselves to you",
+
+  "item.pigment.music_disc_pigment_theme": "Music Disc",
+  "item.pigment.music_disc_pigment_theme.desc": "Pigment Theme",
 
   "block.pigment.sparklestone_ore": "Sparklestone Ore",
   "block.pigment.sparklestone_block": "Sparklestone Block",
@@ -289,14 +297,13 @@
 
   "block.pigment.paletur_ore": "Paletur Ore",
   "block.pigment.paletur_fragment_block": "Shattered Paletur Fragment Block",
-  "block.pigment.crimson_ore": "Crimson Ore",
-  "block.pigment.crimson_fragment_block": "Shattered Crimson Fragment Block",
+  "block.pigment.scarlet_ore": "Scarlet Ore",
+  "block.pigment.scarlet_fragment_block": "Shattered Scarlet Fragment Block",
 
+  "item.pigment.shattered_scarlet_fragments": "Shattered Scarlet Fragments",
+  "item.pigment.scarlet_gem": "Scarlet Gem",
   "item.pigment.shattered_paletur_fragments": "Shattered Paletur Fragments",
   "item.pigment.paletur_gem": "Paletur Gem",
-  "item.pigment.shattered_crimson_fragments": "Shattered Crimson Fragments",
-  "item.pigment.crimson_gem": "Crimson Gem",
-
 
   "item.pigment.glistering_melon_seeds": "Glistering Melon Seeds",
   "block.pigment.glistering_melon": "Glistering Melon",

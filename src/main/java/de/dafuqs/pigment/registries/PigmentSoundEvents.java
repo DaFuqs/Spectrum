@@ -24,6 +24,14 @@ public class PigmentSoundEvents {
     private static final Identifier ALTAR_USE_ID = new Identifier("pigment:altar_use");
     public static SoundEvent ALTAR_USE = new SoundEvent(ALTAR_USE_ID);
 
+    public static final Identifier NEW_REVELATION_ID = new Identifier("pigment:new_revelation");
+    public static SoundEvent NEW_REVELATION = new SoundEvent(NEW_REVELATION_ID);
+
+    public static final Identifier PIGMENT_THEME_ID = new Identifier("pigment:pigment_theme");
+    public static SoundEvent PIGMENT_THEME = new SoundEvent(PIGMENT_THEME_ID);
+
+    public static final Identifier DIMENSION_SOUNDS_ID = new Identifier("pigment:dimension_sounds");
+    public static SoundEvent DIMENSION_SOUNDS = new SoundEvent(DIMENSION_SOUNDS_ID);
 
     private static void register(Identifier identifier, SoundEvent soundEvent) {
         Registry.register(Registry.SOUND_EVENT, identifier, soundEvent);
@@ -34,9 +42,13 @@ public class PigmentSoundEvents {
         register(DECAY2_PLACED_ID, DECAY2_PLACED);
         register(DECAY3_PLACED_ID, DECAY3_PLACED);
 
+        register(PIGMENT_THEME_ID, PIGMENT_THEME);
+        register(DIMENSION_SOUNDS_ID, DIMENSION_SOUNDS);
+
         register(LIQUID_CRYSTAL_AMBIENT_ID, LIQUID_CRYSTAL_AMBIENT); // TODO: sound
         register(MUD_AMBIENT_ID, MUD_AMBIENT); // TODO: sound
         register(ALTAR_USE_ID, ALTAR_USE); // TODO: sound
+        register(NEW_REVELATION_ID, NEW_REVELATION); // TODO: sound
     }
 
 }

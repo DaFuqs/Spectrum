@@ -9,7 +9,7 @@
   "downfall": 0.0,
   "effects": {
     "mood_sound": {
-      "sound": "minecraft:ambient.cave",
+      "sound": "pigment:dimension_ambient",
       "tick_delay": 6000,
       "block_search_extent": 8,
       "offset": 2.0

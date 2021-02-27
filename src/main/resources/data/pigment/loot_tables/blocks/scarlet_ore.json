@@ -24,7 +24,7 @@
                                     }
                                 }
                             ],
-                            "name": "pigment:crimson_ore"
+                            "name": "pigment:scarlet_ore"
                         },
                         {
                             "type": "minecraft:item",
@@ -43,7 +43,7 @@
                                     }
                                 }
                             ],
-                            "name": "pigment:crimson_gem"
+                            "name": "pigment:scarlet_gem"
                         },
                         {
                             "type": "minecraft:item",
@@ -57,7 +57,7 @@
                                     "function": "minecraft:explosion_decay"
                                 }
                             ],
-                            "name": "pigment:shattered_crimson_fragments"
+                            "name": "pigment:shattered_scarlet_fragments"
                         }
                     ]
                 }

@@ -16,5 +16,17 @@
     "sounds": [
       "pigment:block.decay3.place"
     ]
+  },
+  "pigment_theme": {
+    "subtitle": "pigment.subtitles.theme_plays",
+    "sounds": [
+      "pigment:pigment_theme"
+    ]
+  },
+  "dimension_ambient": {
+    "subtitle": "pigment.subtitles.dimension_ambient",
+    "sounds": [
+      "pigment:dimension_ambient"
+    ]
   }
 }

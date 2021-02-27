@@ -1,12 +1,12 @@
 {
   "type": "pigment_anvil_crushing",
   "ingredient": {
-    "item": "pigment:crimson_gem"
+    "item": "pigment:scarlet_gem"
   },
   "crushedItemsPerPointOfDamage": 1,
   "experience": 0.5,
   "result" : {
-    "item": "pigment:shattered_crimson_fragments",
+    "item": "pigment:shattered_scarlet_fragments",
     "count": 8
   },
   "particleEffectIdentifier": "cloud",

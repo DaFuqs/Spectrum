@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "pigment:item/crimson_gem"
+    "layer0": "pigment:item/shattered_scarlet_fragments"
   }
 }

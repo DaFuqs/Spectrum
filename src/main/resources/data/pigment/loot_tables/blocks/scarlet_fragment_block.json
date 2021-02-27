@@ -6,7 +6,7 @@
         "entries": [
             {
                 "type": "minecraft:item",
-                "name": "pigment:crimson_fragment_block"
+                "name": "pigment:scarlet_fragment_block"
             }
             ],
             "conditions": [

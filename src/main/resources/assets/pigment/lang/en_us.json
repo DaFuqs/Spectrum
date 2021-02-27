@@ -22,6 +22,9 @@
   "item.pigment.music_disc_pigment_theme": "Music Disc",
   "item.pigment.music_disc_pigment_theme.desc": "Pigment Theme",
 
+  "block.pigment.lava_sponge": "Lava Sponge",
+  "block.pigment.wet_lava_sponge": "Wet Lava Sponge",
+
   "block.pigment.sparklestone_ore": "Sparklestone Ore",
   "block.pigment.sparklestone_block": "Sparklestone Block",
   "block.pigment.koenigsblau_ore": "Königsblau Ore",

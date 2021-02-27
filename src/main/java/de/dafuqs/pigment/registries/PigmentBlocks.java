@@ -16,6 +16,9 @@ import de.dafuqs.pigment.blocks.decay.DecayBlock2;
 import de.dafuqs.pigment.blocks.decay.DecayBlock3;
 import de.dafuqs.pigment.blocks.fluid.LiquidCrystalFluidBlock;
 import de.dafuqs.pigment.blocks.fluid.MudFluidBlock;
+import de.dafuqs.pigment.blocks.lava_sponge.LavaSpongeBlock;
+import de.dafuqs.pigment.blocks.lava_sponge.WetLavaSpongeBlock;
+import de.dafuqs.pigment.blocks.lava_sponge.WetLavaSpongeItem;
 import de.dafuqs.pigment.blocks.melon.AttachedGlisteringStemBlock;
 import de.dafuqs.pigment.blocks.melon.GlisteringMelonBlock;
 import de.dafuqs.pigment.blocks.melon.GlisteringStemBlock;
@@ -448,6 +451,10 @@ public class PigmentBlocks {
     public static final Block ENDER_TREASURE = new EnderTreasureBlock(FabricBlockSettings.copyOf(Blocks.EMERALD_BLOCK));
     public static final Block CRACKED_END_PORTAL_FRAME = new CrackedEndPortalFrameBlock(FabricBlockSettings.copyOf(Blocks.END_PORTAL_FRAME));
 
+    public static final Block LAVA_SPONGE = new LavaSpongeBlock(FabricBlockSettings.copyOf(Blocks.SPONGE));
+    public static final Block WET_LAVA_SPONGE = new WetLavaSpongeBlock(FabricBlockSettings.copyOf(Blocks.WET_SPONGE));
+
+
     private static void registerBlock(String name, Block block) {
         Registry.register(Registry.BLOCK, new Identifier(PigmentCommon.MOD_ID, name), block);
     }
@@ -517,6 +524,11 @@ public class PigmentBlocks {
 
         registerBlock("ender_treasure", ENDER_TREASURE);
         registerBlockItem("ender_treasure", new BlockItem(ENDER_TREASURE, generalItemSettings));
+
+        registerBlock("lava_sponge", LAVA_SPONGE);
+        registerBlockItem("lava_sponge", new BlockItem(LAVA_SPONGE, generalItemSettings));
+        registerBlock("wet_lava_sponge", WET_LAVA_SPONGE);
+        registerBlockItem("wet_lava_sponge", new WetLavaSpongeItem(WET_LAVA_SPONGE, generalItemSettings));
     }
 
     private static void registerOreBlocks() {

@@ -28,5 +28,10 @@
     "sounds": [
       "pigment:dimension_ambient"
     ]
+  },
+  "new_revelation": {
+    "sounds": [
+      "pigment:new_revelation"
+    ]
   }
 }

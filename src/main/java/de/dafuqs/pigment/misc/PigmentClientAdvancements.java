@@ -19,7 +19,7 @@ public class PigmentClientAdvancements {
 
 	@Environment(EnvType.CLIENT)
 	public static void onClientPacket(AdvancementUpdateS2CPacket packet) {
-		PigmentBlockCloaker.checkBlockCloaksForNewAdvancements(packet);
+		PigmentBlockCloaker.checkBlockCloaksForNewAdvancements(packet, !gotFirstAdvPacket);
 		gotFirstAdvPacket = true;
 	}
 

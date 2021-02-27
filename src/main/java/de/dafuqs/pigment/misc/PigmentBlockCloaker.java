@@ -45,7 +45,7 @@ public class PigmentBlockCloaker {
     }
 
     @Environment(EnvType.CLIENT)
-    public static boolean checkBlockCloaksForNewAdvancements(AdvancementUpdateS2CPacket packet) {
+    public static boolean checkBlockCloaksForNewAdvancements(AdvancementUpdateS2CPacket packet, boolean showToast) {
         List<Cloakable> cloakableBlocksToTrigger = new ArrayList<>();
 
         for(Map.Entry<Identifier, Advancement.Task> earnedEntry : packet.getAdvancementsToEarn().entrySet()) {
@@ -73,7 +73,9 @@ public class PigmentBlockCloaker {
             ((WorldRendererAccessor) renderer).rebuildAllChunks();
 
             // popup for user
-            RevelationToast.showRevelationToast(MinecraftClient.getInstance(), new ItemStack(PigmentBlocks.ALTAR.asItem()), PigmentSoundEvents.NEW_REVELATION);
+            if(showToast) {
+                RevelationToast.showRevelationToast(MinecraftClient.getInstance(), new ItemStack(PigmentBlocks.ALTAR.asItem()), PigmentSoundEvents.NEW_REVELATION);
+            }
 
             return true;
         } else {

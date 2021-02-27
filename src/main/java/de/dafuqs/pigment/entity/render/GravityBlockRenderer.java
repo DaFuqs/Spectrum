@@ -1,5 +1,6 @@
-package de.dafuqs.pigment.blocks.gravity;
+package de.dafuqs.pigment.entity.render;
 
+import de.dafuqs.pigment.entity.entity.GravityBlockEntity;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.MinecraftClient;

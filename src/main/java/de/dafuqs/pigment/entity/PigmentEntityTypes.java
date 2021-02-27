@@ -1,7 +1,8 @@
-package de.dafuqs.pigment.registries;
+package de.dafuqs.pigment.entity;
 
 import de.dafuqs.pigment.PigmentCommon;
-import de.dafuqs.pigment.blocks.gravity.GravityBlockEntity;
+import de.dafuqs.pigment.entity.entity.GravityBlockEntity;
+import de.dafuqs.pigment.entity.entity.ShootingStarEntity;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityDimensions;
@@ -12,9 +13,11 @@ import net.minecraft.util.registry.Registry;
 
 public class PigmentEntityTypes {
 
+    public static EntityType<ShootingStarEntity> SHOOTING_STAR;
     public static EntityType<GravityBlockEntity> GRAVITY_BLOCK;
 
     public static void registerClient() {
+        SHOOTING_STAR = register("shooting_star", 240, 20, true, EntityDimensions.changing(0.98F, 0.98F), ShootingStarEntity::new);
         GRAVITY_BLOCK = register("gravity_block", 160, 20, true, EntityDimensions.changing(0.98F, 0.98F), GravityBlockEntity::new);
     }
 

@@ -1,4 +1,4 @@
-package de.dafuqs.pigment.blocks.particle;
+package de.dafuqs.pigment.particle.effect;
 
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.particle.ParticleEffect;

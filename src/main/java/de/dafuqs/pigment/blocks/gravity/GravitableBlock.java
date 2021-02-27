@@ -1,5 +1,6 @@
 package de.dafuqs.pigment.blocks.gravity;
 
+import de.dafuqs.pigment.entity.entity.GravityBlockEntity;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.FallingBlock;
 import net.minecraft.server.world.ServerWorld;

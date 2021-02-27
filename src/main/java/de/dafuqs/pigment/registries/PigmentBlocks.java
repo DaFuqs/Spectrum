@@ -19,7 +19,7 @@ import de.dafuqs.pigment.blocks.fluid.MudFluidBlock;
 import de.dafuqs.pigment.blocks.melon.AttachedGlisteringStemBlock;
 import de.dafuqs.pigment.blocks.melon.GlisteringMelonBlock;
 import de.dafuqs.pigment.blocks.melon.GlisteringStemBlock;
-import de.dafuqs.pigment.blocks.particle.ParticleEmitterBlock;
+import de.dafuqs.pigment.blocks.ParticleEmitterBlock;
 import de.dafuqs.pigment.blocks.gravity.GravitableBlock;
 import de.dafuqs.pigment.blocks.gravity.GravityBlockItem;
 import de.dafuqs.pigment.misc.PigmentMaterial;

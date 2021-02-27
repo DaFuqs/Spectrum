@@ -1,0 +1,19 @@
+{
+  "display": {
+    "icon": {
+      "item": "pigment:shooting_star"
+    },
+    "title": {
+      "translate": "advancements.pigment.catch_shooting_star.title"
+    },
+    "description": {
+      "translate": "advancements.pigment.catch_shooting_star.description"
+    }
+  },
+  "parent": "pigment:pigment",
+  "criteria": {
+    "catch": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

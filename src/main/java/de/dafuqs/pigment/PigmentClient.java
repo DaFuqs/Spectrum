@@ -1,8 +1,11 @@
 package de.dafuqs.pigment;
 
+import de.dafuqs.pigment.entity.PigmentEntityRenderers;
+import de.dafuqs.pigment.entity.PigmentEntityTypes;
 import de.dafuqs.pigment.inventories.AltarScreen;
 import de.dafuqs.pigment.inventories.PigmentContainers;
 import de.dafuqs.pigment.inventories.PigmentScreenHandlerTypes;
+import de.dafuqs.pigment.particle.PigmentParticleFactories;
 import de.dafuqs.pigment.registries.*;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientLifecycleEvents;
@@ -37,6 +40,7 @@ public class PigmentClient implements ClientModInitializer {
         PigmentEntityRenderers.registerClient();
 
         PigmentClientsidePackets.initClient();
+        PigmentParticleFactories.register();
 
         ClientLifecycleEvents.CLIENT_STARTED.register(minecraftClient -> {
             registerColorProviders();

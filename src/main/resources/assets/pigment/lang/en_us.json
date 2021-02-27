@@ -395,6 +395,7 @@
   "block.pigment.onyx_tuff_lamp": "Onyx Tuff Lamp",
   "block.pigment.moonstone_tuff_lamp": "Moonstone Tuff Lamp",
 
+  "item.pigment.shooting_star": "Shooting Star",
   "item.pigment.decay_1_placer": "Bottle of Fading",
   "item.pigment.decay_2_placer": "Bottle of Failing",
   "item.pigment.decay_3_placer": "Bottle of Ruin",
@@ -430,6 +431,8 @@
   "advancements.pigment.get_ender_treasure.title": "Torn from cold, dead hands",
   "advancements.pigment.get_ender_treasure.description": "Some Endermen that appear in your world carry with them blocks that seem to radiate an eerie aura. Now that you hold one in your hands... they are pretty much everywhere! How didn't you notice earlier?",
 
+  "advancements.pigment.catch_shooting_star.title": "Starry Sky",
+  "advancements.pigment.catch_shooting_star.description": "Catch a shooting star right out of the sky.",
   "advancements.pigment.get_pigment.title": "He said it!",
   "advancements.pigment.get_pigment.description": "Is there a more straightforward way to crush something into dust?",
   "advancements.pigment.craft_using_altar.title": "Strangely familiar",

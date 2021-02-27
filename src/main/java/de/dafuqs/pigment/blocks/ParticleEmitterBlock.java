@@ -1,4 +1,4 @@
-package de.dafuqs.pigment.blocks.particle;
+package de.dafuqs.pigment.blocks;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;

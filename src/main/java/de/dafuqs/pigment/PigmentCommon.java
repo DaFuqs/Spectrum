@@ -2,6 +2,7 @@ package de.dafuqs.pigment;
 
 import de.dafuqs.pigment.config.PigmentConfig;
 import de.dafuqs.pigment.dimension.DeeperDownDimension;
+import de.dafuqs.pigment.particle.PigmentParticleTypes;
 import de.dafuqs.pigment.registries.PigmentEnchantments;
 import de.dafuqs.pigment.inventories.PigmentContainers;
 import de.dafuqs.pigment.inventories.PigmentScreenHandlerTypes;
@@ -13,6 +14,7 @@ import de.dafuqs.pigment.worldgen.PigmentFeatures;
 import me.sargunvohra.mcmods.autoconfig1u.AutoConfig;
 import me.sargunvohra.mcmods.autoconfig1u.serializer.JanksonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerWorldEvents;
 import net.minecraft.server.MinecraftServer;
 import org.apache.logging.log4j.Level;
@@ -67,10 +69,11 @@ public class PigmentCommon implements ModInitializer {
         PigmentDefaultEnchantments.registerDefaultEnchantments();
         PigmentResonanceDrops.setup();
 
+        PigmentParticleTypes.register();
+
         ServerWorldEvents.LOAD.register((minecraftServer, serverWorld) -> {
             PigmentCommon.minecraftServer = minecraftServer;
         });
-
     }
 
 }

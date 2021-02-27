@@ -1,7 +1,8 @@
 package de.dafuqs.pigment.mixin;
 
-import de.dafuqs.pigment.blocks.gravity.GravityBlockEntity;
-import de.dafuqs.pigment.registries.PigmentEntityTypes;
+import de.dafuqs.pigment.entity.entity.GravityBlockEntity;
+import de.dafuqs.pigment.entity.PigmentEntityTypes;
+import de.dafuqs.pigment.entity.entity.ShootingStarEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.server.world.ServerWorld;
 import org.spongepowered.asm.mixin.Mixin;
@@ -28,5 +29,7 @@ public class ServerWorldMixin {
                 entry.postTickEntities();
             }
         }
+
+        ShootingStarEntity.doShootingStarSpawns((ServerWorld)(Object) this);
     }
 }

@@ -3,6 +3,7 @@
   "package": "de.dafuqs.pigment.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "HorseBaseEntityMixin",
     "AccessorShapedRecipe",
     "AnvilBlockMixin",
     "BlockOverlayRendererMixin",

@@ -1,6 +1,6 @@
 package de.dafuqs.pigment.blocks.compactor;
 
-import de.dafuqs.pigment.PigmentBlockEntityType;
+import de.dafuqs.pigment.registries.PigmentBlockEntityTypes;
 import de.dafuqs.pigment.blocks.altar.AltarBlockEntity;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.BlockWithEntity;
@@ -45,7 +45,7 @@ public class CompactorBlock extends BlockWithEntity {
         if(world.isClient) {
             return null;
         } else {
-            return checkType(type, PigmentBlockEntityType.COMPACTOR_BLOCK_ENTITY_TYPE, CompactorBlockEntity::tick);
+            return checkType(type, PigmentBlockEntityTypes.COMPACTOR_BLOCK_ENTITY_TYPE, CompactorBlockEntity::tick);
         }
     }
 

@@ -1,6 +1,6 @@
 package de.dafuqs.pigment.mixin;
 
-import de.dafuqs.pigment.MixinHandler;
+import de.dafuqs.pigment.misc.MixinHandler;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;

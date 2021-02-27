@@ -1,18 +1,17 @@
-package de.dafuqs.pigment.gravity;
+package de.dafuqs.pigment.blocks.gravity;
 
 import de.dafuqs.pigment.interfaces.GravitableItem;
-import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
-import net.minecraft.item.BlockItem;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class GravityBlockItem extends BlockItem implements GravitableItem {
+public class GravityItem extends Item implements GravitableItem {
 
     private final float gravityMod;
 
-    public GravityBlockItem(Block block, Settings settings, float gravityMod) {
-        super(block, settings);
+    public GravityItem(Settings settings, float gravityMod) {
+        super(settings);
         this.gravityMod = gravityMod;
     }
 

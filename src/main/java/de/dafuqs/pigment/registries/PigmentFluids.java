@@ -1,4 +1,4 @@
-package de.dafuqs.pigment;
+package de.dafuqs.pigment.registries;
 
 import de.dafuqs.pigment.PigmentCommon;
 import de.dafuqs.pigment.blocks.fluid.LiquidCrystalFluid;

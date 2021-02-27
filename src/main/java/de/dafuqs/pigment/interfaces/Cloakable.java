@@ -1,14 +1,9 @@
 package de.dafuqs.pigment.interfaces;
 
-import de.dafuqs.pigment.PigmentBlockCloaker;
-import de.dafuqs.pigment.PigmentCommon;
+import de.dafuqs.pigment.misc.PigmentBlockCloaker;
 import de.dafuqs.pigment.Support;
-import de.dafuqs.pigment.accessor.WorldRendererAccessor;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.network.ClientPlayerEntity;
-import net.minecraft.client.render.WorldRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;

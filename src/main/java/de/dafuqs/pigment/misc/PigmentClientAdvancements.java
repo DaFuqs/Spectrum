@@ -1,6 +1,5 @@
 package de.dafuqs.pigment.misc;
 
-import de.dafuqs.pigment.PigmentBlockCloaker;
 import de.dafuqs.pigment.mixin.client.AccessorClientAdvancementManager;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;

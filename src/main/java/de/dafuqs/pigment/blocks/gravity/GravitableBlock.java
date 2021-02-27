@@ -1,4 +1,4 @@
-package de.dafuqs.pigment.gravity;
+package de.dafuqs.pigment.blocks.gravity;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.FallingBlock;

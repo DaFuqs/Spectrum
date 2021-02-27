@@ -1,8 +1,7 @@
 package de.dafuqs.pigment.blocks.compactor;
 
-import de.dafuqs.pigment.PigmentBlockEntityType;
+import de.dafuqs.pigment.registries.PigmentBlockEntityTypes;
 import de.dafuqs.pigment.inventories.AutoCompactingInventory;
-import de.dafuqs.pigment.inventories.AutoInventory;
 import de.dafuqs.pigment.inventories.InventoryHelper;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.LootableContainerBlockEntity;
@@ -36,7 +35,7 @@ public class CompactorBlockEntity extends LootableContainerBlockEntity {
     boolean hasToCraft;
 
     public CompactorBlockEntity(BlockPos blockPos, BlockState blockState) {
-        super(PigmentBlockEntityType.COMPACTOR_BLOCK_ENTITY_TYPE, blockPos, blockState);
+        super(PigmentBlockEntityTypes.COMPACTOR_BLOCK_ENTITY_TYPE, blockPos, blockState);
         this.inventory = DefaultedList.ofSize(27, ItemStack.EMPTY);
         this.lastCraftingItemStack = ItemStack.EMPTY;
         this.lastCraftingRecipe = null;

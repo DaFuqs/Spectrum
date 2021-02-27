@@ -1,11 +1,9 @@
 package de.dafuqs.pigment.mixin;
 
-import de.dafuqs.pigment.PigmentItemStackDamageImmunities;
+import de.dafuqs.pigment.registries.PigmentItemStackDamageImmunities;
 import de.dafuqs.pigment.Support;
-import de.dafuqs.pigment.gravity.GravityBlockItem;
 import de.dafuqs.pigment.interfaces.GravitableItem;
 import de.dafuqs.pigment.inventories.AutoCompactingInventory;
-import de.dafuqs.pigment.gravity.GravityItem;
 import de.dafuqs.pigment.recipe.PigmentRecipeTypes;
 import de.dafuqs.pigment.recipe.anvil_crushing.AnvilCrushingRecipe;
 import net.minecraft.entity.Entity;

@@ -1,6 +1,6 @@
 package de.dafuqs.pigment.mixin;
 
-import de.dafuqs.pigment.PigmentItems;
+import de.dafuqs.pigment.registries.PigmentItems;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.FishingBobberEntityRenderer;
 import net.minecraft.client.util.math.MatrixStack;

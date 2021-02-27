@@ -1,6 +1,6 @@
 {
   "type": "pigment_altar",
-  "time": 2000,
+  "time": 1600,
   "tier": 1,
   "cyan": 4,
   "magenta": 4,
@@ -27,5 +27,6 @@
   "result" : {
     "item": "pigment:decay_1_placer",
     "count": 1
-  }
+  },
+  "advancement": "pigment:craft_decay"
 }

@@ -1,4 +1,4 @@
-package de.dafuqs.pigment;
+package de.dafuqs.pigment.registries;
 
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.item.Item;
@@ -11,7 +11,7 @@ public class PigmentItemStackDamageImmunities {
 
     private static final HashMap<String, List<Item>> damageSourceImmunities = new HashMap<>();
 
-    static void registerDefaultItemStackImmunities() {
+    public static void registerDefaultItemStackImmunities() {
         PigmentItemStackDamageImmunities.addImmunity(PigmentBlocks.CRACKED_END_PORTAL_FRAME.asItem(), "explosion");
         PigmentItemStackDamageImmunities.addImmunity(PigmentBlocks.CRACKED_END_PORTAL_FRAME.asItem(), DamageSource.IN_FIRE);
         PigmentItemStackDamageImmunities.addImmunity(PigmentBlocks.CRACKED_END_PORTAL_FRAME.asItem(), DamageSource.LAVA);

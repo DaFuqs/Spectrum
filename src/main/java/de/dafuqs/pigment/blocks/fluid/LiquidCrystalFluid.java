@@ -1,9 +1,9 @@
 package de.dafuqs.pigment.blocks.fluid;
 
-import de.dafuqs.pigment.PigmentBlocks;
-import de.dafuqs.pigment.PigmentFluids;
-import de.dafuqs.pigment.PigmentItems;
-import de.dafuqs.pigment.sounds.PigmentSoundEvents;
+import de.dafuqs.pigment.registries.PigmentBlocks;
+import de.dafuqs.pigment.registries.PigmentFluids;
+import de.dafuqs.pigment.registries.PigmentItems;
+import de.dafuqs.pigment.registries.PigmentSoundEvents;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.Block;
@@ -15,8 +15,6 @@ import net.minecraft.item.Item;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.Properties;
 import net.minecraft.tag.BlockTags;
@@ -24,7 +22,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 
-import java.util.Optional;
 import java.util.Random;
 
 public abstract class LiquidCrystalFluid extends PigmentFluid {

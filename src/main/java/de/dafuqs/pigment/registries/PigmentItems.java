@@ -1,6 +1,7 @@
-package de.dafuqs.pigment;
+package de.dafuqs.pigment.registries;
 
-import de.dafuqs.pigment.gravity.GravityItem;
+import de.dafuqs.pigment.PigmentCommon;
+import de.dafuqs.pigment.blocks.gravity.GravityItem;
 import de.dafuqs.pigment.items.armor.BedrockArmorMaterial;
 import de.dafuqs.pigment.items.armor.LowHealthMaterial;
 import de.dafuqs.pigment.items.misc.EndPortalCrackerItem;
@@ -14,8 +15,8 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
 import net.minecraft.util.registry.Registry;
 
-import static de.dafuqs.pigment.PigmentFluids.STILL_LIQUID_CRYSTAL;
-import static de.dafuqs.pigment.PigmentFluids.STILL_MUD;
+import static de.dafuqs.pigment.registries.PigmentFluids.STILL_LIQUID_CRYSTAL;
+import static de.dafuqs.pigment.registries.PigmentFluids.STILL_MUD;
 
 public class PigmentItems {
 

@@ -1,9 +1,8 @@
-package de.dafuqs.pigment.gravity;
+package de.dafuqs.pigment.blocks.gravity;
 
 import com.google.common.collect.Lists;
-import de.dafuqs.pigment.PigmentBlocks;
-import de.dafuqs.pigment.PigmentEntityTypes;
-import de.dafuqs.pigment.interfaces.GravitableItem;
+import de.dafuqs.pigment.registries.PigmentBlocks;
+import de.dafuqs.pigment.registries.PigmentEntityTypes;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.*;

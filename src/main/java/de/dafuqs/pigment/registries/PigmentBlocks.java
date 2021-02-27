@@ -1,5 +1,6 @@
-package de.dafuqs.pigment;
+package de.dafuqs.pigment.registries;
 
+import de.dafuqs.pigment.PigmentCommon;
 import de.dafuqs.pigment.blocks.*;
 import de.dafuqs.pigment.blocks.altar.AltarBlock;
 import de.dafuqs.pigment.blocks.budding.BuddingCitrineBlock;
@@ -19,8 +20,8 @@ import de.dafuqs.pigment.blocks.melon.AttachedGlisteringStemBlock;
 import de.dafuqs.pigment.blocks.melon.GlisteringMelonBlock;
 import de.dafuqs.pigment.blocks.melon.GlisteringStemBlock;
 import de.dafuqs.pigment.blocks.particle.ParticleEmitterBlock;
-import de.dafuqs.pigment.gravity.GravitableBlock;
-import de.dafuqs.pigment.gravity.GravityBlockItem;
+import de.dafuqs.pigment.blocks.gravity.GravitableBlock;
+import de.dafuqs.pigment.blocks.gravity.GravityBlockItem;
 import de.dafuqs.pigment.misc.PigmentMaterial;
 import de.dafuqs.pigment.worldgen.ColoredSaplingGenerator;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;

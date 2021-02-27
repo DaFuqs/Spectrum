@@ -1,6 +1,6 @@
-package de.dafuqs.pigment;
+package de.dafuqs.pigment.registries;
 
-import de.dafuqs.pigment.gravity.GravityBlockRenderer;
+import de.dafuqs.pigment.blocks.gravity.GravityBlockRenderer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.rendereregistry.v1.EntityRendererRegistry;

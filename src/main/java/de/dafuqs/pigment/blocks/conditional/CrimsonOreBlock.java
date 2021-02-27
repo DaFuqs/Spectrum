@@ -1,6 +1,6 @@
 package de.dafuqs.pigment.blocks.conditional;
 
-import de.dafuqs.pigment.PigmentBlockCloaker;
+import de.dafuqs.pigment.misc.PigmentBlockCloaker;
 import de.dafuqs.pigment.PigmentCommon;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;

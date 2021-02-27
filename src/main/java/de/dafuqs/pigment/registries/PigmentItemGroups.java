@@ -1,7 +1,7 @@
-package de.dafuqs.pigment;
+package de.dafuqs.pigment.registries;
 
+import de.dafuqs.pigment.PigmentCommon;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
-import net.minecraft.enchantment.Enchantments;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;

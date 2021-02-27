@@ -1,7 +1,7 @@
-package de.dafuqs.pigment;
+package de.dafuqs.pigment.registries;
 
 import de.dafuqs.pigment.PigmentCommon;
-import de.dafuqs.pigment.gravity.GravityBlockEntity;
+import de.dafuqs.pigment.blocks.gravity.GravityBlockEntity;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityDimensions;

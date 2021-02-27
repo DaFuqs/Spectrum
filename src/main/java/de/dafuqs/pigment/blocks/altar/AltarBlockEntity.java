@@ -7,11 +7,13 @@ import de.dafuqs.pigment.inventories.AltarScreenHandler;
 import de.dafuqs.pigment.inventories.AutoCraftingInventory;
 import de.dafuqs.pigment.recipe.PigmentRecipeTypes;
 import de.dafuqs.pigment.recipe.altar.AltarCraftingRecipe;
+import de.dafuqs.pigment.registries.PigmentBlockEntityTypes;
+import de.dafuqs.pigment.registries.PigmentBlocks;
+import de.dafuqs.pigment.registries.PigmentItems;
 import net.minecraft.advancement.Advancement;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.LockableContainerBlockEntity;
-import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.entity.ExperienceOrbEntity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -61,7 +63,7 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
     private static AutoCraftingInventory autoCraftingInventory;
 
     public AltarBlockEntity(BlockPos blockPos, BlockState blockState) {
-        super(PigmentBlockEntityType.ALTAR_BLOCK_ENTITY_TYPE, blockPos, blockState);
+        super(PigmentBlockEntityTypes.ALTAR_BLOCK_ENTITY_TYPE, blockPos, blockState);
 
         if(autoCraftingInventory == null) {
             autoCraftingInventory = new AutoCraftingInventory();
@@ -386,7 +388,7 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
             float newXP = recipe.getExperience();
             storedXP += newXP;
 
-            grantPlayerCraftingAdvancement(output.getItem());
+            grantPlayerCraftingAdvancement(recipe);
 
             return true;
         } else {
@@ -425,7 +427,7 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
         }
     }
 
-    private void grantPlayerCraftingAdvancement(Item craftedItem) {
+    private void grantPlayerCraftingAdvancement(AltarCraftingRecipe recipe) {
         ServerPlayerEntity serverPlayerEntity = PigmentCommon.minecraftServer.getPlayerManager().getPlayer(this.playerUUID);
 
         // General altar crafting advancement
@@ -434,18 +436,18 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
         if(serverPlayerEntity != null) {
             if(craftingAdvancement != null) {
                 serverPlayerEntity.getAdvancementTracker().grantCriterion(craftingAdvancement, "craft");
-            }
 
-            // Advancement specific for the crafted item
-            boolean itemHasAdvancement = PigmentAltarCraftingAdvancements.hasCraftingAdvancement(craftedItem);
-            if(itemHasAdvancement) {
-                Advancement itemAdvancement = PigmentAltarCraftingAdvancements.getCraftingAdvancement(craftedItem);
-                if(itemAdvancement != null) {
-                    serverPlayerEntity.getAdvancementTracker().grantCriterion(itemAdvancement, "craft");
+                // Advancement specific for the crafted item
+                if(recipe.unlocksAdvancement() && !Support.hasAdvancement(serverPlayerEntity, recipe.unlockedAdvancement())) {
+                    Advancement itemAdvancement = PigmentCommon.minecraftServer.getAdvancementLoader().get(recipe.unlockedAdvancement());
+                    if (itemAdvancement != null) {
+                        serverPlayerEntity.getAdvancementTracker().grantCriterion(itemAdvancement, "craft");
+                    }
                 }
             }
-
         }
+
+
     }
 
     @Override

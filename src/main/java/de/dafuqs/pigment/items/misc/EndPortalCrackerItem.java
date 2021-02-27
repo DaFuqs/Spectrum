@@ -1,12 +1,11 @@
 package de.dafuqs.pigment.items.misc;
 
-import de.dafuqs.pigment.PigmentBlocks;
+import de.dafuqs.pigment.registries.PigmentBlocks;
 import de.dafuqs.pigment.blocks.CrackedEndPortalFrameBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.EndPortalFrameBlock;
-import net.minecraft.block.pattern.BlockPattern;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemUsageContext;
 import net.minecraft.util.ActionResult;

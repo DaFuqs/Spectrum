@@ -1,23 +1,18 @@
 package de.dafuqs.pigment.blocks.conditional;
 
-import de.dafuqs.pigment.PigmentBlockCloaker;
+import de.dafuqs.pigment.misc.PigmentBlockCloaker;
 import de.dafuqs.pigment.PigmentCommon;
-import de.dafuqs.pigment.PigmentBlocks;
-import de.dafuqs.pigment.Support;
+import de.dafuqs.pigment.registries.PigmentBlocks;
 import de.dafuqs.pigment.interfaces.Cloakable;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.PillarBlock;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.loot.context.LootContext;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.math.Direction;
 
 import java.util.List;
 

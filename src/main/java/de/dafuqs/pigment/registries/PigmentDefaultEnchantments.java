@@ -1,4 +1,4 @@
-package de.dafuqs.pigment;
+package de.dafuqs.pigment.registries;
 
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.Enchantments;
@@ -21,7 +21,7 @@ public class PigmentDefaultEnchantments {
         }
     }
 
-    static void registerDefaultEnchantments() {
+    public static void registerDefaultEnchantments() {
         // early game tools
         PigmentDefaultEnchantments.addDefaultEnchantment(PigmentItems.LOOTING_FALCHION, Enchantments.LOOTING, 3);
         PigmentDefaultEnchantments.addDefaultEnchantment(PigmentItems.SILKER_PICKAXE, Enchantments.SILK_TOUCH, 1);

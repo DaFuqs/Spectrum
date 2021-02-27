@@ -1,6 +1,6 @@
 package de.dafuqs.pigment.blocks.budding;
 
-import de.dafuqs.pigment.PigmentBlocks;
+import de.dafuqs.pigment.registries.PigmentBlocks;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 

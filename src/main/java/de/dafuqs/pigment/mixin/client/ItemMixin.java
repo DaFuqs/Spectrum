@@ -1,7 +1,6 @@
 package de.dafuqs.pigment.mixin.client;
 
-import de.dafuqs.pigment.PigmentBlockCloaker;
-import de.dafuqs.pigment.PigmentCommon;
+import de.dafuqs.pigment.misc.PigmentBlockCloaker;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.item.Item;

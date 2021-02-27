@@ -1,7 +1,7 @@
 package de.dafuqs.pigment.blocks.chromatic_tree;
 
 import de.dafuqs.pigment.interfaces.PlayerOwned;
-import de.dafuqs.pigment.PigmentBlockEntityType;
+import de.dafuqs.pigment.registries.PigmentBlockEntityTypes;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
@@ -15,7 +15,7 @@ public class OminousSaplingBlockEntity extends BlockEntity implements PlayerOwne
     public UUID ownerUUID;
 
     public OminousSaplingBlockEntity(BlockPos blockPos, BlockState blockState) {
-        super(PigmentBlockEntityType.OMINOUS_SAPLING_BLOCK_ENTITY_TYPE, blockPos, blockState);
+        super(PigmentBlockEntityTypes.OMINOUS_SAPLING_BLOCK_ENTITY_TYPE, blockPos, blockState);
     }
 
     public OminousSaplingBlockEntity(BlockEntityType<?> blockEntityType, BlockPos blockPos, BlockState blockState) {

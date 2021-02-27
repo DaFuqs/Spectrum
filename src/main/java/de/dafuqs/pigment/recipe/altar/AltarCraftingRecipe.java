@@ -1,8 +1,8 @@
 package de.dafuqs.pigment.recipe.altar;
 
-import de.dafuqs.pigment.PigmentBlocks;
+import de.dafuqs.pigment.registries.PigmentBlocks;
 import de.dafuqs.pigment.enums.PigmentColor;
-import de.dafuqs.pigment.PigmentItems;
+import de.dafuqs.pigment.registries.PigmentItems;
 import de.dafuqs.pigment.recipe.PigmentRecipeTypes;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.Item;
@@ -14,12 +14,14 @@ import net.minecraft.recipe.RecipeType;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
 
 public class AltarCraftingRecipe implements Recipe<Inventory> {
 
     protected final Identifier id;
+    @Nullable
     protected final String group;
 
     protected final int width;
@@ -32,7 +34,10 @@ public class AltarCraftingRecipe implements Recipe<Inventory> {
     protected final float experience;
     protected final int craftingTime;
 
-    public AltarCraftingRecipe(Identifier id, String group, int tier, int width, int height, DefaultedList<Ingredient> craftingInputs, HashMap<PigmentColor, Integer> pigmentInputs, ItemStack output, float experience, int craftingTime) {
+    @Nullable
+    protected final Identifier advancementIdentifier;
+
+    public AltarCraftingRecipe(Identifier id, String group, int tier, int width, int height, DefaultedList<Ingredient> craftingInputs, HashMap<PigmentColor, Integer> pigmentInputs, ItemStack output, float experience, int craftingTime, Identifier advancementIdentifier) {
         this.id = id;
         this.group = group;
         this.tier = tier;
@@ -45,6 +50,7 @@ public class AltarCraftingRecipe implements Recipe<Inventory> {
         this.output = output;
         this.experience = experience;
         this.craftingTime = craftingTime;
+        this.advancementIdentifier = advancementIdentifier;
     }
 
     @Override
@@ -128,6 +134,14 @@ public class AltarCraftingRecipe implements Recipe<Inventory> {
 
     public float getExperience() {
         return this.experience;
+    }
+
+    public Identifier unlockedAdvancement() {
+        return advancementIdentifier;
+    }
+
+    public boolean unlocksAdvancement() {
+        return advancementIdentifier != null;
     }
 
 }

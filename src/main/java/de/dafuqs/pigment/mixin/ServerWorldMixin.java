@@ -1,7 +1,7 @@
 package de.dafuqs.pigment.mixin;
 
-import de.dafuqs.pigment.gravity.GravityBlockEntity;
-import de.dafuqs.pigment.PigmentEntityTypes;
+import de.dafuqs.pigment.blocks.gravity.GravityBlockEntity;
+import de.dafuqs.pigment.registries.PigmentEntityTypes;
 import net.minecraft.entity.Entity;
 import net.minecraft.server.world.ServerWorld;
 import org.spongepowered.asm.mixin.Mixin;

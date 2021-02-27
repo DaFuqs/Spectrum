@@ -1,6 +1,7 @@
-package de.dafuqs.pigment;
+package de.dafuqs.pigment.registries;
 
 import com.mojang.datafixers.types.Type;
+import de.dafuqs.pigment.PigmentCommon;
 import de.dafuqs.pigment.blocks.altar.AltarBlockEntity;
 import de.dafuqs.pigment.blocks.chromatic_tree.OminousSaplingBlockEntity;
 import de.dafuqs.pigment.blocks.compactor.CompactorBlockEntity;
@@ -12,7 +13,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.Util;
 import net.minecraft.util.registry.Registry;
 
-public class PigmentBlockEntityType<T extends BlockEntity> {
+public class PigmentBlockEntityTypes<T extends BlockEntity> {
 
     public static BlockEntityType<OminousSaplingBlockEntity> OMINOUS_SAPLING_BLOCK_ENTITY_TYPE;
     public static BlockEntityType<AltarBlockEntity> ALTAR_BLOCK_ENTITY_TYPE;

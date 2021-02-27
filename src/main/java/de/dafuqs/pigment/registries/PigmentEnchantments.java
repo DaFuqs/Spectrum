@@ -1,6 +1,8 @@
-package de.dafuqs.pigment.enchantments;
+package de.dafuqs.pigment.registries;
 
 import de.dafuqs.pigment.PigmentCommon;
+import de.dafuqs.pigment.enchantments.PestControlEnchantment;
+import de.dafuqs.pigment.enchantments.ResonanceEnchantment;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.util.Identifier;

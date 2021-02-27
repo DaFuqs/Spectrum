@@ -2,19 +2,18 @@ package de.dafuqs.pigment;
 
 import de.dafuqs.pigment.config.PigmentConfig;
 import de.dafuqs.pigment.dimension.DeeperDownDimension;
-import de.dafuqs.pigment.enchantments.PigmentEnchantments;
+import de.dafuqs.pigment.registries.PigmentEnchantments;
 import de.dafuqs.pigment.inventories.PigmentContainers;
 import de.dafuqs.pigment.inventories.PigmentScreenHandlerTypes;
 import de.dafuqs.pigment.recipe.PigmentRecipeTypes;
-import de.dafuqs.pigment.sounds.PigmentSoundEvents;
+import de.dafuqs.pigment.registries.*;
+import de.dafuqs.pigment.registries.PigmentSoundEvents;
 import de.dafuqs.pigment.worldgen.PigmentConfiguredFeatures;
 import de.dafuqs.pigment.worldgen.PigmentFeatures;
 import me.sargunvohra.mcmods.autoconfig1u.AutoConfig;
 import me.sargunvohra.mcmods.autoconfig1u.serializer.JanksonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerWorldEvents;
-import net.fabricmc.fabric.mixin.event.lifecycle.client.ClientWorldMixin;
-import net.minecraft.client.world.ClientWorld;
 import net.minecraft.server.MinecraftServer;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
@@ -48,7 +47,7 @@ public class PigmentCommon implements ModInitializer {
         PigmentFluids.register();
         PigmentBlocks.register();
         PigmentItems.register();
-        PigmentBlockEntityType.register();
+        PigmentBlockEntityTypes.register();
         PigmentEnchantments.register();
         PigmentFeatures.register();
         PigmentConfiguredFeatures.register();
@@ -67,7 +66,6 @@ public class PigmentCommon implements ModInitializer {
         PigmentItemStackDamageImmunities.registerDefaultItemStackImmunities();
         PigmentDefaultEnchantments.registerDefaultEnchantments();
         PigmentResonanceDrops.setup();
-        PigmentAltarCraftingAdvancements.setup(); // altar crafting grants enchantments
 
         ServerWorldEvents.LOAD.register((minecraftServer, serverWorld) -> {
             PigmentCommon.minecraftServer = minecraftServer;

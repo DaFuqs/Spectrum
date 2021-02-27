@@ -1,6 +1,6 @@
 package de.dafuqs.pigment.mixin;
 
-import de.dafuqs.pigment.PigmentBlocks;
+import de.dafuqs.pigment.registries.PigmentBlocks;
 import de.dafuqs.pigment.blocks.CrackedEndPortalFrameBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

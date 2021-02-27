@@ -1,10 +1,7 @@
 package de.dafuqs.pigment.blocks;
 
-import de.dafuqs.pigment.PigmentBlocks;
 import net.minecraft.block.AnvilBlock;
-import net.minecraft.block.BlockState;
 import net.minecraft.entity.FallingBlockEntity;
-import org.jetbrains.annotations.Nullable;
 
 public class BedrockAnvilBlock extends AnvilBlock {
 

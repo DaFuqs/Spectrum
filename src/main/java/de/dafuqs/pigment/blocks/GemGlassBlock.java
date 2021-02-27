@@ -1,6 +1,6 @@
 package de.dafuqs.pigment.blocks;
 
-import de.dafuqs.pigment.PigmentBlocks;
+import de.dafuqs.pigment.registries.PigmentBlocks;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.BlockState;

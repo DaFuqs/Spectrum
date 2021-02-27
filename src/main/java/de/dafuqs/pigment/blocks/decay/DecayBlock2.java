@@ -1,7 +1,7 @@
 package de.dafuqs.pigment.blocks.decay;
 
-import de.dafuqs.pigment.PigmentBlockTags;
-import de.dafuqs.pigment.PigmentBlocks;
+import de.dafuqs.pigment.registries.PigmentBlockTags;
+import de.dafuqs.pigment.registries.PigmentBlocks;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.Block;

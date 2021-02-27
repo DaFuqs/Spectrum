@@ -1,7 +1,6 @@
 package de.dafuqs.pigment.mixin.client;
 
-import de.dafuqs.pigment.PigmentBlockCloaker;
-import de.dafuqs.pigment.PigmentCommon;
+import de.dafuqs.pigment.misc.PigmentBlockCloaker;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.render.block.BlockModels;
 import net.minecraft.client.render.model.BakedModel;

@@ -1,5 +1,6 @@
-package de.dafuqs.pigment;
+package de.dafuqs.pigment.registries;
 
+import de.dafuqs.pigment.PigmentCommon;
 import net.fabricmc.fabric.api.tag.TagRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.tag.Tag;

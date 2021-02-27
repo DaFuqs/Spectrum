@@ -1,6 +1,7 @@
 package de.dafuqs.pigment.dimension;
 
 import de.dafuqs.pigment.PigmentCommon;
+import de.dafuqs.pigment.registries.PigmentSurfaceBuilders;
 import net.minecraft.util.Identifier;
 
 import static org.apache.logging.log4j.Level.INFO;

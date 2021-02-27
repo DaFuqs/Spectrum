@@ -24,5 +24,6 @@
   "result" : {
     "item": "pigment:ominous_sapling",
     "count": 1
-  }
+  },
+  "advancement": "pigment:craft_ominous_sapling"
 }

@@ -1,7 +1,7 @@
 package de.dafuqs.pigment.blocks.altar;
 
-import de.dafuqs.pigment.PigmentBlockEntityType;
-import de.dafuqs.pigment.PigmentBlocks;
+import de.dafuqs.pigment.registries.PigmentBlockEntityTypes;
+import de.dafuqs.pigment.registries.PigmentBlocks;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.*;
@@ -118,7 +118,7 @@ public class AltarBlock extends BlockWithEntity {
         if(world.isClient) {
             return null;
         } else {
-            return checkType(type, PigmentBlockEntityType.ALTAR_BLOCK_ENTITY_TYPE, AltarBlockEntity::tick);
+            return checkType(type, PigmentBlockEntityTypes.ALTAR_BLOCK_ENTITY_TYPE, AltarBlockEntity::tick);
         }
     }
 

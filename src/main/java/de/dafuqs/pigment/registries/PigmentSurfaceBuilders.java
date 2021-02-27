@@ -1,9 +1,10 @@
-package de.dafuqs.pigment.dimension;
+package de.dafuqs.pigment.registries;
 
 import com.google.common.collect.ImmutableList;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import de.dafuqs.pigment.PigmentCommon;
+import de.dafuqs.pigment.dimension.DeeperDownSurfaceBuilder;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.util.Identifier;

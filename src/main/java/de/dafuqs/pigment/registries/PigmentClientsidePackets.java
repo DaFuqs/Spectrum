@@ -1,13 +1,11 @@
-package de.dafuqs.pigment;
+package de.dafuqs.pigment.registries;
 
 import de.dafuqs.pigment.PigmentCommon;
-import de.dafuqs.pigment.gravity.GravityBlockEntity;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.fabricmc.fabric.api.network.ClientSidePacketRegistry;
 import net.minecraft.util.Identifier;
 
-public class PigmentClientsidePacketRegistry {
+public class PigmentClientsidePackets {
 	//public static final Identifier SPAWN_FLOATING_BLOCK_ENTITY = packet("entity", "spawn", "gravity_block");
 
 	@Environment(EnvType.CLIENT)

@@ -1,6 +1,8 @@
 package de.dafuqs.pigment.entity.render;
 
 import de.dafuqs.pigment.entity.entity.GravityBlockEntity;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.MinecraftClient;
@@ -18,6 +20,7 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
+@Environment(EnvType.CLIENT)
 public class GravityBlockRenderer extends EntityRenderer<GravityBlockEntity> {
 
     public GravityBlockRenderer(EntityRendererFactory.Context ctx) {

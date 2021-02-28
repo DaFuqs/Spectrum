@@ -1,0 +1,31 @@
+{
+  "type": "pigment_altar",
+  "time": 80,
+  "tier": 1,
+  "cyan": 0,
+  "magenta": 0,
+  "yellow": 2,
+  "white": 0,
+  "black": 0,
+  "experience": 0.2,
+  "pattern": [
+    "   ",
+    "CBF",
+    "   "
+  ],
+  "key": {
+    "B": {
+      "item": "minecraft:item_frame"
+    },
+    "C": {
+      "item": "minecraft:golden_carrot"
+    },
+    "F": {
+      "item": "minecraft:fermented_spider_eye"
+    }
+  },
+  "result" : {
+    "item": "pigment:invisible_item_frame",
+    "count": 1
+  }
+}

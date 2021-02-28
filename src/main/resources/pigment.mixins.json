@@ -3,7 +3,6 @@
   "package": "de.dafuqs.pigment.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "HorseBaseEntityMixin",
     "AccessorShapedRecipe",
     "AnvilBlockMixin",
     "BlockOverlayRendererMixin",
@@ -11,8 +10,10 @@
     "EndermanEntityMixin",
     "FishingBobberEntityMixin",
     "FishingBobberEntityRendererMixin",
+    "HorseBaseEntityMixin",
     "InfestedBlockMixin",
     "ItemEntityMixin",
+    "ItemFrameEntityMixin",
     "ItemModelsMixin",
     "MobSpawnerBlockEntityMixin",
     "ServerWorldMixin",

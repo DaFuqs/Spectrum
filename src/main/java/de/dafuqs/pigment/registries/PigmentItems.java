@@ -2,9 +2,11 @@ package de.dafuqs.pigment.registries;
 
 import de.dafuqs.pigment.PigmentCommon;
 import de.dafuqs.pigment.blocks.gravity.GravityItem;
+import de.dafuqs.pigment.entity.PigmentEntityTypes;
 import de.dafuqs.pigment.items.armor.BedrockArmorMaterial;
 import de.dafuqs.pigment.items.armor.LowHealthMaterial;
 import de.dafuqs.pigment.items.misc.EndPortalCrackerItem;
+import de.dafuqs.pigment.items.misc.InvisibleItemFrameItem;
 import de.dafuqs.pigment.items.misc.PigmentMusicDiscItem;
 import de.dafuqs.pigment.items.misc.Spawner;
 import de.dafuqs.pigment.items.tools.*;
@@ -107,6 +109,8 @@ public class PigmentItems {
 
     public static final Item MUSIC_DISC_PIGMENT_THEME = new PigmentMusicDiscItem(1,PigmentSoundEvents.PIGMENT_THEME, (musicDiscItemSettings));
 
+    public static final Item INVISIBLE_ITEM_FRAME = new InvisibleItemFrameItem(PigmentEntityTypes.INVISIBLE_ITEM_FRAME, (generalItemSettings));
+
     private static void registerItem(String name, Item item) {
         Registry.register(Registry.ITEM, new Identifier(PigmentCommon.MOD_ID, name), item);
     }
@@ -174,6 +178,7 @@ public class PigmentItems {
         registerItem("looting_falchion", LOOTING_FALCHION);
 
         registerItem("music_disc_pigment_theme", MUSIC_DISC_PIGMENT_THEME);
+        registerItem("invisible_item_frame", INVISIBLE_ITEM_FRAME);
     }
 
 

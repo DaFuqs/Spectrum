@@ -86,7 +86,7 @@ public class WetLavaSpongeBlock extends WetSpongeBlock {
                     }
                 }
 
-                world.addParticle(ParticleTypes.DRIPPING_WATER, d, e, f, 0.0D, 0.0D, 0.0D);
+                world.addParticle(ParticleTypes.DRIPPING_LAVA, d, e, f, 0.0D, 0.0D, 0.0D);
             }
         }
     }

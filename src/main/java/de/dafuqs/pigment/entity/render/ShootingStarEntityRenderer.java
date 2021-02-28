@@ -1,6 +1,8 @@
 package de.dafuqs.pigment.entity.render;
 
 import de.dafuqs.pigment.entity.entity.ShootingStarEntity;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.render.OverlayTexture;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.EntityRenderer;
@@ -18,6 +20,7 @@ import net.minecraft.util.math.Vec3f;
 
 import java.util.Random;
 
+@Environment(EnvType.CLIENT)
 public class ShootingStarEntityRenderer extends EntityRenderer<ShootingStarEntity> {
 
     private final ItemRenderer itemRenderer;

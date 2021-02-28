@@ -22,8 +22,10 @@
   "item.pigment.music_disc_pigment_theme": "Music Disc",
   "item.pigment.music_disc_pigment_theme.desc": "Pigment Theme",
 
+  "item.pigment.invisible_item_frame": "Invisible Item Frame",
   "block.pigment.lava_sponge": "Lava Sponge",
   "block.pigment.wet_lava_sponge": "Wet Lava Sponge",
+  "item.pigment.wet_lava_sponge.tooltip": "§e⚠ Caution: Hot surface. Do not touch ⚠",
 
   "block.pigment.sparklestone_ore": "Sparklestone Ore",
   "block.pigment.sparklestone_block": "Sparklestone Block",

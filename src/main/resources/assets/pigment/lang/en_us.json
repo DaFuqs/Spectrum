@@ -420,6 +420,10 @@
   "block.pigment.altar2": "Altar",
   "block.pigment.altar3": "Altar",
   "block.pigment.altar.title_with_owner": "Altar of %s",
+
+  "block.pigment.private_chest": "Private Chest",
+  "block.pigment.private_chest.title_with_owner": "Private Chest of %s",
+
   "block.pigment.ominous_sapling": "Ominous Sapling",
   "block.pigment.bedrock_anvil": "Bedrock Anvil",
   "block.pigment.ender_treasure": "Radiating Ender",

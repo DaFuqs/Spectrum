@@ -1,0 +1,28 @@
+{
+  "type": "pigment_altar",
+  "time": 120,
+  "tier": 1,
+  "cyan": 4,
+  "magenta": 0,
+  "yellow": 0,
+  "white": 0,
+  "black": 0,
+  "experience": 1,
+  "pattern": [
+    "TTT",
+    "TST",
+    "TTT"
+  ],
+  "key": {
+    "S": {
+      "tag": "pigment:gem_shards"
+    },
+    "T": {
+      "item": "pigment:polished_tuff"
+    }
+  },
+  "result" : {
+    "item": "pigment:private_chest",
+    "count": 1
+  }
+}

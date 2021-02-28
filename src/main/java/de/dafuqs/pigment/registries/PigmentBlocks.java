@@ -25,6 +25,7 @@ import de.dafuqs.pigment.blocks.melon.GlisteringStemBlock;
 import de.dafuqs.pigment.blocks.ParticleEmitterBlock;
 import de.dafuqs.pigment.blocks.gravity.GravitableBlock;
 import de.dafuqs.pigment.blocks.gravity.GravityBlockItem;
+import de.dafuqs.pigment.blocks.private_chest.PrivateChestBlock;
 import de.dafuqs.pigment.misc.PigmentMaterial;
 import de.dafuqs.pigment.worldgen.ColoredSaplingGenerator;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
@@ -32,6 +33,7 @@ import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.tool.attribute.v1.FabricToolTags;
 import net.minecraft.block.*;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.client.item.ModelPredicateProvider;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.entity.EntityType;
@@ -454,7 +456,7 @@ public class PigmentBlocks {
 
     public static final Block LAVA_SPONGE = new LavaSpongeBlock(FabricBlockSettings.copyOf(Blocks.SPONGE));
     public static final Block WET_LAVA_SPONGE = new WetLavaSpongeBlock(FabricBlockSettings.copyOf(Blocks.WET_SPONGE).luminance(9).emissiveLighting(PigmentBlocks::always).postProcess(PigmentBlocks::always));
-
+    public static final Block PRIVATE_CHEST = new PrivateChestBlock(FabricBlockSettings.of(Material.STONE).breakByTool(FabricToolTags.PICKAXES).requiresTool().hardness(4.0F).resistance(3600000.0F));
 
     private static void registerBlock(String name, Block block) {
         Registry.register(Registry.BLOCK, new Identifier(PigmentCommon.MOD_ID, name), block);
@@ -471,6 +473,9 @@ public class PigmentBlocks {
         registerBlockItem("altar2", new BlockItem(ALTAR2, generalItemSettings));
         registerBlock("altar3", ALTAR3);
         registerBlockItem("altar3", new BlockItem(ALTAR3, generalItemSettings));
+
+        registerBlock("private_chest", PRIVATE_CHEST);
+        registerBlockItem("private_chest", new BlockItem(PRIVATE_CHEST, generalItemSettings));
 
         registerColoredWood(coloredWoodItemSettings);
         registerGemBlocks(worldgenItemSettings);

@@ -34,7 +34,7 @@ public class OminousSaplingBlock extends Block implements BlockEntityProvider {
         if(!world.isClient()) {
             OminousSaplingBlockEntity ominousSaplingBlockEntity = getBlockEntity(world, pos);
             if (ominousSaplingBlockEntity != null) {
-                player.sendMessage(Text.of("Sapling UUID: " + ominousSaplingBlockEntity.getPlayerUUID()), false);
+                player.sendMessage(Text.of("Sapling UUID: " + ominousSaplingBlockEntity.getOwnerUUID()), false);
             } else {
                 player.sendMessage(Text.of("Sapling block entity putt :("), false);
             }
@@ -51,7 +51,7 @@ public class OminousSaplingBlock extends Block implements BlockEntityProvider {
     private void generateOminousTree(ServerWorld world, BlockPos pos, BlockState state, Random random) {
         OminousSaplingBlockEntity ominousSaplingBlockEntity = getBlockEntity(world, pos);
         if(ominousSaplingBlockEntity != null) {
-            UUID ownerUUID = ominousSaplingBlockEntity.getPlayerUUID();
+            UUID ownerUUID = ominousSaplingBlockEntity.getOwnerUUID();
             ServerPlayerEntity serverPlayerEntity = PigmentCommon.minecraftServer.getPlayerManager().getPlayer(ownerUUID);
             if(serverPlayerEntity != null) { // offline?
                 Support.grantAdvancementCriterion(serverPlayerEntity, "grow_ominous_sapling","grow");

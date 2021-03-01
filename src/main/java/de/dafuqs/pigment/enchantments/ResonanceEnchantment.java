@@ -36,7 +36,7 @@ public class ResonanceEnchantment extends SilkTouchEnchantment {
     }
 
     public boolean canAccept(Enchantment other) {
-        return super.canAccept(other) && other != Enchantments.FORTUNE;
+        return super.canAccept(other) && other != Enchantments.FORTUNE && other != PigmentEnchantments.AUTO_SMELT;
     }
 
 }

@@ -1,6 +1,6 @@
 package de.dafuqs.pigment.mixin;
 
-import de.dafuqs.pigment.registries.PigmentEnchantments;
+import de.dafuqs.pigment.enchantments.PigmentEnchantments;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.InfestedBlock;
 import net.minecraft.enchantment.EnchantmentHelper;

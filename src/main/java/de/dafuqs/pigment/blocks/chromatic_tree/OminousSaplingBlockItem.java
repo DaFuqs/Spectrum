@@ -22,7 +22,7 @@ public class OminousSaplingBlockItem extends BlockItem {
         if(blockEntity instanceof OminousSaplingBlockEntity) {
             OminousSaplingBlockEntity ominousSaplingBlockEntity = (OminousSaplingBlockEntity) blockEntity;
             UUID placerUUID = context.getPlayer().getUuid();
-            ominousSaplingBlockEntity.setPlayerUUID(placerUUID);
+            ominousSaplingBlockEntity.setOwnerUUID(placerUUID);
         }
 
         return actionResult;

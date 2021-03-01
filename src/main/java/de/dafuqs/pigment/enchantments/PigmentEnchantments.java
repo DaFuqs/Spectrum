@@ -1,8 +1,6 @@
-package de.dafuqs.pigment.registries;
+package de.dafuqs.pigment.enchantments;
 
 import de.dafuqs.pigment.PigmentCommon;
-import de.dafuqs.pigment.enchantments.PestControlEnchantment;
-import de.dafuqs.pigment.enchantments.ResonanceEnchantment;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.util.Identifier;
@@ -20,9 +18,15 @@ public class PigmentEnchantments {
      */
     public static final Enchantment PEST_CONTROL = new PestControlEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlot.MAINHAND);
 
+    /*
+        Autosmelting
+     */
+    public static final Enchantment AUTO_SMELT = new AutoSmeltEnchantment(Enchantment.Rarity.RARE, EquipmentSlot.MAINHAND);
+
     public static void register() {
         Registry.register(Registry.ENCHANTMENT, new Identifier(PigmentCommon.MOD_ID, "resonance"), RESONANCE);
         Registry.register(Registry.ENCHANTMENT, new Identifier(PigmentCommon.MOD_ID, "pest_control"), PEST_CONTROL);
+        Registry.register(Registry.ENCHANTMENT, new Identifier(PigmentCommon.MOD_ID, "autosmelt"), AUTO_SMELT);
     }
 
 }

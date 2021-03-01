@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "inverted=false": {
+      "model": "pigment:block/light_level_detector"
+    },
+    "inverted=true": {
+      "model": "pigment:block/light_level_detector_inverted"
+    }
+  }
+}

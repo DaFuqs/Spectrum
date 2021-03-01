@@ -75,7 +75,7 @@ public class AltarBlock extends BlockWithEntity {
         if (blockEntity instanceof AltarBlockEntity) {
             AltarBlockEntity altarBlockEntity = (AltarBlockEntity) blockEntity;
 
-            if(altarBlockEntity.getPlayerUUID() == null) {
+            if(altarBlockEntity.getOwnerUUID() == null) {
                 altarBlockEntity.setPlayerData(player.getUuid(), player.getName());
             }
 

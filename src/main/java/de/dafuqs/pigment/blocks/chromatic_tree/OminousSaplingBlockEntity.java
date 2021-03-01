@@ -23,12 +23,12 @@ public class OminousSaplingBlockEntity extends BlockEntity implements PlayerOwne
     }
 
     @Override
-    public void setPlayerUUID(UUID playerUUID) {
-        this.ownerUUID = playerUUID;
+    public void setOwnerUUID(UUID ownerUUID) {
+        this.ownerUUID = ownerUUID;
     }
 
     @Override
-    public UUID getPlayerUUID() {
+    public UUID getOwnerUUID() {
         return this.ownerUUID;
     }
 

@@ -5,6 +5,7 @@ import de.dafuqs.pigment.PigmentCommon;
 import de.dafuqs.pigment.blocks.altar.AltarBlockEntity;
 import de.dafuqs.pigment.blocks.chromatic_tree.OminousSaplingBlockEntity;
 import de.dafuqs.pigment.blocks.compactor.CompactorBlockEntity;
+import de.dafuqs.pigment.blocks.detector.PlayerDetectorBlockEntity;
 import de.dafuqs.pigment.blocks.private_chest.PrivateChestBlockEntity;
 import de.dafuqs.pigment.blocks.private_chest.PrivateChestBlockEntityRenderer;
 import net.fabricmc.fabric.api.client.rendereregistry.v1.BlockEntityRendererRegistry;
@@ -24,6 +25,7 @@ public class PigmentBlockEntityTypes<T extends BlockEntity> {
     public static BlockEntityType<AltarBlockEntity> ALTAR_BLOCK_ENTITY_TYPE;
     public static BlockEntityType<CompactorBlockEntity> COMPACTOR_BLOCK_ENTITY_TYPE;
     public static BlockEntityType<PrivateChestBlockEntity> PRIVATE_CHEST;
+    public static BlockEntityType<PlayerDetectorBlockEntity> PLAYER_DETECTOR;
 
     private static <T extends BlockEntity> BlockEntityType<T> create(String string, FabricBlockEntityTypeBuilder<T> builder) {
         Type<?> type = Util.getChoiceType(TypeReferences.BLOCK_ENTITY, string);
@@ -35,6 +37,7 @@ public class PigmentBlockEntityTypes<T extends BlockEntity> {
         ALTAR_BLOCK_ENTITY_TYPE = create("altar_block_entity", FabricBlockEntityTypeBuilder.create(AltarBlockEntity::new, PigmentBlocks.ALTAR));
         COMPACTOR_BLOCK_ENTITY_TYPE = create("compactor", FabricBlockEntityTypeBuilder.create(CompactorBlockEntity::new, PigmentBlocks.COMPACTOR));
         PRIVATE_CHEST = create("private_chest", FabricBlockEntityTypeBuilder.create(PrivateChestBlockEntity::new, PigmentBlocks.PRIVATE_CHEST));
+        PLAYER_DETECTOR = create("player_detector", FabricBlockEntityTypeBuilder.create(PlayerDetectorBlockEntity::new, PigmentBlocks.PLAYER_DETECTOR));
     }
 
     public static void registerClient() {

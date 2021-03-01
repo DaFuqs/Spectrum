@@ -14,6 +14,10 @@ import de.dafuqs.pigment.blocks.conditional.*;
 import de.dafuqs.pigment.blocks.decay.DecayBlock1;
 import de.dafuqs.pigment.blocks.decay.DecayBlock2;
 import de.dafuqs.pigment.blocks.decay.DecayBlock3;
+import de.dafuqs.pigment.blocks.detector.BlockLightDetectorBlock;
+import de.dafuqs.pigment.blocks.detector.ItemDetectorBlock;
+import de.dafuqs.pigment.blocks.detector.PlayerDetectorBlock;
+import de.dafuqs.pigment.blocks.detector.WeatherDetectorBlock;
 import de.dafuqs.pigment.blocks.fluid.LiquidCrystalFluidBlock;
 import de.dafuqs.pigment.blocks.fluid.MudFluidBlock;
 import de.dafuqs.pigment.blocks.lava_sponge.LavaSpongeBlock;
@@ -33,8 +37,6 @@ import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.tool.attribute.v1.FabricToolTags;
 import net.minecraft.block.*;
-import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.client.item.ModelPredicateProvider;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.BlockItem;
@@ -458,6 +460,12 @@ public class PigmentBlocks {
     public static final Block WET_LAVA_SPONGE = new WetLavaSpongeBlock(FabricBlockSettings.copyOf(Blocks.WET_SPONGE).luminance(9).emissiveLighting(PigmentBlocks::always).postProcess(PigmentBlocks::always));
     public static final Block PRIVATE_CHEST = new PrivateChestBlock(FabricBlockSettings.of(Material.STONE).breakByTool(FabricToolTags.PICKAXES).requiresTool().hardness(4.0F).resistance(3600000.0F));
 
+    public static final Block LIGHT_LEVEL_DETECTOR = new BlockLightDetectorBlock(AbstractBlock.Settings.of(Material.STONE).strength(0.2F).sounds(BlockSoundGroup.STONE));
+    public static final Block WEATHER_DETECTOR =  new WeatherDetectorBlock(AbstractBlock.Settings.of(Material.STONE).strength(0.2F).sounds(BlockSoundGroup.STONE));
+    public static final Block ITEM_DETECTOR =  new ItemDetectorBlock(AbstractBlock.Settings.of(Material.STONE).strength(0.2F).sounds(BlockSoundGroup.STONE));
+    public static final Block PLAYER_DETECTOR =  new PlayerDetectorBlock(AbstractBlock.Settings.of(Material.STONE).strength(0.2F).sounds(BlockSoundGroup.STONE));
+
+
     private static void registerBlock(String name, Block block) {
         Registry.register(Registry.BLOCK, new Identifier(PigmentCommon.MOD_ID, name), block);
     }
@@ -476,6 +484,15 @@ public class PigmentBlocks {
 
         registerBlock("private_chest", PRIVATE_CHEST);
         registerBlockItem("private_chest", new BlockItem(PRIVATE_CHEST, generalItemSettings));
+
+        registerBlock("light_level_detector", LIGHT_LEVEL_DETECTOR);
+        registerBlockItem("light_level_detector", new BlockItem(LIGHT_LEVEL_DETECTOR, generalItemSettings));
+        registerBlock("weather_detector", WEATHER_DETECTOR);
+        registerBlockItem("weather_detector", new BlockItem(WEATHER_DETECTOR, generalItemSettings));
+        registerBlock("item_detector", ITEM_DETECTOR);
+        registerBlockItem("item_detector", new BlockItem(ITEM_DETECTOR, generalItemSettings));
+        registerBlock("player_detector", PLAYER_DETECTOR);
+        registerBlockItem("player_detector", new BlockItem(PLAYER_DETECTOR, generalItemSettings));
 
         registerColoredWood(coloredWoodItemSettings);
         registerGemBlocks(worldgenItemSettings);

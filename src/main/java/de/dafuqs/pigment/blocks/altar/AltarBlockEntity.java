@@ -517,17 +517,17 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
     }
 
     @Override
-    public void setPlayerUUID(UUID playerUUID) {
-        this.playerUUID = playerUUID;
+    public void setOwnerUUID(UUID ownerUUID) {
+        this.playerUUID = ownerUUID;
     }
 
     @Override
-    public UUID getPlayerUUID() {
+    public UUID getOwnerUUID() {
         return this.playerUUID;
     }
 
     public void setPlayerData(UUID uuid, Text name) {
-        this.setPlayerUUID(uuid);
+        this.setOwnerUUID(uuid);
         setCustomName(new TranslatableText("block.pigment.altar.title_with_owner", name.asString()));
     }
 }

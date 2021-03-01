@@ -156,9 +156,9 @@ public class GravityBlockEntity extends Entity {
                     if (this.floatTime > 100) {
                         // TODO
                         //this.setVelocity(this.getVelocity().add(0.0D, -0.04D, 0.0D));
-                        this.setVelocity(this.getVelocity().add(0.0D, ((0.5 * gravityModifier) / 10), 0.0D));
+                        this.setVelocity(this.getVelocity().add(0.0D, (gravityModifier / 10), 0.0D));
                     } else {
-                        this.setVelocity(this.getVelocity().add(0.0D, Math.min(Math.sin((Math.PI * this.age) / 100D), 1) * ((0.5 * gravityModifier) / 10), 0.0D));
+                        this.setVelocity(this.getVelocity().add(0.0D, Math.min(Math.sin((Math.PI * this.age) / 100D), 1) * (gravityModifier / 10), 0.0D));
                     }
                 //}
             }

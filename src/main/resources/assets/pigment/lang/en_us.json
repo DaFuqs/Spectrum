@@ -267,7 +267,6 @@
   "item.pigment.bedrock_crossbow": "Bedrock Crossbow",
   "item.pigment.bedrock_fishing_rod": "Bedrock Fishing Rod",
   "item.pigment.bedrock_shears": "Bedrock Shears",
-  "item.pigment.bedrock_shield": "Bedrock Shield",
 
   "item.pigment.bedrock_helmet": "Bedrock Helmet",
   "item.pigment.bedrock_chestplate": "Bedrock Chestplate",
@@ -411,9 +410,9 @@
   "block.pigment.cracked_end_portal_frame": "Cracked End Portal Frame",
 
   "item.pigment.multitool": "Multitool",
-  "item.pigment.silker_pickaxe": "Silking Pickaxe",
-  "item.pigment.fortune_pickaxe": "Fortune Pickaxe",
-  "item.pigment.looting_falchion": "Looting Falchion",
+  "item.pigment.silker_pickaxe": "Tender Pickaxe",
+  "item.pigment.fortune_pickaxe": "Lucky Pickaxe",
+  "item.pigment.looting_falchion": "Razor Falchion",
 
   "block.pigment.compactor": "Compacting Chest",
   "block.pigment.altar": "Altar",
@@ -431,6 +430,12 @@
   "block.pigment.blazing_crystal": "Blazing Crystal",
   "block.pigment.frostbite_crystal": "Frostbite Crystal",
   "block.pigment.resonant_lily": "Resonant Lily",
+
+  "block.pigment.player_detector": "Player Detector",
+  "block.pigment.player_detector.message": "Player Detector of %s",
+  "block.pigment.item_detector": "Item Detector",
+  "block.pigment.weather_detector": "Weather Detector",
+  "block.pigment.light_level_detector": "Lightlevel Detector",
 
   "advancements.pigment.pigment.title": "Pigment",
   "advancements.pigment.pigment.description": "A story about magic, colors and chaos.",
@@ -491,9 +496,5 @@
   "advancements.pigment.mine_bedrock.description": "Break decayed bedrock by using a Netherite Pickaxe.",
 
   "advancements.pigment.enter_dimension.title": "What was once impenetrable",
-  "advancements.pigment.enter_dimension.description": "Find out what lies between the once impenetrable floor",
-
-  "______open_until_here" : "DISCARD:",
-  "advancements.pigment.find_geode.title": "Cracking open a cold one",
-  "advancements.pigment.find_geode.description": "Find a geode underground."
+  "advancements.pigment.enter_dimension.description": "Find out what lies between the once impenetrable floor"
 }

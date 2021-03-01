@@ -1,6 +1,6 @@
 package de.dafuqs.pigment.misc;
 
-import de.dafuqs.pigment.registries.PigmentEnchantments;
+import de.dafuqs.pigment.enchantments.PigmentEnchantments;
 import de.dafuqs.pigment.items.misc.Spawner;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

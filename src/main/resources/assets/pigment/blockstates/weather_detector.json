@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "inverted=false": {
+      "model": "pigment:block/weather_detector"
+    },
+    "inverted=true": {
+      "model": "pigment:block/weather_detector_inverted"
+    }
+  }
+}

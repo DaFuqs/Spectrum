@@ -1,21 +1,22 @@
 package de.dafuqs.pigment.enchantments;
 
 import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.enchantment.SilkTouchEnchantment;
 import net.minecraft.entity.EquipmentSlot;
 
-public class PestControlEnchantment extends SilkTouchEnchantment {
+public class AutoSmeltEnchantment extends SilkTouchEnchantment {
 
-    public PestControlEnchantment(Rarity weight, EquipmentSlot... slotTypes) {
+    public AutoSmeltEnchantment(Rarity weight, EquipmentSlot... slotTypes) {
         super(weight, slotTypes);
     }
 
     public int getMinPower(int level) {
-        return 10;
+        return 15;
     }
 
     public int getMaxPower(int level) {
-        return super.getMinPower(level) + 20;
+        return super.getMinPower(level) + 50;
     }
 
     public int getMaxLevel() {
@@ -35,7 +36,7 @@ public class PestControlEnchantment extends SilkTouchEnchantment {
     }
 
     public boolean canAccept(Enchantment other) {
-        return super.canAccept(other) && other != PigmentEnchantments.RESONANCE;
+        return super.canAccept(other) && other != Enchantments.SILK_TOUCH && other != PigmentEnchantments.RESONANCE;
     }
 
 }

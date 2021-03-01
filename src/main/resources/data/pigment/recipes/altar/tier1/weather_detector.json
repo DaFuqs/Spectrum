@@ -1,0 +1,34 @@
+{
+  "type": "pigment_altar",
+  "time": 80,
+  "tier": 1,
+  "cyan": 0,
+  "magenta": 0,
+  "yellow": 4,
+  "white": 0,
+  "black": 0,
+  "experience": 1,
+  "pattern": [
+    "BBB",
+    "CQC",
+    "SSS"
+  ],
+  "key": {
+    "B": {
+      "item": "minecraft:glass"
+    },
+    "C": {
+      "item": "pigment:citrine_shard"
+    },
+    "Q": {
+      "item": "minecraft:quartz"
+    },
+    "S": {
+      "tag": "minecraft:wooden_slabs"
+    }
+  },
+  "result" : {
+    "item": "pigment:weather_detector",
+    "count": 4
+  }
+}

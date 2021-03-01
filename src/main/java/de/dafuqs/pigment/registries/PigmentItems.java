@@ -5,10 +5,7 @@ import de.dafuqs.pigment.blocks.gravity.GravityItem;
 import de.dafuqs.pigment.entity.PigmentEntityTypes;
 import de.dafuqs.pigment.items.armor.BedrockArmorMaterial;
 import de.dafuqs.pigment.items.armor.LowHealthMaterial;
-import de.dafuqs.pigment.items.misc.EndPortalCrackerItem;
-import de.dafuqs.pigment.items.misc.InvisibleItemFrameItem;
-import de.dafuqs.pigment.items.misc.PigmentMusicDiscItem;
-import de.dafuqs.pigment.items.misc.Spawner;
+import de.dafuqs.pigment.items.misc.*;
 import de.dafuqs.pigment.items.tools.*;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.block.Blocks;
@@ -81,9 +78,9 @@ public class PigmentItems {
     public static final Item GLISTERING_MELON_SEEDS = new AliasedBlockItem(PigmentBlocks.GLISTERING_MELON_STEM, pigmentUncommonItemSettings);
 
     // DECAY
-    public static final Item DECAY_1_PLACER = new AliasedBlockItem(PigmentBlocks.DECAY1, decayPlacerItemSettings);
-    public static final Item DECAY_2_PLACER = new AliasedBlockItem(PigmentBlocks.DECAY2, decayPlacerItemSettings);
-    public static final Item DECAY_3_PLACER = new AliasedBlockItem(PigmentBlocks.DECAY3, decayPlacerItemSettings);
+    public static final Item DECAY_1_PLACER = new DecayPlacerItem(PigmentBlocks.DECAY1, decayPlacerItemSettings);
+    public static final Item DECAY_2_PLACER = new DecayPlacerItem(PigmentBlocks.DECAY2, decayPlacerItemSettings);
+    public static final Item DECAY_3_PLACER = new DecayPlacerItem(PigmentBlocks.DECAY3, decayPlacerItemSettings);
 
     // ORE
     public static final Item SPARKLESTONE_GEM = new Item(pigmentWorldgenItemSettings);

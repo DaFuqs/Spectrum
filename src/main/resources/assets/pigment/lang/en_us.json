@@ -403,6 +403,9 @@
   "item.pigment.decay_1_placer": "Bottle of Fading",
   "item.pigment.decay_2_placer": "Bottle of Failing",
   "item.pigment.decay_3_placer": "Bottle of Ruin",
+  "item.pigment.decay_1_placer.tooltip": "§2Glibbery!",
+  "item.pigment.decay_2_placer.tooltip": "§e⚠ Danger: Explosive",
+  "item.pigment.decay_3_placer.tooltip": "§4⚠ You will probably regret this",
   "block.pigment.decay1": "Fading",
   "block.pigment.decay2": "Failing",
   "block.pigment.decay3": "Ruin",
@@ -443,7 +446,7 @@
   "advancements.pigment.collect_all_basic.description": "Collect all types of naturally generating gems.",
 
   "advancements.pigment.get_ender_treasure.title": "Torn from cold, dead hands",
-  "advancements.pigment.get_ender_treasure.description": "Some Endermen that appear in your world carry with them blocks that seem to radiate an eerie aura. Now that you hold one in your hands... they are pretty much everywhere! How didn't you notice earlier?",
+  "advancements.pigment.get_ender_treasure.description": "Some Endermen that appear in your world carry blocks with them that seem to radiate an eerie aura. Now that you hold one in your hands... they are pretty much everywhere! How didn't you notice earlier?",
 
   "advancements.pigment.catch_shooting_star.title": "Starry Sky",
   "advancements.pigment.catch_shooting_star.description": "Catch a shooting star right out of the sky.",

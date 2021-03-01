@@ -176,7 +176,7 @@ public class PigmentConfiguredFeatures {
         BlockState LARGE_MOONSTONE_BUD = PigmentBlocks.LARGE_MOONSTONE_BUD.getDefaultState();
         BlockState MOONSTONE_CLUSTER = PigmentBlocks.MOONSTONE_CLUSTER.getDefaultState();
 
-        CITRINE_GEODE = (PigmentFeatures.SOLID_BLOCKS_GEODE.configure(new GeodeFeatureConfig(
+        CITRINE_GEODE = Feature.GEODE.configure(new GeodeFeatureConfig(
                 new GeodeLayerConfig(
                         new SimpleBlockStateProvider(AIR),
                         new SimpleBlockStateProvider(CITRINE_BLOCK),
@@ -188,9 +188,9 @@ public class PigmentConfiguredFeatures {
                 new GeodeCrackConfig(0.95D, 2.0D, 2), 0.35D, 0.083D, true, 4, 7, 3, 5, 1, 3, -16, 16, 0.05D, 1))
                 .rangeOf(YOffset.aboveBottom(32), YOffset.aboveBottom(96))
                 .spreadHorizontally()
-                .applyChance(30));
+                .applyChance(30);
 
-        TOPAZ_GEODE = (PigmentFeatures.SOLID_BLOCKS_GEODE.configure(new GeodeFeatureConfig(
+        TOPAZ_GEODE = Feature.GEODE.configure(new GeodeFeatureConfig(
                 new GeodeLayerConfig(
                         new SimpleBlockStateProvider(AIR),
                         new SimpleBlockStateProvider(TOPAZ_BLOCK),
@@ -202,7 +202,7 @@ public class PigmentConfiguredFeatures {
                 new GeodeCrackConfig(0.95D, 2.0D, 2), 0.35D, 0.083D, true, 4, 7, 3, 5, 1, 3, -16, 16, 0.05D, 1))
                 .rangeOf(YOffset.fixed(64), YOffset.fixed(128))
                 .spreadHorizontally()
-                .applyChance(30));
+                .applyChance(30);
 
         MOONSTONE_GEODE = (Feature.GEODE.configure(new GeodeFeatureConfig(
                 new GeodeLayerConfig(

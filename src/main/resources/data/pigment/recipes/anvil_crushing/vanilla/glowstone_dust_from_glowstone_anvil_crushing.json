@@ -1,13 +1,13 @@
 {
   "type": "pigment_anvil_crushing",
   "ingredient": {
-    "item": "pigment:scarlet_gem"
+    "item": "minecraft:glowstone"
   },
-  "crushedItemsPerPointOfDamage": 1,
-  "experience": 0.5,
+  "crushedItemsPerPointOfDamage": 4,
+  "experience": 0.0,
   "result" : {
-    "item": "pigment:shattered_scarlet_fragments",
-    "count": 8
+    "item": "minecraft:glowstone_dust",
+    "count": 9
   },
   "particleEffectIdentifier": "cloud",
   "soundEventIdentifier": "block.glass.break"

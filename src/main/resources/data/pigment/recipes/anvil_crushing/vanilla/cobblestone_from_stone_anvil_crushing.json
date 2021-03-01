@@ -1,14 +1,14 @@
 {
   "type": "pigment_anvil_crushing",
   "ingredient": {
-    "item": "minecraft:gravel"
+    "item": "minecraft:stone"
   },
   "crushedItemsPerPointOfDamage": 2,
   "experience": 0.05,
   "result" : {
-    "item": "minecraft:sand",
+    "item": "minecraft:cobblestone",
     "count": 1
   },
   "particleEffectIdentifier": "cloud",
-  "soundEventIdentifier": "block.small_amethyst_bud.break"
+  "soundEventIdentifier": "block.stone.break"
 }

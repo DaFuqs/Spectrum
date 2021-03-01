@@ -1,14 +1,14 @@
 {
   "type": "pigment_anvil_crushing",
   "ingredient": {
-    "item": "minecraft:clay"
+    "item": "minecraft:sugar_cane"
   },
   "crushedItemsPerPointOfDamage": 4,
   "experience": 0.0,
   "result" : {
-    "item": "minecraft:clay_ball",
-    "count": 4
+    "item": "minecraft:sugar",
+    "count": 2
   },
   "particleEffectIdentifier": "cloud",
-  "soundEventIdentifier": "block.small_amethyst_bud.break"
+  "soundEventIdentifier": "block.grass.break"
 }

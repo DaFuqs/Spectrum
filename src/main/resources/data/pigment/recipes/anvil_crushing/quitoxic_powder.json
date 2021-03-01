@@ -10,5 +10,5 @@
     "count": 2
   },
   "particleEffectIdentifier": "cloud",
-  "soundEventIdentifier": "block.small_amethyst_bud.break"
+  "soundEventIdentifier": "block.grass.break"
 }

@@ -111,7 +111,7 @@ public class AutoSmeltEnchantment extends Enchantment {
 
     public static ItemStack applyAutoSmelt(ItemStack inputItemStack, World world) {
        SmeltingRecipe smeltingRecipe = autoSmeltInventory.getRecipe(inputItemStack, world);
-        if(!smeltingRecipe.isEmpty()) {
+        if(smeltingRecipe != null) {
             ItemStack recipeOutputStack = smeltingRecipe.getOutput().copy();
             recipeOutputStack.setCount(recipeOutputStack.getCount() * inputItemStack.getCount());
             return recipeOutputStack;

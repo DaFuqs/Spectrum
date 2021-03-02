@@ -3,9 +3,9 @@
   "package": "de.dafuqs.pigment.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "AbstractBlockMixin",
     "AccessorShapedRecipe",
     "AnvilBlockMixin",
+    "BlockMixin",
     "BlockOverlayRendererMixin",
     "EnderEyeItemMixin",
     "EndermanEntityMixin",

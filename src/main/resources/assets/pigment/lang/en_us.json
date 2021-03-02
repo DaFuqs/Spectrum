@@ -485,6 +485,7 @@
   "______done_until_here" : "TODO:",
   "advancements.pigment.craft_energy_collector.title": "Roger that",
   "advancements.pigment.craft_energy_collector.description": "Construct a collector powerful enough to harvest energy from gem geodes.",
+
   "advancements.pigment.place_energy_collector.title": "A new form of energy",
   "advancements.pigment.place_energy_collector.description": "Place the collector in the center of a geode and watch it work.",
 
@@ -493,11 +494,17 @@
 
   "advancements.pigment.drop_decay.title": "I don't need no Transmutation",
   "advancements.pigment.drop_decay.description": "",
+
   "advancements.pigment.drop_decay2.title": "",
   "advancements.pigment.drop_decay2.description": "Obsidian doesn't seem to stop it, either. But the result of your little experiment is pretty interesting nonetheless!",
+
   "advancements.pigment.mine_bedrock.title": "Groundbreaking",
   "advancements.pigment.mine_bedrock.description": "Break decayed bedrock by using a Netherite Pickaxe.",
 
   "advancements.pigment.enter_dimension.title": "What was once impenetrable",
-  "advancements.pigment.enter_dimension.description": "Find out what lies between the once impenetrable floor"
+  "advancements.pigment.enter_dimension.description": "Find out what lies between the once impenetrable floor",
+
+  "advancements.pigment.get_revelation.title": "More than meets the eye",
+  "advancements.pigment.get_revelation.description": "It looks like there is more to the world than you previously thought."
+
 }

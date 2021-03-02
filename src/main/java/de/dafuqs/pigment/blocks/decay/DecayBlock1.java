@@ -1,7 +1,6 @@
 package de.dafuqs.pigment.blocks.decay;
 
 import de.dafuqs.pigment.registries.PigmentBlockTags;
-import de.dafuqs.pigment.registries.PigmentBlocks;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.Block;
@@ -14,7 +13,6 @@ import net.minecraft.tag.BlockTags;
 import net.minecraft.tag.Tag;
 import net.minecraft.util.StringIdentifiable;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 import java.util.Random;
@@ -22,8 +20,6 @@ import java.util.Random;
 public class DecayBlock1 extends DecayBlock {
 
     private static final EnumProperty<DecayConversion> DECAY_STATE = EnumProperty.of("decay_state", DecayConversion.class);
-
-    private static BlockState MAGIC_LEAVES_BLOCKSTATE;
 
     public enum DecayConversion implements StringIdentifiable {
         DEFAULT("default"),
@@ -47,7 +43,6 @@ public class DecayBlock1 extends DecayBlock {
 
     public DecayBlock1(Settings settings, Tag<Block> whiteListBlockTag, Tag<Block> blackListBlockTag, int tier, float damageOnTouching) {
         super(settings, whiteListBlockTag, blackListBlockTag, tier, damageOnTouching);
-
         setDefaultState(getStateManager().getDefaultState().with(DECAY_STATE, DecayConversion.DEFAULT));
 
         BlockState destinationBlockState = this.getDefaultState().with(DECAY_STATE, DecayConversion.LEAVES);
@@ -64,16 +59,10 @@ public class DecayBlock1 extends DecayBlock {
 
     @Environment(EnvType.CLIENT)
     public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
-
-        if(MAGIC_LEAVES_BLOCKSTATE == null) {
-            MAGIC_LEAVES_BLOCKSTATE = PigmentBlocks.DECAY1.getDefaultState().with(DecayBlock1.DECAY_STATE, DecayConversion.MAGIC_LEAVES);
-        }
-
-        if (world.getBlockState(pos).equals(MAGIC_LEAVES_BLOCKSTATE)) {
-            Vec3d vec3d = new Vec3d(0.5, 0.5, 0.5);
+        if (state.get(DecayBlock1.DECAY_STATE).equals(DecayConversion.MAGIC_LEAVES)) {
             float xOffset = random.nextFloat();
             float zOffset = random.nextFloat();
-            world.addParticle(new BlockStateParticleEffect(ParticleTypes.BLOCK, MAGIC_LEAVES_BLOCKSTATE), pos.getX() + xOffset, pos.getY() + 1, pos.getZ() + zOffset, 0.0D, 0.0D, 0.0D);
+            world.addParticle(new BlockStateParticleEffect(ParticleTypes.BLOCK, state), pos.getX() + xOffset, pos.getY() + 1, pos.getZ() + zOffset, 0.0D, 0.0D, 0.0D);
         }
     }
 

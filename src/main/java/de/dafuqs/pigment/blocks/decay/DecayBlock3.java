@@ -33,7 +33,6 @@ public class DecayBlock3 extends DecayBlock {
 
     public DecayBlock3(Settings settings, Tag<Block> whiteListBlockTag, Tag<Block> blackListBlockTag, int tier, float damageOnTouching) {
         super(settings, whiteListBlockTag, blackListBlockTag, tier, damageOnTouching);
-
         setDefaultState(getStateManager().getDefaultState().with(DECAY_STATE, DecayConversion.DEFAULT));
 
         BlockState destinationBlockState = this.getDefaultState().with(DECAY_STATE, DecayConversion.BEDROCK);

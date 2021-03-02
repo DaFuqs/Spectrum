@@ -5,7 +5,6 @@ import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.client.util.math.Vector3d;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.util.math.BlockPos;
@@ -18,7 +17,7 @@ import java.util.Random;
 public class ParticleEmitterBlock extends Block {
 
     ParticleEffect particleEffect;
-    int randomEveryXTicks;
+    float particlesPerTick; // >1 = every xth tick
     double sourcePositionOffsetX;
     double sourcePositionOffsetY;
     double sourcePositionOffsetZ;
@@ -39,7 +38,7 @@ public class ParticleEmitterBlock extends Block {
         availableParticleEffects.add(ParticleTypes.BUBBLE);
 
         this.particleEffect = ParticleTypes.FLAME;
-        this.randomEveryXTicks = 1;
+        this.particlesPerTick = 1;
         this.sourcePositionOffsetX = 0;
         this.sourcePositionOffsetY = 3;
         this.sourcePositionOffsetZ = 0;
@@ -56,7 +55,7 @@ public class ParticleEmitterBlock extends Block {
 
     @Environment(EnvType.CLIENT)
     public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
-        if (random.nextInt(this.randomEveryXTicks) == 0) {
+        /*if (random.nextInt(this.randomEveryXTicks) == 0) {
             double randomOffsetX = randomPositionOffsetX == 0 ? 0 : randomPositionOffsetX - random.nextDouble() * randomPositionOffsetX * 2.0D;
             double randomOffsetY = randomPositionOffsetY == 0 ? 0 : randomPositionOffsetY - random.nextDouble() * randomPositionOffsetY * 2.0D;
             double randomOffsetZ = randomPositionOffsetZ == 0 ? 0 : randomPositionOffsetZ - random.nextDouble() * randomPositionOffsetZ * 2.0D;
@@ -72,7 +71,7 @@ public class ParticleEmitterBlock extends Block {
                     sourceVelocityX + randomVelocityX,
                     sourceVelocityY + randomVelocityY,
                     sourceVelocityZ + randomVelocityZ);
-        }
+        }*/
     }
 
 

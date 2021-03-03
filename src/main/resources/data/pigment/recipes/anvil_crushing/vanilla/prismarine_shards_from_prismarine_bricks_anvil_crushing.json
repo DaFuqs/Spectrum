@@ -1,0 +1,14 @@
+{
+  "type": "pigment_anvil_crushing",
+  "ingredient": {
+    "item": "minecraft:prismarine_bricks"
+  },
+  "crushedItemsPerPointOfDamage": 1,
+  "experience": 0.0,
+  "result" : {
+    "item": "minecraft:prismarine_shard",
+    "count": 9
+  },
+  "particleEffectIdentifier": "cloud",
+  "soundEventIdentifier": "block.stone.break"
+}

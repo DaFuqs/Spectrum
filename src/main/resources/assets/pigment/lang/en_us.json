@@ -274,7 +274,7 @@
   "item.pigment.bedrock_leggings": "Bedrock Leggings",
   "item.pigment.bedrock_boots": "Bedrock Boots",
 
-  "item.pigment.spawner": "Spawner",
+  "item.pigment.spawner": "Empty Spawner",
   "item.pigment.spawner.tooltip.unknown_mob": "Unknown Mob",
   "item.pigment.spawner.tooltip.spawn_count": "Spawn Count: %d",
   "item.pigment.spawner.tooltip.min_spawn_delay": "Min Spawn Delay: %d",

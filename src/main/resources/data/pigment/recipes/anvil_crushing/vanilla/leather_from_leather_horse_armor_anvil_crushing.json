@@ -1,0 +1,14 @@
+{
+  "type": "pigment_anvil_crushing",
+  "ingredient": {
+    "item": "minecraft:leather_horse_armor"
+  },
+  "crushedItemsPerPointOfDamage": 1,
+  "experience": 0.0,
+  "result" : {
+    "item": "minecraft:leather",
+    "count": 3
+  },
+  "particleEffectIdentifier": "cloud",
+  "soundEventIdentifier": "block.metal.break"
+}

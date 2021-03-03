@@ -1,0 +1,14 @@
+{
+  "type": "pigment_anvil_crushing",
+  "ingredient": {
+    "item": "minecraft:glistering_melon_slice"
+  },
+  "crushedItemsPerPointOfDamage": 1,
+  "experience": 0.0,
+  "result" : {
+    "item": "minecraft:gold_nugget",
+    "count": 3
+  },
+  "particleEffectIdentifier": "cloud",
+  "soundEventIdentifier": "block.metal.break"
+}

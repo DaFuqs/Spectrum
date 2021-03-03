@@ -19,11 +19,12 @@
     "MobSpawnerBlockEntityMixin",
     "ServerWorldMixin",
     "SpawnerBlockMixin",
-    "WorldRendererMixin"
+    "WorldRendererMixin",
   ],
   "client": [
     "client.AccessorClientAdvancementManager",
     "client.BlockModelsMixin",
+    "client.BuiltinModelItemRendererMixin",
     "client.ClientPlayerEntityMixin",
     "client.ClientWorldMixin",
     "client.ItemMixin",

@@ -20,6 +20,8 @@ import de.dafuqs.pigment.blocks.detector.PlayerDetectorBlock;
 import de.dafuqs.pigment.blocks.detector.WeatherDetectorBlock;
 import de.dafuqs.pigment.blocks.fluid.LiquidCrystalFluidBlock;
 import de.dafuqs.pigment.blocks.fluid.MudFluidBlock;
+import de.dafuqs.pigment.blocks.head.PigmentSkullBlock;
+import de.dafuqs.pigment.blocks.head.PigmentWallSkullBlock;
 import de.dafuqs.pigment.blocks.lava_sponge.LavaSpongeBlock;
 import de.dafuqs.pigment.blocks.lava_sponge.WetLavaSpongeBlock;
 import de.dafuqs.pigment.blocks.lava_sponge.WetLavaSpongeItem;
@@ -39,19 +41,23 @@ import net.fabricmc.fabric.api.tool.attribute.v1.FabricToolTags;
 import net.minecraft.block.*;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.entity.EntityType;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
+import net.minecraft.item.*;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.state.property.Properties;
 import net.minecraft.tag.BlockTags;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.Rarity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.IntRange;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.BlockView;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
 import java.util.function.ToIntFunction;
 
 public class PigmentBlocks {
@@ -70,6 +76,7 @@ public class PigmentBlocks {
     public static FabricItemSettings worldgenItemSettings = new FabricItemSettings().group(PigmentItemGroups.ITEM_GROUP_WORLDGEN);
     public static FabricItemSettings decorationItemSettings = new FabricItemSettings().group(PigmentItemGroups.ITEM_GROUP_DECORATION);
     public static FabricItemSettings coloredWoodItemSettings = new FabricItemSettings().group(PigmentItemGroups.ITEM_GROUP_COLORED_WOOD);
+    public static FabricItemSettings mobHeadItemSettings = new FabricItemSettings().group(PigmentItemGroups.ITEM_GROUP_DECORATION).rarity(Rarity.UNCOMMON);
 
     private static ToIntFunction<BlockState> createLightLevelFromBlockState(int litLevel) {
         return (blockState) -> (Boolean)blockState.get(Properties.LIT) ? litLevel : 0;
@@ -465,6 +472,9 @@ public class PigmentBlocks {
     public static final Block ITEM_DETECTOR =  new ItemDetectorBlock(AbstractBlock.Settings.of(Material.STONE).strength(0.2F).sounds(BlockSoundGroup.STONE));
     public static final Block PLAYER_DETECTOR =  new PlayerDetectorBlock(AbstractBlock.Settings.of(Material.STONE).strength(0.2F).sounds(BlockSoundGroup.STONE));
 
+    public static final HashMap<PigmentSkullBlock.Type, Block> MOB_HEADS = new HashMap<>();
+    public static final HashMap<PigmentSkullBlock.Type, Block> MOB_WALL_HEADS = new HashMap<>();
+
 
     private static void registerBlock(String name, Block block) {
         Registry.register(Registry.BLOCK, new Identifier(PigmentCommon.MOD_ID, name), block);
@@ -504,6 +514,7 @@ public class PigmentBlocks {
         registerGemGlass(decorationItemSettings);
         registerPlayerOnlyGlass(generalItemSettings);
         registerFlatColoredBlocks(decorationItemSettings);
+        registerMobHeads(mobHeadItemSettings);
 
         // GLISTERING MELON
         registerBlock("glistering_melon", GLISTERING_MELON);
@@ -1152,6 +1163,40 @@ public class PigmentBlocks {
 
         registerBlock("rainbow_moonstone_block", RAINBOW_MOONSTONE_BLOCK);
         registerBlockItem("rainbow_moonstone_block", new BlockItem(RAINBOW_MOONSTONE_BLOCK, fabricItemSettings));
+    }
+
+    // Most mob heads vanilla is missing (vanilla only has: skeleton, wither skeleton, zombie, player, creeper, ender dragon)
+    private static void registerMobHeads(FabricItemSettings fabricItemSettings) {
+        FabricBlockSettings mobHeadBlockSettings = FabricBlockSettings.of(Material.DECORATION).strength(1.0F);
+
+        for(PigmentSkullBlock.Type type : PigmentSkullBlock.Type.values()) {
+            Block head = new PigmentSkullBlock(type, mobHeadBlockSettings);
+            Block wallHead = new PigmentWallSkullBlock(type, AbstractBlock.Settings.of(Material.DECORATION).strength(1.0F).dropsLike(head));
+            BlockItem headItem = new WallStandingBlockItem(head, wallHead, (fabricItemSettings));
+
+            MOB_HEADS.put(type, head);
+            MOB_WALL_HEADS.put(type, wallHead);
+
+            registerBlock(type.name().toLowerCase(Locale.ROOT) + "_head", head);
+            registerBlock(type.name().toLowerCase(Locale.ROOT) + "_wall_head", wallHead);
+            registerBlockItem(type.name().toLowerCase(Locale.ROOT) + "_head", headItem);
+        }
+    }
+
+    public static Block getMobHead(PigmentSkullBlock.Type skullType) {
+        return MOB_HEADS.get(skullType);
+    }
+
+    public static Block getMobWallHead(PigmentSkullBlock.Type skullType) {
+        return MOB_WALL_HEADS.get(skullType);
+    }
+
+    public static Collection<Block> getMobHeads() {
+        return MOB_HEADS.values();
+    }
+
+    public static Collection<Block> getMobWallHeads() {
+        return MOB_WALL_HEADS.values();
     }
 
     public static void registerClient() {

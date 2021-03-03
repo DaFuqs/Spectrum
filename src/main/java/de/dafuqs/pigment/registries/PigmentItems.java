@@ -109,8 +109,8 @@ public class PigmentItems {
     public static final Item SHOOTING_STAR = new Item(generalItemSettings);
 
     public static final Item MUSIC_DISC_PIGMENT_THEME = new PigmentMusicDiscItem(1,PigmentSoundEvents.PIGMENT_THEME, (musicDiscItemSettings));
-
     public static final Item INVISIBLE_ITEM_FRAME = new InvisibleItemFrameItem(PigmentEntityTypes.INVISIBLE_ITEM_FRAME, (generalItemSettings));
+
 
     private static void registerItem(String name, Item item) {
         Registry.register(Registry.ITEM, new Identifier(PigmentCommon.MOD_ID, name), item);

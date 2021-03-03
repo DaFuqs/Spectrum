@@ -1,30 +1,28 @@
-package de.dafuqs.pigment.items.tools;
+package de.dafuqs.pigment.items.materials;
 
 import net.minecraft.item.ToolMaterial;
 import net.minecraft.recipe.Ingredient;
 
-public class BedrockToolMaterial implements ToolMaterial {
-
-    public static final BedrockToolMaterial INSTANCE = new BedrockToolMaterial();
+public class VoidingMaterial implements ToolMaterial {
 
     @Override
     public int getDurability() {
-        return 0;
+        return 1143; // almost like diamond
     }
 
     @Override
     public float getMiningSpeedMultiplier() {
-        return 15F;
+        return 20.0F; // almost instamines stone
     }
 
     @Override
     public float getAttackDamage() {
-        return 8.0F;
+        return 1.0F;
     }
 
     @Override
     public int getMiningLevel() {
-        return 5;
+        return 3;
     }
 
     @Override
@@ -34,7 +32,7 @@ public class BedrockToolMaterial implements ToolMaterial {
 
     @Override
     public Ingredient getRepairIngredient() {
-        return null; // doesn't need to be repaired
+        return null; // can not be repaired
     }
 
 }

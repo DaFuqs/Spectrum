@@ -1,7 +1,7 @@
 {
   "type": "pigment_anvil_crushing",
   "ingredient": {
-    "item": "minecraft:gold_horse_armor"
+    "item": "minecraft:golden_horse_armor"
   },
   "crushedItemsPerPointOfDamage": 1,
   "experience": 0.0,

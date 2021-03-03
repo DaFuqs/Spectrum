@@ -33,6 +33,7 @@ public class PigmentItemGroups {
                 stacks.add(PigmentDefaultEnchantments.getEnchantedItemStack(PigmentItems.LOOTING_FALCHION));
                 stacks.add(PigmentDefaultEnchantments.getEnchantedItemStack(PigmentItems.SILKER_PICKAXE));
                 stacks.add(PigmentDefaultEnchantments.getEnchantedItemStack(PigmentItems.FORTUNE_PICKAXE));
+                stacks.add(PigmentDefaultEnchantments.getEnchantedItemStack(PigmentItems.VOIDING_PICKAXE));
 
                 // bedrock tools
                 stacks.add(PigmentDefaultEnchantments.getEnchantedItemStack(PigmentItems.BEDROCK_PICKAXE));

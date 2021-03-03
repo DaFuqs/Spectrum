@@ -1,0 +1,31 @@
+{
+  "type": "pigment_altar",
+  "time": 1000,
+  "tier": 1,
+  "cyan": 2,
+  "magenta": 0,
+  "yellow": 1,
+  "white": 0,
+  "black": 0,
+  "experience": 2,
+  "pattern": [
+    "QIQ",
+    " S ",
+    " S "
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:stick"
+    },
+    "Q": {
+      "item": "pigment:quitoxic_powder"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "result" : {
+    "item": "pigment:voiding_pickaxe",
+    "count": 1
+  }
+}

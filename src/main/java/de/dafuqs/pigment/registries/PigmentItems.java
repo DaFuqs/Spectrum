@@ -3,8 +3,10 @@ package de.dafuqs.pigment.registries;
 import de.dafuqs.pigment.PigmentCommon;
 import de.dafuqs.pigment.blocks.gravity.GravityItem;
 import de.dafuqs.pigment.entity.PigmentEntityTypes;
-import de.dafuqs.pigment.items.armor.BedrockArmorMaterial;
-import de.dafuqs.pigment.items.armor.LowHealthMaterial;
+import de.dafuqs.pigment.items.materials.BedrockArmorMaterial;
+import de.dafuqs.pigment.items.materials.BedrockToolMaterial;
+import de.dafuqs.pigment.items.materials.LowHealthMaterial;
+import de.dafuqs.pigment.items.materials.VoidingMaterial;
 import de.dafuqs.pigment.items.misc.*;
 import de.dafuqs.pigment.items.tools.*;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
@@ -94,10 +96,12 @@ public class PigmentItems {
 
     // SPECIAL TOOLS
     public static final LowHealthMaterial LOW_HEALTH_MATERIAL = new LowHealthMaterial();
+    public static final VoidingMaterial VOIDING_MATERIAL = new VoidingMaterial();
     public static final Item MULTITOOL = new MultiToolItem(ToolMaterials.IRON, 2, -2.4F, preEnchantedItemSettings);
     public static final Item SILKER_PICKAXE = new PigmentPickaxeItem(LOW_HEALTH_MATERIAL, 1, -2.8F, preEnchantedItemSettings);
     public static final Item FORTUNE_PICKAXE = new PigmentPickaxeItem(LOW_HEALTH_MATERIAL, 1, -2.8F, preEnchantedItemSettings);
     public static final Item LOOTING_FALCHION = new SwordItem(LOW_HEALTH_MATERIAL, 4, -2.2F, preEnchantedItemSettings);
+    public static final Item VOIDING_PICKAXE = new VoidingPickaxeItem(VOIDING_MATERIAL, 1, -2.8F, preEnchantedItemSettings);
 
     public static final Item END_PORTAL_CRACKER = new EndPortalCrackerItem(generalItemSettings);
     public static final Item QUITOXIC_POWDER = new Item(generalItemSettings);
@@ -173,6 +177,7 @@ public class PigmentItems {
         registerItem("silker_pickaxe", SILKER_PICKAXE);
         registerItem("fortune_pickaxe", FORTUNE_PICKAXE);
         registerItem("looting_falchion", LOOTING_FALCHION);
+        registerItem("voiding_pickaxe", VOIDING_PICKAXE);
 
         registerItem("music_disc_pigment_theme", MUSIC_DISC_PIGMENT_THEME);
         registerItem("invisible_item_frame", INVISIBLE_ITEM_FRAME);

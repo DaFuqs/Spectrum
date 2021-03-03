@@ -1,0 +1,38 @@
+package de.dafuqs.pigment.items.tools;
+
+import de.dafuqs.pigment.enchantments.PigmentEnchantments;
+import net.minecraft.block.BlockState;
+import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.ToolMaterial;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+
+public class VoidingPickaxeItem extends PigmentPickaxeItem {
+
+    public VoidingPickaxeItem(ToolMaterial material, int attackDamage, float attackSpeed, Settings settings) {
+        super(material, attackDamage, attackSpeed, settings);
+    }
+
+    public boolean postMine(ItemStack stack, World world, BlockState state, BlockPos pos, LivingEntity miner) {
+        super.postMine(stack, world, state, pos, miner);
+
+        // Break the tool if it is used without the voiding enchantment
+        // Otherwise this would be a VERY cheap early game diamond tier tool
+        if (!world.isClient && !EnchantmentHelper.get(stack).containsKey(PigmentEnchantments.VOIDING)) {
+            stack.damage(5000, miner, (e) -> {
+                e.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND);
+            });
+        }
+
+        return true;
+    }
+
+    @Override
+    public boolean isDamageable() {
+        return true;
+    }
+
+}

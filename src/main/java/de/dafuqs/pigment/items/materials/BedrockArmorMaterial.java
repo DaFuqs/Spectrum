@@ -1,4 +1,4 @@
-package de.dafuqs.pigment.items.armor;
+package de.dafuqs.pigment.items.materials;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -42,7 +42,7 @@ public class BedrockArmorMaterial implements ArmorMaterial {
 
     @Override
     public Ingredient getRepairIngredient() {
-        return null;
+        return null; // does not need to be repaired
     }
 
     @Environment(EnvType.CLIENT)

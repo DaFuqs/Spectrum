@@ -11,7 +11,12 @@ import net.minecraft.recipe.RecipeFinder;
 import net.minecraft.recipe.RecipeInputProvider;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.recipe.SmeltingRecipe;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class AutoSmeltEnchantment extends Enchantment {
 
@@ -109,7 +114,7 @@ public class AutoSmeltEnchantment extends Enchantment {
         return super.canAccept(other) && other != Enchantments.SILK_TOUCH && other != PigmentEnchantments.RESONANCE;
     }
 
-    public static ItemStack applyAutoSmelt(ItemStack inputItemStack, World world) {
+    public static ItemStack getAutoSmeltedItemStack(ItemStack inputItemStack, World world) {
        SmeltingRecipe smeltingRecipe = autoSmeltInventory.getRecipe(inputItemStack, world);
         if(smeltingRecipe != null) {
             ItemStack recipeOutputStack = smeltingRecipe.getOutput().copy();
@@ -118,6 +123,21 @@ public class AutoSmeltEnchantment extends Enchantment {
         } else {
             return inputItemStack;
         }
+    }
+
+    @NotNull
+    public static List<ItemStack> applyAutoSmelt(ServerWorld world, List<ItemStack> originalStacks) {
+        List<ItemStack> returnItemStacks = new ArrayList<>();
+
+        for (ItemStack is : originalStacks) {
+            ItemStack s = AutoSmeltEnchantment.getAutoSmeltedItemStack(is, world);
+            while (s.getCount() > 0) {
+                int currentAmount = Math.min(s.getCount(), s.getItem().getMaxCount());
+                returnItemStacks.add(new ItemStack(s.getItem(), currentAmount));
+                s.setCount(s.getCount() - currentAmount);
+            }
+        }
+        return returnItemStacks;
     }
 
 }

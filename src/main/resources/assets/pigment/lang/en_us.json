@@ -8,6 +8,8 @@
   "enchantment.pigment.resonance": "Resonance",
   "enchantment.pigment.pest_control": "Pest Control",
   "enchantment.pigment.autosmelt": "Autosmelt",
+  "enchantment.pigment.inventory_insertion": "Inventory Insertion",
+  "enchantment.pigment.voiding": "§cCurse of Voiding",
 
   "death.attack.pigment_decay": "%s made contact with the void",
 
@@ -417,6 +419,7 @@
   "item.pigment.silker_pickaxe": "Tender Pickaxe",
   "item.pigment.fortune_pickaxe": "Lucky Pickaxe",
   "item.pigment.looting_falchion": "Razor Falchion",
+  "item.pigment.voiding_pickaxe": "Voiding Pickaxe",
 
   "block.pigment.compactor": "Compacting Chest",
   "block.pigment.altar": "Altar",

@@ -1,28 +1,30 @@
-package de.dafuqs.pigment.items.armor;
+package de.dafuqs.pigment.items.materials;
 
 import net.minecraft.item.ToolMaterial;
 import net.minecraft.recipe.Ingredient;
 
-public class LowHealthMaterial implements ToolMaterial {
+public class BedrockToolMaterial implements ToolMaterial {
+
+    public static final BedrockToolMaterial INSTANCE = new BedrockToolMaterial();
 
     @Override
     public int getDurability() {
-        return 8;
+        return 0;
     }
 
     @Override
     public float getMiningSpeedMultiplier() {
-        return 4.0F;
+        return 15.0F;
     }
 
     @Override
     public float getAttackDamage() {
-        return 2.0F;
+        return 8.0F;
     }
 
     @Override
     public int getMiningLevel() {
-        return 2;
+        return 5;
     }
 
     @Override
@@ -32,6 +34,7 @@ public class LowHealthMaterial implements ToolMaterial {
 
     @Override
     public Ingredient getRepairIngredient() {
-        return null;
+        return null; // doesn't need to be repaired
     }
+
 }

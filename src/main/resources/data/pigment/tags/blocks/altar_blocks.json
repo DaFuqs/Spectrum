@@ -1,7 +1,7 @@
 {
 	"values": [
-		"pigment:polished_tuff",
-		"pigment:tuff_bricks",
+		"pigment:polished_basalt",
+		"pigment:basalt_bricks",
 		"pigment:polished_calcite",
 		"pigment:calcite_bricks"
 	]

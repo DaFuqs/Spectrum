@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "TST",
+        "SGS",
+        "TST"
+    ],
+    "key": {
+        "T": {
+	        "item": "pigment:polished_basalt"
+        },
+        "G": {
+	        "item": "minecraft:glowstone_dust"
+        },
+        "S": {
+	        "item": "pigment:moonstone_shard"
+        }
+    },
+    "result": {
+        "item": "pigment:moonstone_basalt_lamp",
+        "count": 4
+    }
+}

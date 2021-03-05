@@ -1,9 +1,0 @@
-{
-    "type": "minecraft:smelting",
-    "ingredient": {
-        "item": "pigment:tuff_brick_stairs"
-    },
-    "result": "pigment:polished_tuff",
-    "experience": 0.1,
-    "cookingtime": 200
-}

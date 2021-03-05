@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "pigment:polished_tuff"
-  },
-  "result": "pigment:chiseled_polished_tuff",
-  "count": 1
-}

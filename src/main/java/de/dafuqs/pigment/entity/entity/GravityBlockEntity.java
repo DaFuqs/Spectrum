@@ -147,20 +147,13 @@ public class GravityBlockEntity extends Entity {
                 }
             }
 
-            boolean isPaleturFragmentBlock = this.blockState.getBlock() == PigmentBlocks.PALETUR_FRAGMENT_BLOCK;
             if (!this.hasNoGravity()) {
-                //if (isPaleturFragmentBlock) {
-                    // this.setVelocity(this.getVelocity().add(0.0D, 0.05D, 0.0D));
-                //    this.setVelocity(this.getVelocity().add(0.0D, gravityModifier, 0.0D));
-                //} else {
-                    if (this.floatTime > 100) {
-                        // TODO
-                        //this.setVelocity(this.getVelocity().add(0.0D, -0.04D, 0.0D));
-                        this.setVelocity(this.getVelocity().add(0.0D, (gravityModifier / 10), 0.0D));
-                    } else {
-                        this.setVelocity(this.getVelocity().add(0.0D, Math.min(Math.sin((Math.PI * this.age) / 100D), 1) * (gravityModifier / 10), 0.0D));
-                    }
-                //}
+                if (this.floatTime > 100) {
+                    // TODO
+                    this.setVelocity(this.getVelocity().add(0.0D, (gravityModifier / 10), 0.0D));
+                } else {
+                    this.setVelocity(this.getVelocity().add(0.0D, Math.min(Math.sin((Math.PI * this.age) / 100D), 1) * (gravityModifier / 10), 0.0D));
+                }
             }
 
             Box oldBox = getBoundingBox();
@@ -202,14 +195,13 @@ public class GravityBlockEntity extends Entity {
                                 this.dropItem(block);
                             }
                             this.discard();
-                        } else if (/*isPaleturFragmentBlock && */floatTime > 500) {
+                        } else if (floatTime > 500) {
                              this.discard();
                         }
                     }
                 } else {
                     BlockState blockState = this.world.getBlockState(blockPos);
                     this.setVelocity(this.getVelocity().multiply(0.7, 0.5, 0.7));
-                    //if (blockState.getBlock() != Blocks.MOVING_PISTON) {
                     this.discard();
                     boolean canReplace = blockState.canReplace(new AutomaticItemPlacementContext(this.world, blockPos, Direction.DOWN, ItemStack.EMPTY, Direction.UP));
                     if (!canReplace) {
@@ -249,10 +241,6 @@ public class GravityBlockEntity extends Entity {
                     } else if (this.dropItem && this.world.getGameRules().getBoolean(GameRules.DO_ENTITY_DROPS)) {
                         this.dropItem(block);
                     }
-                        /*} else*/
-                        /*if (block instanceof FloatingBlock) {
-                            ((FloatingBlock) block).onBroken(this.world, blockPos);
-                        }*/
                 }
             }
 
@@ -326,10 +314,6 @@ public class GravityBlockEntity extends Entity {
         return this.blockState;
     }
 
-    public void setHurtEntities(boolean hurtEntitiesIn) {
-        this.hurtEntities = hurtEntitiesIn;
-    }
-
     @Override
     public boolean entityDataRequiresOperator() {
         return true;
@@ -353,7 +337,6 @@ public class GravityBlockEntity extends Entity {
         void postTick();
     }
 
-
     public Packet<?> createSpawnPacket() {
         return new EntitySpawnS2CPacket(this, Block.getRawIdFromState(this.getBlockState()));
     }
@@ -375,19 +358,5 @@ public class GravityBlockEntity extends Entity {
         this.setPosition(d, e + (double)((1.0F - this.getHeight()) / 2.0F), f);
         this.setFallingBlockPos(this.getBlockPos());
     }
-
-    /*public static void spawn(PacketContext ctx, PacketByteBuf buf) {
-        /*EntityData data = new EntityData(buf);
-        BlockState blockState = NbtHelper.toBlockState(Objects.requireNonNull(buf.readCompoundTag()));
-
-        ctx.getTaskQueue().execute(() -> {
-            FloatingBlockEntity entity = new FloatingBlockEntity(ctx.getPlayer().world, data.x, data.y, data.z, blockState);
-            entity.updateTrackedPosition(data.x, data.y, data.z);
-            entity.refreshPositionAfterTeleport(data.x, data.y, data.z);
-            entity.setEntityId(data.id);
-            entity.setUuid(data.uuid);
-            ((ClientWorld) ctx.getPlayer().world).addEntity(data.id, entity);
-        });
-    }*/
 
 }

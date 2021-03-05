@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "WXW",
+        "XXX",
+        "WXW"
+    ],
+    "key": {
+        "W": {
+	        "item": "pigment:polished_basalt"
+        },
+        "X": {
+	        "item": "pigment:onyx_shard"
+        }
+    },
+    "result": {
+    "item": "pigment:onyx_chiseled_basalt",
+    "count": 1
+    }
+}

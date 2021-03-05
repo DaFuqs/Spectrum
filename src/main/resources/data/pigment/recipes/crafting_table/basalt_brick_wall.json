@@ -1,0 +1,16 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "WWW",
+        "WWW"
+    ],
+    "key": {
+        "W": {
+	        "item": "pigment:basalt_bricks"
+        }
+    },
+    "result": {
+    "item": "pigment:basalt_brick_wall",
+    "count": 6
+    }
+}

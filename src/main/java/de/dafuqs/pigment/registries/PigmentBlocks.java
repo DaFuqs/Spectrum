@@ -117,22 +117,22 @@ public class PigmentBlocks {
     public static final Block TUFF_WALL = new WallBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
     public static final Block TUFF_STAIRS = new PigmentStairsBlock(Blocks.TUFF.getDefaultState(), AbstractBlock.Settings.copy(Blocks.TUFF));
 
-    public static final Block POLISHED_TUFF = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
-    public static final Block CHISELED_POLISHED_TUFF = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
-    public static final Block POLISHED_TUFF_SLAB = new SlabBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
-    public static final Block POLISHED_TUFF_WALL = new WallBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
-    public static final Block POLISHED_TUFF_STAIRS = new PigmentStairsBlock(POLISHED_TUFF.getDefaultState(), AbstractBlock.Settings.copy(POLISHED_TUFF));
+    public static final Block POLISHED_BASALT = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+    public static final Block CHISELED_POLISHED_BASALT = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+    public static final Block POLISHED_BASALT_SLAB = new SlabBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+    public static final Block POLISHED_BASALT_WALL = new WallBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+    public static final Block POLISHED_BASALT_STAIRS = new PigmentStairsBlock(POLISHED_BASALT.getDefaultState(), AbstractBlock.Settings.copy(POLISHED_BASALT));
 
-    public static final Block TUFF_BRICKS = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
-    public static final Block TUFF_BRICK_SLAB = new SlabBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
-    public static final Block TUFF_BRICK_WALL = new WallBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
-    public static final Block TUFF_BRICK_STAIRS = new PigmentStairsBlock(TUFF_BRICKS.getDefaultState(), AbstractBlock.Settings.copy(TUFF_BRICKS));
+    public static final Block BASALT_BRICKS = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+    public static final Block BASALT_BRICK_SLAB = new SlabBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+    public static final Block BASALT_BRICK_WALL = new WallBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+    public static final Block BASALT_BRICK_STAIRS = new PigmentStairsBlock(BASALT_BRICKS.getDefaultState(), AbstractBlock.Settings.copy(BASALT_BRICKS));
 
-    public static final Block AMETHYST_CHISELED_TUFF = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f).luminance(5));
-    public static final Block TOPAZ_CHISELED_TUFF = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f).luminance(6));
-    public static final Block CITRINE_CHISELED_TUFF = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f).luminance(7));
-    public static final Block ONYX_CHISELED_TUFF = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f).luminance(3));
-    public static final Block MOONSTONE_CHISELED_TUFF = new PigmentPillarBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f).luminance(12));
+    public static final Block AMETHYST_CHISELED_BASALT = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f).luminance(5));
+    public static final Block TOPAZ_CHISELED_BASALT = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f).luminance(6));
+    public static final Block CITRINE_CHISELED_BASALT = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f).luminance(7));
+    public static final Block ONYX_CHISELED_BASALT = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f).luminance(3));
+    public static final Block MOONSTONE_CHISELED_BASALT = new PigmentPillarBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f).luminance(12));
 
     public static final Block CALCITE_SLAB = new SlabBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
     public static final Block CALCITE_WALL = new WallBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
@@ -161,11 +161,11 @@ public class PigmentBlocks {
     public static final Block CITRINE_CALCITE_LAMP = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f).luminance(15).nonOpaque());
     public static final Block ONYX_CALCITE_LAMP = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f).luminance(15).nonOpaque());
     public static final Block MOONSTONE_CALCITE_LAMP = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f).luminance(15).nonOpaque());
-    public static final Block AMETHYST_TUFF_LAMP = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f).luminance(15).nonOpaque());
-    public static final Block TOPAZ_TUFF_LAMP = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f).luminance(15).nonOpaque());
-    public static final Block CITRINE_TUFF_LAMP = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f).luminance(15).nonOpaque());
-    public static final Block ONYX_TUFF_LAMP = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f).luminance(15).nonOpaque());
-    public static final Block MOONSTONE_TUFF_LAMP = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f).luminance(15).nonOpaque());
+    public static final Block AMETHYST_BASALT_LAMP = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f).luminance(15).nonOpaque());
+    public static final Block TOPAZ_BASALT_LAMP = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f).luminance(15).nonOpaque());
+    public static final Block CITRINE_BASALT_LAMP = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f).luminance(15).nonOpaque());
+    public static final Block ONYX_BASALT_LAMP = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f).luminance(15).nonOpaque());
+    public static final Block MOONSTONE_BASALT_LAMP = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f).luminance(15).nonOpaque());
 
     // GLASS
     public static final Block AMETHYST_GLASS = new GemGlassBlock(FabricBlockSettings.copy(Blocks.GLASS));
@@ -667,24 +667,24 @@ public class PigmentBlocks {
         registerBlock("calcite_stairs", CALCITE_STAIRS);
         registerBlockItem("calcite_stairs", new BlockItem(CALCITE_STAIRS, fabricItemSettings));
 
-        registerBlock("polished_tuff", POLISHED_TUFF);
-        registerBlockItem("polished_tuff", new BlockItem(POLISHED_TUFF, fabricItemSettings));
-        registerBlock("chiseled_polished_tuff", CHISELED_POLISHED_TUFF);
-        registerBlockItem("chiseled_polished_tuff", new BlockItem(CHISELED_POLISHED_TUFF, fabricItemSettings));
-        registerBlock("polished_tuff_slab", POLISHED_TUFF_SLAB);
-        registerBlockItem("polished_tuff_slab", new BlockItem(POLISHED_TUFF_SLAB, fabricItemSettings));
-        registerBlock("polished_tuff_wall", POLISHED_TUFF_WALL);
-        registerBlockItem("polished_tuff_wall", new BlockItem(POLISHED_TUFF_WALL, fabricItemSettings));
-        registerBlock("polished_tuff_stairs", POLISHED_TUFF_STAIRS);
-        registerBlockItem("polished_tuff_stairs", new BlockItem(POLISHED_TUFF_STAIRS, fabricItemSettings));
-        registerBlock("tuff_bricks", TUFF_BRICKS);
-        registerBlockItem("tuff_bricks", new BlockItem(TUFF_BRICKS, fabricItemSettings));
-        registerBlock("tuff_brick_slab", TUFF_BRICK_SLAB);
-        registerBlockItem("tuff_brick_slab", new BlockItem(TUFF_BRICK_SLAB, fabricItemSettings));
-        registerBlock("tuff_brick_wall", TUFF_BRICK_WALL);
-        registerBlockItem("tuff_brick_wall", new BlockItem(TUFF_BRICK_WALL, fabricItemSettings));
-        registerBlock("tuff_brick_stairs", TUFF_BRICK_STAIRS);
-        registerBlockItem("tuff_brick_stairs", new BlockItem(TUFF_BRICK_STAIRS, fabricItemSettings));
+        registerBlock("polished_basalt", POLISHED_BASALT);
+        registerBlockItem("polished_basalt", new BlockItem(POLISHED_BASALT, fabricItemSettings));
+        registerBlock("chiseled_polished_basalt", CHISELED_POLISHED_BASALT);
+        registerBlockItem("chiseled_polished_basalt", new BlockItem(CHISELED_POLISHED_BASALT, fabricItemSettings));
+        registerBlock("polished_basalt_slab", POLISHED_BASALT_SLAB);
+        registerBlockItem("polished_basalt_slab", new BlockItem(POLISHED_BASALT_SLAB, fabricItemSettings));
+        registerBlock("polished_basalt_wall", POLISHED_BASALT_WALL);
+        registerBlockItem("polished_basalt_wall", new BlockItem(POLISHED_BASALT_WALL, fabricItemSettings));
+        registerBlock("polished_basalt_stairs", POLISHED_BASALT_STAIRS);
+        registerBlockItem("polished_basalt_stairs", new BlockItem(POLISHED_BASALT_STAIRS, fabricItemSettings));
+        registerBlock("basalt_bricks", BASALT_BRICKS);
+        registerBlockItem("basalt_bricks", new BlockItem(BASALT_BRICKS, fabricItemSettings));
+        registerBlock("basalt_brick_slab", BASALT_BRICK_SLAB);
+        registerBlockItem("basalt_brick_slab", new BlockItem(BASALT_BRICK_SLAB, fabricItemSettings));
+        registerBlock("basalt_brick_wall", BASALT_BRICK_WALL);
+        registerBlockItem("basalt_brick_wall", new BlockItem(BASALT_BRICK_WALL, fabricItemSettings));
+        registerBlock("basalt_brick_stairs", BASALT_BRICK_STAIRS);
+        registerBlockItem("basalt_brick_stairs", new BlockItem(BASALT_BRICK_STAIRS, fabricItemSettings));
 
         registerBlock("polished_calcite", POLISHED_CALCITE);
         registerBlockItem("polished_calcite", new BlockItem(POLISHED_CALCITE, fabricItemSettings));
@@ -707,16 +707,16 @@ public class PigmentBlocks {
     }
 
     private static void registerRunes(FabricItemSettings fabricItemSettings) {
-        registerBlock("amethyst_chiseled_tuff", AMETHYST_CHISELED_TUFF);
-        registerBlockItem("amethyst_chiseled_tuff", new BlockItem(AMETHYST_CHISELED_TUFF, fabricItemSettings));
-        registerBlock("topaz_chiseled_tuff", TOPAZ_CHISELED_TUFF);
-        registerBlockItem("topaz_chiseled_tuff", new BlockItem(TOPAZ_CHISELED_TUFF, fabricItemSettings));
-        registerBlock("citrine_chiseled_tuff", CITRINE_CHISELED_TUFF);
-        registerBlockItem("citrine_chiseled_tuff", new BlockItem(CITRINE_CHISELED_TUFF, fabricItemSettings));
-        registerBlock("onyx_chiseled_tuff", ONYX_CHISELED_TUFF);
-        registerBlockItem("onyx_chiseled_tuff", new BlockItem(ONYX_CHISELED_TUFF, fabricItemSettings));
-        registerBlock("moonstone_chiseled_tuff", MOONSTONE_CHISELED_TUFF);
-        registerBlockItem("moonstone_chiseled_tuff", new BlockItem(MOONSTONE_CHISELED_TUFF, fabricItemSettings));
+        registerBlock("amethyst_chiseled_basalt", AMETHYST_CHISELED_BASALT);
+        registerBlockItem("amethyst_chiseled_basalt", new BlockItem(AMETHYST_CHISELED_BASALT, fabricItemSettings));
+        registerBlock("topaz_chiseled_basalt", TOPAZ_CHISELED_BASALT);
+        registerBlockItem("topaz_chiseled_basalt", new BlockItem(TOPAZ_CHISELED_BASALT, fabricItemSettings));
+        registerBlock("citrine_chiseled_basalt", CITRINE_CHISELED_BASALT);
+        registerBlockItem("citrine_chiseled_basalt", new BlockItem(CITRINE_CHISELED_BASALT, fabricItemSettings));
+        registerBlock("onyx_chiseled_basalt", ONYX_CHISELED_BASALT);
+        registerBlockItem("onyx_chiseled_basalt", new BlockItem(ONYX_CHISELED_BASALT, fabricItemSettings));
+        registerBlock("moonstone_chiseled_basalt", MOONSTONE_CHISELED_BASALT);
+        registerBlockItem("moonstone_chiseled_basalt", new BlockItem(MOONSTONE_CHISELED_BASALT, fabricItemSettings));
 
         registerBlock("amethyst_chiseled_calcite", AMETHYST_CHISELED_CALCITE);
         registerBlockItem("amethyst_chiseled_calcite", new BlockItem(AMETHYST_CHISELED_CALCITE, fabricItemSettings));
@@ -741,16 +741,16 @@ public class PigmentBlocks {
         registerBlockItem("onyx_calcite_lamp", new BlockItem(ONYX_CALCITE_LAMP, fabricItemSettings));
         registerBlock("moonstone_calcite_lamp", MOONSTONE_CALCITE_LAMP);
         registerBlockItem("moonstone_calcite_lamp", new BlockItem(MOONSTONE_CALCITE_LAMP, fabricItemSettings));
-        registerBlock("amethyst_tuff_lamp", AMETHYST_TUFF_LAMP);
-        registerBlockItem("amethyst_tuff_lamp", new BlockItem(AMETHYST_TUFF_LAMP, fabricItemSettings));
-        registerBlock("topaz_tuff_lamp", TOPAZ_TUFF_LAMP);
-        registerBlockItem("topaz_tuff_lamp", new BlockItem(TOPAZ_TUFF_LAMP, fabricItemSettings));
-        registerBlock("citrine_tuff_lamp", CITRINE_TUFF_LAMP);
-        registerBlockItem("citrine_tuff_lamp", new BlockItem(CITRINE_TUFF_LAMP, fabricItemSettings));
-        registerBlock("onyx_tuff_lamp", ONYX_TUFF_LAMP);
-        registerBlockItem("onyx_tuff_lamp", new BlockItem(ONYX_TUFF_LAMP, fabricItemSettings));
-        registerBlock("moonstone_tuff_lamp", MOONSTONE_TUFF_LAMP);
-        registerBlockItem("moonstone_tuff_lamp", new BlockItem(MOONSTONE_TUFF_LAMP, fabricItemSettings));
+        registerBlock("amethyst_basalt_lamp", AMETHYST_BASALT_LAMP);
+        registerBlockItem("amethyst_basalt_lamp", new BlockItem(AMETHYST_BASALT_LAMP, fabricItemSettings));
+        registerBlock("topaz_basalt_lamp", TOPAZ_BASALT_LAMP);
+        registerBlockItem("topaz_basalt_lamp", new BlockItem(TOPAZ_BASALT_LAMP, fabricItemSettings));
+        registerBlock("citrine_basalt_lamp", CITRINE_BASALT_LAMP);
+        registerBlockItem("citrine_basalt_lamp", new BlockItem(CITRINE_BASALT_LAMP, fabricItemSettings));
+        registerBlock("onyx_basalt_lamp", ONYX_BASALT_LAMP);
+        registerBlockItem("onyx_basalt_lamp", new BlockItem(ONYX_BASALT_LAMP, fabricItemSettings));
+        registerBlock("moonstone_basalt_lamp", MOONSTONE_BASALT_LAMP);
+        registerBlockItem("moonstone_basalt_lamp", new BlockItem(MOONSTONE_BASALT_LAMP, fabricItemSettings));
     }
 
     private static void registerColoredWood(FabricItemSettings fabricItemSettings) {
@@ -1246,11 +1246,11 @@ public class PigmentBlocks {
         BlockRenderLayerMap.INSTANCE.putBlock(PigmentBlocks.MOONSTONE_CALCITE_LAMP, RenderLayer.getTranslucent());
         BlockRenderLayerMap.INSTANCE.putBlock(PigmentBlocks.ONYX_CALCITE_LAMP, RenderLayer.getTranslucent());
 
-        BlockRenderLayerMap.INSTANCE.putBlock(PigmentBlocks.AMETHYST_TUFF_LAMP, RenderLayer.getTranslucent());
-        BlockRenderLayerMap.INSTANCE.putBlock(PigmentBlocks.CITRINE_TUFF_LAMP, RenderLayer.getTranslucent());
-        BlockRenderLayerMap.INSTANCE.putBlock(PigmentBlocks.TOPAZ_TUFF_LAMP, RenderLayer.getTranslucent());
-        BlockRenderLayerMap.INSTANCE.putBlock(PigmentBlocks.MOONSTONE_TUFF_LAMP, RenderLayer.getTranslucent());
-        BlockRenderLayerMap.INSTANCE.putBlock(PigmentBlocks.ONYX_TUFF_LAMP, RenderLayer.getTranslucent());
+        BlockRenderLayerMap.INSTANCE.putBlock(PigmentBlocks.AMETHYST_BASALT_LAMP, RenderLayer.getTranslucent());
+        BlockRenderLayerMap.INSTANCE.putBlock(PigmentBlocks.CITRINE_BASALT_LAMP, RenderLayer.getTranslucent());
+        BlockRenderLayerMap.INSTANCE.putBlock(PigmentBlocks.TOPAZ_BASALT_LAMP, RenderLayer.getTranslucent());
+        BlockRenderLayerMap.INSTANCE.putBlock(PigmentBlocks.MOONSTONE_BASALT_LAMP, RenderLayer.getTranslucent());
+        BlockRenderLayerMap.INSTANCE.putBlock(PigmentBlocks.ONYX_BASALT_LAMP, RenderLayer.getTranslucent());
 
         // SAPLINGS
         BlockRenderLayerMap.INSTANCE.putBlock(PigmentBlocks.BLACK_SAPLING, RenderLayer.getCutout());

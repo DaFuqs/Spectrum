@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "pigment:block/basalt_brick_slab"
+    },
+    "type=double": {
+      "model": "pigment:block/basalt_bricks"
+    },
+    "type=top": {
+      "model": "pigment:block/basalt_brick_slab_top"
+    }
+  }
+}

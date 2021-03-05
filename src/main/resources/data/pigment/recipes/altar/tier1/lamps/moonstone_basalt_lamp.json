@@ -1,0 +1,28 @@
+{
+  "type": "pigment_altar",
+  "time": 40,
+  "tier": 1,
+  "cyan": 0,
+  "magenta": 0,
+  "yellow": 0,
+  "white": 4,
+  "black": 0,
+  "experience": 0.3,
+  "pattern": [
+    "TBT",
+    "BBB",
+    "TBT"
+  ],
+  "key": {
+    "B": {
+      "item": "pigment:moonstone_block"
+    },
+    "T": {
+      "item": "pigment:polished_basalt"
+    }
+  },
+  "result" : {
+    "item": "pigment:moonstone_basalt_lamp",
+    "count": 4
+  }
+}

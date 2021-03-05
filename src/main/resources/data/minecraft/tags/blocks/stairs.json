@@ -2,8 +2,8 @@
   "replace": false,
   "values": [
 		"pigment:tuff_stairs",
-		"pigment:polished_tuff_stairs",
-		"pigment:tuff_brick_stairs",
+		"pigment:polished_basalt_stairs",
+		"pigment:basalt_brick_stairs",
 		"pigment:calcite_stairs",
 		"pigment:polished_calcite_stairs",
 		"pigment:calcite_brick_stairs",

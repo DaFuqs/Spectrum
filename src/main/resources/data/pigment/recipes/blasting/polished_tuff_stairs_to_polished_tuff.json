@@ -1,9 +1,0 @@
-{
-    "type": "minecraft:blasting",
-    "ingredient": {
-        "item": "pigment:polished_tuff_stairs"
-    },
-    "result": "pigment:polished_tuff",
-    "experience": 0.1,
-    "cookingtime": 100
-}

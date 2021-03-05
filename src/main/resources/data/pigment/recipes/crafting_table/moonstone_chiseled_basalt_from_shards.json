@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "WWW",
+        "XXX",
+        "WWW"
+    ],
+    "key": {
+        "W": {
+	        "item": "pigment:polished_basalt"
+        },
+        "X": {
+	        "item": "pigment:moonstone_shard"
+        }
+    },
+    "result": {
+    "item": "pigment:moonstone_chiseled_basalt",
+    "count": 1
+    }
+}

@@ -2,8 +2,8 @@
   "replace": false,
   "values": [
 		"pigment:tuff_slab",
-		"pigment:polished_tuff_slab",
-		"pigment:tuff_brick_slab",
+		"pigment:polished_basalt_slab",
+		"pigment:basalt_brick_slab",
 		"pigment:calcite_slab",
 		"pigment:polished_calcite_slab",
 		"pigment:calcite_brick_slab",

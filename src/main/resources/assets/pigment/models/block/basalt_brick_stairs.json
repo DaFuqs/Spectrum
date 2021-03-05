@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/stairs",
+  "textures": {
+    "bottom": "pigment:block/basalt_bricks",
+    "top": "pigment:block/basalt_bricks",
+    "side": "pigment:block/basalt_bricks"
+  }
+}

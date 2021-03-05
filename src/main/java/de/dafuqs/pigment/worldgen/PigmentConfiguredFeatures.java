@@ -153,7 +153,7 @@ public class PigmentConfiguredFeatures {
     private static void registerGeodes() {
         BlockState AIR = Blocks.AIR.getDefaultState();
         BlockState CALCITE = Blocks.CALCITE.getDefaultState();
-        BlockState TUFF = Blocks.TUFF.getDefaultState();
+        BlockState SMOOTH_BASALT = Blocks.SMOOTH_BASALT.getDefaultState();
 
         BlockState CITRINE_BLOCK = PigmentBlocks.CITRINE_BLOCK.getDefaultState();
         BlockState BUDDING_CITRINE = PigmentBlocks.BUDDING_CITRINE.getDefaultState();
@@ -182,7 +182,7 @@ public class PigmentConfiguredFeatures {
                         new SimpleBlockStateProvider(CITRINE_BLOCK),
                         new SimpleBlockStateProvider(BUDDING_CITRINE),
                         new SimpleBlockStateProvider(CALCITE),
-                        new SimpleBlockStateProvider(TUFF),
+                        new SimpleBlockStateProvider(SMOOTH_BASALT),
                         ImmutableList.of(SMALL_CITRINE_BUD, MEDIUM_CITRINE_BUD, LARGE_CITRINE_BUD, CITRINE_CLUSTER)),
                 new GeodeLayerThicknessConfig(1.7D, 2.2D, 3.2D, 4.2D),
                 new GeodeCrackConfig(0.95D, 2.0D, 2), 0.35D, 0.083D, true, 4, 7, 3, 5, 1, 3, -16, 16, 0.05D, 1))
@@ -196,7 +196,7 @@ public class PigmentConfiguredFeatures {
                         new SimpleBlockStateProvider(TOPAZ_BLOCK),
                         new SimpleBlockStateProvider(BUDDING_TOPAZ),
                         new SimpleBlockStateProvider(CALCITE),
-                        new SimpleBlockStateProvider(TUFF),
+                        new SimpleBlockStateProvider(SMOOTH_BASALT),
                         ImmutableList.of(SMALL_TOPAZ_BUD, MEDIUM_TOPAZ_BUD, LARGE_TOPAZ_BUD, TOPAZ_CLUSTER)),
                 new GeodeLayerThicknessConfig(1.7D, 2.2D, 3.2D, 4.2D),
                 new GeodeCrackConfig(0.95D, 2.0D, 2), 0.35D, 0.083D, true, 4, 7, 3, 5, 1, 3, -16, 16, 0.05D, 1))
@@ -210,7 +210,7 @@ public class PigmentConfiguredFeatures {
                         new SimpleBlockStateProvider(MOONSTONE_BLOCK),
                         new SimpleBlockStateProvider(BUDDING_MOONSTONE),
                         new SimpleBlockStateProvider(CALCITE),
-                        new SimpleBlockStateProvider(TUFF),
+                        new SimpleBlockStateProvider(SMOOTH_BASALT),
                         ImmutableList.of(SMALL_MOONSTONE_BUD, MEDIUM_MOONSTONE_BUD, LARGE_MOONSTONE_BUD, MOONSTONE_CLUSTER)),
                 new GeodeLayerThicknessConfig(1.7D, 2.2D, 3.2D, 4.2D),
                 new GeodeCrackConfig(0.95D, 2.0D, 2), 0.35D, 0.083D, true, 4, 7, 3, 5, 1, 3, -16, 16, 0.05D, 1))

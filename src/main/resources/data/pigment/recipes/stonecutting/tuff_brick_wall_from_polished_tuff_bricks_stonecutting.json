@@ -1,8 +1,0 @@
-{
-    "type": "minecraft:stonecutting",
-    "ingredient": {
-        "item": "pigment:tuff_bricks"
-    },
-    "result": "pigment:tuff_brick_wall",
-    "count": 1
-}

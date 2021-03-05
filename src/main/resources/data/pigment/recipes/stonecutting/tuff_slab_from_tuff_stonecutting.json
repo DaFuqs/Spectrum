@@ -1,8 +1,8 @@
 {
     "type": "minecraft:stonecutting",
     "ingredient": {
-        "item": "minecraft:tuff"
+        "item": "minecraft:basalt"
     },
-    "result": "pigment:tuff_slab",
+    "result": "pigment:basalt_slab",
     "count": 2
 }

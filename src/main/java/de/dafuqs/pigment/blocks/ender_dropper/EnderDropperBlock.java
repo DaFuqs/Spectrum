@@ -1,5 +1,6 @@
 package de.dafuqs.pigment.blocks.ender_dropper;
 
+import net.fabricmc.fabric.impl.registry.sync.FabricRegistry;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.block.dispenser.DispenserBehavior;

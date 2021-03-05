@@ -92,6 +92,8 @@ public class PigmentItems {
     public static final Item SHATTERED_SCARLET_FRAGMENTS = new GravityItem(generalItemSettings, -0.003F);
     public static final Item SCARLET_GEM = new GravityItem(generalItemSettings, -0.02F);
 
+    public static final EnderSpliceItem ENDER_SPLICE = new EnderSpliceItem(generalItemSettings);
+
     // SPECIAL TOOLS
     public static final LowHealthMaterial LOW_HEALTH_MATERIAL = new LowHealthMaterial();
     public static final VoidingMaterial VOIDING_MATERIAL = new VoidingMaterial();
@@ -182,6 +184,7 @@ public class PigmentItems {
 
         registerItem("music_disc_pigment_theme", MUSIC_DISC_PIGMENT_THEME);
         registerItem("invisible_item_frame", INVISIBLE_ITEM_FRAME);
+        registerItem("ender_splice", ENDER_SPLICE);
     }
 
 

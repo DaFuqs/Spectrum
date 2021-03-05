@@ -18,6 +18,9 @@
   "pigment.subtitles.block.decay3.place": "High pitched screeching",
   "pigment.subtitles.theme_plays": "Pigment theme plays",
   "pigment.subtitles.dimension_ambient": "Cave howling",
+  "pigment.subtitles.player_teleports": "Player teleports",
+  "pigment.subtitles.ender_splice_charges": "Ender Splice charges",
+  "pigment.subtitles.ender_splice_binds": "Ender Splice binds",
 
   "pigment.toast.revelation.title": "You have gained more knowledge about the world around you",
   "pigment.toast.revelation.text": "New things in the world reveal themselves to you",
@@ -422,6 +425,10 @@
   "item.pigment.voiding_pickaxe": "Voiding Pickaxe",
   "item.pigment.glow_vision_helmet": "Glow Vision Helmet",
   "item.pigment.glow_vision_helmet.tooltip": "Powered by Glow Ink Sacs",
+  "item.pigment.ender_splice": "Ender Splice",
+  "item.pigment.ender_splice.tooltip.unbound": "§Use to bind to your current position",
+  "item.pigment.ender_splice.tooltip.bound": "§7Bound to %d %d %d §7in %s§7. Use to teleport",
+  "item.pigment.ender_splice.wrong_dimension": "This Ender Splices energy is not strong enough to teleport you across dimensions.",
 
   "block.pigment.compactor": "Compacting Chest",
   "block.pigment.altar": "Altar",

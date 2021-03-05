@@ -1,5 +1,6 @@
 package de.dafuqs.pigment.registries;
 
+import de.dafuqs.pigment.recipe.altar.AltarCraftingRecipe;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
@@ -36,6 +37,14 @@ public class PigmentSoundEvents {
     public static final Identifier ITEM_ARMOR_EQUIP_GLOW_VISION_ID = new Identifier("pigment:armor_equip_glow_vision");
     public static final SoundEvent ITEM_ARMOR_EQUIP_GLOW_VISION = new SoundEvent(ITEM_ARMOR_EQUIP_GLOW_VISION_ID);
 
+    public static final Identifier PLAYER_TELEPORTS_ID = new Identifier("pigment:player_teleports");
+    public static final SoundEvent PLAYER_TELEPORTS = new SoundEvent(PLAYER_TELEPORTS_ID);
+
+    public static final Identifier ENDER_SPLICE_CHARGES_ID = new Identifier("pigment:ender_splice_charges");
+    public static final SoundEvent ENDER_SPLICE_CHARGES = new SoundEvent(ENDER_SPLICE_CHARGES_ID);
+
+    public static final Identifier ENDER_SPLICE_BOUND_ID = new Identifier("pigment:ender_splice_bound");
+    public static final SoundEvent ENDER_SPLICE_BOUND = new SoundEvent(ENDER_SPLICE_BOUND_ID);
 
     private static void register(Identifier identifier, SoundEvent soundEvent) {
         Registry.register(Registry.SOUND_EVENT, identifier, soundEvent);
@@ -50,6 +59,9 @@ public class PigmentSoundEvents {
         register(DIMENSION_SOUNDS_ID, DIMENSION_SOUNDS);
         register(NEW_REVELATION_ID, NEW_REVELATION);
         register(ITEM_ARMOR_EQUIP_GLOW_VISION_ID, ITEM_ARMOR_EQUIP_GLOW_VISION);
+        register(PLAYER_TELEPORTS_ID, PLAYER_TELEPORTS);
+        register(ENDER_SPLICE_CHARGES_ID, ENDER_SPLICE_CHARGES);
+        register(ENDER_SPLICE_BOUND_ID, ENDER_SPLICE_BOUND);
 
         register(LIQUID_CRYSTAL_AMBIENT_ID, LIQUID_CRYSTAL_AMBIENT); // TODO: sound
         register(MUD_AMBIENT_ID, MUD_AMBIENT); // TODO: sound

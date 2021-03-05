@@ -57,4 +57,20 @@ public class Support {
         }
     }
 
+    public static String getReadableDimensionString(String dimensionKeyString) {
+        switch (dimensionKeyString) {
+            case "minecraft:overworld":
+                return "Overworld";
+            //case "minecraft:nether":
+            //    return "Nether";
+            case "minecraft:end":
+                return "End";
+            default:
+                if(dimensionKeyString.contains(":")) {
+                    return dimensionKeyString.substring(0, dimensionKeyString.indexOf(":"));
+                } else {
+                    return dimensionKeyString;
+                }
+        }
+    }
 }

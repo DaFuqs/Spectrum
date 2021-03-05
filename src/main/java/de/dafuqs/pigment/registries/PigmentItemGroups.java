@@ -34,6 +34,7 @@ public class PigmentItemGroups {
                 stacks.add(PigmentDefaultEnchantments.getEnchantedItemStack(PigmentItems.SILKER_PICKAXE));
                 stacks.add(PigmentDefaultEnchantments.getEnchantedItemStack(PigmentItems.FORTUNE_PICKAXE));
                 stacks.add(PigmentDefaultEnchantments.getEnchantedItemStack(PigmentItems.VOIDING_PICKAXE));
+                stacks.add(new ItemStack(PigmentItems.GLOW_VISION_HELMET));
 
                 // bedrock tools
                 stacks.add(PigmentDefaultEnchantments.getEnchantedItemStack(PigmentItems.BEDROCK_PICKAXE));

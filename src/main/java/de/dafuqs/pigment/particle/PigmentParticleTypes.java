@@ -10,7 +10,6 @@ public class PigmentParticleTypes {
 
     public static DefaultParticleType SHOOTING_STAR;
     public static DefaultParticleType PARTICLE_EMITTER;
-
     public static DefaultParticleType register(String name, boolean alwaysShow) {
         return Registry.register(Registry.PARTICLE_TYPE, new Identifier(PigmentCommon.MOD_ID, name), FabricParticleTypes.simple(alwaysShow));
     }

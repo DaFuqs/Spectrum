@@ -38,5 +38,24 @@
     "sounds": [
       "pigment:armor_equip_glow_vision"
     ]
+  },
+  "player_teleports": {
+    "subtitle": "pigment.subtitles.player_teleports",
+    "sounds": [
+      "minecraft:mob/endermen/portal",
+      "minecraft:mob/endermen/portal2"
+    ]
+  },
+  "ender_splice_charges": {
+    "subtitle": "pigment.subtitles.ender_splice_charges",
+    "sounds": [
+      "pigment:ender_splice_charges"
+    ]
+  },
+  "ender_splice_bound": {
+    "subtitle": "pigment.subtitles.ender_splice_binds",
+    "sounds": [
+      "pigment:ender_splice_bound"
+    ]
   }
 }

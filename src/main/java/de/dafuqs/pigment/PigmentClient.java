@@ -5,24 +5,32 @@ import de.dafuqs.pigment.entity.PigmentEntityTypes;
 import de.dafuqs.pigment.inventories.AltarScreen;
 import de.dafuqs.pigment.inventories.PigmentContainers;
 import de.dafuqs.pigment.inventories.PigmentScreenHandlerTypes;
+import de.dafuqs.pigment.items.misc.EnderSpliceItem;
 import de.dafuqs.pigment.particle.PigmentParticleFactories;
 import de.dafuqs.pigment.registries.*;
 import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientLifecycleEvents;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
 import net.fabricmc.fabric.api.client.screenhandler.v1.ScreenRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.client.model.FabricModelPredicateProviderRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.color.block.BlockColorProvider;
 import net.minecraft.client.color.item.ItemColorProvider;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.Nullable;
 
 public class PigmentClient implements ClientModInitializer {
+
+    @Environment(EnvType.CLIENT)
+    public static MinecraftClient minecraftClient;
 
     @Override
     public void onInitializeClient() {
@@ -35,6 +43,7 @@ public class PigmentClient implements ClientModInitializer {
         registerBowPredicates(PigmentItems.BEDROCK_BOW);
         registerCrossbowPredicates(PigmentItems.BEDROCK_CROSSBOW);
         registerFishingRodPredicates(PigmentItems.BEDROCK_FISHING_ROD);
+        registerEnderSplicePredicates(PigmentItems.ENDER_SPLICE);
 
         PigmentBlockEntityTypes.registerClient();
         PigmentEntityTypes.registerClient();
@@ -44,6 +53,7 @@ public class PigmentClient implements ClientModInitializer {
         PigmentParticleFactories.register();
 
         ClientLifecycleEvents.CLIENT_STARTED.register(minecraftClient -> {
+            PigmentClient.minecraftClient = minecraftClient;
             registerColorProviders();
         });
     }
@@ -114,6 +124,17 @@ public class PigmentClient implements ClientModInitializer {
                 }
 
                 return (bl || bl2) && livingEntity instanceof PlayerEntity && ((PlayerEntity)livingEntity).fishHook != null ? 1.0F : 0.0F;
+            }
+        });
+    }
+
+    public static void registerEnderSplicePredicates(EnderSpliceItem enderSpliceItem) {
+        FabricModelPredicateProviderRegistry.register(enderSpliceItem, new Identifier("bound"), (itemStack, clientWorld, livingEntity, i) -> {
+            CompoundTag compoundTag = itemStack.getTag();
+            if (compoundTag != null && compoundTag.contains("PosX")) {
+                return 1.0F;
+            } else {
+                return 0.0F;
             }
         });
     }

@@ -30,7 +30,7 @@ public class PlayerDetectorBlock extends DetectorBlock implements BlockEntityPro
         if (!world.isClient && placer instanceof PlayerEntity) {
             BlockEntity blockEntity = world.getBlockEntity(pos);
             if(blockEntity instanceof PlayerDetectorBlockEntity) {
-                ((PlayerDetectorBlockEntity) blockEntity).setPlayerData(placer.getUuid(), placer.getName().getString());
+                    ((PlayerDetectorBlockEntity) blockEntity).setOwner((PlayerEntity) placer);
             }
         }
     }

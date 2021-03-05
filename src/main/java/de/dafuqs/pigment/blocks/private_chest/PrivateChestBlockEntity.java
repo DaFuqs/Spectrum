@@ -39,7 +39,9 @@ import java.util.UUID;
 )})
 public class PrivateChestBlockEntity extends LootableContainerBlockEntity implements ChestAnimationProgress, SidedInventory, PlayerOwned {
 
-    private UUID playerUUID;
+    private UUID ownerUUID;
+    private String ownerName;
+
     private DefaultedList<ItemStack> inventory;
     public final ChestStateManager stateManager;
     private final ChestLidAnimator lidAnimator;
@@ -138,22 +140,6 @@ public class PrivateChestBlockEntity extends LootableContainerBlockEntity implem
         this.inventory = list;
     }
 
-    public CompoundTag writeNbt(CompoundTag tag) {
-        super.writeNbt(tag);
-
-        if (!this.serializeLootTable(tag)) {
-            Inventories.writeNbt(tag, this.inventory);
-        }
-
-        if(this.playerUUID !=  null) {
-            tag.putUuid("UUID", this.playerUUID);
-        }
-
-        tag.putLong("LastNonOwnerOpenedTick", this.lastNonOwnerOpenedTick);
-
-        return tag;
-    }
-
     public static void clientTick(World world, BlockPos pos, BlockState state, PrivateChestBlockEntity blockEntity) {
         blockEntity.lidAnimator.step();
     }
@@ -197,10 +183,15 @@ public class PrivateChestBlockEntity extends LootableContainerBlockEntity implem
             Inventories.readNbt(tag, this.inventory);
         }
 
-        if(tag.contains("UUID")) {
-            this.playerUUID = tag.getUuid("UUID");
+        if(tag.contains("OwnerUUID")) {
+            this.ownerUUID = tag.getUuid("OwnerUUID");
         } else {
-            this.playerUUID = null;
+            this.ownerUUID = null;
+        }
+        if(tag.contains("OwnerName")) {
+            this.ownerName = tag.getString("OwnerName");
+        } else {
+            this.ownerName = "???";
         }
 
         if(tag.contains("LastNonOwnerOpenedTick")) {
@@ -210,19 +201,38 @@ public class PrivateChestBlockEntity extends LootableContainerBlockEntity implem
         }
     }
 
-    @Override
-    public void setOwnerUUID(UUID ownerUUID) {
-        this.playerUUID = ownerUUID;
+    public CompoundTag writeNbt(CompoundTag tag) {
+        super.writeNbt(tag);
+
+        if (!this.serializeLootTable(tag)) {
+            Inventories.writeNbt(tag, this.inventory);
+        }
+
+        if(this.ownerUUID != null) {
+            tag.putUuid("OwnerUUID", this.ownerUUID);
+        }
+        if(this.ownerName != null) {
+            tag.putString("OwnerName", this.ownerName);
+        }
+
+        tag.putLong("LastNonOwnerOpenedTick", this.lastNonOwnerOpenedTick);
+
+        return tag;
     }
 
     @Override
     public UUID getOwnerUUID() {
-        return this.playerUUID;
+        return this.ownerUUID;
     }
 
-    public void setPlayerData(UUID uuid, Text name) {
-        this.setOwnerUUID(uuid);
-        setCustomName(new TranslatableText("block.pigment.private_chest.title_with_owner", name.asString()));
+    public String getOwnerName() {
+        return this.ownerName;
+    }
+
+    @Override
+    public void setOwner(PlayerEntity playerEntity) {
+        this.ownerUUID = playerEntity.getUuid();
+        this.ownerName = playerEntity.getName().asString();
     }
 
     @Override
@@ -260,10 +270,10 @@ public class PrivateChestBlockEntity extends LootableContainerBlockEntity implem
     }
 
     public boolean canBreak(UUID uuid) {
-        if(this.playerUUID == null) {
+        if(this.ownerUUID == null) {
             return true;
         } else {
-            return this.playerUUID.equals(uuid);
+            return this.ownerUUID.equals(uuid);
         }
     }
 }

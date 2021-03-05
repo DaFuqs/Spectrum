@@ -9,7 +9,7 @@
     "description": {
       "translate": "advancements.pigment.pigment.description"
     },
-    "background": "pigment:textures/advancement_background.png"
+    "background": "pigment:textures/gui/advancement_background.png"
   },
   "criteria": {
     "has_amethyst_shard": {

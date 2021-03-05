@@ -49,7 +49,9 @@ import java.util.UUID;
 
 public class AltarBlockEntity extends LockableContainerBlockEntity implements RecipeInputProvider, SidedInventory, PlayerOwned {
 
-    private UUID playerUUID;
+    private UUID ownerUUID;
+    private String ownerName;
+
     protected DefaultedList<ItemStack> inventory;
 
     private float storedXP;
@@ -184,10 +186,15 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
         this.storedXP = tag.getFloat("StoredXP");
         this.craftingTime = tag.getShort("CraftingTime");
         this.craftingTimeTotal = tag.getShort("CraftingTimeTotal");
-        if(tag.contains("UUID")) {
-            this.playerUUID = tag.getUuid("UUID");
+        if(tag.contains("OwnerUUID")) {
+            this.ownerUUID = tag.getUuid("OwnerUUID");
         } else {
-            this.playerUUID = null;
+            this.ownerUUID = null;
+        }
+        if(tag.contains("OwnerName")) {
+            this.ownerName = tag.getString("OwnerName");
+        } else {
+            this.ownerName = "???";
         }
     }
 
@@ -197,8 +204,11 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
         tag.putShort("CraftingTime", (short)this.craftingTime);
         tag.putShort("CraftingTimeTotal", (short)this.craftingTimeTotal);
 
-        if(this.playerUUID !=  null) {
-            tag.putUuid("UUID", this.playerUUID);
+        if(this.ownerUUID != null) {
+            tag.putUuid("OwnerUUID", this.ownerUUID);
+        }
+        if(this.ownerName != null) {
+            tag.putString("OwnerName", this.ownerName);
         }
         Inventories.writeNbt(tag, this.inventory);
         return tag;
@@ -428,7 +438,7 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
     }
 
     private void grantPlayerCraftingAdvancement(AltarCraftingRecipe recipe) {
-        ServerPlayerEntity serverPlayerEntity = PigmentCommon.minecraftServer.getPlayerManager().getPlayer(this.playerUUID);
+        ServerPlayerEntity serverPlayerEntity = PigmentCommon.minecraftServer.getPlayerManager().getPlayer(this.ownerUUID);
 
         // General altar crafting advancement
         Advancement craftingAdvancement = PigmentCommon.minecraftServer.getAdvancementLoader().get(new Identifier(PigmentCommon.MOD_ID, "craft_using_altar"));
@@ -504,11 +514,7 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
 
     @Override
     public boolean canInsert(int slot, ItemStack stack, @Nullable Direction dir) {
-        if(slot < 14) {
-            return true;
-        } else {
-            return false;
-        }
+        return slot < 14;
     }
 
     @Override
@@ -517,17 +523,20 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
     }
 
     @Override
-    public void setOwnerUUID(UUID ownerUUID) {
-        this.playerUUID = ownerUUID;
+    public UUID getOwnerUUID() {
+        return this.ownerUUID;
     }
 
     @Override
-    public UUID getOwnerUUID() {
-        return this.playerUUID;
+    public String getOwnerName() {
+        return this.ownerName;
     }
 
-    public void setPlayerData(UUID uuid, Text name) {
-        this.setOwnerUUID(uuid);
-        setCustomName(new TranslatableText("block.pigment.altar.title_with_owner", name.asString()));
+    @Override
+    public void setOwner(PlayerEntity playerEntity) {
+        this.ownerUUID = playerEntity.getUuid();
+        this.ownerName = playerEntity.getName().asString();
+        setCustomName(new TranslatableText("block.pigment.altar.title_with_owner", ownerName));
     }
+
 }

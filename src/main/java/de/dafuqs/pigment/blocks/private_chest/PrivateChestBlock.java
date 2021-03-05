@@ -64,8 +64,8 @@ public class PrivateChestBlock extends BlockWithEntity {
         if(blockEntity instanceof PrivateChestBlockEntity) {
             PrivateChestBlockEntity privateChestBlockEntity = ((PrivateChestBlockEntity) blockEntity);
 
-            if(privateChestBlockEntity.getOwnerUUID() == null) {
-                privateChestBlockEntity.setPlayerData(player.getUuid(), player.getName());
+            if(!privateChestBlockEntity.hasOwner()) {
+                privateChestBlockEntity.setOwner(player);
             }
 
             if(!isChestBlocked(world, pos)) {

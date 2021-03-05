@@ -1,9 +1,5 @@
 package de.dafuqs.pigment.blocks.head;
 
-import com.google.common.collect.Iterables;
-import com.mojang.authlib.GameProfile;
-import com.mojang.authlib.properties.Property;
-import de.dafuqs.pigment.blocks.head.PigmentSkullBlock;
 import de.dafuqs.pigment.registries.PigmentBlockEntityTypes;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -11,9 +7,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
-import net.minecraft.util.ChatUtil;
 import net.minecraft.util.math.BlockPos;
-import org.jetbrains.annotations.Nullable;
 
 // since SkullBlockEntity uses the fixed BlockEntityType.SKULL we have to create our own block entity :(
 // but since there is no player type / redstone interaction it should be a bit more performant than the vanilla one

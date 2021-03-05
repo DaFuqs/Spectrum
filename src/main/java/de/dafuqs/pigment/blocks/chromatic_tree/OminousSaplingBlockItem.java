@@ -21,8 +21,9 @@ public class OminousSaplingBlockItem extends BlockItem {
         BlockEntity blockEntity = context.getWorld().getBlockEntity(context.getBlockPos());
         if(blockEntity instanceof OminousSaplingBlockEntity) {
             OminousSaplingBlockEntity ominousSaplingBlockEntity = (OminousSaplingBlockEntity) blockEntity;
-            UUID placerUUID = context.getPlayer().getUuid();
-            ominousSaplingBlockEntity.setOwnerUUID(placerUUID);
+            if(context.getPlayer() != null) {
+                ominousSaplingBlockEntity.setOwner(context.getPlayer());
+            }
         }
 
         return actionResult;

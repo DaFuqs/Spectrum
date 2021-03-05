@@ -427,6 +427,9 @@
   "block.pigment.altar3": "Altar",
   "block.pigment.altar.title_with_owner": "Altar of %s",
 
+  "block.pigment.ender_dropper": "Ender Dropper",
+  "block.pigment.ender_dropper_with_owner": "Ender Dropper of %s",
+
   "block.pigment.private_chest": "Private Chest",
   "block.pigment.private_chest.title_with_owner": "Private Chest of %s",
 

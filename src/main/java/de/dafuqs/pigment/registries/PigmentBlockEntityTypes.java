@@ -6,6 +6,8 @@ import de.dafuqs.pigment.blocks.altar.AltarBlockEntity;
 import de.dafuqs.pigment.blocks.chromatic_tree.OminousSaplingBlockEntity;
 import de.dafuqs.pigment.blocks.compactor.CompactorBlockEntity;
 import de.dafuqs.pigment.blocks.detector.PlayerDetectorBlockEntity;
+import de.dafuqs.pigment.blocks.ender_dropper.EnderDropperBlockEntity;
+import de.dafuqs.pigment.blocks.head.PigmentSkullBlockEntityRenderer;
 import de.dafuqs.pigment.blocks.private_chest.PrivateChestBlockEntity;
 import de.dafuqs.pigment.blocks.private_chest.PrivateChestBlockEntityRenderer;
 import de.dafuqs.pigment.blocks.head.PigmentSkullBlockEntity;
@@ -19,6 +21,7 @@ import net.minecraft.client.render.TexturedRenderLayers;
 import net.minecraft.datafixer.TypeReferences;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Util;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
 
 import java.util.ArrayList;
@@ -31,6 +34,7 @@ public class PigmentBlockEntityTypes<T extends BlockEntity> {
     public static BlockEntityType<CompactorBlockEntity> COMPACTOR_BLOCK_ENTITY_TYPE;
     public static BlockEntityType<PrivateChestBlockEntity> PRIVATE_CHEST;
     public static BlockEntityType<PlayerDetectorBlockEntity> PLAYER_DETECTOR;
+    public static BlockEntityType<EnderDropperBlockEntity> ENDER_DROPPER;
     public static BlockEntityType<PigmentSkullBlockEntity> SKULL;
 
     private static <T extends BlockEntity> BlockEntityType<T> create(String string, FabricBlockEntityTypeBuilder<T> builder) {
@@ -44,6 +48,7 @@ public class PigmentBlockEntityTypes<T extends BlockEntity> {
         COMPACTOR_BLOCK_ENTITY_TYPE = create("compactor", FabricBlockEntityTypeBuilder.create(CompactorBlockEntity::new, PigmentBlocks.COMPACTOR));
         PRIVATE_CHEST = create("private_chest", FabricBlockEntityTypeBuilder.create(PrivateChestBlockEntity::new, PigmentBlocks.PRIVATE_CHEST));
         PLAYER_DETECTOR = create("player_detector", FabricBlockEntityTypeBuilder.create(PlayerDetectorBlockEntity::new, PigmentBlocks.PLAYER_DETECTOR));
+        ENDER_DROPPER = create("ender_dropper", FabricBlockEntityTypeBuilder.create(EnderDropperBlockEntity::new, PigmentBlocks.ENDER_DROPPER));
 
         List<Block> skullBlocks = new ArrayList<>();
         skullBlocks.addAll(PigmentBlocks.getMobHeads());
@@ -56,6 +61,7 @@ public class PigmentBlockEntityTypes<T extends BlockEntity> {
 
     public static void registerClient() {
         BlockEntityRendererRegistry.INSTANCE.register(PigmentBlockEntityTypes.PRIVATE_CHEST, PrivateChestBlockEntityRenderer::new);
+        BlockEntityRendererRegistry.INSTANCE.register(PigmentBlockEntityTypes.SKULL, PigmentSkullBlockEntityRenderer::new);
 
         registerTextureAtlasCallback();
     }

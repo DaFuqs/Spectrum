@@ -18,6 +18,7 @@ import de.dafuqs.pigment.blocks.detector.BlockLightDetectorBlock;
 import de.dafuqs.pigment.blocks.detector.ItemDetectorBlock;
 import de.dafuqs.pigment.blocks.detector.PlayerDetectorBlock;
 import de.dafuqs.pigment.blocks.detector.WeatherDetectorBlock;
+import de.dafuqs.pigment.blocks.ender_dropper.EnderDropperBlock;
 import de.dafuqs.pigment.blocks.fluid.LiquidCrystalFluidBlock;
 import de.dafuqs.pigment.blocks.fluid.MudFluidBlock;
 import de.dafuqs.pigment.blocks.head.PigmentSkullBlock;
@@ -56,7 +57,6 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Locale;
 import java.util.function.ToIntFunction;
 
@@ -457,8 +457,8 @@ public class PigmentBlocks {
     public static final Block BLAZING_CRYSTAL = new Block(FabricBlockSettings.copyOf(Blocks.GLOWSTONE));
     public static final Block RESONANT_LILY = new Block(FabricBlockSettings.copyOf(Blocks.POPPY));
 
-    public static final Block QUITOXIC_REEDS = new QuitoxicReedsBlock(AbstractBlock.Settings.of(Material.PLANT).noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.GRASS).ticksRandomly());
-    public static final Block MERMAIDS_BRUSH = new MermaidsBrushBlock(AbstractBlock.Settings.of(Material.REPLACEABLE_UNDERWATER_PLANT).noCollision().breakInstantly().sounds(BlockSoundGroup.WET_GRASS).ticksRandomly().luminance(value -> 2));
+    public static final Block QUITOXIC_REEDS = new QuitoxicReedsBlock(FabricBlockSettings.of(Material.PLANT).noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.GRASS).ticksRandomly());
+    public static final Block MERMAIDS_BRUSH = new MermaidsBrushBlock(FabricBlockSettings.of(Material.REPLACEABLE_UNDERWATER_PLANT).noCollision().breakInstantly().sounds(BlockSoundGroup.WET_GRASS).ticksRandomly().luminance(value -> 2));
 
     public static final Block ENDER_TREASURE = new EnderTreasureBlock(FabricBlockSettings.copyOf(Blocks.EMERALD_BLOCK));
     public static final Block CRACKED_END_PORTAL_FRAME = new CrackedEndPortalFrameBlock(FabricBlockSettings.copyOf(Blocks.END_PORTAL_FRAME));
@@ -467,10 +467,11 @@ public class PigmentBlocks {
     public static final Block WET_LAVA_SPONGE = new WetLavaSpongeBlock(FabricBlockSettings.copyOf(Blocks.WET_SPONGE).luminance(9).emissiveLighting(PigmentBlocks::always).postProcess(PigmentBlocks::always));
     public static final Block PRIVATE_CHEST = new PrivateChestBlock(FabricBlockSettings.of(Material.STONE).breakByTool(FabricToolTags.PICKAXES).requiresTool().hardness(4.0F).resistance(3600000.0F));
 
-    public static final Block LIGHT_LEVEL_DETECTOR = new BlockLightDetectorBlock(AbstractBlock.Settings.of(Material.STONE).strength(0.2F).sounds(BlockSoundGroup.STONE));
-    public static final Block WEATHER_DETECTOR =  new WeatherDetectorBlock(AbstractBlock.Settings.of(Material.STONE).strength(0.2F).sounds(BlockSoundGroup.STONE));
-    public static final Block ITEM_DETECTOR =  new ItemDetectorBlock(AbstractBlock.Settings.of(Material.STONE).strength(0.2F).sounds(BlockSoundGroup.STONE));
-    public static final Block PLAYER_DETECTOR =  new PlayerDetectorBlock(AbstractBlock.Settings.of(Material.STONE).strength(0.2F).sounds(BlockSoundGroup.STONE));
+    public static final Block LIGHT_LEVEL_DETECTOR = new BlockLightDetectorBlock(FabricBlockSettings.of(Material.STONE).strength(0.2F).sounds(BlockSoundGroup.STONE));
+    public static final Block WEATHER_DETECTOR =  new WeatherDetectorBlock(FabricBlockSettings.of(Material.STONE).strength(0.2F).sounds(BlockSoundGroup.STONE));
+    public static final Block ITEM_DETECTOR =  new ItemDetectorBlock(FabricBlockSettings.of(Material.STONE).strength(0.2F).sounds(BlockSoundGroup.STONE));
+    public static final Block PLAYER_DETECTOR =  new PlayerDetectorBlock(FabricBlockSettings.of(Material.STONE).strength(0.2F).sounds(BlockSoundGroup.STONE));
+    public static final Block ENDER_DROPPER =  new EnderDropperBlock(FabricBlockSettings.of(Material.STONE).requiresTool().strength(15F, 60.0F));
 
     public static final HashMap<PigmentSkullBlock.Type, Block> MOB_HEADS = new HashMap<>();
     public static final HashMap<PigmentSkullBlock.Type, Block> MOB_WALL_HEADS = new HashMap<>();
@@ -550,6 +551,8 @@ public class PigmentBlocks {
 
         registerBlock("compactor", COMPACTOR);
         registerBlockItem("compactor", new BlockItem(COMPACTOR, generalItemSettings));
+        registerBlock("ender_dropper", ENDER_DROPPER);
+        registerBlockItem("ender_dropper", new BlockItem(ENDER_DROPPER, generalItemSettings));
         registerBlock("bedrock_anvil", BEDROCK_ANVIL);
         registerBlockItem("bedrock_anvil", new BlockItem(BEDROCK_ANVIL, generalItemSettings));
 

@@ -1,13 +1,30 @@
 package de.dafuqs.pigment.blocks.head;
 
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
+import de.dafuqs.pigment.registries.PigmentBlockEntityTypes;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.SkullBlock;
+import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityTicker;
+import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.block.entity.SkullBlockEntity;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 
 public class PigmentSkullBlock extends SkullBlock {
 
     public PigmentSkullBlock(SkullType skullType, Settings settings) {
         super(skullType, settings);
+    }
+
+    public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+        return new PigmentSkullBlockEntity(pos, state);
+    }
+
+    @Nullable
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
+        return null;
     }
 
     public static enum Type implements SkullBlock.SkullType {

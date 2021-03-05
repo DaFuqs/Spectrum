@@ -33,5 +33,10 @@
     "sounds": [
       "pigment:new_revelation"
     ]
+  },
+  "armor_equip_glow_vision": {
+    "sounds": [
+      "pigment:armor_equip_glow_vision"
+    ]
   }
 }

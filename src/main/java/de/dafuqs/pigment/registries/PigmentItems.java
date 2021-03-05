@@ -3,10 +3,7 @@ package de.dafuqs.pigment.registries;
 import de.dafuqs.pigment.PigmentCommon;
 import de.dafuqs.pigment.blocks.gravity.GravityItem;
 import de.dafuqs.pigment.entity.PigmentEntityTypes;
-import de.dafuqs.pigment.items.materials.BedrockArmorMaterial;
-import de.dafuqs.pigment.items.materials.BedrockToolMaterial;
-import de.dafuqs.pigment.items.materials.LowHealthMaterial;
-import de.dafuqs.pigment.items.materials.VoidingMaterial;
+import de.dafuqs.pigment.items.materials.*;
 import de.dafuqs.pigment.items.misc.*;
 import de.dafuqs.pigment.items.tools.*;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
@@ -60,6 +57,7 @@ public class PigmentItems {
     public static final Item BEDROCK_LEGGINGS = new ArmorItem(BEDROCK_ARMOR_MATERIAL, EquipmentSlot.LEGS, pigmentBedrockItemSettings);
     public static final Item BEDROCK_BOOTS = new ArmorItem(BEDROCK_ARMOR_MATERIAL, EquipmentSlot.FEET, pigmentBedrockItemSettings);
 
+
     // Gem shards
     public static final Item CITRINE_SHARD_ITEM = new Item(pigmentWorldgenItemSettings);
     public static final Item TOPAZ_SHARD_ITEM = new Item(pigmentWorldgenItemSettings);
@@ -102,6 +100,8 @@ public class PigmentItems {
     public static final Item FORTUNE_PICKAXE = new PigmentPickaxeItem(LOW_HEALTH_MATERIAL, 1, -2.8F, preEnchantedItemSettings);
     public static final Item LOOTING_FALCHION = new SwordItem(LOW_HEALTH_MATERIAL, 4, -2.2F, preEnchantedItemSettings);
     public static final Item VOIDING_PICKAXE = new VoidingPickaxeItem(VOIDING_MATERIAL, 1, -2.8F, preEnchantedItemSettings);
+
+    public static final Item GLOW_VISION_HELMET = new GlowVisionHelmet(GlowVisionMaterial.INSTANCE, EquipmentSlot.HEAD, preEnchantedItemSettings);
 
     public static final Item END_PORTAL_CRACKER = new EndPortalCrackerItem(generalItemSettings);
     public static final Item QUITOXIC_POWDER = new Item(generalItemSettings);
@@ -178,6 +178,7 @@ public class PigmentItems {
         registerItem("fortune_pickaxe", FORTUNE_PICKAXE);
         registerItem("looting_falchion", LOOTING_FALCHION);
         registerItem("voiding_pickaxe", VOIDING_PICKAXE);
+        registerItem("glow_vision_helmet", GLOW_VISION_HELMET);
 
         registerItem("music_disc_pigment_theme", MUSIC_DISC_PIGMENT_THEME);
         registerItem("invisible_item_frame", INVISIBLE_ITEM_FRAME);

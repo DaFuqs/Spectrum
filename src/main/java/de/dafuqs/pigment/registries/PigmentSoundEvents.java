@@ -33,6 +33,10 @@ public class PigmentSoundEvents {
     public static final Identifier DIMENSION_SOUNDS_ID = new Identifier("pigment:dimension_sounds");
     public static SoundEvent DIMENSION_SOUNDS = new SoundEvent(DIMENSION_SOUNDS_ID);
 
+    public static final Identifier ITEM_ARMOR_EQUIP_GLOW_VISION_ID = new Identifier("pigment:armor_equip_glow_vision");
+    public static final SoundEvent ITEM_ARMOR_EQUIP_GLOW_VISION = new SoundEvent(ITEM_ARMOR_EQUIP_GLOW_VISION_ID);
+
+
     private static void register(Identifier identifier, SoundEvent soundEvent) {
         Registry.register(Registry.SOUND_EVENT, identifier, soundEvent);
     }
@@ -44,11 +48,13 @@ public class PigmentSoundEvents {
 
         register(PIGMENT_THEME_ID, PIGMENT_THEME);
         register(DIMENSION_SOUNDS_ID, DIMENSION_SOUNDS);
+        register(NEW_REVELATION_ID, NEW_REVELATION);
+        register(ITEM_ARMOR_EQUIP_GLOW_VISION_ID, ITEM_ARMOR_EQUIP_GLOW_VISION);
 
         register(LIQUID_CRYSTAL_AMBIENT_ID, LIQUID_CRYSTAL_AMBIENT); // TODO: sound
         register(MUD_AMBIENT_ID, MUD_AMBIENT); // TODO: sound
         register(ALTAR_USE_ID, ALTAR_USE); // TODO: sound
-        register(NEW_REVELATION_ID, NEW_REVELATION); // TODO: sound
+
     }
 
 }

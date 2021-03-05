@@ -18,15 +18,12 @@ public class BedrockArmorMaterial implements ArmorMaterial {
     @Override
     public int getProtectionAmount(EquipmentSlot slot) {
         switch (slot) {
-            case HEAD:
-            case FEET:
-                return 6;
             case LEGS:
                 return 10;
             case CHEST:
                 return 14;
             default:
-                return 0;
+                return 6;
         }
     }
 

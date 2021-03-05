@@ -420,6 +420,8 @@
   "item.pigment.fortune_pickaxe": "Lucky Pickaxe",
   "item.pigment.looting_falchion": "Razor Falchion",
   "item.pigment.voiding_pickaxe": "Voiding Pickaxe",
+  "item.pigment.glow_vision_helmet": "Glow Vision Helmet",
+  "item.pigment.glow_vision_helmet.tooltip": "Powered by Glow Ink Sacs",
 
   "block.pigment.compactor": "Compacting Chest",
   "block.pigment.altar": "Altar",

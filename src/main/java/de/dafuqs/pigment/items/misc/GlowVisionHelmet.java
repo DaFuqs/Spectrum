@@ -1,6 +1,6 @@
 package de.dafuqs.pigment.items.misc;
 
-import de.dafuqs.pigment.registries.PigmentSoundEvents;
+import de.dafuqs.pigment.sound.PigmentSoundEvents;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;

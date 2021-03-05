@@ -1,14 +1,11 @@
 package de.dafuqs.pigment.items.materials;
 
-import de.dafuqs.pigment.registries.PigmentSoundEvents;
+import de.dafuqs.pigment.sound.PigmentSoundEvents;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ArmorMaterial;
-import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.Items;
-import net.minecraft.item.ToolMaterial;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.sound.SoundEvent;
-import net.minecraft.sound.SoundEvents;
 
 public class GlowVisionMaterial implements ArmorMaterial {
 

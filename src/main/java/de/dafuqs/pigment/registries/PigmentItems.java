@@ -6,6 +6,7 @@ import de.dafuqs.pigment.entity.PigmentEntityTypes;
 import de.dafuqs.pigment.items.materials.*;
 import de.dafuqs.pigment.items.misc.*;
 import de.dafuqs.pigment.items.tools.*;
+import de.dafuqs.pigment.sound.PigmentSoundEvents;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EquipmentSlot;
@@ -110,7 +111,7 @@ public class PigmentItems {
     public static final Item MERMAIDS_GEM = new Item(generalItemSettings);
     public static final Item SHOOTING_STAR = new Item(generalItemSettings);
 
-    public static final Item MUSIC_DISC_PIGMENT_THEME = new PigmentMusicDiscItem(1,PigmentSoundEvents.PIGMENT_THEME, (musicDiscItemSettings));
+    public static final Item MUSIC_DISC_PIGMENT_THEME = new PigmentMusicDiscItem(1, PigmentSoundEvents.PIGMENT_THEME, (musicDiscItemSettings));
     public static final Item INVISIBLE_ITEM_FRAME = new InvisibleItemFrameItem(PigmentEntityTypes.INVISIBLE_ITEM_FRAME, (generalItemSettings));
 
 

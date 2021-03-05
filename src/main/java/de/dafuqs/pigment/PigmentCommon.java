@@ -8,7 +8,7 @@ import de.dafuqs.pigment.inventories.PigmentContainers;
 import de.dafuqs.pigment.inventories.PigmentScreenHandlerTypes;
 import de.dafuqs.pigment.recipe.PigmentRecipeTypes;
 import de.dafuqs.pigment.registries.*;
-import de.dafuqs.pigment.registries.PigmentSoundEvents;
+import de.dafuqs.pigment.sound.PigmentSoundEvents;
 import de.dafuqs.pigment.worldgen.PigmentConfiguredFeatures;
 import de.dafuqs.pigment.worldgen.PigmentFeatures;
 import me.sargunvohra.mcmods.autoconfig1u.AutoConfig;

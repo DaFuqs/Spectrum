@@ -1,18 +1,12 @@
-package de.dafuqs.pigment;
+package de.dafuqs.pigment.sound;
 
-import de.dafuqs.pigment.registries.PigmentSoundEvents;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.fabricmc.loader.util.sat4j.core.Vec;
 import net.minecraft.client.sound.AbstractSoundInstance;
 import net.minecraft.client.sound.TickableSoundInstance;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EyeOfEnderEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 

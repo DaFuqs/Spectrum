@@ -1,4 +1,4 @@
-package de.dafuqs.pigment.registries;
+package de.dafuqs.pigment.sound;
 
 import de.dafuqs.pigment.recipe.altar.AltarCraftingRecipe;
 import net.minecraft.sound.SoundEvent;

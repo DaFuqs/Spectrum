@@ -16,10 +16,11 @@
     "ItemEntityMixin",
     "ItemFrameEntityMixin",
     "ItemModelsMixin",
+    "LivingEntityMixin",
     "MobSpawnerBlockEntityMixin",
     "ServerWorldMixin",
     "SpawnerBlockMixin",
-    "WorldRendererMixin",
+    "WorldRendererMixin"
   ],
   "client": [
     "client.AccessorClientAdvancementManager",

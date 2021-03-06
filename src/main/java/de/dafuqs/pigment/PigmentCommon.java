@@ -2,6 +2,8 @@ package de.dafuqs.pigment;
 
 import de.dafuqs.pigment.config.PigmentConfig;
 import de.dafuqs.pigment.dimension.DeeperDownDimension;
+import de.dafuqs.pigment.loot.EnchantmentDrops;
+import de.dafuqs.pigment.loot.PigmentLootConditionTypes;
 import de.dafuqs.pigment.particle.PigmentParticleTypes;
 import de.dafuqs.pigment.enchantments.PigmentEnchantments;
 import de.dafuqs.pigment.inventories.PigmentContainers;
@@ -58,6 +60,7 @@ public class PigmentCommon implements ModInitializer {
 
         // Recipes
         PigmentRecipeTypes.register();
+        PigmentLootConditionTypes.register();
 
         // GUI
         PigmentContainers.register();
@@ -66,7 +69,7 @@ public class PigmentCommon implements ModInitializer {
         // Default enchantments for some items
         PigmentItemStackDamageImmunities.registerDefaultItemStackImmunities();
         PigmentDefaultEnchantments.registerDefaultEnchantments();
-        PigmentResonanceDrops.setup();
+        EnchantmentDrops.setup();
 
         PigmentParticleTypes.register();
 

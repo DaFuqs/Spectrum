@@ -14,6 +14,8 @@ public class PigmentEnchantments {
     public static final Enchantment AUTO_SMELT = new AutoSmeltEnchantment(Enchantment.Rarity.RARE, EquipmentSlot.MAINHAND); // applies smelting recipe before dropping items after mining
     public static final Enchantment INVENTORY_INSERTION = new InventoryInsertionEnchantment(Enchantment.Rarity.RARE, EquipmentSlot.MAINHAND); // don't drop items into the world, add to inv instead
     public static final Enchantment VOIDING = new InventoryInsertionEnchantment(Enchantment.Rarity.RARE, EquipmentSlot.MAINHAND); // Voids all items mined
+    public static final Enchantment EXUBERANCE = new ExuberanceEnchantment(Enchantment.Rarity.UNCOMMON, EquipmentSlot.MAINHAND); // Drops more XP on kill
+    public static final Enchantment TREASURE_HUNTER = new TreasureHunterEnchantment(Enchantment.Rarity.RARE, EquipmentSlot.MAINHAND); // Drops mob heads
 
     public static void register() {
         Registry.register(Registry.ENCHANTMENT, new Identifier(PigmentCommon.MOD_ID, "resonance"), RESONANCE);
@@ -21,6 +23,8 @@ public class PigmentEnchantments {
         Registry.register(Registry.ENCHANTMENT, new Identifier(PigmentCommon.MOD_ID, "autosmelt"), AUTO_SMELT);
         Registry.register(Registry.ENCHANTMENT, new Identifier(PigmentCommon.MOD_ID, "inventory_insertion"), INVENTORY_INSERTION);
         Registry.register(Registry.ENCHANTMENT, new Identifier(PigmentCommon.MOD_ID, "voiding"), VOIDING);
+        Registry.register(Registry.ENCHANTMENT, new Identifier(PigmentCommon.MOD_ID, "exuberance"), EXUBERANCE);
+        Registry.register(Registry.ENCHANTMENT, new Identifier(PigmentCommon.MOD_ID, "treasure_hunter"), TREASURE_HUNTER);
     }
 
 }

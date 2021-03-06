@@ -6,17 +6,28 @@ import de.dafuqs.pigment.interfaces.GravitableItem;
 import de.dafuqs.pigment.inventories.AutoCompactingInventory;
 import de.dafuqs.pigment.recipe.PigmentRecipeTypes;
 import de.dafuqs.pigment.recipe.anvil_crushing.AnvilCrushingRecipe;
+import de.dafuqs.pigment.registries.PigmentS2CPackets;
+import de.dafuqs.pigment.sound.PigmentSoundEvents;
+import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
+import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ExperienceOrbEntity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.network.PacketByteBuf;
 import net.minecraft.particle.ParticleEffect;
+import net.minecraft.particle.ParticleTypes;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import net.minecraft.world.event.GameEvent;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -50,6 +61,8 @@ public abstract class ItemEntityMixin {
                 int crushingInputAmount = Math.min (itemStackAmount, (int) (recipe.getCrushedItemsPerPointOfDamage() * amount));
 
                 if(crushingInputAmount > 0) {
+                    Vec3d position = thisEntity.getPos();
+
                     ItemStack crushingOutput = recipe.getOutputItemStack();
                     crushingOutput.setCount(crushingOutput.getCount() * crushingInputAmount);
 
@@ -63,7 +76,6 @@ public abstract class ItemEntityMixin {
                     }
 
                     // Spawn the resulting item stack in the world
-                    Vec3d position = thisEntity.getPos();
                     ItemEntity craftedEntity = new ItemEntity(world, position.x, position.y, position.z, crushingOutput);
                     world.spawnEntity(craftedEntity);
 
@@ -77,13 +89,23 @@ public abstract class ItemEntityMixin {
                     // TODO: SEND SOUND AND PARTICLES TO CLIENTS
                     // Play sound
                     SoundEvent soundEvent = recipe.getSoundEvent();
-                    float randomVolume = 0.9F + world.getRandom().nextFloat() * 0.2F;
+                    float randomVolume = 1.0F + world.getRandom().nextFloat() * 0.2F;
                     float randomPitch = 0.9F + world.getRandom().nextFloat() * 0.2F;
-                    world.playSound(position.x, position.y, position.z, soundEvent, SoundCategory.BLOCKS, randomVolume, randomPitch, false);
+
+                    world.playSound(null, position.x, position.y, position.z, soundEvent, SoundCategory.PLAYERS, randomVolume, randomPitch);
 
                     // Particle Effect
-                    ParticleEffect particleEffect = recipe.getParticleEffect();
+                    ParticleEffect particleEffect = ParticleTypes.EXPLOSION; // recipe.getParticleEffect();
                     world.addParticle(particleEffect, position.x, position.y, position.z, 0, 0, 0);
+
+                    PacketByteBuf buf = PacketByteBufs.create();
+                    BlockPos particleBlockPos = new BlockPos(position.x, position.y, position.z);
+                    buf.writeBlockPos(particleBlockPos);
+                    // Iterate over all players tracking a position in the world and send the packet to each player
+                    for (ServerPlayerEntity player : PlayerLookup.tracking((ServerWorld) world, particleBlockPos)) {
+                        ServerPlayNetworking.send(player, PigmentS2CPackets.PLAY_PARTICLE_PACKET_ID, buf);
+                    }
+
                 }
 
                 // prevent the source itemStack taking damage.

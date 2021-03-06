@@ -49,7 +49,7 @@ public class PigmentClient implements ClientModInitializer {
         PigmentEntityTypes.registerClient();
         PigmentEntityRenderers.registerClient();
 
-        PigmentClientsidePackets.initClient();
+        PigmentS2CPackets.initClient();
         PigmentParticleFactories.register();
 
         ClientLifecycleEvents.CLIENT_STARTED.register(minecraftClient -> {

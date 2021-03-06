@@ -57,5 +57,11 @@
     "sounds": [
       "pigment:ender_splice_bound"
     ]
+  },
+  "natures_staff_use": {
+    "subtitle": "pigment.subtitles.natures_staff_use",
+    "sounds": [
+      "pigment:natures_staff_use"
+    ]
   }
 }

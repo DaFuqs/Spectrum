@@ -23,6 +23,7 @@
   "pigment.subtitles.player_teleports": "Player teleports",
   "pigment.subtitles.ender_splice_charges": "Ender Splice charges",
   "pigment.subtitles.ender_splice_binds": "Ender Splice binds",
+  "pigment.subtitles.natures_staff_use": "Harmonic melodies jingling",
 
   "pigment.toast.revelation.title": "You have gained more knowledge about the world around you",
   "pigment.toast.revelation.text": "New things in the world reveal themselves to you",
@@ -433,6 +434,7 @@
   "item.pigment.ender_splice.tooltip.unbound": "§7Use to bind to your current position",
   "item.pigment.ender_splice.tooltip.bound": "§7Bound to %d %d %d §7in %s§7. Use to teleport",
   "item.pigment.ender_splice.wrong_dimension": "This Ender Splices energy is not strong enough to teleport you across dimensions.",
+  "item.pigment.natures_staff": "Nature's Staff",
 
   "block.pigment.compactor": "Compacting Chest",
   "block.pigment.altar": "Altar",

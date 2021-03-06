@@ -1,6 +1,5 @@
 package de.dafuqs.pigment.misc;
 
-import de.dafuqs.pigment.RevelationToast;
 import de.dafuqs.pigment.accessor.WorldRendererAccessor;
 import de.dafuqs.pigment.interfaces.Cloakable;
 import de.dafuqs.pigment.registries.PigmentBlocks;

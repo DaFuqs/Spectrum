@@ -38,7 +38,6 @@ public class EnderSpliceItem extends Item {
 
     @Override
     public ItemStack finishUsing(ItemStack itemStack, World world, LivingEntity user) {
-
         PlayerEntity playerEntity = user instanceof PlayerEntity ? (PlayerEntity)user : null;
         if (playerEntity instanceof ServerPlayerEntity) {
             Criteria.CONSUME_ITEM.trigger((ServerPlayerEntity)playerEntity, itemStack);
@@ -75,8 +74,6 @@ public class EnderSpliceItem extends Item {
             return itemStack;
         } else {
             if(world.isClient) {
-                if(playerEntity != null) {
-                }
             } else {
                 Vec3d pos = user.getPos();
 
@@ -98,7 +95,9 @@ public class EnderSpliceItem extends Item {
     }
 
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-        PigmentClient.minecraftClient.getSoundManager().play(new EnderSpliceChargingSoundInstance(user));
+        if(world.isClient) {
+            PigmentClient.minecraftClient.getSoundManager().play(new EnderSpliceChargingSoundInstance(user));
+        }
         return ItemUsage.consumeHeldItem(world, user, hand);
     }
 

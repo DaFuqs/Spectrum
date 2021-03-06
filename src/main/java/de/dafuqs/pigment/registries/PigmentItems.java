@@ -3,6 +3,7 @@ package de.dafuqs.pigment.registries;
 import de.dafuqs.pigment.PigmentCommon;
 import de.dafuqs.pigment.blocks.gravity.GravityItem;
 import de.dafuqs.pigment.entity.PigmentEntityTypes;
+import de.dafuqs.pigment.items.misc.AnimatedWandItem;
 import de.dafuqs.pigment.items.materials.*;
 import de.dafuqs.pigment.items.misc.*;
 import de.dafuqs.pigment.items.tools.*;
@@ -105,6 +106,7 @@ public class PigmentItems {
     public static final Item VOIDING_PICKAXE = new VoidingPickaxeItem(VOIDING_MATERIAL, 1, -2.8F, preEnchantedItemSettings);
 
     public static final Item GLOW_VISION_HELMET = new GlowVisionHelmet(GlowVisionMaterial.INSTANCE, EquipmentSlot.HEAD, preEnchantedItemSettings);
+    public static final Item NATURES_STAFF = new AnimatedWandItem(preEnchantedItemSettings);
 
     public static final Item END_PORTAL_CRACKER = new EndPortalCrackerItem(generalItemSettings);
     public static final Item QUITOXIC_POWDER = new Item(generalItemSettings);
@@ -186,6 +188,7 @@ public class PigmentItems {
         registerItem("music_disc_pigment_theme", MUSIC_DISC_PIGMENT_THEME);
         registerItem("invisible_item_frame", INVISIBLE_ITEM_FRAME);
         registerItem("ender_splice", ENDER_SPLICE);
+        registerItem("natures_staff", NATURES_STAFF);
     }
 
 

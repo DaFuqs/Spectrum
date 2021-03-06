@@ -44,6 +44,7 @@ public class PigmentClient implements ClientModInitializer {
         registerCrossbowPredicates(PigmentItems.BEDROCK_CROSSBOW);
         registerFishingRodPredicates(PigmentItems.BEDROCK_FISHING_ROD);
         registerEnderSplicePredicates(PigmentItems.ENDER_SPLICE);
+        registerAnimatedWandPredicates(PigmentItems.NATURES_STAFF);
 
         PigmentBlockEntityTypes.registerClient();
         PigmentEntityTypes.registerClient();
@@ -138,5 +139,12 @@ public class PigmentClient implements ClientModInitializer {
             }
         });
     }
+
+    private void registerAnimatedWandPredicates(Item item) {
+        FabricModelPredicateProviderRegistry.register(item, new Identifier("in_use"), (itemStack, clientWorld, livingEntity, i) -> {
+            return (livingEntity != null && livingEntity.isUsingItem() && livingEntity.getActiveItem() == itemStack) ? 1.0F : 0.0F;
+        });
+    }
+
 
 }

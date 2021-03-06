@@ -1,9 +1,9 @@
-package de.dafuqs.pigment;
+package de.dafuqs.pigment.misc;
 
 import com.mojang.blaze3d.systems.RenderSystem;
+import de.dafuqs.pigment.PigmentCommon;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.sound.PositionedSoundInstance;
-import net.minecraft.client.toast.AdvancementToast;
 import net.minecraft.client.toast.Toast;
 import net.minecraft.client.toast.ToastManager;
 import net.minecraft.client.util.math.MatrixStack;

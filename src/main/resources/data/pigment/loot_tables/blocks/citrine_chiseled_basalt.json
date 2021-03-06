@@ -6,7 +6,7 @@
     "entries": [
     {
         "type": "minecraft:item",
-        "name": "pigment:citrine_chiseled_tuff"
+        "name": "pigment:citrine_chiseled_basalt"
     }
     ],
     "conditions": [

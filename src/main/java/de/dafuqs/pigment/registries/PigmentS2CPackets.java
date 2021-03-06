@@ -10,7 +10,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 
 public class PigmentS2CPackets {
-	
+
 	public static final Identifier PLAY_PARTICLE_PACKET_ID = new Identifier(PigmentCommon.MOD_ID, "particle");
 
 

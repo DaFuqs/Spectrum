@@ -45,6 +45,9 @@ public class PigmentSoundEvents {
     public static final Identifier ENDER_SPLICE_BOUND_ID = new Identifier("pigment:ender_splice_bound");
     public static final SoundEvent ENDER_SPLICE_BOUND = new SoundEvent(ENDER_SPLICE_BOUND_ID);
 
+    public static final Identifier NATURES_STAFF_USE_ID = new Identifier("pigment:natures_staff_use");
+    public static final SoundEvent NATURES_STAFF_USE = new SoundEvent(NATURES_STAFF_USE_ID);
+
     private static void register(Identifier identifier, SoundEvent soundEvent) {
         Registry.register(Registry.SOUND_EVENT, identifier, soundEvent);
     }
@@ -61,6 +64,7 @@ public class PigmentSoundEvents {
         register(PLAYER_TELEPORTS_ID, PLAYER_TELEPORTS);
         register(ENDER_SPLICE_CHARGES_ID, ENDER_SPLICE_CHARGES);
         register(ENDER_SPLICE_BOUND_ID, ENDER_SPLICE_BOUND);
+        register(NATURES_STAFF_USE_ID, NATURES_STAFF_USE);
 
         register(LIQUID_CRYSTAL_AMBIENT_ID, LIQUID_CRYSTAL_AMBIENT); // TODO: sound
         register(MUD_AMBIENT_ID, MUD_AMBIENT); // TODO: sound

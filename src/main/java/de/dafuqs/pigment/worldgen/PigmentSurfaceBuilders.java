@@ -1,4 +1,4 @@
-package de.dafuqs.pigment.registries;
+package de.dafuqs.pigment.worldgen;
 
 import com.google.common.collect.ImmutableList;
 import com.mojang.serialization.Codec;

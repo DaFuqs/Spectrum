@@ -6,7 +6,7 @@
     "entries": [
     {
         "type": "minecraft:item",
-        "name": "pigment:tuff_brick_stairs"
+        "name": "pigment:basalt_brick_stairs"
     }
     ],
     "conditions": [

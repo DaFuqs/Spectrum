@@ -6,7 +6,7 @@
     "entries": [
     {
         "type": "minecraft:item",
-        "name": "pigment:topaz_chiseled_tuff"
+        "name": "pigment:topaz_chiseled_basalt"
     }
     ],
     "conditions": [

@@ -16,7 +16,7 @@
 	        "item": "pigment:polished_basalt"
         },
         "R": {
-            "item": "minecraft:redstone_dust"
+            "item": "minecraft:redstone"
         }
     },
     "result": {

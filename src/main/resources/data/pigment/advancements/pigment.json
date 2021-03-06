@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-        "item": "minecraft:amethyst_shard"
+        "item": "pigment:altar"
     },
     "title": {
       "translate": "advancements.pigment.pigment.title"

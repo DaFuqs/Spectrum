@@ -39,7 +39,6 @@ public class RevelationToast implements Toast {
     public Visibility draw(MatrixStack matrices, ToastManager manager, long startTime) {
         Text title = new TranslatableText("pigment.toast.revelation.title");
         Text text = new TranslatableText("pigment.toast.revelation.text");
-        int i = 16776960;
 
         manager.getGame().getTextureManager().bindTexture(TEXTURE);
         RenderSystem.color3f(1.0F, 1.0F, 1.0F);
@@ -56,7 +55,7 @@ public class RevelationToast implements Toast {
 
             for(Iterator<OrderedText> var12 = wrappedTitle.iterator(); var12.hasNext(); m += 9) {
                 OrderedText orderedText = var12.next();
-                manager.getGame().textRenderer.draw(matrices, orderedText, 30.0F, (float)m, i | l);
+                manager.getGame().textRenderer.draw(matrices, orderedText, 30.0F, (float)m, 3289650 | l);
             }
         } else {
             l = MathHelper.floor(MathHelper.clamp((float)(startTime - 3000L) / 300.0F, 0.0F, 1.0F) * 252.0F) << 24 | 67108864;
@@ -66,7 +65,7 @@ public class RevelationToast implements Toast {
 
             for(Iterator<OrderedText> var12 = wrappedText.iterator(); var12.hasNext(); m += 9) {
                 OrderedText orderedText = var12.next();
-                manager.getGame().textRenderer.draw(matrices, orderedText, 30.0F, (float)m, 16777215 | l);
+                manager.getGame().textRenderer.draw(matrices, orderedText, 30.0F, (float)m, l);
             }
         }
 

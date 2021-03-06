@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "item": "pigment:altar2"
+    },
+    "title": {
+      "translate": "advancements.pigment.pigment_midgame.title"
+    },
+    "description": {
+      "translate": "advancements.pigment.pigment_midgame.description"
+    },
+    "background": "pigment:textures/gui/advancement_background_midgame.png"
+  },
+  "criteria": {
+    "get_altar2": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "pigment:altar2"
+          }
+        ]
+      }
+    }
+  }
+}

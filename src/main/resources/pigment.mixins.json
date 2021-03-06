@@ -18,6 +18,7 @@
     "ItemModelsMixin",
     "LivingEntityMixin",
     "MobSpawnerBlockEntityMixin",
+    "ServerPlayerEntityMixin",
     "ServerWorldMixin",
     "SpawnerBlockMixin",
     "WorldRendererMixin"

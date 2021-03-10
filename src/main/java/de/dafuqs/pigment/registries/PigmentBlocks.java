@@ -1,5 +1,7 @@
 package de.dafuqs.pigment.registries;
 
+import com.google.common.collect.BiMap;
+import com.google.common.collect.EnumHashBiMap;
 import de.dafuqs.pigment.PigmentCommon;
 import de.dafuqs.pigment.blocks.*;
 import de.dafuqs.pigment.blocks.altar.AltarBlock;
@@ -22,6 +24,7 @@ import de.dafuqs.pigment.blocks.ender_dropper.EnderDropperBlock;
 import de.dafuqs.pigment.blocks.fluid.LiquidCrystalFluidBlock;
 import de.dafuqs.pigment.blocks.fluid.MudFluidBlock;
 import de.dafuqs.pigment.blocks.head.PigmentSkullBlock;
+import de.dafuqs.pigment.blocks.head.PigmentSkullBlockItem;
 import de.dafuqs.pigment.blocks.head.PigmentWallSkullBlock;
 import de.dafuqs.pigment.blocks.lava_sponge.LavaSpongeBlock;
 import de.dafuqs.pigment.blocks.lava_sponge.WetLavaSpongeBlock;
@@ -33,6 +36,9 @@ import de.dafuqs.pigment.blocks.ParticleEmitterBlock;
 import de.dafuqs.pigment.blocks.gravity.GravitableBlock;
 import de.dafuqs.pigment.blocks.gravity.GravityBlockItem;
 import de.dafuqs.pigment.blocks.private_chest.PrivateChestBlock;
+import de.dafuqs.pigment.blocks.spirit_sallow.SpiritVinesBodyBlock;
+import de.dafuqs.pigment.blocks.spirit_sallow.SpiritVinesHeadBlock;
+import de.dafuqs.pigment.items.PigmentItems;
 import de.dafuqs.pigment.misc.PigmentMaterial;
 import de.dafuqs.pigment.worldgen.ColoredSaplingGenerator;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
@@ -76,7 +82,7 @@ public class PigmentBlocks {
     public static FabricItemSettings worldgenItemSettings = new FabricItemSettings().group(PigmentItemGroups.ITEM_GROUP_WORLDGEN);
     public static FabricItemSettings decorationItemSettings = new FabricItemSettings().group(PigmentItemGroups.ITEM_GROUP_DECORATION);
     public static FabricItemSettings coloredWoodItemSettings = new FabricItemSettings().group(PigmentItemGroups.ITEM_GROUP_COLORED_WOOD);
-    public static FabricItemSettings mobHeadItemSettings = new FabricItemSettings().group(PigmentItemGroups.ITEM_GROUP_DECORATION).rarity(Rarity.UNCOMMON);
+    public static FabricItemSettings mobHeadItemSettings = new FabricItemSettings().group(PigmentItemGroups.ITEM_GROUP_MOB_HEADS).rarity(Rarity.UNCOMMON);
 
     private static ToIntFunction<BlockState> createLightLevelFromBlockState(int litLevel) {
         return (blockState) -> (Boolean)blockState.get(Properties.LIT) ? litLevel : 0;
@@ -469,12 +475,33 @@ public class PigmentBlocks {
 
     public static final Block LIGHT_LEVEL_DETECTOR = new BlockLightDetectorBlock(FabricBlockSettings.of(Material.STONE).strength(0.2F).sounds(BlockSoundGroup.STONE));
     public static final Block WEATHER_DETECTOR =  new WeatherDetectorBlock(FabricBlockSettings.of(Material.STONE).strength(0.2F).sounds(BlockSoundGroup.STONE));
-    public static final Block ITEM_DETECTOR =  new ItemDetectorBlock(FabricBlockSettings.of(Material.STONE).strength(0.2F).sounds(BlockSoundGroup.STONE));
-    public static final Block PLAYER_DETECTOR =  new PlayerDetectorBlock(FabricBlockSettings.of(Material.STONE).strength(0.2F).sounds(BlockSoundGroup.STONE));
-    public static final Block ENDER_DROPPER =  new EnderDropperBlock(FabricBlockSettings.of(Material.STONE).requiresTool().strength(15F, 60.0F));
+    public static final Block ITEM_DETECTOR = new ItemDetectorBlock(FabricBlockSettings.of(Material.STONE).strength(0.2F).sounds(BlockSoundGroup.STONE));
+    public static final Block PLAYER_DETECTOR = new PlayerDetectorBlock(FabricBlockSettings.of(Material.STONE).strength(0.2F).sounds(BlockSoundGroup.STONE));
+    public static final Block ENDER_DROPPER = new EnderDropperBlock(FabricBlockSettings.of(Material.STONE).requiresTool().strength(15F, 60.0F));
 
-    public static final HashMap<PigmentSkullBlock.Type, Block> MOB_HEADS = new HashMap<>();
-    public static final HashMap<PigmentSkullBlock.Type, Block> MOB_WALL_HEADS = new HashMap<>();
+    private static final BiMap<PigmentSkullBlock.Type, Block> MOB_HEADS = EnumHashBiMap.create(PigmentSkullBlock.Type.class);
+    private static final BiMap<PigmentSkullBlock.Type, Block> MOB_WALL_HEADS = EnumHashBiMap.create(PigmentSkullBlock.Type.class);
+
+    public static final Block SPIRIT_SALLOW_ROOTS = new Block(FabricBlockSettings.copyOf(Blocks.OAK_WOOD));
+    public static final Block SPIRIT_SALLOW_LOG = new Block(FabricBlockSettings.copyOf(Blocks.OAK_WOOD));
+    public static final Block SPIRIT_SALLOW_BARK = new Block(FabricBlockSettings.copyOf(Blocks.OAK_WOOD));
+    public static final Block SPIRIT_SALLOW_CORE = new Block(FabricBlockSettings.copyOf(Blocks.OAK_WOOD));
+    public static final Block SPIRIT_SALLOW_LEAVES = new Block(FabricBlockSettings.copyOf(Blocks.OAK_WOOD));
+    public static final Block SPIRIT_SALLOW_HEART = new Block(FabricBlockSettings.copyOf(Blocks.OAK_WOOD));
+
+    private static final FabricBlockSettings spiritVinesBlockSettings = FabricBlockSettings.of(Material.PLANT).noCollision().breakInstantly().sounds(BlockSoundGroup.CAVE_VINES);
+    public static final Block CYAN_SPIRIT_SALLOW_VINES_BODY = new SpiritVinesBodyBlock(FabricBlockSettings.copyOf(spiritVinesBlockSettings).mapColor(MapColor.CYAN));
+    public static final Block CYAN_SPIRIT_SALLOW_VINES_HEAD = new SpiritVinesHeadBlock(FabricBlockSettings.copyOf(spiritVinesBlockSettings).mapColor(MapColor.CYAN));
+    public static final Block MAGENTA_SPIRIT_SALLOW_VINES_BODY = new SpiritVinesBodyBlock(FabricBlockSettings.copyOf(spiritVinesBlockSettings).mapColor(MapColor.MAGENTA));
+    public static final Block MAGENTA_SPIRIT_SALLOW_VINES_HEAD = new SpiritVinesHeadBlock(FabricBlockSettings.copyOf(spiritVinesBlockSettings).mapColor(MapColor.MAGENTA));
+    public static final Block YELLOW_SPIRIT_SALLOW_VINES_BODY = new SpiritVinesBodyBlock(FabricBlockSettings.copyOf(spiritVinesBlockSettings).mapColor(MapColor.YELLOW));
+    public static final Block YELLOW_SPIRIT_SALLOW_VINES_HEAD = new SpiritVinesHeadBlock(FabricBlockSettings.copyOf(spiritVinesBlockSettings).mapColor(MapColor.YELLOW));
+    public static final Block BLACK_SPIRIT_SALLOW_VINES_BODY = new SpiritVinesBodyBlock(FabricBlockSettings.copyOf(spiritVinesBlockSettings).mapColor(MapColor.TERRACOTTA_BLACK));
+    public static final Block BLACK_SPIRIT_SALLOW_VINES_HEAD = new SpiritVinesHeadBlock(FabricBlockSettings.copyOf(spiritVinesBlockSettings).mapColor(MapColor.TERRACOTTA_BLACK));
+    public static final Block WHITE_SPIRIT_SALLOW_VINES_BODY = new SpiritVinesBodyBlock(FabricBlockSettings.copyOf(spiritVinesBlockSettings).mapColor(MapColor.TERRACOTTA_WHITE));
+    public static final Block WHITE_SPIRIT_SALLOW_VINES_HEAD = new SpiritVinesHeadBlock(FabricBlockSettings.copyOf(spiritVinesBlockSettings).mapColor(MapColor.TERRACOTTA_WHITE));
+
+    public static final Block SACRED_SOIL = new Block(FabricBlockSettings.copyOf(Blocks.GRASS));
 
 
     private static void registerBlock(String name, Block block) {
@@ -492,6 +519,8 @@ public class PigmentBlocks {
         registerBlockItem("altar2", new BlockItem(ALTAR2, generalItemSettings));
         registerBlock("altar3", ALTAR3);
         registerBlockItem("altar3", new BlockItem(ALTAR3, generalItemSettings));
+
+        registerSpiritTree(generalItemSettings);
 
         registerBlock("private_chest", PRIVATE_CHEST);
         registerBlockItem("private_chest", new BlockItem(PRIVATE_CHEST, generalItemSettings));
@@ -566,6 +595,46 @@ public class PigmentBlocks {
         registerBlockItem("lava_sponge", new BlockItem(LAVA_SPONGE, generalItemSettings));
         registerBlock("wet_lava_sponge", WET_LAVA_SPONGE);
         registerBlockItem("wet_lava_sponge", new WetLavaSpongeItem(WET_LAVA_SPONGE, generalItemSettings));
+    }
+
+    private static void registerSpiritTree(FabricItemSettings fabricItemSettings) {
+        registerBlock("spirit_sallow_roots", SPIRIT_SALLOW_ROOTS);
+        registerBlockItem("spirit_sallow_roots", new BlockItem(SPIRIT_SALLOW_ROOTS, fabricItemSettings));
+        registerBlock("spirit_sallow_log", SPIRIT_SALLOW_LOG);
+        registerBlockItem("spirit_sallow_log", new BlockItem(SPIRIT_SALLOW_LOG, fabricItemSettings));
+        registerBlock("spirit_sallow_bark", SPIRIT_SALLOW_BARK);
+        registerBlockItem("spirit_sallow_bark", new BlockItem(SPIRIT_SALLOW_BARK, fabricItemSettings));
+        registerBlock("spirit_sallow_core", SPIRIT_SALLOW_CORE);
+        registerBlockItem("spirit_sallow_core", new BlockItem(SPIRIT_SALLOW_CORE, fabricItemSettings));
+        registerBlock("spirit_sallow_leaves", SPIRIT_SALLOW_LEAVES);
+        registerBlockItem("spirit_sallow_leaves", new BlockItem(SPIRIT_SALLOW_LEAVES, fabricItemSettings));
+        registerBlock("spirit_sallow_heart", SPIRIT_SALLOW_HEART);
+        registerBlockItem("spirit_sallow_heart", new BlockItem(SPIRIT_SALLOW_HEART, fabricItemSettings));
+
+        registerBlock("cyan_spirit_sallow_vines_head", CYAN_SPIRIT_SALLOW_VINES_HEAD);
+        registerBlockItem("cyan_spirit_sallow_vines_head", new BlockItem(CYAN_SPIRIT_SALLOW_VINES_HEAD, fabricItemSettings));
+        registerBlock("magenta_spirit_sallow_vines_head", MAGENTA_SPIRIT_SALLOW_VINES_HEAD);
+        registerBlockItem("magenta_spirit_sallow_vines_head", new BlockItem(MAGENTA_SPIRIT_SALLOW_VINES_HEAD, fabricItemSettings));
+        registerBlock("yellow_spirit_sallow_vines_head", YELLOW_SPIRIT_SALLOW_VINES_HEAD);
+        registerBlockItem("yellow_spirit_sallow_vines_head", new BlockItem(YELLOW_SPIRIT_SALLOW_VINES_HEAD, fabricItemSettings));
+        registerBlock("black_spirit_sallow_vines_head", BLACK_SPIRIT_SALLOW_VINES_HEAD);
+        registerBlockItem("black_spirit_sallow_vines_head", new BlockItem(BLACK_SPIRIT_SALLOW_VINES_HEAD, fabricItemSettings));
+        registerBlock("white_spirit_sallow_vines_head", WHITE_SPIRIT_SALLOW_VINES_HEAD);
+        registerBlockItem("white_spirit_sallow_vines_head", new BlockItem(WHITE_SPIRIT_SALLOW_VINES_HEAD, fabricItemSettings));
+
+        registerBlock("cyan_spirit_sallow_vines_body", CYAN_SPIRIT_SALLOW_VINES_BODY);
+        registerBlockItem("cyan_spirit_sallow_vines_body", new BlockItem(CYAN_SPIRIT_SALLOW_VINES_BODY, fabricItemSettings));
+        registerBlock("magenta_spirit_sallow_vines_body", MAGENTA_SPIRIT_SALLOW_VINES_BODY);
+        registerBlockItem("magenta_spirit_sallow_vines_body", new BlockItem(MAGENTA_SPIRIT_SALLOW_VINES_BODY, fabricItemSettings));
+        registerBlock("yellow_spirit_sallow_vines_body", YELLOW_SPIRIT_SALLOW_VINES_BODY);
+        registerBlockItem("yellow_spirit_sallow_vines_body", new BlockItem(YELLOW_SPIRIT_SALLOW_VINES_BODY, fabricItemSettings));
+        registerBlock("black_spirit_sallow_vines_body", BLACK_SPIRIT_SALLOW_VINES_BODY);
+        registerBlockItem("black_spirit_sallow_vines_body", new BlockItem(BLACK_SPIRIT_SALLOW_VINES_BODY, fabricItemSettings));
+        registerBlock("white_spirit_sallow_vines_body", WHITE_SPIRIT_SALLOW_VINES_BODY);
+        registerBlockItem("white_spirit_sallow_vines_body", new BlockItem(WHITE_SPIRIT_SALLOW_VINES_BODY, fabricItemSettings));
+
+        registerBlock("sacred_soil", SACRED_SOIL);
+        registerBlockItem("sacred_soil", new BlockItem(SACRED_SOIL, fabricItemSettings));
     }
 
     private static void registerOreBlocks() {
@@ -1175,7 +1244,7 @@ public class PigmentBlocks {
         for(PigmentSkullBlock.Type type : PigmentSkullBlock.Type.values()) {
             Block head = new PigmentSkullBlock(type, mobHeadBlockSettings);
             Block wallHead = new PigmentWallSkullBlock(type, AbstractBlock.Settings.of(Material.DECORATION).strength(1.0F).dropsLike(head));
-            BlockItem headItem = new WallStandingBlockItem(head, wallHead, (fabricItemSettings));
+            BlockItem headItem = new PigmentSkullBlockItem(head, wallHead, (fabricItemSettings));
 
             MOB_HEADS.put(type, head);
             MOB_WALL_HEADS.put(type, wallHead);
@@ -1188,6 +1257,14 @@ public class PigmentBlocks {
 
     public static Block getMobHead(PigmentSkullBlock.Type skullType) {
         return MOB_HEADS.get(skullType);
+    }
+
+    public static PigmentSkullBlock.Type getSkullType(Block block) {
+        if(block instanceof PigmentWallSkullBlock) {
+            return MOB_WALL_HEADS.inverse().get(block);
+        } else {
+            return MOB_HEADS.inverse().get(block);
+        }
     }
 
     public static Block getMobWallHead(PigmentSkullBlock.Type skullType) {

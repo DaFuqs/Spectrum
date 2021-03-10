@@ -7,10 +7,10 @@ import de.dafuqs.pigment.blocks.chromatic_tree.OminousSaplingBlockEntity;
 import de.dafuqs.pigment.blocks.compactor.CompactorBlockEntity;
 import de.dafuqs.pigment.blocks.detector.PlayerDetectorBlockEntity;
 import de.dafuqs.pigment.blocks.ender_dropper.EnderDropperBlockEntity;
-import de.dafuqs.pigment.blocks.head.PigmentSkullBlockEntityRenderer;
+import de.dafuqs.pigment.blocks.head.PigmentSkullBlockEntity;
+import de.dafuqs.pigment.blocks.head.PigmentSkullBlockEntityRenderer3D;
 import de.dafuqs.pigment.blocks.private_chest.PrivateChestBlockEntity;
 import de.dafuqs.pigment.blocks.private_chest.PrivateChestBlockEntityRenderer;
-import de.dafuqs.pigment.blocks.head.PigmentSkullBlockEntity;
 import net.fabricmc.fabric.api.client.rendereregistry.v1.BlockEntityRendererRegistry;
 import net.fabricmc.fabric.api.event.client.ClientSpriteRegistryCallback;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
@@ -21,7 +21,6 @@ import net.minecraft.client.render.TexturedRenderLayers;
 import net.minecraft.datafixer.TypeReferences;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Util;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
 
 import java.util.ArrayList;
@@ -61,7 +60,7 @@ public class PigmentBlockEntityTypes<T extends BlockEntity> {
 
     public static void registerClient() {
         BlockEntityRendererRegistry.INSTANCE.register(PigmentBlockEntityTypes.PRIVATE_CHEST, PrivateChestBlockEntityRenderer::new);
-        BlockEntityRendererRegistry.INSTANCE.register(PigmentBlockEntityTypes.SKULL, PigmentSkullBlockEntityRenderer::new);
+        BlockEntityRendererRegistry.INSTANCE.register(PigmentBlockEntityTypes.SKULL, PigmentSkullBlockEntityRenderer3D::new);
 
         registerTextureAtlasCallback();
     }

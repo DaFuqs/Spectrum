@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "yield=none": {
+      "model": "pigment:block/cyan_spirit_sallow_vines_head_none"
+    },
+    "yield=normal": {
+      "model": "pigment:block/cyan_spirit_sallow_vines_head_normal"
+    },
+    "yield=lucid": {
+      "model": "pigment:block/cyan_spirit_sallow_vines_head_lucid"
+    }
+  }
+}

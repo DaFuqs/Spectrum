@@ -3,7 +3,7 @@ package de.dafuqs.pigment.entity.entity;
 import de.dafuqs.pigment.Support;
 import de.dafuqs.pigment.entity.PigmentEntityTypes;
 import de.dafuqs.pigment.particle.PigmentParticleTypes;
-import de.dafuqs.pigment.registries.PigmentItems;
+import de.dafuqs.pigment.items.PigmentItems;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.entity.Entity;

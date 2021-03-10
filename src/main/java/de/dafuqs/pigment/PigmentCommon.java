@@ -2,6 +2,7 @@ package de.dafuqs.pigment;
 
 import de.dafuqs.pigment.config.PigmentConfig;
 import de.dafuqs.pigment.dimension.DeeperDownDimension;
+import de.dafuqs.pigment.items.PigmentItems;
 import de.dafuqs.pigment.loot.EnchantmentDrops;
 import de.dafuqs.pigment.loot.PigmentLootConditionTypes;
 import de.dafuqs.pigment.particle.PigmentParticleTypes;

@@ -1,6 +1,7 @@
 package de.dafuqs.pigment.registries;
 
 import de.dafuqs.pigment.enchantments.PigmentEnchantments;
+import de.dafuqs.pigment.items.PigmentItems;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.item.Item;

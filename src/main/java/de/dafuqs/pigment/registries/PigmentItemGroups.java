@@ -1,6 +1,8 @@
 package de.dafuqs.pigment.registries;
 
 import de.dafuqs.pigment.PigmentCommon;
+import de.dafuqs.pigment.blocks.head.PigmentSkullBlock;
+import de.dafuqs.pigment.items.PigmentItems;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -24,9 +26,13 @@ public class PigmentItemGroups {
             new Identifier(PigmentCommon.MOD_ID, "decoration"),
             () -> new ItemStack(PigmentBlocks.MOONSTONE_CHISELED_CALCITE));
 
+    public static final ItemGroup ITEM_GROUP_MOB_HEADS = FabricItemGroupBuilder.build(
+            new Identifier(PigmentCommon.MOD_ID, "mob_heads"),
+            () -> new ItemStack(PigmentBlocks.getMobHead(PigmentSkullBlock.Type.PUFFERFISH)));
+
     public static final ItemGroup ITEM_GROUP_PREENCHANTED_TOOLS = FabricItemGroupBuilder.create(
             new Identifier(PigmentCommon.MOD_ID, "tools"))
-            .icon(() -> new ItemStack(PigmentBlocks.ALTAR))
+            .icon(() -> new ItemStack(PigmentItems.BEDROCK_PICKAXE))
             .appendItems(stacks -> {
                 // early game tools
                 stacks.add(PigmentDefaultEnchantments.getEnchantedItemStack(PigmentItems.MULTITOOL));

@@ -1,10 +1,12 @@
 package de.dafuqs.pigment;
 
+import de.dafuqs.pigment.blocks.head.PigmentSkullBlock;
 import de.dafuqs.pigment.entity.PigmentEntityRenderers;
 import de.dafuqs.pigment.entity.PigmentEntityTypes;
 import de.dafuqs.pigment.inventories.AltarScreen;
 import de.dafuqs.pigment.inventories.PigmentContainers;
 import de.dafuqs.pigment.inventories.PigmentScreenHandlerTypes;
+import de.dafuqs.pigment.items.PigmentItems;
 import de.dafuqs.pigment.items.misc.EnderSpliceItem;
 import de.dafuqs.pigment.particle.PigmentParticleFactories;
 import de.dafuqs.pigment.registries.*;
@@ -12,6 +14,7 @@ import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientLifecycleEvents;
+import net.fabricmc.fabric.api.client.rendering.v1.BuiltinItemRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
 import net.fabricmc.fabric.api.client.screenhandler.v1.ScreenRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.client.model.FabricModelPredicateProviderRegistry;

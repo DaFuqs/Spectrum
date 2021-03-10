@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "pigment:block/cyan_spirit_vines_head_lucid"
+  }
+}

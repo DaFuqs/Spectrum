@@ -12,6 +12,7 @@ import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.world.World;
@@ -42,16 +43,16 @@ public class GlowVisionHelmet extends ArmorItem {
                         glowInkStackSlot = playerInventory.getSlotWithStack(new ItemStack(Items.GLOW_INK_SAC));
                     }
                     if (glowInkStackSlot >= 0 || playerEntity.isCreative()) {
-                        if (world.isClient) {
-                            playerEntity.playSound(PigmentSoundEvents.ITEM_ARMOR_EQUIP_GLOW_VISION, 0.2F, 1.0F);
-                        } else {
+                        if (!world.isClient) {
                             if(!playerEntity.isCreative()) {
                                 ItemStack glowInkStack = playerInventory.getStack(glowInkStackSlot);
                                 glowInkStack.decrement(1);
                                 playerInventory.setStack(glowInkStackSlot, glowInkStack);
                             }
-                            StatusEffectInstance newNightVisionInstance = new StatusEffectInstance(StatusEffects.NIGHT_VISION, 20 * 60);
+                            StatusEffectInstance newNightVisionInstance = new StatusEffectInstance(StatusEffects.NIGHT_VISION, 20 * 90);
                             playerEntity.addStatusEffect(newNightVisionInstance);
+
+                            world.playSoundFromEntity(null, playerEntity, PigmentSoundEvents.ITEM_ARMOR_EQUIP_GLOW_VISION, SoundCategory.PLAYERS, 0.2F, 1.0F);
                         }
                     }
                 }

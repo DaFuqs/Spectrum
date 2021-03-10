@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "yield=none": {
+      "model": "pigment:block/magenta_spirit_sallow_vines_body_none"
+    },
+    "yield=normal": {
+      "model": "pigment:block/magenta_spirit_sallow_vines_body_normal"
+    },
+    "yield=lucid": {
+      "model": "pigment:block/magenta_spirit_sallow_vines_body_lucid"
+    }
+  }
+}

@@ -1,6 +1,7 @@
 package de.dafuqs.pigment.blocks.head;
 
 import de.dafuqs.pigment.registries.PigmentBlockEntityTypes;
+import de.dafuqs.pigment.registries.PigmentBlocks;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.BlockState;
@@ -17,43 +18,18 @@ public class PigmentSkullBlockEntity extends BlockEntity {
         super(PigmentBlockEntityTypes.SKULL, pos, state);
     }
 
-    private PigmentSkullBlock.Type skullType;
-
-
     public CompoundTag writeNbt(CompoundTag tag) {
         super.writeNbt(tag);
-        if (this.skullType != null) {
-            tag.putString("SkullType", this.skullType.toString());
-        }
-
         return tag;
     }
 
     public void readNbt(CompoundTag tag) {
         super.readNbt(tag);
-        if (tag.contains("SkullType", 8)) {
-            PigmentSkullBlock.Type skullType = PigmentSkullBlock.Type.valueOf(tag.getString("SkullType"));
-            this.skullType = skullType;
-        }
     }
 
     @Environment(EnvType.CLIENT)
     public PigmentSkullBlock.Type getSkullType() {
-        return this.skullType;
-    }
-
-    @org.jetbrains.annotations.Nullable
-    public BlockEntityUpdateS2CPacket toUpdatePacket() {
-        return new BlockEntityUpdateS2CPacket(this.pos, 4, this.toInitialChunkDataNbt());
-    }
-
-    public CompoundTag toInitialChunkDataNbt() {
-        return this.writeNbt(new CompoundTag());
-    }
-
-    public void setSkullType(PigmentSkullBlock.Type skullType) {
-        this.skullType = skullType;
-        this.markDirty();
+        return PigmentBlocks.getSkullType(world.getBlockState(this.pos).getBlock());
     }
 
 }

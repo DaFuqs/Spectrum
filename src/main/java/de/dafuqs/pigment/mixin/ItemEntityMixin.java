@@ -86,12 +86,10 @@ public abstract class ItemEntityMixin {
                     ExperienceOrbEntity experienceOrbEntity = new ExperienceOrbEntity(world, position.x, position.y, position.z, craftingXP);
                     world.spawnEntity(experienceOrbEntity);
 
-                    // TODO: SEND SOUND AND PARTICLES TO CLIENTS
                     // Play sound
                     SoundEvent soundEvent = recipe.getSoundEvent();
                     float randomVolume = 1.0F + world.getRandom().nextFloat() * 0.2F;
                     float randomPitch = 0.9F + world.getRandom().nextFloat() * 0.2F;
-
                     world.playSound(null, position.x, position.y, position.z, soundEvent, SoundCategory.PLAYERS, randomVolume, randomPitch);
 
                     // Particle Effect

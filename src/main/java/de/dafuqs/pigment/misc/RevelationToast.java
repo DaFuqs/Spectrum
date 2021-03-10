@@ -2,6 +2,8 @@ package de.dafuqs.pigment.misc;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import de.dafuqs.pigment.PigmentCommon;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.sound.PositionedSoundInstance;
 import net.minecraft.client.toast.Toast;
@@ -18,6 +20,7 @@ import net.minecraft.util.math.MathHelper;
 import java.util.Iterator;
 import java.util.List;
 
+@Environment(EnvType.CLIENT)
 public class RevelationToast implements Toast {
 
     private final Identifier TEXTURE = new Identifier(PigmentCommon.MOD_ID, "textures/gui/toasts.png");

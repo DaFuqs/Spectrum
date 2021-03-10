@@ -7,6 +7,10 @@ import net.minecraft.util.collection.DefaultedList;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Vanilla does autocrafting, too!
+ * See SheepEntity::createDyeMixingCraftingInventory
+ */
 public class AutoCraftingInventory extends AutoInventory {
 
     List<ItemStack> inputInventory;

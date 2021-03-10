@@ -1,4 +1,4 @@
-package de.dafuqs.pigment.loot;
+package de.dafuqs.pigment.loot.conditions;
 
 import com.google.common.collect.ImmutableSet;
 import com.google.gson.JsonDeserializationContext;
@@ -6,14 +6,13 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonSerializationContext;
 import java.util.Set;
 
-import de.dafuqs.pigment.Support;
 import de.dafuqs.pigment.enchantments.PigmentEnchantments;
+import de.dafuqs.pigment.loot.PigmentLootConditionTypes;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.loot.condition.LootCondition;
 import net.minecraft.loot.condition.LootConditionType;
-import net.minecraft.loot.condition.LootConditionTypes;
 import net.minecraft.loot.context.LootContext;
 import net.minecraft.loot.context.LootContextParameter;
 import net.minecraft.loot.context.LootContextParameters;
@@ -29,7 +28,7 @@ public class RandomChanceWithTreasureHunterLootCondition implements LootConditio
     }
 
     public LootConditionType getType() {
-        return LootConditionTypes.RANDOM_CHANCE_WITH_LOOTING;
+        return PigmentLootConditionTypes.RANDOM_CHANCE_WITH_TREASURE_HUNTER;
     }
 
     public Set<LootContextParameter<?>> getRequiredParameters() {
@@ -47,7 +46,7 @@ public class RandomChanceWithTreasureHunterLootCondition implements LootConditio
             // No Treasure Hunter => no drop
             return false;
         } else {
-            return lootContext.getRandom().nextFloat() > this.chance * treasureHunterLevel;
+            return lootContext.getRandom().nextFloat() < this.chance * treasureHunterLevel;
         }
     }
 

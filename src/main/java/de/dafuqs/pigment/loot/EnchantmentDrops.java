@@ -2,25 +2,31 @@ package de.dafuqs.pigment.loot;
 
 import de.dafuqs.pigment.blocks.head.PigmentSkullBlock;
 import de.dafuqs.pigment.enchantments.PigmentEnchantments;
+import de.dafuqs.pigment.loot.conditions.*;
 import de.dafuqs.pigment.registries.PigmentBlocks;
 import net.fabricmc.fabric.api.loot.v1.FabricLootPoolBuilder;
 import net.fabricmc.fabric.api.loot.v1.event.LootTableLoadingCallback;
 import net.minecraft.block.Blocks;
+import net.minecraft.entity.passive.AxolotlEntity;
+import net.minecraft.entity.passive.FoxEntity;
+import net.minecraft.entity.passive.ParrotEntity;
+import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
+import net.minecraft.loot.LootPool;
 import net.minecraft.loot.condition.MatchToolLootCondition;
 import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
 import net.minecraft.predicate.NumberRange;
 import net.minecraft.predicate.item.EnchantmentPredicate;
 import net.minecraft.predicate.item.ItemPredicate;
+import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class EnchantmentDrops {
-
 
     private static class TreasureHunterDropDefinition {
         public Item skullItem;
@@ -41,6 +47,8 @@ public class EnchantmentDrops {
         put(new Identifier("entities/ender_dragon"), new TreasureHunterDropDefinition(Items.DRAGON_HEAD, 0.1F)); // why not!
 
         // Pigment head drops
+        // ATTENTION: No specific enough loot tables exist for fox, axolotl, parrot and shulker variants.
+        // Those are handled separately
         put(new Identifier("entities/sheep/black"), new TreasureHunterDropDefinition(PigmentBlocks.getMobHead(PigmentSkullBlock.Type.SHEEP_BLACK).asItem(), 0.01F));
         put(new Identifier("entities/sheep/blue"), new TreasureHunterDropDefinition(PigmentBlocks.getMobHead(PigmentSkullBlock.Type.SHEEP_BLUE).asItem(), 0.01F));
         put(new Identifier("entities/sheep/brown"), new TreasureHunterDropDefinition(PigmentBlocks.getMobHead(PigmentSkullBlock.Type.SHEEP_BROWN).asItem(), 0.01F));
@@ -55,6 +63,7 @@ public class EnchantmentDrops {
         put(new Identifier("entities/sheep/pink"), new TreasureHunterDropDefinition(PigmentBlocks.getMobHead(PigmentSkullBlock.Type.SHEEP_PINK).asItem(), 0.01F));
         put(new Identifier("entities/sheep/purple"), new TreasureHunterDropDefinition(PigmentBlocks.getMobHead(PigmentSkullBlock.Type.SHEEP_PURPLE).asItem(), 0.01F));
         put(new Identifier("entities/sheep/red"), new TreasureHunterDropDefinition(PigmentBlocks.getMobHead(PigmentSkullBlock.Type.SHEEP_RED).asItem(), 0.01F));
+        put(new Identifier("entities/sheep/white"), new TreasureHunterDropDefinition(PigmentBlocks.getMobHead(PigmentSkullBlock.Type.SHEEP_WHITE).asItem(), 0.01F));
         put(new Identifier("entities/sheep/yellow"), new TreasureHunterDropDefinition(PigmentBlocks.getMobHead(PigmentSkullBlock.Type.SHEEP_YELLOW).asItem(), 0.01F));
         put(new Identifier("entities/bat"), new TreasureHunterDropDefinition(PigmentBlocks.getMobHead(PigmentSkullBlock.Type.BAT).asItem(), 0.01F));
         put(new Identifier("entities/blaze"), new TreasureHunterDropDefinition(PigmentBlocks.getMobHead(PigmentSkullBlock.Type.BLAZE).asItem(), 0.01F));
@@ -107,42 +116,8 @@ public class EnchantmentDrops {
         put(new Identifier("entities/zoglin"), new TreasureHunterDropDefinition(PigmentBlocks.getMobHead(PigmentSkullBlock.Type.ZOGLIN).asItem(), 0.01F));
         put(new Identifier("entities/zombie_villager"), new TreasureHunterDropDefinition(PigmentBlocks.getMobHead(PigmentSkullBlock.Type.ZOMBIE_VILLAGER).asItem(), 0.01F));
         put(new Identifier("entities/zombified_piglin"), new TreasureHunterDropDefinition(PigmentBlocks.getMobHead(PigmentSkullBlock.Type.ZOMBIFIED_PIGLIN).asItem(), 0.01F));
-
-        // NO LOOT TABLE EXISTS
-        put(new Identifier("entities/axolotl_blue"), new TreasureHunterDropDefinition(PigmentBlocks.getMobHead(PigmentSkullBlock.Type.AXOLOTL_BLUE).asItem(), 0.01F));
-        put(new Identifier("entities/axolotl_brown"), new TreasureHunterDropDefinition(PigmentBlocks.getMobHead(PigmentSkullBlock.Type.AXOLOTL_BROWN).asItem(), 0.01F));
-        put(new Identifier("entities/axolotl_cyan"), new TreasureHunterDropDefinition(PigmentBlocks.getMobHead(PigmentSkullBlock.Type.AXOLOTL_CYAN).asItem(), 0.01F));
-        put(new Identifier("entities/axolotl_gold"), new TreasureHunterDropDefinition(PigmentBlocks.getMobHead(PigmentSkullBlock.Type.AXOLOTL_GOLD).asItem(), 0.01F));
-        put(new Identifier("entities/axolotl_leucistic"), new TreasureHunterDropDefinition(PigmentBlocks.getMobHead(PigmentSkullBlock.Type.AXOLOTL_LEUCISTIC).asItem(), 0.01F));
         put(new Identifier("entities/bee"), new TreasureHunterDropDefinition(PigmentBlocks.getMobHead(PigmentSkullBlock.Type.BEE).asItem(), 0.01F));
-        put(new Identifier("entities/clownfish"), new TreasureHunterDropDefinition(PigmentBlocks.getMobHead(PigmentSkullBlock.Type.CLOWNFISH).asItem(), 0.01F));
-        put(new Identifier("entities/fox"), new TreasureHunterDropDefinition(PigmentBlocks.getMobHead(PigmentSkullBlock.Type.FOX).asItem(), 0.01F));
-        put(new Identifier("entities/fox_arctic"), new TreasureHunterDropDefinition(PigmentBlocks.getMobHead(PigmentSkullBlock.Type.FOX_ARCTIC).asItem(), 0.01F));
-
-        // vanilla: just "parrot"
-        put(new Identifier("entities/parrot_blue"), new TreasureHunterDropDefinition(PigmentBlocks.getMobHead(PigmentSkullBlock.Type.PARROT_BLUE).asItem(), 0.01F));
-        put(new Identifier("entities/parrot_cyan"), new TreasureHunterDropDefinition(PigmentBlocks.getMobHead(PigmentSkullBlock.Type.PARROT_CYAN).asItem(), 0.01F));
-        put(new Identifier("entities/parrot_gray"), new TreasureHunterDropDefinition(PigmentBlocks.getMobHead(PigmentSkullBlock.Type.PARROT_GRAY).asItem(), 0.01F));
-        put(new Identifier("entities/parrot_green"), new TreasureHunterDropDefinition(PigmentBlocks.getMobHead(PigmentSkullBlock.Type.PARROT_GREEN).asItem(), 0.01F));
-        put(new Identifier("entities/parrot_red"), new TreasureHunterDropDefinition(PigmentBlocks.getMobHead(PigmentSkullBlock.Type.PARROT_RED).asItem(), 0.01F));
-
-        // vanilla: just "shulker"
-        put(new Identifier("entities/shulker_black"), new TreasureHunterDropDefinition(PigmentBlocks.getMobHead(PigmentSkullBlock.Type.SHULKER_BLACK).asItem(), 0.01F));
-        put(new Identifier("entities/shulker_blue"), new TreasureHunterDropDefinition(PigmentBlocks.getMobHead(PigmentSkullBlock.Type.SHULKER_BLUE).asItem(), 0.01F));
-        put(new Identifier("entities/shulker_brown"), new TreasureHunterDropDefinition(PigmentBlocks.getMobHead(PigmentSkullBlock.Type.SHULKER_BROWN).asItem(), 0.01F));
-        put(new Identifier("entities/shulker_cyan"), new TreasureHunterDropDefinition(PigmentBlocks.getMobHead(PigmentSkullBlock.Type.SHULKER_CYAN).asItem(), 0.01F));
-        put(new Identifier("entities/shulker_gray"), new TreasureHunterDropDefinition(PigmentBlocks.getMobHead(PigmentSkullBlock.Type.SHULKER_GRAY).asItem(), 0.01F));
-        put(new Identifier("entities/shulker_green"), new TreasureHunterDropDefinition(PigmentBlocks.getMobHead(PigmentSkullBlock.Type.SHULKER_GREEN).asItem(), 0.01F));
-        put(new Identifier("entities/shulker_light_blue"), new TreasureHunterDropDefinition(PigmentBlocks.getMobHead(PigmentSkullBlock.Type.SHULKER_LIGHT_BLUE).asItem(), 0.01F));
-        put(new Identifier("entities/shulker_light_gray"), new TreasureHunterDropDefinition(PigmentBlocks.getMobHead(PigmentSkullBlock.Type.SHULKER_LIGHT_GRAY).asItem(), 0.01F));
-        put(new Identifier("entities/shulker_lime"), new TreasureHunterDropDefinition(PigmentBlocks.getMobHead(PigmentSkullBlock.Type.SHULKER_LIME).asItem(), 0.01F));
-        put(new Identifier("entities/shulker_magenta"), new TreasureHunterDropDefinition(PigmentBlocks.getMobHead(PigmentSkullBlock.Type.SHULKER_MAGENTA).asItem(), 0.01F));
-        put(new Identifier("entities/shulker_orange"), new TreasureHunterDropDefinition(PigmentBlocks.getMobHead(PigmentSkullBlock.Type.SHULKER_ORANGE).asItem(), 0.01F));
-        put(new Identifier("entities/shulker_pink"), new TreasureHunterDropDefinition(PigmentBlocks.getMobHead(PigmentSkullBlock.Type.SHULKER_PINK).asItem(), 0.01F));
-        put(new Identifier("entities/shulker_purple"), new TreasureHunterDropDefinition(PigmentBlocks.getMobHead(PigmentSkullBlock.Type.SHULKER_PURPLE).asItem(), 0.01F));
-        put(new Identifier("entities/shulker_red"), new TreasureHunterDropDefinition(PigmentBlocks.getMobHead(PigmentSkullBlock.Type.SHULKER_RED).asItem(), 0.01F));
-        put(new Identifier("entities/shulker_white"), new TreasureHunterDropDefinition(PigmentBlocks.getMobHead(PigmentSkullBlock.Type.SHULKER_WHITE).asItem(), 0.01F));
-        put(new Identifier("entities/shulker_yellow"), new TreasureHunterDropDefinition(PigmentBlocks.getMobHead(PigmentSkullBlock.Type.SHULKER_YELLOW).asItem(), 0.01F));
+        put(new Identifier("entities/tropical_fish"), new TreasureHunterDropDefinition(PigmentBlocks.getMobHead(PigmentSkullBlock.Type.CLOWNFISH).asItem(), 0.01F));
     }};
 
     private static final Map<Identifier, Item> resonanceBreakableLootPools = new HashMap<Identifier, Item>() {{
@@ -171,20 +146,105 @@ public class EnchantmentDrops {
                 supplier.withPool(poolBuilder.build());
             }
 
+            // TREASURE HUNTER POOLS
+            // GENERIC
             if (trophyHunterLootPools.containsKey(id)) {
                 TreasureHunterDropDefinition treasureHunterDropDefinition = trophyHunterLootPools.get(id);
-                Item dropItem = treasureHunterDropDefinition.skullItem;
-                float chance = treasureHunterDropDefinition.treasureHunterMultiplier;
-
-                FabricLootPoolBuilder poolBuilder = FabricLootPoolBuilder.builder()
-                        .rolls(ConstantLootNumberProvider.create(1))
-                        .withCondition(RandomChanceWithTreasureHunterLootCondition.builder(chance).build())
-                        .withEntry(ItemEntry.builder(dropItem).build());
-                supplier.withPool(poolBuilder.build());
+                supplier.withPool(getLootPool(treasureHunterDropDefinition));
             }
 
+            // Some entity types use custom loot conditions
+            // because vanillas are too generic (fox/snow fox both use "fox" loot table)
+            if(id.equals(new Identifier("entities/fox"))) {
+                supplier.withPool(getFoxLootPool(FoxEntity.Type.RED, PigmentBlocks.getMobHead(PigmentSkullBlock.Type.FOX).asItem(), 0.03F));
+                supplier.withPool(getFoxLootPool(FoxEntity.Type.SNOW, PigmentBlocks.getMobHead(PigmentSkullBlock.Type.FOX_ARCTIC).asItem(), 0.03F));
+            }
+
+            if(id.equals(new Identifier("entities/shulker"))) {
+                supplier.withPool(getShulkerLootPool(DyeColor.BLACK, PigmentBlocks.getMobHead(PigmentSkullBlock.Type.SHULKER_BLACK).asItem(), 0.03F));
+                supplier.withPool(getShulkerLootPool(DyeColor.BLUE, PigmentBlocks.getMobHead(PigmentSkullBlock.Type.SHULKER_BLUE).asItem(), 0.03F));
+                supplier.withPool(getShulkerLootPool(DyeColor.BROWN, PigmentBlocks.getMobHead(PigmentSkullBlock.Type.SHULKER_BROWN).asItem(), 0.03F));
+                supplier.withPool(getShulkerLootPool(DyeColor.CYAN, PigmentBlocks.getMobHead(PigmentSkullBlock.Type.SHULKER_CYAN).asItem(), 0.03F));
+                supplier.withPool(getShulkerLootPool(DyeColor.GRAY, PigmentBlocks.getMobHead(PigmentSkullBlock.Type.SHULKER_GRAY).asItem(), 0.03F));
+                supplier.withPool(getShulkerLootPool(DyeColor.GREEN, PigmentBlocks.getMobHead(PigmentSkullBlock.Type.SHULKER_GREEN).asItem(), 0.03F));
+                supplier.withPool(getShulkerLootPool(DyeColor.LIGHT_BLUE, PigmentBlocks.getMobHead(PigmentSkullBlock.Type.SHULKER_LIGHT_BLUE).asItem(), 0.03F));
+                supplier.withPool(getShulkerLootPool(DyeColor.LIGHT_GRAY, PigmentBlocks.getMobHead(PigmentSkullBlock.Type.SHULKER_LIGHT_GRAY).asItem(), 0.03F));
+                supplier.withPool(getShulkerLootPool(DyeColor.LIME, PigmentBlocks.getMobHead(PigmentSkullBlock.Type.SHULKER_LIME).asItem(), 0.03F));
+                supplier.withPool(getShulkerLootPool(DyeColor.MAGENTA, PigmentBlocks.getMobHead(PigmentSkullBlock.Type.SHULKER_MAGENTA).asItem(), 0.03F));
+                supplier.withPool(getShulkerLootPool(DyeColor.ORANGE, PigmentBlocks.getMobHead(PigmentSkullBlock.Type.SHULKER_ORANGE).asItem(), 0.03F));
+                supplier.withPool(getShulkerLootPool(DyeColor.PINK, PigmentBlocks.getMobHead(PigmentSkullBlock.Type.SHULKER_PINK).asItem(), 0.03F));
+                supplier.withPool(getShulkerLootPool(DyeColor.PURPLE, PigmentBlocks.getMobHead(PigmentSkullBlock.Type.SHULKER_PURPLE).asItem(), 0.03F));
+                supplier.withPool(getShulkerLootPool(DyeColor.RED, PigmentBlocks.getMobHead(PigmentSkullBlock.Type.SHULKER_RED).asItem(), 0.03F));
+                supplier.withPool(getShulkerLootPool(DyeColor.WHITE, PigmentBlocks.getMobHead(PigmentSkullBlock.Type.SHULKER_WHITE).asItem(), 0.03F));
+                supplier.withPool(getShulkerLootPool(DyeColor.YELLOW, PigmentBlocks.getMobHead(PigmentSkullBlock.Type.SHULKER_YELLOW).asItem(), 0.03F));
+            }
+
+            if(id.equals(new Identifier("entities/axolotl"))) {
+                supplier.withPool(getAxolotlLootPool(AxolotlEntity.Variant.BLUE, PigmentBlocks.getMobHead(PigmentSkullBlock.Type.AXOLOTL_BLUE).asItem(), 0.03F));
+                supplier.withPool(getAxolotlLootPool(AxolotlEntity.Variant.CYAN, PigmentBlocks.getMobHead(PigmentSkullBlock.Type.AXOLOTL_CYAN).asItem(), 0.03F));
+                supplier.withPool(getAxolotlLootPool(AxolotlEntity.Variant.GOLD, PigmentBlocks.getMobHead(PigmentSkullBlock.Type.AXOLOTL_GOLD).asItem(), 0.03F));
+                supplier.withPool(getAxolotlLootPool(AxolotlEntity.Variant.LUCY, PigmentBlocks.getMobHead(PigmentSkullBlock.Type.AXOLOTL_LEUCISTIC).asItem(), 0.03F));
+                supplier.withPool(getAxolotlLootPool(AxolotlEntity.Variant.WILD, PigmentBlocks.getMobHead(PigmentSkullBlock.Type.AXOLOTL_BROWN).asItem(), 0.03F));
+            }
+
+            if(id.equals(new Identifier("entities/parrot"))) {
+                supplier.withPool(getParrotLootPool(0, PigmentBlocks.getMobHead(PigmentSkullBlock.Type.PARROT_RED).asItem(), 0.03F));
+                supplier.withPool(getParrotLootPool(1, PigmentBlocks.getMobHead(PigmentSkullBlock.Type.PARROT_BLUE).asItem(), 0.03F));
+                supplier.withPool(getParrotLootPool(2, PigmentBlocks.getMobHead(PigmentSkullBlock.Type.PARROT_GREEN).asItem(), 0.03F));
+                supplier.withPool(getParrotLootPool(3, PigmentBlocks.getMobHead(PigmentSkullBlock.Type.PARROT_CYAN).asItem(), 0.03F));
+                supplier.withPool(getParrotLootPool(4, PigmentBlocks.getMobHead(PigmentSkullBlock.Type.PARROT_GRAY).asItem(), 0.03F));
+            }
 
         });
     }
+
+    private static LootPool getLootPool(TreasureHunterDropDefinition treasureHunterDropDefinition) {
+        Item dropItem = treasureHunterDropDefinition.skullItem;
+        float chance = treasureHunterDropDefinition.treasureHunterMultiplier;
+
+        FabricLootPoolBuilder poolBuilder = FabricLootPoolBuilder.builder()
+                .rolls(ConstantLootNumberProvider.create(1))
+                .withCondition(RandomChanceWithTreasureHunterLootCondition.builder(chance).build())
+                .withEntry(ItemEntry.builder(dropItem).build());
+        return poolBuilder.build();
+    }
+
+    private static LootPool getFoxLootPool(FoxEntity.Type foxType, Item item, float chance) {
+        FabricLootPoolBuilder poolBuilder = FabricLootPoolBuilder.builder()
+                .rolls(ConstantLootNumberProvider.create(1))
+                .withCondition(RandomChanceWithTreasureHunterLootCondition.builder(chance).build())
+                .withCondition(FoxTypeLootCondition.builder(foxType).build())
+                .withEntry(ItemEntry.builder(item).build());
+        return poolBuilder.build();
+    }
+
+    private static LootPool getShulkerLootPool(DyeColor dyeColor, Item item, float chance) {
+        FabricLootPoolBuilder poolBuilder = FabricLootPoolBuilder.builder()
+                .rolls(ConstantLootNumberProvider.create(1))
+                .withCondition(RandomChanceWithTreasureHunterLootCondition.builder(chance).build())
+                .withCondition(ShulkerColorLootCondition.builder(dyeColor).build())
+                .withEntry(ItemEntry.builder(item).build());
+        return poolBuilder.build();
+    }
+
+    private static LootPool getAxolotlLootPool(AxolotlEntity.Variant variant, Item item, float chance) {
+        FabricLootPoolBuilder poolBuilder = FabricLootPoolBuilder.builder()
+                .rolls(ConstantLootNumberProvider.create(1))
+                .withCondition(RandomChanceWithTreasureHunterLootCondition.builder(chance).build())
+                .withCondition(AxolotlVariantLootCondition.builder(variant).build())
+                .withEntry(ItemEntry.builder(item).build());
+        return poolBuilder.build();
+    }
+
+
+    private static LootPool getParrotLootPool(int variant, Item item, float chance) {
+        FabricLootPoolBuilder poolBuilder = FabricLootPoolBuilder.builder()
+                .rolls(ConstantLootNumberProvider.create(1))
+                .withCondition(RandomChanceWithTreasureHunterLootCondition.builder(chance).build())
+                .withCondition(ParrotVariantLootCondition.builder(variant).build())
+                .withEntry(ItemEntry.builder(item).build());
+        return poolBuilder.build();
+    }
+
 
 }

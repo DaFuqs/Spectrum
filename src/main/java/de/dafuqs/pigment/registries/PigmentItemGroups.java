@@ -32,7 +32,7 @@ public class PigmentItemGroups {
 
     public static final ItemGroup ITEM_GROUP_PREENCHANTED_TOOLS = FabricItemGroupBuilder.create(
             new Identifier(PigmentCommon.MOD_ID, "tools"))
-            .icon(() -> new ItemStack(PigmentItems.BEDROCK_PICKAXE))
+            .icon(() -> PigmentDefaultEnchantments.getEnchantedItemStack(PigmentItems.BEDROCK_PICKAXE))
             .appendItems(stacks -> {
                 // early game tools
                 stacks.add(PigmentDefaultEnchantments.getEnchantedItemStack(PigmentItems.MULTITOOL));

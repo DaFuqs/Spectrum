@@ -4,8 +4,11 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import de.dafuqs.pigment.PigmentCommon;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.advancement.Advancement;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.sound.PositionedSoundInstance;
+import net.minecraft.client.toast.AdvancementToast;
 import net.minecraft.client.toast.Toast;
 import net.minecraft.client.toast.ToastManager;
 import net.minecraft.client.util.math.MatrixStack;
@@ -43,8 +46,10 @@ public class RevelationToast implements Toast {
         Text title = new TranslatableText("pigment.toast.revelation.title");
         Text text = new TranslatableText("pigment.toast.revelation.text");
 
-        manager.getGame().getTextureManager().bindTexture(TEXTURE);
-        RenderSystem.color3f(1.0F, 1.0F, 1.0F);
+        RenderSystem.setShader(GameRenderer::method_34542);
+        RenderSystem.setShaderTexture(0, TEXTURE);
+        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F);
+
         manager.drawTexture(matrices, 0, 0, 0, 0, this.getWidth(), this.getHeight());
 
         List<OrderedText> wrappedText = manager.getGame().textRenderer.wrapLines(text, 125);

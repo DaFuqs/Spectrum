@@ -102,16 +102,14 @@ public class PigmentConfiguredFeatures {
     private static void registerColoredTree(DyeColor dyeColor) {
         String identifierString = dyeColor.toString() + "_tree";
         RegistryKey<ConfiguredFeature<?, ?>> configuredFeatureRegistryKey = RegistryKey.of(Registry.CONFIGURED_FEATURE_WORLDGEN, new Identifier(PigmentCommon.MOD_ID, identifierString));
-        //RegistryKey<ConfiguredFeature<?, ?>> decoratedFeatureRegistryKey = RegistryKey.of(Registry.CONFIGURED_FEATURE_WORLDGEN, new Identifier(PigmentCommon.MOD_ID, identifierString + "_decorated"));
 
-        // TODO: add custom tree feature config (currently generates exactly like oak)
         // how the colored tree will look when generated
         ConfiguredFeature<TreeFeatureConfig, ?> configuredFeature = Feature.TREE.configure(
                 (new TreeFeatureConfig.Builder(
                         new SimpleBlockStateProvider(PigmentBlocks.getColoredLogBlock(dyeColor).getDefaultState()),
+                        new StraightTrunkPlacer(4, 2, 2), // 4-8 height
                         new SimpleBlockStateProvider(PigmentBlocks.getColoredLeavesBlock(dyeColor).getDefaultState()),
                         new BlobFoliagePlacer(UniformIntDistribution.of(2), UniformIntDistribution.of(0), 3),
-                        new StraightTrunkPlacer(4, 2, 2), // 4-8 height
                         new TwoLayersFeatureSize(1, 0, 1)))
                         .ignoreVines().build());
 

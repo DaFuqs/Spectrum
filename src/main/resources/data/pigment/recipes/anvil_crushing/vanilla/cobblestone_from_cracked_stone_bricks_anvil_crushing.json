@@ -1,0 +1,14 @@
+{
+  "type": "pigment_anvil_crushing",
+  "ingredient": {
+    "item": "minecraft:cracked_stone_bricks"
+  },
+  "crushedItemsPerPointOfDamage": 4,
+  "experience": 0.0,
+  "result" : {
+    "item": "minecraft:cobblestone",
+    "count": 1
+  },
+  "particleEffectIdentifier": "cloud",
+  "soundEventIdentifier": "block.stone.break"
+}

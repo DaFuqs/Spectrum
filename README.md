@@ -19,3 +19,8 @@ Stuck in the progression? Take a look at the next advancements to unlock.
 - Different forms of decay - from tame to world ending. Handle with care!
 - A possibility to get blocks that are otherwise unobtainable in vanilla. That includes mob spawners and a way to change the spawners data.
 - Lots of magical machines and tools to help you on your journey, from useful to you to deadly to others.
+
+
+## Mod Suggestions
+https://github.com/Darkhax-Minecraft/Enchantment-Descriptions: 
+Adds descriptions for all of Pigments enchantments

@@ -19,8 +19,12 @@ repositories {
 		url 'https://maven.fabricmc.net/io/github/prospector/modmenu/'
 	}
 	maven {
-		name "cotton-config"
+		name = "cotton-config"
 		url 'http://server.bbkr.space:8081/artifactory/libs-release'
+	}
+	maven {
+		name = "Enchantment Descriptions"
+		url 'https://maven.blamejared.com'
 	}
 }
 
@@ -51,6 +55,9 @@ dependencies {
 	modImplementation ("io.github.prospector:modmenu:${project.mod_menu_version}"){
 		exclude module: 'fabric-api'
 	}
+
+
+	//compile "net.darkhax.enchdesc:EnchantmentDescriptionsFabric-21w08b:3.0.1"
 }
 
 processResources {

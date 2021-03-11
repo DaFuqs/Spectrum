@@ -7,12 +7,19 @@
   "itemGroup.pigment.mob_heads": "Pigment Mob Heads",
 
   "enchantment.pigment.resonance": "Resonance",
+  "enchantment.pigment.resonance.desc": "Uses gentle vibrations to allow some blocks to drop themselves",
   "enchantment.pigment.pest_control": "Pest Control",
+  "enchantment.pigment.pest_control.desc": "Get's rid of Silverfish when breaking Invested Blocks",
   "enchantment.pigment.autosmelt": "Autosmelt",
+  "enchantment.pigment.autosmelt.desc": "Automatically smelts broken blocks",
   "enchantment.pigment.inventory_insertion": "Inventory Insertion",
+  "enchantment.pigment.inventory_insertion.desc": "Puts broken blocks into your inventory instead of dropping them into the world",
   "enchantment.pigment.voiding": "§cCurse of Voiding",
+  "enchantment.pigment.voiding.desc": "Destroys all broken blocks",
   "enchantment.pigment.exuberance": "Exuberance",
+  "enchantment.pigment.exuberance.desc": "Multiplies dropped XP",
   "enchantment.pigment.treasure_hunter": "Treasure Hunter",
+  "enchantment.pigment.treasure_hunter.desc": "Occasionally drops Mob Heads on kill",
 
   "death.attack.pigment_decay": "%s made contact with the void",
 

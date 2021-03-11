@@ -5,7 +5,6 @@ import de.dafuqs.pigment.entity.render.ShootingStarEntityRenderer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.rendereregistry.v1.EntityRendererRegistry;
-import net.minecraft.client.render.block.entity.SkullBlockEntityRenderer;
 import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.render.entity.ItemFrameEntityRenderer;
 import net.minecraft.entity.Entity;

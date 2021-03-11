@@ -51,7 +51,7 @@ public class PigmentCommon implements ModInitializer {
         PigmentFluids.register();
         PigmentBlocks.register();
         PigmentItems.register();
-        PigmentBlockEntityTypes.register();
+        PigmentBlockEntityRegistry.register();
         PigmentEnchantments.register();
         PigmentFeatures.register();
         PigmentConfiguredFeatures.register();

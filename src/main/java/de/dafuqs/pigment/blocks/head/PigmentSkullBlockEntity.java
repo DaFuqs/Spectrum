@@ -1,13 +1,12 @@
 package de.dafuqs.pigment.blocks.head;
 
-import de.dafuqs.pigment.registries.PigmentBlockEntityTypes;
+import de.dafuqs.pigment.registries.PigmentBlockEntityRegistry;
 import de.dafuqs.pigment.registries.PigmentBlocks;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
 import net.minecraft.util.math.BlockPos;
 
 // since SkullBlockEntity uses the fixed BlockEntityType.SKULL we have to create our own block entity :(
@@ -15,7 +14,7 @@ import net.minecraft.util.math.BlockPos;
 public class PigmentSkullBlockEntity extends BlockEntity {
 
     public PigmentSkullBlockEntity(BlockPos pos, BlockState state) {
-        super(PigmentBlockEntityTypes.SKULL, pos, state);
+        super(PigmentBlockEntityRegistry.SKULL, pos, state);
     }
 
     public CompoundTag writeNbt(CompoundTag tag) {

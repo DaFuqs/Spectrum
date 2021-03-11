@@ -5,6 +5,8 @@ import de.dafuqs.pigment.PigmentCommon;
 import de.dafuqs.pigment.blocks.altar.AltarBlockEntity;
 import de.dafuqs.pigment.blocks.chromatic_tree.OminousSaplingBlockEntity;
 import de.dafuqs.pigment.blocks.compactor.CompactorBlockEntity;
+import de.dafuqs.pigment.blocks.deeper_down_portal.DeeperDownPortalBlockEntity;
+import de.dafuqs.pigment.blocks.deeper_down_portal.DeeperDownPortalBlockEntityRenderer;
 import de.dafuqs.pigment.blocks.detector.PlayerDetectorBlockEntity;
 import de.dafuqs.pigment.blocks.ender_dropper.EnderDropperBlockEntity;
 import de.dafuqs.pigment.blocks.head.PigmentSkullBlockEntity;
@@ -26,7 +28,7 @@ import net.minecraft.util.registry.Registry;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PigmentBlockEntityTypes<T extends BlockEntity> {
+public class PigmentBlockEntityRegistry<T extends BlockEntity> {
 
     public static BlockEntityType<OminousSaplingBlockEntity> OMINOUS_SAPLING_BLOCK_ENTITY_TYPE;
     public static BlockEntityType<AltarBlockEntity> ALTAR_BLOCK_ENTITY_TYPE;
@@ -35,6 +37,7 @@ public class PigmentBlockEntityTypes<T extends BlockEntity> {
     public static BlockEntityType<PlayerDetectorBlockEntity> PLAYER_DETECTOR;
     public static BlockEntityType<EnderDropperBlockEntity> ENDER_DROPPER;
     public static BlockEntityType<PigmentSkullBlockEntity> SKULL;
+    public static BlockEntityType<DeeperDownPortalBlockEntity> DEEPER_DOWN_PORTAL;
 
     private static <T extends BlockEntity> BlockEntityType<T> create(String string, FabricBlockEntityTypeBuilder<T> builder) {
         Type<?> type = Util.getChoiceType(TypeReferences.BLOCK_ENTITY, string);
@@ -48,7 +51,9 @@ public class PigmentBlockEntityTypes<T extends BlockEntity> {
         PRIVATE_CHEST = create("private_chest", FabricBlockEntityTypeBuilder.create(PrivateChestBlockEntity::new, PigmentBlocks.PRIVATE_CHEST));
         PLAYER_DETECTOR = create("player_detector", FabricBlockEntityTypeBuilder.create(PlayerDetectorBlockEntity::new, PigmentBlocks.PLAYER_DETECTOR));
         ENDER_DROPPER = create("ender_dropper", FabricBlockEntityTypeBuilder.create(EnderDropperBlockEntity::new, PigmentBlocks.ENDER_DROPPER));
+        DEEPER_DOWN_PORTAL = create("deeper_down_portal", FabricBlockEntityTypeBuilder.create(DeeperDownPortalBlockEntity::new, PigmentBlocks.DEEPER_DOWN_PORTAL));
 
+        // All the skulls
         List<Block> skullBlocks = new ArrayList<>();
         skullBlocks.addAll(PigmentBlocks.getMobHeads());
         skullBlocks.addAll(PigmentBlocks.getMobWallHeads());
@@ -59,8 +64,9 @@ public class PigmentBlockEntityTypes<T extends BlockEntity> {
     }
 
     public static void registerClient() {
-        BlockEntityRendererRegistry.INSTANCE.register(PigmentBlockEntityTypes.PRIVATE_CHEST, PrivateChestBlockEntityRenderer::new);
-        BlockEntityRendererRegistry.INSTANCE.register(PigmentBlockEntityTypes.SKULL, PigmentSkullBlockEntityRenderer3D::new);
+        BlockEntityRendererRegistry.INSTANCE.register(PigmentBlockEntityRegistry.PRIVATE_CHEST, PrivateChestBlockEntityRenderer::new);
+        BlockEntityRendererRegistry.INSTANCE.register(PigmentBlockEntityRegistry.SKULL, PigmentSkullBlockEntityRenderer3D::new);
+        BlockEntityRendererRegistry.INSTANCE.register(PigmentBlockEntityRegistry.DEEPER_DOWN_PORTAL, DeeperDownPortalBlockEntityRenderer::new);
 
         registerTextureAtlasCallback();
     }

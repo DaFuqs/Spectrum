@@ -16,6 +16,7 @@ import de.dafuqs.pigment.blocks.conditional.*;
 import de.dafuqs.pigment.blocks.decay.DecayBlock1;
 import de.dafuqs.pigment.blocks.decay.DecayBlock2;
 import de.dafuqs.pigment.blocks.decay.DecayBlock3;
+import de.dafuqs.pigment.blocks.deeper_down_portal.DeeperDownPortalBlock;
 import de.dafuqs.pigment.blocks.detector.BlockLightDetectorBlock;
 import de.dafuqs.pigment.blocks.detector.ItemDetectorBlock;
 import de.dafuqs.pigment.blocks.detector.PlayerDetectorBlock;
@@ -62,7 +63,6 @@ import net.minecraft.world.BlockView;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.Locale;
 import java.util.function.ToIntFunction;
 
@@ -503,6 +503,8 @@ public class PigmentBlocks {
 
     public static final Block SACRED_SOIL = new Block(FabricBlockSettings.copyOf(Blocks.GRASS));
 
+    public static final Block DEEPER_DOWN_PORTAL = new DeeperDownPortalBlock(FabricBlockSettings.copyOf(Blocks.END_PORTAL));
+
 
     private static void registerBlock(String name, Block block) {
         Registry.register(Registry.BLOCK, new Identifier(PigmentCommon.MOD_ID, name), block);
@@ -521,6 +523,9 @@ public class PigmentBlocks {
         registerBlockItem("altar3", new BlockItem(ALTAR3, generalItemSettings));
 
         registerSpiritTree(generalItemSettings);
+
+        registerBlock("deeper_down_portal", DEEPER_DOWN_PORTAL);
+        //registerBlockItem("deeper_down_portal", new BlockItem(DEEPER_DOWN_PORTAL, generalItemSettings));
 
         registerBlock("private_chest", PRIVATE_CHEST);
         registerBlockItem("private_chest", new BlockItem(PRIVATE_CHEST, generalItemSettings));

@@ -1,7 +1,7 @@
 package de.dafuqs.pigment.blocks.detector;
 
 import de.dafuqs.pigment.interfaces.PlayerOwned;
-import de.dafuqs.pigment.registries.PigmentBlockEntityTypes;
+import de.dafuqs.pigment.registries.PigmentBlockEntityRegistry;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -17,7 +17,7 @@ public class PlayerDetectorBlockEntity extends BlockEntity implements PlayerOwne
     private String ownerName;
 
     public PlayerDetectorBlockEntity(BlockPos blockPos, BlockState blockState) {
-        super(PigmentBlockEntityTypes.PLAYER_DETECTOR, blockPos, blockState);
+        super(PigmentBlockEntityRegistry.PLAYER_DETECTOR, blockPos, blockState);
     }
 
     public CompoundTag writeNbt(CompoundTag tag) {

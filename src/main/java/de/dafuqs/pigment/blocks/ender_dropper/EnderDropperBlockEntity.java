@@ -1,7 +1,7 @@
 package de.dafuqs.pigment.blocks.ender_dropper;
 
 import de.dafuqs.pigment.interfaces.PlayerOwned;
-import de.dafuqs.pigment.registries.PigmentBlockEntityTypes;
+import de.dafuqs.pigment.registries.PigmentBlockEntityRegistry;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -20,7 +20,7 @@ public class EnderDropperBlockEntity extends BlockEntity implements PlayerOwned 
     private String ownerName;
 
     public EnderDropperBlockEntity(BlockPos blockPos, BlockState blockState) {
-        super(PigmentBlockEntityTypes.ENDER_DROPPER, blockPos, blockState);
+        super(PigmentBlockEntityRegistry.ENDER_DROPPER, blockPos, blockState);
     }
 
     protected Text getContainerName() {

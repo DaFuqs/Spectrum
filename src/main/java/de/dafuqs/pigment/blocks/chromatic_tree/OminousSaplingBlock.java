@@ -2,7 +2,7 @@ package de.dafuqs.pigment.blocks.chromatic_tree;
 
 import de.dafuqs.pigment.PigmentCommon;
 import de.dafuqs.pigment.Support;
-import de.dafuqs.pigment.registries.PigmentBlockEntityTypes;
+import de.dafuqs.pigment.registries.PigmentBlockEntityRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockEntityProvider;
 import net.minecraft.block.BlockState;
@@ -63,7 +63,7 @@ public class OminousSaplingBlock extends Block implements BlockEntityProvider {
 
     @Override
     public @Nullable BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
-        return new OminousSaplingBlockEntity(PigmentBlockEntityTypes.OMINOUS_SAPLING_BLOCK_ENTITY_TYPE, pos, state);
+        return new OminousSaplingBlockEntity(PigmentBlockEntityRegistry.OMINOUS_SAPLING_BLOCK_ENTITY_TYPE, pos, state);
     }
 
     @Override

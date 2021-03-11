@@ -1,7 +1,7 @@
 package de.dafuqs.pigment.blocks.private_chest;
 
 import de.dafuqs.pigment.blocks.altar.AltarBlockEntity;
-import de.dafuqs.pigment.registries.PigmentBlockEntityTypes;
+import de.dafuqs.pigment.registries.PigmentBlockEntityRegistry;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
@@ -56,7 +56,7 @@ public class PrivateChestBlock extends BlockWithEntity {
 
     @Nullable
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        return world.isClient ? checkType(type, PigmentBlockEntityTypes.PRIVATE_CHEST, PrivateChestBlockEntity::clientTick) : null;
+        return world.isClient ? checkType(type, PigmentBlockEntityRegistry.PRIVATE_CHEST, PrivateChestBlockEntity::clientTick) : null;
     }
 
     protected void openScreen(World world, BlockPos pos, PlayerEntity player) {

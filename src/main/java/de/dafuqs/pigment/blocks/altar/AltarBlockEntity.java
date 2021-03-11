@@ -7,7 +7,7 @@ import de.dafuqs.pigment.inventories.AltarScreenHandler;
 import de.dafuqs.pigment.inventories.AutoCraftingInventory;
 import de.dafuqs.pigment.recipe.PigmentRecipeTypes;
 import de.dafuqs.pigment.recipe.altar.AltarCraftingRecipe;
-import de.dafuqs.pigment.registries.PigmentBlockEntityTypes;
+import de.dafuqs.pigment.registries.PigmentBlockEntityRegistry;
 import de.dafuqs.pigment.registries.PigmentBlocks;
 import de.dafuqs.pigment.items.PigmentItems;
 import net.minecraft.advancement.Advancement;
@@ -65,7 +65,7 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
     private static AutoCraftingInventory autoCraftingInventory;
 
     public AltarBlockEntity(BlockPos blockPos, BlockState blockState) {
-        super(PigmentBlockEntityTypes.ALTAR_BLOCK_ENTITY_TYPE, blockPos, blockState);
+        super(PigmentBlockEntityRegistry.ALTAR_BLOCK_ENTITY_TYPE, blockPos, blockState);
 
         if(autoCraftingInventory == null) {
             autoCraftingInventory = new AutoCraftingInventory();

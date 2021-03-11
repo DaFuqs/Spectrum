@@ -1,7 +1,7 @@
 package de.dafuqs.pigment.blocks.private_chest;
 
 import de.dafuqs.pigment.interfaces.PlayerOwned;
-import de.dafuqs.pigment.registries.PigmentBlockEntityTypes;
+import de.dafuqs.pigment.registries.PigmentBlockEntityRegistry;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.api.EnvironmentInterface;
@@ -48,7 +48,7 @@ public class PrivateChestBlockEntity extends LootableContainerBlockEntity implem
     long lastNonOwnerOpenedTick;
 
     public PrivateChestBlockEntity(BlockPos blockPos, BlockState blockState) {
-        super(PigmentBlockEntityTypes.PRIVATE_CHEST, blockPos, blockState);
+        super(PigmentBlockEntityRegistry.PRIVATE_CHEST, blockPos, blockState);
         this.inventory = DefaultedList.ofSize(size(), ItemStack.EMPTY);
         this.lastNonOwnerOpenedTick = -1;
 

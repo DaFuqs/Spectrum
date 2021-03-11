@@ -30,8 +30,7 @@ public class AltarScreen extends HandledScreen<AltarScreenHandler> {
         int intInventoryY = 100;
 
         this.textRenderer.draw(matrices, title, titleX, titleY, 4210752);
-        // TODO:
-        //this.textRenderer.draw(matrices, this.playerInventory.getName(), inventoryX, intInventoryY, 4210752);
+        this.textRenderer.draw(matrices, this.field_29347, inventoryX, intInventoryY, 4210752); // Player Inventory title
     }
 
     @Override

@@ -128,6 +128,7 @@ public class EnchantmentDrops {
         put(new Identifier("blocks/infested_mossy_stone_bricks"), Blocks.INFESTED_MOSSY_STONE_BRICKS.asItem());
         put(new Identifier("blocks/infested_stone"), Blocks.INFESTED_STONE.asItem());
         put(new Identifier("blocks/infested_stone_bricks"), Blocks.INFESTED_STONE_BRICKS.asItem());
+        put(new Identifier("blocks/infested_deepslate"), Blocks.INFESTED_DEEPSLATE.asItem());
     }};
 
     public static void setup() {

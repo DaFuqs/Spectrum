@@ -6,7 +6,7 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.math.BlockPos;
 
 // since SkullBlockEntity uses the fixed BlockEntityType.SKULL we have to create our own block entity :(
@@ -17,12 +17,12 @@ public class PigmentSkullBlockEntity extends BlockEntity {
         super(PigmentBlockEntityRegistry.SKULL, pos, state);
     }
 
-    public CompoundTag writeNbt(CompoundTag tag) {
+    public NbtCompound writeNbt(NbtCompound tag) {
         super.writeNbt(tag);
         return tag;
     }
 
-    public void readNbt(CompoundTag tag) {
+    public void readNbt(NbtCompound tag) {
         super.readNbt(tag);
     }
 

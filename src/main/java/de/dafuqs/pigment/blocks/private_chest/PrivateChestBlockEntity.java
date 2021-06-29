@@ -16,7 +16,7 @@ import net.minecraft.inventory.Inventories;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SidedInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.screen.GenericContainerScreenHandler;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.sound.SoundCategory;
@@ -176,7 +176,7 @@ public class PrivateChestBlockEntity extends LootableContainerBlockEntity implem
         this.updateRedstone(this.getPos(), this.world.getBlockState(pos));
     }
 
-    public void readNbt(CompoundTag tag) {
+    public void readNbt(NbtCompound tag) {
         super.readNbt(tag);
         this.inventory = DefaultedList.ofSize(this.size(), ItemStack.EMPTY);
         if (!this.deserializeLootTable(tag)) {
@@ -201,7 +201,7 @@ public class PrivateChestBlockEntity extends LootableContainerBlockEntity implem
         }
     }
 
-    public CompoundTag writeNbt(CompoundTag tag) {
+    public NbtCompound writeNbt(NbtCompound tag) {
         super.writeNbt(tag);
 
         if (!this.serializeLootTable(tag)) {

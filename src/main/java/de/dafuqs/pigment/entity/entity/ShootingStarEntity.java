@@ -17,7 +17,7 @@ import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.Packet;
 import net.minecraft.network.packet.s2c.play.EntitySpawnS2CPacket;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -146,18 +146,18 @@ public class ShootingStarEntity extends Entity {
         }
     }
 
-    public void writeCustomDataToNbt(CompoundTag tag) {
+    public void writeCustomDataToNbt(NbtCompound tag) {
         tag.putShort("Age", (short)this.age);
 
         if (!this.getStack().isEmpty()) {
-            tag.put("Item", this.getStack().writeNbt(new CompoundTag()));
+            tag.put("Item", this.getStack().writeNbt(new NbtCompound()));
         }
     }
 
-    public void readCustomDataFromNbt(CompoundTag tag) {
+    public void readCustomDataFromNbt(NbtCompound tag) {
         this.age = tag.getShort("Age");
 
-        CompoundTag compoundTag = tag.getCompound("Item");
+        NbtCompound compoundTag = tag.getCompound("Item");
         this.setStack(ItemStack.fromNbt(compoundTag));
         if (this.getStack().isEmpty()) {
             this.discard();

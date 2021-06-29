@@ -6,7 +6,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.math.BlockPos;
 
 import java.util.UUID;
@@ -42,7 +42,7 @@ public class OminousSaplingBlockEntity extends BlockEntity implements PlayerOwne
 
     // Serialize the BlockEntity
     @Override
-    public CompoundTag writeNbt(CompoundTag tag) {
+    public NbtCompound writeNbt(NbtCompound tag) {
         super.writeNbt(tag);
 
         // Save the current value of the number to the tag
@@ -58,7 +58,7 @@ public class OminousSaplingBlockEntity extends BlockEntity implements PlayerOwne
 
     // Deserialize the BlockEntity
     @Override
-    public void readNbt(CompoundTag tag) {
+    public void readNbt(NbtCompound tag) {
         super.readNbt(tag);
 
         if(tag.contains("OwnerUUID")) {

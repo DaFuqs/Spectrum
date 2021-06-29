@@ -2,22 +2,25 @@ package de.dafuqs.pigment.entity.entity;
 
 import com.google.common.collect.Lists;
 import de.dafuqs.pigment.blocks.gravity.GravitableBlock;
-import de.dafuqs.pigment.registries.PigmentBlocks;
 import de.dafuqs.pigment.entity.PigmentEntityTypes;
+import de.dafuqs.pigment.registries.PigmentBlocks;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.entity.*;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.MovementType;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.fluid.Fluids;
-import net.minecraft.item.*;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.item.AutomaticItemPlacementContext;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.NbtElement;
 import net.minecraft.nbt.NbtHelper;
-import net.minecraft.nbt.Tag;
 import net.minecraft.network.Packet;
 import net.minecraft.network.packet.s2c.play.EntitySpawnS2CPacket;
 import net.minecraft.state.property.Properties;
@@ -38,7 +41,7 @@ public class GravityBlockEntity extends Entity {
 
     public int floatTime;
     public boolean dropItem;
-    public CompoundTag blockEntityData;
+    public NbtCompound blockEntityData;
     private BlockState blockState;
     private float gravityModifier;
     private boolean hurtEntities;
@@ -222,10 +225,10 @@ public class GravityBlockEntity extends Entity {
                             if (this.blockEntityData != null && this.blockState.getBlock() instanceof BlockWithEntity) {
                                 BlockEntity blockEntity = this.world.getBlockEntity(blockPos);
                                 if (blockEntity != null) {
-                                    CompoundTag compoundTag = blockEntity.writeNbt(new CompoundTag());
+                                    NbtCompound compoundTag = blockEntity.writeNbt(new NbtCompound());
 
                                     for (String keyName : this.blockEntityData.getKeys()) {
-                                        Tag tag = this.blockEntityData.get(keyName);
+                                        NbtElement tag = this.blockEntityData.get(keyName);
                                         if (tag != null && !"x".equals(keyName) && !"y".equals(keyName) && !"z".equals(keyName)) {
                                             compoundTag.put(keyName, tag.copy());
                                         }
@@ -265,7 +268,7 @@ public class GravityBlockEntity extends Entity {
     }
 
     @Override
-    protected void writeCustomDataToNbt(CompoundTag compound) {
+    protected void writeCustomDataToNbt(NbtCompound compound) {
         compound.put("BlockState", NbtHelper.fromBlockState(this.blockState));
         compound.putInt("Time", this.floatTime);
         compound.putBoolean("DropItem", this.dropItem);
@@ -276,7 +279,7 @@ public class GravityBlockEntity extends Entity {
     }
 
     @Override
-    protected void readCustomDataFromNbt(CompoundTag compound) {
+    protected void readCustomDataFromNbt(NbtCompound compound) {
         this.blockState = NbtHelper.toBlockState(compound.getCompound("BlockState"));
         this.floatTime = compound.getInt("Time");
         if (compound.contains("HurtEntities", 99)) {

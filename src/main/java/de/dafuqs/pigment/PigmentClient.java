@@ -23,7 +23,7 @@ import net.minecraft.client.color.block.BlockColorProvider;
 import net.minecraft.client.color.item.ItemColorProvider;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.Nullable;
@@ -132,7 +132,7 @@ public class PigmentClient implements ClientModInitializer {
 
     public static void registerEnderSplicePredicates(EnderSpliceItem enderSpliceItem) {
         FabricModelPredicateProviderRegistry.register(enderSpliceItem, new Identifier("bound"), (itemStack, clientWorld, livingEntity, i) -> {
-            CompoundTag compoundTag = itemStack.getTag();
+            NbtCompound compoundTag = itemStack.getTag();
             if (compoundTag != null && compoundTag.contains("PosX")) {
                 return 1.0F;
             } else {

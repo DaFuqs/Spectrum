@@ -5,16 +5,12 @@ import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.server.network.ServerPlayerInteractionManager;
 import net.minecraft.server.world.ServerWorld;
-import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -33,7 +29,7 @@ public class ServerPlayerEntityMixin {
                 if(shouldDropHead) {
                     ItemStack headItemStack = new ItemStack(Items.PLAYER_HEAD);
 
-                    CompoundTag compoundTag  = new CompoundTag();
+                    NbtCompound compoundTag  = new NbtCompound();
                     compoundTag.putString("SkullOwner", thisEntity.getName().getString());
 
                     headItemStack.setTag(compoundTag);

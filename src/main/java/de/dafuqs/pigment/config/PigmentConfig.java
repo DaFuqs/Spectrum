@@ -1,8 +1,7 @@
 package de.dafuqs.pigment.config;
 
-import me.sargunvohra.mcmods.autoconfig1u.ConfigData;
-import me.sargunvohra.mcmods.autoconfig1u.annotation.Config;
-import net.minecraft.util.registry.Registry;
+import me.shedaniel.autoconfig.ConfigData;
+import me.shedaniel.autoconfig.annotation.Config;
 import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.World;
 

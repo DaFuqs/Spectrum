@@ -5,7 +5,7 @@ import de.dafuqs.pigment.registries.PigmentBlockEntityRegistry;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.math.BlockPos;
 
 import java.util.UUID;
@@ -20,7 +20,7 @@ public class PlayerDetectorBlockEntity extends BlockEntity implements PlayerOwne
         super(PigmentBlockEntityRegistry.PLAYER_DETECTOR, blockPos, blockState);
     }
 
-    public CompoundTag writeNbt(CompoundTag tag) {
+    public NbtCompound writeNbt(NbtCompound tag) {
         super.writeNbt(tag);
 
         if(this.ownerUUID !=  null) {
@@ -33,7 +33,7 @@ public class PlayerDetectorBlockEntity extends BlockEntity implements PlayerOwne
         return tag;
     }
 
-    public void readNbt(CompoundTag tag) {
+    public void readNbt(NbtCompound tag) {
         super.readNbt(tag);
 
         if(tag.contains("UUID")) {

@@ -8,15 +8,15 @@ import net.minecraft.block.OreBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.loot.context.LootContext;
+import net.minecraft.predicate.NumberRange;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.IntRange;
 
 import java.util.List;
 
 public abstract class ConditionallyVisibleOreBlock extends OreBlock implements Cloakable {
 
-    public ConditionallyVisibleOreBlock(Settings settings, IntRange intRange) {
+    public ConditionallyVisibleOreBlock(Settings settings, NumberRange.IntRange intRange) {
         super(settings, intRange);
     }
 

@@ -7,7 +7,7 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EnderChestInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.math.BlockPos;
@@ -90,7 +90,7 @@ public class EnderDropperBlockEntity extends BlockEntity implements PlayerOwned 
         this.ownerName = playerEntity.getName().asString();
     }
 
-    public void readNbt(CompoundTag tag) {
+    public void readNbt(NbtCompound tag) {
         super.readNbt(tag);
 
         if(tag.contains("OwnerUUID")) {
@@ -105,7 +105,7 @@ public class EnderDropperBlockEntity extends BlockEntity implements PlayerOwned 
         }
     }
 
-    public CompoundTag writeNbt(CompoundTag tag) {
+    public NbtCompound writeNbt(NbtCompound tag) {
         super.writeNbt(tag);
 
         if(this.ownerUUID != null) {

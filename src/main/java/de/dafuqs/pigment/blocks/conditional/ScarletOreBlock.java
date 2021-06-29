@@ -7,14 +7,14 @@ import net.minecraft.block.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.loot.context.LootContext;
+import net.minecraft.predicate.NumberRange;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.math.IntRange;
 
 import java.util.List;
 
 public class ScarletOreBlock extends ConditionallyVisibleOreBlock {
 
-    public ScarletOreBlock(Settings settings, IntRange intRange) {
+    public ScarletOreBlock(Settings settings, NumberRange.IntRange intRange) {
         super(settings, intRange);
         setupCloak();
     }

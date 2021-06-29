@@ -50,6 +50,7 @@ import net.minecraft.block.*;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.*;
+import net.minecraft.predicate.NumberRange;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.state.property.Properties;
 import net.minecraft.tag.BlockTags;
@@ -57,7 +58,6 @@ import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.IntRange;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.BlockView;
 import org.jetbrains.annotations.NotNull;
@@ -441,16 +441,16 @@ public class PigmentBlocks {
     public static final Block WHITE_LAMP = new RedstoneLampBlock(FabricBlockSettings.copyOf(Blocks.REDSTONE_LAMP));
     public static final Block YELLOW_LAMP = new RedstoneLampBlock(FabricBlockSettings.copyOf(Blocks.REDSTONE_LAMP));
 
-    public static final Block SPARKLESTONE_ORE = new SparklestoneOreBlock(FabricBlockSettings.copyOf(Blocks.STONE), IntRange.between(2, 4)); // drops sparklestone gems
+    public static final Block SPARKLESTONE_ORE = new SparklestoneOreBlock(FabricBlockSettings.copyOf(Blocks.STONE), NumberRange.IntRange.between(2, 4)); // drops sparklestone gems
     public static final Block SPARKLESTONE_BLOCK = new Block(FabricBlockSettings.of(Material.GLASS, MapColor.YELLOW).strength(2.0F).sounds(BlockSoundGroup.GLASS).luminance((state) -> 15));
 
     // ORES
-    public static final Block KOENIGSBLAU_ORE = new KoenigsblauOreBlock(FabricBlockSettings.copyOf(Blocks.LAPIS_ORE), IntRange.between(4, 7));
+    public static final Block KOENIGSBLAU_ORE = new KoenigsblauOreBlock(FabricBlockSettings.copyOf(Blocks.LAPIS_ORE), NumberRange.IntRange.between(4, 7));
     public static final Block KOENIGSBLAU_BLOCK = new PigmentFacingBlock(FabricBlockSettings.copyOf(Blocks.LAPIS_BLOCK));
 
-    public static final Block PALETUR_ORE = new PaleturOreBlock(FabricBlockSettings.of(Material.STONE).requiresTool().strength(3.0F, 3.0F), IntRange.between(2, 4));
+    public static final Block PALETUR_ORE = new PaleturOreBlock(FabricBlockSettings.of(Material.STONE).requiresTool().strength(3.0F, 3.0F), NumberRange.IntRange.between(2, 4));
     public static final Block PALETUR_FRAGMENT_BLOCK = new GravitableBlock( FabricBlockSettings.of(Material.METAL, MapColor.LIGHT_BLUE).requiresTool().strength(5.0F, 6.0F).sounds(BlockSoundGroup.METAL), 0.02F);
-    public static final Block SCARLET_ORE = new ScarletOreBlock(FabricBlockSettings.of(Material.STONE).requiresTool().strength(3.0F, 3.0F), IntRange.between(3, 5));
+    public static final Block SCARLET_ORE = new ScarletOreBlock(FabricBlockSettings.of(Material.STONE).requiresTool().strength(3.0F, 3.0F), NumberRange.IntRange.between(3, 5));
     public static final Block SCARLET_FRAGMENT_BLOCK = new GravitableBlock(FabricBlockSettings.of(Material.METAL, MapColor.DARK_RED).requiresTool().strength(5.0F, 6.0F).sounds(BlockSoundGroup.METAL), -0.2F);
 
     // FUNCTIONAL BLOCKS

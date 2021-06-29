@@ -8,7 +8,7 @@ import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.world.World;
@@ -27,7 +27,7 @@ public class Spawner extends BlockItem {
         if(itemStack.getTag() != null && itemStack.getTag().get("BlockEntityTag") != null) {
             Optional<EntityType<?>> entityType;
 
-            CompoundTag blockEntityTag = itemStack.getTag().getCompound("BlockEntityTag");
+            NbtCompound blockEntityTag = itemStack.getTag().getCompound("BlockEntityTag");
 
             String spawningEntityType = blockEntityTag.getCompound("SpawnData").getString("id");
             entityType = EntityType.get(spawningEntityType);
@@ -53,7 +53,7 @@ public class Spawner extends BlockItem {
     public static ItemStack fromBlockEntity(BlockEntity blockEntity) {
         ItemStack itemStack = new ItemStack(PigmentItems.SPAWNER, 1);
 
-        CompoundTag blockEntityTag = new CompoundTag();
+        NbtCompound blockEntityTag = new NbtCompound();
         blockEntity.writeNbt(blockEntityTag);
 
         blockEntityTag.remove("x");
@@ -62,7 +62,7 @@ public class Spawner extends BlockItem {
         blockEntityTag.remove("id");
         blockEntityTag.remove("delay");
 
-        CompoundTag itemStackTag = new CompoundTag();
+        NbtCompound itemStackTag = new NbtCompound();
         itemStackTag.put("BlockEntityTag", blockEntityTag);
         itemStack.setTag(itemStackTag);
         return itemStack;

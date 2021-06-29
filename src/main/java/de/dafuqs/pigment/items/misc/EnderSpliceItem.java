@@ -13,7 +13,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsage;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.packet.s2c.play.PlaySoundIdS2CPacket;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
@@ -43,14 +43,14 @@ public class EnderSpliceItem extends Item {
             Criteria.CONSUME_ITEM.trigger((ServerPlayerEntity)playerEntity, itemStack);
         }
 
-        CompoundTag compoundTag = itemStack.getTag();
-        if (playerEntity != null && compoundTag != null && compoundTag.contains("PosX") && compoundTag.contains("PosY") && compoundTag.contains("PosZ") && compoundTag.contains("Dimension")) {
-            String dimensionKeyString = compoundTag.getString("Dimension");
+        NbtCompound nbtCompound = itemStack.getTag();
+        if (playerEntity != null && nbtCompound != null && nbtCompound.contains("PosX") && nbtCompound.contains("PosY") && nbtCompound.contains("PosZ") && nbtCompound.contains("Dimension")) {
+            String dimensionKeyString = nbtCompound.getString("Dimension");
             if (user.getEntityWorld().getRegistryKey().getValue().toString().equals(dimensionKeyString)) {
 
-                double x = compoundTag.getDouble("PosX");
-                double y = compoundTag.getDouble("PosY");
-                double z = compoundTag.getDouble("PosZ");
+                double x = nbtCompound.getDouble("PosX");
+                double y = nbtCompound.getDouble("PosY");
+                double z = nbtCompound.getDouble("PosZ");
                 if(!world.isClient) {
                     Vec3d pos = playerEntity.getPos();
 
@@ -74,18 +74,19 @@ public class EnderSpliceItem extends Item {
             return itemStack;
         } else {
             if(world.isClient) {
+
             } else {
                 Vec3d pos = user.getPos();
 
-                if (compoundTag == null) {
-                    compoundTag = new CompoundTag();
+                if (nbtCompound == null) {
+                    nbtCompound = new NbtCompound();
                 }
 
-                compoundTag.putDouble("PosX", pos.getX());
-                compoundTag.putDouble("PosY", pos.getY());
-                compoundTag.putDouble("PosZ", pos.getZ());
-                compoundTag.putString("Dimension", user.getEntityWorld().getRegistryKey().getValue().toString());
-                itemStack.setTag(compoundTag);
+                nbtCompound.putDouble("PosX", pos.getX());
+                nbtCompound.putDouble("PosY", pos.getY());
+                nbtCompound.putDouble("PosZ", pos.getZ());
+                nbtCompound.putString("Dimension", user.getEntityWorld().getRegistryKey().getValue().toString());
+                itemStack.setTag(nbtCompound);
 
                 ((ServerPlayerEntity) playerEntity).networkHandler.sendPacket(new PlaySoundIdS2CPacket(PigmentSoundEvents.ENDER_SPLICE_BOUND.getId(), SoundCategory.PLAYERS, playerEntity.getPos(), 1.0F, 1.0F));
             }
@@ -111,13 +112,13 @@ public class EnderSpliceItem extends Item {
 
     @Environment(EnvType.CLIENT)
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        CompoundTag compoundTag = stack.getTag();
-        if(compoundTag != null && compoundTag.contains("PosX") && compoundTag.contains("PosY") && compoundTag.contains("PosZ") && compoundTag.contains("Dimension")) {
-            String dimensionKeyString = compoundTag.getString("Dimension");
+        NbtCompound nbtCompound = stack.getTag();
+        if(nbtCompound != null && nbtCompound.contains("PosX") && nbtCompound.contains("PosY") && nbtCompound.contains("PosZ") && nbtCompound.contains("Dimension")) {
+            String dimensionKeyString = nbtCompound.getString("Dimension");
             String dimensionDisplayString = Support.getReadableDimensionString(dimensionKeyString);
-            int x = (int) compoundTag.getDouble("PosX");
-            int y = (int) compoundTag.getDouble("PosY");
-            int z = (int) compoundTag.getDouble("PosZ");
+            int x = (int) nbtCompound.getDouble("PosX");
+            int y = (int) nbtCompound.getDouble("PosY");
+            int z = (int) nbtCompound.getDouble("PosZ");
 
             tooltip.add(new TranslatableText("item.pigment.ender_splice.tooltip.bound", x, y, z, dimensionDisplayString));
         } else {

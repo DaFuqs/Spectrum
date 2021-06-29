@@ -4,13 +4,11 @@ import de.dafuqs.pigment.entity.PigmentEntityTypes;
 import de.dafuqs.pigment.entity.entity.InvisibleItemFrameEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.decoration.AbstractDecorationEntity;
-import net.minecraft.entity.decoration.ItemFrameEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemFrameItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -40,9 +38,9 @@ public class InvisibleItemFrameItem extends ItemFrameItem {
             World world = context.getWorld();
             InvisibleItemFrameEntity invisibleItemFrameEntity = new InvisibleItemFrameEntity(PigmentEntityTypes.INVISIBLE_ITEM_FRAME, world, blockPos2, direction);
 
-            CompoundTag compoundTag = itemStack.getTag();
-            if (compoundTag != null) {
-                EntityType.loadFromEntityNbt(world, playerEntity, invisibleItemFrameEntity, compoundTag);
+            NbtCompound nbtCompound = itemStack.getTag();
+            if (nbtCompound != null) {
+                EntityType.loadFromEntityNbt(world, playerEntity, invisibleItemFrameEntity, nbtCompound);
             }
 
             if (invisibleItemFrameEntity.canStayAttached()) {

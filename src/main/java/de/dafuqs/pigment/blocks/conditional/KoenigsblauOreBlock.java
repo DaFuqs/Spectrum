@@ -4,14 +4,14 @@ import de.dafuqs.pigment.PigmentCommon;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.context.LootContext;
+import net.minecraft.predicate.NumberRange;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.math.IntRange;
 
 import java.util.List;
 
 public class KoenigsblauOreBlock extends ConditionallyVisibleOreBlock {
 
-    public KoenigsblauOreBlock(Settings settings, IntRange intRange) {
+    public KoenigsblauOreBlock(Settings settings, NumberRange.IntRange intRange) {
         super(settings, intRange);
         setupCloak();
     }

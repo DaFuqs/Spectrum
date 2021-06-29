@@ -24,7 +24,7 @@ import net.minecraft.inventory.SidedInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.BlockStateParticleEffect;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.recipe.*;
@@ -179,7 +179,7 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
         }
     }
 
-    public void readNbt(CompoundTag tag) {
+    public void readNbt(NbtCompound tag) {
         super.readNbt(tag);
         this.inventory = DefaultedList.ofSize(9+5+1+1, ItemStack.EMPTY);
         Inventories.readNbt(tag, this.inventory);
@@ -198,7 +198,7 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
         }
     }
 
-    public CompoundTag writeNbt(CompoundTag tag) {
+    public NbtCompound writeNbt(NbtCompound tag) {
         super.writeNbt(tag);
         tag.putFloat("StoredXP", this.storedXP);
         tag.putShort("CraftingTime", (short)this.craftingTime);

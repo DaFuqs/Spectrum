@@ -6,5 +6,4 @@
 	"model": "pigment:manual",
 	"creative_tab": "pigment.general",
 	"advancements_tab": "pigment",
-	"advancement_namespaces": [ "pigment" ]
 }

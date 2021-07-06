@@ -1,0 +1,11 @@
+{
+    "name": "Intro",
+    "icon": "pigment:altar_1",
+    "category": "pigment:main_category",
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "This is a test entry, but it should show up!"
+        }
+    ]
+}

@@ -42,9 +42,4 @@ public class BuiltinModelItemRendererMixin {
         }
     }
 
-    @Inject(method = "Lnet/minecraft/client/render/item/BuiltinModelItemRenderer;apply(Lnet/minecraft/resource/ResourceManager;)V", at = @At("TAIL"))
-    public void apply(net.minecraft.resource.ResourceManager manager, CallbackInfo ci) {
-
-    }
-
 }

@@ -28,6 +28,7 @@ import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.Vector4f;
 import net.minecraft.world.World;
 
 public class ShootingStarEntity extends Entity {
@@ -44,13 +45,17 @@ public class ShootingStarEntity extends Entity {
     public ShootingStarEntity(World world, double x, double y, double z) {
         this(PigmentEntityTypes.SHOOTING_STAR, world);
         this.setPosition(x, y, z);
-        this.yaw = this.random.nextFloat() * 360.0F;
+        this.setYaw(this.random.nextFloat() * 360.0F);
         this.setVelocity(this.random.nextDouble() * 0.2D - 0.1D, 0.2D, this.random.nextDouble() * 0.2D - 0.1D);
     }
 
     public ShootingStarEntity(World world, double x, double y, double z, ItemStack stack) {
         this(world, x, y, z);
         this.setStack(stack);
+    }
+
+    public ShootingStarEntity(World world) {
+        this(world, 0, 0, 0);
     }
 
     @Environment(EnvType.CLIENT)
@@ -63,8 +68,7 @@ public class ShootingStarEntity extends Entity {
     }
 
     public static void doShootingStarSpawns(ServerWorld serverWorld) {
-        // TODO: make dimensions configurable
-        if(serverWorld.getRegistryKey().getValue().toString().equals("minecraft:overworld")) {
+        if(serverWorld.getRegistryKey().getValue().toString().equals("minecraft:overworld")) { // TODO: make dimensions configurable
             if(serverWorld.getTimeOfDay() % 100 == 0 && serverWorld.getTimeOfDay() > 13000 && serverWorld.getTimeOfDay() < 22000) {
                 for (PlayerEntity playerEntity : serverWorld.getEntitiesByType(EntityType.PLAYER, Entity::isAlive)) {
                     if (serverWorld.getRandom().nextInt(100) == 0) {
@@ -112,7 +116,7 @@ public class ShootingStarEntity extends Entity {
                 }
             }
 
-            if (!this.onGround || squaredHorizontalLength(this.getVelocity()) > 9.999999747378752E-6D || (this.age + this.getId()) % 4 == 0) {
+            if (!this.onGround || /*squaredHorizontalLength(this.getVelocity()) > 9.999999747378752E-6D ||*/ (this.age + this.getId()) % 4 == 0) {
                 Vec3d velocity = this.getVelocity();
                 world.addParticle(PigmentParticleTypes.SHOOTING_STAR, this.getX(), this.getY(), this.getZ(), -velocity.x, -velocity.y, -velocity.z);
 

@@ -75,23 +75,17 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
 
         this.propertyDelegate = new PropertyDelegate() {
             public int get(int index) {
-                switch(index) {
-                    case 0:
-                        return AltarBlockEntity.this.craftingTime;
-                    case 1:
-                        return AltarBlockEntity.this.craftingTimeTotal;
-                    default:
-                        return 0;
-                }
+                return switch (index) {
+                    case 0 -> AltarBlockEntity.this.craftingTime;
+                    case 1 -> AltarBlockEntity.this.craftingTimeTotal;
+                    default -> 0;
+                };
             }
 
             public void set(int index, int value) {
-                switch(index) {
-                    case 0:
-                        AltarBlockEntity.this.craftingTime = value;
-                        break;
-                    case 1:
-                        AltarBlockEntity.this.craftingTimeTotal = value;
+                switch (index) {
+                    case 0 -> AltarBlockEntity.this.craftingTime = value;
+                    case 1 -> AltarBlockEntity.this.craftingTimeTotal = value;
                 }
             }
 
@@ -173,9 +167,9 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
     }
 
     @Override
-    public void provideRecipeInputs(RecipeFinder finder) {
+    public void provideRecipeInputs(RecipeMatcher recipeMatcher) {
         for (ItemStack itemStack : this.inventory) {
-            finder.addItem(itemStack);
+            recipeMatcher.addInput(itemStack);
         }
     }
 
@@ -470,35 +464,24 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
     }
 
     public static Item getPigmentItemForSlot(int slot) {
-        switch (slot) {
-            case 9:
-                return PigmentItems.MAGENTA_PIGMENT;
-            case 10:
-                return PigmentItems.YELLOW_PIGMENT;
-            case 11:
-                return PigmentItems.CYAN_PIGMENT;
-            case 12:
-                return PigmentItems.BLACK_PIGMENT;
-            case 13:
-                return PigmentItems.WHITE_PIGMENT;
-            default:
-                return Items.AIR;
-        }
+        return switch (slot) {
+            case 9 -> PigmentItems.MAGENTA_PIGMENT;
+            case 10 -> PigmentItems.YELLOW_PIGMENT;
+            case 11 -> PigmentItems.CYAN_PIGMENT;
+            case 12 -> PigmentItems.BLACK_PIGMENT;
+            case 13 -> PigmentItems.WHITE_PIGMENT;
+            default -> Items.AIR;
+        };
     }
 
     public static int getSlotForPigmentColor(PigmentColor pigmentColor) {
-        switch (pigmentColor) {
-            case MAGENTA:
-                return 9;
-            case YELLOW:
-                return 10;
-            case CYAN:
-                return 11;
-            case BLACK:
-                return 12;
-            default: // WHITE
-                return 13;
-        }
+        return switch (pigmentColor) {
+            case MAGENTA -> 9;
+            case YELLOW -> 10;
+            case CYAN -> 11;
+            case BLACK -> 12;
+            default -> 13; // WHITE
+        };
     }
 
     @Override

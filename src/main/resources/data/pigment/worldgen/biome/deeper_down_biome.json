@@ -36,17 +36,10 @@
     [],
     [],
     [
-      "minecraft:ore_coal_lower",
-      "minecraft:ore_iron_lower",
-      "minecraft:ore_gold",
-      "minecraft:ore_redstone",
-      "minecraft:ore_diamond",
-      "minecraft:ore_lapis_buried",
       "minecraft:ore_copper",
       "minecraft:disk_sand",
       "minecraft:disk_clay",
-      "minecraft:disk_gravel",
-      "minecraft:ore_emerald"
+      "minecraft:disk_gravel"
     ],
     [
       "minecraft:ore_infested"

@@ -1,43 +1,35 @@
 package de.dafuqs.pigment.blocks.deeper_down_portal;
 
 import de.dafuqs.pigment.PigmentCommon;
+import de.dafuqs.pigment.PigmentRenderLayer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.EndPortalBlock;
 import net.minecraft.client.render.*;
 import net.minecraft.client.render.block.entity.BlockEntityRenderer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactory.Context;
+import net.minecraft.client.render.block.entity.EndPortalBlockEntityRenderer;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.fluid.Fluid;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Matrix4f;
+import net.minecraft.world.BlockView;
 
 @Environment(EnvType.CLIENT)
 public class DeeperDownPortalBlockEntityRenderer<T extends DeeperDownPortalBlockEntity> implements BlockEntityRenderer<T> {
-
-    public static final Identifier OVERLAY_TEXTURE = new Identifier(PigmentCommon.MOD_ID, "textures/entity/portal/deeper_down_portal_overlay.png");
-    public static final Identifier PORTAL_TEXTURE = new Identifier(PigmentCommon.MOD_ID, "textures/entity/portal/deeper_down_portal.png");
-
-    private static final RenderLayer DEEPER_DOWN_PORTAL_RENDER_LAYER = RenderLayer.of("deeper_down_portal",
-            VertexFormats.POSITION,
-            VertexFormat.DrawMode.QUADS,
-            256,
-            false,
-            false,
-            RenderLayer.MultiPhaseParameters.builder().method_34578(new RenderPhase.class_5942(GameRenderer::method_34535)).method_34577(
-                    RenderPhase.class_5940.method_34560().method_34563(DeeperDownPortalBlockEntityRenderer.OVERLAY_TEXTURE, false, false)
-                            .method_34563(DeeperDownPortalBlockEntityRenderer.PORTAL_TEXTURE, false, false)
-                            .method_34562()
-            ).build(false));
-
 
     public DeeperDownPortalBlockEntityRenderer(Context ctx) {
 
     }
 
     public void render(T deeperDownPortalBlockEntity, float f, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i, int j) {
-        float g = this.getTopYOffset();
+        float topYOffset = this.getTopYOffset();
         Matrix4f matrix4f = matrixStack.peek().getModel();
-        this.renderSides(deeperDownPortalBlockEntity, g, matrix4f, vertexConsumerProvider.getBuffer(this.method_34589()));
+        this.renderSides(deeperDownPortalBlockEntity, topYOffset, matrix4f, vertexConsumerProvider.getBuffer(this.getLayer()));
     }
 
     private void renderSides(T entity, float topYOffset, Matrix4f matrix4f, VertexConsumer vertexConsumer) {
@@ -62,7 +54,8 @@ public class DeeperDownPortalBlockEntityRenderer<T extends DeeperDownPortalBlock
         return 0.15F;
     }
 
-    protected RenderLayer method_34589() {
-        return DEEPER_DOWN_PORTAL_RENDER_LAYER;
+    protected RenderLayer getLayer() {
+        return PigmentRenderLayer.DEEPER_DOWN_PORTAL_RENDER_LAYER;
     }
+
 }

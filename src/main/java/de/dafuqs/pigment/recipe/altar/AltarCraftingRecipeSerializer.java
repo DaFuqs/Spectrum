@@ -1,9 +1,9 @@
 package de.dafuqs.pigment.recipe.altar;
 
 import com.google.gson.JsonObject;
-import de.dafuqs.pigment.registries.PigmentDefaultEnchantments;
 import de.dafuqs.pigment.enums.PigmentColor;
 import de.dafuqs.pigment.mixin.AccessorShapedRecipe;
+import de.dafuqs.pigment.registries.PigmentDefaultEnchantments;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.recipe.Ingredient;
@@ -27,12 +27,12 @@ public class AltarCraftingRecipeSerializer<T extends AltarCraftingRecipe> implem
     @Override
     public T read(Identifier identifier, JsonObject jsonObject) {
         String group = JsonHelper.getString(jsonObject, "group", "");
-        Map<String, Ingredient> map = AccessorShapedRecipe.invokeGetComponents(JsonHelper.getObject(jsonObject, "key"));
-        String[] strings = AccessorShapedRecipe.invokeCombinePattern(AccessorShapedRecipe.invokeGetPattern(JsonHelper.getArray(jsonObject, "pattern")));
+        Map<String, Ingredient> map = AccessorShapedRecipe.invokeReadSymbols(JsonHelper.getObject(jsonObject, "key"));
+        String[] strings = AccessorShapedRecipe.invokeRemovePadding(AccessorShapedRecipe.invokeGetPattern(JsonHelper.getArray(jsonObject, "pattern")));
         int width = strings[0].length();
         int height = strings.length;
-        DefaultedList<Ingredient> craftingInputs = AccessorShapedRecipe.invokeGetIngredients(strings, map, width, height);
-        ItemStack output = ShapedRecipe.getItemStack(JsonHelper.getObject(jsonObject, "result"));
+        DefaultedList<Ingredient> craftingInputs = AccessorShapedRecipe.invokeCreatePatternMatrix(strings, map, width, height);
+        ItemStack output = ShapedRecipe.outputFromJson(JsonHelper.getObject(jsonObject, "result"));
 
         if(PigmentDefaultEnchantments.hasDefaultEnchants(output.getItem())) {
             PigmentDefaultEnchantments.DefaultEnchantment enchantData = PigmentDefaultEnchantments.getDefaultEnchantment(output.getItem());

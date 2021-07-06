@@ -1,5 +1,7 @@
 package de.dafuqs.pigment.blocks.spirit_sallow;
 
+import de.dafuqs.pigment.enums.PigmentColor;
+import de.dafuqs.pigment.registries.PigmentBlocks;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.*;
@@ -19,13 +21,32 @@ import java.util.Random;
 
 public class SpiritVinesBodyBlock extends AbstractPlantBlock implements SpiritVines {
 
-    public SpiritVinesBodyBlock(Settings settings) {
+    private final PigmentColor pigmentColor;
+
+    public SpiritVinesBodyBlock(Settings settings, PigmentColor pigmentColor) {
         super(settings, Direction.DOWN, SHAPE, false);
         this.setDefaultState((this.stateManager.getDefaultState()).with(YIELD, YieldType.NONE));
+        this.pigmentColor = pigmentColor;
     }
 
     protected AbstractPlantStemBlock getStem() {
-        return (AbstractPlantStemBlock)Blocks.CAVE_VINES_HEAD;
+        switch (pigmentColor) {
+            case MAGENTA -> {
+                return (AbstractPlantStemBlock) PigmentBlocks.MAGENTA_SPIRIT_SALLOW_VINES_BODY;
+            }
+            case BLACK -> {
+                return (AbstractPlantStemBlock) PigmentBlocks.BLACK_SPIRIT_SALLOW_VINES_BODY;
+            }
+            case CYAN -> {
+                return (AbstractPlantStemBlock) PigmentBlocks.CYAN_SPIRIT_SALLOW_VINES_BODY;
+            }
+            case WHITE -> {
+                return (AbstractPlantStemBlock) PigmentBlocks.WHITE_SPIRIT_SALLOW_VINES_BODY;
+            }
+            default ->  {
+                return (AbstractPlantStemBlock) PigmentBlocks.YELLOW_SPIRIT_SALLOW_VINES_BODY;
+            }
+        }
     }
 
     protected BlockState copyState(BlockState from, BlockState to) {

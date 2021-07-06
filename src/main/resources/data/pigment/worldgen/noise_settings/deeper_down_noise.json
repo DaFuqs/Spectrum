@@ -1,12 +1,16 @@
 {
   "aquifers_enabled": true,
-  "noise_caves_enabled": false,
+  "noise_caves_enabled": true,
   "deepslate_enabled": true,
+  "noodle_caves_enabled": false,
+  "min_surface_level": -64,
+  "ore_veins_enabled": true,
+  "disable_mob_generation": false,
   "bedrock_floor_position": 0,
   "sea_level": 48,
-  "disable_mob_generation": false,
+  "bedrock_roof_position": 64,
   "default_block": {
-    "Name": "minecraft:deepslate"
+    "Name": "minecraft:stone"
   },
   "default_fluid": {
     "Properties": {
@@ -14,7 +18,7 @@
     },
     "Name": "minecraft:lava"
   },
-  "bedrock_roof_position": 64,
+
   "structures": {
     "structures": {}
   },

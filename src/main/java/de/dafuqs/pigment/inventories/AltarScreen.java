@@ -30,12 +30,12 @@ public class AltarScreen extends HandledScreen<AltarScreenHandler> {
         int intInventoryY = 100;
 
         this.textRenderer.draw(matrices, title, titleX, titleY, 4210752);
-        this.textRenderer.draw(matrices, this.field_29347, inventoryX, intInventoryY, 4210752); // Player Inventory title
+        this.textRenderer.draw(matrices, this.playerInventoryTitle, inventoryX, intInventoryY, 4210752);
     }
 
     @Override
     protected void drawBackground(MatrixStack matrices, float delta, int mouseX, int mouseY) {
-        RenderSystem.setShader(GameRenderer::method_34542);
+        RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderTexture(0, BACKGROUND);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
 

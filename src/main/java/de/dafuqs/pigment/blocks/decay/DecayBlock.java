@@ -65,19 +65,12 @@ public abstract class DecayBlock extends Block {
     public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
         if (!world.isClient) {
 
-            SoundEvent soundEvent;
+            SoundEvent soundEvent = switch (this.tier) {
+                case 1 -> PigmentSoundEvents.DECAY1_PLACED;
+                case 2 -> PigmentSoundEvents.DECAY2_PLACED;
+                default -> PigmentSoundEvents.DECAY3_PLACED;
+            };
 
-            switch (this.tier) {
-                case 1:
-                    soundEvent = PigmentSoundEvents.DECAY1_PLACED;
-                    break;
-                case 2:
-                    soundEvent = PigmentSoundEvents.DECAY2_PLACED;
-                    break;
-                default:
-                    soundEvent = PigmentSoundEvents.DECAY3_PLACED;
-                    break;
-            }
             world.playSound(null, pos, soundEvent, SoundCategory.BLOCKS, 0.5F, 2.6F + (world.random.nextFloat() - world.random.nextFloat()) * 0.8F);
             world.playSound(null, pos, SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.BLOCKS, 0.5F, 2.6F + (world.random.nextFloat() - world.random.nextFloat()) * 0.8F);
         } else {
@@ -106,11 +99,11 @@ public abstract class DecayBlock extends Block {
         }
     }
 
-    public void onSteppedOn(World world, BlockPos pos, Entity entity) {
+    public void onSteppedOn(World world, BlockPos pos, BlockState state, Entity entity) {
         if (!entity.isFireImmune() && entity instanceof LivingEntity && !EnchantmentHelper.hasFrostWalker((LivingEntity)entity)) {
             entity.damage(PigmentDamageSources.DECAY, damageOnTouching);
         }
-        super.onSteppedOn(world, pos, entity);
+        super.onSteppedOn(world, pos, state, entity);
     }
 
     // jump to neighboring blocks

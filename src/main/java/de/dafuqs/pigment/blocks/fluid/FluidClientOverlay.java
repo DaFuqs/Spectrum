@@ -33,8 +33,8 @@ public class FluidClientOverlay {
         float f = minecraftIn.player.getBrightnessAtEyes();
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
-        float f7 = -minecraftIn.player.yaw / 64.0F;
-        float f8 = minecraftIn.player.pitch / 64.0F;
+        float f7 = -minecraftIn.player.getYaw() / 64.0F;
+        float f8 = minecraftIn.player.getPitch() / 64.0F;
         Matrix4f matrix4f = matrixStack.peek().getModel();
         bufferbuilder.begin(VertexFormat.DrawMode.QUADS, VertexFormats.POSITION_COLOR_TEXTURE);
         bufferbuilder.vertex(matrix4f, -1.0F, -1.0F, -0.5F).color(f, f, f, alpha).texture(4.0F + f7, 4.0F + f8).next();

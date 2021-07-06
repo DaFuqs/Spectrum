@@ -23,7 +23,7 @@ public class AnvilCrushingRecipeSerializer<T extends AnvilCrushingRecipe> implem
         JsonElement jsonElement = JsonHelper.hasArray(jsonObject, "ingredient") ? JsonHelper.getArray(jsonObject, "ingredient") : JsonHelper.getObject(jsonObject, "ingredient");
         Ingredient ingredient = Ingredient.fromJson(jsonElement);
 
-        ItemStack outputItemStack = ShapedRecipe.getItemStack(JsonHelper.getObject(jsonObject, "result"));
+        ItemStack outputItemStack = ShapedRecipe.outputFromJson(JsonHelper.getObject(jsonObject, "result"));
         float crushedItemsPerPointOfDamage = JsonHelper.getFloat(jsonObject, "crushedItemsPerPointOfDamage");
         float experience = JsonHelper.getFloat(jsonObject, "experience");
 

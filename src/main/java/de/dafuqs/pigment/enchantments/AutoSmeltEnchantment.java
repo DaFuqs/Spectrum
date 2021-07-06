@@ -7,8 +7,8 @@ import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.recipe.RecipeFinder;
 import net.minecraft.recipe.RecipeInputProvider;
+import net.minecraft.recipe.RecipeMatcher;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.recipe.SmeltingRecipe;
 import net.minecraft.server.world.ServerWorld;
@@ -69,13 +69,12 @@ public class AutoSmeltEnchantment extends Enchantment {
 
         private SmeltingRecipe getRecipe(ItemStack itemStack, World world) {
             setStack(0, itemStack);
-            SmeltingRecipe recipe = world.getRecipeManager().getFirstMatch(RecipeType.SMELTING, this, world).orElse(null);
-            return recipe;
+            return world.getRecipeManager().getFirstMatch(RecipeType.SMELTING, this, world).orElse(null);
         }
 
         @Override
-        public void provideRecipeInputs(RecipeFinder finder) {
-            finder.addItem(input);
+        public void provideRecipeInputs(RecipeMatcher recipeMatcher) {
+            recipeMatcher.addInput(input);
         }
 
     }

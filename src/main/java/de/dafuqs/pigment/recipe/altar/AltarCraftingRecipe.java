@@ -4,6 +4,7 @@ import de.dafuqs.pigment.registries.PigmentBlocks;
 import de.dafuqs.pigment.enums.PigmentColor;
 import de.dafuqs.pigment.items.PigmentItems;
 import de.dafuqs.pigment.recipe.PigmentRecipeTypes;
+import net.minecraft.block.Blocks;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -100,7 +101,7 @@ public class AltarCraftingRecipe implements Recipe<Inventory> {
     }
 
     @Override
-    public ItemStack getRecipeKindIcon() {
+    public ItemStack createIcon() {
         return new ItemStack(PigmentBlocks.ALTAR);
     }
 

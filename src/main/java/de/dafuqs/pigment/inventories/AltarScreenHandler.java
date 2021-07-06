@@ -13,8 +13,8 @@ import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Recipe;
-import net.minecraft.recipe.RecipeFinder;
 import net.minecraft.recipe.RecipeInputProvider;
+import net.minecraft.recipe.RecipeMatcher;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.recipe.book.RecipeBookCategory;
 import net.minecraft.screen.AbstractRecipeScreenHandler;
@@ -88,9 +88,9 @@ public class AltarScreenHandler extends AbstractRecipeScreenHandler<Inventory> {
         this.addProperties(propertyDelegate);
     }
 
-    public void populateRecipeFinder(RecipeFinder finder) {
+    public void populateRecipeFinder(RecipeMatcher recipeMatcher) {
         if (this.inventory instanceof RecipeInputProvider) {
-            ((RecipeInputProvider)this.inventory).provideRecipeInputs(finder);
+            ((RecipeInputProvider)this.inventory).provideRecipeInputs(recipeMatcher);
         }
     }
 
@@ -140,8 +140,9 @@ public class AltarScreenHandler extends AbstractRecipeScreenHandler<Inventory> {
         return this.category;
     }
 
-    public boolean method_32339(int i) {
-        return i != 1;
+    @Override
+    public boolean canInsertIntoSlot(int index) {
+        return index != 1;
     }
 
     // Shift-Clicking

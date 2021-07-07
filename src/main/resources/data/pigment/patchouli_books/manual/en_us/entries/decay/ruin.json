@@ -6,11 +6,11 @@
     {
       "type": "patchouli:spotlight",
       "item": "pigment:decay_3_placer",
-      "text": ""
+      "text": "Now, you won't even make it subtle. This stuff you thought out is $(#ff0000)NASTY$(). Take this as a serious warning. You didn't call it that for the fun of it.$(br2)$(bold)If you are not careful you may ruin the whole world. Literally.$()"
     },
     {
       "type": "patchouli:text",
-      "text": ""
+      "text": "But then it may be the thing aggressive enough to destroy even the mightiest material.$(br2)You may not have created such lives as you initially imagined, but you still created something clearly powerful. You guess that counts?"
     }
   ]
 }

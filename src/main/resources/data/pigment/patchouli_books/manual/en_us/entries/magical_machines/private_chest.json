@@ -1,41 +1,16 @@
 {
-  "name": "Detectors",
-  "icon": "pigment:player_detector",
-  "category": "pigment:redstone_category",
+  "name": "Private Chest",
+  "icon": "pigment:private_chest",
+  "category": "pigment:magical_machines_category",
   "pages": [
     {
+      "type": "patchouli:spotlight",
+      "item": "pigment:private_chest",
+      "text": "$(italic)It happened again and again that you just want to quickly put down a box to store your inventory there and as soon as you came back everything was looted.$(br)To solve this problem you have developed this special chest, which takes care of the problem and incidentally helps to catch the thief in the act."
+    },
+    {
       "type": "patchouli:text",
-      "text": "$(italic)As soon as you held the first crystal in your hands, you noticed that Gem Shard reacting to even the smallest change in it's environment.$(br)Properly crafted, you can take advantage of these properties to measure these changes and connect them to your primitive-looking dust lines.$()$(br2)All detectors can be inverted."
-    },
-    {
-      "type": "patchouli:spotlight",
-      "title": "Player Detector",
-      "item": "pigment:player_detector",
-      "text": "The player detector detects players within 10 blocks of it.$(br2)When it finds players, it emits a redstone signal of strength 8. However, if the player who placed the detector is nearby, it emits a full strength 15 signal instead."
-    },
-    {
-      "type": "patchouli:spotlight",
-      "title": "Weather Detector",
-      "item": "pigment:weather_detector",
-      "text": "If the weather detector is directly exposed to rain or a thunderstorm, it emits a redstone signal.$(br2)Rain provides a signal with strength 8, a thunderstorm a signal with strength 15."
-    },
-    {
-      "type": "patchouli:spotlight",
-      "title": "Item Detector",
-      "item": "pigment:item_detector",
-      "text": "The Item Detector is used to count the items lying on the ground within a 10 block radius of it. The strength of the redstone signal depends on how many items are lying around.$(br2)64 items result in a signal with maximum strength."
-    },
-    {
-      "type": "patchouli:spotlight",
-      "title": "Block Light Detector",
-      "item": "pigment:light_level_detector",
-      "text": "Sunlight detectors are relatively weak when it comes to measuring light. The Nether Quartz used is so crudely processed that only sunlight can trigger the detector reliably. Amethyst, on the other hand, is much more sensitive when it comes to measuring light. Even the dim glow of a torch is sufficient to output decent strength."
-    },
-    {
-      "type": "patchouli:spotlight",
-      "title": "Creature Detector",
-      "item": "pigment:entity_detector",
-      "text": "The gemstone built into the Mob Detector reacts to the micro-vibrations in the ground, which build up each other. This gives the Mob Detector the ability to measure the number of creatures near it.$(br2)For each creature within a 10 block radius, the Mob Detector outputs an additional strength of 1."
+      "text": "Like a Trapped Chest the Private Chests also outputs a redstone signal based on who opened it. If you as an owner open it, the signal strength will be full, if a stranger wants to tamper with your belongings then only half."
     }
   ]
 }

@@ -19,10 +19,6 @@
             "text": "Pigment comes with a builtin progression system based on advancements.$(br)As you delve deeper into Pigment you will notice changes in the world. Differences, that only you can perceive.$(br2)Everything you learn will bring you closer to your final destination: Finding out what is waiting for you beneath the up until then impenetrable bedrock floor."
         },
         {
-            "type": "patchouli:text",
-            "text": "Pigments design principles:$(br)Pigment is designed to create feelings of curiosity and wonder$(li)The guidance through the mod in form of advancements is done via atmospheric and immersive formulated tips$(li)If anything seems hard or cumbersome the first time it will reveal a path which is much easier to follow afterwards\nMagical machines and tools are designed in a way so tasks that are not much fun in vanilla (like grinding good enchantments) are taken care of$(li)There is no \"one block does all the things\". Each entity is as simple as possible, but is designed to be creatively combined to invite experimentation.$(li)Some blocks / rituals / items have great power. If you are not careful, it is quite possible that something will be destroyed. However, players should be introduced slowly to such dangerous hazards.$(li)Absolutely no microcrafting (everyone hates microcrafting)"
-        },
-        {
             "type": "patchouli:link",
             "text": "Pigment is still in heavy development. If you find a bug or have a suggestion visit me on github!",
             "url": "https://github.com/DaFuqs/Pigment",

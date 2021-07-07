@@ -13,10 +13,13 @@ group = project.maven_group
 repositories {
 	maven { url "https://maven.shedaniel.me/" }
 	maven { url "https://maven.terraformersmc.com/" }
-	maven { url 'https://maven.blamejared.com' } // https://github.com/Vazkii/Patchouli
+	maven {
+		name = "Pathouli" // https://github.com/Vazkii/Patchouli
+		url = 'https://maven.blamejared.com'
+	}
 	maven {
 		name = "Enchantment Descriptions"
-		url 'https://maven.blamejared.com'
+		url = 'https://maven.blamejared.com'
 	}
 }
 dependencies {
@@ -24,7 +27,7 @@ dependencies {
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
 	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
-	modImplementation ("net.fabricmc.fabric-api:fabric-api:${project.fabric_version}")
+	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
 	include ("me.shedaniel.cloth:config-2:${project.cloth_config_version}"){
 		exclude module: 'fabric-api'
@@ -36,9 +39,10 @@ dependencies {
 
 	// https://maven.blamejared.com/vazkii/patchouli/Patchouli/
 	modImplementation "vazkii.patchouli:Patchouli:${project.patchouli_version}"
-	modApi("vazkii.patchouli:Patchouli:${project.patchouli_version}:api")
+	modApi "vazkii.patchouli:Patchouli:${project.patchouli_version}:api"
 
-	//compile "net.darkhax.enchdesc:EnchantmentDescriptionsFabric-21w08b:3.0.1"
+	modImplementation "me.shedaniel:RoughlyEnoughItems-fabric:6.0.262-alpha"
+	modImplementation "net.darkhax.enchdesc:EnchantmentDescriptionsFabric-${project.enchantment_descriptions_mc_version}:${project.enchantment_descriptions_mod_version}"
 }
 
 

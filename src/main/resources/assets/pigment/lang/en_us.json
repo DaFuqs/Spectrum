@@ -13,11 +13,11 @@
   "enchantment.pigment.autosmelt": "Autosmelt",
   "enchantment.pigment.autosmelt.desc": "Automatically smelts broken blocks",
   "enchantment.pigment.inventory_insertion": "Inventory Insertion",
-  "enchantment.pigment.inventory_insertion.desc": "Puts broken blocks into your inventory instead of dropping them into the world",
+  "enchantment.pigment.inventory_insertion.desc": "Puts broken blocks into your inventory",
   "enchantment.pigment.voiding": "§cCurse of Voiding",
   "enchantment.pigment.voiding.desc": "Destroys all broken blocks",
   "enchantment.pigment.exuberance": "Exuberance",
-  "enchantment.pigment.exuberance.desc": "Multiplies dropped XP",
+  "enchantment.pigment.exuberance.desc": "Increases dropped XP",
   "enchantment.pigment.treasure_hunter": "Treasure Hunter",
   "enchantment.pigment.treasure_hunter.desc": "Occasionally drops Mob Heads on kill",
 
@@ -76,11 +76,11 @@
 
   "block.pigment.sparklestone_ore": "Sparklestone Ore",
   "block.pigment.sparklestone_block": "Sparklestone Block",
-  "block.pigment.koenigsblau_ore": "Königsblau Ore",
-  "block.pigment.koenigsblau_block": "Königsblau Block",
+  "block.pigment.azurite_ore": "Azurite Ore",
+  "block.pigment.azurite_block": "Azurite Block",
   "item.pigment.sparklestone_gem": "Sparklestone Gem",
-  "item.pigment.raw_koenigsblau": "Raw Koenigsblau",
-  "item.pigment.shaped_koenigsblau": "Saturated Königsblau",
+  "item.pigment.raw_azurite": "Raw Azurite",
+  "item.pigment.shaped_azurite": "Saturated Azurite",
   "block.pigment.quitoxic_reeds": "Quitoxic Reeds",
   "item.pigment.quitoxic_powder": "Quitoxic Powder",
   "block.pigment.mermaids_brush": "Mermaids Brush",
@@ -298,6 +298,8 @@
   "block.pigment.yellow_plank_slab": "Yellow Plank Slab",
   "block.pigment.yellow_plank_fence_gate": "Yellow Plank Fence Gate",
 
+  "item.pigment.manual": "Pigment: World of Color",
+
   "item.pigment.magenta_pigment": "Magenta Pigment",
   "item.pigment.yellow_pigment": "Yellow Pigment",
   "item.pigment.cyan_pigment": "Cyan Pigment",
@@ -474,6 +476,8 @@
   "item.pigment.ender_splice.wrong_dimension": "This Ender Splices energy is not strong enough to teleport you across dimensions.",
   "item.pigment.natures_staff": "Nature's Staff",
 
+  "item.pigment.crafting_template": "Crafting Template",
+
   "block.pigment.compactor": "Compacting Chest",
   "block.pigment.altar": "Altar",
   "block.pigment.altar2": "Altar",
@@ -600,7 +604,6 @@
   "block.pigment.zombie_villager_head": "Zombie_Villager Head",
   "block.pigment.zombified_piglin_head": "Zombified_Piglin Head",
 
-
   "advancements.pigment.pigment.title": "Pigment",
   "advancements.pigment.pigment.description": "A story about magic, colors and chaos.",
   "advancements.pigment.pigment_midgame.title": "Pigment - Midgame",
@@ -608,8 +611,8 @@
   "advancements.pigment.pigment_lategame.title": "Pigment - Lategame",
   "advancements.pigment.pigment_lategame.description": "The story about how to conquer the world.",
 
-  "advancements.pigment.collect_all_basic.title": "How many are there?",
-  "advancements.pigment.collect_all_basic.description": "Collect all types of naturally generating gems.",
+  "advancements.pigment.collect_all_basic_shards.title": "How many are there?",
+  "advancements.pigment.collect_all_basic_shards.description": "Collect all types of naturally generating gems.",
 
   "advancements.pigment.get_ender_treasure.title": "Torn from cold, dead hands",
   "advancements.pigment.get_ender_treasure.description": "Some Endermen that appear in your world carry blocks with them that seem to radiate an eerie aura. Now that you hold one in your hands... they are pretty much everywhere! How didn't you notice earlier?",

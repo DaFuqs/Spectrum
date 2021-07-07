@@ -4,10 +4,10 @@
         "item": "minecraft:amethyst_shard"
     },
     "title": {
-      "translate": "advancements.pigment.collect_all_basic.title"
+      "translate": "advancements.pigment.collect_all_basic_shards.title"
     },
     "description": {
-      "translate": "advancements.pigment.collect_all_basic.description"
+      "translate": "advancements.pigment.collect_all_basic_shards.description"
     }
   },
   "parent": "pigment:pigment",
@@ -41,22 +41,11 @@
           }
         ]
       }
-    },
-    "has_moonstone_shard": {
-      "trigger":"minecraft:inventory_changed",
-      "conditions":{
-        "items":[
-          {
-            "item":"pigment:moonstone_shard"
-          }
-        ]
-      }
     }
   },
   "requirements": [
     ["has_amethyst_shard"],
     ["has_citrine_shard"],
-    ["has_topaz_shard"],
-    ["has_moonstone_shard"]
+    ["has_topaz_shard"]
   ]
 }

@@ -7,11 +7,11 @@
   ],
   "key": {
     "#": {
-      "item": "pigment:raw_koenigsblau"
+      "item": "pigment:raw_azurite"
     }
   },
   "result": {
-    "item": "pigment:koenigsblau_block",
+    "item": "pigment:azurite_block",
     "count": 1
   }
 }

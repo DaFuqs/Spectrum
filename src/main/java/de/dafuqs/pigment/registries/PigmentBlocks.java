@@ -51,9 +51,7 @@ import net.minecraft.block.*;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.*;
-import net.minecraft.predicate.NumberRange;
 import net.minecraft.sound.BlockSoundGroup;
-import net.minecraft.state.property.Properties;
 import net.minecraft.tag.BlockTags;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
@@ -66,7 +64,6 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Collection;
 import java.util.Locale;
-import java.util.function.ToIntFunction;
 
 public class PigmentBlocks {
 
@@ -443,8 +440,8 @@ public class PigmentBlocks {
     public static final Block SPARKLESTONE_BLOCK = new Block(FabricBlockSettings.of(Material.GLASS, MapColor.YELLOW).strength(2.0F).sounds(BlockSoundGroup.GLASS).luminance((state) -> 15));
 
     // ORES
-    public static final Block KOENIGSBLAU_ORE = new KoenigsblauOreBlock(FabricBlockSettings.copyOf(Blocks.LAPIS_ORE), UniformIntProvider.create(4, 7));
-    public static final Block KOENIGSBLAU_BLOCK = new PigmentFacingBlock(FabricBlockSettings.copyOf(Blocks.LAPIS_BLOCK));
+    public static final Block AZURITE_ORE = new AzuriteOreBlock(FabricBlockSettings.copyOf(Blocks.LAPIS_ORE), UniformIntProvider.create(4, 7));
+    public static final Block AZURITE_BLOCK = new PigmentFacingBlock(FabricBlockSettings.copyOf(Blocks.LAPIS_BLOCK));
 
     public static final Block PALETUR_ORE = new PaleturOreBlock(FabricBlockSettings.of(Material.STONE).requiresTool().strength(3.0F, 3.0F), UniformIntProvider.create(2, 4));
     public static final Block PALETUR_FRAGMENT_BLOCK = new GravitableBlock( FabricBlockSettings.of(Material.METAL, MapColor.LIGHT_BLUE).requiresTool().strength(5.0F, 6.0F).sounds(BlockSoundGroup.METAL), 0.02F);
@@ -646,10 +643,10 @@ public class PigmentBlocks {
         registerBlock("sparklestone_block", SPARKLESTONE_BLOCK);
         registerBlockItem("sparklestone_block", new BlockItem(SPARKLESTONE_BLOCK, decorationItemSettings));
 
-        registerBlock("koenigsblau_ore", KOENIGSBLAU_ORE);
-        registerBlockItem("koenigsblau_ore", new BlockItem(KOENIGSBLAU_ORE, worldgenItemSettings));
-        registerBlock("koenigsblau_block", KOENIGSBLAU_BLOCK);
-        registerBlockItem("koenigsblau_block", new BlockItem(KOENIGSBLAU_BLOCK, decorationItemSettings));
+        registerBlock("azurite_ore", AZURITE_ORE);
+        registerBlockItem("azurite_ore", new BlockItem(AZURITE_ORE, worldgenItemSettings));
+        registerBlock("azurite_block", AZURITE_BLOCK);
+        registerBlockItem("azurite_block", new BlockItem(AZURITE_BLOCK, decorationItemSettings));
 
         registerBlock("scarlet_ore", SCARLET_ORE);
         registerBlockItem("scarlet_ore", new BlockItem(SCARLET_ORE, worldgenItemSettings));

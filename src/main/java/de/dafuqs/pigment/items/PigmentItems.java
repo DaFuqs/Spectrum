@@ -36,6 +36,8 @@ public class PigmentItems {
     public static FabricItemSettings preEnchantedItemSettings = new FabricItemSettings().group(PigmentItemGroups.ITEM_GROUP_PREENCHANTED_TOOLS);
     public static FabricItemSettings pigmentBedrockItemSettings = new FabricItemSettings().group(PigmentItemGroups.ITEM_GROUP_PREENCHANTED_TOOLS).rarity(Rarity.RARE).fireproof();
 
+    public static final Item MANUAL = new ManualItem(generalItemSettings.maxCount(1));
+
     // Pigment
     public static Item MAGENTA_PIGMENT = new Item(generalItemSettings);
     public static Item YELLOW_PIGMENT = new Item(generalItemSettings);
@@ -63,7 +65,6 @@ public class PigmentItems {
     public static final Item BEDROCK_LEGGINGS = new ArmorItem(BEDROCK_ARMOR_MATERIAL, EquipmentSlot.LEGS, pigmentBedrockItemSettings);
     public static final Item BEDROCK_BOOTS = new ArmorItem(BEDROCK_ARMOR_MATERIAL, EquipmentSlot.FEET, pigmentBedrockItemSettings);
 
-
     // Gem shards
     public static final Item CITRINE_SHARD_ITEM = new Item(pigmentWorldgenItemSettings);
     public static final Item TOPAZ_SHARD_ITEM = new Item(pigmentWorldgenItemSettings);
@@ -80,9 +81,6 @@ public class PigmentItems {
     public static final Item LIQUID_CRYSTAL_BUCKET = new BucketItem(STILL_LIQUID_CRYSTAL, fluidBucketItemSettings);
     public static final Item MUD_BUCKET = new BucketItem(STILL_MUD, fluidBucketItemSettings);
 
-    public static final Item SPAWNER = new Spawner(Blocks.SPAWNER, pigmentUncommonItemSettings);
-    public static final Item GLISTERING_MELON_SEEDS = new AliasedBlockItem(PigmentBlocks.GLISTERING_MELON_STEM, pigmentUncommonItemSettings);
-
     // DECAY
     public static final Item DECAY_1_PLACER = new DecayPlacerItem(PigmentBlocks.DECAY1, decayPlacerItemSettings);
     public static final Item DECAY_2_PLACER = new DecayPlacerItem(PigmentBlocks.DECAY2, decayPlacerItemSettings);
@@ -90,8 +88,8 @@ public class PigmentItems {
 
     // ORE
     public static final Item SPARKLESTONE_GEM = new Item(pigmentWorldgenItemSettings);
-    public static final Item RAW_KOENIGSBLAU = new Item(pigmentWorldgenItemSettings);
-    public static final Item SHAPED_KOENIGSBLAU = new Item(pigmentWorldgenItemSettings);
+    public static final Item RAW_AZURITE = new Item(pigmentWorldgenItemSettings);
+    public static final Item SHAPED_AZURITE = new Item(pigmentWorldgenItemSettings);
 
     public static final Item SHATTERED_PALETUR_FRAGMENTS = new GravityItem(generalItemSettings, 0.003F);
     public static final Item PALETUR_GEM = new GravityItem(generalItemSettings, 0.02F);
@@ -132,11 +130,19 @@ public class PigmentItems {
     public static final Item LUCID_BLACK_CATKIN = register("lucid_black_catkin", new CatkinItem(PigmentColor.BLACK, true, generalUncommonItemSettings));
     public static final Item LUCID_WHITE_CATKIN = register("lucid_white_catkin", new CatkinItem(PigmentColor.WHITE, true, generalUncommonItemSettings));
 
+    // DIV
+    public static final Item SPAWNER = new Spawner(Blocks.SPAWNER, pigmentUncommonItemSettings);
+    public static final Item GLISTERING_MELON_SEEDS = new AliasedBlockItem(PigmentBlocks.GLISTERING_MELON_STEM, pigmentUncommonItemSettings);
+    public static final Item CRAFTING_TEMPLATE = new Item(generalItemSettings);
+
     private static Item register(String name, Item item) {
         return Registry.register(Registry.ITEM, new Identifier(PigmentCommon.MOD_ID, name), item);
     }
 
     public static void register() {
+        register("manual", MANUAL);
+        register("crafting_template", CRAFTING_TEMPLATE);
+
         register("magenta_pigment", MAGENTA_PIGMENT);
         register("yellow_pigment", YELLOW_PIGMENT);
         register("cyan_pigment", CYAN_PIGMENT);
@@ -180,8 +186,8 @@ public class PigmentItems {
         register("decay_3_placer", DECAY_3_PLACER);
 
         register("sparklestone_gem", SPARKLESTONE_GEM);
-        register("raw_koenigsblau", RAW_KOENIGSBLAU);
-        register("shaped_koenigsblau", SHAPED_KOENIGSBLAU);
+        register("raw_azurite", RAW_AZURITE);
+        register("shaped_azurite", SHAPED_AZURITE);
 
         register("shattered_paletur_fragments", SHATTERED_PALETUR_FRAGMENTS);
         register("paletur_gem", PALETUR_GEM);

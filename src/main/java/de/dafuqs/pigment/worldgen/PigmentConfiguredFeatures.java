@@ -21,12 +21,9 @@ import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.YOffset;
 import net.minecraft.world.gen.decorator.Decorator;
 import net.minecraft.world.gen.decorator.DecoratorConfig;
-import net.minecraft.world.gen.decorator.RangeDecoratorConfig;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.feature.size.TwoLayersFeatureSize;
 import net.minecraft.world.gen.foliage.BlobFoliagePlacer;
-import net.minecraft.world.gen.heightprovider.ConstantHeightProvider;
-import net.minecraft.world.gen.heightprovider.UniformHeightProvider;
 import net.minecraft.world.gen.stateprovider.SimpleBlockStateProvider;
 import net.minecraft.world.gen.trunk.StraightTrunkPlacer;
 
@@ -45,7 +42,7 @@ public class PigmentConfiguredFeatures {
     public static ConfiguredFeature<?, ?> DECORATED_TREES; // FOR WORLD GEN
 
     private static ConfiguredFeature<?, ?> SPARKLESTONE_ORE;
-    private static ConfiguredFeature<?, ?> KOENIGSBLAU_ORE;
+    private static ConfiguredFeature<?, ?> AZURITE_ORE;
     private static ConfiguredFeature<?, ?> PALETUR_ORE;
     private static ConfiguredFeature<?, ?> SCARLET_ORE;
 
@@ -65,12 +62,12 @@ public class PigmentConfiguredFeatures {
 
     private static void registerOres() {
         BlockState sparklestoneOre = PigmentBlocks.SPARKLESTONE_ORE.getDefaultState();
-        BlockState koenigsblauOre = PigmentBlocks.KOENIGSBLAU_ORE.getDefaultState();
+        BlockState azuriteOre = PigmentBlocks.AZURITE_ORE.getDefaultState();
         BlockState scarletOre = PigmentBlocks.SCARLET_ORE.getDefaultState();
         BlockState paleturOre = PigmentBlocks.PALETUR_ORE.getDefaultState();
 
         Identifier sparklestoneOreIdentifier = new Identifier(PigmentCommon.MOD_ID, "sparklestone_ore");
-        Identifier koenigsblauOreIdentifier = new Identifier(PigmentCommon.MOD_ID, "koenigsblau_ore");
+        Identifier azuriteOreIdentifier = new Identifier(PigmentCommon.MOD_ID, "azurite_ore");
         Identifier scarletOreIdentifier = new Identifier(PigmentCommon.MOD_ID, "scarlet_ore");
         Identifier paleturOreIdentifier = new Identifier(PigmentCommon.MOD_ID, "paletur_ore");
 
@@ -80,8 +77,8 @@ public class PigmentConfiguredFeatures {
                 .spreadHorizontally()
                 .repeat(6)); // number of veins per chunk
 
-        KOENIGSBLAU_ORE = registerConfiguredFeature(koenigsblauOreIdentifier,
-                Feature.ORE.configure(new OreFeatureConfig(OreFeatureConfig.Rules.BASE_STONE_OVERWORLD, koenigsblauOre, 5)) // vein size
+        AZURITE_ORE = registerConfiguredFeature(azuriteOreIdentifier,
+                Feature.ORE.configure(new OreFeatureConfig(OreFeatureConfig.Rules.BASE_STONE_OVERWORLD, azuriteOre, 5)) // vein size
                         .uniformRange(YOffset.getBottom(), YOffset.aboveBottom(64)) // min and max height
                         .spreadHorizontally()
                         .repeat(4)); // number of veins per chunk
@@ -99,7 +96,7 @@ public class PigmentConfiguredFeatures {
                         .repeat(6)); // number of veins per chunk
 
         BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Feature.UNDERGROUND_ORES, RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY, sparklestoneOreIdentifier));
-        BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Feature.UNDERGROUND_ORES, RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY, koenigsblauOreIdentifier));
+        BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Feature.UNDERGROUND_ORES, RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY, azuriteOreIdentifier));
         BiomeModifications.addFeature(BiomeSelectors.foundInTheNether(), GenerationStep.Feature.UNDERGROUND_ORES, RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY, scarletOreIdentifier));
         BiomeModifications.addFeature(BiomeSelectors.foundInTheEnd(), GenerationStep.Feature.UNDERGROUND_ORES, RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY, paleturOreIdentifier));
     }

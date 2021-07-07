@@ -1,0 +1,17 @@
+{
+  "name": "Anvil Crushing",
+  "icon": "minecraft:anvil",
+  "category": "pigment:general_category",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "title": "Anvil Crushing",
+      "item": "minecraft:anvil",
+      "text": "$(br2)$(italic)\"To create something new you have to go the way of destruction\"$()$(br2)                 - someone"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Until now you primarily used your anvil to repair and upgrade your tools. Such a heavy object as an anvil can be of much more use, though! Why not use it to crush things into dust by it's sheer force? Like the skulls of your enemies... or items. Yeah, that's probably better.$(br2)You can use Anvil Crushing to crush $(l:general/shards)Shards$() into $(l:general/pigment)Pigment$().$(br2)$(italic)Tip: The further the anvil falls, the better."
+    }
+  ]
+}

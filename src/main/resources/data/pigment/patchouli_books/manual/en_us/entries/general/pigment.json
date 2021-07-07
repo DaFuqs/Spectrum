@@ -1,0 +1,11 @@
+{
+  "name": "Pigment",
+  "icon": "pigment:magenta_pigment",
+  "category": "pigment:general_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Most recipes in your altar need Pigment (the material, not the mod. You are playing that one, already).$(br2)Pigment comes in various colors and can be acquired by pulverizing gem shards via $(l:general/anvil_crushing)Anvil Crushing$()."
+    }
+  ]
+}

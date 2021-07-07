@@ -1,0 +1,17 @@
+{
+  "name": "Pigment Pedestal",
+  "icon": "pigment:altar",
+  "category": "pigment:general_category",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "title": "Pigment Pedestal",
+      "item": "pigment:altar",
+      "text": "The $(bold)Pigment Pedestal$() is the block where you can make most of the recipes for Pigment.$(br2)It requires air, or an inventory above it. To start crafting supply a redstone signal."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Most recipes require $(l:general/pigment)Pigment$() as an ingredient.$(br2)The Pedestal also acts as a normal crafting table and can therefore also craft vanilla recipes.$(br2)You can use $(l:general/pedestal_crafting_template)Pedestal Crafting Templates$() to automate pigment and vanilla recipes."
+    }
+  ]
+}

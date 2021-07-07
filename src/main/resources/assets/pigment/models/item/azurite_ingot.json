@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "pigment:item/raw_koenigsblau_ore"
+    "layer0": "pigment:item/azurite_ingot"
   }
 }

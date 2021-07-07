@@ -11,6 +11,9 @@
     },
     "background": "pigment:textures/gui/advancement_background.png"
   },
+  "rewards": {
+    "loot": [ "pigment:adv_pigment" ]
+  },
   "criteria": {
     "has_amethyst_shard": {
       "trigger":"minecraft:inventory_changed",

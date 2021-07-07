@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "pigment:item/shaped_koenigsblau"
+    "layer0": "pigment:item/shaped_azurite"
   }
 }

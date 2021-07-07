@@ -9,9 +9,9 @@ import net.minecraft.util.math.intprovider.UniformIntProvider;
 
 import java.util.List;
 
-public class KoenigsblauOreBlock extends ConditionallyVisibleOreBlock {
+public class AzuriteOreBlock extends ConditionallyVisibleOreBlock {
 
-    public KoenigsblauOreBlock(Settings settings, UniformIntProvider uniformIntProvider) {
+    public AzuriteOreBlock(Settings settings, UniformIntProvider uniformIntProvider) {
         super(settings, uniformIntProvider);
         setupCloak();
     }

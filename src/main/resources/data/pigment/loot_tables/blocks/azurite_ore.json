@@ -6,7 +6,7 @@
         "entries": [
             {
                 "type": "minecraft:item",
-                "name": "pigment:koenigsblau_ore"
+                "name": "pigment:azurite_ore"
             }
             ],
             "conditions": [

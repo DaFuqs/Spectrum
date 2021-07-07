@@ -60,7 +60,7 @@ public class EnderSpliceItem extends Item {
 
                     // make sure the sound plays even when the player currently teleports
                     if(playerEntity instanceof ServerPlayerEntity) {
-                        ((ServerPlayerEntity) playerEntity).networkHandler.sendPacket(new PlaySoundIdS2CPacket(PigmentSoundEvents.PLAYER_TELEPORTS_ID, SoundCategory.PLAYERS, playerEntity.getPos(), 1.0F, 1.0F));
+                        ((ServerPlayerEntity) playerEntity).networkHandler.sendPacket(new PlaySoundIdS2CPacket(PigmentSoundEvents.PLAYER_TELEPORTS.getId(), SoundCategory.PLAYERS, playerEntity.getPos(), 1.0F, 1.0F));
                         ((ServerPlayerEntity) playerEntity).networkHandler.sendPacket(new PlaySoundIdS2CPacket(SoundEvents.BLOCK_GLASS_BREAK.getId(), SoundCategory.PLAYERS, playerEntity.getPos(), 1.0F, 1.0F));
                     }
                 }

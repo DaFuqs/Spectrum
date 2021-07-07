@@ -5,10 +5,8 @@ import com.google.common.collect.EnumHashBiMap;
 import de.dafuqs.pigment.PigmentCommon;
 import de.dafuqs.pigment.blocks.*;
 import de.dafuqs.pigment.blocks.altar.AltarBlock;
-import de.dafuqs.pigment.blocks.budding.BuddingCitrineBlock;
-import de.dafuqs.pigment.blocks.budding.BuddingMoonstoneBlock;
-import de.dafuqs.pigment.blocks.budding.BuddingOnyxBlock;
-import de.dafuqs.pigment.blocks.budding.BuddingTopazBlock;
+import de.dafuqs.pigment.blocks.minerals.PigmentBuddingBlock;
+import de.dafuqs.pigment.blocks.minerals.PigmentMineralBlock;
 import de.dafuqs.pigment.blocks.spirit_tree.OminousSaplingBlock;
 import de.dafuqs.pigment.blocks.spirit_tree.OminousSaplingBlockItem;
 import de.dafuqs.pigment.blocks.compactor.CompactorBlock;
@@ -41,6 +39,8 @@ import de.dafuqs.pigment.blocks.spirit_vines.SpiritVinesBodyBlock;
 import de.dafuqs.pigment.blocks.spirit_vines.SpiritVinesHeadBlock;
 import de.dafuqs.pigment.enums.PigmentColor;
 import de.dafuqs.pigment.misc.PigmentMaterial;
+import de.dafuqs.pigment.sound.PigmentBlockSoundGroups;
+import de.dafuqs.pigment.sound.PigmentSoundEvents;
 import de.dafuqs.pigment.worldgen.ColoredSaplingGenerator;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
@@ -83,35 +83,35 @@ public class PigmentBlocks {
     public static FabricItemSettings mobHeadItemSettings = new FabricItemSettings().group(PigmentItemGroups.ITEM_GROUP_MOB_HEADS).rarity(Rarity.UNCOMMON);
 
     // TODO: hardness
-    public static final Block CITRINE_BLOCK = new AmethystBlock(FabricBlockSettings.of(Material.AMETHYST, MapColor.YELLOW).hardness(1.5f).sounds(BlockSoundGroup.AMETHYST_BLOCK).requiresTool().breakByTool(FabricToolTags.PICKAXES, 2));
-    public static final Block BUDDING_CITRINE = new BuddingCitrineBlock(FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).ticksRandomly().sounds(BlockSoundGroup.AMETHYST_BLOCK).requiresTool().breakByTool(FabricToolTags.PICKAXES, 2));
-    public static final Block CITRINE_CLUSTER = new AmethystClusterBlock(7, 3, FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().requiresTool().breakByTool(FabricToolTags.PICKAXES, 2).sounds(BlockSoundGroup.AMETHYST_CLUSTER).luminance((state) -> 7));
-    public static final Block LARGE_CITRINE_BUD = new AmethystClusterBlock(5, 3, FabricBlockSettings.copyOf(CITRINE_CLUSTER).sounds(BlockSoundGroup.LARGE_AMETHYST_BUD).luminance((state) -> 5));
-    public static final Block MEDIUM_CITRINE_BUD = new AmethystClusterBlock(4, 3, FabricBlockSettings.copyOf(CITRINE_CLUSTER).sounds(BlockSoundGroup.MEDIUM_AMETHYST_BUD).luminance((state) -> 3));
-    public static final Block SMALL_CITRINE_BUD = new AmethystClusterBlock(3, 4, FabricBlockSettings.copyOf(CITRINE_CLUSTER).sounds(BlockSoundGroup.SMALL_AMETHYST_BUD).luminance((state) -> 2));
+    public static final Block CITRINE_CLUSTER = new AmethystClusterBlock(7, 3, FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().requiresTool().breakByTool(FabricToolTags.PICKAXES, 2).sounds(PigmentBlockSoundGroups.CITRINE_CLUSTER).luminance((state) -> 7));
+    public static final Block LARGE_CITRINE_BUD = new AmethystClusterBlock(5, 3, FabricBlockSettings.copyOf(CITRINE_CLUSTER).sounds(PigmentBlockSoundGroups.LARGE_CITRINE_BUD).luminance((state) -> 5));
+    public static final Block MEDIUM_CITRINE_BUD = new AmethystClusterBlock(4, 3, FabricBlockSettings.copyOf(CITRINE_CLUSTER).sounds(PigmentBlockSoundGroups.MEDIUM_CITRINE_BUD).luminance((state) -> 3));
+    public static final Block SMALL_CITRINE_BUD = new AmethystClusterBlock(3, 4, FabricBlockSettings.copyOf(CITRINE_CLUSTER).sounds(PigmentBlockSoundGroups.SMALL_CITRINE_BUD).luminance((state) -> 2));
+    public static final Block CITRINE_BLOCK = new PigmentMineralBlock(FabricBlockSettings.of(Material.AMETHYST, MapColor.YELLOW).hardness(1.5f).sounds(PigmentBlockSoundGroups.CITRINE_BLOCK).requiresTool().breakByTool(FabricToolTags.PICKAXES, 2), PigmentSoundEvents.BLOCK_CITRINE_BLOCK_HIT, PigmentSoundEvents.BLOCK_CITRINE_BLOCK_CHIME);
+    public static final Block BUDDING_CITRINE = new PigmentBuddingBlock(FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).ticksRandomly().sounds(PigmentBlockSoundGroups.CITRINE_BLOCK).requiresTool().breakByTool(FabricToolTags.PICKAXES, 2), SMALL_CITRINE_BUD, MEDIUM_CITRINE_BUD, LARGE_CITRINE_BUD, CITRINE_CLUSTER, PigmentSoundEvents.BLOCK_CITRINE_BLOCK_HIT, PigmentSoundEvents.BLOCK_CITRINE_BLOCK_CHIME);
 
-    public static final Block TOPAZ_BLOCK = new AmethystBlock(FabricBlockSettings.of(Material.AMETHYST, MapColor.BLUE).hardness(1.5F).sounds(BlockSoundGroup.AMETHYST_BLOCK).requiresTool().breakByTool(FabricToolTags.PICKAXES, 2));
-    public static final Block BUDDING_TOPAZ = new BuddingTopazBlock(FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).ticksRandomly().sounds(BlockSoundGroup.AMETHYST_BLOCK).requiresTool().breakByTool(FabricToolTags.PICKAXES, 2));
-    public static final Block TOPAZ_CLUSTER = new AmethystClusterBlock(7, 3, FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().requiresTool().breakByTool(FabricToolTags.PICKAXES, 2).sounds(BlockSoundGroup.AMETHYST_CLUSTER).luminance((state) -> 6));
-    public static final Block LARGE_TOPAZ_BUD = new AmethystClusterBlock(5, 3, FabricBlockSettings.copyOf(TOPAZ_CLUSTER).sounds(BlockSoundGroup.LARGE_AMETHYST_BUD).luminance((state) -> 4));
-    public static final Block MEDIUM_TOPAZ_BUD = new AmethystClusterBlock(4, 3, FabricBlockSettings.copyOf(TOPAZ_CLUSTER).sounds(BlockSoundGroup.MEDIUM_AMETHYST_BUD).luminance((state) -> 2));
-    public static final Block SMALL_TOPAZ_BUD = new AmethystClusterBlock(3, 4, FabricBlockSettings.copyOf(TOPAZ_CLUSTER).sounds(BlockSoundGroup.SMALL_AMETHYST_BUD).luminance((state) -> 1));
+    public static final Block TOPAZ_CLUSTER = new AmethystClusterBlock(7, 3, FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().requiresTool().breakByTool(FabricToolTags.PICKAXES, 2).sounds(PigmentBlockSoundGroups.TOPAZ_CLUSTER).luminance((state) -> 6));
+    public static final Block LARGE_TOPAZ_BUD = new AmethystClusterBlock(5, 3, FabricBlockSettings.copyOf(TOPAZ_CLUSTER).sounds(PigmentBlockSoundGroups.LARGE_TOPAZ_BUD).luminance((state) -> 4));
+    public static final Block MEDIUM_TOPAZ_BUD = new AmethystClusterBlock(4, 3, FabricBlockSettings.copyOf(TOPAZ_CLUSTER).sounds(PigmentBlockSoundGroups.MEDIUM_TOPAZ_BUD).luminance((state) -> 2));
+    public static final Block SMALL_TOPAZ_BUD = new AmethystClusterBlock(3, 4, FabricBlockSettings.copyOf(TOPAZ_CLUSTER).sounds(PigmentBlockSoundGroups.SMALL_TOPAZ_BUD).luminance((state) -> 1));
+    public static final Block TOPAZ_BLOCK = new PigmentMineralBlock(FabricBlockSettings.of(Material.AMETHYST, MapColor.BLUE).hardness(1.5F).sounds(PigmentBlockSoundGroups.TOPAZ_BLOCK).requiresTool().breakByTool(FabricToolTags.PICKAXES, 2), PigmentSoundEvents.BLOCK_TOPAZ_BLOCK_HIT, PigmentSoundEvents.BLOCK_TOPAZ_BLOCK_CHIME);
+    public static final Block BUDDING_TOPAZ = new PigmentBuddingBlock(FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).ticksRandomly().sounds(PigmentBlockSoundGroups.TOPAZ_BLOCK).requiresTool().breakByTool(FabricToolTags.PICKAXES, 2), SMALL_TOPAZ_BUD, MEDIUM_TOPAZ_BUD, LARGE_TOPAZ_BUD, TOPAZ_CLUSTER, PigmentSoundEvents.BLOCK_TOPAZ_BLOCK_HIT, PigmentSoundEvents.BLOCK_TOPAZ_BLOCK_CHIME);
 
-    public static final Block ONYX_BLOCK = new AmethystBlock(FabricBlockSettings.of(Material.AMETHYST, MapColor.BLACK).hardness(1.5F).sounds(BlockSoundGroup.AMETHYST_BLOCK).requiresTool().breakByTool(FabricToolTags.PICKAXES, 2));
-    public static final Block BUDDING_ONYX = new BuddingOnyxBlock(FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).ticksRandomly().sounds(BlockSoundGroup.AMETHYST_BLOCK).requiresTool().breakByTool(FabricToolTags.PICKAXES, 2));
-    public static final Block ONYX_CLUSTER = new AmethystClusterBlock(7, 3, FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().requiresTool().breakByTool(FabricToolTags.PICKAXES, 2).sounds(BlockSoundGroup.AMETHYST_CLUSTER).luminance((state) -> 3));
-    public static final Block LARGE_ONYX_BUD = new AmethystClusterBlock(5, 3, FabricBlockSettings.copyOf(ONYX_CLUSTER).sounds(BlockSoundGroup.LARGE_AMETHYST_BUD).luminance((state) -> 2));
-    public static final Block MEDIUM_ONYX_BUD = new AmethystClusterBlock(4, 3, FabricBlockSettings.copyOf(ONYX_CLUSTER).sounds(BlockSoundGroup.MEDIUM_AMETHYST_BUD).luminance((state) -> 1));
-    public static final Block SMALL_ONYX_BUD = new AmethystClusterBlock(3, 4, FabricBlockSettings.copyOf(ONYX_CLUSTER).sounds(BlockSoundGroup.SMALL_AMETHYST_BUD).luminance((state) -> 0));
+    public static final Block ONYX_CLUSTER = new AmethystClusterBlock(7, 3, FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().requiresTool().breakByTool(FabricToolTags.PICKAXES, 2).sounds(PigmentBlockSoundGroups.ONYX_CLUSTER).luminance((state) -> 3));
+    public static final Block LARGE_ONYX_BUD = new AmethystClusterBlock(5, 3, FabricBlockSettings.copyOf(ONYX_CLUSTER).sounds(PigmentBlockSoundGroups.LARGE_ONYX_BUD).luminance((state) -> 2));
+    public static final Block MEDIUM_ONYX_BUD = new AmethystClusterBlock(4, 3, FabricBlockSettings.copyOf(ONYX_CLUSTER).sounds(PigmentBlockSoundGroups.MEDIUM_ONYX_BUD).luminance((state) -> 1));
+    public static final Block SMALL_ONYX_BUD = new AmethystClusterBlock(3, 4, FabricBlockSettings.copyOf(ONYX_CLUSTER).sounds(PigmentBlockSoundGroups.SMALL_ONYX_BUD).luminance((state) -> 0));
+    public static final Block ONYX_BLOCK = new PigmentMineralBlock(FabricBlockSettings.of(Material.AMETHYST, MapColor.BLACK).hardness(1.5F).sounds(PigmentBlockSoundGroups.ONYX_BLOCK).requiresTool().breakByTool(FabricToolTags.PICKAXES, 2), PigmentSoundEvents.BLOCK_ONYX_BLOCK_HIT, PigmentSoundEvents.BLOCK_ONYX_BLOCK_CHIME);
+    public static final Block BUDDING_ONYX = new PigmentBuddingBlock(FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).ticksRandomly().sounds(PigmentBlockSoundGroups.ONYX_BLOCK).requiresTool().breakByTool(FabricToolTags.PICKAXES, 2), SMALL_ONYX_BUD, MEDIUM_ONYX_BUD, LARGE_ONYX_BUD, ONYX_CLUSTER, PigmentSoundEvents.BLOCK_ONYX_BLOCK_HIT, PigmentSoundEvents.BLOCK_ONYX_BLOCK_CHIME);
 
-    public static final Block MOONSTONE_BLOCK = new AmethystBlock(FabricBlockSettings.of(Material.AMETHYST, MapColor.WHITE).hardness(1.5F).sounds(BlockSoundGroup.AMETHYST_BLOCK).requiresTool().breakByTool(FabricToolTags.PICKAXES, 2));
-    public static final Block BUDDING_MOONSTONE = new BuddingMoonstoneBlock(FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).ticksRandomly().sounds(BlockSoundGroup.AMETHYST_BLOCK).requiresTool().breakByTool(FabricToolTags.PICKAXES, 2));
-    public static final Block MOONSTONE_CLUSTER = new AmethystClusterBlock(7, 3, FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().requiresTool().breakByTool(FabricToolTags.PICKAXES, 2).sounds(BlockSoundGroup.AMETHYST_CLUSTER).luminance((state) -> 14));
-    public static final Block LARGE_MOONSTONE_BUD = new AmethystClusterBlock(5, 3, FabricBlockSettings.copyOf(MOONSTONE_CLUSTER).sounds(BlockSoundGroup.LARGE_AMETHYST_BUD).luminance((state) -> 10));
-    public static final Block MEDIUM_MOONSTONE_BUD = new AmethystClusterBlock(4, 3, FabricBlockSettings.copyOf(MOONSTONE_CLUSTER).sounds(BlockSoundGroup.MEDIUM_AMETHYST_BUD).luminance((state) -> 7));
-    public static final Block SMALL_MOONSTONE_BUD = new AmethystClusterBlock(3, 4, FabricBlockSettings.copyOf(MOONSTONE_CLUSTER).sounds(BlockSoundGroup.SMALL_AMETHYST_BUD).luminance((state) -> 4));
+    public static final Block MOONSTONE_CLUSTER = new AmethystClusterBlock(7, 3, FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().requiresTool().breakByTool(FabricToolTags.PICKAXES, 2).sounds(PigmentBlockSoundGroups.MOONSTONE_CLUSTER).luminance((state) -> 14));
+    public static final Block LARGE_MOONSTONE_BUD = new AmethystClusterBlock(5, 3, FabricBlockSettings.copyOf(MOONSTONE_CLUSTER).sounds(PigmentBlockSoundGroups.LARGE_MOONSTONE_BUD).luminance((state) -> 10));
+    public static final Block MEDIUM_MOONSTONE_BUD = new AmethystClusterBlock(4, 3, FabricBlockSettings.copyOf(MOONSTONE_CLUSTER).sounds(PigmentBlockSoundGroups.MEDIUM_MOONSTONE_BUD).luminance((state) -> 7));
+    public static final Block SMALL_MOONSTONE_BUD = new AmethystClusterBlock(3, 4, FabricBlockSettings.copyOf(MOONSTONE_CLUSTER).sounds(PigmentBlockSoundGroups.SMALL_MOONSTONE_BUD).luminance((state) -> 4));
+    public static final Block MOONSTONE_BLOCK = new PigmentMineralBlock(FabricBlockSettings.of(Material.AMETHYST, MapColor.WHITE).hardness(1.5F).sounds(PigmentBlockSoundGroups.MOONSTONE_BLOCK).requiresTool().breakByTool(FabricToolTags.PICKAXES, 2), PigmentSoundEvents.BLOCK_MOONSTONE_BLOCK_HIT, PigmentSoundEvents.BLOCK_MOONSTONE_BLOCK_CHIME);
+    public static final Block BUDDING_MOONSTONE = new PigmentBuddingBlock(FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).ticksRandomly().sounds(PigmentBlockSoundGroups.MOONSTONE_BLOCK).requiresTool().breakByTool(FabricToolTags.PICKAXES, 2), SMALL_MOONSTONE_BUD, MEDIUM_MOONSTONE_BUD, LARGE_MOONSTONE_BUD, MOONSTONE_CLUSTER, PigmentSoundEvents.BLOCK_MOONSTONE_BLOCK_HIT, PigmentSoundEvents.BLOCK_MOONSTONE_BLOCK_CHIME);
 
-    public static final Block RAINBOW_MOONSTONE_BLOCK = new AmethystBlock(FabricBlockSettings.of(Material.AMETHYST, MapColor.DIAMOND_BLUE).hardness(1.5F).sounds(BlockSoundGroup.AMETHYST_BLOCK).requiresTool().breakByTool(FabricToolTags.PICKAXES, 2));
+    public static final Block RAINBOW_MOONSTONE_BLOCK = new PigmentMineralBlock(FabricBlockSettings.of(Material.AMETHYST, MapColor.DIAMOND_BLUE).hardness(1.5F).sounds(PigmentBlockSoundGroups.RAINBOW_MOONSTONE_BLOCK).requiresTool().breakByTool(FabricToolTags.PICKAXES, 2), PigmentSoundEvents.BLOCK_RAINBOW_MOONSTONE_BLOCK_HIT, PigmentSoundEvents.BLOCK_RAINBOW_MOONSTONE_BLOCK_CHIME);
 
     public static final Block TUFF_SLAB = new SlabBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
     public static final Block TUFF_WALL = new WallBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f));

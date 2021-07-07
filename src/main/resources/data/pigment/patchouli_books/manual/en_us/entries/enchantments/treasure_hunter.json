@@ -1,0 +1,15 @@
+{
+    "name": "Treasure Hunter",
+    "icon": "minecraft:wither_skeleton_skull",
+    "category": "pigment:enchantments_category",
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "$(italic)You almost lost your head yourself while searching for a wither skeleton with a spine loose enough to drop it's skull. Heads up, you never were the one to bury your head in the sand. As if struck by lightning you thought out a new enchantment that will be head and shoulders above Sharpness in regards to that endeavour."
+        },
+        {
+            "type": "patchouli:text",
+            "text": "Occasionally drops Mob Heads on kill$(br2)Max Level: 3$(br)Applicable to melee weapons."
+        }
+    ]
+}

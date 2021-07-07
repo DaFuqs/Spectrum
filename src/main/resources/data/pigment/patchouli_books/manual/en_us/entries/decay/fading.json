@@ -1,0 +1,16 @@
+{
+  "name": "Experiment #1",
+  "icon": "pigment:decay_1_placer",
+  "category": "pigment:decay_category",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "pigment:decay_1_placer",
+      "text": ""
+    },
+    {
+      "type": "patchouli:text",
+      "text": ""
+    }
+  ]
+}

@@ -63,5 +63,449 @@
     "sounds": [
       "pigment:natures_staff_use"
     ]
+  },
+  "block_citrine_block_break": {
+    "subtitle": "subtitles.block.generic.break",
+    "sounds": [
+      "pigment:block_citrine_block_break"
+    ]
+  },
+  "block_citrine_block_fall": {
+    "subtitle": "",
+    "sounds": [
+      "pigment:block_citrine_block_fall"
+    ]
+  },
+  "block_citrine_block_hit": {
+    "subtitle": "subtitles.block.generic.hit",
+    "sounds": [
+      "pigment:block_citrine_block_hit"
+    ]
+  },
+  "block_citrine_block_place": {
+    "subtitle": "subtitles.block.generic.place",
+    "sounds": [
+      "pigment:block_citrine_block_place"
+    ]
+  },
+  "block_citrine_block_step": {
+    "subtitle": "subtitles.block.generic.footsteps",
+    "sounds": [
+      "pigment:block_citrine_block_step"
+    ]
+  },
+  "block_citrine_cluster_break": {
+    "subtitle": "subtitles.block.generic.break",
+    "sounds": [
+      "pigment:block_citrine_cluster_break"
+    ]
+  },
+  "block_citrine_cluster_fall": {
+    "subtitle": "",
+    "sounds": [
+      "pigment:block_citrine_cluster_fall"
+    ]
+  },
+  "block_citrine_cluster_hit": {
+    "subtitle": "subtitles.block.generic.hit",
+    "sounds": [
+      "pigment:block_citrine_cluster_hit"
+    ]
+  },
+  "block_citrine_cluster_place": {
+    "subtitle": "subtitles.block.generic.place",
+    "sounds": [
+      "pigment:block_citrine_cluster_place"
+    ]
+  },
+  "block_citrine_cluster_step": {
+    "subtitle": "subtitles.block.generic.footsteps",
+    "sounds": [
+      "pigment:block_citrine_cluster_step"
+    ]
+  },
+  "block_large_citrine_bud_break": {
+    "subtitle": "subtitles.block.generic.break",
+    "sounds": [
+      "pigment:block_large_citrine_bud_break"
+    ]
+  },
+  "block_large_citrine_bud_place": {
+    "subtitle": "subtitles.block.generic.place",
+    "sounds": [
+      "pigment:block_large_citrine_bud_place"
+    ]
+  },
+  "block_large_moonstone_bud_break": {
+    "subtitle": "subtitles.block.generic.break",
+    "sounds": [
+      "pigment:block_large_moonstone_bud_break"
+    ]
+  },
+  "block_large_moonstone_bud_place": {
+    "subtitle": "subtitles.block.generic.place",
+    "sounds": [
+      "pigment:block_large_moonstone_bud_place"
+    ]
+  },
+  "block_large_onyx_bud_break": {
+    "subtitle": "subtitles.block.generic.break",
+    "sounds": [
+      "pigment:block_large_onyx_bud_break"
+    ]
+  },
+  "block_large_onyx_bud_place": {
+    "subtitle": "subtitles.block.generic.place",
+    "sounds": [
+      "pigment:block_large_onyx_bud_place"
+    ]
+  },
+  "block_large_topaz_bud_break": {
+    "subtitle": "subtitles.block.generic.break",
+    "sounds": [
+      "pigment:block_large_topaz_bud_break"
+    ]
+  },
+  "block_large_topaz_bud_place": {
+    "subtitle": "subtitles.block.generic.place",
+    "sounds": [
+      "pigment:block_large_topaz_bud_place"
+    ]
+  },
+  "block_medium_citrine_bud_break": {
+    "subtitle": "subtitles.block.generic.break",
+    "sounds": [
+      "pigment:block_medium_citrine_bud_break"
+    ]
+  },
+  "block_medium_citrine_bud_place": {
+    "subtitle": "subtitles.block.generic.place",
+    "sounds": [
+      "pigment:block_medium_citrine_bud_place"
+    ]
+  },
+  "block_medium_moonstone_bud_break": {
+    "subtitle": "subtitles.block.generic.break",
+    "sounds": [
+      "pigment:block_medium_moonstone_bud_break"
+    ]
+  },
+  "block_medium_moonstone_bud_place": {
+    "subtitle": "subtitles.block.generic.place",
+    "sounds": [
+      "pigment:block_medium_moonstone_bud_place"
+    ]
+  },
+  "block_medium_onyx_bud_break": {
+    "subtitle": "subtitles.block.generic.break",
+    "sounds": [
+      "pigment:block_medium_onyx_bud_break"
+    ]
+  },
+  "block_medium_onyx_bud_place": {
+    "subtitle": "subtitles.block.generic.place",
+    "sounds": [
+      "pigment:block_medium_onyx_bud_place"
+    ]
+  },
+  "block_medium_topaz_bud_break": {
+    "subtitle": "subtitles.block.generic.break",
+    "sounds": [
+      "pigment:block_medium_topaz_bud_break"
+    ]
+  },
+  "block_medium_topaz_bud_place": {
+    "subtitle": "subtitles.block.generic.place",
+    "sounds": [
+      "pigment:block_medium_topaz_bud_place"
+    ]
+  },
+  "block_moonstone_block_break": {
+    "subtitle": "subtitles.block.generic.break",
+    "sounds": [
+      "pigment:block_moonstone_block_break"
+    ]
+  },
+  "block_moonstone_block_fall": {
+    "subtitle": "",
+    "sounds": [
+      "pigment:block_moonstone_block_fall"
+    ]
+  },
+  "block_moonstone_block_hit": {
+    "subtitle": "subtitles.block.generic.hit",
+    "sounds": [
+      "pigment:block_moonstone_block_hit"
+    ]
+  },
+  "block_moonstone_block_place": {
+    "subtitle": "subtitles.block.generic.place",
+    "sounds": [
+      "pigment:block_moonstone_block_place"
+    ]
+  },
+  "block_moonstone_block_step": {
+    "subtitle": "subtitles.block.generic.footsteps",
+    "sounds": [
+      "pigment:block_moonstone_block_step"
+    ]
+  },
+  "block_moonstone_cluster_break": {
+    "subtitle": "subtitles.block.generic.break",
+    "sounds": [
+      "pigment:block_moonstone_cluster_break"
+    ]
+  },
+  "block_moonstone_cluster_fall": {
+    "subtitle": "",
+    "sounds": [
+      "pigment:block_moonstone_cluster_fall"
+    ]
+  },
+  "block_moonstone_cluster_hit": {
+    "subtitle": "subtitles.block.generic.hit",
+    "sounds": [
+      "pigment:block_moonstone_cluster_hit"
+    ]
+  },
+  "block_moonstone_cluster_place": {
+    "subtitle": "subtitles.block.generic.place",
+    "sounds": [
+      "pigment:block_moonstone_cluster_place"
+    ]
+  },
+  "block_moonstone_cluster_step": {
+    "subtitle": "subtitles.block.generic.footsteps",
+    "sounds": [
+      "pigment:block_moonstone_cluster_step"
+    ]
+  },
+  "block_onyx_block_break": {
+    "subtitle": "subtitles.block.generic.break",
+    "sounds": [
+      "pigment:block_onyx_block_break"
+    ]
+  },
+  "block_onyx_block_fall": {
+    "subtitle": "",
+    "sounds": [
+      "pigment:block_onyx_block_fall"
+    ]
+  },
+  "block_onyx_block_hit": {
+    "subtitle": "subtitles.block.generic.hit",
+    "sounds": [
+      "pigment:block_onyx_block_hit"
+    ]
+  },
+  "block_onyx_block_place": {
+    "subtitle": "subtitles.block.generic.place",
+    "sounds": [
+      "pigment:block_onyx_block_place"
+    ]
+  },
+  "block_onyx_block_step": {
+    "subtitle": "subtitles.block.generic.footsteps",
+    "sounds": [
+      "pigment:block_onyx_block_step"
+    ]
+  },
+  "block_onyx_cluster_break": {
+    "subtitle": "subtitles.block.generic.break",
+    "sounds": [
+      "pigment:block_onyx_cluster_break"
+    ]
+  },
+  "block_onyx_cluster_fall": {
+    "subtitle": "",
+    "sounds": [
+      "pigment:block_onyx_cluster_fall"
+    ]
+  },
+  "block_onyx_cluster_hit": {
+    "subtitle": "subtitles.block.generic.hit",
+    "sounds": [
+      "pigment:block_onyx_cluster_hit"
+    ]
+  },
+  "block_onyx_cluster_place": {
+    "subtitle": "subtitles.block.generic.place",
+    "sounds": [
+      "pigment:block_onyx_cluster_place"
+    ]
+  },
+  "block_onyx_cluster_step": {
+    "subtitle": "subtitles.block.generic.footsteps",
+    "sounds": [
+      "pigment:block_onyx_cluster_step"
+    ]
+  },
+  "block_small_citrine_bud_break": {
+    "subtitle": "subtitles.block.generic.break",
+    "sounds": [
+      "pigment:block_small_citrine_bud_break"
+    ]
+  },
+  "block_small_citrine_bud_place": {
+    "subtitle": "subtitles.block.generic.place",
+    "sounds": [
+      "pigment:block_small_citrine_bud_place"
+    ]
+  },
+  "block_small_moonstone_bud_break": {
+    "subtitle": "subtitles.block.generic.break",
+    "sounds": [
+      "pigment:block_small_moonstone_bud_break"
+    ]
+  },
+  "block_small_moonstone_bud_place": {
+    "subtitle": "subtitles.block.generic.place",
+    "sounds": [
+      "pigment:block_small_moonstone_bud_place"
+    ]
+  },
+  "block_small_onyx_bud_break": {
+    "subtitle": "subtitles.block.generic.break",
+    "sounds": [
+      "pigment:block_small_onyx_bud_break"
+    ]
+  },
+  "block_small_onyx_bud_place": {
+    "subtitle": "subtitles.block.generic.place",
+    "sounds": [
+      "pigment:block_small_onyx_bud_place"
+    ]
+  },
+  "block_small_topaz_bud_break": {
+    "subtitle": "subtitles.block.generic.break",
+    "sounds": [
+      "pigment:block_small_topaz_bud_break"
+    ]
+  },
+  "block_small_topaz_bud_place": {
+    "subtitle": "subtitles.block.generic.place",
+    "sounds": [
+      "pigment:block_small_topaz_bud_place"
+    ]
+  },
+  "block_topaz_block_break": {
+    "subtitle": "subtitles.block.generic.break",
+    "sounds": [
+      "pigment:block_topaz_block_break"
+    ]
+  },
+  "block_topaz_block_fall": {
+    "subtitle": "",
+    "sounds": [
+      "pigment:block_topaz_block_fall"
+    ]
+  },
+  "block_topaz_block_hit": {
+    "subtitle": "subtitles.block.generic.hit",
+    "sounds": [
+      "pigment:block_topaz_block_hit"
+    ]
+  },
+  "block_topaz_block_place": {
+    "subtitle": "subtitles.block.generic.place",
+    "sounds": [
+      "pigment:block_topaz_block_place"
+    ]
+  },
+  "block_topaz_block_step": {
+    "subtitle": "subtitles.block.generic.footsteps",
+    "sounds": [
+      "pigment:block_topaz_block_step"
+    ]
+  },
+  "block_topaz_cluster_break": {
+    "subtitle": "subtitles.block.generic.break",
+    "sounds": [
+      "pigment:block_topaz_cluster_break"
+    ]
+  },
+  "block_topaz_cluster_fall": {
+    "subtitle": "",
+    "sounds": [
+      "pigment:block_topaz_cluster_fall"
+    ]
+  },
+  "block_topaz_cluster_hit": {
+    "subtitle": "subtitles.block.generic.hit",
+    "sounds": [
+      "pigment:block_topaz_cluster_hit"
+    ]
+  },
+  "block_topaz_cluster_place": {
+    "subtitle": "subtitles.block.generic.place",
+    "sounds": [
+      "pigment:block_topaz_cluster_place"
+    ]
+  },
+  "block_topaz_cluster_step": {
+    "subtitle": "subtitles.block.generic.footsteps",
+    "sounds": [
+      "pigment:block_topaz_cluster_step"
+    ]
+  },
+    "block_rainbow_moonstone_block_break": {
+    "subtitle": "subtitles.block.generic.break",
+    "sounds": [
+      "pigment:block_rainbow_moonstone_block_break"
+    ]
+  },
+  "block_rainbow_moonstone_block_step": {
+    "subtitle": "subtitles.block.generic.footsteps",
+    "sounds": [
+      "pigment:block_rainbow_moonstone_block_step"
+    ]
+  },
+  "block_rainbow_moonstone_block_place": {
+    "subtitle": "subtitles.block.generic.place",
+    "sounds": [
+      "pigment:block_rainbow_moonstone_block_place"
+    ]
+  },
+  "block_rainbow_moonstone_block_fall": {
+    "subtitle": "",
+    "sounds": [
+      "pigment:block_rainbow_moonstone_block_fall"
+    ]
+  },
+  "block_rainbow_moonstone_block_hit": {
+    "subtitle": "subtitles.block.generic.hit",
+    "sounds": [
+      "pigment:block_rainbow_moonstone_block_hit"
+    ]
+  },
+  "block_rainbow_moonstone_block_chime": {
+    "subtitle": "subtitles.block.moonstone_block.chime",
+    "sounds": [
+      "pigment:block_rainbow_moonstone_block_chime"
+    ]
+  },
+  "block_citrine_block_chime": {
+    "subtitle": "subtitles.block.citrine_block.chime",
+    "sounds": [
+      "pigment:block_citrine_block_chime"
+    ]
+  },
+  "block_topaz_block_chime": {
+    "subtitle": "subtitles.block.topaz_block.chime",
+    "sounds": [
+      "pigment:block_topaz_block_chime"
+    ]
+  },
+  "block_onyx_block_chime": {
+    "subtitle": "subtitles.block.onyx_block.chime",
+    "sounds": [
+      "pigment:block_onyx_block_chime"
+    ]
+  },
+  "block_moonstone_block_chime": {
+    "subtitle": "subtitles.block.moonstone_block.chime",
+    "sounds": [
+      "pigment:block_moonstone_block_chime"
+    ]
   }
 }

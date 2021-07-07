@@ -12,6 +12,7 @@ import de.dafuqs.pigment.inventories.PigmentScreenHandlerTypes;
 import de.dafuqs.pigment.recipe.PigmentRecipeTypes;
 import de.dafuqs.pigment.registries.*;
 import de.dafuqs.pigment.sound.PigmentSoundEvents;
+import de.dafuqs.pigment.sound.PigmentBlockSoundGroups;
 import de.dafuqs.pigment.worldgen.PigmentConfiguredFeatures;
 import de.dafuqs.pigment.worldgen.PigmentFeatures;
 import me.shedaniel.autoconfig.AutoConfig;
@@ -46,6 +47,7 @@ public class PigmentCommon implements ModInitializer {
 
         // Register ALL the stuff
         PigmentSoundEvents.register();
+        PigmentBlockSoundGroups.register();
         PigmentFluidTags.register();
         PigmentBlockTags.register();
         PigmentFluids.register();

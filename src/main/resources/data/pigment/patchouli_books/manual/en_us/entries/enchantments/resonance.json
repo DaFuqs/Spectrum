@@ -1,0 +1,15 @@
+{
+    "name": "Resonance",
+    "icon": "minecraft:amethyst_cluster",
+    "category": "pigment:enchantments_category",
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "$(italic)There have always been blocks that you were very interested in, but you could never carve them out of the ground carefully enough to retrieve them flawlessly. You noticed, however, that these blocks vibrate in a similar way to the gems you've been so concerned with lately.$(br)If you hit the right frequency, your original dream could finally become a reality."
+        },
+        {
+            "type": "patchouli:text",
+            "text": "Uses gentle vibrations to allow some blocks to drop themselves$(br2)Max Level: 1$(br)Applicable to mining tools.$(br)Mutually exclusive with Fortune and Foundry."
+        }
+    ]
+}

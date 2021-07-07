@@ -1,0 +1,17 @@
+{
+  "name": "Creating Life",
+  "icon": "pigment:altar",
+  "category": "pigment:decay_category",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "title": "Every alchemists dream",
+      "item": "pigment:altar",
+      "text": "It has always been the dream of people to create artificial life. Since you are now dealing with magical gems yourself, which seem to have magical powers, this should be a piece of cake."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "The raw magical powers, which are bundled by the gems, are the best starting point for such research. And since you seem to be immortal (last time a green pig walking upright surprised you, you woke up in your own bed the next morning), you have all the time in the world to think about it.$(br2)It's time for... experiments!"
+    }
+  ]
+}

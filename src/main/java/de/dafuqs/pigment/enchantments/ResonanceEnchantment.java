@@ -1,14 +1,15 @@
 package de.dafuqs.pigment.enchantments;
 
 import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnchantmentTarget;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.enchantment.SilkTouchEnchantment;
 import net.minecraft.entity.EquipmentSlot;
 
-public class ResonanceEnchantment extends SilkTouchEnchantment {
+public class ResonanceEnchantment extends Enchantment {
 
     public ResonanceEnchantment(Enchantment.Rarity weight, EquipmentSlot... slotTypes) {
-        super(weight, slotTypes);
+        super(weight, EnchantmentTarget.DIGGER, slotTypes);
     }
 
     public int getMinPower(int level) {

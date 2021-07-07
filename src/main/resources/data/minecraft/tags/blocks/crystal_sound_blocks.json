@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    "pigment:citrine_block",
+    "pigment:budding_citrine",
+    "pigment:topaz_block",
+    "pigment:budding_topaz",
+    "pigment:onyx_block",
+    "pigment:budding_onyx",
+    "pigment:moonstone_block",
+    "pigment:budding_moonstone"
+  ]
+}

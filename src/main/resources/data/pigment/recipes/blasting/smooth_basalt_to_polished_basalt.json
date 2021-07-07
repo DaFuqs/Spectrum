@@ -1,7 +1,7 @@
 {
     "type": "minecraft:blasting",
     "ingredient": {
-        "item": "minecraft:basalt"
+        "item": "minecraft:smooth_basalt"
     },
     "result": "pigment:polished_basalt",
     "experience": 0.1,

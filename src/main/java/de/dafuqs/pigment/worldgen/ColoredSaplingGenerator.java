@@ -15,15 +15,14 @@ public class ColoredSaplingGenerator extends SaplingGenerator {
     public ColoredSaplingGenerator(DyeColor dyeColor) {
         this.dyeColor = dyeColor;
     }
-
-    @Nullable
-    @Override
-    protected ConfiguredFeature<TreeFeatureConfig, ?> createTreeFeature(Random random, boolean bl) {
-        return getConfiguredFeature(this.dyeColor);
-    }
     
     private ConfiguredFeature<TreeFeatureConfig, ?> getConfiguredFeature(DyeColor dyeColor) {
         return PigmentConfiguredFeatures.COLORED_TREE_FEATURES.get(dyeColor);
     }
 
+    @Nullable
+    @Override
+    protected ConfiguredFeature<TreeFeatureConfig, ?> getTreeFeature(Random random, boolean bees) {
+        return getConfiguredFeature(this.dyeColor);
+    }
 }

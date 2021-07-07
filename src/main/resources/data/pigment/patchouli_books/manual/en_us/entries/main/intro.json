@@ -1,11 +1,28 @@
 {
     "name": "Intro",
-    "icon": "pigment:altar_1",
-    "category": "pigment:main_category",
+    "icon": "pigment:altar",
+    "category": "pigment:general_category",
     "pages": [
         {
+            "type": "patchouli:image",
+            "title": "About Pigment",
+            "images": [ "pigment:textures/gui/manual/pigment.png" ],
+            "border": true,
+            "text": "Pigment is a full-feature mod about magic and exploration."
+        },
+        {
             "type": "patchouli:text",
-            "text": "This is a test entry, but it should show up!"
+            "text": "Pigment is based on color mixing of the subtractive color system (CMYK). Subtractive color mixing may be familiar to you from painting with watercolors or printing.$(br2)Pigments main colors are represented by minerals, found in geodes scattered around the world, with the vanilla Amethyst representing the Magenta part of the spectrum."
+        },
+        {
+            "type": "patchouli:text",
+            "text": "Pigment comes with a builtin progression system based on advancements.$(br)As you delve deeper into Pigment you will notice changes in the world. Differences, that only you can perceive.$(br2)Everything you learn will bring you closer to your final destination: Finding out what is waiting for you beneath the up until then impenetrable bedrock floor."
+        },
+        {
+            "type": "patchouli:link",
+            "text": "Pigment is still in heavy development. If you find a bug or have a suggestion visit me on github!",
+            "url": "https://github.com/DaFuqs/Pigment",
+            "link_text": "Pigment on Github"
         }
     ]
 }

@@ -502,7 +502,8 @@
   "block.pigment.player_detector.message": "Player Detector of %s",
   "block.pigment.item_detector": "Item Detector",
   "block.pigment.weather_detector": "Weather Detector",
-  "block.pigment.light_level_detector": "Lightlevel Detector",
+  "block.pigment.light_level_detector": "Block Light Detector",
+  "block.pigment.entity_detector": "Creature Detector",
 
   "item.pigment.mob_head.tooltip.designer": "§7Head design by %s",
   "block.pigment.axolotl_blue_head": "Blue Axolotl Head",

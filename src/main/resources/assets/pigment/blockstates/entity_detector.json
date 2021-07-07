@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "inverted=false": {
+      "model": "pigment:block/entity_detector"
+    },
+    "inverted=true": {
+      "model": "pigment:block/entity_detector_inverted"
+    }
+  }
+}

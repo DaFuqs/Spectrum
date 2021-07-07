@@ -5,6 +5,7 @@ import com.google.common.collect.EnumHashBiMap;
 import de.dafuqs.pigment.PigmentCommon;
 import de.dafuqs.pigment.blocks.*;
 import de.dafuqs.pigment.blocks.altar.AltarBlock;
+import de.dafuqs.pigment.blocks.detector.*;
 import de.dafuqs.pigment.blocks.minerals.PigmentBuddingBlock;
 import de.dafuqs.pigment.blocks.minerals.PigmentMineralBlock;
 import de.dafuqs.pigment.blocks.spirit_tree.OminousSaplingBlock;
@@ -15,10 +16,6 @@ import de.dafuqs.pigment.blocks.decay.DecayBlock1;
 import de.dafuqs.pigment.blocks.decay.DecayBlock2;
 import de.dafuqs.pigment.blocks.decay.DecayBlock3;
 import de.dafuqs.pigment.blocks.deeper_down_portal.DeeperDownPortalBlock;
-import de.dafuqs.pigment.blocks.detector.BlockLightDetectorBlock;
-import de.dafuqs.pigment.blocks.detector.ItemDetectorBlock;
-import de.dafuqs.pigment.blocks.detector.PlayerDetectorBlock;
-import de.dafuqs.pigment.blocks.detector.WeatherDetectorBlock;
 import de.dafuqs.pigment.blocks.ender_dropper.EnderDropperBlock;
 import de.dafuqs.pigment.blocks.fluid.LiquidCrystalFluidBlock;
 import de.dafuqs.pigment.blocks.fluid.MudFluidBlock;
@@ -471,6 +468,8 @@ public class PigmentBlocks {
     public static final Block WEATHER_DETECTOR =  new WeatherDetectorBlock(FabricBlockSettings.of(Material.STONE).strength(0.2F).sounds(BlockSoundGroup.STONE));
     public static final Block ITEM_DETECTOR = new ItemDetectorBlock(FabricBlockSettings.of(Material.STONE).strength(0.2F).sounds(BlockSoundGroup.STONE));
     public static final Block PLAYER_DETECTOR = new PlayerDetectorBlock(FabricBlockSettings.of(Material.STONE).strength(0.2F).sounds(BlockSoundGroup.STONE));
+    public static final Block ENTITY_DETECTOR = new EntityDetectorBlock(FabricBlockSettings.of(Material.STONE).strength(0.2F).sounds(BlockSoundGroup.STONE));
+
     public static final Block ENDER_DROPPER = new EnderDropperBlock(FabricBlockSettings.of(Material.STONE).requiresTool().strength(15F, 60.0F));
 
     private static final BiMap<PigmentSkullBlock.Type, Block> MOB_HEADS = EnumHashBiMap.create(PigmentSkullBlock.Type.class);
@@ -532,6 +531,8 @@ public class PigmentBlocks {
         registerBlockItem("item_detector", new BlockItem(ITEM_DETECTOR, generalItemSettings));
         registerBlock("player_detector", PLAYER_DETECTOR);
         registerBlockItem("player_detector", new BlockItem(PLAYER_DETECTOR, generalItemSettings));
+        registerBlock("entity_detector", ENTITY_DETECTOR);
+        registerBlockItem("entity_detector", new BlockItem(ENTITY_DETECTOR, generalItemSettings));
 
         registerColoredWood(coloredWoodItemSettings);
         registerGemBlocks(worldgenItemSettings);

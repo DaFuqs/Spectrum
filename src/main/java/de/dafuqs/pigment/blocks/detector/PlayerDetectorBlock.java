@@ -74,10 +74,6 @@ public class PlayerDetectorBlock extends DetectorBlock implements BlockEntityPro
         }
     }
 
-    private Box getBoxWithRadius(BlockPos blockPos, int radius) {
-        return Box.of(Vec3d.ofCenter(blockPos), radius, radius, radius);
-    }
-
     @Override
     int getUpdateFrequencyTicks() {
         return 20;

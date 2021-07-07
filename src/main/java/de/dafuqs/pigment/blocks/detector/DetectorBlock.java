@@ -11,7 +11,9 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
@@ -82,5 +84,9 @@ public abstract class DetectorBlock extends Block {
 
     abstract void updateState(BlockState state, World world, BlockPos pos);
     abstract int getUpdateFrequencyTicks();
+
+    protected Box getBoxWithRadius(BlockPos blockPos, int radius) {
+        return Box.of(Vec3d.ofCenter(blockPos), radius, radius, radius);
+    }
 
 }

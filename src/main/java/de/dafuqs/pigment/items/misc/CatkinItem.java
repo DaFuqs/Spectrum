@@ -1,4 +1,4 @@
-package de.dafuqs.pigment.items;
+package de.dafuqs.pigment.items.misc;
 
 import de.dafuqs.pigment.enums.PigmentColor;
 import net.minecraft.item.Item;

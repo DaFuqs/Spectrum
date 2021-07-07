@@ -1,4 +1,4 @@
-package de.dafuqs.pigment.blocks.head;
+package de.dafuqs.pigment.blocks.mob_head;
 
 import de.dafuqs.pigment.PigmentCommon;
 import net.fabricmc.api.EnvType;
@@ -12,7 +12,6 @@ import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.block.entity.BlockEntityRenderer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
-import net.minecraft.client.render.block.entity.SkullBlockEntityModel;
 import net.minecraft.client.render.entity.model.EntityModelLayers;
 import net.minecraft.client.render.entity.model.EntityModelLoader;
 import net.minecraft.client.render.entity.model.SkullEntityModel;
@@ -21,7 +20,6 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Direction;
 import org.jetbrains.annotations.Nullable;
 
-import java.awt.image.renderable.RenderContext;
 import java.util.Locale;
 
 @Environment(EnvType.CLIENT)

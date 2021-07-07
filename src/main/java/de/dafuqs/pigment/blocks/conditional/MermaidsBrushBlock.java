@@ -4,7 +4,7 @@ import de.dafuqs.pigment.*;
 import de.dafuqs.pigment.interfaces.Cloakable;
 import de.dafuqs.pigment.misc.PigmentBlockCloaker;
 import de.dafuqs.pigment.registries.PigmentBlockTags;
-import de.dafuqs.pigment.items.PigmentItems;
+import de.dafuqs.pigment.registries.PigmentItems;
 import net.minecraft.block.*;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.fluid.FluidState;

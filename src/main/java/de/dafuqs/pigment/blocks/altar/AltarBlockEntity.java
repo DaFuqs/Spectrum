@@ -9,7 +9,7 @@ import de.dafuqs.pigment.recipe.PigmentRecipeTypes;
 import de.dafuqs.pigment.recipe.altar.AltarCraftingRecipe;
 import de.dafuqs.pigment.registries.PigmentBlockEntityRegistry;
 import de.dafuqs.pigment.registries.PigmentBlocks;
-import de.dafuqs.pigment.items.PigmentItems;
+import de.dafuqs.pigment.registries.PigmentItems;
 import net.minecraft.advancement.Advancement;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

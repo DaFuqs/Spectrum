@@ -1,8 +1,8 @@
 package de.dafuqs.pigment.mixin.client;
 
-import de.dafuqs.pigment.blocks.head.PigmentSkullBlock;
-import de.dafuqs.pigment.blocks.head.PigmentSkullBlockEntityRenderer3D;
-import de.dafuqs.pigment.blocks.head.PigmentWallSkullBlock;
+import de.dafuqs.pigment.blocks.mob_head.PigmentSkullBlock;
+import de.dafuqs.pigment.blocks.mob_head.PigmentSkullBlockEntityRenderer3D;
+import de.dafuqs.pigment.blocks.mob_head.PigmentWallSkullBlock;
 import net.minecraft.block.Block;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumerProvider;

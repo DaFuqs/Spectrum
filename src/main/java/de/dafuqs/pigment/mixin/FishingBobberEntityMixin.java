@@ -1,6 +1,6 @@
 package de.dafuqs.pigment.mixin;
 
-import de.dafuqs.pigment.items.PigmentItems;
+import de.dafuqs.pigment.registries.PigmentItems;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.FishingBobberEntity;
 import net.minecraft.item.ItemStack;

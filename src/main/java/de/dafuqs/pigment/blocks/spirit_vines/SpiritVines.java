@@ -1,7 +1,7 @@
-package de.dafuqs.pigment.blocks.spirit_sallow;
+package de.dafuqs.pigment.blocks.spirit_vines;
 
 import de.dafuqs.pigment.registries.PigmentBlocks;
-import de.dafuqs.pigment.items.PigmentItems;
+import de.dafuqs.pigment.registries.PigmentItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.Item;

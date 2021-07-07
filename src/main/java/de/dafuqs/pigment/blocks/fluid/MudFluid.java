@@ -2,7 +2,7 @@ package de.dafuqs.pigment.blocks.fluid;
 
 import de.dafuqs.pigment.registries.PigmentBlocks;
 import de.dafuqs.pigment.registries.PigmentFluids;
-import de.dafuqs.pigment.items.PigmentItems;
+import de.dafuqs.pigment.registries.PigmentItems;
 import de.dafuqs.pigment.sound.PigmentSoundEvents;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;

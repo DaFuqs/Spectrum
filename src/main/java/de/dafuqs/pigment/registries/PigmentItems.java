@@ -1,15 +1,14 @@
-package de.dafuqs.pigment.items;
+package de.dafuqs.pigment.registries;
 
 import de.dafuqs.pigment.PigmentCommon;
 import de.dafuqs.pigment.blocks.gravity.GravityItem;
 import de.dafuqs.pigment.entity.PigmentEntityTypes;
 import de.dafuqs.pigment.enums.PigmentColor;
+import de.dafuqs.pigment.items.misc.CatkinItem;
 import de.dafuqs.pigment.items.misc.AnimatedWandItem;
 import de.dafuqs.pigment.items.materials.*;
 import de.dafuqs.pigment.items.misc.*;
 import de.dafuqs.pigment.items.tools.*;
-import de.dafuqs.pigment.registries.PigmentBlocks;
-import de.dafuqs.pigment.registries.PigmentItemGroups;
 import de.dafuqs.pigment.sound.PigmentSoundEvents;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.block.Blocks;

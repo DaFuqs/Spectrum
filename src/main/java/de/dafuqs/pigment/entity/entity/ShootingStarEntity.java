@@ -3,7 +3,7 @@ package de.dafuqs.pigment.entity.entity;
 import de.dafuqs.pigment.Support;
 import de.dafuqs.pigment.entity.PigmentEntityTypes;
 import de.dafuqs.pigment.particle.PigmentParticleTypes;
-import de.dafuqs.pigment.items.PigmentItems;
+import de.dafuqs.pigment.registries.PigmentItems;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.entity.Entity;
@@ -28,7 +28,6 @@ import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.math.Vector4f;
 import net.minecraft.world.World;
 
 public class ShootingStarEntity extends Entity {

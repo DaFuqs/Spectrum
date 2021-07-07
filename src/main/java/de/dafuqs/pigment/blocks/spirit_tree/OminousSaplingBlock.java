@@ -1,4 +1,4 @@
-package de.dafuqs.pigment.blocks.chromatic_tree;
+package de.dafuqs.pigment.blocks.spirit_tree;
 
 import de.dafuqs.pigment.PigmentCommon;
 import de.dafuqs.pigment.Support;

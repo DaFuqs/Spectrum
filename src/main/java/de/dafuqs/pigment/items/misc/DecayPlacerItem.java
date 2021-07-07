@@ -1,6 +1,6 @@
 package de.dafuqs.pigment.items.misc;
 
-import de.dafuqs.pigment.items.PigmentItems;
+import de.dafuqs.pigment.registries.PigmentItems;
 import net.minecraft.block.Block;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.AliasedBlockItem;

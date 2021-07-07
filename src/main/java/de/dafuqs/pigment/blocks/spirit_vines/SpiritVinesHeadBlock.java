@@ -1,4 +1,4 @@
-package de.dafuqs.pigment.blocks.spirit_sallow;
+package de.dafuqs.pigment.blocks.spirit_vines;
 
 import de.dafuqs.pigment.enums.PigmentColor;
 import de.dafuqs.pigment.registries.PigmentBlocks;
@@ -7,7 +7,6 @@ import net.fabricmc.api.Environment;
 import net.minecraft.block.AbstractPlantStemBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;

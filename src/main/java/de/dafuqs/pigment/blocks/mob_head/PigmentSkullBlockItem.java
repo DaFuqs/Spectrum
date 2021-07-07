@@ -1,4 +1,4 @@
-package de.dafuqs.pigment.blocks.head;
+package de.dafuqs.pigment.blocks.mob_head;
 
 import de.dafuqs.pigment.registries.PigmentBlocks;
 import net.minecraft.block.Block;

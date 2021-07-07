@@ -1,4 +1,4 @@
-package de.dafuqs.pigment.blocks.spirit_sallow;
+package de.dafuqs.pigment.blocks.spirit_vines;
 
 import de.dafuqs.pigment.enums.PigmentColor;
 import de.dafuqs.pigment.registries.PigmentBlocks;

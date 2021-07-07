@@ -1,8 +1,7 @@
 package de.dafuqs.pigment.registries;
 
 import de.dafuqs.pigment.PigmentCommon;
-import de.dafuqs.pigment.blocks.head.PigmentSkullBlock;
-import de.dafuqs.pigment.items.PigmentItems;
+import de.dafuqs.pigment.blocks.mob_head.PigmentSkullBlock;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;

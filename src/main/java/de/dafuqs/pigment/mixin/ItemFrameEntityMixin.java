@@ -1,7 +1,7 @@
 package de.dafuqs.pigment.mixin;
 
 import de.dafuqs.pigment.entity.PigmentEntityTypes;
-import de.dafuqs.pigment.items.PigmentItems;
+import de.dafuqs.pigment.registries.PigmentItems;
 import net.minecraft.entity.decoration.ItemFrameEntity;
 import net.minecraft.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;

@@ -1,4 +1,4 @@
-package de.dafuqs.pigment.blocks.head;
+package de.dafuqs.pigment.blocks.mob_head;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.SkullBlock;

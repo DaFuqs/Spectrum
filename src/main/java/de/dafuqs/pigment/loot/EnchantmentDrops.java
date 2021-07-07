@@ -1,6 +1,6 @@
 package de.dafuqs.pigment.loot;
 
-import de.dafuqs.pigment.blocks.head.PigmentSkullBlock;
+import de.dafuqs.pigment.blocks.mob_head.PigmentSkullBlock;
 import de.dafuqs.pigment.enchantments.PigmentEnchantments;
 import de.dafuqs.pigment.loot.conditions.*;
 import de.dafuqs.pigment.registries.PigmentBlocks;
@@ -9,8 +9,6 @@ import net.fabricmc.fabric.api.loot.v1.event.LootTableLoadingCallback;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.passive.AxolotlEntity;
 import net.minecraft.entity.passive.FoxEntity;
-import net.minecraft.entity.passive.ParrotEntity;
-import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.loot.LootPool;

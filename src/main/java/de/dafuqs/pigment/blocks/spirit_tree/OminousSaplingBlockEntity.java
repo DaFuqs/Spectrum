@@ -1,4 +1,4 @@
-package de.dafuqs.pigment.blocks.chromatic_tree;
+package de.dafuqs.pigment.blocks.spirit_tree;
 
 import de.dafuqs.pigment.interfaces.PlayerOwned;
 import de.dafuqs.pigment.registries.PigmentBlockEntityRegistry;

@@ -213,7 +213,7 @@ public class PigmentConfiguredFeatures {
                 UniformIntProvider.create(3, 4),
                 UniformIntProvider.create(1, 2),
                 -16, 16, 0.05D, 1)
-        ).uniformRange(YOffset.fixed(64), YOffset.fixed(128))
+        ).uniformRange(YOffset.fixed(96), YOffset.belowTop(0))
         ).spreadHorizontally()).applyChance(30);
 
         MOONSTONE_GEODE = ((Feature.GEODE.configure(new GeodeFeatureConfig(

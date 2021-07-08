@@ -36,5 +36,7 @@
     "fabric": "*",
     "minecraft": ">=1.17.0"
   },
-  "suggests": { }
+  "suggests": {
+    "colored_lights": ">=1.0.3"
+  }
 }

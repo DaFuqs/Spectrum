@@ -1,17 +1,17 @@
 {
-  "name": "Mineral Lamps",
+  "name": "Gemstone Runes",
   "icon": "pigment:citrine_chiseled_calcite",
   "category": "pigment:decoration_category",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "$(italic)$()"
+      "text": "$(italic)Calcite and basalt keep the energies of the gems in check as long as they completely enclose the geode, that much is certain. Sometimes, however, the energy accumulated over centuries is so great that it tears a hole in the geode.$(br)To focus these very energies, you can recreate the whole thing in miniature.$()"
     },
     {
       "type": "patchouli:spotlight",
       "item": "pigment:topaz_chiseled_basalt",
-      "title": "Mineral Lamps",
-      "text": ""
+      "title": "Gemstone Runes",
+      "text": "Runes come in all gemstone colors. The frame can be built out of $(l:decoration/block_variants)Polished Basalt or $(l:decoration/block_variants)Polished Calcite$()."
     }
   ]
 }

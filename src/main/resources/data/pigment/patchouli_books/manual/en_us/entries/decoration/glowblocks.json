@@ -6,11 +6,12 @@
     {
       "type": "patchouli:spotlight",
       "item": "pigment:orange_flat_colored_block",
-      "text": "$(italic)$()"
+      "title": "Glowblocks",
+      "text": "$(italic)You have pigment as pure as can be. So why not create blocks with colors as pure as can be. You thought for a moment if you should call them Antiblocks. But since they are indeed normal blocks that would be silly, right?$()"
     },
     {
       "type": "patchouli:text",
-      "text": ""
+      "text": "Glowblocks come in all colors and always look the same, no matter how much light falls on their surface."
     }
   ]
 }

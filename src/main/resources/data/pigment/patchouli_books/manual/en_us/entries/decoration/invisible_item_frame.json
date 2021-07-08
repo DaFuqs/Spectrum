@@ -6,11 +6,11 @@
     {
       "type": "patchouli:spotlight",
       "item": "pigment:invisible_item_frame",
-      "text": "$(italic)$()"
+      "text": "$(italic)You would like to display your most precious belongings. So far, you've always used picture frames for that. But some of your exhibitions would look better if you didn't see the frame. Piece of cake, you just take advantage of the light refractive properties of your gems.$()"
     },
     {
       "type": "patchouli:text",
-      "text": ""
+      "text": "The Invisible Item Frame becomes invisible as soon as you display an item in it."
     }
   ]
 }

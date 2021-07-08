@@ -7,11 +7,11 @@
       "type": "patchouli:spotlight",
       "item": "pigment:citrine_basalt_lamp",
       "title": "Gemstone Lamps",
-      "text": "$(italic)$()"
+      "text": "$(italic)When you set foot in the first geode, you were already met with pleasant light. With your knowledge, it's easy to amplify this light to create fancy lamps.$()"
     },
     {
       "type": "patchouli:text",
-      "text": ""
+      "text": "Gemstone Glass comes in all the colors of gemstones available to you. Both $(l:decoration/block_variants)Chiseled Calcite$() and $(l:decoration/block_variants)Chiseled Basalt$() can be used as a base."
     }
   ]
 }

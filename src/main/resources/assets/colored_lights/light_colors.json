@@ -32,6 +32,16 @@
     "pigment:small_moonstone_bud": "#d0d6d7",
     "pigment:medium_moonstone_bud": "#d0d6d7",
     "pigment:large_moonstone_bud": "#d0d6d7",
-    "pigment:moonstone_cluster": "#d0d6d7"
+    "pigment:moonstone_cluster": "#d0d6d7",
+    "pigment:amethyst_basalt_lamp": "#b440ff",
+    "pigment:citrine_basalt_lamp": "#00ff00",
+    "pigment:topaz_basalt_lamp": "#157687",
+    "pigment:onyx_basalt_lamp": "#222222",
+    "pigment:moonstone_basalt_lamp": "#d0d6d7",
+    "pigment:amethyst_calcite_lamp": "#b440ff",
+    "pigment:citrine_calcite_lamp": "#00ff00",
+    "pigment:topaz_calcite_lamp": "#157687",
+    "pigment:onyx_calcite_lamp": "#222222",
+    "pigment:moonstone_calcite_lamp": "#d0d6d7"
   }
 }

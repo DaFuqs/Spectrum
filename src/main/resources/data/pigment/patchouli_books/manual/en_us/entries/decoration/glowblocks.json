@@ -1,0 +1,16 @@
+{
+  "name": "Glowblocks",
+  "icon": "pigment:orange_flat_colored_block",
+  "category": "pigment:decoration_category",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "pigment:orange_flat_colored_block",
+      "text": "$(italic)$()"
+    },
+    {
+      "type": "patchouli:text",
+      "text": ""
+    }
+  ]
+}

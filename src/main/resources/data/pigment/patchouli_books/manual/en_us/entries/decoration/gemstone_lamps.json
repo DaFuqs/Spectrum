@@ -1,11 +1,12 @@
 {
-  "name": "Invisible Item Frame",
-  "icon": "pigment:invisible_item_frame",
+  "name": "Gemstone Lamps",
+  "icon": "pigment:citrine_basalt_lamp",
   "category": "pigment:decoration_category",
   "pages": [
     {
       "type": "patchouli:spotlight",
-      "item": "pigment:invisible_item_frame",
+      "item": "pigment:citrine_basalt_lamp",
+      "title": "Gemstone Lamps",
       "text": "$(italic)$()"
     },
     {

@@ -1,0 +1,17 @@
+{
+  "name": "Gemstone Glass",
+  "icon": "pigment:topaz_glass",
+  "category": "pigment:decoration_category",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "pigment:topaz_glass",
+      "title": "Mineral Glass",
+      "text": "$(italic)Your gemstones are already slightly transparent by nature. What could be more natural than to form a kind of glass from these materials?$(br)At first glance not exactly inexpensive, it is virtually a renewable raw material. Organic windows!$()"
+    },
+    {
+      "type": "patchouli:text",
+      "text": ""
+    }
+  ]
+}

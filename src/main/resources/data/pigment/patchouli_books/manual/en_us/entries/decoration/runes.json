@@ -1,0 +1,17 @@
+{
+  "name": "Mineral Lamps",
+  "icon": "pigment:citrine_chiseled_calcite",
+  "category": "pigment:decoration_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(italic)$()"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "pigment:topaz_chiseled_basalt",
+      "title": "Mineral Lamps",
+      "text": ""
+    }
+  ]
+}

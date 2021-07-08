@@ -1,0 +1,20 @@
+{
+    "name": "Stargazing",
+    "icon": "minecraft:spyglass",
+    "category": "pigment:resources_category",
+    "pages": [
+        {
+            "type": "patchouli:image",
+            "title": "Whishing upon a Star",
+            "images": [ "pigment:textures/gui/manual/stargazing.png" ],
+            "border": true,
+            "text": "The calmness of the night invites you to lie down in the grass and watch the stars."
+        },
+        {
+            "type": "patchouli:spotlight",
+            "title": "Shooting Stars",
+            "item": "pigment:shooting_star",
+            "text": "Can you catch one right off the sky?$(br2)Tip: Stargazing is much easier when using Potions of Night Vision or a Telescope."
+        }
+    ]
+}

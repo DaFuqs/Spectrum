@@ -1,0 +1,17 @@
+{
+  "name": "Gravity Blocks",
+  "icon": "pigment:scarlet_fragment_block",
+  "category": "pigment:magical_blocks_category",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "pigment:scarlet_fragment_block",
+      "text": ""
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "pigment:paletur_fragment_block",
+      "text": ""
+    }
+  ]
+}

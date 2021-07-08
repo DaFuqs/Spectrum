@@ -1,0 +1,15 @@
+
+
+{
+  "name": "Farming",
+  "icon": "pigment:quitoxic_reeds",
+  "category": "pigment:magical_blocks_category",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "title": "Glistering Melons",
+      "item": "pigment:glistering_melon_seeds",
+      "text": ""
+    }
+  ]
+}

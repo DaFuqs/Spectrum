@@ -1,0 +1,56 @@
+{
+  "name": "Bedrock Tools",
+  "icon": "pigment:bedrock_pickaxe",
+  "category": "pigment:magical_items_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": ""
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "pigment:bedrock_pickaxe",
+      "text": ""
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "pigment:bedrock_axe",
+      "text": ""
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "pigment:bedrock_shovel",
+      "text": ""
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "pigment:bedrock_sword",
+      "text": ""
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "pigment:bedrock_how",
+      "text": ""
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "pigment:bedrock_bow",
+      "text": ""
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "pigment:bedrock_crossbow",
+      "text": ""
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "pigment:bedrock_shears",
+      "text": ""
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "pigment:bedrock_fishing_rod",
+      "text": ""
+    }
+  ]
+}

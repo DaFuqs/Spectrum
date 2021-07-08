@@ -1,0 +1,49 @@
+{
+    "name": "Geodes",
+    "icon": "pigment:amethyst_cluster",
+    "category": "pigment:resources_category",
+    "pages": [
+        {
+            "type": "patchouli:image",
+            "title": "About Pigment",
+            "images": [ "pigment:textures/gui/manual/geodes.png" ],
+            "border": true,
+            "text": "Geodes are distributed all over the world. It seems to you that different initial conditions promote the formation of certain types of minerals. To find them all, it probably makes sense to search in different places."
+        },
+        {
+            "type": "patchouli:spotlight",
+            "title": "Amethyst Geodes",
+            "item": "minecraft:amethyst_block",
+            "text": ""
+        },
+        {
+            "type": "patchouli:spotlight",
+            "title": "Citrine Geodes",
+            "item": "pigment:citrine_block",
+            "text": ""
+        },
+        {
+            "type": "patchouli:spotlight",
+            "title": "Topaz Geodes",
+            "item": "pigment:topaz_block",
+            "text": ""
+        },
+        {
+            "type": "patchouli:spotlight",
+            "title": "Onyx Geodes",
+            "item": "pigment:onyx_block",
+            "text": ""
+        },
+        {
+            "type": "patchouli:spotlight",
+            "title": "Moonstone Geodes",
+            "item": "pigment:moonstone_block",
+            "text": ""
+        },
+        {
+            "type": "patchouli:text",
+            "title": "Acquiring Budding Blocks",
+            "text": "=> Resonance"
+        }
+    ]
+}

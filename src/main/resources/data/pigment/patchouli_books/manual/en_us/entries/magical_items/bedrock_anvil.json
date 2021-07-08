@@ -1,0 +1,16 @@
+{
+  "name": "Multitool",
+  "icon": "pigment:multitool",
+  "category": "pigment:magical_items_category",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "pigment:multitool",
+      "text": ""
+    },
+    {
+      "type": "patchouli:text",
+      "text": ""
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 {
   "name": "Compacting Chest",
   "icon": "pigment:compactor",
-  "category": "pigment:magical_machines_category",
+  "category": "pigment:magical_blocks_category",
   "pages": [
     {
       "type": "patchouli:spotlight",

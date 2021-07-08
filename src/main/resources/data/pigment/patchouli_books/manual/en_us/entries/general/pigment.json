@@ -6,6 +6,11 @@
     {
       "type": "patchouli:text",
       "text": "Most recipes in your altar need Pigment (the material, not the mod. You are playing that one, already).$(br2)Pigment comes in various colors and can be acquired by pulverizing gem shards via $(l:general/anvil_crushing)Anvil Crushing$()."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Mixing Pigments",
+      "text": "There is nothing more important to a upcoming artist than mixing the right paint. Unfortunately, you found that in the case of your Pigments, it's not nearly as easy as it initially seemed: The powders don't quite want to mix. The result is always a multicolored mass.$(br)You need an intermediate solution. The closeness to nature of your minerals suggests that nature must be both the source and the solution! Quickly you make a few notes and $(l:general:colored_trees)out tumbles a recipe, which looks very promising$()."
     }
   ]
 }

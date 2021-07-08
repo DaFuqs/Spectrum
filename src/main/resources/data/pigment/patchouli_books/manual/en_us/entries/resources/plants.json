@@ -1,0 +1,23 @@
+{
+    "name": "Plants",
+    "icon": "pigment:quitoxic_reeds",
+    "category": "pigment:resources_category",
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": ""
+        },
+        {
+            "type": "patchouli:spotlight",
+            "title": "Quitoxic Reeds",
+            "item": "pigment:quitoxic_reeds",
+            "text": ""
+        },
+        {
+            "type": "patchouli:spotlight",
+            "title": "Mermaids Brush",
+            "item": "pigment:mermaids_brush",
+            "text": "in very deep water. sometimes seen because of their precious treasure that is released"
+        }
+    ]
+}

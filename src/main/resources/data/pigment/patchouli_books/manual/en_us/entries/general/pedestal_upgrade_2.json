@@ -1,0 +1,16 @@
+{
+  "name": "Upgrading your Pedestal",
+  "icon": "pigment:altar2",
+  "category": "pigment:general_category",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "pigment:altar2",
+      "text": ""
+    },
+    {
+      "type": "patchouli:text",
+      "text": ""
+    }
+  ]
+}

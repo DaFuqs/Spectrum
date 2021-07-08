@@ -1,0 +1,36 @@
+{
+  "name": "Preenchanted Tools",
+  "icon": "pigment:silker_pickaxe",
+  "category": "pigment:magical_items_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": ""
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "pigment:silker_pickaxe",
+      "text": ""
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "pigment:fortune_pickaxe",
+      "text": ""
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "pigment:looting_falchion",
+      "text": ""
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "pigment:voiding_pickaxe",
+      "text": ""
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "pigment:resonant_pickaxe",
+      "text": ""
+    }
+  ]
+}

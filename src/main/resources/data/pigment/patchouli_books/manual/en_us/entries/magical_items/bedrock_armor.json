@@ -1,0 +1,31 @@
+{
+  "name": "Bedrock Armor",
+  "icon": "pigment:bedrock_chestplate",
+  "category": "pigment:magical_items_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": ""
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "pigment:bedrock_helmet",
+      "text": ""
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "pigment:bedrock_chestplate",
+      "text": ""
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "pigment:bedrock_leggings",
+      "text": ""
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "pigment:bedrock_boots",
+      "text": ""
+    }
+  ]
+}

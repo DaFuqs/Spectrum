@@ -1,0 +1,11 @@
+{
+  "name": "Mob Eggs",
+  "icon": "minecraft:cow_spawn_egg",
+  "category": "pigment:hunting_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": ""
+    }
+  ]
+}

@@ -29,6 +29,7 @@ public class PigmentDefaultEnchantments {
         PigmentDefaultEnchantments.addDefaultEnchantment(PigmentItems.FORTUNE_PICKAXE, Enchantments.FORTUNE, 3);
         PigmentDefaultEnchantments.addDefaultEnchantment(PigmentItems.MULTITOOL, Enchantments.EFFICIENCY, 1);
         PigmentDefaultEnchantments.addDefaultEnchantment(PigmentItems.VOIDING_PICKAXE, PigmentEnchantments.VOIDING, 1);
+        PigmentDefaultEnchantments.addDefaultEnchantment(PigmentItems.RESONANT_PICKAXE, PigmentEnchantments.RESONANCE, 1);
 
         // Bedrock tools
         PigmentDefaultEnchantments.addDefaultEnchantment(PigmentItems.BEDROCK_PICKAXE, Enchantments.SILK_TOUCH, 1);

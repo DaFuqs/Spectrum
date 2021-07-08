@@ -1,0 +1,16 @@
+{
+  "name": "Ender Splice",
+  "icon": "pigment:ender_splice",
+  "category": "pigment:magical_items_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": ""
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "pigment:ender_splice",
+      "text": ""
+    }
+  ]
+}

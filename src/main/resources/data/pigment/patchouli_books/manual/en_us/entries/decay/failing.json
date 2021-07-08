@@ -11,6 +11,11 @@
     {
       "type": "patchouli:text",
       "text": "Maybe one of the strongest materials you know can satisfy their hunger?"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "pigment:corrupted_obsidian_dust",
+      "text": ""
     }
   ]
 }

@@ -11,6 +11,11 @@
     {
       "type": "patchouli:text",
       "text": "But then it may be the thing aggressive enough to destroy even the mightiest material.$(br2)You may not have created such lives as you initially imagined, but you still created something clearly powerful. You guess that counts?"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "pigment:corrupted_bedrock_dust",
+      "text": ""
     }
   ]
 }

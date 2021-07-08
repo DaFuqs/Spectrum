@@ -1,0 +1,16 @@
+{
+  "name": "Getting deeper down",
+  "icon": "minecraft:bedrock",
+  "category": "pigment:dimension_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": ""
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "pigment:decay_3_placer",
+      "text": ""
+    }
+  ]
+}

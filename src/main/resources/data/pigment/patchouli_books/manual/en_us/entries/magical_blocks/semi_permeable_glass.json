@@ -1,0 +1,17 @@
+{
+  "name": "Semi-permeable Glass",
+  "icon": "pigment:amethyst_player_only_glass",
+  "category": "pigment:magical_blocks_category",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "title": "Semi-permeable Glass",
+      "item": "pigment:amethyst_player_only_glass",
+      "text": "$(italic)"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Semi-permeable Glass comes in all the colors of minerals that are available to you, including the common glass and it's tinted variant.$(br2)It looks exactly like normal counterpart, but has the special property that players can pass through it without any problems, while all other creatures bounce off it like a fly off a window."
+    }
+  ]
+}

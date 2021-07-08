@@ -1,0 +1,35 @@
+{
+    "name": "Ores",
+    "icon": "pigment:sparklestone_ore",
+    "category": "pigment:resources_category",
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "Scattered in the ground are various ores, just waiting for you to get unburied - if you notice them, that is. It takes a keen eye to distinguish those anomalies from normal stone, not an easy task for an ordinary player."
+        },
+        {
+            "type": "patchouli:spotlight",
+            "title": "Sparklestone",
+            "item": "pigment:sparklestone_ore",
+            "text": "A yellow glowing ore radiating with energy."
+        },
+        {
+            "type": "patchouli:spotlight",
+            "title": "Azurite",
+            "item": "pigment:azurite_ore",
+            "text": "A rich blue ore, easy to be confused with lapis on first sight."
+        },
+        {
+            "type": "patchouli:spotlight",
+            "title": "Scarlet Ore",
+            "item": "pigment:scarlet_ore",
+            "text": "A very heavy ore found in the Nether. "
+        },
+        {
+            "type": "patchouli:spotlight",
+            "title": "Paletur Ore",
+            "item": "pigment:paletur_ore",
+            "text": "A VERY light ore found scattered across the void islands in the end."
+        }
+    ]
+}

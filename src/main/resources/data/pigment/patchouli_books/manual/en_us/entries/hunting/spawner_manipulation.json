@@ -1,0 +1,11 @@
+{
+  "name": "Spawner Manipulation",
+  "icon": "pigment:spawner",
+  "category": "pigment:hunting_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": ""
+    }
+  ]
+}

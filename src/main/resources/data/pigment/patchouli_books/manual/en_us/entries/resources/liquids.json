@@ -1,0 +1,19 @@
+{
+    "name": "Liquids",
+    "icon": "minecraft:water_bucket",
+    "category": "pigment:resources_category",
+    "pages": [
+        {
+            "type": "patchouli:spotlight",
+            "title": "Mud",
+            "item": "pigment:mud_bucket",
+            "text": ""
+        },
+        {
+            "type": "patchouli:spotlight",
+            "title": "Liquid Crystal",
+            "item": "pigment:liquid_crystal_bucket",
+            "text": "Frostbite Crystal, Blazing Crstal, Resonant Lily"
+        }
+    ]
+}

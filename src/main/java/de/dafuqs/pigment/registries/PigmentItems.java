@@ -105,6 +105,7 @@ public class PigmentItems {
     public static final Item FORTUNE_PICKAXE = new PigmentPickaxeItem(LOW_HEALTH_MATERIAL, 1, -2.8F, preEnchantedItemSettings);
     public static final Item LOOTING_FALCHION = new SwordItem(LOW_HEALTH_MATERIAL, 4, -2.2F, preEnchantedItemSettings);
     public static final Item VOIDING_PICKAXE = new VoidingPickaxeItem(VOIDING_MATERIAL, 1, -2.8F, preEnchantedItemSettings);
+    public static final Item RESONANT_PICKAXE = new PigmentPickaxeItem(LOW_HEALTH_MATERIAL, 1, -2.8F, preEnchantedItemSettings);
 
     public static final Item GLOW_VISION_HELMET = new GlowVisionHelmet(GlowVisionMaterial.INSTANCE, EquipmentSlot.HEAD, preEnchantedItemSettings);
     public static final Item NATURES_STAFF = new AnimatedWandItem(preEnchantedItemSettings);
@@ -203,6 +204,7 @@ public class PigmentItems {
         register("fortune_pickaxe", FORTUNE_PICKAXE);
         register("looting_falchion", LOOTING_FALCHION);
         register("voiding_pickaxe", VOIDING_PICKAXE);
+        register("resonant_pickaxe", RESONANT_PICKAXE);
         register("glow_vision_helmet", GLOW_VISION_HELMET);
 
         register("music_disc_pigment_theme", MUSIC_DISC_PIGMENT_THEME);
@@ -210,6 +212,5 @@ public class PigmentItems {
         register("ender_splice", ENDER_SPLICE);
         register("natures_staff", NATURES_STAFF);
     }
-
 
 }

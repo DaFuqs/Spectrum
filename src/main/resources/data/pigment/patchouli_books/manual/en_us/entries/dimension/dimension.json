@@ -1,0 +1,16 @@
+{
+  "name": "The Deeper Down",
+  "icon": "pigment:decay_3_placer",
+  "category": "pigment:dimension_category",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "minecraft:bedrock",
+      "text": "$(italic)"
+    },
+    {
+      "type": "patchouli:text",
+      "text": ""
+    }
+  ]
+}

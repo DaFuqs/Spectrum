@@ -1,0 +1,40 @@
+{
+  "name": "End Portal Relocation",
+  "icon": "minecraft:end_portal_frame",
+  "category": "pigment:magical_items_category",
+  "pages": [
+    {
+      "type": "patchouli:image",
+      "images": [ "pigment:textures/gui/manual/end_portal.png" ],
+      "border": true,
+      "text": ""
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "pigment:end_portal_cracker",
+      "text": ""
+    },
+    {
+      "type": "patchouli:multiblock",
+      "name": "Reconstructed End Portal",
+      "multiblock": {
+        "pattern": [
+          [ " HHH ",
+            "VPPPV",
+            "VPPPV",
+            "VPPPV",
+            " HHH ",
+            "  0  " ]
+        ],
+        "mapping": {
+          "H": "pigment:cracked_end_portal_frame[eye_type=none,facing_vertical=false]",
+          "V": "pigment:cracked_end_portal_frame[eye_type=none,facing_vertical=true]",
+          "P": "minecraft:end_portal"
+        },
+        "offset": [ 0, 3, 0 ],
+        "symmetrical": false
+      },
+      "text": "You just put the portal back together the way it was initially, add Ender Pearls, done!"
+    }
+  ]
+}

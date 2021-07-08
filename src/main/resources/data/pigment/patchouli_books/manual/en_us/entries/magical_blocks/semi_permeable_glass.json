@@ -7,11 +7,11 @@
       "type": "patchouli:spotlight",
       "title": "Semi-permeable Glass",
       "item": "pigment:amethyst_player_only_glass",
-      "text": "$(italic)Those annoying monsters that always appear at night! For a long time now, they are no longer a threat to you and only serve as a resource supplier, if at all. But that doesn't stop them from pursuing you further. There you remember back to your attempts with the gemstone glass. Surely this one - with a touch of magic - can hold back not only wind.$()"
+      "text": "$(italic)For a long time now, those annoying monsters that always appear at night are no longer a threat to you and only serve as a resource supplier, if at all. But that doesn't stop them from pursuing you further. You remember your early attempts with the gemstone glass. Surely they can hold back not only wind. It just needs a tough of magic.$()"
     },
     {
       "type": "patchouli:text",
-      "text": "Semi-permeable Glass comes in all the colors of minerals that are available to you, including the common glass and it's tinted variant.$(br2)It looks exactly like it's $(l:decoration/gemstone_glass)boring counterpart$(), but has the special property that players can pass through it without any problems, while all other creatures bounce off it like a fly off a window."
+      "text": "Semi-permeable Glass comes in all the colors of minerals that are available to you, including the common glass and it's tinted variant.$(br2)It looks exactly like it's $(l:decoration/gemstone_glass)boring counterpart$(), but has the special property that players can pass through it without problems, while all other creatures bounce off it like a fly off a window."
     }
   ]
 }

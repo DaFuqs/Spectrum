@@ -3,12 +3,13 @@ package de.dafuqs.pigment.registries;
 import com.mojang.datafixers.types.Type;
 import de.dafuqs.pigment.PigmentCommon;
 import de.dafuqs.pigment.blocks.altar.AltarBlockEntity;
+import de.dafuqs.pigment.blocks.ender.EnderHopperBlockEntity;
 import de.dafuqs.pigment.blocks.spirit_tree.OminousSaplingBlockEntity;
 import de.dafuqs.pigment.blocks.compactor.CompactorBlockEntity;
 import de.dafuqs.pigment.blocks.deeper_down_portal.DeeperDownPortalBlockEntity;
 import de.dafuqs.pigment.blocks.deeper_down_portal.DeeperDownPortalBlockEntityRenderer;
 import de.dafuqs.pigment.blocks.detector.PlayerDetectorBlockEntity;
-import de.dafuqs.pigment.blocks.ender_dropper.EnderDropperBlockEntity;
+import de.dafuqs.pigment.blocks.ender.EnderDropperBlockEntity;
 import de.dafuqs.pigment.blocks.mob_head.PigmentSkullBlockEntity;
 import de.dafuqs.pigment.blocks.mob_head.PigmentSkullBlockEntityRenderer3D;
 import de.dafuqs.pigment.blocks.private_chest.PrivateChestBlockEntity;
@@ -36,6 +37,7 @@ public class PigmentBlockEntityRegistry<T extends BlockEntity> {
     public static BlockEntityType<PrivateChestBlockEntity> PRIVATE_CHEST;
     public static BlockEntityType<PlayerDetectorBlockEntity> PLAYER_DETECTOR;
     public static BlockEntityType<EnderDropperBlockEntity> ENDER_DROPPER;
+    public static BlockEntityType<EnderHopperBlockEntity> ENDER_HOPPER;
     public static BlockEntityType<PigmentSkullBlockEntity> SKULL;
     public static BlockEntityType<DeeperDownPortalBlockEntity> DEEPER_DOWN_PORTAL;
 
@@ -51,6 +53,7 @@ public class PigmentBlockEntityRegistry<T extends BlockEntity> {
         PRIVATE_CHEST = create("private_chest", FabricBlockEntityTypeBuilder.create(PrivateChestBlockEntity::new, PigmentBlocks.PRIVATE_CHEST));
         PLAYER_DETECTOR = create("player_detector", FabricBlockEntityTypeBuilder.create(PlayerDetectorBlockEntity::new, PigmentBlocks.PLAYER_DETECTOR));
         ENDER_DROPPER = create("ender_dropper", FabricBlockEntityTypeBuilder.create(EnderDropperBlockEntity::new, PigmentBlocks.ENDER_DROPPER));
+        ENDER_HOPPER = create("ender_hopper", FabricBlockEntityTypeBuilder.create(EnderHopperBlockEntity::new, PigmentBlocks.ENDER_HOPPER));
         DEEPER_DOWN_PORTAL = create("deeper_down_portal", FabricBlockEntityTypeBuilder.create(DeeperDownPortalBlockEntity::new, PigmentBlocks.DEEPER_DOWN_PORTAL));
 
         // All the skulls

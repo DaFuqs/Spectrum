@@ -1,4 +1,4 @@
-package de.dafuqs.pigment.blocks.ender_dropper;
+package de.dafuqs.pigment.blocks.ender;
 
 import de.dafuqs.pigment.interfaces.PlayerOwned;
 import de.dafuqs.pigment.registries.PigmentBlockEntityRegistry;
@@ -14,43 +14,20 @@ import net.minecraft.util.math.BlockPos;
 
 import java.util.UUID;
 
-public class EnderDropperBlockEntity extends BlockEntity implements PlayerOwned {
+public class EnderHopperBlockEntity extends BlockEntity implements PlayerOwned {
 
     private UUID ownerUUID;
     private String ownerName;
 
-    public EnderDropperBlockEntity(BlockPos blockPos, BlockState blockState) {
-        super(PigmentBlockEntityRegistry.ENDER_DROPPER, blockPos, blockState);
+    public EnderHopperBlockEntity(BlockPos blockPos, BlockState blockState) {
+        super(PigmentBlockEntityRegistry.ENDER_HOPPER, blockPos, blockState);
     }
 
     protected Text getContainerName() {
         if(this.ownerName == null) {
-            return new TranslatableText("block.pigment.ender_dropper");
+            return new TranslatableText("block.pigment.ender_hopper");
         } else {
-            return new TranslatableText("block.pigment.ender_dropper_with_owner", this.ownerName);
-        }
-    }
-
-    public int chooseNonEmptySlot() {
-        if(this.hasOwner()) {
-            PlayerEntity playerEntity = world.getPlayerByUuid(this.ownerUUID);
-            if (playerEntity == null) {
-                return -1; // player not online => no drop
-            } else {
-                int i = -1;
-                int j = 1;
-
-                EnderChestInventory enderInventory = playerEntity.getEnderChestInventory();
-                for (int k = 0; k < enderInventory.size(); ++k) {
-                    if (!(enderInventory.getStack(k)).isEmpty() && world.random.nextInt(j++) == 0) {
-                        i = k;
-                    }
-                }
-
-                return i;
-            }
-        } else {
-            return -1; // no owner
+            return new TranslatableText("block.pigment.ender_hopper_with_owner", this.ownerName);
         }
     }
 
@@ -58,20 +35,6 @@ public class EnderDropperBlockEntity extends BlockEntity implements PlayerOwned 
         PlayerEntity playerEntity = world.getPlayerByUuid(this.ownerUUID);
         EnderChestInventory enderInventory = playerEntity.getEnderChestInventory();
         return enderInventory.getStack(slot);
-    }
-
-    public boolean canPlayerUse(PlayerEntity player) {
-        if (this.world.getBlockEntity(this.pos) != this || !isOwner(player)) {
-            return false;
-        } else {
-            return !(player.squaredDistanceTo((double)this.pos.getX() + 0.5D, (double)this.pos.getY() + 0.5D, (double)this.pos.getZ() + 0.5D) > 64.0D);
-        }
-    }
-
-    public void setStack(int slot, ItemStack itemStack) {
-        PlayerEntity playerEntity = world.getPlayerByUuid(this.ownerUUID);
-        EnderChestInventory enderInventory = playerEntity.getEnderChestInventory();
-        enderInventory.setStack(slot, itemStack);
     }
 
     @Override

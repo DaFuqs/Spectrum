@@ -6,6 +6,7 @@ import de.dafuqs.pigment.PigmentCommon;
 import de.dafuqs.pigment.blocks.*;
 import de.dafuqs.pigment.blocks.altar.AltarBlock;
 import de.dafuqs.pigment.blocks.detector.*;
+import de.dafuqs.pigment.blocks.ender.EnderHopperBlock;
 import de.dafuqs.pigment.blocks.minerals.PigmentBuddingBlock;
 import de.dafuqs.pigment.blocks.minerals.PigmentMineralBlock;
 import de.dafuqs.pigment.blocks.spirit_tree.OminousSaplingBlock;
@@ -16,7 +17,7 @@ import de.dafuqs.pigment.blocks.decay.DecayBlock1;
 import de.dafuqs.pigment.blocks.decay.DecayBlock2;
 import de.dafuqs.pigment.blocks.decay.DecayBlock3;
 import de.dafuqs.pigment.blocks.deeper_down_portal.DeeperDownPortalBlock;
-import de.dafuqs.pigment.blocks.ender_dropper.EnderDropperBlock;
+import de.dafuqs.pigment.blocks.ender.EnderDropperBlock;
 import de.dafuqs.pigment.blocks.fluid.LiquidCrystalFluidBlock;
 import de.dafuqs.pigment.blocks.fluid.MudFluidBlock;
 import de.dafuqs.pigment.blocks.mob_head.PigmentSkullBlock;
@@ -471,6 +472,7 @@ public class PigmentBlocks {
     public static final Block ENTITY_DETECTOR = new EntityDetectorBlock(FabricBlockSettings.of(Material.STONE).strength(0.2F).sounds(BlockSoundGroup.STONE));
 
     public static final Block ENDER_DROPPER = new EnderDropperBlock(FabricBlockSettings.of(Material.STONE).requiresTool().strength(15F, 60.0F));
+    public static final Block ENDER_HOPPER = new EnderHopperBlock(FabricBlockSettings.of(Material.STONE).requiresTool().strength(15F, 60.0F));
 
     private static final BiMap<PigmentSkullBlock.Type, Block> MOB_HEADS = EnumHashBiMap.create(PigmentSkullBlock.Type.class);
     private static final BiMap<PigmentSkullBlock.Type, Block> MOB_WALL_HEADS = EnumHashBiMap.create(PigmentSkullBlock.Type.class);
@@ -582,6 +584,8 @@ public class PigmentBlocks {
         registerBlockItem("compactor", new BlockItem(COMPACTOR, generalItemSettings));
         registerBlock("ender_dropper", ENDER_DROPPER);
         registerBlockItem("ender_dropper", new BlockItem(ENDER_DROPPER, generalItemSettings));
+        registerBlock("ender_hopper", ENDER_HOPPER);
+        registerBlockItem("ender_hopper", new BlockItem(ENDER_HOPPER, generalItemSettings));
         registerBlock("bedrock_anvil", BEDROCK_ANVIL);
         registerBlockItem("bedrock_anvil", new BlockItem(BEDROCK_ANVIL, generalItemSettings));
 

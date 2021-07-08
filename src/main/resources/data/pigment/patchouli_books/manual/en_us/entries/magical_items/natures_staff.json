@@ -4,12 +4,12 @@
   "category": "pigment:magical_items_category",
   "pages": [
     {
-      "type": "patchouli:text",
+      "type": "patchouli:spotlight",
+      "item": "pigment:natures_staff",
       "text": ""
     },
     {
-      "type": "patchouli:spotlight",
-      "item": "pigment:natures_staff",
+      "type": "patchouli:text",
       "text": ""
     }
   ]

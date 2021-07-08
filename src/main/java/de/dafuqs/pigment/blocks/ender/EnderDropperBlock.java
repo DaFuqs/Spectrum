@@ -1,6 +1,5 @@
-package de.dafuqs.pigment.blocks.ender_dropper;
+package de.dafuqs.pigment.blocks.ender;
 
-import net.fabricmc.fabric.impl.registry.sync.FabricRegistry;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.block.dispenser.DispenserBehavior;
@@ -38,6 +37,7 @@ public class EnderDropperBlock extends DispenserBlock {
         return new EnderDropperBlockEntity(pos, state);
     }
 
+    // TODO: Set owner on place, not on open
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (world.isClient) {
             return ActionResult.SUCCESS;
@@ -56,7 +56,7 @@ public class EnderDropperBlock extends DispenserBlock {
                 player.openHandledScreen(new SimpleNamedScreenHandlerFactory((i, playerInventory, playerEntity) -> {
                     return GenericContainerScreenHandler.createGeneric9x3(i, playerInventory, enderChestInventory);
                 }, enderDropperBlockEntity.getContainerName()));
-                player.incrementStat(Stats.OPEN_ENDERCHEST);
+
                 PiglinBrain.onGuardedBlockInteracted(player, true);
             }
             return ActionResult.CONSUME;

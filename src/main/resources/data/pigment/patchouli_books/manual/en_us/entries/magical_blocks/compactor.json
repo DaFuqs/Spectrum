@@ -10,7 +10,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "The name of the Compactor says it all! The Compactor will try to craft all the things you put into it in a 3x3 pattern."
+      "text": "The name says it all.$(br)The Compactor will try to craft all the things you put into it in a 3x3 pattern."
     }
   ]
 }

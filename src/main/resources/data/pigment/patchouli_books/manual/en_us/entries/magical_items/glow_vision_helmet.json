@@ -4,12 +4,12 @@
   "category": "pigment:magical_items_category",
   "pages": [
     {
-      "type": "patchouli:text",
+      "type": "patchouli:spotlight",
+      "item": "pigment:glow_vision_helmet",
       "text": ""
     },
     {
-      "type": "patchouli:spotlight",
-      "item": "pigment:glow_vision_helmet",
+      "type": "patchouli:text",
       "text": ""
     }
   ]

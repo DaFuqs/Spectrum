@@ -1,0 +1,17 @@
+{
+  "name": "Particle Emitter",
+  "icon": "pigment:particle_emitter",
+  "category": "pigment:decoration_category",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "title": "Particle Emitter",
+      "item": "pigment:particle_emitter",
+      "text": "$(italic)TODO$()"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "TODO"
+    }
+  ]
+}

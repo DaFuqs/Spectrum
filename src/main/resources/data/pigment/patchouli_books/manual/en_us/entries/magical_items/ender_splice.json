@@ -4,12 +4,12 @@
   "category": "pigment:magical_items_category",
   "pages": [
     {
-      "type": "patchouli:text",
+      "type": "patchouli:spotlight",
+      "item": "pigment:ender_splice",
       "text": ""
     },
     {
-      "type": "patchouli:spotlight",
-      "item": "pigment:ender_splice",
+      "type": "patchouli:text",
       "text": ""
     }
   ]

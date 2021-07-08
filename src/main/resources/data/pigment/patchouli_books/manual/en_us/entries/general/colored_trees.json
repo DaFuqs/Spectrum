@@ -5,16 +5,24 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": ""
+      "text": "You need something organic to mix your pigments. In your experiments, you could see that the roots of seedlings absorb the color and energy of the pigments with ease.$(br)The seedlings change. The energy of the gems pulses through stem and its first leaves. You wonder what they will look like when they are fully grown?"
     },
     {
       "type": "patchouli:spotlight",
       "title": "Creating Colored Saplings",
       "item": "pigment:red_sapling",
-      "text": ""
+      "text": "TODO: Recipe"
     },
     {
-      "type": "patchouli:text",
+      "type": "patchouli:image",
+      "images": [ "pigment:textures/gui/manual/colored_trees.png" ],
+      "border": true,
+      "text": "Now that you know that such trees exist... you see them everywhere. They were here all along! Who knows what else is out there?"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Decoration Blocks",
+      "item": "pigment:light_blue_planks",
       "text": "Like their non-magical counterparts, you can use the colored wood for Planks, Stairs, Slabs, Buttons, Pressure Plates, Fences and Fence Gates."
     }
   ]

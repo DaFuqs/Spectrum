@@ -5,12 +5,12 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": ""
+      "text": "TODO"
     },
     {
       "type": "patchouli:spotlight",
       "item": "pigment:decay_3_placer",
-      "text": ""
+      "text": "TODO"
     }
   ]
 }

@@ -26,14 +26,14 @@
       "advancement": "pigment:collect_topaz_shard",
       "title": "Topaz",
       "item": "pigment:topaz_shard",
-      "text": "Topaz Shards lies surprisingly heavy in your hand. Fragile at first glance, this crystal quickly turns out to be one of the most robust materials, which you were allowed to hold in your hands - perhaps only surpassed by the crystal, which you could also bring into the shape of a pickaxe.$(br2)The topaz represents $(bold)$(#2c2e8e)MATTER.$()"
+      "text": "Topaz Shards lie surprisingly heavy in your hand. Fragile at first glance, this crystal quickly turns out to be one of the most robust materials, which you were allowed to hold in your hands - perhaps only surpassed by the crystal, which you could also bring into the shape of a pickaxe.$(br2)The topaz represents $(bold)$(#2c2e8e)MATTER.$()"
     },
     {
       "type": "patchouli:spotlight",
       "advancement": "pigment:collect_onyx_shard",
       "title": "Onyx",
       "item": "pigment:onyx_shard",
-      "text": "The Onyx is almost pitch blac ,it almost seems as if it would even withdraw the light from its surroundings.$(br2)The onyx, as a combination of energy, matter, and time, serves as a $(bold)$(#000000)reinforcing focus and catalyst$() for magical tools and apparatus."
+      "text": "The Onyx is almost pitch black, it almost seems as if it would even withdraw the light from its surroundings.$(br2)The onyx, as a combination of energy, matter, and time, serves as a $(bold)$(#000000)reinforcing focus and catalyst$() for magical tools and apparatus."
     },
     {
       "type": "patchouli:spotlight",

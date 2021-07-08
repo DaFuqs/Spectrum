@@ -1,3 +1,25 @@
-ender dropper
-ender hopper
-ender purse
+{
+  "name": "Farming",
+  "icon": "pigment:glistering_melon",
+  "category": "pigment:magical_blocks_category",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "title": "Ender Hopper",
+      "item": "pigment:ender_hopper",
+      "text": "TODO"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Ender Dropper",
+      "item": "pigment:ender_dropper",
+      "text": "TODO"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Ender Purse",
+      "item": "pigment:ender_purse",
+      "text": "TODO"
+    }
+  ]
+}

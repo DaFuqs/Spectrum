@@ -6,11 +6,11 @@
     {
       "type": "patchouli:spotlight",
       "item": "minecraft:bedrock",
-      "text": "$(italic)"
+      "text": "$(italic)TODO"
     },
     {
       "type": "patchouli:text",
-      "text": ""
+      "text": "TODO"
     }
   ]
 }

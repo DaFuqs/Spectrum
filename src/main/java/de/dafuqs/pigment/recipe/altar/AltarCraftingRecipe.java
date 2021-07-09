@@ -1,16 +1,15 @@
 package de.dafuqs.pigment.recipe.altar;
 
+import de.dafuqs.pigment.mixin.AccessorShapedRecipe;
 import de.dafuqs.pigment.registries.PigmentBlocks;
 import de.dafuqs.pigment.enums.PigmentColor;
 import de.dafuqs.pigment.registries.PigmentItems;
 import de.dafuqs.pigment.recipe.PigmentRecipeTypes;
+import net.minecraft.inventory.CraftingInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.recipe.Ingredient;
-import net.minecraft.recipe.Recipe;
-import net.minecraft.recipe.RecipeSerializer;
-import net.minecraft.recipe.RecipeType;
+import net.minecraft.recipe.*;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
@@ -55,12 +54,10 @@ public class AltarCraftingRecipe implements Recipe<Inventory> {
 
     @Override
     public boolean matches(Inventory inv, World world) {
-        for(int i = 0; i < 9; i++) {
-            if(!this.craftingInputs.get(i).test(inv.getStack(i))) {
-                return false;
-            }
+        if(!matchesGrid(inv)) {
+            return false;
         }
-        
+
         int magentaPigmentCount = this.pigmentInputs.get(PigmentColor.MAGENTA);
         int yellowPigmentCount = this.pigmentInputs.get(PigmentColor.YELLOW);
         int cyanPigmentCount = this.pigmentInputs.get(PigmentColor.CYAN);
@@ -72,6 +69,44 @@ public class AltarCraftingRecipe implements Recipe<Inventory> {
             && (cyanPigmentCount == 0 || isStackAtLeast(inv.getStack(11), PigmentItems.CYAN_PIGMENT, cyanPigmentCount))
             && (blackPigmentCount == 0 || isStackAtLeast(inv.getStack(12), PigmentItems.BLACK_PIGMENT, blackPigmentCount))
             && (whitePigmentCount == 0 || isStackAtLeast(inv.getStack(13), PigmentItems.WHITE_PIGMENT, magentaPigmentCount)));
+    }
+
+    public boolean matchesGrid(Inventory inv) {
+        for(int i = 0; i <= 3 - this.width; ++i) {
+            for(int j = 0; j <= 3 - this.height; ++j) {
+                if (this.matchesPattern(inv, i, j, true)) {
+                    return true;
+                }
+
+                if (this.matchesPattern(inv, i, j, false)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public boolean matchesPattern(Inventory inv, int offsetX, int offsetY, boolean flipped) {
+        for(int i = 0; i < 3; ++i) {
+            for(int j = 0; j < 3; ++j) {
+                int k = i - offsetX;
+                int l = j - offsetY;
+                Ingredient ingredient = Ingredient.EMPTY;
+                if (k >= 0 && l >= 0 && k < this.width && l < this.height) {
+                    if (flipped) {
+                        ingredient = this.craftingInputs.get(this.width - k - 1 + l * this.width);
+                    } else {
+                        ingredient = this.craftingInputs.get(k + l * this.width);
+                    }
+                }
+
+                if (!ingredient.test(inv.getStack(i + j * 3))) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
     }
 
     private boolean isStackAtLeast(ItemStack sourceItemStack, Item item, int amount) {
@@ -152,4 +187,13 @@ public class AltarCraftingRecipe implements Recipe<Inventory> {
     public HashMap<PigmentColor, Integer> getPigmentInputs() {
         return this.pigmentInputs;
     }
+
+    public int getWidth() {
+        return this.width;
+    }
+
+    public int getHeight() {
+        return this.height;
+    }
+
 }

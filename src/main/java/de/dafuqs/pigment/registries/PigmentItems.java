@@ -24,8 +24,8 @@ import static de.dafuqs.pigment.registries.PigmentFluids.STILL_MUD;
 public class PigmentItems {
 
     public static FabricItemSettings generalItemSettings = new FabricItemSettings().group(PigmentItemGroups.ITEM_GROUP_GENERAL).maxCount(64);
+    public static FabricItemSettings generalItemSettingsSingle = new FabricItemSettings().group(PigmentItemGroups.ITEM_GROUP_GENERAL).maxCount(1);
     public static FabricItemSettings generalUncommonItemSettings = new FabricItemSettings().group(PigmentItemGroups.ITEM_GROUP_GENERAL).maxCount(64).rarity(Rarity.UNCOMMON);
-    public static FabricItemSettings fluidBucketItemSettings = new FabricItemSettings().group(PigmentItemGroups.ITEM_GROUP_GENERAL).maxCount(1);
     public static FabricItemSettings pigmentWorldgenItemSettings = new FabricItemSettings().group(PigmentItemGroups.ITEM_GROUP_WORLDGEN).maxCount(64);
     public static FabricItemSettings pigmentUncommonItemSettings = new FabricItemSettings().group(PigmentItemGroups.ITEM_GROUP_GENERAL).rarity(Rarity.UNCOMMON).maxCount(64);
     public static FabricItemSettings pigmentRareItemSettings = new FabricItemSettings().group(PigmentItemGroups.ITEM_GROUP_GENERAL).rarity(Rarity.RARE).maxCount(64);
@@ -35,7 +35,7 @@ public class PigmentItems {
     public static FabricItemSettings preEnchantedItemSettings = new FabricItemSettings().group(PigmentItemGroups.ITEM_GROUP_PREENCHANTED_TOOLS);
     public static FabricItemSettings pigmentBedrockItemSettings = new FabricItemSettings().group(PigmentItemGroups.ITEM_GROUP_PREENCHANTED_TOOLS).rarity(Rarity.RARE).fireproof();
 
-    public static final Item MANUAL = new ManualItem(generalItemSettings.maxCount(1));
+    public static final Item MANUAL = new ManualItem(generalItemSettingsSingle);
 
     // Pigment
     public static Item MAGENTA_PIGMENT = new Item(generalItemSettings);
@@ -77,8 +77,8 @@ public class PigmentItems {
     public static final Item CORRUPTED_BEDROCK_DUST = new Item(pigmentRareItemSettings);
 
     // FLUIDS
-    public static final Item LIQUID_CRYSTAL_BUCKET = new BucketItem(STILL_LIQUID_CRYSTAL, fluidBucketItemSettings);
-    public static final Item MUD_BUCKET = new BucketItem(STILL_MUD, fluidBucketItemSettings);
+    public static final Item LIQUID_CRYSTAL_BUCKET = new BucketItem(STILL_LIQUID_CRYSTAL, generalItemSettingsSingle);
+    public static final Item MUD_BUCKET = new BucketItem(STILL_MUD, generalItemSettingsSingle);
 
     // DECAY
     public static final Item DECAY_1_PLACER = new DecayPlacerItem(PigmentBlocks.DECAY1, decayPlacerItemSettings);

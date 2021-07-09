@@ -67,16 +67,20 @@ public class AltarCategory<R extends AltarCraftingRecipe> implements DisplayCate
         for (int y = 0; y < 3; y++)
             for (int x = 0; x < 3; x++)
                 slots.add(Widgets.createSlot(new Point(startPoint.x + 1 + x * 18, startPoint.y + 1 + y * 18)).markInput());
-        for (int i = 0; i < 9; i++) {
+
+        // gemstone dust slots
+        int gemstoneDustStartSlot = display.height * display.width;
+
+        for (int i = 0; i < gemstoneDustStartSlot; i++) {
             if (!input.get(i).isEmpty()) {
-                slots.get(DefaultCraftingDisplay.getSlotWithSize(3, i, 3)).entries(input.get(i));
+                slots.get(DefaultCraftingDisplay.getSlotWithSize(display.width, i, 3)).entries(input.get(i));
             }
         }
-        // gemstone dust slots
+
         for (int x = 0; x < 5; x++) {
             slots.add(Widgets.createSlot(new Point(bounds.getCenterX() + x * 18 - 45, startPoint.y + 60)).markInput());
-            if (!input.get(9+x).isEmpty()) {
-                slots.get(DefaultCraftingDisplay.getSlotWithSize(3, 9 + x, 3)).entries(input.get(9 + x));
+            if (!input.get(gemstoneDustStartSlot+x).isEmpty()) {
+                slots.get(9+x).entries(input.get(gemstoneDustStartSlot + x));
             }
         }
         widgets.addAll(slots);

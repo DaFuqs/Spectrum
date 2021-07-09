@@ -110,7 +110,7 @@ public class PigmentItems {
     public static final Item GLOW_VISION_HELMET = new GlowVisionHelmet(GlowVisionMaterial.INSTANCE, EquipmentSlot.HEAD, preEnchantedItemSettings);
     public static final Item NATURES_STAFF = new AnimatedWandItem(preEnchantedItemSettings);
 
-    public static final Item ENDER_BAG = new EnderBag(generalItemSettings);
+    public static final Item ENDER_BAG = new EnderBagItem(generalItemSettings);
     public static final Item END_PORTAL_CRACKER = new EndPortalCrackerItem(generalItemSettings);
     public static final Item QUITOXIC_POWDER = new Item(generalItemSettings);
     public static final Item MERMAIDS_GEM = new Item(generalItemSettings);

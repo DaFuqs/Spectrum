@@ -172,6 +172,8 @@ public class PigmentBlocks {
     public static final Block ONYX_GLASS = new GemGlassBlock(FabricBlockSettings.copy(Blocks.GLASS));
     public static final Block MOONSTONE_GLASS = new GemGlassBlock(FabricBlockSettings.copy(Blocks.GLASS));
 
+    public static final Block GLOWING_GLASS = new GlassBlock(FabricBlockSettings.of(Material.GLASS).nonOpaque().allowsSpawning(PigmentBlocks::never).solidBlock(PigmentBlocks::never).suffocates(PigmentBlocks::never).blockVision(PigmentBlocks::never).luminance(12));
+
     // ALTAR
     private static final FabricBlockSettings altarSettings = FabricBlockSettings.of(Material.STONE).breakByTool(FabricToolTags.PICKAXES).requiresTool().hardness(5.0F).resistance(20.0F);
     public static final Block ALTAR = new AltarBlock(altarSettings);
@@ -179,12 +181,15 @@ public class PigmentBlocks {
     public static final Block ALTAR3 = new AltarBlock(altarSettings);
 
     // PLAYER GLASS
-    public static final Block VANILLA_PLAYER_ONLY_GLASS = new PlayerOnlyGlassBlock(FabricBlockSettings.copy(Blocks.GLASS).nonOpaque().allowsSpawning(PigmentBlocks::never).solidBlock(PigmentBlocks::never).suffocates(PigmentBlocks::never).blockVision(PigmentBlocks::never));
-    public static final Block AMETHYST_PLAYER_ONLY_GLASS = new PlayerOnlyGlassBlock(FabricBlockSettings.copy(PigmentBlocks.AMETHYST_GLASS).nonOpaque().allowsSpawning(PigmentBlocks::never).solidBlock(PigmentBlocks::never).suffocates(PigmentBlocks::never).blockVision(PigmentBlocks::never));
-    public static final Block TOPAZ_PLAYER_ONLY_GLASS = new PlayerOnlyGlassBlock(FabricBlockSettings.copy(PigmentBlocks.TOPAZ_GLASS).nonOpaque().allowsSpawning(PigmentBlocks::never).solidBlock(PigmentBlocks::never).suffocates(PigmentBlocks::never).blockVision(PigmentBlocks::never));
-    public static final Block CITRINE_PLAYER_ONLY_GLASS = new PlayerOnlyGlassBlock(FabricBlockSettings.copy(PigmentBlocks.CITRINE_GLASS).nonOpaque().allowsSpawning(PigmentBlocks::never).solidBlock(PigmentBlocks::never).suffocates(PigmentBlocks::never).blockVision(PigmentBlocks::never));
-    public static final Block ONYX_PLAYER_ONLY_GLASS = new PlayerOnlyGlassBlock(FabricBlockSettings.copy(PigmentBlocks.ONYX_GLASS).nonOpaque().allowsSpawning(PigmentBlocks::never).solidBlock(PigmentBlocks::never).suffocates(PigmentBlocks::never).blockVision(PigmentBlocks::never));
-    public static final Block MOONSTONE_PLAYER_ONLY_GLASS = new PlayerOnlyGlassBlock(FabricBlockSettings.copy(PigmentBlocks.MOONSTONE_GLASS).nonOpaque().allowsSpawning(PigmentBlocks::never).solidBlock(PigmentBlocks::never).suffocates(PigmentBlocks::never).blockVision(PigmentBlocks::never));
+    public static final Block VANILLA_PLAYER_ONLY_GLASS = new PlayerOnlyGlassBlock(FabricBlockSettings.copy(Blocks.GLASS).nonOpaque().allowsSpawning(PigmentBlocks::never).solidBlock(PigmentBlocks::never).suffocates(PigmentBlocks::never).blockVision(PigmentBlocks::never), false);
+    public static final Block AMETHYST_PLAYER_ONLY_GLASS = new PlayerOnlyGlassBlock(FabricBlockSettings.copy(PigmentBlocks.AMETHYST_GLASS).nonOpaque().allowsSpawning(PigmentBlocks::never).solidBlock(PigmentBlocks::never).suffocates(PigmentBlocks::never).blockVision(PigmentBlocks::never), false);
+    public static final Block TOPAZ_PLAYER_ONLY_GLASS = new PlayerOnlyGlassBlock(FabricBlockSettings.copy(PigmentBlocks.TOPAZ_GLASS).nonOpaque().allowsSpawning(PigmentBlocks::never).solidBlock(PigmentBlocks::never).suffocates(PigmentBlocks::never).blockVision(PigmentBlocks::never), false);
+    public static final Block CITRINE_PLAYER_ONLY_GLASS = new PlayerOnlyGlassBlock(FabricBlockSettings.copy(PigmentBlocks.CITRINE_GLASS).nonOpaque().allowsSpawning(PigmentBlocks::never).solidBlock(PigmentBlocks::never).suffocates(PigmentBlocks::never).blockVision(PigmentBlocks::never), false);
+    public static final Block ONYX_PLAYER_ONLY_GLASS = new PlayerOnlyGlassBlock(FabricBlockSettings.copy(PigmentBlocks.ONYX_GLASS).nonOpaque().allowsSpawning(PigmentBlocks::never).solidBlock(PigmentBlocks::never).suffocates(PigmentBlocks::never).blockVision(PigmentBlocks::never), false);
+    public static final Block MOONSTONE_PLAYER_ONLY_GLASS = new PlayerOnlyGlassBlock(FabricBlockSettings.copy(PigmentBlocks.MOONSTONE_GLASS).nonOpaque().allowsSpawning(PigmentBlocks::never).solidBlock(PigmentBlocks::never).suffocates(PigmentBlocks::never).blockVision(PigmentBlocks::never), false);
+
+    public static final Block TINTED_PLAYER_ONLY_GLASS = new PlayerOnlyGlassBlock(FabricBlockSettings.copy(Blocks.TINTED_GLASS).nonOpaque().allowsSpawning(PigmentBlocks::never).solidBlock(PigmentBlocks::never).suffocates(PigmentBlocks::never).blockVision(PigmentBlocks::never), true);
+    public static final Block GLOWING_PLAYER_ONLY_GLASS = new PlayerOnlyGlassBlock(FabricBlockSettings.copy(PigmentBlocks.GLOWING_GLASS).nonOpaque().allowsSpawning(PigmentBlocks::never).solidBlock(PigmentBlocks::never).suffocates(PigmentBlocks::never).blockVision(PigmentBlocks::never).luminance((state) -> 15), false);
 
     // MELON
     public static final Block GLISTERING_MELON = new GlisteringMelonBlock(FabricBlockSettings.of(Material.GOURD, MapColor.LIME).strength(1.0F).sounds(BlockSoundGroup.WOOD));
@@ -203,7 +208,7 @@ public class PigmentBlocks {
     public static final Block DECAY3 = new DecayBlock3(decaySettings.hardness(100.0F).resistance(3600000.0F), null, PigmentBlockTags.DECAY3_SAFE, 3, 5F);
 
     // FLUIDS
-    public static final Block LIQUID_CRYSTAL = new LiquidCrystalFluidBlock(PigmentFluids.STILL_LIQUID_CRYSTAL, FabricBlockSettings.copyOf(Blocks.WATER).luminance((state) -> 8));
+    public static final Block LIQUID_CRYSTAL = new LiquidCrystalFluidBlock(PigmentFluids.STILL_LIQUID_CRYSTAL, FabricBlockSettings.copyOf(Blocks.WATER).luminance((state) -> 8).dropsNothing());
     public static final Block MUD = new MudFluidBlock(PigmentFluids.STILL_MUD, FabricBlockSettings.of(Material.LAVA).strength(100.0F).suffocates(PigmentBlocks::always).dropsNothing());
 
     // COLORED TREES
@@ -708,11 +713,20 @@ public class PigmentBlocks {
         registerBlockItem("onyx_glass", new BlockItem(ONYX_GLASS, fabricItemSettings));
         registerBlock("moonstone_glass", MOONSTONE_GLASS);
         registerBlockItem("moonstone_glass", new BlockItem(MOONSTONE_GLASS, fabricItemSettings));
+
+        registerBlock("glowing_glass", GLOWING_GLASS);
+        registerBlockItem("glowing_glass", new BlockItem(GLOWING_GLASS, fabricItemSettings));
     }
 
     private static void registerPlayerOnlyGlass(FabricItemSettings fabricItemSettings) {
         registerBlock("vanilla_player_only_glass", VANILLA_PLAYER_ONLY_GLASS);
         registerBlockItem("vanilla_player_only_glass", new BlockItem(VANILLA_PLAYER_ONLY_GLASS, fabricItemSettings));
+
+        registerBlock("tinted_player_only_glass", TINTED_PLAYER_ONLY_GLASS);
+        registerBlockItem("tinted_player_only_glass", new BlockItem(TINTED_PLAYER_ONLY_GLASS, fabricItemSettings));
+        registerBlock("glowing_player_only_glass", GLOWING_PLAYER_ONLY_GLASS);
+        registerBlockItem("glowing_player_only_glass", new BlockItem(GLOWING_PLAYER_ONLY_GLASS, fabricItemSettings));
+
         registerBlock("amethyst_player_only_glass", AMETHYST_PLAYER_ONLY_GLASS);
         registerBlockItem("amethyst_player_only_glass", new BlockItem(AMETHYST_PLAYER_ONLY_GLASS, fabricItemSettings));
         registerBlock("topaz_player_only_glass", TOPAZ_PLAYER_ONLY_GLASS);
@@ -1313,6 +1327,10 @@ public class PigmentBlocks {
         BlockRenderLayerMap.INSTANCE.putBlock(PigmentBlocks.TOPAZ_GLASS, RenderLayer.getTranslucent());
         BlockRenderLayerMap.INSTANCE.putBlock(PigmentBlocks.MOONSTONE_GLASS, RenderLayer.getTranslucent());
         BlockRenderLayerMap.INSTANCE.putBlock(PigmentBlocks.ONYX_GLASS, RenderLayer.getTranslucent());
+
+        BlockRenderLayerMap.INSTANCE.putBlock(PigmentBlocks.GLOWING_GLASS, RenderLayer.getTranslucent());
+        BlockRenderLayerMap.INSTANCE.putBlock(PigmentBlocks.GLOWING_PLAYER_ONLY_GLASS, RenderLayer.getTranslucent());
+        BlockRenderLayerMap.INSTANCE.putBlock(PigmentBlocks.TINTED_PLAYER_ONLY_GLASS, RenderLayer.getTranslucent());
 
         BlockRenderLayerMap.INSTANCE.putBlock(PigmentBlocks.VANILLA_PLAYER_ONLY_GLASS, RenderLayer.getTranslucent());
         BlockRenderLayerMap.INSTANCE.putBlock(PigmentBlocks.AMETHYST_PLAYER_ONLY_GLASS, RenderLayer.getTranslucent());

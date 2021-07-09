@@ -432,6 +432,10 @@
   "block.pigment.onyx_glass": "Onyx Glass",
   "block.pigment.moonstone_glass": "Moonstone Glass",
 
+  "block.pigment.glowing_glass": "Glowing Glass",
+  "block.pigment.tinted_player_only_glass": "Semi-Permeable Tinted Glass",
+  "block.pigment.glowing_player_only_glass": "Semi-Permeable Glowing Glass",
+
   "block.pigment.vanilla_player_only_glass": "Semi-Permeable Glass",
   "block.pigment.amethyst_player_only_glass": "Semi-Permeable Amethyst Glass",
   "block.pigment.topaz_player_only_glass": "Semi-Permeable Topaz Glass",

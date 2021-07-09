@@ -15,10 +15,14 @@ import net.minecraft.world.BlockView;
 
 import java.util.Optional;
 
-public class PlayerOnlyGlassBlock extends GlassBlock {
+public class PlayerOnlyGlassBlock extends AbstractGlassBlock {
 
-    public PlayerOnlyGlassBlock(Settings settings) {
+    // used for tinted glass to make light not shine through
+    private final boolean tinted;
+
+    public PlayerOnlyGlassBlock(Settings settings, boolean tinted) {
         super(settings);
+        this.tinted = tinted;
     }
 
     @Override
@@ -56,7 +60,15 @@ public class PlayerOnlyGlassBlock extends GlassBlock {
     }
 
     public boolean isTranslucent(BlockState state, BlockView world, BlockPos pos) {
-        return true;
+        return !tinted;
+    }
+
+    public int getOpacity(BlockState state, BlockView world, BlockPos pos) {
+        if(tinted) {
+            return world.getMaxLightLevel();
+        } else {
+            return super.getOpacity(state, world, pos);
+        }
     }
 
 }

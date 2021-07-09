@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "pigment:block/glowing_glass"
+    }
+  }
+}

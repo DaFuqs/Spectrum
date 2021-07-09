@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "pigment:block/redstone_gravity_block"
+    }
+  }
+}

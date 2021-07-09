@@ -1,5 +1,6 @@
 {
-    "pools": [
+	"type": "minecraft:advancement_reward",
+	"pools": [
 		{
 			"rolls": 1,
 			"entries": [
@@ -7,7 +8,7 @@
 					"type": "minecraft:item",
 					"name": "pigment:manual"
 				}
-            ]
-        }
-    ]
+			]
+		}
+	]
 }

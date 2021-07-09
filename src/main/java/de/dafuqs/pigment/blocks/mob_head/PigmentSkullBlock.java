@@ -47,6 +47,8 @@ public class PigmentSkullBlock extends SkullBlock {
         FOX,
         FOX_ARCTIC,
         GHAST,
+        GLOW_SQUID,
+        GOAT,
         GUARDIAN,
         HOGLIN,
         HORSE,

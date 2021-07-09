@@ -13,7 +13,7 @@ import net.minecraft.util.Identifier;
 
 public class AltarScreen extends HandledScreen<AltarScreenHandler> {
 
-    private static final Identifier BACKGROUND = new Identifier(PigmentCommon.MOD_ID, "textures/gui/container/altar.png");
+    public static final Identifier BACKGROUND = new Identifier(PigmentCommon.MOD_ID, "textures/gui/container/altar.png");
 
     public AltarScreen(AltarScreenHandler handler, PlayerInventory playerInventory, Text title) {
         super(handler, playerInventory, title);

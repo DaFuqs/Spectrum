@@ -1,0 +1,11 @@
+{
+  "name": "Redstone Transparency Block",
+  "icon": "pigment:redstone_transparency_block",
+  "category": "pigment:redstone_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(italic)TODO"
+    }
+  ]
+}

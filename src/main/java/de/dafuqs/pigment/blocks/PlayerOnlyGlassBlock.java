@@ -53,7 +53,9 @@ public class PlayerOnlyGlassBlock extends AbstractGlassBlock {
                 || state.getBlock().equals(PigmentBlocks.TOPAZ_PLAYER_ONLY_GLASS) && stateFrom.getBlock().equals(PigmentBlocks.TOPAZ_GLASS)
                 || state.getBlock().equals(PigmentBlocks.MOONSTONE_PLAYER_ONLY_GLASS) && stateFrom.getBlock().equals(PigmentBlocks.MOONSTONE_GLASS)
                 || state.getBlock().equals(PigmentBlocks.ONYX_PLAYER_ONLY_GLASS) && stateFrom.getBlock().equals(PigmentBlocks.ONYX_GLASS)
-                || state.getBlock().equals(PigmentBlocks.VANILLA_PLAYER_ONLY_GLASS) && stateFrom.getBlock().equals(Blocks.GLASS)) {
+                || state.getBlock().equals(PigmentBlocks.VANILLA_PLAYER_ONLY_GLASS) && stateFrom.getBlock().equals(Blocks.GLASS)
+                || state.getBlock().equals(PigmentBlocks.GLOWING_PLAYER_ONLY_GLASS) && stateFrom.getBlock().equals(PigmentBlocks.GLOWING_GLASS)
+                || state.getBlock().equals(PigmentBlocks.TINTED_PLAYER_ONLY_GLASS) && stateFrom.getBlock().equals(Blocks.TINTED_GLASS)) {
             return true;
         }
         return super.isSideInvisible(state, stateFrom, direction);

@@ -484,11 +484,18 @@
 
   "item.pigment.crafting_template": "Crafting Template",
 
+  "container.pigment.rei.altar_crafting.title": "Altar Crafting",
+  "container.pigment.altar.rei.crafting_time_and_xp": "%f seconds - %f XP",
+  "container.pigment.altar.rei.crafting_time_one_second_and_xp": "%f second - %f XP",
+
   "block.pigment.compactor": "Compacting Chest",
   "block.pigment.altar": "Altar",
   "block.pigment.altar2": "Altar",
   "block.pigment.altar3": "Altar",
   "block.pigment.altar.title_with_owner": "Altar of %s",
+
+  "block.pigment.redstone_transparency_block": "Redstone Transparent Block",
+  "block.pigment.redstone_gravity_block": "Redstone Gravity Block",
 
   "block.pigment.ender_dropper": "Ender Dropper",
   "block.pigment.ender_dropper_with_owner": "Ender Dropper of %s",
@@ -514,8 +521,10 @@
   "block.pigment.entity_detector": "Creature Detector",
 
   "item.pigment.mob_head.tooltip.designer": "§7Head design by %s",
+  "block.pigment.goat_head": "Goat Head",
+  "block.pigment.glow_squid_head": "Glow Squid Head",
   "block.pigment.axolotl_blue_head": "Blue Axolotl Head",
-  "block.pigment.axolotl_brown_head": "Brown Axolotl Head",
+  "block.pigment.axolotl_brown_head": "Wild Axolotl Head",
   "block.pigment.axolotl_cyan_head": "Cyan Axolotl Head",
   "block.pigment.axolotl_gold_head": "Gold Axolotl Head",
   "block.pigment.axolotl_leucistic_head": "Leucistic Axolotl Head",

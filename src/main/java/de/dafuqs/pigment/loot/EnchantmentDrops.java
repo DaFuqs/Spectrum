@@ -46,7 +46,7 @@ public class EnchantmentDrops {
 
         // Pigment head drops
         // ATTENTION: No specific enough loot tables exist for fox, axolotl, parrot and shulker variants.
-        // Those are handled separately
+        // Those are handled separately in setup()
         put(new Identifier("entities/sheep/black"), new TreasureHunterDropDefinition(PigmentBlocks.getMobHead(PigmentSkullBlock.Type.SHEEP_BLACK).asItem(), 0.01F));
         put(new Identifier("entities/sheep/blue"), new TreasureHunterDropDefinition(PigmentBlocks.getMobHead(PigmentSkullBlock.Type.SHEEP_BLUE).asItem(), 0.01F));
         put(new Identifier("entities/sheep/brown"), new TreasureHunterDropDefinition(PigmentBlocks.getMobHead(PigmentSkullBlock.Type.SHEEP_BROWN).asItem(), 0.01F));
@@ -116,9 +116,11 @@ public class EnchantmentDrops {
         put(new Identifier("entities/zombified_piglin"), new TreasureHunterDropDefinition(PigmentBlocks.getMobHead(PigmentSkullBlock.Type.ZOMBIFIED_PIGLIN).asItem(), 0.01F));
         put(new Identifier("entities/bee"), new TreasureHunterDropDefinition(PigmentBlocks.getMobHead(PigmentSkullBlock.Type.BEE).asItem(), 0.01F));
         put(new Identifier("entities/tropical_fish"), new TreasureHunterDropDefinition(PigmentBlocks.getMobHead(PigmentSkullBlock.Type.CLOWNFISH).asItem(), 0.01F));
+        put(new Identifier("entities/goat"), new TreasureHunterDropDefinition(PigmentBlocks.getMobHead(PigmentSkullBlock.Type.GOAT).asItem(), 0.01F));
+        put(new Identifier("entities/glow_squid"), new TreasureHunterDropDefinition(PigmentBlocks.getMobHead(PigmentSkullBlock.Type.GLOW_SQUID).asItem(), 0.01F));
     }};
 
-    private static final Map<Identifier, Item> resonanceBreakableLootPools = new HashMap<Identifier, Item>() {{
+    private static final Map<Identifier, Item> resonanceBreakableLootPools = new HashMap<>() {{
         put(new Identifier("blocks/budding_amethyst"), Blocks.BUDDING_AMETHYST.asItem());
         put(new Identifier("blocks/infested_chiseled_stone_bricks"), Blocks.INFESTED_CHISELED_STONE_BRICKS.asItem());
         put(new Identifier("blocks/infested_cobblestone"), Blocks.INFESTED_COBBLESTONE.asItem());

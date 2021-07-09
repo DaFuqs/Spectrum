@@ -9,6 +9,8 @@ import de.dafuqs.pigment.blocks.detector.*;
 import de.dafuqs.pigment.blocks.ender.EnderHopperBlock;
 import de.dafuqs.pigment.blocks.minerals.PigmentBuddingBlock;
 import de.dafuqs.pigment.blocks.minerals.PigmentMineralBlock;
+import de.dafuqs.pigment.blocks.redstone.RedstoneGravityBlock;
+import de.dafuqs.pigment.blocks.redstone.RedstoneTransparencyBlock;
 import de.dafuqs.pigment.blocks.spirit_tree.OminousSaplingBlock;
 import de.dafuqs.pigment.blocks.spirit_tree.OminousSaplingBlockItem;
 import de.dafuqs.pigment.blocks.compactor.CompactorBlock;
@@ -45,6 +47,8 @@ import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.tool.attribute.v1.FabricToolTags;
 import net.minecraft.block.*;
+import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.ShulkerBoxBlockEntity;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.*;
@@ -61,6 +65,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Collection;
 import java.util.Locale;
+import java.util.function.Predicate;
 
 public class PigmentBlocks {
 
@@ -213,10 +218,8 @@ public class PigmentBlocks {
 
     // COLORED TREES
     private static final FabricBlockSettings coloredSaplingBlockSettings = FabricBlockSettings.copyOf(Blocks.OAK_SAPLING);
-    private static final FabricBlockSettings coloredLeavesBlockSettings = FabricBlockSettings.copyOf(Blocks.OAK_LEAVES).luminance((state) -> { return 5; });
-    private static final FabricBlockSettings coloredLogBlockSettings = FabricBlockSettings.copyOf(Blocks.OAK_LOG).luminance((state) -> {
-        return 10;
-    });
+    private static final FabricBlockSettings coloredLeavesBlockSettings = FabricBlockSettings.copyOf(Blocks.OAK_LEAVES).luminance((state) -> 5);
+    private static final FabricBlockSettings coloredLogBlockSettings = FabricBlockSettings.copyOf(Blocks.OAK_LOG).luminance((state) -> 10);
 
     public static final Block BLACK_LOG = new ColoredLogBlock(coloredLogBlockSettings);
     public static final Block BLACK_LEAVES = new ColoredLeavesBlock(coloredLeavesBlockSettings);
@@ -505,6 +508,12 @@ public class PigmentBlocks {
 
     public static final Block DEEPER_DOWN_PORTAL = new DeeperDownPortalBlock(FabricBlockSettings.copyOf(Blocks.END_PORTAL));
 
+    public static final Block REDSTONE_GRAVITY_BLOCK = new RedstoneGravityBlock(FabricBlockSettings.copyOf(Blocks.REDSTONE_BLOCK));
+    public static final Block REDSTONE_TRANSPARENCY_BLOCK = new RedstoneTransparencyBlock(FabricBlockSettings.copyOf(Blocks.REDSTONE_BLOCK).nonOpaque()
+            .allowsSpawning((state, world, pos, entityType) -> state.get(RedstoneTransparencyBlock.TRANSPARENCY_STATE) == RedstoneTransparencyBlock.TransparencyState.SOLID)
+            .solidBlock(PigmentBlocks::never).suffocates((state, world, pos) -> state.get(RedstoneTransparencyBlock.TRANSPARENCY_STATE) == RedstoneTransparencyBlock.TransparencyState.SOLID)
+            .blockVision((state, world, pos) -> state.get(RedstoneTransparencyBlock.TRANSPARENCY_STATE) == RedstoneTransparencyBlock.TransparencyState.SOLID));
+
 
     private static void registerBlock(String name, Block block) {
         Registry.register(Registry.BLOCK, new Identifier(PigmentCommon.MOD_ID, name), block);
@@ -525,7 +534,11 @@ public class PigmentBlocks {
         registerSpiritTree(generalItemSettings);
 
         registerBlock("deeper_down_portal", DEEPER_DOWN_PORTAL);
-        //registerBlockItem("deeper_down_portal", new BlockItem(DEEPER_DOWN_PORTAL, generalItemSettings));
+
+        registerBlock("redstone_gravity_block", REDSTONE_GRAVITY_BLOCK);
+        registerBlockItem("redstone_gravity_block", new BlockItem(REDSTONE_GRAVITY_BLOCK, generalItemSettings));
+        registerBlock("redstone_transparency_block", REDSTONE_TRANSPARENCY_BLOCK);
+        registerBlockItem("redstone_transparency_block", new BlockItem(REDSTONE_TRANSPARENCY_BLOCK, generalItemSettings));
 
         registerBlock("private_chest", PRIVATE_CHEST);
         registerBlockItem("private_chest", new BlockItem(PRIVATE_CHEST, generalItemSettings));

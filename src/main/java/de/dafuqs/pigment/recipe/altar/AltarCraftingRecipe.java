@@ -144,4 +144,12 @@ public class AltarCraftingRecipe implements Recipe<Inventory> {
         return advancementIdentifier != null;
     }
 
+    // REI COMPAT
+    public DefaultedList<Ingredient> getCraftingInputs() {
+        return this.craftingInputs;
+    }
+
+    public HashMap<PigmentColor, Integer> getPigmentInputs() {
+        return this.pigmentInputs;
+    }
 }

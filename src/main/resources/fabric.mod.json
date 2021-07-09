@@ -26,6 +26,9 @@
     ],
     "modmenu": [
       "de.dafuqs.pigment.config.ModMenuConfig"
+    ],
+    "rei_plugins": [
+      "de.dafuqs.pigment.REI.REIIntegration"
     ]
   },
   "mixins": [

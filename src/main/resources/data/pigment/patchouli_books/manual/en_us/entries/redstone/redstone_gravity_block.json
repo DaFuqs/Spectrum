@@ -1,0 +1,11 @@
+{
+  "name": "Redstone Gravity Block",
+  "icon": "pigment:redstone_gravity_block",
+  "category": "pigment:redstone_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(italic)TODO"
+    }
+  ]
+}

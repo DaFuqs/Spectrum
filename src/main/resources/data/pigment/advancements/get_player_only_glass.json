@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-        "item": "pigment:topaz_player_only_glass"
+      "item": "pigment:topaz_player_only_glass"
     },
     "title": {
       "translate": "advancements.pigment.get_player_only_glass.title"
@@ -13,7 +13,7 @@
   "parent": "pigment:pigment",
   "criteria": {
     "has_vanilla_player_only_glass": {
-      "trigger":"minecraft:inventory_changed",
+      "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
@@ -23,7 +23,7 @@
       }
     },
     "has_amethyst_player_only_glass": {
-      "trigger":"minecraft:inventory_changed",
+      "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
@@ -33,7 +33,7 @@
       }
     },
     "has_citrine_player_only_glass": {
-      "trigger":"minecraft:inventory_changed",
+      "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
@@ -43,7 +43,7 @@
       }
     },
     "has_topaz_player_only_glass": {
-      "trigger":"minecraft:inventory_changed",
+      "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
@@ -53,7 +53,7 @@
       }
     },
     "has_moonstone_player_only_glass": {
-      "trigger":"minecraft:inventory_changed",
+      "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
@@ -63,11 +63,31 @@
       }
     },
     "has_onyx_player_only_glass": {
-      "trigger":"minecraft:inventory_changed",
+      "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item":"pigment:onyx_player_only_glass"
+            "item": "pigment:onyx_player_only_glass"
+          }
+        ]
+      }
+    },
+    "has_glowing_player_only_glass": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "pigment:glowing_player_only_glass"
+          }
+        ]
+      }
+    },
+    "has_tinted_player_only_glass": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "pigment:tinted_player_only_glass"
           }
         ]
       }
@@ -80,7 +100,9 @@
       "has_citrine_player_only_glass",
       "has_topaz_player_only_glass",
       "has_moonstone_player_only_glass",
-      "has_onyx_player_only_glass"
+      "has_onyx_player_only_glass",
+      "has_glowing_player_only_glass",
+      "has_tinted_player_only_glass"
     ]
   ]
 }

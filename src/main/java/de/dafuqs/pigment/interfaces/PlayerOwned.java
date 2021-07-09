@@ -25,5 +25,4 @@ public interface PlayerOwned {
         return playerEntity.getUuid().equals(getOwnerUUID());
     }
 
-
 }

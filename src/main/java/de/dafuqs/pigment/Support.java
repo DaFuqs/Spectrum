@@ -20,6 +20,15 @@ public class Support {
         return tag.contains(type.getBlock());
     }
 
+    public static int getWholeIntFromFloatWithChance(float f, Random random) {
+        boolean roundUp = (random.nextFloat() < f % 1);
+        if(roundUp) {
+            return ((int) f) + 1;
+        } else {
+            return (int) f;
+        }
+    }
+
     public static void grantAdvancementCriterion(ServerPlayerEntity serverPlayerEntity, String advancementString, String criterion) {
         ServerAdvancementLoader sal = PigmentCommon.minecraftServer.getAdvancementLoader();
         PlayerAdvancementTracker tracker = serverPlayerEntity.getAdvancementTracker();
@@ -29,15 +38,6 @@ public class Support {
         Advancement advancement = sal.get(advancementIdentifier);
         if (advancement != null) {
             tracker.grantCriterion(advancement, criterion);
-        }
-    }
-
-    public static int getWholeIntFromFloatWithChance(float f, Random random) {
-        boolean roundUp = (random.nextFloat() < f % 1);
-        if(roundUp) {
-            return ((int) f) + 1;
-        } else {
-            return (int) f;
         }
     }
 
@@ -61,8 +61,8 @@ public class Support {
         switch (dimensionKeyString) {
             case "minecraft:overworld":
                 return "Overworld";
-            //case "minecraft:nether":
-            //    return "Nether";
+            case "minecraft:nether":
+                return "Nether";
             case "minecraft:end":
                 return "End";
             default:

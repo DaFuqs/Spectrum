@@ -1,5 +1,7 @@
 package de.dafuqs.pigment.blocks.ender;
 
+import de.dafuqs.pigment.blocks.altar.AltarBlockEntity;
+import de.dafuqs.pigment.registries.PigmentBlockEntityRegistry;
 import net.minecraft.block.*;
 import net.minecraft.block.dispenser.DispenserBehavior;
 import net.minecraft.block.dispenser.ItemDispenserBehavior;
@@ -16,6 +18,7 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.stat.Stats;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.Property;
+import net.minecraft.text.TranslatableText;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ItemScatterer;
@@ -57,9 +60,14 @@ public class EnderHopperBlock extends BlockWithEntity {
         return DOWN_RAYCAST_SHAPE;
     }
 
+    @Override
     @Nullable
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        return world.isClient ? null : checkType(type, BlockEntityType.HOPPER, HopperBlockEntity::serverTick);
+        if(world.isClient) {
+            return null;
+        } else {
+            return checkType(type, PigmentBlockEntityRegistry.ENDER_HOPPER, EnderHopperBlockEntity::serverTick);
+        }
     }
 
     public void neighborUpdate(BlockState state, World world, BlockPos pos, Block block, BlockPos fromPos, boolean notify) {
@@ -71,7 +79,6 @@ public class EnderHopperBlock extends BlockWithEntity {
         if (bl != state.get(ENABLED)) {
             world.setBlockState(pos, state.with(ENABLED, bl), 4);
         }
-
     }
 
     public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
@@ -92,8 +99,8 @@ public class EnderHopperBlock extends BlockWithEntity {
 
     public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
         BlockEntity blockEntity = world.getBlockEntity(pos);
-        if (blockEntity instanceof HopperBlockEntity) {
-            HopperBlockEntity.onEntityCollided(world, pos, state, entity, (HopperBlockEntity)blockEntity);
+        if (blockEntity instanceof EnderHopperBlockEntity) {
+            EnderHopperBlockEntity.onEntityCollided(world, pos, state, entity, (EnderHopperBlockEntity)blockEntity);
         }
     }
 
@@ -118,14 +125,20 @@ public class EnderHopperBlock extends BlockWithEntity {
                     enderHopperBlockEntity.setOwner(player);
                 }
 
-                EnderChestInventory enderChestInventory = player.getEnderChestInventory();
-                //enderChestInventory.setActiveBlockEntity(enderHopperBlockEntity); // TODO: set this as active ender chest... somehow.
+                if(enderHopperBlockEntity.isOwner(player)) {
+                    EnderChestInventory enderChestInventory = player.getEnderChestInventory();
+                    //enderChestInventory.setActiveBlockEntity(enderHopperBlockEntity); // TODO: set this as active ender chest... somehow.
 
-                player.openHandledScreen(new SimpleNamedScreenHandlerFactory((i, playerInventory, playerEntity) -> {
-                    return GenericContainerScreenHandler.createGeneric9x3(i, playerInventory, enderChestInventory);
-                }, enderHopperBlockEntity.getContainerName()));
-                player.incrementStat(Stats.OPEN_ENDERCHEST);
-                PiglinBrain.onGuardedBlockInteracted(player, true);
+                    player.openHandledScreen(new SimpleNamedScreenHandlerFactory((i, playerInventory, playerEntity) -> {
+                        return GenericContainerScreenHandler.createGeneric9x3(i, playerInventory, enderChestInventory);
+                    }, enderHopperBlockEntity.getContainerName()));
+                    player.incrementStat(Stats.OPEN_ENDERCHEST);
+                    PiglinBrain.onGuardedBlockInteracted(player, true);
+                } else {
+                    player.sendMessage(new TranslatableText("block.pigment.ender_hopper_with_owner", enderHopperBlockEntity.getOwnerName()), false);
+                }
+
+
             }
             return ActionResult.CONSUME;
         }

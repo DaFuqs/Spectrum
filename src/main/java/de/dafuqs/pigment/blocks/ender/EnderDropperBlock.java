@@ -13,6 +13,7 @@ import net.minecraft.screen.GenericContainerScreenHandler;
 import net.minecraft.screen.SimpleNamedScreenHandlerFactory;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.stat.Stats;
+import net.minecraft.text.TranslatableText;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
@@ -50,14 +51,18 @@ public class EnderDropperBlock extends DispenserBlock {
                     enderDropperBlockEntity.setOwner(player);
                 }
 
-                EnderChestInventory enderChestInventory = player.getEnderChestInventory();
-                //enderChestInventory.setActiveBlockEntity(enderDropperBlockEntity); // TODO: set this as active ender chest... somehow.
+                if(enderDropperBlockEntity.isOwner(player)) {
+                    EnderChestInventory enderChestInventory = player.getEnderChestInventory();
+                    //enderChestInventory.setActiveBlockEntity(enderDropperBlockEntity); // TODO: set this as active ender chest... somehow.
 
-                player.openHandledScreen(new SimpleNamedScreenHandlerFactory((i, playerInventory, playerEntity) -> {
-                    return GenericContainerScreenHandler.createGeneric9x3(i, playerInventory, enderChestInventory);
-                }, enderDropperBlockEntity.getContainerName()));
+                    player.openHandledScreen(new SimpleNamedScreenHandlerFactory((i, playerInventory, playerEntity) -> {
+                        return GenericContainerScreenHandler.createGeneric9x3(i, playerInventory, enderChestInventory);
+                    }, enderDropperBlockEntity.getContainerName()));
 
-                PiglinBrain.onGuardedBlockInteracted(player, true);
+                    PiglinBrain.onGuardedBlockInteracted(player, true);
+                } else {
+                    player.sendMessage(new TranslatableText("block.pigment.ender_dropper_with_owner", enderDropperBlockEntity.getOwnerName()), false);
+                }
             }
             return ActionResult.CONSUME;
         }

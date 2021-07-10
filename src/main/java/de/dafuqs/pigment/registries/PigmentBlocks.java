@@ -545,7 +545,7 @@ public class PigmentBlocks {
         registerBlock("altar3", ALTAR3);
         registerBlockItem("altar3", new BlockItem(ALTAR3, generalItemSettings));
 
-        // registerSpiritTree(generalItemSettings);
+        registerSpiritTree(generalItemSettings);
 
         registerBlock("deeper_down_portal", DEEPER_DOWN_PORTAL);
 

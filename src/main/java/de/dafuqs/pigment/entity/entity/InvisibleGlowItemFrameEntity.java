@@ -2,7 +2,6 @@ package de.dafuqs.pigment.entity.entity;
 
 import de.dafuqs.pigment.entity.PigmentEntityTypes;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.decoration.GlowItemFrameEntity;
 import net.minecraft.entity.decoration.ItemFrameEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;

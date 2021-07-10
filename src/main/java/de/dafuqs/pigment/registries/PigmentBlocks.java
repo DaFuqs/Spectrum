@@ -114,6 +114,18 @@ public class PigmentBlocks {
     public static final Block MOONSTONE_BLOCK = new PigmentMineralBlock(FabricBlockSettings.of(Material.AMETHYST, MapColor.WHITE).hardness(1.5F).sounds(PigmentBlockSoundGroups.MOONSTONE_BLOCK).requiresTool().breakByTool(FabricToolTags.PICKAXES, 2), PigmentSoundEvents.BLOCK_MOONSTONE_BLOCK_HIT, PigmentSoundEvents.BLOCK_MOONSTONE_BLOCK_CHIME);
     public static final Block BUDDING_MOONSTONE = new PigmentBuddingBlock(FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).ticksRandomly().sounds(PigmentBlockSoundGroups.MOONSTONE_BLOCK).requiresTool().breakByTool(FabricToolTags.PICKAXES, 2), SMALL_MOONSTONE_BUD, MEDIUM_MOONSTONE_BUD, LARGE_MOONSTONE_BUD, MOONSTONE_CLUSTER, PigmentSoundEvents.BLOCK_MOONSTONE_BLOCK_HIT, PigmentSoundEvents.BLOCK_MOONSTONE_BLOCK_CHIME);
 
+    public static final Block AMETHYST_ORE = new OreBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+    public static final Block CITRINE_ORE = new OreBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+    public static final Block TOPAZ_ORE = new OreBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+    public static final Block ONYX_ORE = new OreBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+    public static final Block MOONSTONE_ORE = new OreBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+
+    public static final Block DEEPSLATE_AMETHYST_ORE = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+    public static final Block DEEPSLATE_CITRINE_ORE = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+    public static final Block DEEPSLATE_TOPAZ_ORE = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+    public static final Block DEEPSLATE_ONYX_ORE = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+    public static final Block DEEPSLATE_MOONSTONE_ORE = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+
     public static final Block RAINBOW_MOONSTONE_BLOCK = new PigmentMineralBlock(FabricBlockSettings.of(Material.AMETHYST, MapColor.DIAMOND_BLUE).hardness(1.5F).sounds(PigmentBlockSoundGroups.RAINBOW_MOONSTONE_BLOCK).requiresTool().breakByTool(FabricToolTags.PICKAXES, 2), PigmentSoundEvents.BLOCK_RAINBOW_MOONSTONE_BLOCK_HIT, PigmentSoundEvents.BLOCK_RAINBOW_MOONSTONE_BLOCK_CHIME);
 
     public static final Block TUFF_SLAB = new SlabBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
@@ -121,6 +133,7 @@ public class PigmentBlocks {
     public static final Block TUFF_STAIRS = new PigmentStairsBlock(Blocks.TUFF.getDefaultState(), AbstractBlock.Settings.copy(Blocks.TUFF));
 
     public static final Block POLISHED_BASALT = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+    public static final Block POLISHED_BASALT_PILLAR = new PillarBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
     public static final Block CHISELED_POLISHED_BASALT = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
     public static final Block POLISHED_BASALT_SLAB = new SlabBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
     public static final Block POLISHED_BASALT_WALL = new WallBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
@@ -142,6 +155,7 @@ public class PigmentBlocks {
     public static final Block CALCITE_STAIRS = new PigmentStairsBlock(Blocks.CALCITE.getDefaultState(), AbstractBlock.Settings.copy(Blocks.CALCITE));
 
     public static final Block POLISHED_CALCITE = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+    public static final Block POLISHED_CALCITE_PILLAR = new PillarBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
     public static final Block CHISELED_POLISHED_CALCITE = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
     public static final Block POLISHED_CALCITE_SLAB = new SlabBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
     public static final Block POLISHED_CALCITE_WALL = new WallBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
@@ -531,7 +545,7 @@ public class PigmentBlocks {
         registerBlock("altar3", ALTAR3);
         registerBlockItem("altar3", new BlockItem(ALTAR3, generalItemSettings));
 
-        registerSpiritTree(generalItemSettings);
+        // registerSpiritTree(generalItemSettings);
 
         registerBlock("deeper_down_portal", DEEPER_DOWN_PORTAL);
 
@@ -556,6 +570,7 @@ public class PigmentBlocks {
 
         registerColoredWood(coloredWoodItemSettings);
         registerGemBlocks(worldgenItemSettings);
+        registerGemOreBlocks(worldgenItemSettings);
         registerOreBlocks();
         registerStoneBlocks(decorationItemSettings);
         registerRunes(decorationItemSettings);
@@ -769,6 +784,8 @@ public class PigmentBlocks {
 
         registerBlock("polished_basalt", POLISHED_BASALT);
         registerBlockItem("polished_basalt", new BlockItem(POLISHED_BASALT, fabricItemSettings));
+        registerBlock("polished_basalt_pillar", POLISHED_BASALT_PILLAR);
+        registerBlockItem("polished_basalt_pillar", new BlockItem(POLISHED_BASALT_PILLAR, fabricItemSettings));
         registerBlock("chiseled_polished_basalt", CHISELED_POLISHED_BASALT);
         registerBlockItem("chiseled_polished_basalt", new BlockItem(CHISELED_POLISHED_BASALT, fabricItemSettings));
         registerBlock("polished_basalt_slab", POLISHED_BASALT_SLAB);
@@ -788,6 +805,8 @@ public class PigmentBlocks {
 
         registerBlock("polished_calcite", POLISHED_CALCITE);
         registerBlockItem("polished_calcite", new BlockItem(POLISHED_CALCITE, fabricItemSettings));
+        registerBlock("polished_calcite_pillar", POLISHED_CALCITE_PILLAR);
+        registerBlockItem("polished_calcite_pillar", new BlockItem(POLISHED_CALCITE_PILLAR, fabricItemSettings));
         registerBlock("chiseled_polished_calcite", CHISELED_POLISHED_CALCITE);
         registerBlockItem("chiseled_polished_calcite", new BlockItem(CHISELED_POLISHED_CALCITE, fabricItemSettings));
         registerBlock("polished_calcite_slab", POLISHED_CALCITE_SLAB);
@@ -1266,6 +1285,32 @@ public class PigmentBlocks {
 
         registerBlock("rainbow_moonstone_block", RAINBOW_MOONSTONE_BLOCK);
         registerBlockItem("rainbow_moonstone_block", new BlockItem(RAINBOW_MOONSTONE_BLOCK, fabricItemSettings));
+    }
+
+    private static void registerGemOreBlocks(FabricItemSettings fabricItemSettings) {
+        // stone ores
+        registerBlock("amethyst_ore", AMETHYST_ORE);
+        registerBlockItem("amethyst_ore", new BlockItem(AMETHYST_ORE, fabricItemSettings));
+        registerBlock("citrine_ore", CITRINE_ORE);
+        registerBlockItem("citrine_ore", new BlockItem(CITRINE_ORE, fabricItemSettings));
+        registerBlock("topaz_ore", TOPAZ_ORE);
+        registerBlockItem("topaz_ore", new BlockItem(TOPAZ_ORE, fabricItemSettings));
+        registerBlock("onyx_ore", ONYX_ORE);
+        registerBlockItem("onyx_ore", new BlockItem(ONYX_ORE, fabricItemSettings));
+        registerBlock("moonstone_ore", MOONSTONE_ORE);
+        registerBlockItem("moonstone_ore", new BlockItem(MOONSTONE_ORE, fabricItemSettings));
+
+        // deepslate ores
+        registerBlock("deepslate_amethyst_ore", DEEPSLATE_AMETHYST_ORE);
+        registerBlockItem("deepslate_amethyst_ore", new BlockItem(DEEPSLATE_AMETHYST_ORE, fabricItemSettings));
+        registerBlock("deepslate_citrine_ore", DEEPSLATE_CITRINE_ORE);
+        registerBlockItem("deepslate_citrine_ore", new BlockItem(DEEPSLATE_CITRINE_ORE, fabricItemSettings));
+        registerBlock("deepslate_topaz_ore", DEEPSLATE_TOPAZ_ORE);
+        registerBlockItem("deepslate_topaz_ore", new BlockItem(DEEPSLATE_TOPAZ_ORE, fabricItemSettings));
+        registerBlock("deepslate_onyx_ore", DEEPSLATE_ONYX_ORE);
+        registerBlockItem("deepslate_onyx_ore", new BlockItem(DEEPSLATE_ONYX_ORE, fabricItemSettings));
+        registerBlock("deepslate_moonstone_ore", DEEPSLATE_MOONSTONE_ORE);
+        registerBlockItem("deepslate_moonstone_ore", new BlockItem(DEEPSLATE_MOONSTONE_ORE, fabricItemSettings));
     }
 
     // Most mob heads vanilla is missing (vanilla only has: skeleton, wither skeleton, zombie, player, creeper, ender dragon)

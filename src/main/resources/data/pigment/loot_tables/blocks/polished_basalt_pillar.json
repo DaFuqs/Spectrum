@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:block",
+    "pools": [
+    {
+        "rolls": 1,
+        "entries": [
+            {
+                "type": "minecraft:item",
+                "name": "pigment:polished_basalt_pillar"
+            }
+            ],
+            "conditions": [
+            {
+                "condition": "minecraft:survives_explosion"
+            }
+            ]
+        }
+    ]
+}

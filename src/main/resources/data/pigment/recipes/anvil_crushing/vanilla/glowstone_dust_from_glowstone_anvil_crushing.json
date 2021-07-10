@@ -7,7 +7,7 @@
   "experience": 0.0,
   "result" : {
     "item": "minecraft:glowstone_dust",
-    "count": 9
+    "count": 4
   },
   "particleEffectIdentifier": "cloud",
   "soundEventIdentifier": "block.glass.break"

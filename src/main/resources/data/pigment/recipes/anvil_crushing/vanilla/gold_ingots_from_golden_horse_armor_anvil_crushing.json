@@ -3,7 +3,7 @@
   "ingredient": {
     "item": "minecraft:golden_horse_armor"
   },
-  "crushedItemsPerPointOfDamage": 1,
+  "crushedItemsPerPointOfDamage": 0.4,
   "experience": 0.0,
   "result" : {
     "item": "minecraft:gold_ingot",

@@ -54,31 +54,29 @@ public class AltarCategory<R extends AltarCraftingRecipe> implements DisplayCate
 
     @Override
     public List<Widget> setupDisplay(AltarCraftingRecipeDisplay display, Rectangle bounds) {
-
         Point startPoint = new Point(bounds.getCenterX() - 58, bounds.getCenterY() - 43);
         List<Widget> widgets = Lists.newArrayList();
         widgets.add(Widgets.createRecipeBase(bounds));
         widgets.add(Widgets.createArrow(new Point(startPoint.x + 60, startPoint.y + 18)));
-        widgets.add(Widgets.createResultSlotBackground(new Point(startPoint.x + 95, startPoint.y + 19)));
-        List<? extends List<? extends EntryStack<?>>> input = display.getInputEntries();
 
         // crafting grid slots
         List<Slot> slots = Lists.newArrayList();
         for (int y = 0; y < 3; y++)
             for (int x = 0; x < 3; x++)
-                slots.add(Widgets.createSlot(new Point(startPoint.x + 1 + x * 18, startPoint.y + 1 + y * 18)).markInput());
+                slots.add(Widgets.createSlot(new Point(startPoint.x + 1 + x * 18, startPoint.y + 1 + y * 18)).disableBackground().markInput());
 
-        // gemstone dust slots
+        // crafting slot contents
+        List<? extends List<? extends EntryStack<?>>> input = display.getInputEntries();
         int gemstoneDustStartSlot = display.height * display.width;
-
         for (int i = 0; i < gemstoneDustStartSlot; i++) {
             if (!input.get(i).isEmpty()) {
-                slots.get(DefaultCraftingDisplay.getSlotWithSize(display.width, i, 3)).entries(input.get(i));
+                slots.get(DefaultCraftingDisplay.getSlotWithSize(display.width, i, 3)).disableBackground().entries(input.get(i));
             }
         }
 
+        // gemstone dust slots
         for (int x = 0; x < 5; x++) {
-            slots.add(Widgets.createSlot(new Point(bounds.getCenterX() + x * 18 - 45, startPoint.y + 60)).markInput());
+            slots.add(Widgets.createSlot(new Point(bounds.getCenterX() + x * 18 - 45, startPoint.y + 60)).disableBackground().markInput());
             if (!input.get(gemstoneDustStartSlot+x).isEmpty()) {
                 slots.get(9+x).entries(input.get(gemstoneDustStartSlot + x));
             }
@@ -90,12 +88,20 @@ public class AltarCategory<R extends AltarCraftingRecipe> implements DisplayCate
         EntryIngredient result = EntryIngredient.of(results.get(0));
         widgets.add(Widgets.createSlot(new Point(startPoint.x + 95, startPoint.y + 19)).entries(result).disableBackground().markOutput());
 
+        // the gemstone slot background texture                  destinationX                 destinationY       sourceX, sourceY, width, height
+        widgets.add(Widgets.createTexturedWidget(GUI_TEXTURE, bounds.getCenterX() - 46, startPoint.y + 59, 43, 76, 90, 18));
+        // crafting input texture
+        widgets.add(Widgets.createTexturedWidget(GUI_TEXTURE, startPoint.x, startPoint.y, 28, 17, 54, 54));
+        // crafting output texture
+        widgets.add(Widgets.createTexturedWidget(GUI_TEXTURE, startPoint.x + 94 - 4, startPoint.y + 18 - 4, 122, 32, 26, 26));
+
+        // description text
         // special handling for "1 second". Looks nicer
         TranslatableText text;
         if(display.craftingTime == 20) {
-            text = new TranslatableText("container.pigment.altar.rei.crafting_time_one_second_and_xp", 1, display.experience);
+            text = new TranslatableText("container.pigment.rei.altar.crafting_time_one_second_and_xp", 1, display.experience);
         } else {
-            text = new TranslatableText("container.pigment.altar.rei.crafting_time_and_xp", (display.craftingTime / 20), display.experience);
+            text = new TranslatableText("container.pigment.rei.altar.crafting_time_and_xp", (display.craftingTime / 20), display.experience);
         }
         widgets.add(Widgets.createLabel(new Point(startPoint.x, startPoint.y + 82), text).leftAligned().color(0x3f3f3f).noShadow());
 

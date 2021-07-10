@@ -1,14 +1,25 @@
 package de.dafuqs.pigment.REI;
 
+import com.google.common.collect.Lists;
 import de.dafuqs.pigment.PigmentCommon;
+import de.dafuqs.pigment.inventories.AltarScreen;
 import de.dafuqs.pigment.recipe.anvil_crushing.AnvilCrushingRecipe;
+import me.shedaniel.math.Point;
 import me.shedaniel.math.Rectangle;
 import me.shedaniel.rei.api.client.gui.Renderer;
+import me.shedaniel.rei.api.client.gui.widgets.Slot;
 import me.shedaniel.rei.api.client.gui.widgets.Widget;
+import me.shedaniel.rei.api.client.gui.widgets.Widgets;
 import me.shedaniel.rei.api.client.registry.display.DisplayCategory;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
+import me.shedaniel.rei.api.common.entry.EntryIngredient;
+import me.shedaniel.rei.api.common.entry.EntryStack;
+import me.shedaniel.rei.api.common.util.EntryIngredients;
 import me.shedaniel.rei.api.common.util.EntryStacks;
+import me.shedaniel.rei.plugin.common.displays.crafting.DefaultCraftingDisplay;
 import net.minecraft.block.Blocks;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
@@ -18,6 +29,9 @@ import java.util.List;
 public class AnvilCrushingCategory<R extends AnvilCrushingRecipe> implements DisplayCategory<AnvilCrushingRecipeDisplay<R>> {
 
     public static final CategoryIdentifier<AnvilCrushingRecipeDisplay> ID = CategoryIdentifier.of(new Identifier(PigmentCommon.MOD_ID, "anvil_crushing"));
+
+    final Identifier WALL_TEXTURE = new Identifier(PigmentCommon.MOD_ID, "textures/gui/container/anvil_crushing.png");
+    EntryIngredient anvil = EntryIngredients.of(new ItemStack(Items.ANVIL));
 
     @Override
     public CategoryIdentifier getCategoryIdentifier() {
@@ -36,44 +50,50 @@ public class AnvilCrushingCategory<R extends AnvilCrushingRecipe> implements Dis
 
     @Override
     public List<Widget> setupDisplay(AnvilCrushingRecipeDisplay display, Rectangle bounds) {
-        /*Point origin = bounds.getLocation();
 
-        final var widgets = new ArrayList<Widget>();
+        Point startPoint = new Point(bounds.getCenterX() - 58, bounds.getCenterY() - 41);
+        List<Widget> widgets = Lists.newArrayList();
 
         widgets.add(Widgets.createRecipeBase(bounds));
+        widgets.add(Widgets.createArrow(new Point(startPoint.x + 50, startPoint.y + 23)));
+        widgets.add(Widgets.createResultSlotBackground(new Point(startPoint.x + 95, startPoint.y + 24)));
 
-        widgets.add(Widgets.createTexturedWidget(GUI_TEXTURE, origin.x + 10, origin.y + 18, 42, 5, 124, 58));
-        widgets.add(Widgets.createTexturedWidget(GUI_TEXTURE, origin.x + 115, origin.y + 21, 176, 0, 15, 19));
+        List<EntryIngredient> input = display.getInputEntries();
+        List<EntryIngredient> output = display.getOutputEntries();
 
-        for (int i = 0; i < display.getInputEntries().size(); i++) {
-            final var slotLocation = new Point(origin.x + 12 + i % 5 * 18, origin.y + 40 + (i > 4 ? 1 : 0) * 18);
-            widgets.add(Widgets.createSlot(slotLocation).entries(display.getInputEntries().get(i)).markInput().disableBackground());
-            widgets.add(Widgets.createTexturedWidget(GUI_TEXTURE, slotLocation.x - 1, slotLocation.y - 1, 208, 0, 18, 18));
+        // input and output slots
+        widgets.add(Widgets.createSlot(new Point(startPoint.x+20, startPoint.y+18)).entries(anvil).disableBackground().notInteractable());
+        widgets.add(Widgets.createSlot(new Point(startPoint.x+20, startPoint.y+40)).markInput().entries(input.get(0)));
+        widgets.add(Widgets.createSlot(new Point(startPoint.x+95, startPoint.y+23)).markOutput().disableBackground().entries(output.get(0)));
+
+        // dirt  wall                                          destinationX     destinationY   sourceX, sourceY, width, height
+        widgets.add(Widgets.createTexturedWidget(WALL_TEXTURE, startPoint.x, startPoint.y+9, 0, 0, 16, 48));
+
+        // falling stripes for anvil
+        widgets.add(Widgets.createTexturedWidget(WALL_TEXTURE, startPoint.x + 20, startPoint.y+8, 16, 0, 16, 16));
+
+        // xp text
+        widgets.add(Widgets.createLabel(new Point(startPoint.x+84, startPoint.y+48),
+                new TranslatableText("container.pigment.rei.anvil_crushing.plus_xp", display.experience)
+        ).leftAligned().color(0x3f3f3f).noShadow());
+
+        // the tooltip text
+        TranslatableText text;
+        if(display.crushedItemsPerPointOfDamage >= 2) {
+            text = new TranslatableText("container.pigment.rei.anvil_crushing.low_force_required");
+        } else if(display.crushedItemsPerPointOfDamage >= 1) {
+            text = new TranslatableText("container.pigment.rei.anvil_crushing.medium_force_required");
+        } else {
+            text = new TranslatableText("container.pigment.rei.anvil_crushing.high_force_required");
         }
+        widgets.add(Widgets.createLabel(new Point(startPoint.x, startPoint.y + 68), text).leftAligned().color(0x3f3f3f).noShadow());
 
-        final var resultSlot = Widgets.createSlot(new Point(origin.x + 113, origin.y + 47));
-        widgets.add(resultSlot.entries(display.getOutputEntries().get(0)).disableBackground().markOutput());
+        return widgets;
+    }
 
-        final var tierLabel = Widgets.createLabel(new Point(origin.x + 12, origin.y + 11), new TranslatableText("container.alloy_forgery.rei.min_tier", display.minForgeTier));
-        widgets.add(tierLabel.leftAligned().color(0x3f3f3f).noShadow());
-        widgets.add(Widgets.createLabel(new Point(origin.x + 12, origin.y + 24), new TranslatableText("container.alloy_forgery.rei.fuel_per_tick", display.requiredFuel)).leftAligned().color(0x3f3f3f).noShadow());
-
-        final MutableInt overrideIndex = new MutableInt(1);
-        final List<AlloyForgeRecipe.OverrideRange> overrides = new ArrayList<>(display.overrides.keySet());
-
-        widgets.add(Widgets.createButton(new Rectangle(origin.x + 131, origin.y + 6, 12, 12), Text.of("...")).onClick(button -> {
-            int index = overrideIndex.intValue();
-            tierLabel.setMessage(new TranslatableText("container.alloy_forgery.rei.min_tier", index == 0 ? display.minForgeTier : overrides.get(index - 1)));
-
-            resultSlot.clearEntries();
-            resultSlot.entries(index == 0 ? display.getOutputEntries().get(0) : EntryIngredients.of(display.overrides.get(overrides.get(index - 1))));
-
-            overrideIndex.increment();
-            if (overrideIndex.intValue() - 1 > overrides.size() - 1) overrideIndex.setValue(0);
-        }).tooltipLine(Text.of("Cycle Tier Overrides")).enabled(overrides.size() != 0));
-
-        return widgets;*/
-        return null;
+    @Override
+    public int getDisplayHeight() {
+        return 84;
     }
 
 }

@@ -6,19 +6,17 @@ import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleTypes;
-import net.minecraft.recipe.Ingredient;
-import net.minecraft.recipe.Recipe;
-import net.minecraft.recipe.RecipeSerializer;
-import net.minecraft.recipe.RecipeType;
+import net.minecraft.recipe.*;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 
 public class AnvilCrushingRecipe implements Recipe<Inventory> {
 
     protected final Identifier id;
-    Ingredient inputIngredient;
+    protected final Ingredient inputIngredient;
     protected final ItemStack outputItemStack;
     protected final float crushedItemsPerPointOfDamage;
     protected final float experience;
@@ -54,10 +52,6 @@ public class AnvilCrushingRecipe implements Recipe<Inventory> {
         return outputItemStack.copy();
     }
 
-    public ItemStack getRecipeKindIcon() {
-        return new ItemStack(Blocks.CHIPPED_ANVIL);
-    }
-
     public boolean isIgnoredInRecipeBook() {
         return true;
     }
@@ -87,9 +81,17 @@ public class AnvilCrushingRecipe implements Recipe<Inventory> {
     }
 
     public ParticleEffect getParticleEffect() {
-        return ParticleTypes.EFFECT; //TODO
+        return ParticleTypes.EFFECT; //TODO: use and make customizable
         //return Registry.E.get(particleEffect);
     }
+
+    @Override
+    public DefaultedList<Ingredient> getIngredients() {
+        DefaultedList<Ingredient> defaultedList = DefaultedList.of();
+        defaultedList.add(this.inputIngredient);
+        return defaultedList;
+    }
+
 
     public float getExperience() {
         return experience;

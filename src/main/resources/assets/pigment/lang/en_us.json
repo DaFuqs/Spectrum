@@ -485,8 +485,14 @@
   "item.pigment.crafting_template": "Crafting Template",
 
   "container.pigment.rei.altar_crafting.title": "Altar Crafting",
-  "container.pigment.altar.rei.crafting_time_and_xp": "%f seconds - %f XP",
-  "container.pigment.altar.rei.crafting_time_one_second_and_xp": "%f second - %f XP",
+  "container.pigment.rei.altar.crafting_time_and_xp": "%f seconds - %f XP",
+  "container.pigment.rei.altar.crafting_time_one_second_and_xp": "%f second - %f XP",
+
+  "container.pigment.rei.anvil_crushing.title": "Anvil Crushing",
+  "container.pigment.rei.anvil_crushing.low_force_required": "Low force required",
+  "container.pigment.rei.anvil_crushing.medium_force_required": "Medium force required",
+  "container.pigment.rei.anvil_crushing.high_force_required": "High force required",
+  "container.pigment.rei.anvil_crushing.plus_xp": "+%f XP",
 
   "block.pigment.compactor": "Compacting Chest",
   "block.pigment.altar": "Altar",

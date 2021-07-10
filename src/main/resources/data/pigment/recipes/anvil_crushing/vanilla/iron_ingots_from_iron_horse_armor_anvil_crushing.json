@@ -3,7 +3,7 @@
   "ingredient": {
     "item": "minecraft:iron_horse_armor"
   },
-  "crushedItemsPerPointOfDamage": 1,
+  "crushedItemsPerPointOfDamage": 0.3,
   "experience": 0.0,
   "result" : {
     "item": "minecraft:iron_ingot",

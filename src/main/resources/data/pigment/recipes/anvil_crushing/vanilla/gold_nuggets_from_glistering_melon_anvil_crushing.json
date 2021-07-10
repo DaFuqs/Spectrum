@@ -3,7 +3,7 @@
   "ingredient": {
     "item": "minecraft:glistering_melon_slice"
   },
-  "crushedItemsPerPointOfDamage": 1,
+  "crushedItemsPerPointOfDamage": 3,
   "experience": 0.0,
   "result" : {
     "item": "minecraft:gold_nugget",

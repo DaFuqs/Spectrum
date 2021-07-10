@@ -30,7 +30,7 @@ public class RedstoneGravityBlock extends FallingBlock {
 
     /**
      * Only trigger fall if redstone applied or unstable
-     * if restone: set neighboring block to unstable
+     * if redstone: set neighboring block to unstable
      */
     @Override
     public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {

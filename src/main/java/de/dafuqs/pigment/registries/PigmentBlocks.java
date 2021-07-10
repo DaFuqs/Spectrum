@@ -508,8 +508,8 @@ public class PigmentBlocks {
 
     public static final Block DEEPER_DOWN_PORTAL = new DeeperDownPortalBlock(FabricBlockSettings.copyOf(Blocks.END_PORTAL));
 
-    public static final Block REDSTONE_GRAVITY_BLOCK = new RedstoneGravityBlock(FabricBlockSettings.copyOf(Blocks.REDSTONE_BLOCK));
-    public static final Block REDSTONE_TRANSPARENCY_BLOCK = new RedstoneTransparencyBlock(FabricBlockSettings.copyOf(Blocks.REDSTONE_BLOCK).nonOpaque()
+    public static final Block REDSTONE_GRAVITY_BLOCK = new RedstoneGravityBlock(FabricBlockSettings.copyOf(Blocks.SAND));
+    public static final Block REDSTONE_TRANSPARENCY_BLOCK = new RedstoneTransparencyBlock(FabricBlockSettings.copyOf(Blocks.GLASS).nonOpaque()
             .allowsSpawning((state, world, pos, entityType) -> state.get(RedstoneTransparencyBlock.TRANSPARENCY_STATE) == RedstoneTransparencyBlock.TransparencyState.SOLID)
             .solidBlock(PigmentBlocks::never).suffocates((state, world, pos) -> state.get(RedstoneTransparencyBlock.TRANSPARENCY_STATE) == RedstoneTransparencyBlock.TransparencyState.SOLID)
             .blockVision((state, world, pos) -> state.get(RedstoneTransparencyBlock.TRANSPARENCY_STATE) == RedstoneTransparencyBlock.TransparencyState.SOLID));
@@ -1398,6 +1398,8 @@ public class PigmentBlocks {
         BlockRenderLayerMap.INSTANCE.putBlock(PigmentBlocks.RED_LAMP, RenderLayer.getTranslucent());
         BlockRenderLayerMap.INSTANCE.putBlock(PigmentBlocks.WHITE_LAMP, RenderLayer.getTranslucent());
         BlockRenderLayerMap.INSTANCE.putBlock(PigmentBlocks.YELLOW_LAMP, RenderLayer.getTranslucent());
+
+        BlockRenderLayerMap.INSTANCE.putBlock(PigmentBlocks.REDSTONE_TRANSPARENCY_BLOCK, RenderLayer.getTranslucent());
 
         BlockRenderLayerMap.INSTANCE.putBlock(PigmentBlocks.QUITOXIC_REEDS, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(PigmentBlocks.MERMAIDS_BRUSH, RenderLayer.getCutout());

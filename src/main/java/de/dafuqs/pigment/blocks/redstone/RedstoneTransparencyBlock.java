@@ -2,8 +2,11 @@ package de.dafuqs.pigment.blocks.redstone;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.RedstoneLampBlock;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.entity.ai.pathing.NavigationType;
+import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.EnumProperty;
 import net.minecraft.util.StringIdentifiable;
@@ -12,6 +15,10 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
+import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.Random;
 
 public class RedstoneTransparencyBlock extends Block {
 
@@ -19,12 +26,13 @@ public class RedstoneTransparencyBlock extends Block {
 
     public RedstoneTransparencyBlock(Settings settings) {
         super(settings);
+        setDefaultState(getStateManager().getDefaultState().with(TRANSPARENCY_STATE, TransparencyState.SOLID));
     }
 
 
     public enum TransparencyState implements StringIdentifiable {
         SOLID("solid"),
-        SEE_THROUGH("see_through"),
+        TRANSLUCENT("translucent"),
         NO_COLLISION("no_collision");
 
         private final String name;
@@ -47,6 +55,7 @@ public class RedstoneTransparencyBlock extends Block {
         stateManager.add(TRANSPARENCY_STATE);
     }
 
+    // todo: only when translucent
     public boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
         return stateFrom.isOf(this) || super.isSideInvisible(state, stateFrom, direction);
     }
@@ -54,7 +63,7 @@ public class RedstoneTransparencyBlock extends Block {
     public float getAmbientOcclusionLightLevel(BlockState state, BlockView world, BlockPos pos) {
         switch (state.get(TRANSPARENCY_STATE)) {
             case SOLID -> {return 0.0F; }
-            case SEE_THROUGH -> { return 0.5F; }
+            case TRANSLUCENT -> { return 0.5F; }
             default -> { return 1.0F; }
         }
     }
@@ -82,6 +91,69 @@ public class RedstoneTransparencyBlock extends Block {
             return world.getMaxLightLevel();
         } else {
             return super.getOpacity(state, world, pos);
+        }
+    }
+
+
+    @Deprecated
+    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+        if((state.get(TRANSPARENCY_STATE) == TransparencyState.NO_COLLISION)) {
+            return VoxelShapes.fullCube();
+        } else {
+            return super.getOutlineShape(state, world, pos, context);
+        }
+    }
+
+    @Nullable
+    public BlockState getPlacementState(ItemPlacementContext ctx) {
+        int power = ctx.getWorld().getReceivedRedstonePower(ctx.getBlockPos());
+        return this.getDefaultState().with(TRANSPARENCY_STATE, getStateForRedstonePower(power));
+    }
+
+    public void neighborUpdate(BlockState state, World world, BlockPos pos, Block block, BlockPos fromPos, boolean notify) {
+        if (!world.isClient) {
+            BlockState fromPosBlockState = world.getBlockState(fromPos);
+            if(fromPosBlockState.getBlock() instanceof RedstoneTransparencyBlock) {
+                TransparencyState sourceTransparencyState = fromPosBlockState.get(TRANSPARENCY_STATE);
+
+                if(sourceTransparencyState != state.get(TRANSPARENCY_STATE)) {
+                    world.setBlockState(pos, world.getBlockState(pos).with(TRANSPARENCY_STATE, sourceTransparencyState));
+                }
+            } else {
+                setTransparencyStateBasedOnRedstone(world, pos, state);
+            }
+        }
+        super.neighborUpdate(state, world, pos, block, fromPos, notify);
+    }
+
+    private boolean setTransparencyStateBasedOnRedstone(World world, BlockPos blockPos, BlockState currentState) {
+        int powerAtPos = world.getReceivedRedstonePower(blockPos);
+        if(powerAtPos == 15) {
+            if(currentState.get(TRANSPARENCY_STATE) != TransparencyState.NO_COLLISION) {
+                world.setBlockState(blockPos, world.getBlockState(blockPos).with(TRANSPARENCY_STATE, TransparencyState.NO_COLLISION));
+                return true;
+            }
+        } else if(powerAtPos > 1) {
+            if(currentState.get(TRANSPARENCY_STATE) != TransparencyState.TRANSLUCENT) {
+                world.setBlockState(blockPos, world.getBlockState(blockPos).with(TRANSPARENCY_STATE, TransparencyState.TRANSLUCENT));
+                return true;
+            }
+        } else {
+            if(currentState.get(TRANSPARENCY_STATE) != TransparencyState.SOLID) {
+                world.setBlockState(blockPos, world.getBlockState(blockPos).with(TRANSPARENCY_STATE, TransparencyState.SOLID));
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private TransparencyState getStateForRedstonePower(int power) {
+        if(power == 15) {
+            return TransparencyState.NO_COLLISION;
+        } else if(power == 0) {
+            return TransparencyState.SOLID;
+        } else {
+            return TransparencyState.TRANSLUCENT;
         }
     }
 

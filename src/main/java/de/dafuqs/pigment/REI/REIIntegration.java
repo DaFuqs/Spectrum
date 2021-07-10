@@ -23,6 +23,7 @@ public class REIIntegration implements REIClientPlugin {
         registry.addWorkstations(BuiltinPlugin.CRAFTING, EntryStacks.of(PigmentBlocks.ALTAR));
         registry.addWorkstations(AltarCategory.ID, EntryStacks.of(PigmentBlocks.ALTAR));
         registry.addWorkstations(AnvilCrushingCategory.ID, EntryStacks.of(Blocks.ANVIL));
+        registry.addWorkstations(AnvilCrushingCategory.ID, EntryStacks.of(PigmentBlocks.BEDROCK_ANVIL));
     }
 
     @Override

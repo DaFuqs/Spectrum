@@ -500,8 +500,8 @@
   "block.pigment.altar3": "Altar",
   "block.pigment.altar.title_with_owner": "Altar of %s",
 
-  "block.pigment.redstone_transparency_block": "Redstone Transparent Block",
-  "block.pigment.redstone_gravity_block": "Redstone Gravity Block",
+  "block.pigment.redstone_transparency_block": "Redstone Glass",
+  "block.pigment.redstone_gravity_block": "Redstone Sand",
 
   "block.pigment.ender_dropper": "Ender Dropper",
   "block.pigment.ender_dropper_with_owner": "Ender Dropper of %s",

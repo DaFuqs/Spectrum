@@ -148,7 +148,7 @@ public class PigmentBlocks {
     public static final Block TOPAZ_CHISELED_BASALT = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f).luminance(6));
     public static final Block CITRINE_CHISELED_BASALT = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f).luminance(7));
     public static final Block ONYX_CHISELED_BASALT = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f).luminance(3));
-    public static final Block MOONSTONE_CHISELED_BASALT = new PigmentPillarBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f).luminance(12));
+    public static final Block MOONSTONE_CHISELED_BASALT = new PillarBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f).luminance(12));
 
     public static final Block CALCITE_SLAB = new SlabBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
     public static final Block CALCITE_WALL = new WallBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
@@ -170,7 +170,7 @@ public class PigmentBlocks {
     public static final Block TOPAZ_CHISELED_CALCITE = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f).luminance(6));
     public static final Block CITRINE_CHISELED_CALCITE = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f).luminance(7));
     public static final Block ONYX_CHISELED_CALCITE = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f).luminance(3));
-    public static final Block MOONSTONE_CHISELED_CALCITE = new PigmentPillarBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f).luminance(12));
+    public static final Block MOONSTONE_CHISELED_CALCITE = new PillarBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f).luminance(12));
 
     // LAMPS
     public static final Block AMETHYST_CALCITE_LAMP = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f).luminance(15).nonOpaque());

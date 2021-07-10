@@ -1,9 +1,0 @@
-{
-	"values": [
-		"pigment:magenta_pigment",
-		"pigment:yellow_pigment",
-		"pigment:cyan_pigment",
-		"pigment:black_pigment",
-		"pigment:white_pigment"
-	]
-}

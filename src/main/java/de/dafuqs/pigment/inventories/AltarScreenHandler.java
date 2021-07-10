@@ -63,11 +63,11 @@ public class AltarScreenHandler extends AbstractRecipeScreenHandler<Inventory> {
         }
 
         // pigment slots
-        this.addSlot(new StackFilterSlot(inventory, 9,  44 + 0 * 18, 77, PigmentItems.MAGENTA_PIGMENT));
-        this.addSlot(new StackFilterSlot(inventory, 10, 44 + 1 * 18, 77, PigmentItems.YELLOW_PIGMENT));
-        this.addSlot(new StackFilterSlot(inventory, 11, 44 + 2 * 18, 77, PigmentItems.CYAN_PIGMENT));
-        this.addSlot(new StackFilterSlot(inventory, 12, 44 + 3 * 18, 77, PigmentItems.BLACK_PIGMENT));
-        this.addSlot(new StackFilterSlot(inventory, 13, 44 + 4 * 18, 77, PigmentItems.WHITE_PIGMENT));
+        this.addSlot(new StackFilterSlot(inventory, 9,  44 + 0 * 18, 77, PigmentItems.MAGENTA_GEMSTONE_POWDER));
+        this.addSlot(new StackFilterSlot(inventory, 10, 44 + 1 * 18, 77, PigmentItems.YELLOW_GEMSTONE_POWDER));
+        this.addSlot(new StackFilterSlot(inventory, 11, 44 + 2 * 18, 77, PigmentItems.CYAN_GEMSTONE_POWDER));
+        this.addSlot(new StackFilterSlot(inventory, 12, 44 + 3 * 18, 77, PigmentItems.BLACK_GEMSTONE_POWDER));
+        this.addSlot(new StackFilterSlot(inventory, 13, 44 + 4 * 18, 77, PigmentItems.WHITE_GEMSTONE_POWDER));
 
         // preview slot
         this.addSlot(new ReadOnlySlot(inventory, 14, 127, 37));
@@ -162,23 +162,23 @@ public class AltarScreenHandler extends AbstractRecipeScreenHandler<Inventory> {
                 if (!this.insertItem(clickedStack, 15, 51, false)) {
                     return ItemStack.EMPTY;
                 }
-            } else if(clickedStackCopy.isOf(PigmentItems.MAGENTA_PIGMENT)) {
+            } else if(clickedStackCopy.isOf(PigmentItems.MAGENTA_GEMSTONE_POWDER)) {
                 if(!this.insertItem(clickedStack, 9, 10, false)) {
                     return ItemStack.EMPTY;
                 }
-            } else if(clickedStackCopy.isOf(PigmentItems.YELLOW_PIGMENT)) {
+            } else if(clickedStackCopy.isOf(PigmentItems.YELLOW_GEMSTONE_POWDER)) {
                 if(!this.insertItem(clickedStack, 10, 11, false)) {
                     return ItemStack.EMPTY;
                 }
-            } else if(clickedStackCopy.isOf(PigmentItems.CYAN_PIGMENT)) {
+            } else if(clickedStackCopy.isOf(PigmentItems.CYAN_GEMSTONE_POWDER)) {
                 if(!this.insertItem(clickedStack, 11, 12, false)) {
                     return ItemStack.EMPTY;
                 }
-            } else if(clickedStackCopy.isOf(PigmentItems.BLACK_PIGMENT)) {
+            } else if(clickedStackCopy.isOf(PigmentItems.BLACK_GEMSTONE_POWDER)) {
                 if(!this.insertItem(clickedStack, 12, 13, false)) {
                     return ItemStack.EMPTY;
                 }
-            } else if(clickedStackCopy.isOf(PigmentItems.WHITE_PIGMENT)) {
+            } else if(clickedStackCopy.isOf(PigmentItems.WHITE_GEMSTONE_POWDER)) {
                 if(!this.insertItem(clickedStack, 13, 14, false)) {
                     return ItemStack.EMPTY;
                 }

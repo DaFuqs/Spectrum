@@ -1,63 +1,63 @@
 {
   "display": {
     "icon": {
-        "item": "pigment:magenta_pigment"
+        "item": "pigment:magenta_gemstone_powder"
     },
     "title": {
-      "translate": "advancements.pigment.get_pigment.title"
+      "translate": "advancements.pigment.get_gemstone_powder"
     },
     "description": {
-      "translate": "advancements.pigment.get_pigment.description"
+      "translate": "advancements.pigment.get_gemstone_powder"
     }
   },
   "parent": "pigment:pigment",
   "criteria": {
-    "has_magenta_pigment": {
+    "has_magenta_gemstone_powder": {
       "trigger":"minecraft:inventory_changed",
       "conditions":{
         "items":[
           {
-            "item":"pigment:magenta_pigment"
+            "item":"pigment:magenta_gemstone_powder"
           }
         ]
       }
     },
-    "has_yellow_pigment": {
+    "has_yellow_gemstone_powder": {
       "trigger":"minecraft:inventory_changed",
       "conditions":{
         "items":[
           {
-            "item":"pigment:yellow_pigment"
+            "item":"pigment:yellow_gemstone_powder"
           }
         ]
       }
     },
-    "has_cyan_pigment": {
+    "has_cyan_gemstone_powder": {
       "trigger":"minecraft:inventory_changed",
       "conditions":{
         "items":[
           {
-            "item":"pigment:cyan_pigment"
+            "item":"pigment:cyan_gemstone_powder"
           }
         ]
       }
     },
-    "has_white_pigment": {
+    "has_white_gemstone_powder": {
       "trigger":"minecraft:inventory_changed",
       "conditions":{
         "items":[
           {
-            "item":"pigment:white_pigment"
+            "item":"pigment:white_gemstone_powder"
           }
         ]
       }
     },
-    "has_black_pigment": {
+    "has_black_gemstone_powder": {
       "trigger":"minecraft:inventory_changed",
       "conditions":{
         "items":[
           {
-            "item":"pigment:black_pigment"
+            "item":"pigment:black_gemstone_powder"
           }
         ]
       }
@@ -65,11 +65,11 @@
   },
   "requirements": [
     [
-      "has_magenta_pigment",
-      "has_yellow_pigment",
-      "has_cyan_pigment",
-      "has_white_pigment",
-      "has_black_pigment"
+      "has_magenta_gemstone_powder",
+      "has_yellow_gemstone_powder",
+      "has_cyan_gemstone_powder",
+      "has_white_gemstone_powder",
+      "has_black_gemstone_powder"
     ]
   ]
 }

@@ -1,12 +1,12 @@
 {
   "type": "pigment_anvil_crushing",
   "ingredient": {
-    "item": "pigment:citrine_shard"
+    "item": "minecraft:amethyst_shard"
   },
   "crushedItemsPerPointOfDamage": 1,
   "experience": 0.4,
   "result" : {
-    "item": "pigment:yellow_pigment",
+    "item": "pigment:magenta_gemstone_powder",
     "count": 2
   },
   "particleEffectIdentifier": "cloud",

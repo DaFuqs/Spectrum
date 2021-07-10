@@ -1,0 +1,9 @@
+{
+	"values": [
+		"pigment:magenta_gemstone_powder",
+		"pigment:yellow_gemstone_powder",
+		"pigment:cyan_gemstone_powder",
+		"pigment:black_gemstone_powder",
+		"pigment:white_gemstone_powder"
+	]
+}

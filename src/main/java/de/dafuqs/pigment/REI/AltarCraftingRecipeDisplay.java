@@ -5,19 +5,11 @@ import de.dafuqs.pigment.recipe.altar.AltarCraftingRecipe;
 import de.dafuqs.pigment.registries.PigmentItems;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.display.Display;
-import me.shedaniel.rei.api.common.display.basic.BasicDisplay;
 import me.shedaniel.rei.api.common.entry.EntryIngredient;
-import me.shedaniel.rei.api.common.entry.EntryStack;
-import me.shedaniel.rei.api.common.entry.type.VanillaEntryTypes;
-import me.shedaniel.rei.api.common.transfer.info.simple.SimpleGridMenuInfo;
-import me.shedaniel.rei.api.common.util.CollectionUtils;
 import me.shedaniel.rei.api.common.util.EntryIngredients;
-import me.shedaniel.rei.plugin.common.displays.crafting.DefaultCraftingDisplay;
-import me.shedaniel.rei.plugin.common.displays.crafting.DefaultCustomDisplay;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -44,11 +36,11 @@ public class AltarCraftingRecipeDisplay<R extends AltarCraftingRecipe> implement
 		}*/
 
 		HashMap<PigmentColor, Integer> pigmentInputs = recipe.getPigmentInputs();
-		addPigmentCraftingInput(pigmentInputs, PigmentColor.MAGENTA, PigmentItems.MAGENTA_PIGMENT);
-		addPigmentCraftingInput(pigmentInputs, PigmentColor.YELLOW, PigmentItems.YELLOW_PIGMENT);
-		addPigmentCraftingInput(pigmentInputs, PigmentColor.CYAN, PigmentItems.CYAN_PIGMENT);
-		addPigmentCraftingInput(pigmentInputs, PigmentColor.BLACK, PigmentItems.BLACK_PIGMENT);
-		addPigmentCraftingInput(pigmentInputs, PigmentColor.WHITE, PigmentItems.WHITE_PIGMENT);
+		addPigmentCraftingInput(pigmentInputs, PigmentColor.MAGENTA, PigmentItems.MAGENTA_GEMSTONE_POWDER);
+		addPigmentCraftingInput(pigmentInputs, PigmentColor.YELLOW, PigmentItems.YELLOW_GEMSTONE_POWDER);
+		addPigmentCraftingInput(pigmentInputs, PigmentColor.CYAN, PigmentItems.CYAN_GEMSTONE_POWDER);
+		addPigmentCraftingInput(pigmentInputs, PigmentColor.BLACK, PigmentItems.BLACK_GEMSTONE_POWDER);
+		addPigmentCraftingInput(pigmentInputs, PigmentColor.WHITE, PigmentItems.WHITE_GEMSTONE_POWDER);
 
 		this.output = EntryIngredients.of(recipe.getOutput());
 		this.experience = recipe.getExperience();

@@ -40,11 +40,11 @@ public class PigmentItems {
     public static final Item MANUAL = new ManualItem(generalItemSettingsSingle);
 
     // Pigment
-    public static Item MAGENTA_PIGMENT = new Item(generalItemSettings);
-    public static Item YELLOW_PIGMENT = new Item(generalItemSettings);
-    public static Item CYAN_PIGMENT = new Item(generalItemSettings);
-    public static Item BLACK_PIGMENT = new Item(generalItemSettings);
-    public static Item WHITE_PIGMENT = new Item(generalItemSettings);
+    public static Item MAGENTA_GEMSTONE_POWDER = new Item(generalItemSettings);
+    public static Item YELLOW_GEMSTONE_POWDER = new Item(generalItemSettings);
+    public static Item CYAN_GEMSTONE_POWDER = new Item(generalItemSettings);
+    public static Item BLACK_GEMSTONE_POWDER = new Item(generalItemSettings);
+    public static Item WHITE_GEMSTONE_POWDER = new Item(generalItemSettings);
 
     // Bedrock Tools
     public static ToolItem BEDROCK_PICKAXE = new BedrockPickaxeItem(BedrockToolMaterial.INSTANCE, 1, -2.8F, pigmentBedrockItemSettings);
@@ -147,11 +147,11 @@ public class PigmentItems {
         register("manual", MANUAL);
         register("crafting_template", CRAFTING_TEMPLATE);
 
-        register("magenta_pigment", MAGENTA_PIGMENT);
-        register("yellow_pigment", YELLOW_PIGMENT);
-        register("cyan_pigment", CYAN_PIGMENT);
-        register("black_pigment", BLACK_PIGMENT);
-        register("white_pigment", WHITE_PIGMENT);
+        register("magenta_gemstone_powder", MAGENTA_GEMSTONE_POWDER);
+        register("yellow_gemstone_powder", YELLOW_GEMSTONE_POWDER);
+        register("cyan_gemstone_powder", CYAN_GEMSTONE_POWDER);
+        register("black_gemstone_powder", BLACK_GEMSTONE_POWDER);
+        register("white_gemstone_powder", WHITE_GEMSTONE_POWDER);
 
         register("bedrock_pickaxe", BEDROCK_PICKAXE);
         register("bedrock_axe", BEDROCK_AXE);

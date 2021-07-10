@@ -1,12 +1,12 @@
 {
   "type": "pigment_anvil_crushing",
   "ingredient": {
-    "item": "pigment:moonstone_shard"
+    "item": "pigment:onyx_shard"
   },
   "crushedItemsPerPointOfDamage": 1,
   "experience": 0.4,
   "result" : {
-    "item": "pigment:white_pigment",
+    "item": "pigment:black_gemstone_powder",
     "count": 2
   },
   "particleEffectIdentifier": "cloud",

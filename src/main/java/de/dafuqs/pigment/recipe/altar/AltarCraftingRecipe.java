@@ -1,11 +1,9 @@
 package de.dafuqs.pigment.recipe.altar;
 
-import de.dafuqs.pigment.mixin.AccessorShapedRecipe;
 import de.dafuqs.pigment.registries.PigmentBlocks;
 import de.dafuqs.pigment.enums.PigmentColor;
 import de.dafuqs.pigment.registries.PigmentItems;
 import de.dafuqs.pigment.recipe.PigmentRecipeTypes;
-import net.minecraft.inventory.CraftingInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -64,11 +62,11 @@ public class AltarCraftingRecipe implements Recipe<Inventory> {
         int blackPigmentCount = this.pigmentInputs.get(PigmentColor.BLACK);
         int whitePigmentCount = this.pigmentInputs.get(PigmentColor.WHITE);
 
-        return ((magentaPigmentCount == 0 || isStackAtLeast(inv.getStack(9), PigmentItems.MAGENTA_PIGMENT, magentaPigmentCount))
-            && (yellowPigmentCount == 0 || isStackAtLeast(inv.getStack(10), PigmentItems.YELLOW_PIGMENT, yellowPigmentCount))
-            && (cyanPigmentCount == 0 || isStackAtLeast(inv.getStack(11), PigmentItems.CYAN_PIGMENT, cyanPigmentCount))
-            && (blackPigmentCount == 0 || isStackAtLeast(inv.getStack(12), PigmentItems.BLACK_PIGMENT, blackPigmentCount))
-            && (whitePigmentCount == 0 || isStackAtLeast(inv.getStack(13), PigmentItems.WHITE_PIGMENT, magentaPigmentCount)));
+        return ((magentaPigmentCount == 0 || isStackAtLeast(inv.getStack(9), PigmentItems.MAGENTA_GEMSTONE_POWDER, magentaPigmentCount))
+            && (yellowPigmentCount == 0 || isStackAtLeast(inv.getStack(10), PigmentItems.YELLOW_GEMSTONE_POWDER, yellowPigmentCount))
+            && (cyanPigmentCount == 0 || isStackAtLeast(inv.getStack(11), PigmentItems.CYAN_GEMSTONE_POWDER, cyanPigmentCount))
+            && (blackPigmentCount == 0 || isStackAtLeast(inv.getStack(12), PigmentItems.BLACK_GEMSTONE_POWDER, blackPigmentCount))
+            && (whitePigmentCount == 0 || isStackAtLeast(inv.getStack(13), PigmentItems.WHITE_GEMSTONE_POWDER, magentaPigmentCount)));
     }
 
     public boolean matchesGrid(Inventory inv) {

@@ -11,7 +11,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Until now you primarily used your anvil to repair and upgrade your tools. Such a heavy object as an anvil can be of much more use, though! Why not use it to crush things into dust by it's sheer force? Like the skulls of your enemies... or items. Yeah, that's probably better.$(br2)You can use Anvil Crushing to crush $(l:general/shards)Shards$() into $(l:general/pigment)Pigment$().$(br2)$(italic)Tip: The further the anvil falls, the better."
+      "text": "Until now you primarily used your anvil to repair and upgrade your tools. Such a heavy object as an anvil can be of much more use, though! Why not use it to crush things into dust by it's sheer force? Like the skulls of your enemies... or items. Yeah, that's probably better.$(br2)You can use Anvil Crushing to crush $(l:general/shards)Shards$() into $(l:general/gemstone_powder)Gemstone Powder$().$(br2)$(italic)Tip: The further the anvil falls, the better."
     }
   ]
 }

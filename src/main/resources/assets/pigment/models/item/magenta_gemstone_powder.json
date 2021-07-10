@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "pigment:item/yellow_pigment"
+    "layer0": "pigment:item/magenta_gemstone_powder"
   }
 }

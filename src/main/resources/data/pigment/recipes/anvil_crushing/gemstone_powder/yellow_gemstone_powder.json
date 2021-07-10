@@ -1,12 +1,12 @@
 {
   "type": "pigment_anvil_crushing",
   "ingredient": {
-    "item": "pigment:topaz_shard"
+    "item": "pigment:citrine_shard"
   },
   "crushedItemsPerPointOfDamage": 1,
   "experience": 0.4,
   "result" : {
-    "item": "pigment:cyan_pigment",
+    "item": "pigment:yellow_gemstone_powder",
     "count": 2
   },
   "particleEffectIdentifier": "cloud",

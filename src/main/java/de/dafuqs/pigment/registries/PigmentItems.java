@@ -4,6 +4,8 @@ import de.dafuqs.pigment.PigmentCommon;
 import de.dafuqs.pigment.blocks.gravity.GravityItem;
 import de.dafuqs.pigment.entity.PigmentEntityTypes;
 import de.dafuqs.pigment.enums.PigmentColor;
+import de.dafuqs.pigment.items.item_frame.InvisibleGlowItemFrameItem;
+import de.dafuqs.pigment.items.item_frame.InvisibleItemFrameItem;
 import de.dafuqs.pigment.items.misc.CatkinItem;
 import de.dafuqs.pigment.items.misc.AnimatedWandItem;
 import de.dafuqs.pigment.items.materials.*;
@@ -116,8 +118,9 @@ public class PigmentItems {
     public static final Item MERMAIDS_GEM = new Item(generalItemSettings);
     public static final Item SHOOTING_STAR = new Item(generalItemSettings);
 
-    public static final Item MUSIC_DISC_PIGMENT_THEME = new PigmentMusicDiscItem(1, PigmentSoundEvents.PIGMENT_THEME, (musicDiscItemSettings));
-    public static final Item INVISIBLE_ITEM_FRAME = new InvisibleItemFrameItem(PigmentEntityTypes.INVISIBLE_ITEM_FRAME, (generalItemSettings));
+    public static final Item MUSIC_DISC_PIGMENT_THEME = new PigmentMusicDiscItem(1, PigmentSoundEvents.PIGMENT_THEME, musicDiscItemSettings);
+    public static final Item INVISIBLE_ITEM_FRAME = new InvisibleItemFrameItem(PigmentEntityTypes.INVISIBLE_ITEM_FRAME, generalItemSettings);
+    public static final Item INVISIBLE_GLOW_ITEM_FRAME = new InvisibleGlowItemFrameItem(PigmentEntityTypes.INVISIBLE_GLOW_ITEM_FRAME, generalItemSettings);
 
     // Catkin
     public static final Item VIBRANT_CYAN_CATKIN = register("vibrant_cyan_catkin", new CatkinItem(PigmentColor.CYAN, false, generalItemSettings));
@@ -210,6 +213,7 @@ public class PigmentItems {
 
         register("music_disc_pigment_theme", MUSIC_DISC_PIGMENT_THEME);
         register("invisible_item_frame", INVISIBLE_ITEM_FRAME);
+        register("invisible_glow_item_frame", INVISIBLE_GLOW_ITEM_FRAME);
         register("ender_splice", ENDER_SPLICE);
         register("natures_staff", NATURES_STAFF);
 

@@ -26,6 +26,7 @@
   "client": [
     "client.AccessorClientAdvancementManager",
     "client.BlockModelsMixin",
+    "client.ItemFrameEntityRendererMixin",
     "client.BuiltinModelItemRendererMixin",
     "client.ClientPlayerEntityMixin",
     "client.ClientWorldMixin",

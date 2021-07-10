@@ -17,6 +17,7 @@ public class PigmentEntityRenderers {
         register(PigmentEntityTypes.GRAVITY_BLOCK, GravityBlockRenderer::new);
         register(PigmentEntityTypes.SHOOTING_STAR, ShootingStarEntityRenderer::new);
         register(PigmentEntityTypes.INVISIBLE_ITEM_FRAME, ItemFrameEntityRenderer::new);
+        register(PigmentEntityTypes.INVISIBLE_GLOW_ITEM_FRAME, ItemFrameEntityRenderer::new);
     }
 
     private static <T extends Entity> void register(EntityType<? extends T> type, EntityRendererFactory<T> factory) {

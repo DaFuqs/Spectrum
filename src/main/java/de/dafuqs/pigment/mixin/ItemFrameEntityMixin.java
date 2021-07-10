@@ -17,6 +17,8 @@ public class ItemFrameEntityMixin {
         ItemFrameEntity thisEntity = (ItemFrameEntity) (Object) this;
         if(thisEntity.getType()  == PigmentEntityTypes.INVISIBLE_ITEM_FRAME) {
             callbackInfoReturnable.setReturnValue(new ItemStack(PigmentItems.INVISIBLE_ITEM_FRAME));
+        } else if(thisEntity.getType()  == PigmentEntityTypes.INVISIBLE_GLOW_ITEM_FRAME) {
+            callbackInfoReturnable.setReturnValue(new ItemStack(PigmentItems.INVISIBLE_GLOW_ITEM_FRAME));
         }
     }
 }

@@ -1,4 +1,4 @@
-package de.dafuqs.pigment.blocks.minerals;
+package de.dafuqs.pigment.blocks.gemstone;
 
 import net.minecraft.block.AmethystClusterBlock;
 import net.minecraft.block.Block;

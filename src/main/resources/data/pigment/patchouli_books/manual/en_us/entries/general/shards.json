@@ -12,7 +12,7 @@
       "advancement": "pigment:collect_amethyst_shard",
       "title": "Amethyst",
       "item": "minecraft:amethyst_shard",
-      "text": "Magenta light refracts in this crystal.$(br)Formed over eons in the geodes, this mineral radiates awe. It is a symbol of permanence.$(br2)The Amethyst represents $(bold)$(#641f9c)TIME$()."
+      "text": "Magenta light refracts in this crystal.$(br)Formed over eons in the geodes, this gemstone radiates awe. It is a symbol of permanence.$(br2)The Amethyst represents $(bold)$(#641f9c)TIME$()."
     },
     {
       "type": "patchouli:spotlight",

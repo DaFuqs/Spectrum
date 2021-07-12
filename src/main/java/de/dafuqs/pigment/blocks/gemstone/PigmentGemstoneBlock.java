@@ -1,4 +1,4 @@
-package de.dafuqs.pigment.blocks.minerals;
+package de.dafuqs.pigment.blocks.gemstone;
 
 import net.minecraft.block.AmethystBlock;
 import net.minecraft.block.BlockState;
@@ -9,12 +9,12 @@ import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class PigmentMineralBlock extends AmethystBlock {
+public class PigmentGemstoneBlock extends AmethystBlock {
 
     private final SoundEvent hitSoundEvent;
     private final SoundEvent chimeSoundEvent;
 
-    public PigmentMineralBlock(Settings settings, SoundEvent hitSoundEvent, SoundEvent chimeSoundEvent) {
+    public PigmentGemstoneBlock(Settings settings, SoundEvent hitSoundEvent, SoundEvent chimeSoundEvent) {
         super(settings);
         this.hitSoundEvent = hitSoundEvent;
         this.chimeSoundEvent = chimeSoundEvent;

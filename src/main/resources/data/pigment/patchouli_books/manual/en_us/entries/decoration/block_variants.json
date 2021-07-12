@@ -5,7 +5,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "You remember the blocks that shielded your precious minerals from external influences? Those black and white materials look really pretty, so you designed some decoration blocks from their materials.$(br2)Maybe they also absorbed some of the magical properties of the minerals themselves? Who knows."
+      "text": "You remember the blocks that shielded your precious gemstones from external influences? Those black and white materials look really pretty, so you designed some decoration blocks from their materials.$(br2)Maybe they also absorbed some of the magical properties of the minerals themselves? Who knows."
     },
     {
       "type": "patchouli:smelting",

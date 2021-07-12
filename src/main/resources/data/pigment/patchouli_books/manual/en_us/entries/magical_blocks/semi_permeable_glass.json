@@ -11,7 +11,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Semi-permeable Glass comes in all the colors of minerals that are available to you, including the common glass and it's tinted variant.$(br2)It looks exactly like it's $(l:decoration/gemstone_glass)boring counterpart$(), but has the special property that players can pass through it without problems, while all other creatures bounce off it like a fly off a window."
+      "text": "Semi-permeable Glass comes in all the gemstone colors that are available to you, including the common glass and it's tinted variant.$(br2)It looks exactly like it's $(l:decoration/gemstone_glass)boring counterpart$(), but has the special property that players can pass through it without problems, while all other creatures bounce off it like a fly off a window."
     }
   ]
 }

@@ -8,7 +8,7 @@
             "title": "About Pigment",
             "images": [ "pigment:textures/gui/manual/geodes.png" ],
             "border": true,
-            "text": "Geodes are distributed all over the world. It seems to you that different initial conditions promote the formation of certain types of minerals. To find them all, it probably makes sense to search in different places."
+            "text": "Geodes are distributed all over the world. It seems to you that different initial conditions promote the formation of certain types of gemstones. To find them all, it probably makes sense to search in different places."
         },
         {
             "type": "patchouli:spotlight",

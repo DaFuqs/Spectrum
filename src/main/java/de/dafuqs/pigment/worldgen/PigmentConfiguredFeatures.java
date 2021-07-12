@@ -176,7 +176,7 @@ public class PigmentConfiguredFeatures {
         BlockState LARGE_MOONSTONE_BUD = PigmentBlocks.LARGE_MOONSTONE_BUD.getDefaultState();
         BlockState MOONSTONE_CLUSTER = PigmentBlocks.MOONSTONE_CLUSTER.getDefaultState();
 
-        CITRINE_GEODE = ((Feature.GEODE.configure(new GeodeFeatureConfig(
+        CITRINE_GEODE = ((PigmentFeatures.SOLID_BLOCKS_GEODE.configure(new GeodeFeatureConfig(
                 new GeodeLayerConfig(
                         new SimpleBlockStateProvider(AIR),
                         new SimpleBlockStateProvider(CITRINE_BLOCK),
@@ -193,10 +193,10 @@ public class PigmentConfiguredFeatures {
                 UniformIntProvider.create(3, 4),
                 UniformIntProvider.create(1, 2),
                 -16, 16, 0.05D, 1)
-        ).uniformRange(YOffset.aboveBottom(32), YOffset.fixed(96))
-        ).spreadHorizontally()).applyChance(30);
+        ).uniformRange(YOffset.aboveBottom(35), YOffset.fixed(55))
+        ).spreadHorizontally()).applyChance(40);
 
-        TOPAZ_GEODE = ((Feature.GEODE.configure(new GeodeFeatureConfig(
+        TOPAZ_GEODE = ((PigmentFeatures.SOLID_BLOCKS_GEODE.configure(new GeodeFeatureConfig(
                 new GeodeLayerConfig(
                         new SimpleBlockStateProvider(AIR),
                         new SimpleBlockStateProvider(TOPAZ_BLOCK),
@@ -213,10 +213,10 @@ public class PigmentConfiguredFeatures {
                 UniformIntProvider.create(3, 4),
                 UniformIntProvider.create(1, 2),
                 -16, 16, 0.05D, 1)
-        ).uniformRange(YOffset.fixed(96), YOffset.belowTop(0))
-        ).spreadHorizontally()).applyChance(30);
+        ).uniformRange(YOffset.fixed(70), YOffset.belowTop(0))
+        ).spreadHorizontally()).applyChance(10);
 
-        MOONSTONE_GEODE = ((Feature.GEODE.configure(new GeodeFeatureConfig(
+        MOONSTONE_GEODE = ((PigmentFeatures.SOLID_BLOCKS_GEODE.configure(new GeodeFeatureConfig(
                 new GeodeLayerConfig(
                         new SimpleBlockStateProvider(AIR),
                         new SimpleBlockStateProvider(MOONSTONE_BLOCK),
@@ -234,7 +234,7 @@ public class PigmentConfiguredFeatures {
                 UniformIntProvider.create(1, 2),
                 -16, 16, 0.05D, 1)
         ).uniformRange(YOffset.aboveBottom(10), YOffset.belowTop(10))
-        ).spreadHorizontally()).applyChance(30);
+        ).spreadHorizontally()).applyChance(40);
 
         RegistryKey<ConfiguredFeature<?, ?>> CITRINE_GEODE_KEY = RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY, new Identifier(PigmentCommon.MOD_ID, "citrine_geode"));
         Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, CITRINE_GEODE_KEY.getValue(), CITRINE_GEODE);

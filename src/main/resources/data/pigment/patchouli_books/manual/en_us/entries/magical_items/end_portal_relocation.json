@@ -7,12 +7,12 @@
       "type": "patchouli:image",
       "images": [ "pigment:textures/gui/manual/end_portal.png" ],
       "border": true,
-      "text": ""
+      "text": "Every time you want to enter the realm of the Endermen you have to travel half a world. Whoever created the portals to the End... you're so much more powerful than they are now. Well, almost. You haven't yet figured out how to create such portals yourself, but pack them up and take them home? No problem."
     },
     {
       "type": "patchouli:spotlight",
       "item": "pigment:end_portal_cracker",
-      "text": ""
+      "text": "These modified Eye of Ender harbor extremely destructive potential. They also need this to be able to manipulate the extremely robust portal frame. When used in an End Portal base, you should keep your distance quickly."
     },
     {
       "type": "patchouli:multiblock",

@@ -7,13 +7,13 @@
       "type": "patchouli:spotlight",
       "title": "Ender Hopper",
       "item": "pigment:ender_hopper",
-      "text": "TODO"
+      "text": "If you have designed it to resemble an ordinary hopper in form and function, the Ehder Hopper has the special ability to put all items above it and from inventories directly into your Ender Chest.$(br2)The Ender Hopper only works while you are online."
     },
     {
       "type": "patchouli:spotlight",
       "title": "Ender Dropper",
       "item": "pigment:ender_dropper",
-      "text": "TODO"
+      "text": "The Ender Dropper is the counterpart to the Ender Hopper. With every redstone push it ejects an item from your Ender Chest.$(br2)The Ender Dropper only works as long as you are online. But beware: Who is stopping you from placing a button next to it and emptying your Ender Chest?"
     },
     {
       "type": "patchouli:spotlight",

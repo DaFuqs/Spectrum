@@ -1,16 +1,16 @@
 {
-  "name": "Multitool",
-  "icon": "pigment:multitool",
+  "name": "Bedrock Anvil",
+  "icon": "pigment:bedrock_anvil",
   "category": "pigment:magical_items_category",
   "pages": [
     {
       "type": "patchouli:spotlight",
-      "item": "pigment:multitool",
-      "text": ""
+      "item": "pigment:bedrock_anvil",
+      "text": "$(italic)You've already used your anvil - or much more anvils - plenty. However, both $(l:general/anvil_crushing)Anvil Crushing$() and repairing and enchanting tools always damage them so quickly that they become irreparably damaged.$(br)To make the anvil more stable - or even indestructible - you need a harder material."
     },
     {
       "type": "patchouli:text",
-      "text": ""
+      "text": "The anvil made of Bedrock has two distinct advantages over normal anvils:$(li)It is indestructible$(li)It removes the \"too expensive\" limit of the normal anvil when repairing and enchanting tools."
     }
   ]
 }

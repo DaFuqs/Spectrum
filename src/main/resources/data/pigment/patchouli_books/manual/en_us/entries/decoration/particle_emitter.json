@@ -7,11 +7,11 @@
       "type": "patchouli:spotlight",
       "title": "Particle Emitter",
       "item": "pigment:particle_emitter",
-      "text": "$(italic)TODO$()"
+      "text": "$(italic)$You have a penchant for chic decorations. But the decoration includes not only blocks, but also the right staging.$(br)A shower of particles around your most precious belongings on the pedestals, for example.$(br)Creating a bit of glitter is a breeze for you by now, so the Particle Emitter is born.()"
     },
     {
       "type": "patchouli:text",
-      "text": "TODO"
+      "text": "The Particle Emitter offers a wide range of settings for which particles with which properties should be created in the environment.$(br2)The Particle Emitter is very good at adding that last bit of polish to your builds."
     }
   ]
 }

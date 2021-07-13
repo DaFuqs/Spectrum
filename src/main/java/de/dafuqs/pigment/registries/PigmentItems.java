@@ -46,6 +46,23 @@ public class PigmentItems {
     public static Item BLACK_GEMSTONE_POWDER = new Item(generalItemSettings);
     public static Item WHITE_GEMSTONE_POWDER = new Item(generalItemSettings);
 
+    public static Item BLACK_PIGMENT = new Item(generalItemSettings);
+    public static Item BLUE_PIGMENT = new Item(generalItemSettings);
+    public static Item BROWN_PIGMENT = new Item(generalItemSettings);
+    public static Item CYAN_PIGMENT = new Item(generalItemSettings);
+    public static Item GRAY_PIGMENT = new Item(generalItemSettings);
+    public static Item GREEN_PIGMENT = new Item(generalItemSettings);
+    public static Item LIGHT_BLUE_PIGMENT = new Item(generalItemSettings);
+    public static Item LIGHT_GRAY_PIGMENT = new Item(generalItemSettings);
+    public static Item LIME_PIGMENT = new Item(generalItemSettings);
+    public static Item MAGENTA_PIGMENT = new Item(generalItemSettings);
+    public static Item ORANGE_PIGMENT = new Item(generalItemSettings);
+    public static Item PINK_PIGMENT = new Item(generalItemSettings);
+    public static Item PURPLE_PIGMENT = new Item(generalItemSettings);
+    public static Item RED_PIGMENT = new Item(generalItemSettings);
+    public static Item WHITE_PIGMENT = new Item(generalItemSettings);
+    public static Item YELLOW_PIGMENT = new Item(generalItemSettings);
+
     // Bedrock Tools
     public static ToolItem BEDROCK_PICKAXE = new BedrockPickaxeItem(BedrockToolMaterial.INSTANCE, 1, -2.8F, pigmentBedrockItemSettings);
     public static ToolItem BEDROCK_AXE = new BedrockAxeItem(BedrockToolMaterial.INSTANCE, 5, -3.0F, pigmentBedrockItemSettings);
@@ -152,6 +169,23 @@ public class PigmentItems {
         register("cyan_gemstone_powder", CYAN_GEMSTONE_POWDER);
         register("black_gemstone_powder", BLACK_GEMSTONE_POWDER);
         register("white_gemstone_powder", WHITE_GEMSTONE_POWDER);
+
+        register("black_pigment", BLACK_PIGMENT);
+        register("blue_pigment", BLUE_PIGMENT);
+        register("brown_pigment", BROWN_PIGMENT);
+        register("cyan_pigment", CYAN_PIGMENT);
+        register("gray_pigment", GRAY_PIGMENT);
+        register("green_pigment", GREEN_PIGMENT);
+        register("light_blue_pigment", LIGHT_BLUE_PIGMENT);
+        register("light_gray_pigment", LIGHT_GRAY_PIGMENT);
+        register("lime_pigment", LIME_PIGMENT);
+        register("magenta_pigment", MAGENTA_PIGMENT);
+        register("orange_pigment", ORANGE_PIGMENT);
+        register("pink_pigment", PINK_PIGMENT);
+        register("purple_pigment", PURPLE_PIGMENT);
+        register("red_pigment", RED_PIGMENT);
+        register("white_pigment", WHITE_PIGMENT);
+        register("yellow_pigment", YELLOW_PIGMENT);
 
         register("bedrock_pickaxe", BEDROCK_PICKAXE);
         register("bedrock_axe", BEDROCK_AXE);

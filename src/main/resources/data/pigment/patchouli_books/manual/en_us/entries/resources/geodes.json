@@ -10,23 +10,48 @@
             "border": true,
             "text": "Geodes are distributed all over the world. It seems to you that different initial conditions promote the formation of certain types of gemstones. To find them all, it probably makes sense to search in different places."
         },
+		{
+		  "type": "patchouli:multiblock",
+		  "name": "Geode Structure",
+		  "multiblock": {
+			"pattern": [
+			  [ " SSS ",
+				"SSSSS",
+				"SSOSS",
+				"SSSSS",
+				" SSS " ]
+			],
+			"mapping": {
+			  "S": "minecraft:smooth_basalt",
+			  "C": "minecraft:calcite",
+			  "A": "minecraft:amethyst_block"
+			  "B": "minecraft:budding_amethyst"
+			  "S": "minecraft:small_amethyst_bud"
+			  "M": "minecraft:medium_amethyst_bud"
+			  "L": "minecraft:large_amethyst_bud"
+			  "C": "minecraft:amethyst_cluster"
+			},
+			"symmetrical": false
+		  },
+		  "text": "You just put the portal back together the way it was initially, add Ender Pearls, done!"
+		},
         {
             "type": "patchouli:spotlight",
             "title": "Amethyst Geodes",
             "item": "minecraft:amethyst_block",
-            "text": ""
+            "text": "As elements of time, Amethyst Geodes tend to maintain their existence in the lowest layers of the world, quietly sealed off from all other happenings in the world. Leisurely and yet imposing."
         },
         {
             "type": "patchouli:spotlight",
             "title": "Citrine Geodes",
             "item": "pigment:citrine_block",
-            "text": ""
+            "text": "Geodes with citrine are found in the middle layers of the world, sometimes even accessible from the surface. These geodes are small, but harbor tremendous energy, so they are cracked especially often."
         },
         {
             "type": "patchouli:spotlight",
             "title": "Topaz Geodes",
             "item": "pigment:topaz_block",
-            "text": ""
+            "text": "Topaz geodes are gigantic in contrast to the others, fitting for their element of matter. However, for this they are found exclusively far above the ground in mountains or massive hills."
         },
         {
             "type": "patchouli:spotlight",
@@ -43,7 +68,7 @@
         {
             "type": "patchouli:text",
             "title": "Acquiring Budding Blocks",
-            "text": "=> Resonance"
+            "text": "=> $(l:enchantments/resonance)Resonance$()."
         }
     ]
 }

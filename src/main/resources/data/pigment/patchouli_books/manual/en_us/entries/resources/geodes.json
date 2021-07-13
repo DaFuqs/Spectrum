@@ -1,39 +1,49 @@
 {
     "name": "Geodes",
-    "icon": "pigment:amethyst_cluster",
+    "icon": "minecraft:amethyst_cluster",
     "category": "pigment:resources_category",
     "pages": [
         {
             "type": "patchouli:image",
-            "title": "About Pigment",
+            "title": "Gemstone Geodes",
             "images": [ "pigment:textures/gui/manual/geodes.png" ],
             "border": true,
-            "text": "Geodes are distributed all over the world. It seems to you that different initial conditions promote the formation of certain types of gemstones. To find them all, it probably makes sense to search in different places."
+            "text": "It seems to you that different initial conditions promote the formation of certain types of gemstones.Geodes are distributed all over the world."
         },
 		{
 		  "type": "patchouli:multiblock",
 		  "name": "Geode Structure",
+          "enable_visualize": false,
 		  "multiblock": {
 			"pattern": [
-			  [ " SSS ",
-				"SSSSS",
-				"SSOSS",
-				"SSSSS",
-				" SSS " ]
+              [ "                ", "                ", "                ", "                ", "                ", "       SS       ", "      SSSS      ", "       SS       ", "                ", "                ", "                ", "                ", "                " ],
+              [ "                ", "                ", "                ", "     SSSSSS     ", "    SSSCCSSS    ", "    SSCCCCSS    ", "   SSCCCCCCSS   ", "    SSCCCCSS    ", "    SSSCCSSS    ", "     SSSSSS     ", "                ", "                ", "                " ],
+              [ "                ", "                ", "    SSSSSSS     ", "   SSCCCCCSS    ", "  SSCCAAACCS    ", "  SCCAAAAACCS   ", "  SCCAAAAACCS   ", "  SSCCAAACCSS   ", "   SSCCCCCSS    ", "    SSSSSSS     ", "                ", "                ", "                " ],
+              [ "                ", "     SSSSSS     ", "   SSCCCCCSS    ", "  SSCCAAAACCS   ", "  SCCAAAAAACSS  ", " SCCAA   AACCS  ", " SCCA     AACS  ", " SCCAA    ACCS  ", "  SCAA   AACCS  ", "  SCC  AAACCS   ", "   S    CCCSS   ", "        SSS     ", "                " ],
+              [ "       SSS      ", "     SSCCCSS    ", "   SSCCBACCCS   ", "  SCCAAAAAACCS  ", "  SCAA    AACSS ", " SCAA      ACCS ", " SCAA      ACCS ", " SCAA      ACCS ", " SCCA     AACSS ", "  SC     BACCSS ", "         ACCSS  ", "         CCSS   ", "          SS    " ],
+              [ "       SSSS     ", "     SCCCCCSS   ", "    SCCAABACSS  ", "  SCCAB  AAACSS ", " SCCAB     ACCS ", " SCA       AACS ", "SCA         ACSS", "SCA        AACSS", "SCA        AACS ", "SCAA      AACCS ", " S       AACCSS ", " S        CCSS  ", "          SS    " ],
+              [ "       SSSSS    ", "     SCCCCCSS   ", "   SSCAAAAACCS  ", "   CCAA  AAACCS ", "  SCA      AACS ", " SCA        ACSS", " SCA    0   ACCS", " SCA        ACCS", " SCA       AACSS", "  S        BCSS ", "          AACCS ", "          CCSS  ", "          SS    " ],
+              [ "       SSSS     ", "     SSCCCCSS   ", "    SCCAAACCCS  ", "   SCAAA AAACCS ", "  SCAA     AACS ", "  SBA       ACSS", " SCA        ACCS", " SCB        ACCS", "  CA        ACSS", "  S        ACCSS", "          AACSS ", "          CCSS  ", "          SSS   " ],
+              [ "         S      ", "      SSCCSSS   ", "    SCCCACCCSS  ", "   SCCAAAAAACSS ", "   CCA     ACCS ", "  SCB      AACSS", "  SCA       ACSS", "  SCB       ACSS", "  SC       AACSS", "  S       AACSS ", "          ACCS  ", "          CCSS  ", "          SS    " ],
+              [ "                ", "       SSSSS    ", "     SCCCCCCS   ", "    SCCABAACCS  ", "   SCAAA ABACCS ", "   SCA     AACS ", "  SCAA     ABCS ", "  SCAB     AACS ", "  SCA      ACCS ", "         AAACSS ", "         ACCCS  ", "         CCS    ", "         SS     " ],
+              [ "                ", "         S      ", "      SSSCSSS   ", "     SCCCCCCCS  ", "    SCCAAAACCS  ", "    CCBAAAAACSS ", "   SCAA   AACSS ", "   SCAAA  AACSS ", "   SCCAAAAAACSS ", "   S    ABACCS  ", "         CCCS   ", "         SSS    ", "         S      " ],
+              [ "                ", "                ", "        SSS     ", "      SSCCSSS   ", "     SCCCCCCS   ", "    SSCCAACCSS  ", "    SCCAABCCSS  ", "    SCCBAACCSS  ", "    SCCCACCCSS  ", "    S     CSS   ", "          SS    ", "                ", "                " ],
+              [ "                ", "                ", "                ", "        SS      ", "       SSSSS    ", "      SSCCSSS   ", "     SSCCCCSS   ", "     SSCCCCSS   ", "     SSSCCSS    ", "     SSSSSSS    ", "        SS      ", "                ", "                " ],
+              [ "                ", "                ", "                ", "                ", "                ", "         S      ", "        SSS     ", "        SS      ", "        S       ", "                ", "                ", "                ", "                " ]
 			],
 			"mapping": {
 			  "S": "minecraft:smooth_basalt",
 			  "C": "minecraft:calcite",
-			  "A": "minecraft:amethyst_block"
-			  "B": "minecraft:budding_amethyst"
-			  "S": "minecraft:small_amethyst_bud"
-			  "M": "minecraft:medium_amethyst_bud"
-			  "L": "minecraft:large_amethyst_bud"
-			  "C": "minecraft:amethyst_cluster"
+			  "A": "minecraft:amethyst_block",
+			  "B": "minecraft:budding_amethyst",
+			  "W": "minecraft:small_amethyst_bud",
+			  "X": "minecraft:medium_amethyst_bud",
+			  "Y": "minecraft:large_amethyst_bud",
+			  "Z": "minecraft:amethyst_cluster"
 			},
 			"symmetrical": false
 		  },
-		  "text": "You just put the portal back together the way it was initially, add Ender Pearls, done!"
+		  "text": "To find them all, it probably makes sense to search in different places."
 		},
         {
             "type": "patchouli:spotlight",

@@ -6,11 +6,11 @@
     {
       "type": "patchouli:spotlight",
       "item": "pigment:glow_vision_helmet",
-      "text": ""
+      "text": "$(italic)While searching for valuable materials, you stumbled upon a new type of octopus underground. What makes them so special is their glow, which lights your way in the darkness of the caves. As nice as they are, they also leave you Glow Ink Sacs when they wash ashore once again and meet their sad end there. You honor their glowing legacies by designing a headdress that reminds you of their original properties and can continue to show you the light in the darkness of the caves."
     },
     {
       "type": "patchouli:text",
-      "text": ""
+      "text": "The Glow Vision helmet offers you no protection, but if you wear Glow Ink with you, you get the Night Vision effect for some time."
     }
   ]
 }

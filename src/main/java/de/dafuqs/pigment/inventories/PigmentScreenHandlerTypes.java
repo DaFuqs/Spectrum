@@ -8,7 +8,7 @@ public class PigmentScreenHandlerTypes {
     public static ScreenHandlerType<AltarScreenHandler> ALTAR;
 
     public static void register() {
-        ALTAR = ScreenHandlerRegistry.registerSimple(PigmentContainers.ALTAR, (AltarScreenHandler::new));
+        ALTAR = ScreenHandlerRegistry.registerSimple(PigmentContainers.ALTAR, AltarScreenHandler::new);
     }
 
 }

@@ -6,11 +6,11 @@
     {
       "type": "patchouli:spotlight",
       "item": "pigment:multitool",
-      "text": ""
+      "text": "$(italic)Whenever you leave your home sweet home, you carry half a tool shed with you. This is very bulky, but not really worth mentioning, since you can also carry tons of stone. Nevertheless, a universal tool that combines the abilities of a pickaxe, axe and shovel would suit you. It's not as efficient in the individual tasks, but it's much better than having to change tools every three seconds.$()"
     },
     {
       "type": "patchouli:text",
-      "text": ""
+      "text": "The multitool serves as a pickaxe, axe and shovel at the same time. However, due to its special shape, it can not be formed from diamond, but only from iron."
     }
   ]
 }

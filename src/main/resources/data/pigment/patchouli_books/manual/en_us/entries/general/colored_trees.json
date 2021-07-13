@@ -5,7 +5,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "You need something organic to mix your pigments. In your experiments, you could see that the roots of seedlings absorb the color and energy of the pigments with ease.$(br)The seedlings change. The energy of the gems pulses through stem and its first leaves. You wonder what they will look like when they are fully grown?"
+      "text": "You need something organic to mix your pigments. In your experiments, you could see that the roots of seedlings absorb the color and energy of the pigments with ease.$(br)The seedlings absorb the energy of the gemstone powder and develop accordingly. The energy of the gems pulses through stem and its first leaves. You wonder what they will look like when they are fully grown?"
     },
     {
       "type": "patchouli:spotlight",
@@ -21,7 +21,7 @@
     },
     {
       "type": "patchouli:spotlight",
-      "title": "Decoration Blocks",
+      "title": "Colored Wood",
       "item": "pigment:light_blue_planks",
       "text": "Like their non-magical counterparts, you can use the colored wood for Planks, Stairs, Slabs, Buttons, Pressure Plates, Fences and Fence Gates."
     }

@@ -319,11 +319,11 @@
 
   "item.pigment.manual": "Pigment: World of Color",
 
-  "item.pigment.magenta_gemstone_powder": "Magenta Gemstone Powder",
-  "item.pigment.yellow_gemstone_powder": "Yellow Gemstone Powder",
-  "item.pigment.cyan_gemstone_powder": "Cyan Gemstone Powder",
-  "item.pigment.white_gemstone_powder": "White Gemstone Powder",
-  "item.pigment.black_gemstone_powder": "Black Gemstone Powder",
+  "item.pigment.magenta_gemstone_powder": "Amethyst Powder",
+  "item.pigment.yellow_gemstone_powder": "Citrine Powder",
+  "item.pigment.cyan_gemstone_powder": "Topaz Powder",
+  "item.pigment.white_gemstone_powder": "Moonstone Powder",
+  "item.pigment.black_gemstone_powder": "Onyx Powder",
 
   "item.pigment.bedrock_pickaxe": "Bedrock Pickaxe",
   "item.pigment.bedrock_axe": "Bedrock Axe",

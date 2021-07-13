@@ -1,0 +1,11 @@
+{
+  "name": "Pigments",
+  "icon": "pigment:magenta_pigment",
+  "category": "pigment:general_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": ""
+    }
+  ]
+}

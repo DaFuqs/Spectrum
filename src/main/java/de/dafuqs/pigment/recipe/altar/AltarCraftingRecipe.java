@@ -62,11 +62,11 @@ public class AltarCraftingRecipe implements Recipe<Inventory> {
         int blackPigmentCount = this.pigmentInputs.get(PigmentColor.BLACK);
         int whitePigmentCount = this.pigmentInputs.get(PigmentColor.WHITE);
 
-        return ((magentaPigmentCount == 0 || isStackAtLeast(inv.getStack(9), PigmentItems.MAGENTA_GEMSTONE_POWDER, magentaPigmentCount))
-            && (yellowPigmentCount == 0 || isStackAtLeast(inv.getStack(10), PigmentItems.YELLOW_GEMSTONE_POWDER, yellowPigmentCount))
-            && (cyanPigmentCount == 0 || isStackAtLeast(inv.getStack(11), PigmentItems.CYAN_GEMSTONE_POWDER, cyanPigmentCount))
-            && (blackPigmentCount == 0 || isStackAtLeast(inv.getStack(12), PigmentItems.BLACK_GEMSTONE_POWDER, blackPigmentCount))
-            && (whitePigmentCount == 0 || isStackAtLeast(inv.getStack(13), PigmentItems.WHITE_GEMSTONE_POWDER, magentaPigmentCount)));
+        return ((magentaPigmentCount == 0 || isStackAtLeast(inv.getStack(9), PigmentItems.AMETHYST_POWDER, magentaPigmentCount))
+            && (yellowPigmentCount == 0 || isStackAtLeast(inv.getStack(10), PigmentItems.CITRINE_POWDER, yellowPigmentCount))
+            && (cyanPigmentCount == 0 || isStackAtLeast(inv.getStack(11), PigmentItems.TOPAZ_POWDER, cyanPigmentCount))
+            && (blackPigmentCount == 0 || isStackAtLeast(inv.getStack(12), PigmentItems.ONYX_POWDER, blackPigmentCount))
+            && (whitePigmentCount == 0 || isStackAtLeast(inv.getStack(13), PigmentItems.MOONSTONE_POWDER, magentaPigmentCount)));
     }
 
     public boolean matchesGrid(Inventory inv) {

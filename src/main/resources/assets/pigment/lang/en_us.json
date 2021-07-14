@@ -106,6 +106,12 @@
   "item.pigment.white_pigment": "White Pigment",
   "item.pigment.yellow_pigment": "Yellow Pigment",
 
+  "block.pigment.amethyst_storage_block": "Polished Amethyst",
+  "block.pigment.citrine_storage_block": "Polished Citrine",
+  "block.pigment.topaz_storage_block": "Polished Topaz",
+  "block.pigment.onyx_storage_block": "Polished Onyx",
+  "block.pigment.moonstone_storage_block": "Polished Moonstone",
+
   "block.pigment.black_sapling": "Black Sapling",
   "block.pigment.black_log": "Black Log",
   "block.pigment.black_leaves": "Black Leaves",
@@ -319,11 +325,11 @@
 
   "item.pigment.manual": "Pigment: World of Color",
 
-  "item.pigment.magenta_gemstone_powder": "Amethyst Powder",
-  "item.pigment.yellow_gemstone_powder": "Citrine Powder",
-  "item.pigment.cyan_gemstone_powder": "Topaz Powder",
-  "item.pigment.white_gemstone_powder": "Moonstone Powder",
-  "item.pigment.black_gemstone_powder": "Onyx Powder",
+  "item.pigment.amethyst_powder": "Amethyst Powder",
+  "item.pigment.citrine_powder": "Citrine Powder",
+  "item.pigment.topaz_powder": "Topaz Powder",
+  "item.pigment.moonstone_powder": "Moonstone Powder",
+  "item.pigment.onyx_powder": "Onyx Powder",
 
   "item.pigment.bedrock_pickaxe": "Bedrock Pickaxe",
   "item.pigment.bedrock_axe": "Bedrock Axe",

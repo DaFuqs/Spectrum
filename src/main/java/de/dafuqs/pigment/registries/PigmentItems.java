@@ -40,11 +40,11 @@ public class PigmentItems {
     public static final Item MANUAL = new ManualItem(generalItemSettingsSingle);
 
     // Pigment
-    public static Item MAGENTA_GEMSTONE_POWDER = new Item(generalItemSettings);
-    public static Item YELLOW_GEMSTONE_POWDER = new Item(generalItemSettings);
-    public static Item CYAN_GEMSTONE_POWDER = new Item(generalItemSettings);
-    public static Item BLACK_GEMSTONE_POWDER = new Item(generalItemSettings);
-    public static Item WHITE_GEMSTONE_POWDER = new Item(generalItemSettings);
+    public static Item AMETHYST_POWDER = new Item(generalItemSettings);
+    public static Item CITRINE_POWDER = new Item(generalItemSettings);
+    public static Item TOPAZ_POWDER = new Item(generalItemSettings);
+    public static Item ONYX_POWDER = new Item(generalItemSettings);
+    public static Item MOONSTONE_POWDER = new Item(generalItemSettings);
 
     public static Item BLACK_PIGMENT = new Item(generalItemSettings);
     public static Item BLUE_PIGMENT = new Item(generalItemSettings);
@@ -164,11 +164,11 @@ public class PigmentItems {
         register("manual", MANUAL);
         register("crafting_template", CRAFTING_TEMPLATE);
 
-        register("magenta_gemstone_powder", MAGENTA_GEMSTONE_POWDER);
-        register("yellow_gemstone_powder", YELLOW_GEMSTONE_POWDER);
-        register("cyan_gemstone_powder", CYAN_GEMSTONE_POWDER);
-        register("black_gemstone_powder", BLACK_GEMSTONE_POWDER);
-        register("white_gemstone_powder", WHITE_GEMSTONE_POWDER);
+        register("amethyst_powder", AMETHYST_POWDER);
+        register("citrine_powder", CITRINE_POWDER);
+        register("topaz_powder", TOPAZ_POWDER);
+        register("onyx_powder", ONYX_POWDER);
+        register("moonstone_powder", MOONSTONE_POWDER);
 
         register("black_pigment", BLACK_PIGMENT);
         register("blue_pigment", BLUE_PIGMENT);

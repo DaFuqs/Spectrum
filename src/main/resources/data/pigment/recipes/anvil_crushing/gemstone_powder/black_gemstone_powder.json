@@ -6,7 +6,7 @@
   "crushedItemsPerPointOfDamage": 1,
   "experience": 0.4,
   "result" : {
-    "item": "pigment:black_gemstone_powder",
+    "item": "pigment:onyx_powder",
     "count": 2
   },
   "particleEffectIdentifier": "cloud",

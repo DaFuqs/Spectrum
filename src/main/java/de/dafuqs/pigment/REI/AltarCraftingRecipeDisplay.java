@@ -36,11 +36,11 @@ public class AltarCraftingRecipeDisplay<R extends AltarCraftingRecipe> implement
 		}*/
 
 		HashMap<PigmentColor, Integer> pigmentInputs = recipe.getPigmentInputs();
-		addPigmentCraftingInput(pigmentInputs, PigmentColor.MAGENTA, PigmentItems.MAGENTA_GEMSTONE_POWDER);
-		addPigmentCraftingInput(pigmentInputs, PigmentColor.YELLOW, PigmentItems.YELLOW_GEMSTONE_POWDER);
-		addPigmentCraftingInput(pigmentInputs, PigmentColor.CYAN, PigmentItems.CYAN_GEMSTONE_POWDER);
-		addPigmentCraftingInput(pigmentInputs, PigmentColor.BLACK, PigmentItems.BLACK_GEMSTONE_POWDER);
-		addPigmentCraftingInput(pigmentInputs, PigmentColor.WHITE, PigmentItems.WHITE_GEMSTONE_POWDER);
+		addPigmentCraftingInput(pigmentInputs, PigmentColor.MAGENTA, PigmentItems.AMETHYST_POWDER);
+		addPigmentCraftingInput(pigmentInputs, PigmentColor.YELLOW, PigmentItems.CITRINE_POWDER);
+		addPigmentCraftingInput(pigmentInputs, PigmentColor.CYAN, PigmentItems.TOPAZ_POWDER);
+		addPigmentCraftingInput(pigmentInputs, PigmentColor.BLACK, PigmentItems.ONYX_POWDER);
+		addPigmentCraftingInput(pigmentInputs, PigmentColor.WHITE, PigmentItems.MOONSTONE_POWDER);
 
 		this.output = EntryIngredients.of(recipe.getOutput());
 		this.experience = recipe.getExperience();

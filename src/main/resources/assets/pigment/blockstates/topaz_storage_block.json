@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "pigment:block/topaz_storage_block"
+    }
+  }
+}

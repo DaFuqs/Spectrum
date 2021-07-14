@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "pigment:item/black_gemstone_powder"
+    "layer0": "pigment:item/amethyst_powder"
   }
 }

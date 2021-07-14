@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "pigment:item/white_gemstone_powder"
+    "layer0": "pigment:item/onyx_powder"
   }
 }

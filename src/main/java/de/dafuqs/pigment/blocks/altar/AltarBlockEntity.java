@@ -465,11 +465,11 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
 
     public static Item getPigmentItemForSlot(int slot) {
         return switch (slot) {
-            case 9 -> PigmentItems.MAGENTA_GEMSTONE_POWDER;
-            case 10 -> PigmentItems.YELLOW_GEMSTONE_POWDER;
-            case 11 -> PigmentItems.CYAN_GEMSTONE_POWDER;
-            case 12 -> PigmentItems.BLACK_GEMSTONE_POWDER;
-            case 13 -> PigmentItems.WHITE_GEMSTONE_POWDER;
+            case 9 -> PigmentItems.AMETHYST_POWDER;
+            case 10 -> PigmentItems.CITRINE_POWDER;
+            case 11 -> PigmentItems.TOPAZ_POWDER;
+            case 12 -> PigmentItems.ONYX_POWDER;
+            case 13 -> PigmentItems.MOONSTONE_POWDER;
             default -> Items.AIR;
         };
     }

@@ -125,6 +125,12 @@ public class PigmentBlocks {
 
     public static final Block RAINBOW_MOONSTONE_BLOCK = new PigmentGemstoneBlock(FabricBlockSettings.of(Material.AMETHYST, MapColor.DIAMOND_BLUE).hardness(1.5F).sounds(PigmentBlockSoundGroups.RAINBOW_MOONSTONE_BLOCK).requiresTool().breakByTool(FabricToolTags.PICKAXES, 2), PigmentSoundEvents.BLOCK_RAINBOW_MOONSTONE_BLOCK_HIT, PigmentSoundEvents.BLOCK_RAINBOW_MOONSTONE_BLOCK_CHIME);
 
+    public static final Block AMETHYST_STORAGE_BLOCK = new Block(FabricBlockSettings.of(Material.STONE).hardness(5.0f));
+    public static final Block CITRINE_STORAGE_BLOCK = new Block(FabricBlockSettings.of(Material.STONE).hardness(5.0f));
+    public static final Block TOPAZ_STORAGE_BLOCK = new Block(FabricBlockSettings.of(Material.STONE).hardness(5.0f));
+    public static final Block ONYX_STORAGE_BLOCK = new Block(FabricBlockSettings.of(Material.STONE).hardness(5.0f));
+    public static final Block MOONSTONE_STORAGE_BLOCK = new Block(FabricBlockSettings.of(Material.STONE).hardness(5.0f));
+    
     public static final Block TUFF_SLAB = new SlabBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
     public static final Block TUFF_WALL = new WallBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
     public static final Block TUFF_STAIRS = new PigmentStairsBlock(Blocks.TUFF.getDefaultState(), AbstractBlock.Settings.copy(Blocks.TUFF));
@@ -1282,6 +1288,18 @@ public class PigmentBlocks {
 
         registerBlock("rainbow_moonstone_block", RAINBOW_MOONSTONE_BLOCK);
         registerBlockItem("rainbow_moonstone_block", new BlockItem(RAINBOW_MOONSTONE_BLOCK, fabricItemSettings));
+        
+        // storage blocks
+        registerBlock("amethyst_storage_block", AMETHYST_STORAGE_BLOCK);
+        registerBlockItem("amethyst_storage_block", new BlockItem(AMETHYST_STORAGE_BLOCK, fabricItemSettings));
+        registerBlock("citrine_storage_block", CITRINE_STORAGE_BLOCK);
+        registerBlockItem("citrine_storage_block", new BlockItem(CITRINE_STORAGE_BLOCK, fabricItemSettings));
+        registerBlock("topaz_storage_block", TOPAZ_STORAGE_BLOCK);
+        registerBlockItem("topaz_storage_block", new BlockItem(TOPAZ_STORAGE_BLOCK, fabricItemSettings));
+        registerBlock("onyx_storage_block", ONYX_STORAGE_BLOCK);
+        registerBlockItem("onyx_storage_block", new BlockItem(ONYX_STORAGE_BLOCK, fabricItemSettings));
+        registerBlock("moonstone_storage_block", MOONSTONE_STORAGE_BLOCK);
+        registerBlockItem("moonstone_storage_block", new BlockItem(MOONSTONE_STORAGE_BLOCK, fabricItemSettings));
     }
 
     private static void registerGemOreBlocks(FabricItemSettings fabricItemSettings) {

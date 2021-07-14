@@ -6,9 +6,9 @@
         {
             "type": "patchouli:image",
             "title": "Gemstone Geodes",
-            "images": [ "pigment:textures/gui/manual/geodes.png" ],
+            "images": [ "pigment:textures/gui/manual/geode.png" ],
             "border": true,
-            "text": "It seems to you that different initial conditions promote the formation of certain types of gemstones.Geodes are distributed all over the world."
+            "text": "It seems that different conditions promote formation of certain types of gemstones."
         },
 		{
 			"type": "patchouli:multiblock",

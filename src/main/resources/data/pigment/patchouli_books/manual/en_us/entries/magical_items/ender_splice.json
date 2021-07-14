@@ -6,7 +6,7 @@
     {
       "type": "patchouli:spotlight",
       "item": "pigment:ender_splice",
-      "text": "The most interesting ability of the Endermen is, without exception, their teleportation. However, to determine the destination of the teleportation, you must first take a snapshot of the position. After that, you can return to the location at any time.$(br)Endermen don't have to do that - but why?"
+      "text": "$(italic)The most interesting ability of the Endermen is, without exception, their teleportation. However, to determine the destination of the teleportation, you must first take a snapshot of the position. After that, you can return to the location at any time.$(br)Endermen don't have to do that - but why?$()"
     },
     {
       "type": "patchouli:text",

@@ -5,8 +5,12 @@
   "pages": [
     {
       "type": "patchouli:image",
+      "title": "End Portal Relocation",
       "images": [ "pigment:textures/gui/manual/end_portal.png" ],
-      "border": true,
+      "border": true
+    },
+    {
+      "type": "patchouli:text",
       "text": "Every time you want to enter the realm of the Endermen you have to travel half a world. Whoever created the portals to the End... you're so much more powerful than they are now. Well, almost. You haven't yet figured out how to create such portals yourself, but pack them up and take them home? No problem."
     },
     {
@@ -27,8 +31,8 @@
             "  0  " ]
         ],
         "mapping": {
-          "H": "pigment:cracked_end_portal_frame[eye_type=none,facing_vertical=false]",
-          "V": "pigment:cracked_end_portal_frame[eye_type=none,facing_vertical=true]",
+          "H": "pigment:cracked_end_portal_frame[eye_type=ender,facing_vertical=false]",
+          "V": "pigment:cracked_end_portal_frame[eye_type=ender,facing_vertical=true]",
           "P": "minecraft:end_portal"
         },
         "offset": [ 0, 3, 0 ],

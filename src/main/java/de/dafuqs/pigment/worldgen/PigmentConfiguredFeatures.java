@@ -125,21 +125,21 @@ public class PigmentConfiguredFeatures {
 
         ConfiguredFeature<?, ?> configuredFeature = Feature.RANDOM_SELECTOR.configure(
                 new RandomFeatureConfig(ImmutableList.of(
-                        COLORED_TREE_FEATURES.get(DyeColor.BLACK).withChance(0.025F),
+                        COLORED_TREE_FEATURES.get(DyeColor.BLACK).withChance(0.01F),
                         COLORED_TREE_FEATURES.get(DyeColor.BLUE).withChance(0.025F),
                         COLORED_TREE_FEATURES.get(DyeColor.BROWN).withChance(0.025F),
                         COLORED_TREE_FEATURES.get(DyeColor.CYAN).withChance(0.025F),
-                        COLORED_TREE_FEATURES.get(DyeColor.GRAY).withChance(0.025F),
+                        COLORED_TREE_FEATURES.get(DyeColor.GRAY).withChance(0.01F),
                         COLORED_TREE_FEATURES.get(DyeColor.GREEN).withChance(0.025F),
                         COLORED_TREE_FEATURES.get(DyeColor.LIGHT_BLUE).withChance(0.025F),
-                        COLORED_TREE_FEATURES.get(DyeColor.LIGHT_GRAY).withChance(0.025F),
+                        COLORED_TREE_FEATURES.get(DyeColor.LIGHT_GRAY).withChance(0.01F),
                         COLORED_TREE_FEATURES.get(DyeColor.LIME).withChance(0.025F),
                         COLORED_TREE_FEATURES.get(DyeColor.MAGENTA).withChance(0.025F),
                         COLORED_TREE_FEATURES.get(DyeColor.ORANGE).withChance(0.025F),
                         COLORED_TREE_FEATURES.get(DyeColor.PINK).withChance(0.025F),
                         COLORED_TREE_FEATURES.get(DyeColor.PURPLE).withChance(0.025F),
                         COLORED_TREE_FEATURES.get(DyeColor.RED).withChance(0.025F),
-                        COLORED_TREE_FEATURES.get(DyeColor.WHITE).withChance(0.025F),
+                        COLORED_TREE_FEATURES.get(DyeColor.WHITE).withChance(0.001F),
                         COLORED_TREE_FEATURES.get(DyeColor.YELLOW).withChance(0.025F)
                         ), OAK)).decorate(Decorator.DARK_OAK_TREE.configure(DecoratorConfig.DEFAULT).applyChance(20));
 
@@ -194,7 +194,7 @@ public class PigmentConfiguredFeatures {
                 UniformIntProvider.create(1, 2),
                 -16, 16, 0.05D, 1)
         ).uniformRange(YOffset.aboveBottom(35), YOffset.fixed(55))
-        ).spreadHorizontally()).applyChance(40);
+        ).spreadHorizontally()).applyChance(50);
 
         TOPAZ_GEODE = ((PigmentFeatures.SOLID_BLOCKS_GEODE.configure(new GeodeFeatureConfig(
                 new GeodeLayerConfig(

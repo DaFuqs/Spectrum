@@ -1,0 +1,17 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "GGG",
+        "GGG",
+        "GGG"
+    ],
+    "key": {
+        "G": {
+	        "item": "pigment:topaz_shard"
+        }
+    },
+    "result": {
+        "item": "pigment:topaz_storage_block",
+        "count": 1
+    }
+}

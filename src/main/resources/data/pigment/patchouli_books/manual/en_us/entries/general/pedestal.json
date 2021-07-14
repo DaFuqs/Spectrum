@@ -11,7 +11,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Most recipes require $(l:general/gemstone_powder)Gemstone Powder() as an ingredient.$(br2)The Pedestal also acts as a normal crafting table and can therefore also craft vanilla recipes.$(br2)You can use $(l:general/pedestal_crafting_template)Pedestal Crafting Templates$() to automate pigment and vanilla recipes."
+      "text": "Most recipes require $(l:general/gemstone_powder)Gemstone Powder$() as an ingredient.$(br2)The Pedestal also acts as a normal crafting table and can therefore also craft vanilla recipes.$(br2)You can use $(l:general/pedestal_crafting_template)Pedestal Crafting Templates$() to automate pigment and vanilla recipes."
     }
   ]
 }

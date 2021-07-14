@@ -9,7 +9,7 @@
         },
         {
             "type": "patchouli:text",
-            "text": "$(italic)We should take this geode$(br)and push it somewhere else.$()$(br2)Uses gentle vibrations to allow some blocks to drop themselves$(br2)Max Level: 1$(br)Applicable to mining tools.$(br)Mutually exclusive with Fortune, Foundry and Pest Control."
+            "text": "$(br2)$(italic)We should take this geode$(br)and push it somewhere else.$()$(br2)Uses gentle vibrations to allow some blocks to drop themselves$(br2)Max Level: 1$(br)Applicable to mining tools.$(br)Mutually exclusive with Fortune, Foundry and Pest Control."
         },
 		{
             "type": "patchouli:spotlight",
@@ -20,7 +20,7 @@
         {
             "type": "patchouli:spotlight",
             "title": "Budding Blocks",
-            "item": "minecraft:budding_citrine",
+            "item": "pigment:budding_citrine",
             "text": "The fragility of these blocks allows them to create new gems in a short time (well, short compared to their creation history. For you, the wait still feels like eons). Waiting for them in your own house instead of one of your minimalist outposts sounds cozier."
         },
         {
@@ -33,7 +33,7 @@
             "type": "patchouli:spotlight",
             "title": "Infested Blocks",
             "item": "minecraft:infested_stone_bricks",
-            "text": "The gentle vibrations lull the silverfish hiding in the blocks. Not knowing what will happen to them, you can pack up the blocks and the silverfish and take them with you. They do not know what will happen to them. Sweet, sweet revenge?"
+            "text": "The gentle vibrations lull the silverfish hiding in the blocks. Not knowing what will happen to them, you can pack up the blocks and the silverfish and take them with you. They do not know what will happen to them.$(br)Sweet, sweet revenge?"
         }
     ]
 }

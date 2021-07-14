@@ -1,0 +1,15 @@
+{
+  "parent": "pigment:pigment",
+  "criteria": {
+    "has_black_pigment": {
+      "trigger":"minecraft:inventory_changed",
+      "conditions":{
+        "items":[
+          {
+            "item":"pigment:black_pigment"
+          }
+        ]
+      }
+    }
+  }
+}

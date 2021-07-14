@@ -1,5 +1,6 @@
 {
   "name": "Redstone Components",
   "description": "",
-  "icon": "minecraft:redstone"
+  "icon": "minecraft:redstone",
+  "sortnum": 6
 }

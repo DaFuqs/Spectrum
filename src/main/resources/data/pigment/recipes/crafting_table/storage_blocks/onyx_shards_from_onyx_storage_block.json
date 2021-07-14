@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "gem_storage",
+  "ingredients": [
+    {
+      "item": "pigment:onyx_storage_block"
+    }
+  ],
+  "result": {
+    "item": "pigment:onyx_shard",
+    "count": 9
+  }
+}

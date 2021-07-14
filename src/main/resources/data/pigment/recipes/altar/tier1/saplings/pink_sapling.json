@@ -1,0 +1,28 @@
+{
+  "type": "pigment_altar",
+  "time": 20,
+  "tier": 1,
+  "magenta": 4,
+  "yellow": 0,
+  "cyan": 1,
+  "black": 0,
+  "white": 0,
+  "experience": 1.0,
+  "pattern": [
+    " D ",
+    "DSD",
+    " D "
+  ],
+  "key": {
+	"D": {
+      "item": "minecraft:pink_dye"
+    },
+    "S": {
+      "item": "minecraft:oak_sapling"
+    }
+  },
+  "result" : {
+    "item": "pigment:pink_sapling",
+    "count": 1
+  }
+}

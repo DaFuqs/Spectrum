@@ -1,7 +1,7 @@
 {
   "replace": false,
   "values": [
-    "pigment:redstone_transparency_block"
+    "pigment:redstone_transparency_block",
 	"pigment:altar",
 	"pigment:altar2",
 	"pigment:altar3",

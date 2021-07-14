@@ -1,7 +1,7 @@
 $p = @("black", "blue", "brown", "cyan", "gray", "green", "light_blue", "light_gray", "lime", "magenta", "orange", "pink", "purple", "red", "white", "yellow")
 
 $p | Foreach-Object {
-    New-Item -Name "$_`_leaves" -ItemType File -Value 
+    New-Item -Name "$_`_leaves.json" -ItemType File -Value
 @"
 {
   "type": "minecraft:block",

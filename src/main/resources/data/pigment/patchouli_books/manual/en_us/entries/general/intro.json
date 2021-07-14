@@ -2,10 +2,11 @@
     "name": "Intro",
     "icon": "pigment:altar",
     "category": "pigment:general_category",
+    "priority": true,
     "pages": [
         {
             "type": "patchouli:image",
-            "title": "About Pigment",
+            "title": "Welcome to Pigment!",
             "images": [ "pigment:textures/gui/manual/pigment.png" ],
             "border": true,
             "text": "Pigment is a full-feature mod about magic and exploration."

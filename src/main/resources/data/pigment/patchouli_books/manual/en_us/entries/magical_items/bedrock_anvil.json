@@ -10,7 +10,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "The anvil made of Bedrock has two distinct advantages over normal anvils:$(li)It is indestructible$(li)It removes the \"too expensive\" limit of the normal anvil when repairing and enchanting tools."
+      "text": "The anvil made of Bedrock has a distinct advantage over normal anvils: It is indestructible, making it a perfect candidate for usage in $(l:general/anvil_crushing)Anvil Crushing$() automation or mass enchantment actions."
     }
   ]
 }

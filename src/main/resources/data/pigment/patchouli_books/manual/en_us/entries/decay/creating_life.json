@@ -2,6 +2,7 @@
   "name": "Creating Life",
   "icon": "pigment:altar",
   "category": "pigment:decay_category",
+  "priority": true,
   "pages": [
     {
       "type": "patchouli:spotlight",

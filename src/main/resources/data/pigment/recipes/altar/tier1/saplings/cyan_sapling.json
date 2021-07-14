@@ -1,0 +1,28 @@
+{
+  "type": "pigment_altar",
+  "time": 20,
+  "tier": 1,
+  "magenta": 0,
+  "yellow": 0,
+  "cyan": 3,
+  "black": 0,
+  "white": 0,
+  "experience": 1.0,
+  "pattern": [
+    " D ",
+    "DSD",
+    " D "
+  ],
+  "key": {
+	"D": {
+      "item": "minecraft:cyan_dye"
+    },
+    "S": {
+      "item": "minecraft:oak_sapling"
+    }
+  },
+  "result" : {
+    "item": "pigment:cyan_sapling",
+    "count": 1
+  }
+}

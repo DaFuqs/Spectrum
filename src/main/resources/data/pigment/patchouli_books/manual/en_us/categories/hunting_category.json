@@ -1,5 +1,6 @@
 {
   "name": "The Art of Hunting",
   "description": "Anything to keep those pesky monsters at bay. Or the reverse.",
-  "icon": "minecraft:zombie_head"
+  "icon": "minecraft:zombie_head",
+  "sortnum": 8
 }

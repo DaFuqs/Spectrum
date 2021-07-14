@@ -1,5 +1,6 @@
 {
   "name": "Magical Items",
   "description": "A number of wearable devices you thought up to make your life easier.",
-  "icon": "pigment:natures_staff"
+  "icon": "pigment:natures_staff",
+  "sortnum": 5
 }

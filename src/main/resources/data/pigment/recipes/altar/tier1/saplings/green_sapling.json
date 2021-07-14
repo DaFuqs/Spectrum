@@ -2,27 +2,27 @@
   "type": "pigment_altar",
   "time": 20,
   "tier": 1,
-  "magenta": 4,
-  "yellow": 0,
-  "cyan": 0,
+  "magenta": 1,
+  "yellow": 2,
+  "cyan": 2,
   "black": 0,
   "white": 0,
-  "experience": 3,
+  "experience": 1.0,
   "pattern": [
-    "DDD",
+    " D ",
     "DSD",
-    "DDD"
+    " D "
   ],
   "key": {
-    "D": {
-      "item": "minecraft:orange_dye"
+	"D": {
+      "item": "minecraft:green_dye"
     },
     "S": {
       "item": "minecraft:oak_sapling"
     }
   },
   "result" : {
-    "item": "pigment:orange_sapling",
+    "item": "pigment:green_sapling",
     "count": 1
   }
 }

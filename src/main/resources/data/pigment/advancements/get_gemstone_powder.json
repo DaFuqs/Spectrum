@@ -4,10 +4,10 @@
         "item": "pigment:magenta_gemstone_powder"
     },
     "title": {
-      "translate": "advancements.pigment.get_gemstone_powder"
+      "translate": "advancements.pigment.get_gemstone_powder.title"
     },
     "description": {
-      "translate": "advancements.pigment.get_gemstone_powder"
+      "translate": "advancements.pigment.get_gemstone_powder.description"
     }
   },
   "parent": "pigment:pigment",

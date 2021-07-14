@@ -1,0 +1,15 @@
+{
+  "parent": "pigment:pigment",
+  "criteria": {
+    "has_light_gray_pigment": {
+      "trigger":"minecraft:inventory_changed",
+      "conditions":{
+        "items":[
+          {
+            "item":"pigment:light_gray_pigment"
+          }
+        ]
+      }
+    }
+  }
+}

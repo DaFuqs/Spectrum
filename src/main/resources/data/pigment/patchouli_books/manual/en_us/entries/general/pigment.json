@@ -22,7 +22,7 @@
 	{
       "type": "patchouli:spotlight",
       "advancement": "pigment:get_brown_pigment",
-      "item": "pigment:brownpigment",
+      "item": "pigment:brown_pigment",
       "text": ""
     },
 	{

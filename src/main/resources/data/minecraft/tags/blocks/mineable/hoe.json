@@ -1,5 +1,24 @@
 {
   "replace": false,
   "values": [
+    "pigment:lava_sponge",
+    "pigment:wet_lava_sponge",
+    "pigment:spirit_sallow_leaves",
+    "pigment:black_leaves",
+    "pigment:blue_leaves",
+    "pigment:brown_leaves",
+    "pigment:cyan_leaves",
+    "pigment:gray_leaves",
+    "pigment:green_leaves",
+    "pigment:light_blue_leaves",
+    "pigment:light_gray_leaves",
+    "pigment:lime_leaves",
+    "pigment:magenta_leaves",
+    "pigment:orange_leaves",
+    "pigment:pink_leaves",
+    "pigment:purple_leaves",
+    "pigment:red_leaves",
+    "pigment:white_leaves",
+    "pigment:yellow_leaves"
   ]
 }

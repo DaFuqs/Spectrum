@@ -11,6 +11,12 @@
             "type": "patchouli:text",
             "text": "$(italic)We should take this geode$(br)and push it somewhere else.$()$(br2)Uses gentle vibrations to allow some blocks to drop themselves$(br2)Max Level: 1$(br)Applicable to mining tools.$(br)Mutually exclusive with Fortune, Foundry and Pest Control."
         },
+		{
+            "type": "patchouli:spotlight",
+            "title": "Gemstone Buds",
+            "item": "minecraft:medium_amethyst_bud",
+            "text": "The smaller gem buds are usually too fragile to break them from their mother block. However, if you hit the right frequency, the small gems will break from the stone almost by themselves."
+        },
         {
             "type": "patchouli:spotlight",
             "title": "Budding Blocks",

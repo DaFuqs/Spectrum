@@ -17,7 +17,7 @@
       "type": "patchouli:spotlight",
       "title": "Weather Detector",
       "item": "pigment:weather_detector",
-      "text": "If the weather detector is directly exposed to rain or a thunderstorm, it emits a redstone signal.$(br2)Rain provides a signal with strength 8, a thunderstorm a signal with strength 15."
+      "text": "Citrine is very sensitive to the energies released during a storm.$(br)If the weather detector is directly exposed to rain or a thunderstorm, it emits a redstone signal.$(br2)Rain provides a signal with strength 8, a thunderstorm a signal with strength 15."
     },
     {
       "type": "patchouli:spotlight",

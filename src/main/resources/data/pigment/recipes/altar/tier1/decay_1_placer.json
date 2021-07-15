@@ -2,16 +2,16 @@
   "type": "pigment_altar",
   "time": 1600,
   "tier": 1,
-  "cyan": 4,
-  "magenta": 4,
-  "yellow": 4,
+  "cyan": 8,
+  "magenta": 8,
+  "yellow": 8,
   "white": 0,
   "black": 0,
-  "experience": 2,
+  "experience": 4.0,
   "pattern": [
-    "FCF",
-    "CSC",
-    "FCF"
+    "FSF",
+    "CBC",
+    "FSF"
   ],
   "key": {
 	"S": {
@@ -22,6 +22,9 @@
     },
     "C": {
       "item": "minecraft:fire_charge"
+    },
+    "B": {
+      "item": "minecraft:glass_bottle"
     }
   },
   "result" : {

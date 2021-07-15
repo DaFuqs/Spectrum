@@ -7,7 +7,7 @@
   "yellow": 0,
   "white": 0,
   "black": 4,
-  "experience": 1,
+  "experience": 2.0,
   "pattern": [
     "BBB",
     "CQC",
@@ -28,7 +28,7 @@
     }
   },
   "result" : {
-    "item": "pigment:weather_detector",
-    "count": 4
+    "item": "pigment:player_detector",
+    "count": 1
   }
 }

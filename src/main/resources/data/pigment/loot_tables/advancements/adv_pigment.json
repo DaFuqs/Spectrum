@@ -1,5 +1,5 @@
 {
-	"type": "minecraft:advancement_reward",
+	"type": "advancement_reward",
 	"pools": [
 		{
 			"rolls": 1,

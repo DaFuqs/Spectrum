@@ -82,7 +82,6 @@ public class PigmentBlocks {
     public static FabricItemSettings coloredWoodItemSettings = new FabricItemSettings().group(PigmentItemGroups.ITEM_GROUP_COLORED_WOOD);
     public static FabricItemSettings mobHeadItemSettings = new FabricItemSettings().group(PigmentItemGroups.ITEM_GROUP_MOB_HEADS).rarity(Rarity.UNCOMMON);
 
-    // TODO: hardness
     public static final Block CITRINE_CLUSTER = new AmethystClusterBlock(7, 3, FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().requiresTool().breakByTool(FabricToolTags.PICKAXES, 2).sounds(PigmentBlockSoundGroups.CITRINE_CLUSTER).luminance((state) -> 7));
     public static final Block LARGE_CITRINE_BUD = new AmethystClusterBlock(5, 3, FabricBlockSettings.copyOf(CITRINE_CLUSTER).sounds(PigmentBlockSoundGroups.LARGE_CITRINE_BUD).luminance((state) -> 7));
     public static final Block MEDIUM_CITRINE_BUD = new AmethystClusterBlock(4, 3, FabricBlockSettings.copyOf(CITRINE_CLUSTER).sounds(PigmentBlockSoundGroups.MEDIUM_CITRINE_BUD).luminance((state) -> 5));
@@ -111,81 +110,84 @@ public class PigmentBlocks {
     public static final Block MOONSTONE_BLOCK = new PigmentGemstoneBlock(FabricBlockSettings.of(Material.AMETHYST, MapColor.WHITE).hardness(1.5F).sounds(PigmentBlockSoundGroups.MOONSTONE_BLOCK).requiresTool().breakByTool(FabricToolTags.PICKAXES, 2), PigmentSoundEvents.BLOCK_MOONSTONE_BLOCK_HIT, PigmentSoundEvents.BLOCK_MOONSTONE_BLOCK_CHIME);
     public static final Block BUDDING_MOONSTONE = new PigmentBuddingBlock(FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).ticksRandomly().sounds(PigmentBlockSoundGroups.MOONSTONE_BLOCK).requiresTool().breakByTool(FabricToolTags.PICKAXES, 2), SMALL_MOONSTONE_BUD, MEDIUM_MOONSTONE_BUD, LARGE_MOONSTONE_BUD, MOONSTONE_CLUSTER, PigmentSoundEvents.BLOCK_MOONSTONE_BLOCK_HIT, PigmentSoundEvents.BLOCK_MOONSTONE_BLOCK_CHIME);
 
-    public static final Block AMETHYST_ORE = new OreBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
-    public static final Block CITRINE_ORE = new OreBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
-    public static final Block TOPAZ_ORE = new OreBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
-    public static final Block ONYX_ORE = new OreBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
-    public static final Block MOONSTONE_ORE = new OreBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
-
-    public static final Block DEEPSLATE_AMETHYST_ORE = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
-    public static final Block DEEPSLATE_CITRINE_ORE = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
-    public static final Block DEEPSLATE_TOPAZ_ORE = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
-    public static final Block DEEPSLATE_ONYX_ORE = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
-    public static final Block DEEPSLATE_MOONSTONE_ORE = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
-
     public static final Block RAINBOW_MOONSTONE_BLOCK = new PigmentGemstoneBlock(FabricBlockSettings.of(Material.AMETHYST, MapColor.DIAMOND_BLUE).hardness(1.5F).sounds(PigmentBlockSoundGroups.RAINBOW_MOONSTONE_BLOCK).requiresTool().breakByTool(FabricToolTags.PICKAXES, 2), PigmentSoundEvents.BLOCK_RAINBOW_MOONSTONE_BLOCK_HIT, PigmentSoundEvents.BLOCK_RAINBOW_MOONSTONE_BLOCK_CHIME);
 
-    public static final Block AMETHYST_STORAGE_BLOCK = new Block(FabricBlockSettings.of(Material.STONE).hardness(5.0f));
-    public static final Block CITRINE_STORAGE_BLOCK = new Block(FabricBlockSettings.of(Material.STONE).hardness(5.0f));
-    public static final Block TOPAZ_STORAGE_BLOCK = new Block(FabricBlockSettings.of(Material.STONE).hardness(5.0f));
-    public static final Block ONYX_STORAGE_BLOCK = new Block(FabricBlockSettings.of(Material.STONE).hardness(5.0f));
-    public static final Block MOONSTONE_STORAGE_BLOCK = new Block(FabricBlockSettings.of(Material.STONE).hardness(5.0f));
+    private static final FabricBlockSettings gemOreBlockSettings = FabricBlockSettings.copyOf(Blocks.IRON_ORE).breakByTool(FabricToolTags.PICKAXES, 3);
+    public static final Block AMETHYST_ORE = new OreBlock(gemOreBlockSettings);
+    public static final Block CITRINE_ORE = new OreBlock(gemOreBlockSettings);
+    public static final Block TOPAZ_ORE = new OreBlock(gemOreBlockSettings);
+    public static final Block ONYX_ORE = new OreBlock(gemOreBlockSettings);
+    public static final Block MOONSTONE_ORE = new OreBlock(gemOreBlockSettings);
+
+    private static final FabricBlockSettings deepslateGemOreBlockSettings = FabricBlockSettings.copyOf(Blocks.DEEPSLATE_IRON_ORE);
+    public static final Block DEEPSLATE_AMETHYST_ORE = new Block(deepslateGemOreBlockSettings);
+    public static final Block DEEPSLATE_CITRINE_ORE = new Block(deepslateGemOreBlockSettings);
+    public static final Block DEEPSLATE_TOPAZ_ORE = new Block(deepslateGemOreBlockSettings);
+    public static final Block DEEPSLATE_ONYX_ORE = new Block(deepslateGemOreBlockSettings);
+    public static final Block DEEPSLATE_MOONSTONE_ORE = new Block(deepslateGemOreBlockSettings);
+
+    private static final FabricBlockSettings gemstoneStorageBlockSettings = FabricBlockSettings.of(Material.AMETHYST).requiresTool().strength(5.0F, 6.0F);
+    public static final Block AMETHYST_STORAGE_BLOCK = new Block(gemstoneStorageBlockSettings);
+    public static final Block CITRINE_STORAGE_BLOCK = new Block(gemstoneStorageBlockSettings);
+    public static final Block TOPAZ_STORAGE_BLOCK = new Block(gemstoneStorageBlockSettings);
+    public static final Block ONYX_STORAGE_BLOCK = new Block(gemstoneStorageBlockSettings);
+    public static final Block MOONSTONE_STORAGE_BLOCK = new Block(gemstoneStorageBlockSettings);
     
-    public static final Block TUFF_SLAB = new SlabBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
-    public static final Block TUFF_WALL = new WallBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
-    public static final Block TUFF_STAIRS = new PigmentStairsBlock(Blocks.TUFF.getDefaultState(), AbstractBlock.Settings.copy(Blocks.TUFF));
+    public static final Block TUFF_SLAB = new SlabBlock(FabricBlockSettings.copyOf(Blocks.TUFF));
+    public static final Block TUFF_WALL = new WallBlock(FabricBlockSettings.copyOf(Blocks.TUFF));
+    public static final Block TUFF_STAIRS = new PigmentStairsBlock(Blocks.TUFF.getDefaultState(), FabricBlockSettings.copyOf(Blocks.TUFF));
 
-    public static final Block POLISHED_BASALT = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
-    public static final Block POLISHED_BASALT_PILLAR = new PillarBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
-    public static final Block CHISELED_POLISHED_BASALT = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
-    public static final Block POLISHED_BASALT_SLAB = new SlabBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
-    public static final Block POLISHED_BASALT_WALL = new WallBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
-    public static final Block POLISHED_BASALT_STAIRS = new PigmentStairsBlock(POLISHED_BASALT.getDefaultState(), AbstractBlock.Settings.copy(POLISHED_BASALT));
+    public static final Block POLISHED_BASALT = new Block(FabricBlockSettings.of(Material.STONE).strength(2.0F, 5.0F));
+    public static final Block POLISHED_BASALT_PILLAR = new PillarBlock(FabricBlockSettings.copyOf(POLISHED_BASALT));
+    public static final Block CHISELED_POLISHED_BASALT = new Block(FabricBlockSettings.copyOf(POLISHED_BASALT));
+    public static final Block POLISHED_BASALT_SLAB = new SlabBlock(FabricBlockSettings.copyOf(POLISHED_BASALT));
+    public static final Block POLISHED_BASALT_WALL = new WallBlock(FabricBlockSettings.copyOf(POLISHED_BASALT));
+    public static final Block POLISHED_BASALT_STAIRS = new PigmentStairsBlock(POLISHED_BASALT.getDefaultState(), FabricBlockSettings.copyOf(POLISHED_BASALT));
 
-    public static final Block BASALT_BRICKS = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
-    public static final Block BASALT_BRICK_SLAB = new SlabBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
-    public static final Block BASALT_BRICK_WALL = new WallBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
-    public static final Block BASALT_BRICK_STAIRS = new PigmentStairsBlock(BASALT_BRICKS.getDefaultState(), AbstractBlock.Settings.copy(BASALT_BRICKS));
+    public static final Block BASALT_BRICKS = new Block(FabricBlockSettings.of(Material.STONE).strength(2.5F, 6.0F));
+    public static final Block BASALT_BRICK_SLAB = new SlabBlock(FabricBlockSettings.copyOf(BASALT_BRICKS));
+    public static final Block BASALT_BRICK_WALL = new WallBlock(FabricBlockSettings.copyOf(BASALT_BRICKS));
+    public static final Block BASALT_BRICK_STAIRS = new PigmentStairsBlock(BASALT_BRICKS.getDefaultState(), FabricBlockSettings.copyOf(BASALT_BRICKS));
 
-    public static final Block AMETHYST_CHISELED_BASALT = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f).luminance(5));
-    public static final Block TOPAZ_CHISELED_BASALT = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f).luminance(6));
-    public static final Block CITRINE_CHISELED_BASALT = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f).luminance(7));
-    public static final Block ONYX_CHISELED_BASALT = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f).luminance(3));
-    public static final Block MOONSTONE_CHISELED_BASALT = new PillarBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f).luminance(12));
+    public static final Block AMETHYST_CHISELED_BASALT = new Block(FabricBlockSettings.copyOf(BASALT_BRICKS).luminance(5));
+    public static final Block TOPAZ_CHISELED_BASALT = new Block(FabricBlockSettings.copyOf(BASALT_BRICKS).luminance(6));
+    public static final Block CITRINE_CHISELED_BASALT = new Block(FabricBlockSettings.copyOf(BASALT_BRICKS).luminance(7));
+    public static final Block ONYX_CHISELED_BASALT = new Block(FabricBlockSettings.copyOf(BASALT_BRICKS).luminance(3));
+    public static final Block MOONSTONE_CHISELED_BASALT = new PillarBlock(FabricBlockSettings.copyOf(BASALT_BRICKS).luminance(12));
 
-    public static final Block CALCITE_SLAB = new SlabBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
-    public static final Block CALCITE_WALL = new WallBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
-    public static final Block CALCITE_STAIRS = new PigmentStairsBlock(Blocks.CALCITE.getDefaultState(), AbstractBlock.Settings.copy(Blocks.CALCITE));
+    public static final Block CALCITE_SLAB = new SlabBlock(FabricBlockSettings.copyOf(Blocks.CALCITE));
+    public static final Block CALCITE_WALL = new WallBlock(FabricBlockSettings.copyOf(Blocks.CALCITE));
+    public static final Block CALCITE_STAIRS = new PigmentStairsBlock(Blocks.CALCITE.getDefaultState(), FabricBlockSettings.copyOf(Blocks.CALCITE));
 
-    public static final Block POLISHED_CALCITE = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
-    public static final Block POLISHED_CALCITE_PILLAR = new PillarBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
-    public static final Block CHISELED_POLISHED_CALCITE = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
-    public static final Block POLISHED_CALCITE_SLAB = new SlabBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
-    public static final Block POLISHED_CALCITE_WALL = new WallBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
-    public static final Block POLISHED_CALCITE_STAIRS = new PigmentStairsBlock(POLISHED_CALCITE.getDefaultState(), AbstractBlock.Settings.copy(POLISHED_CALCITE));
+    public static final Block POLISHED_CALCITE = new Block(FabricBlockSettings.copyOf(POLISHED_BASALT));
+    public static final Block POLISHED_CALCITE_PILLAR = new PillarBlock(FabricBlockSettings.copyOf(POLISHED_BASALT));
+    public static final Block CHISELED_POLISHED_CALCITE = new Block(FabricBlockSettings.copyOf(POLISHED_BASALT));
+    public static final Block POLISHED_CALCITE_SLAB = new SlabBlock(FabricBlockSettings.copyOf(POLISHED_BASALT));
+    public static final Block POLISHED_CALCITE_WALL = new WallBlock(FabricBlockSettings.copyOf(POLISHED_BASALT));
+    public static final Block POLISHED_CALCITE_STAIRS = new PigmentStairsBlock(POLISHED_CALCITE.getDefaultState(), FabricBlockSettings.copyOf(POLISHED_BASALT));
 
-    public static final Block CALCITE_BRICKS = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
-    public static final Block CALCITE_BRICK_SLAB = new SlabBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
-    public static final Block CALCITE_BRICK_WALL = new WallBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
-    public static final Block CALCITE_BRICK_STAIRS = new PigmentStairsBlock(CALCITE_BRICKS.getDefaultState(), AbstractBlock.Settings.copy(CALCITE_BRICKS));
+    public static final Block CALCITE_BRICKS = new Block(FabricBlockSettings.copyOf(BASALT_BRICKS));
+    public static final Block CALCITE_BRICK_SLAB = new SlabBlock(FabricBlockSettings.copyOf(BASALT_BRICKS));
+    public static final Block CALCITE_BRICK_WALL = new WallBlock(FabricBlockSettings.copyOf(BASALT_BRICKS));
+    public static final Block CALCITE_BRICK_STAIRS = new PigmentStairsBlock(CALCITE_BRICKS.getDefaultState(), FabricBlockSettings.copyOf(BASALT_BRICKS));
 
-    public static final Block AMETHYST_CHISELED_CALCITE = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f).luminance(5));
-    public static final Block TOPAZ_CHISELED_CALCITE = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f).luminance(6));
-    public static final Block CITRINE_CHISELED_CALCITE = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f).luminance(7));
-    public static final Block ONYX_CHISELED_CALCITE = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f).luminance(3));
-    public static final Block MOONSTONE_CHISELED_CALCITE = new PillarBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f).luminance(12));
+    public static final Block AMETHYST_CHISELED_CALCITE = new Block(FabricBlockSettings.copyOf(BASALT_BRICKS).luminance(5).luminance(5));
+    public static final Block TOPAZ_CHISELED_CALCITE = new Block(FabricBlockSettings.copyOf(BASALT_BRICKS).luminance(5).luminance(6));
+    public static final Block CITRINE_CHISELED_CALCITE = new Block(FabricBlockSettings.copyOf(BASALT_BRICKS).luminance(5).luminance(7));
+    public static final Block ONYX_CHISELED_CALCITE = new Block(FabricBlockSettings.copyOf(BASALT_BRICKS).luminance(5).luminance(3));
+    public static final Block MOONSTONE_CHISELED_CALCITE = new PillarBlock(FabricBlockSettings.copyOf(BASALT_BRICKS).luminance(5).luminance(12));
 
-    // LAMPS
-    public static final Block AMETHYST_CALCITE_LAMP = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f).luminance(15).nonOpaque());
-    public static final Block TOPAZ_CALCITE_LAMP = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f).luminance(15).nonOpaque());
-    public static final Block CITRINE_CALCITE_LAMP = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f).luminance(15).nonOpaque());
-    public static final Block ONYX_CALCITE_LAMP = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f).luminance(15).nonOpaque());
-    public static final Block MOONSTONE_CALCITE_LAMP = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f).luminance(15).nonOpaque());
-    public static final Block AMETHYST_BASALT_LAMP = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f).luminance(15).nonOpaque());
-    public static final Block TOPAZ_BASALT_LAMP = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f).luminance(15).nonOpaque());
-    public static final Block CITRINE_BASALT_LAMP = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f).luminance(15).nonOpaque());
-    public static final Block ONYX_BASALT_LAMP = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f).luminance(15).nonOpaque());
-    public static final Block MOONSTONE_BASALT_LAMP = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f).luminance(15).nonOpaque());
+    // GEMSTONE LAMPS
+    public static final Block AMETHYST_CALCITE_LAMP = new Block(FabricBlockSettings.copyOf(POLISHED_BASALT).luminance(15).nonOpaque());
+    public static final Block TOPAZ_CALCITE_LAMP = new Block(FabricBlockSettings.copyOf(POLISHED_BASALT).luminance(15).nonOpaque());
+    public static final Block CITRINE_CALCITE_LAMP = new Block(FabricBlockSettings.copyOf(POLISHED_BASALT).luminance(15).nonOpaque());
+    public static final Block ONYX_CALCITE_LAMP = new Block(FabricBlockSettings.copyOf(POLISHED_BASALT).luminance(15).nonOpaque());
+    public static final Block MOONSTONE_CALCITE_LAMP = new Block(FabricBlockSettings.copyOf(POLISHED_BASALT).luminance(15).nonOpaque());
+    public static final Block AMETHYST_BASALT_LAMP = new Block(FabricBlockSettings.copyOf(POLISHED_BASALT).luminance(15).nonOpaque());
+    public static final Block TOPAZ_BASALT_LAMP = new Block(FabricBlockSettings.copyOf(POLISHED_BASALT).luminance(15).nonOpaque());
+    public static final Block CITRINE_BASALT_LAMP = new Block(FabricBlockSettings.copyOf(POLISHED_BASALT).luminance(15).nonOpaque());
+    public static final Block ONYX_BASALT_LAMP = new Block(FabricBlockSettings.copyOf(POLISHED_BASALT).luminance(15).nonOpaque());
+    public static final Block MOONSTONE_BASALT_LAMP = new Block(FabricBlockSettings.copyOf(POLISHED_BASALT).luminance(15).nonOpaque());
 
     // GLASS
     public static final Block AMETHYST_GLASS = new GemGlassBlock(FabricBlockSettings.copy(Blocks.GLASS));
@@ -193,45 +195,41 @@ public class PigmentBlocks {
     public static final Block CITRINE_GLASS = new GemGlassBlock(FabricBlockSettings.copy(Blocks.GLASS));
     public static final Block ONYX_GLASS = new GemGlassBlock(FabricBlockSettings.copy(Blocks.GLASS));
     public static final Block MOONSTONE_GLASS = new GemGlassBlock(FabricBlockSettings.copy(Blocks.GLASS));
-
-    public static final Block GLOWING_GLASS = new GlassBlock(FabricBlockSettings.of(Material.GLASS).nonOpaque().allowsSpawning(PigmentBlocks::never).solidBlock(PigmentBlocks::never).suffocates(PigmentBlocks::never).blockVision(PigmentBlocks::never).luminance(12));
+    public static final Block GLOWING_GLASS = new GlassBlock(FabricBlockSettings.copy(Blocks.GLASS).luminance(value -> 12));
 
     // ALTAR
-    private static final FabricBlockSettings altarSettings = FabricBlockSettings.of(Material.STONE).breakByTool(FabricToolTags.PICKAXES).requiresTool().hardness(5.0F).resistance(20.0F);
+    private static final FabricBlockSettings altarSettings = FabricBlockSettings.of(Material.STONE).breakByTool(FabricToolTags.PICKAXES).requiresTool().strength(5.0F, 20.0F);
     public static final Block ALTAR = new AltarBlock(altarSettings);
     public static final Block ALTAR2 = new AltarBlock(altarSettings);
     public static final Block ALTAR3 = new AltarBlock(altarSettings);
 
     // PLAYER GLASS
     public static final Block VANILLA_PLAYER_ONLY_GLASS = new PlayerOnlyGlassBlock(FabricBlockSettings.copy(Blocks.GLASS).nonOpaque().allowsSpawning(PigmentBlocks::never).solidBlock(PigmentBlocks::never).suffocates(PigmentBlocks::never).blockVision(PigmentBlocks::never), false);
+    public static final Block TINTED_PLAYER_ONLY_GLASS = new PlayerOnlyGlassBlock(FabricBlockSettings.copy(Blocks.TINTED_GLASS).nonOpaque().allowsSpawning(PigmentBlocks::never).solidBlock(PigmentBlocks::never).suffocates(PigmentBlocks::never).blockVision(PigmentBlocks::never), true);
+    public static final Block GLOWING_PLAYER_ONLY_GLASS = new PlayerOnlyGlassBlock(FabricBlockSettings.copy(PigmentBlocks.GLOWING_GLASS).nonOpaque().allowsSpawning(PigmentBlocks::never).solidBlock(PigmentBlocks::never).suffocates(PigmentBlocks::never).blockVision(PigmentBlocks::never).luminance((state) -> 15), false);
+
     public static final Block AMETHYST_PLAYER_ONLY_GLASS = new PlayerOnlyGlassBlock(FabricBlockSettings.copy(PigmentBlocks.AMETHYST_GLASS).nonOpaque().allowsSpawning(PigmentBlocks::never).solidBlock(PigmentBlocks::never).suffocates(PigmentBlocks::never).blockVision(PigmentBlocks::never), false);
     public static final Block TOPAZ_PLAYER_ONLY_GLASS = new PlayerOnlyGlassBlock(FabricBlockSettings.copy(PigmentBlocks.TOPAZ_GLASS).nonOpaque().allowsSpawning(PigmentBlocks::never).solidBlock(PigmentBlocks::never).suffocates(PigmentBlocks::never).blockVision(PigmentBlocks::never), false);
     public static final Block CITRINE_PLAYER_ONLY_GLASS = new PlayerOnlyGlassBlock(FabricBlockSettings.copy(PigmentBlocks.CITRINE_GLASS).nonOpaque().allowsSpawning(PigmentBlocks::never).solidBlock(PigmentBlocks::never).suffocates(PigmentBlocks::never).blockVision(PigmentBlocks::never), false);
     public static final Block ONYX_PLAYER_ONLY_GLASS = new PlayerOnlyGlassBlock(FabricBlockSettings.copy(PigmentBlocks.ONYX_GLASS).nonOpaque().allowsSpawning(PigmentBlocks::never).solidBlock(PigmentBlocks::never).suffocates(PigmentBlocks::never).blockVision(PigmentBlocks::never), false);
     public static final Block MOONSTONE_PLAYER_ONLY_GLASS = new PlayerOnlyGlassBlock(FabricBlockSettings.copy(PigmentBlocks.MOONSTONE_GLASS).nonOpaque().allowsSpawning(PigmentBlocks::never).solidBlock(PigmentBlocks::never).suffocates(PigmentBlocks::never).blockVision(PigmentBlocks::never), false);
 
-    public static final Block TINTED_PLAYER_ONLY_GLASS = new PlayerOnlyGlassBlock(FabricBlockSettings.copy(Blocks.TINTED_GLASS).nonOpaque().allowsSpawning(PigmentBlocks::never).solidBlock(PigmentBlocks::never).suffocates(PigmentBlocks::never).blockVision(PigmentBlocks::never), true);
-    public static final Block GLOWING_PLAYER_ONLY_GLASS = new PlayerOnlyGlassBlock(FabricBlockSettings.copy(PigmentBlocks.GLOWING_GLASS).nonOpaque().allowsSpawning(PigmentBlocks::never).solidBlock(PigmentBlocks::never).suffocates(PigmentBlocks::never).blockVision(PigmentBlocks::never).luminance((state) -> 15), false);
-
     // MELON
-    public static final Block GLISTERING_MELON = new GlisteringMelonBlock(FabricBlockSettings.of(Material.GOURD, MapColor.LIME).strength(1.0F).sounds(BlockSoundGroup.WOOD));
-    public static final Block GLISTERING_MELON_STEM = new GlisteringStemBlock((GourdBlock) GLISTERING_MELON, () -> PigmentItems.GLISTERING_MELON_SEEDS, FabricBlockSettings.of(Material.PLANT).noCollision().nonOpaque().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.STEM));
-    public static final Block ATTACHED_GLISTERING_MELON_STEM = new AttachedGlisteringStemBlock((GourdBlock) GLISTERING_MELON, () -> PigmentItems.GLISTERING_MELON_SEEDS, FabricBlockSettings.of(Material.PLANT).nonOpaque().noCollision().breakInstantly().sounds(BlockSoundGroup.WOOD));
+    public static final Block GLISTERING_MELON = new GlisteringMelonBlock(FabricBlockSettings.of(Material.GOURD, MapColor.LIME));
+    public static final Block GLISTERING_MELON_STEM = new GlisteringStemBlock((GourdBlock) GLISTERING_MELON, () -> PigmentItems.GLISTERING_MELON_SEEDS, FabricBlockSettings.copyOf(Blocks.MELON_STEM));
+    public static final Block ATTACHED_GLISTERING_MELON_STEM = new AttachedGlisteringStemBlock((GourdBlock) GLISTERING_MELON, () -> PigmentItems.GLISTERING_MELON_SEEDS, FabricBlockSettings.copyOf(Blocks.MELON_STEM));
 
     // SAPLING
-    private static final FabricBlockSettings saplingSettings = FabricBlockSettings.of(Material.PLANT).noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.GRASS);
-    public static final Block OMINOUS_SAPLING = new OminousSaplingBlock(saplingSettings);
+    public static final Block OMINOUS_SAPLING = new OminousSaplingBlock(FabricBlockSettings.copyOf(Blocks.OAK_SAPLING).ticksRandomly());
 
     // DECAY
-    private static final FabricBlockSettings decaySettings = FabricBlockSettings.of(PigmentMaterial.DECAY, MapColor.BLACK)
-            .ticksRandomly().requiresTool().breakByTool(FabricToolTags.PICKAXES);
-    public static final Block DECAY1 = new DecayBlock1(decaySettings.hardness(0.5F).resistance(0.5F), BlockTags.LEAVES, null,1,  1F);
-    public static final Block DECAY2 = new DecayBlock2(decaySettings.hardness(20.0F).resistance(50.0F), null, PigmentBlockTags.DECAY2_SAFE, 2,  2.5F);
-    public static final Block DECAY3 = new DecayBlock3(decaySettings.hardness(100.0F).resistance(3600000.0F), null, PigmentBlockTags.DECAY3_SAFE, 3, 5F);
+    public static final Block DECAY1 = new DecayBlock1(FabricBlockSettings.of(PigmentMaterial.DECAY, MapColor.BLACK).ticksRandomly().requiresTool().breakByTool(FabricToolTags.PICKAXES).strength(0.5F, 0.5F), BlockTags.LEAVES, null,1,  1F);
+    public static final Block DECAY2 = new DecayBlock2(FabricBlockSettings.copyOf(DECAY1).strength(20.0F, 50.0F), null, PigmentBlockTags.DECAY2_SAFE, 2,  2.5F);
+    public static final Block DECAY3 = new DecayBlock3(FabricBlockSettings.copyOf(DECAY1).strength(100.0F, 3600000.0F), null, PigmentBlockTags.DECAY3_SAFE, 3, 5F);
 
     // FLUIDS
-    public static final Block LIQUID_CRYSTAL = new LiquidCrystalFluidBlock(PigmentFluids.STILL_LIQUID_CRYSTAL, FabricBlockSettings.copyOf(Blocks.WATER).luminance((state) -> 8).dropsNothing());
-    public static final Block MUD = new MudFluidBlock(PigmentFluids.STILL_MUD, FabricBlockSettings.of(Material.LAVA).strength(100.0F).suffocates(PigmentBlocks::always).dropsNothing());
+    public static final Block LIQUID_CRYSTAL = new LiquidCrystalFluidBlock(PigmentFluids.STILL_LIQUID_CRYSTAL, FabricBlockSettings.copyOf(Blocks.WATER).luminance((state) -> 8));
+    public static final Block MUD = new MudFluidBlock(PigmentFluids.STILL_MUD, FabricBlockSettings.copyOf(Blocks.WATER).suffocates(PigmentBlocks::always));
 
     // COLORED TREES
     private static final FabricBlockSettings coloredSaplingBlockSettings = FabricBlockSettings.copyOf(Blocks.OAK_SAPLING);
@@ -415,14 +413,7 @@ public class PigmentBlocks {
     public static final Block YELLOW_PLANK_SLAB = new SlabBlock(FabricBlockSettings.copyOf(Blocks.OAK_SLAB));
 
     // FLAT COLORED BLOCKS
-    private static final FabricBlockSettings flatColoredBlockBlockSettings = FabricBlockSettings.of(Material.STONE)
-            .hardness(2.5F)
-            .breakByTool(FabricToolTags.PICKAXES)
-            .requiresTool()
-            .luminance(1)
-            .postProcess(PigmentBlocks::always)
-            .emissiveLighting(PigmentBlocks::always);
-
+    private static final FabricBlockSettings flatColoredBlockBlockSettings = FabricBlockSettings.of(Material.STONE).hardness(2.5F).requiresTool().luminance(1).postProcess(PigmentBlocks::always).emissiveLighting(PigmentBlocks::always);
     public static final Block BLACK_FLAT_COLORED_BLOCK = new Block(flatColoredBlockBlockSettings);
     public static final Block BLUE_FLAT_COLORED_BLOCK = new Block(flatColoredBlockBlockSettings);
     public static final Block BROWN_FLAT_COLORED_BLOCK = new Block(flatColoredBlockBlockSettings);
@@ -441,39 +432,40 @@ public class PigmentBlocks {
     public static final Block YELLOW_FLAT_COLORED_BLOCK = new Block(flatColoredBlockBlockSettings);
 
     // COLORED LAMPS // TODO: Culling when side is obstructed
-    public static final Block BLACK_LAMP = new RedstoneLampBlock(FabricBlockSettings.copyOf(Blocks.REDSTONE_LAMP));
-    public static final Block BLUE_LAMP = new RedstoneLampBlock(FabricBlockSettings.copyOf(Blocks.REDSTONE_LAMP));
-    public static final Block BROWN_LAMP = new RedstoneLampBlock(FabricBlockSettings.copyOf(Blocks.REDSTONE_LAMP));
-    public static final Block CYAN_LAMP = new RedstoneLampBlock(FabricBlockSettings.copyOf(Blocks.REDSTONE_LAMP));
-    public static final Block GRAY_LAMP = new RedstoneLampBlock(FabricBlockSettings.copyOf(Blocks.REDSTONE_LAMP));
-    public static final Block GREEN_LAMP = new RedstoneLampBlock(FabricBlockSettings.copyOf(Blocks.REDSTONE_LAMP));
-    public static final Block LIGHT_BLUE_LAMP = new RedstoneLampBlock(FabricBlockSettings.copyOf(Blocks.REDSTONE_LAMP));
-    public static final Block LIGHT_GRAY_LAMP = new RedstoneLampBlock(FabricBlockSettings.copyOf(Blocks.REDSTONE_LAMP));
-    public static final Block LIME_LAMP = new RedstoneLampBlock(FabricBlockSettings.copyOf(Blocks.REDSTONE_LAMP));
-    public static final Block MAGENTA_LAMP = new RedstoneLampBlock(FabricBlockSettings.copyOf(Blocks.REDSTONE_LAMP));
-    public static final Block ORANGE_LAMP = new RedstoneLampBlock(FabricBlockSettings.copyOf(Blocks.REDSTONE_LAMP));
-    public static final Block PINK_LAMP = new RedstoneLampBlock(FabricBlockSettings.copyOf(Blocks.REDSTONE_LAMP));
-    public static final Block PURPLE_LAMP = new RedstoneLampBlock(FabricBlockSettings.copyOf(Blocks.REDSTONE_LAMP));
-    public static final Block RED_LAMP = new RedstoneLampBlock(FabricBlockSettings.copyOf(Blocks.REDSTONE_LAMP));
-    public static final Block WHITE_LAMP = new RedstoneLampBlock(FabricBlockSettings.copyOf(Blocks.REDSTONE_LAMP));
-    public static final Block YELLOW_LAMP = new RedstoneLampBlock(FabricBlockSettings.copyOf(Blocks.REDSTONE_LAMP));
-
-    public static final Block SPARKLESTONE_ORE = new SparklestoneOreBlock(FabricBlockSettings.copyOf(Blocks.STONE), UniformIntProvider.create(2, 4)); // drops sparklestone gems
-    public static final Block SPARKLESTONE_BLOCK = new Block(FabricBlockSettings.of(Material.GLASS, MapColor.YELLOW).strength(2.0F).sounds(BlockSoundGroup.GLASS).luminance((state) -> 15));
+    private static final FabricBlockSettings coloredLampBlockBlockSettings = FabricBlockSettings.copyOf(Blocks.REDSTONE_LAMP);
+    public static final Block BLACK_LAMP = new RedstoneLampBlock(coloredLampBlockBlockSettings);
+    public static final Block BLUE_LAMP = new RedstoneLampBlock(coloredLampBlockBlockSettings);
+    public static final Block BROWN_LAMP = new RedstoneLampBlock(coloredLampBlockBlockSettings);
+    public static final Block CYAN_LAMP = new RedstoneLampBlock(coloredLampBlockBlockSettings);
+    public static final Block GRAY_LAMP = new RedstoneLampBlock(coloredLampBlockBlockSettings);
+    public static final Block GREEN_LAMP = new RedstoneLampBlock(coloredLampBlockBlockSettings);
+    public static final Block LIGHT_BLUE_LAMP = new RedstoneLampBlock(coloredLampBlockBlockSettings);
+    public static final Block LIGHT_GRAY_LAMP = new RedstoneLampBlock(coloredLampBlockBlockSettings);
+    public static final Block LIME_LAMP = new RedstoneLampBlock(coloredLampBlockBlockSettings);
+    public static final Block MAGENTA_LAMP = new RedstoneLampBlock(coloredLampBlockBlockSettings);
+    public static final Block ORANGE_LAMP = new RedstoneLampBlock(coloredLampBlockBlockSettings);
+    public static final Block PINK_LAMP = new RedstoneLampBlock(coloredLampBlockBlockSettings);
+    public static final Block PURPLE_LAMP = new RedstoneLampBlock(coloredLampBlockBlockSettings);
+    public static final Block RED_LAMP = new RedstoneLampBlock(coloredLampBlockBlockSettings);
+    public static final Block WHITE_LAMP = new RedstoneLampBlock(coloredLampBlockBlockSettings);
+    public static final Block YELLOW_LAMP = new RedstoneLampBlock(coloredLampBlockBlockSettings);
 
     // ORES
-    public static final Block AZURITE_ORE = new AzuriteOreBlock(FabricBlockSettings.copyOf(Blocks.LAPIS_ORE), UniformIntProvider.create(4, 7));
-    public static final Block AZURITE_BLOCK = new PigmentFacingBlock(FabricBlockSettings.copyOf(Blocks.LAPIS_BLOCK));
+    public static final Block SPARKLESTONE_ORE = new SparklestoneOreBlock(FabricBlockSettings.copyOf(Blocks.IRON_ORE).breakByTool(FabricToolTags.PICKAXES, 2), UniformIntProvider.create(2, 4)); // drops sparklestone gems
+    public static final Block AZURITE_ORE = new AzuriteOreBlock(FabricBlockSettings.copyOf(Blocks.LAPIS_ORE).breakByTool(FabricToolTags.PICKAXES, 3), UniformIntProvider.create(4, 7));
+    public static final Block PALETUR_ORE = new PaleturOreBlock(FabricBlockSettings.of(Material.STONE, MapColor.DARK_RED).requiresTool().breakByTool(FabricToolTags.PICKAXES, 3).strength(3.0F, 3.0F).sounds(BlockSoundGroup.NETHER_ORE), UniformIntProvider.create(2, 4));
+    public static final Block SCARLET_ORE = new ScarletOreBlock(FabricBlockSettings.of(Material.STONE, MapColor.PALE_YELLOW).requiresTool().breakByTool(FabricToolTags.PICKAXES, 4).strength(3.0F, 9.0F), UniformIntProvider.create(3, 5));
 
-    public static final Block PALETUR_ORE = new PaleturOreBlock(FabricBlockSettings.of(Material.STONE).requiresTool().strength(3.0F, 3.0F), UniformIntProvider.create(2, 4));
-    public static final Block PALETUR_FRAGMENT_BLOCK = new GravitableBlock( FabricBlockSettings.of(Material.METAL, MapColor.LIGHT_BLUE).requiresTool().strength(5.0F, 6.0F).sounds(BlockSoundGroup.METAL), 0.02F);
-    public static final Block SCARLET_ORE = new ScarletOreBlock(FabricBlockSettings.of(Material.STONE).requiresTool().strength(3.0F, 3.0F), UniformIntProvider.create(3, 5));
+    public static final Block SPARKLESTONE_BLOCK = new Block(FabricBlockSettings.of(Material.GLASS, MapColor.YELLOW).strength(2.0F).sounds(BlockSoundGroup.GLASS).luminance((state) -> 15));
+    public static final Block AZURITE_BLOCK = new PigmentFacingBlock(FabricBlockSettings.copyOf(Blocks.LAPIS_BLOCK));
+    public static final Block PALETUR_FRAGMENT_BLOCK = new GravitableBlock(FabricBlockSettings.of(Material.METAL, MapColor.LIGHT_BLUE).requiresTool().strength(5.0F, 6.0F).sounds(BlockSoundGroup.METAL), 0.02F);
     public static final Block SCARLET_FRAGMENT_BLOCK = new GravitableBlock(FabricBlockSettings.of(Material.METAL, MapColor.DARK_RED).requiresTool().strength(5.0F, 6.0F).sounds(BlockSoundGroup.METAL), -0.2F);
 
     // FUNCTIONAL BLOCKS
-    public static final Block PARTICLE_EMITTER = new ParticleEmitterBlock(FabricBlockSettings.of(Material.METAL));
-    public static final Block COMPACTOR = new CompactorBlock(FabricBlockSettings.of(Material.METAL));
-    public static final Block BEDROCK_ANVIL = new BedrockAnvilBlock(FabricBlockSettings.copyOf(Blocks.ANVIL).hardness(8));
+    public static final Block PRIVATE_CHEST = new PrivateChestBlock(FabricBlockSettings.of(Material.STONE).requiresTool().hardness(4.0F).resistance(3600000.0F));
+    public static final Block COMPACTOR = new CompactorBlock(FabricBlockSettings.of(Material.STONE).requiresTool().strength(4.0F, 4.0F).sounds(BlockSoundGroup.STONE));
+    public static final Block PARTICLE_EMITTER = new ParticleEmitterBlock(FabricBlockSettings.of(Material.METAL).requiresTool().strength(5.0F, 6.0F).sounds(BlockSoundGroup.METAL));
+    public static final Block BEDROCK_ANVIL = new BedrockAnvilBlock(FabricBlockSettings.copyOf(Blocks.ANVIL).requiresTool().strength(8.0F, 8.0F).sounds(BlockSoundGroup.METAL));
 
     // SOLID LIQUID CRYSTAL
     public static final Block FROSTBITE_CRYSTAL = new Block(FabricBlockSettings.copyOf(Blocks.GLOWSTONE));
@@ -488,16 +480,15 @@ public class PigmentBlocks {
 
     public static final Block LAVA_SPONGE = new LavaSpongeBlock(FabricBlockSettings.copyOf(Blocks.SPONGE));
     public static final Block WET_LAVA_SPONGE = new WetLavaSpongeBlock(FabricBlockSettings.copyOf(Blocks.WET_SPONGE).luminance(9).emissiveLighting(PigmentBlocks::always).postProcess(PigmentBlocks::always));
-    public static final Block PRIVATE_CHEST = new PrivateChestBlock(FabricBlockSettings.of(Material.STONE).breakByTool(FabricToolTags.PICKAXES).requiresTool().hardness(4.0F).resistance(3600000.0F));
 
-    public static final Block LIGHT_LEVEL_DETECTOR = new BlockLightDetectorBlock(FabricBlockSettings.of(Material.STONE).strength(0.2F).sounds(BlockSoundGroup.STONE));
-    public static final Block WEATHER_DETECTOR =  new WeatherDetectorBlock(FabricBlockSettings.of(Material.STONE).strength(0.2F).sounds(BlockSoundGroup.STONE));
-    public static final Block ITEM_DETECTOR = new ItemDetectorBlock(FabricBlockSettings.of(Material.STONE).strength(0.2F).sounds(BlockSoundGroup.STONE));
-    public static final Block PLAYER_DETECTOR = new PlayerDetectorBlock(FabricBlockSettings.of(Material.STONE).strength(0.2F).sounds(BlockSoundGroup.STONE));
-    public static final Block ENTITY_DETECTOR = new EntityDetectorBlock(FabricBlockSettings.of(Material.STONE).strength(0.2F).sounds(BlockSoundGroup.STONE));
+    public static final Block LIGHT_LEVEL_DETECTOR = new BlockLightDetectorBlock(FabricBlockSettings.copyOf(Blocks.DAYLIGHT_DETECTOR));
+    public static final Block WEATHER_DETECTOR =  new WeatherDetectorBlock(FabricBlockSettings.copyOf(Blocks.DAYLIGHT_DETECTOR));
+    public static final Block ITEM_DETECTOR = new ItemDetectorBlock(FabricBlockSettings.copyOf(Blocks.DAYLIGHT_DETECTOR));
+    public static final Block PLAYER_DETECTOR = new PlayerDetectorBlock(FabricBlockSettings.copyOf(Blocks.DAYLIGHT_DETECTOR));
+    public static final Block ENTITY_DETECTOR = new EntityDetectorBlock(FabricBlockSettings.copyOf(Blocks.DAYLIGHT_DETECTOR));
 
-    public static final Block ENDER_DROPPER = new EnderDropperBlock(FabricBlockSettings.of(Material.STONE).requiresTool().strength(15F, 60.0F));
-    public static final Block ENDER_HOPPER = new EnderHopperBlock(FabricBlockSettings.of(Material.STONE).requiresTool().strength(15F, 60.0F));
+    public static final Block ENDER_DROPPER = new EnderDropperBlock(FabricBlockSettings.copyOf(Blocks.DROPPER).requiresTool().strength(15F, 60.0F));
+    public static final Block ENDER_HOPPER = new EnderHopperBlock(FabricBlockSettings.copyOf(Blocks.HOPPER).requiresTool().strength(15F, 60.0F));
 
     private static final BiMap<PigmentSkullBlock.Type, Block> MOB_HEADS = EnumHashBiMap.create(PigmentSkullBlock.Type.class);
     private static final BiMap<PigmentSkullBlock.Type, Block> MOB_WALL_HEADS = EnumHashBiMap.create(PigmentSkullBlock.Type.class);
@@ -1334,7 +1325,7 @@ public class PigmentBlocks {
 
         for(PigmentSkullBlock.Type type : PigmentSkullBlock.Type.values()) {
             Block head = new PigmentSkullBlock(type, mobHeadBlockSettings);
-            Block wallHead = new PigmentWallSkullBlock(type, AbstractBlock.Settings.of(Material.DECORATION).strength(1.0F).dropsLike(head));
+            Block wallHead = new PigmentWallSkullBlock(type, FabricBlockSettings.of(Material.DECORATION).strength(1.0F).dropsLike(head));
             BlockItem headItem = new PigmentSkullBlockItem(head, wallHead, (fabricItemSettings));
 
             MOB_HEADS.put(type, head);

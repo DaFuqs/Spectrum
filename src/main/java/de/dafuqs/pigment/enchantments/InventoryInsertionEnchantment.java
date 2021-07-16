@@ -36,7 +36,7 @@ public class InventoryInsertionEnchantment extends Enchantment {
     }
 
     public boolean canAccept(Enchantment other) {
-        return super.canAccept(other) && other != Enchantments.SILK_TOUCH && other != PigmentEnchantments.RESONANCE;
+        return super.canAccept(other);
     }
 
 }

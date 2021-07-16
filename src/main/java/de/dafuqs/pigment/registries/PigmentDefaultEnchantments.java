@@ -35,7 +35,7 @@ public class PigmentDefaultEnchantments {
         PigmentDefaultEnchantments.addDefaultEnchantment(PigmentItems.BEDROCK_PICKAXE, Enchantments.SILK_TOUCH, 1);
         PigmentDefaultEnchantments.addDefaultEnchantment(PigmentItems.BEDROCK_AXE, Enchantments.EFFICIENCY, 5);
         PigmentDefaultEnchantments.addDefaultEnchantment(PigmentItems.BEDROCK_SHOVEL, Enchantments.EFFICIENCY, 5);
-        PigmentDefaultEnchantments.addDefaultEnchantment(PigmentItems.BEDROCK_SWORD, Enchantments.LOOTING, 3);
+        PigmentDefaultEnchantments.addDefaultEnchantment(PigmentItems.BEDROCK_SWORD, Enchantments.SHARPNESS, 5);
         PigmentDefaultEnchantments.addDefaultEnchantment(PigmentItems.BEDROCK_BOW, Enchantments.POWER, 5);
         PigmentDefaultEnchantments.addDefaultEnchantment(PigmentItems.BEDROCK_CROSSBOW, Enchantments.QUICK_CHARGE, 3);
         PigmentDefaultEnchantments.addDefaultEnchantment(PigmentItems.BEDROCK_SHEARS, Enchantments.SILK_TOUCH, 5);

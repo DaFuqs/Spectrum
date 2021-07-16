@@ -36,7 +36,7 @@ public class TreasureHunterEnchantment extends Enchantment {
     }
 
     public boolean canAccept(Enchantment other) {
-        return super.canAccept(other);
+        return super.canAccept(other) && other != Enchantments.LOOTING;
     }
 
 }

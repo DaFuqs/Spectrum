@@ -76,6 +76,9 @@ public class PigmentCommon implements ModInitializer {
 
         PigmentParticleTypes.register();
 
+        // Furnace fuel
+        PigmentItems.registerFuelRegistry();
+
         ServerWorldEvents.LOAD.register((minecraftServer, serverWorld) -> {
             PigmentCommon.minecraftServer = minecraftServer;
         });

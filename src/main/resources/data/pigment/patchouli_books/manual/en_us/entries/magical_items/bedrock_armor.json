@@ -5,27 +5,27 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": ""
+      "text": "The strongest material you could make so far was Netherite. However, repairing Netherite armor had the disadvantage that it was more expensive than making the armor itself. In addition, the protection decreased with every scratch. All this is no longer a problem when the armor simply cannot be damaged."
     },
     {
       "type": "patchouli:spotlight",
       "item": "pigment:bedrock_helmet",
-      "text": ""
+      "text": "The Bedrock Helmet comes with $(bold)Projectile Protection IV$()."
     },
     {
       "type": "patchouli:spotlight",
       "item": "pigment:bedrock_chestplate",
-      "text": ""
+      "text": "The Bedrock Chestplate comes with $(bold)Protection IV$()."
     },
     {
       "type": "patchouli:spotlight",
       "item": "pigment:bedrock_leggings",
-      "text": ""
+      "text": "The Bedrock Leggings come with $(bold)Blast Protection IV$()."
     },
     {
       "type": "patchouli:spotlight",
       "item": "pigment:bedrock_boots",
-      "text": ""
+      "text": "The Bedrock Boots come with $(bold)Fire Protection IV$()."
     }
   ]
 }

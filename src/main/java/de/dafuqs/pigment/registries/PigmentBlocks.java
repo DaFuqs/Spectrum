@@ -50,6 +50,7 @@ import net.minecraft.client.render.RenderLayer;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
+import net.minecraft.item.Items;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.tag.BlockTags;
 import net.minecraft.util.DyeColor;
@@ -625,7 +626,7 @@ public class PigmentBlocks {
         registerBlock("lava_sponge", LAVA_SPONGE);
         registerBlockItem("lava_sponge", new BlockItem(LAVA_SPONGE, generalItemSettings));
         registerBlock("wet_lava_sponge", WET_LAVA_SPONGE);
-        registerBlockItem("wet_lava_sponge", new WetLavaSpongeItem(WET_LAVA_SPONGE, generalItemSettings));
+        registerBlockItem("wet_lava_sponge", new WetLavaSpongeItem(WET_LAVA_SPONGE, new FabricItemSettings().group(PigmentItemGroups.ITEM_GROUP_GENERAL).maxCount(1).recipeRemainder(LAVA_SPONGE.asItem())));
     }
 
     private static void registerSpiritTree(FabricItemSettings fabricItemSettings) {

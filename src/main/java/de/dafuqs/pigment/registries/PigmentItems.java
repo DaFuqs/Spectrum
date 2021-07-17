@@ -254,6 +254,7 @@ public class PigmentItems {
     }
 
     public static void registerFuelRegistry() {
+        FuelRegistry.INSTANCE.add(PigmentBlocks.WET_LAVA_SPONGE.asItem(), 12800);
         FuelRegistry.INSTANCE.add(PigmentBlocks.LIGHT_LEVEL_DETECTOR.asItem(), 300);
         FuelRegistry.INSTANCE.add(PigmentBlocks.WEATHER_DETECTOR.asItem(), 300);
         FuelRegistry.INSTANCE.add(PigmentBlocks.ITEM_DETECTOR.asItem(), 300);

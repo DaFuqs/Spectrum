@@ -13,8 +13,11 @@ public class PigmentItemStackDamageImmunities {
 
     public static void registerDefaultItemStackImmunities() {
         PigmentItemStackDamageImmunities.addImmunity(PigmentBlocks.CRACKED_END_PORTAL_FRAME.asItem(), "explosion");
+        PigmentItemStackDamageImmunities.addImmunity(PigmentBlocks.CRACKED_END_PORTAL_FRAME.asItem(), DamageSource.CACTUS);
         PigmentItemStackDamageImmunities.addImmunity(PigmentBlocks.CRACKED_END_PORTAL_FRAME.asItem(), DamageSource.IN_FIRE);
         PigmentItemStackDamageImmunities.addImmunity(PigmentBlocks.CRACKED_END_PORTAL_FRAME.asItem(), DamageSource.LAVA);
+        PigmentItemStackDamageImmunities.addImmunity(PigmentBlocks.LAVA_SPONGE.asItem(), DamageSource.LAVA);
+        PigmentItemStackDamageImmunities.addImmunity(PigmentBlocks.WET_LAVA_SPONGE.asItem(), DamageSource.LAVA);
     }
 
     public static void addImmunity(Item item, DamageSource damageSource) {

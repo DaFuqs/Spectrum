@@ -1,0 +1,16 @@
+{
+  "name": "Lava Sponge",
+  "icon": "pigment:compactor",
+  "category": "pigment:magical_blocks_category",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "pigment:lava_sponge",
+      "text": "$(italic)TODO"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "The Lava Sponge can be used as highly efficient fuel in the furnace, at the same time drying it."
+    }
+  ]
+}

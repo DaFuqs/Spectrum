@@ -75,7 +75,7 @@ public class AltarCraftingRecipeDisplay<R extends AltarCraftingRecipe> implement
 
 	@Override
 	public CategoryIdentifier<?> getCategoryIdentifier() {
-		return AltarCategory.ID;
+		return AltarCraftingCategory.ID;
 	}
 
 }

@@ -17,11 +17,11 @@ public class REIIntegration implements REIClientPlugin {
 
     @Override
     public void registerCategories(CategoryRegistry registry) {
-        registry.add(new AltarCategory<>());
+        registry.add(new AltarCraftingCategory<>());
         registry.add(new AnvilCrushingCategory<>());
 
         registry.addWorkstations(BuiltinPlugin.CRAFTING, EntryStacks.of(PigmentBlocks.ALTAR));
-        registry.addWorkstations(AltarCategory.ID, EntryStacks.of(PigmentBlocks.ALTAR));
+        registry.addWorkstations(AltarCraftingCategory.ID, EntryStacks.of(PigmentBlocks.ALTAR));
         registry.addWorkstations(AnvilCrushingCategory.ID, EntryStacks.of(Blocks.ANVIL));
         registry.addWorkstations(AnvilCrushingCategory.ID, EntryStacks.of(PigmentBlocks.BEDROCK_ANVIL));
     }

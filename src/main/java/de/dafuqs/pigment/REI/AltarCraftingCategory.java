@@ -26,7 +26,7 @@ import net.minecraft.util.Identifier;
 import java.util.Collections;
 import java.util.List;
 
-public class AltarCategory<R extends AltarCraftingRecipe> implements DisplayCategory<AltarCraftingRecipeDisplay<R>> {
+public class AltarCraftingCategory<R extends AltarCraftingRecipe> implements DisplayCategory<AltarCraftingRecipeDisplay<R>> {
 
     final Identifier GUI_TEXTURE = AltarScreen.BACKGROUND;
 
@@ -63,7 +63,7 @@ public class AltarCategory<R extends AltarCraftingRecipe> implements DisplayCate
         List<Slot> slots = Lists.newArrayList();
         for (int y = 0; y < 3; y++)
             for (int x = 0; x < 3; x++)
-                slots.add(Widgets.createSlot(new Point(startPoint.x + 1 + x * 18, startPoint.y + 1 + y * 18)).disableBackground().markInput());
+                slots.add(Widgets.createSlot(new Point(startPoint.x + 2 + x * 18, startPoint.y + 2 + y * 18)).disableBackground().markInput());
 
         // crafting slot contents
         List<? extends List<? extends EntryStack<?>>> input = display.getInputEntries();

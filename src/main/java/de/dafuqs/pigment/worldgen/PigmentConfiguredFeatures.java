@@ -17,10 +17,10 @@ import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.minecraft.util.registry.BuiltinRegistries;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryKey;
+import net.minecraft.world.Heightmap;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.YOffset;
-import net.minecraft.world.gen.decorator.Decorator;
-import net.minecraft.world.gen.decorator.DecoratorConfig;
+import net.minecraft.world.gen.decorator.*;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.feature.size.TwoLayersFeatureSize;
 import net.minecraft.world.gen.foliage.BlobFoliagePlacer;
@@ -28,8 +28,6 @@ import net.minecraft.world.gen.stateprovider.SimpleBlockStateProvider;
 import net.minecraft.world.gen.trunk.StraightTrunkPlacer;
 
 import java.util.*;
-
-import static net.minecraft.world.gen.feature.ConfiguredFeatures.OAK;
 
 public class PigmentConfiguredFeatures {
 
@@ -39,7 +37,7 @@ public class PigmentConfiguredFeatures {
 
     // COLORED TREES
     public static HashMap<DyeColor, ConfiguredFeature<TreeFeatureConfig, ?>> COLORED_TREE_FEATURES = new HashMap<>(); // FOR SAPLINGS
-    public static ConfiguredFeature<?, ?> DECORATED_TREES; // FOR WORLD GEN
+    public static ConfiguredFeature<?, ?> RANDOM_COLORED_TREES_FEATURE; // FOR WORLD GEN
 
     private static ConfiguredFeature<?, ?> SPARKLESTONE_ORE;
     private static ConfiguredFeature<?, ?> AZURITE_ORE;
@@ -48,6 +46,12 @@ public class PigmentConfiguredFeatures {
 
     private static ConfiguredFeature<?, ?> QUITOXIC_REEDS;
     private static ConfiguredFeature<?, ?> MERMAIDS_BRUSH;
+
+    private static class Decorators {
+        public static final HeightmapDecoratorConfig HEIGHTMAP_WORLD_SURFACE = new HeightmapDecoratorConfig(Heightmap.Type.WORLD_SURFACE_WG);
+        public static final ConfiguredDecorator<HeightmapDecoratorConfig> HEIGHTMAP_OCEAN_FLOOR = Decorator.HEIGHTMAP.configure(new HeightmapDecoratorConfig(Heightmap.Type.OCEAN_FLOOR));
+    }
+
 
     public static void register() {
         registerGeodes();
@@ -75,7 +79,7 @@ public class PigmentConfiguredFeatures {
         Feature.ORE.configure(new OreFeatureConfig(OreFeatureConfig.Rules.BASE_STONE_OVERWORLD, sparklestoneOre, 17)) // vein size
                 .uniformRange(YOffset.fixed(92), YOffset.fixed(192)) // min and max height
                 .spreadHorizontally()
-                .repeat(6)); // number of veins per chunk
+                .repeat(4)); // number of veins per chunk
 
         AZURITE_ORE = registerConfiguredFeature(azuriteOreIdentifier,
                 Feature.ORE.configure(new OreFeatureConfig(OreFeatureConfig.Rules.BASE_STONE_OVERWORLD, azuriteOre, 5)) // vein size
@@ -113,17 +117,20 @@ public class PigmentConfiguredFeatures {
                         new SimpleBlockStateProvider(PigmentBlocks.getColoredLeavesBlock(dyeColor).getDefaultState()),
                         new SimpleBlockStateProvider(PigmentBlocks.getColoredSaplingBlock(dyeColor).getDefaultState()),
                         new BlobFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(0), 3),
-                        new TwoLayersFeatureSize(1, 0, 1))).ignoreVines().build());
+                        new TwoLayersFeatureSize(1, 0, 1))
+                ).ignoreVines().build()
+        );
 
         COLORED_TREE_FEATURES.put(dyeColor, Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, configuredFeatureRegistryKey.getValue(), configuredFeature));
     }
 
     private static void registerColoredTrees() {
+
         for(DyeColor dyeColor : DyeColor.values()) {
             registerColoredTree(dyeColor);
         }
 
-        ConfiguredFeature<?, ?> configuredFeature = Feature.RANDOM_SELECTOR.configure(
+        RANDOM_COLORED_TREES_FEATURE = Feature.RANDOM_SELECTOR.configure(
                 new RandomFeatureConfig(ImmutableList.of(
                         COLORED_TREE_FEATURES.get(DyeColor.BLACK).withChance(0.01F),
                         COLORED_TREE_FEATURES.get(DyeColor.BLUE).withChance(0.025F),
@@ -141,13 +148,13 @@ public class PigmentConfiguredFeatures {
                         COLORED_TREE_FEATURES.get(DyeColor.RED).withChance(0.025F),
                         COLORED_TREE_FEATURES.get(DyeColor.WHITE).withChance(0.001F),
                         COLORED_TREE_FEATURES.get(DyeColor.YELLOW).withChance(0.025F)
-                        ), OAK)).decorate(Decorator.DARK_OAK_TREE.configure(DecoratorConfig.DEFAULT).applyChance(20));
+                        ), ConfiguredFeatures.OAK
+                )
+        ).applyChance(20).decorate(Decorator.HEIGHTMAP.configure(Decorators.HEIGHTMAP_WORLD_SURFACE));
 
-        RegistryKey<ConfiguredFeature<?, ?>> decoratedFeatureRegistryKey = RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY, new Identifier(PigmentCommon.MOD_ID, "random_colored_trees"));
-        Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, decoratedFeatureRegistryKey.getValue(), configuredFeature);
-
-        // Add generation to world
-        BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Feature.VEGETAL_DECORATION, decoratedFeatureRegistryKey);
+        RegistryKey<ConfiguredFeature<?, ?>> RANDOM_COLORED_TREES_KEY = RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY, new Identifier(PigmentCommon.MOD_ID, "random_colored_trees"));
+        Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, RANDOM_COLORED_TREES_KEY.getValue(), RANDOM_COLORED_TREES_FEATURE);
+        BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Feature.VEGETAL_DECORATION, RANDOM_COLORED_TREES_KEY);
     }
 
     private static void registerGeodes() {

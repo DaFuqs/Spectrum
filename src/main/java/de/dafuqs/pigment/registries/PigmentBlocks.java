@@ -233,8 +233,8 @@ public class PigmentBlocks {
 
     // COLORED TREES
     private static final FabricBlockSettings coloredSaplingBlockSettings = FabricBlockSettings.copyOf(Blocks.OAK_SAPLING);
-    private static final FabricBlockSettings coloredLeavesBlockSettings = FabricBlockSettings.copyOf(Blocks.OAK_LEAVES).luminance((state) -> 5);
-    private static final FabricBlockSettings coloredLogBlockSettings = FabricBlockSettings.copyOf(Blocks.OAK_LOG).luminance((state) -> 10);
+    private static final FabricBlockSettings coloredLeavesBlockSettings = FabricBlockSettings.copyOf(Blocks.OAK_LEAVES).luminance((state) -> 2);
+    private static final FabricBlockSettings coloredLogBlockSettings = FabricBlockSettings.copyOf(Blocks.OAK_LOG).luminance((state) -> 5);
 
     public static final Block BLACK_LOG = new ColoredLogBlock(coloredLogBlockSettings);
     public static final Block BLACK_LEAVES = new ColoredLeavesBlock(coloredLeavesBlockSettings);

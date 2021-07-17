@@ -198,7 +198,7 @@ public class PigmentBlocks {
     public static final Block GLOWING_GLASS = new GlassBlock(FabricBlockSettings.copy(Blocks.GLASS).luminance(value -> 12));
 
     // ALTAR
-    private static final FabricBlockSettings altarSettings = FabricBlockSettings.of(Material.STONE).breakByTool(FabricToolTags.PICKAXES).requiresTool().strength(5.0F, 20.0F);
+    private static final FabricBlockSettings altarSettings = FabricBlockSettings.of(Material.STONE).requiresTool().strength(5.0F, 20.0F);
     public static final Block ALTAR = new AltarBlock(altarSettings);
     public static final Block ALTAR2 = new AltarBlock(altarSettings);
     public static final Block ALTAR3 = new AltarBlock(altarSettings);
@@ -223,7 +223,7 @@ public class PigmentBlocks {
     public static final Block OMINOUS_SAPLING = new OminousSaplingBlock(FabricBlockSettings.copyOf(Blocks.OAK_SAPLING).ticksRandomly());
 
     // DECAY
-    public static final Block DECAY1 = new DecayBlock1(FabricBlockSettings.of(PigmentMaterial.DECAY, MapColor.BLACK).ticksRandomly().requiresTool().breakByTool(FabricToolTags.PICKAXES).strength(0.5F, 0.5F), BlockTags.LEAVES, null,1,  1F);
+    public static final Block DECAY1 = new DecayBlock1(FabricBlockSettings.of(PigmentMaterial.DECAY, MapColor.BLACK).ticksRandomly().requiresTool().strength(0.5F, 0.5F), BlockTags.LEAVES, null,1,  1F);
     public static final Block DECAY2 = new DecayBlock2(FabricBlockSettings.copyOf(DECAY1).strength(20.0F, 50.0F), null, PigmentBlockTags.DECAY2_SAFE, 2,  2.5F);
     public static final Block DECAY3 = new DecayBlock3(FabricBlockSettings.copyOf(DECAY1).strength(100.0F, 3600000.0F), null, PigmentBlockTags.DECAY3_SAFE, 3, 5F);
 

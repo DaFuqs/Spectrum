@@ -1,78 +1,78 @@
 {
   "display": {
     "icon": {
-        "item": "pigment:altar"
+        "item": "pigment:amethyst_powder"
     },
     "title": {
-      "translate": "advancements.pigment.pigment.title"
+      "translate": "advancements.pigment.get_gemstone_powder.title"
     },
     "description": {
-      "translate": "advancements.pigment.pigment.description"
-    },
-    "background": "pigment:textures/gui/advancement_background.png"
+      "translate": "advancements.pigment.get_gemstone_powder.description"
+    }
   },
-  "rewards": {
-    "loot": [
-      "pigment:advancement_reward/adv_pigment"
-    ]
-  },
+  "parent": "pigment:pigment",
   "criteria": {
-    "has_amethyst_shard": {
+    "has_amethyst_powder": {
       "trigger":"minecraft:inventory_changed",
       "conditions":{
         "items":[
           {
             "items": [
-              "minecraft:amethyst_shard"
-            ]
+              "pigment:amethyst_powder"
+            ],
+            "count": 1
           }
         ]
       }
     },
-    "has_citrine_shard": {
+    "has_citrine_powder": {
       "trigger":"minecraft:inventory_changed",
       "conditions":{
         "items":[
           {
             "items": [
-              "pigment:citrine_shard"
-            ]
+              "pigment:citrine_powder"
+            ],
+            "count": 1
           }
         ]
       }
     },
-    "has_topaz_shard": {
+    "has_topaz_powder": {
       "trigger":"minecraft:inventory_changed",
       "conditions":{
         "items":[
           {
             "items": [
-              "pigment:topaz_shard"
-            ]
+              "pigment:topaz_powder"
+            ],
+            "count": 1
           }
         ]
       }
     },
-    "has_moonstone_shard": {
+    "has_moonstone_powder": {
       "trigger":"minecraft:inventory_changed",
       "conditions":{
         "items":[
           {
             "items": [
-              "pigment:moonstone_shard"
-            ]
+              "pigment:moonstone_powder"
+            ],
+            "count": 1
           }
         ]
       }
     },
-    "has_onyx_shard": {
+    "has_onyx_powder": {
       "trigger":"minecraft:inventory_changed",
       "conditions":{
         "items":[
           {
             "items": [
-              "pigment:onyx_shard"
-            ]
+              "pigment:onyx_powder"
+            ],
+            "count": 1
           }
         ]
       }
@@ -80,11 +80,11 @@
   },
   "requirements": [
     [
-      "has_amethyst_shard",
-      "has_citrine_shard",
-      "has_topaz_shard",
-      "has_onyx_shard",
-      "has_moonstone_shard"
+      "has_amethyst_powder",
+      "has_citrine_powder",
+      "has_topaz_powder",
+      "has_moonstone_powder",
+      "has_onyx_powder"
     ]
   ]
 }

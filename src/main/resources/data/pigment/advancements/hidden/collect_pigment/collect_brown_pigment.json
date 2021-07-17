@@ -1,0 +1,18 @@
+{
+  "parent": "pigment:pigment",
+  "criteria": {
+    "has_brown_pigment": {
+      "trigger":"minecraft:inventory_changed",
+      "conditions":{
+        "items":[
+          {
+            "items": [
+              "pigment:brown_pigment"
+            ],
+            "count": 1
+          }
+        ]
+      }
+    }
+  }
+}

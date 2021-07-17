@@ -10,7 +10,7 @@
       "translate": "advancements.pigment.grow_ominous_sapling.description"
     }
   },
-  "parent": "pigment:plant_ominous_sapling",
+  "parent": "pigment:use_ominous_sapling",
   "criteria": {
     "grow": {
       "trigger":"minecraft:impossible"

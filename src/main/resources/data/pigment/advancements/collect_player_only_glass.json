@@ -1,0 +1,132 @@
+{
+  "display": {
+    "icon": {
+      "item": "pigment:topaz_player_only_glass"
+    },
+    "title": {
+      "translate": "advancements.pigment.get_player_only_glass.title"
+    },
+    "description": {
+      "translate": "advancements.pigment.get_player_only_glass.description"
+    }
+  },
+  "parent": "pigment:pigment",
+  "criteria": {
+    "has_vanilla_player_only_glass": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "pigment:vanilla_player_only_glass"
+            ],
+            "count": 1
+          }
+        ]
+      }
+    },
+    "has_amethyst_player_only_glass": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "pigment:amethyst_player_only_glass"
+            ],
+            "count": 1
+          }
+        ]
+      }
+    },
+    "has_citrine_player_only_glass": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "pigment:citrine_player_only_glass"
+            ],
+            "count": 1
+          }
+        ]
+      }
+    },
+    "has_topaz_player_only_glass": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "pigment:topaz_player_only_glass"
+            ],
+            "count": 1
+          }
+        ]
+      }
+    },
+    "has_moonstone_player_only_glass": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "pigment:moonstone_player_only_glass"
+            ],
+            "count": 1
+          }
+        ]
+      }
+    },
+    "has_onyx_player_only_glass": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "pigment:onyx_player_only_glass"
+            ],
+            "count": 1
+          }
+        ]
+      }
+    },
+    "has_glowing_player_only_glass": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "pigment:glowing_player_only_glass"
+            ],
+            "count": 1
+          }
+        ]
+      }
+    },
+    "has_tinted_player_only_glass": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "pigment:tinted_player_only_glass"
+            ],
+            "count": 1
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_vanilla_player_only_glass",
+      "has_amethyst_player_only_glass",
+      "has_citrine_player_only_glass",
+      "has_topaz_player_only_glass",
+      "has_moonstone_player_only_glass",
+      "has_onyx_player_only_glass",
+      "has_glowing_player_only_glass",
+      "has_tinted_player_only_glass"
+    ]
+  ]
+}

@@ -17,7 +17,10 @@
       "conditions":{
         "items":[
           {
-            "item":"minecraft:amethyst_shard"
+            "items": [
+              "minecraft:amethyst_shard"
+            ],
+            "count": 1
           }
         ]
       }
@@ -27,7 +30,10 @@
       "conditions":{
         "items":[
           {
-            "item":"pigment:citrine_shard"
+            "items": [
+              "pigment:citrine_shard"
+            ],
+            "count": 1
           }
         ]
       }
@@ -37,7 +43,10 @@
       "conditions":{
         "items":[
           {
-            "item":"pigment:topaz_shard"
+            "items": [
+              "pigment:topaz_shard"
+            ],
+            "count": 1
           }
         ]
       }

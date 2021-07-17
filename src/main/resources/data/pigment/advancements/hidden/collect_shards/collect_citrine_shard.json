@@ -1,0 +1,18 @@
+{
+  "parent": "pigment:pigment",
+  "criteria": {
+    "has_citrine_shard": {
+      "trigger":"minecraft:inventory_changed",
+      "conditions":{
+        "items":[
+          {
+            "items": [
+              "pigment:citrine_shard"
+            ],
+            "count": 1
+          }
+        ]
+      }
+    }
+  }
+}

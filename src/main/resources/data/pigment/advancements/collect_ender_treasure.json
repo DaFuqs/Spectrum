@@ -1,0 +1,29 @@
+{
+  "display": {
+    "icon": {
+        "item": "pigment:ender_treasure"
+    },
+    "title": {
+      "translate": "advancements.pigment.get_ender_treasure.title"
+    },
+    "description": {
+      "translate": "advancements.pigment.get_ender_treasure.description"
+    }
+  },
+  "parent": "pigment:pigment",
+  "criteria": {
+    "has_ender_treasure": {
+      "trigger":"minecraft:inventory_changed",
+      "conditions":{
+        "items":[
+          {
+            "items": [
+              "pigment:ender_treasure"
+            ],
+            "count": 1
+          }
+        ]
+      }
+    }
+  }
+}

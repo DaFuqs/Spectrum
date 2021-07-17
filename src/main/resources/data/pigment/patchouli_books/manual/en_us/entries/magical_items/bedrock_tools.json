@@ -5,7 +5,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": ""Whenever you enter a new world, you go about the mindless, days-long task of gathering villagers around you, turning them into zombies and healing them again, only for one of them to eventually hand you a book of Mending. All this, just so you don't have to fix your tools.$(br)That's both less exciting and species-appropriate. Now that you can process Bedrock, you have a more humane solution."
+      "text": "Whenever you enter a new world, you go about the mindless, days-long task of gathering villagers around you, turning them into zombies and healing them again, only for one of them to eventually hand you a book of Mending. All this, just so you don't have to fix your tools.$(br)That's both less exciting and species-appropriate. Now that you can process Bedrock, you have a more humane solution."
     },
     {
       "type": "patchouli:spotlight",

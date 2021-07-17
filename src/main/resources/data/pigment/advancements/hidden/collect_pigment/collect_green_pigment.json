@@ -1,0 +1,18 @@
+{
+  "parent": "pigment:pigment",
+  "criteria": {
+    "has_green_pigment": {
+      "trigger":"minecraft:inventory_changed",
+      "conditions":{
+        "items":[
+          {
+            "items": [
+              "pigment:green_pigment"
+            ],
+            "count": 1
+          }
+        ]
+      }
+    }
+  }
+}

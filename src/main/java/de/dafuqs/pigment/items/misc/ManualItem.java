@@ -1,10 +1,7 @@
 package de.dafuqs.pigment.items.misc;
 
 import de.dafuqs.pigment.PigmentCommon;
-import net.minecraft.block.EnderChestBlock;
-import net.minecraft.block.entity.EnderChestBlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.EnderChestInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -12,9 +9,7 @@ import net.minecraft.stat.Stats;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.TypedActionResult;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
-import org.apache.logging.log4j.core.jmx.Server;
 import vazkii.patchouli.api.PatchouliAPI;
 
 public class ManualItem extends Item {

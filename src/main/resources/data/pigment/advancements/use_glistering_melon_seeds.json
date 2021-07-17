@@ -1,0 +1,24 @@
+{
+  "display": {
+    "icon": {
+        "item": "pigment:glistering_melon_seeds"
+    },
+    "title": {
+      "translate": "advancements.pigment.plant_glistering_melon_seeds.title"
+    },
+    "description": {
+      "translate": "advancements.pigment.plant_glistering_melon_seeds.description"
+    }
+  },
+  "parent": "pigment:pigment",
+  "criteria": {
+    "planted_glistering_melon_seeds": {
+      "trigger": "minecraft:item_used_on_block",
+      "conditions": {
+        "item": {
+          "items": ["pigment:glistering_melon_seeds"]
+        }
+      }
+    }
+  }
+}

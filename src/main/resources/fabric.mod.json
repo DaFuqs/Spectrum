@@ -2,7 +2,6 @@
   "schemaVersion": 1,
   "id": "pigment",
   "version": "${version}",
-
   "name": "Pigment",
   "description": "A mod about gems, colors and decay",
   "authors": [
@@ -12,10 +11,8 @@
     "homepage": "https://github.com/DaFuqs/",
     "sources": "https://github.com/DaFuqs/Pigment"
   },
-
   "license": "MIT",
   "icon": "assets/pigment/icon.png",
-
   "environment": "*",
   "entrypoints": {
     "main": [

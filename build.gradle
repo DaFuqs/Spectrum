@@ -12,7 +12,7 @@ group = project.maven_group
 
 repositories {
 	maven { url "https://maven.shedaniel.me/" }
-	maven { url "https://maven.terraformersmc.com/" }
+	maven { url "https://maven.kotlindiscord.com/repository/terraformers/" }
 	maven {
 		name = "Pathouli" // https://github.com/Vazkii/Patchouli
 		url = 'https://maven.blamejared.com'
@@ -50,6 +50,9 @@ dependencies {
 	// https://github.com/Gegy/colored-lights // uses colored_lights/light_colors.json
 }
 
+minecraft {
+	accessWidener =  file("src/main/resources/pigment.accesswidener")
+}
 
 processResources {
 	inputs.property "version", project.version

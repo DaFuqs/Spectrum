@@ -44,8 +44,11 @@ public class QuitoxicReedsBlock extends SugarCaneBlock implements Cloakable, Wat
     }
 
     public void setCloaked() {
-        PigmentBlockCloaker.swapModel(this.getDefaultState().with(WATERLOGGED, false), Blocks.AIR.getDefaultState());
-        PigmentBlockCloaker.swapModel(this.getDefaultState().with(WATERLOGGED, true), Blocks.WATER.getDefaultState());
+        for(int i = 0; i < 16; i++){
+            PigmentBlockCloaker.swapModel(this.getDefaultState().with(WATERLOGGED, false).with(AGE, i), Blocks.AIR.getDefaultState());
+            PigmentBlockCloaker.swapModel(this.getDefaultState().with(WATERLOGGED, true).with(AGE, i), Blocks.WATER.getDefaultState());
+        }
+
         PigmentBlockCloaker.swapModel(this.asItem(), Items.SUGAR_CANE); // item
     }
 
@@ -86,7 +89,7 @@ public class QuitoxicReedsBlock extends SugarCaneBlock implements Cloakable, Wat
     }
 
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        if (world.isAir(pos.up())) {
+        if (world.isAir(pos.up()) || (world.isWater(pos.up()) && world.isAir(pos.up(2)))) {
             int i;
             for(i = 1; world.getBlockState(pos.down(i)).isOf(this); ++i) {
             }
@@ -118,7 +121,7 @@ public class QuitoxicReedsBlock extends SugarCaneBlock implements Cloakable, Wat
             return true;
         } else {
             BlockState topBlockState = world.getBlockState(pos.up());
-            if (bottomBlockState.isIn(PigmentBlockTags.QUITOXIC_REEDS_PLANTABLE) && (world.isAir(pos.up()) || topBlockState.isOf(this))) {
+            if (bottomBlockState.isIn(PigmentBlockTags.QUITOXIC_REEDS_PLANTABLE) && (world.isAir(pos.up()) || world.isAir(pos.up(2)) || topBlockState.isOf(this))) {
                 FluidState fluidState = world.getFluidState(pos);
                 return fluidState.isIn(FluidTags.WATER); // || fluidState.isIn(PigmentFluidTags.LIQUID_CRYSTAL); // todo: liquid crystal logged
             }

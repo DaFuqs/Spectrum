@@ -18,7 +18,7 @@
       "item": "minecraft:glass"
     },
     "S": {
-      "item": "minecraft:glow_ink_sac"
+      "item": "pigment:sparklestone_gem"
     }
   },
   "result" : {

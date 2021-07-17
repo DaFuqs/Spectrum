@@ -9,9 +9,9 @@
   "white": 0,
   "experience": 0.25,
   "pattern": [
-    " P ",
+    "SPS",
     "PGP",
-    " P "
+    "SPS"
   ],
   "key": {
   	"P": {
@@ -19,6 +19,9 @@
     },
 	"G": {
       "item": "minecraft:glowstone"
+    },
+	"S": {
+      "item": "pigment:sparklestone_gem"
     }
   },
   "result" : {

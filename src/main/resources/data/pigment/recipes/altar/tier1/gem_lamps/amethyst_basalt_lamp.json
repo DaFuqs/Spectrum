@@ -10,7 +10,7 @@
   "experience": 0.3,
   "pattern": [
     "TBT",
-    "BBB",
+    "BSB",
     "TBT"
   ],
   "key": {
@@ -19,6 +19,9 @@
     },
     "T": {
       "item": "pigment:polished_basalt"
+    },
+    "S": {
+      "item": "pigment:sparklestone_gem"
     }
   },
   "result" : {

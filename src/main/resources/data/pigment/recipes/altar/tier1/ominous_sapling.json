@@ -10,15 +10,18 @@
   "experience": 2,
   "pattern": [
     "VVV",
-    "VSV",
+    "SAS",
     "VVV"
   ],
   "key": {
-    "S": {
+    "A": {
       "tag": "minecraft:saplings"
     },
     "V": {
       "item": "pigment:vegetal"
+    },
+    "S": {
+      "item": "pigment:sparklestone_gem"
     }
   },
   "result" : {

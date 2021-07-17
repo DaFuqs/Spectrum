@@ -15,6 +15,8 @@ import net.minecraft.util.registry.Registry;
 
 public class PigmentEntityTypes {
 
+    public static final Identifier SPAWN_PACKET_ID = new Identifier(PigmentCommon.MOD_ID, "spawn_packet");
+
     public static EntityType<ShootingStarEntity> SHOOTING_STAR;
     public static EntityType<GravityBlockEntity> GRAVITY_BLOCK;
     public static EntityType<InvisibleItemFrameEntity> INVISIBLE_ITEM_FRAME;

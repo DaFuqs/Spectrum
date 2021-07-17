@@ -12,20 +12,29 @@ import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientLifecycleEvents;
+import net.fabricmc.fabric.api.client.rendereregistry.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
 import net.fabricmc.fabric.api.client.screenhandler.v1.ScreenRegistry;
+import net.fabricmc.fabric.api.network.ClientSidePacketRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.client.model.FabricModelPredicateProviderRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.color.block.BlockColorProvider;
 import net.minecraft.client.color.item.ItemColorProvider;
+import net.minecraft.client.render.entity.ItemFrameEntityRenderer;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.registry.Registry;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.UUID;
 
 public class PigmentClient implements ClientModInitializer {
 
@@ -57,6 +66,10 @@ public class PigmentClient implements ClientModInitializer {
             PigmentClient.minecraftClient = minecraftClient;
             registerColorProviders();
         });
+
+        EntityRendererRegistry.INSTANCE.register(PigmentEntityTypes.INVISIBLE_ITEM_FRAME, ItemFrameEntityRenderer::new);
+        //registerS2CPackets();
+
     }
 
     private static void registerColorProviders() {
@@ -78,6 +91,34 @@ public class PigmentClient implements ClientModInitializer {
             }
         }
     }
+
+    // all packets, that get sent from server to client instance
+    /*private static void registerS2CPackets() {
+        ClientSidePacketRegistry.INSTANCE.register(PigmentEntityTypes.SPAWN_PACKET_ID, (ctx, byteBuf) -> {
+            EntityType<?> et = Registry.ENTITY_TYPE.get(byteBuf.readVarInt());
+            UUID uuid = byteBuf.readUuid();
+            int entityId = byteBuf.readVarInt();
+            Vec3d pos = EntitySpawnPacket.PacketBufUtil.readVec3d(byteBuf);
+            float pitch = EntitySpawnPacket.PacketBufUtil.readAngle(byteBuf);
+            float yaw = EntitySpawnPacket.PacketBufUtil.readAngle(byteBuf);
+            ctx.getTaskQueue().execute(() -> {
+                if (MinecraftClient.getInstance().world == null) {
+                    throw new IllegalStateException("Tried to spawn entity in a null world!");
+                }
+                Entity entity = et.create(MinecraftClient.getInstance().world);
+                if (entity == null) {
+                    throw new IllegalStateException("Failed to create instance of entity \"" + Registry.ENTITY_TYPE.getId(et) + "\"!");
+                }
+                entity.updateTrackedPosition(pos);
+                entity.setPos(pos.x, pos.y, pos.z);
+                entity.setPitch(pitch);
+                entity.setYaw(yaw);
+                entity.setId(entityId);
+                entity.setUuid(uuid);
+                MinecraftClient.getInstance().world.addEntity(entityId, entity);
+            });
+        });
+    }*/
 
     // Vanilla models see: ModelPredicateProviderRegistry
     public static void registerBowPredicates(BowItem bowItem) {

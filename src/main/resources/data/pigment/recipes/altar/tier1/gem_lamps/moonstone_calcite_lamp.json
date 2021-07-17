@@ -10,7 +10,7 @@
   "experience": 0.3,
   "pattern": [
     "CBC",
-    "BBB",
+    "BSB",
     "CBC"
   ],
   "key": {
@@ -19,6 +19,9 @@
     },
     "C": {
       "item": "pigment:polished_calcite"
+    },
+    "S": {
+      "item": "pigment:sparklestone_gem"
     }
   },
   "result" : {

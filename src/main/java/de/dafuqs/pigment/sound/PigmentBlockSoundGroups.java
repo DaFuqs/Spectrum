@@ -1,7 +1,6 @@
 package de.dafuqs.pigment.sound;
 
 import net.minecraft.sound.BlockSoundGroup;
-import net.minecraft.sound.SoundEvents;
 
 public class PigmentBlockSoundGroups {
 

@@ -4,8 +4,6 @@ import com.google.common.collect.ImmutableSet;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSerializationContext;
-import java.util.Set;
-
 import de.dafuqs.pigment.enchantments.PigmentEnchantments;
 import de.dafuqs.pigment.loot.PigmentLootConditionTypes;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -18,6 +16,8 @@ import net.minecraft.loot.context.LootContextParameter;
 import net.minecraft.loot.context.LootContextParameters;
 import net.minecraft.util.JsonHelper;
 import net.minecraft.util.JsonSerializer;
+
+import java.util.Set;
 
 public class RandomChanceWithTreasureHunterLootCondition implements LootCondition {
 

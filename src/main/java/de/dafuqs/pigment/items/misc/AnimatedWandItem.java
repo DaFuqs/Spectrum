@@ -1,9 +1,8 @@
 package de.dafuqs.pigment.items.misc;
 
 import de.dafuqs.pigment.PigmentClient;
-import de.dafuqs.pigment.PigmentCommon;
 import de.dafuqs.pigment.sound.NaturesStaffUseSoundInstance;
-import net.minecraft.block.*;
+import net.minecraft.block.BlockState;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -15,11 +14,8 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.UseAction;
 import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import org.apache.logging.log4j.Level;
-import org.apache.logging.log4j.core.jmx.Server;
 
 public class AnimatedWandItem extends Item {
 

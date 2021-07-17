@@ -2,9 +2,9 @@ package de.dafuqs.pigment.inventories;
 
 import de.dafuqs.pigment.inventories.slots.ReadOnlySlot;
 import de.dafuqs.pigment.inventories.slots.StackFilterSlot;
-import de.dafuqs.pigment.registries.PigmentItems;
 import de.dafuqs.pigment.recipe.PigmentRecipeTypes;
 import de.dafuqs.pigment.recipe.altar.AltarCraftingRecipe;
+import de.dafuqs.pigment.registries.PigmentItems;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.entity.player.PlayerEntity;

@@ -1,7 +1,7 @@
 package de.dafuqs.pigment.particle;
 
-import de.dafuqs.pigment.particle.client.ShootingStarParticle;
 import de.dafuqs.pigment.particle.client.ParticleEmitterParticle;
+import de.dafuqs.pigment.particle.client.ShootingStarParticle;
 import de.dafuqs.pigment.particle.client.VoidFogParticle;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 

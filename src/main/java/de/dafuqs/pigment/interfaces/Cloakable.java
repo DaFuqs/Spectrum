@@ -1,7 +1,7 @@
 package de.dafuqs.pigment.interfaces;
 
-import de.dafuqs.pigment.misc.PigmentBlockCloaker;
 import de.dafuqs.pigment.Support;
+import de.dafuqs.pigment.misc.PigmentBlockCloaker;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;

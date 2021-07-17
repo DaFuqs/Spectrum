@@ -1,8 +1,8 @@
 package de.dafuqs.pigment.blocks.decay;
 
 import de.dafuqs.pigment.Support;
-import de.dafuqs.pigment.registries.PigmentBlockTags;
 import de.dafuqs.pigment.misc.PigmentDamageSources;
+import de.dafuqs.pigment.registries.PigmentBlockTags;
 import de.dafuqs.pigment.sound.PigmentSoundEvents;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

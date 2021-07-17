@@ -1,8 +1,8 @@
 package de.dafuqs.pigment.blocks.compactor;
 
-import de.dafuqs.pigment.registries.PigmentBlockEntityRegistry;
-import de.dafuqs.pigment.inventories.AutoCompactingInventory;
 import de.dafuqs.pigment.InventoryHelper;
+import de.dafuqs.pigment.inventories.AutoCompactingInventory;
+import de.dafuqs.pigment.registries.PigmentBlockEntityRegistry;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.LootableContainerBlockEntity;
 import net.minecraft.entity.player.PlayerInventory;

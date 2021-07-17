@@ -1,8 +1,8 @@
 package de.dafuqs.pigment.blocks.fluid;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import de.dafuqs.pigment.registries.PigmentBlocks;
 import de.dafuqs.pigment.PigmentCommon;
+import de.dafuqs.pigment.registries.PigmentBlocks;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.*;
 import net.minecraft.client.util.math.MatrixStack;

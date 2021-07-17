@@ -1,8 +1,8 @@
 package de.dafuqs.pigment.items.misc;
 
-import de.dafuqs.pigment.sound.EnderSpliceChargingSoundInstance;
 import de.dafuqs.pigment.PigmentClient;
 import de.dafuqs.pigment.Support;
+import de.dafuqs.pigment.sound.EnderSpliceChargingSoundInstance;
 import de.dafuqs.pigment.sound.PigmentSoundEvents;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;

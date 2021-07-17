@@ -1,8 +1,6 @@
 package de.dafuqs.pigment.sound;
 
-import de.dafuqs.pigment.PigmentCommon;
 import net.minecraft.sound.SoundEvent;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 

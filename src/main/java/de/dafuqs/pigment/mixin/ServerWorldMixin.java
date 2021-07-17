@@ -1,7 +1,7 @@
 package de.dafuqs.pigment.mixin;
 
-import de.dafuqs.pigment.entity.entity.GravityBlockEntity;
 import de.dafuqs.pigment.entity.PigmentEntityTypes;
+import de.dafuqs.pigment.entity.entity.GravityBlockEntity;
 import de.dafuqs.pigment.entity.entity.ShootingStarEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.server.world.ServerWorld;

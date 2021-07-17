@@ -3,7 +3,6 @@ package de.dafuqs.pigment.blocks.lava_sponge;
 import com.google.common.collect.Lists;
 import de.dafuqs.pigment.registries.PigmentBlocks;
 import net.minecraft.block.*;
-import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.tag.FluidTags;
 import net.minecraft.util.Pair;

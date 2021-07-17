@@ -1,9 +1,9 @@
 package de.dafuqs.pigment.blocks.conditional;
 
-import de.dafuqs.pigment.misc.PigmentBlockCloaker;
 import de.dafuqs.pigment.PigmentCommon;
-import de.dafuqs.pigment.registries.PigmentBlocks;
 import de.dafuqs.pigment.interfaces.Cloakable;
+import de.dafuqs.pigment.misc.PigmentBlockCloaker;
+import de.dafuqs.pigment.registries.PigmentBlocks;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.Block;

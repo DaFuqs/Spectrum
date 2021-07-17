@@ -1,7 +1,6 @@
 package de.dafuqs.pigment.enchantments;
 
 import de.dafuqs.pigment.PigmentCommon;
-import net.minecraft.enchantment.BindingCurseEnchantment;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.util.Identifier;

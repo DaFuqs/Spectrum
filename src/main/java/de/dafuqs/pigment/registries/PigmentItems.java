@@ -6,8 +6,6 @@ import de.dafuqs.pigment.entity.PigmentEntityTypes;
 import de.dafuqs.pigment.enums.PigmentColor;
 import de.dafuqs.pigment.items.item_frame.InvisibleGlowItemFrameItem;
 import de.dafuqs.pigment.items.item_frame.InvisibleItemFrameItem;
-import de.dafuqs.pigment.items.misc.CatkinItem;
-import de.dafuqs.pigment.items.misc.AnimatedWandItem;
 import de.dafuqs.pigment.items.materials.*;
 import de.dafuqs.pigment.items.misc.*;
 import de.dafuqs.pigment.items.tools.*;

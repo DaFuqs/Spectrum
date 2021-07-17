@@ -4,7 +4,8 @@ import com.mojang.serialization.Codec;
 import de.dafuqs.pigment.PigmentCommon;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
-import net.minecraft.world.gen.placer.*;
+import net.minecraft.world.gen.placer.BlockPlacer;
+import net.minecraft.world.gen.placer.BlockPlacerType;
 import org.lwjgl.system.CallbackI;
 
 import java.util.ArrayList;

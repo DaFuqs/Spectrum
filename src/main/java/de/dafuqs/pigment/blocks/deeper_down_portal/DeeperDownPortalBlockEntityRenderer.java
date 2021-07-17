@@ -1,23 +1,16 @@
 package de.dafuqs.pigment.blocks.deeper_down_portal;
 
-import de.dafuqs.pigment.PigmentCommon;
 import de.dafuqs.pigment.PigmentRenderLayer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.EndPortalBlock;
-import net.minecraft.client.render.*;
+import net.minecraft.client.render.RenderLayer;
+import net.minecraft.client.render.VertexConsumer;
+import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.block.entity.BlockEntityRenderer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactory.Context;
-import net.minecraft.client.render.block.entity.EndPortalBlockEntityRenderer;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.fluid.Fluid;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Matrix4f;
-import net.minecraft.world.BlockView;
 
 @Environment(EnvType.CLIENT)
 public class DeeperDownPortalBlockEntityRenderer<T extends DeeperDownPortalBlockEntity> implements BlockEntityRenderer<T> {

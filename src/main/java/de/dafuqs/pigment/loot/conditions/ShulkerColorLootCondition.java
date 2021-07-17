@@ -6,7 +6,6 @@ import com.google.gson.JsonSerializationContext;
 import de.dafuqs.pigment.loot.PigmentLootConditionTypes;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.mob.ShulkerEntity;
-import net.minecraft.entity.passive.FoxEntity;
 import net.minecraft.loot.condition.LootCondition;
 import net.minecraft.loot.condition.LootConditionType;
 import net.minecraft.loot.context.LootContext;

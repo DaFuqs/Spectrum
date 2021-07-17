@@ -1,6 +1,7 @@
 package de.dafuqs.pigment.blocks.altar;
 
-import de.dafuqs.pigment.*;
+import de.dafuqs.pigment.PigmentCommon;
+import de.dafuqs.pigment.Support;
 import de.dafuqs.pigment.enums.PigmentColor;
 import de.dafuqs.pigment.interfaces.PlayerOwned;
 import de.dafuqs.pigment.inventories.AltarScreenHandler;

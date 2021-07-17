@@ -1,9 +1,9 @@
 package de.dafuqs.pigment.blocks.conditional;
 
-import de.dafuqs.pigment.misc.PigmentBlockCloaker;
-import de.dafuqs.pigment.registries.PigmentBlockTags;
 import de.dafuqs.pigment.PigmentCommon;
 import de.dafuqs.pigment.interfaces.Cloakable;
+import de.dafuqs.pigment.misc.PigmentBlockCloaker;
+import de.dafuqs.pigment.registries.PigmentBlockTags;
 import net.minecraft.block.*;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;

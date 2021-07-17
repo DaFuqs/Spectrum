@@ -1,13 +1,12 @@
 package de.dafuqs.pigment.mixin;
 
-import de.dafuqs.pigment.registries.PigmentItemStackDamageImmunities;
 import de.dafuqs.pigment.Support;
 import de.dafuqs.pigment.interfaces.GravitableItem;
 import de.dafuqs.pigment.inventories.AutoCompactingInventory;
 import de.dafuqs.pigment.recipe.PigmentRecipeTypes;
 import de.dafuqs.pigment.recipe.anvil_crushing.AnvilCrushingRecipe;
+import de.dafuqs.pigment.registries.PigmentItemStackDamageImmunities;
 import de.dafuqs.pigment.registries.PigmentS2CPackets;
-import de.dafuqs.pigment.sound.PigmentSoundEvents;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
@@ -27,7 +26,6 @@ import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import net.minecraft.world.event.GameEvent;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;

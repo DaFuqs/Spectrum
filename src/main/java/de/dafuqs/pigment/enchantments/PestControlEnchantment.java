@@ -2,7 +2,6 @@ package de.dafuqs.pigment.enchantments;
 
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentTarget;
-import net.minecraft.enchantment.SilkTouchEnchantment;
 import net.minecraft.entity.EquipmentSlot;
 
 public class PestControlEnchantment extends Enchantment {

@@ -3,7 +3,6 @@ package de.dafuqs.pigment.loot;
 import net.minecraft.loot.condition.InvertedLootCondition;
 import net.minecraft.loot.condition.LootCondition;
 import net.minecraft.loot.condition.LootConditionType;
-import net.minecraft.loot.condition.LootConditionTypes;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonSerializer;
 import net.minecraft.util.registry.Registry;

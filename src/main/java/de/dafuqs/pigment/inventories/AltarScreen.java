@@ -2,8 +2,6 @@ package de.dafuqs.pigment.inventories;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import de.dafuqs.pigment.PigmentCommon;
-import net.minecraft.client.gui.screen.ingame.CraftingScreen;
-import net.minecraft.client.gui.screen.ingame.FurnaceScreen;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.util.math.MatrixStack;

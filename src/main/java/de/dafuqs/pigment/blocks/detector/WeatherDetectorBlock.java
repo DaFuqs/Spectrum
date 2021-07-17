@@ -1,10 +1,7 @@
 package de.dafuqs.pigment.blocks.detector;
 
 import net.minecraft.block.BlockState;
-import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.LightType;
 import net.minecraft.world.World;
 
 public class WeatherDetectorBlock extends DetectorBlock {

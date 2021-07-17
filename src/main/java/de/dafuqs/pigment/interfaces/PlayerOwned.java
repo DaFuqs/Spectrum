@@ -1,8 +1,6 @@
 package de.dafuqs.pigment.interfaces;
 
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 
 import java.util.UUID;
 

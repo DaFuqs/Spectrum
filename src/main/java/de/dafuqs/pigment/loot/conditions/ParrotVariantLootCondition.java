@@ -5,7 +5,6 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonSerializationContext;
 import de.dafuqs.pigment.loot.PigmentLootConditionTypes;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.passive.AxolotlEntity;
 import net.minecraft.entity.passive.ParrotEntity;
 import net.minecraft.loot.condition.LootCondition;
 import net.minecraft.loot.condition.LootConditionType;

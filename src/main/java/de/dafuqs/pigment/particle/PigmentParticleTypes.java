@@ -9,6 +9,7 @@ import net.minecraft.util.registry.Registry;
 public class PigmentParticleTypes {
 
     public static DefaultParticleType SHOOTING_STAR;
+    public static DefaultParticleType SPARKLESTONE_SPARKLE;
     public static DefaultParticleType PARTICLE_EMITTER;
     public static DefaultParticleType VOID_FOG;
 
@@ -18,6 +19,7 @@ public class PigmentParticleTypes {
 
     public static void register() {
         SHOOTING_STAR = register("shooting_star", true);
+        SPARKLESTONE_SPARKLE = register("sparklestone_sparkle", true);
         PARTICLE_EMITTER = register("particle_emitter", false);
         VOID_FOG = register("void_fog", false);
     }

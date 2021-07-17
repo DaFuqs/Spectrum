@@ -1,0 +1,7 @@
+{
+  "textures": [
+    "pigment:sparklestone_sparkle",
+    "pigment:sparklestone_sparkle_small",
+    "pigment:sparklestone_sparkle_tiny"
+  ]
+}

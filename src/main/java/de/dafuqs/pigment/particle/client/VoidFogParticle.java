@@ -37,12 +37,7 @@ public class VoidFogParticle extends SpriteBillboardParticle {
 		public Particle createParticle(DefaultParticleType parameters, ClientWorld clientWorld, double x, double y, double z, double velocityX, double velocityY, double velocityZ) {
 			Random random = clientWorld.getRandom();
 
-			VoidFogParticle particle = new VoidFogParticle(
-					clientWorld, x, y, z,
-					0,
-					(random.nextDouble() - 0.5) * 0.05,
-					0);
-
+			VoidFogParticle particle = new VoidFogParticle(clientWorld, x, y, z, 0, (random.nextDouble() - 0.5) * 0.05, 0);
 			particle.setSprite(this.spriteProvider);
 			return particle;
 		}

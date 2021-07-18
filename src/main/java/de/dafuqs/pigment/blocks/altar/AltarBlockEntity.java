@@ -11,6 +11,7 @@ import de.dafuqs.pigment.recipe.altar.AltarCraftingRecipe;
 import de.dafuqs.pigment.registries.PigmentBlockEntityRegistry;
 import de.dafuqs.pigment.registries.PigmentBlocks;
 import de.dafuqs.pigment.registries.PigmentItems;
+import de.dafuqs.pigment.sound.PigmentSoundEvents;
 import net.minecraft.advancement.Advancement;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -239,14 +240,14 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
                 if (altarCraftingRecipe != null) {
                     altarBlockEntity.lastRecipe = altarCraftingRecipe;
                     altarBlockEntity.craftingTimeTotal = altarCraftingRecipe.getCraftingTime();
-                    altarBlockEntity.inventory.set(14, altarCraftingRecipe.getOutput());
+                    altarBlockEntity.inventory.set(14, altarCraftingRecipe.getOutput().copy());
                     shouldMarkDirty = true;
                 } else {
                     craftingRecipe = world.getRecipeManager().getFirstMatch(RecipeType.CRAFTING, autoCraftingInventory, world).orElse(null);
                     if (craftingRecipe != null) {
                         altarBlockEntity.lastRecipe = craftingRecipe;
                         altarBlockEntity.craftingTimeTotal = 20;
-                        altarBlockEntity.inventory.set(14, craftingRecipe.getOutput());
+                        altarBlockEntity.inventory.set(14, craftingRecipe.getOutput().copy());
                         shouldMarkDirty = true;
                     } else {
                         altarBlockEntity.lastRecipe = null;
@@ -267,11 +268,12 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
             boolean crafting = altarBlockEntity.isCrafting();
 
             // Altar crafting
+            boolean craftingFinished = false;
             if (canAcceptRecipeOutput(altarCraftingRecipe, altarBlockEntity.inventory, maxCountPerStack)) {
                 altarBlockEntity.craftingTime++;
                 if (altarBlockEntity.craftingTime == altarBlockEntity.craftingTimeTotal) {
                     altarBlockEntity.craftingTime = 0;
-                    altarBlockEntity.craftAltarRecipe(altarCraftingRecipe, altarBlockEntity.inventory, maxCountPerStack);
+                    craftingFinished = altarBlockEntity.craftAltarRecipe(altarCraftingRecipe, altarBlockEntity.inventory, maxCountPerStack);
                     shouldMarkDirty = true;
                 }
             // Vanilla crafting
@@ -279,7 +281,7 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
                 altarBlockEntity.craftingTime++;
                 if (altarBlockEntity.craftingTime == altarBlockEntity.craftingTimeTotal) {
                     altarBlockEntity.craftingTime = 0;
-                    altarBlockEntity.craftVanillaRecipe(craftingRecipe, altarBlockEntity.inventory, maxCountPerStack);
+                    craftingFinished = altarBlockEntity.craftVanillaRecipe(craftingRecipe, altarBlockEntity.inventory, maxCountPerStack);
                     shouldMarkDirty = true;
                 }
             // No crafting
@@ -310,9 +312,16 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
                     }
 
                     altarBlockEntity.spawnCraftingFinishedParticles(world, blockPos);
-                    altarBlockEntity.playSound(SoundEvents.BLOCK_AMETHYST_CLUSTER_FALL); // TODO: custom sound
+
+                    if(craftingRecipe != null) {
+                        altarBlockEntity.playSound(PigmentSoundEvents.ALTAR_CRAFT_GENERIC);
+                    } else if(altarCraftingRecipe != null) {
+                        altarBlockEntity.playSound(altarCraftingRecipe.getSoundEvent(world.random));
+                    }
                 } else {
-                    altarBlockEntity.playSound(SoundEvents.BLOCK_LAVA_EXTINGUISH); // TODO: custom sound
+                    if(craftingFinished) {
+                        altarBlockEntity.playSound(SoundEvents.BLOCK_LAVA_EXTINGUISH);
+                    }
                 }
             }
 
@@ -380,19 +389,19 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
                 inventory.get(getSlotForPigmentColor(pigmentColor)).decrement(pigmentAmount);
             }
 
-            ItemStack output = recipe.getOutput();
-
+            ItemStack recipeOutput = recipe.getOutput();
             ItemStack existingOutput = defaultedList.get(15);
             if (existingOutput.isEmpty()) {
-                defaultedList.set(15, output.copy());
-            } else if (existingOutput.isOf(output.getItem())) {
-                existingOutput.increment(output.getCount());
+                defaultedList.set(15, recipeOutput.copy());
+            } else {
+                existingOutput.increment(recipeOutput.getCount());
+                defaultedList.set(15, existingOutput);
             }
 
             // Add recipe XP
-            float newXP = recipe.getExperience();
-            storedXP += newXP;
+            storedXP = recipe.getExperience();
 
+            // if the recipe unlocks an advancement unlock it
             grantPlayerCraftingAdvancement(recipe);
 
             return true;
@@ -417,13 +426,13 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
                 }
             }
 
-            ItemStack output = recipe.getOutput();
-
+            ItemStack recipeOutput = recipe.getOutput();
             ItemStack existingOutput = defaultedList.get(15);
             if (existingOutput.isEmpty()) {
-                defaultedList.set(15, output.copy());
-            } else if (existingOutput.isOf(output.getItem())) {
-                existingOutput.increment(output.getCount());
+                defaultedList.set(15, recipeOutput.copy());
+            } else {
+                existingOutput.increment(recipeOutput.getCount());
+                defaultedList.set(15, existingOutput);
             }
 
             return true;

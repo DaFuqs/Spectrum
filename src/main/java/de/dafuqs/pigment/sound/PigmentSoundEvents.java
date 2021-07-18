@@ -24,7 +24,12 @@ public class PigmentSoundEvents {
 
     public static SoundEvent LIQUID_CRYSTAL_AMBIENT = register("liquid_crystal_ambient");
     public static SoundEvent MUD_AMBIENT = register("mud_ambient");
-    public static SoundEvent ALTAR_USE = register("altar_use");
+    public static SoundEvent ALTAR_CRAFT_GENERIC = register("altar_craft_generic");
+    public static SoundEvent ALTAR_CRAFT_AMETHYST = register("altar_craft_amethyst");
+    public static SoundEvent ALTAR_CRAFT_CITRINE = register("altar_craft_citrine");
+    public static SoundEvent ALTAR_CRAFT_TOPAZ = register("altar_craft_topaz");
+    public static SoundEvent ALTAR_CRAFT_ONYX = register("altar_craft_onyx");
+    public static SoundEvent ALTAR_CRAFT_MOONSTONE = register("altar_craft_moonstone");
 
     // TODO: customize sounds from here
     public static SoundEvent BLOCK_CITRINE_BLOCK_BREAK = register("block_citrine_block_break");

@@ -78,17 +78,58 @@
       "pigment:dimension_ambient3"
     ]
   },
-  "altar_use": {
-    "subtitle": "pigment.subtitles.blocks.altar.use",
+  "altar_craft_generic": {
+    "subtitle": "pigment.subtitles.blocks.altar.craft",
     "sounds": [
-      "pigment:block/altar/altar_use1",
-      "pigment:block/altar/altar_use2",
-      "pigment:block/altar/altar_use3",
-      "pigment:block/altar/altar_use4",
-      "pigment:block/altar/altar_use5",
-      "pigment:block/altar/altar_use6",
-      "pigment:block/altar/altar_use7",
-      "pigment:block/altar/altar_use8"
+      "block/deepslate/break1",
+      "block/deepslate/break2",
+      "block/deepslate/break3",
+      "block/deepslate/break4"
+    ]
+  },
+  "altar_craft_amethyst": {
+    "subtitle": "pigment.subtitles.blocks.altar.craft",
+    "sounds": [
+      "block/amethyst/break1",
+      "block/amethyst/break2",
+      "block/amethyst/break3",
+      "block/amethyst/break4"
+    ]
+  },
+  "altar_craft_citrine": {
+    "subtitle": "pigment.subtitles.blocks.altar.craft",
+    "sounds": [
+      "pigment:block/citrine/block_citrine_cluster_break1",
+      "pigment:block/citrine/block_citrine_cluster_break2",
+      "pigment:block/citrine/block_citrine_cluster_break3",
+      "pigment:block/citrine/block_citrine_cluster_break4"
+    ]
+  },
+  "altar_craft_topaz": {
+    "subtitle": "pigment.subtitles.blocks.altar.craft",
+    "sounds": [
+      "pigment:block/topaz/block_topaz_cluster_break1",
+      "pigment:block/topaz/block_topaz_cluster_break2",
+      "pigment:block/topaz/block_topaz_cluster_break3",
+      "pigment:block/topaz/block_topaz_cluster_break4"
+    ]
+  },
+  "altar_craft_onyx": {
+    "subtitle": "pigment.subtitles.blocks.altar.craft",
+    "sounds": [
+      "pigment:block/onyx/block_onyx_cluster_break1",
+      "pigment:block/onyx/block_onyx_cluster_break2",
+      "pigment:block/onyx/block_onyx_cluster_break3",
+      "pigment:block/onyx/block_onyx_cluster_break4"
+    ]
+  },
+  "altar_craft_moonstone": {
+    "subtitle": "pigment.subtitles.blocks.altar.craft",
+    "sounds": [
+      "pigment:block/moonstone/block_moonstone_cluster_break1",
+      "pigment:block/moonstone/block_moonstone_cluster_break2",
+      "pigment:block/moonstone/block_moonstone_cluster_break3",
+      "pigment:block/moonstone/block_moonstone_cluster_break4"
     ]
   },
   "natures_staff_use": {

@@ -26,7 +26,7 @@
   "pigment.subtitles.block.mud.ambient": "Mud flows",
   "pigment.subtitles.block.liquid_crystal.ambient": "Liquid Crystal chimes",
   "pigment.subtitles.dimension.ambient": "Cave howls",
-  "pigment.subtitles.blocks.altar.use": "Pedestal dings",
+  "pigment.subtitles.blocks.altar.craft": "Pedestal dings",
 
   "pigment.subtitles.block.decay1.place": "High pitched screeching",
   "pigment.subtitles.block.decay2.place": "High pitched screeching",

@@ -4,6 +4,7 @@ import de.dafuqs.pigment.enums.PigmentColor;
 import de.dafuqs.pigment.recipe.PigmentRecipeTypes;
 import de.dafuqs.pigment.registries.PigmentBlocks;
 import de.dafuqs.pigment.registries.PigmentItems;
+import de.dafuqs.pigment.sound.PigmentSoundEvents;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -11,12 +12,16 @@ import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.RecipeType;
+import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Random;
 
 public class AltarCraftingRecipe implements Recipe<Inventory> {
 
@@ -195,6 +200,37 @@ public class AltarCraftingRecipe implements Recipe<Inventory> {
 
     public int getHeight() {
         return this.height;
+    }
+
+    /**
+     * Returns a sound event matching for this recipe.
+     * Dependent on the amount of gemstone dust used in it
+     * @return The sound effect to play when this recipe is finished
+     */
+    public SoundEvent getSoundEvent(Random random) {
+        List<SoundEvent> choices = new ArrayList<>();
+
+        for(int i = 0; i < this.pigmentInputs.get(PigmentColor.MAGENTA); i++) {
+            choices.add(PigmentSoundEvents.ALTAR_CRAFT_AMETHYST);
+        }
+        for(int i = 0; i < this.pigmentInputs.get(PigmentColor.YELLOW); i++) {
+            choices.add(PigmentSoundEvents.ALTAR_CRAFT_CITRINE);
+        }
+        for(int i = 0; i < this.pigmentInputs.get(PigmentColor.CYAN); i++) {
+            choices.add(PigmentSoundEvents.ALTAR_CRAFT_TOPAZ);
+        }
+        for(int i = 0; i < this.pigmentInputs.get(PigmentColor.BLACK); i++) {
+            choices.add(PigmentSoundEvents.ALTAR_CRAFT_ONYX);
+        }
+        for(int i = 0; i < this.pigmentInputs.get(PigmentColor.WHITE); i++) {
+            choices.add(PigmentSoundEvents.ALTAR_CRAFT_MOONSTONE);
+        }
+
+        if(choices.size() == 0) {
+            return PigmentSoundEvents.ALTAR_CRAFT_GENERIC;
+        } else {
+            return choices.get(random.nextInt(choices.size()));
+        }
     }
 
 }

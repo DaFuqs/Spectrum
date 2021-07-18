@@ -1,9 +1,20 @@
 {
   "values": [
-    "pigment:citrine_shard",
-    "pigment:topaz_shard",
-    "pigment:moonstone_shard",
-    "pigment:onyx_shard",
-    "pigment:rainbow_moonstone_shard"
+    "pigment:black_pigment",
+    "pigment:blue_pigment",
+    "pigment:brown_pigment",
+    "pigment:cyan_pigment",
+    "pigment:gray_pigment",
+    "pigment:green_pigment",
+    "pigment:light_blue_pigment",
+    "pigment:light_gray_pigment",
+    "pigment:lime_pigment",
+    "pigment:magenta_pigment",
+    "pigment:orange_pigment",
+    "pigment:pink_pigment",
+    "pigment:purple_pigment",
+    "pigment:red_pigment",
+    "pigment:white_pigment",
+    "pigment:yellow_pigment"
   ]
 }

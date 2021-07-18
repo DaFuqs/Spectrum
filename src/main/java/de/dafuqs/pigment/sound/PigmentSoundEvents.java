@@ -1,8 +1,11 @@
 package de.dafuqs.pigment.sound;
 
+import de.dafuqs.pigment.PigmentCommon;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
+import org.apache.logging.log4j.Level;
+import org.lwjgl.system.CallbackI;
 
 public class PigmentSoundEvents {
 
@@ -19,11 +22,11 @@ public class PigmentSoundEvents {
     public static SoundEvent ENDER_SPLICE_BOUND = register("ender_splice_bound");
     public static SoundEvent NATURES_STAFF_USE = register("natures_staff_use");
 
-    // TODO: Add sounds from here
     public static SoundEvent LIQUID_CRYSTAL_AMBIENT = register("liquid_crystal_ambient");
     public static SoundEvent MUD_AMBIENT = register("mud_ambient");
     public static SoundEvent ALTAR_USE = register("altar_use");
 
+    // TODO: customize sounds from here
     public static SoundEvent BLOCK_CITRINE_BLOCK_BREAK = register("block_citrine_block_break");
     public static SoundEvent BLOCK_CITRINE_BLOCK_STEP = register("block_citrine_block_step");
     public static SoundEvent BLOCK_CITRINE_BLOCK_PLACE = register("block_citrine_block_place");
@@ -90,12 +93,12 @@ public class PigmentSoundEvents {
     public static SoundEvent BLOCK_LARGE_MOONSTONE_BUD_BREAK = register("block_large_moonstone_bud_break");
     public static SoundEvent BLOCK_LARGE_MOONSTONE_BUD_PLACE = register("block_large_moonstone_bud_place");
 
-    public static SoundEvent BLOCK_RAINBOW_MOONSTONE_BLOCK_BREAK = register("block_rainbow_moonstone_block_break");
-    public static SoundEvent BLOCK_RAINBOW_MOONSTONE_BLOCK_STEP = register("block_rainbow_moonstone_block_step");
-    public static SoundEvent BLOCK_RAINBOW_MOONSTONE_BLOCK_PLACE = register("block_rainbow_moonstone_block_place");
-    public static SoundEvent BLOCK_RAINBOW_MOONSTONE_BLOCK_FALL = register("block_rainbow_moonstone_block_fall");
-    public static SoundEvent BLOCK_RAINBOW_MOONSTONE_BLOCK_HIT = register("block_rainbow_moonstone_block_hit");
-    public static SoundEvent BLOCK_RAINBOW_MOONSTONE_BLOCK_CHIME = register("block_rainbow_moonstone_block_chime");
+    public static SoundEvent BLOCK_AMMOLITE_BLOCK_BREAK = register("block_ammolite_block_break");
+    public static SoundEvent BLOCK_AMMOLITE_BLOCK_STEP = register("block_ammolite_block_step");
+    public static SoundEvent BLOCK_AMMOLITE_BLOCK_PLACE = register("block_ammolite_block_place");
+    public static SoundEvent BLOCK_AMMOLITE_BLOCK_FALL = register("block_ammolite_block_fall");
+    public static SoundEvent BLOCK_AMMOLITE_BLOCK_HIT = register("block_ammolite_block_hit");
+    public static SoundEvent BLOCK_AMMOLITE_BLOCK_CHIME = register("block_ammolite_block_chime");
 
     public static SoundEvent BLOCK_CITRINE_BLOCK_CHIME = register("block_citrine_block_chime");
     public static SoundEvent BLOCK_TOPAZ_BLOCK_CHIME = register("block_topaz_block_chime");
@@ -103,11 +106,12 @@ public class PigmentSoundEvents {
     public static SoundEvent BLOCK_MOONSTONE_BLOCK_CHIME = register("block_moonstone_block_chime");
 
     private static SoundEvent register(String id) {
-        return Registry.register(Registry.SOUND_EVENT, id, new SoundEvent(new Identifier(id)));
+        Identifier identifier = new Identifier(PigmentCommon.MOD_ID, id);
+        return Registry.register(Registry.SOUND_EVENT, identifier, new SoundEvent(identifier));
     }
 
     public static void register() {
-
+        PigmentCommon.LOGGER.log(Level.INFO, "Registering Sound Events...");
     }
 
 }

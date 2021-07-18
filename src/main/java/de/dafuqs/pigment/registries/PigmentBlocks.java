@@ -111,7 +111,7 @@ public class PigmentBlocks {
     public static final Block MOONSTONE_BLOCK = new PigmentGemstoneBlock(FabricBlockSettings.of(Material.AMETHYST, MapColor.WHITE).hardness(1.5F).sounds(PigmentBlockSoundGroups.MOONSTONE_BLOCK).requiresTool().breakByTool(FabricToolTags.PICKAXES, 2), PigmentSoundEvents.BLOCK_MOONSTONE_BLOCK_HIT, PigmentSoundEvents.BLOCK_MOONSTONE_BLOCK_CHIME);
     public static final Block BUDDING_MOONSTONE = new PigmentBuddingBlock(FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).ticksRandomly().sounds(PigmentBlockSoundGroups.MOONSTONE_BLOCK).requiresTool().breakByTool(FabricToolTags.PICKAXES, 2), SMALL_MOONSTONE_BUD, MEDIUM_MOONSTONE_BUD, LARGE_MOONSTONE_BUD, MOONSTONE_CLUSTER, PigmentSoundEvents.BLOCK_MOONSTONE_BLOCK_HIT, PigmentSoundEvents.BLOCK_MOONSTONE_BLOCK_CHIME);
 
-    public static final Block RAINBOW_MOONSTONE_BLOCK = new PigmentGemstoneBlock(FabricBlockSettings.of(Material.AMETHYST, MapColor.DIAMOND_BLUE).hardness(1.5F).sounds(PigmentBlockSoundGroups.RAINBOW_MOONSTONE_BLOCK).requiresTool().breakByTool(FabricToolTags.PICKAXES, 2), PigmentSoundEvents.BLOCK_RAINBOW_MOONSTONE_BLOCK_HIT, PigmentSoundEvents.BLOCK_RAINBOW_MOONSTONE_BLOCK_CHIME);
+    public static final Block AMMOLITE_BLOCK = new PigmentGemstoneBlock(FabricBlockSettings.of(Material.AMETHYST, MapColor.DIAMOND_BLUE).hardness(1.5F).sounds(PigmentBlockSoundGroups.AMMOLITE_BLOCK).requiresTool().breakByTool(FabricToolTags.PICKAXES, 2), PigmentSoundEvents.BLOCK_AMMOLITE_BLOCK_HIT, PigmentSoundEvents.BLOCK_AMMOLITE_BLOCK_CHIME);
 
     private static final FabricBlockSettings gemOreBlockSettings = FabricBlockSettings.copyOf(Blocks.IRON_ORE).breakByTool(FabricToolTags.PICKAXES, 3);
     public static final Block AMETHYST_ORE = new OreBlock(gemOreBlockSettings);
@@ -1278,8 +1278,8 @@ public class PigmentBlocks {
         registerBlock("moonstone_cluster", MOONSTONE_CLUSTER);
         registerBlockItem("moonstone_cluster", new BlockItem(MOONSTONE_CLUSTER, fabricItemSettings));
 
-        registerBlock("rainbow_moonstone_block", RAINBOW_MOONSTONE_BLOCK);
-        registerBlockItem("rainbow_moonstone_block", new BlockItem(RAINBOW_MOONSTONE_BLOCK, fabricItemSettings));
+        registerBlock("ammolite_block", AMMOLITE_BLOCK);
+        registerBlockItem("ammolite_block", new BlockItem(AMMOLITE_BLOCK, fabricItemSettings));
         
         // storage blocks
         registerBlock("amethyst_storage_block", AMETHYST_STORAGE_BLOCK);

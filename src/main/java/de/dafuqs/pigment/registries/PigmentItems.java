@@ -87,7 +87,7 @@ public class PigmentItems {
     public static final Item TOPAZ_SHARD_ITEM = new Item(pigmentWorldgenItemSettings);
     public static final Item ONYX_SHARD_ITEM = new Item(pigmentWorldgenItemSettings);
     public static final Item MOONSTONE_SHARD_ITEM = new Item(pigmentWorldgenItemSettings);
-    public static final Item RAINBOW_MOONSTONE_ITEM = new Item(pigmentWorldgenItemSettings);
+    public static final Item AMMOLITE_ITEM = new Item(pigmentWorldgenItemSettings);
 
     // DECAY DROPS
     public static final Item VEGETAL = new Item(generalItemSettings);
@@ -209,7 +209,7 @@ public class PigmentItems {
         register("topaz_shard", TOPAZ_SHARD_ITEM);
         register("onyx_shard", ONYX_SHARD_ITEM);
         register("moonstone_shard", MOONSTONE_SHARD_ITEM);
-        register("rainbow_moonstone_shard", RAINBOW_MOONSTONE_ITEM);
+        register("ammolite_shard", AMMOLITE_ITEM);
 
         register("vegetal", VEGETAL);
         register("corrupted_obsidian_dust", CORRUPTED_OBSIDIAN_DUST);

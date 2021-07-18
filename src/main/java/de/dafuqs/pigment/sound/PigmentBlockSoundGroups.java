@@ -28,7 +28,7 @@ public class PigmentBlockSoundGroups {
     public static BlockSoundGroup MEDIUM_MOONSTONE_BUD;
     public static BlockSoundGroup LARGE_MOONSTONE_BUD;
 
-    public static BlockSoundGroup RAINBOW_MOONSTONE_BLOCK;
+    public static BlockSoundGroup AMMOLITE_BLOCK;
 
     public static void register() {
         CITRINE_BLOCK = new BlockSoundGroup(1.0F, 1.0F, PigmentSoundEvents.BLOCK_CITRINE_BLOCK_BREAK, PigmentSoundEvents.BLOCK_CITRINE_BLOCK_STEP, PigmentSoundEvents.BLOCK_CITRINE_BLOCK_PLACE, PigmentSoundEvents.BLOCK_CITRINE_BLOCK_HIT, PigmentSoundEvents.BLOCK_CITRINE_BLOCK_FALL);
@@ -55,7 +55,7 @@ public class PigmentBlockSoundGroups {
         MEDIUM_MOONSTONE_BUD = new BlockSoundGroup(1.0F, 1.0F, PigmentSoundEvents.BLOCK_MEDIUM_MOONSTONE_BUD_BREAK, PigmentSoundEvents.BLOCK_MOONSTONE_CLUSTER_STEP, PigmentSoundEvents.BLOCK_MEDIUM_MOONSTONE_BUD_PLACE, PigmentSoundEvents.BLOCK_MOONSTONE_CLUSTER_HIT, PigmentSoundEvents.BLOCK_MOONSTONE_CLUSTER_FALL);
         LARGE_MOONSTONE_BUD = new BlockSoundGroup(1.0F, 1.0F, PigmentSoundEvents.BLOCK_LARGE_MOONSTONE_BUD_BREAK, PigmentSoundEvents.BLOCK_MOONSTONE_CLUSTER_STEP, PigmentSoundEvents.BLOCK_LARGE_MOONSTONE_BUD_PLACE, PigmentSoundEvents.BLOCK_MOONSTONE_CLUSTER_HIT, PigmentSoundEvents.BLOCK_MOONSTONE_CLUSTER_FALL);
 
-        RAINBOW_MOONSTONE_BLOCK = new BlockSoundGroup(1.0F, 1.0F, PigmentSoundEvents.BLOCK_RAINBOW_MOONSTONE_BLOCK_BREAK, PigmentSoundEvents.BLOCK_RAINBOW_MOONSTONE_BLOCK_STEP, PigmentSoundEvents.BLOCK_RAINBOW_MOONSTONE_BLOCK_PLACE, PigmentSoundEvents.BLOCK_RAINBOW_MOONSTONE_BLOCK_HIT, PigmentSoundEvents.BLOCK_RAINBOW_MOONSTONE_BLOCK_FALL);
+        AMMOLITE_BLOCK = new BlockSoundGroup(1.0F, 1.0F, PigmentSoundEvents.BLOCK_AMMOLITE_BLOCK_BREAK, PigmentSoundEvents.BLOCK_AMMOLITE_BLOCK_STEP, PigmentSoundEvents.BLOCK_AMMOLITE_BLOCK_PLACE, PigmentSoundEvents.BLOCK_AMMOLITE_BLOCK_HIT, PigmentSoundEvents.BLOCK_AMMOLITE_BLOCK_FALL);
 
     }
 

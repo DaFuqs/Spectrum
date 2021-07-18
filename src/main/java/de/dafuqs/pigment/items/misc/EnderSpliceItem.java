@@ -73,9 +73,7 @@ public class EnderSpliceItem extends Item {
 
             return itemStack;
         } else {
-            if(world.isClient) {
-
-            } else {
+            if(!world.isClient) {
                 Vec3d pos = user.getPos();
 
                 if (nbtCompound == null) {

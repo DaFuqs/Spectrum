@@ -23,6 +23,11 @@
 
   "death.attack.pigment_decay": "%s made contact with the void",
 
+  "pigment.subtitles.block.mud.ambient": "Mud flows",
+  "pigment.subtitles.block.liquid_crystal.ambient": "Liquid Crystal chimes",
+  "pigment.subtitles.dimension.ambient": "Cave howls",
+  "pigment.subtitles.blocks.altar.use": "Pedestal dings",
+
   "pigment.subtitles.block.decay1.place": "High pitched screeching",
   "pigment.subtitles.block.decay2.place": "High pitched screeching",
   "pigment.subtitles.block.decay3.place": "High pitched screeching",
@@ -359,7 +364,7 @@
   "item.pigment.topaz_shard": "Topaz Shard",
   "item.pigment.onyx_shard": "Onyx Shard",
   "item.pigment.moonstone_shard": "Moonstone Shard",
-  "item.pigment.rainbow_moonstone_shard": "Glistering Moonstone Shard",
+  "item.pigment.ammolite_shard": "Glistering Ammolite Shard",
 
   "item.pigment.vegetal": "Vegetal",
   "item.pigment.corrupted_obsidian_dust": "Corrupted Obsidian Dust",
@@ -388,7 +393,7 @@
   "block.pigment.glistering_melon_stem": "Glistering Melon Stem",
   "block.pigment.attached_glistering_melon_stem": "Glistering Melon Stem",
 
-  "block.pigment.rainbow_moonstone_block": "Block of Glistering Moonstone",
+  "block.pigment.ammolite_block": "Block of Glistering Ammolite",
   "block.pigment.small_citrine_bud": "Small Citrine Bud",
   "block.pigment.medium_citrine_bud": "Medium Citrine Bud",
   "block.pigment.large_citrine_bud": "Large Citrine Bud",

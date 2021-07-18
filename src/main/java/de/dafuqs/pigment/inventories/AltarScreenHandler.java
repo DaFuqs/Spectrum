@@ -149,7 +149,7 @@ public class AltarScreenHandler extends AbstractRecipeScreenHandler<Inventory> {
     // 0-8: crafting slots
     // 9-13: pigment slots
     // 14: preview slot
-    // 15: output slot
+    // 15: hidden output slot
     @Override
     public ItemStack transferSlot(PlayerEntity player, int index) {
         ItemStack clickedStackCopy = ItemStack.EMPTY;

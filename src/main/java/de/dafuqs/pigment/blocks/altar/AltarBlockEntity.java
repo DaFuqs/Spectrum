@@ -70,7 +70,7 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
         super(PigmentBlockEntityRegistry.ALTAR_BLOCK_ENTITY_TYPE, blockPos, blockState);
 
         if(autoCraftingInventory == null) {
-            autoCraftingInventory = new AutoCraftingInventory();
+            autoCraftingInventory = new AutoCraftingInventory(3, 3);
         }
 
         this.inventory = DefaultedList.ofSize(9+5+1+1, ItemStack.EMPTY); // 9 crafting, 5 gems, 1 preview, 1 output

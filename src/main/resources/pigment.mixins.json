@@ -17,6 +17,7 @@
     "ItemEntityMixin",
     "ItemFrameEntityMixin",
     "ItemModelsMixin",
+    "ItemStackMixin",
     "LivingEntityMixin",
     "MobSpawnerBlockEntityMixin",
     "ServerPlayerEntityMixin",

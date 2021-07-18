@@ -14,9 +14,13 @@ public class AutoCraftingInventory extends AutoInventory {
 
     List<ItemStack> inputInventory;
 
-    public AutoCraftingInventory() {
-        super();
-        inputInventory = DefaultedList.ofSize(9, ItemStack.EMPTY);
+    public AutoCraftingInventory(int width, int height) {
+        this(width, height, 0);
+    }
+
+    public AutoCraftingInventory(int width, int height, int additionalSlots) {
+        super(width, height);
+        inputInventory = DefaultedList.ofSize(width*height + additionalSlots, ItemStack.EMPTY);
     }
 
     public void setInputInventory(List<ItemStack> inputInventory) {
@@ -25,7 +29,7 @@ public class AutoCraftingInventory extends AutoInventory {
 
     @Override
     public int size() {
-        return 9;
+        return inputInventory.size();
     }
 
     @Override

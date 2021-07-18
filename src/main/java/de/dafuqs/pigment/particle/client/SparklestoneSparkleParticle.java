@@ -4,8 +4,6 @@ import net.minecraft.client.particle.*;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.particle.DefaultParticleType;
 
-import java.util.Random;
-
 public class SparklestoneSparkleParticle extends AbstractSlowingParticle {
 
 	protected SparklestoneSparkleParticle(ClientWorld clientWorld, double x, double y, double z, double velocityX, double velocityY, double velocityZ) {

@@ -5,8 +5,8 @@ import net.minecraft.inventory.CraftingInventory;
 
 public abstract class AutoInventory extends CraftingInventory {
 
-    public AutoInventory() {
-        super(null, 3, 3);
+    public AutoInventory(int width, int height) {
+        super(null, width, height);
     }
 
     @Override

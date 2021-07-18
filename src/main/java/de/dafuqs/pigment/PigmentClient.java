@@ -2,7 +2,6 @@ package de.dafuqs.pigment;
 
 import de.dafuqs.pigment.entity.PigmentEntityRenderers;
 import de.dafuqs.pigment.entity.PigmentEntityTypes;
-import de.dafuqs.pigment.inventories.AltarScreen;
 import de.dafuqs.pigment.inventories.PigmentContainers;
 import de.dafuqs.pigment.inventories.PigmentScreenHandlerTypes;
 import de.dafuqs.pigment.items.misc.EnderSpliceItem;
@@ -14,7 +13,6 @@ import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientLifecycleEvents;
 import net.fabricmc.fabric.api.client.rendereregistry.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
-import net.fabricmc.fabric.api.client.screenhandler.v1.ScreenRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.client.model.FabricModelPredicateProviderRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -40,7 +38,7 @@ public class PigmentClient implements ClientModInitializer {
         PigmentFluids.registerClient();
 
         PigmentContainers.register();
-        ScreenRegistry.register(PigmentScreenHandlerTypes.ALTAR, AltarScreen::new);
+        PigmentScreenHandlerTypes.registerClient();
 
         registerBowPredicates(PigmentItems.BEDROCK_BOW);
         registerCrossbowPredicates(PigmentItems.BEDROCK_CROSSBOW);

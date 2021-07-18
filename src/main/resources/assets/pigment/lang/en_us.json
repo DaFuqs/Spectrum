@@ -525,7 +525,9 @@
   "item.pigment.ender_splice.wrong_dimension": "This Ender Splices energy is not strong enough to teleport you across dimensions.",
   "item.pigment.natures_staff": "Nature's Staff",
 
-  "item.pigment.crafting_template": "Crafting Template",
+  "item.pigment.crafting_tablet": "Crafting Tablet",
+  "item.pigment.crafting_tablet.tooltip.no_recipe": "No recipe.",
+  "item.pigment.crafting_tablet.tooltip.recipe": "Crafting: %d %s",
 
   "container.pigment.rei.altar_crafting.title": "Pigment Pedestal Crafting",
   "container.pigment.rei.altar.crafting_time_and_xp": "%f seconds - %f XP",

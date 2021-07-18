@@ -15,7 +15,7 @@ public class AutoCompactingInventory extends AutoInventory {
     ItemStack inputItemStack;
 
     public AutoCompactingInventory() {
-        super();
+        super(3, 3);
         this.inputItemStack = ItemStack.EMPTY;
         this.autoCraftingMode = AutoCraftingMode.ThreeXTree;
     }

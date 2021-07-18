@@ -11,6 +11,7 @@ import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.predicate.entity.EntityPredicates;
+import net.minecraft.recipe.Ingredient;
 import net.minecraft.util.Pair;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
@@ -102,6 +103,38 @@ public class InventoryHelper {
             }
         }
         return false;
+    }
+
+    public static boolean removeFromInventory(List<Ingredient> ingredients, Inventory inventory, boolean test) {
+        List<Ingredient> ingredientsToFind = new ArrayList<>(ingredients);
+
+        for(int i = 0; i < inventory.size(); i++) {
+            if(ingredientsToFind.size() == 0) {
+                break;
+            }
+            ItemStack currentStack = inventory.getStack(i);
+
+            int amount = currentStack.getCount();
+            for(int j = 0; j < ingredientsToFind.size(); j++) {
+                Ingredient ingredient = ingredientsToFind.get(j);
+
+                if (amount > 0 && ingredient.test(currentStack)) {
+                    ingredientsToFind.remove(j);
+                    j--;
+
+                    amount--;
+                    if(!test) {
+                        if(amount > 0) {
+                            currentStack.setCount(amount);
+                        } else {
+                            inventory.setStack(i, ItemStack.EMPTY);
+                        }
+                    }
+                }
+            }
+        }
+
+        return ingredientsToFind.size() == 0;
     }
 
     public static boolean removeFromInventory(ItemStack removeItemStack, List<ItemStack> inventory) {

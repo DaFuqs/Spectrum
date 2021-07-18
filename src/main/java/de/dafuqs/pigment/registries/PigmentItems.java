@@ -153,7 +153,7 @@ public class PigmentItems {
     // DIV
     public static final Item SPAWNER = new Spawner(Blocks.SPAWNER, pigmentUncommonItemSettings);
     public static final Item GLISTERING_MELON_SEEDS = new AliasedBlockItem(PigmentBlocks.GLISTERING_MELON_STEM, pigmentUncommonItemSettings);
-    public static final Item CRAFTING_TEMPLATE = new Item(generalItemSettings);
+    public static final Item CRAFTING_TABLET = new CraftingTabletItem(generalItemSettings);
 
     private static Item register(String name, Item item) {
         return Registry.register(Registry.ITEM, new Identifier(PigmentCommon.MOD_ID, name), item);
@@ -161,7 +161,7 @@ public class PigmentItems {
 
     public static void register() {
         register("manual", MANUAL);
-        register("crafting_template", CRAFTING_TEMPLATE);
+        register("crafting_tablet", CRAFTING_TABLET);
 
         register("amethyst_powder", AMETHYST_POWDER);
         register("citrine_powder", CITRINE_POWDER);

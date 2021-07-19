@@ -5,103 +5,103 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "From the leaves of $(l:general/gemstone_powder)gemstone powder$() dyed trees$() you could obtain absolutely pure color pigments. These pigments themselves are magical and embody the elements of nature, composed of their original forms $(bold)$(#641f9c)TIME$(), $(bold)$(#f0af15)ENERGY$() and $(bold)$(#2c2e8e)MATTER.$()."
+      "text": "From the leaves of $(l:general/gemstone_powder)gemstone powder$() dyed trees$() you could obtain absolutely pure color pigments. These pigments themselves are magical and embody the elements of nature, composed of their original forms $(bold)$(c_magenta)TIME$(), $(bold)$(c_yellow)ENERGY$() and $(bold)$(c_cyan)MATTER.$()."
     },
     {
       "type": "patchouli:spotlight",
       "advancement": "pigment:get_black_pigment",
       "item": "pigment:black_pigment",
-      "text": ""
+      "text": "The darkest material you have ever held in your hands.$(br2)$(c_black)Plack$() represents the Nothingness of the $(italic)Void$(), $(italic)Power$() and $(italic)Mystery$()."
     },
 	{
       "type": "patchouli:spotlight",
       "advancement": "pigment:get_blue_pigment",
       "item": "pigment:blue_pigment",
-      "text": ""
+      "text": "Holding this item in your hand gives you a sign of security. Of course, all nonsense, after all, they are only pigments. But still...$(br2)$(c_blue)Blue$() represents $(italic)Safety$() and $(italic)Permanence$()."
     },
 	{
       "type": "patchouli:spotlight",
       "advancement": "pigment:get_brown_pigment",
       "item": "pigment:brown_pigment",
-      "text": ""
+      "text": "The juicy lime makes you long for mother nature.$(br2)$(c_brown)Brown$() represents $(italic)Nature$() and $(italic)Stability$()."
     },
 	{
       "type": "patchouli:spotlight",
       "advancement": "pigment:get_cyan_pigment",
       "item": "pigment:cyan_pigment",
-      "text": ""
+      "text": "It makes you feel as if you are sitting on the top of a mountain, taking in the non-ending vastness of the world.$(br2)$(c_cyan)Cyan$() represents $(italic)Matter$() and $(italic)Integrity$()."
     },
 	{
       "type": "patchouli:spotlight",
       "advancement": "pigment:get_gray_pigment",
       "item": "pigment:gray_pigment",
-      "text": ""
+      "text": "This color looks to you like the defeated older brother of light gray. Whenever you look at it you get a little sad, but you don't know exactly why.$(br2)$(c_gray)Gray$() represents $(italic)Evanescence$()."
     },
 	{
       "type": "patchouli:spotlight",
       "advancement": "pigment:get_green_pigment",
       "item": "pigment:green_pigment",
-      "text": ""
+      "text": "This pigment radiates inner peace.$(br2)$(c_green)Green$() represents $(italic)Balance$() and $(italic)Harmony$()."
     },
 	{
       "type": "patchouli:spotlight",
       "advancement": "pigment:get_light_blue_pigment",
       "item": "pigment:light_blue_pigment",
-      "text": ""
+      "text": "Looking at this color you feel a sense of optimism, but also departure.$(br2)$(c_light_blue)Light Blue$() represents $(italic)Luck$() and $(italic)Piece$()."
     },
 	{
       "type": "patchouli:spotlight",
       "advancement": "pigment:get_light_gray_pigment",
       "item": "pigment:light_gray_pigment",
-      "text": ""
+      "text": "You know that feeling when you're sitting serenely, looking at the landscape, feeling life pass you by, and yet everything is okay? $(br2)$(c_light_gray)Light Gray$() represents $(italic)Change$(), but also $(italic)Quiet$()."
     },
 	{
       "type": "patchouli:spotlight",
       "advancement": "pigment:get_lime_pigment",
       "item": "pigment:lime_pigment",
-      "text": ""
+      "text": "It almost smells like a warm morning in spring. Or are you just imagining?$(br2)$(c_lime)Lime$() represents $(italic)Fertility$()."
     },
 	{
       "type": "patchouli:spotlight",
       "advancement": "pigment:get_magenta_pigment",
       "item": "pigment:magenta_pigment",
-      "text": ""
+      "text": "The soft magenta puts you in a calm and content, almost serene mood.$(br2)$(c_magenta)Magenta$() represents $(italic)Time$(), $(italic)Kindness$() and $(italic)Tolerance$()."
     },
 	{
       "type": "patchouli:spotlight",
       "advancement": "pigment:get_orange_pigment",
       "item": "pigment:orange_pigment",
-      "text": ""
+      "text": "The orange color reminds you of autumn and makes you feel a bit like you are sitting in a cozy armchair in front of a fireplace.$(br2)$(c_orange)Orange$() represents $(italic)Warmth$() and $(italic)Comfort$()."
     },
 	{
       "type": "patchouli:spotlight",
       "advancement": "pigment:get_pink_pigment",
       "item": "pigment:pink_pigment",
-      "text": ""
+      "text": "The bright, lively cotton candy pink makes you beam with joy.$(br2)$(c_pink)Pink$() represents $(italic)Happyness$(), $(italic)Health$() and $(italic)Admiration$()."
     },
 	{
       "type": "patchouli:spotlight",
       "advancement": "pigment:get_purple_pigment",
       "item": "pigment:purple_pigment",
-      "text": ""
+      "text": "This sight makes your mind go into high gear. It not only stimulates your thirst for knowledge, but also gives you creative ideas.$(br2)$(c_purple)Purple$() represents $(italic)Wisdom$() and $(italic)Creativity$()."
     },
 	{
       "type": "patchouli:spotlight",
       "advancement": "pigment:get_red_pigment",
       "item": "pigment:red_pigment",
-      "text": ""
+      "text": "You feel the urge and the desire to create something beautiful.$(br2)$(c_red)Red$() represents $(italic)Passion$() and $(italic)Willpower$()."
     },
 	{
       "type": "patchouli:spotlight",
       "advancement": "pigment:get_white_pigment",
       "item": "pigment:white_pigment",
-      "text": ""
+      "text": "You can't exactly put it into words. This pigment radiates something unspeakably wonderful.$(br2)$(c_white)White$() represents $(italic)LIFE$(), $(italic)Purity$() and $(italic)Innocence$()."
     },
 	{
       "type": "patchouli:spotlight",
       "advancement": "pigment:get_yellow_pigment",
       "item": "pigment:yellow_pigment",
-      "text": ""
+      "text": "The vibrant yellow is almost bursting with energy.$(br2)$(c_yellow)Yellow$() represents $(italic)ENERGY$() and $(italic)Joy$()."
     }
   ]
 }

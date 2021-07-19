@@ -66,6 +66,11 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
 
     private static AutoCraftingInventory autoCraftingInventory;
 
+    public static final int INVENTORY_SIZE = 17; // 9 crafting, 5 gems, 1 craftingTablet, 1 preview, 1 output
+    public static final int CRAFTING_TABLET_SLOT_ID = 14;
+    public static final int PREVIEW_SLOT_ID = 15;
+    public static final int OUTPUT_SLOT_ID = 16;
+
     public AltarBlockEntity(BlockPos blockPos, BlockState blockState) {
         super(PigmentBlockEntityRegistry.ALTAR_BLOCK_ENTITY_TYPE, blockPos, blockState);
 
@@ -73,7 +78,7 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
             autoCraftingInventory = new AutoCraftingInventory(3, 3);
         }
 
-        this.inventory = DefaultedList.ofSize(9+5+1+1, ItemStack.EMPTY); // 9 crafting, 5 gems, 1 preview, 1 output
+        this.inventory  = DefaultedList.ofSize(INVENTORY_SIZE, ItemStack.EMPTY);
 
         this.propertyDelegate = new PropertyDelegate() {
             public int get(int index) {
@@ -152,7 +157,7 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
             stack.setCount(this.getMaxCountPerStack());
         }
 
-        if (slot < 15 && !isSimilarItem) {
+        if (slot < CRAFTING_TABLET_SLOT_ID && !isSimilarItem) {
             this.craftingTimeTotal = getCraftingTime(this.world, recipeType, this);
             this.craftingTime = 0;
             this.markDirty();
@@ -177,7 +182,7 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
 
     public void readNbt(NbtCompound tag) {
         super.readNbt(tag);
-        this.inventory = DefaultedList.ofSize(9+5+1+1, ItemStack.EMPTY);
+        this.inventory = DefaultedList.ofSize(INVENTORY_SIZE, ItemStack.EMPTY);
         Inventories.readNbt(tag, this.inventory);
         this.storedXP = tag.getFloat("StoredXP");
         this.craftingTime = tag.getShort("CraftingTime");
@@ -240,19 +245,19 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
                 if (altarCraftingRecipe != null) {
                     altarBlockEntity.lastRecipe = altarCraftingRecipe;
                     altarBlockEntity.craftingTimeTotal = altarCraftingRecipe.getCraftingTime();
-                    altarBlockEntity.inventory.set(14, altarCraftingRecipe.getOutput().copy());
+                    altarBlockEntity.inventory.set(PREVIEW_SLOT_ID, altarCraftingRecipe.getOutput().copy());
                     shouldMarkDirty = true;
                 } else {
                     craftingRecipe = world.getRecipeManager().getFirstMatch(RecipeType.CRAFTING, autoCraftingInventory, world).orElse(null);
                     if (craftingRecipe != null) {
                         altarBlockEntity.lastRecipe = craftingRecipe;
                         altarBlockEntity.craftingTimeTotal = 20;
-                        altarBlockEntity.inventory.set(14, craftingRecipe.getOutput().copy());
+                        altarBlockEntity.inventory.set(PREVIEW_SLOT_ID, craftingRecipe.getOutput().copy());
                         shouldMarkDirty = true;
                     } else {
                         altarBlockEntity.lastRecipe = null;
-                        if(!altarBlockEntity.inventory.get(14).isEmpty()) {
-                            altarBlockEntity.inventory.set(14, ItemStack.EMPTY);
+                        if(!altarBlockEntity.inventory.get(PREVIEW_SLOT_ID).isEmpty()) {
+                            altarBlockEntity.inventory.set(PREVIEW_SLOT_ID, ItemStack.EMPTY);
                             shouldMarkDirty = true;
                         }
                     }
@@ -294,14 +299,14 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
             }
 
             // spawn output item stack in world
-            ItemStack outputItemStack = altarBlockEntity.inventory.get(15);
+            ItemStack outputItemStack = altarBlockEntity.inventory.get(OUTPUT_SLOT_ID);
             if (outputItemStack != ItemStack.EMPTY) {
                 if (world.getBlockState(blockPos.up()).isAir()) {
                     // spawn crafting output
                     ItemEntity itemEntity = new ItemEntity(world, altarBlockEntity.pos.getX() + 0.5, altarBlockEntity.pos.getY() + 1, altarBlockEntity.pos.getZ() + 0.5, outputItemStack);
                     itemEntity.addVelocity(0, 0.1, 0);
                     world.spawnEntity(itemEntity);
-                    altarBlockEntity.inventory.set(15, ItemStack.EMPTY);
+                    altarBlockEntity.inventory.set(OUTPUT_SLOT_ID, ItemStack.EMPTY);
 
                     // spawn XP
                     if(altarBlockEntity.storedXP > 0) {
@@ -351,7 +356,7 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
             if (output.isEmpty()) {
                 return false;
             } else {
-                ItemStack existingOutput = defaultedList.get(15);
+                ItemStack existingOutput = defaultedList.get(OUTPUT_SLOT_ID);
                 if (existingOutput.isEmpty()) {
                     return true;
                 } else if (!existingOutput.isItemEqualIgnoreDamage(output)) {
@@ -390,12 +395,12 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
             }
 
             ItemStack recipeOutput = recipe.getOutput();
-            ItemStack existingOutput = defaultedList.get(15);
+            ItemStack existingOutput = defaultedList.get(OUTPUT_SLOT_ID);
             if (existingOutput.isEmpty()) {
-                defaultedList.set(15, recipeOutput.copy());
+                defaultedList.set(OUTPUT_SLOT_ID, recipeOutput.copy());
             } else {
                 existingOutput.increment(recipeOutput.getCount());
-                defaultedList.set(15, existingOutput);
+                defaultedList.set(OUTPUT_SLOT_ID, existingOutput);
             }
 
             // Add recipe XP
@@ -427,12 +432,12 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
             }
 
             ItemStack recipeOutput = recipe.getOutput();
-            ItemStack existingOutput = defaultedList.get(15);
+            ItemStack existingOutput = defaultedList.get(OUTPUT_SLOT_ID);
             if (existingOutput.isEmpty()) {
-                defaultedList.set(15, recipeOutput.copy());
+                defaultedList.set(OUTPUT_SLOT_ID, recipeOutput.copy());
             } else {
                 existingOutput.increment(recipeOutput.getCount());
-                defaultedList.set(15, existingOutput);
+                defaultedList.set(OUTPUT_SLOT_ID, existingOutput);
             }
 
             return true;
@@ -468,9 +473,11 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
     public boolean isValid(int slot, ItemStack stack) {
         if(slot < 9) {
             return true;
+        } else if(slot == CRAFTING_TABLET_SLOT_ID && stack.isOf(PigmentItems.CRAFTING_TABLET)) {
+            return true;
+        } else {
+            return stack.getItem().equals(getPigmentItemForSlot(slot));
         }
-
-        return stack.getItem().equals(getPigmentItemForSlot(slot));
     }
 
     public static Item getPigmentItemForSlot(int slot) {
@@ -497,7 +504,7 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
     @Override
     public int[] getAvailableSlots(Direction side) {
         if(side == Direction.DOWN) {
-            return new int[]{15};
+            return new int[]{OUTPUT_SLOT_ID};
         } else if(side == Direction.UP) {
             return new int[]{0, 1, 2, 3, 4, 5, 6, 7, 8};
         } else {
@@ -507,12 +514,12 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
 
     @Override
     public boolean canInsert(int slot, ItemStack stack, @Nullable Direction dir) {
-        return slot < 14;
+        return slot < CRAFTING_TABLET_SLOT_ID;
     }
 
     @Override
     public boolean canExtract(int slot, ItemStack stack, Direction dir) {
-        return slot == 15;
+        return slot == OUTPUT_SLOT_ID;
     }
 
     @Override

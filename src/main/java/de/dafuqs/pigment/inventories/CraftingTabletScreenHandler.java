@@ -197,7 +197,6 @@ public class CraftingTabletScreenHandler extends AbstractRecipeScreenHandler<Inv
 
    public void clearCraftingSlots() {
       this.craftingInventory.clear();
-      //this.result.clear();
    }
 
    public boolean matches(Recipe<? super Inventory> recipe) {

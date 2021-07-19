@@ -1,5 +1,6 @@
 package de.dafuqs.pigment.inventories;
 
+import de.dafuqs.pigment.blocks.altar.AltarBlockEntity;
 import de.dafuqs.pigment.inventories.slots.ReadOnlySlot;
 import de.dafuqs.pigment.inventories.slots.StackFilterSlot;
 import de.dafuqs.pigment.recipe.PigmentRecipeTypes;
@@ -36,7 +37,7 @@ public class AltarScreenHandler extends AbstractRecipeScreenHandler<Inventory> {
     }
 
     protected AltarScreenHandler(ScreenHandlerType<?> type, RecipeType<? extends AltarCraftingRecipe> recipeType, RecipeBookCategory recipeBookCategory, int i, PlayerInventory playerInventory) {
-        this(type, recipeType, recipeBookCategory, i, playerInventory, new SimpleInventory(15), new ArrayPropertyDelegate(2));
+        this(type, recipeType, recipeBookCategory, i, playerInventory, new SimpleInventory(AltarBlockEntity.INVENTORY_SIZE), new ArrayPropertyDelegate(2));
     }
 
     public AltarScreenHandler(int syncId, PlayerInventory playerInventory, Inventory inventory, PropertyDelegate propertyDelegate) {
@@ -50,7 +51,7 @@ public class AltarScreenHandler extends AbstractRecipeScreenHandler<Inventory> {
         this.propertyDelegate = propertyDelegate;
         this.world = playerInventory.player.world;
 
-        checkSize(inventory, 9+5);
+        checkSize(inventory, AltarBlockEntity.INVENTORY_SIZE);
         checkDataCount(propertyDelegate, 2);
 
         // crafting slots
@@ -63,14 +64,17 @@ public class AltarScreenHandler extends AbstractRecipeScreenHandler<Inventory> {
         }
 
         // pigment slots
-        this.addSlot(new StackFilterSlot(inventory, 9,  44 + 0 * 18, 77, PigmentItems.AMETHYST_POWDER));
-        this.addSlot(new StackFilterSlot(inventory, 10, 44 + 1 * 18, 77, PigmentItems.CITRINE_POWDER));
+        this.addSlot(new StackFilterSlot(inventory, 9, 44, 77, PigmentItems.AMETHYST_POWDER));
+        this.addSlot(new StackFilterSlot(inventory, 10, 44 + 18, 77, PigmentItems.CITRINE_POWDER));
         this.addSlot(new StackFilterSlot(inventory, 11, 44 + 2 * 18, 77, PigmentItems.TOPAZ_POWDER));
         this.addSlot(new StackFilterSlot(inventory, 12, 44 + 3 * 18, 77, PigmentItems.ONYX_POWDER));
         this.addSlot(new StackFilterSlot(inventory, 13, 44 + 4 * 18, 77, PigmentItems.MOONSTONE_POWDER));
 
+        // crafting tablet slot
+        this.addSlot(new StackFilterSlot(inventory, AltarBlockEntity.CRAFTING_TABLET_SLOT_ID, 93, 18, PigmentItems.CRAFTING_TABLET));
+
         // preview slot
-        this.addSlot(new ReadOnlySlot(inventory, 14, 127, 37));
+        this.addSlot(new ReadOnlySlot(inventory, AltarBlockEntity.PREVIEW_SLOT_ID, 127, 37));
 
         // player inventory
         int l;
@@ -105,7 +109,7 @@ public class AltarScreenHandler extends AbstractRecipeScreenHandler<Inventory> {
     }
 
     public int getCraftingResultSlotIndex() {
-        return 15;
+        return 16;
     }
 
     public int getCraftingWidth() {
@@ -148,8 +152,9 @@ public class AltarScreenHandler extends AbstractRecipeScreenHandler<Inventory> {
     // Shift-Clicking
     // 0-8: crafting slots
     // 9-13: pigment slots
-    // 14: preview slot
-    // 15: hidden output slot
+    // 14: crafting tablet
+    // 15: preview slot
+    // 16: hidden output slot
     @Override
     public ItemStack transferSlot(PlayerEntity player, int index) {
         ItemStack clickedStackCopy = ItemStack.EMPTY;
@@ -158,7 +163,8 @@ public class AltarScreenHandler extends AbstractRecipeScreenHandler<Inventory> {
             ItemStack clickedStack = slot.getStack();
             clickedStackCopy = clickedStack.copy();
 
-            if(index < 14) {
+            if(index < AltarBlockEntity.PREVIEW_SLOT_ID) {
+                // altar => player inv
                 if (!this.insertItem(clickedStack, 15, 51, false)) {
                     return ItemStack.EMPTY;
                 }
@@ -182,9 +188,13 @@ public class AltarScreenHandler extends AbstractRecipeScreenHandler<Inventory> {
                 if(!this.insertItem(clickedStack, 13, 14, false)) {
                     return ItemStack.EMPTY;
                 }
+            } else if(clickedStackCopy.isOf(PigmentItems.CRAFTING_TABLET)) {
+                if(!this.insertItem(clickedStack, AltarBlockEntity.CRAFTING_TABLET_SLOT_ID, 15, false)) {
+                    return ItemStack.EMPTY;
+                }
             }
 
-            // crafting table
+            // crafting grid
             if (!this.insertItem(clickedStack, 0, 8, false)) {
                 return ItemStack.EMPTY;
             }

@@ -43,16 +43,13 @@ public class CraftingTabletInventory extends CraftingInventory {
          }
          return itemStack;
       } else {
-         return super.removeStack(slot);
+         return super.removeStack(slot, amount);
       }
    }
 
    public void setStack(int slot, ItemStack stack) {
       if(slot > 8) {
          this.gemAndOutputStacks.set(slot - 9, stack);
-         if(slot != 14) {
-            this.handler.onContentChanged(this);
-         }
       } else {
          super.setStack(slot, stack);
       }

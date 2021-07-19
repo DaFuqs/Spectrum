@@ -59,7 +59,7 @@ public class CraftingTabletItem extends Item {
         return new SimpleNamedScreenHandlerFactory((syncId, inventory, player) -> new CraftingTabletScreenHandler(syncId, inventory, ScreenHandlerContext.create(world, serverPlayerEntity.getBlockPos()), itemStack), TITLE);
     }
 
-    private Recipe getStoredRecipe(World world, ItemStack itemStack) {
+    public static Recipe getStoredRecipe(World world, ItemStack itemStack) {
         NbtCompound nbtCompound = itemStack.getTag();
 
         if(nbtCompound != null && nbtCompound.contains("recipe")) {

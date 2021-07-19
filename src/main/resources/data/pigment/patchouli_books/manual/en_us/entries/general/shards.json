@@ -45,8 +45,8 @@
     {
        "type": "patchouli:spotlight",
        "title": "Ammonite",
-       "item": "pigment:ammonite_shard",
-       "text": "Ammonite shards shine in all colors of the rainbow."
+       "item": "pigment:ammolite_shard",
+       "text": "Ammolite shards shine in all colors of the rainbow."
     }
   ]
 }

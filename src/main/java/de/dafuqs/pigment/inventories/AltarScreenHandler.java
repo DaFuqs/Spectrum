@@ -71,7 +71,7 @@ public class AltarScreenHandler extends AbstractRecipeScreenHandler<Inventory> {
         this.addSlot(new StackFilterSlot(inventory, 13, 44 + 4 * 18, 77, PigmentItems.MOONSTONE_POWDER));
 
         // crafting tablet slot
-        this.addSlot(new StackFilterSlot(inventory, AltarBlockEntity.CRAFTING_TABLET_SLOT_ID, 93, 18, PigmentItems.CRAFTING_TABLET));
+        this.addSlot(new StackFilterSlot(inventory, AltarBlockEntity.CRAFTING_TABLET_SLOT_ID, 93, 19, PigmentItems.CRAFTING_TABLET));
 
         // preview slot
         this.addSlot(new ReadOnlySlot(inventory, AltarBlockEntity.PREVIEW_SLOT_ID, 127, 37));

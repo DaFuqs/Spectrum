@@ -6,6 +6,7 @@ import de.dafuqs.pigment.enums.PigmentColor;
 import de.dafuqs.pigment.interfaces.PlayerOwned;
 import de.dafuqs.pigment.inventories.AltarScreenHandler;
 import de.dafuqs.pigment.inventories.AutoCraftingInventory;
+import de.dafuqs.pigment.items.misc.CraftingTabletItem;
 import de.dafuqs.pigment.recipe.PigmentRecipeTypes;
 import de.dafuqs.pigment.recipe.altar.AltarCraftingRecipe;
 import de.dafuqs.pigment.registries.PigmentBlockEntityRegistry;
@@ -46,6 +47,7 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Iterator;
+import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 
@@ -514,7 +516,55 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
 
     @Override
     public boolean canInsert(int slot, ItemStack stack, @Nullable Direction dir) {
-        return slot < CRAFTING_TABLET_SLOT_ID;
+        if(stack.isOf(getPigmentItemForSlot(slot))) {
+            return true;
+        }
+
+        if(slot < 9 && inventory.get(CRAFTING_TABLET_SLOT_ID).isOf(PigmentItems.CRAFTING_TABLET)) {
+            ItemStack craftingTabletItem = inventory.get(CRAFTING_TABLET_SLOT_ID);
+
+            if(inventory.get(slot).getCount() > 0) {
+                return false;
+            }
+
+            Recipe storedRecipe = CraftingTabletItem.getStoredRecipe(this.world, craftingTabletItem);
+
+            int width = 3;
+            if(storedRecipe instanceof ShapedRecipe) {
+                ShapedRecipe shapedRecipe = (ShapedRecipe) storedRecipe;
+                width = shapedRecipe.getWidth();
+                if(slot % 3 >= width) {
+                    return false;
+                }
+            } else if(storedRecipe instanceof AltarCraftingRecipe) {
+                AltarCraftingRecipe altarCraftingRecipe = (AltarCraftingRecipe) storedRecipe;
+                width = altarCraftingRecipe.getWidth();
+                if(slot % 3 >= width) {
+                    return false;
+                }
+            } else if(storedRecipe instanceof ShapelessRecipe) {
+                // just put it in already
+            } else {
+                return false;
+            }
+
+            int resultRecipeSlot = getCraftingRecipeSlotDependingOnWidth(slot, width, 3);
+            if(resultRecipeSlot < storedRecipe.getIngredients().size()) {
+                Ingredient ingredient = (Ingredient) storedRecipe.getIngredients().get(resultRecipeSlot);
+                return ingredient.test(stack);
+            } else {
+                return false;
+            }
+        } else {
+            return slot < CRAFTING_TABLET_SLOT_ID;
+        }
+    }
+
+    private int getCraftingRecipeSlotDependingOnWidth(int slot, int recipeWidth, int gridWidth) {
+        int line = slot / gridWidth;
+        int posInLine = slot % gridWidth;
+        int result = line * recipeWidth + posInLine;
+        return result;
     }
 
     @Override

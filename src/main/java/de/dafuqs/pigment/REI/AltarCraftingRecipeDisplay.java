@@ -27,7 +27,7 @@ public class AltarCraftingRecipeDisplay<R extends AltarCraftingRecipe> implement
 	protected final int width;
 
 	public AltarCraftingRecipeDisplay(AltarCraftingRecipe recipe) {
-		this.craftingInputs = recipe.getCraftingInputs().stream().map(EntryIngredients::ofIngredient).collect(Collectors.toCollection(ArrayList::new));
+		this.craftingInputs = recipe.getIngredients().stream().map(EntryIngredients::ofIngredient).collect(Collectors.toCollection(ArrayList::new));
 
 		// since some recipes use less than 9 ingredients it will be serialized with less than 9 length.
 		// => fill up to 9 so everything is in order

@@ -119,6 +119,10 @@ public class AltarCraftingRecipe implements Recipe<Inventory> {
         return sourceItemStack.getItem().equals(item) && sourceItemStack.getCount() >= amount;
     }
 
+    public DefaultedList<Ingredient> getIngredients() {
+        return craftingInputs;
+    }
+
     @Override
     public ItemStack craft(Inventory inv) {
         return this.output.copy();
@@ -186,10 +190,6 @@ public class AltarCraftingRecipe implements Recipe<Inventory> {
     }
 
     // REI COMPAT
-    public DefaultedList<Ingredient> getCraftingInputs() {
-        return this.craftingInputs;
-    }
-
     public HashMap<PigmentColor, Integer> getPigmentInputs() {
         return this.pigmentInputs;
     }

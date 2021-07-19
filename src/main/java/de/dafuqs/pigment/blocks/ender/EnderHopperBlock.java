@@ -4,12 +4,15 @@ import de.dafuqs.pigment.registries.PigmentBlockEntityRegistry;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.pathing.NavigationType;
 import net.minecraft.entity.mob.PiglinBrain;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EnderChestInventory;
+import net.minecraft.item.ItemStack;
 import net.minecraft.screen.GenericContainerScreenHandler;
 import net.minecraft.screen.SimpleNamedScreenHandlerFactory;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.stat.Stats;
 import net.minecraft.state.StateManager;
 import net.minecraft.text.TranslatableText;
@@ -42,6 +45,16 @@ public class EnderHopperBlock extends BlockWithEntity {
 
     public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
         return new EnderHopperBlockEntity(pos, state);
+    }
+
+    public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
+        if(placer instanceof ServerPlayerEntity) {
+            BlockEntity blockEntity = world.getBlockEntity(pos);
+            if(blockEntity instanceof EnderHopperBlockEntity) {
+                ((EnderHopperBlockEntity) blockEntity).setOwner((ServerPlayerEntity) placer);
+                blockEntity.markDirty();
+            }
+        }
     }
 
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
@@ -104,7 +117,6 @@ public class EnderHopperBlock extends BlockWithEntity {
         builder.add(ENABLED);
     }
 
-    // TODO: Set owner on place, not on open
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (world.isClient) {
             return ActionResult.SUCCESS;

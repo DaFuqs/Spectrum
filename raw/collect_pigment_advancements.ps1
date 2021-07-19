@@ -12,8 +12,7 @@ New-Item -Name "collect_$_`_pigment.json" -ItemType File -Value @"
           {
             "items": [
               "pigment:$_`_pigment"
-            ],
-            "count": 1
+            ]
           }
         ]
       }

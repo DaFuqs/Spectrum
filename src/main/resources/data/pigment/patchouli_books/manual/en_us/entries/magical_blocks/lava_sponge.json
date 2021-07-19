@@ -1,6 +1,6 @@
 {
   "name": "Lava Sponge",
-  "icon": "pigment:compactor",
+  "icon": "pigment:lava_sponge",
   "category": "pigment:magical_blocks_category",
   "pages": [
     {

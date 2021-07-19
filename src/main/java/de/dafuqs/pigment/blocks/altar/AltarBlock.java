@@ -1,5 +1,6 @@
 package de.dafuqs.pigment.blocks.altar;
 
+import de.dafuqs.pigment.blocks.ender.EnderDropperBlockEntity;
 import de.dafuqs.pigment.registries.PigmentBlockEntityRegistry;
 import de.dafuqs.pigment.registries.PigmentBlocks;
 import net.fabricmc.api.EnvType;
@@ -11,11 +12,14 @@ import net.minecraft.block.BlockWithEntity;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
+import net.minecraft.item.ItemStack;
 import net.minecraft.particle.DustParticleEffect;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.screen.ScreenHandler;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.EnumProperty;
 import net.minecraft.util.ActionResult;
@@ -57,6 +61,16 @@ public class AltarBlock extends BlockWithEntity {
     public AltarBlock(Settings settings) {
         super(settings);
         setDefaultState(getStateManager().getDefaultState().with(STATE, AltarState.DEFAULT));
+    }
+
+    public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
+        if(placer instanceof ServerPlayerEntity) {
+            BlockEntity blockEntity = world.getBlockEntity(pos);
+            if(blockEntity instanceof AltarBlockEntity) {
+                ((AltarBlockEntity) blockEntity).setOwner((ServerPlayerEntity) placer);
+                blockEntity.markDirty();
+            }
+        }
     }
 
     @Override

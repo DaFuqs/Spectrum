@@ -5,12 +5,14 @@ import net.minecraft.block.DispenserBlock;
 import net.minecraft.block.dispenser.DispenserBehavior;
 import net.minecraft.block.dispenser.ItemDispenserBehavior;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.mob.PiglinBrain;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EnderChestInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.screen.GenericContainerScreenHandler;
 import net.minecraft.screen.SimpleNamedScreenHandlerFactory;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.ActionResult;
@@ -20,6 +22,7 @@ import net.minecraft.util.math.BlockPointerImpl;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 
 public class EnderDropperBlock extends DispenserBlock {
 
@@ -37,7 +40,16 @@ public class EnderDropperBlock extends DispenserBlock {
         return new EnderDropperBlockEntity(pos, state);
     }
 
-    // TODO: Set owner on place, not on open
+    public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
+        if(placer instanceof ServerPlayerEntity) {
+            BlockEntity blockEntity = world.getBlockEntity(pos);
+            if(blockEntity instanceof EnderDropperBlockEntity) {
+                ((EnderDropperBlockEntity) blockEntity).setOwner((ServerPlayerEntity) placer);
+                blockEntity.markDirty();
+            }
+        }
+    }
+
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (world.isClient) {
             return ActionResult.SUCCESS;

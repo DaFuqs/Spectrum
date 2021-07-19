@@ -83,6 +83,12 @@
             "text": ""
         },
         {
+            "type": "patchouli:spotlight",
+            "title": "Ammonite",
+            "item": "pigment:ammonite_shard",
+            "text": "Ammonite shards shine in all colors of the rainbow."
+        },
+        {
             "type": "patchouli:text",
             "title": "Acquiring Budding Blocks",
             "text": "=> $(l:enchantments/resonance)Resonance$()."

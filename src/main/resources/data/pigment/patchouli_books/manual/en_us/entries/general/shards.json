@@ -12,39 +12,39 @@
       "advancement": "pigment:collect_amethyst_shard",
       "title": "Amethyst",
       "item": "minecraft:amethyst_shard",
-      "text": "Magenta light refracts in this crystal.$(br)Formed over eons in the geodes, this gemstone radiates awe. It is a symbol of permanence.$(br2)The Amethyst represents $(bold)$(#641f9c)TIME$()."
+      "text": "Magenta light refracts in this crystal.$(br)Formed over eons in the geodes, this gemstone radiates awe. It is a symbol of permanence.$(br2)The Amethyst represents $(bold)$(c_purple)TIME$()."
     },
     {
       "type": "patchouli:spotlight",
       "advancement": "pigment:collect_citrine_shard",
       "title": "Citrine",
       "item": "pigment:citrine_shard",
-      "text": "This yellow crystal is found in geodes at the very top of steep hills and on the tops of sky-high mountains.$(br2)Its bright yellow luster radiates pure $(bold)$(#f0af15)ENERGY$() and makes it palpably warm to the touch at all times."
+      "text": "This yellow crystal is found in geodes at the very top of steep hills and on the tops of sky-high mountains.$(br2)Its bright yellow luster radiates pure $(bold)$(c_yellow)ENERGY$() and makes it palpably warm to the touch at all times."
     },
     {
       "type": "patchouli:spotlight",
       "advancement": "pigment:collect_topaz_shard",
       "title": "Topaz",
       "item": "pigment:topaz_shard",
-      "text": "Topaz Shards lie surprisingly heavy in your hand. Fragile at first glance, this crystal quickly turns out to be one of the most robust materials, which you were allowed to hold in your hands - perhaps only surpassed by the crystal, which you could also bring into the shape of a pickaxe.$(br2)The topaz represents $(bold)$(#2c2e8e)MATTER.$()"
+      "text": "Topaz Shards lie surprisingly heavy in your hand. Fragile at first glance, this crystal quickly turns out to be one of the most robust materials, which you were allowed to hold in your hands - perhaps only surpassed by the crystal, which you could also bring into the shape of a pickaxe.$(br2)The topaz represents $(bold)$(b_cyan)MATTER.$()"
     },
     {
       "type": "patchouli:spotlight",
       "advancement": "pigment:collect_onyx_shard",
       "title": "Onyx",
       "item": "pigment:onyx_shard",
-      "text": "The Onyx is almost pitch black, it almost seems as if it would even withdraw the light from its surroundings.$(br2)The onyx, as a combination of energy, matter, and time, serves as a $(bold)$(#000000)reinforcing focus and catalyst$() for magical tools and apparatus."
+      "text": "The Onyx is almost pitch black, it almost seems as if it would even withdraw the light from its surroundings.$(br2)The onyx, as a combination of energy, matter, and time, serves as a $(bold)$(c_black)reinforcing focus and catalyst$() for magical tools and apparatus."
     },
     {
       "type": "patchouli:spotlight",
       "advancement": "pigment:collect_moonstone_shard",
       "title": "Moonstone",
       "item": "pigment:moonstone_shard",
-      "text": "It's bluish-white shimmer reminds you of the soothing light of the moon on a calm summer night. The tranquility it exudes leaves a calming, yet significant impression, like a sleeping cat - balm for the soul and yet a predator, always on guard.$(br2)The Moonstone embodies $(bold)$(#d0d6d7)pure magic$()."
+      "text": "It's bluish-white shimmer reminds you of the soothing light of the moon on a calm summer night. The tranquility it exudes leaves a calming, yet significant impression, like a sleeping cat - balm for the soul and yet a predator, always on guard.$(br2)The Moonstone embodies $(bold)$(c_white)pure magic$()."
     },
     {
        "type": "patchouli:spotlight",
-       "title": "Ammonite",
+       "title": "Ammolite",
        "item": "pigment:ammolite_shard",
        "text": "Ammolite shards shine in all colors of the rainbow."
     }

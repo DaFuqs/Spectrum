@@ -1,0 +1,28 @@
+{
+  "type": "pigment_altar",
+  "time": 80,
+  "tier": 1,
+  "magenta": 0,
+  "yellow": 0,
+  "cyan": 0,
+  "black": 4,
+  "white": 0,
+  "experience": 1.0,
+  "pattern": [
+    "WWW",
+    "WXW",
+    "WWW"
+  ],
+  "key": {
+    "W": {
+	  "item": "pigment:polished_basalt"
+    },
+    "X": {
+	  "item": "pigment:onyx_cluster"
+    }
+  },
+  "result": {
+    "item": "pigment:onyx_chiseled_basalt",
+    "count": 4
+  }
+}

@@ -516,8 +516,8 @@ public class PigmentBlocks {
 
     public static final Block DEEPER_DOWN_PORTAL = new DeeperDownPortalBlock(FabricBlockSettings.copyOf(Blocks.END_PORTAL));
 
-    public static final Block REDSTONE_GRAVITY_BLOCK = new RedstoneGravityBlock(FabricBlockSettings.copyOf(Blocks.SAND));
-    public static final Block REDSTONE_TRANSPARENCY_BLOCK = new RedstoneTransparencyBlock(FabricBlockSettings.copyOf(Blocks.GLASS).nonOpaque()
+    public static final Block REDSTONE_SAND = new RedstoneGravityBlock(FabricBlockSettings.copyOf(Blocks.SAND));
+    public static final Block ENDER_GLASS = new RedstoneTransparencyBlock(FabricBlockSettings.copyOf(Blocks.GLASS).nonOpaque()
             .allowsSpawning((state, world, pos, entityType) -> state.get(RedstoneTransparencyBlock.TRANSPARENCY_STATE) == RedstoneTransparencyBlock.TransparencyState.SOLID)
             .solidBlock(PigmentBlocks::never).suffocates((state, world, pos) -> state.get(RedstoneTransparencyBlock.TRANSPARENCY_STATE) == RedstoneTransparencyBlock.TransparencyState.SOLID)
             .blockVision((state, world, pos) -> state.get(RedstoneTransparencyBlock.TRANSPARENCY_STATE) == RedstoneTransparencyBlock.TransparencyState.SOLID));
@@ -543,10 +543,10 @@ public class PigmentBlocks {
 
         registerBlock("deeper_down_portal", DEEPER_DOWN_PORTAL);
 
-        registerBlock("redstone_gravity_block", REDSTONE_GRAVITY_BLOCK);
-        registerBlockItem("redstone_gravity_block", new BlockItem(REDSTONE_GRAVITY_BLOCK, generalItemSettings));
-        registerBlock("redstone_transparency_block", REDSTONE_TRANSPARENCY_BLOCK);
-        registerBlockItem("redstone_transparency_block", new BlockItem(REDSTONE_TRANSPARENCY_BLOCK, generalItemSettings));
+        registerBlock("redstone_sand", REDSTONE_SAND);
+        registerBlockItem("redstone_sand", new BlockItem(REDSTONE_SAND, generalItemSettings));
+        registerBlock("ender_glass", ENDER_GLASS);
+        registerBlockItem("ender_glass", new BlockItem(ENDER_GLASS, generalItemSettings));
 
         registerBlock("private_chest", PRIVATE_CHEST);
         registerBlockItem("private_chest", new BlockItem(PRIVATE_CHEST, generalItemSettings));
@@ -1450,7 +1450,7 @@ public class PigmentBlocks {
         BlockRenderLayerMap.INSTANCE.putBlock(PigmentBlocks.WHITE_LAMP, RenderLayer.getTranslucent());
         BlockRenderLayerMap.INSTANCE.putBlock(PigmentBlocks.YELLOW_LAMP, RenderLayer.getTranslucent());
 
-        BlockRenderLayerMap.INSTANCE.putBlock(PigmentBlocks.REDSTONE_TRANSPARENCY_BLOCK, RenderLayer.getTranslucent());
+        BlockRenderLayerMap.INSTANCE.putBlock(PigmentBlocks.ENDER_GLASS, RenderLayer.getTranslucent());
 
         BlockRenderLayerMap.INSTANCE.putBlock(PigmentBlocks.QUITOXIC_REEDS, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(PigmentBlocks.MERMAIDS_BRUSH, RenderLayer.getCutout());

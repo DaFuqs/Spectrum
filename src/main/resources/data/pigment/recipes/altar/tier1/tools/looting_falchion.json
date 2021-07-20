@@ -1,0 +1,28 @@
+{
+  "type": "pigment_altar",
+  "time": 600,
+  "tier": 1,
+  "cyan": 0,
+  "magenta": 8,
+  "yellow": 0,
+  "white": 0,
+  "black": 0,
+  "experience": 2.0,
+  "pattern": [
+    " A ",
+    " A ",
+    " S "
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:stick"
+    },
+    "A": {
+      "item": "minecraft:amethyst_shard"
+    }
+  },
+  "result" : {
+    "item": "pigment:looting_falchion",
+    "count": 1
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "type": "pigment_altar",
+  "time": 80,
+  "tier": 1,
+  "magenta": 0,
+  "yellow": 0,
+  "cyan": 1,
+  "black": 0,
+  "white": 0,
+  "experience": 1.0,
+  "pattern": [
+    "WXW",
+    "XXX",
+    "WXW"
+  ],
+  "key": {
+    "W": {
+	  "item": "pigment:polished_calcite"
+    },
+    "X": {
+	  "item": "pigment:topaz_shard"
+    }
+  },
+  "result": {
+    "item": "pigment:topaz_chiseled_calcite",
+    "count": 1
+  }
+}

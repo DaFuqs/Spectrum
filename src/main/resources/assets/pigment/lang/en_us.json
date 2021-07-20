@@ -545,8 +545,8 @@
   "block.pigment.altar3": "Pigment Pedestal",
   "block.pigment.altar.title_with_owner": "Pigment Pedestal of %s",
 
-  "block.pigment.redstone_transparency_block": "Ender Glass",
-  "block.pigment.redstone_gravity_block": "Redstone Sand",
+  "block.pigment.ender_glass": "Ender Glass",
+  "block.pigment.redstone_sand": "Redstone Sand",
 
   "block.pigment.ender_dropper": "Ender Dropper",
   "block.pigment.ender_dropper_with_owner": "Ender Dropper of %s",

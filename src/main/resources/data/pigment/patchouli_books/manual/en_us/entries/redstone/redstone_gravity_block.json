@@ -1,11 +1,11 @@
 {
   "name": "Redstone Sand",
-  "icon": "pigment:redstone_gravity_block",
+  "icon": "pigment:redstone_sand",
   "category": "pigment:redstone_category",
   "pages": [
     {
       "type": "patchouli:spotlight",
-      "item": "pigment:redstone_gravity_block",
+      "item": "pigment:redstone_sand",
       "text": "$(italic)You think back happily to the days when you set little traps for your friends. Touching the wrong block, they were completely buried by sand.\nBy now, your friends aren't so easily fooled. Seems like modern problems require modern solutions.$(br2)So much room for possibilities!"
     },
     {

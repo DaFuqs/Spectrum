@@ -1,0 +1,9 @@
+{
+    "type": "minecraft:smelting",
+    "ingredient": {
+        "item": "pigment:deepslate_citrine_ore"
+    },
+    "result": "pigment:citrine_shard",
+    "experience": 0.25,
+    "cookingtime": 200
+}

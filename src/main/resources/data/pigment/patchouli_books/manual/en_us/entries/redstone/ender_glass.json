@@ -1,0 +1,20 @@
+{
+  "name": "Ender Glass",
+  "icon": "pigment:ender_glass",
+  "category": "pigment:redstone_category",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "pigment:ender_glass",
+      "text": "$(italic)This block is something special. You already thought that the moment you put the recipe on paper. The combination of the power of The End, redstone and magic gives it very strange properties.$(br2)Truly a curiosity from the end."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Depending on the strength of the applied redstone signal, this block takes on different properties.$(br)With the smallest external influence it falls back to the state of lowest energy.$(br2)To make it even stranger, the material seems to respond to the last applied signal alone, not the strongest."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Without redstone, it is completely solid; when a redstone signal reaches it, it becomes transparent, almost like glass.$(br2)However, it reaches it's most curious state when a redstone signal of full strength is applied..."
+    }
+  ]
+}

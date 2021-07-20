@@ -1,0 +1,28 @@
+{
+  "type": "pigment_altar",
+  "time": 20,
+  "tier": 1,
+  "magenta": 0,
+  "yellow": 0,
+  "cyan": 0,
+  "black": 0,
+  "white": 0,
+  "experience": 0.05,
+  "pattern": [
+    " R ",
+    "RSR",
+    " R "
+  ],
+  "key": {
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "S": {
+      "item": "minecraft:sand"
+    }
+  },
+  "result" : {
+    "item": "pigment:redstone_sand",
+    "count": 1
+  }
+}

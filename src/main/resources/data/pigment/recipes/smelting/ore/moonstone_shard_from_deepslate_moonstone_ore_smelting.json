@@ -1,0 +1,9 @@
+{
+    "type": "minecraft:smelting",
+    "ingredient": {
+        "item": "pigment:deepslate_moonstone_ore"
+    },
+    "result": "pigment:moonstone_shard",
+    "experience": 0.25,
+    "cookingtime": 200
+}

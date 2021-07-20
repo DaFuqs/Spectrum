@@ -1,0 +1,9 @@
+{
+    "type": "minecraft:blasting",
+    "ingredient": {
+        "item": "pigment:scarlet_ore"
+    },
+    "result": "pigment:shattered_scarlet_fragments",
+    "experience": 0.2,
+    "cookingtime": 100
+}

@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "transparency_state=solid": {
+      "model": "pigment:block/ender_glass_solid"
+    },
+    "transparency_state=translucent": {
+      "model": "pigment:block/ender_glass_translucent"
+    },
+    "transparency_state=no_collision": {
+      "model": "pigment:block/ender_glass_no_collision"
+    }
+  }
+}

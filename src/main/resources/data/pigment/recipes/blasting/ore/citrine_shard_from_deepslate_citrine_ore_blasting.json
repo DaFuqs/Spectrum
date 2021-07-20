@@ -1,0 +1,9 @@
+{
+    "type": "minecraft:blasting",
+    "ingredient": {
+        "item": "pigment:citrine_ore"
+    },
+    "result": "pigment:citrine_shard",
+    "experience": 0.25,
+    "cookingtime": 100
+}

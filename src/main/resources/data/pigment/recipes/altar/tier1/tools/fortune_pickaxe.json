@@ -1,0 +1,31 @@
+{
+  "type": "pigment_altar",
+  "time": 600,
+  "tier": 1,
+  "cyan": 0,
+  "magenta": 0,
+  "yellow": 8,
+  "white": 0,
+  "black": 0,
+  "experience": 2,
+  "pattern": [
+    "CGC",
+    " S ",
+    " S "
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:stick"
+    },
+    "C": {
+      "item": "pigment:citrine_shard"
+    },
+    "G": {
+      "item": "pigment:sparklestone_gem"
+    }
+  },
+  "result" : {
+    "item": "pigment:fortune_pickaxe",
+    "count": 1
+  }
+}

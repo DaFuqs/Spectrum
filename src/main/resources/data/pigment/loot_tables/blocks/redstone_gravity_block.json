@@ -6,7 +6,7 @@
         "entries": [
             {
                 "type": "minecraft:item",
-                "name": "pigment:redstone_gravity_block"
+                "name": "pigment:redstone_sand"
             }
             ],
             "conditions": [

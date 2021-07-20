@@ -10,15 +10,15 @@
   "experience": 0.25,
   "pattern": [
     "SPS",
-    "PGP",
+    "PRP",
     "SPS"
   ],
   "key": {
   	"P": {
       "item": "pigment:green_pigment"
     },
-	"G": {
-      "item": "minecraft:glowstone"
+	"R": {
+      "item": "minecraft:redstone"
     },
 	"S": {
       "item": "pigment:sparklestone_gem"

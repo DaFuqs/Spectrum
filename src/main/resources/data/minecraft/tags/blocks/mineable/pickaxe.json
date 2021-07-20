@@ -1,12 +1,11 @@
 {
   "replace": false,
   "values": [
-    "pigment:redstone_transparency_block",
+    "pigment:ender_glass",
 	"pigment:altar",
 	"pigment:altar2",
 	"pigment:altar3",
-	"pigment:redstone_gravity_block",
-	"pigment:redstone_transparency_block",
+	"pigment:redstone_sand",
 	"pigment:ominous_sapling",
 	"pigment:decay1",
 	"pigment:decay2",

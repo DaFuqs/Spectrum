@@ -1,0 +1,9 @@
+{
+    "type": "minecraft:smelting",
+    "ingredient": {
+        "item": "pigment:amethyst_ore"
+    },
+    "result": "minecraft:amethyst_shard",
+    "experience": 0.25,
+    "cookingtime": 200
+}

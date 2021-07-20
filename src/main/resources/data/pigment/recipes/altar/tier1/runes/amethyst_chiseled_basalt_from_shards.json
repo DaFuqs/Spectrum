@@ -1,0 +1,28 @@
+{
+  "type": "pigment_altar",
+  "time": 80,
+  "tier": 1,
+  "magenta": 1,
+  "yellow": 0,
+  "cyan": 0,
+  "black": 0,
+  "white": 0,
+  "experience": 1.0,
+  "pattern": [
+    "WXW",
+    "XXX",
+    "WXW"
+  ],
+  "key": {
+    "W": {
+	  "item": "pigment:polished_basalt"
+    },
+    "X": {
+	  "item": "minecraft:amethyst_shard"
+    }
+  },
+  "result": {
+    "item": "pigment:amethyst_chiseled_basalt",
+    "count": 1
+  }
+}

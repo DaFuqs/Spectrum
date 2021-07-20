@@ -9,13 +9,13 @@
   "black": 0,
   "experience": 1,
   "pattern": [
-    "GGG",
     "GPG",
-    "GGG"
+    "PPP",
+    "GPG"
   ],
   "key": {
     "P": {
-      "item": "pigment:moonstone_powder"
+      "item": "pigment:moonstone_shard"
     },
     "G": {
       "item": "minecraft:glass"

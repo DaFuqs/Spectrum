@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "pigment:polished_calcite"
+  },
+  "result": "pigment:polished_calcite_pillar",
+  "count": 1
+}

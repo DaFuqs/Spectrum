@@ -9,13 +9,13 @@
   "black": 4,
   "experience": 1,
   "pattern": [
-    "GGG",
     "GPG",
-    "GGG"
+    "PPP",
+    "GPG"
   ],
   "key": {
     "P": {
-      "item": "pigment:onyx_powder"
+      "item": "pigment:onyx_shard"
     },
     "G": {
       "item": "minecraft:glass"

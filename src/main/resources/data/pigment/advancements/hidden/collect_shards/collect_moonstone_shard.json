@@ -1,17 +1,8 @@
 {
-  "parent": "pigment:pigment",
   "criteria": {
     "has_moonstone_shard": {
-      "trigger":"minecraft:inventory_changed",
-      "conditions":{
-        "items":[
-          {
-            "items": [
-              "pigment:moonstone_shard"
-            ]
-          }
-        ]
-      }
+      "trigger": "minecraft:inventory_changed",
+      "conditions": { "items": [{ "items": [ "pigment:moonstone_shard" ]}] }
     }
   }
 }

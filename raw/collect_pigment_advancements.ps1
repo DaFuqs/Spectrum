@@ -3,19 +3,10 @@
 $c | Foreach-Object {
 New-Item -Name "collect_$_`_pigment.json" -ItemType File -Value @"
 {
-  "parent": "pigment:pigment",
   "criteria": {
-    "has_$_`_pigment": {
-      "trigger":"minecraft:inventory_changed",
-      "conditions":{
-        "items":[
-          {
-            "items": [
-              "pigment:$_`_pigment"
-            ]
-          }
-        ]
-      }
+    "has_black_pigment": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": { "items": [{ "items": [ "pigment:$_`_pigment" ]}] }
     }
   }
 }

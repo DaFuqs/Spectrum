@@ -14,16 +14,7 @@
   "criteria": {
     "get_altar2": {
       "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "pigment:altar3"
-            ],
-            "count": 1
-          }
-        ]
-      }
+      "conditions": { "items": [{ "items": [ "pigment:altar3" ]}] }
     }
   }
 }

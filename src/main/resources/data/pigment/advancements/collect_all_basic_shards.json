@@ -14,42 +14,15 @@
   "criteria": {
     "has_amethyst_shard": {
       "trigger":"minecraft:inventory_changed",
-      "conditions":{
-        "items":[
-          {
-            "items": [
-              "minecraft:amethyst_shard"
-            ],
-            "count": 1
-          }
-        ]
-      }
+      "conditions": { "items": [{ "items": [ "minecraft:amethyst_shard" ]}] }
     },
     "has_citrine_shard": {
       "trigger":"minecraft:inventory_changed",
-      "conditions":{
-        "items":[
-          {
-            "items": [
-              "pigment:citrine_shard"
-            ],
-            "count": 1
-          }
-        ]
-      }
+      "conditions": { "items": [{ "items": [ "pigment:citrine_shard" ]}] }
     },
     "has_topaz_shard": {
       "trigger":"minecraft:inventory_changed",
-      "conditions":{
-        "items":[
-          {
-            "items": [
-              "pigment:topaz_shard"
-            ],
-            "count": 1
-          }
-        ]
-      }
+      "conditions": { "items": [{ "items": [ "pigment:topaz_shard" ]}] }
     }
   },
   "requirements": [

@@ -15,9 +15,9 @@
     "planted_glistering_melon_seeds": {
       "trigger": "minecraft:item_used_on_block",
       "conditions": {
-        "item": {
-          "items": ["pigment:glistering_melon_seeds"]
-        }
+        "items": [{
+          "items": "pigment:glistering_melon_seeds"
+        }]
       }
     }
   }

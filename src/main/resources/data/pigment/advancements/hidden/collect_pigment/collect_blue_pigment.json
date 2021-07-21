@@ -1,17 +1,8 @@
 {
-  "parent": "pigment:pigment",
   "criteria": {
-    "has_blue_pigment": {
-      "trigger":"minecraft:inventory_changed",
-      "conditions":{
-        "items":[
-          {
-            "items": [
-              "pigment:blue_pigment"
-            ]
-          }
-        ]
-      }
+    "has_black_pigment": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": { "items": [{ "items": [ "pigment:blue_pigment" ]}] }
     }
   }
 }

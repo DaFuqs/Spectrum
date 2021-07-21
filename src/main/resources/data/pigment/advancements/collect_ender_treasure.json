@@ -14,15 +14,7 @@
   "criteria": {
     "has_ender_treasure": {
       "trigger":"minecraft:inventory_changed",
-      "conditions":{
-        "items":[
-          {
-            "items": [
-              "pigment:ender_treasure"
-            ]
-          }
-        ]
-      }
+      "conditions": { "items": [{ "items": [ "pigment:ender_treasure" ]}] }
     }
   }
 }

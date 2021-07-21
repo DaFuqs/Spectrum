@@ -14,68 +14,23 @@
   "criteria": {
     "has_amethyst_powder": {
       "trigger":"minecraft:inventory_changed",
-      "conditions":{
-        "items":[
-          {
-            "items": [
-              "pigment:amethyst_powder"
-            ],
-            "count": 1
-          }
-        ]
-      }
+      "conditions": { "items": [{ "items": [ "pigment:amethyst_powder" ]}] }
     },
     "has_citrine_powder": {
       "trigger":"minecraft:inventory_changed",
-      "conditions":{
-        "items":[
-          {
-            "items": [
-              "pigment:citrine_powder"
-            ],
-            "count": 1
-          }
-        ]
-      }
+      "conditions": { "items": [{ "items": [ "pigment:citrine_powder" ]}] }
     },
     "has_topaz_powder": {
       "trigger":"minecraft:inventory_changed",
-      "conditions":{
-        "items":[
-          {
-            "items": [
-              "pigment:topaz_powder"
-            ],
-            "count": 1
-          }
-        ]
-      }
+      "conditions": { "items": [{ "items": [ "pigment:topaz_powder" ]}] }
     },
     "has_moonstone_powder": {
       "trigger":"minecraft:inventory_changed",
-      "conditions":{
-        "items":[
-          {
-            "items": [
-              "pigment:moonstone_powder"
-            ],
-            "count": 1
-          }
-        ]
-      }
+      "conditions": { "items": [{ "items": [ "pigment:moonstone_powder" ]}] }
     },
     "has_onyx_powder": {
       "trigger":"minecraft:inventory_changed",
-      "conditions":{
-        "items":[
-          {
-            "items": [
-              "pigment:onyx_powder"
-            ],
-            "count": 1
-          }
-        ]
-      }
+      "conditions": { "items": [{ "items": [ "pigment:onyx_powder" ]}] }
     }
   },
   "requirements": [

@@ -41,15 +41,15 @@ public class PigmentItems {
     public static final Item CRAFTING_TABLET = new CraftingTabletItem(generalItemSettingsSingle);
 
     // Gem shards
-    public static final Item CITRINE_SHARD_ITEM = new Item(pigmentWorldgenItemSettings);
     public static final Item TOPAZ_SHARD_ITEM = new Item(pigmentWorldgenItemSettings);
+    public static final Item CITRINE_SHARD_ITEM = new Item(pigmentWorldgenItemSettings);
     public static final Item ONYX_SHARD_ITEM = new Item(pigmentWorldgenItemSettings);
     public static final Item MOONSTONE_SHARD_ITEM = new Item(pigmentWorldgenItemSettings);
     public static final Item AMMOLITE_ITEM = new Item(pigmentWorldgenItemSettings);
 	
+    public static final Item TOPAZ_POWDER = new Item(generalItemSettings);
     public static final Item AMETHYST_POWDER = new Item(generalItemSettings);
     public static final Item CITRINE_POWDER = new Item(generalItemSettings);
-    public static final Item TOPAZ_POWDER = new Item(generalItemSettings);
     public static final Item ONYX_POWDER = new Item(generalItemSettings);
     public static final Item MOONSTONE_POWDER = new Item(generalItemSettings);
 
@@ -139,6 +139,7 @@ public class PigmentItems {
     public static final Item VIBRANT_YELLOW_CATKIN = new CatkinItem(PigmentColor.YELLOW, false, generalItemSettings);
     public static final Item VIBRANT_BLACK_CATKIN = new CatkinItem(PigmentColor.BLACK, false, generalItemSettings);
     public static final Item VIBRANT_WHITE_CATKIN = new CatkinItem(PigmentColor.WHITE, false, generalItemSettings);
+	
     public static final Item LUCID_CYAN_CATKIN =  new CatkinItem(PigmentColor.CYAN, true, generalUncommonItemSettings);
     public static final Item LUCID_MAGENTA_CATKIN = new CatkinItem(PigmentColor.MAGENTA, true, generalUncommonItemSettings);
     public static final Item LUCID_YELLOW_CATKIN = new CatkinItem(PigmentColor.YELLOW, true, generalUncommonItemSettings);
@@ -177,15 +178,15 @@ public class PigmentItems {
     }
 		
 	public static void registerGemstoneItems() {
-        register("citrine_shard", CITRINE_SHARD_ITEM);
         register("topaz_shard", TOPAZ_SHARD_ITEM);
+        register("citrine_shard", CITRINE_SHARD_ITEM);
         register("onyx_shard", ONYX_SHARD_ITEM);
         register("moonstone_shard", MOONSTONE_SHARD_ITEM);
         register("ammolite_shard", AMMOLITE_ITEM);
 		
+        register("topaz_powder", TOPAZ_POWDER);
 		register("amethyst_powder", AMETHYST_POWDER);
         register("citrine_powder", CITRINE_POWDER);
-        register("topaz_powder", TOPAZ_POWDER);
         register("onyx_powder", ONYX_POWDER);
         register("moonstone_powder", MOONSTONE_POWDER);
 	}
@@ -229,14 +230,15 @@ public class PigmentItems {
 	}
 	
 	public static void registerCatkin() {
+		register("vibrant_cyan_catkin", VIBRANT_CYAN_CATKIN);
 		register("vibrant_magenta_catkin", VIBRANT_MAGENTA_CATKIN);
 		register("vibrant_yellow_catkin", VIBRANT_YELLOW_CATKIN);
-		register("vibrant_cyan_catkin", VIBRANT_CYAN_CATKIN);
 		register("vibrant_black_catkin", VIBRANT_BLACK_CATKIN);
 		register("vibrant_white_catkin", VIBRANT_WHITE_CATKIN);
+		
+		register("lucid_cyan_catkin", LUCID_CYAN_CATKIN);
 		register("lucid_magenta_catkin", LUCID_MAGENTA_CATKIN);
 		register("lucid_yellow_catkin", LUCID_YELLOW_CATKIN);
-		register("lucid_cyan_catkin", LUCID_CYAN_CATKIN);
 		register("lucid_black_catkin", LUCID_BLACK_CATKIN);
 		register("lucid_white_catkin", LUCID_WHITE_CATKIN);
 	}

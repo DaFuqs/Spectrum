@@ -3,7 +3,7 @@ package de.dafuqs.pigment.registries;
 import com.mojang.datafixers.types.Type;
 import de.dafuqs.pigment.PigmentCommon;
 import de.dafuqs.pigment.blocks.altar.AltarBlockEntity;
-import de.dafuqs.pigment.blocks.chests.CompactorBlockEntity;
+import de.dafuqs.pigment.blocks.chests.CompactingChestBlockEntity;
 import de.dafuqs.pigment.blocks.chests.RestockingChestBlockEntity;
 import de.dafuqs.pigment.blocks.deeper_down_portal.DeeperDownPortalBlockEntity;
 import de.dafuqs.pigment.blocks.deeper_down_portal.DeeperDownPortalBlockEntityRenderer;
@@ -40,7 +40,7 @@ public class PigmentBlockEntityRegistry<T extends BlockEntity> {
     public static BlockEntityType<PigmentSkullBlockEntity> SKULL;
     public static BlockEntityType<DeeperDownPortalBlockEntity> DEEPER_DOWN_PORTAL;
 
-    public static BlockEntityType<CompactorBlockEntity> COMPACTING_CHEST;
+    public static BlockEntityType<CompactingChestBlockEntity> COMPACTING_CHEST;
     public static BlockEntityType<RestockingChestBlockEntity> RESTOCKING_CHEST;
     public static BlockEntityType<PrivateChestBlockEntity> PRIVATE_CHEST;
 
@@ -57,7 +57,7 @@ public class PigmentBlockEntityRegistry<T extends BlockEntity> {
         ENDER_HOPPER = create("ender_hopper", FabricBlockEntityTypeBuilder.create(EnderHopperBlockEntity::new, PigmentBlocks.ENDER_HOPPER));
         DEEPER_DOWN_PORTAL = create("deeper_down_portal", FabricBlockEntityTypeBuilder.create(DeeperDownPortalBlockEntity::new, PigmentBlocks.DEEPER_DOWN_PORTAL));
 
-        COMPACTING_CHEST = create("compacting_chest", FabricBlockEntityTypeBuilder.create(CompactorBlockEntity::new, PigmentBlocks.COMPACTING_CHEST));
+        COMPACTING_CHEST = create("compacting_chest", FabricBlockEntityTypeBuilder.create(CompactingChestBlockEntity::new, PigmentBlocks.COMPACTING_CHEST));
         RESTOCKING_CHEST = create("restocking_chest", FabricBlockEntityTypeBuilder.create(RestockingChestBlockEntity::new, PigmentBlocks.RESTOCKING_CHEST));
         PRIVATE_CHEST = create("private_chest", FabricBlockEntityTypeBuilder.create(PrivateChestBlockEntity::new, PigmentBlocks.PRIVATE_CHEST));
 

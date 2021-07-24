@@ -94,15 +94,15 @@ public class RestockingChestBlockEntity extends LootableContainerBlockEntity imp
             Recipe recipe = CraftingTabletItem.getStoredRecipe(world, craftingTabletItemStack);
             if(recipe instanceof ShapelessRecipe || recipe instanceof ShapedRecipe) {
                 DefaultedList<Ingredient> ingredients = recipe.getIngredients();
-                ItemStack outputItemStack = recipe.getOutput().copy();
+                ItemStack outputItemStack = recipe.getOutput();
                 ItemStack currentItemStack = restockingChestBlockEntity.inventory.get(RESULT_SLOTS[index]);
                 if (InventoryHelper.canCombineItemStacks(currentItemStack, outputItemStack) && InventoryHelper.removeFromInventory(ingredients, restockingChestBlockEntity, true)) {
                     InventoryHelper.removeFromInventory(ingredients, restockingChestBlockEntity, false);
 
                     if(currentItemStack.isEmpty()) {
-                        restockingChestBlockEntity.inventory.set(RESULT_SLOTS[index], outputItemStack);
+                        restockingChestBlockEntity.inventory.set(RESULT_SLOTS[index], outputItemStack.copy());
                     } else {
-                        currentItemStack.setCount(currentItemStack.getCount() + outputItemStack.getCount());
+                        currentItemStack.increment(outputItemStack.getCount());
                     }
                     return true;
                 }
@@ -134,19 +134,13 @@ public class RestockingChestBlockEntity extends LootableContainerBlockEntity imp
 
     public NbtCompound writeNbt(NbtCompound tag) {
         super.writeNbt(tag);
-        if (!this.serializeLootTable(tag)) {
-            Inventories.writeNbt(tag, this.inventory);
-        }
-
+        Inventories.writeNbt(tag, this.inventory);
         return tag;
     }
 
     public void readNbt(NbtCompound tag) {
         super.readNbt(tag);
-        this.inventory = DefaultedList.ofSize(this.size(), ItemStack.EMPTY);
-        if (!this.deserializeLootTable(tag)) {
-            Inventories.readNbt(tag, this.inventory);
-        }
+        Inventories.readNbt(tag, this.inventory);
 
     }
 
@@ -168,4 +162,5 @@ public class RestockingChestBlockEntity extends LootableContainerBlockEntity imp
     public boolean canExtract(int slot, ItemStack stack, Direction dir) {
         return true;
     }
+
 }

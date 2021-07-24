@@ -25,7 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class CompactorBlockEntity extends LootableContainerBlockEntity {
+public class CompactingChestBlockEntity extends LootableContainerBlockEntity {
 
     private DefaultedList<ItemStack> inventory;
 
@@ -34,7 +34,7 @@ public class CompactorBlockEntity extends LootableContainerBlockEntity {
     CraftingRecipe lastCraftingRecipe; // cache
     boolean hasToCraft;
 
-    public CompactorBlockEntity(BlockPos blockPos, BlockState blockState) {
+    public CompactingChestBlockEntity(BlockPos blockPos, BlockState blockState) {
         super(PigmentBlockEntityRegistry.COMPACTING_CHEST, blockPos, blockState);
         this.inventory = DefaultedList.ofSize(27, ItemStack.EMPTY);
         this.lastCraftingItemStack = ItemStack.EMPTY;
@@ -51,11 +51,11 @@ public class CompactorBlockEntity extends LootableContainerBlockEntity {
         return GenericContainerScreenHandler.createGeneric9x3(syncId, playerInventory, this);
     }
 
-    public static void tick(World world, BlockPos pos, BlockState state, CompactorBlockEntity compactorBlockEntity) {
-        if(compactorBlockEntity.hasToCraft) {
-            boolean couldCraft = compactorBlockEntity.tryCraftOnce();
+    public static void tick(World world, BlockPos pos, BlockState state, CompactingChestBlockEntity compactingChestBlockEntity) {
+        if(compactingChestBlockEntity.hasToCraft) {
+            boolean couldCraft = compactingChestBlockEntity.tryCraftOnce();
             if(!couldCraft) {
-                compactorBlockEntity.hasToCraft = false;
+                compactingChestBlockEntity.hasToCraft = false;
             }
         }
     }
@@ -166,20 +166,14 @@ public class CompactorBlockEntity extends LootableContainerBlockEntity {
 
     public NbtCompound writeNbt(NbtCompound tag) {
         super.writeNbt(tag);
-        if (!this.serializeLootTable(tag)) {
-            Inventories.writeNbt(tag, this.inventory);
-        }
-
+        Inventories.writeNbt(tag, this.inventory);
         return tag;
     }
 
     public void readNbt(NbtCompound tag) {
         super.readNbt(tag);
         this.inventory = DefaultedList.ofSize(this.size(), ItemStack.EMPTY);
-        if (!this.deserializeLootTable(tag)) {
-            Inventories.readNbt(tag, this.inventory);
-        }
-
+        Inventories.readNbt(tag, this.inventory);
     }
 
 }

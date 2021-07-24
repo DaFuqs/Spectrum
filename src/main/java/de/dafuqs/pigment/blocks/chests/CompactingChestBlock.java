@@ -25,7 +25,7 @@ public class CompactingChestBlock extends BlockWithEntity {
 
     @Nullable
     public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
-        return new CompactorBlockEntity(pos, state);
+        return new CompactingChestBlockEntity(pos, state);
     }
 
     @Override
@@ -44,13 +44,13 @@ public class CompactingChestBlock extends BlockWithEntity {
         if(world.isClient) {
             return null;
         } else {
-            return checkType(type, PigmentBlockEntityRegistry.COMPACTING_CHEST, CompactorBlockEntity::tick);
+            return checkType(type, PigmentBlockEntityRegistry.COMPACTING_CHEST, CompactingChestBlockEntity::tick);
         }
     }
 
     protected void openScreen(World world, BlockPos pos, PlayerEntity player) {
         BlockEntity blockEntity = world.getBlockEntity(pos);
-        if (blockEntity instanceof CompactorBlockEntity) {
+        if (blockEntity instanceof CompactingChestBlockEntity) {
             player.openHandledScreen((NamedScreenHandlerFactory) blockEntity);
         }
     }
@@ -58,7 +58,7 @@ public class CompactingChestBlock extends BlockWithEntity {
     public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
         if (!state.isOf(newState.getBlock())) {
             BlockEntity blockEntity = world.getBlockEntity(pos);
-            if (blockEntity instanceof CompactorBlockEntity) {
+            if (blockEntity instanceof CompactingChestBlockEntity) {
                 ItemScatterer.spawn(world, pos, (Inventory)blockEntity);
                 world.updateComparators(pos, this);
             }

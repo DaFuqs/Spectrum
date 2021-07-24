@@ -186,9 +186,7 @@ public class PrivateChestBlockEntity extends LootableContainerBlockEntity implem
     public void readNbt(NbtCompound tag) {
         super.readNbt(tag);
         this.inventory = DefaultedList.ofSize(this.size(), ItemStack.EMPTY);
-        if (!this.deserializeLootTable(tag)) {
-            Inventories.readNbt(tag, this.inventory);
-        }
+        Inventories.readNbt(tag, this.inventory);
 
         if(tag.contains("OwnerUUID")) {
             this.ownerUUID = tag.getUuid("OwnerUUID");
@@ -210,10 +208,7 @@ public class PrivateChestBlockEntity extends LootableContainerBlockEntity implem
 
     public NbtCompound writeNbt(NbtCompound tag) {
         super.writeNbt(tag);
-
-        if (!this.serializeLootTable(tag)) {
-            Inventories.writeNbt(tag, this.inventory);
-        }
+        Inventories.writeNbt(tag, this.inventory);
 
         if(this.ownerUUID != null) {
             tag.putUuid("OwnerUUID", this.ownerUUID);

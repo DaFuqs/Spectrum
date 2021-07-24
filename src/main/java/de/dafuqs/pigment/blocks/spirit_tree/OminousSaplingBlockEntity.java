@@ -17,7 +17,7 @@ public class OminousSaplingBlockEntity extends BlockEntity implements PlayerOwne
     public String ownerName;
 
     public OminousSaplingBlockEntity(BlockPos blockPos, BlockState blockState) {
-        super(PigmentBlockEntityRegistry.OMINOUS_SAPLING_BLOCK_ENTITY_TYPE, blockPos, blockState);
+        super(PigmentBlockEntityRegistry.OMINOUS_SAPLING, blockPos, blockState);
     }
 
     public OminousSaplingBlockEntity(BlockEntityType<?> blockEntityType, BlockPos blockPos, BlockState blockState) {

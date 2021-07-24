@@ -1,4 +1,4 @@
-package de.dafuqs.pigment.blocks.private_chest;
+package de.dafuqs.pigment.blocks.chests;
 
 import de.dafuqs.pigment.PigmentCommon;
 import de.dafuqs.pigment.registries.PigmentBlocks;

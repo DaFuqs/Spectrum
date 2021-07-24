@@ -1,4 +1,4 @@
-package de.dafuqs.pigment.blocks.private_chest;
+package de.dafuqs.pigment.blocks.chests;
 
 import de.dafuqs.pigment.blocks.altar.AltarBlockEntity;
 import de.dafuqs.pigment.registries.PigmentBlockEntityRegistry;
@@ -78,7 +78,7 @@ public class PrivateChestBlock extends BlockWithEntity {
     public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
         if (!state.isOf(newState.getBlock())) {
             BlockEntity blockEntity = world.getBlockEntity(pos);
-            if (blockEntity instanceof AltarBlockEntity) {
+            if (blockEntity instanceof PrivateChestBlockEntity) {
                 ItemScatterer.spawn(world, pos, (Inventory)blockEntity);
                 world.updateComparators(pos, this);
             }

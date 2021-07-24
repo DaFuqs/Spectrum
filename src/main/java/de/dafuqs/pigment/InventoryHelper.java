@@ -171,6 +171,10 @@ public class InventoryHelper {
         return getAvailableSlots(inv, facing).allMatch((i) -> inv.getStack(i).isEmpty());
     }
 
+    public static boolean canCombineItemStacks(ItemStack currentItemStack, ItemStack additionalItemStack) {
+        return currentItemStack.isEmpty() || additionalItemStack.isEmpty() || (currentItemStack.isItemEqual(additionalItemStack) && (currentItemStack.getCount() + additionalItemStack.getCount() <= currentItemStack.getMaxCount()));
+    }
+
     @Nullable
     public static Inventory getInventoryAt(World world, double x, double y, double z) {
         Inventory inventory = null;

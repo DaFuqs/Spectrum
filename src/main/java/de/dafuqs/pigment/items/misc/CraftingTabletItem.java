@@ -100,7 +100,6 @@ public class CraftingTabletItem extends Item {
                 }
             }
         }
-
     }
 
     @Override

@@ -1,6 +1,5 @@
-package de.dafuqs.pigment.blocks.compactor;
+package de.dafuqs.pigment.blocks.chests;
 
-import de.dafuqs.pigment.blocks.altar.AltarBlockEntity;
 import de.dafuqs.pigment.registries.PigmentBlockEntityRegistry;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.BlockWithEntity;
@@ -18,9 +17,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-public class CompactorBlock extends BlockWithEntity {
+public class CompactingChestBlock extends BlockWithEntity {
 
-    public CompactorBlock(Settings settings) {
+    public CompactingChestBlock(Settings settings) {
         super(settings);
     }
 
@@ -45,7 +44,7 @@ public class CompactorBlock extends BlockWithEntity {
         if(world.isClient) {
             return null;
         } else {
-            return checkType(type, PigmentBlockEntityRegistry.COMPACTOR_BLOCK_ENTITY_TYPE, CompactorBlockEntity::tick);
+            return checkType(type, PigmentBlockEntityRegistry.COMPACTING_CHEST, CompactorBlockEntity::tick);
         }
     }
 
@@ -59,7 +58,7 @@ public class CompactorBlock extends BlockWithEntity {
     public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
         if (!state.isOf(newState.getBlock())) {
             BlockEntity blockEntity = world.getBlockEntity(pos);
-            if (blockEntity instanceof AltarBlockEntity) {
+            if (blockEntity instanceof CompactorBlockEntity) {
                 ItemScatterer.spawn(world, pos, (Inventory)blockEntity);
                 world.updateComparators(pos, this);
             }

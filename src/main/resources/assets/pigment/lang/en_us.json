@@ -527,7 +527,7 @@
 
   "item.pigment.crafting_tablet": "Crafting Tablet",
   "item.pigment.crafting_tablet.tooltip.no_recipe": "No recipe.",
-  "item.pigment.crafting_tablet.tooltip.recipe": "Crafting: %d %s",
+  "item.pigment.crafting_tablet.tooltip.recipe": "Recipe: %d %s",
 
   "container.pigment.rei.altar_crafting.title": "Pigment Pedestal Crafting",
   "container.pigment.rei.altar.crafting_time_and_xp": "%f seconds - %f XP",
@@ -539,7 +539,6 @@
   "container.pigment.rei.anvil_crushing.high_force_required": "High force required.",
   "container.pigment.rei.anvil_crushing.plus_xp": "+%f XP",
 
-  "block.pigment.compactor": "Compacting Chest",
   "block.pigment.altar": "Pigment Pedestal",
   "block.pigment.altar2": "Pigment Pedestal",
   "block.pigment.altar3": "Pigment Pedestal",
@@ -553,6 +552,8 @@
   "block.pigment.ender_hopper": "Ender Hopper",
   "block.pigment.ender_hopper_with_owner": "Ender Hopper of %s",
 
+  "block.pigment.compactor": "Compacting Chest",
+  "block.pigment.restocking_chest": "Restocking Chest",
   "block.pigment.private_chest": "Private Chest",
   "block.pigment.private_chest.title_with_owner": "Private Chest of %s",
 

@@ -1,4 +1,4 @@
-package de.dafuqs.pigment.blocks.private_chest;
+package de.dafuqs.pigment.blocks.chests;
 
 import de.dafuqs.pigment.interfaces.PlayerOwned;
 import de.dafuqs.pigment.registries.PigmentBlockEntityRegistry;
@@ -115,7 +115,11 @@ public class PrivateChestBlockEntity extends LootableContainerBlockEntity implem
     }
 
     protected Text getContainerName() {
-        return new TranslatableText("block.pigment.private_chest.title");
+        if(this.hasOwner()) {
+            return new TranslatableText("block.pigment.private_chest.title_with_owner", this.getOwnerName());
+        } else {
+            return new TranslatableText("block.pigment.private_chest");
+        }
     }
 
     @Override

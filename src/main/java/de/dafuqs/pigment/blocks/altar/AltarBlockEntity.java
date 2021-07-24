@@ -47,7 +47,6 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Iterator;
-import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 
@@ -74,7 +73,7 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
     public static final int OUTPUT_SLOT_ID = 16;
 
     public AltarBlockEntity(BlockPos blockPos, BlockState blockState) {
-        super(PigmentBlockEntityRegistry.ALTAR_BLOCK_ENTITY_TYPE, blockPos, blockState);
+        super(PigmentBlockEntityRegistry.ALTAR, blockPos, blockState);
 
         if(autoCraftingInventory == null) {
             autoCraftingInventory = new AutoCraftingInventory(3, 3);

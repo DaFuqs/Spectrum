@@ -63,7 +63,7 @@ public class OminousSaplingBlock extends Block implements BlockEntityProvider {
 
     @Override
     public @Nullable BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
-        return new OminousSaplingBlockEntity(PigmentBlockEntityRegistry.OMINOUS_SAPLING_BLOCK_ENTITY_TYPE, pos, state);
+        return new OminousSaplingBlockEntity(PigmentBlockEntityRegistry.OMINOUS_SAPLING, pos, state);
     }
 
     @Override

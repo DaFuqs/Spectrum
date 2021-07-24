@@ -3,7 +3,8 @@ package de.dafuqs.pigment.registries;
 import com.mojang.datafixers.types.Type;
 import de.dafuqs.pigment.PigmentCommon;
 import de.dafuqs.pigment.blocks.altar.AltarBlockEntity;
-import de.dafuqs.pigment.blocks.compactor.CompactorBlockEntity;
+import de.dafuqs.pigment.blocks.chests.CompactorBlockEntity;
+import de.dafuqs.pigment.blocks.chests.RestockingChestBlockEntity;
 import de.dafuqs.pigment.blocks.deeper_down_portal.DeeperDownPortalBlockEntity;
 import de.dafuqs.pigment.blocks.deeper_down_portal.DeeperDownPortalBlockEntityRenderer;
 import de.dafuqs.pigment.blocks.detector.PlayerDetectorBlockEntity;
@@ -11,8 +12,8 @@ import de.dafuqs.pigment.blocks.ender.EnderDropperBlockEntity;
 import de.dafuqs.pigment.blocks.ender.EnderHopperBlockEntity;
 import de.dafuqs.pigment.blocks.mob_head.PigmentSkullBlockEntity;
 import de.dafuqs.pigment.blocks.mob_head.PigmentSkullBlockEntityRenderer3D;
-import de.dafuqs.pigment.blocks.private_chest.PrivateChestBlockEntity;
-import de.dafuqs.pigment.blocks.private_chest.PrivateChestBlockEntityRenderer;
+import de.dafuqs.pigment.blocks.chests.PrivateChestBlockEntity;
+import de.dafuqs.pigment.blocks.chests.PrivateChestBlockEntityRenderer;
 import de.dafuqs.pigment.blocks.spirit_tree.OminousSaplingBlockEntity;
 import net.fabricmc.fabric.api.client.rendereregistry.v1.BlockEntityRendererRegistry;
 import net.fabricmc.fabric.api.event.client.ClientSpriteRegistryCallback;
@@ -31,15 +32,17 @@ import java.util.List;
 
 public class PigmentBlockEntityRegistry<T extends BlockEntity> {
 
-    public static BlockEntityType<OminousSaplingBlockEntity> OMINOUS_SAPLING_BLOCK_ENTITY_TYPE;
-    public static BlockEntityType<AltarBlockEntity> ALTAR_BLOCK_ENTITY_TYPE;
-    public static BlockEntityType<CompactorBlockEntity> COMPACTOR_BLOCK_ENTITY_TYPE;
-    public static BlockEntityType<PrivateChestBlockEntity> PRIVATE_CHEST;
+    public static BlockEntityType<OminousSaplingBlockEntity> OMINOUS_SAPLING;
+    public static BlockEntityType<AltarBlockEntity> ALTAR;
     public static BlockEntityType<PlayerDetectorBlockEntity> PLAYER_DETECTOR;
     public static BlockEntityType<EnderDropperBlockEntity> ENDER_DROPPER;
     public static BlockEntityType<EnderHopperBlockEntity> ENDER_HOPPER;
     public static BlockEntityType<PigmentSkullBlockEntity> SKULL;
     public static BlockEntityType<DeeperDownPortalBlockEntity> DEEPER_DOWN_PORTAL;
+
+    public static BlockEntityType<CompactorBlockEntity> COMPACTING_CHEST;
+    public static BlockEntityType<RestockingChestBlockEntity> RESTOCKING_CHEST;
+    public static BlockEntityType<PrivateChestBlockEntity> PRIVATE_CHEST;
 
     private static <T extends BlockEntity> BlockEntityType<T> create(String string, FabricBlockEntityTypeBuilder<T> builder) {
         Type<?> type = Util.getChoiceType(TypeReferences.BLOCK_ENTITY, string);
@@ -47,14 +50,16 @@ public class PigmentBlockEntityRegistry<T extends BlockEntity> {
     }
 
     public static void register() {
-        OMINOUS_SAPLING_BLOCK_ENTITY_TYPE = create("ominous_sapling_block_entity", FabricBlockEntityTypeBuilder.create(OminousSaplingBlockEntity::new, PigmentBlocks.OMINOUS_SAPLING));
-        ALTAR_BLOCK_ENTITY_TYPE = create("altar_block_entity", FabricBlockEntityTypeBuilder.create(AltarBlockEntity::new, PigmentBlocks.ALTAR));
-        COMPACTOR_BLOCK_ENTITY_TYPE = create("compactor", FabricBlockEntityTypeBuilder.create(CompactorBlockEntity::new, PigmentBlocks.COMPACTOR));
-        PRIVATE_CHEST = create("private_chest", FabricBlockEntityTypeBuilder.create(PrivateChestBlockEntity::new, PigmentBlocks.PRIVATE_CHEST));
+        OMINOUS_SAPLING = create("ominous_sapling_block_entity", FabricBlockEntityTypeBuilder.create(OminousSaplingBlockEntity::new, PigmentBlocks.OMINOUS_SAPLING));
+        ALTAR = create("altar_block_entity", FabricBlockEntityTypeBuilder.create(AltarBlockEntity::new, PigmentBlocks.ALTAR));
         PLAYER_DETECTOR = create("player_detector", FabricBlockEntityTypeBuilder.create(PlayerDetectorBlockEntity::new, PigmentBlocks.PLAYER_DETECTOR));
         ENDER_DROPPER = create("ender_dropper", FabricBlockEntityTypeBuilder.create(EnderDropperBlockEntity::new, PigmentBlocks.ENDER_DROPPER));
         ENDER_HOPPER = create("ender_hopper", FabricBlockEntityTypeBuilder.create(EnderHopperBlockEntity::new, PigmentBlocks.ENDER_HOPPER));
         DEEPER_DOWN_PORTAL = create("deeper_down_portal", FabricBlockEntityTypeBuilder.create(DeeperDownPortalBlockEntity::new, PigmentBlocks.DEEPER_DOWN_PORTAL));
+
+        COMPACTING_CHEST = create("compacting_chest", FabricBlockEntityTypeBuilder.create(CompactorBlockEntity::new, PigmentBlocks.COMPACTING_CHEST));
+        RESTOCKING_CHEST = create("restocking_chest", FabricBlockEntityTypeBuilder.create(RestockingChestBlockEntity::new, PigmentBlocks.RESTOCKING_CHEST));
+        PRIVATE_CHEST = create("private_chest", FabricBlockEntityTypeBuilder.create(PrivateChestBlockEntity::new, PigmentBlocks.PRIVATE_CHEST));
 
         // All the skulls
         List<Block> skullBlocks = new ArrayList<>();

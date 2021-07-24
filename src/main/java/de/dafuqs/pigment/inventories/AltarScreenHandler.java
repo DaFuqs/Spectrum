@@ -165,7 +165,7 @@ public class AltarScreenHandler extends AbstractRecipeScreenHandler<Inventory> {
 
             if(index < AltarBlockEntity.PREVIEW_SLOT_ID) {
                 // altar => player inv
-                if (!this.insertItem(clickedStack, 15, 51, false)) {
+                if (!this.insertItem(clickedStack, 16, 51, false)) {
                     return ItemStack.EMPTY;
                 }
             } else if(clickedStackCopy.isOf(PigmentItems.AMETHYST_POWDER)) {

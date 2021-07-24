@@ -1,4 +1,4 @@
-package de.dafuqs.pigment.blocks.compactor;
+package de.dafuqs.pigment.blocks.chests;
 
 import de.dafuqs.pigment.InventoryHelper;
 import de.dafuqs.pigment.inventories.AutoCompactingInventory;
@@ -35,7 +35,7 @@ public class CompactorBlockEntity extends LootableContainerBlockEntity {
     boolean hasToCraft;
 
     public CompactorBlockEntity(BlockPos blockPos, BlockState blockState) {
-        super(PigmentBlockEntityRegistry.COMPACTOR_BLOCK_ENTITY_TYPE, blockPos, blockState);
+        super(PigmentBlockEntityRegistry.COMPACTING_CHEST, blockPos, blockState);
         this.inventory = DefaultedList.ofSize(27, ItemStack.EMPTY);
         this.lastCraftingItemStack = ItemStack.EMPTY;
         this.lastCraftingRecipe = null;

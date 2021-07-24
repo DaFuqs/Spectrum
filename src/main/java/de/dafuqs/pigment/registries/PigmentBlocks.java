@@ -5,7 +5,9 @@ import com.google.common.collect.EnumHashBiMap;
 import de.dafuqs.pigment.PigmentCommon;
 import de.dafuqs.pigment.blocks.*;
 import de.dafuqs.pigment.blocks.altar.AltarBlock;
-import de.dafuqs.pigment.blocks.compactor.CompactorBlock;
+import de.dafuqs.pigment.blocks.chests.CompactingChestBlock;
+import de.dafuqs.pigment.blocks.chests.PrivateChestBlock;
+import de.dafuqs.pigment.blocks.chests.RestockingChestBlock;
 import de.dafuqs.pigment.blocks.conditional.*;
 import de.dafuqs.pigment.blocks.decay.DecayBlock1;
 import de.dafuqs.pigment.blocks.decay.DecayBlock2;
@@ -29,7 +31,6 @@ import de.dafuqs.pigment.blocks.melon.GlisteringStemBlock;
 import de.dafuqs.pigment.blocks.mob_head.PigmentSkullBlock;
 import de.dafuqs.pigment.blocks.mob_head.PigmentSkullBlockItem;
 import de.dafuqs.pigment.blocks.mob_head.PigmentWallSkullBlock;
-import de.dafuqs.pigment.blocks.private_chest.PrivateChestBlock;
 import de.dafuqs.pigment.blocks.redstone.RedstoneGravityBlock;
 import de.dafuqs.pigment.blocks.redstone.RedstoneTransparencyBlock;
 import de.dafuqs.pigment.blocks.spirit_tree.OminousSaplingBlock;
@@ -66,10 +67,10 @@ import java.util.Locale;
 
 public class PigmentBlocks {
 
-    private static Boolean never(BlockState state, BlockView world, BlockPos pos, EntityType<?> type) {
+    private static boolean never(BlockState state, BlockView world, BlockPos pos, EntityType<?> type) {
         return false;
     }
-    private static Boolean always(BlockState state, BlockView world, BlockPos pos) {
+    private static boolean always(BlockState state, BlockView world, BlockPos pos) {
         return true;
     }
     private static boolean never(BlockState state, BlockView world, BlockPos pos) {
@@ -132,7 +133,7 @@ public class PigmentBlocks {
     public static final Block CITRINE_STORAGE_BLOCK = new Block(gemstoneStorageBlockSettings);
     public static final Block ONYX_STORAGE_BLOCK = new Block(gemstoneStorageBlockSettings);
     public static final Block MOONSTONE_STORAGE_BLOCK = new Block(gemstoneStorageBlockSettings);
-    
+
     public static final Block TUFF_SLAB = new SlabBlock(FabricBlockSettings.copyOf(Blocks.TUFF));
     public static final Block TUFF_WALL = new WallBlock(FabricBlockSettings.copyOf(Blocks.TUFF));
     public static final Block TUFF_STAIRS = new PigmentStairsBlock(Blocks.TUFF.getDefaultState(), FabricBlockSettings.copyOf(Blocks.TUFF));
@@ -462,8 +463,9 @@ public class PigmentBlocks {
     public static final Block SCARLET_FRAGMENT_BLOCK = new GravitableBlock(FabricBlockSettings.of(Material.METAL, MapColor.DARK_RED).requiresTool().strength(5.0F, 6.0F).sounds(BlockSoundGroup.METAL), -0.2F);
 
     // FUNCTIONAL BLOCKS
-    public static final Block PRIVATE_CHEST = new PrivateChestBlock(FabricBlockSettings.of(Material.STONE).requiresTool().hardness(4.0F).resistance(3600000.0F));
-    public static final Block COMPACTOR = new CompactorBlock(FabricBlockSettings.of(Material.STONE).requiresTool().strength(4.0F, 4.0F).sounds(BlockSoundGroup.STONE));
+    public static final Block PRIVATE_CHEST = new PrivateChestBlock(FabricBlockSettings.of(Material.STONE).requiresTool().strength(4.0F, 3600000.0F).sounds(BlockSoundGroup.STONE));
+    public static final Block COMPACTING_CHEST = new CompactingChestBlock(FabricBlockSettings.of(Material.STONE).requiresTool().strength(4.0F, 4.0F).sounds(BlockSoundGroup.STONE));
+    public static final Block RESTOCKING_CHEST = new RestockingChestBlock(FabricBlockSettings.of(Material.STONE).requiresTool().strength(4.0F, 4.0F).sounds(BlockSoundGroup.STONE));
     public static final Block PARTICLE_EMITTER = new ParticleEmitterBlock(FabricBlockSettings.of(Material.METAL).requiresTool().strength(5.0F, 6.0F).sounds(BlockSoundGroup.METAL));
     public static final Block BEDROCK_ANVIL = new BedrockAnvilBlock(FabricBlockSettings.copyOf(Blocks.ANVIL).requiresTool().strength(8.0F, 8.0F).sounds(BlockSoundGroup.METAL));
 
@@ -527,22 +529,22 @@ public class PigmentBlocks {
         Registry.register(Registry.BLOCK, new Identifier(PigmentCommon.MOD_ID, name), block);
     }
 
-    /*private static void registerBlockItem(String name, BlockItem blockItem) {
+    private static void registerBlockItem(String name, BlockItem blockItem) {
         Registry.register(Registry.ITEM, new Identifier(PigmentCommon.MOD_ID, name), blockItem);
-    }*/
-	
-	private static void registerBlockWithItem(String name, Block block, FabricItemSettings itemSettings) {
+    }
+
+    private static void registerBlockWithItem(String name, Block block, FabricItemSettings itemSettings) {
         Registry.register(Registry.BLOCK, new Identifier(PigmentCommon.MOD_ID, name), block);
         Registry.register(Registry.ITEM, new Identifier(PigmentCommon.MOD_ID, name), new BlockItem(block, itemSettings));
     }
-	
-	private static void registerBlockWithItem(String name, Block block, BlockItem blockItem) {
+
+    private static void registerBlockWithItem(String name, Block block, BlockItem blockItem) {
         Registry.register(Registry.BLOCK, new Identifier(PigmentCommon.MOD_ID, name), block);
-        Registry.register(Registry.ITEM, new Identifier(PigmentCommon.MOD_ID, name), blockItem));
+        Registry.register(Registry.ITEM, new Identifier(PigmentCommon.MOD_ID, name), blockItem);
     }
 
     public static void register() {
-        registerBlockWithItem("altar", ALTAR, geleralItemSettings);
+        registerBlockWithItem("altar", ALTAR, generalItemSettings);
         registerBlockWithItem("altar2", ALTAR2, generalItemSettings);
         registerBlockWithItem("altar3", ALTAR3, generalItemSettings);
 
@@ -550,23 +552,23 @@ public class PigmentBlocks {
         registerGemBlocks(worldgenItemSettings);
         registerGemOreBlocks(worldgenItemSettings);
         registerOreBlocks();
-		
+
         registerStoneLamps(decorationItemSettings);
         registerRunes(decorationItemSettings);
         registerGemGlass(decorationItemSettings);
         registerPlayerOnlyGlass(generalItemSettings);
-		
+
         registerColoredLamps(decorationItemSettings);
         registerFlatColoredBlocks(decorationItemSettings);
 
         registerColoredWood(coloredWoodItemSettings);
-		
-		registerRedstone(generalItemSettings);
-		registerMagicalBlocks(generalItemSettings);
-		
+
+        registerRedstone(generalItemSettings);
+        registerMagicalBlocks(generalItemSettings);
+
         registerMobHeads(mobHeadItemSettings);
         registerSpiritTree(generalItemSettings);
-		
+
         // Decay
         registerBlock("decay1", DECAY1);
         registerBlock("decay2", DECAY2);
@@ -578,49 +580,50 @@ public class PigmentBlocks {
         registerBlockWithItem("frostbite_crystal", FROSTBITE_CRYSTAL, generalItemSettings);
         registerBlockWithItem("blazing_crystal", BLAZING_CRYSTAL, generalItemSettings);
         registerBlockWithItem("resonant_lily", RESONANT_LILY, generalItemSettings);
-		
-		// Worldgen
+
+        // Worldgen
         registerBlockWithItem("quitoxic_reeds", QUITOXIC_REEDS, worldgenItemSettings);
         registerBlockWithItem("mermaids_brush", MERMAIDS_BRUSH, worldgenItemSettings);
-        registerBlockWithItem("ender_treasure", ENDER_TREASURE, worldgenItemSettings));
-		
-		// Plants
-		registerBlockWithItem("glistering_melon", GLISTERING_MELON, generalItemSettings);
+        registerBlockWithItem("ender_treasure", ENDER_TREASURE, worldgenItemSettings);
+
+        // Plants
+        registerBlockWithItem("glistering_melon", GLISTERING_MELON, generalItemSettings);
         registerBlock("glistering_melon_stem", GLISTERING_MELON_STEM);
         registerBlock("attached_glistering_melon_stem", ATTACHED_GLISTERING_MELON_STEM);
 
-		// Misc
-		registerBlock("deeper_down_portal", DEEPER_DOWN_PORTAL);
+        // Misc
+        registerBlock("deeper_down_portal", DEEPER_DOWN_PORTAL);
         registerBlockWithItem("bedrock_anvil", BEDROCK_ANVIL, generalItemSettings);
-        registerBlockWithItem("cracked_end_portal_frame", CRACKED_END_PORTAL_FRAME, generalItemSettings));
+        registerBlockWithItem("cracked_end_portal_frame", CRACKED_END_PORTAL_FRAME, generalItemSettings);
     }
 
     private static void registerRedstone(FabricItemSettings fabricItemSettings) {
-		registerBlockWithItem("light_level_detector", LIGHT_LEVEL_DETECTOR, fabricItemSettings);
+        registerBlockWithItem("light_level_detector", LIGHT_LEVEL_DETECTOR, fabricItemSettings);
         registerBlockWithItem("weather_detector", WEATHER_DETECTOR, fabricItemSettings);
         registerBlockWithItem("item_detector", ITEM_DETECTOR, fabricItemSettings);
         registerBlockWithItem("player_detector", PLAYER_DETECTOR, fabricItemSettings);
         registerBlockWithItem("entity_detector", ENTITY_DETECTOR, fabricItemSettings);
-		
-		registerBlockWithItem("redstone_sand", REDSTONE_SAND, fabricItemSettings);
+
+        registerBlockWithItem("redstone_sand", REDSTONE_SAND, fabricItemSettings);
         registerBlockWithItem("ender_glass", ENDER_GLASS, fabricItemSettings);
-	}
-	
+    }
+
     private static void registerMagicalBlocks(FabricItemSettings fabricItemSettings) {
-		registerBlockWithItem("private_chest", PRIVATE_CHEST, PRIVATE_CHEST, fabricItemSettings);
-        registerBlockWithItem("compactor", COMPACTOR, fabricItemSettings);
+        registerBlockWithItem("private_chest", PRIVATE_CHEST, fabricItemSettings);
+        registerBlockWithItem("compactor", COMPACTING_CHEST, generalItemSettings);
+        registerBlockWithItem("restocking_chest", RESTOCKING_CHEST, generalItemSettings);
         registerBlockWithItem("ender_hopper", ENDER_HOPPER, fabricItemSettings);
         registerBlockWithItem("ender_dropper", ENDER_DROPPER, fabricItemSettings);
-		registerBlockWithItem("particle_emitter", PARTICLE_EMITTER, fabricItemSettings);
-		
-		registerBlockWithItem("lava_sponge", LAVA_SPONGE, fabricItemSettings));
+        registerBlockWithItem("particle_emitter", PARTICLE_EMITTER, fabricItemSettings);
+
+        registerBlockWithItem("lava_sponge", LAVA_SPONGE, fabricItemSettings);
         registerBlockWithItem("wet_lava_sponge", WET_LAVA_SPONGE, new WetLavaSpongeItem(WET_LAVA_SPONGE, new FabricItemSettings().group(PigmentItemGroups.ITEM_GROUP_GENERAL).maxCount(1).recipeRemainder(LAVA_SPONGE.asItem())));
-	}
-		
-		
+    }
+
+
     private static void registerSpiritTree(FabricItemSettings fabricItemSettings) {
-		registerBlockWithItem("ominous_sapling", OMINOUS_SAPLING, new OminousSaplingBlockItem(OMINOUS_SAPLING, fabricItemSettings));
-		
+        registerBlockWithItem("ominous_sapling", OMINOUS_SAPLING, new OminousSaplingBlockItem(OMINOUS_SAPLING, fabricItemSettings));
+
         registerBlockWithItem("spirit_sallow_roots", SPIRIT_SALLOW_ROOTS, fabricItemSettings);
         registerBlockWithItem("spirit_sallow_log", SPIRIT_SALLOW_LOG, fabricItemSettings);
         registerBlockWithItem("spirit_sallow_bark", SPIRIT_SALLOW_BARK, fabricItemSettings);
@@ -969,7 +972,7 @@ public class PigmentBlocks {
         registerBlockWithItem("moonstone_cluster", MOONSTONE_CLUSTER, fabricItemSettings);
 
         registerBlockWithItem("ammolite_block", AMMOLITE_BLOCK, fabricItemSettings);
-        
+
         // storage blocks
         registerBlockWithItem("topaz_storage_block", TOPAZ_STORAGE_BLOCK, fabricItemSettings);
         registerBlockWithItem("amethyst_storage_block", AMETHYST_STORAGE_BLOCK, fabricItemSettings);
@@ -1037,8 +1040,8 @@ public class PigmentBlocks {
     }
 
     public static void registerClient() {
-		// Gemstones
-		BlockRenderLayerMap.INSTANCE.putBlock(PigmentBlocks.TOPAZ_CLUSTER, RenderLayer.getCutout());
+        // Gemstones
+        BlockRenderLayerMap.INSTANCE.putBlock(PigmentBlocks.TOPAZ_CLUSTER, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(PigmentBlocks.SMALL_TOPAZ_BUD, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(PigmentBlocks.MEDIUM_TOPAZ_BUD, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(PigmentBlocks.LARGE_TOPAZ_BUD, RenderLayer.getCutout());
@@ -1058,7 +1061,7 @@ public class PigmentBlocks {
         BlockRenderLayerMap.INSTANCE.putBlock(PigmentBlocks.MEDIUM_MOONSTONE_BUD, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(PigmentBlocks.LARGE_MOONSTONE_BUD, RenderLayer.getCutout());
 
-		// Glas
+        // Glass
         BlockRenderLayerMap.INSTANCE.putBlock(PigmentBlocks.TOPAZ_GLASS, RenderLayer.getTranslucent());
         BlockRenderLayerMap.INSTANCE.putBlock(PigmentBlocks.AMETHYST_GLASS, RenderLayer.getTranslucent());
         BlockRenderLayerMap.INSTANCE.putBlock(PigmentBlocks.CITRINE_GLASS, RenderLayer.getTranslucent());
@@ -1077,8 +1080,8 @@ public class PigmentBlocks {
         BlockRenderLayerMap.INSTANCE.putBlock(PigmentBlocks.ONYX_PLAYER_ONLY_GLASS, RenderLayer.getTranslucent());
 
         BlockRenderLayerMap.INSTANCE.putBlock(PigmentBlocks.ENDER_GLASS, RenderLayer.getTranslucent());
-		
-		// Gem lamps
+
+        // Gem lamps
         BlockRenderLayerMap.INSTANCE.putBlock(PigmentBlocks.TOPAZ_CALCITE_LAMP, RenderLayer.getTranslucent());
         BlockRenderLayerMap.INSTANCE.putBlock(PigmentBlocks.AMETHYST_CALCITE_LAMP, RenderLayer.getTranslucent());
         BlockRenderLayerMap.INSTANCE.putBlock(PigmentBlocks.CITRINE_CALCITE_LAMP, RenderLayer.getTranslucent());
@@ -1090,7 +1093,7 @@ public class PigmentBlocks {
         BlockRenderLayerMap.INSTANCE.putBlock(PigmentBlocks.CITRINE_BASALT_LAMP, RenderLayer.getTranslucent());
         BlockRenderLayerMap.INSTANCE.putBlock(PigmentBlocks.MOONSTONE_BASALT_LAMP, RenderLayer.getTranslucent());
         BlockRenderLayerMap.INSTANCE.putBlock(PigmentBlocks.ONYX_BASALT_LAMP, RenderLayer.getTranslucent());
-		
+
         // Saplings
         BlockRenderLayerMap.INSTANCE.putBlock(PigmentBlocks.BLACK_SAPLING, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(PigmentBlocks.BLUE_SAPLING, RenderLayer.getCutout());
@@ -1109,7 +1112,7 @@ public class PigmentBlocks {
         BlockRenderLayerMap.INSTANCE.putBlock(PigmentBlocks.WHITE_SAPLING, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(PigmentBlocks.YELLOW_SAPLING, RenderLayer.getCutout());
 
-		// Colored lamps
+        // Colored lamps
         BlockRenderLayerMap.INSTANCE.putBlock(PigmentBlocks.BLACK_LAMP, RenderLayer.getTranslucent());
         BlockRenderLayerMap.INSTANCE.putBlock(PigmentBlocks.BLUE_LAMP, RenderLayer.getTranslucent());
         BlockRenderLayerMap.INSTANCE.putBlock(PigmentBlocks.BROWN_LAMP, RenderLayer.getTranslucent());
@@ -1127,8 +1130,8 @@ public class PigmentBlocks {
         BlockRenderLayerMap.INSTANCE.putBlock(PigmentBlocks.WHITE_LAMP, RenderLayer.getTranslucent());
         BlockRenderLayerMap.INSTANCE.putBlock(PigmentBlocks.YELLOW_LAMP, RenderLayer.getTranslucent());
 
-		// Others
-		BlockRenderLayerMap.INSTANCE.putBlock(PigmentBlocks.GLISTERING_MELON_STEM, RenderLayer.getCutout());
+        // Others
+        BlockRenderLayerMap.INSTANCE.putBlock(PigmentBlocks.GLISTERING_MELON_STEM, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(PigmentBlocks.ATTACHED_GLISTERING_MELON_STEM, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(PigmentBlocks.OMINOUS_SAPLING, RenderLayer.getCutout());
 

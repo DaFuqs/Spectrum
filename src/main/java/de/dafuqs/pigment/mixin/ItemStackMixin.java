@@ -2,7 +2,6 @@ package de.dafuqs.pigment.mixin;
 
 import de.dafuqs.pigment.inventories.slots.ShadowSlot;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.util.ClickType;

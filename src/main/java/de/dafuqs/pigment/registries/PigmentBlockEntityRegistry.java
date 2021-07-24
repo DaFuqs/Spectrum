@@ -4,6 +4,8 @@ import com.mojang.datafixers.types.Type;
 import de.dafuqs.pigment.PigmentCommon;
 import de.dafuqs.pigment.blocks.altar.AltarBlockEntity;
 import de.dafuqs.pigment.blocks.chests.CompactingChestBlockEntity;
+import de.dafuqs.pigment.blocks.chests.PigmentChestBlockEntityRenderer;
+import de.dafuqs.pigment.blocks.chests.PrivateChestBlockEntity;
 import de.dafuqs.pigment.blocks.chests.RestockingChestBlockEntity;
 import de.dafuqs.pigment.blocks.deeper_down_portal.DeeperDownPortalBlockEntity;
 import de.dafuqs.pigment.blocks.deeper_down_portal.DeeperDownPortalBlockEntityRenderer;
@@ -12,8 +14,6 @@ import de.dafuqs.pigment.blocks.ender.EnderDropperBlockEntity;
 import de.dafuqs.pigment.blocks.ender.EnderHopperBlockEntity;
 import de.dafuqs.pigment.blocks.mob_head.PigmentSkullBlockEntity;
 import de.dafuqs.pigment.blocks.mob_head.PigmentSkullBlockEntityRenderer3D;
-import de.dafuqs.pigment.blocks.chests.PrivateChestBlockEntity;
-import de.dafuqs.pigment.blocks.chests.PrivateChestBlockEntityRenderer;
 import de.dafuqs.pigment.blocks.spirit_tree.OminousSaplingBlockEntity;
 import net.fabricmc.fabric.api.client.rendereregistry.v1.BlockEntityRendererRegistry;
 import net.fabricmc.fabric.api.event.client.ClientSpriteRegistryCallback;
@@ -72,7 +72,9 @@ public class PigmentBlockEntityRegistry<T extends BlockEntity> {
     }
 
     public static void registerClient() {
-        BlockEntityRendererRegistry.INSTANCE.register(PigmentBlockEntityRegistry.PRIVATE_CHEST, PrivateChestBlockEntityRenderer::new);
+        BlockEntityRendererRegistry.INSTANCE.register(PigmentBlockEntityRegistry.PRIVATE_CHEST, PigmentChestBlockEntityRenderer::new);
+        BlockEntityRendererRegistry.INSTANCE.register(PigmentBlockEntityRegistry.COMPACTING_CHEST, PigmentChestBlockEntityRenderer::new);
+        BlockEntityRendererRegistry.INSTANCE.register(PigmentBlockEntityRegistry.RESTOCKING_CHEST, PigmentChestBlockEntityRenderer::new);
         BlockEntityRendererRegistry.INSTANCE.register(PigmentBlockEntityRegistry.SKULL, PigmentSkullBlockEntityRenderer3D::new);
         BlockEntityRendererRegistry.INSTANCE.register(PigmentBlockEntityRegistry.DEEPER_DOWN_PORTAL, DeeperDownPortalBlockEntityRenderer::new);
 
@@ -83,6 +85,8 @@ public class PigmentBlockEntityRegistry<T extends BlockEntity> {
         //Register textures in chest atlas
         ClientSpriteRegistryCallback.event(TexturedRenderLayers.CHEST_ATLAS_TEXTURE).register((texture, registry) -> {
             registry.register(new Identifier(PigmentCommon.MOD_ID, "entity/private_chest"));
+            registry.register(new Identifier(PigmentCommon.MOD_ID, "entity/compacting_chest"));
+            registry.register(new Identifier(PigmentCommon.MOD_ID, "entity/restocking_chest"));
         });
     }
 

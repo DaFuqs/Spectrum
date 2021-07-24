@@ -1,0 +1,144 @@
+package de.dafuqs.pigment.blocks.chests;
+
+import de.dafuqs.pigment.inventories.RestockingChestScreenHandler;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+import net.fabricmc.api.EnvironmentInterface;
+import net.fabricmc.api.EnvironmentInterfaces;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.entity.*;
+import net.minecraft.client.block.ChestAnimationProgress;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.Inventories;
+import net.minecraft.inventory.Inventory;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.screen.GenericContainerScreenHandler;
+import net.minecraft.screen.ScreenHandler;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvent;
+import net.minecraft.sound.SoundEvents;
+import net.minecraft.util.collection.DefaultedList;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+
+import java.util.Random;
+
+@EnvironmentInterfaces({@EnvironmentInterface(
+        value = EnvType.CLIENT,
+        itf = ChestAnimationProgress.class
+)})
+public abstract class PigmentChestBlockEntity extends LootableContainerBlockEntity implements ChestAnimationProgress {
+
+    protected DefaultedList<ItemStack> inventory;
+
+    protected final ChestLidAnimator lidAnimator;
+    public final ChestStateManager stateManager;
+
+    protected PigmentChestBlockEntity(BlockEntityType<?> blockEntityType, BlockPos blockPos, BlockState blockState) {
+        super(blockEntityType, blockPos, blockState);
+        this.inventory = DefaultedList.ofSize(size(), ItemStack.EMPTY);
+        this.lidAnimator = new ChestLidAnimator();
+
+        this.stateManager = new ChestStateManager() {
+            protected void onChestOpened(World world, BlockPos pos, BlockState state) {
+                playSound(world, pos, state, SoundEvents.BLOCK_CHEST_OPEN);
+            }
+
+            protected void onChestClosed(World world, BlockPos pos, BlockState state) {
+                playSound(world, pos, state, SoundEvents.BLOCK_CHEST_CLOSE);
+            }
+
+            protected void onInteracted(World world, BlockPos pos, BlockState state, int oldViewerCount, int newViewerCount) {
+                onInvOpenOrClose(world, pos, state, oldViewerCount, newViewerCount);
+            }
+
+            protected boolean isPlayerViewing(PlayerEntity player) {
+                ScreenHandler screenHandler = player.currentScreenHandler;
+
+                Inventory inventory = null;
+                if(screenHandler instanceof GenericContainerScreenHandler) {
+                    inventory = ((GenericContainerScreenHandler) screenHandler).getInventory();
+                } else if (screenHandler instanceof RestockingChestScreenHandler){
+                    inventory = ((RestockingChestScreenHandler) screenHandler).getInventory();
+                }
+
+                return inventory != null && inventory == PigmentChestBlockEntity.this;
+            }
+        };
+    }
+
+    private static void playSound(World world, BlockPos pos, BlockState state, SoundEvent soundEvent) {
+        world.playSound(null, pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, soundEvent, SoundCategory.BLOCKS, 0.5F, world.random.nextFloat() * 0.1F + 0.9F);
+    }
+
+    @Environment(EnvType.CLIENT)
+    public float getAnimationProgress(float tickDelta) {
+        return this.lidAnimator.getProgress(tickDelta);
+    }
+
+    public static void clientTick(World world, BlockPos pos, BlockState state, PigmentChestBlockEntity blockEntity) {
+        blockEntity.lidAnimator.step();
+    }
+
+    public boolean onSyncedBlockEvent(int type, int data) {
+        if (type == 1) {
+            this.lidAnimator.setOpen(data > 0);
+            return true;
+        } else {
+            return super.onSyncedBlockEvent(type, data);
+        }
+    }
+
+    protected void onInvOpenOrClose(World world, BlockPos pos, BlockState state, int oldViewerCount, int newViewerCount) {
+        Block block = state.getBlock();
+        world.addSyncedBlockEvent(pos, block, 1, newViewerCount);
+    }
+
+    public void onOpen(PlayerEntity player) {
+        if (!player.isSpectator()) {
+            this.stateManager.openChest(player, this.getWorld(), this.getPos(), this.getCachedState());
+        }
+
+    }
+
+    public void onClose(PlayerEntity player) {
+        if (!player.isSpectator()) {
+            this.stateManager.closeChest(player, this.getWorld(), this.getPos(), this.getCachedState());
+        }
+    }
+
+    @Override
+    public void setStack(int slot, ItemStack stack) {
+        super.setStack(slot, stack);
+    }
+
+    @Override
+    protected DefaultedList<ItemStack> getInvStackList() {
+        return this.inventory;
+    }
+
+    @Override
+    protected void setInvStackList(DefaultedList<ItemStack> list) {
+        this.inventory = list;
+    }
+
+    public void onScheduledTick() {
+        this.stateManager.updateViewerCount(this.getWorld(), this.getPos(), this.getCachedState());
+    }
+
+    public void readNbt(NbtCompound tag) {
+        super.readNbt(tag);
+        this.inventory = DefaultedList.ofSize(this.size(), ItemStack.EMPTY);
+        Inventories.readNbt(tag, this.inventory);
+    }
+
+    public NbtCompound writeNbt(NbtCompound tag) {
+        super.writeNbt(tag);
+        Inventories.writeNbt(tag, inventory);
+        return tag;
+    }
+
+}

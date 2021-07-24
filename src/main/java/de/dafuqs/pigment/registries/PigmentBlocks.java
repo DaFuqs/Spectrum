@@ -610,7 +610,7 @@ public class PigmentBlocks {
 
     private static void registerMagicalBlocks(FabricItemSettings fabricItemSettings) {
         registerBlockWithItem("private_chest", PRIVATE_CHEST, fabricItemSettings);
-        registerBlockWithItem("compactor", COMPACTING_CHEST, generalItemSettings);
+        registerBlockWithItem("compacting_chest", COMPACTING_CHEST, generalItemSettings);
         registerBlockWithItem("restocking_chest", RESTOCKING_CHEST, generalItemSettings);
         registerBlockWithItem("ender_hopper", ENDER_HOPPER, fabricItemSettings);
         registerBlockWithItem("ender_dropper", ENDER_DROPPER, fabricItemSettings);

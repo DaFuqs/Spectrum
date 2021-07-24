@@ -1,27 +1,16 @@
 package de.dafuqs.pigment.inventories;
 
-import de.dafuqs.pigment.blocks.altar.AltarBlockEntity;
-import de.dafuqs.pigment.blocks.chests.RestockingChestBlock;
 import de.dafuqs.pigment.blocks.chests.RestockingChestBlockEntity;
 import de.dafuqs.pigment.inventories.slots.ExtractOnlySlot;
-import de.dafuqs.pigment.inventories.slots.ReadOnlySlot;
 import de.dafuqs.pigment.inventories.slots.StackFilterSlot;
-import de.dafuqs.pigment.recipe.PigmentRecipeTypes;
-import de.dafuqs.pigment.recipe.altar.AltarCraftingRecipe;
 import de.dafuqs.pigment.registries.PigmentItems;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.recipe.Recipe;
-import net.minecraft.recipe.RecipeInputProvider;
-import net.minecraft.recipe.RecipeMatcher;
-import net.minecraft.recipe.RecipeType;
-import net.minecraft.recipe.book.RecipeBookCategory;
-import net.minecraft.screen.*;
+import net.minecraft.screen.ScreenHandler;
+import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.world.World;
 
@@ -48,6 +37,7 @@ public class RestockingChestScreenHandler extends ScreenHandler {
         this.world = playerInventory.player.world;
 
         checkSize(inventory, RestockingChestBlockEntity.INVENTORY_SIZE);
+        inventory.onOpen(playerInventory.player);
 
         // chest inventory
         int l;
@@ -128,4 +118,7 @@ public class RestockingChestScreenHandler extends ScreenHandler {
         return clickedStackCopy;
     }
 
+    public Inventory getInventory() {
+        return this.inventory;
+    }
 }

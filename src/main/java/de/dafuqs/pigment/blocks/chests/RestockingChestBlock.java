@@ -1,23 +1,22 @@
 package de.dafuqs.pigment.blocks.chests;
 
+import de.dafuqs.pigment.PigmentCommon;
 import de.dafuqs.pigment.registries.PigmentBlockEntityRegistry;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.BlockWithEntity;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.client.util.SpriteIdentifier;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.Inventory;
 import net.minecraft.screen.NamedScreenHandlerFactory;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.ItemScatterer;
-import net.minecraft.util.hit.BlockHitResult;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-public class RestockingChestBlock extends BlockWithEntity {
+import static net.minecraft.client.render.TexturedRenderLayers.CHEST_ATLAS_TEXTURE;
+
+public class RestockingChestBlock extends PigmentChestBlock {
 
     public RestockingChestBlock(Settings settings) {
         super(settings);
@@ -29,42 +28,23 @@ public class RestockingChestBlock extends BlockWithEntity {
     }
 
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        if (world.isClient) {
-            return ActionResult.SUCCESS;
-        } else {
-            this.openScreen(world, pos, player);
-            return ActionResult.CONSUME;
+    @Nullable
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
+        return checkType(type, PigmentBlockEntityRegistry.RESTOCKING_CHEST, RestockingChestBlockEntity::tick);
+    }
+
+    public void openScreen(World world, BlockPos pos, PlayerEntity player) {
+        BlockEntity blockEntity = world.getBlockEntity(pos);
+        if (blockEntity instanceof RestockingChestBlockEntity) {
+            if(!isChestBlocked(world, pos)) {
+                player.openHandledScreen((NamedScreenHandlerFactory) blockEntity);
+            }
         }
     }
 
     @Override
-    @Nullable
-    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        if(world.isClient) {
-            return null;
-        } else {
-            return checkType(type, PigmentBlockEntityRegistry.RESTOCKING_CHEST, RestockingChestBlockEntity::tick);
-        }
-    }
-
-    protected void openScreen(World world, BlockPos pos, PlayerEntity player) {
-        BlockEntity blockEntity = world.getBlockEntity(pos);
-        if (blockEntity instanceof RestockingChestBlockEntity) {
-            player.openHandledScreen((NamedScreenHandlerFactory) blockEntity);
-        }
-    }
-
-    public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
-        if (!state.isOf(newState.getBlock())) {
-            BlockEntity blockEntity = world.getBlockEntity(pos);
-            if (blockEntity instanceof RestockingChestBlockEntity) {
-                ItemScatterer.spawn(world, pos, (Inventory)blockEntity);
-                world.updateComparators(pos, this);
-            }
-
-            super.onStateReplaced(state, world, pos, newState, moved);
-        }
+    public SpriteIdentifier getTexture() {
+        return new SpriteIdentifier(CHEST_ATLAS_TEXTURE, new Identifier(PigmentCommon.MOD_ID, "entity/restocking_chest"));
     }
 
 }

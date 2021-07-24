@@ -53,6 +53,7 @@ public class AltarScreenHandler extends AbstractRecipeScreenHandler<Inventory> {
 
         checkSize(inventory, AltarBlockEntity.INVENTORY_SIZE);
         checkDataCount(propertyDelegate, 2);
+        inventory.onOpen(playerInventory.player);
 
         // crafting slots
         int m;

@@ -1,18 +1,12 @@
 package de.dafuqs.pigment.blocks.chests;
 
 import de.dafuqs.pigment.InventoryHelper;
-import de.dafuqs.pigment.inventories.AutoCraftingInventory;
 import de.dafuqs.pigment.inventories.RestockingChestScreenHandler;
 import de.dafuqs.pigment.items.misc.CraftingTabletItem;
 import de.dafuqs.pigment.registries.PigmentBlockEntityRegistry;
-import de.dafuqs.pigment.registries.PigmentBlocks;
 import de.dafuqs.pigment.registries.PigmentItems;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.LootableContainerBlockEntity;
-import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.Inventories;
-import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
@@ -21,8 +15,6 @@ import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.ShapedRecipe;
 import net.minecraft.recipe.ShapelessRecipe;
 import net.minecraft.screen.ScreenHandler;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.collection.DefaultedList;
@@ -31,12 +23,9 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-public class RestockingChestBlockEntity extends LootableContainerBlockEntity implements SidedInventory {
+public class RestockingChestBlockEntity extends PigmentChestBlockEntity implements SidedInventory {
 
     private int coolDownTicks = 0;
-    private DefaultedList<ItemStack> inventory;
-    AutoCraftingInventory autoCraftingInventory = new AutoCraftingInventory(3, 3);
-
 
     public static final int INVENTORY_SIZE = 27+4+4; // 27 items, 4 crafting tablets, 4 result slots
     public static final int[] CHEST_SLOTS = new int[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26};
@@ -45,7 +34,6 @@ public class RestockingChestBlockEntity extends LootableContainerBlockEntity imp
 
     public RestockingChestBlockEntity(BlockPos blockPos, BlockState blockState) {
         super(PigmentBlockEntityRegistry.RESTOCKING_CHEST, blockPos, blockState);
-        this.inventory = DefaultedList.ofSize(INVENTORY_SIZE, ItemStack.EMPTY);
     }
 
     protected Text getContainerName() {
@@ -58,16 +46,20 @@ public class RestockingChestBlockEntity extends LootableContainerBlockEntity imp
     }
 
     public static void tick(World world, BlockPos pos, BlockState state, RestockingChestBlockEntity restockingChestBlockEntity) {
-        if(tickCooldown(restockingChestBlockEntity)) {
-            for(int i = 0; i < 4; i++) {
-                ItemStack outputItemStack = restockingChestBlockEntity.inventory.get(RESULT_SLOTS[i]);
-                ItemStack craftingTabletItemStack = restockingChestBlockEntity.inventory.get(RECIPE_SLOTS[i]);
-                if(!craftingTabletItemStack.isEmpty() &&(outputItemStack.isEmpty() || outputItemStack.getCount() < outputItemStack.getMaxCount())) {
-                    boolean couldCraft = restockingChestBlockEntity.tryCraft(restockingChestBlockEntity, i);
-                    if(couldCraft) {
-                        restockingChestBlockEntity.setCooldown(restockingChestBlockEntity, 20);
-                        restockingChestBlockEntity.markDirty();
-                        return;
+        if(world.isClient) {
+            restockingChestBlockEntity.lidAnimator.step();
+        } else {
+            if (tickCooldown(restockingChestBlockEntity)) {
+                for (int i = 0; i < 4; i++) {
+                    ItemStack outputItemStack = restockingChestBlockEntity.inventory.get(RESULT_SLOTS[i]);
+                    ItemStack craftingTabletItemStack = restockingChestBlockEntity.inventory.get(RECIPE_SLOTS[i]);
+                    if (!craftingTabletItemStack.isEmpty() && (outputItemStack.isEmpty() || outputItemStack.getCount() < outputItemStack.getMaxCount())) {
+                        boolean couldCraft = restockingChestBlockEntity.tryCraft(restockingChestBlockEntity, i);
+                        if (couldCraft) {
+                            restockingChestBlockEntity.setCooldown(restockingChestBlockEntity, 20);
+                            restockingChestBlockEntity.markDirty();
+                            return;
+                        }
                     }
                 }
             }
@@ -117,31 +109,17 @@ public class RestockingChestBlockEntity extends LootableContainerBlockEntity imp
         return INVENTORY_SIZE;
     }
 
-    @Override
-    public void setStack(int slot, ItemStack stack) {
-        super.setStack(slot, stack);
-    }
-
-    @Override
-    protected DefaultedList<ItemStack> getInvStackList() {
-        return this.inventory;
-    }
-
-    @Override
-    protected void setInvStackList(DefaultedList<ItemStack> list) {
-        this.inventory = list;
-    }
-
     public NbtCompound writeNbt(NbtCompound tag) {
         super.writeNbt(tag);
-        Inventories.writeNbt(tag, this.inventory);
+        tag.putInt("cooldown", coolDownTicks);
         return tag;
     }
 
     public void readNbt(NbtCompound tag) {
         super.readNbt(tag);
-        Inventories.readNbt(tag, this.inventory);
-
+        if(tag.contains("cooldown")) {
+            coolDownTicks = tag.getInt("cooldown");
+        }
     }
 
     @Override

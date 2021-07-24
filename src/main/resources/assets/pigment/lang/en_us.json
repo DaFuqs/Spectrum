@@ -552,7 +552,7 @@
   "block.pigment.ender_hopper": "Ender Hopper",
   "block.pigment.ender_hopper_with_owner": "Ender Hopper of %s",
 
-  "block.pigment.compactor": "Compacting Chest",
+  "block.pigment.compacting_chest": "Compacting Chest",
   "block.pigment.restocking_chest": "Restocking Chest",
   "block.pigment.private_chest": "Private Chest",
   "block.pigment.private_chest.title_with_owner": "Private Chest of %s",

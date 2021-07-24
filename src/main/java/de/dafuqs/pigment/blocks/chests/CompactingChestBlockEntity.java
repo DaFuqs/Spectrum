@@ -4,12 +4,9 @@ import de.dafuqs.pigment.InventoryHelper;
 import de.dafuqs.pigment.inventories.AutoCompactingInventory;
 import de.dafuqs.pigment.registries.PigmentBlockEntityRegistry;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.LootableContainerBlockEntity;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.Inventories;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
 import net.minecraft.recipe.CraftingRecipe;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.screen.GenericContainerScreenHandler;
@@ -25,9 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class CompactingChestBlockEntity extends LootableContainerBlockEntity {
-
-    private DefaultedList<ItemStack> inventory;
+public class CompactingChestBlockEntity extends PigmentChestBlockEntity {
 
     AutoCompactingInventory autoCompactingInventory = new AutoCompactingInventory();
     ItemStack lastCraftingItemStack;// cache
@@ -36,14 +31,13 @@ public class CompactingChestBlockEntity extends LootableContainerBlockEntity {
 
     public CompactingChestBlockEntity(BlockPos blockPos, BlockState blockState) {
         super(PigmentBlockEntityRegistry.COMPACTING_CHEST, blockPos, blockState);
-        this.inventory = DefaultedList.ofSize(27, ItemStack.EMPTY);
         this.lastCraftingItemStack = ItemStack.EMPTY;
         this.lastCraftingRecipe = null;
         this.hasToCraft = false;
     }
 
     protected Text getContainerName() {
-        return new TranslatableText("block.pigment.compactor");
+        return new TranslatableText("block.pigment.compacting_chest");
     }
 
     @Override
@@ -52,10 +46,14 @@ public class CompactingChestBlockEntity extends LootableContainerBlockEntity {
     }
 
     public static void tick(World world, BlockPos pos, BlockState state, CompactingChestBlockEntity compactingChestBlockEntity) {
-        if(compactingChestBlockEntity.hasToCraft) {
-            boolean couldCraft = compactingChestBlockEntity.tryCraftOnce();
-            if(!couldCraft) {
-                compactingChestBlockEntity.hasToCraft = false;
+        if(world.isClient) {
+            compactingChestBlockEntity.lidAnimator.step();
+        } else {
+            if (compactingChestBlockEntity.hasToCraft) {
+                boolean couldCraft = compactingChestBlockEntity.tryCraftOnce();
+                if (!couldCraft) {
+                    compactingChestBlockEntity.hasToCraft = false;
+                }
             }
         }
     }
@@ -69,16 +67,6 @@ public class CompactingChestBlockEntity extends LootableContainerBlockEntity {
     public void setStack(int slot, ItemStack stack) {
         super.setStack(slot, stack);
         this.hasToCraft = true;
-    }
-
-    @Override
-    protected DefaultedList<ItemStack> getInvStackList() {
-        return this.inventory;
-    }
-
-    @Override
-    protected void setInvStackList(DefaultedList<ItemStack> list) {
-        this.inventory = list;
     }
 
     private boolean tryCraftOnce() {
@@ -162,18 +150,6 @@ public class CompactingChestBlockEntity extends LootableContainerBlockEntity {
             return true;
         }
         return false;
-    }
-
-    public NbtCompound writeNbt(NbtCompound tag) {
-        super.writeNbt(tag);
-        Inventories.writeNbt(tag, this.inventory);
-        return tag;
-    }
-
-    public void readNbt(NbtCompound tag) {
-        super.readNbt(tag);
-        this.inventory = DefaultedList.ofSize(this.size(), ItemStack.EMPTY);
-        Inventories.readNbt(tag, this.inventory);
     }
 
 }

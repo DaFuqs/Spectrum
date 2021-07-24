@@ -1,0 +1,7 @@
+{
+  "parent": "pigment:block/chest_template",
+  "textures": {
+    "0": "pigment:entity/restocking_chest",
+    "particle": "pigment:block/restocking_chest_break"
+  }
+}

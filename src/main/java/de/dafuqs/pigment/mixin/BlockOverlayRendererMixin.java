@@ -1,20 +1,7 @@
 package de.dafuqs.pigment.mixin;
 
-import com.mojang.blaze3d.systems.RenderSystem;
-import de.dafuqs.pigment.PigmentCommon;
-import de.dafuqs.pigment.registries.PigmentFluidTags;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.hud.InGameOverlayRenderer;
-import net.minecraft.client.render.*;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.math.Matrix4f;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 @Mixin(InGameOverlayRenderer.class)
 public class BlockOverlayRendererMixin {

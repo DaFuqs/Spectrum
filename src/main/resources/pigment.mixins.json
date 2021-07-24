@@ -6,7 +6,6 @@
     "AccessorShapedRecipe",
     "AnvilBlockMixin",
     "BlockMixin",
-    "BlockOverlayRendererMixin",
     "EnderEyeItemMixin",
     "EndermanEntityMixin",
     "FishingBobberEntityMixin",

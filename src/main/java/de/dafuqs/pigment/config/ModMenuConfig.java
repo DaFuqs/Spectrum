@@ -1,6 +1,5 @@
 package de.dafuqs.pigment.config;
 
-
 import io.github.prospector.modmenu.api.ConfigScreenFactory;
 import io.github.prospector.modmenu.api.ModMenuApi;
 import me.shedaniel.autoconfig.AutoConfig;

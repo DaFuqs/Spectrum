@@ -43,10 +43,11 @@
       "text": "It's bluish-white shimmer reminds you of the soothing light of the moon on a calm summer night. The tranquility it exudes leaves a calming, yet significant impression, like a sleeping cat - balm for the soul and yet a predator, always on guard.$(br2)The Moonstone embodies $(bold)$(c_white)pure magic$()."
     },
     {
-       "type": "patchouli:spotlight",
-       "title": "Ammolite",
-       "item": "pigment:hidden/collect_shards/ammolite_shard",
-       "text": "Ammolite shards shine in all colors of the rainbow."
+      "type": "patchouli:spotlight",
+      "advancement": "pigment:hidden/collect_shards/ammolite_shard",
+      "title": "Ammolite",
+      "item": "pigment:ammolite_shard",
+      "text": "Ammolite shards shine in all colors of the rainbow."
     }
   ]
 }

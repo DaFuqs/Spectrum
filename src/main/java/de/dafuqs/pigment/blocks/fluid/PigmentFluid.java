@@ -6,6 +6,8 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.fluid.FlowableFluid;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
+import net.minecraft.tag.FluidTags;
+import net.minecraft.tag.Tag;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.BlockView;
@@ -77,4 +79,14 @@ public abstract class PigmentFluid extends FlowableFluid {
     	protected float getBlastResistance() {
     		return 100.0F;
     	}
+
+    	@Override
+		public boolean isIn(Tag<Fluid> tag) {
+    		// Bad hack to make pigments fluids swimmable without using 10 mixins
+    		if(tag == FluidTags.WATER) {
+    			return true;
+			}
+			return super.isIn(tag);
+		}
+
     }

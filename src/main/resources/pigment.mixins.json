@@ -9,7 +9,6 @@
     "BlockOverlayRendererMixin",
     "EnderEyeItemMixin",
     "EndermanEntityMixin",
-    "EntityApplyFluidsMixin",
     "FishingBobberEntityMixin",
     "FishingBobberEntityRendererMixin",
     "GeodesGenerateWithGemstoneOresMixin",

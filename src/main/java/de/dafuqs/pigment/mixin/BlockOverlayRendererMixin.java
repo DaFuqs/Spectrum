@@ -19,7 +19,9 @@ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 @Mixin(InGameOverlayRenderer.class)
 public class BlockOverlayRendererMixin {
 
-    private static final Identifier TEXTURE_IN_LIQUID_CRYSTAL = new Identifier(PigmentCommon.MOD_ID + ":textures/misc/liquid_crystal_overlay.png");
+    // Since the hack in PigmentFluid to allow swimming, sounds, particles for fluids
+    // this does now work because "isSubmergedIn()" only matches for water
+    /*private static final Identifier TEXTURE_IN_LIQUID_CRYSTAL = new Identifier(PigmentCommon.MOD_ID + ":textures/misc/liquid_crystal_overlay.png");
     private static final Identifier TEXTURE_IN_MUD = new Identifier(PigmentCommon.MOD_ID + ":textures/misc/mud_overlay.png");
 
     @Inject(method = "renderOverlays(Lnet/minecraft/client/MinecraftClient;Lnet/minecraft/client/util/math/MatrixStack;)V", at = @At("TAIL"), locals = LocalCapture.CAPTURE_FAILSOFT)
@@ -56,6 +58,6 @@ public class BlockOverlayRendererMixin {
         bufferBuilder.end();
         BufferRenderer.draw(bufferBuilder);
         RenderSystem.disableBlend();
-    }
+    }*/
 
 }

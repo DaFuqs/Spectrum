@@ -1,10 +1,9 @@
 package de.dafuqs.pigment.registries;
 
 import de.dafuqs.pigment.PigmentCommon;
-import net.fabricmc.fabric.api.tag.TagRegistry;
+import de.dafuqs.pigment.mixin.FluidTagsAccessor;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.tag.Tag;
-import net.minecraft.util.Identifier;
 
 public class PigmentFluidTags {
 
@@ -12,7 +11,7 @@ public class PigmentFluidTags {
     public static Tag<Fluid> MUD;
 
     private static Tag<Fluid> register(String id) {
-        return TagRegistry.fluid(new Identifier(PigmentCommon.MOD_ID, id));
+        return FluidTagsAccessor.invokeRegister(PigmentCommon.MOD_ID + ":" + id);
     }
 
     public static void register() {

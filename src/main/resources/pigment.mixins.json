@@ -9,6 +9,7 @@
     "BlockOverlayRendererMixin",
     "EnderEyeItemMixin",
     "EndermanEntityMixin",
+    "EntityApplyFluidsMixin",
     "FishingBobberEntityMixin",
     "FishingBobberEntityRendererMixin",
     "GeodesGenerateWithGemstoneOresMixin",
@@ -23,7 +24,8 @@
     "ServerPlayerEntityMixin",
     "ServerWorldMixin",
     "SpawnerBlockMixin",
-    "WorldRendererMixin"
+    "WorldRendererMixin",
+    "FluidTagsAccessor"
   ],
   "client": [
     "client.AccessorClientAdvancementManager",

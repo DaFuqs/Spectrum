@@ -107,10 +107,10 @@ public class PigmentItems {
     public static final Item SPARKLESTONE_GEM = new Item(pigmentWorldgenItemSettings);
     public static final Item RAW_AZURITE = new Item(pigmentWorldgenItemSettings);
     public static final Item SHAPED_AZURITE = new Item(pigmentWorldgenItemSettings);
-    public static final Item SHATTERED_PALETUR_FRAGMENTS = new GravityItem(generalItemSettings, 0.003F);
-    public static final Item PALETUR_GEM = new GravityItem(generalItemSettings, 0.02F);
-    public static final Item SHATTERED_SCARLET_FRAGMENTS = new GravityItem(generalItemSettings, -0.003F);
-    public static final Item SCARLET_GEM = new GravityItem(generalItemSettings, -0.02F);
+    public static final Item SHATTERED_SCARLET_FRAGMENTS = new GravityItem(generalItemSettings, 0.997F);
+    public static final Item SCARLET_GEM = new GravityItem(generalItemSettings, 0.98F);
+    public static final Item SHATTERED_PALETUR_FRAGMENTS = new GravityItem(generalItemSettings, 1.003F);
+    public static final Item PALETUR_GEM = new GravityItem(generalItemSettings, 1.02F);
 
     public static final Item QUITOXIC_POWDER = new Item(generalItemSettings);
     public static final Item MERMAIDS_GEM = new Item(generalItemSettings);

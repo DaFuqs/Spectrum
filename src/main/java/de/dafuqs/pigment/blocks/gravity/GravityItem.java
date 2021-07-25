@@ -21,8 +21,12 @@ public class GravityItem extends Item implements GravitableItem {
     }
 
     @Override
-    public float getGravityMod() {
-        return gravityMod;
+    public float getGravityModInInventory() {
+        return 1- gravityMod;
+    }
+
+    public double getGravityModForItemEntity() {
+        return (1 - gravityMod) * 1000;
     }
 
 }

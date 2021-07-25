@@ -7,7 +7,8 @@ import net.minecraft.world.World;
 
 public interface GravitableItem {
 
-    public float getGravityMod();
+    public float getGravityModInInventory();
+    public double getGravityModForItemEntity();
 
     public default void applyGravityEffect(ItemStack stack, World world, Entity entity) {
         if(world != null && entity != null) {
@@ -17,7 +18,7 @@ public interface GravitableItem {
                     return;
                 }
 
-                double additionalYVelocity = Math.log(stack.getCount()) * getGravityMod();
+                double additionalYVelocity = Math.log(stack.getCount()) * getGravityModInInventory();
                 entity.addVelocity(0, additionalYVelocity, 0);
 
                 // if falling very slowly => no fall damage

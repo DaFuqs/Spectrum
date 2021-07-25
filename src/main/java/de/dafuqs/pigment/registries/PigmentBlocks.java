@@ -653,10 +653,10 @@ public class PigmentBlocks {
         registerBlockWithItem("azurite_ore", AZURITE_ORE, worldgenItemSettings);
         registerBlockWithItem("azurite_block", AZURITE_BLOCK, decorationItemSettings);
 
-        registerBlockWithItem("scarlet_ore", SCARLET_ORE, worldgenItemSettings);
-        registerBlockWithItem("scarlet_fragment_block", SCARLET_FRAGMENT_BLOCK, new GravityBlockItem(SCARLET_FRAGMENT_BLOCK, generalItemSettings, -0.2F));
-        registerBlockWithItem("paletur_ore", PALETUR_ORE, worldgenItemSettings);
-        registerBlockWithItem("paletur_fragment_block", PALETUR_FRAGMENT_BLOCK, new GravityBlockItem(PALETUR_FRAGMENT_BLOCK, generalItemSettings, 0.02F));
+        registerBlockWithItem("scarlet_ore", SCARLET_ORE, new GravityBlockItem(PALETUR_ORE, worldgenItemSettings, 1.00005F));
+        registerBlockWithItem("scarlet_fragment_block", SCARLET_FRAGMENT_BLOCK, new GravityBlockItem(SCARLET_FRAGMENT_BLOCK, generalItemSettings, 1.02F));
+        registerBlockWithItem("paletur_ore", PALETUR_ORE, new GravityBlockItem(PALETUR_ORE, worldgenItemSettings, 0.99995F));
+        registerBlockWithItem("paletur_fragment_block", PALETUR_FRAGMENT_BLOCK, new GravityBlockItem(PALETUR_FRAGMENT_BLOCK, generalItemSettings, 0.98F));
     }
 
     private static void registerColoredLamps(FabricItemSettings fabricItemSettings) {

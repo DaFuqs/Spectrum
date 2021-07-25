@@ -31,6 +31,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.Optional;
@@ -40,7 +41,7 @@ public abstract class ItemEntityMixin {
 
     @Shadow public abstract ItemStack getStack();
 
-    @Inject(at=@At("HEAD"), method="Lnet/minecraft/entity/ItemEntity;damage(Lnet/minecraft/entity/damage/DamageSource;F)Z", cancellable = true)
+    @Inject(at=@At("HEAD"), method= "damage(Lnet/minecraft/entity/damage/DamageSource;F)Z", cancellable = true)
     public void doAnvilCrafting(DamageSource source, float amount, CallbackInfoReturnable<Boolean> callbackInfoReturnable) {
         if(DamageSource.ANVIL.equals(source)) {
             ItemEntity thisEntity = (ItemEntity) (Object) this;
@@ -111,7 +112,7 @@ public abstract class ItemEntityMixin {
         }
     }
 
-    @Inject(method="Lnet/minecraft/entity/ItemEntity;damage(Lnet/minecraft/entity/damage/DamageSource;F)Z", at=@At("HEAD"), cancellable = true)
+    @Inject(method= "damage(Lnet/minecraft/entity/damage/DamageSource;F)Z", at=@At("HEAD"), cancellable = true)
     private void isDamageProof(DamageSource source, float amount, CallbackInfoReturnable<Boolean> callbackInfoReturnable) {
         ItemStack itemStack = ((ItemEntity)(Object) this).getStack();
 
@@ -123,28 +124,19 @@ public abstract class ItemEntityMixin {
         }
     }
 
-    @Redirect(method = "Lnet/minecraft/entity/ItemEntity;tick()V",
-            at = @At(
-                value = "INVOKE",
-                target = "Lnet/minecraft/util/math/Vec3d;add(DDD)Lnet/minecraft/util/math/Vec3d;")
-    )
-    public Vec3d addVelocity(Vec3d vec3d, double x, double y, double z) {
+
+    @Inject(method= "tick()V", at=@At("TAIL"))
+    public void tick(CallbackInfo ci) {
         ItemEntity itemEntity = ((ItemEntity)(Object) this);
         Item item = itemEntity.getStack().getItem();
         if(item instanceof GravitableItem) {
-            float grav = ((GravitableItem) item).getGravityMod();
-            if(grav < 0) {
-                return vec3d.add(x, y * (1+grav), z);
+            // if the stack if floating really high => delete it
+            if(itemEntity.getPos().getY() > itemEntity.getEntityWorld().getTopY() + 200) {
+                itemEntity.discard();
             } else {
-                // if the stack if floating really high => delete it
-                if(itemEntity.getPos().getY() > itemEntity.getEntityWorld().getTopY() + 200) {
-                    itemEntity.discard();
-                }
-                return vec3d.add(x, -y * (1+grav), z);
+                double mod = ((GravitableItem) item).getGravityModForItemEntity();
+                itemEntity.addVelocity(0, mod, 0);
             }
-
-        } else {
-            return vec3d.add(x, y, z);
         }
     }
 

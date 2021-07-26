@@ -23,11 +23,11 @@ public class GravityBlockItem extends BlockItem implements GravitableItem {
 
     @Override
     public float getGravityModInInventory() {
-        return 1 - gravityMod;
+        return (1 - gravityMod) * 2;
     }
 
     public double getGravityModForItemEntity() {
-        return (1 - gravityMod) * 1000;
+        return (1 - gravityMod) * 10;
     }
 
 }

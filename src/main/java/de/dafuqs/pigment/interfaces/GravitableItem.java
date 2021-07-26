@@ -22,7 +22,7 @@ public interface GravitableItem {
                 entity.addVelocity(0, additionalYVelocity, 0);
 
                 // if falling very slowly => no fall damage
-                if (additionalYVelocity < 0 && entity.getVelocity().y < 0 && entity.getVelocity().y > -0.4) {
+                if (additionalYVelocity > 0 && entity.getVelocity().y > -0.4) {
                     entity.fallDistance = 0;
                 }
             }

@@ -12,7 +12,7 @@ import java.util.List;
 public class SparklestoneOreBlock extends ConditionallyVisibleOreBlock {
 
     public SparklestoneOreBlock(Settings settings, UniformIntProvider uniformIntProvider) {
-        super(settings, uniformIntProvider);
+        super(settings, uniformIntProvider, false);
         setupCloak();
     }
 

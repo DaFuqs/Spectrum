@@ -15,7 +15,7 @@ import java.util.List;
 public class PaleturOreBlock extends ConditionallyVisibleOreBlock {
 
     public PaleturOreBlock(Settings settings, UniformIntProvider uniformIntProvider) {
-        super(settings, uniformIntProvider);
+        super(settings, uniformIntProvider, false);
         setupCloak();
     }
 

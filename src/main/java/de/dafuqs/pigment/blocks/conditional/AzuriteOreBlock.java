@@ -12,7 +12,7 @@ import java.util.List;
 public class AzuriteOreBlock extends ConditionallyVisibleOreBlock {
 
     public AzuriteOreBlock(Settings settings, UniformIntProvider uniformIntProvider) {
-        super(settings, uniformIntProvider);
+        super(settings, uniformIntProvider, true);
         setupCloak();
     }
 

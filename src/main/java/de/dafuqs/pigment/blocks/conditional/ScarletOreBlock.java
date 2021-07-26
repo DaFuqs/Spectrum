@@ -15,7 +15,7 @@ import java.util.List;
 public class ScarletOreBlock extends ConditionallyVisibleOreBlock {
 
     public ScarletOreBlock(Settings settings, UniformIntProvider uniformIntProvider) {
-        super(settings, uniformIntProvider);
+        super(settings, uniformIntProvider, false);
         setupCloak();
     }
 

@@ -16,14 +16,24 @@ import java.util.List;
 
 public abstract class ConditionallyVisibleOreBlock extends OreBlock implements Cloakable {
 
-    public ConditionallyVisibleOreBlock(Settings settings, UniformIntProvider uniformIntProvider) {
+    private final boolean deepSlateOre;
+
+    public ConditionallyVisibleOreBlock(Settings settings, UniformIntProvider uniformIntProvider, boolean deepSlateOre) {
         super(settings, uniformIntProvider);
+        this.deepSlateOre = deepSlateOre;
     }
 
     public void setCloaked() {
-        // Cloaks as stone
-        PigmentBlockCloaker.swapModel(this.getDefaultState(), Blocks.STONE.getDefaultState()); // block
-        PigmentBlockCloaker.swapModel(this.asItem(), Items.STONE); // item
+        if(deepSlateOre) {
+            // Cloaks as deepslate
+            PigmentBlockCloaker.swapModel(this.getDefaultState(), Blocks.DEEPSLATE.getDefaultState()); // block
+            PigmentBlockCloaker.swapModel(this.asItem(), Items.DEEPSLATE); // item
+        } else {
+            // Cloaks as stone
+            PigmentBlockCloaker.swapModel(this.getDefaultState(), Blocks.STONE.getDefaultState()); // block
+            PigmentBlockCloaker.swapModel(this.asItem(), Items.STONE); // item
+        }
+
     }
 
     public void setUncloaked() {

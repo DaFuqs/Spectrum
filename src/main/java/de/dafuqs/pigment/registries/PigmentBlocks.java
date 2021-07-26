@@ -9,6 +9,7 @@ import de.dafuqs.pigment.blocks.chests.CompactingChestBlock;
 import de.dafuqs.pigment.blocks.chests.PrivateChestBlock;
 import de.dafuqs.pigment.blocks.chests.RestockingChestBlock;
 import de.dafuqs.pigment.blocks.conditional.*;
+import de.dafuqs.pigment.blocks.conditional.GemstoneOreBlock;
 import de.dafuqs.pigment.blocks.decay.FadingBlock;
 import de.dafuqs.pigment.blocks.decay.FailingBlock;
 import de.dafuqs.pigment.blocks.decay.RuinBlock;
@@ -114,18 +115,19 @@ public class PigmentBlocks {
     public static final Block AMMOLITE_BLOCK = new PigmentGemstoneBlock(FabricBlockSettings.of(Material.AMETHYST, MapColor.DIAMOND_BLUE).hardness(1.5F).sounds(PigmentBlockSoundGroups.AMMOLITE_BLOCK).requiresTool().breakByTool(FabricToolTags.PICKAXES, 2), PigmentSoundEvents.BLOCK_AMMOLITE_BLOCK_HIT, PigmentSoundEvents.BLOCK_AMMOLITE_BLOCK_CHIME);
 
     private static final FabricBlockSettings gemOreBlockSettings = FabricBlockSettings.copyOf(Blocks.IRON_ORE).breakByTool(FabricToolTags.PICKAXES, 3);
-    public static final Block TOPAZ_ORE = new OreBlock(gemOreBlockSettings);
-    public static final Block AMETHYST_ORE = new OreBlock(gemOreBlockSettings);
-    public static final Block CITRINE_ORE = new OreBlock(gemOreBlockSettings);
-    public static final Block ONYX_ORE = new OreBlock(gemOreBlockSettings);
-    public static final Block MOONSTONE_ORE = new OreBlock(gemOreBlockSettings);
+    private static final UniformIntProvider gemOreExperienceProvider = UniformIntProvider.create(1, 4);
+    public static final Block TOPAZ_ORE = new GemstoneOreBlock(gemOreBlockSettings, gemOreExperienceProvider, PigmentColor.CYAN, false);
+    public static final Block AMETHYST_ORE = new GemstoneOreBlock(gemOreBlockSettings, gemOreExperienceProvider, PigmentColor.MAGENTA, false);
+    public static final Block CITRINE_ORE = new GemstoneOreBlock(gemOreBlockSettings, gemOreExperienceProvider, PigmentColor.YELLOW, false);
+    public static final Block ONYX_ORE = new GemstoneOreBlock(gemOreBlockSettings, gemOreExperienceProvider, PigmentColor.BLACK, false);
+    public static final Block MOONSTONE_ORE = new GemstoneOreBlock(gemOreBlockSettings, gemOreExperienceProvider, PigmentColor.WHITE, false);
 
     private static final FabricBlockSettings deepslateGemOreBlockSettings = FabricBlockSettings.copyOf(Blocks.DEEPSLATE_IRON_ORE);
-    public static final Block DEEPSLATE_TOPAZ_ORE = new Block(deepslateGemOreBlockSettings);
-    public static final Block DEEPSLATE_AMETHYST_ORE = new Block(deepslateGemOreBlockSettings);
-    public static final Block DEEPSLATE_CITRINE_ORE = new Block(deepslateGemOreBlockSettings);
-    public static final Block DEEPSLATE_ONYX_ORE = new Block(deepslateGemOreBlockSettings);
-    public static final Block DEEPSLATE_MOONSTONE_ORE = new Block(deepslateGemOreBlockSettings);
+    public static final Block DEEPSLATE_TOPAZ_ORE = new GemstoneOreBlock(deepslateGemOreBlockSettings, gemOreExperienceProvider, PigmentColor.CYAN, true);
+    public static final Block DEEPSLATE_AMETHYST_ORE = new GemstoneOreBlock(deepslateGemOreBlockSettings, gemOreExperienceProvider, PigmentColor.MAGENTA, true);
+    public static final Block DEEPSLATE_CITRINE_ORE = new GemstoneOreBlock(deepslateGemOreBlockSettings, gemOreExperienceProvider, PigmentColor.YELLOW, true);
+    public static final Block DEEPSLATE_ONYX_ORE = new GemstoneOreBlock(deepslateGemOreBlockSettings, gemOreExperienceProvider, PigmentColor.BLACK, false);
+    public static final Block DEEPSLATE_MOONSTONE_ORE = new GemstoneOreBlock(deepslateGemOreBlockSettings, gemOreExperienceProvider, PigmentColor.WHITE, true);
 
     private static final FabricBlockSettings gemstoneStorageBlockSettings = FabricBlockSettings.of(Material.AMETHYST).requiresTool().strength(5.0F, 6.0F);
     public static final Block TOPAZ_STORAGE_BLOCK = new Block(gemstoneStorageBlockSettings);

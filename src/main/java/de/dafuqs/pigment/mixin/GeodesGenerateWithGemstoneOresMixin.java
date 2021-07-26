@@ -36,14 +36,14 @@ public class GeodesGenerateWithGemstoneOresMixin {
         BlockState gemBlock = context.getConfig().layerConfig.innerLayerProvider.getBlockState(context.getRandom(), context.getOrigin());
         if(gemBlock != null) {
             BlockState oreBlockState = getGemstoneOreForGeodeBlock(gemBlock);
-            if (oreBlockState != null) {
+            if (oreBlockState != null) { // modded geodes
                 BlockState deepslateOreBlockState = getGemstoneDeepslateOreForGeodeBlock(gemBlock);
                 StructureWorldAccess world = context.getWorld();
                 Random random = context.getRandom();
                 // having steps for distance with a fixed amount assures
                 // that the ore amount gets less with distance from the center
-                for(int distance = 6; distance < 16; distance++) {
-                    for (int i = 0; i < 10; i++) {
+                for(int distance = 5; distance < 14; distance++) {
+                    for (int i = 0; i < 24; i++) {
                         int xOffset = (random.nextInt(distance + 1) * 2 - distance);
                         int yOffset = (random.nextInt(distance + 1) * 2 - distance);
                         int zOffset = (random.nextInt(distance + 1) * 2 - distance);

@@ -5,12 +5,12 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": ""
+      "text": "TODO"
     },
     {
       "type": "patchouli:spotlight",
       "item": "pigment:resonant_pickaxe",
-      "text": ""
+      "text": "TODO"
     }
   ]
 }

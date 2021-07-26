@@ -28,7 +28,7 @@
     }
   },
   "result" : {
-    "item": "pigment:decay_1_placer",
+    "item": "pigment:bottle_of_fading",
     "count": 1
   },
   "advancement": "pigment:craft_decay"

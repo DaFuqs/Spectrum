@@ -1,6 +1,6 @@
 {
     "parent": "block/cube_all",
     "textures": {
-        "all": "pigment:block/decay1_default"
+        "all": "pigment:block/failing_obsidian"
     }
 }

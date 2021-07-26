@@ -9,6 +9,7 @@ import net.minecraft.particle.BlockStateParticleEffect;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.EnumProperty;
+import net.minecraft.tag.BlockTags;
 import net.minecraft.tag.Tag;
 import net.minecraft.util.StringIdentifiable;
 import net.minecraft.util.math.BlockPos;
@@ -16,14 +17,14 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-public class DecayBlock2 extends DecayBlock {
+public class FadingBlock extends DecayBlock {
 
     private static final EnumProperty<DecayConversion> DECAY_STATE = EnumProperty.of("decay_state", DecayConversion.class);
 
     public enum DecayConversion implements StringIdentifiable {
         DEFAULT("default"),
-        OBSIDIAN("obsidian"),
-        CRYING_OBSIDIAN("crying_obsidian");
+        LEAVES("leaves"),
+        MAGIC_LEAVES("magic_leaves");
 
         private final String name;
 
@@ -40,15 +41,15 @@ public class DecayBlock2 extends DecayBlock {
         }
     }
 
-    public DecayBlock2(Settings settings, Tag<Block> whiteListBlockTag, Tag<Block> blackListBlockTag, int tier, float damageOnTouching) {
+    public FadingBlock(Settings settings, Tag<Block> whiteListBlockTag, Tag<Block> blackListBlockTag, int tier, float damageOnTouching) {
         super(settings, whiteListBlockTag, blackListBlockTag, tier, damageOnTouching);
         setDefaultState(getStateManager().getDefaultState().with(DECAY_STATE, DecayConversion.DEFAULT));
 
-        BlockState destinationBlockState = this.getDefaultState().with(DECAY_STATE, DecayConversion.OBSIDIAN);
-        addDecayConversion(PigmentBlockTags.DECAY_OBSIDIAN_CONVERSIONS, destinationBlockState);
+        BlockState destinationBlockState = this.getDefaultState().with(DECAY_STATE, DecayConversion.LEAVES);
+        addDecayConversion(BlockTags.LEAVES, destinationBlockState);
 
-        BlockState destinationBlockState2 = this.getDefaultState().with(DECAY_STATE, DecayConversion.CRYING_OBSIDIAN);
-        addDecayConversion(PigmentBlockTags.DECAY_CRYING_OBSIDIAN_CONVERSIONS, destinationBlockState2);
+        BlockState destinationBlockState2 = this.getDefaultState().with(DECAY_STATE, DecayConversion.MAGIC_LEAVES);
+        addDecayConversion(PigmentBlockTags.MAGICAL_LEAVES, destinationBlockState2);
     }
 
     @Override
@@ -58,7 +59,7 @@ public class DecayBlock2 extends DecayBlock {
 
     @Environment(EnvType.CLIENT)
     public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
-        if (state.get(DecayBlock2.DECAY_STATE).equals(DecayConversion.CRYING_OBSIDIAN)) {
+        if (state.get(FadingBlock.DECAY_STATE).equals(DecayConversion.MAGIC_LEAVES)) {
             float xOffset = random.nextFloat();
             float zOffset = random.nextFloat();
             world.addParticle(new BlockStateParticleEffect(ParticleTypes.BLOCK, state), pos.getX() + xOffset, pos.getY() + 1, pos.getZ() + zOffset, 0.0D, 0.0D, 0.0D);

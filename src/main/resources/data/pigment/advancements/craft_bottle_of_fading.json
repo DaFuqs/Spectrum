@@ -1,13 +1,13 @@
 {
   "display": {
     "icon": {
-        "item": "pigment:decay_2_placer"
+        "item": "pigment:bottle_of_fading"
     },
     "title": {
-      "translate": "advancements.pigment.craft_decay2.title"
+      "translate": "advancements.pigment.craft_decay.title"
     },
     "description": {
-      "translate": "advancements.pigment.craft_decay2.description"
+      "translate": "advancements.pigment.craft_decay.description"
     }
   },
   "parent": "pigment:pigment",

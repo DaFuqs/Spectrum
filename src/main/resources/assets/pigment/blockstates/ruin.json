@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "decay_state=default": { "model": "pigment:block/ruin_default" },
+        "decay_state=bedrock": { "model": "pigment:block/ruin_bedrock" }
+    }
+}

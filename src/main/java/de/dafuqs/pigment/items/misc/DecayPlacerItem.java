@@ -23,12 +23,12 @@ public class DecayPlacerItem extends AliasedBlockItem {
         super.appendTooltip(itemStack, world, tooltip, tooltipContext);
 
         Item item = itemStack.getItem();
-        if(item.equals(PigmentItems.DECAY_1_PLACER)) {
-            tooltip.add(new TranslatableText("item.pigment.decay_1_placer.tooltip"));
-        } else if(item.equals(PigmentItems.DECAY_2_PLACER)) {
-            tooltip.add(new TranslatableText("item.pigment.decay_2_placer.tooltip"));
-        } else if(item.equals(PigmentItems.DECAY_3_PLACER)) {
-            tooltip.add(new TranslatableText("item.pigment.decay_3_placer.tooltip"));
+        if(item.equals(PigmentItems.BOTTLE_OF_FADING)) {
+            tooltip.add(new TranslatableText("item.pigment.bottle_of_fading.tooltip"));
+        } else if(item.equals(PigmentItems.BOTTLE_OF_FAILING)) {
+            tooltip.add(new TranslatableText("item.pigment.bottle_of_failing.tooltip"));
+        } else if(item.equals(PigmentItems.BOTTLE_OF_RUIN)) {
+            tooltip.add(new TranslatableText("item.pigment.bottle_of_ruin.tooltip"));
         }
 
     }

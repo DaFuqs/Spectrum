@@ -1,20 +1,20 @@
 {
-  "decay1_placed": {
-    "subtitle": "pigment.subtitles.block.decay1.place",
+  "fading_placed": {
+    "subtitle": "pigment.subtitles.block.fading.place",
     "sounds": [
-      "pigment:block.decay1.place"
+      "pigment:block.fading.place"
     ]
   },
-  "decay2_placed": {
-    "subtitle": "pigment.subtitles.block.decay2.place",
+  "failing_placed": {
+    "subtitle": "pigment.subtitles.block.failing.place",
     "sounds": [
-      "pigment:block.decay2.place"
+      "pigment:block.failing.place"
     ]
   },
-  "decay3_placed": {
-    "subtitle": "pigment.subtitles.block.decay3.place",
+  "ruin_placed": {
+    "subtitle": "pigment.subtitles.block.ruin.place",
     "sounds": [
-      "pigment:block.decay3.place"
+      "pigment:block.ruin.place"
     ]
   },
   "pigment_theme": {

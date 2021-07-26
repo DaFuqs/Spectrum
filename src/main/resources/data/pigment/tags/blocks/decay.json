@@ -1,7 +1,7 @@
 {
 	"values": [
-		"pigment:decay1",
-		"pigment:decay2",
-		"pigment:decay3"
+		"pigment:fading",
+		"pigment:failing",
+		"pigment:ruin"
 	]
 }

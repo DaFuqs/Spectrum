@@ -8,9 +8,9 @@ import org.apache.logging.log4j.Level;
 
 public class PigmentSoundEvents {
 
-    public static SoundEvent DECAY1_PLACED = register("decay1_placed");;
-    public static SoundEvent DECAY2_PLACED = register("decay2_placed");
-    public static SoundEvent DECAY3_PLACED = register("decay3_placed");
+    public static SoundEvent FADING_PLACED = register("fading_placed");;
+    public static SoundEvent FAILING_PLACED = register("failing_placed");
+    public static SoundEvent RUIN_PLACED = register("ruin_placed");
 
     public static SoundEvent NEW_REVELATION = register("new_revelation");
     public static SoundEvent PIGMENT_THEME = register("pigment_theme");

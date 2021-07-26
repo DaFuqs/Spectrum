@@ -8,7 +8,7 @@ import net.minecraft.state.property.EnumProperty;
 import net.minecraft.tag.Tag;
 import net.minecraft.util.StringIdentifiable;
 
-public class DecayBlock3 extends DecayBlock {
+public class RuinBlock extends DecayBlock {
 
     private static final EnumProperty<DecayConversion> DECAY_STATE = EnumProperty.of("decay_state", DecayConversion.class);
 
@@ -31,7 +31,7 @@ public class DecayBlock3 extends DecayBlock {
         }
     }
 
-    public DecayBlock3(Settings settings, Tag<Block> whiteListBlockTag, Tag<Block> blackListBlockTag, int tier, float damageOnTouching) {
+    public RuinBlock(Settings settings, Tag<Block> whiteListBlockTag, Tag<Block> blackListBlockTag, int tier, float damageOnTouching) {
         super(settings, whiteListBlockTag, blackListBlockTag, tier, damageOnTouching);
         setDefaultState(getStateManager().getDefaultState().with(DECAY_STATE, DecayConversion.DEFAULT));
 

@@ -1,6 +1,6 @@
 {
     "parent": "block/cube_all",
     "textures": {
-        "all": "pigment:block/decay2_obsidian"
+        "all": "pigment:block/fading_leaves"
     }
 }

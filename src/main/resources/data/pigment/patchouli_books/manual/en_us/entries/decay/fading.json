@@ -1,11 +1,11 @@
 {
   "name": "Experiment #1",
-  "icon": "pigment:decay_1_placer",
+  "icon": "pigment:bottle_of_fading",
   "category": "pigment:decay_category",
   "pages": [
     {
       "type": "patchouli:spotlight",
-      "item": "pigment:decay_1_placer",
+      "item": "pigment:bottle_of_fading",
       "text": "It did not take long, there the idea for a construction plan came to you.$(br)The organism you came up with is weak, but it seems that your plans to create new life were successful, at least in principle! Admittedly, it is only a clump of microorganisms, but they are alive!"
     },
     {

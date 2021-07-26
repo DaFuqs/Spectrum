@@ -9,9 +9,9 @@ import de.dafuqs.pigment.blocks.chests.CompactingChestBlock;
 import de.dafuqs.pigment.blocks.chests.PrivateChestBlock;
 import de.dafuqs.pigment.blocks.chests.RestockingChestBlock;
 import de.dafuqs.pigment.blocks.conditional.*;
-import de.dafuqs.pigment.blocks.decay.DecayBlock1;
-import de.dafuqs.pigment.blocks.decay.DecayBlock2;
-import de.dafuqs.pigment.blocks.decay.DecayBlock3;
+import de.dafuqs.pigment.blocks.decay.FadingBlock;
+import de.dafuqs.pigment.blocks.decay.FailingBlock;
+import de.dafuqs.pigment.blocks.decay.RuinBlock;
 import de.dafuqs.pigment.blocks.deeper_down_portal.DeeperDownPortalBlock;
 import de.dafuqs.pigment.blocks.detector.*;
 import de.dafuqs.pigment.blocks.ender.EnderDropperBlock;
@@ -224,9 +224,9 @@ public class PigmentBlocks {
     public static final Block OMINOUS_SAPLING = new OminousSaplingBlock(FabricBlockSettings.copyOf(Blocks.OAK_SAPLING).ticksRandomly());
 
     // DECAY
-    public static final Block DECAY1 = new DecayBlock1(FabricBlockSettings.of(PigmentMaterial.DECAY, MapColor.BLACK).ticksRandomly().requiresTool().strength(0.5F, 0.5F), BlockTags.LEAVES, null,1,  1F);
-    public static final Block DECAY2 = new DecayBlock2(FabricBlockSettings.copyOf(DECAY1).strength(20.0F, 50.0F), null, PigmentBlockTags.DECAY2_SAFE, 2,  2.5F);
-    public static final Block DECAY3 = new DecayBlock3(FabricBlockSettings.copyOf(DECAY1).strength(100.0F, 3600000.0F), null, PigmentBlockTags.DECAY3_SAFE, 3, 5F);
+    public static final Block FADING = new FadingBlock(FabricBlockSettings.of(PigmentMaterial.DECAY, MapColor.BLACK).ticksRandomly().requiresTool().strength(0.5F, 0.5F), BlockTags.LEAVES, null,1,  1F);
+    public static final Block FAILING = new FailingBlock(FabricBlockSettings.copyOf(FADING).strength(20.0F, 50.0F), null, PigmentBlockTags.FAILING_SAFE, 2,  2.5F);
+    public static final Block RUIN = new RuinBlock(FabricBlockSettings.copyOf(FADING).strength(100.0F, 3600000.0F), null, PigmentBlockTags.RUIN_SAFE, 3, 5F);
 
     // FLUIDS
     public static final Block LIQUID_CRYSTAL = new LiquidCrystalFluidBlock(PigmentFluids.STILL_LIQUID_CRYSTAL, FabricBlockSettings.copyOf(Blocks.WATER).luminance((state) -> 8));
@@ -570,9 +570,9 @@ public class PigmentBlocks {
         registerSpiritTree(generalItemSettings);
 
         // Decay
-        registerBlock("decay1", DECAY1);
-        registerBlock("decay2", DECAY2);
-        registerBlock("decay3", DECAY3);
+        registerBlock("fading", FADING);
+        registerBlock("failing", FAILING);
+        registerBlock("ruin", RUIN);
 
         // Fluids + Products
         registerBlock("mud", MUD);

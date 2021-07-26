@@ -66,9 +66,9 @@ public abstract class DecayBlock extends Block {
         if (!world.isClient) {
 
             SoundEvent soundEvent = switch (this.tier) {
-                case 1 -> PigmentSoundEvents.DECAY1_PLACED;
-                case 2 -> PigmentSoundEvents.DECAY2_PLACED;
-                default -> PigmentSoundEvents.DECAY3_PLACED;
+                case 1 -> PigmentSoundEvents.FADING_PLACED;
+                case 2 -> PigmentSoundEvents.FAILING_PLACED;
+                default -> PigmentSoundEvents.RUIN_PLACED;
             };
 
             world.playSound(null, pos, soundEvent, SoundCategory.BLOCKS, 0.5F, 2.6F + (world.random.nextFloat() - world.random.nextFloat()) * 0.8F);

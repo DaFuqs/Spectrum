@@ -1,6 +1,6 @@
 {
     "parent": "minecraft:item/generated",
     "textures": {
-        "layer0": "pigment:item/decay_1_placer"
+        "layer0": "pigment:item/bottle_of_fading"
     }
 }

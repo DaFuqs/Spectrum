@@ -1,11 +1,11 @@
 {
   "name": "Experiment #3",
-  "icon": "pigment:decay_3_placer",
+  "icon": "pigment:bottle_of_ruin",
   "category": "pigment:decay_category",
   "pages": [
     {
       "type": "patchouli:spotlight",
-      "item": "pigment:decay_3_placer",
+      "item": "pigment:bottle_of_ruin",
       "text": "Now, you won't even make it subtle. This stuff you thought out is $(#ff0000)NASTY$(). Take this as a serious warning. You didn't call it that for the fun of it.$(br2)$(bold)If you are not careful you may ruin the whole world. Literally.$()"
     },
     {

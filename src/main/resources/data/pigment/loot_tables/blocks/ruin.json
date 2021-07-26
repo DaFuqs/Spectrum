@@ -13,7 +13,7 @@
       "conditions": [
         {
           "condition": "minecraft:block_state_property",
-          "block": "pigment:decay3",
+          "block": "pigment:ruin",
           "properties": {
             "decay_state": "bedrock"
           }

@@ -14,11 +14,11 @@ public class PigmentBlockTags {
 
     // DECAY
     public static Tag<Block> DECAY;
-    public static Tag<Block> DECAY_MAGICAL_LEAVES;
-    public static Tag<Block> DECAY2_SAFE;
+    public static Tag<Block> MAGICAL_LEAVES;
+    public static Tag<Block> FAILING_SAFE;
     public static Tag<Block> DECAY_OBSIDIAN_CONVERSIONS;
     public static Tag<Block> DECAY_CRYING_OBSIDIAN_CONVERSIONS;
-    public static Tag<Block> DECAY3_SAFE;
+    public static Tag<Block> RUIN_SAFE;
     public static Tag<Block> DECAY_BEDROCK_CONVERSIONS;
 
 
@@ -33,11 +33,11 @@ public class PigmentBlockTags {
 
         // DECAY
         DECAY = register("decay");
-        DECAY2_SAFE = register("decay2_safe");
-        DECAY_MAGICAL_LEAVES = register("magical_leaves");
+        FAILING_SAFE = register("failing_safe");
+        MAGICAL_LEAVES = register("magical_leaves");
         DECAY_OBSIDIAN_CONVERSIONS = register("decay_obsidian_conversions");
         DECAY_CRYING_OBSIDIAN_CONVERSIONS = register("decay_crying_obsidian_conversions");
-        DECAY3_SAFE = register("decay3_safe");
+        RUIN_SAFE = register("ruin_safe");
         DECAY_BEDROCK_CONVERSIONS = register("decay_bedrock_conversions");
     }
 }

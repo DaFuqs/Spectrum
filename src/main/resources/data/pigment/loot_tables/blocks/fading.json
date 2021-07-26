@@ -12,7 +12,7 @@
       "conditions": [
         {
           "condition": "minecraft:block_state_property",
-          "block": "pigment:decay1",
+          "block": "pigment:fading",
           "properties": {
             "decay_state": "leaves"
           }
@@ -41,7 +41,7 @@
       "conditions": [
         {
           "condition": "minecraft:block_state_property",
-          "block": "pigment:decay1",
+          "block": "pigment:fading",
           "properties": {
             "decay_state": "magic_leaves"
           }

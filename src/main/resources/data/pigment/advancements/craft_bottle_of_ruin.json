@@ -1,13 +1,13 @@
 {
   "display": {
     "icon": {
-        "item": "pigment:decay_1_placer"
+        "item": "pigment:bottle_of_ruin"
     },
     "title": {
-      "translate": "advancements.pigment.craft_decay.title"
+      "translate": "advancements.pigment.craft_ruin.title"
     },
     "description": {
-      "translate": "advancements.pigment.craft_decay.description"
+      "translate": "advancements.pigment.craft_ruin.description"
     }
   },
   "parent": "pigment:pigment",

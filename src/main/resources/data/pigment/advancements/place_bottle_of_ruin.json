@@ -1,0 +1,22 @@
+{
+  "display": {
+    "icon": {
+        "item": "pigment:bottle_of_ruin"
+    },
+    "title": {
+      "translate": "advancements.pigment.place_ruin.title"
+    },
+    "description": {
+      "translate": "advancements.pigment.place_ruin.description"
+    }
+  },
+  "parent": "pigment:craft_bottle_of_ruin",
+  "criteria": {
+    "placed_decay": {
+      "trigger":"minecraft:placed_block",
+      "conditions": {
+        "block": "pigment:ruin"
+      }
+    }
+  }
+}

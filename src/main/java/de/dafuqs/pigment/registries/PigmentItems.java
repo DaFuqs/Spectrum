@@ -99,9 +99,9 @@ public class PigmentItems {
     public static final Item MUD_BUCKET = new BucketItem(STILL_MUD, generalItemSettingsSingle);
 
     // Decay bottles
-    public static final Item DECAY_1_PLACER = new DecayPlacerItem(PigmentBlocks.DECAY1, decayPlacerItemSettings);
-    public static final Item DECAY_2_PLACER = new DecayPlacerItem(PigmentBlocks.DECAY2, decayPlacerItemSettings);
-    public static final Item DECAY_3_PLACER = new DecayPlacerItem(PigmentBlocks.DECAY3, decayPlacerItemSettings);
+    public static final Item BOTTLE_OF_FADING = new DecayPlacerItem(PigmentBlocks.FADING, decayPlacerItemSettings);
+    public static final Item BOTTLE_OF_FAILING = new DecayPlacerItem(PigmentBlocks.FAILING, decayPlacerItemSettings);
+    public static final Item BOTTLE_OF_RUIN = new DecayPlacerItem(PigmentBlocks.RUIN, decayPlacerItemSettings);
 
     // Resources
     public static final Item SPARKLESTONE_GEM = new Item(pigmentWorldgenItemSettings);
@@ -243,9 +243,9 @@ public class PigmentItems {
 	}
 	
 	public static void registerDecayBottles() {
-        register("decay_1_placer", DECAY_1_PLACER);
-        register("decay_2_placer", DECAY_2_PLACER);
-        register("decay_3_placer", DECAY_3_PLACER);
+        register("bottle_of_fading", BOTTLE_OF_FADING);
+        register("bottle_of_failing", BOTTLE_OF_FAILING);
+        register("bottle_of_ruin", BOTTLE_OF_RUIN);
 	}
 	
 	public static void registerPreEnchantedTools() {

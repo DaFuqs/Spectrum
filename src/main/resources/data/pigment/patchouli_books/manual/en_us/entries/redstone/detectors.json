@@ -29,13 +29,13 @@
       "type": "patchouli:spotlight",
       "title": "Block Light Detector",
       "item": "pigment:light_level_detector",
-      "text": "Sunlight detectors are relatively weak when it comes to measuring light. The Nether Quartz used is so crudely processed that only sunlight can trigger the detector reliably. Amethyst, on the other hand, is much more sensitive when it comes to measuring light. Even the dim glow of a torch is sufficient to output decent strength."
+      "text": "Sunlight detectors are relatively imprecise when it comes to measuring light. The Nether Quartz used is so crudely processed that only sunlight can trigger the detector reliably. Amethyst, on the other hand, is much more sensitive when it comes to measuring light. Even the dim glow of a torch is sufficient to output decent strength."
     },
     {
       "type": "patchouli:spotlight",
       "title": "Creature Detector",
       "item": "pigment:entity_detector",
-      "text": "The gemstone built into the Mob Detector reacts to the micro-vibrations in the ground, which build up each other. This gives the Mob Detector the ability to measure the number of creatures near it.$(br2)For each creature within a 10 block radius, the Mob Detector outputs an additional strength of 1."
+      "text": "The gemstone built into the Mob Detector reacts to the micro-vibrations in the ground. This gives the Mob Detector the ability to measure the number of creatures near it.$(br2)For each creature within a 10 block radius, the Mob Detector outputs an additional strength of 1."
     }
   ]
 }

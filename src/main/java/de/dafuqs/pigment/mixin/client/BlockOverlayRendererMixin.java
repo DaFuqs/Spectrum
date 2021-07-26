@@ -1,25 +1,37 @@
-package de.dafuqs.pigment.mixin;
+package de.dafuqs.pigment.mixin.client;
 
+import com.mojang.blaze3d.systems.RenderSystem;
+import de.dafuqs.pigment.PigmentCommon;
+import de.dafuqs.pigment.registries.PigmentFluidTags;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.hud.InGameOverlayRenderer;
+import net.minecraft.client.render.*;
+import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.math.Matrix4f;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 @Mixin(InGameOverlayRenderer.class)
 public class BlockOverlayRendererMixin {
 
     // Since the hack in PigmentFluid to allow swimming, sounds, particles for fluids
     // this does now work because "isSubmergedIn()" only matches for water
-    /*private static final Identifier TEXTURE_IN_LIQUID_CRYSTAL = new Identifier(PigmentCommon.MOD_ID + ":textures/misc/liquid_crystal_overlay.png");
+    private static final Identifier TEXTURE_IN_LIQUID_CRYSTAL = new Identifier(PigmentCommon.MOD_ID + ":textures/misc/liquid_crystal_overlay.png");
     private static final Identifier TEXTURE_IN_MUD = new Identifier(PigmentCommon.MOD_ID + ":textures/misc/mud_overlay.png");
 
     @Inject(method = "renderOverlays(Lnet/minecraft/client/MinecraftClient;Lnet/minecraft/client/util/math/MatrixStack;)V", at = @At("TAIL"), locals = LocalCapture.CAPTURE_FAILSOFT)
     private static void blockOverlay(MinecraftClient minecraftClient, MatrixStack matrixStack, CallbackInfo ci) {
         if (!minecraftClient.player.isSpectator()) {
             if (minecraftClient.player.isSubmergedIn(PigmentFluidTags.LIQUID_CRYSTAL)) {
-                renderOverlay(minecraftClient, matrixStack, TEXTURE_IN_LIQUID_CRYSTAL, 0.42F);
+                renderOverlay(minecraftClient, matrixStack, TEXTURE_IN_LIQUID_CRYSTAL, 0.6F);
             }
 
             if (minecraftClient.player.isSubmergedIn(PigmentFluidTags.MUD)) {
-                renderOverlay(minecraftClient, matrixStack, TEXTURE_IN_MUD, 0.98F);
+                renderOverlay(minecraftClient, matrixStack, TEXTURE_IN_MUD, 0.995F);
             }
         }
     }
@@ -45,6 +57,6 @@ public class BlockOverlayRendererMixin {
         bufferBuilder.end();
         BufferRenderer.draw(bufferBuilder);
         RenderSystem.disableBlend();
-    }*/
+    }
 
 }

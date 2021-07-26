@@ -8,8 +8,10 @@
     "BlockMixin",
     "EnderEyeItemMixin",
     "EndermanEntityMixin",
+    "EntityApplyFluidsMixin",
     "FishingBobberEntityMixin",
     "FishingBobberEntityRendererMixin",
+    "FluidTagsAccessor",
     "GeodesGenerateWithGemstoneOresMixin",
     "HorseBaseEntityMixin",
     "InfestedBlockMixin",
@@ -22,12 +24,12 @@
     "ServerPlayerEntityMixin",
     "ServerWorldMixin",
     "SpawnerBlockMixin",
-    "WorldRendererMixin",
-    "FluidTagsAccessor"
+    "WorldRendererMixin"
   ],
   "client": [
     "client.AccessorClientAdvancementManager",
     "client.BlockModelsMixin",
+    "client.BlockOverlayRendererMixin",
     "client.BuiltinModelItemRendererMixin",
     "client.ClientPlayerEntityMixin",
     "client.ClientWorldMixin",

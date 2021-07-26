@@ -1,6 +1,7 @@
 package de.dafuqs.pigment.blocks.fluid;
 
 import de.dafuqs.pigment.registries.PigmentBlocks;
+import de.dafuqs.pigment.registries.PigmentFluidTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -46,10 +47,7 @@ public class LiquidCrystalFluidBlock extends FluidBlock {
      * @return Dunno, actually. I just mod things.
      */
     private boolean receiveNeighborFluids(World world, BlockPos pos, BlockState state) {
-        Direction[] var5 = Direction.values();
-        int var6 = var5.length;
-        for(int var7 = 0; var7 < var6; ++var7) {
-            Direction direction = var5[var7];
+        for (Direction direction : Direction.values()) {
             BlockPos blockPos = pos.offset(direction);
             if (world.getFluidState(blockPos).isIn(FluidTags.WATER)) {
                 Block block = world.getFluidState(pos).isStill() ? PigmentBlocks.FROSTBITE_CRYSTAL : Blocks.CALCITE;
@@ -58,7 +56,13 @@ public class LiquidCrystalFluidBlock extends FluidBlock {
                 return false;
             }
             if (world.getFluidState(blockPos).isIn(FluidTags.LAVA)) {
-                Block block = world.getFluidState(pos).isStill() ? PigmentBlocks.BLAZING_CRYSTAL : Blocks.TUFF;
+                Block block = world.getFluidState(pos).isStill() ? PigmentBlocks.BLAZING_CRYSTAL : Blocks.COBBLED_DEEPSLATE;
+                world.setBlockState(pos, block.getDefaultState());
+                this.playExtinguishSound(world, pos);
+                return false;
+            }
+            if (world.getFluidState(blockPos).isIn(PigmentFluidTags.MUD)) {
+                Block block = Blocks.TUFF;
                 world.setBlockState(pos, block.getDefaultState());
                 this.playExtinguishSound(world, pos);
                 return false;

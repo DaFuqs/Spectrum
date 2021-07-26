@@ -45,10 +45,7 @@ public class MudFluidBlock extends FluidBlock {
      * @return Dunno, actually. I just mod things.
      */
     private boolean receiveNeighborFluids(World world, BlockPos pos, BlockState state) {
-        Direction[] var5 = Direction.values();
-        int var6 = var5.length;
-        for(int var7 = 0; var7 < var6; ++var7) {
-            Direction direction = var5[var7];
+        for (Direction direction : Direction.values()) {
             BlockPos blockPos = pos.offset(direction);
             if (world.getFluidState(blockPos).isIn(FluidTags.WATER)) {
                 world.setBlockState(pos, Blocks.DIRT.getDefaultState());

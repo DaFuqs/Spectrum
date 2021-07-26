@@ -1,19 +1,19 @@
 {
     "name": "Liquids",
-    "icon": "minecraft:water_bucket",
+    "icon": "minecraft:mud_bucket",
     "category": "pigment:resources_category",
     "pages": [
         {
             "type": "patchouli:spotlight",
             "title": "Mud",
             "item": "pigment:mud_bucket",
-            "text": "TODO"
+            "text": "Mud. It is mud. Not particularly interesting in itself. But what is practical is the collision of the dirt with water and lava. This creates dirt and coarse dirt, respectively."
         },
         {
             "type": "patchouli:spotlight",
             "title": "Liquid Crystal",
             "item": "pigment:liquid_crystal_bucket",
-            "text": "TODO: Frostbite Crystal, Blazing Crstal, Resonant Lily"
+            "text": "The pure energy of gemstones in their liquid form. It is said to have a healing effect."
         }
     ]
 }

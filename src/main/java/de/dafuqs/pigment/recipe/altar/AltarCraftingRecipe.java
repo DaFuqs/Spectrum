@@ -1,10 +1,17 @@
 package de.dafuqs.pigment.recipe.altar;
 
+import de.dafuqs.pigment.PigmentCommon;
+import de.dafuqs.pigment.Support;
 import de.dafuqs.pigment.enums.PigmentColor;
+import de.dafuqs.pigment.misc.PigmentAltarRecipeUnlocker;
 import de.dafuqs.pigment.recipe.PigmentRecipeTypes;
 import de.dafuqs.pigment.registries.PigmentBlocks;
 import de.dafuqs.pigment.registries.PigmentItems;
 import de.dafuqs.pigment.sound.PigmentSoundEvents;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -12,16 +19,15 @@ import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.RecipeType;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class AltarCraftingRecipe implements Recipe<Inventory> {
 
@@ -56,6 +62,8 @@ public class AltarCraftingRecipe implements Recipe<Inventory> {
         this.experience = experience;
         this.craftingTime = craftingTime;
         this.advancementIdentifier = advancementIdentifier;
+
+        PigmentAltarRecipeUnlocker.registerUnlockableAltarRecipe(this);
     }
 
     @Override
@@ -231,6 +239,25 @@ public class AltarCraftingRecipe implements Recipe<Inventory> {
         } else {
             return choices.get(random.nextInt(choices.size()));
         }
+    }
+
+    public boolean shouldShowUnlockToast() {
+        return true;
+    }
+
+    @Environment(EnvType.SERVER)
+    public boolean canCraft(UUID playerUUID) {
+        ServerPlayerEntity serverPlayerEntity = PigmentCommon.minecraftServer.getPlayerManager().getPlayer(playerUUID);
+        if(serverPlayerEntity == null) {
+            return false;
+        } else {
+            return canCraft(serverPlayerEntity);
+        }
+    }
+
+    @Environment(EnvType.SERVER)
+    public boolean canCraft(ServerPlayerEntity playerEntity) {
+        return Support.hasAdvancement(playerEntity, this.advancementIdentifier);
     }
 
 }

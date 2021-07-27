@@ -13,17 +13,17 @@ import net.minecraft.util.Identifier;
 
 import java.util.Map;
 
+@Environment(EnvType.CLIENT)
 public class PigmentClientAdvancements {
 
 	private static boolean gotFirstAdvPacket = false;
 
-	@Environment(EnvType.CLIENT)
 	public static void onClientPacket(AdvancementUpdateS2CPacket packet) {
 		PigmentBlockCloaker.checkBlockCloaksForNewAdvancements(packet, gotFirstAdvPacket);
+		PigmentAltarRecipeUnlocker.checkAltarRecipesForNewAdvancements(packet, gotFirstAdvPacket);
 		gotFirstAdvPacket = true;
 	}
 
-	@Environment(EnvType.CLIENT)
 	public static boolean hasDone(Identifier identifier) {
 		// If we never received the initial packet: assume false
 		if(!gotFirstAdvPacket) {
@@ -45,7 +45,6 @@ public class PigmentClientAdvancements {
 		return false;
 	}
 
-	@Environment(EnvType.CLIENT)
 	public static void playerLogout() {
 		PigmentBlockCloaker.cloakAll();
 		gotFirstAdvPacket = false;

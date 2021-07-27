@@ -24,5 +24,6 @@
   "result" : {
     "item": "pigment:redstone_sand",
     "count": 1
-  }
+  },
+  "advancement": "pigment:collect_amethyst_shard"
 }

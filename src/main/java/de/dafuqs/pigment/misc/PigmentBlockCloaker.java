@@ -1,6 +1,7 @@
 package de.dafuqs.pigment.misc;
 
 import de.dafuqs.pigment.accessor.WorldRendererAccessor;
+import de.dafuqs.pigment.gui.RevelationToast;
 import de.dafuqs.pigment.interfaces.Cloakable;
 import de.dafuqs.pigment.registries.PigmentBlocks;
 import de.dafuqs.pigment.sound.PigmentSoundEvents;
@@ -51,9 +52,10 @@ public class PigmentBlockCloaker {
         }
         for(Map.Entry<Identifier, AdvancementProgress> progressedEntry : packet.getAdvancementsToProgress().entrySet()) {
             Identifier progressedAdvancementIdentifier = progressedEntry.getKey();
-            if(PigmentClientAdvancements.hasDone(progressedAdvancementIdentifier))
-            if(advancementBlockSwapTriggers.containsKey(progressedAdvancementIdentifier)) {
-                cloakableBlocksToTrigger.addAll(advancementBlockSwapTriggers.get(progressedAdvancementIdentifier));
+            if(PigmentClientAdvancements.hasDone(progressedAdvancementIdentifier)) {
+                if (advancementBlockSwapTriggers.containsKey(progressedAdvancementIdentifier)) {
+                    cloakableBlocksToTrigger.addAll(advancementBlockSwapTriggers.get(progressedAdvancementIdentifier));
+                }
             }
         }
 

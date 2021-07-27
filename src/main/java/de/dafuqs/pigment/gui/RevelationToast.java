@@ -1,4 +1,4 @@
-package de.dafuqs.pigment.misc;
+package de.dafuqs.pigment.gui;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import de.dafuqs.pigment.PigmentCommon;
@@ -7,6 +7,7 @@ import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.sound.PositionedSoundInstance;
+import net.minecraft.client.toast.AdvancementToast;
 import net.minecraft.client.toast.Toast;
 import net.minecraft.client.toast.ToastManager;
 import net.minecraft.client.util.math.MatrixStack;
@@ -53,21 +54,21 @@ public class RevelationToast implements Toast {
         List<OrderedText> wrappedText = manager.getGame().textRenderer.wrapLines(text, 125);
         List<OrderedText> wrappedTitle = manager.getGame().textRenderer.wrapLines(title, 125);
         int l;
-        if (startTime < 3000L) {
-            l = MathHelper.floor(MathHelper.clamp((float)(3000L - startTime) / 300.0F, 0.0F, 1.0F) * 255.0F) << 24 | 67108864;
-            int var10000 = this.getHeight() / 2;
-            int var10001 = wrappedTitle.size();
-            int m = var10000 - var10001 * 9 / 2;
+        if (startTime < 2500L) {
+            l = MathHelper.floor(MathHelper.clamp((float)(2500L - startTime) / 300.0F, 0.0F, 1.0F) * 255.0F) << 24 | 67108864;
+            int halfHeight = this.getHeight() / 2;
+            int titleSize = wrappedTitle.size();
+            int m = halfHeight - titleSize * 9 / 2;
 
             for(Iterator<OrderedText> var12 = wrappedTitle.iterator(); var12.hasNext(); m += 9) {
                 OrderedText orderedText = var12.next();
                 manager.getGame().textRenderer.draw(matrices, orderedText, 30.0F, (float)m, 3289650 | l);
             }
         } else {
-            l = MathHelper.floor(MathHelper.clamp((float)(startTime - 3000L) / 300.0F, 0.0F, 1.0F) * 252.0F) << 24 | 67108864;
-            int var10000 = this.getHeight() / 2;
-            int var10001 = wrappedText.size();
-            int m = var10000 - var10001 * 9 / 2;
+            l = MathHelper.floor(MathHelper.clamp((float)(startTime - 2500L) / 300.0F, 0.0F, 1.0F) * 252.0F) << 24 | 67108864;
+            int halfHeight = this.getHeight() / 2;
+            int textSize = wrappedText.size();
+            int m = halfHeight - textSize * 9 / 2;
 
             for(Iterator<OrderedText> var12 = wrappedText.iterator(); var12.hasNext(); m += 9) {
                 OrderedText orderedText = var12.next();
@@ -83,15 +84,7 @@ public class RevelationToast implements Toast {
         }
 
         manager.getGame().getItemRenderer().renderInGui(itemStack, 8, 12);
-        return startTime >= 6000 ? Visibility.HIDE : Visibility.SHOW;
-    }
-
-    public int getWidth() {
-        return 160;
-    }
-
-    public int getHeight() {
-        return 40;
+        return startTime >= 5000L ? Visibility.HIDE : Visibility.SHOW;
     }
 
 }

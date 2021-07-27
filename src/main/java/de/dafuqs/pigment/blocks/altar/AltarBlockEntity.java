@@ -244,10 +244,18 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
 
                 altarCraftingRecipe = world.getRecipeManager().getFirstMatch(recipeType, altarBlockEntity, world).orElse(null);
                 if (altarCraftingRecipe != null) {
-                    altarBlockEntity.lastRecipe = altarCraftingRecipe;
-                    altarBlockEntity.craftingTimeTotal = altarCraftingRecipe.getCraftingTime();
-                    altarBlockEntity.inventory.set(PREVIEW_SLOT_ID, altarCraftingRecipe.getOutput().copy());
-                    shouldMarkDirty = true;
+                    if (altarCraftingRecipe.canCraft(altarBlockEntity.getOwnerUUID())) {
+                        altarBlockEntity.lastRecipe = altarCraftingRecipe;
+                        altarBlockEntity.craftingTimeTotal = altarCraftingRecipe.getCraftingTime();
+                        altarBlockEntity.inventory.set(PREVIEW_SLOT_ID, altarCraftingRecipe.getOutput().copy());
+                        shouldMarkDirty = true;
+                    } else {
+                        altarBlockEntity.lastRecipe = null;
+                        if(!altarBlockEntity.inventory.get(PREVIEW_SLOT_ID).isEmpty()) {
+                            altarBlockEntity.inventory.set(PREVIEW_SLOT_ID, ItemStack.EMPTY);
+                            shouldMarkDirty = true;
+                        }
+                    }
                 } else {
                     craftingRecipe = world.getRecipeManager().getFirstMatch(RecipeType.CRAFTING, autoCraftingInventory, world).orElse(null);
                     if (craftingRecipe != null) {

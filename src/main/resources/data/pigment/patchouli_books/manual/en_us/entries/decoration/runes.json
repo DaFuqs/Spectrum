@@ -5,7 +5,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "$(italic)Calcite and basalt keep the energies of the gems in check as long as they completely enclose the geode, that much is certain. Sometimes, however, the energy accumulated over centuries is so great that it tears a hole in the geode.$(br)To focus these very energies, you can recreate the whole thing in miniature.$()"
+      "text": "$(italic)Calcite and basalt keep the energies of the gems in check as long as they completely enclose the geode, that much is certain. Sometimes, however, the energy accumulated over centuries is so great that it tears a hole in the geode.$(br)To focus these very energies, you can recreate the whole thing in miniature. For sure your new construction holds a lot of magical energy$()"
     },
     {
       "type": "patchouli:spotlight",

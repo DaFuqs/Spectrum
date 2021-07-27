@@ -4,20 +4,16 @@
     "category": "pigment:resources_category",
     "pages": [
         {
-            "type": "patchouli:text",
-            "text": ""
-        },
-        {
             "type": "patchouli:spotlight",
             "title": "Quitoxic Reeds",
             "item": "pigment:quitoxic_reeds",
-            "text": ""
+            "text": "An alien-looking variety of sugar cane that grows exclusively in swamps and seems to devour nutrients. A purple glittering powder can be extracted from the stems."
         },
         {
             "type": "patchouli:spotlight",
             "title": "Mermaids Brush",
             "item": "pigment:mermaids_brush",
-            "text": "in very deep water. sometimes seen because of their precious treasure that is released"
+            "text": "This inconspicuous plant grows in the deepest depths of the oceans, forever untouched by human influence. On Mermaids Brushes grows a single flower, which slowly develops into a filigree shaped seed. When fully grown, these stones float to the surface of the sea to be carried away by the waves.$(br2)This relic has a strong bond with water."
         }
     ]
 }

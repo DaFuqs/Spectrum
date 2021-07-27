@@ -10,7 +10,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Like a Trapped Chest the Private Chests also outputs a redstone signal based on who opened it. If you as an owner open it, the signal strength will be full, if a stranger wants to tamper with your belongings then only half."
+      "text": "The Personal Chest provides the same space as two normal chests.$(br2)Like a Trapped Chest the Private Chests also outputs a redstone signal based on who opened it. If you as an owner open it, the signal strength will be full, if a stranger wants to tamper with your belongings then only half."
     }
   ]
 }

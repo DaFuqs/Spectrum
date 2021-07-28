@@ -35,7 +35,7 @@
       "type": "patchouli:spotlight",
       "advancement": "pigment:hidden/collect_pigment/collect_gray_pigment",
       "item": "pigment:gray_pigment",
-      "text": "This color looks to you like the defeated older brother of light gray. Whenever you look at it you get a little sad, but you don't know exactly why.$(br2)$(c_gray)Gray$() represents $(italic)Evanescence$()."
+      "text": "This color looks to you like the defeated older brother of light gray. Whenever you look at it you get a little sad, but you do not know exactly why.$(br2)$(c_gray)Gray$() represents $(italic)Evanescence$()."
     },
     {
       "type": "patchouli:spotlight",
@@ -47,13 +47,13 @@
       "type": "patchouli:spotlight",
       "advancement": "pigment:hidden/collect_pigment/collect_light_blue_pigment",
       "item": "pigment:light_blue_pigment",
-      "text": "Looking at this color you feel a sense of optimism, but also departure.$(br2)$(c_light_blue)Light Blue$() represents $(italic)Luck$() and $(italic)Piece$()."
+      "text": "Looking at this color, you feel a sense of optimism, but also departure.$(br2)$(c_light_blue)Light Blue$() represents $(italic)Luck$() and $(italic)Piece$()."
     },
     {
       "type": "patchouli:spotlight",
       "advancement": "pigment:hidden/collect_pigment/collect_light_gray_pigment",
       "item": "pigment:light_gray_pigment",
-      "text": "You know that feeling when you're sitting serenely, looking at the landscape, feeling life pass you by, and yet everything is okay? $(br2)$(c_light_gray)Light Gray$() represents $(italic)Change$(), but also $(italic)Quiet$()."
+      "text": "You know that feeling when you are sitting serenely, looking at the landscape, feeling life pass you by, and yet everything is okay? $(br2)$(c_light_gray)Light Gray$() represents $(italic)Change$(), but also $(italic)Quiet$()."
     },
     {
       "type": "patchouli:spotlight",
@@ -77,7 +77,7 @@
       "type": "patchouli:spotlight",
       "advancement": "pigment:hidden/collect_pigment/collect_pink_pigment",
       "item": "pigment:pink_pigment",
-      "text": "The bright, lively cotton candy pink makes you beam with joy.$(br2)$(c_pink)Pink$() represents $(italic)Happyness$(), $(italic)Health$() and $(italic)Admiration$()."
+      "text": "The bright, lively cotton candy pink makes you beam with joy.$(br2)$(c_pink)Pink$() represents $(italic)Happiness$(), $(italic)Health$() and $(italic)Admiration$()."
     },
     {
       "type": "patchouli:spotlight",
@@ -95,7 +95,7 @@
       "type": "patchouli:spotlight",
       "advancement": "pigment:hidden/collect_pigment/collect_white_pigment",
       "item": "pigment:white_pigment",
-      "text": "You can't exactly put it into words. This pigment radiates something unspeakably wonderful.$(br2)$(c_white)White$() represents $(italic)LIFE$(), $(italic)Purity$() and $(italic)Innocence$()."
+      "text": "You can not exactly put it into words. This pigment radiates something unspeakably wonderful.$(br2)$(c_white)White$() represents $(italic)LIFE$(), $(italic)Light$() and $(italic)Purity$() ."
     },
     {
       "type": "patchouli:spotlight",

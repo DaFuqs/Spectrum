@@ -10,14 +10,12 @@
       "translate": "advancements.pigment.plant_glistering_melon_seeds.description"
     }
   },
-  "parent": "pigment:pigment",
+  "parent": "pigment:collect_vegetal",
   "criteria": {
     "planted_glistering_melon_seeds": {
       "trigger": "minecraft:item_used_on_block",
       "conditions": {
-        "items": [{
-          "items": "pigment:glistering_melon_seeds"
-        }]
+        "items": ["pigment:glistering_melon_seeds"]
       }
     }
   }

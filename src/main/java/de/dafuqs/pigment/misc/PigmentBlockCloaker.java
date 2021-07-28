@@ -1,7 +1,8 @@
 package de.dafuqs.pigment.misc;
 
+import de.dafuqs.pigment.PigmentCommon;
 import de.dafuqs.pigment.accessor.WorldRendererAccessor;
-import de.dafuqs.pigment.gui.RevelationToast;
+import de.dafuqs.pigment.toast.RevelationToast;
 import de.dafuqs.pigment.interfaces.Cloakable;
 import de.dafuqs.pigment.registries.PigmentBlocks;
 import de.dafuqs.pigment.sound.PigmentSoundEvents;
@@ -16,6 +17,8 @@ import net.minecraft.client.render.WorldRenderer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.packet.s2c.play.AdvancementUpdateS2CPacket;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
 
 import java.util.ArrayList;
@@ -32,12 +35,18 @@ public class PigmentBlockCloaker {
 
     public static void registerAdvancementSwap(Cloakable cloakableBlock, Identifier advancementIdentifier) {
         if(advancementBlockSwapTriggers.containsKey(advancementIdentifier)) {
-            advancementBlockSwapTriggers.get(advancementIdentifier).add(cloakableBlock);
+            if(!advancementBlockSwapTriggers.get(advancementIdentifier).contains(cloakableBlock)) {
+                advancementBlockSwapTriggers.get(advancementIdentifier).add(cloakableBlock);
+            }
         } else {
             List<Cloakable> blocks = new ArrayList<>();
             blocks.add(cloakableBlock);
             advancementBlockSwapTriggers.put(advancementIdentifier, blocks);
         }
+    }
+
+    public static boolean doesAdvancementTriggerRevelation(Identifier advancementIdentifier) {
+        return advancementBlockSwapTriggers.containsKey(advancementIdentifier);
     }
 
     @Environment(EnvType.CLIENT)
@@ -97,14 +106,14 @@ public class PigmentBlockCloaker {
         blockSwaps.remove(blockState);
     }
 
-    public static void unswapAllBlockStates(Block block) {
-        HashMap<BlockState, BlockState> modelSwapperCopy = new HashMap<>();
+    public static void unswapAllBlockStatesForBlock(Block block) {
+        HashMap<BlockState, BlockState> newBlockSwaps = new HashMap<>();
         for(BlockState blockState : blockSwaps.keySet()) {
-            if(blockState.getBlock().equals(block)) {
-                modelSwapperCopy.remove(blockState);
+            if(!blockState.getBlock().equals(block)) {
+                newBlockSwaps.put(blockState, blockSwaps.get(blockState));
             }
         }
-        blockSwaps = modelSwapperCopy;
+        blockSwaps = newBlockSwaps;
     }
 
     public static boolean isSwapped(BlockState blockState) {

@@ -37,7 +37,7 @@ public abstract class ConditionallyVisibleOreBlock extends OreBlock implements C
     }
 
     public void setUncloaked() {
-        PigmentBlockCloaker.unswapAllBlockStates(this);
+        PigmentBlockCloaker.unswapAllBlockStatesForBlock(this);
         PigmentBlockCloaker.unswapModel(this.asItem());
     }
 

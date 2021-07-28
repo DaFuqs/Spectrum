@@ -3,6 +3,7 @@
     "icon": {
       "item": "pigment:shooting_star"
     },
+    "hidden": true,
     "title": {
       "translate": "advancements.pigment.catch_shooting_star.title"
     },
@@ -10,7 +11,7 @@
       "translate": "advancements.pigment.catch_shooting_star.description"
     }
   },
-  "parent": "pigment:pigment",
+  "parent": "pigment:pigment_midgame",
   "criteria": {
     "catch": {
       "trigger": "minecraft:impossible"

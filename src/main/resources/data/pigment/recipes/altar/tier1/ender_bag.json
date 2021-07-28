@@ -27,5 +27,6 @@
   "result" : {
     "item": "pigment:ender_bag",
     "count": 1
-  }
+  },
+  "required_advancements": ["pigment:hidden/collect_resource/collect_ender_treasure"]
 }

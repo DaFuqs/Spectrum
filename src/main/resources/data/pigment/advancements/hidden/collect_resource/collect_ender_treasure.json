@@ -1,0 +1,8 @@
+{
+  "criteria": {
+    "has_black_pigment": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": { "items": [{ "items": [ "pigment:ender_treasure" ]}] }
+    }
+  }
+}

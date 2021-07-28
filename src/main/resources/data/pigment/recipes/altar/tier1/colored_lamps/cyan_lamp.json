@@ -27,5 +27,6 @@
   "result" : {
     "item": "pigment:cyan_lamp",
     "count": 1
-  }
+  },
+  "required_advancements": [ "pigment:hidden/collect_pigment/collect_cyan_pigment" ]
 }

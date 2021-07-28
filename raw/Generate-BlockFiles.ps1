@@ -5,7 +5,7 @@ $flat = @("black_flat_colored_block", "blue_flat_colored_block", "brown_flat_col
 $lamp = @("black_lamp", "blue_lamp", "brown_lamp", "cyan_lamp", "gray_lamp", "green_lamp", "light_blue_lamp", "light_gray_lamp", "lime_lamp", "magenta_lamp", "orange_lamp", "pink_lamp", "purple_lamp", "red_lamp", "white_lamp", "yellow_lamp")
 $ores = @("sparklestone_block", "koenigsblau_ore", "koenigsblau_block")
 
-$new = @("amethyst_storage_block", "citrine_storage_block", "topaz_storage_block", "onyx_storage_block", "moonstone_storage_block")
+$new = @("deepslate_sparklestone_ore", "deepslate_azurite_ore")
 
 enum BlockType {
     Default
@@ -108,8 +108,7 @@ function Get-BlockObjects([string[]] $Names) {
 function Get-RegisterBlockAndItems([string[]] $Names) {
     $Names | Foreach-Object {
         $o = $_.toUpper()
-        "registerBlock(`"$_`", $o);"
-        "registerBlockItem(`"$_`", new BlockItem($o, fabricItemSettings));"
+        "registerBlockWithItem(`"$_`", $o, fabricItemSettings));"
     }
 }
 

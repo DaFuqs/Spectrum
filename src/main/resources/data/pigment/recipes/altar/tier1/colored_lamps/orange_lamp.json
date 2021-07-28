@@ -27,5 +27,6 @@
   "result" : {
     "item": "pigment:orange_lamp",
     "count": 1
-  }
+  },
+  "required_advancements": [ "pigment:hidden/collect_pigment/collect_orange_pigment" ]
 }

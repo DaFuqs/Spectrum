@@ -24,5 +24,6 @@
   "result" : {
     "item": "pigment:multitool",
     "count": 1
-  }
+  },
+  "required_advancements": ["pigment:craft_using_altar"]
 }

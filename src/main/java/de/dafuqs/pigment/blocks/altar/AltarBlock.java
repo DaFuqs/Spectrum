@@ -134,7 +134,7 @@ public class AltarBlock extends BlockWithEntity {
         if(world.isClient) {
             return null;
         } else {
-            return checkType(type, PigmentBlockEntityRegistry.ALTAR, AltarBlockEntity::tick);
+            return checkType(type, PigmentBlockEntityRegistry.ALTAR, AltarBlockEntity::serverTick);
         }
     }
 

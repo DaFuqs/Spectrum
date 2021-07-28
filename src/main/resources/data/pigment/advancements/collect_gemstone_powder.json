@@ -4,13 +4,13 @@
         "item": "pigment:amethyst_powder"
     },
     "title": {
-      "translate": "advancements.pigment.get_gemstone_powder.title"
+      "translate": "advancements.pigment.collect_gemstone_powder.title"
     },
     "description": {
-      "translate": "advancements.pigment.get_gemstone_powder.description"
+      "translate": "advancements.pigment.collect_gemstone_powder.description"
     }
   },
-  "parent": "pigment:pigment",
+  "parent": "pigment:place_altar",
   "criteria": {
     "has_amethyst_powder": {
       "trigger":"minecraft:inventory_changed",

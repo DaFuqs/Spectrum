@@ -20,19 +20,19 @@ public class GemstoneOreBlock extends ConditionallyVisibleOreBlock {
     public Identifier getCloakAdvancementIdentifier() {
         switch (this.pigmentColor) {
             case CYAN -> {
-                return new Identifier(PigmentCommon.MOD_ID, "collect_topaz_shard");
+                return new Identifier(PigmentCommon.MOD_ID, "hidden/collect_shards/collect_topaz_shard");
             }
             case MAGENTA -> {
-                return new Identifier(PigmentCommon.MOD_ID, "collect_amethyst_shard");
+                return new Identifier(PigmentCommon.MOD_ID, "hidden/collect_shards/collect_amethyst_shard");
             }
             case YELLOW -> {
-                return new Identifier(PigmentCommon.MOD_ID, "collect_citrine_shard");
+                return new Identifier(PigmentCommon.MOD_ID, "hidden/collect_shards/collect_citrine_shard");
             }
             case BLACK -> {
-                return new Identifier(PigmentCommon.MOD_ID, "collect_onyx_shard");
+                return new Identifier(PigmentCommon.MOD_ID, "hidden/collect_shards/collect_onyx_shard");
             }
             default -> {
-                return new Identifier(PigmentCommon.MOD_ID, "collect_moonstone_shard");
+                return new Identifier(PigmentCommon.MOD_ID, "hidden/collect_shards/collect_moonstone_shard");
             }
         }
     }

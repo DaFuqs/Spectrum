@@ -31,5 +31,6 @@
     "item": "pigment:bottle_of_fading",
     "count": 1
   },
-  "advancement": "pigment:craft_decay"
+  "required_advancements": ["pigment:hidden/collect_resource/collect_sparklestone_gem"],
+  "unlocks_advancement": "pigment:craft_bottle_of_fading"
 }

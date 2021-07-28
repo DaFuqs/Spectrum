@@ -27,5 +27,6 @@
   "result" : {
     "item": "pigment:glistering_melon_seeds",
     "count": 1
-  }
+  },
+  "required_advancements": ["pigment:collect_vegetal"]
 }

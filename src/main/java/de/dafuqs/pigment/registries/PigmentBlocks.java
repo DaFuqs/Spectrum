@@ -455,7 +455,9 @@ public class PigmentBlocks {
 
     // ORES
     public static final Block SPARKLESTONE_ORE = new SparklestoneOreBlock(FabricBlockSettings.copyOf(Blocks.IRON_ORE).breakByTool(FabricToolTags.PICKAXES, 2), UniformIntProvider.create(2, 4)); // drops sparklestone gems
+    public static final Block DEEPSLATE_SPARKLESTONE_ORE = new SparklestoneOreBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_IRON_ORE).breakByTool(FabricToolTags.PICKAXES, 2), UniformIntProvider.create(2, 4)); // drops sparklestone gems
     public static final Block AZURITE_ORE = new AzuriteOreBlock(FabricBlockSettings.copyOf(Blocks.LAPIS_ORE).breakByTool(FabricToolTags.PICKAXES, 3), UniformIntProvider.create(4, 7));
+    public static final Block DEEPSLATE_AZURITE_ORE = new AzuriteOreBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_LAPIS_ORE).breakByTool(FabricToolTags.PICKAXES, 3), UniformIntProvider.create(4, 7));
     public static final Block PALETUR_ORE = new PaleturOreBlock(FabricBlockSettings.of(Material.STONE, MapColor.DARK_RED).requiresTool().breakByTool(FabricToolTags.PICKAXES, 3).strength(3.0F, 3.0F).sounds(BlockSoundGroup.NETHER_ORE), UniformIntProvider.create(2, 4));
     public static final Block SCARLET_ORE = new ScarletOreBlock(FabricBlockSettings.of(Material.STONE, MapColor.PALE_YELLOW).requiresTool().breakByTool(FabricToolTags.PICKAXES, 4).strength(3.0F, 9.0F), UniformIntProvider.create(3, 5));
 
@@ -650,9 +652,11 @@ public class PigmentBlocks {
 
     private static void registerOreBlocks() {
         registerBlockWithItem("sparklestone_ore", SPARKLESTONE_ORE, worldgenItemSettings);
+        registerBlockWithItem("deepslate_sparklestone_ore", DEEPSLATE_SPARKLESTONE_ORE, worldgenItemSettings);
         registerBlockWithItem("sparklestone_block", SPARKLESTONE_BLOCK, decorationItemSettings);
 
         registerBlockWithItem("azurite_ore", AZURITE_ORE, worldgenItemSettings);
+        registerBlockWithItem("deepslate_azurite_ore", DEEPSLATE_AZURITE_ORE, worldgenItemSettings);
         registerBlockWithItem("azurite_block", AZURITE_BLOCK, decorationItemSettings);
 
         registerBlockWithItem("scarlet_ore", SCARLET_ORE, new GravityBlockItem(SCARLET_ORE, worldgenItemSettings, 1.01F));

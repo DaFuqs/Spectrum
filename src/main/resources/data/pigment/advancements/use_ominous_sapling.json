@@ -15,9 +15,7 @@
     "planted_ominous_sapling": {
       "trigger": "minecraft:item_used_on_block",
       "conditions": {
-        "items": [{
-          "items": "pigment:ominous_sapling"
-        }]
+        "items": ["pigment:ominous_sapling"]
       }
     }
   }

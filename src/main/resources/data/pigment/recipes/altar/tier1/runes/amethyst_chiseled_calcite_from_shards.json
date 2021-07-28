@@ -24,5 +24,6 @@
   "result": {
     "item": "pigment:amethyst_chiseled_calcite",
     "count": 1
-  }
+  },
+  "required_advancements": ["pigment:hidden/collect_shards/collect_amethyst_shard"]
 }

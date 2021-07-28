@@ -41,7 +41,7 @@ public class ColoredLogBlock extends PillarBlock implements Cloakable {
     public void setUncloaked() {
         for(DyeColor dyeColor : DyeColor.values()) {
             Block block = PigmentBlocks.getColoredLogBlock(dyeColor);
-            PigmentBlockCloaker.unswapAllBlockStates(block);
+            PigmentBlockCloaker.unswapAllBlockStatesForBlock(block);
             PigmentBlockCloaker.unswapModel(PigmentBlocks.getColoredLogItem(dyeColor));
         }
     }

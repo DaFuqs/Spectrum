@@ -1,8 +1,7 @@
 package de.dafuqs.pigment.misc;
 
-import de.dafuqs.pigment.gui.RecipeToast;
+import de.dafuqs.pigment.toast.RecipeToast;
 import de.dafuqs.pigment.recipe.altar.AltarCraftingRecipe;
-import de.dafuqs.pigment.sound.PigmentSoundEvents;
 import net.minecraft.advancement.Advancement;
 import net.minecraft.advancement.AdvancementProgress;
 import net.minecraft.client.MinecraftClient;
@@ -20,14 +19,16 @@ public class PigmentAltarRecipeUnlocker {
     private static final HashMap<Identifier, List<AltarCraftingRecipe>> unlockableAltarRecipes = new HashMap<>();
 
     public static void registerUnlockableAltarRecipe(AltarCraftingRecipe recipe) {
-        Identifier advancementIdentifier = recipe.unlockedAdvancement();
-        if(advancementIdentifier != null) {
-            if (unlockableAltarRecipes.containsKey(advancementIdentifier) && !unlockableAltarRecipes.get(advancementIdentifier).contains(recipe)) {
-                unlockableAltarRecipes.get(advancementIdentifier).add(recipe);
-            } else {
-                List<AltarCraftingRecipe> recipes = new ArrayList<>();
-                recipes.add(recipe);
-                unlockableAltarRecipes.put(advancementIdentifier, recipes);
+        List<Identifier> requiredAdvancementIdentifiers = recipe.getRequiredAdvancementIdentifiers();
+        if(requiredAdvancementIdentifiers.size() > 0) {
+            for(Identifier requiredAdvancementIdentifier : requiredAdvancementIdentifiers) {
+                if (unlockableAltarRecipes.containsKey(requiredAdvancementIdentifier) && !unlockableAltarRecipes.get(requiredAdvancementIdentifier).contains(recipe)) {
+                    unlockableAltarRecipes.get(requiredAdvancementIdentifier).add(recipe);
+                } else {
+                    List<AltarCraftingRecipe> recipes = new ArrayList<>();
+                    recipes.add(recipe);
+                    unlockableAltarRecipes.put(requiredAdvancementIdentifier, recipes);
+                }
             }
         }
     }
@@ -50,11 +51,14 @@ public class PigmentAltarRecipeUnlocker {
     private static void showToastsForAllRecipesWithAdvancement(Identifier advancementIdentifier) {
         if (unlockableAltarRecipes.containsKey(advancementIdentifier)) {
             for (AltarCraftingRecipe unlockedRecipe : unlockableAltarRecipes.get(advancementIdentifier)) {
-                if (unlockedRecipe.shouldShowUnlockToast()) {
-                    RecipeToast.showRecipeToast(MinecraftClient.getInstance(), new ItemStack(unlockedRecipe.getOutput().getItem()), PigmentSoundEvents.NEW_REVELATION);
+                if (unlockedRecipe.shouldShowUnlockToast() && unlockedRecipe.canCraft(MinecraftClient.getInstance().player)) {
+                    RecipeToast.showRecipeToast(MinecraftClient.getInstance(), new ItemStack(unlockedRecipe.getOutput().getItem()));
                 }
             }
         }
     }
 
+    public static void removeRecipes() {
+        unlockableAltarRecipes.clear();
+    }
 }

@@ -54,9 +54,25 @@ public class AltarCraftingCategory<R extends AltarCraftingRecipe> implements Dis
 
     @Override
     public List<Widget> setupDisplay(AltarCraftingRecipeDisplay display, Rectangle bounds) {
+
         Point startPoint = new Point(bounds.getCenterX() - 58, bounds.getCenterY() - 43);
         List<Widget> widgets = Lists.newArrayList();
+
         widgets.add(Widgets.createRecipeBase(bounds));
+
+        // Searching for the usage or recipes for items will not trigger an
+        // altar crafting recipe display. Searching for all recipes, that can
+        // be triggered with a pedestal will, though.
+        // For the sake of not spoiling the surprise there will just be text
+        // displayed instead of the recipe.
+        // It would be way better to just skip not unlocked recipes altogether.
+        // but howwwwww... TODO
+        if(!display.isUnlocked()) {
+            widgets.add(Widgets.createLabel(new Point(startPoint.x - 6, startPoint.y + 33), new TranslatableText("container.pigment.rei.altar.recipe_not_unlocked_line_1")).leftAligned().color(0x3f3f3f).noShadow());
+            widgets.add(Widgets.createLabel(new Point(startPoint.x - 6, startPoint.y + 43), new TranslatableText("container.pigment.rei.altar.recipe_not_unlocked_line_2")).leftAligned().color(0x3f3f3f).noShadow());
+            return widgets;
+        }
+
         widgets.add(Widgets.createArrow(new Point(startPoint.x + 60, startPoint.y + 18)));
 
         // crafting grid slots

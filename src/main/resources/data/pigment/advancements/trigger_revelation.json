@@ -1,0 +1,19 @@
+{
+  "display": {
+    "icon": {
+        "item": "pigment:sparklestone_ore"
+    },
+    "title": {
+      "translate": "advancements.pigment.trigger_revelation.title"
+    },
+    "description": {
+      "translate": "advancements.pigment.trigger_revelation.description"
+    }
+  },
+  "parent": "pigment:pigment",
+  "criteria": {
+    "have_revelation": {
+      "trigger":"minecraft:impossible"
+    }
+  }
+}

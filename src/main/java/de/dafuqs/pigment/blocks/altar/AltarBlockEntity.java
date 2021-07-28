@@ -225,7 +225,7 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
         return this.craftingTime > 0;
     }
 
-    public static void tick(World world, BlockPos blockPos, BlockState blockState, AltarBlockEntity altarBlockEntity) {
+    public static void serverTick(World world, BlockPos blockPos, BlockState blockState, AltarBlockEntity altarBlockEntity) {
         // check recipe crafted last tick => performance
         AltarCraftingRecipe altarCraftingRecipe = null;
         CraftingRecipe craftingRecipe = null;
@@ -466,8 +466,8 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
                 serverPlayerEntity.getAdvancementTracker().grantCriterion(craftingAdvancement, "craft");
 
                 // Advancement specific for the crafted item
-                if(recipe.unlocksAdvancement() && !Support.hasAdvancement(serverPlayerEntity, recipe.unlockedAdvancement())) {
-                    Advancement itemAdvancement = PigmentCommon.minecraftServer.getAdvancementLoader().get(recipe.unlockedAdvancement());
+                if(recipe.unlocksAdvancementOnCraft() && !Support.hasAdvancement(serverPlayerEntity, recipe.getUnlockedAdvancementOnCraft())) {
+                    Advancement itemAdvancement = PigmentCommon.minecraftServer.getAdvancementLoader().get(recipe.getUnlockedAdvancementOnCraft());
                     if (itemAdvancement != null) {
                         serverPlayerEntity.getAdvancementTracker().grantCriterion(itemAdvancement, "craft");
                     }

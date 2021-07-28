@@ -24,5 +24,6 @@
   "result": {
     "item": "pigment:onyx_chiseled_basalt",
     "count": 1
-  }
+  },
+  "required_advancements": ["pigment:hidden/collect_shards/collect_onyx_shard"]
 }

@@ -3,6 +3,7 @@
     "icon": {
         "item": "pigment:ender_treasure"
     },
+    "hidden": true,
     "title": {
       "translate": "advancements.pigment.get_ender_treasure.title"
     },

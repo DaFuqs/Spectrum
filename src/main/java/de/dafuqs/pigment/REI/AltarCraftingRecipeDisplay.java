@@ -1,24 +1,25 @@
 package de.dafuqs.pigment.REI;
 
 import de.dafuqs.pigment.enums.PigmentColor;
+import de.dafuqs.pigment.misc.PigmentClientAdvancements;
 import de.dafuqs.pigment.recipe.altar.AltarCraftingRecipe;
 import de.dafuqs.pigment.registries.PigmentItems;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.display.Display;
 import me.shedaniel.rei.api.common.entry.EntryIngredient;
 import me.shedaniel.rei.api.common.util.EntryIngredients;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.Identifier;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class AltarCraftingRecipeDisplay<R extends AltarCraftingRecipe> implements Display {
 
-	protected List<EntryIngredient> craftingInputs;
+	private final List<Identifier> requiredAdvancementIdentifiers;
+	protected final List<EntryIngredient> craftingInputs;
 	protected final EntryIngredient output;
 	protected final float experience;
 	protected final int craftingTime;
@@ -34,6 +35,8 @@ public class AltarCraftingRecipeDisplay<R extends AltarCraftingRecipe> implement
 		/*while(craftingInputs.size() < 9) {
 			craftingInputs.add(EntryIngredient.empty());
 		}*/
+
+		this.requiredAdvancementIdentifiers = recipe.getRequiredAdvancementIdentifiers();
 
 		HashMap<PigmentColor, Integer> pigmentInputs = recipe.getPigmentInputs();
 		addPigmentCraftingInput(pigmentInputs, PigmentColor.MAGENTA, PigmentItems.AMETHYST_POWDER);
@@ -65,17 +68,35 @@ public class AltarCraftingRecipeDisplay<R extends AltarCraftingRecipe> implement
 
 	@Override
 	public List<EntryIngredient> getInputEntries() {
-		return craftingInputs;
+		if(this.isUnlocked()) {
+			return craftingInputs;
+		} else {
+			return new ArrayList<>();
+		}
 	}
 
 	@Override
 	public List<EntryIngredient> getOutputEntries() {
-		return Collections.singletonList(output);
+		if(this.isUnlocked()) {
+			return Collections.singletonList(output);
+		} else {
+			return new ArrayList<>();
+		}
 	}
 
 	@Override
 	public CategoryIdentifier<?> getCategoryIdentifier() {
 		return AltarCraftingCategory.ID;
 	}
+
+	public boolean isUnlocked() {
+		for(Identifier advancementIdentifier : this.requiredAdvancementIdentifiers) {
+			if(!PigmentClientAdvancements.hasDone(advancementIdentifier)) {
+				return false;
+			}
+		}
+		return true;
+	}
+
 
 }

@@ -24,5 +24,6 @@
   "result" : {
     "item": "pigment:topaz_glass",
     "count": 8
-  }
+  },
+  "required_advancements": ["pigment:hidden/collect_shards/collect_topaz_shard"]
 }

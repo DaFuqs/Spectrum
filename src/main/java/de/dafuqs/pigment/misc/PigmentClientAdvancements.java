@@ -47,6 +47,7 @@ public class PigmentClientAdvancements {
 
 	public static void playerLogout() {
 		PigmentBlockCloaker.cloakAll();
+		PigmentAltarRecipeUnlocker.removeRecipes();
 		gotFirstAdvPacket = false;
 	}
 

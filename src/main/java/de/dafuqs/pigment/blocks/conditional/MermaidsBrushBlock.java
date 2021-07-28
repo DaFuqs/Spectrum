@@ -54,7 +54,7 @@ public class MermaidsBrushBlock extends PlantBlock implements Cloakable, Waterlo
 
     @Override
     public void setUncloaked() {
-        PigmentBlockCloaker.unswapAllBlockStates(this);
+        PigmentBlockCloaker.unswapAllBlockStatesForBlock(this);
         PigmentBlockCloaker.unswapModel(this.asItem());
     }
 

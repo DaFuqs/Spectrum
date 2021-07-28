@@ -29,7 +29,7 @@ public class EnderTreasureBlock extends Block implements Cloakable {
     }
 
     public void setUncloaked() {
-        PigmentBlockCloaker.unswapAllBlockStates(this);
+        PigmentBlockCloaker.unswapAllBlockStatesForBlock(this);
     }
 
     @Deprecated

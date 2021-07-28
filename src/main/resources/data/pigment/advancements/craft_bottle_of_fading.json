@@ -10,7 +10,7 @@
       "translate": "advancements.pigment.craft_decay.description"
     }
   },
-  "parent": "pigment:pigment",
+  "parent": "pigment:craft_using_altar",
   "criteria": {
     "craft": {
       "trigger":"minecraft:impossible"

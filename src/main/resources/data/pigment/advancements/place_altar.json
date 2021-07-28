@@ -1,0 +1,22 @@
+{
+  "display": {
+    "icon": {
+      "item": "pigment:altar"
+    },
+    "title": {
+      "translate": "advancements.pigment.place_altar.title"
+    },
+    "description": {
+      "translate": "advancements.pigment.place_altar.description"
+    }
+  },
+  "parent": "pigment:pigment",
+  "criteria": {
+    "placed_altar": {
+      "trigger":"minecraft:placed_block",
+      "conditions": {
+        "block": "pigment:altar"
+      }
+    }
+  }
+}

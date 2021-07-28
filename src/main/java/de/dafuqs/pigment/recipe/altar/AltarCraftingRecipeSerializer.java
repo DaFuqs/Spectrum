@@ -1,19 +1,27 @@
 package de.dafuqs.pigment.recipe.altar;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import de.dafuqs.pigment.PigmentCommon;
 import de.dafuqs.pigment.enums.PigmentColor;
 import de.dafuqs.pigment.mixin.AccessorShapedRecipe;
 import de.dafuqs.pigment.registries.PigmentDefaultEnchantments;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.ShapedRecipe;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
 import net.minecraft.util.collection.DefaultedList;
+import org.apache.logging.log4j.Level;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class AltarCraftingRecipeSerializer<T extends AltarCraftingRecipe> implements RecipeSerializer<T> {
@@ -65,14 +73,32 @@ public class AltarCraftingRecipeSerializer<T extends AltarCraftingRecipe> implem
             gemInputs.put(PigmentColor.BLACK, amount);
         }
 
-        Identifier advancementIdentifier;
-        if(JsonHelper.hasString(jsonObject, "advancement")) {
-            advancementIdentifier = Identifier.tryParse(JsonHelper.getString(jsonObject, "advancement", ""));
-        } else {
-            advancementIdentifier = null;
+        List<Identifier> requiredAdvancementIdentifiers = new ArrayList<>();
+        if(JsonHelper.hasArray(jsonObject, "required_advancements")) {
+            JsonArray requiredAdvancementsArray = JsonHelper.getArray(jsonObject, "required_advancements");
+            for(int i = 0; i < requiredAdvancementsArray.size(); i++) {
+                Identifier requiredAdvancementIdentifier = Identifier.tryParse(requiredAdvancementsArray.get(i).getAsString());
+                if(PigmentCommon.minecraftServer != null && PigmentCommon.minecraftServer.getAdvancementLoader().get(requiredAdvancementIdentifier) == null) {
+                    PigmentCommon.log(Level.ERROR, "Recipe " + identifier + " is set to require advancement " + requiredAdvancementIdentifier + ", but it does not exist!");
+                } else {
+                    requiredAdvancementIdentifiers.add(requiredAdvancementIdentifier);
+                }
+            }
         }
 
-        return this.recipeFactory.create(identifier, group, tier, width, height, craftingInputs, gemInputs, output, experience, craftingTime, advancementIdentifier);
+        Identifier unlockedAdvancementIdentifier;
+        if(JsonHelper.hasString(jsonObject, "unlocks_advancement")) {
+            unlockedAdvancementIdentifier = Identifier.tryParse(JsonHelper.getString(jsonObject, "unlocks_advancement", ""));
+            if(PigmentCommon.minecraftServer != null && PigmentCommon.minecraftServer.getAdvancementLoader().get(unlockedAdvancementIdentifier) == null) {
+                PigmentCommon.log(Level.ERROR, "Recipe " + identifier + " is set to unlock the advancement " + unlockedAdvancementIdentifier + ", but it does not exist!");
+            }
+        } else {
+            unlockedAdvancementIdentifier = null;
+        }
+
+
+
+        return this.recipeFactory.create(identifier, group, tier, width, height, craftingInputs, gemInputs, output, experience, craftingTime, requiredAdvancementIdentifiers, unlockedAdvancementIdentifier);
     }
 
     @Override
@@ -98,7 +124,12 @@ public class AltarCraftingRecipeSerializer<T extends AltarCraftingRecipe> implem
         float experience = packetByteBuf.readFloat();
         int craftingTime = packetByteBuf.readVarInt();
 
-        Identifier advancementIdentifier = packetByteBuf.readIdentifier();
+        int requiredAdvancementAmount = packetByteBuf.readInt();
+        List<Identifier> requiredAdvancementIdentifiers = new ArrayList<>();
+        for(int i = 0; i < requiredAdvancementAmount; i++) {
+            requiredAdvancementIdentifiers.add(packetByteBuf.readIdentifier());
+        }
+        Identifier unlockedAdvancementIdentifier = packetByteBuf.readIdentifier();
 
         HashMap<PigmentColor, Integer> gemInputs = new HashMap<>();
         if(magenta > 0) { gemInputs.put(PigmentColor.MAGENTA, magenta); }
@@ -107,7 +138,7 @@ public class AltarCraftingRecipeSerializer<T extends AltarCraftingRecipe> implem
         if(black > 0  ) { gemInputs.put(PigmentColor.BLACK, black); }
         if(white > 0  ) { gemInputs.put(PigmentColor.WHITE, white); }
 
-        return this.recipeFactory.create(identifier, group, tier, width, height, craftingInputs, gemInputs, output, experience, craftingTime, advancementIdentifier);
+        return this.recipeFactory.create(identifier, group, tier, width, height, craftingInputs, gemInputs, output, experience, craftingTime, requiredAdvancementIdentifiers, unlockedAdvancementIdentifier);
     }
 
     @Override
@@ -132,11 +163,15 @@ public class AltarCraftingRecipeSerializer<T extends AltarCraftingRecipe> implem
         packetByteBuf.writeFloat(altarCraftingRecipe.experience);
         packetByteBuf.writeInt(altarCraftingRecipe.craftingTime);
 
-        packetByteBuf.writeIdentifier(altarCraftingRecipe.advancementIdentifier);
+        packetByteBuf.writeInt(altarCraftingRecipe.requiredAdvancementIdentifiers.size());
+        for(int i = 0; i < altarCraftingRecipe.requiredAdvancementIdentifiers.size(); i++) {
+            packetByteBuf.writeIdentifier(altarCraftingRecipe.requiredAdvancementIdentifiers.get(i));
+        }
+        packetByteBuf.writeIdentifier(altarCraftingRecipe.unlockedAdvancementOnCraft);
     }
 
     public interface RecipeFactory<T extends AltarCraftingRecipe> {
-        T create(Identifier id, String group, int tier, int width, int height, DefaultedList<Ingredient> craftingInputs, HashMap<PigmentColor, Integer> gemInputs, ItemStack output, float experience, int craftingTime, Identifier advancementIdentifier);
+        T create(Identifier id, String group, int tier, int width, int height, DefaultedList<Ingredient> craftingInputs, HashMap<PigmentColor, Integer> gemInputs, ItemStack output, float experience, int craftingTime, List<Identifier> requiredAdvancementIdentifiers, Identifier unlockedAdvancementIdentifierOnCraft);
     }
 
 }

@@ -42,7 +42,7 @@ public class ColoredSaplingBlock extends SaplingBlock implements Cloakable {
     public void setUncloaked() {
         for(DyeColor dyeColor : DyeColor.values()) {
             Block block = PigmentBlocks.getColoredSaplingBlock(dyeColor);
-            PigmentBlockCloaker.unswapAllBlockStates(block);
+            PigmentBlockCloaker.unswapAllBlockStatesForBlock(block);
             PigmentBlockCloaker.unswapModel(PigmentBlocks.getColoredSaplingItem(dyeColor));
         }
     }

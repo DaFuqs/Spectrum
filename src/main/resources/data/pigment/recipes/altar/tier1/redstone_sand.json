@@ -25,5 +25,5 @@
     "item": "pigment:redstone_sand",
     "count": 1
   },
-  "advancement": "pigment:collect_amethyst_shard"
+  "required_advancements": ["pigment:craft_using_altar"]
 }

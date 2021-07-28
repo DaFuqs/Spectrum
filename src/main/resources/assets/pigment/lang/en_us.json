@@ -83,8 +83,10 @@
   "item.pigment.wet_lava_sponge.tooltip": "§e⚠ Caution: Hot surface. Do not touch ⚠",
 
   "block.pigment.sparklestone_ore": "Sparklestone Ore",
+  "block.pigment.deepslate_sparklestone_ore": "Deepslate Sparklestone Ore",
   "block.pigment.sparklestone_block": "Sparklestone Block",
   "block.pigment.azurite_ore": "Azurite Ore",
+  "block.pigment.deepslate_azurite_ore": "Deepslate Azurite Ore",
   "block.pigment.azurite_block": "Azurite Block",
   "item.pigment.sparklestone_gem": "Sparklestone Gem",
   "item.pigment.raw_azurite": "Raw Azurite",
@@ -533,6 +535,8 @@
   "container.pigment.rei.altar_crafting.title": "Pigment Pedestal Crafting",
   "container.pigment.rei.altar.crafting_time_and_xp": "%f seconds - %f XP",
   "container.pigment.rei.altar.crafting_time_one_second_and_xp": "%f second - %f XP",
+  "container.pigment.rei.altar.recipe_not_unlocked_line_1": "You have not discovered",
+  "container.pigment.rei.altar.recipe_not_unlocked_line_2": "this recipe yet",
 
   "container.pigment.rei.anvil_crushing.title": "Anvil Crushing",
   "container.pigment.rei.anvil_crushing.low_force_required": "Low force required.",
@@ -677,23 +681,28 @@
 
   "advancements.pigment.pigment.title": "Pigment",
   "advancements.pigment.pigment.description": "A story about colors, magic and chaos.",
+  "advancements.pigment.place_altar.title": "A new way to craft",
+  "advancements.pigment.place_altar.description": "Craft a Pigment Pedestal and place it down",
   "advancements.pigment.pigment_midgame.title": "Pigment - Midgame",
   "advancements.pigment.pigment_midgame.description": "A story about curiosity.",
   "advancements.pigment.pigment_lategame.title": "Pigment - Lategame",
   "advancements.pigment.pigment_lategame.description": "The story about how to conquer the world.",
 
+  "advancements.pigment.trigger_revelation.title": "More than meets the eye",
+  "advancements.pigment.trigger_revelation.description": "It looks like there is more to the world than you previously thought.",
+
   "advancements.pigment.collect_all_basic_shards.title": "How many are there?",
-  "advancements.pigment.collect_all_basic_shards.description": "Collect all types of naturally generating gems.",
+  "advancements.pigment.collect_all_basic_shards.description": "Collect all types of naturally generating gemstones",
 
   "advancements.pigment.get_ender_treasure.title": "Torn from cold, dead hands",
   "advancements.pigment.get_ender_treasure.description": "Some Endermen that appear in your world carry blocks with them that seem to radiate an eerie aura. Now that you hold one in your hands... they are pretty much everywhere! How didn't you notice earlier?",
 
   "advancements.pigment.catch_shooting_star.title": "Starry Sky",
   "advancements.pigment.catch_shooting_star.description": "Catch a shooting star right out of the sky.",
-  "advancements.pigment.get_gemstone_powder.title": "Smashing!",
-  "advancements.pigment.get_gemstone_powder.description": "Is there a more straightforward way to crush something into dust?",
+  "advancements.pigment.collect_gemstone_powder.title": "Smashing!",
+  "advancements.pigment.collect_gemstone_powder.description": "Crafting in the Pigment Pedestal seems to require gemstone dust. Is there a more straightforward way to crush something?",
   "advancements.pigment.craft_using_altar.title": "Strangely familiar",
-  "advancements.pigment.craft_using_altar.description": "Use your personal Pedestal to craft an item. It seems to react to power?",
+  "advancements.pigment.craft_using_altar.description": "Use your personal Pigment Pedestal to craft an item. It seems to react to redstone?",
 
   "advancements.pigment.craft_fading.title": "That which should not be",
   "advancements.pigment.craft_fading.description": "The alchemists were wrong. There is no universal solvent. But you're sure there is something else...",
@@ -746,9 +755,6 @@
   "advancements.pigment.mine_bedrock.description": "Break decayed bedrock by using a Netherite Pickaxe.",
 
   "advancements.pigment.enter_dimension.title": "What was once impenetrable",
-  "advancements.pigment.enter_dimension.description": "Find out what lies between the once impenetrable floor",
-
-  "advancements.pigment.get_revelation.title": "More than meets the eye",
-  "advancements.pigment.get_revelation.description": "It looks like there is more to the world than you previously thought."
+  "advancements.pigment.enter_dimension.description": "Find out what lies between the once impenetrable floor"
 
 }

@@ -24,5 +24,6 @@
   "result" : {
     "item": "pigment:private_chest",
     "count": 1
-  }
+  },
+  "required_advancements": ["pigment:craft_using_altar"]
 }

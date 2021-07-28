@@ -53,7 +53,7 @@ public class QuitoxicReedsBlock extends SugarCaneBlock implements Cloakable, Wat
     }
 
     public void setUncloaked() {
-        PigmentBlockCloaker.unswapAllBlockStates(this);
+        PigmentBlockCloaker.unswapAllBlockStatesForBlock(this);
         PigmentBlockCloaker.unswapModel(this.asItem());
     }
 

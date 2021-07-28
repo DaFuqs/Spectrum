@@ -27,5 +27,6 @@
   "result" : {
     "item": "pigment:fortune_pickaxe",
     "count": 1
-  }
+  },
+  "required_advancements": ["pigment:hidden/collect_shards/collect_citrine_shard", "pigment:hidden/collect_resource/collect_sparklestone_gem"]
 }

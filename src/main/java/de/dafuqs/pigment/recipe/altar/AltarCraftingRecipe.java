@@ -8,9 +8,6 @@ import de.dafuqs.pigment.recipe.PigmentRecipeTypes;
 import de.dafuqs.pigment.registries.PigmentBlocks;
 import de.dafuqs.pigment.registries.PigmentItems;
 import de.dafuqs.pigment.sound.PigmentSoundEvents;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.Item;
@@ -19,7 +16,6 @@ import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.RecipeType;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
@@ -45,10 +41,10 @@ public class AltarCraftingRecipe implements Recipe<Inventory> {
     protected final float experience;
     protected final int craftingTime;
 
-    @Nullable
-    protected final Identifier advancementIdentifier;
+    protected final List<Identifier> requiredAdvancementIdentifiers;
+    protected final Identifier unlockedAdvancementOnCraft;
 
-    public AltarCraftingRecipe(Identifier id, String group, int tier, int width, int height, DefaultedList<Ingredient> craftingInputs, HashMap<PigmentColor, Integer> pigmentInputs, ItemStack output, float experience, int craftingTime, Identifier advancementIdentifier) {
+    public AltarCraftingRecipe(Identifier id, String group, int tier, int width, int height, DefaultedList<Ingredient> craftingInputs, HashMap<PigmentColor, Integer> pigmentInputs, ItemStack output, float experience, int craftingTime, List<Identifier> requiredAdvancementIdentifiers, Identifier unlockedAdvancementOnCraft) {
         this.id = id;
         this.group = group;
         this.tier = tier;
@@ -61,7 +57,9 @@ public class AltarCraftingRecipe implements Recipe<Inventory> {
         this.output = output;
         this.experience = experience;
         this.craftingTime = craftingTime;
-        this.advancementIdentifier = advancementIdentifier;
+
+        this.requiredAdvancementIdentifiers = requiredAdvancementIdentifiers;
+        this.unlockedAdvancementOnCraft = unlockedAdvancementOnCraft;
 
         PigmentAltarRecipeUnlocker.registerUnlockableAltarRecipe(this);
     }
@@ -189,15 +187,15 @@ public class AltarCraftingRecipe implements Recipe<Inventory> {
         return this.experience;
     }
 
-    public Identifier unlockedAdvancement() {
-        return advancementIdentifier;
+    public boolean unlocksAdvancementOnCraft() {
+        return unlockedAdvancementOnCraft != null;
     }
 
-    public boolean unlocksAdvancement() {
-        return advancementIdentifier != null;
+    @Nullable
+    public Identifier getUnlockedAdvancementOnCraft() {
+        return unlockedAdvancementOnCraft;
     }
 
-    // REI COMPAT
     public HashMap<PigmentColor, Integer> getPigmentInputs() {
         return this.pigmentInputs;
     }
@@ -241,11 +239,6 @@ public class AltarCraftingRecipe implements Recipe<Inventory> {
         }
     }
 
-    public boolean shouldShowUnlockToast() {
-        return true;
-    }
-
-    @Environment(EnvType.SERVER)
     public boolean canCraft(UUID playerUUID) {
         ServerPlayerEntity serverPlayerEntity = PigmentCommon.minecraftServer.getPlayerManager().getPlayer(playerUUID);
         if(serverPlayerEntity == null) {
@@ -255,9 +248,42 @@ public class AltarCraftingRecipe implements Recipe<Inventory> {
         }
     }
 
-    @Environment(EnvType.SERVER)
-    public boolean canCraft(ServerPlayerEntity playerEntity) {
-        return Support.hasAdvancement(playerEntity, this.advancementIdentifier);
+    public boolean canCraft(PlayerEntity playerEntity) {
+        boolean hasUnlockedRequiredTier = switch (this.tier) {
+            case 1 -> Support.hasAdvancement(playerEntity, new Identifier(PigmentCommon.MOD_ID, "place_altar"));
+            case 2 -> Support.hasAdvancement(playerEntity, new Identifier(PigmentCommon.MOD_ID, "pigment_midgame"));
+            case 3 -> Support.hasAdvancement(playerEntity, new Identifier(PigmentCommon.MOD_ID, "pigment_lategame"));
+            default -> false;
+        };
+
+        if(!hasUnlockedRequiredTier) {
+            return false;
+        }
+
+        for(Identifier advancementIdentifier : this.requiredAdvancementIdentifiers) {
+            if(!Support.hasAdvancement(playerEntity, advancementIdentifier)) {
+                return false;
+            }
+        }
+        return true;
     }
+
+    /**
+     * The advancement the player has to have to let the recipe be craftable in the pedestal
+     * @return The advancement identifier. A null value means the player is always able to craft this recipe
+     */
+    @Nullable
+    public List<Identifier> getRequiredAdvancementIdentifiers() {
+        return requiredAdvancementIdentifiers;
+    }
+
+    /**
+     * Weather or not the player should get a toast notification when this recipe is unlocked
+     * @return If the player should get a toast notification
+     */
+    public boolean shouldShowUnlockToast() {
+        return true;
+    }
+
 
 }

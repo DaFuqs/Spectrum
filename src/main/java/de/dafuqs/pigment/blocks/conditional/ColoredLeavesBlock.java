@@ -59,7 +59,7 @@ public class ColoredLeavesBlock extends LeavesBlock implements Cloakable {
     public void setUncloaked() {
         for(DyeColor dyeColor : DyeColor.values()) {
             Block block = PigmentBlocks.getColoredLeavesBlock(dyeColor);
-            PigmentBlockCloaker.unswapAllBlockStates(block);
+            PigmentBlockCloaker.unswapAllBlockStatesForBlock(block);
             PigmentBlockCloaker.unswapModel(PigmentBlocks.getColoredLeavesItem(dyeColor));
         }
     }

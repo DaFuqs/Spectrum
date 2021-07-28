@@ -18,7 +18,7 @@ public class AzuriteOreBlock extends ConditionallyVisibleOreBlock {
 
     @Override
     public Identifier getCloakAdvancementIdentifier() {
-        return new Identifier(PigmentCommon.MOD_ID, "craft_colored_sapling"); // TODO
+        return new Identifier(PigmentCommon.MOD_ID, "craft_colored_sapling");
     }
 
     @Deprecated

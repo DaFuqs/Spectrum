@@ -1,4 +1,4 @@
-package de.dafuqs.pigment.gui;
+package de.dafuqs.pigment.toast;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import de.dafuqs.pigment.PigmentCommon;
@@ -7,7 +7,6 @@ import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.sound.PositionedSoundInstance;
-import net.minecraft.client.toast.AdvancementToast;
 import net.minecraft.client.toast.Toast;
 import net.minecraft.client.toast.ToastManager;
 import net.minecraft.client.util.math.MatrixStack;
@@ -83,7 +82,7 @@ public class RevelationToast implements Toast {
             }
         }
 
-        manager.getGame().getItemRenderer().renderInGui(itemStack, 8, 12);
+        manager.getGame().getItemRenderer().renderInGui(itemStack, 8, 8);
         return startTime >= 5000L ? Visibility.HIDE : Visibility.SHOW;
     }
 

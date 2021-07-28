@@ -21,6 +21,7 @@
     "ItemStackMixin",
     "LivingEntityMixin",
     "MobSpawnerBlockEntityMixin",
+    "PlayerAdvancementTrackerMixin",
     "ServerPlayerEntityMixin",
     "ServerWorldMixin",
     "SpawnerBlockMixin",

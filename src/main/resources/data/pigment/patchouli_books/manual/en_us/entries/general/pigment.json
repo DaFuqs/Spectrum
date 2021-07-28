@@ -95,7 +95,7 @@
       "type": "patchouli:spotlight",
       "advancement": "pigment:hidden/collect_pigment/collect_white_pigment",
       "item": "pigment:white_pigment",
-      "text": "You can not exactly put it into words. This pigment radiates something unspeakably wonderful.$(br2)$(c_white)White$() represents $(italic)LIFE$(), $(italic)Purity$() and $(italic)Innocence$()."
+      "text": "You can not exactly put it into words. This pigment radiates something unspeakably wonderful.$(br2)$(c_white)White$() represents $(italic)LIFE$(), $(italic)Light$() and $(italic)Purity$() ."
     },
     {
       "type": "patchouli:spotlight",

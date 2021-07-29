@@ -738,23 +738,20 @@
   "______done_until_here" : "TODO:",
   "advancements.pigment.craft_energy_collector.title": "Roger that",
   "advancements.pigment.craft_energy_collector.description": "Construct a collector powerful enough to harvest energy from gem geodes.",
-
   "advancements.pigment.place_energy_collector.title": "A new form of energy",
   "advancements.pigment.place_energy_collector.description": "Place the collector in the center of a geode and watch it work.",
-
   "advancements.pigment.get_resonance_enchanted_tool.title": "A new form of energy",
   "advancements.pigment.get_resonance_enchanted_tool.description": "Some blocks in the world resonate a powerful energy. Mining them with simple tools seems to disturb that energy, destroying the block, leaving you without a drop whatsoever. Maybe you can tune your tools to the same frequencies, preserving the precious treasures you came across?",
-
   "advancements.pigment.drop_decay.title": "I don't need no Transmutation",
   "advancements.pigment.drop_decay.description": "",
-
   "advancements.pigment.drop_decay2.title": "",
   "advancements.pigment.drop_decay2.description": "Obsidian doesn't seem to stop it, either. But the result of your little experiment is pretty interesting nonetheless!",
-
   "advancements.pigment.mine_bedrock.title": "Groundbreaking",
   "advancements.pigment.mine_bedrock.description": "Break decayed bedrock by using a Netherite Pickaxe.",
-
   "advancements.pigment.enter_dimension.title": "What was once impenetrable",
-  "advancements.pigment.enter_dimension.description": "Find out what lies between the once impenetrable floor"
-
+  "advancements.pigment.enter_dimension.description": "Find out what lies between the once impenetrable floor",
+  "advancements.pigment.brown_is_weird.title": "Brown is weird",
+  "advancements.pigment.brown_is_weird.description": "You have tried and tried and tried. You could not figure out a way to create a truly brown color by mixing your gem pigments. The closest you came was merely a washed out orange - yuck. It can't be THAT hard, it's just a stupid color! Like... dirt is brown and it's the most common stuff you have seen around. (Seriously, look it up! The way we perceive brown color is fascinating: https://www.youtube.com/watch?v=wh4aWZRtTwU)",
+"advancements.pigment.the_other_side_of_the_rainbow.title": "The other side of the rainbow",
+  "advancements.pigment.the_other_side_of_the_rainbow.description": "Craft something truly brown."
 }

@@ -4,10 +4,10 @@
         "item": "pigment:bottle_of_fading"
     },
     "title": {
-      "translate": "advancements.pigment.place_decay.title"
+      "translate": "advancements.pigment.place_bottle_of_fading.title"
     },
     "description": {
-      "translate": "advancements.pigment.place_decay.description"
+      "translate": "advancements.pigment.place_bottle_of_fading.description"
     }
   },
   "parent": "pigment:craft_bottle_of_fading",

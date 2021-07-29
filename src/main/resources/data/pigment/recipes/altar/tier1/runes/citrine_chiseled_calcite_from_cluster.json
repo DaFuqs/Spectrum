@@ -25,5 +25,6 @@
     "item": "pigment:citrine_chiseled_calcite",
     "count": 4
   },
-  "required_advancements": ["pigment:hidden/collect_shards/collect_citrine_shard"]
+  "required_advancements": ["pigment:hidden/collect_shards/collect_citrine_shard"],
+  "show_toast_on_unlock": false
 }

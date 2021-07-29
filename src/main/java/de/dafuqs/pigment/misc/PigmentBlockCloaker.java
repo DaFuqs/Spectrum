@@ -59,14 +59,6 @@ public class PigmentBlockCloaker {
                 cloakableBlocksToTrigger.addAll(advancementBlockSwapTriggers.get(earnedAdvancementIdentifier));
             }
         }
-        for(Map.Entry<Identifier, AdvancementProgress> progressedEntry : packet.getAdvancementsToProgress().entrySet()) {
-            Identifier progressedAdvancementIdentifier = progressedEntry.getKey();
-            if(PigmentClientAdvancements.hasDone(progressedAdvancementIdentifier)) {
-                if (advancementBlockSwapTriggers.containsKey(progressedAdvancementIdentifier)) {
-                    cloakableBlocksToTrigger.addAll(advancementBlockSwapTriggers.get(progressedAdvancementIdentifier));
-                }
-            }
-        }
 
         if(cloakableBlocksToTrigger.size() > 0) {
             // uncloak the blocks

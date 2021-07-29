@@ -16,17 +16,17 @@ import java.util.Map;
 @Environment(EnvType.CLIENT)
 public class PigmentClientAdvancements {
 
-	private static boolean gotFirstAdvPacket = false;
+	private static boolean receivedFirstAdvanvementPacket = false;
 
 	public static void onClientPacket(AdvancementUpdateS2CPacket packet) {
-		PigmentBlockCloaker.checkBlockCloaksForNewAdvancements(packet, gotFirstAdvPacket);
-		PigmentAltarRecipeUnlocker.checkAltarRecipesForNewAdvancements(packet, gotFirstAdvPacket);
-		gotFirstAdvPacket = true;
+		PigmentBlockCloaker.checkBlockCloaksForNewAdvancements(packet, receivedFirstAdvanvementPacket);
+		PigmentAltarRecipeUnlocker.checkAltarRecipesForNewAdvancements(packet, receivedFirstAdvanvementPacket);
+		receivedFirstAdvanvementPacket = true;
 	}
 
 	public static boolean hasDone(Identifier identifier) {
 		// If we never received the initial packet: assume false
-		if(!gotFirstAdvPacket) {
+		if(!receivedFirstAdvanvementPacket) {
 			return false;
 		}
 
@@ -47,8 +47,8 @@ public class PigmentClientAdvancements {
 
 	public static void playerLogout() {
 		PigmentBlockCloaker.cloakAll();
-		PigmentAltarRecipeUnlocker.removeRecipes();
-		gotFirstAdvPacket = false;
+		//PigmentAltarRecipeUnlocker.removeRecipes();
+		receivedFirstAdvanvementPacket = false;
 	}
 
 }

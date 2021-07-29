@@ -22,8 +22,10 @@ public class PigmentAltarRecipeUnlocker {
         List<Identifier> requiredAdvancementIdentifiers = recipe.getRequiredAdvancementIdentifiers();
         if(requiredAdvancementIdentifiers.size() > 0) {
             for(Identifier requiredAdvancementIdentifier : requiredAdvancementIdentifiers) {
-                if (unlockableAltarRecipes.containsKey(requiredAdvancementIdentifier) && !unlockableAltarRecipes.get(requiredAdvancementIdentifier).contains(recipe)) {
-                    unlockableAltarRecipes.get(requiredAdvancementIdentifier).add(recipe);
+                if (unlockableAltarRecipes.containsKey(requiredAdvancementIdentifier)) {
+                    if(!unlockableAltarRecipes.get(requiredAdvancementIdentifier).contains(recipe)) {
+                        unlockableAltarRecipes.get(requiredAdvancementIdentifier).add(recipe);
+                    }
                 } else {
                     List<AltarCraftingRecipe> recipes = new ArrayList<>();
                     recipes.add(recipe);
@@ -39,26 +41,20 @@ public class PigmentAltarRecipeUnlocker {
                 Identifier earnedAdvancementIdentifier = earnedEntry.getKey();
                 showToastsForAllRecipesWithAdvancement(earnedAdvancementIdentifier);
             }
-            for (Map.Entry<Identifier, AdvancementProgress> progressedEntry : packet.getAdvancementsToProgress().entrySet()) {
-                Identifier progressedAdvancementIdentifier = progressedEntry.getKey();
-                if (PigmentClientAdvancements.hasDone(progressedAdvancementIdentifier)) {
-                    showToastsForAllRecipesWithAdvancement(progressedAdvancementIdentifier);
-                }
-            }
         }
     }
 
     private static void showToastsForAllRecipesWithAdvancement(Identifier advancementIdentifier) {
         if (unlockableAltarRecipes.containsKey(advancementIdentifier)) {
             for (AltarCraftingRecipe unlockedRecipe : unlockableAltarRecipes.get(advancementIdentifier)) {
-                if (unlockedRecipe.shouldShowUnlockToast() && unlockedRecipe.canCraft(MinecraftClient.getInstance().player)) {
+                if (unlockedRecipe.shouldShowToastOnUnlock() && unlockedRecipe.canCraft(MinecraftClient.getInstance().player)) {
                     RecipeToast.showRecipeToast(MinecraftClient.getInstance(), new ItemStack(unlockedRecipe.getOutput().getItem()));
                 }
             }
         }
     }
 
-    public static void removeRecipes() {
+    public static void clearRecipes() {
         unlockableAltarRecipes.clear();
     }
 }

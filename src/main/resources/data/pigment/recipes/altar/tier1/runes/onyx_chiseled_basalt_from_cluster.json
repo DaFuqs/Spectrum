@@ -25,5 +25,6 @@
     "item": "pigment:onyx_chiseled_basalt",
     "count": 4
   },
-  "required_advancements": ["pigment:hidden/collect_shards/collect_onyx_shard"]
+  "required_advancements": ["pigment:hidden/collect_shards/collect_onyx_shard"],
+  "show_toast_on_unlock": false
 }

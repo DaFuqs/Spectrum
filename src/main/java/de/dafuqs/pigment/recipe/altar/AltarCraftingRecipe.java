@@ -43,8 +43,9 @@ public class AltarCraftingRecipe implements Recipe<Inventory> {
 
     protected final List<Identifier> requiredAdvancementIdentifiers;
     protected final Identifier unlockedAdvancementOnCraft;
+    protected final boolean showToastOnUnlock;
 
-    public AltarCraftingRecipe(Identifier id, String group, int tier, int width, int height, DefaultedList<Ingredient> craftingInputs, HashMap<PigmentColor, Integer> pigmentInputs, ItemStack output, float experience, int craftingTime, List<Identifier> requiredAdvancementIdentifiers, Identifier unlockedAdvancementOnCraft) {
+    public AltarCraftingRecipe(Identifier id, String group, int tier, int width, int height, DefaultedList<Ingredient> craftingInputs, HashMap<PigmentColor, Integer> pigmentInputs, ItemStack output, float experience, int craftingTime, List<Identifier> requiredAdvancementIdentifiers, Identifier unlockedAdvancementOnCraft, boolean showToastOnUnlock) {
         this.id = id;
         this.group = group;
         this.tier = tier;
@@ -60,6 +61,7 @@ public class AltarCraftingRecipe implements Recipe<Inventory> {
 
         this.requiredAdvancementIdentifiers = requiredAdvancementIdentifiers;
         this.unlockedAdvancementOnCraft = unlockedAdvancementOnCraft;
+        this.showToastOnUnlock = showToastOnUnlock;
 
         PigmentAltarRecipeUnlocker.registerUnlockableAltarRecipe(this);
     }
@@ -119,6 +121,14 @@ public class AltarCraftingRecipe implements Recipe<Inventory> {
         }
 
         return true;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if(object instanceof AltarCraftingRecipe) {
+            return ((AltarCraftingRecipe) object).getId().equals(this.getId());
+        }
+        return false;
     }
 
     private boolean isStackAtLeast(ItemStack sourceItemStack, Item item, int amount) {
@@ -196,6 +206,10 @@ public class AltarCraftingRecipe implements Recipe<Inventory> {
         return unlockedAdvancementOnCraft;
     }
 
+    public boolean shouldShowToastOnUnlock() {
+        return this.showToastOnUnlock;
+    }
+
     public HashMap<PigmentColor, Integer> getPigmentInputs() {
         return this.pigmentInputs;
     }
@@ -248,24 +262,34 @@ public class AltarCraftingRecipe implements Recipe<Inventory> {
         }
     }
 
-    public boolean canCraft(PlayerEntity playerEntity) {
-        boolean hasUnlockedRequiredTier = switch (this.tier) {
-            case 1 -> Support.hasAdvancement(playerEntity, new Identifier(PigmentCommon.MOD_ID, "place_altar"));
-            case 2 -> Support.hasAdvancement(playerEntity, new Identifier(PigmentCommon.MOD_ID, "pigment_midgame"));
-            case 3 -> Support.hasAdvancement(playerEntity, new Identifier(PigmentCommon.MOD_ID, "pigment_lategame"));
-            default -> false;
-        };
-
-        if(!hasUnlockedRequiredTier) {
-            return false;
+    private boolean hasUnlockedRequiredTier(PlayerEntity playerEntity) {
+        switch (this.tier) {
+            case 1 -> {
+                return Support.hasAdvancement(playerEntity, new Identifier(PigmentCommon.MOD_ID, "place_altar"));
+            }
+            case 2 -> {
+                return Support.hasAdvancement(playerEntity, new Identifier(PigmentCommon.MOD_ID, "pigment_midgame"));
+            }
+            case 3 -> {
+                return Support.hasAdvancement(playerEntity, new Identifier(PigmentCommon.MOD_ID, "pigment_lategame"));
+            }
+            default -> {
+                return false;
+            }
         }
+    }
 
+    private boolean hasUnlockedRequiredAdvancements(PlayerEntity playerEntity) {
         for(Identifier advancementIdentifier : this.requiredAdvancementIdentifiers) {
             if(!Support.hasAdvancement(playerEntity, advancementIdentifier)) {
                 return false;
             }
         }
         return true;
+    }
+
+    public boolean canCraft(PlayerEntity playerEntity) {
+        return hasUnlockedRequiredTier(playerEntity) && hasUnlockedRequiredAdvancements(playerEntity);
     }
 
     /**
@@ -276,14 +300,5 @@ public class AltarCraftingRecipe implements Recipe<Inventory> {
     public List<Identifier> getRequiredAdvancementIdentifiers() {
         return requiredAdvancementIdentifiers;
     }
-
-    /**
-     * Weather or not the player should get a toast notification when this recipe is unlocked
-     * @return If the player should get a toast notification
-     */
-    public boolean shouldShowUnlockToast() {
-        return true;
-    }
-
 
 }

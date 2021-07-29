@@ -720,18 +720,18 @@
 
   "advancements.pigment.craft_colored_sapling.title": "All around me are familiar aces",
   "advancements.pigment.craft_colored_sapling.description": "Use your new abilities to craft a colored sapling",
-  "advancements.pigment.plant_glistering_melon_seeds.title": "A sign of Prosperity",
-  "advancements.pigment.plant_glistering_melon_seeds.description": "Get a glistering melon.. plant!",
+  "advancements.pigment.use_glistering_melon_seeds.title": "A sign of Prosperity",
+  "advancements.pigment.use_glistering_melon_seeds.description": "Get a glistering melon.. plant!",
 
   "advancements.pigment.craft_ominous_sapling.title": "Let it grow, let it grow!",
   "advancements.pigment.craft_ominous_sapling.description": "You're sure combining the remains of the decayed leaves with a young sapling will yield something interesting.",
-  "advancements.pigment.plant_ominous_sapling.title": "A failed experiment?",
-  "advancements.pigment.plant_ominous_sapling.description": "It looks... kinda dead?",
+  "advancements.pigment.use_ominous_sapling.title": "A failed experiment?",
+  "advancements.pigment.use_ominous_sapling.description": "It looks... kinda dead?",
   "advancements.pigment.grow_ominous_sapling.title": "A successful experiment!",
   "advancements.pigment.grow_ominous_sapling.description": "It grew! ...somewhat.",
 
   "advancements.pigment.get_player_only_glass.title": "Peace and satisfaction",
-  "advancements.pigment.get_player_only_glass.description": "You spend more time keeping those pesky monsters out of your base than you care to admit. It's a waste of time to even bother with these low-life ruffians. You remember the jar recipe you thought up earlier. With a bit of magical energy, it should be no problem to make it not only transparent for you (not for them!), but also passable. Bonus: If you make it look exactly like regular glass you might even be able to fool your competition.",
+  "advancements.pigment.get_player_only_glass.description": "Craft semi-permeable glass to protect your home from intruders",
 
   "block.minecraft.polished_basalt": "Basalt Pillar",
 

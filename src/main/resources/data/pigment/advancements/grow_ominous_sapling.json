@@ -1,13 +1,13 @@
 {
   "display": {
     "icon": {
-        "item": "pigment:sparklestone_ore"
+        "item": "pigment:ominous_sapling"
     },
     "title": {
-      "translate": "advancements.pigment.get_revelation.title"
+      "translate": "advancements.pigment.grow_ominous_sapling.title"
     },
     "description": {
-      "translate": "advancements.pigment.get_revelation.description"
+      "translate": "advancements.pigment.grow_ominous_sapling.description"
     }
   },
   "parent": "pigment:use_ominous_sapling",

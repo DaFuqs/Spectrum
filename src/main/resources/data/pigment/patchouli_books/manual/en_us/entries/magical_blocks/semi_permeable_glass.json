@@ -7,7 +7,7 @@
       "type": "patchouli:spotlight",
       "title": "Semi-permeable Glass",
       "item": "pigment:amethyst_player_only_glass",
-      "text": "$(italic)For a long time now, those annoying monsters that always appear at night are no longer a threat to you and only serve as a resource supplier, if at all. But that doesn't stop them from pursuing you further. You remember your early attempts with the gemstone glass. Surely they can hold back not only wind. It just needs a tough of magic.$()"
+      "text": "$(italic)For a long time now, those annoying monsters that always appear at night are no longer a threat to you and only serve as a resource supplier, if at all. But that doesn't stop them from pursuing you further. But you spend more time keeping those pesky monsters out of your base than you care to admit. It's a waste of time to even bother with these low-life ruffians. Then you remember the gemstone glass recipe you thought up earlier. With a bit of magical energy, it should be no problem to make it not only transparent for you (not for them!), but also passable. Bonus: If you make it look exactly like regular glass you might even be able to fool your competition. It just needs a tough of magic.$()"
     },
     {
       "type": "patchouli:text",

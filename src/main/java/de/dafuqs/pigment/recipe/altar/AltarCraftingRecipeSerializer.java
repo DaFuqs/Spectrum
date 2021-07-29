@@ -96,9 +96,9 @@ public class AltarCraftingRecipeSerializer<T extends AltarCraftingRecipe> implem
             unlockedAdvancementIdentifier = null;
         }
 
+        boolean showToastOnUnlock = JsonHelper.getBoolean(jsonObject, "show_toast_on_unlock", true);
 
-
-        return this.recipeFactory.create(identifier, group, tier, width, height, craftingInputs, gemInputs, output, experience, craftingTime, requiredAdvancementIdentifiers, unlockedAdvancementIdentifier);
+        return this.recipeFactory.create(identifier, group, tier, width, height, craftingInputs, gemInputs, output, experience, craftingTime, requiredAdvancementIdentifiers, unlockedAdvancementIdentifier, showToastOnUnlock);
     }
 
     @Override
@@ -130,6 +130,7 @@ public class AltarCraftingRecipeSerializer<T extends AltarCraftingRecipe> implem
             requiredAdvancementIdentifiers.add(packetByteBuf.readIdentifier());
         }
         Identifier unlockedAdvancementIdentifier = packetByteBuf.readIdentifier();
+        boolean showToastOnUnlock = packetByteBuf.readBoolean();
 
         HashMap<PigmentColor, Integer> gemInputs = new HashMap<>();
         if(magenta > 0) { gemInputs.put(PigmentColor.MAGENTA, magenta); }
@@ -138,7 +139,7 @@ public class AltarCraftingRecipeSerializer<T extends AltarCraftingRecipe> implem
         if(black > 0  ) { gemInputs.put(PigmentColor.BLACK, black); }
         if(white > 0  ) { gemInputs.put(PigmentColor.WHITE, white); }
 
-        return this.recipeFactory.create(identifier, group, tier, width, height, craftingInputs, gemInputs, output, experience, craftingTime, requiredAdvancementIdentifiers, unlockedAdvancementIdentifier);
+        return this.recipeFactory.create(identifier, group, tier, width, height, craftingInputs, gemInputs, output, experience, craftingTime, requiredAdvancementIdentifiers, unlockedAdvancementIdentifier, showToastOnUnlock);
     }
 
     @Override
@@ -168,10 +169,11 @@ public class AltarCraftingRecipeSerializer<T extends AltarCraftingRecipe> implem
             packetByteBuf.writeIdentifier(altarCraftingRecipe.requiredAdvancementIdentifiers.get(i));
         }
         packetByteBuf.writeIdentifier(altarCraftingRecipe.unlockedAdvancementOnCraft);
+        packetByteBuf.writeBoolean(altarCraftingRecipe.showToastOnUnlock);
     }
 
     public interface RecipeFactory<T extends AltarCraftingRecipe> {
-        T create(Identifier id, String group, int tier, int width, int height, DefaultedList<Ingredient> craftingInputs, HashMap<PigmentColor, Integer> gemInputs, ItemStack output, float experience, int craftingTime, List<Identifier> requiredAdvancementIdentifiers, Identifier unlockedAdvancementIdentifierOnCraft);
+        T create(Identifier id, String group, int tier, int width, int height, DefaultedList<Ingredient> craftingInputs, HashMap<PigmentColor, Integer> gemInputs, ItemStack output, float experience, int craftingTime, List<Identifier> requiredAdvancementIdentifiers, Identifier unlockedAdvancementIdentifierOnCraft, boolean showToastOnUnlock);
     }
 
 }

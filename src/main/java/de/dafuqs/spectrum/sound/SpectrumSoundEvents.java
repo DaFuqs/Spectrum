@@ -30,7 +30,7 @@ public class SpectrumSoundEvents {
     public static SoundEvent ALTAR_CRAFT_TOPAZ = register("altar_craft_topaz");
     public static SoundEvent ALTAR_CRAFT_ONYX = register("altar_craft_onyx");
     public static SoundEvent ALTAR_CRAFT_MOONSTONE = register("altar_craft_moonstone");
-    
+
     public static SoundEvent BLOCK_CITRINE_BLOCK_BREAK = register("block_citrine_block_break");
     public static SoundEvent BLOCK_CITRINE_BLOCK_STEP = register("block_citrine_block_step");
     public static SoundEvent BLOCK_CITRINE_BLOCK_PLACE = register("block_citrine_block_place");

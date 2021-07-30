@@ -15,7 +15,7 @@
   ],
   "key": {
   	"P": {
-      "item": "spectrum:white_spectrum"
+      "item": "spectrum:white_pigment"
     },
 	"R": {
       "item": "minecraft:redstone"
@@ -28,5 +28,5 @@
     "item": "spectrum:white_lamp",
     "count": 1
   },
-  "required_advancements": [ "spectrum:hidden/collect_spectrum/collect_white_spectrum" ]
+  "required_advancements": [ "spectrum:hidden/collect_pigment/collect_white_pigment" ]
 }

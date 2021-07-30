@@ -15,7 +15,7 @@
   ],
   "key": {
   	"P": {
-      "item": "spectrum:gray_spectrum"
+      "item": "spectrum:gray_pigment"
     },
 	"R": {
       "item": "minecraft:redstone"
@@ -28,5 +28,5 @@
     "item": "spectrum:gray_lamp",
     "count": 1
   },
-  "required_advancements": [ "spectrum:hidden/collect_spectrum/collect_gray_spectrum" ]
+  "required_advancements": [ "spectrum:hidden/collect_pigment/collect_gray_pigment" ]
 }

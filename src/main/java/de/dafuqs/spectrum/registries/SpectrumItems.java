@@ -53,23 +53,23 @@ public class SpectrumItems {
     public static final Item ONYX_POWDER = new Item(generalItemSettings);
     public static final Item MOONSTONE_POWDER = new Item(generalItemSettings);
 
-    // Spectrum
-    public static final Item BLACK_SPECTRUM = new Item(generalItemSettings);
-    public static final Item BLUE_SPECTRUM = new Item(generalItemSettings);
-    public static final Item BROWN_SPECTRUM = new Item(generalItemSettings);
-    public static final Item CYAN_SPECTRUM = new Item(generalItemSettings);
-    public static final Item GRAY_SPECTRUM = new Item(generalItemSettings);
-    public static final Item GREEN_SPECTRUM = new Item(generalItemSettings);
-    public static final Item LIGHT_BLUE_SPECTRUM = new Item(generalItemSettings);
-    public static final Item LIGHT_GRAY_SPECTRUM = new Item(generalItemSettings);
-    public static final Item LIME_SPECTRUM = new Item(generalItemSettings);
-    public static final Item MAGENTA_SPECTRUM = new Item(generalItemSettings);
-    public static final Item ORANGE_SPECTRUM = new Item(generalItemSettings);
-    public static final Item PINK_SPECTRUM = new Item(generalItemSettings);
-    public static final Item PURPLE_SPECTRUM = new Item(generalItemSettings);
-    public static final Item RED_SPECTRUM = new Item(generalItemSettings);
-    public static final Item WHITE_SPECTRUM = new Item(generalItemSettings);
-    public static final Item YELLOW_SPECTRUM = new Item(generalItemSettings);
+    // Pigment
+    public static final Item BLACK_PIGMENT = new Item(generalItemSettings);
+    public static final Item BLUE_PIGMENT = new Item(generalItemSettings);
+    public static final Item BROWN_PIGMENT = new Item(generalItemSettings);
+    public static final Item CYAN_PIGMENT = new Item(generalItemSettings);
+    public static final Item GRAY_PIGMENT = new Item(generalItemSettings);
+    public static final Item GREEN_PIGMENT = new Item(generalItemSettings);
+    public static final Item LIGHT_BLUE_PIGMENT = new Item(generalItemSettings);
+    public static final Item LIGHT_GRAY_PIGMENT = new Item(generalItemSettings);
+    public static final Item LIME_PIGMENT = new Item(generalItemSettings);
+    public static final Item MAGENTA_PIGMENT = new Item(generalItemSettings);
+    public static final Item ORANGE_PIGMENT = new Item(generalItemSettings);
+    public static final Item PINK_PIGMENT = new Item(generalItemSettings);
+    public static final Item PURPLE_PIGMENT = new Item(generalItemSettings);
+    public static final Item RED_PIGMENT = new Item(generalItemSettings);
+    public static final Item WHITE_PIGMENT = new Item(generalItemSettings);
+    public static final Item YELLOW_PIGMENT = new Item(generalItemSettings);
 
     // Bedrock Tools
     public static final ToolItem BEDROCK_PICKAXE = new BedrockPickaxeItem(BedrockToolMaterial.INSTANCE, 1, -2.8F, spectrumBedrockItemSettings);
@@ -162,7 +162,7 @@ public class SpectrumItems {
         register("crafting_tablet", CRAFTING_TABLET);
 		
 		registerGemstoneItems();
-		registerSpectrums();
+		registerPigments();
 		registerCatkin();
 		registerResources();
 		registerDecayBottles();
@@ -191,23 +191,23 @@ public class SpectrumItems {
         register("moonstone_powder", MOONSTONE_POWDER);
 	}
 	
-	public static void registerSpectrums() {
-        register("black_spectrum", BLACK_SPECTRUM);
-        register("blue_spectrum", BLUE_SPECTRUM);
-        register("brown_spectrum", BROWN_SPECTRUM);
-        register("cyan_spectrum", CYAN_SPECTRUM);
-        register("gray_spectrum", GRAY_SPECTRUM);
-        register("green_spectrum", GREEN_SPECTRUM);
-        register("light_blue_spectrum", LIGHT_BLUE_SPECTRUM);
-        register("light_gray_spectrum", LIGHT_GRAY_SPECTRUM);
-        register("lime_spectrum", LIME_SPECTRUM);
-        register("magenta_spectrum", MAGENTA_SPECTRUM);
-        register("orange_spectrum", ORANGE_SPECTRUM);
-        register("pink_spectrum", PINK_SPECTRUM);
-        register("purple_spectrum", PURPLE_SPECTRUM);
-        register("red_spectrum", RED_SPECTRUM);
-        register("white_spectrum", WHITE_SPECTRUM);
-        register("yellow_spectrum", YELLOW_SPECTRUM);
+	public static void registerPigments() {
+        register("black_pigment", BLACK_PIGMENT);
+        register("blue_pigment", BLUE_PIGMENT);
+        register("brown_pigment", BROWN_PIGMENT);
+        register("cyan_pigment", CYAN_PIGMENT);
+        register("gray_pigment", GRAY_PIGMENT);
+        register("green_pigment", GREEN_PIGMENT);
+        register("light_blue_pigment", LIGHT_BLUE_PIGMENT);
+        register("light_gray_pigment", LIGHT_GRAY_PIGMENT);
+        register("lime_pigment", LIME_PIGMENT);
+        register("magenta_pigment", MAGENTA_PIGMENT);
+        register("orange_pigment", ORANGE_PIGMENT);
+        register("pink_pigment", PINK_PIGMENT);
+        register("purple_pigment", PURPLE_PIGMENT);
+        register("red_pigment", RED_PIGMENT);
+        register("white_pigment", WHITE_PIGMENT);
+        register("yellow_pigment", YELLOW_PIGMENT);
 	}
 	
 	public static void registerCatkin() {

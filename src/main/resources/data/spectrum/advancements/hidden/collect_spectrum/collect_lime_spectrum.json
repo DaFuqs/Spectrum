@@ -1,8 +1,0 @@
-{
-  "criteria": {
-    "has_black_spectrum": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": { "items": [{ "items": [ "spectrum:lime_spectrum" ]}] }
-    }
-  }
-}

@@ -15,7 +15,7 @@
   ],
   "key": {
   	"P": {
-      "item": "spectrum:pink_spectrum"
+      "item": "spectrum:pink_pigment"
     },
 	"R": {
       "item": "minecraft:redstone"
@@ -28,5 +28,5 @@
     "item": "spectrum:pink_lamp",
     "count": 1
   },
-  "required_advancements": [ "spectrum:hidden/collect_spectrum/collect_pink_spectrum" ]
+  "required_advancements": [ "spectrum:hidden/collect_pigment/collect_pink_pigment" ]
 }

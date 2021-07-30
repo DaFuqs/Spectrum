@@ -382,9 +382,9 @@
   "block.spectrum.flowing_mud": "Mud",
 
   "block.spectrum.paletur_ore": "Paletur Ore",
-  "block.spectrum.paletur_fragment_block": "Shattered Paletur Fragment Block",
+  "block.spectrum.paletur_fragment_block": "Paletur Floatblock",
   "block.spectrum.scarlet_ore": "Scarlet Ore",
-  "block.spectrum.scarlet_fragment_block": "Shattered Scarlet Fragment Block",
+  "block.spectrum.scarlet_fragment_block": "Scarlet Floatblock",
 
   "item.spectrum.shattered_scarlet_fragments": "Shattered Scarlet Fragments",
   "item.spectrum.scarlet_gem": "Scarlet Gem",

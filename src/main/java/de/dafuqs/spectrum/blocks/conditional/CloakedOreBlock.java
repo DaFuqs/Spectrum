@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.blocks.conditional;
 
 import de.dafuqs.spectrum.interfaces.Cloakable;
-import de.dafuqs.spectrum.misc.SpectrumBlockCloaker;
+import de.dafuqs.spectrum.progression.SpectrumBlockCloaker;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.OreBlock;

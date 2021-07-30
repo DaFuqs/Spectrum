@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.mixin;
 
 import de.dafuqs.spectrum.Support;
-import de.dafuqs.spectrum.misc.SpectrumBlockCloaker;
+import de.dafuqs.spectrum.progression.SpectrumBlockCloaker;
 import net.minecraft.advancement.Advancement;
 import net.minecraft.advancement.AdvancementProgress;
 import net.minecraft.advancement.PlayerAdvancementTracker;

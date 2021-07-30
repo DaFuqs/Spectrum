@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.misc;
+package de.dafuqs.spectrum.registries;
 
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;

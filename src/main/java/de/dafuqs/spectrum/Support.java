@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum;
 
-import de.dafuqs.spectrum.misc.SpectrumClientAdvancements;
+import de.dafuqs.spectrum.progression.SpectrumClientAdvancements;
 import net.minecraft.advancement.Advancement;
 import net.minecraft.advancement.PlayerAdvancementTracker;
 import net.minecraft.block.BlockState;

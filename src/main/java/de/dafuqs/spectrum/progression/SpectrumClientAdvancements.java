@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.misc;
+package de.dafuqs.spectrum.progression;
 
 import de.dafuqs.spectrum.mixin.client.AccessorClientAdvancementManager;
 import net.fabricmc.api.EnvType;

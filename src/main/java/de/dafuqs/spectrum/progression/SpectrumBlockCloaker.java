@@ -1,7 +1,5 @@
-package de.dafuqs.spectrum.misc;
+package de.dafuqs.spectrum.progression;
 
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.Support;
 import de.dafuqs.spectrum.accessor.WorldRendererAccessor;
 import de.dafuqs.spectrum.toast.RevelationToast;
 import de.dafuqs.spectrum.interfaces.Cloakable;
@@ -18,8 +16,6 @@ import net.minecraft.client.render.WorldRenderer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.packet.s2c.play.AdvancementUpdateS2CPacket;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
 
 import java.util.ArrayList;

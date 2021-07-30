@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.mixin.client;
 
-import de.dafuqs.spectrum.misc.SpectrumClientAdvancements;
+import de.dafuqs.spectrum.progression.SpectrumClientAdvancements;
 import net.minecraft.client.network.ClientAdvancementManager;
 import net.minecraft.network.packet.s2c.play.AdvancementUpdateS2CPacket;
 import org.spongepowered.asm.mixin.Mixin;

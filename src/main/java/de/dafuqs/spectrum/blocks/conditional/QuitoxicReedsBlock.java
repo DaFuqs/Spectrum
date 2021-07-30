@@ -2,7 +2,7 @@ package de.dafuqs.spectrum.blocks.conditional;
 
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.interfaces.Cloakable;
-import de.dafuqs.spectrum.misc.SpectrumBlockCloaker;
+import de.dafuqs.spectrum.progression.SpectrumBlockCloaker;
 import de.dafuqs.spectrum.registries.SpectrumBlockTags;
 import net.minecraft.block.*;
 import net.minecraft.fluid.FluidState;

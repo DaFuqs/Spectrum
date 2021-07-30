@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.interfaces;
 
 import de.dafuqs.spectrum.Support;
-import de.dafuqs.spectrum.misc.SpectrumBlockCloaker;
+import de.dafuqs.spectrum.progression.SpectrumBlockCloaker;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.EntityShapeContext;

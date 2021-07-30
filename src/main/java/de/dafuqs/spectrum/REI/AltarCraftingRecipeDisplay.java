@@ -1,14 +1,13 @@
 package de.dafuqs.spectrum.REI;
 
 import de.dafuqs.spectrum.enums.SpectrumColor;
-import de.dafuqs.spectrum.misc.SpectrumClientAdvancements;
+import de.dafuqs.spectrum.progression.SpectrumClientAdvancements;
 import de.dafuqs.spectrum.recipe.altar.AltarCraftingRecipe;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.display.Display;
 import me.shedaniel.rei.api.common.entry.EntryIngredient;
 import me.shedaniel.rei.api.common.util.EntryIngredients;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;

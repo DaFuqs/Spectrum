@@ -39,7 +39,6 @@ import de.dafuqs.spectrum.blocks.spirit_tree.OminousSaplingBlockItem;
 import de.dafuqs.spectrum.blocks.spirit_vines.SpiritVinesBodyBlock;
 import de.dafuqs.spectrum.blocks.spirit_vines.SpiritVinesHeadBlock;
 import de.dafuqs.spectrum.enums.SpectrumColor;
-import de.dafuqs.spectrum.misc.SpectrumMaterial;
 import de.dafuqs.spectrum.sound.SpectrumBlockSoundGroups;
 import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
 import de.dafuqs.spectrum.worldgen.ColoredSaplingGenerator;

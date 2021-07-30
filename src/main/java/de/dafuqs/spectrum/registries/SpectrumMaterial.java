@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.misc;
+package de.dafuqs.spectrum.registries;
 
 import net.minecraft.block.MapColor;
 import net.minecraft.block.Material;

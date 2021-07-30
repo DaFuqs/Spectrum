@@ -25,5 +25,5 @@
     "item": "pigment:looting_falchion",
     "count": 1
   },
-  "required_advancements": ["pigment:hidden/collect_shards/collect_amethyst_shard"]
+  "required_advancements": ["pigment:hidden/collect_shards/collect_amethyst_shard", "pigment:craft_using_altar"]
 }

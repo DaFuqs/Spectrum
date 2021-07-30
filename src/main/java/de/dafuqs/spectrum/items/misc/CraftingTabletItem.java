@@ -182,11 +182,11 @@ public class CraftingTabletItem extends Item {
         }
 
         public int getHeight() {
-            return this.getRows() * 20 + 2 + 4;
+            return 20 + 2 + 4;
         }
 
         public int getWidth(TextRenderer textRenderer) {
-            return this.getColumns() * 18 + 2;
+            return textRenderer.getWidth(this.description) + 28;
         }
 
         public void drawItems(TextRenderer textRenderer, int x, int y, MatrixStack matrices, ItemRenderer itemRenderer, int z, TextureManager textureManager) {

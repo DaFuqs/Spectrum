@@ -13,6 +13,7 @@ public class SpectrumSoundEvents {
     public static SoundEvent RUIN_PLACED = register("ruin_placed");
 
     public static SoundEvent NEW_REVELATION = register("new_revelation");
+    public static final SoundEvent NEW_RECIPE = register("new_recipe");
     public static SoundEvent SPECTRUM_THEME = register("spectrum_theme");
     public static SoundEvent DIMENSION_SOUNDS = register("dimension_sounds");
     public static SoundEvent ITEM_ARMOR_EQUIP_GLOW_VISION = register("armor_equip_glow_vision");
@@ -29,8 +30,7 @@ public class SpectrumSoundEvents {
     public static SoundEvent ALTAR_CRAFT_TOPAZ = register("altar_craft_topaz");
     public static SoundEvent ALTAR_CRAFT_ONYX = register("altar_craft_onyx");
     public static SoundEvent ALTAR_CRAFT_MOONSTONE = register("altar_craft_moonstone");
-
-    // TODO: customize sounds from here
+    
     public static SoundEvent BLOCK_CITRINE_BLOCK_BREAK = register("block_citrine_block_break");
     public static SoundEvent BLOCK_CITRINE_BLOCK_STEP = register("block_citrine_block_step");
     public static SoundEvent BLOCK_CITRINE_BLOCK_PLACE = register("block_citrine_block_place");

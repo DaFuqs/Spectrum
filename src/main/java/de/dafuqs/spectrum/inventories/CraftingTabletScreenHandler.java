@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.inventories;
 import de.dafuqs.spectrum.enums.SpectrumColor;
 import de.dafuqs.spectrum.inventories.slots.LockableCraftingResultSlot;
 import de.dafuqs.spectrum.inventories.slots.ReadOnlySlot;
+import de.dafuqs.spectrum.items.misc.CraftingTabletItem;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.recipe.altar.AltarCraftingRecipe;
 import de.dafuqs.spectrum.registries.SpectrumItems;
@@ -140,9 +141,7 @@ public class CraftingTabletScreenHandler extends AbstractRecipeScreenHandler<Inv
             handler.setPreviousTrackedSlot(0, itemStack);
             serverPlayerEntity.networkHandler.sendPacket(new ScreenHandlerSlotUpdateS2CPacket(handler.syncId, handler.nextRevision(), 0, itemStack));
 
-            NbtCompound nbtCompound = craftingTabletItemStack.getOrCreateTag();
-            nbtCompound.putString("recipe", optionalAltarCraftingRecipe.get().getId().toString());
-            craftingTabletItemStack.setTag(nbtCompound);
+            CraftingTabletItem.setStoredRecipe(craftingTabletItemStack, optionalAltarCraftingRecipe.get());
          } else {
             inventory.setStack(9, ItemStack.EMPTY);
             inventory.setStack(10, ItemStack.EMPTY);
@@ -160,15 +159,9 @@ public class CraftingTabletScreenHandler extends AbstractRecipeScreenHandler<Inv
                   itemStack = craftingRecipe.craft(craftingInventory);
                }
 
-               NbtCompound nbtCompound = craftingTabletItemStack.getOrCreateTag();
-               nbtCompound.putString("recipe", craftingRecipe.getId().toString());
-               craftingTabletItemStack.setTag(nbtCompound);
+               CraftingTabletItem.setStoredRecipe(craftingTabletItemStack, optionalCraftingRecipe.get());
             } else {
-               NbtCompound nbtCompound = craftingTabletItemStack.getOrCreateTag();
-               if (nbtCompound.contains("recipe")) {
-                  nbtCompound.remove("recipe");
-                  craftingTabletItemStack.setTag(nbtCompound);
-               }
+               CraftingTabletItem.clearStoredRecipe(craftingTabletItemStack);
             }
 
             craftingResultInventory.setStack(0, itemStack);

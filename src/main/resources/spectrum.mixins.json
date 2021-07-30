@@ -28,6 +28,7 @@
     "WorldRendererMixin"
   ],
   "client": [
+    "client.ScreenMixin",
     "client.AccessorClientAdvancementManager",
     "client.BlockModelsMixin",
     "client.BlockOverlayRendererMixin",

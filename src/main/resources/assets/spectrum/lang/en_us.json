@@ -529,7 +529,7 @@
   "item.spectrum.natures_staff": "Nature's Staff",
 
   "item.spectrum.crafting_tablet": "Crafting Tablet",
-  "item.spectrum.crafting_tablet.tooltip.no_recipe": "No recipe.",
+  "item.spectrum.crafting_tablet.tooltip.no_recipe": "Add items to the crafting grid to set a recipe.",
   "item.spectrum.crafting_tablet.tooltip.recipe": "Recipe: %d %s",
 
   "container.spectrum.rei.altar_crafting.title": "Spectrum Pedestal Crafting",

@@ -4,10 +4,10 @@
         "item": "pigment:bottle_of_ruin"
     },
     "title": {
-      "translate": "advancements.pigment.craft_ruin.title"
+      "translate": "advancements.pigment.craft_bottle_of_ruin.title"
     },
     "description": {
-      "translate": "advancements.pigment.craft_ruin.description"
+      "translate": "advancements.pigment.craft_bottle_of_ruin.description"
     }
   },
   "parent": "pigment:pigment_lategame",

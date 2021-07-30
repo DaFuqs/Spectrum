@@ -12,7 +12,7 @@ import net.minecraft.util.math.intprovider.UniformIntProvider;
 
 import java.util.List;
 
-public class PaleturOreBlock extends ConditionallyVisibleOreBlock {
+public class PaleturOreBlock extends CloakedOreBlock {
 
     public PaleturOreBlock(Settings settings, UniformIntProvider uniformIntProvider) {
         super(settings, uniformIntProvider, false);
@@ -26,8 +26,8 @@ public class PaleturOreBlock extends ConditionallyVisibleOreBlock {
 
     @Override
     public void setCloaked() {
-        PigmentBlockCloaker.swapModel(this.getDefaultState(), Blocks.END_STONE.getDefaultState()); // block
-        PigmentBlockCloaker.swapModel(this.asItem(), Items.END_STONE); // item
+        PigmentBlockCloaker.cloakModel(this.getDefaultState(), Blocks.END_STONE.getDefaultState()); // block
+        PigmentBlockCloaker.cloakModel(this.asItem(), Items.END_STONE); // item
     }
 
     @Deprecated

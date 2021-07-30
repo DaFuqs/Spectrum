@@ -25,11 +25,11 @@ public class EnderTreasureBlock extends Block implements Cloakable {
     }
 
     public void setCloaked() {
-        PigmentBlockCloaker.swapModel(this.getDefaultState(), Blocks.COBBLESTONE.getDefaultState());
+        PigmentBlockCloaker.cloakModel(this.getDefaultState(), Blocks.COBBLESTONE.getDefaultState());
     }
 
     public void setUncloaked() {
-        PigmentBlockCloaker.unswapAllBlockStatesForBlock(this);
+        PigmentBlockCloaker.cloakAllBlockStatesForBlock(this);
     }
 
     @Deprecated

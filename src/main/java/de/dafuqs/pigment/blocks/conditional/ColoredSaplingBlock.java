@@ -26,7 +26,7 @@ public class ColoredSaplingBlock extends SaplingBlock implements Cloakable {
 
     @Override
     public Identifier getCloakAdvancementIdentifier() {
-        return new Identifier(PigmentCommon.MOD_ID, "craft_colored_sapling");
+        return new Identifier(PigmentCommon.MOD_ID, "collect_vegetal");
     }
 
     public void setCloaked() {
@@ -34,16 +34,16 @@ public class ColoredSaplingBlock extends SaplingBlock implements Cloakable {
         BlockState cloakDefaultState = Blocks.OAK_SAPLING.getDefaultState();
         for(DyeColor dyeColor : DyeColor.values()) {
             BlockState defaultState = PigmentBlocks.getColoredSaplingBlock(dyeColor).getDefaultState();
-            PigmentBlockCloaker.swapModel(defaultState, cloakDefaultState); // block
-            PigmentBlockCloaker.swapModel(PigmentBlocks.getColoredSaplingItem(dyeColor), Items.OAK_SAPLING); // item
+            PigmentBlockCloaker.cloakModel(defaultState, cloakDefaultState); // block
+            PigmentBlockCloaker.cloakModel(PigmentBlocks.getColoredSaplingItem(dyeColor), Items.OAK_SAPLING); // item
         }
     }
 
     public void setUncloaked() {
         for(DyeColor dyeColor : DyeColor.values()) {
             Block block = PigmentBlocks.getColoredSaplingBlock(dyeColor);
-            PigmentBlockCloaker.unswapAllBlockStatesForBlock(block);
-            PigmentBlockCloaker.unswapModel(PigmentBlocks.getColoredSaplingItem(dyeColor));
+            PigmentBlockCloaker.cloakAllBlockStatesForBlock(block);
+            PigmentBlockCloaker.uncloakModel(PigmentBlocks.getColoredSaplingItem(dyeColor));
         }
     }
 

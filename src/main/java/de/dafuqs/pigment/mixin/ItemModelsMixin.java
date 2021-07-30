@@ -27,7 +27,7 @@ public class ItemModelsMixin {
 
     @Inject(at = @At("HEAD"), method = "Lnet/minecraft/client/render/item/ItemModels;getModel(Lnet/minecraft/item/ItemStack;)Lnet/minecraft/client/render/model/BakedModel;", cancellable = true)
     private void getModel(ItemStack itemStack, CallbackInfoReturnable<BakedModel> callbackInfoReturnable) {
-        if(PigmentBlockCloaker.isSwapped(itemStack.getItem())) {
+        if(PigmentBlockCloaker.isCloaked(itemStack.getItem())) {
             Item destinationItem = PigmentBlockCloaker.getTarget(itemStack.getItem());
 
             BakedModel overriddenModel = this.models.getOrDefault(getTheModelId(destinationItem), modelManager.getMissingModel());

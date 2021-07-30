@@ -12,7 +12,7 @@ import net.minecraft.util.math.intprovider.UniformIntProvider;
 
 import java.util.List;
 
-public class ScarletOreBlock extends ConditionallyVisibleOreBlock {
+public class ScarletOreBlock extends CloakedOreBlock {
 
     public ScarletOreBlock(Settings settings, UniformIntProvider uniformIntProvider) {
         super(settings, uniformIntProvider, false);
@@ -26,8 +26,8 @@ public class ScarletOreBlock extends ConditionallyVisibleOreBlock {
 
     @Override
     public void setCloaked() {
-        PigmentBlockCloaker.swapModel(this.getDefaultState(), Blocks.NETHERRACK.getDefaultState()); // block
-        PigmentBlockCloaker.swapModel(this.asItem(), Items.NETHERRACK); // item
+        PigmentBlockCloaker.cloakModel(this.getDefaultState(), Blocks.NETHERRACK.getDefaultState()); // block
+        PigmentBlockCloaker.cloakModel(this.asItem(), Items.NETHERRACK); // item
     }
 
     @Deprecated

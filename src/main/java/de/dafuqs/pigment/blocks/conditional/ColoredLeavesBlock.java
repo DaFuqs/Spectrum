@@ -43,24 +43,24 @@ public class ColoredLeavesBlock extends LeavesBlock implements Cloakable {
         BlockState cloakDefaultState = Blocks.OAK_LEAVES.getDefaultState();
         for(DyeColor dyeColor : DyeColor.values()) {
             BlockState defaultState = PigmentBlocks.getColoredLeavesBlock(dyeColor).getDefaultState();
-            PigmentBlockCloaker.swapModel(defaultState, cloakDefaultState);
-            PigmentBlockCloaker.swapModel(defaultState.with(LeavesBlock.DISTANCE, 1).with(LeavesBlock.PERSISTENT, false), cloakDefaultState.with(LeavesBlock.DISTANCE, 1).with(LeavesBlock.PERSISTENT, false));
-            PigmentBlockCloaker.swapModel(defaultState.with(LeavesBlock.DISTANCE, 2).with(LeavesBlock.PERSISTENT, false), cloakDefaultState.with(LeavesBlock.DISTANCE, 2).with(LeavesBlock.PERSISTENT, false));
-            PigmentBlockCloaker.swapModel(defaultState.with(LeavesBlock.DISTANCE, 3).with(LeavesBlock.PERSISTENT, false), cloakDefaultState.with(LeavesBlock.DISTANCE, 3).with(LeavesBlock.PERSISTENT, false));
-            PigmentBlockCloaker.swapModel(defaultState.with(LeavesBlock.DISTANCE, 4).with(LeavesBlock.PERSISTENT, false), cloakDefaultState.with(LeavesBlock.DISTANCE, 4).with(LeavesBlock.PERSISTENT, false));
-            PigmentBlockCloaker.swapModel(defaultState.with(LeavesBlock.DISTANCE, 1).with(LeavesBlock.PERSISTENT, true), cloakDefaultState.with(LeavesBlock.DISTANCE, 1).with(LeavesBlock.PERSISTENT, true));
-            PigmentBlockCloaker.swapModel(defaultState.with(LeavesBlock.DISTANCE, 2).with(LeavesBlock.PERSISTENT, true), cloakDefaultState.with(LeavesBlock.DISTANCE, 2).with(LeavesBlock.PERSISTENT, true));
-            PigmentBlockCloaker.swapModel(defaultState.with(LeavesBlock.DISTANCE, 3).with(LeavesBlock.PERSISTENT, true), cloakDefaultState.with(LeavesBlock.DISTANCE, 3).with(LeavesBlock.PERSISTENT, true));
-            PigmentBlockCloaker.swapModel(defaultState.with(LeavesBlock.DISTANCE, 4).with(LeavesBlock.PERSISTENT, true), cloakDefaultState.with(LeavesBlock.DISTANCE, 4).with(LeavesBlock.PERSISTENT, true));
-            PigmentBlockCloaker.swapModel(PigmentBlocks.getColoredLeavesItem(dyeColor), Items.OAK_LEAVES); // item
+            PigmentBlockCloaker.cloakModel(defaultState, cloakDefaultState);
+            PigmentBlockCloaker.cloakModel(defaultState.with(LeavesBlock.DISTANCE, 1).with(LeavesBlock.PERSISTENT, false), cloakDefaultState.with(LeavesBlock.DISTANCE, 1).with(LeavesBlock.PERSISTENT, false));
+            PigmentBlockCloaker.cloakModel(defaultState.with(LeavesBlock.DISTANCE, 2).with(LeavesBlock.PERSISTENT, false), cloakDefaultState.with(LeavesBlock.DISTANCE, 2).with(LeavesBlock.PERSISTENT, false));
+            PigmentBlockCloaker.cloakModel(defaultState.with(LeavesBlock.DISTANCE, 3).with(LeavesBlock.PERSISTENT, false), cloakDefaultState.with(LeavesBlock.DISTANCE, 3).with(LeavesBlock.PERSISTENT, false));
+            PigmentBlockCloaker.cloakModel(defaultState.with(LeavesBlock.DISTANCE, 4).with(LeavesBlock.PERSISTENT, false), cloakDefaultState.with(LeavesBlock.DISTANCE, 4).with(LeavesBlock.PERSISTENT, false));
+            PigmentBlockCloaker.cloakModel(defaultState.with(LeavesBlock.DISTANCE, 1).with(LeavesBlock.PERSISTENT, true), cloakDefaultState.with(LeavesBlock.DISTANCE, 1).with(LeavesBlock.PERSISTENT, true));
+            PigmentBlockCloaker.cloakModel(defaultState.with(LeavesBlock.DISTANCE, 2).with(LeavesBlock.PERSISTENT, true), cloakDefaultState.with(LeavesBlock.DISTANCE, 2).with(LeavesBlock.PERSISTENT, true));
+            PigmentBlockCloaker.cloakModel(defaultState.with(LeavesBlock.DISTANCE, 3).with(LeavesBlock.PERSISTENT, true), cloakDefaultState.with(LeavesBlock.DISTANCE, 3).with(LeavesBlock.PERSISTENT, true));
+            PigmentBlockCloaker.cloakModel(defaultState.with(LeavesBlock.DISTANCE, 4).with(LeavesBlock.PERSISTENT, true), cloakDefaultState.with(LeavesBlock.DISTANCE, 4).with(LeavesBlock.PERSISTENT, true));
+            PigmentBlockCloaker.cloakModel(PigmentBlocks.getColoredLeavesItem(dyeColor), Items.OAK_LEAVES); // item
         }
     }
 
     public void setUncloaked() {
         for(DyeColor dyeColor : DyeColor.values()) {
             Block block = PigmentBlocks.getColoredLeavesBlock(dyeColor);
-            PigmentBlockCloaker.unswapAllBlockStatesForBlock(block);
-            PigmentBlockCloaker.unswapModel(PigmentBlocks.getColoredLeavesItem(dyeColor));
+            PigmentBlockCloaker.cloakAllBlockStatesForBlock(block);
+            PigmentBlockCloaker.uncloakModel(PigmentBlocks.getColoredLeavesItem(dyeColor));
         }
     }
 

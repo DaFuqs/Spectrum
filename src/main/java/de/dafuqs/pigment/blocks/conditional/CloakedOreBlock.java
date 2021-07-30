@@ -14,11 +14,11 @@ import net.minecraft.util.math.intprovider.UniformIntProvider;
 
 import java.util.List;
 
-public abstract class ConditionallyVisibleOreBlock extends OreBlock implements Cloakable {
+public abstract class CloakedOreBlock extends OreBlock implements Cloakable {
 
     private final boolean deepSlateOre;
 
-    public ConditionallyVisibleOreBlock(Settings settings, UniformIntProvider uniformIntProvider, boolean deepSlateOre) {
+    public CloakedOreBlock(Settings settings, UniformIntProvider uniformIntProvider, boolean deepSlateOre) {
         super(settings, uniformIntProvider);
         this.deepSlateOre = deepSlateOre;
     }
@@ -26,19 +26,18 @@ public abstract class ConditionallyVisibleOreBlock extends OreBlock implements C
     public void setCloaked() {
         if(deepSlateOre) {
             // Cloaks as deepslate
-            PigmentBlockCloaker.swapModel(this.getDefaultState(), Blocks.DEEPSLATE.getDefaultState()); // block
-            PigmentBlockCloaker.swapModel(this.asItem(), Items.DEEPSLATE); // item
+            PigmentBlockCloaker.cloakModel(this.getDefaultState(), Blocks.DEEPSLATE.getDefaultState()); // block
+            PigmentBlockCloaker.cloakModel(this.asItem(), Items.DEEPSLATE); // item
         } else {
             // Cloaks as stone
-            PigmentBlockCloaker.swapModel(this.getDefaultState(), Blocks.STONE.getDefaultState()); // block
-            PigmentBlockCloaker.swapModel(this.asItem(), Items.STONE); // item
+            PigmentBlockCloaker.cloakModel(this.getDefaultState(), Blocks.STONE.getDefaultState()); // block
+            PigmentBlockCloaker.cloakModel(this.asItem(), Items.STONE); // item
         }
-
     }
 
     public void setUncloaked() {
-        PigmentBlockCloaker.unswapAllBlockStatesForBlock(this);
-        PigmentBlockCloaker.unswapModel(this.asItem());
+        PigmentBlockCloaker.cloakAllBlockStatesForBlock(this);
+        PigmentBlockCloaker.uncloakModel(this.asItem());
     }
 
     @Deprecated

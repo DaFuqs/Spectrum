@@ -9,7 +9,7 @@ import net.minecraft.util.math.intprovider.UniformIntProvider;
 
 import java.util.List;
 
-public class AzuriteOreBlock extends ConditionallyVisibleOreBlock {
+public class AzuriteOreBlock extends CloakedOreBlock {
 
     public AzuriteOreBlock(Settings settings, UniformIntProvider uniformIntProvider) {
         super(settings, uniformIntProvider, true);

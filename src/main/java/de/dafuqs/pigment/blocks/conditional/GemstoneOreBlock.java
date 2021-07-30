@@ -5,7 +5,7 @@ import de.dafuqs.pigment.enums.PigmentColor;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
 
-public class GemstoneOreBlock extends ConditionallyVisibleOreBlock {
+public class GemstoneOreBlock extends CloakedOreBlock {
 
     private final PigmentColor pigmentColor;
 

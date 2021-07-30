@@ -4,10 +4,10 @@
         "item": "pigment:bottle_of_failing"
     },
     "title": {
-      "translate": "advancements.pigment.craft_failing.title"
+      "translate": "advancements.pigment.craft_bottle_of_failing.title"
     },
     "description": {
-      "translate": "advancements.pigment.craft_failing.description"
+      "translate": "advancements.pigment.craft_bottle_of_failing.description"
     }
   },
   "parent": "pigment:pigment_midgame",

@@ -20,6 +20,8 @@ import net.minecraft.tag.FluidTags;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.world.BlockView;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
 import org.jetbrains.annotations.Nullable;
@@ -45,16 +47,16 @@ public class QuitoxicReedsBlock extends SugarCaneBlock implements Cloakable, Wat
 
     public void setCloaked() {
         for(int i = 0; i < 16; i++){
-            PigmentBlockCloaker.swapModel(this.getDefaultState().with(WATERLOGGED, false).with(AGE, i), Blocks.AIR.getDefaultState());
-            PigmentBlockCloaker.swapModel(this.getDefaultState().with(WATERLOGGED, true).with(AGE, i), Blocks.WATER.getDefaultState());
+            PigmentBlockCloaker.cloakModel(this.getDefaultState().with(WATERLOGGED, false).with(AGE, i), Blocks.AIR.getDefaultState());
+            PigmentBlockCloaker.cloakModel(this.getDefaultState().with(WATERLOGGED, true).with(AGE, i), Blocks.WATER.getDefaultState());
         }
 
-        PigmentBlockCloaker.swapModel(this.asItem(), Items.SUGAR_CANE); // item
+        PigmentBlockCloaker.cloakModel(this.asItem(), Items.SUGAR_CANE); // item
     }
 
     public void setUncloaked() {
-        PigmentBlockCloaker.unswapAllBlockStatesForBlock(this);
-        PigmentBlockCloaker.unswapModel(this.asItem());
+        PigmentBlockCloaker.cloakAllBlockStatesForBlock(this);
+        PigmentBlockCloaker.uncloakModel(this.asItem());
     }
 
     @Deprecated
@@ -104,7 +106,14 @@ public class QuitoxicReedsBlock extends SugarCaneBlock implements Cloakable, Wat
                 }
             }
         }
+    }
 
+    @Deprecated
+    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+        if(this.isVisibleTo(context)) {
+            return SHAPE;
+        }
+        return EMPTY_SHAPE;
     }
 
     /**

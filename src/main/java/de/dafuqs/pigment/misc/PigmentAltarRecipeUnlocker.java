@@ -1,5 +1,6 @@
 package de.dafuqs.pigment.misc;
 
+import de.dafuqs.pigment.Support;
 import de.dafuqs.pigment.toast.RecipeToast;
 import de.dafuqs.pigment.recipe.altar.AltarCraftingRecipe;
 import net.minecraft.advancement.Advancement;
@@ -39,7 +40,9 @@ public class PigmentAltarRecipeUnlocker {
         if(showToast) {
             for (Map.Entry<Identifier, Advancement.Task> earnedEntry : packet.getAdvancementsToEarn().entrySet()) {
                 Identifier earnedAdvancementIdentifier = earnedEntry.getKey();
-                showToastsForAllRecipesWithAdvancement(earnedAdvancementIdentifier);
+                if(Support.hasAdvancement(MinecraftClient.getInstance().player, earnedAdvancementIdentifier)) {
+                    showToastsForAllRecipesWithAdvancement(earnedAdvancementIdentifier);
+                }
             }
         }
     }

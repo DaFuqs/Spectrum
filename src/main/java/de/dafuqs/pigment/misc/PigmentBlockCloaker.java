@@ -1,6 +1,7 @@
 package de.dafuqs.pigment.misc;
 
 import de.dafuqs.pigment.PigmentCommon;
+import de.dafuqs.pigment.Support;
 import de.dafuqs.pigment.accessor.WorldRendererAccessor;
 import de.dafuqs.pigment.toast.RevelationToast;
 import de.dafuqs.pigment.interfaces.Cloakable;
@@ -33,7 +34,7 @@ public class PigmentBlockCloaker {
     private static HashMap<BlockState, BlockState> blockSwaps = new HashMap<>();
     private static final HashMap<Item, Item> itemSwaps = new HashMap<>();
 
-    public static void registerAdvancementSwap(Cloakable cloakableBlock, Identifier advancementIdentifier) {
+    public static void registerAdvancementCloak(Cloakable cloakableBlock, Identifier advancementIdentifier) {
         if(advancementBlockSwapTriggers.containsKey(advancementIdentifier)) {
             if(!advancementBlockSwapTriggers.get(advancementIdentifier).contains(cloakableBlock)) {
                 advancementBlockSwapTriggers.get(advancementIdentifier).add(cloakableBlock);
@@ -50,13 +51,23 @@ public class PigmentBlockCloaker {
     }
 
     @Environment(EnvType.CLIENT)
-    public static boolean checkBlockCloaksForNewAdvancements(AdvancementUpdateS2CPacket packet, boolean showToast) {
+    public static boolean checkCloaksForNewAdvancements(AdvancementUpdateS2CPacket packet, boolean showToast) {
         List<Cloakable> cloakableBlocksToTrigger = new ArrayList<>();
 
         for(Map.Entry<Identifier, Advancement.Task> earnedEntry : packet.getAdvancementsToEarn().entrySet()) {
             Identifier earnedAdvancementIdentifier = earnedEntry.getKey();
-            if(advancementBlockSwapTriggers.containsKey(earnedAdvancementIdentifier)) {
-                cloakableBlocksToTrigger.addAll(advancementBlockSwapTriggers.get(earnedAdvancementIdentifier));
+            if(PigmentClientAdvancements.hasDone(earnedAdvancementIdentifier)) {
+                if (advancementBlockSwapTriggers.containsKey(earnedAdvancementIdentifier)) {
+                    cloakableBlocksToTrigger.addAll(advancementBlockSwapTriggers.get(earnedAdvancementIdentifier));
+                }
+            }
+        }
+        for(Map.Entry<Identifier, AdvancementProgress> progressedEntry : packet.getAdvancementsToProgress().entrySet()) {
+            Identifier progressedAdvancementIdentifier = progressedEntry.getKey();
+            if(PigmentClientAdvancements.hasDone(progressedAdvancementIdentifier)) {
+                if (advancementBlockSwapTriggers.containsKey(progressedAdvancementIdentifier)) {
+                    cloakableBlocksToTrigger.addAll(advancementBlockSwapTriggers.get(progressedAdvancementIdentifier));
+                }
             }
         }
 
@@ -90,15 +101,15 @@ public class PigmentBlockCloaker {
     }
 
     // BLOCKS
-    public static void swapModel(BlockState sourceBlockState, BlockState targetBlockState) {
+    public static void cloakModel(BlockState sourceBlockState, BlockState targetBlockState) {
         blockSwaps.put(sourceBlockState, targetBlockState);
     }
 
-    public static void unswapModel(BlockState blockState) {
+    public static void uncloakModel(BlockState blockState) {
         blockSwaps.remove(blockState);
     }
 
-    public static void unswapAllBlockStatesForBlock(Block block) {
+    public static void cloakAllBlockStatesForBlock(Block block) {
         HashMap<BlockState, BlockState> newBlockSwaps = new HashMap<>();
         for(BlockState blockState : blockSwaps.keySet()) {
             if(!blockState.getBlock().equals(block)) {
@@ -108,7 +119,7 @@ public class PigmentBlockCloaker {
         blockSwaps = newBlockSwaps;
     }
 
-    public static boolean isSwapped(BlockState blockState) {
+    public static boolean isCloaked(BlockState blockState) {
         return blockSwaps.containsKey(blockState);
     }
 
@@ -117,15 +128,15 @@ public class PigmentBlockCloaker {
     }
     
     // ITEMS
-    public static void swapModel(Item sourceItem, Item targetItem) {
+    public static void cloakModel(Item sourceItem, Item targetItem) {
         itemSwaps.put(sourceItem, targetItem);
     }
 
-    public static void unswapModel(Item item) {
+    public static void uncloakModel(Item item) {
         itemSwaps.remove(item);
     }
 
-    public static boolean isSwapped(Item item) {
+    public static boolean isCloaked(Item item) {
         return itemSwaps.containsKey(item);
     }
 

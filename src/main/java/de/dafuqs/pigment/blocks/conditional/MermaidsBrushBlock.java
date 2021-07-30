@@ -47,15 +47,15 @@ public class MermaidsBrushBlock extends PlantBlock implements Cloakable, Waterlo
     public void setCloaked() {
         // cloak for all 8 "AGE" block states
         for(int i = 0; i < 8; i++){
-            PigmentBlockCloaker.swapModel(this.getDefaultState().with(AGE, i), Blocks.WATER.getDefaultState());
+            PigmentBlockCloaker.cloakModel(this.getDefaultState().with(AGE, i), Blocks.WATER.getDefaultState());
         }
-        PigmentBlockCloaker.swapModel(this.asItem(), Items.SEAGRASS); // item
+        PigmentBlockCloaker.cloakModel(this.asItem(), Items.SEAGRASS); // item
     }
 
     @Override
     public void setUncloaked() {
-        PigmentBlockCloaker.unswapAllBlockStatesForBlock(this);
-        PigmentBlockCloaker.unswapModel(this.asItem());
+        PigmentBlockCloaker.cloakAllBlockStatesForBlock(this);
+        PigmentBlockCloaker.uncloakModel(this.asItem());
     }
 
     @Deprecated

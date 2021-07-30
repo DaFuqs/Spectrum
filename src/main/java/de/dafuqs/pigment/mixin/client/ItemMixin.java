@@ -24,7 +24,7 @@ public abstract class ItemMixin {
     @Inject(at = @At("HEAD"), method = "Lnet/minecraft/item/Item;getName(Lnet/minecraft/item/ItemStack;)Lnet/minecraft/text/Text;", cancellable = true)
     public void getName(ItemStack stack, CallbackInfoReturnable<Text> callbackInfoReturnable) {
         Item thisItem = (Item) (Object) this;
-        if(PigmentBlockCloaker.isSwapped(thisItem)) {
+        if(PigmentBlockCloaker.isCloaked(thisItem)) {
 
             // Get the localized name of the item and scatter it via §k
             Language language = Language.getInstance();

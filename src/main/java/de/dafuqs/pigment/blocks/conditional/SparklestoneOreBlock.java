@@ -9,7 +9,7 @@ import net.minecraft.util.math.intprovider.UniformIntProvider;
 
 import java.util.List;
 
-public class SparklestoneOreBlock extends ConditionallyVisibleOreBlock {
+public class SparklestoneOreBlock extends CloakedOreBlock {
 
     public SparklestoneOreBlock(Settings settings, UniformIntProvider uniformIntProvider) {
         super(settings, uniformIntProvider, false);

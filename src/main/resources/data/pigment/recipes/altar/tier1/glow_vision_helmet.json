@@ -26,5 +26,6 @@
   "result" : {
     "item": "pigment:glow_vision_helmet",
     "count": 1
-  }
+  },
+  "required_advancements": ["pigment:craft_using_altar"]
 }

@@ -1,0 +1,16 @@
+{
+  "name": "Private Chest",
+  "icon": "spectrum:private_chest",
+  "category": "spectrum:magical_blocks_category",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:private_chest",
+      "text": "$(italic)It happened again and again that you just want to quickly put down a box to store your inventory there and as soon as you came back everything was looted.$(br)To solve this problem you have developed this special chest, which takes care of the problem and incidentally helps to catch the thief in the act."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "The Personal Chest provides the same space as two normal chests.$(br2)Like a Trapped Chest the Private Chests also outputs a redstone signal based on who opened it. If you as an owner open it, the signal strength will be full, if a stranger wants to tamper with your belongings then only half."
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "type": "spectrum_altar",
+  "time": 200,
+  "tier": 1,
+  "cyan": 0,
+  "magenta": 2,
+  "yellow": 2,
+  "white": 0,
+  "black": 0,
+  "experience": 2.0,
+  "pattern": [
+    " L ",
+    "RGR"
+  ],
+  "key": {
+	"G": {
+	  "item": "minecraft:glow_ink_sac"
+	},
+    "L": {
+      "item": "minecraft:leather_helmet"
+    },
+    "R": {
+      "item": "minecraft:rabbit_hide"
+    }
+  },
+  "result" : {
+    "item": "spectrum:glow_vision_helmet",
+    "count": 1
+  },
+  "required_advancements": ["spectrum:craft_using_altar"]
+}

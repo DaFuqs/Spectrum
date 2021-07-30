@@ -1,0 +1,18 @@
+{
+  "name": "Crafting Tablet",
+  "icon": "spectrum:crafting_tablet",
+  "category": "spectrum:general_category",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "title": "Crafting Template",
+      "item": "spectrum:crafting_tablet",
+      "text": "The Crafting Template is so much more than a portable Crafting Table. Additionally it saves the last recipe you used and let's you craft it again directly in your hand."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Pedestal Automation",
+      "text": "There may come a time when you feel you need a certain material so often that you want to automate it. Or you are one of those masochists who automate every single item because they can. Anyways, you've come to the right place!$(br2)The $(l:general/pedestal)Spectrum Pedestal$() has a dedicated slot for a Crafting Tablet. When you add items with hoppers or similar to the pedestal, they will be placed appropriately and evenly, like specified in the saved recipe."
+    }
+  ]
+}

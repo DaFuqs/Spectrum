@@ -16,7 +16,7 @@
                   "predicate": {
                     "enchantments": [
                       {
-                        "enchantment": "pigment:resonance",
+                        "enchantment": "spectrum:resonance",
                         "levels": {
                           "min": 1
                         }

@@ -1,8 +1,0 @@
-{
-    "type": "minecraft:stonecutting",
-    "ingredient": {
-        "item": "minecraft:basalt"
-    },
-    "result": "pigment:basalt_slab",
-    "count": 2
-}

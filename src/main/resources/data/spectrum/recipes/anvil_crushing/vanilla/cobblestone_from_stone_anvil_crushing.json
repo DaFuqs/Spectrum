@@ -1,0 +1,14 @@
+{
+  "type": "spectrum_anvil_crushing",
+  "ingredient": {
+    "item": "minecraft:stone"
+  },
+  "crushedItemsPerPointOfDamage": 2,
+  "experience": 0.05,
+  "result" : {
+    "item": "minecraft:cobblestone",
+    "count": 1
+  },
+  "particleEffectIdentifier": "cloud",
+  "soundEventIdentifier": "block.stone.break"
+}

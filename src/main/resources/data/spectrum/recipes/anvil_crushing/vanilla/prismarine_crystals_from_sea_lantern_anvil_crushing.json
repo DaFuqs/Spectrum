@@ -1,0 +1,14 @@
+{
+  "type": "spectrum_anvil_crushing",
+  "ingredient": {
+    "item": "minecraft:sea_lantern"
+  },
+  "crushedItemsPerPointOfDamage": 1,
+  "experience": 0.0,
+  "result" : {
+    "item": "minecraft:prismarine_crystals",
+    "count": 5
+  },
+  "particleEffectIdentifier": "cloud",
+  "soundEventIdentifier": "block.glass.break"
+}

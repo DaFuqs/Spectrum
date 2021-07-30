@@ -1,0 +1,17 @@
+{
+  "name": "Colored Lamps",
+  "icon": "spectrum:cyan_lamp",
+  "category": "spectrum:decoration_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(italic)You've finally managed to mix spectrums properly. What could be more natural than to try out the properties of your new spectrums right away? You've had enough of the normal Redstone lamps by now. Time to add a splash of color!$()"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:cyan_lamp",
+      "title": "Colored Lamps",
+      "text": "They come in all colors and  are surrounded by a vibrant light, when activated. Besides, colored lamps function similar to their boring redstone counterpart."
+    }
+  ]
+}

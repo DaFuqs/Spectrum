@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/template_anvil",
+  "textures": {
+    "particle": "spectrum:block/bedrock_anvil",
+    "body": "spectrum:block/bedrock_anvil",
+    "top": "spectrum:block/bedrock_anvil_top"
+  }
+}

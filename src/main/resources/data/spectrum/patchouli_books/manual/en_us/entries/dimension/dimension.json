@@ -1,0 +1,16 @@
+{
+  "name": "The Deeper Down",
+  "icon": "spectrum:bottle_of_ruin",
+  "category": "spectrum:dimension_category",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "minecraft:bedrock",
+      "text": "$(italic)TODO"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "TODO"
+    }
+  ]
+}

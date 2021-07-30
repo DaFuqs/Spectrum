@@ -1,0 +1,19 @@
+{
+  "display": {
+    "icon": {
+        "item": "spectrum:bottle_of_failing"
+    },
+    "title": {
+      "translate": "advancements.spectrum.craft_bottle_of_failing.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.craft_bottle_of_failing.description"
+    }
+  },
+  "parent": "spectrum:spectrum_midgame",
+  "criteria": {
+    "craft": {
+      "trigger":"minecraft:impossible"
+    }
+  }
+}

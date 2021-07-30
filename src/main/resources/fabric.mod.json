@@ -1,35 +1,35 @@
 {
   "schemaVersion": 1,
-  "id": "pigment",
+  "id": "spectrum",
   "version": "${version}",
-  "name": "Pigment",
+  "name": "Spectrum",
   "description": "A mod about gems, colors and decay",
   "authors": [
     "DaFuqs"
   ],
   "contact": {
     "homepage": "https://github.com/DaFuqs/",
-    "sources": "https://github.com/DaFuqs/Pigment"
+    "sources": "https://github.com/DaFuqs/Spectrum"
   },
   "license": "MIT",
-  "icon": "assets/pigment/icon.png",
+  "icon": "assets/spectrum/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
-      "de.dafuqs.pigment.PigmentCommon"
+      "de.dafuqs.spectrum.SpectrumCommon"
     ],
     "client": [
-      "de.dafuqs.pigment.PigmentClient"
+      "de.dafuqs.spectrum.SpectrumClient"
     ],
     "modmenu": [
-      "de.dafuqs.pigment.config.ModMenuConfig"
+      "de.dafuqs.spectrum.config.ModMenuConfig"
     ],
     "rei_plugins": [
-      "de.dafuqs.pigment.REI.REIIntegration"
+      "de.dafuqs.spectrum.REI.REIIntegration"
     ]
   },
   "mixins": [
-    "pigment.mixins.json"
+    "spectrum.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=0.11.3",

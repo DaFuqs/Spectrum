@@ -1,8 +1,0 @@
-{
-  "variants": {
-    "facing=north": { "model": "pigment:block/compacting_chest" },
-    "facing=east":  { "model": "pigment:block/compacting_chest", "y":  90},
-    "facing=south": { "model": "pigment:block/compacting_chest", "y": 180 },
-    "facing=west":  { "model": "pigment:block/compacting_chest", "y": 270 }
-  }
-}

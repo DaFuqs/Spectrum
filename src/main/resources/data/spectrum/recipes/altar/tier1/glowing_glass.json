@@ -1,0 +1,29 @@
+{
+  "type": "spectrum_altar",
+  "time": 80,
+  "tier": 1,
+  "magenta": 0,
+  "yellow": 2,
+  "cyan": 0,
+  "black": 0,
+  "white": 0,
+  "experience": 0.5,
+  "pattern": [
+    " S ",
+    "SGS",
+    " S "
+  ],
+  "key": {
+    "G": {
+      "item": "minecraft:glass"
+    },
+    "S": {
+      "item": "spectrum:sparklestone_gem"
+    }
+  },
+  "result" : {
+    "item": "spectrum:glowing_glass",
+    "count": 2
+  },
+  "required_advancements": ["spectrum:hidden/collect_resource/collect_sparklestone_gem"]
+}

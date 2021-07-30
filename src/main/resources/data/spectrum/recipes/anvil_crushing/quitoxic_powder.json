@@ -1,0 +1,14 @@
+{
+  "type": "spectrum_anvil_crushing",
+  "ingredient": {
+    "item": "spectrum:quitoxic_reeds"
+  },
+  "crushedItemsPerPointOfDamage": 1,
+  "experience": 0.4,
+  "result" : {
+    "item": "spectrum:quitoxic_powder",
+    "count": 2
+  },
+  "particleEffectIdentifier": "cloud",
+  "soundEventIdentifier": "block.grass.break"
+}

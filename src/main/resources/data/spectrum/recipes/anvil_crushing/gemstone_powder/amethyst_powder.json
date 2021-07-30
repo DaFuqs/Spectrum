@@ -1,0 +1,14 @@
+{
+  "type": "spectrum_anvil_crushing",
+  "ingredient": {
+    "item": "minecraft:amethyst_shard"
+  },
+  "crushedItemsPerPointOfDamage": 1,
+  "experience": 0.4,
+  "result" : {
+    "item": "spectrum:amethyst_powder",
+    "count": 2
+  },
+  "particleEffectIdentifier": "cloud",
+  "soundEventIdentifier": "block.small_amethyst_bud.break"
+}

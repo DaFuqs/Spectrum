@@ -1,0 +1,24 @@
+{
+  "display": {
+    "icon": {
+        "item": "spectrum:glistering_melon_seeds"
+    },
+    "title": {
+      "translate": "advancements.spectrum.use_glistering_melon_seeds.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.use_glistering_melon_seeds.description"
+    }
+  },
+  "parent": "spectrum:collect_vegetal",
+  "criteria": {
+    "planted_glistering_melon_seeds": {
+      "trigger": "minecraft:item_used_on_block",
+      "conditions": {
+        "item": {
+          "items": ["spectrum:glistering_melon_seeds"]
+        }
+      }
+    }
+  }
+}

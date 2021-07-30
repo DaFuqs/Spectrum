@@ -1,21 +1,21 @@
 {
   "replace": false,
   "values": [
-    "pigment:black_planks",
-    "pigment:blue_planks",
-    "pigment:brown_planks",
-    "pigment:cyan_planks",
-    "pigment:gray_planks",
-    "pigment:green_planks",
-    "pigment:light_blue_planks",
-    "pigment:light_gray_planks",
-    "pigment:lime_planks",
-    "pigment:magenta_planks",
-    "pigment:orange_planks",
-    "pigment:pink_planks",
-    "pigment:purple_planks",
-    "pigment:red_planks",
-    "pigment:white_planks",
-    "pigment:yellow_planks"
+    "spectrum:black_planks",
+    "spectrum:blue_planks",
+    "spectrum:brown_planks",
+    "spectrum:cyan_planks",
+    "spectrum:gray_planks",
+    "spectrum:green_planks",
+    "spectrum:light_blue_planks",
+    "spectrum:light_gray_planks",
+    "spectrum:lime_planks",
+    "spectrum:magenta_planks",
+    "spectrum:orange_planks",
+    "spectrum:pink_planks",
+    "spectrum:purple_planks",
+    "spectrum:red_planks",
+    "spectrum:white_planks",
+    "spectrum:yellow_planks"
   ]
 }

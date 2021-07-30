@@ -1,0 +1,50 @@
+{
+  "display": {
+    "icon": {
+        "item": "spectrum:altar"
+    },
+    "title": {
+      "translate": "advancements.spectrum.spectrum.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.spectrum.description"
+    },
+    "background": "spectrum:textures/gui/advancement_background.png"
+  },
+  "rewards": {
+    "loot": [
+      "spectrum:advancement_reward/adv_spectrum"
+    ]
+  },
+  "criteria": {
+    "has_amethyst_shard": {
+      "trigger":"minecraft:inventory_changed",
+      "conditions": { "items": [{ "items": [ "minecraft:amethyst_shard" ]}] }
+    },
+    "has_citrine_shard": {
+      "trigger":"minecraft:inventory_changed",
+      "conditions": { "items": [{ "items": [ "spectrum:citrine_shard" ]}] }
+    },
+    "has_topaz_shard": {
+      "trigger":"minecraft:inventory_changed",
+      "conditions": { "items": [{ "items": [ "spectrum:topaz_shard" ]}] }
+    },
+    "has_moonstone_shard": {
+      "trigger":"minecraft:inventory_changed",
+      "conditions": { "items": [{ "items": [ "spectrum:moonstone_shard" ]}] }
+    },
+    "has_onyx_shard": {
+      "trigger":"minecraft:inventory_changed",
+      "conditions": { "items": [{ "items": [ "spectrum:onyx_shard" ]}] }
+    }
+  },
+  "requirements": [
+    [
+      "has_amethyst_shard",
+      "has_citrine_shard",
+      "has_topaz_shard",
+      "has_onyx_shard",
+      "has_moonstone_shard"
+    ]
+  ]
+}

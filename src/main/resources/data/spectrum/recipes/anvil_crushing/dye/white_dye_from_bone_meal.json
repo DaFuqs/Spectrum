@@ -1,0 +1,14 @@
+{
+  "type": "spectrum_anvil_crushing",
+  "ingredient": {
+    "item": "minecraft:bone_meal"
+  },
+  "crushedItemsPerPointOfDamage": 4,
+  "experience": 0.0,
+  "result" : {
+    "item": "minecraft:white_dye",
+    "count": 2
+  },
+  "particleEffectIdentifier": "cloud",
+  "soundEventIdentifier": "block.grass.break"
+}

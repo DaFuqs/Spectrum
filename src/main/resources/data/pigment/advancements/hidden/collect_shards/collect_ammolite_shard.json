@@ -1,8 +1,0 @@
-{
-  "criteria": {
-    "has_amethyst_shard": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": { "items": [{ "items": [ "pigment:ammolite_shard" ]}] }
-    }
-  }
-}

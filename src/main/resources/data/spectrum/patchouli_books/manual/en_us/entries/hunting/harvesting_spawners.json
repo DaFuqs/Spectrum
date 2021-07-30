@@ -1,0 +1,16 @@
+{
+  "name": "Harvesting Spawners",
+  "icon": "spectrum:resonant_pickaxe",
+  "category": "spectrum:hunting_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "TODO"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:resonant_pickaxe",
+      "text": "TODO"
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "type": "spectrum_altar",
+  "time": 240,
+  "tier": 1,
+  "magenta": 0,
+  "yellow": 0,
+  "cyan": 4,
+  "black": 0,
+  "white": 0,
+  "experience": 1.0,
+  "pattern": [
+    "DCD",
+    "CBC",
+    "DCD"
+  ],
+  "key": {
+    "D": {
+      "item": "minecraft:dirt"
+    },
+    "C": {
+      "item": "minecraft:coarse_dirt"
+    },
+    "B": {
+      "item": "minecraft:water_bucket"
+    }
+  },
+  "result" : {
+    "item": "spectrum:mud_bucket",
+    "count": 1
+  }
+}

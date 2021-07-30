@@ -1,0 +1,19 @@
+{
+  "display": {
+    "icon": {
+        "item": "spectrum:sparklestone_ore"
+    },
+    "title": {
+      "translate": "advancements.spectrum.trigger_revelation.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.trigger_revelation.description"
+    }
+  },
+  "parent": "spectrum:spectrum",
+  "criteria": {
+    "have_revelation": {
+      "trigger":"minecraft:impossible"
+    }
+  }
+}

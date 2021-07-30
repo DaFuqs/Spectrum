@@ -1,0 +1,33 @@
+{
+  "type": "spectrum_altar",
+  "time": 160,
+  "tier": 1,
+  "cyan": 2,
+  "magenta": 1,
+  "yellow": 2,
+  "white": 0,
+  "black": 0,
+  "experience": 1.0,
+  "pattern": [
+    "DDD",
+    "VSV",
+    "DDD"
+  ],
+  "key": {
+	"S": {
+	  "tag": "minecraft:saplings"
+	},
+    "V": {
+      "item": "spectrum:vegetal"
+    },
+    "D": {
+      "item": "minecraft:green_dye"
+    }
+  },
+  "result" : {
+    "item": "spectrum:green_sapling",
+    "count": 1
+  },
+  "required_advancements": ["spectrum:collect_vegetal", "spectrum:hidden/collect_shards/collect_topaz_shard", "spectrum:hidden/collect_shards/collect_amethyst_shard", "spectrum:hidden/collect_shards/collect_citrine_shard"],
+  "unlocks_advancement": "spectrum:craft_colored_sapling"
+}

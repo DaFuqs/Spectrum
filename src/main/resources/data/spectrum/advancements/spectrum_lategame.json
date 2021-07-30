@@ -1,0 +1,20 @@
+{
+  "display": {
+    "icon": {
+      "item": "spectrum:altar3"
+    },
+    "title": {
+      "translate": "advancements.spectrum.spectrum_lategame.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.spectrum_lategame.description"
+    },
+    "background": "spectrum:textures/gui/advancement_background_lategame.png"
+  },
+  "criteria": {
+    "get_altar2": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": { "items": [{ "items": [ "spectrum:altar3" ]}] }
+    }
+  }
+}

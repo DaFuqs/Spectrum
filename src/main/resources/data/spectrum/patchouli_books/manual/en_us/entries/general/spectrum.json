@@ -1,0 +1,107 @@
+{
+  "name": "Spectrums",
+  "icon": "spectrum:magenta_spectrum",
+  "category": "spectrum:general_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "From the leaves of $(l:general/gemstone_powder)gemstone powder$() dyed trees$() you could obtain absolutely pure color spectrums. These spectrums themselves are magical and embody the elements of nature, composed of their original forms $(bold)$(c_magenta)TIME$(), $(bold)$(c_yellow)ENERGY$() and $(bold)$(c_cyan)MATTER.$()."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:hidden/collect_spectrum/collect_black_spectrum",
+      "item": "spectrum:black_spectrum",
+      "text": "The darkest material you have ever held in your hands.$(br2)$(c_black)Black$() represents the Nothingness of the $(italic)Void$(), $(italic)Power$() and $(italic)Mystery$()."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:hidden/collect_spectrum/collect_blue_spectrum",
+      "item": "spectrum:blue_spectrum",
+      "text": "Holding this item in your hand gives you a sign of security. Of course, all nonsense, after all, they are only spectrums. But still...$(br2)$(c_blue)Blue$() represents $(italic)Safety$() and $(italic)Permanence$()."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:hidden/collect_spectrum/collect_brown_spectrum",
+      "item": "spectrum:brown_spectrum",
+      "text": "The juicy lime makes you long for mother nature.$(br2)$(c_brown)Brown$() represents $(italic)Nature$() and $(italic)Stability$()."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:hidden/collect_spectrum/collect_cyan_spectrum",
+      "item": "spectrum:cyan_spectrum",
+      "text": "It makes you feel as if you are sitting on the top of a mountain, taking in the non-ending vastness of the world.$(br2)$(c_cyan)Cyan$() represents $(italic)Matter$() and $(italic)Integrity$()."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:hidden/collect_spectrum/collect_gray_spectrum",
+      "item": "spectrum:gray_spectrum",
+      "text": "This color looks to you like the defeated older brother of light gray. Whenever you look at it you get a little sad, but you do not know exactly why.$(br2)$(c_gray)Gray$() represents $(italic)Evanescence$()."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:hidden/collect_spectrum/collect_green_spectrum",
+      "item": "spectrum:green_spectrum",
+      "text": "This spectrum radiates inner peace.$(br2)$(c_green)Green$() represents $(italic)Balance$() and $(italic)Harmony$()."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:hidden/collect_spectrum/collect_light_blue_spectrum",
+      "item": "spectrum:light_blue_spectrum",
+      "text": "Looking at this color, you feel a sense of optimism, but also departure.$(br2)$(c_light_blue)Light Blue$() represents $(italic)Luck$() and $(italic)Piece$()."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:hidden/collect_spectrum/collect_light_gray_spectrum",
+      "item": "spectrum:light_gray_spectrum",
+      "text": "You know that feeling when you are sitting serenely, looking at the landscape, feeling life pass you by, and yet everything is okay? $(br2)$(c_light_gray)Light Gray$() represents $(italic)Change$(), but also $(italic)Quiet$()."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:hidden/collect_spectrum/collect_lime_spectrum",
+      "item": "spectrum:lime_spectrum",
+      "text": "It almost smells like a warm morning in spring. Or are you just imagining?$(br2)$(c_lime)Lime$() represents $(italic)Fertility$()."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:hidden/collect_spectrum/collect_magenta_spectrum",
+      "item": "spectrum:magenta_spectrum",
+      "text": "The soft magenta puts you in a calm and content, almost serene mood.$(br2)$(c_magenta)Magenta$() represents $(italic)Time$(), $(italic)Kindness$() and $(italic)Tolerance$()."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:hidden/collect_spectrum/collect_orange_spectrum",
+      "item": "spectrum:orange_spectrum",
+      "text": "The orange color reminds you of autumn and makes you feel a bit like you are sitting in a cozy armchair in front of a fireplace.$(br2)$(c_orange)Orange$() represents $(italic)Warmth$() and $(italic)Comfort$()."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:hidden/collect_spectrum/collect_pink_spectrum",
+      "item": "spectrum:pink_spectrum",
+      "text": "The bright, lively cotton candy pink makes you beam with joy.$(br2)$(c_pink)Pink$() represents $(italic)Happiness$(), $(italic)Health$() and $(italic)Admiration$()."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:hidden/collect_spectrum/collect_purple_spectrum",
+      "item": "spectrum:purple_spectrum",
+      "text": "This sight makes your mind go into high gear. It not only stimulates your thirst for knowledge, but also gives you creative ideas.$(br2)$(c_purple)Purple$() represents $(italic)Wisdom$() and $(italic)Creativity$()."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:hidden/collect_spectrum/collect_red_spectrum",
+      "item": "spectrum:red_spectrum",
+      "text": "You feel the urge and the desire to create something beautiful.$(br2)$(c_red)Red$() represents $(italic)Passion$() and $(italic)Willpower$()."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:hidden/collect_spectrum/collect_white_spectrum",
+      "item": "spectrum:white_spectrum",
+      "text": "You can not exactly put it into words. This spectrum radiates something unspeakably wonderful.$(br2)$(c_white)White$() represents $(italic)LIFE$(), $(italic)Light$() and $(italic)Purity$() ."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:hidden/collect_spectrum/collect_yellow_spectrum",
+      "item": "spectrum:yellow_spectrum",
+      "text": "The vibrant yellow is almost bursting with energy.$(br2)$(c_yellow)Yellow$() represents $(italic)ENERGY$() and $(italic)Joy$()."
+    }
+  ]
+}

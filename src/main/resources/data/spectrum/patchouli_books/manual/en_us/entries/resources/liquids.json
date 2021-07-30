@@ -1,0 +1,19 @@
+{
+    "name": "Liquids",
+    "icon": "minecraft:mud_bucket",
+    "category": "spectrum:resources_category",
+    "pages": [
+        {
+            "type": "patchouli:spotlight",
+            "title": "Mud",
+            "item": "spectrum:mud_bucket",
+            "text": "Mud. It is mud. Not particularly interesting in itself. But what is practical is the collision of the dirt with water and lava. This creates dirt and coarse dirt, respectively."
+        },
+        {
+            "type": "patchouli:spotlight",
+            "title": "Liquid Crystal",
+            "item": "spectrum:liquid_crystal_bucket",
+            "text": "The pure energy of gemstones in their liquid form. It is said to have a healing effect."
+        }
+    ]
+}

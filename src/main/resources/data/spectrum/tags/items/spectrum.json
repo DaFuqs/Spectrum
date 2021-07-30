@@ -1,0 +1,20 @@
+{
+  "values": [
+    "spectrum:black_spectrum",
+    "spectrum:blue_spectrum",
+    "spectrum:brown_spectrum",
+    "spectrum:cyan_spectrum",
+    "spectrum:gray_spectrum",
+    "spectrum:green_spectrum",
+    "spectrum:light_blue_spectrum",
+    "spectrum:light_gray_spectrum",
+    "spectrum:lime_spectrum",
+    "spectrum:magenta_spectrum",
+    "spectrum:orange_spectrum",
+    "spectrum:pink_spectrum",
+    "spectrum:purple_spectrum",
+    "spectrum:red_spectrum",
+    "spectrum:white_spectrum",
+    "spectrum:yellow_spectrum"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "gem_storage",
+  "ingredients": [
+    {
+      "item": "spectrum:sparklestone_block"
+    }
+  ],
+  "result": {
+    "item": "spectrum:sparklestone_gem",
+    "count": 9
+  }
+}

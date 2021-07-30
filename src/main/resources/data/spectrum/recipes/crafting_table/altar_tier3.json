@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "FMF",
+    "MMM",
+    "EAE"
+  ],
+  "key": {
+    "M": {
+      "item": "spectrum:moonstone_shard"
+    },
+    "A": {
+      "item": "spectrum:altar2"
+    },
+    "E": {
+      "item": "spectrum:polished_calcite"
+    },
+    "F": {
+      "item": "spectrum:polished_basalt"
+    }
+  },
+  "result": {
+    "item": "spectrum:altar3",
+    "count": 1
+  }
+}

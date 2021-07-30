@@ -1,0 +1,46 @@
+{
+  "required": true,
+  "package": "de.dafuqs.spectrum.mixin",
+  "compatibilityLevel": "JAVA_16",
+  "mixins": [
+    "AccessorShapedRecipe",
+    "AnvilBlockMixin",
+    "BlockMixin",
+    "EnderEyeItemMixin",
+    "EndermanEntityMixin",
+    "EntityApplyFluidsMixin",
+    "FishingBobberEntityMixin",
+    "FishingBobberEntityRendererMixin",
+    "FluidTagsAccessor",
+    "GeodesGenerateWithGemstoneOresMixin",
+    "HorseBaseEntityMixin",
+    "InfestedBlockMixin",
+    "ItemEntityMixin",
+    "ItemFrameEntityMixin",
+    "ItemModelsMixin",
+    "ItemStackMixin",
+    "LivingEntityMixin",
+    "MobSpawnerBlockEntityMixin",
+    "PlayerAdvancementTrackerMixin",
+    "ServerPlayerEntityMixin",
+    "ServerWorldMixin",
+    "SpawnerBlockMixin",
+    "WorldRendererMixin"
+  ],
+  "client": [
+    "client.AccessorClientAdvancementManager",
+    "client.BlockModelsMixin",
+    "client.BlockOverlayRendererMixin",
+    "client.BuiltinModelItemRendererMixin",
+    "client.ClientPlayerEntityMixin",
+    "client.ClientWorldMixin",
+    "client.ItemFrameEntityRendererMixin",
+    "client.ItemMixin",
+    "client.MixinClientAdvancementManager",
+    "client.MixinMinecraftClient",
+    "client.TransparentBlockMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

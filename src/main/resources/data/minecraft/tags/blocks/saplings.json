@@ -1,21 +1,21 @@
 {
   "replace": false,
   "values": [
-    "pigment:black_sapling",
-    "pigment:blue_sapling",
-    "pigment:brown_sapling",
-    "pigment:cyan_sapling",
-    "pigment:gray_sapling",
-    "pigment:green_sapling",
-    "pigment:light_blue_sapling",
-    "pigment:light_gray_sapling",
-    "pigment:lime_sapling",
-    "pigment:magenta_sapling",
-    "pigment:orange_sapling",
-    "pigment:pink_sapling",
-    "pigment:purple_sapling",
-    "pigment:red_sapling",
-    "pigment:white_sapling",
-    "pigment:yellow_sapling"
+    "spectrum:black_sapling",
+    "spectrum:blue_sapling",
+    "spectrum:brown_sapling",
+    "spectrum:cyan_sapling",
+    "spectrum:gray_sapling",
+    "spectrum:green_sapling",
+    "spectrum:light_blue_sapling",
+    "spectrum:light_gray_sapling",
+    "spectrum:lime_sapling",
+    "spectrum:magenta_sapling",
+    "spectrum:orange_sapling",
+    "spectrum:pink_sapling",
+    "spectrum:purple_sapling",
+    "spectrum:red_sapling",
+    "spectrum:white_sapling",
+    "spectrum:yellow_sapling"
   ]
 }

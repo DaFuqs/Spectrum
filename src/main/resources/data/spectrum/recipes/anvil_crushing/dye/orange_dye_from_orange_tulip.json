@@ -1,0 +1,14 @@
+{
+  "type": "spectrum_anvil_crushing",
+  "ingredient": {
+    "item": "minecraft:orange_tulip"
+  },
+  "crushedItemsPerPointOfDamage": 4,
+  "experience": 0.0,
+  "result" : {
+    "item": "minecraft:orange_dye",
+    "count": 2
+  },
+  "particleEffectIdentifier": "cloud",
+  "soundEventIdentifier": "block.grass.break"
+}

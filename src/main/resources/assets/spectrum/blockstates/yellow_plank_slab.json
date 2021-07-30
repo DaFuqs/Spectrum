@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "spectrum:block/yellow_plank_slab"
+    },
+    "type=double": {
+      "model": "spectrum:block/yellow_planks"
+    },
+    "type=top": {
+      "model": "spectrum:block/yellow_plank_slab_top"
+    }
+  }
+}

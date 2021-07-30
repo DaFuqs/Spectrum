@@ -5,9 +5,9 @@ foreach($gem in $gems) {
 {
     "type": "minecraft:smelting",
     "ingredient": {
-        "item": "pigment:$gem`_ore"
+        "item": "spectrum:$gem`_ore"
     },
-    "result": "pigment:$gem`_shard",
+    "result": "spectrum:$gem`_shard",
     "experience": 0.1,
     "cookingtime": 200
 }
@@ -16,9 +16,9 @@ foreach($gem in $gems) {
 {
     "type": "minecraft:blasting",
     "ingredient": {
-        "item": "pigment:$gem`_ore"
+        "item": "spectrum:$gem`_ore"
     },
-    "result": "pigment:$gem`_shard",
+    "result": "spectrum:$gem`_shard",
     "experience": 0.1,
     "cookingtime": 100
 }

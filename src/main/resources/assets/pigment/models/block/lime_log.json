@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/cube_column",
-  "textures": {
-    "end": "pigment:block/lime_log_top",
-    "side": "pigment:block/lime_log"
-  }
-}

@@ -1,0 +1,32 @@
+{
+  "type": "spectrum_altar",
+  "time": 600,
+  "tier": 1,
+  "cyan": 8,
+  "magenta": 0,
+  "yellow": 0,
+  "white": 0,
+  "black": 0,
+  "experience": 2,
+  "pattern": [
+    "TKT",
+    " S ",
+    " S "
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:stick"
+    },
+    "T": {
+      "item": "spectrum:topaz_shard"
+    },
+    "K": {
+      "item": "spectrum:raw_azurite"
+    }
+  },
+  "result" : {
+    "item": "spectrum:silker_pickaxe",
+    "count": 1
+  },
+  "required_advancements": ["spectrum:hidden/collect_shards/collect_topaz_shard", "spectrum:craft_using_altar", "spectrum:hidden/collect_resource/collect_raw_azurite"]
+}

@@ -1,0 +1,14 @@
+{
+  "type": "spectrum_anvil_crushing",
+  "ingredient": {
+    "item": "minecraft:blaze_rod"
+  },
+  "crushedItemsPerPointOfDamage": 4,
+  "experience": 0.0,
+  "result" : {
+    "item": "minecraft:blaze_powder",
+    "count": 4
+  },
+  "particleEffectIdentifier": "cloud",
+  "soundEventIdentifier": "block.stone.break"
+}

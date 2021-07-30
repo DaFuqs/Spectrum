@@ -1,8 +1,0 @@
-{
-    "type": "minecraft:stonecutting",
-    "ingredient": {
-        "item": "minecraft:tuff"
-    },
-    "result": "pigment:tuff_stairs",
-    "count": 1
-}

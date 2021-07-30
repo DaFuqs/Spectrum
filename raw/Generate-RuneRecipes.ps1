@@ -6,7 +6,7 @@ foreach($gem in $gems) {
 
         New-Item -Name "$gem`_chiseled_$material`_from_cluster.json" -ItemType File -Value @"
 {
-  "type": "pigment_altar",
+  "type": "spectrum_altar",
   "time": 80,
   "tier": 1,
   "magenta": 0,
@@ -22,14 +22,14 @@ foreach($gem in $gems) {
   ],
   "key": {
     "W": {
-	  "item": "pigment:polished_$material"
+	  "item": "spectrum:polished_$material"
     },
     "X": {
 	  "item": "minecraft:$gem`_cluster"
     }
   },
   "result": {
-    "item": "pigment:$gem`_chiseled_$material",
+    "item": "spectrum:$gem`_chiseled_$material",
     "count": 4
   }
 }
@@ -37,7 +37,7 @@ foreach($gem in $gems) {
 
         New-Item -Name "$gem`_chiseled_$material`_from_shards.json" -ItemType File -Value @"
 {
-  "type": "pigment_altar",
+  "type": "spectrum_altar",
   "time": 80,
   "tier": 1,
   "magenta": 0,
@@ -53,14 +53,14 @@ foreach($gem in $gems) {
   ],
   "key": {
     "W": {
-	  "item": "pigment:polished_$material"
+	  "item": "spectrum:polished_$material"
     },
     "X": {
 	  "item": "minecraft:$gem`_shard"
     }
   },
   "result": {
-    "item": "pigment:$gem`_chiseled_$material",
+    "item": "spectrum:$gem`_chiseled_$material",
     "count": 1
   }
 }

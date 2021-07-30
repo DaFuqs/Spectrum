@@ -1,0 +1,19 @@
+{
+  "display": {
+    "icon": {
+        "item": "spectrum:bottle_of_ruin"
+    },
+    "title": {
+      "translate": "advancements.spectrum.craft_bottle_of_ruin.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.craft_bottle_of_ruin.description"
+    }
+  },
+  "parent": "spectrum:spectrum_lategame",
+  "criteria": {
+    "craft": {
+      "trigger":"minecraft:impossible"
+    }
+  }
+}

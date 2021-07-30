@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/cube_column",
-  "textures": {
-    "end": "pigment:block/polished_calcite_pillar_top",
-    "side": "pigment:block/polished_calcite_pillar_side"
-  }
-}

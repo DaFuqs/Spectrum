@@ -1,8 +1,0 @@
-{
-  "criteria": {
-    "has_topaz_shard": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": { "items": [{ "items": [ "pigment:topaz_shard" ]}] }
-    }
-  }
-}

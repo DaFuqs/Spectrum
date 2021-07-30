@@ -1,0 +1,19 @@
+{
+  "display": {
+    "icon": {
+      "item": "spectrum:orange_sapling"
+    },
+    "title": {
+      "translate": "advancements.spectrum.craft_colored_sapling.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.craft_colored_sapling.description"
+    }
+  },
+  "parent": "spectrum:collect_vegetal",
+  "criteria": {
+    "craft": {
+      "trigger":"minecraft:impossible"
+    }
+  }
+}

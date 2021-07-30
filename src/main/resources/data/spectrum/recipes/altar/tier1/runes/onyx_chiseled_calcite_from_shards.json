@@ -1,0 +1,29 @@
+{
+  "type": "spectrum_altar",
+  "time": 80,
+  "tier": 1,
+  "magenta": 0,
+  "yellow": 0,
+  "cyan": 0,
+  "black": 1,
+  "white": 0,
+  "experience": 1.0,
+  "pattern": [
+    "WXW",
+    "XXX",
+    "WXW"
+  ],
+  "key": {
+    "W": {
+	  "item": "spectrum:polished_calcite"
+    },
+    "X": {
+	  "item": "spectrum:onyx_shard"
+    }
+  },
+  "result": {
+    "item": "spectrum:onyx_chiseled_calcite",
+    "count": 1
+  },
+  "required_advancements": ["spectrum:hidden/collect_shards/collect_onyx_shard"]
+}

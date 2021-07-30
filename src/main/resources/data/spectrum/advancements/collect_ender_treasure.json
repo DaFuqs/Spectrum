@@ -1,0 +1,21 @@
+{
+  "display": {
+    "icon": {
+        "item": "spectrum:ender_treasure"
+    },
+    "hidden": true,
+    "title": {
+      "translate": "advancements.spectrum.get_ender_treasure.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.get_ender_treasure.description"
+    }
+  },
+  "parent": "spectrum:spectrum",
+  "criteria": {
+    "has_ender_treasure": {
+      "trigger":"minecraft:inventory_changed",
+      "conditions": { "items": [{ "items": [ "spectrum:ender_treasure" ]}] }
+    }
+  }
+}

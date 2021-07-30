@@ -1,0 +1,17 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "W  ",
+        "WW ",
+        "WWW"
+    ],
+    "key": {
+        "W": {
+	        "item": "minecraft:tuff"
+        }
+    },
+    "result": {
+    "item": "spectrum:tuff_stairs",
+    "count": 6
+    }
+}

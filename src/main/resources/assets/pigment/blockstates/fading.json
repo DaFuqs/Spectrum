@@ -1,7 +1,0 @@
-{
-    "variants": {
-        "decay_state=default": { "model": "pigment:block/fading_default" },
-        "decay_state=leaves": { "model": "pigment:block/fading_leaves" },
-        "decay_state=magic_leaves": { "model": "pigment:block/fading_leaves" }
-    }
-}

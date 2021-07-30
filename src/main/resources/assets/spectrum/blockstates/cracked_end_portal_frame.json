@@ -1,0 +1,32 @@
+{
+  "variants": {
+    "eye_type=none,facing_vertical=false": {
+      "model": "spectrum:block/cracked_end_portal_frame_none"
+    },
+    "eye_type=ender,facing_vertical=false": {
+      "model": "spectrum:block/cracked_end_portal_frame_ender"
+    },
+    "eye_type=vanilla_cracker,facing_vertical=false": {
+      "model": "spectrum:block/cracked_end_portal_frame_vanilla_cracker"
+    },
+    "eye_type=cracker,facing_vertical=false": {
+      "model": "spectrum:block/cracked_end_portal_frame_cracker"
+    },
+    "eye_type=none,facing_vertical=true": {
+      "model": "spectrum:block/cracked_end_portal_frame_none",
+      "y": 90
+    },
+    "eye_type=ender,facing_vertical=true": {
+      "model": "spectrum:block/cracked_end_portal_frame_ender",
+      "y": 90
+    },
+    "eye_type=vanilla_cracker,facing_vertical=true": {
+      "model": "spectrum:block/cracked_end_portal_frame_vanilla_cracker",
+      "y": 90
+    },
+    "eye_type=cracker,facing_vertical=true": {
+      "model": "spectrum:block/cracked_end_portal_frame_cracker",
+      "y": 90
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "type": "spectrum_altar",
+  "time": 40,
+  "tier": 1,
+  "cyan": 0,
+  "magenta": 0,
+  "yellow": 4,
+  "white": 0,
+  "black": 0,
+  "experience": 0.3,
+  "pattern": [
+    "TBT",
+    "BSB",
+    "TBT"
+  ],
+  "key": {
+    "B": {
+      "item": "spectrum:citrine_shard"
+    },
+    "T": {
+      "item": "spectrum:polished_basalt"
+    },
+    "S": {
+      "item": "spectrum:sparklestone_gem"
+    }
+  },
+  "result" : {
+    "item": "spectrum:citrine_basalt_lamp",
+    "count": 4
+  },
+  "required_advancements": [ "spectrum:hidden/collect_shards/collect_citrine_shard", "spectrum:hidden/collect_resource/collect_sparklestone_gem" ]
+}

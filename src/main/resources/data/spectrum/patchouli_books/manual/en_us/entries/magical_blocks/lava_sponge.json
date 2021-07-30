@@ -1,0 +1,16 @@
+{
+  "name": "Lava Sponge",
+  "icon": "spectrum:lava_sponge",
+  "category": "spectrum:magical_blocks_category",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:lava_sponge",
+      "text": "$(italic)At the latest when you held a wet sponge in your hands, you thought that there must be a counterpart for lava. Even though you haven't stumbled across one yet, that hasn't stopped you from inventing one, of course. This altered sponge absorbs a lot of the infernal fluid you found in the depths of the earth and beyond the portal to hell. This should make navigation there much easier..."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "... or so you thought, until you realized that the lava-soaked sponge also has an unfortunate side effect. You should have guessed.$(br2)The Lava Sponge can be used as highly efficient fuel in the furnace, at the same time drying it."
+    }
+  ]
+}

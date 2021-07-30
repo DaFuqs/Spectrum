@@ -1,0 +1,22 @@
+{
+  "display": {
+    "icon": {
+        "item": "spectrum:bottle_of_ruin"
+    },
+    "title": {
+      "translate": "advancements.spectrum.place_ruin.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.place_ruin.description"
+    }
+  },
+  "parent": "spectrum:craft_bottle_of_ruin",
+  "criteria": {
+    "placed_decay": {
+      "trigger":"minecraft:placed_block",
+      "conditions": {
+        "block": "spectrum:ruin"
+      }
+    }
+  }
+}

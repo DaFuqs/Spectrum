@@ -1,0 +1,30 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "spectrum:block/large_onyx_bud",
+      "x": 180
+    },
+    "facing=east": {
+      "model": "spectrum:block/large_onyx_bud",
+      "x": 90,
+      "y": 90
+    },
+    "facing=north": {
+      "model": "spectrum:block/large_onyx_bud",
+      "x": 90
+    },
+    "facing=south": {
+      "model": "spectrum:block/large_onyx_bud",
+      "x": 90,
+      "y": 180
+    },
+    "facing=up": {
+      "model": "spectrum:block/large_onyx_bud"
+    },
+    "facing=west": {
+      "model": "spectrum:block/large_onyx_bud",
+      "x": 90,
+      "y": 270
+    }
+  }
+}

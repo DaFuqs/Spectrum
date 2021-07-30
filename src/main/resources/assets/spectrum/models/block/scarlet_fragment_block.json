@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "particle": "spectrum:block/scarlet_fragment_block_side",
+    "north": "spectrum:block/scarlet_fragment_block_side",
+    "east": "spectrum:block/scarlet_fragment_block_side",
+    "south": "spectrum:block/scarlet_fragment_block_side",
+    "west": "spectrum:block/scarlet_fragment_block_side",
+    "up": "spectrum:block/scarlet_fragment_block_vertical",
+    "down": "spectrum:block/scarlet_fragment_block_vertical"
+  }
+}

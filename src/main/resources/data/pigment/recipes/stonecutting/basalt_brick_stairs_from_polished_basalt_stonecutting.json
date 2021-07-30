@@ -1,8 +1,0 @@
-{
-    "type": "minecraft:stonecutting",
-    "ingredient": {
-        "item": "pigment:polished_basalt"
-    },
-    "result": "pigment:basalt_brick_stairs",
-    "count": 1
-}

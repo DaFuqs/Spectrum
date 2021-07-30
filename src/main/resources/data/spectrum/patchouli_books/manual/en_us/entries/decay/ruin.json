@@ -1,0 +1,21 @@
+{
+  "name": "Experiment #3",
+  "icon": "spectrum:bottle_of_ruin",
+  "category": "spectrum:decay_category",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:bottle_of_ruin",
+      "text": "Now, you won't even make it subtle. This stuff you thought out is $(#ff0000)NASTY$(). Take this as a serious warning. You didn't call it that for the fun of it.$(br2)$(bold)If you are not careful you may ruin the whole world. Literally.$()"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "But then it may be the thing aggressive enough to destroy even the mightiest material.$(br2)You may not have created such lives as you initially imagined, but you still created something clearly powerful. You guess that counts?"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:corrupted_bedrock_dust",
+      "text": "Even Bedrock was not strong enough to withstand your newly created \"life\". Like dandelions through concrete, it ate through Bedrock.$(br)Should you be reading your notes here right now while some of that stuff is still lying around free, you should change that as soon as possible otherwise you WILL regret it."
+    }
+  ]
+}

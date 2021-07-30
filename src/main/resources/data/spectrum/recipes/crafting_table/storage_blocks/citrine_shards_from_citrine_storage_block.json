@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "gem_storage",
+  "ingredients": [
+    {
+      "item": "spectrum:citrine_storage_block"
+    }
+  ],
+  "result": {
+    "item": "spectrum:citrine_shard",
+    "count": 9
+  }
+}

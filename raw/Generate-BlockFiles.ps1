@@ -33,58 +33,58 @@ $generate | ForEach-Object {
     } elseif ($blockType -eq [BlockType]::Lamp) {
         $blockState = Get-BlockStateLamp -Name $_
     }
-    New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\pigment\blockstates\") -Name "$_`.json" -ItemType File -Force -Value $blockState | Out-Null
+    New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\blockstates\") -Name "$_`.json" -ItemType File -Force -Value $blockState | Out-Null
     
     # BLOCK MODELS
     if($blockType -eq [BlockType]::Default) {
         $blockModel = Get-BlockModel -Name $_
-        New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\pigment\models\block\") -Name "$_`.json" -ItemType File -Force -Value $blockModel | Out-Null
+        New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\models\block\") -Name "$_`.json" -ItemType File -Force -Value $blockModel | Out-Null
     } elseif ($blockType -eq [BlockType]::Log) {
         $blockModelLog = Get-BlockModelLog -Name $_
         $blockModelLogHorizontal = Get-BlockModelLogHorizontal -Name $_
-        New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\pigment\models\block\") -Name "$_`.json" -ItemType File -Force -Value $blockModelLog | Out-Null
-        New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\pigment\models\block\") -Name "$_`_horizontal.json" -ItemType File -Force -Value $blockModelLogHorizontal | Out-Null
+        New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\models\block\") -Name "$_`.json" -ItemType File -Force -Value $blockModelLog | Out-Null
+        New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\models\block\") -Name "$_`_horizontal.json" -ItemType File -Force -Value $blockModelLogHorizontal | Out-Null
     } elseif ($blockType -eq [BlockType]::Lamp) {
         $blockModelLampOn = Get-BlockModelLampOn -Name $_
         $blockModelLampOff = Get-BlockModelLampOff -Name $_
-        New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\pigment\models\block\") -Name "$_`.json" -ItemType File -Force -Value $blockModelLampOff | Out-Null
-        New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\pigment\models\block\") -Name "$_`_on.json" -ItemType File -Force -Value $blockModelLampOn | Out-Null
+        New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\models\block\") -Name "$_`.json" -ItemType File -Force -Value $blockModelLampOff | Out-Null
+        New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\models\block\") -Name "$_`_on.json" -ItemType File -Force -Value $blockModelLampOn | Out-Null
     }
 
     # ITEM MODEL
     $itemModel = Get-ItemModel -Name $_
-    New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\pigment\models\item\") -Name "$_`.json" -ItemType File -Force -Value $itemModel | Out-Null
+    New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\models\item\") -Name "$_`.json" -ItemType File -Force -Value $itemModel | Out-Null
 
     # TEXTURE
     # create empty pngs
     if($blockType -eq [BlockType]::Default) {
-        New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\pigment\textures\block\") -Name "$_`.png" -ItemType File -Force | Out-Null
+        New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\textures\block\") -Name "$_`.png" -ItemType File -Force | Out-Null
         if($AnimationFrameTime -ne 0) {
             $mcMetaContent = Get-McMetaFile -Frametime $frameTime
-            New-Item -Path $(Join-Path -Path $pach -ChildPath "\resources\assets\pigment\textures\block\") -Name "$_`.mcmeta" -ItemType File -Value $mcMetaContent | Out-Null
+            New-Item -Path $(Join-Path -Path $pach -ChildPath "\resources\assets\spectrum\textures\block\") -Name "$_`.mcmeta" -ItemType File -Value $mcMetaContent | Out-Null
         }
     } elseif($blockType -eq [BlockType]::Log) {
-        New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\pigment\textures\block\") -Name "$_`.png" -ItemType File -Force | Out-Null
-        New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\pigment\textures\block\") -Name "$_`_top.png" -ItemType File -Force | Out-Null
+        New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\textures\block\") -Name "$_`.png" -ItemType File -Force | Out-Null
+        New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\textures\block\") -Name "$_`_top.png" -ItemType File -Force | Out-Null
         if($AnimationFrameTime -ne 0) {
             $mcMetaContent = Get-McMetaFile -Frametime $frameTime
-            New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\pigment\textures\block\") -Name "$_`.mcmeta" -ItemType File -Value $mcMetaContent | Out-Null
-            New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\pigment\textures\block\") -Name "$_`_top.mcmeta" -ItemType File -Value $mcMetaContent | Out-Null
+            New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\textures\block\") -Name "$_`.mcmeta" -ItemType File -Value $mcMetaContent | Out-Null
+            New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\textures\block\") -Name "$_`_top.mcmeta" -ItemType File -Value $mcMetaContent | Out-Null
         }
     } elseif($blockType -eq [BlockType]::Lamp) {
-        New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\pigment\textures\block\") -Name "$_`.png" -ItemType File -Force | Out-Null
-        New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\pigment\textures\block\") -Name "$_`_off.png" -ItemType File -Force | Out-Null
+        New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\textures\block\") -Name "$_`.png" -ItemType File -Force | Out-Null
+        New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\textures\block\") -Name "$_`_off.png" -ItemType File -Force | Out-Null
         if($AnimationFrameTime -ne 0) {
             $mcMetaContent = Get-McMetaFile -Frametime $frameTime
-            New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\pigment\textures\block\") -Name "$_`.mcmeta" -ItemType File -Value $mcMetaContent | Out-Null
-            New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\pigment\textures\block\") -Name "$_`_off.mcmeta" -ItemType File -Value $mcMetaContent | Out-Null
+            New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\textures\block\") -Name "$_`.mcmeta" -ItemType File -Value $mcMetaContent | Out-Null
+            New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\textures\block\") -Name "$_`_off.mcmeta" -ItemType File -Value $mcMetaContent | Out-Null
         }
     }
 
     # LOOT TABLE
     # To make your block drop items when broken, you will need a loot table. The following file will cause your block to drop its respective item form when broken
     $lootTable = Get-LootTable -Name $_
-    New-Item -Path $(Join-Path -Path $destination -ChildPath "\data\pigment\loot_tables\blocks\") -Name "$_`.json" -ItemType File -Force -Value $lootTable | Out-Null
+    New-Item -Path $(Join-Path -Path $destination -ChildPath "\data\spectrum\loot_tables\blocks\") -Name "$_`.json" -ItemType File -Force -Value $lootTable | Out-Null
 }
 
 
@@ -114,7 +114,7 @@ function Get-RegisterBlockAndItems([string[]] $Names) {
 
 function Get-LangEntries([string[]] $Names) {
     $Names | Foreach-Object {
-        "`"block.pigment.$_`": `"$_`","
+        "`"block.spectrum.$_`": `"$_`","
     }
 }
 
@@ -142,10 +142,10 @@ function Get-BlockStateLog($Name) {
       "y": 90
     },
     "axis=y": {
-      "model": "pigment:block/$Name"
+      "model": "spectrum:block/$Name"
     },
     "axis=z": {
-      "model": "pigment:block/$Name`_horizontal",
+      "model": "spectrum:block/$Name`_horizontal",
       "x": 90
     }
   }
@@ -158,7 +158,7 @@ function Get-BlockStateDefault($Name) {
 {
   "variants": {
     "": {
-      "model": "pigment:block/$Name"
+      "model": "spectrum:block/$Name"
     }
   }
 }
@@ -171,10 +171,10 @@ function Get-BlockStateLamp($Name) {
 {
   "variants": {
     "lit=false": {
-      "model": "pigment:block/$Name"
+      "model": "spectrum:block/$Name"
     },
     "lit=true": {
-      "model": "pigment:block/$Name`_on"
+      "model": "spectrum:block/$Name`_on"
     }
   }
 }
@@ -199,7 +199,7 @@ function Get-BlockModel($Name) {
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "pigment:block/$Name"
+    "all": "spectrum:block/$Name"
   }
 }
 "@
@@ -210,8 +210,8 @@ function Get-BlockModelLog($Name) {
 {
   "parent": "minecraft:block/cube_column",
   "textures": {
-    "end": "pigment:block/$_Name`_top",
-    "side": "pigment:block/$Name"
+    "end": "spectrum:block/$_Name`_top",
+    "side": "spectrum:block/$Name"
   }
 }
 "@
@@ -222,8 +222,8 @@ function Get-BlockModelLogHorizontal($Name) {
 {
   "parent": "minecraft:block/cube_column_horizontal",
   "textures": {
-    "end": "pigment:block/$Name`_top",
-    "side": "pigment:block/$Name"
+    "end": "spectrum:block/$Name`_top",
+    "side": "spectrum:block/$Name"
   }
 }
 "@
@@ -234,7 +234,7 @@ function Get-BlockModelLampOn($Name) {
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "pigment:block/$Name`_on"
+    "all": "spectrum:block/$Name`_on"
   }
 }
 "@
@@ -246,7 +246,7 @@ function Get-BlockModelLampOff($Name) {
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "pigment:block/$Name"
+    "all": "spectrum:block/$Name"
   }
 }
 "@
@@ -267,7 +267,7 @@ function Get-BlockModelLampOff($Name) {
 function Get-ItemModel($Name) {
     Write-Output @"
 {
-    "parent": "pigment:block/$Name"
+    "parent": "spectrum:block/$Name"
 }
 "@
 }
@@ -291,7 +291,7 @@ function Get-LootTable($Name) {
         "entries": [
             {
                 "type": "minecraft:item",
-                "name": "pigment:$_"
+                "name": "spectrum:$_"
             }
             ],
             "conditions": [

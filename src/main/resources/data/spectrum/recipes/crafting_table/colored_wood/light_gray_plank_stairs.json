@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wooden_stairs",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "spectrum:light_gray_planks"
+    }
+  },
+  "result": {
+    "item": "spectrum:light_gray_plank_stairs",
+    "count": 4
+  }
+}

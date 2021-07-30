@@ -1,0 +1,20 @@
+{
+  "display": {
+    "icon": {
+      "item": "spectrum:vegetal"
+    },
+    "title": {
+      "translate": "advancements.spectrum.collect_vegetal.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.collect_vegetal.description"
+    }
+  },
+  "criteria": {
+    "has_black_spectrum": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": { "items": [{ "items": [ "spectrum:vegetal" ]}] }
+    }
+  },
+  "parent": "spectrum:place_bottle_of_fading"
+}

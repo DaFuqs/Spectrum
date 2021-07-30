@@ -1,0 +1,22 @@
+{
+  "display": {
+    "icon": {
+        "item": "spectrum:bottle_of_failing"
+    },
+    "title": {
+      "translate": "advancements.spectrum.place_failing.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.place_failing.description"
+    }
+  },
+  "parent": "spectrum:craft_bottle_of_failing",
+  "criteria": {
+    "placed_decay": {
+      "trigger":"minecraft:placed_block",
+      "conditions": {
+        "block": "spectrum:failing"
+      }
+    }
+  }
+}

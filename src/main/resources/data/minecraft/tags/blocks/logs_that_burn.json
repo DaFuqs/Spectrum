@@ -1,21 +1,21 @@
 {
   "replace": false,
   "values": [
-    "pigment:black_log",
-    "pigment:blue_log",
-    "pigment:brown_log",
-    "pigment:cyan_log",
-    "pigment:gray_log",
-    "pigment:green_log",
-    "pigment:light_blue_log",
-    "pigment:light_gray_log",
-    "pigment:lime_log",
-    "pigment:magenta_log",
-    "pigment:orange_log",
-    "pigment:pink_log",
-    "pigment:purple_log",
-    "pigment:red_log",
-    "pigment:white_log",
-    "pigment:yellow_log"
+    "spectrum:black_log",
+    "spectrum:blue_log",
+    "spectrum:brown_log",
+    "spectrum:cyan_log",
+    "spectrum:gray_log",
+    "spectrum:green_log",
+    "spectrum:light_blue_log",
+    "spectrum:light_gray_log",
+    "spectrum:lime_log",
+    "spectrum:magenta_log",
+    "spectrum:orange_log",
+    "spectrum:pink_log",
+    "spectrum:purple_log",
+    "spectrum:red_log",
+    "spectrum:white_log",
+    "spectrum:yellow_log"
   ]
 }

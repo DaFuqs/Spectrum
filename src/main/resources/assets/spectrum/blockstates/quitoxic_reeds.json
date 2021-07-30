@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "waterlogged=false": {
+      "model": "spectrum:block/quitoxic_reeds"
+    },
+    "waterlogged=true": {
+      "model": "spectrum:block/quitoxic_reeds"
+    }
+  }
+}

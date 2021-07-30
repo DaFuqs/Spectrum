@@ -1,0 +1,22 @@
+{
+  "display": {
+    "icon": {
+      "item": "spectrum:altar"
+    },
+    "title": {
+      "translate": "advancements.spectrum.place_altar.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.place_altar.description"
+    }
+  },
+  "parent": "spectrum:spectrum",
+  "criteria": {
+    "placed_altar": {
+      "trigger":"minecraft:placed_block",
+      "conditions": {
+        "block": "spectrum:altar"
+      }
+    }
+  }
+}

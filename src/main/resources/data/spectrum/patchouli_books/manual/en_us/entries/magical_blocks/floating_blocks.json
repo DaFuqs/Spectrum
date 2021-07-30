@@ -1,0 +1,17 @@
+{
+  "name": "Gravity Blocks",
+  "icon": "spectrum:scarlet_fragment_block",
+  "category": "spectrum:magical_blocks_category",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:scarlet_fragment_block",
+      "text": "TODO"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:paletur_fragment_block",
+      "text": "TODO"
+    }
+  ]
+}

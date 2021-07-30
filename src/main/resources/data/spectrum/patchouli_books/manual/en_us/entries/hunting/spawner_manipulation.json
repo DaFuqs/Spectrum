@@ -1,0 +1,11 @@
+{
+  "name": "Spawner Manipulation",
+  "icon": "spectrum:spawner",
+  "category": "spectrum:hunting_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "TODO"
+    }
+  ]
+}

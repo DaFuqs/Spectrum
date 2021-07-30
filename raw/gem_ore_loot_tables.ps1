@@ -5,7 +5,7 @@ $gems | ForEach-Object {
     if($_ -eq "amethyst") {
         $ident = "minecraft"
     } else {
-        $ident = "pigment"
+        $ident = "spectrum"
     }
 
     foreach($ore in @("", "deepslate_")) {
@@ -23,7 +23,7 @@ $gems | ForEach-Object {
           "children": [
             {
               "type": "minecraft:item",
-		      "name": "pigment:$ore$_`_ore",
+		      "name": "spectrum:$ore$_`_ore",
               "conditions": [
                 {
                   "condition": "minecraft:match_tool",

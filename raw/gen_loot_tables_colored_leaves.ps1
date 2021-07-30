@@ -15,7 +15,7 @@ $p | Foreach-Object {
           "children": [
             {
               "type": "minecraft:item",
-              "name": "pigment:$_`_leaves"
+              "name": "spectrum:$_`_leaves"
               "conditions": [
                 {
                   "condition": "minecraft:alternative",
@@ -45,7 +45,7 @@ $p | Foreach-Object {
             },
             {
               "type": "minecraft:item",
-              "name": "pigment:$_`_sapling"
+              "name": "spectrum:$_`_sapling"
               "conditions": [
                 {
                   "condition": "minecraft:survives_explosion"

@@ -1,0 +1,142 @@
+package de.dafuqs.spectrum.enchantments;
+
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnchantmentTarget;
+import net.minecraft.enchantment.Enchantments;
+import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.Inventory;
+import net.minecraft.item.ItemStack;
+import net.minecraft.recipe.RecipeInputProvider;
+import net.minecraft.recipe.RecipeMatcher;
+import net.minecraft.recipe.RecipeType;
+import net.minecraft.recipe.SmeltingRecipe;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.world.World;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class AutoSmeltEnchantment extends Enchantment {
+
+    public static class AutoSmeltInventory implements Inventory, RecipeInputProvider {
+        ItemStack input = ItemStack.EMPTY;
+
+        @Override
+        public int size() {
+            return 1;
+        }
+
+        @Override
+        public boolean isEmpty() {
+            return input.isEmpty();
+        }
+
+        @Override
+        public ItemStack getStack(int slot) {
+            return input;
+        }
+
+        @Override
+        public ItemStack removeStack(int slot, int amount) {
+            return null;
+        }
+
+        @Override
+        public ItemStack removeStack(int slot) {
+            return null;
+        }
+
+        @Override
+        public void setStack(int slot, ItemStack stack) {
+            this.input = stack;
+        }
+
+        @Override
+        public void markDirty() {
+        }
+
+        @Override
+        public boolean canPlayerUse(PlayerEntity player) {
+            return false;
+        }
+
+        @Override
+        public void clear() {
+            input = ItemStack.EMPTY;
+        }
+
+        private SmeltingRecipe getRecipe(ItemStack itemStack, World world) {
+            setStack(0, itemStack);
+            return world.getRecipeManager().getFirstMatch(RecipeType.SMELTING, this, world).orElse(null);
+        }
+
+        @Override
+        public void provideRecipeInputs(RecipeMatcher recipeMatcher) {
+            recipeMatcher.addInput(input);
+        }
+
+    }
+
+    private static final AutoSmeltInventory autoSmeltInventory = new AutoSmeltInventory();
+
+    public AutoSmeltEnchantment(Rarity weight, EquipmentSlot... slotTypes) {
+        super(weight, EnchantmentTarget.DIGGER, slotTypes);
+    }
+
+    public int getMinPower(int level) {
+        return 15;
+    }
+
+    public int getMaxPower(int level) {
+        return super.getMinPower(level) + 50;
+    }
+
+    public int getMaxLevel() {
+        return 1;
+    }
+
+    public boolean isTreasure() {
+        return false;
+    }
+
+    public boolean isAvailableForEnchantedBookOffer() {
+        return true;
+    }
+
+    public boolean isAvailableForRandomSelection() {
+        return true;
+    }
+
+    public boolean canAccept(Enchantment other) {
+        return super.canAccept(other) && other != Enchantments.SILK_TOUCH && other != SpectrumEnchantments.RESONANCE;
+    }
+
+    public static ItemStack getAutoSmeltedItemStack(ItemStack inputItemStack, World world) {
+       SmeltingRecipe smeltingRecipe = autoSmeltInventory.getRecipe(inputItemStack, world);
+        if(smeltingRecipe != null) {
+            ItemStack recipeOutputStack = smeltingRecipe.getOutput().copy();
+            recipeOutputStack.setCount(recipeOutputStack.getCount() * inputItemStack.getCount());
+            return recipeOutputStack;
+        } else {
+            return inputItemStack;
+        }
+    }
+
+    @NotNull
+    public static List<ItemStack> applyAutoSmelt(ServerWorld world, List<ItemStack> originalStacks) {
+        List<ItemStack> returnItemStacks = new ArrayList<>();
+
+        for (ItemStack is : originalStacks) {
+            ItemStack s = AutoSmeltEnchantment.getAutoSmeltedItemStack(is, world);
+            while (s.getCount() > 0) {
+                int currentAmount = Math.min(s.getCount(), s.getItem().getMaxCount());
+                returnItemStacks.add(new ItemStack(s.getItem(), currentAmount));
+                s.setCount(s.getCount() - currentAmount);
+            }
+        }
+        return returnItemStacks;
+    }
+
+}

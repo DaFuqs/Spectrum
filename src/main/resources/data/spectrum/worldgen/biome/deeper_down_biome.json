@@ -1,0 +1,63 @@
+{
+  "precipitation": "none",
+  "category": "none",
+  "player_spawn_friendly": false,
+  "depth": 0.3,
+  "scale": 0,
+  "temperature": 1.5,
+  "temperature_modifier": "none",
+  "downfall": 0.0,
+  "effects": {
+    "mood_sound": {
+      "sound": "spectrum:dimension_ambient",
+      "tick_delay": 6000,
+      "block_search_extent": 8,
+      "offset": 2.0
+    },
+    "sky_color": 7907327,
+    "fog_color": 6200513,
+    "water_color": 4159204,
+    "water_fog_color": 329011
+  },
+  "surface_builder": "spectrum:deeper_down_surface_builder",
+  "carvers": {
+    "air": [
+      "minecraft:cave"
+    ]
+  },
+  "features": [
+    [],
+    [],
+    [],
+    [
+      "spectrum:moonstone_geode",
+      "minecraft:monster_room"
+    ],
+    [],
+    [],
+    [
+      "minecraft:ore_copper",
+      "minecraft:disk_sand",
+      "minecraft:disk_clay",
+      "minecraft:disk_gravel"
+    ],
+    [
+      "minecraft:ore_infested"
+    ],
+    [
+      "minecraft:glow_lichen"
+    ],
+    []
+  ],
+  "starts": [],
+  "spawners": {
+    "monster": [],
+    "creature": [],
+    "ambient": [],
+    "water_creature": [],
+    "water_ambient": [],
+    "misc": []
+  },
+  "creature_spawn_probability": 0.0,
+  "spawn_costs": {}
+}

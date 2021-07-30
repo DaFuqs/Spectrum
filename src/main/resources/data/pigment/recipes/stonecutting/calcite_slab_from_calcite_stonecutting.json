@@ -1,8 +1,0 @@
-{
-    "type": "minecraft:stonecutting",
-    "ingredient": {
-        "item": "minecraft:calcite"
-    },
-    "result": "pigment:calcite_slab",
-    "count": 2
-}

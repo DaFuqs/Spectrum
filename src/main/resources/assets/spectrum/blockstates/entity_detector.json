@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "inverted=false": {
+      "model": "spectrum:block/entity_detector"
+    },
+    "inverted=true": {
+      "model": "spectrum:block/entity_detector_inverted"
+    }
+  }
+}

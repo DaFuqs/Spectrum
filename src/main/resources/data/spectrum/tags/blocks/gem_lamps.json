@@ -1,0 +1,15 @@
+{
+  "replace": false,
+  "values": [
+    "spectrum:amethyst_basalt_lamp",
+    "spectrum:citrine_basalt_lamp",
+    "spectrum:topaz_basalt_lamp",
+    "spectrum:moonstone_basalt_lamp",
+    "spectrum:onyx_basalt_lamp",
+    "spectrum:amethyst_calcite_lamp",
+    "spectrum:citrine_calcite_lamp",
+    "spectrum:topaz_calcite_lamp",
+    "spectrum:moonstone_calcite_lamp",
+    "spectrum:onyx_calcite_lamp"
+  ]
+}

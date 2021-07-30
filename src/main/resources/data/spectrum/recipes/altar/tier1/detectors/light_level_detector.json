@@ -1,0 +1,35 @@
+{
+  "type": "spectrum_altar",
+  "time": 80,
+  "tier": 1,
+  "cyan": 0,
+  "magenta": 4,
+  "yellow": 0,
+  "white": 0,
+  "black": 0,
+  "experience": 2.0,
+  "pattern": [
+    "BBB",
+    "CQC",
+    "SSS"
+  ],
+  "key": {
+    "B": {
+      "item": "minecraft:glass"
+    },
+    "C": {
+      "item": "minecraft:amethyst_shard"
+    },
+    "Q": {
+      "item": "minecraft:quartz"
+    },
+    "S": {
+      "tag": "minecraft:wooden_slabs"
+    }
+  },
+  "result" : {
+    "item": "spectrum:light_level_detector",
+    "count": 1
+  },
+  "required_advancements": ["spectrum:hidden/collect_shards/collect_amethyst_shard"]
+}

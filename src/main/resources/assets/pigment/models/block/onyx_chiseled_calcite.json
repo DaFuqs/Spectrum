@@ -1,6 +1,0 @@
-{
-    "parent": "block/cube_all",
-    "textures": {
-    "all": "pigment:block/onyx_chiseled_calcite"
-    }
-}

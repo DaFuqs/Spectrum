@@ -1,10 +1,10 @@
 {
   "replace": false,
   "values": [
-    "pigment:bedrock_pickaxe",
-    "pigment:silker_pickaxe",
-    "pigment:fortune_pickaxe",
-    "pigment:multitool"
+    "spectrum:bedrock_pickaxe",
+    "spectrum:silker_pickaxe",
+    "spectrum:fortune_pickaxe",
+    "spectrum:multitool"
 
   ]
 }

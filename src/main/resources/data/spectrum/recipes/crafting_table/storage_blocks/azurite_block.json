@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AAA",
+    "AAA",
+    "AAA"
+  ],
+  "key": {
+    "A": {
+      "item": "spectrum:raw_azurite"
+    }
+  },
+  "result": {
+    "item": "spectrum:azurite_block",
+    "count": 1
+  }
+}

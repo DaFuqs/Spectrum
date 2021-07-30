@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "gem_storage",
+  "ingredients": [
+    {
+      "item": "spectrum:moonstone_storage_block"
+    }
+  ],
+  "result": {
+    "item": "spectrum:moonstone_shard",
+    "count": 9
+  }
+}

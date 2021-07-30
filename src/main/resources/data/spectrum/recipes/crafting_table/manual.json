@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "SSS",
+        "SBS",
+        "SSS"
+    ],
+    "key": {
+        "S": {
+	        "tag": "spectrum:gem_shards"
+        },
+        "B": {
+	        "item": "minecraft:book"
+        }
+    },
+    "result": {
+        "item": "spectrum:manual",
+        "count": 1
+    }
+}

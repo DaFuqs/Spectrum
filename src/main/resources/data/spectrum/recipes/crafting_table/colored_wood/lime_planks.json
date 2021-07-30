@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    {
+      "item": "spectrum:lime_log"
+    }
+  ],
+  "result": {
+    "item": "spectrum:lime_planks",
+    "count": 4
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "gem_storage",
+  "ingredients": [
+    {
+      "item": "spectrum:amethyst_storage_block"
+    }
+  ],
+  "result": {
+    "item": "minecraft:amethyst_shard",
+    "count": 9
+  }
+}

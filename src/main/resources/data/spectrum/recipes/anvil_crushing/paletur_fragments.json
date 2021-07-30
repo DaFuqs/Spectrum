@@ -1,0 +1,14 @@
+{
+  "type": "spectrum_anvil_crushing",
+  "ingredient": {
+    "item": "spectrum:paletur_gem"
+  },
+  "crushedItemsPerPointOfDamage": 1,
+  "experience": 0.5,
+  "result" : {
+    "item": "spectrum:shattered_paletur_fragments",
+    "count": 8
+  },
+  "particleEffectIdentifier": "cloud",
+  "soundEventIdentifier": "block.glass.break"
+}

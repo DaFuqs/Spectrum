@@ -1,0 +1,56 @@
+{
+  "name": "Bedrock Tools",
+  "icon": "spectrum:bedrock_pickaxe",
+  "category": "spectrum:magical_items_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Whenever you enter a new world, you go about the mindless, days-long task of gathering villagers around you, turning them into zombies and healing them again, only for one of them to eventually hand you a book of Mending. All this, just so you don't have to fix your tools.$(br)That's both less exciting and species-appropriate. Now that you can process Bedrock, you have a more humane solution."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:bedrock_pickaxe",
+      "text": "The Bedrock Pickaxe comes with $(bold)Silk Touch$()."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:bedrock_axe",
+      "text": "The Bedrock Axe comes with $(bold)Efficiency V$()."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:bedrock_shovel",
+      "text": "The Bedrock Shovel comes with $(bold)Efficiency V$()."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:bedrock_sword",
+      "text": "The Bedrock Sword comes with $(bold)Sharpness V$()."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:bedrock_hoe",
+      "text": "The Bedrock Hoe comes with $(bold)Fortune III$()."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:bedrock_bow",
+      "text": "The Bedrock Bow comes with $(bold)Power V$()."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:bedrock_crossbow",
+      "text": "The Bedrock Crossbow comes with $(bold)Quick Charge III$()."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:bedrock_shears",
+      "text": "The Bedrock Shears come with $(bold)Silk Touch$()."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:bedrock_fishing_rod",
+      "text": "The Bedrock Fishing Rod comes with $(bold)Luck of the Sea III$()."
+    }
+  ]
+}

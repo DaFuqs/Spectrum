@@ -1,21 +1,21 @@
 {
   "replace": false,
   "values": [
-    "pigment:black_plank_pressure_plate",
-    "pigment:blue_plank_pressure_plate",
-    "pigment:brown_plank_pressure_plate",
-    "pigment:cyan_plank_pressure_plate",
-    "pigment:gray_plank_pressure_plate",
-    "pigment:green_plank_pressure_plate",
-    "pigment:light_blue_plank_pressure_plate",
-    "pigment:light_gray_plank_pressure_plate",
-    "pigment:lime_plank_pressure_plate",
-    "pigment:magenta_plank_pressure_plate",
-    "pigment:orange_plank_pressure_plate",
-    "pigment:pink_plank_pressure_plate",
-    "pigment:purple_plank_pressure_plate",
-    "pigment:red_plank_pressure_plate",
-    "pigment:white_plank_pressure_plate",
-    "pigment:yellow_plank_pressure_plate"
+    "spectrum:black_plank_pressure_plate",
+    "spectrum:blue_plank_pressure_plate",
+    "spectrum:brown_plank_pressure_plate",
+    "spectrum:cyan_plank_pressure_plate",
+    "spectrum:gray_plank_pressure_plate",
+    "spectrum:green_plank_pressure_plate",
+    "spectrum:light_blue_plank_pressure_plate",
+    "spectrum:light_gray_plank_pressure_plate",
+    "spectrum:lime_plank_pressure_plate",
+    "spectrum:magenta_plank_pressure_plate",
+    "spectrum:orange_plank_pressure_plate",
+    "spectrum:pink_plank_pressure_plate",
+    "spectrum:purple_plank_pressure_plate",
+    "spectrum:red_plank_pressure_plate",
+    "spectrum:white_plank_pressure_plate",
+    "spectrum:yellow_plank_pressure_plate"
   ]
 }

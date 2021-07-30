@@ -1,0 +1,16 @@
+{
+  "name": "Compacting Chest",
+  "icon": "spectrum:compacting_chest",
+  "category": "spectrum:magical_blocks_category",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:compacting_chest",
+      "text": "$(italic)You are long tired of creating new storage space for all the coal, iron, copper and gold that are piling up in your storage room. To assemble this stuff always one by one to easily storable lumps is no fun. So you thought up a construction that takes this thoughtless work off your hands."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "The name says it all.$(br)The Compacting Chest will try to craft all the things you put into it in a 3x3 pattern."
+    }
+  ]
+}

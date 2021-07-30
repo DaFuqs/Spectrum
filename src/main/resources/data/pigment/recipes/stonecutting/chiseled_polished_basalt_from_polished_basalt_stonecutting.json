@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "pigment:polished_basalt"
-  },
-  "result": "pigment:chiseled_polished_basalt",
-  "count": 1
-}

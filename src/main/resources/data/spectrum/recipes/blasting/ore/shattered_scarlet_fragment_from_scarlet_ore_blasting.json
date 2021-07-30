@@ -1,0 +1,9 @@
+{
+    "type": "minecraft:blasting",
+    "ingredient": {
+        "item": "spectrum:scarlet_ore"
+    },
+    "result": "spectrum:shattered_scarlet_fragments",
+    "experience": 0.2,
+    "cookingtime": 100
+}

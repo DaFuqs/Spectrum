@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "spectrum:shattered_paletur_fragments"
+    }
+  },
+  "result": {
+    "item": "spectrum:paletur_fragment_block",
+    "count": 1
+  }
+}

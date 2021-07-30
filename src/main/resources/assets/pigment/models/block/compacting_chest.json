@@ -1,7 +1,0 @@
-{
-  "parent": "pigment:block/chest_template",
-  "textures": {
-    "0": "pigment:entity/compacting_chest",
-    "particle": "pigment:block/compacting_chest_break"
-  }
-}

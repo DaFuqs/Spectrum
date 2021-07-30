@@ -1,0 +1,12 @@
+{
+  "type": "spectrum:deeper_down_type",
+  "generator": {
+    "type": "minecraft:noise",
+    "settings": "spectrum:deeper_down_noise",
+    "seed": 0,
+    "biome_source": {
+      "type": "spectrum:deeper_down_biome_source",
+      "seed": 0
+    }
+  }
+}

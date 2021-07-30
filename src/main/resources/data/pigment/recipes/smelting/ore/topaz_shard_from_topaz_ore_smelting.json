@@ -1,9 +1,0 @@
-{
-    "type": "minecraft:smelting",
-    "ingredient": {
-        "item": "pigment:topaz_ore"
-    },
-    "result": "pigment:topaz_shard",
-    "experience": 0.25,
-    "cookingtime": 200
-}

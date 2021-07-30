@@ -1,0 +1,20 @@
+{
+  "display": {
+    "icon": {
+      "item": "spectrum:shooting_star"
+    },
+    "hidden": true,
+    "title": {
+      "translate": "advancements.spectrum.catch_shooting_star.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.catch_shooting_star.description"
+    }
+  },
+  "parent": "spectrum:spectrum_midgame",
+  "criteria": {
+    "catch": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

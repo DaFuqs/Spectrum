@@ -1,0 +1,16 @@
+{
+  "name": "Nature's Staff",
+  "icon": "spectrum:natures_staff",
+  "category": "spectrum:magical_items_category",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:natures_staff",
+      "text": ""
+    },
+    {
+      "type": "patchouli:text",
+      "text": ""
+    }
+  ]
+}

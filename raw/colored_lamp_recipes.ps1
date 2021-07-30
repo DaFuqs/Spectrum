@@ -3,7 +3,7 @@
 $c | Foreach-Object {
 New-Item -Name "$_`_lamp.json" -ItemType File -Value @"
 {
-  "type": "pigment_altar",
+  "type": "spectrum_altar",
   "time": 40,
   "tier": 1,
   "magenta": 0,
@@ -19,17 +19,17 @@ New-Item -Name "$_`_lamp.json" -ItemType File -Value @"
   ],
   "key": {
   	"P": {
-      "item": "pigment:$_`_pigment"
+      "item": "spectrum:$_`_spectrum"
     },
 	"G": {
       "item": "minecraft:glowstone"
     },
 	"S": {
-      "item": "pigment:sparklestone_gem"
+      "item": "spectrum:sparklestone_gem"
     }
   },
   "result" : {
-    "item": "pigment:$_`_lamp",
+    "item": "spectrum:$_`_lamp",
     "count": 1
   }
 }

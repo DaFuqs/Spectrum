@@ -1,0 +1,19 @@
+{
+  "display": {
+    "icon": {
+        "item": "spectrum:bottle_of_fading"
+    },
+    "title": {
+      "translate": "advancements.spectrum.craft_bottle_of_fading.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.craft_bottle_of_fading.description"
+    }
+  },
+  "parent": "spectrum:craft_using_altar",
+  "criteria": {
+    "craft": {
+      "trigger":"minecraft:impossible"
+    }
+  }
+}

@@ -1,15 +1,15 @@
 {
   "replace": false,
   "values": [
-    "pigment:cyan_spirit_sallow_vines_body",
-    "pigment:cyan_spirit_sallow_vines_body",
-    "pigment:magenta_spirit_sallow_vines_body",
-    "pigment:magenta_spirit_sallow_vines_body",
-    "pigment:yellow_spirit_sallow_vines_body",
-    "pigment:yellow_spirit_sallow_vines_body",
-    "pigment:black_spirit_sallow_vines_body",
-    "pigment:black_spirit_sallow_vines_body",
-    "pigment:white_spirit_sallow_vines_body",
-    "pigment:white_spirit_sallow_vines_body"
+    "spectrum:cyan_spirit_sallow_vines_body",
+    "spectrum:cyan_spirit_sallow_vines_body",
+    "spectrum:magenta_spirit_sallow_vines_body",
+    "spectrum:magenta_spirit_sallow_vines_body",
+    "spectrum:yellow_spirit_sallow_vines_body",
+    "spectrum:yellow_spirit_sallow_vines_body",
+    "spectrum:black_spirit_sallow_vines_body",
+    "spectrum:black_spirit_sallow_vines_body",
+    "spectrum:white_spirit_sallow_vines_body",
+    "spectrum:white_spirit_sallow_vines_body"
   ]
 }

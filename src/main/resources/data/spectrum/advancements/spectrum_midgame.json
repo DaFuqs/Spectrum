@@ -1,0 +1,20 @@
+{
+  "display": {
+    "icon": {
+      "item": "spectrum:altar2"
+    },
+    "title": {
+      "translate": "advancements.spectrum.spectrum_midgame.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.spectrum_midgame.description"
+    },
+    "background": "spectrum:textures/gui/advancement_background_midgame.png"
+  },
+  "criteria": {
+    "get_altar2": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": { "items": [{ "items": [ "spectrum:altar2" ]}] }
+    }
+  }
+}

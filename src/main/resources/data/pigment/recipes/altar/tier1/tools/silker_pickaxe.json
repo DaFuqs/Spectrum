@@ -28,5 +28,5 @@
     "item": "pigment:silker_pickaxe",
     "count": 1
   },
-  "required_advancements": ["pigment:hidden/collect_shards/collect_topaz_shard", "pigment:hidden/collect_resource/collect_raw_azurite"]
+  "required_advancements": ["pigment:hidden/collect_shards/collect_topaz_shard", "pigment:craft_using_altar", "pigment:hidden/collect_resource/collect_raw_azurite"]
 }

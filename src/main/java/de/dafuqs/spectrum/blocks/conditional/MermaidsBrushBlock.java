@@ -93,10 +93,10 @@ public class MermaidsBrushBlock extends PlantBlock implements Cloakable, Waterlo
         if (age == 7) {
             ItemEntity pearlEntity = new ItemEntity(world, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, new ItemStack(SpectrumItems.MERMAIDS_GEM, 1));
             world.spawnEntity(pearlEntity);
-            world.setBlockState(pos, state.with(AGE, 0), 4);
+            world.setBlockState(pos, state.with(AGE, 0), 3);
         } else {
             if(random.nextFloat() < 0.1) {
-                world.setBlockState(pos, state.with(AGE, age + 1), 4);
+                world.setBlockState(pos, state.with(AGE, age + 1), 3);
             }
         }
     }

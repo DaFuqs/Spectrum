@@ -15,7 +15,7 @@
   ],
   "key": {
     "P": {
-      "item": "spectrum:onyx_shard"
+      "item": "spectrum:onyx_powder"
     },
     "G": {
       "item": "minecraft:glass"
@@ -25,5 +25,5 @@
     "item": "spectrum:onyx_glass",
     "count": 8
   },
-  "required_advancements": ["spectrum:hidden/collect_shards/collect_onyx_shard"]
+  "required_advancements": ["spectrum:hidden/collect_shards/collect_onyx_powder"]
 }

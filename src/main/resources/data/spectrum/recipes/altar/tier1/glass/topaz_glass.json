@@ -15,7 +15,7 @@
   ],
   "key": {
     "P": {
-      "item": "spectrum:topaz_shard"
+      "item": "spectrum:topaz_powder"
     },
     "G": {
       "item": "minecraft:glass"
@@ -25,5 +25,5 @@
     "item": "spectrum:topaz_glass",
     "count": 8
   },
-  "required_advancements": ["spectrum:hidden/collect_shards/collect_topaz_shard"]
+  "required_advancements": ["spectrum:hidden/collect_shards/collect_topaz_powder"]
 }

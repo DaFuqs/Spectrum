@@ -1,0 +1,8 @@
+{
+  "criteria": {
+    "has_ender_eye": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": { "items": [{ "items": [ "minecraft:ender_eye" ]}] }
+    }
+  }
+}

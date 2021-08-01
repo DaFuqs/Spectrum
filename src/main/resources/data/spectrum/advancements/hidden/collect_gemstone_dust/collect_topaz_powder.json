@@ -1,0 +1,8 @@
+{
+  "criteria": {
+    "has_amethyst_shard": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": { "items": [{ "items": [ "minecraft:topaz_powder" ]}] }
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "criteria": {
+    "has_moonstone_shard": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": { "items": [{ "items": [ "spectrum:amethyst_powder" ]}] }
+    }
+  }
+}

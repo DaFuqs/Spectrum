@@ -15,7 +15,7 @@
   ],
   "key": {
     "P": {
-      "item": "spectrum:moonstone_shard"
+      "item": "spectrum:moonstone_powder"
     },
     "G": {
       "item": "minecraft:glass"
@@ -25,5 +25,5 @@
     "item": "spectrum:moonstone_glass",
     "count": 8
   },
-  "required_advancements": ["spectrum:hidden/collect_shards/collect_moonstone_shard"]
+  "required_advancements": ["spectrum:hidden/collect_shards/collect_moonstone_powder"]
 }

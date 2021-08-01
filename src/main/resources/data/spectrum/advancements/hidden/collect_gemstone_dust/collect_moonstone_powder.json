@@ -1,0 +1,8 @@
+{
+  "criteria": {
+    "has_onyx_shard": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": { "items": [{ "items": [ "spectrum:moonstone_powder" ]}] }
+    }
+  }
+}

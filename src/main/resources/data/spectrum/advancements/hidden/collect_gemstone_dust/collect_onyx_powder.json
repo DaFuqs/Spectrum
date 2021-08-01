@@ -1,0 +1,8 @@
+{
+  "criteria": {
+    "has_topaz_shard": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": { "items": [{ "items": [ "spectrum:onyx_powder" ]}] }
+    }
+  }
+}

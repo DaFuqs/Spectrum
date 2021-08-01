@@ -9,7 +9,6 @@ import de.dafuqs.spectrum.blocks.chests.CompactingChestBlock;
 import de.dafuqs.spectrum.blocks.chests.PrivateChestBlock;
 import de.dafuqs.spectrum.blocks.chests.RestockingChestBlock;
 import de.dafuqs.spectrum.blocks.conditional.*;
-import de.dafuqs.spectrum.blocks.conditional.GemstoneOreBlock;
 import de.dafuqs.spectrum.blocks.decay.FadingBlock;
 import de.dafuqs.spectrum.blocks.decay.FailingBlock;
 import de.dafuqs.spectrum.blocks.decay.RuinBlock;

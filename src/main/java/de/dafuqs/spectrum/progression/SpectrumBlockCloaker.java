@@ -1,10 +1,10 @@
 package de.dafuqs.spectrum.progression;
 
 import de.dafuqs.spectrum.accessor.WorldRendererAccessor;
-import de.dafuqs.spectrum.toast.RevelationToast;
 import de.dafuqs.spectrum.interfaces.Cloakable;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
+import de.dafuqs.spectrum.toast.RevelationToast;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.advancement.Advancement;

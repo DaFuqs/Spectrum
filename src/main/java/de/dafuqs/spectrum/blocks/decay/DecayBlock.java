@@ -1,8 +1,8 @@
 package de.dafuqs.spectrum.blocks.decay;
 
 import de.dafuqs.spectrum.Support;
-import de.dafuqs.spectrum.registries.SpectrumDamageSources;
 import de.dafuqs.spectrum.registries.SpectrumBlockTags;
+import de.dafuqs.spectrum.registries.SpectrumDamageSources;
 import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

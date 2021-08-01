@@ -1,8 +1,8 @@
 package de.dafuqs.spectrum.progression;
 
 import de.dafuqs.spectrum.Support;
-import de.dafuqs.spectrum.toast.RecipeToast;
 import de.dafuqs.spectrum.recipe.altar.AltarCraftingRecipe;
+import de.dafuqs.spectrum.toast.RecipeToast;
 import net.minecraft.advancement.Advancement;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.item.ItemStack;

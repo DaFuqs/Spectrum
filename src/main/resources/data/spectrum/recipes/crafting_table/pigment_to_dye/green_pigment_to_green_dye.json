@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "pigment_to_dye",
+  "ingredients": [
+    {
+      "item": "spectrum:green_pigment"
+    }
+  ],
+  "result": {
+    "item": "minecraft:green_dye"
+  }
+}

@@ -24,5 +24,6 @@
   "result" : {
     "item": "spectrum:compacting_chest",
     "count": 1
-  }
+  },
+  "required_advancements": ["spectrum:craft_using_altar"]
 }

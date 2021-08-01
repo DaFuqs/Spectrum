@@ -15,7 +15,7 @@
   ],
   "key": {
     "P": {
-      "item": "minecraft:amethyst_powder"
+      "item": "pigment:amethyst_powder"
     },
     "G": {
       "item": "minecraft:glass"
@@ -25,5 +25,5 @@
     "item": "spectrum:amethyst_glass",
     "count": 8
   },
-  "required_advancements": ["spectrum:hidden/collect_shards/collect_amethyst_powder"]
+  "required_advancements": ["spectrum:hidden/collect_shards/collect_amethyst_shard"]
 }

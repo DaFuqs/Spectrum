@@ -2,7 +2,7 @@
   "type": "minecraft:block",
   "pools": [
     {
-      "rolls": 1.0,
+      "rolls": 1,
       "bonus_rolls": 0.0,
       "entries": [
         {
@@ -62,12 +62,12 @@
       ]
     },
     {
-      "rolls": 1.0,
+      "rolls": 1,
       "bonus_rolls": 0.0,
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:red_dye",
+          "name": "spectrum:red_pigment",
           "conditions": [
             {
               "condition": "minecraft:table_bonus",

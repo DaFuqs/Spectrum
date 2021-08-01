@@ -104,10 +104,8 @@ public class AltarScreenHandler extends AbstractRecipeScreenHandler<Inventory> {
         // serverside only: if the recipe output has changed send update to the client
         if(!world.isClient) {
             ItemStack outputItemStack = ((AltarBlockEntity) inventory).getCraftingOutput();
-            Slot slot = this.slots.get(15);
-            slot.setStack(outputItemStack);
 
-            ItemStack displayedItemStack = outputItemStack.copy();
+            ItemStack displayedItemStack;
             if(outputItemStack.isEmpty()) {
                 displayedItemStack = inventory.getStack(15);
             } else {

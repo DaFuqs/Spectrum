@@ -63,14 +63,13 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
 
     protected final PropertyDelegate propertyDelegate;
     private static final RecipeType<? extends AltarCraftingRecipe> recipeType = SpectrumRecipeTypes.ALTAR;
-    private Object lastRecipe;
+    private Recipe lastRecipe;
 
     private static AutoCraftingInventory autoCraftingInventory;
 
-    public static final int INVENTORY_SIZE = 17; // 9 crafting, 5 gems, 1 craftingTablet, 1 preview, 1 output
+    public static final int INVENTORY_SIZE = 16; // 9 crafting, 5 gems, 1 craftingTablet, 1 output
     public static final int CRAFTING_TABLET_SLOT_ID = 14;
-    public static final int PREVIEW_SLOT_ID = 15;
-    public static final int OUTPUT_SLOT_ID = 16;
+    public static final int OUTPUT_SLOT_ID = 15;
 
     public AltarBlockEntity(BlockPos blockPos, BlockState blockState) {
         super(SpectrumBlockEntityRegistry.ALTAR, blockPos, blockState);
@@ -247,28 +246,14 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
                     if (altarCraftingRecipe.canCraft(altarBlockEntity.getOwnerUUID())) {
                         altarBlockEntity.lastRecipe = altarCraftingRecipe;
                         altarBlockEntity.craftingTimeTotal = altarCraftingRecipe.getCraftingTime();
-                        altarBlockEntity.inventory.set(PREVIEW_SLOT_ID, altarCraftingRecipe.getOutput().copy());
-                        shouldMarkDirty = true;
-                    } else {
-                        altarBlockEntity.lastRecipe = null;
-                        if(!altarBlockEntity.inventory.get(PREVIEW_SLOT_ID).isEmpty()) {
-                            altarBlockEntity.inventory.set(PREVIEW_SLOT_ID, ItemStack.EMPTY);
-                            shouldMarkDirty = true;
-                        }
                     }
                 } else {
                     craftingRecipe = world.getRecipeManager().getFirstMatch(RecipeType.CRAFTING, autoCraftingInventory, world).orElse(null);
                     if (craftingRecipe != null) {
                         altarBlockEntity.lastRecipe = craftingRecipe;
                         altarBlockEntity.craftingTimeTotal = 20;
-                        altarBlockEntity.inventory.set(PREVIEW_SLOT_ID, craftingRecipe.getOutput().copy());
-                        shouldMarkDirty = true;
                     } else {
                         altarBlockEntity.lastRecipe = null;
-                        if(!altarBlockEntity.inventory.get(PREVIEW_SLOT_ID).isEmpty()) {
-                            altarBlockEntity.inventory.set(PREVIEW_SLOT_ID, ItemStack.EMPTY);
-                            shouldMarkDirty = true;
-                        }
                     }
                 }
             }
@@ -462,11 +447,11 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
         Advancement craftingAdvancement = SpectrumCommon.minecraftServer.getAdvancementLoader().get(new Identifier(SpectrumCommon.MOD_ID, "craft_using_altar"));
 
         if(serverPlayerEntity != null) {
-            if(craftingAdvancement != null) {
+            if (craftingAdvancement != null) {
                 serverPlayerEntity.getAdvancementTracker().grantCriterion(craftingAdvancement, "craft");
 
                 // Advancement specific for the crafted item
-                if(recipe.unlocksAdvancementOnCraft() && !Support.hasAdvancement(serverPlayerEntity, recipe.getUnlockedAdvancementOnCraft())) {
+                if (recipe.unlocksAdvancementOnCraft() && !Support.hasAdvancement(serverPlayerEntity, recipe.getUnlockedAdvancementOnCraft())) {
                     Advancement itemAdvancement = SpectrumCommon.minecraftServer.getAdvancementLoader().get(recipe.getUnlockedAdvancementOnCraft());
                     if (itemAdvancement != null) {
                         serverPlayerEntity.getAdvancementTracker().grantCriterion(itemAdvancement, "craft");
@@ -474,8 +459,6 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
                 }
             }
         }
-
-
     }
 
     @Override
@@ -596,4 +579,11 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
         setCustomName(new TranslatableText("block.spectrum.altar.title_with_owner", ownerName));
     }
 
+    public ItemStack getCraftingOutput() {
+        if(this.lastRecipe == null) {
+            return ItemStack.EMPTY;
+        } else {
+            return lastRecipe.getOutput();
+        }
+    }
 }

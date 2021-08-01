@@ -3,53 +3,57 @@ package de.dafuqs.spectrum.inventories;
 import de.dafuqs.spectrum.blocks.altar.AltarBlockEntity;
 import de.dafuqs.spectrum.inventories.slots.ReadOnlySlot;
 import de.dafuqs.spectrum.inventories.slots.StackFilterSlot;
-import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
-import de.dafuqs.spectrum.recipe.altar.AltarCraftingRecipe;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.inventory.CraftingResultInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.network.packet.s2c.play.ScreenHandlerSlotUpdateS2CPacket;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeInputProvider;
 import net.minecraft.recipe.RecipeMatcher;
-import net.minecraft.recipe.RecipeType;
 import net.minecraft.recipe.book.RecipeBookCategory;
-import net.minecraft.screen.AbstractRecipeScreenHandler;
-import net.minecraft.screen.ArrayPropertyDelegate;
-import net.minecraft.screen.PropertyDelegate;
-import net.minecraft.screen.ScreenHandlerType;
+import net.minecraft.screen.*;
 import net.minecraft.screen.slot.Slot;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.world.World;
 
 public class AltarScreenHandler extends AbstractRecipeScreenHandler<Inventory> {
+
+    private final ScreenHandlerContext context;
+    private final PlayerEntity player;
 
     private final Inventory inventory;
     private final PropertyDelegate propertyDelegate;
     protected final World world;
     private final RecipeBookCategory category;
+    private final CraftingResultInventory craftingResultInventory;
 
     public AltarScreenHandler(int syncId, PlayerInventory playerInventory) {
-        this(SpectrumScreenHandlerTypes.ALTAR, SpectrumRecipeTypes.ALTAR, RecipeBookCategory.CRAFTING, syncId, playerInventory);
+        this(SpectrumScreenHandlerTypes.ALTAR, ScreenHandlerContext.EMPTY, RecipeBookCategory.CRAFTING, syncId, playerInventory);
     }
 
-    protected AltarScreenHandler(ScreenHandlerType<?> type, RecipeType<? extends AltarCraftingRecipe> recipeType, RecipeBookCategory recipeBookCategory, int i, PlayerInventory playerInventory) {
-        this(type, recipeType, recipeBookCategory, i, playerInventory, new SimpleInventory(AltarBlockEntity.INVENTORY_SIZE), new ArrayPropertyDelegate(2));
+    protected AltarScreenHandler(ScreenHandlerType<?> type, ScreenHandlerContext context, RecipeBookCategory recipeBookCategory, int i, PlayerInventory playerInventory) {
+        this(type, context, recipeBookCategory, i, playerInventory, new SimpleInventory(AltarBlockEntity.INVENTORY_SIZE), new ArrayPropertyDelegate(2));
     }
 
     public AltarScreenHandler(int syncId, PlayerInventory playerInventory, Inventory inventory, PropertyDelegate propertyDelegate) {
-        this(SpectrumScreenHandlerTypes.ALTAR, SpectrumRecipeTypes.ALTAR, RecipeBookCategory.CRAFTING, syncId, playerInventory, inventory, propertyDelegate);
+        this(SpectrumScreenHandlerTypes.ALTAR, ScreenHandlerContext.EMPTY, RecipeBookCategory.CRAFTING, syncId, playerInventory, inventory, propertyDelegate);
     }
 
-    protected AltarScreenHandler(ScreenHandlerType<?> type, RecipeType<? extends AltarCraftingRecipe> recipeType, RecipeBookCategory recipeBookCategory, int i, PlayerInventory playerInventory, Inventory inventory, PropertyDelegate propertyDelegate) {
+    protected AltarScreenHandler(ScreenHandlerType<?> type, ScreenHandlerContext context, RecipeBookCategory recipeBookCategory, int i, PlayerInventory playerInventory, Inventory inventory, PropertyDelegate propertyDelegate) {
         super(type, i);
+        this.context = context;
+        this.player = playerInventory.player;
         this.category = recipeBookCategory;
         this.inventory = inventory;
         this.propertyDelegate = propertyDelegate;
         this.world = playerInventory.player.world;
+        this.craftingResultInventory = new CraftingResultInventory();
 
         checkSize(inventory, AltarBlockEntity.INVENTORY_SIZE);
         checkDataCount(propertyDelegate, 2);
@@ -75,7 +79,7 @@ public class AltarScreenHandler extends AbstractRecipeScreenHandler<Inventory> {
         this.addSlot(new StackFilterSlot(inventory, AltarBlockEntity.CRAFTING_TABLET_SLOT_ID, 93, 19, SpectrumItems.CRAFTING_TABLET));
 
         // preview slot
-        this.addSlot(new ReadOnlySlot(inventory, AltarBlockEntity.PREVIEW_SLOT_ID, 127, 37));
+        this.addSlot(new ReadOnlySlot(craftingResultInventory, 0, 127, 37));
 
         // player inventory
         int l;
@@ -93,8 +97,40 @@ public class AltarScreenHandler extends AbstractRecipeScreenHandler<Inventory> {
         this.addProperties(propertyDelegate);
     }
 
+    @Override
+    public void sendContentUpdates() {
+        super.sendContentUpdates();
+
+        // serverside only: if the recipe output has changed send update to the client
+        if(!world.isClient) {
+            ItemStack outputItemStack = ((AltarBlockEntity) inventory).getCraftingOutput();
+            Slot slot = this.slots.get(15);
+            slot.setStack(outputItemStack);
+
+            ItemStack displayedItemStack = outputItemStack.copy();
+            if(outputItemStack.isEmpty()) {
+                displayedItemStack = inventory.getStack(15);
+            } else {
+                displayedItemStack = outputItemStack.copy();
+                ItemStack remainingItemStack = inventory.getStack(15);
+
+                if(!remainingItemStack.isEmpty()
+                        && displayedItemStack.isItemEqual(remainingItemStack)
+                        && displayedItemStack.getCount() + remainingItemStack.getCount() <= displayedItemStack.getMaxCount()) {
+
+                    displayedItemStack.increment(remainingItemStack.getCount());
+                }
+            }
+
+            if(!craftingResultInventory.getStack(0).equals(displayedItemStack)) {
+                craftingResultInventory.setStack(0, displayedItemStack);
+                ((ServerPlayerEntity) player).networkHandler.sendPacket(new ScreenHandlerSlotUpdateS2CPacket(syncId, this.nextRevision(), 15, displayedItemStack));
+            }
+        }
+    }
+
     public void populateRecipeFinder(RecipeMatcher recipeMatcher) {
-        if (this.inventory instanceof RecipeInputProvider) {
+        if (this.inventory != null) {
             ((RecipeInputProvider)this.inventory).provideRecipeInputs(recipeMatcher);
         }
     }
@@ -164,7 +200,7 @@ public class AltarScreenHandler extends AbstractRecipeScreenHandler<Inventory> {
             ItemStack clickedStack = slot.getStack();
             clickedStackCopy = clickedStack.copy();
 
-            if(index < AltarBlockEntity.PREVIEW_SLOT_ID) {
+            if(index < 15) {
                 // altar => player inv
                 if (!this.insertItem(clickedStack, 16, 51, false)) {
                     return ItemStack.EMPTY;
@@ -190,7 +226,7 @@ public class AltarScreenHandler extends AbstractRecipeScreenHandler<Inventory> {
                     return ItemStack.EMPTY;
                 }
             } else if(clickedStackCopy.isOf(SpectrumItems.CRAFTING_TABLET)) {
-                if(!this.insertItem(clickedStack, AltarBlockEntity.CRAFTING_TABLET_SLOT_ID, 15, false)) {
+                if(!this.insertItem(clickedStack, AltarBlockEntity.CRAFTING_TABLET_SLOT_ID, AltarBlockEntity.CRAFTING_TABLET_SLOT_ID+1, false)) {
                     return ItemStack.EMPTY;
                 }
             }

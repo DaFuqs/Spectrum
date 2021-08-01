@@ -12,7 +12,7 @@
     {
       "type": "patchouli:text",
       "title": "Pedestal Automation",
-      "text": "There may come a time when you feel you need a certain material so often that you want to automate it. Or you are one of those masochists who automate every single item because they can. Anyways, you've come to the right place!$(br2)The $(l:general/pedestal)Spectrum Pedestal$() has a dedicated slot for a Crafting Tablet. When you add items with hoppers or similar to the pedestal, they will be placed appropriately and evenly, like specified in the saved recipe."
+      "text": "There may come a time when you feel you need a certain material so often that you want to automate it. Or you are one of those masochists who automate every single item because they can.$(br2)The $(l:general/pedestal)Pigment Pedestal$() has a dedicated slot for a Crafting Tablet. When you add items with hoppers or similar to the pedestal, they will be placed appropriately and evenly, like specified in the saved recipe."
     }
   ]
 }

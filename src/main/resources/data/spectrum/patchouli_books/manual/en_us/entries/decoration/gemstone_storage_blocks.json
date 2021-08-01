@@ -7,11 +7,12 @@
       "type": "patchouli:spotlight",
       "item": "spectrum:citrine_storage_block",
       "title": "Gemstone Blocks",
-      "text": "$(italic)The gems have an exceptionally beautiful appearance. The look of the raw gems, as you know them from the geodes, seems a little too natural for your edgier buildings. With enough resources, however, this should not be a problem. And if you run out of stones at some point, the decoration can be broken up again.$()"
+      "text": "$(italic)The gems have an exceptionally beautiful appearance.$(br)The look of the raw gems, as you know them from the geodes, seems a little too natural for your edgier buildings. With enough resources, however, this should not be a problem. And if you run out of gems at some point, the decoration can be broken up again.$()"
     },
     {
-      "type": "patchouli:text",
-      "text": "TODO: Show Crafting recipe"
+      "type": "patchouli:crafting",
+      "recipe": "spectrum:crafting_table/storage_blocks/amethyst_storage_block",
+      "recipe2": "spectrum:crafting_table/storage_blocks/amethyst_shards_from_amethyst_storage_block"
     }
   ]
 }

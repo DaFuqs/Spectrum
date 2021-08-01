@@ -9,7 +9,7 @@ Your final goal? Discovering what's waiting for you beneath the bedrock floor.
 
 ## Getting Started
 You are able to begin your journey to the spectrum mod as soon as you encounter your first geode.
-This will allow you to craft your Spectrum Pedestal, where most blocks and items in the mod are crafted in.
+This will allow you to craft your Pigment Pedestal, where most blocks and items in the mod are crafted in.
 Stuck in the progression? Take a look at the next advancements to unlock.
 
 ## Features  (spoilers included)

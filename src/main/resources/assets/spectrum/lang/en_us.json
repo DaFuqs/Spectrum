@@ -138,12 +138,12 @@
   "block.spectrum.green_sapling": "Green Sapling",
   "block.spectrum.green_log": "Green Log",
   "block.spectrum.green_leaves": "Green Leaves",
-  "block.spectrum.light_blue_sapling": "Light_blue Sapling",
-  "block.spectrum.light_blue_log": "Light_blue Log",
-  "block.spectrum.light_blue_leaves": "Light_blue Leaves",
-  "block.spectrum.light_gray_sapling": "Light_gray Sapling",
-  "block.spectrum.light_gray_log": "Light_gray Log",
-  "block.spectrum.light_gray_leaves": "Light_gray Leaves",
+  "block.spectrum.light_blue_sapling": "Light Blue Sapling",
+  "block.spectrum.light_blue_log": "Light Blue Log",
+  "block.spectrum.light_blue_leaves": "Light Blue Leaves",
+  "block.spectrum.light_gray_sapling": "Light Gray Sapling",
+  "block.spectrum.light_gray_log": "Light Gray Log",
+  "block.spectrum.light_gray_leaves": "Light Gray Leaves",
   "block.spectrum.lime_sapling": "Lime Sapling",
   "block.spectrum.lime_log": "Lime Log",
   "block.spectrum.lime_leaves": "Lime Leaves",
@@ -331,7 +331,7 @@
   "block.spectrum.yellow_plank_slab": "Yellow Plank Slab",
   "block.spectrum.yellow_plank_fence_gate": "Yellow Plank Fence Gate",
 
-  "item.spectrum.manual": "Spectrum: World of Color",
+  "item.spectrum.manual": "Spectrum: Colorful World",
 
   "item.spectrum.amethyst_powder": "Amethyst Powder",
   "item.spectrum.citrine_powder": "Citrine Powder",
@@ -700,9 +700,9 @@
   "advancements.spectrum.catch_shooting_star.title": "Starry Sky",
   "advancements.spectrum.catch_shooting_star.description": "Catch a shooting star right out of the sky.",
   "advancements.spectrum.collect_gemstone_powder.title": "Smashing!",
-  "advancements.spectrum.collect_gemstone_powder.description": "Crafting in the Spectrum Pedestal seems to require gemstone dust. Is there a more straightforward way to crush something?",
+  "advancements.spectrum.collect_gemstone_powder.description": "Crafting in the Pigment Pedestal seems to require gemstone dust. Is there a more straightforward way to crush something?",
   "advancements.spectrum.craft_using_altar.title": "Strangely familiar",
-  "advancements.spectrum.craft_using_altar.description": "Use your personal Spectrum Pedestal to craft an item. It seems to react to redstone?",
+  "advancements.spectrum.craft_using_altar.description": "Use your personal Pigment Pedestal to craft an item. It seems to react to redstone?",
 
   "advancements.spectrum.craft_bottle_of_fading.title": "That which should not be",
   "advancements.spectrum.craft_bottle_of_fading.description": "The alchemists were wrong. There is no universal solvent. But you're sure there is something else...",
@@ -751,7 +751,7 @@
   "advancements.spectrum.enter_dimension.title": "What was once impenetrable",
   "advancements.spectrum.enter_dimension.description": "Find out what lies between the once impenetrable floor",
   "advancements.spectrum.brown_is_weird.title": "Brown is weird",
-  "advancements.spectrum.brown_is_weird.description": "You have tried and tried and tried. You could not figure out a way to create a truly brown color by mixing your gem spectrums. The closest you came was merely a washed out orange - yuck. It can't be THAT hard, it's just a stupid color! Like... dirt is brown and it's the most common stuff you have seen around. (Seriously, look it up! The way we perceive brown color is fascinating: https://www.youtube.com/watch?v=wh4aWZRtTwU)",
+  "advancements.spectrum.brown_is_weird.description": "You have tried and tried and tried. You could not figure out a way to create a truly brown color by mixing your gemstone dust. The closest you came was merely a washed out orange - yuck. It can't be THAT hard, it's just a stupid color! Like... dirt is brown and it's the most common stuff you have seen around. (Seriously, look it up! The way we perceive brown color is fascinating: https://www.youtube.com/watch?v=wh4aWZRtTwU)",
 "advancements.spectrum.the_other_side_of_the_rainbow.title": "The other side of the rainbow",
   "advancements.spectrum.the_other_side_of_the_rainbow.description": "Craft something truly brown."
 }

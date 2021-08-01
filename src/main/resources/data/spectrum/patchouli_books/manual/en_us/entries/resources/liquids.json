@@ -1,6 +1,6 @@
 {
     "name": "Liquids",
-    "icon": "minecraft:mud_bucket",
+    "icon": "spectrum:mud_bucket",
     "category": "spectrum:resources_category",
     "pages": [
         {

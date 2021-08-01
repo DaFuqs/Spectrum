@@ -4,10 +4,11 @@
   "category": "spectrum:general_category",
   "pages": [
     {
-      "type": "patchouli:spotlight",
+      "type": "patchouli:image",
       "title": "Anvil Crushing",
-      "item": "minecraft:anvil",
-      "text": "$(br2)$(italic)\"To create something new you have to go the way of destruction\"$()$(br2)                 - someone"
+      "images": [ "spectrum:textures/gui/manual/anvil_crushing.png" ],
+      "border": true,
+      "text": "$(italic)\"To create something new$br()you have to go the way of destruction\"      - someone"
     },
     {
       "type": "patchouli:text",

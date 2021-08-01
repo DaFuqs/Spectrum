@@ -9,8 +9,8 @@
     },
     {
       "type": "patchouli:smelting",
-      "recipe": "minecraft:calcite",
-      "recipe2": "minecraft:smooth_basalt",
+      "recipe": "spectrum:smelting/calcite_to_polished_calcite",
+      "recipe2": "spectrum:smelting/smooth_basalt_to_polished_basalt",
       "text": "When smelted, the bright color of calcite comes out even more. Smelting Smooth Basalt also results in a much cleaner texture, which is perfect for building."
     },
     {
@@ -21,15 +21,21 @@
     },
     {
       "type": "patchouli:spotlight",
-      "item": "spectrum:polished_calcite_stairs",
+      "item": "spectrum:polished_calcite_pillar",
       "title": "Polished Calcite Blocks",
       "text": "The bright white of calcite may be the brightest natural material you've stumbled across.$(br)It looks very clean and radiates dignity."
     },
     {
       "type": "patchouli:spotlight",
-      "item": "spectrum:tuff_stairs",
+      "item": "spectrum:tuff_wall",
       "title": "Tuff Blocks",
       "text": "While you were searching for geodes underground, you also stumbled across tuff.$(br)After you've collected a whole bunch of it, it can't hurt to make some additional shapes out of this material, too."
+    },
+    {
+      "type": "patchouli:smelting",
+      "recipe": "spectrum:smelting/basalt_brick_stairs_to_polished_basalt",
+      "recipe2": "spectrum:smelting/chiseled_polished_calcite_to_polished_calcite",
+      "text": "By applying heat, all blocks can be converted back to their polished versions again."
     }
   ]
 }

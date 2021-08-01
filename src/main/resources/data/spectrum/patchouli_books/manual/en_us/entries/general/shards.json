@@ -26,7 +26,7 @@
       "advancement": "spectrum:hidden/collect_shards/collect_topaz_shard",
       "title": "Topaz",
       "item": "spectrum:topaz_shard",
-      "text": "Topaz Shards lie surprisingly heavy in your hand. Fragile at first glance, this crystal quickly turns out to be one of the most robust materials, which you were allowed to hold in your hands - perhaps only surpassed by the crystal, which you could also bring into the shape of a pickaxe.$(br2)The topaz represents $(bold)$(b_cyan)MATTER.$()"
+      "text": "Topaz Shards lie surprisingly heavy in your hand. Fragile at first glance, this crystal quickly turns out to be one of the most robust materials, which you were allowed to hold in your hands - perhaps only surpassed by the crystal, which you could also bring into the shape of a pickaxe.$(br2)The topaz represents $(bold)$(c_cyan)MATTER.$()"
     },
     {
       "type": "patchouli:spotlight",

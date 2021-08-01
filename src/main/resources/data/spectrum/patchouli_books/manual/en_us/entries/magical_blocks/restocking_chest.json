@@ -6,7 +6,7 @@
     {
       "type": "patchouli:spotlight",
       "item": "spectrum:restocking_chest",
-      "text": "$(italic)The Spectrum Pedestal is wonderful for automatically creating items. But if you need the same few items over and over again, you'll have to rearrange your whole construction. Of course, you've found a solution for that."
+      "text": "$(italic)The Pigment Pedestal is wonderful for automatically creating items. But if you need the same few items over and over again, you'll have to rearrange your whole construction. Of course, you've found a solution for that."
     },
     {
       "type": "patchouli:text",

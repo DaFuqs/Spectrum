@@ -7,6 +7,7 @@
   "itemGroup.spectrum.mob_heads": "Spectrum Mob Heads",
 
   "commands.spectrum.spawn_shooting_star.success": "Spawned %d shooting stars for each player.",
+  "items.spectrum.default_enchantment_tooltip": "Comes pre enchanted with %s",
 
   "enchantment.spectrum.resonance": "Resonance",
   "enchantment.spectrum.resonance.desc": "Uses gentle vibrations to allow some blocks to drop themselves",

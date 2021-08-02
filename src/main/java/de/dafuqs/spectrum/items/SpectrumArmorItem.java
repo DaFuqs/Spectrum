@@ -1,24 +1,20 @@
-package de.dafuqs.spectrum.items.tools;
+package de.dafuqs.spectrum.items;
 
 import de.dafuqs.spectrum.interfaces.PreEnchantedTooltip;
 import net.minecraft.client.item.TooltipContext;
-import net.minecraft.item.HoeItem;
+import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.item.ArmorItem;
+import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ToolMaterial;
 import net.minecraft.text.Text;
 import net.minecraft.world.World;
 
 import java.util.List;
 
-public class BedrockHoeItem extends HoeItem implements PreEnchantedTooltip {
+public class SpectrumArmorItem extends ArmorItem implements PreEnchantedTooltip {
 
-    public BedrockHoeItem(ToolMaterial material, int attackDamage, float attackSpeed, Settings settings) {
-        super(material, attackDamage, attackSpeed, settings);
-    }
-
-    @Override
-    public boolean isDamageable() {
-        return false;
+    public SpectrumArmorItem(ArmorMaterial material, EquipmentSlot slot, Settings settings) {
+        super(material, slot, settings);
     }
 
     @Override

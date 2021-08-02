@@ -1,10 +1,16 @@
 package de.dafuqs.spectrum.items.tools;
 
+import de.dafuqs.spectrum.interfaces.PreEnchantedTooltip;
 import net.minecraft.block.BlockState;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.*;
+import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
+import net.minecraft.world.World;
 
-public class MultiToolItem extends PickaxeItem {
+import java.util.List;
+
+public class MultiToolItem extends SpectrumPickaxeItem {
 
     public MultiToolItem(ToolMaterial material, int attackDamage, float attackSpeed, Settings settings) {
         super(material, attackDamage, attackSpeed, settings);
@@ -35,6 +41,5 @@ public class MultiToolItem extends PickaxeItem {
         }
         return actionResult;
     }
-
 
 }

@@ -1,9 +1,16 @@
 package de.dafuqs.spectrum.items.tools;
 
+import de.dafuqs.spectrum.interfaces.PreEnchantedTooltip;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.AxeItem;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.ToolMaterial;
+import net.minecraft.text.Text;
+import net.minecraft.world.World;
 
-public class BedrockAxeItem extends AxeItem {
+import java.util.List;
+
+public class BedrockAxeItem extends AxeItem implements PreEnchantedTooltip {
 
     public BedrockAxeItem(ToolMaterial material, int attackDamage, float attackSpeed, Settings settings) {
         super(material, attackDamage, attackSpeed, settings);
@@ -12,6 +19,12 @@ public class BedrockAxeItem extends AxeItem {
     @Override
     public boolean isDamageable() {
         return false;
+    }
+
+    @Override
+    public void appendTooltip(ItemStack itemStack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
+        super.appendTooltip(itemStack, world, tooltip, tooltipContext);
+        addPreEnchantedTooltip(tooltip, itemStack);
     }
 
 }

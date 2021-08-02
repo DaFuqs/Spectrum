@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.mixin;
 
 import de.dafuqs.spectrum.enchantments.AutoSmeltEnchantment;
-import de.dafuqs.spectrum.enchantments.SpectrumEnchantments;
+import de.dafuqs.spectrum.registries.SpectrumEnchantments;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;

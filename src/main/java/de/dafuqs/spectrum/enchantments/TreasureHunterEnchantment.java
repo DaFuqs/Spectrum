@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.enchantments;
 
+import de.dafuqs.spectrum.SpectrumCommon;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentTarget;
 import net.minecraft.enchantment.Enchantments;
@@ -20,7 +21,7 @@ public class TreasureHunterEnchantment extends Enchantment {
     }
 
     public int getMaxLevel() {
-        return 3;
+        return SpectrumCommon.CONFIG.ExuberanceMaxLevel;
     }
 
     public boolean isTreasure() {

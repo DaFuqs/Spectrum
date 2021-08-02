@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.enchantments;
 
+import de.dafuqs.spectrum.SpectrumCommon;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentTarget;
 import net.minecraft.entity.EquipmentSlot;
@@ -19,7 +20,7 @@ public class ExuberanceEnchantment extends Enchantment {
     }
 
     public int getMaxLevel() {
-        return 5;
+        return SpectrumCommon.CONFIG.ExuberanceMaxLevel;
     }
 
     public boolean isTreasure() {

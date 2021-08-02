@@ -1,5 +1,6 @@
-package de.dafuqs.spectrum.commands;
+package de.dafuqs.spectrum.registries;
 
+import de.dafuqs.spectrum.commands.ShootingStarCommand;
 import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
 
 public class SpectrumCommands {

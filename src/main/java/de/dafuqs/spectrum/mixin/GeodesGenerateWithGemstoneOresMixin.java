@@ -36,7 +36,7 @@ public class GeodesGenerateWithGemstoneOresMixin {
         BlockState gemBlock = context.getConfig().layerConfig.innerLayerProvider.getBlockState(context.getRandom(), context.getOrigin());
         if(gemBlock != null) {
             BlockState oreBlockState = getGemstoneOreForGeodeBlock(gemBlock);
-            if (oreBlockState != null) { // modded geodes
+            if (oreBlockState != null) { // do not handle other modded geodes
                 BlockState deepslateOreBlockState = getGemstoneDeepslateOreForGeodeBlock(gemBlock);
                 StructureWorldAccess world = context.getWorld();
                 Random random = context.getRandom();
@@ -69,7 +69,7 @@ public class GeodesGenerateWithGemstoneOresMixin {
      */
     private BlockState getGemstoneOreForGeodeBlock(BlockState blockState) {
         Block block = blockState.getBlock();
-        if(block.equals(Blocks.AMETHYST_BLOCK)) {
+                  if(block.equals(Blocks.AMETHYST_BLOCK)) {
             return SpectrumBlocks.AMETHYST_ORE.getDefaultState();
         } else if(block.equals(SpectrumBlocks.CITRINE_BLOCK)) {
             return SpectrumBlocks.CITRINE_ORE.getDefaultState();

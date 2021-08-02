@@ -1,9 +1,9 @@
 package de.dafuqs.spectrum;
 
-import de.dafuqs.spectrum.commands.SpectrumCommands;
+import de.dafuqs.spectrum.registries.SpectrumCommands;
 import de.dafuqs.spectrum.config.SpectrumConfig;
 import de.dafuqs.spectrum.dimension.DeeperDownDimension;
-import de.dafuqs.spectrum.enchantments.SpectrumEnchantments;
+import de.dafuqs.spectrum.registries.SpectrumEnchantments;
 import de.dafuqs.spectrum.inventories.SpectrumContainers;
 import de.dafuqs.spectrum.inventories.SpectrumScreenHandlerTypes;
 import de.dafuqs.spectrum.loot.EnchantmentDrops;
@@ -28,7 +28,7 @@ public class SpectrumCommon implements ModInitializer {
 
     public static final String MOD_ID = "spectrum";
 
-    public static SpectrumConfig SPECTRUM_CONFIG;
+    public static SpectrumConfig CONFIG;
     public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
 
     public static MinecraftServer minecraftServer;
@@ -42,7 +42,7 @@ public class SpectrumCommon implements ModInitializer {
         //Set up config
         LOGGER.info("Loading config file...");
         AutoConfig.register(SpectrumConfig.class, JanksonConfigSerializer::new);
-        SPECTRUM_CONFIG = AutoConfig.getConfigHolder(SpectrumConfig.class).getConfig();
+        CONFIG = AutoConfig.getConfigHolder(SpectrumConfig.class).getConfig();
         LOGGER.info("Finished loading config file.");
 
         // Register ALL the stuff

@@ -1,6 +1,7 @@
-package de.dafuqs.spectrum.enchantments;
+package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.enchantments.*;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.util.Identifier;
@@ -17,13 +18,28 @@ public class SpectrumEnchantments {
     public static final Enchantment TREASURE_HUNTER = new TreasureHunterEnchantment(Enchantment.Rarity.RARE, EquipmentSlot.MAINHAND); // Drops mob heads
 
     public static void register() {
-        Registry.register(Registry.ENCHANTMENT, new Identifier(SpectrumCommon.MOD_ID, "resonance"), RESONANCE);
-        Registry.register(Registry.ENCHANTMENT, new Identifier(SpectrumCommon.MOD_ID, "pest_control"), PEST_CONTROL);
-        Registry.register(Registry.ENCHANTMENT, new Identifier(SpectrumCommon.MOD_ID, "autosmelt"), AUTO_SMELT);
-        Registry.register(Registry.ENCHANTMENT, new Identifier(SpectrumCommon.MOD_ID, "inventory_insertion"), INVENTORY_INSERTION);
-        Registry.register(Registry.ENCHANTMENT, new Identifier(SpectrumCommon.MOD_ID, "voiding"), VOIDING);
-        Registry.register(Registry.ENCHANTMENT, new Identifier(SpectrumCommon.MOD_ID, "exuberance"), EXUBERANCE);
-        Registry.register(Registry.ENCHANTMENT, new Identifier(SpectrumCommon.MOD_ID, "treasure_hunter"), TREASURE_HUNTER);
+        if(SpectrumCommon.CONFIG.ResonanceEnchantmentEnabled) {
+            Registry.register(Registry.ENCHANTMENT, new Identifier(SpectrumCommon.MOD_ID, "resonance"), RESONANCE);
+        }
+
+        if(SpectrumCommon.CONFIG.PestControlEnchantmentEnabled) {
+            Registry.register(Registry.ENCHANTMENT, new Identifier(SpectrumCommon.MOD_ID, "pest_control"), PEST_CONTROL);
+        }
+        if(SpectrumCommon.CONFIG.AutoSmeltEnchantmentEnabled) {
+            Registry.register(Registry.ENCHANTMENT, new Identifier(SpectrumCommon.MOD_ID, "autosmelt"), AUTO_SMELT);
+        }
+        if(SpectrumCommon.CONFIG.InventoryInsertionEnchantmentEnabled) {
+            Registry.register(Registry.ENCHANTMENT, new Identifier(SpectrumCommon.MOD_ID, "inventory_insertion"), INVENTORY_INSERTION);
+        }
+        if(SpectrumCommon.CONFIG.VoidingEnchantmentEnabled) {
+            Registry.register(Registry.ENCHANTMENT, new Identifier(SpectrumCommon.MOD_ID, "voiding"), VOIDING);
+        }
+        if(SpectrumCommon.CONFIG.ExuberanceEnchantmentEnabled) {
+            Registry.register(Registry.ENCHANTMENT, new Identifier(SpectrumCommon.MOD_ID, "exuberance"), EXUBERANCE);
+        }
+        if(SpectrumCommon.CONFIG.TreasureHunterEnchantmentEnabled) {
+            Registry.register(Registry.ENCHANTMENT, new Identifier(SpectrumCommon.MOD_ID, "treasure_hunter"), TREASURE_HUNTER);
+        }
     }
 
 }

@@ -4,7 +4,7 @@ import com.google.common.collect.ImmutableSet;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSerializationContext;
-import de.dafuqs.spectrum.enchantments.SpectrumEnchantments;
+import de.dafuqs.spectrum.registries.SpectrumEnchantments;
 import de.dafuqs.spectrum.loot.SpectrumLootConditionTypes;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;

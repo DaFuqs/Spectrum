@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.entity.entity;
 
+import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.Support;
 import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
@@ -67,10 +68,10 @@ public class ShootingStarEntity extends Entity {
     }
 
     public static void doShootingStarSpawns(ServerWorld serverWorld) {
-        if(serverWorld.getRegistryKey().getValue().toString().equals("minecraft:overworld")) { // TODO: make dimensions configurable
+        if(SpectrumCommon.CONFIG.ShootingStarWorlds.contains(serverWorld.getRegistryKey().getValue().toString())) {
             if(serverWorld.getTimeOfDay() % 100 == 0 && serverWorld.getTimeOfDay() > 13000 && serverWorld.getTimeOfDay() < 22000) {
                 for (PlayerEntity playerEntity : serverWorld.getEntitiesByType(EntityType.PLAYER, Entity::isAlive)) {
-                    if (serverWorld.getRandom().nextInt(100) == 0) {
+                    if (serverWorld.getRandom().nextFloat() < SpectrumCommon.CONFIG.ShootingStarChance) {
                         spawnShootingStar(serverWorld, playerEntity);
                     }
                 }

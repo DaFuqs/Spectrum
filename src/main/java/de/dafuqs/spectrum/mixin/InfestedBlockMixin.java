@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.mixin;
 
-import de.dafuqs.spectrum.enchantments.SpectrumEnchantments;
+import de.dafuqs.spectrum.registries.SpectrumEnchantments;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.InfestedBlock;
 import net.minecraft.enchantment.EnchantmentHelper;

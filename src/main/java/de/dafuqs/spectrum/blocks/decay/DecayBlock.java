@@ -108,6 +108,14 @@ public abstract class DecayBlock extends Block {
 
     // jump to neighboring blocks
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
+
+        float spreadChance = getSpreadChance();
+        if(spreadChance < 1.0F) {
+            if (random.nextFloat() > spreadChance) {
+                return;
+            }
+        }
+
         Direction randomDirection = Direction.random(random);
         BlockPos targetBlockPos = pos.offset(randomDirection, 1);
         BlockState currentBlockState = world.getBlockState(targetBlockPos);
@@ -127,5 +135,7 @@ public abstract class DecayBlock extends Block {
             world.setBlockState(targetBlockPos, destinationBlockState);
         }
     }
+
+    protected abstract float getSpreadChance();
 
 }

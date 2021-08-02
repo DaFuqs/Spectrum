@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.blocks.decay;
 
+import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.registries.SpectrumBlockTags;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -49,6 +50,11 @@ public class FailingBlock extends DecayBlock {
 
         BlockState destinationBlockState2 = this.getDefaultState().with(DECAY_STATE, DecayConversion.CRYING_OBSIDIAN);
         addDecayConversion(SpectrumBlockTags.DECAY_CRYING_OBSIDIAN_CONVERSIONS, destinationBlockState2);
+    }
+
+    @Override
+    protected float getSpreadChance() {
+        return SpectrumCommon.CONFIG.FailingDecayTickRate;
     }
 
     @Override

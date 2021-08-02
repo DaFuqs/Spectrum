@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.loot;
 
 import de.dafuqs.spectrum.blocks.mob_head.SpectrumSkullBlock;
-import de.dafuqs.spectrum.enchantments.SpectrumEnchantments;
+import de.dafuqs.spectrum.registries.SpectrumEnchantments;
 import de.dafuqs.spectrum.loot.conditions.*;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import net.fabricmc.fabric.api.loot.v1.FabricLootPoolBuilder;

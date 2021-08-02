@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.mixin;
 
+import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.mob.EndermanEntity;
@@ -15,8 +16,6 @@ import java.util.Random;
 @Mixin(EndermanEntity.class)
 public class EndermanEntityMixin {
 
-    float carriedBlockChance = 0.1F;
-    float carriedBlockChanceEnd = 0.001F;
     BlockState carriedBlockState = SpectrumBlocks.ENDER_TREASURE.getDefaultState();
 
     @Inject(at = @At("TAIL"), method = "<init>")
@@ -27,9 +26,9 @@ public class EndermanEntityMixin {
 
             float chance;
             if(endermanEntity.getEntityWorld().getRegistryKey().equals(World.END)) {
-                chance = carriedBlockChanceEnd;
+                chance = SpectrumCommon.CONFIG.EndermanHoldingEnderTreasureInEndChance;
             } else {
-                chance = carriedBlockChance;
+                chance = SpectrumCommon.CONFIG.EndermanHoldingEnderTreasureChance;
             }
 
             if(random.nextFloat() < chance) {

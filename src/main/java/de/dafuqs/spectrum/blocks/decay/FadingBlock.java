@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.blocks.decay;
 
+import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.registries.SpectrumBlockTags;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -50,6 +51,11 @@ public class FadingBlock extends DecayBlock {
 
         BlockState destinationBlockState2 = this.getDefaultState().with(DECAY_STATE, DecayConversion.MAGIC_LEAVES);
         addDecayConversion(SpectrumBlockTags.MAGICAL_LEAVES, destinationBlockState2);
+    }
+
+    @Override
+    protected float getSpreadChance() {
+        return SpectrumCommon.CONFIG.FadingDecayTickRate;
     }
 
     @Override

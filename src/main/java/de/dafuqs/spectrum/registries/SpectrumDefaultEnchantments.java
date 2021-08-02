@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.registries;
 
-import de.dafuqs.spectrum.enchantments.SpectrumEnchantments;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.item.Item;

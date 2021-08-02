@@ -28,6 +28,7 @@ import net.minecraft.world.gen.foliage.BlobFoliagePlacer;
 import net.minecraft.world.gen.placer.SimpleBlockPlacer;
 import net.minecraft.world.gen.stateprovider.SimpleBlockStateProvider;
 import net.minecraft.world.gen.trunk.StraightTrunkPlacer;
+import org.apache.logging.log4j.Level;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -199,7 +200,7 @@ public class SpectrumConfiguredFeatures extends ConfiguredFeatures {
                 UniformIntProvider.create(3, 4),
                 UniformIntProvider.create(1, 2),
                 -16, 16, 0.05D, 1)
-        ).uniformRange(YOffset.aboveBottom(35), YOffset.fixed(55))
+        ).uniformRange(YOffset.aboveBottom(SpectrumCommon.CONFIG.CitrineGeodeMinAboveBottomGenerationHeight), YOffset.fixed(SpectrumCommon.CONFIG.CitrineGeodeFixedMaxGenerationHeight))
         ).spreadHorizontally()).applyChance(50);
 
         TOPAZ_GEODE = ((SpectrumFeatures.SOLID_BLOCKS_GEODE.configure(new GeodeFeatureConfig(
@@ -219,7 +220,7 @@ public class SpectrumConfiguredFeatures extends ConfiguredFeatures {
                 UniformIntProvider.create(3, 4),
                 UniformIntProvider.create(1, 2),
                 -16, 16, 0.05D, 1)
-        ).uniformRange(YOffset.fixed(70), YOffset.belowTop(0))
+        ).uniformRange(YOffset.fixed(SpectrumCommon.CONFIG.TopazGeodeMinFixedGenerationHeight), YOffset.belowTop(SpectrumCommon.CONFIG.TopazGeodeMinFixedGenerationHeight))
         ).spreadHorizontally()).applyChance(10);
 
         MOONSTONE_GEODE = ((SpectrumFeatures.SOLID_BLOCKS_GEODE.configure(new GeodeFeatureConfig(
@@ -274,12 +275,14 @@ public class SpectrumConfiguredFeatures extends ConfiguredFeatures {
         );
 
         Collection<RegistryKey<Biome>> deepOceans = new ArrayList<>();
-        deepOceans.add(BiomeKeys.DEEP_OCEAN);
-        deepOceans.add(BiomeKeys.DEEP_COLD_OCEAN);
-        deepOceans.add(BiomeKeys.DEEP_FROZEN_OCEAN);
-        deepOceans.add(BiomeKeys.DEEP_WARM_OCEAN);
-        deepOceans.add(BiomeKeys.DEEP_LUKEWARM_OCEAN);
-
+        for(String biomeString : SpectrumCommon.CONFIG.MermaidsBrushGenerationBiomes) {
+            RegistryKey<Biome> biomeKey = RegistryKey.of(Registry.BIOME_KEY, new Identifier(biomeString));
+            if(biomeKey == null) {
+                SpectrumCommon.log(Level.ERROR, "Mermaids Brush is configured to spawn in biome "+ biomeString + " but that does not exist!");
+            } else {
+                deepOceans.add(biomeKey);
+            }
+        }
         BiomeModifications.addFeature(BiomeSelectors.includeByKey(deepOceans), GenerationStep.Feature.VEGETAL_DECORATION, RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY, mermaidsBrushIdentifier));
 
 
@@ -300,10 +303,16 @@ public class SpectrumConfiguredFeatures extends ConfiguredFeatures {
                         .decorate(Decorators.HEIGHTMAP_OCEAN_FLOOR)
         );
 
-        Collection<RegistryKey<Biome>> swamps = new ArrayList<>(); // todo: Make configurable
-        swamps.add(BiomeKeys.SWAMP);
-        swamps.add(BiomeKeys.SWAMP_HILLS);
 
+        Collection<RegistryKey<Biome>> swamps = new ArrayList<>();
+        for(String biomeString : SpectrumCommon.CONFIG.QuitoxicReedsGenerationBiomes) {
+            RegistryKey<Biome> biomeKey = RegistryKey.of(Registry.BIOME_KEY, new Identifier(biomeString));
+            if(biomeKey == null) {
+                SpectrumCommon.log(Level.ERROR, "Quitoxic Reeds are configured to spawn in biome "+ biomeString + " but that does not exist!");
+            } else {
+                swamps.add(biomeKey);
+            }
+        }
         BiomeModifications.addFeature(BiomeSelectors.includeByKey(swamps), GenerationStep.Feature.VEGETAL_DECORATION, RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY, quitoxicReedsIdentifier));
     }
 

@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cross",
   "textures": {
-    "cross": "spectrum:block/magenta_spirit_vines_head_none"
+    "cross": "spectrum:block/magenta_spirit_sallow_vines_head_none"
   }
 }

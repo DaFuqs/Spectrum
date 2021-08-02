@@ -24,3 +24,6 @@ Stuck in the progression? Take a look at the next advancements to unlock.
 ## Mod Suggestions
 https://github.com/Darkhax-Minecraft/Enchantment-Descriptions: 
 Adds descriptions for all of Spectrums enchantments
+
+https://github.com/Gegy/colored-lights
+Adds colored lights for all of Spectrums light sources

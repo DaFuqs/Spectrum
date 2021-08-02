@@ -71,14 +71,18 @@ public class ShootingStarEntity extends Entity {
             if(serverWorld.getTimeOfDay() % 100 == 0 && serverWorld.getTimeOfDay() > 13000 && serverWorld.getTimeOfDay() < 22000) {
                 for (PlayerEntity playerEntity : serverWorld.getEntitiesByType(EntityType.PLAYER, Entity::isAlive)) {
                     if (serverWorld.getRandom().nextInt(100) == 0) {
-                        ItemStack itemStack = new ItemStack(SpectrumItems.SHOOTING_STAR);
-                        ShootingStarEntity shootingStarEntity = new ShootingStarEntity(serverWorld, playerEntity.getPos().getX(), playerEntity.getPos().getY() + 200, playerEntity.getPos().getZ(), itemStack);
-                        shootingStarEntity.addVelocity(3 - shootingStarEntity.random.nextFloat() * 6, 0, 3 - shootingStarEntity.random.nextFloat() * 6);
-                        serverWorld.spawnEntity(shootingStarEntity);
+                        spawnShootingStar(serverWorld, playerEntity);
                     }
                 }
             }
         }
+    }
+
+    public static void spawnShootingStar(ServerWorld serverWorld, PlayerEntity playerEntity) {
+        ItemStack itemStack = new ItemStack(SpectrumItems.SHOOTING_STAR);
+        ShootingStarEntity shootingStarEntity = new ShootingStarEntity(serverWorld, playerEntity.getPos().getX(), playerEntity.getPos().getY() + 200, playerEntity.getPos().getZ(), itemStack);
+        shootingStarEntity.addVelocity(3 - shootingStarEntity.random.nextFloat() * 6, 0, 3 - shootingStarEntity.random.nextFloat() * 6);
+        serverWorld.spawnEntity(shootingStarEntity);
     }
 
     protected MoveEffect getMoveEffect() {

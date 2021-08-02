@@ -6,6 +6,8 @@
   "itemGroup.spectrum.colored_wood": "Spectrum Colored Wood",
   "itemGroup.spectrum.mob_heads": "Spectrum Mob Heads",
 
+  "commands.spectrum.spawn_shooting_star.success": "Spawned %i shooting stars for each player.",
+
   "enchantment.spectrum.resonance": "Resonance",
   "enchantment.spectrum.resonance.desc": "Uses gentle vibrations to allow some blocks to drop themselves",
   "enchantment.spectrum.pest_control": "Pest Control",

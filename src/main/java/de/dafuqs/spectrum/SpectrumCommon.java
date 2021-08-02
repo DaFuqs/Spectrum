@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum;
 
+import de.dafuqs.spectrum.commands.SpectrumCommands;
 import de.dafuqs.spectrum.config.SpectrumConfig;
 import de.dafuqs.spectrum.dimension.DeeperDownDimension;
 import de.dafuqs.spectrum.enchantments.SpectrumEnchantments;
@@ -74,9 +75,8 @@ public class SpectrumCommon implements ModInitializer {
         EnchantmentDrops.setup();
 
         SpectrumParticleTypes.register();
-
-        // Furnace fuel
         SpectrumItems.registerFuelRegistry();
+        SpectrumCommands.register();
 
         ServerWorldEvents.LOAD.register((minecraftServer, serverWorld) -> {
             SpectrumCommon.minecraftServer = minecraftServer;

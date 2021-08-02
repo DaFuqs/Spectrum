@@ -19,7 +19,7 @@ New-Item -Name "$_`_lamp.json" -ItemType File -Value @"
   ],
   "key": {
   	"P": {
-      "item": "spectrum:$_`_spectrum"
+      "item": "spectrum:$_`_pigment"
     },
 	"G": {
       "item": "minecraft:glowstone"

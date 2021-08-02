@@ -1,6 +1,8 @@
 package de.dafuqs.spectrum.blocks.chests;
 
+import de.dafuqs.spectrum.enums.SpectrumTier;
 import de.dafuqs.spectrum.interfaces.PlayerOwned;
+import de.dafuqs.spectrum.inventories.GenericSpectrumContainerScreenHandler;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
@@ -70,7 +72,7 @@ public class PrivateChestBlockEntity extends SpectrumChestBlockEntity implements
 
     @Override
     protected ScreenHandler createScreenHandler(int syncId, PlayerInventory playerInventory) {
-        return GenericContainerScreenHandler.createGeneric9x6(syncId, playerInventory, this);
+        return GenericSpectrumContainerScreenHandler.createGeneric9x6(syncId, playerInventory, this, SpectrumTier.TIER1);
     }
 
     @Override

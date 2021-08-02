@@ -1,7 +1,10 @@
 package de.dafuqs.spectrum.blocks.chests;
 
 import de.dafuqs.spectrum.InventoryHelper;
+import de.dafuqs.spectrum.enums.SpectrumTier;
 import de.dafuqs.spectrum.inventories.AutoCompactingInventory;
+import de.dafuqs.spectrum.inventories.GenericSpectrumContainerScreenHandler;
+import de.dafuqs.spectrum.inventories.SpectrumScreenHandlerTypes;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerInventory;
@@ -42,7 +45,7 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity {
 
     @Override
     protected ScreenHandler createScreenHandler(int syncId, PlayerInventory playerInventory) {
-        return GenericContainerScreenHandler.createGeneric9x3(syncId, playerInventory, this);
+        return GenericSpectrumContainerScreenHandler.createGeneric9x3(syncId, playerInventory, this, SpectrumTier.TIER1);
     }
 
     public static void tick(World world, BlockPos pos, BlockState state, CompactingChestBlockEntity compactingChestBlockEntity) {

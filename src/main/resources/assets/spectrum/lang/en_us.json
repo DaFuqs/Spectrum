@@ -6,7 +6,7 @@
   "itemGroup.spectrum.colored_wood": "Spectrum Colored Wood",
   "itemGroup.spectrum.mob_heads": "Spectrum Mob Heads",
 
-  "commands.spectrum.spawn_shooting_star.success": "Spawned %i shooting stars for each player.",
+  "commands.spectrum.spawn_shooting_star.success": "Spawned %d shooting stars for each player.",
 
   "enchantment.spectrum.resonance": "Resonance",
   "enchantment.spectrum.resonance.desc": "Uses gentle vibrations to allow some blocks to drop themselves",
@@ -742,12 +742,8 @@
   "advancements.spectrum.craft_energy_collector.description": "Construct a collector powerful enough to harvest energy from gem geodes.",
   "advancements.spectrum.place_energy_collector.title": "A new form of energy",
   "advancements.spectrum.place_energy_collector.description": "Place the collector in the center of a geode and watch it work.",
-  "advancements.spectrum.get_resonance_enchanted_tool.title": "A new form of energy",
+  "advancements.spectrum.get_resonance_enchanted_tool.title": "Good Vibrations",
   "advancements.spectrum.get_resonance_enchanted_tool.description": "Some blocks in the world resonate a powerful energy. Mining them with simple tools seems to disturb that energy, destroying the block, leaving you without a drop whatsoever. Maybe you can tune your tools to the same frequencies, preserving the precious treasures you came across?",
-  "advancements.spectrum.drop_decay.title": "I don't need no Transmutation",
-  "advancements.spectrum.drop_decay.description": "",
-  "advancements.spectrum.drop_decay2.title": "",
-  "advancements.spectrum.drop_decay2.description": "Obsidian doesn't seem to stop it, either. But the result of your little experiment is pretty interesting nonetheless!",
   "advancements.spectrum.mine_bedrock.title": "Groundbreaking",
   "advancements.spectrum.mine_bedrock.description": "Break decayed bedrock by using a Netherite Pickaxe.",
   "advancements.spectrum.enter_dimension.title": "What was once impenetrable",

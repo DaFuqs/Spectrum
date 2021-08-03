@@ -1,22 +1,24 @@
 package de.dafuqs.spectrum.items;
 
+import de.dafuqs.spectrum.items.tooltip.VoidBundleTooltipData;
+import net.minecraft.client.item.TooltipContext;
+import net.minecraft.client.item.TooltipData;
+import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.StackReference;
 import net.minecraft.item.BundleItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtList;
 import net.minecraft.screen.slot.Slot;
-import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.stat.Stats;
-import net.minecraft.util.ClickType;
-import net.minecraft.util.Hand;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.TypedActionResult;
+import net.minecraft.text.Text;
+import net.minecraft.text.TranslatableText;
+import net.minecraft.util.*;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -38,6 +40,61 @@ public class VoidBundleItem extends BundleItem {
         }
     }
 
+    public boolean isItemBarVisible(ItemStack stack) {
+        return getStoredAmount(stack) > 0;
+    }
+
+    public int getItemBarStep(ItemStack stack) {
+        return Math.min(1 + 12 * getStoredAmount(stack) / MAX_STORED_AMOUNT, 13);
+    }
+
+    public int getItemBarColor(ItemStack stack) {
+        return super.getItemBarColor(stack);
+    }
+
+    @Override
+    public boolean canBeNested() {
+        return false;
+    }
+
+    public Optional<TooltipData> getTooltipData(ItemStack voidBundleStack) {
+
+        ItemStack itemStack = getFirstBundledStack(voidBundleStack);
+        int storedAmount = getStoredAmount(voidBundleStack);
+
+        return Optional.of(new VoidBundleTooltipData(itemStack, storedAmount));
+    }
+
+    public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context) {
+        int storedAmount = getStoredAmount(stack);
+        if(storedAmount == 0) {
+            tooltip.add(new TranslatableText("item.spectrum.void_bundle.tooltip.empty").formatted(Formatting.GRAY));
+        } else {
+            ItemStack firstStack = getFirstBundledStack(stack);
+            float totalStacks = Math.round((float) storedAmount * 100 / (float) firstStack.getMaxCount()) / (float) 100;
+            tooltip.add(new TranslatableText("item.spectrum.void_bundle.tooltip.count", storedAmount, MAX_STORED_AMOUNT, totalStacks).formatted(Formatting.GRAY));
+            tooltip.add(new TranslatableText("item.spectrum.void_bundle.tooltip.enter_inventory", firstStack.getName().getString()).formatted(Formatting.GRAY));
+        }
+    }
+
+    public void onItemEntityDestroyed(ItemEntity entity) {
+        World world = entity.world;
+        if (!world.isClient) {
+            ItemStack voidBundleItemStack = entity.getStack();
+            int currentAmount = getStoredAmount(voidBundleItemStack);
+            if(currentAmount > 0) {
+                ItemStack storedStack = getFirstBundledStack(voidBundleItemStack);
+                while (currentAmount > 0) {
+                    int stackCount = Math.min(currentAmount, storedStack.getMaxCount());
+                    storedStack.setCount(stackCount);
+                    currentAmount -= stackCount;
+                    world.spawnEntity(new ItemEntity(world, entity.getX(), entity.getY(), entity.getZ(), storedStack));
+                }
+            }
+        }
+    }
+
+
     /**
      * When the bundle is clicked onto another stack
      */
@@ -51,8 +108,11 @@ public class VoidBundleItem extends BundleItem {
                     addToBundle(stack, slot.insertStack(removedStack));
                 });
             } else if (itemStack.getItem().canBeNested()) {
-                int amountToAdd = MAX_STORED_AMOUNT - getStoredAmount(stack) - itemStack.getCount();
-                addToBundle(stack, slot.takeStackRange(itemStack.getCount(), amountToAdd, player));
+                ItemStack firstStack = getFirstBundledStack(stack);
+                if(firstStack.isEmpty() || ItemStack.canCombine(firstStack, itemStack)) {
+                    int amountToAdd = MAX_STORED_AMOUNT - getStoredAmount(stack) - itemStack.getCount();
+                    addToBundle(stack, slot.takeStackRange(itemStack.getCount(), amountToAdd, player));
+                }
             }
 
             return true;
@@ -79,19 +139,10 @@ public class VoidBundleItem extends BundleItem {
         }
     }
 
-    @Override
-    public boolean canBeNested() {
-        return false;
-    }
-
-    public int getItemBarStep(ItemStack stack) {
-        return Math.min(1 + 12 * stack.getCount() / MAX_STORED_AMOUNT, 13);
-    }
-
     private static int addToBundle(ItemStack bundle, ItemStack stackToBundle) {
         if (!stackToBundle.isEmpty() && stackToBundle.getItem().canBeNested()) {
-            int bundleOccupancy = getStoredAmount(bundle);
-            int roomLeft = Math.min(stackToBundle.getCount(), (MAX_STORED_AMOUNT - bundleOccupancy) / stackToBundle.getCount());
+            int storedAmount = getStoredAmount(bundle);
+            int roomLeft = Math.min(stackToBundle.getCount(), (MAX_STORED_AMOUNT - storedAmount) / stackToBundle.getCount());
             if (roomLeft > 0) {
                 ItemStack stackInBundle = getFirstBundledStack(bundle);
                 if (stackInBundle.isEmpty()) {
@@ -101,7 +152,7 @@ public class VoidBundleItem extends BundleItem {
                     return roomLeft;
                 } else if (ItemStack.canCombine(stackInBundle, stackToBundle)) {
                     stackInBundle.increment(roomLeft);
-                    bundleStack(bundle, stackInBundle);
+                    bundleStack(bundle, stackInBundle, storedAmount+roomLeft);
                     return roomLeft;
                 }
             }
@@ -164,12 +215,16 @@ public class VoidBundleItem extends BundleItem {
     }
 
     private static void bundleStack(ItemStack voidBundleStack, ItemStack storedItemStack) {
+        bundleStack(voidBundleStack, storedItemStack, storedItemStack.getCount());
+    }
+
+    private static void bundleStack(ItemStack voidBundleStack, ItemStack storedItemStack, int amount) {
         NbtCompound voidBundleCompound = voidBundleStack.getOrCreateTag();
         NbtCompound storedItemCompound = new NbtCompound();
 
         Identifier identifier = Registry.ITEM.getId(storedItemStack.getItem());
         storedItemCompound.putString("ID", identifier.toString());
-        storedItemCompound.putInt("Count", storedItemStack.getCount());
+        storedItemCompound.putInt("Count", amount);
         if (storedItemStack.getTag() != null) {
             storedItemCompound.put("Tag", storedItemStack.getTag().copy());
         }
@@ -205,5 +260,7 @@ public class VoidBundleItem extends BundleItem {
             voidBundleStack.setTag(voidBundleCompound);
         }
     }
+
+
 
 }

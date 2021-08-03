@@ -81,6 +81,7 @@
   "item.spectrum.invisible_item_frame": "Invisible Item Frame",
   "item.spectrum.invisible_glow_item_frame": "Invisible Glow Item Frame",
   "item.spectrum.ender_bag": "Bag of Holding",
+  "item.spectrum.void_bundle": "Void Bundle",
   "block.spectrum.lava_sponge": "Lava Sponge",
   "block.spectrum.wet_lava_sponge": "Wet Lava Sponge",
   "item.spectrum.wet_lava_sponge.tooltip": "§e⚠ Caution: Hot surface. Do not touch ⚠",

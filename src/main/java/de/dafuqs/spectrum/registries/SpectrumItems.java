@@ -5,6 +5,7 @@ import de.dafuqs.spectrum.blocks.gravity.GravityItem;
 import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
 import de.dafuqs.spectrum.enums.SpectrumColor;
 import de.dafuqs.spectrum.items.SpectrumArmorItem;
+import de.dafuqs.spectrum.items.VoidBundleItem;
 import de.dafuqs.spectrum.items.item_frame.InvisibleGlowItemFrameItem;
 import de.dafuqs.spectrum.items.item_frame.InvisibleItemFrameItem;
 import de.dafuqs.spectrum.items.materials.*;
@@ -154,6 +155,9 @@ public class SpectrumItems {
     public static final Item INVISIBLE_ITEM_FRAME = new InvisibleItemFrameItem(SpectrumEntityTypes.INVISIBLE_ITEM_FRAME, generalItemSettings);
     public static final Item INVISIBLE_GLOW_ITEM_FRAME = new InvisibleGlowItemFrameItem(SpectrumEntityTypes.INVISIBLE_GLOW_ITEM_FRAME, generalItemSettings);
 
+    public static final Item VOID_BUNDLE = new VoidBundleItem(generalItemSettingsSingle);
+
+
     private static Item register(String name, Item item) {
         return Registry.register(Registry.ITEM, new Identifier(SpectrumCommon.MOD_ID, name), item);
     }
@@ -171,6 +175,7 @@ public class SpectrumItems {
 		registerMagicalTools();
 		registerFluidBuckets();
 
+        register("void_bundle", VOID_BUNDLE);
         register("music_disc_spectrum_theme", MUSIC_DISC_SPECTRUM_THEME);
         register("spawner", SPAWNER);
         register("glistering_melon_seeds", GLISTERING_MELON_SEEDS);

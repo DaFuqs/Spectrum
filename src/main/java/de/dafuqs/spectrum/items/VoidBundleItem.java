@@ -1,5 +1,7 @@
 package de.dafuqs.spectrum.items;
 
+import de.dafuqs.spectrum.Support;
+import de.dafuqs.spectrum.interfaces.InventoryInsertionAcceptor;
 import de.dafuqs.spectrum.items.tooltip.VoidBundleTooltipData;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.client.item.TooltipData;
@@ -11,6 +13,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.screen.slot.Slot;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.stat.Stats;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
@@ -22,7 +25,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-public class VoidBundleItem extends BundleItem {
+public class VoidBundleItem extends BundleItem implements InventoryInsertionAcceptor {
 
     private static final int MAX_STORED_AMOUNT = Integer.MAX_VALUE;
 
@@ -94,7 +97,6 @@ public class VoidBundleItem extends BundleItem {
         }
     }
 
-
     /**
      * When the bundle is clicked onto another stack
      */
@@ -105,13 +107,13 @@ public class VoidBundleItem extends BundleItem {
             ItemStack itemStack = slot.getStack();
             if (itemStack.isEmpty()) {
                 removeFirstBundledStack(stack).ifPresent((removedStack) -> {
-                    addToBundle(stack, slot.insertStack(removedStack));
+                    addToBundle(stack, slot.insertStack(removedStack), player);
                 });
             } else if (itemStack.getItem().canBeNested()) {
                 ItemStack firstStack = getFirstBundledStack(stack);
                 if(firstStack.isEmpty() || ItemStack.canCombine(firstStack, itemStack)) {
                     int amountToAdd = MAX_STORED_AMOUNT - getStoredAmount(stack) - itemStack.getCount();
-                    addToBundle(stack, slot.takeStackRange(itemStack.getCount(), amountToAdd, player));
+                    addToBundle(stack, slot.takeStackRange(itemStack.getCount(), amountToAdd, player), player);
                 }
             }
 
@@ -130,7 +132,7 @@ public class VoidBundleItem extends BundleItem {
                 Objects.requireNonNull(cursorStackReference);
                 removedItemStack.ifPresent(cursorStackReference::set);
             } else {
-                otherStack.decrement(addToBundle(stack, otherStack));
+                otherStack.decrement(addToBundle(stack, otherStack, player));
             }
 
             return true;
@@ -139,7 +141,7 @@ public class VoidBundleItem extends BundleItem {
         }
     }
 
-    private static int addToBundle(ItemStack bundle, ItemStack stackToBundle) {
+    private static int addToBundle(ItemStack bundle, ItemStack stackToBundle, PlayerEntity playerEntity) {
         if (!stackToBundle.isEmpty() && stackToBundle.getItem().canBeNested()) {
             int storedAmount = getStoredAmount(bundle);
             int roomLeft = Math.min(stackToBundle.getCount(), (MAX_STORED_AMOUNT - storedAmount) / stackToBundle.getCount());
@@ -148,11 +150,11 @@ public class VoidBundleItem extends BundleItem {
                 if (stackInBundle.isEmpty()) {
                     stackInBundle = stackToBundle.copy();
                     stackInBundle.setCount(roomLeft);
-                    bundleStack(bundle, stackInBundle);
+                    bundleStack(bundle, stackInBundle, playerEntity);
                     return roomLeft;
                 } else if (ItemStack.canCombine(stackInBundle, stackToBundle)) {
                     stackInBundle.increment(roomLeft);
-                    bundleStack(bundle, stackInBundle, storedAmount+roomLeft);
+                    bundleStack(bundle, stackInBundle, storedAmount+roomLeft, playerEntity);
                     return roomLeft;
                 }
             }
@@ -214,11 +216,11 @@ public class VoidBundleItem extends BundleItem {
         return itemStack;
     }
 
-    private static void bundleStack(ItemStack voidBundleStack, ItemStack storedItemStack) {
-        bundleStack(voidBundleStack, storedItemStack, storedItemStack.getCount());
+    private static int bundleStack(ItemStack voidBundleStack, ItemStack storedItemStack, PlayerEntity playerEntity) {
+        return bundleStack(voidBundleStack, storedItemStack, storedItemStack.getCount(), playerEntity);
     }
 
-    private static void bundleStack(ItemStack voidBundleStack, ItemStack storedItemStack, int amount) {
+    private static int bundleStack(ItemStack voidBundleStack, ItemStack storedItemStack, int amount, PlayerEntity playerEntity) {
         NbtCompound voidBundleCompound = voidBundleStack.getOrCreateTag();
         NbtCompound storedItemCompound = new NbtCompound();
 
@@ -231,6 +233,10 @@ public class VoidBundleItem extends BundleItem {
 
         voidBundleCompound.put("StoredStack", storedItemCompound);
         voidBundleStack.setTag(voidBundleCompound);
+
+        testFull(amount, playerEntity);
+
+        return Math.max(0, amount - MAX_STORED_AMOUNT);
     }
 
     private static int getStoredAmount(ItemStack voidBundleStack) {
@@ -262,5 +268,26 @@ public class VoidBundleItem extends BundleItem {
     }
 
 
+    @Override
+    public boolean acceptsItemStack(ItemStack inventoryInsertionAcceptorStack, ItemStack itemStackToAccept) {
+        ItemStack storedStack = getFirstBundledStack(inventoryInsertionAcceptorStack);
+        if(storedStack.isEmpty()) {
+            return false;
+        } else {
+            return ItemStack.canCombine(storedStack, itemStackToAccept);
+        }
+    }
+
+    @Override
+    public int acceptItemStack(ItemStack inventoryInsertionAcceptorStack, ItemStack itemStackToAccept, PlayerEntity playerEntity) {
+        int storedAmount = getStoredAmount(inventoryInsertionAcceptorStack);
+        return bundleStack(inventoryInsertionAcceptorStack, itemStackToAccept, itemStackToAccept.getCount() + storedAmount, playerEntity);
+    }
+
+    public static void testFull(int storedAmount, PlayerEntity playerEntity) {
+        if(playerEntity instanceof ServerPlayerEntity && storedAmount == MAX_STORED_AMOUNT) {
+            Support.grantAdvancementCriterion((ServerPlayerEntity) playerEntity, "fill_void_bundle", "void_bundle_full");
+        }
+    }
 
 }

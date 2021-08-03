@@ -1,0 +1,20 @@
+{
+  "display": {
+    "icon": {
+        "item": "spectrum:void_bundle"
+    },
+    "title": {
+      "translate": "advancements.spectrum.fill_void_bundle.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.fill_void_bundle.description"
+    },
+    "frame": "challenge"
+  },
+  "parent": "spectrum:spectrum_midgame",
+  "criteria": {
+    "void_bundle_full": {
+      "trigger":"minecraft:impossible"
+    }
+  }
+}

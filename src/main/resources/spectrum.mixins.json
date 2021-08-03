@@ -22,13 +22,13 @@
     "LivingEntityMixin",
     "MobSpawnerBlockEntityMixin",
     "PlayerAdvancementTrackerMixin",
+    "PlayerInventoryMixin",
     "ServerPlayerEntityMixin",
     "ServerWorldMixin",
     "SpawnerBlockMixin",
     "WorldRendererMixin"
   ],
   "client": [
-    "client.ScreenMixin",
     "client.AccessorClientAdvancementManager",
     "client.BlockModelsMixin",
     "client.BlockOverlayRendererMixin",
@@ -39,6 +39,7 @@
     "client.ItemMixin",
     "client.MixinClientAdvancementManager",
     "client.MixinMinecraftClient",
+    "client.ScreenMixin",
     "client.TransparentBlockMixin"
   ],
   "injectors": {

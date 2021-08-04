@@ -474,9 +474,9 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
 
     public static Item getSpectrumItemForSlot(int slot) {
         return switch (slot) {
-            case 9 -> SpectrumItems.AMETHYST_POWDER;
-            case 10 -> SpectrumItems.CITRINE_POWDER;
-            case 11 -> SpectrumItems.TOPAZ_POWDER;
+            case 9 -> SpectrumItems.TOPAZ_POWDER;
+            case 10 -> SpectrumItems.AMETHYST_POWDER;
+            case 11 -> SpectrumItems.CITRINE_POWDER;
             case 12 -> SpectrumItems.ONYX_POWDER;
             case 13 -> SpectrumItems.MOONSTONE_POWDER;
             default -> Items.AIR;
@@ -485,9 +485,9 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
 
     public static int getSlotForSpectrumColor(SpectrumColor spectrumColor) {
         return switch (spectrumColor) {
-            case MAGENTA -> 9;
-            case YELLOW -> 10;
-            case CYAN -> 11;
+            case CYAN -> 9;
+            case MAGENTA -> 10;
+            case YELLOW -> 11;
             case BLACK -> 12;
             default -> 13; // WHITE
         };

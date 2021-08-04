@@ -72,15 +72,15 @@ public class AltarCraftingRecipe implements Recipe<Inventory> {
             return false;
         }
 
+        int cyanSpectrumCount = this.spectrumInputs.get(SpectrumColor.CYAN);
         int magentaSpectrumCount = this.spectrumInputs.get(SpectrumColor.MAGENTA);
         int yellowSpectrumCount = this.spectrumInputs.get(SpectrumColor.YELLOW);
-        int cyanSpectrumCount = this.spectrumInputs.get(SpectrumColor.CYAN);
         int blackSpectrumCount = this.spectrumInputs.get(SpectrumColor.BLACK);
         int whiteSpectrumCount = this.spectrumInputs.get(SpectrumColor.WHITE);
 
-        return ((magentaSpectrumCount == 0 || isStackAtLeast(inv.getStack(9), SpectrumItems.AMETHYST_POWDER, magentaSpectrumCount))
-            && (yellowSpectrumCount == 0 || isStackAtLeast(inv.getStack(10), SpectrumItems.CITRINE_POWDER, yellowSpectrumCount))
-            && (cyanSpectrumCount == 0 || isStackAtLeast(inv.getStack(11), SpectrumItems.TOPAZ_POWDER, cyanSpectrumCount))
+        return ((cyanSpectrumCount == 0 || isStackAtLeast(inv.getStack(9), SpectrumItems.TOPAZ_POWDER, magentaSpectrumCount))
+            && (magentaSpectrumCount == 0 || isStackAtLeast(inv.getStack(10), SpectrumItems.AMETHYST_POWDER, yellowSpectrumCount))
+            && (yellowSpectrumCount == 0 || isStackAtLeast(inv.getStack(11), SpectrumItems.CITRINE_POWDER, cyanSpectrumCount))
             && (blackSpectrumCount == 0 || isStackAtLeast(inv.getStack(12), SpectrumItems.ONYX_POWDER, blackSpectrumCount))
             && (whiteSpectrumCount == 0 || isStackAtLeast(inv.getStack(13), SpectrumItems.MOONSTONE_POWDER, magentaSpectrumCount)));
     }

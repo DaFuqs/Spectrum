@@ -4,10 +4,10 @@
         "item": "spectrum:bottle_of_failing"
     },
     "title": {
-      "translate": "advancements.spectrum.place_failing.title"
+      "translate": "advancements.spectrum.place_bootle_of_failing.title"
     },
     "description": {
-      "translate": "advancements.spectrum.place_failing.description"
+      "translate": "advancements.spectrum.place_bootle_of_failing.description"
     }
   },
   "parent": "spectrum:craft_bottle_of_failing",

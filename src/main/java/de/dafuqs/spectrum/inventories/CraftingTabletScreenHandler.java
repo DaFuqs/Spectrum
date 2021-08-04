@@ -93,9 +93,9 @@ public class CraftingTabletScreenHandler extends AbstractRecipeScreenHandler<Inv
       if (!world.isClient) {
          ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity) player;
 
-         inventory.setStack(9, new ItemStack(SpectrumItems.AMETHYST_POWDER, 64));
-         inventory.setStack(10, new ItemStack(SpectrumItems.CITRINE_POWDER, 64));
-         inventory.setStack(11, new ItemStack(SpectrumItems.TOPAZ_POWDER, 64));
+         inventory.setStack(9, new ItemStack(SpectrumItems.TOPAZ_POWDER, 64));
+         inventory.setStack(10, new ItemStack(SpectrumItems.AMETHYST_POWDER, 64));
+         inventory.setStack(11, new ItemStack(SpectrumItems.CITRINE_POWDER, 64));
          inventory.setStack(12, new ItemStack(SpectrumItems.ONYX_POWDER, 64));
          inventory.setStack(13, new ItemStack(SpectrumItems.MOONSTONE_POWDER, 64));
          Optional<AltarCraftingRecipe> optionalAltarCraftingRecipe = world.getRecipeManager().getFirstMatch(SpectrumRecipeTypes.ALTAR, inventory, world);
@@ -106,21 +106,21 @@ public class CraftingTabletScreenHandler extends AbstractRecipeScreenHandler<Inv
             ItemStack itemStack = altarCraftingRecipe.getOutput().copy();
             craftingResultInventory.setStack(0, itemStack);
 
-            int magenta = altarCraftingRecipe.getSpectrumColor(SpectrumColor.MAGENTA);
+            int magenta = altarCraftingRecipe.getSpectrumColor(SpectrumColor.CYAN);
             if(magenta > 0) {
-               inventory.setStack(9, new ItemStack(SpectrumItems.AMETHYST_POWDER, magenta));
+               inventory.setStack(9, new ItemStack(SpectrumItems.TOPAZ_POWDER, magenta));
             } else {
                inventory.setStack(9, ItemStack.EMPTY);
             }
-            int yellow = altarCraftingRecipe.getSpectrumColor(SpectrumColor.YELLOW);
+            int yellow = altarCraftingRecipe.getSpectrumColor(SpectrumColor.MAGENTA);
             if(yellow > 0) {
-               inventory.setStack(10, new ItemStack(SpectrumItems.CITRINE_POWDER, yellow));
+               inventory.setStack(10, new ItemStack(SpectrumItems.AMETHYST_POWDER, yellow));
             } else {
                inventory.setStack(10, ItemStack.EMPTY);
             }
-            int cyan = altarCraftingRecipe.getSpectrumColor(SpectrumColor.CYAN);
+            int cyan = altarCraftingRecipe.getSpectrumColor(SpectrumColor.YELLOW);
             if(cyan > 0) {
-               inventory.setStack(11, new ItemStack(SpectrumItems.TOPAZ_POWDER, cyan));
+               inventory.setStack(11, new ItemStack(SpectrumItems.CITRINE_POWDER, cyan));
             } else {
                inventory.setStack(11, ItemStack.EMPTY);
             }

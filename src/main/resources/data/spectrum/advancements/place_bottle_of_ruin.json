@@ -4,10 +4,10 @@
         "item": "spectrum:bottle_of_ruin"
     },
     "title": {
-      "translate": "advancements.spectrum.place_ruin.title"
+      "translate": "advancements.spectrum.place_bottle_of_ruin.title"
     },
     "description": {
-      "translate": "advancements.spectrum.place_ruin.description"
+      "translate": "advancements.spectrum.place_bottle_of_ruin.description"
     }
   },
   "parent": "spectrum:craft_bottle_of_ruin",

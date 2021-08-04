@@ -69,9 +69,9 @@ public class AltarScreenHandler extends AbstractRecipeScreenHandler<Inventory> {
         }
 
         // spectrum slots
-        this.addSlot(new StackFilterSlot(inventory, 9, 44, 77, SpectrumItems.AMETHYST_POWDER));
-        this.addSlot(new StackFilterSlot(inventory, 10, 44 + 18, 77, SpectrumItems.CITRINE_POWDER));
-        this.addSlot(new StackFilterSlot(inventory, 11, 44 + 2 * 18, 77, SpectrumItems.TOPAZ_POWDER));
+        this.addSlot(new StackFilterSlot(inventory, 9, 44, 77, SpectrumItems.TOPAZ_POWDER));
+        this.addSlot(new StackFilterSlot(inventory, 10, 44 + 18, 77, SpectrumItems.AMETHYST_POWDER));
+        this.addSlot(new StackFilterSlot(inventory, 11, 44 + 2 * 18, 77, SpectrumItems.CITRINE_POWDER));
         this.addSlot(new StackFilterSlot(inventory, 12, 44 + 3 * 18, 77, SpectrumItems.ONYX_POWDER));
         this.addSlot(new StackFilterSlot(inventory, 13, 44 + 4 * 18, 77, SpectrumItems.MOONSTONE_POWDER));
 
@@ -203,15 +203,15 @@ public class AltarScreenHandler extends AbstractRecipeScreenHandler<Inventory> {
                 if (!this.insertItem(clickedStack, 16, 51, false)) {
                     return ItemStack.EMPTY;
                 }
-            } else if(clickedStackCopy.isOf(SpectrumItems.AMETHYST_POWDER)) {
+            } else if(clickedStackCopy.isOf(SpectrumItems.TOPAZ_POWDER)) {
                 if(!this.insertItem(clickedStack, 9, 10, false)) {
                     return ItemStack.EMPTY;
                 }
-            } else if(clickedStackCopy.isOf(SpectrumItems.CITRINE_POWDER)) {
+            } else if(clickedStackCopy.isOf(SpectrumItems.AMETHYST_POWDER)) {
                 if(!this.insertItem(clickedStack, 10, 11, false)) {
                     return ItemStack.EMPTY;
                 }
-            } else if(clickedStackCopy.isOf(SpectrumItems.TOPAZ_POWDER)) {
+            } else if(clickedStackCopy.isOf(SpectrumItems.CITRINE_POWDER)) {
                 if(!this.insertItem(clickedStack, 11, 12, false)) {
                     return ItemStack.EMPTY;
                 }

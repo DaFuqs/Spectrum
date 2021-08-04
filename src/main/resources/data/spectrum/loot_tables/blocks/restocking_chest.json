@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "spectrum:restocking_chestweather_detector.json"
+          "name": "spectrum:restocking_chest"
         }
       ],
       "conditions": [

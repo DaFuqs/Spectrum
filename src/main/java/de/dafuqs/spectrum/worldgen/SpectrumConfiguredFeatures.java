@@ -44,6 +44,10 @@ public class SpectrumConfiguredFeatures extends ConfiguredFeatures {
     public static HashMap<DyeColor, ConfiguredFeature<TreeFeatureConfig, ?>> COLORED_TREE_FEATURES = new HashMap<>(); // FOR SAPLINGS
     public static ConfiguredFeature<?, ?> RANDOM_COLORED_TREES_FEATURE; // FOR WORLD GEN
 
+
+    private static ImmutableList<OreFeatureConfig.Target> SPARKLESTONE_ORE_TARGETS;
+    private static ImmutableList<OreFeatureConfig.Target> AZURITE_ORE_TARGETS;
+
     private static ConfiguredFeature<?, ?> SPARKLESTONE_ORE;
     private static ConfiguredFeature<?, ?> AZURITE_ORE;
     private static ConfiguredFeature<?, ?> PALETUR_ORE;
@@ -65,7 +69,9 @@ public class SpectrumConfiguredFeatures extends ConfiguredFeatures {
 
     private static void registerOres() {
         BlockState sparklestoneOre = SpectrumBlocks.SPARKLESTONE_ORE.getDefaultState();
+        BlockState deepslateSparklestoneOre = SpectrumBlocks.DEEPSLATE_SPARKLESTONE_ORE.getDefaultState();
         BlockState azuriteOre = SpectrumBlocks.AZURITE_ORE.getDefaultState();
+        BlockState deepslateAzuriteOre = SpectrumBlocks.DEEPSLATE_AZURITE_ORE.getDefaultState();
         BlockState scarletOre = SpectrumBlocks.SCARLET_ORE.getDefaultState();
         BlockState paleturOre = SpectrumBlocks.PALETUR_ORE.getDefaultState();
 
@@ -74,14 +80,17 @@ public class SpectrumConfiguredFeatures extends ConfiguredFeatures {
         Identifier scarletOreIdentifier = new Identifier(SpectrumCommon.MOD_ID, "scarlet_ore");
         Identifier paleturOreIdentifier = new Identifier(SpectrumCommon.MOD_ID, "paletur_ore");
 
+        SPARKLESTONE_ORE_TARGETS = ImmutableList.of(OreFeatureConfig.createTarget(OreFeatureConfig.Rules.STONE_ORE_REPLACEABLES, sparklestoneOre), OreFeatureConfig.createTarget(OreFeatureConfig.Rules.DEEPSLATE_ORE_REPLACEABLES, deepslateSparklestoneOre));
+        AZURITE_ORE_TARGETS = ImmutableList.of(OreFeatureConfig.createTarget(OreFeatureConfig.Rules.STONE_ORE_REPLACEABLES, azuriteOre), OreFeatureConfig.createTarget(OreFeatureConfig.Rules.DEEPSLATE_ORE_REPLACEABLES, deepslateAzuriteOre));
+
         SPARKLESTONE_ORE = registerConfiguredFeature(sparklestoneOreIdentifier,
-                Feature.ORE.configure(new OreFeatureConfig(OreFeatureConfig.Rules.BASE_STONE_OVERWORLD, sparklestoneOre, 17)) // vein size
+                Feature.ORE.configure(new OreFeatureConfig(SPARKLESTONE_ORE_TARGETS, 17)) // vein size
                         .uniformRange(YOffset.fixed(92), YOffset.fixed(192)) // min and max height
                         .spreadHorizontally()
                         .repeat(4)); // number of veins per chunk
 
         AZURITE_ORE = registerConfiguredFeature(azuriteOreIdentifier,
-                Feature.ORE.configure(new OreFeatureConfig(OreFeatureConfig.Rules.BASE_STONE_OVERWORLD, azuriteOre, 5)) // vein size
+                Feature.ORE.configure(new OreFeatureConfig(AZURITE_ORE_TARGETS, 5)) // vein size
                         .uniformRange(YOffset.getBottom(), YOffset.aboveBottom(64)) // min and max height
                         .spreadHorizontally()
                         .repeat(4)); // number of veins per chunk

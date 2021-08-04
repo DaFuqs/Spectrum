@@ -1,7 +1,7 @@
 {
   "name": "Bedrock Anvil",
   "icon": "spectrum:bedrock_anvil",
-  "category": "spectrum:magical_items_category",
+  "category": "spectrum:magical_blocks_category",
   "pages": [
     {
       "type": "patchouli:spotlight",
@@ -10,7 +10,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "The anvil made of Bedrock has a distinct advantage over normal anvils:$(br)It is indestructible, making it a perfect candidate for usage in $(l:general/anvil_crushing)Anvil Crushing$() automation or mass enchantment actions."
+      "text": "The Bedrock Anvil allows you to rename items at no additional cost. In addition, you can also add descriptions to your items.$(br2)Additionally, of course an anvil made of Bedrock has a distinct advantage over normal anvils:$(br)It is indestructible, making it a perfect candidate for usage in $(l:general/anvil_crushing)Anvil Crushing$() automation or mass enchantment actions."
     }
   ]
 }

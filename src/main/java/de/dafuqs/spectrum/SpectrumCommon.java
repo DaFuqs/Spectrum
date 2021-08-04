@@ -76,6 +76,8 @@ public class SpectrumCommon implements ModInitializer {
         SpectrumItems.registerFuelRegistry();
         SpectrumCommands.register();
 
+        SpectrumPackets.registerC2SReceivers();
+
         ServerWorldEvents.LOAD.register((minecraftServer, serverWorld) -> {
             SpectrumCommon.minecraftServer = minecraftServer;
         });

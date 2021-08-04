@@ -50,7 +50,7 @@ public class SpectrumClient implements ClientModInitializer {
         SpectrumEntityTypes.registerClient();
         SpectrumEntityRenderers.registerClient();
 
-        SpectrumS2CPackets.initClient();
+        SpectrumPackets.registerS2CReceivers();
         SpectrumParticleFactories.register();
 
         ClientLifecycleEvents.CLIENT_STARTED.register(minecraftClient -> {

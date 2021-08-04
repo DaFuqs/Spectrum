@@ -6,7 +6,7 @@ import de.dafuqs.spectrum.inventories.AutoCompactingInventory;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.recipe.anvil_crushing.AnvilCrushingRecipe;
 import de.dafuqs.spectrum.registries.SpectrumItemStackDamageImmunities;
-import de.dafuqs.spectrum.registries.SpectrumS2CPackets;
+import de.dafuqs.spectrum.registries.SpectrumPackets;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
@@ -99,7 +99,7 @@ public abstract class ItemEntityMixin {
                     buf.writeBlockPos(particleBlockPos);
                     // Iterate over all players tracking a position in the world and send the packet to each player
                     for (ServerPlayerEntity player : PlayerLookup.tracking((ServerWorld) world, particleBlockPos)) {
-                        ServerPlayNetworking.send(player, SpectrumS2CPackets.PLAY_PARTICLE_PACKET_ID, buf);
+                        ServerPlayNetworking.send(player, SpectrumPackets.PLAY_PARTICLE_PACKET_ID, buf);
                     }
 
                 }

@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.items.misc;
 import de.dafuqs.spectrum.InventoryHelper;
 import de.dafuqs.spectrum.inventories.CraftingTabletScreenHandler;
 import de.dafuqs.spectrum.items.tooltip.CraftingTabletTooltipData;
+import de.dafuqs.spectrum.recipe.altar.AltarCraftingRecipe;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.client.item.TooltipData;
@@ -49,7 +50,9 @@ public class CraftingTabletItem extends Item {
             if(storedRecipe == null || user.isSneaking()) {
                 user.openHandledScreen(createScreenHandlerFactory(world, (ServerPlayerEntity) user, itemStack));
             } else {
-                tryCraftRecipe((ServerPlayerEntity) user, storedRecipe);
+                if(!(storedRecipe instanceof AltarCraftingRecipe)) {
+                    tryCraftRecipe((ServerPlayerEntity) user, storedRecipe);
+                }
             }
             return TypedActionResult.success(user.getStackInHand(hand));
         } else {
@@ -124,6 +127,12 @@ public class CraftingTabletItem extends Item {
         Recipe recipe = getStoredRecipe(world, itemStack);
         if (recipe == null) {
             tooltip.add(new TranslatableText("item.spectrum.crafting_tablet.tooltip.no_recipe").formatted(Formatting.GRAY));
+        } else {
+            if(recipe instanceof AltarCraftingRecipe) {
+                tooltip.add(new TranslatableText("item.spectrum.crafting_tablet.tooltip.altar_recipe").formatted(Formatting.GRAY));
+            } else {
+                tooltip.add(new TranslatableText("item.spectrum.crafting_tablet.tooltip.crafting_recipe").formatted(Formatting.GRAY));
+            }
         }
     }
 

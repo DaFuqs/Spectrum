@@ -9,16 +9,16 @@
   "black": 0,
   "experience": 1,
   "pattern": [
-    "TTT",
-    "TST",
-    "TTT"
+    "CCC",
+    "B B",
+    "BBB"
   ],
   "key": {
-    "S": {
-      "tag": "spectrum:gem_shards"
+    "C": {
+      "item": "minecraft:calcite"
     },
-    "T": {
-      "item": "spectrum:polished_basalt"
+    "B": {
+      "item": "minecraft:smooth_basalt"
     }
   },
   "result" : {

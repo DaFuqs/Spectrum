@@ -28,5 +28,5 @@
     "item": "spectrum:cyan_lamp",
     "count": 1
   },
-  "required_advancements": [ "spectrum:hidden/collect_pigment/collect_cyan_pigment" ]
+  "required_advancements": [ "spectrum:hidden/collect_pigment/collect_cyan_pigment", "spectrum:hidden/collect_resource/collect_sparklestone_gem" ]
 }

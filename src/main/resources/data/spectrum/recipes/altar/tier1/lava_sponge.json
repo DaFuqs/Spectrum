@@ -28,5 +28,5 @@
     "item": "spectrum:lava_sponge",
     "count": 1
   },
-  "required_advancements": ["spectrum:craft_using_altar"]
+  "required_advancements": ["spectrum:craft_using_altar", "nether/obtain_blaze_rod"]
 }

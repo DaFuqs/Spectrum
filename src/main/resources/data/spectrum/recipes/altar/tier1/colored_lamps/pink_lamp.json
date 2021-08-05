@@ -28,5 +28,5 @@
     "item": "spectrum:pink_lamp",
     "count": 1
   },
-  "required_advancements": [ "spectrum:hidden/collect_pigment/collect_pink_pigment" ]
+  "required_advancements": [ "spectrum:hidden/collect_pigment/collect_pink_pigment", "spectrum:hidden/collect_resource/collect_sparklestone_gem" ]
 }

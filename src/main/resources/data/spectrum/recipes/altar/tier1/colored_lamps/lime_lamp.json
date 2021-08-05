@@ -28,5 +28,5 @@
     "item": "spectrum:lime_lamp",
     "count": 1
   },
-  "required_advancements": [ "spectrum:hidden/collect_pigment/collect_lime_pigment" ]
+  "required_advancements": [ "spectrum:hidden/collect_pigment/collect_lime_pigment", "spectrum:hidden/collect_resource/collect_sparklestone_gem" ]
 }

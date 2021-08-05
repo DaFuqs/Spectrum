@@ -18,7 +18,7 @@
       "item": "minecraft:item_frame"
     },
     "C": {
-      "item": "minecraft:golden_carrot"
+      "item": "spectrum:sparklestone_gem"
     },
     "F": {
       "item": "minecraft:fermented_spider_eye"
@@ -30,5 +30,6 @@
   "result" : {
     "item": "spectrum:invisible_glow_item_frame",
     "count": 1
-  }
+  },
+  "required_advancements": ["spectrum:hidden/collect_resource/collect_sparklestone_gem"]
 }

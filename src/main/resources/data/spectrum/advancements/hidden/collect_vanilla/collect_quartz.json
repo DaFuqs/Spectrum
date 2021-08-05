@@ -1,0 +1,8 @@
+{
+  "criteria": {
+    "has_quartz": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": { "items": [{ "items": [ "minecraft:quartz" ]}] }
+    }
+  }
+}

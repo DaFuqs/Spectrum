@@ -75,9 +75,9 @@ public class AnvilCrushingCategory<R extends AnvilCrushingRecipe> implements Dis
 
         // the tooltip text
         TranslatableText text;
-        if(display.crushedItemsPerPointOfDamage >= 2) {
+        if(display.crushedItemsPerPointOfDamage >= 1) {
             text = new TranslatableText("container.spectrum.rei.anvil_crushing.low_force_required");
-        } else if(display.crushedItemsPerPointOfDamage >= 1) {
+        } else if(display.crushedItemsPerPointOfDamage >= 0.5) {
             text = new TranslatableText("container.spectrum.rei.anvil_crushing.medium_force_required");
         } else {
             text = new TranslatableText("container.spectrum.rei.anvil_crushing.high_force_required");

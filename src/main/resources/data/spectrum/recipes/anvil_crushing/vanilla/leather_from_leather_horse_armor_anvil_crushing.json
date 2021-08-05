@@ -3,7 +3,7 @@
   "ingredient": {
     "item": "minecraft:leather_horse_armor"
   },
-  "crushedItemsPerPointOfDamage": 0.5,
+  "crushedItemsPerPointOfDamage": 0.3,
   "experience": 0.0,
   "result" : {
     "item": "minecraft:leather",

@@ -3,7 +3,7 @@
   "ingredient": {
     "item": "minecraft:rose_bush"
   },
-  "crushedItemsPerPointOfDamage": 4,
+  "crushedItemsPerPointOfDamage": 2,
   "experience": 0.0,
   "result" : {
     "item": "minecraft:red_dye",

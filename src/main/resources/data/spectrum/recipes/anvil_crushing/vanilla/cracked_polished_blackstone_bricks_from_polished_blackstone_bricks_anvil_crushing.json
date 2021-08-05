@@ -3,7 +3,7 @@
   "ingredient": {
     "item": "minecraft:polished_blackstone_bricks"
   },
-  "crushedItemsPerPointOfDamage": 4,
+  "crushedItemsPerPointOfDamage": 2,
   "experience": 0.0,
   "result" : {
     "item": "minecraft:cracked_polished_blackstone_bricks",

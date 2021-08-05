@@ -3,7 +3,7 @@
   "ingredient": {
     "item": "minecraft:blaze_rod"
   },
-  "crushedItemsPerPointOfDamage": 4,
+  "crushedItemsPerPointOfDamage": 2,
   "experience": 0.0,
   "result" : {
     "item": "minecraft:blaze_powder",

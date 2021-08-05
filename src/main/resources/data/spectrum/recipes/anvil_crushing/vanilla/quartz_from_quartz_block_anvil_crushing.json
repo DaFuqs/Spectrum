@@ -3,7 +3,7 @@
   "ingredient": {
     "item": "minecraft:quartz_block"
   },
-  "crushedItemsPerPointOfDamage": 1,
+  "crushedItemsPerPointOfDamage": 2,
   "experience": 0.0,
   "result" : {
     "item": "minecraft:quartz",

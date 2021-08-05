@@ -3,7 +3,7 @@
   "ingredient": {
     "item": "minecraft:stone"
   },
-  "crushedItemsPerPointOfDamage": 2,
+  "crushedItemsPerPointOfDamage": 1,
   "experience": 0.05,
   "result" : {
     "item": "minecraft:cobblestone",

@@ -3,7 +3,7 @@
   "ingredient": {
     "item": "minecraft:saddle"
   },
-  "crushedItemsPerPointOfDamage": 0.2,
+  "crushedItemsPerPointOfDamage": 0.1,
   "experience": 0.0,
   "result" : {
     "item": "minecraft:leather",

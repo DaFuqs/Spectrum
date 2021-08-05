@@ -3,7 +3,7 @@
   "ingredient": {
     "item": "minecraft:cracked_deepslate_tiles"
   },
-  "crushedItemsPerPointOfDamage": 4,
+  "crushedItemsPerPointOfDamage": 2,
   "experience": 0.0,
   "result" : {
     "item": "minecraft:cobbled_deepslate",

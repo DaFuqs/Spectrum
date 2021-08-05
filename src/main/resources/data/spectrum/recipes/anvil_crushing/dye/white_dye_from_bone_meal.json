@@ -3,7 +3,7 @@
   "ingredient": {
     "item": "minecraft:bone_meal"
   },
-  "crushedItemsPerPointOfDamage": 4,
+  "crushedItemsPerPointOfDamage": 2,
   "experience": 0.0,
   "result" : {
     "item": "minecraft:white_dye",

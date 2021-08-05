@@ -3,7 +3,7 @@
   "ingredient": {
     "item": "minecraft:sea_pickle"
   },
-  "crushedItemsPerPointOfDamage": 4,
+  "crushedItemsPerPointOfDamage": 2,
   "experience": 0.0,
   "result" : {
     "item": "minecraft:lime_dye",

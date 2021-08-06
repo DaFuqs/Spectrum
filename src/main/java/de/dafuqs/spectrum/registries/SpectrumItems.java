@@ -8,7 +8,7 @@ import de.dafuqs.spectrum.items.SpectrumArmorItem;
 import de.dafuqs.spectrum.items.VoidBundleItem;
 import de.dafuqs.spectrum.items.item_frame.InvisibleGlowItemFrameItem;
 import de.dafuqs.spectrum.items.item_frame.InvisibleItemFrameItem;
-import de.dafuqs.spectrum.items.materials.*;
+import de.dafuqs.spectrum.registries.materials.*;
 import de.dafuqs.spectrum.items.misc.*;
 import de.dafuqs.spectrum.items.tools.*;
 import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
@@ -73,19 +73,31 @@ public class SpectrumItems {
     public static final Item WHITE_PIGMENT = new Item(generalItemSettings);
     public static final Item YELLOW_PIGMENT = new Item(generalItemSettings);
 
+    // Preenchanted tools
+    public static final SpectrumToolMaterials.ToolMaterial LOW_HEALTH_MATERIAL = SpectrumToolMaterials.ToolMaterial.LOW_HEALTH;
+    public static final SpectrumToolMaterials.ToolMaterial VOIDING_MATERIAL = SpectrumToolMaterials.ToolMaterial.VOIDING;
+    public static final Item MULTITOOL = new MultiToolItem(ToolMaterials.IRON, 2, -2.4F, preEnchantedItemSettings);
+    public static final Item SILKER_PICKAXE = new SpectrumPickaxeItem(LOW_HEALTH_MATERIAL, 1, -2.8F, preEnchantedItemSettings);
+    public static final Item FORTUNE_PICKAXE = new SpectrumPickaxeItem(LOW_HEALTH_MATERIAL, 1, -2.8F, preEnchantedItemSettings);
+    public static final Item LOOTING_FALCHION = new SwordItem(LOW_HEALTH_MATERIAL, 4, -2.2F, preEnchantedItemSettings);
+    public static final Item VOIDING_PICKAXE = new VoidingPickaxeItem(VOIDING_MATERIAL, 1, -2.8F, preEnchantedItemSettings);
+    public static final Item RESONANT_PICKAXE = new SpectrumPickaxeItem(LOW_HEALTH_MATERIAL, 1, -2.8F, preEnchantedItemSettings);
+
     // Bedrock Tools
-    public static final ToolItem BEDROCK_PICKAXE = new BedrockPickaxeItem(BedrockToolMaterial.INSTANCE, 1, -2.8F, spectrumBedrockItemSettings);
-    public static final ToolItem BEDROCK_AXE = new BedrockAxeItem(BedrockToolMaterial.INSTANCE, 5, -3.0F, spectrumBedrockItemSettings);
-    public static final ToolItem BEDROCK_SHOVEL = new BedrockShovelItem(BedrockToolMaterial.INSTANCE, 1, -3.0F, spectrumBedrockItemSettings);
-    public static final ToolItem BEDROCK_SWORD = new BedrockSwordItem(BedrockToolMaterial.INSTANCE, 4, -2.4F, spectrumBedrockItemSettings);
-    public static final ToolItem BEDROCK_HOE = new BedrockHoeItem(BedrockToolMaterial.INSTANCE, -2, -0.0F, spectrumBedrockItemSettings);
+    public static final SpectrumToolMaterials.ToolMaterial BEDROCK_MATERIAL = SpectrumToolMaterials.ToolMaterial.BEDROCK;
+    public static final ToolItem BEDROCK_PICKAXE = new BedrockPickaxeItem(BEDROCK_MATERIAL, 1, -2.8F, spectrumBedrockItemSettings);
+    public static final ToolItem BEDROCK_AXE = new BedrockAxeItem(BEDROCK_MATERIAL, 5, -3.0F, spectrumBedrockItemSettings);
+    public static final ToolItem BEDROCK_SHOVEL = new BedrockShovelItem(BEDROCK_MATERIAL, 1, -3.0F, spectrumBedrockItemSettings);
+    public static final ToolItem BEDROCK_SWORD = new BedrockSwordItem(BEDROCK_MATERIAL, 4, -2.4F, spectrumBedrockItemSettings);
+    public static final ToolItem BEDROCK_HOE = new BedrockHoeItem(BEDROCK_MATERIAL, -2, -0.0F, spectrumBedrockItemSettings);
     public static final BedrockBowItem BEDROCK_BOW = new BedrockBowItem(spectrumBedrockItemSettings);
     public static final BedrockCrossbowItem BEDROCK_CROSSBOW = new BedrockCrossbowItem(spectrumBedrockItemSettings);
     public static final BedrockShearsItem BEDROCK_SHEARS = new BedrockShearsItem(spectrumBedrockItemSettings); // TODO: wait for fabric pull request to get shears drop: https://github.com/FabricMC/fabric/pull/1287
     public static final FishingRodItem BEDROCK_FISHING_ROD = new BedrockFishingRodItem(spectrumBedrockItemSettings);
 
+
     // Bedrock Armor
-    public static final BedrockArmorMaterial BEDROCK_ARMOR_MATERIAL = new BedrockArmorMaterial();
+    public static final ArmorMaterial BEDROCK_ARMOR_MATERIAL = SpectrumArmorMaterials.BEDROCK;
     public static final Item BEDROCK_HELMET = new SpectrumArmorItem(BEDROCK_ARMOR_MATERIAL, EquipmentSlot.HEAD, spectrumBedrockItemSettings);
     public static final Item BEDROCK_CHESTPLATE = new SpectrumArmorItem(BEDROCK_ARMOR_MATERIAL, EquipmentSlot.CHEST, spectrumBedrockItemSettings);
     public static final Item BEDROCK_LEGGINGS = new SpectrumArmorItem(BEDROCK_ARMOR_MATERIAL, EquipmentSlot.LEGS, spectrumBedrockItemSettings);
@@ -118,18 +130,8 @@ public class SpectrumItems {
     public static final Item MERMAIDS_GEM = new Item(generalItemSettings);
     public static final Item SHOOTING_STAR = new Item(generalItemSettings);
 
-    // Preenchanted tools
-    public static final LowHealthMaterial LOW_HEALTH_MATERIAL = new LowHealthMaterial();
-    public static final VoidingMaterial VOIDING_MATERIAL = new VoidingMaterial();
-    public static final Item MULTITOOL = new MultiToolItem(ToolMaterials.IRON, 2, -2.4F, preEnchantedItemSettings);
-    public static final Item SILKER_PICKAXE = new SpectrumPickaxeItem(LOW_HEALTH_MATERIAL, 1, -2.8F, preEnchantedItemSettings);
-    public static final Item FORTUNE_PICKAXE = new SpectrumPickaxeItem(LOW_HEALTH_MATERIAL, 1, -2.8F, preEnchantedItemSettings);
-    public static final Item LOOTING_FALCHION = new SwordItem(LOW_HEALTH_MATERIAL, 4, -2.2F, preEnchantedItemSettings);
-    public static final Item VOIDING_PICKAXE = new VoidingPickaxeItem(VOIDING_MATERIAL, 1, -2.8F, preEnchantedItemSettings);
-    public static final Item RESONANT_PICKAXE = new SpectrumPickaxeItem(LOW_HEALTH_MATERIAL, 1, -2.8F, preEnchantedItemSettings);
-
 	// Magical Tools
-    public static final Item GLOW_VISION_HELMET = new GlowVisionHelmet(GlowVisionMaterial.INSTANCE, EquipmentSlot.HEAD, preEnchantedItemSettings);
+    public static final Item GLOW_VISION_HELMET = new GlowVisionHelmet(SpectrumArmorMaterials.GLOW_VISION, EquipmentSlot.HEAD, preEnchantedItemSettings);
     public static final Item NATURES_STAFF = new AnimatedWandItem(preEnchantedItemSettings);
     public static final EnderSpliceItem ENDER_SPLICE = new EnderSpliceItem(generalItemSettings);
     public static final Item ENDER_BAG = new EnderBagItem(generalItemSettings);

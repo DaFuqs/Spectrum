@@ -2,8 +2,6 @@ package de.dafuqs.spectrum.items.tooltip;
 
 import net.minecraft.client.item.TooltipData;
 import net.minecraft.item.ItemStack;
-import net.minecraft.recipe.Recipe;
-import net.minecraft.text.TranslatableText;
 
 public class VoidBundleTooltipData implements TooltipData {
 

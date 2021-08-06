@@ -3,12 +3,9 @@ package de.dafuqs.spectrum.networking;
 import de.dafuqs.spectrum.inventories.BedrockAnvilScreenHandler;
 import net.minecraft.SharedConstants;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.network.NetworkThreadUtils;
 import net.minecraft.network.Packet;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.network.listener.ServerPlayPacketListener;
-import net.minecraft.server.network.ServerPlayNetworkHandler;
-import net.minecraft.server.world.ServerWorld;
 
 public class AddLoreToItemC2SPacket implements Packet<ServerPlayPacketListener> {
 

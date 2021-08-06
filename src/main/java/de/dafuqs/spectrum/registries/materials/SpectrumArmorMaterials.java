@@ -13,9 +13,7 @@ import java.util.function.Supplier;
 
 public enum SpectrumArmorMaterials implements ArmorMaterial {
 
-   BEDROCK("bedrock", 5, new int[]{6, 10, 14, 6}, 5, SoundEvents.ITEM_ARMOR_EQUIP_NETHERITE, 4.0F, 0.25F, () -> {
-      return Ingredient.empty();
-   }),
+   BEDROCK("bedrock", 5, new int[]{6, 10, 14, 6}, 5, SoundEvents.ITEM_ARMOR_EQUIP_NETHERITE, 4.0F, 0.25F, Ingredient::empty),
    GLOW_VISION("glow_vision", 15, new int[]{1, 2, 3, 1}, 7, SpectrumSoundEvents.ITEM_ARMOR_EQUIP_GLOW_VISION, 0.0F, 0.0F, () -> {
       return Ingredient.ofItems(Items.GLOW_INK_SAC);
    });
@@ -30,7 +28,7 @@ public enum SpectrumArmorMaterials implements ArmorMaterial {
    private final float knockbackResistance;
    private final Lazy<Ingredient> repairIngredientSupplier;
 
-   private SpectrumArmorMaterials(String name, int durabilityMultiplier, int[] protectionAmounts, int enchantability, SoundEvent equipSound, float toughness, float knockbackResistance, Supplier<Ingredient> repairIngredientSupplier) {
+   SpectrumArmorMaterials(String name, int durabilityMultiplier, int[] protectionAmounts, int enchantability, SoundEvent equipSound, float toughness, float knockbackResistance, Supplier<Ingredient> repairIngredientSupplier) {
       this.name = name;
       this.durabilityMultiplier = durabilityMultiplier;
       this.protectionAmounts = protectionAmounts;
@@ -58,7 +56,7 @@ public enum SpectrumArmorMaterials implements ArmorMaterial {
    }
 
    public Ingredient getRepairIngredient() {
-      return (Ingredient)this.repairIngredientSupplier.get();
+      return this.repairIngredientSupplier.get();
    }
 
    public String getName() {

@@ -16,5 +16,5 @@
       "conditions": { "items": [{ "items": [ "spectrum:vegetal" ]}] }
     }
   },
-  "parent": "spectrum:place_bottle_of_fading"
+  "parent": "spectrum:craft_bottle_of_fading"
 }

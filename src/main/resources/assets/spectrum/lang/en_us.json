@@ -360,7 +360,8 @@
   "block.spectrum.yellow_plank_slab": "Yellow Plank Slab",
   "block.spectrum.yellow_plank_fence_gate": "Yellow Plank Fence Gate",
 
-  "item.spectrum.manual": "Spectrum: Colorful World",
+  "item.spectrum.manual": "Colorful World",
+  "item.spectrum.manual.landing_text": "Hi $(playername)!$(br)I'm your personal guide into the magical world of Spectrum.$(br2)Here you will find a lot of information about the mod and how to progress. Keep me around when you're tinkering.",
 
   "item.spectrum.amethyst_powder": "Amethyst Powder",
   "item.spectrum.citrine_powder": "Citrine Powder",
@@ -737,17 +738,13 @@
   "advancements.spectrum.craft_using_altar.title": "Strangely familiar",
   "advancements.spectrum.craft_using_altar.description": "Use your Pigment Pedestal to craft an item using gemstone powder. It seems to react to redstone?",
   "advancements.spectrum.craft_bottle_of_fading.title": "That which should not be",
-  "advancements.spectrum.craft_bottle_of_fading.description": "The alchemists were wrong. There is no universal solvent. But you're sure there is something else...",
+  "advancements.spectrum.craft_bottle_of_fading.description": "Time to tinker with your new, magical abilities. Create life, by crafting a bottle of Fading.",
+  "advancements.spectrum.collect_vegetal.title": "Organic Matter",
+  "advancements.spectrum.collect_vegetal.description": "Feed it leaves, lean back and watch it devour.",
   "advancements.spectrum.craft_bottle_of_failing.title": "That which must not be",
   "advancements.spectrum.craft_bottle_of_failing.description": "Your first experiments were successful. But there has to be more...",
   "advancements.spectrum.craft_bottle_of_ruin.title": "That which should never have been",
   "advancements.spectrum.craft_bottle_of_ruin.description": "It looks like there is still more. Create world-devouring decay by infusing pure crystals with the power of the void.",
-  "advancements.spectrum.place_bottle_of_fading.title": "Organic Matter",
-  "advancements.spectrum.place_bottle_of_fading.description": "Feed it leaves, lean back and watch it devour.",
-  "advancements.spectrum.place_bottle_of_failing.title": "It... feeds on Obsidian?",
-  "advancements.spectrum.place_bottle_of_failing.description": "It's WAY more powerful than your first experiment. It seems to destroy everything it touches after a while. Is there something sturdy enough to withstand it's destructive potential?",
-  "advancements.spectrum.place_bottle_of_ruin.title": "What have you done",
-  "advancements.spectrum.place_bottle_of_ruin.description": "There is no going back... (for now?)",
   "advancements.spectrum.craft_colored_sapling.title": "All around me are familiar aces",
   "advancements.spectrum.craft_colored_sapling.description": "Use your new abilities to craft a colored sapling",
   "advancements.spectrum.use_glistering_melon_seeds.title": "A sign of Prosperity",
@@ -775,5 +772,11 @@
   "advancements.spectrum.brown_is_weird.title": "Brown is weird",
   "advancements.spectrum.brown_is_weird.description": "You have tried and tried and tried. You could not figure out a way to create a truly brown color by mixing your gemstone dust. The closest you came was merely a washed out orange - yuck. It can't be THAT hard, it's just a stupid color! Like... dirt is brown and it's the most common stuff you have seen around. (Seriously, look it up! The way we perceive brown color is fascinating: https://www.youtube.com/watch?v=wh4aWZRtTwU)",
   "advancements.spectrum.the_other_side_of_the_rainbow.title": "The other side of the rainbow",
-  "advancements.spectrum.the_other_side_of_the_rainbow.description": "Craft something truly brown."
+  "advancements.spectrum.the_other_side_of_the_rainbow.description": "Craft something truly brown.",
+
+  "______unused" : "UNUSED:",
+  "advancements.spectrum.place_bottle_of_failing.title": "It... feeds on Obsidian?",
+  "advancements.spectrum.place_bottle_of_failing.description": "It's WAY more powerful than your first experiment. It seems to destroy everything it touches after a while. Is there something sturdy enough to withstand it's destructive potential?",
+  "advancements.spectrum.place_bottle_of_ruin.title": "What have you done",
+  "advancements.spectrum.place_bottle_of_ruin.description": "There is no going back... (for now?)"
 }

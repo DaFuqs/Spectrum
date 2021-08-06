@@ -1,21 +1,18 @@
 $p = @("black", "blue", "brown", "cyan", "gray", "green", "light_blue", "light_gray", "lime", "magenta", "orange", "pink", "purple", "red", "white", "yellow")
 
 $p | Foreach-Object {
-    New-Item -Name "$_`_leaves.json" -ItemType File -Value
-@"
+    New-Item -Name "$_`_leaves.json" -ItemType File -Force -Value @"
 {
   "type": "minecraft:block",
   "pools": [
     {
-      "rolls": 1.0,
-      "bonus_rolls": 0.0,
+      "rolls": 1,
       "entries": [
         {
           "type": "minecraft:alternatives",
           "children": [
             {
               "type": "minecraft:item",
-              "name": "spectrum:$_`_leaves"
               "conditions": [
                 {
                   "condition": "minecraft:alternative",
@@ -23,7 +20,9 @@ $p | Foreach-Object {
                     {
                       "condition": "minecraft:match_tool",
                       "predicate": {
-                        "item": "minecraft:shears"
+                        "items": [
+                          "minecraft:shears"
+                        ]
                       }
                     },
                     {
@@ -41,11 +40,11 @@ $p | Foreach-Object {
                     }
                   ]
                 }
-              ]
+              ],
+              "name": "spectrum:$_`_leaves"
             },
             {
               "type": "minecraft:item",
-              "name": "spectrum:$_`_sapling"
               "conditions": [
                 {
                   "condition": "minecraft:survives_explosion"
@@ -60,29 +59,28 @@ $p | Foreach-Object {
                     0.008
                   ]
                 }
-              ]
+              ],
+              "name": "spectrum:$_`_sapling"
             }
           ]
         }
       ]
     },
     {
-      "rolls": 1.0,
-      "bonus_rolls": 0.0,
+      "rolls": 1,
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:$_`_dye",
           "conditions": [
             {
               "condition": "minecraft:table_bonus",
               "enchantment": "minecraft:fortune",
               "chances": [
-                0.06,
-                0.07,
-                0.08,
-                0.09,
-                0.1
+                0.1,
+                0.14,
+                0.18,
+                0.22,
+                0.25
               ]
             }
           ],
@@ -99,7 +97,8 @@ $p | Foreach-Object {
             {
               "function": "minecraft:explosion_decay"
             }
-          ]
+          ],
+          "name": "spectrum:$_`_pigment"
         }
       ],
       "conditions": [
@@ -111,7 +110,9 @@ $p | Foreach-Object {
               {
                 "condition": "minecraft:match_tool",
                 "predicate": {
-                  "item": "minecraft:shears"
+                  "items": [
+                    "minecraft:shears"
+                  ]
                 }
               },
               {

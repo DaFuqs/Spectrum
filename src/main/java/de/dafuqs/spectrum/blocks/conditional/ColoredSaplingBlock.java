@@ -32,9 +32,15 @@ public class ColoredSaplingBlock extends SaplingBlock implements Cloakable {
     public void setCloaked() {
         // Colored Logs => Oak logs
         BlockState cloakDefaultState = Blocks.OAK_SAPLING.getDefaultState();
+        BlockState cloakDefaultStateStage1 = Blocks.OAK_SAPLING.getDefaultState().with(SaplingBlock.STAGE, 1);
         for(DyeColor dyeColor : DyeColor.values()) {
-            BlockState defaultState = SpectrumBlocks.getColoredSaplingBlock(dyeColor).getDefaultState();
-            SpectrumBlockCloaker.cloakModel(defaultState, cloakDefaultState); // block
+            // blocks
+            BlockState stage0 = SpectrumBlocks.getColoredSaplingBlock(dyeColor).getDefaultState();
+            SpectrumBlockCloaker.cloakModel(stage0, cloakDefaultState);
+            BlockState stage1 = SpectrumBlocks.getColoredSaplingBlock(dyeColor).getDefaultState().with(SaplingBlock.STAGE, 1);
+            SpectrumBlockCloaker.cloakModel(stage1, cloakDefaultStateStage1);
+
+            // item
             SpectrumBlockCloaker.cloakModel(SpectrumBlocks.getColoredSaplingItem(dyeColor), Items.OAK_SAPLING); // item
         }
     }

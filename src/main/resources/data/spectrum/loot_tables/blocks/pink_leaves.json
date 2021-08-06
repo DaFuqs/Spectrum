@@ -3,14 +3,12 @@
   "pools": [
     {
       "rolls": 1,
-      "bonus_rolls": 0.0,
       "entries": [
         {
           "type": "minecraft:alternatives",
           "children": [
             {
               "type": "minecraft:item",
-              "name": "spectrum:pink_leaves",
               "conditions": [
                 {
                   "condition": "minecraft:alternative",
@@ -18,7 +16,9 @@
                     {
                       "condition": "minecraft:match_tool",
                       "predicate": {
-                        "item": "minecraft:shears"
+                        "items": [
+                          "minecraft:shears"
+                        ]
                       }
                     },
                     {
@@ -36,11 +36,11 @@
                     }
                   ]
                 }
-              ]
+              ],
+              "name": "spectrum:pink_leaves"
             },
             {
               "type": "minecraft:item",
-              "name": "spectrum:pink_sapling",
               "conditions": [
                 {
                   "condition": "minecraft:survives_explosion"
@@ -55,7 +55,8 @@
                     0.008
                   ]
                 }
-              ]
+              ],
+              "name": "spectrum:pink_sapling"
             }
           ]
         }
@@ -63,21 +64,19 @@
     },
     {
       "rolls": 1,
-      "bonus_rolls": 0.0,
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "spectrum:pink_pigment",
           "conditions": [
             {
               "condition": "minecraft:table_bonus",
               "enchantment": "minecraft:fortune",
               "chances": [
-                0.06,
-                0.07,
-                0.08,
-                0.09,
-                0.1
+                0.1,
+                0.14,
+                0.18,
+                0.22,
+                0.25
               ]
             }
           ],
@@ -94,7 +93,8 @@
             {
               "function": "minecraft:explosion_decay"
             }
-          ]
+          ],
+          "name": "spectrum:pink_pigment"
         }
       ],
       "conditions": [
@@ -106,7 +106,9 @@
               {
                 "condition": "minecraft:match_tool",
                 "predicate": {
-                  "item": "minecraft:shears"
+                  "items": [
+                    "minecraft:shears"
+                  ]
                 }
               },
               {

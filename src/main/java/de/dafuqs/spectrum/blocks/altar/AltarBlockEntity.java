@@ -225,43 +225,27 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
     }
 
     public static void serverTick(World world, BlockPos blockPos, BlockState blockState, AltarBlockEntity altarBlockEntity) {
-        // check recipe crafted last tick => performance
-        AltarCraftingRecipe altarCraftingRecipe = null;
-        CraftingRecipe craftingRecipe = null;
-        boolean shouldMarkDirty = false;
-
-        if (altarBlockEntity.lastRecipe instanceof AltarCraftingRecipe && ((AltarCraftingRecipe) altarBlockEntity.lastRecipe).matches(altarBlockEntity, world)) {
-            altarCraftingRecipe = (AltarCraftingRecipe) altarBlockEntity.lastRecipe;
-        } else {
-            autoCraftingInventory.setInputInventory(altarBlockEntity.inventory.subList(0, 9));
-            if(altarBlockEntity.lastRecipe instanceof CraftingRecipe && ((CraftingRecipe) altarBlockEntity.lastRecipe).matches(autoCraftingInventory, world)) {
-                craftingRecipe = (CraftingRecipe) altarBlockEntity.lastRecipe;
-            } else {
-                // current inventory does not match last recipe
-                // => search valid recipe
-                altarBlockEntity.craftingTime = 0;
-
-                altarCraftingRecipe = world.getRecipeManager().getFirstMatch(recipeType, altarBlockEntity, world).orElse(null);
-                if (altarCraftingRecipe != null) {
-                    if (altarCraftingRecipe.canCraft(altarBlockEntity.getOwnerUUID())) {
-                        altarBlockEntity.lastRecipe = altarCraftingRecipe;
-                        altarBlockEntity.craftingTimeTotal = altarCraftingRecipe.getCraftingTime();
-                    }
-                } else {
-                    craftingRecipe = world.getRecipeManager().getFirstMatch(RecipeType.CRAFTING, autoCraftingInventory, world).orElse(null);
-                    if (craftingRecipe != null) {
-                        altarBlockEntity.lastRecipe = craftingRecipe;
-                        altarBlockEntity.craftingTimeTotal = 20;
-                    } else {
-                        altarBlockEntity.lastRecipe = null;
-                    }
-                }
-            }
-        }
-
         // only craft when there is redstone power
         Block block = world.getBlockState(blockPos).getBlock();
         if(block.equals(SpectrumBlocks.ALTAR) && ((AltarBlock)block).isGettingPowered(world, blockPos)) {
+            // check recipe crafted last tick => performance
+            AltarCraftingRecipe altarCraftingRecipe = null;
+            CraftingRecipe craftingRecipe = null;
+            boolean shouldMarkDirty = false;
+
+            Recipe validRecipe = calculateRecipe(world, altarBlockEntity);
+            if(validRecipe instanceof AltarCraftingRecipe) {
+                altarCraftingRecipe = (AltarCraftingRecipe) validRecipe;
+                altarBlockEntity.lastRecipe = validRecipe;
+                altarBlockEntity.craftingTimeTotal = altarCraftingRecipe.getCraftingTime();
+            } else if(validRecipe instanceof CraftingRecipe) {
+                craftingRecipe = (CraftingRecipe) validRecipe;
+                altarBlockEntity.lastRecipe = validRecipe;
+                altarBlockEntity.craftingTimeTotal = 20;
+            } else {
+                // no valid recipe
+                altarBlockEntity.craftingTime = 0;
+            }
 
             int maxCountPerStack = altarBlockEntity.getMaxCountPerStack();
             boolean crafting = altarBlockEntity.isCrafting();
@@ -326,6 +310,42 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
 
             if (shouldMarkDirty) {
                 markDirty(world, blockPos, blockState);
+            }
+        }
+    }
+
+    public static Recipe calculateRecipe(World world, AltarBlockEntity altarBlockEntity) {
+        if (altarBlockEntity.lastRecipe instanceof AltarCraftingRecipe && ((AltarCraftingRecipe) altarBlockEntity.lastRecipe).matches(altarBlockEntity, world)) {
+            return altarBlockEntity.lastRecipe;
+        } else {
+            autoCraftingInventory.setInputInventory(altarBlockEntity.inventory.subList(0, 9));
+            if(altarBlockEntity.lastRecipe instanceof CraftingRecipe && ((CraftingRecipe) altarBlockEntity.lastRecipe).matches(autoCraftingInventory, world)) {
+                return altarBlockEntity.lastRecipe;
+            } else {
+                // current inventory does not match last recipe
+                // => search valid recipe
+                altarBlockEntity.craftingTime = 0;
+
+                AltarCraftingRecipe altarCraftingRecipe = world.getRecipeManager().getFirstMatch(recipeType, altarBlockEntity, world).orElse(null);
+                if (altarCraftingRecipe != null) {
+                    if (altarCraftingRecipe.canCraft(altarBlockEntity.getOwnerUUID())) {
+                        altarBlockEntity.lastRecipe = altarCraftingRecipe;
+                        altarBlockEntity.craftingTimeTotal = altarCraftingRecipe.getCraftingTime();
+                        return altarCraftingRecipe;
+                    } else {
+                        return null;
+                    }
+                } else {
+                    CraftingRecipe craftingRecipe = world.getRecipeManager().getFirstMatch(RecipeType.CRAFTING, autoCraftingInventory, world).orElse(null);
+                    if (craftingRecipe != null) {
+                        altarBlockEntity.lastRecipe = craftingRecipe;
+                        altarBlockEntity.craftingTimeTotal = 20;
+                        return craftingRecipe;
+                    } else {
+                        altarBlockEntity.lastRecipe = null;
+                        return null;
+                    }
+                }
             }
         }
     }
@@ -553,8 +573,7 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
     private int getCraftingRecipeSlotDependingOnWidth(int slot, int recipeWidth, int gridWidth) {
         int line = slot / gridWidth;
         int posInLine = slot % gridWidth;
-        int result = line * recipeWidth + posInLine;
-        return result;
+        return line * recipeWidth + posInLine;
     }
 
     @Override

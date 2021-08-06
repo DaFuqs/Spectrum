@@ -108,6 +108,15 @@ public class AltarScreenHandler extends AbstractRecipeScreenHandler<Inventory> {
             ItemStack displayedItemStack;
             if(outputItemStack.isEmpty()) {
                 displayedItemStack = inventory.getStack(15);
+
+                // if there is no block in the output slot
+                // show the result of the current recipe
+                if(displayedItemStack == ItemStack.EMPTY) {
+                    Recipe recipe = (AltarBlockEntity.calculateRecipe(world, (AltarBlockEntity) inventory));
+                    if(recipe != null) {
+                        ((ServerPlayerEntity) player).networkHandler.sendPacket(new ScreenHandlerSlotUpdateS2CPacket(syncId, this.nextRevision(), 15, displayedItemStack));
+                    }
+                }
             } else {
                 displayedItemStack = outputItemStack.copy();
                 ItemStack remainingItemStack = inventory.getStack(15);

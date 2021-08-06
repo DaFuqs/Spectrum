@@ -553,11 +553,12 @@ public class SpectrumBlocks {
         registerStoneBlocks(decorationItemSettings);
         registerGemBlocks(worldgenItemSettings);
         registerGemOreBlocks(worldgenItemSettings);
-        registerOreBlocks();
+        registerOreBlocks(worldgenItemSettings);
 
-        registerStoneLamps(decorationItemSettings);
+        registerOreStorageBlocks(decorationItemSettings);
+        registerGemstoneLamps(decorationItemSettings);
         registerRunes(decorationItemSettings);
-        registerGemGlass(decorationItemSettings);
+        registerGemstoneGlass(decorationItemSettings);
         registerPlayerOnlyGlass(generalItemSettings);
 
         registerColoredLamps(decorationItemSettings);
@@ -648,19 +649,27 @@ public class SpectrumBlocks {
         registerBlockWithItem("sacred_soil", SACRED_SOIL, fabricItemSettings);
     }
 
-    private static void registerOreBlocks() {
-        registerBlockWithItem("sparklestone_ore", SPARKLESTONE_ORE, worldgenItemSettings);
-        registerBlockWithItem("deepslate_sparklestone_ore", DEEPSLATE_SPARKLESTONE_ORE, worldgenItemSettings);
-        registerBlockWithItem("sparklestone_block", SPARKLESTONE_BLOCK, decorationItemSettings);
+    private static void registerOreBlocks(FabricItemSettings fabricItemSettings) {
+        registerBlockWithItem("sparklestone_ore", SPARKLESTONE_ORE, fabricItemSettings);
+        registerBlockWithItem("deepslate_sparklestone_ore", DEEPSLATE_SPARKLESTONE_ORE, fabricItemSettings);
 
-        registerBlockWithItem("azurite_ore", AZURITE_ORE, worldgenItemSettings);
-        registerBlockWithItem("deepslate_azurite_ore", DEEPSLATE_AZURITE_ORE, worldgenItemSettings);
+        registerBlockWithItem("azurite_ore", AZURITE_ORE, fabricItemSettings);
+        registerBlockWithItem("deepslate_azurite_ore", DEEPSLATE_AZURITE_ORE, fabricItemSettings);
+
+        registerBlockWithItem("scarlet_ore", SCARLET_ORE, new GravityBlockItem(SCARLET_ORE, fabricItemSettings, 1.01F));
+        registerBlockWithItem("paletur_ore", PALETUR_ORE, new GravityBlockItem(PALETUR_ORE, fabricItemSettings, 0.99F));
+    }
+
+    private static void registerOreStorageBlocks(FabricItemSettings fabricItemSettings) {
+        registerBlockWithItem("topaz_storage_block", TOPAZ_STORAGE_BLOCK, fabricItemSettings);
+        registerBlockWithItem("amethyst_storage_block", AMETHYST_STORAGE_BLOCK, fabricItemSettings);
+        registerBlockWithItem("citrine_storage_block", CITRINE_STORAGE_BLOCK, fabricItemSettings);
+        registerBlockWithItem("onyx_storage_block", ONYX_STORAGE_BLOCK, fabricItemSettings);
+        registerBlockWithItem("moonstone_storage_block", MOONSTONE_STORAGE_BLOCK, fabricItemSettings);
         registerBlockWithItem("azurite_block", AZURITE_BLOCK, decorationItemSettings);
-
-        registerBlockWithItem("scarlet_ore", SCARLET_ORE, new GravityBlockItem(SCARLET_ORE, worldgenItemSettings, 1.01F));
-        registerBlockWithItem("scarlet_fragment_block", SCARLET_FRAGMENT_BLOCK, new GravityBlockItem(SCARLET_FRAGMENT_BLOCK, generalItemSettings, 1.02F));
-        registerBlockWithItem("paletur_ore", PALETUR_ORE, new GravityBlockItem(PALETUR_ORE, worldgenItemSettings, 0.99F));
-        registerBlockWithItem("paletur_fragment_block", PALETUR_FRAGMENT_BLOCK, new GravityBlockItem(PALETUR_FRAGMENT_BLOCK, generalItemSettings, 0.98F));
+        registerBlockWithItem("sparklestone_block", SPARKLESTONE_BLOCK, decorationItemSettings);
+        registerBlockWithItem("scarlet_fragment_block", SCARLET_FRAGMENT_BLOCK, new GravityBlockItem(SCARLET_FRAGMENT_BLOCK, fabricItemSettings, 1.02F));
+        registerBlockWithItem("paletur_fragment_block", PALETUR_FRAGMENT_BLOCK, new GravityBlockItem(PALETUR_FRAGMENT_BLOCK, fabricItemSettings, 0.98F));
     }
 
     private static void registerColoredLamps(FabricItemSettings fabricItemSettings) {
@@ -682,7 +691,7 @@ public class SpectrumBlocks {
         registerBlockWithItem("yellow_lamp", YELLOW_LAMP, fabricItemSettings);
     }
 
-    private static void registerGemGlass(FabricItemSettings fabricItemSettings) {
+    private static void registerGemstoneGlass(FabricItemSettings fabricItemSettings) {
         registerBlockWithItem("topaz_glass", TOPAZ_GLASS, fabricItemSettings);
         registerBlockWithItem("amethyst_glass", AMETHYST_GLASS, fabricItemSettings);
         registerBlockWithItem("citrine_glass", CITRINE_GLASS, fabricItemSettings);
@@ -751,7 +760,7 @@ public class SpectrumBlocks {
         registerBlockWithItem("moonstone_chiseled_calcite", MOONSTONE_CHISELED_CALCITE, fabricItemSettings);
     }
 
-    private static void registerStoneLamps(FabricItemSettings fabricItemSettings) {
+    private static void registerGemstoneLamps(FabricItemSettings fabricItemSettings) {
         registerBlockWithItem("topaz_calcite_lamp", TOPAZ_CALCITE_LAMP, fabricItemSettings);
         registerBlockWithItem("amethyst_calcite_lamp", AMETHYST_CALCITE_LAMP, fabricItemSettings);
         registerBlockWithItem("citrine_calcite_lamp", CITRINE_CALCITE_LAMP, fabricItemSettings);
@@ -976,13 +985,6 @@ public class SpectrumBlocks {
         registerBlockWithItem("moonstone_cluster", MOONSTONE_CLUSTER, fabricItemSettings);
 
         registerBlockWithItem("ammolite_block", AMMOLITE_BLOCK, fabricItemSettings);
-
-        // storage blocks
-        registerBlockWithItem("topaz_storage_block", TOPAZ_STORAGE_BLOCK, fabricItemSettings);
-        registerBlockWithItem("amethyst_storage_block", AMETHYST_STORAGE_BLOCK, fabricItemSettings);
-        registerBlockWithItem("citrine_storage_block", CITRINE_STORAGE_BLOCK, fabricItemSettings);
-        registerBlockWithItem("onyx_storage_block", ONYX_STORAGE_BLOCK, fabricItemSettings);
-        registerBlockWithItem("moonstone_storage_block", MOONSTONE_STORAGE_BLOCK, fabricItemSettings);
     }
 
     private static void registerGemOreBlocks(FabricItemSettings fabricItemSettings) {

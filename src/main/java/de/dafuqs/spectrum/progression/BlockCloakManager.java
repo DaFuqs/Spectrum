@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.progression;
 
 import de.dafuqs.spectrum.interfaces.Cloakable;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.Item;
 import net.minecraft.util.Identifier;

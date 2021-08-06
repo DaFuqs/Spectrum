@@ -2,15 +2,12 @@ package de.dafuqs.spectrum.blocks.conditional;
 
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.interfaces.Cloakable;
-import de.dafuqs.spectrum.progression.BlockCloakManager;
-import de.dafuqs.spectrum.progression.ClientBlockCloaker;
-import de.dafuqs.spectrum.registries.SpectrumBlocks;
-import net.minecraft.block.*;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.PillarBlock;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.loot.context.LootContext;
-import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Pair;
 import net.minecraft.util.math.Direction;

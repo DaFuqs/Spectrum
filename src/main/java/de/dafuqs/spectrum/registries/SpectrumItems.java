@@ -36,8 +36,12 @@ public class SpectrumItems {
     public static FabricItemSettings decayPlacerItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).maxCount(16);
     public static FabricItemSettings musicDiscItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).maxCount(1).rarity(Rarity.RARE);
 
-    public static FabricItemSettings preEnchantedItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_PREENCHANTED_TOOLS);
-    public static FabricItemSettings spectrumBedrockItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_PREENCHANTED_TOOLS).rarity(Rarity.RARE).fireproof();
+    public static FabricItemSettings spectrumBedrockToolItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_PREENCHANTED_TOOLS).rarity(Rarity.RARE).fireproof().maxDamage(SpectrumToolMaterials.ToolMaterial.BEDROCK.getDurability());
+    public static FabricItemSettings spectrumBedrockArmorItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_PREENCHANTED_TOOLS).rarity(Rarity.RARE).fireproof().maxDamage(0);
+    public static FabricItemSettings spectrumLowHealthToolItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_PREENCHANTED_TOOLS).rarity(Rarity.UNCOMMON).maxDamage(SpectrumToolMaterials.ToolMaterial.LOW_HEALTH.getDurability());
+    public static FabricItemSettings spectrumLowVoidingToolItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_PREENCHANTED_TOOLS).rarity(Rarity.UNCOMMON).maxDamage(SpectrumToolMaterials.ToolMaterial.VOIDING.getDurability());
+    public static FabricItemSettings spectrumLowNightVisionArmorItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_PREENCHANTED_TOOLS).rarity(Rarity.UNCOMMON).maxDamage(SpectrumArmorMaterials.GLOW_VISION.getDurability(EquipmentSlot.HEAD));
+    public static FabricItemSettings spectrumMultiToolItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_PREENCHANTED_TOOLS).rarity(Rarity.UNCOMMON).maxDamage(ToolMaterials.IRON.getDurability());
 
 	// Main items
     public static final Item MANUAL = new ManualItem(generalItemSettingsSingle);
@@ -77,32 +81,31 @@ public class SpectrumItems {
     // Preenchanted tools
     public static final SpectrumToolMaterials.ToolMaterial LOW_HEALTH_MATERIAL = SpectrumToolMaterials.ToolMaterial.LOW_HEALTH;
     public static final SpectrumToolMaterials.ToolMaterial VOIDING_MATERIAL = SpectrumToolMaterials.ToolMaterial.VOIDING;
-    public static final Item MULTITOOL = new MultiToolItem(ToolMaterials.IRON, 2, -2.4F, preEnchantedItemSettings);
-    public static final Item SILKER_PICKAXE = new SpectrumPickaxeItem(LOW_HEALTH_MATERIAL, 1, -2.8F, preEnchantedItemSettings);
-    public static final Item FORTUNE_PICKAXE = new SpectrumPickaxeItem(LOW_HEALTH_MATERIAL, 1, -2.8F, preEnchantedItemSettings);
-    public static final Item LOOTING_FALCHION = new SwordItem(LOW_HEALTH_MATERIAL, 4, -2.2F, preEnchantedItemSettings);
-    public static final Item VOIDING_PICKAXE = new VoidingPickaxeItem(VOIDING_MATERIAL, 1, -2.8F, preEnchantedItemSettings);
-    public static final Item RESONANT_PICKAXE = new SpectrumPickaxeItem(LOW_HEALTH_MATERIAL, 1, -2.8F, preEnchantedItemSettings);
+    public static final Item MULTITOOL = new MultiToolItem(ToolMaterials.IRON, 2, -2.4F, spectrumMultiToolItemSettings);
+    public static final Item SILKER_PICKAXE = new SpectrumPickaxeItem(LOW_HEALTH_MATERIAL, 1, -2.8F, spectrumLowHealthToolItemSettings);
+    public static final Item FORTUNE_PICKAXE = new SpectrumPickaxeItem(LOW_HEALTH_MATERIAL, 1, -2.8F, spectrumLowHealthToolItemSettings);
+    public static final Item LOOTING_FALCHION = new SwordItem(LOW_HEALTH_MATERIAL, 4, -2.2F, spectrumLowHealthToolItemSettings);
+    public static final Item VOIDING_PICKAXE = new VoidingPickaxeItem(VOIDING_MATERIAL, 1, -2.8F, spectrumLowVoidingToolItemSettings);
+    public static final Item RESONANT_PICKAXE = new SpectrumPickaxeItem(LOW_HEALTH_MATERIAL, 1, -2.8F, spectrumLowHealthToolItemSettings);
 
     // Bedrock Tools
     public static final SpectrumToolMaterials.ToolMaterial BEDROCK_MATERIAL = SpectrumToolMaterials.ToolMaterial.BEDROCK;
-    public static final ToolItem BEDROCK_PICKAXE = new BedrockPickaxeItem(BEDROCK_MATERIAL, 1, -2.8F, spectrumBedrockItemSettings);
-    public static final ToolItem BEDROCK_AXE = new BedrockAxeItem(BEDROCK_MATERIAL, 5, -3.0F, spectrumBedrockItemSettings);
-    public static final ToolItem BEDROCK_SHOVEL = new BedrockShovelItem(BEDROCK_MATERIAL, 1, -3.0F, spectrumBedrockItemSettings);
-    public static final ToolItem BEDROCK_SWORD = new BedrockSwordItem(BEDROCK_MATERIAL, 4, -2.4F, spectrumBedrockItemSettings);
-    public static final ToolItem BEDROCK_HOE = new BedrockHoeItem(BEDROCK_MATERIAL, -2, -0.0F, spectrumBedrockItemSettings);
-    public static final BedrockBowItem BEDROCK_BOW = new BedrockBowItem(spectrumBedrockItemSettings);
-    public static final BedrockCrossbowItem BEDROCK_CROSSBOW = new BedrockCrossbowItem(spectrumBedrockItemSettings);
-    public static final BedrockShearsItem BEDROCK_SHEARS = new BedrockShearsItem(spectrumBedrockItemSettings); // TODO: wait for fabric pull request to get shears drop: https://github.com/FabricMC/fabric/pull/1287
-    public static final FishingRodItem BEDROCK_FISHING_ROD = new BedrockFishingRodItem(spectrumBedrockItemSettings);
-
+    public static final ToolItem BEDROCK_PICKAXE = new BedrockPickaxeItem(BEDROCK_MATERIAL, 1, -2.8F, spectrumBedrockToolItemSettings);
+    public static final ToolItem BEDROCK_AXE = new BedrockAxeItem(BEDROCK_MATERIAL, 5, -3.0F, spectrumBedrockToolItemSettings);
+    public static final ToolItem BEDROCK_SHOVEL = new BedrockShovelItem(BEDROCK_MATERIAL, 1, -3.0F, spectrumBedrockToolItemSettings);
+    public static final ToolItem BEDROCK_SWORD = new BedrockSwordItem(BEDROCK_MATERIAL, 4, -2.4F, spectrumBedrockToolItemSettings);
+    public static final ToolItem BEDROCK_HOE = new BedrockHoeItem(BEDROCK_MATERIAL, -2, -0.0F, spectrumBedrockToolItemSettings);
+    public static final BedrockBowItem BEDROCK_BOW = new BedrockBowItem(spectrumBedrockToolItemSettings);
+    public static final BedrockCrossbowItem BEDROCK_CROSSBOW = new BedrockCrossbowItem(spectrumBedrockToolItemSettings);
+    public static final BedrockShearsItem BEDROCK_SHEARS = new BedrockShearsItem(spectrumBedrockToolItemSettings); // TODO: wait for fabric pull request to get shears drop: https://github.com/FabricMC/fabric/pull/1287
+    public static final FishingRodItem BEDROCK_FISHING_ROD = new BedrockFishingRodItem(spectrumBedrockToolItemSettings);
 
     // Bedrock Armor
     public static final ArmorMaterial BEDROCK_ARMOR_MATERIAL = SpectrumArmorMaterials.BEDROCK;
-    public static final Item BEDROCK_HELMET = new SpectrumArmorItem(BEDROCK_ARMOR_MATERIAL, EquipmentSlot.HEAD, spectrumBedrockItemSettings);
-    public static final Item BEDROCK_CHESTPLATE = new SpectrumArmorItem(BEDROCK_ARMOR_MATERIAL, EquipmentSlot.CHEST, spectrumBedrockItemSettings);
-    public static final Item BEDROCK_LEGGINGS = new SpectrumArmorItem(BEDROCK_ARMOR_MATERIAL, EquipmentSlot.LEGS, spectrumBedrockItemSettings);
-    public static final Item BEDROCK_BOOTS = new SpectrumArmorItem(BEDROCK_ARMOR_MATERIAL, EquipmentSlot.FEET, spectrumBedrockItemSettings);
+    public static final Item BEDROCK_HELMET = new SpectrumArmorItem(BEDROCK_ARMOR_MATERIAL, EquipmentSlot.HEAD, spectrumBedrockArmorItemSettings);
+    public static final Item BEDROCK_CHESTPLATE = new SpectrumArmorItem(BEDROCK_ARMOR_MATERIAL, EquipmentSlot.CHEST, spectrumBedrockArmorItemSettings);
+    public static final Item BEDROCK_LEGGINGS = new SpectrumArmorItem(BEDROCK_ARMOR_MATERIAL, EquipmentSlot.LEGS, spectrumBedrockArmorItemSettings);
+    public static final Item BEDROCK_BOOTS = new SpectrumArmorItem(BEDROCK_ARMOR_MATERIAL, EquipmentSlot.FEET, spectrumBedrockArmorItemSettings);
 
     // Decay drops
     public static final Item VEGETAL = new Item(generalItemSettings);
@@ -132,8 +135,8 @@ public class SpectrumItems {
     public static final Item SHOOTING_STAR = new Item(generalItemSettings);
 
 	// Magical Tools
-    public static final Item GLOW_VISION_HELMET = new GlowVisionHelmet(SpectrumArmorMaterials.GLOW_VISION, EquipmentSlot.HEAD, preEnchantedItemSettings);
-    public static final Item NATURES_STAFF = new AnimatedWandItem(preEnchantedItemSettings);
+    public static final Item GLOW_VISION_HELMET = new GlowVisionHelmet(SpectrumArmorMaterials.GLOW_VISION, EquipmentSlot.HEAD, spectrumLowNightVisionArmorItemSettings);
+    public static final Item NATURES_STAFF = new AnimatedWandItem(generalItemSettings);
     public static final EnderSpliceItem ENDER_SPLICE = new EnderSpliceItem(generalItemSettings);
     public static final Item ENDER_BAG = new EnderBagItem(generalItemSettings);
     public static final Item END_PORTAL_CRACKER = new EndPortalCrackerItem(generalItemSettings);

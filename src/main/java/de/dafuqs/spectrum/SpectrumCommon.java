@@ -7,6 +7,7 @@ import de.dafuqs.spectrum.inventories.SpectrumScreenHandlerTypes;
 import de.dafuqs.spectrum.loot.EnchantmentDrops;
 import de.dafuqs.spectrum.loot.SpectrumLootConditionTypes;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
+import de.dafuqs.spectrum.progression.BlockCloakManager;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.sound.SpectrumBlockSoundGroups;
@@ -77,6 +78,8 @@ public class SpectrumCommon implements ModInitializer {
         SpectrumCommands.register();
 
         SpectrumPackets.registerC2SReceivers();
+
+        BlockCloakManager.setupCloaks();
 
         ServerWorldEvents.LOAD.register((minecraftServer, serverWorld) -> {
             SpectrumCommon.minecraftServer = minecraftServer;

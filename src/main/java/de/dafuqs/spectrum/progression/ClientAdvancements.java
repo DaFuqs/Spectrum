@@ -14,15 +14,15 @@ import net.minecraft.util.Identifier;
 import java.util.Map;
 
 @Environment(EnvType.CLIENT)
-public class SpectrumClientAdvancements {
+public class ClientAdvancements {
 
 	private static boolean receivedFirstAdvancementPacket = false;
 
 	public static void onClientPacket(AdvancementUpdateS2CPacket packet) {
 		boolean showToast = receivedFirstAdvancementPacket;
 		receivedFirstAdvancementPacket = true;
-		SpectrumBlockCloaker.checkCloaksForNewAdvancements(packet, showToast);
-		SpectrumAltarRecipeUnlocker.checkAltarRecipesForNewAdvancements(packet, showToast);
+		ClientBlockCloaker.checkCloaksForNewAdvancements(packet, showToast);
+		ClientAltarRecipeToastManager.checkAltarRecipesForNewAdvancements(packet, showToast);
 	}
 
 	public static boolean hasDone(Identifier identifier) {
@@ -47,7 +47,7 @@ public class SpectrumClientAdvancements {
 	}
 
 	public static void playerLogout() {
-		SpectrumBlockCloaker.cloakAll();
+		ClientBlockCloaker.cloakAll();
 		receivedFirstAdvancementPacket = false;
 	}
 

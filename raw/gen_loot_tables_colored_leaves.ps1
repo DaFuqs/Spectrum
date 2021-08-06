@@ -76,11 +76,11 @@ $p | Foreach-Object {
               "condition": "minecraft:table_bonus",
               "enchantment": "minecraft:fortune",
               "chances": [
-                0.1,
-                0.14,
-                0.18,
-                0.22,
-                0.25
+                0.2,
+                0.25,
+                0.3,
+                0.35,
+                0.4
               ]
             }
           ],

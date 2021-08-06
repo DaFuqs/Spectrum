@@ -2,25 +2,27 @@ package de.dafuqs.spectrum.blocks.conditional;
 
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.interfaces.Cloakable;
-import de.dafuqs.spectrum.progression.SpectrumBlockCloaker;
+import de.dafuqs.spectrum.progression.BlockCloakManager;
+import de.dafuqs.spectrum.progression.ClientBlockCloaker;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.PillarBlock;
+import net.minecraft.block.*;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.loot.context.LootContext;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.Pair;
+import net.minecraft.util.math.Direction;
 
+import java.util.Hashtable;
 import java.util.List;
 
 public class ColoredLogBlock extends PillarBlock implements Cloakable {
 
     public ColoredLogBlock(Settings settings) {
         super(settings);
-        setupCloak();
+        registerCloak();
     }
 
     @Override
@@ -28,22 +30,18 @@ public class ColoredLogBlock extends PillarBlock implements Cloakable {
         return new Identifier(SpectrumCommon.MOD_ID, "craft_colored_sapling");
     }
 
-    public void setCloaked() {
-        // Colored Logs => Oak logs
-        BlockState cloakDefaultState = Blocks.OAK_LOG.getDefaultState();
-        for(DyeColor dyeColor : DyeColor.values()) {
-            BlockState defaultState = SpectrumBlocks.getColoredLogBlock(dyeColor).getDefaultState();
-            SpectrumBlockCloaker.cloakModel(defaultState, cloakDefaultState); // block
-            SpectrumBlockCloaker.cloakModel(SpectrumBlocks.getColoredLogItem(dyeColor), Items.OAK_LOG); // item
+    @Override
+    public Hashtable<BlockState, BlockState> getBlockStateCloaks() {
+        Hashtable<BlockState, BlockState> hashtable = new Hashtable<>();
+        for(Direction.Axis axis : PillarBlock.AXIS.getValues()) {
+            hashtable.put(this.getDefaultState().with( PillarBlock.AXIS, axis), Blocks.OAK_LOG.getDefaultState().with( PillarBlock.AXIS, axis));
         }
+        return hashtable;
     }
 
-    public void setUncloaked() {
-        for(DyeColor dyeColor : DyeColor.values()) {
-            Block block = SpectrumBlocks.getColoredLogBlock(dyeColor);
-            SpectrumBlockCloaker.cloakAllBlockStatesForBlock(block);
-            SpectrumBlockCloaker.uncloakModel(SpectrumBlocks.getColoredLogItem(dyeColor));
-        }
+    @Override
+    public Pair<Item, Item> getItemCloak() {
+        return new Pair<>(this.asItem(), Blocks.OAK_LOG.asItem());
     }
 
     @Deprecated

@@ -12,8 +12,7 @@ public class GemstoneOreBlock extends CloakedOreBlock {
     public GemstoneOreBlock(Settings settings, UniformIntProvider experienceDropped, SpectrumColor spectrumColor, boolean deepSlateOre) {
         super(settings, experienceDropped, deepSlateOre);
         this.spectrumColor = spectrumColor;
-
-        setupCloak();
+        registerCloak();
     }
 
     @Override
@@ -36,4 +35,5 @@ public class GemstoneOreBlock extends CloakedOreBlock {
             }
         }
     }
+
 }

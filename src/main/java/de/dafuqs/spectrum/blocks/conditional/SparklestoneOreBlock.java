@@ -13,17 +13,12 @@ public class SparklestoneOreBlock extends CloakedOreBlock {
 
     public SparklestoneOreBlock(Settings settings, UniformIntProvider uniformIntProvider) {
         super(settings, uniformIntProvider, false);
-        setupCloak();
+        registerCloak();
     }
 
     @Override
     public Identifier getCloakAdvancementIdentifier() {
         return new Identifier(SpectrumCommon.MOD_ID, "craft_using_altar");
-    }
-
-    @Deprecated
-    public List<ItemStack> getDroppedStacks(BlockState state, LootContext.Builder builder) {
-        return getCloakedDroppedStacks(state, builder);
     }
 
 }

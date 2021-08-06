@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.mixin.client;
 
-import de.dafuqs.spectrum.progression.SpectrumBlockCloaker;
+import de.dafuqs.spectrum.progression.ClientBlockCloaker;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.item.Item;
@@ -24,7 +24,7 @@ public abstract class ItemMixin {
     @Inject(at = @At("HEAD"), method = "Lnet/minecraft/item/Item;getName(Lnet/minecraft/item/ItemStack;)Lnet/minecraft/text/Text;", cancellable = true)
     public void getName(ItemStack stack, CallbackInfoReturnable<Text> callbackInfoReturnable) {
         Item thisItem = (Item) (Object) this;
-        if(SpectrumBlockCloaker.isCloaked(thisItem)) {
+        if(ClientBlockCloaker.isCloaked(thisItem)) {
 
             // Get the localized name of the item and scatter it via §k
             Language language = Language.getInstance();

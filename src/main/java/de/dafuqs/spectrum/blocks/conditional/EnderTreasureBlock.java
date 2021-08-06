@@ -2,21 +2,24 @@ package de.dafuqs.spectrum.blocks.conditional;
 
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.interfaces.Cloakable;
-import de.dafuqs.spectrum.progression.SpectrumBlockCloaker;
+import de.dafuqs.spectrum.progression.ClientBlockCloaker;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.context.LootContext;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.Pair;
 
+import java.util.Hashtable;
 import java.util.List;
 
 public class EnderTreasureBlock extends Block implements Cloakable {
 
     public EnderTreasureBlock(Settings settings) {
         super(settings);
-        setupCloak();
+        registerCloak();
     }
 
     @Override
@@ -24,13 +27,18 @@ public class EnderTreasureBlock extends Block implements Cloakable {
         return new Identifier(SpectrumCommon.MOD_ID, "get_ender_treasure");
     }
 
-    public void setCloaked() {
-        SpectrumBlockCloaker.cloakModel(this.getDefaultState(), Blocks.COBBLESTONE.getDefaultState());
+    @Override
+    public Hashtable<BlockState, BlockState> getBlockStateCloaks() {
+        Hashtable<BlockState, BlockState> hashtable = new Hashtable<>();
+        hashtable.put(this.getDefaultState(), Blocks.COBBLESTONE.getDefaultState());
+        return hashtable;
     }
 
-    public void setUncloaked() {
-        SpectrumBlockCloaker.cloakAllBlockStatesForBlock(this);
+    @Override
+    public Pair<Item, Item> getItemCloak() {
+        return new Pair<>(this.asItem(), Blocks.COBBLESTONE.asItem());
     }
+
 
     @Deprecated
     public List<ItemStack> getDroppedStacks(BlockState state, LootContext.Builder builder) {

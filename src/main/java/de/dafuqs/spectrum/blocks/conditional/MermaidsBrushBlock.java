@@ -2,13 +2,14 @@ package de.dafuqs.spectrum.blocks.conditional;
 
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.interfaces.Cloakable;
-import de.dafuqs.spectrum.progression.SpectrumBlockCloaker;
+import de.dafuqs.spectrum.progression.ClientBlockCloaker;
 import de.dafuqs.spectrum.registries.SpectrumBlockTags;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.minecraft.block.*;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -19,12 +20,14 @@ import net.minecraft.state.property.IntProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.tag.FluidTags;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.Pair;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Hashtable;
 import java.util.List;
 import java.util.Random;
 
@@ -35,7 +38,7 @@ public class MermaidsBrushBlock extends PlantBlock implements Cloakable, Waterlo
     public MermaidsBrushBlock(Settings settings) {
         super(settings);
         this.setDefaultState(this.stateManager.getDefaultState().with(AGE, 0));
-        setupCloak();
+        registerCloak();
     }
 
     @Override
@@ -44,19 +47,19 @@ public class MermaidsBrushBlock extends PlantBlock implements Cloakable, Waterlo
     }
 
     @Override
-    public void setCloaked() {
-        // cloak for all 8 "AGE" block states
-        for(int i = 0; i < 8; i++){
-            SpectrumBlockCloaker.cloakModel(this.getDefaultState().with(AGE, i), Blocks.WATER.getDefaultState());
+    public Hashtable<BlockState, BlockState> getBlockStateCloaks() {
+        Hashtable<BlockState, BlockState> hashtable = new Hashtable<>();
+        for(int i = 0; i < 8; i++) {
+            hashtable.put(this.getDefaultState().with(AGE, i), Blocks.WATER.getDefaultState());
         }
-        SpectrumBlockCloaker.cloakModel(this.asItem(), Items.SEAGRASS); // item
+        return hashtable;
     }
 
     @Override
-    public void setUncloaked() {
-        SpectrumBlockCloaker.cloakAllBlockStatesForBlock(this);
-        SpectrumBlockCloaker.uncloakModel(this.asItem());
+    public Pair<Item, Item> getItemCloak() {
+        return new Pair<>(this.asItem(), Blocks.SEAGRASS.asItem());
     }
+
 
     @Deprecated
     public List<ItemStack> getDroppedStacks(BlockState state, LootContext.Builder builder) {

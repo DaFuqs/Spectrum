@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.REI;
 
 import de.dafuqs.spectrum.enums.SpectrumColor;
-import de.dafuqs.spectrum.progression.SpectrumClientAdvancements;
+import de.dafuqs.spectrum.progression.ClientAdvancements;
 import de.dafuqs.spectrum.recipe.altar.AltarCraftingRecipe;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
@@ -93,7 +93,7 @@ public class AltarCraftingRecipeDisplay<R extends AltarCraftingRecipe> implement
 
 	public boolean isUnlocked() {
 		for(Identifier advancementIdentifier : this.requiredAdvancementIdentifiers) {
-			if(!SpectrumClientAdvancements.hasDone(advancementIdentifier)) {
+			if(!ClientAdvancements.hasDone(advancementIdentifier)) {
 				return false;
 			}
 		}

@@ -3,7 +3,7 @@ package de.dafuqs.spectrum.recipe.altar;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.Support;
 import de.dafuqs.spectrum.enums.SpectrumColor;
-import de.dafuqs.spectrum.progression.SpectrumAltarRecipeUnlocker;
+import de.dafuqs.spectrum.progression.ClientAltarRecipeToastManager;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import de.dafuqs.spectrum.registries.SpectrumItems;
@@ -63,7 +63,7 @@ public class AltarCraftingRecipe implements Recipe<Inventory> {
         this.unlockedAdvancementOnCraft = unlockedAdvancementOnCraft;
         this.showToastOnUnlock = showToastOnUnlock;
 
-        SpectrumAltarRecipeUnlocker.registerUnlockableAltarRecipe(this);
+        ClientAltarRecipeToastManager.registerUnlockableAltarRecipe(this);
     }
 
     @Override

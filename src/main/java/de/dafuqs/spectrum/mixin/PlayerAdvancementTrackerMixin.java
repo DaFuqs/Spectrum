@@ -1,7 +1,8 @@
 package de.dafuqs.spectrum.mixin;
 
 import de.dafuqs.spectrum.Support;
-import de.dafuqs.spectrum.progression.SpectrumBlockCloaker;
+import de.dafuqs.spectrum.progression.BlockCloakManager;
+import de.dafuqs.spectrum.progression.ClientBlockCloaker;
 import net.minecraft.advancement.Advancement;
 import net.minecraft.advancement.AdvancementProgress;
 import net.minecraft.advancement.PlayerAdvancementTracker;
@@ -21,7 +22,7 @@ public class PlayerAdvancementTrackerMixin {
     public void grantCriterion(Advancement advancement, String criterionName, CallbackInfoReturnable<Boolean> cir) {
         AdvancementProgress advancementProgress = ((PlayerAdvancementTracker)(Object) this).getProgress(advancement);
         if(advancementProgress.isDone()) {
-            boolean triggersRevelation = SpectrumBlockCloaker.doesAdvancementTriggerRevelation(advancement.getId());
+            boolean triggersRevelation = BlockCloakManager.doesAdvancementTriggerRevelation(advancement.getId());
             if(triggersRevelation) {
                 Support.grantAdvancementCriterion(owner, "trigger_revelation", "have_revelation");
             }

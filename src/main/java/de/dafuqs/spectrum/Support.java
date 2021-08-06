@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum;
 
-import de.dafuqs.spectrum.progression.SpectrumClientAdvancements;
+import de.dafuqs.spectrum.progression.ClientAdvancements;
 import net.minecraft.advancement.Advancement;
 import net.minecraft.advancement.PlayerAdvancementTracker;
 import net.minecraft.block.BlockState;
@@ -43,7 +43,7 @@ public class Support {
 
     public static boolean hasAdvancement(PlayerEntity playerEntity, Identifier advancementIdentifier) {
         if (playerEntity instanceof ClientPlayerEntity) {
-            return SpectrumClientAdvancements.hasDone(advancementIdentifier);
+            return ClientAdvancements.hasDone(advancementIdentifier);
         } else if (playerEntity instanceof ServerPlayerEntity) {
             Advancement advancement = SpectrumCommon.minecraftServer.getAdvancementLoader().get(advancementIdentifier);
             if(advancement == null) {

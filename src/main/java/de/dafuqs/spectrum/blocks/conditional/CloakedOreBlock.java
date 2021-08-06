@@ -1,17 +1,23 @@
 package de.dafuqs.spectrum.blocks.conditional;
 
 import de.dafuqs.spectrum.interfaces.Cloakable;
-import de.dafuqs.spectrum.progression.SpectrumBlockCloaker;
+import de.dafuqs.spectrum.progression.BlockCloakManager;
+import de.dafuqs.spectrum.progression.ClientBlockCloaker;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.OreBlock;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.loot.context.LootContext;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.Pair;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
 
+import java.util.Hashtable;
 import java.util.List;
 
 public abstract class CloakedOreBlock extends OreBlock implements Cloakable {
@@ -23,21 +29,24 @@ public abstract class CloakedOreBlock extends OreBlock implements Cloakable {
         this.deepSlateOre = deepSlateOre;
     }
 
-    public void setCloaked() {
+    @Override
+    public Hashtable<BlockState, BlockState> getBlockStateCloaks() {
+        Hashtable<BlockState, BlockState> hashtable = new Hashtable<>();
         if(deepSlateOre) {
-            // Cloaks as deepslate
-            SpectrumBlockCloaker.cloakModel(this.getDefaultState(), Blocks.DEEPSLATE.getDefaultState()); // block
-            SpectrumBlockCloaker.cloakModel(this.asItem(), Items.DEEPSLATE); // item
+            hashtable.put(this.getDefaultState(), Blocks.DEEPSLATE.getDefaultState());
         } else {
-            // Cloaks as stone
-            SpectrumBlockCloaker.cloakModel(this.getDefaultState(), Blocks.STONE.getDefaultState()); // block
-            SpectrumBlockCloaker.cloakModel(this.asItem(), Items.STONE); // item
+            hashtable.put(this.getDefaultState(), Blocks.STONE.getDefaultState());
         }
+        return hashtable;
     }
 
-    public void setUncloaked() {
-        SpectrumBlockCloaker.cloakAllBlockStatesForBlock(this);
-        SpectrumBlockCloaker.uncloakModel(this.asItem());
+    @Override
+    public Pair<Item, Item> getItemCloak() {
+        if(deepSlateOre) {
+            return new Pair<>(this.asItem(), Blocks.DEEPSLATE.asItem());
+        } else {
+            return new Pair<>(this.asItem(), Blocks.STONE.asItem());
+        }
     }
 
     @Deprecated
@@ -49,9 +58,7 @@ public abstract class CloakedOreBlock extends OreBlock implements Cloakable {
     @Override
     public void onStacksDropped(BlockState state, ServerWorld world, BlockPos pos, ItemStack stack) {
         // TODO: Don't drop XP if broken by cloaked player
-        //if(!isCloaked()) {
-            super.onStacksDropped(state, world, pos, stack);
-        //}
+        super.onStacksDropped(state, world, pos, stack);
     }
 
 }

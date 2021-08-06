@@ -2,11 +2,12 @@ package de.dafuqs.spectrum.blocks.conditional;
 
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.interfaces.Cloakable;
-import de.dafuqs.spectrum.progression.SpectrumBlockCloaker;
+import de.dafuqs.spectrum.progression.ClientBlockCloaker;
 import de.dafuqs.spectrum.registries.SpectrumBlockTags;
 import net.minecraft.block.*;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -18,6 +19,7 @@ import net.minecraft.state.property.IntProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.tag.FluidTags;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.Pair;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
@@ -26,6 +28,7 @@ import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Hashtable;
 import java.util.List;
 import java.util.Random;
 
@@ -37,7 +40,7 @@ public class QuitoxicReedsBlock extends SugarCaneBlock implements Cloakable, Wat
     public QuitoxicReedsBlock(Settings settings) {
         super(settings);
         this.setDefaultState(this.stateManager.getDefaultState().with(WATERLOGGED, false).with(AGE, 0));
-        setupCloak();
+        registerCloak();
     }
 
     @Override
@@ -45,19 +48,21 @@ public class QuitoxicReedsBlock extends SugarCaneBlock implements Cloakable, Wat
         return new Identifier(SpectrumCommon.MOD_ID, "craft_colored_sapling"); // TODO
     }
 
-    public void setCloaked() {
+    @Override
+    public Hashtable<BlockState, BlockState> getBlockStateCloaks() {
+        Hashtable<BlockState, BlockState> hashtable = new Hashtable<>();
         for(int i = 0; i < 16; i++){
-            SpectrumBlockCloaker.cloakModel(this.getDefaultState().with(WATERLOGGED, false).with(AGE, i), Blocks.AIR.getDefaultState());
-            SpectrumBlockCloaker.cloakModel(this.getDefaultState().with(WATERLOGGED, true).with(AGE, i), Blocks.WATER.getDefaultState());
+            hashtable.put(this.getDefaultState().with(WATERLOGGED, false).with(AGE, i), Blocks.AIR.getDefaultState());
+            hashtable.put(this.getDefaultState().with(WATERLOGGED, true).with(AGE, i), Blocks.WATER.getDefaultState());
         }
-
-        SpectrumBlockCloaker.cloakModel(this.asItem(), Items.SUGAR_CANE); // item
+        return hashtable;
     }
 
-    public void setUncloaked() {
-        SpectrumBlockCloaker.cloakAllBlockStatesForBlock(this);
-        SpectrumBlockCloaker.uncloakModel(this.asItem());
+    @Override
+    public Pair<Item, Item> getItemCloak() {
+        return new Pair<>(this.asItem(), Blocks.SUGAR_CANE.asItem());
     }
+
 
     @Deprecated
     public List<ItemStack> getDroppedStacks(BlockState state, LootContext.Builder builder) {

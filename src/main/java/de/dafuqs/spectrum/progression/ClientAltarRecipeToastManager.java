@@ -3,6 +3,8 @@ package de.dafuqs.spectrum.progression;
 import de.dafuqs.spectrum.Support;
 import de.dafuqs.spectrum.recipe.altar.AltarCraftingRecipe;
 import de.dafuqs.spectrum.toast.RecipeToast;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.advancement.Advancement;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.item.ItemStack;
@@ -14,7 +16,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class SpectrumAltarRecipeUnlocker {
+@Environment(EnvType.CLIENT)
+public class ClientAltarRecipeToastManager {
 
     private static final HashMap<Identifier, List<AltarCraftingRecipe>> unlockableAltarRecipes = new HashMap<>();
 

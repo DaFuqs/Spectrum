@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.mixin.client;
 
-import de.dafuqs.spectrum.progression.SpectrumClientAdvancements;
+import de.dafuqs.spectrum.progression.ClientAdvancements;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
 import org.spongepowered.asm.mixin.Mixin;
@@ -13,7 +13,7 @@ public class MixinMinecraftClient {
 
 	@Inject(at = @At("HEAD"), method = "disconnect(Lnet/minecraft/client/gui/screen/Screen;)V")
 	public void onLogout(Screen screen, CallbackInfo info) {
-		SpectrumClientAdvancements.playerLogout();
+		ClientAdvancements.playerLogout();
 	}
 
 }

@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.mixin.client;
 
-import de.dafuqs.spectrum.progression.SpectrumClientAdvancements;
+import de.dafuqs.spectrum.progression.ClientAdvancements;
 import net.minecraft.client.network.ClientAdvancementManager;
 import net.minecraft.network.packet.s2c.play.AdvancementUpdateS2CPacket;
 import org.spongepowered.asm.mixin.Mixin;
@@ -20,7 +20,7 @@ public abstract class MixinClientAdvancementManager {
 	 */
 	@Inject(at = @At("RETURN"), method = "onAdvancements")
 	public void onAdvancementSync(AdvancementUpdateS2CPacket packet, CallbackInfo info) {
-		SpectrumClientAdvancements.onClientPacket(packet);
+		ClientAdvancements.onClientPacket(packet);
 	}
 
 }

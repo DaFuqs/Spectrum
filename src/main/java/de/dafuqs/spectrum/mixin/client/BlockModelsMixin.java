@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.mixin.client;
 
-import de.dafuqs.spectrum.progression.SpectrumBlockCloaker;
+import de.dafuqs.spectrum.progression.ClientBlockCloaker;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.render.block.BlockModels;
 import net.minecraft.client.render.model.BakedModel;
@@ -27,8 +27,8 @@ public class BlockModelsMixin {
 
     @Inject(at = @At("HEAD"), method = "getModel", cancellable = true)
     private void getModel(BlockState blockState, CallbackInfoReturnable<BakedModel> callbackInfoReturnable) {
-        if(SpectrumBlockCloaker.isCloaked(blockState)) {
-            BlockState destinationBlockState = SpectrumBlockCloaker.getTarget(blockState);
+        if(ClientBlockCloaker.isCloaked(blockState)) {
+            BlockState destinationBlockState = ClientBlockCloaker.getCloakTarget(blockState);
             BakedModel overriddenModel = this.models.getOrDefault(destinationBlockState, modelManager.getMissingModel());
             callbackInfoReturnable.setReturnValue(overriddenModel);
         }

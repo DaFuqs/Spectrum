@@ -4,6 +4,7 @@ import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.gravity.GravityItem;
 import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
 import de.dafuqs.spectrum.enums.SpectrumColor;
+import de.dafuqs.spectrum.items.PigmentItem;
 import de.dafuqs.spectrum.items.SpectrumArmorItem;
 import de.dafuqs.spectrum.items.VoidBundleItem;
 import de.dafuqs.spectrum.items.item_frame.InvisibleGlowItemFrameItem;
@@ -18,6 +19,7 @@ import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.*;
+import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
 import net.minecraft.util.registry.Registry;
@@ -61,22 +63,22 @@ public class SpectrumItems {
     public static final Item MOONSTONE_POWDER = new Item(generalItemSettings);
 
     // Pigment
-    public static final Item BLACK_PIGMENT = new Item(generalItemSettings);
-    public static final Item BLUE_PIGMENT = new Item(generalItemSettings);
-    public static final Item BROWN_PIGMENT = new Item(generalItemSettings);
-    public static final Item CYAN_PIGMENT = new Item(generalItemSettings);
-    public static final Item GRAY_PIGMENT = new Item(generalItemSettings);
-    public static final Item GREEN_PIGMENT = new Item(generalItemSettings);
-    public static final Item LIGHT_BLUE_PIGMENT = new Item(generalItemSettings);
-    public static final Item LIGHT_GRAY_PIGMENT = new Item(generalItemSettings);
-    public static final Item LIME_PIGMENT = new Item(generalItemSettings);
-    public static final Item MAGENTA_PIGMENT = new Item(generalItemSettings);
-    public static final Item ORANGE_PIGMENT = new Item(generalItemSettings);
-    public static final Item PINK_PIGMENT = new Item(generalItemSettings);
-    public static final Item PURPLE_PIGMENT = new Item(generalItemSettings);
-    public static final Item RED_PIGMENT = new Item(generalItemSettings);
-    public static final Item WHITE_PIGMENT = new Item(generalItemSettings);
-    public static final Item YELLOW_PIGMENT = new Item(generalItemSettings);
+    public static final Item BLACK_PIGMENT = new PigmentItem(generalItemSettings, DyeColor.BLACK);
+    public static final Item BLUE_PIGMENT = new PigmentItem(generalItemSettings, DyeColor.BLUE);
+    public static final Item BROWN_PIGMENT = new PigmentItem(generalItemSettings, DyeColor.BROWN);
+    public static final Item CYAN_PIGMENT = new PigmentItem(generalItemSettings, DyeColor.CYAN);
+    public static final Item GRAY_PIGMENT = new PigmentItem(generalItemSettings, DyeColor.GRAY);
+    public static final Item GREEN_PIGMENT = new PigmentItem(generalItemSettings, DyeColor.GREEN);
+    public static final Item LIGHT_BLUE_PIGMENT = new PigmentItem(generalItemSettings, DyeColor.LIGHT_BLUE);
+    public static final Item LIGHT_GRAY_PIGMENT = new PigmentItem(generalItemSettings, DyeColor.LIGHT_GRAY);
+    public static final Item LIME_PIGMENT = new PigmentItem(generalItemSettings, DyeColor.LIME);
+    public static final Item MAGENTA_PIGMENT = new PigmentItem(generalItemSettings, DyeColor.MAGENTA);
+    public static final Item ORANGE_PIGMENT = new PigmentItem(generalItemSettings, DyeColor.ORANGE);
+    public static final Item PINK_PIGMENT = new PigmentItem(generalItemSettings, DyeColor.PINK);
+    public static final Item PURPLE_PIGMENT = new PigmentItem(generalItemSettings, DyeColor.PURPLE);
+    public static final Item RED_PIGMENT = new PigmentItem(generalItemSettings, DyeColor.RED);
+    public static final Item WHITE_PIGMENT = new PigmentItem(generalItemSettings, DyeColor.WHITE);
+    public static final Item YELLOW_PIGMENT = new PigmentItem(generalItemSettings, DyeColor.YELLOW);
 
     // Preenchanted tools
     public static final SpectrumToolMaterials.ToolMaterial LOW_HEALTH_MATERIAL = SpectrumToolMaterials.ToolMaterial.LOW_HEALTH;

@@ -11,7 +11,7 @@
             "type": "patchouli:spotlight",
             "title": "Sparklestone",
             "item": "spectrum:sparklestone_ore",
-            "text": "A yellow ore that emits strong energy in the form of light. Sparklestone is found at all altitudes."
+            "text": "A yellow ore that does emit, but also is able to manipulate energy in the form of light.$(br2)Sparklestone is found at above sea level altitudes."
         },
         {
             "type": "patchouli:spotlight",

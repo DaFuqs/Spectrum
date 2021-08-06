@@ -228,7 +228,7 @@ public class SpectrumConfiguredFeatures extends ConfiguredFeatures {
                 UniformIntProvider.create(3, 4),
                 UniformIntProvider.create(1, 2),
                 -16, 16, 0.05D, 1)
-        ).uniformRange(YOffset.fixed(SpectrumCommon.CONFIG.TopazGeodeMinFixedGenerationHeight), YOffset.belowTop(SpectrumCommon.CONFIG.TopazGeodeMinFixedGenerationHeight))
+        ).uniformRange(YOffset.fixed(SpectrumCommon.CONFIG.TopazGeodeMinFixedGenerationHeight), YOffset.belowTop(SpectrumCommon.CONFIG.TopazGeodeMaxBelowTopGenerationHeight))
         ).spreadHorizontally()).applyChance(10);
 
         MOONSTONE_GEODE = ((SpectrumFeatures.SOLID_BLOCKS_GEODE.configure(new GeodeFeatureConfig(

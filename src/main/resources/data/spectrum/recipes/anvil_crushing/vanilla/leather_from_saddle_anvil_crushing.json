@@ -1,12 +1,12 @@
 {
   "type": "spectrum_anvil_crushing",
   "ingredient": {
-    "item": "minecraft:diamond_horse_armor"
+    "item": "minecraft:saddle"
   },
-  "crushedItemsPerPointOfDamage": 0.05,
+  "crushedItemsPerPointOfDamage": 0.3,
   "experience": 0.0,
   "result" : {
-    "item": "minecraft:diamond",
+    "item": "minecraft:leather",
     "count": 3
   },
   "particleEffectIdentifier": "cloud",

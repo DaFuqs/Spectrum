@@ -17,8 +17,6 @@ import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
-import net.minecraft.particle.ParticleEffect;
-import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
@@ -91,15 +89,16 @@ public abstract class ItemEntityMixin {
                     world.playSound(null, position.x, position.y, position.z, soundEvent, SoundCategory.PLAYERS, randomVolume, randomPitch);
 
                     // Particle Effect
-                    ParticleEffect particleEffect = ParticleTypes.EXPLOSION; // recipe.getParticleEffect();
-                    world.addParticle(particleEffect, position.x, position.y, position.z, 0, 0, 0);
+                    // TODO: remove
+                    //ParticleEffect particleEffect = ParticleTypes.EXPLOSION; // recipe.getParticleEffect();
+                    //world.addParticle(particleEffect, position.x, position.y, position.z, 0, 0, 0);
 
                     PacketByteBuf buf = PacketByteBufs.create();
                     BlockPos particleBlockPos = new BlockPos(position.x, position.y, position.z);
                     buf.writeBlockPos(particleBlockPos);
                     // Iterate over all players tracking a position in the world and send the packet to each player
                     for (ServerPlayerEntity player : PlayerLookup.tracking((ServerWorld) world, particleBlockPos)) {
-                        ServerPlayNetworking.send(player, SpectrumPackets.PLAY_PARTICLE_PACKET_ID, buf);
+                        ServerPlayNetworking.send(player, SpectrumPackets.PLAY_ALTAR_CRAFTING_PARTICLE_PACKET_ID, buf);
                     }
 
                 }

@@ -12,7 +12,11 @@ import de.dafuqs.spectrum.recipe.altar.AltarCraftingRecipe;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import de.dafuqs.spectrum.registries.SpectrumItems;
+import de.dafuqs.spectrum.registries.SpectrumPackets;
 import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
+import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
+import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.advancement.Advancement;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -28,12 +32,12 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.particle.BlockStateParticleEffect;
-import net.minecraft.particle.ParticleTypes;
+import net.minecraft.network.PacketByteBuf;
 import net.minecraft.recipe.*;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
@@ -294,7 +298,8 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
                         altarBlockEntity.storedXP = 0;
                     }
 
-                    altarBlockEntity.spawnCraftingFinishedParticles(world, blockPos);
+                    // only triggered on server side. Therefore has to be sent to client via S2C packet
+                    SpectrumPackets.sendPlayAltarCraftingFinishedParticle(world, blockPos, outputItemStack);
 
                     if(craftingRecipe != null) {
                         altarBlockEntity.playSound(SpectrumSoundEvents.ALTAR_CRAFT_GENERIC);
@@ -348,11 +353,6 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
                 }
             }
         }
-    }
-
-    // TODO: doesn't spawn on client?
-    public void spawnCraftingFinishedParticles(World world, BlockPos pos) {
-        world.addParticle(new BlockStateParticleEffect(ParticleTypes.BLOCK, SpectrumBlocks.ALTAR.getDefaultState()), pos.getX() + 0.5, pos.getY() + 1.1, pos.getZ() + 0.5, 0, 0.5D, 0);
     }
 
     private void playSound(SoundEvent soundEvent) {

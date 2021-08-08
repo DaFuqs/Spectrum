@@ -227,7 +227,7 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
     public static void serverTick(World world, BlockPos blockPos, BlockState blockState, AltarBlockEntity altarBlockEntity) {
         // only craft when there is redstone power
         Block block = world.getBlockState(blockPos).getBlock();
-        if(block.equals(SpectrumBlocks.ALTAR) && ((AltarBlock)block).isGettingPowered(world, blockPos)) {
+        if(block.equals(SpectrumBlocks.ALTAR) && blockState.get(AltarBlock.STATE) == AltarBlock.AltarState.REDSTONE) {
             // check recipe crafted last tick => performance
             AltarCraftingRecipe altarCraftingRecipe = null;
             CraftingRecipe craftingRecipe = null;

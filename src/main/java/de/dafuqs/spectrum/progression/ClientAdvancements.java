@@ -11,6 +11,8 @@ import net.minecraft.client.network.ClientPlayNetworkHandler;
 import net.minecraft.network.packet.s2c.play.AdvancementUpdateS2CPacket;
 import net.minecraft.util.Identifier;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 @Environment(EnvType.CLIENT)
@@ -21,8 +23,11 @@ public class ClientAdvancements {
 	public static void onClientPacket(AdvancementUpdateS2CPacket packet) {
 		boolean showToast = receivedFirstAdvancementPacket;
 		receivedFirstAdvancementPacket = true;
-		ClientBlockCloaker.checkCloaksForNewAdvancements(packet, showToast);
-		ClientAltarRecipeToastManager.checkAltarRecipesForNewAdvancements(packet, showToast);
+
+		List<Identifier> doneAdvancements = getDoneAdvancements(packet);
+
+		ClientBlockCloaker.process(doneAdvancements, showToast);
+		ClientAltarRecipeToastManager.process(doneAdvancements, showToast);
 	}
 
 	public static boolean hasDone(Identifier identifier) {
@@ -44,6 +49,25 @@ public class ClientAdvancements {
 			}
 		}
 		return false;
+	}
+
+	public static List<Identifier> getDoneAdvancements(AdvancementUpdateS2CPacket packet) {
+		List<Identifier> doneAdvancements = new ArrayList<>();
+
+		for(Map.Entry<Identifier, Advancement.Task> earnedEntry : packet.getAdvancementsToEarn().entrySet()) {
+			Identifier earnedAdvancementIdentifier = earnedEntry.getKey();
+			if(ClientAdvancements.hasDone(earnedAdvancementIdentifier)) {
+				doneAdvancements.add(earnedAdvancementIdentifier);
+			}
+		}
+		for(Map.Entry<Identifier, AdvancementProgress> progressedEntry : packet.getAdvancementsToProgress().entrySet()) {
+			Identifier progressedAdvancementIdentifier = progressedEntry.getKey();
+			if(ClientAdvancements.hasDone(progressedAdvancementIdentifier)) {
+				doneAdvancements.add(progressedAdvancementIdentifier);
+			}
+		}
+
+		return doneAdvancements;
 	}
 
 	public static void playerLogout() {

@@ -9,7 +9,7 @@
     },
     {
       "type": "patchouli:spotlight",
-      "advancement": "spectrum:hidden/collect_pigment/collect_black_pigment",
+      "flag": "spectrum_black_pigment",
       "item": "spectrum:black_pigment",
       "text": "The darkest material you have ever held in your hands.$(br2)$(c_black)Black$() represents the Nothingness of the $(italic)Void$(), $(italic)Power$() and $(italic)Mystery$()."
     },

@@ -1,25 +1,21 @@
 package de.dafuqs.spectrum.progression;
 
-import de.dafuqs.spectrum.Support;
 import de.dafuqs.spectrum.recipe.altar.AltarCraftingRecipe;
 import de.dafuqs.spectrum.toast.RecipeToast;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.advancement.Advancement;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.packet.s2c.play.AdvancementUpdateS2CPacket;
 import net.minecraft.util.Identifier;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Environment(EnvType.CLIENT)
 public class ClientAltarRecipeToastManager {
 
-    private static final HashMap<Identifier, List<AltarCraftingRecipe>> unlockableAltarRecipes = new HashMap<>();
+    public static final HashMap<Identifier, List<AltarCraftingRecipe>> unlockableAltarRecipes = new HashMap<>();
 
     public static void registerUnlockableAltarRecipe(AltarCraftingRecipe recipe) {
         List<Identifier> requiredAdvancementIdentifiers = recipe.getRequiredAdvancementIdentifiers();
@@ -38,13 +34,10 @@ public class ClientAltarRecipeToastManager {
         }
     }
 
-    public static void checkAltarRecipesForNewAdvancements(AdvancementUpdateS2CPacket packet, boolean showToast) {
+    public static void process(List<Identifier> doneAdvancements, boolean showToast) {
         if(showToast) {
-            for (Map.Entry<Identifier, Advancement.Task> earnedEntry : packet.getAdvancementsToEarn().entrySet()) {
-                Identifier earnedAdvancementIdentifier = earnedEntry.getKey();
-                if(Support.hasAdvancement(MinecraftClient.getInstance().player, earnedAdvancementIdentifier)) {
-                    showToastsForAllRecipesWithAdvancement(earnedAdvancementIdentifier);
-                }
+            for (Identifier doneAdvancement : doneAdvancements) {
+                showToastsForAllRecipesWithAdvancement(doneAdvancement);
             }
         }
     }
@@ -59,7 +52,4 @@ public class ClientAltarRecipeToastManager {
         }
     }
 
-    public static void clearRecipes() {
-        unlockableAltarRecipes.clear();
-    }
 }

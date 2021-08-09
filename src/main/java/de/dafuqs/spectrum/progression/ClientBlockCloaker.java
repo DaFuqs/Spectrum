@@ -7,17 +7,17 @@ import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
 import de.dafuqs.spectrum.toast.RevelationToast;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.advancement.Advancement;
-import net.minecraft.advancement.AdvancementProgress;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.WorldRenderer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.packet.s2c.play.AdvancementUpdateS2CPacket;
 import net.minecraft.util.Identifier;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Set;
 
 @Environment(EnvType.CLIENT)
 public class ClientBlockCloaker {
@@ -25,20 +25,10 @@ public class ClientBlockCloaker {
     private static final List<BlockState> activeBlockSwaps = new ArrayList<>();
     private static final List<Item> activeItemSwaps = new ArrayList<>();
 
-    public static boolean checkCloaksForNewAdvancements(AdvancementUpdateS2CPacket packet, boolean showToast) {
+    public static void process(List<Identifier> doneAdvancements, boolean showToast) {
         List<Cloakable> cloakableBlocksToTrigger = new ArrayList<>();
-
-        for(Map.Entry<Identifier, Advancement.Task> earnedEntry : packet.getAdvancementsToEarn().entrySet()) {
-            Identifier earnedAdvancementIdentifier = earnedEntry.getKey();
-            if(ClientAdvancements.hasDone(earnedAdvancementIdentifier)) {
-                cloakableBlocksToTrigger.addAll(BlockCloakManager.getBlocksToUncloak(earnedAdvancementIdentifier));
-            }
-        }
-        for(Map.Entry<Identifier, AdvancementProgress> progressedEntry : packet.getAdvancementsToProgress().entrySet()) {
-            Identifier progressedAdvancementIdentifier = progressedEntry.getKey();
-            if(ClientAdvancements.hasDone(progressedAdvancementIdentifier)) {
-                cloakableBlocksToTrigger.addAll(BlockCloakManager.getBlocksToUncloak(progressedAdvancementIdentifier));
-            }
+        for(Identifier doneAdvancement: doneAdvancements) {
+            cloakableBlocksToTrigger.addAll(BlockCloakManager.getBlocksToUncloak(doneAdvancement));
         }
 
         if(cloakableBlocksToTrigger.size() > 0) {
@@ -53,20 +43,16 @@ public class ClientBlockCloaker {
             if(showToast) {
                 RevelationToast.showRevelationToast(MinecraftClient.getInstance(), new ItemStack(SpectrumBlocks.ALTAR.asItem()), SpectrumSoundEvents.NEW_REVELATION);
             }
-
-            return true;
-        } else {
-            return false;
         }
     }
 
     // rerender chunks to show newly swapped blocks
-    private static void rebuildAllChunks() {
+    static void rebuildAllChunks() {
         WorldRenderer renderer = MinecraftClient.getInstance().worldRenderer;
         ((WorldRendererAccessor) renderer).rebuildAllChunks();
     }
 
-    private static void uncloak(Cloakable cloakable) {
+    static void uncloak(Cloakable cloakable) {
         Set<BlockState> cloakBlockStates = cloakable.getBlockStateCloaks().keySet();
         activeBlockSwaps.removeAll(cloakBlockStates);
 

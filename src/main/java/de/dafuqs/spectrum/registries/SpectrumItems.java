@@ -112,7 +112,7 @@ public class SpectrumItems {
     // Decay drops
     public static final Item VEGETAL = new Item(generalItemSettings);
     public static final Item CORRUPTED_OBSIDIAN_DUST = new Item(spectrumUncommonItemSettings);
-    public static final Item CORRUPTED_BEDROCK_DUST = new Item(spectrumRareItemSettings);
+    public static final Item BEDROCK_DUST = new Item(spectrumRareItemSettings);
 
     // Fluid Buckets
     public static final Item LIQUID_CRYSTAL_BUCKET = new BucketItem(STILL_LIQUID_CRYSTAL, generalItemSettingsSingle);
@@ -127,9 +127,9 @@ public class SpectrumItems {
     public static final Item SPARKLESTONE_GEM = new Item(spectrumWorldgenItemSettings);
     public static final Item RAW_AZURITE = new Item(spectrumWorldgenItemSettings);
     public static final Item SHAPED_AZURITE = new Item(spectrumWorldgenItemSettings);
-    public static final Item SHATTERED_SCARLET_FRAGMENTS = new GravityItem(generalItemSettings, 1.003F);
+    public static final Item scarlet_fragments = new GravityItem(generalItemSettings, 1.003F);
     public static final Item SCARLET_GEM = new GravityItem(generalItemSettings, 1.02F);
-    public static final Item SHATTERED_PALETUR_FRAGMENTS = new GravityItem(generalItemSettings, 0.997F);
+    public static final Item paletur_fragments = new GravityItem(generalItemSettings, 0.997F);
     public static final Item PALETUR_GEM = new GravityItem(generalItemSettings, 0.98F);
 
     public static final Item QUITOXIC_POWDER = new Item(generalItemSettings);
@@ -242,9 +242,9 @@ public class SpectrumItems {
         register("sparklestone_gem", SPARKLESTONE_GEM);
         register("raw_azurite", RAW_AZURITE);
         register("shaped_azurite", SHAPED_AZURITE);
-        register("shattered_paletur_fragments", SHATTERED_PALETUR_FRAGMENTS);
+        register("paletur_fragments", paletur_fragments);
         register("paletur_gem", PALETUR_GEM);
-        register("shattered_scarlet_fragments", SHATTERED_SCARLET_FRAGMENTS);
+        register("scarlet_fragments", scarlet_fragments);
         register("scarlet_gem", SCARLET_GEM);
 
         register("quitoxic_powder", QUITOXIC_POWDER);
@@ -253,7 +253,7 @@ public class SpectrumItems {
 		
 		register("vegetal", VEGETAL);
         register("corrupted_obsidian_dust", CORRUPTED_OBSIDIAN_DUST);
-        register("corrupted_bedrock_dust", CORRUPTED_BEDROCK_DUST);
+        register("bedrock_dust", BEDROCK_DUST);
 	}
 	
 	public static void registerDecayBottles() {

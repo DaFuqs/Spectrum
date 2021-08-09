@@ -1,5 +1,6 @@
 {
   "name": "Compacting Chest",
+  "advancement": "spectrum:craft_using_altar",
   "icon": "spectrum:compacting_chest",
   "category": "spectrum:magical_blocks_category",
   "pages": [

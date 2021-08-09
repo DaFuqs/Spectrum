@@ -1,5 +1,6 @@
 {
   "name": "Nature's Staff",
+  "advancement": "spectrum:spectrum_midgame",
   "icon": "spectrum:natures_staff",
   "category": "spectrum:magical_items_category",
   "pages": [

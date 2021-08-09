@@ -1,0 +1,12 @@
+{
+  "criteria": {
+    "has_vegetal": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:collect_vegetal" }
+    },
+    "collected_moonstone_shard": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:hidden/collect_shards/collect_moonstone_shard" }
+    }
+  }
+}

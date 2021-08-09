@@ -1,6 +1,7 @@
 {
   "name": "Crafting Tablet",
   "icon": "spectrum:crafting_tablet",
+  "advancement": "spectrum:place_altar",
   "category": "spectrum:general_category",
   "pages": [
     {

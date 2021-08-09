@@ -2,7 +2,7 @@
   "criteria": {
     "has_black_spectrum": {
       "trigger": "minecraft:inventory_changed",
-      "conditions": { "items": [{ "items": [ "spectrum:sparklestone_gem" ]}] }
+      "conditions": { "items": [{ "items": [ "spectrum:quitoxic_reeds" ]}] }
     }
   }
 }

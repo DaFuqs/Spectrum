@@ -1,6 +1,7 @@
 {
   "name": "Colored Lamps",
   "icon": "spectrum:cyan_lamp",
+  "advancement": "spectrum:hidden/progression/colored_lamps/unlock_any_colored_lamp",
   "category": "spectrum:decoration_category",
   "pages": [
     {

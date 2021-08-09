@@ -1,6 +1,7 @@
 {
   "name": "Experiment #3",
   "icon": "spectrum:bottle_of_ruin",
+  "advancement": "spectrum:hidden/progression/unlock_bottle_of_ruin",
   "category": "spectrum:decay_category",
   "pages": [
     {
@@ -14,7 +15,7 @@
     },
     {
       "type": "patchouli:spotlight",
-      "item": "spectrum:corrupted_bedrock_dust",
+      "item": "spectrum:bedrock_dust",
       "text": "Even Bedrock was not strong enough to withstand your newly created \"life\". Like dandelions through concrete, it ate through Bedrock.$(br)Should you be reading your notes here right now while some of that stuff is still lying around free, you should change that as soon as possible otherwise you WILL regret it."
     }
   ]

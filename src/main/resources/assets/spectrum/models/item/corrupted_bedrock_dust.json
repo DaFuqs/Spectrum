@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "spectrum:item/corrupted_bedrock_dust"
+    "layer0": "spectrum:item/bedrock_dust"
   }
 }

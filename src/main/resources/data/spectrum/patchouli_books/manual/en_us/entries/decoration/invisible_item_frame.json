@@ -1,6 +1,7 @@
 {
   "name": "Invisible Item Frames",
   "icon": "spectrum:invisible_item_frame",
+  "advancement": "spectrum:craft_using_altar",
   "category": "spectrum:decoration_category",
   "pages": [
     {

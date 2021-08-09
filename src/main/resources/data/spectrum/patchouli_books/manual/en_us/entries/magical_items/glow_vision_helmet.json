@@ -1,5 +1,6 @@
 {
   "name": "Glow Vision Helmet",
+  "advancement": "spectrum:craft_using_altar",
   "icon": "spectrum:glow_vision_helmet",
   "category": "spectrum:magical_items_category",
   "pages": [

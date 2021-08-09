@@ -1,5 +1,6 @@
 {
   "name": "Ender Blocks",
+  "advancement": "spectrum:collect_ender_treasure",
   "icon": "minecraft:ender_chest",
   "category": "spectrum:magical_blocks_category",
   "pages": [
@@ -17,6 +18,7 @@
     },
     {
       "type": "patchouli:spotlight",
+      "advancement": "spectrum:hidden/progression/unlock_ender_bag",
       "title": "Bag of Holding",
       "item": "spectrum:ender_bag",
       "text": "Placing an Ender Chest, opening it, and mining it with an enchanted pickaxe is not what you think of as fun.$(br)That's why you invented this thing. Just open it and the contents of your Ender Chest are right in front of you."

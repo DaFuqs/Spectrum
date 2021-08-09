@@ -1,5 +1,6 @@
 {
     "name": "Liquids",
+    "advancement": "spectrum:craft_using_altar",
     "icon": "spectrum:mud_bucket",
     "category": "spectrum:resources_category",
     "pages": [
@@ -11,6 +12,7 @@
         },
         {
             "type": "patchouli:spotlight",
+            "advancement": "spectrum:midgame",
             "title": "Liquid Crystal",
             "item": "spectrum:liquid_crystal_bucket",
             "text": "The pure energy of gemstones in their liquid form. It is said to have a healing effect."

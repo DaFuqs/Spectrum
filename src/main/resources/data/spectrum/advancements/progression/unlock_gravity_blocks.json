@@ -1,0 +1,12 @@
+{
+  "criteria": {
+    "collected_scarlet": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:hidden/collect_resource/collect_scarlet" }
+    },
+    "collected_paletur": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:hidden/collect_resource/collect_paletur" }
+    }
+  }
+}

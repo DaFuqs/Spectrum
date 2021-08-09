@@ -1,5 +1,6 @@
 {
   "name": "Detectors",
+  "advancement": "spectrum:craft_using_altar",
   "icon": "spectrum:player_detector",
   "category": "spectrum:redstone_category",
   "pages": [
@@ -9,30 +10,35 @@
     },
     {
       "type": "patchouli:spotlight",
+      "advancement": "spectrum:hidden/progression/detectors/unlock_player_detector",
       "title": "Player Detector",
       "item": "spectrum:player_detector",
       "text": "The player detector detects players within 10 blocks of it.$(br2)When it finds players, it emits a redstone signal of strength 8. However, if the player who placed the detector is nearby, it emits a full strength 15 signal instead."
     },
     {
       "type": "patchouli:spotlight",
+      "advancement": "spectrum:hidden/progression/detectors/unlock_weather_detector",
       "title": "Weather Detector",
       "item": "spectrum:weather_detector",
       "text": "Citrine is very sensitive to the energies released during a storm.$(br)If the weather detector is directly exposed to rain or a thunderstorm, it emits a redstone signal.$(br2)Rain provides a signal with strength 8, a thunderstorm a signal with strength 15."
     },
     {
       "type": "patchouli:spotlight",
+      "advancement": "spectrum:hidden/progression/detectors/unlock_item_detector",
       "title": "Item Detector",
       "item": "spectrum:item_detector",
       "text": "The Item Detector is used to count the items lying on the ground within a 10 block radius of it. The strength of the redstone signal depends on how many items are lying around.$(br2)64 items result in a signal with maximum strength."
     },
     {
       "type": "patchouli:spotlight",
+      "advancement": "spectrum:hidden/progression/detectors/unlock_light_level_detector",
       "title": "Block Light Detector",
       "item": "spectrum:light_level_detector",
       "text": "Sunlight detectors are relatively imprecise when it comes to measuring light. The Nether Quartz used is so crudely processed that only sunlight can trigger the detector reliably. Amethyst, on the other hand, is much more sensitive when it comes to measuring light. Even the dim glow of a torch is sufficient to output decent strength."
     },
     {
       "type": "patchouli:spotlight",
+      "advancement": "spectrum:hidden/progression/detectors/unlock_entity_detector",
       "title": "Creature Detector",
       "item": "spectrum:entity_detector",
       "text": "The gemstone built into the Mob Detector reacts to the micro-vibrations in the ground. This gives the Mob Detector the ability to measure the number of creatures near it.$(br2)For each creature within a 10 block radius, the Mob Detector outputs an additional strength of 1."

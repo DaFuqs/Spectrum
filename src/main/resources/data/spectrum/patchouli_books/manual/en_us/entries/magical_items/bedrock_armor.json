@@ -1,5 +1,6 @@
 {
   "name": "Bedrock Armor",
+  "advancement": "spectrum:collect_bedrock_dust",
   "icon": "spectrum:bedrock_chestplate",
   "category": "spectrum:magical_items_category",
   "pages": [

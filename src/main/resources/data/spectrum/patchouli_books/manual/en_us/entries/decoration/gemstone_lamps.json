@@ -1,6 +1,7 @@
 {
   "name": "Gemstone Lamps",
   "icon": "spectrum:citrine_basalt_lamp",
+  "advancement": "spectrum:unlock_any_gemstone_lamp",
   "category": "spectrum:decoration_category",
   "pages": [
     {

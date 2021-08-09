@@ -1,6 +1,7 @@
 {
   "name": "Experiment #1",
   "icon": "spectrum:bottle_of_fading",
+  "advancement": "spectrum:hidden/progression/unlock_bottle_of_fading",
   "category": "spectrum:decay_category",
   "pages": [
     {

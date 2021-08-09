@@ -1,5 +1,6 @@
 {
   "name": "Multitool",
+  "advancement": "spectrum:craft_using_altar",
   "icon": "spectrum:multitool",
   "category": "spectrum:magical_items_category",
   "pages": [

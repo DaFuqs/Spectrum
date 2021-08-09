@@ -31,5 +31,5 @@
     "item": "spectrum:entity_detector",
     "count": 1
   },
-  "required_advancements": [ "spectrum:hidden/collect_shards/collect_moonstone_shard", "spectrum:hidden/collect_vanilla/collect_quartz" ]
+  "required_advancements": [ "spectrum:hidden/progression/unlock/colored_lamps/unlock_entity_detector" ]
 }

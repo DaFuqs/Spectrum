@@ -6,7 +6,7 @@
   "crushedItemsPerPointOfDamage": 1,
   "experience": 0.5,
   "result" : {
-    "item": "spectrum:shattered_scarlet_fragments",
+    "item": "spectrum:scarlet_fragments",
     "count": 8
   },
   "particleEffectIdentifier": "cloud",

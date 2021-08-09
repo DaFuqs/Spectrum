@@ -1,5 +1,6 @@
 {
   "name": "Bedrock Tools",
+  "advancement": "spectrum:collect_bedrock_dust",
   "icon": "spectrum:bedrock_pickaxe",
   "category": "spectrum:magical_items_category",
   "pages": [

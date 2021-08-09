@@ -1,6 +1,7 @@
 {
   "name": "Getting deeper down",
   "icon": "minecraft:bedrock",
+  "advancement": "spectrum:lategame",
   "category": "spectrum:dimension_category",
   "pages": [
     {

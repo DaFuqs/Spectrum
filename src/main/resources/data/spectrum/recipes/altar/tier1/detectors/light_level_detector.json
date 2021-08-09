@@ -31,5 +31,5 @@
     "item": "spectrum:light_level_detector",
     "count": 1
   },
-  "required_advancements": ["spectrum:hidden/collect_shards/collect_amethyst_shard", "spectrum:hidden/collect_vanilla/collect_quartz"]
+  "required_advancements": [ "spectrum:hidden/progression/unlock/colored_lamps/unlock_light_level_detector" ]
 }

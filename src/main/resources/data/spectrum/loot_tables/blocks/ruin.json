@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "spectrum:corrupted_bedrock_dust"
+          "name": "spectrum:bedrock_dust"
         }
       ],
       "conditions": [

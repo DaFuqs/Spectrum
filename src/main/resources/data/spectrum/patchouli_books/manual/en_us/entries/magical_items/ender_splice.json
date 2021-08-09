@@ -1,5 +1,6 @@
 {
   "name": "Ender Splice",
+  "advancement": "spectrum:spectrum_midgame",
   "icon": "spectrum:ender_splice",
   "category": "spectrum:magical_items_category",
   "pages": [

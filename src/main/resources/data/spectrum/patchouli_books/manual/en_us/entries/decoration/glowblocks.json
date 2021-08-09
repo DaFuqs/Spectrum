@@ -7,7 +7,7 @@
       "type": "patchouli:spotlight",
       "item": "spectrum:orange_flat_colored_block",
       "title": "Glowblocks",
-      "text": "$(italic)You have spectrum as pure as can be. So why not create blocks with colors as pure as can be. You thought for a moment if you should call them Antiblocks. But since they are indeed normal blocks that would be silly, right?$()"
+      "text": "$(italic)You have spectrum as pure as can be. So why not create blocks with colors as pure as can be.$(br2)You thought for a moment if you should call them Antiblocks. But since they are indeed normal blocks that would be silly, right?$()"
     },
     {
       "type": "patchouli:text",

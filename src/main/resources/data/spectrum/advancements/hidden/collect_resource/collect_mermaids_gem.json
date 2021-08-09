@@ -1,0 +1,18 @@
+{
+  "criteria": {
+    "has_gem": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": { "items": [{ "items": [ "spectrum:mermaids_gem" ]}] }
+    },
+    "has_plant": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": { "items": [{ "items": [ "spectrum:mermaids_brush" ]}] }
+    }
+  },
+  "requirements": [
+    [
+      "has_gem",
+      "has_plant"
+    ]
+  ]
+}

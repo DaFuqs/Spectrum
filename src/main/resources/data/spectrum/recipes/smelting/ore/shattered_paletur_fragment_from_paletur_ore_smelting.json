@@ -3,7 +3,7 @@
     "ingredient": {
         "item": "spectrum:paletur_ore"
     },
-    "result": "spectrum:shattered_paletur_fragments",
+    "result": "spectrum:paletur_fragments",
     "experience": 0.2,
     "cookingtime": 200
 }

@@ -1,6 +1,7 @@
 {
   "name": "Experiment #2",
   "icon": "spectrum:bottle_of_failing",
+  "advancement": "spectrum:hidden/progression/unlock_bottle_of_failing",
   "category": "spectrum:decay_category",
   "pages": [
     {

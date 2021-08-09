@@ -1,5 +1,6 @@
 {
   "name": "Redstone Sand",
+  "advancement": "spectrum:craft_using_altar",
   "icon": "spectrum:redstone_sand",
   "category": "spectrum:redstone_category",
   "pages": [

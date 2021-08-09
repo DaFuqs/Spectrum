@@ -47,45 +47,38 @@
 		  "text": "To find them all, it probably makes sense to search in different places."
 		},
 		{
-            "type": "patchouli:spotlight",
-            "title": "Gemstone Ores",
-            "item": "spectrum:amethyst_ore",
-            "text": "Now that you're directly targeting geodes and paying attention, you'll notice small inclusions of gems in the rock over and over again.$(br)If you see such an ore a geode is surely not far!"
+          "type": "patchouli:spotlight",
+          "advancement": "spectrum:spectrum",
+          "title": "Gemstone Ores",
+          "item": "spectrum:amethyst_ore",
+          "text": "Now that you're directly targeting geodes and paying attention, you'll notice small inclusions of gems in the rock over and over again.$(br)If you see such an ore a geode is surely not far!"
         },
         {
-            "type": "patchouli:spotlight",
-            "title": "Amethyst Geodes",
-            "item": "minecraft:amethyst_block",
-            "text": "As elements of time, Amethyst Geodes tend to maintain their existence in the lowest layers of the world, quietly sealed off from all other happenings in the world. Leisurely and yet imposing."
+          "type": "patchouli:spotlight",
+          "advancement": "spectrum:hidden/collect_shards/collect_amethyst_shard",
+          "title": "Amethyst Geodes",
+          "item": "minecraft:amethyst_block",
+          "text": "As elements of time, Amethyst Geodes tend to maintain their existence in the lowest layers of the world, quietly sealed off from all other happenings in the world. Leisurely and yet imposing."
         },
         {
-            "type": "patchouli:spotlight",
-            "title": "Citrine Geodes",
-            "item": "spectrum:citrine_block",
-            "text": "Geodes with citrine are found in the middle layers of the world, sometimes even accessible from the surface. These geodes are small, but harbor tremendous energy, so they are cracked especially often."
+          "type": "patchouli:spotlight",
+          "advancement": "spectrum:hidden/collect_shards/collect_citrine_shard",
+          "title": "Citrine Geodes",
+          "item": "spectrum:citrine_block",
+          "text": "Geodes with citrine are found in the middle layers of the world, sometimes even accessible from the surface. These geodes are small, but harbor tremendous energy, so they are cracked especially often."
         },
         {
-            "type": "patchouli:spotlight",
-            "title": "Topaz Geodes",
-            "item": "spectrum:topaz_block",
-            "text": "Topaz geodes are gigantic in contrast to the others, fitting for their element of matter. However, for this they are found exclusively far above the ground in mountains or massive hills."
+          "type": "patchouli:spotlight",
+          "advancement": "spectrum:hidden/collect_shards/collect_topaz_shard",
+          "title": "Topaz Geodes",
+          "item": "spectrum:topaz_block",
+          "text": "Topaz geodes are gigantic in contrast to the others, fitting for their element of matter. However, for this they are found exclusively far above the ground in mountains or massive hills."
         },
         {
-            "type": "patchouli:spotlight",
-            "title": "Onyx Geodes",
-            "item": "spectrum:onyx_block",
-            "text": ""
-        },
-        {
-            "type": "patchouli:spotlight",
-            "title": "Moonstone Geodes",
-            "item": "spectrum:moonstone_block",
-            "text": ""
-        },
-        {
-            "type": "patchouli:text",
-            "title": "Acquiring Budding Blocks",
-            "text": "=> $(l:enchantments/resonance)Resonance$()."
+          "type": "patchouli:text",
+          "advancement": "spectrum:collect_resonance_enchanted_tool",
+          "title": "Acquiring Budding Blocks",
+          "text": "=> $(l:enchantments/resonance)Resonance$()."
         }
     ]
 }

@@ -1,6 +1,7 @@
 {
   "name": "Creating Life",
   "icon": "spectrum:altar",
+  "advancement": "spectrum:hidden/progression/unlock_bottle_of_fading",
   "category": "spectrum:decay_category",
   "priority": true,
   "pages": [

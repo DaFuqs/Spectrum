@@ -1,6 +1,7 @@
 {
   "name": "Upgrading your Pedestal 2",
   "icon": "spectrum:altar2",
+  "advancement": "spectrum:spectrum_lategame",
   "category": "spectrum:general_category",
   "pages": [
     {

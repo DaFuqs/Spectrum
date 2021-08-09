@@ -1,0 +1,12 @@
+{
+  "criteria": {
+    "collected_gemstone_shard": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:hidden/collect_shards/collect_onyx_shard" }
+    },
+    "collected_sparklestone_gem": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:hidden/collect_resource/collect_sparklestone" }
+    }
+  }
+}

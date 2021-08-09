@@ -1,5 +1,6 @@
 {
   "name": "Ender Glass",
+  "advancement": "spectrum:collect_ender_treasure",
   "icon": "spectrum:ender_glass",
   "category": "spectrum:redstone_category",
   "pages": [

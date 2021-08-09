@@ -28,5 +28,5 @@
     "item": "spectrum:orange_lamp",
     "count": 1
   },
-  "required_advancements": [ "spectrum:hidden/collect_pigment/collect_orange_pigment", "spectrum:hidden/collect_resource/collect_sparklestone_gem" ]
+  "required_advancements": [ "spectrum:hidden/progression/unlock/colored_lamps/unlock_orange_lamp" ]
 }

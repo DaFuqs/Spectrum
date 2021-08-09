@@ -9,6 +9,7 @@
         },
         {
             "type": "patchouli:spotlight",
+            "advancement": "spectrum:collect_ender_treasure",
             "title": "Resonating Ender",
             "item": "spectrum:ender_treasure",
             "text": "It looks like the Endermen come to this world mainly to put something down here. But what is this stuff? And why do they leave it here?$(br2)In any case, you are sure that you can definitely take advantage of this interesting material."

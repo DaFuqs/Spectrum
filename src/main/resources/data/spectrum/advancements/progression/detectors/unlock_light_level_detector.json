@@ -1,0 +1,16 @@
+{
+  "criteria": {
+    "crafted_using_altar": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:craft_using_altar" }
+    },
+    "has_quartz": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:hidden/collect_vanilla/collect_quartz" }
+    },
+    "collected_corresponding_shard": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:hidden/collect_pigment/collect_amethyst_pigment" }
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "criteria": {
+    "has_vegetal": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:collect_vegetal" }
+    },
+    "collected_topaz_shard": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:hidden/collect_shards/collect_topaz_shard" }
+    },
+    "collected_citrine_shard": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:hidden/collect_shards/collect_citrine_shard" }
+    }
+  }
+}

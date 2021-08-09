@@ -9,8 +9,8 @@
     },
     {
       "type": "patchouli:smelting",
-      "recipe": "spectrum:smelting/calcite_to_polished_calcite",
-      "recipe2": "spectrum:smelting/smooth_basalt_to_polished_basalt",
+      "recipe": "spectrum:smelting/smooth_basalt_to_polished_basalt",
+      "recipe2": "spectrum:smelting/calcite_to_polished_calcite",
       "text": "When smelted, the bright color of calcite comes out even more. Smelting Smooth Basalt also results in a much cleaner texture, which is perfect for building."
     },
     {

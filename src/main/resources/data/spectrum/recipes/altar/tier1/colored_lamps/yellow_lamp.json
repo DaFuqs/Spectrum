@@ -28,5 +28,5 @@
     "item": "spectrum:yellow_lamp",
     "count": 1
   },
-  "required_advancements": [ "spectrum:hidden/collect_pigment/collect_yellow_pigment", "spectrum:hidden/collect_resource/collect_sparklestone_gem" ]
+  "required_advancements": [ "spectrum:hidden/progression/unlock/colored_lamps/unlock_yellow_lamp" ]
 }

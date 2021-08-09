@@ -1,0 +1,8 @@
+{
+  "criteria": {
+    "has_shooting_star": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": { "items": [{ "items": [ "spectrum:shooting_star" ]}] }
+    }
+  }
+}

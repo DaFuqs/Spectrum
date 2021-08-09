@@ -1,5 +1,6 @@
 {
   "name": "Particle Emitter",
+  "advancement": "spectrum:spectrum_midgame",
   "icon": "spectrum:particle_emitter",
   "category": "spectrum:decoration_category",
   "pages": [

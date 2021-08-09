@@ -28,6 +28,6 @@
     "item": "spectrum:cyan_sapling",
     "count": 1
   },
-  "required_advancements": ["spectrum:collect_vegetal", "spectrum:hidden/collect_shards/collect_topaz_shard"],
+  "required_advancements": [ "spectrum:hidden/progression/unlock/colored_saplings/unlock_cyan_sapling" ],
   "unlocks_advancement": "spectrum:craft_colored_sapling"
 }

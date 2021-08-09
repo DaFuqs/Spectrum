@@ -1,34 +1,44 @@
 {
   "name": "Preenchanted Tools",
+  "advancement": "spectrum:craft_using_altar",
   "icon": "spectrum:silker_pickaxe",
   "category": "spectrum:magical_items_category",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "That stupid obsidian desk is very stubborn when it comes to giving you the enchantments you seek. Besides, you'd either have to slaughter a whole herd of cows or rob the books of a dozen villages (no wonder the inhabitants there are so dumb and all too happy to be eaten by zombies).$(br)The advantage of knowing exactly what you want, however, gives you the ability to shape your tools so that they inherently possess those qualities. The magic of colors makes it possible.$(br)Unfortunately, these features make these tools very fragile for the most part."
+      "text": "That stupid obsidian desk is very stubborn when it comes to giving you the enchantments you seek.$(br)Besides, you'd either have to slaughter a whole herd of cows or rob the books of a dozen villages (no wonder the inhabitants there are so dumb and all too happy to be eaten by zombies)."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "The advantage of knowing exactly what you want, however, gives you the ability to shape your tools so that they inherently possess those qualities. The magic of colors makes it possible.$(br)Unfortunately, these features make these tools very fragile for the most part."
     },
     {
       "type": "patchouli:spotlight",
+      "advancement": "spectrum:hidden/progression/tools/unlock_silker_pickaxe",
       "item": "spectrum:silker_pickaxe",
       "text": "The ends of this pickaxe are shaped by the energy of Citrine to cut even the most delicate material from stone.$(br2)The Silker Pickaxe comes pre-enchanted with $(bold)Silk Touch$()."
     },
     {
       "type": "patchouli:spotlight",
+      "advancement": "spectrum:hidden/progression/tools/unlock_fortune_pickaxe",
       "item": "spectrum:fortune_pickaxe",
       "text": "Infused with the power of matter through Topaz, it allows you to carve out every last bit of ore from every vein.$(br2)The Fortune Pickaxe comes pre-enchanted with $(bold)Fortune III$()."
     },
     {
       "type": "patchouli:spotlight",
+      "advancement": "spectrum:hidden/progression/tools/unlock_looting_falchion",
       "item": "spectrum:looting_falchion",
       "text": "The short, razor-sharp blade makes this item a deadly weapon - but at the cost of durability.$(br2)The Razor Valchion comes pre-enchanted with $(bold)Looting III$()."
     },
     {
       "type": "patchouli:spotlight",
+      "advancement": "spectrum:hidden/progression/tools/unlock_voiding_pickaxe",
       "item": "spectrum:voiding_pickaxe",
       "text": "As an outsider in the group, the Oblivion Pickaxe has a large amount of durability and mining speed. However, all blocks that are mined with it are destroyed.$(br2)The Oblivion Pickaxe comes pre-enchanted with the $(bold)Curse of the Void$()."
     },
     {
       "type": "patchouli:spotlight",
+      "advancement": "spectrum:hidden/progression/tools/unlock_resonant_pickaxe",
       "item": "spectrum:resonant_pickaxe",
       "text": "This bright blue pickaxe matches its own gentle inherent vibration to that of its surroundings. This allows you to keep blocks intact that would otherwise be irreparably destroyed by force.$(br2)The Resonant Pickaxe comes pre-enchanted with $(bold)Resonance$()."
     }

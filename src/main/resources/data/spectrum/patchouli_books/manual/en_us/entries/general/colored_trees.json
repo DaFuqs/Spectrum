@@ -1,6 +1,7 @@
 {
   "name": "Colored Trees",
   "icon": "minecraft:oak_sapling",
+  "advancement": "spectrum:collect_vegetal",
   "category": "spectrum:general_category",
   "pages": [
     {
@@ -21,6 +22,7 @@
     },
     {
       "type": "patchouli:spotlight",
+      "advancement": "spectrum:craft_colored_sapling",
       "title": "Colored Wood",
       "item": "spectrum:light_blue_planks",
       "text": "Like their non-magical counterparts, you can use the colored wood for Planks, Stairs, Slabs, Buttons, Pressure Plates, Fences and Fence Gates."

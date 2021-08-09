@@ -9,24 +9,28 @@
         },
         {
             "type": "patchouli:spotlight",
+            "advancement": "spectrum:hidden/collect_resource/collect_sparklestone",
             "title": "Sparklestone",
             "item": "spectrum:sparklestone_ore",
-            "text": "A yellow ore that does emit, but also is able to manipulate energy in the form of light.$(br2)Sparklestone is found at above sea level altitudes."
+            "text": "A yellow ore that does emit - but also is able to manipulate - energy in the form of light.$(br2)Sparklestone is found at above sea level altitudes."
         },
         {
             "type": "patchouli:spotlight",
+            "advancement": "spectrum:hidden/collect_resource/collect_raw_azurite",
             "title": "Azurite",
             "item": "spectrum:azurite_ore",
-            "text": "A rich blue ore, which at first glance can almost be mistaken for lapis. However, it contains many impurities in its natural form, which must first be removed."
+            "text": "A rich blue ore, which, at a distance, can almost be mistaken for lapis. In its natural form it contains many impurities, which must first be removed, before it can be used."
         },
         {
             "type": "patchouli:spotlight",
+            "advancement": "spectrum:hidden/collect_resource/collect_scarlet",
             "title": "Scarlet Ore",
             "item": "spectrum:scarlet_ore",
             "text": "This very heavy ore is scattered around the Nether. It's probably not the best idea to carry large amounts of it home at once."
         },
         {
             "type": "patchouli:spotlight",
+            "advancement": "spectrum:hidden/collect_resource/collect_paletur",
             "title": "Paletur Ore",
             "item": "spectrum:paletur_ore",
             "text": "The light blue color is the trademark of this ore. It is found exclusively in the end in small clusters. Like the end itself, the curious properties of this material are not to be overlooked."

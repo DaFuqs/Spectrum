@@ -31,6 +31,6 @@
     "item": "spectrum:bottle_of_fading",
     "count": 1
   },
-  "required_advancements": ["spectrum:hidden/collect_resource/collect_sparklestone_gem", "nether/obtain_blaze_rod"],
+  "required_advancements": [ "spectrum:hidden/progression/unlock_bottle_of_fading" ],
   "unlocks_advancement": "spectrum:craft_bottle_of_fading"
 }

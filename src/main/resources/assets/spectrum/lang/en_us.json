@@ -361,7 +361,7 @@
   "block.spectrum.yellow_plank_fence_gate": "Yellow Plank Fence Gate",
 
   "item.spectrum.manual": "Colorful World",
-  "item.spectrum.manual.landing_text": "Hi $(playername)!$(br)I'm your personal guide into the magical world of Spectrum.$(br2)Here you will find a lot of information about the mod and how to progress. Keep me around when you're tinkering.",
+  "item.spectrum.manual.landing_text": "Hi $(playername)! I'm your personal guide into the magical world of Spectrum.$(br)Here you will find a lot of information about the mod and how to progress. Keep me around whenever you are tinkering.",
 
   "item.spectrum.amethyst_powder": "Amethyst Powder",
   "item.spectrum.citrine_powder": "Citrine Powder",
@@ -401,7 +401,7 @@
 
   "item.spectrum.vegetal": "Vegetal",
   "item.spectrum.corrupted_obsidian_dust": "Corrupted Obsidian Dust",
-  "item.spectrum.corrupted_bedrock_dust": "Corrupted Bedrock Dust",
+  "item.spectrum.bedrock_dust": "Bedrock Dust",
 
   "item.spectrum.liquid_crystal_bucket": "Liquid Crystal Bucket",
   "block.spectrum.liquid_crystal": "Liquid Crystal",
@@ -418,9 +418,9 @@
   "block.spectrum.scarlet_ore": "Scarlet Ore",
   "block.spectrum.scarlet_fragment_block": "Scarlet Floatblock",
 
-  "item.spectrum.shattered_scarlet_fragments": "Shattered Scarlet Fragments",
+  "item.spectrum.scarlet_fragments": "Shattered Scarlet Fragments",
   "item.spectrum.scarlet_gem": "Scarlet Gem",
-  "item.spectrum.shattered_paletur_fragments": "Shattered Paletur Fragments",
+  "item.spectrum.paletur_fragments": "Shattered Paletur Fragments",
   "item.spectrum.paletur_gem": "Paletur Gem",
 
   "item.spectrum.glistering_melon_seeds": "Glistering Melon Seeds",

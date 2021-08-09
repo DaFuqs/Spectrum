@@ -1,6 +1,7 @@
 {
   "name": "Gemstone Powder",
   "icon": "spectrum:amethyst_powder",
+  "advancement": "spectrum:place_altar",
   "category": "spectrum:general_category",
   "pages": [
     {

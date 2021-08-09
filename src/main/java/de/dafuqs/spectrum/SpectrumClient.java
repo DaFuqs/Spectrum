@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum;
 
+import de.dafuqs.spectrum.compat.patchouli.PatchouliPages;
 import de.dafuqs.spectrum.entity.SpectrumEntityRenderers;
 import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
 import de.dafuqs.spectrum.inventories.SpectrumContainers;
@@ -60,6 +61,8 @@ public class SpectrumClient implements ClientModInitializer {
 
         EntityRendererRegistry.INSTANCE.register(SpectrumEntityTypes.INVISIBLE_ITEM_FRAME, ItemFrameEntityRenderer::new);
         EntityRendererRegistry.INSTANCE.register(SpectrumEntityTypes.INVISIBLE_GLOW_ITEM_FRAME, ItemFrameEntityRenderer::new);
+
+        PatchouliPages.register();
     }
 
     private static void registerColorProviders() {

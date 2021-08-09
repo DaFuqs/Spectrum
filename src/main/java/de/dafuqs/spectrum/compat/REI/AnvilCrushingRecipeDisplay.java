@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.REI;
+package de.dafuqs.spectrum.compat.REI;
 
 import de.dafuqs.spectrum.recipe.anvil_crushing.AnvilCrushingRecipe;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;

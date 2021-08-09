@@ -15,10 +15,9 @@
       "text": "They existed all around the world all along! Who knows what else is out there?"
     },
     {
-      "type": "patchouli:spotlight",
-      "title": "Colored Saplings",
-      "item": "spectrum:red_sapling",
-      "text": "Oak saplings seem to be the most responsive to the change and in wide abundance. So you select those as a base. TODO: Recipe"
+      "type": "spectrum:altar_crafting",
+      "recipe": "spectrum:altar/tier1/saplings/red_sapling",
+      "text": "Oak saplings seem to be the most responsive to the change and in wide abundance. But every sapling will do."
     },
     {
       "type": "patchouli:spotlight",

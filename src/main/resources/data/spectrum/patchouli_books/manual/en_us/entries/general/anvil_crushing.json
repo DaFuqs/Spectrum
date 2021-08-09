@@ -9,7 +9,7 @@
       "title": "Anvil Crushing",
       "images": [ "spectrum:textures/gui/manual/anvil_crushing.png" ],
       "border": true,
-      "text": "$(italic)\"To create something new$br()you have to go the way of destruction\"      - someone"
+      "text": "$(italic)\"To create something new$(br)you have to go the way of destruction\"      - someone"
     },
     {
       "type": "patchouli:text",

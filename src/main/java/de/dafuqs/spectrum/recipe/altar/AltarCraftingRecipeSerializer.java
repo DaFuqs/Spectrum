@@ -3,7 +3,7 @@ package de.dafuqs.spectrum.recipe.altar;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.enums.SpectrumColor;
+import de.dafuqs.spectrum.enums.GemstoneColor;
 import de.dafuqs.spectrum.mixin.AccessorShapedRecipe;
 import de.dafuqs.spectrum.registries.SpectrumDefaultEnchantments;
 import net.minecraft.item.ItemStack;
@@ -48,26 +48,26 @@ public class AltarCraftingRecipeSerializer<T extends AltarCraftingRecipe> implem
         float experience = JsonHelper.getFloat(jsonObject, "experience", 0);
         int craftingTime = JsonHelper.getInt(jsonObject, "time", 200);
 
-        HashMap<SpectrumColor, Integer> gemInputs = new HashMap<>();
+        HashMap<GemstoneColor, Integer> gemInputs = new HashMap<>();
         if(JsonHelper.hasPrimitive(jsonObject, "cyan")) {
             int amount = JsonHelper.getInt(jsonObject, "cyan", 0);
-            gemInputs.put(SpectrumColor.CYAN, amount);
+            gemInputs.put(GemstoneColor.CYAN, amount);
         }
         if(JsonHelper.hasPrimitive(jsonObject, "magenta")) {
             int amount = JsonHelper.getInt(jsonObject, "magenta", 0);
-            gemInputs.put(SpectrumColor.MAGENTA, amount);
+            gemInputs.put(GemstoneColor.MAGENTA, amount);
         }
         if(JsonHelper.hasPrimitive(jsonObject, "yellow")) {
             int amount = JsonHelper.getInt(jsonObject, "yellow", 0);
-            gemInputs.put(SpectrumColor.YELLOW, amount);
+            gemInputs.put(GemstoneColor.YELLOW, amount);
         }
         if(JsonHelper.hasPrimitive(jsonObject, "white")) {
             int amount = JsonHelper.getInt(jsonObject, "white", 0);
-            gemInputs.put(SpectrumColor.WHITE, amount);
+            gemInputs.put(GemstoneColor.WHITE, amount);
         }
         if(JsonHelper.hasPrimitive(jsonObject, "black")) {
             int amount = JsonHelper.getInt(jsonObject, "black", 0);
-            gemInputs.put(SpectrumColor.BLACK, amount);
+            gemInputs.put(GemstoneColor.BLACK, amount);
         }
 
         List<Identifier> requiredAdvancementIdentifiers = new ArrayList<>();
@@ -129,12 +129,12 @@ public class AltarCraftingRecipeSerializer<T extends AltarCraftingRecipe> implem
         Identifier unlockedAdvancementIdentifier = packetByteBuf.readIdentifier();
         boolean showToastOnUnlock = packetByteBuf.readBoolean();
 
-        HashMap<SpectrumColor, Integer> gemInputs = new HashMap<>();
-        if(magenta > 0) { gemInputs.put(SpectrumColor.MAGENTA, magenta); }
-        if(cyan > 0   ) { gemInputs.put(SpectrumColor.CYAN, cyan); }
-        if(yellow > 0 ) { gemInputs.put(SpectrumColor.YELLOW, yellow); }
-        if(black > 0  ) { gemInputs.put(SpectrumColor.BLACK, black); }
-        if(white > 0  ) { gemInputs.put(SpectrumColor.WHITE, white); }
+        HashMap<GemstoneColor, Integer> gemInputs = new HashMap<>();
+        if(magenta > 0) { gemInputs.put(GemstoneColor.MAGENTA, magenta); }
+        if(cyan > 0   ) { gemInputs.put(GemstoneColor.CYAN, cyan); }
+        if(yellow > 0 ) { gemInputs.put(GemstoneColor.YELLOW, yellow); }
+        if(black > 0  ) { gemInputs.put(GemstoneColor.BLACK, black); }
+        if(white > 0  ) { gemInputs.put(GemstoneColor.WHITE, white); }
 
         return this.recipeFactory.create(identifier, group, tier, width, height, craftingInputs, gemInputs, output, experience, craftingTime, requiredAdvancementIdentifiers, unlockedAdvancementIdentifier, showToastOnUnlock);
     }
@@ -152,11 +152,11 @@ public class AltarCraftingRecipeSerializer<T extends AltarCraftingRecipe> implem
         packetByteBuf.writeItemStack(altarCraftingRecipe.output);
 
         packetByteBuf.writeInt(altarCraftingRecipe.tier);
-        packetByteBuf.writeInt(altarCraftingRecipe.getSpectrumColor(SpectrumColor.MAGENTA));
-        packetByteBuf.writeInt(altarCraftingRecipe.getSpectrumColor(SpectrumColor.CYAN));
-        packetByteBuf.writeInt(altarCraftingRecipe.getSpectrumColor(SpectrumColor.YELLOW));
-        packetByteBuf.writeInt(altarCraftingRecipe.getSpectrumColor(SpectrumColor.BLACK));
-        packetByteBuf.writeInt(altarCraftingRecipe.getSpectrumColor(SpectrumColor.WHITE));
+        packetByteBuf.writeInt(altarCraftingRecipe.getSpectrumColor(GemstoneColor.MAGENTA));
+        packetByteBuf.writeInt(altarCraftingRecipe.getSpectrumColor(GemstoneColor.CYAN));
+        packetByteBuf.writeInt(altarCraftingRecipe.getSpectrumColor(GemstoneColor.YELLOW));
+        packetByteBuf.writeInt(altarCraftingRecipe.getSpectrumColor(GemstoneColor.BLACK));
+        packetByteBuf.writeInt(altarCraftingRecipe.getSpectrumColor(GemstoneColor.WHITE));
 
         packetByteBuf.writeFloat(altarCraftingRecipe.experience);
         packetByteBuf.writeInt(altarCraftingRecipe.craftingTime);
@@ -170,7 +170,7 @@ public class AltarCraftingRecipeSerializer<T extends AltarCraftingRecipe> implem
     }
 
     public interface RecipeFactory<T extends AltarCraftingRecipe> {
-        T create(Identifier id, String group, int tier, int width, int height, DefaultedList<Ingredient> craftingInputs, HashMap<SpectrumColor, Integer> gemInputs, ItemStack output, float experience, int craftingTime, List<Identifier> requiredAdvancementIdentifiers, Identifier unlockedAdvancementIdentifierOnCraft, boolean showToastOnUnlock);
+        T create(Identifier id, String group, int tier, int width, int height, DefaultedList<Ingredient> craftingInputs, HashMap<GemstoneColor, Integer> gemInputs, ItemStack output, float experience, int craftingTime, List<Identifier> requiredAdvancementIdentifiers, Identifier unlockedAdvancementIdentifierOnCraft, boolean showToastOnUnlock);
     }
 
 }

@@ -25,7 +25,7 @@
       "de.dafuqs.spectrum.config.ModMenuConfig"
     ],
     "rei_plugins": [
-      "de.dafuqs.spectrum.REI.REIIntegration"
+      "de.dafuqs.spectrum.compat.REI.REIIntegration"
     ]
   },
   "mixins": [

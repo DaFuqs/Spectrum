@@ -3,7 +3,7 @@ package de.dafuqs.spectrum.registries;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.gravity.GravityItem;
 import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
-import de.dafuqs.spectrum.enums.SpectrumColor;
+import de.dafuqs.spectrum.enums.GemstoneColor;
 import de.dafuqs.spectrum.items.PigmentItem;
 import de.dafuqs.spectrum.items.SpectrumArmorItem;
 import de.dafuqs.spectrum.items.VoidBundleItem;
@@ -144,17 +144,17 @@ public class SpectrumItems {
     public static final Item END_PORTAL_CRACKER = new EndPortalCrackerItem(generalItemSettings);
 
     // Catkin
-    public static final Item VIBRANT_CYAN_CATKIN = new CatkinItem(SpectrumColor.CYAN, false, generalItemSettings);
-    public static final Item VIBRANT_MAGENTA_CATKIN =  new CatkinItem(SpectrumColor.MAGENTA, false, generalItemSettings);
-    public static final Item VIBRANT_YELLOW_CATKIN = new CatkinItem(SpectrumColor.YELLOW, false, generalItemSettings);
-    public static final Item VIBRANT_BLACK_CATKIN = new CatkinItem(SpectrumColor.BLACK, false, generalItemSettings);
-    public static final Item VIBRANT_WHITE_CATKIN = new CatkinItem(SpectrumColor.WHITE, false, generalItemSettings);
+    public static final Item VIBRANT_CYAN_CATKIN = new CatkinItem(GemstoneColor.CYAN, false, generalItemSettings);
+    public static final Item VIBRANT_MAGENTA_CATKIN =  new CatkinItem(GemstoneColor.MAGENTA, false, generalItemSettings);
+    public static final Item VIBRANT_YELLOW_CATKIN = new CatkinItem(GemstoneColor.YELLOW, false, generalItemSettings);
+    public static final Item VIBRANT_BLACK_CATKIN = new CatkinItem(GemstoneColor.BLACK, false, generalItemSettings);
+    public static final Item VIBRANT_WHITE_CATKIN = new CatkinItem(GemstoneColor.WHITE, false, generalItemSettings);
 	
-    public static final Item LUCID_CYAN_CATKIN =  new CatkinItem(SpectrumColor.CYAN, true, generalUncommonItemSettings);
-    public static final Item LUCID_MAGENTA_CATKIN = new CatkinItem(SpectrumColor.MAGENTA, true, generalUncommonItemSettings);
-    public static final Item LUCID_YELLOW_CATKIN = new CatkinItem(SpectrumColor.YELLOW, true, generalUncommonItemSettings);
-    public static final Item LUCID_BLACK_CATKIN = new CatkinItem(SpectrumColor.BLACK, true, generalUncommonItemSettings);
-    public static final Item LUCID_WHITE_CATKIN = new CatkinItem(SpectrumColor.WHITE, true, generalUncommonItemSettings);
+    public static final Item LUCID_CYAN_CATKIN =  new CatkinItem(GemstoneColor.CYAN, true, generalUncommonItemSettings);
+    public static final Item LUCID_MAGENTA_CATKIN = new CatkinItem(GemstoneColor.MAGENTA, true, generalUncommonItemSettings);
+    public static final Item LUCID_YELLOW_CATKIN = new CatkinItem(GemstoneColor.YELLOW, true, generalUncommonItemSettings);
+    public static final Item LUCID_BLACK_CATKIN = new CatkinItem(GemstoneColor.BLACK, true, generalUncommonItemSettings);
+    public static final Item LUCID_WHITE_CATKIN = new CatkinItem(GemstoneColor.WHITE, true, generalUncommonItemSettings);
 
     // Misc
 	public static final Item MUSIC_DISC_SPECTRUM_THEME = new SpectrumMusicDiscItem(1, SpectrumSoundEvents.SPECTRUM_THEME, musicDiscItemSettings);
@@ -449,6 +449,26 @@ public class SpectrumItems {
         FuelRegistry.INSTANCE.add(SpectrumBlocks.RED_PLANK_SLAB.asItem(), 150);
         FuelRegistry.INSTANCE.add(SpectrumBlocks.WHITE_PLANK_SLAB.asItem(), 150);
         FuelRegistry.INSTANCE.add(SpectrumBlocks.YELLOW_PLANK_SLAB.asItem(), 150);
+    }
+
+    public static Item getGemstoneShard(GemstoneColor gemstoneColor) {
+        switch (gemstoneColor) {
+            case CYAN -> {
+                return TOPAZ_POWDER;
+            }
+            case MAGENTA -> {
+                return AMETHYST_POWDER;
+            }
+            case YELLOW -> {
+                return CITRINE_POWDER;
+            }
+            case BLACK -> {
+                return ONYX_POWDER;
+            }
+            default -> {
+                return MOONSTONE_POWDER;
+            }
+        }
     }
 
 }

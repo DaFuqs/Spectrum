@@ -1,6 +1,6 @@
-package de.dafuqs.spectrum.REI;
+package de.dafuqs.spectrum.compat.REI;
 
-import de.dafuqs.spectrum.enums.SpectrumColor;
+import de.dafuqs.spectrum.enums.GemstoneColor;
 import de.dafuqs.spectrum.progression.ClientAdvancements;
 import de.dafuqs.spectrum.recipe.altar.AltarCraftingRecipe;
 import de.dafuqs.spectrum.registries.SpectrumItems;
@@ -40,12 +40,12 @@ public class AltarCraftingRecipeDisplay<R extends AltarCraftingRecipe> implement
 
 		this.requiredAdvancementIdentifiers = recipe.getRequiredAdvancementIdentifiers();
 
-		HashMap<SpectrumColor, Integer> spectrumInputs = recipe.getGemstoneDustInputs();
-		addSpectrumCraftingInput(spectrumInputs, SpectrumColor.CYAN, SpectrumItems.TOPAZ_POWDER);
-		addSpectrumCraftingInput(spectrumInputs, SpectrumColor.MAGENTA, SpectrumItems.AMETHYST_POWDER);
-		addSpectrumCraftingInput(spectrumInputs, SpectrumColor.YELLOW, SpectrumItems.CITRINE_POWDER);
-		addSpectrumCraftingInput(spectrumInputs, SpectrumColor.BLACK, SpectrumItems.ONYX_POWDER);
-		addSpectrumCraftingInput(spectrumInputs, SpectrumColor.WHITE, SpectrumItems.MOONSTONE_POWDER);
+		HashMap<GemstoneColor, Integer> spectrumInputs = recipe.getGemstoneDustInputs();
+		addSpectrumCraftingInput(spectrumInputs, GemstoneColor.CYAN, SpectrumItems.TOPAZ_POWDER);
+		addSpectrumCraftingInput(spectrumInputs, GemstoneColor.MAGENTA, SpectrumItems.AMETHYST_POWDER);
+		addSpectrumCraftingInput(spectrumInputs, GemstoneColor.YELLOW, SpectrumItems.CITRINE_POWDER);
+		addSpectrumCraftingInput(spectrumInputs, GemstoneColor.BLACK, SpectrumItems.ONYX_POWDER);
+		addSpectrumCraftingInput(spectrumInputs, GemstoneColor.WHITE, SpectrumItems.MOONSTONE_POWDER);
 
 		this.output = EntryIngredients.of(recipe.getOutput());
 		this.experience = recipe.getExperience();
@@ -55,9 +55,9 @@ public class AltarCraftingRecipeDisplay<R extends AltarCraftingRecipe> implement
 
 	}
 
-	private void addSpectrumCraftingInput(HashMap<SpectrumColor, Integer> spectrumInputs, SpectrumColor spectrumColor, Item item) {
-		if(spectrumInputs.containsKey(spectrumColor)) {
-			int amount = spectrumInputs.get(spectrumColor);
+	private void addSpectrumCraftingInput(HashMap<GemstoneColor, Integer> spectrumInputs, GemstoneColor gemstoneColor, Item item) {
+		if(spectrumInputs.containsKey(gemstoneColor)) {
+			int amount = spectrumInputs.get(gemstoneColor);
 			if(amount > 0) {
 				this.craftingInputs.add(EntryIngredients.of(new ItemStack(item, amount)));
 			} else {

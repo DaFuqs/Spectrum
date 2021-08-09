@@ -1,23 +1,23 @@
 package de.dafuqs.spectrum.blocks.conditional;
 
 import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.enums.SpectrumColor;
+import de.dafuqs.spectrum.enums.GemstoneColor;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
 
 public class GemstoneOreBlock extends CloakedOreBlock {
 
-    private final SpectrumColor spectrumColor;
+    private final GemstoneColor gemstoneColor;
 
-    public GemstoneOreBlock(Settings settings, UniformIntProvider experienceDropped, SpectrumColor spectrumColor, boolean deepSlateOre) {
+    public GemstoneOreBlock(Settings settings, UniformIntProvider experienceDropped, GemstoneColor gemstoneColor, boolean deepSlateOre) {
         super(settings, experienceDropped, deepSlateOre);
-        this.spectrumColor = spectrumColor;
+        this.gemstoneColor = gemstoneColor;
         registerCloak();
     }
 
     @Override
     public Identifier getCloakAdvancementIdentifier() {
-        switch (this.spectrumColor) {
+        switch (this.gemstoneColor) {
             case CYAN -> {
                 return new Identifier(SpectrumCommon.MOD_ID, "hidden/collect_shards/collect_topaz_shard");
             }

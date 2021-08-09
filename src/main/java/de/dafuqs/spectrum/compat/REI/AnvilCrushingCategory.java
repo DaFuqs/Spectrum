@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.REI;
+package de.dafuqs.spectrum.compat.REI;
 
 import com.google.common.collect.Lists;
 import de.dafuqs.spectrum.SpectrumCommon;

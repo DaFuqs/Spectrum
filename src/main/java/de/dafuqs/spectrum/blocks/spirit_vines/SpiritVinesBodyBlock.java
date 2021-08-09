@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.blocks.spirit_vines;
 
-import de.dafuqs.spectrum.enums.SpectrumColor;
+import de.dafuqs.spectrum.enums.GemstoneColor;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -24,16 +24,16 @@ import java.util.Random;
 
 public class SpiritVinesBodyBlock extends AbstractPlantBlock implements SpiritVines {
 
-    private final SpectrumColor spectrumColor;
+    private final GemstoneColor gemstoneColor;
 
-    public SpiritVinesBodyBlock(Settings settings, SpectrumColor spectrumColor) {
+    public SpiritVinesBodyBlock(Settings settings, GemstoneColor gemstoneColor) {
         super(settings, Direction.DOWN, SHAPE, false);
         this.setDefaultState((this.stateManager.getDefaultState()).with(YIELD, YieldType.NONE));
-        this.spectrumColor = spectrumColor;
+        this.gemstoneColor = gemstoneColor;
     }
 
     protected AbstractPlantStemBlock getStem() {
-        switch (spectrumColor) {
+        switch (gemstoneColor) {
             case MAGENTA -> {
                 return (AbstractPlantStemBlock) SpectrumBlocks.MAGENTA_SPIRIT_SALLOW_VINES_BODY;
             }

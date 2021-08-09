@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.inventories;
 
-import de.dafuqs.spectrum.enums.SpectrumColor;
+import de.dafuqs.spectrum.enums.GemstoneColor;
 import de.dafuqs.spectrum.inventories.slots.LockableCraftingResultSlot;
 import de.dafuqs.spectrum.inventories.slots.ReadOnlySlot;
 import de.dafuqs.spectrum.items.misc.CraftingTabletItem;
@@ -106,31 +106,31 @@ public class CraftingTabletScreenHandler extends AbstractRecipeScreenHandler<Inv
             ItemStack itemStack = altarCraftingRecipe.getOutput().copy();
             craftingResultInventory.setStack(0, itemStack);
 
-            int magenta = altarCraftingRecipe.getSpectrumColor(SpectrumColor.CYAN);
+            int magenta = altarCraftingRecipe.getSpectrumColor(GemstoneColor.CYAN);
             if(magenta > 0) {
                inventory.setStack(9, new ItemStack(SpectrumItems.TOPAZ_POWDER, magenta));
             } else {
                inventory.setStack(9, ItemStack.EMPTY);
             }
-            int yellow = altarCraftingRecipe.getSpectrumColor(SpectrumColor.MAGENTA);
+            int yellow = altarCraftingRecipe.getSpectrumColor(GemstoneColor.MAGENTA);
             if(yellow > 0) {
                inventory.setStack(10, new ItemStack(SpectrumItems.AMETHYST_POWDER, yellow));
             } else {
                inventory.setStack(10, ItemStack.EMPTY);
             }
-            int cyan = altarCraftingRecipe.getSpectrumColor(SpectrumColor.YELLOW);
+            int cyan = altarCraftingRecipe.getSpectrumColor(GemstoneColor.YELLOW);
             if(cyan > 0) {
                inventory.setStack(11, new ItemStack(SpectrumItems.CITRINE_POWDER, cyan));
             } else {
                inventory.setStack(11, ItemStack.EMPTY);
             }
-            int black = altarCraftingRecipe.getSpectrumColor(SpectrumColor.BLACK);
+            int black = altarCraftingRecipe.getSpectrumColor(GemstoneColor.BLACK);
             if(magenta > 0) {
                inventory.setStack(12, new ItemStack(SpectrumItems.ONYX_POWDER, black));
             } else {
                inventory.setStack(12, ItemStack.EMPTY);
             }
-            int white = altarCraftingRecipe.getSpectrumColor(SpectrumColor.WHITE);
+            int white = altarCraftingRecipe.getSpectrumColor(GemstoneColor.WHITE);
             if(white > 0) {
                inventory.setStack(13, new ItemStack(SpectrumItems.MOONSTONE_POWDER, white));
             } else {

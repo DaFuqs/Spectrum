@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.REI;
+package de.dafuqs.spectrum.compat.REI;
 
 import de.dafuqs.spectrum.recipe.altar.AltarCraftingRecipe;
 import de.dafuqs.spectrum.recipe.anvil_crushing.AnvilCrushingRecipe;

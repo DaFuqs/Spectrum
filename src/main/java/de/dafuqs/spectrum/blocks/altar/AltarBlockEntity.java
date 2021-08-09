@@ -2,7 +2,7 @@ package de.dafuqs.spectrum.blocks.altar;
 
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.Support;
-import de.dafuqs.spectrum.enums.SpectrumColor;
+import de.dafuqs.spectrum.enums.GemstoneColor;
 import de.dafuqs.spectrum.interfaces.PlayerOwned;
 import de.dafuqs.spectrum.inventories.AltarScreenHandler;
 import de.dafuqs.spectrum.inventories.AutoCraftingInventory;
@@ -398,9 +398,9 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
             }
 
             // -X for all the spectrum inputs
-            for(SpectrumColor spectrumColor : SpectrumColor.values()) {
-                int spectrumAmount = recipe.getSpectrumColor(spectrumColor);
-                inventory.get(getSlotForSpectrumColor(spectrumColor)).decrement(spectrumAmount);
+            for(GemstoneColor gemstoneColor : GemstoneColor.values()) {
+                int spectrumAmount = recipe.getSpectrumColor(gemstoneColor);
+                inventory.get(getSlotForSpectrumColor(gemstoneColor)).decrement(spectrumAmount);
             }
 
             ItemStack recipeOutput = recipe.getOutput();
@@ -498,8 +498,8 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
         };
     }
 
-    public static int getSlotForSpectrumColor(SpectrumColor spectrumColor) {
-        return switch (spectrumColor) {
+    public static int getSlotForSpectrumColor(GemstoneColor gemstoneColor) {
+        return switch (gemstoneColor) {
             case CYAN -> 9;
             case MAGENTA -> 10;
             case YELLOW -> 11;

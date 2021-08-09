@@ -1,8 +1,8 @@
 package de.dafuqs.spectrum.enums;
 
-public enum SpectrumColor {
-    MAGENTA,
+public enum GemstoneColor {
     CYAN,
+    MAGENTA,
     YELLOW,
     BLACK,
     WHITE

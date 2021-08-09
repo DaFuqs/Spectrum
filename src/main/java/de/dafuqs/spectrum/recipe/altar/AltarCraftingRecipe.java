@@ -36,7 +36,7 @@ public class AltarCraftingRecipe implements Recipe<Inventory> {
 
     protected final int tier;
     protected final DefaultedList<Ingredient> craftingInputs;
-    protected final HashMap<SpectrumColor, Integer> spectrumInputs;
+    protected final HashMap<SpectrumColor, Integer> gemstoneDustInputs;
     protected final ItemStack output;
     protected final float experience;
     protected final int craftingTime;
@@ -45,7 +45,7 @@ public class AltarCraftingRecipe implements Recipe<Inventory> {
     protected final Identifier unlockedAdvancementOnCraft;
     protected final boolean showToastOnUnlock;
 
-    public AltarCraftingRecipe(Identifier id, String group, int tier, int width, int height, DefaultedList<Ingredient> craftingInputs, HashMap<SpectrumColor, Integer> spectrumInputs, ItemStack output, float experience, int craftingTime, List<Identifier> requiredAdvancementIdentifiers, Identifier unlockedAdvancementOnCraft, boolean showToastOnUnlock) {
+    public AltarCraftingRecipe(Identifier id, String group, int tier, int width, int height, DefaultedList<Ingredient> craftingInputs, HashMap<SpectrumColor, Integer> gemstoneDustInputs, ItemStack output, float experience, int craftingTime, List<Identifier> requiredAdvancementIdentifiers, Identifier unlockedAdvancementOnCraft, boolean showToastOnUnlock) {
         this.id = id;
         this.group = group;
         this.tier = tier;
@@ -54,7 +54,7 @@ public class AltarCraftingRecipe implements Recipe<Inventory> {
         this.height = height;
 
         this.craftingInputs = craftingInputs;
-        this.spectrumInputs = spectrumInputs;
+        this.gemstoneDustInputs = gemstoneDustInputs;
         this.output = output;
         this.experience = experience;
         this.craftingTime = craftingTime;
@@ -72,17 +72,17 @@ public class AltarCraftingRecipe implements Recipe<Inventory> {
             return false;
         }
 
-        int cyanSpectrumCount = this.spectrumInputs.get(SpectrumColor.CYAN);
-        int magentaSpectrumCount = this.spectrumInputs.get(SpectrumColor.MAGENTA);
-        int yellowSpectrumCount = this.spectrumInputs.get(SpectrumColor.YELLOW);
-        int blackSpectrumCount = this.spectrumInputs.get(SpectrumColor.BLACK);
-        int whiteSpectrumCount = this.spectrumInputs.get(SpectrumColor.WHITE);
+        int topazPowderAmount = this.gemstoneDustInputs.get(SpectrumColor.CYAN);
+        int amethystPowderAmount = this.gemstoneDustInputs.get(SpectrumColor.MAGENTA);
+        int citrinePowderAmount = this.gemstoneDustInputs.get(SpectrumColor.YELLOW);
+        int onyxPowderAmount = this.gemstoneDustInputs.get(SpectrumColor.BLACK);
+        int moonstonePowderAmount = this.gemstoneDustInputs.get(SpectrumColor.WHITE);
 
-        return ((cyanSpectrumCount == 0 || isStackAtLeast(inv.getStack(9), SpectrumItems.TOPAZ_POWDER, magentaSpectrumCount))
-            && (magentaSpectrumCount == 0 || isStackAtLeast(inv.getStack(10), SpectrumItems.AMETHYST_POWDER, yellowSpectrumCount))
-            && (yellowSpectrumCount == 0 || isStackAtLeast(inv.getStack(11), SpectrumItems.CITRINE_POWDER, cyanSpectrumCount))
-            && (blackSpectrumCount == 0 || isStackAtLeast(inv.getStack(12), SpectrumItems.ONYX_POWDER, blackSpectrumCount))
-            && (whiteSpectrumCount == 0 || isStackAtLeast(inv.getStack(13), SpectrumItems.MOONSTONE_POWDER, magentaSpectrumCount)));
+        return ((topazPowderAmount == 0 || isStackAtLeast(inv.getStack(9), SpectrumItems.TOPAZ_POWDER, topazPowderAmount))
+            && (amethystPowderAmount == 0 || isStackAtLeast(inv.getStack(10), SpectrumItems.AMETHYST_POWDER, amethystPowderAmount))
+            && (citrinePowderAmount == 0 || isStackAtLeast(inv.getStack(11), SpectrumItems.CITRINE_POWDER, citrinePowderAmount))
+            && (onyxPowderAmount == 0 || isStackAtLeast(inv.getStack(12), SpectrumItems.ONYX_POWDER, onyxPowderAmount))
+            && (moonstonePowderAmount == 0 || isStackAtLeast(inv.getStack(13), SpectrumItems.MOONSTONE_POWDER, moonstonePowderAmount)));
     }
 
     public boolean matchesGrid(Inventory inv) {
@@ -186,7 +186,7 @@ public class AltarCraftingRecipe implements Recipe<Inventory> {
     }
 
     public int getSpectrumColor(SpectrumColor spectrumColor) {
-        return spectrumInputs.getOrDefault(spectrumColor, 0);
+        return gemstoneDustInputs.getOrDefault(spectrumColor, 0);
     }
 
     public int getCraftingTime() {
@@ -210,8 +210,8 @@ public class AltarCraftingRecipe implements Recipe<Inventory> {
         return this.showToastOnUnlock;
     }
 
-    public HashMap<SpectrumColor, Integer> getSpectrumInputs() {
-        return this.spectrumInputs;
+    public HashMap<SpectrumColor, Integer> getGemstoneDustInputs() {
+        return this.gemstoneDustInputs;
     }
 
     public int getWidth() {
@@ -230,19 +230,19 @@ public class AltarCraftingRecipe implements Recipe<Inventory> {
     public SoundEvent getSoundEvent(Random random) {
         List<SoundEvent> choices = new ArrayList<>();
 
-        for(int i = 0; i < this.spectrumInputs.get(SpectrumColor.MAGENTA); i++) {
+        for(int i = 0; i < this.gemstoneDustInputs.get(SpectrumColor.MAGENTA); i++) {
             choices.add(SpectrumSoundEvents.ALTAR_CRAFT_AMETHYST);
         }
-        for(int i = 0; i < this.spectrumInputs.get(SpectrumColor.YELLOW); i++) {
+        for(int i = 0; i < this.gemstoneDustInputs.get(SpectrumColor.YELLOW); i++) {
             choices.add(SpectrumSoundEvents.ALTAR_CRAFT_CITRINE);
         }
-        for(int i = 0; i < this.spectrumInputs.get(SpectrumColor.CYAN); i++) {
+        for(int i = 0; i < this.gemstoneDustInputs.get(SpectrumColor.CYAN); i++) {
             choices.add(SpectrumSoundEvents.ALTAR_CRAFT_TOPAZ);
         }
-        for(int i = 0; i < this.spectrumInputs.get(SpectrumColor.BLACK); i++) {
+        for(int i = 0; i < this.gemstoneDustInputs.get(SpectrumColor.BLACK); i++) {
             choices.add(SpectrumSoundEvents.ALTAR_CRAFT_ONYX);
         }
-        for(int i = 0; i < this.spectrumInputs.get(SpectrumColor.WHITE); i++) {
+        for(int i = 0; i < this.gemstoneDustInputs.get(SpectrumColor.WHITE); i++) {
             choices.add(SpectrumSoundEvents.ALTAR_CRAFT_MOONSTONE);
         }
 

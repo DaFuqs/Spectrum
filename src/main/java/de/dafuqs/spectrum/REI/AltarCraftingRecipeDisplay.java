@@ -40,7 +40,7 @@ public class AltarCraftingRecipeDisplay<R extends AltarCraftingRecipe> implement
 
 		this.requiredAdvancementIdentifiers = recipe.getRequiredAdvancementIdentifiers();
 
-		HashMap<SpectrumColor, Integer> spectrumInputs = recipe.getSpectrumInputs();
+		HashMap<SpectrumColor, Integer> spectrumInputs = recipe.getGemstoneDustInputs();
 		addSpectrumCraftingInput(spectrumInputs, SpectrumColor.CYAN, SpectrumItems.TOPAZ_POWDER);
 		addSpectrumCraftingInput(spectrumInputs, SpectrumColor.MAGENTA, SpectrumItems.AMETHYST_POWDER);
 		addSpectrumCraftingInput(spectrumInputs, SpectrumColor.YELLOW, SpectrumItems.CITRINE_POWDER);

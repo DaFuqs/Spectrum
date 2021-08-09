@@ -599,10 +599,11 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
     }
 
     public ItemStack getCraftingOutput() {
-        if(this.lastRecipe == null) {
+        Recipe recipe = calculateRecipe(this.world, this);
+        if(recipe == null) {
             return ItemStack.EMPTY;
         } else {
-            return lastRecipe.getOutput();
+            return recipe.getOutput();
         }
     }
 }

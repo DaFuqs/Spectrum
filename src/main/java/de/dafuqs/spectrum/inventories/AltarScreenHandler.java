@@ -103,35 +103,36 @@ public class AltarScreenHandler extends AbstractRecipeScreenHandler<Inventory> {
 
         // serverside only: if the recipe output has changed send update to the client
         if(!world.isClient) {
-            ItemStack outputItemStack = ((AltarBlockEntity) inventory).getCraftingOutput();
+            ItemStack craftingItemStack = ((AltarBlockEntity) inventory).getCraftingOutput();
 
-            ItemStack displayedItemStack;
-            if(outputItemStack.isEmpty()) {
-                displayedItemStack = inventory.getStack(15);
+            ItemStack itemStackForOutputSlot;
+            if(craftingItemStack.isEmpty()) {
+                itemStackForOutputSlot = inventory.getStack(15);
 
                 // if there is no block in the output slot
                 // show the result of the current recipe
-                if(displayedItemStack == ItemStack.EMPTY) {
-                    Recipe recipe = (AltarBlockEntity.calculateRecipe(world, (AltarBlockEntity) inventory));
+                //if(itemStackForOutputSlot == ItemStack.EMPTY) {
+                //    itemStackForOutputSlot = craftingItemStack;
+                    /*Recipe recipe = (AltarBlockEntity.calculateRecipe(world, (AltarBlockEntity) inventory));
                     if(recipe != null) {
                         ((ServerPlayerEntity) player).networkHandler.sendPacket(new ScreenHandlerSlotUpdateS2CPacket(syncId, this.nextRevision(), 15, displayedItemStack));
-                    }
-                }
+                    }*/
+                //}
             } else {
-                displayedItemStack = outputItemStack.copy();
-                ItemStack remainingItemStack = inventory.getStack(15);
+                itemStackForOutputSlot = craftingItemStack.copy();
+                ItemStack existingItemStack = inventory.getStack(15);
 
-                if(!remainingItemStack.isEmpty()
-                        && displayedItemStack.isItemEqual(remainingItemStack)
-                        && displayedItemStack.getCount() + remainingItemStack.getCount() <= displayedItemStack.getMaxCount()) {
+                if(!existingItemStack.isEmpty()
+                        && craftingItemStack.isItemEqual(existingItemStack)
+                        && craftingItemStack.getCount() + existingItemStack.getCount() <= craftingItemStack.getMaxCount()) {
 
-                    displayedItemStack.increment(remainingItemStack.getCount());
+                    existingItemStack.increment(craftingItemStack.getCount());
                 }
             }
 
-            if(!craftingResultInventory.getStack(0).equals(displayedItemStack)) {
-                craftingResultInventory.setStack(0, displayedItemStack);
-                ((ServerPlayerEntity) player).networkHandler.sendPacket(new ScreenHandlerSlotUpdateS2CPacket(syncId, this.nextRevision(), 15, displayedItemStack));
+            if(!craftingResultInventory.getStack(0).equals(craftingItemStack)) {
+                craftingResultInventory.setStack(0, craftingItemStack);
+                ((ServerPlayerEntity) player).networkHandler.sendPacket(new ScreenHandlerSlotUpdateS2CPacket(syncId, this.nextRevision(), 15, itemStackForOutputSlot));
             }
         }
     }

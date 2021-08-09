@@ -48,6 +48,14 @@ public class BlockCloakManager {
         return advancementBlockSwapTriggers.containsKey(advancementIdentifier);
     }
 
+    public static List<Cloakable> getRevelationsForAdvancement(Identifier advancementIdentifier) {
+        if(advancementBlockSwapTriggers.containsKey(advancementIdentifier)) {
+            return advancementBlockSwapTriggers.get(advancementIdentifier);
+        } else {
+            return new ArrayList<>();
+        }
+    }
+
     public static List<Cloakable> getBlocksToUncloak(Identifier advancementIdentifier) {
         if(advancementBlockSwapTriggers.containsKey(advancementIdentifier)) {
             return advancementBlockSwapTriggers.get(advancementIdentifier);

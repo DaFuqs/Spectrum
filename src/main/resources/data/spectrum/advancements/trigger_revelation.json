@@ -13,8 +13,9 @@
   },
   "parent": "spectrum:spectrum",
   "criteria": {
-    "have_revelation": {
-      "trigger":"minecraft:impossible"
+    "have_any_revelation": {
+      "trigger":"spectrum:had_revelation",
+      "conditions": { "revelation_identifier": "" }
     }
   }
 }

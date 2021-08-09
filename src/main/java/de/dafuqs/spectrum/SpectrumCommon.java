@@ -8,6 +8,7 @@ import de.dafuqs.spectrum.loot.EnchantmentDrops;
 import de.dafuqs.spectrum.loot.SpectrumLootConditionTypes;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.progression.BlockCloakManager;
+import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.sound.SpectrumBlockSoundGroups;
@@ -45,6 +46,7 @@ public class SpectrumCommon implements ModInitializer {
         LOGGER.info("Finished loading config file.");
 
         // Register ALL the stuff
+        SpectrumAdvancementCriteria.register();
         SpectrumSoundEvents.register();
         SpectrumBlockSoundGroups.register();
         SpectrumFluidTags.register();

@@ -51,7 +51,6 @@ public class RedstoneTransparencyBlock extends Block {
         stateManager.add(TRANSPARENCY_STATE);
     }
 
-    // todo: only when translucent
     public boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
         return (state.get(RedstoneTransparencyBlock.TRANSPARENCY_STATE) != TransparencyState.SOLID) && stateFrom.isOf(this) || super.isSideInvisible(state, stateFrom, direction);
     }
@@ -114,7 +113,9 @@ public class RedstoneTransparencyBlock extends Block {
                     world.setBlockState(pos, world.getBlockState(pos).with(TRANSPARENCY_STATE, sourceTransparencyState));
                 }
             } else {
-                setTransparencyStateBasedOnRedstone(world, pos, state);
+                if(!fromPosBlockState.isAir()) {
+                    setTransparencyStateBasedOnRedstone(world, pos, state);
+                }
             }
         }
         super.neighborUpdate(state, world, pos, block, fromPos, notify);

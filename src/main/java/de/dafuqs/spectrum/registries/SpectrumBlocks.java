@@ -451,6 +451,25 @@ public class SpectrumBlocks {
     public static final Block WHITE_LAMP = new RedstoneLampBlock(coloredLampBlockBlockSettings);
     public static final Block YELLOW_LAMP = new RedstoneLampBlock(coloredLampBlockBlockSettings);
 
+    // PIGMENT STORAGE BLOCKS
+    private static final FabricBlockSettings pigmentStorageBlockBlockSettings = FabricBlockSettings.of(Material.WOOL).strength(1.0F).sounds(BlockSoundGroup.WOOL);
+    public static final Block BLACK_BLOCK = new Block(pigmentStorageBlockBlockSettings);
+    public static final Block BLUE_BLOCK = new Block(pigmentStorageBlockBlockSettings);
+    public static final Block BROWN_BLOCK = new Block(pigmentStorageBlockBlockSettings);
+    public static final Block CYAN_BLOCK = new Block(pigmentStorageBlockBlockSettings);
+    public static final Block GRAY_BLOCK = new Block(pigmentStorageBlockBlockSettings);
+    public static final Block GREEN_BLOCK = new Block(pigmentStorageBlockBlockSettings);
+    public static final Block LIGHT_BLUE_BLOCK = new Block(pigmentStorageBlockBlockSettings);
+    public static final Block LIGHT_GRAY_BLOCK = new Block(pigmentStorageBlockBlockSettings);
+    public static final Block LIME_BLOCK = new Block(pigmentStorageBlockBlockSettings);
+    public static final Block MAGENTA_BLOCK = new Block(pigmentStorageBlockBlockSettings);
+    public static final Block ORANGE_BLOCK = new Block(pigmentStorageBlockBlockSettings);
+    public static final Block PINK_BLOCK = new Block(pigmentStorageBlockBlockSettings);
+    public static final Block PURPLE_BLOCK = new Block(pigmentStorageBlockBlockSettings);
+    public static final Block RED_BLOCK = new Block(pigmentStorageBlockBlockSettings);
+    public static final Block WHITE_BLOCK = new Block(pigmentStorageBlockBlockSettings);
+    public static final Block YELLOW_BLOCK = new Block(pigmentStorageBlockBlockSettings);
+
     // ORES
     public static final Block SPARKLESTONE_ORE = new SparklestoneOreBlock(FabricBlockSettings.copyOf(Blocks.IRON_ORE).breakByTool(FabricToolTags.PICKAXES, 2), UniformIntProvider.create(2, 4)); // drops sparklestone gems
     public static final Block DEEPSLATE_SPARKLESTONE_ORE = new SparklestoneOreBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_IRON_ORE).breakByTool(FabricToolTags.PICKAXES, 2), UniformIntProvider.create(2, 4)); // drops sparklestone gems
@@ -561,6 +580,7 @@ public class SpectrumBlocks {
         registerGemstoneGlass(decorationItemSettings);
         registerPlayerOnlyGlass(generalItemSettings);
 
+        registerPigmentStorageBlocks(decorationItemSettings);
         registerColoredLamps(decorationItemSettings);
         registerFlatColoredBlocks(decorationItemSettings);
 
@@ -623,6 +643,24 @@ public class SpectrumBlocks {
         registerBlockWithItem("wet_lava_sponge", WET_LAVA_SPONGE, new WetLavaSpongeItem(WET_LAVA_SPONGE, new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).maxCount(1).recipeRemainder(LAVA_SPONGE.asItem())));
     }
 
+    private static void registerPigmentStorageBlocks(FabricItemSettings fabricItemSettings) {
+        registerBlockWithItem("black_block", BLACK_BLOCK, fabricItemSettings);
+        registerBlockWithItem("blue_block", BLUE_BLOCK, fabricItemSettings);
+        registerBlockWithItem("brown_block", BROWN_BLOCK, fabricItemSettings);
+        registerBlockWithItem("cyan_block", CYAN_BLOCK, fabricItemSettings);
+        registerBlockWithItem("gray_block", GRAY_BLOCK, fabricItemSettings);
+        registerBlockWithItem("green_block", GREEN_BLOCK, fabricItemSettings);
+        registerBlockWithItem("light_blue_block", LIGHT_BLUE_BLOCK, fabricItemSettings);
+        registerBlockWithItem("light_gray_block", LIGHT_GRAY_BLOCK, fabricItemSettings);
+        registerBlockWithItem("lime_block", LIME_BLOCK, fabricItemSettings);
+        registerBlockWithItem("magenta_block", MAGENTA_BLOCK, fabricItemSettings);
+        registerBlockWithItem("orange_block", ORANGE_BLOCK, fabricItemSettings);
+        registerBlockWithItem("pink_block", PINK_BLOCK, fabricItemSettings);
+        registerBlockWithItem("purple_block", PURPLE_BLOCK, fabricItemSettings);
+        registerBlockWithItem("red_block", RED_BLOCK, fabricItemSettings);
+        registerBlockWithItem("white_block", WHITE_BLOCK, fabricItemSettings);
+        registerBlockWithItem("yellow_block", YELLOW_BLOCK, fabricItemSettings);
+    }
 
     private static void registerSpiritTree(FabricItemSettings fabricItemSettings) {
         registerBlockWithItem("ominous_sapling", OMINOUS_SAPLING, new OminousSaplingBlockItem(OMINOUS_SAPLING, fabricItemSettings));

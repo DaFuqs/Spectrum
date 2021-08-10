@@ -63,7 +63,9 @@ public class ClientAdvancements {
 		for(Map.Entry<Identifier, AdvancementProgress> progressedEntry : packet.getAdvancementsToProgress().entrySet()) {
 			Identifier progressedAdvancementIdentifier = progressedEntry.getKey();
 			if(ClientAdvancements.hasDone(progressedAdvancementIdentifier)) {
-				doneAdvancements.add(progressedAdvancementIdentifier);
+				if(!doneAdvancements.contains(progressedAdvancementIdentifier)) {
+					doneAdvancements.add(progressedAdvancementIdentifier);
+				}
 			}
 		}
 

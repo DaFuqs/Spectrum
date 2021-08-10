@@ -28,5 +28,5 @@
     "item": "spectrum:lime_lamp",
     "count": 1
   },
-  "required_advancements": [ "spectrum:hidden/progression/unlock/colored_lamps/unlock_lime_lamp" ]
+  "required_advancements": [ "spectrum:progression/colored_lamps/unlock_lime_lamp" ]
 }

@@ -89,10 +89,6 @@ public abstract class ItemEntityMixin {
                     world.playSound(null, position.x, position.y, position.z, soundEvent, SoundCategory.PLAYERS, randomVolume, randomPitch);
 
                     // Particle Effect
-                    // TODO: remove
-                    //ParticleEffect particleEffect = ParticleTypes.EXPLOSION; // recipe.getParticleEffect();
-                    //world.addParticle(particleEffect, position.x, position.y, position.z, 0, 0, 0);
-
                     PacketByteBuf buf = PacketByteBufs.create();
                     BlockPos particleBlockPos = new BlockPos(position.x, position.y, position.z);
                     buf.writeBlockPos(particleBlockPos);

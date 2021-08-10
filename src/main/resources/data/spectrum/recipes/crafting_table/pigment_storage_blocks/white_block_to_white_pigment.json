@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "pigment_storage",
+  "ingredients": [
+    {
+      "item": "spectrum:white_block"
+    }
+  ],
+  "result": {
+    "item": "spectrum:white_pigment",
+    "count": 9
+  }
+}

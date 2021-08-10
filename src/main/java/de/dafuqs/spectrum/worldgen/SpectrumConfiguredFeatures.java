@@ -296,7 +296,7 @@ public class SpectrumConfiguredFeatures extends ConfiguredFeatures {
 
         // QUITOXIC REEDS
         Identifier quitoxicReedsIdentifier = new Identifier(SpectrumCommon.MOD_ID, "quitoxic_reeds");
-        HashSet<Block> quitoxicReedsWhiteList = new HashSet<>(); // todo: Make configurable
+        HashSet<Block> quitoxicReedsWhiteList = new HashSet<>();
         quitoxicReedsWhiteList.add(Blocks.WATER);
         quitoxicReedsWhiteList.add(Blocks.CLAY);
 

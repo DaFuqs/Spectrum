@@ -11,8 +11,8 @@
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "spectrum:crafting_table/storage_blocks/amethyst_storage_block",
-      "recipe2": "spectrum:crafting_table/storage_blocks/amethyst_shards_from_amethyst_storage_block"
+      "recipe": "spectrum:crafting_table/gem_storage_blocks/amethyst_storage_block",
+      "recipe2": "spectrum:crafting_table/gem_storage_blocks/amethyst_shards_from_amethyst_storage_block"
     }
   ]
 }

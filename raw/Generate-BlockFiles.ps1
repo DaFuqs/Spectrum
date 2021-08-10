@@ -5,7 +5,7 @@ $flat = @("black_flat_colored_block", "blue_flat_colored_block", "brown_flat_col
 $lamp = @("black_lamp", "blue_lamp", "brown_lamp", "cyan_lamp", "gray_lamp", "green_lamp", "light_blue_lamp", "light_gray_lamp", "lime_lamp", "magenta_lamp", "orange_lamp", "pink_lamp", "purple_lamp", "red_lamp", "white_lamp", "yellow_lamp")
 $ores = @("sparklestone_block", "koenigsblau_ore", "koenigsblau_block")
 
-$new = @("deepslate_sparklestone_ore", "deepslate_azurite_ore")
+$new = @("black_block", "blue_block", "brown_block", "cyan_block", "gray_block", "green_block", "light_blue_block", "light_gray_block", "lime_block", "magenta_block", "orange_block", "pink_block", "purple_block", "red_block", "white_block", "yellow_block")
 
 enum BlockType {
     Default
@@ -101,14 +101,14 @@ $generate | ForEach-Object {
 function Get-BlockObjects([string[]] $Names) {
     $Names | Foreach-Object {
         $o = $_.toUpper()
-        Write-Output "public static final Block $o = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));"
+        Write-Output "public static final Block $o = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f);"
     }
 }
 
 function Get-RegisterBlockAndItems([string[]] $Names) {
     $Names | Foreach-Object {
         $o = $_.toUpper()
-        "registerBlockWithItem(`"$_`", $o, fabricItemSettings));"
+        "registerBlockWithItem(`"$_`", $o, fabricItemSettings);"
     }
 }
 

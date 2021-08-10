@@ -53,7 +53,7 @@ public class RedstoneTransparencyBlock extends Block {
 
     // todo: only when translucent
     public boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
-        return stateFrom.isOf(this) || super.isSideInvisible(state, stateFrom, direction);
+        return (state.get(RedstoneTransparencyBlock.TRANSPARENCY_STATE) != TransparencyState.SOLID) && stateFrom.isOf(this) || super.isSideInvisible(state, stateFrom, direction);
     }
 
     public float getAmbientOcclusionLightLevel(BlockState state, BlockView world, BlockPos pos) {
@@ -90,7 +90,6 @@ public class RedstoneTransparencyBlock extends Block {
         }
     }
 
-
     @Deprecated
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         if((state.get(TRANSPARENCY_STATE) == TransparencyState.NO_COLLISION)) {
@@ -100,7 +99,6 @@ public class RedstoneTransparencyBlock extends Block {
         }
     }
 
-    @Nullable
     public BlockState getPlacementState(ItemPlacementContext ctx) {
         int power = ctx.getWorld().getReceivedRedstonePower(ctx.getBlockPos());
         return this.getDefaultState().with(TRANSPARENCY_STATE, getStateForRedstonePower(power));
@@ -124,22 +122,13 @@ public class RedstoneTransparencyBlock extends Block {
 
     private boolean setTransparencyStateBasedOnRedstone(World world, BlockPos blockPos, BlockState currentState) {
         int powerAtPos = world.getReceivedRedstonePower(blockPos);
-        if(powerAtPos == 15) {
-            if(currentState.get(TRANSPARENCY_STATE) != TransparencyState.NO_COLLISION) {
-                world.setBlockState(blockPos, world.getBlockState(blockPos).with(TRANSPARENCY_STATE, TransparencyState.NO_COLLISION));
-                return true;
-            }
-        } else if(powerAtPos > 1) {
-            if(currentState.get(TRANSPARENCY_STATE) != TransparencyState.TRANSLUCENT) {
-                world.setBlockState(blockPos, world.getBlockState(blockPos).with(TRANSPARENCY_STATE, TransparencyState.TRANSLUCENT));
-                return true;
-            }
-        } else {
-            if(currentState.get(TRANSPARENCY_STATE) != TransparencyState.SOLID) {
-                world.setBlockState(blockPos, world.getBlockState(blockPos).with(TRANSPARENCY_STATE, TransparencyState.SOLID));
-                return true;
-            }
+        TransparencyState targetTransparencyState = getStateForRedstonePower(powerAtPos);
+
+        if(currentState.get(TRANSPARENCY_STATE) != targetTransparencyState) {
+            world.setBlockState(blockPos, currentState.with(TRANSPARENCY_STATE, targetTransparencyState));
+            return true;
         }
+
         return false;
     }
 

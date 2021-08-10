@@ -14,6 +14,7 @@ import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
+import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particle.DustParticleEffect;
 import net.minecraft.screen.NamedScreenHandlerFactory;
@@ -193,6 +194,15 @@ public class AltarBlock extends BlockWithEntity {
             float xOffset = random.nextFloat();
             float zOffset = random.nextFloat();
             world.addParticle(new DustParticleEffect(vec3f, 1.0F), pos.getX() + xOffset, pos.getY() + 1, pos.getZ() + zOffset, 0.0D, 0.0D, 0.0D);
+        }
+    }
+
+    public BlockState getPlacementState(ItemPlacementContext ctx) {
+        int power = ctx.getWorld().getReceivedRedstonePower(ctx.getBlockPos());
+        if(power == 0) {
+            return this.getDefaultState();
+        } else {
+            return this.getDefaultState().with(STATE, AltarState.REDSTONE);
         }
     }
 

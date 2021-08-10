@@ -28,5 +28,5 @@
     "item": "spectrum:light_gray_lamp",
     "count": 1
   },
-  "required_advancements": [ "spectrum:hidden/progression/unlock/colored_lamps/unlock_light_gray_lamp" ]
+  "required_advancements": [ "spectrum:progression/colored_lamps/unlock_light_gray_lamp" ]
 }

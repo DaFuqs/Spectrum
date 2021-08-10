@@ -10,13 +10,8 @@
     },
     {
       "type": "patchouli:text",
-      "title": "Mixing Colors 1",
-      "text": "There is nothing more important to a upcoming artist than mixing the right paint.$(br)Unfortunately, you found that in the case of your Gemstone Powder, it's not nearly as easy as it initially seemed: The powders don't quite want to mix. The result is always a multicolored mass.$(br)You need an intermediate solution."
-    },
-    {
-      "type": "patchouli:text",
-      "title": "Mixing Colors 2",
-      "text": "The closeness to nature of your gemstones suggests that nature must be both the source and the answer! Quickly you make a few notes and $(l:general/colored_trees)out tumbled a recipe$(), which looks very promising."
+      "title": "Mixing Colors",
+      "text": "There is nothing more important to a upcoming artist than mixing the right paint.$(br)Unfortunately, you found that in the case of your Gemstone Powder, it's not nearly as easy as it initially seemed: The powders don't quite want to mix. The result is always a multicolored mass.$(br)$(l:general/color_mixing)You need an intermediate solution$()."
     }
   ]
 }

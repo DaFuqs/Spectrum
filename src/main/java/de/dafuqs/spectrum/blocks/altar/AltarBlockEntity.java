@@ -7,6 +7,7 @@ import de.dafuqs.spectrum.interfaces.PlayerOwned;
 import de.dafuqs.spectrum.inventories.AltarScreenHandler;
 import de.dafuqs.spectrum.inventories.AutoCraftingInventory;
 import de.dafuqs.spectrum.items.misc.CraftingTabletItem;
+import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.recipe.altar.AltarCraftingRecipe;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
@@ -457,22 +458,8 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
 
     private void grantPlayerCraftingAdvancement(AltarCraftingRecipe recipe) {
         ServerPlayerEntity serverPlayerEntity = SpectrumCommon.minecraftServer.getPlayerManager().getPlayer(this.ownerUUID);
-
-        // General altar crafting advancement
-        Advancement craftingAdvancement = SpectrumCommon.minecraftServer.getAdvancementLoader().get(new Identifier(SpectrumCommon.MOD_ID, "craft_using_altar"));
-
         if(serverPlayerEntity != null) {
-            if (craftingAdvancement != null) {
-                serverPlayerEntity.getAdvancementTracker().grantCriterion(craftingAdvancement, "craft");
-
-                // Advancement specific for the crafted item
-                if (recipe.unlocksAdvancementOnCraft() && !Support.hasAdvancement(serverPlayerEntity, recipe.getUnlockedAdvancementOnCraft())) {
-                    Advancement itemAdvancement = SpectrumCommon.minecraftServer.getAdvancementLoader().get(recipe.getUnlockedAdvancementOnCraft());
-                    if (itemAdvancement != null) {
-                        serverPlayerEntity.getAdvancementTracker().grantCriterion(itemAdvancement, "craft");
-                    }
-                }
-            }
+            SpectrumAdvancementCriteria.ALTAR_CRAFTING.trigger(serverPlayerEntity, recipe.getOutput());
         }
     }
 

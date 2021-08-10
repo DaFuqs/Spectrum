@@ -13,7 +13,8 @@
   "parent": "spectrum:collect_vegetal",
   "criteria": {
     "craft": {
-      "trigger":"minecraft:impossible"
+      "trigger":"spectrum:crafted_with_altar",
+      "conditions": { "items": [{ "tag": "spectrum:colored_saplings" }] }
     }
   }
 }

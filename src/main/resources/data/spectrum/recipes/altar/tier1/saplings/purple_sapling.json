@@ -28,6 +28,6 @@
     "item": "spectrum:purple_sapling",
     "count": 1
   },
-  "required_advancements": [ "spectrum:hidden/progression/unlock/colored_saplings/unlock_purple_sapling" ],
+  "required_advancements": [ "spectrum:progression/colored_saplings/unlock_purple_sapling" ],
   "unlocks_advancement": "spectrum:craft_colored_sapling"
 }

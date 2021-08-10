@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "pigment_storage",
+  "ingredients": [
+    {
+      "item": "spectrum:orange_block"
+    }
+  ],
+  "result": {
+    "item": "spectrum:orange_pigment",
+    "count": 9
+  }
+}

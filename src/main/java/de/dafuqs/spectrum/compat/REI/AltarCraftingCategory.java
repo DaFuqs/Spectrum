@@ -17,6 +17,7 @@ import me.shedaniel.rei.api.client.registry.display.DisplayCategory;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.entry.EntryIngredient;
 import me.shedaniel.rei.api.common.entry.EntryStack;
+import me.shedaniel.rei.api.common.transfer.info.simple.RecipeBookGridMenuInfo;
 import me.shedaniel.rei.api.common.util.EntryStacks;
 import me.shedaniel.rei.plugin.common.displays.crafting.DefaultCraftingDisplay;
 import net.minecraft.text.Text;
@@ -30,11 +31,16 @@ public class AltarCraftingCategory<R extends AltarCraftingRecipe> implements Dis
 
     final Identifier GUI_TEXTURE = AltarScreen.BACKGROUND;
 
-    public static final CategoryIdentifier<AltarCraftingRecipeDisplay> ID = CategoryIdentifier.of(new Identifier(SpectrumCommon.MOD_ID, "altar_crafting"));
+    public static final CategoryIdentifier ID = CategoryIdentifier.of(new Identifier(SpectrumCommon.MOD_ID, "altar_crafting"));
 
     @Override
     public CategoryIdentifier getCategoryIdentifier() {
         return ID;
+    }
+
+    @Override
+    public Identifier getIdentifier() {
+        return new Identifier(SpectrumCommon.MOD_ID, "altar_crafting");
     }
 
     @Override

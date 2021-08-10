@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "pigment_storage",
+  "ingredients": [
+    {
+      "item": "spectrum:cyan_block"
+    }
+  ],
+  "result": {
+    "item": "spectrum:cyan_pigment",
+    "count": 9
+  }
+}

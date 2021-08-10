@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "pigment_storage",
+  "ingredients": [
+    {
+      "item": "spectrum:yellow_block"
+    }
+  ],
+  "result": {
+    "item": "spectrum:yellow_pigment",
+    "count": 9
+  }
+}

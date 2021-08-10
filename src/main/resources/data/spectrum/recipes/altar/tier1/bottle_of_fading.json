@@ -31,6 +31,6 @@
     "item": "spectrum:bottle_of_fading",
     "count": 1
   },
-  "required_advancements": [ "spectrum:hidden/progression/unlock_bottle_of_fading" ],
+  "required_advancements": [ "spectrum:progression/unlock_bottle_of_fading" ],
   "unlocks_advancement": "spectrum:craft_bottle_of_fading"
 }

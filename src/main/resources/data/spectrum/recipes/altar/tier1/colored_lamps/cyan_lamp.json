@@ -28,5 +28,5 @@
     "item": "spectrum:cyan_lamp",
     "count": 1
   },
-  "required_advancements": [ "spectrum:hidden/progression/unlock/colored_lamps/unlock_cyan_lamp" ]
+  "required_advancements": [ "spectrum:progression/colored_lamps/unlock_cyan_lamp" ]
 }

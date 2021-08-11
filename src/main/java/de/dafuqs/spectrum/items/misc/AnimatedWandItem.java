@@ -2,8 +2,6 @@ package de.dafuqs.spectrum.items.misc;
 
 import de.dafuqs.spectrum.SpectrumClient;
 import de.dafuqs.spectrum.sound.NaturesStaffUseSoundInstance;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.LivingEntity;
@@ -27,14 +25,9 @@ public class AnimatedWandItem extends Item {
 
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         if(world.isClient) {
-            playSound(user);
+            SpectrumClient.minecraftClient.getSoundManager().play(new NaturesStaffUseSoundInstance(user));
         }
         return ItemUsage.consumeHeldItem(world, user, hand);
-    }
-
-    @Environment(EnvType.CLIENT)
-    public void playSound(PlayerEntity playerEntity) {
-        SpectrumClient.minecraftClient.getSoundManager().play(new NaturesStaffUseSoundInstance(playerEntity));
     }
 
     public UseAction getUseAction(ItemStack stack) {

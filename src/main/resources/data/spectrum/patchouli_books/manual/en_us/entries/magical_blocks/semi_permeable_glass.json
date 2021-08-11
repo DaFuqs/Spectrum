@@ -3,6 +3,16 @@
   "advancement": "spectrum:spectrum_midgame",
   "icon": "spectrum:amethyst_player_only_glass",
   "category": "spectrum:magical_blocks_category",
+  "extra_recipe_mappings": {
+    "spectrum:vanilla_player_only_glass": 0,
+    "spectrum:tinted_player_only_glass": 0,
+    "spectrum:glowing_player_only_glass": 0,
+    "spectrum:topaz_player_only_glass": 0,
+    "spectrum:amethyst_player_only_glass": 0,
+    "spectrum:citrine_player_only_glass": 0,
+    "spectrum:onyx_player_only_glass": 0,
+    "spectrum:moonstone_player_only_glass": 0
+  },
   "pages": [
     {
       "type": "patchouli:spotlight",
@@ -11,10 +21,12 @@
       "text": "$(italic)For a long time now, those annoying monsters that always appear at night are no longer a threat to you and only serve as a resource supplier, if at all. But that doesn't stop them from pursuing you further.$(br)Qou spend more time keeping those pesky monsters out of your base than you care to admit.$()"
     },
     {
-      "type": "patchouli:spotlight",
-      "title": "Semi-permeable Glass",
-      "item": "spectrum:amethyst_player_only_glass",
+      "type": "patchouli:text",
       "text": "$(italic)Then you remember the gemstone glass recipe you thought up earlier.$(br)With a bit of magical energy, it should be no problem to make it not only transparent for you (not for them!), but also passable.$(br)Bonus: If you make it look exactly like regular glass you might even be able to fool your competition. It just needs a touch of magic.$()"
+    },
+    {
+      "type": "spectrum:altar_crafting",
+      "recipe": "spectrum:altar/tier2/player_only_glass/amethyst_player_only_glass"
     },
     {
       "type": "patchouli:text",

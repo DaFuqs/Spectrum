@@ -2,6 +2,9 @@
   "name": "Mob Spawner Manipulation",
   "icon": "spectrum:spawner",
   "category": "spectrum:hunting_category",
+  "extra_recipe_mappings": {
+    "spectrum:spawner": 0
+  },
   "pages": [
     {
       "type": "patchouli:text",

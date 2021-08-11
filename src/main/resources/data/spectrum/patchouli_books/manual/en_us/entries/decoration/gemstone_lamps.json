@@ -1,17 +1,30 @@
 {
   "name": "Gemstone Lamps",
   "icon": "spectrum:citrine_basalt_lamp",
-  "advancement": "spectrum:unlock_any_gemstone_lamp",
+  "advancement": "spectrum:hidden/collect_resource/collect_sparklestone",
   "category": "spectrum:decoration_category",
+  "extra_recipe_mappings": {
+    "spectrum:topaz_basalt_lamp": 0,
+    "spectrum:amethyst_basalt_lamp": 0,
+    "spectrum:citrine_basalt_lamp": 0,
+    "spectrum:onyx_basalt_lamp": 0,
+    "spectrum:moonstone_basalt_lamp": 0,
+    "spectrum:topaz_calcite_lamp": 0,
+    "spectrum:amethyst_calcite_lamp": 0,
+    "spectrum:citrine_calcite_lamp": 0,
+    "spectrum:onyx_calcite_lamp": 0,
+    "spectrum:moonstone_calcite_lamp": 0
+  },
   "pages": [
     {
       "type": "patchouli:spotlight",
       "item": "spectrum:citrine_basalt_lamp",
       "title": "Gemstone Lamps",
-      "text": "$(italic)When you set foot in the first geode, you were suprisingly met with pleasant cozy glow of the crystals. With your knowledge and the help of Sparklestone, it's easy to amplify this light to create fancy lamps.$()"
+      "text": "$(italic)When you set foot in the first geode, you were surprisingly met with pleasant cozy glow of the crystals. With your knowledge and the help of Sparklestone, it's easy to amplify this light to create fancy lamps.$()"
     },
     {
-      "type": "patchouli:text",
+      "type": "spectrum:altar_crafting",
+      "recipe": "spectrum:altar/tier1/gem_lamps/citrine_basalt_lamp",
       "text": "Gemstone Glass comes in all the colors of gemstones available to you. Both $(l:decoration/block_variants)Chiseled Calcite$() and $(l:decoration/block_variants)Chiseled Basalt$() can be used as a base."
     }
   ]

@@ -3,29 +3,35 @@
   "advancement": "spectrum:collect_bedrock_dust",
   "icon": "spectrum:bedrock_chestplate",
   "category": "spectrum:magical_items_category",
+  "extra_recipe_mappings": {
+    "spectrum:bedrock_helmet": 1,
+    "spectrum:bedrock_chestplate": 2,
+    "spectrum:bedrock_leggings": 3,
+    "spectrum:bedrock_boots": 4
+  },
   "pages": [
     {
       "type": "patchouli:text",
       "text": "The strongest material you could make so far was Netherite. However, repairing Netherite armor had the disadvantage that it was more expensive than making the armor itself. In addition, the protection decreased with every scratch. All this is no longer a problem when the armor simply cannot be damaged."
     },
     {
-      "type": "patchouli:spotlight",
-      "item": "spectrum:bedrock_helmet",
+      "type": "spectrum:altar_crafting",
+      "recipe": "spectrum:altar/tier3/bedrock/bedrock_helmet",
       "text": "The Bedrock Helmet comes with $(bold)Projectile Protection IV$()."
     },
     {
-      "type": "patchouli:spotlight",
-      "item": "spectrum:bedrock_chestplate",
+      "type": "spectrum:altar_crafting",
+      "recipe": "spectrum:altar/tier3/bedrock/bedrock_chestplate",
       "text": "The Bedrock Chestplate comes with $(bold)Protection IV$()."
     },
     {
-      "type": "patchouli:spotlight",
-      "item": "spectrum:bedrock_leggings",
+      "type": "spectrum:altar_crafting",
+      "recipe": "spectrum:altar/tier3/bedrock/bedrock_leggings",
       "text": "The Bedrock Leggings come with $(bold)Blast Protection IV$()."
     },
     {
-      "type": "patchouli:spotlight",
-      "item": "spectrum:bedrock_boots",
+      "type": "spectrum:altar_crafting",
+      "recipe": "spectrum:altar/tier3/bedrock/bedrock_boots",
       "text": "The Bedrock Boots come with $(bold)Fire Protection IV$()."
     }
   ]

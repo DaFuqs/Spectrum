@@ -28,5 +28,5 @@
     "item": "spectrum:ender_bag",
     "count": 1
   },
-  "required_advancements": ["spectrum:hidden/collect_resource/collect_ender_treasure", "spectrum:hidden/collect_vanilla/collect_ender_eye"]
+  "required_advancements": ["spectrum:collect_ender_treasure", "spectrum:hidden/collect_vanilla/collect_ender_eye"]
 }

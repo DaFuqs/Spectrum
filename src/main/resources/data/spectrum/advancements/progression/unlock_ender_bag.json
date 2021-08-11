@@ -6,7 +6,7 @@
     },
     "collected_ender_eye": {
       "trigger":"spectrum:has_advancement",
-      "conditions": { "advancement_identifier": "hidden/collect_vanilla/collect_ender_eye" }
+      "conditions": { "advancement_identifier": "spectrum:hidden/collect_vanilla/collect_ender_eye" }
     }
   }
 }

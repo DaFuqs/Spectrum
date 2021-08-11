@@ -3,6 +3,10 @@
   "icon": "spectrum:invisible_item_frame",
   "advancement": "spectrum:craft_using_altar",
   "category": "spectrum:decoration_category",
+  "extra_recipe_mappings": {
+    "spectrum:invisible_item_frame": 0,
+    "spectrum:invisible_glow_item_frame": 1
+  },
   "pages": [
     {
       "type": "patchouli:spotlight",
@@ -10,9 +14,9 @@
       "text": "$(italic)You would like to display your most precious belongings. So far, you've always used picture frames for that. But some of your exhibitions would look better if you didn't see the frame. Piece of cake, you just take advantage of the light refractive properties of your gems.$()"
     },
     {
-      "type": "patchouli:spotlight",
-      "item": "spectrum:invisible_glow_item_frame",
-      "text": "Like the Invisible Item Frame this one too becomes invisible as soon as you display an item in it. It has the nice tough though that the item in it shines in a bright light, making it look even more imposing."
+      "type": "spectrum:altar_crafting",
+      "recipe": "spectrum:altar/tier1/invisible_glow_item_frame",
+      "text": "This one too becomes invisible as soon as you display an item in it. It has the nice touch though: the item in it shines in a bright light, making it look even more imposing."
     }
   ]
 }

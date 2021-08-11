@@ -1,0 +1,21 @@
+{
+  "name": "Void Bundle",
+  "advancement": "spectrum:progression/unlock_void_bundle",
+  "icon": "spectrum:void_bundle",
+  "category": "spectrum:magical_items_category",
+  "extra_recipe_mappings": {
+    "spectrum:void_bundle": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:void_bundle",
+      "text": "$(italic)On your journeys through the underground you collect a whole lot of identical blocks, which you will probably never need. But they are too good to throw away, you think.\n\nTime to develop a storage solution that takes care of your little homemade problem.$()"
+    },
+    {
+      "type": "spectrum:altar_crafting",
+      "recipe": "spectrum:altar/tier1/void_bundle",
+      "text": "The Void Bundle stores a virtually unlimited number of items, but of only one type."
+    }
+  ]
+}

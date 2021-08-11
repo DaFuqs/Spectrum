@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.recipe.altar;
 
+import de.dafuqs.spectrum.SpectrumClient;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.Support;
 import de.dafuqs.spectrum.enums.GemstoneColor;
@@ -8,6 +9,9 @@ import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.Item;
@@ -63,6 +67,13 @@ public class AltarCraftingRecipe implements Recipe<Inventory> {
         this.unlockedAdvancementOnCraft = unlockedAdvancementOnCraft;
         this.showToastOnUnlock = showToastOnUnlock;
 
+        if(SpectrumClient.minecraftClient != null) {
+            registerInClientToastManager();
+        }
+    }
+
+    @Environment(EnvType.CLIENT)
+    private void registerInClientToastManager() {
         ClientAltarRecipeToastManager.registerUnlockableAltarRecipe(this);
     }
 

@@ -2,6 +2,9 @@
     "name": "Ender Treasure",
     "icon": "minecraft:ender_pearl",
     "category": "spectrum:resources_category",
+    "extra_recipe_mappings": {
+        "spectrum:ender_treasure": 1
+    },
     "pages": [
         {
             "type": "patchouli:text",
@@ -12,7 +15,7 @@
             "advancement": "spectrum:collect_ender_treasure",
             "title": "Resonating Ender",
             "item": "spectrum:ender_treasure",
-            "text": "Now that you hold one in your hands... they are pretty much everywhere! How didn't you notice earlier? It looks like the Endermen come to this world mainly to put something down here. But what is this stuff? And why do they leave it here?$(br2)In any case, you are sure that you can definitely take advantage of this interesting material."
+            "text": "It looks like the Endermen come to this world to place something down. But what is this stuff? And $(italic)WHY$() do they leave it here?$(br2)Now that you hold one in your hands... they are pretty much everywhere! How didn't you notice earlier? Anyways, you are sure that you can definitely take advantage of this interesting material."
         }
     ]
 }

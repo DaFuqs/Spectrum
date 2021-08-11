@@ -196,7 +196,7 @@ public class SpectrumBlocks {
     public static final Block CITRINE_GLASS = new GemGlassBlock(FabricBlockSettings.copy(Blocks.GLASS));
     public static final Block ONYX_GLASS = new GemGlassBlock(FabricBlockSettings.copy(Blocks.GLASS));
     public static final Block MOONSTONE_GLASS = new GemGlassBlock(FabricBlockSettings.copy(Blocks.GLASS));
-    public static final Block GLOWING_GLASS = new GlassBlock(FabricBlockSettings.copy(Blocks.GLASS).luminance(value -> 12));
+    public static final Block GLOWING_GLASS = new GemGlassBlock(FabricBlockSettings.copy(Blocks.GLASS).luminance(value -> 12));
 
     // ALTAR
     private static final FabricBlockSettings altarSettings = FabricBlockSettings.of(Material.STONE).requiresTool().strength(5.0F, 20.0F);
@@ -473,8 +473,8 @@ public class SpectrumBlocks {
     // ORES
     public static final Block SPARKLESTONE_ORE = new SparklestoneOreBlock(FabricBlockSettings.copyOf(Blocks.IRON_ORE).breakByTool(FabricToolTags.PICKAXES, 2), UniformIntProvider.create(2, 4)); // drops sparklestone gems
     public static final Block DEEPSLATE_SPARKLESTONE_ORE = new SparklestoneOreBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_IRON_ORE).breakByTool(FabricToolTags.PICKAXES, 2), UniformIntProvider.create(2, 4)); // drops sparklestone gems
-    public static final Block AZURITE_ORE = new AzuriteOreBlock(FabricBlockSettings.copyOf(Blocks.LAPIS_ORE).breakByTool(FabricToolTags.PICKAXES, 3), UniformIntProvider.create(4, 7));
-    public static final Block DEEPSLATE_AZURITE_ORE = new AzuriteOreBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_LAPIS_ORE).breakByTool(FabricToolTags.PICKAXES, 3), UniformIntProvider.create(4, 7));
+    public static final Block AZURITE_ORE = new AzuriteOreBlock(FabricBlockSettings.copyOf(Blocks.LAPIS_ORE).breakByTool(FabricToolTags.PICKAXES, 3), UniformIntProvider.create(4, 7), false);
+    public static final Block DEEPSLATE_AZURITE_ORE = new AzuriteOreBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_LAPIS_ORE).breakByTool(FabricToolTags.PICKAXES, 3), UniformIntProvider.create(4, 7), true);
     public static final Block PALETUR_ORE = new PaleturOreBlock(FabricBlockSettings.of(Material.STONE, MapColor.DARK_RED).requiresTool().breakByTool(FabricToolTags.PICKAXES, 3).strength(3.0F, 3.0F).sounds(BlockSoundGroup.NETHER_ORE), UniformIntProvider.create(2, 4));
     public static final Block SCARLET_ORE = new ScarletOreBlock(FabricBlockSettings.of(Material.STONE, MapColor.PALE_YELLOW).requiresTool().breakByTool(FabricToolTags.PICKAXES, 4).strength(3.0F, 9.0F), UniformIntProvider.create(3, 5));
 

@@ -2,6 +2,23 @@
     "name": "Ores",
     "icon": "spectrum:sparklestone_ore",
     "category": "spectrum:resources_category",
+    "extra_recipe_mappings": {
+        "spectrum:sparklestone_ore": 1,
+        "spectrum:deepslate_sparklestone_ore": 1,
+        "spectrum:sparklestone_gem": 1,
+        "spectrum:sparklestone_block": 2,
+        "spectrum:azurite_ore": 3,
+        "spectrum:deepslate_azurite_ore": 3,
+        "spectrum:raw_azurite": 3,
+        "spectrum:shaped_azurite": 3,
+        "spectrum:azurite_block": 3,
+        "spectrum:scarlet_ore": 4,
+        "spectrum:scarlet_fragments": 4,
+        "spectrum:scarlet_gem": 4,
+        "spectrum:paletur_ore": 5,
+        "spectrum:paletur_fragments": 5,
+        "spectrum:paletur_gem": 5
+    },
     "pages": [
         {
             "type": "patchouli:text",
@@ -15,6 +32,12 @@
             "text": "A yellow ore that does emit - but also is able to manipulate - energy in the form of light.$(br2)Sparklestone is found at above sea level altitudes."
         },
         {
+            "type": "spectrum:altar_crafting",
+            "advancement": "spectrum:hidden/collect_resource/collect_sparklestone",
+            "recipe": "spectrum:crafting_table/gem_storage_blocks/sparklestone_block",
+            "text": "A full block of sparklestone emits lots of bright yellow glowing particles."
+        },
+        {
             "type": "patchouli:spotlight",
             "advancement": "spectrum:hidden/collect_resource/collect_raw_azurite",
             "title": "Azurite",
@@ -26,14 +49,14 @@
             "advancement": "spectrum:hidden/collect_resource/collect_scarlet",
             "title": "Scarlet Ore",
             "item": "spectrum:scarlet_ore",
-            "text": "This very heavy ore is scattered around the Nether. It's probably not the best idea to carry large amounts of it home at once."
+            "text": "This very heavy ore is scattered around the Nether.$(br)It's probably not the best idea to carry large amounts of it home at once."
         },
         {
             "type": "patchouli:spotlight",
             "advancement": "spectrum:hidden/collect_resource/collect_paletur",
             "title": "Paletur Ore",
             "item": "spectrum:paletur_ore",
-            "text": "The light blue color is the trademark of this ore. It is found exclusively in the end in small clusters. Like the end itself, the curious properties of this material are not to be overlooked."
+            "text": "The light blue color is the trademark of this ore. It is found exclusively in the end in small clusters.$(br)Like the end itself, the curious properties of this material are not to be overlooked."
         }
     ]
 }

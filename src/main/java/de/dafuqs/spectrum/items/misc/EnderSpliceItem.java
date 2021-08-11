@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.items.misc;
 import de.dafuqs.spectrum.SpectrumClient;
 import de.dafuqs.spectrum.Support;
 import de.dafuqs.spectrum.sound.EnderSpliceChargingSoundInstance;
+import de.dafuqs.spectrum.sound.NaturesStaffUseSoundInstance;
 import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -95,9 +96,14 @@ public class EnderSpliceItem extends Item {
 
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         if(world.isClient) {
-            SpectrumClient.minecraftClient.getSoundManager().play(new EnderSpliceChargingSoundInstance(user));
+            playSound(user);
         }
         return ItemUsage.consumeHeldItem(world, user, hand);
+    }
+
+    @Environment(EnvType.CLIENT)
+    public void playSound(PlayerEntity playerEntity) {
+        SpectrumClient.minecraftClient.getSoundManager().play(new EnderSpliceChargingSoundInstance(playerEntity));
     }
 
     public int getMaxUseTime(ItemStack stack) {

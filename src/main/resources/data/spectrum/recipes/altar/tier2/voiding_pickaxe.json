@@ -28,5 +28,5 @@
     "item": "spectrum:voiding_pickaxe",
     "count": 1
   },
-  "required_advancements": ["spectrum:hidden/collect_resource/collect_quitoxic_powder", "spectrum:craft_using_altar"]
+  "required_advancements": ["spectrum:hidden/collect_resource/collect_quitoxic_reeds", "spectrum:craft_using_altar"]
 }

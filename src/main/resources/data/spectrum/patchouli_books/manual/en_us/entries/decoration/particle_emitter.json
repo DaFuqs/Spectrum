@@ -3,6 +3,9 @@
   "advancement": "spectrum:spectrum_midgame",
   "icon": "spectrum:particle_emitter",
   "category": "spectrum:decoration_category",
+  "extra_recipe_mappings": {
+    "spectrum:particle_emitter": 0
+  },
   "pages": [
     {
       "type": "patchouli:spotlight",

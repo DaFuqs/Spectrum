@@ -2,6 +2,11 @@
   "name": "Pigment Pedestal",
   "icon": "spectrum:altar",
   "category": "spectrum:general_category",
+  "extra_recipe_mappings": {
+    "spectrum:altar": 0,
+    "spectrum:altar2": 0,
+    "spectrum:altar3": 0
+  },
   "pages": [
     {
       "type": "patchouli:spotlight",

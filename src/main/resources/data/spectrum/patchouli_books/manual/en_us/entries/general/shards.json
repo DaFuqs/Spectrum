@@ -2,10 +2,25 @@
   "name": "Crystal Shards",
   "icon": "minecraft:amethyst_shard",
   "category": "spectrum:general_category",
+  "extra_recipe_mappings": {
+    "spectrum:topaz_shard": 0,
+    "minecraft:amethyst_shard": 0,
+    "spectrum:citrine_shard": 0,
+    "spectrum:onyx_shard": 0,
+    "spectrum:moonstone_shard": 0,
+    "spectrum:ammolite_shard": 0
+  },
   "pages": [
     {
       "type": "patchouli:text",
       "text": "To start delving into Spectrum you first have to find some crystal shards.$(br2)Each kind of crystal represents an elemental color and a different kind of natural force."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:hidden/collect_shards/collect_topaz_shard",
+      "title": "Topaz",
+      "item": "spectrum:topaz_shard",
+      "text": "Topaz Shards lie surprisingly heavy in your hand. Fragile at first glance, this crystal quickly turns out to be one of the most robust materials, which you were allowed to hold in your hands - perhaps only surpassed by the crystal, which you could also bring into the shape of a pickaxe.$(br2)The topaz represents $(bold)$(c_cyan)MATTER.$()"
     },
     {
       "type": "patchouli:spotlight",
@@ -20,13 +35,6 @@
       "title": "Citrine",
       "item": "spectrum:citrine_shard",
       "text": "This yellow crystal is found in geodes at the very top of steep hills and on the tops of sky-high mountains.$(br2)Its bright yellow luster radiates pure $(bold)$(c_yellow)ENERGY$() and makes it palpably warm to the touch at all times."
-    },
-    {
-      "type": "patchouli:spotlight",
-      "advancement": "spectrum:hidden/collect_shards/collect_topaz_shard",
-      "title": "Topaz",
-      "item": "spectrum:topaz_shard",
-      "text": "Topaz Shards lie surprisingly heavy in your hand. Fragile at first glance, this crystal quickly turns out to be one of the most robust materials, which you were allowed to hold in your hands - perhaps only surpassed by the crystal, which you could also bring into the shape of a pickaxe.$(br2)The topaz represents $(bold)$(c_cyan)MATTER.$()"
     },
     {
       "type": "patchouli:spotlight",

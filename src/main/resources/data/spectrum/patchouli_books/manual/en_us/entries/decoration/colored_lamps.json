@@ -1,17 +1,34 @@
 {
   "name": "Colored Lamps",
   "icon": "spectrum:cyan_lamp",
-  "advancement": "spectrum:hidden/progression/colored_lamps/unlock_any_colored_lamp",
+  "advancement": "spectrum:progression/colored_lamps/unlock_any_colored_lamp",
   "category": "spectrum:decoration_category",
+  "extra_recipe_mappings": {
+    "spectrum:black_lamp": 0,
+    "spectrum:blue_lamp": 0,
+    "spectrum:brown_lamp": 0,
+    "spectrum:cyan_lamp": 0,
+    "spectrum:gray_lamp": 0,
+    "spectrum:green_lamp": 0,
+    "spectrum:light_blue_lamp": 0,
+    "spectrum:light_gray_lamp": 0,
+    "spectrum:lime_lamp": 0,
+    "spectrum:magenta_lamp": 0,
+    "spectrum:orange_lamp": 0,
+    "spectrum:pink_lamp": 0,
+    "spectrum:purple_lamp": 0,
+    "spectrum:red_lamp": 0,
+    "spectrum:white_lamp": 0,
+    "spectrum:yellow_lamp": 0
+  },
   "pages": [
     {
       "type": "patchouli:text",
       "text": "$(italic)You've finally managed to mix colors properly. What could be more natural than to try out the properties of your new pigments right away? You've had enough of the normal Redstone lamps by now. Time to add a splash of color!$()"
     },
     {
-      "type": "patchouli:spotlight",
-      "item": "spectrum:cyan_lamp",
-      "title": "Colored Lamps",
+      "type": "spectrum:altar_crafting",
+      "recipe": "spectrum:altar/tier1/colored_lamps/cyan_lamp",
       "text": "They come in all colors and  are surrounded by a vibrant light, when activated. Besides, colored lamps function similar to their boring redstone counterpart."
     }
   ]

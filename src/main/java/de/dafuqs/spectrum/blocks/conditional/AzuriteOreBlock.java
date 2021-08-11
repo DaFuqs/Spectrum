@@ -6,8 +6,8 @@ import net.minecraft.util.math.intprovider.UniformIntProvider;
 
 public class AzuriteOreBlock extends CloakedOreBlock {
 
-    public AzuriteOreBlock(Settings settings, UniformIntProvider uniformIntProvider) {
-        super(settings, uniformIntProvider, true);
+    public AzuriteOreBlock(Settings settings, UniformIntProvider uniformIntProvider, boolean deepSlateOre) {
+        super(settings, uniformIntProvider, deepSlateOre);
         registerCloak();
     }
 

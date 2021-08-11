@@ -1,0 +1,32 @@
+{
+  "type": "spectrum_altar",
+  "time": 240,
+  "tier": 1,
+  "magenta": 0,
+  "yellow": 0,
+  "cyan": 8,
+  "black": 0,
+  "white": 0,
+  "experience": 2.0,
+  "pattern": [
+    "QRQ",
+    "RTR",
+    "RRR"
+  ],
+  "key": {
+    "Q": {
+      "item": "spectrum:quitoxic_powder"
+    },
+    "R": {
+      "item": "minecraft:rabbit_hide"
+    },
+    "T": {
+      "item": "spectrum:ender_treasure"
+    }
+  },
+  "result" : {
+    "item": "spectrum:ender_bag",
+    "count": 1
+  },
+  "required_advancements": ["spectrum:progression/unlock_void_bundle"]
+}

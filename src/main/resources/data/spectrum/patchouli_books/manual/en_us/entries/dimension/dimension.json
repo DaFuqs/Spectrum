@@ -1,7 +1,7 @@
 {
   "name": "The Deeper Down",
   "icon": "spectrum:bottle_of_ruin",
-  "advancement": "spectrum:lategame",
+  "advancement": "spectrum:spectrum_lategame",
   "category": "spectrum:dimension_category",
   "pages": [
     {

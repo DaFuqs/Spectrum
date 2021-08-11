@@ -3,6 +3,13 @@
   "icon": "spectrum:topaz_glass",
   "advancement": "spectrum:craft_using_altar",
   "category": "spectrum:decoration_category",
+  "extra_recipe_mappings": {
+    "spectrum:topaz_glass": 0,
+    "spectrum:amethyst_glass": 0,
+    "spectrum:citrine_glass": 0,
+    "spectrum:onyx_glass": 0,
+    "spectrum:moonstone_glass": 0
+  },
   "pages": [
     {
       "type": "patchouli:spotlight",
@@ -11,7 +18,8 @@
       "text": "$(italic)Your gemstones are already slightly transparent by nature. What could be more natural than to form a kind of glass from these materials?$(br)At first glance not exactly inexpensive, it is virtually a renewable raw material. Organic windows!$()"
     },
     {
-      "type": "patchouli:text",
+      "type": "spectrum:altar_crafting",
+      "recipe": "spectrum:altar/tier1/glass/topaz_glass",
       "text": "Gemstone Glass comes in all the colors of gemstones available to you."
     }
   ]

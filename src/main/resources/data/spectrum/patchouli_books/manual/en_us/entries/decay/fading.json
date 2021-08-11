@@ -1,13 +1,17 @@
 {
   "name": "Experiment #1",
   "icon": "spectrum:bottle_of_fading",
-  "advancement": "spectrum:hidden/progression/unlock_bottle_of_fading",
+  "advancement": "spectrum:progression/unlock_bottle_of_fading",
   "category": "spectrum:decay_category",
+  "extra_recipe_mappings": {
+    "spectrum:bottle_of_fading": 0,
+    "spectrum:vegetal": 2
+  },
   "pages": [
     {
       "type": "patchouli:spotlight",
       "item": "spectrum:bottle_of_fading",
-      "text": "It did not take long, there the idea for a construction plan came to you.$(br)The organism you came up with is weak, but it seems that your plans to create new life were successful, at least in principle! Admittedly, it is only a clump of microorganisms, but they are alive!"
+      "text": "It did not take long, there the idea for a construction plan came to you.$(br2)The organism you came up with is weak, but it seems that your plans to create new life were successful, at least in principle! Admittedly, it is only a clump of microorganisms, but they are alive!"
     },
     {
       "type": "patchouli:text",
@@ -16,7 +20,7 @@
     {
       "type": "patchouli:spotlight",
       "item": "spectrum:vegetal",
-      "text": "The answer seemed to be leaves, easily digestible indeed.$(br)When the leaves were digested by the organism, an interesting by-product was created that you called Vegetal. It consists of the raw $(bold)energy$() of nature. You are sure that it will be very useful for you."
+      "text": "The answer seemed to be leaves, easily digestible indeed.$(br)When the leaves were digested by the organism, an interesting by-product was created that you called Vegetal. It consists of the $(bold)raw energy of nature$(). You are sure that it will be very useful for you."
     }
   ]
 }

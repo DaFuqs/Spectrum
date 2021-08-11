@@ -1,0 +1,12 @@
+{
+  "criteria": {
+    "crafted_using_altar": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:collect_ender_treasure" }
+    },
+    "collected_ender_eye": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:hidden/collect_resource/collect_quitoxic_reeds" }
+    }
+  }
+}

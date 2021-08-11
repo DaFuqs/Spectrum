@@ -3,6 +3,9 @@
   "advancement": "spectrum:craft_using_altar",
   "icon": "spectrum:multitool",
   "category": "spectrum:magical_items_category",
+  "extra_recipe_mappings": {
+    "spectrum:multitool": 0
+  },
   "pages": [
     {
       "type": "patchouli:spotlight",
@@ -10,7 +13,8 @@
       "text": "$(italic)Whenever you leave your home, you carry half a tool shed with you. Not really worth mentioning, given the amount of stone you carry around with you. Nevertheless, a universal tool that combines the abilities of a pickaxe, axe and shovel would suit you.$()"
     },
     {
-      "type": "patchouli:text",
+      "type": "spectrum:altar_crafting",
+      "recipe": "spectrum:altar/tier1/tools/multitool",
       "text": "The multitool serves as a pickaxe, shovel, axe and hoe at the same time. However, due to its special shape, it can not be formed from diamond, but only from iron.$(br2)It's not as efficient in the individual tasks, but it's much better than having to change tools every three seconds."
     }
   ]

@@ -9,7 +9,7 @@
         },
         {
             "type": "patchouli:text",
-            "text": "Increases dropped XP for mob kills.$(br2)Max Level: 5$(br)Applicable to melee weapons."
+            "text": "$(br3)Increases dropped XP for mob kills.$(br2)Max Level: 5$(br)Applicable to melee weapons."
         }
     ]
 }

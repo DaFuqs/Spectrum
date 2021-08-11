@@ -1,6 +1,6 @@
 {
   "criteria": {
-    "has_black_spectrum": {
+    "has_pigment": {
       "trigger": "minecraft:inventory_changed",
       "conditions": { "items": [{ "items": [ "spectrum:cyan_pigment" ]}] }
     }

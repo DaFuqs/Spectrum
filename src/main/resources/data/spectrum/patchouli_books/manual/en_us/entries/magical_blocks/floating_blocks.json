@@ -1,8 +1,12 @@
 {
   "name": "Gravity Blocks",
-  "advancement": "spectrum:hidden/progression/unlock_gravity_blocks",
+  "advancement": "spectrum:progression/unlock_gravity_blocks",
   "icon": "spectrum:scarlet_fragment_block",
   "category": "spectrum:magical_blocks_category",
+  "extra_recipe_mappings": {
+    "spectrum:scarlet_fragment_block": 0,
+    "spectrum:paletur_fragment_block": 1
+  },
   "pages": [
     {
       "type": "patchouli:spotlight",

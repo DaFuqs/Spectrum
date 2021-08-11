@@ -3,6 +3,9 @@
   "advancement": "spectrum:spectrum_midgame",
   "icon": "spectrum:natures_staff",
   "category": "spectrum:magical_items_category",
+  "extra_recipe_mappings": {
+    "spectrum:natures_staff": 0
+  },
   "pages": [
     {
       "type": "patchouli:spotlight",
@@ -10,8 +13,8 @@
       "text": ""
     },
     {
-      "type": "patchouli:text",
-      "text": ""
+      "type": "spectrum:altar_crafting",
+      "recipe": "spectrum:altar/tier2/natures_staff"
     }
   ]
 }

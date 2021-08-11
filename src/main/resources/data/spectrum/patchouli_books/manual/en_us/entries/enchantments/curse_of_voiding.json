@@ -1,5 +1,5 @@
 {
-    "name": "Curse of Voiding",
+    "name": "Curse of the Void",
     "icon": "minecraft:ender_pearl",
     "category": "spectrum:enchantments_category",
     "pages": [
@@ -9,7 +9,7 @@
         },
         {
             "type": "patchouli:text",
-            "text": "Destroys the drops of all broken blocks.$(br2)Max Level: 1$(br)Applicable to mining tools."
+            "text": "$(br3)Destroys the drops of all broken blocks.$(br2)Max Level: 1$(br)Applicable to mining tools."
         }
     ]
 }

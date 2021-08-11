@@ -3,6 +3,13 @@
   "icon": "spectrum:amethyst_powder",
   "advancement": "spectrum:place_altar",
   "category": "spectrum:general_category",
+  "extra_recipe_mappings": {
+    "spectrum:topaz_powder": 0,
+    "spectrum:amethyst_powder": 0,
+    "spectrum:citrine_powder": 0,
+    "spectrum:onyx_powder": 0,
+    "spectrum:moonstone_powder": 0
+  },
   "pages": [
     {
       "type": "patchouli:text",

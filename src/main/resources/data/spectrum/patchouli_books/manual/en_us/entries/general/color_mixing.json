@@ -7,13 +7,12 @@
     {
       "type": "patchouli:image",
       "images": [ "spectrum:textures/gui/manual/color_mixing.png" ],
-      "border": true,
       "text": "By just using three base colors, (almost) every existing color can be created."
     },
     {
       "type": "patchouli:text",
       "title": "Mixing Colors",
-      "text": "Mixing gemstone powder together was not very successful. But you have an other idea:$(br)The closeness to nature of your gemstones suggests that nature must be both the source and the answer!$(br)Quickly you make a few notes and $(l:general/colored_trees)out tumbled a recipe$(), which looks very promising."
+      "text": "Mixing gemstone powder together was not very successful. But you have an other idea:$(br)The closeness to nature of your gemstones suggests that nature must be both the source and the answer!$(br2)Quickly you make a few notes and $(l:general/colored_trees)out tumbled a recipe$(), which looks very promising."
     }
   ]
 }

@@ -9,7 +9,7 @@
         },
         {
             "type": "patchouli:text",
-            "text": "Gets rid of Silverfish when breaking Invested Blocks.$(br2)Max Level: 1$(br)Applicable to mining tools.$(br)Mutually exclusive with Resonance."
+            "text": "$(br3)Gets rid of Silverfish when breaking Invested Blocks.$(br2)Max Level: 1$(br)Applicable to mining tools.$(br)Mutually exclusive with Resonance."
         }
     ]
 }

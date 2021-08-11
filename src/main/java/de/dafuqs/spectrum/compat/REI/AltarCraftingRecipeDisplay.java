@@ -1,22 +1,21 @@
 package de.dafuqs.spectrum.compat.REI;
 
 import de.dafuqs.spectrum.enums.GemstoneColor;
-import de.dafuqs.spectrum.inventories.AltarScreenHandler;
 import de.dafuqs.spectrum.progression.ClientAdvancements;
 import de.dafuqs.spectrum.recipe.altar.AltarCraftingRecipe;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
-import me.shedaniel.rei.api.common.display.Display;
 import me.shedaniel.rei.api.common.display.SimpleGridMenuDisplay;
 import me.shedaniel.rei.api.common.entry.EntryIngredient;
-import me.shedaniel.rei.api.common.transfer.info.MenuInfo;
-import me.shedaniel.rei.api.common.transfer.info.MenuInfoProvider;
 import me.shedaniel.rei.api.common.util.EntryIngredients;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class AltarCraftingRecipeDisplay<R extends AltarCraftingRecipe> implements SimpleGridMenuDisplay {

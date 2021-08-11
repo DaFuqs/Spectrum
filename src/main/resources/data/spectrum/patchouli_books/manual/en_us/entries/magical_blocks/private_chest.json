@@ -3,6 +3,9 @@
   "advancement": "spectrum:craft_using_altar",
   "icon": "spectrum:private_chest",
   "category": "spectrum:magical_blocks_category",
+  "extra_recipe_mappings": {
+    "spectrum:private_chest": 0
+  },
   "pages": [
     {
       "type": "patchouli:spotlight",

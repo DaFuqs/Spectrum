@@ -2,15 +2,34 @@
   "name": "Glowblocks",
   "icon": "spectrum:orange_flat_colored_block",
   "category": "spectrum:decoration_category",
+  "extra_recipe_mappings": {
+    "spectrum:black_flat_colored_block": 0,
+    "spectrum:blue_flat_colored_block": 0,
+    "spectrum:brown_flat_colored_block": 0,
+    "spectrum:cyan_flat_colored_block": 0,
+    "spectrum:gray_flat_colored_block": 0,
+    "spectrum:green_flat_colored_block": 0,
+    "spectrum:light_blue_flat_colored_block": 0,
+    "spectrum:light_gray_flat_colored_block": 0,
+    "spectrum:lime_flat_colored_block": 0,
+    "spectrum:magenta_flat_colored_block": 0,
+    "spectrum:orange_flat_colored_block": 0,
+    "spectrum:pink_flat_colored_block": 0,
+    "spectrum:purple_flat_colored_block": 0,
+    "spectrum:red_flat_colored_block": 0,
+    "spectrum:white_flat_colored_block": 0,
+    "spectrum:yellow_flat_colored_block": 0
+  },
   "pages": [
     {
       "type": "patchouli:spotlight",
       "item": "spectrum:orange_flat_colored_block",
       "title": "Glowblocks",
-      "text": "$(italic)You have spectrum as pure as can be. So why not create blocks with colors as pure as can be.$(br2)You thought for a moment if you should call them Antiblocks. But since they are indeed normal blocks that would be silly, right?$()"
+      "text": "$(italic)You have color as pure as can be. So why not create blocks with colors as pure as can be!$(br2)You thought for a moment if you should call them Antiblocks. But since they are indeed normal blocks that would be silly, right?$()"
     },
     {
-      "type": "patchouli:text",
+      "type": "spectrum:altar_crafting",
+      "recipe": "spectrum:altar/tier2/glowblocks/orange_flat_colored_block",
       "text": "Glowblocks come in all colors and always look the same, no matter how much light falls on their surface."
     }
   ]

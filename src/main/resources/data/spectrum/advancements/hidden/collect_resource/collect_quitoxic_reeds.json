@@ -1,8 +1,18 @@
 {
   "criteria": {
-    "has_black_spectrum": {
+    "has_plant": {
       "trigger": "minecraft:inventory_changed",
       "conditions": { "items": [{ "items": [ "spectrum:quitoxic_reeds" ]}] }
+    },
+    "has_powder": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": { "items": [{ "items": [ "spectrum:quitoxic_powder" ]}] }
     }
-  }
+  },
+  "requirements": [
+    [
+      "has_plant",
+      "has_powder"
+    ]
+  ]
 }

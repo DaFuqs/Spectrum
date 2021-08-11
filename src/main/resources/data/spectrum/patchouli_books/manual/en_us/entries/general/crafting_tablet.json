@@ -3,6 +3,9 @@
   "icon": "spectrum:crafting_tablet",
   "advancement": "spectrum:place_altar",
   "category": "spectrum:general_category",
+  "extra_recipe_mappings": {
+    "spectrum:crafting_tablet": 0
+  },
   "pages": [
     {
       "type": "patchouli:spotlight",

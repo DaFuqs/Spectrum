@@ -9,7 +9,7 @@
         },
         {
             "type": "patchouli:text",
-            "text": "Occasionally drops Mob Heads on kill$(br2)Max Level: 3$(br)Applicable to melee weapons.$(br)Mutually exclusive with Looting."
+            "text": "$(br3)Occasionally drops Mob Heads on kill$(br2)Max Level: 3$(br)Applicable to melee weapons.$(br)Mutually exclusive with Looting."
         }
     ]
 }

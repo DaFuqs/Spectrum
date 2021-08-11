@@ -25,5 +25,5 @@
     "item": "spectrum:ender_glass",
     "count": 4
   },
-  "required_advancements": ["spectrum:hidden/collect_resource/collect_ender_treasure"]
+  "required_advancements": ["spectrum:collect_ender_treasure"]
 }

@@ -3,11 +3,13 @@ package de.dafuqs.spectrum.inventories;
 import com.mojang.blaze3d.systems.RenderSystem;
 import de.dafuqs.spectrum.LoreHelper;
 import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.networking.AddLoreToItemC2SPacket;
+import de.dafuqs.spectrum.networking.AddLoreToItemInBedrockAnvilC2SPacket;
+import de.dafuqs.spectrum.networking.RenameItemInBedrockAnvilC2SPacket;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.Element;
+import net.minecraft.client.gui.screen.ingame.AnvilScreen;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.client.render.GameRenderer;
@@ -15,7 +17,6 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.packet.c2s.play.RenameItemC2SPacket;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ScreenHandlerListener;
 import net.minecraft.screen.slot.Slot;
@@ -90,7 +91,7 @@ public class BedrockAnvilScreen extends HandledScreen<BedrockAnvilScreenHandler>
       this.loreField.setEditableColor(-1);
       this.loreField.setUneditableColor(-1);
       this.loreField.setDrawsBackground(false);
-      this.loreField.setMaxLength(255);
+      this.loreField.setMaxLength(200);
       this.loreField.setChangedListener(this::onLoreChanged);
       this.loreField.setText("");
       this.addSelectableChild(this.loreField);
@@ -111,6 +112,7 @@ public class BedrockAnvilScreen extends HandledScreen<BedrockAnvilScreenHandler>
       if (keyCode == GLFW.GLFW_KEY_ESCAPE) {
          client.player.closeHandledScreen();
       }
+
       if(keyCode == GLFW.GLFW_KEY_TAB) {
          Element focusedElement = getFocused();
          if(focusedElement == this.nameField) {
@@ -136,21 +138,13 @@ public class BedrockAnvilScreen extends HandledScreen<BedrockAnvilScreenHandler>
          }
 
          handler.setNewItemName(string);
-         client.player.networkHandler.sendPacket(new RenameItemC2SPacket(string));
+         client.player.networkHandler.sendPacket(new RenameItemInBedrockAnvilC2SPacket(string));
       }
    }
 
    private void onLoreChanged(String lore) {
-      if (!lore.isEmpty()) {
-         String string = lore;
-         Slot slot = handler.getSlot(0);
-         if (slot != null && slot.hasStack() && !LoreHelper.hasLore(slot.getStack()) && LoreHelper.equalsLore(lore, slot.getStack())) {
-            string = "";
-         }
-
-         handler.setNewItemLore(string);
-         client.player.networkHandler.sendPacket(new AddLoreToItemC2SPacket(string));
-      }
+      //handler.setNewItemLore(lore);
+      //client.player.networkHandler.sendPacket(new AddLoreToItemInBedrockAnvilC2SPacket(lore));
    }
 
    protected void drawForeground(MatrixStack matrices, int mouseX, int mouseY) {
@@ -160,8 +154,7 @@ public class BedrockAnvilScreen extends HandledScreen<BedrockAnvilScreenHandler>
       this.textRenderer.draw(matrices, new TranslatableText("container.spectrum.bedrock_anvil.lore"), playerInventoryTitleX, 76, 4210752);
 
       int levelCost = (this.handler).getLevelCost();
-      boolean loreChangedOrRenamed = (this.handler).getLoreChangedOrRenamed();
-      if (loreChangedOrRenamed || levelCost > 0) {
+      if (levelCost > 0 || this.handler.getSlot(2).hasStack()) {
          int textColor = 8453920;
          Text costText;
          if (!handler.getSlot(2).hasStack()) {
@@ -208,9 +201,19 @@ public class BedrockAnvilScreen extends HandledScreen<BedrockAnvilScreenHandler>
 
    public void onSlotUpdate(ScreenHandler handler, int slotId, ItemStack stack) {
       if (slotId == 0) {
-         this.nameField.setText(stack.isEmpty() ? "" : stack.getName().getString());
-         this.nameField.setEditable(!stack.isEmpty());
-         this.loreField.setEditable(!stack.isEmpty());
+         if(stack.isEmpty()) {
+            this.nameField.setEditable(false);
+            this.loreField.setEditable(false);
+            this.nameField.setText("");
+            this.loreField.setText("");
+         } else {
+            this.nameField.setEditable(true);
+            this.loreField.setEditable(true);
+            this.nameField.setText(stack.getName().getString());
+
+            String loreString = LoreHelper.getStringFromLoreTextArray(LoreHelper.getLoreList(stack));
+            this.loreField.setText(loreString);
+         }
          this.setFocused(this.nameField);
       }
    }

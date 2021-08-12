@@ -7,15 +7,15 @@ import net.minecraft.network.Packet;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.network.listener.ServerPlayPacketListener;
 
-public class AddLoreToItemC2SPacket implements Packet<ServerPlayPacketListener> {
+public class AddLoreToItemInBedrockAnvilC2SPacket implements Packet<ServerPlayPacketListener> {
 
    private final String lore;
 
-   public AddLoreToItemC2SPacket(String lore) {
+   public AddLoreToItemInBedrockAnvilC2SPacket(String lore) {
       this.lore = lore;
    }
 
-   public AddLoreToItemC2SPacket(PacketByteBuf buf) {
+   public AddLoreToItemInBedrockAnvilC2SPacket(PacketByteBuf buf) {
       this.lore = buf.readString();
    }
 

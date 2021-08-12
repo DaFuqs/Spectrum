@@ -15,14 +15,38 @@ import java.util.List;
 
 public class LoreHelper {
 
-    public static ItemStack setLore(ItemStack itemStack, @Nullable Text lore) {
+    public static List<LiteralText> getLoreTextArrayFromString(String string) {
+        List<LiteralText> loreText = new ArrayList<>();
+
+        for(String split : string.split("\\\\n")) {
+            loreText.add(0, new LiteralText(split));
+        }
+
+        return loreText;
+    }
+
+    public static String getStringFromLoreTextArray(List<Text> lore) {
+        if(lore.size() == 0) {
+            return "";
+        } else {
+            StringBuilder loreString = new StringBuilder();
+            for(int i = 0; i < lore.size(); i++) {
+                loreString.append(lore.get(i).getString());
+                if(i != lore.size() - 1) {
+                    loreString.append("\\n");
+                }
+            }
+            return loreString.toString();
+        }
+    }
+
+    public static ItemStack setLore(ItemStack itemStack, @Nullable List<LiteralText> lore) {
         NbtCompound nbtCompound = itemStack.getOrCreateSubTag("display");
         if (lore != null) {
             NbtList nbtList = new NbtList();
 
-            List<String> splitLore = Arrays.asList(lore.asString().split("\n"));
-            for(String loreString : splitLore) {
-                NbtString nbtString = NbtString.of(Text.Serializer.toJson(new LiteralText(loreString)));
+            for(Text loreText : lore) {
+                NbtString nbtString = NbtString.of(Text.Serializer.toJson(loreText));
                 nbtList.addElement(0, nbtString);
             }
 
@@ -73,17 +97,16 @@ public class LoreHelper {
         return lore;
     }
 
-    public static boolean equalsLore(String lore, ItemStack stack) {
+    public static boolean equalsLore(List<LiteralText> lore, ItemStack stack) {
         if(hasLore(stack)) {
             List<Text> loreList = getLoreList(stack);
-            List<String> splitLore = Arrays.asList(lore.split("\n"));
 
-            if(splitLore.size() != loreList.size()) {
+            if(lore.size() != loreList.size()) {
                 return false;
             }
 
-            for(int i = 0; i < splitLore.size(); i++) {
-                if(!splitLore.get(i).equals(loreList.get(i).getString())) {
+            for(int i = 0; i < lore.size(); i++) {
+                if(!lore.get(i).equals(loreList.get(i))) {
                     return false;
                 }
             }

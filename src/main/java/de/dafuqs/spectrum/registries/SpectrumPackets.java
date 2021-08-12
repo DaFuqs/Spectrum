@@ -1,7 +1,8 @@
 package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.networking.AddLoreToItemC2SPacket;
+import de.dafuqs.spectrum.networking.AddLoreToItemInBedrockAnvilC2SPacket;
+import de.dafuqs.spectrum.networking.RenameItemInBedrockAnvilC2SPacket;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
@@ -26,7 +27,8 @@ public class SpectrumPackets {
 
 	public static final Identifier PLAY_ALTAR_CRAFTING_FINISHED_PARTICLE_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "play_altar_crafting_finished_particle");
 	public static final Identifier PLAY_ALTAR_CRAFTING_PARTICLE_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "particle");
-	public static final Identifier ADD_LORE_TO_ITEM_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "add_lore_to_item");
+	public static final Identifier RENAME_ITEM_IN_BEDROCK_ANVIL_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "rename_item_in_bedrock_anvil");
+	public static final Identifier ADD_LORE_IN_BEDROCK_ANVIL_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "add_lore_to_item_in_bedrock_anvil");
 
 
 	@Environment(EnvType.CLIENT)
@@ -53,8 +55,12 @@ public class SpectrumPackets {
 	}
 
 	public static void registerC2SReceivers() {
-		ServerPlayNetworking.registerGlobalReceiver(ADD_LORE_TO_ITEM_PACKET_ID, (server, player, handler, buf, responseSender) -> {
-			Packet packet = new AddLoreToItemC2SPacket(buf);
+		ServerPlayNetworking.registerGlobalReceiver(RENAME_ITEM_IN_BEDROCK_ANVIL_PACKET_ID, (server, player, handler, buf, responseSender) -> {
+			Packet packet = new RenameItemInBedrockAnvilC2SPacket(buf);
+			packet.apply(handler);
+		});
+		ServerPlayNetworking.registerGlobalReceiver(ADD_LORE_IN_BEDROCK_ANVIL_PACKET_ID, (server, player, handler, buf, responseSender) -> {
+			Packet packet = new AddLoreToItemInBedrockAnvilC2SPacket(buf);
 			packet.apply(handler);
 		});
 	}

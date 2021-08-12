@@ -24,6 +24,7 @@ import net.minecraft.world.WorldEvents;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 public class BedrockAnvilScreenHandler extends ScreenHandler {
@@ -45,11 +46,10 @@ public class BedrockAnvilScreenHandler extends ScreenHandler {
    protected final ScreenHandlerContext context;
    protected final PlayerEntity player;
 
-   private int repairItemUsage;
+   private int repairItemCount;
    private String newItemName;
    private String newLoreString;
    private final Property levelCost;
-   private boolean loreChangedOrRenamed;
 
    public BedrockAnvilScreenHandler(int syncId, PlayerInventory inventory) {
       this(syncId, inventory, ScreenHandlerContext.EMPTY);
@@ -95,7 +95,6 @@ public class BedrockAnvilScreenHandler extends ScreenHandler {
       if (inventory == this.input) {
          this.updateResult();
       }
-
    }
 
    public void close(PlayerEntity player) {
@@ -107,10 +106,6 @@ public class BedrockAnvilScreenHandler extends ScreenHandler {
 
    public boolean canUse(PlayerEntity player) {
       return this.context.get((world, pos) -> this.canUse(world.getBlockState(pos)) && player.squaredDistanceTo((double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D) <= 64.0D, true);
-   }
-
-   protected boolean isUsableAsAddition(ItemStack stack) {
-      return false;
    }
 
    public ItemStack transferSlot(PlayerEntity player, int index) {
@@ -127,8 +122,7 @@ public class BedrockAnvilScreenHandler extends ScreenHandler {
             slot.onQuickTransfer(itemStack2, itemStack);
          } else if (index != 0 && index != 1) {
             if (index >= 3 && index < 39) {
-               int i = this.isUsableAsAddition(itemStack) ? 1 : 0;
-               if (!this.insertItem(itemStack2, i, 2, false)) {
+               if (!this.insertItem(itemStack2, 0, 2, false)) {
                   return ItemStack.EMPTY;
                }
             }
@@ -157,7 +151,7 @@ public class BedrockAnvilScreenHandler extends ScreenHandler {
    }
 
    protected boolean canTakeOutput(PlayerEntity player, boolean present) {
-      return loreChangedOrRenamed || (player.getAbilities().creativeMode || player.experienceLevel >= this.levelCost.get()) && this.levelCost.get() > 0;
+      return player.getAbilities().creativeMode || player.experienceLevel >= this.levelCost.get();
    }
 
    protected void onTakeOutput(PlayerEntity player, ItemStack stack) {
@@ -166,10 +160,10 @@ public class BedrockAnvilScreenHandler extends ScreenHandler {
       }
 
       this.input.setStack(0, ItemStack.EMPTY);
-      if (this.repairItemUsage > 0) {
+      if (this.repairItemCount > 0) {
          ItemStack itemStack = this.input.getStack(1);
-         if (!itemStack.isEmpty() && itemStack.getCount() > this.repairItemUsage) {
-            itemStack.decrement(this.repairItemUsage);
+         if (!itemStack.isEmpty() && itemStack.getCount() > this.repairItemCount) {
+            itemStack.decrement(this.repairItemCount);
             this.input.setStack(1, itemStack);
          } else {
             this.input.setStack(1, ItemStack.EMPTY);
@@ -179,7 +173,6 @@ public class BedrockAnvilScreenHandler extends ScreenHandler {
       }
 
       this.levelCost.set(0);
-      this.loreChangedOrRenamed = false;
       this.context.run((world, pos) -> {
          BlockState blockState = world.getBlockState(pos);
          if (!player.getAbilities().creativeMode && blockState.isIn(BlockTags.ANVIL) && player.getRandom().nextFloat() < 0.12F) {
@@ -200,9 +193,9 @@ public class BedrockAnvilScreenHandler extends ScreenHandler {
 
    public void updateResult() {
       ItemStack itemStack = this.input.getStack(0);
-      this.levelCost.set(1);
-      int i = 0;
-      int j = 0;
+      this.levelCost.set(0);
+      int enchantmentLevelCost = 0;
+      int repairLevelCost = 0;
       int k = 0;
       if (itemStack.isEmpty()) {
          this.output.setStack(0, ItemStack.EMPTY);
@@ -211,12 +204,12 @@ public class BedrockAnvilScreenHandler extends ScreenHandler {
          ItemStack outputStack = itemStack.copy();
          ItemStack repairSlotStack = this.input.getStack(1);
          Map<Enchantment, Integer> enchantmentLevelMap = EnchantmentHelper.get(outputStack);
-         j += itemStack.getRepairCost() + (repairSlotStack.isEmpty() ? 0 : repairSlotStack.getRepairCost());
-         this.repairItemUsage = 0;
+         repairLevelCost += itemStack.getRepairCost() + (repairSlotStack.isEmpty() ? 0 : repairSlotStack.getRepairCost());
+         this.repairItemCount = 0;
          if (!repairSlotStack.isEmpty()) {
-            boolean bl = repairSlotStack.isOf(Items.ENCHANTED_BOOK) && !EnchantedBookItem.getEnchantmentNbt(repairSlotStack).isEmpty();
+            boolean enchantedBookInRepairSlot = repairSlotStack.isOf(Items.ENCHANTED_BOOK) && !EnchantedBookItem.getEnchantmentNbt(repairSlotStack).isEmpty();
             int o;
-            int p;
+            int repairItemCount;
             int newOutputStackDamage;
             if (outputStack.isDamageable() && outputStack.getItem().canRepair(itemStack, repairSlotStack)) {
                o = Math.min(outputStack.getDamage(), outputStack.getMaxDamage() / 4);
@@ -226,25 +219,25 @@ public class BedrockAnvilScreenHandler extends ScreenHandler {
                   return;
                }
 
-               for (p = 0; o > 0 && p < repairSlotStack.getCount(); ++p) {
+               for (repairItemCount = 0; o > 0 && repairItemCount < repairSlotStack.getCount(); ++repairItemCount) {
                   newOutputStackDamage = outputStack.getDamage() - o;
                   outputStack.setDamage(newOutputStackDamage);
-                  ++i;
+                  ++enchantmentLevelCost;
                   o = Math.min(outputStack.getDamage(), outputStack.getMaxDamage() / 4);
                }
 
-               this.repairItemUsage = p;
+               this.repairItemCount = repairItemCount;
             } else {
-               if (!bl && (!outputStack.isOf(repairSlotStack.getItem()) || !outputStack.isDamageable())) {
+               if (!enchantedBookInRepairSlot && (!outputStack.isOf(repairSlotStack.getItem()) || !outputStack.isDamageable())) {
                   this.output.setStack(0, ItemStack.EMPTY);
                   this.levelCost.set(0);
                   return;
                }
 
-               if (outputStack.isDamageable() && !bl) {
+               if (outputStack.isDamageable() && !enchantedBookInRepairSlot) {
                   o = itemStack.getMaxDamage() - itemStack.getDamage();
-                  p = repairSlotStack.getMaxDamage() - repairSlotStack.getDamage();
-                  newOutputStackDamage = p + outputStack.getMaxDamage() * 12 / 100;
+                  repairItemCount = repairSlotStack.getMaxDamage() - repairSlotStack.getDamage();
+                  newOutputStackDamage = repairItemCount + outputStack.getMaxDamage() * 12 / 100;
                   int r = o + newOutputStackDamage;
                   int s = outputStack.getMaxDamage() - r;
                   if (s < 0) {
@@ -253,7 +246,7 @@ public class BedrockAnvilScreenHandler extends ScreenHandler {
 
                   if (s < outputStack.getDamage()) {
                      outputStack.setDamage(s);
-                     i += 2;
+                     enchantmentLevelCost += 2;
                   }
                }
 
@@ -288,7 +281,7 @@ public class BedrockAnvilScreenHandler extends ScreenHandler {
                   for (Enchantment enchantment2 : enchantmentLevelMap.keySet()) {
                      if (enchantment2 != enchantment && !enchantment.canCombine(enchantment2)) {
                         itemStackIsAcceptableForStack = false;
-                        ++i;
+                        ++enchantmentLevelCost;
                      }
                   }
 
@@ -301,54 +294,53 @@ public class BedrockAnvilScreenHandler extends ScreenHandler {
                      }
 
                      enchantmentLevelMap.put(enchantment, newEnchantmentLevel);
-                     int v = switch (enchantment.getRarity()) {
+                     int enchantmentRarityInt = switch (enchantment.getRarity()) {
                         case COMMON -> 1;
                         case UNCOMMON -> 2;
                         case RARE -> 4;
                         case VERY_RARE -> 8;
                      };
 
-                     if (bl) {
-                        v = Math.max(1, v / 2);
+                     if (enchantedBookInRepairSlot) {
+                        enchantmentRarityInt = Math.max(1, enchantmentRarityInt / 2);
                      }
 
-                     i += v * newEnchantmentLevel;
+                     enchantmentLevelCost += enchantmentRarityInt * newEnchantmentLevel;
                      if (itemStack.getCount() > 1) {
-                        i = 40;
+                        enchantmentLevelCost = 40;
                      }
                   }
                }
             }
          }
 
-         loreChangedOrRenamed = false;
+         boolean renamed = false;
          if (StringUtils.isBlank(this.newItemName)) {
             if (itemStack.hasCustomName()) {
-               loreChangedOrRenamed = true;
                outputStack.removeCustomName();
             }
          } else if (!this.newItemName.equals(itemStack.getName().getString())) {
-            loreChangedOrRenamed = true;
             outputStack.setCustomName(new LiteralText(this.newItemName));
+            renamed = true;
          }
 
+         boolean loreChanged = false;
          if (StringUtils.isBlank(this.newLoreString)) {
             if (LoreHelper.hasLore(itemStack)) {
                LoreHelper.removeLore(outputStack);
-               loreChangedOrRenamed = true;
+               loreChanged = true;
             }
-         } else if (!LoreHelper.equalsLore(this.newLoreString, itemStack)) {
-            LoreHelper.setLore(outputStack, new LiteralText(this.newLoreString));
-            loreChangedOrRenamed = true;
+         } else {
+            List<LiteralText> lore = LoreHelper.getLoreTextArrayFromString(this.newLoreString);
+            if (!LoreHelper.equalsLore(lore, itemStack)) {
+               LoreHelper.setLore(outputStack, lore);
+               loreChanged = true;
+            }
          }
 
-         this.levelCost.set(j + i);
-         if (i <= 0 && !loreChangedOrRenamed) {
+         this.levelCost.set(repairLevelCost + enchantmentLevelCost);
+         if (enchantmentLevelCost <= 0 && !(renamed || loreChanged)) {
             outputStack = ItemStack.EMPTY;
-         }
-
-         if (k == i && k > 0 && this.levelCost.get() >= 40) {
-            this.levelCost.set(39);
          }
 
          if (!outputStack.isEmpty()) {
@@ -357,11 +349,13 @@ public class BedrockAnvilScreenHandler extends ScreenHandler {
                repairCost = repairSlotStack.getRepairCost();
             }
 
-            if (k != i || k == 0) {
+            if((this.levelCost.get() == 0 && !(renamed || loreChanged))) {
+               // renaming and lore is free
+            } else if (k != enchantmentLevelCost) {
                repairCost = getNextCost(repairCost);
+               outputStack.setRepairCost(repairCost);
             }
 
-            outputStack.setRepairCost(repairCost);
             EnchantmentHelper.set(enchantmentLevelMap, outputStack);
          }
 
@@ -377,30 +371,28 @@ public class BedrockAnvilScreenHandler extends ScreenHandler {
    public void setNewItemName(String newItemName) {
       this.newItemName = newItemName;
 
-      if (this.getSlot(OUTPUT_SLOT_INDEX).hasStack()) {
-         ItemStack itemStack = this.getSlot(OUTPUT_SLOT_INDEX).getStack();
+      if (this.getSlot(2).hasStack()) {
+         ItemStack itemStack = this.getSlot(2).getStack();
          if (StringUtils.isBlank(newItemName)) {
             itemStack.removeCustomName();
          } else {
             itemStack.setCustomName(new LiteralText(this.newItemName));
          }
       }
-
       this.updateResult();
    }
 
    public void setNewItemLore(String newLoreString) {
       this.newLoreString = newLoreString;
 
-      if (this.getSlot(OUTPUT_SLOT_INDEX).hasStack()) {
-         ItemStack itemStack = this.getSlot(OUTPUT_SLOT_INDEX).getStack();
+      if (this.getSlot(2).hasStack()) {
+         ItemStack itemStack = this.getSlot(2).getStack();
          if (StringUtils.isBlank(newLoreString)) {
             LoreHelper.removeLore(itemStack);
          } else {
-            LoreHelper.setLore(itemStack, new LiteralText(this.newLoreString));
+            LoreHelper.setLore(itemStack, LoreHelper.getLoreTextArrayFromString(this.newLoreString));
          }
       }
-
       this.updateResult();
    }
 
@@ -408,7 +400,4 @@ public class BedrockAnvilScreenHandler extends ScreenHandler {
       return this.levelCost.get();
    }
 
-   public boolean getLoreChangedOrRenamed() {
-      return this.loreChangedOrRenamed;
-   }
 }

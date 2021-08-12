@@ -143,8 +143,8 @@ public class BedrockAnvilScreen extends HandledScreen<BedrockAnvilScreenHandler>
    }
 
    private void onLoreChanged(String lore) {
-      //handler.setNewItemLore(lore);
-      //client.player.networkHandler.sendPacket(new AddLoreToItemInBedrockAnvilC2SPacket(lore));
+      handler.setNewItemLore(lore);
+      client.player.networkHandler.sendPacket(new AddLoreToItemInBedrockAnvilC2SPacket(lore));
    }
 
    protected void drawForeground(MatrixStack matrices, int mouseX, int mouseY) {

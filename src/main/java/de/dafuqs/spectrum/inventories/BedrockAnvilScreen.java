@@ -3,13 +3,13 @@ package de.dafuqs.spectrum.inventories;
 import com.mojang.blaze3d.systems.RenderSystem;
 import de.dafuqs.spectrum.LoreHelper;
 import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.networking.AddLoreToItemInBedrockAnvilC2SPacket;
-import de.dafuqs.spectrum.networking.RenameItemInBedrockAnvilC2SPacket;
+import de.dafuqs.spectrum.networking.SpectrumC2SPackets;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
+import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.Element;
-import net.minecraft.client.gui.screen.ingame.AnvilScreen;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.client.render.GameRenderer;
@@ -17,6 +17,7 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.network.PacketByteBuf;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ScreenHandlerListener;
 import net.minecraft.screen.slot.Slot;
@@ -80,8 +81,8 @@ public class BedrockAnvilScreen extends HandledScreen<BedrockAnvilScreenHandler>
       this.nameField.setUneditableColor(-1);
       this.nameField.setDrawsBackground(false);
       this.nameField.setMaxLength(50);
-      this.nameField.setChangedListener(this::onRenamed);
       this.nameField.setText("");
+      this.nameField.setChangedListener(this::onRenamed);
       this.addSelectableChild(this.nameField);
       this.setInitialFocus(this.nameField);
       this.nameField.setEditable(false);
@@ -92,8 +93,8 @@ public class BedrockAnvilScreen extends HandledScreen<BedrockAnvilScreenHandler>
       this.loreField.setUneditableColor(-1);
       this.loreField.setDrawsBackground(false);
       this.loreField.setMaxLength(200);
-      this.loreField.setChangedListener(this::onLoreChanged);
       this.loreField.setText("");
+      this.loreField.setChangedListener(this::onLoreChanged);
       this.addSelectableChild(this.loreField);
       this.loreField.setEditable(false);
    }
@@ -138,13 +139,19 @@ public class BedrockAnvilScreen extends HandledScreen<BedrockAnvilScreenHandler>
          }
 
          handler.setNewItemName(string);
-         client.player.networkHandler.sendPacket(new RenameItemInBedrockAnvilC2SPacket(string));
+
+         PacketByteBuf packetByteBuf = PacketByteBufs.create();
+         packetByteBuf.writeString(name);
+         ClientPlayNetworking.send(SpectrumC2SPackets.RENAME_ITEM_IN_BEDROCK_ANVIL_PACKET_ID, packetByteBuf);
       }
    }
 
    private void onLoreChanged(String lore) {
       handler.setNewItemLore(lore);
-      client.player.networkHandler.sendPacket(new AddLoreToItemInBedrockAnvilC2SPacket(lore));
+
+      PacketByteBuf packetByteBuf = PacketByteBufs.create();
+      packetByteBuf.writeString(lore);
+      ClientPlayNetworking.send(SpectrumC2SPackets.ADD_LORE_IN_BEDROCK_ANVIL_PACKET_ID, packetByteBuf);
    }
 
    protected void drawForeground(MatrixStack matrices, int mouseX, int mouseY) {
@@ -204,8 +211,12 @@ public class BedrockAnvilScreen extends HandledScreen<BedrockAnvilScreenHandler>
          if(stack.isEmpty()) {
             this.nameField.setEditable(false);
             this.loreField.setEditable(false);
+            this.nameField.setChangedListener(null);
+            this.loreField.setChangedListener(null);
             this.nameField.setText("");
             this.loreField.setText("");
+            this.nameField.setChangedListener(this::onRenamed);
+            this.loreField.setChangedListener(this::onLoreChanged);
          } else {
             this.nameField.setEditable(true);
             this.loreField.setEditable(true);

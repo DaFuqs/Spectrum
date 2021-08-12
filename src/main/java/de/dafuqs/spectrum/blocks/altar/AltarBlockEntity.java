@@ -13,7 +13,7 @@ import de.dafuqs.spectrum.recipe.altar.AltarCraftingRecipe;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import de.dafuqs.spectrum.registries.SpectrumItems;
-import de.dafuqs.spectrum.registries.SpectrumPackets;
+import de.dafuqs.spectrum.networking.SpectrumS2CPackets;
 import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -293,7 +293,7 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
                     }
 
                     // only triggered on server side. Therefore has to be sent to client via S2C packet
-                    SpectrumPackets.sendPlayAltarCraftingFinishedParticle(world, blockPos, outputItemStack);
+                    SpectrumS2CPackets.sendPlayAltarCraftingFinishedParticle(world, blockPos, outputItemStack);
 
                     if(craftingRecipe != null) {
                         altarBlockEntity.playSound(SpectrumSoundEvents.ALTAR_CRAFT_GENERIC);

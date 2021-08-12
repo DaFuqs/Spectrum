@@ -6,6 +6,7 @@ import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
 import de.dafuqs.spectrum.inventories.SpectrumContainers;
 import de.dafuqs.spectrum.inventories.SpectrumScreenHandlerTypes;
 import de.dafuqs.spectrum.items.misc.EnderSpliceItem;
+import de.dafuqs.spectrum.networking.SpectrumS2CPackets;
 import de.dafuqs.spectrum.particle.SpectrumParticleFactories;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.api.ClientModInitializer;
@@ -51,7 +52,7 @@ public class SpectrumClient implements ClientModInitializer {
         SpectrumEntityTypes.registerClient();
         SpectrumEntityRenderers.registerClient();
 
-        SpectrumPackets.registerS2CReceivers();
+        SpectrumS2CPackets.registerS2CReceivers();
         SpectrumParticleFactories.register();
 
         ClientLifecycleEvents.CLIENT_STARTED.register(minecraftClient -> {

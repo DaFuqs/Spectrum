@@ -1,8 +1,6 @@
-package de.dafuqs.spectrum.registries;
+package de.dafuqs.spectrum.networking;
 
 import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.networking.AddLoreToItemInBedrockAnvilC2SPacket;
-import de.dafuqs.spectrum.networking.RenameItemInBedrockAnvilC2SPacket;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
@@ -11,7 +9,6 @@ import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.Packet;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.particle.ItemStackParticleEffect;
 import net.minecraft.particle.ParticleTypes;
@@ -23,12 +20,10 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-public class SpectrumPackets {
+public class SpectrumS2CPackets {
 
 	public static final Identifier PLAY_ALTAR_CRAFTING_FINISHED_PARTICLE_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "play_altar_crafting_finished_particle");
 	public static final Identifier PLAY_ALTAR_CRAFTING_PARTICLE_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "particle");
-	public static final Identifier RENAME_ITEM_IN_BEDROCK_ANVIL_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "rename_item_in_bedrock_anvil");
-	public static final Identifier ADD_LORE_IN_BEDROCK_ANVIL_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "add_lore_to_item_in_bedrock_anvil");
 
 
 	@Environment(EnvType.CLIENT)
@@ -54,17 +49,6 @@ public class SpectrumPackets {
 		});
 	}
 
-	public static void registerC2SReceivers() {
-		ServerPlayNetworking.registerGlobalReceiver(RENAME_ITEM_IN_BEDROCK_ANVIL_PACKET_ID, (server, player, handler, buf, responseSender) -> {
-			Packet packet = new RenameItemInBedrockAnvilC2SPacket(buf);
-			packet.apply(handler);
-		});
-		ServerPlayNetworking.registerGlobalReceiver(ADD_LORE_IN_BEDROCK_ANVIL_PACKET_ID, (server, player, handler, buf, responseSender) -> {
-			Packet packet = new AddLoreToItemInBedrockAnvilC2SPacket(buf);
-			packet.apply(handler);
-		});
-	}
-
 	/**
 	 *
 	 * @param world the world of the altar
@@ -77,7 +61,7 @@ public class SpectrumPackets {
 		buf.writeItemStack(itemStack);
 		// Iterate over all players tracking a position in the world and send the packet to each player
 		for (ServerPlayerEntity player : PlayerLookup.tracking((ServerWorld) world, blockPos)) {
-			ServerPlayNetworking.send(player, SpectrumPackets.PLAY_ALTAR_CRAFTING_FINISHED_PARTICLE_PACKET_ID, buf);
+			ServerPlayNetworking.send(player, SpectrumS2CPackets.PLAY_ALTAR_CRAFTING_FINISHED_PARTICLE_PACKET_ID, buf);
 		}
 	}
 

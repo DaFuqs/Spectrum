@@ -4,9 +4,10 @@ import de.dafuqs.spectrum.config.SpectrumConfig;
 import de.dafuqs.spectrum.dimension.DeeperDownDimension;
 import de.dafuqs.spectrum.inventories.SpectrumContainers;
 import de.dafuqs.spectrum.inventories.SpectrumScreenHandlerTypes;
-import de.dafuqs.spectrum.items.misc.CraftingTabletItem;
 import de.dafuqs.spectrum.loot.EnchantmentDrops;
 import de.dafuqs.spectrum.loot.SpectrumLootConditionTypes;
+import de.dafuqs.spectrum.networking.SpectrumC2SPackets;
+import de.dafuqs.spectrum.networking.SpectrumS2CPackets;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.progression.BlockCloakManager;
 import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
@@ -20,13 +21,10 @@ import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerWorldEvents;
-import net.minecraft.item.Item;
 import net.minecraft.server.MinecraftServer;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import static de.dafuqs.spectrum.registries.SpectrumItems.generalItemSettingsSingle;
 
 public class SpectrumCommon implements ModInitializer {
 
@@ -83,7 +81,7 @@ public class SpectrumCommon implements ModInitializer {
         SpectrumItems.registerFuelRegistry();
         SpectrumCommands.register();
 
-        SpectrumPackets.registerC2SReceivers();
+        SpectrumC2SPackets.registerC2SReceivers();
 
         BlockCloakManager.setupCloaks();
 

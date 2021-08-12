@@ -1,9 +1,11 @@
 package de.dafuqs.spectrum.inventories;
 
 import de.dafuqs.spectrum.LoreHelper;
+import de.dafuqs.spectrum.SpectrumCommon;
 import net.minecraft.block.AnvilBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.client.gui.screen.ingame.AnvilScreen;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.PlayerEntity;
@@ -14,6 +16,7 @@ import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.EnchantedBookItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.screen.AnvilScreenHandler;
 import net.minecraft.screen.Property;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ScreenHandlerContext;
@@ -22,6 +25,7 @@ import net.minecraft.tag.BlockTags;
 import net.minecraft.text.LiteralText;
 import net.minecraft.world.WorldEvents;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.logging.log4j.Level;
 
 import java.util.Iterator;
 import java.util.List;
@@ -122,7 +126,8 @@ public class BedrockAnvilScreenHandler extends ScreenHandler {
             slot.onQuickTransfer(itemStack2, itemStack);
          } else if (index != 0 && index != 1) {
             if (index >= 3 && index < 39) {
-               if (!this.insertItem(itemStack2, 0, 2, false)) {
+               int i = 0;
+               if (!this.insertItem(itemStack2, i, 2, false)) {
                   return ItemStack.EMPTY;
                }
             }
@@ -174,20 +179,7 @@ public class BedrockAnvilScreenHandler extends ScreenHandler {
 
       this.levelCost.set(0);
       this.context.run((world, pos) -> {
-         BlockState blockState = world.getBlockState(pos);
-         if (!player.getAbilities().creativeMode && blockState.isIn(BlockTags.ANVIL) && player.getRandom().nextFloat() < 0.12F) {
-            BlockState blockState2 = AnvilBlock.getLandingState(blockState);
-            if (blockState2 == null) {
-               world.removeBlock(pos, false);
-               world.syncWorldEvent(WorldEvents.ANVIL_DESTROYED, pos, 0);
-            } else {
-               world.setBlockState(pos, blockState2, Block.NOTIFY_LISTENERS);
-               world.syncWorldEvent(WorldEvents.ANVIL_USED, pos, 0);
-            }
-         } else {
-            world.syncWorldEvent(WorldEvents.ANVIL_USED, pos, 0);
-         }
-
+         world.syncWorldEvent(WorldEvents.ANVIL_USED, pos, 0);
       });
    }
 
@@ -339,7 +331,7 @@ public class BedrockAnvilScreenHandler extends ScreenHandler {
          }
 
          this.levelCost.set(repairLevelCost + enchantmentLevelCost);
-         if (enchantmentLevelCost <= 0 && !(renamed || loreChanged)) {
+         if (enchantmentLevelCost < 0) {
             outputStack = ItemStack.EMPTY;
          }
 
@@ -349,7 +341,7 @@ public class BedrockAnvilScreenHandler extends ScreenHandler {
                repairCost = repairSlotStack.getRepairCost();
             }
 
-            if((this.levelCost.get() == 0 && !(renamed || loreChanged))) {
+            if((this.levelCost.get() == 0 && (renamed || loreChanged))) {
                // renaming and lore is free
             } else if (k != enchantmentLevelCost) {
                repairCost = getNextCost(repairCost);

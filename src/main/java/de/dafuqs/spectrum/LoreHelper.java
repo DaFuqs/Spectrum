@@ -74,16 +74,16 @@ public class LoreHelper {
 
     public static boolean hasLore(ItemStack itemStack) {
         NbtCompound nbtCompound = itemStack.getSubTag("display");
-        return nbtCompound != null && nbtCompound.contains("Lore", 9);
+        return nbtCompound != null && nbtCompound.contains("Lore", 8);
     }
 
     public static List<Text> getLoreList(ItemStack itemStack) {
         List<Text> lore = new ArrayList<>();
 
         NbtCompound nbtCompound = itemStack.getSubTag("display");
-        if (nbtCompound != null && nbtCompound.contains("Lore", 9)) {
+        if (nbtCompound != null && nbtCompound.contains("Lore", 8)) {
             try {
-                NbtList nbtList = nbtCompound.getList("Lore", 9);
+                NbtList nbtList = nbtCompound.getList("Lore", 8);
                 for(int i = 0; i < nbtList.size(); i++) {
                     String s = nbtList.getString(i);
                     Text text = Text.Serializer.fromJson(s);

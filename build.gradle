@@ -42,8 +42,8 @@ dependencies {
 
 	modImplementation "net.darkhax.enchdesc:EnchantmentDescriptionsFabric-${project.enchantment_descriptions_mc_version}:${project.enchantment_descriptions_mod_version}"
 
-	modCompileOnly "me.shedaniel:RoughlyEnoughItems-fabric:6.0.262-alpha"
-	modRuntime "me.shedaniel:RoughlyEnoughItems-fabric:6.0.262-alpha"
+	modCompileOnly "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"
+	modRuntime "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"
 
 	// Soft dependencies:
 	// https://github.com/Gegy/colored-lights // uses colored_lights/light_colors.json

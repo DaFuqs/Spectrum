@@ -470,6 +470,24 @@ public class SpectrumBlocks {
     public static final Block WHITE_BLOCK = new Block(pigmentStorageBlockBlockSettings);
     public static final Block YELLOW_BLOCK = new Block(pigmentStorageBlockBlockSettings);
 
+    // SPORE BLOSSOMS
+    public static final Block BLACK_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f), DyeColor.BLACK);
+    public static final Block BLUE_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f), DyeColor.BLUE);
+    public static final Block BROWN_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f), DyeColor.BROWN);
+    public static final Block CYAN_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f), DyeColor.CYAN);
+    public static final Block GRAY_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f), DyeColor.GRAY);
+    public static final Block GREEN_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f), DyeColor.GREEN);
+    public static final Block LIGHT_BLUE_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f), DyeColor.LIGHT_BLUE);
+    public static final Block LIGHT_GRAY_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f), DyeColor.LIGHT_GRAY);
+    public static final Block LIME_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f), DyeColor.LIME);
+    public static final Block MAGENTA_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f), DyeColor.MAGENTA);
+    public static final Block ORANGE_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f), DyeColor.ORANGE);
+    public static final Block PINK_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f), DyeColor.PINK);
+    public static final Block PURPLE_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f), DyeColor.PURPLE);
+    public static final Block RED_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f), DyeColor.RED);
+    public static final Block WHITE_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f), DyeColor.WHITE);
+    public static final Block YELLOW_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f), DyeColor.YELLOW);
+
     // ORES
     public static final Block SPARKLESTONE_ORE = new SparklestoneOreBlock(FabricBlockSettings.copyOf(Blocks.IRON_ORE).breakByTool(FabricToolTags.PICKAXES, 2), UniformIntProvider.create(2, 4)); // drops sparklestone gems
     public static final Block DEEPSLATE_SPARKLESTONE_ORE = new SparklestoneOreBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_IRON_ORE).breakByTool(FabricToolTags.PICKAXES, 2), UniformIntProvider.create(2, 4)); // drops sparklestone gems
@@ -583,6 +601,7 @@ public class SpectrumBlocks {
         registerPigmentStorageBlocks(decorationItemSettings);
         registerColoredLamps(decorationItemSettings);
         registerFlatColoredBlocks(decorationItemSettings);
+        registerSporeBlossoms(decorationItemSettings);
 
         registerColoredWood(coloredWoodItemSettings);
 
@@ -993,6 +1012,25 @@ public class SpectrumBlocks {
         registerBlockWithItem("yellow_flat_colored_block", YELLOW_FLAT_COLORED_BLOCK, fabricItemSettings);
     }
 
+    public static void registerSporeBlossoms(FabricItemSettings fabricItemSettings) {
+        registerBlockWithItem("black_spore_blossom", BLACK_SPORE_BLOSSOM, fabricItemSettings);
+        registerBlockWithItem("blue_spore_blossom", BLUE_SPORE_BLOSSOM, fabricItemSettings);
+        registerBlockWithItem("brown_spore_blossom", BROWN_SPORE_BLOSSOM, fabricItemSettings);
+        registerBlockWithItem("cyan_spore_blossom", CYAN_SPORE_BLOSSOM, fabricItemSettings);
+        registerBlockWithItem("gray_spore_blossom", GRAY_SPORE_BLOSSOM, fabricItemSettings);
+        registerBlockWithItem("green_spore_blossom", GREEN_SPORE_BLOSSOM, fabricItemSettings);
+        registerBlockWithItem("light_blue_spore_blossom", LIGHT_BLUE_SPORE_BLOSSOM, fabricItemSettings);
+        registerBlockWithItem("light_gray_spore_blossom", LIGHT_GRAY_SPORE_BLOSSOM, fabricItemSettings);
+        registerBlockWithItem("lime_spore_blossom", LIME_SPORE_BLOSSOM, fabricItemSettings);
+        registerBlockWithItem("magenta_spore_blossom", MAGENTA_SPORE_BLOSSOM, fabricItemSettings);
+        registerBlockWithItem("orange_spore_blossom", ORANGE_SPORE_BLOSSOM, fabricItemSettings);
+        registerBlockWithItem("pink_spore_blossom", PINK_SPORE_BLOSSOM, fabricItemSettings);
+        registerBlockWithItem("purple_spore_blossom", PURPLE_SPORE_BLOSSOM, fabricItemSettings);
+        registerBlockWithItem("red_spore_blossom", RED_SPORE_BLOSSOM, fabricItemSettings);
+        registerBlockWithItem("white_spore_blossom", WHITE_SPORE_BLOSSOM, fabricItemSettings);
+        registerBlockWithItem("yellow_spore_blossom", YELLOW_SPORE_BLOSSOM, fabricItemSettings);
+    }
+
     private static void registerGemBlocks(FabricItemSettings fabricItemSettings) {
         registerBlockWithItem("topaz_block", TOPAZ_BLOCK, fabricItemSettings);
         registerBlockWithItem("budding_topaz", BUDDING_TOPAZ, fabricItemSettings);
@@ -1155,6 +1193,24 @@ public class SpectrumBlocks {
         BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.RED_SAPLING, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.WHITE_SAPLING, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.YELLOW_SAPLING, RenderLayer.getCutout());
+
+        // Spore Blossoms
+        BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.BLACK_SPORE_BLOSSOM, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.BLUE_SPORE_BLOSSOM, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.BROWN_SPORE_BLOSSOM, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.CYAN_SPORE_BLOSSOM, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.GRAY_SPORE_BLOSSOM, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.GREEN_SPORE_BLOSSOM, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.LIGHT_BLUE_SPORE_BLOSSOM, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.LIGHT_GRAY_SPORE_BLOSSOM, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.LIME_SPORE_BLOSSOM, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.MAGENTA_SPORE_BLOSSOM, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.ORANGE_SPORE_BLOSSOM, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.PINK_SPORE_BLOSSOM, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.PURPLE_SPORE_BLOSSOM, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.RED_SPORE_BLOSSOM, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.WHITE_SPORE_BLOSSOM, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.YELLOW_SPORE_BLOSSOM, RenderLayer.getCutout());
 
         // Colored lamps
         BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.BLACK_LAMP, RenderLayer.getTranslucent());

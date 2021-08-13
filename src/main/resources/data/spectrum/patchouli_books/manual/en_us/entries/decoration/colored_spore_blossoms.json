@@ -1,0 +1,17 @@
+{
+  "name": "Colored Spore Blossoms",
+  "advancement": "spectrum:spectrum_midgame",
+  "icon": "spectrum:orange_spore_blossom",
+  "category": "spectrum:decoration_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "As you wandered through a leafy cave, you noticed the many petals sailing through the air. This sight enchanted you so much that you set out to design your own colorful variations."
+    },
+    {
+      "type": "spectrum:altar_crafting",
+      "recipe": "spectrum:altar/tier2/spore_blossom/orange_spore_blossom",
+      "text": "By using different pigment you can color the petals in a wide variety of colors."
+    }
+  ]
+}

@@ -49,6 +49,7 @@ public class SpectrumCommon implements ModInitializer {
 
         // Register ALL the stuff
         SpectrumAdvancementCriteria.register();
+        SpectrumParticleTypes.register();
         SpectrumSoundEvents.register();
         SpectrumBlockSoundGroups.register();
         SpectrumFluidTags.register();
@@ -77,7 +78,6 @@ public class SpectrumCommon implements ModInitializer {
         SpectrumDefaultEnchantments.registerDefaultEnchantments();
         EnchantmentDrops.setup();
 
-        SpectrumParticleTypes.register();
         SpectrumItems.registerFuelRegistry();
         SpectrumCommands.register();
 

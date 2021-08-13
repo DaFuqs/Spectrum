@@ -3,6 +3,24 @@
   "advancement": "spectrum:spectrum_midgame",
   "icon": "spectrum:orange_spore_blossom",
   "category": "spectrum:decoration_category",
+  "extra_recipe_mappings": {
+    "spectrum:black_spore_blossom": 0,
+    "spectrum:blue_spore_blossom": 0,
+    "spectrum:brown_spore_blossom": 0,
+    "spectrum:cyan_spore_blossom": 0,
+    "spectrum:gray_spore_blossom": 0,
+    "spectrum:green_spore_blossom": 0,
+    "spectrum:light_blue_spore_blossom": 0,
+    "spectrum:light_gray_spore_blossom": 0,
+    "spectrum:lime_spore_blossom": 0,
+    "spectrum:magenta_spore_blossom": 0,
+    "spectrum:orange_spore_blossom": 0,
+    "spectrum:pink_spore_blossom": 0,
+    "spectrum:purple_spore_blossom": 0,
+    "spectrum:red_spore_blossom": 0,
+    "spectrum:white_spore_blossom": 0,
+    "spectrum:yellow_spore_blossom": 0
+  },
   "pages": [
     {
       "type": "patchouli:text",

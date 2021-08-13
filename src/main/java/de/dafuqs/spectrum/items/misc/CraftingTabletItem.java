@@ -4,6 +4,8 @@ import de.dafuqs.spectrum.InventoryHelper;
 import de.dafuqs.spectrum.inventories.CraftingTabletScreenHandler;
 import de.dafuqs.spectrum.items.tooltip.CraftingTabletTooltipData;
 import de.dafuqs.spectrum.recipe.altar.AltarCraftingRecipe;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.client.item.TooltipData;
@@ -136,6 +138,7 @@ public class CraftingTabletItem extends Item {
         }
     }
 
+    @Environment(EnvType.CLIENT)
     @Override
     public Optional<TooltipData> getTooltipData(ItemStack stack) {
         Recipe storedRecipe = CraftingTabletItem.getStoredRecipe(MinecraftClient.getInstance().world, stack);
@@ -145,6 +148,5 @@ public class CraftingTabletItem extends Item {
             return Optional.empty();
         }
     }
-
 
 }

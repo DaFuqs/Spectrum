@@ -6,6 +6,7 @@
     "AccessorShapedRecipe",
     "AnvilBlockMixin",
     "BlockMixin",
+    "BlockPlacerTypeAccessor",
     "EnderEyeItemMixin",
     "EndermanEntityMixin",
     "EntityApplyFluidsMixin",

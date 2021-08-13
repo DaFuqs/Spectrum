@@ -49,9 +49,9 @@ dependencies {
 	// https://github.com/Gegy/colored-lights // uses colored_lights/light_colors.json
 }
 
-loom {
+/*loom {
 	accessWidenerPath = file("src/main/resources/spectrum.accesswidener")
-}
+}*/
 
 processResources {
 	inputs.property "version", project.version

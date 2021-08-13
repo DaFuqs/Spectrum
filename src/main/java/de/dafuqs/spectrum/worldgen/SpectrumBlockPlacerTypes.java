@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.worldgen;
 
 import com.mojang.serialization.Codec;
 import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.mixin.BlockPlacerTypeAccessor;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.gen.placer.BlockPlacer;
@@ -11,29 +12,22 @@ import org.lwjgl.system.CallbackI;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SpectrumBlockPlacerTypes<P extends BlockPlacer> {
+public class SpectrumBlockPlacerTypes {
 
     public static final BlockPlacerType<QuitoxicReedsColumnPlacer> QUITOXIC_REEDS_COLUMN_PLACER;
-    private final Codec<CallbackI.P> codec;
 
-    public static List<BlockPlacerType<?>> types = new ArrayList<>();
-
-    private static <P extends BlockPlacer> BlockPlacerType<P> registerBlockPlacer(String id, BlockPlacerType<P> type) {
+    /*private static <P extends BlockPlacer> BlockPlacerType<P> registerBlockPlacer(String id, BlockPlacerType<P> type) {
         Registry.register(Registry.BLOCK_PLACER_TYPE, new Identifier(SpectrumCommon.MOD_ID, id), type);
         types.add(type);
         return type;
-    }
+    }*/
 
-    private SpectrumBlockPlacerTypes(Codec<CallbackI.P> codec) {
-        this.codec = codec;
-    }
-
-    public Codec<CallbackI.P> getCodec() {
-        return this.codec;
+    private static BlockPlacerType register(String name, BlockPlacerType<?> type) {
+        return Registry.register(Registry.BLOCK_PLACER_TYPE, new Identifier(SpectrumCommon.MOD_ID, name), type);
     }
 
     static {
-        QUITOXIC_REEDS_COLUMN_PLACER = registerBlockPlacer("quitoxic_reeds_column_placer", new BlockPlacerType<>(QuitoxicReedsColumnPlacer.CODEC));
+        QUITOXIC_REEDS_COLUMN_PLACER = register("quitoxic_reeds_column_placer", BlockPlacerTypeAccessor.createBlockPlacerType(QuitoxicReedsColumnPlacer.CODEC));
     }
 
 }

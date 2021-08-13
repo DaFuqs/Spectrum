@@ -1,4 +1,0 @@
-accessWidener v1 named
-
-accessible  method  net/minecraft/world/gen/placer/BlockPlacerType register   (net.minecraft.world.gen.placer.BlockPlacerType)V
-accessible  method  net/minecraft/world/gen/placer/BlockPlacerType <init>   (Lcom/mojang/serialization/Codec;)V

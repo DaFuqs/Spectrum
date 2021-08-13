@@ -1,5 +1,5 @@
 plugins {
-	id 'fabric-loom' version '0.8-SNAPSHOT'
+	id 'fabric-loom' version '0.9.+'
 	id 'maven-publish'
 }
 
@@ -49,8 +49,8 @@ dependencies {
 	// https://github.com/Gegy/colored-lights // uses colored_lights/light_colors.json
 }
 
-minecraft {
-	accessWidener =  file("src/main/resources/spectrum.accesswidener")
+loom {
+	accessWidenerPath = file("src/main/resources/spectrum.accesswidener")
 }
 
 processResources {

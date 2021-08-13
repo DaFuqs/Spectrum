@@ -5,7 +5,7 @@
   "category": "spectrum:decay_category",
   "extra_recipe_mappings": {
     "spectrum:bottle_of_failing": 0,
-    "spectrum:corrupted_obsidian_dust": 2
+    "spectrum:corrupted_obsidian_dust": 1
   },
   "pages": [
     {

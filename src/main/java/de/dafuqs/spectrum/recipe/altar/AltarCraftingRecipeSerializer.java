@@ -126,8 +126,13 @@ public class AltarCraftingRecipeSerializer<T extends AltarCraftingRecipe> implem
         for(int i = 0; i < requiredAdvancementAmount; i++) {
             requiredAdvancementIdentifiers.add(packetByteBuf.readIdentifier());
         }
-        Identifier unlockedAdvancementIdentifier = packetByteBuf.readIdentifier();
         boolean showToastOnUnlock = packetByteBuf.readBoolean();
+
+        boolean unlocksAdvancement = packetByteBuf.readBoolean();
+        Identifier unlockedAdvancementIdentifier = null;
+        if(unlocksAdvancement) {
+            unlockedAdvancementIdentifier = packetByteBuf.readIdentifier();
+        }
 
         HashMap<GemstoneColor, Integer> gemInputs = new HashMap<>();
         if(magenta > 0) { gemInputs.put(GemstoneColor.MAGENTA, magenta); }
@@ -165,8 +170,13 @@ public class AltarCraftingRecipeSerializer<T extends AltarCraftingRecipe> implem
         for(int i = 0; i < altarCraftingRecipe.requiredAdvancementIdentifiers.size(); i++) {
             packetByteBuf.writeIdentifier(altarCraftingRecipe.requiredAdvancementIdentifiers.get(i));
         }
-        packetByteBuf.writeIdentifier(altarCraftingRecipe.unlockedAdvancementOnCraft);
         packetByteBuf.writeBoolean(altarCraftingRecipe.showToastOnUnlock);
+        if(altarCraftingRecipe.unlockedAdvancementOnCraft == null) {
+            packetByteBuf.writeBoolean(false);
+        } else {
+            packetByteBuf.writeBoolean(true);
+            packetByteBuf.writeIdentifier(altarCraftingRecipe.unlockedAdvancementOnCraft);
+        }
     }
 
     public interface RecipeFactory<T extends AltarCraftingRecipe> {

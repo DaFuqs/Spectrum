@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum;
 
 import com.google.gson.JsonParseException;
+import net.minecraft.entity.mob.ZombieEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtList;

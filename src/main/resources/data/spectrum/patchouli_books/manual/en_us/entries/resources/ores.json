@@ -32,10 +32,10 @@
             "text": "A yellow ore that does emit - but also is able to manipulate - energy in the form of light.$(br2)Sparklestone is found at above sea level altitudes."
         },
         {
-            "type": "spectrum:altar_crafting",
+            "type": "patchouli:crafting",
             "advancement": "spectrum:hidden/collect_resource/collect_sparklestone",
             "recipe": "spectrum:crafting_table/gem_storage_blocks/sparklestone_block",
-            "text": "A full block of sparklestone emits lots of bright yellow glowing particles."
+            "text": "A full block of sparklestone emits shiny bright yellow glowing particles."
         },
         {
             "type": "patchouli:spotlight",

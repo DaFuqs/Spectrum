@@ -68,6 +68,15 @@
   "text.autoconfig.Spectrum.option.ExuberanceMaxLevel": "Max level for Exuberance Enchantment",
   "text.autoconfig.Spectrum.option.ExuberanceBonusExperiencePercentPerLevel": "XP bonus on kill with Exuberance enchantment",
 
+  "item.spectrum.emergency_helmet": "Fetchling Helmet",
+  "item.spectrum.emergency_chestplate": "Ferocious Chestplate",
+  "item.spectrum.emergency_leggings": "Sylph Leggings",
+  "item.spectrum.emergency_boots": "Oread Boots",
+  "item.spectrum.emergency_helmet.tooltip": "Gives an Attacker Weakness & Slowness",
+  "item.spectrum.emergency_chestplate.tooltip": "Grants Absorption & Instant Health when hit",
+  "item.spectrum.emergency_leggings.tooltip": "Grants Speed & Invisibility when hit",
+  "item.spectrum.emergency_boots.tooltip": "Grants Resistance & Regeneration when hit",
+
   "block.spectrum.spirit_sallow_roots": "Spirit Sallow Roots",
   "block.spectrum.spirit_sallow_log": "Spirit Sallow Log",
   "block.spectrum.spirit_sallow_bark": "Spirit Sallow Bark",

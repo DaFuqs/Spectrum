@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.items;
+package de.dafuqs.spectrum.items.armor;
 
 import de.dafuqs.spectrum.interfaces.PreEnchantedTooltip;
 import net.minecraft.client.item.TooltipContext;

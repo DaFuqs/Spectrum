@@ -1,0 +1,38 @@
+{
+  "name": "Gemstone Armor",
+  "advancement": "spectrum:spectrum_midgame",
+  "icon": "spectrum:emergency_chestplate",
+  "category": "spectrum:magical_items_category",
+  "extra_recipe_mappings": {
+    "spectrum:emergency_helmet": 1,
+    "spectrum:emergency_chestplate": 2,
+    "spectrum:emergency_leggings": 3,
+    "spectrum:emergency_boots": 4
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "In the meantime, you had more than enough time to develop your own individual fighting style.$(br)To best support this style, you've designed a range of gear that best supports this style.$(br)Disadvantage: The shards used in the production are kind of brittle. Therefore, this equipment has a comparatively low durability."
+    },
+    {
+      "type": "spectrum:altar_crafting",
+      "recipe": "spectrum:altar/tier2/emergency_armor/emergency_helmet",
+      "text": "The Fetchling Helmet gives attackers a Weakness and Slowness when hit, lets you slip through their claws like a shadow."
+    },
+    {
+      "type": "spectrum:altar_crafting",
+      "recipe": "spectrum:altar/tier2/emergency_armor/emergency_chestplate",
+      "text": "The Ferocious Chestplate grants you Absorption and Instant Health when hit, makes you a formidable close combat fighter."
+    },
+    {
+      "type": "spectrum:altar_crafting",
+      "recipe": "spectrum:altar/tier2/emergency_armor/emergency_leggings",
+      "text": "The Sylph Leggings give you a short burst of Speed and Invisibility on hit. Giving you an opportunity to retreat. Perfect for ranged combat."
+    },
+    {
+      "type": "spectrum:altar_crafting",
+      "recipe": "spectrum:altar/tier2/emergency_armor/emergency_boots",
+      "text": "The Oread Boots give you a short burst of Resistance and Regeneration on hit, making you an massive wall for a short duration."
+    }
+  ]
+}

@@ -20,6 +20,7 @@
     "ItemFrameEntityMixin",
     "ItemModelsMixin",
     "ItemStackMixin",
+    "ArmorWithHitEffectProcessor",
     "LivingEntityMixin",
     "MobSpawnerBlockEntityMixin",
     "PlayerAdvancementTrackerMixin",

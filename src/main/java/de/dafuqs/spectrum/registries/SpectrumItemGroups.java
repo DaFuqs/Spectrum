@@ -43,6 +43,12 @@ public class SpectrumItemGroups {
                 stacks.add(new ItemStack(SpectrumItems.GLOW_VISION_HELMET));
                 stacks.add(new ItemStack(SpectrumItems.NATURES_STAFF));
 
+                // emergency armor
+                stacks.add(new ItemStack(SpectrumItems.EMERGENCY_HELMET));
+                stacks.add(new ItemStack(SpectrumItems.EMERGENCY_CHESTPLATE));
+                stacks.add(new ItemStack(SpectrumItems.EMERGENCY_LEGGINGS));
+                stacks.add(new ItemStack(SpectrumItems.EMERGENCY_BOOTS));
+
                 // bedrock tools
                 stacks.add(SpectrumDefaultEnchantments.getEnchantedItemStack(SpectrumItems.BEDROCK_PICKAXE));
                 stacks.add(SpectrumDefaultEnchantments.getEnchantedItemStack(SpectrumItems.BEDROCK_AXE));

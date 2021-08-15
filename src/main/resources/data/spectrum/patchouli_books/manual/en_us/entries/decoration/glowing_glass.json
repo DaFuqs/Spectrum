@@ -1,5 +1,5 @@
 {
-  "name": "Glowing Glass",
+  "name": "Radiant Glass",
   "icon": "spectrum:glowing_glass",
   "category": "spectrum:decoration_category",
   "extra_recipe_mappings": {
@@ -9,13 +9,13 @@
     {
       "type": "patchouli:spotlight",
       "item": "spectrum:glowing_glass",
-      "title": "Glowing Glass",
+      "title": "Radiant Glass",
       "text": "$(italic)You need a way to efficiently light your shelter and other structures.$(br2)What could be better than using the luminous properties of Sparklestone directly in your installed glass?$()"
     },
     {
       "type": "spectrum:altar_crafting",
       "recipe": "spectrum:altar/tier1/glowing_glass",
-      "text": "Glowing Glass is pretty much the opposite of Tinted Glass. The sparklestone used in its manufacture ensures that the glass glows from within."
+      "text": "Radiant Glass is pretty much the opposite of Tinted Glass. The sparklestone used in its manufacture ensures that the glass glows from within."
     }
   ]
 }

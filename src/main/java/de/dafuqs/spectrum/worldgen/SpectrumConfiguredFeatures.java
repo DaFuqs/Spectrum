@@ -209,7 +209,7 @@ public class SpectrumConfiguredFeatures extends ConfiguredFeatures {
                 UniformIntProvider.create(1, 2),
                 -16, 16, 0.05D, 1)
         ).uniformRange(YOffset.aboveBottom(SpectrumCommon.CONFIG.CitrineGeodeMinAboveBottomGenerationHeight), YOffset.fixed(SpectrumCommon.CONFIG.CitrineGeodeFixedMaxGenerationHeight))
-        ).spreadHorizontally()).applyChance(50);
+        ).spreadHorizontally()).applyChance(SpectrumCommon.CONFIG.CitrineGeodeChunkChance);
 
         TOPAZ_GEODE = ((SpectrumFeatures.SOLID_BLOCKS_GEODE.configure(new GeodeFeatureConfig(
                 new GeodeLayerConfig(
@@ -229,7 +229,7 @@ public class SpectrumConfiguredFeatures extends ConfiguredFeatures {
                 UniformIntProvider.create(1, 2),
                 -16, 16, 0.05D, 1)
         ).uniformRange(YOffset.fixed(SpectrumCommon.CONFIG.TopazGeodeMinFixedGenerationHeight), YOffset.belowTop(SpectrumCommon.CONFIG.TopazGeodeMaxBelowTopGenerationHeight))
-        ).spreadHorizontally()).applyChance(10);
+        ).spreadHorizontally()).applyChance(SpectrumCommon.CONFIG.TopazGeodeChunkChance);
 
         MOONSTONE_GEODE = ((SpectrumFeatures.SOLID_BLOCKS_GEODE.configure(new GeodeFeatureConfig(
                 new GeodeLayerConfig(
@@ -249,7 +249,7 @@ public class SpectrumConfiguredFeatures extends ConfiguredFeatures {
                 UniformIntProvider.create(1, 2),
                 -16, 16, 0.05D, 1)
         ).uniformRange(YOffset.aboveBottom(10), YOffset.belowTop(10))
-        ).spreadHorizontally()).applyChance(40);
+        ).spreadHorizontally()).applyChance(SpectrumCommon.CONFIG.MoonstoneGeodeChunkChance);
 
         RegistryKey<ConfiguredFeature<?, ?>> CITRINE_GEODE_KEY = RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY, new Identifier(SpectrumCommon.MOD_ID, "citrine_geode"));
         Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, CITRINE_GEODE_KEY.getValue(), CITRINE_GEODE);

@@ -8,8 +8,8 @@ import net.minecraft.world.gen.feature.GeodeFeatureConfig;
 import net.minecraft.world.gen.feature.util.FeatureContext;
 
 /**
- * This modified geode feature prevents geodes generating 90 % in air
- * making them look really out of place
+ * This modified geode feature prevents geodes generating in air
+ * preventing them look really out of place
  */
 public class SolidBlocksOnlyGeodeFeature extends GeodeFeature {
 
@@ -22,15 +22,15 @@ public class SolidBlocksOnlyGeodeFeature extends GeodeFeature {
         BlockPos origin = context.getOrigin();
         int outerLayerDistance = (int) context.getConfig().layerThicknessConfig.outerLayer;
 
-        int airBlocks = 0;
-        if(world.isAir(origin.up(outerLayerDistance))) { airBlocks++; }
-        if(world.isAir(origin.down(outerLayerDistance))) { airBlocks++; }
-        if(world.isAir(origin.north(outerLayerDistance))) { airBlocks++; }
-        if(world.isAir(origin.east(outerLayerDistance))) { airBlocks++; }
-        if(world.isAir(origin.south(outerLayerDistance))) { airBlocks++; }
-        if(world.isAir(origin.west(outerLayerDistance))) { airBlocks++; }
+        int solidBlocks = 0;
+        if(world.getBlockState(origin.up(outerLayerDistance)).isSolidBlock(world, origin.up(outerLayerDistance))) { solidBlocks++; }
+        if(world.getBlockState(origin.down(outerLayerDistance)).isSolidBlock(world, origin.down(outerLayerDistance))) { solidBlocks++; }
+        if(world.getBlockState(origin.north(outerLayerDistance)).isSolidBlock(world, origin.north(outerLayerDistance))) { solidBlocks++; }
+        if(world.getBlockState(origin.east(outerLayerDistance)).isSolidBlock(world, origin.east(outerLayerDistance))) { solidBlocks++; }
+        if(world.getBlockState(origin.south(outerLayerDistance)).isSolidBlock(world, origin.south(outerLayerDistance))) { solidBlocks++; }
+        if(world.getBlockState(origin.west(outerLayerDistance)).isSolidBlock(world, origin.west(outerLayerDistance))) { solidBlocks++; }
 
-        if(airBlocks < 2) {
+        if(solidBlocks > 4) {
             super.generate(context);
         }
 

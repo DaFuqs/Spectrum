@@ -6,6 +6,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.OreBlock;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.PickaxeItem;
 import net.minecraft.loot.context.LootContext;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Pair;

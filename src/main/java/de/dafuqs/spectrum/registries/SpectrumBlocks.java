@@ -112,7 +112,7 @@ public class SpectrumBlocks {
 
     public static final Block AMMOLITE_BLOCK = new SpectrumGemstoneBlock(FabricBlockSettings.of(Material.AMETHYST, MapColor.DIAMOND_BLUE).hardness(1.5F).sounds(SpectrumBlockSoundGroups.AMMOLITE_BLOCK).requiresTool().breakByTool(FabricToolTags.PICKAXES, 2), SpectrumSoundEvents.BLOCK_AMMOLITE_BLOCK_HIT, SpectrumSoundEvents.BLOCK_AMMOLITE_BLOCK_CHIME);
 
-    private static final FabricBlockSettings gemOreBlockSettings = FabricBlockSettings.copyOf(Blocks.IRON_ORE).breakByTool(FabricToolTags.PICKAXES, 3);
+    private static final FabricBlockSettings gemOreBlockSettings = FabricBlockSettings.copyOf(Blocks.IRON_ORE).breakByTool(FabricToolTags.PICKAXES, 1).requiresTool();
     private static final UniformIntProvider gemOreExperienceProvider = UniformIntProvider.create(1, 4);
     public static final Block TOPAZ_ORE = new GemstoneOreBlock(gemOreBlockSettings, gemOreExperienceProvider, GemstoneColor.CYAN, false);
     public static final Block AMETHYST_ORE = new GemstoneOreBlock(gemOreBlockSettings, gemOreExperienceProvider, GemstoneColor.MAGENTA, false);
@@ -489,12 +489,12 @@ public class SpectrumBlocks {
     public static final Block YELLOW_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f), DyeColor.YELLOW);
 
     // ORES
-    public static final Block SPARKLESTONE_ORE = new SparklestoneOreBlock(FabricBlockSettings.copyOf(Blocks.IRON_ORE).breakByTool(FabricToolTags.PICKAXES, 2), UniformIntProvider.create(2, 4)); // drops sparklestone gems
-    public static final Block DEEPSLATE_SPARKLESTONE_ORE = new SparklestoneOreBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_IRON_ORE).breakByTool(FabricToolTags.PICKAXES, 2), UniformIntProvider.create(2, 4)); // drops sparklestone gems
-    public static final Block AZURITE_ORE = new AzuriteOreBlock(FabricBlockSettings.copyOf(Blocks.LAPIS_ORE).breakByTool(FabricToolTags.PICKAXES, 3), UniformIntProvider.create(4, 7), false);
-    public static final Block DEEPSLATE_AZURITE_ORE = new AzuriteOreBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_LAPIS_ORE).breakByTool(FabricToolTags.PICKAXES, 3), UniformIntProvider.create(4, 7), true);
-    public static final Block PALETUR_ORE = new PaleturOreBlock(FabricBlockSettings.of(Material.STONE, MapColor.DARK_RED).requiresTool().breakByTool(FabricToolTags.PICKAXES, 3).strength(3.0F, 3.0F).sounds(BlockSoundGroup.NETHER_ORE), UniformIntProvider.create(2, 4));
-    public static final Block SCARLET_ORE = new ScarletOreBlock(FabricBlockSettings.of(Material.STONE, MapColor.PALE_YELLOW).requiresTool().breakByTool(FabricToolTags.PICKAXES, 4).strength(3.0F, 9.0F), UniformIntProvider.create(3, 5));
+    public static final Block SPARKLESTONE_ORE = new SparklestoneOreBlock(FabricBlockSettings.copyOf(Blocks.IRON_ORE).breakByTool(FabricToolTags.PICKAXES, 1).requiresTool(), UniformIntProvider.create(2, 4), false);
+    public static final Block DEEPSLATE_SPARKLESTONE_ORE = new SparklestoneOreBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_IRON_ORE).breakByTool(FabricToolTags.PICKAXES, 1).requiresTool(), UniformIntProvider.create(2, 4), true);
+    public static final Block AZURITE_ORE = new AzuriteOreBlock(FabricBlockSettings.copyOf(Blocks.LAPIS_ORE).breakByTool(FabricToolTags.PICKAXES, 3).requiresTool(), UniformIntProvider.create(4, 7), false);
+    public static final Block DEEPSLATE_AZURITE_ORE = new AzuriteOreBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_LAPIS_ORE).breakByTool(FabricToolTags.PICKAXES, 3).requiresTool(), UniformIntProvider.create(4, 7), true);
+    public static final Block PALETUR_ORE = new PaleturOreBlock(FabricBlockSettings.of(Material.STONE, MapColor.DARK_RED).requiresTool().breakByTool(FabricToolTags.PICKAXES, 3).requiresTool().strength(3.0F, 3.0F).sounds(BlockSoundGroup.NETHER_ORE), UniformIntProvider.create(2, 4));
+    public static final Block SCARLET_ORE = new ScarletOreBlock(FabricBlockSettings.of(Material.STONE, MapColor.PALE_YELLOW).requiresTool().breakByTool(FabricToolTags.PICKAXES, 3).strength(3.0F, 9.0F).requiresTool(), UniformIntProvider.create(3, 5));
 
     public static final Block SPARKLESTONE_BLOCK = new SparklestoneBlock(FabricBlockSettings.of(Material.GLASS, MapColor.YELLOW).strength(2.0F).sounds(BlockSoundGroup.GLASS).luminance((state) -> 15));
     public static final Block AZURITE_BLOCK = new SpectrumFacingBlock(FabricBlockSettings.copyOf(Blocks.LAPIS_BLOCK));

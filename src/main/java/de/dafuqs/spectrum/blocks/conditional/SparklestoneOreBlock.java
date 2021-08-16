@@ -6,8 +6,8 @@ import net.minecraft.util.math.intprovider.UniformIntProvider;
 
 public class SparklestoneOreBlock extends CloakedOreBlock {
 
-    public SparklestoneOreBlock(Settings settings, UniformIntProvider uniformIntProvider) {
-        super(settings, uniformIntProvider, false);
+    public SparklestoneOreBlock(Settings settings, UniformIntProvider uniformIntProvider, boolean deepSlateOre) {
+        super(settings, uniformIntProvider, deepSlateOre);
         registerCloak();
     }
 

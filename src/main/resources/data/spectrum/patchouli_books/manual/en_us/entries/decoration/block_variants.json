@@ -1,41 +1,52 @@
 {
   "name": "Block Variants",
+  "advancement": "spectrum:spectrum",
   "icon": "spectrum:chiseled_polished_basalt",
   "category": "spectrum:decoration_category",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "You remember the blocks that shielded your precious gemstones from external influences? Those black and white materials look really pretty, so you designed some decoration blocks from their materials.$(br2)Maybe they also absorbed some of the magical properties of the minerals themselves? Who knows."
+      "text": "You remember the blocks that shielded your precious gemstones from external influences? Those black and white materials look really pretty, so you designed some decoration blocks from their materials.$(br2)Maybe they also absorbed some of the magical properties of the gemstones themselves?$(br)Who knows."
     },
     {
       "type": "patchouli:smelting",
       "recipe": "spectrum:smelting/smooth_basalt_to_polished_basalt",
       "recipe2": "spectrum:smelting/calcite_to_polished_calcite",
-      "text": "When smelted, the bright color of calcite comes out even more. Smelting Smooth Basalt also results in a much cleaner texture, which is perfect for building."
+      "text": "Applying heat to basalt emphasizes their dark and bright textures even more. Smelting also results in a much cleaner texture, which is perfect for building."
     },
     {
       "type": "patchouli:spotlight",
-      "item": "spectrum:polished_basalt_stairs",
+      "item": "spectrum:polished_basalt",
       "title": "Polished Basalt Blocks",
       "text": "The dark gray basalt surrounding the geodes is a wonderful contrast to the bright hues of the calcite.$(br)When smelted, it almost turns black."
     },
     {
+      "type": "patchouli:crafting",
+      "recipe": "spectrum:crafting_table/stone_deco/chiseled_polished_basalt",
+      "recipe2": "spectrum:crafting_table/stone_deco/polished_basalt_stairs"
+    },
+    {
       "type": "patchouli:spotlight",
-      "item": "spectrum:polished_calcite_pillar",
+      "item": "spectrum:polished_calcite",
       "title": "Polished Calcite Blocks",
       "text": "The bright white of calcite may be the brightest natural material you've stumbled across.$(br)It looks very clean and radiates dignity."
     },
     {
-      "type": "patchouli:spotlight",
-      "item": "spectrum:tuff_wall",
-      "title": "Tuff Blocks",
-      "text": "While you were searching for geodes underground, you also stumbled across tuff.$(br)After you've collected a whole bunch of it, it can't hurt to make some additional shapes out of this material, too."
+      "type": "patchouli:crafting",
+      "recipe": "spectrum:crafting_table/stone_deco/calcite_bricks",
+      "recipe2": "spectrum:crafting_table/stone_deco/polished_calcite_pillar"
     },
     {
       "type": "patchouli:smelting",
       "recipe": "spectrum:smelting/basalt_brick_stairs_to_polished_basalt",
       "recipe2": "spectrum:smelting/chiseled_polished_calcite_to_polished_calcite",
       "text": "By applying heat, all blocks can be converted back to their polished versions again."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:tuff_wall",
+      "title": "Tuff Blocks",
+      "text": "While you were searching for geodes underground, you also stumbled across tuff.$(br)After you've collected a whole bunch of it, it can't hurt to make some additional shapes out of this material, too."
     }
   ]
 }

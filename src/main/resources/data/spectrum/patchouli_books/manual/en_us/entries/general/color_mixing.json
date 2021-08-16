@@ -6,6 +6,7 @@
   "pages": [
     {
       "type": "patchouli:image",
+      "title": "Color Mixing",
       "images": [ "spectrum:textures/gui/manual/color_mixing.png" ],
       "text": "By just using three base colors, (almost) every existing color can be created."
     },

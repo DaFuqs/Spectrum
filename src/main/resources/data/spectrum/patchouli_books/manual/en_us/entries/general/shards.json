@@ -1,5 +1,5 @@
 {
-  "name": "Crystal Shards",
+  "name": "Gemstone Shards",
   "icon": "minecraft:amethyst_shard",
   "category": "spectrum:general_category",
   "extra_recipe_mappings": {
@@ -13,28 +13,28 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "To start delving into Spectrum you first have to find some crystal shards.$(br2)Each kind of crystal represents an elemental color and a different kind of natural force."
+      "text": "To start delving into Spectrum you first have to find some gemstone shards.$(br2)Each kind of gemstone represents an elemental color and a different kind of natural force."
     },
     {
       "type": "patchouli:spotlight",
       "advancement": "spectrum:hidden/collect_shards/collect_topaz_shard",
       "title": "Topaz",
       "item": "spectrum:topaz_shard",
-      "text": "Topaz Shards lie surprisingly heavy in your hand. Fragile at first glance, this crystal quickly turns out to be one of the most robust materials, which you were allowed to hold in your hands - perhaps only surpassed by the crystal, which you could also bring into the shape of a pickaxe.$(br2)The topaz represents $(bold)$(c_cyan)MATTER.$()"
+      "text": "Topaz Shards lie surprisingly heavy in your hand. Fragile at first glance, this gemstone quickly turns out to be one of the most robust materials, which you were allowed to hold in your hands - perhaps only surpassed by diamond. Topaz is found in geodes at the very top of steep hills and on the tops of sky-high mountains.$(br2)The topaz represents $(bold)$(c_cyan)MATTER.$()"
     },
     {
       "type": "patchouli:spotlight",
       "advancement": "spectrum:hidden/collect_shards/collect_amethyst_shard",
       "title": "Amethyst",
       "item": "minecraft:amethyst_shard",
-      "text": "Magenta light refracts in this crystal.$(br)Formed over eons in the geodes, this gemstone radiates awe. It is a symbol of permanence.$(br2)The Amethyst represents $(bold)$(c_purple)TIME$()."
+      "text": "Magenta light refracts in this gemstone.$(br)Formed over eons in the geodes, this gemstone radiates awe. It is a symbol of permanence and found in the deepest layers of the world.$(br2)The Amethyst represents $(bold)$(c_purple)TIME$()."
     },
     {
       "type": "patchouli:spotlight",
       "advancement": "spectrum:hidden/collect_shards/collect_citrine_shard",
       "title": "Citrine",
       "item": "spectrum:citrine_shard",
-      "text": "This yellow crystal is found in geodes at the very top of steep hills and on the tops of sky-high mountains.$(br2)Its bright yellow luster radiates pure $(bold)$(c_yellow)ENERGY$() and makes it palpably warm to the touch at all times."
+      "text": "This yellow gemstone is found close to surface level where the suns light dissipates into warmth.$(br2)Its bright yellow luster radiates pure $(bold)$(c_yellow)ENERGY$() and makes it palpably warm to the touch at all times."
     },
     {
       "type": "patchouli:spotlight",

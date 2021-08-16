@@ -13,7 +13,7 @@
   "criteria": {
     "has_black_spectrum": {
       "trigger": "minecraft:inventory_changed",
-      "conditions": { "items": [{ "tag": "spectrum:pigment" }] }
+      "conditions": { "items": [{ "tag": "spectrum:pigments" }] }
     }
   },
   "parent": "spectrum:craft_colored_sapling"

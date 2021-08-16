@@ -5,7 +5,7 @@
     "pages": [
         {
             "type": "patchouli:text",
-            "text": "$(italic)If you got a dirt block whenever you mined an ore, and it fell right into lava, you'd have a whole lot of dirt.$(br)No idea what you would do with that much dirt. Maybe give it to a friend who has just arrived here and needs shelter on his first night?$(br)Anyway, the falling into the lava thing has to stop."
+            "text": "$(italic)If you got a dirt block whenever you mined an ore, and it fell right into lava, you'd have a whole lot of dirt.$(br2)No idea what you would do with that much dirt. Maybe give it to a friend who has just arrived here and needs shelter on his first night?$(br)Anyway, the dropping stuff into lava thing has to stop."
         },
         {
             "type": "patchouli:text",

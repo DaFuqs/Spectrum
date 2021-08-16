@@ -7,7 +7,7 @@
     ],
     "key": {
         "S": {
-	        "tag": "spectrum:gem_shards"
+	        "tag": "spectrum:gemstone_shards"
         },
         "E": {
 	        "item": "spectrum:polished_calcite"

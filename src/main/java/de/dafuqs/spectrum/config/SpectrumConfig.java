@@ -69,6 +69,9 @@ public class SpectrumConfig implements ConfigData {
     public int ExuberanceMaxLevel = 5;
     public float ExuberanceBonusExperiencePercentPerLevel = 0.2F;
 
+    // The duration a glow ink sac gives night vision when wearing a glow vision helmet in seconds
+    public int GlowVisionGogglesDuration = 180;
+
     @Override
     public void validatePostLoad() throws ValidationException {
         if(FadingDecayTickRate <= 0) { FadingDecayTickRate = 1.0F; }

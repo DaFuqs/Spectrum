@@ -20,7 +20,7 @@
       "type": "patchouli:spotlight",
       "item": "spectrum:citrine_basalt_lamp",
       "title": "Gemstone Lamps",
-      "text": "$(italic)When you set foot in the first geode, you were surprisingly met with pleasant cozy glow of the crystals. With your knowledge and the help of Sparklestone, it's easy to amplify this light to create fancy lamps.$()"
+      "text": "$(italic)When you set foot in the first geode, you were met with pleasant cozy glow. With your knowledge and the help of Sparklestone, it's easy to amplify this light to create fancy lamps.$()"
     },
     {
       "type": "spectrum:altar_crafting",

@@ -12,34 +12,15 @@
   },
   "parent": "spectrum:place_altar",
   "criteria": {
-    "has_amethyst_powder": {
-      "trigger":"minecraft:inventory_changed",
-      "conditions": { "items": [{ "items": [ "spectrum:amethyst_powder" ]}] }
-    },
-    "has_citrine_powder": {
-      "trigger":"minecraft:inventory_changed",
-      "conditions": { "items": [{ "items": [ "spectrum:citrine_powder" ]}] }
-    },
-    "has_topaz_powder": {
-      "trigger":"minecraft:inventory_changed",
-      "conditions": { "items": [{ "items": [ "spectrum:topaz_powder" ]}] }
-    },
-    "has_moonstone_powder": {
-      "trigger":"minecraft:inventory_changed",
-      "conditions": { "items": [{ "items": [ "spectrum:moonstone_powder" ]}] }
-    },
-    "has_onyx_powder": {
-      "trigger":"minecraft:inventory_changed",
-      "conditions": { "items": [{ "items": [ "spectrum:onyx_powder" ]}] }
+    "has_gemstone_powder": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "spectrum:gemstone_powders"
+          }
+        ]
+      }
     }
-  },
-  "requirements": [
-    [
-      "has_amethyst_powder",
-      "has_citrine_powder",
-      "has_topaz_powder",
-      "has_moonstone_powder",
-      "has_onyx_powder"
-    ]
-  ]
+  }
 }

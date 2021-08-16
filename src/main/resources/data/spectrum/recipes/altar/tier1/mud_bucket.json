@@ -4,7 +4,7 @@
   "tier": 1,
   "magenta": 0,
   "yellow": 0,
-  "cyan": 4,
+  "cyan": 2,
   "black": 0,
   "white": 0,
   "experience": 1.0,
@@ -27,5 +27,6 @@
   "result" : {
     "item": "spectrum:mud_bucket",
     "count": 1
-  }
+  },
+  "required_advancements": ["spectrum:hidden/collect_shards/collect_topaz_shard"]
 }

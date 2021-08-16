@@ -1,6 +1,6 @@
 {
   "name": "Multitool",
-  "advancement": "spectrum:craft_using_altar",
+  "advancement": "spectrum:collect_all_basic_shards",
   "icon": "spectrum:multitool",
   "category": "spectrum:magical_items_category",
   "extra_recipe_mappings": {

@@ -71,10 +71,10 @@
       "text": "Oak saplings seem to be the most responsive to the change and in wide abundance. But every sapling will do."
     },
     {
-      "type": "patchouli:spotlight",
+      "type": "patchouli:crafting",
       "advancement": "spectrum:craft_colored_sapling",
       "title": "Colored Wood",
-      "item": "spectrum:light_blue_planks",
+      "recipe": "spectrum:light_blue_planks",
       "text": "Like their non-colorful, non-magical counterparts, you can use the colored wood for Planks, Stairs, Slabs, Buttons, Pressure Plates, Fences and Fence Gates."
     }
   ]

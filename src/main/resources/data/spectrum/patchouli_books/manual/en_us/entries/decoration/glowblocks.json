@@ -1,5 +1,6 @@
 {
   "name": "Glowblocks",
+  "advancement": "spectrum:spectrum_midgame",
   "icon": "spectrum:orange_flat_colored_block",
   "category": "spectrum:decoration_category",
   "extra_recipe_mappings": {

@@ -10,19 +10,12 @@
     {
       "type": "patchouli:spotlight",
       "item": "spectrum:bedrock_anvil",
-      "text": "$(italic)You've already used your anvil - lots of anvils, to be precise - plenty. However, both $(l:general/anvil_crushing)Anvil Crushing$(/l) and repairing and enchanting tools always damage them so quickly that they become irreparably damaged.$(br)To make the anvil more stable - or even indestructible - you need a harder material. Bedrock seems like the perfect choice."
-    },
-    {
-      "type": "patchouli:text",
-      "text": "The Bedrock Anvil allows you to rename items for a cost of zero. In addition, you can also add descriptions to your items.$(br2)$(italic)Tip: you can use \"\\n\" to split your text into multiple lines."
-    },
-    {
-      "type": "patchouli:text",
-      "text": "Of course an anvil made of Bedrock has another distinct advantage over normal anvils:$(br)It is indestructible, making it a perfect candidate for usage in $(l:general/anvil_crushing)Anvil Crushing$() automation or mass enchantment actions."
+      "text": "$(italic)You've already used your anvil (lots of anvils, to be precise) plenty. However, both $(l:general/anvil_crushing)Anvil Crushing$(/l), repairing and enchanting tools always damage them so quickly that they become irreparably damaged.$(br)To make the anvil more durable - or even indestructible - Bedrock seems like the perfect choice."
     },
     {
       "type": "spectrum:altar_crafting",
-      "recipe": "spectrum:altar/tier3/bedrock/bedrock_anvil"
+      "recipe": "spectrum:altar/tier3/bedrock/bedrock_anvil",
+      "text": "$(br2)The Bedrock Anvil allows you to rename items for a cost of zero. In addition, you can also add descriptions to your items.$(br2)$(italic)Tip: you can use \"\\n\" to split your text into multiple lines."
     }
   ]
 }

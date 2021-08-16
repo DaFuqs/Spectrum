@@ -8,10 +8,10 @@
   },
   "pages": [
     {
-      "type": "patchouli:spotlight",
-      "title": "Crafting Template",
-      "item": "spectrum:crafting_tablet",
-      "text": "The Crafting Template is so much more than a portable Crafting Table. Additionally it saves the last recipe you used and let's you craft it again directly in your hand."
+      "type": "spectrum:altar_crafting",
+      "title": "Crafting Tablet",
+      "recipe": "spectrum:altar/tier1/crafting_tablet",
+      "text": "The Crafting Tablet is so much more than a portable Crafting Table. It can save an inserted recipe and let's you craft it on demand."
     },
     {
       "type": "patchouli:text",

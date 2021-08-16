@@ -23,13 +23,13 @@
       "type": "spectrum:altar_crafting",
       "advancement": "spectrum:progression/tools/unlock_silker_pickaxe",
       "recipe": "spectrum:altar/tier1/tools/silker_pickaxe",
-      "text": "The ends of this pickaxe are shaped by the energy of Citrine to cut even the most delicate material from stone.$(br)The Tender Pickaxe comes pre-enchanted with $(bold)Silk Touch$()."
+      "text": "The ends of this pickaxe are studded with Topaz to cut even the most delicate material from stone.$(br)The Tender Pickaxe comes pre-enchanted with $(bold)Silk Touch$()."
     },
     {
       "type": "spectrum:altar_crafting",
       "advancement": "spectrum:progression/tools/unlock_fortune_pickaxe",
       "recipe": "spectrum:altar/tier1/tools/fortune_pickaxe",
-      "text": "Infused with the power of matter through Topaz, it allows you to carve out every last bit of ore from every vein.$(br)The Lucky Pickaxe comes pre-enchanted with $(bold)Fortune III$()."
+      "text": "Infused with the power of energy through Citrine, it allows you to carve out every last bit of ore from every vein.$(br)The Lucky Pickaxe comes pre-enchanted with $(bold)Fortune III$()."
     },
     {
       "type": "spectrum:altar_crafting",
@@ -41,18 +41,18 @@
       "type": "spectrum:altar_crafting",
       "advancement": "spectrum:progression/tools/unlock_voiding_pickaxe",
       "recipe": "spectrum:altar/tier2/voiding_pickaxe",
-      "text": "As an outsider in the group, the Oblivion Pickaxe has a large amount of durability and mining speed. However, all blocks that are mined with it are destroyed."
+      "text": "As an outsider in the group, the Oblivion Pickaxe has a large amount of durability and mining speed. However, all blocks that are mined with it $(l:enchantments/curse_of_the_void)are destroyed$()."
     },
     {
       "type": "patchouli:text",
       "title": "Resonant Pickaxe",
       "advancement": "spectrum:progression/tools/unlock_resonant_pickaxe",
-      "text": "This bright blue pickaxe matches its own gentle inherent vibration to that of its surroundings. This allows you to keep blocks intact that would otherwise be irreparably destroyed by force.$(br)The Resonant Pickaxe comes pre-enchanted with $(bold)Resonance$()."
+      "text": "This bright blue pickaxe matches its own gentle inherent vibration to that of its surroundings. This allows you to keep blocks intact that would otherwise be irreparably destroyed by force.$(br)The Resonant Pickaxe comes pre-enchanted with $(bold)$(l:enchantments/resonance)Resonance$()."
     },
     {
       "type": "spectrum:altar_crafting",
-      "advancement": "spectrum:progression/tools/unlock_resonant_pickaxe",
-      "recipe": "spectrum:altar/tier3/resonant_pickaxe"
+      "recipe": "spectrum:altar/tier3/resonant_pickaxe",
+      "advancement": "spectrum:progression/tools/unlock_resonant_pickaxe"
     }
   ]
 }

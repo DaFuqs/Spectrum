@@ -22,22 +22,22 @@ public class SpectrumBlockTags {
     public static Tag<Block> DECAY_BEDROCK_CONVERSIONS;
 
 
-    private static Tag<Block> register(String id) {
+    private static Tag<Block> getReference(String id) {
         return TagRegistry.block(new Identifier(SpectrumCommon.MOD_ID, id));
     }
 
-    public static void register() {
+    public static void getReferences() {
         // PLANTS
-        MERMAIDS_BRUSH_PLANTABLE = register("mermaids_brush_plantable");
-        QUITOXIC_REEDS_PLANTABLE = register("quitoxic_reeds_plantable");
+        MERMAIDS_BRUSH_PLANTABLE = getReference("mermaids_brush_plantable");
+        QUITOXIC_REEDS_PLANTABLE = getReference("quitoxic_reeds_plantable");
 
         // DECAY
-        DECAY = register("decay");
-        FAILING_SAFE = register("failing_safe");
-        MAGICAL_LEAVES = register("magical_leaves");
-        DECAY_OBSIDIAN_CONVERSIONS = register("decay_obsidian_conversions");
-        DECAY_CRYING_OBSIDIAN_CONVERSIONS = register("decay_crying_obsidian_conversions");
-        RUIN_SAFE = register("ruin_safe");
-        DECAY_BEDROCK_CONVERSIONS = register("decay_bedrock_conversions");
+        DECAY = getReference("decay");
+        FAILING_SAFE = getReference("failing_safe");
+        MAGICAL_LEAVES = getReference("magical_leaves");
+        DECAY_OBSIDIAN_CONVERSIONS = getReference("decay_obsidian_conversions");
+        DECAY_CRYING_OBSIDIAN_CONVERSIONS = getReference("decay_crying_obsidian_conversions");
+        RUIN_SAFE = getReference("ruin_safe");
+        DECAY_BEDROCK_CONVERSIONS = getReference("decay_bedrock_conversions");
     }
 }

@@ -1,5 +1,6 @@
 {
   "name": "Radiant Glass",
+  "advancement": "spectrum:hidden/collect_resource/collect_sparklestone",
   "icon": "spectrum:glowing_glass",
   "category": "spectrum:decoration_category",
   "extra_recipe_mappings": {
@@ -10,7 +11,7 @@
       "type": "patchouli:spotlight",
       "item": "spectrum:glowing_glass",
       "title": "Radiant Glass",
-      "text": "$(italic)You need a way to efficiently light your shelter and other structures.$(br2)What could be better than using the luminous properties of Sparklestone directly in your installed glass?$()"
+      "text": "$(italic)You need a way to efficiently light your shelter and other structures.$(br2)What could be better than using the luminous properties of Sparklestone directly in your glass?$()"
     },
     {
       "type": "spectrum:altar_crafting",

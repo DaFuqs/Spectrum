@@ -111,7 +111,7 @@
     {
       "type": "patchouli:spotlight",
       "item": "spectrum:cow_head",
-      "text": "But then there were the Creepers! Once struck by lightning, they charge so strongly that their explosion blows the heads of his opponents (in the worst case, yourself) right off his head. This effect must be imitable in the form of an enchantment, you thought.$(br)And so $(l:enchantments/treasure_hunter)Treasure Hunter$(l) was born."
+      "text": "But then there were the Creepers! Once struck by lightning, they charge so strongly that their explosion blows the heads of his opponents (in the worst case, yourself) right off his head. This effect must be imitable in the form of an enchantment, you thought.$(br)And so $(l:enchantments/treasure_hunter)Treasure Hunter$(/l) was born."
     }
   ]
 }

@@ -28,5 +28,5 @@
     "item": "spectrum:black_lamp",
     "count": 1
   },
-  "required_advancement": [ "spectrum:progression/colored_lamps/unlock_black_lamp" ]
+  "required_advancements": [ "spectrum:progression/colored_lamps/unlock_black_lamp" ]
 }

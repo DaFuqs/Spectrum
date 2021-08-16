@@ -9,13 +9,16 @@
   "black": 0,
   "experience": 0.3,
   "pattern": [
-    " G ",
-    "CBF",
-    " G "
+    "SGS",
+    "CLC",
+    "SFS"
   ],
   "key": {
-    "B": {
-      "item": "minecraft:item_frame"
+    "L": {
+      "item": "minecraft:leather"
+    },
+    "S": {
+      "item": "minecraft:stick"
     },
     "C": {
       "item": "spectrum:sparklestone_gem"

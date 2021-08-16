@@ -1,25 +1,50 @@
 {
   "name": "Gemstone Blocks",
+  "advancement": "spectrum:spectrum",
   "icon": "spectrum:citrine_storage_block",
   "category": "spectrum:decoration_category",
   "extra_recipe_mappings": {
-    "spectrum:topaz_storage_block": 0,
-    "spectrum:amethyst_storage_block": 0,
-    "spectrum:citrine_storage_block": 0,
-    "spectrum:onyx_storage_block": 0,
-    "spectrum:moonstone_storage_block": 0
+    "spectrum:topaz_storage_block": 1,
+    "spectrum:amethyst_storage_block": 2,
+    "spectrum:citrine_storage_block": 3,
+    "spectrum:onyx_storage_block": 4,
+    "spectrum:moonstone_storage_block": 5
   },
   "pages": [
     {
-      "type": "patchouli:spotlight",
-      "item": "spectrum:citrine_storage_block",
+      "type": "patchouli:text",
       "title": "Gemstone Blocks",
       "text": "$(italic)The gems have an exceptionally beautiful appearance.$(br)The look of the raw gems, as you know them from the geodes, seems a little too natural for your edgier buildings. With enough resources, however, this should not be a problem. And if you run out of gems at some point, the decoration can be broken up again.$()"
     },
     {
       "type": "patchouli:crafting",
+      "advancement": "spectrum:hidden/collect_shards/collect_topaz_shard",
+      "recipe": "spectrum:crafting_table/gem_storage_blocks/topaz_storage_block",
+      "recipe2": "spectrum:crafting_table/gem_storage_blocks/topaz_shards_from_topaz_storage_block"
+    },
+    {
+      "type": "patchouli:crafting",
+      "advancement": "spectrum:hidden/collect_shards/collect_amethyst_shard",
+      "recipe": "spectrum:crafting_table/gem_storage_blocks/amethyst_storage_block",
+      "recipe2": "spectrum:crafting_table/gem_storage_blocks/amethyst_shards_from_amethyst_storage_block"
+    },
+    {
+      "type": "patchouli:crafting",
+      "advancement": "spectrum:hidden/collect_shards/collect_citrine_shard",
       "recipe": "spectrum:crafting_table/gem_storage_blocks/citrine_storage_block",
       "recipe2": "spectrum:crafting_table/gem_storage_blocks/citrine_shards_from_citrine_storage_block"
+    },
+    {
+      "type": "patchouli:crafting",
+      "advancement": "spectrum:hidden/collect_shards/collect_onyx_shard",
+      "recipe": "spectrum:crafting_table/gem_storage_blocks/onyx_storage_block",
+      "recipe2": "spectrum:crafting_table/gem_storage_blocks/onyx_shards_from_onyx_storage_block"
+    },
+    {
+      "type": "patchouli:crafting",
+      "advancement": "spectrum:hidden/collect_shards/collect_moonstone_shard",
+      "recipe": "spectrum:crafting_table/gem_storage_blocks/moonstone_storage_block",
+      "recipe2": "spectrum:crafting_table/gem_storage_blocks/moonstone_shards_from_moonstone_storage_block"
     }
   ]
 }

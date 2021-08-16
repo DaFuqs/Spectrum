@@ -68,8 +68,10 @@ public class AltarCraftingCategory<R extends AltarCraftingRecipe> implements Dis
         // Searching for the usage or recipes for items will not trigger an
         // altar crafting recipe display. Searching for all recipes, that can
         // be triggered with a pedestal will, though.
-        // For the sake of not spoiling the surprise there will just be text
-        // displayed instead of the recipe.
+        //
+        // For the sake of not spoiling the surprise there will just be
+        // a placeholder displayed instead of the actual recipe.
+        //
         // It would be way better to just skip not unlocked recipes altogether.
         // but howwwwww... TODO
         if(!display.isUnlocked()) {

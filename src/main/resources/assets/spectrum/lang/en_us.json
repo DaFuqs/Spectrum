@@ -70,6 +70,7 @@
   "text.autoconfig.Spectrum.option.TreasureHunterMaxLevel": "Max level for Treasure Hunter enchantment",
   "text.autoconfig.Spectrum.option.ExuberanceMaxLevel": "Max level for Exuberance Enchantment",
   "text.autoconfig.Spectrum.option.ExuberanceBonusExperiencePercentPerLevel": "XP bonus on kill with Exuberance enchantment",
+  "text.autoconfig.Spectrum.option.GlowVisionGogglesDuration": "Glow Vision Goggle duration in seconds",
 
   "item.spectrum.emergency_helmet": "Fetchling Helmet",
   "item.spectrum.emergency_chestplate": "Ferocious Chestplate",

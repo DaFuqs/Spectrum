@@ -1,5 +1,6 @@
-package de.dafuqs.spectrum.items.misc;
+package de.dafuqs.spectrum.items.armor;
 
+import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
@@ -27,7 +28,7 @@ public class GlowVisionHelmet extends ArmorItem {
 
     @Override
     public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
-        if(world != null && world.getTimeOfDay() % 20 == 0 && entity instanceof PlayerEntity && slot == 3) { // slot 3 = helmet
+        if(world != null && world.getTimeOfDay() % 20 == 0 && entity instanceof PlayerEntity && slot == EquipmentSlot.HEAD.getEntitySlotId()) {
             PlayerEntity playerEntity = (PlayerEntity) entity;
             int lightLevelAtPlayerPos = world.getLightLevel(playerEntity.getBlockPos());
 
@@ -49,7 +50,7 @@ public class GlowVisionHelmet extends ArmorItem {
                                 glowInkStack.decrement(1);
                                 playerInventory.setStack(glowInkStackSlot, glowInkStack);
                             }
-                            StatusEffectInstance newNightVisionInstance = new StatusEffectInstance(StatusEffects.NIGHT_VISION, 20 * 90);
+                            StatusEffectInstance newNightVisionInstance = new StatusEffectInstance(StatusEffects.NIGHT_VISION, 20 * SpectrumCommon.CONFIG.GlowVisionGogglesDuration);
                             playerEntity.addStatusEffect(newNightVisionInstance);
 
                             world.playSoundFromEntity(null, playerEntity, SpectrumSoundEvents.ITEM_ARMOR_EQUIP_GLOW_VISION, SoundCategory.PLAYERS, 0.2F, 1.0F);

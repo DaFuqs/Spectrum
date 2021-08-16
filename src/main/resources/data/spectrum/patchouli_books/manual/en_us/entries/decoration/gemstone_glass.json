@@ -1,7 +1,7 @@
 {
   "name": "Gemstone Glass",
   "icon": "spectrum:topaz_glass",
-  "advancement": "spectrum:craft_using_altar",
+  "advancement": "spectrum:place_altar",
   "category": "spectrum:decoration_category",
   "extra_recipe_mappings": {
     "spectrum:topaz_glass": 0,

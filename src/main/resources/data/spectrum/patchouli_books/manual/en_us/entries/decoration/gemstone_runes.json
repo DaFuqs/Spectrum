@@ -1,5 +1,6 @@
 {
   "name": "Gemstone Runes",
+  "advancement": "spectrum:spectrum_midgame",
   "icon": "spectrum:citrine_chiseled_calcite",
   "category": "spectrum:decoration_category",
   "extra_recipe_mappings": {

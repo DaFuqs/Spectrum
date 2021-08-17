@@ -106,31 +106,31 @@ public class CraftingTabletScreenHandler extends AbstractRecipeScreenHandler<Inv
             ItemStack itemStack = altarCraftingRecipe.getOutput().copy();
             craftingResultInventory.setStack(0, itemStack);
 
-            int magenta = altarCraftingRecipe.getSpectrumColor(GemstoneColor.CYAN);
+            int magenta = altarCraftingRecipe.getGemstonePowderAmount(GemstoneColor.CYAN);
             if(magenta > 0) {
                inventory.setStack(9, new ItemStack(SpectrumItems.TOPAZ_POWDER, magenta));
             } else {
                inventory.setStack(9, ItemStack.EMPTY);
             }
-            int yellow = altarCraftingRecipe.getSpectrumColor(GemstoneColor.MAGENTA);
+            int yellow = altarCraftingRecipe.getGemstonePowderAmount(GemstoneColor.MAGENTA);
             if(yellow > 0) {
                inventory.setStack(10, new ItemStack(SpectrumItems.AMETHYST_POWDER, yellow));
             } else {
                inventory.setStack(10, ItemStack.EMPTY);
             }
-            int cyan = altarCraftingRecipe.getSpectrumColor(GemstoneColor.YELLOW);
+            int cyan = altarCraftingRecipe.getGemstonePowderAmount(GemstoneColor.YELLOW);
             if(cyan > 0) {
                inventory.setStack(11, new ItemStack(SpectrumItems.CITRINE_POWDER, cyan));
             } else {
                inventory.setStack(11, ItemStack.EMPTY);
             }
-            int black = altarCraftingRecipe.getSpectrumColor(GemstoneColor.BLACK);
+            int black = altarCraftingRecipe.getGemstonePowderAmount(GemstoneColor.BLACK);
             if(magenta > 0) {
                inventory.setStack(12, new ItemStack(SpectrumItems.ONYX_POWDER, black));
             } else {
                inventory.setStack(12, ItemStack.EMPTY);
             }
-            int white = altarCraftingRecipe.getSpectrumColor(GemstoneColor.WHITE);
+            int white = altarCraftingRecipe.getGemstonePowderAmount(GemstoneColor.WHITE);
             if(white > 0) {
                inventory.setStack(13, new ItemStack(SpectrumItems.MOONSTONE_POWDER, white));
             } else {

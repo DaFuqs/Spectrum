@@ -1,5 +1,7 @@
 package de.dafuqs.spectrum.inventories;
 
+import de.dafuqs.spectrum.inventories.altar.AltarScreen;
+import de.dafuqs.spectrum.inventories.altar.AltarScreenHandler;
 import net.fabricmc.fabric.api.client.screenhandler.v1.ScreenRegistry;
 import net.fabricmc.fabric.api.screenhandler.v1.ScreenHandlerRegistry;
 import net.minecraft.screen.ScreenHandlerType;
@@ -15,7 +17,7 @@ public class SpectrumScreenHandlerTypes {
     public static ScreenHandlerType<GenericSpectrumContainerScreenHandler> GENERIC_9X6;
 
     public static void register() {
-        ALTAR = ScreenHandlerRegistry.registerSimple(SpectrumContainers.ALTAR, AltarScreenHandler::new);
+        ALTAR = ScreenHandlerRegistry.registerExtended(SpectrumContainers.ALTAR, AltarScreenHandler::new);
         CRAFTING_TABLET = ScreenHandlerRegistry.registerSimple(SpectrumContainers.CRAFTING_TABLET, CraftingTabletScreenHandler::new);
         RESTOCKING_CHEST = ScreenHandlerRegistry.registerSimple(SpectrumContainers.RESTOCKING_CHEST, RestockingChestScreenHandler::new);
         BEDROCK_ANVIL = ScreenHandlerRegistry.registerSimple(SpectrumContainers.BEDROCK_ANVIL, BedrockAnvilScreenHandler::new);

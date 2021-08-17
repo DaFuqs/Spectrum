@@ -1,12 +1,12 @@
 {
     "parent": "minecraft:block/cube",
     "textures": {
-        "particle": "spectrum:block/altar3_north",
-        "north": "spectrum:block/altar3_north",
-        "south": "spectrum:block/altar3_south",
-        "east": "spectrum:block/altar3_east",
-        "west": "spectrum:block/altar3_west",
-        "up": "spectrum:block/altar3_up",
+        "particle": "spectrum:block/altar_north",
+        "north": "spectrum:block/altar_north",
+        "south": "spectrum:block/altar_south",
+        "east": "spectrum:block/altar_east",
+        "west": "spectrum:block/altar_west",
+        "up": "spectrum:block/altar_up",
         "down": "spectrum:block/altar_down"
     }
 }

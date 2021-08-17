@@ -109,7 +109,7 @@ public class EnderHopperBlockEntity extends BlockEntity implements PlayerOwned {
     private static boolean insertIntoEnderChest(World world, EnderHopperBlockEntity enderHopperBlockEntity, Inventory sourceInventory) {
         UUID ownerUUID = enderHopperBlockEntity.getOwnerUUID();
         if(ownerUUID != null) {
-            PlayerEntity playerEntity = world.getPlayerByUuid(enderHopperBlockEntity.getOwnerUUID());
+            PlayerEntity playerEntity = enderHopperBlockEntity.getPlayerEntityIfOnline(world);
             if (playerEntity != null) {
                 for (int i = 0; i < sourceInventory.size(); i++) {
                     ItemStack sourceItemStack = sourceInventory.getStack(i).copy();
@@ -131,7 +131,7 @@ public class EnderHopperBlockEntity extends BlockEntity implements PlayerOwned {
     private static boolean insertIntoEnderChest(World world, EnderHopperBlockEntity enderHopperBlockEntity, ItemEntity itemEntity) {
         UUID ownerUUID = enderHopperBlockEntity.getOwnerUUID();
         if(ownerUUID != null) {
-            PlayerEntity playerEntity = world.getPlayerByUuid(enderHopperBlockEntity.getOwnerUUID());
+            PlayerEntity playerEntity = enderHopperBlockEntity.getPlayerEntityIfOnline(world);
             if (playerEntity != null) {
                 ItemStack sourceItemStack = itemEntity.getStack();
                 if (!sourceItemStack.isEmpty()) {

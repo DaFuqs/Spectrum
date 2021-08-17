@@ -1,10 +1,11 @@
 package de.dafuqs.spectrum.blocks.altar;
 
+import de.dafuqs.spectrum.InventoryHelper;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.Support;
 import de.dafuqs.spectrum.enums.GemstoneColor;
 import de.dafuqs.spectrum.interfaces.PlayerOwned;
-import de.dafuqs.spectrum.inventories.AltarScreenHandler;
+import de.dafuqs.spectrum.inventories.altar.AltarScreenHandler;
 import de.dafuqs.spectrum.inventories.AutoCraftingInventory;
 import de.dafuqs.spectrum.items.misc.CraftingTabletItem;
 import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
@@ -15,8 +16,11 @@ import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import de.dafuqs.spectrum.networking.SpectrumS2CPackets;
 import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
+import io.netty.buffer.ByteBuf;
+import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.LockableContainerBlockEntity;
 import net.minecraft.entity.ExperienceOrbEntity;
 import net.minecraft.entity.ItemEntity;
@@ -25,10 +29,9 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventories;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SidedInventory;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
+import net.minecraft.item.*;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.network.PacketByteBuf;
 import net.minecraft.recipe.*;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
@@ -48,10 +51,11 @@ import java.util.Iterator;
 import java.util.Random;
 import java.util.UUID;
 
-public class AltarBlockEntity extends LockableContainerBlockEntity implements RecipeInputProvider, SidedInventory, PlayerOwned {
+public class AltarBlockEntity extends LockableContainerBlockEntity implements RecipeInputProvider, SidedInventory, PlayerOwned, ExtendedScreenHandlerFactory {
 
     private UUID ownerUUID;
     private String ownerName;
+    private AltarBlock.AltarTier altarTier;
 
     protected DefaultedList<ItemStack> inventory;
 
@@ -72,6 +76,12 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
     public AltarBlockEntity(BlockPos blockPos, BlockState blockState) {
         super(SpectrumBlockEntityRegistry.ALTAR, blockPos, blockState);
 
+        if(blockState.getBlock() instanceof AltarBlock) {
+            this.altarTier = blockState.get(AltarBlock.TIER);
+        } else {
+            this.altarTier = AltarBlock.AltarTier.TIER1;
+        }
+
         if(autoCraftingInventory == null) {
             autoCraftingInventory = new AutoCraftingInventory(3, 3);
         }
@@ -82,8 +92,7 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
             public int get(int index) {
                 return switch (index) {
                     case 0 -> AltarBlockEntity.this.craftingTime;
-                    case 1 -> AltarBlockEntity.this.craftingTimeTotal;
-                    default -> 0;
+                    default -> AltarBlockEntity.this.craftingTimeTotal;
                 };
             }
 
@@ -100,6 +109,15 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
         };
     }
 
+    public AltarBlock.AltarTier getTier() {
+        return this.altarTier;
+    }
+
+    public void setTier(AltarBlock.AltarTier altarTier) {
+        this.altarTier = altarTier;
+        this.propertyDelegate.set(2, altarTier.ordinal());
+    }
+
     @Override
     public Text getContainerName() {
         return new TranslatableText("block.spectrum.altar");
@@ -107,7 +125,7 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
 
     @Override
     protected ScreenHandler createScreenHandler(int syncId, PlayerInventory playerInventory) {
-        return new AltarScreenHandler(syncId, playerInventory, this, this.propertyDelegate);
+        return new AltarScreenHandler(syncId, playerInventory, this, this.propertyDelegate, this.altarTier.ordinal());
     }
 
     @Override
@@ -254,7 +272,7 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
                 altarBlockEntity.craftingTime++;
                 if (altarBlockEntity.craftingTime == altarBlockEntity.craftingTimeTotal) {
                     altarBlockEntity.craftingTime = 0;
-                    craftingFinished = altarBlockEntity.craftAltarRecipe(altarCraftingRecipe, altarBlockEntity.inventory, maxCountPerStack);
+                    craftingFinished = craftAltarRecipe(altarBlockEntity, altarCraftingRecipe, altarBlockEntity.inventory, maxCountPerStack);
                     shouldMarkDirty = true;
                 }
             // Vanilla crafting
@@ -274,35 +292,29 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
                 shouldMarkDirty = true;
             }
 
-            // spawn output item stack in world
+            // try to output the currently stored output stack
             ItemStack outputItemStack = altarBlockEntity.inventory.get(OUTPUT_SLOT_ID);
             if (outputItemStack != ItemStack.EMPTY) {
                 if (world.getBlockState(blockPos.up()).isAir()) {
-                    // spawn crafting output
-                    ItemEntity itemEntity = new ItemEntity(world, altarBlockEntity.pos.getX() + 0.5, altarBlockEntity.pos.getY() + 1, altarBlockEntity.pos.getZ() + 0.5, outputItemStack);
-                    itemEntity.addVelocity(0, 0.1, 0);
-                    world.spawnEntity(itemEntity);
-                    altarBlockEntity.inventory.set(OUTPUT_SLOT_ID, ItemStack.EMPTY);
-
-                    // spawn XP
-                    if(altarBlockEntity.storedXP > 0) {
-                        int spawnedXPAmount = Support.getWholeIntFromFloatWithChance(altarBlockEntity.storedXP, altarBlockEntity.getWorld().random);
-                        ExperienceOrbEntity experienceOrbEntity = new ExperienceOrbEntity(world, altarBlockEntity.pos.getX() + 0.5, altarBlockEntity.pos.getY() + 1, altarBlockEntity.pos.getZ() + 0.5, spawnedXPAmount);
-                        world.spawnEntity(experienceOrbEntity);
-                        altarBlockEntity.storedXP = 0;
-                    }
-
-                    // only triggered on server side. Therefore has to be sent to client via S2C packet
-                    SpectrumS2CPackets.sendPlayAltarCraftingFinishedParticle(world, blockPos, outputItemStack);
-
-                    if(craftingRecipe != null) {
-                        altarBlockEntity.playSound(SpectrumSoundEvents.ALTAR_CRAFT_GENERIC);
-                    } else if(altarCraftingRecipe != null) {
-                        altarBlockEntity.playSound(altarCraftingRecipe.getSoundEvent(world.random));
-                    }
+                    spawnOutputAsItemEntity(world, blockPos, altarBlockEntity, outputItemStack, craftingRecipe, altarCraftingRecipe);
+                    playCraftingFinishedSoundEvent(altarBlockEntity, craftingRecipe, altarCraftingRecipe);
                 } else {
-                    if(craftingFinished) {
-                        altarBlockEntity.playSound(SoundEvents.BLOCK_LAVA_EXTINGUISH);
+                    BlockEntity aboveBlockEntity = world.getBlockEntity(blockPos.up());
+                    if (aboveBlockEntity instanceof Inventory) {
+                        boolean putIntoAboveInventorySuccess = tryPutOutputIntoAboveInventory(world, blockPos, altarBlockEntity, (Inventory) aboveBlockEntity, outputItemStack, craftingRecipe, altarCraftingRecipe);
+                        if(putIntoAboveInventorySuccess) {
+                            playCraftingFinishedSoundEvent(altarBlockEntity, craftingRecipe, altarCraftingRecipe);
+                        } else {
+                            // play sound when the entity can not put it's output anywhere
+                            if (craftingFinished) {
+                                altarBlockEntity.playSound(SoundEvents.BLOCK_LAVA_EXTINGUISH);
+                            }
+                        }
+                    } else {
+                        // play sound when the entity can not put it's output anywhere
+                        if (craftingFinished) {
+                            altarBlockEntity.playSound(SoundEvents.BLOCK_LAVA_EXTINGUISH);
+                        }
                     }
                 }
             }
@@ -310,6 +322,48 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
             if (shouldMarkDirty) {
                 markDirty(world, blockPos, blockState);
             }
+        }
+    }
+
+    public static AltarBlock.AltarTier getTier(AltarBlockEntity altarBlockEntity) {
+        return altarBlockEntity.altarTier;
+    }
+
+    public static void spawnOutputAsItemEntity(World world, BlockPos blockPos, AltarBlockEntity altarBlockEntity, ItemStack outputItemStack, CraftingRecipe craftingRecipe, AltarCraftingRecipe altarCraftingRecipe) {
+        // spawn crafting output
+        ItemEntity itemEntity = new ItemEntity(world, altarBlockEntity.pos.getX() + 0.5, altarBlockEntity.pos.getY() + 1, altarBlockEntity.pos.getZ() + 0.5, outputItemStack);
+        itemEntity.addVelocity(0, 0.1, 0);
+        world.spawnEntity(itemEntity);
+        altarBlockEntity.inventory.set(OUTPUT_SLOT_ID, ItemStack.EMPTY);
+
+        // spawn XP
+        if (altarBlockEntity.storedXP > 0) {
+            int spawnedXPAmount = Support.getWholeIntFromFloatWithChance(altarBlockEntity.storedXP, altarBlockEntity.getWorld().random);
+            ExperienceOrbEntity experienceOrbEntity = new ExperienceOrbEntity(world, altarBlockEntity.pos.getX() + 0.5, altarBlockEntity.pos.getY() + 1, altarBlockEntity.pos.getZ() + 0.5, spawnedXPAmount);
+            world.spawnEntity(experienceOrbEntity);
+            altarBlockEntity.storedXP = 0;
+        }
+
+        // only triggered on server side. Therefore, has to be sent to client via S2C packet
+        SpectrumS2CPackets.sendPlayAltarCraftingFinishedParticle(world, blockPos, outputItemStack);
+    }
+
+    public static boolean tryPutOutputIntoAboveInventory(World world, BlockPos blockPos, AltarBlockEntity altarBlockEntity, Inventory targetInventory, ItemStack outputItemStack, CraftingRecipe craftingRecipe, AltarCraftingRecipe altarCraftingRecipe) {
+        ItemStack remainingStack = InventoryHelper.addToInventory(outputItemStack, targetInventory, Direction.DOWN);
+        if(remainingStack.isEmpty()) {
+            altarBlockEntity.inventory.set(OUTPUT_SLOT_ID, ItemStack.EMPTY);
+            return true;
+        } else {
+            altarBlockEntity.inventory.set(OUTPUT_SLOT_ID, remainingStack);
+            return false;
+        }
+    }
+
+    public static void playCraftingFinishedSoundEvent(AltarBlockEntity altarBlockEntity, @Nullable CraftingRecipe craftingRecipe, @Nullable AltarCraftingRecipe altarCraftingRecipe) {
+        if (craftingRecipe != null) {
+            altarBlockEntity.playSound(SpectrumSoundEvents.ALTAR_CRAFT_GENERIC);
+        } else if (altarCraftingRecipe != null) {
+            altarBlockEntity.playSound(altarCraftingRecipe.getSoundEvent(altarBlockEntity.world.random));
         }
     }
 
@@ -380,7 +434,7 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
         }
     }
 
-    private boolean craftAltarRecipe(@Nullable AltarCraftingRecipe recipe, DefaultedList<ItemStack> defaultedList, int maxCountPerStack) {
+    private static boolean craftAltarRecipe(AltarBlockEntity altarBlockEntity, @Nullable AltarCraftingRecipe recipe, DefaultedList<ItemStack> defaultedList, int maxCountPerStack) {
         if (canAcceptRecipeOutput(recipe, defaultedList, maxCountPerStack)) {
 
             // -1 for all crafting inputs
@@ -391,31 +445,42 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
                     if(recipeReminderItem == null) {
                         itemStack.decrement(1);
                     } else {
-                        inventory.set(i, new ItemStack(recipeReminderItem, 1));
+                        altarBlockEntity.inventory.set(i, new ItemStack(recipeReminderItem, 1));
                     }
                 }
             }
 
-            // -X for all the spectrum inputs
+            // -X for all the pigment inputs
             for(GemstoneColor gemstoneColor : GemstoneColor.values()) {
-                int spectrumAmount = recipe.getSpectrumColor(gemstoneColor);
-                inventory.get(getSlotForSpectrumColor(gemstoneColor)).decrement(spectrumAmount);
+                int gemstonePowderAmount = recipe.getGemstonePowderAmount(gemstoneColor);
+                altarBlockEntity.inventory.get(getSlotForGemstonePowder(gemstoneColor)).decrement(gemstonePowderAmount);
             }
 
             ItemStack recipeOutput = recipe.getOutput();
-            ItemStack existingOutput = defaultedList.get(OUTPUT_SLOT_ID);
-            if (existingOutput.isEmpty()) {
-                defaultedList.set(OUTPUT_SLOT_ID, recipeOutput.copy());
+
+            // if it was a recipe to upgrade the altar itself
+            // => upgrade
+            AltarBlock.AltarTier newAltarTier = AltarCraftingRecipe.getAltarUpgradeTierForOutput(recipeOutput);
+            if(newAltarTier != null && newAltarTier.ordinal() > getTier(altarBlockEntity).ordinal()) {
+                // It is an upgrade recipe (output is an altar block item)
+                // => Upgrade
+                AltarBlock.upgradeToTier(altarBlockEntity.world, altarBlockEntity.getPos(), newAltarTier);
             } else {
-                existingOutput.increment(recipeOutput.getCount());
-                defaultedList.set(OUTPUT_SLOT_ID, existingOutput);
+                // Not an upgrade recipe => Add output to output slot
+                ItemStack existingOutput = defaultedList.get(OUTPUT_SLOT_ID);
+                if (existingOutput.isEmpty()) {
+                    defaultedList.set(OUTPUT_SLOT_ID, recipeOutput.copy());
+                } else {
+                    existingOutput.increment(recipeOutput.getCount());
+                    defaultedList.set(OUTPUT_SLOT_ID, existingOutput);
+                }
             }
 
             // Add recipe XP
-            storedXP = recipe.getExperience();
+            altarBlockEntity.storedXP = recipe.getExperience();
 
             // if the recipe unlocks an advancement unlock it
-            grantPlayerCraftingAdvancement(recipe);
+            altarBlockEntity.grantPlayerCraftingAdvancement(recipe);
 
             return true;
         } else {
@@ -483,7 +548,7 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
         };
     }
 
-    public static int getSlotForSpectrumColor(GemstoneColor gemstoneColor) {
+    public static int getSlotForGemstonePowder(GemstoneColor gemstoneColor) {
         return switch (gemstoneColor) {
             case CYAN -> 9;
             case MAGENTA -> 10;
@@ -500,7 +565,17 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
         } else if(side == Direction.UP) {
             return new int[]{0, 1, 2, 3, 4, 5, 6, 7, 8};
         } else {
-            return new int[]{9, 10, 11, 12, 13};
+            switch (this.altarTier) {
+                case TIER1 -> {
+                    return new int[]{9, 10, 11};
+                }
+                case TIER2 -> {
+                    return new int[]{9, 10, 11, 12};
+                }
+                default -> {
+                    return new int[]{9, 10, 11, 12, 13};
+                }
+            }
         }
     }
 
@@ -585,5 +660,10 @@ public class AltarBlockEntity extends LockableContainerBlockEntity implements Re
         } else {
             return recipe.getOutput();
         }
+    }
+
+    @Override
+    public void writeScreenOpeningData(ServerPlayerEntity player, PacketByteBuf buf) {
+        buf.writeInt(this.altarTier.ordinal());
     }
 }

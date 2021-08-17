@@ -5,6 +5,7 @@ import com.google.common.collect.EnumHashBiMap;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.blocks.altar.AltarBlock;
+import de.dafuqs.spectrum.blocks.altar.AltarBlockItem;
 import de.dafuqs.spectrum.blocks.chests.CompactingChestBlock;
 import de.dafuqs.spectrum.blocks.chests.PrivateChestBlock;
 import de.dafuqs.spectrum.blocks.chests.RestockingChestBlock;
@@ -199,10 +200,8 @@ public class SpectrumBlocks {
     public static final Block GLOWING_GLASS = new GemGlassBlock(FabricBlockSettings.copy(Blocks.GLASS).luminance(value -> 12));
 
     // ALTAR
-    private static final FabricBlockSettings altarSettings = FabricBlockSettings.of(Material.STONE).requiresTool().strength(5.0F, 20.0F);
+    private static final FabricBlockSettings altarSettings = FabricBlockSettings.of(Material.STONE).strength(5.0F, 20.0F);
     public static final Block ALTAR = new AltarBlock(altarSettings);
-    public static final Block ALTAR2 = new AltarBlock(altarSettings);
-    public static final Block ALTAR3 = new AltarBlock(altarSettings);
 
     // PLAYER GLASS
     public static final Block VANILLA_PLAYER_ONLY_GLASS = new PlayerOnlyGlassBlock(FabricBlockSettings.copy(Blocks.GLASS).nonOpaque().allowsSpawning(SpectrumBlocks::never).solidBlock(SpectrumBlocks::never).suffocates(SpectrumBlocks::never).blockVision(SpectrumBlocks::never), false);
@@ -583,9 +582,10 @@ public class SpectrumBlocks {
     }
 
     public static void register() {
-        registerBlockWithItem("altar", ALTAR, generalItemSettings);
-        registerBlockWithItem("altar2", ALTAR2, generalItemSettings);
-        registerBlockWithItem("altar3", ALTAR3, generalItemSettings);
+        registerBlock("altar", ALTAR);
+        Registry.register(Registry.ITEM, new Identifier(SpectrumCommon.MOD_ID, "altar"), new AltarBlockItem(ALTAR, generalItemSettings, AltarBlock.AltarTier.TIER1));
+        Registry.register(Registry.ITEM, new Identifier(SpectrumCommon.MOD_ID, "altar2"), new AltarBlockItem(ALTAR, generalItemSettings, AltarBlock.AltarTier.TIER2));
+        Registry.register(Registry.ITEM, new Identifier(SpectrumCommon.MOD_ID, "altar3"), new AltarBlockItem(ALTAR, generalItemSettings, AltarBlock.AltarTier.TIER3));
 
         registerStoneBlocks(decorationItemSettings);
         registerGemBlocks(worldgenItemSettings);

@@ -157,11 +157,11 @@ public class AltarCraftingRecipeSerializer<T extends AltarCraftingRecipe> implem
         packetByteBuf.writeItemStack(altarCraftingRecipe.output);
 
         packetByteBuf.writeInt(altarCraftingRecipe.tier);
-        packetByteBuf.writeInt(altarCraftingRecipe.getSpectrumColor(GemstoneColor.MAGENTA));
-        packetByteBuf.writeInt(altarCraftingRecipe.getSpectrumColor(GemstoneColor.CYAN));
-        packetByteBuf.writeInt(altarCraftingRecipe.getSpectrumColor(GemstoneColor.YELLOW));
-        packetByteBuf.writeInt(altarCraftingRecipe.getSpectrumColor(GemstoneColor.BLACK));
-        packetByteBuf.writeInt(altarCraftingRecipe.getSpectrumColor(GemstoneColor.WHITE));
+        packetByteBuf.writeInt(altarCraftingRecipe.getGemstonePowderAmount(GemstoneColor.MAGENTA));
+        packetByteBuf.writeInt(altarCraftingRecipe.getGemstonePowderAmount(GemstoneColor.CYAN));
+        packetByteBuf.writeInt(altarCraftingRecipe.getGemstonePowderAmount(GemstoneColor.YELLOW));
+        packetByteBuf.writeInt(altarCraftingRecipe.getGemstonePowderAmount(GemstoneColor.BLACK));
+        packetByteBuf.writeInt(altarCraftingRecipe.getGemstonePowderAmount(GemstoneColor.WHITE));
 
         packetByteBuf.writeFloat(altarCraftingRecipe.experience);
         packetByteBuf.writeInt(altarCraftingRecipe.craftingTime);

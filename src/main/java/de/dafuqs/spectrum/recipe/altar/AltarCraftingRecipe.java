@@ -3,6 +3,8 @@ package de.dafuqs.spectrum.recipe.altar;
 import de.dafuqs.spectrum.SpectrumClient;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.Support;
+import de.dafuqs.spectrum.blocks.altar.AltarBlock;
+import de.dafuqs.spectrum.blocks.altar.AltarBlockItem;
 import de.dafuqs.spectrum.enums.GemstoneColor;
 import de.dafuqs.spectrum.progression.ClientAltarRecipeToastManager;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
@@ -196,7 +198,7 @@ public class AltarCraftingRecipe implements Recipe<Inventory> {
         return SpectrumRecipeTypes.ALTAR;
     }
 
-    public int getSpectrumColor(GemstoneColor gemstoneColor) {
+    public int getGemstonePowderAmount(GemstoneColor gemstoneColor) {
         return gemstoneDustInputs.getOrDefault(gemstoneColor, 0);
     }
 
@@ -287,6 +289,14 @@ public class AltarCraftingRecipe implements Recipe<Inventory> {
             default -> {
                 return false;
             }
+        }
+    }
+
+    public static AltarBlock.AltarTier getAltarUpgradeTierForOutput(ItemStack outputItemStack) {
+        if(outputItemStack.getItem() instanceof AltarBlockItem) {
+            return ((AltarBlockItem) outputItemStack.getItem()).getAltarTier();
+        } else {
+            return null;
         }
     }
 

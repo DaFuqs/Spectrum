@@ -1,6 +1,8 @@
 package de.dafuqs.spectrum.interfaces;
 
+import dev.architectury.event.events.common.TickEvent;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.World;
 
 import java.util.UUID;
 
@@ -21,6 +23,13 @@ public interface PlayerOwned {
 
     public default boolean isOwner(PlayerEntity playerEntity) {
         return playerEntity.getUuid().equals(getOwnerUUID());
+    }
+
+    public default PlayerEntity getPlayerEntityIfOnline(World world) {
+        if(this.getOwnerUUID() != null) {
+            return world.getPlayerByUuid(this.getOwnerUUID());
+        }
+        return null;
     }
 
 }

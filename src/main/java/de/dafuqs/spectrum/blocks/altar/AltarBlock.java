@@ -4,16 +4,14 @@ import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockRenderType;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.BlockWithEntity;
+import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particle.DustParticleEffect;
@@ -38,6 +36,7 @@ import java.util.Random;
 public class AltarBlock extends BlockWithEntity {
 
     public static final EnumProperty<AltarState> STATE = EnumProperty.of("state", AltarState.class);
+    public static final EnumProperty<AltarTier> TIER = EnumProperty.of("tier", AltarTier.class);
 
     public enum AltarState implements StringIdentifiable {
         DEFAULT("default"),
@@ -58,9 +57,29 @@ public class AltarBlock extends BlockWithEntity {
         }
     }
 
+    public enum AltarTier implements StringIdentifiable {
+        TIER1("tier1"),
+        TIER2("tier2"),
+        TIER3("tier3");
+
+        private final String name;
+
+        private AltarTier(String name) {
+            this.name = name;
+        }
+
+        public String toString() {
+            return this.name;
+        }
+
+        public String asString() {
+            return this.name;
+        }
+    }
+
     public AltarBlock(Settings settings) {
         super(settings);
-        setDefaultState(getStateManager().getDefaultState().with(STATE, AltarState.DEFAULT));
+        setDefaultState(getStateManager().getDefaultState().with(STATE, AltarState.DEFAULT).with(TIER, AltarTier.TIER1));
     }
 
     public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
@@ -76,6 +95,7 @@ public class AltarBlock extends BlockWithEntity {
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> stateManager) {
         stateManager.add(STATE);
+        stateManager.add(TIER);
     }
 
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
@@ -101,15 +121,30 @@ public class AltarBlock extends BlockWithEntity {
     }
 
     public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
-        if (!state.isOf(newState.getBlock())) {
+        if(state.isOf(newState.getBlock())) {
+            BlockEntity blockEntity = world.getBlockEntity(pos);
+            if (blockEntity instanceof AltarBlockEntity) {
+                AltarTier altarTier = newState.get(AltarBlock.TIER);
+                if(((AltarBlockEntity) blockEntity).getTier() != altarTier) {
+                    ((AltarBlockEntity) blockEntity).setTier(altarTier);
+                }
+            }
+        } else {
             BlockEntity blockEntity = world.getBlockEntity(pos);
             if (blockEntity instanceof AltarBlockEntity) {
                 ItemScatterer.spawn(world, pos, (Inventory)blockEntity);
                 world.updateComparators(pos, this);
             }
-
             super.onStateReplaced(state, world, pos, newState, moved);
         }
+    }
+
+    /**
+     * Sets altar to a new tier
+     * while keeping the inventory and all other data
+     */
+    public static void upgradeToTier(World world, BlockPos blockPos, AltarBlock.AltarTier newAltarTier) {
+        world.setBlockState(blockPos, world.getBlockState(blockPos).with(TIER, newAltarTier));
     }
 
     @Nullable
@@ -180,11 +215,11 @@ public class AltarBlock extends BlockWithEntity {
     }
 
     public void power(World world, BlockPos pos) {
-        world.setBlockState(pos, SpectrumBlocks.ALTAR.getDefaultState().with(AltarBlock.STATE, AltarState.REDSTONE));
+        world.setBlockState(pos, world.getBlockState(pos).with(AltarBlock.STATE, AltarState.REDSTONE));
     }
 
     public void unPower(World world, BlockPos pos) {
-        world.setBlockState(pos, SpectrumBlocks.ALTAR.getDefaultState().with(AltarBlock.STATE, AltarState.DEFAULT));
+        world.setBlockState(pos, world.getBlockState(pos).with(AltarBlock.STATE, AltarState.DEFAULT));
     }
 
     @Environment(EnvType.CLIENT)
@@ -198,12 +233,22 @@ public class AltarBlock extends BlockWithEntity {
     }
 
     public BlockState getPlacementState(ItemPlacementContext ctx) {
-        int power = ctx.getWorld().getReceivedRedstonePower(ctx.getBlockPos());
-        if(power == 0) {
-            return this.getDefaultState();
-        } else {
-            return this.getDefaultState().with(STATE, AltarState.REDSTONE);
+        BlockState placementState = this.getDefaultState();
+
+        Item placementItem = ctx.getStack().getItem();
+        if(placementItem instanceof AltarBlockItem) {
+            AltarTier tier = ((AltarBlockItem) placementItem).getAltarTier();
+            if(tier != null) {
+                placementState = placementState.with(TIER, tier);
+            }
         }
+
+        int power = ctx.getWorld().getReceivedRedstonePower(ctx.getBlockPos());
+        if(power > 0) {
+            placementState = placementState.with(STATE, AltarState.REDSTONE);
+        }
+
+        return placementState;
     }
 
 }

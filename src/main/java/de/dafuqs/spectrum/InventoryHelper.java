@@ -6,6 +6,7 @@ import net.minecraft.block.ChestBlock;
 import net.minecraft.block.InventoryProvider;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.ChestBlockEntity;
+import net.minecraft.block.entity.FurnaceBlockEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SidedInventory;
@@ -44,6 +45,53 @@ public class InventoryHelper {
             }
         }
         return false;
+    }
+
+    /**
+     * Adds a single itemstack to an inventory
+     * @param itemStack the itemstack to add
+     * @param inventory the inventory to add to
+     * @return The remaining stack that could not be added
+     */
+    public static ItemStack addToInventory(ItemStack itemStack, Inventory inventory, @Nullable Direction side) {
+        if(inventory instanceof SidedInventory && side != null) {
+            int[] acceptableSlots = ((SidedInventory) inventory).getAvailableSlots(side);
+            for(int acceptableSlot : acceptableSlots) {
+                if (((SidedInventory) inventory).canInsert(acceptableSlot, itemStack, side)) {
+                    ItemStack existingItemStack = inventory.getStack(acceptableSlot);
+                    inventory.setStack(acceptableSlot, combineStacks(existingItemStack, itemStack));
+                    if (itemStack.isEmpty()) {
+                        break;
+                    }
+                }
+            }
+        } else {
+            for(int i = 0; i < inventory.size(); i++) {
+                ItemStack existingItemStack = inventory.getStack(i);
+                if(existingItemStack.isEmpty()) {
+                    inventory.setStack(i, itemStack);
+                    return ItemStack.EMPTY;
+                } else {
+                    inventory.setStack(i, combineStacks(existingItemStack, itemStack));
+                    if(itemStack.isEmpty()) {
+                        break;
+                    }
+                }
+            }
+        }
+        return itemStack;
+    }
+
+    public static ItemStack combineStacks(ItemStack originalStack, ItemStack addingStack) {
+        if(ItemStack.canCombine(originalStack, addingStack)) {
+            int leftOverAmountInExistingStack = originalStack.getMaxCount() - originalStack.getCount();
+            if(leftOverAmountInExistingStack > 0) {
+                int addAmount = Math.min(leftOverAmountInExistingStack, addingStack.getCount());
+                originalStack.increment(addAmount);
+                addingStack.decrement(addAmount);
+            }
+        }
+        return originalStack;
     }
 
     public static boolean addToInventory(List<ItemStack> itemStacks, List<ItemStack> inventory, boolean test) {

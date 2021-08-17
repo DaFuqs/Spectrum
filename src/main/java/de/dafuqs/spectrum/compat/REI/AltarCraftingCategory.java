@@ -2,7 +2,7 @@ package de.dafuqs.spectrum.compat.REI;
 
 import com.google.common.collect.Lists;
 import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.inventories.AltarScreen;
+import de.dafuqs.spectrum.inventories.altar.AltarScreen;
 import de.dafuqs.spectrum.recipe.altar.AltarCraftingRecipe;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import me.shedaniel.math.Point;
@@ -28,7 +28,7 @@ import java.util.List;
 
 public class AltarCraftingCategory<R extends AltarCraftingRecipe> implements DisplayCategory<AltarCraftingRecipeDisplay<R>> {
 
-    final Identifier GUI_TEXTURE = AltarScreen.BACKGROUND;
+    final Identifier GUI_TEXTURE = AltarScreen.BACKGROUND1;
 
     public static final CategoryIdentifier ID = CategoryIdentifier.of(new Identifier(SpectrumCommon.MOD_ID, "altar_crafting"));
 

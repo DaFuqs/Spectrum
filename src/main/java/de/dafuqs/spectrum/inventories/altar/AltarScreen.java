@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.inventories;
+package de.dafuqs.spectrum.inventories.altar;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import de.dafuqs.spectrum.SpectrumCommon;
@@ -11,11 +11,27 @@ import net.minecraft.util.Identifier;
 
 public class AltarScreen extends HandledScreen<AltarScreenHandler> {
 
-    public static final Identifier BACKGROUND = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/container/altar.png");
+    public static final Identifier BACKGROUND1 = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/container/altar1.png");
+    public static final Identifier BACKGROUND2 = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/container/altar2.png");
+    public static final Identifier BACKGROUND3 = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/container/altar3.png");
+
+    private final Identifier backgroundTexture;
 
     public AltarScreen(AltarScreenHandler handler, PlayerInventory playerInventory, Text title) {
         super(handler, playerInventory, title);
         this.backgroundHeight = 194;
+
+        switch (this.handler.getAltarTierOrdinal()) {
+            case 0 -> {
+                backgroundTexture = BACKGROUND1;
+            }
+            case 1 -> {
+                backgroundTexture = BACKGROUND2;
+            }
+            default -> {
+                backgroundTexture = BACKGROUND3;
+            }
+        }
     }
 
     @Override
@@ -34,8 +50,8 @@ public class AltarScreen extends HandledScreen<AltarScreenHandler> {
     @Override
     protected void drawBackground(MatrixStack matrices, float delta, int mouseX, int mouseY) {
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
-        RenderSystem.setShaderTexture(0, BACKGROUND);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
+        RenderSystem.setShaderTexture(0, backgroundTexture);
 
         int x = (width - backgroundWidth) / 2;
         int y = (height - backgroundHeight) / 2;

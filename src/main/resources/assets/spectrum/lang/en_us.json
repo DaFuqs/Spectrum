@@ -629,8 +629,8 @@
   "container.spectrum.rei.anvil_crushing.plus_xp": "+%f XP",
 
   "block.spectrum.altar": "Pigment Pedestal",
-  "block.spectrum.altar2": "Pigment Pedestal",
-  "block.spectrum.altar3": "Pigment Pedestal",
+  "item.spectrum.altar.tooltip.tier2": "Onyx Variant",
+  "item.spectrum.altar.tooltip.tier3": "Moonstone Variant",
   "block.spectrum.altar.title_with_owner": "Pigment Pedestal of %s",
 
   "block.spectrum.ender_glass": "Ender Glass",

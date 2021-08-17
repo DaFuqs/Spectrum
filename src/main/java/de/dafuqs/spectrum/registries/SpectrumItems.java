@@ -5,6 +5,7 @@ import de.dafuqs.spectrum.blocks.gravity.GravityItem;
 import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
 import de.dafuqs.spectrum.enums.GemstoneColor;
 import de.dafuqs.spectrum.items.PigmentItem;
+import de.dafuqs.spectrum.items.StructurePlacerItem;
 import de.dafuqs.spectrum.items.armor.EmergencyArmorItem;
 import de.dafuqs.spectrum.items.armor.GlowVisionHelmet;
 import de.dafuqs.spectrum.items.armor.SpectrumArmorItem;
@@ -51,6 +52,10 @@ public class SpectrumItems {
 	// Main items
     public static final Item MANUAL = new ManualItem(generalItemSettingsSingle);
     public static final Item CRAFTING_TABLET = new CraftingTabletItem(generalItemSettingsSingle);
+
+    public static final Item ALTAR_TIER_1_STRUCTURE_PLACER = new StructurePlacerItem(generalItemSettingsSingle);
+    public static final Item ALTAR_TIER_2_STRUCTURE_PLACER = new StructurePlacerItem(generalItemSettingsSingle);
+    public static final Item ALTAR_TIER_3_STRUCTURE_PLACER = new StructurePlacerItem(generalItemSettingsSingle);
 
     // Gem shards
     public static final Item TOPAZ_SHARD_ITEM = new Item(spectrumWorldgenItemSettings);
@@ -183,8 +188,12 @@ public class SpectrumItems {
     public static void register() {
         register("manual", MANUAL);
         register("crafting_tablet", CRAFTING_TABLET);
-		
-		registerGemstoneItems();
+
+        register("altar_tier_1_structure_placer", ALTAR_TIER_1_STRUCTURE_PLACER);
+        register("altar_tier_2_structure_placer", ALTAR_TIER_2_STRUCTURE_PLACER);
+        register("altar_tier_3_structure_placer", ALTAR_TIER_3_STRUCTURE_PLACER);
+
+        registerGemstoneItems();
 		registerPigments();
 		registerCatkin();
 		registerResources();

@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.items.misc;
 import de.dafuqs.spectrum.SpectrumClient;
 import de.dafuqs.spectrum.Support;
 import de.dafuqs.spectrum.sound.EnderSpliceChargingSoundInstance;
-import de.dafuqs.spectrum.sound.NaturesStaffUseSoundInstance;
 import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;

@@ -1,16 +1,10 @@
 package de.dafuqs.spectrum.worldgen;
 
-import com.mojang.serialization.Codec;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.mixin.BlockPlacerTypeAccessor;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
-import net.minecraft.world.gen.placer.BlockPlacer;
 import net.minecraft.world.gen.placer.BlockPlacerType;
-import org.lwjgl.system.CallbackI;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class SpectrumBlockPlacerTypes {
 

@@ -1,9 +1,7 @@
 package de.dafuqs.spectrum.items.armor;
 
 import de.dafuqs.spectrum.interfaces.ArmorWithHitEffect;
-import de.dafuqs.spectrum.registries.SpectrumDefaultEnchantments;
 import net.minecraft.client.item.TooltipContext;
-import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;

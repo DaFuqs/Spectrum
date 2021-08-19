@@ -1,8 +1,8 @@
 package de.dafuqs.spectrum.progression;
 
-import de.dafuqs.spectrum.progression.advancement.PedestalCraftingCriterion;
 import de.dafuqs.spectrum.progression.advancement.HadRevelationCriterion;
 import de.dafuqs.spectrum.progression.advancement.HasAdvancementCriterion;
+import de.dafuqs.spectrum.progression.advancement.PedestalCraftingCriterion;
 import net.fabricmc.fabric.mixin.object.builder.CriteriaAccessor;
 
 public class SpectrumAdvancementCriteria {

@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.interfaces;
 
-import dev.architectury.event.events.common.TickEvent;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.world.World;
 

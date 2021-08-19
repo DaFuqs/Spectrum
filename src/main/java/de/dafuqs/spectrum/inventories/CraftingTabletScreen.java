@@ -11,7 +11,7 @@ import net.minecraft.util.Identifier;
 
 public class CraftingTabletScreen extends HandledScreen<CraftingTabletScreenHandler> {
 
-    public static final Identifier BACKGROUND = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/container/altar.png");
+    public static final Identifier BACKGROUND = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/container/pedestal.png");
 
     public CraftingTabletScreen(CraftingTabletScreenHandler handler, PlayerInventory playerInventory, Text title) {
         super(handler, playerInventory, title);

@@ -1,6 +1,6 @@
 {
   "name": "Detectors",
-  "advancement": "spectrum:craft_using_altar",
+  "advancement": "spectrum:craft_using_pedestal",
   "icon": "spectrum:player_detector",
   "category": "spectrum:redstone_category",
   "extra_recipe_mappings": {

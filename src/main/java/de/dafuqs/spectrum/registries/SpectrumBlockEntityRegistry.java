@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.blocks.altar.AltarBlockEntity;
+import de.dafuqs.spectrum.blocks.pedestal.PedestalBlockEntity;
 import de.dafuqs.spectrum.blocks.chests.CompactingChestBlockEntity;
 import de.dafuqs.spectrum.blocks.chests.PrivateChestBlockEntity;
 import de.dafuqs.spectrum.blocks.chests.RestockingChestBlockEntity;
@@ -30,7 +30,7 @@ import java.util.List;
 public class SpectrumBlockEntityRegistry<T extends BlockEntity> {
 
     public static BlockEntityType<OminousSaplingBlockEntity> OMINOUS_SAPLING;
-    public static BlockEntityType<AltarBlockEntity> ALTAR;
+    public static BlockEntityType<PedestalBlockEntity> PEDESTAL;
     public static BlockEntityType<PlayerDetectorBlockEntity> PLAYER_DETECTOR;
     public static BlockEntityType<EnderDropperBlockEntity> ENDER_DROPPER;
     public static BlockEntityType<EnderHopperBlockEntity> ENDER_HOPPER;
@@ -43,7 +43,7 @@ public class SpectrumBlockEntityRegistry<T extends BlockEntity> {
 
     public static void register() {
         OMINOUS_SAPLING = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "ominous_sapling_block_entity"), FabricBlockEntityTypeBuilder.create(OminousSaplingBlockEntity::new, SpectrumBlocks.OMINOUS_SAPLING).build());
-        ALTAR = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "altar_block_entity"), FabricBlockEntityTypeBuilder.create(AltarBlockEntity::new, SpectrumBlocks.ALTAR).build());
+        PEDESTAL = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "pedestal_block_entity"), FabricBlockEntityTypeBuilder.create(PedestalBlockEntity::new, SpectrumBlocks.PEDESTAL).build());
         PLAYER_DETECTOR = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "player_detector"), FabricBlockEntityTypeBuilder.create(PlayerDetectorBlockEntity::new, SpectrumBlocks.PLAYER_DETECTOR).build());
         ENDER_DROPPER = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "ender_dropper"), FabricBlockEntityTypeBuilder.create(EnderDropperBlockEntity::new, SpectrumBlocks.ENDER_DROPPER).build());
         ENDER_HOPPER = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "ender_hopper"), FabricBlockEntityTypeBuilder.create(EnderHopperBlockEntity::new, SpectrumBlocks.ENDER_HOPPER).build());

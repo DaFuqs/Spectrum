@@ -1,0 +1,40 @@
+{
+  "variants": {
+    "variant=basic_topaz,state=unpowered": {
+      "model": "spectrum:block/pedestal_basic_topaz_unpowered"
+    },
+    "variant=basic_amethyst,state=unpowered": {
+      "model": "spectrum:block/pedestal_basic_amethyst_unpowered"
+    },
+    "variant=basic_citrine,state=unpowered": {
+      "model": "spectrum:block/pedestal_basic_citrine_unpowered"
+    },
+    "variant=basic_topaz,state=powered": {
+      "model": "spectrum:block/pedestal_basic_topaz_powered"
+    },
+    "variant=basic_amethyst,state=powered": {
+      "model": "spectrum:block/pedestal_basic_amethyst_powered"
+    },
+    "variant=basic_citrine,state=powered": {
+      "model": "spectrum:block/pedestal_basic_citrine_powered"
+    },
+    "variant=all_basic,state=unpowered": {
+      "model": "spectrum:block/pedestal_all_basic_unpowered"
+    },
+    "variant=all_basic,state=powered": {
+      "model": "spectrum:block/pedestal_all_basic_powered"
+    },
+    "variant=onyx,state=unpowered": {
+      "model": "spectrum:block/pedestal_onyx_unpowered"
+    },
+    "variant=onyx,state=powered": {
+      "model": "spectrum:block/pedestal_onyx_powered"
+    },
+    "variant=moonstone,state=unpowered": {
+      "model": "spectrum:block/pedestal_moonstone_unpowered"
+    },
+    "variant=moonstone,state=powered": {
+      "model": "spectrum:block/pedestal_moonstone_powered"
+    }
+  }
+}

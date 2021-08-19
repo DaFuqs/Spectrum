@@ -1,8 +1,8 @@
 package de.dafuqs.spectrum.compat.REI;
 
-import de.dafuqs.spectrum.inventories.altar.AltarScreen;
+import de.dafuqs.spectrum.inventories.PedestalScreen;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
-import de.dafuqs.spectrum.recipe.altar.AltarCraftingRecipe;
+import de.dafuqs.spectrum.recipe.pedestal.PedestalCraftingRecipe;
 import de.dafuqs.spectrum.recipe.anvil_crushing.AnvilCrushingRecipe;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import me.shedaniel.math.Rectangle;
@@ -21,11 +21,11 @@ public class REIIntegration implements REIClientPlugin {
 
     @Override
     public void registerCategories(CategoryRegistry registry) {
-        registry.add(new AltarCraftingCategory<>());
+        registry.add(new PedestalCraftingCategory<>());
         registry.add(new AnvilCrushingCategory<>());
 
-        registry.addWorkstations(BuiltinPlugin.CRAFTING, EntryStacks.of(SpectrumBlocks.ALTAR)); //, EntryStacks.of(SpectrumBlocks.ALTAR2), EntryStacks.of(SpectrumBlocks.ALTAR3));
-        registry.addWorkstations(AltarCraftingCategory.ID, EntryStacks.of(SpectrumBlocks.ALTAR)); //, EntryStacks.of(SpectrumBlocks.ALTAR2), EntryStacks.of(SpectrumBlocks.ALTAR3));
+        registry.addWorkstations(BuiltinPlugin.CRAFTING, EntryStacks.of(SpectrumBlocks.PEDESTAL));
+        registry.addWorkstations(PedestalCraftingCategory.ID, EntryStacks.of(SpectrumBlocks.PEDESTAL));
         registry.addWorkstations(AnvilCrushingCategory.ID, EntryStacks.of(Blocks.ANVIL), EntryStacks.of(SpectrumBlocks.BEDROCK_ANVIL));
 
         // Since anvil crushing is an in world recipe there is no gui to fill
@@ -36,7 +36,7 @@ public class REIIntegration implements REIClientPlugin {
     @Override
     public void registerDisplays(DisplayRegistry registry) {
         registry.registerFiller(AnvilCrushingRecipe.class, AnvilCrushingRecipeDisplay::new);
-        registry.registerRecipeFiller(AltarCraftingRecipe.class, SpectrumRecipeTypes.ALTAR, AltarCraftingRecipeDisplay::new);
+        registry.registerRecipeFiller(PedestalCraftingRecipe.class, SpectrumRecipeTypes.PEDESTAL, PedestalCraftingRecipeDisplay::new);
     }
 
     /**
@@ -45,10 +45,10 @@ public class REIIntegration implements REIClientPlugin {
      */
     @Override
     public void registerScreens(ScreenRegistry registry) {
-        // Since the altar can craft both vanilla and altar recipes
+        // Since the pedestal can craft both vanilla and pedestal recipes
         // we have to split the "arrow" part of the gui into two parts
-        registry.registerContainerClickArea(new Rectangle(89, 37, 11, 15), AltarScreen.class, BuiltinPlugin.CRAFTING);
-        registry.registerContainerClickArea(new Rectangle(100, 37, 11, 15), AltarScreen.class, AltarCraftingCategory.ID);
+        registry.registerContainerClickArea(new Rectangle(89, 37, 11, 15), PedestalScreen.class, BuiltinPlugin.CRAFTING);
+        registry.registerContainerClickArea(new Rectangle(100, 37, 11, 15), PedestalScreen.class, PedestalCraftingCategory.ID);
     }
 
 }

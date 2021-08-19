@@ -1,0 +1,32 @@
+{
+  "type": "spectrum_pedestal",
+  "time": 240,
+  "tier": 1,
+  "magenta": 4,
+  "yellow": 0,
+  "cyan": 4,
+  "black": 0,
+  "white": 0,
+  "experience": 2.0,
+  "pattern": [
+    "OOO",
+    "TET",
+    "OOO"
+  ],
+  "key": {
+    "O": {
+      "item": "minecraft:obsidian"
+    },
+    "E": {
+      "item": "minecraft:ender_eye"
+    },
+    "T": {
+      "item": "spectrum:ender_treasure"
+    }
+  },
+  "result" : {
+    "item": "spectrum:ender_bag",
+    "count": 1
+  },
+  "required_advancements": ["spectrum:collect_ender_treasure", "spectrum:hidden/collect_vanilla/collect_ender_eye"]
+}

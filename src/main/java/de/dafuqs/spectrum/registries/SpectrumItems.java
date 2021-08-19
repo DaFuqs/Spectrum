@@ -53,9 +53,9 @@ public class SpectrumItems {
     public static final Item MANUAL = new ManualItem(generalItemSettingsSingle);
     public static final Item CRAFTING_TABLET = new CraftingTabletItem(generalItemSettingsSingle);
 
-    public static final Item ALTAR_TIER_1_STRUCTURE_PLACER = new StructurePlacerItem(generalItemSettingsSingle);
-    public static final Item ALTAR_TIER_2_STRUCTURE_PLACER = new StructurePlacerItem(generalItemSettingsSingle);
-    public static final Item ALTAR_TIER_3_STRUCTURE_PLACER = new StructurePlacerItem(generalItemSettingsSingle);
+    public static final Item PEDESTAL_TIER_1_STRUCTURE_PLACER = new StructurePlacerItem(generalItemSettingsSingle, new Identifier(SpectrumCommon.MOD_ID, "pedestaltier1multiblockdisplay"));
+    public static final Item PEDESTAL_TIER_2_STRUCTURE_PLACER = new StructurePlacerItem(generalItemSettingsSingle, new Identifier(SpectrumCommon.MOD_ID, "pedestaltier2multiblockdisplay"));
+    public static final Item PEDESTAL_TIER_3_STRUCTURE_PLACER = new StructurePlacerItem(generalItemSettingsSingle, new Identifier(SpectrumCommon.MOD_ID, "pedestaltier3multiblockdisplay"));
 
     // Gem shards
     public static final Item TOPAZ_SHARD_ITEM = new Item(spectrumWorldgenItemSettings);
@@ -189,9 +189,9 @@ public class SpectrumItems {
         register("manual", MANUAL);
         register("crafting_tablet", CRAFTING_TABLET);
 
-        register("altar_tier_1_structure_placer", ALTAR_TIER_1_STRUCTURE_PLACER);
-        register("altar_tier_2_structure_placer", ALTAR_TIER_2_STRUCTURE_PLACER);
-        register("altar_tier_3_structure_placer", ALTAR_TIER_3_STRUCTURE_PLACER);
+        register("pedestal_tier_1_structure_placer", PEDESTAL_TIER_1_STRUCTURE_PLACER);
+        register("pedestal_tier_2_structure_placer", PEDESTAL_TIER_2_STRUCTURE_PLACER);
+        register("pedestal_tier_3_structure_placer", PEDESTAL_TIER_3_STRUCTURE_PLACER);
 
         registerGemstoneItems();
 		registerPigments();

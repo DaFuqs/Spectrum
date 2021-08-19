@@ -10,7 +10,7 @@
       "translate": "advancements.spectrum.collect_gemstone_powder.description"
     }
   },
-  "parent": "spectrum:place_altar",
+  "parent": "spectrum:place_pedestal",
   "criteria": {
     "has_gemstone_powder": {
       "trigger": "minecraft:inventory_changed",

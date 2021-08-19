@@ -1,0 +1,22 @@
+{
+  "display": {
+    "icon": {
+      "item": "spectrum:pedestal_basic_amethyst"
+    },
+    "title": {
+      "translate": "advancements.spectrum.place_pedestal.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.place_pedestal.description"
+    }
+  },
+  "parent": "spectrum:spectrum",
+  "criteria": {
+    "placed_pedestal": {
+      "trigger":"minecraft:placed_block",
+      "conditions": {
+        "block": "spectrum:pedestal"
+      }
+    }
+  }
+}

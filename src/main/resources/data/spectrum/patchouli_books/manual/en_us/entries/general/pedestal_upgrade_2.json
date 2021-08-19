@@ -1,16 +1,19 @@
 {
   "name": "Upgrading your Pedestal 2",
-  "icon": "spectrum:altar2",
+  "icon": "spectrum:pedestal_onyx",
   "advancement": "spectrum:spectrum_lategame",
   "category": "spectrum:general_category",
   "pages": [
     {
       "type": "patchouli:spotlight",
-      "item": "spectrum:altar2",
+      "item": "spectrum:pedestal_onyx",
       "text": "TODO"
     },
     {
-      "type": "patchouli:text",
+      "type": "patchouli:multiblock",
+      "name": "",
+      "multiblock_id": "spectrum:pedestaltier2multiblockdisplay",
+      "enable_visualize": true,
       "text": "TODO"
     }
   ]

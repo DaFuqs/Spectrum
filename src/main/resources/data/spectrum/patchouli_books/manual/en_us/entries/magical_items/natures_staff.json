@@ -13,8 +13,8 @@
       "text": ""
     },
     {
-      "type": "spectrum:altar_crafting",
-      "recipe": "spectrum:altar/tier2/natures_staff"
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier2/natures_staff"
     }
   ]
 }

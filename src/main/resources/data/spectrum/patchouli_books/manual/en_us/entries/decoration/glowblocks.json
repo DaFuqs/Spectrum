@@ -29,8 +29,8 @@
       "text": "$(italic)You have color as pure as can be. So why not create blocks with colors as pure as can be!$(br2)You thought for a moment if you should call them Antiblocks. But since they are indeed normal blocks that would be silly, right?$()"
     },
     {
-      "type": "spectrum:altar_crafting",
-      "recipe": "spectrum:altar/tier2/glowblocks/orange_flat_colored_block",
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier2/glowblocks/orange_flat_colored_block",
       "text": "Glowblocks come in all colors and always look the same, no matter how much light falls on their surface."
     }
   ]

@@ -1,0 +1,32 @@
+{
+  "type": "spectrum_pedestal",
+  "time": 40,
+  "tier": 1,
+  "magenta": 0,
+  "yellow": 0,
+  "cyan": 0,
+  "black": 0,
+  "white": 0,
+  "experience": 0.25,
+  "pattern": [
+    "SPS",
+    "PRP",
+    "SPS"
+  ],
+  "key": {
+  	"P": {
+      "item": "spectrum:gray_pigment"
+    },
+	"R": {
+      "item": "minecraft:redstone"
+    },
+	"S": {
+      "item": "spectrum:sparklestone_gem"
+    }
+  },
+  "result" : {
+    "item": "spectrum:gray_lamp",
+    "count": 1
+  },
+  "required_advancements": [ "spectrum:progression/colored_lamps/unlock_gray_lamp" ]
+}

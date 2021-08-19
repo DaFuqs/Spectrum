@@ -1,0 +1,33 @@
+{
+  "type": "spectrum_pedestal",
+  "time": 400,
+  "tier": 1,
+  "cyan": 4,
+  "magenta": 4,
+  "yellow": 4,
+  "white": 0,
+  "black": 0,
+  "experience": 2,
+  "pattern": [
+    "VVV",
+    "SAS",
+    "VVV"
+  ],
+  "key": {
+    "A": {
+      "tag": "minecraft:saplings"
+    },
+    "V": {
+      "item": "spectrum:vegetal"
+    },
+    "S": {
+      "item": "spectrum:sparklestone_gem"
+    }
+  },
+  "result" : {
+    "item": "spectrum:ominous_sapling",
+    "count": 1
+  },
+  "required_advancements": ["spectrum:hidden/collect_resource/collect_sparklestone","spectrum:collect_vegetal"],
+  "unlocks_advancement": "spectrum:craft_ominous_sapling"
+}

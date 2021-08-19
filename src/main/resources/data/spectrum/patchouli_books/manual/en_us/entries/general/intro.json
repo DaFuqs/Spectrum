@@ -1,6 +1,6 @@
 {
     "name": "Intro",
-    "icon": "spectrum:altar",
+    "icon": "spectrum:pedestal_basic_amethyst",
     "category": "spectrum:general_category",
     "priority": true,
     "pages": [

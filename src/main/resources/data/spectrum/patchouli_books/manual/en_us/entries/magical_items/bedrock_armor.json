@@ -15,23 +15,23 @@
       "text": "The strongest material you could make so far was Netherite. However, repairing Netherite armor had the disadvantage that it was more expensive than making the armor itself. In addition, the protection decreased with every scratch. All this is no longer a problem when the armor simply cannot be damaged."
     },
     {
-      "type": "spectrum:altar_crafting",
-      "recipe": "spectrum:altar/tier3/bedrock/bedrock_helmet",
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/bedrock/bedrock_helmet",
       "text": "The Bedrock Helmet comes with $(bold)Projectile Protection IV$()."
     },
     {
-      "type": "spectrum:altar_crafting",
-      "recipe": "spectrum:altar/tier3/bedrock/bedrock_chestplate",
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/bedrock/bedrock_chestplate",
       "text": "The Bedrock Chestplate comes with $(bold)Protection IV$()."
     },
     {
-      "type": "spectrum:altar_crafting",
-      "recipe": "spectrum:altar/tier3/bedrock/bedrock_leggings",
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/bedrock/bedrock_leggings",
       "text": "The Bedrock Leggings come with $(bold)Blast Protection IV$()."
     },
     {
-      "type": "spectrum:altar_crafting",
-      "recipe": "spectrum:altar/tier3/bedrock/bedrock_boots",
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/bedrock/bedrock_boots",
       "text": "The Bedrock Boots come with $(bold)Fire Protection IV$()."
     }
   ]

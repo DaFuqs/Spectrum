@@ -5,7 +5,7 @@ import de.dafuqs.spectrum.inventories.slots.LockableCraftingResultSlot;
 import de.dafuqs.spectrum.inventories.slots.ReadOnlySlot;
 import de.dafuqs.spectrum.items.misc.CraftingTabletItem;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
-import de.dafuqs.spectrum.recipe.altar.AltarCraftingRecipe;
+import de.dafuqs.spectrum.recipe.pedestal.PedestalCraftingRecipe;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -98,39 +98,39 @@ public class CraftingTabletScreenHandler extends AbstractRecipeScreenHandler<Inv
          inventory.setStack(11, new ItemStack(SpectrumItems.CITRINE_POWDER, 64));
          inventory.setStack(12, new ItemStack(SpectrumItems.ONYX_POWDER, 64));
          inventory.setStack(13, new ItemStack(SpectrumItems.MOONSTONE_POWDER, 64));
-         Optional<AltarCraftingRecipe> optionalAltarCraftingRecipe = world.getRecipeManager().getFirstMatch(SpectrumRecipeTypes.ALTAR, inventory, world);
-         if(optionalAltarCraftingRecipe.isPresent()) {
+         Optional<PedestalCraftingRecipe> optionalPedestalCraftingRecipe = world.getRecipeManager().getFirstMatch(SpectrumRecipeTypes.PEDESTAL, inventory, world);
+         if(optionalPedestalCraftingRecipe.isPresent()) {
             lockableCraftingResultSlot.lock();
 
-            AltarCraftingRecipe altarCraftingRecipe = optionalAltarCraftingRecipe.get();
-            ItemStack itemStack = altarCraftingRecipe.getOutput().copy();
+            PedestalCraftingRecipe pedestalCraftingRecipe = optionalPedestalCraftingRecipe.get();
+            ItemStack itemStack = pedestalCraftingRecipe.getOutput().copy();
             craftingResultInventory.setStack(0, itemStack);
 
-            int magenta = altarCraftingRecipe.getGemstonePowderAmount(GemstoneColor.CYAN);
+            int magenta = pedestalCraftingRecipe.getGemstonePowderAmount(GemstoneColor.CYAN);
             if(magenta > 0) {
                inventory.setStack(9, new ItemStack(SpectrumItems.TOPAZ_POWDER, magenta));
             } else {
                inventory.setStack(9, ItemStack.EMPTY);
             }
-            int yellow = altarCraftingRecipe.getGemstonePowderAmount(GemstoneColor.MAGENTA);
+            int yellow = pedestalCraftingRecipe.getGemstonePowderAmount(GemstoneColor.MAGENTA);
             if(yellow > 0) {
                inventory.setStack(10, new ItemStack(SpectrumItems.AMETHYST_POWDER, yellow));
             } else {
                inventory.setStack(10, ItemStack.EMPTY);
             }
-            int cyan = altarCraftingRecipe.getGemstonePowderAmount(GemstoneColor.YELLOW);
+            int cyan = pedestalCraftingRecipe.getGemstonePowderAmount(GemstoneColor.YELLOW);
             if(cyan > 0) {
                inventory.setStack(11, new ItemStack(SpectrumItems.CITRINE_POWDER, cyan));
             } else {
                inventory.setStack(11, ItemStack.EMPTY);
             }
-            int black = altarCraftingRecipe.getGemstonePowderAmount(GemstoneColor.BLACK);
+            int black = pedestalCraftingRecipe.getGemstonePowderAmount(GemstoneColor.BLACK);
             if(magenta > 0) {
                inventory.setStack(12, new ItemStack(SpectrumItems.ONYX_POWDER, black));
             } else {
                inventory.setStack(12, ItemStack.EMPTY);
             }
-            int white = altarCraftingRecipe.getGemstonePowderAmount(GemstoneColor.WHITE);
+            int white = pedestalCraftingRecipe.getGemstonePowderAmount(GemstoneColor.WHITE);
             if(white > 0) {
                inventory.setStack(13, new ItemStack(SpectrumItems.MOONSTONE_POWDER, white));
             } else {
@@ -140,7 +140,7 @@ public class CraftingTabletScreenHandler extends AbstractRecipeScreenHandler<Inv
             handler.setPreviousTrackedSlot(0, itemStack);
             serverPlayerEntity.networkHandler.sendPacket(new ScreenHandlerSlotUpdateS2CPacket(handler.syncId, handler.nextRevision(), 0, itemStack));
 
-            CraftingTabletItem.setStoredRecipe(craftingTabletItemStack, optionalAltarCraftingRecipe.get());
+            CraftingTabletItem.setStoredRecipe(craftingTabletItemStack, optionalPedestalCraftingRecipe.get());
          } else {
             inventory.setStack(9, ItemStack.EMPTY);
             inventory.setStack(10, ItemStack.EMPTY);

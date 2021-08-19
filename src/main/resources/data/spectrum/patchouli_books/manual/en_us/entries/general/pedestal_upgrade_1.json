@@ -1,17 +1,25 @@
 {
   "name": "Upgrading your Pedestal",
-  "icon": "spectrum:altar2",
-  "advancement": "spectrum:spectrum_midgame",
+  "icon": "spectrum:pedestal_all_basic",
+  "advancement": "spectrum:collect_all_basic",
   "category": "spectrum:general_category",
   "pages": [
     {
-      "type": "patchouli:spotlight",
-      "item": "spectrum:altar2",
-      "text": "TODO"
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier1/pedestal_all_basic",
+      "text": "Upgrade your Pedestal by using all the shards you collected"
     },
     {
-      "type": "patchouli:text",
-      "text": "TODO"
+      "type": "patchouli:multiblock",
+      "name": "",
+      "multiblock_id": "spectrum:pedestaltier1multiblock",
+      "enable_visualize": true,
+      "text": ""
+    },
+    {
+      "type": "patchouli:image",
+      "title": "Individualize your structure",
+      "text": "You can switch each basalt block with calcite. You can also switch amethyst blocks for any other gemstone. Mix them up to create your colorful self-creation!"
     }
   ]
 }

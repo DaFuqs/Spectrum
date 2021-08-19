@@ -7,7 +7,7 @@ import vazkii.patchouli.client.book.ClientBookRegistry;
 public class PatchouliPages {
 
     public static void register() {
-        ClientBookRegistry.INSTANCE.pageTypes.put(new Identifier(SpectrumCommon.MOD_ID, "altar_crafting"), PageAltarCrafting.class);
+        ClientBookRegistry.INSTANCE.pageTypes.put(new Identifier(SpectrumCommon.MOD_ID, "pedestal_crafting"), PagePedestalCrafting.class);
     }
 
 }

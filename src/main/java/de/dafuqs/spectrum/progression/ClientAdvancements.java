@@ -27,7 +27,7 @@ public class ClientAdvancements {
 		List<Identifier> doneAdvancements = getDoneAdvancements(packet);
 
 		ClientBlockCloaker.process(doneAdvancements, showToast);
-		ClientAltarRecipeToastManager.process(doneAdvancements, showToast);
+		ClientPedestalRecipeToastManager.process(doneAdvancements, showToast);
 	}
 
 	public static boolean hasDone(Identifier identifier) {

@@ -13,7 +13,7 @@ public class SparklestoneOreBlock extends CloakedOreBlock {
 
     @Override
     public Identifier getCloakAdvancementIdentifier() {
-        return new Identifier(SpectrumCommon.MOD_ID, "craft_using_altar");
+        return new Identifier(SpectrumCommon.MOD_ID, "craft_using_pedestal");
     }
 
 }

@@ -13,7 +13,7 @@
   "parent": "spectrum:spectrum_lategame",
   "criteria": {
     "craft": {
-      "trigger":"spectrum:crafted_with_altar",
+      "trigger":"spectrum:crafted_with_pedestal",
       "conditions": { "items": [{ "items": [ "spectrum:bottle_of_ruin" ]}] }
     }
   }

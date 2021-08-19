@@ -4,8 +4,8 @@ import com.google.common.collect.BiMap;
 import com.google.common.collect.EnumHashBiMap;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.*;
-import de.dafuqs.spectrum.blocks.altar.AltarBlock;
-import de.dafuqs.spectrum.blocks.altar.AltarBlockItem;
+import de.dafuqs.spectrum.blocks.pedestal.PedestalBlock;
+import de.dafuqs.spectrum.blocks.pedestal.PedestalBlockItem;
 import de.dafuqs.spectrum.blocks.chests.CompactingChestBlock;
 import de.dafuqs.spectrum.blocks.chests.PrivateChestBlock;
 import de.dafuqs.spectrum.blocks.chests.RestockingChestBlock;
@@ -45,7 +45,7 @@ import de.dafuqs.spectrum.worldgen.ColoredSaplingGenerator;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-import net.fabricmc.fabric.api.tool.attribute.v1.FabricToolTags;
+import net.fabricmc.fabric.api.tools.FabricToolTags;
 import net.minecraft.block.*;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.entity.EntityType;
@@ -83,6 +83,10 @@ public class SpectrumBlocks {
     public static FabricItemSettings coloredWoodItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_COLORED_WOOD);
     public static FabricItemSettings mobHeadItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_MOB_HEADS).rarity(Rarity.UNCOMMON);
 
+    // PEDESTAL
+    public static final Block PEDESTAL = new PedestalBlock(FabricBlockSettings.of(Material.STONE).strength(5.0F, 20.0F));
+    
+    // GEMS
     public static final Block TOPAZ_CLUSTER = new AmethystClusterBlock(7, 3, FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().requiresTool().breakByTool(FabricToolTags.PICKAXES, 2).sounds(SpectrumBlockSoundGroups.TOPAZ_CLUSTER).luminance((state) -> 6));
     public static final Block LARGE_TOPAZ_BUD = new AmethystClusterBlock(5, 3, FabricBlockSettings.copyOf(TOPAZ_CLUSTER).sounds(SpectrumBlockSoundGroups.LARGE_TOPAZ_BUD).luminance((state) -> 6));
     public static final Block MEDIUM_TOPAZ_BUD = new AmethystClusterBlock(4, 3, FabricBlockSettings.copyOf(TOPAZ_CLUSTER).sounds(SpectrumBlockSoundGroups.MEDIUM_TOPAZ_BUD).luminance((state) -> 4));
@@ -198,11 +202,7 @@ public class SpectrumBlocks {
     public static final Block ONYX_GLASS = new GemGlassBlock(FabricBlockSettings.copy(Blocks.GLASS));
     public static final Block MOONSTONE_GLASS = new GemGlassBlock(FabricBlockSettings.copy(Blocks.GLASS));
     public static final Block GLOWING_GLASS = new GemGlassBlock(FabricBlockSettings.copy(Blocks.GLASS).luminance(value -> 12));
-
-    // ALTAR
-    private static final FabricBlockSettings altarSettings = FabricBlockSettings.of(Material.STONE).strength(5.0F, 20.0F);
-    public static final Block ALTAR = new AltarBlock(altarSettings);
-
+    
     // PLAYER GLASS
     public static final Block VANILLA_PLAYER_ONLY_GLASS = new PlayerOnlyGlassBlock(FabricBlockSettings.copy(Blocks.GLASS).nonOpaque().allowsSpawning(SpectrumBlocks::never).solidBlock(SpectrumBlocks::never).suffocates(SpectrumBlocks::never).blockVision(SpectrumBlocks::never), false);
     public static final Block TINTED_PLAYER_ONLY_GLASS = new PlayerOnlyGlassBlock(FabricBlockSettings.copy(Blocks.TINTED_GLASS).nonOpaque().allowsSpawning(SpectrumBlocks::never).solidBlock(SpectrumBlocks::never).suffocates(SpectrumBlocks::never).blockVision(SpectrumBlocks::never), true);
@@ -562,7 +562,6 @@ public class SpectrumBlocks {
             .solidBlock(SpectrumBlocks::never).suffocates((state, world, pos) -> state.get(RedstoneTransparencyBlock.TRANSPARENCY_STATE) == RedstoneTransparencyBlock.TransparencyState.SOLID)
             .blockVision((state, world, pos) -> state.get(RedstoneTransparencyBlock.TRANSPARENCY_STATE) == RedstoneTransparencyBlock.TransparencyState.SOLID));
 
-
     private static void registerBlock(String name, Block block) {
         Registry.register(Registry.BLOCK, new Identifier(SpectrumCommon.MOD_ID, name), block);
     }
@@ -581,11 +580,18 @@ public class SpectrumBlocks {
         Registry.register(Registry.ITEM, new Identifier(SpectrumCommon.MOD_ID, name), blockItem);
     }
 
+    public static Item pedestal_basic_topaz;
+    public static Item pedestal_basic_amethyst;
+    public static Item pedestal_basic_citrine;
+
     public static void register() {
-        registerBlock("altar", ALTAR);
-        Registry.register(Registry.ITEM, new Identifier(SpectrumCommon.MOD_ID, "altar"), new AltarBlockItem(ALTAR, generalItemSettings, AltarBlock.AltarTier.TIER1));
-        Registry.register(Registry.ITEM, new Identifier(SpectrumCommon.MOD_ID, "altar2"), new AltarBlockItem(ALTAR, generalItemSettings, AltarBlock.AltarTier.TIER2));
-        Registry.register(Registry.ITEM, new Identifier(SpectrumCommon.MOD_ID, "altar3"), new AltarBlockItem(ALTAR, generalItemSettings, AltarBlock.AltarTier.TIER3));
+        registerBlock("pedestal", PEDESTAL);
+        pedestal_basic_topaz = Registry.register(Registry.ITEM, new Identifier(SpectrumCommon.MOD_ID, "pedestal_basic_topaz"), new PedestalBlockItem(PEDESTAL, generalItemSettings, PedestalBlock.PedestalVariant.BASIC_TOPAZ));
+        pedestal_basic_amethyst = Registry.register(Registry.ITEM, new Identifier(SpectrumCommon.MOD_ID, "pedestal_basic_amethyst"), new PedestalBlockItem(PEDESTAL, generalItemSettings, PedestalBlock.PedestalVariant.BASIC_AMETHYST));
+        pedestal_basic_citrine = Registry.register(Registry.ITEM, new Identifier(SpectrumCommon.MOD_ID, "pedestal_basic_citrine"), new PedestalBlockItem(PEDESTAL, generalItemSettings, PedestalBlock.PedestalVariant.BASIC_CITRINE));
+        Registry.register(Registry.ITEM, new Identifier(SpectrumCommon.MOD_ID, "pedestal_all_basic"), new PedestalBlockItem(PEDESTAL, generalItemSettings, PedestalBlock.PedestalVariant.ALL_BASIC));
+        Registry.register(Registry.ITEM, new Identifier(SpectrumCommon.MOD_ID, "pedestal_onyx"), new PedestalBlockItem(PEDESTAL, generalItemSettings, PedestalBlock.PedestalVariant.ONYX));
+        Registry.register(Registry.ITEM, new Identifier(SpectrumCommon.MOD_ID, "pedestal_moonstone"), new PedestalBlockItem(PEDESTAL, generalItemSettings, PedestalBlock.PedestalVariant.MOONSTONE));
 
         registerStoneBlocks(decorationItemSettings);
         registerGemBlocks(worldgenItemSettings);

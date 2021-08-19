@@ -3,7 +3,7 @@
 $c | Foreach-Object {
 New-Item -Name "$_`_lamp.json" -ItemType File -Value @"
 {
-  "type": "spectrum_altar",
+  "type": "spectrum_pedestal",
   "time": 40,
   "tier": 1,
   "magenta": 0,

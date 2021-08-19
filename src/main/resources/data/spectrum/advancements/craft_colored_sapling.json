@@ -13,7 +13,7 @@
   "parent": "spectrum:collect_vegetal",
   "criteria": {
     "craft": {
-      "trigger":"spectrum:crafted_with_altar",
+      "trigger":"spectrum:crafted_with_pedestal",
       "conditions": { "items": [{ "tag": "spectrum:colored_saplings" }] }
     }
   }

@@ -22,13 +22,13 @@ import java.util.Random;
 
 public class SpectrumS2CPackets {
 
-	public static final Identifier PLAY_ALTAR_CRAFTING_FINISHED_PARTICLE_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "play_altar_crafting_finished_particle");
-	public static final Identifier PLAY_ALTAR_CRAFTING_PARTICLE_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "particle");
+	public static final Identifier PLAY_PEDESTAL_CRAFTING_FINISHED_PARTICLE_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "play_pedestal_crafting_finished_particle");
+	public static final Identifier PLAY_ANVIL_CRAFTING_PARTICLE_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "play_anvil_crafting_finished_particle");
 
 
 	@Environment(EnvType.CLIENT)
 	public static void registerS2CReceivers() {
-		ClientPlayNetworking.registerGlobalReceiver(PLAY_ALTAR_CRAFTING_PARTICLE_PACKET_ID, (client, handler, buf, responseSender) -> {
+		ClientPlayNetworking.registerGlobalReceiver(PLAY_ANVIL_CRAFTING_PARTICLE_PACKET_ID, (client, handler, buf, responseSender) -> {
 			BlockPos position = buf.readBlockPos();
 			client.execute(() -> {
 				// Everything in this lambda is run on the render thread
@@ -36,8 +36,8 @@ public class SpectrumS2CPackets {
 			});
 		});
 
-		ClientPlayNetworking.registerGlobalReceiver(PLAY_ALTAR_CRAFTING_FINISHED_PARTICLE_PACKET_ID, (client, handler, buf, responseSender) -> {
-			BlockPos position = buf.readBlockPos(); // the block pos of the altar
+		ClientPlayNetworking.registerGlobalReceiver(PLAY_PEDESTAL_CRAFTING_FINISHED_PARTICLE_PACKET_ID, (client, handler, buf, responseSender) -> {
+			BlockPos position = buf.readBlockPos(); // the block pos of the pedestal
 			ItemStack itemStack = buf.readItemStack(); // the item stack that was crafted
 			client.execute(() -> {
 				Random random = client.world.random;
@@ -51,17 +51,17 @@ public class SpectrumS2CPackets {
 
 	/**
 	 *
-	 * @param world the world of the altar
-	 * @param blockPos the blockpos of the altar
+	 * @param world the world of the pedestal
+	 * @param blockPos the blockpos of the pedestal
 	 * @param itemStack the itemstack that was crafted
 	 */
-	public static void sendPlayAltarCraftingFinishedParticle(World world, BlockPos blockPos, ItemStack itemStack) {
+	public static void sendPlayPedestalCraftingFinishedParticle(World world, BlockPos blockPos, ItemStack itemStack) {
 		PacketByteBuf buf = PacketByteBufs.create();
 		buf.writeBlockPos(blockPos);
 		buf.writeItemStack(itemStack);
 		// Iterate over all players tracking a position in the world and send the packet to each player
 		for (ServerPlayerEntity player : PlayerLookup.tracking((ServerWorld) world, blockPos)) {
-			ServerPlayNetworking.send(player, SpectrumS2CPackets.PLAY_ALTAR_CRAFTING_FINISHED_PARTICLE_PACKET_ID, buf);
+			ServerPlayNetworking.send(player, SpectrumS2CPackets.PLAY_PEDESTAL_CRAFTING_FINISHED_PARTICLE_PACKET_ID, buf);
 		}
 	}
 

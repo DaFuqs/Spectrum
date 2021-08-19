@@ -1,0 +1,20 @@
+{
+  "name": "Upgrading your Pedestal 3",
+  "icon": "spectrum:pedestal_moonstone",
+  "advancement": "spectrum:spectrum_lategame",
+  "category": "spectrum:general_category",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:pedestal_moonstone",
+      "text": "TODO"
+    },
+    {
+      "type": "patchouli:multiblock",
+      "name": "",
+      "multiblock_id": "spectrum:pedestaltier3multiblockdisplay",
+      "enable_visualize": true,
+      "text": "TODO"
+    }
+  ]
+}

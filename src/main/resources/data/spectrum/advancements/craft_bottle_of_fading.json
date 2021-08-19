@@ -10,10 +10,10 @@
       "translate": "advancements.spectrum.craft_bottle_of_fading.description"
     }
   },
-  "parent": "spectrum:craft_using_altar",
+  "parent": "spectrum:craft_using_pedestal",
   "criteria": {
     "craft": {
-      "trigger":"spectrum:crafted_with_altar",
+      "trigger":"spectrum:crafted_with_pedestal",
       "conditions": { "items": [{ "items": [ "spectrum:bottle_of_fading" ]}] }
     }
   }

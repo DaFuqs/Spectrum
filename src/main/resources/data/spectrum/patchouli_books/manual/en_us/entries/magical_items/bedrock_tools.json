@@ -20,48 +20,48 @@
       "text": "Whenever you enter a new world, you go about the mindless, days-long task of gathering villagers around you, turning them into zombies and healing them again, only for one of them to eventually hand you a book of Mending. All this, just so you don't have to fix your tools.$(br)That's both less exciting and species-appropriate. Now that you can process Bedrock, you have a more humane solution."
     },
     {
-      "type": "spectrum:altar_crafting",
-      "recipe": "spectrum:altar/tier3/bedrock/bedrock_pickaxe",
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/bedrock/bedrock_pickaxe",
       "text": "The Bedrock Pickaxe comes with $(bold)Silk Touch$()."
     },
     {
-      "type": "spectrum:altar_crafting",
-      "recipe": "spectrum:altar/tier3/bedrock/bedrock_axe",
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/bedrock/bedrock_axe",
       "text": "The Bedrock Axe comes with $(bold)Efficiency V$()."
     },
     {
-      "type": "spectrum:altar_crafting",
-      "recipe": "spectrum:altar/tier3/bedrock/bedrock_shovel",
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/bedrock/bedrock_shovel",
       "text": "The Bedrock Shovel comes with $(bold)Efficiency V$()."
     },
     {
-      "type": "spectrum:altar_crafting",
-      "recipe": "spectrum:altar/tier3/bedrock/bedrock_sword",
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/bedrock/bedrock_sword",
       "text": "The Bedrock Sword comes with $(bold)Sharpness V$()."
     },
     {
-      "type": "spectrum:altar_crafting",
-      "recipe": "spectrum:altar/tier3/bedrock/bedrock_hoe",
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/bedrock/bedrock_hoe",
       "text": "The Bedrock Hoe comes with $(bold)Fortune III$()."
     },
     {
-      "type": "spectrum:altar_crafting",
-      "recipe": "spectrum:altar/tier3/bedrock/bedrock_bow",
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/bedrock/bedrock_bow",
       "text": "The Bedrock Bow comes with $(bold)Power V$()."
     },
     {
-      "type": "spectrum:altar_crafting",
-      "recipe": "spectrum:altar/tier3/bedrock/bedrock_crossbow",
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/bedrock/bedrock_crossbow",
       "text": "The Bedrock Crossbow comes with $(bold)Quick Charge III$()."
     },
     {
-      "type": "spectrum:altar_crafting",
-      "recipe": "spectrum:altar/tier3/bedrock/bedrock_shears",
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/bedrock/bedrock_shears",
       "text": "The Bedrock Shears come with $(bold)Silk Touch$()."
     },
     {
-      "type": "spectrum:altar_crafting",
-      "recipe": "spectrum:altar/tier3/bedrock/bedrock_fishing_rod",
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/bedrock/bedrock_fishing_rod",
       "text": "The Bedrock Fishing Rod comes with $(bold)Luck of the Sea III$()."
     }
   ]

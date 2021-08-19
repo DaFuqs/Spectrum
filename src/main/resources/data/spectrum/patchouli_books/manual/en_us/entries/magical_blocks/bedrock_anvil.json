@@ -13,8 +13,8 @@
       "text": "$(italic)You've already used your anvil (lots of anvils, to be precise) plenty. However, both $(l:general/anvil_crushing)Anvil Crushing$(/l), repairing and enchanting tools always damage them so quickly that they become irreparably damaged.$(br)To make the anvil more durable - or even indestructible - Bedrock seems like the perfect choice."
     },
     {
-      "type": "spectrum:altar_crafting",
-      "recipe": "spectrum:altar/tier3/bedrock/bedrock_anvil",
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/bedrock/bedrock_anvil",
       "text": "$(br2)The Bedrock Anvil allows you to rename items for a cost of zero. In addition, you can also add descriptions to your items.$(br2)$(italic)Tip: you can use \"\\n\" to split your text into multiple lines."
     }
   ]

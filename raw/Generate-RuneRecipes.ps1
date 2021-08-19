@@ -6,7 +6,7 @@ foreach($gem in $gems) {
 
         New-Item -Name "$gem`_chiseled_$material`_from_cluster.json" -ItemType File -Value @"
 {
-  "type": "spectrum_altar",
+  "type": "spectrum_pedestal",
   "time": 80,
   "tier": 1,
   "magenta": 0,
@@ -37,7 +37,7 @@ foreach($gem in $gems) {
 
         New-Item -Name "$gem`_chiseled_$material`_from_shards.json" -ItemType File -Value @"
 {
-  "type": "spectrum_altar",
+  "type": "spectrum_pedestal",
   "time": 80,
   "tier": 1,
   "magenta": 0,

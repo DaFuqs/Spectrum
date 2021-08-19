@@ -21,8 +21,8 @@
       "text": "Without redstone, it is completely solid; when a redstone signal reaches it, it becomes transparent, almost like glass.$(br2)However, it reaches it's most curious state when a redstone signal of full strength is applied..."
     },
     {
-      "type": "spectrum:altar_crafting",
-      "recipe": "spectrum:altar/tier1/ender_glass"
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier1/ender_glass"
     }
   ]
 }

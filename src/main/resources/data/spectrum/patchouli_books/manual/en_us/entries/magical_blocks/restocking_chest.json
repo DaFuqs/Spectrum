@@ -13,8 +13,8 @@
       "text": "$(italic)The Pigment Pedestal is wonderful for automatically creating items. But if you need the same few items over and over again, you'll have to rearrange your whole construction. Of course, you've found a solution for that."
     },
     {
-      "type": "spectrum:altar_crafting",
-      "recipe": "spectrum:altar/tier2/restocking_chest",
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier2/restocking_chest",
       "text": "The Restocking Chest has four slots for crafting tablets. The recipes you have defined in these are always kept in stock - as long as the ingredients in the chest allow it."
     }
   ]

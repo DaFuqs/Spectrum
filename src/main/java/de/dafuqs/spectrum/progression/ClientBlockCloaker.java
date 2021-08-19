@@ -41,7 +41,7 @@ public class ClientBlockCloaker {
 
             // popup for user
             if(showToast) {
-                RevelationToast.showRevelationToast(MinecraftClient.getInstance(), new ItemStack(SpectrumBlocks.ALTAR.asItem()), SpectrumSoundEvents.NEW_REVELATION);
+                RevelationToast.showRevelationToast(MinecraftClient.getInstance(), new ItemStack(SpectrumBlocks.PEDESTAL.asItem()), SpectrumSoundEvents.NEW_REVELATION);
             }
         }
     }

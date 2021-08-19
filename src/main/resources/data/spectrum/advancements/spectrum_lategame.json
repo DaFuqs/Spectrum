@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "item": "spectrum:altar3"
+      "item": "spectrum:pedestal_onyx"
     },
     "title": {
       "translate": "advancements.spectrum.spectrum_lategame.title"
@@ -12,9 +12,9 @@
     "background": "spectrum:textures/gui/advancement_background_lategame.png"
   },
   "criteria": {
-    "get_altar2": {
+    "get_pedestal2": {
       "trigger": "minecraft:inventory_changed",
-      "conditions": { "items": [{ "items": [ "spectrum:altar3" ]}] }
+      "conditions": { "items": [{ "items": [ "spectrum:pedestal_onyx" ]}] }
     }
   }
 }

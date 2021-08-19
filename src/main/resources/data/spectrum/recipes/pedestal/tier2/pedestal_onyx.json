@@ -1,0 +1,26 @@
+{
+  "type": "spectrum_pedestal",
+  "time": 80,
+  "tier": 2,
+  "cyan": 0,
+  "magenta": 0,
+  "yellow": 0,
+  "white": 0,
+  "black": 0,
+  "experience": 8,
+  "pattern": [
+    "   ",
+    " O ",
+    "   "
+  ],
+  "key": {
+	"O": {
+	  "item": "spectrum:onyx_shard"
+	}
+  },
+  "result" : {
+    "item": "spectrum:pedestal_onyx",
+    "count": 1
+  },
+  "required_advancements": ["spectrum:spectrum_midgame"]
+}

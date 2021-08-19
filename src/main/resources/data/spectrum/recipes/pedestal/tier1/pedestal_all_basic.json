@@ -1,0 +1,32 @@
+{
+  "type": "spectrum_pedestal",
+  "time": 80,
+  "tier": 1,
+  "cyan": 8,
+  "magenta": 8,
+  "yellow": 8,
+  "white": 0,
+  "black": 0,
+  "experience": 4,
+  "pattern": [
+    "   ",
+    "TAC",
+    "   "
+  ],
+  "key": {
+	"T": {
+	  "item": "spectrum:topaz_shard"
+	},
+    "A": {
+      "item": "minecraft:amethyst_shard"
+    },
+    "C": {
+      "item": "spectrum:citrine_shard"
+    }
+  },
+  "result" : {
+    "item": "spectrum:pedestal_all_basic",
+    "count": 1
+  },
+  "required_advancements": ["spectrum:spectrum"]
+}

@@ -94,7 +94,7 @@ public abstract class ItemEntityMixin {
                     buf.writeBlockPos(particleBlockPos);
                     // Iterate over all players tracking a position in the world and send the packet to each player
                     for (ServerPlayerEntity player : PlayerLookup.tracking((ServerWorld) world, particleBlockPos)) {
-                        ServerPlayNetworking.send(player, SpectrumS2CPackets.PLAY_ALTAR_CRAFTING_PARTICLE_PACKET_ID, buf);
+                        ServerPlayNetworking.send(player, SpectrumS2CPackets.PLAY_ANVIL_CRAFTING_PARTICLE_PACKET_ID, buf);
                     }
 
                 }

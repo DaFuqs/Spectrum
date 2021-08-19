@@ -1,16 +1,16 @@
 {
   "name": "Crafting Tablet",
   "icon": "spectrum:crafting_tablet",
-  "advancement": "spectrum:place_altar",
+  "advancement": "spectrum:place_pedestal",
   "category": "spectrum:general_category",
   "extra_recipe_mappings": {
     "spectrum:crafting_tablet": 0
   },
   "pages": [
     {
-      "type": "spectrum:altar_crafting",
+      "type": "spectrum:pedestal_crafting",
       "title": "Crafting Tablet",
-      "recipe": "spectrum:altar/tier1/crafting_tablet",
+      "recipe": "spectrum:pedestal/tier1/crafting_tablet",
       "text": "The Crafting Tablet is so much more than a portable Crafting Table. It can save an inserted recipe and let's you craft it on demand."
     },
     {

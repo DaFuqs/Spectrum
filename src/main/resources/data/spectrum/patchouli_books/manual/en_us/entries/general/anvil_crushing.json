@@ -1,7 +1,7 @@
 {
   "name": "Anvil Crushing",
   "icon": "minecraft:anvil",
-  "advancement": "spectrum:place_altar",
+  "advancement": "spectrum:place_pedestal",
   "category": "spectrum:general_category",
   "pages": [
     {

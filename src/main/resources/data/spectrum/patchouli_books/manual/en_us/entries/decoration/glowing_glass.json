@@ -14,8 +14,8 @@
       "text": "$(italic)You need a way to efficiently light your shelter and other structures.$(br2)What could be better than using the luminous properties of Sparklestone directly in your glass?$()"
     },
     {
-      "type": "spectrum:altar_crafting",
-      "recipe": "spectrum:altar/tier1/glowing_glass",
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier1/glowing_glass",
       "text": "Radiant Glass is pretty much the opposite of Tinted Glass. The sparklestone used in its manufacture ensures that the glass glows from within."
     }
   ]

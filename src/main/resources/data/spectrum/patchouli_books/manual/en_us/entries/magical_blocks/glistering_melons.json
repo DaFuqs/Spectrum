@@ -16,8 +16,8 @@
       "text": "With the magic inherent in gemstone dust you have already managed to change seedlings. What's stopping you from trying it on other plants?$(br)Not because you're greedy or anything, of course."
     },
     {
-      "type": "spectrum:altar_crafting",
-      "recipe": "spectrum:altar/tier1/glistering_melon_seeds"
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier1/glistering_melon_seeds"
     }
   ]
 }

@@ -25,8 +25,8 @@
       "text": "$(italic)Then you remember the gemstone glass recipe you thought up earlier.$(br)With a bit of magical energy, it should be no problem to make it not only transparent for you (not for them!), but also passable.$(br2)Bonus: If you make it look exactly like regular glass you might even be able to fool your competition. It just needs a touch of magic.$()"
     },
     {
-      "type": "spectrum:altar_crafting",
-      "recipe": "spectrum:altar/tier2/player_only_glass/amethyst_player_only_glass"
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier2/player_only_glass/amethyst_player_only_glass"
     },
     {
       "type": "patchouli:text",

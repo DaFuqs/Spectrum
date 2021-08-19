@@ -3,7 +3,7 @@ package de.dafuqs.spectrum.items.misc;
 import de.dafuqs.spectrum.InventoryHelper;
 import de.dafuqs.spectrum.inventories.CraftingTabletScreenHandler;
 import de.dafuqs.spectrum.items.tooltip.CraftingTabletTooltipData;
-import de.dafuqs.spectrum.recipe.altar.AltarCraftingRecipe;
+import de.dafuqs.spectrum.recipe.pedestal.PedestalCraftingRecipe;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
@@ -52,7 +52,7 @@ public class CraftingTabletItem extends Item {
             if(storedRecipe == null || user.isSneaking()) {
                 user.openHandledScreen(createScreenHandlerFactory(world, (ServerPlayerEntity) user, itemStack));
             } else {
-                if(!(storedRecipe instanceof AltarCraftingRecipe)) {
+                if(!(storedRecipe instanceof PedestalCraftingRecipe)) {
                     tryCraftRecipe((ServerPlayerEntity) user, storedRecipe);
                 }
             }
@@ -130,8 +130,8 @@ public class CraftingTabletItem extends Item {
         if (recipe == null) {
             tooltip.add(new TranslatableText("item.spectrum.crafting_tablet.tooltip.no_recipe").formatted(Formatting.GRAY));
         } else {
-            if(recipe instanceof AltarCraftingRecipe) {
-                tooltip.add(new TranslatableText("item.spectrum.crafting_tablet.tooltip.altar_recipe").formatted(Formatting.GRAY));
+            if(recipe instanceof PedestalCraftingRecipe) {
+                tooltip.add(new TranslatableText("item.spectrum.crafting_tablet.tooltip.pedestal_recipe").formatted(Formatting.GRAY));
             } else {
                 tooltip.add(new TranslatableText("item.spectrum.crafting_tablet.tooltip.crafting_recipe").formatted(Formatting.GRAY));
             }

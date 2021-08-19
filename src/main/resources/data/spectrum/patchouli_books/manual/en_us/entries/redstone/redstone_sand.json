@@ -1,6 +1,6 @@
 {
   "name": "Redstone Sand",
-  "advancement": "spectrum:craft_using_altar",
+  "advancement": "spectrum:craft_using_pedestal",
   "icon": "spectrum:redstone_sand",
   "category": "spectrum:redstone_category",
   "extra_recipe_mappings": {

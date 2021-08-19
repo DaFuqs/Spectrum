@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "item": "spectrum:altar2"
+      "item": "spectrum:pedestal_all_basic"
     },
     "title": {
       "translate": "advancements.spectrum.spectrum_midgame.title"
@@ -12,9 +12,9 @@
     "background": "spectrum:textures/gui/advancement_background_midgame.png"
   },
   "criteria": {
-    "get_altar2": {
+    "get_pedestal_all_basic": {
       "trigger": "minecraft:inventory_changed",
-      "conditions": { "items": [{ "items": [ "spectrum:altar2" ]}] }
+      "conditions": { "items": [{ "items": [ "spectrum:pedestal_all_basic" ]}] }
     }
   }
 }

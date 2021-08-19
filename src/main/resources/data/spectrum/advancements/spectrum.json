@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-        "item": "spectrum:altar"
+        "item": "spectrum:pedestal_basic_amethyst"
     },
     "title": {
       "translate": "advancements.spectrum.spectrum.title"

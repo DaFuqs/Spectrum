@@ -1,0 +1,36 @@
+{
+  "type": "spectrum_pedestal",
+  "time": 1600,
+  "tier": 1,
+  "cyan": 8,
+  "magenta": 8,
+  "yellow": 8,
+  "white": 0,
+  "black": 0,
+  "experience": 4.0,
+  "pattern": [
+    "FSF",
+    "CBC",
+    "FSF"
+  ],
+  "key": {
+	"S": {
+	  "item": "spectrum:sparklestone_gem"
+	},
+    "F": {
+      "item": "minecraft:fermented_spider_eye"
+    },
+    "C": {
+      "item": "minecraft:blaze_powder"
+    },
+    "B": {
+      "item": "minecraft:glass_bottle"
+    }
+  },
+  "result" : {
+    "item": "spectrum:bottle_of_fading",
+    "count": 1
+  },
+  "required_advancements": [ "spectrum:progression/unlock_bottle_of_fading" ],
+  "unlocks_advancement": "spectrum:craft_bottle_of_fading"
+}

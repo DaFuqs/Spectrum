@@ -1,0 +1,20 @@
+{
+  "display": {
+    "icon": {
+        "item": "spectrum:pedestal_basic_amethyst"
+    },
+    "title": {
+      "translate": "advancements.spectrum.craft_using_pedestal.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.craft_using_pedestal.description"
+    }
+  },
+  "parent": "spectrum:place_pedestal",
+  "criteria": {
+    "craft": {
+      "trigger":"spectrum:crafted_with_pedestal",
+      "conditions": { "items": [] }
+    }
+  }
+}

@@ -5,16 +5,24 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemUsageContext;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.BlockRotation;
+import net.minecraft.util.Identifier;
+import vazkii.patchouli.api.IMultiblock;
 
 public class StructurePlacerItem extends Item {
 
-    public StructurePlacerItem(Settings settings) {
+    Identifier multiBlockIdentifier;
+
+    public StructurePlacerItem(Settings settings, Identifier multiBlockIdentifier) {
         super(settings);
+        this.multiBlockIdentifier = multiBlockIdentifier;
     }
 
     @Override
     public ActionResult useOnBlock(ItemUsageContext context) {
-        SpectrumMultiBlocks.testMultiblock.place(context.getWorld(), context.getBlockPos().up(), BlockRotation.NONE);
+        IMultiblock iMultiblock = SpectrumMultiBlocks.MULTIBLOCKS.get(multiBlockIdentifier);
+        if(iMultiblock != null) {
+            iMultiblock.place(context.getWorld(), context.getBlockPos().up(), BlockRotation.NONE);
+        }
         return ActionResult.PASS;
     }
 

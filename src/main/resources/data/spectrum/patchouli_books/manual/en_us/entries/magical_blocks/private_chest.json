@@ -1,6 +1,6 @@
 {
   "name": "Private Chest",
-  "advancement": "spectrum:craft_using_altar",
+  "advancement": "spectrum:craft_using_pedestal",
   "icon": "spectrum:private_chest",
   "category": "spectrum:magical_blocks_category",
   "extra_recipe_mappings": {

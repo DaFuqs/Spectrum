@@ -1,0 +1,33 @@
+{
+  "type": "spectrum_pedestal",
+  "time": 160,
+  "tier": 1,
+  "cyan": 0,
+  "magenta": 2,
+  "yellow": 2,
+  "white": 0,
+  "black": 0,
+  "experience": 1.0,
+  "pattern": [
+    "DDD",
+    "VSV",
+    "DDD"
+  ],
+  "key": {
+	"S": {
+	  "tag": "minecraft:saplings"
+	},
+    "V": {
+      "item": "spectrum:vegetal"
+    },
+    "D": {
+      "item": "minecraft:red_dye"
+    }
+  },
+  "result" : {
+    "item": "spectrum:red_sapling",
+    "count": 1
+  },
+  "required_advancements": [ "spectrum:progression/colored_saplings/unlock_red_sapling" ],
+  "unlocks_advancement": "spectrum:craft_colored_sapling"
+}

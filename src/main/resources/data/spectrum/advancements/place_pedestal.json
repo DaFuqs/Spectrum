@@ -13,7 +13,7 @@
   "parent": "spectrum:spectrum",
   "criteria": {
     "used_pedestal": {
-      "trigger": "minecraft:using_item",
+      "trigger": "minecraft:item_used_on_block",
       "conditions": {
         "item": {
           "tag": "spectrum:pedestals"

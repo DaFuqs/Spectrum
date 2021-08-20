@@ -28,6 +28,5 @@
     "item": "spectrum:pink_sapling",
     "count": 1
   },
-  "required_advancements": [ "spectrum:progression/colored_saplings/unlock_pink_sapling" ],
-  "unlocks_advancement": "spectrum:craft_colored_sapling"
+  "required_advancements": [ "spectrum:progression/colored_saplings/unlock_pink_sapling" ]
 }

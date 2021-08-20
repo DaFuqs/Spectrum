@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-        "item": "spectrum:pedestal_basic_amethyst"
+        "item": "spectrum:pedestal_basic_citrine"
     },
     "title": {
       "translate": "advancements.spectrum.craft_using_pedestal.title"

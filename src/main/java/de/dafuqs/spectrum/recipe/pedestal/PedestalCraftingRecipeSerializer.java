@@ -70,6 +70,8 @@ public class PedestalCraftingRecipeSerializer<T extends PedestalCraftingRecipe> 
             gemInputs.put(GemstoneColor.BLACK, amount);
         }
 
+        boolean showToastOnUnlock = JsonHelper.getBoolean(jsonObject, "show_toast_on_unlock", true);
+
         List<Identifier> requiredAdvancementIdentifiers = new ArrayList<>();
         if(JsonHelper.hasArray(jsonObject, "required_advancements")) {
             JsonArray requiredAdvancementsArray = JsonHelper.getArray(jsonObject, "required_advancements");
@@ -83,19 +85,8 @@ public class PedestalCraftingRecipeSerializer<T extends PedestalCraftingRecipe> 
             }
         }
 
-        Identifier unlockedAdvancementIdentifier;
-        if(JsonHelper.hasString(jsonObject, "unlocks_advancement")) {
-            unlockedAdvancementIdentifier = Identifier.tryParse(JsonHelper.getString(jsonObject, "unlocks_advancement", ""));
-            if(SpectrumCommon.minecraftServer != null && SpectrumCommon.minecraftServer.getAdvancementLoader().get(unlockedAdvancementIdentifier) == null) {
-                SpectrumCommon.log(Level.ERROR, "Recipe " + identifier + " is set to unlock the advancement " + unlockedAdvancementIdentifier + ", but it does not exist!");
-            }
-        } else {
-            unlockedAdvancementIdentifier = null;
-        }
 
-        boolean showToastOnUnlock = JsonHelper.getBoolean(jsonObject, "show_toast_on_unlock", true);
-
-        return this.recipeFactory.create(identifier, group, tier, width, height, craftingInputs, gemInputs, output, experience, craftingTime, requiredAdvancementIdentifiers, unlockedAdvancementIdentifier, showToastOnUnlock);
+        return this.recipeFactory.create(identifier, group, tier, width, height, craftingInputs, gemInputs, output, experience, craftingTime, requiredAdvancementIdentifiers, showToastOnUnlock);
     }
 
     @Override
@@ -128,12 +119,6 @@ public class PedestalCraftingRecipeSerializer<T extends PedestalCraftingRecipe> 
         }
         boolean showToastOnUnlock = packetByteBuf.readBoolean();
 
-        boolean unlocksAdvancement = packetByteBuf.readBoolean();
-        Identifier unlockedAdvancementIdentifier = null;
-        if(unlocksAdvancement) {
-            unlockedAdvancementIdentifier = packetByteBuf.readIdentifier();
-        }
-
         HashMap<GemstoneColor, Integer> gemInputs = new HashMap<>();
         if(magenta > 0) { gemInputs.put(GemstoneColor.MAGENTA, magenta); }
         if(cyan > 0   ) { gemInputs.put(GemstoneColor.CYAN, cyan); }
@@ -141,7 +126,7 @@ public class PedestalCraftingRecipeSerializer<T extends PedestalCraftingRecipe> 
         if(black > 0  ) { gemInputs.put(GemstoneColor.BLACK, black); }
         if(white > 0  ) { gemInputs.put(GemstoneColor.WHITE, white); }
 
-        return this.recipeFactory.create(identifier, group, tier, width, height, craftingInputs, gemInputs, output, experience, craftingTime, requiredAdvancementIdentifiers, unlockedAdvancementIdentifier, showToastOnUnlock);
+        return this.recipeFactory.create(identifier, group, tier, width, height, craftingInputs, gemInputs, output, experience, craftingTime, requiredAdvancementIdentifiers, showToastOnUnlock);
     }
 
     @Override
@@ -171,16 +156,10 @@ public class PedestalCraftingRecipeSerializer<T extends PedestalCraftingRecipe> 
             packetByteBuf.writeIdentifier(pedestalRecipe.requiredAdvancementIdentifiers.get(i));
         }
         packetByteBuf.writeBoolean(pedestalRecipe.showToastOnUnlock);
-        if(pedestalRecipe.unlockedAdvancementOnCraft == null) {
-            packetByteBuf.writeBoolean(false);
-        } else {
-            packetByteBuf.writeBoolean(true);
-            packetByteBuf.writeIdentifier(pedestalRecipe.unlockedAdvancementOnCraft);
-        }
     }
 
     public interface RecipeFactory<T extends PedestalCraftingRecipe> {
-        T create(Identifier id, String group, int tier, int width, int height, DefaultedList<Ingredient> craftingInputs, HashMap<GemstoneColor, Integer> gemInputs, ItemStack output, float experience, int craftingTime, List<Identifier> requiredAdvancementIdentifiers, Identifier unlockedAdvancementIdentifierOnCraft, boolean showToastOnUnlock);
+        T create(Identifier id, String group, int tier, int width, int height, DefaultedList<Ingredient> craftingInputs, HashMap<GemstoneColor, Integer> gemInputs, ItemStack output, float experience, int craftingTime, List<Identifier> requiredAdvancementIdentifiers, boolean showToastOnUnlock);
     }
 
 }

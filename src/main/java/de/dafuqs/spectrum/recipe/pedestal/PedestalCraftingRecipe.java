@@ -47,10 +47,9 @@ public class PedestalCraftingRecipe implements Recipe<Inventory> {
     protected final int craftingTime;
 
     protected final List<Identifier> requiredAdvancementIdentifiers;
-    protected final Identifier unlockedAdvancementOnCraft;
     protected final boolean showToastOnUnlock;
 
-    public PedestalCraftingRecipe(Identifier id, String group, int tier, int width, int height, DefaultedList<Ingredient> craftingInputs, HashMap<GemstoneColor, Integer> gemstoneDustInputs, ItemStack output, float experience, int craftingTime, List<Identifier> requiredAdvancementIdentifiers, Identifier unlockedAdvancementOnCraft, boolean showToastOnUnlock) {
+    public PedestalCraftingRecipe(Identifier id, String group, int tier, int width, int height, DefaultedList<Ingredient> craftingInputs, HashMap<GemstoneColor, Integer> gemstoneDustInputs, ItemStack output, float experience, int craftingTime, List<Identifier> requiredAdvancementIdentifiers, boolean showToastOnUnlock) {
         this.id = id;
         this.group = group;
         this.tier = tier;
@@ -65,7 +64,6 @@ public class PedestalCraftingRecipe implements Recipe<Inventory> {
         this.craftingTime = craftingTime;
 
         this.requiredAdvancementIdentifiers = requiredAdvancementIdentifiers;
-        this.unlockedAdvancementOnCraft = unlockedAdvancementOnCraft;
         this.showToastOnUnlock = showToastOnUnlock;
 
         if(SpectrumClient.minecraftClient != null) {
@@ -207,15 +205,6 @@ public class PedestalCraftingRecipe implements Recipe<Inventory> {
 
     public float getExperience() {
         return this.experience;
-    }
-
-    public boolean unlocksAdvancementOnCraft() {
-        return unlockedAdvancementOnCraft != null;
-    }
-
-    @Nullable
-    public Identifier getUnlockedAdvancementOnCraft() {
-        return unlockedAdvancementOnCraft;
     }
 
     public boolean shouldShowToastOnUnlock() {

@@ -607,9 +607,9 @@
   "item.spectrum.ender_splice.wrong_dimension": "This Ender Splices energy is not strong enough to teleport you across dimensions.",
   "item.spectrum.natures_staff": "Nature's Staff",
 
-  "item.spectrum.pedestal_tier_1_structure_placer": "pedestal Structure 1 Placer",
-  "item.spectrum.pedestal_tier_2_structure_placer": "pedestal Structure 2 Placer",
-  "item.spectrum.pedestal_tier_3_structure_placer": "pedestal Structure 3 Placer",
+  "item.spectrum.pedestal_tier_1_structure_placer": "Simple Pedestal Structure Placer",
+  "item.spectrum.pedestal_tier_2_structure_placer": "Advanced Pedestal Structure Placer",
+  "item.spectrum.pedestal_tier_3_structure_placer": "Complex Pedestal Structure Placer",
 
   "item.spectrum.crafting_tablet": "Crafting Tablet",
   "item.spectrum.crafting_tablet.tooltip.no_recipe": "Add items to the crafting grid to set a recipe.",
@@ -784,7 +784,7 @@
   "advancements.spectrum.spectrum_lategame.title": "Spectrum - Lategame",
   "advancements.spectrum.spectrum_lategame.description": "The story about how to conquer the world.",
   "advancements.spectrum.trigger_revelation.title": "More than meets the eye",
-  "advancements.spectrum.trigger_revelation.description": "It looks like there is more to the world than you previously thought.",
+  "advancements.spectrum.trigger_revelation.description": "It looks like there is way more to the world than you previously thought.",
   "advancements.spectrum.collect_resonance_enchanted_tool.title": "Good Vibrations",
   "advancements.spectrum.collect_resonance_enchanted_tool.description": "Some blocks in the world resonate a powerful energy. Mining them with simple tools seems to disturb that energy, destroying the block, leaving you without a drop whatsoever. Maybe you can tune your tools to the same frequencies, preserving the precious treasures you came across?",
   "advancements.spectrum.collect_all_basic_shards.title": "How many are there?",
@@ -821,6 +821,13 @@
   "advancements.spectrum.grow_ominous_sapling.description": "It grew! ...somewhat.",
   "advancements.spectrum.get_player_only_glass.title": "Peace and satisfaction",
   "advancements.spectrum.get_player_only_glass.description": "Craft semi-permeable glass to protect your home from intruders",
+
+  "advancements.spectrum.craft_colored_pedestal.title": "RTX ON",
+  "advancements.spectrum.craft_colored_pedestal.description": "Upgrade your Pigment Pedestal by using all your collected shards.",
+  "advancements.spectrum.build_basic_pedestal_structure.title": "Funneling Magic",
+  "advancements.spectrum.build_basic_pedestal_structure.description": "To fully harness the powers of your improved Pigment Pedestal you will need to build a structure that funnels the energy from gemstones to it.",
+
+
 
   "block.minecraft.polished_basalt": "Basalt Pillar",
 

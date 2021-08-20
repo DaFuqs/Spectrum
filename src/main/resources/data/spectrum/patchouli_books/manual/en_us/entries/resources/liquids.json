@@ -17,7 +17,7 @@
         },
         {
             "type": "spectrum:pedestal_crafting",
-            "advancement": "spectrum:spectrum_midgame",
+            "advancement": "spectrum:midgame/spectrum_midgame",
             "title": "Liquid Crystal",
             "recipe": "spectrum:pedestal/tier2/liquid_crystal_bucket",
             "text": "The pure energy of gemstones in their liquid form. It is said to have a healing effect."

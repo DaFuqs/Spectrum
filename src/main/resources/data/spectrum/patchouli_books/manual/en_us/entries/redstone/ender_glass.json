@@ -1,6 +1,6 @@
 {
   "name": "Ender Glass",
-  "advancement": "spectrum:collect_ender_treasure",
+  "advancement": "spectrum:revealed_ender_treasure",
   "icon": "spectrum:ender_glass",
   "category": "spectrum:redstone_category",
   "extra_recipe_mappings": {

@@ -1,6 +1,6 @@
 {
   "name": "Restocking Chest",
-  "advancement": "spectrum:spectrum_midgame",
+  "advancement": "spectrum:midgame/spectrum_midgame",
   "icon": "spectrum:restocking_chest",
   "category": "spectrum:magical_blocks_category",
   "extra_recipe_mappings": {

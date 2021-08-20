@@ -1,7 +1,7 @@
 {
   "name": "Upgrading your Pedestal 2",
   "icon": "spectrum:pedestal_onyx",
-  "advancement": "spectrum:spectrum_lategame",
+  "advancement": "spectrum:lategame/spectrum_lategame",
   "category": "spectrum:general_category",
   "pages": [
     {

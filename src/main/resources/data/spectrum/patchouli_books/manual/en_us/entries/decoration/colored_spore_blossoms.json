@@ -1,6 +1,6 @@
 {
   "name": "Colored Spore Blossoms",
-  "advancement": "spectrum:spectrum_midgame",
+  "advancement": "spectrum:midgame/spectrum_midgame",
   "icon": "spectrum:orange_spore_blossom",
   "category": "spectrum:decoration_category",
   "extra_recipe_mappings": {

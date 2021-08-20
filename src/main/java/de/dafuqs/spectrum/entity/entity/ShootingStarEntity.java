@@ -187,7 +187,7 @@ public class ShootingStarEntity extends Entity {
                         itemStack.setCount(i);
                     }
 
-                    Support.grantAdvancementCriterion((ServerPlayerEntity) player, "catch_shooting_star", "catch");
+                    Support.grantAdvancementCriterion((ServerPlayerEntity) player, "midgame/catch_shooting_star", "catch");
                     player.increaseStat(Stats.PICKED_UP.getOrCreateStat(item), i);
 
                     this.discard();

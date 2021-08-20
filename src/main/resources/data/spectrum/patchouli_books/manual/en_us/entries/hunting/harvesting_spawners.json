@@ -1,6 +1,6 @@
 {
   "name": "Harvesting Spawners",
-  "advancement": "spectrum:collect_resonance_enchanted_tool",
+  "advancement": "spectrum:lategame/collect_resonance_enchanted_tool",
   "icon": "spectrum:resonant_pickaxe",
   "category": "spectrum:hunting_category",
   "pages": [

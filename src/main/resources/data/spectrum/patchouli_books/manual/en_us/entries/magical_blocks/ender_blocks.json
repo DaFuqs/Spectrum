@@ -1,6 +1,6 @@
 {
   "name": "Ender Blocks",
-  "advancement": "spectrum:collect_ender_treasure",
+  "advancement": "spectrum:revealed_ender_treasure",
   "icon": "minecraft:ender_chest",
   "category": "spectrum:magical_blocks_category",
   "extra_recipe_mappings": {

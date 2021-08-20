@@ -1,6 +1,6 @@
 {
   "name": "End Portal Relocation",
-  "advancement": "spectrum:spectrum_lategame",
+  "advancement": "spectrum:lategame/spectrum_lategame",
   "icon": "minecraft:end_portal_frame",
   "category": "spectrum:magical_items_category",
   "extra_recipe_mappings": {

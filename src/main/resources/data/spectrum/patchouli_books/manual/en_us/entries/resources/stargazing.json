@@ -1,6 +1,6 @@
 {
     "name": "Stargazing",
-    "advancement": "spectrum:spectrum_midgame",
+    "advancement": "spectrum:midgame/spectrum_midgame",
     "icon": "minecraft:spyglass",
     "category": "spectrum:resources_category",
     "extra_recipe_mappings": {

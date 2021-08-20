@@ -1,6 +1,6 @@
 {
   "name": "Gemstone Armor",
-  "advancement": "spectrum:spectrum_midgame",
+  "advancement": "spectrum:midgame/spectrum_midgame",
   "icon": "spectrum:emergency_chestplate",
   "category": "spectrum:magical_items_category",
   "extra_recipe_mappings": {

@@ -1,16 +1,4 @@
 {
-  "display": {
-    "icon": {
-      "item": "spectrum:shooting_star"
-    },
-    "title": {
-      "translate": "advancements.spectrum.all_gemstone_ores_revealed.title"
-    },
-    "description": {
-      "translate": "advancements.spectrum.all_gemstone_ores_revealed.description"
-    }
-  },
-  "parent": "spectrum:spectrum_midgame",
   "criteria": {
     "revealed_topaz_ore": {
       "trigger":"spectrum:had_revelation",

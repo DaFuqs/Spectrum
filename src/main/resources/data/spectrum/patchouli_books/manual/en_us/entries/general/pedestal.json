@@ -3,14 +3,22 @@
   "icon": "spectrum:pedestal_basic_amethyst",
   "category": "spectrum:general_category",
   "extra_recipe_mappings": {
-    "spectrum:pedestal": 0
+    "spectrum:pedestal_basic_amethyst": 0,
+    "spectrum:pedestal_basic_topaz": 1,
+    "spectrum:pedestal_basic_citrine": 1
   },
   "pages": [
     {
       "type": "patchouli:crafting",
       "title": "Pigment Pedestal",
-      "recipe": "spectrum:crafting_table/pedestal_tier1",
+      "recipe": "spectrum:crafting_table/pedestal_basic_amethyst",
       "text": "The $(bold)Pigment Pedestal$() is the block where you can make most of the recipes for Spectrum.$(br2)It requires air, or an inventory above it. To start crafting supply a redstone signal."
+    },
+    {
+      "type": "patchouli:crafting",
+      "title": "Pigment Pedestal",
+      "recipe": "spectrum:crafting_table/pedestal_basic_topaz",
+      "recipe2": "spectrum:crafting_table/pedestal_basic_citrine"
     },
     {
       "type": "patchouli:text",

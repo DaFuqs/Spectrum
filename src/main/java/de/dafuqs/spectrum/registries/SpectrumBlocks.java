@@ -83,8 +83,13 @@ public class SpectrumBlocks {
     public static FabricItemSettings coloredWoodItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_COLORED_WOOD);
     public static FabricItemSettings mobHeadItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_MOB_HEADS).rarity(Rarity.UNCOMMON);
 
-    // PEDESTAL
-    public static final Block PEDESTAL = new PedestalBlock(FabricBlockSettings.of(Material.STONE).strength(5.0F, 20.0F));
+    // PEDESTALS
+    public static final Block PEDESTAL_BASIC_TOPAZ = new PedestalBlock(FabricBlockSettings.of(Material.STONE).strength(5.0F, 20.0F), PedestalBlock.PedestalVariant.BASIC_TOPAZ);
+    public static final Block PEDESTAL_BASIC_AMETHYST = new PedestalBlock(FabricBlockSettings.of(Material.STONE).strength(5.0F, 20.0F), PedestalBlock.PedestalVariant.BASIC_AMETHYST);
+    public static final Block PEDESTAL_BASIC_CITRINE = new PedestalBlock(FabricBlockSettings.of(Material.STONE).strength(5.0F, 20.0F), PedestalBlock.PedestalVariant.BASIC_CITRINE);
+    public static final Block PEDESTAL_ALL_BASIC = new PedestalBlock(FabricBlockSettings.of(Material.STONE).strength(5.0F, 20.0F), PedestalBlock.PedestalVariant.ALL_BASIC);
+    public static final Block PEDESTAL_ONYX = new PedestalBlock(FabricBlockSettings.of(Material.STONE).strength(5.0F, 20.0F), PedestalBlock.PedestalVariant.ONYX);
+    public static final Block PEDESTAL_MOONSTONE = new PedestalBlock(FabricBlockSettings.of(Material.STONE).strength(5.0F, 20.0F), PedestalBlock.PedestalVariant.MOONSTONE);
     
     // GEMS
     public static final Block TOPAZ_CLUSTER = new AmethystClusterBlock(7, 3, FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().requiresTool().breakByTool(FabricToolTags.PICKAXES, 2).sounds(SpectrumBlockSoundGroups.TOPAZ_CLUSTER).luminance((state) -> 6));
@@ -580,18 +585,13 @@ public class SpectrumBlocks {
         Registry.register(Registry.ITEM, new Identifier(SpectrumCommon.MOD_ID, name), blockItem);
     }
 
-    public static Item pedestal_basic_topaz;
-    public static Item pedestal_basic_amethyst;
-    public static Item pedestal_basic_citrine;
-
     public static void register() {
-        registerBlock("pedestal", PEDESTAL);
-        pedestal_basic_topaz = Registry.register(Registry.ITEM, new Identifier(SpectrumCommon.MOD_ID, "pedestal_basic_topaz"), new PedestalBlockItem(PEDESTAL, generalItemSettings, PedestalBlock.PedestalVariant.BASIC_TOPAZ));
-        pedestal_basic_amethyst = Registry.register(Registry.ITEM, new Identifier(SpectrumCommon.MOD_ID, "pedestal_basic_amethyst"), new PedestalBlockItem(PEDESTAL, generalItemSettings, PedestalBlock.PedestalVariant.BASIC_AMETHYST));
-        pedestal_basic_citrine = Registry.register(Registry.ITEM, new Identifier(SpectrumCommon.MOD_ID, "pedestal_basic_citrine"), new PedestalBlockItem(PEDESTAL, generalItemSettings, PedestalBlock.PedestalVariant.BASIC_CITRINE));
-        Registry.register(Registry.ITEM, new Identifier(SpectrumCommon.MOD_ID, "pedestal_all_basic"), new PedestalBlockItem(PEDESTAL, generalItemSettings, PedestalBlock.PedestalVariant.ALL_BASIC));
-        Registry.register(Registry.ITEM, new Identifier(SpectrumCommon.MOD_ID, "pedestal_onyx"), new PedestalBlockItem(PEDESTAL, generalItemSettings, PedestalBlock.PedestalVariant.ONYX));
-        Registry.register(Registry.ITEM, new Identifier(SpectrumCommon.MOD_ID, "pedestal_moonstone"), new PedestalBlockItem(PEDESTAL, generalItemSettings, PedestalBlock.PedestalVariant.MOONSTONE));
+        registerBlockWithItem("pedestal_basic_topaz", PEDESTAL_BASIC_TOPAZ, new PedestalBlockItem(PEDESTAL_BASIC_TOPAZ, generalItemSettings, PedestalBlock.PedestalVariant.BASIC_TOPAZ));
+        registerBlockWithItem("pedestal_basic_amethyst", PEDESTAL_BASIC_AMETHYST, new PedestalBlockItem(PEDESTAL_BASIC_AMETHYST, generalItemSettings, PedestalBlock.PedestalVariant.BASIC_AMETHYST));
+        registerBlockWithItem("pedestal_basic_citrine", PEDESTAL_BASIC_CITRINE, new PedestalBlockItem(PEDESTAL_BASIC_CITRINE, generalItemSettings, PedestalBlock.PedestalVariant.BASIC_CITRINE));
+        registerBlockWithItem("pedestal_all_basic", PEDESTAL_ALL_BASIC, new PedestalBlockItem(PEDESTAL_ALL_BASIC, generalItemSettings, PedestalBlock.PedestalVariant.ALL_BASIC));
+        registerBlockWithItem("pedestal_onyx", PEDESTAL_ONYX, new PedestalBlockItem(PEDESTAL_ONYX, generalItemSettings, PedestalBlock.PedestalVariant.ONYX));
+        registerBlockWithItem("pedestal_moonstone", PEDESTAL_MOONSTONE, new PedestalBlockItem(PEDESTAL_MOONSTONE, generalItemSettings, PedestalBlock.PedestalVariant.MOONSTONE));
 
         registerStoneBlocks(decorationItemSettings);
         registerGemBlocks(worldgenItemSettings);

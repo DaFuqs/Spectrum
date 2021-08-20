@@ -49,7 +49,7 @@ public class PedestalCraftingCategory<R extends PedestalCraftingRecipe> implemen
 
     @Override
     public Renderer getIcon() {
-        return EntryStacks.of(SpectrumBlocks.PEDESTAL);
+        return EntryStacks.of(SpectrumBlocks.PEDESTAL_BASIC_AMETHYST);
     }
 
     @Override

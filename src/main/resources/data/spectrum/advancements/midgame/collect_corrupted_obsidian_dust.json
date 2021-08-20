@@ -1,4 +1,5 @@
 {
+  "parent": "spectrum:midgame/craft_bottle_of_failing",
   "display": {
     "icon": {
       "item": "spectrum:corrupted_obsidian_dust"
@@ -15,6 +16,5 @@
       "trigger": "minecraft:inventory_changed",
       "conditions": { "items": [{ "items": [ "spectrum:corrupted_obsidian_dust" ]}] }
     }
-  },
-  "parent": "spectrum:spectrum_midgame"
+  }
 }

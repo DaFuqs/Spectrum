@@ -78,7 +78,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
         super(SpectrumBlockEntityRegistry.PEDESTAL, blockPos, blockState);
 
         if(blockState.getBlock() instanceof PedestalBlock) {
-            this.pedestalVariant = blockState.get(PedestalBlock.VARIANT);
+            this.pedestalVariant = ((PedestalBlock)(blockState.getBlock())).getVariant();
         } else {
             this.pedestalVariant = PedestalBlock.PedestalVariant.BASIC_AMETHYST;
         }
@@ -244,7 +244,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
     public static void serverTick(World world, BlockPos blockPos, BlockState blockState, PedestalBlockEntity pedestalBlockEntity) {
         // only craft when there is redstone power
         Block block = world.getBlockState(blockPos).getBlock();
-        if(block.equals(SpectrumBlocks.PEDESTAL) && blockState.get(PedestalBlock.STATE) == PedestalBlock.PedestalState.POWERED) {
+        if(block instanceof PedestalBlock && blockState.get(PedestalBlock.STATE) == PedestalBlock.PedestalState.POWERED) {
             // check recipe crafted last tick => performance
             PedestalCraftingRecipe pedestalCraftingRecipe = null;
             CraftingRecipe craftingRecipe = null;

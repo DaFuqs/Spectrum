@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.items;
 
-import de.dafuqs.spectrum.registries.SpectrumMultiBlocks;
+import de.dafuqs.spectrum.registries.SpectrumMultiblocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemUsageContext;
 import net.minecraft.util.ActionResult;
@@ -19,7 +19,7 @@ public class StructurePlacerItem extends Item {
 
     @Override
     public ActionResult useOnBlock(ItemUsageContext context) {
-        IMultiblock iMultiblock = SpectrumMultiBlocks.MULTIBLOCKS.get(multiBlockIdentifier);
+        IMultiblock iMultiblock = SpectrumMultiblocks.MULTIBLOCKS.get(multiBlockIdentifier);
         if(iMultiblock != null) {
             iMultiblock.place(context.getWorld(), context.getBlockPos().up(), BlockRotation.NONE);
         }

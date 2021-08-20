@@ -1,0 +1,20 @@
+{
+  "parent": "spectrum:midgame/spectrum_midgame",
+  "display": {
+    "icon": {
+      "item": "spectrum:topaz_player_only_glass"
+    },
+    "title": {
+      "translate": "advancements.spectrum.get_player_only_glass.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.get_player_only_glass.description"
+    }
+  },
+  "criteria": {
+    "craft": {
+      "trigger":"spectrum:crafted_with_pedestal",
+      "conditions": { "items": [{ "tag": "spectrum:player_only_glass" }] }
+    }
+  }
+}

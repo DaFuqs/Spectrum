@@ -1,4 +1,5 @@
 {
+  "parent": "spectrum:midgame/use_ominous_sapling",
   "display": {
     "icon": {
         "item": "spectrum:ominous_sapling"
@@ -10,7 +11,6 @@
       "translate": "advancements.spectrum.grow_ominous_sapling.description"
     }
   },
-  "parent": "spectrum:use_ominous_sapling",
   "criteria": {
     "grow": {
       "trigger":"minecraft:impossible"

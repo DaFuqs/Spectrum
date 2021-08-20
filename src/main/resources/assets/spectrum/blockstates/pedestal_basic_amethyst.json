@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "state=unpowered": {
+      "model": "spectrum:block/pedestal_basic_amethyst_unpowered"
+    },
+    "state=powered": {
+      "model": "spectrum:block/pedestal_basic_amethyst_powered"
+    }
+  }
+}

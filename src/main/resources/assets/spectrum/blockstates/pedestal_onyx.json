@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "state=unpowered": {
+      "model": "spectrum:block/pedestal_onyx_unpowered"
+    },
+    "state=powered": {
+      "model": "spectrum:block/pedestal_onyx_powered"
+    }
+  }
+}

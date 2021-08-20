@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "item": "spectrum:pedestal_onyx"
+      "item": "spectrum:pedestal_moonstone"
     },
     "title": {
       "translate": "advancements.spectrum.spectrum_lategame.title"
@@ -13,8 +13,8 @@
   },
   "criteria": {
     "get_pedestal2": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": { "items": [{ "items": [ "spectrum:pedestal_onyx" ]}] }
+      "trigger": "spectrum:crafted_with_pedestal",
+      "conditions": { "items": [{ "items": [ "spectrum:pedestal_moonstone" ]}] }
     }
   }
 }

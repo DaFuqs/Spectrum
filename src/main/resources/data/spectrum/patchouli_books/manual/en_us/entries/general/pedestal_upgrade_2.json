@@ -12,7 +12,7 @@
     {
       "type": "patchouli:multiblock",
       "name": "",
-      "multiblock_id": "spectrum:pedestaltier2multiblockdisplay",
+      "multiblock_id": "spectrum:pedestal_advanced_structure_display",
       "enable_visualize": true,
       "text": "TODO"
     }

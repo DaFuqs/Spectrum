@@ -1,0 +1,20 @@
+{
+  "parent": "spectrum:collect_all_basic_shards",
+  "display": {
+    "icon": {
+      "item": "spectrum:pedestal_all_basic"
+    },
+    "title": {
+      "translate": "advancements.spectrum.craft_colored_pedestal.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.craft_colored_pedestal.description"
+    }
+  },
+  "criteria": {
+    "get_pedestal_all_basic": {
+      "trigger": "spectrum:crafted_with_pedestal",
+      "conditions": { "items": [{ "items": [ "spectrum:pedestal_all_basic" ]}] }
+    }
+  }
+}

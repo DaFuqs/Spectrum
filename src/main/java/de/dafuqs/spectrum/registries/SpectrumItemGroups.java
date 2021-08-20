@@ -11,7 +11,7 @@ public class SpectrumItemGroups {
 
     public static final ItemGroup ITEM_GROUP_GENERAL = FabricItemGroupBuilder.build(
             new Identifier(SpectrumCommon.MOD_ID, "general"),
-            () -> new ItemStack(SpectrumBlocks.PEDESTAL));
+            () -> new ItemStack(SpectrumBlocks.PEDESTAL_BASIC_AMETHYST));
 
     public static final ItemGroup ITEM_GROUP_WORLDGEN = FabricItemGroupBuilder.build(
             new Identifier(SpectrumCommon.MOD_ID, "worldgen"),

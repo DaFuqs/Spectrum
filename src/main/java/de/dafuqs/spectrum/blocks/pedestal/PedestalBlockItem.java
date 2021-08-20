@@ -26,12 +26,6 @@ public class PedestalBlockItem extends BlockItem {
         return this.pedestalVariant;
     }
 
-    @Nullable
-    @Override
-    protected BlockState getPlacementState(ItemPlacementContext context) {
-        return super.getPlacementState(context).with(PedestalBlock.VARIANT, pedestalVariant);
-    }
-
     @Override
     public void appendTooltip(ItemStack itemStack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
         super.appendTooltip(itemStack, world, tooltip, tooltipContext);

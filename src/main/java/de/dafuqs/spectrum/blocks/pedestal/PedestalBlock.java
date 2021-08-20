@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.blocks.pedestal;
 
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
+import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.Block;
@@ -13,6 +14,8 @@ import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
+import net.minecraft.item.AutomaticItemPlacementContext;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particle.DustParticleEffect;
@@ -29,6 +32,7 @@ import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3f;
+import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -36,8 +40,8 @@ import java.util.Random;
 
 public class PedestalBlock extends BlockWithEntity {
 
+    private final PedestalVariant variant;
     public static final EnumProperty<PedestalState> STATE = EnumProperty.of("state", PedestalState.class);
-    public static final EnumProperty<PedestalVariant> VARIANT = EnumProperty.of("variant", PedestalVariant.class);
 
     public enum PedestalState implements StringIdentifiable {
         UNPOWERED("unpowered"),
@@ -58,32 +62,19 @@ public class PedestalBlock extends BlockWithEntity {
         }
     }
 
-    public enum PedestalVariant implements StringIdentifiable {
-        BASIC_TOPAZ("basic_topaz"),
-        BASIC_AMETHYST("basic_amethyst"),
-        BASIC_CITRINE("basic_citrine"),
-        ALL_BASIC("all_basic"),
-        ONYX("onyx"),
-        MOONSTONE("moonstone");
-
-        private final String name;
-
-        private PedestalVariant(String name) {
-            this.name = name;
-        }
-
-        public String toString() {
-            return this.name;
-        }
-
-        public String asString() {
-            return this.name;
-        }
+    public enum PedestalVariant {
+        BASIC_TOPAZ,
+        BASIC_AMETHYST,
+        BASIC_CITRINE,
+        ALL_BASIC,
+        ONYX,
+        MOONSTONE
     }
 
-    public PedestalBlock(Settings settings) {
+    public PedestalBlock(Settings settings, PedestalVariant variant) {
         super(settings);
-        setDefaultState(getStateManager().getDefaultState().with(STATE, PedestalState.UNPOWERED).with(VARIANT, PedestalVariant.BASIC_AMETHYST));
+        this.variant = variant;
+        setDefaultState(getStateManager().getDefaultState().with(STATE, PedestalState.UNPOWERED));
     }
 
     public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
@@ -99,7 +90,6 @@ public class PedestalBlock extends BlockWithEntity {
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> stateManager) {
         stateManager.add(STATE);
-        stateManager.add(VARIANT);
     }
 
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
@@ -128,9 +118,9 @@ public class PedestalBlock extends BlockWithEntity {
         if(state.isOf(newState.getBlock())) {
             BlockEntity blockEntity = world.getBlockEntity(pos);
             if (blockEntity instanceof PedestalBlockEntity) {
-                PedestalVariant pedestalVariant = newState.get(PedestalBlock.VARIANT);
-                if(((PedestalBlockEntity) blockEntity).getVariant() != pedestalVariant) {
-                    ((PedestalBlockEntity) blockEntity).setVariant(pedestalVariant);
+                if(state.getBlock().equals(newState.getBlock())) {
+                    PedestalVariant newVariant = ((PedestalBlock) newState.getBlock()).getVariant();
+                    ((PedestalBlockEntity) blockEntity).setVariant(newVariant);
                 }
             }
         } else {
@@ -148,7 +138,7 @@ public class PedestalBlock extends BlockWithEntity {
      * while keeping the inventory and all other data
      */
     public static void upgradeToVariant(World world, BlockPos blockPos, PedestalVariant newPedestalVariant) {
-        world.setBlockState(blockPos, world.getBlockState(blockPos).with(VARIANT, newPedestalVariant));
+        world.setBlockState(blockPos, getPedestalBlockForVariant(newPedestalVariant).getPlacementState(new AutomaticItemPlacementContext(world, blockPos, Direction.DOWN, null, Direction.UP)));
     }
 
     @Nullable
@@ -245,6 +235,33 @@ public class PedestalBlock extends BlockWithEntity {
         }
 
         return placementState;
+    }
+
+    public PedestalVariant getVariant() {
+        return this.variant;
+    }
+
+    public static Block getPedestalBlockForVariant(PedestalVariant variant) {
+        switch (variant) {
+            case BASIC_TOPAZ -> {
+                return SpectrumBlocks.PEDESTAL_BASIC_TOPAZ;
+            }
+            case BASIC_AMETHYST -> {
+                return SpectrumBlocks.PEDESTAL_BASIC_AMETHYST;
+            }
+            case BASIC_CITRINE -> {
+                return SpectrumBlocks.PEDESTAL_BASIC_CITRINE;
+            }
+            case ALL_BASIC -> {
+                return SpectrumBlocks.PEDESTAL_ALL_BASIC;
+            }
+            case ONYX -> {
+                return SpectrumBlocks.PEDESTAL_ONYX;
+            }
+            default -> {
+                return SpectrumBlocks.PEDESTAL_MOONSTONE;
+            }
+        }
     }
 
 }

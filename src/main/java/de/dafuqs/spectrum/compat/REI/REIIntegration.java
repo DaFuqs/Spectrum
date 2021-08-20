@@ -24,8 +24,8 @@ public class REIIntegration implements REIClientPlugin {
         registry.add(new PedestalCraftingCategory<>());
         registry.add(new AnvilCrushingCategory<>());
 
-        registry.addWorkstations(BuiltinPlugin.CRAFTING, EntryStacks.of(SpectrumBlocks.PEDESTAL));
-        registry.addWorkstations(PedestalCraftingCategory.ID, EntryStacks.of(SpectrumBlocks.PEDESTAL));
+        registry.addWorkstations(BuiltinPlugin.CRAFTING, EntryStacks.of(SpectrumBlocks.PEDESTAL_BASIC_AMETHYST));
+        registry.addWorkstations(PedestalCraftingCategory.ID, EntryStacks.of(SpectrumBlocks.PEDESTAL_BASIC_AMETHYST));
         registry.addWorkstations(AnvilCrushingCategory.ID, EntryStacks.of(Blocks.ANVIL), EntryStacks.of(SpectrumBlocks.BEDROCK_ANVIL));
 
         // Since anvil crushing is an in world recipe there is no gui to fill

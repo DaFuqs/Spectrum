@@ -12,10 +12,12 @@
   },
   "parent": "spectrum:spectrum",
   "criteria": {
-    "placed_pedestal": {
-      "trigger":"minecraft:placed_block",
+    "used_pedestal": {
+      "trigger": "minecraft:using_item",
       "conditions": {
-        "block": "spectrum:pedestal"
+        "item": {
+          "tag": "spectrum:pedestals"
+        }
       }
     }
   }

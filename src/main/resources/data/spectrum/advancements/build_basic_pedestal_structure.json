@@ -1,0 +1,20 @@
+{
+  "display": {
+    "icon": {
+      "item": "spectrum:chiseled_polished_basalt"
+    },
+    "title": {
+      "translate": "advancements.spectrum.build_basic_pedestal_structure.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.build_basic_pedestal_structure.description"
+    }
+  },
+  "parent": "spectrum:collect_all_basic_shards",
+  "criteria": {
+    "built_structure": {
+      "trigger": "spectrum:completed_multiblock",
+      "conditions": { "multiblock_identifier": "spectrum:pedestal_basic_structure" }
+    }
+  }
+}

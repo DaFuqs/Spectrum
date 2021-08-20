@@ -174,7 +174,7 @@ public class PedestalCraftingRecipe implements Recipe<Inventory> {
 
     @Override
     public ItemStack createIcon() {
-        return new ItemStack(SpectrumBlocks.PEDESTAL);
+        return new ItemStack(SpectrumBlocks.PEDESTAL_BASIC_AMETHYST);
     }
 
     @Override

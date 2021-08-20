@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "state=unpowered": {
+      "model": "spectrum:block/pedestal_moonstone_unpowered"
+    },
+    "state=powered": {
+      "model": "spectrum:block/pedestal_moonstone_powered"
+    }
+  }
+}

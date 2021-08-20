@@ -8,7 +8,7 @@ import vazkii.patchouli.api.PatchouliAPI;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class SpectrumMultiBlocks {
+public class SpectrumMultiblocks {
 
 	public static final Map<Identifier, IMultiblock> MULTIBLOCKS = new ConcurrentHashMap<>();
 	
@@ -32,10 +32,12 @@ public class SpectrumMultiBlocks {
 				'S', "#spectrum:gemstone_storage_blocks",
 				'C', "#spectrum:chiseled_base_blocks",
 				'R', "#spectrum:basic_gemstone_chiseled_base_blocks",
-				'A', "spectrum:pedestal",
 				'O', "#spectrum:onyx_chiseled_base_blocks",
 				'm', "#spectrum:moonstone_chiseled_base_blocks",
 				'M', "#spectrum:moonstone_chiseled_base_blocks",
+				'A', "spectrum:pedestal_all_basic",
+				'a', "spectrum:pedestal_onyx",
+				'B', "spectrum:pedestal_moonstone"
 		};
 
 		Object[] targetBlocksDisplay = {
@@ -47,10 +49,12 @@ public class SpectrumMultiBlocks {
 			'S', "spectrum:amethyst_storage_block",
 			'C', "spectrum:chiseled_polished_basalt",
 			'R', "spectrum:amethyst_chiseled_basalt",
-			'A', "spectrum:pedestal",
 			'O', "spectrum:onyx_chiseled_basalt",
 			'm', "spectrum:moonstone_chiseled_basalt[axis=x]",
 			'M', "spectrum:moonstone_chiseled_basalt[axis=y]",
+			'A', "spectrum:pedestal_all_basic",
+			'a', "spectrum:pedestal_onyx",
+			'B', "spectrum:pedestal_moonstone"
 		};
 
 		String[][] tier1Structure = {
@@ -62,7 +66,7 @@ public class SpectrumMultiBlocks {
 				{ "X         X", "           ", "  Q     Q  ", "           ", "           ", "     A     ", "           ", "           ", "  Q     Q  ", "           ", "X         X" },
 				{ "           ", "   XXXXX   ", "  XXXXXXX  ", " XXXXXXXXX ", " XXXXXXXXX ", " XXXX0XXXX ", " XXXXXXXXX ", " XXXXXXXXX ", "  XXXXXXX  ", "   XXXXX   ", "           " }
 		};
-		registerMultiBlock("pedestaltier1multiblock", tier1Structure, targetBlocksCheck);
+		registerMultiBlock("pedestal_basic_structure", tier1Structure, targetBlocksCheck);
 
 		String[][] tier2Structure = {
 				{ "             ", "             ", "             ", "             ", "             ", "             ", "             ", "             ", "             ", "             ", "             ", "             ", "             " },
@@ -70,11 +74,11 @@ public class SpectrumMultiBlocks {
 				{ "             ", " Q  Q   Q  Q ", "             ", "             ", " Q         Q ", "             ", "             ", "             ", " Q         Q ", "             ", "             ", " Q  Q   Q  Q ", "             " },
 				{ "             ", " C  Q   Q  C ", "             ", "             ", " Q         Q ", "             ", "             ", "             ", " Q         Q ", "             ", "             ", " C  Q   Q  C ", "             " },
 				{ "             ", " Q  L   L  Q ", "             ", "   S     S   ", " L         L ", "             ", "             ", "             ", " L         L ", "   S     S   ", "             ", " Q  L   L  Q ", "             " },
-				{ "             ", " X  Q   Q  X ", "             ", "   Q     Q   ", " Q         Q ", "             ", "      A      ", "             ", " Q         Q ", "   Q     Q   ", "             ", " X  Q   Q  X ", "             " },
+				{ "             ", " X  Q   Q  X ", "             ", "   Q     Q   ", " Q         Q ", "             ", "      a      ", "             ", " Q         Q ", "   Q     Q   ", "             ", " X  Q   Q  X ", "             " },
 				{ "XXXXXXXXXXXXX", "XXXXXXXXXXXXX", "XXXXXXXXXXXXX", "XXXXXXXXXXXXX", "XXXXXRXRXXXXX", "XXXXRXXXRXXXX", "XXXXXX0XXXXXX", "XXXXRXXXRXXXX", "XXXXXRXRXXXXX", "XXXXXXXXXXXXX", "XXXXXXXXXXXXX", "XXXXXXXXXXXXX", "XXXXXXXXXXXXX" }
 		};
-		registerMultiBlock("pedestaltier2multiblockcheck", tier2Structure, targetBlocksCheck);
-		registerMultiBlock("pedestaltier2multiblockdisplay", tier2Structure, targetBlocksDisplay);
+		registerMultiBlock("pedestal_advanced_structure_check", tier2Structure, targetBlocksCheck);
+		registerMultiBlock("pedestal_advanced_structure_display", tier2Structure, targetBlocksDisplay);
 
 		String[][] tier3Structure = {
 				{ "             ", "    XpSpX    ", "             ", "             ", " X  OpppO  X ", " P  P   P  P ", " S  P   P  S ", " P  P   P  P ", " X  OpppO  X ", "             ", "             ", "    XpSpX    ", "             " },
@@ -82,11 +86,11 @@ public class SpectrumMultiBlocks {
 				{ "             ", " Q  Q   Q  Q ", "             ", "             ", " Q         Q ", "             ", "             ", "             ", " Q         Q ", "             ", "             ", " Q  Q   Q  Q ", "             " },
 				{ "             ", " C  Q   Q  C ", "             ", "             ", " Q         Q ", "             ", "             ", "             ", " Q         Q ", "             ", "             ", " C  Q   Q  C ", "             " },
 				{ "             ", " Q  L   L  Q ", "             ", "   S     S   ", " L         L ", "             ", "             ", "             ", " L         L ", "   S     S   ", "             ", " Q  L   L  Q ", "             " },
-				{ "             ", " X  Q   Q  X ", "             ", "   Q     Q   ", " Q         Q ", "             ", "      A      ", "             ", " Q         Q ", "   Q     Q   ", "             ", " X  Q   Q  X ", "             " },
+				{ "             ", " X  Q   Q  X ", "             ", "   Q     Q   ", " Q         Q ", "             ", "      B      ", "             ", " Q         Q ", "   Q     Q   ", "             ", " X  Q   Q  X ", "             " },
 				{ "XXXXXXXXXXXXX", "XXmmXmmmXmmXX", "XMXXXXXXXXXMX", "XMXXXXXXXXXMX", "XXXXXRXRXXXXX", "XMXXRXXXRXXMX", "XMXXXX0XXXXMX", "XMXXRXXXRXXMX", "XXXXXRXRXXXXX", "XMXXXXXXXXXMX", "XMXXXXXXXXXMX", "XXmmXmmmXmmXX", "XXXXXXXXXXXXX" }
 		};
-		registerMultiBlock("pedestaltier3multiblockcheck", tier3Structure, targetBlocksCheck);
-		registerMultiBlock("pedestaltier3multiblockdisplay", tier3Structure, targetBlocksDisplay);
+		registerMultiBlock("pedestal_complex_structure_check", tier3Structure, targetBlocksCheck);
+		registerMultiBlock("pedestal_complex_structure_display", tier3Structure, targetBlocksDisplay);
 	}
 
 }

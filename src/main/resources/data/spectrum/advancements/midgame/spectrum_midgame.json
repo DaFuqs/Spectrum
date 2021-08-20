@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "item": "spectrum:pedestal_all_basic"
+      "item": "spectrum:pedestal_onyx"
     },
     "title": {
       "translate": "advancements.spectrum.spectrum_midgame.title"
@@ -13,8 +13,8 @@
   },
   "criteria": {
     "get_pedestal_all_basic": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": { "items": [{ "items": [ "spectrum:pedestal_all_basic" ]}] }
+      "trigger": "spectrum:crafted_with_pedestal",
+      "conditions": { "items": [{ "items": [ "spectrum:pedestal_onyx" ]}] }
     }
   }
 }

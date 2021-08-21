@@ -14,7 +14,6 @@ import de.dafuqs.spectrum.registries.SpectrumItems;
 import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.Item;
@@ -23,7 +22,6 @@ import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.RecipeType;
-import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
@@ -261,7 +259,7 @@ public class PedestalCraftingRecipe implements Recipe<Inventory> {
         if(playerEntity == null) {
             return false;
         } else {
-            return canPlayerCraft(playerEntity) && pedestalBlockEntity.getHighestAvailableRecipeTier().ordinal() >= this.tier.ordinal();
+            return canPlayerCraft(playerEntity) && pedestalBlockEntity.getHighestAvailableRecipeTierWithStructure().ordinal() >= this.tier.ordinal();
         }
     }
 

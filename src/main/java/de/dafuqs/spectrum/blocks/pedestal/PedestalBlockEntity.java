@@ -44,10 +44,13 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.BlockRotation;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Iterator;
@@ -71,6 +74,8 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
     private Recipe lastRecipe;
 
     private static AutoCraftingInventory autoCraftingInventory;
+    private PedestalRecipeTier cachedMaxPedestalTier;
+    private long cachedMaxPedestalTierTick;
 
     public static final int INVENTORY_SIZE = 16; // 9 crafting, 5 gems, 1 craftingTablet, 1 output
     public static final int CRAFTING_TABLET_SLOT_ID = 14;
@@ -116,7 +121,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
         return this.pedestalVariant;
     }
 
-    public void setVariant(PedestalBlock.PedestalVariant pedestalVariant) {
+    public void setVariant(PedestalBlock.@NotNull PedestalVariant pedestalVariant) {
         this.pedestalVariant = pedestalVariant;
         this.propertyDelegate.set(2, pedestalVariant.ordinal());
     }
@@ -128,7 +133,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 
     @Override
     protected ScreenHandler createScreenHandler(int syncId, PlayerInventory playerInventory) {
-        return new PedestalScreenHandler(syncId, playerInventory, this, this.propertyDelegate, this.pedestalVariant.ordinal());
+        return new PedestalScreenHandler(syncId, playerInventory, this, this.propertyDelegate, this.pedestalVariant.ordinal(), this.getHighestAvailableRecipeTierWithStructure().ordinal(), this.pos);
     }
 
     @Override
@@ -168,7 +173,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
     }
 
     @Override
-    public void setStack(int slot, ItemStack stack) {
+    public void setStack(int slot, @NotNull ItemStack stack) {
         ItemStack itemStack = this.inventory.get(slot);
         boolean isSimilarItem = !stack.isEmpty() && stack.isItemEqualIgnoreDamage(itemStack) && ItemStack.areTagsEqual(stack, itemStack);
         this.inventory.set(slot, stack);
@@ -243,7 +248,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
         return this.craftingTime > 0;
     }
 
-    public static void serverTick(World world, BlockPos blockPos, BlockState blockState, PedestalBlockEntity pedestalBlockEntity) {
+    public static void serverTick(@NotNull World world, BlockPos blockPos, BlockState blockState, PedestalBlockEntity pedestalBlockEntity) {
         // only craft when there is redstone power
         Block block = world.getBlockState(blockPos).getBlock();
         if(block instanceof PedestalBlock && blockState.get(PedestalBlock.STATE) == PedestalBlock.PedestalState.POWERED) {
@@ -328,11 +333,12 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
         }
     }
 
-    public static PedestalBlock.PedestalVariant getVariant(PedestalBlockEntity pedestalBlockEntity) {
+    @Contract(pure = true)
+    public static PedestalBlock.PedestalVariant getVariant(@NotNull PedestalBlockEntity pedestalBlockEntity) {
         return pedestalBlockEntity.pedestalVariant;
     }
 
-    public static void spawnOutputAsItemEntity(World world, BlockPos blockPos, PedestalBlockEntity pedestalBlockEntity, ItemStack outputItemStack, CraftingRecipe craftingRecipe, PedestalCraftingRecipe pedestalCraftingRecipe) {
+    public static void spawnOutputAsItemEntity(World world, BlockPos blockPos, @NotNull PedestalBlockEntity pedestalBlockEntity, ItemStack outputItemStack, CraftingRecipe craftingRecipe, PedestalCraftingRecipe pedestalCraftingRecipe) {
         // spawn crafting output
         ItemEntity itemEntity = new ItemEntity(world, pedestalBlockEntity.pos.getX() + 0.5, pedestalBlockEntity.pos.getY() + 1, pedestalBlockEntity.pos.getZ() + 0.5, outputItemStack);
         itemEntity.addVelocity(0, 0.1, 0);
@@ -370,7 +376,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
         }
     }
 
-    public static Recipe calculateRecipe(World world, PedestalBlockEntity pedestalBlockEntity) {
+    public static @Nullable Recipe calculateRecipe(World world, @NotNull PedestalBlockEntity pedestalBlockEntity) {
         if (pedestalBlockEntity.lastRecipe instanceof PedestalCraftingRecipe && ((PedestalCraftingRecipe) pedestalBlockEntity.lastRecipe).matches(pedestalBlockEntity, world)) {
             return pedestalBlockEntity.lastRecipe;
         } else {
@@ -583,7 +589,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
     }
 
     @Override
-    public boolean canInsert(int slot, ItemStack stack, @Nullable Direction dir) {
+    public boolean canInsert(int slot, @NotNull ItemStack stack, @Nullable Direction dir) {
         if(stack.isOf(getGemstonePowderItemForSlot(slot))) {
             return true;
         }
@@ -668,10 +674,17 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
     @Override
     public void writeScreenOpeningData(ServerPlayerEntity player, PacketByteBuf buf) {
         buf.writeInt(this.pedestalVariant.ordinal());
+        buf.writeInt(this.getHighestAvailableRecipeTierWithStructure().ordinal());
+        buf.writeBlockPos(this.pos);
     }
 
     private PedestalRecipeTier getHighestAvailableRecipeTierForVariant() {
-        switch (this.pedestalVariant) {
+        return getHighestAvailableRecipeTierForVariant(this.pedestalVariant);
+    }
+
+    @Contract(pure = true)
+    public static PedestalRecipeTier getHighestAvailableRecipeTierForVariant(PedestalBlock.@NotNull PedestalVariant pedestalVariant) {
+        switch (pedestalVariant) {
             case ALL_BASIC -> {
                 return PedestalRecipeTier.SIMPLE;
             }
@@ -688,28 +701,36 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
         }
     }
 
-    public PedestalRecipeTier getHighestAvailableRecipeTier() {
-        PedestalRecipeTier highestAvailableRecipeTier = getHighestAvailableRecipeTierForVariant();
+    public PedestalRecipeTier getHighestAvailableRecipeTierWithStructure() {
+        if(world.getTime() == this.cachedMaxPedestalTierTick) {
+            return cachedMaxPedestalTier;
+        } else {
+            PedestalRecipeTier highestAvailableRecipeTierForVariant = getHighestAvailableRecipeTierForVariant();
 
-        if(highestAvailableRecipeTier.ordinal() >= PedestalRecipeTier.COMPLEX.ordinal()) {
-            boolean valid = SpectrumMultiblocks.MULTIBLOCKS.get(SpectrumMultiblocks.PEDESTAL_COMPLEX_STRUCTURE_IDENTIFIER_CHECK).validate(world, pos.down(), BlockRotation.NONE);
-            if(valid) {
-                return PedestalRecipeTier.COMPLEX;
+            PedestalRecipeTier highestAvailableRecipeTier = PedestalRecipeTier.BASIC;
+            if (highestAvailableRecipeTierForVariant.ordinal() >= PedestalRecipeTier.COMPLEX.ordinal()) {
+                boolean valid = SpectrumMultiblocks.MULTIBLOCKS.get(SpectrumMultiblocks.PEDESTAL_COMPLEX_STRUCTURE_IDENTIFIER_CHECK).validate(world, pos.down(), BlockRotation.NONE);
+                if (valid) {
+                    highestAvailableRecipeTier = PedestalRecipeTier.COMPLEX;
+                }
             }
-        }
-        if(highestAvailableRecipeTier.ordinal() >= PedestalRecipeTier.ADVANCED.ordinal()) {
-            boolean valid = SpectrumMultiblocks.MULTIBLOCKS.get(SpectrumMultiblocks.PEDESTAL_ADVANCED_STRUCTURE_IDENTIFIER_CHECK).validate(world, pos.down(), BlockRotation.NONE);
-            if(valid) {
-                return PedestalRecipeTier.ADVANCED;
+            if (highestAvailableRecipeTierForVariant.ordinal() >= PedestalRecipeTier.ADVANCED.ordinal()) {
+                boolean valid = SpectrumMultiblocks.MULTIBLOCKS.get(SpectrumMultiblocks.PEDESTAL_ADVANCED_STRUCTURE_IDENTIFIER_CHECK).validate(world, pos.down(), BlockRotation.NONE);
+                if (valid) {
+                    highestAvailableRecipeTier = PedestalRecipeTier.ADVANCED;
+                }
             }
-        }
-        if(highestAvailableRecipeTier.ordinal() >= PedestalRecipeTier.SIMPLE.ordinal()) {
-            boolean valid = SpectrumMultiblocks.MULTIBLOCKS.get(SpectrumMultiblocks.PEDESTAL_SIMPLE_STRUCTURE_IDENTIFIER).validate(world, pos.down(), BlockRotation.NONE);
-            if(valid) {
-                return PedestalRecipeTier.SIMPLE;
+            if (highestAvailableRecipeTierForVariant.ordinal() >= PedestalRecipeTier.SIMPLE.ordinal()) {
+                boolean valid = SpectrumMultiblocks.MULTIBLOCKS.get(SpectrumMultiblocks.PEDESTAL_SIMPLE_STRUCTURE_IDENTIFIER).validate(world, pos.down(), BlockRotation.NONE);
+                if (valid) {
+                    highestAvailableRecipeTier = PedestalRecipeTier.SIMPLE;
+                }
             }
+
+            this.cachedMaxPedestalTier = highestAvailableRecipeTier;
+            this.cachedMaxPedestalTierTick = world.getTime();
+            return highestAvailableRecipeTier;
         }
-        return PedestalRecipeTier.BASIC;
     }
 
 }

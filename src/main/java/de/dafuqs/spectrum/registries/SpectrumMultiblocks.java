@@ -1,7 +1,10 @@
 package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.recipe.pedestal.PedestalRecipeTier;
+import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
+import org.jetbrains.annotations.NotNull;
 import vazkii.patchouli.api.IMultiblock;
 import vazkii.patchouli.api.PatchouliAPI;
 import vazkii.patchouli.common.multiblock.StateMatcher;
@@ -103,6 +106,37 @@ public class SpectrumMultiblocks {
 		};
 		PEDESTAL_COMPLEX_STRUCTURE_IDENTIFIER_CHECK = registerMultiBlock("pedestal_complex_structure_check", tier3Structure, targetBlocksCheck);
 		PEDESTAL_COMPLEX_STRUCTURE_IDENTIFIER_DISPLAY = registerMultiBlock("pedestal_complex_structure_display", tier3Structure, targetBlocksDisplay);
+	}
+
+
+	public static Identifier getDisplayStructureIdentifierForTier(@NotNull PedestalRecipeTier pedestalRecipeTier) {
+		switch (pedestalRecipeTier) {
+			case COMPLEX -> {
+				return SpectrumMultiblocks.PEDESTAL_COMPLEX_STRUCTURE_IDENTIFIER_DISPLAY;
+			}
+			case ADVANCED -> {
+				return SpectrumMultiblocks.PEDESTAL_ADVANCED_STRUCTURE_IDENTIFIER_DISPLAY;
+			}
+			case SIMPLE -> {
+				return SpectrumMultiblocks.PEDESTAL_SIMPLE_STRUCTURE_IDENTIFIER;
+			}
+		}
+		return null;
+	}
+
+	public static TranslatableText getStructureText(@NotNull PedestalRecipeTier pedestalRecipeTier) {
+		switch (pedestalRecipeTier) {
+			case COMPLEX -> {
+				return new TranslatableText("multiblock.spectrum.pedestal.complex_structure");
+			}
+			case ADVANCED -> {
+				return new TranslatableText("multiblock.spectrum.pedestal.advanced_structure");
+			}
+			case SIMPLE -> {
+				return new TranslatableText("multiblock.spectrum.pedestal.simple_structure");
+			}
+		}
+		return null;
 	}
 
 }

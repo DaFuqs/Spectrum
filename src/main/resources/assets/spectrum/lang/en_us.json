@@ -607,10 +607,6 @@
   "item.spectrum.ender_splice.wrong_dimension": "This Ender Splices energy is not strong enough to teleport you across dimensions.",
   "item.spectrum.natures_staff": "Nature's Staff",
 
-  "item.spectrum.pedestal_tier_1_structure_placer": "Simple Pedestal Structure Placer",
-  "item.spectrum.pedestal_tier_2_structure_placer": "Advanced Pedestal Structure Placer",
-  "item.spectrum.pedestal_tier_3_structure_placer": "Complex Pedestal Structure Placer",
-
   "item.spectrum.crafting_tablet": "Crafting Tablet",
   "item.spectrum.crafting_tablet.tooltip.no_recipe": "Add items to the crafting grid to set a recipe.",
   "item.spectrum.crafting_tablet.tooltip.crafting_recipe": "Press use to craft.",
@@ -645,6 +641,14 @@
   "item.spectrum.pedestal.tooltip.all_basic": "§bC§dM§eY§7 Variant",
   "item.spectrum.pedestal.tooltip.onyx": "§8Onyx§7 Variant",
   "item.spectrum.pedestal.tooltip.moonstone": "§fMoonstone§7 Variant",
+
+  "multiblock.spectrum.pedestal.simple_structure": "Spectrum Focus",
+  "multiblock.spectrum.pedestal.advanced_structure": "Spectrum Hall",
+  "multiblock.spectrum.pedestal.complex_structure": "Spectrum Palace",
+
+  "item.spectrum.pedestal_tier_1_structure_placer": "Spectrum Focus Structure Placer",
+  "item.spectrum.pedestal_tier_2_structure_placer": "Spectrum Hall Structure Placer",
+  "item.spectrum.pedestal_tier_3_structure_placer": "Spectrum Palace Structure Placer",
 
   "block.spectrum.ender_glass": "Ender Glass",
   "block.spectrum.redstone_sand": "Redstone Sand",

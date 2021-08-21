@@ -5,6 +5,7 @@ import de.dafuqs.spectrum.blocks.pedestal.PedestalBlockEntity;
 import de.dafuqs.spectrum.inventories.slots.DisabledSlot;
 import de.dafuqs.spectrum.inventories.slots.ReadOnlySlot;
 import de.dafuqs.spectrum.inventories.slots.StackFilterSlot;
+import de.dafuqs.spectrum.recipe.pedestal.PedestalRecipeTier;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -23,7 +24,9 @@ import net.minecraft.recipe.book.RecipeBookCategory;
 import net.minecraft.screen.*;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.NotNull;
 
 public class PedestalScreenHandler extends AbstractRecipeScreenHandler<Inventory> {
 
@@ -36,21 +39,23 @@ public class PedestalScreenHandler extends AbstractRecipeScreenHandler<Inventory
     private final RecipeBookCategory category;
     private final CraftingResultInventory craftingResultInventory;
 
+    private BlockPos pedestalPos;
     private PedestalBlock.PedestalVariant variant;
+    private PedestalRecipeTier maxPedestalRecipeTier;
 
-    public PedestalScreenHandler(int syncId, PlayerInventory playerInventory, PacketByteBuf buf) {
-        this(SpectrumScreenHandlerTypes.PEDESTAL, ScreenHandlerContext.EMPTY, RecipeBookCategory.CRAFTING, syncId, playerInventory, buf.readInt());
+    public PedestalScreenHandler(int syncId, PlayerInventory playerInventory, @NotNull PacketByteBuf buf) {
+        this(SpectrumScreenHandlerTypes.PEDESTAL, ScreenHandlerContext.EMPTY, RecipeBookCategory.CRAFTING, syncId, playerInventory, buf.readInt(), buf.readInt(), buf.readBlockPos());
     }
 
-    protected PedestalScreenHandler(ScreenHandlerType<?> type, ScreenHandlerContext context, RecipeBookCategory recipeBookCategory, int i, PlayerInventory playerInventory, int variant) {
-        this(type, context, recipeBookCategory, i, playerInventory, new SimpleInventory(PedestalBlockEntity.INVENTORY_SIZE), new ArrayPropertyDelegate(2), variant);
+    protected PedestalScreenHandler(ScreenHandlerType<?> type, ScreenHandlerContext context, RecipeBookCategory recipeBookCategory, int i, PlayerInventory playerInventory, int variant, int maxRecipeTier, BlockPos pedestalPos) {
+        this(type, context, recipeBookCategory, i, playerInventory, new SimpleInventory(PedestalBlockEntity.INVENTORY_SIZE), new ArrayPropertyDelegate(2), variant, maxRecipeTier, pedestalPos);
     }
 
-    public PedestalScreenHandler(int syncId, PlayerInventory playerInventory, Inventory inventory, PropertyDelegate propertyDelegate, int variant) {
-        this(SpectrumScreenHandlerTypes.PEDESTAL, ScreenHandlerContext.EMPTY, RecipeBookCategory.CRAFTING, syncId, playerInventory, inventory, propertyDelegate, variant);
+    public PedestalScreenHandler(int syncId, PlayerInventory playerInventory, Inventory inventory, PropertyDelegate propertyDelegate, int variant, int maxRecipeTier, BlockPos pedestalPos) {
+        this(SpectrumScreenHandlerTypes.PEDESTAL, ScreenHandlerContext.EMPTY, RecipeBookCategory.CRAFTING, syncId, playerInventory, inventory, propertyDelegate, variant, maxRecipeTier, pedestalPos);
     }
 
-    protected PedestalScreenHandler(ScreenHandlerType<?> type, ScreenHandlerContext context, RecipeBookCategory recipeBookCategory, int i, PlayerInventory playerInventory, Inventory inventory, PropertyDelegate propertyDelegate, int variant) {
+    protected PedestalScreenHandler(ScreenHandlerType<?> type, ScreenHandlerContext context, RecipeBookCategory recipeBookCategory, int i, @NotNull PlayerInventory playerInventory, Inventory inventory, PropertyDelegate propertyDelegate, int variant, int maxRecipeTier, BlockPos pedestalPos) {
         super(type, i);
         this.context = context;
         this.player = playerInventory.player;
@@ -59,7 +64,10 @@ public class PedestalScreenHandler extends AbstractRecipeScreenHandler<Inventory
         this.propertyDelegate = propertyDelegate;
         this.world = playerInventory.player.world;
         this.craftingResultInventory = new CraftingResultInventory();
+
+        this.pedestalPos = pedestalPos;
         this.variant = PedestalBlock.PedestalVariant.values()[variant];
+        this.maxPedestalRecipeTier = PedestalRecipeTier.values()[maxRecipeTier];
 
         checkSize(inventory, PedestalBlockEntity.INVENTORY_SIZE);
         checkDataCount(propertyDelegate, 2);
@@ -286,8 +294,16 @@ public class PedestalScreenHandler extends AbstractRecipeScreenHandler<Inventory
         return clickedStackCopy;
     }
 
+    public BlockPos getPedestalPos() {
+        return this.pedestalPos;
+    }
 
     public PedestalBlock.PedestalVariant getVariant() {
-        return variant;
+        return this.variant;
     }
+
+    public PedestalRecipeTier getMaxPedestalRecipeTier() {
+        return this.maxPedestalRecipeTier;
+    }
+
 }

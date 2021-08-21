@@ -12,9 +12,10 @@ import de.dafuqs.spectrum.networking.SpectrumS2CPackets;
 import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.recipe.pedestal.PedestalCraftingRecipe;
+import de.dafuqs.spectrum.recipe.pedestal.PedestalRecipeTier;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
-import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import de.dafuqs.spectrum.registries.SpectrumItems;
+import de.dafuqs.spectrum.registries.SpectrumMultiblocks;
 import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.Block;
@@ -42,6 +43,7 @@ import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
+import net.minecraft.util.BlockRotation;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -382,7 +384,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 
                 PedestalCraftingRecipe pedestalCraftingRecipe = world.getRecipeManager().getFirstMatch(recipeType, pedestalBlockEntity, world).orElse(null);
                 if (pedestalCraftingRecipe != null) {
-                    if (pedestalCraftingRecipe.canCraft(pedestalBlockEntity.getOwnerUUID())) {
+                    if (pedestalCraftingRecipe.canCraft(pedestalBlockEntity)) {
                         pedestalBlockEntity.lastRecipe = pedestalCraftingRecipe;
                         pedestalBlockEntity.craftingTimeTotal = pedestalCraftingRecipe.getCraftingTime();
                         return pedestalCraftingRecipe;
@@ -461,7 +463,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 
             // if it was a recipe to upgrade the pedestal itself
             // => upgrade
-            PedestalBlock.PedestalVariant newPedestalVariant = PedestalCraftingRecipe.getPedestalVariantForOutput(recipeOutput);
+            PedestalBlock.PedestalVariant newPedestalVariant = PedestalCraftingRecipe.getUpgradedPedestalVariantForOutput(recipeOutput);
             if(newPedestalVariant != null && newPedestalVariant.ordinal() > getVariant(pedestalBlockEntity).ordinal()) {
                 // It is an upgrade recipe (output is an pedestal block item)
                 // => Upgrade
@@ -534,11 +536,11 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
         } else if(slot == CRAFTING_TABLET_SLOT_ID && stack.isOf(SpectrumItems.CRAFTING_TABLET)) {
             return true;
         } else {
-            return stack.getItem().equals(getSpectrumItemForSlot(slot));
+            return stack.getItem().equals(getGemstonePowderItemForSlot(slot));
         }
     }
 
-    public static Item getSpectrumItemForSlot(int slot) {
+    public static Item getGemstonePowderItemForSlot(int slot) {
         return switch (slot) {
             case 9 -> SpectrumItems.TOPAZ_POWDER;
             case 10 -> SpectrumItems.AMETHYST_POWDER;
@@ -582,7 +584,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 
     @Override
     public boolean canInsert(int slot, ItemStack stack, @Nullable Direction dir) {
-        if(stack.isOf(getSpectrumItemForSlot(slot))) {
+        if(stack.isOf(getGemstonePowderItemForSlot(slot))) {
             return true;
         }
 
@@ -667,4 +669,47 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
     public void writeScreenOpeningData(ServerPlayerEntity player, PacketByteBuf buf) {
         buf.writeInt(this.pedestalVariant.ordinal());
     }
+
+    private PedestalRecipeTier getHighestAvailableRecipeTierForVariant() {
+        switch (this.pedestalVariant) {
+            case ALL_BASIC -> {
+                return PedestalRecipeTier.SIMPLE;
+            }
+            case ONYX -> {
+                return PedestalRecipeTier.ADVANCED;
+            }
+            case MOONSTONE -> {
+                return PedestalRecipeTier.COMPLEX;
+            }
+            default -> {
+                // BASIC_TOPAZ, BASIC_AMETHYST, BASIC_CITRINE, no structure
+                return PedestalRecipeTier.BASIC;
+            }
+        }
+    }
+
+    public PedestalRecipeTier getHighestAvailableRecipeTier() {
+        PedestalRecipeTier highestAvailableRecipeTier = getHighestAvailableRecipeTierForVariant();
+
+        if(highestAvailableRecipeTier.ordinal() >= PedestalRecipeTier.COMPLEX.ordinal()) {
+            boolean valid = SpectrumMultiblocks.MULTIBLOCKS.get(SpectrumMultiblocks.PEDESTAL_COMPLEX_STRUCTURE_IDENTIFIER_CHECK).validate(world, pos.down(), BlockRotation.NONE);
+            if(valid) {
+                return PedestalRecipeTier.COMPLEX;
+            }
+        }
+        if(highestAvailableRecipeTier.ordinal() >= PedestalRecipeTier.ADVANCED.ordinal()) {
+            boolean valid = SpectrumMultiblocks.MULTIBLOCKS.get(SpectrumMultiblocks.PEDESTAL_ADVANCED_STRUCTURE_IDENTIFIER_CHECK).validate(world, pos.down(), BlockRotation.NONE);
+            if(valid) {
+                return PedestalRecipeTier.ADVANCED;
+            }
+        }
+        if(highestAvailableRecipeTier.ordinal() >= PedestalRecipeTier.SIMPLE.ordinal()) {
+            boolean valid = SpectrumMultiblocks.MULTIBLOCKS.get(SpectrumMultiblocks.PEDESTAL_SIMPLE_STRUCTURE_IDENTIFIER).validate(world, pos.down(), BlockRotation.NONE);
+            if(valid) {
+                return PedestalRecipeTier.SIMPLE;
+            }
+        }
+        return PedestalRecipeTier.BASIC;
+    }
+
 }

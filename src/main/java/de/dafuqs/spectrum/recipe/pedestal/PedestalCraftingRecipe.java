@@ -4,6 +4,7 @@ import de.dafuqs.spectrum.SpectrumClient;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.Support;
 import de.dafuqs.spectrum.blocks.pedestal.PedestalBlock;
+import de.dafuqs.spectrum.blocks.pedestal.PedestalBlockEntity;
 import de.dafuqs.spectrum.blocks.pedestal.PedestalBlockItem;
 import de.dafuqs.spectrum.enums.GemstoneColor;
 import de.dafuqs.spectrum.progression.ClientPedestalRecipeToastManager;
@@ -13,6 +14,7 @@ import de.dafuqs.spectrum.registries.SpectrumItems;
 import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.Item;
@@ -39,7 +41,7 @@ public class PedestalCraftingRecipe implements Recipe<Inventory> {
     protected final int width;
     protected final int height;
 
-    protected final int tier;
+    protected final PedestalRecipeTier tier;
     protected final DefaultedList<Ingredient> craftingInputs;
     protected final HashMap<GemstoneColor, Integer> gemstoneDustInputs;
     protected final ItemStack output;
@@ -49,7 +51,7 @@ public class PedestalCraftingRecipe implements Recipe<Inventory> {
     protected final List<Identifier> requiredAdvancementIdentifiers;
     protected final boolean showToastOnUnlock;
 
-    public PedestalCraftingRecipe(Identifier id, String group, int tier, int width, int height, DefaultedList<Ingredient> craftingInputs, HashMap<GemstoneColor, Integer> gemstoneDustInputs, ItemStack output, float experience, int craftingTime, List<Identifier> requiredAdvancementIdentifiers, boolean showToastOnUnlock) {
+    public PedestalCraftingRecipe(Identifier id, String group, PedestalRecipeTier tier, int width, int height, DefaultedList<Ingredient> craftingInputs, HashMap<GemstoneColor, Integer> gemstoneDustInputs, ItemStack output, float experience, int craftingTime, List<Identifier> requiredAdvancementIdentifiers, boolean showToastOnUnlock) {
         this.id = id;
         this.group = group;
         this.tier = tier;
@@ -254,37 +256,36 @@ public class PedestalCraftingRecipe implements Recipe<Inventory> {
         }
     }
 
-    public boolean canCraft(UUID playerUUID) {
-        ServerPlayerEntity serverPlayerEntity = SpectrumCommon.minecraftServer.getPlayerManager().getPlayer(playerUUID);
-        if(serverPlayerEntity == null) {
+    public boolean canCraft(PedestalBlockEntity pedestalBlockEntity) {
+        PlayerEntity playerEntity = pedestalBlockEntity.getPlayerEntityIfOnline(pedestalBlockEntity.getWorld());
+        if(playerEntity == null) {
             return false;
         } else {
-            return canCraft(serverPlayerEntity);
+            return canPlayerCraft(playerEntity) && pedestalBlockEntity.getHighestAvailableRecipeTier().ordinal() >= this.tier.ordinal();
         }
+    }
+
+    public boolean canPlayerCraft(PlayerEntity playerEntity) {
+        return hasUnlockedRequiredTier(playerEntity) && hasUnlockedRequiredAdvancements(playerEntity);
     }
 
     private boolean hasUnlockedRequiredTier(PlayerEntity playerEntity) {
         switch (this.tier) {
-            case 1 -> {
+            case BASIC -> {
                 return Support.hasAdvancement(playerEntity, new Identifier(SpectrumCommon.MOD_ID, "place_pedestal"));
             }
-            case 2 -> {
+            case SIMPLE -> {
+                return Support.hasAdvancement(playerEntity, new Identifier(SpectrumCommon.MOD_ID, "craft_colored_pedestal"));
+            }
+            case ADVANCED -> {
                 return Support.hasAdvancement(playerEntity, new Identifier(SpectrumCommon.MOD_ID, "spectrum_midgame"));
             }
-            case 3 -> {
+            case COMPLEX -> {
                 return Support.hasAdvancement(playerEntity, new Identifier(SpectrumCommon.MOD_ID, "spectrum_lategame"));
             }
             default -> {
                 return false;
             }
-        }
-    }
-
-    public static PedestalBlock.PedestalVariant getPedestalVariantForOutput(ItemStack outputItemStack) {
-        if(outputItemStack.getItem() instanceof PedestalBlockItem) {
-            return ((PedestalBlockItem) outputItemStack.getItem()).getVariant();
-        } else {
-            return null;
         }
     }
 
@@ -297,8 +298,19 @@ public class PedestalCraftingRecipe implements Recipe<Inventory> {
         return true;
     }
 
-    public boolean canCraft(PlayerEntity playerEntity) {
-        return hasUnlockedRequiredTier(playerEntity) && hasUnlockedRequiredAdvancements(playerEntity);
+    /**
+     * When a recipe is set to output a pedestal block item
+     * it is treated as an upgrade recipe. Meaning the item does not
+     * get crafted, but the current pedestal replaced with the new one.
+     * @param outputItemStack
+     * @return
+     */
+    public static PedestalBlock.PedestalVariant getUpgradedPedestalVariantForOutput(ItemStack outputItemStack) {
+        if(outputItemStack.getItem() instanceof PedestalBlockItem) {
+            return ((PedestalBlockItem) outputItemStack.getItem()).getVariant();
+        } else {
+            return null;
+        }
     }
 
     /**

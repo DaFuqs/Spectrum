@@ -117,7 +117,7 @@ public class PedestalBlock extends BlockWithEntity {
     public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
         if(newState.getBlock() instanceof PedestalBlock) {
             if (!state.getBlock().equals(newState.getBlock())) {
-                // pedestal is getting upgraded. Keep the blockEntity with it's contents
+                // pedestal is getting upgraded. Keep the blockEntity with its contents
                 BlockEntity blockEntity = world.getBlockEntity(pos);
                 if (blockEntity instanceof PedestalBlockEntity) {
                     if (state.getBlock().equals(newState.getBlock())) {

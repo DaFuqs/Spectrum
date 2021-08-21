@@ -1,7 +1,7 @@
 {
   "type": "spectrum_pedestal",
   "time": 200,
-  "tier": 1,
+  "tier": "basic",
   "magenta": 0,
   "yellow": 8,
   "cyan": 0,

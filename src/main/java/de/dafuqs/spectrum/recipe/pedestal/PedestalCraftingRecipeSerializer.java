@@ -16,10 +16,7 @@ import net.minecraft.util.JsonHelper;
 import net.minecraft.util.collection.DefaultedList;
 import org.apache.logging.log4j.Level;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class PedestalCraftingRecipeSerializer<T extends PedestalCraftingRecipe> implements RecipeSerializer<T> {
 
@@ -44,7 +41,7 @@ public class PedestalCraftingRecipeSerializer<T extends PedestalCraftingRecipe> 
             output.addEnchantment(enchantData.enchantment, enchantData.level);
         }
 
-        int tier = JsonHelper.getInt(jsonObject, "tier", 0);
+        PedestalRecipeTier tier = PedestalRecipeTier.valueOf(JsonHelper.getString(jsonObject, "tier", "basic").toUpperCase(Locale.ROOT));
         float experience = JsonHelper.getFloat(jsonObject, "experience", 0);
         int craftingTime = JsonHelper.getInt(jsonObject, "time", 200);
 
@@ -101,7 +98,7 @@ public class PedestalCraftingRecipeSerializer<T extends PedestalCraftingRecipe> 
         }
         ItemStack output = packetByteBuf.readItemStack();
 
-        int tier = packetByteBuf.readVarInt();
+        PedestalRecipeTier tier = PedestalRecipeTier.values()[packetByteBuf.readVarInt()];
 
         int magenta = packetByteBuf.readVarInt();
         int cyan = packetByteBuf.readVarInt();
@@ -141,7 +138,7 @@ public class PedestalCraftingRecipeSerializer<T extends PedestalCraftingRecipe> 
 
         packetByteBuf.writeItemStack(pedestalRecipe.output);
 
-        packetByteBuf.writeInt(pedestalRecipe.tier);
+        packetByteBuf.writeInt(pedestalRecipe.tier.ordinal());
         packetByteBuf.writeInt(pedestalRecipe.getGemstonePowderAmount(GemstoneColor.MAGENTA));
         packetByteBuf.writeInt(pedestalRecipe.getGemstonePowderAmount(GemstoneColor.CYAN));
         packetByteBuf.writeInt(pedestalRecipe.getGemstonePowderAmount(GemstoneColor.YELLOW));
@@ -159,7 +156,7 @@ public class PedestalCraftingRecipeSerializer<T extends PedestalCraftingRecipe> 
     }
 
     public interface RecipeFactory<T extends PedestalCraftingRecipe> {
-        T create(Identifier id, String group, int tier, int width, int height, DefaultedList<Ingredient> craftingInputs, HashMap<GemstoneColor, Integer> gemInputs, ItemStack output, float experience, int craftingTime, List<Identifier> requiredAdvancementIdentifiers, boolean showToastOnUnlock);
+        T create(Identifier id, String group, PedestalRecipeTier tier, int width, int height, DefaultedList<Ingredient> craftingInputs, HashMap<GemstoneColor, Integer> gemInputs, ItemStack output, float experience, int craftingTime, List<Identifier> requiredAdvancementIdentifiers, boolean showToastOnUnlock);
     }
 
 }

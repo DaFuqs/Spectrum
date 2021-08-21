@@ -53,7 +53,7 @@ public class SpectrumItems {
     public static final Item MANUAL = new ManualItem(generalItemSettingsSingle);
     public static final Item CRAFTING_TABLET = new CraftingTabletItem(generalItemSettingsSingle);
 
-    public static final Item PEDESTAL_TIER_1_STRUCTURE_PLACER = new StructurePlacerItem(generalItemSettingsSingle, new Identifier(SpectrumCommon.MOD_ID, "pedestal_basic_structure"));
+    public static final Item PEDESTAL_TIER_1_STRUCTURE_PLACER = new StructurePlacerItem(generalItemSettingsSingle, new Identifier(SpectrumCommon.MOD_ID, "pedestal_simple_structure"));
     public static final Item PEDESTAL_TIER_2_STRUCTURE_PLACER = new StructurePlacerItem(generalItemSettingsSingle, new Identifier(SpectrumCommon.MOD_ID, "pedestal_advanced_structure_display"));
     public static final Item PEDESTAL_TIER_3_STRUCTURE_PLACER = new StructurePlacerItem(generalItemSettingsSingle, new Identifier(SpectrumCommon.MOD_ID, "pedestal_complex_structure_display"));
 

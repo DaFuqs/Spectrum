@@ -4,6 +4,7 @@ import de.dafuqs.spectrum.SpectrumCommon;
 import net.minecraft.util.Identifier;
 import vazkii.patchouli.api.IMultiblock;
 import vazkii.patchouli.api.PatchouliAPI;
+import vazkii.patchouli.common.multiblock.StateMatcher;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -11,12 +12,19 @@ import java.util.concurrent.ConcurrentHashMap;
 public class SpectrumMultiblocks {
 
 	public static final Map<Identifier, IMultiblock> MULTIBLOCKS = new ConcurrentHashMap<>();
-	
-	private static IMultiblock registerMultiBlock(String identifierString, String[][] structure, Object[] targetBlocks) {
+
+	public static Identifier PEDESTAL_SIMPLE_STRUCTURE_IDENTIFIER;
+	public static Identifier PEDESTAL_ADVANCED_STRUCTURE_IDENTIFIER_CHECK;
+	public static Identifier PEDESTAL_ADVANCED_STRUCTURE_IDENTIFIER_DISPLAY;
+	public static Identifier PEDESTAL_COMPLEX_STRUCTURE_IDENTIFIER_CHECK;
+	public static Identifier PEDESTAL_COMPLEX_STRUCTURE_IDENTIFIER_DISPLAY;
+
+
+	private static Identifier registerMultiBlock(String identifierString, String[][] structure, Object[] targetBlocks) {
 		Identifier identifier = new Identifier(SpectrumCommon.MOD_ID, identifierString);
 		IMultiblock multiblock = PatchouliAPI.get().makeMultiblock(structure, targetBlocks);
 		MULTIBLOCKS.put(identifier, PatchouliAPI.get().registerMultiblock(identifier, multiblock));
-		return multiblock;
+		return identifier;
 	}
 
 	public static void register() {
@@ -35,62 +43,66 @@ public class SpectrumMultiblocks {
 				'O', "#spectrum:onyx_chiseled_base_blocks",
 				'm', "#spectrum:moonstone_chiseled_base_blocks",
 				'M', "#spectrum:moonstone_chiseled_base_blocks",
-				'A', "spectrum:pedestal_all_basic",
-				'a', "spectrum:pedestal_onyx",
-				'B', "spectrum:pedestal_moonstone"
+				'n', "#spectrum:polished_base_blocks_or_moonstone_chiseled",
+				'N', "#spectrum:polished_base_blocks_or_moonstone_chiseled",
+				'A', "#spectrum:pedestals",
+				'a', "#spectrum:pedestals",
+				'B', "#spectrum:pedestals",
+				'_', StateMatcher.ANY,
+				'0', StateMatcher.ANY
 		};
 
 		Object[] targetBlocksDisplay = {
-			'X', "spectrum:polished_basalt",
-			'P', "spectrum:polished_basalt_pillar[axis=x]",
-			'p', "spectrum:polished_basalt_pillar[axis=z]",
-			'Q', "spectrum:polished_basalt_pillar[axis=y]",
-			'L', "spectrum:amethyst_basalt_lamp",
-			'S', "spectrum:amethyst_storage_block",
-			'C', "spectrum:chiseled_polished_basalt",
-			'R', "spectrum:amethyst_chiseled_basalt",
-			'O', "spectrum:onyx_chiseled_basalt",
-			'm', "spectrum:moonstone_chiseled_basalt[axis=x]",
-			'M', "spectrum:moonstone_chiseled_basalt[axis=y]",
-			'A', "spectrum:pedestal_all_basic",
-			'a', "spectrum:pedestal_onyx",
-			'B', "spectrum:pedestal_moonstone"
+				'X', "spectrum:polished_basalt",
+				'P', "spectrum:polished_basalt_pillar[axis=x]",
+				'p', "spectrum:polished_basalt_pillar[axis=z]",
+				'Q', "spectrum:polished_basalt_pillar[axis=y]",
+				'L', "spectrum:amethyst_basalt_lamp",
+				'S', "spectrum:amethyst_storage_block",
+				'C', "spectrum:chiseled_polished_basalt",
+				'R', "spectrum:amethyst_chiseled_basalt",
+				'O', "spectrum:onyx_chiseled_basalt",
+				'm', "spectrum:moonstone_chiseled_basalt[axis=x]",
+				'M', "spectrum:moonstone_chiseled_basalt[axis=y]",
+				'n', "spectrum:polished_basalt",
+				'N', "spectrum:polished_basalt",
+				'A', "spectrum:pedestal_all_basic",
+				'a', "spectrum:pedestal_onyx",
+				'B', "spectrum:pedestal_moonstone",
+				'_', StateMatcher.ANY,
+				'0', StateMatcher.ANY
 		};
 
 		String[][] tier1Structure = {
-				{ "           ", "           ", "           ", "           ", "           ", "           ", "           ", "           ", "           ", "           ", "           " },
-				{ "           ", "           ", "           ", "           ", "           ", "           ", "           ", "           ", "           ", "           ", "           " },
-				{ "           ", "           ", "           ", "           ", "           ", "           ", "           ", "           ", "           ", "           ", "           " },
-				{ "C         C", "           ", "           ", "           ", "           ", "           ", "           ", "           ", "           ", "           ", "C         C" },
-				{ "Q         Q", "           ", "  S     S  ", "           ", "           ", "           ", "           ", "           ", "  S     S  ", "           ", "Q         Q" },
-				{ "X         X", "           ", "  Q     Q  ", "           ", "           ", "     A     ", "           ", "           ", "  Q     Q  ", "           ", "X         X" },
-				{ "           ", "   XXXXX   ", "  XXXXXXX  ", " XXXXXXXXX ", " XXXXXXXXX ", " XXXX0XXXX ", " XXXXXXXXX ", " XXXXXXXXX ", "  XXXXXXX  ", "   XXXXX   ", "           " }
+				{ "C_________C", "___________", "___________", "___________", "___________", "___________", "___________", "___________", "___________", "___________", "C_________C" },
+				{ "Q_________Q", "___________", "__S_____S__", "___________", "___________", "___________", "___________", "___________", "__S_____S__", "___________", "Q_________Q" },
+				{ "X_________X", "___________", "__Q_____Q__", "___________", "___________", "_____A_____", "___________", "___________", "__Q_____Q__", "___________", "X_________X" },
+				{ "___________", "___XXXXX___", "__XXXXXXX__", "_XXXXXXXXX_", "_XXXXXXXXX_", "_XXXX0XXXX_", "_XXXXXXXXX_", "_XXXXXXXXX_", "__XXXXXXX__", "___XXXXX___", "___________" }
 		};
-		registerMultiBlock("pedestal_basic_structure", tier1Structure, targetBlocksCheck);
+		PEDESTAL_SIMPLE_STRUCTURE_IDENTIFIER = registerMultiBlock("pedestal_simple_structure", tier1Structure, targetBlocksCheck);
 
 		String[][] tier2Structure = {
-				{ "             ", "             ", "             ", "             ", "             ", "             ", "             ", "             ", "             ", "             ", "             ", "             ", "             " },
-				{ "             ", " SppR   RppS ", " P         P ", " P         P ", " R         R ", "             ", "             ", "             ", " R         R ", " P         P ", " P         P ", " SppR   RppS ", "             " },
-				{ "             ", " Q  Q   Q  Q ", "             ", "             ", " Q         Q ", "             ", "             ", "             ", " Q         Q ", "             ", "             ", " Q  Q   Q  Q ", "             " },
-				{ "             ", " C  Q   Q  C ", "             ", "             ", " Q         Q ", "             ", "             ", "             ", " Q         Q ", "             ", "             ", " C  Q   Q  C ", "             " },
-				{ "             ", " Q  L   L  Q ", "             ", "   S     S   ", " L         L ", "             ", "             ", "             ", " L         L ", "   S     S   ", "             ", " Q  L   L  Q ", "             " },
-				{ "             ", " X  Q   Q  X ", "             ", "   Q     Q   ", " Q         Q ", "             ", "      a      ", "             ", " Q         Q ", "   Q     Q   ", "             ", " X  Q   Q  X ", "             " },
-				{ "XXXXXXXXXXXXX", "XXXXXXXXXXXXX", "XXXXXXXXXXXXX", "XXXXXXXXXXXXX", "XXXXXRXRXXXXX", "XXXXRXXXRXXXX", "XXXXXX0XXXXXX", "XXXXRXXXRXXXX", "XXXXXRXRXXXXX", "XXXXXXXXXXXXX", "XXXXXXXXXXXXX", "XXXXXXXXXXXXX", "XXXXXXXXXXXXX" }
+				{ "_____________", "_SppR___RppS_", "_P_________P_", "_P_________P_", "_R_________R_", "_____________", "_____________", "_____________", "_R_________R_", "_P_________P_", "_P_________P_", "_SppR___RppS_", "_____________" },
+				{ "_____________", "_Q__Q___Q__Q_", "_____________", "_____________", "_Q_________Q_", "_____________", "_____________", "_____________", "_Q_________Q_", "_____________", "_____________", "_Q__Q___Q__Q_", "_____________" },
+				{ "_____________", "_C__Q___Q__C_", "_____________", "_____________", "_Q_________Q_", "_____________", "_____________", "_____________", "_Q_________Q_", "_____________", "_____________", "_C__Q___Q__C_", "_____________" },
+				{ "_____________", "_Q__L___L__Q_", "_____________", "___S_____S___", "_L_________L_", "_____________", "_____________", "_____________", "_L_________L_", "___S_____S___", "_____________", "_Q__L___L__Q_", "_____________" },
+				{ "_____________", "_X__Q___Q__X_", "_____________", "___Q_____Q___", "_Q_________Q_", "_____________", "______a______", "_____________", "_Q_________Q_", "___Q_____Q___", "_____________", "_X__Q___Q__X_", "_____________" },
+				{ "XXXXXXXXXXXXX", "XXnnXnnnXnnXX", "XNXXXXXXXXXNX", "XNXXXXXXXXXNX", "XXXXXRXRXXXXX", "XNXXRXXXRXXNX", "XNXXXX0XXXXNX", "XNXXRXXXRXXNX", "XXXXXRXRXXXXX", "XNXXXXXXXXXNX", "XNXXXXXXXXXNX", "XXnnXnnnXnnXX", "XXXXXXXXXXXXX" }
 		};
-		registerMultiBlock("pedestal_advanced_structure_check", tier2Structure, targetBlocksCheck);
-		registerMultiBlock("pedestal_advanced_structure_display", tier2Structure, targetBlocksDisplay);
+		PEDESTAL_ADVANCED_STRUCTURE_IDENTIFIER_CHECK = registerMultiBlock("pedestal_advanced_structure_check", tier2Structure, targetBlocksCheck);
+		PEDESTAL_ADVANCED_STRUCTURE_IDENTIFIER_DISPLAY = registerMultiBlock("pedestal_advanced_structure_display", tier2Structure, targetBlocksDisplay);
 
 		String[][] tier3Structure = {
-				{ "             ", "    XpSpX    ", "             ", "             ", " X  OpppO  X ", " P  P   P  P ", " S  P   P  S ", " P  P   P  P ", " X  OpppO  X ", "             ", "             ", "    XpSpX    ", "             " },
-				{ "             ", " SppR   RppS ", " P  P   P  P ", " P  P   P  P ", " RppX   XppR ", "             ", "             ", "             ", " RppX   XppR ", " P  P   P  P ", " P  P   P  P ", " SppR   RppS ", "             " },
-				{ "             ", " Q  Q   Q  Q ", "             ", "             ", " Q         Q ", "             ", "             ", "             ", " Q         Q ", "             ", "             ", " Q  Q   Q  Q ", "             " },
-				{ "             ", " C  Q   Q  C ", "             ", "             ", " Q         Q ", "             ", "             ", "             ", " Q         Q ", "             ", "             ", " C  Q   Q  C ", "             " },
-				{ "             ", " Q  L   L  Q ", "             ", "   S     S   ", " L         L ", "             ", "             ", "             ", " L         L ", "   S     S   ", "             ", " Q  L   L  Q ", "             " },
-				{ "             ", " X  Q   Q  X ", "             ", "   Q     Q   ", " Q         Q ", "             ", "      B      ", "             ", " Q         Q ", "   Q     Q   ", "             ", " X  Q   Q  X ", "             " },
+				{ "_____________", "____XpSpX____", "_____________", "_____________", "_X__OpppO__X_", "_P__P___P__P_", "_S__P___P__S_", "_P__P___P__P_", "_X__OpppO__X_", "_____________", "_____________", "____XpSpX____", "_____________" },
+				{ "_____________", "_SppR___RppS_", "_P__P___P__P_", "_P__P___P__P_", "_RppX___XppR_", "_____________", "_____________", "_____________", "_RppX___XppR_", "_P__P___P__P_", "_P__P___P__P_", "_SppR___RppS_", "_____________" },
+				{ "_____________", "_Q__Q___Q__Q_", "_____________", "_____________", "_Q_________Q_", "_____________", "_____________", "_____________", "_Q_________Q_", "_____________", "_____________", "_Q__Q___Q__Q_", "_____________" },
+				{ "_____________", "_C__Q___Q__C_", "_____________", "_____________", "_Q_________Q_", "_____________", "_____________", "_____________", "_Q_________Q_", "_____________", "_____________", "_C__Q___Q__C_", "_____________" },
+				{ "_____________", "_Q__L___L__Q_", "_____________", "___S_____S___", "_L_________L_", "_____________", "_____________", "_____________", "_L_________L_", "___S_____S___", "_____________", "_Q__L___L__Q_", "_____________" },
+				{ "_____________", "_X__Q___Q__X_", "_____________", "___Q_____Q___", "_Q_________Q_", "_____________", "______B______", "_____________", "_Q_________Q_", "___Q_____Q___", "_____________", "_X__Q___Q__X_", "_____________" },
 				{ "XXXXXXXXXXXXX", "XXmmXmmmXmmXX", "XMXXXXXXXXXMX", "XMXXXXXXXXXMX", "XXXXXRXRXXXXX", "XMXXRXXXRXXMX", "XMXXXX0XXXXMX", "XMXXRXXXRXXMX", "XXXXXRXRXXXXX", "XMXXXXXXXXXMX", "XMXXXXXXXXXMX", "XXmmXmmmXmmXX", "XXXXXXXXXXXXX" }
 		};
-		registerMultiBlock("pedestal_complex_structure_check", tier3Structure, targetBlocksCheck);
-		registerMultiBlock("pedestal_complex_structure_display", tier3Structure, targetBlocksDisplay);
+		PEDESTAL_COMPLEX_STRUCTURE_IDENTIFIER_CHECK = registerMultiBlock("pedestal_complex_structure_check", tier3Structure, targetBlocksCheck);
+		PEDESTAL_COMPLEX_STRUCTURE_IDENTIFIER_DISPLAY = registerMultiBlock("pedestal_complex_structure_display", tier3Structure, targetBlocksDisplay);
 	}
 
 }

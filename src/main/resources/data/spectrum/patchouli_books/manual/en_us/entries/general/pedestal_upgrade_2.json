@@ -1,7 +1,7 @@
 {
   "name": "Upgrading your Pedestal 2",
   "icon": "spectrum:pedestal_onyx",
-  "advancement": "spectrum:lategame/spectrum_lategame",
+  "advancement": "spectrum:midgame/spectrum_midgame",
   "category": "spectrum:general_category",
   "pages": [
     {
@@ -11,7 +11,7 @@
     },
     {
       "type": "patchouli:multiblock",
-      "name": "",
+      "name": "Spectrum Hall",
       "multiblock_id": "spectrum:pedestal_advanced_structure_display",
       "enable_visualize": true,
       "text": "TODO"

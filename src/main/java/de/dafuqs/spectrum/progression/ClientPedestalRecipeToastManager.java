@@ -45,7 +45,7 @@ public class ClientPedestalRecipeToastManager {
     private static void showToastsForAllRecipesWithAdvancement(Identifier advancementIdentifier) {
         if (unlockablePedestalRecipes.containsKey(advancementIdentifier)) {
             for (PedestalCraftingRecipe unlockedRecipe : unlockablePedestalRecipes.get(advancementIdentifier)) {
-                if (unlockedRecipe.shouldShowToastOnUnlock() && unlockedRecipe.canCraft(MinecraftClient.getInstance().player)) {
+                if (unlockedRecipe.shouldShowToastOnUnlock() && unlockedRecipe.canPlayerCraft(MinecraftClient.getInstance().player)) {
                     RecipeToast.showRecipeToast(MinecraftClient.getInstance(), new ItemStack(unlockedRecipe.getOutput().getItem()));
                 }
             }

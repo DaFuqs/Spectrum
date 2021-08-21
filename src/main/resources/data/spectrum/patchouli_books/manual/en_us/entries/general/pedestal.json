@@ -4,8 +4,8 @@
   "category": "spectrum:general_category",
   "extra_recipe_mappings": {
     "spectrum:pedestal_basic_amethyst": 0,
-    "spectrum:pedestal_basic_topaz": 1,
-    "spectrum:pedestal_basic_citrine": 1
+    "spectrum:pedestal_basic_topaz": 3,
+    "spectrum:pedestal_basic_citrine": 3
   },
   "pages": [
     {
@@ -15,14 +15,18 @@
       "text": "The $(bold)Pigment Pedestal$() is the block where you can make most of the recipes for Spectrum.$(br2)It requires air, or an inventory above it. To start crafting supply a redstone signal."
     },
     {
+      "type": "patchouli:text",
+      "text": "Most recipes require $(l:general/gemstone_powder)Gemstone Powder$() as an ingredient.$(br2)The Pedestal also acts as a normal crafting table and can therefore also craft vanilla recipes.$(br2)You can use a $(l:general/crafting_tablet)Crafting Tablet$() to automate Spectrums and Vanillas recipes."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "You can build the Pigment Pedestal out of every gemstone you like."
+    },
+    {
       "type": "patchouli:crafting",
       "title": "Pigment Pedestal",
       "recipe": "spectrum:crafting_table/pedestal_basic_topaz",
       "recipe2": "spectrum:crafting_table/pedestal_basic_citrine"
-    },
-    {
-      "type": "patchouli:text",
-      "text": "Most recipes require $(l:general/gemstone_powder)Gemstone Powder$() as an ingredient.$(br2)The Pedestal also acts as a normal crafting table and can therefore also craft vanilla recipes.$(br2)You can use a $(l:general/crafting_tablet)Crafting Tablet$() to automate spectrums and vanilla recipes."
     }
   ]
 }

@@ -118,7 +118,6 @@ public class PedestalScreen extends HandledScreen<PedestalScreenHandler> {
                 PatchouliAPI.get().clearMultiblock();
             } else {
                 PatchouliAPI.get().showMultiblock(multiblockToDisplay, SpectrumMultiblocks.getStructureText(maxPedestalRecipeTierForVariant), this.handler.getPedestalPos().down(2) , BlockRotation.NONE);
-                this.handler.close(client.player);
             }
             return true;
         } else {

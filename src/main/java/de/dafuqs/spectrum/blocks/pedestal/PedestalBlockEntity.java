@@ -707,20 +707,23 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
         } else {
             PedestalRecipeTier highestAvailableRecipeTierForVariant = getHighestAvailableRecipeTierForVariant();
 
+            boolean found = false;
             PedestalRecipeTier highestAvailableRecipeTier = PedestalRecipeTier.BASIC;
             if (highestAvailableRecipeTierForVariant.ordinal() >= PedestalRecipeTier.COMPLEX.ordinal()) {
                 boolean valid = SpectrumMultiblocks.MULTIBLOCKS.get(SpectrumMultiblocks.PEDESTAL_COMPLEX_STRUCTURE_IDENTIFIER_CHECK).validate(world, pos.down(), BlockRotation.NONE);
                 if (valid) {
                     highestAvailableRecipeTier = PedestalRecipeTier.COMPLEX;
+                    found = true;
                 }
             }
-            if (highestAvailableRecipeTierForVariant.ordinal() >= PedestalRecipeTier.ADVANCED.ordinal()) {
+            if (!found && highestAvailableRecipeTierForVariant.ordinal() >= PedestalRecipeTier.ADVANCED.ordinal()) {
                 boolean valid = SpectrumMultiblocks.MULTIBLOCKS.get(SpectrumMultiblocks.PEDESTAL_ADVANCED_STRUCTURE_IDENTIFIER_CHECK).validate(world, pos.down(), BlockRotation.NONE);
                 if (valid) {
                     highestAvailableRecipeTier = PedestalRecipeTier.ADVANCED;
+                    found = true;
                 }
             }
-            if (highestAvailableRecipeTierForVariant.ordinal() >= PedestalRecipeTier.SIMPLE.ordinal()) {
+            if (!found && highestAvailableRecipeTierForVariant.ordinal() >= PedestalRecipeTier.SIMPLE.ordinal()) {
                 boolean valid = SpectrumMultiblocks.MULTIBLOCKS.get(SpectrumMultiblocks.PEDESTAL_SIMPLE_STRUCTURE_IDENTIFIER).validate(world, pos.down(), BlockRotation.NONE);
                 if (valid) {
                     highestAvailableRecipeTier = PedestalRecipeTier.SIMPLE;

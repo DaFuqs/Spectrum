@@ -5,16 +5,22 @@
   "category": "spectrum:general_category",
   "pages": [
     {
-      "type": "patchouli:spotlight",
-      "item": "spectrum:pedestal_onyx",
-      "text": "TODO"
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier2/pedestal_onyx",
+      "text": "Upgrade your $(l:general/pedestal)Pigment Pedestal$() by using one of your gathered $(l:general/shards)Onyx Shards$()"
     },
     {
       "type": "patchouli:multiblock",
       "name": "Spectrum Hall",
       "multiblock_id": "spectrum:pedestal_advanced_structure_display",
       "enable_visualize": true,
-      "text": "TODO"
+      "text": "You can switch the basalt blocks with calcite, as you like it. You can also switch amethyst blocks for any other gemstone."
+    },
+    {
+      "type": "patchouli:image",
+      "title": "Individualize!",
+      "images": [ "spectrum:textures/gui/manual/spectrum_hall_customisation.png" ],
+      "text": "Mix them up to create your personal variation!"
     }
   ]
 }

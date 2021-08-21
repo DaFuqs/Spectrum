@@ -7,19 +7,20 @@
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier1/pedestal_all_basic",
-      "text": "Upgrade your Pedestal by using all the shards you collected"
+      "text": "Upgrade your $(l:general/pedestal)Pigment Pedestal$() by using all the shards you collected on your journey."
     },
     {
       "type": "patchouli:multiblock",
       "name": "Spectrum Focus",
       "multiblock_id": "spectrum:pedestal_simple_structure",
       "enable_visualize": true,
-      "text": ""
+      "text": "You can switch the basalt blocks with calcite, as you like it. You can also switch amethyst blocks for any other gemstone."
     },
     {
       "type": "patchouli:image",
-      "title": "Individualize your structure",
-      "text": "You can switch the basalt blocks with calcite, as you like it. You can also switch amethyst blocks for any other gemstone.$(br)Mix them up to create your personal colorful self-creation!"
+      "title": "Individualize!",
+      "images": [ "spectrum:textures/gui/manual/spectrum_focus_customisation.png" ],
+      "text": "Mix them up to create your personal variation!"
     }
   ]
 }

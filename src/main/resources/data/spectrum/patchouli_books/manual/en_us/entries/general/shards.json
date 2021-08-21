@@ -20,7 +20,7 @@
       "advancement": "spectrum:hidden/collect_shards/collect_topaz_shard",
       "title": "Topaz",
       "item": "spectrum:topaz_shard",
-      "text": "Topaz Shards lie surprisingly heavy in your hand. Fragile at first glance, this gemstone quickly turns out to be one of the most robust materials, which you were allowed to hold in your hands - perhaps only surpassed by diamond. Topaz is found in geodes at the very top of steep hills and on the tops of sky-high mountains.$(br2)The topaz represents $(bold)$(c_cyan)MATTER.$()"
+      "text": "Topaz Shards lie surprisingly heavy in your hand. Fragile at first glance, this gemstone quickly turns out to be one of the most robust materials, which you were allowed to hold in your hands - perhaps only surpassed by diamond. Topaz is found in geodes at the very top of steep hills and on the tops of sky-high mountains.$(br)The topaz represents $(bold)$(c_cyan)MATTER.$()"
     },
     {
       "type": "patchouli:spotlight",
@@ -41,7 +41,7 @@
       "advancement": "spectrum:hidden/collect_shards/collect_onyx_shard",
       "title": "Onyx",
       "item": "spectrum:onyx_shard",
-      "text": "The Onyx is almost pitch black, it almost seems as if it would even withdraw the light from its surroundings.$(br2)The onyx, as a combination of energy, matter, and time, serves as a $(bold)$(c_black)reinforcing focus and catalyst$() for magical tools and apparatus."
+      "text": "The Onyx is almost pitch black, it almost seems as if it would even withdraw the light from its surroundings.$(br2)The onyx, as a combination of energy, matter, and time, serves as a $(bold)$(c_black)reinforcing focus and catalyst$() for magical tools and devices."
     },
     {
       "type": "patchouli:spotlight",

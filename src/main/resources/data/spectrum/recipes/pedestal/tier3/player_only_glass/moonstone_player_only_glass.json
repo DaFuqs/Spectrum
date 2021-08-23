@@ -1,0 +1,32 @@
+{
+  "type": "spectrum_pedestal",
+  "time": 80,
+  "tier": "advanced",
+  "magenta": 0,
+  "yellow": 0,
+  "cyan": 0,
+  "black": 0,
+  "white": 8,
+  "experience": 1.0,
+  "pattern": [
+    "GPG",
+    "PSP",
+    "GPG"
+  ],
+  "key": {
+    "S": {
+      "item": "spectrum:moonstone_shard"
+    },
+    "P": {
+      "item": "spectrum:white_pigment"
+    },
+    "G": {
+      "item": "minecraft:glass"
+    }
+  },
+  "result" : {
+    "item": "spectrum:moonstone_player_only_glass",
+    "count": 8
+  },
+  "required_advancements": ["spectrum:midgame/spectrum_midgame"]
+}

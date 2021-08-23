@@ -1,36 +1,36 @@
 {
   "name": "Glowblocks",
   "advancement": "spectrum:midgame/spectrum_midgame",
-  "icon": "spectrum:orange_flat_colored_block",
+  "icon": "spectrum:orange_glowblock",
   "category": "spectrum:decoration_category",
   "extra_recipe_mappings": {
-    "spectrum:black_flat_colored_block": 0,
-    "spectrum:blue_flat_colored_block": 0,
-    "spectrum:brown_flat_colored_block": 0,
-    "spectrum:cyan_flat_colored_block": 0,
-    "spectrum:gray_flat_colored_block": 0,
-    "spectrum:green_flat_colored_block": 0,
-    "spectrum:light_blue_flat_colored_block": 0,
-    "spectrum:light_gray_flat_colored_block": 0,
-    "spectrum:lime_flat_colored_block": 0,
-    "spectrum:magenta_flat_colored_block": 0,
-    "spectrum:orange_flat_colored_block": 0,
-    "spectrum:pink_flat_colored_block": 0,
-    "spectrum:purple_flat_colored_block": 0,
-    "spectrum:red_flat_colored_block": 0,
-    "spectrum:white_flat_colored_block": 0,
-    "spectrum:yellow_flat_colored_block": 0
+    "spectrum:black_glowblock": 0,
+    "spectrum:blue_glowblock": 0,
+    "spectrum:brown_glowblock": 0,
+    "spectrum:cyan_glowblock": 0,
+    "spectrum:gray_glowblock": 0,
+    "spectrum:green_glowblock": 0,
+    "spectrum:light_blue_glowblock": 0,
+    "spectrum:light_gray_glowblock": 0,
+    "spectrum:lime_glowblock": 0,
+    "spectrum:magenta_glowblock": 0,
+    "spectrum:orange_glowblock": 0,
+    "spectrum:pink_glowblock": 0,
+    "spectrum:purple_glowblock": 0,
+    "spectrum:red_glowblock": 0,
+    "spectrum:white_glowblock": 0,
+    "spectrum:yellow_glowblock": 0
   },
   "pages": [
     {
       "type": "patchouli:spotlight",
-      "item": "spectrum:orange_flat_colored_block",
+      "item": "spectrum:orange_glowblock",
       "title": "Glowblocks",
       "text": "$(italic)You have color as pure as can be. So why not create blocks with colors as pure as can be!$(br2)You thought for a moment if you should call them Antiblocks. But since they are indeed normal blocks that would be silly, right?$()"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe": "spectrum:pedestal/tier2/glowblocks/orange_flat_colored_block",
+      "recipe": "spectrum:pedestal/tier3/glowblocks/orange_glowblock",
       "text": "Glowblocks come in all colors and always look the same, no matter how much light falls on their surface."
     }
   ]

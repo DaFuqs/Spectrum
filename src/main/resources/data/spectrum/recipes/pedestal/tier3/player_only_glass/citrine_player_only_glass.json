@@ -1,0 +1,32 @@
+{
+  "type": "spectrum_pedestal",
+  "time": 80,
+  "tier": "advanced",
+  "magenta": 0,
+  "yellow": 8,
+  "cyan": 0,
+  "black": 0,
+  "white": 0,
+  "experience": 1.0,
+  "pattern": [
+    "GPG",
+    "PSP",
+    "GPG"
+  ],
+  "key": {
+    "S": {
+      "item": "spectrum:citrine_shard"
+    },
+    "P": {
+      "item": "spectrum:yellow_pigment"
+    },
+    "G": {
+      "item": "minecraft:glass"
+    }
+  },
+  "result" : {
+    "item": "spectrum:citrine_player_only_glass",
+    "count": 8
+  },
+  "required_advancements": ["spectrum:midgame/spectrum_midgame"]
+}

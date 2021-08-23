@@ -1,0 +1,29 @@
+{
+  "type": "spectrum_pedestal",
+  "time": 600,
+  "tier": "complex",
+  "magenta": 0,
+  "yellow": 0,
+  "cyan": 0,
+  "black": 0,
+  "white": 0,
+  "experience": 4.0,
+  "pattern": [
+    "BBB",
+    " S ",
+    " S "
+  ],
+  "key": {
+    "B": {
+      "item": "spectrum:bedrock_dust"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result" : {
+    "item": "spectrum:bedrock_pickaxe",
+    "count": 1
+  },
+  "required_advancements": ["spectrum:progression/unlock_bedrock_tools"]
+}

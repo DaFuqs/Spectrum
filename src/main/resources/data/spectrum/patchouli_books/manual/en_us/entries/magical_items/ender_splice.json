@@ -14,7 +14,7 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe": "spectrum:pedestal/tier2/ender_splice",
+      "recipe": "spectrum:pedestal/tier3/ender_splice",
       "text": "With the first use of the Ender Splice (or a whole stack full) it saves the current position.$(br)With the second use it teleports you back to the saved location."
     }
   ]

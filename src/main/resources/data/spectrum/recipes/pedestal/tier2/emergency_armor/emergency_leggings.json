@@ -1,0 +1,35 @@
+{
+  "type": "spectrum_pedestal",
+  "time": 1600,
+  "tier": "simple",
+  "cyan": 4,
+  "magenta": 4,
+  "yellow": 4,
+  "black": 0,
+  "white": 0,
+  "experience": 2.0,
+  "pattern": [
+    "ADA",
+    "T T",
+    "C C"
+  ],
+  "key": {
+    "T": {
+      "item": "spectrum:topaz_shard"
+    },
+    "A": {
+      "item": "minecraft:amethyst_shard"
+    },
+    "C": {
+      "item": "spectrum:citrine_shard"
+    },
+    "D": {
+      "item": "minecraft:diamond"
+    }
+  },
+  "result" : {
+    "item": "spectrum:emergency_leggings",
+    "count": 1
+  },
+  "required_advancements": [ "spectrum:build_basic_pedestal_structure" ]
+}

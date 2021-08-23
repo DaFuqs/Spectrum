@@ -10,7 +10,7 @@
       "translate": "advancements.spectrum.build_basic_pedestal_structure.description"
     }
   },
-  "parent": "spectrum:collect_all_basic_shards",
+  "parent": "spectrum:craft_colored_pedestal",
   "criteria": {
     "built_structure": {
       "trigger": "spectrum:completed_multiblock",

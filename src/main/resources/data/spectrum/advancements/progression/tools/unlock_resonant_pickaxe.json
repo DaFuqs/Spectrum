@@ -1,12 +1,16 @@
 {
   "criteria": {
-    "crafted_using_pedestal": {
-      "trigger":"spectrum:has_advancement",
-      "conditions": { "advancement_identifier": "spectrum:craft_using_pedestal" }
-    },
     "reached_lategame": {
       "trigger":"spectrum:has_advancement",
       "conditions": { "advancement_identifier": "spectrum:lategame" }
+    },
+    "collected_paletur": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:hidden/collect_resource/collect_paletur" }
+    },
+    "collected_moonstone": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:hidden/collect_shards/collect_moonstone_shard" }
     }
   }
 }

@@ -22,7 +22,7 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe": "spectrum:pedestal/tier1/runes/topaz_chiseled_basalt_from_shards",
+      "recipe": "spectrum:pedestal/tier2/runes/topaz_chiseled_basalt_from_shards",
       "text": "Runes come in all gemstone colors. The frame can be built out of $(l:decoration/block_variants)Polished Basalt$() or $(l:decoration/block_variants)Polished Calcite$()."
     }
   ]

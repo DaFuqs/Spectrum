@@ -1,12 +1,12 @@
 {
     "name": "Plants",
-    "icon": "spectrum:quitoxic_reeds",
+    "icon": "spectrum:mermaids_gem",
     "category": "spectrum:resources_category",
     "extra_recipe_mappings": {
-        "spectrum:quitoxic_reeds": 1,
-        "spectrum:quitoxic_powder": 1,
-        "spectrum:mermaids_brush": 2,
-        "spectrum:mermaids_gem": 2
+        "spectrum:mermaids_gem": 1,
+        "spectrum:mermaids_brush": 1,
+        "spectrum:quitoxic_reeds": 2,
+        "spectrum:quitoxic_powder": 2
     },
     "pages": [
         {
@@ -15,17 +15,17 @@
         },
         {
             "type": "patchouli:spotlight",
+            "advancement": "spectrum:collect_mermaids_gem",
+            "title": "Mermaids Brush",
+            "item": "spectrum:mermaids_brush",
+            "text": "This inconspicuous plant grows in the deepest depths of the oceans, forever untouched by human influence. They grow a single flower, which slowly develops into a filigree shaped seed. Fully grown, these stones float to the surface of the sea to be carried away by the soft waves.$(br2)They have a strong bond with water."
+        },
+        {
+            "type": "patchouli:spotlight",
             "advancement": "spectrum:hidden/collect_resource/collect_quitoxic_reeds",
             "title": "Quitoxic Reeds",
             "item": "spectrum:quitoxic_reeds",
             "text": "An alien-looking variety of sugar cane that grows exclusively in swamps and seems to devour nutrients. A purple glittering powder can be extracted from the stems."
-        },
-        {
-            "type": "patchouli:spotlight",
-            "advancement": "spectrum:hidden/collect_resource/collect_mermaids_gem",
-            "title": "Mermaids Brush",
-            "item": "spectrum:mermaids_brush",
-            "text": "This inconspicuous plant grows in the deepest depths of the oceans, forever untouched by human influence. They grow a single flower, which slowly develops into a filigree shaped seed. Fully grown, these stones float to the surface of the sea to be carried away by the waves.$(br2)It has a strong bond with water."
         }
     ]
 }

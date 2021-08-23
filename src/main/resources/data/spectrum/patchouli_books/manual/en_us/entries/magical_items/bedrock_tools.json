@@ -21,47 +21,47 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe": "spectrum:pedestal/tier3/bedrock/bedrock_pickaxe",
+      "recipe": "spectrum:pedestal/tier4/bedrock/bedrock_pickaxe",
       "text": "The Bedrock Pickaxe comes with $(bold)Silk Touch$()."
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe": "spectrum:pedestal/tier3/bedrock/bedrock_axe",
+      "recipe": "spectrum:pedestal/tier4/bedrock/bedrock_axe",
       "text": "The Bedrock Axe comes with $(bold)Efficiency V$()."
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe": "spectrum:pedestal/tier3/bedrock/bedrock_shovel",
+      "recipe": "spectrum:pedestal/tier4/bedrock/bedrock_shovel",
       "text": "The Bedrock Shovel comes with $(bold)Efficiency V$()."
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe": "spectrum:pedestal/tier3/bedrock/bedrock_sword",
+      "recipe": "spectrum:pedestal/tier4/bedrock/bedrock_sword",
       "text": "The Bedrock Sword comes with $(bold)Sharpness V$()."
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe": "spectrum:pedestal/tier3/bedrock/bedrock_hoe",
+      "recipe": "spectrum:pedestal/tier4/bedrock/bedrock_hoe",
       "text": "The Bedrock Hoe comes with $(bold)Fortune III$()."
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe": "spectrum:pedestal/tier3/bedrock/bedrock_bow",
+      "recipe": "spectrum:pedestal/tier4/bedrock/bedrock_bow",
       "text": "The Bedrock Bow comes with $(bold)Power V$()."
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe": "spectrum:pedestal/tier3/bedrock/bedrock_crossbow",
+      "recipe": "spectrum:pedestal/tier4/bedrock/bedrock_crossbow",
       "text": "The Bedrock Crossbow comes with $(bold)Quick Charge III$()."
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe": "spectrum:pedestal/tier3/bedrock/bedrock_shears",
+      "recipe": "spectrum:pedestal/tier4/bedrock/bedrock_shears",
       "text": "The Bedrock Shears come with $(bold)Silk Touch$()."
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe": "spectrum:pedestal/tier3/bedrock/bedrock_fishing_rod",
+      "recipe": "spectrum:pedestal/tier4/bedrock/bedrock_fishing_rod",
       "text": "The Bedrock Fishing Rod comes with $(bold)Luck of the Sea III$()."
     }
   ]

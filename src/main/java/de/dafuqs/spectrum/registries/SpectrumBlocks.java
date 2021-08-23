@@ -419,22 +419,22 @@ public class SpectrumBlocks {
 
     // FLAT COLORED BLOCKS
     private static final FabricBlockSettings flatColoredBlockBlockSettings = FabricBlockSettings.of(Material.STONE).hardness(2.5F).requiresTool().luminance(1).postProcess(SpectrumBlocks::always).emissiveLighting(SpectrumBlocks::always);
-    public static final Block BLACK_FLAT_COLORED_BLOCK = new Block(flatColoredBlockBlockSettings);
-    public static final Block BLUE_FLAT_COLORED_BLOCK = new Block(flatColoredBlockBlockSettings);
-    public static final Block BROWN_FLAT_COLORED_BLOCK = new Block(flatColoredBlockBlockSettings);
-    public static final Block CYAN_FLAT_COLORED_BLOCK = new Block(flatColoredBlockBlockSettings);
-    public static final Block GRAY_FLAT_COLORED_BLOCK = new Block(flatColoredBlockBlockSettings);
-    public static final Block GREEN_FLAT_COLORED_BLOCK = new Block(flatColoredBlockBlockSettings);
-    public static final Block LIGHT_BLUE_FLAT_COLORED_BLOCK = new Block(flatColoredBlockBlockSettings);
-    public static final Block LIGHT_GRAY_FLAT_COLORED_BLOCK = new Block(flatColoredBlockBlockSettings);
-    public static final Block LIME_FLAT_COLORED_BLOCK = new Block(flatColoredBlockBlockSettings);
-    public static final Block MAGENTA_FLAT_COLORED_BLOCK = new Block(flatColoredBlockBlockSettings);
-    public static final Block ORANGE_FLAT_COLORED_BLOCK = new Block(flatColoredBlockBlockSettings);
-    public static final Block PINK_FLAT_COLORED_BLOCK = new Block(flatColoredBlockBlockSettings);
-    public static final Block PURPLE_FLAT_COLORED_BLOCK = new Block(flatColoredBlockBlockSettings);
-    public static final Block RED_FLAT_COLORED_BLOCK = new Block(flatColoredBlockBlockSettings);
-    public static final Block WHITE_FLAT_COLORED_BLOCK = new Block(flatColoredBlockBlockSettings);
-    public static final Block YELLOW_FLAT_COLORED_BLOCK = new Block(flatColoredBlockBlockSettings);
+    public static final Block BLACK_glowblock = new Block(flatColoredBlockBlockSettings);
+    public static final Block BLUE_glowblock = new Block(flatColoredBlockBlockSettings);
+    public static final Block BROWN_glowblock = new Block(flatColoredBlockBlockSettings);
+    public static final Block CYAN_glowblock = new Block(flatColoredBlockBlockSettings);
+    public static final Block GRAY_glowblock = new Block(flatColoredBlockBlockSettings);
+    public static final Block GREEN_glowblock = new Block(flatColoredBlockBlockSettings);
+    public static final Block LIGHT_BLUE_glowblock = new Block(flatColoredBlockBlockSettings);
+    public static final Block LIGHT_GRAY_glowblock = new Block(flatColoredBlockBlockSettings);
+    public static final Block LIME_glowblock = new Block(flatColoredBlockBlockSettings);
+    public static final Block MAGENTA_glowblock = new Block(flatColoredBlockBlockSettings);
+    public static final Block ORANGE_glowblock = new Block(flatColoredBlockBlockSettings);
+    public static final Block PINK_glowblock = new Block(flatColoredBlockBlockSettings);
+    public static final Block PURPLE_glowblock = new Block(flatColoredBlockBlockSettings);
+    public static final Block RED_glowblock = new Block(flatColoredBlockBlockSettings);
+    public static final Block WHITE_glowblock = new Block(flatColoredBlockBlockSettings);
+    public static final Block YELLOW_glowblock = new Block(flatColoredBlockBlockSettings);
 
     // COLORED LAMPS // TODO: Culling when side is obstructed
     private static final FabricBlockSettings coloredLampBlockBlockSettings = FabricBlockSettings.copyOf(Blocks.REDSTONE_LAMP);
@@ -1000,22 +1000,22 @@ public class SpectrumBlocks {
     }
 
     private static void registerFlatColoredBlocks(FabricItemSettings fabricItemSettings) {
-        registerBlockWithItem("black_flat_colored_block", BLACK_FLAT_COLORED_BLOCK, fabricItemSettings);
-        registerBlockWithItem("blue_flat_colored_block", BLUE_FLAT_COLORED_BLOCK, fabricItemSettings);
-        registerBlockWithItem("brown_flat_colored_block", BROWN_FLAT_COLORED_BLOCK, fabricItemSettings);
-        registerBlockWithItem("cyan_flat_colored_block", CYAN_FLAT_COLORED_BLOCK, fabricItemSettings);
-        registerBlockWithItem("gray_flat_colored_block", GRAY_FLAT_COLORED_BLOCK, fabricItemSettings);
-        registerBlockWithItem("green_flat_colored_block", GREEN_FLAT_COLORED_BLOCK, fabricItemSettings);
-        registerBlockWithItem("light_blue_flat_colored_block", LIGHT_BLUE_FLAT_COLORED_BLOCK, fabricItemSettings);
-        registerBlockWithItem("light_gray_flat_colored_block", LIGHT_GRAY_FLAT_COLORED_BLOCK, fabricItemSettings);
-        registerBlockWithItem("lime_flat_colored_block", LIME_FLAT_COLORED_BLOCK, fabricItemSettings);
-        registerBlockWithItem("magenta_flat_colored_block", MAGENTA_FLAT_COLORED_BLOCK, fabricItemSettings);
-        registerBlockWithItem("orange_flat_colored_block", ORANGE_FLAT_COLORED_BLOCK, fabricItemSettings);
-        registerBlockWithItem("pink_flat_colored_block", PINK_FLAT_COLORED_BLOCK, fabricItemSettings);
-        registerBlockWithItem("purple_flat_colored_block", PURPLE_FLAT_COLORED_BLOCK, fabricItemSettings);
-        registerBlockWithItem("red_flat_colored_block", RED_FLAT_COLORED_BLOCK, fabricItemSettings);
-        registerBlockWithItem("white_flat_colored_block", WHITE_FLAT_COLORED_BLOCK, fabricItemSettings);
-        registerBlockWithItem("yellow_flat_colored_block", YELLOW_FLAT_COLORED_BLOCK, fabricItemSettings);
+        registerBlockWithItem("black_glowblock", BLACK_glowblock, fabricItemSettings);
+        registerBlockWithItem("blue_glowblock", BLUE_glowblock, fabricItemSettings);
+        registerBlockWithItem("brown_glowblock", BROWN_glowblock, fabricItemSettings);
+        registerBlockWithItem("cyan_glowblock", CYAN_glowblock, fabricItemSettings);
+        registerBlockWithItem("gray_glowblock", GRAY_glowblock, fabricItemSettings);
+        registerBlockWithItem("green_glowblock", GREEN_glowblock, fabricItemSettings);
+        registerBlockWithItem("light_blue_glowblock", LIGHT_BLUE_glowblock, fabricItemSettings);
+        registerBlockWithItem("light_gray_glowblock", LIGHT_GRAY_glowblock, fabricItemSettings);
+        registerBlockWithItem("lime_glowblock", LIME_glowblock, fabricItemSettings);
+        registerBlockWithItem("magenta_glowblock", MAGENTA_glowblock, fabricItemSettings);
+        registerBlockWithItem("orange_glowblock", ORANGE_glowblock, fabricItemSettings);
+        registerBlockWithItem("pink_glowblock", PINK_glowblock, fabricItemSettings);
+        registerBlockWithItem("purple_glowblock", PURPLE_glowblock, fabricItemSettings);
+        registerBlockWithItem("red_glowblock", RED_glowblock, fabricItemSettings);
+        registerBlockWithItem("white_glowblock", WHITE_glowblock, fabricItemSettings);
+        registerBlockWithItem("yellow_glowblock", YELLOW_glowblock, fabricItemSettings);
     }
 
     public static void registerSporeBlossoms(FabricItemSettings fabricItemSettings) {

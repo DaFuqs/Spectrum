@@ -4,6 +4,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.enums.GemstoneColor;
+import de.dafuqs.spectrum.enums.PedestalRecipeTier;
 import de.dafuqs.spectrum.mixin.AccessorShapedRecipe;
 import de.dafuqs.spectrum.registries.SpectrumDefaultEnchantments;
 import net.minecraft.item.ItemStack;

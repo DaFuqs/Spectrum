@@ -31,10 +31,6 @@ public class PlayerAdvancementTrackerMixin {
             for(Cloakable block : revealedBlocks) {
                 SpectrumAdvancementCriteria.HAD_REVELATION.trigger(owner, block);
             }
-            /*boolean triggersRevelation = BlockCloakManager.doesAdvancementTriggerRevelation(advancement.getId());
-            if(triggersRevelation) {
-                Support.grantAdvancementCriterion(owner, "trigger_revelation", "have_revelation");
-            }*/
         }
     }
 

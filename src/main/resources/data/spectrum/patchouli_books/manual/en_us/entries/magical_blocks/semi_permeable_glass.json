@@ -26,7 +26,7 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe": "spectrum:pedestal/tier2/player_only_glass/amethyst_player_only_glass"
+      "recipe": "spectrum:pedestal/tier3/player_only_glass/amethyst_player_only_glass"
     },
     {
       "type": "patchouli:text",

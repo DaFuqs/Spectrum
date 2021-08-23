@@ -1,0 +1,32 @@
+{
+  "type": "spectrum_pedestal",
+  "time": 1600,
+  "tier": "simple",
+  "cyan": 4,
+  "magenta": 0,
+  "yellow": 2,
+  "black": 0,
+  "white": 0,
+  "experience": 2.0,
+  "pattern": [
+    "CCC",
+    "P P",
+    "BBB"
+  ],
+  "key": {
+    "B": {
+      "item": "spectrum:polished_basalt"
+    },
+    "P": {
+      "item": "spectrum:polished_calcite"
+    },
+    "C": {
+      "item": "minecraft:copper_ingot"
+    }
+  },
+  "result" : {
+    "item": "spectrum:restocking_chest",
+    "count": 1
+  },
+  "required_advancements": [ "spectrum:build_basic_pedestal_structure" ]
+}

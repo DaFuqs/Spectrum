@@ -1,0 +1,12 @@
+{
+  "criteria": {
+    "collected_glow_lichen": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:hidden/collect_vanilla/collect_glow_lichen" }
+    },
+    "collected_glowstone_dust": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:hidden/collect_vanilla/collect_glowstone_dust" }
+    }
+  }
+}

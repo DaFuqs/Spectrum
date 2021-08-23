@@ -16,22 +16,22 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe": "spectrum:pedestal/tier3/bedrock/bedrock_helmet",
+      "recipe": "spectrum:pedestal/tier4/bedrock/bedrock_helmet",
       "text": "The Bedrock Helmet comes with $(bold)Projectile Protection IV$()."
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe": "spectrum:pedestal/tier3/bedrock/bedrock_chestplate",
+      "recipe": "spectrum:pedestal/tier4/bedrock/bedrock_chestplate",
       "text": "The Bedrock Chestplate comes with $(bold)Protection IV$()."
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe": "spectrum:pedestal/tier3/bedrock/bedrock_leggings",
+      "recipe": "spectrum:pedestal/tier4/bedrock/bedrock_leggings",
       "text": "The Bedrock Leggings come with $(bold)Blast Protection IV$()."
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe": "spectrum:pedestal/tier3/bedrock/bedrock_boots",
+      "recipe": "spectrum:pedestal/tier4/bedrock/bedrock_boots",
       "text": "The Bedrock Boots come with $(bold)Fire Protection IV$()."
     }
   ]

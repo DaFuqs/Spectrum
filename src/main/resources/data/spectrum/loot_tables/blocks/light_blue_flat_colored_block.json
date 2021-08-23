@@ -6,7 +6,7 @@
         "entries": [
             {
                 "type": "minecraft:item",
-                "name": "spectrum:light_blue_flat_colored_block"
+                "name": "spectrum:light_blue_glowblock"
             }
             ],
             "conditions": [

@@ -1,0 +1,35 @@
+{
+  "type": "spectrum_pedestal",
+  "time": 600,
+  "tier": "complex",
+  "magenta": 0,
+  "yellow": 0,
+  "cyan": 0,
+  "black": 0,
+  "white": 0,
+  "experience": 4.0,
+  "pattern": [
+    "BIB",
+    "STS",
+    " B "
+  ],
+  "key": {
+    "B": {
+      "item": "spectrum:bedrock_dust"
+    },
+    "S": {
+      "item": "minecraft:string"
+    },
+    "T": {
+      "item": "minecraft:tripwire_hook"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "result" : {
+    "item": "spectrum:bedrock_crossbow",
+    "count": 1
+  },
+  "required_advancements": ["spectrum:progression/unlock_bedrock_tools"]
+}

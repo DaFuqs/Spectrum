@@ -51,7 +51,7 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe": "spectrum:pedestal/tier3/resonant_pickaxe",
+      "recipe": "spectrum:pedestal/tier4/resonant_pickaxe",
       "advancement": "spectrum:progression/tools/unlock_resonant_pickaxe"
     }
   ]

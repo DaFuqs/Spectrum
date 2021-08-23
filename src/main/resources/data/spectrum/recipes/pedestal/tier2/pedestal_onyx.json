@@ -1,13 +1,13 @@
 {
   "type": "spectrum_pedestal",
-  "time": 80,
+  "time": 12000,
   "tier": "simple",
   "cyan": 0,
   "magenta": 0,
   "yellow": 0,
   "white": 0,
   "black": 0,
-  "experience": 8,
+  "experience": 8.0,
   "pattern": [
     "   ",
     " O ",

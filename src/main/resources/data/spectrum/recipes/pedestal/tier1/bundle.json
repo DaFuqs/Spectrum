@@ -1,0 +1,29 @@
+{
+  "type": "spectrum_pedestal",
+  "time": 80,
+  "tier": "basic",
+  "magenta": 0,
+  "yellow": 0,
+  "cyan": 4,
+  "black": 0,
+  "white": 0,
+  "experience": 2.0,
+  "pattern": [
+    "SRS",
+    "R R",
+    "RRR"
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:string"
+    },
+    "R": {
+      "item": "minecraft:rabbit_hide"
+    }
+  },
+  "result" : {
+    "item": "minecraft:bundle",
+    "count": 1
+  },
+  "required_advancements": ["spectrum:hidden/collect_shards/collect_topaz_shard"]
+}

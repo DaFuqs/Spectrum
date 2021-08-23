@@ -14,7 +14,7 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe": "spectrum:pedestal/tier3/bedrock/bedrock_anvil",
+      "recipe": "spectrum:pedestal/tier4/bedrock/bedrock_anvil",
       "text": "$(br2)The Bedrock Anvil allows you to rename items for a cost of zero. In addition, you can also add descriptions to your items.$(br2)$(italic)Tip: you can use \"\\n\" to split your text into multiple lines."
     }
   ]

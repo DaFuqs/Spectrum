@@ -25,5 +25,5 @@
     "item": "spectrum:multitool",
     "count": 1
   },
-  "required_advancements": ["spectrum:collect_all_basic_shards"]
+  "required_advancements": ["spectrum:progression/tools/unlock_multitool"]
 }

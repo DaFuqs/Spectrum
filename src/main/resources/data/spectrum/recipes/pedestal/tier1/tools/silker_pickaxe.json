@@ -9,7 +9,7 @@
   "black": 0,
   "experience": 2,
   "pattern": [
-    "TKT",
+    "TMT",
     " S ",
     " S "
   ],
@@ -20,13 +20,13 @@
     "T": {
       "item": "spectrum:topaz_shard"
     },
-    "K": {
-      "item": "spectrum:raw_azurite"
+    "M": {
+      "item": "spectrum:mermaids_gem"
     }
   },
   "result" : {
     "item": "spectrum:silker_pickaxe",
     "count": 1
   },
-  "required_advancements": ["spectrum:hidden/collect_shards/collect_topaz_shard", "spectrum:craft_using_pedestal", "spectrum:hidden/collect_resource/collect_raw_azurite"]
+  "required_advancements": ["spectrum:progression/tools/unlock_silker_pickaxe"]
 }

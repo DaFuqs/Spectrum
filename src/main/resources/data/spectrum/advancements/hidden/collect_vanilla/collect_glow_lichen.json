@@ -1,0 +1,8 @@
+{
+  "criteria": {
+    "has_glow_lichen": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": { "items": [{ "items": [ "minecraft:glow_lichen" ]}] }
+    }
+  }
+}

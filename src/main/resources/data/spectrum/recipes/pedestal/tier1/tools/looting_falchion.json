@@ -25,5 +25,5 @@
     "item": "spectrum:looting_falchion",
     "count": 1
   },
-  "required_advancements": ["spectrum:hidden/collect_shards/collect_amethyst_shard", "spectrum:craft_using_pedestal"]
+  "required_advancements": ["spectrum:progression/tools/unlock_looting_falchion"]
 }

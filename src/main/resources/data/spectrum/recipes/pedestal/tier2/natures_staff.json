@@ -1,0 +1,32 @@
+{
+  "type": "spectrum_pedestal",
+  "time": 1200,
+  "tier": "simple",
+  "cyan": 2,
+  "magenta": 6,
+  "yellow": 2,
+  "white": 0,
+  "black": 0,
+  "experience": 2.0,
+  "pattern": [
+    " LG",
+    " SL",
+    "S  "
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:stick"
+    },
+    "G": {
+      "item": "minecraft:glowstone"
+    },
+    "L": {
+      "item": "minecraft:glow_lichen"
+    }
+  },
+  "result" : {
+    "item": "spectrum:natures_staff",
+    "count": 1
+  },
+  "required_advancements": ["spectrum:progression/unlock_natures_staff"]
+}

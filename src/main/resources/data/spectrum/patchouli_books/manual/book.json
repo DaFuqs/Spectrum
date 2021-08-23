@@ -5,6 +5,7 @@
 	"model": "spectrum:manual",
 	"dont_generate_book": true,
 	"custom_book_item": "spectrum:manual",
+	"filler_texture": "spectrum:textures/gui/patchouli/page_filler.png",
 	"macros": {
 		"$(c_black)": "$(#000000)",
 		"$(c_blue)": "$(#2c2e8e)",

@@ -2,7 +2,7 @@
   "parent": "spectrum:midgame/spectrum_midgame",
   "display": {
     "icon": {
-      "item": "spectrum:corrupted_obsidian_dust"
+      "item": "spectrum:resonant_lily"
     },
     "title": {
       "translate": "advancements.spectrum.collect_resonant_lily.title"

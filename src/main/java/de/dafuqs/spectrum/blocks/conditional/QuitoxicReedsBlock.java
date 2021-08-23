@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.blocks.conditional;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.interfaces.Cloakable;
 import de.dafuqs.spectrum.registries.SpectrumBlockTags;
+import net.java.games.input.DirectAndRawInputEnvironmentPlugin;
 import net.minecraft.block.*;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
@@ -11,6 +12,8 @@ import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.context.LootContext;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.IntProperty;
@@ -22,13 +25,13 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
+import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Hashtable;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class QuitoxicReedsBlock extends SugarCaneBlock implements Cloakable, Waterloggable {
 
@@ -95,6 +98,7 @@ public class QuitoxicReedsBlock extends SugarCaneBlock implements Cloakable, Wat
 
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
         if (world.isAir(pos.up()) || (world.isWater(pos.up()) && world.isAir(pos.up(2)))) {
+
             int i;
             for(i = 1; world.getBlockState(pos.down(i)).isOf(this); ++i) {
             }
@@ -102,12 +106,44 @@ public class QuitoxicReedsBlock extends SugarCaneBlock implements Cloakable, Wat
             if (i < 6) {
                 int j = state.get(AGE);
                 if (j == 15) {
+                    // search for clay. 1 clay => 1 quitoxic reed
+                    Optional<BlockPos> clayPos = searchClayPos(world, pos.down(i), Blocks.CLAY.getDefaultState(), random);
+                    if(clayPos.isEmpty()) {
+                        return;
+                    }
+                    world.setBlockState(clayPos.get(), Blocks.DIRT.getDefaultState(), 3);
+                    world.playSound(null, clayPos.get(), SoundEvents.BLOCK_GRAVEL_BREAK, SoundCategory.BLOCKS, 1.0F, 1.0F);
+
                     world.setBlockState(pos.up(), this.getDefaultState());
                     world.setBlockState(pos, state.with(AGE, 0), 4);
                 } else {
                     world.setBlockState(pos, state.with(AGE, j + 1), 4);
                 }
             }
+        }
+    }
+
+    private Optional<BlockPos> searchClayPos(World world, @NotNull BlockPos searchPos, BlockState searchBlockState, Random random) {
+        List<Direction> directions = new ArrayList<>(List.of(Direction.values()));
+        Collections.shuffle(directions, random);
+
+        int i = 0;
+        int range = 8;
+        BlockPos currentPos = new BlockPos(searchPos.getX(), searchPos.getY(), searchPos.getZ());
+        while(i < 6) {
+            if(range < 8 && world.getBlockState(currentPos.offset(directions.get(i))).equals(searchBlockState)) {
+                range++;
+                currentPos = currentPos.offset(directions.get(i));
+            } else {
+                i++;
+                range = 0;
+            }
+        }
+
+        if(currentPos.equals(searchPos)) {
+            return Optional.empty();
+        } else {
+            return Optional.of(currentPos);
         }
     }
 

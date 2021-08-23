@@ -17,7 +17,7 @@
             "type": "patchouli:spotlight",
             "advancement": "spectrum:collect_mermaids_gem",
             "title": "Mermaids Brush",
-            "item": "spectrum:mermaids_gen",
+            "item": "spectrum:mermaids_gem",
             "text": "This inconspicuous plant grows in the deepest depths of the oceans, forever untouched by human influence. They grow a single flower, which slowly develops into a filigree shaped seed. Fully grown, these stones float to the surface of the sea to be carried away by the soft waves.$(br2)They have a strong bond with water."
         },
         {

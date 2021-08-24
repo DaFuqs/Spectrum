@@ -26,6 +26,8 @@ import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
 import net.minecraft.util.registry.Registry;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 
 import static de.dafuqs.spectrum.registries.SpectrumFluids.STILL_LIQUID_CRYSTAL;
 import static de.dafuqs.spectrum.registries.SpectrumFluids.STILL_MUD;
@@ -142,9 +144,9 @@ public class SpectrumItems {
     public static final Item SPARKLESTONE_GEM = new Item(spectrumWorldgenItemSettings);
     public static final Item RAW_AZURITE = new Item(spectrumWorldgenItemSettings);
     public static final Item SHAPED_AZURITE = new Item(spectrumWorldgenItemSettings);
-    public static final Item scarlet_fragments = new GravityItem(generalItemSettings, 1.003F);
+    public static final Item SCARLET_FRAGMENTS = new GravityItem(generalItemSettings, 1.003F);
     public static final Item SCARLET_GEM = new GravityItem(generalItemSettings, 1.02F);
-    public static final Item paletur_fragments = new GravityItem(generalItemSettings, 0.997F);
+    public static final Item PALETUR_FRAGMENTS = new GravityItem(generalItemSettings, 0.997F);
     public static final Item PALETUR_GEM = new GravityItem(generalItemSettings, 0.98F);
 
     public static final Item QUITOXIC_POWDER = new Item(generalItemSettings);
@@ -261,9 +263,9 @@ public class SpectrumItems {
         register("sparklestone_gem", SPARKLESTONE_GEM);
         register("raw_azurite", RAW_AZURITE);
         register("shaped_azurite", SHAPED_AZURITE);
-        register("paletur_fragments", paletur_fragments);
+        register("paletur_fragments", PALETUR_FRAGMENTS);
         register("paletur_gem", PALETUR_GEM);
-        register("scarlet_fragments", scarlet_fragments);
+        register("scarlet_fragments", SCARLET_FRAGMENTS);
         register("scarlet_gem", SCARLET_GEM);
 
         register("quitoxic_powder", QUITOXIC_POWDER);
@@ -475,7 +477,8 @@ public class SpectrumItems {
         FuelRegistry.INSTANCE.add(SpectrumBlocks.YELLOW_PLANK_SLAB.asItem(), 150);
     }
 
-    public static Item getGemstoneShard(GemstoneColor gemstoneColor) {
+    @Contract(pure = true)
+    public static Item getGemstoneShard(@NotNull GemstoneColor gemstoneColor) {
         switch (gemstoneColor) {
             case CYAN -> {
                 return TOPAZ_POWDER;

@@ -1,7 +1,7 @@
 {
   "type": "spectrum_pedestal",
   "time": 240,
-  "tier": "basic",
+  "tier": "simple",
   "magenta": 0,
   "yellow": 0,
   "cyan": 8,
@@ -25,7 +25,7 @@
     }
   },
   "result" : {
-    "item": "spectrum:ender_bag",
+    "item": "spectrum:void_bundle",
     "count": 1
   },
   "required_advancements": ["spectrum:progression/unlock_void_bundle"]

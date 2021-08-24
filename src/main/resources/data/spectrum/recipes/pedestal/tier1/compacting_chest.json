@@ -2,9 +2,9 @@
   "type": "spectrum_pedestal",
   "time": 800,
   "tier": "basic",
-  "cyan": 8,
+  "cyan": 0,
   "magenta": 0,
-  "yellow": 0,
+  "yellow": 8,
   "white": 0,
   "black": 0,
   "experience": 2,
@@ -15,7 +15,7 @@
   ],
   "key": {
     "S": {
-      "tag": "spectrum:gemstone_shards"
+      "tag": "spectrum:citrine_shard"
     },
     "T": {
       "item": "spectrum:polished_basalt"
@@ -25,5 +25,5 @@
     "item": "spectrum:compacting_chest",
     "count": 1
   },
-  "required_advancements": ["spectrum:craft_using_pedestal"]
+  "required_advancements": ["spectrum:collect_citrine_shard"]
 }

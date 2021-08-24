@@ -3,7 +3,6 @@
     "icon": {
         "item": "spectrum:ender_treasure"
     },
-    "hidden": true,
     "title": {
       "translate": "advancements.spectrum.revealed_ender_treasure.title"
     },
@@ -15,7 +14,7 @@
   "criteria": {
     "revealed_ender_treasure": {
       "trigger":"spectrum:had_revelation",
-      "conditions": { "revelation_identifier": "spectrum:moonstone_ore" }
+      "conditions": { "revelation_identifier": "spectrum:ender_treasure" }
     }
   }
 }

@@ -85,7 +85,7 @@ public class SpectrumConfiguredFeatures extends ConfiguredFeatures {
 
         SPARKLESTONE_ORE = registerConfiguredFeature(sparklestoneOreIdentifier,
                 Feature.ORE.configure(new OreFeatureConfig(SPARKLESTONE_ORE_TARGETS, 17)) // vein size
-                        .uniformRange(YOffset.fixed(80), YOffset.belowTop(0)) // min and max height
+                        .uniformRange(YOffset.aboveBottom(20), YOffset.aboveBottom(48)) // min and max height
                         .spreadHorizontally()
                         .repeat(4)); // number of veins per chunk
 

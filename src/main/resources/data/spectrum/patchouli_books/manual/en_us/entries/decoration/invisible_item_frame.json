@@ -1,7 +1,7 @@
 {
   "name": "Invisible Item Frames",
   "icon": "spectrum:invisible_item_frame",
-  "advancement": "spectrum:craft_using_pedestal",
+  "advancement": "spectrum:hidden/collect_resource/collect_sparklestone",
   "category": "spectrum:decoration_category",
   "extra_recipe_mappings": {
     "spectrum:invisible_item_frame": 0,

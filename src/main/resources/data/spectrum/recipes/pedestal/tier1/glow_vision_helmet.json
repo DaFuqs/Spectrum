@@ -27,5 +27,5 @@
     "item": "spectrum:glow_vision_helmet",
     "count": 1
   },
-  "required_advancements": ["spectrum:craft_using_pedestal"]
+  "required_advancements": ["spectrum:progression/unlock_glow_vision_helmet"]
 }

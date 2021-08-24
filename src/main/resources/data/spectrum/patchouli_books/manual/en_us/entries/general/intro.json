@@ -21,7 +21,7 @@
         },
         {
             "type": "patchouli:link",
-            "text": "Spectrum is still in heavy development. If you find a bug or have a suggestion visit me on github!$(br2)Have fun!$(br)         - DaFuqs",
+            "text": "Spectrum is still in heavy development. If you find a bug or have a suggestion visit me on github!$(br2)Have fun!$(br)                - DaFuqs",
             "url": "https://github.com/DaFuqs/Spectrum",
             "link_text": "Spectrum on Github"
         }

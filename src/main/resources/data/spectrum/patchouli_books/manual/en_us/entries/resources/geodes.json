@@ -85,7 +85,7 @@
       "advancement": "spectrum:hidden/collect_shards/collect_amethyst_shard",
       "title": "Amethyst Geodes",
       "item": "minecraft:amethyst_block",
-      "text": "As elements of time, Amethyst Geodes tend to maintain their existence in the lowest layers of the world, quietly sealed off from all other happenings in the world. Leisurely and yet imposing."
+      "text": "As elements of time, Amethyst Geodes tend to maintain their existence in the lowest layers of the world, quietly sealed off from all other happenings in the world.$(br)Leisurely and yet imposing."
     },
     {
       "type": "patchouli:spotlight",

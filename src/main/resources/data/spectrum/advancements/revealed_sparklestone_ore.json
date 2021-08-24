@@ -3,7 +3,6 @@
     "icon": {
         "item": "spectrum:sparklestone_ore"
     },
-    "hidden": true,
     "title": {
       "translate": "advancements.spectrum.revealed_sparklestone_ore.title"
     },
@@ -15,7 +14,7 @@
   "criteria": {
     "revealed_sparklestone": {
       "trigger":"spectrum:had_revelation",
-      "conditions": { "revelation_identifier": "spectrum:sparklestone" }
+      "conditions": { "revelation_identifier": "spectrum:sparklestone_ore" }
     }
   }
 }

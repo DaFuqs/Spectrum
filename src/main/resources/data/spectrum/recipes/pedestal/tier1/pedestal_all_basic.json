@@ -28,5 +28,5 @@
     "item": "spectrum:pedestal_all_basic",
     "count": 1
   },
-  "required_advancements": ["spectrum:spectrum"]
+  "required_advancements": ["spectrum:collect_all_basic_shards"]
 }

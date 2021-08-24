@@ -1,6 +1,6 @@
 {
   "name": "Detectors",
-  "advancement": "spectrum:craft_using_pedestal",
+  "advancement": "spectrum:progression/detectors/unlock_any_detector",
   "icon": "spectrum:player_detector",
   "category": "spectrum:redstone_category",
   "extra_recipe_mappings": {

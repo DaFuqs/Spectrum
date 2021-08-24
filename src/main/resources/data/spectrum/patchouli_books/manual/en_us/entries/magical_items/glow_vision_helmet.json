@@ -1,6 +1,6 @@
 {
   "name": "Glow Vision Helmet",
-  "advancement": "spectrum:craft_using_pedestal",
+  "advancement": "spectrum:progression/unlock_glow_vision_helmet",
   "icon": "spectrum:glow_vision_helmet",
   "category": "spectrum:magical_items_category",
   "extra_recipe_mappings": {
@@ -15,7 +15,7 @@
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier1/glow_vision_helmet",
-      "text": "You honor their glowing legacy by designing a headdress that reminds you of their original properties and can continue to show you the light in the darkness of the caves.$(br2)The Glow Vision helmet offers you no protection, but if you wear Glow Ink with you, you get the Night Vision effect for some time."
+      "text": "You honor their clumsy glowing legacy by designing a headdress that reminds you of their original properties and can continue to show you the light in the darkness of the caves.$(br2)The Glow Vision helmet offers you no protection, but if you wear Glow Ink with you, you get the Night Vision effect for some time."
     }
   ]
 }

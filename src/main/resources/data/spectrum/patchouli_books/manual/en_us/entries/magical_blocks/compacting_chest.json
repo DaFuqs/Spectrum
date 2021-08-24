@@ -1,6 +1,6 @@
 {
   "name": "Compacting Chest",
-  "advancement": "spectrum:craft_using_pedestal",
+  "advancement": "spectrum:hidden/collect_shards/collect_citrine_shard",
   "icon": "spectrum:compacting_chest",
   "category": "spectrum:magical_blocks_category",
   "extra_recipe_mappings": {

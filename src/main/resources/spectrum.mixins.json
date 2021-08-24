@@ -5,6 +5,7 @@
   "mixins": [
     "AccessorShapedRecipe",
     "AnvilBlockMixin",
+    "ArmorWithHitEffectProcessor",
     "BlockMixin",
     "BlockPlacerTypeAccessor",
     "EnderEyeItemMixin",
@@ -20,9 +21,9 @@
     "ItemFrameEntityMixin",
     "ItemModelsMixin",
     "ItemStackMixin",
-    "ArmorWithHitEffectProcessor",
     "LivingEntityMixin",
     "MobSpawnerBlockEntityMixin",
+    "CropBlockMixin",
     "PlayerAdvancementTrackerMixin",
     "PlayerInventoryMixin",
     "ServerPlayerEntityMixin",

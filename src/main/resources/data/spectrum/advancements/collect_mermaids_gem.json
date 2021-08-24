@@ -1,0 +1,19 @@
+{
+  "display": {
+    "icon": {
+      "item": "spectrum:mermaids_gem"
+    },
+    "title": {
+      "translate": "advancements.spectrum.collect_mermaids_gem.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.collect_mermaids_gem.description"
+    }
+  },
+  "criteria": {
+    "has_mermaids_gem": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": { "items": [{ "items": [ "spectrum:mermaids_gem" ]}] }
+    }
+  }
+}

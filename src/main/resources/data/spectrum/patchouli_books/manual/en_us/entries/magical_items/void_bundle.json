@@ -14,7 +14,7 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe": "spectrum:pedestal/tier1/void_bundle",
+      "recipe": "spectrum:pedestal/tier2/void_bundle",
       "text": "The Void Bundle stores a virtually unlimited number of items, but of only one type."
     }
   ]

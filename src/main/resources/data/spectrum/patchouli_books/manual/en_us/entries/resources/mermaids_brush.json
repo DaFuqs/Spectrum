@@ -1,0 +1,22 @@
+{
+    "name": "Mermaids Brush",
+    "icon": "spectrum:mermaids_brush",
+    "advancement": "spectrum:collect_mermaids_gem",
+    "category": "spectrum:resources_category",
+    "extra_recipe_mappings": {
+        "spectrum:mermaids_gem": 1,
+        "spectrum:mermaids_brush": 1
+    },
+    "pages": [
+        {
+            "type": "patchouli:spotlight",
+            "item": "spectrum:mermaids_brush",
+            "text": "This inconspicuous plant grows in the deepest depths of the oceans, forever untouched by human influence.$(br)They grow a single flower, which slowly develops into a filigree shaped seed.$(br2)Mermaids Brushes can be harvested using shears."
+        },
+        {
+            "type": "patchouli:spotlight",
+            "item": "spectrum:mermaids_gem",
+            "text": "Fully grown, these hollow stones float to the surface of the sea to be carried away by the soft waves.$(br2)Mermaids Gems have a strong bond with water - obviously."
+        }
+    ]
+}

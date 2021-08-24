@@ -1,0 +1,22 @@
+{
+    "name": "Quitoxic Reeds",
+    "icon": "spectrum:quitoxic_reeds",
+    "advancement": "spectrum:hidden/collect_resource/collect_quitoxic_reeds",
+    "category": "spectrum:resources_category",
+    "extra_recipe_mappings": {
+        "spectrum:quitoxic_reeds": 1,
+        "spectrum:quitoxic_powder": 1
+    },
+    "pages": [
+        {
+            "type": "patchouli:spotlight",
+            "item": "spectrum:quitoxic_reeds",
+            "text": "An alien-looking variety of sugar cane that grows exclusively in swamps and seems to devour clay as a form of nutrient."
+        },
+        {
+            "type": "patchouli:spotlight",
+            "item": "spectrum:quitoxic_powder",
+            "text": "A purple glittering powder can be extracted from the stems by crushing it with an anvil."
+        }
+    ]
+}

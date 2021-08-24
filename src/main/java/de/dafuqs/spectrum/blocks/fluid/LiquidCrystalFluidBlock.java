@@ -6,8 +6,14 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.FluidBlock;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.pathing.NavigationType;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.fluid.FlowableFluid;
+import net.minecraft.particle.ParticleEffect;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.tag.FluidTags;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -15,7 +21,10 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 
+import java.util.Random;
+
 public class LiquidCrystalFluidBlock extends FluidBlock {
+
 
     public LiquidCrystalFluidBlock(FlowableFluid fluid, Settings settings) {
         super(fluid, settings);
@@ -38,6 +47,34 @@ public class LiquidCrystalFluidBlock extends FluidBlock {
     @Override
     public boolean canPathfindThrough(BlockState state, BlockView world, BlockPos pos, NavigationType type) {
         return true;
+    }
+
+    /**
+     * Entities colliding with liquid crystal will get a slight regeneration effect
+     */
+    @Override
+    public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
+        super.onEntityCollision(state, world, pos, entity);
+        if(entity instanceof LivingEntity) {
+            LivingEntity livingEntity = (LivingEntity) entity;
+
+            // just check every 100 ticks for performance and slow healing
+            if(world.getTime() % 200 == 0) {
+                StatusEffectInstance regenerationInstance = livingEntity.getStatusEffect(StatusEffects.REGENERATION);
+                if (regenerationInstance == null) {
+                    StatusEffectInstance newRegenerationInstance = new StatusEffectInstance(StatusEffects.REGENERATION, 80);
+                    livingEntity.addStatusEffect(newRegenerationInstance);
+                }
+            }
+        }
+    }
+
+    @Override
+    public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
+        super.randomDisplayTick(state, world, pos, random);
+        if(!world.getBlockState(pos.up()).isSolidBlock(world, pos.up()) && random.nextFloat() < 0.05F) {
+            world.addParticle(ParticleTypes.GLOW, pos.getX() + random.nextDouble(), pos.getY() + 1, pos.getZ() + random.nextDouble(), 0.03 - random.nextDouble() * 0.06, random.nextDouble() * 0.1, 0.03 - random.nextDouble() * 0.06);
+        }
     }
 
     /**

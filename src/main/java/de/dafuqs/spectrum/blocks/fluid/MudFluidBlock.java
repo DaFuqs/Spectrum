@@ -1,17 +1,25 @@
 package de.dafuqs.spectrum.blocks.fluid;
 
+import de.dafuqs.spectrum.registries.SpectrumFluidTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.FluidBlock;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.pathing.NavigationType;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.fluid.FlowableFluid;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.tag.FluidTags;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
+
+import java.util.Random;
 
 public class MudFluidBlock extends FluidBlock {
 
@@ -23,6 +31,41 @@ public class MudFluidBlock extends FluidBlock {
     public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
         if (this.receiveNeighborFluids(world, pos, state)) {
             world.getFluidTickScheduler().schedule(pos, state.getFluidState().getFluid(), this.fluid.getTickRate(world));
+        }
+    }
+
+    /**
+     * Entities colliding with mud will get a slowness effect
+     * and losing their breath far quicker
+     */
+    @Override
+    public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
+        super.onEntityCollision(state, world, pos, entity);
+        if(entity instanceof LivingEntity) {
+            LivingEntity livingEntity = (LivingEntity) entity;
+
+            // the entity is hurt at air == -20 and then reset to air = 0
+            // this way the entity loses its breath way faster, but gets damaged just as slow afterwards
+            if(livingEntity.isSubmergedIn(SpectrumFluidTags.MUD) && world.getTime() % 2 == 0 && livingEntity.getAir() > 0) {
+                livingEntity.setAir(livingEntity.getAir() - 1);
+            }
+
+            // just check every 20 ticks for performance
+            if(world.getTime() % 20 == 0) {
+                StatusEffectInstance slownessInstance = livingEntity.getStatusEffect(StatusEffects.SLOWNESS);
+                if (slownessInstance == null || slownessInstance.getDuration() < 20) {
+                    StatusEffectInstance newSlownessInstance = new StatusEffectInstance(StatusEffects.SLOWNESS, 60, 3);
+                    livingEntity.addStatusEffect(newSlownessInstance);
+                }
+            }
+        }
+    }
+
+    @Override
+    public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
+        super.randomDisplayTick(state, world, pos, random);
+        if(!world.getBlockState(pos.up()).isSolidBlock(world, pos.up()) && random.nextFloat() < 0.03F) {
+            world.addParticle(ParticleTypes.BUBBLE_POP, pos.getX() + random.nextDouble(), pos.getY()+1, pos.getZ() + random.nextDouble(), 0, random.nextDouble() * 0.1, 0);
         }
     }
 

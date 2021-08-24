@@ -1,15 +1,19 @@
 package de.dafuqs.spectrum.items.armor;
 
+import com.mojang.authlib.yggdrasil.response.User;
 import de.dafuqs.spectrum.interfaces.ArmorWithHitEffect;
+import dev.architectury.event.events.common.TickEvent;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.ItemStack;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
@@ -18,22 +22,45 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
+import java.util.function.Consumer;
 
 public class EmergencyArmorItem extends ArmorItem implements ArmorWithHitEffect {
 
-    EquipmentSlot equipmentSlot;
+    private final EquipmentSlot equipmentSlot;
+    private final int armorSlotID;
 
     public EmergencyArmorItem(ArmorMaterial material, EquipmentSlot slot, Settings settings) {
         super(material, slot, settings);
         this.equipmentSlot = slot;
+        switch (slot) {
+            case HEAD -> {
+                this.armorSlotID = 0;
+            }
+            case CHEST ->  {
+                this.armorSlotID = 1;
+            }
+            case LEGS -> {
+                this.armorSlotID = 2;
+            }
+            default -> {
+                this.armorSlotID = 3;
+            }
+
+        }
     }
 
     @Override
     public void onHit(ItemStack itemStack, DamageSource source, LivingEntity targetEntity, float amount) {
         if(amount > 0) {
             process(equipmentSlot, source, targetEntity);
-            targetEntity.playSound(SoundEvents.BLOCK_AMETHYST_BLOCK_HIT, 1.0F, 1.0F);
-            targetEntity.playSound(SoundEvents.ENTITY_SPLASH_POTION_BREAK, 1.0F, 1.0F);
+            targetEntity.world.playSound(null, targetEntity.getBlockPos(), SoundEvents.BLOCK_AMETHYST_BLOCK_HIT, SoundCategory.PLAYERS, 1.0F, 1.0F);
+            targetEntity.world.playSound(null, targetEntity.getBlockPos(), SoundEvents.ENTITY_SPLASH_POTION_BREAK, SoundCategory.PLAYERS, 1.0F, 1.0F);
+            //targetEntity.playSound(SoundEvents.BLOCK_AMETHYST_BLOCK_HIT, 1.0F, 1.0F);
+            //targetEntity.playSound(SoundEvents.ENTITY_SPLASH_POTION_BREAK, 1.0F, 1.0F);
+
+            itemStack.damage(5, targetEntity, (e) -> {
+                e.sendEquipmentBreakStatus(EquipmentSlot.fromTypeIndex(EquipmentSlot.Type.ARMOR, this.armorSlotID));
+            });
         }
     }
 

@@ -181,6 +181,7 @@ public class SpectrumItems {
     public static final Item INVISIBLE_GLOW_ITEM_FRAME = new InvisibleGlowItemFrameItem(SpectrumEntityTypes.INVISIBLE_GLOW_ITEM_FRAME, generalItemSettings);
 
     public static final Item VOID_BUNDLE = new VoidBundleItem(generalItemSettingsSingle);
+    public static final Item LIGHTNING_STONE = new Item(generalItemSettings);
 
 
     private static Item register(String name, Item item) {
@@ -270,8 +271,9 @@ public class SpectrumItems {
 
         register("quitoxic_powder", QUITOXIC_POWDER);
         register("mermaids_gem", MERMAIDS_GEM);
+        register("lightning_stone", LIGHTNING_STONE);
         register("shooting_star", SHOOTING_STAR);
-		
+
 		register("vegetal", VEGETAL);
         register("corrupted_obsidian_dust", CORRUPTED_OBSIDIAN_DUST);
         register("bedrock_dust", BEDROCK_DUST);

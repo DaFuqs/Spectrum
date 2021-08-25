@@ -7,17 +7,23 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.ShapeContext;
+import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ItemEntity;
+import net.minecraft.entity.LightningEntity;
 import net.minecraft.item.AutomaticItemPlacementContext;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.predicate.entity.LightningBoltPredicate;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Pair;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
+import net.minecraft.world.World;
+import net.minecraft.world.WorldView;
+import net.minecraft.world.explosion.Explosion;
 
 import java.util.Hashtable;
 import java.util.Random;
@@ -29,6 +35,20 @@ public class LightningStoneBlock extends Block implements Cloakable {
     public LightningStoneBlock(Settings settings) {
         super(settings);
         registerCloak();
+    }
+
+    @Override
+    public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
+        return world.getBlockState(pos.down()).isSolidBlock(world, pos);
+    }
+
+
+    @Override
+    public void onDestroyedByExplosion(World world, BlockPos pos, Explosion explosion) {
+        if(world.isRaining()) {
+            // TODO: BOOOOOOOOOOOOM!
+        }
+        super.onDestroyedByExplosion(world, pos, explosion);
     }
 
     @Override

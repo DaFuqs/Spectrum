@@ -34,6 +34,11 @@ public class SpectrumConfig implements ConfigData {
     // shooting stars will only spawn for players with sufficient progress in the mod
     public List<String> ShootingStarWorlds = Arrays.asList("minecraft:overworld", "starry_sky:starry_sky");
 
+    // worlds where lightning strikes can spawn lightning stones
+    public List<String> LightningStonesWorlds = Arrays.asList("minecraft:overworld", "starry_sky:starry_sky");
+    // chance for a lightning strike to spawn a lightning stone
+    public float LightningStonesChance = 0.4F;
+
     // Shooting star spawns are checked every night between time 13000 and 22000, every 100 ticks (so 90 chances per night).
     // By default there is a 0.01 ^= 1 % chance at each of those check times. Making it ~1 shooting star spawn per night.
     public float ShootingStarChance = 0.01F;

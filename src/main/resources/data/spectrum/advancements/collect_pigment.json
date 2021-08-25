@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "item": "spectrum:cyan_sapling"
+      "item": "spectrum:orange_pigment"
     },
     "title": {
       "translate": "advancements.spectrum.collect_pigment.title"

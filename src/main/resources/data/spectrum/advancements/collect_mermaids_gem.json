@@ -10,6 +10,7 @@
       "translate": "advancements.spectrum.collect_mermaids_gem.description"
     }
   },
+  "parent": "spectrum:spectrum",
   "criteria": {
     "has_mermaids_gem": {
       "trigger": "minecraft:inventory_changed",

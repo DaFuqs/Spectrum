@@ -30,7 +30,7 @@ public abstract class LightningEntityMixin {
         if(world.isThundering()
                 && SpectrumCommon.CONFIG.LightningStonesWorlds.contains(world.getRegistryKey().getValue().toString())
                 && world.random.nextFloat() < SpectrumCommon.CONFIG.LightningStonesChance) {
-            
+
             spawnLightningStone(world, this.getAffectedBlockPos());
         }
     }

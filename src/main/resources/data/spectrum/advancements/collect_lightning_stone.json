@@ -10,6 +10,7 @@
       "translate": "advancements.spectrum.collect_lightning_stone.description"
     }
   },
+  "parent": "spectrum:craft_colored_pedestal",
   "criteria": {
     "has_lightning_stone": {
       "trigger": "minecraft:inventory_changed",

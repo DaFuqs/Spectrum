@@ -1,14 +1,11 @@
 package de.dafuqs.spectrum.particle;
 
-import de.dafuqs.spectrum.particle.client.ParticleEmitterParticle;
-import de.dafuqs.spectrum.particle.client.ShootingStarParticle;
-import de.dafuqs.spectrum.particle.client.SparklestoneSparkleParticle;
-import de.dafuqs.spectrum.particle.client.VoidFogParticle;
+import de.dafuqs.spectrum.particle.client.*;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
-import net.minecraft.client.particle.BlockLeakParticle;
-import net.minecraft.client.particle.Particle;
-import net.minecraft.client.particle.WaterSuspendParticle;
+import net.minecraft.client.particle.*;
 import net.minecraft.particle.DefaultParticleType;
+import net.minecraft.particle.ParticleEffect;
+import net.minecraft.particle.ParticleTypes;
 
 public class SpectrumParticleFactories {
 
@@ -21,6 +18,8 @@ public class SpectrumParticleFactories {
 			return particle;
 		});
 		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.VOID_FOG, VoidFogParticle.Factory::new);
+		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.MUD_POP, BubblePopParticle.Factory::new);
+		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.LIQUID_CRYSTAL_SPARKLE, SparklestoneSparkleParticle.Factory::new);
 
 		registerColoredSporeBlossomParticles(SpectrumParticleTypes.BLACK_FALLING_SPORE_BLOSSOM, SpectrumParticleTypes.BLACK_SPORE_BLOSSOM_AIR, 0.1F, 0.1F, 0.1F);
 		registerColoredSporeBlossomParticles(SpectrumParticleTypes.BLUE_FALLING_SPORE_BLOSSOM, SpectrumParticleTypes.BLUE_SPORE_BLOSSOM_AIR, 0.05F, 0.011F, 0.95F);

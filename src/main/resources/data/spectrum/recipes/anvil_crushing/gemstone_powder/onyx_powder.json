@@ -3,7 +3,7 @@
   "ingredient": {
     "item": "spectrum:onyx_shard"
   },
-  "crushedItemsPerPointOfDamage": 0.7,
+  "crushedItemsPerPointOfDamage": 0.6,
   "experience": 0.4,
   "result" : {
     "item": "spectrum:onyx_powder",

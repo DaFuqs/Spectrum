@@ -12,6 +12,8 @@ public class SpectrumParticleTypes {
     public static DefaultParticleType SPARKLESTONE_SPARKLE;
     public static DefaultParticleType PARTICLE_EMITTER;
     public static DefaultParticleType VOID_FOG;
+    public static DefaultParticleType MUD_POP;
+    public static DefaultParticleType LIQUID_CRYSTAL_SPARKLE;
 
     public static DefaultParticleType BLACK_FALLING_SPORE_BLOSSOM;
     public static DefaultParticleType BLUE_FALLING_SPORE_BLOSSOM;
@@ -56,6 +58,8 @@ public class SpectrumParticleTypes {
         SPARKLESTONE_SPARKLE = register("sparklestone_sparkle", true);
         PARTICLE_EMITTER = register("particle_emitter", false);
         VOID_FOG = register("void_fog", false);
+        MUD_POP = register("mud_pop", false);
+        LIQUID_CRYSTAL_SPARKLE = register("liquid_crystal_sparkle", false);
 
         BLACK_FALLING_SPORE_BLOSSOM = register("black_falling_spore_blossom", false);
         BLUE_FALLING_SPORE_BLOSSOM = register("blue_falling_spore_blossom", false);

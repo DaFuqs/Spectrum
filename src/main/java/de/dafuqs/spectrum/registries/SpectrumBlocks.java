@@ -558,6 +558,7 @@ public class SpectrumBlocks {
     public static final Block WHITE_SPIRIT_SALLOW_VINES_HEAD = new SpiritVinesHeadBlock(FabricBlockSettings.copyOf(spiritVinesBlockSettings).mapColor(MapColor.TERRACOTTA_WHITE), GemstoneColor.WHITE);
 
     public static final Block SACRED_SOIL = new ExtraTickFarmlandBlock(FabricBlockSettings.copyOf(Blocks.FARMLAND));
+    public static final Block STUCK_LIGHTNING_STONE = new LightningStoneBlock(FabricBlockSettings.copyOf(Blocks.DIRT));
 
     public static final Block DEEPER_DOWN_PORTAL = new DeeperDownPortalBlock(FabricBlockSettings.copyOf(Blocks.END_PORTAL));
 
@@ -628,6 +629,7 @@ public class SpectrumBlocks {
         registerBlockWithItem("frostbite_crystal", FROSTBITE_CRYSTAL, generalItemSettings);
         registerBlockWithItem("blazing_crystal", BLAZING_CRYSTAL, generalItemSettings);
         registerBlockWithItem("resonant_lily", RESONANT_LILY, generalItemSettings);
+        registerBlock("stuck_lightning_stone", STUCK_LIGHTNING_STONE);
 
         // Worldgen
         registerBlockWithItem("quitoxic_reeds", QUITOXIC_REEDS, worldgenItemSettings);
@@ -1244,6 +1246,7 @@ public class SpectrumBlocks {
         BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.QUITOXIC_REEDS, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.MERMAIDS_BRUSH, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.RESONANT_LILY, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.STUCK_LIGHTNING_STONE, RenderLayer.getCutout());
     }
 
     @NotNull

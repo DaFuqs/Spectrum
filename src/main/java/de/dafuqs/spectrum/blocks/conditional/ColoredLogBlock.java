@@ -31,7 +31,7 @@ public class ColoredLogBlock extends PillarBlock implements Cloakable {
     public Hashtable<BlockState, BlockState> getBlockStateCloaks() {
         Hashtable<BlockState, BlockState> hashtable = new Hashtable<>();
         for(Direction.Axis axis : PillarBlock.AXIS.getValues()) {
-            hashtable.put(this.getDefaultState().with( PillarBlock.AXIS, axis), Blocks.OAK_LOG.getDefaultState().with( PillarBlock.AXIS, axis));
+            hashtable.put(this.getDefaultState().with(PillarBlock.AXIS, axis), Blocks.OAK_LOG.getDefaultState().with(PillarBlock.AXIS, axis));
         }
         return hashtable;
     }

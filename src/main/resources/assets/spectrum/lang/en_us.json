@@ -653,6 +653,9 @@
   "block.spectrum.ender_glass": "Ender Glass",
   "block.spectrum.redstone_sand": "Redstone Sand",
 
+  "block.spectrum.stuck_lightning_stone": "Lightning Stone",
+  "item.spectrum.lightning_stone": "Lightning Stone",
+
   "block.spectrum.ender_dropper": "Ender Dropper",
   "block.spectrum.ender_dropper_with_owner": "Ender Dropper of %s",
   "block.spectrum.ender_hopper": "Ender Hopper",

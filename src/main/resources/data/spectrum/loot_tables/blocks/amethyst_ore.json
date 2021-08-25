@@ -10,7 +10,7 @@
           "children": [
             {
               "type": "minecraft:item",
-		      "name": "spectrum:amethyst_ore",
+              "name": "spectrum:amethyst_ore",
               "conditions": [
                 {
                   "condition": "minecraft:match_tool",
@@ -29,14 +29,14 @@
             },
             {
               "type": "minecraft:item",
-			  "name": "minecraft:amethyst_shard",
+              "name": "minecraft:amethyst_shard",
               "functions": [
                 {
                   "function": "minecraft:set_count",
                   "count": {
                     "type": "minecraft:uniform",
-                    "min": 1.0,
-                    "max": 2.0
+                    "min": 3.0,
+                    "max": 5.0
                   },
                   "add": false
                 },

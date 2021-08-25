@@ -81,6 +81,8 @@ public class PedestalCraftingRecipeSerializer<T extends PedestalCraftingRecipe> 
                     requiredAdvancementIdentifiers.add(requiredAdvancementIdentifier);
                 }
             }
+        } else {
+            SpectrumCommon.LOGGER.log(Level.WARN, "Pedestal Recipe "+ identifier.getPath() + " does not specify advancements to unlock.");
         }
 
 

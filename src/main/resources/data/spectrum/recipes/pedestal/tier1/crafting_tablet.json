@@ -23,5 +23,6 @@
   "result" : {
     "item": "spectrum:crafting_tablet",
     "count": 1
-  }
+  },
+  "required_advancements": ["spectrum:hidden/collect_shards/collect_amethyst_shard"]
 }

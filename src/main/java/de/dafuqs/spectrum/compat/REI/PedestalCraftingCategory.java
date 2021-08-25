@@ -90,10 +90,10 @@ public class PedestalCraftingCategory<R extends PedestalCraftingRecipe> implemen
 
         // crafting slot contents
         List<? extends List<? extends EntryStack<?>>> input = display.getInputEntries();
-        int gemstoneDustStartSlot = display.height * display.width;
+        int gemstoneDustStartSlot = display.getHeight() * display.getWidth();
         for (int i = 0; i < gemstoneDustStartSlot; i++) {
             if (!input.get(i).isEmpty()) {
-                slots.get(DefaultCraftingDisplay.getSlotWithSize(display.width, i, 3)).disableBackground().entries(input.get(i));
+                slots.get(DefaultCraftingDisplay.getSlotWithSize(display.getWidth(), i, 3)).disableBackground().entries(input.get(i));
             }
         }
 

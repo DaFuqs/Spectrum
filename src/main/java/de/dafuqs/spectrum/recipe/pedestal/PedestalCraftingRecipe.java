@@ -278,14 +278,13 @@ public class PedestalCraftingRecipe implements Recipe<Inventory> {
                 return Support.hasAdvancement(playerEntity, new Identifier(SpectrumCommon.MOD_ID, "place_pedestal"));
             }
             case SIMPLE -> {
-                return Support.hasAdvancement(playerEntity, new Identifier(SpectrumCommon.MOD_ID, "craft_colored_pedestal") )
-                        && Support.hasAdvancement(playerEntity, new Identifier(SpectrumCommon.MOD_ID, "build_basic_pedestal_structure"));
+                return Support.hasAdvancement(playerEntity, new Identifier(SpectrumCommon.MOD_ID, "craft_colored_pedestal"));
             }
             case ADVANCED -> {
-                return Support.hasAdvancement(playerEntity, new Identifier(SpectrumCommon.MOD_ID, "spectrum_midgame"));
+                return Support.hasAdvancement(playerEntity, new Identifier(SpectrumCommon.MOD_ID, "build_advanced_pedestal_structure"));
             }
             case COMPLEX -> {
-                return Support.hasAdvancement(playerEntity, new Identifier(SpectrumCommon.MOD_ID, "spectrum_lategame"));
+                return Support.hasAdvancement(playerEntity, new Identifier(SpectrumCommon.MOD_ID, "build_complex_pedestal_structure"));
             }
             default -> {
                 return false;

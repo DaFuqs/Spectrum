@@ -3,6 +3,9 @@
   "icon": "spectrum:pedestal_moonstone",
   "advancement": "spectrum:lategame/spectrum_lategame",
   "category": "spectrum:general_category",
+  "extra_recipe_mappings": {
+    "spectrum:pedestal_moonstone": 0
+  },
   "pages": [
     {
       "type": "spectrum:pedestal_crafting",

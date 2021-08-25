@@ -10,12 +10,12 @@
     {
       "type": "patchouli:spotlight",
       "item": "spectrum:ender_splice",
-      "text": "$(italic)The most interesting thing about the Endermen is, without exception, their teleportation ability. You were pretty successful replicating it. However, to determine the destination of the teleportation, you must first take a snapshot of the position. Afterwards, you can return to the location at any time.$(br)Endermen don't have to do that - why?$()"
+      "text": "$(italic)The most interesting thing about the Endermen is, without question, their teleportation ability. You were pretty successful replicating it! However, to determine the destination of the teleport, you must first take a snapshot of the position.$(br)Endermen don't have to do that - why?$()"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier3/ender_splice",
-      "text": "With the first use of the Ender Splice (or a whole stack full) it saves the current position.$(br)With the second use it teleports you back to the saved location."
+      "text": "With the first use of the Ender Splice (or a whole stack full) it saves the current position.$(br)The second use teleports you back to the original location."
     }
   ]
 }

@@ -3,6 +3,9 @@
   "icon": "spectrum:pedestal_onyx",
   "advancement": "spectrum:midgame/spectrum_midgame",
   "category": "spectrum:general_category",
+  "extra_recipe_mappings": {
+    "spectrum:pedestal_onyx": 0
+  },
   "pages": [
     {
       "type": "spectrum:pedestal_crafting",

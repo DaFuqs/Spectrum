@@ -3,6 +3,9 @@
   "icon": "spectrum:pedestal_all_basic",
   "advancement": "spectrum:collect_all_basic_shards",
   "category": "spectrum:general_category",
+  "extra_recipe_mappings": {
+    "spectrum:pedestal_all_basic": 0
+  },
   "pages": [
     {
       "type": "spectrum:pedestal_crafting",

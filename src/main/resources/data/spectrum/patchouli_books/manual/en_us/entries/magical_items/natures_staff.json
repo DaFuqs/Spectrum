@@ -4,17 +4,17 @@
   "icon": "spectrum:natures_staff",
   "category": "spectrum:magical_items_category",
   "extra_recipe_mappings": {
-    "spectrum:natures_staff": 0
+    "spectrum:natures_staff": 1
   },
   "pages": [
     {
-      "type": "patchouli:spotlight",
-      "item": "spectrum:natures_staff",
-      "text": ""
+      "type": "patchouli:text",
+      "text": "TODO"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe": "spectrum:pedestal/tier2/natures_staff"
+      "recipe": "spectrum:pedestal/tier2/natures_staff",
+      "text": "TODO"
     }
   ]
 }

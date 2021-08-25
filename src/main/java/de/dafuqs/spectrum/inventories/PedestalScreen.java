@@ -22,11 +22,11 @@ public class PedestalScreen extends HandledScreen<PedestalScreenHandler> {
     public static final Identifier BACKGROUND1 = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/container/pedestal1.png");
     public static final Identifier BACKGROUND2 = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/container/pedestal2.png");
     public static final Identifier BACKGROUND3 = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/container/pedestal3.png");
+    public static final Identifier BACKGROUND4 = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/container/pedestal4.png");
 
     private final Identifier backgroundTexture;
     private final PedestalBlock.PedestalVariant pedestalVariant;
     private final PedestalRecipeTier maxPedestalRecipeTierForVariant;
-    private final PedestalRecipeTier maxPedestalRecipeTier;
     private final boolean structureUpdateAvailable;
 
     public PedestalScreen(PedestalScreenHandler handler, PlayerInventory playerInventory, Text title) {
@@ -34,22 +34,25 @@ public class PedestalScreen extends HandledScreen<PedestalScreenHandler> {
         this.backgroundHeight = 194;
 
         switch (this.handler.getVariant()) {
-            case BASIC_TOPAZ, BASIC_AMETHYST, BASIC_CITRINE, ALL_BASIC -> {
-                backgroundTexture = BACKGROUND1;
+            case MOONSTONE -> {
+                backgroundTexture = BACKGROUND4;
             }
             case ONYX -> {
+                backgroundTexture = BACKGROUND3;
+            }
+            case ALL_BASIC -> {
                 backgroundTexture = BACKGROUND2;
             }
             default -> {
-                backgroundTexture = BACKGROUND3;
+                backgroundTexture = BACKGROUND1;
             }
         }
 
         this.pedestalVariant = handler.getVariant();
 
         this.maxPedestalRecipeTierForVariant = PedestalBlockEntity.getHighestAvailableRecipeTierForVariant(pedestalVariant);
-        this.maxPedestalRecipeTier = handler.getMaxPedestalRecipeTier();
-        this.structureUpdateAvailable = this.maxPedestalRecipeTierForVariant != this.maxPedestalRecipeTier;
+        PedestalRecipeTier maxPedestalRecipeTier = handler.getMaxPedestalRecipeTier();
+        this.structureUpdateAvailable = this.maxPedestalRecipeTierForVariant != maxPedestalRecipeTier;
     }
 
     @Override

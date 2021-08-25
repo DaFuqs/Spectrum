@@ -33,8 +33,8 @@ public class ClientBlockCloaker {
 
         if(cloakableBlocksToTrigger.size() > 0) {
             // uncloak the blocks
-            for (Cloakable cloakableBlock : cloakableBlocksToTrigger) {
-                uncloak(cloakableBlock);
+            for (Cloakable cloakable : cloakableBlocksToTrigger) {
+                uncloak(cloakable);
             }
 
             rebuildAllChunks();
@@ -95,6 +95,8 @@ public class ClientBlockCloaker {
     }
 
     public static void cloakAll() {
+        activeItemSwaps.clear();
+        activeBlockSwaps.clear();
         HashMap<Identifier, List<Cloakable>> registeredCloaks = BlockCloakManager.getAdvancementIdentifiersAndRegisteredCloaks();
         for(List<Cloakable> registeredCloak : registeredCloaks.values()) {
             for(Cloakable cloakable : registeredCloak) {

@@ -1,0 +1,20 @@
+{
+  "parent": "spectrum:midgame/spectrum_midgame",
+  "display": {
+    "icon": {
+      "item": "spectrum:pedestal_onyx"
+    },
+    "title": {
+      "translate": "advancements.spectrum.craft_onyx_pedestal.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.craft_onyx_pedestal.description"
+    }
+  },
+  "criteria": {
+    "craft_pedestal": {
+      "trigger": "spectrum:crafted_with_pedestal",
+      "conditions": { "items": [{ "items": [ "spectrum:pedestal_onyx" ]}] }
+    }
+  }
+}

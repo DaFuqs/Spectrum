@@ -1,0 +1,20 @@
+{
+  "parent": "spectrum:lategame/craft_moonstone_pedestal",
+  "display": {
+    "icon": {
+      "item": "spectrum:chiseled_polished_basalt"
+    },
+    "title": {
+      "translate": "advancements.spectrum.build_complex_pedestal_structure.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.build_complex_pedestal_structure.description"
+    }
+  },
+  "criteria": {
+    "built_structure": {
+      "trigger": "spectrum:completed_multiblock",
+      "conditions": { "multiblock_identifier": "spectrum:pedestal_complex_structure_check" }
+    }
+  }
+}

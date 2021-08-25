@@ -161,6 +161,10 @@ public class PedestalCraftingRecipe implements Recipe<Inventory> {
         return defaultedList;
     }
 
+    public PedestalRecipeTier getTier() {
+        return this.tier;
+    }
+
     @Override
     public boolean fits(int width, int height) {
         return true;
@@ -274,7 +278,8 @@ public class PedestalCraftingRecipe implements Recipe<Inventory> {
                 return Support.hasAdvancement(playerEntity, new Identifier(SpectrumCommon.MOD_ID, "place_pedestal"));
             }
             case SIMPLE -> {
-                return Support.hasAdvancement(playerEntity, new Identifier(SpectrumCommon.MOD_ID, "craft_colored_pedestal"));
+                return Support.hasAdvancement(playerEntity, new Identifier(SpectrumCommon.MOD_ID, "craft_colored_pedestal") )
+                        && Support.hasAdvancement(playerEntity, new Identifier(SpectrumCommon.MOD_ID, "build_basic_pedestal_structure"));
             }
             case ADVANCED -> {
                 return Support.hasAdvancement(playerEntity, new Identifier(SpectrumCommon.MOD_ID, "spectrum_midgame"));
@@ -288,7 +293,7 @@ public class PedestalCraftingRecipe implements Recipe<Inventory> {
         }
     }
 
-    private boolean hasUnlockedRequiredAdvancements(PlayerEntity playerEntity) {
+    public boolean hasUnlockedRequiredAdvancements(PlayerEntity playerEntity) {
         for(Identifier advancementIdentifier : this.requiredAdvancementIdentifiers) {
             if(!Support.hasAdvancement(playerEntity, advancementIdentifier)) {
                 return false;

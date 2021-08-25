@@ -66,7 +66,7 @@ public class ClientPedestalRecipeToastManager {
             }
         }
 
-        Optional<PedestalRecipeTier> newlyUnlockedRecipeTier = hasJustUnlockedANewRecipeTier(advancementIdentifier);
+        Optional<PedestalRecipeTier> newlyUnlockedRecipeTier = PedestalRecipeTier.hasJustUnlockedANewRecipeTier(advancementIdentifier);
         if(newlyUnlockedRecipeTier.isPresent()) {
             showToastsForAllNewlyUnlockedRecipesForTier(newlyUnlockedRecipeTier.get());
         }
@@ -93,19 +93,6 @@ public class ClientPedestalRecipeToastManager {
                 }
             }
         }
-    }
-
-    private static Optional<PedestalRecipeTier> hasJustUnlockedANewRecipeTier(@NotNull Identifier advancementIdentifier) {
-        if(advancementIdentifier.equals(new Identifier(SpectrumCommon.MOD_ID, "place_pedestal"))) {
-            return Optional.of(PedestalRecipeTier.BASIC);
-        } else if(advancementIdentifier.equals(new Identifier(SpectrumCommon.MOD_ID, "build_basic_pedestal_structure"))) {
-            return Optional.of(PedestalRecipeTier.SIMPLE);
-        } else if(advancementIdentifier.equals(new Identifier(SpectrumCommon.MOD_ID, "build_advanced_pedestal_structure"))) {
-            return Optional.of(PedestalRecipeTier.ADVANCED);
-        } else if(advancementIdentifier.equals(new Identifier(SpectrumCommon.MOD_ID, "build_complex_pedestal_structure"))) {
-            return Optional.of(PedestalRecipeTier.COMPLEX);
-        }
-        return Optional.empty();
     }
 
 }

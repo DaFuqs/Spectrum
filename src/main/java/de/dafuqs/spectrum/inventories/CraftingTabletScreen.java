@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.inventories;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.enums.PedestalRecipeTier;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.util.math.MatrixStack;
@@ -9,19 +10,35 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
+import java.util.Optional;
+
 public class CraftingTabletScreen extends HandledScreen<CraftingTabletScreenHandler> {
 
-    public static final Identifier BACKGROUND = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/container/pedestal.png");
+    public static Identifier BACKGROUND = PedestalScreen.BACKGROUND1;
 
     public CraftingTabletScreen(CraftingTabletScreenHandler handler, PlayerInventory playerInventory, Text title) {
         super(handler, playerInventory, title);
         this.backgroundHeight = 194;
+
+        if(handler.getTier().isPresent()) {
+            switch (handler.getTier().get()) {
+                case COMPLEX -> {
+                    BACKGROUND = PedestalScreen.BACKGROUND4;
+                }
+                case ADVANCED -> {
+                    BACKGROUND = PedestalScreen.BACKGROUND3;
+                }
+                case SIMPLE -> {
+                    BACKGROUND = PedestalScreen.BACKGROUND2;
+                }
+            }
+        }
     }
 
     @Override
     protected void drawForeground(MatrixStack matrices, int mouseX, int mouseY) {
         // draw "title" and "inventory" texts
-        int titleX = (backgroundWidth - textRenderer.getWidth(title)) / 2; // 8;
+        int titleX = (backgroundWidth - textRenderer.getWidth(title)) / 2;
         int titleY = 7;
         Text title = this.title;
         int inventoryX = 8;

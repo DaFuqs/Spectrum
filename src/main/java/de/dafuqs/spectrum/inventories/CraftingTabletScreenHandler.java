@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.inventories;
 
 import de.dafuqs.spectrum.enums.GemstoneColor;
+import de.dafuqs.spectrum.enums.PedestalRecipeTier;
 import de.dafuqs.spectrum.inventories.slots.LockableCraftingResultSlot;
 import de.dafuqs.spectrum.inventories.slots.ReadOnlySlot;
 import de.dafuqs.spectrum.items.misc.CraftingTabletItem;
@@ -38,6 +39,7 @@ public class CraftingTabletScreenHandler extends AbstractRecipeScreenHandler<Inv
    private final PlayerEntity player;
    private final World world;
    private final ItemStack craftingTabletItemStack;
+   private final Optional<PedestalRecipeTier> highestUnlockedRecipeTier;
 
    private final LockableCraftingResultSlot lockableCraftingResultSlot;
 
@@ -54,6 +56,8 @@ public class CraftingTabletScreenHandler extends AbstractRecipeScreenHandler<Inv
       this.craftingTabletItemStack = craftingTabletItemStack;
       this.player = playerInventory.player;
 
+      this.highestUnlockedRecipeTier = PedestalRecipeTier.getHighestUnlockedRecipeTier(playerInventory.player);
+
       // crafting slots
       int m;
       int n;
@@ -63,12 +67,39 @@ public class CraftingTabletScreenHandler extends AbstractRecipeScreenHandler<Inv
          }
       }
 
-      // spectrum slots
-      this.addSlot(new ReadOnlySlot(craftingInventory, 9,  44, 77));
-      this.addSlot(new ReadOnlySlot(craftingInventory, 10, 44 + 18, 77));
-      this.addSlot(new ReadOnlySlot(craftingInventory, 11, 44 + 2 * 18, 77));
-      this.addSlot(new ReadOnlySlot(craftingInventory, 12, 44 + 3 * 18, 77));
-      this.addSlot(new ReadOnlySlot(craftingInventory, 13, 44 + 4 * 18, 77));
+      // gemstone powder slots
+      if(highestUnlockedRecipeTier.isPresent()) {
+         switch (highestUnlockedRecipeTier.get()) {
+            case COMPLEX -> {
+               this.addSlot(new ReadOnlySlot(craftingInventory, 9,  44, 77));
+               this.addSlot(new ReadOnlySlot(craftingInventory, 10, 44 + 18, 77));
+               this.addSlot(new ReadOnlySlot(craftingInventory, 11, 44 + 2 * 18, 77));
+               this.addSlot(new ReadOnlySlot(craftingInventory, 12, 44 + 3 * 18, 77));
+               this.addSlot(new ReadOnlySlot(craftingInventory, 13, 44 + 4 * 18, 77));
+            }
+            case ADVANCED -> {
+               this.addSlot(new ReadOnlySlot(craftingInventory, 9,  44 + 9, 77));
+               this.addSlot(new ReadOnlySlot(craftingInventory, 10, 44 + 18 + 9, 77));
+               this.addSlot(new ReadOnlySlot(craftingInventory, 11, 44 + 2 * 18 + 9, 77));
+               this.addSlot(new ReadOnlySlot(craftingInventory, 12, 44 + 3 * 18 + 9, 77));
+               this.addSlot(new ReadOnlySlot(craftingInventory, 13, -2000, 77));
+            }
+            default -> {
+               this.addSlot(new ReadOnlySlot(craftingInventory, 9,  44+18, 77));
+               this.addSlot(new ReadOnlySlot(craftingInventory, 10, 44 + 18+18, 77));
+               this.addSlot(new ReadOnlySlot(craftingInventory, 11, 44 + 2 * 18+18, 77));
+               this.addSlot(new ReadOnlySlot(craftingInventory, 12, -2000, 77));
+               this.addSlot(new ReadOnlySlot(craftingInventory, 13, -2000, 77));
+            }
+         }
+      } else {
+         this.addSlot(new ReadOnlySlot(craftingInventory, 9,  44+18, 77));
+         this.addSlot(new ReadOnlySlot(craftingInventory, 10, 44 + 18+18, 77));
+         this.addSlot(new ReadOnlySlot(craftingInventory, 11, 44 + 2 * 18+18, 77));
+         this.addSlot(new ReadOnlySlot(craftingInventory, 12, -2000, 77));
+         this.addSlot(new ReadOnlySlot(craftingInventory, 13, -2000, 77));
+      }
+
 
       // preview slot
       lockableCraftingResultSlot = new LockableCraftingResultSlot(playerInventory.player, craftingInventory, craftingResultInventory, 0, 127, 37);
@@ -297,5 +328,9 @@ public class CraftingTabletScreenHandler extends AbstractRecipeScreenHandler<Inv
 
    public boolean canInsertIntoSlot(int index) {
       return index != this.getCraftingResultSlotIndex();
+   }
+
+   public Optional<PedestalRecipeTier> getTier() {
+      return this.highestUnlockedRecipeTier;
    }
 }

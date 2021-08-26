@@ -87,6 +87,12 @@ public class SpectrumClient implements ClientModInitializer {
                 ColorProviderRegistry.ITEM.register(oakLeavesItemColorProvider, item);
             }
         }
+
+        @Nullable BlockColorProvider grassColorProvider = ColorProviderRegistry.BLOCK.get(Blocks.GRASS);
+        if(grassColorProvider != null) {
+            ColorProviderRegistry.BLOCK.register(grassColorProvider, SpectrumBlocks.CLOVER);
+            ColorProviderRegistry.BLOCK.register(grassColorProvider, SpectrumBlocks.FOUR_LEAF_CLOVER);
+        }
     }
 
     // Vanilla models see: ModelPredicateProviderRegistry

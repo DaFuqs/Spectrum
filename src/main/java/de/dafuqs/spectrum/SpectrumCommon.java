@@ -85,6 +85,8 @@ public class SpectrumCommon implements ModInitializer {
 
         BlockCloakManager.setupCloaks();
         SpectrumMultiblocks.register();
+        SpectrumFlammableBlocks.register();
+        SpectrumComposting.register();
 
         ServerWorldEvents.LOAD.register((minecraftServer, serverWorld) -> {
             SpectrumCommon.minecraftServer = minecraftServer;

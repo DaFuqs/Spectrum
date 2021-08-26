@@ -14,6 +14,7 @@ import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.recipe.pedestal.PedestalCraftingRecipe;
 import de.dafuqs.spectrum.enums.PedestalRecipeTier;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
+import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import de.dafuqs.spectrum.registries.SpectrumMultiblocks;
 import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
@@ -76,6 +77,9 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
     private static AutoCraftingInventory autoCraftingInventory;
     private PedestalRecipeTier cachedMaxPedestalTier;
     private long cachedMaxPedestalTierTick;
+
+    private boolean checkedForUpgrades = false;
+    private int speedUpgrades = 0;
 
     public static final int INVENTORY_SIZE = 16; // 9 crafting, 5 gems, 1 craftingTablet, 1 output
     public static final int CRAFTING_TABLET_SLOT_ID = 14;
@@ -211,6 +215,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
         this.storedXP = tag.getFloat("StoredXP");
         this.craftingTime = tag.getShort("CraftingTime");
         this.craftingTimeTotal = tag.getShort("CraftingTimeTotal");
+        this.speedUpgrades = tag.getShort("SpeedUpgrades");
         if(tag.contains("OwnerUUID")) {
             this.ownerUUID = tag.getUuid("OwnerUUID");
         } else {
@@ -228,6 +233,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
         tag.putFloat("StoredXP", this.storedXP);
         tag.putShort("CraftingTime", (short)this.craftingTime);
         tag.putShort("CraftingTimeTotal", (short)this.craftingTimeTotal);
+        tag.putShort("SpeedUpgrades", (short)this.speedUpgrades);
 
         if(this.ownerUUID != null) {
             tag.putUuid("OwnerUUID", this.ownerUUID);
@@ -251,7 +257,12 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
     public static void serverTick(@NotNull World world, BlockPos blockPos, BlockState blockState, PedestalBlockEntity pedestalBlockEntity) {
         // only craft when there is redstone power
         Block block = world.getBlockState(blockPos).getBlock();
-        if(block instanceof PedestalBlock && blockState.get(PedestalBlock.STATE) == PedestalBlock.PedestalState.POWERED) {
+        if(block instanceof PedestalBlock && blockState.get(PedestalBlock.STATE) == PedestalBlock.RedstonePowerState.POWERED) {
+
+            if(!pedestalBlockEntity.checkedForUpgrades) {
+                pedestalBlockEntity.updateUpgrades();
+            }
+
             // check recipe crafted last tick => performance
             PedestalCraftingRecipe pedestalCraftingRecipe = null;
             CraftingRecipe craftingRecipe = null;
@@ -261,11 +272,11 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
             if(validRecipe instanceof PedestalCraftingRecipe) {
                 pedestalCraftingRecipe = (PedestalCraftingRecipe) validRecipe;
                 pedestalBlockEntity.lastRecipe = validRecipe;
-                pedestalBlockEntity.craftingTimeTotal = pedestalCraftingRecipe.getCraftingTime();
+                pedestalBlockEntity.craftingTimeTotal = (int) Math.ceil(pedestalCraftingRecipe.getCraftingTime() / pedestalBlockEntity.getCraftingSpeedMultiplierThroughUpgrades());
             } else if(validRecipe instanceof CraftingRecipe) {
                 craftingRecipe = (CraftingRecipe) validRecipe;
                 pedestalBlockEntity.lastRecipe = validRecipe;
-                pedestalBlockEntity.craftingTimeTotal = 20;
+                pedestalBlockEntity.craftingTimeTotal = (int) Math.ceil(20 / pedestalBlockEntity.getCraftingSpeedMultiplierThroughUpgrades());
             } else {
                 // no valid recipe
                 pedestalBlockEntity.craftingTime = 0;
@@ -739,6 +750,37 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
             this.cachedMaxPedestalTierTick = world.getTime();
             return highestAvailableRecipeTier;
         }
+    }
+
+    /**
+     * Search for upgrades at valid positions and apply
+     */
+    public void updateUpgrades() {
+        this.speedUpgrades = 0;
+        if(world.getBlockState(pos.add(3, 2, 3)).getBlock().equals(SpectrumBlocks.PEDESTAL_SPEED_UPGRADE)) {
+            this.speedUpgrades++;
+        }
+        if(world.getBlockState(pos.add(3, 2, -3)).getBlock().equals(SpectrumBlocks.PEDESTAL_SPEED_UPGRADE)) {
+            this.speedUpgrades++;
+        }
+        if(world.getBlockState(pos.add(-3, 2, 3)).getBlock().equals(SpectrumBlocks.PEDESTAL_SPEED_UPGRADE)) {
+            this.speedUpgrades++;
+        }
+        if(world.getBlockState(pos.add(-3, 2, -3)).getBlock().equals(SpectrumBlocks.PEDESTAL_SPEED_UPGRADE)) {
+            this.speedUpgrades++;
+        }
+
+        if(this.speedUpgrades == 4) {
+            ServerPlayerEntity owner = (ServerPlayerEntity) getPlayerEntityIfOnline(world);
+            if(owner != null) {
+                Support.grantAdvancementCriterion(owner, "use_all_pedestal_upgrades", "used_all");
+            }
+        }
+    }
+
+    @Contract(pure = true)
+    private double getCraftingSpeedMultiplierThroughUpgrades() {
+        return Math.exp(this.speedUpgrades * 0.4);
     }
 
 }

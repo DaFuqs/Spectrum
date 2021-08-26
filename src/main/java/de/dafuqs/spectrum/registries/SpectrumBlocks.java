@@ -32,6 +32,7 @@ import de.dafuqs.spectrum.blocks.mob_head.SpectrumSkullBlockItem;
 import de.dafuqs.spectrum.blocks.mob_head.SpectrumWallSkullBlock;
 import de.dafuqs.spectrum.blocks.pedestal.PedestalBlock;
 import de.dafuqs.spectrum.blocks.pedestal.PedestalBlockItem;
+import de.dafuqs.spectrum.blocks.pedestal.PedestalUpgradeBlock;
 import de.dafuqs.spectrum.blocks.redstone.RedstoneGravityBlock;
 import de.dafuqs.spectrum.blocks.redstone.RedstoneTransparencyBlock;
 import de.dafuqs.spectrum.blocks.spirit_tree.OminousSaplingBlock;
@@ -509,7 +510,7 @@ public class SpectrumBlocks {
     public static final Block PRIVATE_CHEST = new PrivateChestBlock(FabricBlockSettings.of(Material.STONE).requiresTool().strength(4.0F, 3600000.0F).sounds(BlockSoundGroup.STONE));
     public static final Block COMPACTING_CHEST = new CompactingChestBlock(FabricBlockSettings.of(Material.STONE).requiresTool().strength(4.0F, 4.0F).sounds(BlockSoundGroup.STONE));
     public static final Block RESTOCKING_CHEST = new RestockingChestBlock(FabricBlockSettings.of(Material.STONE).requiresTool().strength(4.0F, 4.0F).sounds(BlockSoundGroup.STONE));
-    public static final Block PARTICLE_EMITTER = new ParticleEmitterBlock(FabricBlockSettings.of(Material.METAL).requiresTool().strength(5.0F, 6.0F).sounds(BlockSoundGroup.METAL));
+    public static final Block PARTICLE_SPAWNER = new ParticleSpawnerBlock(FabricBlockSettings.of(Material.AMETHYST).requiresTool().strength(5.0F, 6.0F).sounds(BlockSoundGroup.AMETHYST_BLOCK).nonOpaque());
     public static final Block BEDROCK_ANVIL = new BedrockAnvilBlock(FabricBlockSettings.copyOf(Blocks.ANVIL).requiresTool().strength(8.0F, 8.0F).sounds(BlockSoundGroup.METAL));
 
     // SOLID LIQUID CRYSTAL
@@ -561,12 +562,16 @@ public class SpectrumBlocks {
     public static final Block STUCK_LIGHTNING_STONE = new LightningStoneBlock(FabricBlockSettings.copyOf(Blocks.DIRT));
 
     public static final Block DEEPER_DOWN_PORTAL = new DeeperDownPortalBlock(FabricBlockSettings.copyOf(Blocks.END_PORTAL));
+    public static final Block PEDESTAL_SPEED_UPGRADE = new PedestalUpgradeBlock(FabricBlockSettings.copyOf(SpectrumBlocks.POLISHED_BASALT));
 
     public static final Block REDSTONE_SAND = new RedstoneGravityBlock(FabricBlockSettings.copyOf(Blocks.SAND));
     public static final Block ENDER_GLASS = new RedstoneTransparencyBlock(FabricBlockSettings.copyOf(Blocks.GLASS).nonOpaque()
             .allowsSpawning((state, world, pos, entityType) -> state.get(RedstoneTransparencyBlock.TRANSPARENCY_STATE) == RedstoneTransparencyBlock.TransparencyState.SOLID)
             .solidBlock(SpectrumBlocks::never).suffocates((state, world, pos) -> state.get(RedstoneTransparencyBlock.TRANSPARENCY_STATE) == RedstoneTransparencyBlock.TransparencyState.SOLID)
             .blockVision((state, world, pos) -> state.get(RedstoneTransparencyBlock.TRANSPARENCY_STATE) == RedstoneTransparencyBlock.TransparencyState.SOLID));
+
+    public static final Block CLOVER = new CloverBlock(FabricBlockSettings.copyOf(Blocks.GRASS));
+    public static final Block FOUR_LEAF_CLOVER = new FourLeafCloverBlock(FabricBlockSettings.copyOf(Blocks.GRASS));
 
     private static void registerBlock(String name, Block block) {
         Registry.register(Registry.BLOCK, new Identifier(SpectrumCommon.MOD_ID, name), block);
@@ -593,6 +598,7 @@ public class SpectrumBlocks {
         registerBlockWithItem("pedestal_all_basic", PEDESTAL_ALL_BASIC, new PedestalBlockItem(PEDESTAL_ALL_BASIC, generalItemSettings, PedestalBlock.PedestalVariant.ALL_BASIC));
         registerBlockWithItem("pedestal_onyx", PEDESTAL_ONYX, new PedestalBlockItem(PEDESTAL_ONYX, generalItemSettings, PedestalBlock.PedestalVariant.ONYX));
         registerBlockWithItem("pedestal_moonstone", PEDESTAL_MOONSTONE, new PedestalBlockItem(PEDESTAL_MOONSTONE, generalItemSettings, PedestalBlock.PedestalVariant.MOONSTONE));
+        registerBlockWithItem("pedestal_speed_upgrade", PEDESTAL_SPEED_UPGRADE, generalItemSettings);
 
         registerStoneBlocks(decorationItemSettings);
         registerGemBlocks(worldgenItemSettings);
@@ -630,6 +636,8 @@ public class SpectrumBlocks {
         registerBlockWithItem("blazing_crystal", BLAZING_CRYSTAL, generalItemSettings);
         registerBlockWithItem("resonant_lily", RESONANT_LILY, generalItemSettings);
         registerBlock("stuck_lightning_stone", STUCK_LIGHTNING_STONE);
+        registerBlockWithItem("clover", CLOVER, generalItemSettings);
+        registerBlockWithItem("four_leaf_clover", FOUR_LEAF_CLOVER, generalItemSettings);
 
         // Worldgen
         registerBlockWithItem("quitoxic_reeds", QUITOXIC_REEDS, worldgenItemSettings);
@@ -664,7 +672,7 @@ public class SpectrumBlocks {
         registerBlockWithItem("restocking_chest", RESTOCKING_CHEST, generalItemSettings);
         registerBlockWithItem("ender_hopper", ENDER_HOPPER, fabricItemSettings);
         registerBlockWithItem("ender_dropper", ENDER_DROPPER, fabricItemSettings);
-        registerBlockWithItem("particle_emitter", PARTICLE_EMITTER, fabricItemSettings);
+        registerBlockWithItem("particle_spawner", PARTICLE_SPAWNER, fabricItemSettings);
 
         registerBlockWithItem("lava_sponge", LAVA_SPONGE, fabricItemSettings);
         registerBlockWithItem("wet_lava_sponge", WET_LAVA_SPONGE, new WetLavaSpongeItem(WET_LAVA_SPONGE, new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).maxCount(1).recipeRemainder(LAVA_SPONGE.asItem())));
@@ -1170,6 +1178,7 @@ public class SpectrumBlocks {
         BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.ONYX_PLAYER_ONLY_GLASS, RenderLayer.getTranslucent());
 
         BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.ENDER_GLASS, RenderLayer.getTranslucent());
+        BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.PARTICLE_SPAWNER, RenderLayer.getCutout());
 
         // Gem lamps
         BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.TOPAZ_CALCITE_LAMP, RenderLayer.getTranslucent());
@@ -1247,6 +1256,8 @@ public class SpectrumBlocks {
         BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.MERMAIDS_BRUSH, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.RESONANT_LILY, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.STUCK_LIGHTNING_STONE, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.CLOVER, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.FOUR_LEAF_CLOVER, RenderLayer.getCutout());
     }
 
     @NotNull
@@ -1294,8 +1305,113 @@ public class SpectrumBlocks {
     }
 
     @NotNull
-    public static Item getColoredLogItem(DyeColor dyeColor) {
-        return getColoredLogBlock(dyeColor).asItem();
+    public static Block getColoredPlanksBlock(DyeColor dyeColor) {
+        return switch (dyeColor) {
+            case RED -> RED_PLANKS;
+            case BROWN -> BROWN_PLANKS;
+            case CYAN -> CYAN_PLANKS;
+            case GRAY -> GRAY_PLANKS;
+            case GREEN -> GREEN_PLANKS;
+            case LIGHT_BLUE -> LIGHT_BLUE_PLANKS;
+            case LIGHT_GRAY -> LIGHT_GRAY_PLANKS;
+            case BLUE -> BLUE_PLANKS;
+            case LIME -> LIME_PLANKS;
+            case ORANGE -> ORANGE_PLANKS;
+            case PINK -> PINK_PLANKS;
+            case PURPLE -> PURPLE_PLANKS;
+            case WHITE -> WHITE_PLANKS;
+            case YELLOW -> YELLOW_PLANKS;
+            case BLACK -> BLACK_PLANKS;
+            default -> MAGENTA_PLANKS;
+        };
+    }
+
+    @NotNull
+    public static Block getColoredSlabsBlock(DyeColor dyeColor) {
+        return switch (dyeColor) {
+            case RED -> RED_PLANK_SLAB;
+            case BROWN -> BROWN_PLANK_SLAB;
+            case CYAN -> CYAN_PLANK_SLAB;
+            case GRAY -> GRAY_PLANK_SLAB;
+            case GREEN -> GREEN_PLANK_SLAB;
+            case LIGHT_BLUE -> LIGHT_BLUE_PLANK_SLAB;
+            case LIGHT_GRAY -> LIGHT_GRAY_PLANK_SLAB;
+            case BLUE -> BLUE_PLANK_SLAB;
+            case LIME -> LIME_PLANK_SLAB;
+            case ORANGE -> ORANGE_PLANK_SLAB;
+            case PINK -> PINK_PLANK_SLAB;
+            case PURPLE -> PURPLE_PLANK_SLAB;
+            case WHITE -> WHITE_PLANK_SLAB;
+            case YELLOW -> YELLOW_PLANK_SLAB;
+            case BLACK -> BLACK_PLANK_SLAB;
+            default -> MAGENTA_PLANK_SLAB;
+        };
+    }
+
+    @NotNull
+    public static Block getColoredFenceBlock(DyeColor dyeColor) {
+        return switch (dyeColor) {
+            case RED -> RED_PLANK_FENCE;
+            case BROWN -> BROWN_PLANK_FENCE;
+            case CYAN -> CYAN_PLANK_FENCE;
+            case GRAY -> GRAY_PLANK_FENCE;
+            case GREEN -> GREEN_PLANK_FENCE;
+            case LIGHT_BLUE -> LIGHT_BLUE_PLANK_FENCE;
+            case LIGHT_GRAY -> LIGHT_GRAY_PLANK_FENCE;
+            case BLUE -> BLUE_PLANK_FENCE;
+            case LIME -> LIME_PLANK_FENCE;
+            case ORANGE -> ORANGE_PLANK_FENCE;
+            case PINK -> PINK_PLANK_FENCE;
+            case PURPLE -> PURPLE_PLANK_FENCE;
+            case WHITE -> WHITE_PLANK_FENCE;
+            case YELLOW -> YELLOW_PLANK_FENCE;
+            case BLACK -> BLACK_PLANK_FENCE;
+            default -> MAGENTA_PLANK_FENCE;
+        };
+    }
+
+    @NotNull
+    public static Block getColoredFenceGateBlock(DyeColor dyeColor) {
+        return switch (dyeColor) {
+            case RED -> RED_PLANK_FENCE_GATE;
+            case BROWN -> BROWN_PLANK_FENCE_GATE;
+            case CYAN -> CYAN_PLANK_FENCE_GATE;
+            case GRAY -> GRAY_PLANK_FENCE_GATE;
+            case GREEN -> GREEN_PLANK_FENCE_GATE;
+            case LIGHT_BLUE -> LIGHT_BLUE_PLANK_FENCE_GATE;
+            case LIGHT_GRAY -> LIGHT_GRAY_PLANK_FENCE_GATE;
+            case BLUE -> BLUE_PLANK_FENCE_GATE;
+            case LIME -> LIME_PLANK_FENCE_GATE;
+            case ORANGE -> ORANGE_PLANK_FENCE_GATE;
+            case PINK -> PINK_PLANK_FENCE_GATE;
+            case PURPLE -> PURPLE_PLANK_FENCE_GATE;
+            case WHITE -> WHITE_PLANK_FENCE_GATE;
+            case YELLOW -> YELLOW_PLANK_FENCE_GATE;
+            case BLACK -> BLACK_PLANK_FENCE_GATE;
+            default -> MAGENTA_PLANK_FENCE_GATE;
+        };
+    }
+
+    @NotNull
+    public static Block getColoredStairsBlock(DyeColor dyeColor) {
+        return switch (dyeColor) {
+            case RED -> RED_PLANK_STAIRS;
+            case BROWN -> BROWN_PLANK_STAIRS;
+            case CYAN -> CYAN_PLANK_STAIRS;
+            case GRAY -> GRAY_PLANK_STAIRS;
+            case GREEN -> GREEN_PLANK_STAIRS;
+            case LIGHT_BLUE -> LIGHT_BLUE_PLANK_STAIRS;
+            case LIGHT_GRAY -> LIGHT_GRAY_PLANK_STAIRS;
+            case BLUE -> BLUE_PLANK_STAIRS;
+            case LIME -> LIME_PLANK_STAIRS;
+            case ORANGE -> ORANGE_PLANK_STAIRS;
+            case PINK -> PINK_PLANK_STAIRS;
+            case PURPLE -> PURPLE_PLANK_STAIRS;
+            case WHITE -> WHITE_PLANK_STAIRS;
+            case YELLOW -> YELLOW_PLANK_STAIRS;
+            case BLACK -> BLACK_PLANK_STAIRS;
+            default -> MAGENTA_PLANK_STAIRS;
+        };
     }
 
     @NotNull
@@ -1324,7 +1440,4 @@ public class SpectrumBlocks {
         };
     }
 
-    public static Item getColoredSaplingItem(DyeColor dyeColor) {
-        return getColoredSaplingBlock(dyeColor).asItem();
-    }
 }

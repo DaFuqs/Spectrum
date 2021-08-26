@@ -141,6 +141,8 @@
   "item.spectrum.mermaids_gem": "Mermaids Gem",
   "item.spectrum.end_portal_cracker": "End Portal Cracker",
 
+  "block.spectrum.pedestal_speed_upgrade": "Pedestal Crafting Accelerator",
+
   "item.spectrum.black_pigment": "Black Pigment",
   "item.spectrum.blue_pigment": "Blue Pigment",
   "item.spectrum.brown_pigment": "Brown Pigment",
@@ -409,6 +411,9 @@
   "block.spectrum.yellow_plank_slab": "Yellow Plank Slab",
   "block.spectrum.yellow_plank_fence_gate": "Yellow Plank Fence Gate",
 
+  "block.spectrum.clover": "Clover",
+  "block.spectrum.four_leaf_clover": "Four-leaved Clover",
+
   "item.spectrum.manual": "Colorful World",
   "item.spectrum.manual.landing_text": "Hi $(playername)! I'm your personal guide into the magical world of Spectrum.$(br)Here you will find a lot of information about the mod and how to progress. Keep me around whenever you are tinkering.",
 
@@ -592,7 +597,7 @@
   "block.spectrum.fading": "Fading",
   "block.spectrum.failing": "Failing",
   "block.spectrum.ruin": "Ruin",
-  "block.spectrum.particle_emitter": "Particle Emitter",
+  "block.spectrum.particle_spawner": "Particle Spawner",
   "block.spectrum.cracked_end_portal_frame": "Cracked End Portal Frame",
 
   "item.spectrum.multitool": "Multitool",
@@ -843,6 +848,8 @@
   "advancements.spectrum.collect_resonant_lily.description": "TODO",
   "advancements.spectrum.collect_corrupted_obsidian_dust.title": "TODO",
   "advancements.spectrum.collect_corrupted_obsidian_dust.description": "TODO",
+  "advancements.spectrum.collect_four_leafed_clover.title": "Getting Lucky",
+  "advancements.spectrum.collect_four_leafed_clover.description": "Find four-leaved clover",
   "advancements.spectrum.craft_onyx_pedestal.title": "TODO",
   "advancements.spectrum.craft_onyx_pedestal.description": "TODO",
   "advancements.spectrum.build_advanced_pedestal_structure.title": "TODO",
@@ -853,9 +860,10 @@
   "advancements.spectrum.build_complex_pedestal_structure.description": "TODO",
   "advancements.spectrum.collect_bedrock_dust.title": "TODO",
   "advancements.spectrum.collect_bedrock_dust.description": "TODO",
+  "advancements.spectrum.use_all_pedestal_upgrades.title": "TODO",
+  "advancements.spectrum.use_all_pedestal_upgrades.description": "TODO",
 
-
-
+  "______name_changes_for_vanilla_blocks" : "Changes:",
   "block.minecraft.polished_basalt": "Basalt Pillar",
 
   "______done_until_here" : "TODO:",

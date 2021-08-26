@@ -5,14 +5,19 @@ import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
+import net.fabricmc.fabric.impl.biome.modification.BiomeSelectionContextImpl;
+import net.fabricmc.fabric.impl.registry.sync.FabricRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.ComposterBlock;
+import net.minecraft.item.Items;
 import net.minecraft.structure.rule.BlockMatchRuleTest;
 import net.minecraft.structure.rule.RuleTest;
 import net.minecraft.tag.BlockTags;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.collection.DataPool;
 import net.minecraft.util.math.intprovider.ConstantIntProvider;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.minecraft.util.registry.BuiltinRegistries;
@@ -26,6 +31,7 @@ import net.minecraft.world.gen.feature.size.TwoLayersFeatureSize;
 import net.minecraft.world.gen.foliage.BlobFoliagePlacer;
 import net.minecraft.world.gen.placer.SimpleBlockPlacer;
 import net.minecraft.world.gen.stateprovider.SimpleBlockStateProvider;
+import net.minecraft.world.gen.stateprovider.WeightedBlockStateProvider;
 import net.minecraft.world.gen.trunk.StraightTrunkPlacer;
 import org.apache.logging.log4j.Level;
 
@@ -44,7 +50,6 @@ public class SpectrumConfiguredFeatures extends ConfiguredFeatures {
     public static HashMap<DyeColor, ConfiguredFeature<TreeFeatureConfig, ?>> COLORED_TREE_FEATURES = new HashMap<>(); // FOR SAPLINGS
     public static ConfiguredFeature<?, ?> RANDOM_COLORED_TREES_FEATURE; // FOR WORLD GEN
 
-
     private static ImmutableList<OreFeatureConfig.Target> SPARKLESTONE_ORE_TARGETS;
     private static ImmutableList<OreFeatureConfig.Target> AZURITE_ORE_TARGETS;
 
@@ -55,6 +60,7 @@ public class SpectrumConfiguredFeatures extends ConfiguredFeatures {
 
     private static ConfiguredFeature<?, ?> QUITOXIC_REEDS;
     private static ConfiguredFeature<?, ?> MERMAIDS_BRUSH;
+    private static ConfiguredFeature<?, ?> CLOVERS;
 
     public static void register() {
         registerGeodes();
@@ -300,17 +306,14 @@ public class SpectrumConfiguredFeatures extends ConfiguredFeatures {
         quitoxicReedsWhiteList.add(Blocks.WATER);
         quitoxicReedsWhiteList.add(Blocks.CLAY);
 
-
         QUITOXIC_REEDS = registerConfiguredFeature(quitoxicReedsIdentifier,
                 Feature.RANDOM_PATCH.configure((
                         new RandomPatchFeatureConfig.Builder(
                                 new SimpleBlockStateProvider(SpectrumBlocks.QUITOXIC_REEDS.getDefaultState()),
                                 new QuitoxicReedsColumnPlacer(UniformIntProvider.create(2, 4))))
                         .tries(10).spreadX(4).spreadY(0).spreadZ(4).canReplace().cannotProject().whitelist(quitoxicReedsWhiteList).build()
-                )
-                        .decorate(Decorators.HEIGHTMAP_OCEAN_FLOOR)
+                ).decorate(Decorators.HEIGHTMAP_OCEAN_FLOOR)
         );
-
 
         Collection<RegistryKey<Biome>> swamps = new ArrayList<>();
         for(String biomeString : SpectrumCommon.CONFIG.QuitoxicReedsGenerationBiomes) {
@@ -322,6 +325,21 @@ public class SpectrumConfiguredFeatures extends ConfiguredFeatures {
             }
         }
         BiomeModifications.addFeature(BiomeSelectors.includeByKey(swamps), GenerationStep.Feature.VEGETAL_DECORATION, RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY, quitoxicReedsIdentifier));
+
+        // CLOVERS
+        Identifier cloversIdentifier = new Identifier(SpectrumCommon.MOD_ID, "clovers");
+        DataPool dataPool = new DataPool.Builder<>().add(SpectrumBlocks.CLOVER.getDefaultState(), 19).add(SpectrumBlocks.FOUR_LEAF_CLOVER.getDefaultState(), 1).build();
+        CLOVERS = registerConfiguredFeature(cloversIdentifier,
+                Feature.RANDOM_PATCH.configure((
+                        new RandomPatchFeatureConfig.Builder(new WeightedBlockStateProvider(dataPool), new SimpleBlockPlacer())
+                                .cannotProject()
+                                .tries(4)
+                                .build())
+                        ).decorate(Decorators.HEIGHTMAP_WORLD_SURFACE)
+        );
+
+        BiomeModifications.addFeature(BiomeSelectors.categories(Biome.Category.PLAINS), GenerationStep.Feature.VEGETAL_DECORATION, RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY, cloversIdentifier));
+
     }
 
     public static final class Rules {

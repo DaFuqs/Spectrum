@@ -1,0 +1,19 @@
+{
+  "display": {
+    "icon": {
+        "item": "spectrum:pedestal_speed_upgrade"
+    },
+    "title": {
+      "translate": "advancements.spectrum.use_all_pedestal_upgrades.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.use_all_pedestal_upgrades.description"
+    }
+  },
+  "parent": "spectrum:build_basic_pedestal_structure",
+  "criteria": {
+    "used_all": {
+      "trigger":"minecraft:impossible"
+    }
+  }
+}

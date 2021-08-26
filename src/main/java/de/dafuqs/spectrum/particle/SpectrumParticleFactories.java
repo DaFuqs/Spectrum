@@ -4,15 +4,13 @@ import de.dafuqs.spectrum.particle.client.*;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 import net.minecraft.client.particle.*;
 import net.minecraft.particle.DefaultParticleType;
-import net.minecraft.particle.ParticleEffect;
-import net.minecraft.particle.ParticleTypes;
 
 public class SpectrumParticleFactories {
 
 	public static void register() {
 		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.SHOOTING_STAR, ShootingStarParticle.Factory::new);
 		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.SPARKLESTONE_SPARKLE, SparklestoneSparkleParticle.Factory::new);
-		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.PARTICLE_EMITTER, provider -> (parameters, world, x, y, z, velocityX, velocityY, velocityZ) -> {
+		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.PARTICLE_SPAWNER, provider -> (parameters, world, x, y, z, velocityX, velocityY, velocityZ) -> {
 			ParticleEmitterParticle particle = new ParticleEmitterParticle(world, x, y, z, velocityX, velocityY, velocityZ);
 			particle.setSprite(provider);
 			return particle;

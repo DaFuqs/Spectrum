@@ -183,7 +183,6 @@ public class SpectrumItems {
     public static final Item VOID_BUNDLE = new VoidBundleItem(generalItemSettingsSingle);
     public static final Item LIGHTNING_STONE = new Item(generalItemSettings);
 
-
     private static Item register(String name, Item item) {
         return Registry.register(Registry.ITEM, new Identifier(SpectrumCommon.MOD_ID, name), item);
     }

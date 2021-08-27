@@ -30,6 +30,7 @@ import de.dafuqs.spectrum.blocks.melon.GlisteringStemBlock;
 import de.dafuqs.spectrum.blocks.mob_head.SpectrumSkullBlock;
 import de.dafuqs.spectrum.blocks.mob_head.SpectrumSkullBlockItem;
 import de.dafuqs.spectrum.blocks.mob_head.SpectrumWallSkullBlock;
+import de.dafuqs.spectrum.blocks.particle_spawner.ParticleSpawnerBlock;
 import de.dafuqs.spectrum.blocks.pedestal.PedestalBlock;
 import de.dafuqs.spectrum.blocks.pedestal.PedestalBlockItem;
 import de.dafuqs.spectrum.blocks.pedestal.PedestalUpgradeBlock;

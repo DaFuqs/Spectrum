@@ -454,7 +454,7 @@
   "item.spectrum.ammolite_shard": "Glistering Ammolite Shard",
 
   "item.spectrum.vegetal": "Vegetal",
-  "item.spectrum.corrupted_obsidian_dust": "Corrupted Obsidian Dust",
+  "item.spectrum.corrupted_obsidian_dust": "Neolith",
   "item.spectrum.bedrock_dust": "Bedrock Dust",
 
   "item.spectrum.liquid_crystal_bucket": "Liquid Crystal Bucket",
@@ -650,11 +650,11 @@
   "item.spectrum.pedestal.tooltip.moonstone": "§fMoonstone§7 Variant",
 
   "multiblock.spectrum.pedestal.simple_structure": "Spectrum Focus",
-  "multiblock.spectrum.pedestal.advanced_structure": "Spectrum Hall",
+  "multiblock.spectrum.pedestal.advanced_structure": "Spectrum Temple",
   "multiblock.spectrum.pedestal.complex_structure": "Spectrum Palace",
 
   "item.spectrum.pedestal_tier_1_structure_placer": "Spectrum Focus Structure Placer",
-  "item.spectrum.pedestal_tier_2_structure_placer": "Spectrum Hall Structure Placer",
+  "item.spectrum.pedestal_tier_2_structure_placer": "Spectrum Temple Structure Placer",
   "item.spectrum.pedestal_tier_3_structure_placer": "Spectrum Palace Structure Placer",
 
   "block.spectrum.ender_glass": "Ender Glass",
@@ -842,29 +842,30 @@
   "advancements.spectrum.build_basic_pedestal_structure.description": "To fully harness the powers of your improved Pigment Pedestal you will need to build a structure that funnels the energy from gemstones to it.",
 
   "advancements.spectrum.collect_lightning_stone.title": "Thunderstruck",
-  "advancements.spectrum.collect_lightning_stone.description": "TODO",
-
-  "advancements.spectrum.collect_resonant_lily.title": "TODO",
-  "advancements.spectrum.collect_resonant_lily.description": "TODO",
+  "advancements.spectrum.collect_lightning_stone.description": "Discover the source of Lightning Stones",
+  "advancements.spectrum.collect_resonant_lily.title": "One elusive Flower",
+  "advancements.spectrum.collect_resonant_lily.description": "Pick up a resonant lily",
   "advancements.spectrum.collect_corrupted_obsidian_dust.title": "TODO",
   "advancements.spectrum.collect_corrupted_obsidian_dust.description": "TODO",
   "advancements.spectrum.collect_four_leafed_clover.title": "Getting Lucky",
   "advancements.spectrum.collect_four_leafed_clover.description": "Find four-leaved clover",
-  "advancements.spectrum.craft_onyx_pedestal.title": "TODO",
-  "advancements.spectrum.craft_onyx_pedestal.description": "TODO",
-  "advancements.spectrum.build_advanced_pedestal_structure.title": "TODO",
-  "advancements.spectrum.build_advanced_pedestal_structure.description": "TODO",
-  "advancements.spectrum.craft_moonstone_pedestal.title": "TODO",
-  "advancements.spectrum.craft_moonstone_pedestal.description": "TODO",
-  "advancements.spectrum.build_complex_pedestal_structure.title": "TODO",
-  "advancements.spectrum.build_complex_pedestal_structure.description": "TODO",
-  "advancements.spectrum.collect_bedrock_dust.title": "TODO",
-  "advancements.spectrum.collect_bedrock_dust.description": "TODO",
-  "advancements.spectrum.use_all_pedestal_upgrades.title": "TODO",
-  "advancements.spectrum.use_all_pedestal_upgrades.description": "TODO",
+  "advancements.spectrum.craft_onyx_pedestal.title": "Back in Black",
+  "advancements.spectrum.craft_onyx_pedestal.description": "Use the Onyx Shard to further upgrade your Pigment Pedestal",
+  "advancements.spectrum.build_advanced_pedestal_structure.title": "Contruct the Spectrum Temple",
+  "advancements.spectrum.build_advanced_pedestal_structure.description": "Add new blocks to your Structure to make use of your new Pedestal",
+  "advancements.spectrum.craft_moonstone_pedestal.title": "Incandescense",
+  "advancements.spectrum.craft_moonstone_pedestal.description": "Use your newly collected Moonstone Shard to upgrade your Pigment Pedestal once more",
+  "advancements.spectrum.build_complex_pedestal_structure.title": "Construct the Spectrum Complex",
+  "advancements.spectrum.build_complex_pedestal_structure.description": "Upgrade your Pedestal structure another time fully harness it's magical powers",
+  "advancements.spectrum.collect_bedrock_dust.title": "Unbreakable? I don't think so",
+  "advancements.spectrum.collect_bedrock_dust.description": "Collect Bedrock Dust",
+  "advancements.spectrum.use_all_pedestal_upgrades.title": "Enhance",
+  "advancements.spectrum.use_all_pedestal_upgrades.description": "Place Pedestal Upgrades on top of all 4 gemstone blocks of your Pedestal Structure.",
+
 
   "______name_changes_for_vanilla_blocks" : "Changes:",
   "block.minecraft.polished_basalt": "Basalt Pillar",
+
 
   "______done_until_here" : "TODO:",
   "advancements.spectrum.craft_energy_collector.title": "Roger that",
@@ -879,6 +880,9 @@
   "advancements.spectrum.brown_is_weird.description": "You have tried and tried and tried. You could not figure out a way to create a truly brown color by mixing your gemstone dust. The closest you came was merely a washed out orange - yuck. It can't be THAT hard, it's just a stupid color! Like... dirt is brown and it's the most common stuff you have seen around. (Seriously, look it up! The way we perceive brown color is fascinating: https://www.youtube.com/watch?v=wh4aWZRtTwU)",
   "advancements.spectrum.the_other_side_of_the_rainbow.title": "The other side of the rainbow",
   "advancements.spectrum.the_other_side_of_the_rainbow.description": "Craft something truly brown.",
+  "advancements.spectrum.finish_progression.title": "A journeys end",
+  "advancements.spectrum.finish_progression.description": "Reach the end of your magical journey. Congratulations, Pigment Tinkerer!",
+
 
   "______unused" : "UNUSED:",
   "advancements.spectrum.place_bottle_of_failing.title": "It... feeds on Obsidian?",

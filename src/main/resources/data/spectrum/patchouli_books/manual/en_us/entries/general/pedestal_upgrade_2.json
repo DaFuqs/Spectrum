@@ -14,7 +14,7 @@
     },
     {
       "type": "patchouli:multiblock",
-      "name": "Spectrum Hall",
+      "name": "Spectrum Temple",
       "multiblock_id": "spectrum:pedestal_advanced_structure_display",
       "enable_visualize": true,
       "text": "You can switch the basalt blocks with calcite, as you like it. You can also switch amethyst blocks for any other gemstone."

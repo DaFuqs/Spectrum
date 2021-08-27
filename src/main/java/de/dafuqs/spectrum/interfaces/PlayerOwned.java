@@ -7,11 +7,8 @@ import java.util.UUID;
 
 public interface PlayerOwned {
 
-
-    //public abstract void setOwnerUUID(UUID ownerUUID);
     public abstract UUID getOwnerUUID();
 
-    //public abstract void setOwnerName(String name);
     public abstract String getOwnerName();
 
     public void setOwner(PlayerEntity playerEntity);

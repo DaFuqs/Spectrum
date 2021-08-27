@@ -45,7 +45,6 @@ public class OminousSaplingBlockEntity extends BlockEntity implements PlayerOwne
     public NbtCompound writeNbt(NbtCompound tag) {
         super.writeNbt(tag);
 
-        // Save the current value of the number to the tag
         if(this.ownerUUID != null) {
             tag.putUuid("OwnerUUID", this.ownerUUID);
         }

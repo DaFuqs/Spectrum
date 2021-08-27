@@ -178,7 +178,7 @@ public class SpectrumConfiguredFeatures extends ConfiguredFeatures {
 
         RANDOM_COLORED_TREES_FEATURE = SpectrumFeatures.WEIGHTED_RANDOM_FEATURE_PATCH.configure(
                 new WeightedRandomFeaturePatchConfig(new WeightedRandomConfig(treeList, weightList), 20, 10, 5, 10)
-        ).applyChance(50).decorate(Decorators.SQUARE_HEIGHTMAP_OCEAN_FLOOR_NO_WATER);
+        ).applyChance(40).decorate(Decorators.SQUARE_HEIGHTMAP_OCEAN_FLOOR_NO_WATER);
 
         RegistryKey<ConfiguredFeature<?, ?>> RANDOM_COLORED_TREES_KEY = RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY, new Identifier(SpectrumCommon.MOD_ID, "random_colored_trees"));
         Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, RANDOM_COLORED_TREES_KEY.getValue(), RANDOM_COLORED_TREES_FEATURE);

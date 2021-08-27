@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.registries;
 
-import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 import net.minecraft.util.DyeColor;
 

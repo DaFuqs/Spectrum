@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.mixin;
 
 import de.dafuqs.spectrum.blocks.ExtraTickFarmlandBlock;
-import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.CropBlock;

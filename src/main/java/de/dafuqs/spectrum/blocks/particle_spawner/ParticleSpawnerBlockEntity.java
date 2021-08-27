@@ -1,12 +1,9 @@
 package de.dafuqs.spectrum.blocks.particle_spawner;
 
-import de.dafuqs.spectrum.blocks.chests.SpectrumChestBlockEntity;
 import de.dafuqs.spectrum.blocks.pedestal.PedestalBlock;
-import de.dafuqs.spectrum.interfaces.PlayerOwned;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleTypes;
@@ -16,7 +13,6 @@ import net.minecraft.world.World;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.UUID;
 
 
 public class ParticleSpawnerBlockEntity extends BlockEntity {

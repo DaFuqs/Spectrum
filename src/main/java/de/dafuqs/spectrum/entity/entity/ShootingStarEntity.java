@@ -31,7 +31,6 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import org.apache.logging.log4j.core.jmx.Server;
 
 public class ShootingStarEntity extends Entity {
 

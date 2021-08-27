@@ -5,7 +5,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.gen.feature.GeodeFeature;
 import net.minecraft.world.gen.feature.GeodeFeatureConfig;
-import net.minecraft.world.gen.feature.RandomPatchFeature;
 import net.minecraft.world.gen.feature.util.FeatureContext;
 
 /**

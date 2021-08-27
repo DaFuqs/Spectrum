@@ -1,20 +1,14 @@
 package de.dafuqs.spectrum.blocks.particle_spawner;
 
 import de.dafuqs.spectrum.blocks.RedstonePoweredBlock;
-import de.dafuqs.spectrum.blocks.chests.PrivateChestBlockEntity;
-import de.dafuqs.spectrum.blocks.chests.RestockingChestBlockEntity;
 import de.dafuqs.spectrum.blocks.pedestal.PedestalBlock;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.item.ItemPlacementContext;
-import net.minecraft.particle.ParticleEffect;
-import net.minecraft.particle.ParticleTypes;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.EnumProperty;
 import net.minecraft.util.math.BlockPos;
@@ -22,10 +16,6 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
 
 public class ParticleSpawnerBlock extends BlockWithEntity implements RedstonePoweredBlock {
 

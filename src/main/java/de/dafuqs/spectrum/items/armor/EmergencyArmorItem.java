@@ -1,15 +1,12 @@
 package de.dafuqs.spectrum.items.armor;
 
-import com.mojang.authlib.yggdrasil.response.User;
 import de.dafuqs.spectrum.interfaces.ArmorWithHitEffect;
-import dev.architectury.event.events.common.TickEvent;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.ItemStack;
@@ -22,7 +19,6 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
-import java.util.function.Consumer;
 
 public class EmergencyArmorItem extends ArmorItem implements ArmorWithHitEffect {
 

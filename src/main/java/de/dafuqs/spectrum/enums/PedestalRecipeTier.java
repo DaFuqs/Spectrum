@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.enums;
 
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.Support;
-import dev.architectury.event.events.common.TickEvent;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.Contract;

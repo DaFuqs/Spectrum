@@ -2,10 +2,10 @@ package de.dafuqs.spectrum.inventories;
 
 import de.dafuqs.spectrum.blocks.pedestal.PedestalBlock;
 import de.dafuqs.spectrum.blocks.pedestal.PedestalBlockEntity;
+import de.dafuqs.spectrum.enums.PedestalRecipeTier;
 import de.dafuqs.spectrum.inventories.slots.DisabledSlot;
 import de.dafuqs.spectrum.inventories.slots.ReadOnlySlot;
 import de.dafuqs.spectrum.inventories.slots.StackFilterSlot;
-import de.dafuqs.spectrum.enums.PedestalRecipeTier;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;

@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.blocks.conditional;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.interfaces.Cloakable;
 import de.dafuqs.spectrum.registries.SpectrumBlockTags;
-import net.java.games.input.DirectAndRawInputEnvironmentPlugin;
 import net.minecraft.block.*;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;

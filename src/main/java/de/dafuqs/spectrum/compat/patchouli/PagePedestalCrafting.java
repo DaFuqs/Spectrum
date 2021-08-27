@@ -18,8 +18,6 @@ import org.jetbrains.annotations.NotNull;
 import vazkii.patchouli.client.book.gui.GuiBook;
 import vazkii.patchouli.client.book.page.abstr.PageDoubleRecipeRegistry;
 
-import java.util.ArrayList;
-
 public class PagePedestalCrafting extends PageDoubleRecipeRegistry<PedestalCraftingRecipe> {
 
 	private static final Identifier BACKGROUND_TEXTURE1 = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/patchouli/pedestal_crafting1.png");

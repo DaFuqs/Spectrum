@@ -1,8 +1,14 @@
 package de.dafuqs.spectrum.particle;
 
-import de.dafuqs.spectrum.particle.client.*;
+import de.dafuqs.spectrum.particle.client.ParticleEmitterParticle;
+import de.dafuqs.spectrum.particle.client.ShootingStarParticle;
+import de.dafuqs.spectrum.particle.client.SparklestoneSparkleParticle;
+import de.dafuqs.spectrum.particle.client.VoidFogParticle;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
-import net.minecraft.client.particle.*;
+import net.minecraft.client.particle.BlockLeakParticle;
+import net.minecraft.client.particle.BubblePopParticle;
+import net.minecraft.client.particle.Particle;
+import net.minecraft.client.particle.WaterSuspendParticle;
 import net.minecraft.particle.DefaultParticleType;
 
 public class SpectrumParticleFactories {

@@ -3,15 +3,14 @@ package de.dafuqs.spectrum.worldgen;
 import com.google.common.collect.ImmutableList;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
+import de.dafuqs.spectrum.worldgen.features.WeightedRandomConfig;
+import de.dafuqs.spectrum.worldgen.features.WeightedRandomFeatureConfig;
+import de.dafuqs.spectrum.worldgen.features.WeightedRandomFeaturePatchConfig;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
-import net.fabricmc.fabric.impl.biome.modification.BiomeSelectionContextImpl;
-import net.fabricmc.fabric.impl.registry.sync.FabricRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.ComposterBlock;
-import net.minecraft.item.Items;
 import net.minecraft.structure.rule.BlockMatchRuleTest;
 import net.minecraft.structure.rule.RuleTest;
 import net.minecraft.tag.BlockTags;
@@ -35,10 +34,7 @@ import net.minecraft.world.gen.stateprovider.WeightedBlockStateProvider;
 import net.minecraft.world.gen.trunk.StraightTrunkPlacer;
 import org.apache.logging.log4j.Level;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.HashSet;
+import java.util.*;
 
 public class SpectrumConfiguredFeatures extends ConfiguredFeatures {
 
@@ -144,27 +140,45 @@ public class SpectrumConfiguredFeatures extends ConfiguredFeatures {
             registerColoredTree(dyeColor);
         }
 
-        RANDOM_COLORED_TREES_FEATURE = Feature.RANDOM_SELECTOR.configure(
-                new RandomFeatureConfig(ImmutableList.of(
-                        COLORED_TREE_FEATURES.get(DyeColor.BLACK).withChance(0.01F),
-                        COLORED_TREE_FEATURES.get(DyeColor.BLUE).withChance(0.025F),
-                        COLORED_TREE_FEATURES.get(DyeColor.BROWN).withChance(0.025F),
-                        COLORED_TREE_FEATURES.get(DyeColor.CYAN).withChance(0.025F),
-                        COLORED_TREE_FEATURES.get(DyeColor.GRAY).withChance(0.01F),
-                        COLORED_TREE_FEATURES.get(DyeColor.GREEN).withChance(0.025F),
-                        COLORED_TREE_FEATURES.get(DyeColor.LIGHT_BLUE).withChance(0.025F),
-                        COLORED_TREE_FEATURES.get(DyeColor.LIGHT_GRAY).withChance(0.01F),
-                        COLORED_TREE_FEATURES.get(DyeColor.LIME).withChance(0.025F),
-                        COLORED_TREE_FEATURES.get(DyeColor.MAGENTA).withChance(0.025F),
-                        COLORED_TREE_FEATURES.get(DyeColor.ORANGE).withChance(0.025F),
-                        COLORED_TREE_FEATURES.get(DyeColor.PINK).withChance(0.025F),
-                        COLORED_TREE_FEATURES.get(DyeColor.PURPLE).withChance(0.025F),
-                        COLORED_TREE_FEATURES.get(DyeColor.RED).withChance(0.025F),
-                        COLORED_TREE_FEATURES.get(DyeColor.WHITE).withChance(0.001F),
-                        COLORED_TREE_FEATURES.get(DyeColor.YELLOW).withChance(0.025F)
-                ), ConfiguredFeatures.OAK
-                )
-        ).applyChance(20).decorate(Decorators.HEIGHTMAP_WORLD_SURFACE);
+        List<ConfiguredFeature<?, ?>> treeList = new ArrayList<>();
+        treeList.add(COLORED_TREE_FEATURES.get(DyeColor.BLACK));
+        treeList.add(COLORED_TREE_FEATURES.get(DyeColor.BLUE));
+        treeList.add(COLORED_TREE_FEATURES.get(DyeColor.BROWN));
+        treeList.add(COLORED_TREE_FEATURES.get(DyeColor.CYAN));
+        treeList.add(COLORED_TREE_FEATURES.get(DyeColor.GRAY));
+        treeList.add(COLORED_TREE_FEATURES.get(DyeColor.GREEN));
+        treeList.add(COLORED_TREE_FEATURES.get(DyeColor.LIGHT_BLUE));
+        treeList.add(COLORED_TREE_FEATURES.get(DyeColor.LIGHT_GRAY));
+        treeList.add(COLORED_TREE_FEATURES.get(DyeColor.LIME));
+        treeList.add(COLORED_TREE_FEATURES.get(DyeColor.MAGENTA));
+        treeList.add(COLORED_TREE_FEATURES.get(DyeColor.ORANGE));
+        treeList.add(COLORED_TREE_FEATURES.get(DyeColor.PINK));
+        treeList.add(COLORED_TREE_FEATURES.get(DyeColor.PURPLE));
+        treeList.add(COLORED_TREE_FEATURES.get(DyeColor.RED));
+        treeList.add(COLORED_TREE_FEATURES.get(DyeColor.WHITE));
+        treeList.add(COLORED_TREE_FEATURES.get(DyeColor.YELLOW));
+
+        List<Integer> weightList = new ArrayList<>();
+        weightList.add(1);
+        weightList.add(25);
+        weightList.add(25);
+        weightList.add(75);
+        weightList.add(1);
+        weightList.add(25);
+        weightList.add(25);
+        weightList.add(1);
+        weightList.add(25);
+        weightList.add(75);
+        weightList.add(25);
+        weightList.add(25);
+        weightList.add(25);
+        weightList.add(25);
+        weightList.add(1);
+        weightList.add(75);
+
+        RANDOM_COLORED_TREES_FEATURE = SpectrumFeatures.WEIGHTED_RANDOM_FEATURE_PATCH.configure(
+                new WeightedRandomFeaturePatchConfig(new WeightedRandomConfig(treeList, weightList), 20, 10, 5, 10)
+        ).applyChance(50).decorate(Decorators.SQUARE_HEIGHTMAP_OCEAN_FLOOR_NO_WATER);
 
         RegistryKey<ConfiguredFeature<?, ?>> RANDOM_COLORED_TREES_KEY = RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY, new Identifier(SpectrumCommon.MOD_ID, "random_colored_trees"));
         Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, RANDOM_COLORED_TREES_KEY.getValue(), RANDOM_COLORED_TREES_FEATURE);

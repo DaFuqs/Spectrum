@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.blocks.particle_spawner;
 
-import de.dafuqs.spectrum.blocks.pedestal.PedestalBlock;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
@@ -60,7 +59,7 @@ public class ParticleSpawnerBlockEntity extends BlockEntity {
     }
 
     private void spawnParticles() {
-        if(world.getBlockState(pos).get(ParticleSpawnerBlock.STATE).equals(PedestalBlock.RedstonePowerState.POWERED)) {
+        if(world.getBlockState(pos).get(ParticleSpawnerBlock.POWERED).equals(true)) {
             float particlesToSpawn = particlesPerTick;
             while (particlesToSpawn > 1 || world.random.nextFloat() < particlesToSpawn) {
                 spawnParticle(world, pos, world.random);

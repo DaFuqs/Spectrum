@@ -17,8 +17,6 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.Blocks;
 
-import java.util.List;
-
 @Environment(EnvType.CLIENT)
 public class REIIntegration implements REIClientPlugin {
 

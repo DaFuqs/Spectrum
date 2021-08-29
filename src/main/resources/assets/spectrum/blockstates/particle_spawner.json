@@ -1,6 +1,9 @@
 {
   "variants": {
-    "": {
+    "powered=false": {
+      "model": "spectrum:block/particle_spawner_off"
+    },
+    "powered=true": {
       "model": "spectrum:block/particle_spawner"
     }
   }

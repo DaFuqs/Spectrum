@@ -1,9 +1,9 @@
 {
   "variants": {
-    "state=unpowered": {
+    "powered=false": {
       "model": "spectrum:block/pedestal_basic_citrine_unpowered"
     },
-    "state=powered": {
+    "powered=true": {
       "model": "spectrum:block/pedestal_basic_citrine_powered"
     }
   }

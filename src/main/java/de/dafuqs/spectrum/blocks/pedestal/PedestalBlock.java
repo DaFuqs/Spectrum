@@ -23,7 +23,7 @@ import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.state.StateManager;
-import net.minecraft.state.property.EnumProperty;
+import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ItemScatterer;
@@ -39,7 +39,7 @@ import java.util.Random;
 public class PedestalBlock extends BlockWithEntity implements RedstonePoweredBlock {
 
     private final PedestalVariant variant;
-    public static final EnumProperty<RedstonePowerState> STATE = EnumProperty.of("state", RedstonePowerState.class);
+    public static final BooleanProperty POWERED = BooleanProperty.of("powered");
 
     public enum PedestalVariant {
         BASIC_TOPAZ,
@@ -53,7 +53,7 @@ public class PedestalBlock extends BlockWithEntity implements RedstonePoweredBlo
     public PedestalBlock(Settings settings, PedestalVariant variant) {
         super(settings);
         this.variant = variant;
-        setDefaultState(getStateManager().getDefaultState().with(STATE, RedstonePowerState.UNPOWERED));
+        setDefaultState(getStateManager().getDefaultState().with(POWERED, false));
     }
 
     public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
@@ -68,7 +68,7 @@ public class PedestalBlock extends BlockWithEntity implements RedstonePoweredBlo
 
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> stateManager) {
-        stateManager.add(STATE);
+        stateManager.add(POWERED);
     }
 
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
@@ -162,7 +162,7 @@ public class PedestalBlock extends BlockWithEntity implements RedstonePoweredBlo
     @Override
     public void neighborUpdate(BlockState state, World world, BlockPos pos, Block block, BlockPos fromPos, boolean notify) {
         if (!world.isClient) {
-            if(this.isGettingPowered(world, pos)) {
+            if(this.checkGettingPowered(world, pos)) {
                 this.power(world, pos);
             } else {
                 this.unPower(world, pos);
@@ -172,7 +172,7 @@ public class PedestalBlock extends BlockWithEntity implements RedstonePoweredBlo
 
     @Environment(EnvType.CLIENT)
     public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
-        if (state.get(PedestalBlock.STATE).equals(RedstonePowerState.POWERED)) {
+        if (state.get(PedestalBlock.POWERED)) {
             Vec3f vec3f = new Vec3f(0.5F, 0.5F, 0.5F);
             float xOffset = random.nextFloat();
             float zOffset = random.nextFloat();
@@ -184,7 +184,7 @@ public class PedestalBlock extends BlockWithEntity implements RedstonePoweredBlo
         BlockState placementState = this.getDefaultState();
 
         if(ctx.getWorld().getReceivedRedstonePower(ctx.getBlockPos()) > 0) {
-            placementState = placementState.with(STATE, RedstonePowerState.POWERED);
+            placementState = placementState.with(POWERED, true);
         }
 
         return placementState;

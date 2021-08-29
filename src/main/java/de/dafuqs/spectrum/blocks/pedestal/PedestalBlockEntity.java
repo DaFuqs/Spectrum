@@ -257,7 +257,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
     public static void serverTick(@NotNull World world, BlockPos blockPos, BlockState blockState, PedestalBlockEntity pedestalBlockEntity) {
         // only craft when there is redstone power
         Block block = world.getBlockState(blockPos).getBlock();
-        if(block instanceof PedestalBlock && blockState.get(PedestalBlock.STATE) == PedestalBlock.RedstonePowerState.POWERED) {
+        if(block instanceof PedestalBlock && blockState.get(PedestalBlock.POWERED)) {
 
             if(!pedestalBlockEntity.checkedForUpgrades) {
                 pedestalBlockEntity.updateUpgrades();

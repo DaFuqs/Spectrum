@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.blocks.particle_spawner;
+package de.dafuqs.spectrum.blocks.pedestal;
 
 import de.dafuqs.spectrum.SpectrumCommon;
 import net.fabricmc.api.EnvType;
@@ -17,14 +17,14 @@ import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.NotNull;
 
 @Environment(EnvType.CLIENT)
-public class ParticleSpawnerBlockEntityRenderer<ParticleSpawnerBlockEntity extends BlockEntity> implements BlockEntityRenderer<ParticleSpawnerBlockEntity> {
+public class PedestalUpgradeBlockBlockEntityRenderer<PedestalUpgradeBlockEntity extends BlockEntity> implements BlockEntityRenderer<PedestalUpgradeBlockEntity> {
 
     private final SpriteIdentifier spriteIdentifier;
     private final ModelPart root;
     private final ModelPart disk;
 
-    public ParticleSpawnerBlockEntityRenderer(BlockEntityRendererFactory.Context ctx) {
-        spriteIdentifier = new SpriteIdentifier(SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE, new Identifier(SpectrumCommon.MOD_ID, "entity/particle_spawner"));
+    public PedestalUpgradeBlockBlockEntityRenderer(BlockEntityRendererFactory.Context ctx) {
+        spriteIdentifier = new SpriteIdentifier(SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE, new Identifier(SpectrumCommon.MOD_ID, "entity/pedestal_upgrade_speed"));
 
         TexturedModelData texturedModelData = getTexturedModelData();
         root = texturedModelData.createModel();
@@ -33,11 +33,11 @@ public class ParticleSpawnerBlockEntityRenderer<ParticleSpawnerBlockEntity exten
     }
 
     @Override
-    public void render(ParticleSpawnerBlockEntity entity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
+    public void render(PedestalUpgradeBlockEntity entity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
         VertexConsumer vertexConsumer = spriteIdentifier.getVertexConsumer(vertexConsumers, RenderLayer::getEntityCutout);
 
         float s = (entity.getWorld().getTime() + tickDelta) / 25.0F;
-        root.pivotY = 8.0F + (float) (Math.sin(s) * 0.5);
+        root.pivotY = 16.0F + (float) (Math.sin(s) * 0.5);
         disk.yaw = s;
         root.render(matrices, vertexConsumer, light, overlay);
     }

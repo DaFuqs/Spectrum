@@ -1,8 +1,7 @@
 package de.dafuqs.spectrum.blocks.pedestal;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.ShapeContext;
+import net.minecraft.block.*;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.ai.pathing.NavigationType;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.state.StateManager;
@@ -16,11 +15,13 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-public class PedestalUpgradeBlock extends Block {
+public class PedestalUpgradeBlock extends BlockWithEntity {
 
     public static final DirectionProperty FACING = Properties.FACING;
 
+    protected static final VoxelShape SHAPE_FLOATING = Block.createCuboidShape(4.0D, 4.0D, 4.0D, 12.0D, 12.0D, 12.0D);
     protected static final VoxelShape SHAPE_UP = Block.createCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 10.0D, 14.0D);
     protected static final VoxelShape SHAPE_DOWN = Block.createCuboidShape(2.0D, 6.0D, 2.0D, 14.0D, 16.0D, 14.0D);
     protected static final VoxelShape SHAPE_NORTH = Block.createCuboidShape(2.0D, 2.0D, 6.0D, 14.0D, 14.0D, 16.0D);
@@ -105,4 +106,13 @@ public class PedestalUpgradeBlock extends Block {
         }
     }
 
+    public BlockRenderType getRenderType(BlockState state) {
+        return BlockRenderType.MODEL;
+    }
+
+    @Nullable
+    @Override
+    public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+        return new PedestalUpgradeBlockEntity(pos, state);
+    }
 }

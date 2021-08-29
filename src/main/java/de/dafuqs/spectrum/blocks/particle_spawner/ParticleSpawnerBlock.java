@@ -19,17 +19,12 @@ import org.jetbrains.annotations.Nullable;
 
 public class ParticleSpawnerBlock extends BlockWithEntity implements RedstonePoweredBlock {
 
-    protected static final VoxelShape SHAPE = Block.createCuboidShape(4.0D, 4.0D, 4.0D, 12.0D, 12.0D, 12.0D);
+
     public static final EnumProperty<PedestalBlock.RedstonePowerState> STATE = EnumProperty.of("state", RedstonePowerState.class);
 
     public ParticleSpawnerBlock(FabricBlockSettings of) {
         super(of);
         setDefaultState(getStateManager().getDefaultState().with(STATE, RedstonePowerState.UNPOWERED));
-    }
-
-    @Deprecated
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return SHAPE;
     }
 
     @Override
@@ -59,7 +54,7 @@ public class ParticleSpawnerBlock extends BlockWithEntity implements RedstonePow
     }
 
     public BlockRenderType getRenderType(BlockState state) {
-        return BlockRenderType.ENTITYBLOCK_ANIMATED;
+        return BlockRenderType.MODEL;
     }
 
     @Nullable

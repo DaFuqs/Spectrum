@@ -1,9 +1,9 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "spectrum:block/polished_granite",
+		"0": "minecraft:block/polished_granite",
 		"2": "spectrum:block/sparklestone_light",
-		"particle": "spectrum:block/polished_granite"
+		"particle": "minecraft:block/polished_granite"
 	},
 	"elements": [
 		{

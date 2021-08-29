@@ -10,11 +10,14 @@ import me.shedaniel.rei.api.client.plugins.REIClientPlugin;
 import me.shedaniel.rei.api.client.registry.category.CategoryRegistry;
 import me.shedaniel.rei.api.client.registry.display.DisplayRegistry;
 import me.shedaniel.rei.api.client.registry.screen.ScreenRegistry;
+import me.shedaniel.rei.api.common.entry.EntryStack;
 import me.shedaniel.rei.api.common.util.EntryStacks;
 import me.shedaniel.rei.plugin.common.BuiltinPlugin;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.Blocks;
+
+import java.util.List;
 
 @Environment(EnvType.CLIENT)
 public class REIIntegration implements REIClientPlugin {
@@ -24,8 +27,16 @@ public class REIIntegration implements REIClientPlugin {
         registry.add(new PedestalCraftingCategory<>());
         registry.add(new AnvilCrushingCategory<>());
 
-        registry.addWorkstations(BuiltinPlugin.CRAFTING, EntryStacks.of(SpectrumBlocks.PEDESTAL_BASIC_AMETHYST));
-        registry.addWorkstations(PedestalCraftingCategory.ID, EntryStacks.of(SpectrumBlocks.PEDESTAL_BASIC_AMETHYST));
+        EntryStack[] pedestalEntryStacks = new EntryStack[]{
+                EntryStacks.of(SpectrumBlocks.PEDESTAL_BASIC_AMETHYST),
+                EntryStacks.of(SpectrumBlocks.PEDESTAL_BASIC_AMETHYST),
+                EntryStacks.of(SpectrumBlocks.PEDESTAL_BASIC_AMETHYST),
+                EntryStacks.of(SpectrumBlocks.PEDESTAL_ALL_BASIC),
+                EntryStacks.of(SpectrumBlocks.PEDESTAL_ONYX),
+                EntryStacks.of(SpectrumBlocks.PEDESTAL_MOONSTONE)};
+
+        registry.addWorkstations(BuiltinPlugin.CRAFTING, pedestalEntryStacks);
+        registry.addWorkstations(PedestalCraftingCategory.ID, pedestalEntryStacks);
         registry.addWorkstations(AnvilCrushingCategory.ID, EntryStacks.of(Blocks.ANVIL), EntryStacks.of(SpectrumBlocks.BEDROCK_ANVIL));
 
         // Since anvil crushing is an in world recipe there is no gui to fill

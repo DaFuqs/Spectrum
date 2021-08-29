@@ -494,6 +494,15 @@ public class SpectrumBlocks {
     public static final Block WHITE_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f), DyeColor.WHITE);
     public static final Block YELLOW_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f), DyeColor.YELLOW);
 
+    // SPARKLESTONE LIGHTS
+    public static final Block BASALT_SPARKLESTONE_LIGHT = new SparklestoneLightBlock(FabricBlockSettings.copyOf(SpectrumBlocks.POLISHED_BASALT).nonOpaque());
+    public static final Block CALCITE_SPARKLESTONE_LIGHT = new SparklestoneLightBlock(FabricBlockSettings.copyOf(SpectrumBlocks.POLISHED_CALCITE).nonOpaque());
+    public static final Block STONE_SPARKLESTONE_LIGHT = new SparklestoneLightBlock(FabricBlockSettings.copyOf(Blocks.SMOOTH_STONE).nonOpaque());
+    public static final Block GRANITE_SPARKLESTONE_LIGHT = new SparklestoneLightBlock(FabricBlockSettings.copyOf(Blocks.POLISHED_GRANITE).nonOpaque());
+    public static final Block DIORITE_SPARKLESTONE_LIGHT = new SparklestoneLightBlock(FabricBlockSettings.copyOf(Blocks.POLISHED_DIORITE).nonOpaque());
+    public static final Block ANDESITE_SPARKLESTONE_LIGHT = new SparklestoneLightBlock(FabricBlockSettings.copyOf(Blocks.POLISHED_ANDESITE).nonOpaque());
+    public static final Block DEEPSLATE_SPARKLESTONE_LIGHT = new SparklestoneLightBlock(FabricBlockSettings.copyOf(Blocks.POLISHED_DEEPSLATE).nonOpaque());
+
     // ORES
     public static final Block SPARKLESTONE_ORE = new SparklestoneOreBlock(FabricBlockSettings.copyOf(Blocks.IRON_ORE).breakByTool(FabricToolTags.PICKAXES, 1).requiresTool(), UniformIntProvider.create(2, 4), false);
     public static final Block DEEPSLATE_SPARKLESTONE_ORE = new SparklestoneOreBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_IRON_ORE).breakByTool(FabricToolTags.PICKAXES, 1).requiresTool(), UniformIntProvider.create(2, 4), true);
@@ -608,6 +617,7 @@ public class SpectrumBlocks {
 
         registerOreStorageBlocks(decorationItemSettings);
         registerGemstoneLamps(decorationItemSettings);
+        registerSparklestoneLights(decorationItemSettings);
         registerRunes(decorationItemSettings);
         registerGemstoneGlass(decorationItemSettings);
         registerPlayerOnlyGlass(generalItemSettings);
@@ -1029,6 +1039,15 @@ public class SpectrumBlocks {
         registerBlockWithItem("yellow_glowblock", YELLOW_GLOWBLOCK, fabricItemSettings);
     }
 
+    public static void registerSparklestoneLights(FabricItemSettings fabricItemSettings) {
+        registerBlockWithItem("basalt_sparklestone_light", BASALT_SPARKLESTONE_LIGHT, fabricItemSettings);
+        registerBlockWithItem("calcite_sparklestone_light", CALCITE_SPARKLESTONE_LIGHT, fabricItemSettings);
+        registerBlockWithItem("stone_sparklestone_light", STONE_SPARKLESTONE_LIGHT, fabricItemSettings);
+        registerBlockWithItem("granite_sparklestone_light", GRANITE_SPARKLESTONE_LIGHT, fabricItemSettings);
+        registerBlockWithItem("diorite_sparklestone_light", DIORITE_SPARKLESTONE_LIGHT, fabricItemSettings);
+        registerBlockWithItem("andesite_sparklestone_light", ANDESITE_SPARKLESTONE_LIGHT, fabricItemSettings);
+        registerBlockWithItem("deepslate_sparklestone_light", DEEPSLATE_SPARKLESTONE_LIGHT, fabricItemSettings);
+    }
     public static void registerSporeBlossoms(FabricItemSettings fabricItemSettings) {
         registerBlockWithItem("black_spore_blossom", BLACK_SPORE_BLOSSOM, fabricItemSettings);
         registerBlockWithItem("blue_spore_blossom", BLUE_SPORE_BLOSSOM, fabricItemSettings);

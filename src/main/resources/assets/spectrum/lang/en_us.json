@@ -101,6 +101,14 @@
   "block.spectrum.yellow_spirit_sallow_vines_body": "Yellow Spirit Sallow Vines",
   "block.spectrum.white_spirit_sallow_vines_body": "White Spirit Sallow Vines",
   "block.spectrum.black_spirit_sallow_vines_body": "Black Spirit Sallow Vines",
+
+  "block.spectrum.basalt_sparklestone_light": "Basalt Sparklestone Light",
+  "block.spectrum.calcite_sparklestone_light": "Calcite Sparklestone Light",
+  "block.spectrum.stone_sparklestone_light": "Stone Sparklestone Light",
+  "block.spectrum.granite_sparklestone_light": "Granite Sparklestone Light",
+  "block.spectrum.diorite_sparklestone_light": "Diorite Sparklestone Light",
+  "block.spectrum.andesite_sparklestone_light": "Andesite Sparklestone Light",
+  "block.spectrum.deepslate_sparklestone_light": "Deepslate Sparklestone Light",
   
   "item.spectrum.vibrant_cyan_catkin": "Vibrant Cyan Catkin",
   "item.spectrum.vibrant_magenta_catkin": "Vibrant Magenta Catkin",

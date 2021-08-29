@@ -1,0 +1,29 @@
+{
+  "type": "spectrum_pedestal",
+  "time": 80,
+  "tier": "basic",
+  "cyan": 0,
+  "magenta": 0,
+  "yellow": 1,
+  "white": 0,
+  "black": 0,
+  "experience": 0.5,
+  "pattern": [
+    "TST",
+    "SSS",
+    "TST"
+  ],
+  "key": {
+    "S": {
+      "item": "spectrum:sparklestone_gem"
+    },
+    "T": {
+      "item": "spectrum:polished_basalt"
+    }
+  },
+  "result" : {
+    "item": "spectrum:basalt_sparklestone_light",
+    "count": 4
+  },
+  "required_advancements": ["spectrum:progression/unlock_sparklestone_lights"]
+}

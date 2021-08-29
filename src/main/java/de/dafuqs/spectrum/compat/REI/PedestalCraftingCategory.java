@@ -28,7 +28,7 @@ import java.util.List;
 
 public class PedestalCraftingCategory<R extends PedestalCraftingRecipe> implements DisplayCategory<PedestalCraftingRecipeDisplay<R>> {
 
-    final Identifier GUI_TEXTURE = PedestalScreen.BACKGROUND3;
+    final Identifier GUI_TEXTURE = PedestalScreen.BACKGROUND4;
 
     public static final CategoryIdentifier ID = CategoryIdentifier.of(new Identifier(SpectrumCommon.MOD_ID, "pedestal_crafting"));
 

@@ -10,6 +10,8 @@ public class SpectrumParticleTypes {
 
     public static DefaultParticleType SHOOTING_STAR;
     public static DefaultParticleType SPARKLESTONE_SPARKLE;
+    public static DefaultParticleType SPARKLESTONE_SPARKLE_SMALL;
+    public static DefaultParticleType SPARKLESTONE_SPARKLE_TINY;
     public static DefaultParticleType PARTICLE_SPAWNER;
     public static DefaultParticleType VOID_FOG;
     public static DefaultParticleType MUD_POP;
@@ -55,7 +57,9 @@ public class SpectrumParticleTypes {
 
     public static void register() {
         SHOOTING_STAR = register("shooting_star", true);
-        SPARKLESTONE_SPARKLE = register("sparklestone_sparkle", true);
+        SPARKLESTONE_SPARKLE = register("sparklestone_sparkle", false);
+        SPARKLESTONE_SPARKLE_SMALL = register("sparklestone_sparkle_small", false);
+        SPARKLESTONE_SPARKLE_TINY = register("sparklestone_sparkle_tiny", false);
         PARTICLE_SPAWNER = register("particle_spawner", false);
         VOID_FOG = register("void_fog", false);
         MUD_POP = register("mud_pop", false);

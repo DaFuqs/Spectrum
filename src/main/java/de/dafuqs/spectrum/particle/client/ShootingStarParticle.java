@@ -1,11 +1,14 @@
 package de.dafuqs.spectrum.particle.client;
 
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.particle.*;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.particle.DefaultParticleType;
 
 import java.util.Random;
 
+@Environment(EnvType.CLIENT)
 public class ShootingStarParticle extends SpriteBillboardParticle {
 
 	protected ShootingStarParticle(ClientWorld clientWorld, double x, double y, double z, double velocityX, double velocityY, double velocityZ) {

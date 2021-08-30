@@ -1,9 +1,12 @@
 package de.dafuqs.spectrum.particle.client;
 
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.particle.*;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.particle.DefaultParticleType;
 
+@Environment(EnvType.CLIENT)
 public class SparklestoneSparkleParticle extends AbstractSlowingParticle {
 
 	protected SparklestoneSparkleParticle(ClientWorld clientWorld, double x, double y, double z, double velocityX, double velocityY, double velocityZ) {

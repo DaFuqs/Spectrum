@@ -1,10 +1,14 @@
 package de.dafuqs.spectrum.particle;
 
+import com.mojang.serialization.Codec;
 import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.particle.effect.ParticleSpawnerParticleEffect;
 import net.fabricmc.fabric.api.particle.v1.FabricParticleTypes;
-import net.minecraft.particle.DefaultParticleType;
+import net.minecraft.particle.*;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
+
+import java.util.function.Function;
 
 public class SpectrumParticleTypes {
 
@@ -12,7 +16,7 @@ public class SpectrumParticleTypes {
     public static DefaultParticleType SPARKLESTONE_SPARKLE;
     public static DefaultParticleType SPARKLESTONE_SPARKLE_SMALL;
     public static DefaultParticleType SPARKLESTONE_SPARKLE_TINY;
-    public static DefaultParticleType PARTICLE_SPAWNER;
+    public static ParticleType<ParticleSpawnerParticleEffect> PARTICLE_SPAWNER;
     public static DefaultParticleType VOID_FOG;
     public static DefaultParticleType MUD_POP;
     public static DefaultParticleType LIQUID_CRYSTAL_SPARKLE;
@@ -51,16 +55,29 @@ public class SpectrumParticleTypes {
     public static DefaultParticleType WHITE_SPORE_BLOSSOM_AIR;
     public static DefaultParticleType YELLOW_SPORE_BLOSSOM_AIR;
 
+    // Simple particles
     public static DefaultParticleType register(String name, boolean alwaysShow) {
         return Registry.register(Registry.PARTICLE_TYPE, new Identifier(SpectrumCommon.MOD_ID, name), FabricParticleTypes.simple(alwaysShow));
     }
+
+    // complex particles
+    private static <T extends ParticleEffect> ParticleType<T> register(String name, ParticleEffect.Factory<T> factory, final Function<ParticleType<T>, Codec<T>> function) {
+        return Registry.register(Registry.PARTICLE_TYPE,  new Identifier(SpectrumCommon.MOD_ID, name), new ParticleType<T>(false, factory) {
+            public Codec<T> getCodec() {
+                return function.apply(this);
+            }
+        });
+    }
+
 
     public static void register() {
         SHOOTING_STAR = register("shooting_star", true);
         SPARKLESTONE_SPARKLE = register("sparklestone_sparkle", false);
         SPARKLESTONE_SPARKLE_SMALL = register("sparklestone_sparkle_small", false);
         SPARKLESTONE_SPARKLE_TINY = register("sparklestone_sparkle_tiny", false);
-        PARTICLE_SPAWNER = register("particle_spawner", false);
+        PARTICLE_SPAWNER = register("particle_spawner", ParticleSpawnerParticleEffect.FACTORY, (particleType) -> {
+            return ParticleSpawnerParticleEffect.CODEC;
+        });
         VOID_FOG = register("void_fog", false);
         MUD_POP = register("mud_pop", false);
         LIQUID_CRYSTAL_SPARKLE = register("liquid_crystal_sparkle", false);

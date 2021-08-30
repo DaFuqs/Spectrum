@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.particle;
 
-import de.dafuqs.spectrum.particle.client.ParticleEmitterParticle;
+import de.dafuqs.spectrum.particle.client.ParticleSpawnerParticle;
 import de.dafuqs.spectrum.particle.client.ShootingStarParticle;
 import de.dafuqs.spectrum.particle.client.SparklestoneSparkleParticle;
 import de.dafuqs.spectrum.particle.client.VoidFogParticle;
@@ -19,8 +19,9 @@ public class SpectrumParticleFactories {
 		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.SPARKLESTONE_SPARKLE_SMALL, SparklestoneSparkleParticle.Factory::new);
 		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.SPARKLESTONE_SPARKLE_TINY, SparklestoneSparkleParticle.Factory::new);
 		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.PARTICLE_SPAWNER, provider -> (parameters, world, x, y, z, velocityX, velocityY, velocityZ) -> {
-			ParticleEmitterParticle particle = new ParticleEmitterParticle(world, x, y, z, velocityX, velocityY, velocityZ);
+			ParticleSpawnerParticle particle = new ParticleSpawnerParticle(world, x, y, z, velocityX, velocityY, velocityZ);
 			particle.setSprite(provider);
+			particle.apply(parameters);
 			return particle;
 		});
 		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.VOID_FOG, VoidFogParticle.Factory::new);

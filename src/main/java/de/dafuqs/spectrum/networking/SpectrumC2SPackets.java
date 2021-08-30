@@ -12,6 +12,7 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.network.NetworkThreadUtils;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.network.packet.c2s.play.CustomPayloadC2SPacket;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayNetworkHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
@@ -73,20 +74,23 @@ public class SpectrumC2SPackets {
         });
 
         ServerPlayNetworking.registerGlobalReceiver(REQUEST_PARTICLE_SPAWNER_SETTINGS_PACKET_ID, (server, player, handler, buf, responseSender) -> {
-            // TODO: Force main thread. Otherwise the BlockEntity will always be returned as null
-            // NetworkThreadUtils.forceMainThread(null, null, player.getServerWorld());
+            // Force main thread. Otherwise the BlockEntity will always be returned as null
+            final BlockPos blockPos = buf.readBlockPos();
 
-            /*BlockPos blockPos = buf.readBlockPos();
-            BlockEntity blockEntity = player.world.getBlockEntity(blockPos);
-            if(blockEntity instanceof ParticleSpawnerBlockEntity) {
-                ParticleSpawnerBlockEntity particleSpawnerBlockEntity = (ParticleSpawnerBlockEntity) blockEntity;
+            SpectrumCommon.minecraftServer.execute(() -> {
+                BlockEntity blockEntity = player.world.getBlockEntity(blockPos);
+                if(blockEntity instanceof ParticleSpawnerBlockEntity) {
+                    ParticleSpawnerBlockEntity particleSpawnerBlockEntity = (ParticleSpawnerBlockEntity) blockEntity;
 
-                PacketByteBuf packetByteBuf = PacketByteBufs.create();
-                packetByteBuf.writeBlockPos(blockEntity.getPos());
-                particleSpawnerBlockEntity.writeSettings(packetByteBuf);
+                    PacketByteBuf packetByteBuf = PacketByteBufs.create();
+                    packetByteBuf.writeBlockPos(blockEntity.getPos());
+                    particleSpawnerBlockEntity.writeSettings(packetByteBuf);
 
-                ServerPlayNetworking.send(player, SpectrumS2CPackets.CHANGE_PARTICLE_SPAWNER_SETTINGS_CLIENT_PACKET_ID, packetByteBuf);
-            }*/
+                    ServerPlayNetworking.send(player, SpectrumS2CPackets.CHANGE_PARTICLE_SPAWNER_SETTINGS_CLIENT_PACKET_ID, packetByteBuf);
+                }
+            });
+
+
         });
     }
 

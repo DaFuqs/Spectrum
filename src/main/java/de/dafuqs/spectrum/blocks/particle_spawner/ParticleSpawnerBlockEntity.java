@@ -75,8 +75,6 @@ public class ParticleSpawnerBlockEntity extends BlockEntity implements ExtendedS
         this.lifetimeVariance = 10;
         this.gravity = 1.0F;
         this.collisions = true;
-
-        this.initialized = true;
     }
 
     public static void clientTick(World world, BlockPos pos, BlockState state, ParticleSpawnerBlockEntity blockEntity) {
@@ -158,19 +156,24 @@ public class ParticleSpawnerBlockEntity extends BlockEntity implements ExtendedS
 
     public void readNbt(NbtCompound tag) {
         super.readNbt(tag);
-        this.particleSpriteIdentifier = new Identifier(tag.getString("particle_identifier"));
-        this.particlesPerSecond = tag.getFloat("particles_per_tick");
-        this.particleSourcePosition = new Vec3f(tag.getFloat("source_pos_x"), tag.getFloat("source_pos_y"), tag.getFloat("source_pos_z"));
-        this.particleSourcePositionVariance = new Vec3f(tag.getFloat("source_pos_variance_x"), tag.getFloat("source_pos_variance_y"), tag.getFloat("source_pos_variance_z"));
-        this.velocity = new Vec3f(tag.getFloat("source_velocity_x"), tag.getFloat("source_velocity_y"), tag.getFloat("source_velocity_z"));
-        this.velocityVariance = new Vec3f(tag.getFloat("source_velocity_variance_x"), tag.getFloat("source_velocity_variance_y"), tag.getFloat("source_velocity_variance_z"));
-        this.color = new Vec3f(tag.getFloat("particle_color_r"), tag.getFloat("particle_color_g"), tag.getFloat("particle_color_b"));
-        this.scale = tag.getFloat("particle_scale");
-        this.scaleVariance = tag.getFloat("particle_scale_variance");
-        this.lifetimeTicks = tag.getInt("particle_lifetime");
-        this.lifetimeVariance = tag.getInt("particle_lifetime_variance");
-        this.gravity = tag.getFloat("particle_gravity");
-        this.collisions = tag.getBoolean("particle_collisions");
+        if(tag.getString("particle_identifier").isEmpty()) {
+            this.initialized = false;
+        } else {
+            this.particleSpriteIdentifier = new Identifier(tag.getString("particle_identifier"));
+            this.particlesPerSecond = tag.getFloat("particles_per_tick");
+            this.particleSourcePosition = new Vec3f(tag.getFloat("source_pos_x"), tag.getFloat("source_pos_y"), tag.getFloat("source_pos_z"));
+            this.particleSourcePositionVariance = new Vec3f(tag.getFloat("source_pos_variance_x"), tag.getFloat("source_pos_variance_y"), tag.getFloat("source_pos_variance_z"));
+            this.velocity = new Vec3f(tag.getFloat("source_velocity_x"), tag.getFloat("source_velocity_y"), tag.getFloat("source_velocity_z"));
+            this.velocityVariance = new Vec3f(tag.getFloat("source_velocity_variance_x"), tag.getFloat("source_velocity_variance_y"), tag.getFloat("source_velocity_variance_z"));
+            this.color = new Vec3f(tag.getFloat("particle_color_r"), tag.getFloat("particle_color_g"), tag.getFloat("particle_color_b"));
+            this.scale = tag.getFloat("particle_scale");
+            this.scaleVariance = tag.getFloat("particle_scale_variance");
+            this.lifetimeTicks = tag.getInt("particle_lifetime");
+            this.lifetimeVariance = tag.getInt("particle_lifetime_variance");
+            this.gravity = tag.getFloat("particle_gravity");
+            this.collisions = tag.getBoolean("particle_collisions");
+            this.initialized = true;
+        }
     }
 
     @Nullable

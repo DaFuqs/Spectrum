@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.networking;
 
 import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.blocks.particle_spawner.ParticleSpawnerBlockEntity;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
@@ -8,6 +9,7 @@ import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.particle.ItemStackParticleEffect;
@@ -16,6 +18,7 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3f;
 import net.minecraft.world.World;
 
 import java.util.Random;
@@ -24,6 +27,7 @@ public class SpectrumS2CPackets {
 
 	public static final Identifier PLAY_PEDESTAL_CRAFTING_FINISHED_PARTICLE_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "play_pedestal_crafting_finished_particle");
 	public static final Identifier PLAY_ANVIL_CRAFTING_PARTICLE_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "play_anvil_crafting_finished_particle");
+	public static final Identifier CHANGE_PARTICLE_SPAWNER_SETTINGS_CLIENT_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "change_particle_spawner_settings_client");
 
 
 	@Environment(EnvType.CLIENT)
@@ -47,6 +51,14 @@ public class SpectrumS2CPackets {
 				}
 			});
 		});
+
+		ClientPlayNetworking.registerGlobalReceiver(CHANGE_PARTICLE_SPAWNER_SETTINGS_CLIENT_PACKET_ID, (client, handler, buf, responseSender) -> {
+			BlockPos pos = buf.readBlockPos();
+			if(MinecraftClient.getInstance().world.getBlockEntity(pos) instanceof ParticleSpawnerBlockEntity) {
+				((ParticleSpawnerBlockEntity) MinecraftClient.getInstance().world.getBlockEntity(pos)).applySettings(buf);
+			}
+
+		});
 	}
 
 	/**
@@ -64,6 +76,5 @@ public class SpectrumS2CPackets {
 			ServerPlayNetworking.send(player, SpectrumS2CPackets.PLAY_PEDESTAL_CRAFTING_FINISHED_PARTICLE_PACKET_ID, buf);
 		}
 	}
-
 
 }

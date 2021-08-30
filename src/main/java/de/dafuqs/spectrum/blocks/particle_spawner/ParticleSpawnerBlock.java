@@ -1,8 +1,10 @@
 package de.dafuqs.spectrum.blocks.particle_spawner;
 
 import de.dafuqs.spectrum.blocks.RedstonePoweredBlock;
+import de.dafuqs.spectrum.blocks.pedestal.PedestalBlockEntity;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
+import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
@@ -10,9 +12,14 @@ import net.minecraft.block.BlockWithEntity;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
+import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
@@ -65,6 +72,22 @@ public class ParticleSpawnerBlock extends BlockWithEntity implements RedstonePow
     @Nullable
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
         return world.isClient ? checkType(type, SpectrumBlockEntityRegistry.PARTICLE_SPAWNER, ParticleSpawnerBlockEntity::clientTick) : null;
+    }
+
+    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+        if (world.isClient) {
+            return ActionResult.SUCCESS;
+        } else {
+            this.openScreen(world, pos, player);
+            return ActionResult.CONSUME;
+        }
+    }
+
+    protected void openScreen(World world, BlockPos pos, PlayerEntity player) {
+        BlockEntity blockEntity = world.getBlockEntity(pos);
+        if (blockEntity instanceof ParticleSpawnerBlockEntity) {
+            player.openHandledScreen((ExtendedScreenHandlerFactory) blockEntity);
+        }
     }
 
 }

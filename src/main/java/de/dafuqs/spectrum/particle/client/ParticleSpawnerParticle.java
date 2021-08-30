@@ -14,8 +14,13 @@ import org.jetbrains.annotations.NotNull;
 @Environment(EnvType.CLIENT)
 public class ParticleSpawnerParticle extends SpriteBillboardParticle {
 
-	public ParticleSpawnerParticle(ClientWorld clientWorld, double d, double e, double f, double g, double h, double i) {
-		super(clientWorld, d, e, f, g, h, i);
+	public ParticleSpawnerParticle(ClientWorld clientWorld, double d, double e, double f, double velocityX, double velocityY, double velocityZ) {
+		super(clientWorld, d, e, f, velocityX, velocityY, velocityZ);
+		// Override the default random particle velocities again.
+		// Not performant, but super() has to be called here :/
+		this.velocityX = velocityX;
+		this.velocityY = velocityY;
+		this.velocityZ = velocityZ;
 	}
 
 	@Override

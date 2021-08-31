@@ -82,7 +82,7 @@ public class PedestalCraftingRecipeSerializer<T extends PedestalCraftingRecipe> 
                 }
             }
         } else {
-            SpectrumCommon.LOGGER.log(Level.WARN, "Pedestal Recipe "+ identifier.getPath() + " does not specify advancements to unlock.");
+            SpectrumCommon.log(Level.WARN, "Pedestal Recipe "+ identifier.getPath() + " does not specify advancements to unlock.");
         }
 
 

@@ -115,7 +115,7 @@ public class SpectrumSoundEvents {
     }
 
     public static void register() {
-        SpectrumCommon.LOGGER.log(Level.INFO, "Registering Sound Events...");
+        SpectrumCommon.log(Level.INFO, "Registering Sound Events...");
     }
 
 }

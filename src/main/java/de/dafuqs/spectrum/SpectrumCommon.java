@@ -31,7 +31,7 @@ public class SpectrumCommon implements ModInitializer {
     public static final String MOD_ID = "spectrum";
 
     public static SpectrumConfig CONFIG;
-    public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
+    private static final Logger LOGGER = LogManager.getLogger(MOD_ID);
 
     public static MinecraftServer minecraftServer;
 
@@ -42,10 +42,10 @@ public class SpectrumCommon implements ModInitializer {
     @Override
     public void onInitialize() {
         //Set up config
-        LOGGER.info("Loading config file...");
+        log(Level.INFO, "Loading config file...");
         AutoConfig.register(SpectrumConfig.class, JanksonConfigSerializer::new);
         CONFIG = AutoConfig.getConfigHolder(SpectrumConfig.class).getConfig();
-        LOGGER.info("Finished loading config file.");
+        log(Level.INFO, "Finished loading config file.");
 
         // Register ALL the stuff
         SpectrumAdvancementCriteria.register();

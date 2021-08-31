@@ -1,7 +1,7 @@
 {
   "name": "Preenchanted Tools",
-  "advancement": "spectrum:craft_using_pedestal",
-  "icon": "spectrum:silker_pickaxe",
+  "advancement": "spectrum:progression/tools/unlock_any_preenchanted_tool",
+  "icon": "spectrum:fortune_pickaxe",
   "category": "spectrum:magical_items_category",
   "extra_recipe_mappings": {
     "spectrum:silker_pickaxe": 2,
@@ -23,19 +23,19 @@
       "type": "spectrum:pedestal_crafting",
       "advancement": "spectrum:progression/tools/unlock_silker_pickaxe",
       "recipe": "spectrum:pedestal/tier1/tools/silker_pickaxe",
-      "text": "The ends of this pickaxe are studded with Topaz to cut even the most delicate material from stone.$(br)The Tender Pickaxe comes pre-enchanted with $(bold)Silk Touch$()."
+      "text": "The ends of this pickaxe are studded with Topaz to cut even the most delicate material from stone.$(br)The Tender Pickaxe comes pre-enchanted with $(c_cyan)$(bold)Silk Touch$()."
     },
     {
       "type": "spectrum:pedestal_crafting",
       "advancement": "spectrum:progression/tools/unlock_fortune_pickaxe",
       "recipe": "spectrum:pedestal/tier1/tools/fortune_pickaxe",
-      "text": "Infused with the power of energy through Citrine, it allows you to carve out every last bit of ore from every vein.$(br)The Lucky Pickaxe comes pre-enchanted with $(bold)Fortune III$()."
+      "text": "Infused with the power of $(c_yellow)energy$(), it allows you to carve out every last bit of ore from every vein. The Lucky Pickaxe comes pre-enchanted with $(c_yellow)$(bold)Fortune III$()."
     },
     {
       "type": "spectrum:pedestal_crafting",
       "advancement": "spectrum:progression/tools/unlock_looting_falchion",
       "recipe": "spectrum:pedestal/tier1/tools/looting_falchion",
-      "text": "The short, razor-sharp blade makes this item a deadly weapon - but at the cost of durability.$(br)The Razor Falchion comes pre-enchanted with $(bold)Looting III$()."
+      "text": "The short, razor-sharp blade makes this item a deadly weapon - but at the cost of durability.$(br)The Razor Falchion comes pre-enchanted with $(c_magenta)$(bold)Looting III$()."
     },
     {
       "type": "spectrum:pedestal_crafting",

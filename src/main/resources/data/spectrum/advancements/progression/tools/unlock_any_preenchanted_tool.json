@@ -1,0 +1,23 @@
+{
+  "criteria": {
+    "unlocked_fortune_pickaxe": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:progression/tools/unlock_fortune_pickaxe" }
+    },
+    "unlocked_looting_falchion": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:progression/tools/unlock_looting_falchion" }
+    },
+    "unlocked_silker_pickaxe": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:progression/tools/unlock_silker_pickaxe" }
+    }
+  },
+  "requirements": [
+    [
+      "unlocked_fortune_pickaxe",
+      "unlocked_looting_falchion",
+      "unlocked_silker_pickaxe"
+    ]
+  ]
+}

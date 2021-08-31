@@ -4,13 +4,13 @@
     "icon": {
       "item": "spectrum:shooting_star"
     },
-    "hidden": true,
     "title": {
       "translate": "advancements.spectrum.catch_shooting_star.title"
     },
     "description": {
       "translate": "advancements.spectrum.catch_shooting_star.description"
-    }
+    },
+    "hidden": true
   },
   "criteria": {
     "catch": {

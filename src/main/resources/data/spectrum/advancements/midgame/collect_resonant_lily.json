@@ -9,7 +9,8 @@
     },
     "description": {
       "translate": "advancements.spectrum.collect_resonant_lily.description"
-    }
+    },
+    "hidden": true
   },
   "criteria": {
     "has_corrupted_obsidian_dust": {

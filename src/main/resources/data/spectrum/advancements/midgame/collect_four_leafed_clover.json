@@ -8,7 +8,8 @@
     },
     "description": {
       "translate": "advancements.spectrum.collect_four_leafed_clover.description"
-    }
+    },
+    "hidden": true
   },
   "parent": "spectrum:collect_pigment",
   "criteria": {

@@ -8,7 +8,8 @@
     },
     "description": {
       "translate": "advancements.spectrum.collect_mermaids_gem.description"
-    }
+    },
+    "hidden": true
   },
   "parent": "spectrum:spectrum",
   "criteria": {

@@ -24,7 +24,6 @@ import java.util.Random;
 
 public class LiquidCrystalFluidBlock extends FluidBlock {
 
-
     public LiquidCrystalFluidBlock(FlowableFluid fluid, Settings settings) {
         super(fluid, settings);
     }
@@ -111,6 +110,5 @@ public class LiquidCrystalFluidBlock extends FluidBlock {
     private void playExtinguishSound(WorldAccess world, BlockPos pos) {
         world.syncWorldEvent(1501, pos, 0);
     }
-
 
 }

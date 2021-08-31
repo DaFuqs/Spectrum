@@ -3,6 +3,8 @@ package de.dafuqs.spectrum.registries;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.fluid.LiquidCrystalFluid;
 import de.dafuqs.spectrum.blocks.fluid.MudFluid;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandler;
 import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandlerRegistry;
@@ -46,6 +48,7 @@ public class SpectrumFluids {
         registerFluid("flowing_mud", FLOWING_MUD);
     }
 
+    @Environment(EnvType.CLIENT)
     public static void registerClient() {
         setupFluidRendering(STILL_LIQUID_CRYSTAL, FLOWING_LIQUID_CRYSTAL, new Identifier(SpectrumCommon.MOD_ID, "liquid_crystal"), 0xcbbbcb);
         BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getTranslucent(), STILL_LIQUID_CRYSTAL, FLOWING_LIQUID_CRYSTAL);
@@ -54,6 +57,7 @@ public class SpectrumFluids {
         BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getTranslucent(), STILL_MUD, FLOWING_MUD);
     }
 
+    @Environment(EnvType.CLIENT)
     public static void setupFluidRendering(final Fluid still, final Fluid flowing, final Identifier textureFluidId, final int color) {
         final Identifier stillSpriteId = new Identifier(textureFluidId.getNamespace(), "block/" + textureFluidId.getPath() + "_still");
         final Identifier flowingSpriteId = new Identifier(textureFluidId.getNamespace(), "block/" + textureFluidId.getPath() + "_flow");

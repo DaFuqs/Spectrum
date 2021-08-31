@@ -26,9 +26,9 @@ public class REIIntegration implements REIClientPlugin {
         registry.add(new AnvilCrushingCategory<>());
 
         EntryStack[] pedestalEntryStacks = new EntryStack[]{
+                EntryStacks.of(SpectrumBlocks.PEDESTAL_BASIC_TOPAZ),
                 EntryStacks.of(SpectrumBlocks.PEDESTAL_BASIC_AMETHYST),
-                EntryStacks.of(SpectrumBlocks.PEDESTAL_BASIC_AMETHYST),
-                EntryStacks.of(SpectrumBlocks.PEDESTAL_BASIC_AMETHYST),
+                EntryStacks.of(SpectrumBlocks.PEDESTAL_BASIC_CITRINE),
                 EntryStacks.of(SpectrumBlocks.PEDESTAL_ALL_BASIC),
                 EntryStacks.of(SpectrumBlocks.PEDESTAL_ONYX),
                 EntryStacks.of(SpectrumBlocks.PEDESTAL_MOONSTONE)};

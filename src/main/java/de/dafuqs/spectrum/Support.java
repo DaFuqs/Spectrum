@@ -42,18 +42,16 @@ public class Support {
     }
 
     public static boolean hasAdvancement(PlayerEntity playerEntity, Identifier advancementIdentifier) {
-        if (playerEntity instanceof ClientPlayerEntity) {
-            return ClientAdvancements.hasDone(advancementIdentifier);
-        } else if (playerEntity instanceof ServerPlayerEntity) {
+        if (playerEntity instanceof ServerPlayerEntity) {
             Advancement advancement = SpectrumCommon.minecraftServer.getAdvancementLoader().get(advancementIdentifier);
-            if(advancement == null) {
+            if (advancement == null) {
                 SpectrumCommon.log(Level.ERROR, "Player " + playerEntity.getName() + " was getting an advancement check for an advancement that does not exist: " + advancementIdentifier.toString());
                 return false;
             } else {
                 return ((ServerPlayerEntity) playerEntity).getAdvancementTracker().getProgress(advancement).isDone();
             }
         } else {
-            return false;
+            return ClientAdvancements.hasDone(advancementIdentifier);
         }
     }
 

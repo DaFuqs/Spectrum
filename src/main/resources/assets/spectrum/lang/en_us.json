@@ -597,14 +597,17 @@
 
   "item.spectrum.shooting_star": "Shooting Star",
   "item.spectrum.bottle_of_fading": "Bottle of Fading",
-  "item.spectrum.bottle_of_failing": "Bottle of Failing",
-  "item.spectrum.bottle_of_ruin": "Bottle of Ruin",
   "item.spectrum.bottle_of_fading.tooltip": "§2Glibbery!",
+  "item.spectrum.bottle_of_failing": "Bottle of Failing",
   "item.spectrum.bottle_of_failing.tooltip": "§e⚠ Danger: Explosive",
+  "item.spectrum.bottle_of_ruin": "Bottle of Ruin",
   "item.spectrum.bottle_of_ruin.tooltip": "§4⚠ You will probably regret this",
+  "item.spectrum.bottle_of_decay_away": "Bottle of Decay Away",
+  "item.spectrum.bottle_of_decay_away.tooltip": "§2Kills 99.9 % of all Decay, when applied directly.",
   "block.spectrum.fading": "Fading",
   "block.spectrum.failing": "Failing",
   "block.spectrum.ruin": "Ruin",
+  "block.spectrum.decay_away": "Decay Away",
   "block.spectrum.particle_spawner": "Particle Spawner",
   "block.spectrum.cracked_end_portal_frame": "Cracked End Portal Frame",
 
@@ -678,6 +681,7 @@
 
   "block.spectrum.compacting_chest": "Compacting Chest",
   "block.spectrum.restocking_chest": "Restocking Chest",
+  "block.spectrum.sucking_chest": "Retrieval Chest",
   "block.spectrum.private_chest": "Private Chest",
   "block.spectrum.private_chest.title_with_owner": "Private Chest of %s",
 

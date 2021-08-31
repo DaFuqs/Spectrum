@@ -1,0 +1,35 @@
+{
+  "type": "spectrum_pedestal",
+  "time": 1200,
+  "tier": "simple",
+  "cyan": 2,
+  "magenta": 6,
+  "yellow": 2,
+  "white": 0,
+  "black": 0,
+  "experience": 2.0,
+  "pattern": [
+    "PPP",
+    "PSP",
+    "YXY"
+  ],
+  "key": {
+    "P": {
+      "tag": "spectrum:pigments"
+    },
+    "S": {
+      "item": "spectrum:shooting_star"
+    },
+    "X": {
+      "item": "spectrum:polished_calcite"
+    },
+    "Y": {
+      "item": "spectrum:polished_basalt"
+    }
+  },
+  "result" : {
+    "item": "spectrum:particle_spawner",
+    "count": 1
+  },
+  "required_advancements": ["spectrum:progression/unlock_particle_spawner"]
+}

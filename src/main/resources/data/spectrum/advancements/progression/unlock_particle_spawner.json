@@ -1,0 +1,16 @@
+{
+  "criteria": {
+    "collected_pigment": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:collect_pigment" }
+    },
+    "collected_shooting_star": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:collect_shooting_star" }
+    },
+    "built_basic_pedestal_structure": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:build_basic_pedestal_structure" }
+    }
+  }
+}

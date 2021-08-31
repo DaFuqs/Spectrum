@@ -54,12 +54,10 @@ public abstract class DecayBlock extends Block {
     /**
      * If the decay jumps to sourceBlockState it will not place decay there, but destinationBlockState instead
      * @param sourceBlockTag
-     * @param decayConversion
-     * @return
+     * @param conversionState
      */
-    public DecayBlock addDecayConversion(Tag<Block> sourceBlockTag, BlockState decayConversion) {
-        this.decayConversions.put(sourceBlockTag, decayConversion);
-        return this;
+    public void addDecayConversion(Tag<Block> sourceBlockTag, BlockState conversionState) {
+        this.decayConversions.put(sourceBlockTag, conversionState);
     }
 
     public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {

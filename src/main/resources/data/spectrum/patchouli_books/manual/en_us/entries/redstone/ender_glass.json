@@ -14,11 +14,11 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Depending on the strength of the applied redstone signal, this block takes on different properties.$(br)With the smallest external influence it falls back to the state of lowest energy.$(br2)To make it even stranger, the material seems to respond to the last applied signal alone, not the strongest.$(br2)Truly a curiosity from the end."
+      "text": "Depending on the strength of the applied redstone signal, this block takes on different properties.$(br)With the smallest external influence it falls back to the state of lowest energy.$(br2)Without redstone, it is completely solid; when a redstone signal reaches it, it becomes transparent, almost like glass.$(br2)However, it reaches it's most curious state when a redstone signal of full strength is applied..."
     },
     {
       "type": "patchouli:text",
-      "text": "Without redstone, it is completely solid; when a redstone signal reaches it, it becomes transparent, almost like glass.$(br2)However, it reaches it's most curious state when a redstone signal of full strength is applied..."
+      "text": "$(br2)To make it even stranger, the material seems to respond to the last applied signal alone, not the strongest.$(br2)Truly a curiosity from the end."
     },
     {
       "type": "spectrum:pedestal_crafting",

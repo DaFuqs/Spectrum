@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.mixin;
 import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
 import de.dafuqs.spectrum.entity.entity.GravityBlockEntity;
 import de.dafuqs.spectrum.entity.entity.ShootingStarEntity;
+import de.dafuqs.spectrum.events.SpectrumGameEvents;
 import net.minecraft.entity.Entity;
 import net.minecraft.server.world.ServerWorld;
 import org.spongepowered.asm.mixin.Mixin;
@@ -10,6 +11,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.List;
 import java.util.function.BooleanSupplier;
@@ -32,4 +34,10 @@ public class ServerWorldMixin {
 
         ShootingStarEntity.doShootingStarSpawns((ServerWorld)(Object) this);
     }
+
+    @Inject(at = @At("TAIL"), method = "spawnEntity")
+    private void spawnEntity(Entity entity, final CallbackInfoReturnable<Boolean> info) {
+        entity.emitGameEvent(SpectrumGameEvents.ITEM_TRANSFER);
+    }
+
 }

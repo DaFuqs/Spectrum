@@ -1,0 +1,7 @@
+{
+  "parent": "spectrum:block/chest_template",
+  "textures": {
+    "0": "spectrum:entity/sucking_chest",
+    "particle": "spectrum:block/sucking_chest_break"
+  }
+}

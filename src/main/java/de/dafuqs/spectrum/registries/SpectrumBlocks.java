@@ -7,7 +7,9 @@ import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.blocks.chests.CompactingChestBlock;
 import de.dafuqs.spectrum.blocks.chests.PrivateChestBlock;
 import de.dafuqs.spectrum.blocks.chests.RestockingChestBlock;
+import de.dafuqs.spectrum.blocks.chests.SuckingChestBlock;
 import de.dafuqs.spectrum.blocks.conditional.*;
+import de.dafuqs.spectrum.blocks.decay.DecayAwayBlock;
 import de.dafuqs.spectrum.blocks.decay.FadingBlock;
 import de.dafuqs.spectrum.blocks.decay.FailingBlock;
 import de.dafuqs.spectrum.blocks.decay.RuinBlock;
@@ -233,6 +235,7 @@ public class SpectrumBlocks {
     public static final Block FADING = new FadingBlock(FabricBlockSettings.of(SpectrumMaterial.DECAY, MapColor.BLACK).ticksRandomly().requiresTool().strength(0.5F, 0.5F), BlockTags.LEAVES, null,1,  1F);
     public static final Block FAILING = new FailingBlock(FabricBlockSettings.copyOf(FADING).strength(20.0F, 50.0F), null, SpectrumBlockTags.FAILING_SAFE, 2,  2.5F);
     public static final Block RUIN = new RuinBlock(FabricBlockSettings.copyOf(FADING).strength(100.0F, 3600000.0F), null, SpectrumBlockTags.RUIN_SAFE, 3, 5F);
+    public static final Block DECAY_AWAY = new DecayAwayBlock(FabricBlockSettings.copyOf(Blocks.DIRT));
 
     // FLUIDS
     public static final Block LIQUID_CRYSTAL = new LiquidCrystalFluidBlock(SpectrumFluids.STILL_LIQUID_CRYSTAL, FabricBlockSettings.copyOf(Blocks.WATER).luminance((state) -> 8));
@@ -520,6 +523,8 @@ public class SpectrumBlocks {
     public static final Block PRIVATE_CHEST = new PrivateChestBlock(FabricBlockSettings.of(Material.STONE).requiresTool().strength(4.0F, 3600000.0F).sounds(BlockSoundGroup.STONE));
     public static final Block COMPACTING_CHEST = new CompactingChestBlock(FabricBlockSettings.of(Material.STONE).requiresTool().strength(4.0F, 4.0F).sounds(BlockSoundGroup.STONE));
     public static final Block RESTOCKING_CHEST = new RestockingChestBlock(FabricBlockSettings.of(Material.STONE).requiresTool().strength(4.0F, 4.0F).sounds(BlockSoundGroup.STONE));
+    public static final Block SUCKING_CHEST = new SuckingChestBlock(FabricBlockSettings.of(Material.STONE).requiresTool().strength(4.0F, 4.0F).sounds(BlockSoundGroup.STONE));
+
     public static final Block PARTICLE_SPAWNER = new ParticleSpawnerBlock(FabricBlockSettings.of(Material.AMETHYST).requiresTool().strength(5.0F, 6.0F).sounds(BlockSoundGroup.AMETHYST_BLOCK).nonOpaque());
     public static final Block BEDROCK_ANVIL = new BedrockAnvilBlock(FabricBlockSettings.copyOf(Blocks.ANVIL).requiresTool().strength(8.0F, 8.0F).sounds(BlockSoundGroup.METAL));
 
@@ -639,6 +644,7 @@ public class SpectrumBlocks {
         registerBlock("fading", FADING);
         registerBlock("failing", FAILING);
         registerBlock("ruin", RUIN);
+        registerBlock("decay_away", DECAY_AWAY);
 
         // Fluids + Products
         registerBlock("mud", MUD);
@@ -681,6 +687,8 @@ public class SpectrumBlocks {
         registerBlockWithItem("private_chest", PRIVATE_CHEST, fabricItemSettings);
         registerBlockWithItem("compacting_chest", COMPACTING_CHEST, generalItemSettings);
         registerBlockWithItem("restocking_chest", RESTOCKING_CHEST, generalItemSettings);
+        registerBlockWithItem("sucking_chest", SUCKING_CHEST, generalItemSettings);
+
         registerBlockWithItem("ender_hopper", ENDER_HOPPER, fabricItemSettings);
         registerBlockWithItem("ender_dropper", ENDER_DROPPER, fabricItemSettings);
         registerBlockWithItem("particle_spawner", PARTICLE_SPAWNER, fabricItemSettings);

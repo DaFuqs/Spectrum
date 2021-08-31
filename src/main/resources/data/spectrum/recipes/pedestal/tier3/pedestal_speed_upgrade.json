@@ -1,0 +1,44 @@
+{
+  "type": "spectrum_pedestal",
+  "time": 3600,
+  "tier": "advanced",
+  "cyan": 4,
+  "magenta": 8,
+  "yellow": 4,
+  "white": 0,
+  "black": 0,
+  "experience": 4.0,
+  "pattern": [
+    "MXM",
+    "TAC",
+    "YLY"
+  ],
+  "key": {
+    "A": {
+      "item": "minecraft:amethyst_block"
+    },
+    "T": {
+      "item": "spectrum:topaz_block"
+    },
+    "C": {
+      "item": "spectrum:citrine_block"
+    },
+    "X": {
+      "item": "spectrum:polished_calcite"
+    },
+    "Y": {
+      "item": "spectrum:polished_basalt"
+    },
+    "L": {
+      "item": "spectrum:lightning_stone"
+    },
+    "M": {
+      "item": "spectrum:magenta_pigment"
+    }
+  },
+  "result" : {
+    "item": "spectrum:pedestal_speed_upgrade",
+    "count": 1
+  },
+  "required_advancements": ["spectrum:midgame/spectrum_midgame"]
+}

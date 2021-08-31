@@ -1,0 +1,35 @@
+{
+  "type": "spectrum_pedestal",
+  "time": 3600,
+  "tier": "advanced",
+  "cyan": 4,
+  "magenta": 8,
+  "yellow": 4,
+  "white": 0,
+  "black": 0,
+  "experience": 4.0,
+  "pattern": [
+    "BBB",
+    "XSX",
+    "YYY"
+  ],
+  "key": {
+    "B": {
+      "item": "spectrum:blue_pigment"
+    },
+    "Y": {
+      "item": "spectrum:polished_basalt"
+    },
+    "X": {
+      "item": "spectrum:polished_calcite"
+    },
+    "S": {
+      "item": "spectrum:scarlet_fragments"
+    }
+  },
+  "result" : {
+    "item": "spectrum:sucking_chest",
+    "count": 1
+  },
+  "required_advancements": ["spectrum:progression/unlock_sucking_chest"]
+}

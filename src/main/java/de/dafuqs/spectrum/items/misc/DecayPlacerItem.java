@@ -29,6 +29,8 @@ public class DecayPlacerItem extends AliasedBlockItem {
             tooltip.add(new TranslatableText("item.spectrum.bottle_of_failing.tooltip"));
         } else if(item.equals(SpectrumItems.BOTTLE_OF_RUIN)) {
             tooltip.add(new TranslatableText("item.spectrum.bottle_of_ruin.tooltip"));
+        } else if(item.equals(SpectrumItems.BOTTLE_OF_DECAY_AWAY)) {
+            tooltip.add(new TranslatableText("item.spectrum.bottle_of_decay_away.tooltip"));
         }
 
     }

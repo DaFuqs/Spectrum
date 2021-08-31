@@ -4,12 +4,11 @@
   "icon": "spectrum:bedrock_anvil",
   "category": "spectrum:magical_blocks_category",
   "extra_recipe_mappings": {
-    "spectrum:bedrock_anvil": 0
+    "spectrum:bedrock_anvil": 1
   },
   "pages": [
     {
-      "type": "patchouli:spotlight",
-      "item": "spectrum:bedrock_anvil",
+      "type": "patchouli:text",
       "text": "$(italic)You've already used your anvil (lots of anvils, to be precise) plenty. However, both $(l:general/anvil_crushing)Anvil Crushing$(/l), repairing and enchanting tools always damage them so quickly that they become irreparably damaged.$(br)To make the anvil more durable - or even indestructible - Bedrock seems like the perfect choice."
     },
     {

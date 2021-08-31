@@ -2,9 +2,12 @@ package de.dafuqs.spectrum.particle;
 
 import com.mojang.serialization.Codec;
 import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.particle.effect.ItemTransferParticleEffect;
 import de.dafuqs.spectrum.particle.effect.ParticleSpawnerParticleEffect;
 import net.fabricmc.fabric.api.particle.v1.FabricParticleTypes;
-import net.minecraft.particle.*;
+import net.minecraft.particle.DefaultParticleType;
+import net.minecraft.particle.ParticleEffect;
+import net.minecraft.particle.ParticleType;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
@@ -12,14 +15,17 @@ import java.util.function.Function;
 
 public class SpectrumParticleTypes {
 
+    public static ParticleType<ParticleSpawnerParticleEffect> PARTICLE_SPAWNER;
+    public static ParticleType<ItemTransferParticleEffect> ITEM_TRANSFER;
+
     public static DefaultParticleType SHOOTING_STAR;
     public static DefaultParticleType SPARKLESTONE_SPARKLE;
     public static DefaultParticleType SPARKLESTONE_SPARKLE_SMALL;
     public static DefaultParticleType SPARKLESTONE_SPARKLE_TINY;
-    public static ParticleType<ParticleSpawnerParticleEffect> PARTICLE_SPAWNER;
     public static DefaultParticleType VOID_FOG;
     public static DefaultParticleType MUD_POP;
     public static DefaultParticleType LIQUID_CRYSTAL_SPARKLE;
+    public static DefaultParticleType BLUE_BUBBLE_POP;
 
     public static DefaultParticleType BLACK_FALLING_SPORE_BLOSSOM;
     public static DefaultParticleType BLUE_FALLING_SPORE_BLOSSOM;
@@ -71,16 +77,21 @@ public class SpectrumParticleTypes {
 
 
     public static void register() {
+        PARTICLE_SPAWNER = register("particle_spawner", ParticleSpawnerParticleEffect.FACTORY, (particleType) -> {
+            return ParticleSpawnerParticleEffect.CODEC;
+        });
+        ITEM_TRANSFER = register("item_transfer", ItemTransferParticleEffect.FACTORY, (particleType) -> {
+            return ItemTransferParticleEffect.CODEC;
+        });
+
         SHOOTING_STAR = register("shooting_star", true);
         SPARKLESTONE_SPARKLE = register("sparklestone_sparkle", false);
         SPARKLESTONE_SPARKLE_SMALL = register("sparklestone_sparkle_small", false);
         SPARKLESTONE_SPARKLE_TINY = register("sparklestone_sparkle_tiny", false);
-        PARTICLE_SPAWNER = register("particle_spawner", ParticleSpawnerParticleEffect.FACTORY, (particleType) -> {
-            return ParticleSpawnerParticleEffect.CODEC;
-        });
         VOID_FOG = register("void_fog", false);
         MUD_POP = register("mud_pop", false);
         LIQUID_CRYSTAL_SPARKLE = register("liquid_crystal_sparkle", false);
+        BLUE_BUBBLE_POP = register("blue_bubble_pop", false);
 
         BLACK_FALLING_SPORE_BLOSSOM = register("black_falling_spore_blossom", false);
         BLUE_FALLING_SPORE_BLOSSOM = register("blue_falling_spore_blossom", false);

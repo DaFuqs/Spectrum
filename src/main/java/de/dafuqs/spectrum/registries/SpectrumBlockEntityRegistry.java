@@ -1,10 +1,7 @@
 package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.blocks.chests.CompactingChestBlockEntity;
-import de.dafuqs.spectrum.blocks.chests.PrivateChestBlockEntity;
-import de.dafuqs.spectrum.blocks.chests.RestockingChestBlockEntity;
-import de.dafuqs.spectrum.blocks.chests.SpectrumChestBlockEntityRenderer;
+import de.dafuqs.spectrum.blocks.chests.*;
 import de.dafuqs.spectrum.blocks.deeper_down_portal.DeeperDownPortalBlockEntity;
 import de.dafuqs.spectrum.blocks.deeper_down_portal.DeeperDownPortalBlockEntityRenderer;
 import de.dafuqs.spectrum.blocks.detector.PlayerDetectorBlockEntity;
@@ -46,6 +43,7 @@ public class SpectrumBlockEntityRegistry<T extends BlockEntity> {
     public static BlockEntityType<CompactingChestBlockEntity> COMPACTING_CHEST;
     public static BlockEntityType<RestockingChestBlockEntity> RESTOCKING_CHEST;
     public static BlockEntityType<PrivateChestBlockEntity> PRIVATE_CHEST;
+    public static  BlockEntityType<SuckingChestBlockEntity> SUCKING_CHEST;
 
     public static void register() {
         OMINOUS_SAPLING = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "ominous_sapling_block_entity"), FabricBlockEntityTypeBuilder.create(OminousSaplingBlockEntity::new, SpectrumBlocks.OMINOUS_SAPLING).build());
@@ -59,6 +57,7 @@ public class SpectrumBlockEntityRegistry<T extends BlockEntity> {
         COMPACTING_CHEST = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "compacting_chest"), FabricBlockEntityTypeBuilder.create(CompactingChestBlockEntity::new, SpectrumBlocks.COMPACTING_CHEST).build());
         RESTOCKING_CHEST = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "restocking_chest"), FabricBlockEntityTypeBuilder.create(RestockingChestBlockEntity::new, SpectrumBlocks.RESTOCKING_CHEST).build());
         PRIVATE_CHEST = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "private_chest"), FabricBlockEntityTypeBuilder.create(PrivateChestBlockEntity::new, SpectrumBlocks.PRIVATE_CHEST).build());
+        SUCKING_CHEST = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "sucking_chest"), FabricBlockEntityTypeBuilder.create(SuckingChestBlockEntity::new, SpectrumBlocks.SUCKING_CHEST).build());
 
         // All the skulls
         List<Block> skullBlocks = new ArrayList<>();
@@ -74,6 +73,7 @@ public class SpectrumBlockEntityRegistry<T extends BlockEntity> {
         BlockEntityRendererRegistry.INSTANCE.register(SpectrumBlockEntityRegistry.PRIVATE_CHEST, SpectrumChestBlockEntityRenderer::new);
         BlockEntityRendererRegistry.INSTANCE.register(SpectrumBlockEntityRegistry.COMPACTING_CHEST, SpectrumChestBlockEntityRenderer::new);
         BlockEntityRendererRegistry.INSTANCE.register(SpectrumBlockEntityRegistry.RESTOCKING_CHEST, SpectrumChestBlockEntityRenderer::new);
+        BlockEntityRendererRegistry.INSTANCE.register(SpectrumBlockEntityRegistry.SUCKING_CHEST, SpectrumChestBlockEntityRenderer::new);
         BlockEntityRendererRegistry.INSTANCE.register(SpectrumBlockEntityRegistry.PEDESTAL_SPEED_UPGRADE, PedestalUpgradeBlockBlockEntityRenderer::new);
         BlockEntityRendererRegistry.INSTANCE.register(SpectrumBlockEntityRegistry.SKULL, SpectrumSkullBlockEntityRenderer3D::new);
         BlockEntityRendererRegistry.INSTANCE.register(SpectrumBlockEntityRegistry.DEEPER_DOWN_PORTAL, DeeperDownPortalBlockEntityRenderer::new);
@@ -87,6 +87,7 @@ public class SpectrumBlockEntityRegistry<T extends BlockEntity> {
             registry.register(new Identifier(SpectrumCommon.MOD_ID, "entity/private_chest"));
             registry.register(new Identifier(SpectrumCommon.MOD_ID, "entity/compacting_chest"));
             registry.register(new Identifier(SpectrumCommon.MOD_ID, "entity/restocking_chest"));
+            registry.register(new Identifier(SpectrumCommon.MOD_ID, "entity/sucking_chest"));
         });
 
         //Register textures in block atlas

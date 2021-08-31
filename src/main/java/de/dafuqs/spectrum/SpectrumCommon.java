@@ -2,6 +2,7 @@ package de.dafuqs.spectrum;
 
 import de.dafuqs.spectrum.config.SpectrumConfig;
 import de.dafuqs.spectrum.dimension.DeeperDownDimension;
+import de.dafuqs.spectrum.events.SpectrumGameEvents;
 import de.dafuqs.spectrum.inventories.SpectrumContainers;
 import de.dafuqs.spectrum.inventories.SpectrumScreenHandlerTypes;
 import de.dafuqs.spectrum.loot.EnchantmentDrops;
@@ -52,10 +53,10 @@ public class SpectrumCommon implements ModInitializer {
         SpectrumSoundEvents.register();
         SpectrumBlockSoundGroups.register();
         SpectrumFluidTags.register();
+        SpectrumBlockTags.getReferences();
         SpectrumFluids.register();
         SpectrumBlocks.register();
         SpectrumItems.register();
-        SpectrumBlockTags.getReferences();
         SpectrumItemTags.getReferences();
         SpectrumBlockEntityRegistry.register();
         SpectrumEnchantments.register();
@@ -87,6 +88,7 @@ public class SpectrumCommon implements ModInitializer {
         SpectrumMultiblocks.register();
         SpectrumFlammableBlocks.register();
         SpectrumComposting.register();
+        SpectrumGameEvents.register();
 
         ServerWorldEvents.LOAD.register((minecraftServer, serverWorld) -> {
             SpectrumCommon.minecraftServer = minecraftServer;

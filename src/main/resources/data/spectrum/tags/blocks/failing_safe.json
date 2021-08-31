@@ -8,6 +8,7 @@
 		"minecraft:chain_command_block",
 		"minecraft:repeating_command_block",
 		"minecraft:barrier",
-		"minecraft:bedrock"
+		"minecraft:bedrock",
+		"spectrum:decay_away"
 	]
 }

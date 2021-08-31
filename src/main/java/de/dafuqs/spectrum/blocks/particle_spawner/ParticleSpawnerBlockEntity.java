@@ -8,19 +8,15 @@ import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.CommandBlockBlockEntity;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.screen.pack.ResourcePackOrganizer;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.particle.DefaultParticleType;
 import net.minecraft.particle.ParticleTypes;
-import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
@@ -62,7 +58,7 @@ public class ParticleSpawnerBlockEntity extends BlockEntity implements ExtendedS
         availableParticleEffects.add(ParticleTypes.FLAME);
         availableParticleEffects.add(ParticleTypes.BUBBLE);
 
-        this.particleSpriteIdentifier = new Identifier(SpectrumCommon.MOD_ID, "particle/sparklestone_sparkle");
+        this.particleSpriteIdentifier = new Identifier(SpectrumCommon.MOD_ID, "particle/shooting_star");
         this.particlesPerSecond = 10.0F;
         this.particleSourcePosition = new Vec3f(0, 1, 0);
         this.particleSourcePositionVariance = new Vec3f(0.5F, 0, 0.5F);
@@ -73,7 +69,7 @@ public class ParticleSpawnerBlockEntity extends BlockEntity implements ExtendedS
         this.scaleVariance = 0.2F;
         this.lifetimeTicks = 20;
         this.lifetimeVariance = 10;
-        this.gravity = 1.0F;
+        this.gravity = 0.98F;
         this.collisions = true;
     }
 

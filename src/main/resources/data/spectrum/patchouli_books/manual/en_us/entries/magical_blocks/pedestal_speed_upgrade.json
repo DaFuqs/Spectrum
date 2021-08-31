@@ -1,0 +1,20 @@
+{
+  "name": "Pedestal Accelerator",
+  "advancement": "spectrum:midgame/spectrum_midgame",
+  "icon": "spectrum:pedestal_speed_upgrade",
+  "category": "spectrum:magical_blocks_category",
+  "extra_recipe_mappings": {
+    "spectrum:pedestal_speed_upgrade": 1
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(italic)Unlike the comparatively primitive Crafting Table, crafting in the Pigment Pedestal takes some time.\nYou found that the time these crafting processes took increased steadily with the complexity of the components.$(br)This focus should help you bring the crafting times back to acceptable levels. It helps the Pigment Pedestal collect the energy focused by the structure."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/pedestal_speed_upgrade",
+      "text": "Place the Pedestal Crafting Accelerator on top one of the four gemstone blocks close to your pedestal. Additional Accelerators have diminishing returns."
+    }
+  ]
+}

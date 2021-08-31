@@ -1,21 +1,20 @@
 {
   "name": "Particle Spawner",
-  "advancement": "spectrum:midgame/spectrum_midgame",
+  "advancement": "spectrum:progression/unlock_particle_spawner",
   "icon": "spectrum:particle_spawner",
-  "category": "spectrum:decoration_category",
+  "category": "spectrum:magical_blocks_category",
   "extra_recipe_mappings": {
-    "spectrum:particle_spawner": 0
+    "spectrum:particle_spawner": 1
   },
   "pages": [
     {
-      "type": "patchouli:spotlight",
-      "title": "Particle Spawner",
-      "item": "spectrum:particle_spawner",
-      "text": "$(italic)$You have a penchant for chic decorations. But the decoration includes not only blocks, but also the right staging.$(br)A shower of particles around your most precious belongings on the pedestals, for example.$(br)Creating a bit of glitter is a breeze for you by now, so the Particle Spawner was born."
+      "type": "patchouli:text",
+      "text": "$(italic)The shooting stars you picked up left a fantastic shower of particles on their way to the ground.$(br)You created the Particle Spawner to replicate this spectacle yourself. Using pigment, you can also create a whole range of particle effects.$(br2)A chimney? Rocket launching particles? Atmospheric particle rain for your Pedestal structure? No problem."
     },
     {
-      "type": "patchouli:text",
-      "text": "The Particle Emitter offers a wide range of settings for which particles with which properties should be created in the environment.$(br2)The Particle Emitter is very good at adding that last bit of polish to your builds."
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier2/particle_spawner",
+      "text": "The the particle spawners GUI you are able to configure the spawned particles to your liking."
     }
   ]
 }

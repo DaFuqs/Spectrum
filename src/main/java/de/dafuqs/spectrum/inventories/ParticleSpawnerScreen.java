@@ -20,6 +20,7 @@ import net.minecraft.network.PacketByteBuf;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.lwjgl.glfw.GLFW;
 
@@ -31,7 +32,31 @@ import java.util.function.Predicate;
 public class ParticleSpawnerScreen extends HandledScreen<ParticleSpawnerScreenHandler> {
 
    int textColor = 2236962;
-   private static final Identifier TEXTURE = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/container/particle_spawner.png");
+   private static final Identifier GUI_TEXTURE = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/container/particle_spawner.png");
+
+   // when adding new particles do not forget adding them both in
+   // - the texture file (for the gui)
+   // - the available particle list
+   private static final Identifier TEXTURE_PARTICLES = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/container/particle_spawner_particles.png");
+   private static final int PARTICLES_PER_PAGE = 6;
+   private static final List<Identifier> AVAILABLE_PARTICLES = new ArrayList<>() {{
+      add(new Identifier(SpectrumCommon.MOD_ID, "particle/sparklestone_sparkle"));
+      add(new Identifier(SpectrumCommon.MOD_ID, "particle/shooting_star"));
+      add(new Identifier(SpectrumCommon.MOD_ID, "particle/liquid_crystal_sparkle"));
+      add(new Identifier(SpectrumCommon.MOD_ID, "particle/void_fog"));
+      add(new Identifier("particle/effect_5"));
+      add(new Identifier("particle/glint"));
+      add(new Identifier("particle/heart"));
+      add(new Identifier("particle/damage"));
+      add(new Identifier("particle/lava"));
+      add(new Identifier("particle/flame"));
+      add(new Identifier("particle/spark_2"));
+      add(new Identifier("particle/critical_hit"));
+      add(new Identifier("particle/nautilus"));
+      add(new Identifier("particle/bubble"));
+      add(new Identifier("particle/big_smoke_3"));
+   }};
+
 
    private List<ClickableWidget> selectableWidgets;
    private TextFieldWidget amountField;
@@ -52,9 +77,15 @@ public class ParticleSpawnerScreen extends HandledScreen<ParticleSpawnerScreenHa
    private TextFieldWidget duration;
    private TextFieldWidget durationVariance;
    private TextFieldWidget gravity;
+
    private ButtonWidget collisionsButton;
+   private ButtonWidget backButton;
+   private ButtonWidget forwardButton;
+   private List<ButtonWidget> particleButtons;
 
    boolean collisionsEnabled = false;
+   int activeParticlePage = 0;
+   int particleSelectionIndex = 0;
 
    public ParticleSpawnerScreen(ParticleSpawnerScreenHandler handler, PlayerInventory inventory, Text title) {
       super(handler, inventory, title);
@@ -150,7 +181,7 @@ public class ParticleSpawnerScreen extends HandledScreen<ParticleSpawnerScreenHa
    protected void drawBackground(MatrixStack matrices, float delta, int mouseX, int mouseY) {
       RenderSystem.setShader(GameRenderer::getPositionTexShader);
       RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-      RenderSystem.setShaderTexture(0, TEXTURE);
+      RenderSystem.setShaderTexture(0, GUI_TEXTURE);
       int i = (this.width - this.backgroundWidth) / 2;
       int j = (this.height - this.backgroundHeight) / 2;
 
@@ -161,6 +192,14 @@ public class ParticleSpawnerScreen extends HandledScreen<ParticleSpawnerScreenHa
       if(collisionsEnabled) {
          drawTexture(matrices, i+146, j+197, 0, 222, 16, 16);
       }
+
+      if(particleSelectionIndex / PARTICLES_PER_PAGE == activeParticlePage) {
+         // particle selection outline
+         drawTexture(matrices, i + 27 + (20 * (particleSelectionIndex % PARTICLES_PER_PAGE)), j + 19, 16, 222, 22, 22);
+      }
+
+      RenderSystem.setShaderTexture(0, TEXTURE_PARTICLES);
+      drawTexture(matrices, i+28, j+21, 0, activeParticlePage * 20, 20 * PARTICLES_PER_PAGE, 20);
    }
 
    protected void setupInputFields(ParticleSpawnerBlockEntity blockEntity) {
@@ -185,7 +224,7 @@ public class ParticleSpawnerScreen extends HandledScreen<ParticleSpawnerScreenHa
       scaleVariance = addTextFieldWidget(i+139, j+158, new LiteralText("asdfsd.asdfsd"), String.valueOf(blockEntity.scaleVariance), this::isPositiveDecimalNumber);
       duration = addTextFieldWidget(i+55, j+178, new LiteralText("asdfsd.asdfsd"), String.valueOf(blockEntity.lifetimeTicks), this::isPositiveWholeNumber);
       durationVariance = addTextFieldWidget(i+139, j+178, new LiteralText("asdfsd.asdfsd"), String.valueOf(blockEntity.lifetimeVariance), this::isPositiveWholeNumber);
-      gravity = addTextFieldWidget(i+55, j+198, new LiteralText("asdfsd.asdfsd"), String.valueOf(blockEntity.gravity), this::isDecimalNumber);
+      gravity = addTextFieldWidget(i+55, j+198, new LiteralText("asdfsd.asdfsd"), String.valueOf(blockEntity.gravity), this::isBetweenZeroAndOne);
 
       collisionsButton = new ButtonWidget(i+142, j+194, 16, 16, new LiteralText("asdfsd.asdfsd"), this::collisionButtonPressed);
       collisionsEnabled = blockEntity.collisions;
@@ -212,6 +251,32 @@ public class ParticleSpawnerScreen extends HandledScreen<ParticleSpawnerScreenHa
          add(gravity);
          add(collisionsButton);
       }};
+
+      backButton = new ButtonWidget(i + 11, j + 19, 12, 14, new LiteralText("back"), this::navigationButtonPressed);
+      addSelectableChild(backButton);
+      forwardButton = new ButtonWidget(i + 147, j + 19, 12, 14, new LiteralText("forward"), this::navigationButtonPressed);
+      addSelectableChild(forwardButton);
+
+      particleButtons = new ArrayList<>();
+      particleButtons.add(addParticleButton(i + 23, j + 16));
+      particleButtons.add(addParticleButton(i + 23 + 20, j + 16));
+      particleButtons.add(addParticleButton(i + 23 + 40, j + 16));
+      particleButtons.add(addParticleButton(i + 23 + 60, j + 16));
+      particleButtons.add(addParticleButton(i + 23 + 80, j + 16));
+      particleButtons.add(addParticleButton(i + 23 + 100, j + 16));
+
+      int selectionIndex = AVAILABLE_PARTICLES.indexOf(blockEntity.particleSpriteIdentifier);
+      if(selectionIndex != -1) {
+         particleSelectionIndex = selectionIndex;
+      }
+   }
+
+   private void navigationButtonPressed(ButtonWidget buttonWidget) {
+      if(buttonWidget == forwardButton) {
+         activeParticlePage = (activeParticlePage + 1) % ((AVAILABLE_PARTICLES.size() / PARTICLES_PER_PAGE)+1);
+      } else {
+         activeParticlePage = (activeParticlePage - 1) % ((AVAILABLE_PARTICLES.size() / PARTICLES_PER_PAGE)+1);
+      }
    }
 
    private @NotNull TextFieldWidget addTextFieldWidget(int x, int y, Text text, String defaultText, Predicate<String> textPredicate) {
@@ -231,6 +296,31 @@ public class ParticleSpawnerScreen extends HandledScreen<ParticleSpawnerScreenHa
       return textFieldWidget;
    }
 
+   private @NotNull ButtonWidget addParticleButton(int x, int y) {
+      ButtonWidget button = new ButtonWidget(x, y, 20, 20, new LiteralText("asdfsd.asdfsd"), this::particleButtonPressed);
+      addSelectableChild(button);
+      return button;
+   }
+
+   private void particleButtonPressed(ButtonWidget buttonWidget) {
+      int buttonIndex = particleButtons.indexOf(buttonWidget);
+      int newIndex = PARTICLES_PER_PAGE * activeParticlePage + buttonIndex;
+
+      if(newIndex < AVAILABLE_PARTICLES.size() - 1) {
+         particleSelectionIndex = newIndex;
+         onValuesChanged();
+      }
+   }
+
+   private void collisionButtonPressed(ButtonWidget buttonWidget) {
+      collisionsEnabled = !collisionsEnabled;
+      this.onValuesChanged();
+   }
+
+   private void onTextBoxValueChanged(@NotNull String newValue) {
+      onValuesChanged();
+   }
+
    protected boolean isDecimalNumber(@NotNull String text) {
       return text.matches("^(-)?\\d*+(?:\\.\\d*)?$");
    }
@@ -243,13 +333,13 @@ public class ParticleSpawnerScreen extends HandledScreen<ParticleSpawnerScreenHa
       return text.matches("^\\d*$");
    }
 
-   private void collisionButtonPressed(ButtonWidget buttonWidget) {
-      collisionsEnabled = !collisionsEnabled;
-      this.onValuesChanged();
-   }
-
-   private void onTextBoxValueChanged(@NotNull String newValue) {
-      onValuesChanged();
+   protected boolean isBetweenZeroAndOne(@NotNull String text) {
+      try {
+         float f = Float.parseFloat(text);
+         return f >= 0 && f <= 1;
+      } catch (NumberFormatException e) {
+         return false;
+      }
    }
 
    /**
@@ -266,8 +356,9 @@ public class ParticleSpawnerScreen extends HandledScreen<ParticleSpawnerScreenHa
       }
    }
 
-   private PacketByteBuf writeSettings(PacketByteBuf packetByteBuf) {
-      packetByteBuf.writeString("spectrum:particle/shooting_star"); // TODO
+   @Contract("_ -> param1")
+   private @NotNull PacketByteBuf writeSettings(@NotNull PacketByteBuf packetByteBuf) {
+      packetByteBuf.writeString(AVAILABLE_PARTICLES.get(particleSelectionIndex).toString());
       packetByteBuf.writeFloat(Float.parseFloat(amountField.getText()));
       packetByteBuf.writeFloat(Float.parseFloat(positionXField.getText()));
       packetByteBuf.writeFloat(Float.parseFloat(positionYField.getText()));

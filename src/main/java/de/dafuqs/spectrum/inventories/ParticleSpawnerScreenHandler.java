@@ -33,17 +33,15 @@ public class ParticleSpawnerScreenHandler extends ScreenHandler {
         this.particleSpawnerBlockEntity = particleSpawnerBlockEntity;
     }
 
-    @Environment(EnvType.CLIENT)
     public ParticleSpawnerScreenHandler(int syncId, PlayerInventory playerInventory, PacketByteBuf packetByteBuf) {
         this(syncId, playerInventory, packetByteBuf.readBlockPos());
     }
 
-    @Environment(EnvType.CLIENT)
     public ParticleSpawnerScreenHandler(int syncId, PlayerInventory playerInventory, BlockPos readBlockPos) {
         super(SpectrumScreenHandlerTypes.PARTICLE_SPAWNER, syncId);
-        this.player = MinecraftClient.getInstance().player;
+        this.player = playerInventory.player;
         this.context = null;
-        BlockEntity blockEntity = MinecraftClient.getInstance().world.getBlockEntity(readBlockPos);
+        BlockEntity blockEntity = playerInventory.player.world.getBlockEntity(readBlockPos);
         if(blockEntity instanceof ParticleSpawnerBlockEntity) {
             this.particleSpawnerBlockEntity = (ParticleSpawnerBlockEntity) blockEntity;
         }

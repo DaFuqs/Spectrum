@@ -1,5 +1,5 @@
 {
-  "type": "spectrum_anvil_crushing",
+  "type": "spectrum:anvil_crushing",
   "ingredient": {
     "item": "minecraft:iron_horse_armor"
   },

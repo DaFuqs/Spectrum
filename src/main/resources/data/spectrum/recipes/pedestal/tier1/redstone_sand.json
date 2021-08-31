@@ -1,5 +1,5 @@
 {
-  "type": "spectrum_pedestal",
+  "type": "spectrum:pedestal",
   "time": 20,
   "tier": "basic",
   "magenta": 0,

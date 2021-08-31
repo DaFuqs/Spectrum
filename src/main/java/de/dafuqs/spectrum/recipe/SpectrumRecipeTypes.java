@@ -19,21 +19,25 @@ public class SpectrumRecipeTypes {
     public static RecipeSerializer<AnvilCrushingRecipe> ANVIL_CRUSHING_RECIPE_SERIALIZER;
     public static RecipeType<AnvilCrushingRecipe> ANVIL_CRUSHING;
 
-    static <S extends RecipeSerializer<T>, T extends Recipe<?>> S register(String id, S serializer) {
-        return Registry.register(Registry.RECIPE_SERIALIZER, id, serializer);
+    static <S extends RecipeSerializer<T>, T extends Recipe<?>> S registerSerializer(String id, S serializer) {
+        return Registry.register(Registry.RECIPE_SERIALIZER, new Identifier(SpectrumCommon.MOD_ID, id), serializer);
     }
 
-    public static void register() {
-        PEDESTAL_RECIPE_SERIALIZER = register("spectrum_pedestal", new PedestalCraftingRecipeSerializer(PedestalCraftingRecipe::new));
-        PEDESTAL = Registry.register(Registry.RECIPE_TYPE, new Identifier(SpectrumCommon.MOD_ID, "pedestal"), new RecipeType<PedestalCraftingRecipe>() {
+    static <S extends RecipeType<T>, T extends Recipe<?>> S registerRecipeType(String id, S serializer) {
+        return Registry.register(Registry.RECIPE_TYPE, new Identifier(SpectrumCommon.MOD_ID, id), serializer);
+    }
+
+    public static void registerSerializer() {
+        PEDESTAL_RECIPE_SERIALIZER = registerSerializer("pedestal", new PedestalCraftingRecipeSerializer(PedestalCraftingRecipe::new));
+        PEDESTAL = registerRecipeType("pedestal", new RecipeType<PedestalCraftingRecipe>() {
             @Override
-            public String toString() {return "pedestal";}
+            public String toString() {return "spectrum:pedestal";}
         });
 
-        ANVIL_CRUSHING_RECIPE_SERIALIZER = register("spectrum_anvil_crushing", new AnvilCrushingRecipeSerializer(AnvilCrushingRecipe::new));
-        ANVIL_CRUSHING = Registry.register(Registry.RECIPE_TYPE, new Identifier(SpectrumCommon.MOD_ID, "anvil_crushing"), new RecipeType<AnvilCrushingRecipe>() {
+        ANVIL_CRUSHING_RECIPE_SERIALIZER = registerSerializer("anvil_crushing", new AnvilCrushingRecipeSerializer(AnvilCrushingRecipe::new));
+        ANVIL_CRUSHING = registerRecipeType("anvil_crushing", new RecipeType<AnvilCrushingRecipe>() {
             @Override
-            public String toString() {return "anvil_crushing";}
+            public String toString() {return "spectrum:anvil_crushing";}
         });
 
 

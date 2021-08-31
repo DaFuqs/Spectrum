@@ -67,7 +67,7 @@ public class SpectrumCommon implements ModInitializer {
         DeeperDownDimension.setup();
 
         // Recipes
-        SpectrumRecipeTypes.register();
+        SpectrumRecipeTypes.registerSerializer();
         SpectrumLootConditionTypes.register();
 
         // GUI

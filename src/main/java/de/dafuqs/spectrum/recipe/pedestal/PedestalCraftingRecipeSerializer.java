@@ -91,9 +91,9 @@ public class PedestalCraftingRecipeSerializer<T extends PedestalCraftingRecipe> 
 
     @Override
     public T read(Identifier identifier, PacketByteBuf packetByteBuf) {
-        int width = packetByteBuf.readVarInt();
-        int height = packetByteBuf.readVarInt();
-        String group = packetByteBuf.readString(32767);
+        int width = packetByteBuf.readInt();
+        int height = packetByteBuf.readInt();
+        String group = packetByteBuf.readString();
         DefaultedList<Ingredient> craftingInputs = DefaultedList.ofSize(width * height, Ingredient.EMPTY);
 
         for(int k = 0; k < craftingInputs.size(); ++k) {
@@ -101,16 +101,16 @@ public class PedestalCraftingRecipeSerializer<T extends PedestalCraftingRecipe> 
         }
         ItemStack output = packetByteBuf.readItemStack();
 
-        PedestalRecipeTier tier = PedestalRecipeTier.values()[packetByteBuf.readVarInt()];
+        PedestalRecipeTier tier = PedestalRecipeTier.values()[packetByteBuf.readInt()];
 
-        int magenta = packetByteBuf.readVarInt();
-        int cyan = packetByteBuf.readVarInt();
-        int yellow = packetByteBuf.readVarInt();
-        int black = packetByteBuf.readVarInt();
-        int white = packetByteBuf.readVarInt();
+        int magenta = packetByteBuf.readInt();
+        int cyan = packetByteBuf.readInt();
+        int yellow = packetByteBuf.readInt();
+        int black = packetByteBuf.readInt();
+        int white = packetByteBuf.readInt();
 
         float experience = packetByteBuf.readFloat();
-        int craftingTime = packetByteBuf.readVarInt();
+        int craftingTime = packetByteBuf.readInt();
 
         int requiredAdvancementAmount = packetByteBuf.readInt();
         List<Identifier> requiredAdvancementIdentifiers = new ArrayList<>();
@@ -121,18 +121,18 @@ public class PedestalCraftingRecipeSerializer<T extends PedestalCraftingRecipe> 
 
         HashMap<GemstoneColor, Integer> gemInputs = new HashMap<>();
         if(magenta > 0) { gemInputs.put(GemstoneColor.MAGENTA, magenta); }
-        if(cyan > 0   ) { gemInputs.put(GemstoneColor.CYAN, cyan); }
-        if(yellow > 0 ) { gemInputs.put(GemstoneColor.YELLOW, yellow); }
-        if(black > 0  ) { gemInputs.put(GemstoneColor.BLACK, black); }
-        if(white > 0  ) { gemInputs.put(GemstoneColor.WHITE, white); }
+        if(cyan    > 0) { gemInputs.put(GemstoneColor.CYAN, cyan); }
+        if(yellow  > 0) { gemInputs.put(GemstoneColor.YELLOW, yellow); }
+        if(black   > 0) { gemInputs.put(GemstoneColor.BLACK, black); }
+        if(white   > 0) { gemInputs.put(GemstoneColor.WHITE, white); }
 
         return this.recipeFactory.create(identifier, group, tier, width, height, craftingInputs, gemInputs, output, experience, craftingTime, requiredAdvancementIdentifiers, showToastOnUnlock);
     }
 
     @Override
     public void write(PacketByteBuf packetByteBuf, T pedestalRecipe) {
-        packetByteBuf.writeVarInt(pedestalRecipe.width);
-        packetByteBuf.writeVarInt(pedestalRecipe.height);
+        packetByteBuf.writeInt(pedestalRecipe.width);
+        packetByteBuf.writeInt(pedestalRecipe.height);
         packetByteBuf.writeString(pedestalRecipe.group);
 
         for (Ingredient ingredient : pedestalRecipe.craftingInputs) {

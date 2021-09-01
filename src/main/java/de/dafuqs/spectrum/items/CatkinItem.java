@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.items.misc;
+package de.dafuqs.spectrum.items;
 
 import de.dafuqs.spectrum.enums.GemstoneColor;
 import net.minecraft.item.Item;

@@ -4,7 +4,7 @@ import de.dafuqs.spectrum.enums.GemstoneColor;
 import de.dafuqs.spectrum.enums.PedestalRecipeTier;
 import de.dafuqs.spectrum.inventories.slots.LockableCraftingResultSlot;
 import de.dafuqs.spectrum.inventories.slots.ReadOnlySlot;
-import de.dafuqs.spectrum.items.misc.CraftingTabletItem;
+import de.dafuqs.spectrum.items.CraftingTabletItem;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.recipe.pedestal.PedestalCraftingRecipe;
 import de.dafuqs.spectrum.registries.SpectrumItems;

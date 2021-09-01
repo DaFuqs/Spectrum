@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.items.misc;
+package de.dafuqs.spectrum.items;
 
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;

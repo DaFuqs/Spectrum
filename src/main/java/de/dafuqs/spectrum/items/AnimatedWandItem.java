@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.items.misc;
+package de.dafuqs.spectrum.items;
 
 import de.dafuqs.spectrum.SpectrumClient;
 import de.dafuqs.spectrum.sound.NaturesStaffUseSoundInstance;

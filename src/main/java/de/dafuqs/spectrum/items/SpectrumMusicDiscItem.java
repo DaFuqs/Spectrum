@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.items.misc;
+package de.dafuqs.spectrum.items;
 
 import net.minecraft.item.MusicDiscItem;
 import net.minecraft.sound.SoundEvent;

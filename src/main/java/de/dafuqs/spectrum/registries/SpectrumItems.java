@@ -4,15 +4,12 @@ import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.gravity.GravityItem;
 import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
 import de.dafuqs.spectrum.enums.GemstoneColor;
-import de.dafuqs.spectrum.items.PigmentItem;
-import de.dafuqs.spectrum.items.StructurePlacerItem;
-import de.dafuqs.spectrum.items.VoidBundleItem;
+import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.items.armor.EmergencyArmorItem;
 import de.dafuqs.spectrum.items.armor.GlowVisionHelmet;
 import de.dafuqs.spectrum.items.armor.SpectrumArmorItem;
 import de.dafuqs.spectrum.items.item_frame.InvisibleGlowItemFrameItem;
 import de.dafuqs.spectrum.items.item_frame.InvisibleItemFrameItem;
-import de.dafuqs.spectrum.items.misc.*;
 import de.dafuqs.spectrum.items.tools.*;
 import de.dafuqs.spectrum.registries.materials.SpectrumArmorMaterials;
 import de.dafuqs.spectrum.registries.materials.SpectrumToolMaterials;
@@ -92,14 +89,12 @@ public class SpectrumItems {
     public static final Item YELLOW_PIGMENT = new PigmentItem(generalItemSettings, DyeColor.YELLOW);
 
     // Preenchanted tools
-    public static final SpectrumToolMaterials.ToolMaterial LOW_HEALTH_MATERIAL = SpectrumToolMaterials.ToolMaterial.LOW_HEALTH;
-    public static final SpectrumToolMaterials.ToolMaterial VOIDING_MATERIAL = SpectrumToolMaterials.ToolMaterial.VOIDING;
     public static final Item MULTITOOL = new MultiToolItem(ToolMaterials.IRON, 2, -2.4F, spectrumMultiToolItemSettings);
-    public static final Item SILKER_PICKAXE = new SpectrumPickaxeItem(LOW_HEALTH_MATERIAL, 1, -2.8F, spectrumLowHealthToolItemSettings);
-    public static final Item FORTUNE_PICKAXE = new SpectrumPickaxeItem(LOW_HEALTH_MATERIAL, 1, -2.8F, spectrumLowHealthToolItemSettings);
-    public static final Item LOOTING_FALCHION = new SwordItem(LOW_HEALTH_MATERIAL, 4, -2.2F, spectrumLowHealthToolItemSettings);
-    public static final Item VOIDING_PICKAXE = new VoidingPickaxeItem(VOIDING_MATERIAL, 1, -2.8F, spectrumLowVoidingToolItemSettings);
-    public static final Item RESONANT_PICKAXE = new SpectrumPickaxeItem(LOW_HEALTH_MATERIAL, 1, -2.8F, spectrumLowHealthToolItemSettings);
+    public static final Item SILKER_PICKAXE = new SpectrumPickaxeItem(SpectrumToolMaterials.ToolMaterial.LOW_HEALTH, 1, -2.8F, spectrumLowHealthToolItemSettings);
+    public static final Item FORTUNE_PICKAXE = new SpectrumPickaxeItem(SpectrumToolMaterials.ToolMaterial.LOW_HEALTH, 1, -2.8F, spectrumLowHealthToolItemSettings);
+    public static final Item LOOTING_FALCHION = new SwordItem(SpectrumToolMaterials.ToolMaterial.LOW_HEALTH, 4, -2.2F, spectrumLowHealthToolItemSettings);
+    public static final Item VOIDING_PICKAXE = new VoidingPickaxeItem(SpectrumToolMaterials.ToolMaterial.VOIDING, 1, -2.8F, spectrumLowVoidingToolItemSettings);
+    public static final Item RESONANT_PICKAXE = new SpectrumPickaxeItem(SpectrumToolMaterials.ToolMaterial.LOW_HEALTH, 1, -2.8F, spectrumLowHealthToolItemSettings);
 
     // Bedrock Tools
     public static final SpectrumToolMaterials.ToolMaterial BEDROCK_MATERIAL = SpectrumToolMaterials.ToolMaterial.BEDROCK;

@@ -679,7 +679,7 @@
   "block.spectrum.ender_hopper_with_owner": "Ender Hopper of %s",
 
   "block.spectrum.compacting_chest": "Compacting Chest",
-  "block.spectrum.restocking_chest": "Restocking Chest",
+  "block.spectrum.restocking_chest": "Fabrication Chest",
   "block.spectrum.sucking_chest": "Black Hole Chest",
   "block.spectrum.private_chest": "Heartbound Chest",
   "block.spectrum.private_chest.title_with_owner": "Heartbound Chest of %s",

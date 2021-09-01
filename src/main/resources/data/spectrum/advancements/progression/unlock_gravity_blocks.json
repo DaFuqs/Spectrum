@@ -8,5 +8,11 @@
       "trigger":"spectrum:has_advancement",
       "conditions": { "advancement_identifier": "spectrum:hidden/collect_resource/collect_paletur" }
     }
-  }
+  },
+  "requirements": [
+    [
+      "collected_scarlet",
+      "collected_paletur"
+    ]
+  ]
 }

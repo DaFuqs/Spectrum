@@ -2,23 +2,26 @@
   "type": "spectrum:pedestal",
   "time": 800,
   "tier": "basic",
-  "cyan": 0,
+  "cyan": 8,
   "magenta": 0,
-  "yellow": 8,
+  "yellow": 0,
   "white": 0,
   "black": 0,
   "experience": 2,
   "pattern": [
     "TTT",
-    "TST",
+    "PSP",
     "TTT"
   ],
   "key": {
     "S": {
-      "item": "spectrum:citrine_shard"
+      "item": "spectrum:topaz_shard"
     },
     "T": {
       "item": "spectrum:polished_basalt"
+    },
+    "P": {
+      "item": "minecraft:piston"
     }
   },
   "result" : {

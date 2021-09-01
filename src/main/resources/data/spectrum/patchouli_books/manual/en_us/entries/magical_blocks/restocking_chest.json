@@ -1,5 +1,5 @@
 {
-  "name": "Restocking Chest",
+  "name": "Fabrication Chest",
   "advancement": "spectrum:midgame/spectrum_midgame",
   "icon": "spectrum:restocking_chest",
   "category": "spectrum:magical_blocks_category",
@@ -15,7 +15,7 @@
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier2/restocking_chest",
-      "text": "The Restocking Chest has four slots for crafting tablets. The recipes you have defined in these are always kept in stock - as long as the ingredients in the chest allow it."
+      "text": "The Fabrication Chest has four slots for crafting tablets. The recipes you have defined in these are always kept in stock - as long as the ingredients in the chest allow it."
     }
   ]
 }

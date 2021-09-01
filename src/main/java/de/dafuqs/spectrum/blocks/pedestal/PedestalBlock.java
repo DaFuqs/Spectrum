@@ -24,6 +24,7 @@ import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
+import net.minecraft.text.TranslatableText;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ItemScatterer;
@@ -91,6 +92,8 @@ public class PedestalBlock extends BlockWithEntity implements RedstonePoweredBlo
 
             if(pedestalBlockEntity.isOwner(player)) {
                 player.openHandledScreen((NamedScreenHandlerFactory) blockEntity);
+            } else {
+                player.sendMessage(new TranslatableText("block.spectrum.title_with_owner", pedestalBlockEntity.getOwnerName()), false);
             }
         }
     }

@@ -1,5 +1,5 @@
 {
-  "name": "Private Chest",
+  "name": "Heartbound Chest",
   "advancement": "spectrum:hidden/collect_shards/collect_topaz_shard",
   "icon": "spectrum:private_chest",
   "category": "spectrum:magical_blocks_category",
@@ -14,7 +14,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "The Private Chest provides the same space as two normal chests.$(br2)Similar to a Trapped Chest the Private Chest also outputs a redstone signal. If you as the owner open it, the signal strength will be full, if a stranger wants to tamper with your belongings then only half."
+      "text": "The Heartbound Chest provides the same space as two normal chests.$(br2)Similar to a Trapped Chest the Heartbound Chest also outputs a redstone signal. If you as the owner open it, the signal strength will be full, if a stranger wants to tamper with your belongings then only half."
     }
   ]
 }

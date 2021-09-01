@@ -49,6 +49,7 @@ public class PrivateChestBlock extends SpectrumChestBlock {
 
             if(!isChestBlocked(world, pos)) {
                 // Permissions are handled with vanilla lock()
+                // => TileEntities "checkUnlocked" function
                 player.openHandledScreen((NamedScreenHandlerFactory) blockEntity);
             }
         }

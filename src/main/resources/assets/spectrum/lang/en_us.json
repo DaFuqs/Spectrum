@@ -681,8 +681,8 @@
   "block.spectrum.compacting_chest": "Compacting Chest",
   "block.spectrum.restocking_chest": "Restocking Chest",
   "block.spectrum.sucking_chest": "Black Hole Chest",
-  "block.spectrum.private_chest": "Private Chest",
-  "block.spectrum.private_chest.title_with_owner": "Private Chest of %s",
+  "block.spectrum.private_chest": "Heartbound Chest",
+  "block.spectrum.private_chest.title_with_owner": "Heartbound Chest of %s",
 
   "block.spectrum.ominous_sapling": "Ominous Sapling",
   "block.spectrum.bedrock_anvil": "Bedrock Anvil",

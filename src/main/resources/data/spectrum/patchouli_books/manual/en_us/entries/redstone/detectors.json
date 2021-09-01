@@ -13,7 +13,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "$(italic)As soon as you held the first gemstone in your hands, you noticed that Gem Shard reacting to even the smallest change in it's environment.$(br)Properly crafted, you can take advantage of these properties to measure these changes and connect them to your primitive-looking dust lines.$()$(br2)All detectors can be inverted."
+      "text": "$(italic)As soon as you held the first gemstone in your hands, you noticed that shard reacting to even the smallest change in it's environment.$(br)Properly crafted, you can take advantage of these properties to measure these changes and connect them to your primitive-looking dust lines.$()$(br2)All detectors can be inverted."
     },
     {
       "type": "patchouli:spotlight",
@@ -48,7 +48,7 @@
       "advancement": "spectrum:progression/detectors/unlock_entity_detector",
       "title": "Creature Detector",
       "item": "spectrum:entity_detector",
-      "text": "The gemstone built into the Mob Detector reacts to the micro-vibrations in the ground. This gives the Mob Detector the ability to measure the number of creatures near it.$(br2)For each creature within a 10 block radius, the Mob Detector outputs an additional strength of 1."
+      "text": "The gemstone built into the Mob Detector reacts to micro-vibrations in the ground. This gives the Mob Detector the ability to measure the number of creatures near it.$(br2)For each creature within a 10 block radius, the Mob Detector outputs an additional strength of 1."
     }
   ]
 }

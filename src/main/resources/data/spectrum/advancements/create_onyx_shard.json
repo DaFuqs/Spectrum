@@ -1,0 +1,24 @@
+{
+  "display": {
+    "icon": {
+      "item": "spectrum:onyx_shard"
+    },
+    "frame": "challenge",
+    "title": {
+      "translate": "advancements.spectrum.create_onyx_shard.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.create_onyx_shard.description"
+    }
+  },
+  "parent": "spectrum:collect_all_basic_pigments_besides_brown",
+  "criteria": {
+    "collected_black_pigment": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:hidden/collect_pigment/collect_black_pigment" }
+    }
+  },
+  "rewards": {
+    "experience": 250
+  }
+}

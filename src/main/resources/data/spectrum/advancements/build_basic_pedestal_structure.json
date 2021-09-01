@@ -3,6 +3,7 @@
     "icon": {
       "item": "spectrum:chiseled_polished_basalt"
     },
+    "frame": "challenge",
     "title": {
       "translate": "advancements.spectrum.build_basic_pedestal_structure.title"
     },
@@ -16,5 +17,8 @@
       "trigger": "spectrum:completed_multiblock",
       "conditions": { "multiblock_identifier": "spectrum:pedestal_simple_structure" }
     }
+  },
+  "rewards": {
+    "experience": 100
   }
 }

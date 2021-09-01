@@ -1,8 +1,9 @@
 {
   "display": {
     "icon": {
-        "item": "minecraft:amethyst_shard"
+      "item": "minecraft:amethyst_shard"
     },
+    "frame": "goal",
     "title": {
       "translate": "advancements.spectrum.collect_all_basic_shards.title"
     },

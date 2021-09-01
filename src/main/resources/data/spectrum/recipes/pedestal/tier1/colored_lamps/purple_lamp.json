@@ -3,11 +3,11 @@
   "time": 40,
   "tier": "basic",
   "magenta": 0,
-  "yellow": 0,
+  "yellow": 1,
   "cyan": 0,
   "black": 0,
   "white": 0,
-  "experience": 0.25,
+  "experience": 0.5,
   "pattern": [
     "SPS",
     "PRP",
@@ -26,7 +26,7 @@
   },
   "result" : {
     "item": "spectrum:purple_lamp",
-    "count": 1
+    "count": 2
   },
   "required_advancements": [ "spectrum:progression/colored_lamps/unlock_purple_lamp" ]
 }

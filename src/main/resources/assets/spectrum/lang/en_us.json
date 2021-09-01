@@ -423,7 +423,6 @@
   "block.spectrum.four_leaf_clover": "Four-leaved Clover",
 
   "item.spectrum.manual": "Colorful World",
-  "item.spectrum.manual.landing_text": "Hi $(playername)! I'm your personal guide into the magical world of Spectrum.$(br)Here you will find a lot of information about the mod and how to progress. Keep me around whenever you are tinkering.",
 
   "item.spectrum.amethyst_powder": "Amethyst Powder",
   "item.spectrum.citrine_powder": "Citrine Powder",
@@ -681,7 +680,7 @@
 
   "block.spectrum.compacting_chest": "Compacting Chest",
   "block.spectrum.restocking_chest": "Restocking Chest",
-  "block.spectrum.sucking_chest": "Retrieval Chest",
+  "block.spectrum.sucking_chest": "Black Hole Chest",
   "block.spectrum.private_chest": "Private Chest",
   "block.spectrum.private_chest.title_with_owner": "Private Chest of %s",
 
@@ -900,5 +899,6 @@
   "advancements.spectrum.place_bottle_of_failing.title": "It... feeds on Obsidian?",
   "advancements.spectrum.place_bottle_of_failing.description": "It's WAY more powerful than your first experiment. It seems to destroy everything it touches after a while. Is there something sturdy enough to withstand it's destructive potential?",
   "advancements.spectrum.place_bottle_of_ruin.title": "What have you done",
-  "advancements.spectrum.place_bottle_of_ruin.description": "There is no going back... (for now?)"
+  "advancements.spectrum.place_bottle_of_ruin.description": "There is no going back... (for now?)",
+  "item.spectrum.manual.landing_text": "Hi $(playername)! I'm your personal guide into the magical world of Spectrum.$(br)Here you will find a lot of information about the mod and how to progress. Keep me around whenever you are tinkering."
 }

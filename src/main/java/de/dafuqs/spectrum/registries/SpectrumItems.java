@@ -35,6 +35,7 @@ import static de.dafuqs.spectrum.registries.SpectrumFluids.STILL_MUD;
 public class SpectrumItems {
 
     public static FabricItemSettings generalItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).maxCount(64);
+    public static FabricItemSettings generalItemSettingsSixteen = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).maxCount(16);
     public static FabricItemSettings generalItemSettingsSingle = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).maxCount(1);
     public static FabricItemSettings generalUncommonItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).maxCount(64).rarity(Rarity.UNCOMMON);
     public static FabricItemSettings spectrumWorldgenItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_WORLDGEN).maxCount(64);
@@ -146,13 +147,14 @@ public class SpectrumItems {
     public static final Item RAW_AZURITE = new Item(spectrumWorldgenItemSettings);
     public static final Item SHAPED_AZURITE = new Item(spectrumWorldgenItemSettings);
     public static final Item SCARLET_FRAGMENTS = new GravityItem(generalItemSettings, 1.003F);
-    public static final Item SCARLET_GEM = new GravityItem(generalItemSettings, 1.02F);
+    public static final Item SCARLET_GEM = new GravityItem(generalItemSettingsSixteen, 1.02F);
     public static final Item PALETUR_FRAGMENTS = new GravityItem(generalItemSettings, 0.997F);
-    public static final Item PALETUR_GEM = new GravityItem(generalItemSettings, 0.98F);
+    public static final Item PALETUR_GEM = new GravityItem(generalItemSettingsSixteen, 0.98F);
 
-    public static final Item QUITOXIC_POWDER = new Item(generalItemSettings);
-    public static final Item MERMAIDS_GEM = new Item(generalItemSettings);
-    public static final Item SHOOTING_STAR = new Item(generalItemSettings);
+    public static final Item QUITOXIC_POWDER = new Item(generalItemSettingsSixteen);
+    public static final Item MERMAIDS_GEM = new Item(generalItemSettingsSixteen);
+    public static final Item SHOOTING_STAR = new Item(generalItemSettingsSixteen);
+    public static final Item LIGHTNING_STONE = new Item(generalItemSettingsSixteen);
 
 	// Magical Tools
     public static final Item GLOW_VISION_HELMET = new GlowVisionHelmet(SpectrumArmorMaterials.GLOW_VISION, EquipmentSlot.HEAD, spectrumLowNightVisionArmorItemSettings);
@@ -182,7 +184,7 @@ public class SpectrumItems {
     public static final Item INVISIBLE_GLOW_ITEM_FRAME = new InvisibleGlowItemFrameItem(SpectrumEntityTypes.INVISIBLE_GLOW_ITEM_FRAME, generalItemSettings);
 
     public static final Item VOID_BUNDLE = new VoidBundleItem(generalItemSettingsSingle);
-    public static final Item LIGHTNING_STONE = new Item(generalItemSettings);
+
 
     private static Item register(String name, Item item) {
         return Registry.register(Registry.ITEM, new Identifier(SpectrumCommon.MOD_ID, name), item);

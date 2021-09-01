@@ -1,0 +1,20 @@
+{
+  "name": "Black Hole Chest",
+  "advancement": "spectrum:progression/unlock_sucking_chest",
+  "icon": "spectrum:sucking_chest",
+  "category": "spectrum:magical_blocks_category",
+  "extra_recipe_mappings": {
+    "spectrum:sucking_chest": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(italic)The problem with hoppers is that, on the one hand, they are not only slow, but also poorly suited for larger farms due to their non-existent range.$(br2)With a bit of application of blue pigment, all items in a large radius around the crate can easily be brought to safety."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/sucking_chest",
+      "text": "Black Hole Chests have a radius of 12 blocks. You can disable them by placing a block on top."
+    }
+  ]
+}

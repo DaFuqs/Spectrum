@@ -4,6 +4,10 @@
       "trigger":"spectrum:has_advancement",
       "conditions": { "advancement_identifier": "spectrum:hidden/collect_resource/collect_sparklestone" }
     },
+    "has_citrine_shard": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:hidden/collect_shards/collect_citrine_shard" }
+    },
     "has_pink_pigment": {
       "trigger":"spectrum:has_advancement",
       "conditions": { "advancement_identifier": "spectrum:hidden/collect_pigment/collect_pink_pigment" }

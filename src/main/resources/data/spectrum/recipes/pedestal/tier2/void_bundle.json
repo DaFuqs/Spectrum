@@ -10,7 +10,7 @@
   "experience": 2.0,
   "pattern": [
     "QRQ",
-    "RTR",
+    "RQR",
     "RRR"
   ],
   "key": {
@@ -19,9 +19,6 @@
     },
     "R": {
       "item": "minecraft:rabbit_hide"
-    },
-    "T": {
-      "item": "spectrum:ender_treasure"
     }
   },
   "result" : {

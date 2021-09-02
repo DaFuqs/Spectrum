@@ -3,6 +3,7 @@
     "icon": {
       "item": "spectrum:vegetal"
     },
+    "hidden": true,
     "title": {
       "translate": "advancements.spectrum.collect_vegetal.title"
     },

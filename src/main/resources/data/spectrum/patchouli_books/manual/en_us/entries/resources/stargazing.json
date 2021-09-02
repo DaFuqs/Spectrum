@@ -1,6 +1,6 @@
 {
     "name": "Stargazing",
-    "advancement": "spectrum:craft_colored_pedestal",
+    "advancement": "spectrum:midgame/build_advanced_pedestal_structure",
     "icon": "minecraft:spyglass",
     "category": "spectrum:resources_category",
     "extra_recipe_mappings": {

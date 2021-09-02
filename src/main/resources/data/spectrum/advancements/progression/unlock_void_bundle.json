@@ -1,9 +1,5 @@
 {
   "criteria": {
-    "crafted_using_pedestal": {
-      "trigger":"spectrum:has_advancement",
-      "conditions": { "advancement_identifier": "spectrum:revealed_ender_treasure" }
-    },
     "collected_quitoxic_reeds": {
       "trigger":"spectrum:has_advancement",
       "conditions": { "advancement_identifier": "spectrum:collect_quitoxic_reeds" }

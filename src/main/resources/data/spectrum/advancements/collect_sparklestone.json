@@ -4,6 +4,7 @@
     "icon": {
       "item": "spectrum:sparklestone_gem"
     },
+    "hidden": true,
     "title": {
       "translate": "advancements.spectrum.collect_sparklestone.title"
     },

@@ -44,7 +44,7 @@ public class SpectrumConfig implements ConfigData {
     public float ShootingStarChance = 0.01F;
 
     // The biomes where the biome specific plants are growing
-    public List<String> MermaidsBrushGenerationBiomes = Arrays.asList("minecraft:deep_ocean", "minecraft:deep_cold_ocean", "minecraft:deep_frozen_ocean", "minecraft:deep_warm_ocean", "minecraft:deep_lukewarm_ocean");
+    public List<String> MermaidsBrushGenerationBiomes = Arrays.asList("minecraft:ocean", "minecraft:cold_ocean", "minecraft_frozen_ocean", "minecraft:lukewarm_ocean", "minecraft:warm_ocean" ,"minecraft:deep_ocean", "minecraft:deep_cold_ocean", "minecraft:deep_frozen_ocean", "minecraft:deep_warm_ocean", "minecraft:deep_lukewarm_ocean");
     public List<String> QuitoxicReedsGenerationBiomes = Arrays.asList("minecraft:swamp", "minecraft:swamp_hills");
 
     // how fast decay will be spreading on random tick

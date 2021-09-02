@@ -1,0 +1,31 @@
+{
+  "parent": "spectrum:collect_quitoxic_reeds",
+  "display": {
+    "icon": {
+      "item": "spectrum:voiding_pickaxe"
+    },
+    "title": {
+      "translate": "advancements.spectrum.enchant_oblivion_pickaxe_with_efficiency.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.enchant_oblivion_pickaxe_with_efficiency.description"
+    }
+  },
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:enchanted_item",
+      "conditions": {
+        "item": {
+          "items": [
+            "spectrum:voiding_pickaxe"
+          ],
+          "enchantments": [
+            {
+              "enchantment": "minecraft:efficiency"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

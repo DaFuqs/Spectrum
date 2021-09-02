@@ -6,7 +6,7 @@
     },
     "revealed_ender_treasure": {
       "trigger":"spectrum:has_advancement",
-      "conditions": { "advancement_identifier": "spectrum:revealed_ender_treasure" }
+      "conditions": { "advancement_identifier": "spectrum:reveal_ender_treasure" }
     },
     "has_polished_blackstone": {
       "trigger": "minecraft:inventory_changed",

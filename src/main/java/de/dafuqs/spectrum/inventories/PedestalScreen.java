@@ -109,19 +109,6 @@ public class PedestalScreen extends HandledScreen<PedestalScreenHandler> {
         int y = (height - backgroundHeight) / 2;
         drawTexture(matrices, x, y, 0, 0, backgroundWidth, backgroundHeight);
 
-        // gemstone shard miniatures
-        switch (this.pedestalVariant) {
-            case MOONSTONE -> {
-                drawTexture(matrices, x+115, y+64, 200, 0, 40, 8);
-            }
-            case ONYX -> {
-                drawTexture(matrices, x+119, y+64, 200, 0, 32, 8);
-            }
-            case ALL_BASIC -> {
-                drawTexture(matrices, x+123, y+64, 200, 0, 24, 8);
-            }
-        }
-
         // crafting arrow
         boolean isCrafting = this.handler.isCrafting();
         if(isCrafting) {

@@ -82,7 +82,7 @@ public class SpectrumBlocks {
     }
 
     public static FabricItemSettings generalItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL);
-    public static FabricItemSettings worldgenItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_WORLDGEN);
+    public static FabricItemSettings resourcesItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_RESOURCES);
     public static FabricItemSettings decorationItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_DECORATION);
     public static FabricItemSettings coloredWoodItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_COLORED_WOOD);
     public static FabricItemSettings mobHeadItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_MOB_HEADS).rarity(Rarity.UNCOMMON);
@@ -616,9 +616,9 @@ public class SpectrumBlocks {
         registerBlockWithItem("pedestal_speed_upgrade", PEDESTAL_SPEED_UPGRADE, generalItemSettings);
 
         registerStoneBlocks(decorationItemSettings);
-        registerGemBlocks(worldgenItemSettings);
-        registerGemOreBlocks(worldgenItemSettings);
-        registerOreBlocks(worldgenItemSettings);
+        registerGemBlocks(resourcesItemSettings);
+        registerGemOreBlocks(resourcesItemSettings);
+        registerOreBlocks(resourcesItemSettings);
 
         registerOreStorageBlocks(decorationItemSettings);
         registerGemstoneLamps(decorationItemSettings);
@@ -653,13 +653,13 @@ public class SpectrumBlocks {
         registerBlockWithItem("blazing_crystal", BLAZING_CRYSTAL, generalItemSettings);
         registerBlockWithItem("resonant_lily", RESONANT_LILY, generalItemSettings);
         registerBlock("stuck_lightning_stone", STUCK_LIGHTNING_STONE);
-        registerBlockWithItem("clover", CLOVER, generalItemSettings);
-        registerBlockWithItem("four_leaf_clover", FOUR_LEAF_CLOVER, generalItemSettings);
+        registerBlockWithItem("clover", CLOVER, resourcesItemSettings);
+        registerBlockWithItem("four_leaf_clover", FOUR_LEAF_CLOVER, resourcesItemSettings);
 
         // Worldgen
-        registerBlockWithItem("quitoxic_reeds", QUITOXIC_REEDS, worldgenItemSettings);
-        registerBlockWithItem("mermaids_brush", MERMAIDS_BRUSH, worldgenItemSettings);
-        registerBlockWithItem("ender_treasure", ENDER_TREASURE, worldgenItemSettings);
+        registerBlockWithItem("quitoxic_reeds", QUITOXIC_REEDS, resourcesItemSettings);
+        registerBlockWithItem("mermaids_brush", MERMAIDS_BRUSH, resourcesItemSettings);
+        registerBlockWithItem("ender_treasure", ENDER_TREASURE, resourcesItemSettings);
 
         // Plants
         registerBlockWithItem("glistering_melon", GLISTERING_MELON, generalItemSettings);

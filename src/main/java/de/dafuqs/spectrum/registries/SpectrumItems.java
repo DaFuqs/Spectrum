@@ -32,21 +32,23 @@ import static de.dafuqs.spectrum.registries.SpectrumFluids.STILL_MUD;
 public class SpectrumItems {
 
     public static FabricItemSettings generalItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).maxCount(64);
-    public static FabricItemSettings generalItemSettingsSixteen = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).maxCount(16);
-    public static FabricItemSettings generalItemSettingsSingle = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).maxCount(1);
+    public static FabricItemSettings generalItemSettingsSingle = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_PREENCHANTED_TOOLS).maxCount(1);
     public static FabricItemSettings generalUncommonItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).maxCount(64).rarity(Rarity.UNCOMMON);
-    public static FabricItemSettings spectrumWorldgenItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_WORLDGEN).maxCount(64);
-    public static FabricItemSettings spectrumUncommonItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).rarity(Rarity.UNCOMMON).maxCount(64);
     public static FabricItemSettings spectrumRareItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).rarity(Rarity.RARE).maxCount(64);
+    public static FabricItemSettings resourcesItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_RESOURCES).maxCount(64);
+    public static FabricItemSettings resourcesItemSettingsSixteen = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_RESOURCES).maxCount(16);
+    public static FabricItemSettings resourcesUncommonItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_RESOURCES).rarity(Rarity.UNCOMMON).maxCount(64);
+    public static FabricItemSettings resourcesRareItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_RESOURCES).rarity(Rarity.RARE).maxCount(64);
+
     public static FabricItemSettings decayPlacerItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).maxCount(16);
     public static FabricItemSettings musicDiscItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).maxCount(1).rarity(Rarity.RARE);
+    public static FabricItemSettings spectrumLowNightVisionArmorItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).rarity(Rarity.UNCOMMON).maxDamage(SpectrumArmorMaterials.GLOW_VISION.getDurability(EquipmentSlot.HEAD));
 
     public static FabricItemSettings spectrumBedrockToolItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_PREENCHANTED_TOOLS).rarity(Rarity.RARE).fireproof().maxDamage(SpectrumToolMaterials.ToolMaterial.BEDROCK.getDurability());
     public static FabricItemSettings spectrumBedrockArmorItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_PREENCHANTED_TOOLS).rarity(Rarity.RARE).fireproof().maxDamage(0);
     public static FabricItemSettings spectrumEmergencyArmorItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_PREENCHANTED_TOOLS).rarity(Rarity.RARE).maxDamage(SpectrumArmorMaterials.EMERGENCY.getDurability(EquipmentSlot.CHEST));
     public static FabricItemSettings spectrumLowHealthToolItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_PREENCHANTED_TOOLS).rarity(Rarity.UNCOMMON).maxDamage(SpectrumToolMaterials.ToolMaterial.LOW_HEALTH.getDurability());
     public static FabricItemSettings spectrumLowVoidingToolItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_PREENCHANTED_TOOLS).rarity(Rarity.UNCOMMON).maxDamage(SpectrumToolMaterials.ToolMaterial.VOIDING.getDurability());
-    public static FabricItemSettings spectrumLowNightVisionArmorItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_PREENCHANTED_TOOLS).rarity(Rarity.UNCOMMON).maxDamage(SpectrumArmorMaterials.GLOW_VISION.getDurability(EquipmentSlot.HEAD));
     public static FabricItemSettings spectrumMultiToolItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_PREENCHANTED_TOOLS).rarity(Rarity.UNCOMMON).maxDamage(ToolMaterials.IRON.getDurability());
 
 	// Main items
@@ -58,35 +60,35 @@ public class SpectrumItems {
     public static final Item PEDESTAL_TIER_3_STRUCTURE_PLACER = new StructurePlacerItem(generalItemSettingsSingle, new Identifier(SpectrumCommon.MOD_ID, "pedestal_complex_structure_display"));
 
     // Gem shards
-    public static final Item TOPAZ_SHARD_ITEM = new Item(spectrumWorldgenItemSettings);
-    public static final Item CITRINE_SHARD_ITEM = new Item(spectrumWorldgenItemSettings);
-    public static final Item ONYX_SHARD_ITEM = new Item(spectrumWorldgenItemSettings);
-    public static final Item MOONSTONE_SHARD_ITEM = new Item(spectrumWorldgenItemSettings);
-    public static final Item AMMOLITE_ITEM = new Item(spectrumWorldgenItemSettings);
+    public static final Item TOPAZ_SHARD_ITEM = new Item(resourcesItemSettings);
+    public static final Item CITRINE_SHARD_ITEM = new Item(resourcesItemSettings);
+    public static final Item ONYX_SHARD_ITEM = new Item(resourcesItemSettings);
+    public static final Item MOONSTONE_SHARD_ITEM = new Item(resourcesItemSettings);
+    public static final Item AMMOLITE_ITEM = new Item(resourcesItemSettings);
 	
-    public static final Item TOPAZ_POWDER = new Item(generalItemSettings);
-    public static final Item AMETHYST_POWDER = new Item(generalItemSettings);
-    public static final Item CITRINE_POWDER = new Item(generalItemSettings);
-    public static final Item ONYX_POWDER = new Item(generalItemSettings);
-    public static final Item MOONSTONE_POWDER = new Item(generalItemSettings);
+    public static final Item TOPAZ_POWDER = new Item(resourcesItemSettings);
+    public static final Item AMETHYST_POWDER = new Item(resourcesItemSettings);
+    public static final Item CITRINE_POWDER = new Item(resourcesItemSettings);
+    public static final Item ONYX_POWDER = new Item(resourcesItemSettings);
+    public static final Item MOONSTONE_POWDER = new Item(resourcesItemSettings);
 
     // Pigment
-    public static final Item BLACK_PIGMENT = new PigmentItem(generalItemSettings, DyeColor.BLACK);
-    public static final Item BLUE_PIGMENT = new PigmentItem(generalItemSettings, DyeColor.BLUE);
-    public static final Item BROWN_PIGMENT = new PigmentItem(generalItemSettings, DyeColor.BROWN);
-    public static final Item CYAN_PIGMENT = new PigmentItem(generalItemSettings, DyeColor.CYAN);
-    public static final Item GRAY_PIGMENT = new PigmentItem(generalItemSettings, DyeColor.GRAY);
-    public static final Item GREEN_PIGMENT = new PigmentItem(generalItemSettings, DyeColor.GREEN);
-    public static final Item LIGHT_BLUE_PIGMENT = new PigmentItem(generalItemSettings, DyeColor.LIGHT_BLUE);
-    public static final Item LIGHT_GRAY_PIGMENT = new PigmentItem(generalItemSettings, DyeColor.LIGHT_GRAY);
-    public static final Item LIME_PIGMENT = new PigmentItem(generalItemSettings, DyeColor.LIME);
-    public static final Item MAGENTA_PIGMENT = new PigmentItem(generalItemSettings, DyeColor.MAGENTA);
-    public static final Item ORANGE_PIGMENT = new PigmentItem(generalItemSettings, DyeColor.ORANGE);
-    public static final Item PINK_PIGMENT = new PigmentItem(generalItemSettings, DyeColor.PINK);
-    public static final Item PURPLE_PIGMENT = new PigmentItem(generalItemSettings, DyeColor.PURPLE);
-    public static final Item RED_PIGMENT = new PigmentItem(generalItemSettings, DyeColor.RED);
-    public static final Item WHITE_PIGMENT = new PigmentItem(generalItemSettings, DyeColor.WHITE);
-    public static final Item YELLOW_PIGMENT = new PigmentItem(generalItemSettings, DyeColor.YELLOW);
+    public static final Item BLACK_PIGMENT = new PigmentItem(resourcesItemSettings, DyeColor.BLACK);
+    public static final Item BLUE_PIGMENT = new PigmentItem(resourcesItemSettings, DyeColor.BLUE);
+    public static final Item BROWN_PIGMENT = new PigmentItem(resourcesItemSettings, DyeColor.BROWN);
+    public static final Item CYAN_PIGMENT = new PigmentItem(resourcesItemSettings, DyeColor.CYAN);
+    public static final Item GRAY_PIGMENT = new PigmentItem(resourcesItemSettings, DyeColor.GRAY);
+    public static final Item GREEN_PIGMENT = new PigmentItem(resourcesItemSettings, DyeColor.GREEN);
+    public static final Item LIGHT_BLUE_PIGMENT = new PigmentItem(resourcesItemSettings, DyeColor.LIGHT_BLUE);
+    public static final Item LIGHT_GRAY_PIGMENT = new PigmentItem(resourcesItemSettings, DyeColor.LIGHT_GRAY);
+    public static final Item LIME_PIGMENT = new PigmentItem(resourcesItemSettings, DyeColor.LIME);
+    public static final Item MAGENTA_PIGMENT = new PigmentItem(resourcesItemSettings, DyeColor.MAGENTA);
+    public static final Item ORANGE_PIGMENT = new PigmentItem(resourcesItemSettings, DyeColor.ORANGE);
+    public static final Item PINK_PIGMENT = new PigmentItem(resourcesItemSettings, DyeColor.PINK);
+    public static final Item PURPLE_PIGMENT = new PigmentItem(resourcesItemSettings, DyeColor.PURPLE);
+    public static final Item RED_PIGMENT = new PigmentItem(resourcesItemSettings, DyeColor.RED);
+    public static final Item WHITE_PIGMENT = new PigmentItem(resourcesItemSettings, DyeColor.WHITE);
+    public static final Item YELLOW_PIGMENT = new PigmentItem(resourcesItemSettings, DyeColor.YELLOW);
 
     // Preenchanted tools
     public static final Item MULTITOOL = new MultiToolItem(ToolMaterials.IRON, 2, -2.4F, spectrumMultiToolItemSettings);
@@ -123,9 +125,9 @@ public class SpectrumItems {
     public static final Item EMERGENCY_BOOTS = new EmergencyArmorItem(EMERGENCY_ARMOR_MATERIAL, EquipmentSlot.FEET, spectrumEmergencyArmorItemSettings);
     
     // Decay drops
-    public static final Item VEGETAL = new Item(generalItemSettings);
-    public static final Item CORRUPTED_OBSIDIAN_DUST = new Item(spectrumUncommonItemSettings);
-    public static final Item BEDROCK_DUST = new Item(spectrumRareItemSettings);
+    public static final Item VEGETAL = new Item(resourcesItemSettings);
+    public static final Item CORRUPTED_OBSIDIAN_DUST = new Item(resourcesUncommonItemSettings);
+    public static final Item BEDROCK_DUST = new Item(resourcesRareItemSettings);
 
     // Fluid Buckets
     public static final Item LIQUID_CRYSTAL_BUCKET = new BucketItem(STILL_LIQUID_CRYSTAL, generalItemSettingsSingle);
@@ -138,18 +140,18 @@ public class SpectrumItems {
     public static final Item BOTTLE_OF_DECAY_AWAY = new DecayPlacerItem(SpectrumBlocks.DECAY_AWAY, decayPlacerItemSettings);
 
     // Resources
-    public static final Item SPARKLESTONE_GEM = new Item(spectrumWorldgenItemSettings);
-    public static final Item RAW_AZURITE = new Item(spectrumWorldgenItemSettings);
-    public static final Item SHAPED_AZURITE = new Item(spectrumWorldgenItemSettings);
-    public static final Item SCARLET_FRAGMENTS = new GravityItem(generalItemSettings, 1.003F);
-    public static final Item SCARLET_GEM = new GravityItem(generalItemSettingsSixteen, 1.02F);
-    public static final Item PALETUR_FRAGMENTS = new GravityItem(generalItemSettings, 0.997F);
-    public static final Item PALETUR_GEM = new GravityItem(generalItemSettingsSixteen, 0.98F);
+    public static final Item SPARKLESTONE_GEM = new Item(resourcesItemSettings);
+    public static final Item RAW_AZURITE = new Item(resourcesItemSettings);
+    public static final Item SHAPED_AZURITE = new Item(resourcesItemSettings);
+    public static final Item SCARLET_FRAGMENTS = new GravityItem(resourcesItemSettings, 1.003F);
+    public static final Item SCARLET_GEM = new GravityItem(resourcesItemSettingsSixteen, 1.02F);
+    public static final Item PALETUR_FRAGMENTS = new GravityItem(resourcesItemSettings, 0.997F);
+    public static final Item PALETUR_GEM = new GravityItem(resourcesItemSettingsSixteen, 0.98F);
 
-    public static final Item QUITOXIC_POWDER = new Item(generalItemSettingsSixteen);
-    public static final Item MERMAIDS_GEM = new Item(generalItemSettingsSixteen);
-    public static final Item SHOOTING_STAR = new Item(generalItemSettingsSixteen);
-    public static final Item LIGHTNING_STONE = new Item(generalItemSettingsSixteen);
+    public static final Item QUITOXIC_POWDER = new Item(resourcesItemSettingsSixteen);
+    public static final Item MERMAIDS_GEM = new Item(resourcesItemSettingsSixteen);
+    public static final Item SHOOTING_STAR = new Item(resourcesItemSettingsSixteen);
+    public static final Item LIGHTNING_STONE = new Item(resourcesItemSettingsSixteen);
 
 	// Magical Tools
     public static final Item GLOW_VISION_HELMET = new GlowVisionHelmet(SpectrumArmorMaterials.GLOW_VISION, EquipmentSlot.HEAD, spectrumLowNightVisionArmorItemSettings);
@@ -159,22 +161,22 @@ public class SpectrumItems {
     public static final Item END_PORTAL_CRACKER = new EndPortalCrackerItem(generalItemSettings);
 
     // Catkin
-    public static final Item VIBRANT_CYAN_CATKIN = new CatkinItem(GemstoneColor.CYAN, false, generalItemSettings);
-    public static final Item VIBRANT_MAGENTA_CATKIN =  new CatkinItem(GemstoneColor.MAGENTA, false, generalItemSettings);
-    public static final Item VIBRANT_YELLOW_CATKIN = new CatkinItem(GemstoneColor.YELLOW, false, generalItemSettings);
-    public static final Item VIBRANT_BLACK_CATKIN = new CatkinItem(GemstoneColor.BLACK, false, generalItemSettings);
-    public static final Item VIBRANT_WHITE_CATKIN = new CatkinItem(GemstoneColor.WHITE, false, generalItemSettings);
+    public static final Item VIBRANT_CYAN_CATKIN = new CatkinItem(GemstoneColor.CYAN, false, resourcesItemSettings);
+    public static final Item VIBRANT_MAGENTA_CATKIN =  new CatkinItem(GemstoneColor.MAGENTA, false, resourcesItemSettings);
+    public static final Item VIBRANT_YELLOW_CATKIN = new CatkinItem(GemstoneColor.YELLOW, false, resourcesItemSettings);
+    public static final Item VIBRANT_BLACK_CATKIN = new CatkinItem(GemstoneColor.BLACK, false, resourcesItemSettings);
+    public static final Item VIBRANT_WHITE_CATKIN = new CatkinItem(GemstoneColor.WHITE, false, resourcesItemSettings);
 	
-    public static final Item LUCID_CYAN_CATKIN =  new CatkinItem(GemstoneColor.CYAN, true, generalUncommonItemSettings);
-    public static final Item LUCID_MAGENTA_CATKIN = new CatkinItem(GemstoneColor.MAGENTA, true, generalUncommonItemSettings);
-    public static final Item LUCID_YELLOW_CATKIN = new CatkinItem(GemstoneColor.YELLOW, true, generalUncommonItemSettings);
-    public static final Item LUCID_BLACK_CATKIN = new CatkinItem(GemstoneColor.BLACK, true, generalUncommonItemSettings);
-    public static final Item LUCID_WHITE_CATKIN = new CatkinItem(GemstoneColor.WHITE, true, generalUncommonItemSettings);
+    public static final Item LUCID_CYAN_CATKIN =  new CatkinItem(GemstoneColor.CYAN, true, resourcesUncommonItemSettings);
+    public static final Item LUCID_MAGENTA_CATKIN = new CatkinItem(GemstoneColor.MAGENTA, true, resourcesUncommonItemSettings);
+    public static final Item LUCID_YELLOW_CATKIN = new CatkinItem(GemstoneColor.YELLOW, true, resourcesUncommonItemSettings);
+    public static final Item LUCID_BLACK_CATKIN = new CatkinItem(GemstoneColor.BLACK, true, resourcesUncommonItemSettings);
+    public static final Item LUCID_WHITE_CATKIN = new CatkinItem(GemstoneColor.WHITE, true, resourcesUncommonItemSettings);
 
     // Misc
 	public static final Item MUSIC_DISC_SPECTRUM_THEME = new SpectrumMusicDiscItem(1, SpectrumSoundEvents.SPECTRUM_THEME, musicDiscItemSettings);
-    public static final Item SPAWNER = new Spawner(Blocks.SPAWNER, spectrumUncommonItemSettings);
-    public static final Item GLISTERING_MELON_SEEDS = new AliasedBlockItem(SpectrumBlocks.GLISTERING_MELON_STEM, spectrumUncommonItemSettings);
+    public static final Item SPAWNER = new Spawner(Blocks.SPAWNER, generalUncommonItemSettings);
+    public static final Item GLISTERING_MELON_SEEDS = new AliasedBlockItem(SpectrumBlocks.GLISTERING_MELON_STEM, generalItemSettings);
     public static final Item INVISIBLE_ITEM_FRAME = new InvisibleItemFrameItem(SpectrumEntityTypes.INVISIBLE_ITEM_FRAME, generalItemSettings);
     public static final Item INVISIBLE_GLOW_ITEM_FRAME = new InvisibleGlowItemFrameItem(SpectrumEntityTypes.INVISIBLE_GLOW_ITEM_FRAME, generalItemSettings);
 

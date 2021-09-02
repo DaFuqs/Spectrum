@@ -3,9 +3,13 @@ package de.dafuqs.spectrum.registries;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.mob_head.SpectrumSkullBlock;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.Registry;
+
+import java.util.function.Predicate;
 
 public class SpectrumItemGroups {
 
@@ -13,8 +17,8 @@ public class SpectrumItemGroups {
             new Identifier(SpectrumCommon.MOD_ID, "general"),
             () -> new ItemStack(SpectrumBlocks.PEDESTAL_BASIC_AMETHYST));
 
-    public static final ItemGroup ITEM_GROUP_WORLDGEN = FabricItemGroupBuilder.build(
-            new Identifier(SpectrumCommon.MOD_ID, "worldgen"),
+    public static final ItemGroup ITEM_GROUP_RESOURCES = FabricItemGroupBuilder.build(
+            new Identifier(SpectrumCommon.MOD_ID, "resources"),
             () -> new ItemStack(SpectrumBlocks.CITRINE_BLOCK));
 
     public static final ItemGroup ITEM_GROUP_COLORED_WOOD = FabricItemGroupBuilder.build(
@@ -29,6 +33,9 @@ public class SpectrumItemGroups {
             new Identifier(SpectrumCommon.MOD_ID, "mob_heads"),
             () -> new ItemStack(SpectrumBlocks.getMobHead(SpectrumSkullBlock.Type.PUFFERFISH)));
 
+    // Currently .appendItems() replaces the previous content completely
+    // so we have to use a separate creative tab for all those tools
+    // https://github.com/FabricMC/fabric/issues/324
     public static final ItemGroup ITEM_GROUP_PREENCHANTED_TOOLS = FabricItemGroupBuilder.create(
             new Identifier(SpectrumCommon.MOD_ID, "tools"))
             .icon(() -> SpectrumDefaultEnchantments.getEnchantedItemStack(SpectrumItems.BEDROCK_PICKAXE))
@@ -40,8 +47,6 @@ public class SpectrumItemGroups {
                 stacks.add(SpectrumDefaultEnchantments.getEnchantedItemStack(SpectrumItems.FORTUNE_PICKAXE));
                 stacks.add(SpectrumDefaultEnchantments.getEnchantedItemStack(SpectrumItems.VOIDING_PICKAXE));
                 stacks.add(SpectrumDefaultEnchantments.getEnchantedItemStack(SpectrumItems.RESONANT_PICKAXE));
-                stacks.add(new ItemStack(SpectrumItems.GLOW_VISION_HELMET));
-                stacks.add(new ItemStack(SpectrumItems.NATURES_STAFF));
 
                 // emergency armor
                 stacks.add(new ItemStack(SpectrumItems.EMERGENCY_HELMET));

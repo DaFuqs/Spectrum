@@ -14,7 +14,6 @@ import de.dafuqs.spectrum.blocks.decay.FadingBlock;
 import de.dafuqs.spectrum.blocks.decay.FailingBlock;
 import de.dafuqs.spectrum.blocks.decay.RuinBlock;
 import de.dafuqs.spectrum.blocks.deeper_down_portal.DeeperDownPortalBlock;
-import de.dafuqs.spectrum.blocks.detector.*;
 import de.dafuqs.spectrum.blocks.ender.EnderDropperBlock;
 import de.dafuqs.spectrum.blocks.ender.EnderHopperBlock;
 import de.dafuqs.spectrum.blocks.fluid.LiquidCrystalFluidBlock;
@@ -36,8 +35,7 @@ import de.dafuqs.spectrum.blocks.particle_spawner.ParticleSpawnerBlock;
 import de.dafuqs.spectrum.blocks.pedestal.PedestalBlock;
 import de.dafuqs.spectrum.blocks.pedestal.PedestalBlockItem;
 import de.dafuqs.spectrum.blocks.pedestal.PedestalUpgradeBlock;
-import de.dafuqs.spectrum.blocks.redstone.RedstoneGravityBlock;
-import de.dafuqs.spectrum.blocks.redstone.RedstoneTransparencyBlock;
+import de.dafuqs.spectrum.blocks.redstone.*;
 import de.dafuqs.spectrum.blocks.spirit_tree.OminousSaplingBlock;
 import de.dafuqs.spectrum.blocks.spirit_tree.OminousSaplingBlockItem;
 import de.dafuqs.spectrum.blocks.spirit_vines.SpiritVinesBodyBlock;
@@ -795,7 +793,6 @@ public class SpectrumBlocks {
 
     private static void registerPlayerOnlyGlass(FabricItemSettings fabricItemSettings) {
         registerBlockWithItem("vanilla_player_only_glass", VANILLA_PLAYER_ONLY_GLASS, fabricItemSettings);
-
         registerBlockWithItem("tinted_player_only_glass", TINTED_PLAYER_ONLY_GLASS, fabricItemSettings);
         registerBlockWithItem("glowing_player_only_glass", GLOWING_PLAYER_ONLY_GLASS, fabricItemSettings);
 

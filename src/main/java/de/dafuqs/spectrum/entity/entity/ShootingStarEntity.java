@@ -31,6 +31,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.NotNull;
 
 public class ShootingStarEntity extends Entity {
 
@@ -60,7 +61,7 @@ public class ShootingStarEntity extends Entity {
     }
 
     @Environment(EnvType.CLIENT)
-    private ShootingStarEntity(ShootingStarEntity entity) {
+    private ShootingStarEntity(@NotNull ShootingStarEntity entity) {
         super(entity.getType(), entity.world);
         this.setStack(entity.getStack().copy());
         this.copyPositionAndRotation(entity);
@@ -68,10 +69,10 @@ public class ShootingStarEntity extends Entity {
         this.hoverHeight = entity.hoverHeight;
     }
 
-    public static void doShootingStarSpawns(ServerWorld serverWorld) {
+    public static void doShootingStarSpawns(@NotNull ServerWorld serverWorld) {
         if(SpectrumCommon.CONFIG.ShootingStarWorlds.contains(serverWorld.getRegistryKey().getValue().toString())) {
             if(serverWorld.getTimeOfDay() % 100 == 0 && serverWorld.getTimeOfDay() > 13000 && serverWorld.getTimeOfDay() < 22000) {
-                Identifier advancementIdentifier = new Identifier(SpectrumCommon.MOD_ID, "craft_colored_pedestal");
+                Identifier advancementIdentifier = new Identifier(SpectrumCommon.MOD_ID, "midgame/build_advanced_pedestal_structure");
                 for (PlayerEntity playerEntity : serverWorld.getEntitiesByType(EntityType.PLAYER, Entity::isAlive)) {
                     if (Support.hasAdvancement(playerEntity, advancementIdentifier) && serverWorld.getRandom().nextFloat() < SpectrumCommon.CONFIG.ShootingStarChance) {
                         spawnShootingStar(serverWorld, playerEntity);
@@ -81,7 +82,7 @@ public class ShootingStarEntity extends Entity {
         }
     }
 
-    public static void spawnShootingStar(ServerWorld serverWorld, PlayerEntity playerEntity) {
+    public static void spawnShootingStar(ServerWorld serverWorld, @NotNull PlayerEntity playerEntity) {
         ItemStack itemStack = new ItemStack(SpectrumItems.SHOOTING_STAR);
         ShootingStarEntity shootingStarEntity = new ShootingStarEntity(serverWorld, playerEntity.getPos().getX(), playerEntity.getPos().getY() + 200, playerEntity.getPos().getZ(), itemStack);
         shootingStarEntity.addVelocity(3 - shootingStarEntity.random.nextFloat() * 6, 0, 3 - shootingStarEntity.random.nextFloat() * 6);
@@ -156,7 +157,7 @@ public class ShootingStarEntity extends Entity {
         }
     }
 
-    public void writeCustomDataToNbt(NbtCompound tag) {
+    public void writeCustomDataToNbt(@NotNull NbtCompound tag) {
         tag.putShort("Age", (short)this.age);
 
         if (!this.getStack().isEmpty()) {
@@ -164,7 +165,7 @@ public class ShootingStarEntity extends Entity {
         }
     }
 
-    public void readCustomDataFromNbt(NbtCompound tag) {
+    public void readCustomDataFromNbt(@NotNull NbtCompound tag) {
         this.age = tag.getShort("Age");
 
         NbtCompound compoundTag = tag.getCompound("Item");

@@ -1,0 +1,25 @@
+{
+  "parent": "spectrum:midgame/craft_bottle_of_ruin",
+  "display": {
+    "icon": {
+      "item": "spectrum:bedrock_dust"
+    },
+    "title": {
+      "translate": "advancements.spectrum.break_decayed_bedrock.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.break_decayed_bedrock.description"
+    }
+  },
+  "criteria": {
+    "broken_corrupted_bedrock": {
+      "trigger": "spectrum:block_broken",
+      "conditions": {
+        "block": "spectrum:ruin",
+        "state": {
+          "decay_state": "bedrock"
+        }
+      }
+    }
+  }
+}

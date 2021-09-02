@@ -1,0 +1,19 @@
+{
+  "parent": "spectrum:midgame/build_advanced_pedestal_structure",
+  "display": {
+    "icon": {
+        "item": "spectrum:pedestal_speed_upgrade"
+    },
+    "title": {
+      "translate": "advancements.spectrum.use_all_pedestal_upgrades.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.use_all_pedestal_upgrades.description"
+    }
+  },
+  "criteria": {
+    "used_all": {
+      "trigger":"minecraft:impossible"
+    }
+  }
+}

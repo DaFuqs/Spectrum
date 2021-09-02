@@ -1,0 +1,22 @@
+{
+  "name": "Ender Hopper",
+  "advancement": "spectrum:progression/unlock_ender_blocks",
+  "icon": "spectrum:ender_dropper",
+  "category": "spectrum:magical_blocks_category",
+  "extra_recipe_mappings": {
+    "spectrum:ender_hopper": 1
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "title": "Ender Hopper",
+      "item": "spectrum:ender_hopper",
+      "text": "If you have designed it to resemble an ordinary hopper in form and function, the Ehder Hopper has the special ability to put all items above it and from inventories directly into your Ender Chest.$(br2)The Ender Hopper only works while you are online."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier2/ender_hopper",
+      "text": ""
+    }
+  ]
+}

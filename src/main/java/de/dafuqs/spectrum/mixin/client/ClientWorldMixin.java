@@ -17,12 +17,10 @@ public abstract class ClientWorldMixin {
     @Inject(at = @At(value = "INVOKE", target = "Lnet/minecraft/client/world/ClientWorld;tickBlockEntities()V"), method = "tickEntities")
     void postEntityTick(CallbackInfo ci) {
         for (Entity entry : getEntities()) {
-            if (entry instanceof GravityBlockEntity) {
-                GravityBlockEntity entity = (GravityBlockEntity) entry;
+            if (entry instanceof GravityBlockEntity entity) {
                 entity.postTickEntities();
             }
-            if (entry instanceof GravityBlockEntity.ICPEM) {
-                GravityBlockEntity.ICPEM entity = (GravityBlockEntity.ICPEM) entry;
+            if (entry instanceof GravityBlockEntity.PostTicker entity) {
                 entity.postTick();
             }
         }

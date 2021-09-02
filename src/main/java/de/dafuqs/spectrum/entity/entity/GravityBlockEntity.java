@@ -41,7 +41,6 @@ public class GravityBlockEntity extends Entity {
 
     public int floatTime;
     public boolean dropItem;
-    public NbtCompound blockEntityData;
     private BlockState blockState;
     private float gravityModifier;
     private boolean hurtEntities;
@@ -131,7 +130,7 @@ public class GravityBlockEntity extends Entity {
     }
 
     /**
-     * Because this entity moves other entities, including the player, this entity has
+     * Because this entity moves other entities, including players, this entity has
      * to tick after the all other entities have ticked to prevent them phasing though this
      */
     public void postTickEntities() {
@@ -159,16 +158,15 @@ public class GravityBlockEntity extends Entity {
             }
 
             Box oldBox = getBoundingBox();
-
             this.move(MovementType.SELF, this.getVelocity());
 
             Box newBox = getBoundingBox();
             List<Entity> otherEntities = this.world.getOtherEntities(this, oldBox.union(newBox));
             for (Entity entity : otherEntities) {
-                if (!(entity instanceof GravityBlockEntity) && !entity.noClip) {
-                    if (entity.getY() < newBox.maxY) {
-                        entity.updatePosition(entity.getPos().x, newBox.maxY, entity.getPos().z);
-                    }
+                if (!(entity instanceof GravityBlockEntity) && !entity.noClip && this.collides()) {
+                    entity.fallDistance = 0F;
+                    entity.setPosition(entity.getPos().x, getBoundingBox().maxY, entity.getPos().z);
+                    entity.setOnGround(true);
                 }
             }
 
@@ -217,26 +215,7 @@ public class GravityBlockEntity extends Entity {
                         }
 
                         if (this.world.setBlockState(blockPos, this.blockState, 3)) {
-                            if (block instanceof GravitableBlock) {
-                                ((GravitableBlock) block).onEndFloating(this.world, blockPos, this.blockState, blockState);
-                            }
 
-                            if (this.blockEntityData != null && this.blockState.getBlock() instanceof BlockWithEntity) {
-                                BlockEntity blockEntity = this.world.getBlockEntity(blockPos);
-                                if (blockEntity != null) {
-                                    NbtCompound compoundTag = blockEntity.writeNbt(new NbtCompound());
-
-                                    for (String keyName : this.blockEntityData.getKeys()) {
-                                        NbtElement tag = this.blockEntityData.get(keyName);
-                                        if (tag != null && !"x".equals(keyName) && !"y".equals(keyName) && !"z".equals(keyName)) {
-                                            compoundTag.put(keyName, tag.copy());
-                                        }
-                                    }
-
-                                    BlockEntity.createFromNbt(blockPos, this.blockState, compoundTag);
-                                    blockEntity.markDirty();
-                                }
-                            }
                         } else if (this.dropItem && this.world.getGameRules().getBoolean(GameRules.DO_ENTITY_DROPS)) {
                             this.dropItem(block);
                         }
@@ -274,7 +253,6 @@ public class GravityBlockEntity extends Entity {
         compound.putBoolean("HurtEntities", this.hurtEntities);
         compound.putFloat("FallHurtAmount", this.floatHurtAmount);
         compound.putInt("FallHurtMax", this.floatHurtMax);
-        if (this.blockEntityData != null) compound.put("TileEntityData", this.blockEntityData);
     }
 
     @Override
@@ -290,9 +268,6 @@ public class GravityBlockEntity extends Entity {
         }
 
         if (compound.contains("DropItem", 99)) this.dropItem = compound.getBoolean("DropItem");
-
-        if (compound.contains("TileEntityData", 10)) this.blockEntityData = compound.getCompound("TileEntityData");
-
         if (this.blockState.isAir()) this.blockState = SpectrumBlocks.PALETUR_FRAGMENT_BLOCK.getDefaultState();
     }
 
@@ -325,17 +300,12 @@ public class GravityBlockEntity extends Entity {
         this.dataTracker.set(ORIGIN, pos);
     }
 
-    @Environment(EnvType.CLIENT)
-    public BlockPos getFallingBlockPos() {
-        return this.dataTracker.get(ORIGIN);
-    }
-
     @Override
     protected void initDataTracker() {
         this.dataTracker.startTracking(ORIGIN, BlockPos.ORIGIN);
     }
 
-    public interface ICPEM {
+    public interface PostTicker {
         void postTick();
     }
 

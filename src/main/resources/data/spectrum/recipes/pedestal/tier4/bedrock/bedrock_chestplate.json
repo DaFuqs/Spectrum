@@ -1,5 +1,6 @@
 {
   "type": "spectrum:pedestal",
+  "group": "bedrock_armor",
   "time": 600,
   "tier": "complex",
   "magenta": 0,

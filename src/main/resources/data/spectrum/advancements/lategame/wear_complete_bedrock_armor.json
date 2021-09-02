@@ -1,0 +1,48 @@
+{
+  "parent": "spectrum:lategame/build_complex_pedestal_structure",
+  "display": {
+    "icon": {
+      "item": "spectrum:bedrock_chestplate"
+    },
+    "title": {
+      "translate": "advancements.spectrum.wear_complete_bedrock_armor.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.wear_complete_bedrock_armor.description"
+    }
+  },
+  "criteria": {
+    "bedrock_helmet": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [ { "items": [ "spectrum:bedrock_helmet" ] } ]
+      }
+    },
+    "bedrock_chestplate": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [ { "items": [ "spectrum:bedrock_chestplate" ] } ]
+      }
+    },
+    "bedrock_leggings": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [ { "items": [ "spectrum:bedrock_leggings" ] } ]
+      }
+    },
+    "bedrock_boots": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [ { "items": [ "spectrum:bedrock_boots" ] } ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "bedrock_helmet",
+      "bedrock_chestplate",
+      "bedrock_leggings",
+      "bedrock_boots"
+    ]
+  ]
+}

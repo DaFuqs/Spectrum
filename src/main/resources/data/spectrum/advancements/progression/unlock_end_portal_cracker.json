@@ -1,0 +1,20 @@
+{
+  "criteria": {
+    "found_end_city": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "minecraft:end/find_end_city" }
+    },
+    "collected_shooting_star": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:collect_shooting_star" }
+    },
+    "built_complex_pedestal_structure": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:lategame/build_complex_pedestal_structure" }
+    },
+    "collected_quitoxic_reeds": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:collect_quitoxic_reeds" }
+    }
+  }
+}

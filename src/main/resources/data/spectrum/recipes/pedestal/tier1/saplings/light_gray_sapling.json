@@ -1,5 +1,6 @@
 {
   "type": "spectrum:pedestal",
+  "group": "colored_saplings",
   "time": 160,
   "tier": "basic",
   "cyan": 0,

@@ -1,5 +1,6 @@
 {
   "type": "spectrum:pedestal",
+  "group": "onyx_lamps",
   "time": 40,
   "tier": "basic",
   "cyan": 0,

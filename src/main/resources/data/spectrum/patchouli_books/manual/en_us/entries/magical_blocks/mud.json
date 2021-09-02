@@ -1,0 +1,21 @@
+{
+    "name": "Mud",
+    "advancement": "spectrum:hidden/collect_shards/collect_topaz_shard",
+    "icon": "spectrum:mud_bucket",
+    "category": "spectrum:resources_category",
+    "extra_recipe_mappings": {
+        "spectrum:mud_bucket": 1
+    },
+    "pages": [
+        {
+            "type": "patchouli:spotlight",
+            "item": "spectrum:mud_bucket",
+            "text": "$(italic)TODO"
+        },
+        {
+            "type": "spectrum:pedestal_crafting",
+            "recipe": "spectrum:pedestal/tier1/mud_bucket",
+            "text": "Mud. It is mud. Not particularly interesting in itself. But what is practical is the collision of the dirt with water and lava. This creates dirt and coarse dirt, respectively."
+        }
+    ]
+}

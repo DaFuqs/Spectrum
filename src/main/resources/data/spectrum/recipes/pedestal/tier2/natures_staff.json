@@ -2,7 +2,7 @@
   "type": "spectrum:pedestal",
   "time": 1200,
   "tier": "simple",
-  "cyan": 2,
+  "cyan": 0,
   "magenta": 6,
   "yellow": 2,
   "white": 0,

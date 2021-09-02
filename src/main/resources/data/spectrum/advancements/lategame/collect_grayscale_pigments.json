@@ -1,0 +1,33 @@
+{
+  "parent": "spectrum:lategame/spectrum_lategame",
+  "display": {
+    "icon": {
+      "item": "spectrum:paletur_gem"
+    },
+    "title": {
+      "translate": "advancements.spectrum.collect_grayscale_pigments.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.collect_grayscale_pigments.description"
+    },
+    "frame": "goal"
+  },
+  "criteria": {
+    "has_black": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": { "items": [{ "items": [ "spectrum:black_pigment" ]}] }
+    },
+    "has_gray": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": { "items": [{ "items": [ "spectrum:gray_pigment" ]}] }
+    },
+    "has_light_gray": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": { "items": [{ "items": [ "spectrum:light_gray_pigment" ]}] }
+    },
+    "has_white": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": { "items": [{ "items": [ "spectrum:white_pigment" ]}] }
+    }
+  }
+}

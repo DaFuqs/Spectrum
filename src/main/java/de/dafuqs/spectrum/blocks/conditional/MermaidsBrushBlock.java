@@ -41,7 +41,7 @@ public class MermaidsBrushBlock extends PlantBlock implements Cloakable, Waterlo
 
     @Override
     public Identifier getCloakAdvancementIdentifier() {
-        return new Identifier(SpectrumCommon.MOD_ID, "craft_colored_sapling"); // TODO
+        return new Identifier(SpectrumCommon.MOD_ID, "collect_mermaids_gem");
     }
 
     @Override

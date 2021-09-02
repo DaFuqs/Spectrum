@@ -4,9 +4,9 @@
   "tier": "advanced",
   "magenta": 0,
   "yellow": 0,
-  "cyan": 8,
-  "black": 0,
-  "white": 0,
+  "cyan": 2,
+  "black": 2,
+  "white": 2,
   "experience": 1.0,
   "pattern": [
     "PPP",
@@ -26,7 +26,7 @@
   },
   "result" : {
     "item": "spectrum:liquid_crystal_bucket",
-    "count": 4
+    "count": 1
   },
   "required_advancements": ["spectrum:midgame/spectrum_midgame"]
 }

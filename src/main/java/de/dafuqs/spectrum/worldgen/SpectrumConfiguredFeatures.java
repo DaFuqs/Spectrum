@@ -140,39 +140,39 @@ public class SpectrumConfiguredFeatures extends ConfiguredFeatures {
         }
 
         List<ConfiguredFeature<?, ?>> treeList = new ArrayList<>();
-        treeList.add(COLORED_TREE_FEATURES.get(DyeColor.BLACK));
+        //treeList.add(COLORED_TREE_FEATURES.get(DyeColor.BLACK));
         treeList.add(COLORED_TREE_FEATURES.get(DyeColor.BLUE));
-        treeList.add(COLORED_TREE_FEATURES.get(DyeColor.BROWN));
+        //treeList.add(COLORED_TREE_FEATURES.get(DyeColor.BROWN));
         treeList.add(COLORED_TREE_FEATURES.get(DyeColor.CYAN));
-        treeList.add(COLORED_TREE_FEATURES.get(DyeColor.GRAY));
+        //treeList.add(COLORED_TREE_FEATURES.get(DyeColor.GRAY));
         treeList.add(COLORED_TREE_FEATURES.get(DyeColor.GREEN));
         treeList.add(COLORED_TREE_FEATURES.get(DyeColor.LIGHT_BLUE));
-        treeList.add(COLORED_TREE_FEATURES.get(DyeColor.LIGHT_GRAY));
+        //treeList.add(COLORED_TREE_FEATURES.get(DyeColor.LIGHT_GRAY));
         treeList.add(COLORED_TREE_FEATURES.get(DyeColor.LIME));
         treeList.add(COLORED_TREE_FEATURES.get(DyeColor.MAGENTA));
         treeList.add(COLORED_TREE_FEATURES.get(DyeColor.ORANGE));
         treeList.add(COLORED_TREE_FEATURES.get(DyeColor.PINK));
         treeList.add(COLORED_TREE_FEATURES.get(DyeColor.PURPLE));
         treeList.add(COLORED_TREE_FEATURES.get(DyeColor.RED));
-        treeList.add(COLORED_TREE_FEATURES.get(DyeColor.WHITE));
+        //treeList.add(COLORED_TREE_FEATURES.get(DyeColor.WHITE));
         treeList.add(COLORED_TREE_FEATURES.get(DyeColor.YELLOW));
 
         List<Integer> weightList = new ArrayList<>();
-        weightList.add(1);
+        //weightList.add(1);
         weightList.add(25);
+        //weightList.add(25);
+        weightList.add(75);
+        //weightList.add(1);
+        weightList.add(25);
+        weightList.add(25);
+        //weightList.add(1);
         weightList.add(25);
         weightList.add(75);
-        weightList.add(1);
-        weightList.add(25);
-        weightList.add(25);
-        weightList.add(1);
-        weightList.add(25);
-        weightList.add(75);
         weightList.add(25);
         weightList.add(25);
         weightList.add(25);
         weightList.add(25);
-        weightList.add(1);
+        //weightList.add(1);
         weightList.add(75);
 
         RANDOM_COLORED_TREES_FEATURE = SpectrumFeatures.WEIGHTED_RANDOM_FEATURE_PATCH.configure(

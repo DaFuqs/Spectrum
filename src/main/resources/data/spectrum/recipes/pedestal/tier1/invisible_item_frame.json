@@ -31,5 +31,5 @@
     "item": "spectrum:invisible_item_frame",
     "count": 1
   },
-  "required_advancements": ["spectrum:hidden/collect_resource/collect_sparklestone"]
+  "required_advancements": ["spectrum:collect_sparklestone"]
 }

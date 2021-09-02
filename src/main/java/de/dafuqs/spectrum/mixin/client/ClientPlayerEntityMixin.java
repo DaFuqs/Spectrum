@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
 @Mixin(ClientPlayerEntity.class)
-public abstract class ClientPlayerEntityMixin implements GravityBlockEntity.ICPEM {
+public abstract class ClientPlayerEntityMixin implements GravityBlockEntity.PostTicker {
 
     @Shadow
     protected abstract void sendMovementPackets();

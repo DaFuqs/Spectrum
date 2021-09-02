@@ -33,26 +33,47 @@ public class PedestalScreen extends HandledScreen<PedestalScreenHandler> {
         super(handler, playerInventory, title);
         this.backgroundHeight = 194;
 
-        switch (this.handler.getVariant()) {
-            case MOONSTONE -> {
-                backgroundTexture = BACKGROUND4;
-            }
-            case ONYX -> {
-                backgroundTexture = BACKGROUND3;
-            }
-            case ALL_BASIC -> {
-                backgroundTexture = BACKGROUND2;
-            }
-            default -> {
-                backgroundTexture = BACKGROUND1;
-            }
-        }
+        backgroundTexture = getBackgroundTextureForVariant(handler.getVariant());
 
         this.pedestalVariant = handler.getVariant();
 
         this.maxPedestalRecipeTierForVariant = PedestalBlockEntity.getHighestAvailableRecipeTierForVariant(pedestalVariant);
         PedestalRecipeTier maxPedestalRecipeTier = handler.getMaxPedestalRecipeTier();
         this.structureUpdateAvailable = this.maxPedestalRecipeTierForVariant != maxPedestalRecipeTier;
+    }
+
+    public static Identifier getBackgroundTextureForVariant(PedestalBlock.PedestalVariant pedestalVariant) {
+        switch (pedestalVariant) {
+            case MOONSTONE -> {
+                return BACKGROUND4;
+            }
+            case ONYX -> {
+                return BACKGROUND3;
+            }
+            case ALL_BASIC -> {
+                return BACKGROUND2;
+            }
+            default -> {
+                return BACKGROUND1;
+            }
+        }
+    }
+
+    public static Identifier getBackgroundTextureForTier(PedestalRecipeTier recipeTier) {
+        switch (recipeTier) {
+            case COMPLEX -> {
+                return BACKGROUND4;
+            }
+            case ADVANCED -> {
+                return BACKGROUND3;
+            }
+            case SIMPLE -> {
+                return BACKGROUND2;
+            }
+            default -> {
+                return BACKGROUND1;
+            }
+        }
     }
 
     @Override

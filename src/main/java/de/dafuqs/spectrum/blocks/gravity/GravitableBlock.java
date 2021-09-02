@@ -51,16 +51,9 @@ public class GravitableBlock extends FallingBlock {
 
             if ((worldIn.isAir(collisionBlockPos) || canFallThrough(worldIn.getBlockState(collisionBlockPos)))) {
                 GravityBlockEntity blockEntity = new GravityBlockEntity(worldIn, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, worldIn.getBlockState(pos));
-                this.onStartFloating(blockEntity);
                 worldIn.spawnEntity(blockEntity);
             }
         }
-    }
-
-    protected void onStartFloating(GravityBlockEntity entityIn) {
-    }
-
-    public void onEndFloating(World worldIn, BlockPos posIn, BlockState floatingState, BlockState hitState) {
     }
 
     @Override

@@ -1,5 +1,6 @@
 {
   "type": "spectrum:pedestal",
+  "group": "sparklestone_lights",
   "time": 80,
   "tier": "basic",
   "cyan": 0,

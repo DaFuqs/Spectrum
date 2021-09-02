@@ -1,0 +1,21 @@
+{
+  "display": {
+    "icon": {
+        "item": "spectrum:brown_block"
+    },
+    "title": {
+      "translate": "advancements.spectrum.craft_something_brown.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.craft_something_brown.description"
+    }
+  },
+  "parent": "spectrum:craft_using_pedestal",
+  "criteria": {
+    "craft": {
+      "trigger":"spectrum:crafted_with_pedestal",
+      "conditions": {
+        "items": [{ "items": [ "spectrum:brown_spore_blossom", "spectrum:brown_sapling", "spectrum:brown_block", "spectrum:brown_lamp", "spectrum:brown_glowblock" ]}] }
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "parent": "spectrum:build_basic_pedestal_structure",
+  "display": {
+    "icon": {
+        "item": "spectrum:void_bundle"
+    },
+    "frame": "challenge",
+    "title": {
+      "translate": "advancements.spectrum.fill_void_bundle.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.fill_void_bundle.description"
+    }
+  },
+  "criteria": {
+    "void_bundle_full": {
+      "trigger":"minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "experience": 500
+  }
+}

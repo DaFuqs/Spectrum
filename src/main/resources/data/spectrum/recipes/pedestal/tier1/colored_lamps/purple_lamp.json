@@ -1,5 +1,6 @@
 {
   "type": "spectrum:pedestal",
+  "group": "colored_lamps",
   "time": 40,
   "tier": "basic",
   "magenta": 0,

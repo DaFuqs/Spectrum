@@ -1,6 +1,6 @@
 {
   "name": "Radiant Glass",
-  "advancement": "spectrum:hidden/collect_resource/collect_sparklestone",
+  "advancement": "spectrum:collect_sparklestone",
   "icon": "spectrum:glowing_glass",
   "category": "spectrum:decoration_category",
   "extra_recipe_mappings": {

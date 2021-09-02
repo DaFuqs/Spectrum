@@ -1,0 +1,20 @@
+{
+  "parent": "spectrum:midgame/collect_mob_head",
+  "display": {
+    "icon": {
+      "item": "minecraft:cow_spawn_egg"
+    },
+    "title": {
+      "translate": "advancements.spectrum.craft_spawn_egg.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.craft_spawn_egg.description"
+    }
+  },
+  "criteria": {
+    "craft": {
+      "trigger":"spectrum:crafted_with_pedestal",
+      "conditions": { "items": [ { "tag": "spectrum:spawn_eggs" } ] }
+    }
+  }
+}

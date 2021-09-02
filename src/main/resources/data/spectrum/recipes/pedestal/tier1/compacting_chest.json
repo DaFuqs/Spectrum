@@ -2,20 +2,20 @@
   "type": "spectrum:pedestal",
   "time": 800,
   "tier": "basic",
-  "cyan": 8,
+  "cyan": 4,
   "magenta": 0,
   "yellow": 0,
   "white": 0,
   "black": 0,
   "experience": 2,
   "pattern": [
-    "TTT",
-    "PSP",
+    "CCC",
+    "P P",
     "TTT"
   ],
   "key": {
-    "S": {
-      "item": "spectrum:topaz_shard"
+    "C": {
+      "item": "spectrum:polished_calcite"
     },
     "T": {
       "item": "spectrum:polished_basalt"

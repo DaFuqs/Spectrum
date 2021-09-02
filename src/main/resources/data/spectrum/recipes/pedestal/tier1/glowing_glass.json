@@ -25,5 +25,5 @@
     "item": "spectrum:glowing_glass",
     "count": 2
   },
-  "required_advancements": ["spectrum:hidden/collect_resource/collect_sparklestone"]
+  "required_advancements": ["spectrum:collect_sparklestone"]
 }

@@ -1,5 +1,6 @@
 {
   "type": "spectrum:pedestal",
+  "group": "colored_spore_blossoms",
   "time": 80,
   "tier": "simple",
   "magenta": 0,

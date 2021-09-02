@@ -1,0 +1,32 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 1200,
+  "tier": "simple",
+  "cyan": 4,
+  "magenta": 2,
+  "yellow": 0,
+  "white": 0,
+  "black": 0,
+  "experience": 2.0,
+  "pattern": [
+    "BPB",
+    "BSB",
+    " B "
+  ],
+  "key": {
+    "P": {
+      "item": "spectrum:blue_pigment"
+    },
+    "S": {
+      "item": "spectrum:ender_treasure"
+    },
+    "B": {
+      "item": "minecraft:polished_blackstone"
+    }
+  },
+  "result" : {
+    "item": "spectrum:ender_hopper",
+    "count": 1
+  },
+  "required_advancements": ["spectrum:progression/unlock_ender_blocks"]
+}

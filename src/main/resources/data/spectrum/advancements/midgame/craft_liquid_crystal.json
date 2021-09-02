@@ -1,0 +1,20 @@
+{
+  "parent": "spectrum:midgame/build_advanced_pedestal_structure",
+  "display": {
+    "icon": {
+        "item": "spectrum:liquid_crystal_bucket"
+    },
+    "title": {
+      "translate": "advancements.spectrum.craft_liquid_crystal.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.craft_liquid_crystal.description"
+    }
+  },
+  "criteria": {
+    "craft": {
+      "trigger":"spectrum:crafted_with_pedestal",
+      "conditions": { "items": [{ "items": [ "spectrum:liquid_crystal_bucket" ]}] }
+    }
+  }
+}

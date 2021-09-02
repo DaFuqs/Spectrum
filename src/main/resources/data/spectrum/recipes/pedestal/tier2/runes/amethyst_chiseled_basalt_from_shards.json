@@ -1,5 +1,6 @@
 {
   "type": "spectrum:pedestal",
+  "group": "amethyst_runes",
   "time": 80,
   "tier": "simple",
   "magenta": 1,

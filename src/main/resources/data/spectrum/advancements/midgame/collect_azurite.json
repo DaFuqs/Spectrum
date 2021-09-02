@@ -1,0 +1,37 @@
+{
+  "parent": "spectrum:midgame/collect_moonstone_shard",
+  "display": {
+    "icon": {
+      "item": "spectrum:raw_azurite"
+    },
+    "frame": "challenge",
+    "title": {
+      "translate": "advancements.spectrum.collect_azurite.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.collect_azurite.description"
+    },
+    "hidden": true
+  },
+  "criteria": {
+    "has_raw_azurite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": { "items": [{ "items": [ "spectrum:raw_azurite" ]}] }
+    },
+    "has_azurite_ore": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": { "items": [{ "items": [ "spectrum:azurite_ore" ]}] }
+    },
+    "has_deepslate_azurite_ore": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": { "items": [{ "items": [ "spectrum:deepslate_azurite_ore" ]}] }
+    }
+  },
+  "requirements": [
+    [
+      "has_raw_azurite",
+      "has_azurite_ore",
+      "has_deepslate_azurite_ore"
+    ]
+  ]
+}

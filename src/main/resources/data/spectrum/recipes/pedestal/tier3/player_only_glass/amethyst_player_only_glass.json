@@ -1,5 +1,6 @@
 {
   "type": "spectrum:pedestal",
+  "group": "player_only_glass",
   "time": 80,
   "tier": "advanced",
   "magenta": 8,
@@ -18,7 +19,7 @@
       "item": "minecraft:amethyst_shard"
     },
     "P": {
-      "item": "spectrum:magenta_pigment"
+      "item": "spectrum:purple_pigment"
     },
     "G": {
       "item": "minecraft:glass"

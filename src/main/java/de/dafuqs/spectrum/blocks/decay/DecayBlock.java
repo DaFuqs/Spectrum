@@ -6,6 +6,8 @@ import de.dafuqs.spectrum.registries.SpectrumDamageSources;
 import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
@@ -53,8 +55,9 @@ public abstract class DecayBlock extends Block {
 
     /**
      * If the decay jumps to sourceBlockState it will not place decay there, but destinationBlockState instead
-     * @param sourceBlockTag
-     * @param conversionState
+     * If a source block is not in one of those tags it will just be replaced with default decay
+     * @param sourceBlockTag The block tag checked for a conversion through decay
+     * @param conversionState The block state the source block is converted to
      */
     public void addDecayConversion(Tag<Block> sourceBlockTag, BlockState conversionState) {
         this.decayConversions.put(sourceBlockTag, conversionState);
@@ -89,11 +92,6 @@ public abstract class DecayBlock extends Block {
                     }
                     break;
             }
-
-            if(placer instanceof ClientPlayerEntity) {
-                ClientPlayerEntity player = (ClientPlayerEntity) placer;
-                // TODO: add overlay
-            }
         }
     }
 
@@ -117,10 +115,13 @@ public abstract class DecayBlock extends Block {
         Direction randomDirection = Direction.random(random);
         BlockPos targetBlockPos = pos.offset(randomDirection, 1);
         BlockState currentBlockState = world.getBlockState(targetBlockPos);
+        BlockEntity blockEntity = world.getBlockEntity(targetBlockPos);
 
-        if(!Support.hasTag(currentBlockState, SpectrumBlockTags.DECAY)  // decay doesn't jump to other decay. Maybe: if tier is smaller it should still be converted?
+        if(blockEntity == null && !Support.hasTag(currentBlockState, SpectrumBlockTags.DECAY)  // decay doesn't jump to other decay. Maybe: if tier is smaller it should still be converted?
             && (whiteListBlockTag == null || Support.hasTag(currentBlockState, whiteListBlockTag))
-            && (blackListBlockTag == null ||!Support.hasTag(currentBlockState, blackListBlockTag))) {
+            && (blackListBlockTag == null ||!Support.hasTag(currentBlockState, blackListBlockTag))
+                // bedrock is ok, but not other modded unbreakable blocks
+        && (currentBlockState.getBlock() == Blocks.BEDROCK || currentBlockState.getBlock().getHardness() > -1.0F && currentBlockState.getBlock().getBlastResistance() < 3600000.0F)) {
 
             BlockState destinationBlockState = this.getDefaultState();
             for(Map.Entry<Tag<Block>, BlockState> tagEntry : decayConversions.entrySet()) {

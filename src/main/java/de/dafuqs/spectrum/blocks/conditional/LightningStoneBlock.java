@@ -46,7 +46,7 @@ public class LightningStoneBlock extends Block implements Cloakable {
 
     @Override
     public Identifier getCloakAdvancementIdentifier() {
-        return new Identifier(SpectrumCommon.MOD_ID, "craft_colored_pedestal");
+        return new Identifier(SpectrumCommon.MOD_ID, "midgame/collect_corrupted_pedrock_dust");
     }
 
     @Deprecated

@@ -4,7 +4,7 @@ import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.chests.*;
 import de.dafuqs.spectrum.blocks.deeper_down_portal.DeeperDownPortalBlockEntity;
 import de.dafuqs.spectrum.blocks.deeper_down_portal.DeeperDownPortalBlockEntityRenderer;
-import de.dafuqs.spectrum.blocks.detector.PlayerDetectorBlockEntity;
+import de.dafuqs.spectrum.blocks.redstone.PlayerDetectorBlockEntity;
 import de.dafuqs.spectrum.blocks.ender.EnderDropperBlockEntity;
 import de.dafuqs.spectrum.blocks.ender.EnderHopperBlockEntity;
 import de.dafuqs.spectrum.blocks.mob_head.SpectrumSkullBlockEntity;

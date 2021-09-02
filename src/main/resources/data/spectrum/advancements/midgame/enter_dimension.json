@@ -1,0 +1,22 @@
+{
+  "parent": "spectrum:midgame/break_decayed_bedrock",
+  "display": {
+    "icon": {
+      "item": "minecraft:bedrock"
+    },
+    "title": {
+      "translate": "advancements.spectrum.enter_dimension.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.enter_dimension.description"
+    }
+  },
+  "criteria": {
+    "enter_dimension": {
+      "trigger": "minecraft:changed_dimension",
+      "conditions": {
+        "to": "spectrum:deeper_down_dimension"
+      }
+    }
+  }
+}

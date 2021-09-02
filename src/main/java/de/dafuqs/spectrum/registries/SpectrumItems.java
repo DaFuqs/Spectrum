@@ -32,7 +32,7 @@ import static de.dafuqs.spectrum.registries.SpectrumFluids.STILL_MUD;
 public class SpectrumItems {
 
     public static FabricItemSettings generalItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).maxCount(64);
-    public static FabricItemSettings generalItemSettingsSingle = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_PREENCHANTED_TOOLS).maxCount(1);
+    public static FabricItemSettings generalItemSettingsSingle = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).maxCount(1);
     public static FabricItemSettings generalUncommonItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).maxCount(64).rarity(Rarity.UNCOMMON);
     public static FabricItemSettings spectrumRareItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).rarity(Rarity.RARE).maxCount(64);
     public static FabricItemSettings resourcesItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_RESOURCES).maxCount(64);
@@ -155,7 +155,7 @@ public class SpectrumItems {
 
 	// Magical Tools
     public static final Item GLOW_VISION_HELMET = new GlowVisionHelmet(SpectrumArmorMaterials.GLOW_VISION, EquipmentSlot.HEAD, spectrumLowNightVisionArmorItemSettings);
-    public static final Item NATURES_STAFF = new AnimatedWandItem(generalItemSettings);
+    public static final Item NATURES_STAFF = new NaturesStaffItem(generalItemSettings);
     public static final EnderSpliceItem ENDER_SPLICE = new EnderSpliceItem(generalItemSettings);
     public static final Item ENDER_BAG = new EnderBagItem(generalItemSettings);
     public static final Item END_PORTAL_CRACKER = new EndPortalCrackerItem(generalItemSettings);

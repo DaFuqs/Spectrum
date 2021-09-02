@@ -13,7 +13,7 @@ public class AzuriteOreBlock extends CloakedOreBlock {
 
     @Override
     public Identifier getCloakAdvancementIdentifier() {
-        return new Identifier(SpectrumCommon.MOD_ID, "craft_colored_sapling");
+        return new Identifier(SpectrumCommon.MOD_ID, "midgame/collect_moonstone_shard");
     }
 
 }

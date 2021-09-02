@@ -1,9 +1,10 @@
 {
-  "parent": "spectrum:midgame/craft_onyx_pedestal",
+  "parent": "spectrum:midgame/spectrum_midgame",
   "display": {
     "icon": {
       "item": "spectrum:chiseled_polished_basalt"
     },
+    "frame": "challenge",
     "title": {
       "translate": "advancements.spectrum.build_advanced_pedestal_structure.title"
     },
@@ -16,5 +17,8 @@
       "trigger": "spectrum:completed_multiblock",
       "conditions": { "multiblock_identifier": "spectrum:pedestal_advanced_structure_check" }
     }
+  },
+  "rewards": {
+    "experience": 250
   }
 }

@@ -1,0 +1,21 @@
+{
+  "display": {
+    "icon": {
+        "item": "spectrum:ender_treasure"
+    },
+    "title": {
+      "translate": "advancements.spectrum.reveal_ender_treasure.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.reveal_ender_treasure.description"
+    },
+    "hidden": true
+  },
+  "parent": "spectrum:spectrum",
+  "criteria": {
+    "revealed_ender_treasure": {
+      "trigger":"spectrum:had_revelation",
+      "conditions": { "revelation_identifier": "spectrum:ender_treasure" }
+    }
+  }
+}

@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:midgame/spectrum_midgame",
+  "parent": "spectrum:midgame/build_advanced_pedestal_structure",
   "display": {
     "icon": {
         "item": "spectrum:bottle_of_failing"

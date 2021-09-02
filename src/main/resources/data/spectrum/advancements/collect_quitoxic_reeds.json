@@ -1,0 +1,31 @@
+{
+  "parent": "spectrum:craft_colored_pedestal",
+  "display": {
+    "icon": {
+      "item": "spectrum:quitoxic_reeds"
+    },
+    "hidden": true,
+    "title": {
+      "translate": "advancements.spectrum.collect_quitoxic_reeds.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.collect_quitoxic_reeds.description"
+    }
+  },
+  "criteria": {
+    "has_plant": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": { "items": [{ "items": [ "spectrum:quitoxic_reeds" ]}] }
+    },
+    "has_powder": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": { "items": [{ "items": [ "spectrum:quitoxic_powder" ]}] }
+    }
+  },
+  "requirements": [
+    [
+      "has_plant",
+      "has_powder"
+    ]
+  ]
+}

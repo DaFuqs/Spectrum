@@ -1,5 +1,6 @@
 {
   "type": "spectrum:pedestal",
+  "group": "glowblocks",
   "time": 200,
   "tier": "advanced",
   "magenta": 0,

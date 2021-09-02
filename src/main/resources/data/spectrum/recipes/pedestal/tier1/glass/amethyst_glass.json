@@ -1,5 +1,6 @@
 {
   "type": "spectrum:pedestal",
+  "group": "gemstone_glass",
   "time": 20,
   "tier": "basic",
   "magenta": 4,

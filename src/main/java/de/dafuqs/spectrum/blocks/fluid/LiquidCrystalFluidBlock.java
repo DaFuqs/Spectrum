@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.blocks.fluid;
 
+import com.google.common.collect.UnmodifiableIterator;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import de.dafuqs.spectrum.registries.SpectrumFluidTags;
@@ -91,7 +92,17 @@ public class LiquidCrystalFluidBlock extends FluidBlock {
                 return false;
             }
             if (world.getFluidState(blockPos).isIn(FluidTags.LAVA)) {
-                Block block = world.getFluidState(pos).isStill() ? SpectrumBlocks.BLAZING_CRYSTAL : Blocks.COBBLED_DEEPSLATE;
+                Block block;
+                if(world.getFluidState(pos).isStill()) {
+                   block = SpectrumBlocks.BLAZING_CRYSTAL;
+                } else {
+                    // blackstone in the nether, deepslate everywhere else
+                    if (world.getDimension().isUltrawarm()) {
+                        block = Blocks.BLACKSTONE;
+                    } else {
+                        block = Blocks.COBBLED_DEEPSLATE;
+                    }
+                }
                 world.setBlockState(pos, block.getDefaultState());
                 this.playExtinguishSound(world, pos);
                 return false;
@@ -106,7 +117,7 @@ public class LiquidCrystalFluidBlock extends FluidBlock {
         return true;
     }
 
-    // TODO: other sound
+    // TODO: custom sound
     private void playExtinguishSound(WorldAccess world, BlockPos pos) {
         world.syncWorldEvent(1501, pos, 0);
     }

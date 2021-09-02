@@ -1,5 +1,6 @@
 {
   "type": "spectrum:pedestal",
+  "group": "citrine_runes",
   "time": 80,
   "tier": "simple",
   "magenta": 0,

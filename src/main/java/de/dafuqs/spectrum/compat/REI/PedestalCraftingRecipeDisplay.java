@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.compat.REI;
 
 import de.dafuqs.spectrum.enums.GemstoneColor;
+import de.dafuqs.spectrum.enums.PedestalRecipeTier;
 import de.dafuqs.spectrum.recipe.pedestal.PedestalCraftingRecipe;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
@@ -24,6 +25,7 @@ public class PedestalCraftingRecipeDisplay<R extends PedestalCraftingRecipe> imp
 	protected final EntryIngredient output;
 	protected final float experience;
 	protected final int craftingTime;
+	protected final PedestalRecipeTier pedestalRecipeTier;
 
 	public PedestalCraftingRecipeDisplay(PedestalCraftingRecipe recipe) {
 		this.pedestalCraftingRecipe = recipe;
@@ -39,6 +41,7 @@ public class PedestalCraftingRecipeDisplay<R extends PedestalCraftingRecipe> imp
 		this.output = EntryIngredients.of(recipe.getOutput());
 		this.experience = recipe.getExperience();
 		this.craftingTime = recipe.getCraftingTime();
+		this.pedestalRecipeTier = recipe.getTier();
 	}
 
 	private void addGemstonePowderCraftingInput(HashMap<GemstoneColor, Integer> gemstonePowderInputs, GemstoneColor gemstoneColor, Item item) {
@@ -90,5 +93,10 @@ public class PedestalCraftingRecipeDisplay<R extends PedestalCraftingRecipe> imp
 	public int getHeight() {
 		return this.pedestalCraftingRecipe.getHeight();
 	}
+
+	public PedestalRecipeTier getTier() {
+		return this.pedestalRecipeTier;
+	}
+
 
 }

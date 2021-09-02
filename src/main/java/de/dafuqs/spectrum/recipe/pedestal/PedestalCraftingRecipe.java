@@ -36,9 +36,7 @@ import java.util.Random;
 public class PedestalCraftingRecipe implements Recipe<Inventory> {
 
     protected final Identifier id;
-    @Nullable
     protected final String group;
-
     protected final int width;
     protected final int height;
 
@@ -50,9 +48,8 @@ public class PedestalCraftingRecipe implements Recipe<Inventory> {
     protected final int craftingTime;
 
     protected final List<Identifier> requiredAdvancementIdentifiers;
-    protected final boolean showToastOnUnlock;
 
-    public PedestalCraftingRecipe(Identifier id, String group, PedestalRecipeTier tier, int width, int height, DefaultedList<Ingredient> craftingInputs, HashMap<GemstoneColor, Integer> gemstoneDustInputs, ItemStack output, float experience, int craftingTime, List<Identifier> requiredAdvancementIdentifiers, boolean showToastOnUnlock) {
+    public PedestalCraftingRecipe(Identifier id, String group, PedestalRecipeTier tier, int width, int height, DefaultedList<Ingredient> craftingInputs, HashMap<GemstoneColor, Integer> gemstoneDustInputs, ItemStack output, float experience, int craftingTime, List<Identifier> requiredAdvancementIdentifiers) {
         this.id = id;
         this.group = group;
         this.tier = tier;
@@ -67,7 +64,6 @@ public class PedestalCraftingRecipe implements Recipe<Inventory> {
         this.craftingTime = craftingTime;
 
         this.requiredAdvancementIdentifiers = requiredAdvancementIdentifiers;
-        this.showToastOnUnlock = showToastOnUnlock;
 
         if(SpectrumClient.minecraftClient != null) {
             registerInClientToastManager();
@@ -214,10 +210,6 @@ public class PedestalCraftingRecipe implements Recipe<Inventory> {
         return this.experience;
     }
 
-    public boolean shouldShowToastOnUnlock() {
-        return this.showToastOnUnlock;
-    }
-
     public HashMap<GemstoneColor, Integer> getGemstoneDustInputs() {
         return this.gemstoneDustInputs;
     }
@@ -305,6 +297,10 @@ public class PedestalCraftingRecipe implements Recipe<Inventory> {
     @Nullable
     public List<Identifier> getRequiredAdvancementIdentifiers() {
         return requiredAdvancementIdentifiers;
+    }
+
+    public String getGroup() {
+        return this.group;
     }
 
 }

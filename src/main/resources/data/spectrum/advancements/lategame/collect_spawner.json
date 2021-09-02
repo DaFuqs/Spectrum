@@ -1,0 +1,20 @@
+{
+  "parent": "spectrum:lategame/collect_resonance_enchanted_tool",
+  "display": {
+    "icon": {
+      "item": "spectrum:spawner"
+    },
+    "title": {
+      "translate": "advancements.spectrum.collect_spawner.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.collect_spawner.description"
+    }
+  },
+  "criteria": {
+    "collect_spawner": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": { "items": [{ "items": [ "spectrum:spawner" ]}] }
+    }
+  }
+}

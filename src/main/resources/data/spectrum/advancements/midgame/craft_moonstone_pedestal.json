@@ -1,0 +1,22 @@
+{
+  "parent": "spectrum:midgame/collect_moonstone_shard",
+  "display": {
+    "icon": {
+      "item": "spectrum:pedestal_moonstone"
+    },
+    "title": {
+      "translate": "advancements.spectrum.craft_moonstone_pedestal.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.craft_moonstone_pedestal.description"
+    },
+    "show_toast": false,
+    "announce_to_chat": false
+  },
+  "criteria": {
+    "craft_pedestal": {
+      "trigger": "spectrum:crafted_with_pedestal",
+      "conditions": { "items": [{ "items": [ "spectrum:pedestal_moonstone" ]}] }
+    }
+  }
+}

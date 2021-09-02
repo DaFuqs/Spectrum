@@ -25,9 +25,7 @@ public class ServerWorldMixin {
     @Inject(at = @At(value = "RETURN"), method = "tick")
     void postEntityTick(BooleanSupplier shouldKeepTicking, CallbackInfo ci){
         if (this.idleTimeout < 300) {
-            List<? extends GravityBlockEntity> list2 = ((ServerWorld)(Object) this).getEntitiesByType(SpectrumEntityTypes.GRAVITY_BLOCK, Entity::isAlive);
-
-            for (GravityBlockEntity entry : list2) {
+            for (GravityBlockEntity entry : ((ServerWorld)(Object) this).getEntitiesByType(SpectrumEntityTypes.GRAVITY_BLOCK, Entity::isAlive)) {
                 entry.postTickEntities();
             }
         }

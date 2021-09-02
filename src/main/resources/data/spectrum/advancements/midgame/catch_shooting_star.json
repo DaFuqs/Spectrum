@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:midgame/spectrum_midgame",
+  "parent": "spectrum:midgame/collect_shooting_star",
   "display": {
     "icon": {
       "item": "spectrum:shooting_star"
@@ -16,5 +16,8 @@
     "catch": {
       "trigger": "minecraft:impossible"
     }
+  },
+  "rewards": {
+    "experience": 50
   }
 }

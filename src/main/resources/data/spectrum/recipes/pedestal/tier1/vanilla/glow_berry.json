@@ -25,5 +25,5 @@
     "item": "minecraft:glow_berries",
     "count": 1
   },
-  "required_advancements": ["spectrum:revealed_sparklestone_ore"]
+  "required_advancements": ["spectrum:collect_sparklestone"]
 }

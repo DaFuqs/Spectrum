@@ -1,5 +1,6 @@
 {
   "type": "spectrum:pedestal",
+  "group": "citrine_lamps",
   "time": 40,
   "tier": "basic",
   "cyan": 0,

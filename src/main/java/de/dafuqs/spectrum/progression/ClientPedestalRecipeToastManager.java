@@ -2,18 +2,17 @@ package de.dafuqs.spectrum.progression;
 
 import de.dafuqs.spectrum.enums.PedestalRecipeTier;
 import de.dafuqs.spectrum.recipe.pedestal.PedestalCraftingRecipe;
-import de.dafuqs.spectrum.toast.RecipeToast;
+import de.dafuqs.spectrum.toast.UnlockedRecipeGroupToast;
+import de.dafuqs.spectrum.toast.UnlockedRecipeToast;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
+import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Environment(EnvType.CLIENT)
 public class ClientPedestalRecipeToastManager {
@@ -39,28 +38,29 @@ public class ClientPedestalRecipeToastManager {
 
     public static void process(List<Identifier> doneAdvancements, boolean showToast) {
         if(showToast) {
+            List<PedestalCraftingRecipe> recipes = new ArrayList<>();
             for (Identifier doneAdvancement : doneAdvancements) {
-                showToastsForAllRecipesWithAdvancement(doneAdvancement);
-            }
-        }
-    }
+                if (unlockablePedestalRecipes.containsKey(doneAdvancement)) {
+                    for (PedestalCraftingRecipe unlockedRecipe : unlockablePedestalRecipes.get(doneAdvancement)) {
+                        if (unlockedRecipe.canPlayerCraft(MinecraftClient.getInstance().player)) {
+                            if(!recipes.contains((unlockedRecipe))) {
+                                recipes.add(unlockedRecipe);
+                            }
+                        }
+                    }
+                }
 
-    /**
-     *
-     * @param advancementIdentifier The advancement the player got
-     */
-    private static void showToastsForAllRecipesWithAdvancement(Identifier advancementIdentifier) {
-        if (unlockablePedestalRecipes.containsKey(advancementIdentifier)) {
-            for (PedestalCraftingRecipe unlockedRecipe : unlockablePedestalRecipes.get(advancementIdentifier)) {
-                if (unlockedRecipe.shouldShowToastOnUnlock() && unlockedRecipe.canPlayerCraft(MinecraftClient.getInstance().player)) {
-                    RecipeToast.showRecipeToast(MinecraftClient.getInstance(), new ItemStack(unlockedRecipe.getOutput().getItem()));
+                Optional<PedestalRecipeTier> newlyUnlockedRecipeTier = PedestalRecipeTier.hasJustUnlockedANewRecipeTier(doneAdvancement);
+                if(newlyUnlockedRecipeTier.isPresent()) {
+                    for(PedestalCraftingRecipe alreadyUnlockedRecipe : getRecipesForTierWithAllCondfitionsMet(newlyUnlockedRecipeTier.get())) {
+                        if (!recipes.contains((alreadyUnlockedRecipe))) {
+                            recipes.add(alreadyUnlockedRecipe);
+                        }
+                    }
                 }
             }
-        }
 
-        Optional<PedestalRecipeTier> newlyUnlockedRecipeTier = PedestalRecipeTier.hasJustUnlockedANewRecipeTier(advancementIdentifier);
-        if(newlyUnlockedRecipeTier.isPresent()) {
-            showToastsForAllNewlyUnlockedRecipesForTier(newlyUnlockedRecipeTier.get());
+            showRecipeToasts(recipes);
         }
     }
 
@@ -69,22 +69,51 @@ public class ClientPedestalRecipeToastManager {
      * show toasts for all recipes that he already meets the requirements for
      * @param pedestalRecipeTier The new pedestal recipe tier the player unlocked
      */
-    private static void showToastsForAllNewlyUnlockedRecipesForTier(PedestalRecipeTier pedestalRecipeTier) {
+    private static @NotNull List<PedestalCraftingRecipe> getRecipesForTierWithAllCondfitionsMet(PedestalRecipeTier pedestalRecipeTier) {
         ClientPlayerEntity player = MinecraftClient.getInstance().player;
 
         List<PedestalCraftingRecipe> alreadyUnlockedRecipesAtNewTier = new ArrayList<>();
         for(List<PedestalCraftingRecipe> recipes : unlockablePedestalRecipes.values()) {
             for(PedestalCraftingRecipe recipe : recipes) {
                 if(recipe.getTier() == pedestalRecipeTier
-                        && recipe.shouldShowToastOnUnlock()
                         && !alreadyUnlockedRecipesAtNewTier.contains(recipe)
                         && recipe.hasUnlockedRequiredAdvancements(player)) {
 
                     alreadyUnlockedRecipesAtNewTier.add(recipe);
-                    RecipeToast.showRecipeToast(MinecraftClient.getInstance(), new ItemStack(recipe.getOutput().getItem()));
                 }
             }
         }
+        return alreadyUnlockedRecipesAtNewTier;
+    }
+
+    // group the recipes based on their group
+    // show only 1 toast for grouped recipes, if
+    // at least 2 of that group have been unlocked at once
+    private static void showRecipeToasts(@NotNull List<PedestalCraftingRecipe> recipes) {
+        HashMap<String, List<ItemStack>> groupedRecipes = new HashMap<>();
+        for(PedestalCraftingRecipe recipe : recipes) {
+            if(recipe.getGroup().isEmpty()) {
+                UnlockedRecipeToast.showRecipeToast(MinecraftClient.getInstance(), new ItemStack(recipe.getOutput().getItem()));
+            } else {
+                if(groupedRecipes.containsKey(recipe.getGroup())) {
+                    groupedRecipes.get(recipe.getGroup()).add(recipe.getOutput());
+                } else {
+                    List<ItemStack> newList = new ArrayList<>();
+                    newList.add(new ItemStack(recipe.getOutput().getItem()));
+                    groupedRecipes.put(recipe.getGroup(), newList);
+                }
+            }
+        }
+
+        for(String group : groupedRecipes.keySet()) {
+            List<ItemStack> groupedList = groupedRecipes.get(group);
+            if(groupedList.size() == 1) {
+                UnlockedRecipeToast.showRecipeToast(MinecraftClient.getInstance(), groupedList.get(0));
+            } else {
+                UnlockedRecipeGroupToast.showRecipeGroupToast(MinecraftClient.getInstance(), group, groupedRecipes.get(group));
+            }
+        }
+
     }
 
 }

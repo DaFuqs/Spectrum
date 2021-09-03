@@ -42,7 +42,6 @@ public class SpectrumItems {
     public static FabricItemSettings resourcesRareItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_RESOURCES).rarity(Rarity.RARE).maxCount(64);
 
     public static FabricItemSettings decayPlacerItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).maxCount(16);
-    public static FabricItemSettings musicDiscItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).maxCount(1).rarity(Rarity.RARE);
     public static FabricItemSettings spectrumLowNightVisionArmorItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).rarity(Rarity.UNCOMMON).maxDamage(SpectrumArmorMaterials.GLOW_VISION.getDurability(EquipmentSlot.HEAD));
 
     public static FabricItemSettings spectrumBedrockToolItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_PREENCHANTED_TOOLS).rarity(Rarity.RARE).fireproof().maxDamage(SpectrumToolMaterials.ToolMaterial.BEDROCK.getDurability());
@@ -156,10 +155,10 @@ public class SpectrumItems {
 
 	// Magical Tools
     public static final Item GLOW_VISION_HELMET = new GlowVisionHelmet(SpectrumArmorMaterials.GLOW_VISION, EquipmentSlot.HEAD, spectrumLowNightVisionArmorItemSettings);
-    public static final Item NATURES_STAFF = new NaturesStaffItem(generalItemSettings);
+    public static final Item NATURES_STAFF = new NaturesStaffItem(generalItemSettingsSingle);
     public static final EnderSpliceItem ENDER_SPLICE = new EnderSpliceItem(generalItemSettings);
-    public static final Item ENDER_BAG = new EnderBagItem(generalItemSettings);
-    public static final Item END_PORTAL_CRACKER = new EndPortalCrackerItem(generalItemSettings);
+    public static final Item ENDER_BAG = new EnderBagItem(generalItemSettingsSingle);
+    public static final Item END_PORTAL_CRACKER = new EndPortalCrackerItem(generalUncommonItemSettings);
 
     // Catkin
     public static final Item VIBRANT_CYAN_CATKIN = new CatkinItem(GemstoneColor.CYAN, false, resourcesItemSettings);
@@ -175,7 +174,7 @@ public class SpectrumItems {
     public static final Item LUCID_WHITE_CATKIN = new CatkinItem(GemstoneColor.WHITE, true, resourcesUncommonItemSettings);
 
     // Misc
-	public static final Item MUSIC_DISC_SPECTRUM_THEME = new SpectrumMusicDiscItem(1, SpectrumSoundEvents.SPECTRUM_THEME, musicDiscItemSettings);
+	public static final Item MUSIC_DISC_SPECTRUM_THEME = new SpectrumMusicDiscItem(1, SpectrumSoundEvents.SPECTRUM_THEME, spectrumRareItemSettingsSingle);
     public static final Item SPAWNER = new Spawner(Blocks.SPAWNER, spectrumRareItemSettingsSingle);
     public static final Item GLISTERING_MELON_SEEDS = new AliasedBlockItem(SpectrumBlocks.GLISTERING_MELON_STEM, generalItemSettings);
     public static final Item INVISIBLE_ITEM_FRAME = new InvisibleItemFrameItem(SpectrumEntityTypes.INVISIBLE_ITEM_FRAME, generalItemSettings);

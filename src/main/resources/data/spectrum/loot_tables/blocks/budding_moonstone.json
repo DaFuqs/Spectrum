@@ -2,11 +2,11 @@
   "type": "minecraft:block",
   "pools": [
     {
-      "rolls": 1.0,
-      "bonus_rolls": 0.0,
+      "rolls": 1,
       "entries": [
         {
           "type": "minecraft:item",
+          "name": "spectrum:budding_moonstone",
           "conditions": [
             {
               "condition": "minecraft:match_tool",
@@ -21,8 +21,7 @@
                 ]
               }
             }
-          ],
-          "name": "spectrum:budding_moonstone"
+          ]
         }
       ]
     }

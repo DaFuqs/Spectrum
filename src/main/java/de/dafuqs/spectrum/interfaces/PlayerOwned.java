@@ -28,4 +28,11 @@ public interface PlayerOwned {
         return null;
     }
 
+    public static PlayerEntity getPlayerEntityIfOnline(World world, UUID ownerUUID) {
+        if(ownerUUID != null) {
+            return world.getPlayerByUuid(ownerUUID);
+        }
+        return null;
+    }
+
 }

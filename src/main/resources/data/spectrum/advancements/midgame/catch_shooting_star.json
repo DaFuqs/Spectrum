@@ -4,6 +4,7 @@
     "icon": {
       "item": "spectrum:shooting_star"
     },
+    "frame": "challenge",
     "title": {
       "translate": "advancements.spectrum.catch_shooting_star.title"
     },

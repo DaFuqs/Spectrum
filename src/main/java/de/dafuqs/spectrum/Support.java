@@ -37,6 +37,8 @@ public class Support {
         Advancement advancement = sal.get(advancementIdentifier);
         if (advancement != null) {
             tracker.grantCriterion(advancement, criterion);
+        } else {
+            SpectrumCommon.log(Level.ERROR, "Trying to grant a criterion for an advancement that does not exist: " + advancementIdentifier);
         }
     }
 

@@ -1,0 +1,24 @@
+{
+  "parent": "spectrum:lategame/collect_paletur",
+  "display": {
+    "icon": {
+      "item": "spectrum:paletur_fragment_block"
+    },
+    "frame": "challenge",
+    "title": {
+      "translate": "advancements.spectrum.carry_too_many_low_gravity_blocks.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.carry_too_many_low_gravity_blocks.description"
+    },
+    "hidden": true
+  },
+  "criteria": {
+    "gravity": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "experience": 200
+  }
+}

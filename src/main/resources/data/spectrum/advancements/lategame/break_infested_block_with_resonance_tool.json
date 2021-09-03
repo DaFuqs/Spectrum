@@ -1,0 +1,35 @@
+{
+  "parent": "spectrum:lategame/collect_resonance_enchanted_tool",
+  "display": {
+    "icon": {
+      "item": "minecraft:infested_cracked_stone_bricks"
+    },
+    "title": {
+      "translate": "advancements.spectrum.break_infested_block_with_resonance_tool.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.break_infested_block_with_resonance_tool.description"
+    }
+  },
+  "criteria": {
+    "broken_infested_block_with_resonance": {
+      "trigger": "spectrum:block_broken",
+      "conditions": {
+        "player": {
+          "equipment": {
+            "mainhand": {
+              "enchantments": [
+                {
+                  "enchantment": "spectrum:resonance"
+                }
+              ]
+            }
+          }
+        },
+        "broken_block": {
+          "tag": "spectrum:infested_blocks"
+        }
+      }
+    }
+  }
+}

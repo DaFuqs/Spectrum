@@ -29,12 +29,8 @@ import java.util.Map;
 @Mixin(Block.class)
 public abstract class BlockMixin {
 
-    @Inject(method = "Lnet/minecraft/block/Block;getDroppedStacks(Lnet/minecraft/block/BlockState;Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/entity/BlockEntity;Lnet/minecraft/entity/Entity;Lnet/minecraft/item/ItemStack;)Ljava/util/List;", at = @At("RETURN"), cancellable = true)
+    @Inject(method = "getDroppedStacks(Lnet/minecraft/block/BlockState;Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/entity/BlockEntity;Lnet/minecraft/entity/Entity;Lnet/minecraft/item/ItemStack;)Ljava/util/List;", at = @At("RETURN"), cancellable = true)
     private static void getDroppedStacks(BlockState state, ServerWorld world, BlockPos pos, BlockEntity blockEntity, Entity entity, ItemStack stack, CallbackInfoReturnable<List<ItemStack>> cir) {
-        if(entity instanceof ServerPlayerEntity serverPlayerEntity) {
-            SpectrumAdvancementCriteria.BLOCK_BROKEN.trigger(serverPlayerEntity, state);
-        }
-
         List<ItemStack> returnStacks = cir.getReturnValue();
         if(returnStacks.size() > 0) {
             Map<Enchantment, Integer> enchantmentMap = EnchantmentHelper.get(stack);

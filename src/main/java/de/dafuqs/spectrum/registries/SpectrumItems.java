@@ -35,6 +35,7 @@ public class SpectrumItems {
     public static FabricItemSettings generalItemSettingsSingle = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).maxCount(1);
     public static FabricItemSettings generalUncommonItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).maxCount(64).rarity(Rarity.UNCOMMON);
     public static FabricItemSettings spectrumRareItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).rarity(Rarity.RARE).maxCount(64);
+    public static FabricItemSettings spectrumRareItemSettingsSingle = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).rarity(Rarity.RARE).maxCount(1);
     public static FabricItemSettings resourcesItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_RESOURCES).maxCount(64);
     public static FabricItemSettings resourcesItemSettingsSixteen = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_RESOURCES).maxCount(16);
     public static FabricItemSettings resourcesUncommonItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_RESOURCES).rarity(Rarity.UNCOMMON).maxCount(64);
@@ -175,7 +176,7 @@ public class SpectrumItems {
 
     // Misc
 	public static final Item MUSIC_DISC_SPECTRUM_THEME = new SpectrumMusicDiscItem(1, SpectrumSoundEvents.SPECTRUM_THEME, musicDiscItemSettings);
-    public static final Item SPAWNER = new Spawner(Blocks.SPAWNER, generalUncommonItemSettings);
+    public static final Item SPAWNER = new Spawner(Blocks.SPAWNER, spectrumRareItemSettingsSingle);
     public static final Item GLISTERING_MELON_SEEDS = new AliasedBlockItem(SpectrumBlocks.GLISTERING_MELON_STEM, generalItemSettings);
     public static final Item INVISIBLE_ITEM_FRAME = new InvisibleItemFrameItem(SpectrumEntityTypes.INVISIBLE_ITEM_FRAME, generalItemSettings);
     public static final Item INVISIBLE_GLOW_ITEM_FRAME = new InvisibleGlowItemFrameItem(SpectrumEntityTypes.INVISIBLE_GLOW_ITEM_FRAME, generalItemSettings);

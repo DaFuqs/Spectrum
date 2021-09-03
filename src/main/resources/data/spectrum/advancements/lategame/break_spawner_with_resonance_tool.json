@@ -1,0 +1,37 @@
+{
+  "parent": "spectrum:lategame/collect_resonance_enchanted_tool",
+  "display": {
+    "icon": {
+      "item": "spectrum:spawner"
+    },
+    "title": {
+      "translate": "advancements.spectrum.break_spawner_with_resonance_tool.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.break_spawner_with_resonance_tool.description"
+    }
+  },
+  "criteria": {
+    "broken_spawner_with_resonance": {
+      "trigger": "spectrum:block_broken",
+      "conditions": {
+        "player": {
+          "equipment": {
+            "mainhand": {
+              "enchantments": [
+                {
+                  "enchantment": "spectrum:resonance"
+                }
+              ]
+            }
+          }
+        },
+        "broken_block": {
+          "blocks": [
+            "minecraft:spawner"
+          ]
+        }
+      }
+    }
+  }
+}

@@ -2,7 +2,7 @@
   "parent": "spectrum:lategame/spectrum_lategame",
   "display": {
     "icon": {
-      "item": "spectrum:paletur_gem"
+      "item": "spectrum:light_gray_pigment"
     },
     "title": {
       "translate": "advancements.spectrum.collect_grayscale_pigments.title"

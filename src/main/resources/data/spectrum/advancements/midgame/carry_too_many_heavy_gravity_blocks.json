@@ -1,0 +1,24 @@
+{
+  "parent": "spectrum:midgame/collect_scarlet",
+  "display": {
+    "icon": {
+      "item": "spectrum:scarlet_fragment_block"
+    },
+    "frame": "challenge",
+    "title": {
+      "translate": "advancements.spectrum.carry_too_many_heavy_gravity_blocks.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.carry_too_many_heavy_gravity_blocks.description"
+    },
+    "hidden": true
+  },
+  "criteria": {
+    "gravity": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "experience": 50
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "parent": "spectrum:lategame/collect_resonance_enchanted_tool",
+  "display": {
+    "icon": {
+      "item": "minecraft:budding_amethyst"
+    },
+    "title": {
+      "translate": "advancements.spectrum.break_budding_block_with_resonance_tool.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.break_budding_block_with_resonance_tool.description"
+    }
+  },
+  "criteria": {
+    "broken_budding_block_with_resonance": {
+      "trigger": "spectrum:block_broken",
+      "conditions": {
+        "player": {
+          "equipment": {
+            "mainhand": {
+              "enchantments": [
+                {
+                  "enchantment": "spectrum:resonance"
+                }
+              ]
+            }
+          }
+        },
+        "broken_block": {
+          "tag": "spectrum:budding_blocks"
+        }
+      }
+    }
+  }
+}

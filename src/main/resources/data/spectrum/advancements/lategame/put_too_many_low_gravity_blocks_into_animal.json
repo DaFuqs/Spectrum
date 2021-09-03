@@ -1,0 +1,21 @@
+{
+  "parent": "spectrum:lategame/collect_paletur",
+  "display": {
+    "icon": {
+      "item": "spectrum:paletur_gem"
+    },
+    "frame": "challenge",
+    "title": {
+      "translate": "advancements.spectrum.put_too_many_low_gravity_blocks_into_animal.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.put_too_many_low_gravity_blocks_into_animal.description"
+    },
+    "hidden": true
+  },
+  "criteria": {
+    "gravity": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

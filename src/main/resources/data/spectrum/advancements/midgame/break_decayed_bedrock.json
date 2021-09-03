@@ -15,9 +15,11 @@
     "broken_corrupted_bedrock": {
       "trigger": "spectrum:block_broken",
       "conditions": {
-        "block": "spectrum:ruin",
-        "state": {
-          "decay_state": "bedrock"
+        "broken_block": {
+          "blocks": [ "spectrum:ruin" ],
+          "state": {
+            "decay_state": "bedrock"
+          }
         }
       }
     }

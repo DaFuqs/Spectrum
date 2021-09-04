@@ -58,6 +58,8 @@ public class ClientBlockCloaker {
 
         Item cloakItem = cloakable.getItemCloak().getLeft();
         activeItemSwaps.remove(cloakItem);
+
+        cloakable.onUncloak();
     }
 
     private static void cloak(Cloakable cloakable) {
@@ -66,6 +68,8 @@ public class ClientBlockCloaker {
 
         Item cloakItem = cloakable.getItemCloak().getLeft();
         activeItemSwaps.add(cloakItem);
+
+        cloakable.onCloak();
     }
 
     // BLOCKS

@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.interfaces;
 
+import de.dafuqs.spectrum.SpectrumClient;
 import de.dafuqs.spectrum.Support;
 import de.dafuqs.spectrum.progression.BlockCloakManager;
 import net.minecraft.block.Block;
@@ -37,6 +38,8 @@ public interface Cloakable {
 
     abstract Hashtable<BlockState, BlockState> getBlockStateCloaks();
     abstract Pair<Item, Item> getItemCloak();
+    default void onCloak() {};
+    default void onUncloak() {};
 
     default boolean isVisibleTo(ShapeContext context) {
         if(context instanceof EntityShapeContext) {

@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.blocks.deeper_down_portal;
 
-import de.dafuqs.spectrum.SpectrumRenderLayer;
+import de.dafuqs.spectrum.registries.SpectrumRenderLayers;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.render.RenderLayer;
@@ -48,7 +48,7 @@ public class DeeperDownPortalBlockEntityRenderer<T extends DeeperDownPortalBlock
     }
 
     protected RenderLayer getLayer() {
-        return SpectrumRenderLayer.DEEPER_DOWN_PORTAL_RENDER_LAYER;
+        return SpectrumRenderLayers.DEEPER_DOWN_PORTAL_RENDER_LAYER;
     }
 
 }

@@ -34,6 +34,9 @@ import org.jetbrains.annotations.Nullable;
 
 public class SpectrumClient implements ClientModInitializer {
 
+    public static ToggleableBlockColorProvider coloredLeavesBlockColorProvider;
+    public static ToggleableItemColorProvider coloredLeavesItemColorProvider;
+
     @Environment(EnvType.CLIENT)
     public static MinecraftClient minecraftClient;
 
@@ -72,27 +75,21 @@ public class SpectrumClient implements ClientModInitializer {
     private static void registerColorProviders() {
         // Biome Colors for colored leaves items and blocks
         // They don't use it, but their decay as oak leaves do
-        @Nullable BlockColorProvider oakLeavesBlockColorProvider = ColorProviderRegistry.BLOCK.get(Blocks.OAK_LEAVES);
-        if(oakLeavesBlockColorProvider != null) {
-            for(DyeColor dyeColor : DyeColor.values()) {
-                Block block = SpectrumBlocks.getColoredLeavesBlock(dyeColor);
-                ColorProviderRegistry.BLOCK.register(oakLeavesBlockColorProvider, block);
-            }
+        coloredLeavesBlockColorProvider = new ToggleableBlockColorProvider(ColorProviderRegistry.BLOCK.get(Blocks.OAK_LEAVES));
+        coloredLeavesItemColorProvider = new ToggleableItemColorProvider(ColorProviderRegistry.ITEM.get(Blocks.OAK_LEAVES));
+        for(DyeColor dyeColor : DyeColor.values()) {
+            Block block = SpectrumBlocks.getColoredLeavesBlock(dyeColor);
+            ColorProviderRegistry.BLOCK.register(coloredLeavesBlockColorProvider, block);
+            ColorProviderRegistry.ITEM.register(coloredLeavesItemColorProvider, block);
         }
 
-        @Nullable ItemColorProvider oakLeavesItemColorProvider = ColorProviderRegistry.ITEM.get(Blocks.OAK_LEAVES);
-        if(oakLeavesItemColorProvider != null) {
-            for(DyeColor dyeColor : DyeColor.values()) {
-                Item item = SpectrumBlocks.getColoredLeavesItem(dyeColor);
-                ColorProviderRegistry.ITEM.register(oakLeavesItemColorProvider, item);
-            }
-        }
+        BlockColorProvider grassBlockColorProvider = ColorProviderRegistry.BLOCK.get(Blocks.GRASS);
+        ItemColorProvider grassItemColorProvider = ColorProviderRegistry.ITEM.get(Blocks.GRASS.asItem());
+        ColorProviderRegistry.BLOCK.register(grassBlockColorProvider, SpectrumBlocks.CLOVER);
+        ColorProviderRegistry.BLOCK.register(grassBlockColorProvider, SpectrumBlocks.FOUR_LEAF_CLOVER);
+        ColorProviderRegistry.ITEM.register(grassItemColorProvider, SpectrumBlocks.CLOVER);
+        ColorProviderRegistry.ITEM.register(grassItemColorProvider, SpectrumBlocks.FOUR_LEAF_CLOVER);
 
-        @Nullable BlockColorProvider grassColorProvider = ColorProviderRegistry.BLOCK.get(Blocks.GRASS);
-        if(grassColorProvider != null) {
-            ColorProviderRegistry.BLOCK.register(grassColorProvider, SpectrumBlocks.CLOVER);
-            ColorProviderRegistry.BLOCK.register(grassColorProvider, SpectrumBlocks.FOUR_LEAF_CLOVER);
-        }
     }
 
     // Vanilla models see: ModelPredicateProviderRegistry

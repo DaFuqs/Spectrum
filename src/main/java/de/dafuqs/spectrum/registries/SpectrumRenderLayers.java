@@ -1,5 +1,6 @@
-package de.dafuqs.spectrum;
+package de.dafuqs.spectrum.registries;
 
+import de.dafuqs.spectrum.SpectrumCommon;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.render.RenderLayer;
@@ -7,7 +8,7 @@ import net.minecraft.client.render.VertexFormat;
 import net.minecraft.util.Identifier;
 
 @Environment(EnvType.CLIENT)
-public class SpectrumRenderLayer extends RenderLayer {
+public class SpectrumRenderLayers extends RenderLayer {
 
     // Deeper down portal
     public static final Identifier OVERLAY_TEXTURE = new Identifier(SpectrumCommon.MOD_ID, "textures/entity/portal/deeper_down_portal_overlay.png");
@@ -24,7 +25,7 @@ public class SpectrumRenderLayer extends RenderLayer {
                             .add(PORTAL_TEXTURE, false, false)
                             .build()).build(false));*/
 
-    public SpectrumRenderLayer(String name, VertexFormat vertexFormat, VertexFormat.DrawMode drawMode, int expectedBufferSize, boolean hasCrumbling, boolean translucent, Runnable startAction, Runnable endAction) {
+    public SpectrumRenderLayers(String name, VertexFormat vertexFormat, VertexFormat.DrawMode drawMode, int expectedBufferSize, boolean hasCrumbling, boolean translucent, Runnable startAction, Runnable endAction) {
         super(name, vertexFormat, drawMode, expectedBufferSize, hasCrumbling, translucent, startAction, endAction);
     }
 

@@ -10,16 +10,17 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.tag.Tag;
 import net.minecraft.util.Identifier;
 import org.apache.logging.log4j.Level;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
 
 public class Support {
 
-    public static boolean hasTag(BlockState type, Tag<net.minecraft.block.Block> tag) {
+    public static boolean hasTag(@NotNull BlockState type, @NotNull Tag<net.minecraft.block.Block> tag) {
         return tag.contains(type.getBlock());
     }
 
-    public static int getWholeIntFromFloatWithChance(float f, Random random) {
+    public static int getWholeIntFromFloatWithChance(float f, @NotNull Random random) {
         boolean roundUp = (random.nextFloat() < f % 1);
         if(roundUp) {
             return ((int) f) + 1;
@@ -28,7 +29,7 @@ public class Support {
         }
     }
 
-    public static void grantAdvancementCriterion(ServerPlayerEntity serverPlayerEntity, String advancementString, String criterion) {
+    public static void grantAdvancementCriterion(@NotNull ServerPlayerEntity serverPlayerEntity, String advancementString, String criterion) {
         ServerAdvancementLoader sal = SpectrumCommon.minecraftServer.getAdvancementLoader();
         PlayerAdvancementTracker tracker = serverPlayerEntity.getAdvancementTracker();
 
@@ -56,7 +57,7 @@ public class Support {
         }
     }
 
-    public static String getReadableDimensionString(String dimensionKeyString) {
+    public static @NotNull String getReadableDimensionString(@NotNull String dimensionKeyString) {
         switch (dimensionKeyString) {
             case "minecraft:overworld":
                 return "Overworld";

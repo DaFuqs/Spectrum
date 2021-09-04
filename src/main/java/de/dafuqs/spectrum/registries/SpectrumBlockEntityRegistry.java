@@ -6,6 +6,8 @@ import de.dafuqs.spectrum.blocks.deeper_down_portal.DeeperDownPortalBlockEntity;
 import de.dafuqs.spectrum.blocks.deeper_down_portal.DeeperDownPortalBlockEntityRenderer;
 import de.dafuqs.spectrum.blocks.ender.EnderDropperBlockEntity;
 import de.dafuqs.spectrum.blocks.ender.EnderHopperBlockEntity;
+import de.dafuqs.spectrum.blocks.fusion_shrine.FusionShrineBlockEntity;
+import de.dafuqs.spectrum.blocks.fusion_shrine.FusionShrineBlockEntityRenderer;
 import de.dafuqs.spectrum.blocks.mob_head.SpectrumSkullBlockEntity;
 import de.dafuqs.spectrum.blocks.mob_head.SpectrumSkullBlockEntityRenderer3D;
 import de.dafuqs.spectrum.blocks.particle_spawner.ParticleSpawnerBlockEntity;
@@ -32,6 +34,7 @@ public class SpectrumBlockEntityRegistry<T extends BlockEntity> {
 
     public static BlockEntityType<OminousSaplingBlockEntity> OMINOUS_SAPLING;
     public static BlockEntityType<PedestalBlockEntity> PEDESTAL;
+    public static BlockEntityType<FusionShrineBlockEntity> FUSION_SHRINE;
     public static BlockEntityType<PlayerDetectorBlockEntity> PLAYER_DETECTOR;
     public static BlockEntityType<EnderDropperBlockEntity> ENDER_DROPPER;
     public static BlockEntityType<EnderHopperBlockEntity> ENDER_HOPPER;
@@ -43,11 +46,12 @@ public class SpectrumBlockEntityRegistry<T extends BlockEntity> {
     public static BlockEntityType<CompactingChestBlockEntity> COMPACTING_CHEST;
     public static BlockEntityType<RestockingChestBlockEntity> RESTOCKING_CHEST;
     public static BlockEntityType<PrivateChestBlockEntity> PRIVATE_CHEST;
-    public static  BlockEntityType<SuckingChestBlockEntity> SUCKING_CHEST;
+    public static BlockEntityType<SuckingChestBlockEntity> SUCKING_CHEST;
 
     public static void register() {
         OMINOUS_SAPLING = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "ominous_sapling_block_entity"), FabricBlockEntityTypeBuilder.create(OminousSaplingBlockEntity::new, SpectrumBlocks.OMINOUS_SAPLING).build());
         PEDESTAL = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "pedestal_block_entity"), FabricBlockEntityTypeBuilder.create(PedestalBlockEntity::new, SpectrumBlocks.PEDESTAL_BASIC_AMETHYST, SpectrumBlocks.PEDESTAL_BASIC_TOPAZ, SpectrumBlocks.PEDESTAL_BASIC_CITRINE, SpectrumBlocks.PEDESTAL_ALL_BASIC, SpectrumBlocks.PEDESTAL_ONYX, SpectrumBlocks.PEDESTAL_MOONSTONE).build());
+        FUSION_SHRINE = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "fusion_shrine_block_entity"), FabricBlockEntityTypeBuilder.create(FusionShrineBlockEntity::new, SpectrumBlocks.FUSION_SHRINE).build());
         PLAYER_DETECTOR = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "player_detector"), FabricBlockEntityTypeBuilder.create(PlayerDetectorBlockEntity::new, SpectrumBlocks.PLAYER_DETECTOR).build());
         ENDER_DROPPER = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "ender_dropper"), FabricBlockEntityTypeBuilder.create(EnderDropperBlockEntity::new, SpectrumBlocks.ENDER_DROPPER).build());
         ENDER_HOPPER = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "ender_hopper"), FabricBlockEntityTypeBuilder.create(EnderHopperBlockEntity::new, SpectrumBlocks.ENDER_HOPPER).build());
@@ -75,13 +79,14 @@ public class SpectrumBlockEntityRegistry<T extends BlockEntity> {
         BlockEntityRendererRegistry.INSTANCE.register(SpectrumBlockEntityRegistry.RESTOCKING_CHEST, SpectrumChestBlockEntityRenderer::new);
         BlockEntityRendererRegistry.INSTANCE.register(SpectrumBlockEntityRegistry.SUCKING_CHEST, SpectrumChestBlockEntityRenderer::new);
         BlockEntityRendererRegistry.INSTANCE.register(SpectrumBlockEntityRegistry.PEDESTAL_SPEED_UPGRADE, PedestalUpgradeBlockBlockEntityRenderer::new);
+        BlockEntityRendererRegistry.INSTANCE.register(SpectrumBlockEntityRegistry.FUSION_SHRINE, FusionShrineBlockEntityRenderer::new);
         BlockEntityRendererRegistry.INSTANCE.register(SpectrumBlockEntityRegistry.SKULL, SpectrumSkullBlockEntityRenderer3D::new);
         BlockEntityRendererRegistry.INSTANCE.register(SpectrumBlockEntityRegistry.DEEPER_DOWN_PORTAL, DeeperDownPortalBlockEntityRenderer::new);
 
         registerTextureAtlasCallback();
     }
 
-    public static void registerTextureAtlasCallback() {
+    private static void registerTextureAtlasCallback() {
         //Register textures in chest atlas
         ClientSpriteRegistryCallback.event(TexturedRenderLayers.CHEST_ATLAS_TEXTURE).register((texture, registry) -> {
             registry.register(new Identifier(SpectrumCommon.MOD_ID, "entity/private_chest"));

@@ -33,13 +33,13 @@ public class PedestalUpgradeBlockBlockEntityRenderer<PedestalUpgradeBlockEntity 
     }
 
     @Override
-    public void render(PedestalUpgradeBlockEntity entity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
-        VertexConsumer vertexConsumer = spriteIdentifier.getVertexConsumer(vertexConsumers, RenderLayer::getEntityCutout);
+    public void render(PedestalUpgradeBlockEntity entity, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light, int overlay) {
+        VertexConsumer vertexConsumer = spriteIdentifier.getVertexConsumer(vertexConsumerProvider, RenderLayer::getEntityCutout);
 
         float s = (entity.getWorld().getTime() + tickDelta) / 25.0F;
         root.pivotY = 16.0F + (float) (Math.sin(s) * 0.5);
         disk.yaw = s;
-        root.render(matrices, vertexConsumer, light, overlay);
+        root.render(matrixStack, vertexConsumer, light, overlay);
     }
 
     public static @NotNull TexturedModelData getTexturedModelData(){

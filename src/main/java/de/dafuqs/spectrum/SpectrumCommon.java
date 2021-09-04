@@ -21,10 +21,17 @@ import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerWorldEvents;
+import net.minecraft.block.Block;
+import net.minecraft.block.FluidBlock;
+import net.minecraft.fluid.Fluid;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.registry.Registry;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import java.util.HashMap;
+import java.util.Iterator;
 
 public class SpectrumCommon implements ModInitializer {
 
@@ -34,6 +41,12 @@ public class SpectrumCommon implements ModInitializer {
     private static final Logger LOGGER = LogManager.getLogger(MOD_ID);
 
     public static MinecraftServer minecraftServer;
+    /**
+     * Caches the luminance states from fluids as int
+     * for blocks that react to the light level of fluids
+     * like the fusion shrine lighting up with lava or liquid crystal
+     */
+    public static HashMap<Fluid, Integer> fluidLuminance = new HashMap<>();
 
     public static void log(Level logLevel, String message) {
         LOGGER.log(logLevel, "[Spectrum] " + message);
@@ -92,7 +105,15 @@ public class SpectrumCommon implements ModInitializer {
 
         ServerWorldEvents.LOAD.register((minecraftServer, serverWorld) -> {
             SpectrumCommon.minecraftServer = minecraftServer;
+
+            for (Iterator<Block> it = Registry.BLOCK.stream().iterator(); it.hasNext(); ) {
+                Block block = it.next();
+                if(block instanceof FluidBlock fluidBlock) {
+                    fluidLuminance.put(fluidBlock.getFluidState(fluidBlock.getDefaultState()).getFluid(), fluidBlock.getDefaultState().getLuminance());
+                }
+            }
         });
+
     }
 
 }

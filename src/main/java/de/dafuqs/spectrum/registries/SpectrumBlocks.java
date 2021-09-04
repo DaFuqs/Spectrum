@@ -18,6 +18,7 @@ import de.dafuqs.spectrum.blocks.ender.EnderDropperBlock;
 import de.dafuqs.spectrum.blocks.ender.EnderHopperBlock;
 import de.dafuqs.spectrum.blocks.fluid.LiquidCrystalFluidBlock;
 import de.dafuqs.spectrum.blocks.fluid.MudFluidBlock;
+import de.dafuqs.spectrum.blocks.fusion_shrine.FusionShrineBlock;
 import de.dafuqs.spectrum.blocks.gemstone.SpectrumBuddingBlock;
 import de.dafuqs.spectrum.blocks.gemstone.SpectrumGemstoneBlock;
 import de.dafuqs.spectrum.blocks.gravity.GravitableBlock;
@@ -66,6 +67,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Collection;
 import java.util.Locale;
+import java.util.function.ToIntFunction;
 
 public class SpectrumBlocks {
 
@@ -80,6 +82,7 @@ public class SpectrumBlocks {
     }
 
     public static FabricItemSettings generalItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL);
+    public static FabricItemSettings generalItemSettingsSingle = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).maxCount(1);
     public static FabricItemSettings resourcesItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_RESOURCES);
     public static FabricItemSettings decorationItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_DECORATION);
     public static FabricItemSettings coloredWoodItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_COLORED_WOOD);
@@ -93,7 +96,12 @@ public class SpectrumBlocks {
     public static final Block PEDESTAL_ONYX = new PedestalBlock(FabricBlockSettings.of(Material.STONE).strength(5.0F, 20.0F), PedestalBlock.PedestalVariant.ONYX);
     public static final Block PEDESTAL_MOONSTONE = new PedestalBlock(FabricBlockSettings.of(Material.STONE).strength(5.0F, 20.0F), PedestalBlock.PedestalVariant.MOONSTONE);
 
-    public static final Block SPECTRUM_BOWL = new Block(FabricBlockSettings.of(Material.STONE).strength(5.0F, 20.0F));
+    public static final Block FUSION_SHRINE = new FusionShrineBlock(FabricBlockSettings.of(Material.STONE).strength(5.0F, 20.0F).nonOpaque().luminance(new ToIntFunction<BlockState>() {
+        @Override
+        public int applyAsInt(BlockState value) {
+            return value.get(FusionShrineBlock.LIGHT_LEVEL);
+        }
+    }));
 
     // GEMS
     public static final Block TOPAZ_CLUSTER = new AmethystClusterBlock(7, 3, FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().requiresTool().sounds(SpectrumBlockSoundGroups.TOPAZ_CLUSTER).luminance((state) -> 6));
@@ -607,13 +615,13 @@ public class SpectrumBlocks {
     }
 
     public static void register() {
-        registerBlockWithItem("pedestal_basic_topaz", PEDESTAL_BASIC_TOPAZ, new PedestalBlockItem(PEDESTAL_BASIC_TOPAZ, generalItemSettings, PedestalBlock.PedestalVariant.BASIC_TOPAZ));
-        registerBlockWithItem("pedestal_basic_amethyst", PEDESTAL_BASIC_AMETHYST, new PedestalBlockItem(PEDESTAL_BASIC_AMETHYST, generalItemSettings, PedestalBlock.PedestalVariant.BASIC_AMETHYST));
-        registerBlockWithItem("pedestal_basic_citrine", PEDESTAL_BASIC_CITRINE, new PedestalBlockItem(PEDESTAL_BASIC_CITRINE, generalItemSettings, PedestalBlock.PedestalVariant.BASIC_CITRINE));
-        registerBlockWithItem("pedestal_all_basic", PEDESTAL_ALL_BASIC, new PedestalBlockItem(PEDESTAL_ALL_BASIC, generalItemSettings, PedestalBlock.PedestalVariant.ALL_BASIC));
-        registerBlockWithItem("pedestal_onyx", PEDESTAL_ONYX, new PedestalBlockItem(PEDESTAL_ONYX, generalItemSettings, PedestalBlock.PedestalVariant.ONYX));
-        registerBlockWithItem("pedestal_moonstone", PEDESTAL_MOONSTONE, new PedestalBlockItem(PEDESTAL_MOONSTONE, generalItemSettings, PedestalBlock.PedestalVariant.MOONSTONE));
-        registerBlockWithItem("spectrum_bowl", SPECTRUM_BOWL, generalItemSettings);
+        registerBlockWithItem("pedestal_basic_topaz", PEDESTAL_BASIC_TOPAZ, new PedestalBlockItem(PEDESTAL_BASIC_TOPAZ, generalItemSettingsSingle, PedestalBlock.PedestalVariant.BASIC_TOPAZ));
+        registerBlockWithItem("pedestal_basic_amethyst", PEDESTAL_BASIC_AMETHYST, new PedestalBlockItem(PEDESTAL_BASIC_AMETHYST, generalItemSettingsSingle, PedestalBlock.PedestalVariant.BASIC_AMETHYST));
+        registerBlockWithItem("pedestal_basic_citrine", PEDESTAL_BASIC_CITRINE, new PedestalBlockItem(PEDESTAL_BASIC_CITRINE, generalItemSettingsSingle, PedestalBlock.PedestalVariant.BASIC_CITRINE));
+        registerBlockWithItem("pedestal_all_basic", PEDESTAL_ALL_BASIC, new PedestalBlockItem(PEDESTAL_ALL_BASIC, generalItemSettingsSingle, PedestalBlock.PedestalVariant.ALL_BASIC));
+        registerBlockWithItem("pedestal_onyx", PEDESTAL_ONYX, new PedestalBlockItem(PEDESTAL_ONYX, generalItemSettingsSingle, PedestalBlock.PedestalVariant.ONYX));
+        registerBlockWithItem("pedestal_moonstone", PEDESTAL_MOONSTONE, new PedestalBlockItem(PEDESTAL_MOONSTONE, generalItemSettingsSingle, PedestalBlock.PedestalVariant.MOONSTONE));
+        registerBlockWithItem("fusion_shrine", FUSION_SHRINE, generalItemSettingsSingle);
         registerBlockWithItem("pedestal_speed_upgrade", PEDESTAL_SPEED_UPGRADE, generalItemSettings);
 
         registerStoneBlocks(decorationItemSettings);

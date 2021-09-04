@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.networking;
 
 import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.blocks.fusion_shrine.FusionShrineBlockEntity;
 import de.dafuqs.spectrum.blocks.particle_spawner.ParticleSpawnerBlockEntity;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.particle.effect.ItemTransfer;
@@ -11,9 +12,11 @@ import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.particle.ItemStackParticleEffect;
 import net.minecraft.particle.ParticleTypes;
@@ -27,11 +30,17 @@ import java.util.Random;
 
 public class SpectrumS2CPackets {
 
+	public enum BlockEntityUpdatePacketID {
+		FUSION_SHRINE,
+		PARTICLE_SPAWNER
+	}
+
 	public static final Identifier PLAY_PEDESTAL_CRAFTING_FINISHED_PARTICLE_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "play_pedestal_crafting_finished_particle");
 	public static final Identifier PLAY_ANVIL_CRAFTING_PARTICLE_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "play_anvil_crafting_finished_particle");
 	public static final Identifier CHANGE_PARTICLE_SPAWNER_SETTINGS_CLIENT_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "change_particle_spawner_settings_client");
 	public static final Identifier INITIATE_ITEM_TRANSFER = new Identifier(SpectrumCommon.MOD_ID, "initiate_item_transfer");
 	public static final Identifier PLAY_ITEM_ENTITY_ABSORBED_PARTICLE_EFFECT_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "item_entity_absorbed");
+	public static final Identifier BLOCK_ENTITY_UPDATE_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "block_entity_update");
 
 	@Environment(EnvType.CLIENT)
 	public static void registerS2CReceivers() {
@@ -86,6 +95,21 @@ public class SpectrumS2CPackets {
 			});
 		});
 
+		ClientPlayNetworking.registerGlobalReceiver(BLOCK_ENTITY_UPDATE_PACKET_ID, (client, handler, buf, responseSender) -> {
+			BlockPos blockPos = buf.readBlockPos();
+			BlockEntityUpdatePacketID blockEntityUpdatePacketID = BlockEntityUpdatePacketID.valueOf(buf.readString());
+			NbtCompound nbt = buf.readNbt();
+
+			client.execute(() -> {
+				BlockEntity blockEntity = MinecraftClient.getInstance().world.getBlockEntity(blockPos);
+				if(blockEntityUpdatePacketID == BlockEntityUpdatePacketID.FUSION_SHRINE && blockEntity instanceof FusionShrineBlockEntity
+					|| blockEntityUpdatePacketID == BlockEntityUpdatePacketID.PARTICLE_SPAWNER && blockEntity instanceof ParticleSpawnerBlockEntity) {
+
+					blockEntity.readNbt(nbt);
+				}
+			});
+		});
+
 	}
 
 	/**
@@ -124,6 +148,18 @@ public class SpectrumS2CPackets {
 		// Iterate over all players tracking a position in the world and send the packet to each player
 		for (ServerPlayerEntity player : PlayerLookup.tracking((ServerWorld) world, itemEntity.getBlockPos())) {
 			ServerPlayNetworking.send(player, SpectrumS2CPackets.PLAY_ITEM_ENTITY_ABSORBED_PARTICLE_EFFECT_PACKET_ID, buf);
+		}
+	}
+
+	public static void sendBlockEntityUpdate(BlockEntity blockEntity, BlockEntityUpdatePacketID blockEntityUpdatePacketID) {
+		PacketByteBuf buf = PacketByteBufs.create();
+		buf.writeBlockPos(blockEntity.getPos());
+		buf.writeString(blockEntityUpdatePacketID.toString());
+		buf.writeNbt(blockEntity.writeNbt(new NbtCompound()));
+
+		// Iterate over all players tracking a position in the world and send the packet to each player
+		for (ServerPlayerEntity player : PlayerLookup.tracking((ServerWorld) blockEntity.getWorld(), blockEntity.getPos())) {
+			ServerPlayNetworking.send(player, SpectrumS2CPackets.BLOCK_ENTITY_UPDATE_PACKET_ID, buf);
 		}
 	}
 

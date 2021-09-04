@@ -93,7 +93,7 @@ public class PedestalBlock extends BlockWithEntity implements RedstonePoweredBlo
             if(pedestalBlockEntity.isOwner(player)) {
                 player.openHandledScreen((NamedScreenHandlerFactory) blockEntity);
             } else {
-                player.sendMessage(new TranslatableText("block.spectrum.title_with_owner", pedestalBlockEntity.getOwnerName()), false);
+                player.sendMessage(new TranslatableText("block.spectrum.pedestal.title_with_owner", pedestalBlockEntity.getOwnerName()), false);
             }
         }
     }

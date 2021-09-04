@@ -85,10 +85,11 @@ public class PedestalScreen extends HandledScreen<PedestalScreenHandler> {
         int inventoryX = 8;
         int intInventoryY = 100;
 
-        this.textRenderer.draw(matrices, title, titleX, titleY, 4210752);
-        this.textRenderer.draw(matrices, this.playerInventoryTitle, inventoryX, intInventoryY, 4210752);
+        this.textRenderer.draw(matrices, title, titleX, titleY, 3289650);
+        this.textRenderer.draw(matrices, this.playerInventoryTitle, inventoryX, intInventoryY, 3289650);
 
-        // if structure could be improved: show blinking information icon
+        // if structure could be improved:
+        // show red blinking information icon
         if(structureUpdateAvailable) {
             if((client.world.getTime() >> 4) % 2 == 0) {
                 this.textRenderer.draw(matrices, "ℹ", 130, 66, 11010048);

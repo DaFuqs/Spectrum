@@ -27,8 +27,8 @@ public class RestockingChestScreen extends HandledScreen<RestockingChestScreenHa
         int inventoryX = 8;
         int intInventoryY = 126;
 
-        this.textRenderer.draw(matrices, title, titleX, titleY, 4210752);
-        this.textRenderer.draw(matrices, this.playerInventoryTitle, inventoryX, intInventoryY, 4210752);
+        this.textRenderer.draw(matrices, title, titleX, titleY, 3289650);
+        this.textRenderer.draw(matrices, this.playerInventoryTitle, inventoryX, intInventoryY, 3289650);
     }
 
     @Override

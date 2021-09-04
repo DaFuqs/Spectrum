@@ -42,8 +42,8 @@ public class GenericSpectrumContainerScreen extends HandledScreen<GenericSpectru
         Text title = this.title;
         int inventoryX = 8;
 
-        this.textRenderer.draw(matrices, title, titleX, titleY, 4210752);
-        this.textRenderer.draw(matrices, this.playerInventoryTitle, inventoryX, playerInventoryTitleY, 4210752);
+        this.textRenderer.draw(matrices, title, titleX, titleY, 3289650);
+        this.textRenderer.draw(matrices, this.playerInventoryTitle, inventoryX, playerInventoryTitleY, 3289650);
     }
 
 

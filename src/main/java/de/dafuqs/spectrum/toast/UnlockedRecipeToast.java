@@ -45,7 +45,7 @@ public class UnlockedRecipeToast implements Toast {
 
         manager.drawTexture(matrices, 0, 0, 0, 32, this.getWidth(), this.getHeight());
 
-        manager.getGame().textRenderer.draw(matrices, title, 30.0F, 7.0F, 3289650); // => #323232: dark gray
+        manager.getGame().textRenderer.draw(matrices, title, 30.0F, 7.0F, 2105376); // => #2105376: dark gray
         manager.getGame().textRenderer.draw(matrices, text, 30.0F, 18.0F, 0);
 
         if (!this.soundPlayed && startTime > 0L) {

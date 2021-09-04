@@ -1,5 +1,7 @@
 package de.dafuqs.spectrum.blocks.ender;
 
+import de.dafuqs.spectrum.enums.SpectrumTier;
+import de.dafuqs.spectrum.inventories.GenericSpectrumContainerScreenHandler;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.block.dispenser.DispenserBehavior;
@@ -67,7 +69,7 @@ public class EnderDropperBlock extends DispenserBlock {
                     //enderChestInventory.setActiveBlockEntity(enderDropperBlockEntity); // TODO: set this as active ender chest... somehow.
 
                     player.openHandledScreen(new SimpleNamedScreenHandlerFactory((i, playerInventory, playerEntity) -> {
-                        return GenericContainerScreenHandler.createGeneric9x3(i, playerInventory, enderChestInventory);
+                        return GenericSpectrumContainerScreenHandler.createGeneric9x3(i, playerInventory, enderChestInventory, SpectrumTier.TIER1);
                     }, enderDropperBlockEntity.getContainerName()));
 
                     PiglinBrain.onGuardedBlockInteracted(player, true);

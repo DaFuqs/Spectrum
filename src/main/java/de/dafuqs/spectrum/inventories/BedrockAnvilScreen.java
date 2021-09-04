@@ -39,7 +39,8 @@ public class BedrockAnvilScreen extends HandledScreen<BedrockAnvilScreenHandler>
       this.player = inventory.player;
 
       this.titleX = 60;
-      this.playerInventoryTitleY = 92;
+      this.titleY = this.titleY +2;
+      this.playerInventoryTitleY = 95;
       this.backgroundHeight = 190;
    }
 
@@ -156,9 +157,10 @@ public class BedrockAnvilScreen extends HandledScreen<BedrockAnvilScreenHandler>
 
    protected void drawForeground(MatrixStack matrices, int mouseX, int mouseY) {
       RenderSystem.disableBlend();
-      super.drawForeground(matrices, mouseX, mouseY);
 
-      this.textRenderer.draw(matrices, new TranslatableText("container.spectrum.bedrock_anvil.lore"), playerInventoryTitleX, 76, 4210752);
+      this.textRenderer.draw(matrices, this.title, this.titleX, this.titleY, 3289650);
+      this.textRenderer.draw(matrices, this.playerInventoryTitle, this.playerInventoryTitleX, this.playerInventoryTitleY, 3289650);
+      this.textRenderer.draw(matrices, new TranslatableText("container.spectrum.bedrock_anvil.lore"), playerInventoryTitleX, 76, 3289650);
 
       int levelCost = (this.handler).getLevelCost();
       if (levelCost > 0 || this.handler.getSlot(2).hasStack()) {

@@ -107,7 +107,7 @@ public class QuitoxicReedsBlock extends SugarCaneBlock implements Cloakable, Wat
                 if (j == 15) {
                     // search for clay. 1 clay => 1 quitoxic reed
                     Optional<BlockPos> clayPos = searchClayPos(world, pos.down(i), Blocks.CLAY.getDefaultState(), random);
-                    if(clayPos.isEmpty()) {
+                    if(clayPos.isEmpty() || world.getBlockState(clayPos.get().up()).getBlock() instanceof QuitoxicReedsBlock) {
                         return;
                     }
                     world.setBlockState(clayPos.get(), Blocks.DIRT.getDefaultState(), 3);

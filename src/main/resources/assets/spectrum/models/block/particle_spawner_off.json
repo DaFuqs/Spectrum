@@ -1,5 +1,6 @@
 {
 	"credit": "Made with Blockbench",
+	"parent": "block/block",
 	"textures": {
 		"0": "spectrum:block/particle_spawner_top_off",
 		"1": "spectrum:block/polished_basalt_pillar_side",
@@ -57,31 +58,5 @@
 				"down": {"uv": [0, 0, 4, 4], "texture": "#0"}
 			}
 		}
-	],
-	"display": {
-		"thirdperson_righthand": {
-			"rotation": [50, 0, 0],
-			"translation": [0, 0.75, 0],
-			"scale": [0.5, 0.5, 0.5]
-		},
-		"thirdperson_lefthand": {
-			"rotation": [50, 0, 0],
-			"translation": [0, 0.75, 0],
-			"scale": [0.5, 0.5, 0.5]
-		},
-		"firstperson_righthand": {
-			"scale": [0.5, 0.5, 0.5]
-		},
-		"firstperson_lefthand": {
-			"scale": [0.5, 0.5, 0.5]
-		},
-		"ground": {
-			"scale": [0.5, 0.5, 0.5]
-		},
-		"gui": {
-			"rotation": [30, 30, 0],
-			"translation": [0, 1, 0],
-			"scale": [0.6, 0.6, 0.6]
-		}
-	}
+	]
 }

@@ -5,7 +5,7 @@ $flat = @("black_glowblock", "blue_glowblock", "brown_glowblock", "cyan_glowbloc
 $lamp = @("black_lamp", "blue_lamp", "brown_lamp", "cyan_lamp", "gray_lamp", "green_lamp", "light_blue_lamp", "light_gray_lamp", "lime_lamp", "magenta_lamp", "orange_lamp", "pink_lamp", "purple_lamp", "red_lamp", "white_lamp", "yellow_lamp")
 $ores = @("sparklestone_block", "koenigsblau_ore", "koenigsblau_block")
 
-$new = @("basalt_sparklestone_light", "calcite_sparklestone_light", "stone_sparklestone_light", "granite_sparklestone_light", "diorite_sparklestone_light", "andesite_sparklestone_light", "deepslate_sparklestone_light")
+$new = @("spectrum_bowl")
 
 enum BlockType {
     Default

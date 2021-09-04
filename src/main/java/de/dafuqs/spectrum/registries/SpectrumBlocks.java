@@ -92,7 +92,9 @@ public class SpectrumBlocks {
     public static final Block PEDESTAL_ALL_BASIC = new PedestalBlock(FabricBlockSettings.of(Material.STONE).strength(5.0F, 20.0F), PedestalBlock.PedestalVariant.ALL_BASIC);
     public static final Block PEDESTAL_ONYX = new PedestalBlock(FabricBlockSettings.of(Material.STONE).strength(5.0F, 20.0F), PedestalBlock.PedestalVariant.ONYX);
     public static final Block PEDESTAL_MOONSTONE = new PedestalBlock(FabricBlockSettings.of(Material.STONE).strength(5.0F, 20.0F), PedestalBlock.PedestalVariant.MOONSTONE);
-    
+
+    public static final Block SPECTRUM_BOWL = new Block(FabricBlockSettings.of(Material.STONE).strength(5.0F, 20.0F));
+
     // GEMS
     public static final Block TOPAZ_CLUSTER = new AmethystClusterBlock(7, 3, FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().requiresTool().sounds(SpectrumBlockSoundGroups.TOPAZ_CLUSTER).luminance((state) -> 6));
     public static final Block LARGE_TOPAZ_BUD = new AmethystClusterBlock(5, 3, FabricBlockSettings.copyOf(TOPAZ_CLUSTER).sounds(SpectrumBlockSoundGroups.LARGE_TOPAZ_BUD).luminance((state) -> 6));
@@ -496,13 +498,13 @@ public class SpectrumBlocks {
     public static final Block YELLOW_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f), DyeColor.YELLOW);
 
     // SPARKLESTONE LIGHTS
-    public static final Block BASALT_SPARKLESTONE_LIGHT = new SparklestoneLightBlock(FabricBlockSettings.copyOf(SpectrumBlocks.POLISHED_BASALT).nonOpaque());
-    public static final Block CALCITE_SPARKLESTONE_LIGHT = new SparklestoneLightBlock(FabricBlockSettings.copyOf(SpectrumBlocks.POLISHED_CALCITE).nonOpaque());
-    public static final Block STONE_SPARKLESTONE_LIGHT = new SparklestoneLightBlock(FabricBlockSettings.copyOf(Blocks.SMOOTH_STONE).nonOpaque());
-    public static final Block GRANITE_SPARKLESTONE_LIGHT = new SparklestoneLightBlock(FabricBlockSettings.copyOf(Blocks.POLISHED_GRANITE).nonOpaque());
-    public static final Block DIORITE_SPARKLESTONE_LIGHT = new SparklestoneLightBlock(FabricBlockSettings.copyOf(Blocks.POLISHED_DIORITE).nonOpaque());
-    public static final Block ANDESITE_SPARKLESTONE_LIGHT = new SparklestoneLightBlock(FabricBlockSettings.copyOf(Blocks.POLISHED_ANDESITE).nonOpaque());
-    public static final Block DEEPSLATE_SPARKLESTONE_LIGHT = new SparklestoneLightBlock(FabricBlockSettings.copyOf(Blocks.POLISHED_DEEPSLATE).nonOpaque());
+    public static final Block BASALT_SPARKLESTONE_LIGHT = new SparklestoneLightBlock(FabricBlockSettings.copyOf(SpectrumBlocks.POLISHED_BASALT).nonOpaque().luminance(15));
+    public static final Block CALCITE_SPARKLESTONE_LIGHT = new SparklestoneLightBlock(FabricBlockSettings.copyOf(SpectrumBlocks.POLISHED_CALCITE).nonOpaque().luminance(15));
+    public static final Block STONE_SPARKLESTONE_LIGHT = new SparklestoneLightBlock(FabricBlockSettings.copyOf(Blocks.SMOOTH_STONE).nonOpaque().luminance(15));
+    public static final Block GRANITE_SPARKLESTONE_LIGHT = new SparklestoneLightBlock(FabricBlockSettings.copyOf(Blocks.POLISHED_GRANITE).nonOpaque().luminance(15));
+    public static final Block DIORITE_SPARKLESTONE_LIGHT = new SparklestoneLightBlock(FabricBlockSettings.copyOf(Blocks.POLISHED_DIORITE).nonOpaque().luminance(15));
+    public static final Block ANDESITE_SPARKLESTONE_LIGHT = new SparklestoneLightBlock(FabricBlockSettings.copyOf(Blocks.POLISHED_ANDESITE).nonOpaque().luminance(15));
+    public static final Block DEEPSLATE_SPARKLESTONE_LIGHT = new SparklestoneLightBlock(FabricBlockSettings.copyOf(Blocks.POLISHED_DEEPSLATE).nonOpaque().luminance(15));
 
     // ORES
     public static final Block SPARKLESTONE_ORE = new SparklestoneOreBlock(FabricBlockSettings.copyOf(Blocks.IRON_ORE).breakByTool(FabricToolTags.PICKAXES, 1).requiresTool(), UniformIntProvider.create(2, 4), false);
@@ -611,6 +613,7 @@ public class SpectrumBlocks {
         registerBlockWithItem("pedestal_all_basic", PEDESTAL_ALL_BASIC, new PedestalBlockItem(PEDESTAL_ALL_BASIC, generalItemSettings, PedestalBlock.PedestalVariant.ALL_BASIC));
         registerBlockWithItem("pedestal_onyx", PEDESTAL_ONYX, new PedestalBlockItem(PEDESTAL_ONYX, generalItemSettings, PedestalBlock.PedestalVariant.ONYX));
         registerBlockWithItem("pedestal_moonstone", PEDESTAL_MOONSTONE, new PedestalBlockItem(PEDESTAL_MOONSTONE, generalItemSettings, PedestalBlock.PedestalVariant.MOONSTONE));
+        registerBlockWithItem("spectrum_bowl", SPECTRUM_BOWL, generalItemSettings);
         registerBlockWithItem("pedestal_speed_upgrade", PEDESTAL_SPEED_UPGRADE, generalItemSettings);
 
         registerStoneBlocks(decorationItemSettings);

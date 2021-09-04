@@ -9,10 +9,13 @@ import net.fabricmc.api.Environment;
 import net.minecraft.block.*;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.*;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.tag.BlockTags;
 import net.minecraft.tag.FluidTags;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
@@ -20,9 +23,17 @@ import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.UseAction;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
+import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.BiomeKeys;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.Random;
 
 public class NaturesStaffItem extends Item {
 
@@ -83,12 +94,14 @@ public class NaturesStaffItem extends Item {
         // trigger the items usage action every x ticks
         if(remainingUseTicks % 10 == 0) {
             if(MinecraftClient.getInstance().crosshairTarget.getType() == net.minecraft.util.hit.HitResult.Type.BLOCK) {
+
                 MinecraftClient.getInstance().interactionManager.interactBlock(
                         MinecraftClient.getInstance().player,
                         MinecraftClient.getInstance().world,
                         MinecraftClient.getInstance().player.getActiveHand(),
                         (BlockHitResult) MinecraftClient.getInstance().crosshairTarget
                 );
+
             }
         }
     }
@@ -101,10 +114,7 @@ public class NaturesStaffItem extends Item {
             BlockPos blockPos = context.getBlockPos();
 
             if (world.isClient) {
-                float randomX = world.getRandom().nextFloat() * 0.4F - 0.2F;
-                float randomZ = world.getRandom().nextFloat() * 0.4F - 0.2F;
-                BlockPos particleBlockPos = blockPos.offset(context.getSide());
-                world.addParticle(ParticleTypes.HAPPY_VILLAGER, particleBlockPos.getX(), particleBlockPos.getY(), particleBlockPos.getZ(), randomX, 0, randomZ);
+                BoneMealItem.createParticles(world, blockPos, 15);
             } else if(user.getItemUseTime() % 10 == 0) {
                 BlockState blockState = world.getBlockState(blockPos);
 
@@ -125,7 +135,7 @@ public class NaturesStaffItem extends Item {
                     world.syncWorldEvent(2005, blockPos, 0);
                     return ActionResult.success(false);
                     // fertilizable? => grow
-                } else if (BoneMealItem.useOnFertilizable(context.getStack(), world, blockPos)) {
+                } else if (useOnFertilizable(context.getStack(), world, blockPos)) {
                     world.syncWorldEvent(2005, blockPos, 0);
                     return ActionResult.success(false);
                     // random tickable and whitelisted? => tick
@@ -139,7 +149,7 @@ public class NaturesStaffItem extends Item {
                 } else {
                     BlockPos blockPos2 = blockPos.offset(context.getSide());
                     boolean bl = blockState.isSideSolidFullSquare(world, blockPos, context.getSide());
-                    if (bl && BoneMealItem.useOnGround(context.getStack(), world, blockPos2, context.getSide())) {
+                    if (bl && useOnGround(context.getStack(), world, blockPos2, context.getSide())) {
                         world.syncWorldEvent(2005, blockPos2, 0);
                         return ActionResult.success(false);
                     }
@@ -148,6 +158,84 @@ public class NaturesStaffItem extends Item {
         }
 
         return ActionResult.PASS;
+    }
+
+    /**
+     * Near identical copy of BonemealItem.useOnFertilizable
+     * just with stack decrement removed
+     */
+    public static boolean useOnFertilizable(ItemStack stack, World world, BlockPos pos) {
+        BlockState blockState = world.getBlockState(pos);
+        if (blockState.getBlock() instanceof Fertilizable) {
+            Fertilizable fertilizable = (Fertilizable)blockState.getBlock();
+            if (fertilizable.isFertilizable(world, pos, blockState, world.isClient)) {
+                if (world instanceof ServerWorld) {
+                    if (fertilizable.canGrow(world, world.random, pos, blockState)) {
+                        fertilizable.grow((ServerWorld)world, world.random, pos, blockState);
+                    }
+
+                }
+
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * Near identical copy of BonemealItem.useOnGround
+     * just with stack decrement removed
+     */
+    public static boolean useOnGround(ItemStack stack, World world, BlockPos blockPos, @Nullable Direction facing) {
+        if (world.getBlockState(blockPos).isOf(Blocks.WATER) && world.getFluidState(blockPos).getLevel() == 8) {
+            if (!(world instanceof ServerWorld)) {
+                return true;
+            } else {
+                Random random = world.getRandom();
+
+                label80:
+                for(int i = 0; i < 128; ++i) {
+                    BlockPos blockPos2 = blockPos;
+                    BlockState blockState = Blocks.SEAGRASS.getDefaultState();
+
+                    for(int j = 0; j < i / 16; ++j) {
+                        blockPos2 = blockPos2.add(random.nextInt(3) - 1, (random.nextInt(3) - 1) * random.nextInt(3) / 2, random.nextInt(3) - 1);
+                        if (world.getBlockState(blockPos2).isFullCube(world, blockPos2)) {
+                            continue label80;
+                        }
+                    }
+
+                    Optional<RegistryKey<Biome>> optional = world.getBiomeKey(blockPos2);
+                    if (Objects.equals(optional, Optional.of(BiomeKeys.WARM_OCEAN)) || Objects.equals(optional, Optional.of(BiomeKeys.DEEP_WARM_OCEAN))) {
+                        if (i == 0 && facing != null && facing.getAxis().isHorizontal()) {
+                            blockState = (BlockTags.WALL_CORALS.getRandom(world.random)).getDefaultState().with(DeadCoralWallFanBlock.FACING, facing);
+                        } else if (random.nextInt(4) == 0) {
+                            blockState = (BlockTags.UNDERWATER_BONEMEALS.getRandom(random)).getDefaultState();
+                        }
+                    }
+
+                    if (blockState.isIn(BlockTags.WALL_CORALS)) {
+                        for(int k = 0; !blockState.canPlaceAt(world, blockPos2) && k < 4; ++k) {
+                            blockState = blockState.with(DeadCoralWallFanBlock.FACING, Direction.Type.HORIZONTAL.random(random));
+                        }
+                    }
+
+                    if (blockState.canPlaceAt(world, blockPos2)) {
+                        BlockState blockState2 = world.getBlockState(blockPos2);
+                        if (blockState2.isOf(Blocks.WATER) && world.getFluidState(blockPos2).getLevel() == 8) {
+                            world.setBlockState(blockPos2, blockState, Block.NOTIFY_ALL);
+                        } else if (blockState2.isOf(Blocks.SEAGRASS) && random.nextInt(10) == 0) {
+                            ((Fertilizable)Blocks.SEAGRASS).grow((ServerWorld)world, random, blockPos2, blockState2);
+                        }
+                    }
+                }
+
+                return true;
+            }
+        } else {
+            return false;
+        }
     }
 
 }

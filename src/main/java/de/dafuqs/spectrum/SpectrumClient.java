@@ -8,6 +8,8 @@ import de.dafuqs.spectrum.inventories.SpectrumScreenHandlerTypes;
 import de.dafuqs.spectrum.items.EnderSpliceItem;
 import de.dafuqs.spectrum.networking.SpectrumS2CPackets;
 import de.dafuqs.spectrum.particle.SpectrumParticleFactories;
+import de.dafuqs.spectrum.progression.ToggleableBlockColorProvider;
+import de.dafuqs.spectrum.progression.ToggleableItemColorProvider;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import de.dafuqs.spectrum.registries.SpectrumFluids;
@@ -30,7 +32,6 @@ import net.minecraft.item.*;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
-import org.jetbrains.annotations.Nullable;
 
 public class SpectrumClient implements ClientModInitializer {
 

@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.items;
 
 import de.dafuqs.spectrum.SpectrumClient;
-import de.dafuqs.spectrum.mixin.FluidTagsAccessor;
 import de.dafuqs.spectrum.registries.SpectrumBlockTags;
 import de.dafuqs.spectrum.sound.NaturesStaffUseSoundInstance;
 import net.fabricmc.api.EnvType;
@@ -9,11 +8,8 @@ import net.fabricmc.api.Environment;
 import net.minecraft.block.*;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.*;
-import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.tag.BlockTags;
 import net.minecraft.tag.FluidTags;

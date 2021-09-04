@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum;
+package de.dafuqs.spectrum.progression;
 
 import net.minecraft.client.color.item.ItemColorProvider;
 import net.minecraft.item.ItemStack;
@@ -22,6 +22,7 @@ public class ToggleableItemColorProvider implements ItemColorProvider {
         if(shouldApply) {
             return vanillaProvider.getColor(stack, tintIndex);
         } else {
+            // no tint
             return 16777215;
         }
     }

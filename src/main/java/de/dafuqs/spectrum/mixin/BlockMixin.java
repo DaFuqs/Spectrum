@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.mixin;
 
 import de.dafuqs.spectrum.enchantments.AutoSmeltEnchantment;
-import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
 import de.dafuqs.spectrum.registries.SpectrumEnchantments;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -13,7 +12,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleTypes;
-import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.stat.Stats;
 import net.minecraft.util.math.BlockPos;

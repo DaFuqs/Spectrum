@@ -4,7 +4,6 @@ import com.google.gson.JsonObject;
 import de.dafuqs.spectrum.SpectrumCommon;
 import net.minecraft.advancement.criterion.AbstractCriterion;
 import net.minecraft.advancement.criterion.AbstractCriterionConditions;
-import net.minecraft.advancement.criterion.CuredZombieVillagerCriterion;
 import net.minecraft.block.BlockState;
 import net.minecraft.predicate.entity.AdvancementEntityPredicateDeserializer;
 import net.minecraft.predicate.entity.AdvancementEntityPredicateSerializer;

@@ -1,8 +1,6 @@
 package de.dafuqs.spectrum.progression;
 
 import de.dafuqs.spectrum.Support;
-import de.dafuqs.spectrum.interfaces.PlayerOwned;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import org.jetbrains.annotations.NotNull;

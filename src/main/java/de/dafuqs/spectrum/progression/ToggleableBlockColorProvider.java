@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum;
+package de.dafuqs.spectrum.progression;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.client.color.block.BlockColorProvider;
@@ -25,6 +25,7 @@ public class ToggleableBlockColorProvider implements BlockColorProvider {
         if(shouldApply) {
             return vanillaProvider.getColor(state, world, pos, tintIndex);
         } else {
+            // no tint
             return 16777215;
         }
     }

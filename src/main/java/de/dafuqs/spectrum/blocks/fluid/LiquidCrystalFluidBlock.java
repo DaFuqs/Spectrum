@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.blocks.fluid;
 
-import com.google.common.collect.UnmodifiableIterator;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import de.dafuqs.spectrum.registries.SpectrumFluidTags;

@@ -1,28 +1,18 @@
 package de.dafuqs.spectrum.progression.advancement;
 
 import com.google.common.collect.ImmutableSet;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonNull;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonSyntaxException;
-import java.util.Iterator;
-import java.util.Set;
+import com.google.gson.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtElement;
-import net.minecraft.predicate.NbtPredicate;
 import net.minecraft.predicate.StatePredicate;
-import net.minecraft.server.world.ServerWorld;
 import net.minecraft.tag.ServerTagManagerHolder;
 import net.minecraft.tag.Tag;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.Set;
 
 /**
  * Since BlockPredicate requires world and pos as input we can not use that in BrokenBlockCriterion

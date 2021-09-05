@@ -3,6 +3,8 @@ package de.dafuqs.spectrum.recipe;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.recipe.anvil_crushing.AnvilCrushingRecipe;
 import de.dafuqs.spectrum.recipe.anvil_crushing.AnvilCrushingRecipeSerializer;
+import de.dafuqs.spectrum.recipe.fusion_shrine.FusionShrineRecipe;
+import de.dafuqs.spectrum.recipe.fusion_shrine.FusionShrineRecipeSerializer;
 import de.dafuqs.spectrum.recipe.pedestal.PedestalCraftingRecipe;
 import de.dafuqs.spectrum.recipe.pedestal.PedestalCraftingRecipeSerializer;
 import net.minecraft.recipe.Recipe;
@@ -18,6 +20,10 @@ public class SpectrumRecipeTypes {
 
     public static RecipeSerializer<AnvilCrushingRecipe> ANVIL_CRUSHING_RECIPE_SERIALIZER;
     public static RecipeType<AnvilCrushingRecipe> ANVIL_CRUSHING;
+
+    public static RecipeSerializer<FusionShrineRecipe> FUSION_SHRINE_RECIPE_SERIALIZER;
+    public static RecipeType<FusionShrineRecipe> FUSION_SHRINE;
+
 
     static <S extends RecipeSerializer<T>, T extends Recipe<?>> S registerSerializer(String id, S serializer) {
         return Registry.register(Registry.RECIPE_SERIALIZER, new Identifier(SpectrumCommon.MOD_ID, id), serializer);
@@ -40,6 +46,11 @@ public class SpectrumRecipeTypes {
             public String toString() {return "spectrum:anvil_crushing";}
         });
 
+        FUSION_SHRINE_RECIPE_SERIALIZER = registerSerializer("fusion_shrine", new FusionShrineRecipeSerializer(FusionShrineRecipe::new));
+        FUSION_SHRINE = registerRecipeType("fusion_shrine", new RecipeType<FusionShrineRecipe>() {
+            @Override
+            public String toString() {return "spectrum:fusion_shrine";}
+        });
 
     }
 

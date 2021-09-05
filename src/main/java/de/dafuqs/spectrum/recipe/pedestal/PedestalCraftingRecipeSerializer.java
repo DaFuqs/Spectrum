@@ -74,7 +74,7 @@ public class PedestalCraftingRecipeSerializer<T extends PedestalCraftingRecipe> 
             for(int i = 0; i < requiredAdvancementsArray.size(); i++) {
                 Identifier requiredAdvancementIdentifier = Identifier.tryParse(requiredAdvancementsArray.get(i).getAsString());
                 if(SpectrumCommon.minecraftServer != null && SpectrumCommon.minecraftServer.getAdvancementLoader().get(requiredAdvancementIdentifier) == null) {
-                    SpectrumCommon.log(Level.ERROR, "Recipe " + identifier + " is set to require advancement " + requiredAdvancementIdentifier + ", but it does not exist!");
+                    SpectrumCommon.log(Level.ERROR, "Pedestal recipe " + identifier + " is set to require advancement " + requiredAdvancementIdentifier + ", but it does not exist!");
                 } else {
                     requiredAdvancementIdentifiers.add(requiredAdvancementIdentifier);
                 }

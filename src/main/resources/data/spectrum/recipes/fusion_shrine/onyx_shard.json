@@ -1,0 +1,25 @@
+{
+  "type": "spectrum:fusion_shrine",
+  "time": 800,
+  "experience": 2.0,
+  "fluid": "minecraft:lava",
+  "ingredients": [
+    {
+      "item": "spectrum:topaz_shard"
+    },
+    {
+      "item": "minecraft:amethyst_shard"
+    },
+    {
+      "item": "spectrum:citrine_shard"
+    }
+  ],
+  "result" : {
+    "item": "spectrum:onyx_shard"
+  },
+  "required_advancement": "spectrum:collect_all_basic_pigments_besides_brown",
+  "world_conditions": [
+    "new_moon",
+    "midnight"
+  ]
+}

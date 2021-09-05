@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.progression;
 
 import de.dafuqs.spectrum.enums.PedestalRecipeTier;
+import de.dafuqs.spectrum.recipe.fusion_shrine.FusionShrineRecipe;
 import de.dafuqs.spectrum.recipe.pedestal.PedestalCraftingRecipe;
 import de.dafuqs.spectrum.toast.UnlockedRecipeGroupToast;
 import de.dafuqs.spectrum.toast.UnlockedRecipeToast;
@@ -9,6 +10,9 @@ import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.recipe.Recipe;
+import net.minecraft.text.Text;
+import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.NotNull;
 
@@ -21,6 +25,7 @@ import java.util.Optional;
 public class ClientPedestalRecipeToastManager {
 
     public static final HashMap<Identifier, List<PedestalCraftingRecipe>> unlockablePedestalRecipes = new HashMap<>();
+    public static final HashMap<Identifier, List<FusionShrineRecipe>> unlockableFusionShrineRecipes = new HashMap<>();
 
     public static void registerUnlockablePedestalRecipe(PedestalCraftingRecipe recipe) {
         List<Identifier> requiredAdvancementIdentifiers = recipe.getRequiredAdvancementIdentifiers();
@@ -35,6 +40,21 @@ public class ClientPedestalRecipeToastManager {
                     recipes.add(recipe);
                     unlockablePedestalRecipes.put(requiredAdvancementIdentifier, recipes);
                 }
+            }
+        }
+    }
+
+    public static void registerUnlockableFusionShrineRecipe(@NotNull FusionShrineRecipe recipe) {
+        Identifier requiredAdvancementIdentifier = recipe.getRequiredAdvancementIdentifier();
+        if(requiredAdvancementIdentifier != null) {
+            if (unlockableFusionShrineRecipes.containsKey(requiredAdvancementIdentifier)) {
+                if(!unlockableFusionShrineRecipes.get(requiredAdvancementIdentifier).contains(recipe)) {
+                    unlockableFusionShrineRecipes.get(requiredAdvancementIdentifier).add(recipe);
+                }
+            } else {
+                List<FusionShrineRecipe> recipes = new ArrayList<>();
+                recipes.add(recipe);
+                unlockableFusionShrineRecipes.put(requiredAdvancementIdentifier, recipes);
             }
         }
     }
@@ -55,7 +75,7 @@ public class ClientPedestalRecipeToastManager {
 
                 Optional<PedestalRecipeTier> newlyUnlockedRecipeTier = PedestalRecipeTier.hasJustUnlockedANewRecipeTier(doneAdvancement);
                 if(newlyUnlockedRecipeTier.isPresent()) {
-                    for(PedestalCraftingRecipe alreadyUnlockedRecipe : getRecipesForTierWithAllCondfitionsMet(newlyUnlockedRecipeTier.get())) {
+                    for(PedestalCraftingRecipe alreadyUnlockedRecipe : getRecipesForTierWithAllConditionsMet(newlyUnlockedRecipeTier.get())) {
                         if (!recipes.contains((alreadyUnlockedRecipe))) {
                             recipes.add(alreadyUnlockedRecipe);
                         }
@@ -63,7 +83,7 @@ public class ClientPedestalRecipeToastManager {
                 }
             }
 
-            showRecipeToasts(recipes);
+            showGroupedRecipeUnlockToasts(recipes);
         }
     }
 
@@ -72,7 +92,7 @@ public class ClientPedestalRecipeToastManager {
      * show toasts for all recipes that he already meets the requirements for
      * @param pedestalRecipeTier The new pedestal recipe tier the player unlocked
      */
-    private static @NotNull List<PedestalCraftingRecipe> getRecipesForTierWithAllCondfitionsMet(PedestalRecipeTier pedestalRecipeTier) {
+    private static @NotNull List<PedestalCraftingRecipe> getRecipesForTierWithAllConditionsMet(PedestalRecipeTier pedestalRecipeTier) {
         ClientPlayerEntity player = MinecraftClient.getInstance().player;
 
         List<PedestalCraftingRecipe> alreadyUnlockedRecipesAtNewTier = new ArrayList<>();
@@ -92,7 +112,7 @@ public class ClientPedestalRecipeToastManager {
     // group the recipes based on their group
     // show only 1 toast for grouped recipes, if
     // at least 2 of that group have been unlocked at once
-    private static void showRecipeToasts(@NotNull List<PedestalCraftingRecipe> recipes) {
+    private static void showGroupedRecipeUnlockToasts(@NotNull List<PedestalCraftingRecipe> recipes) {
         HashMap<String, List<ItemStack>> groupedRecipes = new HashMap<>();
         for(PedestalCraftingRecipe recipe : recipes) {
             if(recipe.getGroup().isEmpty()) {

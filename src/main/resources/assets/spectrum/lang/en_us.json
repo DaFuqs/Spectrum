@@ -684,6 +684,7 @@
   "multiblock.spectrum.pedestal.simple_structure": "Spectrum Focus",
   "multiblock.spectrum.pedestal.advanced_structure": "Spectrum Temple",
   "multiblock.spectrum.pedestal.complex_structure": "Spectrum Palace",
+  "multiblock.spectrum.fusion_shrine.structure": "Fusion Shrine",
 
   "item.spectrum.pedestal_tier_1_structure_placer": "Spectrum Focus Structure Placer",
   "item.spectrum.pedestal_tier_2_structure_placer": "Spectrum Temple Structure Placer",

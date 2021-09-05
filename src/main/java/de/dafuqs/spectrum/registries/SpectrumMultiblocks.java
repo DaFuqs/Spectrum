@@ -22,6 +22,8 @@ public class SpectrumMultiblocks {
 	public static Identifier PEDESTAL_COMPLEX_STRUCTURE_IDENTIFIER_CHECK;
 	public static Identifier PEDESTAL_COMPLEX_STRUCTURE_IDENTIFIER_DISPLAY;
 
+	public static Identifier FUSION_SHRINE_IDENTIFIER;
+
 
 	private static Identifier registerMultiBlock(String identifierString, String[][] structure, Object[] targetBlocks) {
 		Identifier identifier = new Identifier(SpectrumCommon.MOD_ID, identifierString);
@@ -31,6 +33,34 @@ public class SpectrumMultiblocks {
 	}
 
 	public static void register() {
+		registerPedestal();
+		registerFusionShrine();
+	}
+
+	private static void registerFusionShrine() {
+		Object[] targetBlocks = {
+				'X', "#spectrum:polished_base_blocks",
+				'P', "#spectrum:pillar_base_blocks",
+				'L', "#spectrum:gemstone_lamps",
+				'L', "#spectrum:polished_base_block_slabs",
+				'S', "#spectrum:gemstone_storage_blocks",
+				'C', "#spectrum:chiseled_base_blocks",
+				'F', "spectrum:fusion_shrine",
+				'_', StateMatcher.ANY,
+				'0', "#spectrum:polished_base_blocks",
+		};
+
+		String[][] structure = {
+				{ "_________", "_L_____L_", "_________", "_________", "_________", "_________", "_________", "_L_ ___L_", "_________",  },
+				{ "_________", "_S_____S_", "_________", "_________", "_________", "_________", "_________", "_S_____S_", "_________",  },
+				{ "_________", "_P_____P_", "_________", "_________", "_________", "_________", "_________", "_P_____P_", "_________",  },
+				{ "__XXXXX__", "_P_____P_", "X_______X", "X_______X", "X___F___X", "X_______X", "X_______X", "_P_____P_", "__XXXXX__",  },
+				{ "__XXXXX__", "_XXXXXXX_", "XXCXXXCXX", "XXXLLLXXX", "XXXL0LXXX", "XXXLLLXXX", "XXCXXXCXX", "_XXXXXXX_", "__XXXXX__",  }
+		};
+		FUSION_SHRINE_IDENTIFIER = registerMultiBlock("fusion_shrine_structure", structure, targetBlocks);
+	}
+
+	private static void registerPedestal() {
 		// since the structure is using rotation on blocks from a block tag
 		// (that's impossible to define via string) we have to split targets for
 		// check (if structure is built) and display (for auto building via debug item and manual)
@@ -108,7 +138,6 @@ public class SpectrumMultiblocks {
 		PEDESTAL_COMPLEX_STRUCTURE_IDENTIFIER_DISPLAY = registerMultiBlock("pedestal_complex_structure_display", tier3Structure, targetBlocksDisplay);
 	}
 
-
 	public static Identifier getDisplayStructureIdentifierForTier(@NotNull PedestalRecipeTier pedestalRecipeTier) {
 		switch (pedestalRecipeTier) {
 			case COMPLEX -> {
@@ -124,7 +153,7 @@ public class SpectrumMultiblocks {
 		return null;
 	}
 
-	public static TranslatableText getStructureText(@NotNull PedestalRecipeTier pedestalRecipeTier) {
+	public static TranslatableText getPedestalStructureText(@NotNull PedestalRecipeTier pedestalRecipeTier) {
 		switch (pedestalRecipeTier) {
 			case COMPLEX -> {
 				return new TranslatableText("multiblock.spectrum.pedestal.complex_structure");

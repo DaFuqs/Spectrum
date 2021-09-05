@@ -143,4 +143,7 @@ public class FusionShrineRecipe implements Recipe<Inventory> {
         return this.fluidInput;
     }
 
+    public int getCraftingTime() {
+        return this.craftingTime;
+    }
 }

@@ -45,7 +45,10 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
     protected int INVENTORY_SIZE = 8;
     protected SimpleInventory inventory;
     protected @NotNull Fluid storedFluid;
+
     private FusionShrineRecipe cachedRecipe;
+    private int craftingTime;
+    private int craftingTimeTotal;
 
     public FusionShrineBlockEntity(BlockPos pos, BlockState state) {
         super(SpectrumBlockEntityRegistry.FUSION_SHRINE, pos, state);
@@ -58,6 +61,8 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
         this.inventory = new SimpleInventory(INVENTORY_SIZE);
         this.inventory.readNbtList(nbt.getList("inventory", 10));
         this.storedFluid = Registry.FLUID.get(Identifier.tryParse(nbt.getString("fluid")));
+        this.craftingTime = nbt.getShort("CraftingTime");
+        this.craftingTimeTotal = nbt.getShort("CraftingTimeTotal");
         if(nbt.contains("OwnerUUID")) {
             this.ownerUUID = nbt.getUuid("OwnerUUID");
         } else {
@@ -74,6 +79,8 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
         super.writeNbt(nbt);
         nbt.put("inventory", this.inventory.toNbtList());
         nbt.putString("fluid", Registry.FLUID.getId(this.storedFluid).toString());
+        nbt.putShort("CraftingTime", (short)this.craftingTime);
+        nbt.putShort("CraftingTimeTotal", (short)this.craftingTimeTotal);
         if(this.ownerUUID != null) {
             nbt.putUuid("OwnerUUID", this.ownerUUID);
         }
@@ -85,11 +92,28 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 
     public static void serverTick(@NotNull World world, BlockPos blockPos, BlockState blockState, FusionShrineBlockEntity fusionShrineBlockEntity) {
         FusionShrineRecipe recipe = getCurrentRecipe(world, fusionShrineBlockEntity);
-        if(recipe != null) {
-            if(recipe.getFluidInput().equals(fusionShrineBlockEntity.storedFluid)
-                    && world.getBlockState(blockPos.up()).isAir()
-                    && world.isSkyVisible(blockPos)
-                    && recipe.areConditionMetCurrently((ServerWorld) world)) {
+        if(recipe != null && recipe.getFluidInput().equals(fusionShrineBlockEntity.storedFluid)) {
+            // check the crafting conditions from time to time
+            // not that nice that crafting may start a whole
+            // second later, but good for performance
+            // because of the many checks
+            if(fusionShrineBlockEntity.craftingTime % 20 == 0) {
+                PlayerEntity lastInteractedPlayer = PlayerOwned.getPlayerEntityIfOnline(world, fusionShrineBlockEntity.ownerUUID);
+                if(!(lastInteractedPlayer != null
+                        && (recipe.getRequiredAdvancementIdentifier() == null || Support.hasAdvancement(lastInteractedPlayer, recipe.getRequiredAdvancementIdentifier()))
+                        && world.getBlockState(blockPos.up()).isAir()
+                        && world.isSkyVisible(blockPos)
+                        && recipe.areConditionMetCurrently((ServerWorld) world))) {
+
+                    fusionShrineBlockEntity.craftingTime = 0;
+                    return;
+                }
+            }
+
+            // advance crafting
+            ++fusionShrineBlockEntity.craftingTime;
+            if(fusionShrineBlockEntity.craftingTime == fusionShrineBlockEntity.craftingTimeTotal) {
+                // craft when enough ticks have passed
                 craft(world, blockPos, fusionShrineBlockEntity, recipe);
             }
         }
@@ -103,7 +127,11 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
         }
 
         FusionShrineRecipe recipe = world.getRecipeManager().getFirstMatch(SpectrumRecipeTypes.FUSION_SHRINE, fusionShrineBlockEntity.inventory, world).orElse(null);
+        fusionShrineBlockEntity.craftingTime = 0;
         fusionShrineBlockEntity.cachedRecipe = recipe;
+        if(recipe != null) {
+            fusionShrineBlockEntity.craftingTimeTotal = recipe.getCraftingTime();
+        }
         return recipe;
     }
 
@@ -146,8 +174,8 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
             //TODO
             //doEffects();
             //spawnParticles()
-            // only triggered on server side. Therefore, has to be sent to client via S2C packet
-            // SpectrumS2CPackets.sendPlayPedestalCraftingFinishedParticle(world, blockPos, outputItemStack);
+            //only triggered on server side. Therefore, has to be sent to client via S2C packet
+            //SpectrumS2CPackets.sendPlayPedestalCraftingFinishedParticle(world, blockPos, outputItemStack);
             //takeTime()
             //playCraftingFinishedSoundEffect();
             fusionShrineBlockEntity.grantPlayerFusionCraftingAdvancement(recipe);
@@ -167,7 +195,7 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
             int currentAmount = Math.min(amount, recipe.getOutput().getMaxCount());
 
             ItemEntity itemEntity = new ItemEntity(world, blockEntity.pos.getX() + 0.5, blockEntity.pos.getY() + 1, blockEntity.pos.getZ() + 0.5, new ItemStack(recipe.getOutput().getItem(), currentAmount));
-            itemEntity.setVelocity(0, 0.2, 0);
+            itemEntity.setVelocity(0, 0.3, 0);
             world.spawnEntity(itemEntity);
 
             resultAmount -= currentAmount;

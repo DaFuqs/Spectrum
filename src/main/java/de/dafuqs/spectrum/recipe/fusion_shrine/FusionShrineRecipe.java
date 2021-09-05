@@ -16,6 +16,7 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -32,9 +33,12 @@ public class FusionShrineRecipe implements Recipe<Inventory> {
     protected final int craftingTime;
 
     protected final List<FusionShrineRecipeWorldCondition> worldConditions;
-    protected final Identifier requiredAdvancementIdentifier;
+    @NotNull protected final FusionShrineRecipeWorldEffect startWorldEffect;
+    @NotNull protected final List<FusionShrineRecipeWorldEffect> duringWorldEffects;
+    @NotNull protected final FusionShrineRecipeWorldEffect finishWorldEffect;
+    @Nullable protected final Identifier requiredAdvancementIdentifier;
 
-    public FusionShrineRecipe(Identifier id, String group, DefaultedList<Ingredient> craftingInputs, Fluid fluidInput, ItemStack output, float experience, int craftingTime, Identifier requiredAdvancementIdentifier, List<FusionShrineRecipeWorldCondition> worldConditions) {
+    public FusionShrineRecipe(Identifier id, String group, DefaultedList<Ingredient> craftingInputs, Fluid fluidInput, ItemStack output, float experience, int craftingTime, Identifier requiredAdvancementIdentifier, List<FusionShrineRecipeWorldCondition> worldConditions, FusionShrineRecipeWorldEffect startWorldEffect, List<FusionShrineRecipeWorldEffect> duringWorldEffects, FusionShrineRecipeWorldEffect finishWorldEffect) {
         this.id = id;
         this.group = group;
 
@@ -44,8 +48,11 @@ public class FusionShrineRecipe implements Recipe<Inventory> {
         this.experience = experience;
         this.craftingTime = craftingTime;
 
-        this.requiredAdvancementIdentifier = requiredAdvancementIdentifier;
         this.worldConditions = worldConditions;
+        this.startWorldEffect = startWorldEffect;
+        this.duringWorldEffects = duringWorldEffects;
+        this.finishWorldEffect = finishWorldEffect;
+        this.requiredAdvancementIdentifier = requiredAdvancementIdentifier;
 
         if(SpectrumClient.minecraftClient != null) {
             registerInClientToastManager();
@@ -132,7 +139,7 @@ public class FusionShrineRecipe implements Recipe<Inventory> {
      */
     public boolean areConditionMetCurrently(ServerWorld world) {
         for(FusionShrineRecipeWorldCondition worldCondition : this.worldConditions) {
-            if(worldCondition.isMetCurrently(world)) {
+            if(!worldCondition.isMetCurrently(world)) {
                 return false;
             }
         }
@@ -146,4 +153,35 @@ public class FusionShrineRecipe implements Recipe<Inventory> {
     public int getCraftingTime() {
         return this.craftingTime;
     }
+
+    /**
+     *
+     * @param tick The crafting tick if the fusion shrine recipe
+     * @return The effect that should be played for the given recipe tick
+     */
+    public FusionShrineRecipeWorldEffect getWorldEffectForTick(int tick) {
+        if(tick == 1) {
+            return this.startWorldEffect;
+        } else if(tick == this.craftingTime) {
+            return this.finishWorldEffect;
+        } else {
+            if(this.duringWorldEffects.size() == 0) {
+                return null;
+            } else if(this.duringWorldEffects.size() == 1) {
+                return this.duringWorldEffects.get(0);
+            } else {
+                // we really have to calculate the current effect, huh?
+                float parts = (float) this.craftingTime / this.duringWorldEffects.size();
+                int index = (int) (tick / (parts));
+                FusionShrineRecipeWorldEffect effect = this.duringWorldEffects.get(index);
+                if(effect.isOneTimeEffect(effect)) {
+                    if(index != (int) parts) {
+                        return null;
+                    }
+                }
+                return effect;
+            }
+        }
+    }
+
 }

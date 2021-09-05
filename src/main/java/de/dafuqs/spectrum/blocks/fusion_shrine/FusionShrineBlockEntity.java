@@ -7,6 +7,7 @@ import de.dafuqs.spectrum.networking.SpectrumS2CPackets;
 import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.recipe.fusion_shrine.FusionShrineRecipe;
+import de.dafuqs.spectrum.recipe.fusion_shrine.FusionShrineRecipeWorldEffect;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import net.minecraft.block.Block;
@@ -112,12 +113,24 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 
             // advance crafting
             ++fusionShrineBlockEntity.craftingTime;
+
+            //TODO
+            // spawnParticles()
+            // sound effect()
+
+            // play the current crafting effect
+            FusionShrineRecipeWorldEffect effect = recipe.getWorldEffectForTick(fusionShrineBlockEntity.craftingTime);
+            if(effect != null) {
+                effect.doEffect((ServerWorld) world, blockPos);
+            }
+
+            // craft when enough ticks have passed
             if(fusionShrineBlockEntity.craftingTime == fusionShrineBlockEntity.craftingTimeTotal) {
-                // craft when enough ticks have passed
                 craft(world, blockPos, fusionShrineBlockEntity, recipe);
             }
         }
     }
+
 
     private static FusionShrineRecipe getCurrentRecipe(@NotNull World world, FusionShrineBlockEntity fusionShrineBlockEntity) {
         if(fusionShrineBlockEntity.cachedRecipe != null) {
@@ -171,13 +184,7 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
             scatterContents(world, blockPos.up(), fusionShrineBlockEntity); // drop remaining items
             spawnCraftingResultAndXP(world, fusionShrineBlockEntity, recipe, maxAmount); // spawn results
 
-            //TODO
-            //doEffects();
-            //spawnParticles()
             //only triggered on server side. Therefore, has to be sent to client via S2C packet
-            //SpectrumS2CPackets.sendPlayPedestalCraftingFinishedParticle(world, blockPos, outputItemStack);
-            //takeTime()
-            //playCraftingFinishedSoundEffect();
             fusionShrineBlockEntity.grantPlayerFusionCraftingAdvancement(recipe);
         }
     }

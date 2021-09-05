@@ -49,7 +49,7 @@ public class FusionShrineRecipeSerializer<T extends FusionShrineRecipe> implemen
         int craftingTime = JsonHelper.getInt(jsonObject, "time", 200);
 
         Identifier requiredAdvancementIdentifier = null;
-        if(JsonHelper.hasString(jsonObject, "")) {
+        if(JsonHelper.hasString(jsonObject, "required_advancement")) {
             requiredAdvancementIdentifier = Identifier.tryParse(JsonHelper.getString(jsonObject, "required_advancement"));
             if(SpectrumCommon.minecraftServer != null && SpectrumCommon.minecraftServer.getAdvancementLoader().get(requiredAdvancementIdentifier) == null) {
                 SpectrumCommon.log(Level.ERROR, "Fusion Shrine recipe " + identifier + " is set to require advancement " + requiredAdvancementIdentifier + ", but it does not exist!");
@@ -64,7 +64,28 @@ public class FusionShrineRecipeSerializer<T extends FusionShrineRecipe> implemen
             }
         }
 
-        return this.recipeFactory.create(identifier, group, craftingInputs, fluid, output, experience, craftingTime, requiredAdvancementIdentifier, worldConditions);
+        FusionShrineRecipeWorldEffect startWorldEffect;
+        if(JsonHelper.hasString(jsonObject, "start_crafting_effect")) {
+            startWorldEffect = FusionShrineRecipeWorldEffect.valueOf(JsonHelper.getString(jsonObject, "start_crafting_effect").toUpperCase(Locale.ROOT));
+        } else {
+            startWorldEffect = FusionShrineRecipeWorldEffect.NOTHING;
+        }
+        List<FusionShrineRecipeWorldEffect> duringWorldEffects = new ArrayList<>();
+        if(JsonHelper.hasArray(jsonObject, "during_crafting_effects")) {
+            JsonArray worldEffectsArray = JsonHelper.getArray(jsonObject, "during_crafting_effects");
+            for(int i = 0; i < worldEffectsArray.size(); i++) {
+                String effectString = worldEffectsArray.get(i).getAsString().toUpperCase(Locale.ROOT);
+                duringWorldEffects.add(FusionShrineRecipeWorldEffect.valueOf(effectString));
+            }
+        }
+        FusionShrineRecipeWorldEffect finishWorldEffect;
+        if(JsonHelper.hasString(jsonObject, "finish_crafting_effect")) {
+            finishWorldEffect = FusionShrineRecipeWorldEffect.valueOf(JsonHelper.getString(jsonObject, "finish_crafting_effect").toUpperCase(Locale.ROOT));
+        } else {
+            finishWorldEffect = FusionShrineRecipeWorldEffect.NOTHING;
+        }
+
+        return this.recipeFactory.create(identifier, group, craftingInputs, fluid, output, experience, craftingTime, requiredAdvancementIdentifier, worldConditions, startWorldEffect, duringWorldEffects, finishWorldEffect);
     }
 
     @Override
@@ -87,7 +108,15 @@ public class FusionShrineRecipeSerializer<T extends FusionShrineRecipe> implemen
             worldConditions.add(FusionShrineRecipeWorldCondition.values()[packetByteBuf.readInt()]);
         }
 
-        return this.recipeFactory.create(identifier, group, ingredients, fluid, output, experience, craftingTime, requiredAdvancementIdentifier, worldConditions);
+        FusionShrineRecipeWorldEffect startWorldEffect = FusionShrineRecipeWorldEffect.values()[packetByteBuf.readInt()];
+        int duringWorldEventCount = packetByteBuf.readInt();
+        List<FusionShrineRecipeWorldEffect> duringWorldEffects = new ArrayList<>();
+        for(int i = 0; i < duringWorldEventCount; i++) {
+            duringWorldEffects.add(FusionShrineRecipeWorldEffect.values()[packetByteBuf.readInt()]);
+        }
+        FusionShrineRecipeWorldEffect finishWorldEffect = FusionShrineRecipeWorldEffect.values()[packetByteBuf.readInt()];
+
+        return this.recipeFactory.create(identifier, group, ingredients, fluid, output, experience, craftingTime, requiredAdvancementIdentifier, worldConditions, startWorldEffect, duringWorldEffects, finishWorldEffect);
     }
 
     @Override
@@ -109,10 +138,17 @@ public class FusionShrineRecipeSerializer<T extends FusionShrineRecipe> implemen
         for(FusionShrineRecipeWorldCondition worldCondition : fusionShrineRecipe.worldConditions) {
             packetByteBuf.writeInt(worldCondition.ordinal());
         }
+
+        packetByteBuf.writeInt(fusionShrineRecipe.startWorldEffect.ordinal());
+        packetByteBuf.writeInt(fusionShrineRecipe.duringWorldEffects.size());
+        for(FusionShrineRecipeWorldEffect effect : fusionShrineRecipe.duringWorldEffects) {
+            packetByteBuf.writeInt(effect.ordinal());
+        }
+        packetByteBuf.writeInt(fusionShrineRecipe.finishWorldEffect.ordinal());
     }
 
     public interface RecipeFactory<T extends FusionShrineRecipe> {
-        T create(Identifier id, String group, DefaultedList<Ingredient> craftingInputs, Fluid fluidInput, ItemStack output, float experience, int craftingTime, Identifier requiredAdvancementIdentifier, List<FusionShrineRecipeWorldCondition> worldConditions);
+        T create(Identifier id, String group, DefaultedList<Ingredient> craftingInputs, Fluid fluidInput, ItemStack output, float experience, int craftingTime, Identifier requiredAdvancementIdentifier, List<FusionShrineRecipeWorldCondition> worldConditions, FusionShrineRecipeWorldEffect startWorldEffect, List<FusionShrineRecipeWorldEffect> duringWorldEffects, FusionShrineRecipeWorldEffect finishWorldEffect);
     }
 
 }

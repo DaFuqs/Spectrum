@@ -1,6 +1,6 @@
 {
   "type": "spectrum:fusion_shrine",
-  "time": 120,
+  "time": 300,
   "experience": 2.0,
   "fluid": "minecraft:lava",
   "ingredients": [
@@ -19,7 +19,11 @@
   },
   "required_advancement": "spectrum:collect_all_basic_pigments_besides_brown",
   "world_conditions": [
+    "rain",
     "new_moon",
     "midnight"
-  ]
+  ],
+  "start_crafting_effect": "weather_rain",
+  "during_crafting_effects": [ "visual_explosions_on_shrine", "nothing", "visual_explosions_on_shrine" ],
+  "finish_crafting_effect": "lightning_on_shrine"
 }

@@ -17,25 +17,25 @@ public enum FusionShrineRecipeWorldCondition {
     public boolean isMetCurrently(ServerWorld world) {
         switch (this) {
             case DAY -> {
-                return world.getTime() % 24000 > 0 && world.getTime() % 24000 < 12000;
+                return world.getTimeOfDay() % 24000 > 0 && world.getTimeOfDay() % 24000 < 12000;
             }
             case NIGHT -> {
-                return world.getTime() % 24000 > 13000 && world.getTime() % 24000 < 23000;
+                return world.getTimeOfDay() % 24000 >= 13000 && world.getTimeOfDay() % 24000 < 23000;
             }
             case SUNRISE -> {
-                return world.getTime() % 24000 > 23000;
+                return world.getTimeOfDay() % 24000 >= 23000;
             }
             case SUNSET -> {
-                return world.getTime() % 24000 > 12000 && world.getTime() % 24000 < 13000;
+                return world.getTimeOfDay() % 24000 >= 12000 && world.getTimeOfDay() % 24000 < 13000;
             }
             case MIDNIGHT -> {
-                return world.getTime() % 24000 > 18000 && world.getTime() % 24000 < 19000;
+                return world.getTimeOfDay() % 24000 >= 18000 && world.getTimeOfDay() % 24000 < 19000;
             }
             case FULL_MOON -> {
-                return world.getLunarTime() == 0;
+                return world.getMoonPhase() == 0;
             }
             case NEW_MOON -> {
-                return world.getLunarTime() == 5;
+                return world.getMoonPhase() == 5;
             }
             case CLEAR_SKY -> {
                 return !world.isRaining();

@@ -208,41 +208,41 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
         }
     }
 
-    public void readNbt(NbtCompound tag) {
-        super.readNbt(tag);
+    public void readNbt(NbtCompound nbt) {
+        super.readNbt(nbt);
         this.inventory = DefaultedList.ofSize(INVENTORY_SIZE, ItemStack.EMPTY);
-        Inventories.readNbt(tag, this.inventory);
-        this.storedXP = tag.getFloat("StoredXP");
-        this.craftingTime = tag.getShort("CraftingTime");
-        this.craftingTimeTotal = tag.getShort("CraftingTimeTotal");
-        this.speedUpgrades = tag.getShort("SpeedUpgrades");
-        if(tag.contains("OwnerUUID")) {
-            this.ownerUUID = tag.getUuid("OwnerUUID");
+        Inventories.readNbt(nbt, this.inventory);
+        this.storedXP = nbt.getFloat("StoredXP");
+        this.craftingTime = nbt.getShort("CraftingTime");
+        this.craftingTimeTotal = nbt.getShort("CraftingTimeTotal");
+        this.speedUpgrades = nbt.getShort("SpeedUpgrades");
+        if(nbt.contains("OwnerUUID")) {
+            this.ownerUUID = nbt.getUuid("OwnerUUID");
         } else {
             this.ownerUUID = null;
         }
-        if(tag.contains("OwnerName")) {
-            this.ownerName = tag.getString("OwnerName");
+        if(nbt.contains("OwnerName")) {
+            this.ownerName = nbt.getString("OwnerName");
         } else {
             this.ownerName = "???";
         }
     }
 
-    public NbtCompound writeNbt(NbtCompound tag) {
-        super.writeNbt(tag);
-        tag.putFloat("StoredXP", this.storedXP);
-        tag.putShort("CraftingTime", (short)this.craftingTime);
-        tag.putShort("CraftingTimeTotal", (short)this.craftingTimeTotal);
-        tag.putShort("SpeedUpgrades", (short)this.speedUpgrades);
+    public NbtCompound writeNbt(NbtCompound nbt) {
+        super.writeNbt(nbt);
+        nbt.putFloat("StoredXP", this.storedXP);
+        nbt.putShort("CraftingTime", (short)this.craftingTime);
+        nbt.putShort("CraftingTimeTotal", (short)this.craftingTimeTotal);
+        nbt.putShort("SpeedUpgrades", (short)this.speedUpgrades);
 
         if(this.ownerUUID != null) {
-            tag.putUuid("OwnerUUID", this.ownerUUID);
+            nbt.putUuid("OwnerUUID", this.ownerUUID);
         }
         if(this.ownerName != null) {
-            tag.putString("OwnerName", this.ownerName);
+            nbt.putString("OwnerName", this.ownerName);
         }
-        Inventories.writeNbt(tag, this.inventory);
-        return tag;
+        Inventories.writeNbt(nbt, this.inventory);
+        return nbt;
     }
 
     @Override
@@ -540,7 +540,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
     }
 
     private void grantPlayerCraftingAdvancement(PedestalCraftingRecipe recipe) {
-        ServerPlayerEntity serverPlayerEntity = SpectrumCommon.minecraftServer.getPlayerManager().getPlayer(this.ownerUUID);
+        ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity) PlayerOwned.getPlayerEntityIfOnline(world, this.ownerUUID);
         if(serverPlayerEntity != null) {
             SpectrumAdvancementCriteria.PEDESTAL_CRAFTING.trigger(serverPlayerEntity, recipe.getOutput());
         }

@@ -2,11 +2,11 @@ package de.dafuqs.spectrum.blocks.fusion_shrine;
 
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.Support;
-import de.dafuqs.spectrum.blocks.pedestal.PedestalBlockEntity;
+import de.dafuqs.spectrum.interfaces.PlayerOwned;
 import de.dafuqs.spectrum.networking.SpectrumS2CPackets;
+import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.recipe.fusion_shrine.FusionShrineRecipe;
-import de.dafuqs.spectrum.recipe.pedestal.PedestalCraftingRecipe;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import net.minecraft.block.Block;
@@ -14,6 +14,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.ExperienceOrbEntity;
 import net.minecraft.entity.ItemEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.inventory.Inventory;
@@ -21,10 +22,10 @@ import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
-import net.minecraft.recipe.CraftingRecipe;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.RecipeInputProvider;
 import net.minecraft.recipe.RecipeMatcher;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.ItemScatterer;
@@ -34,7 +35,12 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputProvider {
+import java.util.UUID;
+
+public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputProvider, PlayerOwned {
+
+    private UUID ownerUUID;
+    private String ownerName;
 
     protected int INVENTORY_SIZE = 8;
     protected SimpleInventory inventory;
@@ -52,12 +58,28 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
         this.inventory = new SimpleInventory(INVENTORY_SIZE);
         this.inventory.readNbtList(nbt.getList("inventory", 10));
         this.storedFluid = Registry.FLUID.get(Identifier.tryParse(nbt.getString("fluid")));
+        if(nbt.contains("OwnerUUID")) {
+            this.ownerUUID = nbt.getUuid("OwnerUUID");
+        } else {
+            this.ownerUUID = null;
+        }
+        if(nbt.contains("OwnerName")) {
+            this.ownerName = nbt.getString("OwnerName");
+        } else {
+            this.ownerName = "???";
+        }
     }
 
     public NbtCompound writeNbt(NbtCompound nbt) {
         super.writeNbt(nbt);
         nbt.put("inventory", this.inventory.toNbtList());
         nbt.putString("fluid", Registry.FLUID.getId(this.storedFluid).toString());
+        if(this.ownerUUID != null) {
+            nbt.putUuid("OwnerUUID", this.ownerUUID);
+        }
+        if(this.ownerName != null) {
+            nbt.putString("OwnerName", this.ownerName);
+        }
         return nbt;
     }
 
@@ -128,7 +150,14 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
             // SpectrumS2CPackets.sendPlayPedestalCraftingFinishedParticle(world, blockPos, outputItemStack);
             //takeTime()
             //playCraftingFinishedSoundEffect();
-            // grant advancement for last interacted player
+            fusionShrineBlockEntity.grantPlayerFusionCraftingAdvancement(recipe);
+        }
+    }
+
+    private void grantPlayerFusionCraftingAdvancement(FusionShrineRecipe recipe) {
+        ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity) PlayerOwned.getPlayerEntityIfOnline(this.world, this.ownerUUID);
+        if(serverPlayerEntity != null) {
+            SpectrumAdvancementCriteria.FUSION_SHRINE_CRAFTING.trigger(serverPlayerEntity, recipe.getOutput());
         }
     }
 
@@ -201,6 +230,27 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
     @Override
     public void provideRecipeInputs(RecipeMatcher finder) {
 
+    }
+
+    // PLAYER OWNED
+    // "owned" is not to be taken literally here. The owner
+    // is always set to the last player interacting with
+    // the fusion shrine to trigger advancements
+
+    @Override
+    public UUID getOwnerUUID() {
+        return this.ownerUUID;
+    }
+
+    @Override
+    public String getOwnerName() {
+        return this.ownerName;
+    }
+
+    @Override
+    public void setOwner(PlayerEntity playerEntity) {
+        this.ownerUUID = playerEntity.getUuid();
+        this.ownerName = playerEntity.getName().asString();
     }
 
 }

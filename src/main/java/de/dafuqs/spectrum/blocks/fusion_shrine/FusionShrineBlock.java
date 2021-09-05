@@ -71,26 +71,28 @@ public class FusionShrineBlock extends BlockWithEntity {
             ItemStack itemStack = player.getStackInHand(hand);
 
             if (itemStack.getItem() instanceof BucketItem) {
-                BlockEntity blockEntity = world.getBlockEntity(pos);
-                if (blockEntity instanceof FusionShrineBlockEntity fusionShrineBlockEntity) {
-                    Fluid storedFluid = fusionShrineBlockEntity.getFluid();
-                    Fluid bucketFluid = ((BucketItemAccessor) itemStack.getItem()).fabric_getFluid();
-                    if (storedFluid == Fluids.EMPTY && bucketFluid != Fluids.EMPTY) {
-                        fusionShrineBlockEntity.setFluid(bucketFluid);
-                        if (!player.isCreative()) {
-                            player.setStackInHand(hand, new ItemStack(Items.BUCKET));
-                        }
-                    } else if (storedFluid != Fluids.EMPTY && bucketFluid == Fluids.EMPTY) {
-                        fusionShrineBlockEntity.setFluid(Fluids.EMPTY);
-                        world.setBlockState(pos, world.getBlockState(pos).with(LIGHT_LEVEL, 0));
-                        if (!player.isCreative()) {
-                            player.setStackInHand(hand, new ItemStack(storedFluid.getBucketItem()));
-                        }
+                FusionShrineBlockEntity fusionShrineBlockEntity = (FusionShrineBlockEntity) world.getBlockEntity(pos);
+                fusionShrineBlockEntity.setOwner(player);
+
+                Fluid storedFluid = fusionShrineBlockEntity.getFluid();
+                Fluid bucketFluid = ((BucketItemAccessor) itemStack.getItem()).fabric_getFluid();
+                if (storedFluid == Fluids.EMPTY && bucketFluid != Fluids.EMPTY) {
+                    fusionShrineBlockEntity.setFluid(bucketFluid);
+                    if (!player.isCreative()) {
+                        player.setStackInHand(hand, new ItemStack(Items.BUCKET));
+                    }
+                } else if (storedFluid != Fluids.EMPTY && bucketFluid == Fluids.EMPTY) {
+                    fusionShrineBlockEntity.setFluid(Fluids.EMPTY);
+                    world.setBlockState(pos, world.getBlockState(pos).with(LIGHT_LEVEL, 0));
+                    if (!player.isCreative()) {
+                        player.setStackInHand(hand, new ItemStack(storedFluid.getBucketItem()));
                     }
                 }
             } else {
                 if(verifyStructure(world, pos.down(), (ServerPlayerEntity) player)) {
                     FusionShrineBlockEntity fusionShrineBlockEntity = ((FusionShrineBlockEntity) world.getBlockEntity(pos));
+                    fusionShrineBlockEntity.setOwner(player);
+
                     // if the structure is valid the player can put / retrieve blocks into the shrine
                     if(player.isSneaking()) {
                         ItemStack retrievedStack = ItemStack.EMPTY;

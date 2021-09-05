@@ -11,7 +11,7 @@
     "homepage": "https://github.com/DaFuqs/",
     "sources": "https://github.com/DaFuqs/Spectrum"
   },
-  "license": "MIT",
+  "license": "",
   "icon": "assets/spectrum/icon.png",
   "environment": "*",
   "entrypoints": {

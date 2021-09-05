@@ -110,11 +110,7 @@ public class FusionShrineRecipe implements Recipe<Inventory> {
 
     @Override
     public DefaultedList<Ingredient> getIngredients() {
-        DefaultedList<Ingredient> defaultedList = DefaultedList.of();
-        if(this.fluidInput.getBucketItem() != null) {
-            defaultedList.add(Ingredient.ofItems(this.fluidInput.getBucketItem()));
-        }
-        return defaultedList;
+        return this.craftingInputs;
     }
 
     public float getExperience() {
@@ -142,4 +138,9 @@ public class FusionShrineRecipe implements Recipe<Inventory> {
         }
         return true;
     }
+
+    public Fluid getFluidInput() {
+        return this.fluidInput;
+    }
+
 }

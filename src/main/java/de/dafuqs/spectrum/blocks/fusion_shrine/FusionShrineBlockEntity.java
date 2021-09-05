@@ -1,22 +1,33 @@
 package de.dafuqs.spectrum.blocks.fusion_shrine;
 
 import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.Support;
+import de.dafuqs.spectrum.blocks.pedestal.PedestalBlockEntity;
 import de.dafuqs.spectrum.networking.SpectrumS2CPackets;
+import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
+import de.dafuqs.spectrum.recipe.fusion_shrine.FusionShrineRecipe;
+import de.dafuqs.spectrum.recipe.pedestal.PedestalCraftingRecipe;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.LockableContainerBlockEntity;
+import net.minecraft.entity.ExperienceOrbEntity;
+import net.minecraft.entity.ItemEntity;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
+import net.minecraft.recipe.CraftingRecipe;
+import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.RecipeInputProvider;
 import net.minecraft.recipe.RecipeMatcher;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
@@ -27,7 +38,8 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 
     protected int INVENTORY_SIZE = 8;
     protected SimpleInventory inventory;
-    Fluid storedFluid;
+    protected @NotNull Fluid storedFluid;
+    private FusionShrineRecipe cachedRecipe;
 
     public FusionShrineBlockEntity(BlockPos pos, BlockState state) {
         super(SpectrumBlockEntityRegistry.FUSION_SHRINE, pos, state);
@@ -49,8 +61,99 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
         return nbt;
     }
 
-    public static void tick(@NotNull World world, BlockPos blockPos, BlockState blockState, FusionShrineBlockEntity fusionShrineBlockEntity) {
+    public static void serverTick(@NotNull World world, BlockPos blockPos, BlockState blockState, FusionShrineBlockEntity fusionShrineBlockEntity) {
+        FusionShrineRecipe recipe = getCurrentRecipe(world, fusionShrineBlockEntity);
+        if(recipe != null) {
+            if(recipe.getFluidInput().equals(fusionShrineBlockEntity.storedFluid)
+                    && world.getBlockState(blockPos.up()).isAir()
+                    && world.isSkyVisible(blockPos)
+                    && recipe.areConditionMetCurrently((ServerWorld) world)) {
+                craft(world, blockPos, fusionShrineBlockEntity, recipe);
+            }
+        }
+    }
 
+    private static FusionShrineRecipe getCurrentRecipe(@NotNull World world, FusionShrineBlockEntity fusionShrineBlockEntity) {
+        if(fusionShrineBlockEntity.cachedRecipe != null) {
+            if(fusionShrineBlockEntity.cachedRecipe.matches(fusionShrineBlockEntity.inventory, world)) {
+                return fusionShrineBlockEntity.cachedRecipe;
+            }
+        }
+
+        FusionShrineRecipe recipe = world.getRecipeManager().getFirstMatch(SpectrumRecipeTypes.FUSION_SHRINE, fusionShrineBlockEntity.inventory, world).orElse(null);
+        fusionShrineBlockEntity.cachedRecipe = recipe;
+        return recipe;
+    }
+
+    private static void craft(World world, BlockPos blockPos, FusionShrineBlockEntity fusionShrineBlockEntity, FusionShrineRecipe recipe) {
+        // calculate the max amount of items that will be crafted
+        // note that we only check each ingredient once, if a match was found
+        // custom recipes therefore should not use items / tags that match multiple items
+        // at once, since we can not rely on positions in a grid like vanilla does
+        // in it's crafting table
+        int maxAmount = recipe.getOutput().getMaxCount();
+        for(Ingredient ingredient : recipe.getIngredients()) {
+            for(int i = 0; i < fusionShrineBlockEntity.INVENTORY_SIZE; i++) {
+                ItemStack currentStack = fusionShrineBlockEntity.inventory.getStack(i);
+                if(ingredient.test(currentStack)) {
+                    maxAmount = Math.min(maxAmount, currentStack.getCount());
+                    break;
+                }
+            }
+        }
+
+        if(maxAmount > 0) {
+            for(Ingredient ingredient : recipe.getIngredients()) {
+                for(int i = 0; i < fusionShrineBlockEntity.INVENTORY_SIZE; i++) {
+                    ItemStack currentStack = fusionShrineBlockEntity.inventory.getStack(i);
+                    if(ingredient.test(currentStack)) {
+                        if(currentStack.getCount() - maxAmount < 1) {
+                            fusionShrineBlockEntity.inventory.setStack(i, ItemStack.EMPTY);
+                        } else {
+                            currentStack.decrement(maxAmount);
+                        }
+                        break;
+                    }
+                }
+            }
+
+            fusionShrineBlockEntity.setFluid(Fluids.EMPTY); // empty the shrine
+            scatterContents(world, blockPos.up(), fusionShrineBlockEntity); // drop remaining items
+            spawnCraftingResultAndXP(world, fusionShrineBlockEntity, recipe, maxAmount); // spawn results
+
+            //TODO
+            //doEffects();
+            //spawnParticles()
+            // only triggered on server side. Therefore, has to be sent to client via S2C packet
+            // SpectrumS2CPackets.sendPlayPedestalCraftingFinishedParticle(world, blockPos, outputItemStack);
+            //takeTime()
+            //playCraftingFinishedSoundEffect();
+            // grant advancement for last interacted player
+        }
+    }
+
+    public static void spawnCraftingResultAndXP(World world, FusionShrineBlockEntity blockEntity, FusionShrineRecipe recipe, int amount) {
+        int resultAmount = amount * recipe.getOutput().getCount();
+        while(resultAmount > 0) {
+            int currentAmount = Math.min(amount, recipe.getOutput().getMaxCount());
+
+            ItemEntity itemEntity = new ItemEntity(world, blockEntity.pos.getX() + 0.5, blockEntity.pos.getY() + 1, blockEntity.pos.getZ() + 0.5, new ItemStack(recipe.getOutput().getItem(), currentAmount));
+            itemEntity.setVelocity(0, 0.2, 0);
+            world.spawnEntity(itemEntity);
+
+            resultAmount -= currentAmount;
+        }
+
+        if (recipe.getExperience() > 0) {
+            int spawnedXPAmount = Support.getWholeIntFromFloatWithChance(recipe.getExperience(), blockEntity.world.random);
+            ExperienceOrbEntity experienceOrbEntity = new ExperienceOrbEntity(world, blockEntity.pos.getX() + 0.5, blockEntity.pos.getY() + 1, blockEntity.pos.getZ() + 0.5, spawnedXPAmount);
+            world.spawnEntity(experienceOrbEntity);
+        }
+    }
+
+    public static void scatterContents(World world, BlockPos pos, FusionShrineBlockEntity blockEntity) {
+        ItemScatterer.spawn(world, pos, blockEntity.inventory);
+        world.updateComparators(pos, world.getBlockState(pos).getBlock());
     }
 
     public @NotNull Fluid getFluid() {

@@ -155,11 +155,10 @@ public class PedestalBlock extends BlockWithEntity implements RedstonePoweredBlo
     @Override
     @Nullable
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        if(world.isClient) {
-            return null;
-        } else {
+        if(!world.isClient) {
             return checkType(type, SpectrumBlockEntityRegistry.PEDESTAL, PedestalBlockEntity::serverTick);
         }
+        return null;
     }
 
     @Override

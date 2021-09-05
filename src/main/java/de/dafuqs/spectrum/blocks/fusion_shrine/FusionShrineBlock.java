@@ -1,8 +1,6 @@
 package de.dafuqs.spectrum.blocks.fusion_shrine;
 
 import de.dafuqs.spectrum.InventoryHelper;
-import de.dafuqs.spectrum.blocks.pedestal.PedestalBlock;
-import de.dafuqs.spectrum.blocks.pedestal.PedestalBlockEntity;
 import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
 import de.dafuqs.spectrum.registries.SpectrumMultiblocks;
@@ -15,7 +13,6 @@ import net.minecraft.entity.ai.pathing.NavigationType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.Fluids;
-import net.minecraft.inventory.Inventories;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.BucketItem;
 import net.minecraft.item.ItemStack;
@@ -126,7 +123,10 @@ public class FusionShrineBlock extends BlockWithEntity {
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        return checkType(type, SpectrumBlockEntityRegistry.FUSION_SHRINE, FusionShrineBlockEntity::tick);
+        if(!world.isClient) {
+            return checkType(type, SpectrumBlockEntityRegistry.FUSION_SHRINE, FusionShrineBlockEntity::serverTick);
+        }
+        return null;
     }
 
     public boolean verifyStructure(World world, BlockPos blockPos, ServerPlayerEntity serverPlayerEntity) {

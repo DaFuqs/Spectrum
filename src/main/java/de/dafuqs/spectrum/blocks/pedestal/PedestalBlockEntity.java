@@ -315,7 +315,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
             ItemStack outputItemStack = pedestalBlockEntity.inventory.get(OUTPUT_SLOT_ID);
             if (outputItemStack != ItemStack.EMPTY) {
                 if (world.getBlockState(blockPos.up()).isAir()) {
-                    spawnOutputAsItemEntity(world, blockPos, pedestalBlockEntity, outputItemStack, craftingRecipe, pedestalCraftingRecipe);
+                    spawnOutputAsItemEntity(world, blockPos, pedestalBlockEntity, outputItemStack);
                     playCraftingFinishedSoundEvent(pedestalBlockEntity, craftingRecipe, pedestalCraftingRecipe);
                 } else {
                     BlockEntity aboveBlockEntity = world.getBlockEntity(blockPos.up());
@@ -349,7 +349,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
         return pedestalBlockEntity.pedestalVariant;
     }
 
-    public static void spawnOutputAsItemEntity(World world, BlockPos blockPos, @NotNull PedestalBlockEntity pedestalBlockEntity, ItemStack outputItemStack, CraftingRecipe craftingRecipe, PedestalCraftingRecipe pedestalCraftingRecipe) {
+    public static void spawnOutputAsItemEntity(World world, BlockPos blockPos, @NotNull PedestalBlockEntity pedestalBlockEntity, ItemStack outputItemStack) {
         // spawn crafting output
         ItemEntity itemEntity = new ItemEntity(world, pedestalBlockEntity.pos.getX() + 0.5, pedestalBlockEntity.pos.getY() + 1, pedestalBlockEntity.pos.getZ() + 0.5, outputItemStack);
         itemEntity.addVelocity(0, 0.1, 0);

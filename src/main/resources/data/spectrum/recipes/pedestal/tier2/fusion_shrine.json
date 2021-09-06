@@ -15,7 +15,7 @@
   ],
   "key": {
     "T": {
-      "item": "spectrum:topaz_block"
+      "item": "spectrum:topaz_storage_block"
     },
     "A": {
       "item": "spectrum:amethyst_storage_block"
@@ -24,7 +24,7 @@
       "item": "spectrum:citrine_storage_block"
     },
     "B": {
-      "item": "spectrum:polished_storage_basalt"
+      "item": "spectrum:polished_basalt"
     },
     "P": {
       "item": "spectrum:polished_calcite"

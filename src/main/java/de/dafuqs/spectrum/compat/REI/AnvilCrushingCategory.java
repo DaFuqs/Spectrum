@@ -26,8 +26,8 @@ public class AnvilCrushingCategory<R extends AnvilCrushingRecipe> implements Dis
 
     public static final CategoryIdentifier<AnvilCrushingRecipeDisplay> ID = CategoryIdentifier.of(new Identifier(SpectrumCommon.MOD_ID, "anvil_crushing"));
 
-    final Identifier WALL_TEXTURE = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/container/anvil_crushing.png");
-    EntryIngredient anvil = EntryIngredients.of(new ItemStack(Items.ANVIL));
+    private final static Identifier WALL_TEXTURE = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/container/anvil_crushing.png");
+    private final static EntryIngredient ANVIL = EntryIngredients.of(new ItemStack(Items.ANVIL));
 
     @Override
     public CategoryIdentifier getCategoryIdentifier() {
@@ -58,7 +58,7 @@ public class AnvilCrushingCategory<R extends AnvilCrushingRecipe> implements Dis
         List<EntryIngredient> output = display.getOutputEntries();
 
         // input and output slots
-        widgets.add(Widgets.createSlot(new Point(startPoint.x+20, startPoint.y+18)).entries(anvil).disableBackground().notInteractable());
+        widgets.add(Widgets.createSlot(new Point(startPoint.x+20, startPoint.y+18)).entries(ANVIL).disableBackground().notInteractable());
         widgets.add(Widgets.createSlot(new Point(startPoint.x+20, startPoint.y+40)).markInput().entries(input.get(0)));
         widgets.add(Widgets.createSlot(new Point(startPoint.x+95, startPoint.y+23)).markOutput().disableBackground().entries(output.get(0)));
 

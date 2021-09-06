@@ -145,8 +145,8 @@
 
   "item.spectrum.music_disc_spectrum_theme": "Music Disc",
   "item.spectrum.music_disc_spectrum_theme.desc": "Spectrum Theme",
-  "item.spectrum.invisible_item_frame": "Invisible Item Frame",
-  "item.spectrum.invisible_glow_item_frame": "Invisible Glow Item Frame",
+  "item.spectrum.invisible_item_frame": "Phantom Frame",
+  "item.spectrum.invisible_glow_item_frame": "Glow Phantom Frame",
   "item.spectrum.ender_bag": "Bag of Holding",
   "item.spectrum.void_bundle": "Void Bundle",
   "item.spectrum.void_bundle.tooltip.empty": "Empty",

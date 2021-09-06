@@ -1,0 +1,19 @@
+{
+  "name": "Creating Onyx Shards",
+  "icon": "spectrum:onyx_shard",
+  "category": "spectrum:general_category",
+  "extra_recipe_mappings": {
+    "spectrum:onyx_shard": 1
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "You pondered a lot about how it can be possible to create this actually mundane color. You needed a way to darken the orange tone you had already created.$(br)And then it occurred to you. It's so logical when you think about it! The three gems you found correspond to the three basic colors of color theory!$(br)By mixing all three colors you can create a shard that is do dark it almost looks unreal."
+    },
+    {
+      "type": "spectrum:fusion_crafting",
+      "recipe": "spectrum:fusion_shrine/onyx_shard",
+      "text": "The creation of this 'blackest of blacks' has to be performed in a way that absolutely no unregulated light can pollute the crystal. So midnight on a full moon it is. Best to bing a clock with you."
+    }
+  ]
+}

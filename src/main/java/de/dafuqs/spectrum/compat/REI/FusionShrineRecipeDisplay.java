@@ -1,0 +1,86 @@
+package de.dafuqs.spectrum.compat.REI;
+
+import de.dafuqs.spectrum.Support;
+import de.dafuqs.spectrum.enums.GemstoneColor;
+import de.dafuqs.spectrum.enums.PedestalRecipeTier;
+import de.dafuqs.spectrum.recipe.fusion_shrine.FusionShrineRecipe;
+import me.shedaniel.rei.api.common.category.CategoryIdentifier;
+import me.shedaniel.rei.api.common.display.SimpleGridMenuDisplay;
+import me.shedaniel.rei.api.common.entry.EntryIngredient;
+import me.shedaniel.rei.api.common.util.EntryIngredients;
+import net.minecraft.advancement.Advancement;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.fluid.Fluid;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.Identifier;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class FusionShrineRecipeDisplay<R extends FusionShrineRecipe> implements SimpleGridMenuDisplay {
+
+	protected final EntryIngredient fluidInput;
+	protected final List<EntryIngredient> craftingInputs;
+	protected final List<EntryIngredient> allInputs;
+
+	protected final EntryIngredient output;
+	protected final float experience;
+	protected final int craftingTime;
+	protected final Identifier requiredAdvancementIdentifier;
+
+	public FusionShrineRecipeDisplay(@NotNull FusionShrineRecipe recipe) {
+		this.craftingInputs = recipe.getIngredients().stream().map(EntryIngredients::ofIngredient).collect(Collectors.toCollection(ArrayList::new));
+		this.output = EntryIngredients.of(recipe.getOutput());
+		this.experience = recipe.getExperience();
+		this.craftingTime = recipe.getCraftingTime();
+		this.fluidInput = EntryIngredients.of(recipe.getFluidInput());
+		this.allInputs = new ArrayList<>();
+		this.allInputs.addAll(this.craftingInputs);
+		this.allInputs.add(this.fluidInput);
+		this.requiredAdvancementIdentifier = recipe.getRequiredAdvancementIdentifier();
+	}
+
+	@Override
+	public List<EntryIngredient> getInputEntries() {
+		if(this.isUnlocked()) {
+			return allInputs;
+		} else {
+			return new ArrayList<>();
+		}
+	}
+
+	@Override
+	public List<EntryIngredient> getOutputEntries() {
+		if(this.isUnlocked()) {
+			return Collections.singletonList(output);
+		} else {
+			return new ArrayList<>();
+		}
+	}
+
+	@Override
+	public CategoryIdentifier<?> getCategoryIdentifier() {
+		return FusionShrineCategory.ID;
+	}
+
+	public boolean isUnlocked() {
+		return Support.hasAdvancement(MinecraftClient.getInstance().player, this.requiredAdvancementIdentifier);
+	}
+
+	@Override
+	public int getWidth() {
+		return 3;
+	}
+
+	@Override
+	public int getHeight() {
+		return 3;
+	}
+
+
+}

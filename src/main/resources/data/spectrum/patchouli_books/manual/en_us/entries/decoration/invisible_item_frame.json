@@ -1,5 +1,5 @@
 {
-  "name": "Invisible Item Frames",
+  "name": "Phantom Frames",
   "icon": "spectrum:invisible_item_frame",
   "advancement": "spectrum:collect_sparklestone",
   "category": "spectrum:decoration_category",
@@ -10,7 +10,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "title": "Invisible Item Frames",
+      "title": "Phantom Frames",
       "text": "$(italic)You would like to display your most precious belongings. So far, you've always used item frames for that. But some of your exhibitions would look better if you didn't see the frame.$(br)Piece of cake, you just take advantage of the light manipulating properties of your gems."
     },
     {

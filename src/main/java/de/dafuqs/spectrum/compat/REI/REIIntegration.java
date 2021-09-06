@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.compat.REI;
 import de.dafuqs.spectrum.inventories.PedestalScreen;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.recipe.anvil_crushing.AnvilCrushingRecipe;
+import de.dafuqs.spectrum.recipe.fusion_shrine.FusionShrineRecipe;
 import de.dafuqs.spectrum.recipe.pedestal.PedestalCraftingRecipe;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import me.shedaniel.math.Rectangle;
@@ -24,6 +25,7 @@ public class REIIntegration implements REIClientPlugin {
     public void registerCategories(CategoryRegistry registry) {
         registry.add(new PedestalCraftingCategory<>());
         registry.add(new AnvilCrushingCategory<>());
+        registry.add(new FusionShrineCategory<>());
 
         EntryStack[] pedestalEntryStacks = new EntryStack[]{
                 EntryStacks.of(SpectrumBlocks.PEDESTAL_BASIC_TOPAZ),
@@ -36,21 +38,25 @@ public class REIIntegration implements REIClientPlugin {
         registry.addWorkstations(BuiltinPlugin.CRAFTING, pedestalEntryStacks);
         registry.addWorkstations(PedestalCraftingCategory.ID, pedestalEntryStacks);
         registry.addWorkstations(AnvilCrushingCategory.ID, EntryStacks.of(Blocks.ANVIL), EntryStacks.of(SpectrumBlocks.BEDROCK_ANVIL));
+        registry.addWorkstations(FusionShrineCategory.ID, EntryStacks.of(SpectrumBlocks.FUSION_SHRINE));
 
         // Since anvil crushing is an in world recipe there is no gui to fill
         // therefore the plus button is obsolete
         registry.removePlusButton(AnvilCrushingCategory.ID);
+        registry.removePlusButton(FusionShrineCategory.ID);
     }
 
     @Override
     public void registerDisplays(DisplayRegistry registry) {
         registry.registerFiller(AnvilCrushingRecipe.class, AnvilCrushingRecipeDisplay::new);
         registry.registerRecipeFiller(PedestalCraftingRecipe.class, SpectrumRecipeTypes.PEDESTAL, PedestalCraftingRecipeDisplay::new);
+        registry.registerRecipeFiller(FusionShrineRecipe.class, SpectrumRecipeTypes.FUSION_SHRINE, FusionShrineRecipeDisplay::new);
     }
 
     /**
      * Where in the screens gui the player has to click
      * to get to the recipe overview
+     * Only use for recipe types that are crafted in a gui
      */
     @Override
     public void registerScreens(ScreenRegistry registry) {

@@ -1,0 +1,38 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 600,
+  "tier": "simple",
+  "cyan": 4,
+  "magenta": 4,
+  "yellow": 4,
+  "white": 0,
+  "black": 0,
+  "experience": 2.0,
+  "pattern": [
+    "BCB",
+    "PAP",
+    "BTB"
+  ],
+  "key": {
+    "T": {
+      "item": "spectrum:topaz_block"
+    },
+    "A": {
+      "item": "spectrum:amethyst_block"
+    },
+    "C": {
+      "item": "spectrum:citrine_block"
+    },
+    "B": {
+      "item": "spectrum:polished_basalt"
+    },
+    "P": {
+      "item": "spectrum:polished_calcite"
+    }
+  },
+  "result" : {
+    "item": "spectrum:fusion_shrine",
+    "count": 1
+  },
+  "required_advancements": [ "spectrum:collect_all_basic_pigments_besides_brown" ]
+}

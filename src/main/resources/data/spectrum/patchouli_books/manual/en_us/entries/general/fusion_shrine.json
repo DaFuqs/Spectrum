@@ -1,19 +1,16 @@
 {
   "name": "Fusion Shrine",
   "icon": "spectrum:fusion_shrine",
+  "advancement": "spectrum:collect_all_basic_pigments_besides_brown",
   "category": "spectrum:general_category",
   "extra_recipe_mappings": {
-    "spectrum:fusion_shrine": 1
+    "spectrum:fusion_shrine": 0
   },
   "pages": [
     {
-      "type": "patchouli:text",
-      "text": "For the process of creating $(l:creating_onyx_shards)Black Shards$() you have developed a special construction. It is designed in a way to optimally bundle the magical energies of $(c_cyan)Topaz$(), $(c_magenta)Amethyst$() and $(c_yellow)Citrine$() and focuses them on a single, central point."
-    },
-    {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier2/fusion_shrine",
-      "text": ""
+      "text": "For the process of creating $(l:creating_onyx_shards)Black Shards$() you have developed a special construction. It is designed in a way to optimally bundle the magical energies of $(c_cyan)Topaz$(), $(c_magenta)Amethyst$() and $(c_yellow)Citrine$() and focuses them on a single, central point."
     },
     {
       "type": "patchouli:multiblock",

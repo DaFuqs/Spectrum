@@ -26,6 +26,5 @@
     "item": "spectrum:deepslate_sparklestone_light",
     "count": 4
   },
-  "required_advancements": ["spectrum:progression/unlock_sparklestone_lights"],
-  "show_toast_on_unlock": false
+  "required_advancements": ["spectrum:progression/unlock_sparklestone_lights"]
 }

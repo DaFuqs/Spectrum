@@ -26,6 +26,5 @@
     "item": "spectrum:citrine_chiseled_basalt",
     "count": 4
   },
-  "required_advancements": ["spectrum:hidden/collect_shards/collect_citrine_shard"],
-  "show_toast_on_unlock": false
+  "required_advancements": ["spectrum:create_onyx_shard"]
 }

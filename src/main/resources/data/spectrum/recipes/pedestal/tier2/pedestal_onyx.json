@@ -22,5 +22,5 @@
     "item": "spectrum:pedestal_onyx",
     "count": 1
   },
-  "required_advancements": ["spectrum:midgame/spectrum_midgame"]
+  "required_advancements": ["spectrum:create_onyx_shard"]
 }

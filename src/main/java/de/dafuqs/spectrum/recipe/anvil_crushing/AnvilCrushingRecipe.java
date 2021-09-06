@@ -1,6 +1,8 @@
 package de.dafuqs.spectrum.recipe.anvil_crushing;
 
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
+import de.dafuqs.spectrum.registries.SpectrumBlocks;
+import net.minecraft.block.Blocks;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleEffect;
@@ -56,6 +58,11 @@ public class AnvilCrushingRecipe implements Recipe<Inventory> {
 
     public boolean isIgnoredInRecipeBook() {
         return true;
+    }
+
+    @Override
+    public ItemStack createIcon() {
+        return new ItemStack(Blocks.ANVIL);
     }
 
     public Identifier getId() {

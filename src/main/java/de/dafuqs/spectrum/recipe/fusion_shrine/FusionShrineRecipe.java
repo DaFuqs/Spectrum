@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.recipe.fusion_shrine;
 import de.dafuqs.spectrum.SpectrumClient;
 import de.dafuqs.spectrum.progression.ClientPedestalRecipeToastManager;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
+import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.fluid.Fluid;
@@ -101,6 +102,11 @@ public class FusionShrineRecipe implements Recipe<Inventory> {
 
     public boolean isIgnoredInRecipeBook() {
         return true;
+    }
+
+    @Override
+    public ItemStack createIcon() {
+        return new ItemStack(SpectrumBlocks.FUSION_SHRINE);
     }
 
     public Identifier getId() {

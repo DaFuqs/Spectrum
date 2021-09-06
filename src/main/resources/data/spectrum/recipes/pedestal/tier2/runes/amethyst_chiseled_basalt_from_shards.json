@@ -26,5 +26,5 @@
     "item": "spectrum:amethyst_chiseled_basalt",
     "count": 1
   },
-  "required_advancements": ["spectrum:hidden/collect_shards/collect_amethyst_shard"]
+  "required_advancements": ["spectrum:create_onyx_shard"]
 }

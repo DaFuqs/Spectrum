@@ -62,8 +62,10 @@
 
   "spectrum.toast.revelation.title": "You gained knowledge about the world",
   "spectrum.toast.revelation.text": "New things reveal themselves to you",
-  "spectrum.toast.recipe_unlocked.title": "New Pedestal recipe:",
-  "spectrum.toast.recipes_unlocked.title": "New Pedestal recipes:",
+  "spectrum.toast.pedestal_recipe_unlocked.title": "New Pedestal recipe:",
+  "spectrum.toast.pedestal_recipes_unlocked.title": "New Pedestal recipes:",
+  "spectrum.toast.fusion_shrine_recipe_unlocked.title": "New Fusion recipe:",
+  "spectrum.toast.fusion_shrine_recipes_unlocked.title": "New Fusion recipes:",
 
   "text.autoconfig.Spectrum.option.CitrineGeodeMinAboveBottomGenerationHeight": "Min Citrine Geode generation height (from world floor)",
   "text.autoconfig.Spectrum.option.CitrineGeodeFixedMaxGenerationHeight": "Max Citrine Geode generation height (Y value)",

@@ -65,6 +65,14 @@ public class FusionShrineRecipe implements Recipe<Inventory> {
         ClientPedestalRecipeToastManager.registerUnlockableFusionShrineRecipe(this);
     }
 
+    @Override
+    public boolean equals(Object object) {
+        if(object instanceof FusionShrineRecipe) {
+            return ((FusionShrineRecipe) object).getId().equals(this.getId());
+        }
+        return false;
+    }
+
     /**
      * Only tests the items. The required fluid has to be tested manually by the crafting block
      */

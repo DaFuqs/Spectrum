@@ -18,13 +18,13 @@
       "item": "spectrum:topaz_block"
     },
     "A": {
-      "item": "spectrum:amethyst_block"
+      "item": "spectrum:amethyst_storage_block"
     },
     "C": {
-      "item": "spectrum:citrine_block"
+      "item": "spectrum:citrine_storage_block"
     },
     "B": {
-      "item": "spectrum:polished_basalt"
+      "item": "spectrum:polished_storage_basalt"
     },
     "P": {
       "item": "spectrum:polished_calcite"

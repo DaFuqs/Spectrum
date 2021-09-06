@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.compat.REI;
 
 import com.google.common.collect.Lists;
 import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.recipe.anvil_crushing.AnvilCrushingRecipe;
 import de.dafuqs.spectrum.recipe.fusion_shrine.FusionShrineRecipe;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import me.shedaniel.math.Point;
@@ -15,10 +14,8 @@ import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.entry.EntryIngredient;
 import me.shedaniel.rei.api.common.util.EntryIngredients;
 import me.shedaniel.rei.api.common.util.EntryStacks;
-import net.minecraft.block.Blocks;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;

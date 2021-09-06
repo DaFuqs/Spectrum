@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.recipe.anvil_crushing;
 
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
-import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import net.minecraft.block.Blocks;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
@@ -101,8 +100,16 @@ public class AnvilCrushingRecipe implements Recipe<Inventory> {
         return defaultedList;
     }
 
-
     public float getExperience() {
         return experience;
     }
+
+    @Override
+    public boolean equals(Object object) {
+        if(object instanceof AnvilCrushingRecipe) {
+            return ((AnvilCrushingRecipe) object).getId().equals(this.getId());
+        }
+        return false;
+    }
+
 }

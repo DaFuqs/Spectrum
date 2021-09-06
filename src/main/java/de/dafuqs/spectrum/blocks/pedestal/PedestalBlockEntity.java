@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.blocks.pedestal;
 
 import de.dafuqs.spectrum.InventoryHelper;
-import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.Support;
 import de.dafuqs.spectrum.enums.GemstoneColor;
 import de.dafuqs.spectrum.enums.PedestalRecipeTier;

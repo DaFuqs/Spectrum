@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.toast;
+package de.dafuqs.spectrum.progression.toast;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import de.dafuqs.spectrum.SpectrumCommon;
@@ -17,32 +17,55 @@ import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Environment(EnvType.CLIENT)
 public class UnlockedRecipeGroupToast implements Toast {
 
+    public enum UnlockedRecipeToastType {
+        PEDESTAL,
+        FUSION_SHRINE;
+    }
+
     private final Identifier TEXTURE = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/toasts.png");
-    private final TranslatableText groupName;
+    private final Text title;
+    private final Text text;
     private final List<ItemStack> itemStacks;
     private final SoundEvent soundEvent = SpectrumSoundEvents.NEW_RECIPE;
     private boolean soundPlayed;
 
-    public UnlockedRecipeGroupToast(TranslatableText groupName, List<ItemStack> itemStacks) {
-        this.groupName = groupName;
+    public UnlockedRecipeGroupToast(Text title, Text text, List<ItemStack> itemStacks) {
+        this.title = title;
+        this.text = text;
         this.itemStacks = itemStacks;
         this.soundPlayed = false;
     }
 
-    public static void showRecipeGroupToast(MinecraftClient client, String groupName, List<ItemStack> itemStacks) {
-        client.getToastManager().add(new UnlockedRecipeGroupToast(new TranslatableText("recipeGroup.spectrum." + groupName), itemStacks));
+    public static void showRecipeToast(MinecraftClient client, ItemStack itemStack, UnlockedRecipeToastType type) {
+        Text title;
+        if(type == UnlockedRecipeToastType.PEDESTAL) {
+            title = new TranslatableText("spectrum.toast.pedestal_recipe_unlocked.title");
+        } else {
+            title = new TranslatableText("spectrum.toast.fusion_shrine_recipe_unlocked.title");
+        }
+        Text text = itemStack.getName();
+        client.getToastManager().add(new UnlockedRecipeGroupToast(title, text, new ArrayList<>() {{ add(itemStack); }}));
+    }
+
+    public static void showRecipeGroupToast(MinecraftClient client, String groupName, List<ItemStack> itemStacks, UnlockedRecipeToastType type) {
+        Text title;
+        if(type == UnlockedRecipeToastType.PEDESTAL) {
+            title = new TranslatableText("spectrum.toast.pedestal_recipes_unlocked.title");
+        } else {
+            title = new TranslatableText("spectrum.toast.fusion_shrine_recipes_unlocked.title");
+        }
+        Text text = new TranslatableText("recipeGroup.spectrum." + groupName);
+        client.getToastManager().add(new UnlockedRecipeGroupToast(title, text, itemStacks));
     }
 
     @Override
     public Visibility draw(MatrixStack matrices, ToastManager manager, long startTime) {
-        Text title = new TranslatableText("spectrum.toast.recipes_unlocked.title");
-        Text text = groupName;
-
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderTexture(0, TEXTURE);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);

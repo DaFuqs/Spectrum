@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.toast;
+package de.dafuqs.spectrum.progression.toast;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import de.dafuqs.spectrum.SpectrumCommon;

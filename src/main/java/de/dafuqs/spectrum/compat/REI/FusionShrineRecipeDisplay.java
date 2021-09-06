@@ -1,24 +1,17 @@
 package de.dafuqs.spectrum.compat.REI;
 
 import de.dafuqs.spectrum.Support;
-import de.dafuqs.spectrum.enums.GemstoneColor;
-import de.dafuqs.spectrum.enums.PedestalRecipeTier;
 import de.dafuqs.spectrum.recipe.fusion_shrine.FusionShrineRecipe;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.display.SimpleGridMenuDisplay;
 import me.shedaniel.rei.api.common.entry.EntryIngredient;
 import me.shedaniel.rei.api.common.util.EntryIngredients;
-import net.minecraft.advancement.Advancement;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.fluid.Fluid;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 

@@ -10,7 +10,7 @@
   "experience": 1,
   "pattern": [
     "CCC",
-    "B B",
+    "BRB",
     "BBB"
   ],
   "key": {
@@ -19,6 +19,9 @@
     },
     "B": {
       "item": "spectrum:polished_basalt"
+    },
+    "R": {
+      "item": "minecraft:red_dye"
     }
   },
   "result" : {

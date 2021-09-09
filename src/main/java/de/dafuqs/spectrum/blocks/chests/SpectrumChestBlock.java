@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.blocks.chests;
 
+import de.dafuqs.spectrum.SpectrumCommon;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.util.SpriteIdentifier;
@@ -20,6 +21,8 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 
 import java.util.Random;
+
+import static net.minecraft.client.render.TexturedRenderLayers.CHEST_ATLAS_TEXTURE;
 
 public abstract class SpectrumChestBlock extends BlockWithEntity {
 
@@ -101,5 +104,8 @@ public abstract class SpectrumChestBlock extends BlockWithEntity {
         return this.getDefaultState().with(FACING, direction);
     }
 
-    public abstract SpriteIdentifier getTexture();
+    public SpriteIdentifier getTexture() {
+        return new SpriteIdentifier(CHEST_ATLAS_TEXTURE, new Identifier(SpectrumCommon.MOD_ID, "entity/private_chest"));
+    }
+
 }

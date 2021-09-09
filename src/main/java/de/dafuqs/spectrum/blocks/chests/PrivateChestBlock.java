@@ -54,11 +54,6 @@ public class PrivateChestBlock extends SpectrumChestBlock {
         }
     }
 
-    @Override
-    public SpriteIdentifier getTexture() {
-        return new SpriteIdentifier(CHEST_ATLAS_TEXTURE, new Identifier(SpectrumCommon.MOD_ID, "entity/private_chest"));
-    }
-
     public void onPlaced(World world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack itemStack) {
         if (itemStack.hasCustomName()) {
             BlockEntity blockEntity = world.getBlockEntity(pos);

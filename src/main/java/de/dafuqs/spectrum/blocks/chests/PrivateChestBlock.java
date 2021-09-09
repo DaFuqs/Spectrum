@@ -21,7 +21,6 @@ import org.jetbrains.annotations.Nullable;
 
 import static net.minecraft.client.render.TexturedRenderLayers.CHEST_ATLAS_TEXTURE;
 
-
 public class PrivateChestBlock extends SpectrumChestBlock {
 
     public PrivateChestBlock(Settings settings) {

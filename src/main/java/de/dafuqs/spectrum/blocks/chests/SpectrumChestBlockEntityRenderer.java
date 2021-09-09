@@ -24,12 +24,12 @@ import net.minecraft.world.World;
 @Environment(EnvType.CLIENT)
 public class SpectrumChestBlockEntityRenderer<T extends BlockEntity & ChestAnimationProgress> implements BlockEntityRenderer<T> {
 
-    private final ModelPart singleChestLid;
-    private final ModelPart singleChestBase;
-    private final ModelPart singleChestLatch;
+    protected final ModelPart singleChestLid;
+    protected final ModelPart singleChestBase;
+    protected final ModelPart singleChestLatch;
 
     public SpectrumChestBlockEntityRenderer(BlockEntityRendererFactory.Context ctx) {
-        ModelPart modelPart = ctx.getLayerModelPart(EntityModelLayers.CHEST);
+        ModelPart modelPart = getModel(ctx);
         this.singleChestBase = modelPart.getChild("bottom");
         this.singleChestLid = modelPart.getChild("lid");
         this.singleChestLatch = modelPart.getChild("lock");
@@ -67,6 +67,11 @@ public class SpectrumChestBlockEntityRenderer<T extends BlockEntity & ChestAnima
         lid.render(matrices, vertices, light, overlay);
         latch.render(matrices, vertices, light, overlay);
         base.render(matrices, vertices, light, overlay);
+    }
+
+    protected ModelPart getModel(BlockEntityRendererFactory.Context ctx) {
+        ModelPart modelPart = ctx.getLayerModelPart(EntityModelLayers.CHEST);
+        return modelPart;
     }
 
 }

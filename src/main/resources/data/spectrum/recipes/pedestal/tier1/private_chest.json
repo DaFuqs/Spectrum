@@ -15,10 +15,10 @@
   ],
   "key": {
     "C": {
-      "item": "minecraft:calcite"
+      "item": "spectrum:polished_calcite"
     },
     "B": {
-      "item": "minecraft:smooth_basalt"
+      "item": "spectrum:polished_basalt"
     }
   },
   "result" : {

@@ -44,11 +44,11 @@ public abstract class SpectrumChestBlockEntity extends LootableContainerBlockEnt
 
         this.stateManager = new ChestStateManager() {
             protected void onChestOpened(World world, BlockPos pos, BlockState state) {
-                playSound(world, pos, state, SoundEvents.BLOCK_CHEST_OPEN);
+                playSound(world, pos, state, getOpenSound());
             }
 
             protected void onChestClosed(World world, BlockPos pos, BlockState state) {
-                playSound(world, pos, state, SoundEvents.BLOCK_CHEST_CLOSE);
+                playSound(world, pos, state, getCloseSound());
             }
 
             protected void onInteracted(World world, BlockPos pos, BlockState state, int oldViewerCount, int newViewerCount) {
@@ -139,6 +139,14 @@ public abstract class SpectrumChestBlockEntity extends LootableContainerBlockEnt
         super.writeNbt(tag);
         Inventories.writeNbt(tag, inventory);
         return tag;
+    }
+
+    public SoundEvent getOpenSound() {
+        return SoundEvents.BLOCK_CHEST_OPEN;
+    }
+
+    public SoundEvent getCloseSound() {
+        return SoundEvents.BLOCK_CHEST_CLOSE;
     }
 
 }

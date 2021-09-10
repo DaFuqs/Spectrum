@@ -51,7 +51,7 @@ public class RestockingChestBlockEntityRenderer<RestockingChestBlockEntity exten
         openFactor = 1.0F - openFactor;
         openFactor = 1.0F - openFactor * openFactor * openFactor;
 
-        lid.pivotY = 5 + openFactor * 6;
+        lid.pivotY = 5 + openFactor * 5;
 
         VertexConsumer vertexConsumer = spriteIdentifier.getVertexConsumer(vertexConsumers, RenderLayer::getEntityCutout);
         root.render(matrixStack, vertexConsumer, light, overlay);

@@ -26,7 +26,6 @@ import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -292,9 +291,8 @@ public class PedestalCraftingRecipe implements Recipe<Inventory> {
 
     /**
      * The advancement the player has to have to let the recipe be craftable in the pedestal
-     * @return The advancement identifier. A null value means the player is always able to craft this recipe
+     * @return The advancement identifier.
      */
-    @Nullable
     public List<Identifier> getRequiredAdvancementIdentifiers() {
         return requiredAdvancementIdentifiers;
     }

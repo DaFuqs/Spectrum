@@ -10,16 +10,16 @@
   "white": 0,
   "experience": 1.0,
   "pattern": [
-    "PPP",
     "PQP",
-    "PPP"
+    "QPQ",
+    "PQP"
   ],
   "key": {
   	"P": {
       "item": "spectrum:brown_pigment"
     },
 	"Q": {
-      "item": "spectrum:quitoxic_reeds"
+      "item": "spectrum:quitoxic_powder"
     }
   },
   "result" : {

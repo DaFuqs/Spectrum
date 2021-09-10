@@ -19,7 +19,6 @@
   },
   "required_advancement": "spectrum:collect_all_basic_pigments_besides_brown",
   "world_conditions": [
-    "rain",
     "new_moon",
     "midnight"
   ],

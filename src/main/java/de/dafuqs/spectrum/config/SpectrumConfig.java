@@ -40,8 +40,8 @@ public class SpectrumConfig implements ConfigData {
     public float LightningStonesChance = 0.4F;
 
     // Shooting star spawns are checked every night between time 13000 and 22000, every 100 ticks (so 90 chances per night).
-    // By default, there is a 0.01 ^= 1 % chance at each of those check times. Making it ~1 shooting star spawn per night.
-    public float ShootingStarChance = 0.01F;
+    // By default, there is a 0.02 ^= 2 % chance at each of those check times. Making it ~3 shooting star spawns per night.
+    public float ShootingStarChance = 0.02F;
 
     // The biomes where the biome specific plants are growing
     public List<String> MermaidsBrushGenerationBiomes = Arrays.asList("minecraft:ocean", "minecraft:cold_ocean", "minecraft_frozen_ocean", "minecraft:lukewarm_ocean", "minecraft:warm_ocean" ,"minecraft:deep_ocean", "minecraft:deep_cold_ocean", "minecraft:deep_frozen_ocean", "minecraft:deep_warm_ocean", "minecraft:deep_lukewarm_ocean");

@@ -4,12 +4,12 @@
   "tier": "simple",
   "cyan": 2,
   "magenta": 4,
-  "yellow": 2,
+  "yellow": 0,
   "white": 0,
   "black": 0,
   "experience": 2.0,
   "pattern": [
-    "PEP",
+    "PQP",
     " S ",
     " S "
   ],
@@ -17,8 +17,8 @@
     "S": {
       "item": "minecraft:stick"
     },
-    "E": {
-      "item": "spectrum:ender_treasure"
+    "Q": {
+      "item": "spectrum:quitoxic_powder"
     },
     "P": {
       "item": "minecraft:phantom_membrane"

@@ -123,7 +123,7 @@ public class ShootingStarEntity extends Entity {
                 }
             }
 
-            if (!this.onGround || /*squaredHorizontalLength(this.getVelocity()) > 9.999999747378752E-6D ||*/ (this.age + this.getId()) % 4 == 0) {
+            if (!this.onGround || (this.age + this.getId()) % 4 == 0) {
                 Vec3d velocity = this.getVelocity();
                 world.addParticle(SpectrumParticleTypes.SHOOTING_STAR, this.getX(), this.getY(), this.getZ(), -velocity.x, -velocity.y, -velocity.z);
 
@@ -135,7 +135,7 @@ public class ShootingStarEntity extends Entity {
 
                 this.setVelocity(this.getVelocity().multiply(g, 0.98D, g));
                 if (this.onGround) {
-                    // convert to itemEntity
+                    // convert to itemEntity on colliding with ground
                     ItemEntity itemEntity = new ItemEntity(this.world, this.getX(), this.getY(), this.getZ(), this.getStack());
                     this.world.spawnEntity(itemEntity);
                     this.discard();

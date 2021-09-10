@@ -10,6 +10,9 @@ import net.minecraft.network.PacketByteBuf;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.ShapedRecipe;
+import net.minecraft.text.LiteralText;
+import net.minecraft.text.Text;
+import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
 import net.minecraft.util.collection.DefaultedList;
@@ -84,8 +87,14 @@ public class FusionShrineRecipeSerializer<T extends FusionShrineRecipe> implemen
         } else {
             finishWorldEffect = FusionShrineRecipeWorldEffect.NOTHING;
         }
+        TranslatableText description;
+        if(JsonHelper.hasString(jsonObject, "description")) {
+            description = new TranslatableText(JsonHelper.getString(jsonObject, "description"));
+        } else {
+            description = null;
+        }
 
-        return this.recipeFactory.create(identifier, group, craftingInputs, fluid, output, experience, craftingTime, requiredAdvancementIdentifier, worldConditions, startWorldEffect, duringWorldEffects, finishWorldEffect);
+        return this.recipeFactory.create(identifier, group, craftingInputs, fluid, output, experience, craftingTime, requiredAdvancementIdentifier, worldConditions, startWorldEffect, duringWorldEffects, finishWorldEffect, description);
     }
 
     @Override
@@ -116,7 +125,9 @@ public class FusionShrineRecipeSerializer<T extends FusionShrineRecipe> implemen
         }
         FusionShrineRecipeWorldEffect finishWorldEffect = FusionShrineRecipeWorldEffect.values()[packetByteBuf.readInt()];
 
-        return this.recipeFactory.create(identifier, group, ingredients, fluid, output, experience, craftingTime, requiredAdvancementIdentifier, worldConditions, startWorldEffect, duringWorldEffects, finishWorldEffect);
+        Text description = packetByteBuf.readText();
+
+        return this.recipeFactory.create(identifier, group, ingredients, fluid, output, experience, craftingTime, requiredAdvancementIdentifier, worldConditions, startWorldEffect, duringWorldEffects, finishWorldEffect, description);
     }
 
     @Override
@@ -145,10 +156,16 @@ public class FusionShrineRecipeSerializer<T extends FusionShrineRecipe> implemen
             packetByteBuf.writeInt(effect.ordinal());
         }
         packetByteBuf.writeInt(fusionShrineRecipe.finishWorldEffect.ordinal());
+        if(fusionShrineRecipe.getDescription().isEmpty()) {
+            packetByteBuf.writeText(new LiteralText(""));
+        } else {
+            packetByteBuf.writeText(fusionShrineRecipe.getDescription().get());
+        }
     }
 
     public interface RecipeFactory<T extends FusionShrineRecipe> {
-        T create(Identifier id, String group, DefaultedList<Ingredient> craftingInputs, Fluid fluidInput, ItemStack output, float experience, int craftingTime, Identifier requiredAdvancementIdentifier, List<FusionShrineRecipeWorldCondition> worldConditions, FusionShrineRecipeWorldEffect startWorldEffect, List<FusionShrineRecipeWorldEffect> duringWorldEffects, FusionShrineRecipeWorldEffect finishWorldEffect);
+        T create(Identifier id, String group, DefaultedList<Ingredient> craftingInputs, Fluid fluidInput, ItemStack output, float experience, int craftingTime, Identifier requiredAdvancementIdentifier,
+                 List<FusionShrineRecipeWorldCondition> worldConditions, FusionShrineRecipeWorldEffect startWorldEffect, List<FusionShrineRecipeWorldEffect> duringWorldEffects, FusionShrineRecipeWorldEffect finishWorldEffect, Text description);
     }
 
 }

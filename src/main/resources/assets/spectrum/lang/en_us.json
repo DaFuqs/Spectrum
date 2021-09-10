@@ -691,6 +691,9 @@
   "item.spectrum.pedestal_tier_1_structure_placer": "Spectrum Focus Structure Placer",
   "item.spectrum.pedestal_tier_2_structure_placer": "Spectrum Temple Structure Placer",
   "item.spectrum.pedestal_tier_3_structure_placer": "Spectrum Palace Structure Placer",
+  "item.spectrum.fusion_shrine_structure_placer": "Fusion Shrine Structure Placer",
+
+  "spectrum.recipe.fusion_shrine.explanation.onyx_shard": "Midnight on a new moon only",
 
   "block.spectrum.ender_glass": "Ender Glass",
   "block.spectrum.redstone_sand": "Redstone Sand",

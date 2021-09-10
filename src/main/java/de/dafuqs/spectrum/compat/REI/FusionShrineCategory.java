@@ -63,16 +63,14 @@ public class FusionShrineCategory<R extends FusionShrineRecipe> implements Displ
             widgets.add(Widgets.createLabel(new Point(startPoint.x - 6, startPoint.y + 33), new TranslatableText("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_1")).leftAligned().color(0x3f3f3f).noShadow());
             widgets.add(Widgets.createLabel(new Point(startPoint.x - 6, startPoint.y + 43), new TranslatableText("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_2")).leftAligned().color(0x3f3f3f).noShadow());
         } else {
-
-            List<EntryIngredient> input = display.getInputEntries();
             List<EntryIngredient> output = display.getOutputEntries();
 
             // input slots
             int ingredientSize  = display.craftingInputs.size();
-            int startX = Math.max(20, 30 - ingredientSize * 10);
+            int startX = Math.max(0, 10 - ingredientSize * 10);
             for(int i = 0; i < display.craftingInputs.size(); i++) {
                 EntryIngredient currentIngredient = (EntryIngredient) display.craftingInputs.get(i);
-                widgets.add(Widgets.createSlot(new Point(startPoint.x + startX + i * 20, startPoint.y + 10)).markInput().entries(currentIngredient));
+                widgets.add(Widgets.createSlot(new Point(startPoint.x + startX + i * 20, startPoint.y + 9)).markInput().entries(currentIngredient));
             }
 
             // shrine + fluid
@@ -88,6 +86,10 @@ public class FusionShrineCategory<R extends FusionShrineRecipe> implements Displ
             widgets.add(Widgets.createResultSlotBackground(new Point(startPoint.x + 95, startPoint.y + 35)));
             widgets.add(Widgets.createSlot(new Point(startPoint.x + 95, startPoint.y + 35)).markOutput().disableBackground().entries(output.get(0)));
 
+            if(display.getDescription().isPresent()) {
+                Text description = (Text) display.getDescription().get();
+                widgets.add(Widgets.createLabel(new Point(startPoint.x - 10, startPoint.y + 65), description).leftAligned().color(0x3f3f3f).noShadow());
+            }
 
             // description text
             // special handling for "1 second". Looks nicer
@@ -97,14 +99,17 @@ public class FusionShrineCategory<R extends FusionShrineRecipe> implements Displ
             } else {
                 text = new TranslatableText("container.spectrum.rei.pedestal_crafting.crafting_time_and_xp", (display.craftingTime / 20), display.experience);
             }
-            widgets.add(Widgets.createLabel(new Point(startPoint.x, startPoint.y + 68), text).leftAligned().color(0x3f3f3f).noShadow());
+            widgets.add(Widgets.createLabel(new Point(startPoint.x - 10, startPoint.y + 75), text).leftAligned().color(0x3f3f3f).noShadow());
+
+
+
         }
         return widgets;
     }
 
     @Override
     public int getDisplayHeight() {
-        return 90;
+        return 100;
     }
 
 }

@@ -8,14 +8,17 @@
   },
   "pages": [
     {
-      "type": "patchouli:test",
-      "text": "For the process of creating $(l:creating_onyx_shards)Black Shards$() you have developed a special construction. It is designed in a way to optimally bundle the magical energies of $(c_cyan)Topaz$(), $(c_magenta)Amethyst$() and $(c_yellow)Citrine$() and focuses them on a single, central point."
-
+      "type": "patchouli:text",
+      "text": "For the process of creating $(l:general/onyx_shards)Black Shards$() you have developed a special construction.$(br)That said you are pretty sure you can get more use out of it later."
     },
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier2/fusion_shrine",
       "text": "For the fusion shrine to work it requires a focus structure and clear view of the sky."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "You have designed the structure for the Fusion Shrine to optimally bundle the magical energies of $(c_cyan)Matter$(), $(c_magenta)Time$() and $(c_yellow)Energy$() and focuses them on a single, central point, the Fusion Shrine itself."
     },
     {
       "type": "patchouli:multiblock",

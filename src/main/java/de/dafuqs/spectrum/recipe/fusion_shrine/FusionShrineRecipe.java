@@ -14,6 +14,8 @@ import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.text.Text;
+import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
@@ -21,6 +23,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.Optional;
 
 public class FusionShrineRecipe implements Recipe<Inventory> {
 
@@ -38,8 +41,9 @@ public class FusionShrineRecipe implements Recipe<Inventory> {
     @NotNull protected final List<FusionShrineRecipeWorldEffect> duringWorldEffects;
     @NotNull protected final FusionShrineRecipeWorldEffect finishWorldEffect;
     @Nullable protected final Identifier requiredAdvancementIdentifier;
+    @Nullable protected final Text description;
 
-    public FusionShrineRecipe(Identifier id, String group, DefaultedList<Ingredient> craftingInputs, Fluid fluidInput, ItemStack output, float experience, int craftingTime, Identifier requiredAdvancementIdentifier, List<FusionShrineRecipeWorldCondition> worldConditions, FusionShrineRecipeWorldEffect startWorldEffect, List<FusionShrineRecipeWorldEffect> duringWorldEffects, FusionShrineRecipeWorldEffect finishWorldEffect) {
+    public FusionShrineRecipe(Identifier id, String group, DefaultedList<Ingredient> craftingInputs, Fluid fluidInput, ItemStack output, float experience, int craftingTime, Identifier requiredAdvancementIdentifier, List<FusionShrineRecipeWorldCondition> worldConditions, FusionShrineRecipeWorldEffect startWorldEffect, List<FusionShrineRecipeWorldEffect> duringWorldEffects, FusionShrineRecipeWorldEffect finishWorldEffect, Text description) {
         this.id = id;
         this.group = group;
 
@@ -54,6 +58,7 @@ public class FusionShrineRecipe implements Recipe<Inventory> {
         this.duringWorldEffects = duringWorldEffects;
         this.finishWorldEffect = finishWorldEffect;
         this.requiredAdvancementIdentifier = requiredAdvancementIdentifier;
+        this.description = description;
 
         if(SpectrumClient.minecraftClient != null) {
             registerInClientToastManager();
@@ -195,6 +200,14 @@ public class FusionShrineRecipe implements Recipe<Inventory> {
                 }
                 return effect;
             }
+        }
+    }
+
+    public Optional<Text> getDescription() {
+        if(this.description == null) {
+            return Optional.empty();
+        } else {
+            return Optional.of(this.description);
         }
     }
 

@@ -7,12 +7,14 @@ import me.shedaniel.rei.api.common.display.SimpleGridMenuDisplay;
 import me.shedaniel.rei.api.common.entry.EntryIngredient;
 import me.shedaniel.rei.api.common.util.EntryIngredients;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class FusionShrineRecipeDisplay<R extends FusionShrineRecipe> implements SimpleGridMenuDisplay {
@@ -25,6 +27,7 @@ public class FusionShrineRecipeDisplay<R extends FusionShrineRecipe> implements 
 	protected final float experience;
 	protected final int craftingTime;
 	protected final Identifier requiredAdvancementIdentifier;
+	protected final Optional<Text> description;
 
 	public FusionShrineRecipeDisplay(@NotNull FusionShrineRecipe recipe) {
 		this.craftingInputs = recipe.getIngredients().stream().map(EntryIngredients::ofIngredient).collect(Collectors.toCollection(ArrayList::new));
@@ -35,6 +38,7 @@ public class FusionShrineRecipeDisplay<R extends FusionShrineRecipe> implements 
 		this.allInputs = new ArrayList<>();
 		this.allInputs.addAll(this.craftingInputs);
 		this.allInputs.add(this.fluidInput);
+		this.description = recipe.getDescription();
 		this.requiredAdvancementIdentifier = recipe.getRequiredAdvancementIdentifier();
 	}
 
@@ -73,6 +77,10 @@ public class FusionShrineRecipeDisplay<R extends FusionShrineRecipe> implements 
 	@Override
 	public int getHeight() {
 		return 3;
+	}
+
+	public Optional<Text> getDescription() {
+		return this.description;
 	}
 
 

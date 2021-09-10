@@ -14,7 +14,7 @@
     {
       "type": "spectrum:fusion_shrine_crafting",
       "recipe": "spectrum:fusion_shrine/onyx_shard",
-      "text": "The creation of this 'blackest of blacks' has to be performed in a way that absolutely no unregulated light can pollute the crystal. So midnight on a full moon it is. Best to bing a clock with you."
+      "text": "The creation of this 'blackest of blacks' in the $(l:general/fusion_shrine)Fusion Shrine$() has to be performed in a way that absolutely no unregulated light can pollute the crystal. So midnight on a new moon it is. Best to bing a clock with you."
     }
   ]
 }

@@ -132,7 +132,6 @@ public class EnderHopperBlock extends BlockWithEntity {
 
                 if(enderHopperBlockEntity.isOwner(player)) {
                     EnderChestInventory enderChestInventory = player.getEnderChestInventory();
-                    //enderChestInventory.setActiveBlockEntity(enderHopperBlockEntity); // TODO: set this as active ender chest... somehow.
 
                     player.openHandledScreen(new SimpleNamedScreenHandlerFactory((i, playerInventory, playerEntity) -> {
                         return GenericSpectrumContainerScreenHandler.createGeneric9x3(i, playerInventory, enderChestInventory, SpectrumTier.TIER1);

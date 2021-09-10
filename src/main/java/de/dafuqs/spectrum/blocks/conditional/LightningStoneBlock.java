@@ -6,12 +6,15 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.ShapeContext;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LightningEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Pair;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
@@ -38,15 +41,16 @@ public class LightningStoneBlock extends Block implements Cloakable {
 
     @Override
     public void onDestroyedByExplosion(World world, BlockPos pos, Explosion explosion) {
-        if(world.isRaining()) {
-            // TODO: BOOOOOOOOOOOOM!
-        }
         super.onDestroyedByExplosion(world, pos, explosion);
+
+        LightningEntity lightningEntity =  EntityType.LIGHTNING_BOLT.create(world);
+        lightningEntity.refreshPositionAfterTeleport(Vec3d.ofBottomCenter(pos));
+        world.spawnEntity(lightningEntity);
     }
 
     @Override
     public Identifier getCloakAdvancementIdentifier() {
-        return new Identifier(SpectrumCommon.MOD_ID, "midgame/collect_corrupted_pedrock_dust");
+        return new Identifier(SpectrumCommon.MOD_ID, "midgame/collect_corrupted_obsidian_dust");
     }
 
     @Deprecated

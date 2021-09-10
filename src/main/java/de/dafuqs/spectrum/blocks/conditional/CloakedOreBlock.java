@@ -49,11 +49,4 @@ public abstract class CloakedOreBlock extends OreBlock implements Cloakable {
         return getCloakedDroppedStacks(state, builder);
     }
 
-    // only drop xp when not cloaked
-    @Override
-    public void onStacksDropped(BlockState state, ServerWorld world, BlockPos pos, ItemStack stack) {
-        // TODO: Don't drop XP if broken by cloaked player
-        super.onStacksDropped(state, world, pos, stack);
-    }
-
 }

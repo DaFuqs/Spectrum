@@ -104,7 +104,6 @@ public class MudFluidBlock extends FluidBlock {
         return true;
     }
 
-    // TODO: custom sound
     private void playExtinguishSound(WorldAccess world, BlockPos pos) {
         world.syncWorldEvent(1501, pos, 0);
     }

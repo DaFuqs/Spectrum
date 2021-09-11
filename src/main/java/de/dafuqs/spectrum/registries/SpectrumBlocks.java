@@ -556,6 +556,10 @@ public class SpectrumBlocks {
     public static final Block PLAYER_DETECTOR = new PlayerDetectorBlock(FabricBlockSettings.copyOf(Blocks.DAYLIGHT_DETECTOR));
     public static final Block ENTITY_DETECTOR = new EntityDetectorBlock(FabricBlockSettings.copyOf(Blocks.DAYLIGHT_DETECTOR));
 
+    public static final Block REDSTONE_CALCULATOR = new RedstoneCalculatorBlock(FabricBlockSettings.copyOf(Blocks.REPEATER));
+    public static final Block REDSTONE_TIMER = new RedstoneTimerBlock(FabricBlockSettings.copyOf(Blocks.REPEATER));
+    public static final Block REDSTONE_WIRELESS = new RedstoneWirelessBlock(FabricBlockSettings.copyOf(Blocks.REPEATER));
+
     public static final Block ENDER_DROPPER = new EnderDropperBlock(FabricBlockSettings.copyOf(Blocks.DROPPER).requiresTool().strength(15F, 60.0F));
     public static final Block ENDER_HOPPER = new EnderHopperBlock(FabricBlockSettings.copyOf(Blocks.HOPPER).requiresTool().strength(15F, 60.0F));
 
@@ -687,6 +691,10 @@ public class SpectrumBlocks {
         registerBlockWithItem("item_detector", ITEM_DETECTOR, fabricItemSettings);
         registerBlockWithItem("player_detector", PLAYER_DETECTOR, fabricItemSettings);
         registerBlockWithItem("entity_detector", ENTITY_DETECTOR, fabricItemSettings);
+
+        registerBlockWithItem("redstone_timer", REDSTONE_TIMER, fabricItemSettings);
+        registerBlockWithItem("redstone_calculator", REDSTONE_CALCULATOR, fabricItemSettings);
+        registerBlockWithItem("redstone_wireless", REDSTONE_WIRELESS, fabricItemSettings);
 
         registerBlockWithItem("redstone_sand", REDSTONE_SAND, fabricItemSettings);
         registerBlockWithItem("ender_glass", ENDER_GLASS, fabricItemSettings);

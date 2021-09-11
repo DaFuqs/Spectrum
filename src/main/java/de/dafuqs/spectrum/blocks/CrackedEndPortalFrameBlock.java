@@ -37,7 +37,7 @@ public class CrackedEndPortalFrameBlock extends Block {
 
         private final String name;
 
-        private EndPortalFrameEye(String name) {
+        EndPortalFrameEye(String name) {
             this.name = name;
         }
 

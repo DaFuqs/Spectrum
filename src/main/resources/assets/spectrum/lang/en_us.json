@@ -726,6 +726,9 @@
   "block.spectrum.weather_detector": "Weather Detector",
   "block.spectrum.light_level_detector": "Block Light Detector",
   "block.spectrum.entity_detector": "Creature Detector",
+  "block.spectrum.redstone_timer": "Redstone Timer",
+  "block.spectrum.redstone_calculator": "Redstone Calculator",
+  "block.spectrum.redstone_wireless": "Wireless Redstone",
 
   "item.spectrum.mob_head.tooltip.designer": "§7Head design by %s",
   "block.spectrum.goat_head": "Goat Head",

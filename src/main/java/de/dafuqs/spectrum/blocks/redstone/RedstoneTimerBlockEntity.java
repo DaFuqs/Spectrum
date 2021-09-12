@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.blocks.redstone;
 import de.dafuqs.spectrum.blocks.RedstonePoweredBlock;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.StemBlock;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -35,7 +36,6 @@ public class RedstoneTimerBlockEntity extends BlockEntity implements RedstonePow
         }
     }
 
-    private long startTick;
     private TimingStep activeTiming; // redstone output on
     private TimingStep inactiveTiming; // redstone output off
 
@@ -47,11 +47,15 @@ public class RedstoneTimerBlockEntity extends BlockEntity implements RedstonePow
 
     public NbtCompound writeNbt(NbtCompound tag) {
         super.writeNbt(tag);
+        tag.putInt("active_timing", this.activeTiming.ordinal());
+        tag.putInt("inactive_timing", this.inactiveTiming.ordinal());
         return tag;
     }
 
     public void readNbt(NbtCompound tag) {
         super.readNbt(tag);
+        this.activeTiming = TimingStep.values()[tag.getInt("active_timing")];
+        this.inactiveTiming = TimingStep.values()[tag.getInt("inactive_timing")];
     }
 
     public void stepTiming(ServerPlayerEntity serverPlayerEntity) {
@@ -61,18 +65,19 @@ public class RedstoneTimerBlockEntity extends BlockEntity implements RedstonePow
                 TimingStep newStep = inactiveTiming.next();
                 serverPlayerEntity.sendMessage(new TranslatableText("block.spectrum.redstone_timer.setting.inactive").append(new TranslatableText(newStep.localizationString)), false);
                 float pitch = 0.5F + newStep.ordinal() * 0.05F;
-                world.playSound(serverPlayerEntity, pos, SoundEvents.BLOCK_COMPARATOR_CLICK, SoundCategory.BLOCKS, 0.3F, pitch);
+                world.playSound(null, pos, SoundEvents.BLOCK_COMPARATOR_CLICK, SoundCategory.BLOCKS, 0.3F, pitch);
                 inactiveTiming = newStep;
             } else {
                 // toggle active time
                 TimingStep newStep = activeTiming.next();
                 serverPlayerEntity.sendMessage(new TranslatableText("block.spectrum.redstone_timer.setting.active").append(new TranslatableText(newStep.localizationString)), false);
                 float pitch = 0.5F + newStep.ordinal() * 0.05F;
-                world.playSound(serverPlayerEntity, pos, SoundEvents.BLOCK_COMPARATOR_CLICK, SoundCategory.BLOCKS, 0.3F, pitch);
+                world.playSound(null, pos, SoundEvents.BLOCK_COMPARATOR_CLICK, SoundCategory.BLOCKS, 0.3F, pitch);
                 activeTiming = newStep;
             }
 
-            startTick = this.world.getTime();
+            BlockState state = world.getBlockState(pos);
+            ((RedstoneTimerBlock) state.getBlock()).updatePowered(world, pos, state);
         }
     }
 

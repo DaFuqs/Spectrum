@@ -34,12 +34,6 @@ import java.util.Random;
 
 public class RedstoneCalculatorBlock extends AbstractRedstoneGateBlock implements BlockEntityProvider {
 
-    @Nullable
-    @Override
-    public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
-        return new RedstoneCalculatorBlockEntity(pos, state);
-    }
-
     public enum CalculationMode implements StringIdentifiable {
         ADDITION("addition", "block.spectrum.redstone_calculator.mode.addition"),
         SUBTRACTION("subtraction", "block.spectrum.redstone_calculator.mode.subtraction"),
@@ -69,6 +63,12 @@ public class RedstoneCalculatorBlock extends AbstractRedstoneGateBlock implement
     public RedstoneCalculatorBlock(Settings settings) {
         super(settings);
         this.setDefaultState(this.stateManager.getDefaultState().with(FACING, Direction.NORTH).with(POWERED, false).with(CALCULATION_MODE, CalculationMode.ADDITION));
+    }
+
+    @Nullable
+    @Override
+    public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+        return new RedstoneCalculatorBlockEntity(pos, state);
     }
 
     @Override
@@ -190,12 +190,9 @@ public class RedstoneCalculatorBlock extends AbstractRedstoneGateBlock implement
     @Override
     public void onPlaced(World world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack itemStack) {
         super.onPlaced(world, pos, state, placer, itemStack);
-    }
-
-    @Override
-    public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
-        super.onBlockAdded(state, world, pos, oldState, notify);
-        updatePowered(world, pos, state);
+        if(!world.isClient) {
+            updatePowered(world, pos, state);
+        }
     }
 
 }

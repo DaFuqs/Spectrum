@@ -1,9 +1,6 @@
 package de.dafuqs.spectrum.blocks.redstone;
 
-import net.minecraft.block.AbstractRedstoneGateBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.BlockWithEntity;
+import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.state.StateManager;
@@ -21,7 +18,7 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class RedstoneWirelessBlock extends AbstractRedstoneGateBlock {
+public class RedstoneWirelessBlock extends AbstractRedstoneGateBlock implements BlockEntityProvider {
 
     // true = receive false = send
     public static final BooleanProperty TRANSMISSION_RECEIVER = BooleanProperty.of("transmission_receiver");
@@ -29,6 +26,12 @@ public class RedstoneWirelessBlock extends AbstractRedstoneGateBlock {
     public RedstoneWirelessBlock(Settings settings) {
         super(settings);
         this.setDefaultState(this.stateManager.getDefaultState().with(FACING, Direction.NORTH).with(TRANSMISSION_RECEIVER, false));
+    }
+
+    @Nullable
+    @Override
+    public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+        return new RedstoneWirelessBlockEntity(pos, state);
     }
 
     @Override

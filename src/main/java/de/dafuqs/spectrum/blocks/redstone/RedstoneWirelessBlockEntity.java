@@ -13,9 +13,6 @@ import java.util.UUID;
 
 public class RedstoneWirelessBlockEntity extends BlockEntity implements RedstonePoweredBlock {
 
-    private UUID ownerUUID;
-    private String ownerName;
-
     public RedstoneWirelessBlockEntity(BlockPos blockPos, BlockState blockState) {
         super(SpectrumBlockEntityRegistry.REDSTONE_WIRELESS, blockPos, blockState);
     }

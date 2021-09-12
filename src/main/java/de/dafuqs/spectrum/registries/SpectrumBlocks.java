@@ -559,6 +559,7 @@ public class SpectrumBlocks {
     public static final Block REDSTONE_CALCULATOR = new RedstoneCalculatorBlock(FabricBlockSettings.copyOf(Blocks.REPEATER));
     public static final Block REDSTONE_TIMER = new RedstoneTimerBlock(FabricBlockSettings.copyOf(Blocks.REPEATER));
     public static final Block REDSTONE_WIRELESS = new RedstoneWirelessBlock(FabricBlockSettings.copyOf(Blocks.REPEATER));
+    public static final Block BLOCK_PLACER = new BlockPlacerBlock(FabricBlockSettings.copyOf(Blocks.DISPENSER));
 
     public static final Block ENDER_DROPPER = new EnderDropperBlock(FabricBlockSettings.copyOf(Blocks.DROPPER).requiresTool().strength(15F, 60.0F));
     public static final Block ENDER_HOPPER = new EnderHopperBlock(FabricBlockSettings.copyOf(Blocks.HOPPER).requiresTool().strength(15F, 60.0F));
@@ -695,6 +696,7 @@ public class SpectrumBlocks {
         registerBlockWithItem("redstone_timer", REDSTONE_TIMER, fabricItemSettings);
         registerBlockWithItem("redstone_calculator", REDSTONE_CALCULATOR, fabricItemSettings);
         registerBlockWithItem("redstone_wireless", REDSTONE_WIRELESS, fabricItemSettings);
+        registerBlockWithItem("block_placer", BLOCK_PLACER, fabricItemSettings);
 
         registerBlockWithItem("redstone_sand", REDSTONE_SAND, fabricItemSettings);
         registerBlockWithItem("ender_glass", ENDER_GLASS, fabricItemSettings);

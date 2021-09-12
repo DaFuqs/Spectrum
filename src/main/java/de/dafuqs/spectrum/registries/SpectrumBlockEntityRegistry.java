@@ -14,10 +14,7 @@ import de.dafuqs.spectrum.blocks.particle_spawner.ParticleSpawnerBlockEntity;
 import de.dafuqs.spectrum.blocks.pedestal.PedestalBlockEntity;
 import de.dafuqs.spectrum.blocks.pedestal.PedestalUpgradeBlockBlockEntityRenderer;
 import de.dafuqs.spectrum.blocks.pedestal.PedestalUpgradeBlockEntity;
-import de.dafuqs.spectrum.blocks.redstone.PlayerDetectorBlockEntity;
-import de.dafuqs.spectrum.blocks.redstone.RedstoneCalculatorBlockEntity;
-import de.dafuqs.spectrum.blocks.redstone.RedstoneTimerBlockEntity;
-import de.dafuqs.spectrum.blocks.redstone.RedstoneWirelessBlockEntity;
+import de.dafuqs.spectrum.blocks.redstone.*;
 import de.dafuqs.spectrum.blocks.spirit_tree.OminousSaplingBlockEntity;
 import net.fabricmc.fabric.api.client.rendereregistry.v1.BlockEntityRendererRegistry;
 import net.fabricmc.fabric.api.event.client.ClientSpriteRegistryCallback;
@@ -51,9 +48,10 @@ public class SpectrumBlockEntityRegistry<T extends BlockEntity> {
     public static BlockEntityType<SuckingChestBlockEntity> SUCKING_CHEST;
 
     public static BlockEntityType<PlayerDetectorBlockEntity> PLAYER_DETECTOR;
-    public static BlockEntityType<?> REDSTONE_CALCULATOR;
-    public static BlockEntityType<?> REDSTONE_TIMER;
-    public static BlockEntityType<?> REDSTONE_WIRELESS;
+    public static BlockEntityType<RedstoneCalculatorBlockEntity> REDSTONE_CALCULATOR;
+    public static BlockEntityType<RedstoneTimerBlockEntity> REDSTONE_TIMER;
+    public static BlockEntityType<RedstoneWirelessBlockEntity> REDSTONE_WIRELESS;
+    public static BlockEntityType<BlockPlacerBlockEntity> BLOCK_PLACER;
 
     public static void register() {
         OMINOUS_SAPLING =   Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "ominous_sapling_block_entity"), FabricBlockEntityTypeBuilder.create(OminousSaplingBlockEntity::new, SpectrumBlocks.OMINOUS_SAPLING).build());
@@ -73,6 +71,7 @@ public class SpectrumBlockEntityRegistry<T extends BlockEntity> {
         REDSTONE_CALCULATOR = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "redstone_calculator"), FabricBlockEntityTypeBuilder.create(RedstoneCalculatorBlockEntity::new, SpectrumBlocks.REDSTONE_CALCULATOR).build());
         REDSTONE_TIMER = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "redstone_timer"), FabricBlockEntityTypeBuilder.create(RedstoneTimerBlockEntity::new, SpectrumBlocks.REDSTONE_TIMER).build());
         REDSTONE_WIRELESS = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "redstone_wireless"), FabricBlockEntityTypeBuilder.create(RedstoneWirelessBlockEntity::new, SpectrumBlocks.REDSTONE_WIRELESS).build());
+        BLOCK_PLACER = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "block_placer"), FabricBlockEntityTypeBuilder.create(BlockPlacerBlockEntity::new, SpectrumBlocks.BLOCK_PLACER).build());
 
         // All the skulls
         List<Block> skullBlocks = new ArrayList<>();

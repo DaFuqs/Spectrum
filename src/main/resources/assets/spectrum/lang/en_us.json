@@ -726,6 +726,7 @@
   "block.spectrum.weather_detector": "Weather Detector",
   "block.spectrum.light_level_detector": "Block Light Detector",
   "block.spectrum.entity_detector": "Creature Detector",
+  "block.spectrum.block_placer": "Block Placer",
 
   "block.spectrum.redstone_calculator": "Redstone Calculator",
   "block.spectrum.redstone_calculator.mode_set": "Set to mode: ",

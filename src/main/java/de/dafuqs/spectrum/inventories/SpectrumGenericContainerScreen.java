@@ -9,8 +9,10 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 
-public class GenericSpectrumContainerScreen extends HandledScreen<GenericSpectrumContainerScreenHandler> {
+public class SpectrumGenericContainerScreen extends HandledScreen<GenericSpectrumContainerScreenHandler> {
 
     private static final Identifier TIER_1_TEXTURE_6x9 = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/container/generic_54_tier_1.png");
     private static final Identifier TIER_2_TEXTURE_6x9 = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/container/generic_54_tier_2.png");
@@ -18,11 +20,13 @@ public class GenericSpectrumContainerScreen extends HandledScreen<GenericSpectru
 
     private final int rows;
     private final SpectrumTier tier;
+    private final Identifier backgroundTexture;
 
-    public GenericSpectrumContainerScreen(GenericSpectrumContainerScreenHandler handler, PlayerInventory inventory, Text title) {
+    public SpectrumGenericContainerScreen(GenericSpectrumContainerScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);
         this.rows = handler.getRows();
         this.tier = handler.getTier();
+        this.backgroundTexture = getBackground(rows, tier);
 
         this.backgroundHeight = 114 + this.rows * 18;
         this.playerInventoryTitleY = this.backgroundHeight - 94;
@@ -50,14 +54,15 @@ public class GenericSpectrumContainerScreen extends HandledScreen<GenericSpectru
     protected void drawBackground(MatrixStack matrices, float delta, int mouseX, int mouseY) {
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-        RenderSystem.setShaderTexture(0, getBackground(rows, tier));
+        RenderSystem.setShaderTexture(0, backgroundTexture);
         int i = (this.width - this.backgroundWidth) / 2;
         int j = (this.height - this.backgroundHeight) / 2;
         this.drawTexture(matrices, i, j, 0, 0, this.backgroundWidth, this.rows * 18 + 17);
         this.drawTexture(matrices, i, j + this.rows * 18 + 17, 0, 126, this.backgroundWidth, 96);
     }
 
-    private Identifier getBackground(int rows, SpectrumTier tier) {
+    @Contract(pure = true)
+    private Identifier getBackground(int rows, @NotNull SpectrumTier tier) {
         switch (tier) {
             case TIER1 -> {
                 return TIER_1_TEXTURE_6x9;

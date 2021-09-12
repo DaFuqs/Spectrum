@@ -1,16 +1,16 @@
 package de.dafuqs.spectrum.blocks.redstone;
 
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
-import net.minecraft.block.*;
+import net.minecraft.block.AbstractRedstoneGateBlock;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockEntityProvider;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.ComparatorBlockEntity;
-import net.minecraft.block.enums.ComparatorMode;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
-import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -26,7 +26,6 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.TickPriority;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldView;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -39,7 +38,9 @@ public class RedstoneCalculatorBlock extends AbstractRedstoneGateBlock implement
         SUBTRACTION("subtraction", "block.spectrum.redstone_calculator.mode.subtraction"),
         MULTIPLICATION("multiplication", "block.spectrum.redstone_calculator.mode.multiplication"),
         DIVISION("division", "block.spectrum.redstone_calculator.mode.division"),
-        MODULO("modulo", "block.spectrum.redstone_calculator.mode.modulo");
+        MODULO("modulo", "block.spectrum.redstone_calculator.mode.modulo"),
+        MIN("min", "block.spectrum.redstone_calculator.mode.min"),
+        MAX("max", "block.spectrum.redstone_calculator.mode.max");
 
         private final String name;
         public final String localizationString;
@@ -110,16 +111,11 @@ public class RedstoneCalculatorBlock extends AbstractRedstoneGateBlock implement
         }
 
         if (lastSignal != newSignal) {
-            //boolean bl = this.hasPower(world, pos, state);
-            //boolean bl2 = state.get(POWERED);
-            //if (bl2 && !bl) {
             if(newSignal == 0) {
                 world.setBlockState(pos, state.with(POWERED, false), Block.NOTIFY_LISTENERS);
             } else {
-                //} else if (!bl2 && bl) {
                 world.setBlockState(pos, state.with(POWERED, true), Block.NOTIFY_LISTENERS);
             }
-            //}
 
             this.updateTarget(world, pos, state);
         }
@@ -145,6 +141,12 @@ public class RedstoneCalculatorBlock extends AbstractRedstoneGateBlock implement
                 } else {
                     return power / powerSides;
                 }
+            }
+            case MIN -> {
+                return Math.min(power, powerSides);
+            }
+            case MAX -> {
+                return Math.max(power, powerSides);
             }
             default -> {
                 if(powerSides == 0) {

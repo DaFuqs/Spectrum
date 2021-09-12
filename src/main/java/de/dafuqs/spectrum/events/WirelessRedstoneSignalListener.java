@@ -1,13 +1,9 @@
 package de.dafuqs.spectrum.events;
 
 import blue.endless.jankson.annotation.Nullable;
-import de.dafuqs.spectrum.blocks.redstone.RedstoneWirelessBlockEntity;
 import de.dafuqs.spectrum.networking.SpectrumS2CPackets;
-import de.dafuqs.spectrum.particle.effect.ItemTransfer;
 import de.dafuqs.spectrum.particle.effect.WirelessRedstoneTransmission;
-import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.ItemEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;

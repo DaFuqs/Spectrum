@@ -735,6 +735,8 @@
   "block.spectrum.redstone_calculator.mode.multiplication": "Multiplication",
   "block.spectrum.redstone_calculator.mode.division": "Division",
   "block.spectrum.redstone_calculator.mode.modulo": "Modulo",
+  "block.spectrum.redstone_calculator.mode.min": "Minimum",
+  "block.spectrum.redstone_calculator.mode.max": "Maximum",
 
   "block.spectrum.redstone_wireless": "Wireless Redstone",
 

@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.particle.client;
 
-import de.dafuqs.spectrum.particle.effect.ItemTransfer;
+import de.dafuqs.spectrum.particle.effect.WirelessRedstoneTransmission;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.particle.ParticleTextureSheet;
@@ -14,16 +14,16 @@ import java.util.Optional;
 import java.util.function.Consumer;
 
 @Environment(EnvType.CLIENT)
-public class ItemTransferParticle extends SpriteBillboardParticle {
+public class WirelessRedstoneTransmissionParticle extends SpriteBillboardParticle {
 
-	private final ItemTransfer itemTransfer;
+	private final WirelessRedstoneTransmission wirelessRedstoneTransmission;
 	private float field_28250;
 	private float field_28248;
 
-	public ItemTransferParticle(ClientWorld clientWorld, ItemTransfer itemTransfer, int i) {
-		super(clientWorld, ((float)itemTransfer.getOrigin().getX() + 0.5F), ((float)itemTransfer.getOrigin().getY() + 0.5F), ((float)itemTransfer.getOrigin().getZ() + 0.5F), 0.0D, 0.0D, 0.0D);
+	public WirelessRedstoneTransmissionParticle(ClientWorld clientWorld, WirelessRedstoneTransmission wirelessRedstoneTransmission, int i) {
+		super(clientWorld, ((float)wirelessRedstoneTransmission.getOrigin().getX() + 0.5F), ((float)wirelessRedstoneTransmission.getOrigin().getY() + 0.5F), ((float)wirelessRedstoneTransmission.getOrigin().getZ() + 0.5F), 0.0D, 0.0D, 0.0D);
 		this.scale = 0.3F;
-		this.itemTransfer = itemTransfer;
+		this.wirelessRedstoneTransmission = wirelessRedstoneTransmission;
 		this.maxAge = i;
 	}
 
@@ -85,12 +85,12 @@ public class ItemTransferParticle extends SpriteBillboardParticle {
 
 	public void tick() {
 		super.tick();
-		Optional<BlockPos> optional = this.itemTransfer.getDestination().getPos(this.world);
+		Optional<BlockPos> optional = this.wirelessRedstoneTransmission.getDestination().getPos(this.world);
 		if (!optional.isPresent()) {
 			this.markDead();
 		} else {
 			double d = (double)this.age / (double)this.maxAge;
-			BlockPos blockPos = this.itemTransfer.getOrigin();
+			BlockPos blockPos = this.wirelessRedstoneTransmission.getOrigin();
 			BlockPos blockPos2 = optional.get();
 			this.x = MathHelper.lerp(d, (double)blockPos.getX() + 0.5D, (double)blockPos2.getX() + 0.5D);
 			this.y = MathHelper.lerp(d, (double)blockPos.getY() + 0.5D, (double)blockPos2.getY() + 0.5D);

@@ -120,11 +120,11 @@ public abstract class ItemEntityMixin {
 
 
     @Inject(method= "tick()V", at=@At("TAIL"))
-    public void tick(CallbackInfo ci) {
+    public void doGravityEffects(CallbackInfo ci) {
         ItemEntity itemEntity = ((ItemEntity)(Object) this);
         Item item = itemEntity.getStack().getItem();
         if(item instanceof GravitableItem) {
-            // if the stack if floating really high => delete it
+            // if the stack is floating really high => delete it
             if(itemEntity.getPos().getY() > itemEntity.getEntityWorld().getTopY() + 200) {
                 itemEntity.discard();
             } else {

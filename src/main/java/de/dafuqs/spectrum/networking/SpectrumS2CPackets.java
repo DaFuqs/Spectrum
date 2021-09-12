@@ -6,6 +6,8 @@ import de.dafuqs.spectrum.blocks.particle_spawner.ParticleSpawnerBlockEntity;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.particle.effect.ItemTransfer;
 import de.dafuqs.spectrum.particle.effect.ItemTransferParticleEffect;
+import de.dafuqs.spectrum.particle.effect.WirelessRedstoneTransmission;
+import de.dafuqs.spectrum.particle.effect.WirelessRedstoneTransmissionParticleEffect;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
@@ -25,12 +27,13 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
 
 public class SpectrumS2CPackets {
 
-	public enum BlockEntityUpdatePacketID {
+    public enum BlockEntityUpdatePacketID {
 		FUSION_SHRINE,
 		PARTICLE_SPAWNER
 	}
@@ -39,6 +42,7 @@ public class SpectrumS2CPackets {
 	public static final Identifier PLAY_ANVIL_CRAFTING_PARTICLE_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "play_anvil_crafting_finished_particle");
 	public static final Identifier CHANGE_PARTICLE_SPAWNER_SETTINGS_CLIENT_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "change_particle_spawner_settings_client");
 	public static final Identifier INITIATE_ITEM_TRANSFER = new Identifier(SpectrumCommon.MOD_ID, "initiate_item_transfer");
+	public static final Identifier INITIATE_WIRELESS_REDSTONE_TRANSMISSION = new Identifier(SpectrumCommon.MOD_ID, "initiate_wireless_redstone_transmission");
 	public static final Identifier PLAY_ITEM_ENTITY_ABSORBED_PARTICLE_EFFECT_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "item_entity_absorbed");
 	public static final Identifier BLOCK_ENTITY_UPDATE_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "block_entity_update");
 
@@ -78,6 +82,17 @@ public class SpectrumS2CPackets {
 				// Everything in this lambda is running on the render thread
 				for(int i = 0; i < 10; i++) {
 					MinecraftClient.getInstance().player.getEntityWorld().addImportantParticle(new ItemTransferParticleEffect(itemTransfer), true, (double)blockPos.getX() + 0.5D, (double)blockPos.getY() + 0.5D, (double)blockPos.getZ() + 0.5D, 0.0D, 0.0D, 0.0D);
+				}
+			});
+		});
+
+		ClientPlayNetworking.registerGlobalReceiver(INITIATE_WIRELESS_REDSTONE_TRANSMISSION, (client, handler, buf, responseSender) -> {
+			WirelessRedstoneTransmission wirelessRedstoneTransmission = WirelessRedstoneTransmission.readFromBuf(buf);
+			BlockPos blockPos = wirelessRedstoneTransmission.getOrigin();
+			client.execute(() -> {
+				// Everything in this lambda is running on the render thread
+				for(int i = 0; i < 10; i++) {
+					MinecraftClient.getInstance().player.getEntityWorld().addImportantParticle(new WirelessRedstoneTransmissionParticleEffect(wirelessRedstoneTransmission), true, (double)blockPos.getX() + 0.5D, (double)blockPos.getY() + 0.5D, (double)blockPos.getZ() + 0.5D, 0.0D, 0.0D, 0.0D);
 				}
 			});
 		});
@@ -128,7 +143,7 @@ public class SpectrumS2CPackets {
 		}
 	}
 
-	public static void sendItemTransferPacket(ServerWorld world, ItemTransfer itemTransfer) {
+	public static void sendItemTransferPacket(ServerWorld world, @NotNull ItemTransfer itemTransfer) {
 		BlockPos blockPos = itemTransfer.getOrigin();
 
 		PacketByteBuf buf = PacketByteBufs.create();
@@ -139,7 +154,18 @@ public class SpectrumS2CPackets {
 		}
 	}
 
-	public static void sendPlayItemEntityAbsorbedParticle(World world, ItemEntity itemEntity) {
+	public static void sendWirelessRedstonePacket(ServerWorld world, WirelessRedstoneTransmission wirelessRedstoneTransmission) {
+		BlockPos blockPos = wirelessRedstoneTransmission.getOrigin();
+
+		PacketByteBuf buf = PacketByteBufs.create();
+		WirelessRedstoneTransmission.writeToBuf(buf, wirelessRedstoneTransmission);
+
+		for (ServerPlayerEntity player : PlayerLookup.tracking(world, blockPos)) {
+			ServerPlayNetworking.send(player, SpectrumS2CPackets.INITIATE_WIRELESS_REDSTONE_TRANSMISSION, buf);
+		}
+	}
+
+	public static void sendPlayItemEntityAbsorbedParticle(World world, @NotNull ItemEntity itemEntity) {
 		PacketByteBuf buf = PacketByteBufs.create();
 		buf.writeDouble(itemEntity.getPos().x);
 		buf.writeDouble(itemEntity.getPos().y);
@@ -151,7 +177,7 @@ public class SpectrumS2CPackets {
 		}
 	}
 
-	public static void sendBlockEntityUpdate(BlockEntity blockEntity, BlockEntityUpdatePacketID blockEntityUpdatePacketID) {
+	public static void sendBlockEntityUpdate(@NotNull BlockEntity blockEntity, @NotNull BlockEntityUpdatePacketID blockEntityUpdatePacketID) {
 		PacketByteBuf buf = PacketByteBufs.create();
 		buf.writeBlockPos(blockEntity.getPos());
 		buf.writeString(blockEntityUpdatePacketID.toString());

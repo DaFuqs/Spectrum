@@ -112,5 +112,5 @@ public class LoreHelper {
         }
         return false;
     }
-    
+
 }

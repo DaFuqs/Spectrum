@@ -4,6 +4,8 @@ import com.mojang.serialization.Codec;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.particle.effect.ItemTransferParticleEffect;
 import de.dafuqs.spectrum.particle.effect.ParticleSpawnerParticleEffect;
+import de.dafuqs.spectrum.particle.effect.WirelessRedstoneTransmission;
+import de.dafuqs.spectrum.particle.effect.WirelessRedstoneTransmissionParticleEffect;
 import net.fabricmc.fabric.api.particle.v1.FabricParticleTypes;
 import net.minecraft.particle.DefaultParticleType;
 import net.minecraft.particle.ParticleEffect;
@@ -17,6 +19,7 @@ public class SpectrumParticleTypes {
 
     public static ParticleType<ParticleSpawnerParticleEffect> PARTICLE_SPAWNER;
     public static ParticleType<ItemTransferParticleEffect> ITEM_TRANSFER;
+    public static ParticleType<WirelessRedstoneTransmissionParticleEffect> WIRELESS_REDSTONE_TRANSMISSION;
 
     public static DefaultParticleType SHOOTING_STAR;
     public static DefaultParticleType SPARKLESTONE_SPARKLE;
@@ -82,6 +85,9 @@ public class SpectrumParticleTypes {
         });
         ITEM_TRANSFER = register("item_transfer", ItemTransferParticleEffect.FACTORY, (particleType) -> {
             return ItemTransferParticleEffect.CODEC;
+        });
+        WIRELESS_REDSTONE_TRANSMISSION = register("wireless_redstone_transmission", WirelessRedstoneTransmissionParticleEffect.FACTORY, (particleType) -> {
+            return WirelessRedstoneTransmissionParticleEffect.CODEC;
         });
 
         SHOOTING_STAR = register("shooting_star", true);

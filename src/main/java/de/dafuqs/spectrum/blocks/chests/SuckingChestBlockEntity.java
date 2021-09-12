@@ -85,9 +85,8 @@ public class SuckingChestBlockEntity extends SpectrumChestBlockEntity implements
 
     @Override
     public boolean accepts(World world, GameEventListener listener, BlockPos pos, GameEvent event, Entity entity) {
-        boolean bl = event == GameEvent.BLOCK_DESTROY && pos.equals(this.getPos());
-        boolean bl2 = event == GameEvent.BLOCK_PLACE && pos.equals(this.getPos());
-        return !bl && !bl2 && !SpectrumChestBlock.isChestBlocked(this.world, this.pos);
+        boolean isItemEvent = event == SpectrumGameEvents.ITEM_TRANSFER;
+        return isItemEvent && !SpectrumChestBlock.isChestBlocked(this.world, this.pos);
     }
 
     @Override

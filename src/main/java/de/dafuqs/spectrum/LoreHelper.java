@@ -7,6 +7,7 @@ import net.minecraft.nbt.NbtList;
 import net.minecraft.nbt.NbtString;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -14,7 +15,7 @@ import java.util.List;
 
 public class LoreHelper {
 
-    public static List<LiteralText> getLoreTextArrayFromString(String string) {
+    public static @NotNull List<LiteralText> getLoreTextArrayFromString(@NotNull String string) {
         List<LiteralText> loreText = new ArrayList<>();
 
         for(String split : string.split("\\\\n")) {
@@ -24,7 +25,7 @@ public class LoreHelper {
         return loreText;
     }
 
-    public static String getStringFromLoreTextArray(List<Text> lore) {
+    public static @NotNull String getStringFromLoreTextArray(@NotNull List<Text> lore) {
         if(lore.size() == 0) {
             return "";
         } else {
@@ -39,7 +40,7 @@ public class LoreHelper {
         }
     }
 
-    public static ItemStack setLore(ItemStack itemStack, @Nullable List<LiteralText> lore) {
+    public static void setLore(@NotNull ItemStack itemStack, @Nullable List<LiteralText> lore) {
         NbtCompound nbtCompound = itemStack.getOrCreateSubTag("display");
         if (lore != null) {
             NbtList nbtList = new NbtList();
@@ -53,11 +54,9 @@ public class LoreHelper {
         } else {
             nbtCompound.remove("Lore");
         }
-
-        return itemStack;
     }
 
-    public static void removeLore(ItemStack itemStack) {
+    public static void removeLore(@NotNull ItemStack itemStack) {
         NbtCompound nbtCompound = itemStack.getSubTag("display");
         if (nbtCompound != null) {
             nbtCompound.remove("Lore");
@@ -71,12 +70,12 @@ public class LoreHelper {
         }
     }
 
-    public static boolean hasLore(ItemStack itemStack) {
+    public static boolean hasLore(@NotNull ItemStack itemStack) {
         NbtCompound nbtCompound = itemStack.getSubTag("display");
         return nbtCompound != null && nbtCompound.contains("Lore", 8);
     }
 
-    public static List<Text> getLoreList(ItemStack itemStack) {
+    public static @NotNull List<Text> getLoreList(@NotNull ItemStack itemStack) {
         List<Text> lore = new ArrayList<>();
 
         NbtCompound nbtCompound = itemStack.getSubTag("display");
@@ -113,4 +112,5 @@ public class LoreHelper {
         }
         return false;
     }
+    
 }

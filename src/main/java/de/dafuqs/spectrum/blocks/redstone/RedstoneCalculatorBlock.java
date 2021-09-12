@@ -5,15 +5,18 @@ import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.ComparatorBlockEntity;
 import net.minecraft.block.enums.ComparatorMode;
+import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.EnumProperty;
+import net.minecraft.text.TranslatableText;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.StringIdentifiable;
@@ -38,16 +41,18 @@ public class RedstoneCalculatorBlock extends AbstractRedstoneGateBlock implement
     }
 
     public enum CalculationMode implements StringIdentifiable {
-        ADDITION("addition"),
-        SUBTRACTION("subtraction"),
-        MULTIPLICATION("multiplication"),
-        DIVISION("division"),
-        MODULO("modulo");
+        ADDITION("addition", "block.spectrum.redstone_calculator.mode.addition"),
+        SUBTRACTION("subtraction", "block.spectrum.redstone_calculator.mode.subtraction"),
+        MULTIPLICATION("multiplication", "block.spectrum.redstone_calculator.mode.multiplication"),
+        DIVISION("division", "block.spectrum.redstone_calculator.mode.division"),
+        MODULO("modulo", "block.spectrum.redstone_calculator.mode.modulo");
 
         private final String name;
+        public final String localizationString;
 
-        CalculationMode(String name) {
+        CalculationMode(String name, String localizationString) {
             this.name = name;
+            this.localizationString = localizationString;
         }
 
         public String toString() {
@@ -58,6 +63,7 @@ public class RedstoneCalculatorBlock extends AbstractRedstoneGateBlock implement
             return this.name;
         }
     }
+
     public static EnumProperty<CalculationMode> CALCULATION_MODE = EnumProperty.of("calculation_mode", CalculationMode.class);
 
     public RedstoneCalculatorBlock(Settings settings) {
@@ -82,6 +88,11 @@ public class RedstoneCalculatorBlock extends AbstractRedstoneGateBlock implement
             world.setBlockState(pos, newModeState, Block.NOTIFY_ALL);
             float pitch = 0.5F + state.get(CALCULATION_MODE).ordinal() * 0.05F;
             world.playSound(player, pos, SoundEvents.BLOCK_COMPARATOR_CLICK, SoundCategory.BLOCKS, 0.3F, pitch);
+            if(player instanceof ClientPlayerEntity) {
+                // since this triggers both on server and client side: just send the
+                // message once, client side is enough, since it's pretty irrelevant on the server
+                player.sendMessage(new TranslatableText("block.spectrum.redstone_calculator.mode_set").append(new TranslatableText(newModeState.get(CALCULATION_MODE).localizationString)), false);
+            }
             this.updatePowered(world, pos, newModeState);
             return ActionResult.success(world.isClient);
         }
@@ -99,13 +110,16 @@ public class RedstoneCalculatorBlock extends AbstractRedstoneGateBlock implement
         }
 
         if (lastSignal != newSignal) {
-            boolean bl = this.hasPower(world, pos, state);
-            boolean bl2 = state.get(POWERED);
-            if (bl2 && !bl) {
+            //boolean bl = this.hasPower(world, pos, state);
+            //boolean bl2 = state.get(POWERED);
+            //if (bl2 && !bl) {
+            if(newSignal == 0) {
                 world.setBlockState(pos, state.with(POWERED, false), Block.NOTIFY_LISTENERS);
-            } else if (!bl2 && bl) {
+            } else {
+                //} else if (!bl2 && bl) {
                 world.setBlockState(pos, state.with(POWERED, true), Block.NOTIFY_LISTENERS);
             }
+            //}
 
             this.updateTarget(world, pos, state);
         }

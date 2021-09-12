@@ -726,9 +726,25 @@
   "block.spectrum.weather_detector": "Weather Detector",
   "block.spectrum.light_level_detector": "Block Light Detector",
   "block.spectrum.entity_detector": "Creature Detector",
-  "block.spectrum.redstone_timer": "Redstone Timer",
+
   "block.spectrum.redstone_calculator": "Redstone Calculator",
+  "block.spectrum.redstone_calculator.mode_set": "Set to mode: ",
+  "block.spectrum.redstone_calculator.mode.addition": "Addition",
+  "block.spectrum.redstone_calculator.mode.subtraction": "Subtraction",
+  "block.spectrum.redstone_calculator.mode.multiplication": "Multiplication",
+  "block.spectrum.redstone_calculator.mode.division": "Division",
+  "block.spectrum.redstone_calculator.mode.modulo": "Modulo",
+
   "block.spectrum.redstone_wireless": "Wireless Redstone",
+
+  "block.spectrum.redstone_timer": "Redstone Timer",
+  "block.spectrum.redstone_timer.setting.active": "Active time set to: ",
+  "block.spectrum.redstone_timer.setting.inactive": "Inactive time set to: ",
+  "block.spectrum.redstone_timer.setting.one_second": "1 second",
+  "block.spectrum.redstone_timer.setting.ten_seconds": "10 seconds",
+  "block.spectrum.redstone_timer.setting.one_minute": "1 minute",
+  "block.spectrum.redstone_timer.setting.ten_minutes": "10 minutes",
+  "block.spectrum.redstone_timer.setting.one_hour": "1 hour",
 
   "item.spectrum.mob_head.tooltip.designer": "§7Head design by %s",
   "block.spectrum.goat_head": "Goat Head",

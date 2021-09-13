@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.blocks.redstone;
 
+import de.dafuqs.spectrum.Support;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
 import net.minecraft.block.AbstractRedstoneGateBlock;
 import net.minecraft.block.Block;
@@ -13,6 +14,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.StateManager;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.DyeColor;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
@@ -22,6 +24,8 @@ import net.minecraft.world.World;
 import net.minecraft.world.event.listener.GameEventListener;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.Optional;
 
 public class RedstoneWirelessBlock extends AbstractRedstoneGateBlock implements BlockEntityProvider {
 
@@ -48,8 +52,21 @@ public class RedstoneWirelessBlock extends AbstractRedstoneGateBlock implements 
         } else {
             BlockEntity blockEntity = world.getBlockEntity(pos);
             if (blockEntity instanceof RedstoneWirelessBlockEntity redstoneWirelessBlockEntity) {
-                redstoneWirelessBlockEntity.toggleSendingMode();
-                updatePowered(world, pos, state);
+
+                ItemStack handStack = player.getStackInHand(hand);
+                Optional<DyeColor> itemInHandColor = Support.getDyeColorOfItemStack(handStack);
+                if(itemInHandColor.isPresent()) {
+                    DyeColor currentChannel = redstoneWirelessBlockEntity.getChannel();
+                    if(itemInHandColor.get() != currentChannel) {
+                        redstoneWirelessBlockEntity.setChannel(itemInHandColor.get());
+                        if (!player.isCreative()) {
+                            handStack.decrement(1);
+                        }
+                    }
+                } else {
+                    redstoneWirelessBlockEntity.toggleSendingMode();
+                    updatePowered(world, pos, state);
+                }
                 return ActionResult.CONSUME;
             } else {
                 return super.onUse(state, world, pos, player, hand, hit);

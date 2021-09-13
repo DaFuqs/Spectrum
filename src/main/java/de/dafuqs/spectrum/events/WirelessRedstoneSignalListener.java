@@ -69,7 +69,7 @@ public class WirelessRedstoneSignalListener implements GameEventListener {
 	}
 
 	private boolean shouldActivate(GameEvent event, @Nullable Entity entity) {
-		return(this.event.isEmpty() && SpectrumGameEvents.WIRELESS_REDSTONE_SIGNALS.contains(event));
+		return(this.event.isEmpty() && event instanceof RedstoneTransferGameEvent);
 	}
 
 	private void listen(World world, GameEvent event, BlockPos pos, BlockPos sourcePos) {

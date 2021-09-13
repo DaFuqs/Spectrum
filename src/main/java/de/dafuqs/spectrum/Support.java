@@ -1,17 +1,24 @@
 package de.dafuqs.spectrum;
 
+import de.dafuqs.spectrum.items.PigmentItem;
 import de.dafuqs.spectrum.progression.ClientAdvancements;
 import net.minecraft.advancement.Advancement;
 import net.minecraft.advancement.PlayerAdvancementTracker;
 import net.minecraft.block.BlockState;
+import net.minecraft.entity.passive.SheepEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.DyeItem;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.server.ServerAdvancementLoader;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.tag.Tag;
+import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
 import org.apache.logging.log4j.Level;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Optional;
 import java.util.Random;
 
 public class Support {
@@ -73,4 +80,17 @@ public class Support {
                 }
         }
     }
+
+    public static Optional<DyeColor> getDyeColorOfItemStack(ItemStack itemStack) {
+        if(!itemStack.isEmpty()) {
+            Item item = itemStack.getItem();
+            if(item instanceof DyeItem dyeItem) {
+                return Optional.of(dyeItem.getColor());
+            } else if(item instanceof PigmentItem pigmentItem) {
+                return Optional.of(pigmentItem.getColor());
+            }
+        }
+        return Optional.empty();
+    }
+
 }

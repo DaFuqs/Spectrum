@@ -13,11 +13,11 @@ import java.util.Hashtable;
 
 public class PigmentItem extends Item implements Cloakable {
 
-    DyeColor dyeColor;
+    private DyeColor color;
 
-    public PigmentItem(Settings settings, DyeColor dyeColor) {
+    public PigmentItem(Settings settings, DyeColor color) {
         super(settings);
-        this.dyeColor = dyeColor;
+        this.color = color;
         registerCloak();
     }
 
@@ -33,7 +33,11 @@ public class PigmentItem extends Item implements Cloakable {
 
     @Override
     public Pair<Item, Item> getItemCloak() {
-        return new Pair<>(this, getDyeItemForDyeColor(this.dyeColor));
+        return new Pair<>(this, getDyeItemForDyeColor(this.color));
+    }
+
+    public DyeColor getColor() {
+        return this.color;
     }
 
     public Item getDyeItemForDyeColor(DyeColor dyeColor) {

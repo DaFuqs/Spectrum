@@ -14,7 +14,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Depending on the strength of the applied redstone signal, this block takes on different properties.$(br)With the smallest external influence it falls back to the state of lowest energy.$(br2)Without redstone, it is completely solid; when a redstone signal reaches it, it becomes transparent, almost like glass.$(br2)However, it reaches it's most curious state when a redstone signal of full strength is applied..."
+      "text": "Depending on the strength of the applied redstone signal, this block takes on different properties.$(br)With the smallest external influence it falls back to the state of lowest energy.$(br2)Without redstone, it is completely solid; when a redstone signal reaches it, it becomes transparent, almost like glass.$(br)However, it reaches it's most curious state when a redstone signal of full strength is applied..."
     },
     {
       "type": "patchouli:text",

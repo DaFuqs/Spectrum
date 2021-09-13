@@ -1,0 +1,34 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 400,
+  "tier": "simple",
+  "cyan": 0,
+  "magenta": 2,
+  "yellow": 2,
+  "white": 2,
+  "black": 0,
+  "experience": 1.0,
+  "pattern": [
+    "TOR",
+    "SSS"
+  ],
+  "key": {
+    "O": {
+      "item": "spectrum:onyx_shard"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "T": {
+      "item": "minecraft:redstone_torch"
+    },
+    "S": {
+      "item": "minecraft:stone"
+    }
+  },
+  "result" : {
+    "item": "spectrum:redstone_wireless",
+    "count": 2
+  },
+  "required_advancements": ["spectrum:create_onyx_shard"]
+}

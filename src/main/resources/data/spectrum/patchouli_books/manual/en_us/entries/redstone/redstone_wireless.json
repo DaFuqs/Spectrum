@@ -1,0 +1,21 @@
+{
+  "name": "Wireless Redstone",
+  "advancement": "spectrum:create_onyx_shard",
+  "icon": "spectrum:redstone_wireless",
+  "category": "spectrum:redstone_category",
+  "extra_recipe_mappings": {
+    "spectrum:redstone_wireless": 1
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:redstone_wireless",
+      "text": "$(italic)Gentle resonances are amplified by $(l:general/shards)Onyx$(/l) to such an extent that they can even be measured through walls, given a suitable receiver. Based on your previous experiments with gemstone shards, it was easy for you to devise such transmitter and receiver systems. These relays do not react well to fast changing currencies, though."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier2/redstone_wireless",
+      "text": "Click to toggle between sending and receiving. You can change the frequency of transmissions by using dye or pigment, so signals do not overlap. Range of 16 Blocks."
+    }
+  ]
+}

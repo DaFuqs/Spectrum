@@ -1,0 +1,32 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 200,
+  "tier": "basic",
+  "cyan": 4,
+  "magenta": 0,
+  "yellow": 0,
+  "white": 0,
+  "black": 0,
+  "experience": 1.0,
+  "pattern": [
+    "CCC",
+    "CTC",
+    "CRC"
+  ],
+  "key": {
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "T": {
+      "item": "spectrum:topaz_shard"
+    },
+    "C": {
+      "item": "minecraft:cobblestone"
+    }
+  },
+  "result" : {
+    "item": "spectrum:block_placer",
+    "count": 1
+  },
+  "required_advancements": ["spectrum:hidden/collect_shards/collect_topaz_shard"]
+}

@@ -21,6 +21,7 @@ public class SpectrumBlockTags {
     public static Tag<Block> RUIN_SAFE;
     public static Tag<Block> DECAY_BEDROCK_CONVERSIONS;
     public static Tag<Block> NATURES_STAFF_TICKABLE;
+    public static Tag<Block> NATURES_STAFF_STACKABLE;
 
 
     private static Tag<Block> getReference(String id) {
@@ -41,5 +42,6 @@ public class SpectrumBlockTags {
         RUIN_SAFE = getReference("ruin_safe");
         DECAY_BEDROCK_CONVERSIONS = getReference("decay_bedrock_conversions");
         NATURES_STAFF_TICKABLE = getReference("natures_staff_tickable");
+        NATURES_STAFF_STACKABLE = getReference("natures_staff_stackable");
     }
 }

@@ -2,6 +2,8 @@ package de.dafuqs.spectrum.commands;
 
 import com.mojang.brigadier.CommandDispatcher;
 import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.enums.GemstoneColor;
+import de.dafuqs.spectrum.enums.PedestalRecipeTier;
 import de.dafuqs.spectrum.interfaces.Cloakable;
 import de.dafuqs.spectrum.progression.BlockCloakManager;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
@@ -27,6 +29,22 @@ public class ProgressionSanityCommand {
 
     private static int execute(ServerCommandSource source) {
         SpectrumCommon.log(Level.INFO, "##### SANITY CHECK START ######");
+
+        // pedestal recipes that use gemstone powder not available at that tier yet
+        for(PedestalCraftingRecipe pedestalRecipe : SpectrumCommon.minecraftServer.getRecipeManager().listAllOfType(SpectrumRecipeTypes.PEDESTAL)) {
+            if(pedestalRecipe.getTier() == PedestalRecipeTier.BASIC || pedestalRecipe.getTier() == PedestalRecipeTier.SIMPLE) {
+                if(pedestalRecipe.getGemstoneDustInputs().get(GemstoneColor.BLACK) > 0) {
+                    SpectrumCommon.log(Level.WARN, "Pedestal recipe '" + pedestalRecipe.getId() + "' of tier '" + pedestalRecipe.getTier() +  "' is using onyx powder as input! Players will not have access to Onyx at that tier");
+                }
+                if(pedestalRecipe.getGemstoneDustInputs().get(GemstoneColor.WHITE) > 0) {
+                    SpectrumCommon.log(Level.WARN, "Pedestal recipe '" + pedestalRecipe.getId() + "' of tier '" + pedestalRecipe.getTier() +  "' is using moonstone powder as input! Players will not have access to Moonstone at that tier");
+                }
+            } else if(pedestalRecipe.getTier() == PedestalRecipeTier.ADVANCED) {
+                if(pedestalRecipe.getGemstoneDustInputs().get(GemstoneColor.WHITE) > 0) {
+                    SpectrumCommon.log(Level.WARN, "Pedestal recipe '" + pedestalRecipe.getId() + "' of tier '" + pedestalRecipe.getTier() +  "' is using moonstone powder as input! Players will not have access to Moonstone at that tier");
+                }
+            }
+        }
 
         // impossible to unlock pedestal recipes
         for(PedestalCraftingRecipe pedestalCraftingRecipe : SpectrumCommon.minecraftServer.getRecipeManager().listAllOfType(SpectrumRecipeTypes.PEDESTAL)) {

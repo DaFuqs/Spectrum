@@ -1,23 +1,26 @@
 {
   "type": "spectrum:pedestal",
-  "time": 1600,
+  "time": 3600,
   "tier": "advanced",
-  "cyan": 2,
-  "magenta": 4,
-  "yellow": 0,
-  "black": 0,
+  "cyan": 4,
+  "magenta": 8,
+  "yellow": 4,
   "white": 0,
-  "experience": 2.0,
+  "black": 0,
+  "experience": 4.0,
   "pattern": [
-    "SSS",
-    "B B",
-    "PPP"
+    "BBB",
+    "XSX",
+    "YYY"
   ],
   "key": {
     "B": {
+      "item": "spectrum:blue_pigment"
+    },
+    "Y": {
       "item": "spectrum:polished_basalt"
     },
-    "P": {
+    "X": {
       "item": "spectrum:polished_calcite"
     },
     "S": {
@@ -28,5 +31,5 @@
     "item": "spectrum:sucking_chest",
     "count": 1
   },
-  "required_advancements": [ "spectrum:progression/unlock_sucking_chest" ]
+  "required_advancements": ["spectrum:progression/unlock_sucking_chest"]
 }

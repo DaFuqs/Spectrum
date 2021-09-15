@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:midgame/collect_shooting_star",
+  "parent": "spectrum:collect_shooting_star",
   "display": {
     "icon": {
       "item": "spectrum:shooting_star"

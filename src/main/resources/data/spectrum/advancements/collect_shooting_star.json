@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:midgame/build_advanced_pedestal_structure",
+  "parent": "spectrum:collect_all_basic_pigments",
   "display": {
     "icon": {
       "item": "spectrum:shooting_star"

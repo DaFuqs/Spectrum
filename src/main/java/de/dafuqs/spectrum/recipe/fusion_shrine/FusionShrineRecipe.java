@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.recipe.fusion_shrine;
 
 import de.dafuqs.spectrum.SpectrumClient;
-import de.dafuqs.spectrum.progression.ClientPedestalRecipeToastManager;
+import de.dafuqs.spectrum.progression.ClientRecipeToastManager;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import net.fabricmc.api.EnvType;
@@ -66,7 +66,7 @@ public class FusionShrineRecipe implements Recipe<Inventory> {
 
     @Environment(EnvType.CLIENT)
     private void registerInClientToastManager() {
-        ClientPedestalRecipeToastManager.registerUnlockableFusionShrineRecipe(this);
+        ClientRecipeToastManager.registerUnlockableFusionShrineRecipe(this);
     }
 
     @Override

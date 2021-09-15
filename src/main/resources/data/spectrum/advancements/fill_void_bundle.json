@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:build_basic_pedestal_structure",
+  "parent": "spectrum:collect_quitoxic_reeds",
   "display": {
     "icon": {
         "item": "spectrum:void_bundle"

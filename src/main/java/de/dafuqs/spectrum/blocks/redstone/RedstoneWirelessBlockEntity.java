@@ -138,5 +138,5 @@ public class RedstoneWirelessBlockEntity extends BlockEntity implements Wireless
     public DyeColor getChannel() {
         return this.channel;
     }
-    
+
 }

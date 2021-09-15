@@ -44,7 +44,7 @@ public class NaturesStaffItem extends Item {
         blockConversions.put(Blocks.COARSE_DIRT, Blocks.DIRT.getDefaultState());
 
         // VEGETATION
-        blockConversions.put(Blocks.AZALEA_LEAVES, Blocks.FLOWERING_AZALEA_LEAVES.getDefaultState());
+        blockConversions.put(Blocks.AZALEA_LEAVES, Blocks.FLOWERING_AZALEA_LEAVES.getDefaultState().with(LeavesBlock.PERSISTENT, true));
         blockConversions.put(Blocks.DEAD_BUSH, Blocks.ACACIA_SAPLING.getDefaultState());
 
         // CORALS
@@ -117,7 +117,7 @@ public class NaturesStaffItem extends Item {
                 // hardcoded as convertible? => convert
                 if (blockConversions.containsKey(blockState.getBlock())) {
                     BlockState destinationState = blockConversions.get(blockState.getBlock());
-                    if (destinationState instanceof Waterloggable) {
+                    if (destinationState.getBlock() instanceof Waterloggable) {
                         if((world.getFluidState(blockPos.north()).isIn(FluidTags.WATER)
                                 || world.getFluidState(blockPos.east()).isIn(FluidTags.WATER)
                                 || world.getFluidState(blockPos.south()).isIn(FluidTags.WATER)

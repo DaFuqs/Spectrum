@@ -7,7 +7,7 @@ import de.dafuqs.spectrum.blocks.pedestal.PedestalBlockEntity;
 import de.dafuqs.spectrum.blocks.pedestal.PedestalBlockItem;
 import de.dafuqs.spectrum.enums.GemstoneColor;
 import de.dafuqs.spectrum.enums.PedestalRecipeTier;
-import de.dafuqs.spectrum.progression.ClientPedestalRecipeToastManager;
+import de.dafuqs.spectrum.progression.ClientRecipeToastManager;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import de.dafuqs.spectrum.registries.SpectrumItems;
@@ -71,7 +71,7 @@ public class PedestalCraftingRecipe implements Recipe<Inventory> {
 
     @Environment(EnvType.CLIENT)
     private void registerInClientToastManager() {
-        ClientPedestalRecipeToastManager.registerUnlockablePedestalRecipe(this);
+        ClientRecipeToastManager.registerUnlockablePedestalRecipe(this);
     }
 
     @Override

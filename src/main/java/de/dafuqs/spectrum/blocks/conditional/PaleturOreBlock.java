@@ -19,7 +19,7 @@ public class PaleturOreBlock extends CloakedOreBlock {
 
     @Override
     public Identifier getCloakAdvancementIdentifier() {
-        return new Identifier(SpectrumCommon.MOD_ID, "lategame/collect_paletur");
+        return new Identifier(SpectrumCommon.MOD_ID, "midgame/enter_dimension");
     }
 
     @Override

@@ -8,9 +8,9 @@
       "trigger":"spectrum:has_advancement",
       "conditions": { "advancement_identifier": "spectrum:collect_shooting_star" }
     },
-    "built_basic_pedestal_structure": {
+    "collected_all_basic_pigments": {
       "trigger":"spectrum:has_advancement",
-      "conditions": { "advancement_identifier": "spectrum:build_basic_pedestal_structure" }
+      "conditions": { "advancement_identifier": "spectrum:collect_all_basic_pigments" }
     }
   }
 }

@@ -72,7 +72,7 @@ public class ShootingStarEntity extends Entity {
     public static void doShootingStarSpawns(@NotNull ServerWorld serverWorld) {
         if(SpectrumCommon.CONFIG.ShootingStarWorlds.contains(serverWorld.getRegistryKey().getValue().toString())) {
             if(serverWorld.getTimeOfDay() % 100 == 0 && serverWorld.getTimeOfDay() > 13000 && serverWorld.getTimeOfDay() < 22000) {
-                Identifier advancementIdentifier = new Identifier(SpectrumCommon.MOD_ID, "midgame/build_advanced_pedestal_structure");
+                Identifier advancementIdentifier = new Identifier(SpectrumCommon.MOD_ID, "collect_all_basic_pigments");
                 for (PlayerEntity playerEntity : serverWorld.getEntitiesByType(EntityType.PLAYER, Entity::isAlive)) {
                     if (Support.hasAdvancement(playerEntity, advancementIdentifier) && serverWorld.getRandom().nextFloat() < SpectrumCommon.CONFIG.ShootingStarChance) {
                         spawnShootingStar(serverWorld, playerEntity);

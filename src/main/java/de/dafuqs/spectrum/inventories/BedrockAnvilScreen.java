@@ -76,7 +76,7 @@ public class BedrockAnvilScreen extends HandledScreen<BedrockAnvilScreenHandler>
       int i = (this.width - this.backgroundWidth) / 2;
       int j = (this.height - this.backgroundHeight) / 2;
 
-      this.nameField = new TextFieldWidget(this.textRenderer, i + 62, j + 24, 103, 12, new TranslatableText("container.spectrum.bedrock_anvil"));
+      this.nameField = new TextFieldWidget(this.textRenderer, i + 62, j + 24, 98, 12, new TranslatableText("container.spectrum.bedrock_anvil"));
       this.nameField.setFocusUnlocked(false);
       this.nameField.setEditableColor(-1);
       this.nameField.setUneditableColor(-1);
@@ -88,7 +88,7 @@ public class BedrockAnvilScreen extends HandledScreen<BedrockAnvilScreenHandler>
       this.setInitialFocus(this.nameField);
       this.nameField.setEditable(false);
 
-      this.loreField = new TextFieldWidget(this.textRenderer, i + 45, j + 76, 127, 12, new TranslatableText("container.spectrum.bedrock_anvil.lore"));
+      this.loreField = new TextFieldWidget(this.textRenderer, i + 45, j + 76, 116, 12, new TranslatableText("container.spectrum.bedrock_anvil.lore"));
       this.loreField.setFocusUnlocked(false);
       this.loreField.setEditableColor(-1);
       this.loreField.setUneditableColor(-1);

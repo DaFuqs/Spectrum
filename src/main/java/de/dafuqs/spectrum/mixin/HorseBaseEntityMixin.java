@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.mixin;
 import de.dafuqs.spectrum.Support;
 import de.dafuqs.spectrum.interfaces.GravitableItem;
 import de.dafuqs.spectrum.interfaces.PlayerOwned;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.passive.AbstractDonkeyEntity;
 import net.minecraft.entity.passive.HorseBaseEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -43,6 +44,12 @@ public class HorseBaseEntityMixin {
                     PlayerEntity ownerPlayerEntity = PlayerOwned.getPlayerEntityIfOnline(thisEntity.world, thisEntity.getOwnerUuid());
                     if(ownerPlayerEntity != null) {
                         Support.grantAdvancementCriterion((ServerPlayerEntity) ownerPlayerEntity, "lategame/put_too_many_low_gravity_blocks_into_animal", "gravity");
+                    }
+
+                    // take damage when at height heights
+                    // otherwise the animal would just be floating forever
+                    if(thisEntity.getPos().y > thisEntity.getEntityWorld().getHeight() + 1000) {
+                        thisEntity.damage(DamageSource.OUT_OF_WORLD, 10);
                     }
                 }
             }

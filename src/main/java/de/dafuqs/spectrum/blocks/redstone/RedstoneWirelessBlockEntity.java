@@ -18,51 +18,46 @@ import net.minecraft.world.event.listener.GameEventListener;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-
 public class RedstoneWirelessBlockEntity extends BlockEntity implements WirelessRedstoneSignalListener.Callback {
 
     private static final int RANGE = 16;
-
-    public boolean isSender;  // true = send false = receive
-    public DyeColor channel;
     private int cachedSignal;
     private int outputSignal;
-    private WirelessRedstoneSignalListener listener;
+    private final WirelessRedstoneSignalListener listener;
 
     public RedstoneWirelessBlockEntity(BlockPos blockPos, BlockState blockState) {
         super(SpectrumBlockEntityRegistry.REDSTONE_WIRELESS, blockPos, blockState);
-        this.isSender = true;
-        this.channel = DyeColor.RED;
+        this.listener = new WirelessRedstoneSignalListener(new BlockPositionSource(this.pos), RANGE, this);
     }
 
     public NbtCompound writeNbt(NbtCompound tag) {
         super.writeNbt(tag);
-        tag.putBoolean("sender", this.isSender);
         tag.putInt("output_signal", this.outputSignal);
         tag.putInt("cached_signal", this.cachedSignal);
-        tag.putInt("channel", this.channel.ordinal());
         return tag;
     }
 
     public void readNbt(NbtCompound tag) {
         super.readNbt(tag);
-        this.isSender = tag.getBoolean("sender");
         this.outputSignal = tag.getInt("output_signal");
         this.cachedSignal = tag.getInt("cached_signal");
-        this.channel = DyeColor.byId(tag.getInt("channel"));
-        if(!this.isSender) {
-            this.listener = new WirelessRedstoneSignalListener(new BlockPositionSource(this.pos), RANGE, this);
+    }
+
+    private static boolean isSender(World world, BlockPos blockPos) {
+        if(world == null) {
+            return false;
         }
+        return world.getBlockState(blockPos).get(RedstoneWirelessBlock.SENDER);
     }
 
     public static void serverTick(@NotNull World world, BlockPos pos, BlockState state, @NotNull RedstoneWirelessBlockEntity blockEntity) {
-        if(blockEntity.listener != null) {
-            blockEntity.listener.tick(world);
-        } else {
+        if(isSender(world, pos)) {
             if(blockEntity.outputSignal != blockEntity.cachedSignal) {
                 blockEntity.outputSignal = blockEntity.cachedSignal;
-                blockEntity.world.emitGameEvent(SpectrumGameEvents.WIRELESS_REDSTONE_SIGNALS.get(blockEntity.channel).get(blockEntity.outputSignal), blockEntity.getPos());
+                blockEntity.world.emitGameEvent(SpectrumGameEvents.WIRELESS_REDSTONE_SIGNALS.get(state.get(RedstoneWirelessBlock.CHANNEL)).get(blockEntity.outputSignal), blockEntity.getPos());
             }
+        } else {
+            blockEntity.listener.tick(world);
         }
     }
 
@@ -74,28 +69,14 @@ public class RedstoneWirelessBlockEntity extends BlockEntity implements Wireless
         return RANGE;
     }
 
-    public void toggleSendingMode() {
-        this.isSender = !this.isSender;
-        if(this.isSender) {
-            this.listener = null;
-        } else {
-            this.listener = new WirelessRedstoneSignalListener(new BlockPositionSource(this.pos), RANGE, this);
-        }
-    }
-
-    // TODO when clicking with dye
-    public void setChannel(DyeColor dyeColor) {
-        this.channel = dyeColor;
-    }
-
     @Override
     public boolean accepts(World world, GameEventListener listener, BlockPos pos, GameEvent event, Entity entity) {
-        return !this.isSender && event instanceof RedstoneTransferGameEvent redstoneTransferGameEvent && redstoneTransferGameEvent.getDyeColor() == this.channel;
+        return !isSender(this.world, this.pos) && event instanceof RedstoneTransferGameEvent redstoneTransferGameEvent && redstoneTransferGameEvent.getDyeColor() == getChannel(this.world, this.pos);
     }
 
     @Override
     public void accept(World world, GameEventListener listener, GameEvent event, int distance) {
-        if(listener instanceof WirelessRedstoneSignalListener && !this.isSender && event instanceof RedstoneTransferGameEvent redstoneTransferGameEvent && redstoneTransferGameEvent.getDyeColor() == this.channel) {
+        if(listener instanceof WirelessRedstoneSignalListener && !isSender(this.world, this.pos) && event instanceof RedstoneTransferGameEvent redstoneTransferGameEvent && redstoneTransferGameEvent.getDyeColor() == getChannel(this.world, this.pos)) {
             int receivedSignal = redstoneTransferGameEvent.getPower();
             this.outputSignal = receivedSignal;
             // trigger a block update in all cases, even when powered does not change. That way connected blocks
@@ -113,19 +94,15 @@ public class RedstoneWirelessBlockEntity extends BlockEntity implements Wireless
     // multiple times a tick (because neighboring redstone updates > 1/tick)
     // and therefore receivers receiving a wrong (because old) signal
     public void setSignalStrength(int newSignal) {
-        if(this.isSender) {
+        if(isSender(this.world, this.pos)) {
             this.cachedSignal = newSignal;
         } else {
             this.outputSignal = newSignal;
         }
     }
 
-    public boolean isSending() {
-        return this.isSender;
-    }
-
     public int getOutputSignal() {
-        if(this.isSender) {
+        if(isSender(this.world, this.pos)) {
             return 0;
         }
         return this.outputSignal;
@@ -135,8 +112,11 @@ public class RedstoneWirelessBlockEntity extends BlockEntity implements Wireless
         return this.outputSignal;
     }
 
-    public DyeColor getChannel() {
-        return this.channel;
+    public static DyeColor getChannel(World world, BlockPos pos) {
+        if(world == null) {
+            return DyeColor.RED;
+        }
+        return world.getBlockState(pos).get(RedstoneWirelessBlock.CHANNEL);
     }
 
 }

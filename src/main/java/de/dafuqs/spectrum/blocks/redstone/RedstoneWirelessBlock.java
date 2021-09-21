@@ -12,7 +12,12 @@ import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.particle.DustParticleEffect;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
+import net.minecraft.state.property.BooleanProperty;
+import net.minecraft.state.property.EnumProperty;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.Hand;
@@ -26,12 +31,16 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
+import java.util.Random;
 
 public class RedstoneWirelessBlock extends AbstractRedstoneGateBlock implements BlockEntityProvider {
 
+    public static final BooleanProperty SENDER = BooleanProperty.of("sender");
+    public static final EnumProperty<DyeColor> CHANNEL = EnumProperty.of("channel", DyeColor.class);
+
     public RedstoneWirelessBlock(Settings settings) {
         super(settings);
-        this.setDefaultState(this.stateManager.getDefaultState().with(FACING, Direction.NORTH));
+        this.setDefaultState(this.stateManager.getDefaultState().with(FACING, Direction.NORTH).with(SENDER, true).with(CHANNEL, DyeColor.RED));
     }
 
     @Nullable
@@ -50,36 +59,41 @@ public class RedstoneWirelessBlock extends AbstractRedstoneGateBlock implements 
         if (world.isClient) {
             return ActionResult.SUCCESS;
         } else {
-            BlockEntity blockEntity = world.getBlockEntity(pos);
-            if (blockEntity instanceof RedstoneWirelessBlockEntity redstoneWirelessBlockEntity) {
-
-                ItemStack handStack = player.getStackInHand(hand);
-                Optional<DyeColor> itemInHandColor = Support.getDyeColorOfItemStack(handStack);
-                if(itemInHandColor.isPresent()) {
-                    DyeColor currentChannel = redstoneWirelessBlockEntity.getChannel();
-                    if(itemInHandColor.get() != currentChannel) {
-                        redstoneWirelessBlockEntity.setChannel(itemInHandColor.get());
-                        if (!player.isCreative()) {
-                            handStack.decrement(1);
-                        }
+            ItemStack handStack = player.getStackInHand(hand);
+            Optional<DyeColor> itemInHandColor = Support.getDyeColorOfItemStack(handStack);
+            if(itemInHandColor.isPresent()) {
+                DyeColor currentChannel = state.get(CHANNEL);
+                if(itemInHandColor.get() != currentChannel) {
+                    world.setBlockState(pos, world.getBlockState(pos).with(CHANNEL, itemInHandColor.get()));
+                    if (!player.isCreative()) {
+                        handStack.decrement(1);
                     }
-                } else {
-                    redstoneWirelessBlockEntity.toggleSendingMode();
-                    updatePowered(world, pos, state);
                 }
-                return ActionResult.CONSUME;
             } else {
-                return super.onUse(state, world, pos, player, hand, hit);
+                toggleSendingMode(world, pos, state);
             }
+            return ActionResult.CONSUME;
         }
     }
 
+    public void toggleSendingMode(@NotNull World world, BlockPos blockPos, @NotNull BlockState state) {
+        BlockState newState = state.with(SENDER, !state.get(SENDER));
+        world.setBlockState(blockPos, newState, Block.NOTIFY_LISTENERS);
+
+        if(newState.get(SENDER)) {
+            world.playSound(null, blockPos, SoundEvents.BLOCK_COMPARATOR_CLICK, SoundCategory.BLOCKS, 0.3F, 0.9F);
+        } else {
+            world.playSound(null, blockPos, SoundEvents.BLOCK_COMPARATOR_CLICK, SoundCategory.BLOCKS, 0.3F, 1.1F);
+        }
+        updatePowered(world, blockPos, newState);
+    }
+
     // Hmmm... my feelings tell me that using channels and sender/receiver as property might be a bit much (16 dye colors) * 2 states plus the already existing states
-    // Better move it to the block entity and use a dynamic renderer.
-    // Not that performant when rendering but not consuming so much RAM like 16 times the block states.
+    // Better move it to the block entity and use a dynamic renderer?
+    // ram usage <=> rendering impact
     @Override
     protected void appendProperties(StateManager.@NotNull Builder<Block, BlockState> builder) {
-        builder.add(FACING, POWERED);
+        builder.add(FACING, POWERED, SENDER, CHANNEL);
     }
 
     @Override
@@ -93,7 +107,7 @@ public class RedstoneWirelessBlock extends AbstractRedstoneGateBlock implements 
         int newSignal = this.getPower(world, pos, state);
         BlockEntity blockEntity = world.getBlockEntity(pos);
         if (blockEntity instanceof RedstoneWirelessBlockEntity redstoneWirelessBlockEntity) {
-            if(redstoneWirelessBlockEntity.isSending()) {
+            if(state.get(SENDER)) {
                 int lastSignal = redstoneWirelessBlockEntity.getCurrentSignalStrength();
                 if(newSignal != lastSignal) {
                     redstoneWirelessBlockEntity.setSignalStrength(newSignal);
@@ -136,6 +150,16 @@ public class RedstoneWirelessBlock extends AbstractRedstoneGateBlock implements 
     @Nullable
     protected static <E extends BlockEntity, A extends BlockEntity> BlockEntityTicker<A> checkType(BlockEntityType<A> givenType, BlockEntityType<E> expectedType, BlockEntityTicker<? super E> ticker) {
         return expectedType == givenType ? (BlockEntityTicker<A>) ticker : null;
+    }
+
+    public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
+        if (state.get(POWERED)) {
+            Direction direction = state.get(FACING);
+            double d = (double)pos.getX() + 0.5D + (random.nextDouble() - 0.5D) * 0.2D;
+            double e = (double)pos.getY() + 0.4D + (random.nextDouble() - 0.5D) * 0.2D;
+            double f = (double)pos.getZ() + 0.5D + (random.nextDouble() - 0.5D) * 0.2D;
+            world.addParticle(DustParticleEffect.DEFAULT, d, e, f, 0.0D, 0.0D, 0.0D);
+        }
     }
 
 }

@@ -1,0 +1,22 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "spectrum:block/block_placer"
+    },
+    "facing=east": {
+      "model": "minecraft:block/block_placer_side",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "minecraft:block/block_placer_side"
+    },
+    "facing=south": {
+      "model": "minecraft:block/block_placer_side",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "minecraft:block/block_placer_side",
+      "y": 270
+    }
+  }
+}

@@ -35,8 +35,11 @@ Find your first gemstone geode to get started! Everything else is hinted at via 
   - crafting pattern in the Pigment Pedestal
 
 ## Mod Integration
+[RoughlyEnoughItems](https://github.com/shedaniel/RoughlyEnoughItems):
+Integration for all of Spectrums blocks and items recipe types
+
 [Enchantment Descriptions](https://github.com/Darkhax-Minecraft/Enchantment-Descriptions):
 Descriptions for all of Spectrums enchantments
 
-[Colored Lights](https://github.com/Gegy/colored-lights)
+[Colored Lights](https://github.com/Gegy/colored-lights):
 Colored Lights support for all of Spectrums light sources

@@ -46,7 +46,7 @@
       "type": "patchouli:spotlight",
       "advancement": "spectrum:hidden/collect_pigment/collect_black_pigment",
       "item": "spectrum:black_pigment",
-      "text": "The darkest material you have ever held in your hands.$(br2)$(c_black)Black$() represents the Nothingness of the $(italic)Void$(), $(italic)Power$() and $(italic)Mystery$()."
+      "text": "The darkest material you have ever held in your hands. It looks almost surreal.$(br2)$(c_black)Black$() represents the Nothingness of the $(italic)Void$(), $(italic)Power$() and $(italic)Mystery$()."
     },
     {
       "type": "patchouli:spotlight",
@@ -58,7 +58,7 @@
       "type": "patchouli:spotlight",
       "advancement": "spectrum:hidden/collect_pigment/collect_brown_pigment",
       "item": "spectrum:brown_pigment",
-      "text": "The juicy lime makes you long for mother nature.$(br2)$(c_brown)Brown$() represents $(italic)Nature$() and $(italic)Stability$()."
+      "text": "This rich brown makes you long for mother nature.$(br2)$(c_brown)Brown$() represents $(italic)Nature$() and $(italic)Stability$()."
     },
     {
       "type": "patchouli:spotlight",
@@ -76,7 +76,7 @@
       "type": "patchouli:spotlight",
       "advancement": "spectrum:hidden/collect_pigment/collect_green_pigment",
       "item": "spectrum:green_pigment",
-      "text": "This pigment radiates inner peace.$(br2)$(c_green)Green$() represents $(italic)Balance$() and $(italic)Harmony$()."
+      "text": "This pigment softly radiates inner peace.$(br2)$(c_green)Green$() represents $(italic)Balance$() and $(italic)Harmony$()."
     },
     {
       "type": "patchouli:spotlight",
@@ -94,7 +94,7 @@
       "type": "patchouli:spotlight",
       "advancement": "spectrum:hidden/collect_pigment/collect_lime_pigment",
       "item": "spectrum:lime_pigment",
-      "text": "It almost smells like a warm morning in spring. Or are you just imagining?$(br2)$(c_lime)Lime$() represents $(italic)Fertility$()."
+      "text": "The juicy lime almost smells like a warm spring morning. Or are you just imagining?$(br2)$(c_lime)Lime$() represents $(italic)Fertility$()."
     },
     {
       "type": "patchouli:spotlight",
@@ -112,7 +112,7 @@
       "type": "patchouli:spotlight",
       "advancement": "spectrum:hidden/collect_pigment/collect_pink_pigment",
       "item": "spectrum:pink_pigment",
-      "text": "The bright, lively cotton candy pink makes you beam with joy.$(br2)$(c_pink)Pink$() represents $(italic)Happiness$(), $(italic)Health$() and $(italic)Admiration$()."
+      "text": "This bright, lively cotton candy pink makes you beam with joy.$(br2)$(c_pink)Pink$() represents $(italic)Happiness$(), $(italic)Health$() and $(italic)Admiration$()."
     },
     {
       "type": "patchouli:spotlight",

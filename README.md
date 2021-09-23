@@ -17,7 +17,7 @@ You are an Artist of Magic, using natural energies manifested in color to form t
 At first you as a player are just tinkering around with what is possible, but sooner or later will find out where the true source of these energies lies.
 Your final goal? Discovering what's up with the magical energies surrounding the world and what is waiting for you beneath the once ipenetratable bedrock floor.
 
-# Progression through the mod
+# Progressing through the mod
 Find your first gemstone geode to get started! Everything else is hinted at via advancements and the guidebook gifted to you. You can find more details in [Spectrums Wiki](https://github.com/DaFuqs/Spectrum/wiki). 
 
 **_Spectrum is not meant to be rushed. It is best played alongside your normal playthough._**

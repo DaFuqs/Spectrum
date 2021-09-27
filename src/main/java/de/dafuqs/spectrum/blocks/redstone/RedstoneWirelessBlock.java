@@ -154,7 +154,6 @@ public class RedstoneWirelessBlock extends AbstractRedstoneGateBlock implements 
 
     public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
         if (state.get(POWERED)) {
-            Direction direction = state.get(FACING);
             double d = (double)pos.getX() + 0.5D + (random.nextDouble() - 0.5D) * 0.2D;
             double e = (double)pos.getY() + 0.4D + (random.nextDouble() - 0.5D) * 0.2D;
             double f = (double)pos.getZ() + 0.5D + (random.nextDouble() - 0.5D) * 0.2D;

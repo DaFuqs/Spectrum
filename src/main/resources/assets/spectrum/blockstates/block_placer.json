@@ -1,21 +1,25 @@
 {
   "variants": {
     "facing=down": {
-      "model": "spectrum:block/block_placer"
+      "model": "spectrum:block/block_placer_vertical",
+      "x": 180
     },
     "facing=east": {
-      "model": "minecraft:block/block_placer_side",
+      "model": "spectrum:block/block_placer",
       "y": 90
     },
     "facing=north": {
-      "model": "minecraft:block/block_placer_side"
+      "model": "spectrum:block/block_placer"
     },
     "facing=south": {
-      "model": "minecraft:block/block_placer_side",
+      "model": "spectrum:block/block_placer",
       "y": 180
     },
+    "facing=up": {
+      "model": "spectrum:block/block_placer_vertical"
+    },
     "facing=west": {
-      "model": "minecraft:block/block_placer_side",
+      "model": "spectrum:block/block_placer",
       "y": 270
     }
   }

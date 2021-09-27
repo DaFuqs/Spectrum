@@ -6,7 +6,7 @@
     },
     "amethyst_shard": {
       "trigger":"spectrum:has_advancement",
-      "conditions": { "advancement_identifier": "hidden/collect_shards/collect_amethyst_shard" }
+      "conditions": { "advancement_identifier": "spectrum:hidden/collect_shards/collect_amethyst_shard" }
     }
   }
 }

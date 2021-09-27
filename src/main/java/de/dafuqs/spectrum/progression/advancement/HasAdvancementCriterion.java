@@ -14,7 +14,7 @@ import net.minecraft.util.JsonHelper;
 
 public class HasAdvancementCriterion extends AbstractCriterion<HasAdvancementCriterion.Conditions> {
 
-    static final Identifier ID = new Identifier(SpectrumCommon.MOD_ID, "has_advancement");
+    public static final Identifier ID = new Identifier(SpectrumCommon.MOD_ID, "has_advancement");
 
     public Identifier getId() {
         return ID;
@@ -51,6 +51,10 @@ public class HasAdvancementCriterion extends AbstractCriterion<HasAdvancementCri
 
         public boolean matches(Advancement advancement) {
             return this.advancementIdentifier.equals(advancement.getId());
+        }
+
+        public Identifier getAdvancementIdentifier() {
+            return advancementIdentifier;
         }
     }
 

@@ -34,6 +34,11 @@ public class PedestalUpgradeBlockBlockEntityRenderer<PedestalUpgradeBlockEntity 
 
     @Override
     public void render(PedestalUpgradeBlockEntity entity, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light, int overlay) {
+        // do not render the floating disk when there is a block on top of the pedestal upgrade block
+        if(entity.getWorld() != null && !entity.getWorld().getBlockState(entity.getPos().up()).isAir()) {
+            return;
+        }
+
         VertexConsumer vertexConsumer = spriteIdentifier.getVertexConsumer(vertexConsumerProvider, RenderLayer::getEntityCutout);
 
         float s = (entity.getWorld().getTime() + tickDelta) / 25.0F;

@@ -4,18 +4,23 @@
   "advancement": "spectrum:progression/unlock_bottle_of_failing",
   "category": "spectrum:decay_category",
   "extra_recipe_mappings": {
-    "spectrum:bottle_of_failing": 0,
+    "spectrum:bottle_of_failing": 1,
     "spectrum:corrupted_obsidian_dust": 1
   },
   "pages": [
     {
       "type": "patchouli:spotlight",
       "item": "spectrum:bottle_of_failing",
-      "text": "Empowered by the potent energy of your onyxes, this second organism is clearly... more active than your last creation.$(br)$(bold)And DEFINITELY hungrier.$()$(br2)Maybe one of the strongest materials you know can satisfy their hunger?"
+      "text": "Empowered by the potent energy of your onyxes, this second organism is clearly... more active than your last creation.$(br2)$(bold)And DEFINITELY hungrier."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier2/bottle_of_failing",
+      "text": "Maybe one of the strongest materials you know can satisfy their hunger?"
     },
     {
       "type": "patchouli:spotlight",
-      "advancement": "spectrum:collect_corrupted_obsidian_dust",
+      "advancement": "spectrum:midgame/collect_corrupted_obsidian_dust",
       "item": "spectrum:corrupted_obsidian_dust",
       "text": "The obsidian was much easier to destroy after it was attacked by your experiment. It was literally pulverized."
     }

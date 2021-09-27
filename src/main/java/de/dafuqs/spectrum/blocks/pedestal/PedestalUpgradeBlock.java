@@ -19,22 +19,25 @@ import org.jetbrains.annotations.Nullable;
 
 public class PedestalUpgradeBlock extends BlockWithEntity {
 
-    public static final DirectionProperty FACING = Properties.FACING;
+    //public static final DirectionProperty FACING = Properties.FACING;
 
     //protected static final VoxelShape SHAPE_FLOATING = Block.createCuboidShape(4.0D, 4.0D, 4.0D, 12.0D, 12.0D, 12.0D);
     protected static final VoxelShape SHAPE_UP = Block.createCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 10.0D, 14.0D);
-    protected static final VoxelShape SHAPE_DOWN = Block.createCuboidShape(2.0D, 6.0D, 2.0D, 14.0D, 16.0D, 14.0D);
+    /*protected static final VoxelShape SHAPE_DOWN = Block.createCuboidShape(2.0D, 6.0D, 2.0D, 14.0D, 16.0D, 14.0D);
     protected static final VoxelShape SHAPE_NORTH = Block.createCuboidShape(2.0D, 2.0D, 6.0D, 14.0D, 14.0D, 16.0D);
     protected static final VoxelShape SHAPE_SOUTH = Block.createCuboidShape(2.0D, 2.0D, 0.0D, 14.0D, 14.0D, 10.0D);
     protected static final VoxelShape SHAPE_EAST = Block.createCuboidShape(0.0D, 2.0D, 2.0D, 10.0D, 14.0D, 14.0D);
-    protected static final VoxelShape SHAPE_WEST = Block.createCuboidShape(6.0D, 2.0D, 2.0D, 16.0D, 14.0D, 14.0D);
+    protected static final VoxelShape SHAPE_WEST = Block.createCuboidShape(6.0D, 2.0D, 2.0D, 16.0D, 14.0D, 14.0D);*/
 
     public PedestalUpgradeBlock(Settings settings) {
         super(settings);
-        this.setDefaultState(((this.stateManager.getDefaultState()).with(FACING, Direction.UP)));
     }
 
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+        return SHAPE_UP;
+    }
+
+    /*public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         switch (state.get(FACING)) {
             case UP -> {
                 return SHAPE_UP;
@@ -55,9 +58,9 @@ public class PedestalUpgradeBlock extends BlockWithEntity {
                 return SHAPE_WEST;
             }
         }
-    }
+    }*/
 
-    public BlockState getPlacementState(@NotNull ItemPlacementContext ctx) {
+   /*public BlockState getPlacementState(@NotNull ItemPlacementContext ctx) {
         return this.getDefaultState().with(FACING, ctx.getSide());
     }
 
@@ -71,7 +74,7 @@ public class PedestalUpgradeBlock extends BlockWithEntity {
 
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(FACING);
-    }
+    }*/
 
     public boolean canPathfindThrough(BlockState state, BlockView world, BlockPos pos, NavigationType type) {
         return false;

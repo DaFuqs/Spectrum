@@ -4,7 +4,7 @@
   "advancement": "spectrum:progression/unlock_bottle_of_fading",
   "category": "spectrum:decay_category",
   "extra_recipe_mappings": {
-    "spectrum:bottle_of_fading": 0,
+    "spectrum:bottle_of_fading": 1,
     "spectrum:vegetal": 2
   },
   "pages": [
@@ -14,7 +14,8 @@
       "text": "It did not take long, there the idea for a construction plan came to you.$(br2)The organism you came up with is weak, but it seems that your plans to create new life were successful, at least in principle! Admittedly, it is only a clump of microorganisms, but they are alive!"
     },
     {
-      "type": "patchouli:text",
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier1/bottle_of_fading",
       "text": "Time for philosophy: every living thing has basically the same goals: To eat in order to reproduce.$()So one question remains: What do these weak creatures eat?"
     },
     {

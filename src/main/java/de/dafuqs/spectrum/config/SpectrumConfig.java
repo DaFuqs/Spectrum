@@ -89,6 +89,10 @@ public class SpectrumConfig implements ConfigData {
     public int ExuberanceMaxLevel = 5;
     public float ExuberanceBonusExperiencePercentPerLevel = 0.2F;
 
+    // In vanilla, crits are a flat 50 % damage bonus.
+    // Improved Critical increases this damage by additional 50 % per level by default
+    public float ImprovedCriticalExtraDamageMultiplierPerLevel = 0.5F;
+
     // The duration a glow ink sac gives night vision when wearing a glow vision helmet in seconds
     public int GlowVisionGogglesDuration = 180;
 
@@ -103,6 +107,7 @@ public class SpectrumConfig implements ConfigData {
         if(TreasureHunterMaxLevel <= 0) { TreasureHunterMaxLevel = 3; }
         if(ExuberanceMaxLevel <= 0) { ExuberanceMaxLevel = 5; }
         if(ExuberanceBonusExperiencePercentPerLevel <= 0) { ExuberanceBonusExperiencePercentPerLevel = 0.2F; }
+        if(ImprovedCriticalExtraDamageMultiplierPerLevel <= 0) { ImprovedCriticalExtraDamageMultiplierPerLevel = 0.5F; }
     }
 
 

@@ -8,6 +8,7 @@
     "ArmorWithHitEffectProcessor",
     "BlockMixin",
     "BlockPlacerTypeAccessor",
+    "ImprovedCriticalEnchantmentMixin",
     "CropBlockMixin",
     "EnderEyeItemMixin",
     "EndermanEntityMixin",

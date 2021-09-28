@@ -7,6 +7,7 @@ import de.dafuqs.spectrum.events.SpectrumGameEvents;
 import de.dafuqs.spectrum.inventories.GenericSpectrumContainerScreenHandler;
 import de.dafuqs.spectrum.networking.SpectrumS2CPackets;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
+import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -15,6 +16,7 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
@@ -26,6 +28,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.event.BlockPositionSource;
 import net.minecraft.world.event.GameEvent;
 import net.minecraft.world.event.listener.GameEventListener;
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
@@ -60,7 +63,7 @@ public class SuckingChestBlockEntity extends SpectrumChestBlockEntity implements
         }
     }
 
-    private static void checkForNearbyItemEntities(SuckingChestBlockEntity blockEntity) {
+    private static void checkForNearbyItemEntities(@NotNull SuckingChestBlockEntity blockEntity) {
         List<ItemEntity> itemEntities = blockEntity.world.getEntitiesByType(EntityType.ITEM, getBoxWithRadius(blockEntity.pos, RANGE), Entity::isAlive);
 
         for(ItemEntity itemEntity : itemEntities) {
@@ -70,7 +73,8 @@ public class SuckingChestBlockEntity extends SpectrumChestBlockEntity implements
         }
     }
 
-    protected static Box getBoxWithRadius(BlockPos blockPos, int radius) {
+    @Contract("_, _ -> new")
+    protected static @NotNull Box getBoxWithRadius(BlockPos blockPos, int radius) {
         return Box.of(Vec3d.ofCenter(blockPos), radius, radius, radius);
     }
 
@@ -113,6 +117,16 @@ public class SuckingChestBlockEntity extends SpectrumChestBlockEntity implements
                 }
             }
         }
+    }
+
+    @Override
+    public SoundEvent getOpenSound() {
+        return SpectrumSoundEvents.SUCKING_CHEST_OPEN;
+    }
+
+    @Override
+    public SoundEvent getCloseSound() {
+        return SpectrumSoundEvents.SUCKING_CHEST_CLOSE;
     }
 
 }

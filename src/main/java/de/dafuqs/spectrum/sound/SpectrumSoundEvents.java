@@ -22,6 +22,9 @@ public class SpectrumSoundEvents {
     public static SoundEvent ENDER_SPLICE_BOUND = register("ender_splice_bound");
     public static SoundEvent NATURES_STAFF_USE = register("natures_staff_use");
 
+    public static SoundEvent SUCKING_CHEST_OPEN = register("sucking_chest_open");
+    public static SoundEvent SUCKING_CHEST_CLOSE = register("sucking_chest_close");
+
     public static SoundEvent LIQUID_CRYSTAL_AMBIENT = register("liquid_crystal_ambient");
     public static SoundEvent MUD_AMBIENT = register("mud_ambient");
     public static SoundEvent PEDESTAL_CRAFT_GENERIC = register("pedestal_craft_generic");

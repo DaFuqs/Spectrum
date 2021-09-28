@@ -58,7 +58,9 @@
   "spectrum.subtitles.player_teleports": "Player teleports",
   "spectrum.subtitles.ender_splice_charges": "Ender Splice charges",
   "spectrum.subtitles.ender_splice_binds": "Ender Splice binds",
-  "spectrum.subtitles.natures_staff_use": "Harmonic melodies jingling",
+  "spectrum.subtitles.natures_staff_use": "Harmonic melodies jingles",
+  "spectrum.subtitles.block.sucking_chest.open": "Black Hole Chest opens",
+  "spectrum.subtitles.block.sucking_chest.close": "Black Hole Chest closes",
 
   "spectrum.toast.revelation.title": "You gained knowledge about the world",
   "spectrum.toast.revelation.text": "New things reveal themselves to you",

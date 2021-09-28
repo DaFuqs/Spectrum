@@ -1,4 +1,16 @@
 {
+  "sucking_chest_open": {
+    "subtitle": "spectrum.subtitles.block.sucking_chest.open",
+    "sounds": [
+      "spectrum:block.sucking_chest.open"
+    ]
+  },
+  "sucking_chest_close": {
+    "subtitle": "spectrum.subtitles.block.sucking_chest.close",
+    "sounds": [
+      "spectrum:block.sucking_chest.close"
+    ]
+  },
   "fading_placed": {
     "subtitle": "spectrum.subtitles.block.fading.place",
     "sounds": [

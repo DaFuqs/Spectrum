@@ -88,7 +88,7 @@ public class SpectrumBlockEntityRegistry<T extends BlockEntity> {
         BlockEntityRendererRegistry.INSTANCE.register(SpectrumBlockEntityRegistry.PRIVATE_CHEST, PrivateChestBlockEntityRenderer::new);
         BlockEntityRendererRegistry.INSTANCE.register(SpectrumBlockEntityRegistry.COMPACTING_CHEST, CompactingChestBlockEntityRenderer::new);
         BlockEntityRendererRegistry.INSTANCE.register(SpectrumBlockEntityRegistry.RESTOCKING_CHEST, RestockingChestBlockEntityRenderer::new);
-        BlockEntityRendererRegistry.INSTANCE.register(SpectrumBlockEntityRegistry.SUCKING_CHEST, SpectrumChestBlockEntityRenderer::new);
+        BlockEntityRendererRegistry.INSTANCE.register(SpectrumBlockEntityRegistry.SUCKING_CHEST, SuckingChestBlockEntityRenderer::new);
         BlockEntityRendererRegistry.INSTANCE.register(SpectrumBlockEntityRegistry.PEDESTAL_SPEED_UPGRADE, PedestalUpgradeBlockBlockEntityRenderer::new);
         BlockEntityRendererRegistry.INSTANCE.register(SpectrumBlockEntityRegistry.FUSION_SHRINE, FusionShrineBlockEntityRenderer::new);
         BlockEntityRendererRegistry.INSTANCE.register(SpectrumBlockEntityRegistry.SKULL, SpectrumSkullBlockEntityRenderer3D::new);
@@ -101,9 +101,7 @@ public class SpectrumBlockEntityRegistry<T extends BlockEntity> {
         //Register textures in chest atlas
         ClientSpriteRegistryCallback.event(TexturedRenderLayers.CHEST_ATLAS_TEXTURE).register((texture, registry) -> {
             registry.register(new Identifier(SpectrumCommon.MOD_ID, "entity/private_chest"));
-            registry.register(new Identifier(SpectrumCommon.MOD_ID, "entity/compacting_chest"));
-            registry.register(new Identifier(SpectrumCommon.MOD_ID, "entity/restocking_chest"));
-            registry.register(new Identifier(SpectrumCommon.MOD_ID, "entity/sucking_chest"));
+            //registry.register(new Identifier(SpectrumCommon.MOD_ID, "entity/sucking_chest"));
         });
 
         //Register textures in block atlas

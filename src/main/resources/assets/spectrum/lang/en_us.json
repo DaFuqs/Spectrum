@@ -43,6 +43,22 @@
   "enchantment.spectrum.exuberance.desc": "Increases dropped XP",
   "enchantment.spectrum.treasure_hunter": "Treasure Hunter",
   "enchantment.spectrum.treasure_hunter.desc": "Occasionally drops Mob Heads on kill",
+  "enchantment.spectrum.disarming": "Disarming",
+  "enchantment.spectrum.disarming.desc": "Chance for enemies to drop their equipment",
+  "enchantment.spectrum.excavation": "Excavation",
+  "enchantment.spectrum.excavation.desc": "Right click to mine all connected blocks",
+  "enchantment.spectrum.first_strike": "First Strike",
+  "enchantment.spectrum.first_strike.desc": "Increased damage if enemy has full health",
+  "enchantment.spectrum.improved_critical": "Improved Critical",
+  "enchantment.spectrum.improved_critical.desc": "Increased damage when dealing critical damage",
+  "enchantment.spectrum.inertia": "Inertia",
+  "enchantment.spectrum.inertia.desc": "Decreased mining speed. Increases with each mined block of the same type",
+  "enchantment.spectrum.rare_loot": "Clover's Favor",
+  "enchantment.spectrum.rare_loot.desc": "Higher change to get rare loot",
+  "enchantment.spectrum.sniper": "Sniping",
+  "enchantment.spectrum.sniper.desc": "Increased projectile speed",
+  "enchantment.spectrum.tight_grip": "Tight Grip",
+  "enchantment.spectrum.tight_grip.desc": "Decreased attack cooldown",
 
   "death.attack.spectrum_decay": "%s made contact with the void",
 
@@ -94,9 +110,18 @@
   "text.autoconfig.Spectrum.option.ResonanceEnchantmentEnabled": "Enchantment Resonance available",
   "text.autoconfig.Spectrum.option.VoidingEnchantmentEnabled": "Enchantment Voiding available",
   "text.autoconfig.Spectrum.option.TreasureHunterEnchantmentEnabled": "Enchantment Treasure Hunter available",
+
   "text.autoconfig.Spectrum.option.TreasureHunterMaxLevel": "Max level for Treasure Hunter enchantment",
+  "text.autoconfig.Spectrum.option.DisarmingMaxLevel": "Max level for Disarming enchantment",
+  "text.autoconfig.Spectrum.option.FirstStrikeMaxLevel": "Max level for First Strike enchantment",
+  "text.autoconfig.Spectrum.option.ImprovedCriticalMaxLevel": "Max level for Improved Critical enchantment",
+  "text.autoconfig.Spectrum.option.InertiaMaxLevel": "Max level for Inertia enchantment",
+  "text.autoconfig.Spectrum.option.RareLootMaxLevel": "Max level for Rare Loot enchantment",
+  "text.autoconfig.Spectrum.option.TightGripMaxLevel": "Max level for Tight Grip enchantment",
+
   "text.autoconfig.Spectrum.option.ExuberanceMaxLevel": "Max level for Exuberance Enchantment",
   "text.autoconfig.Spectrum.option.ExuberanceBonusExperiencePercentPerLevel": "XP bonus on kill with Exuberance enchantment",
+
   "text.autoconfig.Spectrum.option.GlowVisionGogglesDuration": "Glow Vision Goggle duration in seconds",
 
   "item.spectrum.emergency_helmet": "Fetchling Helmet",

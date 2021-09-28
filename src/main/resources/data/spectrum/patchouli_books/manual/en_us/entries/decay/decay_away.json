@@ -8,6 +8,7 @@
   },
   "pages": [
     {
+      "title": "Decay Away",
       "type": "patchouli:spotlight",
       "item": "spectrum:bottle_of_decay_away",
       "text": "The last type of decay was not only dangerous, but also quite a pain to get rid of.$(br)Now that you've discovered Moonstone, the only thing left to do is to perfect your recipe. This time, though, to heal instead of flooding the world.$(br2)Yeah, that's probably better."
@@ -15,7 +16,7 @@
     {
       "type": "spectrum:fusion_shrine_crafting",
       "recipe": "spectrum:fusion_shrine/bottle_of_decay_away",
-      "text": "Removes 99 % of all self-replicating microorganisms! Apply directly to infected area."
+      "text": "Removes 99 % of all self-replicating microorganisms.$(br)Apply directly to infected area."
     }
   ]
 }

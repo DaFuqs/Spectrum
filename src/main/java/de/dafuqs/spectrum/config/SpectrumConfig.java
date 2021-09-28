@@ -93,6 +93,8 @@ public class SpectrumConfig implements ConfigData {
     // Improved Critical increases this damage by additional 50 % per level by default
     public float ImprovedCriticalExtraDamageMultiplierPerLevel = 0.5F;
 
+    public float FirstStrikeDamagePerLevel = 3.0F;
+
     // The duration a glow ink sac gives night vision when wearing a glow vision helmet in seconds
     public int GlowVisionGogglesDuration = 180;
 
@@ -108,6 +110,7 @@ public class SpectrumConfig implements ConfigData {
         if(ExuberanceMaxLevel <= 0) { ExuberanceMaxLevel = 5; }
         if(ExuberanceBonusExperiencePercentPerLevel <= 0) { ExuberanceBonusExperiencePercentPerLevel = 0.2F; }
         if(ImprovedCriticalExtraDamageMultiplierPerLevel <= 0) { ImprovedCriticalExtraDamageMultiplierPerLevel = 0.5F; }
+        if(FirstStrikeDamagePerLevel <= 0) { FirstStrikeDamagePerLevel = 3.0F; }
     }
 
 

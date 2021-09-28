@@ -8,7 +8,6 @@
     "ArmorWithHitEffectProcessor",
     "BlockMixin",
     "BlockPlacerTypeAccessor",
-    "ImprovedCriticalEnchantmentMixin",
     "CropBlockMixin",
     "EnderEyeItemMixin",
     "EndermanEntityMixin",
@@ -18,6 +17,7 @@
     "FluidTagsAccessor",
     "GeodesGenerateWithGemstoneOresMixin",
     "HorseBaseEntityMixin",
+    "ImprovedCriticalEnchantmentMixin",
     "InfestedBlockMixin",
     "ItemEntityMixin",
     "ItemFrameEntityMixin",
@@ -31,6 +31,7 @@
     "ServerPlayerEntityMixin",
     "ServerWorldMixin",
     "SpawnerBlockMixin",
+    "FirstStrikeEnchantmentMixin",
     "WorldRendererMixin"
   ],
   "client": [

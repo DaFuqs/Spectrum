@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.mixin;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.registries.SpectrumEnchantments;
 import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Mixin;
@@ -21,8 +22,8 @@ public class ImprovedCriticalEnchantmentMixin {
         return getCritMultiplier(thisEntity);
     }
 
-    private float getCritMultiplier(@NotNull PlayerEntity playerEntity) {
-        int critMultiplierLevel = EnchantmentHelper.getLevel(SpectrumEnchantments.IMPROVED_CRITICAL, playerEntity.getMainHandStack());
+    private float getCritMultiplier(@NotNull LivingEntity livingEntity) {
+        int critMultiplierLevel = EnchantmentHelper.getLevel(SpectrumEnchantments.IMPROVED_CRITICAL, livingEntity.getMainHandStack());
         return 1.5F + SpectrumCommon.CONFIG.ImprovedCriticalExtraDamageMultiplierPerLevel * critMultiplierLevel;
     }
 

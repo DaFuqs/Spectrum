@@ -103,6 +103,7 @@
   "text.autoconfig.Spectrum.option.FadingDecayTickRate": "Propagation speed of Fading",
   "text.autoconfig.Spectrum.option.FailingDecayTickRate": "Propagation speed of Failing",
   "text.autoconfig.Spectrum.option.RuinDecayTickRate": "Propagation speed of Ruin",
+
   "text.autoconfig.Spectrum.option.AutoSmeltEnchantmentEnabled": "Enchantment Autosmelt available",
   "text.autoconfig.Spectrum.option.ExuberanceEnchantmentEnabled": "Enchantment Exuberance available",
   "text.autoconfig.Spectrum.option.InventoryInsertionEnchantmentEnabled": "Enchantment InventoryInsertion available",
@@ -110,6 +111,14 @@
   "text.autoconfig.Spectrum.option.ResonanceEnchantmentEnabled": "Enchantment Resonance available",
   "text.autoconfig.Spectrum.option.VoidingEnchantmentEnabled": "Enchantment Voiding available",
   "text.autoconfig.Spectrum.option.TreasureHunterEnchantmentEnabled": "Enchantment Treasure Hunter available",
+  "text.autoconfig.Spectrum.option.DisarmingEnchantmentEnabled": "Enchantment Disarming available",
+  "text.autoconfig.Spectrum.option.ExcavationEnchantmentEnabled": "Enchantment Excavation available",
+  "text.autoconfig.Spectrum.option.FirstStrikeEnchantmentEnabled": "Enchantment First Strike available",
+  "text.autoconfig.Spectrum.option.ImprovedCriticalEnchantmentEnabled": "Enchantment Improved Critical available",
+  "text.autoconfig.Spectrum.option.InertiaEnchantmentEnabled": "Enchantment Inertia available",
+  "text.autoconfig.Spectrum.option.RareLootEnchantmentEnabled": "Enchantment Rare Loot available",
+  "text.autoconfig.Spectrum.option.SniperEnchantmentEnabled": "Enchantment Sniper available",
+  "text.autoconfig.Spectrum.option.TightGripEnchantmentEnabled": "Enchantment TightGrip available",
 
   "text.autoconfig.Spectrum.option.TreasureHunterMaxLevel": "Max level for Treasure Hunter enchantment",
   "text.autoconfig.Spectrum.option.DisarmingMaxLevel": "Max level for Disarming enchantment",
@@ -118,9 +127,11 @@
   "text.autoconfig.Spectrum.option.InertiaMaxLevel": "Max level for Inertia enchantment",
   "text.autoconfig.Spectrum.option.RareLootMaxLevel": "Max level for Rare Loot enchantment",
   "text.autoconfig.Spectrum.option.TightGripMaxLevel": "Max level for Tight Grip enchantment",
-
   "text.autoconfig.Spectrum.option.ExuberanceMaxLevel": "Max level for Exuberance Enchantment",
+
   "text.autoconfig.Spectrum.option.ExuberanceBonusExperiencePercentPerLevel": "XP bonus on kill with Exuberance enchantment",
+  "text.autoconfig.Spectrum.option.ImprovedCriticalExtraDamageMultiplierPerLevel": "Extra damage multiplier for Improved Critical enchantment per level",
+  "text.autoconfig.Spectrum.option.FirstStrikeDamagePerLevel": "Extra damage for each level of the First Strike enchantment",
 
   "text.autoconfig.Spectrum.option.GlowVisionGogglesDuration": "Glow Vision Goggle duration in seconds",
 

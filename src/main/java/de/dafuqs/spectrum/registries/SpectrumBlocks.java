@@ -716,6 +716,8 @@ public class SpectrumBlocks {
 
         registerBlockWithItem("lava_sponge", LAVA_SPONGE, fabricItemSettings);
         registerBlockWithItem("wet_lava_sponge", WET_LAVA_SPONGE, new WetLavaSpongeItem(WET_LAVA_SPONGE, new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).maxCount(1).recipeRemainder(LAVA_SPONGE.asItem())));
+
+        registerBlockWithItem("ethereal_platform", ETHEREAL_PLATFORM, fabricItemSettings);
     }
 
     private static void registerPigmentStorageBlocks(FabricItemSettings fabricItemSettings) {
@@ -824,8 +826,6 @@ public class SpectrumBlocks {
         registerBlockWithItem("citrine_player_only_glass", CITRINE_PLAYER_ONLY_GLASS, fabricItemSettings);
         registerBlockWithItem("onyx_player_only_glass", ONYX_PLAYER_ONLY_GLASS, fabricItemSettings);
         registerBlockWithItem("moonstone_player_only_glass", MOONSTONE_PLAYER_ONLY_GLASS, fabricItemSettings);
-
-        registerBlockWithItem("ethereal_platform", ETHEREAL_PLATFORM, fabricItemSettings);
     }
 
     private static void registerStoneBlocks(FabricItemSettings fabricItemSettings) {

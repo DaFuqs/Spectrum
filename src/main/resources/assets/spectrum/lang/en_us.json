@@ -698,6 +698,7 @@
   "item.spectrum.fusion_shrine_structure_placer": "Fusion Shrine Structure Placer",
 
   "spectrum.recipe.fusion_shrine.explanation.onyx_shard": "Midnight on a new moon only",
+  "spectrum.recipe.fusion_shrine.explanation.decay_away":  "Requires a clear sky",
 
   "block.spectrum.ender_glass": "Ender Glass",
   "block.spectrum.redstone_sand": "Redstone Sand",

@@ -1,6 +1,6 @@
 {
     "name": "Mud",
-    "advancement": "spectrum:hidden/collect_shards/collect_topaz_shard",
+    "advancement": "spectrum:progression/unlock_mud_bucket",
     "icon": "spectrum:mud_bucket",
     "category": "spectrum:resources_category",
     "extra_recipe_mappings": {

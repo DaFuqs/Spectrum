@@ -9,7 +9,7 @@
   "white": 0,
   "experience": 1.0,
   "pattern": [
-    "DCD",
+    "DMD",
     "CBC",
     "DCD"
   ],
@@ -21,12 +21,15 @@
       "item": "minecraft:coarse_dirt"
     },
     "B": {
-      "item": "minecraft:water_bucket"
+      "item": "minecraft:bucket"
+    },
+    "M": {
+      "item": "spectrum:mermaids_gem"
     }
   },
   "result" : {
     "item": "spectrum:mud_bucket",
     "count": 1
   },
-  "required_advancements": ["spectrum:hidden/collect_shards/collect_topaz_shard"]
+  "required_advancements": ["spectrum:progression/unlock_mud_bucket"]
 }

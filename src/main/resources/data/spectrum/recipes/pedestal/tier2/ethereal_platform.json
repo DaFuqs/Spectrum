@@ -1,0 +1,35 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 1200,
+  "tier": "simple",
+  "cyan": 0,
+  "magenta": 0,
+  "yellow": 0,
+  "white": 0,
+  "black": 1,
+  "experience": 2.0,
+  "pattern": [
+    "YGY",
+    "GSG",
+    "PGP"
+  ],
+  "key": {
+    "S": {
+      "item": "spectrum:shooting_star"
+    },
+    "G": {
+      "item": "spectrum:sparklestone_gem"
+    },
+    "Y": {
+      "item": "spectrum:yellow_pigment"
+    },
+    "P": {
+      "item": "spectrum:purple_pigment"
+    }
+  },
+  "result" : {
+    "item": "spectrum:ethereal_platform",
+    "count": 16
+  },
+  "required_advancements": ["spectrum:progression/unlock_ethereal_platform"]
+}

@@ -28,27 +28,24 @@ public enum FusionShrineRecipeWorldEffect {
 
     public void doEffect(ServerWorld world, BlockPos shrinePos) {
         switch (this) {
-            case WEATHER_CLEAR: {
+            case WEATHER_CLEAR -> {
                 world.setWeather(6000, 0, false, false);
-                break;
             }
-            case WEATHER_RAIN: {
+            case WEATHER_RAIN -> {
                 world.setWeather(0, 6000, true, false);
-                break;
             }
-            case WEATHER_THUNDER: {
+            case WEATHER_THUNDER -> {
                 world.setWeather(0, 6000, true, true);
-                break;
             }
-            case LIGHTNING_ON_SHRINE: {
-                LightningEntity lightningEntity =  EntityType.LIGHTNING_BOLT.create(world);
+            case LIGHTNING_ON_SHRINE -> {
+                LightningEntity lightningEntity = EntityType.LIGHTNING_BOLT.create(world);
                 lightningEntity.refreshPositionAfterTeleport(Vec3d.ofBottomCenter(shrinePos));
                 lightningEntity.setCosmetic(true);
-                world.spawnEntity(lightningEntity);break;
+                world.spawnEntity(lightningEntity);
 
             }
-            case LIGHTNING_AROUND_SHRINE: {
-                if(world.getRandom().nextFloat() < 0.05F) {
+            case LIGHTNING_AROUND_SHRINE -> {
+                if (world.getRandom().nextFloat() < 0.05F) {
                     int randomX = shrinePos.getX() + 12 - world.getRandom().nextInt(24);
                     int randomZ = shrinePos.getZ() + 12 - world.getRandom().nextInt(24);
 
@@ -58,33 +55,30 @@ public enum FusionShrineRecipeWorldEffect {
                     lightningEntity.setCosmetic(false);
                     world.spawnEntity(lightningEntity);
                 }
-                break;
             }
-            case VISUAL_EXPLOSIONS_ON_SHRINE: {
-                if(world.getRandom().nextFloat() < 0.1) {
+            case VISUAL_EXPLOSIONS_ON_SHRINE -> {
+                if (world.getRandom().nextFloat() < 0.1) {
                     // TODO: dedub from ItemEntityMixin
                     // Particle Effect
                     PacketByteBuf buf = PacketByteBufs.create();
                     BlockPos particleBlockPos = new BlockPos(shrinePos.getX(), shrinePos.getY() + 1, shrinePos.getZ());
                     buf.writeBlockPos(particleBlockPos);
                     // Iterate over all players tracking a position in the world and send the packet to each player
-                    for (ServerPlayerEntity player : PlayerLookup.tracking((ServerWorld) world, particleBlockPos)) {
+                    for (ServerPlayerEntity player : PlayerLookup.tracking(world, particleBlockPos)) {
                         ServerPlayNetworking.send(player, SpectrumS2CPackets.PLAY_ANVIL_CRAFTING_PARTICLE_PACKET_ID, buf);
                     }
                 }
-                break;
             }
-            case SINGLE_VISUAL_EXPLOSION_ON_SHRINE: {
+            case SINGLE_VISUAL_EXPLOSION_ON_SHRINE -> {
                 // TODO: dedub from ItemEntityMixin
                 // Particle Effect
                 PacketByteBuf buf = PacketByteBufs.create();
                 BlockPos particleBlockPos = new BlockPos(shrinePos.getX(), shrinePos.getY(), shrinePos.getZ());
                 buf.writeBlockPos(particleBlockPos);
                 // Iterate over all players tracking a position in the world and send the packet to each player
-                for (ServerPlayerEntity player : PlayerLookup.tracking((ServerWorld) world, particleBlockPos)) {
+                for (ServerPlayerEntity player : PlayerLookup.tracking(world, particleBlockPos)) {
                     ServerPlayNetworking.send(player, SpectrumS2CPackets.PLAY_ANVIL_CRAFTING_PARTICLE_PACKET_ID, buf);
                 }
-                break;
             }
         }
     }

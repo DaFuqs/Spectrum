@@ -1,0 +1,12 @@
+{
+  "criteria": {
+    "reached_endgame": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:lategame/spectrum_lategame" }
+    },
+    "collected_moonstone_shard": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:hidden/collect_shards/collect_moonstone_shard" }
+    }
+  }
+}

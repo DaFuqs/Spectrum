@@ -113,7 +113,7 @@ public class EtherealGlassBlock extends Block {
     public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
         int age = state.get((AGE));
         if(age > 0) {
-            if(random.nextInt(MAX_AGE +MAX_AGE) < age) {
+            for(int i = 0; i < age; i++) {
                 double d = pos.getX() + random.nextFloat();
                 double e = pos.getY() + 1.01;
                 double f = pos.getZ() + random.nextFloat();

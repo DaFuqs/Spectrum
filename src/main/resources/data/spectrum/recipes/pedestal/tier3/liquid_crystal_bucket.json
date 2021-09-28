@@ -9,9 +9,9 @@
   "white": 0,
   "experience": 1.0,
   "pattern": [
-    "PPP",
+    "PMP",
     "SBS",
-    "PPP"
+    "PMP"
   ],
   "key": {
     "P": {
@@ -22,11 +22,14 @@
     },
     "S": {
       "item": "spectrum:sparklestone_gem"
+    },
+    "M": {
+      "item": "spectrum:mermaids_gem"
     }
   },
   "result" : {
     "item": "spectrum:liquid_crystal_bucket",
     "count": 1
   },
-  "required_advancements": ["spectrum:midgame/spectrum_midgame"]
+  "required_advancements": ["spectrum:progression/unlock_liquid_crystal_bucket"]
 }

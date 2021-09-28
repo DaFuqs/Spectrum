@@ -1,6 +1,6 @@
 {
     "name": "Liquid Crystal",
-    "advancement": "spectrum:midgame/spectrum_midgame",
+    "advancement": "spectrum:progression/unlock_liquid_crystal_bucket",
     "icon": "spectrum:liquid_crystal_bucket",
     "category": "spectrum:resources_category",
     "extra_recipe_mappings": {

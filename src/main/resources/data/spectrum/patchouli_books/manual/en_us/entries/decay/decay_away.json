@@ -1,7 +1,7 @@
 {
   "name": "Decay Away",
   "icon": "spectrum:bottle_of_decay_away",
-  "advancement": "spectrum:progression/unlock_decay_away",
+  "advancement": "spectrum:progression/unlock_bottle_of_decay_away",
   "category": "spectrum:decay_category",
   "extra_recipe_mappings": {
     "spectrum:bottle_of_decay_away": 1
@@ -10,11 +10,11 @@
     {
       "type": "patchouli:spotlight",
       "item": "spectrum:bottle_of_decay_away",
-      "text": "You've been struggling with your newly created \"life\" for quite some while now. The last one was not only dangerous, but also quite a pain to get rid of.$(br)Now that you've discovered Moonstone, the only thing left to do is to perfect your recipe. This time, though, to heal instead of flooding the world.$(br)Yeah, that's probably better. Maybe you can help out some people that come after you and were a bit more careless with it, too."
+      "text": "The last type of decay was not only dangerous, but also quite a pain to get rid of.$(br)Now that you've discovered Moonstone, the only thing left to do is to perfect your recipe. This time, though, to heal instead of flooding the world.$(br2)Yeah, that's probably better."
     },
     {
-      "type": "spectrum:pedestal_crafting",
-      "recipe": "spectrum:pedestal/tier4/bottle_of_decay_away",
+      "type": "spectrum:fusion_shrine_crafting",
+      "recipe": "spectrum:fusion_shrine/bottle_of_decay_away",
       "text": "Removes 99 % of all self-replicating microorganisms! Apply directly to infected area."
     }
   ]

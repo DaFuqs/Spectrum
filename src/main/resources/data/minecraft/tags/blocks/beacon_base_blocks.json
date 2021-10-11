@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "spectrum:sparklestone_block",
+    "spectrum:topaz_storage_block",
+    "spectrum:amethyst_storage_block",
+    "spectrum:citrine_storage_block",
+    "spectrum:onyx_storage_block",
+    "spectrum:moonstone_storage_block"
+  ]
+}

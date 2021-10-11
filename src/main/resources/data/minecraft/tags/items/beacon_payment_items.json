@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:amethyst_shard",
+    "spectrum:topaz_shard",
+    "spectrum:citrine_shard",
+    "spectrum:onyx_shard",
+    "spectrum:moonstone_shard",
+    "spectrum:ammolite_shard"
+  ]
+}

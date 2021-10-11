@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "spectrum:multitool",
+    "spectrum:silker_pickaxe",
+    "spectrum:fortune_pickaxe",
+    "spectrum:resonant_pickaxe"
+  ]
+}

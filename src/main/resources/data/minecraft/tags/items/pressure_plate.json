@@ -1,0 +1,21 @@
+{
+  "replace": false,
+  "values": [
+    "spectrum:black_plank_pressure_plate",
+    "spectrum:blue_plank_pressure_plate",
+    "spectrum:brown_plank_pressure_plate",
+    "spectrum:cyan_plank_pressure_plate",
+    "spectrum:gray_plank_pressure_plate",
+    "spectrum:green_plank_pressure_plate",
+    "spectrum:light_blue_plank_pressure_plate",
+    "spectrum:light_gray_plank_pressure_plate",
+    "spectrum:lime_plank_pressure_plate",
+    "spectrum:magenta_plank_pressure_plate",
+    "spectrum:orange_plank_pressure_plate",
+    "spectrum:pink_plank_pressure_plate",
+    "spectrum:purple_plank_pressure_plate",
+    "spectrum:red_plank_pressure_plate",
+    "spectrum:white_plank_pressure_plate",
+    "spectrum:yellow_plank_pressure_plate"
+  ]
+}

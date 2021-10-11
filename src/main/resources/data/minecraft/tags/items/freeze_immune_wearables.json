@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "spectrum:bedrock_helmet",
+    "spectrum:bedrock_chestplate",
+    "spectrum:bedrock_leggings",
+    "spectrum:bedrock_boots"
+  ]
+}

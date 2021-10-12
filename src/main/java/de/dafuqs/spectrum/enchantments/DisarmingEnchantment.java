@@ -28,7 +28,7 @@ public class DisarmingEnchantment extends Enchantment {
     }
 
     public boolean isAvailableForEnchantedBookOffer() {
-        return true;
+        return false;
     }
 
     public boolean isAvailableForRandomSelection() {

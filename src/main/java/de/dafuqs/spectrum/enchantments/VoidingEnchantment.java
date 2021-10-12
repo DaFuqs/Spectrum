@@ -30,6 +30,14 @@ public class VoidingEnchantment extends Enchantment {
         return true;
     }
 
+    public boolean isAvailableForEnchantedBookOffer() {
+        return false;
+    }
+
+    public boolean isAvailableForRandomSelection() {
+        return true;
+    }
+
     public boolean canAccept(Enchantment other) {
         return super.canAccept(other);
     }

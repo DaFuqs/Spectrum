@@ -29,11 +29,11 @@ public class TreasureHunterEnchantment extends Enchantment {
     }
 
     public boolean isAvailableForEnchantedBookOffer() {
-        return true;
+        return false;
     }
 
     public boolean isAvailableForRandomSelection() {
-        return true;
+        return false;
     }
 
     public boolean canAccept(Enchantment other) {

@@ -30,6 +30,8 @@
     "MobSpawnerBlockEntityMixin",
     "PlayerAdvancementTrackerMixin",
     "PlayerInventoryMixin",
+    "RandomChanceLootConditionMixin",
+    "RandomChanceWithLootingLootConditionMixin",
     "ServerPlayerEntityMixin",
     "ServerWorldMixin",
     "SpawnerBlockMixin",

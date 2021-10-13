@@ -12,6 +12,7 @@
     "EnderEyeItemMixin",
     "EndermanEntityMixin",
     "EntityApplyFluidsMixin",
+    "FirstStrikeEnchantmentMixin",
     "FishingBobberEntityMixin",
     "FishingBobberEntityRendererMixin",
     "FluidTagsAccessor",
@@ -25,13 +26,13 @@
     "ItemStackMixin",
     "LightningEntityMixin",
     "LivingEntityMixin",
+    "MiningToolItemMixin",
     "MobSpawnerBlockEntityMixin",
     "PlayerAdvancementTrackerMixin",
     "PlayerInventoryMixin",
     "ServerPlayerEntityMixin",
     "ServerWorldMixin",
     "SpawnerBlockMixin",
-    "FirstStrikeEnchantmentMixin",
     "WorldRendererMixin"
   ],
   "client": [

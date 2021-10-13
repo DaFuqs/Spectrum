@@ -3,6 +3,7 @@
   "package": "de.dafuqs.spectrum.mixin",
   "compatibilityLevel": "JAVA_16",
   "mixins": [
+    "AccessorItem",
     "AccessorShapedRecipe",
     "AnvilBlockMixin",
     "ArmorWithHitEffectProcessor",

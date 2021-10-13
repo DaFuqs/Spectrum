@@ -10,6 +10,7 @@
     "BlockMixin",
     "BlockPlacerTypeAccessor",
     "CropBlockMixin",
+    "CrossbowItemMixin",
     "EnderEyeItemMixin",
     "EndermanEntityMixin",
     "EntityApplyFluidsMixin",

@@ -55,7 +55,9 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.sound.BlockSoundGroup;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.tag.BlockTags;
+import net.minecraft.text.TranslatableText;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
@@ -133,6 +135,7 @@ public class SpectrumBlocks {
     public static final Block BUDDING_MOONSTONE = new SpectrumBuddingBlock(FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).ticksRandomly().sounds(SpectrumBlockSoundGroups.MOONSTONE_BLOCK).requiresTool(), SMALL_MOONSTONE_BUD, MEDIUM_MOONSTONE_BUD, LARGE_MOONSTONE_BUD, MOONSTONE_CLUSTER, SpectrumSoundEvents.BLOCK_MOONSTONE_BLOCK_HIT, SpectrumSoundEvents.BLOCK_MOONSTONE_BLOCK_CHIME);
 
     public static final Block AMMOLITE_BLOCK = new SpectrumGemstoneBlock(FabricBlockSettings.of(Material.AMETHYST, MapColor.DIAMOND_BLUE).hardness(1.5F).sounds(SpectrumBlockSoundGroups.AMMOLITE_BLOCK).requiresTool(), SpectrumSoundEvents.BLOCK_AMMOLITE_BLOCK_HIT, SpectrumSoundEvents.BLOCK_AMMOLITE_BLOCK_CHIME);
+    public static final Block BEDROCK_STORAGE_BLOCK = new BlockWithTooltip(FabricBlockSettings.of(Material.METAL, MapColor.GRAY).requiresTool().strength(100.0F, 3600.0F), new TranslatableText("spectrum.tooltip.wither_immune"));
 
     private static final FabricBlockSettings gemOreBlockSettings = FabricBlockSettings.copyOf(Blocks.IRON_ORE).breakByTool(FabricToolTags.PICKAXES, 1).requiresTool();
     private static final UniformIntProvider gemOreExperienceProvider = UniformIntProvider.create(1, 4);
@@ -1127,6 +1130,7 @@ public class SpectrumBlocks {
         registerBlockWithItem("moonstone_cluster", MOONSTONE_CLUSTER, fabricItemSettings);
 
         registerBlockWithItem("ammolite_block", AMMOLITE_BLOCK, fabricItemSettings);
+        registerBlockWithItem("bedrock_storage_block", BEDROCK_STORAGE_BLOCK, fabricItemSettings);
     }
 
     private static void registerGemOreBlocks(FabricItemSettings fabricItemSettings) {

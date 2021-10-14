@@ -1,0 +1,24 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 120,
+  "tier": "complex",
+  "magenta": 0,
+  "yellow": 0,
+  "cyan": 0,
+  "black": 0,
+  "white": 0,
+  "experience": 0.0,
+  "pattern": [
+    "B"
+  ],
+  "key": {
+    "B": {
+      "item": "spectrum:bedrock_storage_block"
+    }
+  },
+  "result" : {
+    "item": "spectrum:bedrock_dust",
+    "count": 9
+  },
+  "required_advancements": ["spectrum:progression/unlock_bedrock_tools"]
+}

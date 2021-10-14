@@ -5,7 +5,7 @@ $flat = @("black_glowblock", "blue_glowblock", "brown_glowblock", "cyan_glowbloc
 $lamp = @("black_lamp", "blue_lamp", "brown_lamp", "cyan_lamp", "gray_lamp", "green_lamp", "light_blue_lamp", "light_gray_lamp", "lime_lamp", "magenta_lamp", "orange_lamp", "pink_lamp", "purple_lamp", "red_lamp", "white_lamp", "yellow_lamp")
 $ores = @("sparklestone_block", "koenigsblau_ore", "koenigsblau_block")
 
-$new = @("ethereal_platform")
+$new = @("bedrock_storage_block")
 
 enum BlockType {
     Default

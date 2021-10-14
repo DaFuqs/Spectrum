@@ -153,6 +153,9 @@
   "block.spectrum.spirit_sallow_heart": "Spirit Sallow Heart",
   "block.spectrum.sacred_soil": "Sacred Soil",
 
+  "block.spectrum.bedrock_storage_block": "Bedrock Block",
+  "spectrum.tooltip.wither_immune": "§7Witherproof",
+
   "block.spectrum.cyan_spirit_sallow_vines_head": "Cyan Spirit Sallow Vines",
   "block.spectrum.magenta_spirit_sallow_vines_head": "Magenta Spirit Sallow Vines",
   "block.spectrum.yellow_spirit_sallow_vines_head": "Yellow Spirit Sallow Vines",

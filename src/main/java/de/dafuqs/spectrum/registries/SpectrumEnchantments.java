@@ -23,8 +23,9 @@ public class SpectrumEnchantments {
     public static final Enchantment INERTIA = new InertiaEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlot.MAINHAND); // Decreases mining speed, but increases with each mined block of the same type
     public static final Enchantment RARE_LOOT = new RareLootEnchantment(Enchantment.Rarity.RARE, EquipmentSlot.MAINHAND); // Increases drop chance of <1 loot drops
     public static final Enchantment TIGHT_GRIP = new TightGripEnchantment(Enchantment.Rarity.RARE, EquipmentSlot.MAINHAND); // Increases attack speed
-    public static final Enchantment DISARMING = new DisarmingEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlot.MAINHAND); // Drops mob equipment (and players, but way less often)
-    public static final Enchantment SNIPER = new SniperEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlot.MAINHAND); // Increases projectile speed / range
+    public static final Enchantment DISARMING = new DisarmingEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlot.MAINHAND); // Drops mob equipment on hit (and players, but way less often)
+    public static final Enchantment SNIPER = new SniperEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlot.MAINHAND); // Increases projectile speed => increased damage + range
+    public static final Enchantment DAMAGE_PROOF = new DamageProofEnchantment(Enchantment.Rarity.RARE, EquipmentSlot.MAINHAND); // ItemStacks with this enchantment are not destroyed by cactus, fire, lava, ...
 
     // TODO
     public static final Enchantment EXCAVATION = new ExcavationEnchantment(Enchantment.Rarity.RARE, EquipmentSlot.MAINHAND); // Right click to enable vein mining once
@@ -51,7 +52,6 @@ public class SpectrumEnchantments {
         if(SpectrumCommon.CONFIG.TreasureHunterEnchantmentEnabled) {
             Registry.register(Registry.ENCHANTMENT, new Identifier(SpectrumCommon.MOD_ID, "treasure_hunter"), TREASURE_HUNTER);
         }
-
         if(SpectrumCommon.CONFIG.DisarmingEnchantmentEnabled) {
             Registry.register(Registry.ENCHANTMENT, new Identifier(SpectrumCommon.MOD_ID, "disarming"), DISARMING);
         }
@@ -75,6 +75,9 @@ public class SpectrumEnchantments {
         }
         if(SpectrumCommon.CONFIG.TightGripEnchantmentEnabled) {
             Registry.register(Registry.ENCHANTMENT, new Identifier(SpectrumCommon.MOD_ID, "tight_grip"), TIGHT_GRIP);
+        }
+        if(SpectrumCommon.CONFIG.DamageProofEnchantmentEnabled) {
+            Registry.register(Registry.ENCHANTMENT, new Identifier(SpectrumCommon.MOD_ID, "damage_proof"), DAMAGE_PROOF);
         }
     }
 

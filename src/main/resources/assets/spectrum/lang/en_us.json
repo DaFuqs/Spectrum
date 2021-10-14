@@ -59,6 +59,8 @@
   "enchantment.spectrum.sniper.desc": "Increased projectile speed",
   "enchantment.spectrum.tight_grip": "Tight Grip",
   "enchantment.spectrum.tight_grip.desc": "Decreased attack cooldown",
+  "enchantment.spectrum.damage_proof": "Damage Proof",
+  "enchantment.spectrum.damage_proof.desc": "Immunity to most forms of damage (fire, lava, cactus, ...)",
 
   "death.attack.spectrum_decay": "%s made contact with the void",
 
@@ -119,6 +121,7 @@
   "text.autoconfig.Spectrum.option.RareLootEnchantmentEnabled": "Enchantment Rare Loot available",
   "text.autoconfig.Spectrum.option.SniperEnchantmentEnabled": "Enchantment Sniper available",
   "text.autoconfig.Spectrum.option.TightGripEnchantmentEnabled": "Enchantment TightGrip available",
+  "text.autoconfig.Spectrum.option.DamageProofEnchantmentEnabled": "Enchantment Damage Proof available",
 
   "text.autoconfig.Spectrum.option.TreasureHunterMaxLevel": "Max level for Treasure Hunter enchantment",
   "text.autoconfig.Spectrum.option.DisarmingMaxLevel": "Max level for Disarming enchantment",

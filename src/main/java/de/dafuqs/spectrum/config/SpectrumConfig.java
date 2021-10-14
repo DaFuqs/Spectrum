@@ -75,6 +75,7 @@ public class SpectrumConfig implements ConfigData {
     public boolean RareLootEnchantmentEnabled = true;
     public boolean SniperEnchantmentEnabled = true;
     public boolean TightGripEnchantmentEnabled = true;
+    public boolean DamageProofEnchantmentEnabled = true;
 
     public int TreasureHunterMaxLevel = 3;
     public int DisarmingMaxLevel = 4;

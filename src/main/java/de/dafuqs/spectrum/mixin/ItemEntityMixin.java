@@ -111,13 +111,24 @@ public abstract class ItemEntityMixin {
         ItemStack itemStack = ((ItemEntity)(Object) this).getStack();
 
         if(itemStack != ItemStack.EMPTY) {
-            boolean isImmune = SpectrumItemStackDamageImmunities.isDamageImmune(itemStack.getItem(), source);
+            boolean isImmune = SpectrumItemStackDamageImmunities.isDamageImmune(itemStack, source);
             if(isImmune) {
                 callbackInfoReturnable.setReturnValue(true);
             }
         }
     }
 
+    @Inject(method="Lnet/minecraft/entity/ItemEntity;isFireImmune()Z", at=@At("HEAD"), cancellable = true)
+    private void isFireProof(CallbackInfoReturnable<Boolean> callbackInfoReturnable) {
+        ItemStack itemStack = ((ItemEntity)(Object) this).getStack();
+
+        if(itemStack != ItemStack.EMPTY) {
+            boolean isImmune = SpectrumItemStackDamageImmunities.isFireDamageImmune(itemStack);
+            if(isImmune) {
+                callbackInfoReturnable.setReturnValue(true);
+            }
+        }
+    }
 
     @Inject(method= "tick()V", at=@At("TAIL"))
     public void doGravityEffects(CallbackInfo ci) {

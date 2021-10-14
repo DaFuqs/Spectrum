@@ -14,19 +14,10 @@ public class CrossbowItemMixin {
 
     @Inject(at = @At("HEAD"), method= "getSpeed(Lnet/minecraft/item/ItemStack;)F", cancellable = true)
     private static void getSpeed(ItemStack stack, CallbackInfoReturnable<Float> cir) {
-        if(EnchantmentHelper.getLevel(SpectrumEnchantments.SNIPER, stack) > 0) {
-            cir.setReturnValue(5.0F);
+        int sniperLevel = EnchantmentHelper.getLevel(SpectrumEnchantments.SNIPER, stack);
+        if(sniperLevel > 0) {
+            cir.setReturnValue(cir.getReturnValue() + 1.0F * sniperLevel);
         }
     }
-
-    // TODO: Make the shot invisible and unable to be picked up
-    //@Inject(method = "shoot(Lnet/minecraft/world/World;Lnet/minecraft/entity/LivingEntity;Lnet/minecraft/util/Hand;Lnet/minecraft/item/ItemStack;Lnet/minecraft/item/ItemStack;FZFFF)V", at = @At("HEAD"))
-    /*@ModifyVariable(method = "shoot(Lnet/minecraft/world/World;Lnet/minecraft/entity/LivingEntity;Lnet/minecraft/util/Hand;Lnet/minecraft/item/ItemStack;Lnet/minecraft/item/ItemStack;FZFFF)V", at = @At(value="INVOKE", target="Lnet/minecraft/world/ModifiableWorld;spawnEntity(Lnet/minecraft/entity/Entity;)Z"))
-    private static Entity shoot(Entity entity) {
-        if(entity instanceof ProjectileEntity projectileEntity) {
-            projectileEntity.setInvisible(true);
-        }
-        return entity;
-    }*/
 
 }

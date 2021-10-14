@@ -27,9 +27,6 @@ public class SpectrumEnchantments {
     public static final Enchantment SNIPER = new SniperEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlot.MAINHAND); // Increases projectile speed => increased damage + range
     public static final Enchantment DAMAGE_PROOF = new DamageProofEnchantment(Enchantment.Rarity.RARE, EquipmentSlot.MAINHAND); // ItemStacks with this enchantment are not destroyed by cactus, fire, lava, ...
 
-    // TODO
-    public static final Enchantment EXCAVATION = new ExcavationEnchantment(Enchantment.Rarity.RARE, EquipmentSlot.MAINHAND); // Right click to enable vein mining once
-
     public static void register() {
         if(SpectrumCommon.CONFIG.ResonanceEnchantmentEnabled) {
             Registry.register(Registry.ENCHANTMENT, new Identifier(SpectrumCommon.MOD_ID, "resonance"), RESONANCE);
@@ -54,9 +51,6 @@ public class SpectrumEnchantments {
         }
         if(SpectrumCommon.CONFIG.DisarmingEnchantmentEnabled) {
             Registry.register(Registry.ENCHANTMENT, new Identifier(SpectrumCommon.MOD_ID, "disarming"), DISARMING);
-        }
-        if(SpectrumCommon.CONFIG.ExcavationEnchantmentEnabled) {
-            Registry.register(Registry.ENCHANTMENT, new Identifier(SpectrumCommon.MOD_ID, "excavation"), EXCAVATION);
         }
         if(SpectrumCommon.CONFIG.FirstStrikeEnchantmentEnabled) {
             Registry.register(Registry.ENCHANTMENT, new Identifier(SpectrumCommon.MOD_ID, "first_strike"), FIRST_STRIKE);

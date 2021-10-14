@@ -68,7 +68,6 @@ public class SpectrumConfig implements ConfigData {
     public boolean VoidingEnchantmentEnabled = true;
     public boolean TreasureHunterEnchantmentEnabled = true;
     public boolean DisarmingEnchantmentEnabled = true;
-    public boolean ExcavationEnchantmentEnabled = true;
     public boolean FirstStrikeEnchantmentEnabled = true;
     public boolean ImprovedCriticalEnchantmentEnabled = true;
     public boolean InertiaEnchantmentEnabled = true;

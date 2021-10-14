@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.items;
+package de.dafuqs.spectrum.items.magic_items;
 
 import de.dafuqs.spectrum.Support;
 import de.dafuqs.spectrum.interfaces.InventoryInsertionAcceptor;

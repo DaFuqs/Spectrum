@@ -10,6 +10,7 @@ import de.dafuqs.spectrum.items.armor.GlowVisionHelmet;
 import de.dafuqs.spectrum.items.armor.SpectrumArmorItem;
 import de.dafuqs.spectrum.items.item_frame.InvisibleGlowItemFrameItem;
 import de.dafuqs.spectrum.items.item_frame.InvisibleItemFrameItem;
+import de.dafuqs.spectrum.items.magic_items.*;
 import de.dafuqs.spectrum.items.tools.*;
 import de.dafuqs.spectrum.registries.materials.SpectrumArmorMaterials;
 import de.dafuqs.spectrum.registries.materials.SpectrumToolMaterials;

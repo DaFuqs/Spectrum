@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.items;
+package de.dafuqs.spectrum.items.magic_items;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EnderChestInventory;

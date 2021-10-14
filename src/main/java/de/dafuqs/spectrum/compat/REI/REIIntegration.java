@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.compat.REI;
 
 import de.dafuqs.spectrum.inventories.PedestalScreen;
-import de.dafuqs.spectrum.items.NaturesStaffItem;
+import de.dafuqs.spectrum.items.magic_items.NaturesStaffItem;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.recipe.anvil_crushing.AnvilCrushingRecipe;
 import de.dafuqs.spectrum.recipe.fusion_shrine.FusionShrineRecipe;

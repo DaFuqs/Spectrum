@@ -1,0 +1,25 @@
+{
+  "type": "spectrum:fusion_shrine",
+  "time": 120,
+  "experience": 4.0,
+  "fluid": "minecraft:water",
+  "ingredients": [
+    {
+      "item": "minecraft:golden_apple"
+    },
+    {
+      "item": "spectrum:gold_block"
+    },
+    {
+      "item": "spectrum:sparklestone_block"
+    }
+  ],
+  "result" : {
+    "item": "spectrum:enchanted_golden_apple"
+  },
+  "required_advancement": "spectrum:progression/create_onyx_shard",
+  "world_conditions": [ ],
+  "start_crafting_effect": "nothing",
+  "during_crafting_effects": [ ],
+  "finish_crafting_effect": "single_visual_explosion_on_shrine"
+}

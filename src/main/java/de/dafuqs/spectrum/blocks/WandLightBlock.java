@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.blocks;
 
-import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.LightBlock;

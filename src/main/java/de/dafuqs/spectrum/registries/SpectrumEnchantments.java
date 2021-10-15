@@ -4,7 +4,6 @@ import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.enchantments.*;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.item.CrossbowItem;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 

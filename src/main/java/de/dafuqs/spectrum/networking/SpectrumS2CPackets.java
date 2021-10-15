@@ -38,6 +38,7 @@ public class SpectrumS2CPackets {
 		PARTICLE_SPAWNER
 	}
 
+	public static final Identifier PLAY_LIGHT_CREATED_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "play_light_created_particle");
 	public static final Identifier PLAY_PEDESTAL_CRAFTING_FINISHED_PARTICLE_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "play_pedestal_crafting_finished_particle");
 	public static final Identifier PLAY_ANVIL_CRAFTING_PARTICLE_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "play_anvil_crafting_finished_particle");
 	public static final Identifier CHANGE_PARTICLE_SPAWNER_SETTINGS_CLIENT_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "change_particle_spawner_settings_client");
@@ -53,6 +54,17 @@ public class SpectrumS2CPackets {
 			client.execute(() -> {
 				// Everything in this lambda is running on the render thread
 				 MinecraftClient.getInstance().player.getEntityWorld().addParticle(ParticleTypes.EXPLOSION, position.getX() + 0.5, position.getY() + 0.5, position.getZ() + 0.5, 0, 0, 0);
+			});
+		});
+
+		ClientPlayNetworking.registerGlobalReceiver(PLAY_LIGHT_CREATED_PACKET_ID, (client, handler, buf, responseSender) -> {
+			BlockPos position = buf.readBlockPos();
+			client.execute(() -> {
+				Random random = client.world.random;
+				// Everything in this lambda is running on the render thread
+				for(int i = 0; i < 20; i++) {
+					MinecraftClient.getInstance().player.getEntityWorld().addParticle(ParticleTypes.WAX_OFF, position.getX() + 0.5, position.getY() + 1, position.getZ() + 0.5, 15*(0.5 - random.nextFloat()), 15*(0.5 - random.nextFloat()), 15*(0.5 - random.nextFloat()));
+				}
 			});
 		});
 
@@ -125,6 +137,20 @@ public class SpectrumS2CPackets {
 			});
 		});
 
+	}
+
+	/**
+	 *
+	 * @param world the world of the pedestal
+	 * @param blockPos the blockpos of the pedestal
+	 */
+	public static void sendLightCreatedParticle(World world, BlockPos blockPos) {
+		PacketByteBuf buf = PacketByteBufs.create();
+		buf.writeBlockPos(blockPos);
+		// Iterate over all players tracking a position in the world and send the packet to each player
+		for (ServerPlayerEntity player : PlayerLookup.tracking((ServerWorld) world, blockPos)) {
+			ServerPlayNetworking.send(player, SpectrumS2CPackets.PLAY_LIGHT_CREATED_PACKET_ID, buf);
+		}
 	}
 
 	/**

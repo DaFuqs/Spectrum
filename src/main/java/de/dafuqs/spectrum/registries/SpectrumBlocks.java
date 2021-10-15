@@ -136,6 +136,7 @@ public class SpectrumBlocks {
 
     public static final Block AMMOLITE_BLOCK = new SpectrumGemstoneBlock(FabricBlockSettings.of(Material.AMETHYST, MapColor.DIAMOND_BLUE).hardness(1.5F).sounds(SpectrumBlockSoundGroups.AMMOLITE_BLOCK).requiresTool(), SpectrumSoundEvents.BLOCK_AMMOLITE_BLOCK_HIT, SpectrumSoundEvents.BLOCK_AMMOLITE_BLOCK_CHIME);
     public static final Block BEDROCK_STORAGE_BLOCK = new BlockWithTooltip(FabricBlockSettings.of(Material.METAL, MapColor.GRAY).requiresTool().strength(100.0F, 3600.0F), new TranslatableText("spectrum.tooltip.wither_immune"));
+    public static final Block WAND_LIGHT_BLOCK = new WandLightBlock(FabricBlockSettings.copyOf(Blocks.LIGHT).sounds(SpectrumBlockSoundGroups.WAND_LIGHT));
 
     private static final FabricBlockSettings gemOreBlockSettings = FabricBlockSettings.copyOf(Blocks.IRON_ORE).breakByTool(FabricToolTags.PICKAXES, 1).requiresTool();
     private static final UniformIntProvider gemOreExperienceProvider = UniformIntProvider.create(1, 4);
@@ -1131,6 +1132,7 @@ public class SpectrumBlocks {
 
         registerBlockWithItem("ammolite_block", AMMOLITE_BLOCK, fabricItemSettings);
         registerBlockWithItem("bedrock_storage_block", BEDROCK_STORAGE_BLOCK, fabricItemSettings);
+        registerBlock("wand_light", WAND_LIGHT_BLOCK);
     }
 
     private static void registerGemOreBlocks(FabricItemSettings fabricItemSettings) {

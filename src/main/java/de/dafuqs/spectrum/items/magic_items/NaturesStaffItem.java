@@ -21,6 +21,7 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.UseAction;
 import net.minecraft.util.hit.BlockHitResult;
+import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.registry.RegistryKey;
@@ -93,7 +94,7 @@ public class NaturesStaffItem extends Item {
     public void usageTick(World world, LivingEntity user, ItemStack stack, int remainingUseTicks) {
         // trigger the items usage action every x ticks
         if(remainingUseTicks % 10 == 0) {
-            if(MinecraftClient.getInstance().crosshairTarget.getType() == net.minecraft.util.hit.HitResult.Type.BLOCK) {
+            if(MinecraftClient.getInstance().crosshairTarget.getType() == HitResult.Type.BLOCK) {
 
                 MinecraftClient.getInstance().interactionManager.interactBlock(
                         MinecraftClient.getInstance().player,

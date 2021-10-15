@@ -1,4 +1,22 @@
 {
+  "light_staff_charging": {
+    "subtitle": "spectrum.subtitles.light_staff_charging",
+    "sounds": [
+      "spectrum:light_staff_charging"
+    ]
+  },
+  "light_staff_place": {
+    "subtitle": "spectrum.subtitles.light_staff_place",
+    "sounds": [
+      "spectrum:light_staff_place"
+    ]
+  },
+  "light_staff_break": {
+    "subtitle": "spectrum.subtitles.light_staff_break",
+    "sounds": [
+      "spectrum:light_staff_break"
+    ]
+  },
   "sucking_chest_open": {
     "subtitle": "spectrum.subtitles.block.sucking_chest.open",
     "sounds": [

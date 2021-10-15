@@ -77,6 +77,9 @@
   "spectrum.subtitles.natures_staff_use": "Harmonic melodies jingles",
   "spectrum.subtitles.block.sucking_chest.open": "Black Hole Chest opens",
   "spectrum.subtitles.block.sucking_chest.close": "Black Hole Chest closes",
+  "spectrum.subtitles.light_staff_charging": "Light Staff charges",
+  "spectrum.subtitles.light_staff_place": "Light Staff working",
+  "spectrum.subtitles.light_staff_break": "Light broken",
 
   "spectrum.toast.revelation.title": "You gained knowledge about the world",
   "spectrum.toast.revelation.text": "New things reveal themselves to you",
@@ -153,6 +156,11 @@
   "block.spectrum.spirit_sallow_heart": "Spirit Sallow Heart",
   "block.spectrum.sacred_soil": "Sacred Soil",
 
+  "item.spectrum.exchange_staff": "Exchanging Staff",
+  "item.spectrum.placement_staff": "Constructors' Staff",
+  "item.spectrum.hole_filler": "Radiance Staff",
+  "item.spectrum.light_staff": "Radiance Staff",
+  "block.spectrum.wand_light": "Spectrum Light",
   "block.spectrum.bedrock_storage_block": "Bedrock Block",
   "spectrum.tooltip.wither_immune": "§7Witherproof",
 

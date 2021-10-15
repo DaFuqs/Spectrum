@@ -156,11 +156,15 @@ public class SpectrumItems {
     public static final Item LIGHTNING_STONE = new Item(resourcesItemSettingsSixteen);
 
 	// Magical Tools
-    public static final Item GLOW_VISION_HELMET = new GlowVisionHelmet(SpectrumArmorMaterials.GLOW_VISION, EquipmentSlot.HEAD, spectrumLowNightVisionArmorItemSettings);
-    public static final Item NATURES_STAFF = new NaturesStaffItem(generalItemSettingsSingle);
     public static final EnderSpliceItem ENDER_SPLICE = new EnderSpliceItem(generalItemSettings);
     public static final Item ENDER_BAG = new EnderBagItem(generalItemSettingsSingle);
     public static final Item END_PORTAL_CRACKER = new EndPortalCrackerItem(generalUncommonItemSettings);
+    public static final Item GLOW_VISION_HELMET = new GlowVisionHelmet(SpectrumArmorMaterials.GLOW_VISION, EquipmentSlot.HEAD, spectrumLowNightVisionArmorItemSettings);
+    public static final Item NATURES_STAFF = new NaturesStaffItem(generalItemSettingsSingle);
+    public static final Item EXCHANGE_STAFF = new ExchangeStaffItem(generalItemSettingsSingle);
+    public static final Item PLACEMENT_STAFF = new PlacementStaffItem(generalItemSettingsSingle);
+    public static final Item LIGHT_STAFF = new LightStaffItem(generalItemSettingsSingle);
+    public static final Item HOLE_FILLER = new HoleFiller(generalItemSettingsSingle);
 
     // Catkin
     public static final Item VIBRANT_CYAN_CATKIN = new CatkinItem(GemstoneColor.CYAN, false, resourcesItemSettings);
@@ -318,11 +322,15 @@ public class SpectrumItems {
 	
 	public static void registerMagicalTools() {
         register("glow_vision_helmet", GLOW_VISION_HELMET);
-        register("natures_staff", NATURES_STAFF);
 		register("ender_bag", ENDER_BAG);
         register("ender_splice", ENDER_SPLICE);
         register("end_portal_cracker", END_PORTAL_CRACKER);
-	}
+        register("natures_staff", NATURES_STAFF);
+        register("exchange_staff", EXCHANGE_STAFF);
+        register("placement_staff", PLACEMENT_STAFF);
+        register("light_staff", LIGHT_STAFF);
+        register("hole_filler", HOLE_FILLER);
+    }
 	
 	public static void registerFluidBuckets() {
 		register("liquid_crystal_bucket", LIQUID_CRYSTAL_BUCKET);

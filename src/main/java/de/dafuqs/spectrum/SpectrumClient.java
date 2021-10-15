@@ -54,6 +54,7 @@ public class SpectrumClient implements ClientModInitializer {
         registerFishingRodPredicates(SpectrumItems.BEDROCK_FISHING_ROD);
         registerEnderSplicePredicates(SpectrumItems.ENDER_SPLICE);
         registerAnimatedWandPredicates(SpectrumItems.NATURES_STAFF);
+        registerAnimatedWandPredicates(SpectrumItems.LIGHT_STAFF);
 
         SpectrumBlockEntityRegistry.registerClient();
         SpectrumEntityTypes.registerClient();

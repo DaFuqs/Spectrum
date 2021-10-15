@@ -8,14 +8,14 @@
       "item": "minecraft:golden_apple"
     },
     {
-      "item": "spectrum:gold_block"
+      "item": "minecraft:gold_block"
     },
     {
       "item": "spectrum:sparklestone_block"
     }
   ],
   "result" : {
-    "item": "spectrum:enchanted_golden_apple"
+    "item": "minecraft:enchanted_golden_apple"
   },
   "required_advancement": "spectrum:progression/create_onyx_shard",
   "world_conditions": [ ],

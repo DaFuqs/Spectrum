@@ -164,7 +164,7 @@ public class SpectrumItems {
     public static final Item EXCHANGE_STAFF = new ExchangeStaffItem(generalItemSettingsSingle);
     public static final Item PLACEMENT_STAFF = new PlacementStaffItem(generalItemSettingsSingle);
     public static final Item LIGHT_STAFF = new LightStaffItem(generalItemSettingsSingle);
-    public static final Item HOLE_FILLER = new HoleFiller(generalItemSettingsSingle);
+    public static final Item BLOCK_FLOODER = new BlockFlooderItem(generalItemSettings);
 
     // Catkin
     public static final Item VIBRANT_CYAN_CATKIN = new CatkinItem(GemstoneColor.CYAN, false, resourcesItemSettings);
@@ -329,7 +329,7 @@ public class SpectrumItems {
         register("exchange_staff", EXCHANGE_STAFF);
         register("placement_staff", PLACEMENT_STAFF);
         register("light_staff", LIGHT_STAFF);
-        register("hole_filler", HOLE_FILLER);
+        register("block_flooder", BLOCK_FLOODER);
     }
 	
 	public static void registerFluidBuckets() {

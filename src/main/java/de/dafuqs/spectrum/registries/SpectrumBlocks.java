@@ -4,6 +4,7 @@ import com.google.common.collect.BiMap;
 import com.google.common.collect.EnumHashBiMap;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.*;
+import de.dafuqs.spectrum.blocks.block_flooder.BlockFlooderBlock;
 import de.dafuqs.spectrum.blocks.chests.CompactingChestBlock;
 import de.dafuqs.spectrum.blocks.chests.PrivateChestBlock;
 import de.dafuqs.spectrum.blocks.chests.RestockingChestBlock;
@@ -135,7 +136,6 @@ public class SpectrumBlocks {
 
     public static final Block AMMOLITE_BLOCK = new SpectrumGemstoneBlock(FabricBlockSettings.of(Material.AMETHYST, MapColor.DIAMOND_BLUE).hardness(1.5F).sounds(SpectrumBlockSoundGroups.AMMOLITE_BLOCK).requiresTool(), SpectrumSoundEvents.BLOCK_AMMOLITE_BLOCK_HIT, SpectrumSoundEvents.BLOCK_AMMOLITE_BLOCK_CHIME);
     public static final Block BEDROCK_STORAGE_BLOCK = new BlockWithTooltip(FabricBlockSettings.of(Material.METAL, MapColor.GRAY).requiresTool().strength(100.0F, 3600.0F), new TranslatableText("spectrum.tooltip.wither_immune"));
-    public static final Block WAND_LIGHT_BLOCK = new WandLightBlock(FabricBlockSettings.copyOf(Blocks.LIGHT).sounds(SpectrumBlockSoundGroups.WAND_LIGHT));
 
     private static final FabricBlockSettings gemOreBlockSettings = FabricBlockSettings.copyOf(Blocks.IRON_ORE).breakByTool(FabricToolTags.PICKAXES, 1).requiresTool();
     private static final UniformIntProvider gemOreExperienceProvider = UniformIntProvider.create(1, 4);
@@ -243,6 +243,10 @@ public class SpectrumBlocks {
 
     // SAPLING
     public static final Block OMINOUS_SAPLING = new OminousSaplingBlock(FabricBlockSettings.copyOf(Blocks.OAK_SAPLING).ticksRandomly());
+
+    // TECHNICAL WITHOUT CORRESPONDING ITEMS
+    public static final Block BLOCK_FLOODER = new BlockFlooderBlock(FabricBlockSettings.of(Material.STONE));
+    public static final Block WAND_LIGHT_BLOCK = new WandLightBlock(FabricBlockSettings.copyOf(Blocks.LIGHT).sounds(SpectrumBlockSoundGroups.WAND_LIGHT));
 
     // DECAY
     public static final Block FADING = new FadingBlock(FabricBlockSettings.of(SpectrumMaterial.DECAY, MapColor.BLACK).ticksRandomly().requiresTool().strength(0.5F, 0.5F), BlockTags.LEAVES, null,1,  1F);
@@ -671,7 +675,6 @@ public class SpectrumBlocks {
         registerBlockWithItem("frostbite_crystal", FROSTBITE_CRYSTAL, generalItemSettings);
         registerBlockWithItem("blazing_crystal", BLAZING_CRYSTAL, generalItemSettings);
         registerBlockWithItem("resonant_lily", RESONANT_LILY, generalItemSettings);
-        registerBlock("stuck_lightning_stone", STUCK_LIGHTNING_STONE);
         registerBlockWithItem("clover", CLOVER, resourcesItemSettings);
         registerBlockWithItem("four_leaf_clover", FOUR_LEAF_CLOVER, resourcesItemSettings);
 
@@ -680,15 +683,16 @@ public class SpectrumBlocks {
         registerBlockWithItem("mermaids_brush", MERMAIDS_BRUSH, resourcesItemSettings);
         registerBlockWithItem("ender_treasure", ENDER_TREASURE, resourcesItemSettings);
 
-        // Plants
-        registerBlockWithItem("glistering_melon", GLISTERING_MELON, generalItemSettings);
-        registerBlock("glistering_melon_stem", GLISTERING_MELON_STEM);
-        registerBlock("attached_glistering_melon_stem", ATTACHED_GLISTERING_MELON_STEM);
-
-        // Misc
-        registerBlock("deeper_down_portal", DEEPER_DOWN_PORTAL);
         registerBlockWithItem("bedrock_anvil", BEDROCK_ANVIL, generalItemSettings);
         registerBlockWithItem("cracked_end_portal_frame", CRACKED_END_PORTAL_FRAME, generalItemSettings);
+
+        // Technical Blocks without items
+        registerBlock("deeper_down_portal", DEEPER_DOWN_PORTAL);
+        registerBlock("glistering_melon_stem", GLISTERING_MELON_STEM);
+        registerBlock("attached_glistering_melon_stem", ATTACHED_GLISTERING_MELON_STEM);
+        registerBlock("stuck_lightning_stone", STUCK_LIGHTNING_STONE);
+        registerBlock("wand_light", WAND_LIGHT_BLOCK);
+        registerBlock("block_flooder", BLOCK_FLOODER);
     }
 
     private static void registerRedstone(FabricItemSettings fabricItemSettings) {
@@ -716,6 +720,8 @@ public class SpectrumBlocks {
         registerBlockWithItem("ender_hopper", ENDER_HOPPER, fabricItemSettings);
         registerBlockWithItem("ender_dropper", ENDER_DROPPER, fabricItemSettings);
         registerBlockWithItem("particle_spawner", PARTICLE_SPAWNER, fabricItemSettings);
+
+        registerBlockWithItem("glistering_melon", GLISTERING_MELON, generalItemSettings);
 
         registerBlockWithItem("lava_sponge", LAVA_SPONGE, fabricItemSettings);
         registerBlockWithItem("wet_lava_sponge", WET_LAVA_SPONGE, new WetLavaSpongeItem(WET_LAVA_SPONGE, new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).maxCount(1).recipeRemainder(LAVA_SPONGE.asItem())));
@@ -1131,7 +1137,6 @@ public class SpectrumBlocks {
 
         registerBlockWithItem("ammolite_block", AMMOLITE_BLOCK, fabricItemSettings);
         registerBlockWithItem("bedrock_storage_block", BEDROCK_STORAGE_BLOCK, fabricItemSettings);
-        registerBlock("wand_light", WAND_LIGHT_BLOCK);
     }
 
     private static void registerGemOreBlocks(FabricItemSettings fabricItemSettings) {

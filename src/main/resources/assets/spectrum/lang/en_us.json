@@ -158,11 +158,16 @@
 
   "item.spectrum.exchange_staff": "Exchanging Staff",
   "item.spectrum.placement_staff": "Constructors' Staff",
-  "item.spectrum.hole_filler": "Radiance Staff",
   "item.spectrum.light_staff": "Radiance Staff",
   "block.spectrum.wand_light": "Spectrum Light",
   "block.spectrum.bedrock_storage_block": "Bedrock Block",
   "spectrum.tooltip.wither_immune": "§7Witherproof",
+
+  "item.spectrum.block_flooder": "Block Flooder",
+  "item.spectrum.block_flooder.tooltip": "§fFills empty spaces (caves, ravines, pits…) ",
+  "item.spectrum.block_flooder.tooltip2": "§fThrow to use; Radius of 10 blocks",
+  "item.spectrum.block_flooder.tooltip3": "Takes matching blocks right out of your inventory",
+  "item.spectrum.block_flooder.tooltip4": "Alternatively uses Cobblestone",
 
   "block.spectrum.cyan_spirit_sallow_vines_head": "Cyan Spirit Sallow Vines",
   "block.spectrum.magenta_spirit_sallow_vines_head": "Magenta Spirit Sallow Vines",

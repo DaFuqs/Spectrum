@@ -246,7 +246,7 @@ public class SpectrumBlocks {
 
     // TECHNICAL WITHOUT CORRESPONDING ITEMS
     public static final Block BLOCK_FLOODER = new BlockFlooderBlock(FabricBlockSettings.of(Material.STONE));
-    public static final Block WAND_LIGHT_BLOCK = new WandLightBlock(FabricBlockSettings.copyOf(Blocks.LIGHT).sounds(SpectrumBlockSoundGroups.WAND_LIGHT));
+    public static final Block WAND_LIGHT_BLOCK = new WandLightBlock(FabricBlockSettings.copyOf(Blocks.LIGHT).sounds(SpectrumBlockSoundGroups.WAND_LIGHT).breakInstantly().breakByHand(true));
 
     // DECAY
     public static final Block FADING = new FadingBlock(FabricBlockSettings.of(SpectrumMaterial.DECAY, MapColor.BLACK).ticksRandomly().requiresTool().strength(0.5F, 0.5F), BlockTags.LEAVES, null,1,  1F);

@@ -53,14 +53,19 @@ public class BlockFlooderBlockEntity extends BlockEntity {
         if(this.ownerUUID != null) {
             nbt.putUuid("OwnerUUID", this.ownerUUID);
         }
-        nbt.putInt("SourcePositionX", this.sourcePos.getX());
-        nbt.putInt("SourcePositionY", this.sourcePos.getY());
-        nbt.putInt("SourcePositionZ", this.sourcePos.getZ());
+        if(this.sourcePos != null) {
+            nbt.putInt("SourcePositionX", this.sourcePos.getX());
+            nbt.putInt("SourcePositionY", this.sourcePos.getY());
+            nbt.putInt("SourcePositionZ", this.sourcePos.getZ());
+        }
         return nbt;
     }
 
 
     public BlockPos getSourcePos() {
+        if(this.sourcePos == null) {
+            this.sourcePos = this.pos;
+        }
         return this.sourcePos;
     }
 

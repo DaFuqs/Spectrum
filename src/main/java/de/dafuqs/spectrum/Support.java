@@ -4,6 +4,7 @@ import de.dafuqs.spectrum.items.PigmentItem;
 import de.dafuqs.spectrum.progression.ClientAdvancements;
 import net.minecraft.advancement.Advancement;
 import net.minecraft.advancement.PlayerAdvancementTracker;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.DyeItem;
@@ -17,13 +18,23 @@ import net.minecraft.util.Identifier;
 import org.apache.logging.log4j.Level;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 
 public class Support {
 
-    public static boolean hasTag(@NotNull BlockState type, @NotNull Tag<net.minecraft.block.Block> tag) {
-        return tag.contains(type.getBlock());
+    public static boolean hasTag(@NotNull BlockState blockState, @NotNull Tag<Block> tag) {
+        return tag.contains(blockState.getBlock());
+    }
+
+    public static Optional<Tag> getFirstMatchingTag(@NotNull Block block, @NotNull List<Tag<Block>> tags) {
+        for(Tag tag : tags) {
+            if(tag.contains(block)) {
+                return Optional.of(tag);
+            }
+        }
+        return Optional.empty();
     }
 
     public static int getWholeIntFromFloatWithChance(float f, @NotNull Random random) {

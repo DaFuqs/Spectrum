@@ -35,8 +35,9 @@ public class SpectrumItems {
     public static FabricItemSettings generalItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).maxCount(64);
     public static FabricItemSettings generalItemSettingsSingle = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).maxCount(1);
     public static FabricItemSettings generalUncommonItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).maxCount(64).rarity(Rarity.UNCOMMON);
-    public static FabricItemSettings spectrumRareItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).rarity(Rarity.RARE).maxCount(64);
-    public static FabricItemSettings spectrumRareItemSettingsSingle = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).rarity(Rarity.RARE).maxCount(1);
+    public static FabricItemSettings generalUncommonItemSettingsSingle = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).rarity(Rarity.UNCOMMON).maxCount(1);
+    public static FabricItemSettings generalRareItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).rarity(Rarity.RARE).maxCount(64);
+    public static FabricItemSettings generalRareItemSettingsSingle = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).rarity(Rarity.RARE).maxCount(1);
     public static FabricItemSettings resourcesItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_RESOURCES).maxCount(64);
     public static FabricItemSettings resourcesItemSettingsSixteen = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_RESOURCES).maxCount(16);
     public static FabricItemSettings resourcesUncommonItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_RESOURCES).rarity(Rarity.UNCOMMON).maxCount(64);
@@ -119,12 +120,13 @@ public class SpectrumItems {
     public static final Item BEDROCK_LEGGINGS = new SpectrumArmorItem(BEDROCK_ARMOR_MATERIAL, EquipmentSlot.LEGS, spectrumBedrockArmorItemSettings);
     public static final Item BEDROCK_BOOTS = new SpectrumArmorItem(BEDROCK_ARMOR_MATERIAL, EquipmentSlot.FEET, spectrumBedrockArmorItemSettings);
 
-    // Emergency Armor
+    // Armor
     public static final ArmorMaterial EMERGENCY_ARMOR_MATERIAL = SpectrumArmorMaterials.EMERGENCY;
     public static final Item EMERGENCY_HELMET = new EmergencyArmorItem(EMERGENCY_ARMOR_MATERIAL, EquipmentSlot.HEAD, spectrumEmergencyArmorItemSettings);
     public static final Item EMERGENCY_CHESTPLATE = new EmergencyArmorItem(EMERGENCY_ARMOR_MATERIAL, EquipmentSlot.CHEST, spectrumEmergencyArmorItemSettings);
     public static final Item EMERGENCY_LEGGINGS = new EmergencyArmorItem(EMERGENCY_ARMOR_MATERIAL, EquipmentSlot.LEGS, spectrumEmergencyArmorItemSettings);
     public static final Item EMERGENCY_BOOTS = new EmergencyArmorItem(EMERGENCY_ARMOR_MATERIAL, EquipmentSlot.FEET, spectrumEmergencyArmorItemSettings);
+    public static final Item GLOW_VISION_HELMET = new GlowVisionHelmet(SpectrumArmorMaterials.GLOW_VISION, EquipmentSlot.HEAD, spectrumLowNightVisionArmorItemSettings);
     
     // Decay drops
     public static final Item VEGETAL = new Item(resourcesItemSettings);
@@ -156,15 +158,14 @@ public class SpectrumItems {
     public static final Item LIGHTNING_STONE = new Item(resourcesItemSettingsSixteen);
 
 	// Magical Tools
-    public static final EnderSpliceItem ENDER_SPLICE = new EnderSpliceItem(generalItemSettings);
     public static final Item ENDER_BAG = new EnderBagItem(generalItemSettingsSingle);
-    public static final Item END_PORTAL_CRACKER = new EndPortalCrackerItem(generalUncommonItemSettings);
-    public static final Item GLOW_VISION_HELMET = new GlowVisionHelmet(SpectrumArmorMaterials.GLOW_VISION, EquipmentSlot.HEAD, spectrumLowNightVisionArmorItemSettings);
-    public static final Item NATURES_STAFF = new NaturesStaffItem(generalItemSettingsSingle);
-    public static final Item EXCHANGE_STAFF = new ExchangeStaffItem(generalItemSettingsSingle);
-    public static final Item PLACEMENT_STAFF = new PlacementStaffItem(generalItemSettingsSingle);
-    public static final Item LIGHT_STAFF = new LightStaffItem(generalItemSettingsSingle);
-    public static final Item BLOCK_FLOODER = new BlockFlooderItem(generalItemSettings);
+    public static final EnderSpliceItem ENDER_SPLICE = new EnderSpliceItem(generalUncommonItemSettings);
+    public static final Item NATURES_STAFF = new NaturesStaffItem(generalUncommonItemSettingsSingle);
+    public static final Item EXCHANGE_STAFF = new ExchangeStaffItem(generalUncommonItemSettingsSingle);
+    public static final Item PLACEMENT_STAFF = new PlacementStaffItem(generalUncommonItemSettingsSingle);
+    public static final Item LIGHT_STAFF = new LightStaffItem(generalUncommonItemSettingsSingle);
+    public static final Item BLOCK_FLOODER = new BlockFlooderItem(generalUncommonItemSettingsSingle);
+    public static final Item END_PORTAL_CRACKER = new EndPortalCrackerItem(generalRareItemSettings);
 
     // Catkin
     public static final Item VIBRANT_CYAN_CATKIN = new CatkinItem(GemstoneColor.CYAN, false, resourcesItemSettings);
@@ -180,8 +181,8 @@ public class SpectrumItems {
     public static final Item LUCID_WHITE_CATKIN = new CatkinItem(GemstoneColor.WHITE, true, resourcesUncommonItemSettings);
 
     // Misc
-	public static final Item MUSIC_DISC_SPECTRUM_THEME = new SpectrumMusicDiscItem(1, SpectrumSoundEvents.SPECTRUM_THEME, spectrumRareItemSettingsSingle);
-    public static final Item SPAWNER = new Spawner(Blocks.SPAWNER, spectrumRareItemSettingsSingle);
+	public static final Item MUSIC_DISC_SPECTRUM_THEME = new SpectrumMusicDiscItem(1, SpectrumSoundEvents.SPECTRUM_THEME, generalRareItemSettingsSingle);
+    public static final Item SPAWNER = new Spawner(Blocks.SPAWNER, generalRareItemSettingsSingle);
     public static final Item GLISTERING_MELON_SEEDS = new AliasedBlockItem(SpectrumBlocks.GLISTERING_MELON_STEM, generalItemSettings);
     public static final Item INVISIBLE_ITEM_FRAME = new InvisibleItemFrameItem(SpectrumEntityTypes.INVISIBLE_ITEM_FRAME, generalItemSettings);
     public static final Item INVISIBLE_GLOW_ITEM_FRAME = new InvisibleGlowItemFrameItem(SpectrumEntityTypes.INVISIBLE_GLOW_ITEM_FRAME, generalItemSettings);
@@ -304,6 +305,8 @@ public class SpectrumItems {
         register("emergency_chestplate", EMERGENCY_CHESTPLATE);
         register("emergency_leggings", EMERGENCY_LEGGINGS);
         register("emergency_boots", EMERGENCY_BOOTS);
+
+        register("glow_vision_helmet", GLOW_VISION_HELMET);
 		
         register("bedrock_pickaxe", BEDROCK_PICKAXE);
         register("bedrock_axe", BEDROCK_AXE);
@@ -321,7 +324,6 @@ public class SpectrumItems {
 	}
 	
 	public static void registerMagicalTools() {
-        register("glow_vision_helmet", GLOW_VISION_HELMET);
 		register("ender_bag", ENDER_BAG);
         register("ender_splice", ENDER_SPLICE);
         register("end_portal_cracker", END_PORTAL_CRACKER);

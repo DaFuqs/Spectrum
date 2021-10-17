@@ -4,8 +4,7 @@ import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import net.minecraft.block.Blocks;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.particle.ParticleEffect;
-import net.minecraft.particle.ParticleTypes;
+import net.minecraft.particle.ParticleType;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeSerializer;
@@ -24,15 +23,17 @@ public class AnvilCrushingRecipe implements Recipe<Inventory> {
     protected final float crushedItemsPerPointOfDamage;
     protected final float experience;
     protected final Identifier particleEffect;
+    protected final int particleCount;
     protected final Identifier soundEvent;
 
-    public AnvilCrushingRecipe(Identifier id, Ingredient inputIngredient, ItemStack outputItemStack, float crushedItemsPerPointOfDamage, float experience, Identifier particleEffectIdentifier, Identifier soundEventIdentifier) {
+    public AnvilCrushingRecipe(Identifier id, Ingredient inputIngredient, ItemStack outputItemStack, float crushedItemsPerPointOfDamage, float experience, Identifier particleEffectIdentifier, int particleCount, Identifier soundEventIdentifier) {
         this.id = id;
         this.inputIngredient = inputIngredient;
         this.outputItemStack = outputItemStack;
         this.crushedItemsPerPointOfDamage = crushedItemsPerPointOfDamage;
         this.experience = experience;
         this.particleEffect = particleEffectIdentifier;
+        this.particleCount = particleCount;
         this.soundEvent = soundEventIdentifier;
     }
 
@@ -88,9 +89,12 @@ public class AnvilCrushingRecipe implements Recipe<Inventory> {
         return Registry.SOUND_EVENT.get(soundEvent);
     }
 
-    public ParticleEffect getParticleEffect() {
-        return ParticleTypes.EFFECT; //TODO: use and make customizable
-        //return Registry.E.get(particleEffect);
+    public Identifier getParticleEffectIdentifier() {
+        return particleEffect;
+    }
+
+    public int getParticleCount() {
+        return particleCount;
     }
 
     @Override

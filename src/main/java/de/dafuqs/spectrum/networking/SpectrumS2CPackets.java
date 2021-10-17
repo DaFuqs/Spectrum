@@ -21,11 +21,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.particle.ItemStackParticleEffect;
+import net.minecraft.particle.ParticleEffect;
+import net.minecraft.particle.ParticleType;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 
@@ -40,7 +43,7 @@ public class SpectrumS2CPackets {
 
 	public static final Identifier PLAY_LIGHT_CREATED_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "play_light_created_particle");
 	public static final Identifier PLAY_PEDESTAL_CRAFTING_FINISHED_PARTICLE_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "play_pedestal_crafting_finished_particle");
-	public static final Identifier PLAY_ANVIL_CRAFTING_PARTICLE_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "play_anvil_crafting_finished_particle");
+	public static final Identifier PLAY_PARTICLE_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "play_anvil_crafting_finished_particle");
 	public static final Identifier CHANGE_PARTICLE_SPAWNER_SETTINGS_CLIENT_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "change_particle_spawner_settings_client");
 	public static final Identifier INITIATE_ITEM_TRANSFER = new Identifier(SpectrumCommon.MOD_ID, "initiate_item_transfer");
 	public static final Identifier INITIATE_WIRELESS_REDSTONE_TRANSMISSION = new Identifier(SpectrumCommon.MOD_ID, "initiate_wireless_redstone_transmission");
@@ -49,12 +52,18 @@ public class SpectrumS2CPackets {
 
 	@Environment(EnvType.CLIENT)
 	public static void registerS2CReceivers() {
-		ClientPlayNetworking.registerGlobalReceiver(PLAY_ANVIL_CRAFTING_PARTICLE_PACKET_ID, (client, handler, buf, responseSender) -> {
+		ClientPlayNetworking.registerGlobalReceiver(PLAY_PARTICLE_PACKET_ID, (client, handler, buf, responseSender) -> {
 			BlockPos position = buf.readBlockPos();
-			client.execute(() -> {
-				// Everything in this lambda is running on the render thread
-				 MinecraftClient.getInstance().player.getEntityWorld().addParticle(ParticleTypes.EXPLOSION, position.getX() + 0.5, position.getY() + 0.5, position.getZ() + 0.5, 0, 0, 0);
-			});
+			ParticleType<?> particleType = Registry.PARTICLE_TYPE.get(buf.readIdentifier());
+			int amount = buf.readInt();
+			if(particleType instanceof ParticleEffect particleEffect) {
+				client.execute(() -> {
+					// Everything in this lambda is running on the render thread
+					for(int i = 0; i < amount; i++) {
+						MinecraftClient.getInstance().player.getEntityWorld().addParticle(particleEffect, position.getX() + 0.5, position.getY() + 0.5, position.getZ() + 0.5, 0, 0, 0);
+					}
+				});
+			}
 		});
 
 		ClientPlayNetworking.registerGlobalReceiver(PLAY_LIGHT_CREATED_PACKET_ID, (client, handler, buf, responseSender) -> {
@@ -140,9 +149,36 @@ public class SpectrumS2CPackets {
 	}
 
 	/**
+	 * Play anvil crafting particle effect
+	 * @param world the world of the pedestal
+	 * @param position the pos of the particles
+	 * @param particleEffectIdentifier The particle effect identifier to play
+	 */
+	public static void playParticle(ServerWorld world, BlockPos position, Identifier particleEffectIdentifier, int amount) {
+		PacketByteBuf buf = PacketByteBufs.create();
+		buf.writeBlockPos(position);
+		buf.writeIdentifier(particleEffectIdentifier);
+		buf.writeInt(amount);
+		// Iterate over all players tracking a position in the world and send the packet to each player
+		for (ServerPlayerEntity player : PlayerLookup.tracking(world, position)) {
+			ServerPlayNetworking.send(player, SpectrumS2CPackets.PLAY_PARTICLE_PACKET_ID, buf);
+		}
+	}
+
+	/**
+	 * Play anvil crafting particle effect
+	 * @param world the world of the pedestal
+	 * @param position the pos of the particles
+	 * @param particleEffect The particle effect to play
+	 */
+	public static void playParticle(ServerWorld world, BlockPos position, ParticleType particleEffect, int amount) {
+		playParticle(world, position, Registry.PARTICLE_TYPE.getId(particleEffect), amount);
+	}
+
+	/**
 	 *
 	 * @param world the world of the pedestal
-	 * @param blockPos the blockpos of the pedestal
+	 * @param blockPos the blockpos of the newly created light
 	 */
 	public static void sendLightCreatedParticle(World world, BlockPos blockPos) {
 		PacketByteBuf buf = PacketByteBufs.create();

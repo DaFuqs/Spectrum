@@ -29,10 +29,15 @@ public class AnvilCrushingRecipeSerializer<T extends AnvilCrushingRecipe> implem
         String particleEffectString = JsonHelper.getString(jsonObject, "particleEffectIdentifier");
         Identifier particleEffectIdentifier = new Identifier(particleEffectString);
 
+        int particleCount = 1;
+        if(JsonHelper.hasNumber(jsonObject, "particleCount")) {
+            particleCount = JsonHelper.getInt(jsonObject, "particleCount");
+        }
+
         String soundEventString = JsonHelper.getString(jsonObject, "soundEventIdentifier");
         Identifier soundEventIdentifier = new Identifier(soundEventString);
 
-        return this.recipeFactory.create(identifier, ingredient, outputItemStack, crushedItemsPerPointOfDamage, experience, particleEffectIdentifier, soundEventIdentifier);
+        return this.recipeFactory.create(identifier, ingredient, outputItemStack, crushedItemsPerPointOfDamage, experience, particleEffectIdentifier, particleCount, soundEventIdentifier);
     }
 
     @Override
@@ -42,8 +47,9 @@ public class AnvilCrushingRecipeSerializer<T extends AnvilCrushingRecipe> implem
         float crushedItemsPerPointOfDamage = packetByteBuf.readFloat();
         float experience = packetByteBuf.readFloat();
         Identifier particleEffectIdentifier = packetByteBuf.readIdentifier();
+        int particleCount = packetByteBuf.readInt();
         Identifier soundEventIdentifier = packetByteBuf.readIdentifier();
-        return this.recipeFactory.create(identifier, ingredient, outputItemStack, crushedItemsPerPointOfDamage, experience, particleEffectIdentifier, soundEventIdentifier);
+        return this.recipeFactory.create(identifier, ingredient, outputItemStack, crushedItemsPerPointOfDamage, experience, particleEffectIdentifier, particleCount, soundEventIdentifier);
     }
 
     @Override
@@ -53,11 +59,12 @@ public class AnvilCrushingRecipeSerializer<T extends AnvilCrushingRecipe> implem
         packetByteBuf.writeFloat(anvilCrushingRecipe.crushedItemsPerPointOfDamage);
         packetByteBuf.writeFloat(anvilCrushingRecipe.experience);
         packetByteBuf.writeIdentifier(anvilCrushingRecipe.particleEffect);
+        packetByteBuf.writeInt(anvilCrushingRecipe.particleCount);
         packetByteBuf.writeIdentifier(anvilCrushingRecipe.soundEvent);
     }
 
     public interface RecipeFactory<T extends AnvilCrushingRecipe> {
-        T create(Identifier id, Ingredient inputIngredient, ItemStack outputItemStack, float crushedItemsPerPointOfDamage, float experience, Identifier particleEffectIdentifier, Identifier soundEventIdentifier);
+        T create(Identifier id, Ingredient inputIngredient, ItemStack outputItemStack, float crushedItemsPerPointOfDamage, float experience, Identifier particleEffectIdentifier, int particleCount, Identifier soundEventIdentifier);
     }
 
 }

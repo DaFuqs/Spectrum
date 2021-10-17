@@ -9,6 +9,7 @@
     "item": "spectrum:quitoxic_powder",
     "count": 2
   },
-  "particleEffectIdentifier": "cloud",
+  "particleEffectIdentifier": "witch",
+  "particleCount": 10,
   "soundEventIdentifier": "block.grass.break"
 }

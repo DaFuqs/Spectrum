@@ -9,6 +9,6 @@
     "item": "spectrum:scarlet_fragments",
     "count": 8
   },
-  "particleEffectIdentifier": "cloud",
+  "particleEffectIdentifier": "explosion",
   "soundEventIdentifier": "block.glass.break"
 }

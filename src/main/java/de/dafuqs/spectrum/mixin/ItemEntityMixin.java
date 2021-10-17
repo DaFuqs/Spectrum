@@ -7,17 +7,12 @@ import de.dafuqs.spectrum.networking.SpectrumS2CPackets;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.recipe.anvil_crushing.AnvilCrushingRecipe;
 import de.dafuqs.spectrum.registries.SpectrumItemStackDamageImmunities;
-import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
-import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
-import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ExperienceOrbEntity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.PacketByteBuf;
-import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
@@ -88,15 +83,7 @@ public abstract class ItemEntityMixin {
                     float randomPitch = 0.9F + world.getRandom().nextFloat() * 0.2F;
                     world.playSound(null, position.x, position.y, position.z, soundEvent, SoundCategory.PLAYERS, randomVolume, randomPitch);
 
-                    // Particle Effect
-                    PacketByteBuf buf = PacketByteBufs.create();
-                    BlockPos particleBlockPos = new BlockPos(position.x, position.y, position.z);
-                    buf.writeBlockPos(particleBlockPos);
-                    // Iterate over all players tracking a position in the world and send the packet to each player
-                    for (ServerPlayerEntity player : PlayerLookup.tracking((ServerWorld) world, particleBlockPos)) {
-                        ServerPlayNetworking.send(player, SpectrumS2CPackets.PLAY_ANVIL_CRAFTING_PARTICLE_PACKET_ID, buf);
-                    }
-
+                    SpectrumS2CPackets.playParticle((ServerWorld) world, new BlockPos(position), recipe.getParticleEffectIdentifier(), recipe.getParticleCount());
                 }
 
                 // prevent the source itemStack taking damage.

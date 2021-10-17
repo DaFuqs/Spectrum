@@ -1,10 +1,10 @@
 {
-  "name": "Nature's Staff",
-  "advancement": "spectrum:progression/unlock_natures_staff",
+  "name": "Block Flooder",
+  "advancement": "spectrum:progression/unlock_block_flooder",
   "icon": "spectrum:natures_staff",
   "category": "spectrum:magical_items_category",
   "extra_recipe_mappings": {
-    "spectrum:natures_staff": 1
+    "spectrum:block_flooder": 1
   },
   "pages": [
     {
@@ -13,7 +13,7 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe": "spectrum:pedestal/tier2/natures_staff",
+      "recipe": "spectrum:pedestal/tier2/block_flooder",
       "text": "TODO"
     }
   ]

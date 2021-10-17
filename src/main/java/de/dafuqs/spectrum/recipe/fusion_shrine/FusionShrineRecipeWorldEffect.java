@@ -1,13 +1,10 @@
 package de.dafuqs.spectrum.recipe.fusion_shrine;
 
 import de.dafuqs.spectrum.networking.SpectrumS2CPackets;
-import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
-import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
-import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LightningEntity;
-import net.minecraft.network.PacketByteBuf;
-import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.particle.ParticleEffect;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
@@ -58,27 +55,11 @@ public enum FusionShrineRecipeWorldEffect {
             }
             case VISUAL_EXPLOSIONS_ON_SHRINE -> {
                 if (world.getRandom().nextFloat() < 0.1) {
-                    // TODO: dedub from ItemEntityMixin
-                    // Particle Effect
-                    PacketByteBuf buf = PacketByteBufs.create();
-                    BlockPos particleBlockPos = new BlockPos(shrinePos.getX(), shrinePos.getY() + 1, shrinePos.getZ());
-                    buf.writeBlockPos(particleBlockPos);
-                    // Iterate over all players tracking a position in the world and send the packet to each player
-                    for (ServerPlayerEntity player : PlayerLookup.tracking(world, particleBlockPos)) {
-                        ServerPlayNetworking.send(player, SpectrumS2CPackets.PLAY_ANVIL_CRAFTING_PARTICLE_PACKET_ID, buf);
-                    }
+                    SpectrumS2CPackets.playParticle(world, shrinePos.up(), ParticleTypes.EXPLOSION, 1);
                 }
             }
             case SINGLE_VISUAL_EXPLOSION_ON_SHRINE -> {
-                // TODO: dedub from ItemEntityMixin
-                // Particle Effect
-                PacketByteBuf buf = PacketByteBufs.create();
-                BlockPos particleBlockPos = new BlockPos(shrinePos.getX(), shrinePos.getY(), shrinePos.getZ());
-                buf.writeBlockPos(particleBlockPos);
-                // Iterate over all players tracking a position in the world and send the packet to each player
-                for (ServerPlayerEntity player : PlayerLookup.tracking(world, particleBlockPos)) {
-                    ServerPlayNetworking.send(player, SpectrumS2CPackets.PLAY_ANVIL_CRAFTING_PARTICLE_PACKET_ID, buf);
-                }
+                SpectrumS2CPackets.playParticle(world, shrinePos, ParticleTypes.EXPLOSION, 1);
             }
         }
     }

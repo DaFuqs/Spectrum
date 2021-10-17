@@ -9,6 +9,7 @@
     "item": "spectrum:paletur_fragments",
     "count": 8
   },
-  "particleEffectIdentifier": "cloud",
+  "particleEffectIdentifier": "enchanted_hit",
+  "particleCount": 10,
   "soundEventIdentifier": "block.glass.break"
 }

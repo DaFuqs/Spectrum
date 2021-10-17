@@ -9,6 +9,6 @@
     "item": "spectrum:amethyst_powder",
     "count": 2
   },
-  "particleEffectIdentifier": "cloud",
+  "particleEffectIdentifier": "explosion",
   "soundEventIdentifier": "block.small_amethyst_bud.break"
 }

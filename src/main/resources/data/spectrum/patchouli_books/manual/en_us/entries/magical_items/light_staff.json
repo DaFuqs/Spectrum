@@ -1,10 +1,10 @@
 {
-  "name": "Nature's Staff",
-  "advancement": "spectrum:progression/unlock_natures_staff",
+  "name": "Radiance Staff",
+  "advancement": "spectrum:midgame/unlock_light_staff",
   "icon": "spectrum:natures_staff",
   "category": "spectrum:magical_items_category",
   "extra_recipe_mappings": {
-    "spectrum:natures_staff": 1
+    "spectrum:light_staff": 1
   },
   "pages": [
     {
@@ -13,7 +13,7 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe": "spectrum:pedestal/tier2/natures_staff",
+      "recipe": "spectrum:pedestal/tier2/light_staff",
       "text": "TODO"
     }
   ]

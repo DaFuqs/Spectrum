@@ -9,6 +9,7 @@
     "item": "minecraft:blaze_powder",
     "count": 4
   },
-  "particleEffectIdentifier": "cloud",
+  "particleEffectIdentifier": "lava",
+  "particleCount": 3,
   "soundEventIdentifier": "block.stone.break"
 }

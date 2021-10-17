@@ -82,7 +82,7 @@
       "type": "patchouli:spotlight",
       "advancement": "spectrum:hidden/collect_pigment/collect_light_blue_pigment",
       "item": "spectrum:light_blue_pigment",
-      "text": "Looking at this color, you feel a sense of optimism, but also departure.$(br2)$(c_light_blue)Light Blue$() represents $(italic)Luck$() and $(italic)Piece$()."
+      "text": "Looking at this color, you feel a sense of optimism, but also departure.$(br2)$(c_light_blue)Light Blue$() represents $(italic)Luck$() and $(italic)Peace()."
     },
     {
       "type": "patchouli:spotlight",
@@ -130,7 +130,7 @@
       "type": "patchouli:spotlight",
       "advancement": "spectrum:hidden/collect_pigment/collect_white_pigment",
       "item": "spectrum:white_pigment",
-      "text": "You can not exactly put it into words. This pigment radiates something unspeakably wonderful.$(br2)$(c_white)White$() represents $(italic)LIFE$(), $(italic)Light$() and $(italic)Purity$() ."
+      "text": "You can not exactly put it into words. This pigment radiates something unspeakably wonderful.$(br2)$(c_white)White$() represents $(italic)LIFE$(), $(italic)Light$() and $(italic)Purity$()."
     },
     {
       "type": "patchouli:spotlight",

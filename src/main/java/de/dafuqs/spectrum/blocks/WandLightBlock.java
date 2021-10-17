@@ -1,10 +1,13 @@
 package de.dafuqs.spectrum.blocks;
 
+import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.LightBlock;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
@@ -28,9 +31,13 @@ public class WandLightBlock extends LightBlock {
     public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
         super.randomDisplayTick(state, world, pos, random);
         if(world.isClient && MinecraftClient.getInstance().player.getMainHandStack().isOf(SpectrumItems.LIGHT_STAFF) && random.nextFloat() > 0.3F) {
-            world.addParticle(ParticleTypes.WAX_OFF, (double) pos.getX() + 0.2 + random.nextFloat() * 0.6, (double) pos.getY() + 0.2 + random.nextFloat() * 0.6, (double) pos.getZ() + 0.2 + random.nextFloat() * 0.6, 0.0D, 0.1D, 0.0D);
+            world.addParticle(SpectrumParticleTypes.SPARKLESTONE_SPARKLE_TINY, (double) pos.getX() + 0.2 + random.nextFloat() * 0.6, (double) pos.getY() + 0.2 + random.nextFloat() * 0.6, (double) pos.getZ() + 0.2 + random.nextFloat() * 0.6, 0.0D, 0.1D, 0.0D);
 
         }
+    }
+
+    public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state) {
+        return new ItemStack(SpectrumItems.LIGHT_STAFF);
     }
 
 }

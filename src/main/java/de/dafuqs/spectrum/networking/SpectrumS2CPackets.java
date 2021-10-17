@@ -63,7 +63,7 @@ public class SpectrumS2CPackets {
 				Random random = client.world.random;
 				// Everything in this lambda is running on the render thread
 				for(int i = 0; i < 20; i++) {
-					MinecraftClient.getInstance().player.getEntityWorld().addParticle(ParticleTypes.WAX_OFF, position.getX() + 0.5, position.getY() + 1, position.getZ() + 0.5, 15*(0.5 - random.nextFloat()), 15*(0.5 - random.nextFloat()), 15*(0.5 - random.nextFloat()));
+					MinecraftClient.getInstance().player.getEntityWorld().addParticle(SpectrumParticleTypes.SPARKLESTONE_SPARKLE, position.getX() + 0.5, position.getY() + 1, position.getZ() + 0.5, 15*(0.5 - random.nextFloat()), 15*(0.5 - random.nextFloat()), 15*(0.5 - random.nextFloat()));
 				}
 			});
 		});

@@ -17,7 +17,7 @@
   "result" : {
     "item": "minecraft:enchanted_golden_apple"
   },
-  "required_advancement": "spectrum:progression/create_onyx_shard",
+  "required_advancement": "spectrum:create_onyx_shard",
   "world_conditions": [ ],
   "start_crafting_effect": "nothing",
   "during_crafting_effects": [ ],

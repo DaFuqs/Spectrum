@@ -3,14 +3,14 @@
   "time": 1200,
   "tier": "simple",
   "cyan": 0,
-  "magenta": 6,
-  "yellow": 2,
+  "magenta": 0,
+  "yellow": 8,
   "white": 0,
   "black": 0,
   "experience": 2.0,
   "pattern": [
-    " BL",
-    " GB",
+    " BG",
+    " SB",
     "S  "
   ],
   "key": {
@@ -18,18 +18,15 @@
       "item": "minecraft:stick"
     },
     "G": {
-      "item": "minecraft:glow_lichen"
-    },
-    "L": {
-      "item": "spectrum:lime_pigment"
+      "item": "spectrum:sparklestone_gem"
     },
     "B": {
-      "item": "spectrum:brown_pigment"
+      "item": "spectrum:blue_pigment"
     }
   },
   "result" : {
-    "item": "spectrum:natures_staff",
+    "item": "spectrum:light_staff",
     "count": 1
   },
-  "required_advancements": ["spectrum:progression/unlock_natures_staff"]
+  "required_advancements": ["spectrum:progression/unlock_light_staff"]
 }

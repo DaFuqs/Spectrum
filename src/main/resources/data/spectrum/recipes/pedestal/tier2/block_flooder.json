@@ -1,0 +1,32 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 600,
+  "tier": "simple",
+  "cyan": 6,
+  "magenta": 2,
+  "yellow": 0,
+  "white": 0,
+  "black": 0,
+  "experience": 2.0,
+  "pattern": [
+    "GCG",
+    "CMC",
+    "GCG"
+  ],
+  "key": {
+    "M": {
+      "item": "spectrum:mermaids_gem"
+    },
+    "C": {
+      "item": "spectrum:cyan_pigment"
+    },
+    "G": {
+      "item": "spectrum:green_pigment"
+    }
+  },
+  "result" : {
+    "item": "spectrum:block_flooder",
+    "count": 4
+  },
+  "required_advancements": ["spectrum:progression/unlock_block_flooder"]
+}

@@ -10,14 +10,18 @@ import de.dafuqs.spectrum.progression.advancement.HasAdvancementCriterion;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.recipe.fusion_shrine.FusionShrineRecipe;
 import de.dafuqs.spectrum.recipe.pedestal.PedestalCraftingRecipe;
+import io.netty.util.internal.StringUtil;
 import net.minecraft.advancement.Advancement;
 import net.minecraft.advancement.AdvancementCriterion;
 import net.minecraft.advancement.criterion.CriterionConditions;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.util.Identifier;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.Level;
 
+import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
 
@@ -34,6 +38,17 @@ public class ProgressionSanityCommand {
     private static int execute(ServerCommandSource source) {
         SpectrumCommon.log(Level.INFO, "##### SANITY CHECK START ######");
 
+        // Build an empty hashmap of hashmaps for counting used gem colors for each tier
+        // This info can be used to balance the usage times a bit
+        HashMap<PedestalRecipeTier, HashMap<GemstoneColor, Integer>> usedColorsForEachTier = new HashMap<>();
+        for (PedestalRecipeTier pedestalRecipeTier : PedestalRecipeTier.values()) {
+            HashMap<GemstoneColor, Integer> colorMap = new HashMap<>();
+            for(GemstoneColor gemstoneColor : GemstoneColor.values()) {
+                colorMap.put(gemstoneColor, 0);
+            }
+            usedColorsForEachTier.put(pedestalRecipeTier, colorMap);
+        }
+
         // pedestal recipes that use gemstone powder not available at that tier yet
         for(PedestalCraftingRecipe pedestalRecipe : SpectrumCommon.minecraftServer.getRecipeManager().listAllOfType(SpectrumRecipeTypes.PEDESTAL)) {
             if(pedestalRecipe.getTier() == PedestalRecipeTier.BASIC || pedestalRecipe.getTier() == PedestalRecipeTier.SIMPLE) {
@@ -48,6 +63,19 @@ public class ProgressionSanityCommand {
                     SpectrumCommon.log(Level.WARN, "[SANITY: Pedestal Recipe Ingredients] Pedestal recipe '" + pedestalRecipe.getId() + "' of tier '" + pedestalRecipe.getTier() +  "' is using moonstone powder as input! Players will not have access to Moonstone at that tier");
                 }
             }
+            for(Map.Entry<GemstoneColor, Integer> gemstoneDustInput : pedestalRecipe.getGemstoneDustInputs().entrySet()) {
+                usedColorsForEachTier.get(pedestalRecipe.getTier()).put(gemstoneDustInput.getKey(), usedColorsForEachTier.get(pedestalRecipe.getTier()).get(gemstoneDustInput.getKey()) + gemstoneDustInput.getValue());
+            }
+        }
+
+        for(PedestalRecipeTier pedestalRecipeTier : PedestalRecipeTier.values()) {
+            HashMap<GemstoneColor, Integer> entry = usedColorsForEachTier.get(pedestalRecipeTier);
+            SpectrumCommon.log(Level.INFO, "[SANITY: Pedestal Recipe Gemstone Usages] Gemstone Powder for tier " + StringUtils.leftPad(pedestalRecipeTier.toString(), 8) +
+                    ": C:" + StringUtils.leftPad(entry.get(GemstoneColor.CYAN).toString(), 3) +
+                    " M:" + StringUtils.leftPad(entry.get(GemstoneColor.MAGENTA).toString(), 3) +
+                    " Y:" + StringUtils.leftPad(entry.get(GemstoneColor.YELLOW).toString(), 3) +
+                    " K:" + StringUtils.leftPad(entry.get(GemstoneColor.BLACK).toString(), 3) +
+                    " W:" + StringUtils.leftPad(entry.get(GemstoneColor.WHITE).toString(), 3));
         }
 
         // impossible to unlock pedestal recipes
@@ -78,7 +106,7 @@ public class ProgressionSanityCommand {
             }
         }
 
-        // "has advancement" criteria with non existing advancements
+        // "has advancement" criteria with nonexistent advancements
         for(Advancement advancement : SpectrumCommon.minecraftServer.getAdvancementLoader().getAdvancements()) {
             for(AdvancementCriterion criterion : advancement.getCriteria().values()) {
                 CriterionConditions conditions = criterion.getConditions();

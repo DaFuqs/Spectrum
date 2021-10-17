@@ -10,10 +10,8 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsage;
-import net.minecraft.item.ItemUsageContext;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
-import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.UseAction;
@@ -83,23 +81,6 @@ public class LightStaffItem extends Item {
                 break;
             }
         }
-    }
-
-    public ActionResult useOnBlock(ItemUsageContext context) {
-        PlayerEntity user = context.getPlayer();
-        BlockPos blockPos = context.getBlockPos();
-
-        /*if(user != null && user.getItemUseTime() > 2) {
-            World world = context.getWorld();
-
-            if(!world.isClient) {
-                if (world.getBlockState(blockPos).isOf(SpectrumBlocks.WAND_LIGHT_BLOCK)) {
-                    world.setBlockState(blockPos, Blocks.AIR.getDefaultState(), 3);
-                }
-            }
-        }*/
-
-        return ActionResult.PASS;
     }
 
 }

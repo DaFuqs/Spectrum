@@ -1,0 +1,26 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 80,
+  "tier": "basic",
+  "magenta": 0,
+  "yellow": 0,
+  "cyan": 0,
+  "black": 0,
+  "white": 0,
+  "experience": 0.0,
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "spectrum:paletur_fragments"
+    }
+  },
+  "result" : {
+    "item": "spectrum:paletur_fragment_block",
+    "count": 2
+  },
+  "required_advancements": ["spectrum:endgame/collect_paletur"]
+}

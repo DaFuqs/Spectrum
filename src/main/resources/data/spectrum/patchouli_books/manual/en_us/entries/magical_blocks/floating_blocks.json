@@ -1,5 +1,5 @@
 {
-  "name": "Gravity Blocks",
+  "name": "Floatblocks",
   "advancement": "spectrum:progression/unlock_gravity_blocks",
   "icon": "spectrum:scarlet_fragment_block",
   "category": "spectrum:magical_blocks_category",
@@ -12,13 +12,25 @@
       "type": "patchouli:spotlight",
       "advancement": "spectrum:hidden/collect_resource/collect_scarlet",
       "item": "spectrum:scarlet_fragment_block",
-      "text": "TODO"
+      "text": "Scarlet - as you may have already noticed - is an exceptionally heavy material. And also difficult to shape. Even the blazing heat of the Nether could not harm the material.$(br)However, shaping it over your pedestal should not be a problem whatsoever."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "advancement": "spectrum:hidden/collect_resource/collect_scarlet",
+      "item": "spectrum:scarlet_fragment_block",
+      "text": "$(b)Heavy Metal"
     },
     {
       "type": "patchouli:spotlight",
       "advancement": "spectrum:hidden/collect_resource/collect_paletur",
       "item": "spectrum:paletur_fragment_block",
-      "text": "TODO"
+      "text": "From your previous experience with Paletur, you can already guess that it would not be a good idea to place this block in open sky.$(br)The arrow on this block should remind you - your future self will thank you."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "advancement": "spectrum:hidden/collect_resource/collect_paletur",
+      "item": "spectrum:paletur_fragment_block",
+      "text": "$(b)Fly far away"
     }
   ]
 }

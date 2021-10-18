@@ -6,7 +6,7 @@
     },
     "collected_green_pigment": {
       "trigger":"spectrum:has_advancement",
-      "conditions": { "advancement_identifier": "spectrum:hidden/collect_pigment/blue_pigment" }
+      "conditions": { "advancement_identifier": "spectrum:hidden/collect_pigment/collect_blue_pigment" }
     }
   }
 }

@@ -9,12 +9,12 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "TODO"
+      "text": "Torches and your other light sources have one crucial weakness: you can only place them when you're already in the dark.$(br)The Radiance Staff, charged enough, can place lights far away and in the air, illuminating large caverns at a distance.$(br)As a final goodie, these lights are invisible, making them great for athmospherically illuminating your structures. They can also be placed under water."
     },
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier2/light_staff",
-      "text": "TODO"
+      "text": "Right click placed lights with the staff to adjust the emitted light level."
     }
   ]
 }

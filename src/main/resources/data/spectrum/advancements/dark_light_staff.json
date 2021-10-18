@@ -1,0 +1,30 @@
+{
+  "display": {
+    "icon": {
+      "item": "spectrum:light_staff"
+    },
+    "title": {
+      "translate": "advancements.spectrum.dark_light_staff.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.dark_light_staff.description"
+    }
+  },
+  "parent": "spectrum:spectrum",
+  "criteria": {
+    "toggled_light": {
+      "trigger": "minecraft:item_used_on_block",
+      "conditions": {
+        "item": {
+          "tag": "spectrum:light_staff"
+        }
+        "block": {
+          "blocks": [ "spectrum:wand_light" ],
+          "state": {
+            "LEVEL_15": 15
+          }
+        }
+      }
+    }
+  }
+}

@@ -20,7 +20,7 @@
   },
   "result" : {
     "item": "spectrum:paletur_fragment_block",
-    "count": 2
+    "count": 1
   },
   "required_advancements": ["spectrum:endgame/collect_paletur"]
 }

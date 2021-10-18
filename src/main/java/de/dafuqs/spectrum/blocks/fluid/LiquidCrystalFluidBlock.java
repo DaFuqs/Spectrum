@@ -107,7 +107,7 @@ public class LiquidCrystalFluidBlock extends FluidBlock {
                 return false;
             }
             if (world.getFluidState(blockPos).isIn(SpectrumFluidTags.MUD)) {
-                Block block = Blocks.TUFF;
+                Block block = Blocks.CLAY;
                 world.setBlockState(pos, block.getDefaultState());
                 this.playExtinguishSound(world, pos);
                 return false;

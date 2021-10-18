@@ -9,12 +9,12 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "TODO"
+      "text": "Using the magic elements of $(c_brown)Nature$() and $(c_lime)Fertility$(), you have come up with this stroke of genius.$(br)Bonemeal is a joke when compared to your new gadget."
     },
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier2/natures_staff",
-      "text": "TODO"
+      "text": "$(b)Point at something you want to see blossom"
     }
   ]
 }

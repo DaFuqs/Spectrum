@@ -14,7 +14,7 @@ public interface PreEnchantedTooltip {
     default void addPreEnchantedTooltip(List<Text> tooltip, ItemStack itemStack) {
         if(EnchantmentHelper.get(itemStack).isEmpty() && SpectrumDefaultEnchantments.hasDefaultEnchants(itemStack.getItem())) {
             SpectrumDefaultEnchantments.DefaultEnchantment defaultEnchantment = SpectrumDefaultEnchantments.getDefaultEnchantment(itemStack.getItem());
-            tooltip.add(new TranslatableText("items.spectrum.default_enchantment_tooltip", defaultEnchantment.enchantment.getName(defaultEnchantment.level)).formatted(Formatting.DARK_GRAY));
+            tooltip.add(new TranslatableText("item.spectrum.default_enchantment_tooltip", defaultEnchantment.enchantment.getName(defaultEnchantment.level)).formatted(Formatting.DARK_GRAY));
         }
     }
 

@@ -785,7 +785,7 @@
   "item.spectrum.paletur_gem": "Paletur Gem",
   "item.spectrum.glistering_melon_seeds": "Glistering Melon Seeds",
 
-  "items.spectrum.default_enchantment_tooltip": "Comes pre enchanted with %s",
+  "item.spectrum.default_enchantment_tooltip": "Comes pre enchanted with %s",
   "item.spectrum.emergency_helmet": "Fetchling Helmet",
   "item.spectrum.emergency_chestplate": "Ferocious Chestplate",
   "item.spectrum.emergency_leggings": "Sylph Leggings",

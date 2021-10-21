@@ -13,26 +13,26 @@ import java.util.Hashtable;
 
 public class FourLeafCloverBlock extends CloverBlock implements Cloakable {
 
-    public FourLeafCloverBlock(Settings settings) {
-        super(settings);
-        registerCloak();
-    }
+	public FourLeafCloverBlock(Settings settings) {
+		super(settings);
+		registerCloak();
+	}
 
-    @Override
-    public Identifier getCloakAdvancementIdentifier() {
-        return new Identifier(SpectrumCommon.MOD_ID, "collect_pigment");
-    }
+	@Override
+	public Identifier getCloakAdvancementIdentifier() {
+		return new Identifier(SpectrumCommon.MOD_ID, "collect_pigment");
+	}
 
-    @Override
-    public Hashtable<BlockState, BlockState> getBlockStateCloaks() {
-        Hashtable<BlockState, BlockState> hashtable = new Hashtable<>();
-        hashtable.put(this.getDefaultState(), SpectrumBlocks.CLOVER.getDefaultState());
-        return hashtable;
-    }
+	@Override
+	public Hashtable<BlockState, BlockState> getBlockStateCloaks() {
+		Hashtable<BlockState, BlockState> hashtable = new Hashtable<>();
+		hashtable.put(this.getDefaultState(), SpectrumBlocks.CLOVER.getDefaultState());
+		return hashtable;
+	}
 
-    @Override
-    public Pair<Item, Item> getItemCloak() {
-        return new Pair<>(this.asItem(), SpectrumBlocks.CLOVER.asItem());
-    }
+	@Override
+	public Pair<Item, Item> getItemCloak() {
+		return new Pair<>(this.asItem(), SpectrumBlocks.CLOVER.asItem());
+	}
 
 }

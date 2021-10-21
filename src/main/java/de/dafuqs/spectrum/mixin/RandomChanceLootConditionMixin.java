@@ -17,20 +17,20 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(RandomChanceLootCondition.class)
 public class RandomChanceLootConditionMixin {
 
-    @Shadow @Final
-    float chance;
+	@Shadow @Final
+	float chance;
 
-    @Inject(at = @At("RETURN"), method= "test(Lnet/minecraft/loot/context/LootContext;)Z", cancellable = true)
-    public void applyRareLootEnchantment(LootContext lootContext, CallbackInfoReturnable<Boolean> cir) {
-        if(!cir.getReturnValue() && this.chance < 1.0F) {
-            Entity entity = lootContext.get(LootContextParameters.KILLER_ENTITY);
-            if (entity instanceof LivingEntity) {
-                int rareLootLevel = EnchantmentHelper.getLevel(SpectrumEnchantments.RARE_LOOT,((LivingEntity) entity).getMainHandStack());
-                if(rareLootLevel > 0) {
-                    cir.setReturnValue(lootContext.getRandom().nextFloat() < this.chance * (float)rareLootLevel * rareLootLevel);
-                }
-            }
-        }
-    }
+	@Inject(at = @At("RETURN"), method= "test(Lnet/minecraft/loot/context/LootContext;)Z", cancellable = true)
+	public void applyRareLootEnchantment(LootContext lootContext, CallbackInfoReturnable<Boolean> cir) {
+		if(!cir.getReturnValue() && this.chance < 1.0F) {
+			Entity entity = lootContext.get(LootContextParameters.KILLER_ENTITY);
+			if (entity instanceof LivingEntity) {
+				int rareLootLevel = EnchantmentHelper.getLevel(SpectrumEnchantments.RARE_LOOT,((LivingEntity) entity).getMainHandStack());
+				if(rareLootLevel > 0) {
+					cir.setReturnValue(lootContext.getRandom().nextFloat() < this.chance * (float)rareLootLevel * rareLootLevel);
+				}
+			}
+		}
+	}
 
 }

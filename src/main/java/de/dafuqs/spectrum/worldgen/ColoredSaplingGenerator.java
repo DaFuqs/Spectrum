@@ -10,19 +10,19 @@ import java.util.Random;
 
 public class ColoredSaplingGenerator extends SaplingGenerator {
 
-    DyeColor dyeColor;
-    
-    public ColoredSaplingGenerator(DyeColor dyeColor) {
-        this.dyeColor = dyeColor;
-    }
-    
-    private ConfiguredFeature<TreeFeatureConfig, ?> getConfiguredFeature(DyeColor dyeColor) {
-        return SpectrumConfiguredFeatures.COLORED_TREE_FEATURES.get(dyeColor);
-    }
+	DyeColor dyeColor;
+	
+	public ColoredSaplingGenerator(DyeColor dyeColor) {
+		this.dyeColor = dyeColor;
+	}
+	
+	private ConfiguredFeature<TreeFeatureConfig, ?> getConfiguredFeature(DyeColor dyeColor) {
+		return SpectrumConfiguredFeatures.COLORED_TREE_FEATURES.get(dyeColor);
+	}
 
-    @Nullable
-    @Override
-    protected ConfiguredFeature<TreeFeatureConfig, ?> getTreeFeature(Random random, boolean bees) {
-        return getConfiguredFeature(this.dyeColor);
-    }
+	@Nullable
+	@Override
+	protected ConfiguredFeature<TreeFeatureConfig, ?> getTreeFeature(Random random, boolean bees) {
+		return getConfiguredFeature(this.dyeColor);
+	}
 }

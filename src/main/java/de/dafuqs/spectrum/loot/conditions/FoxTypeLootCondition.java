@@ -15,46 +15,46 @@ import net.minecraft.util.JsonSerializer;
 
 public class FoxTypeLootCondition implements LootCondition {
 
-    FoxEntity.Type foxType;
+	FoxEntity.Type foxType;
 
-    private FoxTypeLootCondition(FoxEntity.Type foxType) {
-        this.foxType = foxType;
-    }
+	private FoxTypeLootCondition(FoxEntity.Type foxType) {
+		this.foxType = foxType;
+	}
 
-    @Override
-    public LootConditionType getType() {
-        return SpectrumLootConditionTypes.FOX_TYPE_CONDITION;
-    }
+	@Override
+	public LootConditionType getType() {
+		return SpectrumLootConditionTypes.FOX_TYPE_CONDITION;
+	}
 
-    @Override
-    public boolean test(LootContext lootContext) {
-        Entity entity = lootContext.get(LootContextParameters.THIS_ENTITY);
-        if (entity instanceof FoxEntity) {
-            return ((FoxEntity) entity).getFoxType().equals(foxType);
-        } else {
-            return false;
-        }
-    }
+	@Override
+	public boolean test(LootContext lootContext) {
+		Entity entity = lootContext.get(LootContextParameters.THIS_ENTITY);
+		if (entity instanceof FoxEntity) {
+			return ((FoxEntity) entity).getFoxType().equals(foxType);
+		} else {
+			return false;
+		}
+	}
 
-    public static Builder builder(FoxEntity.Type foxType) {
-        return () -> {
-            return new FoxTypeLootCondition(foxType);
-        };
-    }
+	public static Builder builder(FoxEntity.Type foxType) {
+		return () -> {
+			return new FoxTypeLootCondition(foxType);
+		};
+	}
 
-    public static class Serializer implements JsonSerializer<FoxTypeLootCondition> {
-        public Serializer() {
-        }
+	public static class Serializer implements JsonSerializer<FoxTypeLootCondition> {
+		public Serializer() {
+		}
 
-        public void toJson(JsonObject jsonObject, FoxTypeLootCondition foxTypeLootCondition, JsonSerializationContext jsonSerializationContext) {
-            jsonObject.addProperty("fox_type", foxTypeLootCondition.foxType.getKey());
-        }
+		public void toJson(JsonObject jsonObject, FoxTypeLootCondition foxTypeLootCondition, JsonSerializationContext jsonSerializationContext) {
+			jsonObject.addProperty("fox_type", foxTypeLootCondition.foxType.getKey());
+		}
 
-        public FoxTypeLootCondition fromJson(JsonObject jsonObject, JsonDeserializationContext jsonDeserializationContext) {
-            String foxTypeString = JsonHelper.getString(jsonObject, "fox_type");
-            FoxEntity.Type foxType = FoxEntity.Type.byName(foxTypeString);
-            return new FoxTypeLootCondition(foxType);
-        }
-    }
+		public FoxTypeLootCondition fromJson(JsonObject jsonObject, JsonDeserializationContext jsonDeserializationContext) {
+			String foxTypeString = JsonHelper.getString(jsonObject, "fox_type");
+			FoxEntity.Type foxType = FoxEntity.Type.byName(foxTypeString);
+			return new FoxTypeLootCondition(foxType);
+		}
+	}
 
 }

@@ -8,36 +8,36 @@ import net.minecraft.entity.EquipmentSlot;
 
 public class TreasureHunterEnchantment extends Enchantment {
 
-    public TreasureHunterEnchantment(Rarity weight, EquipmentSlot... slotTypes) {
-        super(weight, EnchantmentTarget.WEAPON, slotTypes);
-    }
+	public TreasureHunterEnchantment(Rarity weight, EquipmentSlot... slotTypes) {
+		super(weight, EnchantmentTarget.WEAPON, slotTypes);
+	}
 
-    public int getMinPower(int level) {
-        return 15;
-    }
+	public int getMinPower(int level) {
+		return 15;
+	}
 
-    public int getMaxPower(int level) {
-        return super.getMinPower(level) + 30;
-    }
+	public int getMaxPower(int level) {
+		return super.getMinPower(level) + 30;
+	}
 
-    public int getMaxLevel() {
-        return SpectrumCommon.CONFIG.ExuberanceMaxLevel;
-    }
+	public int getMaxLevel() {
+		return SpectrumCommon.CONFIG.ExuberanceMaxLevel;
+	}
 
-    public boolean isTreasure() {
-        return false;
-    }
+	public boolean isTreasure() {
+		return false;
+	}
 
-    public boolean isAvailableForEnchantedBookOffer() {
-        return false;
-    }
+	public boolean isAvailableForEnchantedBookOffer() {
+		return false;
+	}
 
-    public boolean isAvailableForRandomSelection() {
-        return false;
-    }
+	public boolean isAvailableForRandomSelection() {
+		return false;
+	}
 
-    public boolean canAccept(Enchantment other) {
-        return super.canAccept(other) && other != Enchantments.LOOTING;
-    }
+	public boolean canAccept(Enchantment other) {
+		return super.canAccept(other) && other != Enchantments.LOOTING;
+	}
 
 }

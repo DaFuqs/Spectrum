@@ -15,22 +15,22 @@ import org.jetbrains.annotations.Nullable;
 
 public class BedrockAnvilBlock extends AnvilBlock {
 
-    private static final Text TITLE = new TranslatableText("container.spectrum.bedrock_anvil");
+	private static final Text TITLE = new TranslatableText("container.spectrum.bedrock_anvil");
 
-    public BedrockAnvilBlock(Settings settings) {
-        super(settings);
-    }
+	public BedrockAnvilBlock(Settings settings) {
+		super(settings);
+	}
 
-    // Heavier => More damage
-    protected void configureFallingBlockEntity(FallingBlockEntity entity) {
-        entity.setHurtEntities(3.0F, 64);
-    }
+	// Heavier => More damage
+	protected void configureFallingBlockEntity(FallingBlockEntity entity) {
+		entity.setHurtEntities(3.0F, 64);
+	}
 
-    @Nullable
-    public NamedScreenHandlerFactory createScreenHandlerFactory(BlockState state, World world, BlockPos pos) {
-        return new SimpleNamedScreenHandlerFactory((syncId, inventory, player) -> {
-            return new BedrockAnvilScreenHandler(syncId, inventory, ScreenHandlerContext.create(world, pos));
-        }, TITLE);
-    }
+	@Nullable
+	public NamedScreenHandlerFactory createScreenHandlerFactory(BlockState state, World world, BlockPos pos) {
+		return new SimpleNamedScreenHandlerFactory((syncId, inventory, player) -> {
+			return new BedrockAnvilScreenHandler(syncId, inventory, ScreenHandlerContext.create(world, pos));
+		}, TITLE);
+	}
 
 }

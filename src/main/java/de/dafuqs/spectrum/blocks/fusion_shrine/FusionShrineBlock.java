@@ -36,134 +36,134 @@ import vazkii.patchouli.api.PatchouliAPI;
 
 public class FusionShrineBlock extends BlockWithEntity {
 
-    public static final IntProperty LIGHT_LEVEL = IntProperty.of("light_level", 0, 15);
-    protected static final VoxelShape SHAPE = Block.createCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 15.0D, 14.0D);
+	public static final IntProperty LIGHT_LEVEL = IntProperty.of("light_level", 0, 15);
+	protected static final VoxelShape SHAPE = Block.createCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 15.0D, 14.0D);
 
-    public FusionShrineBlock(Settings settings) {
-        super(settings);
-        setDefaultState(getStateManager().getDefaultState().with(LIGHT_LEVEL, 0));
-    }
+	public FusionShrineBlock(Settings settings) {
+		super(settings);
+		setDefaultState(getStateManager().getDefaultState().with(LIGHT_LEVEL, 0));
+	}
 
-    public BlockRenderType getRenderType(BlockState state) {
-        return BlockRenderType.MODEL;
-    }
+	public BlockRenderType getRenderType(BlockState state) {
+		return BlockRenderType.MODEL;
+	}
 
-    @Override
-    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(LIGHT_LEVEL);
-    }
+	@Override
+	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+		builder.add(LIGHT_LEVEL);
+	}
 
-    @Nullable
-    @Override
-    public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
-        return new FusionShrineBlockEntity(pos, state);
-    }
+	@Nullable
+	@Override
+	public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+		return new FusionShrineBlockEntity(pos, state);
+	}
 
-    public boolean canPathfindThrough(BlockState state, BlockView world, BlockPos pos, NavigationType type) {
-        return false;
-    }
+	public boolean canPathfindThrough(BlockState state, BlockView world, BlockPos pos, NavigationType type) {
+		return false;
+	}
 
-    @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        if(world.isClient) {
-            return ActionResult.SUCCESS;
-        } else {
-            ItemStack itemStack = player.getStackInHand(hand);
+	@Override
+	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+		if(world.isClient) {
+			return ActionResult.SUCCESS;
+		} else {
+			ItemStack itemStack = player.getStackInHand(hand);
 
-            if (itemStack.getItem() instanceof BucketItem) {
-                FusionShrineBlockEntity fusionShrineBlockEntity = (FusionShrineBlockEntity) world.getBlockEntity(pos);
-                fusionShrineBlockEntity.setOwner(player);
+			if (itemStack.getItem() instanceof BucketItem) {
+				FusionShrineBlockEntity fusionShrineBlockEntity = (FusionShrineBlockEntity) world.getBlockEntity(pos);
+				fusionShrineBlockEntity.setOwner(player);
 
-                Fluid storedFluid = fusionShrineBlockEntity.getFluid();
-                Fluid bucketFluid = ((BucketItemAccessor) itemStack.getItem()).fabric_getFluid();
-                if (storedFluid == Fluids.EMPTY && bucketFluid != Fluids.EMPTY) {
-                    fusionShrineBlockEntity.setFluid(bucketFluid);
-                    if (!player.isCreative()) {
-                        player.setStackInHand(hand, new ItemStack(Items.BUCKET));
-                    }
-                } else if (storedFluid != Fluids.EMPTY && bucketFluid == Fluids.EMPTY) {
-                    fusionShrineBlockEntity.setFluid(Fluids.EMPTY);
-                    world.setBlockState(pos, world.getBlockState(pos).with(LIGHT_LEVEL, 0));
-                    if (!player.isCreative()) {
-                        player.setStackInHand(hand, new ItemStack(storedFluid.getBucketItem()));
-                    }
-                }
-            } else {
-                if(verifyStructure(world, pos.down(), (ServerPlayerEntity) player)) {
-                    FusionShrineBlockEntity fusionShrineBlockEntity = ((FusionShrineBlockEntity) world.getBlockEntity(pos));
-                    fusionShrineBlockEntity.setOwner(player);
+				Fluid storedFluid = fusionShrineBlockEntity.getFluid();
+				Fluid bucketFluid = ((BucketItemAccessor) itemStack.getItem()).fabric_getFluid();
+				if (storedFluid == Fluids.EMPTY && bucketFluid != Fluids.EMPTY) {
+					fusionShrineBlockEntity.setFluid(bucketFluid);
+					if (!player.isCreative()) {
+						player.setStackInHand(hand, new ItemStack(Items.BUCKET));
+					}
+				} else if (storedFluid != Fluids.EMPTY && bucketFluid == Fluids.EMPTY) {
+					fusionShrineBlockEntity.setFluid(Fluids.EMPTY);
+					world.setBlockState(pos, world.getBlockState(pos).with(LIGHT_LEVEL, 0));
+					if (!player.isCreative()) {
+						player.setStackInHand(hand, new ItemStack(storedFluid.getBucketItem()));
+					}
+				}
+			} else {
+				if(verifyStructure(world, pos.down(), (ServerPlayerEntity) player)) {
+					FusionShrineBlockEntity fusionShrineBlockEntity = ((FusionShrineBlockEntity) world.getBlockEntity(pos));
+					fusionShrineBlockEntity.setOwner(player);
 
-                    // if the structure is valid the player can put / retrieve blocks into the shrine
-                    if(player.isSneaking()) {
-                        ItemStack retrievedStack = ItemStack.EMPTY;
-                        Inventory inventory = fusionShrineBlockEntity.getInventory();
-                        for(int i = 0; i < inventory.size(); i++) {
-                            retrievedStack = inventory.removeStack(i);
-                            if(!retrievedStack.isEmpty()) {
-                                break;
-                            }
-                        }
-                        if(!retrievedStack.isEmpty()) {
-                            player.giveItemStack(retrievedStack);
-                            fusionShrineBlockEntity.updateInClientWorld();
-                        }
-                    } else {
-                        ItemStack remainingStack = InventoryHelper.addToInventory(itemStack, fusionShrineBlockEntity.getInventory(), null);
-                        player.setStackInHand(hand, remainingStack);
-                        fusionShrineBlockEntity.updateInClientWorld();
-                    }
-                }
-            }
-            return ActionResult.CONSUME;
-        }
-    }
+					// if the structure is valid the player can put / retrieve blocks into the shrine
+					if(player.isSneaking()) {
+						ItemStack retrievedStack = ItemStack.EMPTY;
+						Inventory inventory = fusionShrineBlockEntity.getInventory();
+						for(int i = 0; i < inventory.size(); i++) {
+							retrievedStack = inventory.removeStack(i);
+							if(!retrievedStack.isEmpty()) {
+								break;
+							}
+						}
+						if(!retrievedStack.isEmpty()) {
+							player.giveItemStack(retrievedStack);
+							fusionShrineBlockEntity.updateInClientWorld();
+						}
+					} else {
+						ItemStack remainingStack = InventoryHelper.addToInventory(itemStack, fusionShrineBlockEntity.getInventory(), null);
+						player.setStackInHand(hand, remainingStack);
+						fusionShrineBlockEntity.updateInClientWorld();
+					}
+				}
+			}
+			return ActionResult.CONSUME;
+		}
+	}
 
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return SHAPE;
-    }
+	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+		return SHAPE;
+	}
 
-    @Nullable
-    @Override
-    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        if(!world.isClient) {
-            return checkType(type, SpectrumBlockEntityRegistry.FUSION_SHRINE, FusionShrineBlockEntity::serverTick);
-        }
-        return null;
-    }
+	@Nullable
+	@Override
+	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
+		if(!world.isClient) {
+			return checkType(type, SpectrumBlockEntityRegistry.FUSION_SHRINE, FusionShrineBlockEntity::serverTick);
+		}
+		return null;
+	}
 
-    public boolean verifyStructure(World world, BlockPos blockPos, ServerPlayerEntity serverPlayerEntity) {
-        IMultiblock multiblock = SpectrumMultiblocks.MULTIBLOCKS.get(SpectrumMultiblocks.FUSION_SHRINE_IDENTIFIER);
-        boolean valid = multiblock.validate(world, blockPos, BlockRotation.NONE);
+	public boolean verifyStructure(World world, BlockPos blockPos, ServerPlayerEntity serverPlayerEntity) {
+		IMultiblock multiblock = SpectrumMultiblocks.MULTIBLOCKS.get(SpectrumMultiblocks.FUSION_SHRINE_IDENTIFIER);
+		boolean valid = multiblock.validate(world, blockPos, BlockRotation.NONE);
 
-        if(valid) {
-            SpectrumAdvancementCriteria.COMPLETED_MULTIBLOCK.trigger(serverPlayerEntity, multiblock);
-        } else {
-            IMultiblock currentMultiBlock = PatchouliAPI.get().getCurrentMultiblock();
-            if(currentMultiBlock == multiblock) {
-                PatchouliAPI.get().clearMultiblock();
-            } else {
-                PatchouliAPI.get().showMultiblock(multiblock, new TranslatableText("multiblock.spectrum.fusion_shrine.structure"), blockPos.down(), BlockRotation.NONE);
-                scatterContents(world, blockPos);
-            }
-        }
+		if(valid) {
+			SpectrumAdvancementCriteria.COMPLETED_MULTIBLOCK.trigger(serverPlayerEntity, multiblock);
+		} else {
+			IMultiblock currentMultiBlock = PatchouliAPI.get().getCurrentMultiblock();
+			if(currentMultiBlock == multiblock) {
+				PatchouliAPI.get().clearMultiblock();
+			} else {
+				PatchouliAPI.get().showMultiblock(multiblock, new TranslatableText("multiblock.spectrum.fusion_shrine.structure"), blockPos.down(), BlockRotation.NONE);
+				scatterContents(world, blockPos);
+			}
+		}
 
-        return valid;
-    }
+		return valid;
+	}
 
-    // drop all currently stored items
-    public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
-        if(!newState.getBlock().equals(this)) { // happens when filling with fluid
-            scatterContents(world, pos);
-        }
-        super.onStateReplaced(state, world, pos, newState, moved);
-    }
+	// drop all currently stored items
+	public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
+		if(!newState.getBlock().equals(this)) { // happens when filling with fluid
+			scatterContents(world, pos);
+		}
+		super.onStateReplaced(state, world, pos, newState, moved);
+	}
 
-    public void scatterContents(World world, BlockPos pos) {
-        BlockEntity blockEntity = world.getBlockEntity(pos);
-        if (blockEntity instanceof FusionShrineBlockEntity) {
-            ItemScatterer.spawn(world, pos, ((FusionShrineBlockEntity) blockEntity).getInventory());
-            world.updateComparators(pos, this);
-        }
-    }
+	public void scatterContents(World world, BlockPos pos) {
+		BlockEntity blockEntity = world.getBlockEntity(pos);
+		if (blockEntity instanceof FusionShrineBlockEntity) {
+			ItemScatterer.spawn(world, pos, ((FusionShrineBlockEntity) blockEntity).getInventory());
+			world.updateComparators(pos, this);
+		}
+	}
 
 }

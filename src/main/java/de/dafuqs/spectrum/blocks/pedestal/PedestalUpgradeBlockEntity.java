@@ -7,8 +7,8 @@ import net.minecraft.util.math.BlockPos;
 
 public class PedestalUpgradeBlockEntity extends BlockEntity {
 
-    public PedestalUpgradeBlockEntity(BlockPos pos, BlockState state) {
-        super(SpectrumBlockEntityRegistry.PEDESTAL_SPEED_UPGRADE, pos, state);
-    }
+	public PedestalUpgradeBlockEntity(BlockPos pos, BlockState state) {
+		super(SpectrumBlockEntityRegistry.PEDESTAL_SPEED_UPGRADE, pos, state);
+	}
 
 }

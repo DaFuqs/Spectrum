@@ -9,10 +9,10 @@ import java.util.Random;
 
 public class OminousSaplingGenerator extends SaplingGenerator {
 
-    @Nullable
-    @Override
-    protected ConfiguredFeature<TreeFeatureConfig, ?> getTreeFeature(Random random, boolean bees) {
-        return null;
-    }
+	@Nullable
+	@Override
+	protected ConfiguredFeature<TreeFeatureConfig, ?> getTreeFeature(Random random, boolean bees) {
+		return null;
+	}
 
 }

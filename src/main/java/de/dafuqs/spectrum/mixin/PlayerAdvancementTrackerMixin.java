@@ -18,20 +18,20 @@ import java.util.List;
 @Mixin(PlayerAdvancementTracker.class)
 public class PlayerAdvancementTrackerMixin {
 
-    @Shadow private ServerPlayerEntity owner;
+	@Shadow private ServerPlayerEntity owner;
 
-    @Inject(at=@At("RETURN"), method= "grantCriterion(Lnet/minecraft/advancement/Advancement;Ljava/lang/String;)Z")
-    public void grantCriterion(Advancement advancement, String criterionName, CallbackInfoReturnable<Boolean> cir) {
-        AdvancementProgress advancementProgress = ((PlayerAdvancementTracker)(Object) this).getProgress(advancement);
-        if(advancementProgress.isDone()) {
+	@Inject(at=@At("RETURN"), method= "grantCriterion(Lnet/minecraft/advancement/Advancement;Ljava/lang/String;)Z")
+	public void grantCriterion(Advancement advancement, String criterionName, CallbackInfoReturnable<Boolean> cir) {
+		AdvancementProgress advancementProgress = ((PlayerAdvancementTracker)(Object) this).getProgress(advancement);
+		if(advancementProgress.isDone()) {
 
-            SpectrumAdvancementCriteria.ADVANCEMENT_GOTTEN.trigger(owner, advancement);
+			SpectrumAdvancementCriteria.ADVANCEMENT_GOTTEN.trigger(owner, advancement);
 
-            List<Cloakable> revealedBlocks = BlockCloakManager.getRevelationsForAdvancement(advancement.getId());
-            for(Cloakable block : revealedBlocks) {
-                SpectrumAdvancementCriteria.HAD_REVELATION.trigger(owner, block);
-            }
-        }
-    }
+			List<Cloakable> revealedBlocks = BlockCloakManager.getRevelationsForAdvancement(advancement.getId());
+			for(Cloakable block : revealedBlocks) {
+				SpectrumAdvancementCriteria.HAD_REVELATION.trigger(owner, block);
+			}
+		}
+	}
 
 }

@@ -8,37 +8,37 @@ import net.minecraft.entity.EquipmentSlot;
 
 public class ImprovedCriticalEnchantment extends Enchantment {
 
-    public ImprovedCriticalEnchantment(Rarity weight, EquipmentSlot... slotTypes) {
-        super(weight, EnchantmentTarget.WEAPON, slotTypes);
-    }
+	public ImprovedCriticalEnchantment(Rarity weight, EquipmentSlot... slotTypes) {
+		super(weight, EnchantmentTarget.WEAPON, slotTypes);
+	}
 
-    public int getMinPower(int level) {
-        return 10;
-    }
+	public int getMinPower(int level) {
+		return 10;
+	}
 
-    public int getMaxPower(int level) {
-        return super.getMinPower(level) + 30;
-    }
+	public int getMaxPower(int level) {
+		return super.getMinPower(level) + 30;
+	}
 
-    public int getMaxLevel() {
-        return SpectrumCommon.CONFIG.ImprovedCriticalMaxLevel;
-    }
+	public int getMaxLevel() {
+		return SpectrumCommon.CONFIG.ImprovedCriticalMaxLevel;
+	}
 
-    public boolean isTreasure() {
-        return false;
-    }
+	public boolean isTreasure() {
+		return false;
+	}
 
-    public boolean isAvailableForEnchantedBookOffer() {
-        return false;
-    }
+	public boolean isAvailableForEnchantedBookOffer() {
+		return false;
+	}
 
-    public boolean isAvailableForRandomSelection() {
-        return false;
-    }
+	public boolean isAvailableForRandomSelection() {
+		return false;
+	}
 
-    public boolean canAccept(Enchantment other) {
-        return other != Enchantments.SHARPNESS && super.canAccept(other);
-    }
+	public boolean canAccept(Enchantment other) {
+		return other != Enchantments.SHARPNESS && super.canAccept(other);
+	}
 
 }
 

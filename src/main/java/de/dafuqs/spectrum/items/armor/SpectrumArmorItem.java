@@ -13,14 +13,14 @@ import java.util.List;
 
 public class SpectrumArmorItem extends ArmorItem implements PreEnchantedTooltip {
 
-    public SpectrumArmorItem(ArmorMaterial material, EquipmentSlot slot, Settings settings) {
-        super(material, slot, settings);
-    }
+	public SpectrumArmorItem(ArmorMaterial material, EquipmentSlot slot, Settings settings) {
+		super(material, slot, settings);
+	}
 
-    @Override
-    public void appendTooltip(ItemStack itemStack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
-        super.appendTooltip(itemStack, world, tooltip, tooltipContext);
-        addPreEnchantedTooltip(tooltip, itemStack);
-    }
+	@Override
+	public void appendTooltip(ItemStack itemStack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
+		super.appendTooltip(itemStack, world, tooltip, tooltipContext);
+		addPreEnchantedTooltip(tooltip, itemStack);
+	}
 
 }

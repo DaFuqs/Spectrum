@@ -11,11 +11,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(ItemFrameEntityRenderer.class)
 public class ItemFrameEntityRendererMixin<T extends ItemFrameEntity> {
 
-    @Inject(at=@At("HEAD"), method="Lnet/minecraft/client/render/entity/ItemFrameEntityRenderer;getLight(Lnet/minecraft/entity/decoration/ItemFrameEntity;II)I", cancellable = true)
-    private void getLight(T itemFrame, int glowLight, int regularLight, CallbackInfoReturnable<Integer> callbackInfoReturnable) {
-        if(itemFrame.getType() == SpectrumEntityTypes.INVISIBLE_GLOW_ITEM_FRAME) {
-            callbackInfoReturnable.setReturnValue(glowLight);
-        }
-    }
+	@Inject(at=@At("HEAD"), method="Lnet/minecraft/client/render/entity/ItemFrameEntityRenderer;getLight(Lnet/minecraft/entity/decoration/ItemFrameEntity;II)I", cancellable = true)
+	private void getLight(T itemFrame, int glowLight, int regularLight, CallbackInfoReturnable<Integer> callbackInfoReturnable) {
+		if(itemFrame.getType() == SpectrumEntityTypes.INVISIBLE_GLOW_ITEM_FRAME) {
+			callbackInfoReturnable.setReturnValue(glowLight);
+		}
+	}
 
 }

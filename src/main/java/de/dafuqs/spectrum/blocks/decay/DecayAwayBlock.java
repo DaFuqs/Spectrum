@@ -18,34 +18,34 @@ import java.util.Random;
 
 public class DecayAwayBlock extends Block {
 
-    private final BlockState conversionBlockState = Blocks.DIRT.getDefaultState();
+	private final BlockState conversionBlockState = Blocks.DIRT.getDefaultState();
 
-    public DecayAwayBlock(Settings settings) {
-        super(settings);
-    }
+	public DecayAwayBlock(Settings settings) {
+		super(settings);
+	}
 
-    public void onPlaced(@NotNull World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
-        if (!world.isClient) {
-            world.getBlockTickScheduler().schedule(pos, state.getBlock(), 4);
-        }
-    }
+	public void onPlaced(@NotNull World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
+		if (!world.isClient) {
+			world.getBlockTickScheduler().schedule(pos, state.getBlock(), 4);
+		}
+	}
 
-    @Override
-    public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        super.scheduledTick(state, world, pos, random);
+	@Override
+	public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
+		super.scheduledTick(state, world, pos, random);
 
-        // convert all neighboring decay blocks to this
-        for(Direction direction : Direction.values()) {
-            BlockPos targetBlockPos = pos.offset(direction);
-            BlockState currentBlockState = world.getBlockState(targetBlockPos);
+		// convert all neighboring decay blocks to this
+		for(Direction direction : Direction.values()) {
+			BlockPos targetBlockPos = pos.offset(direction);
+			BlockState currentBlockState = world.getBlockState(targetBlockPos);
 
-            if (Support.hasTag(currentBlockState, SpectrumBlockTags.DECAY)) {
-                world.setBlockState(targetBlockPos, this.getDefaultState());
-                world.getBlockTickScheduler().schedule(targetBlockPos, state.getBlock(), 8);
-            }
-        }
+			if (Support.hasTag(currentBlockState, SpectrumBlockTags.DECAY)) {
+				world.setBlockState(targetBlockPos, this.getDefaultState());
+				world.getBlockTickScheduler().schedule(targetBlockPos, state.getBlock(), 8);
+			}
+		}
 
-        // and turn this to the leftover block state
-        world.setBlockState(pos, conversionBlockState, 3);
-    }
+		// and turn this to the leftover block state
+		world.setBlockState(pos, conversionBlockState, 3);
+	}
 }

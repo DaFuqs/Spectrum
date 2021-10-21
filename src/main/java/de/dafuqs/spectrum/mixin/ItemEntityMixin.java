@@ -31,105 +31,105 @@ import java.util.Optional;
 @Mixin(ItemEntity.class)
 public abstract class ItemEntityMixin {
 
-    @Shadow public abstract ItemStack getStack();
+	@Shadow public abstract ItemStack getStack();
 
-    @Inject(at=@At("HEAD"), method= "damage(Lnet/minecraft/entity/damage/DamageSource;F)Z", cancellable = true)
-    public void doAnvilCrafting(DamageSource source, float amount, CallbackInfoReturnable<Boolean> callbackInfoReturnable) {
-        if(DamageSource.ANVIL.equals(source)) {
-            ItemEntity thisEntity = (ItemEntity) (Object) this;
-            ItemStack thisItemStack = thisEntity.getStack();
-            World world = thisEntity.getEntityWorld();
+	@Inject(at=@At("HEAD"), method= "damage(Lnet/minecraft/entity/damage/DamageSource;F)Z", cancellable = true)
+	public void doAnvilCrafting(DamageSource source, float amount, CallbackInfoReturnable<Boolean> callbackInfoReturnable) {
+		if(DamageSource.ANVIL.equals(source)) {
+			ItemEntity thisEntity = (ItemEntity) (Object) this;
+			ItemStack thisItemStack = thisEntity.getStack();
+			World world = thisEntity.getEntityWorld();
 
-            AutoCompactingInventory autoCompactingInventory = new AutoCompactingInventory();
-            autoCompactingInventory.setCompacting(AutoCompactingInventory.AutoCraftingMode.OnexOne, thisItemStack);
+			AutoCompactingInventory autoCompactingInventory = new AutoCompactingInventory();
+			autoCompactingInventory.setCompacting(AutoCompactingInventory.AutoCraftingMode.OnexOne, thisItemStack);
 
-            Optional<AnvilCrushingRecipe> optionalAnvilCrushingRecipe = world.getServer().getRecipeManager().getFirstMatch(SpectrumRecipeTypes.ANVIL_CRUSHING, autoCompactingInventory, world);
-            if(optionalAnvilCrushingRecipe.isPresent()) {
-                // Item can be crafted via anvil. Do anvil crafting
-                AnvilCrushingRecipe recipe = optionalAnvilCrushingRecipe.get();
+			Optional<AnvilCrushingRecipe> optionalAnvilCrushingRecipe = world.getServer().getRecipeManager().getFirstMatch(SpectrumRecipeTypes.ANVIL_CRUSHING, autoCompactingInventory, world);
+			if(optionalAnvilCrushingRecipe.isPresent()) {
+				// Item can be crafted via anvil. Do anvil crafting
+				AnvilCrushingRecipe recipe = optionalAnvilCrushingRecipe.get();
 
-                int itemStackAmount = thisEntity.getStack().getCount();
-                int crushingInputAmount = Math.min (itemStackAmount, (int) (recipe.getCrushedItemsPerPointOfDamage() * amount));
+				int itemStackAmount = thisEntity.getStack().getCount();
+				int crushingInputAmount = Math.min (itemStackAmount, (int) (recipe.getCrushedItemsPerPointOfDamage() * amount));
 
-                if(crushingInputAmount > 0) {
-                    Vec3d position = thisEntity.getPos();
+				if(crushingInputAmount > 0) {
+					Vec3d position = thisEntity.getPos();
 
-                    ItemStack crushingOutput = recipe.getOutputItemStack();
-                    crushingOutput.setCount(crushingOutput.getCount() * crushingInputAmount);
+					ItemStack crushingOutput = recipe.getOutputItemStack();
+					crushingOutput.setCount(crushingOutput.getCount() * crushingInputAmount);
 
-                    // Remove the input amount from the source stack
-                    // Or the source stack altogether if it would be empty
-                    int remainingItemStackAmount = itemStackAmount - crushingInputAmount;
-                    if (remainingItemStackAmount > 0) {
-                        thisItemStack.setCount(remainingItemStackAmount);
-                    } else {
-                        thisEntity.remove(Entity.RemovalReason.DISCARDED);
-                    }
+					// Remove the input amount from the source stack
+					// Or the source stack altogether if it would be empty
+					int remainingItemStackAmount = itemStackAmount - crushingInputAmount;
+					if (remainingItemStackAmount > 0) {
+						thisItemStack.setCount(remainingItemStackAmount);
+					} else {
+						thisEntity.remove(Entity.RemovalReason.DISCARDED);
+					}
 
-                    // Spawn the resulting item stack in the world
-                    ItemEntity craftedEntity = new ItemEntity(world, position.x, position.y, position.z, crushingOutput);
-                    world.spawnEntity(craftedEntity);
+					// Spawn the resulting item stack in the world
+					ItemEntity craftedEntity = new ItemEntity(world, position.x, position.y, position.z, crushingOutput);
+					world.spawnEntity(craftedEntity);
 
-                    // Spawn XP depending on how much is crafted, but at least 1
-                    float craftingXPFloat = recipe.getExperience() * crushingInputAmount;
-                    int craftingXP = Support.getWholeIntFromFloatWithChance(craftingXPFloat, world.random);
+					// Spawn XP depending on how much is crafted, but at least 1
+					float craftingXPFloat = recipe.getExperience() * crushingInputAmount;
+					int craftingXP = Support.getWholeIntFromFloatWithChance(craftingXPFloat, world.random);
 
-                    ExperienceOrbEntity experienceOrbEntity = new ExperienceOrbEntity(world, position.x, position.y, position.z, craftingXP);
-                    world.spawnEntity(experienceOrbEntity);
+					ExperienceOrbEntity experienceOrbEntity = new ExperienceOrbEntity(world, position.x, position.y, position.z, craftingXP);
+					world.spawnEntity(experienceOrbEntity);
 
-                    // Play sound
-                    SoundEvent soundEvent = recipe.getSoundEvent();
-                    float randomVolume = 1.0F + world.getRandom().nextFloat() * 0.2F;
-                    float randomPitch = 0.9F + world.getRandom().nextFloat() * 0.2F;
-                    world.playSound(null, position.x, position.y, position.z, soundEvent, SoundCategory.PLAYERS, randomVolume, randomPitch);
+					// Play sound
+					SoundEvent soundEvent = recipe.getSoundEvent();
+					float randomVolume = 1.0F + world.getRandom().nextFloat() * 0.2F;
+					float randomPitch = 0.9F + world.getRandom().nextFloat() * 0.2F;
+					world.playSound(null, position.x, position.y, position.z, soundEvent, SoundCategory.PLAYERS, randomVolume, randomPitch);
 
-                    SpectrumS2CPackets.playParticle((ServerWorld) world, new BlockPos(position), recipe.getParticleEffectIdentifier(), recipe.getParticleCount());
-                }
+					SpectrumS2CPackets.playParticle((ServerWorld) world, new BlockPos(position), recipe.getParticleEffectIdentifier(), recipe.getParticleCount());
+				}
 
-                // prevent the source itemStack taking damage.
-                // ItemEntities have a health of 5 and can actually get killed by a falling anvil
-                callbackInfoReturnable.setReturnValue(true);
-            }
-        }
-    }
+				// prevent the source itemStack taking damage.
+				// ItemEntities have a health of 5 and can actually get killed by a falling anvil
+				callbackInfoReturnable.setReturnValue(true);
+			}
+		}
+	}
 
-    @Inject(method= "damage(Lnet/minecraft/entity/damage/DamageSource;F)Z", at=@At("HEAD"), cancellable = true)
-    private void isDamageProof(DamageSource source, float amount, CallbackInfoReturnable<Boolean> callbackInfoReturnable) {
-        ItemStack itemStack = ((ItemEntity)(Object) this).getStack();
+	@Inject(method= "damage(Lnet/minecraft/entity/damage/DamageSource;F)Z", at=@At("HEAD"), cancellable = true)
+	private void isDamageProof(DamageSource source, float amount, CallbackInfoReturnable<Boolean> callbackInfoReturnable) {
+		ItemStack itemStack = ((ItemEntity)(Object) this).getStack();
 
-        if(itemStack != ItemStack.EMPTY) {
-            boolean isImmune = SpectrumItemStackDamageImmunities.isDamageImmune(itemStack, source);
-            if(isImmune) {
-                callbackInfoReturnable.setReturnValue(true);
-            }
-        }
-    }
+		if(itemStack != ItemStack.EMPTY) {
+			boolean isImmune = SpectrumItemStackDamageImmunities.isDamageImmune(itemStack, source);
+			if(isImmune) {
+				callbackInfoReturnable.setReturnValue(true);
+			}
+		}
+	}
 
-    @Inject(method="Lnet/minecraft/entity/ItemEntity;isFireImmune()Z", at=@At("HEAD"), cancellable = true)
-    private void isFireProof(CallbackInfoReturnable<Boolean> callbackInfoReturnable) {
-        ItemStack itemStack = ((ItemEntity)(Object) this).getStack();
+	@Inject(method="Lnet/minecraft/entity/ItemEntity;isFireImmune()Z", at=@At("HEAD"), cancellable = true)
+	private void isFireProof(CallbackInfoReturnable<Boolean> callbackInfoReturnable) {
+		ItemStack itemStack = ((ItemEntity)(Object) this).getStack();
 
-        if(itemStack != ItemStack.EMPTY) {
-            boolean isImmune = SpectrumItemStackDamageImmunities.isFireDamageImmune(itemStack);
-            if(isImmune) {
-                callbackInfoReturnable.setReturnValue(true);
-            }
-        }
-    }
+		if(itemStack != ItemStack.EMPTY) {
+			boolean isImmune = SpectrumItemStackDamageImmunities.isFireDamageImmune(itemStack);
+			if(isImmune) {
+				callbackInfoReturnable.setReturnValue(true);
+			}
+		}
+	}
 
-    @Inject(method= "tick()V", at=@At("TAIL"))
-    public void doGravityEffects(CallbackInfo ci) {
-        ItemEntity itemEntity = ((ItemEntity)(Object) this);
-        Item item = itemEntity.getStack().getItem();
-        if(item instanceof GravitableItem) {
-            // if the stack is floating really high => delete it
-            if(itemEntity.getPos().getY() > itemEntity.getEntityWorld().getTopY() + 200) {
-                itemEntity.discard();
-            } else {
-                double mod = ((GravitableItem) item).getGravityModForItemEntity();
-                itemEntity.addVelocity(0, mod, 0);
-            }
-        }
-    }
+	@Inject(method= "tick()V", at=@At("TAIL"))
+	public void doGravityEffects(CallbackInfo ci) {
+		ItemEntity itemEntity = ((ItemEntity)(Object) this);
+		Item item = itemEntity.getStack().getItem();
+		if(item instanceof GravitableItem) {
+			// if the stack is floating really high => delete it
+			if(itemEntity.getPos().getY() > itemEntity.getEntityWorld().getTopY() + 200) {
+				itemEntity.discard();
+			} else {
+				double mod = ((GravitableItem) item).getGravityModForItemEntity();
+				itemEntity.addVelocity(0, mod, 0);
+			}
+		}
+	}
 
 }

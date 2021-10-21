@@ -13,63 +13,63 @@ import java.util.UUID;
 
 public class OminousSaplingBlockEntity extends BlockEntity implements PlayerOwned {
 
-    public UUID ownerUUID;
-    public String ownerName;
+	public UUID ownerUUID;
+	public String ownerName;
 
-    public OminousSaplingBlockEntity(BlockPos blockPos, BlockState blockState) {
-        super(SpectrumBlockEntityRegistry.OMINOUS_SAPLING, blockPos, blockState);
-    }
+	public OminousSaplingBlockEntity(BlockPos blockPos, BlockState blockState) {
+		super(SpectrumBlockEntityRegistry.OMINOUS_SAPLING, blockPos, blockState);
+	}
 
-    public OminousSaplingBlockEntity(BlockEntityType<?> blockEntityType, BlockPos blockPos, BlockState blockState) {
-        super(blockEntityType, blockPos, blockState);
-    }
+	public OminousSaplingBlockEntity(BlockEntityType<?> blockEntityType, BlockPos blockPos, BlockState blockState) {
+		super(blockEntityType, blockPos, blockState);
+	}
 
-    @Override
-    public UUID getOwnerUUID() {
-        return this.ownerUUID;
-    }
+	@Override
+	public UUID getOwnerUUID() {
+		return this.ownerUUID;
+	}
 
-    @Override
-    public String getOwnerName() {
-        return this.ownerName;
-    }
+	@Override
+	public String getOwnerName() {
+		return this.ownerName;
+	}
 
-    @Override
-    public void setOwner(PlayerEntity playerEntity) {
-        this.ownerUUID = playerEntity.getUuid();
-        this.ownerName = playerEntity.getName().asString();
-    }
+	@Override
+	public void setOwner(PlayerEntity playerEntity) {
+		this.ownerUUID = playerEntity.getUuid();
+		this.ownerName = playerEntity.getName().asString();
+	}
 
-    // Serialize the BlockEntity
-    @Override
-    public NbtCompound writeNbt(NbtCompound tag) {
-        super.writeNbt(tag);
+	// Serialize the BlockEntity
+	@Override
+	public NbtCompound writeNbt(NbtCompound tag) {
+		super.writeNbt(tag);
 
-        if(this.ownerUUID != null) {
-            tag.putUuid("OwnerUUID", this.ownerUUID);
-        }
-        if(this.ownerName != null) {
-            tag.putString("OwnerName", this.ownerName);
-        }
+		if(this.ownerUUID != null) {
+			tag.putUuid("OwnerUUID", this.ownerUUID);
+		}
+		if(this.ownerName != null) {
+			tag.putString("OwnerName", this.ownerName);
+		}
 
-        return tag;
-    }
+		return tag;
+	}
 
-    // Deserialize the BlockEntity
-    @Override
-    public void readNbt(NbtCompound tag) {
-        super.readNbt(tag);
+	// Deserialize the BlockEntity
+	@Override
+	public void readNbt(NbtCompound tag) {
+		super.readNbt(tag);
 
-        if(tag.contains("OwnerUUID")) {
-            this.ownerUUID = tag.getUuid("OwnerUUID");
-        } else {
-            this.ownerUUID = null;
-        }
-        if(tag.contains("OwnerName")) {
-            this.ownerName = tag.getString("OwnerName");
-        } else {
-            this.ownerName = "???";
-        }
-    }
+		if(tag.contains("OwnerUUID")) {
+			this.ownerUUID = tag.getUuid("OwnerUUID");
+		} else {
+			this.ownerUUID = null;
+		}
+		if(tag.contains("OwnerName")) {
+			this.ownerName = tag.getString("OwnerName");
+		} else {
+			this.ownerName = "???";
+		}
+	}
 
 }

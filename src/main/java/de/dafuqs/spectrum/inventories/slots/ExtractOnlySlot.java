@@ -7,17 +7,17 @@ import net.minecraft.screen.slot.Slot;
 
 public class ExtractOnlySlot extends Slot {
 
-    public ExtractOnlySlot(Inventory inventory, int index, int x, int y) {
-        super(inventory, index, x, y);
-    }
+	public ExtractOnlySlot(Inventory inventory, int index, int x, int y) {
+		super(inventory, index, x, y);
+	}
 
-    public boolean canInsert(ItemStack stack) {
-        return false;
-    }
+	public boolean canInsert(ItemStack stack) {
+		return false;
+	}
 
-    public boolean canTakeItems(PlayerEntity playerEntity) {
-        return true;
-    }
+	public boolean canTakeItems(PlayerEntity playerEntity) {
+		return true;
+	}
 
 
 }

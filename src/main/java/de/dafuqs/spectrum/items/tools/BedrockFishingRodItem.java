@@ -11,19 +11,19 @@ import java.util.List;
 
 public class BedrockFishingRodItem extends FishingRodItem implements PreEnchantedTooltip {
 
-    public BedrockFishingRodItem(Settings settings) {
-        super(settings);
-    }
+	public BedrockFishingRodItem(Settings settings) {
+		super(settings);
+	}
 
-    @Override
-    public boolean isDamageable() {
-        return false;
-    }
+	@Override
+	public boolean isDamageable() {
+		return false;
+	}
 
-    @Override
-    public void appendTooltip(ItemStack itemStack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
-        super.appendTooltip(itemStack, world, tooltip, tooltipContext);
-        addPreEnchantedTooltip(tooltip, itemStack);
-    }
+	@Override
+	public void appendTooltip(ItemStack itemStack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
+		super.appendTooltip(itemStack, world, tooltip, tooltipContext);
+		addPreEnchantedTooltip(tooltip, itemStack);
+	}
 
 }

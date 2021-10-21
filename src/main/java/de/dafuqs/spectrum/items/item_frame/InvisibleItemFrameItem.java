@@ -11,12 +11,12 @@ import net.minecraft.world.World;
 
 public class InvisibleItemFrameItem extends SpectrumItemFrameItem {
 
-    public InvisibleItemFrameItem(EntityType<? extends AbstractDecorationEntity> entityType, Settings settings) {
-        super(entityType, settings);
-    }
+	public InvisibleItemFrameItem(EntityType<? extends AbstractDecorationEntity> entityType, Settings settings) {
+		super(entityType, settings);
+	}
 
-    public ItemFrameEntity getItemFrameEntity(World world, BlockPos blockPos, Direction direction) {
-        return new InvisibleItemFrameEntity(SpectrumEntityTypes.INVISIBLE_ITEM_FRAME, world, blockPos, direction);
-    }
+	public ItemFrameEntity getItemFrameEntity(World world, BlockPos blockPos, Direction direction) {
+		return new InvisibleItemFrameEntity(SpectrumEntityTypes.INVISIBLE_ITEM_FRAME, world, blockPos, direction);
+	}
 
 }

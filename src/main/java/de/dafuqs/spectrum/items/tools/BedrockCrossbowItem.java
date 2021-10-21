@@ -11,20 +11,20 @@ import java.util.List;
 
 public class BedrockCrossbowItem extends CrossbowItem implements PreEnchantedTooltip {
 
-    public BedrockCrossbowItem(Settings settings) {
-        super(settings);
-    }
+	public BedrockCrossbowItem(Settings settings) {
+		super(settings);
+	}
 
-    @Override
-    public boolean isDamageable() {
-        return false;
-    }
+	@Override
+	public boolean isDamageable() {
+		return false;
+	}
 
 
-    @Override
-    public void appendTooltip(ItemStack itemStack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
-        super.appendTooltip(itemStack, world, tooltip, tooltipContext);
-        addPreEnchantedTooltip(tooltip, itemStack);
-    }
+	@Override
+	public void appendTooltip(ItemStack itemStack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
+		super.appendTooltip(itemStack, world, tooltip, tooltipContext);
+		addPreEnchantedTooltip(tooltip, itemStack);
+	}
 
 }

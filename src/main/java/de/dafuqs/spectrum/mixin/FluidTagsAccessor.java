@@ -9,9 +9,9 @@ import org.spongepowered.asm.mixin.gen.Invoker;
 @Mixin(FluidTags.class)
 public interface FluidTagsAccessor {
 
-    @Invoker("register")
-    public static Tag.Identified<Fluid> invokeRegister(String id) {
-        throw new AssertionError();
-    }
+	@Invoker("register")
+	public static Tag.Identified<Fluid> invokeRegister(String id) {
+		throw new AssertionError();
+	}
 
 }

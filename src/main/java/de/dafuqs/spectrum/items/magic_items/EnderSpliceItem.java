@@ -32,102 +32,102 @@ import java.util.List;
 
 public class EnderSpliceItem extends Item {
 
-    public EnderSpliceItem(Settings settings) {
-        super(settings);
-    }
+	public EnderSpliceItem(Settings settings) {
+		super(settings);
+	}
 
-    @Override
-    public ItemStack finishUsing(ItemStack itemStack, World world, LivingEntity user) {
-        PlayerEntity playerEntity = user instanceof PlayerEntity ? (PlayerEntity)user : null;
-        if (playerEntity instanceof ServerPlayerEntity) {
-            Criteria.CONSUME_ITEM.trigger((ServerPlayerEntity)playerEntity, itemStack);
-        }
+	@Override
+	public ItemStack finishUsing(ItemStack itemStack, World world, LivingEntity user) {
+		PlayerEntity playerEntity = user instanceof PlayerEntity ? (PlayerEntity)user : null;
+		if (playerEntity instanceof ServerPlayerEntity) {
+			Criteria.CONSUME_ITEM.trigger((ServerPlayerEntity)playerEntity, itemStack);
+		}
 
-        NbtCompound nbtCompound = itemStack.getTag();
-        if (playerEntity != null && nbtCompound != null && nbtCompound.contains("PosX") && nbtCompound.contains("PosY") && nbtCompound.contains("PosZ") && nbtCompound.contains("Dimension")) {
-            String dimensionKeyString = nbtCompound.getString("Dimension");
-            if (user.getEntityWorld().getRegistryKey().getValue().toString().equals(dimensionKeyString)) {
+		NbtCompound nbtCompound = itemStack.getTag();
+		if (playerEntity != null && nbtCompound != null && nbtCompound.contains("PosX") && nbtCompound.contains("PosY") && nbtCompound.contains("PosZ") && nbtCompound.contains("Dimension")) {
+			String dimensionKeyString = nbtCompound.getString("Dimension");
+			if (user.getEntityWorld().getRegistryKey().getValue().toString().equals(dimensionKeyString)) {
 
-                double x = nbtCompound.getDouble("PosX");
-                double y = nbtCompound.getDouble("PosY");
-                double z = nbtCompound.getDouble("PosZ");
-                if(!world.isClient) {
-                    Vec3d pos = playerEntity.getPos();
+				double x = nbtCompound.getDouble("PosX");
+				double y = nbtCompound.getDouble("PosY");
+				double z = nbtCompound.getDouble("PosZ");
+				if(!world.isClient) {
+					Vec3d pos = playerEntity.getPos();
 
-                    world.playSound(playerEntity, pos.getX(), pos.getY(), pos.getZ(), SpectrumSoundEvents.PLAYER_TELEPORTS, SoundCategory.PLAYERS, 1.0F, 1.0F);
-                    user.requestTeleport(x, y + 0.25, z); // +0.25 makes it look way more lively
-                    world.playSound(playerEntity, x, y, z, SpectrumSoundEvents.PLAYER_TELEPORTS, SoundCategory.PLAYERS, 1.0F, 1.0F);
+					world.playSound(playerEntity, pos.getX(), pos.getY(), pos.getZ(), SpectrumSoundEvents.PLAYER_TELEPORTS, SoundCategory.PLAYERS, 1.0F, 1.0F);
+					user.requestTeleport(x, y + 0.25, z); // +0.25 makes it look way more lively
+					world.playSound(playerEntity, x, y, z, SpectrumSoundEvents.PLAYER_TELEPORTS, SoundCategory.PLAYERS, 1.0F, 1.0F);
 
-                    // make sure the sound plays even when the player currently teleports
-                    if(playerEntity instanceof ServerPlayerEntity) {
-                        ((ServerPlayerEntity) playerEntity).networkHandler.sendPacket(new PlaySoundIdS2CPacket(SpectrumSoundEvents.PLAYER_TELEPORTS.getId(), SoundCategory.PLAYERS, playerEntity.getPos(), 1.0F, 1.0F));
-                        ((ServerPlayerEntity) playerEntity).networkHandler.sendPacket(new PlaySoundIdS2CPacket(SoundEvents.BLOCK_GLASS_BREAK.getId(), SoundCategory.PLAYERS, playerEntity.getPos(), 1.0F, 1.0F));
-                    }
-                }
-            }
+					// make sure the sound plays even when the player currently teleports
+					if(playerEntity instanceof ServerPlayerEntity) {
+						((ServerPlayerEntity) playerEntity).networkHandler.sendPacket(new PlaySoundIdS2CPacket(SpectrumSoundEvents.PLAYER_TELEPORTS.getId(), SoundCategory.PLAYERS, playerEntity.getPos(), 1.0F, 1.0F));
+						((ServerPlayerEntity) playerEntity).networkHandler.sendPacket(new PlaySoundIdS2CPacket(SoundEvents.BLOCK_GLASS_BREAK.getId(), SoundCategory.PLAYERS, playerEntity.getPos(), 1.0F, 1.0F));
+					}
+				}
+			}
 
-            playerEntity.incrementStat(Stats.USED.getOrCreateStat(this));
-            if (!playerEntity.getAbilities().creativeMode) {
-                itemStack.decrement(1);
-            }
+			playerEntity.incrementStat(Stats.USED.getOrCreateStat(this));
+			if (!playerEntity.getAbilities().creativeMode) {
+				itemStack.decrement(1);
+			}
 
-            return itemStack;
-        } else {
-            if(!world.isClient) {
-                Vec3d pos = user.getPos();
+			return itemStack;
+		} else {
+			if(!world.isClient) {
+				Vec3d pos = user.getPos();
 
-                if (nbtCompound == null) {
-                    nbtCompound = new NbtCompound();
-                }
+				if (nbtCompound == null) {
+					nbtCompound = new NbtCompound();
+				}
 
-                nbtCompound.putDouble("PosX", pos.getX());
-                nbtCompound.putDouble("PosY", pos.getY());
-                nbtCompound.putDouble("PosZ", pos.getZ());
-                nbtCompound.putString("Dimension", user.getEntityWorld().getRegistryKey().getValue().toString());
-                itemStack.setTag(nbtCompound);
+				nbtCompound.putDouble("PosX", pos.getX());
+				nbtCompound.putDouble("PosY", pos.getY());
+				nbtCompound.putDouble("PosZ", pos.getZ());
+				nbtCompound.putString("Dimension", user.getEntityWorld().getRegistryKey().getValue().toString());
+				itemStack.setTag(nbtCompound);
 
-                ((ServerPlayerEntity) playerEntity).networkHandler.sendPacket(new PlaySoundIdS2CPacket(SpectrumSoundEvents.ENDER_SPLICE_BOUND.getId(), SoundCategory.PLAYERS, playerEntity.getPos(), 1.0F, 1.0F));
-            }
-        }
+				((ServerPlayerEntity) playerEntity).networkHandler.sendPacket(new PlaySoundIdS2CPacket(SpectrumSoundEvents.ENDER_SPLICE_BOUND.getId(), SoundCategory.PLAYERS, playerEntity.getPos(), 1.0F, 1.0F));
+			}
+		}
 
-        return itemStack;
-    }
+		return itemStack;
+	}
 
-    public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-        if(world.isClient) {
-            startSoundInstance(user);
-        }
-        return ItemUsage.consumeHeldItem(world, user, hand);
-    }
+	public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
+		if(world.isClient) {
+			startSoundInstance(user);
+		}
+		return ItemUsage.consumeHeldItem(world, user, hand);
+	}
 
-    @Environment(EnvType.CLIENT)
-    public void startSoundInstance(PlayerEntity user) {
-        SpectrumClient.minecraftClient.getSoundManager().play(new EnderSpliceChargingSoundInstance(user));
-    }
+	@Environment(EnvType.CLIENT)
+	public void startSoundInstance(PlayerEntity user) {
+		SpectrumClient.minecraftClient.getSoundManager().play(new EnderSpliceChargingSoundInstance(user));
+	}
 
-    public int getMaxUseTime(ItemStack stack) {
-        return 48;
-    }
+	public int getMaxUseTime(ItemStack stack) {
+		return 48;
+	}
 
-    public UseAction getUseAction(ItemStack stack) {
-        return UseAction.BLOCK;
-    }
+	public UseAction getUseAction(ItemStack stack) {
+		return UseAction.BLOCK;
+	}
 
-    @Environment(EnvType.CLIENT)
-    public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        NbtCompound nbtCompound = stack.getTag();
-        if(nbtCompound != null && nbtCompound.contains("PosX") && nbtCompound.contains("PosY") && nbtCompound.contains("PosZ") && nbtCompound.contains("Dimension")) {
-            String dimensionKeyString = nbtCompound.getString("Dimension");
-            String dimensionDisplayString = Support.getReadableDimensionString(dimensionKeyString);
-            int x = (int) nbtCompound.getDouble("PosX");
-            int y = (int) nbtCompound.getDouble("PosY");
-            int z = (int) nbtCompound.getDouble("PosZ");
+	@Environment(EnvType.CLIENT)
+	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+		NbtCompound nbtCompound = stack.getTag();
+		if(nbtCompound != null && nbtCompound.contains("PosX") && nbtCompound.contains("PosY") && nbtCompound.contains("PosZ") && nbtCompound.contains("Dimension")) {
+			String dimensionKeyString = nbtCompound.getString("Dimension");
+			String dimensionDisplayString = Support.getReadableDimensionString(dimensionKeyString);
+			int x = (int) nbtCompound.getDouble("PosX");
+			int y = (int) nbtCompound.getDouble("PosY");
+			int z = (int) nbtCompound.getDouble("PosZ");
 
-            tooltip.add(new TranslatableText("item.spectrum.ender_splice.tooltip.bound", x, y, z, dimensionDisplayString));
-        } else {
-            tooltip.add(new TranslatableText("item.spectrum.ender_splice.tooltip.unbound"));
-        }
-    }
+			tooltip.add(new TranslatableText("item.spectrum.ender_splice.tooltip.bound", x, y, z, dimensionDisplayString));
+		} else {
+			tooltip.add(new TranslatableText("item.spectrum.ender_splice.tooltip.unbound"));
+		}
+	}
 
 
 }

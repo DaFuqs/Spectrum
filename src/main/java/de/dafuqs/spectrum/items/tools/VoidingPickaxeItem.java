@@ -12,27 +12,27 @@ import net.minecraft.world.World;
 
 public class VoidingPickaxeItem extends SpectrumPickaxeItem {
 
-    public VoidingPickaxeItem(ToolMaterial material, int attackDamage, float attackSpeed, Settings settings) {
-        super(material, attackDamage, attackSpeed, settings);
-    }
+	public VoidingPickaxeItem(ToolMaterial material, int attackDamage, float attackSpeed, Settings settings) {
+		super(material, attackDamage, attackSpeed, settings);
+	}
 
-    public boolean postMine(ItemStack stack, World world, BlockState state, BlockPos pos, LivingEntity miner) {
-        super.postMine(stack, world, state, pos, miner);
+	public boolean postMine(ItemStack stack, World world, BlockState state, BlockPos pos, LivingEntity miner) {
+		super.postMine(stack, world, state, pos, miner);
 
-        // Break the tool if it is used without the voiding enchantment
-        // Otherwise this would be a VERY cheap early game diamond tier tool
-        if (!world.isClient && !EnchantmentHelper.get(stack).containsKey(SpectrumEnchantments.VOIDING)) {
-            stack.damage(5000, miner, (e) -> {
-                e.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND);
-            });
-        }
+		// Break the tool if it is used without the voiding enchantment
+		// Otherwise this would be a VERY cheap early game diamond tier tool
+		if (!world.isClient && !EnchantmentHelper.get(stack).containsKey(SpectrumEnchantments.VOIDING)) {
+			stack.damage(5000, miner, (e) -> {
+				e.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND);
+			});
+		}
 
-        return true;
-    }
+		return true;
+	}
 
-    @Override
-    public boolean isDamageable() {
-        return true;
-    }
+	@Override
+	public boolean isDamageable() {
+		return true;
+	}
 
 }

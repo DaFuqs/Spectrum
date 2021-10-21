@@ -17,45 +17,45 @@ import java.util.List;
 
 public class ColoredLeavesBlock extends LeavesBlock implements Cloakable {
 
-    public ColoredLeavesBlock(Settings settings) {
-        super(settings);
-        registerCloak();
-    }
+	public ColoredLeavesBlock(Settings settings) {
+		super(settings);
+		registerCloak();
+	}
 
-    @Override
-    public Identifier getCloakAdvancementIdentifier() {
-        return new Identifier(SpectrumCommon.MOD_ID, "craft_colored_sapling");
-    }
+	@Override
+	public Identifier getCloakAdvancementIdentifier() {
+		return new Identifier(SpectrumCommon.MOD_ID, "craft_colored_sapling");
+	}
 
-    @Override
-    public Hashtable<BlockState, BlockState> getBlockStateCloaks() {
-        Hashtable<BlockState, BlockState> hashtable = new Hashtable<>();
-        for(int distance = 1; distance < 8; distance++) {
-            hashtable.put(this.getDefaultState().with(LeavesBlock.DISTANCE, distance).with(LeavesBlock.PERSISTENT, false), Blocks.OAK_LEAVES.getDefaultState().with(LeavesBlock.DISTANCE, distance).with(LeavesBlock.PERSISTENT, false));
-        }
-        return hashtable;
-    }
+	@Override
+	public Hashtable<BlockState, BlockState> getBlockStateCloaks() {
+		Hashtable<BlockState, BlockState> hashtable = new Hashtable<>();
+		for(int distance = 1; distance < 8; distance++) {
+			hashtable.put(this.getDefaultState().with(LeavesBlock.DISTANCE, distance).with(LeavesBlock.PERSISTENT, false), Blocks.OAK_LEAVES.getDefaultState().with(LeavesBlock.DISTANCE, distance).with(LeavesBlock.PERSISTENT, false));
+		}
+		return hashtable;
+	}
 
-    @Override
-    public Pair<Item, Item> getItemCloak() {
-        return new Pair<>(this.asItem(), Blocks.OAK_LEAVES.asItem());
-    }
+	@Override
+	public Pair<Item, Item> getItemCloak() {
+		return new Pair<>(this.asItem(), Blocks.OAK_LEAVES.asItem());
+	}
 
-    @Override
-    public void onUncloak() {
-        SpectrumClient.coloredLeavesBlockColorProvider.setShouldApply(false);
-        SpectrumClient.coloredLeavesItemColorProvider.setShouldApply(false);
-    }
+	@Override
+	public void onUncloak() {
+		SpectrumClient.coloredLeavesBlockColorProvider.setShouldApply(false);
+		SpectrumClient.coloredLeavesItemColorProvider.setShouldApply(false);
+	}
 
-    @Override
-    public void onCloak() {
-        SpectrumClient.coloredLeavesBlockColorProvider.setShouldApply(true);
-        SpectrumClient.coloredLeavesItemColorProvider.setShouldApply(true);
-    }
+	@Override
+	public void onCloak() {
+		SpectrumClient.coloredLeavesBlockColorProvider.setShouldApply(true);
+		SpectrumClient.coloredLeavesItemColorProvider.setShouldApply(true);
+	}
 
-    @Deprecated
-    public List<ItemStack> getDroppedStacks(BlockState state, LootContext.Builder builder) {
-        return getCloakedDroppedStacks(state, builder);
-    }
+	@Deprecated
+	public List<ItemStack> getDroppedStacks(BlockState state, LootContext.Builder builder) {
+		return getCloakedDroppedStacks(state, builder);
+	}
 
 }

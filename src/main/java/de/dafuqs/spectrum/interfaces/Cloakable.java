@@ -27,78 +27,78 @@ import java.util.Optional;
 
 public interface Cloakable {
 
-    VoxelShape EMPTY_SHAPE = Block.createCuboidShape(0.0D, 0.0D, 0.0D, 0.0D, 0.0D, 0.0D);
+	VoxelShape EMPTY_SHAPE = Block.createCuboidShape(0.0D, 0.0D, 0.0D, 0.0D, 0.0D, 0.0D);
 
-    Identifier getCloakAdvancementIdentifier();
+	Identifier getCloakAdvancementIdentifier();
 
-    default void registerCloak() {
-        BlockCloakManager.registerAdvancementCloak(this, getCloakAdvancementIdentifier());
-    }
+	default void registerCloak() {
+		BlockCloakManager.registerAdvancementCloak(this, getCloakAdvancementIdentifier());
+	}
 
-    abstract Hashtable<BlockState, BlockState> getBlockStateCloaks();
-    abstract Pair<Item, Item> getItemCloak();
-    default void onCloak() {};
-    default void onUncloak() {};
+	abstract Hashtable<BlockState, BlockState> getBlockStateCloaks();
+	abstract Pair<Item, Item> getItemCloak();
+	default void onCloak() {};
+	default void onUncloak() {};
 
-    default boolean isVisibleTo(ShapeContext context) {
-        if(context instanceof EntityShapeContext) {
-            Optional<Entity> optionalEntity = ((EntityShapeContext) context).getEntity();
-            if(optionalEntity.isPresent()) {
-                Entity entity = optionalEntity.get();
-                if(entity instanceof PlayerEntity) {
-                    return this.isVisibleTo((PlayerEntity) entity);
-                }
-            }
-        }
-        return true;
-    }
+	default boolean isVisibleTo(ShapeContext context) {
+		if(context instanceof EntityShapeContext) {
+			Optional<Entity> optionalEntity = ((EntityShapeContext) context).getEntity();
+			if(optionalEntity.isPresent()) {
+				Entity entity = optionalEntity.get();
+				if(entity instanceof PlayerEntity) {
+					return this.isVisibleTo((PlayerEntity) entity);
+				}
+			}
+		}
+		return true;
+	}
 
-    default boolean isVisibleTo(PlayerEntity playerEntity) {
-        return Support.hasAdvancement(playerEntity, getCloakAdvancementIdentifier());
-    }
+	default boolean isVisibleTo(PlayerEntity playerEntity) {
+		return Support.hasAdvancement(playerEntity, getCloakAdvancementIdentifier());
+	}
 
-    default PlayerEntity getLootPlayerEntity(LootContext.Builder lootContextBuilder) {
-        if(lootContextBuilder.getNullable(LootContextParameters.THIS_ENTITY) == null) {
-            return null;
-        } else {
-            Entity entity = lootContextBuilder.get(LootContextParameters.THIS_ENTITY);
-            if(entity instanceof PlayerEntity) {
-                return (PlayerEntity) entity;
-            } else {
-                return null;
-            }
-        }
-    }
+	default PlayerEntity getLootPlayerEntity(LootContext.Builder lootContextBuilder) {
+		if(lootContextBuilder.getNullable(LootContextParameters.THIS_ENTITY) == null) {
+			return null;
+		} else {
+			Entity entity = lootContextBuilder.get(LootContextParameters.THIS_ENTITY);
+			if(entity instanceof PlayerEntity) {
+				return (PlayerEntity) entity;
+			} else {
+				return null;
+			}
+		}
+	}
 
-    default List<ItemStack> getCloakedDroppedStacks(BlockState state, LootContext.Builder builder) {
-        PlayerEntity lootPlayerEntity = getLootPlayerEntity(builder);
+	default List<ItemStack> getCloakedDroppedStacks(BlockState state, LootContext.Builder builder) {
+		PlayerEntity lootPlayerEntity = getLootPlayerEntity(builder);
 
-        Identifier identifier;
-        BlockState cloakedBlockState = null;
-        if(lootPlayerEntity == null || !isVisibleTo(lootPlayerEntity)) {
-            cloakedBlockState = BlockCloakManager.getBlockStateCloak(state);
-            if(cloakedBlockState == null) {
-                identifier = state.getBlock().getLootTableId();
-            } else {
-                identifier = cloakedBlockState.getBlock().getLootTableId();
-            }
-        } else {
-            identifier = state.getBlock().getLootTableId();
-        }
+		Identifier identifier;
+		BlockState cloakedBlockState = null;
+		if(lootPlayerEntity == null || !isVisibleTo(lootPlayerEntity)) {
+			cloakedBlockState = BlockCloakManager.getBlockStateCloak(state);
+			if(cloakedBlockState == null) {
+				identifier = state.getBlock().getLootTableId();
+			} else {
+				identifier = cloakedBlockState.getBlock().getLootTableId();
+			}
+		} else {
+			identifier = state.getBlock().getLootTableId();
+		}
 
-        if (identifier == LootTables.EMPTY) {
-            return Collections.emptyList();
-        } else {
-            LootContext lootContext;
-            if(cloakedBlockState == null) {
-                lootContext = builder.parameter(LootContextParameters.BLOCK_STATE, state).build(LootContextTypes.BLOCK);
-            } else {
-                lootContext = builder.parameter(LootContextParameters.BLOCK_STATE, cloakedBlockState).build(LootContextTypes.BLOCK);
-            }
-            ServerWorld serverWorld = lootContext.getWorld();
-            LootTable lootTable = serverWorld.getServer().getLootManager().getTable(identifier);
-            return lootTable.generateLoot(lootContext);
-        }
-    }
+		if (identifier == LootTables.EMPTY) {
+			return Collections.emptyList();
+		} else {
+			LootContext lootContext;
+			if(cloakedBlockState == null) {
+				lootContext = builder.parameter(LootContextParameters.BLOCK_STATE, state).build(LootContextTypes.BLOCK);
+			} else {
+				lootContext = builder.parameter(LootContextParameters.BLOCK_STATE, cloakedBlockState).build(LootContextTypes.BLOCK);
+			}
+			ServerWorld serverWorld = lootContext.getWorld();
+			LootTable lootTable = serverWorld.getServer().getLootManager().getTable(identifier);
+			return lootTable.generateLoot(lootContext);
+		}
+	}
 
 }

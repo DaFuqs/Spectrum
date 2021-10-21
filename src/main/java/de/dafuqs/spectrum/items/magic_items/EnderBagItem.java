@@ -13,25 +13,25 @@ import net.minecraft.world.World;
 
 public class EnderBagItem extends Item {
 
-    public EnderBagItem(Settings settings) {
-        super(settings);
-    }
+	public EnderBagItem(Settings settings) {
+		super(settings);
+	}
 
-    @Override
-    public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-        ItemStack itemStack = user.getStackInHand(hand);
+	@Override
+	public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
+		ItemStack itemStack = user.getStackInHand(hand);
 
-        EnderChestInventory enderChestInventory = user.getEnderChestInventory();
-        if (enderChestInventory != null) {
-            user.openHandledScreen(new SimpleNamedScreenHandlerFactory((syncId, inventory, playerx) -> {
-                    return GenericContainerScreenHandler.createGeneric9x3(syncId, inventory, enderChestInventory);
-            }, new TranslatableText("container.enderchest")));
+		EnderChestInventory enderChestInventory = user.getEnderChestInventory();
+		if (enderChestInventory != null) {
+			user.openHandledScreen(new SimpleNamedScreenHandlerFactory((syncId, inventory, playerx) -> {
+					return GenericContainerScreenHandler.createGeneric9x3(syncId, inventory, enderChestInventory);
+			}, new TranslatableText("container.enderchest")));
 
-            return TypedActionResult.consume(itemStack);
-        } else {
-            return TypedActionResult.success(itemStack, world.isClient);
-        }
-    }
+			return TypedActionResult.consume(itemStack);
+		} else {
+			return TypedActionResult.success(itemStack, world.isClient);
+		}
+	}
 
 
 }

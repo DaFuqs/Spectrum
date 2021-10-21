@@ -10,35 +10,35 @@ import net.minecraft.world.World;
 
 public class InvisibleItemFrameEntity extends ItemFrameEntity {
 
-    public InvisibleItemFrameEntity(EntityType<? extends ItemFrameEntity> entityType, World world) {
-        super(entityType, world);
-    }
+	public InvisibleItemFrameEntity(EntityType<? extends ItemFrameEntity> entityType, World world) {
+		super(entityType, world);
+	}
 
-    public InvisibleItemFrameEntity(World world, BlockPos pos, Direction facing) {
-        this(SpectrumEntityTypes.INVISIBLE_ITEM_FRAME, world, pos, facing);
-    }
+	public InvisibleItemFrameEntity(World world, BlockPos pos, Direction facing) {
+		this(SpectrumEntityTypes.INVISIBLE_ITEM_FRAME, world, pos, facing);
+	}
 
-    public InvisibleItemFrameEntity(EntityType<? extends ItemFrameEntity> type, World world, BlockPos pos, Direction facing) {
-        super(type, world, pos, facing);
-    }
+	public InvisibleItemFrameEntity(EntityType<? extends ItemFrameEntity> type, World world, BlockPos pos, Direction facing) {
+		super(type, world, pos, facing);
+	}
 
-    @Override
-    public boolean isInvisible() {
-        if(this.getHeldItemStack().isEmpty()) {
-            return super.isInvisible();
-        } else {
-            return true;
-        }
-    }
+	@Override
+	public boolean isInvisible() {
+		if(this.getHeldItemStack().isEmpty()) {
+			return super.isInvisible();
+		} else {
+			return true;
+		}
+	}
 
-    @Override
-    public void writeCustomDataToNbt(NbtCompound nbt) {
-        super.writeCustomDataToNbt(nbt);
-    }
+	@Override
+	public void writeCustomDataToNbt(NbtCompound nbt) {
+		super.writeCustomDataToNbt(nbt);
+	}
 
-    @Override
-    public void readCustomDataFromNbt(NbtCompound nbt) {
-        super.readCustomDataFromNbt(nbt);
-    }
+	@Override
+	public void readCustomDataFromNbt(NbtCompound nbt) {
+		super.readCustomDataFromNbt(nbt);
+	}
 
 }

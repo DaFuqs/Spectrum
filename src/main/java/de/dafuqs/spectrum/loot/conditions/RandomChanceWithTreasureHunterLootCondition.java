@@ -21,51 +21,51 @@ import java.util.Set;
 
 public class RandomChanceWithTreasureHunterLootCondition implements LootCondition {
 
-    private final float chance;
+	private final float chance;
 
-    private RandomChanceWithTreasureHunterLootCondition(float chance) {
-        this.chance = chance;
-    }
+	private RandomChanceWithTreasureHunterLootCondition(float chance) {
+		this.chance = chance;
+	}
 
-    public LootConditionType getType() {
-        return SpectrumLootConditionTypes.RANDOM_CHANCE_WITH_TREASURE_HUNTER;
-    }
+	public LootConditionType getType() {
+		return SpectrumLootConditionTypes.RANDOM_CHANCE_WITH_TREASURE_HUNTER;
+	}
 
-    public Set<LootContextParameter<?>> getRequiredParameters() {
-        return ImmutableSet.of(LootContextParameters.KILLER_ENTITY);
-    }
+	public Set<LootContextParameter<?>> getRequiredParameters() {
+		return ImmutableSet.of(LootContextParameters.KILLER_ENTITY);
+	}
 
-    public boolean test(LootContext lootContext) {
-        Entity entity = lootContext.get(LootContextParameters.KILLER_ENTITY);
-        int treasureHunterLevel = 0;
-        if (entity instanceof LivingEntity) {
-            treasureHunterLevel = EnchantmentHelper.getEquipmentLevel(SpectrumEnchantments.TREASURE_HUNTER, (LivingEntity)entity);
-        }
+	public boolean test(LootContext lootContext) {
+		Entity entity = lootContext.get(LootContextParameters.KILLER_ENTITY);
+		int treasureHunterLevel = 0;
+		if (entity instanceof LivingEntity) {
+			treasureHunterLevel = EnchantmentHelper.getEquipmentLevel(SpectrumEnchantments.TREASURE_HUNTER, (LivingEntity)entity);
+		}
 
-        if(treasureHunterLevel == 0) {
-            // No Treasure Hunter => no drop
-            return false;
-        } else {
-            return lootContext.getRandom().nextFloat() < this.chance * treasureHunterLevel;
-        }
-    }
+		if(treasureHunterLevel == 0) {
+			// No Treasure Hunter => no drop
+			return false;
+		} else {
+			return lootContext.getRandom().nextFloat() < this.chance * treasureHunterLevel;
+		}
+	}
 
-    public static Builder builder(float chance) {
-        return () -> {
-            return new RandomChanceWithTreasureHunterLootCondition(chance);
-        };
-    }
+	public static Builder builder(float chance) {
+		return () -> {
+			return new RandomChanceWithTreasureHunterLootCondition(chance);
+		};
+	}
 
-    public static class Serializer implements JsonSerializer<RandomChanceWithTreasureHunterLootCondition> {
-        public Serializer() {
-        }
+	public static class Serializer implements JsonSerializer<RandomChanceWithTreasureHunterLootCondition> {
+		public Serializer() {
+		}
 
-        public void toJson(JsonObject jsonObject, RandomChanceWithTreasureHunterLootCondition randomChanceWithLootingLootCondition, JsonSerializationContext jsonSerializationContext) {
-            jsonObject.addProperty("chance", randomChanceWithLootingLootCondition.chance);
-        }
+		public void toJson(JsonObject jsonObject, RandomChanceWithTreasureHunterLootCondition randomChanceWithLootingLootCondition, JsonSerializationContext jsonSerializationContext) {
+			jsonObject.addProperty("chance", randomChanceWithLootingLootCondition.chance);
+		}
 
-        public RandomChanceWithTreasureHunterLootCondition fromJson(JsonObject jsonObject, JsonDeserializationContext jsonDeserializationContext) {
-            return new RandomChanceWithTreasureHunterLootCondition(JsonHelper.getFloat(jsonObject, "chance"));
-        }
-    }
+		public RandomChanceWithTreasureHunterLootCondition fromJson(JsonObject jsonObject, JsonDeserializationContext jsonDeserializationContext) {
+			return new RandomChanceWithTreasureHunterLootCondition(JsonHelper.getFloat(jsonObject, "chance"));
+		}
+	}
 }

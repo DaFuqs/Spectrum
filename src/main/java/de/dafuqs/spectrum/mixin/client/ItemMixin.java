@@ -18,20 +18,20 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(Item.class)
 public abstract class ItemMixin {
 
-    @Shadow
-    public abstract Text getName();
+	@Shadow
+	public abstract Text getName();
 
-    @Inject(at = @At("HEAD"), method = "Lnet/minecraft/item/Item;getName(Lnet/minecraft/item/ItemStack;)Lnet/minecraft/text/Text;", cancellable = true)
-    public void getName(ItemStack stack, CallbackInfoReturnable<Text> callbackInfoReturnable) {
-        Item thisItem = (Item) (Object) this;
-        if(ClientBlockCloaker.isCloaked(thisItem)) {
+	@Inject(at = @At("HEAD"), method = "Lnet/minecraft/item/Item;getName(Lnet/minecraft/item/ItemStack;)Lnet/minecraft/text/Text;", cancellable = true)
+	public void getName(ItemStack stack, CallbackInfoReturnable<Text> callbackInfoReturnable) {
+		Item thisItem = (Item) (Object) this;
+		if(ClientBlockCloaker.isCloaked(thisItem)) {
 
-            // Get the localized name of the item and scatter it via §k
-            Language language = Language.getInstance();
-            LiteralText newText = new LiteralText("§k" + language.get(thisItem.getTranslationKey()));
+			// Get the localized name of the item and scatter it via §k
+			Language language = Language.getInstance();
+			LiteralText newText = new LiteralText("§k" + language.get(thisItem.getTranslationKey()));
 
-            callbackInfoReturnable.setReturnValue(newText);
-        }
-    }
+			callbackInfoReturnable.setReturnValue(newText);
+		}
+	}
 
 }

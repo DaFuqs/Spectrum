@@ -18,38 +18,38 @@ import java.util.List;
 
 public class NaturesStaffConversionsCategory implements DisplayCategory<NaturesStaffConversionsDisplay> {
 
-    public static final CategoryIdentifier<NaturesStaffConversionsDisplay> ID = CategoryIdentifier.of(new Identifier(SpectrumCommon.MOD_ID, "natures_staff_conversions"));
+	public static final CategoryIdentifier<NaturesStaffConversionsDisplay> ID = CategoryIdentifier.of(new Identifier(SpectrumCommon.MOD_ID, "natures_staff_conversions"));
 
-    @Override
-    public CategoryIdentifier<? extends NaturesStaffConversionsDisplay> getCategoryIdentifier() {
-        return ID;
-    }
+	@Override
+	public CategoryIdentifier<? extends NaturesStaffConversionsDisplay> getCategoryIdentifier() {
+		return ID;
+	}
 
-    @Override
-    public Renderer getIcon() {
-        return EntryStacks.of(SpectrumItems.NATURES_STAFF);
-    }
+	@Override
+	public Renderer getIcon() {
+		return EntryStacks.of(SpectrumItems.NATURES_STAFF);
+	}
 
-    @Override
-    public Text getTitle() {
-        return SpectrumItems.NATURES_STAFF.getName();
-    }
+	@Override
+	public Text getTitle() {
+		return SpectrumItems.NATURES_STAFF.getName();
+	}
 
-    @Override
-    public List<Widget> setupDisplay(NaturesStaffConversionsDisplay display, Rectangle bounds) {
-        Point startPoint = new Point(bounds.getCenterX() - 41, bounds.getCenterY() - 13);
-        List<Widget> widgets = Lists.newArrayList();
-        widgets.add(Widgets.createRecipeBase(bounds));
-        widgets.add(Widgets.createArrow(new Point(startPoint.x + 27, startPoint.y + 4)));
-        widgets.add(Widgets.createResultSlotBackground(new Point(startPoint.x + 61, startPoint.y + 5)));
-        widgets.add(Widgets.createSlot(new Point(startPoint.x + 4, startPoint.y + 5)).entries(display.getIn()).markInput());
-        widgets.add(Widgets.createSlot(new Point(startPoint.x + 61, startPoint.y + 5)).entries(display.getOut()).disableBackground().markInput());
-        return widgets;
-    }
+	@Override
+	public List<Widget> setupDisplay(NaturesStaffConversionsDisplay display, Rectangle bounds) {
+		Point startPoint = new Point(bounds.getCenterX() - 41, bounds.getCenterY() - 13);
+		List<Widget> widgets = Lists.newArrayList();
+		widgets.add(Widgets.createRecipeBase(bounds));
+		widgets.add(Widgets.createArrow(new Point(startPoint.x + 27, startPoint.y + 4)));
+		widgets.add(Widgets.createResultSlotBackground(new Point(startPoint.x + 61, startPoint.y + 5)));
+		widgets.add(Widgets.createSlot(new Point(startPoint.x + 4, startPoint.y + 5)).entries(display.getIn()).markInput());
+		widgets.add(Widgets.createSlot(new Point(startPoint.x + 61, startPoint.y + 5)).entries(display.getOut()).disableBackground().markInput());
+		return widgets;
+	}
 
-    @Override
-    public int getDisplayHeight() {
-        return 36;
-    }
+	@Override
+	public int getDisplayHeight() {
+		return 36;
+	}
 
 }

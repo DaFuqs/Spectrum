@@ -8,29 +8,29 @@ import net.minecraft.util.math.BlockPos;
 
 public class RedstoneCalculatorBlockEntity extends BlockEntity {
 
-    private int outputSignal;
+	private int outputSignal;
 
-    public RedstoneCalculatorBlockEntity(BlockPos pos, BlockState state) {
-        super(SpectrumBlockEntityRegistry.REDSTONE_CALCULATOR, pos, state);
-    }
+	public RedstoneCalculatorBlockEntity(BlockPos pos, BlockState state) {
+		super(SpectrumBlockEntityRegistry.REDSTONE_CALCULATOR, pos, state);
+	}
 
-    public NbtCompound writeNbt(NbtCompound nbt) {
-        super.writeNbt(nbt);
-        nbt.putInt("output_signal", this.outputSignal);
-        return nbt;
-    }
+	public NbtCompound writeNbt(NbtCompound nbt) {
+		super.writeNbt(nbt);
+		nbt.putInt("output_signal", this.outputSignal);
+		return nbt;
+	}
 
-    public void readNbt(NbtCompound nbt) {
-        super.readNbt(nbt);
-        this.outputSignal = nbt.getInt("output_signal");
-    }
+	public void readNbt(NbtCompound nbt) {
+		super.readNbt(nbt);
+		this.outputSignal = nbt.getInt("output_signal");
+	}
 
-    public int getOutputSignal() {
-        return this.outputSignal;
-    }
+	public int getOutputSignal() {
+		return this.outputSignal;
+	}
 
-    public void setOutputSignal(int outputSignal) {
-        this.outputSignal = outputSignal;
-    }
+	public void setOutputSignal(int outputSignal) {
+		this.outputSignal = outputSignal;
+	}
 
 }

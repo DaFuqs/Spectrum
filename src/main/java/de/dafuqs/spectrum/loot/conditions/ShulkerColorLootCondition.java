@@ -17,51 +17,51 @@ import org.jetbrains.annotations.NotNull;
 
 public class ShulkerColorLootCondition implements LootCondition {
 
-    @NotNull
-    DyeColor dyeColor;
+	@NotNull
+	DyeColor dyeColor;
 
-    private ShulkerColorLootCondition(@NotNull DyeColor dyeColor) {
-        this.dyeColor = dyeColor;
-    }
+	private ShulkerColorLootCondition(@NotNull DyeColor dyeColor) {
+		this.dyeColor = dyeColor;
+	}
 
-    @Override
-    public LootConditionType getType() {
-        return SpectrumLootConditionTypes.SHULKER_COLOR_CONDITION;
-    }
+	@Override
+	public LootConditionType getType() {
+		return SpectrumLootConditionTypes.SHULKER_COLOR_CONDITION;
+	}
 
-    @Override
-    public boolean test(LootContext lootContext) {
-        Entity entity = lootContext.get(LootContextParameters.THIS_ENTITY);
-        if (entity instanceof ShulkerEntity) {
-            DyeColor dyeColor = ((ShulkerEntity) entity).getColor();
-            if(dyeColor == null) {
-                return this.dyeColor.equals(DyeColor.PURPLE);
-            } else {
-                return this.dyeColor.equals(dyeColor);
-            }
-        } else {
-            return false;
-        }
-    }
+	@Override
+	public boolean test(LootContext lootContext) {
+		Entity entity = lootContext.get(LootContextParameters.THIS_ENTITY);
+		if (entity instanceof ShulkerEntity) {
+			DyeColor dyeColor = ((ShulkerEntity) entity).getColor();
+			if(dyeColor == null) {
+				return this.dyeColor.equals(DyeColor.PURPLE);
+			} else {
+				return this.dyeColor.equals(dyeColor);
+			}
+		} else {
+			return false;
+		}
+	}
 
-    public static Builder builder(DyeColor dyeColor) {
-        return () -> {
-            return new ShulkerColorLootCondition(dyeColor);
-        };
-    }
+	public static Builder builder(DyeColor dyeColor) {
+		return () -> {
+			return new ShulkerColorLootCondition(dyeColor);
+		};
+	}
 
-    public static class Serializer implements JsonSerializer<ShulkerColorLootCondition> {
-        public Serializer() {
-        }
+	public static class Serializer implements JsonSerializer<ShulkerColorLootCondition> {
+		public Serializer() {
+		}
 
-        public void toJson(JsonObject jsonObject, ShulkerColorLootCondition shulkerColorLootCondition, JsonSerializationContext jsonSerializationContext) {
-            jsonObject.addProperty("color", shulkerColorLootCondition.dyeColor.getName());
-        }
+		public void toJson(JsonObject jsonObject, ShulkerColorLootCondition shulkerColorLootCondition, JsonSerializationContext jsonSerializationContext) {
+			jsonObject.addProperty("color", shulkerColorLootCondition.dyeColor.getName());
+		}
 
-        public ShulkerColorLootCondition fromJson(JsonObject jsonObject, JsonDeserializationContext jsonDeserializationContext) {
-            String dyeColorString = JsonHelper.getString(jsonObject, "color");
-            return new ShulkerColorLootCondition(DyeColor.byName(dyeColorString, DyeColor.PURPLE));
-        }
-    }
+		public ShulkerColorLootCondition fromJson(JsonObject jsonObject, JsonDeserializationContext jsonDeserializationContext) {
+			String dyeColorString = JsonHelper.getString(jsonObject, "color");
+			return new ShulkerColorLootCondition(DyeColor.byName(dyeColorString, DyeColor.PURPLE));
+		}
+	}
 
 }

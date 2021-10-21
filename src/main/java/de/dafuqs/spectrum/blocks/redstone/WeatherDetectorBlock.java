@@ -6,34 +6,34 @@ import net.minecraft.world.World;
 
 public class WeatherDetectorBlock extends DetectorBlock {
 
-    public WeatherDetectorBlock(Settings settings) {
-        super(settings);
-    }
+	public WeatherDetectorBlock(Settings settings) {
+		super(settings);
+	}
 
-    protected void updateState(BlockState state, World world, BlockPos pos) {
-        int power = 0;
+	protected void updateState(BlockState state, World world, BlockPos pos) {
+		int power = 0;
 
-        if(world.hasRain(pos.up())) {
-            if(world.isThundering()) {
-                power = 15;
-            } else if(world.isRaining()) {
-                power = 8;
-            }
-        }
+		if(world.hasRain(pos.up())) {
+			if(world.isThundering()) {
+				power = 15;
+			} else if(world.isRaining()) {
+				power = 8;
+			}
+		}
 
-        boolean bl = state.get(INVERTED);
-        if (bl) {
-            power = 15 - power;
-        }
+		boolean bl = state.get(INVERTED);
+		if (bl) {
+			power = 15 - power;
+		}
 
-        if (state.get(POWER) != power) {
-            world.setBlockState(pos, state.with(POWER, power), 3);
-        }
-    }
+		if (state.get(POWER) != power) {
+			world.setBlockState(pos, state.with(POWER, power), 3);
+		}
+	}
 
-    @Override
-    int getUpdateFrequencyTicks() {
-        return 20;
-    }
+	@Override
+	int getUpdateFrequencyTicks() {
+		return 20;
+	}
 
 }

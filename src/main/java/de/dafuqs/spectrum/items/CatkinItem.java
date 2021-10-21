@@ -6,17 +6,17 @@ import net.minecraft.item.ItemStack;
 
 public class CatkinItem extends Item {
 
-    GemstoneColor gemstoneColor;
-    boolean lucid;
+	GemstoneColor gemstoneColor;
+	boolean lucid;
 
-    public CatkinItem(GemstoneColor gemstoneColor, boolean lucid, Settings settings) {
-        super(settings);
-        this.gemstoneColor = gemstoneColor;
-        this.lucid = lucid;
-    }
+	public CatkinItem(GemstoneColor gemstoneColor, boolean lucid, Settings settings) {
+		super(settings);
+		this.gemstoneColor = gemstoneColor;
+		this.lucid = lucid;
+	}
 
-    public boolean hasGlint(ItemStack stack) {
-        return lucid;
-    }
+	public boolean hasGlint(ItemStack stack) {
+		return lucid;
+	}
 
 }

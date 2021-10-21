@@ -12,26 +12,26 @@ import java.util.Hashtable;
 
 public class ScarletOreBlock extends CloakedOreBlock {
 
-    public ScarletOreBlock(Settings settings, UniformIntProvider uniformIntProvider) {
-        super(settings, uniformIntProvider, false);
-        registerCloak();
-    }
+	public ScarletOreBlock(Settings settings, UniformIntProvider uniformIntProvider) {
+		super(settings, uniformIntProvider, false);
+		registerCloak();
+	}
 
-    @Override
-    public Identifier getCloakAdvancementIdentifier() {
-        return new Identifier(SpectrumCommon.MOD_ID, "midgame/build_advanced_pedestal_structure");
-    }
+	@Override
+	public Identifier getCloakAdvancementIdentifier() {
+		return new Identifier(SpectrumCommon.MOD_ID, "midgame/build_advanced_pedestal_structure");
+	}
 
-    @Override
-    public Hashtable<BlockState, BlockState> getBlockStateCloaks() {
-        Hashtable<BlockState, BlockState> hashtable = new Hashtable<>();
-        hashtable.put(this.getDefaultState(), Blocks.NETHERRACK.getDefaultState());
-        return hashtable;
-    }
+	@Override
+	public Hashtable<BlockState, BlockState> getBlockStateCloaks() {
+		Hashtable<BlockState, BlockState> hashtable = new Hashtable<>();
+		hashtable.put(this.getDefaultState(), Blocks.NETHERRACK.getDefaultState());
+		return hashtable;
+	}
 
-    @Override
-    public Pair<Item, Item> getItemCloak() {
-        return new Pair<>(this.asItem(), Blocks.NETHERRACK.asItem());
-    }
+	@Override
+	public Pair<Item, Item> getItemCloak() {
+		return new Pair<>(this.asItem(), Blocks.NETHERRACK.asItem());
+	}
 
 }

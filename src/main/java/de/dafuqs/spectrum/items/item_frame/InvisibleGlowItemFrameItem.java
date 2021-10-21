@@ -11,12 +11,12 @@ import net.minecraft.world.World;
 
 public class InvisibleGlowItemFrameItem extends SpectrumItemFrameItem {
 
-    public InvisibleGlowItemFrameItem(EntityType<? extends AbstractDecorationEntity> entityType, Settings settings) {
-        super(entityType, settings);
-    }
+	public InvisibleGlowItemFrameItem(EntityType<? extends AbstractDecorationEntity> entityType, Settings settings) {
+		super(entityType, settings);
+	}
 
-    public ItemFrameEntity getItemFrameEntity(World world, BlockPos blockPos, Direction direction) {
-        return new InvisibleGlowItemFrameEntity(SpectrumEntityTypes.INVISIBLE_GLOW_ITEM_FRAME, world, blockPos, direction);
-    }
+	public ItemFrameEntity getItemFrameEntity(World world, BlockPos blockPos, Direction direction) {
+		return new InvisibleGlowItemFrameEntity(SpectrumEntityTypes.INVISIBLE_GLOW_ITEM_FRAME, world, blockPos, direction);
+	}
 
 }

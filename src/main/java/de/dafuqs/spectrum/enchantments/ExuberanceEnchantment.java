@@ -7,36 +7,36 @@ import net.minecraft.entity.EquipmentSlot;
 
 public class ExuberanceEnchantment extends Enchantment {
 
-    public ExuberanceEnchantment(Rarity weight, EquipmentSlot... slotTypes) {
-        super(weight, EnchantmentTarget.WEAPON, slotTypes);
-    }
+	public ExuberanceEnchantment(Rarity weight, EquipmentSlot... slotTypes) {
+		super(weight, EnchantmentTarget.WEAPON, slotTypes);
+	}
 
-    public int getMinPower(int level) {
-        return 10;
-    }
+	public int getMinPower(int level) {
+		return 10;
+	}
 
-    public int getMaxPower(int level) {
-        return super.getMinPower(level) + 30;
-    }
+	public int getMaxPower(int level) {
+		return super.getMinPower(level) + 30;
+	}
 
-    public int getMaxLevel() {
-        return SpectrumCommon.CONFIG.ExuberanceMaxLevel;
-    }
+	public int getMaxLevel() {
+		return SpectrumCommon.CONFIG.ExuberanceMaxLevel;
+	}
 
-    public boolean isTreasure() {
-        return false;
-    }
+	public boolean isTreasure() {
+		return false;
+	}
 
-    public boolean isAvailableForEnchantedBookOffer() {
-        return false;
-    }
+	public boolean isAvailableForEnchantedBookOffer() {
+		return false;
+	}
 
-    public boolean isAvailableForRandomSelection() {
-        return false;
-    }
+	public boolean isAvailableForRandomSelection() {
+		return false;
+	}
 
-    public boolean canAccept(Enchantment other) {
-        return super.canAccept(other);
-    }
+	public boolean canAccept(Enchantment other) {
+		return super.canAccept(other);
+	}
 
 }

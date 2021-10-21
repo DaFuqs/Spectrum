@@ -8,50 +8,50 @@ import java.util.function.Supplier;
 
 public class SpectrumToolMaterials {
 
-    public enum ToolMaterial implements net.minecraft.item.ToolMaterial {
-        BEDROCK(MiningLevels.NETHERITE, 0, 15.0F, 8.0F, 8, Ingredient::empty),
-        LOW_HEALTH(MiningLevels.IRON, 8, 4.0F, 2.0F, 3, Ingredient::empty),
-        VOIDING(MiningLevels.DIAMOND, 1143, 20.0F, 1.0F, 0, Ingredient::empty);
+	public enum ToolMaterial implements net.minecraft.item.ToolMaterial {
+		BEDROCK(MiningLevels.NETHERITE, 0, 15.0F, 8.0F, 8, Ingredient::empty),
+		LOW_HEALTH(MiningLevels.IRON, 8, 4.0F, 2.0F, 3, Ingredient::empty),
+		VOIDING(MiningLevels.DIAMOND, 1143, 20.0F, 1.0F, 0, Ingredient::empty);
 
-        private final int miningLevel;
-        private final int itemDurability;
-        private final float miningSpeed;
-        private final float attackDamage;
-        private final int enchantability;
-        private final Lazy<Ingredient> repairIngredient;
+		private final int miningLevel;
+		private final int itemDurability;
+		private final float miningSpeed;
+		private final float attackDamage;
+		private final int enchantability;
+		private final Lazy<Ingredient> repairIngredient;
 
-        ToolMaterial(int miningLevel, int itemDurability, float miningSpeed, float attackDamage, int enchantability, Supplier<Ingredient> repairIngredient) {
-            this.miningLevel = miningLevel;
-            this.itemDurability = itemDurability;
-            this.miningSpeed = miningSpeed;
-            this.attackDamage = attackDamage;
-            this.enchantability = enchantability;
-            this.repairIngredient = new Lazy(repairIngredient);
-        }
+		ToolMaterial(int miningLevel, int itemDurability, float miningSpeed, float attackDamage, int enchantability, Supplier<Ingredient> repairIngredient) {
+			this.miningLevel = miningLevel;
+			this.itemDurability = itemDurability;
+			this.miningSpeed = miningSpeed;
+			this.attackDamage = attackDamage;
+			this.enchantability = enchantability;
+			this.repairIngredient = new Lazy(repairIngredient);
+		}
 
-        public int getDurability() {
-            return this.itemDurability;
-        }
+		public int getDurability() {
+			return this.itemDurability;
+		}
 
-        public float getMiningSpeedMultiplier() {
-            return this.miningSpeed;
-        }
+		public float getMiningSpeedMultiplier() {
+			return this.miningSpeed;
+		}
 
-        public float getAttackDamage() {
-            return this.attackDamage;
-        }
+		public float getAttackDamage() {
+			return this.attackDamage;
+		}
 
-        public int getMiningLevel() {
-            return this.miningLevel;
-        }
+		public int getMiningLevel() {
+			return this.miningLevel;
+		}
 
-        public int getEnchantability() {
-            return this.enchantability;
-        }
+		public int getEnchantability() {
+			return this.enchantability;
+		}
 
-        public Ingredient getRepairIngredient() {
-            return this.repairIngredient.get();
-        }
-    }
+		public Ingredient getRepairIngredient() {
+			return this.repairIngredient.get();
+		}
+	}
 
 }

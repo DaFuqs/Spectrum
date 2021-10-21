@@ -17,26 +17,26 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(ItemModels.class)
 public class ItemModelsMixin {
 
-    @Shadow
-    @Final
-    private Int2ObjectMap<BakedModel> models;
+	@Shadow
+	@Final
+	private Int2ObjectMap<BakedModel> models;
 
-    @Shadow
-    @Final
-    private BakedModelManager modelManager;
+	@Shadow
+	@Final
+	private BakedModelManager modelManager;
 
-    @Inject(at = @At("HEAD"), method = "Lnet/minecraft/client/render/item/ItemModels;getModel(Lnet/minecraft/item/ItemStack;)Lnet/minecraft/client/render/model/BakedModel;", cancellable = true)
-    private void getModel(ItemStack itemStack, CallbackInfoReturnable<BakedModel> callbackInfoReturnable) {
-        if(ClientBlockCloaker.isCloaked(itemStack.getItem())) {
-            Item destinationItem = ClientBlockCloaker.getCloakTarget(itemStack.getItem());
+	@Inject(at = @At("HEAD"), method = "Lnet/minecraft/client/render/item/ItemModels;getModel(Lnet/minecraft/item/ItemStack;)Lnet/minecraft/client/render/model/BakedModel;", cancellable = true)
+	private void getModel(ItemStack itemStack, CallbackInfoReturnable<BakedModel> callbackInfoReturnable) {
+		if(ClientBlockCloaker.isCloaked(itemStack.getItem())) {
+			Item destinationItem = ClientBlockCloaker.getCloakTarget(itemStack.getItem());
 
-            BakedModel overriddenModel = this.models.getOrDefault(getTheModelId(destinationItem), modelManager.getMissingModel());
-            callbackInfoReturnable.setReturnValue(overriddenModel);
-        }
-    }
+			BakedModel overriddenModel = this.models.getOrDefault(getTheModelId(destinationItem), modelManager.getMissingModel());
+			callbackInfoReturnable.setReturnValue(overriddenModel);
+		}
+	}
 
-    private static int getTheModelId(Item item) {
-        return Item.getRawId(item);
-    }
+	private static int getTheModelId(Item item) {
+		return Item.getRawId(item);
+	}
 
 }

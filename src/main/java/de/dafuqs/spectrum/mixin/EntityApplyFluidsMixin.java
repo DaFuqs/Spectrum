@@ -16,28 +16,28 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(Entity.class)
 public class EntityApplyFluidsMixin {
 
-    @Shadow
-    protected Tag<Fluid> submergedFluidTag;
+	@Shadow
+	protected Tag<Fluid> submergedFluidTag;
 
-    @Inject(at = @At("HEAD"), method = "isSubmergedIn(Lnet/minecraft/tag/Tag;)Z", cancellable = true)
-    public void isSubmergedIn(Tag<Fluid> fluidTag, CallbackInfoReturnable<Boolean> cir) {
-        if(fluidTag == FluidTags.WATER) {
-            cir.setReturnValue(this.submergedFluidTag == fluidTag || this.submergedFluidTag == SpectrumFluidTags.MUD || this.submergedFluidTag == SpectrumFluidTags.LIQUID_CRYSTAL);
-        }
-    }
+	@Inject(at = @At("HEAD"), method = "isSubmergedIn(Lnet/minecraft/tag/Tag;)Z", cancellable = true)
+	public void isSubmergedIn(Tag<Fluid> fluidTag, CallbackInfoReturnable<Boolean> cir) {
+		if(fluidTag == FluidTags.WATER) {
+			cir.setReturnValue(this.submergedFluidTag == fluidTag || this.submergedFluidTag == SpectrumFluidTags.MUD || this.submergedFluidTag == SpectrumFluidTags.LIQUID_CRYSTAL);
+		}
+	}
 
-    @Redirect(method = "updateMovementInFluid(Lnet/minecraft/tag/Tag;D)Z", at = @At(value = "INVOKE", target = "Lnet/minecraft/fluid/FluidState;isIn(Lnet/minecraft/tag/Tag;)Z"))
-    public boolean updateMovementInFluid(FluidState fluidState, Tag<Fluid> tag) {
-          return isInFluid(fluidState, tag);
-    }
+	@Redirect(method = "updateMovementInFluid(Lnet/minecraft/tag/Tag;D)Z", at = @At(value = "INVOKE", target = "Lnet/minecraft/fluid/FluidState;isIn(Lnet/minecraft/tag/Tag;)Z"))
+	public boolean updateMovementInFluid(FluidState fluidState, Tag<Fluid> tag) {
+		  return isInFluid(fluidState, tag);
+	}
 
-    private boolean isInFluid(FluidState fluidState, Tag<Fluid> tag) {
-        if(tag == FluidTags.WATER) {
-            return(fluidState.isIn(FluidTags.WATER) || fluidState.isIn(SpectrumFluidTags.MUD) || fluidState.isIn(SpectrumFluidTags.LIQUID_CRYSTAL));
-        } else {
-            return fluidState.isIn(tag);
-        }
-    }
+	private boolean isInFluid(FluidState fluidState, Tag<Fluid> tag) {
+		if(tag == FluidTags.WATER) {
+			return(fluidState.isIn(FluidTags.WATER) || fluidState.isIn(SpectrumFluidTags.MUD) || fluidState.isIn(SpectrumFluidTags.LIQUID_CRYSTAL));
+		} else {
+			return fluidState.isIn(tag);
+		}
+	}
 
 
 }

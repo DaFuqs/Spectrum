@@ -17,103 +17,103 @@ import net.minecraft.world.World;
 
 public class AnvilCrushingRecipe implements Recipe<Inventory> {
 
-    protected final Identifier id;
-    protected final Ingredient inputIngredient;
-    protected final ItemStack outputItemStack;
-    protected final float crushedItemsPerPointOfDamage;
-    protected final float experience;
-    protected final Identifier particleEffect;
-    protected final int particleCount;
-    protected final Identifier soundEvent;
+	protected final Identifier id;
+	protected final Ingredient inputIngredient;
+	protected final ItemStack outputItemStack;
+	protected final float crushedItemsPerPointOfDamage;
+	protected final float experience;
+	protected final Identifier particleEffect;
+	protected final int particleCount;
+	protected final Identifier soundEvent;
 
-    public AnvilCrushingRecipe(Identifier id, Ingredient inputIngredient, ItemStack outputItemStack, float crushedItemsPerPointOfDamage, float experience, Identifier particleEffectIdentifier, int particleCount, Identifier soundEventIdentifier) {
-        this.id = id;
-        this.inputIngredient = inputIngredient;
-        this.outputItemStack = outputItemStack;
-        this.crushedItemsPerPointOfDamage = crushedItemsPerPointOfDamage;
-        this.experience = experience;
-        this.particleEffect = particleEffectIdentifier;
-        this.particleCount = particleCount;
-        this.soundEvent = soundEventIdentifier;
-    }
+	public AnvilCrushingRecipe(Identifier id, Ingredient inputIngredient, ItemStack outputItemStack, float crushedItemsPerPointOfDamage, float experience, Identifier particleEffectIdentifier, int particleCount, Identifier soundEventIdentifier) {
+		this.id = id;
+		this.inputIngredient = inputIngredient;
+		this.outputItemStack = outputItemStack;
+		this.crushedItemsPerPointOfDamage = crushedItemsPerPointOfDamage;
+		this.experience = experience;
+		this.particleEffect = particleEffectIdentifier;
+		this.particleCount = particleCount;
+		this.soundEvent = soundEventIdentifier;
+	}
 
-    public boolean matches(Inventory inv, World world) {
-        return this.inputIngredient.test(inv.getStack(0));
-    }
+	public boolean matches(Inventory inv, World world) {
+		return this.inputIngredient.test(inv.getStack(0));
+	}
 
-    @Override
-    public ItemStack craft(Inventory inv) {
-        return null;
-    }
+	@Override
+	public ItemStack craft(Inventory inv) {
+		return null;
+	}
 
-    @Override
-    public boolean fits(int width, int height) {
-        return true;
-    }
+	@Override
+	public boolean fits(int width, int height) {
+		return true;
+	}
 
-    @Override
-    public ItemStack getOutput() {
-        return outputItemStack.copy();
-    }
+	@Override
+	public ItemStack getOutput() {
+		return outputItemStack.copy();
+	}
 
-    public boolean isIgnoredInRecipeBook() {
-        return true;
-    }
+	public boolean isIgnoredInRecipeBook() {
+		return true;
+	}
 
-    @Override
-    public ItemStack createIcon() {
-        return new ItemStack(Blocks.ANVIL);
-    }
+	@Override
+	public ItemStack createIcon() {
+		return new ItemStack(Blocks.ANVIL);
+	}
 
-    public Identifier getId() {
-        return this.id;
-    }
+	public Identifier getId() {
+		return this.id;
+	}
 
-    public RecipeSerializer<?> getSerializer() {
-        return SpectrumRecipeTypes.ANVIL_CRUSHING_RECIPE_SERIALIZER;
-    }
+	public RecipeSerializer<?> getSerializer() {
+		return SpectrumRecipeTypes.ANVIL_CRUSHING_RECIPE_SERIALIZER;
+	}
 
-    public RecipeType<?> getType() {
-        return SpectrumRecipeTypes.ANVIL_CRUSHING;
-    }
+	public RecipeType<?> getType() {
+		return SpectrumRecipeTypes.ANVIL_CRUSHING;
+	}
 
-    public float getCrushedItemsPerPointOfDamage() {
-        return crushedItemsPerPointOfDamage;
-    }
+	public float getCrushedItemsPerPointOfDamage() {
+		return crushedItemsPerPointOfDamage;
+	}
 
-    public ItemStack getOutputItemStack() {
-        return outputItemStack.copy();
-    }
+	public ItemStack getOutputItemStack() {
+		return outputItemStack.copy();
+	}
 
-    public SoundEvent getSoundEvent() {
-        return Registry.SOUND_EVENT.get(soundEvent);
-    }
+	public SoundEvent getSoundEvent() {
+		return Registry.SOUND_EVENT.get(soundEvent);
+	}
 
-    public Identifier getParticleEffectIdentifier() {
-        return particleEffect;
-    }
+	public Identifier getParticleEffectIdentifier() {
+		return particleEffect;
+	}
 
-    public int getParticleCount() {
-        return particleCount;
-    }
+	public int getParticleCount() {
+		return particleCount;
+	}
 
-    @Override
-    public DefaultedList<Ingredient> getIngredients() {
-        DefaultedList<Ingredient> defaultedList = DefaultedList.of();
-        defaultedList.add(this.inputIngredient);
-        return defaultedList;
-    }
+	@Override
+	public DefaultedList<Ingredient> getIngredients() {
+		DefaultedList<Ingredient> defaultedList = DefaultedList.of();
+		defaultedList.add(this.inputIngredient);
+		return defaultedList;
+	}
 
-    public float getExperience() {
-        return experience;
-    }
+	public float getExperience() {
+		return experience;
+	}
 
-    @Override
-    public boolean equals(Object object) {
-        if(object instanceof AnvilCrushingRecipe) {
-            return ((AnvilCrushingRecipe) object).getId().equals(this.getId());
-        }
-        return false;
-    }
+	@Override
+	public boolean equals(Object object) {
+		if(object instanceof AnvilCrushingRecipe) {
+			return ((AnvilCrushingRecipe) object).getId().equals(this.getId());
+		}
+		return false;
+	}
 
 }

@@ -19,44 +19,44 @@ import org.jetbrains.annotations.NotNull;
 @Environment(EnvType.CLIENT)
 public class PedestalUpgradeBlockBlockEntityRenderer<PedestalUpgradeBlockEntity extends BlockEntity> implements BlockEntityRenderer<PedestalUpgradeBlockEntity> {
 
-    private final SpriteIdentifier spriteIdentifier;
-    private final ModelPart root;
-    private final ModelPart disk;
+	private final SpriteIdentifier spriteIdentifier;
+	private final ModelPart root;
+	private final ModelPart disk;
 
-    public PedestalUpgradeBlockBlockEntityRenderer(BlockEntityRendererFactory.Context ctx) {
-        spriteIdentifier = new SpriteIdentifier(SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE, new Identifier(SpectrumCommon.MOD_ID, "entity/pedestal_upgrade_speed"));
+	public PedestalUpgradeBlockBlockEntityRenderer(BlockEntityRendererFactory.Context ctx) {
+		spriteIdentifier = new SpriteIdentifier(SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE, new Identifier(SpectrumCommon.MOD_ID, "entity/pedestal_upgrade_speed"));
 
-        TexturedModelData texturedModelData = getTexturedModelData();
-        root = texturedModelData.createModel();
-        root.setPivot(8.0F, 8.0F, 8.0F);
-        disk = root.getChild("gemstone_disk");
-    }
+		TexturedModelData texturedModelData = getTexturedModelData();
+		root = texturedModelData.createModel();
+		root.setPivot(8.0F, 8.0F, 8.0F);
+		disk = root.getChild("gemstone_disk");
+	}
 
-    @Override
-    public void render(PedestalUpgradeBlockEntity entity, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light, int overlay) {
-        // do not render the floating disk when there is a block on top of the pedestal upgrade block
-        if(entity.getWorld() != null && !entity.getWorld().getBlockState(entity.getPos().up()).isAir()) {
-            return;
-        }
+	@Override
+	public void render(PedestalUpgradeBlockEntity entity, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light, int overlay) {
+		// do not render the floating disk when there is a block on top of the pedestal upgrade block
+		if(entity.getWorld() != null && !entity.getWorld().getBlockState(entity.getPos().up()).isAir()) {
+			return;
+		}
 
-        VertexConsumer vertexConsumer = spriteIdentifier.getVertexConsumer(vertexConsumerProvider, RenderLayer::getEntityCutout);
+		VertexConsumer vertexConsumer = spriteIdentifier.getVertexConsumer(vertexConsumerProvider, RenderLayer::getEntityCutout);
 
-        float s = (entity.getWorld().getTime() + tickDelta) / 25.0F;
-        root.pivotY = 16.0F + (float) (Math.sin(s) * 0.5);
-        disk.yaw = s;
-        root.render(matrixStack, vertexConsumer, light, overlay);
-    }
+		float s = (entity.getWorld().getTime() + tickDelta) / 25.0F;
+		root.pivotY = 16.0F + (float) (Math.sin(s) * 0.5);
+		disk.yaw = s;
+		root.render(matrixStack, vertexConsumer, light, overlay);
+	}
 
-    public static @NotNull TexturedModelData getTexturedModelData(){
-        ModelData modelData = new ModelData();
-        ModelPartData modelPartData = modelData.getRoot();
+	public static @NotNull TexturedModelData getTexturedModelData(){
+		ModelData modelData = new ModelData();
+		ModelPartData modelPartData = modelData.getRoot();
 
-        modelPartData.addChild("bone", ModelPartBuilder.create().uv(0, 0).cuboid(-2.0F, -4.0F, -2.0F, 4.0F, 8.0F, 4.0F), ModelTransform.pivot(0.0F, 0.0F, 0.0F));
-        modelPartData.addChild("basalt", ModelPartBuilder.create().uv(20, 2).mirrored().cuboid(-3.0F, -3.0F, -3.0F, 6.0F, 1.0F, 6.0F), ModelTransform.pivot(0.0F, 0.0F, 0.0F));
-        modelPartData.addChild("basalt2", ModelPartBuilder.create().uv(20, 3).mirrored().cuboid(-3.0F, 2.0F, -3.0F, 6.0F, 1.0F, 6.0F), ModelTransform.pivot(0.0F, 0.0F, 0.0F));
-        modelPartData.addChild("gemstone_disk", ModelPartBuilder.create().uv(0, 16).mirrored().cuboid(-3.0F, -2.0F, -3.0F, 6.0F, 4.0F, 6.0F), ModelTransform.pivot(0.0F, 0.0F, 0.0F));
+		modelPartData.addChild("bone", ModelPartBuilder.create().uv(0, 0).cuboid(-2.0F, -4.0F, -2.0F, 4.0F, 8.0F, 4.0F), ModelTransform.pivot(0.0F, 0.0F, 0.0F));
+		modelPartData.addChild("basalt", ModelPartBuilder.create().uv(20, 2).mirrored().cuboid(-3.0F, -3.0F, -3.0F, 6.0F, 1.0F, 6.0F), ModelTransform.pivot(0.0F, 0.0F, 0.0F));
+		modelPartData.addChild("basalt2", ModelPartBuilder.create().uv(20, 3).mirrored().cuboid(-3.0F, 2.0F, -3.0F, 6.0F, 1.0F, 6.0F), ModelTransform.pivot(0.0F, 0.0F, 0.0F));
+		modelPartData.addChild("gemstone_disk", ModelPartBuilder.create().uv(0, 16).mirrored().cuboid(-3.0F, -2.0F, -3.0F, 6.0F, 4.0F, 6.0F), ModelTransform.pivot(0.0F, 0.0F, 0.0F));
 
-        return TexturedModelData.of(modelData, 48, 48);
-    }
+		return TexturedModelData.of(modelData, 48, 48);
+	}
 
 }

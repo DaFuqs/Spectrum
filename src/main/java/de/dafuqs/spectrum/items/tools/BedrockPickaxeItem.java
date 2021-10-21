@@ -4,13 +4,13 @@ import net.minecraft.item.ToolMaterial;
 
 public class BedrockPickaxeItem extends SpectrumPickaxeItem {
 
-    public BedrockPickaxeItem(ToolMaterial material, int attackDamage, float attackSpeed, Settings settings) {
-        super(material, attackDamage, attackSpeed, settings);
-    }
+	public BedrockPickaxeItem(ToolMaterial material, int attackDamage, float attackSpeed, Settings settings) {
+		super(material, attackDamage, attackSpeed, settings);
+	}
 
-    @Override
-    public boolean isDamageable() {
-        return false;
-    }
+	@Override
+	public boolean isDamageable() {
+		return false;
+	}
 
 }

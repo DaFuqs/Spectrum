@@ -23,73 +23,73 @@ import java.util.Random;
 
 public class SpiritVinesHeadBlock extends AbstractPlantStemBlock implements SpiritVines {
 
-    private final GemstoneColor gemstoneColor;
+	private final GemstoneColor gemstoneColor;
 
-    public SpiritVinesHeadBlock(Settings settings, GemstoneColor gemstoneColor) {
-        super(settings, Direction.DOWN, SHAPE, false, 0.0D);
-        this.setDefaultState((this.stateManager.getDefaultState()).with(YIELD, YieldType.NONE));
-        this.gemstoneColor = gemstoneColor;
-    }
+	public SpiritVinesHeadBlock(Settings settings, GemstoneColor gemstoneColor) {
+		super(settings, Direction.DOWN, SHAPE, false, 0.0D);
+		this.setDefaultState((this.stateManager.getDefaultState()).with(YIELD, YieldType.NONE));
+		this.gemstoneColor = gemstoneColor;
+	}
 
-    protected int getGrowthLength(Random random) {
-        return 1;
-    }
+	protected int getGrowthLength(Random random) {
+		return 1;
+	}
 
-    protected boolean chooseStemState(BlockState state) {
-        return state.isAir();
-    }
+	protected boolean chooseStemState(BlockState state) {
+		return state.isAir();
+	}
 
-    protected Block getPlant() {
-        switch (gemstoneColor) {
-            case MAGENTA -> {
-                return SpectrumBlocks.MAGENTA_SPIRIT_SALLOW_VINES_HEAD;
-            }
-            case BLACK -> {
-                return SpectrumBlocks.BLACK_SPIRIT_SALLOW_VINES_HEAD;
-            }
-            case CYAN -> {
-                return SpectrumBlocks.CYAN_SPIRIT_SALLOW_VINES_HEAD;
-            }
-            case WHITE -> {
-                return SpectrumBlocks.WHITE_SPIRIT_SALLOW_VINES_HEAD;
-            }
-            default ->  {
-                return SpectrumBlocks.YELLOW_SPIRIT_SALLOW_VINES_HEAD;
-            }
-        }
-    }
+	protected Block getPlant() {
+		switch (gemstoneColor) {
+			case MAGENTA -> {
+				return SpectrumBlocks.MAGENTA_SPIRIT_SALLOW_VINES_HEAD;
+			}
+			case BLACK -> {
+				return SpectrumBlocks.BLACK_SPIRIT_SALLOW_VINES_HEAD;
+			}
+			case CYAN -> {
+				return SpectrumBlocks.CYAN_SPIRIT_SALLOW_VINES_HEAD;
+			}
+			case WHITE -> {
+				return SpectrumBlocks.WHITE_SPIRIT_SALLOW_VINES_HEAD;
+			}
+			default ->  {
+				return SpectrumBlocks.YELLOW_SPIRIT_SALLOW_VINES_HEAD;
+			}
+		}
+	}
 
-    protected BlockState copyState(BlockState from, BlockState to) {
-        return to.with(YIELD, from.get(YIELD));
-    }
+	protected BlockState copyState(BlockState from, BlockState to) {
+		return to.with(YIELD, from.get(YIELD));
+	}
 
-    protected BlockState age(BlockState state, Random random) {
-        return super.age(state, random).with(YIELD, YieldType.NONE);
-    }
+	protected BlockState age(BlockState state, Random random) {
+		return super.age(state, random).with(YIELD, YieldType.NONE);
+	}
 
-    @Environment(EnvType.CLIENT)
-    public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state) {
-        return new ItemStack(SpiritVines.getYieldItem(state));
-    }
+	@Environment(EnvType.CLIENT)
+	public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state) {
+		return new ItemStack(SpiritVines.getYieldItem(state));
+	}
 
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        return SpiritVines.pick(state, world, pos);
-    }
+	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+		return SpiritVines.pick(state, world, pos);
+	}
 
-    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        super.appendProperties(builder);
-        builder.add(YIELD);
-    }
+	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+		super.appendProperties(builder);
+		builder.add(YIELD);
+	}
 
-    public boolean isFertilizable(BlockView world, BlockPos pos, BlockState state, boolean isClient) {
-        return false;
-    }
+	public boolean isFertilizable(BlockView world, BlockPos pos, BlockState state, boolean isClient) {
+		return false;
+	}
 
-    public boolean canGrow(World world, Random random, BlockPos pos, BlockState state) {
-        return true;
-    }
+	public boolean canGrow(World world, Random random, BlockPos pos, BlockState state) {
+		return true;
+	}
 
-    public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
-        world.setBlockState(pos, state.with(YIELD, YieldType.NONE), 2);
-    }
+	public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
+		world.setBlockState(pos, state.with(YIELD, YieldType.NONE), 2);
+	}
 }

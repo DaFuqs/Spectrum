@@ -12,26 +12,26 @@ import java.util.Hashtable;
 
 public class PaleturOreBlock extends CloakedOreBlock {
 
-    public PaleturOreBlock(Settings settings, UniformIntProvider uniformIntProvider) {
-        super(settings, uniformIntProvider, false);
-        registerCloak();
-    }
+	public PaleturOreBlock(Settings settings, UniformIntProvider uniformIntProvider) {
+		super(settings, uniformIntProvider, false);
+		registerCloak();
+	}
 
-    @Override
-    public Identifier getCloakAdvancementIdentifier() {
-        return new Identifier(SpectrumCommon.MOD_ID, "midgame/enter_dimension");
-    }
+	@Override
+	public Identifier getCloakAdvancementIdentifier() {
+		return new Identifier(SpectrumCommon.MOD_ID, "midgame/enter_dimension");
+	}
 
-    @Override
-    public Hashtable<BlockState, BlockState> getBlockStateCloaks() {
-        Hashtable<BlockState, BlockState> hashtable = new Hashtable<>();
-        hashtable.put(this.getDefaultState(), Blocks.END_STONE.getDefaultState());
-        return hashtable;
-    }
+	@Override
+	public Hashtable<BlockState, BlockState> getBlockStateCloaks() {
+		Hashtable<BlockState, BlockState> hashtable = new Hashtable<>();
+		hashtable.put(this.getDefaultState(), Blocks.END_STONE.getDefaultState());
+		return hashtable;
+	}
 
-    @Override
-    public Pair<Item, Item> getItemCloak() {
-        return new Pair<>(this.asItem(), Blocks.END_STONE.asItem());
-    }
+	@Override
+	public Pair<Item, Item> getItemCloak() {
+		return new Pair<>(this.asItem(), Blocks.END_STONE.asItem());
+	}
 
 }

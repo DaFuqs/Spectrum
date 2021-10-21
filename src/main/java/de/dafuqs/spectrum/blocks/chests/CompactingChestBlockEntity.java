@@ -27,142 +27,142 @@ import java.util.Optional;
 
 public class CompactingChestBlockEntity extends SpectrumChestBlockEntity {
 
-    AutoCompactingInventory autoCompactingInventory = new AutoCompactingInventory();
-    ItemStack lastCraftingItemStack;// cache
-    CraftingRecipe lastCraftingRecipe; // cache
-    boolean hasToCraft;
+	AutoCompactingInventory autoCompactingInventory = new AutoCompactingInventory();
+	ItemStack lastCraftingItemStack;// cache
+	CraftingRecipe lastCraftingRecipe; // cache
+	boolean hasToCraft;
 
-    public CompactingChestBlockEntity(BlockPos blockPos, BlockState blockState) {
-        super(SpectrumBlockEntityRegistry.COMPACTING_CHEST, blockPos, blockState);
-        this.lastCraftingItemStack = ItemStack.EMPTY;
-        this.lastCraftingRecipe = null;
-        this.hasToCraft = false;
-    }
+	public CompactingChestBlockEntity(BlockPos blockPos, BlockState blockState) {
+		super(SpectrumBlockEntityRegistry.COMPACTING_CHEST, blockPos, blockState);
+		this.lastCraftingItemStack = ItemStack.EMPTY;
+		this.lastCraftingRecipe = null;
+		this.hasToCraft = false;
+	}
 
-    protected Text getContainerName() {
-        return new TranslatableText("block.spectrum.compacting_chest");
-    }
+	protected Text getContainerName() {
+		return new TranslatableText("block.spectrum.compacting_chest");
+	}
 
-    @Override
-    protected ScreenHandler createScreenHandler(int syncId, PlayerInventory playerInventory) {
-        return GenericSpectrumContainerScreenHandler.createGeneric9x3(syncId, playerInventory, this, SpectrumTier.TIER1);
-    }
+	@Override
+	protected ScreenHandler createScreenHandler(int syncId, PlayerInventory playerInventory) {
+		return GenericSpectrumContainerScreenHandler.createGeneric9x3(syncId, playerInventory, this, SpectrumTier.TIER1);
+	}
 
-    public static void tick(World world, BlockPos pos, BlockState state, CompactingChestBlockEntity compactingChestBlockEntity) {
-        if(world.isClient) {
-            compactingChestBlockEntity.lidAnimator.step();
-        } else {
-            if (compactingChestBlockEntity.hasToCraft) {
-                boolean couldCraft = compactingChestBlockEntity.tryCraftOnce();
-                if (!couldCraft) {
-                    compactingChestBlockEntity.hasToCraft = false;
-                }
-            }
-        }
-    }
+	public static void tick(World world, BlockPos pos, BlockState state, CompactingChestBlockEntity compactingChestBlockEntity) {
+		if(world.isClient) {
+			compactingChestBlockEntity.lidAnimator.step();
+		} else {
+			if (compactingChestBlockEntity.hasToCraft) {
+				boolean couldCraft = compactingChestBlockEntity.tryCraftOnce();
+				if (!couldCraft) {
+					compactingChestBlockEntity.hasToCraft = false;
+				}
+			}
+		}
+	}
 
-    @Override
-    public int size() {
-        return 27;
-    }
+	@Override
+	public int size() {
+		return 27;
+	}
 
-    @Override
-    public void setStack(int slot, ItemStack stack) {
-        super.setStack(slot, stack);
-        this.hasToCraft = true;
-    }
+	@Override
+	public void setStack(int slot, ItemStack stack) {
+		super.setStack(slot, stack);
+		this.hasToCraft = true;
+	}
 
-    private boolean tryCraftOnce() {
-        Optional<CraftingRecipe> optionalCraftingRecipe = Optional.empty();
-        List<ItemStack> craftingStacks = null;
-        DefaultedList<ItemStack> inventory = this.getInvStackList();
+	private boolean tryCraftOnce() {
+		Optional<CraftingRecipe> optionalCraftingRecipe = Optional.empty();
+		List<ItemStack> craftingStacks = null;
+		DefaultedList<ItemStack> inventory = this.getInvStackList();
 
-        if(lastCraftingRecipe != null) {
-            // try craft
-            Pair<Integer, List<ItemStack>> stackPair = InventoryHelper.getStackCountInInventory(lastCraftingItemStack, inventory);
-            if(stackPair.getLeft() >= 9) {
-                craftingStacks = stackPair.getRight();
-                optionalCraftingRecipe = Optional.ofNullable(lastCraftingRecipe);
-            } else {
-                lastCraftingRecipe = null;
-                lastCraftingItemStack = ItemStack.EMPTY;
-            }
-        }
+		if(lastCraftingRecipe != null) {
+			// try craft
+			Pair<Integer, List<ItemStack>> stackPair = InventoryHelper.getStackCountInInventory(lastCraftingItemStack, inventory);
+			if(stackPair.getLeft() >= 9) {
+				craftingStacks = stackPair.getRight();
+				optionalCraftingRecipe = Optional.ofNullable(lastCraftingRecipe);
+			} else {
+				lastCraftingRecipe = null;
+				lastCraftingItemStack = ItemStack.EMPTY;
+			}
+		}
 
-        if(!optionalCraftingRecipe.isPresent()) {
-            for(ItemStack itemStack : inventory) {
-                if(itemStack.isEmpty()) {
-                    continue;
-                }
-                Pair<Integer, List<ItemStack>> stackPair = InventoryHelper.getStackCountInInventory(itemStack, inventory);
-                if(stackPair.getLeft() >= 9) {
-                    craftingStacks = stackPair.getRight();
-                }
+		if(!optionalCraftingRecipe.isPresent()) {
+			for(ItemStack itemStack : inventory) {
+				if(itemStack.isEmpty()) {
+					continue;
+				}
+				Pair<Integer, List<ItemStack>> stackPair = InventoryHelper.getStackCountInInventory(itemStack, inventory);
+				if(stackPair.getLeft() >= 9) {
+					craftingStacks = stackPair.getRight();
+				}
 
-                if(craftingStacks != null) {
-                    autoCompactingInventory.setCompacting(AutoCompactingInventory.AutoCraftingMode.ThreeXTree, craftingStacks.get(0).copy());
-                    optionalCraftingRecipe = world.getServer().getRecipeManager().getFirstMatch(RecipeType.CRAFTING, autoCompactingInventory, world);
-                    if(!optionalCraftingRecipe.isPresent() || optionalCraftingRecipe.get().getOutput().isEmpty()) {
-                        optionalCraftingRecipe = Optional.empty();
-                    } else {
-                        break;
-                    }
-                }
-            }
-        }
+				if(craftingStacks != null) {
+					autoCompactingInventory.setCompacting(AutoCompactingInventory.AutoCraftingMode.ThreeXTree, craftingStacks.get(0).copy());
+					optionalCraftingRecipe = world.getServer().getRecipeManager().getFirstMatch(RecipeType.CRAFTING, autoCompactingInventory, world);
+					if(!optionalCraftingRecipe.isPresent() || optionalCraftingRecipe.get().getOutput().isEmpty()) {
+						optionalCraftingRecipe = Optional.empty();
+					} else {
+						break;
+					}
+				}
+			}
+		}
 
-        if(optionalCraftingRecipe.isPresent()) {
-            ItemStack craftingInput = craftingStacks.get(0).copy();
-            craftingInput.setCount(9);
-            ItemStack craftingOutput = optionalCraftingRecipe.get().getOutput().copy();
+		if(optionalCraftingRecipe.isPresent()) {
+			ItemStack craftingInput = craftingStacks.get(0).copy();
+			craftingInput.setCount(9);
+			ItemStack craftingOutput = optionalCraftingRecipe.get().getOutput().copy();
 
-            if(tryCraftInInventory(inventory, craftingInput, craftingOutput)) {
-                this.lastCraftingRecipe = optionalCraftingRecipe.get();
-                this.lastCraftingItemStack = craftingInput;
-                return true;
-            }
-        }
-        return false;
-    }
+			if(tryCraftInInventory(inventory, craftingInput, craftingOutput)) {
+				this.lastCraftingRecipe = optionalCraftingRecipe.get();
+				this.lastCraftingItemStack = craftingInput;
+				return true;
+			}
+		}
+		return false;
+	}
 
-    public boolean tryCraftInInventory(DefaultedList<ItemStack> inventory, ItemStack removalItemStack, ItemStack additionItemStack) {
-        InventoryHelper.removeFromInventory(removalItemStack, inventory);
+	public boolean tryCraftInInventory(DefaultedList<ItemStack> inventory, ItemStack removalItemStack, ItemStack additionItemStack) {
+		InventoryHelper.removeFromInventory(removalItemStack, inventory);
 
-        boolean spaceInInventory;
+		boolean spaceInInventory;
 
-        List<ItemStack> additionItemStacks = new ArrayList<>();
-        additionItemStacks.add(additionItemStack);
+		List<ItemStack> additionItemStacks = new ArrayList<>();
+		additionItemStacks.add(additionItemStack);
 
-        // room for output?
-        ItemStack remainderStack;
-        Item recipeRemainderItem = removalItemStack.getItem().getRecipeRemainder();
-        if(recipeRemainderItem != null) {
-            remainderStack = recipeRemainderItem.getDefaultStack();
-            remainderStack.setCount(9);
-            additionItemStacks.add(remainderStack);
-        }
+		// room for output?
+		ItemStack remainderStack;
+		Item recipeRemainderItem = removalItemStack.getItem().getRecipeRemainder();
+		if(recipeRemainderItem != null) {
+			remainderStack = recipeRemainderItem.getDefaultStack();
+			remainderStack.setCount(9);
+			additionItemStacks.add(remainderStack);
+		}
 
-        spaceInInventory = InventoryHelper.addToInventory(additionItemStacks, inventory, true);
+		spaceInInventory = InventoryHelper.addToInventory(additionItemStacks, inventory, true);
 
-        if(spaceInInventory) {
-            // craft
-            InventoryHelper.addToInventory(additionItemStacks, inventory, false);
-            this.setInvStackList(inventory);
+		if(spaceInInventory) {
+			// craft
+			InventoryHelper.addToInventory(additionItemStacks, inventory, false);
+			this.setInvStackList(inventory);
 
-            // cache
-            return true;
-        }
-        return false;
-    }
+			// cache
+			return true;
+		}
+		return false;
+	}
 
-    @Override
-    public SoundEvent getOpenSound() {
-        return SoundEvents.BLOCK_PISTON_EXTEND;
-    }
+	@Override
+	public SoundEvent getOpenSound() {
+		return SoundEvents.BLOCK_PISTON_EXTEND;
+	}
 
-    @Override
-    public SoundEvent getCloseSound() {
-        return SoundEvents.BLOCK_PISTON_CONTRACT;
-    }
+	@Override
+	public SoundEvent getCloseSound() {
+		return SoundEvents.BLOCK_PISTON_CONTRACT;
+	}
 
 }

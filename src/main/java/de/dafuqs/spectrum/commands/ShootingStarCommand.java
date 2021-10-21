@@ -14,24 +14,24 @@ import java.util.Collection;
 
 public class ShootingStarCommand {
 
-    public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
-        dispatcher.register((CommandManager.literal("spectrum_spawn_shooting_star").requires((source) -> {
-            return source.hasPermissionLevel(2);
-        }).then(CommandManager.argument("targets", EntityArgumentType.players()).executes((context) -> {
-            return execute(context.getSource(), EntityArgumentType.getPlayers(context, "targets"), 1);
-        }).then(CommandManager.argument("amount", IntegerArgumentType.integer(0)).executes((context) -> {
-            return execute(context.getSource(), EntityArgumentType.getPlayers(context, "targets"), IntegerArgumentType.getInteger(context, "amount"));
-        })))));
-    }
+	public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
+		dispatcher.register((CommandManager.literal("spectrum_spawn_shooting_star").requires((source) -> {
+			return source.hasPermissionLevel(2);
+		}).then(CommandManager.argument("targets", EntityArgumentType.players()).executes((context) -> {
+			return execute(context.getSource(), EntityArgumentType.getPlayers(context, "targets"), 1);
+		}).then(CommandManager.argument("amount", IntegerArgumentType.integer(0)).executes((context) -> {
+			return execute(context.getSource(), EntityArgumentType.getPlayers(context, "targets"), IntegerArgumentType.getInteger(context, "amount"));
+		})))));
+	}
 
-    private static int execute(ServerCommandSource source, Collection<? extends ServerPlayerEntity> targets, int amount) {
-        for (ServerPlayerEntity entity : targets) {
-            for (int i = 0; i < amount; i++) {
-                ShootingStarEntity.spawnShootingStar((ServerWorld) entity.world, entity);
-            }
-        }
-        source.sendFeedback(new TranslatableText("commands.spectrum.spawn_shooting_star.success", amount), false);
-        return amount;
-    }
+	private static int execute(ServerCommandSource source, Collection<? extends ServerPlayerEntity> targets, int amount) {
+		for (ServerPlayerEntity entity : targets) {
+			for (int i = 0; i < amount; i++) {
+				ShootingStarEntity.spawnShootingStar((ServerWorld) entity.world, entity);
+			}
+		}
+		source.sendFeedback(new TranslatableText("commands.spectrum.spawn_shooting_star.success", amount), false);
+		return amount;
+	}
 
 }

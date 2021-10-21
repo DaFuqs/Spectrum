@@ -8,26 +8,26 @@ import org.jetbrains.annotations.Nullable;
 
 public class ToggleableBlockColorProvider implements BlockColorProvider {
 
-    BlockColorProvider vanillaProvider;
-    boolean shouldApply;
+	BlockColorProvider vanillaProvider;
+	boolean shouldApply;
 
-    public ToggleableBlockColorProvider(BlockColorProvider vanillaProvider) {
-        this.vanillaProvider = vanillaProvider;
-        this.shouldApply = true;
-    }
+	public ToggleableBlockColorProvider(BlockColorProvider vanillaProvider) {
+		this.vanillaProvider = vanillaProvider;
+		this.shouldApply = true;
+	}
 
-    public void setShouldApply(boolean shouldApply) {
-        this.shouldApply = shouldApply;
-    }
+	public void setShouldApply(boolean shouldApply) {
+		this.shouldApply = shouldApply;
+	}
 
-    @Override
-    public int getColor(BlockState state, @Nullable BlockRenderView world, @Nullable BlockPos pos, int tintIndex) {
-        if(shouldApply) {
-            return vanillaProvider.getColor(state, world, pos, tintIndex);
-        } else {
-            // no tint
-            return 16777215;
-        }
-    }
+	@Override
+	public int getColor(BlockState state, @Nullable BlockRenderView world, @Nullable BlockPos pos, int tintIndex) {
+		if(shouldApply) {
+			return vanillaProvider.getColor(state, world, pos, tintIndex);
+		} else {
+			// no tint
+			return 16777215;
+		}
+	}
 
 }

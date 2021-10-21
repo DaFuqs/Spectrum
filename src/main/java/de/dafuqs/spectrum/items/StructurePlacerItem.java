@@ -10,21 +10,21 @@ import vazkii.patchouli.api.IMultiblock;
 
 public class StructurePlacerItem extends Item {
 
-    Identifier multiBlockIdentifier;
+	Identifier multiBlockIdentifier;
 
-    public StructurePlacerItem(Settings settings, Identifier multiBlockIdentifier) {
-        super(settings);
-        this.multiBlockIdentifier = multiBlockIdentifier;
-    }
+	public StructurePlacerItem(Settings settings, Identifier multiBlockIdentifier) {
+		super(settings);
+		this.multiBlockIdentifier = multiBlockIdentifier;
+	}
 
-    @Override
-    public ActionResult useOnBlock(ItemUsageContext context) {
-        IMultiblock iMultiblock = SpectrumMultiblocks.MULTIBLOCKS.get(multiBlockIdentifier);
-        if(iMultiblock != null) {
-            iMultiblock.place(context.getWorld(), context.getBlockPos().up(), BlockRotation.NONE);
-        }
-        return ActionResult.PASS;
-    }
+	@Override
+	public ActionResult useOnBlock(ItemUsageContext context) {
+		IMultiblock iMultiblock = SpectrumMultiblocks.MULTIBLOCKS.get(multiBlockIdentifier);
+		if(iMultiblock != null) {
+			iMultiblock.place(context.getWorld(), context.getBlockPos().up(), BlockRotation.NONE);
+		}
+		return ActionResult.PASS;
+	}
 
 
 }

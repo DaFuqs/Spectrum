@@ -19,56 +19,56 @@ import java.util.Random;
 
 public class FailingBlock extends DecayBlock {
 
-    private static final EnumProperty<DecayConversion> DECAY_STATE = EnumProperty.of("decay_state", DecayConversion.class);
+	private static final EnumProperty<DecayConversion> DECAY_STATE = EnumProperty.of("decay_state", DecayConversion.class);
 
-    public enum DecayConversion implements StringIdentifiable {
-        DEFAULT("default"),
-        OBSIDIAN("obsidian"),
-        CRYING_OBSIDIAN("crying_obsidian");
+	public enum DecayConversion implements StringIdentifiable {
+		DEFAULT("default"),
+		OBSIDIAN("obsidian"),
+		CRYING_OBSIDIAN("crying_obsidian");
 
-        private final String name;
+		private final String name;
 
-        private DecayConversion(String name) {
-            this.name = name;
-        }
+		private DecayConversion(String name) {
+			this.name = name;
+		}
 
-        public String toString() {
-            return this.name;
-        }
+		public String toString() {
+			return this.name;
+		}
 
-        public String asString() {
-            return this.name;
-        }
-    }
+		public String asString() {
+			return this.name;
+		}
+	}
 
-    public FailingBlock(Settings settings, Tag<Block> whiteListBlockTag, Tag<Block> blackListBlockTag, int tier, float damageOnTouching) {
-        super(settings, whiteListBlockTag, blackListBlockTag, tier, damageOnTouching);
-        setDefaultState(getStateManager().getDefaultState().with(DECAY_STATE, DecayConversion.DEFAULT));
+	public FailingBlock(Settings settings, Tag<Block> whiteListBlockTag, Tag<Block> blackListBlockTag, int tier, float damageOnTouching) {
+		super(settings, whiteListBlockTag, blackListBlockTag, tier, damageOnTouching);
+		setDefaultState(getStateManager().getDefaultState().with(DECAY_STATE, DecayConversion.DEFAULT));
 
-        BlockState destinationBlockState = this.getDefaultState().with(DECAY_STATE, DecayConversion.OBSIDIAN);
-        addDecayConversion(SpectrumBlockTags.DECAY_OBSIDIAN_CONVERSIONS, destinationBlockState);
+		BlockState destinationBlockState = this.getDefaultState().with(DECAY_STATE, DecayConversion.OBSIDIAN);
+		addDecayConversion(SpectrumBlockTags.DECAY_OBSIDIAN_CONVERSIONS, destinationBlockState);
 
-        BlockState destinationBlockState2 = this.getDefaultState().with(DECAY_STATE, DecayConversion.CRYING_OBSIDIAN);
-        addDecayConversion(SpectrumBlockTags.DECAY_CRYING_OBSIDIAN_CONVERSIONS, destinationBlockState2);
-    }
+		BlockState destinationBlockState2 = this.getDefaultState().with(DECAY_STATE, DecayConversion.CRYING_OBSIDIAN);
+		addDecayConversion(SpectrumBlockTags.DECAY_CRYING_OBSIDIAN_CONVERSIONS, destinationBlockState2);
+	}
 
-    @Override
-    protected float getSpreadChance() {
-        return SpectrumCommon.CONFIG.FailingDecayTickRate;
-    }
+	@Override
+	protected float getSpreadChance() {
+		return SpectrumCommon.CONFIG.FailingDecayTickRate;
+	}
 
-    @Override
-    protected void appendProperties(StateManager.Builder<Block, BlockState> stateManager) {
-        stateManager.add(DECAY_STATE);
-    }
+	@Override
+	protected void appendProperties(StateManager.Builder<Block, BlockState> stateManager) {
+		stateManager.add(DECAY_STATE);
+	}
 
-    @Environment(EnvType.CLIENT)
-    public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
-        if (state.get(FailingBlock.DECAY_STATE).equals(DecayConversion.CRYING_OBSIDIAN)) {
-            float xOffset = random.nextFloat();
-            float zOffset = random.nextFloat();
-            world.addParticle(new BlockStateParticleEffect(ParticleTypes.BLOCK, state), pos.getX() + xOffset, pos.getY() + 1, pos.getZ() + zOffset, 0.0D, 0.0D, 0.0D);
-        }
-    }
+	@Environment(EnvType.CLIENT)
+	public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
+		if (state.get(FailingBlock.DECAY_STATE).equals(DecayConversion.CRYING_OBSIDIAN)) {
+			float xOffset = random.nextFloat();
+			float zOffset = random.nextFloat();
+			world.addParticle(new BlockStateParticleEffect(ParticleTypes.BLOCK, state), pos.getX() + xOffset, pos.getY() + 1, pos.getZ() + zOffset, 0.0D, 0.0D, 0.0D);
+		}
+	}
 
 }

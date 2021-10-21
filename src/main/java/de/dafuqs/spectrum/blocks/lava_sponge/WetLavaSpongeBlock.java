@@ -16,73 +16,73 @@ import java.util.Random;
 
 public class WetLavaSpongeBlock extends WetSpongeBlock {
 
-    public WetLavaSpongeBlock(Settings settings) {
-        super(settings);
-    }
+	public WetLavaSpongeBlock(Settings settings) {
+		super(settings);
+	}
 
-    @Override
-    public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        world.getBlockTickScheduler().schedule(pos, this, getRandomTickTime(world.random));
+	@Override
+	public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
+		world.getBlockTickScheduler().schedule(pos, this, getRandomTickTime(world.random));
 
-        if (world.getGameRules().getBoolean(GameRules.DO_FIRE_TICK)) {
-            int xOffset = 2 - random.nextInt(5);
-            int yOffset = 1 - random.nextInt(3);
-            int zOffset = 2 - random.nextInt(5);
+		if (world.getGameRules().getBoolean(GameRules.DO_FIRE_TICK)) {
+			int xOffset = 2 - random.nextInt(5);
+			int yOffset = 1 - random.nextInt(3);
+			int zOffset = 2 - random.nextInt(5);
 
-            BlockPos targetPos = pos.add(xOffset, yOffset, zOffset);
-            if (world.getBlockState(targetPos).isAir() && world.getBlockState(targetPos.down()).getMaterial().isSolid()) {
-                world.setBlockState(targetPos, Blocks.FIRE.getDefaultState());
-            }
-        }
-    }
+			BlockPos targetPos = pos.add(xOffset, yOffset, zOffset);
+			if (world.getBlockState(targetPos).isAir() && world.getBlockState(targetPos.down()).getMaterial().isSolid()) {
+				world.setBlockState(targetPos, Blocks.FIRE.getDefaultState());
+			}
+		}
+	}
 
-    @Override
-    public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
-        super.onBlockAdded(state, world, pos, oldState, notify);
-        world.getBlockTickScheduler().schedule(pos, this, getRandomTickTime(world.random));
-    }
+	@Override
+	public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
+		super.onBlockAdded(state, world, pos, oldState, notify);
+		world.getBlockTickScheduler().schedule(pos, this, getRandomTickTime(world.random));
+	}
 
-    // faster than fire (30+ 0-10)
-    private static int getRandomTickTime(Random random) {
-        return 20 + random.nextInt(10);
-    }
+	// faster than fire (30+ 0-10)
+	private static int getRandomTickTime(Random random) {
+		return 20 + random.nextInt(10);
+	}
 
-    @Environment(EnvType.CLIENT)
-    public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
-        Direction direction = Direction.random(random);
-        if (direction != Direction.UP) {
-            BlockPos blockPos = pos.offset(direction);
-            BlockState blockState = world.getBlockState(blockPos);
-            if (!state.isOpaque() || !blockState.isSideSolidFullSquare(world, blockPos, direction.getOpposite())) {
-                double d = pos.getX();
-                double e = pos.getY();
-                double f = pos.getZ();
-                if (direction == Direction.DOWN) {
-                    e -= 0.05D;
-                    d += random.nextDouble();
-                    f += random.nextDouble();
-                } else {
-                    e += random.nextDouble() * 0.8D;
-                    if (direction.getAxis() == Direction.Axis.X) {
-                        f += random.nextDouble();
-                        if (direction == Direction.EAST) {
-                            ++d;
-                        } else {
-                            d += 0.05D;
-                        }
-                    } else {
-                        d += random.nextDouble();
-                        if (direction == Direction.SOUTH) {
-                            ++f;
-                        } else {
-                            f += 0.05D;
-                        }
-                    }
-                }
+	@Environment(EnvType.CLIENT)
+	public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
+		Direction direction = Direction.random(random);
+		if (direction != Direction.UP) {
+			BlockPos blockPos = pos.offset(direction);
+			BlockState blockState = world.getBlockState(blockPos);
+			if (!state.isOpaque() || !blockState.isSideSolidFullSquare(world, blockPos, direction.getOpposite())) {
+				double d = pos.getX();
+				double e = pos.getY();
+				double f = pos.getZ();
+				if (direction == Direction.DOWN) {
+					e -= 0.05D;
+					d += random.nextDouble();
+					f += random.nextDouble();
+				} else {
+					e += random.nextDouble() * 0.8D;
+					if (direction.getAxis() == Direction.Axis.X) {
+						f += random.nextDouble();
+						if (direction == Direction.EAST) {
+							++d;
+						} else {
+							d += 0.05D;
+						}
+					} else {
+						d += random.nextDouble();
+						if (direction == Direction.SOUTH) {
+							++f;
+						} else {
+							f += 0.05D;
+						}
+					}
+				}
 
-                world.addParticle(ParticleTypes.DRIPPING_LAVA, d, e, f, 0.0D, 0.0D, 0.0D);
-            }
-        }
-    }
+				world.addParticle(ParticleTypes.DRIPPING_LAVA, d, e, f, 0.0D, 0.0D, 0.0D);
+			}
+		}
+	}
 
 }

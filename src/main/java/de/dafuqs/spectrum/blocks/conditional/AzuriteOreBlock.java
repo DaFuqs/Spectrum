@@ -6,14 +6,14 @@ import net.minecraft.util.math.intprovider.UniformIntProvider;
 
 public class AzuriteOreBlock extends CloakedOreBlock {
 
-    public AzuriteOreBlock(Settings settings, UniformIntProvider uniformIntProvider, boolean deepSlateOre) {
-        super(settings, uniformIntProvider, deepSlateOre);
-        registerCloak();
-    }
+	public AzuriteOreBlock(Settings settings, UniformIntProvider uniformIntProvider, boolean deepSlateOre) {
+		super(settings, uniformIntProvider, deepSlateOre);
+		registerCloak();
+	}
 
-    @Override
-    public Identifier getCloakAdvancementIdentifier() {
-        return new Identifier(SpectrumCommon.MOD_ID, "midgame/collect_moonstone_shard");
-    }
+	@Override
+	public Identifier getCloakAdvancementIdentifier() {
+		return new Identifier(SpectrumCommon.MOD_ID, "midgame/collect_moonstone_shard");
+	}
 
 }

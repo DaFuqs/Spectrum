@@ -36,7 +36,7 @@ import java.util.Random;
 
 public class SpectrumS2CPackets {
 
-    public enum BlockEntityUpdatePacketID {
+	public enum BlockEntityUpdatePacketID {
 		FUSION_SHRINE,
 		PARTICLE_SPAWNER
 	}

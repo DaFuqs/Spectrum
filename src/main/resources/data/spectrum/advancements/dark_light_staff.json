@@ -16,8 +16,8 @@
       "trigger": "minecraft:item_used_on_block",
       "conditions": {
         "item": {
-          "tag": "spectrum:light_staff"
-        }
+          "items": [ "spectrum:light_staff" ]
+        },
         "block": {
           "blocks": [ "spectrum:wand_light" ],
           "state": {

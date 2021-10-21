@@ -11,26 +11,26 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 @Mixin(ClientPlayerEntity.class)
 public abstract class ClientPlayerEntityMixin implements GravityBlockEntity.PostTicker {
 
-    @Shadow
-    protected abstract void sendMovementPackets();
+	@Shadow
+	protected abstract void sendMovementPackets();
 
-    @Unique
-    boolean sendMovement = false;
+	@Unique
+	boolean sendMovement = false;
 
-    /**
-     * Since the player can be moved by FloatingBlockEntity after ClientPlayerEntity.tick()
-     * the call to sendMovementPackets() needs to be delayed till after all FloatingBlockEntities have ticked
-     */
-    @Redirect(at = @At(value = "INVOKE", target = "Lnet/minecraft/client/network/ClientPlayerEntity;sendMovementPackets()V"), method = "tick")
-    void redirectSendMovementPackets(ClientPlayerEntity clientPlayerEntity) {
-        sendMovement = true;
-    }
+	/**
+	 * Since the player can be moved by FloatingBlockEntity after ClientPlayerEntity.tick()
+	 * the call to sendMovementPackets() needs to be delayed till after all FloatingBlockEntities have ticked
+	 */
+	@Redirect(at = @At(value = "INVOKE", target = "Lnet/minecraft/client/network/ClientPlayerEntity;sendMovementPackets()V"), method = "tick")
+	void redirectSendMovementPackets(ClientPlayerEntity clientPlayerEntity) {
+		sendMovement = true;
+	}
 
-    @Override
-    public void postTick() {
-        if (sendMovement) {
-            sendMovementPackets();
-            sendMovement = false;
-        }
-    }
+	@Override
+	public void postTick() {
+		if (sendMovement) {
+			sendMovementPackets();
+			sendMovement = false;
+		}
+	}
 }

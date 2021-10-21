@@ -15,111 +15,111 @@ import org.jetbrains.annotations.NotNull;
 
 public class Spectrum3x3ContainerScreenHandler extends ScreenHandler {
 
-    private final SpectrumTier tier;
-    private final Inventory inventory;
+	private final SpectrumTier tier;
+	private final Inventory inventory;
 
-    @Contract("_, _ -> new")
-    public static @NotNull Spectrum3x3ContainerScreenHandler createTier1(int syncId, PlayerInventory playerInventory) {
-        return new Spectrum3x3ContainerScreenHandler(syncId, playerInventory, SpectrumTier.TIER1);
-    }
+	@Contract("_, _ -> new")
+	public static @NotNull Spectrum3x3ContainerScreenHandler createTier1(int syncId, PlayerInventory playerInventory) {
+		return new Spectrum3x3ContainerScreenHandler(syncId, playerInventory, SpectrumTier.TIER1);
+	}
 
-    @Contract("_, _, _ -> new")
-    public static @NotNull ScreenHandler createTier1(int syncId, PlayerInventory playerInventory, BlockPlacerBlockEntity blockPlacerBlockEntity) {
-        return new Spectrum3x3ContainerScreenHandler(SpectrumScreenHandlerTypes.GENERIC_TIER1_3X3, syncId, playerInventory, blockPlacerBlockEntity, SpectrumTier.TIER1);
-    }
+	@Contract("_, _, _ -> new")
+	public static @NotNull ScreenHandler createTier1(int syncId, PlayerInventory playerInventory, BlockPlacerBlockEntity blockPlacerBlockEntity) {
+		return new Spectrum3x3ContainerScreenHandler(SpectrumScreenHandlerTypes.GENERIC_TIER1_3X3, syncId, playerInventory, blockPlacerBlockEntity, SpectrumTier.TIER1);
+	}
 
-    @Contract("_, _ -> new")
-    public static @NotNull Spectrum3x3ContainerScreenHandler createTier2(int syncId, PlayerInventory playerInventory) {
-        return new Spectrum3x3ContainerScreenHandler(syncId, playerInventory, SpectrumTier.TIER2);
-    }
+	@Contract("_, _ -> new")
+	public static @NotNull Spectrum3x3ContainerScreenHandler createTier2(int syncId, PlayerInventory playerInventory) {
+		return new Spectrum3x3ContainerScreenHandler(syncId, playerInventory, SpectrumTier.TIER2);
+	}
 
-    @Contract("_, _, _ -> new")
-    public static @NotNull ScreenHandler createTier2(int syncId, PlayerInventory playerInventory, BlockPlacerBlockEntity blockPlacerBlockEntity) {
-        return new Spectrum3x3ContainerScreenHandler(SpectrumScreenHandlerTypes.GENERIC_TIER1_3X3, syncId, playerInventory, blockPlacerBlockEntity, SpectrumTier.TIER2);
-    }
+	@Contract("_, _, _ -> new")
+	public static @NotNull ScreenHandler createTier2(int syncId, PlayerInventory playerInventory, BlockPlacerBlockEntity blockPlacerBlockEntity) {
+		return new Spectrum3x3ContainerScreenHandler(SpectrumScreenHandlerTypes.GENERIC_TIER1_3X3, syncId, playerInventory, blockPlacerBlockEntity, SpectrumTier.TIER2);
+	}
 
-    @Contract("_, _ -> new")
-    public static @NotNull Spectrum3x3ContainerScreenHandler createTier3(int syncId, PlayerInventory playerInventory) {
-        return new Spectrum3x3ContainerScreenHandler(syncId, playerInventory, SpectrumTier.TIER3);
-    }
+	@Contract("_, _ -> new")
+	public static @NotNull Spectrum3x3ContainerScreenHandler createTier3(int syncId, PlayerInventory playerInventory) {
+		return new Spectrum3x3ContainerScreenHandler(syncId, playerInventory, SpectrumTier.TIER3);
+	}
 
-    @Contract("_, _, _ -> new")
-    public static @NotNull ScreenHandler createTier3(int syncId, PlayerInventory playerInventory, BlockPlacerBlockEntity blockPlacerBlockEntity) {
-        return new Spectrum3x3ContainerScreenHandler(SpectrumScreenHandlerTypes.GENERIC_TIER1_3X3, syncId, playerInventory, blockPlacerBlockEntity, SpectrumTier.TIER3);
-    }
+	@Contract("_, _, _ -> new")
+	public static @NotNull ScreenHandler createTier3(int syncId, PlayerInventory playerInventory, BlockPlacerBlockEntity blockPlacerBlockEntity) {
+		return new Spectrum3x3ContainerScreenHandler(SpectrumScreenHandlerTypes.GENERIC_TIER1_3X3, syncId, playerInventory, blockPlacerBlockEntity, SpectrumTier.TIER3);
+	}
 
-    public Spectrum3x3ContainerScreenHandler(int syncId, PlayerInventory playerInventory, SpectrumTier spectrumTier) {
-        this(SpectrumScreenHandlerTypes.GENERIC_TIER1_3X3, syncId, playerInventory, new SimpleInventory(9), spectrumTier);
-    }
+	public Spectrum3x3ContainerScreenHandler(int syncId, PlayerInventory playerInventory, SpectrumTier spectrumTier) {
+		this(SpectrumScreenHandlerTypes.GENERIC_TIER1_3X3, syncId, playerInventory, new SimpleInventory(9), spectrumTier);
+	}
 
-    public Spectrum3x3ContainerScreenHandler(ScreenHandlerType screenHandlerType, int syncId, PlayerInventory playerInventory, Inventory inventory, SpectrumTier spectrumTier) {
-        super(screenHandlerType, syncId);
-        checkSize(inventory, 9);
-        this.tier = spectrumTier;
-        this.inventory = inventory;
-        inventory.onOpen(playerInventory.player);
+	public Spectrum3x3ContainerScreenHandler(ScreenHandlerType screenHandlerType, int syncId, PlayerInventory playerInventory, Inventory inventory, SpectrumTier spectrumTier) {
+		super(screenHandlerType, syncId);
+		checkSize(inventory, 9);
+		this.tier = spectrumTier;
+		this.inventory = inventory;
+		inventory.onOpen(playerInventory.player);
 
-        int m;
-        int l;
-        for(m = 0; m < 3; ++m) {
-            for(l = 0; l < 3; ++l) {
-                this.addSlot(new Slot(inventory, l + m * 3, 62 + l * 18, 17 + m * 18));
-            }
-        }
+		int m;
+		int l;
+		for(m = 0; m < 3; ++m) {
+			for(l = 0; l < 3; ++l) {
+				this.addSlot(new Slot(inventory, l + m * 3, 62 + l * 18, 17 + m * 18));
+			}
+		}
 
-        for(m = 0; m < 3; ++m) {
-            for(l = 0; l < 9; ++l) {
-                this.addSlot(new Slot(playerInventory, l + m * 9 + 9, 8 + l * 18, 84 + m * 18));
-            }
-        }
+		for(m = 0; m < 3; ++m) {
+			for(l = 0; l < 9; ++l) {
+				this.addSlot(new Slot(playerInventory, l + m * 9 + 9, 8 + l * 18, 84 + m * 18));
+			}
+		}
 
-        for(m = 0; m < 9; ++m) {
-            this.addSlot(new Slot(playerInventory, m, 8 + m * 18, 142));
-        }
+		for(m = 0; m < 9; ++m) {
+			this.addSlot(new Slot(playerInventory, m, 8 + m * 18, 142));
+		}
 
-    }
+	}
 
-    public boolean canUse(PlayerEntity player) {
-        return this.inventory.canPlayerUse(player);
-    }
+	public boolean canUse(PlayerEntity player) {
+		return this.inventory.canPlayerUse(player);
+	}
 
-    public ItemStack transferSlot(PlayerEntity player, int index) {
-        ItemStack itemStack = ItemStack.EMPTY;
-        Slot slot = this.slots.get(index);
-        if (slot.hasStack()) {
-            ItemStack itemStack2 = slot.getStack();
-            itemStack = itemStack2.copy();
-            if (index < 9) {
-                if (!this.insertItem(itemStack2, 9, 45, true)) {
-                    return ItemStack.EMPTY;
-                }
-            } else if (!this.insertItem(itemStack2, 0, 9, false)) {
-                return ItemStack.EMPTY;
-            }
+	public ItemStack transferSlot(PlayerEntity player, int index) {
+		ItemStack itemStack = ItemStack.EMPTY;
+		Slot slot = this.slots.get(index);
+		if (slot.hasStack()) {
+			ItemStack itemStack2 = slot.getStack();
+			itemStack = itemStack2.copy();
+			if (index < 9) {
+				if (!this.insertItem(itemStack2, 9, 45, true)) {
+					return ItemStack.EMPTY;
+				}
+			} else if (!this.insertItem(itemStack2, 0, 9, false)) {
+				return ItemStack.EMPTY;
+			}
 
-            if (itemStack2.isEmpty()) {
-                slot.setStack(ItemStack.EMPTY);
-            } else {
-                slot.markDirty();
-            }
+			if (itemStack2.isEmpty()) {
+				slot.setStack(ItemStack.EMPTY);
+			} else {
+				slot.markDirty();
+			}
 
-            if (itemStack2.getCount() == itemStack.getCount()) {
-                return ItemStack.EMPTY;
-            }
+			if (itemStack2.getCount() == itemStack.getCount()) {
+				return ItemStack.EMPTY;
+			}
 
-            slot.onTakeItem(player, itemStack2);
-        }
+			slot.onTakeItem(player, itemStack2);
+		}
 
-        return itemStack;
-    }
+		return itemStack;
+	}
 
-    public void close(PlayerEntity player) {
-        super.close(player);
-        this.inventory.onClose(player);
-    }
+	public void close(PlayerEntity player) {
+		super.close(player);
+		this.inventory.onClose(player);
+	}
 
-    public SpectrumTier getTier() {
-        return this.tier;
-    }
+	public SpectrumTier getTier() {
+		return this.tier;
+	}
 
 }

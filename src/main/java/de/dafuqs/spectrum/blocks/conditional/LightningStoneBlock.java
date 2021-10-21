@@ -26,68 +26,68 @@ import java.util.Random;
 
 public class LightningStoneBlock extends Block implements Cloakable {
 
-    protected static final VoxelShape SHAPE = Block.createCuboidShape(4.0D, 0.0D, 4.0D, 11.0D, 2.0D, 11.0D);
+	protected static final VoxelShape SHAPE = Block.createCuboidShape(4.0D, 0.0D, 4.0D, 11.0D, 2.0D, 11.0D);
 
-    public LightningStoneBlock(Settings settings) {
-        super(settings);
-        registerCloak();
-    }
+	public LightningStoneBlock(Settings settings) {
+		super(settings);
+		registerCloak();
+	}
 
-    @Override
-    public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
-        return world.getBlockState(pos.down()).isSolidBlock(world, pos);
-    }
+	@Override
+	public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
+		return world.getBlockState(pos.down()).isSolidBlock(world, pos);
+	}
 
 
-    @Override
-    public void onDestroyedByExplosion(World world, BlockPos pos, Explosion explosion) {
-        super.onDestroyedByExplosion(world, pos, explosion);
+	@Override
+	public void onDestroyedByExplosion(World world, BlockPos pos, Explosion explosion) {
+		super.onDestroyedByExplosion(world, pos, explosion);
 
-        LightningEntity lightningEntity =  EntityType.LIGHTNING_BOLT.create(world);
-        lightningEntity.refreshPositionAfterTeleport(Vec3d.ofBottomCenter(pos));
-        world.spawnEntity(lightningEntity);
-    }
+		LightningEntity lightningEntity =  EntityType.LIGHTNING_BOLT.create(world);
+		lightningEntity.refreshPositionAfterTeleport(Vec3d.ofBottomCenter(pos));
+		world.spawnEntity(lightningEntity);
+	}
 
-    @Override
-    public Identifier getCloakAdvancementIdentifier() {
-        return new Identifier(SpectrumCommon.MOD_ID, "midgame/collect_corrupted_obsidian_dust");
-    }
+	@Override
+	public Identifier getCloakAdvancementIdentifier() {
+		return new Identifier(SpectrumCommon.MOD_ID, "midgame/collect_corrupted_obsidian_dust");
+	}
 
-    @Deprecated
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        if(this.isVisibleTo(context)) {
-            return SHAPE;
-        }
-        return EMPTY_SHAPE;
-    }
+	@Deprecated
+	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+		if(this.isVisibleTo(context)) {
+			return SHAPE;
+		}
+		return EMPTY_SHAPE;
+	}
 
-    @Override
-    public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        if(this.isVisibleTo(context)) {
-            return SHAPE;
-        }
-        return EMPTY_SHAPE;
-    }
+	@Override
+	public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+		if(this.isVisibleTo(context)) {
+			return SHAPE;
+		}
+		return EMPTY_SHAPE;
+	}
 
-    @Override
-    public Hashtable<BlockState, BlockState> getBlockStateCloaks() {
-        Hashtable<BlockState, BlockState> hashtable = new Hashtable<>();
-        hashtable.put(this.getDefaultState(), Blocks.AIR.getDefaultState());
-        return hashtable;
-    }
+	@Override
+	public Hashtable<BlockState, BlockState> getBlockStateCloaks() {
+		Hashtable<BlockState, BlockState> hashtable = new Hashtable<>();
+		hashtable.put(this.getDefaultState(), Blocks.AIR.getDefaultState());
+		return hashtable;
+	}
 
-    @Override
-    public Pair<Item, Item> getItemCloak() {
-        return new Pair<>(this.asItem(), Items.EMERALD);
-    }
+	@Override
+	public Pair<Item, Item> getItemCloak() {
+		return new Pair<>(this.asItem(), Items.EMERALD);
+	}
 
-    /**
-     * If it gets ticked there is a chance to vanish
-     */
-    public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        if(random.nextFloat() < 0.1) {
-            world.setBlockState(pos, Blocks.AIR.getDefaultState(), 3);
-        }
-    }
+	/**
+	 * If it gets ticked there is a chance to vanish
+	 */
+	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
+		if(random.nextFloat() < 0.1) {
+			world.setBlockState(pos, Blocks.AIR.getDefaultState(), 3);
+		}
+	}
 
 }

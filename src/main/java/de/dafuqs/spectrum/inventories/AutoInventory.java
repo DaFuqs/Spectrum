@@ -5,13 +5,13 @@ import net.minecraft.inventory.CraftingInventory;
 
 public abstract class AutoInventory extends CraftingInventory {
 
-    public AutoInventory(int width, int height) {
-        super(null, width, height);
-    }
+	public AutoInventory(int width, int height) {
+		super(null, width, height);
+	}
 
-    @Override
-    public boolean canPlayerUse(PlayerEntity player) {
-        return false;
-    }
+	@Override
+	public boolean canPlayerUse(PlayerEntity player) {
+		return false;
+	}
 
 }

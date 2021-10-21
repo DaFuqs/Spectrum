@@ -23,28 +23,28 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(Block.class)
 public abstract class SpawnerBlockMixin {
 
-    @Inject(method = "afterBreak", at = @At("HEAD"), cancellable = true)
-    public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack stack, CallbackInfo callbackInfo) {
-        if(checkResonanceForSpawnerMining(world, player, pos, state, blockEntity, stack)) {
-            callbackInfo.cancel();
-        }
-    }
+	@Inject(method = "afterBreak", at = @At("HEAD"), cancellable = true)
+	public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack stack, CallbackInfo callbackInfo) {
+		if(checkResonanceForSpawnerMining(world, player, pos, state, blockEntity, stack)) {
+			callbackInfo.cancel();
+		}
+	}
 
-    private static boolean checkResonanceForSpawnerMining(World world, PlayerEntity entity, BlockPos pos, BlockState blockState, @Nullable BlockEntity blockEntity, ItemStack stack) {
-        if (blockState.equals(Blocks.SPAWNER.getDefaultState())) {
-            if (EnchantmentHelper.getLevel(SpectrumEnchantments.RESONANCE, stack) > 0) {
-                if (blockEntity instanceof MobSpawnerBlockEntity) {
-                    ItemStack itemStack = Spawner.fromBlockEntity(blockEntity);
+	private static boolean checkResonanceForSpawnerMining(World world, PlayerEntity entity, BlockPos pos, BlockState blockState, @Nullable BlockEntity blockEntity, ItemStack stack) {
+		if (blockState.equals(Blocks.SPAWNER.getDefaultState())) {
+			if (EnchantmentHelper.getLevel(SpectrumEnchantments.RESONANCE, stack) > 0) {
+				if (blockEntity instanceof MobSpawnerBlockEntity) {
+					ItemStack itemStack = Spawner.fromBlockEntity(blockEntity);
 
-                    Block.dropStack(world, pos, itemStack);
-                    world.playSound(null, pos, SoundEvents.BLOCK_METAL_BREAK, SoundCategory.BLOCKS, 1.0F, 0.8F + world.random.nextFloat() * 0.4F);
-                    world.setBlockState(pos, Blocks.AIR.getDefaultState());
-                    return true;
-                }
-            }
+					Block.dropStack(world, pos, itemStack);
+					world.playSound(null, pos, SoundEvents.BLOCK_METAL_BREAK, SoundCategory.BLOCKS, 1.0F, 0.8F + world.random.nextFloat() * 0.4F);
+					world.setBlockState(pos, Blocks.AIR.getDefaultState());
+					return true;
+				}
+			}
 
-        }
-        return false;
-    }
+		}
+		return false;
+	}
 
 }

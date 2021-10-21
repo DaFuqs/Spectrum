@@ -13,22 +13,22 @@ import net.minecraft.util.math.BlockPos;
 // but since there is no player type / redstone interaction it should be a bit more performant than the vanilla one
 public class SpectrumSkullBlockEntity extends BlockEntity {
 
-    public SpectrumSkullBlockEntity(BlockPos pos, BlockState state) {
-        super(SpectrumBlockEntityRegistry.SKULL, pos, state);
-    }
+	public SpectrumSkullBlockEntity(BlockPos pos, BlockState state) {
+		super(SpectrumBlockEntityRegistry.SKULL, pos, state);
+	}
 
-    public NbtCompound writeNbt(NbtCompound tag) {
-        super.writeNbt(tag);
-        return tag;
-    }
+	public NbtCompound writeNbt(NbtCompound tag) {
+		super.writeNbt(tag);
+		return tag;
+	}
 
-    public void readNbt(NbtCompound tag) {
-        super.readNbt(tag);
-    }
+	public void readNbt(NbtCompound tag) {
+		super.readNbt(tag);
+	}
 
-    @Environment(EnvType.CLIENT)
-    public SpectrumSkullBlock.Type getSkullType() {
-        return SpectrumBlocks.getSkullType(world.getBlockState(this.pos).getBlock());
-    }
+	@Environment(EnvType.CLIENT)
+	public SpectrumSkullBlock.Type getSkullType() {
+		return SpectrumBlocks.getSkullType(world.getBlockState(this.pos).getBlock());
+	}
 
 }

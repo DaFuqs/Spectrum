@@ -31,81 +31,81 @@ import java.util.Random;
 
 public class MermaidsBrushBlock extends PlantBlock implements Cloakable, Waterloggable {
 
-    public static final IntProperty AGE = Properties.AGE_7;
+	public static final IntProperty AGE = Properties.AGE_7;
 
-    public MermaidsBrushBlock(Settings settings) {
-        super(settings);
-        this.setDefaultState(this.stateManager.getDefaultState().with(AGE, 0));
-        registerCloak();
-    }
+	public MermaidsBrushBlock(Settings settings) {
+		super(settings);
+		this.setDefaultState(this.stateManager.getDefaultState().with(AGE, 0));
+		registerCloak();
+	}
 
-    @Override
-    public Identifier getCloakAdvancementIdentifier() {
-        return new Identifier(SpectrumCommon.MOD_ID, "collect_mermaids_gem");
-    }
+	@Override
+	public Identifier getCloakAdvancementIdentifier() {
+		return new Identifier(SpectrumCommon.MOD_ID, "collect_mermaids_gem");
+	}
 
-    @Override
-    public Hashtable<BlockState, BlockState> getBlockStateCloaks() {
-        Hashtable<BlockState, BlockState> hashtable = new Hashtable<>();
-        for(int i = 0; i < 8; i++) {
-            hashtable.put(this.getDefaultState().with(AGE, i), Blocks.WATER.getDefaultState());
-        }
-        return hashtable;
-    }
+	@Override
+	public Hashtable<BlockState, BlockState> getBlockStateCloaks() {
+		Hashtable<BlockState, BlockState> hashtable = new Hashtable<>();
+		for(int i = 0; i < 8; i++) {
+			hashtable.put(this.getDefaultState().with(AGE, i), Blocks.WATER.getDefaultState());
+		}
+		return hashtable;
+	}
 
-    @Override
-    public Pair<Item, Item> getItemCloak() {
-        return new Pair<>(this.asItem(), Blocks.SEAGRASS.asItem());
-    }
+	@Override
+	public Pair<Item, Item> getItemCloak() {
+		return new Pair<>(this.asItem(), Blocks.SEAGRASS.asItem());
+	}
 
 
-    @Deprecated
-    public List<ItemStack> getDroppedStacks(BlockState state, LootContext.Builder builder) {
-        return getCloakedDroppedStacks(state, builder);
-    }
+	@Deprecated
+	public List<ItemStack> getDroppedStacks(BlockState state, LootContext.Builder builder) {
+		return getCloakedDroppedStacks(state, builder);
+	}
 
-    @Nullable
-    public BlockState getPlacementState(ItemPlacementContext ctx) {
-        return super.getPlacementState(ctx);
-    }
+	@Nullable
+	public BlockState getPlacementState(ItemPlacementContext ctx) {
+		return super.getPlacementState(ctx);
+	}
 
-    @Override
-    public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
-        if (!state.canPlaceAt(world, pos)) {
-            return Blocks.AIR.getDefaultState();
-        } else {
-            world.getFluidTickScheduler().schedule(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
-            return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
-        }
-    }
+	@Override
+	public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
+		if (!state.canPlaceAt(world, pos)) {
+			return Blocks.AIR.getDefaultState();
+		} else {
+			world.getFluidTickScheduler().schedule(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
+			return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
+		}
+	}
 
-    @Override
-    public FluidState getFluidState(BlockState state) {
-        return Fluids.WATER.getStill(false);
-    }
+	@Override
+	public FluidState getFluidState(BlockState state) {
+		return Fluids.WATER.getStill(false);
+	}
 
-    @Override
-    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(AGE);
-    }
+	@Override
+	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+		builder.add(AGE);
+	}
 
-    public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        int age = state.get(AGE);
-        if (age == 7) {
-            ItemEntity pearlEntity = new ItemEntity(world, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, new ItemStack(SpectrumItems.MERMAIDS_GEM, 1));
-            world.spawnEntity(pearlEntity);
-            world.setBlockState(pos, state.with(AGE, 0), 3);
-        } else {
-            if(random.nextFloat() < 0.1) {
-                world.setBlockState(pos, state.with(AGE, age + 1), 3);
-            }
-        }
-    }
+	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
+		int age = state.get(AGE);
+		if (age == 7) {
+			ItemEntity pearlEntity = new ItemEntity(world, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, new ItemStack(SpectrumItems.MERMAIDS_GEM, 1));
+			world.spawnEntity(pearlEntity);
+			world.setBlockState(pos, state.with(AGE, 0), 3);
+		} else {
+			if(random.nextFloat() < 0.1) {
+				world.setBlockState(pos, state.with(AGE, age + 1), 3);
+			}
+		}
+	}
 
-    @Override
-    public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
-        FluidState fluidState = world.getFluidState(pos);
-        return fluidState.isIn(FluidTags.WATER) && world.getBlockState(pos.down()).isIn(SpectrumBlockTags.MERMAIDS_BRUSH_PLANTABLE);
-    }
+	@Override
+	public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
+		FluidState fluidState = world.getFluidState(pos);
+		return fluidState.isIn(FluidTags.WATER) && world.getBlockState(pos.down()).isIn(SpectrumBlockTags.MERMAIDS_BRUSH_PLANTABLE);
+	}
 
 }

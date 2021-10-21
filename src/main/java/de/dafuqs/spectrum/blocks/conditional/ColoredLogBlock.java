@@ -17,33 +17,33 @@ import java.util.List;
 
 public class ColoredLogBlock extends PillarBlock implements Cloakable {
 
-    public ColoredLogBlock(Settings settings) {
-        super(settings);
-        registerCloak();
-    }
+	public ColoredLogBlock(Settings settings) {
+		super(settings);
+		registerCloak();
+	}
 
-    @Override
-    public Identifier getCloakAdvancementIdentifier() {
-        return new Identifier(SpectrumCommon.MOD_ID, "craft_colored_sapling");
-    }
+	@Override
+	public Identifier getCloakAdvancementIdentifier() {
+		return new Identifier(SpectrumCommon.MOD_ID, "craft_colored_sapling");
+	}
 
-    @Override
-    public Hashtable<BlockState, BlockState> getBlockStateCloaks() {
-        Hashtable<BlockState, BlockState> hashtable = new Hashtable<>();
-        for(Direction.Axis axis : PillarBlock.AXIS.getValues()) {
-            hashtable.put(this.getDefaultState().with(PillarBlock.AXIS, axis), Blocks.OAK_LOG.getDefaultState().with(PillarBlock.AXIS, axis));
-        }
-        return hashtable;
-    }
+	@Override
+	public Hashtable<BlockState, BlockState> getBlockStateCloaks() {
+		Hashtable<BlockState, BlockState> hashtable = new Hashtable<>();
+		for(Direction.Axis axis : PillarBlock.AXIS.getValues()) {
+			hashtable.put(this.getDefaultState().with(PillarBlock.AXIS, axis), Blocks.OAK_LOG.getDefaultState().with(PillarBlock.AXIS, axis));
+		}
+		return hashtable;
+	}
 
-    @Override
-    public Pair<Item, Item> getItemCloak() {
-        return new Pair<>(this.asItem(), Blocks.OAK_LOG.asItem());
-    }
+	@Override
+	public Pair<Item, Item> getItemCloak() {
+		return new Pair<>(this.asItem(), Blocks.OAK_LOG.asItem());
+	}
 
-    @Deprecated
-    public List<ItemStack> getDroppedStacks(BlockState state, LootContext.Builder builder) {
-        return getCloakedDroppedStacks(state, builder);
-    }
+	@Deprecated
+	public List<ItemStack> getDroppedStacks(BlockState state, LootContext.Builder builder) {
+		return getCloakedDroppedStacks(state, builder);
+	}
 
 }

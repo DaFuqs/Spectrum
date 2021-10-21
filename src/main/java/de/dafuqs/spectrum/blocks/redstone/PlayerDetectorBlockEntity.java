@@ -13,54 +13,54 @@ import java.util.UUID;
 
 public class PlayerDetectorBlockEntity extends BlockEntity implements PlayerOwned {
 
-    private UUID ownerUUID;
-    private String ownerName;
+	private UUID ownerUUID;
+	private String ownerName;
 
-    public PlayerDetectorBlockEntity(BlockPos blockPos, BlockState blockState) {
-        super(SpectrumBlockEntityRegistry.PLAYER_DETECTOR, blockPos, blockState);
-    }
+	public PlayerDetectorBlockEntity(BlockPos blockPos, BlockState blockState) {
+		super(SpectrumBlockEntityRegistry.PLAYER_DETECTOR, blockPos, blockState);
+	}
 
-    public NbtCompound writeNbt(NbtCompound tag) {
-        super.writeNbt(tag);
+	public NbtCompound writeNbt(NbtCompound tag) {
+		super.writeNbt(tag);
 
-        if(this.ownerUUID !=  null) {
-            tag.putUuid("UUID", this.ownerUUID);
-        }
-        if(this.ownerName !=  null) {
-            tag.putString("OwnerName", this.ownerName);
-        }
+		if(this.ownerUUID !=  null) {
+			tag.putUuid("UUID", this.ownerUUID);
+		}
+		if(this.ownerName !=  null) {
+			tag.putString("OwnerName", this.ownerName);
+		}
 
-        return tag;
-    }
+		return tag;
+	}
 
-    public void readNbt(NbtCompound tag) {
-        super.readNbt(tag);
+	public void readNbt(NbtCompound tag) {
+		super.readNbt(tag);
 
-        if(tag.contains("UUID")) {
-            this.ownerUUID = tag.getUuid("UUID");
-        } else {
-            this.ownerUUID = null;
-        }
-        if(tag.contains("OwnerName")) {
-            this.ownerName = tag.getString("OwnerName");
-        } else {
-            this.ownerName = "";
-        }
-    }
+		if(tag.contains("UUID")) {
+			this.ownerUUID = tag.getUuid("UUID");
+		} else {
+			this.ownerUUID = null;
+		}
+		if(tag.contains("OwnerName")) {
+			this.ownerName = tag.getString("OwnerName");
+		} else {
+			this.ownerName = "";
+		}
+	}
 
-    @Override
-    public UUID getOwnerUUID() {
-        return this.ownerUUID;
-    }
+	@Override
+	public UUID getOwnerUUID() {
+		return this.ownerUUID;
+	}
 
-    public String getOwnerName() {
-        return this.ownerName;
-    }
+	public String getOwnerName() {
+		return this.ownerName;
+	}
 
-    @Override
-    public void setOwner(PlayerEntity playerEntity) {
-        this.ownerUUID = playerEntity.getUuid();
-        this.ownerName = playerEntity.getName().asString();
-    }
+	@Override
+	public void setOwner(PlayerEntity playerEntity) {
+		this.ownerUUID = playerEntity.getUuid();
+		this.ownerName = playerEntity.getName().asString();
+	}
 
 }

@@ -9,20 +9,20 @@ import net.minecraft.screen.slot.Slot;
 public class DisabledSlot extends Slot {
 
 
-    public DisabledSlot(Inventory inventory, int index, int x, int y, Item acceptedItem) {
-        super(inventory, index, x, y);
-    }
+	public DisabledSlot(Inventory inventory, int index, int x, int y, Item acceptedItem) {
+		super(inventory, index, x, y);
+	}
 
-    public boolean canInsert(ItemStack stack) {
-        return false;
-    }
+	public boolean canInsert(ItemStack stack) {
+		return false;
+	}
 
-    public boolean isEnabled() {
-        return false;
-    }
+	public boolean isEnabled() {
+		return false;
+	}
 
-    public boolean canTakeItems(PlayerEntity playerEntity) {
-        return false;
-    }
+	public boolean canTakeItems(PlayerEntity playerEntity) {
+		return false;
+	}
 
 }

@@ -14,41 +14,41 @@ import org.jetbrains.annotations.Nullable;
 
 public class BlockBrokenCriterion extends AbstractCriterion<BlockBrokenCriterion.Conditions> {
 
-    static final Identifier ID = new Identifier(SpectrumCommon.MOD_ID, "block_broken");
+	static final Identifier ID = new Identifier(SpectrumCommon.MOD_ID, "block_broken");
 
-    public Identifier getId() {
-        return ID;
-    }
+	public Identifier getId() {
+		return ID;
+	}
 
-    public BlockBrokenCriterion.Conditions conditionsFromJson(JsonObject jsonObject, EntityPredicate.Extended extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
-        BrokenBlockPredicate brokenBlockPredicate = BrokenBlockPredicate.fromJson(jsonObject.get("broken_block"));
-        return new BlockBrokenCriterion.Conditions(extended, brokenBlockPredicate);
-    }
+	public BlockBrokenCriterion.Conditions conditionsFromJson(JsonObject jsonObject, EntityPredicate.Extended extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
+		BrokenBlockPredicate brokenBlockPredicate = BrokenBlockPredicate.fromJson(jsonObject.get("broken_block"));
+		return new BlockBrokenCriterion.Conditions(extended, brokenBlockPredicate);
+	}
 
-    public void trigger(ServerPlayerEntity player, BlockState blockState) {
-        this.test(player, (conditions) -> {
-            return conditions.matches(blockState);
-        });
-    }
+	public void trigger(ServerPlayerEntity player, BlockState blockState) {
+		this.test(player, (conditions) -> {
+			return conditions.matches(blockState);
+		});
+	}
 
-    public static class Conditions extends AbstractCriterionConditions {
+	public static class Conditions extends AbstractCriterionConditions {
 
-        private final BrokenBlockPredicate brokenBlockPredicate;
+		private final BrokenBlockPredicate brokenBlockPredicate;
 
-        public Conditions(EntityPredicate.Extended player, @Nullable BrokenBlockPredicate brokenBlockPredicate) {
-            super(ID, player);
-            this.brokenBlockPredicate = brokenBlockPredicate;
-        }
+		public Conditions(EntityPredicate.Extended player, @Nullable BrokenBlockPredicate brokenBlockPredicate) {
+			super(ID, player);
+			this.brokenBlockPredicate = brokenBlockPredicate;
+		}
 
-        public JsonObject toJson(AdvancementEntityPredicateSerializer predicateSerializer) {
-            JsonObject jsonObject = super.toJson(predicateSerializer);
-            jsonObject.add("broken_block", this.brokenBlockPredicate.toJson());
-            return jsonObject;
-        }
+		public JsonObject toJson(AdvancementEntityPredicateSerializer predicateSerializer) {
+			JsonObject jsonObject = super.toJson(predicateSerializer);
+			jsonObject.add("broken_block", this.brokenBlockPredicate.toJson());
+			return jsonObject;
+		}
 
-        public boolean matches(BlockState blockState) {
-            return this.brokenBlockPredicate.test(blockState);
-        }
-    }
+		public boolean matches(BlockState blockState) {
+			return this.brokenBlockPredicate.test(blockState);
+		}
+	}
 
 }

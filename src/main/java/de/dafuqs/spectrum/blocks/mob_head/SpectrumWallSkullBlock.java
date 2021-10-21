@@ -12,17 +12,17 @@ import org.jetbrains.annotations.Nullable;
 
 public class SpectrumWallSkullBlock extends WallSkullBlock {
 
-    public SpectrumWallSkullBlock(SkullBlock.SkullType skullType, Settings settings) {
-        super(skullType, settings);
-    }
+	public SpectrumWallSkullBlock(SkullBlock.SkullType skullType, Settings settings) {
+		super(skullType, settings);
+	}
 
-    public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
-        return new SpectrumSkullBlockEntity(pos, state);
-    }
+	public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+		return new SpectrumSkullBlockEntity(pos, state);
+	}
 
-    @Nullable
-    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        return null;
-    }
+	@Nullable
+	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
+		return null;
+	}
 
 }

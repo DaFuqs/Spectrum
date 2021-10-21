@@ -12,19 +12,19 @@ import java.util.List;
 
 public class BedrockHoeItem extends HoeItem implements PreEnchantedTooltip {
 
-    public BedrockHoeItem(ToolMaterial material, int attackDamage, float attackSpeed, Settings settings) {
-        super(material, attackDamage, attackSpeed, settings);
-    }
+	public BedrockHoeItem(ToolMaterial material, int attackDamage, float attackSpeed, Settings settings) {
+		super(material, attackDamage, attackSpeed, settings);
+	}
 
-    @Override
-    public boolean isDamageable() {
-        return false;
-    }
+	@Override
+	public boolean isDamageable() {
+		return false;
+	}
 
-    @Override
-    public void appendTooltip(ItemStack itemStack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
-        super.appendTooltip(itemStack, world, tooltip, tooltipContext);
-        addPreEnchantedTooltip(tooltip, itemStack);
-    }
+	@Override
+	public void appendTooltip(ItemStack itemStack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
+		super.appendTooltip(itemStack, world, tooltip, tooltipContext);
+		addPreEnchantedTooltip(tooltip, itemStack);
+	}
 
 }

@@ -7,15 +7,15 @@ import net.minecraft.screen.slot.Slot;
 
 public class StackFilterSlot extends Slot {
 
-    private final Item acceptedItem;
+	private final Item acceptedItem;
 
-    public StackFilterSlot(Inventory inventory, int index, int x, int y, Item acceptedItem) {
-        super(inventory, index, x, y);
-        this.acceptedItem = acceptedItem;
-    }
+	public StackFilterSlot(Inventory inventory, int index, int x, int y, Item acceptedItem) {
+		super(inventory, index, x, y);
+		this.acceptedItem = acceptedItem;
+	}
 
-    public boolean canInsert(ItemStack stack) {
-        return stack.getItem().equals(acceptedItem);
-    }
+	public boolean canInsert(ItemStack stack) {
+		return stack.getItem().equals(acceptedItem);
+	}
 
 }

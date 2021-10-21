@@ -35,85 +35,85 @@ import java.util.Iterator;
 
 public class SpectrumCommon implements ModInitializer {
 
-    public static final String MOD_ID = "spectrum";
+	public static final String MOD_ID = "spectrum";
 
-    public static SpectrumConfig CONFIG;
-    private static final Logger LOGGER = LogManager.getLogger(MOD_ID);
+	public static SpectrumConfig CONFIG;
+	private static final Logger LOGGER = LogManager.getLogger(MOD_ID);
 
-    public static MinecraftServer minecraftServer;
-    /**
-     * Caches the luminance states from fluids as int
-     * for blocks that react to the light level of fluids
-     * like the fusion shrine lighting up with lava or liquid crystal
-     */
-    public static HashMap<Fluid, Integer> fluidLuminance = new HashMap<>();
+	public static MinecraftServer minecraftServer;
+	/**
+	 * Caches the luminance states from fluids as int
+	 * for blocks that react to the light level of fluids
+	 * like the fusion shrine lighting up with lava or liquid crystal
+	 */
+	public static HashMap<Fluid, Integer> fluidLuminance = new HashMap<>();
 
-    public static void log(Level logLevel, String message) {
-        LOGGER.log(logLevel, "[Spectrum] " + message);
-    }
+	public static void log(Level logLevel, String message) {
+		LOGGER.log(logLevel, "[Spectrum] " + message);
+	}
 
-    @Override
-    public void onInitialize() {
-        //Set up config
-        log(Level.INFO, "Loading config file...");
-        AutoConfig.register(SpectrumConfig.class, JanksonConfigSerializer::new);
-        CONFIG = AutoConfig.getConfigHolder(SpectrumConfig.class).getConfig();
-        log(Level.INFO, "Finished loading config file.");
+	@Override
+	public void onInitialize() {
+		//Set up config
+		log(Level.INFO, "Loading config file...");
+		AutoConfig.register(SpectrumConfig.class, JanksonConfigSerializer::new);
+		CONFIG = AutoConfig.getConfigHolder(SpectrumConfig.class).getConfig();
+		log(Level.INFO, "Finished loading config file.");
 
-        // Register ALL the stuff
-        SpectrumAdvancementCriteria.register();
-        SpectrumParticleTypes.register();
-        SpectrumSoundEvents.register();
-        SpectrumBlockSoundGroups.register();
-        SpectrumFluidTags.register();
-        SpectrumBlockTags.getReferences();
-        SpectrumFluids.register();
-        SpectrumBlocks.register();
-        SpectrumItems.register();
-        SpectrumItemTags.getReferences();
-        SpectrumBlockEntityRegistry.register();
-        SpectrumEnchantments.register();
-        SpectrumFeatures.register();
-        SpectrumConfiguredFeatures.register();
+		// Register ALL the stuff
+		SpectrumAdvancementCriteria.register();
+		SpectrumParticleTypes.register();
+		SpectrumSoundEvents.register();
+		SpectrumBlockSoundGroups.register();
+		SpectrumFluidTags.register();
+		SpectrumBlockTags.getReferences();
+		SpectrumFluids.register();
+		SpectrumBlocks.register();
+		SpectrumItems.register();
+		SpectrumItemTags.getReferences();
+		SpectrumBlockEntityRegistry.register();
+		SpectrumEnchantments.register();
+		SpectrumFeatures.register();
+		SpectrumConfiguredFeatures.register();
 
-        // Dimension
-        DeeperDownDimension.setup();
+		// Dimension
+		DeeperDownDimension.setup();
 
-        // Recipes
-        SpectrumRecipeTypes.registerSerializer();
-        SpectrumLootConditionTypes.register();
+		// Recipes
+		SpectrumRecipeTypes.registerSerializer();
+		SpectrumLootConditionTypes.register();
 
-        // GUI
-        SpectrumContainers.register();
-        SpectrumScreenHandlerTypes.register();
+		// GUI
+		SpectrumContainers.register();
+		SpectrumScreenHandlerTypes.register();
 
-        // Default enchantments for some items
-        SpectrumItemStackDamageImmunities.registerDefaultItemStackImmunities();
-        SpectrumDefaultEnchantments.registerDefaultEnchantments();
-        EnchantmentDrops.setup();
+		// Default enchantments for some items
+		SpectrumItemStackDamageImmunities.registerDefaultItemStackImmunities();
+		SpectrumDefaultEnchantments.registerDefaultEnchantments();
+		EnchantmentDrops.setup();
 
-        SpectrumItems.registerFuelRegistry();
-        SpectrumCommands.register();
+		SpectrumItems.registerFuelRegistry();
+		SpectrumCommands.register();
 
-        SpectrumC2SPackets.registerC2SReceivers();
+		SpectrumC2SPackets.registerC2SReceivers();
 
-        BlockCloakManager.setupCloaks();
-        SpectrumMultiblocks.register();
-        SpectrumFlammableBlocks.register();
-        SpectrumComposting.register();
-        SpectrumGameEvents.register();
+		BlockCloakManager.setupCloaks();
+		SpectrumMultiblocks.register();
+		SpectrumFlammableBlocks.register();
+		SpectrumComposting.register();
+		SpectrumGameEvents.register();
 
-        ServerWorldEvents.LOAD.register((minecraftServer, serverWorld) -> {
-            SpectrumCommon.minecraftServer = minecraftServer;
+		ServerWorldEvents.LOAD.register((minecraftServer, serverWorld) -> {
+			SpectrumCommon.minecraftServer = minecraftServer;
 
-            for (Iterator<Block> it = Registry.BLOCK.stream().iterator(); it.hasNext(); ) {
-                Block block = it.next();
-                if(block instanceof FluidBlock fluidBlock) {
-                    fluidLuminance.put(fluidBlock.getFluidState(fluidBlock.getDefaultState()).getFluid(), fluidBlock.getDefaultState().getLuminance());
-                }
-            }
-        });
+			for (Iterator<Block> it = Registry.BLOCK.stream().iterator(); it.hasNext(); ) {
+				Block block = it.next();
+				if(block instanceof FluidBlock fluidBlock) {
+					fluidLuminance.put(fluidBlock.getFluidState(fluidBlock.getDefaultState()).getFluid(), fluidBlock.getDefaultState().getLuminance());
+				}
+			}
+		});
 
-    }
+	}
 
 }

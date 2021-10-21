@@ -16,27 +16,27 @@ import java.util.Random;
 @Mixin(EndermanEntity.class)
 public class EndermanEntityMixin {
 
-    BlockState carriedBlockState = SpectrumBlocks.ENDER_TREASURE.getDefaultState();
+	BlockState carriedBlockState = SpectrumBlocks.ENDER_TREASURE.getDefaultState();
 
-    @Inject(at = @At("TAIL"), method = "<init>")
-    private void init(CallbackInfo info) {
-        EndermanEntity endermanEntity = ((EndermanEntity)(Object) this);
-        if(endermanEntity.getEntityWorld() != null && endermanEntity.getEntityWorld() instanceof ServerWorld) {
-            Random random = endermanEntity.getEntityWorld().random;
+	@Inject(at = @At("TAIL"), method = "<init>")
+	private void init(CallbackInfo info) {
+		EndermanEntity endermanEntity = ((EndermanEntity)(Object) this);
+		if(endermanEntity.getEntityWorld() != null && endermanEntity.getEntityWorld() instanceof ServerWorld) {
+			Random random = endermanEntity.getEntityWorld().random;
 
-            float chance;
-            if(endermanEntity.getEntityWorld().getRegistryKey().equals(World.END)) {
-                chance = SpectrumCommon.CONFIG.EndermanHoldingEnderTreasureInEndChance;
-            } else {
-                chance = SpectrumCommon.CONFIG.EndermanHoldingEnderTreasureChance;
-            }
+			float chance;
+			if(endermanEntity.getEntityWorld().getRegistryKey().equals(World.END)) {
+				chance = SpectrumCommon.CONFIG.EndermanHoldingEnderTreasureInEndChance;
+			} else {
+				chance = SpectrumCommon.CONFIG.EndermanHoldingEnderTreasureChance;
+			}
 
-            if(random.nextFloat() < chance) {
-                if (endermanEntity.getCarriedBlock() == null) {
-                    endermanEntity.setCarriedBlock(carriedBlockState);
-                }
-            }
-        }
-    }
+			if(random.nextFloat() < chance) {
+				if (endermanEntity.getCarriedBlock() == null) {
+					endermanEntity.setCarriedBlock(carriedBlockState);
+				}
+			}
+		}
+	}
 
 }

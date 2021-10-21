@@ -7,20 +7,20 @@ import net.minecraft.text.TranslatableText;
 
 public class CraftingTabletTooltipData implements TooltipData {
 
-    private final ItemStack itemStack;
-    private final TranslatableText description;
+	private final ItemStack itemStack;
+	private final TranslatableText description;
 
-    public CraftingTabletTooltipData(Recipe recipe) {
-        this.itemStack = recipe.getOutput();
-        this.description = new TranslatableText("item.spectrum.crafting_tablet.tooltip.recipe", this.itemStack.getCount(), this.itemStack.getName().getString());
-    }
+	public CraftingTabletTooltipData(Recipe recipe) {
+		this.itemStack = recipe.getOutput();
+		this.description = new TranslatableText("item.spectrum.crafting_tablet.tooltip.recipe", this.itemStack.getCount(), this.itemStack.getName().getString());
+	}
 
-    public ItemStack getItemStack() {
-        return this.itemStack;
-    }
+	public ItemStack getItemStack() {
+		return this.itemStack;
+	}
 
-    public TranslatableText getDescription() {
-        return this.description;
-    }
+	public TranslatableText getDescription() {
+		return this.description;
+	}
 
 }

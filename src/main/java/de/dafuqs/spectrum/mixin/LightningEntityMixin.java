@@ -19,41 +19,41 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(LightningEntity.class)
 public abstract class LightningEntityMixin {
 
-    @Shadow protected abstract BlockPos getAffectedBlockPos();
+	@Shadow protected abstract BlockPos getAffectedBlockPos();
 
-    @Inject(method = "tick()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LightningEntity;cleanOxidization(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;)V"))
-    private void injected(CallbackInfo ci) {
-        World world = ((LightningEntity)(Object) this).world;
+	@Inject(method = "tick()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LightningEntity;cleanOxidization(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;)V"))
+	private void injected(CallbackInfo ci) {
+		World world = ((LightningEntity)(Object) this).world;
 
-        // do not spawn lightning stones when using other forms of
-        // spawning thunder, like magic, ...
-        if(world.isThundering()
-                && SpectrumCommon.CONFIG.LightningStonesWorlds.contains(world.getRegistryKey().getValue().toString())
-                && world.random.nextFloat() < SpectrumCommon.CONFIG.LightningStonesChance) {
+		// do not spawn lightning stones when using other forms of
+		// spawning thunder, like magic, ...
+		if(world.isThundering()
+				&& SpectrumCommon.CONFIG.LightningStonesWorlds.contains(world.getRegistryKey().getValue().toString())
+				&& world.random.nextFloat() < SpectrumCommon.CONFIG.LightningStonesChance) {
 
-            spawnLightningStone(world, this.getAffectedBlockPos());
-        }
-    }
+			spawnLightningStone(world, this.getAffectedBlockPos());
+		}
+	}
 
-    private void spawnLightningStone(@NotNull World world, BlockPos affectedBlockPos) {
-        BlockState blockState = world.getBlockState(affectedBlockPos);
-        BlockPos aboveGroundBlockPos;
+	private void spawnLightningStone(@NotNull World world, BlockPos affectedBlockPos) {
+		BlockState blockState = world.getBlockState(affectedBlockPos);
+		BlockPos aboveGroundBlockPos;
 
-        if (blockState.isOf(Blocks.LIGHTNING_ROD)) {
-            // if struck a lightning rod: check around the base of the rod instead
-            BlockPos blockPos2 = affectedBlockPos.offset((blockState.get(LightningRodBlock.FACING)).getOpposite());
-            aboveGroundBlockPos = blockPos2.offset(Direction.fromHorizontal(world.getRandom().nextInt(6))).up();
-        } else {
-            aboveGroundBlockPos = affectedBlockPos.up();
-        }
+		if (blockState.isOf(Blocks.LIGHTNING_ROD)) {
+			// if struck a lightning rod: check around the base of the rod instead
+			BlockPos blockPos2 = affectedBlockPos.offset((blockState.get(LightningRodBlock.FACING)).getOpposite());
+			aboveGroundBlockPos = blockPos2.offset(Direction.fromHorizontal(world.getRandom().nextInt(6))).up();
+		} else {
+			aboveGroundBlockPos = affectedBlockPos.up();
+		}
 
-        if(world.isAir(aboveGroundBlockPos)) {
-            BlockState placementBlockState = SpectrumBlocks.STUCK_LIGHTNING_STONE.getDefaultState();
-            if (placementBlockState.canPlaceAt(world, aboveGroundBlockPos)) {
-                world.setBlockState(aboveGroundBlockPos, placementBlockState);
-            }
-        }
+		if(world.isAir(aboveGroundBlockPos)) {
+			BlockState placementBlockState = SpectrumBlocks.STUCK_LIGHTNING_STONE.getDefaultState();
+			if (placementBlockState.canPlaceAt(world, aboveGroundBlockPos)) {
+				world.setBlockState(aboveGroundBlockPos, placementBlockState);
+			}
+		}
 
-    }
+	}
 
 }

@@ -17,76 +17,76 @@ import net.minecraft.util.math.BlockPos;
 
 public class SpectrumC2SPackets {
 
-    public static final Identifier RENAME_ITEM_IN_BEDROCK_ANVIL_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "rename_item_in_bedrock_anvil");
-    public static final Identifier ADD_LORE_IN_BEDROCK_ANVIL_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "add_lore_to_item_in_bedrock_anvil");
-    public static final Identifier CHANGE_PARTICLE_SPAWNER_SETTINGS_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "change_particle_spawner_settings");
-    public static final Identifier REQUEST_PARTICLE_SPAWNER_SETTINGS_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "request_particle_spawner_settings");
+	public static final Identifier RENAME_ITEM_IN_BEDROCK_ANVIL_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "rename_item_in_bedrock_anvil");
+	public static final Identifier ADD_LORE_IN_BEDROCK_ANVIL_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "add_lore_to_item_in_bedrock_anvil");
+	public static final Identifier CHANGE_PARTICLE_SPAWNER_SETTINGS_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "change_particle_spawner_settings");
+	public static final Identifier REQUEST_PARTICLE_SPAWNER_SETTINGS_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "request_particle_spawner_settings");
 
-    public static void registerC2SReceivers() {
-        ServerPlayNetworking.registerGlobalReceiver(RENAME_ITEM_IN_BEDROCK_ANVIL_PACKET_ID, (server, player, handler, buf, responseSender) -> {
-            String name = buf.readString();
+	public static void registerC2SReceivers() {
+		ServerPlayNetworking.registerGlobalReceiver(RENAME_ITEM_IN_BEDROCK_ANVIL_PACKET_ID, (server, player, handler, buf, responseSender) -> {
+			String name = buf.readString();
 
-            if (player.currentScreenHandler instanceof BedrockAnvilScreenHandler) {
-                BedrockAnvilScreenHandler bedrockAnvilScreenHandler = (BedrockAnvilScreenHandler)player.currentScreenHandler;
-                String string = SharedConstants.stripInvalidChars(name);
-                if (string.length() <= 50) {
-                    bedrockAnvilScreenHandler.setNewItemName(string);
-                }
-            }
-        });
-        ServerPlayNetworking.registerGlobalReceiver(ADD_LORE_IN_BEDROCK_ANVIL_PACKET_ID, (server, player, handler, buf, responseSender) -> {
-            String lore = buf.readString();
+			if (player.currentScreenHandler instanceof BedrockAnvilScreenHandler) {
+				BedrockAnvilScreenHandler bedrockAnvilScreenHandler = (BedrockAnvilScreenHandler)player.currentScreenHandler;
+				String string = SharedConstants.stripInvalidChars(name);
+				if (string.length() <= 50) {
+					bedrockAnvilScreenHandler.setNewItemName(string);
+				}
+			}
+		});
+		ServerPlayNetworking.registerGlobalReceiver(ADD_LORE_IN_BEDROCK_ANVIL_PACKET_ID, (server, player, handler, buf, responseSender) -> {
+			String lore = buf.readString();
 
-            if (player.currentScreenHandler instanceof BedrockAnvilScreenHandler) {
-                BedrockAnvilScreenHandler bedrockAnvilScreenHandler = (BedrockAnvilScreenHandler) player.currentScreenHandler;
-                String string = SharedConstants.stripInvalidChars(lore);
-                if (string.length() <= 256) {
-                    bedrockAnvilScreenHandler.setNewItemLore(string);
-                }
-            }
-        });
+			if (player.currentScreenHandler instanceof BedrockAnvilScreenHandler) {
+				BedrockAnvilScreenHandler bedrockAnvilScreenHandler = (BedrockAnvilScreenHandler) player.currentScreenHandler;
+				String string = SharedConstants.stripInvalidChars(lore);
+				if (string.length() <= 256) {
+					bedrockAnvilScreenHandler.setNewItemLore(string);
+				}
+			}
+		});
 
-        ServerPlayNetworking.registerGlobalReceiver(CHANGE_PARTICLE_SPAWNER_SETTINGS_PACKET_ID, (server, player, handler, buf, responseSender) -> {
-            // receive the client packet...
-            if(player.currentScreenHandler instanceof ParticleSpawnerScreenHandler) {
-                ParticleSpawnerScreenHandler particleSpawnerScreenHandler = (ParticleSpawnerScreenHandler) player.currentScreenHandler;
-                ParticleSpawnerBlockEntity blockEntity = particleSpawnerScreenHandler.getBlockEntity();
-                if(blockEntity != null) {
-                    /// ...apply the new settings...
-                    blockEntity.applySettings(buf);
+		ServerPlayNetworking.registerGlobalReceiver(CHANGE_PARTICLE_SPAWNER_SETTINGS_PACKET_ID, (server, player, handler, buf, responseSender) -> {
+			// receive the client packet...
+			if(player.currentScreenHandler instanceof ParticleSpawnerScreenHandler) {
+				ParticleSpawnerScreenHandler particleSpawnerScreenHandler = (ParticleSpawnerScreenHandler) player.currentScreenHandler;
+				ParticleSpawnerBlockEntity blockEntity = particleSpawnerScreenHandler.getBlockEntity();
+				if(blockEntity != null) {
+					/// ...apply the new settings...
+					blockEntity.applySettings(buf);
 
-                    // ...and distribute it to all clients again
-                    PacketByteBuf packetByteBuf = PacketByteBufs.create();
-                    packetByteBuf.writeBlockPos(blockEntity.getPos());
-                    blockEntity.writeSettings(packetByteBuf);
+					// ...and distribute it to all clients again
+					PacketByteBuf packetByteBuf = PacketByteBufs.create();
+					packetByteBuf.writeBlockPos(blockEntity.getPos());
+					blockEntity.writeSettings(packetByteBuf);
 
-                    // Iterate over all players tracking a position in the world and send the packet to each player
-                    for (ServerPlayerEntity serverPlayerEntity : PlayerLookup.tracking((ServerWorld) blockEntity.getWorld(), blockEntity.getPos())) {
-                        ServerPlayNetworking.send(serverPlayerEntity, SpectrumS2CPackets.CHANGE_PARTICLE_SPAWNER_SETTINGS_CLIENT_PACKET_ID, packetByteBuf);
-                    }
-                }
-            }
-        });
+					// Iterate over all players tracking a position in the world and send the packet to each player
+					for (ServerPlayerEntity serverPlayerEntity : PlayerLookup.tracking((ServerWorld) blockEntity.getWorld(), blockEntity.getPos())) {
+						ServerPlayNetworking.send(serverPlayerEntity, SpectrumS2CPackets.CHANGE_PARTICLE_SPAWNER_SETTINGS_CLIENT_PACKET_ID, packetByteBuf);
+					}
+				}
+			}
+		});
 
-        ServerPlayNetworking.registerGlobalReceiver(REQUEST_PARTICLE_SPAWNER_SETTINGS_PACKET_ID, (server, player, handler, buf, responseSender) -> {
-            // Force main thread. Otherwise the BlockEntity will always be returned as null
-            final BlockPos blockPos = buf.readBlockPos();
+		ServerPlayNetworking.registerGlobalReceiver(REQUEST_PARTICLE_SPAWNER_SETTINGS_PACKET_ID, (server, player, handler, buf, responseSender) -> {
+			// Force main thread. Otherwise the BlockEntity will always be returned as null
+			final BlockPos blockPos = buf.readBlockPos();
 
-            SpectrumCommon.minecraftServer.execute(() -> {
-                BlockEntity blockEntity = player.world.getBlockEntity(blockPos);
-                if(blockEntity instanceof ParticleSpawnerBlockEntity) {
-                    ParticleSpawnerBlockEntity particleSpawnerBlockEntity = (ParticleSpawnerBlockEntity) blockEntity;
+			SpectrumCommon.minecraftServer.execute(() -> {
+				BlockEntity blockEntity = player.world.getBlockEntity(blockPos);
+				if(blockEntity instanceof ParticleSpawnerBlockEntity) {
+					ParticleSpawnerBlockEntity particleSpawnerBlockEntity = (ParticleSpawnerBlockEntity) blockEntity;
 
-                    PacketByteBuf packetByteBuf = PacketByteBufs.create();
-                    packetByteBuf.writeBlockPos(blockEntity.getPos());
-                    particleSpawnerBlockEntity.writeSettings(packetByteBuf);
+					PacketByteBuf packetByteBuf = PacketByteBufs.create();
+					packetByteBuf.writeBlockPos(blockEntity.getPos());
+					particleSpawnerBlockEntity.writeSettings(packetByteBuf);
 
-                    ServerPlayNetworking.send(player, SpectrumS2CPackets.CHANGE_PARTICLE_SPAWNER_SETTINGS_CLIENT_PACKET_ID, packetByteBuf);
-                }
-            });
+					ServerPlayNetworking.send(player, SpectrumS2CPackets.CHANGE_PARTICLE_SPAWNER_SETTINGS_CLIENT_PACKET_ID, packetByteBuf);
+				}
+			});
 
 
-        });
-    }
+		});
+	}
 
 }

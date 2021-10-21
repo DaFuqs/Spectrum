@@ -14,16 +14,16 @@ import net.minecraft.entity.EntityType;
 @Environment(EnvType.CLIENT)
 public class SpectrumEntityRenderers {
 
-    public static void registerClient() {
-        register(SpectrumEntityTypes.GRAVITY_BLOCK, GravityBlockRenderer::new);
-        register(SpectrumEntityTypes.SHOOTING_STAR, ShootingStarEntityRenderer::new);
-        register(SpectrumEntityTypes.INVISIBLE_ITEM_FRAME, ItemFrameEntityRenderer::new);
-        register(SpectrumEntityTypes.INVISIBLE_GLOW_ITEM_FRAME, ItemFrameEntityRenderer::new);
-        register(SpectrumEntityTypes.BLOCK_FLOODER_PROJECTILE, FlyingItemEntityRenderer::new);
-    }
+	public static void registerClient() {
+		register(SpectrumEntityTypes.GRAVITY_BLOCK, GravityBlockRenderer::new);
+		register(SpectrumEntityTypes.SHOOTING_STAR, ShootingStarEntityRenderer::new);
+		register(SpectrumEntityTypes.INVISIBLE_ITEM_FRAME, ItemFrameEntityRenderer::new);
+		register(SpectrumEntityTypes.INVISIBLE_GLOW_ITEM_FRAME, ItemFrameEntityRenderer::new);
+		register(SpectrumEntityTypes.BLOCK_FLOODER_PROJECTILE, FlyingItemEntityRenderer::new);
+	}
 
-    private static <T extends Entity> void register(EntityType<? extends T> type, EntityRendererFactory<T> factory) {
-        EntityRendererRegistry.INSTANCE.register(type, factory);
-    }
+	private static <T extends Entity> void register(EntityType<? extends T> type, EntityRendererFactory<T> factory) {
+		EntityRendererRegistry.INSTANCE.register(type, factory);
+	}
 
 }

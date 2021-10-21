@@ -28,35 +28,35 @@ import static net.minecraft.state.property.Properties.LEVEL_15;
 
 public class WandLightBlock extends LightBlock {
 
-    public WandLightBlock(Settings settings) {
-        super(settings);
-    }
+	public WandLightBlock(Settings settings) {
+		super(settings);
+	}
 
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return context.isHolding(SpectrumItems.LIGHT_STAFF) ? VoxelShapes.fullCube() : VoxelShapes.empty();
-    }
+	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+		return context.isHolding(SpectrumItems.LIGHT_STAFF) ? VoxelShapes.fullCube() : VoxelShapes.empty();
+	}
 
-    @Override
-    public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
-        super.randomDisplayTick(state, world, pos, random);
-        if(world.isClient && MinecraftClient.getInstance().player.getMainHandStack().isOf(SpectrumItems.LIGHT_STAFF)) {
-            world.addParticle(SpectrumParticleTypes.SPARKLESTONE_SPARKLE_SMALL, (double) pos.getX() + 0.2 + random.nextFloat() * 0.6, (double) pos.getY() + 0.1 + random.nextFloat() * 0.6, (double) pos.getZ() + 0.2 + random.nextFloat() * 0.6, 0.0D, 0.03D, 0.0D);
-        }
-    }
+	@Override
+	public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
+		super.randomDisplayTick(state, world, pos, random);
+		if(world.isClient && MinecraftClient.getInstance().player.getMainHandStack().isOf(SpectrumItems.LIGHT_STAFF)) {
+			world.addParticle(SpectrumParticleTypes.SPARKLESTONE_SPARKLE_SMALL, (double) pos.getX() + 0.2 + random.nextFloat() * 0.6, (double) pos.getY() + 0.1 + random.nextFloat() * 0.6, (double) pos.getZ() + 0.2 + random.nextFloat() * 0.6, 0.0D, 0.03D, 0.0D);
+		}
+	}
 
-    public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state) {
-        return new ItemStack(SpectrumItems.LIGHT_STAFF);
-    }
+	public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state) {
+		return new ItemStack(SpectrumItems.LIGHT_STAFF);
+	}
 
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        if (!world.isClient) {
-            BlockState newState = state.cycle(LEVEL_15);
-            world.playSound(null, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, SpectrumSoundEvents.LIGHT_STAFF_PLACE, SoundCategory.PLAYERS, 1.0F, (float) (0.75 + 0.05 * newState.get(LEVEL_15)));
-            world.setBlockState(pos, newState, Block.NOTIFY_LISTENERS);
-            return ActionResult.SUCCESS;
-        } else {
-            return ActionResult.CONSUME;
-        }
-    }
+	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+		if (!world.isClient) {
+			BlockState newState = state.cycle(LEVEL_15);
+			world.playSound(null, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, SpectrumSoundEvents.LIGHT_STAFF_PLACE, SoundCategory.PLAYERS, 1.0F, (float) (0.75 + 0.05 * newState.get(LEVEL_15)));
+			world.setBlockState(pos, newState, Block.NOTIFY_LISTENERS);
+			return ActionResult.SUCCESS;
+		} else {
+			return ActionResult.CONSUME;
+		}
+	}
 
 }

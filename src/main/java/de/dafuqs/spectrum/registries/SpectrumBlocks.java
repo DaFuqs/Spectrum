@@ -758,17 +758,17 @@ public class SpectrumBlocks {
 		registerBlockWithItem("spirit_sallow_leaves", SPIRIT_SALLOW_LEAVES, fabricItemSettings);
 		registerBlockWithItem("spirit_sallow_heart", SPIRIT_SALLOW_HEART, fabricItemSettings);
 
-		registerBlockWithItem("cyan_spirit_sallow_vines_head", CYAN_SPIRIT_SALLOW_VINES_HEAD, fabricItemSettings);
-		registerBlockWithItem("magenta_spirit_sallow_vines_head", MAGENTA_SPIRIT_SALLOW_VINES_HEAD, fabricItemSettings);
-		registerBlockWithItem("yellow_spirit_sallow_vines_head", YELLOW_SPIRIT_SALLOW_VINES_HEAD, fabricItemSettings);
-		registerBlockWithItem("black_spirit_sallow_vines_head", BLACK_SPIRIT_SALLOW_VINES_HEAD, fabricItemSettings);
-		registerBlockWithItem("white_spirit_sallow_vines_head", WHITE_SPIRIT_SALLOW_VINES_HEAD, fabricItemSettings);
+		registerBlock("cyan_spirit_sallow_vines_head", CYAN_SPIRIT_SALLOW_VINES_HEAD);
+		registerBlock("magenta_spirit_sallow_vines_head", MAGENTA_SPIRIT_SALLOW_VINES_HEAD);
+		registerBlock("yellow_spirit_sallow_vines_head", YELLOW_SPIRIT_SALLOW_VINES_HEAD);
+		registerBlock("black_spirit_sallow_vines_head", BLACK_SPIRIT_SALLOW_VINES_HEAD);
+		registerBlock("white_spirit_sallow_vines_head", WHITE_SPIRIT_SALLOW_VINES_HEAD);
 
-		registerBlockWithItem("cyan_spirit_sallow_vines_body", CYAN_SPIRIT_SALLOW_VINES_BODY, fabricItemSettings);
-		registerBlockWithItem("magenta_spirit_sallow_vines_body", MAGENTA_SPIRIT_SALLOW_VINES_BODY, fabricItemSettings);
-		registerBlockWithItem("yellow_spirit_sallow_vines_body", YELLOW_SPIRIT_SALLOW_VINES_BODY, fabricItemSettings);
-		registerBlockWithItem("black_spirit_sallow_vines_body", BLACK_SPIRIT_SALLOW_VINES_BODY, fabricItemSettings);
-		registerBlockWithItem("white_spirit_sallow_vines_body", WHITE_SPIRIT_SALLOW_VINES_BODY, fabricItemSettings);
+		registerBlock("cyan_spirit_sallow_vines_body", CYAN_SPIRIT_SALLOW_VINES_BODY);
+		registerBlock("magenta_spirit_sallow_vines_body", MAGENTA_SPIRIT_SALLOW_VINES_BODY);
+		registerBlock("yellow_spirit_sallow_vines_body", YELLOW_SPIRIT_SALLOW_VINES_BODY);
+		registerBlock("black_spirit_sallow_vines_body", BLACK_SPIRIT_SALLOW_VINES_BODY);
+		registerBlock("white_spirit_sallow_vines_body", WHITE_SPIRIT_SALLOW_VINES_BODY);
 
 		registerBlockWithItem("sacred_soil", SACRED_SOIL, fabricItemSettings);
 	}

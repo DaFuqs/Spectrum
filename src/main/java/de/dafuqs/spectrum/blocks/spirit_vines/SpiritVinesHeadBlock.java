@@ -69,7 +69,7 @@ public class SpiritVinesHeadBlock extends AbstractPlantStemBlock implements Spir
 
 	@Environment(EnvType.CLIENT)
 	public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state) {
-		return new ItemStack(SpiritVines.getYieldItem(state));
+		return new ItemStack(SpiritVines.getYieldItem(state, true));
 	}
 
 	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {

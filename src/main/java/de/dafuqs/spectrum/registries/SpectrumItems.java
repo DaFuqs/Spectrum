@@ -159,12 +159,12 @@ public class SpectrumItems {
 
 	// Magical Tools
 	public static final Item ENDER_BAG = new EnderBagItem(generalItemSettingsSingle);
-	public static final EnderSpliceItem ENDER_SPLICE = new EnderSpliceItem(generalUncommonItemSettings);
-	public static final Item NATURES_STAFF = new NaturesStaffItem(generalUncommonItemSettingsSingle);
-	public static final Item EXCHANGE_STAFF = new ExchangeStaffItem(generalUncommonItemSettingsSingle);
-	public static final Item PLACEMENT_STAFF = new PlacementStaffItem(generalUncommonItemSettingsSingle);
 	public static final Item LIGHT_STAFF = new LightStaffItem(generalUncommonItemSettingsSingle);
+	public static final Item NATURES_STAFF = new NaturesStaffItem(generalUncommonItemSettingsSingle);
+	public static final Item PLACEMENT_STAFF = new PlacementStaffItem(generalUncommonItemSettingsSingle);
+	public static final Item EXCHANGE_STAFF = new ExchangeStaffItem(generalUncommonItemSettingsSingle);
 	public static final Item BLOCK_FLOODER = new BlockFlooderItem(generalUncommonItemSettingsSingle);
+	public static final EnderSpliceItem ENDER_SPLICE = new EnderSpliceItem(generalUncommonItemSettings);
 	public static final Item END_PORTAL_CRACKER = new EndPortalCrackerItem(generalRareItemSettings);
 
 	// Catkin
@@ -325,13 +325,13 @@ public class SpectrumItems {
 	
 	public static void registerMagicalTools() {
 		register("ender_bag", ENDER_BAG);
+		register("light_staff", LIGHT_STAFF);
+		register("natures_staff", NATURES_STAFF);
+		register("placement_staff", PLACEMENT_STAFF);
+		register("exchange_staff", EXCHANGE_STAFF);
+		register("block_flooder", BLOCK_FLOODER);
 		register("ender_splice", ENDER_SPLICE);
 		register("end_portal_cracker", END_PORTAL_CRACKER);
-		register("natures_staff", NATURES_STAFF);
-		register("exchange_staff", EXCHANGE_STAFF);
-		register("placement_staff", PLACEMENT_STAFF);
-		register("light_staff", LIGHT_STAFF);
-		register("block_flooder", BLOCK_FLOODER);
 	}
 	
 	public static void registerFluidBuckets() {

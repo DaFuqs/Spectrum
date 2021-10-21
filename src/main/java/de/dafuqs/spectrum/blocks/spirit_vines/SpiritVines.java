@@ -43,7 +43,7 @@ public interface SpiritVines {
 
 	static ActionResult pick(BlockState blockState, World world, BlockPos blockPos) {
 		if (canBeHarvested(blockState)) {
-			Block.dropStack(world, blockPos, new ItemStack(getYieldItem(blockState), 1));
+			Block.dropStack(world, blockPos, new ItemStack(getYieldItem(blockState, false), 1));
 			float f = MathHelper.nextBetween(world.random, 0.8F, 1.2F);
 			world.playSound(null, blockPos, SoundEvents.BLOCK_CAVE_VINES_PICK_BERRIES, SoundCategory.BLOCKS, 1.0F, f);
 			world.setBlockState(blockPos, blockState.with(YIELD, YieldType.NONE), 2);
@@ -57,7 +57,7 @@ public interface SpiritVines {
 		return state.contains(YIELD) && !state.get(YIELD).equals(YieldType.NONE);
 	}
 
-	static Item getYieldItem(BlockState blockState) {
+	static Item getYieldItem(BlockState blockState, boolean pickStack) {
 		Comparable<YieldType> yield = blockState.get(YIELD);
 
 		if(yield.equals(YieldType.NORMAL)) {
@@ -91,6 +91,22 @@ public interface SpiritVines {
 			}
 			if (blockState.isOf(SpectrumBlocks.WHITE_SPIRIT_SALLOW_VINES_HEAD) || blockState.isOf(SpectrumBlocks.WHITE_SPIRIT_SALLOW_VINES_BODY)) {
 				return SpectrumItems.LUCID_WHITE_CATKIN;
+			}
+		} else if(yield.equals(YieldType.NONE) && pickStack) {
+			if (blockState.isOf(SpectrumBlocks.CYAN_SPIRIT_SALLOW_VINES_HEAD) || blockState.isOf(SpectrumBlocks.CYAN_SPIRIT_SALLOW_VINES_BODY)) {
+				return SpectrumItems.VIBRANT_CYAN_CATKIN;
+			}
+			if (blockState.isOf(SpectrumBlocks.MAGENTA_SPIRIT_SALLOW_VINES_HEAD) || blockState.isOf(SpectrumBlocks.MAGENTA_SPIRIT_SALLOW_VINES_BODY)) {
+				return SpectrumItems.VIBRANT_MAGENTA_CATKIN;
+			}
+			if (blockState.isOf(SpectrumBlocks.YELLOW_SPIRIT_SALLOW_VINES_HEAD) || blockState.isOf(SpectrumBlocks.YELLOW_SPIRIT_SALLOW_VINES_BODY)) {
+				return SpectrumItems.VIBRANT_YELLOW_CATKIN;
+			}
+			if (blockState.isOf(SpectrumBlocks.BLACK_SPIRIT_SALLOW_VINES_HEAD) || blockState.isOf(SpectrumBlocks.BLACK_SPIRIT_SALLOW_VINES_BODY)) {
+				return SpectrumItems.VIBRANT_BLACK_CATKIN;
+			}
+			if (blockState.isOf(SpectrumBlocks.WHITE_SPIRIT_SALLOW_VINES_HEAD) || blockState.isOf(SpectrumBlocks.WHITE_SPIRIT_SALLOW_VINES_BODY)) {
+				return SpectrumItems.VIBRANT_WHITE_CATKIN;
 			}
 		}
 		return null;

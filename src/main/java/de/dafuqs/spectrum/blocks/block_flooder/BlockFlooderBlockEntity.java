@@ -3,9 +3,11 @@ package de.dafuqs.spectrum.blocks.block_flooder;
 import de.dafuqs.spectrum.interfaces.PlayerOwned;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 
 import java.util.UUID;
@@ -16,6 +18,7 @@ public class BlockFlooderBlockEntity extends BlockEntity {
 	private UUID ownerUUID;
 
 	private BlockPos sourcePos;
+	private BlockState targetBlockState = Blocks.AIR.getDefaultState();
 
 	public BlockFlooderBlockEntity(BlockPos pos, BlockState state) {
 		super(SpectrumBlockEntityRegistry.BLOCK_FLOODER, pos, state);
@@ -72,6 +75,13 @@ public class BlockFlooderBlockEntity extends BlockEntity {
 	public void setSourcePos(BlockPos sourcePos) {
 		this.sourcePos = sourcePos;
 	}
-
+	
+	public BlockState getTargetBlockState() {
+		return targetBlockState;
+	}
+	
+	public void setTargetBlockState(BlockState targetBlockState) {
+		this.targetBlockState = targetBlockState;
+	}
 
 }

@@ -48,7 +48,7 @@ public class BlockFlooderBlock extends BlockWithEntity {
 			world.getBlockTickScheduler().schedule(pos, state.getBlock(), 4);
 		}
 	}
-
+	
 	public BlockRenderType getRenderType(BlockState state) {
 		return BlockRenderType.MODEL;
 	}
@@ -58,25 +58,22 @@ public class BlockFlooderBlock extends BlockWithEntity {
 	public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
 		return new BlockFlooderBlockEntity(pos, state);
 	}
-
-	@Override
-	public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-		super.scheduledTick(state, world, pos, random);
-
+	
+	private boolean calculateTargetBlockAndPropagate(BlockState state, World world, BlockPos pos, Random random) {
 		BlockEntity blockEntity = world.getBlockEntity(pos);
 		if(blockEntity instanceof BlockFlooderBlockEntity blockFlooderBlockEntity) {
 			PlayerEntity owner = PlayerOwned.getPlayerEntityIfOnline(world, blockFlooderBlockEntity.getOwnerUUID());
 			if(owner == null) {
 				world.setBlockState(pos, DEFAULT_BLOCK_STATE, 3);
-				return;
+				return false;
 			}
-
+			
 			Hashtable<Block, Integer> neighboringBlockAmounts = new Hashtable<>();
 			for(Direction direction : Direction.values()) {
 				BlockPos targetBlockPos = pos.offset(direction);
 				BlockState currentBlockState = world.getBlockState(targetBlockPos);
 				BlockEntity currentBlockEntity = world.getBlockEntity(targetBlockPos);
-
+				
 				if(currentBlockState.isOf(this) || currentBlockEntity != null) {
 					continue;
 				} else if(isReplaceableBlock(world, targetBlockPos)) {
@@ -92,7 +89,7 @@ public class BlockFlooderBlock extends BlockWithEntity {
 					}
 				} else {
 					Block currentBlock = currentBlockState.getBlock();
-
+					
 					if(currentBlockState.isSolidBlock(world, targetBlockPos)) {
 						if (neighboringBlockAmounts.contains(currentBlock)) {
 							neighboringBlockAmounts.put(currentBlock, neighboringBlockAmounts.get(currentBlock) + 1);
@@ -102,17 +99,17 @@ public class BlockFlooderBlock extends BlockWithEntity {
 					}
 				}
 			}
-
+			
 			if(neighboringBlockAmounts.size() > 0) {
 				int max = 0;
 				Block maxBlock = null;
 				ItemStack maxBlockItemStack = ItemStack.EMPTY;
-
+				
 				for(Map.Entry<Block, Integer> entry : neighboringBlockAmounts.entrySet()) {
 					Block currentBlock = entry.getKey();
 					int currentOccurrences = entry.getValue();
 					Item blockItem = currentBlock.asItem();
-
+					
 					if(blockItem != Items.AIR) {
 						if (currentOccurrences > max || (currentOccurrences == max && random.nextBoolean())) {
 							ItemStack currentItemStack = new ItemStack(blockItem);
@@ -136,23 +133,42 @@ public class BlockFlooderBlock extends BlockWithEntity {
 						}
 					}
 				}
-
+				
 				if(maxBlock != null) {
 					// and turn this to the leftover block state
-					world.setBlockState(pos, maxBlock.getDefaultState(), 3);
+					blockFlooderBlockEntity.setTargetBlockState(maxBlock.getDefaultState());
 					if(!owner.isCreative()) {
 						InventoryHelper.removeFromInventory(maxBlockItemStack, owner.getInventory().main);
 					}
 				} else {
-					world.setBlockState(pos, DEFAULT_BLOCK_STATE, 3);
+					blockFlooderBlockEntity.setTargetBlockState(DEFAULT_BLOCK_STATE);
 				}
 			}
-		} else {
-			world.setBlockState(pos, DEFAULT_BLOCK_STATE, 3);
 		}
+		return true;
+	}
+	
+	@Override
+	public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
+		super.scheduledTick(state, world, pos, random);
+		
+		if (!world.isClient) {
+			if (world.getBlockEntity(pos) instanceof BlockFlooderBlockEntity blockFlooderBlockEntity) {
+				BlockState targetState = blockFlooderBlockEntity.getTargetBlockState();
+				if (targetState.isAir()) {
+					boolean scheduleUpdate = calculateTargetBlockAndPropagate(state, world, pos, world.getRandom());
+					if (scheduleUpdate) {
+						world.getBlockTickScheduler().schedule(pos, state.getBlock(), 2 + random.nextInt(5));
+					}
+				} else {
+					world.setBlockState(pos, targetState, 3);
+				}
+			}
+		}
+		
 	}
 
-	private boolean shouldPropagateTo(ServerWorld world, BlockPos targetBlockPos) {
+	private boolean shouldPropagateTo(World world, BlockPos targetBlockPos) {
 		if(isReplaceableBlock(world, targetBlockPos)) {
 			int count = 0;
 			for (Direction direction : Direction.values()) {

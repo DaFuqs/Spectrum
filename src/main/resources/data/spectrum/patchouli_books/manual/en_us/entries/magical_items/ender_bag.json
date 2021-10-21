@@ -15,6 +15,7 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier1/ender_bag",
       "text": "Upgrade your Pedestal by using all the shards you collected"
     }

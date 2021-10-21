@@ -16,6 +16,7 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier2/emergency_armor/emergency_helmet",
       "text": "The Fetchling Helmet gives attackers a Weakness and Slowness when hit, lets you slip through their claws like a shadow."
     },

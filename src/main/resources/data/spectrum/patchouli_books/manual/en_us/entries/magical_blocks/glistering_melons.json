@@ -17,6 +17,7 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier1/glistering_melon_seeds"
     }
   ]

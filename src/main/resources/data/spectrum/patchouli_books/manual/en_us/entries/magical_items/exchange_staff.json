@@ -9,12 +9,13 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "For all those who don't live in a simple cobblestone house, or don't have walls at all - of course you don't feel addressed - you have thought up the Exchanging Staff.$(br)The next change of wallpaper will take a little less time."
+      "text": "For all those who don't live in a simple cobblestone house, or don't have walls at all - of course you don't feel addressed - you have thought up the Exchanging Staff.$(br2)Mining has just gotten a whole bunch more fun."
     },
     {
       "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier3/exchange_staff",
-      "text": "Mining has gotten a whole bunch more fun.$(br2)Crouch-Click to get a selection of all available placement modi."
+      "text": "Crouch-Click to get a selection of all available placement modi."
     }
   ]
 }

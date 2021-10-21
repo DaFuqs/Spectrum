@@ -15,6 +15,7 @@
         },
         {
             "type": "spectrum:pedestal_crafting",
+            "title": "Pedestal Recipe",
             "recipe": "spectrum:pedestal/tier1/mud_bucket",
             "text": "While a mud bath sounds like wellness it is not advised."
         }

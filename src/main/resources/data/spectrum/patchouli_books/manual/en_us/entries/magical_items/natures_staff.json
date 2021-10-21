@@ -13,6 +13,7 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier2/natures_staff",
       "text": "$(b)Point at something you want to see blossom"
     }

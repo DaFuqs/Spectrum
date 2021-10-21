@@ -13,6 +13,7 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier3/pedestal_speed_upgrade",
       "text": "Place the Pedestal Crafting Accelerator on top one of the four gemstone blocks close to your pedestal. Additional Accelerators have diminishing returns."
     }

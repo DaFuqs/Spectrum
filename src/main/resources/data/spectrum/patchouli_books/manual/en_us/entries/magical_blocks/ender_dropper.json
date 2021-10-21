@@ -15,6 +15,7 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier2/ender_dropper",
       "text": ""
     }

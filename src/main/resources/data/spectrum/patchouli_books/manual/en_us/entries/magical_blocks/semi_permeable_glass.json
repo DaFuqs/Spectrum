@@ -26,6 +26,7 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier3/player_only_glass/amethyst_player_only_glass"
     },
     {

@@ -17,6 +17,7 @@
     {
       "type": "spectrum:pedestal_crafting",
       "advancement": "spectrum:hidden/collect_resource/collect_scarlet",
+      "title": "Pedestal Recipe",
       "item": "spectrum:scarlet_fragment_block",
       "text": "$(b)Heavy Metal"
     },
@@ -29,6 +30,7 @@
     {
       "type": "spectrum:pedestal_crafting",
       "advancement": "spectrum:hidden/collect_resource/collect_paletur",
+      "title": "Pedestal Recipe",
       "item": "spectrum:paletur_fragment_block",
       "text": "$(b)Fly far away"
     }

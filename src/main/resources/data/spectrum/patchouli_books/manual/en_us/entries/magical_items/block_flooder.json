@@ -1,7 +1,7 @@
 {
   "name": "Block Flooder",
   "advancement": "spectrum:progression/unlock_block_flooder",
-  "icon": "spectrum:natures_staff",
+  "icon": "spectrum:block_flooder",
   "category": "spectrum:magical_items_category",
   "extra_recipe_mappings": {
     "spectrum:block_flooder": 1
@@ -13,6 +13,7 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier2/block_flooder",
       "text": "Pulls matching blocks to close the gaps directly from your inventory. If you don't have any matching blocks it will fall back to Cobblestone."
     }

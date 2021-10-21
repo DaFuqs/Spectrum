@@ -14,6 +14,7 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier2/restocking_chest",
       "text": "The Fabrication Chest has four slots for crafting tablets. The recipes you have defined in these are always kept in stock - as long as the ingredients in the chest allow it."
     }

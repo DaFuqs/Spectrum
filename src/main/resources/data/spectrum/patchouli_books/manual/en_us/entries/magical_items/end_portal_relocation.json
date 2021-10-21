@@ -21,6 +21,7 @@
     },
     {
       "type": "patchouli:spotlight",
+      "title": "Pedestal Recipe",
       "item": "spectrum:end_portal_cracker",
       "text": "These modified Eye of Ender harbor extremely destructive potential. They need to be, to be able to manipulate the extremely robust portal frame.$(br)When used in an End Portal base, you should keep your distance quickly."
     },

@@ -13,6 +13,7 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier1/compacting_chest",
       "text": "The name says it all.$(br)The Compacting Chest will try to craft all the things you put into it in a 3x3 pattern."
     }

@@ -4,7 +4,7 @@
   "icon": "spectrum:private_chest",
   "category": "spectrum:magical_blocks_category",
   "extra_recipe_mappings": {
-    "spectrum:private_chest": 0
+    "spectrum:private_chest": 1
   },
   "pages": [
     {
@@ -13,8 +13,10 @@
       "text": "$(italic)It happens again and again that you just quickly put down a box to store your belongings and as soon as you come back everything is looted.$(br)To solve this problem you have developed this special chest, which takes care of the problem and can even help to catch the thief in the act."
     },
     {
-      "type": "patchouli:text",
-      "text": "The Heartbound Chest provides the same space as two normal chests.$(br2)Similar to a Trapped Chest the Heartbound Chest also outputs a redstone signal. If you as the owner open it, the signal strength will be full, if a stranger wants to tamper with your belongings then only half."
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier1/private_chest",
+      "text": "The Heartbound Chest provides the same space as two normal chests.$(br2)Similar to a Trapped Chest it also outputs a redstone signal. If you as the owner open it, the signal strength will be full, if a stranger wants to tamper with your belongings then only half."
     }
   ]
 }

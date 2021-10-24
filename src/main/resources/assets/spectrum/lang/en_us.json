@@ -49,7 +49,8 @@
   "death.attack.spectrum_decay": "%s made contact with the void",
   
   "commands.spectrum.spawn_shooting_star.success": "Spawned %d shooting stars for each player",
-  
+  "commands.spectrum.progression_sanity.success": "Printed the sanity checks output to the servers console",
+
   "spectrum.recipe.fusion_shrine.explanation.onyx_shard": "Midnight on a new moon only",
   "spectrum.recipe.fusion_shrine.explanation.decay_away":  "Requires a clear sky",
 

@@ -26,5 +26,6 @@
     "item": "spectrum:moonstone_chiseled_basalt",
     "count": 1
   },
-  "required_advancements": ["spectrum:hidden/collect_shards/collect_moonstone_shard"]
+  "required_advancements": ["spectrum:hidden/collect_shards/collect_moonstone_shard"],
+  "exclude_ingredient_warnings_in_debug_command": true
 }

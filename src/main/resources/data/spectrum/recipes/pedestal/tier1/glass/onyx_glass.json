@@ -26,5 +26,6 @@
     "item": "spectrum:onyx_glass",
     "count": 8
   },
-  "required_advancements": ["spectrum:hidden/collect_shards/collect_onyx_shard"]
+  "required_advancements": ["spectrum:hidden/collect_shards/collect_onyx_shard"],
+  "exclude_ingredient_warnings_in_debug_command": true
 }

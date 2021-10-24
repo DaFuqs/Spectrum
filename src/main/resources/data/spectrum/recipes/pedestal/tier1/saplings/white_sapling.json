@@ -29,5 +29,6 @@
     "item": "spectrum:white_sapling",
     "count": 1
   },
-  "required_advancements": [ "spectrum:progression/colored_saplings/unlock_white_sapling" ]
+  "required_advancements": [ "spectrum:progression/colored_saplings/unlock_white_sapling" ],
+  "exclude_ingredient_warnings_in_debug_command": true
 }

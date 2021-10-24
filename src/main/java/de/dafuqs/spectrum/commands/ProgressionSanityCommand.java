@@ -16,6 +16,8 @@ import net.minecraft.advancement.AdvancementCriterion;
 import net.minecraft.advancement.criterion.CriterionConditions;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.Level;
@@ -51,16 +53,23 @@ public class ProgressionSanityCommand {
 
 		// pedestal recipes that use gemstone powder not available at that tier yet
 		for(PedestalCraftingRecipe pedestalRecipe : SpectrumCommon.minecraftServer.getRecipeManager().listAllOfType(SpectrumRecipeTypes.PEDESTAL)) {
-			if(pedestalRecipe.getTier() == PedestalRecipeTier.BASIC || pedestalRecipe.getTier() == PedestalRecipeTier.SIMPLE) {
-				if(pedestalRecipe.getGemstoneDustInputs().get(GemstoneColor.BLACK) > 0) {
-					SpectrumCommon.log(Level.WARN, "[SANITY: Pedestal Recipe Ingredients] Pedestal recipe '" + pedestalRecipe.getId() + "' of tier '" + pedestalRecipe.getTier() +  "' is using onyx powder as input! Players will not have access to Onyx at that tier");
-				}
-				if(pedestalRecipe.getGemstoneDustInputs().get(GemstoneColor.WHITE) > 0) {
-					SpectrumCommon.log(Level.WARN, "[SANITY: Pedestal Recipe Ingredients] Pedestal recipe '" + pedestalRecipe.getId() + "' of tier '" + pedestalRecipe.getTier() +  "' is using moonstone powder as input! Players will not have access to Moonstone at that tier");
-				}
-			} else if(pedestalRecipe.getTier() == PedestalRecipeTier.ADVANCED) {
-				if(pedestalRecipe.getGemstoneDustInputs().get(GemstoneColor.WHITE) > 0) {
-					SpectrumCommon.log(Level.WARN, "[SANITY: Pedestal Recipe Ingredients] Pedestal recipe '" + pedestalRecipe.getId() + "' of tier '" + pedestalRecipe.getTier() +  "' is using moonstone powder as input! Players will not have access to Moonstone at that tier");
+			/* There are some recipes that use advanced ingredients by design
+			   despite being of a low tier, like black colored lamps.
+			   While the player does not have access to that yet it is no problem at all
+			   To exclude those recipes in these warnings there is a boolean flag in the recipe jsons
+			 */
+			if(!pedestalRecipe.isExcludeRequirementsInDebugCommand()) {
+				if (pedestalRecipe.getTier() == PedestalRecipeTier.BASIC || pedestalRecipe.getTier() == PedestalRecipeTier.SIMPLE) {
+					if (pedestalRecipe.getGemstoneDustInputs().get(GemstoneColor.BLACK) > 0) {
+						SpectrumCommon.log(Level.WARN, "[SANITY: Pedestal Recipe Ingredients] Pedestal recipe '" + pedestalRecipe.getId() + "' of tier '" + pedestalRecipe.getTier() + "' is using onyx powder as input! Players will not have access to Onyx at that tier");
+					}
+					if (pedestalRecipe.getGemstoneDustInputs().get(GemstoneColor.WHITE) > 0) {
+						SpectrumCommon.log(Level.WARN, "[SANITY: Pedestal Recipe Ingredients] Pedestal recipe '" + pedestalRecipe.getId() + "' of tier '" + pedestalRecipe.getTier() + "' is using moonstone powder as input! Players will not have access to Moonstone at that tier");
+					}
+				} else if (pedestalRecipe.getTier() == PedestalRecipeTier.ADVANCED) {
+					if (pedestalRecipe.getGemstoneDustInputs().get(GemstoneColor.WHITE) > 0) {
+						SpectrumCommon.log(Level.WARN, "[SANITY: Pedestal Recipe Ingredients] Pedestal recipe '" + pedestalRecipe.getId() + "' of tier '" + pedestalRecipe.getTier() + "' is using moonstone powder as input! Players will not have access to Moonstone at that tier");
+					}
 				}
 			}
 			for(Map.Entry<GemstoneColor, Integer> gemstoneDustInput : pedestalRecipe.getGemstoneDustInputs().entrySet()) {
@@ -122,6 +131,11 @@ public class ProgressionSanityCommand {
 		}
 
 		SpectrumCommon.log(Level.INFO, "##### SANITY CHECK FINISHED ######");
+		
+		if(source.getEntity() instanceof ServerPlayerEntity serverPlayerEntity) {
+			serverPlayerEntity.sendMessage(new TranslatableText("commands.spectrum.progression_sanity.success"), false);
+		}
+		
 		return 0;
 	}
 

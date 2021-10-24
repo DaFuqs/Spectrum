@@ -47,8 +47,11 @@ public class PedestalCraftingRecipe implements Recipe<Inventory> {
 	protected final int craftingTime;
 
 	protected final List<Identifier> requiredAdvancementIdentifiers;
+	protected final boolean excludeRequirementsInDebugCommand;
 
-	public PedestalCraftingRecipe(Identifier id, String group, PedestalRecipeTier tier, int width, int height, DefaultedList<Ingredient> craftingInputs, HashMap<GemstoneColor, Integer> gemstoneDustInputs, ItemStack output, float experience, int craftingTime, List<Identifier> requiredAdvancementIdentifiers) {
+	public PedestalCraftingRecipe(Identifier id, String group, PedestalRecipeTier tier, int width, int height,
+	                              DefaultedList<Ingredient> craftingInputs, HashMap<GemstoneColor, Integer> gemstoneDustInputs, ItemStack output,
+	                              float experience, int craftingTime, List<Identifier> requiredAdvancementIdentifiers, boolean excludeRequirementsInDebugCommand) {
 		this.id = id;
 		this.group = group;
 		this.tier = tier;
@@ -63,6 +66,7 @@ public class PedestalCraftingRecipe implements Recipe<Inventory> {
 		this.craftingTime = craftingTime;
 
 		this.requiredAdvancementIdentifiers = requiredAdvancementIdentifiers;
+		this.excludeRequirementsInDebugCommand = excludeRequirementsInDebugCommand;
 
 		if(SpectrumClient.minecraftClient != null) {
 			registerInClientToastManager();
@@ -295,6 +299,10 @@ public class PedestalCraftingRecipe implements Recipe<Inventory> {
 	 */
 	public List<Identifier> getRequiredAdvancementIdentifiers() {
 		return requiredAdvancementIdentifiers;
+	}
+	
+	public boolean isExcludeRequirementsInDebugCommand() {
+		return this.excludeRequirementsInDebugCommand;
 	}
 
 	public String getGroup() {

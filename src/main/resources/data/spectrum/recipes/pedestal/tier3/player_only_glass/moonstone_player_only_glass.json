@@ -29,5 +29,6 @@
     "item": "spectrum:moonstone_player_only_glass",
     "count": 8
   },
-  "required_advancements": ["spectrum:midgame/spectrum_midgame"]
+  "required_advancements": ["spectrum:midgame/spectrum_midgame"],
+  "exclude_ingredient_warnings_in_debug_command": true
 }

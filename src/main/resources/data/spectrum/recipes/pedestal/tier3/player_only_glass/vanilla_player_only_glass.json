@@ -7,7 +7,7 @@
   "yellow": 0,
   "cyan": 0,
   "black": 0,
-  "white": 4,
+  "white": 2,
   "experience": 1.0,
   "pattern": [
     "GPG",
@@ -29,5 +29,6 @@
     "item": "spectrum:vanilla_player_only_glass",
     "count": 8
   },
-  "required_advancements": ["spectrum:midgame/spectrum_midgame"]
+  "required_advancements": ["spectrum:midgame/spectrum_midgame"],
+  "exclude_ingredient_warnings_in_debug_command": true
 }

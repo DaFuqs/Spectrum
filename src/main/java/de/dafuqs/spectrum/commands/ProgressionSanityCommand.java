@@ -76,17 +76,7 @@ public class ProgressionSanityCommand {
 				usedColorsForEachTier.get(pedestalRecipe.getTier()).put(gemstoneDustInput.getKey(), usedColorsForEachTier.get(pedestalRecipe.getTier()).get(gemstoneDustInput.getKey()) + gemstoneDustInput.getValue());
 			}
 		}
-
-		for(PedestalRecipeTier pedestalRecipeTier : PedestalRecipeTier.values()) {
-			HashMap<GemstoneColor, Integer> entry = usedColorsForEachTier.get(pedestalRecipeTier);
-			SpectrumCommon.log(Level.INFO, "[SANITY: Pedestal Recipe Gemstone Usages] Gemstone Powder for tier " + StringUtils.leftPad(pedestalRecipeTier.toString(), 8) +
-					": C:" + StringUtils.leftPad(entry.get(GemstoneColor.CYAN).toString(), 3) +
-					" M:" + StringUtils.leftPad(entry.get(GemstoneColor.MAGENTA).toString(), 3) +
-					" Y:" + StringUtils.leftPad(entry.get(GemstoneColor.YELLOW).toString(), 3) +
-					" K:" + StringUtils.leftPad(entry.get(GemstoneColor.BLACK).toString(), 3) +
-					" W:" + StringUtils.leftPad(entry.get(GemstoneColor.WHITE).toString(), 3));
-		}
-
+		
 		// impossible to unlock pedestal recipes
 		for(PedestalCraftingRecipe pedestalCraftingRecipe : SpectrumCommon.minecraftServer.getRecipeManager().listAllOfType(SpectrumRecipeTypes.PEDESTAL)) {
 			List<Identifier> advancementIdentifiers = pedestalCraftingRecipe.getRequiredAdvancementIdentifiers();
@@ -129,7 +119,18 @@ public class ProgressionSanityCommand {
 				}
 			}
 		}
-
+		
+		SpectrumCommon.log(Level.INFO, "##### SANITY CHECK PEDESTAL RECIPE STATISTICS ######");
+		for(PedestalRecipeTier pedestalRecipeTier : PedestalRecipeTier.values()) {
+			HashMap<GemstoneColor, Integer> entry = usedColorsForEachTier.get(pedestalRecipeTier);
+			SpectrumCommon.log(Level.INFO, "[SANITY: Pedestal Recipe Gemstone Usages] Gemstone Powder for tier " + StringUtils.leftPad(pedestalRecipeTier.toString(), 8) +
+					": C:" + StringUtils.leftPad(entry.get(GemstoneColor.CYAN).toString(), 3) +
+					" M:" + StringUtils.leftPad(entry.get(GemstoneColor.MAGENTA).toString(), 3) +
+					" Y:" + StringUtils.leftPad(entry.get(GemstoneColor.YELLOW).toString(), 3) +
+					" K:" + StringUtils.leftPad(entry.get(GemstoneColor.BLACK).toString(), 3) +
+					" W:" + StringUtils.leftPad(entry.get(GemstoneColor.WHITE).toString(), 3));
+		}
+		
 		SpectrumCommon.log(Level.INFO, "##### SANITY CHECK FINISHED ######");
 		
 		if(source.getEntity() instanceof ServerPlayerEntity serverPlayerEntity) {

@@ -6,6 +6,7 @@ import de.dafuqs.spectrum.Support;
 import de.dafuqs.spectrum.interfaces.PlayerOwned;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -103,7 +104,6 @@ public class BlockFlooderBlock extends BlockWithEntity {
 			if(neighboringBlockAmounts.size() > 0) {
 				int max = 0;
 				Block maxBlock = null;
-				ItemStack maxBlockItemStack = ItemStack.EMPTY;
 				
 				for(Map.Entry<Block, Integer> entry : neighboringBlockAmounts.entrySet()) {
 					Block currentBlock = entry.getKey();
@@ -115,7 +115,6 @@ public class BlockFlooderBlock extends BlockWithEntity {
 							ItemStack currentItemStack = new ItemStack(blockItem);
 							if(owner.isCreative() || owner.getInventory().contains(currentItemStack) && currentBlock.canPlaceAt(currentBlock.getDefaultState(), world, pos)) {
 								maxBlock = currentBlock;
-								maxBlockItemStack = currentItemStack;
 							} else {
 								Optional<Tag> tag = Support.getFirstMatchingTag(currentBlock, exchangeBlockTags);
 								if (tag.isPresent()) {
@@ -125,7 +124,6 @@ public class BlockFlooderBlock extends BlockWithEntity {
 										currentItemStack = new ItemStack(blockItem);
 										if (owner.isCreative() || owner.getInventory().contains(currentItemStack) && currentBlock.canPlaceAt(currentBlock.getDefaultState(), world, pos)) {
 											maxBlock = currentBlock;
-											maxBlockItemStack = currentItemStack;
 										}
 									}
 								}
@@ -137,9 +135,6 @@ public class BlockFlooderBlock extends BlockWithEntity {
 				if(maxBlock != null) {
 					// and turn this to the leftover block state
 					blockFlooderBlockEntity.setTargetBlockState(maxBlock.getDefaultState());
-					if(!owner.isCreative()) {
-						InventoryHelper.removeFromInventory(maxBlockItemStack, owner.getInventory().main);
-					}
 				} else {
 					blockFlooderBlockEntity.setTargetBlockState(DEFAULT_BLOCK_STATE);
 				}
@@ -155,13 +150,17 @@ public class BlockFlooderBlock extends BlockWithEntity {
 		if (!world.isClient) {
 			if (world.getBlockEntity(pos) instanceof BlockFlooderBlockEntity blockFlooderBlockEntity) {
 				BlockState targetState = blockFlooderBlockEntity.getTargetBlockState();
-				if (targetState.isAir()) {
+				if (targetState == null || targetState.isAir()) {
 					boolean scheduleUpdate = calculateTargetBlockAndPropagate(state, world, pos, world.getRandom());
 					if (scheduleUpdate) {
 						world.getBlockTickScheduler().schedule(pos, state.getBlock(), 2 + random.nextInt(5));
 					}
 				} else {
 					world.setBlockState(pos, targetState, 3);
+					PlayerEntity owner = PlayerOwned.getPlayerEntityIfOnline(world, blockFlooderBlockEntity.getOwnerUUID());
+					if(!owner.isCreative()) {
+						InventoryHelper.removeFromInventory(new ItemStack(targetState.getBlock().asItem()), owner.getInventory().main);
+					}
 				}
 			}
 		}

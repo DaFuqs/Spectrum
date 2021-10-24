@@ -163,7 +163,7 @@ public class SpectrumItems {
 	public static final Item NATURES_STAFF = new NaturesStaffItem(generalUncommonItemSettingsSingle);
 	public static final Item PLACEMENT_STAFF = new PlacementStaffItem(generalUncommonItemSettingsSingle);
 	public static final Item EXCHANGE_STAFF = new ExchangeStaffItem(generalUncommonItemSettingsSingle);
-	public static final Item BLOCK_FLOODER = new BlockFlooderItem(generalUncommonItemSettingsSingle);
+	public static final Item BLOCK_FLOODER = new BlockFlooderItem(generalUncommonItemSettings);
 	public static final EnderSpliceItem ENDER_SPLICE = new EnderSpliceItem(generalUncommonItemSettings);
 	public static final Item END_PORTAL_CRACKER = new EndPortalCrackerItem(generalRareItemSettings);
 

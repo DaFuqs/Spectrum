@@ -6,8 +6,11 @@ import de.dafuqs.spectrum.inventories.AutoCompactingInventory;
 import de.dafuqs.spectrum.networking.SpectrumS2CPackets;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.recipe.anvil_crushing.AnvilCrushingRecipe;
+import de.dafuqs.spectrum.registries.SpectrumEnchantments;
 import de.dafuqs.spectrum.registries.SpectrumItemStackDamageImmunities;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ExperienceOrbEntity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.damage.DamageSource;
@@ -30,8 +33,38 @@ import java.util.Optional;
 
 @Mixin(ItemEntity.class)
 public abstract class ItemEntityMixin {
-
+	
 	@Shadow public abstract ItemStack getStack();
+	
+	@Shadow public abstract void setNeverDespawn();
+	
+	@Inject(at=@At("TAIL"), method= "<init>(Lnet/minecraft/world/World;DDDLnet/minecraft/item/ItemStack;DDD)V")
+	public void ItemEntity(World world, double x, double y, double z, ItemStack stack, double velocityX, double velocityY, double velocityZ, CallbackInfo ci) {
+		// item stacks that are enchanted with damage proof should never despawn
+		if(EnchantmentHelper.getLevel(SpectrumEnchantments.DAMAGE_PROOF, stack) > 0) {
+			setNeverDespawn();
+		}
+	}
+	
+	@Inject(at=@At("TAIL"), method= "tick()V")
+	public void tick(CallbackInfo ci) {
+		// protect damage proof enchanted item stacks from the void by letting them float above it
+		ItemEntity thisItemEntity = ((ItemEntity)(Object) this);
+		if(!thisItemEntity.hasNoGravity() && thisItemEntity.world.getTime() % 8 == 0) {
+			int worldMinY = thisItemEntity.world.getDimension().getMinimumY();
+			if(!thisItemEntity.isOnGround()
+					&& thisItemEntity.getPos().getY() < worldMinY + 2
+					&& EnchantmentHelper.getLevel(SpectrumEnchantments.DAMAGE_PROOF, thisItemEntity.getStack()) > 0) {
+				
+				if(thisItemEntity.getPos().getY() < worldMinY + 1) {
+					thisItemEntity.setPosition(thisItemEntity.getPos().x, worldMinY + 1, thisItemEntity.getPos().z);
+				}
+				
+				thisItemEntity.setVelocity(0, 0, 0);
+				thisItemEntity.setNoGravity(true);
+			}
+		}
+	}
 
 	@Inject(at=@At("HEAD"), method= "damage(Lnet/minecraft/entity/damage/DamageSource;F)Z", cancellable = true)
 	public void doAnvilCrafting(DamageSource source, float amount, CallbackInfoReturnable<Boolean> callbackInfoReturnable) {

@@ -85,7 +85,7 @@
   "enchantment.spectrum.tight_grip": "Tight Grip",
   "enchantment.spectrum.tight_grip.desc": "Decreased attack cooldown",
   "enchantment.spectrum.damage_proof": "Damage Proof",
-  "enchantment.spectrum.damage_proof.desc": "Immunity to most forms of damage (fire, lava, cactus, ...)",
+  "enchantment.spectrum.damage_proof.desc": "Immunity to most forms of damage, despawning and the void",
 
   "spectrum.subtitles.block.mud.ambient": "Mud flows",
   "spectrum.subtitles.block.liquid_crystal.ambient": "Liquid Crystal chimes",

@@ -262,6 +262,7 @@ public class SpectrumBlocks {
 	// COLORED TREES
 	private static final FabricBlockSettings coloredSaplingBlockSettings = FabricBlockSettings.copyOf(Blocks.OAK_SAPLING);
 	private static final FabricBlockSettings coloredLeavesBlockSettings = FabricBlockSettings.copyOf(Blocks.OAK_LEAVES).luminance((state) -> 2);
+	private static final FabricBlockSettings spiritSallowLeavesBlockSettings = FabricBlockSettings.copyOf(Blocks.OAK_LEAVES).luminance((state) -> 8);
 	private static final FabricBlockSettings coloredLogBlockSettings = FabricBlockSettings.copyOf(Blocks.OAK_LOG).luminance((state) -> 5);
 
 	public static final Block BLACK_LOG = new ColoredLogBlock(coloredLogBlockSettings);
@@ -577,12 +578,10 @@ public class SpectrumBlocks {
 	private static final BiMap<SpectrumSkullBlock.Type, Block> MOB_HEADS = EnumHashBiMap.create(SpectrumSkullBlock.Type.class);
 	private static final BiMap<SpectrumSkullBlock.Type, Block> MOB_WALL_HEADS = EnumHashBiMap.create(SpectrumSkullBlock.Type.class);
 
-	public static final Block SPIRIT_SALLOW_ROOTS = new Block(FabricBlockSettings.copyOf(Blocks.OAK_WOOD));
-	public static final Block SPIRIT_SALLOW_LOG = new Block(FabricBlockSettings.copyOf(Blocks.OAK_WOOD));
-	public static final Block SPIRIT_SALLOW_BARK = new Block(FabricBlockSettings.copyOf(Blocks.OAK_WOOD));
-	public static final Block SPIRIT_SALLOW_CORE = new Block(FabricBlockSettings.copyOf(Blocks.OAK_WOOD));
-	public static final Block SPIRIT_SALLOW_LEAVES = new Block(FabricBlockSettings.copyOf(Blocks.OAK_WOOD));
-	public static final Block SPIRIT_SALLOW_HEART = new Block(FabricBlockSettings.copyOf(Blocks.OAK_WOOD));
+	public static final Block SPIRIT_SALLOW_LOG = new PillarBlock(FabricBlockSettings.copyOf(Blocks.OAK_WOOD));
+	public static final Block SPIRIT_SALLOW_LEAVES = new LeavesBlock(spiritSallowLeavesBlockSettings);
+	public static final Block SPIRIT_SALLOW_ROOTS = new PillarBlock(FabricBlockSettings.copyOf(Blocks.OAK_WOOD));
+	public static final Block SPIRIT_SALLOW_HEART = new Block(FabricBlockSettings.copyOf(Blocks.OAK_WOOD).luminance(11));
 
 	private static final FabricBlockSettings spiritVinesBlockSettings = FabricBlockSettings.of(Material.PLANT).noCollision().breakInstantly().sounds(BlockSoundGroup.CAVE_VINES);
 	public static final Block CYAN_SPIRIT_SALLOW_VINES_BODY = new SpiritVinesBodyBlock(FabricBlockSettings.copyOf(spiritVinesBlockSettings).mapColor(MapColor.CYAN), GemstoneColor.CYAN);
@@ -754,8 +753,6 @@ public class SpectrumBlocks {
 
 		registerBlockWithItem("spirit_sallow_roots", SPIRIT_SALLOW_ROOTS, fabricItemSettings);
 		registerBlockWithItem("spirit_sallow_log", SPIRIT_SALLOW_LOG, fabricItemSettings);
-		registerBlockWithItem("spirit_sallow_bark", SPIRIT_SALLOW_BARK, fabricItemSettings);
-		registerBlockWithItem("spirit_sallow_core", SPIRIT_SALLOW_CORE, fabricItemSettings);
 		registerBlockWithItem("spirit_sallow_leaves", SPIRIT_SALLOW_LEAVES, fabricItemSettings);
 		registerBlockWithItem("spirit_sallow_heart", SPIRIT_SALLOW_HEART, fabricItemSettings);
 

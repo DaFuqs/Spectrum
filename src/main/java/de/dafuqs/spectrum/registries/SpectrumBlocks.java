@@ -38,6 +38,7 @@ import de.dafuqs.spectrum.blocks.pedestal.PedestalBlock;
 import de.dafuqs.spectrum.blocks.pedestal.PedestalBlockItem;
 import de.dafuqs.spectrum.blocks.pedestal.PedestalUpgradeBlock;
 import de.dafuqs.spectrum.blocks.redstone.*;
+import de.dafuqs.spectrum.blocks.spirit_sallow.SpiritSallowLeavesBlock;
 import de.dafuqs.spectrum.blocks.spirit_tree.OminousSaplingBlock;
 import de.dafuqs.spectrum.blocks.spirit_tree.OminousSaplingBlockItem;
 import de.dafuqs.spectrum.blocks.spirit_vines.SpiritVinesBodyBlock;
@@ -579,7 +580,7 @@ public class SpectrumBlocks {
 	private static final BiMap<SpectrumSkullBlock.Type, Block> MOB_WALL_HEADS = EnumHashBiMap.create(SpectrumSkullBlock.Type.class);
 
 	public static final Block SPIRIT_SALLOW_LOG = new PillarBlock(FabricBlockSettings.copyOf(Blocks.OAK_WOOD));
-	public static final Block SPIRIT_SALLOW_LEAVES = new LeavesBlock(spiritSallowLeavesBlockSettings);
+	public static final Block SPIRIT_SALLOW_LEAVES = new SpiritSallowLeavesBlock(spiritSallowLeavesBlockSettings);
 	public static final Block SPIRIT_SALLOW_ROOTS = new PillarBlock(FabricBlockSettings.copyOf(Blocks.OAK_WOOD));
 	public static final Block SPIRIT_SALLOW_HEART = new Block(FabricBlockSettings.copyOf(Blocks.OAK_WOOD).luminance(11));
 

@@ -17,13 +17,11 @@ public class WindParticle extends SpriteBillboardParticle {
 	
 	private static final WindStrength wind = new WindStrength();
 	
-	private final Vec3d spawnPos;
-	
 	@Override
 	public void tick() {
 		super.tick();
 		
-		Vec3d windStrength = wind.getWindStrength(spawnPos, world.getTime());
+		Vec3d windStrength = wind.getWindStrength(world.getTime());
 		this.velocityX += windStrength.getX() * 0.004;
 		this.velocityY += windStrength.getY() * 0.001;
 		this.velocityZ += windStrength.getZ() * 0.004;
@@ -32,7 +30,6 @@ public class WindParticle extends SpriteBillboardParticle {
 	protected WindParticle(ClientWorld clientWorld, double x, double y, double z, double velocityX, double velocityY, double velocityZ) {
 		super(clientWorld, x, y - 0.125D, z, velocityX, velocityY, velocityZ);
 		
-		this.spawnPos = new Vec3d(x, y, z);
 		this.collidesWithWorld = true;
 
 		this.setBoundingBoxSpacing(0.01F, 0.01F);

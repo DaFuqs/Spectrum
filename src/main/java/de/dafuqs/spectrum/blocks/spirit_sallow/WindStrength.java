@@ -15,7 +15,7 @@ public class WindStrength {
 	
 	public Vec3d cachedValue;
 	
-	public Vec3d getWindStrength(Vec3d pos, long tick) {
+	public Vec3d getWindStrength(long tick) {
 		if(samplerX == null) {
 			samplerX = new SimplexNoiseSampler(new ChunkRandom());
 			samplerY = new SimplexNoiseSampler(new ChunkRandom());

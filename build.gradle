@@ -21,6 +21,7 @@ repositories {
 		name = "Patchouli" // https://github.com/Vazkii/Patchouli
 		url = 'https://maven.blamejared.com'
 	}
+	maven { url 'https://jitpack.io' } // owo lib
 }
 dependencies {
 	// fabric
@@ -41,6 +42,7 @@ dependencies {
 	modApi "vazkii.patchouli:Patchouli:${project.patchouli_version}:api"
 
 	modImplementation "net.darkhax.enchdesc:EnchantmentDescriptionsFabric-${project.enchantment_descriptions_mc_version}:${project.enchantment_descriptions_mod_version}"
+	modImplementation "com.github.glisco03:owo-lib:${project.owo_version}"
 
 	modCompileOnly "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"
 	modRuntime "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"

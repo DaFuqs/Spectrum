@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.registries;
 
+import com.glisco.owo.itemgroup.OwoItemSettings;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.gravity.GravityItem;
 import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
@@ -32,27 +33,29 @@ import static de.dafuqs.spectrum.registries.SpectrumFluids.STILL_MUD;
 
 public class SpectrumItems {
 
-	public static FabricItemSettings generalItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).maxCount(64);
-	public static FabricItemSettings generalItemSettingsSingle = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).maxCount(1);
-	public static FabricItemSettings generalUncommonItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).maxCount(64).rarity(Rarity.UNCOMMON);
-	public static FabricItemSettings generalUncommonItemSettingsSingle = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).rarity(Rarity.UNCOMMON).maxCount(1);
-	public static FabricItemSettings generalRareItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).rarity(Rarity.RARE).maxCount(64);
-	public static FabricItemSettings generalRareItemSettingsSingle = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).rarity(Rarity.RARE).maxCount(1);
-	public static FabricItemSettings resourcesItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_RESOURCES).maxCount(64);
-	public static FabricItemSettings resourcesItemSettingsSixteen = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_RESOURCES).maxCount(16);
-	public static FabricItemSettings resourcesUncommonItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_RESOURCES).rarity(Rarity.UNCOMMON).maxCount(64);
-	public static FabricItemSettings resourcesRareItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_RESOURCES).rarity(Rarity.RARE).maxCount(64);
+	public static FabricItemSettings generalItemSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).maxCount(64);
+	public static FabricItemSettings generalItemSettingsSingle = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).maxCount(1);
+	public static FabricItemSettings generalUncommonItemSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).maxCount(64).rarity(Rarity.UNCOMMON);
+	public static FabricItemSettings generalUncommonItemSettingsSingle = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.UNCOMMON).maxCount(1);
+	public static FabricItemSettings generalRareItemSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.RARE).maxCount(64);
+	public static FabricItemSettings generalRareItemSettingsSingle = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.RARE).maxCount(1);
+	public static FabricItemSettings decayPlacerItemSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).maxCount(16);
+	public static FabricItemSettings spectrumLowNightVisionArmorItemSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.UNCOMMON).maxDamage(SpectrumArmorMaterials.GLOW_VISION.getDurability(EquipmentSlot.HEAD));
 
-	public static FabricItemSettings decayPlacerItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).maxCount(16);
-	public static FabricItemSettings spectrumLowNightVisionArmorItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).rarity(Rarity.UNCOMMON).maxDamage(SpectrumArmorMaterials.GLOW_VISION.getDurability(EquipmentSlot.HEAD));
-
-	public static FabricItemSettings spectrumBedrockToolItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_PREENCHANTED_TOOLS).rarity(Rarity.RARE).fireproof().maxDamage(SpectrumToolMaterials.ToolMaterial.BEDROCK.getDurability());
-	public static FabricItemSettings spectrumBedrockArmorItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_PREENCHANTED_TOOLS).rarity(Rarity.RARE).fireproof().maxDamage(0);
-	public static FabricItemSettings spectrumEmergencyArmorItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_PREENCHANTED_TOOLS).rarity(Rarity.RARE).maxDamage(SpectrumArmorMaterials.EMERGENCY.getDurability(EquipmentSlot.CHEST));
-	public static FabricItemSettings spectrumLowHealthToolItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_PREENCHANTED_TOOLS).rarity(Rarity.UNCOMMON).maxDamage(SpectrumToolMaterials.ToolMaterial.LOW_HEALTH.getDurability());
-	public static FabricItemSettings spectrumLowVoidingToolItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_PREENCHANTED_TOOLS).rarity(Rarity.UNCOMMON).maxDamage(SpectrumToolMaterials.ToolMaterial.VOIDING.getDurability());
-	public static FabricItemSettings spectrumMultiToolItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_PREENCHANTED_TOOLS).rarity(Rarity.UNCOMMON).maxDamage(ToolMaterials.IRON.getDurability());
-
+	// will be added to item group / tab programmatically in the item group itself with enchantments included
+	public static FabricItemSettings spectrumBedrockToolItemSettings = new FabricItemSettings().rarity(Rarity.RARE).fireproof().maxDamage(SpectrumToolMaterials.ToolMaterial.BEDROCK.getDurability());
+	public static FabricItemSettings spectrumBedrockArmorItemSettings = new FabricItemSettings().rarity(Rarity.RARE).fireproof().maxDamage(0);
+	public static FabricItemSettings spectrumEmergencyArmorItemSettings = new FabricItemSettings().rarity(Rarity.RARE).maxDamage(SpectrumArmorMaterials.EMERGENCY.getDurability(EquipmentSlot.CHEST));
+	public static FabricItemSettings spectrumLowHealthToolItemSettings = new FabricItemSettings().rarity(Rarity.UNCOMMON).maxDamage(SpectrumToolMaterials.ToolMaterial.LOW_HEALTH.getDurability());
+	public static FabricItemSettings spectrumLowVoidingToolItemSettings = new FabricItemSettings().rarity(Rarity.UNCOMMON).maxDamage(SpectrumToolMaterials.ToolMaterial.VOIDING.getDurability());
+	public static FabricItemSettings spectrumMultiToolItemSettings = new FabricItemSettings().rarity(Rarity.UNCOMMON).maxDamage(ToolMaterials.IRON.getDurability());
+	
+	public static FabricItemSettings resourcesItemSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(3).maxCount(64);
+	public static FabricItemSettings resourcesItemSettingsSixteen = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(3).maxCount(16);
+	public static FabricItemSettings resourcesUncommonItemSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(3).rarity(Rarity.UNCOMMON).maxCount(64);
+	public static FabricItemSettings resourcesRareItemSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(3).rarity(Rarity.RARE).maxCount(64);
+	
+	
 	// Main items
 	public static final Item MANUAL = new ManualItem(generalItemSettingsSingle);
 	public static final Item CRAFTING_TABLET = new CraftingTabletItem(generalItemSettingsSingle);

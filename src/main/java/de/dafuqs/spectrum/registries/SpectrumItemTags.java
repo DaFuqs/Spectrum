@@ -7,7 +7,7 @@ import net.minecraft.tag.Tag;
 import net.minecraft.util.Identifier;
 
 public class SpectrumItemTags {
-
+	
 	public static Tag<Item> COLORED_SAPLINGS;
 	public static Tag<Item> GEMSTONE_SHARDS;
 	public static Tag<Item> GEMSTONE_BUDS;

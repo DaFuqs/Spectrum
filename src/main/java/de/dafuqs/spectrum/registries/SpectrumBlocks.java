@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.registries;
 
+import com.glisco.owo.itemgroup.OwoItemSettings;
 import com.google.common.collect.BiMap;
 import com.google.common.collect.EnumHashBiMap;
 import de.dafuqs.spectrum.SpectrumCommon;
@@ -85,12 +86,13 @@ public class SpectrumBlocks {
 		return false;
 	}
 
-	public static FabricItemSettings generalItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL);
-	public static FabricItemSettings generalItemSettingsSingle = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).maxCount(1);
-	public static FabricItemSettings resourcesItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_RESOURCES);
-	public static FabricItemSettings decorationItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_DECORATION);
-	public static FabricItemSettings coloredWoodItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_COLORED_WOOD);
-	public static FabricItemSettings mobHeadItemSettings = new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_MOB_HEADS).rarity(Rarity.UNCOMMON);
+	public static FabricItemSettings generalItemSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(0);
+	public static FabricItemSettings generalItemSettingsSingle = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(0).maxCount(1);
+	public static FabricItemSettings resourcesItemSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(2);
+	
+	public static FabricItemSettings decorationItemSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_BLOCKS).tab(0);
+	public static FabricItemSettings coloredWoodItemSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_BLOCKS).tab(1);
+	public static FabricItemSettings mobHeadItemSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_BLOCKS).tab(2).rarity(Rarity.UNCOMMON);
 
 	// PEDESTALS
 	public static final Block PEDESTAL_BASIC_TOPAZ = new PedestalBlock(FabricBlockSettings.of(Material.STONE).strength(5.0F, 20.0F), PedestalBlock.PedestalVariant.BASIC_TOPAZ);

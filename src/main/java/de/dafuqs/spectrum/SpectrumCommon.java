@@ -68,8 +68,10 @@ public class SpectrumCommon implements ModInitializer {
 		SpectrumFluidTags.register();
 		SpectrumBlockTags.getReferences();
 		SpectrumFluids.register();
+		
 		SpectrumBlocks.register();
 		SpectrumItems.register();
+		
 		SpectrumItemTags.getReferences();
 		SpectrumBlockEntityRegistry.register();
 		SpectrumEnchantments.register();
@@ -102,6 +104,9 @@ public class SpectrumCommon implements ModInitializer {
 		SpectrumFlammableBlocks.register();
 		SpectrumComposting.register();
 		SpectrumGameEvents.register();
+		
+		SpectrumItemGroups.ITEM_GROUP_GENERAL.initialize();
+		SpectrumItemGroups.ITEM_GROUP_BLOCKS.initialize();
 
 		ServerWorldEvents.LOAD.register((minecraftServer, serverWorld) -> {
 			SpectrumCommon.minecraftServer = minecraftServer;

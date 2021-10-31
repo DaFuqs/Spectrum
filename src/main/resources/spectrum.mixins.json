@@ -51,7 +51,8 @@
     "client.MixinClientAdvancementManager",
     "client.MixinMinecraftClient",
     "client.ScreenMixin",
-    "client.TransparentBlockMixin"
+    "client.TransparentBlockMixin",
+    "client.WorldRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

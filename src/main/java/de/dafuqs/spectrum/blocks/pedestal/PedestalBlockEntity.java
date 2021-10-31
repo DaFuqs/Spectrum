@@ -12,10 +12,7 @@ import de.dafuqs.spectrum.networking.SpectrumS2CPackets;
 import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.recipe.pedestal.PedestalCraftingRecipe;
-import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
-import de.dafuqs.spectrum.registries.SpectrumBlocks;
-import de.dafuqs.spectrum.registries.SpectrumItems;
-import de.dafuqs.spectrum.registries.SpectrumMultiblocks;
+import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.Block;
@@ -38,6 +35,7 @@ import net.minecraft.recipe.*;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
@@ -65,6 +63,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 
 	protected DefaultedList<ItemStack> inventory;
 
+	private boolean wasPoweredBefore;
 	private float storedXP;
 	private int craftingTime;
 	private int craftingTimeTotal;
@@ -77,7 +76,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 	private PedestalRecipeTier cachedMaxPedestalTier;
 	private long cachedMaxPedestalTierTick;
 
-	private boolean checkedForUpgrades = false;
+	private final boolean checkedForUpgrades = false;
 	private int speedUpgrades = 0;
 
 	public static final int INVENTORY_SIZE = 16; // 9 crafting, 5 gems, 1 craftingTablet, 1 output
@@ -249,7 +248,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		this.inventory.clear();
 	}
 
-	private boolean isCrafting() {
+	public boolean isCrafting() {
 		return this.craftingTime > 0;
 	}
 
@@ -257,7 +256,6 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		// only craft when there is redstone power
 		Block block = world.getBlockState(blockPos).getBlock();
 		if(block instanceof PedestalBlock && blockState.get(PedestalBlock.POWERED)) {
-
 			if(!pedestalBlockEntity.checkedForUpgrades) {
 				pedestalBlockEntity.updateUpgrades();
 			}
@@ -306,8 +304,12 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 				pedestalBlockEntity.craftingTime = 0;
 			}
 
-			if (crafting != pedestalBlockEntity.isCrafting()) {
+			boolean wasCraftingBefore = pedestalBlockEntity.isCrafting();
+			if (crafting != wasCraftingBefore) {
 				shouldMarkDirty = true;
+			}
+			if((!pedestalBlockEntity.wasPoweredBefore && pedestalBlockEntity.craftingTime > 0) || (pedestalBlockEntity.craftingTime == 1 && pedestalBlockEntity.craftingTimeTotal > 1)) {
+				SpectrumS2CPackets.sendPlayBlockBoundSoundInstance(SpectrumSoundEvents.PEDESTAL_CRAFTING, (ServerWorld) pedestalBlockEntity.world, pedestalBlockEntity.getPos(), pedestalBlockEntity.craftingTimeTotal - pedestalBlockEntity.craftingTime);
 			}
 
 			// try to output the currently stored output stack
@@ -340,6 +342,9 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 			if (shouldMarkDirty) {
 				markDirty(world, blockPos, blockState);
 			}
+			pedestalBlockEntity.wasPoweredBefore = true;
+		} else {
+			pedestalBlockEntity.wasPoweredBefore = false;
 		}
 	}
 
@@ -380,7 +385,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 
 	public static void playCraftingFinishedSoundEvent(PedestalBlockEntity pedestalBlockEntity, @Nullable CraftingRecipe craftingRecipe, @Nullable PedestalCraftingRecipe pedestalCraftingRecipe) {
 		if (craftingRecipe != null) {
-			pedestalBlockEntity.playSound(SpectrumSoundEvents.PEDESTAL_CRAFT_GENERIC);
+			pedestalBlockEntity.playSound(SpectrumSoundEvents.PEDESTAL_CRAFTING_FINISHED_GENERIC);
 		} else if (pedestalCraftingRecipe != null) {
 			pedestalBlockEntity.playSound(pedestalCraftingRecipe.getSoundEvent(pedestalBlockEntity.world.random));
 		}
@@ -405,6 +410,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 						pedestalBlockEntity.craftingTimeTotal = pedestalCraftingRecipe.getCraftingTime();
 						return pedestalCraftingRecipe;
 					} else {
+						SpectrumS2CPackets.sendCancelBlockBoundSoundInstance((ServerWorld) pedestalBlockEntity.getWorld(), pedestalBlockEntity.getPos());
 						return null;
 					}
 				} else {
@@ -414,6 +420,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 						pedestalBlockEntity.craftingTimeTotal = 20;
 						return craftingRecipe;
 					} else {
+						SpectrumS2CPackets.sendCancelBlockBoundSoundInstance((ServerWorld) pedestalBlockEntity.getWorld(), pedestalBlockEntity.getPos());
 						pedestalBlockEntity.lastRecipe = null;
 						return null;
 					}
@@ -481,7 +488,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 			// => upgrade
 			PedestalBlock.PedestalVariant newPedestalVariant = PedestalCraftingRecipe.getUpgradedPedestalVariantForOutput(recipeOutput);
 			if(newPedestalVariant != null && newPedestalVariant.ordinal() > getVariant(pedestalBlockEntity).ordinal()) {
-				// It is an upgrade recipe (output is an pedestal block item)
+				// It is an upgrade recipe (output is a pedestal block item)
 				// => Upgrade
 				PedestalBlock.upgradeToVariant(pedestalBlockEntity.world, pedestalBlockEntity.getPos(), newPedestalVariant);
 			} else {

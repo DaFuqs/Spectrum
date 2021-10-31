@@ -113,8 +113,23 @@
       "spectrum:dimension_ambient3"
     ]
   },
-  "pedestal_craft_generic": {
-    "subtitle": "spectrum.subtitles.blocks.pedestal.craft",
+  "pedestal_crafting": {
+    "sounds": [
+      "spectrum:pedestal_crafting"
+    ]
+  },
+  "pedestal_upgrade": {
+    "sounds": [
+      "spectrum:pedestal_upgrade"
+    ]
+  },
+  "fusion_shrine_crafting": {
+    "sounds": [
+      "spectrum:fusion_shrine_crafting"
+    ]
+  },
+  "pedestal_crafting_finished_generic": {
+    "subtitle": "spectrum.subtitles.blocks.pedestal.crafting_finished",
     "sounds": [
       "block/deepslate/break1",
       "block/deepslate/break2",
@@ -122,8 +137,8 @@
       "block/deepslate/break4"
     ]
   },
-  "pedestal_craft_amethyst": {
-    "subtitle": "spectrum.subtitles.blocks.pedestal.craft",
+  "pedestal_crafting_finished_amethyst": {
+    "subtitle": "spectrum.subtitles.blocks.pedestal.crafting_finished",
     "sounds": [
       "block/amethyst/break1",
       "block/amethyst/break2",
@@ -131,8 +146,8 @@
       "block/amethyst/break4"
     ]
   },
-  "pedestal_craft_citrine": {
-    "subtitle": "spectrum.subtitles.blocks.pedestal.craft",
+  "pedestal_crafting_finished_citrine": {
+    "subtitle": "spectrum.subtitles.blocks.pedestal.crafting_finished",
     "sounds": [
       "spectrum:block/citrine/block_citrine_cluster_break1",
       "spectrum:block/citrine/block_citrine_cluster_break2",
@@ -140,8 +155,8 @@
       "spectrum:block/citrine/block_citrine_cluster_break4"
     ]
   },
-  "pedestal_craft_topaz": {
-    "subtitle": "spectrum.subtitles.blocks.pedestal.craft",
+  "pedestal_crafting_finished_topaz": {
+    "subtitle": "spectrum.subtitles.blocks.pedestal.crafting_finished",
     "sounds": [
       "spectrum:block/topaz/block_topaz_cluster_break1",
       "spectrum:block/topaz/block_topaz_cluster_break2",
@@ -149,8 +164,8 @@
       "spectrum:block/topaz/block_topaz_cluster_break4"
     ]
   },
-  "pedestal_craft_onyx": {
-    "subtitle": "spectrum.subtitles.blocks.pedestal.craft",
+  "pedestal_crafting_finished_onyx": {
+    "subtitle": "spectrum.subtitles.blocks.pedestal.crafting_finished",
     "sounds": [
       "spectrum:block/onyx/block_onyx_cluster_break1",
       "spectrum:block/onyx/block_onyx_cluster_break2",
@@ -158,8 +173,8 @@
       "spectrum:block/onyx/block_onyx_cluster_break4"
     ]
   },
-  "pedestal_craft_moonstone": {
-    "subtitle": "spectrum.subtitles.blocks.pedestal.craft",
+  "pedestal_crafting_finished_moonstone": {
+    "subtitle": "spectrum.subtitles.blocks.pedestal.crafting_finished",
     "sounds": [
       "spectrum:block/moonstone/block_moonstone_cluster_break1",
       "spectrum:block/moonstone/block_moonstone_cluster_break2",

@@ -6,6 +6,9 @@ import net.minecraft.entity.LightningEntity;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvent;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.Heightmap;
@@ -32,6 +35,7 @@ public enum FusionShrineRecipeWorldEffect {
 				world.setWeather(0, 6000, true, false);
 			}
 			case WEATHER_THUNDER -> {
+				world.playSound(null, shrinePos.up(), SoundEvents.ENTITY_LIGHTNING_BOLT_THUNDER, SoundCategory.BLOCKS, 0.8F, 0.9F + world.random.nextFloat() * 0.2F);
 				world.setWeather(0, 6000, true, true);
 			}
 			case LIGHTNING_ON_SHRINE -> {
@@ -55,10 +59,12 @@ public enum FusionShrineRecipeWorldEffect {
 			}
 			case VISUAL_EXPLOSIONS_ON_SHRINE -> {
 				if (world.getRandom().nextFloat() < 0.1) {
+					world.playSound(null, shrinePos.up(), SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.BLOCKS, 0.5F, 0.8F + world.random.nextFloat() * 0.4F);
 					SpectrumS2CPackets.playParticle(world, shrinePos.up(), ParticleTypes.EXPLOSION, 1);
 				}
 			}
 			case SINGLE_VISUAL_EXPLOSION_ON_SHRINE -> {
+				world.playSound(null, shrinePos.up(), SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.BLOCKS, 0.8F, 0.8F + world.random.nextFloat() * 0.4F);
 				SpectrumS2CPackets.playParticle(world, shrinePos, ParticleTypes.EXPLOSION, 1);
 			}
 		}

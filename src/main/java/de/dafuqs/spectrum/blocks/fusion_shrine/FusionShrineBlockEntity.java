@@ -10,6 +10,7 @@ import de.dafuqs.spectrum.recipe.fusion_shrine.FusionShrineRecipe;
 import de.dafuqs.spectrum.recipe.fusion_shrine.FusionShrineRecipeWorldEffect;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
+import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
@@ -46,7 +47,7 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 	protected int INVENTORY_SIZE = 8;
 	protected SimpleInventory inventory;
 	protected @NotNull Fluid storedFluid;
-
+	
 	private FusionShrineRecipe cachedRecipe;
 	private int craftingTime;
 	private int craftingTimeTotal;
@@ -113,10 +114,14 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 
 			// advance crafting
 			++fusionShrineBlockEntity.craftingTime;
+			fusionShrineBlockEntity.markDirty();
 
 			//TODO
 			// spawnParticles()
-			// sound effect()
+			
+			if(fusionShrineBlockEntity.craftingTime == 1 && fusionShrineBlockEntity.craftingTimeTotal > 1) {
+				SpectrumS2CPackets.sendPlayBlockBoundSoundInstance(SpectrumSoundEvents.FUSION_SHRINE_CRAFTING, (ServerWorld) fusionShrineBlockEntity.world, fusionShrineBlockEntity.getPos(), fusionShrineBlockEntity.craftingTimeTotal - fusionShrineBlockEntity.craftingTime);
+			}
 
 			// play the current crafting effect
 			FusionShrineRecipeWorldEffect effect = recipe.getWorldEffectForTick(fusionShrineBlockEntity.craftingTime);
@@ -127,6 +132,13 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 			// craft when enough ticks have passed
 			if(fusionShrineBlockEntity.craftingTime == fusionShrineBlockEntity.craftingTimeTotal) {
 				craft(world, blockPos, fusionShrineBlockEntity, recipe);
+			}
+			
+		} else {
+			if(fusionShrineBlockEntity.craftingTime > 0) {
+				fusionShrineBlockEntity.craftingTime = 0;
+				SpectrumS2CPackets.sendCancelBlockBoundSoundInstance((ServerWorld) fusionShrineBlockEntity.world, fusionShrineBlockEntity.pos);
+				fusionShrineBlockEntity.markDirty();
 			}
 		}
 	}

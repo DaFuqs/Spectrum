@@ -14,6 +14,7 @@ public class SpectrumItemTags {
 	public static Tag<Item> GEMSTONE_CLUSTERS;
 	public static Tag<Item> GEMSTONE_POWDERS;
 	public static Tag<Item> PIGMENTS;
+	public static Tag<Item> PEDESTALS;
 
 	private static Tag<Item> getReference(String id) {
 		return TagRegistry.item(new Identifier(SpectrumCommon.MOD_ID, id));
@@ -26,6 +27,6 @@ public class SpectrumItemTags {
 		GEMSTONE_CLUSTERS = getReference("gemstone_clusters");
 		GEMSTONE_POWDERS = getReference("gemstone_powders");
 		PIGMENTS = getReference("pigments");
-
+		PEDESTALS = getReference("pedestals");
 	}
 }

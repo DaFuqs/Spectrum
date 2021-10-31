@@ -10,6 +10,7 @@ import de.dafuqs.spectrum.enums.PedestalRecipeTier;
 import de.dafuqs.spectrum.progression.ClientRecipeToastManager;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
+import de.dafuqs.spectrum.registries.SpectrumItemTags;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
 import net.fabricmc.api.EnvType;
@@ -233,26 +234,30 @@ public class PedestalCraftingRecipe implements Recipe<Inventory> {
 	public SoundEvent getSoundEvent(Random random) {
 		List<SoundEvent> choices = new ArrayList<>();
 
-		for(int i = 0; i < this.gemstoneDustInputs.get(GemstoneColor.MAGENTA); i++) {
-			choices.add(SpectrumSoundEvents.PEDESTAL_CRAFT_AMETHYST);
-		}
-		for(int i = 0; i < this.gemstoneDustInputs.get(GemstoneColor.YELLOW); i++) {
-			choices.add(SpectrumSoundEvents.PEDESTAL_CRAFT_CITRINE);
-		}
-		for(int i = 0; i < this.gemstoneDustInputs.get(GemstoneColor.CYAN); i++) {
-			choices.add(SpectrumSoundEvents.PEDESTAL_CRAFT_TOPAZ);
-		}
-		for(int i = 0; i < this.gemstoneDustInputs.get(GemstoneColor.BLACK); i++) {
-			choices.add(SpectrumSoundEvents.PEDESTAL_CRAFT_ONYX);
-		}
-		for(int i = 0; i < this.gemstoneDustInputs.get(GemstoneColor.WHITE); i++) {
-			choices.add(SpectrumSoundEvents.PEDESTAL_CRAFT_MOONSTONE);
-		}
-
-		if(choices.size() == 0) {
-			return SpectrumSoundEvents.PEDESTAL_CRAFT_GENERIC;
+		if(SpectrumItemTags.PEDESTALS.contains(this.output.getItem())) {
+			return SpectrumSoundEvents.PEDESTAL_UPGRADE;
 		} else {
-			return choices.get(random.nextInt(choices.size()));
+			for (int i = 0; i < this.gemstoneDustInputs.get(GemstoneColor.MAGENTA); i++) {
+				choices.add(SpectrumSoundEvents.PEDESTAL_CRAFTING_FINISHED_AMETHYST);
+			}
+			for (int i = 0; i < this.gemstoneDustInputs.get(GemstoneColor.YELLOW); i++) {
+				choices.add(SpectrumSoundEvents.PEDESTAL_CRAFTING_FINISHED_CITRINE);
+			}
+			for (int i = 0; i < this.gemstoneDustInputs.get(GemstoneColor.CYAN); i++) {
+				choices.add(SpectrumSoundEvents.PEDESTAL_CRAFTING_FINISHED_TOPAZ);
+			}
+			for (int i = 0; i < this.gemstoneDustInputs.get(GemstoneColor.BLACK); i++) {
+				choices.add(SpectrumSoundEvents.PEDESTAL_CRAFTING_FINISHED_ONYX);
+			}
+			for (int i = 0; i < this.gemstoneDustInputs.get(GemstoneColor.WHITE); i++) {
+				choices.add(SpectrumSoundEvents.PEDESTAL_CRAFTING_FINISHED_MOONSTONE);
+			}
+			
+			if (choices.size() == 0) {
+				return SpectrumSoundEvents.PEDESTAL_CRAFTING_FINISHED_GENERIC;
+			} else {
+				return choices.get(random.nextInt(choices.size()));
+			}
 		}
 	}
 

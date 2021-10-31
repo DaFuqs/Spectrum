@@ -102,7 +102,7 @@
   "spectrum.subtitles.block.mud.ambient": "Mud flows",
   "spectrum.subtitles.block.liquid_crystal.ambient": "Liquid Crystal chimes",
   "spectrum.subtitles.dimension.ambient": "Cave howls",
-  "spectrum.subtitles.blocks.pedestal.craft": "Pedestal dings",
+  "spectrum.subtitles.blocks.pedestal.crafting_finished": "Pedestal dings",
   "spectrum.subtitles.block.fading.place": "High pitched screeching",
   "spectrum.subtitles.block.failing.place": "High pitched screeching",
   "spectrum.subtitles.block.ruin.place": "High pitched screeching",

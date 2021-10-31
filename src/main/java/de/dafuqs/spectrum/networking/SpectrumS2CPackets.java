@@ -8,12 +8,14 @@ import de.dafuqs.spectrum.particle.effect.ItemTransfer;
 import de.dafuqs.spectrum.particle.effect.ItemTransferParticleEffect;
 import de.dafuqs.spectrum.particle.effect.WirelessRedstoneTransmission;
 import de.dafuqs.spectrum.particle.effect.WirelessRedstoneTransmissionParticleEffect;
+import de.dafuqs.spectrum.sound.BlockBoundSoundInstance;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+import net.minecraft.block.Block;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.ItemEntity;
@@ -26,6 +28,7 @@ import net.minecraft.particle.ParticleType;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
@@ -49,6 +52,7 @@ public class SpectrumS2CPackets {
 	public static final Identifier INITIATE_WIRELESS_REDSTONE_TRANSMISSION = new Identifier(SpectrumCommon.MOD_ID, "initiate_wireless_redstone_transmission");
 	public static final Identifier PLAY_ITEM_ENTITY_ABSORBED_PARTICLE_EFFECT_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "item_entity_absorbed");
 	public static final Identifier BLOCK_ENTITY_UPDATE_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "block_entity_update");
+	public static final Identifier PLAY_BLOCK_BOUND_SOUND_INSTANCE = new Identifier(SpectrumCommon.MOD_ID, "play_pedestal_crafting_sound_instance");
 
 	@Environment(EnvType.CLIENT)
 	public static void registerS2CReceivers() {
@@ -142,6 +146,24 @@ public class SpectrumS2CPackets {
 					|| blockEntityUpdatePacketID == BlockEntityUpdatePacketID.PARTICLE_SPAWNER && blockEntity instanceof ParticleSpawnerBlockEntity) {
 
 					blockEntity.readNbt(nbt);
+				}
+			});
+		});
+		
+		ClientPlayNetworking.registerGlobalReceiver(PLAY_BLOCK_BOUND_SOUND_INSTANCE, (client, handler, buf, responseSender) -> {
+			Identifier soundEffectIdentifier = buf.readIdentifier();
+			Identifier blockIdentifier = buf.readIdentifier();
+			BlockPos blockPos = buf.readBlockPos();
+			int maxDurationTicks = buf.readInt();
+
+			client.execute(() -> {
+				if(soundEffectIdentifier.getPath().equals("stop")) {
+					BlockBoundSoundInstance.stopPlayingOnPos(blockPos);
+				} else {
+					SoundEvent soundEvent = Registry.SOUND_EVENT.get(soundEffectIdentifier);
+					Block block = Registry.BLOCK.get(blockIdentifier);
+					
+					BlockBoundSoundInstance.startSoundInstance(soundEvent, blockPos, block, maxDurationTicks);
 				}
 			});
 		});
@@ -248,6 +270,32 @@ public class SpectrumS2CPackets {
 		// Iterate over all players tracking a position in the world and send the packet to each player
 		for (ServerPlayerEntity player : PlayerLookup.tracking((ServerWorld) blockEntity.getWorld(), blockEntity.getPos())) {
 			ServerPlayNetworking.send(player, SpectrumS2CPackets.BLOCK_ENTITY_UPDATE_PACKET_ID, buf);
+		}
+	}
+
+	public static void sendPlayBlockBoundSoundInstance(SoundEvent soundEvent, ServerWorld world, BlockPos blockPos, int maxDurationTicks) {
+		PacketByteBuf buf = PacketByteBufs.create();
+		buf.writeIdentifier(Registry.SOUND_EVENT.getId(soundEvent));
+		buf.writeIdentifier(Registry.BLOCK.getId(world.getBlockState(blockPos).getBlock()));
+		buf.writeBlockPos(blockPos);
+		buf.writeInt(maxDurationTicks);
+		
+		// Iterate over all players tracking a position in the world and send the packet to each player
+		for (ServerPlayerEntity player : PlayerLookup.tracking(world, blockPos)) {
+			ServerPlayNetworking.send(player, SpectrumS2CPackets.PLAY_BLOCK_BOUND_SOUND_INSTANCE, buf);
+		}
+	}
+	
+	public static void sendCancelBlockBoundSoundInstance(ServerWorld world, BlockPos blockPos) {
+		PacketByteBuf buf = PacketByteBufs.create();
+		buf.writeIdentifier(new Identifier("stop"));
+		buf.writeIdentifier(Registry.BLOCK.getId(world.getBlockState(blockPos).getBlock()));
+		buf.writeBlockPos(blockPos);
+		buf.writeInt(1);
+		
+		// Iterate over all players tracking a position in the world and send the packet to each player
+		for (ServerPlayerEntity player : PlayerLookup.tracking(world, blockPos)) {
+			ServerPlayNetworking.send(player, SpectrumS2CPackets.PLAY_BLOCK_BOUND_SOUND_INSTANCE, buf);
 		}
 	}
 

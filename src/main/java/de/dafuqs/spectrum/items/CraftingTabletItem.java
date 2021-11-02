@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.items;
 
 import de.dafuqs.spectrum.InventoryHelper;
+import de.dafuqs.spectrum.Support;
 import de.dafuqs.spectrum.inventories.CraftingTabletScreenHandler;
 import de.dafuqs.spectrum.items.tooltip.CraftingTabletTooltipData;
 import de.dafuqs.spectrum.recipe.pedestal.PedestalCraftingRecipe;
@@ -9,7 +10,6 @@ import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.client.item.TooltipData;
-import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.Item;
@@ -21,8 +21,6 @@ import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.screen.ScreenHandlerContext;
 import net.minecraft.screen.SimpleNamedScreenHandlerFactory;
 import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
@@ -100,29 +98,12 @@ public class CraftingTabletItem extends Item {
 		Inventory playerInventory = serverPlayerEntity.getInventory();
 		if (InventoryHelper.removeFromInventory(ingredients, playerInventory, true)) {
 			InventoryHelper.removeFromInventory(ingredients, playerInventory, false);
-
+			
 			ItemStack craftingResult = recipe.getOutput().copy();
-			boolean insertInventorySuccess = serverPlayerEntity.getInventory().insertStack(craftingResult);
-			ItemEntity itemEntity;
-			if (insertInventorySuccess && craftingResult.isEmpty()) {
-				craftingResult.setCount(1);
-				itemEntity = serverPlayerEntity.dropItem(craftingResult, false);
-				if (itemEntity != null) {
-					itemEntity.setDespawnImmediately();
-				}
-
-				serverPlayerEntity.world.playSound(null, serverPlayerEntity.getX(), serverPlayerEntity.getY(), serverPlayerEntity.getZ(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 0.2F, ((serverPlayerEntity.getRandom().nextFloat() - serverPlayerEntity.getRandom().nextFloat()) * 0.7F + 1.0F) * 2.0F);
-				serverPlayerEntity.currentScreenHandler.sendContentUpdates();
-			} else {
-				itemEntity = serverPlayerEntity.dropItem(craftingResult, false);
-				if (itemEntity != null) {
-					itemEntity.resetPickupDelay();
-					itemEntity.setOwner(serverPlayerEntity.getUuid());
-				}
-			}
+			Support.givePlayer(serverPlayerEntity, craftingResult);
 		}
 	}
-
+	
 	@Override
 	public void appendTooltip(ItemStack itemStack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
 		super.appendTooltip(itemStack, world, tooltip, tooltipContext);

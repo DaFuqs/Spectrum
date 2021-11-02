@@ -124,8 +124,15 @@
     ]
   },
   "fusion_shrine_crafting": {
+    "subtitle": "spectrum.subtitles.fusion_shrine_ambient",
     "sounds": [
       "spectrum:fusion_shrine_crafting"
+    ]
+  },
+  "exchange_staff_select": {
+    "subtitle": "spectrum.subtitles.exchange_staff.select",
+    "sounds": [
+      "spectrum:exchange_staff_select"
     ]
   },
   "pedestal_crafting_finished_generic": {

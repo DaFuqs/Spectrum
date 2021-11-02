@@ -10,10 +10,7 @@ import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class BuildingHelper {
 	
@@ -42,8 +39,49 @@ public class BuildingHelper {
 		add(Direction.EAST.getVector().offset(Direction.SOUTH, 1));
 		add(Direction.SOUTH.getVector().offset(Direction.WEST, 1));
 	}};
-
-	public static @NotNull List<BlockPos> calculateSelection(@NotNull World world, @NotNull BlockPos originPos, Direction direction, int maxCount, int maxRange, boolean sameBlockOnly) {
+	
+	/**
+	 * A simple implementation of a breadth first search
+	 */
+	public static @NotNull List<BlockPos> getConnectedBlocks(@NotNull World world, @NotNull BlockPos blockPos, int maxCount, int maxRange) {
+		BlockState originState = world.getBlockState(blockPos);
+		Block originBlock = originState.getBlock();
+		
+		ArrayList<BlockPos> connectedPositions = new ArrayList<>();
+		ArrayList<BlockPos> visitedPositions = new ArrayList<>();
+		Queue<BlockPos> positionsToVisit = new LinkedList<>();
+		
+		connectedPositions.add(blockPos);
+		visitedPositions.add(blockPos);
+		positionsToVisit.add(blockPos);
+		while(connectedPositions.size() < maxCount) {
+			BlockPos currentPos = positionsToVisit.poll();
+			if(currentPos == null) {
+				break;
+			} else {
+				for (Direction direction : Direction.values()) {
+					BlockPos offsetPos = currentPos.offset(direction);
+					if (!visitedPositions.contains(offsetPos)) {
+						visitedPositions.add(offsetPos);
+						if (blockPos.isWithinDistance(offsetPos, maxRange)) {
+							Block localBlock = world.getBlockState(offsetPos).getBlock();
+							if(localBlock.equals(originBlock) || SIMILAR_BLOCKS.containsKey(localBlock) && SIMILAR_BLOCKS.get(localBlock).equals(originBlock)) {
+							positionsToVisit.add(offsetPos);
+							connectedPositions.add(offsetPos);
+							if (connectedPositions.size() >= maxCount) {
+								break;
+							}
+						}
+					}
+					}
+				}
+			}
+		}
+		
+		return connectedPositions;
+	}
+	
+	public static @NotNull List<BlockPos> calculateBuildingSelection(@NotNull World world, @NotNull BlockPos originPos, Direction direction, int maxCount, int maxRange, boolean sameBlockOnly) {
 		BlockPos offsetPos = originPos.offset(direction);
 		BlockState originState = world.getBlockState(originPos);
 		

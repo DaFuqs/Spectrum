@@ -117,6 +117,8 @@
   "spectrum.subtitles.light_staff_charging": "Light Staff charges",
   "spectrum.subtitles.light_staff_place": "Light Staff working",
   "spectrum.subtitles.light_staff_break": "Light broken",
+  "spectrum.subtitles.fusion_shrine_ambient": "Fusion Shrine hums",
+  "spectrum.subtitles.exchange_staff.select": "Exchanging Staff dings",
 
   "spectrum.toast.revelation.title": "You gained knowledge about the world",
   "spectrum.toast.revelation.text": "New things reveal themselves to you",
@@ -752,10 +754,11 @@
   "block.spectrum.zoglin_head": "Zoglin Head",
   "block.spectrum.zombie_villager_head": "Zombie_Villager Head",
   "block.spectrum.zombified_piglin_head": "Zombified_Piglin Head",
-  
-  
 
   "item.spectrum.exchange_staff": "Exchanging Staff",
+  "item.spectrum.exchange_staff.tooltip.range": "Exchanges blocks up to %s blocks",
+  "item.spectrum.exchange_staff.tooltip.crouch": "Crouch to only exchange exposed blocks",
+  "item.spectrum.exchange_staff.tooltip.target": "Exchanges for %s",
   "item.spectrum.placement_staff": "Constructors' Staff",
   "item.spectrum.placement_staff.tooltip.range": "Extends a block structure up to %s blocks",
   "item.spectrum.placement_staff.tooltip.crouch": "Crouch to include different source blocks",

@@ -6,12 +6,15 @@ import net.minecraft.advancement.Advancement;
 import net.minecraft.advancement.PlayerAdvancementTracker;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.DyeItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.ServerAdvancementLoader;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.tag.Tag;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
@@ -35,6 +38,28 @@ public class Support {
 			}
 		}
 		return Optional.empty();
+	}
+	
+	
+	public static void givePlayer(PlayerEntity playerEntity, ItemStack itemStack) {
+		boolean insertInventorySuccess = playerEntity.getInventory().insertStack(itemStack);
+		ItemEntity itemEntity;
+		if (insertInventorySuccess && itemStack.isEmpty()) {
+			itemStack.setCount(1);
+			itemEntity = playerEntity.dropItem(itemStack, false);
+			if (itemEntity != null) {
+				itemEntity.setDespawnImmediately();
+			}
+			
+			playerEntity.world.playSound(null, playerEntity.getX(), playerEntity.getY(), playerEntity.getZ(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 0.2F, ((playerEntity.getRandom().nextFloat() - playerEntity.getRandom().nextFloat()) * 0.7F + 1.0F) * 2.0F);
+			playerEntity.currentScreenHandler.sendContentUpdates();
+		} else {
+			itemEntity = playerEntity.dropItem(itemStack, false);
+			if (itemEntity != null) {
+				itemEntity.resetPickupDelay();
+				itemEntity.setOwner(playerEntity.getUuid());
+			}
+		}
 	}
 
 	public static int getWholeIntFromFloatWithChance(float f, @NotNull Random random) {

@@ -6,7 +6,6 @@ import de.dafuqs.spectrum.Support;
 import de.dafuqs.spectrum.interfaces.PlayerOwned;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

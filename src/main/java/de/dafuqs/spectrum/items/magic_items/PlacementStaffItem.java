@@ -15,6 +15,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
 import net.minecraft.item.Items;
 import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.ActionResult;
@@ -40,7 +41,7 @@ public class PlacementStaffItem extends Item {
 	// but not useless at the end
 	// this way the player does not need to craft 5 tiers
 	// of placementStaffs that each do basically feel the same
-	public int getRange(PlayerEntity playerEntity) {
+	public static int getRange(PlayerEntity playerEntity) {
 		if(playerEntity == null || playerEntity.isCreative()) {
 			return CREATIVE_RANGE;
 		} else {
@@ -68,6 +69,7 @@ public class PlacementStaffItem extends Item {
 	public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
 		tooltip.add(new TranslatableText("item.spectrum.placement_staff.tooltip.range", getRange(MinecraftClient.getInstance().player)).formatted(Formatting.GRAY));
+		tooltip.add(new TranslatableText("item.spectrum.placement_staff.tooltip.crouch").formatted(Formatting.GRAY));
 	}
 	
 	@Override
@@ -80,18 +82,23 @@ public class PlacementStaffItem extends Item {
 		BlockState targetBlockState = world.getBlockState(pos);
 		Block targetBlock = targetBlockState.getBlock();
 		
-		if(!SpectrumBlockTags.PLACEMENT_STAFF_BLACKLISTED.contains(targetBlock)) {
+		if(!SpectrumBlockTags.PLACEMENT_STAFF_BLACKLISTED.contains(targetBlock) || world.getBlockEntity(pos) == null) {
 			Item targetBlockItem = targetBlock.asItem();
 			
 			if (player != null && targetBlockItem != Items.AIR && context.getHand() == Hand.MAIN_HAND) {
-				int count = player.getInventory().count(targetBlockItem);
+				int count;
+				if(player.isCreative()) {
+					count = Integer.MAX_VALUE;
+				} else {
+					count = player.getInventory().count(targetBlockItem);
+				}
 				
-				if (count > 0 || player.isCreative()) {
+				if (count > 0) {
 					Direction side = context.getSide();
 					
 					int range = Math.min(getRange(player), player.isCreative() ? getRange(player) : count);
 					boolean sneaking = player.isSneaking();
-					List<BlockPos> targetPositions = BuildingHelper.calculateSelection(world, pos, side, count, range, !sneaking);
+					List<BlockPos> targetPositions = BuildingHelper.calculateBuildingSelection(world, pos, side, count, range, !sneaking);
 					if (targetPositions.isEmpty()) {
 						return ActionResult.FAIL;
 					}
@@ -117,6 +124,10 @@ public class PlacementStaffItem extends Item {
 					
 					return ActionResult.SUCCESS;
 				}
+			}
+		} else {
+			if(player != null) {
+				world.playSound(null, player.getBlockPos(), SoundEvents.BLOCK_DISPENSER_FAIL, SoundCategory.PLAYERS, 1.0F, 1.0F);
 			}
 		}
 		

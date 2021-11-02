@@ -10,8 +10,6 @@ import net.minecraft.block.ShapeContext;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
@@ -23,8 +21,6 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
 import java.util.Random;
-
-import static net.minecraft.state.property.Properties.LEVEL_15;
 
 public class WandLightBlock extends LightBlock {
 

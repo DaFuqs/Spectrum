@@ -3,22 +3,14 @@ package de.dafuqs.spectrum.registries;
 import com.glisco.owo.itemgroup.Icon;
 import com.glisco.owo.itemgroup.OwoItemGroup;
 import com.glisco.owo.itemgroup.gui.ItemGroupButton;
-import com.glisco.owo.itemgroup.gui.ItemGroupTab;
-import com.glisco.owo.itemgroup.json.WrapperGroup;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.mob_head.SpectrumSkullBlock;
-import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.tag.Tag;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Supplier;
 
 public class SpectrumItemGroups {
 	

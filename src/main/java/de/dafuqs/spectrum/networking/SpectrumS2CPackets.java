@@ -31,6 +31,7 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
@@ -46,7 +47,8 @@ public class SpectrumS2CPackets {
 
 	public static final Identifier PLAY_LIGHT_CREATED_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "play_light_created_particle");
 	public static final Identifier PLAY_PEDESTAL_CRAFTING_FINISHED_PARTICLE_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "play_pedestal_crafting_finished_particle");
-	public static final Identifier PLAY_PARTICLE_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "play_anvil_crafting_finished_particle");
+	public static final Identifier PLAY_PARTICLE_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "play_particle");
+	public static final Identifier PLAY_PARTICLE_PACKET_WITH_OFFSET_ID = new Identifier(SpectrumCommon.MOD_ID, "play_particle_with_offset");
 	public static final Identifier CHANGE_PARTICLE_SPAWNER_SETTINGS_CLIENT_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "change_particle_spawner_settings_client");
 	public static final Identifier INITIATE_ITEM_TRANSFER = new Identifier(SpectrumCommon.MOD_ID, "initiate_item_transfer");
 	public static final Identifier INITIATE_WIRELESS_REDSTONE_TRANSMISSION = new Identifier(SpectrumCommon.MOD_ID, "initiate_wireless_redstone_transmission");
@@ -65,6 +67,34 @@ public class SpectrumS2CPackets {
 					// Everything in this lambda is running on the render thread
 					for(int i = 0; i < amount; i++) {
 						MinecraftClient.getInstance().player.getEntityWorld().addParticle(particleEffect, position.getX() + 0.5, position.getY() + 0.5, position.getZ() + 0.5, 0, 0, 0);
+					}
+				});
+			}
+		});
+		
+		ClientPlayNetworking.registerGlobalReceiver(PLAY_PARTICLE_PACKET_WITH_OFFSET_ID, (client, handler, buf, responseSender) -> {
+			Vec3d position = new Vec3d(buf.readDouble(), buf.readDouble(), buf.readDouble());
+			ParticleType<?> particleType = Registry.PARTICLE_TYPE.get(buf.readIdentifier());
+			int amount = buf.readInt();
+			Vec3d randomOffset = new Vec3d(buf.readDouble(), buf.readDouble(), buf.readDouble());
+			Vec3d randomVelocity = new Vec3d(buf.readDouble(), buf.readDouble(), buf.readDouble());
+			if(particleType instanceof ParticleEffect particleEffect) {
+				client.execute(() -> {
+					// Everything in this lambda is running on the render thread
+					
+					Random random = client.world.random;
+					
+					for(int i = 0; i < amount; i++) {
+						double randomOffsetX = randomOffset.x - random.nextDouble() * randomOffset.x * 2;
+						double randomOffsetY = randomOffset.y - random.nextDouble() * randomOffset.y * 2;
+						double randomOffsetZ = randomOffset.z - random.nextDouble() * randomOffset.z * 2;
+						double randomVelocityX = randomVelocity.x - random.nextDouble() * randomVelocity.x * 2;
+						double randomVelocityY = randomVelocity.y - random.nextDouble() * randomVelocity.y * 2;
+						double randomVelocityZ = randomVelocity.z - random.nextDouble() * randomVelocity.z * 2;
+					
+						MinecraftClient.getInstance().player.getEntityWorld().addParticle(particleEffect,
+								position.getX() + randomOffsetX, position.getY() + randomOffsetY, position.getZ() + randomOffsetZ,
+								randomVelocityX, randomVelocityY, randomVelocityZ);
 					}
 				});
 			}
@@ -186,7 +216,7 @@ public class SpectrumS2CPackets {
 			ServerPlayNetworking.send(player, SpectrumS2CPackets.PLAY_PARTICLE_PACKET_ID, buf);
 		}
 	}
-
+	
 	/**
 	 * Play anvil crafting particle effect
 	 * @param world the world of the pedestal
@@ -195,6 +225,42 @@ public class SpectrumS2CPackets {
 	 */
 	public static void playParticle(ServerWorld world, BlockPos position, ParticleType particleEffect, int amount) {
 		playParticle(world, position, Registry.PARTICLE_TYPE.getId(particleEffect), amount);
+	}
+	
+	/**
+	 * Play anvil crafting particle effect
+	 * @param world the world of the pedestal
+	 * @param position the pos of the particles
+	 * @param particleEffectIdentifier The particle effect identifier to play
+	 */
+	public static void playParticle(ServerWorld world, Vec3d position, Identifier particleEffectIdentifier, int amount, Vec3d randomOffset, Vec3d randomVelocity) {
+		PacketByteBuf buf = PacketByteBufs.create();
+		buf.writeDouble(position.x);
+		buf.writeDouble(position.y);
+		buf.writeDouble(position.z);
+		buf.writeIdentifier(particleEffectIdentifier);
+		buf.writeInt(amount);
+		buf.writeDouble(randomOffset.x);
+		buf.writeDouble(randomOffset.y);
+		buf.writeDouble(randomOffset.z);
+		buf.writeDouble(randomVelocity.x);
+		buf.writeDouble(randomVelocity.y);
+		buf.writeDouble(randomVelocity.z);
+		
+		// Iterate over all players tracking a position in the world and send the packet to each player
+		for (ServerPlayerEntity player : PlayerLookup.tracking(world, new BlockPos(position))) {
+			ServerPlayNetworking.send(player, SpectrumS2CPackets.PLAY_PARTICLE_PACKET_WITH_OFFSET_ID, buf);
+		}
+	}
+	
+	/**
+	 * Play anvil crafting particle effect
+	 * @param world the world of the pedestal
+	 * @param position the pos of the particles
+	 * @param particleEffect The particle effect to play
+	 */
+	public static void playParticle(ServerWorld world, Vec3d position, ParticleType particleEffect, int amount, Vec3d randomOffset, Vec3d randomVelocity) {
+		playParticle(world, position, Registry.PARTICLE_TYPE.getId(particleEffect), amount, randomOffset, randomVelocity);
 	}
 
 	/**

@@ -3,11 +3,14 @@ package de.dafuqs.spectrum.blocks.particle_spawner;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.inventories.ParticleSpawnerScreenHandler;
 import de.dafuqs.spectrum.networking.SpectrumC2SPackets;
+import de.dafuqs.spectrum.networking.SpectrumS2CPackets;
 import de.dafuqs.spectrum.particle.effect.ParticleSpawnerParticleEffect;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
+import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.MinecraftClient;
@@ -15,6 +18,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;
+import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
 import net.minecraft.particle.DefaultParticleType;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.screen.ScreenHandler;
@@ -75,18 +79,26 @@ public class ParticleSpawnerBlockEntity extends BlockEntity implements ExtendedS
 
 	public static void clientTick(World world, BlockPos pos, BlockState state, ParticleSpawnerBlockEntity blockEntity) {
 		if(world.getBlockState(pos).get(ParticleSpawnerBlock.POWERED).equals(true)) {
-			if(blockEntity.initialized) {
-				blockEntity.spawnParticles();
-			} else {
-				// when joined the server all values are 0
-				// => request block entity settings from the server
-				if(world.getTime() % 100 == 0) {
-					PacketByteBuf packetByteBuf = PacketByteBufs.create();
-					packetByteBuf.writeBlockPos(blockEntity.pos);
-					ClientPlayNetworking.send(SpectrumC2SPackets.REQUEST_PARTICLE_SPAWNER_SETTINGS_PACKET_ID, packetByteBuf);
-				}
-			}
+			blockEntity.spawnParticles();
 		}
+	}
+	
+	// Called when the chunk is first loaded to initialize this be
+	public NbtCompound toInitialChunkDataNbt() {
+		return this.writeNbt(new NbtCompound());
+	}
+	
+	public void updateInClientWorld() {
+		world.updateListeners(pos, world.getBlockState(pos), world.getBlockState(pos), Block.NO_REDRAW);
+		world.addSyncedBlockEvent(pos, SpectrumBlocks.FUSION_SHRINE, 1, 0);
+	}
+	
+	// when marked dirty this is called to send updates to clients
+	// see also MobSpawnerBlockEntity for a vanilla version of this
+	@Nullable
+	public BlockEntityUpdateS2CPacket toUpdatePacket() {
+		SpectrumS2CPackets.sendBlockEntityUpdate(this, SpectrumS2CPackets.BlockEntityUpdatePacketID.PARTICLE_SPAWNER);
+		return null;
 	}
 
 	private void spawnParticles() {
@@ -244,6 +256,8 @@ public class ParticleSpawnerBlockEntity extends BlockEntity implements ExtendedS
 		this.collisions = collisions;
 
 		this.initialized = true;
+		
+		this.updateInClientWorld();
 		this.markDirty();
 	}
 

@@ -24,11 +24,12 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
+import oshi.util.tuples.Triplet;
 
 import java.util.List;
 import java.util.Optional;
 
-public class PlacementStaffItem extends Item {
+public class PlacementStaffItem extends StaffItem {
 	
 	public static final int CREATIVE_RANGE = 10;
 	
@@ -90,7 +91,12 @@ public class PlacementStaffItem extends Item {
 				if(player.isCreative()) {
 					count = Integer.MAX_VALUE;
 				} else {
-					count = player.getInventory().count(targetBlockItem);
+					Triplet<Block, Item, Integer> inventoryItemAndCount = BuildingHelper.getBuildingItemCountIncludingSimilars(player, targetBlock);
+					if(targetBlock != inventoryItemAndCount.getA()) {
+						targetBlockState = inventoryItemAndCount.getA().getDefaultState();
+					}
+					targetBlockItem = inventoryItemAndCount.getB();
+					count = inventoryItemAndCount.getC();
 				}
 				
 				if (count > 0) {
@@ -98,7 +104,7 @@ public class PlacementStaffItem extends Item {
 					
 					int range = Math.min(getRange(player), player.isCreative() ? getRange(player) : count);
 					boolean sneaking = player.isSneaking();
-					List<BlockPos> targetPositions = BuildingHelper.calculateBuildingSelection(world, pos, side, count, range, !sneaking);
+					List<BlockPos> targetPositions = BuildingHelper.calculateBuildingStaffSelection(world, pos, side, count, range, !sneaking);
 					if (targetPositions.isEmpty()) {
 						return ActionResult.FAIL;
 					}
@@ -114,7 +120,8 @@ public class PlacementStaffItem extends Item {
 						}
 						
 						if (!player.isCreative()) {
-							player.getInventory().remove(stack -> stack.getItem().equals(targetBlockItem), taken, player.getInventory());
+							Item finalTargetBlockItem = targetBlockItem;
+							player.getInventory().remove(stack -> stack.getItem().equals(finalTargetBlockItem), taken, player.getInventory());
 						}
 						
 						if (taken > 0) {

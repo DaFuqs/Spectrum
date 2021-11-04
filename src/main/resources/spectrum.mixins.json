@@ -34,6 +34,7 @@
     "PlayerInventoryMixin",
     "RandomChanceLootConditionMixin",
     "RandomChanceWithLootingLootConditionMixin",
+    "RedstoneOreMixin",
     "ServerPlayerEntityMixin",
     "ServerWorldMixin",
     "SpawnerBlockMixin",

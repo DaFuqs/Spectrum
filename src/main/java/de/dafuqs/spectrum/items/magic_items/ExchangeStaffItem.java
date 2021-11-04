@@ -12,6 +12,7 @@ import net.fabricmc.api.Environment;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.RedstoneOreBlock;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.ItemEntity;
@@ -36,33 +37,19 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
+import oshi.util.tuples.Triplet;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class ExchangeStaffItem extends Item {
+public class ExchangeStaffItem extends StaffItem {
 	
 	public static final boolean SILK_TOUCH = false;
 	public static final int CREATIVE_RANGE = 5;
 	
 	public ExchangeStaffItem(Settings settings) {
 		super(settings);
-	}
-	
-	@Override
-	public void usageTick(World world, LivingEntity user, ItemStack stack, int remainingUseTicks) {
-		super.usageTick(world, user, stack, remainingUseTicks);
-	}
-	
-	@Override
-	public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
-		return super.finishUsing(stack, world, user);
-	}
-	
-	@Override
-	public boolean onClicked(ItemStack stack, ItemStack otherStack, Slot slot, ClickType clickType, PlayerEntity player, StackReference cursorStackReference) {
-		return super.onClicked(stack, otherStack, slot, clickType, player, cursorStackReference);
 	}
 	
 	// The range grows with the players' progression
@@ -166,16 +153,23 @@ public class ExchangeStaffItem extends Item {
 	
 	private ActionResult exchange(World world, BlockPos pos, @NotNull PlayerEntity player, @NotNull Block targetBlock, ItemStack exchangeStaffItemStack) {
 		Item exchangedForBlockItem = targetBlock.asItem();
+		BlockState targetBlockState = targetBlock.getDefaultState();
+		BlockState placedBlockState = targetBlockState;
 		
 		int exchangedForBlockItemCount;
 		if(player.isCreative()) {
 			exchangedForBlockItemCount = Integer.MAX_VALUE;
 		} else {
-			exchangedForBlockItemCount = player.getInventory().count(exchangedForBlockItem);
+			Triplet<Block, Item, Integer> exchangeData = BuildingHelper.getBuildingItemCountIncludingSimilars(player, targetBlock);
+			if(targetBlock != exchangeData.getA()) {
+				placedBlockState = exchangeData.getA().getDefaultState();
+			}
+			exchangedForBlockItem = exchangeData.getB();
+			exchangedForBlockItemCount = exchangeData.getC();
 		}
 		
 		if (exchangedForBlockItemCount > 0) {
-			BlockState targetBlockState = targetBlock.getDefaultState();
+			
 			int range = getRange(player);
 			List<BlockPos> targetPositions = BuildingHelper.getConnectedBlocks(world, pos, exchangedForBlockItemCount, range);
 			if (targetPositions.isEmpty()) {
@@ -192,8 +186,7 @@ public class ExchangeStaffItem extends Item {
 					}
 					world.setBlockState(targetPosition, Blocks.AIR.getDefaultState());
 					if(targetBlockState.canPlaceAt(world, targetPosition)) {
-						world.setBlockState(targetPosition, targetBlockState);
-						//world.updateNeighbors(targetPosition, targetBlock);
+						world.setBlockState(targetPosition, placedBlockState);
 					} else {
 						ItemEntity itemEntity = new ItemEntity(world, targetPosition.getX(), targetPosition.getY(), targetPosition.getZ(), new ItemStack(exchangedForBlockItem));
 						itemEntity.setOwner(player.getUuid());
@@ -204,7 +197,8 @@ public class ExchangeStaffItem extends Item {
 				}
 				
 				if (!player.isCreative()) {
-					player.getInventory().remove(stack -> stack.getItem().equals(exchangedForBlockItem), targetPositions.size(), player.getInventory());
+					Item finalExchangedForBlockItem = exchangedForBlockItem;
+					player.getInventory().remove(stack -> stack.getItem().equals(finalExchangedForBlockItem), targetPositions.size(), player.getInventory());
 					for(ItemStack stack : stacks) {
 						Support.givePlayer(player, stack);
 					}

@@ -4,11 +4,16 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.ShapeContext;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
+import net.minecraft.util.Pair;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.World;
+import org.apache.commons.lang3.tuple.Triple;
 import org.jetbrains.annotations.NotNull;
+import oshi.util.tuples.Triplet;
 
 import java.util.*;
 
@@ -39,6 +44,22 @@ public class BuildingHelper {
 		add(Direction.EAST.getVector().offset(Direction.SOUTH, 1));
 		add(Direction.SOUTH.getVector().offset(Direction.WEST, 1));
 	}};
+	
+	public static Triplet<Block, Item, Integer> getBuildingItemCountIncludingSimilars(PlayerEntity player, Block block) {
+		Item blockItem = block.asItem();
+		int count = player.getInventory().count(block.asItem());
+		if(count == 0) {
+			if(SIMILAR_BLOCKS.containsKey(block)) {
+				Block similarBlock = SIMILAR_BLOCKS.get(block);
+				Item similarBlockItem = similarBlock.asItem();
+				int similarCount = player.getInventory().count(similarBlockItem);
+				if(similarCount > 0) {
+					return new Triplet<>(similarBlock, similarBlockItem, similarCount);
+				}
+			}
+		}
+		return new Triplet<>(block, blockItem, count);
+	}
 	
 	/**
 	 * A simple implementation of a breadth first search
@@ -81,7 +102,7 @@ public class BuildingHelper {
 		return connectedPositions;
 	}
 	
-	public static @NotNull List<BlockPos> calculateBuildingSelection(@NotNull World world, @NotNull BlockPos originPos, Direction direction, int maxCount, int maxRange, boolean sameBlockOnly) {
+	public static @NotNull List<BlockPos> calculateBuildingStaffSelection(@NotNull World world, @NotNull BlockPos originPos, Direction direction, int maxCount, int maxRange, boolean sameBlockOnly) {
 		BlockPos offsetPos = originPos.offset(direction);
 		BlockState originState = world.getBlockState(originPos);
 		

@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.mixin.client;
 
 import de.dafuqs.spectrum.BuildingHelper;
+import de.dafuqs.spectrum.GuiOverlay;
 import de.dafuqs.spectrum.items.magic_items.ExchangeStaffItem;
 import de.dafuqs.spectrum.items.magic_items.PlacementStaffItem;
 import de.dafuqs.spectrum.registries.SpectrumBlockTags;
@@ -19,6 +20,7 @@ import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.util.Pair;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
@@ -27,6 +29,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.profiler.Profiler;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
+import org.apache.commons.lang3.tuple.Triple;
 import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -36,7 +39,9 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
+import oshi.util.tuples.Triplet;
 
+import java.util.List;
 import java.util.Optional;
 
 @Environment(EnvType.CLIENT)
@@ -54,31 +59,31 @@ public abstract class WorldRendererMixin {
 
     @Inject(method = "render(Lnet/minecraft/client/util/math/MatrixStack;FJZLnet/minecraft/client/render/Camera;Lnet/minecraft/client/render/GameRenderer;Lnet/minecraft/client/render/LightmapTextureManager;Lnet/minecraft/util/math/Matrix4f;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/util/hit/HitResult;getType()Lnet/minecraft/util/hit/HitResult$Type;"), locals = LocalCapture.CAPTURE_FAILHARD)
     private void renderExtendedBlockOutline(MatrixStack matrices, float tickDelta, long limitTime, boolean renderBlockOutline, Camera camera, GameRenderer gameRenderer, LightmapTextureManager lightmapTextureManager, Matrix4f matrix4f, CallbackInfo ci, Profiler profiler, Vec3d vec3d, double d, double e, double f, Matrix4f matrix4f2, boolean bl, Frustum frustum2, boolean bl3, VertexConsumerProvider.Immediate immediate) {
+        renderedExtendedOutline = false;
+        GuiOverlay.doNotRenderOverlay();
+        
         if(client.player != null && renderBlockOutline) {
             ItemStack handItemStack = client.player.getEquippedStack(EquipmentSlot.MAINHAND);
             Item handItem = handItemStack.getItem();
-            if(handItem instanceof PlacementStaffItem placementStaffItem) {
+            if(handItem instanceof PlacementStaffItem) {
                 HitResult hitResult = this.client.crosshairTarget;
                 if (hitResult != null && hitResult.getType() == HitResult.Type.BLOCK) {
-                    renderPlacementStaffOutline(matrices, camera, d, e, f, immediate, placementStaffItem, (BlockHitResult) hitResult);
+                    renderedExtendedOutline = renderPlacementStaffOutline(matrices, camera, d, e, f, immediate, (BlockHitResult) hitResult);
                 }
             } else  if(handItem instanceof ExchangeStaffItem) {
                 HitResult hitResult = this.client.crosshairTarget;
                 if (hitResult != null && hitResult.getType() == HitResult.Type.BLOCK) {
-                    renderExchangeStaffOutline(matrices, camera, d, e, f, immediate, handItemStack, (BlockHitResult) hitResult);
+                    renderedExtendedOutline = renderExchangeStaffOutline(matrices, camera, d, e, f, immediate, handItemStack, (BlockHitResult) hitResult);
                 }
-            } else {
-                renderedExtendedOutline = false;
             }
-        } else {
-            renderedExtendedOutline = false;
         }
     }
     
-    private void renderPlacementStaffOutline(MatrixStack matrices, Camera camera, double d, double e, double f, VertexConsumerProvider.Immediate immediate, PlacementStaffItem placementStaffItem, @NotNull BlockHitResult hitResult) {
+    private boolean renderPlacementStaffOutline(MatrixStack matrices, Camera camera, double d, double e, double f, VertexConsumerProvider.Immediate immediate, @NotNull BlockHitResult hitResult) {
         BlockPos lookingAtPos = hitResult.getBlockPos();
         BlockState lookingAtState = this.world.getBlockState(lookingAtPos);
         Block lookingAtBlock = lookingAtState.getBlock();
+        Block placementBlock = lookingAtBlock;
         
         if(!SpectrumBlockTags.PLACEMENT_STAFF_BLACKLISTED.contains(lookingAtBlock)) {
             Item item = lookingAtBlock.asItem();
@@ -90,30 +95,38 @@ public abstract class WorldRendererMixin {
                 if(player.isCreative()) {
                     itemCountInInventory = Integer.MAX_VALUE;
                 } else {
-                    itemCountInInventory = player.getInventory().count(item);
+                    Triplet<Block, Item, Integer> inventoryItemAndCount = BuildingHelper.getBuildingItemCountIncludingSimilars(player, lookingAtBlock);
+                    item = inventoryItemAndCount.getB();
+                    itemCountInInventory = inventoryItemAndCount.getC();
                 }
                 
-                if (itemCountInInventory > 0) {
-                    boolean sneaking = player.isSneaking();
-                    for (BlockPos newPosition : BuildingHelper.calculateBuildingSelection(world, lookingAtPos, hitResult.getSide(), itemCountInInventory, PlacementStaffItem.getRange(player), !sneaking)) {
+                boolean sneaking = player.isSneaking();
+                List<BlockPos> positions = BuildingHelper.calculateBuildingStaffSelection(world, lookingAtPos, hitResult.getSide(), itemCountInInventory, PlacementStaffItem.getRange(player), !sneaking);
+                if(itemCountInInventory == 0) {
+                    GuiOverlay.setItemStackToRender(new ItemStack(item), 0);
+                } else if (positions.size() > 0) {
+                    for (BlockPos newPosition : positions) {
                         if (this.world.getWorldBorder().contains(newPosition)) {
                             BlockPos testPos = lookingAtPos.subtract(newPosition);
                             shape = VoxelShapes.union(shape, lookingAtState.getOutlineShape(this.world, lookingAtPos, ShapeContext.of(camera.getFocusedEntity())).offset(-testPos.getX(), -testPos.getY(), -testPos.getZ()));
                         }
                     }
     
+                    GuiOverlay.setItemStackToRender(new ItemStack(item), positions.size());
+                    
                     VertexConsumer linesBuffer = immediate.getBuffer(RenderLayer.getLines());
                     drawShapeOutline(matrices, linesBuffer, shape, (double) lookingAtPos.getX() - d, (double) lookingAtPos.getY() - e, (double) lookingAtPos.getZ() - f, 0.0F, 0.0F, 0.0F, 0.4F);
-                    renderedExtendedOutline = true;
-                    return;
+                    return true;
+                } else {
+                    GuiOverlay.setItemStackToRender(new ItemStack(item), 0);
                 }
             }
         }
         
-        renderedExtendedOutline = false;
+        return false;
     }
     
-    private void renderExchangeStaffOutline(MatrixStack matrices, Camera camera, double d, double e, double f, VertexConsumerProvider.Immediate immediate, ItemStack exchangeStaffItemStack, @NotNull BlockHitResult hitResult) {
+    private boolean renderExchangeStaffOutline(MatrixStack matrices, Camera camera, double d, double e, double f, VertexConsumerProvider.Immediate immediate, ItemStack exchangeStaffItemStack, @NotNull BlockHitResult hitResult) {
         BlockPos lookingAtPos = hitResult.getBlockPos();
         BlockState lookingAtState = this.world.getBlockState(lookingAtPos);
         Block lookingAtBlock = lookingAtState.getBlock();
@@ -121,36 +134,40 @@ public abstract class WorldRendererMixin {
         if(!SpectrumBlockTags.PLACEMENT_STAFF_BLACKLISTED.contains(lookingAtBlock)) {
             Optional<Block> exchangeBlock = ExchangeStaffItem.getBlockTarget(exchangeStaffItemStack);
             if(exchangeBlock.isPresent() && exchangeBlock.get() != lookingAtBlock) {
-                Item item = exchangeBlock.get().asItem();
+                Item exchangeBlockItem = exchangeBlock.get().asItem();
                 VoxelShape shape = VoxelShapes.empty();
                 ClientPlayerEntity player = client.player;
     
-                if (item != Items.AIR) {
+                if (exchangeBlockItem != Items.AIR) {
                     int itemCountInInventory;
                     if (player.isCreative()) {
                         itemCountInInventory = Integer.MAX_VALUE;
                     } else {
-                        itemCountInInventory = player.getInventory().count(item);
+                        itemCountInInventory = player.getInventory().count(exchangeBlockItem);
                     }
         
                     if (itemCountInInventory > 0) {
-                        for (BlockPos newPosition : BuildingHelper.getConnectedBlocks(world, lookingAtPos, itemCountInInventory, ExchangeStaffItem.getRange(player))) {
+                        List<BlockPos> positions =BuildingHelper.getConnectedBlocks(world, lookingAtPos, itemCountInInventory, ExchangeStaffItem.getRange(player));
+                        for (BlockPos newPosition : positions) {
                             if (this.world.getWorldBorder().contains(newPosition)) {
                                 BlockPos testPos = lookingAtPos.subtract(newPosition);
                                 shape = VoxelShapes.union(shape, lookingAtState.getOutlineShape(this.world, lookingAtPos, ShapeContext.of(camera.getFocusedEntity())).offset(-testPos.getX(), -testPos.getY(), -testPos.getZ()));
                             }
                         }
-            
+    
+                        GuiOverlay.setItemStackToRender(new ItemStack(exchangeBlockItem), positions.size());
+                        
                         VertexConsumer linesBuffer = immediate.getBuffer(RenderLayer.getLines());
                         drawShapeOutline(matrices, linesBuffer, shape, (double) lookingAtPos.getX() - d, (double) lookingAtPos.getY() - e, (double) lookingAtPos.getZ() - f, 0.0F, 0.0F, 0.0F, 0.4F);
-                        renderedExtendedOutline = true;
-                        return;
+                        return true;
+                    } else {
+                        GuiOverlay.setItemStackToRender(new ItemStack(exchangeBlockItem), 0);
                     }
                 }
             }
         }
         
-        renderedExtendedOutline = false;
+        return false;
     }
     
     @Inject(method = "drawBlockOutline(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumer;Lnet/minecraft/entity/Entity;DDDLnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;)V", at = @At("HEAD"), cancellable = true)

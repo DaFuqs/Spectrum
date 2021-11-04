@@ -762,6 +762,7 @@
   "item.spectrum.placement_staff": "Constructors' Staff",
   "item.spectrum.placement_staff.tooltip.range": "Extends a block structure up to %s blocks",
   "item.spectrum.placement_staff.tooltip.crouch": "Crouch to include different source blocks",
+  "item.spectrum.placement_staff.tooltip.none_in_inventory": "none in inventory",
   "item.spectrum.light_staff": "Radiance Staff",
   "item.spectrum.music_disc_spectrum_theme": "Music Disc",
   "item.spectrum.music_disc_spectrum_theme.desc": "Spectrum Theme",

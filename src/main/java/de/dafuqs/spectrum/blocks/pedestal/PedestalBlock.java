@@ -1,6 +1,8 @@
 package de.dafuqs.spectrum.blocks.pedestal;
 
 import de.dafuqs.spectrum.blocks.RedstonePoweredBlock;
+import de.dafuqs.spectrum.enums.GemstoneColor;
+import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import net.fabricmc.api.EnvType;
@@ -12,6 +14,7 @@ import net.minecraft.block.BlockWithEntity;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
@@ -19,6 +22,7 @@ import net.minecraft.item.AutomaticItemPlacementContext;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particle.DustParticleEffect;
+import net.minecraft.particle.ParticleEffect;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -207,6 +211,77 @@ public class PedestalBlock extends BlockWithEntity implements RedstonePoweredBlo
 			}
 			default -> {
 				return SpectrumBlocks.PEDESTAL_MOONSTONE;
+			}
+		}
+	}
+	
+	/**
+	 * Called when a pedestal is upgraded to a new tier
+	 * (like amethyst to the cmy variant). Spawns lots of matching particles.
+	 * @param newPedestalVariant The variant the pedestal has been upgraded to
+	 */
+	@Environment(EnvType.CLIENT)
+	public static void spawnUpgradeParticleEffectsForTier(BlockPos blockPos, PedestalBlock.PedestalVariant newPedestalVariant) {
+		World world = MinecraftClient.getInstance().world;
+		switch (newPedestalVariant) {
+			case MOONSTONE -> {
+				ParticleEffect particleEffect = SpectrumParticleTypes.getCraftingParticle(GemstoneColor.WHITE);
+				for (int i = 0; i < 25; i++) {
+					float randomZ = world.getRandom().nextFloat() * 1.2F;
+					world.addParticle(particleEffect, blockPos.getX() + 1.1, blockPos.getY(), blockPos.getZ() + randomZ, 0.0D, 0.03D, 0.0D);
+				}
+				for (int i = 0; i < 25; i++) {
+					float randomZ = world.getRandom().nextFloat() * 1.2F;
+					world.addParticle(particleEffect, blockPos.getX() - 0.1, blockPos.getY(), blockPos.getZ() + randomZ, 0.0D, 0.03D, 0.0D);
+				}
+				for (int i = 0; i < 25; i++) {
+					float randomX = world.getRandom().nextFloat() * 1.2F;
+					world.addParticle(particleEffect, blockPos.getX() + randomX, blockPos.getY(), blockPos.getZ() + 1.1, 0.0D, 0.03D, 0.0D);
+				}
+				for (int i = 0; i < 25; i++) {
+					float randomX = world.getRandom().nextFloat() * 1.2F;
+					world.addParticle(particleEffect, blockPos.getX() + randomX, blockPos.getY(), blockPos.getZ() -0.1, 0.0D, 0.03D, 0.0D);
+				}
+			}
+			case ONYX -> {
+				ParticleEffect particleEffect = SpectrumParticleTypes.getCraftingParticle(GemstoneColor.BLACK);
+				for (int i = 0; i < 25; i++) {
+					float randomZ = world.getRandom().nextFloat() * 1.2F;
+					world.addParticle(particleEffect, blockPos.getX() + 1.1, blockPos.getY(), blockPos.getZ() + randomZ, 0.0D, 0.03D, 0.0D);
+				}
+				for (int i = 0; i < 25; i++) {
+					float randomZ = world.getRandom().nextFloat() * 1.2F;
+					world.addParticle(particleEffect, blockPos.getX() - 0.1, blockPos.getY(), blockPos.getZ() + randomZ, 0.0D, 0.03D, 0.0D);
+				}
+				for (int i = 0; i < 25; i++) {
+					float randomX = world.getRandom().nextFloat() * 1.2F;
+					world.addParticle(particleEffect, blockPos.getX() + randomX, blockPos.getY(), blockPos.getZ() + 1.1, 0.0D, 0.03D, 0.0D);
+				}
+				for (int i = 0; i < 25; i++) {
+					float randomX = world.getRandom().nextFloat() * 1.2F;
+					world.addParticle(particleEffect, blockPos.getX() + randomX, blockPos.getY(), blockPos.getZ() -0.1, 0.0D, 0.03D, 0.0D);
+				}
+			}
+			case CMY -> {
+				ParticleEffect particleEffectC = SpectrumParticleTypes.getCraftingParticle(GemstoneColor.CYAN);
+				ParticleEffect particleEffectM = SpectrumParticleTypes.getCraftingParticle(GemstoneColor.MAGENTA);
+				ParticleEffect particleEffectY = SpectrumParticleTypes.getCraftingParticle(GemstoneColor.YELLOW);
+				for (int i = 0; i < 25; i++) {
+					float randomZ = world.getRandom().nextFloat() * 1.2F;
+					world.addParticle(particleEffectY, blockPos.getX() + 1.1, blockPos.getY() + 0.1, blockPos.getZ() + randomZ, 0.0D, 0.05D, 0.0D);
+				}
+				for (int i = 0; i < 25; i++) {
+					float randomZ = world.getRandom().nextFloat() * 1.2F;
+					world.addParticle(particleEffectC, blockPos.getX() - 0.1, blockPos.getY() + 0.1, blockPos.getZ() + randomZ, 0.0D, 0.05D, 0.0D);
+				}
+				for (int i = 0; i < 25; i++) {
+					float randomX =  world.getRandom().nextFloat() * 1.2F;
+					world.addParticle(particleEffectM, blockPos.getX() + randomX, blockPos.getY() + 0.1, blockPos.getZ() + 1.1, 0.0D, 0.05D, 0.0D);
+				}
+				for (int i = 0; i < 25; i++) {
+					float randomX = world.getRandom().nextFloat() * 1.2F;
+					world.addParticle(particleEffectM, blockPos.getX() + randomX, blockPos.getY() + 0.1, blockPos.getZ() -0.1, 0.0D, 0.05D, 0.0D);
+				}
 			}
 		}
 	}

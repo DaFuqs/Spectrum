@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.networking;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.fusion_shrine.FusionShrineBlockEntity;
 import de.dafuqs.spectrum.blocks.particle_spawner.ParticleSpawnerBlockEntity;
+import de.dafuqs.spectrum.blocks.pedestal.PedestalBlock;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.particle.effect.ItemTransfer;
 import de.dafuqs.spectrum.particle.effect.ItemTransferParticleEffect;
@@ -39,7 +40,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Random;
 
 public class SpectrumS2CPackets {
-
+	
 	public enum BlockEntityUpdatePacketID {
 		FUSION_SHRINE,
 		PARTICLE_SPAWNER
@@ -47,6 +48,7 @@ public class SpectrumS2CPackets {
 
 	public static final Identifier PLAY_LIGHT_CREATED_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "play_light_created_particle");
 	public static final Identifier PLAY_PEDESTAL_CRAFTING_FINISHED_PARTICLE_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "play_pedestal_crafting_finished_particle");
+	public static final Identifier PLAY_PEDESTAL_UPGRADED_PARTICLE_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "play_pedestal_upgraded_particle");
 	public static final Identifier PLAY_PARTICLE_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "play_particle");
 	public static final Identifier PLAY_PARTICLE_PACKET_WITH_OFFSET_ID = new Identifier(SpectrumCommon.MOD_ID, "play_particle_with_offset");
 	public static final Identifier CHANGE_PARTICLE_SPAWNER_SETTINGS_CLIENT_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "change_particle_spawner_settings_client");
@@ -120,6 +122,15 @@ public class SpectrumS2CPackets {
 				for(int i = 0; i < 10; i++) {
 					MinecraftClient.getInstance().player.getEntityWorld().addParticle(new ItemStackParticleEffect(ParticleTypes.ITEM, itemStack), position.getX() + 0.5, position.getY() + 1, position.getZ() + 0.5, 0.15 - random.nextFloat() * 0.3, random.nextFloat() * 0.15 + 0.1, 0.15 - random.nextFloat() * 0.3);
 				}
+			});
+		});
+		ClientPlayNetworking.registerGlobalReceiver(PLAY_PEDESTAL_UPGRADED_PARTICLE_PACKET_ID, (client, handler, buf, responseSender) -> {
+			BlockPos position = buf.readBlockPos(); // the block pos of the pedestal
+			PedestalBlock.PedestalVariant variant = PedestalBlock.PedestalVariant.values()[buf.readInt()]; // the item stack that was crafted
+			client.execute(() -> {
+				Random random = client.world.random;
+				// Everything in this lambda is running on the render thread
+				PedestalBlock.spawnUpgradeParticleEffectsForTier(position, variant);
 			});
 		});
 
@@ -362,6 +373,16 @@ public class SpectrumS2CPackets {
 		// Iterate over all players tracking a position in the world and send the packet to each player
 		for (ServerPlayerEntity player : PlayerLookup.tracking(world, blockPos)) {
 			ServerPlayNetworking.send(player, SpectrumS2CPackets.PLAY_BLOCK_BOUND_SOUND_INSTANCE, buf);
+		}
+	}
+	
+	public static void spawnPedestalUpgradeParticles(World world, BlockPos blockPos, PedestalBlock.PedestalVariant newPedestalVariant) {
+		PacketByteBuf buf = PacketByteBufs.create();
+		buf.writeBlockPos(blockPos);
+		buf.writeInt(newPedestalVariant.ordinal());
+		// Iterate over all players tracking a position in the world and send the packet to each player
+		for (ServerPlayerEntity player : PlayerLookup.tracking((ServerWorld) world, blockPos)) {
+			ServerPlayNetworking.send(player, SpectrumS2CPackets.PLAY_PEDESTAL_UPGRADED_PARTICLE_PACKET_ID, buf);
 		}
 	}
 

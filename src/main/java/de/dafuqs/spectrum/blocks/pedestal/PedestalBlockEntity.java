@@ -580,7 +580,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 				// => Upgrade
 				pedestalBlockEntity.playSound(SpectrumSoundEvents.PEDESTAL_UPGRADE);
 				PedestalBlock.upgradeToVariant(pedestalBlockEntity.world, pedestalBlockEntity.getPos(), newPedestalVariant);
-				spawnUpgradeParticleEffectsForTier(pedestalBlockEntity.world, pedestalBlockEntity.pos, newPedestalVariant);
+				SpectrumS2CPackets.spawnPedestalUpgradeParticles(pedestalBlockEntity.world, pedestalBlockEntity.pos, newPedestalVariant);
 				
 				pedestalBlockEntity.pedestalVariant = newPedestalVariant;
 				
@@ -608,75 +608,6 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 			return true;
 		} else {
 			return false;
-		}
-	}
-	
-	/**
-	 * Called when a pedestal is upgraded to a new tier
-	 * (like amethyst to the cmy variant). Spawns lots of matching particles.
-	 * @param newPedestalVariant The variant the pedestal has been upgraded to
-	 */
-	private static void spawnUpgradeParticleEffectsForTier(World world, BlockPos blockPos, PedestalBlock.PedestalVariant newPedestalVariant) {
-		switch (newPedestalVariant) {
-			case MOONSTONE -> {
-				ParticleEffect particleEffect = SpectrumParticleTypes.getCraftingParticle(GemstoneColor.WHITE);
-				for (int i = 0; i < 250; i++) {
-					float randomZ = world.getRandom().nextFloat() * 1.2F;
-					world.addParticle(particleEffect, blockPos.getX() + 1.1, blockPos.getY(), blockPos.getZ() + randomZ, 0.0D, 0.03D, 0.0D);
-				}
-				for (int i = 0; i < 250; i++) {
-					float randomZ = world.getRandom().nextFloat() * 1.2F;
-					world.addParticle(particleEffect, blockPos.getX() - 0.1, blockPos.getY(), blockPos.getZ() + randomZ, 0.0D, 0.03D, 0.0D);
-				}
-				for (int i = 0; i < 250; i++) {
-					float randomX = world.getRandom().nextFloat() * 1.2F;
-					world.addParticle(particleEffect, blockPos.getX() + randomX, blockPos.getY(), blockPos.getZ() + 1.1, 0.0D, 0.03D, 0.0D);
-				}
-				for (int i = 0; i < 250; i++) {
-					float randomX = world.getRandom().nextFloat() * 1.2F;
-					world.addParticle(particleEffect, blockPos.getX() + randomX, blockPos.getY(), blockPos.getZ() -0.1, 0.0D, 0.03D, 0.0D);
-				}
-			}
-			case ONYX -> {
-				ParticleEffect particleEffect = SpectrumParticleTypes.getCraftingParticle(GemstoneColor.BLACK);
-				for (int i = 0; i < 25; i++) {
-					float randomZ = world.getRandom().nextFloat() * 1.2F;
-					world.addParticle(particleEffect, blockPos.getX() + 1.1, blockPos.getY(), blockPos.getZ() + randomZ, 0.0D, 0.03D, 0.0D);
-				}
-				for (int i = 0; i < 25; i++) {
-					float randomZ = world.getRandom().nextFloat() * 1.2F;
-					world.addParticle(particleEffect, blockPos.getX() - 0.1, blockPos.getY(), blockPos.getZ() + randomZ, 0.0D, 0.03D, 0.0D);
-				}
-				for (int i = 0; i < 25; i++) {
-					float randomX = world.getRandom().nextFloat() * 1.2F;
-					world.addParticle(particleEffect, blockPos.getX() + randomX, blockPos.getY(), blockPos.getZ() + 1.1, 0.0D, 0.03D, 0.0D);
-				}
-				for (int i = 0; i < 25; i++) {
-					float randomX = world.getRandom().nextFloat() * 1.2F;
-					world.addParticle(particleEffect, blockPos.getX() + randomX, blockPos.getY(), blockPos.getZ() -0.1, 0.0D, 0.03D, 0.0D);
-				}
-			}
-			case CMY -> {
-				ParticleEffect particleEffectC = SpectrumParticleTypes.getCraftingParticle(GemstoneColor.CYAN);
-				ParticleEffect particleEffectM = SpectrumParticleTypes.getCraftingParticle(GemstoneColor.MAGENTA);
-				ParticleEffect particleEffectY = SpectrumParticleTypes.getCraftingParticle(GemstoneColor.YELLOW);
-				for (int i = 0; i < 250; i++) {
-					float randomZ = world.getRandom().nextFloat() * 1.2F;
-					world.addParticle(particleEffectY, blockPos.getX() + 1.1, blockPos.getY(), blockPos.getZ() + randomZ, 0.0D, 0.05D, 0.0D);
-				}
-				for (int i = 0; i < 250; i++) {
-					float randomZ = world.getRandom().nextFloat() * 1.2F;
-					world.addParticle(particleEffectC, blockPos.getX() - 0.1, blockPos.getY(), blockPos.getZ() + randomZ, 0.0D, 0.05D, 0.0D);
-				}
-				for (int i = 0; i < 250; i++) {
-					float randomX =  world.getRandom().nextFloat() * 1.2F;
-					world.addParticle(particleEffectM, blockPos.getX() + randomX, blockPos.getY(), blockPos.getZ() + 1.1, 0.0D, 0.05D, 0.0D);
-				}
-				for (int i = 0; i < 250; i++) {
-					float randomX = world.getRandom().nextFloat() * 1.2F;
-					world.addParticle(particleEffectM, blockPos.getX() + randomX, blockPos.getY(), blockPos.getZ() -0.1, 0.0D, 0.05D, 0.0D);
-				}
-			}
 		}
 	}
 	

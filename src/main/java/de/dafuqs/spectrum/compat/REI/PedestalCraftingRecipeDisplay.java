@@ -31,7 +31,7 @@ public class PedestalCraftingRecipeDisplay<R extends PedestalCraftingRecipe> imp
 		this.pedestalCraftingRecipe = recipe;
 		this.craftingInputs = recipe.getIngredients().stream().map(EntryIngredients::ofIngredient).collect(Collectors.toCollection(ArrayList::new));
 
-		HashMap<GemstoneColor, Integer> spectrumInputs = recipe.getGemstoneDustInputs();
+		HashMap<GemstoneColor, Integer> spectrumInputs = recipe.getGemstonePowderInputs();
 		addGemstonePowderCraftingInput(spectrumInputs, GemstoneColor.CYAN, SpectrumItems.TOPAZ_POWDER);
 		addGemstonePowderCraftingInput(spectrumInputs, GemstoneColor.MAGENTA, SpectrumItems.AMETHYST_POWDER);
 		addGemstonePowderCraftingInput(spectrumInputs, GemstoneColor.YELLOW, SpectrumItems.CITRINE_POWDER);

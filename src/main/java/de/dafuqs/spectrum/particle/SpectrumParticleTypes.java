@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.particle;
 
 import com.mojang.serialization.Codec;
 import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.enums.GemstoneColor;
 import de.dafuqs.spectrum.particle.effect.ItemTransferParticleEffect;
 import de.dafuqs.spectrum.particle.effect.ParticleSpawnerParticleEffect;
 import de.dafuqs.spectrum.particle.effect.WirelessRedstoneTransmissionParticleEffect;
@@ -63,6 +64,12 @@ public class SpectrumParticleTypes {
 	public static DefaultParticleType RED_SPORE_BLOSSOM_AIR;
 	public static DefaultParticleType WHITE_SPORE_BLOSSOM_AIR;
 	public static DefaultParticleType YELLOW_SPORE_BLOSSOM_AIR;
+	
+	public static DefaultParticleType CYAN_CRAFTING;
+	public static DefaultParticleType MAGENTA_CRAFTING;
+	public static DefaultParticleType YELLOW_CRAFTING;
+	public static DefaultParticleType BLACK_CRAFTING;
+	public static DefaultParticleType WHITE_CRAFTING;
 
 	// Simple particles
 	public static DefaultParticleType register(String name, boolean alwaysShow) {
@@ -133,6 +140,32 @@ public class SpectrumParticleTypes {
 		RED_SPORE_BLOSSOM_AIR = register("red_spore_blossom_air", false);
 		WHITE_SPORE_BLOSSOM_AIR = register("white_spore_blossom_air", false);
 		YELLOW_SPORE_BLOSSOM_AIR = register("yellow_spore_blossom_air", false);
+		
+		CYAN_CRAFTING = register("cyan_crafting", false);
+		MAGENTA_CRAFTING = register("magenta_crafting", false);
+		YELLOW_CRAFTING = register("yellow_crafting", false);
+		BLACK_CRAFTING = register("black_crafting", false);
+		WHITE_CRAFTING = register("white_crafting", false);
+	}
+	
+	public static ParticleEffect getCraftingParticle(GemstoneColor gemstoneColor) {
+		switch (gemstoneColor) {
+			case CYAN -> {
+				return CYAN_CRAFTING;
+			}
+			case MAGENTA -> {
+				return MAGENTA_CRAFTING;
+			}
+			case YELLOW -> {
+				return YELLOW_CRAFTING;
+			}
+			case BLACK -> {
+				return BLACK_CRAFTING;
+			}
+			default -> {
+				return WHITE_CRAFTING;
+			}
+		}
 	}
 
 }

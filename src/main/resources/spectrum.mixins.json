@@ -38,7 +38,7 @@
     "ServerPlayerEntityMixin",
     "ServerWorldMixin",
     "SpawnerBlockMixin",
-    "WorldRendererMixin"
+    "WorldRendererMixin",
   ],
   "client": [
     "client.AccessorClientAdvancementManager",
@@ -51,6 +51,7 @@
     "client.ItemMixin",
     "client.MixinClientAdvancementManager",
     "client.MixinMinecraftClient",
+    "client.RenderLayerAccessor",
     "client.ScreenMixin",
     "client.TransparentBlockMixin",
     "client.WorldRendererMixin"

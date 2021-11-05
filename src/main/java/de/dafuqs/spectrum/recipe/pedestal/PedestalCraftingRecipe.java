@@ -214,7 +214,7 @@ public class PedestalCraftingRecipe implements Recipe<Inventory> {
 		return this.experience;
 	}
 
-	public HashMap<GemstoneColor, Integer> getGemstoneDustInputs() {
+	public HashMap<GemstoneColor, Integer> getGemstonePowderInputs() {
 		return this.gemstoneDustInputs;
 	}
 

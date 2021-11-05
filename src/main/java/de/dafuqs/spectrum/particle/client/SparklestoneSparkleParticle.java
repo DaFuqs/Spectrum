@@ -20,6 +20,7 @@ public class SparklestoneSparkleParticle extends AbstractSlowingParticle {
 	}
 
 	public static class Factory implements ParticleFactory<DefaultParticleType> {
+		
 		private final SpriteProvider spriteProvider;
 
 		public Factory(SpriteProvider spriteProvider) {

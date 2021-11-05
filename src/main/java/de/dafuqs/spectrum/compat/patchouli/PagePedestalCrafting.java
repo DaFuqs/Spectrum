@@ -96,8 +96,8 @@ public class PagePedestalCrafting extends PageDoubleRecipeRegistry<PedestalCraft
 		int h = 0;
 		for(GemstoneColor color : colors) {
 			int amount;
-			if(recipe.getGemstoneDustInputs().containsKey(color)) {
-				amount = recipe.getGemstoneDustInputs().get(color);
+			if(recipe.getGemstonePowderInputs().containsKey(color)) {
+				amount = recipe.getGemstonePowderInputs().get(color);
 			} else {
 				amount = 0;
 			}

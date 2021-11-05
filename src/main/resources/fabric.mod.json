@@ -28,6 +28,7 @@
       "de.dafuqs.spectrum.compat.REI.REIIntegration"
     ]
   },
+  "accessWidener": "spectrum.accesswidener",
   "mixins": [
     "spectrum.mixins.json"
   ],

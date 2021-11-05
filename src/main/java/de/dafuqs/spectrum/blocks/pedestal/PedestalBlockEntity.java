@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.blocks.pedestal;
 
 import de.dafuqs.spectrum.InventoryHelper;
+import de.dafuqs.spectrum.SpectrumClient;
 import de.dafuqs.spectrum.Support;
 import de.dafuqs.spectrum.enums.GemstoneColor;
 import de.dafuqs.spectrum.enums.PedestalRecipeTier;
@@ -9,6 +10,7 @@ import de.dafuqs.spectrum.inventories.AutoCraftingInventory;
 import de.dafuqs.spectrum.inventories.PedestalScreenHandler;
 import de.dafuqs.spectrum.items.CraftingTabletItem;
 import de.dafuqs.spectrum.networking.SpectrumS2CPackets;
+import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.recipe.pedestal.PedestalCraftingRecipe;
@@ -17,11 +19,14 @@ import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import de.dafuqs.spectrum.registries.SpectrumMultiblocks;
 import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
+import net.fabricmc.fabric.api.block.entity.BlockEntityClientSerializable;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.LockableContainerBlockEntity;
+import net.minecraft.block.entity.MobSpawnerBlockEntity;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.ExperienceOrbEntity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -34,6 +39,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;
+import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
+import net.minecraft.particle.ParticleEffect;
 import net.minecraft.recipe.*;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
@@ -45,20 +52,21 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.BlockRotation;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.objectweb.asm.tree.FrameNode;
 import vazkii.patchouli.api.IMultiblock;
 
-import java.util.Iterator;
-import java.util.Random;
-import java.util.UUID;
+import java.util.*;
 
-public class PedestalBlockEntity extends LockableContainerBlockEntity implements RecipeInputProvider, SidedInventory, PlayerOwned, ExtendedScreenHandlerFactory {
+public class PedestalBlockEntity extends LockableContainerBlockEntity implements RecipeInputProvider, SidedInventory, PlayerOwned, ExtendedScreenHandlerFactory, BlockEntityClientSerializable {
 
 	private UUID ownerUUID;
 	private String ownerName;
@@ -121,11 +129,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 			}
 		};
 	}
-
-	public PedestalBlock.PedestalVariant getVariant() {
-		return this.pedestalVariant;
-	}
-
+	
 	public void setVariant(PedestalBlock.@NotNull PedestalVariant pedestalVariant) {
 		this.pedestalVariant = pedestalVariant;
 		this.propertyDelegate.set(2, pedestalVariant.ordinal());
@@ -208,15 +212,58 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 			recipeMatcher.addInput(itemStack);
 		}
 	}
+	
+	public static void updateInClientWorld(PedestalBlockEntity pedestalBlockEntity) {
+		pedestalBlockEntity.sync();
+	}
+	
+	// Called when the chunk is first loaded to initialize this be
+	public NbtCompound toInitialChunkDataNbt() {
+		NbtCompound nbtCompound = this.writeNbt(new NbtCompound());
+		if(this.lastRecipe != null) {
+			nbtCompound.putString("LastRecipe", this.lastRecipe.getId().toString());
+		} else {
+			nbtCompound.putString("LastRecipe", "");
+		}
+		return this.writeNbt(new NbtCompound());
+	}
 
 	public void readNbt(NbtCompound nbt) {
 		super.readNbt(nbt);
 		this.inventory = DefaultedList.ofSize(INVENTORY_SIZE, ItemStack.EMPTY);
 		Inventories.readNbt(nbt, this.inventory);
-		this.storedXP = nbt.getFloat("StoredXP");
-		this.craftingTime = nbt.getShort("CraftingTime");
-		this.craftingTimeTotal = nbt.getShort("CraftingTimeTotal");
-		this.speedUpgrades = nbt.getShort("SpeedUpgrades");
+		if(nbt.contains("StoredXP")) {
+			this.storedXP = nbt.getFloat("StoredXP");
+		}
+		if(nbt.contains("CraftingTime")) {
+			this.craftingTime = nbt.getShort("CraftingTime");
+		}
+		if(nbt.contains("CraftingTimeTotal")) {
+			this.craftingTimeTotal = nbt.getShort("CraftingTimeTotal");
+		}
+		if(nbt.contains("SpeedUpgrades")) {
+			this.speedUpgrades = nbt.getShort("SpeedUpgrades");
+		}
+		if(nbt.contains("LastRecipe")) {
+			String recipeString = nbt.getString("LastRecipe");
+			if(!recipeString.isEmpty()) {
+				Optional<? extends Recipe> optionalRecipe;
+				if (SpectrumClient.minecraftClient != null) {
+					optionalRecipe = MinecraftClient.getInstance().world.getRecipeManager().get(new Identifier(recipeString));
+				} else {
+					optionalRecipe = world.getRecipeManager().get(new Identifier(recipeString));
+				}
+				if(optionalRecipe.isPresent()) {
+					this.lastRecipe = optionalRecipe.get();
+				} else {
+					this.lastRecipe = null;
+				}
+			} else {
+				this.lastRecipe = null;
+			}
+		} else {
+			this.lastRecipe = null;
+		}
 		if(nbt.contains("OwnerUUID")) {
 			this.ownerUUID = nbt.getUuid("OwnerUUID");
 		} else {
@@ -235,6 +282,9 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		nbt.putShort("CraftingTime", (short)this.craftingTime);
 		nbt.putShort("CraftingTimeTotal", (short)this.craftingTimeTotal);
 		nbt.putShort("SpeedUpgrades", (short)this.speedUpgrades);
+		if(this.lastRecipe != null) {
+			nbt.putString("LastRecipe", this.lastRecipe.getId().toString());
+		}
 
 		if(this.ownerUUID != null) {
 			nbt.putUuid("OwnerUUID", this.ownerUUID);
@@ -255,6 +305,27 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		return this.craftingTime > 0;
 	}
 
+	public static void clientTick(@NotNull World world, BlockPos blockPos, BlockState blockState, PedestalBlockEntity pedestalBlockEntity) {
+		Recipe currentRecipe = pedestalBlockEntity.getCurrentRecipe();
+		if (currentRecipe instanceof PedestalCraftingRecipe pedestalCraftingRecipe) {
+			HashMap<GemstoneColor, Integer> gemstonePowderInputs = pedestalCraftingRecipe.getGemstonePowderInputs();
+			
+			for (Map.Entry<GemstoneColor, Integer> entry : gemstonePowderInputs.entrySet()) {
+				int amount = entry.getValue();
+				if (amount > 0) {
+					ParticleEffect particleEffect = SpectrumParticleTypes.getCraftingParticle(entry.getKey());
+					
+					float particleAmount = Support.getWholeIntFromFloatWithChance(amount / 8.0F, world.random);
+					for (int i = 0; i < particleAmount; i++) {
+						float randomX = 2.0F - world.getRandom().nextFloat() * 4;
+						float randomZ = 2.0F - world.getRandom().nextFloat() * 4;
+						world.addParticle(particleEffect, blockPos.getX() + randomX, blockPos.getY(), blockPos.getZ() + randomZ, 0.0D, 0.03D, 0.0D);
+					}
+				}
+			}
+		}
+	}
+	
 	public static void serverTick(@NotNull World world, BlockPos blockPos, BlockState blockState, PedestalBlockEntity pedestalBlockEntity) {
 		// only craft when there is redstone power
 		Block block = world.getBlockState(blockPos).getBlock();
@@ -411,9 +482,13 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 					if (pedestalCraftingRecipe.canCraft(pedestalBlockEntity)) {
 						pedestalBlockEntity.lastRecipe = pedestalCraftingRecipe;
 						pedestalBlockEntity.craftingTimeTotal = pedestalCraftingRecipe.getCraftingTime();
+						updateInClientWorld(pedestalBlockEntity);
 						return pedestalCraftingRecipe;
 					} else {
 						SpectrumS2CPackets.sendCancelBlockBoundSoundInstance((ServerWorld) pedestalBlockEntity.getWorld(), pedestalBlockEntity.getPos());
+						if(pedestalBlockEntity.lastRecipe != null) {
+							updateInClientWorld(pedestalBlockEntity);
+						}
 						return null;
 					}
 				} else {
@@ -421,9 +496,13 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 					if (craftingRecipe != null) {
 						pedestalBlockEntity.lastRecipe = craftingRecipe;
 						pedestalBlockEntity.craftingTimeTotal = 20;
+						updateInClientWorld(pedestalBlockEntity);
 						return craftingRecipe;
 					} else {
 						SpectrumS2CPackets.sendCancelBlockBoundSoundInstance((ServerWorld) pedestalBlockEntity.getWorld(), pedestalBlockEntity.getPos());
+						if(pedestalBlockEntity.lastRecipe != null) {
+							updateInClientWorld(pedestalBlockEntity);
+						}
 						pedestalBlockEntity.lastRecipe = null;
 						return null;
 					}
@@ -681,6 +760,10 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		this.ownerName = playerEntity.getName().asString();
 		setCustomName(new TranslatableText("block.spectrum.pedestal.title_with_owner", ownerName));
 	}
+	
+	public Recipe getCurrentRecipe() {
+		return this.lastRecipe;
+	}
 
 	public ItemStack getCraftingOutput() {
 		Recipe recipe = calculateRecipe(this.world, this);
@@ -791,5 +874,14 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 	private double getCraftingSpeedMultiplierThroughUpgrades() {
 		return Math.exp(this.speedUpgrades * 0.4);
 	}
-
+	
+	@Override
+	public void fromClientTag(NbtCompound tag) {
+		this.readNbt(tag);
+	}
+	
+	@Override
+	public NbtCompound toClientTag(NbtCompound tag) {
+		return this.toInitialChunkDataNbt();
+	}
 }

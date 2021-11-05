@@ -58,19 +58,19 @@ public class ProgressionSanityCommand {
 			 */
 			if(!pedestalRecipe.isExcludeRequirementsInDebugCommand()) {
 				if (pedestalRecipe.getTier() == PedestalRecipeTier.BASIC || pedestalRecipe.getTier() == PedestalRecipeTier.SIMPLE) {
-					if (pedestalRecipe.getGemstoneDustInputs().get(GemstoneColor.BLACK) > 0) {
+					if (pedestalRecipe.getGemstonePowderInputs().get(GemstoneColor.BLACK) > 0) {
 						SpectrumCommon.log(Level.WARN, "[SANITY: Pedestal Recipe Ingredients] Pedestal recipe '" + pedestalRecipe.getId() + "' of tier '" + pedestalRecipe.getTier() + "' is using onyx powder as input! Players will not have access to Onyx at that tier");
 					}
-					if (pedestalRecipe.getGemstoneDustInputs().get(GemstoneColor.WHITE) > 0) {
+					if (pedestalRecipe.getGemstonePowderInputs().get(GemstoneColor.WHITE) > 0) {
 						SpectrumCommon.log(Level.WARN, "[SANITY: Pedestal Recipe Ingredients] Pedestal recipe '" + pedestalRecipe.getId() + "' of tier '" + pedestalRecipe.getTier() + "' is using moonstone powder as input! Players will not have access to Moonstone at that tier");
 					}
 				} else if (pedestalRecipe.getTier() == PedestalRecipeTier.ADVANCED) {
-					if (pedestalRecipe.getGemstoneDustInputs().get(GemstoneColor.WHITE) > 0) {
+					if (pedestalRecipe.getGemstonePowderInputs().get(GemstoneColor.WHITE) > 0) {
 						SpectrumCommon.log(Level.WARN, "[SANITY: Pedestal Recipe Ingredients] Pedestal recipe '" + pedestalRecipe.getId() + "' of tier '" + pedestalRecipe.getTier() + "' is using moonstone powder as input! Players will not have access to Moonstone at that tier");
 					}
 				}
 			}
-			for(Map.Entry<GemstoneColor, Integer> gemstoneDustInput : pedestalRecipe.getGemstoneDustInputs().entrySet()) {
+			for(Map.Entry<GemstoneColor, Integer> gemstoneDustInput : pedestalRecipe.getGemstonePowderInputs().entrySet()) {
 				usedColorsForEachTier.get(pedestalRecipe.getTier()).put(gemstoneDustInput.getKey(), usedColorsForEachTier.get(pedestalRecipe.getTier()).get(gemstoneDustInput.getKey()) + gemstoneDustInput.getValue());
 			}
 		}

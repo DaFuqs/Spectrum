@@ -7,7 +7,7 @@ Spectrum is progression based and tries to not give everything away at first gla
 
 ## Lore
 The world is interspersed with three kinds of fundamental kinds of magic: Time, Matter and Energy.
-Where these magical energies overflow in the spectral plane they form manifestations in the physical realm, crystalizing as shards. You can find these phenomena in the form of gemstone geodes.
+Where these magical energies overflow in the spectral plane they form manifestations in the physical realm, crystallizing as shards. You can find these phenomena in the form of gemstone geodes.
 
 Your journey will be to go on an exploration journey to find out more about those energies and how to harness them and combine these basic energies to form all kinds of natural forces (color symbolism, basically, like lime standing for fertility).
 
@@ -15,12 +15,12 @@ Spectrum uses the CMYK color system to mix its colors: Amethyst as magenta, Topa
 You are an Artist of Magic, using natural energies manifested in color to form truly wonderful constructions and phenomena. There is powerful treasure to uncover, but your path will be plastered with lots of hurdles - some of them more dangerous than others. 
 
 At first you as a player are just tinkering around with what is possible, but sooner or later will find out where the true source of these energies lies.
-Your final goal? Discovering what's up with the magical energies surrounding the world and what is waiting for you beneath the once ipenetratable bedrock floor.
+Your final goal? Discovering what's up with the magical energies surrounding the world and what is waiting for you beneath the once impenetratable bedrock floor.
 
 # Progressing through the mod
 Find your first gemstone geode to get started! Everything else is hinted at via advancements and the guidebook gifted to you. You can find more details in [Spectrums Wiki](https://github.com/DaFuqs/Spectrum/wiki). 
 
-**_Spectrum is not meant to be rushed. It is best played alongside your normal playthough._**
+**_Spectrum is not meant to be rushed. It is best played alongside your normal playthrough._**
 
 ## Mod Integration
 - [RoughlyEnoughItems](https://github.com/shedaniel/RoughlyEnoughItems): Integration for all of Spectrums blocks and items recipe types

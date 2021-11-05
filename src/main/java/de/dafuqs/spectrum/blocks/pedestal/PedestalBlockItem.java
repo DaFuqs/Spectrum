@@ -37,7 +37,7 @@ public class PedestalBlockItem extends BlockItem {
 			case BASIC_CITRINE -> {
 				tooltip.add(new TranslatableText("item.spectrum.pedestal.tooltip.basic_citrine"));
 			}
-			case ALL_BASIC -> {
+			case CMY -> {
 				tooltip.add(new TranslatableText("item.spectrum.pedestal.tooltip.all_basic"));
 			}
 			case ONYX -> {

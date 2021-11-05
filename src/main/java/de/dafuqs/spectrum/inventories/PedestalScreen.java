@@ -50,7 +50,7 @@ public class PedestalScreen extends HandledScreen<PedestalScreenHandler> {
 			case ONYX -> {
 				return BACKGROUND3;
 			}
-			case ALL_BASIC -> {
+			case CMY -> {
 				return BACKGROUND2;
 			}
 			default -> {

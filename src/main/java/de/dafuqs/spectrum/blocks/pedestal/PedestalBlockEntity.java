@@ -25,7 +25,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.LockableContainerBlockEntity;
-import net.minecraft.block.entity.MobSpawnerBlockEntity;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.ExperienceOrbEntity;
 import net.minecraft.entity.ItemEntity;
@@ -39,7 +38,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;
-import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.recipe.*;
 import net.minecraft.screen.PropertyDelegate;
@@ -56,12 +54,10 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.objectweb.asm.tree.FrameNode;
 import vazkii.patchouli.api.IMultiblock;
 
 import java.util.*;
@@ -479,6 +475,16 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 
 				PedestalCraftingRecipe pedestalCraftingRecipe = world.getRecipeManager().getFirstMatch(recipeType, pedestalBlockEntity, world).orElse(null);
 				if (pedestalCraftingRecipe != null) {
+					
+					// check if the recipe is an upgrade. If it is don't allow to craft it if the current tier is already sufficient
+					PedestalBlock.PedestalVariant newPedestalVariant = PedestalCraftingRecipe.getUpgradedPedestalVariantForOutput(pedestalCraftingRecipe.getOutput());
+					if(newPedestalVariant != null && newPedestalVariant.ordinal() <= PedestalBlockEntity.getVariant(pedestalBlockEntity).ordinal()) {
+						if(pedestalBlockEntity.lastRecipe != null) {
+							updateInClientWorld(pedestalBlockEntity);
+						}
+						return null;
+					}
+					
 					if (pedestalCraftingRecipe.canCraft(pedestalBlockEntity)) {
 						pedestalBlockEntity.lastRecipe = pedestalCraftingRecipe;
 						pedestalBlockEntity.craftingTimeTotal = pedestalCraftingRecipe.getCraftingTime();
@@ -572,7 +578,16 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 			if(newPedestalVariant != null && newPedestalVariant.ordinal() > getVariant(pedestalBlockEntity).ordinal()) {
 				// It is an upgrade recipe (output is a pedestal block item)
 				// => Upgrade
+				pedestalBlockEntity.playSound(SpectrumSoundEvents.PEDESTAL_UPGRADE);
 				PedestalBlock.upgradeToVariant(pedestalBlockEntity.world, pedestalBlockEntity.getPos(), newPedestalVariant);
+				spawnUpgradeParticleEffectsForTier(pedestalBlockEntity.world, pedestalBlockEntity.pos, newPedestalVariant);
+				
+				pedestalBlockEntity.pedestalVariant = newPedestalVariant;
+				
+				// reset the recipe
+				pedestalBlockEntity.lastRecipe = null;
+				updateInClientWorld(pedestalBlockEntity);
+				pedestalBlockEntity.markDirty();
 			} else {
 				// Not an upgrade recipe => Add output to output slot
 				ItemStack existingOutput = defaultedList.get(OUTPUT_SLOT_ID);
@@ -595,7 +610,76 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 			return false;
 		}
 	}
-
+	
+	/**
+	 * Called when a pedestal is upgraded to a new tier
+	 * (like amethyst to the cmy variant). Spawns lots of matching particles.
+	 * @param newPedestalVariant The variant the pedestal has been upgraded to
+	 */
+	private static void spawnUpgradeParticleEffectsForTier(World world, BlockPos blockPos, PedestalBlock.PedestalVariant newPedestalVariant) {
+		switch (newPedestalVariant) {
+			case MOONSTONE -> {
+				ParticleEffect particleEffect = SpectrumParticleTypes.getCraftingParticle(GemstoneColor.WHITE);
+				for (int i = 0; i < 250; i++) {
+					float randomZ = world.getRandom().nextFloat() * 1.2F;
+					world.addParticle(particleEffect, blockPos.getX() + 1.1, blockPos.getY(), blockPos.getZ() + randomZ, 0.0D, 0.03D, 0.0D);
+				}
+				for (int i = 0; i < 250; i++) {
+					float randomZ = world.getRandom().nextFloat() * 1.2F;
+					world.addParticle(particleEffect, blockPos.getX() - 0.1, blockPos.getY(), blockPos.getZ() + randomZ, 0.0D, 0.03D, 0.0D);
+				}
+				for (int i = 0; i < 250; i++) {
+					float randomX = world.getRandom().nextFloat() * 1.2F;
+					world.addParticle(particleEffect, blockPos.getX() + randomX, blockPos.getY(), blockPos.getZ() + 1.1, 0.0D, 0.03D, 0.0D);
+				}
+				for (int i = 0; i < 250; i++) {
+					float randomX = world.getRandom().nextFloat() * 1.2F;
+					world.addParticle(particleEffect, blockPos.getX() + randomX, blockPos.getY(), blockPos.getZ() -0.1, 0.0D, 0.03D, 0.0D);
+				}
+			}
+			case ONYX -> {
+				ParticleEffect particleEffect = SpectrumParticleTypes.getCraftingParticle(GemstoneColor.BLACK);
+				for (int i = 0; i < 25; i++) {
+					float randomZ = world.getRandom().nextFloat() * 1.2F;
+					world.addParticle(particleEffect, blockPos.getX() + 1.1, blockPos.getY(), blockPos.getZ() + randomZ, 0.0D, 0.03D, 0.0D);
+				}
+				for (int i = 0; i < 25; i++) {
+					float randomZ = world.getRandom().nextFloat() * 1.2F;
+					world.addParticle(particleEffect, blockPos.getX() - 0.1, blockPos.getY(), blockPos.getZ() + randomZ, 0.0D, 0.03D, 0.0D);
+				}
+				for (int i = 0; i < 25; i++) {
+					float randomX = world.getRandom().nextFloat() * 1.2F;
+					world.addParticle(particleEffect, blockPos.getX() + randomX, blockPos.getY(), blockPos.getZ() + 1.1, 0.0D, 0.03D, 0.0D);
+				}
+				for (int i = 0; i < 25; i++) {
+					float randomX = world.getRandom().nextFloat() * 1.2F;
+					world.addParticle(particleEffect, blockPos.getX() + randomX, blockPos.getY(), blockPos.getZ() -0.1, 0.0D, 0.03D, 0.0D);
+				}
+			}
+			case CMY -> {
+				ParticleEffect particleEffectC = SpectrumParticleTypes.getCraftingParticle(GemstoneColor.CYAN);
+				ParticleEffect particleEffectM = SpectrumParticleTypes.getCraftingParticle(GemstoneColor.MAGENTA);
+				ParticleEffect particleEffectY = SpectrumParticleTypes.getCraftingParticle(GemstoneColor.YELLOW);
+				for (int i = 0; i < 250; i++) {
+					float randomZ = world.getRandom().nextFloat() * 1.2F;
+					world.addParticle(particleEffectY, blockPos.getX() + 1.1, blockPos.getY(), blockPos.getZ() + randomZ, 0.0D, 0.05D, 0.0D);
+				}
+				for (int i = 0; i < 250; i++) {
+					float randomZ = world.getRandom().nextFloat() * 1.2F;
+					world.addParticle(particleEffectC, blockPos.getX() - 0.1, blockPos.getY(), blockPos.getZ() + randomZ, 0.0D, 0.05D, 0.0D);
+				}
+				for (int i = 0; i < 250; i++) {
+					float randomX =  world.getRandom().nextFloat() * 1.2F;
+					world.addParticle(particleEffectM, blockPos.getX() + randomX, blockPos.getY(), blockPos.getZ() + 1.1, 0.0D, 0.05D, 0.0D);
+				}
+				for (int i = 0; i < 250; i++) {
+					float randomX = world.getRandom().nextFloat() * 1.2F;
+					world.addParticle(particleEffectM, blockPos.getX() + randomX, blockPos.getY(), blockPos.getZ() -0.1, 0.0D, 0.05D, 0.0D);
+				}
+			}
+		}
+	}
+	
 	private boolean craftVanillaRecipe(@Nullable CraftingRecipe recipe, DefaultedList<ItemStack> defaultedList, int maxCountPerStack) {
 		if (canAcceptRecipeOutput(recipe, defaultedList, maxCountPerStack)) {
 
@@ -674,7 +758,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 			return new int[]{0, 1, 2, 3, 4, 5, 6, 7, 8};
 		} else {
 			switch (this.pedestalVariant) {
-				case BASIC_AMETHYST, BASIC_CITRINE, BASIC_TOPAZ, ALL_BASIC -> {
+				case BASIC_AMETHYST, BASIC_CITRINE, BASIC_TOPAZ, CMY -> {
 					return new int[]{9, 10, 11};
 				}
 				case ONYX -> {
@@ -788,7 +872,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 	@Contract(pure = true)
 	public static PedestalRecipeTier getHighestAvailableRecipeTierForVariant(PedestalBlock.@NotNull PedestalVariant pedestalVariant) {
 		switch (pedestalVariant) {
-			case ALL_BASIC -> {
+			case CMY -> {
 				return PedestalRecipeTier.SIMPLE;
 			}
 			case ONYX -> {

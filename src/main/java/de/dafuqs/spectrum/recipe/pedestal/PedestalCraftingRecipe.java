@@ -233,31 +233,27 @@ public class PedestalCraftingRecipe implements Recipe<Inventory> {
 	 */
 	public SoundEvent getSoundEvent(Random random) {
 		List<SoundEvent> choices = new ArrayList<>();
-
-		if(SpectrumItemTags.PEDESTALS.contains(this.output.getItem())) {
-			return SpectrumSoundEvents.PEDESTAL_UPGRADE;
+		
+		for (int i = 0; i < this.gemstoneDustInputs.get(GemstoneColor.MAGENTA); i++) {
+			choices.add(SpectrumSoundEvents.PEDESTAL_CRAFTING_FINISHED_AMETHYST);
+		}
+		for (int i = 0; i < this.gemstoneDustInputs.get(GemstoneColor.YELLOW); i++) {
+			choices.add(SpectrumSoundEvents.PEDESTAL_CRAFTING_FINISHED_CITRINE);
+		}
+		for (int i = 0; i < this.gemstoneDustInputs.get(GemstoneColor.CYAN); i++) {
+			choices.add(SpectrumSoundEvents.PEDESTAL_CRAFTING_FINISHED_TOPAZ);
+		}
+		for (int i = 0; i < this.gemstoneDustInputs.get(GemstoneColor.BLACK); i++) {
+			choices.add(SpectrumSoundEvents.PEDESTAL_CRAFTING_FINISHED_ONYX);
+		}
+		for (int i = 0; i < this.gemstoneDustInputs.get(GemstoneColor.WHITE); i++) {
+			choices.add(SpectrumSoundEvents.PEDESTAL_CRAFTING_FINISHED_MOONSTONE);
+		}
+		
+		if (choices.size() == 0) {
+			return SpectrumSoundEvents.PEDESTAL_CRAFTING_FINISHED_GENERIC;
 		} else {
-			for (int i = 0; i < this.gemstoneDustInputs.get(GemstoneColor.MAGENTA); i++) {
-				choices.add(SpectrumSoundEvents.PEDESTAL_CRAFTING_FINISHED_AMETHYST);
-			}
-			for (int i = 0; i < this.gemstoneDustInputs.get(GemstoneColor.YELLOW); i++) {
-				choices.add(SpectrumSoundEvents.PEDESTAL_CRAFTING_FINISHED_CITRINE);
-			}
-			for (int i = 0; i < this.gemstoneDustInputs.get(GemstoneColor.CYAN); i++) {
-				choices.add(SpectrumSoundEvents.PEDESTAL_CRAFTING_FINISHED_TOPAZ);
-			}
-			for (int i = 0; i < this.gemstoneDustInputs.get(GemstoneColor.BLACK); i++) {
-				choices.add(SpectrumSoundEvents.PEDESTAL_CRAFTING_FINISHED_ONYX);
-			}
-			for (int i = 0; i < this.gemstoneDustInputs.get(GemstoneColor.WHITE); i++) {
-				choices.add(SpectrumSoundEvents.PEDESTAL_CRAFTING_FINISHED_MOONSTONE);
-			}
-			
-			if (choices.size() == 0) {
-				return SpectrumSoundEvents.PEDESTAL_CRAFTING_FINISHED_GENERIC;
-			} else {
-				return choices.get(random.nextInt(choices.size()));
-			}
+			return choices.get(random.nextInt(choices.size()));
 		}
 	}
 

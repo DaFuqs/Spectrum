@@ -84,7 +84,7 @@ public class PedestalScreenHandler extends AbstractRecipeScreenHandler<Inventory
 
 		// gemstone powder slots
 		switch (this.variant) {
-			case BASIC_TOPAZ, BASIC_AMETHYST, BASIC_CITRINE, ALL_BASIC -> {
+			case BASIC_TOPAZ, BASIC_AMETHYST, BASIC_CITRINE, CMY -> {
 				this.addSlot(new StackFilterSlot(inventory, 9, 44 + 18, 77, SpectrumItems.TOPAZ_POWDER));
 				this.addSlot(new StackFilterSlot(inventory, 10, 44 + 2 * 18, 77, SpectrumItems.AMETHYST_POWDER));
 				this.addSlot(new StackFilterSlot(inventory, 11, 44 + 3 * 18, 77, SpectrumItems.CITRINE_POWDER));

@@ -7,11 +7,14 @@ import de.dafuqs.spectrum.particle.effect.ItemTransferParticleEffect;
 import de.dafuqs.spectrum.particle.effect.ParticleSpawnerParticleEffect;
 import de.dafuqs.spectrum.particle.effect.WirelessRedstoneTransmissionParticleEffect;
 import net.fabricmc.fabric.api.particle.v1.FabricParticleTypes;
+import net.minecraft.block.Block;
 import net.minecraft.particle.DefaultParticleType;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleType;
+import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Function;
 
@@ -65,11 +68,39 @@ public class SpectrumParticleTypes {
 	public static DefaultParticleType WHITE_SPORE_BLOSSOM_AIR;
 	public static DefaultParticleType YELLOW_SPORE_BLOSSOM_AIR;
 	
-	public static DefaultParticleType CYAN_CRAFTING;
-	public static DefaultParticleType MAGENTA_CRAFTING;
-	public static DefaultParticleType YELLOW_CRAFTING;
 	public static DefaultParticleType BLACK_CRAFTING;
+	public static DefaultParticleType BLUE_CRAFTING;
+	public static DefaultParticleType BROWN_CRAFTING;
+	public static DefaultParticleType CYAN_CRAFTING;
+	public static DefaultParticleType GRAY_CRAFTING;
+	public static DefaultParticleType GREEN_CRAFTING;
+	public static DefaultParticleType LIGHT_BLUE_CRAFTING;
+	public static DefaultParticleType LIGHT_GRAY_CRAFTING;
+	public static DefaultParticleType LIME_CRAFTING;
+	public static DefaultParticleType MAGENTA_CRAFTING;
+	public static DefaultParticleType ORANGE_CRAFTING;
+	public static DefaultParticleType PINK_CRAFTING;
+	public static DefaultParticleType PURPLE_CRAFTING;
+	public static DefaultParticleType RED_CRAFTING;
 	public static DefaultParticleType WHITE_CRAFTING;
+	public static DefaultParticleType YELLOW_CRAFTING;
+	
+	public static DefaultParticleType BLACK_RISING;
+	public static DefaultParticleType BLUE_RISING;
+	public static DefaultParticleType BROWN_RISING;
+	public static DefaultParticleType CYAN_RISING;
+	public static DefaultParticleType GRAY_RISING;
+	public static DefaultParticleType GREEN_RISING;
+	public static DefaultParticleType LIGHT_BLUE_RISING;
+	public static DefaultParticleType LIGHT_GRAY_RISING;
+	public static DefaultParticleType LIME_RISING;
+	public static DefaultParticleType MAGENTA_RISING;
+	public static DefaultParticleType ORANGE_RISING;
+	public static DefaultParticleType PINK_RISING;
+	public static DefaultParticleType PURPLE_RISING;
+	public static DefaultParticleType RED_RISING;
+	public static DefaultParticleType WHITE_RISING;
+	public static DefaultParticleType YELLOW_RISING;
 
 	// Simple particles
 	public static DefaultParticleType register(String name, boolean alwaysShow) {
@@ -141,31 +172,83 @@ public class SpectrumParticleTypes {
 		WHITE_SPORE_BLOSSOM_AIR = register("white_spore_blossom_air", false);
 		YELLOW_SPORE_BLOSSOM_AIR = register("yellow_spore_blossom_air", false);
 		
-		CYAN_CRAFTING = register("cyan_crafting", false);
-		MAGENTA_CRAFTING = register("magenta_crafting", false);
-		YELLOW_CRAFTING = register("yellow_crafting", false);
 		BLACK_CRAFTING = register("black_crafting", false);
+		BLUE_CRAFTING = register("blue_crafting", false);
+		BROWN_CRAFTING = register("brown_crafting", false);
+		CYAN_CRAFTING = register("cyan_crafting", false);
+		GRAY_CRAFTING = register("gray_crafting", false);
+		GREEN_CRAFTING = register("green_crafting", false);
+		LIGHT_BLUE_CRAFTING = register("light_blue_crafting", false);
+		LIGHT_GRAY_CRAFTING = register("light_gray_crafting", false);
+		LIME_CRAFTING = register("lime_crafting", false);
+		MAGENTA_CRAFTING = register("magenta_crafting", false);
+		ORANGE_CRAFTING = register("orange_crafting", false);
+		PINK_CRAFTING = register("pink_crafting", false);
+		PURPLE_CRAFTING = register("purple_crafting", false);
+		RED_CRAFTING = register("red_crafting", false);
 		WHITE_CRAFTING = register("white_crafting", false);
+		YELLOW_CRAFTING = register("yellow_crafting", false);
+		
+		BLACK_RISING = register("black_rising", false);
+		BLUE_RISING = register("blue_rising", false);
+		BROWN_RISING = register("brown_rising", false);
+		CYAN_RISING = register("cyan_rising", false);
+		GRAY_RISING = register("gray_rising", false);
+		GREEN_RISING = register("green_rising", false);
+		LIGHT_BLUE_RISING = register("light_blue_rising", false);
+		LIGHT_GRAY_RISING = register("light_gray_rising", false);
+		LIME_RISING = register("lime_rising", false);
+		MAGENTA_RISING = register("magenta_rising", false);
+		ORANGE_RISING = register("orange_rising", false);
+		PINK_RISING = register("pink_rising", false);
+		PURPLE_RISING = register("purple_rising", false);
+		RED_RISING = register("red_rising", false);
+		WHITE_RISING = register("white_rising", false);
+		YELLOW_RISING = register("yellow_rising", false);
 	}
 	
-	public static ParticleEffect getCraftingParticle(GemstoneColor gemstoneColor) {
-		switch (gemstoneColor) {
-			case CYAN -> {
-				return CYAN_CRAFTING;
-			}
-			case MAGENTA -> {
-				return MAGENTA_CRAFTING;
-			}
-			case YELLOW -> {
-				return YELLOW_CRAFTING;
-			}
-			case BLACK -> {
-				return BLACK_CRAFTING;
-			}
-			default -> {
-				return WHITE_CRAFTING;
-			}
-		}
+	@NotNull
+	public static ParticleEffect getCraftingParticle(DyeColor dyeColor) {
+		return switch (dyeColor) {
+			case BLACK -> BLACK_CRAFTING;
+			case BLUE -> BLUE_CRAFTING;
+			case BROWN -> BROWN_CRAFTING;
+			case CYAN -> CYAN_CRAFTING;
+			case GRAY -> GRAY_CRAFTING;
+			case GREEN -> GREEN_CRAFTING;
+			case LIGHT_BLUE -> LIGHT_BLUE_CRAFTING;
+			case LIGHT_GRAY -> LIGHT_GRAY_CRAFTING;
+			case LIME -> LIME_CRAFTING;
+			case MAGENTA -> MAGENTA_CRAFTING;
+			case ORANGE -> ORANGE_CRAFTING;
+			case PINK -> PINK_CRAFTING;
+			case PURPLE -> PURPLE_CRAFTING;
+			case RED -> RED_CRAFTING;
+			case YELLOW -> YELLOW_CRAFTING;
+			default -> WHITE_CRAFTING;
+		};
+	}	
+	
+	@NotNull
+	public static ParticleEffect getRisingParticle(DyeColor dyeColor) {
+		return switch (dyeColor) {
+			case BLACK -> BLACK_RISING;
+			case BLUE -> BLUE_RISING;
+			case BROWN -> BROWN_RISING;
+			case CYAN -> CYAN_RISING;
+			case GRAY -> GRAY_RISING;
+			case GREEN -> GREEN_RISING;
+			case LIGHT_BLUE -> LIGHT_BLUE_RISING;
+			case LIGHT_GRAY -> LIGHT_GRAY_RISING;
+			case LIME -> LIME_RISING;
+			case MAGENTA -> MAGENTA_RISING;
+			case ORANGE -> ORANGE_RISING;
+			case PINK -> PINK_RISING;
+			case PURPLE -> PURPLE_RISING;
+			case RED -> RED_RISING;
+			case YELLOW -> YELLOW_RISING;
+			default -> WHITE_RISING;
+		};
 	}
 
 }

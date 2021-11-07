@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.registries;
 import com.glisco.owo.itemgroup.Icon;
 import com.glisco.owo.itemgroup.OwoItemGroup;
 import com.glisco.owo.itemgroup.gui.ItemGroupButton;
-import com.glisco.owo.itemgroup.gui.ItemGroupButtonWidget;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.mob_head.SpectrumSkullBlock;
 import net.minecraft.item.ItemStack;
@@ -36,7 +35,7 @@ public class SpectrumItemGroups {
 			addTab(Icon.of(SpectrumBlocks.PEDESTAL_BASIC_AMETHYST), "general", null, ITEM_GROUP_BUTTON_TEXTURE_IDENTIFIER);
 			addTab(Icon.of(SpectrumItems.BEDROCK_PICKAXE), "tools", null, ITEM_GROUP_BUTTON_TEXTURE_IDENTIFIER);
 			addTab(Icon.of(SpectrumBlocks.CITRINE_BLOCK), "worldgen", null, ITEM_GROUP_BUTTON_TEXTURE_IDENTIFIER);
-			addTab(Icon.of(SpectrumItems.TOPAZ_SHARD_ITEM), "items", null, ITEM_GROUP_BUTTON_TEXTURE_IDENTIFIER);
+			addTab(Icon.of(SpectrumItems.TOPAZ_SHARD), "items", null, ITEM_GROUP_BUTTON_TEXTURE_IDENTIFIER);
 			
 			for(ItemGroupButton itemGroupButton : ITEM_GROUP_BUTTONS) {
 				addButton(itemGroupButton);

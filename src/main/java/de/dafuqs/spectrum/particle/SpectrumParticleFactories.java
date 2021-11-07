@@ -54,11 +54,39 @@ public class SpectrumParticleFactories {
 		registerColoredSporeBlossomParticle(SpectrumParticleTypes.WHITE_FALLING_SPORE_BLOSSOM, SpectrumParticleTypes.WHITE_SPORE_BLOSSOM_AIR, 0.97F, 0.97F, 0.97F);
 		registerColoredSporeBlossomParticle(SpectrumParticleTypes.YELLOW_FALLING_SPORE_BLOSSOM, SpectrumParticleTypes.YELLOW_SPORE_BLOSSOM_AIR, 0.93F, 0.93F, 0.0F);
 		
-		registerColoredCraftingParticles(SpectrumParticleTypes.CYAN_CRAFTING, 0.0F, 1.0F, 1.0F);
-		registerColoredCraftingParticles(SpectrumParticleTypes.MAGENTA_CRAFTING, 1.0F, 0.0F, 1.0F);
-		registerColoredCraftingParticles(SpectrumParticleTypes.YELLOW_CRAFTING, 0.93F, 0.93F, 0.0F);
 		registerColoredCraftingParticles(SpectrumParticleTypes.BLACK_CRAFTING, 0.1F, 0.1F, 0.1F);
+		registerColoredCraftingParticles(SpectrumParticleTypes.BLUE_CRAFTING, 0.05F, 0.011F, 0.95F);
+		registerColoredCraftingParticles(SpectrumParticleTypes.BROWN_CRAFTING, 0.31F, 0.16F, 0.05F);
+		registerColoredCraftingParticles(SpectrumParticleTypes.CYAN_CRAFTING, 0.0F, 1.0F, 1.0F);
+		registerColoredCraftingParticles(SpectrumParticleTypes.GRAY_CRAFTING, 0.3F, 0.3F, 0.3F);
+		registerColoredCraftingParticles(SpectrumParticleTypes.GREEN_CRAFTING, 0.14F, 0.24F, 0.0F);
+		registerColoredCraftingParticles(SpectrumParticleTypes.LIGHT_BLUE_CRAFTING, 0.0F, 0.75F, 0.95F);
+		registerColoredCraftingParticles(SpectrumParticleTypes.LIGHT_GRAY_CRAFTING, 0.68F, 0.68F, 0.68F);
+		registerColoredCraftingParticles(SpectrumParticleTypes.LIME_CRAFTING, 0.0F, 0.86F, 0.0F);
+		registerColoredCraftingParticles(SpectrumParticleTypes.MAGENTA_CRAFTING, 1.0F, 0.0F, 1.0F);
+		registerColoredCraftingParticles(SpectrumParticleTypes.ORANGE_CRAFTING, 0.93F, 0.39F, 0.0F);
+		registerColoredCraftingParticles(SpectrumParticleTypes.PINK_CRAFTING, 1.0F, 0.78F, 0.87F);
+		registerColoredCraftingParticles(SpectrumParticleTypes.PURPLE_CRAFTING, 0.43F, 0.0F, 0.68F);
+		registerColoredCraftingParticles(SpectrumParticleTypes.RED_CRAFTING, 0.95F, 0.0F, 0.0F);
 		registerColoredCraftingParticles(SpectrumParticleTypes.WHITE_CRAFTING, 0.97F, 0.97F, 0.97F);
+		registerColoredCraftingParticles(SpectrumParticleTypes.YELLOW_CRAFTING, 0.93F, 0.93F, 0.0F);
+		
+		registerColoredRisingParticles(SpectrumParticleTypes.BLACK_RISING, 0.1F, 0.1F, 0.1F);
+		registerColoredRisingParticles(SpectrumParticleTypes.BLUE_RISING, 0.05F, 0.011F, 0.95F);
+		registerColoredRisingParticles(SpectrumParticleTypes.BROWN_RISING, 0.31F, 0.16F, 0.05F);
+		registerColoredRisingParticles(SpectrumParticleTypes.CYAN_RISING, 0.0F, 1.0F, 1.0F);
+		registerColoredRisingParticles(SpectrumParticleTypes.GRAY_RISING, 0.3F, 0.3F, 0.3F);
+		registerColoredRisingParticles(SpectrumParticleTypes.GREEN_RISING, 0.14F, 0.24F, 0.0F);
+		registerColoredRisingParticles(SpectrumParticleTypes.LIGHT_BLUE_RISING, 0.0F, 0.75F, 0.95F);
+		registerColoredRisingParticles(SpectrumParticleTypes.LIGHT_GRAY_RISING, 0.68F, 0.68F, 0.68F);
+		registerColoredRisingParticles(SpectrumParticleTypes.LIME_RISING, 0.0F, 0.86F, 0.0F);
+		registerColoredRisingParticles(SpectrumParticleTypes.MAGENTA_RISING, 1.0F, 0.0F, 1.0F);
+		registerColoredRisingParticles(SpectrumParticleTypes.ORANGE_RISING, 0.93F, 0.39F, 0.0F);
+		registerColoredRisingParticles(SpectrumParticleTypes.PINK_RISING, 1.0F, 0.78F, 0.87F);
+		registerColoredRisingParticles(SpectrumParticleTypes.PURPLE_RISING, 0.43F, 0.0F, 0.68F);
+		registerColoredRisingParticles(SpectrumParticleTypes.RED_RISING, 0.95F, 0.0F, 0.0F);
+		registerColoredRisingParticles(SpectrumParticleTypes.WHITE_RISING, 0.97F, 0.97F, 0.97F);
+		registerColoredRisingParticles(SpectrumParticleTypes.YELLOW_RISING, 0.93F, 0.93F, 0.0F);
 	}
 
 	public static void registerColoredSporeBlossomParticle(DefaultParticleType fallingParticleType, DefaultParticleType airParticleType, float red, float green, float blue) {
@@ -80,6 +108,15 @@ public class SpectrumParticleFactories {
 	public static void registerColoredCraftingParticles(DefaultParticleType particleType,  float red, float green, float blue) {
 		ParticleFactoryRegistry.getInstance().register(particleType, provider -> (parameters, world, x, y, z, velocityX, velocityY, velocityZ) -> {
 			CraftingParticle.Factory factory = new CraftingParticle.Factory(provider);
+			Particle particle = factory.createParticle(particleType, world, x, y, z, velocityX, velocityY, velocityZ);
+			particle.setColor(red, green, blue);
+			return particle;
+		});
+	}
+
+	public static void registerColoredRisingParticles(DefaultParticleType particleType,  float red, float green, float blue) {
+		ParticleFactoryRegistry.getInstance().register(particleType, provider -> (parameters, world, x, y, z, velocityX, velocityY, velocityZ) -> {
+			RisingParticle.Factory factory = new RisingParticle.Factory(provider);
 			Particle particle = factory.createParticle(particleType, world, x, y, z, velocityX, velocityY, velocityZ);
 			particle.setColor(red, green, blue);
 			return particle;

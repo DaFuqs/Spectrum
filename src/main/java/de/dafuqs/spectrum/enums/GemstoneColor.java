@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.enums;
 
-import de.dafuqs.spectrum.blocks.ColoredSporeBlossomBlock;
 import net.minecraft.util.DyeColor;
 
 public enum GemstoneColor {

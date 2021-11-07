@@ -14,6 +14,7 @@ import de.dafuqs.spectrum.progression.BlockCloakManager;
 import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.registries.*;
+import de.dafuqs.spectrum.registries.color.ColorRegistry;
 import de.dafuqs.spectrum.sound.SpectrumBlockSoundGroups;
 import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
 import de.dafuqs.spectrum.worldgen.SpectrumConfiguredFeatures;
@@ -113,6 +114,8 @@ public class SpectrumCommon implements ModInitializer {
 		
 		SpectrumItemGroups.ITEM_GROUP_GENERAL.initialize();
 		SpectrumItemGroups.ITEM_GROUP_BLOCKS.initialize();
+		
+		ColorRegistry.registerColorRegistries();
 
 		ServerWorldEvents.LOAD.register((minecraftServer, serverWorld) -> {
 			SpectrumCommon.minecraftServer = minecraftServer;

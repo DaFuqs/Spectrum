@@ -71,8 +71,6 @@ public class BlockBoundSoundInstance extends AbstractSoundInstance implements Ti
 				|| shouldStopPlaying()) {
 			
 			this.setDone();
-		} else {
-			showParticles();
 		}
 	}
 	
@@ -83,10 +81,6 @@ public class BlockBoundSoundInstance extends AbstractSoundInstance implements Ti
 		BlockBoundSoundInstance newInstance = new BlockBoundSoundInstance(soundEvent, MinecraftClient.getInstance().world.getRegistryKey(), sourceBlockPos, sourceBlock, maxDurationTicks);
 		playingSoundInstances.add(newInstance);
 		SpectrumClient.minecraftClient.getSoundManager().play(newInstance);
-	}
-
-	private void showParticles() {
-		// TODO
 	}
 	
 	private boolean shouldStopPlaying() {

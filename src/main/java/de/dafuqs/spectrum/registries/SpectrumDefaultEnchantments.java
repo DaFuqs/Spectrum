@@ -37,7 +37,7 @@ public class SpectrumDefaultEnchantments {
 		SpectrumDefaultEnchantments.addDefaultEnchantment(SpectrumItems.BEDROCK_SWORD, Enchantments.SHARPNESS, 5);
 		SpectrumDefaultEnchantments.addDefaultEnchantment(SpectrumItems.BEDROCK_BOW, Enchantments.POWER, 5);
 		SpectrumDefaultEnchantments.addDefaultEnchantment(SpectrumItems.BEDROCK_CROSSBOW, Enchantments.QUICK_CHARGE, 3);
-		SpectrumDefaultEnchantments.addDefaultEnchantment(SpectrumItems.BEDROCK_SHEARS, Enchantments.SILK_TOUCH, 5);
+		SpectrumDefaultEnchantments.addDefaultEnchantment(SpectrumItems.BEDROCK_SHEARS, Enchantments.SILK_TOUCH, 1);
 		SpectrumDefaultEnchantments.addDefaultEnchantment(SpectrumItems.BEDROCK_HOE, Enchantments.FORTUNE, 3);
 		SpectrumDefaultEnchantments.addDefaultEnchantment(SpectrumItems.BEDROCK_FISHING_ROD, Enchantments.LUCK_OF_THE_SEA, 3);
 

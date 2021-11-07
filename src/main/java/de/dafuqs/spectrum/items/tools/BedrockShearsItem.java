@@ -9,6 +9,7 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
+// Waiting for https://github.com/FabricMC/fabric/pull/1804
 public class BedrockShearsItem extends ShearsItem implements PreEnchantedTooltip {
 
 	public BedrockShearsItem(Settings settings) {

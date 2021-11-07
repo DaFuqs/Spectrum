@@ -33,7 +33,7 @@ public class ParticleSpawnerParticle extends SpriteBillboardParticle {
 		this.setSprite(sprite);
 		this.setMaxAge(effect.lifetimeTicks);
 		this.scale(effect.scale);
-		this.setColor(effect.color.getX(), effect.color.getY(), effect.color.getZ()); // TODO: change to CMY
+		this.setColor(effect.color.getX(), effect.color.getY(), effect.color.getZ()); // TODO: change to CMY for the user
 		this.field_28786 = effect.gravity;
 		this.collidesWithWorld = effect.collisions;
 	}

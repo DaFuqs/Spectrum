@@ -10,14 +10,18 @@ import de.dafuqs.spectrum.progression.advancement.HasAdvancementCriterion;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.recipe.fusion_shrine.FusionShrineRecipe;
 import de.dafuqs.spectrum.recipe.pedestal.PedestalCraftingRecipe;
+import de.dafuqs.spectrum.registries.color.ColorRegistry;
 import net.minecraft.advancement.Advancement;
 import net.minecraft.advancement.AdvancementCriterion;
 import net.minecraft.advancement.criterion.CriterionConditions;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.Registry;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.Level;
 
@@ -83,7 +87,7 @@ public class ProgressionSanityCommand {
 			} else {
 				for (Identifier advancementIdentifier : advancementIdentifiers) {
 					if (!doesAdvancementExist(advancementIdentifier)) {
-						SpectrumCommon.log(Level.WARN, "[SANITY: Pedestal Recipe Unlocks] Advancement '" + advancementIdentifier + "' in pedestal recipe '" + pedestalCraftingRecipe.getId() + "' does not exist");
+						SpectrumCommon.log(Level.WARN, "[SANITY: Pedestal Recipe Unlocks] Advancement '" + advancementIdentifier + "' in '" + pedestalCraftingRecipe.getId() + "' does not exist");
 					}
 				}
 			}
@@ -92,7 +96,11 @@ public class ProgressionSanityCommand {
 		// impossible to unlock fusion shrine recipes
 		for(FusionShrineRecipe fusionShrineRecipe : SpectrumCommon.minecraftServer.getRecipeManager().listAllOfType(SpectrumRecipeTypes.FUSION_SHRINE)) {
 			if(!doesAdvancementExist(fusionShrineRecipe.getRequiredAdvancementIdentifier())) {
-				SpectrumCommon.log(Level.WARN, "[SANITY: Fusion Shrine Recipe Unlocks] Advancement '" + fusionShrineRecipe.getRequiredAdvancementIdentifier() + "' in fusion shrine recipe '" + fusionShrineRecipe.getId() + "' does not exist");
+				SpectrumCommon.log(Level.WARN, "[SANITY: Fusion Shrine Recipe Unlocks] Advancement '" + fusionShrineRecipe.getRequiredAdvancementIdentifier() + "' in recipe '" + fusionShrineRecipe.getId() + "' does not exist");
+			}
+			Item outputItem = fusionShrineRecipe.getOutput().getItem();
+			if(ColorRegistry.ITEM_COLORS.getMapping(outputItem).isEmpty()) {
+				SpectrumCommon.log(Level.WARN, "[SANITY: Fusion Shrine Recipe] Recipe with output '" + Registry.ITEM.getId(outputItem) + "' in recipe '" + fusionShrineRecipe.getId() + "', does not exist in item color registry. Add it for nice effects!");
 			}
 		}
 

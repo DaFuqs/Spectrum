@@ -17,7 +17,7 @@ public class SpectrumItemGroups {
 	// TODO: Add custom item group background texture
 	private static final Identifier ITEM_GROUP_BACKGROUND_TEXTURE_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/item_group.png");
 	private static final List<ItemGroupButton> ITEM_GROUP_BUTTONS = new ArrayList<>() {{
-		add(ItemGroupButton.discord("https://github.com/DaFuqs/Spectrum")); // TODO: Add links, when uploaded
+		add(ItemGroupButton.discord("https://discord.gg/PnR9NuXQ")); // TODO: Add links, when uploaded
 		add(ItemGroupButton.github("https://github.com/DaFuqs/Spectrum"));
 		add(ItemGroupButton.curseforge("https://github.com/DaFuqs/Spectrum"));
 		add(ItemGroupButton.modrinth("https://github.com/DaFuqs/Spectrum"));

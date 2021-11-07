@@ -10,9 +10,12 @@ import net.minecraft.network.PacketByteBuf;
 import net.minecraft.particle.AbstractDustParticleEffect;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleType;
+import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Vec3f;
 import net.minecraft.util.registry.Registry;
+
+import java.awt.*;
 
 public class ParticleSpawnerParticleEffect implements ParticleEffect {
 
@@ -66,7 +69,7 @@ public class ParticleSpawnerParticleEffect implements ParticleEffect {
 	public int lifetimeTicks;
 	public float gravity;
 	public boolean collisions;
-
+	
 	public ParticleSpawnerParticleEffect(Identifier textureIdentifier, float gravity, Vec3f color, float scale, int lifetimeTicks, boolean collisions) {
 		this.textureIdentifier = textureIdentifier;
 		this.gravity = gravity;
@@ -75,7 +78,16 @@ public class ParticleSpawnerParticleEffect implements ParticleEffect {
 		this.lifetimeTicks = lifetimeTicks;
 		this.collisions = collisions;
 	}
-
+	
+	public ParticleSpawnerParticleEffect(Identifier textureIdentifier, Vec3f color, float scale, int lifetimeTicks, boolean collisions) {
+		this.textureIdentifier = textureIdentifier;
+		this.gravity = 1.0F;
+		this.color = color;
+		this.scale = scale;
+		this.lifetimeTicks = lifetimeTicks;
+		this.collisions = collisions;
+	}
+	
 	public ParticleSpawnerParticleEffect(Object o, Object o1, Object o2, Object o3, Object o4, Object o5) {
 		new ParticleSpawnerParticleEffect((Identifier) o, (float) o1, (Vec3f) o2, (float) o3, (int) o4, (boolean) o5);
 	}

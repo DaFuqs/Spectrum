@@ -1,15 +1,16 @@
 package de.dafuqs.spectrum.networking;
 
 import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.Support;
 import de.dafuqs.spectrum.blocks.fusion_shrine.FusionShrineBlockEntity;
 import de.dafuqs.spectrum.blocks.particle_spawner.ParticleSpawnerBlockEntity;
 import de.dafuqs.spectrum.blocks.pedestal.PedestalBlock;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
-import de.dafuqs.spectrum.particle.effect.ItemTransfer;
-import de.dafuqs.spectrum.particle.effect.ItemTransferParticleEffect;
-import de.dafuqs.spectrum.particle.effect.WirelessRedstoneTransmission;
-import de.dafuqs.spectrum.particle.effect.WirelessRedstoneTransmissionParticleEffect;
+import de.dafuqs.spectrum.particle.effect.*;
+import de.dafuqs.spectrum.recipe.fusion_shrine.FusionShrineRecipe;
+import de.dafuqs.spectrum.registries.color.ColorRegistry;
 import de.dafuqs.spectrum.sound.BlockBoundSoundInstance;
+import me.shedaniel.math.Color;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
@@ -30,13 +31,18 @@ import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
+import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.Vec3f;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 
 public class SpectrumS2CPackets {
@@ -49,6 +55,7 @@ public class SpectrumS2CPackets {
 	public static final Identifier PLAY_LIGHT_CREATED_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "play_light_created_particle");
 	public static final Identifier PLAY_PEDESTAL_CRAFTING_FINISHED_PARTICLE_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "play_pedestal_crafting_finished_particle");
 	public static final Identifier PLAY_PEDESTAL_UPGRADED_PARTICLE_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "play_pedestal_upgraded_particle");
+	public static final Identifier PLAY_FUSION_CRAFTING_FINISHED_PARTICLE_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "play_fusion_crafting_finished_particle");
 	public static final Identifier PLAY_PARTICLE_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "play_particle");
 	public static final Identifier PLAY_PARTICLE_PACKET_WITH_OFFSET_ID = new Identifier(SpectrumCommon.MOD_ID, "play_particle_with_offset");
 	public static final Identifier CHANGE_PARTICLE_SPAWNER_SETTINGS_CLIENT_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "change_particle_spawner_settings_client");
@@ -124,6 +131,26 @@ public class SpectrumS2CPackets {
 				}
 			});
 		});
+		
+		ClientPlayNetworking.registerGlobalReceiver(PLAY_FUSION_CRAFTING_FINISHED_PARTICLE_PACKET_ID, (client, handler, buf, responseSender) -> {
+			BlockPos position = buf.readBlockPos();
+			DyeColor dyeColor = DyeColor.values()[buf.readInt()];
+			client.execute(() -> {
+				Vec3d sourcePos = new Vec3d(position.getX() + 0.5, position.getY() + 1, position.getZ() + 0.5);
+				
+				Vec3f color = ColorRegistry.getColor(dyeColor);
+				float velocityModifier = 0.3F;
+				for(Vec3d velocity : Support.VECTORS_16) {
+					MinecraftClient.getInstance().player.getEntityWorld().addParticle(
+							new ParticleSpawnerParticleEffect(new Identifier("spectrum:particle/liquid_crystal_sparkle"), color, 1.0F, 40, false),
+							sourcePos.x, sourcePos.y, sourcePos.z,
+							velocity.x * velocityModifier, velocity.y * velocityModifier, velocity.z * velocityModifier
+					);
+				}
+
+			});
+		});
+		
 		ClientPlayNetworking.registerGlobalReceiver(PLAY_PEDESTAL_UPGRADED_PARTICLE_PACKET_ID, (client, handler, buf, responseSender) -> {
 			BlockPos position = buf.readBlockPos(); // the block pos of the pedestal
 			PedestalBlock.PedestalVariant variant = PedestalBlock.PedestalVariant.values()[buf.readInt()]; // the item stack that was crafted
@@ -270,8 +297,8 @@ public class SpectrumS2CPackets {
 	 * @param position the pos of the particles
 	 * @param particleEffect The particle effect to play
 	 */
-	public static void playParticle(ServerWorld world, Vec3d position, ParticleType particleEffect, int amount, Vec3d randomOffset, Vec3d randomVelocity) {
-		playParticle(world, position, Registry.PARTICLE_TYPE.getId(particleEffect), amount, randomOffset, randomVelocity);
+	public static void playParticle(ServerWorld world, Vec3d position, ParticleEffect particleEffect, int amount, Vec3d randomOffset, Vec3d randomVelocity) {
+		playParticle(world, position, Registry.PARTICLE_TYPE.getId(particleEffect.getType()), amount, randomOffset, randomVelocity);
 	}
 
 	/**
@@ -301,6 +328,24 @@ public class SpectrumS2CPackets {
 		// Iterate over all players tracking a position in the world and send the packet to each player
 		for (ServerPlayerEntity player : PlayerLookup.tracking((ServerWorld) world, blockPos)) {
 			ServerPlayNetworking.send(player, SpectrumS2CPackets.PLAY_PEDESTAL_CRAFTING_FINISHED_PARTICLE_PACKET_ID, buf);
+		}
+	}
+	
+	public static void sendPlayFusionCraftingFinishedParticles(World world, BlockPos blockPos, ItemStack itemStack) {
+		Optional<DyeColor> optionalItemColor = ColorRegistry.ITEM_COLORS.getMapping(itemStack.getItem());
+		
+		PacketByteBuf buf = PacketByteBufs.create();
+		buf.writeBlockPos(blockPos);
+		
+		if(optionalItemColor.isPresent()) {
+			buf.writeInt(optionalItemColor.get().ordinal());
+		} else {
+			buf.writeInt(DyeColor.LIGHT_GRAY.ordinal());
+		}
+		
+		// Iterate over all players tracking a position in the world and send the packet to each player
+		for (ServerPlayerEntity player : PlayerLookup.tracking((ServerWorld) world, blockPos)) {
+			ServerPlayNetworking.send(player, SpectrumS2CPackets.PLAY_FUSION_CRAFTING_FINISHED_PARTICLE_PACKET_ID, buf);
 		}
 	}
 

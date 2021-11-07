@@ -18,14 +18,53 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.tag.Tag;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.Vec3d;
 import org.apache.logging.log4j.Level;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 
 public class Support {
+	
+	public static final List<Vec3d> VECTORS_4 = new ArrayList<>() {{
+		add(new Vec3d(1.0D, 0, 0.0D));
+		add(new Vec3d(0.0D, 0, 1.0D));
+		add(new Vec3d(-1.0, 0, 0.0D));
+		add(new Vec3d(0.0D, 0, -1.0D));
+	}};
+	
+	public static final List<Vec3d> VECTORS_8 = new ArrayList<>() {{
+			add(new Vec3d(1.0D, 0, 0.0D));
+			add(new Vec3d(0.7D, 0, 0.7D));
+			add(new Vec3d(0.0D, 0, 1.0D));
+			add(new Vec3d(-0.7D, 0, 0.7D));
+			add(new Vec3d(-1.0D, 0, 0.0D));
+			add(new Vec3d(-0.7D, 0, -0.7D));
+			add(new Vec3d(0.0D, 0, -1.0D));
+			add(new Vec3d(0.7D, 0, -0.7D));
+		}};
+	
+	public static final List<Vec3d> VECTORS_16 = new ArrayList<>() {{
+			add(new Vec3d(1.0D, 0, 0.0D));
+			add(new Vec3d(0.75D, 0, 0.5D));
+			add(new Vec3d(0.7D, 0, 0.7D));
+			add(new Vec3d(0.5D, 0, 0.75D));
+			add(new Vec3d(0.0D, 0, 1.0D));
+			add(new Vec3d(-0.5D, 0, 0.75D));
+			add(new Vec3d(-0.7D, 0, 0.7D));
+			add(new Vec3d(-0.75D, 0, 0.5D));
+			add(new Vec3d(-1.0D, 0, 0.0D));
+			add(new Vec3d(-0.75D, 0, 0.5D));
+			add(new Vec3d(-0.7D, 0, -0.7D));
+			add(new Vec3d(-0.5D, 0, -0.75D));
+			add(new Vec3d(0.0D, 0, -1.0D));
+			add(new Vec3d(0.5D, 0, -0.75D));
+			add(new Vec3d(0.7D, 0, -0.7D));
+			add(new Vec3d(0.75D, 0, -0.5D));
+		}};
 
 	public static boolean hasTag(@NotNull BlockState blockState, @NotNull Tag<Block> tag) {
 		return tag.contains(blockState.getBlock());

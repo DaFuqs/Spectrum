@@ -12,7 +12,7 @@ import java.util.Optional;
 public class FluidColorRegistry extends ColorRegistry<Fluid> {
 	
 	private static final HashMap<Fluid, DyeColor> COLORS = new HashMap<>() {{
-		put(Fluids.WATER, DyeColor.LIGHT_BLUE);
+		put(Fluids.WATER, DyeColor.BLUE);
 		put(Fluids.LAVA, DyeColor.ORANGE);
 	}};
 	

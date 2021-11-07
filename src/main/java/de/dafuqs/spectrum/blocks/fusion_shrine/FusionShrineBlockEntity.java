@@ -1,8 +1,11 @@
 package de.dafuqs.spectrum.blocks.fusion_shrine;
 
+import com.glisco.owo.Owo;
+import com.glisco.owo.client.OwoClient;
 import de.dafuqs.spectrum.SpectrumClient;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.Support;
+import de.dafuqs.spectrum.blocks.pedestal.PedestalBlockEntity;
 import de.dafuqs.spectrum.enums.GemstoneColor;
 import de.dafuqs.spectrum.interfaces.PlayerOwned;
 import de.dafuqs.spectrum.networking.SpectrumS2CPackets;
@@ -11,6 +14,7 @@ import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.recipe.fusion_shrine.FusionShrineRecipe;
 import de.dafuqs.spectrum.recipe.fusion_shrine.FusionShrineRecipeWorldEffect;
+import de.dafuqs.spectrum.recipe.pedestal.PedestalCraftingRecipe;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import de.dafuqs.spectrum.registries.color.ColorRegistry;
@@ -32,22 +36,25 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
 import net.minecraft.particle.ParticleEffect;
-import net.minecraft.recipe.Ingredient;
-import net.minecraft.recipe.Recipe;
-import net.minecraft.recipe.RecipeInputProvider;
-import net.minecraft.recipe.RecipeMatcher;
+import net.minecraft.particle.ParticleType;
+import net.minecraft.recipe.*;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.Vec3f;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
+import java.util.Random;
 import java.util.UUID;
 
 public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputProvider, PlayerOwned, BlockEntityClientSerializable {
@@ -202,13 +209,11 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 		} else {
 			if(fusionShrineBlockEntity.craftingTime > 0) {
 				fusionShrineBlockEntity.craftingTime = 0;
-				SpectrumS2CPackets.sendCancelBlockBoundSoundInstance((ServerWorld) fusionShrineBlockEntity.world, fusionShrineBlockEntity.pos);
 				fusionShrineBlockEntity.markDirty();
 			}
 		}
 	}
-
-
+	
 	private static FusionShrineRecipe getCurrentRecipe(@NotNull World world, FusionShrineBlockEntity fusionShrineBlockEntity) {
 		if(fusionShrineBlockEntity.currentRecipe != null) {
 			if(fusionShrineBlockEntity.currentRecipe.matches(fusionShrineBlockEntity.inventory, world)) {
@@ -219,7 +224,9 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 		FusionShrineRecipe recipe = world.getRecipeManager().getFirstMatch(SpectrumRecipeTypes.FUSION_SHRINE, fusionShrineBlockEntity.inventory, world).orElse(null);
 		fusionShrineBlockEntity.craftingTime = 0;
 		fusionShrineBlockEntity.currentRecipe = recipe;
-		if(recipe != null) {
+		if(recipe == null) {
+			SpectrumS2CPackets.sendCancelBlockBoundSoundInstance((ServerWorld) fusionShrineBlockEntity.world, fusionShrineBlockEntity.pos);
+		} else {
 			fusionShrineBlockEntity.craftingTimeTotal = recipe.getCraftingTime();
 		}
 		
@@ -260,14 +267,22 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 			}
 
 			fusionShrineBlockEntity.setFluid(Fluids.EMPTY); // empty the shrine
-			scatterContents(world, blockPos.up(), fusionShrineBlockEntity); // drop remaining items
 			spawnCraftingResultAndXP(world, fusionShrineBlockEntity, recipe, maxAmount); // spawn results
+			scatterContents(world, blockPos.up(), fusionShrineBlockEntity); // drop remaining items
+			
+			SpectrumS2CPackets.sendPlayFusionCraftingFinishedParticles(world, blockPos, recipe.getOutput());
+			fusionShrineBlockEntity.playSound(SpectrumSoundEvents.FUSION_SHRINE_CRAFTING_FINISHED, 1.4F);
 
 			//only triggered on server side. Therefore, has to be sent to client via S2C packet
 			fusionShrineBlockEntity.grantPlayerFusionCraftingAdvancement(recipe);
 		}
 	}
-
+	
+	public void playSound(SoundEvent soundEvent, float volume) {
+		Random random = world.random;
+		world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), soundEvent, SoundCategory.BLOCKS, volume, 0.9F + random.nextFloat() * 0.15F);
+	}
+	
 	private void grantPlayerFusionCraftingAdvancement(FusionShrineRecipe recipe) {
 		ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity) PlayerOwned.getPlayerEntityIfOnline(this.world, this.ownerUUID);
 		if(serverPlayerEntity != null) {
@@ -311,7 +326,7 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 	}
 
 	public void updateInClientWorld() {
-		world.updateListeners(pos, world.getBlockState(pos), world.getBlockState(pos), Block.NO_REDRAW);
+		world.updateListeners(pos, world.getBlockState(pos), world.getBlockState(pos), Block.NOTIFY_LISTENERS);
 	}
 
 	public void setLightForFluid(World world, BlockPos blockPos, Fluid fluid) {

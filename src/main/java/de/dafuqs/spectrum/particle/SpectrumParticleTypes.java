@@ -208,7 +208,7 @@ public class SpectrumParticleTypes {
 	}
 	
 	@NotNull
-	public static ParticleEffect getCraftingParticle(DyeColor dyeColor) {
+	public static DefaultParticleType getCraftingParticle(DyeColor dyeColor) {
 		return switch (dyeColor) {
 			case BLACK -> BLACK_CRAFTING;
 			case BLUE -> BLUE_CRAFTING;

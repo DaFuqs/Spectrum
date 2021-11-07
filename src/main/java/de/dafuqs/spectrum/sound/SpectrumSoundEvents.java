@@ -8,9 +8,17 @@ import org.apache.logging.log4j.Level;
 
 public class SpectrumSoundEvents {
 	
-	public static SoundEvent FADING_PLACED = register("fading_placed");;
-	public static SoundEvent FAILING_PLACED = register("failing_placed");
-	public static SoundEvent RUIN_PLACED = register("ruin_placed");
+	public static SoundEvent PEDESTAL_CRAFTING = register("pedestal_crafting");;
+	public static SoundEvent PEDESTAL_CRAFTING_FINISHED_GENERIC = register("pedestal_crafting_finished_generic");
+	public static SoundEvent PEDESTAL_CRAFTING_FINISHED_AMETHYST = register("pedestal_crafting_finished_amethyst");
+	public static SoundEvent PEDESTAL_CRAFTING_FINISHED_CITRINE = register("pedestal_crafting_finished_citrine");
+	public static SoundEvent PEDESTAL_CRAFTING_FINISHED_TOPAZ = register("pedestal_crafting_finished_topaz");
+	public static SoundEvent PEDESTAL_CRAFTING_FINISHED_ONYX = register("pedestal_crafting_finished_onyx");
+	public static SoundEvent PEDESTAL_CRAFTING_FINISHED_MOONSTONE = register("pedestal_crafting_finished_moonstone");
+	public static SoundEvent PEDESTAL_UPGRADE = register("pedestal_upgrade");
+	
+	public static SoundEvent FUSION_SHRINE_CRAFTING = register("fusion_shrine_crafting");
+	public static SoundEvent FUSION_SHRINE_CRAFTING_FINISHED = register("fusion_shrine_crafting_finished");
 
 	public static SoundEvent NEW_REVELATION = register("new_revelation");
 	public static final SoundEvent NEW_RECIPE = register("new_recipe");
@@ -33,17 +41,10 @@ public class SpectrumSoundEvents {
 	public static SoundEvent LIQUID_CRYSTAL_AMBIENT = register("liquid_crystal_ambient");
 	public static SoundEvent MUD_AMBIENT = register("mud_ambient");
 	
-	public static SoundEvent PEDESTAL_CRAFTING = register("pedestal_crafting");;
-	public static SoundEvent PEDESTAL_CRAFTING_FINISHED_GENERIC = register("pedestal_crafting_finished_generic");
-	public static SoundEvent PEDESTAL_CRAFTING_FINISHED_AMETHYST = register("pedestal_crafting_finished_amethyst");
-	public static SoundEvent PEDESTAL_CRAFTING_FINISHED_CITRINE = register("pedestal_crafting_finished_citrine");
-	public static SoundEvent PEDESTAL_CRAFTING_FINISHED_TOPAZ = register("pedestal_crafting_finished_topaz");
-	public static SoundEvent PEDESTAL_CRAFTING_FINISHED_ONYX = register("pedestal_crafting_finished_onyx");
-	public static SoundEvent PEDESTAL_CRAFTING_FINISHED_MOONSTONE = register("pedestal_crafting_finished_moonstone");
-	public static SoundEvent PEDESTAL_UPGRADE = register("pedestal_upgrade");
+	public static SoundEvent FADING_PLACED = register("fading_placed");;
+	public static SoundEvent FAILING_PLACED = register("failing_placed");
+	public static SoundEvent RUIN_PLACED = register("ruin_placed");
 	
-	public static SoundEvent FUSION_SHRINE_CRAFTING = register("fusion_shrine_crafting");
-
 	public static SoundEvent BLOCK_CITRINE_BLOCK_BREAK = register("block_citrine_block_break");
 	public static SoundEvent BLOCK_CITRINE_BLOCK_STEP = register("block_citrine_block_step");
 	public static SoundEvent BLOCK_CITRINE_BLOCK_PLACE = register("block_citrine_block_place");

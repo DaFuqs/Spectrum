@@ -4,6 +4,11 @@ import de.dafuqs.spectrum.particle.client.*;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 import net.minecraft.client.particle.*;
 import net.minecraft.particle.DefaultParticleType;
+import net.minecraft.util.DyeColor;
+import net.minecraft.util.math.Vec3f;
+import org.jetbrains.annotations.NotNull;
+
+import java.awt.*;
 
 public class SpectrumParticleFactories {
 
@@ -88,7 +93,7 @@ public class SpectrumParticleFactories {
 		registerColoredRisingParticles(SpectrumParticleTypes.WHITE_RISING, 0.97F, 0.97F, 0.97F);
 		registerColoredRisingParticles(SpectrumParticleTypes.YELLOW_RISING, 0.93F, 0.93F, 0.0F);
 	}
-
+	
 	public static void registerColoredSporeBlossomParticle(DefaultParticleType fallingParticleType, DefaultParticleType airParticleType, float red, float green, float blue) {
 		ParticleFactoryRegistry.getInstance().register(fallingParticleType, provider -> (parameters, world, x, y, z, velocityX, velocityY, velocityZ) -> {
 			BlockLeakParticle.FallingSporeBlossomFactory factory = new BlockLeakParticle.FallingSporeBlossomFactory(provider);

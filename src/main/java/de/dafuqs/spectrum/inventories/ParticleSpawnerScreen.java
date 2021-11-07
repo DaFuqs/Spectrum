@@ -207,26 +207,26 @@ public class ParticleSpawnerScreen extends HandledScreen<ParticleSpawnerScreenHa
 	  int i = (this.width - this.backgroundWidth) / 2 + 3;
 	  int j = (this.height - this.backgroundHeight) / 2 + 3;
 
-	  amountField = addTextFieldWidget(i+110, j+47, new LiteralText("asdfsd.asdfsd"), String.valueOf(blockEntity.particlesPerSecond), this::isPositiveDecimalNumber);
-	  positionXField = addTextFieldWidget(i+61, j+74, new LiteralText("asdfsd.asdfsd"), String.valueOf(blockEntity.particleSourcePosition.getX()), this::isDecimalNumber);
-	  positionYField = addTextFieldWidget(i+96, j+74, new LiteralText("asdfsd.asdfsd"), String.valueOf(blockEntity.particleSourcePosition.getY()), this::isDecimalNumber);
-	  positionZField = addTextFieldWidget(i+131, j+74, new LiteralText("asdfsd.asdfsd"), String.valueOf(blockEntity.particleSourcePosition.getZ()), this::isDecimalNumber);
-	  positionXVarianceField = addTextFieldWidget(i+69, j+94, new LiteralText("asdfsd.asdfsd"), String.valueOf(blockEntity.particleSourcePositionVariance.getX()), this::isPositiveDecimalNumber);
-	  positionYVarianceField = addTextFieldWidget(i+104, j+94, new LiteralText("asdfsd.asdfsd"), String.valueOf(blockEntity.particleSourcePositionVariance.getY()), this::isPositiveDecimalNumber);
-	  positionZVarianceField = addTextFieldWidget(i+140, j+94, new LiteralText("asdfsd.asdfsd"), String.valueOf(blockEntity.particleSourcePositionVariance.getZ()), this::isPositiveDecimalNumber);
-	  velocityXField = addTextFieldWidget(i+61, j+114, new LiteralText("asdfsd.asdfsd"), String.valueOf(blockEntity.velocity.getX()), this::isDecimalNumber);
-	  velocityYField = addTextFieldWidget(i+96, j+114, new LiteralText("asdfsd.asdfsd"), String.valueOf(blockEntity.velocity.getY()), this::isDecimalNumber);
-	  velocityZField = addTextFieldWidget(i+131, j+114, new LiteralText("asdfsd.asdfsd"), String.valueOf(blockEntity.velocity.getZ()), this::isDecimalNumber);
-	  velocityXVarianceField = addTextFieldWidget(i+69, j+134, new LiteralText("asdfsd.asdfsd"), String.valueOf(blockEntity.velocityVariance.getX()), this::isPositiveDecimalNumber);
-	  velocityYVarianceField = addTextFieldWidget(i+104, j+134, new LiteralText("asdfsd.asdfsd"), String.valueOf(blockEntity.velocityVariance.getY()), this::isPositiveDecimalNumber);
-	  velocityZVarianceField = addTextFieldWidget(i+140, j+134, new LiteralText("asdfsd.asdfsd"), String.valueOf(blockEntity.velocityVariance.getZ()), this::isPositiveDecimalNumber);
-	  scale = addTextFieldWidget(i+55, j+158, new LiteralText("asdfsd.asdfsd"), String.valueOf(blockEntity.scale), this::isPositiveDecimalNumber);
-	  scaleVariance = addTextFieldWidget(i+139, j+158, new LiteralText("asdfsd.asdfsd"), String.valueOf(blockEntity.scaleVariance), this::isPositiveDecimalNumber);
-	  duration = addTextFieldWidget(i+55, j+178, new LiteralText("asdfsd.asdfsd"), String.valueOf(blockEntity.lifetimeTicks), this::isPositiveWholeNumber);
-	  durationVariance = addTextFieldWidget(i+139, j+178, new LiteralText("asdfsd.asdfsd"), String.valueOf(blockEntity.lifetimeVariance), this::isPositiveWholeNumber);
-	  gravity = addTextFieldWidget(i+55, j+198, new LiteralText("asdfsd.asdfsd"), String.valueOf(blockEntity.gravity), this::isBetweenZeroAndOne);
+	  amountField = addTextFieldWidget(i+110, j+47, new LiteralText("Amount"), String.valueOf(blockEntity.particlesPerSecond), this::isPositiveDecimalNumber);
+	  positionXField = addTextFieldWidget(i+61, j+74, new LiteralText("X Position"), String.valueOf(blockEntity.particleSourcePosition.getX()), this::isDecimalNumber);
+	  positionYField = addTextFieldWidget(i+96, j+74, new LiteralText("Y Position"), String.valueOf(blockEntity.particleSourcePosition.getY()), this::isDecimalNumber);
+	  positionZField = addTextFieldWidget(i+131, j+74, new LiteralText("Z Position"), String.valueOf(blockEntity.particleSourcePosition.getZ()), this::isDecimalNumber);
+	  positionXVarianceField = addTextFieldWidget(i+69, j+94, new LiteralText("X Position Variance"), String.valueOf(blockEntity.particleSourcePositionVariance.getX()), this::isPositiveDecimalNumber);
+	  positionYVarianceField = addTextFieldWidget(i+104, j+94, new LiteralText("Y Position Variance"), String.valueOf(blockEntity.particleSourcePositionVariance.getY()), this::isPositiveDecimalNumber);
+	  positionZVarianceField = addTextFieldWidget(i+140, j+94, new LiteralText("Z Position Variance"), String.valueOf(blockEntity.particleSourcePositionVariance.getZ()), this::isPositiveDecimalNumber);
+	  velocityXField = addTextFieldWidget(i+61, j+114, new LiteralText("X Velocity"), String.valueOf(blockEntity.velocity.getX()), this::isDecimalNumber);
+	  velocityYField = addTextFieldWidget(i+96, j+114, new LiteralText("Y Velocity"), String.valueOf(blockEntity.velocity.getY()), this::isDecimalNumber);
+	  velocityZField = addTextFieldWidget(i+131, j+114, new LiteralText("Z Velocity"), String.valueOf(blockEntity.velocity.getZ()), this::isDecimalNumber);
+	  velocityXVarianceField = addTextFieldWidget(i+69, j+134, new LiteralText("X Velocity Variance"), String.valueOf(blockEntity.velocityVariance.getX()), this::isPositiveDecimalNumber);
+	  velocityYVarianceField = addTextFieldWidget(i+104, j+134, new LiteralText("Y Velocity Variance"), String.valueOf(blockEntity.velocityVariance.getY()), this::isPositiveDecimalNumber);
+	  velocityZVarianceField = addTextFieldWidget(i+140, j+134, new LiteralText("Z Velocity Variance"), String.valueOf(blockEntity.velocityVariance.getZ()), this::isPositiveDecimalNumber);
+	  scale = addTextFieldWidget(i+55, j+158, new LiteralText("Scale"), String.valueOf(blockEntity.scale), this::isPositiveDecimalNumber);
+	  scaleVariance = addTextFieldWidget(i+139, j+158, new LiteralText("Scale Variance"), String.valueOf(blockEntity.scaleVariance), this::isPositiveDecimalNumber);
+	  duration = addTextFieldWidget(i+55, j+178, new LiteralText("Duration"), String.valueOf(blockEntity.lifetimeTicks), this::isPositiveWholeNumber);
+	  durationVariance = addTextFieldWidget(i+139, j+178, new LiteralText("Duration Variance"), String.valueOf(blockEntity.lifetimeVariance), this::isPositiveWholeNumber);
+	  gravity = addTextFieldWidget(i+55, j+198, new LiteralText("Gravity"), String.valueOf(blockEntity.gravity), this::isBetweenZeroAndOne);
 
-	  collisionsButton = new ButtonWidget(i+142, j+194, 16, 16, new LiteralText("asdfsd.asdfsd"), this::collisionButtonPressed);
+	  collisionsButton = new ButtonWidget(i+142, j+194, 16, 16, new LiteralText("Collisions"), this::collisionButtonPressed);
 	  collisionsEnabled = blockEntity.collisions;
 	  addSelectableChild(collisionsButton);
 

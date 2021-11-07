@@ -12,6 +12,7 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
+import net.minecraft.text.TranslatableText;
 import net.minecraft.util.BlockRotation;
 import net.minecraft.util.Identifier;
 import vazkii.patchouli.api.IMultiblock;
@@ -141,7 +142,7 @@ public class PedestalScreen extends HandledScreen<PedestalScreenHandler> {
 		super.render(matrices, mouseX, mouseY, delta);
 
 		if(mouseOverInformationIcon(mouseX, mouseY)) {
-			this.renderTooltip(matrices, new LiteralText("Structure update available!"), mouseX, mouseY);
+			this.renderTooltip(matrices, new TranslatableText("multiblock.spectrum.pedestal.upgrade_available"), mouseX, mouseY);
 		} else {
 			drawMouseoverTooltip(matrices, mouseX, mouseY);
 		}

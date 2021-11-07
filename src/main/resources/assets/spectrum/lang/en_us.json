@@ -53,6 +53,7 @@
   "container.spectrum.rei.anvil_crushing.high_force_required": "High force required",
   "container.spectrum.rei.anvil_crushing.plus_xp": "+%f XP",
   
+  "multiblock.spectrum.pedestal.upgrade_available": "Structure Upgrade available!",
   "multiblock.spectrum.pedestal.simple_structure": "Spectrum Focus",
   "multiblock.spectrum.pedestal.advanced_structure": "Spectrum Temple",
   "multiblock.spectrum.pedestal.complex_structure": "Spectrum Palace",

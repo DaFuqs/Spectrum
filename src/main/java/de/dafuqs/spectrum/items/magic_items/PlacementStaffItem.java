@@ -29,7 +29,7 @@ import oshi.util.tuples.Triplet;
 import java.util.List;
 import java.util.Optional;
 
-public class PlacementStaffItem extends StaffItem {
+public class PlacementStaffItem extends BuildingStaffItem {
 	
 	public static final int CREATIVE_RANGE = 10;
 	
@@ -83,7 +83,7 @@ public class PlacementStaffItem extends StaffItem {
 		BlockState targetBlockState = world.getBlockState(pos);
 		Block targetBlock = targetBlockState.getBlock();
 		
-		if(!SpectrumBlockTags.PLACEMENT_STAFF_BLACKLISTED.contains(targetBlock) || world.getBlockEntity(pos) == null) {
+		if(!isBlacklisted(targetBlock)) {
 			Item targetBlockItem = targetBlock.asItem();
 			
 			if (player != null && targetBlockItem != Items.AIR && context.getHand() == Hand.MAIN_HAND) {

@@ -12,19 +12,15 @@ import net.fabricmc.api.Environment;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.RedstoneOreBlock;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.ItemEntity;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.StackReference;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.screen.slot.Slot;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -43,7 +39,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class ExchangeStaffItem extends StaffItem {
+public class ExchangeStaffItem extends BuildingStaffItem {
 	
 	public static final boolean SILK_TOUCH = false;
 	public static final int CREATIVE_RANGE = 5;
@@ -102,7 +98,7 @@ public class ExchangeStaffItem extends StaffItem {
 		Block targetBlock = targetBlockState.getBlock();
 		
 		ActionResult result = ActionResult.FAIL;
-		if (!SpectrumBlockTags.PLACEMENT_STAFF_BLACKLISTED.contains(targetBlock) && world.getBlockEntity(pos) == null && targetBlock.getHardness() >= 0) {
+		if (!isBlacklisted(targetBlock)) {
 			Item targetBlockItem = targetBlockState.getBlock().asItem();
 			if (player != null && targetBlockItem != Items.AIR && context.getHand() == Hand.MAIN_HAND) {
 				if(player.isSneaking()) {

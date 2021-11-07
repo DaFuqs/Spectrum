@@ -23,7 +23,7 @@ public class SpectrumBlockTags {
 	public static Tag<Block> NATURES_STAFF_TICKABLE;
 	public static Tag<Block> NATURES_STAFF_STACKABLE;
 	
-	public static Tag<Block> PLACEMENT_STAFF_BLACKLISTED;
+	public static Tag<Block> BUILDING_STAFFS_BLACKLISTED;
 
 	private static Tag<Block> getReference(String id) {
 		return TagRegistry.block(new Identifier(SpectrumCommon.MOD_ID, id));
@@ -44,6 +44,6 @@ public class SpectrumBlockTags {
 		DECAY_BEDROCK_CONVERSIONS = getReference("decay_bedrock_conversions");
 		NATURES_STAFF_TICKABLE = getReference("natures_staff_tickable");
 		NATURES_STAFF_STACKABLE = getReference("natures_staff_stackable");
-		PLACEMENT_STAFF_BLACKLISTED = getReference("placement_staff_blacklisted");
+		BUILDING_STAFFS_BLACKLISTED = getReference("building_staffs_blacklisted");
 	}
 }

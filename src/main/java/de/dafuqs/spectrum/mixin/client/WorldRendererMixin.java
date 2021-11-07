@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.mixin.client;
 
 import de.dafuqs.spectrum.BuildingHelper;
 import de.dafuqs.spectrum.GuiOverlay;
+import de.dafuqs.spectrum.items.magic_items.BuildingStaffItem;
 import de.dafuqs.spectrum.items.magic_items.ExchangeStaffItem;
 import de.dafuqs.spectrum.items.magic_items.PlacementStaffItem;
 import de.dafuqs.spectrum.registries.SpectrumBlockTags;
@@ -20,7 +21,6 @@ import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.util.Pair;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
@@ -29,7 +29,6 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.profiler.Profiler;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
-import org.apache.commons.lang3.tuple.Triple;
 import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -85,7 +84,7 @@ public abstract class WorldRendererMixin {
         Block lookingAtBlock = lookingAtState.getBlock();
         Block placementBlock = lookingAtBlock;
         
-        if(!SpectrumBlockTags.PLACEMENT_STAFF_BLACKLISTED.contains(lookingAtBlock)) {
+        if(!BuildingStaffItem.isBlacklisted(lookingAtBlock)) {
             Item item = lookingAtBlock.asItem();
             VoxelShape shape = VoxelShapes.empty();
             ClientPlayerEntity player = client.player;
@@ -131,7 +130,7 @@ public abstract class WorldRendererMixin {
         BlockState lookingAtState = this.world.getBlockState(lookingAtPos);
         Block lookingAtBlock = lookingAtState.getBlock();
     
-        if(!SpectrumBlockTags.PLACEMENT_STAFF_BLACKLISTED.contains(lookingAtBlock)) {
+        if(!BuildingStaffItem.isBlacklisted(lookingAtBlock)) {
             Optional<Block> exchangeBlock = ExchangeStaffItem.getBlockTarget(exchangeStaffItemStack);
             if(exchangeBlock.isPresent() && exchangeBlock.get() != lookingAtBlock) {
                 Item exchangeBlockItem = exchangeBlock.get().asItem();

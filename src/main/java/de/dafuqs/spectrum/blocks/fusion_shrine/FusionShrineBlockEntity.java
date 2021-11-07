@@ -60,7 +60,6 @@ import java.util.UUID;
 public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputProvider, PlayerOwned, BlockEntityClientSerializable {
 
 	private UUID ownerUUID;
-	private String ownerName;
 	
 	protected int INVENTORY_SIZE = 8;
 	protected SimpleInventory inventory;
@@ -87,11 +86,6 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 			this.ownerUUID = nbt.getUuid("OwnerUUID");
 		} else {
 			this.ownerUUID = null;
-		}
-		if(nbt.contains("OwnerName")) {
-			this.ownerName = nbt.getString("OwnerName");
-		} else {
-			this.ownerName = "???";
 		}
 		if(nbt.contains("CurrentRecipe")) {
 			String recipeString = nbt.getString("CurrentRecipe");
@@ -123,9 +117,6 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 		nbt.putShort("CraftingTimeTotal", (short)this.craftingTimeTotal);
 		if(this.ownerUUID != null) {
 			nbt.putUuid("OwnerUUID", this.ownerUUID);
-		}
-		if(this.ownerName != null) {
-			nbt.putString("OwnerName", this.ownerName);
 		}
 		if(this.currentRecipe != null) {
 			nbt.putString("CurrentRecipe", this.currentRecipe.getId().toString());
@@ -369,16 +360,10 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 	public UUID getOwnerUUID() {
 		return this.ownerUUID;
 	}
-
-	@Override
-	public String getOwnerName() {
-		return this.ownerName;
-	}
-
+	
 	@Override
 	public void setOwner(PlayerEntity playerEntity) {
 		this.ownerUUID = playerEntity.getUuid();
-		this.ownerName = playerEntity.getName().asString();
 	}
 	
 	// BLOCKENTITYCLIENTSERIALIZABLE

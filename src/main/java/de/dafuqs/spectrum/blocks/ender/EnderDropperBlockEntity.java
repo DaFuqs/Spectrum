@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.blocks.ender;
 
 import de.dafuqs.spectrum.interfaces.PlayerOwned;
+import de.dafuqs.spectrum.interfaces.PlayerOwnedWithName;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
@@ -14,7 +15,7 @@ import net.minecraft.util.math.BlockPos;
 
 import java.util.UUID;
 
-public class EnderDropperBlockEntity extends BlockEntity implements PlayerOwned {
+public class EnderDropperBlockEntity extends BlockEntity implements PlayerOwnedWithName {
 
 	private UUID ownerUUID;
 	private String ownerName;

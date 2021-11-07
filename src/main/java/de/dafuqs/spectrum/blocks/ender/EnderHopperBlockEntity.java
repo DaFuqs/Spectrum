@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.blocks.ender;
 
 import de.dafuqs.spectrum.InventoryHelper;
 import de.dafuqs.spectrum.interfaces.PlayerOwned;
+import de.dafuqs.spectrum.interfaces.PlayerOwnedWithName;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -28,7 +29,7 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-public class EnderHopperBlockEntity extends BlockEntity implements PlayerOwned {
+public class EnderHopperBlockEntity extends BlockEntity implements PlayerOwnedWithName {
 
 	private final VoxelShape INSIDE_SHAPE = Block.createCuboidShape(2.0D, 11.0D, 2.0D, 14.0D, 16.0D, 14.0D);
 	private final VoxelShape ABOVE_SHAPE = Block.createCuboidShape(0.0D, 16.0D, 0.0D, 16.0D, 32.0D, 16.0D);

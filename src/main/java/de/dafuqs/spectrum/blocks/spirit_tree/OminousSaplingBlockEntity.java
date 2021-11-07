@@ -14,7 +14,6 @@ import java.util.UUID;
 public class OminousSaplingBlockEntity extends BlockEntity implements PlayerOwned {
 
 	public UUID ownerUUID;
-	public String ownerName;
 
 	public OminousSaplingBlockEntity(BlockPos blockPos, BlockState blockState) {
 		super(SpectrumBlockEntityRegistry.OMINOUS_SAPLING, blockPos, blockState);
@@ -28,16 +27,10 @@ public class OminousSaplingBlockEntity extends BlockEntity implements PlayerOwne
 	public UUID getOwnerUUID() {
 		return this.ownerUUID;
 	}
-
-	@Override
-	public String getOwnerName() {
-		return this.ownerName;
-	}
-
+	
 	@Override
 	public void setOwner(PlayerEntity playerEntity) {
 		this.ownerUUID = playerEntity.getUuid();
-		this.ownerName = playerEntity.getName().asString();
 	}
 
 	// Serialize the BlockEntity
@@ -47,9 +40,6 @@ public class OminousSaplingBlockEntity extends BlockEntity implements PlayerOwne
 
 		if(this.ownerUUID != null) {
 			tag.putUuid("OwnerUUID", this.ownerUUID);
-		}
-		if(this.ownerName != null) {
-			tag.putString("OwnerName", this.ownerName);
 		}
 
 		return tag;
@@ -64,11 +54,6 @@ public class OminousSaplingBlockEntity extends BlockEntity implements PlayerOwne
 			this.ownerUUID = tag.getUuid("OwnerUUID");
 		} else {
 			this.ownerUUID = null;
-		}
-		if(tag.contains("OwnerName")) {
-			this.ownerName = tag.getString("OwnerName");
-		} else {
-			this.ownerName = "???";
 		}
 	}
 

@@ -9,8 +9,6 @@ public interface PlayerOwned {
 
 	public abstract UUID getOwnerUUID();
 
-	public abstract String getOwnerName();
-
 	public void setOwner(PlayerEntity playerEntity);
 
 	public default boolean hasOwner() {

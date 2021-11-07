@@ -6,6 +6,7 @@ import de.dafuqs.spectrum.Support;
 import de.dafuqs.spectrum.enums.GemstoneColor;
 import de.dafuqs.spectrum.enums.PedestalRecipeTier;
 import de.dafuqs.spectrum.interfaces.PlayerOwned;
+import de.dafuqs.spectrum.interfaces.PlayerOwnedWithName;
 import de.dafuqs.spectrum.inventories.AutoCraftingInventory;
 import de.dafuqs.spectrum.inventories.PedestalScreenHandler;
 import de.dafuqs.spectrum.items.CraftingTabletItem;
@@ -62,7 +63,7 @@ import vazkii.patchouli.api.IMultiblock;
 
 import java.util.*;
 
-public class PedestalBlockEntity extends LockableContainerBlockEntity implements RecipeInputProvider, SidedInventory, PlayerOwned, ExtendedScreenHandlerFactory, BlockEntityClientSerializable {
+public class PedestalBlockEntity extends LockableContainerBlockEntity implements RecipeInputProvider, SidedInventory, PlayerOwnedWithName, ExtendedScreenHandlerFactory, BlockEntityClientSerializable {
 
 	private UUID ownerUUID;
 	private String ownerName;

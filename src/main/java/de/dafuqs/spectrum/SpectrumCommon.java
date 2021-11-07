@@ -2,6 +2,7 @@ package de.dafuqs.spectrum;
 
 import de.dafuqs.spectrum.config.SpectrumConfig;
 import de.dafuqs.spectrum.dimension.DeeperDownDimension;
+import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
 import de.dafuqs.spectrum.events.SpectrumGameEvents;
 import de.dafuqs.spectrum.inventories.SpectrumContainers;
 import de.dafuqs.spectrum.inventories.SpectrumScreenHandlerTypes;
@@ -72,9 +73,11 @@ public class SpectrumCommon implements ModInitializer {
 		SpectrumBlocks.register();
 		SpectrumItems.register();
 		
+		// Tags
 		SpectrumItemTags.getReferences();
 		SpectrumBlockEntityRegistry.register();
-		SpectrumEnchantments.register();
+		
+		// Worldgen
 		SpectrumFeatures.register();
 		SpectrumConfiguredFeatures.register();
 
@@ -95,6 +98,9 @@ public class SpectrumCommon implements ModInitializer {
 		EnchantmentDrops.setup();
 
 		SpectrumItems.registerFuelRegistry();
+		
+		SpectrumEnchantments.register();
+		SpectrumEntityTypes.register();
 		SpectrumCommands.register();
 
 		SpectrumC2SPackets.registerC2SReceivers();

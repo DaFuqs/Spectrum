@@ -64,7 +64,6 @@ public class SpectrumClient implements ClientModInitializer {
 		registerAnimatedWandPredicates(SpectrumItems.LIGHT_STAFF);
 
 		SpectrumBlockEntityRegistry.registerClient();
-		SpectrumEntityTypes.registerClient();
 		SpectrumEntityRenderers.registerClient();
 
 		SpectrumS2CPackets.registerS2CReceivers();

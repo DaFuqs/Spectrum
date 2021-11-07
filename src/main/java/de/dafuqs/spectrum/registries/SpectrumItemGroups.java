@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.registries;
 import com.glisco.owo.itemgroup.Icon;
 import com.glisco.owo.itemgroup.OwoItemGroup;
 import com.glisco.owo.itemgroup.gui.ItemGroupButton;
+import com.glisco.owo.itemgroup.gui.ItemGroupButtonWidget;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.mob_head.SpectrumSkullBlock;
 import net.minecraft.item.ItemStack;
@@ -14,8 +15,10 @@ import java.util.List;
 
 public class SpectrumItemGroups {
 	
-	// TODO: Add custom item group background texture
+	// TODO: Add nicer item group background textures
 	private static final Identifier ITEM_GROUP_BACKGROUND_TEXTURE_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/item_group.png");
+	private static final Identifier ITEM_GROUP_BUTTON_TEXTURE_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/item_group_button.png");
+	
 	private static final List<ItemGroupButton> ITEM_GROUP_BUTTONS = new ArrayList<>() {{
 		add(ItemGroupButton.discord("https://discord.gg/PnR9NuXQ")); // TODO: Add links, when uploaded
 		add(ItemGroupButton.github("https://github.com/DaFuqs/Spectrum"));
@@ -28,12 +31,12 @@ public class SpectrumItemGroups {
 
 		@Override
 		protected void setup() {
-			//setCustomTexture(ITEM_GROUP_BACKGROUND_TEXTURE_IDENTIFIER);
+			setCustomTexture(ITEM_GROUP_BACKGROUND_TEXTURE_IDENTIFIER);
 			
-			addTab(Icon.of(SpectrumBlocks.PEDESTAL_BASIC_AMETHYST), "general", null, new Identifier(SpectrumCommon.MOD_ID, "textures/gui/item_group.png"));
-			addTab(Icon.of(SpectrumItems.BEDROCK_PICKAXE), "tools", null, new Identifier(SpectrumCommon.MOD_ID, "textures/gui/item_group.png"));
-			addTab(Icon.of(SpectrumBlocks.CITRINE_BLOCK), "worldgen", null, new Identifier(SpectrumCommon.MOD_ID, "textures/gui/item_group.png"));
-			addTab(Icon.of(SpectrumItems.TOPAZ_SHARD_ITEM), "items", null, new Identifier(SpectrumCommon.MOD_ID, "textures/gui/item_group.png"));
+			addTab(Icon.of(SpectrumBlocks.PEDESTAL_BASIC_AMETHYST), "general", null, ITEM_GROUP_BUTTON_TEXTURE_IDENTIFIER);
+			addTab(Icon.of(SpectrumItems.BEDROCK_PICKAXE), "tools", null, ITEM_GROUP_BUTTON_TEXTURE_IDENTIFIER);
+			addTab(Icon.of(SpectrumBlocks.CITRINE_BLOCK), "worldgen", null, ITEM_GROUP_BUTTON_TEXTURE_IDENTIFIER);
+			addTab(Icon.of(SpectrumItems.TOPAZ_SHARD_ITEM), "items", null, ITEM_GROUP_BUTTON_TEXTURE_IDENTIFIER);
 			
 			for(ItemGroupButton itemGroupButton : ITEM_GROUP_BUTTONS) {
 				addButton(itemGroupButton);
@@ -88,11 +91,11 @@ public class SpectrumItemGroups {
 
 		@Override
 		protected void setup() {
-			//setCustomTexture(ITEM_GROUP_BACKGROUND_TEXTURE_IDENTIFIER);
+			setCustomTexture(ITEM_GROUP_BACKGROUND_TEXTURE_IDENTIFIER);
 			
-			addTab(Icon.of(SpectrumBlocks.MOONSTONE_CHISELED_CALCITE), "decoration", null, new Identifier(SpectrumCommon.MOD_ID, "textures/gui/item_group.png"));
-			addTab(Icon.of(SpectrumBlocks.LIME_LOG), "colored_wood", null, new Identifier(SpectrumCommon.MOD_ID, "textures/gui/item_group.png"));
-			addTab(Icon.of(SpectrumBlocks.getMobHead(SpectrumSkullBlock.Type.PUFFERFISH)), "mob_heads", null, new Identifier(SpectrumCommon.MOD_ID, "textures/gui/item_group.png"));
+			addTab(Icon.of(SpectrumBlocks.MOONSTONE_CHISELED_CALCITE), "decoration", null, ITEM_GROUP_BUTTON_TEXTURE_IDENTIFIER);
+			addTab(Icon.of(SpectrumBlocks.LIME_LOG), "colored_wood", null, ITEM_GROUP_BUTTON_TEXTURE_IDENTIFIER);
+			addTab(Icon.of(SpectrumBlocks.getMobHead(SpectrumSkullBlock.Type.PUFFERFISH)), "mob_heads", null, ITEM_GROUP_BUTTON_TEXTURE_IDENTIFIER);
 
 			for(ItemGroupButton itemGroupButton : ITEM_GROUP_BUTTONS) {
 				addButton(itemGroupButton);

@@ -5,7 +5,6 @@ import de.dafuqs.spectrum.GuiOverlay;
 import de.dafuqs.spectrum.items.magic_items.BuildingStaffItem;
 import de.dafuqs.spectrum.items.magic_items.ExchangeStaffItem;
 import de.dafuqs.spectrum.items.magic_items.PlacementStaffItem;
-import de.dafuqs.spectrum.registries.SpectrumBlockTags;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.Block;

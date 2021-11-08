@@ -2,12 +2,10 @@ package de.dafuqs.spectrum.particle;
 
 import com.mojang.serialization.Codec;
 import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.enums.GemstoneColor;
 import de.dafuqs.spectrum.particle.effect.ItemTransferParticleEffect;
 import de.dafuqs.spectrum.particle.effect.ParticleSpawnerParticleEffect;
 import de.dafuqs.spectrum.particle.effect.WirelessRedstoneTransmissionParticleEffect;
 import net.fabricmc.fabric.api.particle.v1.FabricParticleTypes;
-import net.minecraft.block.Block;
 import net.minecraft.particle.DefaultParticleType;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleType;

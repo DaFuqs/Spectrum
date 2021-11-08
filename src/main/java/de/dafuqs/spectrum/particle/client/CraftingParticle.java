@@ -7,8 +7,6 @@ import net.minecraft.client.world.ClientWorld;
 import net.minecraft.particle.DefaultParticleType;
 import net.minecraft.util.math.MathHelper;
 
-import java.util.Random;
-
 public class CraftingParticle extends SpriteBillboardParticle {
 	
 	protected CraftingParticle(ClientWorld clientWorld, double x, double y, double z, double velocityX, double velocityY, double velocityZ) {

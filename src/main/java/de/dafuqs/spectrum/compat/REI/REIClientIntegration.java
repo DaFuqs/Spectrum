@@ -21,7 +21,7 @@ import net.fabricmc.api.Environment;
 import net.minecraft.block.Blocks;
 
 @Environment(EnvType.CLIENT)
-public class REIIntegration implements REIClientPlugin {
+public class REIClientIntegration implements REIClientPlugin {
 
 	@Override
 	public void registerCategories(CategoryRegistry registry) {

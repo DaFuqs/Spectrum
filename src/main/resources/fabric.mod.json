@@ -25,7 +25,8 @@
       "de.dafuqs.spectrum.config.ModMenuConfig"
     ],
     "rei_plugins": [
-      "de.dafuqs.spectrum.compat.REI.REIIntegration"
+      "de.dafuqs.spectrum.compat.REI.REIServerIntegration",
+      "de.dafuqs.spectrum.compat.REI.REIClientIntegration"
     ]
   },
   "accessWidener": "spectrum.accesswidener",

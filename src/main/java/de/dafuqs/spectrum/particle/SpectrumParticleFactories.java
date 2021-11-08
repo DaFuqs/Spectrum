@@ -2,13 +2,11 @@ package de.dafuqs.spectrum.particle;
 
 import de.dafuqs.spectrum.particle.client.*;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
-import net.minecraft.client.particle.*;
+import net.minecraft.client.particle.BlockLeakParticle;
+import net.minecraft.client.particle.BubblePopParticle;
+import net.minecraft.client.particle.Particle;
+import net.minecraft.client.particle.WaterSuspendParticle;
 import net.minecraft.particle.DefaultParticleType;
-import net.minecraft.util.DyeColor;
-import net.minecraft.util.math.Vec3f;
-import org.jetbrains.annotations.NotNull;
-
-import java.awt.*;
 
 public class SpectrumParticleFactories {
 

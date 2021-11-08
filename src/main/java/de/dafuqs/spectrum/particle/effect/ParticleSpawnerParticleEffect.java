@@ -10,12 +10,9 @@ import net.minecraft.network.PacketByteBuf;
 import net.minecraft.particle.AbstractDustParticleEffect;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleType;
-import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Vec3f;
 import net.minecraft.util.registry.Registry;
-
-import java.awt.*;
 
 public class ParticleSpawnerParticleEffect implements ParticleEffect {
 

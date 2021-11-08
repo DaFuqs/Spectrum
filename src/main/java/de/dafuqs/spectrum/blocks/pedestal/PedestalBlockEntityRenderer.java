@@ -1,10 +1,7 @@
 package de.dafuqs.spectrum.blocks.pedestal;
 
-import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.GlowInTheDarkRenderLayer;
-import de.dafuqs.spectrum.blocks.ColoredSporeBlossomBlock;
-import de.dafuqs.spectrum.enums.GemstoneColor;
-import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
+import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.recipe.pedestal.PedestalCraftingRecipe;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -16,14 +13,10 @@ import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
 import net.minecraft.client.render.model.json.ModelTransformation;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
-import net.minecraft.particle.ParticleEffect;
-import net.minecraft.particle.ParticleType;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Vec3f;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Random;
 
 @Environment(EnvType.CLIENT)

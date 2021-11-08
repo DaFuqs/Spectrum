@@ -29,19 +29,16 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 
 public class PedestalScreenHandler extends AbstractRecipeScreenHandler<Inventory> {
-
-	private final ScreenHandlerContext context;
+	
 	private final PlayerEntity player;
-
 	private final Inventory inventory;
 	private final PropertyDelegate propertyDelegate;
 	protected final World world;
 	private final RecipeBookCategory category;
-	private final CraftingResultInventory craftingResultInventory;
-
-	private BlockPos pedestalPos;
-	private PedestalBlock.PedestalVariant variant;
-	private PedestalRecipeTier maxPedestalRecipeTier;
+	
+	private final BlockPos pedestalPos;
+	private final PedestalBlock.PedestalVariant variant;
+	private final PedestalRecipeTier maxPedestalRecipeTier;
 
 	public PedestalScreenHandler(int syncId, PlayerInventory playerInventory, @NotNull PacketByteBuf buf) {
 		this(SpectrumScreenHandlerTypes.PEDESTAL, ScreenHandlerContext.EMPTY, RecipeBookCategory.CRAFTING, syncId, playerInventory, buf.readInt(), buf.readInt(), buf.readBlockPos());
@@ -57,13 +54,12 @@ public class PedestalScreenHandler extends AbstractRecipeScreenHandler<Inventory
 
 	protected PedestalScreenHandler(ScreenHandlerType<?> type, ScreenHandlerContext context, RecipeBookCategory recipeBookCategory, int i, @NotNull PlayerInventory playerInventory, Inventory inventory, PropertyDelegate propertyDelegate, int variant, int maxRecipeTier, BlockPos pedestalPos) {
 		super(type, i);
-		this.context = context;
 		this.player = playerInventory.player;
 		this.inventory = inventory;
 		this.category = recipeBookCategory;
 		this.propertyDelegate = propertyDelegate;
 		this.world = playerInventory.player.world;
-		this.craftingResultInventory = new CraftingResultInventory();
+		CraftingResultInventory craftingResultInventory = new CraftingResultInventory();
 
 		this.pedestalPos = pedestalPos;
 		this.variant = PedestalBlock.PedestalVariant.values()[variant];

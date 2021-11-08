@@ -1,7 +1,5 @@
 package de.dafuqs.spectrum.registries.color;
 
-import de.dafuqs.spectrum.blocks.gravity.GravityItem;
-import de.dafuqs.spectrum.items.PigmentItem;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.minecraft.item.Item;

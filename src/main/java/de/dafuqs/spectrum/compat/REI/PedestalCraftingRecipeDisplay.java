@@ -6,11 +6,14 @@ import de.dafuqs.spectrum.recipe.pedestal.PedestalCraftingRecipe;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.display.SimpleGridMenuDisplay;
+import me.shedaniel.rei.api.common.display.basic.BasicDisplay;
 import me.shedaniel.rei.api.common.entry.EntryIngredient;
 import me.shedaniel.rei.api.common.util.EntryIngredients;
+import me.shedaniel.rei.plugin.common.displays.crafting.DefaultCustomDisplay;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtCompound;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -18,7 +21,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class PedestalCraftingRecipeDisplay<R extends PedestalCraftingRecipe> implements SimpleGridMenuDisplay {
+public class PedestalCraftingRecipeDisplay<R extends PedestalCraftingRecipe> extends BasicDisplay implements SimpleGridMenuDisplay {
 
 	private final PedestalCraftingRecipe pedestalCraftingRecipe;
 	protected final List<EntryIngredient> craftingInputs;
@@ -28,6 +31,7 @@ public class PedestalCraftingRecipeDisplay<R extends PedestalCraftingRecipe> imp
 	protected final PedestalRecipeTier pedestalRecipeTier;
 
 	public PedestalCraftingRecipeDisplay(PedestalCraftingRecipe recipe) {
+		super(recipe.getIngredients().stream().map(EntryIngredients::ofIngredient).collect(Collectors.toCollection(ArrayList::new)), Collections.singletonList(EntryIngredients.of(recipe.getOutput())));
 		this.pedestalCraftingRecipe = recipe;
 		this.craftingInputs = recipe.getIngredients().stream().map(EntryIngredients::ofIngredient).collect(Collectors.toCollection(ArrayList::new));
 
@@ -43,7 +47,13 @@ public class PedestalCraftingRecipeDisplay<R extends PedestalCraftingRecipe> imp
 		this.craftingTime = recipe.getCraftingTime();
 		this.pedestalRecipeTier = recipe.getTier();
 	}
-
+	
+	// TODO: I definitely need some help here
+	/*public static BasicDisplay.Serializer<PedestalCraftingRecipeDisplay<?>> serializer() {
+		//return BasicDisplay.Serializer.<PedestalCraftingRecipeDisplay<?>>ofSimple(DefaultCustomDisplay::simple).inputProvider(display -> display.getOrganisedInputEntries(3, 3));
+		return BasicDisplay.Serializer.ofRecipeLess(PedestalCraftingRecipeDisplay::new);
+	}*/
+	
 	private void addGemstonePowderCraftingInput(HashMap<GemstoneColor, Integer> gemstonePowderInputs, GemstoneColor gemstoneColor, Item item) {
 		if(gemstonePowderInputs.containsKey(gemstoneColor)) {
 			int amount = gemstonePowderInputs.get(gemstoneColor);

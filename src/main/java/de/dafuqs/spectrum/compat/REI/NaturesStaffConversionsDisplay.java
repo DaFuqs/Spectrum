@@ -10,28 +10,28 @@ import java.util.List;
 
 public class NaturesStaffConversionsDisplay extends BasicDisplay {
 
-		public NaturesStaffConversionsDisplay(EntryStack<?> in, EntryStack<?> out) {
-			this(Collections.singletonList(EntryIngredient.of(in)), Collections.singletonList(EntryIngredient.of(out)));
-		}
-
-		public NaturesStaffConversionsDisplay(List<EntryIngredient> inputs, List<EntryIngredient> outputs) {
-			super(inputs, outputs);
-		}
-
-		public final EntryIngredient getIn() {
-			return getInputEntries().get(0);
-		}
-
-		public final EntryIngredient getOut() {
-			return getOutputEntries().get(0);
-		}
-
-		@Override
-		public CategoryIdentifier<?> getCategoryIdentifier() {
-			return NaturesStaffConversionsCategory.ID;
-		}
-
-		public static BasicDisplay.Serializer<NaturesStaffConversionsDisplay> serializer() {
-			return BasicDisplay.Serializer.ofSimpleRecipeLess(NaturesStaffConversionsDisplay::new);
-		}
+	public NaturesStaffConversionsDisplay(EntryStack<?> in, EntryStack<?> out) {
+		this(Collections.singletonList(EntryIngredient.of(in)), Collections.singletonList(EntryIngredient.of(out)));
 	}
+
+	public NaturesStaffConversionsDisplay(List<EntryIngredient> inputs, List<EntryIngredient> outputs) {
+		super(inputs, outputs);
+	}
+
+	public final EntryIngredient getIn() {
+		return getInputEntries().get(0);
+	}
+
+	public final EntryIngredient getOut() {
+		return getOutputEntries().get(0);
+	}
+
+	@Override
+	public CategoryIdentifier<?> getCategoryIdentifier() {
+		return NaturesStaffConversionsCategory.ID;
+	}
+
+	public static BasicDisplay.Serializer<NaturesStaffConversionsDisplay> serializer() {
+		return BasicDisplay.Serializer.ofSimpleRecipeLess(NaturesStaffConversionsDisplay::new);
+	}
+}

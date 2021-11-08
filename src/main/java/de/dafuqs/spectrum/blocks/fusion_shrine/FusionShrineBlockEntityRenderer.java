@@ -1,10 +1,14 @@
 package de.dafuqs.spectrum.blocks.fusion_shrine;
 
+import de.dafuqs.spectrum.GlowInTheDarkRenderLayer;
+import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.recipe.fusion_shrine.FusionShrineRecipe;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.transfer.v1.client.fluid.FluidVariantRendering;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.model.*;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.VertexConsumerProvider;
@@ -16,6 +20,7 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Matrix4f;
 import net.minecraft.util.math.Vec3f;
 
@@ -24,12 +29,14 @@ import java.util.List;
 
 @Environment(EnvType.CLIENT)
 public class FusionShrineBlockEntityRenderer<T extends FusionShrineBlockEntity> implements BlockEntityRenderer<T> {
-
+	
+	
 	public FusionShrineBlockEntityRenderer(Context ctx) {
+	
 	}
 
 	public void render(FusionShrineBlockEntity fusionShrineBlockEntity, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light, int overlay) {
-		// render fluid layer in shrine
+		// the fluid in the shrine
 		Fluid fluid = fusionShrineBlockEntity.getFluid();
 		if(fluid != Fluids.EMPTY) {
 			matrixStack.push();
@@ -41,9 +48,9 @@ public class FusionShrineBlockEntityRenderer<T extends FusionShrineBlockEntity> 
 			renderFluid(vertexConsumerProvider.getBuffer(RenderLayer.getTranslucent()), matrixStack.peek().getModel(), sprite, light, overlay, 0.25F, 0.75F, 0.9F, 0.25F, 0.75F, colors);
 			matrixStack.pop();
 		}
-
-		// render floating item stacks
+		
 		if(!fusionShrineBlockEntity.getInventory().isEmpty()) {
+			// the floating item stacks
 			List<ItemStack> inventoryStacks = new ArrayList<>();
 
 			for(int i = 0; i < fusionShrineBlockEntity.getInventory().size(); i++) {
@@ -67,7 +74,16 @@ public class FusionShrineBlockEntityRenderer<T extends FusionShrineBlockEntity> 
 				MinecraftClient.getInstance().getItemRenderer().renderItem(inventoryStacks.get(i), ModelTransformation.Mode.GROUND, light, overlay, matrixStack, vertexConsumerProvider, 0);
 				matrixStack.pop();
 			}
-
+			
+			// the ground overlay
+			// definitely does not fit the fusion shrine
+			// maybe use that for some other block
+			/*FusionShrineRecipe currentRecipe = fusionShrineBlockEntity.getCurrentRecipe();
+			if(currentRecipe != null && fusionShrineBlockEntity.getFluid().equals(currentRecipe.getFluidInput())) {
+				//circle.yaw = Math. (;
+				double overlay_mod = Math.sin((fusionShrineBlockEntity.getWorld().getTime() + tickDelta) / 25.0F);
+				circle.render(matrixStack, vertexConsumerProvider.getBuffer(GlowInTheDarkRenderLayer.get(GROUND_MARK)), light, (int) (overlay * overlay_mod));
+			}*/
 		}
 	}
 
@@ -96,6 +112,16 @@ public class FusionShrineBlockEntityRenderer<T extends FusionShrineBlockEntity> 
 		colors[3] = color & 0xff; // blue
 		return colors;
 	}
+	
+	/*public static TexturedModelData getTexturedModelData() {
+		ModelData modelData = new ModelData();
+		ModelPartData modelPartData = modelData.getRoot();
+		
+		modelPartData.addChild("circle", ModelPartBuilder.create(), ModelTransform.pivot(8.0F, 0.01F, 8.0F));
+		modelPartData.getChild("circle").addChild("circle2", ModelPartBuilder.create().uv(0, 0).cuboid(-56.0F, 0.0F, -56F, 112.0F, 0.0F, 112.0F), ModelTransform.rotation(0.0F, 0.0F, 0.0F));
+		
+		return TexturedModelData.of(modelData, 448, 448);
+	}*/
 
 
 }

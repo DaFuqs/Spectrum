@@ -336,7 +336,11 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 	public Inventory getInventory() {
 		return this.inventory;
 	}
-
+	
+	public FusionShrineRecipe getCurrentRecipe() {
+		return this.currentRecipe;
+	}
+	
 	// RECIPE INPUT PROVIDER
 
 	@Override

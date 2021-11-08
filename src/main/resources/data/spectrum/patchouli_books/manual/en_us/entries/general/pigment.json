@@ -46,13 +46,13 @@
       "type": "patchouli:spotlight",
       "advancement": "spectrum:hidden/collect_pigment/collect_black_pigment",
       "item": "spectrum:black_pigment",
-      "text": "The darkest material you have ever held in your hands. It looks almost surreal.$(br2)$(c_black)Black$() represents the Nothingness of the $(italic)Void$(), $(italic)Power$() and $(italic)Mystery$()."
+      "text": "The darkest material you have ever held in your hands. It looks almost surreal.$(br2)$(c_black)Black$() represents the nothingness of the $(italic)Void$(), $(italic)Power$() and $(italic)Mystery$()."
     },
     {
       "type": "patchouli:spotlight",
       "advancement": "spectrum:hidden/collect_pigment/collect_blue_pigment",
       "item": "spectrum:blue_pigment",
-      "text": "Holding this item in your hand gives you a sign of security. Of course, all nonsense, after all, they are only pigments. But still...$(br2)$(c_blue)Blue$() represents $(italic)Safety$() and $(italic)Permanence$()."
+      "text": "Holding it in your hand gives you a sign of security. Of course, all nonsense, after all, it is only a color. But still...$(br2)$(c_blue)Blue$() represents $(italic)Safety$() and $(italic)Permanence$()."
     },
     {
       "type": "patchouli:spotlight",
@@ -64,7 +64,7 @@
       "type": "patchouli:spotlight",
       "advancement": "spectrum:hidden/collect_pigment/collect_cyan_pigment",
       "item": "spectrum:cyan_pigment",
-      "text": "It makes you feel as if you are sitting on the top of a mountain, taking in the non-ending vastness of the world.$(br2)$(c_cyan)Cyan$() represents $(italic)Matter$() and $(italic)Integrity$()."
+      "text": "It makes you feel as if you are sitting on the top of a mountain, taking in the never-ending vastness of the world.$(br2)$(c_cyan)Cyan$() represents $(italic)Matter$() and $(italic)Integrity$()."
     },
     {
       "type": "patchouli:spotlight",
@@ -88,13 +88,13 @@
       "type": "patchouli:spotlight",
       "advancement": "spectrum:hidden/collect_pigment/collect_light_gray_pigment",
       "item": "spectrum:light_gray_pigment",
-      "text": "You know that feeling when you are sitting serenely, looking at the landscape, feeling life pass you by, and yet everything is okay? $(br2)$(c_light_gray)Light Gray$() represents $(italic)Change$(), but also $(italic)Quiet$()."
+      "text": "You know that feeling when you are sitting serenely, looking at the landscape, feeling life pass you by, and yet everything is okay?$(br2)$(c_light_gray)Light Gray$() represents $(italic)Change$(), but also $(italic)Quiet$()."
     },
     {
       "type": "patchouli:spotlight",
       "advancement": "spectrum:hidden/collect_pigment/collect_lime_pigment",
       "item": "spectrum:lime_pigment",
-      "text": "The juicy lime almost smells like a warm spring morning. Or are you just imagining?$(br2)$(c_lime)Lime$() represents $(italic)Fertility$()."
+      "text": "The juicy lime almost smells like a warm spring morning. Or are you just imagining?$(br2)$(c_lime)Lime$() represents $(italic)Happiness$() and $(italic)Fertility$()."
     },
     {
       "type": "patchouli:spotlight",
@@ -112,7 +112,7 @@
       "type": "patchouli:spotlight",
       "advancement": "spectrum:hidden/collect_pigment/collect_pink_pigment",
       "item": "spectrum:pink_pigment",
-      "text": "This bright, lively cotton candy pink makes you beam with joy.$(br2)$(c_pink)Pink$() represents $(italic)Happiness$(), $(italic)Health$() and $(italic)Admiration$()."
+      "text": "This bright, lively cotton candy pink makes you beam with joy.$(br2)$(c_pink)Pink$() represents $(italic)Health$() and $(italic)Admiration$()."
     },
     {
       "type": "patchouli:spotlight",

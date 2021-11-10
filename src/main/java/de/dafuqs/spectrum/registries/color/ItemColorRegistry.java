@@ -70,6 +70,10 @@ public class ItemColorRegistry extends ColorRegistry<Item> {
 		put(SpectrumItems.BEDROCK_DUST, DyeColor.LIGHT_GRAY);
 		put(SpectrumBlocks.ENDER_TREASURE.asItem(), DyeColor.PURPLE);
 		
+		put(Items.GOLDEN_APPLE, DyeColor.YELLOW);
+		put(Items.GOLD_BLOCK, DyeColor.YELLOW);
+		put(Items.GLASS_BOTTLE, DyeColor.LIGHT_GRAY);
+		put(SpectrumBlocks.SPARKLESTONE_BLOCK.asItem(), DyeColor.YELLOW);
 		put(Items.ENCHANTED_GOLDEN_APPLE, DyeColor.YELLOW);
 		put(SpectrumItems.BOTTLE_OF_DECAY_AWAY, DyeColor.LIGHT_GRAY);
 	}};

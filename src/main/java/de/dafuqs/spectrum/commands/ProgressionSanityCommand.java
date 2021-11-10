@@ -15,6 +15,8 @@ import net.minecraft.advancement.Advancement;
 import net.minecraft.advancement.AdvancementCriterion;
 import net.minecraft.advancement.criterion.CriterionConditions;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.recipe.Ingredient;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -97,9 +99,16 @@ public class ProgressionSanityCommand {
 			if(!doesAdvancementExist(fusionShrineRecipe.getRequiredAdvancementIdentifier())) {
 				SpectrumCommon.log(Level.WARN, "[SANITY: Fusion Shrine Recipe Unlocks] Advancement '" + fusionShrineRecipe.getRequiredAdvancementIdentifier() + "' in recipe '" + fusionShrineRecipe.getId() + "' does not exist");
 			}
+			for(Ingredient inputIngredient : fusionShrineRecipe.getIngredients()) {
+				for(ItemStack matchingItemStack : inputIngredient.getMatchingStacksClient()) {
+					if (ColorRegistry.ITEM_COLORS.getMapping(matchingItemStack.getItem()).isEmpty()) {
+						SpectrumCommon.log(Level.WARN, "[SANITY: Fusion Shrine Recipe] Input '" + Registry.ITEM.getId(matchingItemStack.getItem()) + "' in recipe '" + fusionShrineRecipe.getId() + "', does not exist in the item color registry. Add it for nice effects!");
+					}
+				}
+			}
 			Item outputItem = fusionShrineRecipe.getOutput().getItem();
 			if(ColorRegistry.ITEM_COLORS.getMapping(outputItem).isEmpty()) {
-				SpectrumCommon.log(Level.WARN, "[SANITY: Fusion Shrine Recipe] Recipe with output '" + Registry.ITEM.getId(outputItem) + "' in recipe '" + fusionShrineRecipe.getId() + "', does not exist in item color registry. Add it for nice effects!");
+				SpectrumCommon.log(Level.WARN, "[SANITY: Fusion Shrine Recipe] Output '" + Registry.ITEM.getId(outputItem) + "' in recipe '" + fusionShrineRecipe.getId() + "', does not exist in the item color registry. Add it for nice effects!");
 			}
 		}
 
@@ -124,6 +133,7 @@ public class ProgressionSanityCommand {
 				}
 			}
 		}
+		SpectrumCommon.log(Level.INFO, "##### SANITY CHECK FINISHED ######");
 		
 		SpectrumCommon.log(Level.INFO, "##### SANITY CHECK PEDESTAL RECIPE STATISTICS ######");
 		for(PedestalRecipeTier pedestalRecipeTier : PedestalRecipeTier.values()) {
@@ -135,8 +145,6 @@ public class ProgressionSanityCommand {
 					" K:" + StringUtils.leftPad(entry.get(GemstoneColor.BLACK).toString(), 3) +
 					" W:" + StringUtils.leftPad(entry.get(GemstoneColor.WHITE).toString(), 3));
 		}
-		
-		SpectrumCommon.log(Level.INFO, "##### SANITY CHECK FINISHED ######");
 		
 		if(source.getEntity() instanceof ServerPlayerEntity serverPlayerEntity) {
 			serverPlayerEntity.sendMessage(new TranslatableText("commands.spectrum.progression_sanity.success"), false);

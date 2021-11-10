@@ -47,6 +47,7 @@ public class PedestalUpgradeBlockBlockEntityRenderer<PedestalUpgradeBlockEntity 
 		root.render(matrixStack, vertexConsumer, light, overlay);
 	}
 
+	// TODO: Use a different model for each upgrade type
 	public static @NotNull TexturedModelData getTexturedModelData(){
 		ModelData modelData = new ModelData();
 		ModelPartData modelPartData = modelData.getRoot();

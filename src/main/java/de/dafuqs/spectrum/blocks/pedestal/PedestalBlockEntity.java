@@ -86,7 +86,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 	private PedestalRecipeTier cachedMaxPedestalTier;
 	private long cachedMaxPedestalTierTick;
 
-	private final boolean checkedForUpgrades = false;
+	private boolean checkedForUpgrades = false;
 	private Map<UpgradeType, Double> upgrades = new HashMap<>();
 
 	public static final int INVENTORY_SIZE = 16; // 9 crafting, 5 gems, 1 craftingTablet, 1 output
@@ -331,6 +331,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		if(block instanceof PedestalBlock && blockState.get(PedestalBlock.POWERED)) {
 			if(!pedestalBlockEntity.checkedForUpgrades) {
 				pedestalBlockEntity.updateUpgrades();
+				pedestalBlockEntity.checkedForUpgrades = true;
 			}
 
 			// check recipe crafted last tick => performance

@@ -21,6 +21,7 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.stat.Stats;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.UseAction;
@@ -92,7 +93,12 @@ public class EnderSpliceItem extends Item {
 
 		return itemStack;
 	}
-
+	
+	@Override
+	public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
+		return super.useOnEntity(stack, user, entity, hand);
+	}
+	
 	public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
 		if(world.isClient) {
 			startSoundInstance(user);

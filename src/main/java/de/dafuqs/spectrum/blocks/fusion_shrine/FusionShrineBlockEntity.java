@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.blocks.fusion_shrine;
 import de.dafuqs.spectrum.SpectrumClient;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.Support;
+import de.dafuqs.spectrum.blocks.pedestal.Upgradeable;
 import de.dafuqs.spectrum.interfaces.PlayerOwned;
 import de.dafuqs.spectrum.networking.SpectrumS2CPackets;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
@@ -27,6 +28,7 @@ import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.NbtElement;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.recipe.Ingredient;
@@ -40,19 +42,19 @@ import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.ItemScatterer;
+import net.minecraft.util.Pair;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Optional;
-import java.util.Random;
-import java.util.UUID;
+import java.util.*;
 
-public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputProvider, PlayerOwned, BlockEntityClientSerializable {
+public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputProvider, PlayerOwned, BlockEntityClientSerializable, Upgradeable {
 
 	private UUID ownerUUID;
+	private Map<Upgradeable.UpgradeType, Double> upgrades;
 	
 	protected int INVENTORY_SIZE = 8;
 	protected SimpleInventory inventory;
@@ -64,8 +66,9 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 
 	public FusionShrineBlockEntity(BlockPos pos, BlockState state) {
 		super(SpectrumBlockEntityRegistry.FUSION_SHRINE, pos, state);
+		
 		this.inventory = new SimpleInventory(INVENTORY_SIZE);
-		storedFluid = Fluids.EMPTY;
+		this.storedFluid = Fluids.EMPTY;
 	}
 
 	public void readNbt(NbtCompound nbt) {
@@ -100,6 +103,9 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 		} else {
 			this.currentRecipe = null;
 		}
+		if(nbt.contains("Upgrades", NbtElement.COMPOUND_TYPE)) {
+			this.upgrades = Upgradeable.fromNbt(nbt.getList("Upgrades", NbtElement.COMPOUND_TYPE));
+		}
 	}
 
 	public NbtCompound writeNbt(NbtCompound nbt) {
@@ -108,6 +114,9 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 		nbt.putString("fluid", Registry.FLUID.getId(this.storedFluid).toString());
 		nbt.putShort("CraftingTime", (short)this.craftingTime);
 		nbt.putShort("CraftingTimeTotal", (short)this.craftingTimeTotal);
+		if(this.upgrades != null) {
+			nbt.put("Upgrades", Upgradeable.toNbt(this.upgrades));
+		}
 		if(this.ownerUUID != null) {
 			nbt.putUuid("OwnerUUID", this.ownerUUID);
 		}
@@ -151,8 +160,17 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 			}
 		}
 	}
+	
+	public void updateUpgrades() {
+		Pair<Integer, Map<Upgradeable.UpgradeType, Double>> upgrades = Upgradeable.getUpgrades(world, pos, 2, 0);
+		this.upgrades = upgrades.getRight();
+	}
 
 	public static void serverTick(@NotNull World world, BlockPos blockPos, BlockState blockState, FusionShrineBlockEntity fusionShrineBlockEntity) {
+		if(fusionShrineBlockEntity.upgrades == null) {
+			fusionShrineBlockEntity.updateUpgrades();
+		}
+		
 		FusionShrineRecipe recipe = getCurrentRecipe(world, fusionShrineBlockEntity);
 		if(recipe != null && recipe.getFluidInput().equals(fusionShrineBlockEntity.storedFluid)) {
 			// check the crafting conditions from time to time
@@ -212,7 +230,7 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 		if(recipe == null) {
 			SpectrumS2CPackets.sendCancelBlockBoundSoundInstance((ServerWorld) fusionShrineBlockEntity.world, fusionShrineBlockEntity.pos);
 		} else {
-			fusionShrineBlockEntity.craftingTimeTotal = recipe.getCraftingTime();
+			fusionShrineBlockEntity.craftingTimeTotal = (int) Math.ceil(recipe.getCraftingTime() / fusionShrineBlockEntity.getMultiplier(fusionShrineBlockEntity.upgrades, Upgradeable.UpgradeType.SPEED));
 		}
 		
 		fusionShrineBlockEntity.sync();

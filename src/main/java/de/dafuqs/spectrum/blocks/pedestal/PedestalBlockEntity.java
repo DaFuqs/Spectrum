@@ -85,9 +85,8 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 	private static AutoCraftingInventory autoCraftingInventory;
 	private PedestalRecipeTier cachedMaxPedestalTier;
 	private long cachedMaxPedestalTierTick;
-
-	private boolean checkedForUpgrades = false;
-	private Map<UpgradeType, Double> upgrades = new HashMap<>();
+	
+	private Map<UpgradeType, Double> upgrades;
 
 	public static final int INVENTORY_SIZE = 16; // 9 crafting, 5 gems, 1 craftingTablet, 1 output
 	public static final int CRAFTING_TABLET_SLOT_ID = 14;
@@ -107,7 +106,6 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		}
 
 		this.inventory  = DefaultedList.ofSize(INVENTORY_SIZE, ItemStack.EMPTY);
-
 		this.propertyDelegate = new PropertyDelegate() {
 			public int get(int index) {
 				return switch (index) {
@@ -280,7 +278,9 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		nbt.putFloat("StoredXP", this.storedXP);
 		nbt.putShort("CraftingTime", (short)this.craftingTime);
 		nbt.putShort("CraftingTimeTotal", (short)this.craftingTimeTotal);
-		nbt.put("Upgrades", Upgradeable.toNbt(this.upgrades));
+		if(this.upgrades != null) {
+			nbt.put("Upgrades", Upgradeable.toNbt(this.upgrades));
+		}
 		if(this.currentRecipe != null) {
 			nbt.putString("CurrentRecipe", this.currentRecipe.getId().toString());
 		}
@@ -329,11 +329,10 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		// only craft when there is redstone power
 		Block block = world.getBlockState(blockPos).getBlock();
 		if(block instanceof PedestalBlock && blockState.get(PedestalBlock.POWERED)) {
-			if(!pedestalBlockEntity.checkedForUpgrades) {
+			if(pedestalBlockEntity.upgrades == null) {
 				pedestalBlockEntity.updateUpgrades();
-				pedestalBlockEntity.checkedForUpgrades = true;
 			}
-
+			
 			// check recipe crafted last tick => performance
 			PedestalCraftingRecipe pedestalCraftingRecipe = null;
 			CraftingRecipe craftingRecipe = null;

@@ -93,13 +93,6 @@ public class PedestalBlock extends BlockWithEntity implements RedstonePoweredBlo
 		}
 	}
 
-	public static void updateUpgrades(World world, BlockPos pos) {
-		BlockEntity blockEntity = world.getBlockEntity(pos);
-		if(blockEntity instanceof PedestalBlockEntity) {
-			((PedestalBlockEntity) blockEntity).updateUpgrades();
-		}
-	}
-
 	public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
 		if(newState.getBlock() instanceof PedestalBlock) {
 			if (!state.getBlock().equals(newState.getBlock())) {

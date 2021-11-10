@@ -38,6 +38,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.NbtElement;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.recipe.*;
@@ -52,6 +53,7 @@ import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.BlockRotation;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.Pair;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -63,7 +65,7 @@ import vazkii.patchouli.api.IMultiblock;
 
 import java.util.*;
 
-public class PedestalBlockEntity extends LockableContainerBlockEntity implements RecipeInputProvider, SidedInventory, PlayerOwnedWithName, ExtendedScreenHandlerFactory, BlockEntityClientSerializable {
+public class PedestalBlockEntity extends LockableContainerBlockEntity implements RecipeInputProvider, SidedInventory, PlayerOwnedWithName, ExtendedScreenHandlerFactory, BlockEntityClientSerializable, Upgradeable {
 
 	private UUID ownerUUID;
 	private String ownerName;
@@ -85,7 +87,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 	private long cachedMaxPedestalTierTick;
 
 	private final boolean checkedForUpgrades = false;
-	private int speedUpgrades = 0;
+	private Map<UpgradeType, Double> upgrades = new HashMap<>();
 
 	public static final int INVENTORY_SIZE = 16; // 9 crafting, 5 gems, 1 craftingTablet, 1 output
 	public static final int CRAFTING_TABLET_SLOT_ID = 14;
@@ -238,8 +240,8 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		if(nbt.contains("CraftingTimeTotal")) {
 			this.craftingTimeTotal = nbt.getShort("CraftingTimeTotal");
 		}
-		if(nbt.contains("SpeedUpgrades")) {
-			this.speedUpgrades = nbt.getShort("SpeedUpgrades");
+		if(nbt.contains("Upgrades", NbtElement.COMPOUND_TYPE)) {
+			this.upgrades = Upgradeable.fromNbt(nbt.getList("Upgrades", NbtElement.COMPOUND_TYPE));
 		}
 		if(nbt.contains("CurrentRecipe")) {
 			String recipeString = nbt.getString("CurrentRecipe");
@@ -278,7 +280,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		nbt.putFloat("StoredXP", this.storedXP);
 		nbt.putShort("CraftingTime", (short)this.craftingTime);
 		nbt.putShort("CraftingTimeTotal", (short)this.craftingTimeTotal);
-		nbt.putShort("SpeedUpgrades", (short)this.speedUpgrades);
+		nbt.put("Upgrades", Upgradeable.toNbt(this.upgrades));
 		if(this.currentRecipe != null) {
 			nbt.putString("CurrentRecipe", this.currentRecipe.getId().toString());
 		}
@@ -340,11 +342,11 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 			if(validRecipe instanceof PedestalCraftingRecipe) {
 				pedestalCraftingRecipe = (PedestalCraftingRecipe) validRecipe;
 				pedestalBlockEntity.currentRecipe = validRecipe;
-				pedestalBlockEntity.craftingTimeTotal = (int) Math.ceil(pedestalCraftingRecipe.getCraftingTime() / pedestalBlockEntity.getCraftingSpeedMultiplierThroughUpgrades());
+				pedestalBlockEntity.craftingTimeTotal = (int) Math.ceil(pedestalCraftingRecipe.getCraftingTime() / pedestalBlockEntity.getMultiplier(pedestalBlockEntity.upgrades, UpgradeType.SPEED));
 			} else if(validRecipe instanceof CraftingRecipe) {
 				craftingRecipe = (CraftingRecipe) validRecipe;
 				pedestalBlockEntity.currentRecipe = validRecipe;
-				pedestalBlockEntity.craftingTimeTotal = (int) Math.ceil(20 / pedestalBlockEntity.getCraftingSpeedMultiplierThroughUpgrades());
+				pedestalBlockEntity.craftingTimeTotal = (int) Math.ceil(20 / pedestalBlockEntity.getMultiplier(pedestalBlockEntity.upgrades, UpgradeType.SPEED));
 			} else {
 				// no valid recipe
 				pedestalBlockEntity.craftingTime = 0;
@@ -392,7 +394,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 				} else {
 					BlockEntity aboveBlockEntity = world.getBlockEntity(blockPos.up());
 					if (aboveBlockEntity instanceof Inventory) {
-						boolean putIntoAboveInventorySuccess = tryPutOutputIntoAboveInventory(world, blockPos, pedestalBlockEntity, (Inventory) aboveBlockEntity, outputItemStack, craftingRecipe, pedestalCraftingRecipe);
+						boolean putIntoAboveInventorySuccess = tryPutOutputIntoAboveInventory(pedestalBlockEntity, (Inventory) aboveBlockEntity, outputItemStack, craftingRecipe, pedestalCraftingRecipe);
 						if(putIntoAboveInventorySuccess) {
 							playCraftingFinishedSoundEvent(pedestalBlockEntity, craftingRecipe, pedestalCraftingRecipe);
 						} else {
@@ -443,7 +445,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		SpectrumS2CPackets.sendPlayPedestalCraftingFinishedParticle(world, blockPos, outputItemStack);
 	}
 
-	public static boolean tryPutOutputIntoAboveInventory(World world, BlockPos blockPos, PedestalBlockEntity pedestalBlockEntity, Inventory targetInventory, ItemStack outputItemStack, CraftingRecipe craftingRecipe, PedestalCraftingRecipe pedestalCraftingRecipe) {
+	public static boolean tryPutOutputIntoAboveInventory(PedestalBlockEntity pedestalBlockEntity, Inventory targetInventory, ItemStack outputItemStack, CraftingRecipe craftingRecipe, PedestalCraftingRecipe pedestalCraftingRecipe) {
 		ItemStack remainingStack = InventoryHelper.addToInventory(outputItemStack, targetInventory, Direction.DOWN);
 		if(remainingStack.isEmpty()) {
 			pedestalBlockEntity.inventory.set(OUTPUT_SLOT_ID, ItemStack.EMPTY);
@@ -864,31 +866,15 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 	 * Search for upgrades at valid positions and apply
 	 */
 	public void updateUpgrades() {
-		this.speedUpgrades = 0;
-		if(world.getBlockState(pos.add(3, 2, 3)).getBlock().equals(SpectrumBlocks.PEDESTAL_SPEED_UPGRADE)) {
-			this.speedUpgrades++;
-		}
-		if(world.getBlockState(pos.add(3, 2, -3)).getBlock().equals(SpectrumBlocks.PEDESTAL_SPEED_UPGRADE)) {
-			this.speedUpgrades++;
-		}
-		if(world.getBlockState(pos.add(-3, 2, 3)).getBlock().equals(SpectrumBlocks.PEDESTAL_SPEED_UPGRADE)) {
-			this.speedUpgrades++;
-		}
-		if(world.getBlockState(pos.add(-3, 2, -3)).getBlock().equals(SpectrumBlocks.PEDESTAL_SPEED_UPGRADE)) {
-			this.speedUpgrades++;
-		}
-
-		if(this.speedUpgrades == 4) {
+		Pair<Integer, Map<UpgradeType, Double>> upgrades = Upgradeable.getUpgrades(world, pos, 3, 2);
+		this.upgrades = upgrades.getRight();
+		
+		if(upgrades.getLeft() == 4) {
 			ServerPlayerEntity owner = (ServerPlayerEntity) getPlayerEntityIfOnline(world);
 			if(owner != null) {
 				Support.grantAdvancementCriterion(owner, "use_all_pedestal_upgrades", "used_all");
 			}
 		}
-	}
-
-	@Contract(pure = true)
-	private double getCraftingSpeedMultiplierThroughUpgrades() {
-		return Math.exp(this.speedUpgrades * 0.4);
 	}
 	
 	@Override

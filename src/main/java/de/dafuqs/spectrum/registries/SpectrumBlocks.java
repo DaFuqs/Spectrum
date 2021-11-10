@@ -38,6 +38,7 @@ import de.dafuqs.spectrum.blocks.particle_spawner.ParticleSpawnerBlock;
 import de.dafuqs.spectrum.blocks.pedestal.PedestalBlock;
 import de.dafuqs.spectrum.blocks.pedestal.PedestalBlockItem;
 import de.dafuqs.spectrum.blocks.pedestal.PedestalUpgradeBlock;
+import de.dafuqs.spectrum.blocks.pedestal.Upgradeable;
 import de.dafuqs.spectrum.blocks.redstone.*;
 import de.dafuqs.spectrum.blocks.spirit_sallow.SpiritSallowLeavesBlock;
 import de.dafuqs.spectrum.blocks.spirit_tree.OminousSaplingBlock;
@@ -602,7 +603,7 @@ public class SpectrumBlocks {
 	public static final Block STUCK_LIGHTNING_STONE = new LightningStoneBlock(FabricBlockSettings.copyOf(Blocks.DIRT));
 
 	public static final Block DEEPER_DOWN_PORTAL = new DeeperDownPortalBlock(FabricBlockSettings.copyOf(Blocks.END_PORTAL));
-	public static final Block PEDESTAL_SPEED_UPGRADE = new PedestalUpgradeBlock(FabricBlockSettings.copyOf(SpectrumBlocks.POLISHED_BASALT));
+	public static final Block PEDESTAL_SPEED_UPGRADE = new PedestalUpgradeBlock(FabricBlockSettings.copyOf(SpectrumBlocks.POLISHED_BASALT), Upgradeable.UpgradeType.SPEED, 0.25);
 
 	public static final Block REDSTONE_SAND = new RedstoneGravityBlock(FabricBlockSettings.copyOf(Blocks.SAND));
 	public static final Block ENDER_GLASS = new RedstoneTransparencyBlock(FabricBlockSettings.copyOf(Blocks.GLASS).nonOpaque()

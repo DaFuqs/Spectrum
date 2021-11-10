@@ -21,6 +21,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Vec3d;
 import org.apache.logging.log4j.Level;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -124,7 +125,10 @@ public class Support {
 		}
 	}
 
-	public static boolean hasAdvancement(PlayerEntity playerEntity, Identifier advancementIdentifier) {
+	public static boolean hasAdvancement(PlayerEntity playerEntity, @Nullable Identifier advancementIdentifier) {
+		if(advancementIdentifier == null) {
+			return true;
+		}
 		if (playerEntity instanceof ServerPlayerEntity) {
 			Advancement advancement = SpectrumCommon.minecraftServer.getAdvancementLoader().get(advancementIdentifier);
 			if (advancement == null) {

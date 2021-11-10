@@ -156,17 +156,18 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 		FusionShrineRecipe recipe = getCurrentRecipe(world, fusionShrineBlockEntity);
 		if(recipe != null && recipe.getFluidInput().equals(fusionShrineBlockEntity.storedFluid)) {
 			// check the crafting conditions from time to time
-			// not that nice that crafting may start a whole
-			// second later, but good for performance
-			// because of the many checks
+			//  good for performance because of the many checks
 			if(fusionShrineBlockEntity.craftingTime % 20 == 0) {
 				PlayerEntity lastInteractedPlayer = PlayerOwned.getPlayerEntityIfOnline(world, fusionShrineBlockEntity.ownerUUID);
-				if(!(lastInteractedPlayer != null
-						&& (recipe.getRequiredAdvancementIdentifier() == null || Support.hasAdvancement(lastInteractedPlayer, recipe.getRequiredAdvancementIdentifier()))
-						&& world.getBlockState(blockPos.up()).isAir()
-						&& world.isSkyVisible(blockPos)
-						&& recipe.areConditionMetCurrently((ServerWorld) world))) {
-
+				
+				boolean recipeConditionsMet = Support.hasAdvancement(lastInteractedPlayer, recipe.getRequiredAdvancementIdentifier()) && recipe.areConditionMetCurrently((ServerWorld) world);
+				boolean structureCompleteWithSky = world.getBlockState(blockPos.up()).isAir() && world.isSkyVisible(blockPos) && FusionShrineBlock.verifyStructure(world, blockPos, null);
+				
+				if(!recipeConditionsMet || !structureCompleteWithSky) {
+					if(!structureCompleteWithSky) {
+						// TODO: play a sound
+						FusionShrineBlock.scatterContents(world, blockPos);
+					}
 					fusionShrineBlockEntity.craftingTime = 0;
 					return;
 				}

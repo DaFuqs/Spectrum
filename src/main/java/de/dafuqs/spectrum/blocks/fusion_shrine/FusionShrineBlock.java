@@ -89,7 +89,7 @@ public class FusionShrineBlock extends BlockWithEntity {
 					}
 				}
 			} else {
-				if(verifyStructure(world, pos.down(), (ServerPlayerEntity) player)) {
+				if(verifyStructure(world, pos, (ServerPlayerEntity) player)) {
 					FusionShrineBlockEntity fusionShrineBlockEntity = ((FusionShrineBlockEntity) world.getBlockEntity(pos));
 					fusionShrineBlockEntity.setOwner(player);
 
@@ -132,18 +132,20 @@ public class FusionShrineBlock extends BlockWithEntity {
 		}
 	}
 
-	public boolean verifyStructure(World world, BlockPos blockPos, ServerPlayerEntity serverPlayerEntity) {
+	public static boolean verifyStructure(World world, BlockPos blockPos, @Nullable ServerPlayerEntity serverPlayerEntity) {
 		IMultiblock multiblock = SpectrumMultiblocks.MULTIBLOCKS.get(SpectrumMultiblocks.FUSION_SHRINE_IDENTIFIER);
-		boolean valid = multiblock.validate(world, blockPos, BlockRotation.NONE);
+		boolean valid = multiblock.validate(world, blockPos.down(), BlockRotation.NONE);
 
 		if(valid) {
-			SpectrumAdvancementCriteria.COMPLETED_MULTIBLOCK.trigger(serverPlayerEntity, multiblock);
+			if(serverPlayerEntity != null) {
+				SpectrumAdvancementCriteria.COMPLETED_MULTIBLOCK.trigger(serverPlayerEntity, multiblock);
+			}
 		} else {
 			IMultiblock currentMultiBlock = PatchouliAPI.get().getCurrentMultiblock();
 			if(currentMultiBlock == multiblock) {
 				PatchouliAPI.get().clearMultiblock();
 			} else {
-				PatchouliAPI.get().showMultiblock(multiblock, new TranslatableText("multiblock.spectrum.fusion_shrine.structure"), blockPos.down(), BlockRotation.NONE);
+				PatchouliAPI.get().showMultiblock(multiblock, new TranslatableText("multiblock.spectrum.fusion_shrine.structure"), blockPos.down(2), BlockRotation.NONE);
 				scatterContents(world, blockPos);
 			}
 		}
@@ -159,11 +161,12 @@ public class FusionShrineBlock extends BlockWithEntity {
 		super.onStateReplaced(state, world, pos, newState, moved);
 	}
 
-	public void scatterContents(World world, BlockPos pos) {
+	public static void scatterContents(World world, BlockPos pos) {
+		Block block = world.getBlockState(pos).getBlock();
 		BlockEntity blockEntity = world.getBlockEntity(pos);
 		if (blockEntity instanceof FusionShrineBlockEntity) {
 			ItemScatterer.spawn(world, pos, ((FusionShrineBlockEntity) blockEntity).getInventory());
-			world.updateComparators(pos, this);
+			world.updateComparators(pos, block);
 		}
 	}
 

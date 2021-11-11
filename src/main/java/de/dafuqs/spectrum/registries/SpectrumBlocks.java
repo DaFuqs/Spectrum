@@ -469,24 +469,24 @@ public class SpectrumBlocks {
 	public static final Block WHITE_GLOWBLOCK = new Block(flatColoredBlockBlockSettings);
 	public static final Block YELLOW_GLOWBLOCK = new Block(flatColoredBlockBlockSettings);
 
-	// COLORED LAMPS // TODO: Culling when side is obstructed
+	// COLORED LAMPS
 	private static final FabricBlockSettings coloredLampBlockBlockSettings = FabricBlockSettings.copyOf(Blocks.REDSTONE_LAMP);
-	public static final Block BLACK_LAMP = new RedstoneLampBlock(coloredLampBlockBlockSettings);
-	public static final Block BLUE_LAMP = new RedstoneLampBlock(coloredLampBlockBlockSettings);
-	public static final Block BROWN_LAMP = new RedstoneLampBlock(coloredLampBlockBlockSettings);
-	public static final Block CYAN_LAMP = new RedstoneLampBlock(coloredLampBlockBlockSettings);
-	public static final Block GRAY_LAMP = new RedstoneLampBlock(coloredLampBlockBlockSettings);
-	public static final Block GREEN_LAMP = new RedstoneLampBlock(coloredLampBlockBlockSettings);
-	public static final Block LIGHT_BLUE_LAMP = new RedstoneLampBlock(coloredLampBlockBlockSettings);
-	public static final Block LIGHT_GRAY_LAMP = new RedstoneLampBlock(coloredLampBlockBlockSettings);
-	public static final Block LIME_LAMP = new RedstoneLampBlock(coloredLampBlockBlockSettings);
-	public static final Block MAGENTA_LAMP = new RedstoneLampBlock(coloredLampBlockBlockSettings);
-	public static final Block ORANGE_LAMP = new RedstoneLampBlock(coloredLampBlockBlockSettings);
-	public static final Block PINK_LAMP = new RedstoneLampBlock(coloredLampBlockBlockSettings);
-	public static final Block PURPLE_LAMP = new RedstoneLampBlock(coloredLampBlockBlockSettings);
-	public static final Block RED_LAMP = new RedstoneLampBlock(coloredLampBlockBlockSettings);
-	public static final Block WHITE_LAMP = new RedstoneLampBlock(coloredLampBlockBlockSettings);
-	public static final Block YELLOW_LAMP = new RedstoneLampBlock(coloredLampBlockBlockSettings);
+	public static final Block BLACK_LAMP = new ColoredLightBlock(coloredLampBlockBlockSettings);
+	public static final Block BLUE_LAMP = new ColoredLightBlock(coloredLampBlockBlockSettings);
+	public static final Block BROWN_LAMP = new ColoredLightBlock(coloredLampBlockBlockSettings);
+	public static final Block CYAN_LAMP = new ColoredLightBlock(coloredLampBlockBlockSettings);
+	public static final Block GRAY_LAMP = new ColoredLightBlock(coloredLampBlockBlockSettings);
+	public static final Block GREEN_LAMP = new ColoredLightBlock(coloredLampBlockBlockSettings);
+	public static final Block LIGHT_BLUE_LAMP = new ColoredLightBlock(coloredLampBlockBlockSettings);
+	public static final Block LIGHT_GRAY_LAMP = new ColoredLightBlock(coloredLampBlockBlockSettings);
+	public static final Block LIME_LAMP = new ColoredLightBlock(coloredLampBlockBlockSettings);
+	public static final Block MAGENTA_LAMP = new ColoredLightBlock(coloredLampBlockBlockSettings);
+	public static final Block ORANGE_LAMP = new ColoredLightBlock(coloredLampBlockBlockSettings);
+	public static final Block PINK_LAMP = new ColoredLightBlock(coloredLampBlockBlockSettings);
+	public static final Block PURPLE_LAMP = new ColoredLightBlock(coloredLampBlockBlockSettings);
+	public static final Block RED_LAMP = new ColoredLightBlock(coloredLampBlockBlockSettings);
+	public static final Block WHITE_LAMP = new ColoredLightBlock(coloredLampBlockBlockSettings);
+	public static final Block YELLOW_LAMP = new ColoredLightBlock(coloredLampBlockBlockSettings);
 
 	// PIGMENT STORAGE BLOCKS
 	private static final FabricBlockSettings pigmentStorageBlockBlockSettings = FabricBlockSettings.of(Material.WOOL).strength(1.0F).sounds(BlockSoundGroup.WOOL);

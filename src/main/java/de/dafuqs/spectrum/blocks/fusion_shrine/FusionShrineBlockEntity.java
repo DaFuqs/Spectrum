@@ -3,7 +3,7 @@ package de.dafuqs.spectrum.blocks.fusion_shrine;
 import de.dafuqs.spectrum.SpectrumClient;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.Support;
-import de.dafuqs.spectrum.blocks.pedestal.Upgradeable;
+import de.dafuqs.spectrum.blocks.upgrade.Upgradeable;
 import de.dafuqs.spectrum.interfaces.PlayerOwned;
 import de.dafuqs.spectrum.networking.SpectrumS2CPackets;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
@@ -49,7 +49,10 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.*;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Random;
+import java.util.UUID;
 
 public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputProvider, PlayerOwned, BlockEntityClientSerializable, Upgradeable {
 
@@ -160,11 +163,6 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 			}
 		}
 	}
-	
-	public void updateUpgrades() {
-		Pair<Integer, Map<Upgradeable.UpgradeType, Double>> upgrades = Upgradeable.getUpgrades(world, pos, 2, 0);
-		this.upgrades = upgrades.getRight();
-	}
 
 	public static void serverTick(@NotNull World world, BlockPos blockPos, BlockState blockState, FusionShrineBlockEntity fusionShrineBlockEntity) {
 		if(fusionShrineBlockEntity.upgrades == null) {
@@ -236,13 +234,13 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 		fusionShrineBlockEntity.sync();
 		return recipe;
 	}
-
+	
+	// calculate the max amount of items that will be crafted
+	// note that we only check each ingredient once, if a match was found
+	// custom recipes therefore should not use items / tags that match multiple items
+	// at once, since we can not rely on positions in a grid like vanilla does
+	// in it's crafting table
 	private static void craft(World world, BlockPos blockPos, FusionShrineBlockEntity fusionShrineBlockEntity, FusionShrineRecipe recipe) {
-		// calculate the max amount of items that will be crafted
-		// note that we only check each ingredient once, if a match was found
-		// custom recipes therefore should not use items / tags that match multiple items
-		// at once, since we can not rely on positions in a grid like vanilla does
-		// in it's crafting table
 		int maxAmount = recipe.getOutput().getMaxCount();
 		for(Ingredient ingredient : recipe.getIngredients()) {
 			for(int i = 0; i < fusionShrineBlockEntity.INVENTORY_SIZE; i++) {
@@ -253,16 +251,18 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 				}
 			}
 		}
-
+		
+		double efficiencyModifier = fusionShrineBlockEntity.getMultiplier(fusionShrineBlockEntity.upgrades, UpgradeType.EFFICIENCY);
 		if(maxAmount > 0) {
 			for(Ingredient ingredient : recipe.getIngredients()) {
 				for(int i = 0; i < fusionShrineBlockEntity.INVENTORY_SIZE; i++) {
 					ItemStack currentStack = fusionShrineBlockEntity.inventory.getStack(i);
 					if(ingredient.test(currentStack)) {
-						if(currentStack.getCount() - maxAmount < 1) {
+						int reducedAmount = Support.getIntFromDecimalWithChance(maxAmount / efficiencyModifier, fusionShrineBlockEntity.world.random);
+						if(currentStack.getCount() - reducedAmount < 1) {
 							fusionShrineBlockEntity.inventory.setStack(i, ItemStack.EMPTY);
 						} else {
-							currentStack.decrement(maxAmount);
+							currentStack.decrement(reducedAmount);
 						}
 						break;
 					}
@@ -294,19 +294,24 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 	}
 
 	public static void spawnCraftingResultAndXP(World world, FusionShrineBlockEntity blockEntity, FusionShrineRecipe recipe, int amount) {
-		int resultAmount = amount * recipe.getOutput().getCount();
-		while(resultAmount > 0) {
+		int resultAmountBeforeMod = amount * recipe.getOutput().getCount();
+		double yieldModifier =  recipe.areYieldUpgradesDisabled() ? 1.0 : blockEntity.getMultiplier(blockEntity.upgrades, UpgradeType.YIELD);
+		int resultAmountAfterMod = Support.getIntFromDecimalWithChance(resultAmountBeforeMod * yieldModifier, blockEntity.world.random);
+		
+		while(resultAmountAfterMod > 0) {
 			int currentAmount = Math.min(amount, recipe.getOutput().getMaxCount());
 
 			ItemEntity itemEntity = new ItemEntity(world, blockEntity.pos.getX() + 0.5, blockEntity.pos.getY() + 1, blockEntity.pos.getZ() + 0.5, new ItemStack(recipe.getOutput().getItem(), currentAmount));
 			itemEntity.setVelocity(0, 0.3, 0);
 			world.spawnEntity(itemEntity);
-
-			resultAmount -= currentAmount;
+			
+			resultAmountAfterMod -= currentAmount;
 		}
 
 		if (recipe.getExperience() > 0) {
-			int spawnedXPAmount = Support.getWholeIntFromFloatWithChance(recipe.getExperience(), blockEntity.world.random);
+			double experienceModifier = blockEntity.getMultiplier(blockEntity.upgrades, UpgradeType.EXPERIENCE);
+			float recipeExperienceBeforeMod = recipe.getExperience();
+			int spawnedXPAmount = Support.getIntFromDecimalWithChance(recipeExperienceBeforeMod * experienceModifier, blockEntity.world.random);
 			ExperienceOrbEntity experienceOrbEntity = new ExperienceOrbEntity(world, blockEntity.pos.getX() + 0.5, blockEntity.pos.getY() + 1, blockEntity.pos.getZ() + 0.5, spawnedXPAmount);
 			world.spawnEntity(experienceOrbEntity);
 		}
@@ -391,6 +396,17 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 	@Override
 	public NbtCompound toClientTag(NbtCompound tag) {
 		return this.toInitialChunkDataNbt();
+	}
+	
+	// UPGRADEABLE
+	
+	public void resetUpgrades() {
+		this.upgrades = null;
+	}
+	
+	public void updateUpgrades() {
+		Pair<Integer, Map<Upgradeable.UpgradeType, Double>> upgrades = Upgradeable.getUpgrades(world, pos, 2, 0);
+		this.upgrades = upgrades.getRight();
 	}
 	
 }

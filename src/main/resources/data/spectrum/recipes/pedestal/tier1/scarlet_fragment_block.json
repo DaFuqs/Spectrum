@@ -22,5 +22,6 @@
     "item": "spectrum:scarlet_fragment_block",
     "count": 1
   },
-  "required_advancements": ["spectrum:midgame/collect_scarlet"]
+  "required_advancements": ["spectrum:midgame/collect_scarlet"],
+  "disable_yield_upgrades": true
 }

@@ -104,7 +104,7 @@ public abstract class ItemEntityMixin {
 
 					// Spawn XP depending on how much is crafted, but at least 1
 					float craftingXPFloat = recipe.getExperience() * crushingInputAmount;
-					int craftingXP = Support.getWholeIntFromFloatWithChance(craftingXPFloat, world.random);
+					int craftingXP = Support.getIntFromDecimalWithChance(craftingXPFloat, world.random);
 
 					ExperienceOrbEntity experienceOrbEntity = new ExperienceOrbEntity(world, position.x, position.y, position.z, craftingXP);
 					world.spawnEntity(experienceOrbEntity);

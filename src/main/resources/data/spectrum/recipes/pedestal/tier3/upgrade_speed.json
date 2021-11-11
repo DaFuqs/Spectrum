@@ -37,7 +37,7 @@
     }
   },
   "result" : {
-    "item": "spectrum:pedestal_speed_upgrade",
+    "item": "spectrum:upgrade_speed",
     "count": 1
   },
   "required_advancements": ["spectrum:midgame/spectrum_midgame"]

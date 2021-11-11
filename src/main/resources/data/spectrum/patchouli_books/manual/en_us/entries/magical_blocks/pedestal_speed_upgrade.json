@@ -1,10 +1,10 @@
 {
   "name": "Pedestal Accelerator",
   "advancement": "spectrum:midgame/spectrum_midgame",
-  "icon": "spectrum:pedestal_speed_upgrade",
+  "icon": "spectrum:upgrade_speed",
   "category": "spectrum:magical_blocks_category",
   "extra_recipe_mappings": {
-    "spectrum:pedestal_speed_upgrade": 1
+    "spectrum:upgrade_speed": 1
   },
   "pages": [
     {
@@ -14,7 +14,7 @@
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier3/pedestal_speed_upgrade",
+      "recipe": "spectrum:pedestal/tier3/upgrade_speed",
       "text": "Place the Pedestal Crafting Accelerator on top one of the four gemstone blocks close to your $(l:general/pedestal)Pigment Pedestal$().$(br)They also work for the $(l:general/fusion_shrine)Fusion Shrine$(/), when placed on one of the chiseled blocks.$(br2)Each additional Accelerator has an increased effect."
     }
   ]

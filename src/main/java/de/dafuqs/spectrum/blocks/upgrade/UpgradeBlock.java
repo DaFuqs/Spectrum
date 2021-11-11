@@ -1,7 +1,9 @@
-package de.dafuqs.spectrum.blocks.pedestal;
+package de.dafuqs.spectrum.blocks.upgrade;
 
 import de.dafuqs.spectrum.blocks.fusion_shrine.FusionShrineBlock;
 import de.dafuqs.spectrum.blocks.fusion_shrine.FusionShrineBlockEntity;
+import de.dafuqs.spectrum.blocks.pedestal.PedestalBlock;
+import de.dafuqs.spectrum.blocks.pedestal.PedestalBlockEntity;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.ai.pathing.NavigationType;
@@ -16,15 +18,17 @@ import org.jetbrains.annotations.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PedestalUpgradeBlock extends BlockWithEntity {
+public class UpgradeBlock extends BlockWithEntity {
+	
+	private static final List<Block> registeredUpgradeBlocks = new ArrayList<>();
 	
 	// Positions to check on place / destroy to upgrade those blocks upgrade counts
-	private List<Vec3i> possibleUpgradeBlockOffsets = new ArrayList<>() {{
+	private final List<Vec3i> possibleUpgradeBlockOffsets = new ArrayList<>() {{
 		// Pedestal
-		add(new Vec3i(3, 2, 3));
-		add(new Vec3i(-3, 2, 3));
-		add(new Vec3i(3, 2, -3));
-		add(new Vec3i(-3, 2, -3));
+		add(new Vec3i(3, -2, 3));
+		add(new Vec3i(-3, -2, 3));
+		add(new Vec3i(3, -2, -3));
+		add(new Vec3i(-3, -2, -3));
 		
 		// Fusion Shrine
 		add(new Vec3i(2, 0, 2));
@@ -41,10 +45,12 @@ public class PedestalUpgradeBlock extends BlockWithEntity {
 	
 	protected static final VoxelShape SHAPE_UP = Block.createCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 10.0D, 14.0D);
 
-	public PedestalUpgradeBlock(Settings settings, Upgradeable.UpgradeType upgradeType, double upgradeMod) {
+	public UpgradeBlock(Settings settings, Upgradeable.UpgradeType upgradeType, double upgradeMod) {
 		super(settings);
 		this.upgradeType = upgradeType;
 		this.upgradeMod = upgradeMod;
+		
+		registeredUpgradeBlocks.add(this);
 	}
 
 	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
@@ -57,15 +63,15 @@ public class PedestalUpgradeBlock extends BlockWithEntity {
 
 	@Override
 	public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
-		updateConnectedUpgradeBlock(world, pos);
 		super.onBlockAdded(state, world, pos, oldState, notify);
+		updateConnectedUpgradeBlock(world, pos);
 	}
 
 
 	@Override
 	public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
-		updateConnectedUpgradeBlock(world, pos);
 		super.onStateReplaced(state, world, pos, newState, moved);
+		updateConnectedUpgradeBlock(world, pos);
 	}
 
 	/**
@@ -79,13 +85,13 @@ public class PedestalUpgradeBlock extends BlockWithEntity {
 			if(block instanceof PedestalBlock) {
 				BlockEntity blockEntity = world.getBlockEntity(currentPos);
 				if(blockEntity instanceof PedestalBlockEntity pedestalBlockEntity) {
-					pedestalBlockEntity.updateUpgrades();
+					pedestalBlockEntity.resetUpgrades();
 				}
 				break;
 			} else if(block instanceof FusionShrineBlock) {
 				BlockEntity blockEntity = world.getBlockEntity(currentPos);
 				if(blockEntity instanceof FusionShrineBlockEntity fusionShrineBlockEntity) {
-					fusionShrineBlockEntity.updateUpgrades();
+					fusionShrineBlockEntity.resetUpgrades();
 				}
 				break;
 			}
@@ -107,7 +113,11 @@ public class PedestalUpgradeBlock extends BlockWithEntity {
 	@Nullable
 	@Override
 	public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
-		return new PedestalUpgradeBlockEntity(pos, state);
+		return new UpgradeBlockEntity(pos, state);
+	}
+	
+	public static List<Block> getRegisteredUpgradeBlocks() {
+		return registeredUpgradeBlocks;
 	}
 	
 }

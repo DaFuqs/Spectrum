@@ -34,5 +34,6 @@
     "item": "spectrum:fusion_shrine",
     "count": 1
   },
-  "required_advancements": [ "spectrum:collect_all_basic_pigments_besides_brown" ]
+  "required_advancements": [ "spectrum:collect_all_basic_pigments_besides_brown" ],
+  "disable_yield_upgrades": true
 }

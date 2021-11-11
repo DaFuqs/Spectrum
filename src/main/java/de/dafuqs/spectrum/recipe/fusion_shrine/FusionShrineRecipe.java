@@ -34,7 +34,13 @@ public class FusionShrineRecipe implements Recipe<Inventory> {
 	protected final ItemStack output;
 	protected final float experience;
 	protected final int craftingTime;
-
+	// since there are a few recipes that are basically compacting recipes
+	// they could be crafted ingots>block and block>ingots back
+	// In that case:
+	// - the player should not get XP
+	// - Yield upgrades disabled (item multiplication)
+	protected final boolean noBenefitsFromYieldUpgrades;
+	
 	protected final List<FusionShrineRecipeWorldCondition> worldConditions;
 	@NotNull protected final FusionShrineRecipeWorldEffect startWorldEffect;
 	@NotNull protected final List<FusionShrineRecipeWorldEffect> duringWorldEffects;
@@ -42,7 +48,7 @@ public class FusionShrineRecipe implements Recipe<Inventory> {
 	@Nullable protected final Identifier requiredAdvancementIdentifier;
 	@Nullable protected final Text description;
 
-	public FusionShrineRecipe(Identifier id, String group, DefaultedList<Ingredient> craftingInputs, Fluid fluidInput, ItemStack output, float experience, int craftingTime, Identifier requiredAdvancementIdentifier, List<FusionShrineRecipeWorldCondition> worldConditions, FusionShrineRecipeWorldEffect startWorldEffect, List<FusionShrineRecipeWorldEffect> duringWorldEffects, FusionShrineRecipeWorldEffect finishWorldEffect, Text description) {
+	public FusionShrineRecipe(Identifier id, String group, DefaultedList<Ingredient> craftingInputs, Fluid fluidInput, ItemStack output, float experience, int craftingTime, boolean noBenefitsFromYieldUpgrades, Identifier requiredAdvancementIdentifier, List<FusionShrineRecipeWorldCondition> worldConditions, FusionShrineRecipeWorldEffect startWorldEffect, List<FusionShrineRecipeWorldEffect> duringWorldEffects, FusionShrineRecipeWorldEffect finishWorldEffect, Text description) {
 		this.id = id;
 		this.group = group;
 
@@ -51,6 +57,7 @@ public class FusionShrineRecipe implements Recipe<Inventory> {
 		this.output = output;
 		this.experience = experience;
 		this.craftingTime = craftingTime;
+		this.noBenefitsFromYieldUpgrades = noBenefitsFromYieldUpgrades;
 
 		this.worldConditions = worldConditions;
 		this.startWorldEffect = startWorldEffect;
@@ -208,6 +215,10 @@ public class FusionShrineRecipe implements Recipe<Inventory> {
 		} else {
 			return Optional.of(this.description);
 		}
+	}
+	
+	public boolean areYieldUpgradesDisabled() {
+		return noBenefitsFromYieldUpgrades;
 	}
 
 }

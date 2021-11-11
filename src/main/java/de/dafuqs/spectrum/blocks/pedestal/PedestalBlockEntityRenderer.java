@@ -22,9 +22,7 @@ import java.util.Random;
 @Environment(EnvType.CLIENT)
 public class PedestalBlockEntityRenderer<T extends PedestalBlockEntity> implements BlockEntityRenderer<T> {
 	
-	Random random = new Random();
 	private final Identifier GROUND_MARK = new Identifier(SpectrumCommon.MOD_ID, "textures/misc/circle.png");
-	
 	private final ModelPart circle;
 	
 	public PedestalBlockEntityRenderer(BlockEntityRendererFactory.Context ctx) {

@@ -101,13 +101,13 @@ public class Support {
 			}
 		}
 	}
-
-	public static int getWholeIntFromFloatWithChance(float f, @NotNull Random random) {
-		boolean roundUp = (random.nextFloat() < f % 1);
+	
+	public static int getIntFromDecimalWithChance(double d, @NotNull Random random) {
+		boolean roundUp = (random.nextFloat() < d % 1);
 		if(roundUp) {
-			return ((int) f) + 1;
+			return ((int) d) + 1;
 		} else {
-			return (int) f;
+			return (int) d;
 		}
 	}
 
@@ -121,7 +121,7 @@ public class Support {
 		if (advancement != null) {
 			tracker.grantCriterion(advancement, criterion);
 		} else {
-			SpectrumCommon.log(Level.ERROR, "Trying to grant a criterion for an advancement that does not exist: " + advancementIdentifier);
+			SpectrumCommon.log(Level.ERROR, "Trying to grant a criterion \"" + criterion +  "\" for an advancement that does not exist: " + advancementIdentifier);
 		}
 	}
 
@@ -170,5 +170,5 @@ public class Support {
 		}
 		return Optional.empty();
 	}
-
+	
 }

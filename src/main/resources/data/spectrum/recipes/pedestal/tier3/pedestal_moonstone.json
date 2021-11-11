@@ -22,5 +22,6 @@
     "item": "spectrum:pedestal_moonstone",
     "count": 1
   },
-  "required_advancements": ["spectrum:midgame/spectrum_midgame"]
+  "required_advancements": ["spectrum:midgame/spectrum_midgame"],
+  "disable_yield_upgrades": true
 }

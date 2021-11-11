@@ -2,7 +2,7 @@
   "parent": "spectrum:midgame/build_advanced_pedestal_structure",
   "display": {
     "icon": {
-        "item": "spectrum:pedestal_speed_upgrade"
+        "item": "spectrum:upgrade_speed"
     },
     "title": {
       "translate": "advancements.spectrum.use_all_pedestal_upgrades.title"

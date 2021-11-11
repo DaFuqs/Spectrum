@@ -45,13 +45,19 @@ public class PedestalCraftingRecipe implements Recipe<Inventory> {
 	protected final ItemStack output;
 	protected final float experience;
 	protected final int craftingTime;
+	// since there are a few recipes that are basically compacting recipes
+	// they could be crafted ingots>block and block>ingots back
+	// In that case:
+	// - the player should not get XP
+	// - Yield upgrades disabled (item multiplication)
+	protected final boolean noBenefitsFromYieldUpgrades;
 
 	protected final List<Identifier> requiredAdvancementIdentifiers;
 	protected final boolean excludeRequirementsInDebugCommand;
 
 	public PedestalCraftingRecipe(Identifier id, String group, PedestalRecipeTier tier, int width, int height,
 	                              DefaultedList<Ingredient> craftingInputs, HashMap<GemstoneColor, Integer> gemstoneDustInputs, ItemStack output,
-	                              float experience, int craftingTime, List<Identifier> requiredAdvancementIdentifiers, boolean excludeRequirementsInDebugCommand) {
+	                              float experience, int craftingTime, boolean noBenefitsFromYieldUpgrades, List<Identifier> requiredAdvancementIdentifiers, boolean excludeRequirementsInDebugCommand) {
 		this.id = id;
 		this.group = group;
 		this.tier = tier;
@@ -64,6 +70,7 @@ public class PedestalCraftingRecipe implements Recipe<Inventory> {
 		this.output = output;
 		this.experience = experience;
 		this.craftingTime = craftingTime;
+		this.noBenefitsFromYieldUpgrades = noBenefitsFromYieldUpgrades;
 
 		this.requiredAdvancementIdentifiers = requiredAdvancementIdentifiers;
 		this.excludeRequirementsInDebugCommand = excludeRequirementsInDebugCommand;
@@ -282,8 +289,6 @@ public class PedestalCraftingRecipe implements Recipe<Inventory> {
 	 * When a recipe is set to output a pedestal block item
 	 * it is treated as an upgrade recipe. Meaning the item does not
 	 * get crafted, but the current pedestal replaced with the new one.
-	 * @param outputItemStack
-	 * @return
 	 */
 	public static PedestalBlock.PedestalVariant getUpgradedPedestalVariantForOutput(ItemStack outputItemStack) {
 		if(outputItemStack.getItem() instanceof PedestalBlockItem) {
@@ -309,4 +314,8 @@ public class PedestalCraftingRecipe implements Recipe<Inventory> {
 		return this.group;
 	}
 
+	public boolean areYieldUpgradesDisabled() {
+		return noBenefitsFromYieldUpgrades;
+	}
+	
 }

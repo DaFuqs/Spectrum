@@ -1,17 +1,13 @@
 package de.dafuqs.spectrum.compat.REI;
 
 import de.dafuqs.spectrum.inventories.PedestalScreenHandler;
-import me.shedaniel.rei.api.common.display.Display;
 import me.shedaniel.rei.api.common.display.DisplaySerializerRegistry;
-import me.shedaniel.rei.api.common.display.SimpleDisplaySerializer;
 import me.shedaniel.rei.api.common.display.SimpleGridMenuDisplay;
 import me.shedaniel.rei.api.common.plugins.REIServerPlugin;
 import me.shedaniel.rei.api.common.transfer.info.MenuInfoContext;
 import me.shedaniel.rei.api.common.transfer.info.MenuInfoRegistry;
 import me.shedaniel.rei.api.common.transfer.info.simple.SimpleGridMenuInfo;
-import me.shedaniel.rei.impl.common.display.DisplaySerializerRegistryImpl;
 import me.shedaniel.rei.plugin.common.BuiltinPlugin;
-import net.minecraft.nbt.NbtCompound;
 
 import java.util.stream.IntStream;
 

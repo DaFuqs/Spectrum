@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.blocks.pedestal;
+package de.dafuqs.spectrum.blocks.upgrade;
 
 import com.google.common.collect.Maps;
 import net.minecraft.block.Block;
@@ -18,7 +18,7 @@ public interface Upgradeable {
 	
 	enum UpgradeType {
 		SPEED,      // faster crafting
-		EFFICIENCY, // use less gemstone powder
+		EFFICIENCY, // chance to not use input resources (like gemstone powder)
 		YIELD,      // chance to increase output
 		EXPERIENCE, // increases XP output
 	}
@@ -53,7 +53,11 @@ public interface Upgradeable {
 	
 	@Contract(pure = true)
 	default double getMultiplier(@NotNull Map<UpgradeType, Double> upgrades, UpgradeType upgradeType) {
-		return getMultiplier(upgrades.get(upgradeType));
+		if(upgrades.containsKey(upgradeType)) {
+			return getMultiplier(upgrades.get(upgradeType));
+		} else {
+			return 1.0;
+		}
 	}
 	
 	@Contract(pure = true)
@@ -62,7 +66,7 @@ public interface Upgradeable {
 		// exponential increase could make it more interesting
 		// players could use 4 yield mods (making very cheap to craft low-level stuff),
 		// but crafting higher level stuff would take ages in return => feeling of power, player has to choose, or switch constantly
-		return 1 + Math.pow(upgradeMod, 2);
+		return Math.pow(2, upgradeMod);
 		
 		// Or logarithmic? That way specialization would be punished a bit
 		//return Math.log(2 + upgradeMod,2);
@@ -82,9 +86,9 @@ public interface Upgradeable {
 		int upgradeCount = 0;
 		for(BlockPos offsetPos : offsetPosList) {
 			Block block = world.getBlockState(offsetPos).getBlock();
-			if(block instanceof PedestalUpgradeBlock pedestalUpgradeBlock) {
-				UpgradeType upgradeType = pedestalUpgradeBlock.getUpgradeType();
-				double upgradeMod = pedestalUpgradeBlock.getUpgradeMod();
+			if(block instanceof UpgradeBlock upgradeBlock) {
+				UpgradeType upgradeType = upgradeBlock.getUpgradeType();
+				double upgradeMod = upgradeBlock.getUpgradeMod();
 				
 				if(map.containsKey(upgradeType)) {
 					map.put(upgradeType, map.get(upgradeType) + upgradeMod);

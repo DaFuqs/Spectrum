@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.blocks.pedestal;
 import de.dafuqs.spectrum.InventoryHelper;
 import de.dafuqs.spectrum.SpectrumClient;
 import de.dafuqs.spectrum.Support;
+import de.dafuqs.spectrum.blocks.upgrade.Upgradeable;
 import de.dafuqs.spectrum.enums.GemstoneColor;
 import de.dafuqs.spectrum.enums.PedestalRecipeTier;
 import de.dafuqs.spectrum.interfaces.PlayerOwned;
@@ -16,7 +17,6 @@ import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.recipe.pedestal.PedestalCraftingRecipe;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
-import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import de.dafuqs.spectrum.registries.SpectrumMultiblocks;
 import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
@@ -314,7 +314,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 				if (amount > 0) {
 					ParticleEffect particleEffect = SpectrumParticleTypes.getCraftingParticle(entry.getKey().getDyeColor());
 					
-					float particleAmount = Support.getWholeIntFromFloatWithChance(amount / 8.0F, world.random);
+					float particleAmount = Support.getIntFromDecimalWithChance(amount / 8.0, world.random);
 					for (int i = 0; i < particleAmount; i++) {
 						float randomX = 2.0F - world.getRandom().nextFloat() * 5;
 						float randomZ = 2.0F - world.getRandom().nextFloat() * 5;
@@ -330,7 +330,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		Block block = world.getBlockState(blockPos).getBlock();
 		if(block instanceof PedestalBlock && blockState.get(PedestalBlock.POWERED)) {
 			if(pedestalBlockEntity.upgrades == null) {
-				pedestalBlockEntity.updateUpgrades();
+				pedestalBlockEntity.calculateUpgrades();
 			}
 			
 			// check recipe crafted last tick => performance
@@ -435,7 +435,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 
 		// spawn XP
 		if (pedestalBlockEntity.storedXP > 0) {
-			int spawnedXPAmount = Support.getWholeIntFromFloatWithChance(pedestalBlockEntity.storedXP, pedestalBlockEntity.getWorld().random);
+			int spawnedXPAmount = Support.getIntFromDecimalWithChance(pedestalBlockEntity.storedXP, pedestalBlockEntity.getWorld().random);
 			ExperienceOrbEntity experienceOrbEntity = new ExperienceOrbEntity(world, pedestalBlockEntity.pos.getX() + 0.5, pedestalBlockEntity.pos.getY() + 1, pedestalBlockEntity.pos.getZ() + 0.5, spawnedXPAmount);
 			world.spawnEntity(experienceOrbEntity);
 			pedestalBlockEntity.storedXP = 0;
@@ -569,8 +569,10 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 
 			// -X for all the pigment inputs
 			for(GemstoneColor gemstoneColor : GemstoneColor.values()) {
+				double efficiencyModifier = pedestalBlockEntity.getMultiplier(pedestalBlockEntity.upgrades, UpgradeType.EFFICIENCY);
 				int gemstonePowderAmount = recipe.getGemstonePowderAmount(gemstoneColor);
-				pedestalBlockEntity.inventory.get(getSlotForGemstonePowder(gemstoneColor)).decrement(gemstonePowderAmount);
+				int gemstonePowderAmountAfterMod = Support.getIntFromDecimalWithChance(gemstonePowderAmount / efficiencyModifier, pedestalBlockEntity.world.random);
+				pedestalBlockEntity.inventory.get(getSlotForGemstonePowder(gemstoneColor)).decrement(gemstonePowderAmountAfterMod);
 			}
 
 			ItemStack recipeOutput = recipe.getOutput();
@@ -592,18 +594,28 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 				updateInClientWorld(pedestalBlockEntity);
 				pedestalBlockEntity.markDirty();
 			} else {
+				int resultAmountBeforeMod = recipeOutput.getCount();
+				double yieldModifier =  recipe.areYieldUpgradesDisabled() ? 1.0 : pedestalBlockEntity.getMultiplier(pedestalBlockEntity.upgrades, UpgradeType.YIELD);
+				int resultAmountAfterMod = Support.getIntFromDecimalWithChance(resultAmountBeforeMod * yieldModifier, pedestalBlockEntity.world.random);
+				
 				// Not an upgrade recipe => Add output to output slot
 				ItemStack existingOutput = defaultedList.get(OUTPUT_SLOT_ID);
 				if (existingOutput.isEmpty()) {
-					defaultedList.set(OUTPUT_SLOT_ID, recipeOutput.copy());
+					ItemStack resultStack = recipeOutput.copy();
+					resultStack.setCount(Math.min(existingOutput.getMaxCount(), resultAmountAfterMod));
+					defaultedList.set(OUTPUT_SLOT_ID, resultStack);
 				} else {
-					existingOutput.increment(recipeOutput.getCount());
+					// protection against stacks > max stack size
+					int finalAmount = Math.min(existingOutput.getMaxCount(), existingOutput.getCount() + resultAmountAfterMod);
+					existingOutput.setCount(finalAmount);
 					defaultedList.set(OUTPUT_SLOT_ID, existingOutput);
 				}
 			}
 
 			// Add recipe XP
-			pedestalBlockEntity.storedXP = recipe.getExperience();
+			double experienceModifier = pedestalBlockEntity.getMultiplier(pedestalBlockEntity.upgrades, UpgradeType.EXPERIENCE);
+			float recipeExperienceBeforeMod = recipe.getExperience();
+			pedestalBlockEntity.storedXP = (float) (recipeExperienceBeforeMod * experienceModifier);
 
 			// if the recipe unlocks an advancement unlock it
 			pedestalBlockEntity.grantPlayerCraftingAdvancement(recipe);
@@ -861,18 +873,22 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 			return highestAvailableRecipeTier;
 		}
 	}
-
+	
+	public void resetUpgrades() {
+		this.upgrades = null;
+	}
+	
 	/**
 	 * Search for upgrades at valid positions and apply
 	 */
-	public void updateUpgrades() {
+	public void calculateUpgrades() {
 		Pair<Integer, Map<UpgradeType, Double>> upgrades = Upgradeable.getUpgrades(world, pos, 3, 2);
 		this.upgrades = upgrades.getRight();
 		
 		if(upgrades.getLeft() == 4) {
 			ServerPlayerEntity owner = (ServerPlayerEntity) getPlayerEntityIfOnline(world);
 			if(owner != null) {
-				Support.grantAdvancementCriterion(owner, "use_all_pedestal_upgrades", "used_all");
+				Support.grantAdvancementCriterion(owner, "midgame/use_all_pedestal_upgrades", "used_all");
 			}
 		}
 	}

@@ -50,7 +50,12 @@ public class FusionShrineRecipeSerializer<T extends FusionShrineRecipe> implemen
 		ItemStack output = ShapedRecipe.outputFromJson(JsonHelper.getObject(jsonObject, "result"));
 		float experience = JsonHelper.getFloat(jsonObject, "experience", 0);
 		int craftingTime = JsonHelper.getInt(jsonObject, "time", 200);
-
+		
+		boolean noBenefitsFromYieldUpgrades = false;
+		if(JsonHelper.hasPrimitive(jsonObject, "disable_yield_upgrades")) {
+			noBenefitsFromYieldUpgrades = JsonHelper.getBoolean(jsonObject, "disable_yield_upgrades", false);
+		}
+		
 		Identifier requiredAdvancementIdentifier = null;
 		if(JsonHelper.hasString(jsonObject, "required_advancement")) {
 			requiredAdvancementIdentifier = Identifier.tryParse(JsonHelper.getString(jsonObject, "required_advancement"));
@@ -94,7 +99,7 @@ public class FusionShrineRecipeSerializer<T extends FusionShrineRecipe> implemen
 			description = null;
 		}
 
-		return this.recipeFactory.create(identifier, group, craftingInputs, fluid, output, experience, craftingTime, requiredAdvancementIdentifier, worldConditions, startWorldEffect, duringWorldEffects, finishWorldEffect, description);
+		return this.recipeFactory.create(identifier, group, craftingInputs, fluid, output, experience, craftingTime, noBenefitsFromYieldUpgrades, requiredAdvancementIdentifier, worldConditions, startWorldEffect, duringWorldEffects, finishWorldEffect, description);
 	}
 
 	@Override
@@ -109,6 +114,7 @@ public class FusionShrineRecipeSerializer<T extends FusionShrineRecipe> implemen
 		ItemStack output = packetByteBuf.readItemStack();
 		float experience = packetByteBuf.readFloat();
 		int craftingTime = packetByteBuf.readInt();
+		boolean noBenefitsFromYieldUpgrades = packetByteBuf.readBoolean();
 		Identifier requiredAdvancementIdentifier = packetByteBuf.readIdentifier();
 
 		short worldConditionCount = packetByteBuf.readShort();
@@ -127,7 +133,7 @@ public class FusionShrineRecipeSerializer<T extends FusionShrineRecipe> implemen
 
 		Text description = packetByteBuf.readText();
 
-		return this.recipeFactory.create(identifier, group, ingredients, fluid, output, experience, craftingTime, requiredAdvancementIdentifier, worldConditions, startWorldEffect, duringWorldEffects, finishWorldEffect, description);
+		return this.recipeFactory.create(identifier, group, ingredients, fluid, output, experience, craftingTime, noBenefitsFromYieldUpgrades, requiredAdvancementIdentifier, worldConditions, startWorldEffect, duringWorldEffects, finishWorldEffect, description);
 	}
 
 	@Override
@@ -143,6 +149,7 @@ public class FusionShrineRecipeSerializer<T extends FusionShrineRecipe> implemen
 		packetByteBuf.writeItemStack(fusionShrineRecipe.output);
 		packetByteBuf.writeFloat(fusionShrineRecipe.experience);
 		packetByteBuf.writeInt(fusionShrineRecipe.craftingTime);
+		packetByteBuf.writeBoolean(fusionShrineRecipe.noBenefitsFromYieldUpgrades);
 		packetByteBuf.writeIdentifier(fusionShrineRecipe.requiredAdvancementIdentifier);
 
 		packetByteBuf.writeShort(fusionShrineRecipe.worldConditions.size());
@@ -164,7 +171,7 @@ public class FusionShrineRecipeSerializer<T extends FusionShrineRecipe> implemen
 	}
 
 	public interface RecipeFactory<T extends FusionShrineRecipe> {
-		T create(Identifier id, String group, DefaultedList<Ingredient> craftingInputs, Fluid fluidInput, ItemStack output, float experience, int craftingTime, Identifier requiredAdvancementIdentifier,
+		T create(Identifier id, String group, DefaultedList<Ingredient> craftingInputs, Fluid fluidInput, ItemStack output, float experience, int craftingTime, boolean noBenefitsFromYieldUpgrades, Identifier requiredAdvancementIdentifier,
 				 List<FusionShrineRecipeWorldCondition> worldConditions, FusionShrineRecipeWorldEffect startWorldEffect, List<FusionShrineRecipeWorldEffect> duringWorldEffects, FusionShrineRecipeWorldEffect finishWorldEffect, Text description);
 	}
 

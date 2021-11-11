@@ -22,5 +22,6 @@
     "item": "spectrum:pedestal_onyx",
     "count": 1
   },
-  "required_advancements": ["spectrum:create_onyx_shard"]
+  "required_advancements": ["spectrum:create_onyx_shard"],
+  "disable_yield_upgrades": true
 }

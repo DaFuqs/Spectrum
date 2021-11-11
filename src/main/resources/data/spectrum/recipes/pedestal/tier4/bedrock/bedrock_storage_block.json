@@ -22,5 +22,6 @@
     "item": "spectrum:bedrock_storage_block",
     "count": 1
   },
-  "required_advancements": ["spectrum:progression/unlock_bedrock_tools"]
+  "required_advancements": ["spectrum:progression/unlock_bedrock_tools"],
+  "disable_yield_upgrades": true
 }

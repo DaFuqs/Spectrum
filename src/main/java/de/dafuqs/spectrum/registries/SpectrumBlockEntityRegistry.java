@@ -14,13 +14,14 @@ import de.dafuqs.spectrum.blocks.mob_head.SpectrumSkullBlockEntityRenderer3D;
 import de.dafuqs.spectrum.blocks.particle_spawner.ParticleSpawnerBlockEntity;
 import de.dafuqs.spectrum.blocks.pedestal.PedestalBlockEntity;
 import de.dafuqs.spectrum.blocks.pedestal.PedestalBlockEntityRenderer;
-import de.dafuqs.spectrum.blocks.pedestal.PedestalUpgradeBlockBlockEntityRenderer;
-import de.dafuqs.spectrum.blocks.pedestal.PedestalUpgradeBlockEntity;
 import de.dafuqs.spectrum.blocks.redstone.BlockPlacerBlockEntity;
 import de.dafuqs.spectrum.blocks.redstone.PlayerDetectorBlockEntity;
 import de.dafuqs.spectrum.blocks.redstone.RedstoneCalculatorBlockEntity;
 import de.dafuqs.spectrum.blocks.redstone.RedstoneWirelessBlockEntity;
 import de.dafuqs.spectrum.blocks.spirit_tree.OminousSaplingBlockEntity;
+import de.dafuqs.spectrum.blocks.upgrade.UpgradeBlock;
+import de.dafuqs.spectrum.blocks.upgrade.UpgradeBlockBlockEntityRenderer;
+import de.dafuqs.spectrum.blocks.upgrade.UpgradeBlockEntity;
 import net.fabricmc.fabric.api.client.rendereregistry.v1.BlockEntityRendererRegistry;
 import net.fabricmc.fabric.api.event.client.ClientSpriteRegistryCallback;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
@@ -43,7 +44,7 @@ public class SpectrumBlockEntityRegistry<T extends BlockEntity> {
 	public static BlockEntityType<EnderDropperBlockEntity> ENDER_DROPPER;
 	public static BlockEntityType<EnderHopperBlockEntity> ENDER_HOPPER;
 	public static BlockEntityType<ParticleSpawnerBlockEntity> PARTICLE_SPAWNER;
-	public static BlockEntityType<PedestalUpgradeBlockEntity> PEDESTAL_SPEED_UPGRADE;
+	public static BlockEntityType<UpgradeBlockEntity> UPGRADE_BLOCK;
 	public static BlockEntityType<SpectrumSkullBlockEntity> SKULL;
 	public static BlockEntityType<DeeperDownPortalBlockEntity> DEEPER_DOWN_PORTAL;
 
@@ -66,7 +67,6 @@ public class SpectrumBlockEntityRegistry<T extends BlockEntity> {
 		ENDER_DROPPER = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "ender_dropper"), FabricBlockEntityTypeBuilder.create(EnderDropperBlockEntity::new, SpectrumBlocks.ENDER_DROPPER).build());
 		ENDER_HOPPER = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "ender_hopper"), FabricBlockEntityTypeBuilder.create(EnderHopperBlockEntity::new, SpectrumBlocks.ENDER_HOPPER).build());
 		PARTICLE_SPAWNER = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "particle_spawner"), FabricBlockEntityTypeBuilder.create(ParticleSpawnerBlockEntity::new, SpectrumBlocks.PARTICLE_SPAWNER).build());
-		PEDESTAL_SPEED_UPGRADE = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "pedestal_speed_upgrade"), FabricBlockEntityTypeBuilder.create(PedestalUpgradeBlockEntity::new, SpectrumBlocks.PEDESTAL_SPEED_UPGRADE).build());
 		DEEPER_DOWN_PORTAL = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "deeper_down_portal"), FabricBlockEntityTypeBuilder.create(DeeperDownPortalBlockEntity::new, SpectrumBlocks.DEEPER_DOWN_PORTAL).build());
 		COMPACTING_CHEST = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "compacting_chest"), FabricBlockEntityTypeBuilder.create(CompactingChestBlockEntity::new, SpectrumBlocks.COMPACTING_CHEST).build());
 		RESTOCKING_CHEST = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "restocking_chest"), FabricBlockEntityTypeBuilder.create(RestockingChestBlockEntity::new, SpectrumBlocks.RESTOCKING_CHEST).build());
@@ -78,14 +78,20 @@ public class SpectrumBlockEntityRegistry<T extends BlockEntity> {
 		BLOCK_PLACER = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "block_placer"), FabricBlockEntityTypeBuilder.create(BlockPlacerBlockEntity::new, SpectrumBlocks.BLOCK_PLACER).build());
 		BLOCK_FLOODER = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "block_flooder"), FabricBlockEntityTypeBuilder.create(BlockFlooderBlockEntity::new, SpectrumBlocks.BLOCK_FLOODER).build());
 
+		// All the upgrades
+		List<Block> upgradeBlocksList = UpgradeBlock.getRegisteredUpgradeBlocks();
+		Block[] upgradeBlocksArray = new Block[upgradeBlocksList.size()];
+		upgradeBlocksArray = upgradeBlocksList.toArray(upgradeBlocksArray);
+		UPGRADE_BLOCK = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "upgrade_block"), FabricBlockEntityTypeBuilder.create(UpgradeBlockEntity::new, upgradeBlocksArray).build());
+		
 		// All the skulls
-		List<Block> skullBlocks = new ArrayList<>();
-		skullBlocks.addAll(SpectrumBlocks.getMobHeads());
-		skullBlocks.addAll(SpectrumBlocks.getMobWallHeads());
+		List<Block> skullBlocksList = new ArrayList<>();
+		skullBlocksList.addAll(SpectrumBlocks.getMobHeads());
+		skullBlocksList.addAll(SpectrumBlocks.getMobWallHeads());
 
-		Block[] blocks = new Block[skullBlocks.size()];
-		blocks = skullBlocks.toArray(blocks);
-		SKULL = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "skull"), FabricBlockEntityTypeBuilder.create(SpectrumSkullBlockEntity::new, blocks).build());
+		Block[] skullBlocksArray = new Block[skullBlocksList.size()];
+		skullBlocksArray = skullBlocksList.toArray(skullBlocksArray);
+		SKULL = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "skull"), FabricBlockEntityTypeBuilder.create(SpectrumSkullBlockEntity::new, skullBlocksArray).build());
 	}
 
 	public static void registerClient() {
@@ -94,7 +100,7 @@ public class SpectrumBlockEntityRegistry<T extends BlockEntity> {
 		BlockEntityRendererRegistry.INSTANCE.register(SpectrumBlockEntityRegistry.COMPACTING_CHEST, CompactingChestBlockEntityRenderer::new);
 		BlockEntityRendererRegistry.INSTANCE.register(SpectrumBlockEntityRegistry.RESTOCKING_CHEST, RestockingChestBlockEntityRenderer::new);
 		BlockEntityRendererRegistry.INSTANCE.register(SpectrumBlockEntityRegistry.SUCKING_CHEST, SuckingChestBlockEntityRenderer::new);
-		BlockEntityRendererRegistry.INSTANCE.register(SpectrumBlockEntityRegistry.PEDESTAL_SPEED_UPGRADE, PedestalUpgradeBlockBlockEntityRenderer::new);
+		BlockEntityRendererRegistry.INSTANCE.register(SpectrumBlockEntityRegistry.UPGRADE_BLOCK, UpgradeBlockBlockEntityRenderer::new);
 		BlockEntityRendererRegistry.INSTANCE.register(SpectrumBlockEntityRegistry.FUSION_SHRINE, FusionShrineBlockEntityRenderer::new);
 		BlockEntityRendererRegistry.INSTANCE.register(SpectrumBlockEntityRegistry.SKULL, SpectrumSkullBlockEntityRenderer3D::new);
 		BlockEntityRendererRegistry.INSTANCE.register(SpectrumBlockEntityRegistry.DEEPER_DOWN_PORTAL, DeeperDownPortalBlockEntityRenderer::new);

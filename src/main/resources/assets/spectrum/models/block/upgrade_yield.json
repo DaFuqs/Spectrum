@@ -1,0 +1,9 @@
+{
+    "parent": "spectrum:block/template_upgrade",
+    "textures": {
+    "inner": "spectrum:block/upgrade_yield_inner",
+    "outer": "spectrum:block/upgrade_yield_outer",
+    "base": "spectrum:block/upgrade_yield_base",
+    "particle": "spectrum:block/upgrade_yield_inner"
+    }
+}

@@ -135,6 +135,12 @@
       "spectrum:fusion_shrine_crafting_finished"
     ]
   },
+  "fusion_shrine_crafting_aborted": {
+    "subtitle": "spectrum.subtitles.fusion_shrine_crafting_aborted",
+    "sounds": [
+      "spectrum:fusion_shrine_crafting_aborted"
+    ]
+  },
   "exchange_staff_select": {
     "subtitle": "spectrum.subtitles.exchange_staff.select",
     "sounds": [

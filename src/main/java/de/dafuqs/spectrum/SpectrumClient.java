@@ -147,7 +147,7 @@ public class SpectrumClient implements ClientModInitializer {
 
 	public static void registerEnderSplicePredicates(EnderSpliceItem enderSpliceItem) {
 		FabricModelPredicateProviderRegistry.register(enderSpliceItem, new Identifier("bound"), (itemStack, clientWorld, livingEntity, i) -> {
-			NbtCompound compoundTag = itemStack.getTag();
+			NbtCompound compoundTag = itemStack.getNbt();
 			if (compoundTag != null && compoundTag.contains("PosX")) {
 				return 1.0F;
 			} else {

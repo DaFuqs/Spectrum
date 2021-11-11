@@ -29,7 +29,7 @@ public class FusionShrineCraftingCriterion extends AbstractCriterion<FusionShrin
 	}
 
 	public void trigger(ServerPlayerEntity player, ItemStack itemStack) {
-		this.test(player, (conditions) -> {
+		this.trigger(player, (conditions) -> {
 			return conditions.matches(itemStack);
 		});
 	}

@@ -24,10 +24,10 @@ public class Spawner extends BlockItem {
 
 	@Override
 	public void appendTooltip(ItemStack itemStack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
-		if(itemStack.getTag() != null && itemStack.getTag().get("BlockEntityTag") != null) {
+		if(itemStack.getNbt() != null && itemStack.getNbt().get("BlockEntityTag") != null) {
 			Optional<EntityType<?>> entityType;
 
-			NbtCompound blockEntityTag = itemStack.getTag().getCompound("BlockEntityTag");
+			NbtCompound blockEntityTag = itemStack.getNbt().getCompound("BlockEntityTag");
 
 			String spawningEntityType = blockEntityTag.getCompound("SpawnData").getString("id");
 			entityType = EntityType.get(spawningEntityType);
@@ -64,7 +64,7 @@ public class Spawner extends BlockItem {
 
 		NbtCompound itemStackTag = new NbtCompound();
 		itemStackTag.put("BlockEntityTag", blockEntityTag);
-		itemStack.setTag(itemStackTag);
+		itemStack.setNbt(itemStackTag);
 		return itemStack;
 	}
 

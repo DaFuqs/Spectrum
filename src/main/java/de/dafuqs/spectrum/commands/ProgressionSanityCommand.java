@@ -100,7 +100,7 @@ public class ProgressionSanityCommand {
 				SpectrumCommon.log(Level.WARN, "[SANITY: Fusion Shrine Recipe Unlocks] Advancement '" + fusionShrineRecipe.getRequiredAdvancementIdentifier() + "' in recipe '" + fusionShrineRecipe.getId() + "' does not exist");
 			}
 			for(Ingredient inputIngredient : fusionShrineRecipe.getIngredients()) {
-				for(ItemStack matchingItemStack : inputIngredient.getMatchingStacksClient()) {
+				for(ItemStack matchingItemStack : inputIngredient.getMatchingStacks()) {
 					if (ColorRegistry.ITEM_COLORS.getMapping(matchingItemStack.getItem()).isEmpty()) {
 						SpectrumCommon.log(Level.WARN, "[SANITY: Fusion Shrine Recipe] Input '" + Registry.ITEM.getId(matchingItemStack.getItem()) + "' in recipe '" + fusionShrineRecipe.getId() + "', does not exist in the item color registry. Add it for nice effects!");
 					}

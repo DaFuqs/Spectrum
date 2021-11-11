@@ -131,14 +131,14 @@ public class ExchangeStaffItem extends BuildingStaffItem {
 	}
 	
 	public void storeBlockAsTarget(ItemStack exchangeStaffItemStack, Block block) {
-		NbtCompound compound = exchangeStaffItemStack.getOrCreateTag();
+		NbtCompound compound = exchangeStaffItemStack.getOrCreateNbt();
 		Identifier blockIdentifier = Registry.BLOCK.getId(block);
 		compound.putString("TargetBlock", blockIdentifier.toString());
-		exchangeStaffItemStack.setTag(compound);
+		exchangeStaffItemStack.setNbt(compound);
 	}
 	
 	public static Optional<Block> getBlockTarget(ItemStack exchangeStaffItemStack) {
-		NbtCompound compound = exchangeStaffItemStack.getOrCreateTag();
+		NbtCompound compound = exchangeStaffItemStack.getOrCreateNbt();
 		if(compound.contains("TargetBlock")) {
 			String targetBlockString = compound.getString("TargetBlock");
 			Block targetBlock = Registry.BLOCK.get(new Identifier(targetBlockString));

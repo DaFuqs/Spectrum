@@ -35,7 +35,7 @@ public abstract class ItemStackMixin {
 
 	@Shadow public abstract Item getItem();
 
-	@Shadow @Nullable public abstract NbtCompound getTag();
+	@Shadow @Nullable public abstract NbtCompound getNbt();
 
 	// Injecting into onStackClicked instead of onClicked because onStackClicked is called first
 	@Inject(at = @At("HEAD"), method = "onStackClicked", cancellable = true)

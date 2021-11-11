@@ -173,7 +173,7 @@ public class EnderSpliceItem extends Item {
 	}
 	
 	public void setTeleportTargetPos(@NotNull ItemStack itemStack, World world, Vec3d pos) {
-		NbtCompound nbtCompound = itemStack.getOrCreateTag();
+		NbtCompound nbtCompound = itemStack.getOrCreateNbt();
 		
 		// Remove player tags, if present
 		if(nbtCompound.contains("TargetPlayerName")) { nbtCompound.remove("TargetPlayerName"); }
@@ -184,11 +184,11 @@ public class EnderSpliceItem extends Item {
 		nbtCompound.putDouble("PosY", pos.getY());
 		nbtCompound.putDouble("PosZ", pos.getZ());
 		nbtCompound.putString("Dimension", world.getRegistryKey().getValue().toString());
-		itemStack.setTag(nbtCompound);
+		itemStack.setNbt(nbtCompound);
 	}
 	
 	public void setTeleportTargetPlayer(@NotNull ItemStack itemStack, ServerPlayerEntity player) {
-		NbtCompound nbtCompound = itemStack.getOrCreateTag();
+		NbtCompound nbtCompound = itemStack.getOrCreateNbt();
 		
 		// Override target pos, if present
 		if(nbtCompound.contains("PosX")) { nbtCompound.remove("PosX"); }
@@ -199,11 +199,11 @@ public class EnderSpliceItem extends Item {
 		// Add player
 		nbtCompound.putString("TargetPlayerName", player.getName().asString());
 		nbtCompound.putUuid("TargetPlayerUUID", player.getUuid());
-		itemStack.setTag(nbtCompound);
+		itemStack.setNbt(nbtCompound);
 	}
 
 	public Optional<Pair<String, Vec3d>> getTeleportTargetPos(@NotNull ItemStack itemStack) {
-		NbtCompound nbtCompound = itemStack.getTag();
+		NbtCompound nbtCompound = itemStack.getNbt();
 		if(nbtCompound != null && nbtCompound.contains("PosX") && nbtCompound.contains("PosY") && nbtCompound.contains("PosZ") && nbtCompound.contains("Dimension")) {
 			String dimensionKeyString = nbtCompound.getString("Dimension");
 			double x = nbtCompound.getDouble("PosX");
@@ -217,7 +217,7 @@ public class EnderSpliceItem extends Item {
 	}
 	
 	public Optional<UUID> getTeleportTargetPlayerUUID(@NotNull ItemStack itemStack) {
-		NbtCompound nbtCompound = itemStack.getTag();
+		NbtCompound nbtCompound = itemStack.getNbt();
 		if(nbtCompound != null && nbtCompound.contains("TargetPlayerUUID")) {
 			return Optional.of(nbtCompound.getUuid("TargetPlayerUUID"));
 		}
@@ -225,7 +225,7 @@ public class EnderSpliceItem extends Item {
 	}
 	
 	public Optional<String> getTeleportTargetPlayerName(@NotNull ItemStack itemStack) {
-		NbtCompound nbtCompound = itemStack.getTag();
+		NbtCompound nbtCompound = itemStack.getNbt();
 		if(nbtCompound != null && nbtCompound.contains("TargetPlayerName")) {
 			return Optional.of(nbtCompound.getString("TargetPlayerName"));
 		}

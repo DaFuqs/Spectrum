@@ -36,7 +36,7 @@ public abstract class SpectrumItemFrameItem extends ItemFrameItem {
 			World world = context.getWorld();
 			ItemFrameEntity invisibleItemFrameEntity = getItemFrameEntity(world, blockPos2, direction);
 
-			NbtCompound nbtCompound = itemStack.getTag();
+			NbtCompound nbtCompound = itemStack.getNbt();
 			if (nbtCompound != null) {
 				EntityType.loadFromEntityNbt(world, playerEntity, invisibleItemFrameEntity, nbtCompound);
 			}

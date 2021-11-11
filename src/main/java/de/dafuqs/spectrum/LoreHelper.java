@@ -41,7 +41,7 @@ public class LoreHelper {
 	}
 
 	public static void setLore(@NotNull ItemStack itemStack, @Nullable List<LiteralText> lore) {
-		NbtCompound nbtCompound = itemStack.getOrCreateSubTag("display");
+		NbtCompound nbtCompound = itemStack.getOrCreateSubNbt("display");
 		if (lore != null) {
 			NbtList nbtList = new NbtList();
 
@@ -57,28 +57,28 @@ public class LoreHelper {
 	}
 
 	public static void removeLore(@NotNull ItemStack itemStack) {
-		NbtCompound nbtCompound = itemStack.getSubTag("display");
+		NbtCompound nbtCompound = itemStack.getSubNbt("display");
 		if (nbtCompound != null) {
 			nbtCompound.remove("Lore");
 			if (nbtCompound.isEmpty()) {
-				itemStack.removeSubTag("display");
+				itemStack.removeSubNbt("display");
 			}
 		}
 
-		if (itemStack.getTag() != null && itemStack.getTag().isEmpty()) {
-			itemStack.setTag(null);
+		if (itemStack.getNbt() != null && itemStack.getNbt().isEmpty()) {
+			itemStack.setNbt(null);
 		}
 	}
 
 	public static boolean hasLore(@NotNull ItemStack itemStack) {
-		NbtCompound nbtCompound = itemStack.getSubTag("display");
+		NbtCompound nbtCompound = itemStack.getSubNbt("display");
 		return nbtCompound != null && nbtCompound.contains("Lore", 8);
 	}
 
 	public static @NotNull List<Text> getLoreList(@NotNull ItemStack itemStack) {
 		List<Text> lore = new ArrayList<>();
 
-		NbtCompound nbtCompound = itemStack.getSubTag("display");
+		NbtCompound nbtCompound = itemStack.getSubNbt("display");
 		if (nbtCompound != null && nbtCompound.contains("Lore", 8)) {
 			try {
 				NbtList nbtList = nbtCompound.getList("Lore", 8);

@@ -181,7 +181,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 	@Override
 	public void setStack(int slot, @NotNull ItemStack stack) {
 		ItemStack itemStack = this.inventory.get(slot);
-		boolean isSimilarItem = !stack.isEmpty() && stack.isItemEqualIgnoreDamage(itemStack) && ItemStack.areTagsEqual(stack, itemStack);
+		boolean isSimilarItem = !stack.isEmpty() && stack.isItemEqualIgnoreDamage(itemStack) && ItemStack.areNbtEqual(stack, itemStack);
 		this.inventory.set(slot, stack);
 		if (stack.getCount() > this.getMaxCountPerStack()) {
 			stack.setCount(this.getMaxCountPerStack());

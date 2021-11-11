@@ -65,21 +65,21 @@ public class CraftingTabletItem extends Item {
 	}
 
 	public static void setStoredRecipe(ItemStack craftingTabletItemStack, Recipe recipe) {
-		NbtCompound nbtCompound = craftingTabletItemStack.getOrCreateTag();
+		NbtCompound nbtCompound = craftingTabletItemStack.getOrCreateNbt();
 		nbtCompound.putString("recipe", recipe.getId().toString());
-		craftingTabletItemStack.setTag(nbtCompound);
+		craftingTabletItemStack.setNbt(nbtCompound);
 	}
 
 	public static void clearStoredRecipe(ItemStack craftingTabletItemStack) {
-		NbtCompound nbtCompound = craftingTabletItemStack.getOrCreateTag();
+		NbtCompound nbtCompound = craftingTabletItemStack.getOrCreateNbt();
 		if (nbtCompound.contains("recipe")) {
 			nbtCompound.remove("recipe");
-			craftingTabletItemStack.setTag(nbtCompound);
+			craftingTabletItemStack.setNbt(nbtCompound);
 		}
 	}
 
 	public static Recipe getStoredRecipe(World world, ItemStack itemStack) {
-		NbtCompound nbtCompound = itemStack.getTag();
+		NbtCompound nbtCompound = itemStack.getNbt();
 
 		if(nbtCompound != null && nbtCompound.contains("recipe")) {
 			String recipeString = nbtCompound.getString("recipe");

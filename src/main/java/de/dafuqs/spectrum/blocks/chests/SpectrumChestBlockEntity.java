@@ -9,7 +9,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.block.entity.ChestLidAnimator;
-import net.minecraft.block.entity.ChestStateManager;
+import net.minecraft.block.entity.ViewerCountManager;
 import net.minecraft.block.entity.LootableContainerBlockEntity;
 import net.minecraft.client.block.ChestAnimationProgress;
 import net.minecraft.entity.player.PlayerEntity;
@@ -35,23 +35,23 @@ public abstract class SpectrumChestBlockEntity extends LootableContainerBlockEnt
 	protected DefaultedList<ItemStack> inventory;
 
 	protected final ChestLidAnimator lidAnimator;
-	public final ChestStateManager stateManager;
+	public final ViewerCountManager stateManager;
 
 	protected SpectrumChestBlockEntity(BlockEntityType<?> blockEntityType, BlockPos blockPos, BlockState blockState) {
 		super(blockEntityType, blockPos, blockState);
 		this.inventory = DefaultedList.ofSize(size(), ItemStack.EMPTY);
 		this.lidAnimator = new ChestLidAnimator();
 
-		this.stateManager = new ChestStateManager() {
-			protected void onChestOpened(World world, BlockPos pos, BlockState state) {
+		this.stateManager = new ViewerCountManager() {
+			protected void onContainerOpen(World world, BlockPos pos, BlockState state) {
 				playSound(world, pos, state, getOpenSound());
 			}
 
-			protected void onChestClosed(World world, BlockPos pos, BlockState state) {
+			protected void onContainerClose(World world, BlockPos pos, BlockState state) {
 				playSound(world, pos, state, getCloseSound());
 			}
 
-			protected void onInteracted(World world, BlockPos pos, BlockState state, int oldViewerCount, int newViewerCount) {
+			protected void onViewerCountUpdate(World world, BlockPos pos, BlockState state, int oldViewerCount, int newViewerCount) {
 				onInvOpenOrClose(world, pos, state, oldViewerCount, newViewerCount);
 			}
 
@@ -65,7 +65,7 @@ public abstract class SpectrumChestBlockEntity extends LootableContainerBlockEnt
 					inventory = ((RestockingChestScreenHandler) screenHandler).getInventory();
 				}
 
-				return inventory != null && inventory == SpectrumChestBlockEntity.this;
+				return inventory == SpectrumChestBlockEntity.this;
 			}
 		};
 	}
@@ -99,14 +99,14 @@ public abstract class SpectrumChestBlockEntity extends LootableContainerBlockEnt
 
 	public void onOpen(PlayerEntity player) {
 		if (!player.isSpectator()) {
-			this.stateManager.openChest(player, this.getWorld(), this.getPos(), this.getCachedState());
+			this.stateManager.openContainer(player, this.getWorld(), this.getPos(), this.getCachedState());
 		}
 
 	}
 
 	public void onClose(PlayerEntity player) {
 		if (!player.isSpectator()) {
-			this.stateManager.closeChest(player, this.getWorld(), this.getPos(), this.getCachedState());
+			this.stateManager.closeContainer(player, this.getWorld(), this.getPos(), this.getCachedState());
 		}
 	}
 

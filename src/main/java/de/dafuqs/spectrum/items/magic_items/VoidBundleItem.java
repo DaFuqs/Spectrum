@@ -191,7 +191,7 @@ public class VoidBundleItem extends BundleItem implements InventoryInsertionAcce
 	}
 
 	private static ItemStack getFirstBundledStack(ItemStack voidBundleStack) {
-		NbtCompound nbtCompound = voidBundleStack.getTag();
+		NbtCompound nbtCompound = voidBundleStack.getNbt();
 		if (nbtCompound == null) {
 			return ItemStack.EMPTY;
 		} else {
@@ -208,7 +208,7 @@ public class VoidBundleItem extends BundleItem implements InventoryInsertionAcce
 		itemStack.setCount(stackAmount);
 
 		if (storedItemCompound.contains("Tag", 10)) {
-			itemStack.setTag(storedItemCompound.getCompound("Tag"));
+			itemStack.setNbt(storedItemCompound.getCompound("Tag"));
 		}
 		if (itemStack.getItem().isDamageable()) {
 			itemStack.setDamage(itemStack.getDamage());
@@ -221,18 +221,18 @@ public class VoidBundleItem extends BundleItem implements InventoryInsertionAcce
 	}
 
 	private static int bundleStack(ItemStack voidBundleStack, ItemStack storedItemStack, int amount, PlayerEntity playerEntity) {
-		NbtCompound voidBundleCompound = voidBundleStack.getOrCreateTag();
+		NbtCompound voidBundleCompound = voidBundleStack.getOrCreateNbt();
 		NbtCompound storedItemCompound = new NbtCompound();
 
 		Identifier identifier = Registry.ITEM.getId(storedItemStack.getItem());
 		storedItemCompound.putString("ID", identifier.toString());
 		storedItemCompound.putInt("Count", amount);
-		if (storedItemStack.getTag() != null) {
-			storedItemCompound.put("Tag", storedItemStack.getTag().copy());
+		if (storedItemStack.getNbt() != null) {
+			storedItemCompound.put("Tag", storedItemStack.getNbt().copy());
 		}
 
 		voidBundleCompound.put("StoredStack", storedItemCompound);
-		voidBundleStack.setTag(voidBundleCompound);
+		voidBundleStack.setNbt(voidBundleCompound);
 
 		testFull(amount, playerEntity);
 
@@ -240,7 +240,7 @@ public class VoidBundleItem extends BundleItem implements InventoryInsertionAcce
 	}
 
 	private static int getStoredAmount(ItemStack voidBundleStack) {
-		NbtCompound voidBundleCompound = voidBundleStack.getOrCreateTag();
+		NbtCompound voidBundleCompound = voidBundleStack.getOrCreateNbt();
 		if(voidBundleCompound.contains("StoredStack")) {
 			NbtCompound storedStackCompound = voidBundleCompound.getCompound("StoredStack");
 			if(storedStackCompound.contains("Count")) {
@@ -253,7 +253,7 @@ public class VoidBundleItem extends BundleItem implements InventoryInsertionAcce
 	private static void removeBundledStackAmount(ItemStack voidBundleStack, int amount) {
 		int storedAmount = getStoredAmount(voidBundleStack);
 
-		NbtCompound voidBundleCompound = voidBundleStack.getOrCreateTag();
+		NbtCompound voidBundleCompound = voidBundleStack.getOrCreateNbt();
 		if (voidBundleCompound.contains("StoredStack")) {
 			int remainingCount = storedAmount - amount;
 			if (remainingCount > 0) {
@@ -263,7 +263,7 @@ public class VoidBundleItem extends BundleItem implements InventoryInsertionAcce
 			} else {
 				voidBundleCompound.remove("StoredStack");
 			}
-			voidBundleStack.setTag(voidBundleCompound);
+			voidBundleStack.setNbt(voidBundleCompound);
 		}
 	}
 

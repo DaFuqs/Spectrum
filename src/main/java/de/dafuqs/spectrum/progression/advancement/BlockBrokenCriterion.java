@@ -26,7 +26,7 @@ public class BlockBrokenCriterion extends AbstractCriterion<BlockBrokenCriterion
 	}
 
 	public void trigger(ServerPlayerEntity player, BlockState blockState) {
-		this.test(player, (conditions) -> {
+		this.trigger(player, (conditions) -> {
 			return conditions.matches(blockState);
 		});
 	}

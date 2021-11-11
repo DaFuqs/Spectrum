@@ -29,7 +29,7 @@ public class PedestalCraftingCriterion extends AbstractCriterion<PedestalCraftin
 	}
 
 	public void trigger(ServerPlayerEntity player, ItemStack itemStack) {
-		this.test(player, (conditions) -> {
+		this.trigger(player, (conditions) -> {
 			return conditions.matches(itemStack);
 		});
 	}

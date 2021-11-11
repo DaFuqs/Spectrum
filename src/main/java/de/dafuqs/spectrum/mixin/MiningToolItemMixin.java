@@ -22,7 +22,7 @@ public class MiningToolItemMixin {
 	@Inject(at=@At("HEAD"), method= "postMine(Lnet/minecraft/item/ItemStack;Lnet/minecraft/world/World;Lnet/minecraft/block/BlockState;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/entity/LivingEntity;)Z")
 	public void countInertiaBlocks(ItemStack stack, World world, BlockState state, BlockPos pos, LivingEntity miner, CallbackInfoReturnable<Boolean> cir) {
 		if(EnchantmentHelper.getLevel(SpectrumEnchantments.INERTIA, stack) > 0) {
-			NbtCompound compound = stack.getOrCreateTag();
+			NbtCompound compound = stack.getOrCreateNbt();
 			Identifier brokenBlockIdentifier = Registry.BLOCK.getId(state.getBlock());
 			if(compound.getString("LastMinedBlock").equals(brokenBlockIdentifier.toString())) {
 				compound.putLong("LastMinedBlockCount", compound.getLong("LastMinedBlockCount") + 1);
@@ -38,7 +38,7 @@ public class MiningToolItemMixin {
 	public void applyInertiaMiningSpeedMultiplier(ItemStack stack, BlockState state, CallbackInfoReturnable<Float> cir) {
 		int inertiaLevel = EnchantmentHelper.getLevel(SpectrumEnchantments.INERTIA, stack);
 		if(inertiaLevel > 0) {
-			NbtCompound compound = stack.getOrCreateTag();
+			NbtCompound compound = stack.getOrCreateNbt();
 			Identifier brokenBlockIdentifier = Registry.BLOCK.getId(state.getBlock());
 			if(compound.getString("LastMinedBlock").equals(brokenBlockIdentifier.toString())) {
 				long lastMinedBlockCount = compound.getLong("LastMinedBlockCount");

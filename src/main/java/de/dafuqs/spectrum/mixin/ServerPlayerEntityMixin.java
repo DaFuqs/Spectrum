@@ -35,7 +35,7 @@ public abstract class ServerPlayerEntityMixin {
 					NbtCompound compoundTag  = new NbtCompound();
 					compoundTag.putString("SkullOwner", thisEntity.getName().getString());
 
-					headItemStack.setTag(compoundTag);
+					headItemStack.setNbt(compoundTag);
 
 					ItemEntity headEntity = new ItemEntity(serverWorld, thisEntity.getX(), thisEntity.getY(), thisEntity.getZ(), headItemStack);
 					serverWorld.spawnEntity(headEntity);

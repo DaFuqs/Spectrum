@@ -26,7 +26,7 @@ public class HasAdvancementCriterion extends AbstractCriterion<HasAdvancementCri
 	}
 
 	public void trigger(ServerPlayerEntity player, Advancement advancement) {
-		this.test(player, (conditions) -> {
+		this.trigger(player, (conditions) -> {
 			return conditions.matches(advancement);
 		});
 	}

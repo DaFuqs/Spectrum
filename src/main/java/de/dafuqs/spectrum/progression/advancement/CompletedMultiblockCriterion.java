@@ -26,7 +26,7 @@ public class CompletedMultiblockCriterion extends AbstractCriterion<CompletedMul
 	}
 
 	public void trigger(ServerPlayerEntity player, IMultiblock iMultiblock) {
-		this.test(player, (conditions) -> {
+		this.trigger(player, (conditions) -> {
 			return conditions.matches(iMultiblock);
 		});
 	}

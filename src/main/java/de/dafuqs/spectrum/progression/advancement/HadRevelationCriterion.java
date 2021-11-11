@@ -29,7 +29,7 @@ public class HadRevelationCriterion extends AbstractCriterion<HadRevelationCrite
 	}
 
 	public void trigger(ServerPlayerEntity player, Cloakable cloakable) {
-		this.test(player, (conditions) -> {
+		this.trigger(player, (conditions) -> {
 			return conditions.matches(cloakable);
 		});
 	}

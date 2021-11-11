@@ -17,8 +17,6 @@ import net.minecraft.recipe.Recipe;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Vec3f;
 
-import java.util.Random;
-
 @Environment(EnvType.CLIENT)
 public class PedestalBlockEntityRenderer<T extends PedestalBlockEntity> implements BlockEntityRenderer<T> {
 	

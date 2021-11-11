@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.recipe.fusion_shrine;
 
-import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.World;
 
 public enum FusionShrineRecipeWorldCondition {

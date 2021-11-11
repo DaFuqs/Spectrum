@@ -9,7 +9,6 @@ import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
 import net.minecraft.world.World;
 
-import java.text.Format;
 import java.util.List;
 
 public class UpgradeBlockItem extends BlockItem {

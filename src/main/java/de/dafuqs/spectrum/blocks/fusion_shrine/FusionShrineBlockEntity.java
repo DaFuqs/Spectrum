@@ -148,10 +148,10 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 				}
 			}
 		}
-		Recipe recipe = fusionShrineBlockEntity.currentRecipe;
+		FusionShrineRecipe recipe = fusionShrineBlockEntity.currentRecipe;
 		if(recipe != null) {
 			Fluid fluid = fusionShrineBlockEntity.getFluid();
-			if (fluid != Fluids.EMPTY) {
+			if (fluid != Fluids.EMPTY && recipe.areConditionMetCurrently(world)) {
 				Optional<DyeColor> optionalFluidColor = ColorRegistry.FLUID_COLORS.getMapping(fluid);
 				if (optionalFluidColor.isPresent()) {
 					ParticleEffect particleEffect = SpectrumParticleTypes.getRisingParticle(optionalFluidColor.get());
@@ -176,7 +176,7 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 			if(fusionShrineBlockEntity.craftingTime % 20 == 0) {
 				PlayerEntity lastInteractedPlayer = PlayerOwned.getPlayerEntityIfOnline(world, fusionShrineBlockEntity.ownerUUID);
 				
-				boolean recipeConditionsMet = Support.hasAdvancement(lastInteractedPlayer, recipe.getRequiredAdvancementIdentifier()) && recipe.areConditionMetCurrently((ServerWorld) world);
+				boolean recipeConditionsMet = Support.hasAdvancement(lastInteractedPlayer, recipe.getRequiredAdvancementIdentifier()) && recipe.areConditionMetCurrently(world);
 				boolean structureCompleteWithSky = world.getBlockState(blockPos.up()).isAir() && world.isSkyVisible(blockPos) && FusionShrineBlock.verifyStructure(world, blockPos, null);
 				
 				if(!recipeConditionsMet || !structureCompleteWithSky) {

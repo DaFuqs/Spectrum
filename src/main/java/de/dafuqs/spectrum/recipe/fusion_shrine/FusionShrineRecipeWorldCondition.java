@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.recipe.fusion_shrine;
 
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.world.World;
 
 public enum FusionShrineRecipeWorldCondition {
 	DAY,
@@ -14,7 +15,7 @@ public enum FusionShrineRecipeWorldCondition {
 	RAIN,
 	THUNDER;
 
-	public boolean isMetCurrently(ServerWorld world) {
+	public boolean isMetCurrently(World world) {
 		switch (this) {
 			case DAY -> {
 				return world.getTimeOfDay() % 24000 > 0 && world.getTimeOfDay() % 24000 < 12000;

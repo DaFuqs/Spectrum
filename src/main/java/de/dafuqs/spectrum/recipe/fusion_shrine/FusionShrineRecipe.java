@@ -162,7 +162,7 @@ public class FusionShrineRecipe implements Recipe<Inventory> {
 	 * Returns a boolean depending on if the recipes condition is set
 	 * This can be always true, a specific day or moon phase, or weather.
 	 */
-	public boolean areConditionMetCurrently(ServerWorld world) {
+	public boolean areConditionMetCurrently(World world) {
 		for(FusionShrineRecipeWorldCondition worldCondition : this.worldConditions) {
 			if(!worldCondition.isMetCurrently(world)) {
 				return false;

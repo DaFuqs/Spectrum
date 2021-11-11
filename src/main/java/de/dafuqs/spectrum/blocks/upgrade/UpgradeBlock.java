@@ -37,7 +37,6 @@ public class UpgradeBlock extends BlockWithEntity {
 		add(new Vec3i(-2, 0, -2));
 	}};
 	
-	// TODO: maybe even make it settable via NBT?
 	// Like: The further the player progresses,
 	// the higher are the chances for good mods?
 	private final Upgradeable.UpgradeType upgradeType;

@@ -70,7 +70,7 @@ public interface Upgradeable {
 		
 		// Or logarithmic? That way specialization would be punished a bit
 		//return Math.log(2 + upgradeMod,2);
-		// TODO: Maybe a combination of both?
+		// Maybe a combination of both?
 	}
 	
 	

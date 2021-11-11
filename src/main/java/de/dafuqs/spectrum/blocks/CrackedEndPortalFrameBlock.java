@@ -8,6 +8,7 @@ import net.minecraft.block.pattern.BlockPatternBuilder;
 import net.minecraft.block.pattern.CachedBlockPosition;
 import net.minecraft.entity.ai.pathing.NavigationType;
 import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.particle.BlockStateParticleEffect;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.predicate.block.BlockStatePredicate;
 import net.minecraft.server.world.ServerWorld;
@@ -170,6 +171,16 @@ public class CrackedEndPortalFrameBlock extends Block {
 		EndPortalFrameEye endPortalFrameEye = blockState.get(EYE_TYPE);
 		return endPortalFrameEye.equals(EndPortalFrameEye.VANILLA_WITH_END_PORTAL_CRACKER) || endPortalFrameEye.equals(EndPortalFrameEye.WITH_END_PORTAL_CRACKER);
 	}
+	
+	@Override
+	public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
+		if (isVolatile(world.getBlockState(pos))) {
+			double d = (double)pos.getX() + random.nextDouble();
+			double e = (double)pos.getY() + 1.05D;
+			double f = (double)pos.getZ() + random.nextDouble();
+			world.addParticle(ParticleTypes.SMOKE, d, e, f, 0.0D, 0.0D, 0.0D);
+		}
+	}
 
 	@Deprecated
 	public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
@@ -177,14 +188,12 @@ public class CrackedEndPortalFrameBlock extends Block {
 			// 10% chance to break portal
 			float randomFloat = random.nextFloat();
 			if(randomFloat < 0.05) {
-				// TODO: smoke + particles + sound
 				world.createExplosion(null, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 2, Explosion.DestructionType.BREAK);
 				destroyPortals(world, pos);
 				world.breakBlock(pos, true);
 			} else if(randomFloat < 0.2) {
 				world.createExplosion(null, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 1, Explosion.DestructionType.BREAK);
 			} else {
-				// TODO: smoke + particles + sound
 				double d = (double) pos.getX() + random.nextDouble();
 				double e = (double) pos.getY() + 0.8D;
 				double f = (double) pos.getZ() + random.nextDouble();

@@ -38,7 +38,7 @@ public class QuitoxicReedsBlock extends SugarCaneBlock implements Cloakable, Wat
 
 	public static final IntProperty AGE = Properties.AGE_15;
 	public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
-	public static final BooleanProperty LIQUID_CRYSTAL_LOGGED = BooleanProperty.of("liquidcrystallogged");
+	public static final BooleanProperty LIQUID_CRYSTAL_LOGGED = SpectrumCommon.LIQUID_CRYSTAL_LOGGED;
 
 	public QuitoxicReedsBlock(Settings settings) {
 		super(settings);

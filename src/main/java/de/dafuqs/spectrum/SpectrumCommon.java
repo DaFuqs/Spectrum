@@ -27,6 +27,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.FluidBlock;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.util.registry.Registry;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
@@ -49,6 +50,10 @@ public class SpectrumCommon implements ModInitializer {
 	 * like the fusion shrine lighting up with lava or liquid crystal
 	 */
 	public static HashMap<Fluid, Integer> fluidLuminance = new HashMap<>();
+	/**
+	 * Like waterlogged, but for liquid crystal!
+	 */
+	public static final BooleanProperty LIQUID_CRYSTAL_LOGGED = BooleanProperty.of("liquidcrystallogged");
 
 	public static void log(Level logLevel, String message) {
 		LOGGER.log(logLevel, "[Spectrum] " + message);

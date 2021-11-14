@@ -1,8 +1,8 @@
 package de.dafuqs.spectrum.blocks.pedestal;
 
-import de.dafuqs.spectrum.GlowInTheDarkRenderLayer;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.recipe.pedestal.PedestalCraftingRecipe;
+import de.dafuqs.spectrum.registries.SpectrumRenderLayers;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
@@ -38,7 +38,7 @@ public class PedestalBlockEntityRenderer<T extends PedestalBlockEntity> implemen
 		Recipe currentRecipe = entity.getCurrentRecipe();
 		if(currentRecipe instanceof PedestalCraftingRecipe) {
 			circle.yaw = (entity.getWorld().getTime() + tickDelta) / 25.0F;
-			circle.render(matrixStack, vertexConsumerProvider.getBuffer(GlowInTheDarkRenderLayer.get(GROUND_MARK)), light, overlay);
+			circle.render(matrixStack, vertexConsumerProvider.getBuffer(SpectrumRenderLayers.GlowInTheDarkRenderLayer.get(GROUND_MARK)), light, overlay);
 			
 			ItemStack outputItemStack = entity.getCurrentRecipe().getOutput();
 			float time = entity.getWorld().getTime() + tickDelta;

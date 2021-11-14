@@ -22,7 +22,7 @@ public class DeeperDownPortalBlockEntityRenderer<T extends DeeperDownPortalBlock
 	public void render(T deeperDownPortalBlockEntity, float f, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i, int j) {
 		float topYOffset = this.getTopYOffset();
 		Matrix4f matrix4f = matrixStack.peek().getModel();
-		this.renderSides(deeperDownPortalBlockEntity, topYOffset, matrix4f, vertexConsumerProvider.getBuffer(this.getLayer()));
+		this.renderSides(deeperDownPortalBlockEntity, topYOffset, matrix4f, vertexConsumerProvider.getBuffer(getLayer()));
 	}
 
 	private void renderSides(T entity, float topYOffset, Matrix4f matrix4f, VertexConsumer vertexConsumer) {
@@ -48,7 +48,7 @@ public class DeeperDownPortalBlockEntityRenderer<T extends DeeperDownPortalBlock
 	}
 
 	protected RenderLayer getLayer() {
-		return SpectrumRenderLayers.DEEPER_DOWN_PORTAL_RENDER_LAYER;
+		return SpectrumRenderLayers.DeeperDownPortalRenderLayer.get();
 	}
 
 }

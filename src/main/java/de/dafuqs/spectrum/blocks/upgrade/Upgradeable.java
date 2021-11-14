@@ -4,12 +4,14 @@ import com.google.common.collect.Maps;
 import net.minecraft.block.Block;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtList;
+import net.minecraft.util.DyeColor;
 import net.minecraft.util.Pair;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -20,7 +22,8 @@ public interface Upgradeable {
 		SPEED,      // faster crafting
 		EFFICIENCY, // chance to not use input resources (like gemstone powder)
 		YIELD,      // chance to increase output
-		EXPERIENCE, // increases XP output
+		EXPERIENCE; // increases XP output
+		
 	}
 	
 	static NbtList toNbt(@NotNull Map<UpgradeType, Double> upgrades) {

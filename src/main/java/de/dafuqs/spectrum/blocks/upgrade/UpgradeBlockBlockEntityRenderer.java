@@ -19,16 +19,16 @@ import org.jetbrains.annotations.NotNull;
 
 @Environment(EnvType.CLIENT)
 public class UpgradeBlockBlockEntityRenderer<PedestalUpgradeBlockEntity extends BlockEntity> implements BlockEntityRenderer<PedestalUpgradeBlockEntity> {
-
-	private Upgradeable.UpgradeType upgradeType;
-	private double upgradeMod;
 	
 	private SpriteIdentifier spriteIdentifier;
-	private ModelPart root;
-	private ModelPart disk;
+	private final ModelPart root;
+	private final ModelPart disk;
 
 	public UpgradeBlockBlockEntityRenderer(BlockEntityRendererFactory.Context ctx) {
-	
+		TexturedModelData texturedModelData = getTexturedModelData(Upgradeable.UpgradeType.SPEED);
+		root = texturedModelData.createModel();
+		root.setPivot(8.0F, 8.0F, 8.0F);
+		disk = root.getChild("gemstone_disk");
 	}
 
 	@Override
@@ -37,29 +37,23 @@ public class UpgradeBlockBlockEntityRenderer<PedestalUpgradeBlockEntity extends 
 		if(entity.getWorld() != null && !entity.getWorld().getBlockState(entity.getPos().up()).isAir()) {
 			return;
 		}
-		if(root == null) {
-			Block block = entity.getWorld().getBlockState(entity.getPos()).getBlock();
-			if(block instanceof UpgradeBlock upgradeBlock) {
-				upgradeType = upgradeBlock.getUpgradeType();
-				upgradeMod = upgradeBlock.getUpgradeMod();
-				
-				TexturedModelData texturedModelData = getTexturedModelData(upgradeType);
-				root = texturedModelData.createModel();
-				root.setPivot(8.0F, 8.0F, 8.0F);
-				disk = root.getChild("gemstone_disk");
-			}
+		
+		Block block = entity.getWorld().getBlockState(entity.getPos()).getBlock();
+		if(block instanceof UpgradeBlock upgradeBlock) {
+			//upgradeType = upgradeBlock.getUpgradeType();
+			float upgradeMod = (float) upgradeBlock.getUpgradeMod();
+			
+			VertexConsumer vertexConsumer = spriteIdentifier.getVertexConsumer(vertexConsumerProvider, RenderLayer::getEntityCutout);
+			
+			float newYaw = (entity.getWorld().getTime() + tickDelta) / 25.0F;
+			root.pivotY = 16.0F + (float) (Math.sin(newYaw) * 0.5);
+			disk.yaw = newYaw * upgradeMod * upgradeMod * 4;
+			root.render(matrixStack, vertexConsumer, light, overlay);
 		}
-
-		VertexConsumer vertexConsumer = spriteIdentifier.getVertexConsumer(vertexConsumerProvider, RenderLayer::getEntityCutout);
-
-		float newYaw = (entity.getWorld().getTime() + tickDelta) / 25.0F;
-		root.pivotY = 16.0F + (float) (Math.sin(newYaw) * 0.5);
-		disk.yaw = newYaw;
-		root.render(matrixStack, vertexConsumer, light, overlay);
 	}
 
 	// TODO: Use a different model for each upgrade type
-	public @NotNull TexturedModelData getTexturedModelData(Upgradeable.UpgradeType upgradeType){
+	public @NotNull TexturedModelData getTexturedModelData(Upgradeable.@NotNull UpgradeType upgradeType){
 		ModelData modelData = new ModelData();
 		ModelPartData modelPartData = modelData.getRoot();
 

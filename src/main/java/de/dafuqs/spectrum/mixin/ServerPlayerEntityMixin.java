@@ -19,15 +19,13 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(ServerPlayerEntity.class)
 public abstract class ServerPlayerEntityMixin {
 
-	@Shadow public abstract ServerWorld getServerWorld();
-
 	@Inject(at = @At("HEAD"), method = "Lnet/minecraft/server/network/ServerPlayerEntity;onDeath(Lnet/minecraft/entity/damage/DamageSource;)V")
 	protected void dropPlayerHeadWithTreasureHunt(DamageSource source, CallbackInfo ci) {
 		ServerPlayerEntity thisEntity = (ServerPlayerEntity)(Object) this;
 		if (!thisEntity.isSpectator() && source.getAttacker() instanceof LivingEntity) {
 			int damageSourceTreasureHunt = EnchantmentHelper.getEquipmentLevel(SpectrumEnchantments.TREASURE_HUNTER, (LivingEntity) source.getAttacker());
 			if(damageSourceTreasureHunt > 0) {
-				ServerWorld serverWorld = thisEntity.getServerWorld();
+				ServerWorld serverWorld = thisEntity.getWorld();
 				boolean shouldDropHead = serverWorld.getRandom().nextFloat() < 0.2 * damageSourceTreasureHunt;
 				if(shouldDropHead) {
 					ItemStack headItemStack = new ItemStack(Items.PLAYER_HEAD);

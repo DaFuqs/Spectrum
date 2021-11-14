@@ -20,7 +20,7 @@ public class PlayerDetectorBlockEntity extends BlockEntity implements PlayerOwne
 		super(SpectrumBlockEntityRegistry.PLAYER_DETECTOR, blockPos, blockState);
 	}
 
-	public NbtCompound writeNbt(NbtCompound tag) {
+	public void writeNbt(NbtCompound tag) {
 		super.writeNbt(tag);
 
 		if(this.ownerUUID !=  null) {
@@ -29,8 +29,6 @@ public class PlayerDetectorBlockEntity extends BlockEntity implements PlayerOwne
 		if(this.ownerName !=  null) {
 			tag.putString("OwnerName", this.ownerName);
 		}
-
-		return tag;
 	}
 
 	public void readNbt(NbtCompound tag) {

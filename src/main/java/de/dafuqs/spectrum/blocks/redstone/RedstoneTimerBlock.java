@@ -94,14 +94,14 @@ public class RedstoneTimerBlock extends AbstractRedstoneGateBlock {
 
 	public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
 		super.onBlockAdded(state, world, pos, oldState, notify);
-		world.getBlockTickScheduler().schedule(pos, state.getBlock(), getUpdateDelayInternal(state));
+		world.createAndScheduleBlockTick(pos, state.getBlock(), getUpdateDelayInternal(state));
 	}
 
 	public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
 		BlockState newState = state.with(POWERED, !state.get(POWERED));
 		world.setBlockState(pos, newState, 3);
 		world.playSound(null, pos, SoundEvents.BLOCK_COMPARATOR_CLICK, SoundCategory.BLOCKS, 0.3F, 1.0F);
-		world.getBlockTickScheduler().schedule(pos, this, this.getUpdateDelayInternal(state), TickPriority.VERY_HIGH);
+		world.createAndScheduleBlockTick(pos, this, this.getUpdateDelayInternal(state), TickPriority.VERY_HIGH);
 	}
 
 	protected int getPower(World world, BlockPos pos, BlockState state) {
@@ -117,7 +117,7 @@ public class RedstoneTimerBlock extends AbstractRedstoneGateBlock {
 			} else if (bl) {
 				tickPriority = TickPriority.VERY_HIGH;
 			}
-			world.getBlockTickScheduler().schedule(pos, this, this.getUpdateDelayInternal(state), tickPriority);
+			world.createAndScheduleBlockTick(pos, this, this.getUpdateDelayInternal(state), tickPriority);
 		}
 	}
 

@@ -58,7 +58,6 @@ public class SpectrumS2CPackets {
 	public static final Identifier INITIATE_ITEM_TRANSFER = new Identifier(SpectrumCommon.MOD_ID, "initiate_item_transfer");
 	public static final Identifier INITIATE_WIRELESS_REDSTONE_TRANSMISSION = new Identifier(SpectrumCommon.MOD_ID, "initiate_wireless_redstone_transmission");
 	public static final Identifier PLAY_ITEM_ENTITY_ABSORBED_PARTICLE_EFFECT_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "item_entity_absorbed");
-	public static final Identifier BLOCK_ENTITY_UPDATE_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "block_entity_update");
 	public static final Identifier PLAY_BLOCK_BOUND_SOUND_INSTANCE = new Identifier(SpectrumCommon.MOD_ID, "play_pedestal_crafting_sound_instance");
 
 	@Environment(EnvType.CLIENT)
@@ -195,21 +194,6 @@ public class SpectrumS2CPackets {
 				// Everything in this lambda is running on the render thread
 				for(int i = 0; i < 10; i++) {
 					MinecraftClient.getInstance().player.getEntityWorld().addParticle(SpectrumParticleTypes.BLUE_BUBBLE_POP, posX, posY, posZ, 0, 0, 0);
-				}
-			});
-		});
-
-		ClientPlayNetworking.registerGlobalReceiver(BLOCK_ENTITY_UPDATE_PACKET_ID, (client, handler, buf, responseSender) -> {
-			BlockPos blockPos = buf.readBlockPos();
-			BlockEntityUpdatePacketID blockEntityUpdatePacketID = BlockEntityUpdatePacketID.valueOf(buf.readString());
-			NbtCompound nbt = buf.readNbt();
-
-			client.execute(() -> {
-				BlockEntity blockEntity = MinecraftClient.getInstance().world.getBlockEntity(blockPos);
-				if(blockEntityUpdatePacketID == BlockEntityUpdatePacketID.FUSION_SHRINE && blockEntity instanceof FusionShrineBlockEntity
-					|| blockEntityUpdatePacketID == BlockEntityUpdatePacketID.PARTICLE_SPAWNER && blockEntity instanceof ParticleSpawnerBlockEntity) {
-
-					blockEntity.readNbt(nbt);
 				}
 			});
 		});
@@ -376,18 +360,6 @@ public class SpectrumS2CPackets {
 		// Iterate over all players tracking a position in the world and send the packet to each player
 		for (ServerPlayerEntity player : PlayerLookup.tracking((ServerWorld) world, itemEntity.getBlockPos())) {
 			ServerPlayNetworking.send(player, SpectrumS2CPackets.PLAY_ITEM_ENTITY_ABSORBED_PARTICLE_EFFECT_PACKET_ID, buf);
-		}
-	}
-
-	public static void sendBlockEntityUpdate(@NotNull BlockEntity blockEntity, @NotNull BlockEntityUpdatePacketID blockEntityUpdatePacketID) {
-		PacketByteBuf buf = PacketByteBufs.create();
-		buf.writeBlockPos(blockEntity.getPos());
-		buf.writeString(blockEntityUpdatePacketID.toString());
-		buf.writeNbt(blockEntity.writeNbt(new NbtCompound()));
-
-		// Iterate over all players tracking a position in the world and send the packet to each player
-		for (ServerPlayerEntity player : PlayerLookup.tracking((ServerWorld) blockEntity.getWorld(), blockEntity.getPos())) {
-			ServerPlayNetworking.send(player, SpectrumS2CPackets.BLOCK_ENTITY_UPDATE_PACKET_ID, buf);
 		}
 	}
 

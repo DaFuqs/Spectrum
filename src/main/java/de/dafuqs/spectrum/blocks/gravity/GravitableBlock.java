@@ -26,12 +26,12 @@ public class GravitableBlock extends FallingBlock {
 
 	@Override
 	public void onBlockAdded(BlockState state, World worldIn, BlockPos posIn, BlockState oldState, boolean notify) {
-		worldIn.getBlockTickScheduler().schedule(posIn, this, this.getFallDelay());
+		worldIn.createAndScheduleBlockTick(posIn, this, this.getFallDelay());
 	}
 
 	@Override
 	public BlockState getStateForNeighborUpdate(BlockState stateIn, Direction facingIn, BlockState facingState, WorldAccess worldIn, BlockPos posIn, BlockPos facingPosIn) {
-		worldIn.getBlockTickScheduler().schedule(posIn, this, this.getFallDelay());
+		worldIn.createAndScheduleBlockTick(posIn, this, this.getFallDelay());
 		return super.getStateForNeighborUpdate(stateIn, facingIn, facingState, worldIn, posIn, facingPosIn);
 	}
 

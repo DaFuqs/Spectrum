@@ -85,10 +85,10 @@ public class QuitoxicReedsBlock extends SugarCaneBlock implements Cloakable, Wat
 			return Blocks.AIR.getDefaultState();
 		} else {
 			if (state.get(WATERLOGGED)) {
-				world.getFluidTickScheduler().schedule(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
+				world.createAndScheduleFluidTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
 			}
 			if (state.get(LIQUID_CRYSTAL_LOGGED)) {
-				world.getFluidTickScheduler().schedule(pos, SpectrumFluids.STILL_LIQUID_CRYSTAL, SpectrumFluids.STILL_LIQUID_CRYSTAL.getTickRate(world));
+				world.createAndScheduleFluidTick(pos, SpectrumFluids.STILL_LIQUID_CRYSTAL, SpectrumFluids.STILL_LIQUID_CRYSTAL.getTickRate(world));
 			}
 			return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
 		}

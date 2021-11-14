@@ -46,7 +46,7 @@ public class PrivateChestBlockEntity extends SpectrumChestBlockEntity implements
 		world.updateNeighborsAlways(pos.down(), state.getBlock());
 
 		if(wasRecentlyTriedToOpenByNonOwner()) {
-			world.getBlockTickScheduler().schedule(pos, state.getBlock(), 10);
+			world.createAndScheduleBlockTick(pos, state.getBlock(), 10);
 		}
 	}
 
@@ -106,7 +106,7 @@ public class PrivateChestBlockEntity extends SpectrumChestBlockEntity implements
 		}
 	}
 
-	public NbtCompound writeNbt(NbtCompound tag) {
+	public void writeNbt(NbtCompound tag) {
 		super.writeNbt(tag);
 
 		if(this.ownerUUID != null) {
@@ -117,8 +117,6 @@ public class PrivateChestBlockEntity extends SpectrumChestBlockEntity implements
 		}
 
 		tag.putLong("LastNonOwnerOpenedTick", this.lastNonOwnerOpenedTick);
-
-		return tag;
 	}
 
 	@Override

@@ -21,7 +21,7 @@ public class DeeperDownPortalBlockEntityRenderer<T extends DeeperDownPortalBlock
 
 	public void render(T deeperDownPortalBlockEntity, float f, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i, int j) {
 		float topYOffset = this.getTopYOffset();
-		Matrix4f matrix4f = matrixStack.peek().getModel();
+		Matrix4f matrix4f = matrixStack.peek().getPositionMatrix();
 		this.renderSides(deeperDownPortalBlockEntity, topYOffset, matrix4f, vertexConsumerProvider.getBuffer(this.getLayer()));
 	}
 

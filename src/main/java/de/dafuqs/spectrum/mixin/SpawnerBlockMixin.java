@@ -1,7 +1,8 @@
 package de.dafuqs.spectrum.mixin;
 
-import de.dafuqs.spectrum.items.Spawner;
+import de.dafuqs.spectrum.items.SpawnerItem;
 import de.dafuqs.spectrum.registries.SpectrumEnchantments;
+import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -10,6 +11,7 @@ import net.minecraft.block.entity.MobSpawnerBlockEntity;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
@@ -25,16 +27,16 @@ public abstract class SpawnerBlockMixin {
 
 	@Inject(method = "afterBreak", at = @At("HEAD"), cancellable = true)
 	public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack stack, CallbackInfo callbackInfo) {
-		if(checkResonanceForSpawnerMining(world, player, pos, state, blockEntity, stack)) {
+		if(checkResonanceForSpawnerMining(world, pos, state, blockEntity, stack)) {
 			callbackInfo.cancel();
 		}
 	}
 
-	private static boolean checkResonanceForSpawnerMining(World world, PlayerEntity entity, BlockPos pos, BlockState blockState, @Nullable BlockEntity blockEntity, ItemStack stack) {
+	private static boolean checkResonanceForSpawnerMining(World world, BlockPos pos, BlockState blockState, @Nullable BlockEntity blockEntity, ItemStack stack) {
 		if (blockState.equals(Blocks.SPAWNER.getDefaultState())) {
 			if (EnchantmentHelper.getLevel(SpectrumEnchantments.RESONANCE, stack) > 0) {
-				if (blockEntity instanceof MobSpawnerBlockEntity) {
-					ItemStack itemStack = Spawner.fromBlockEntity(blockEntity);
+				if (blockEntity instanceof MobSpawnerBlockEntity mobSpawnerBlockEntity) {
+					ItemStack itemStack = SpawnerItem.toItemStack(mobSpawnerBlockEntity);
 
 					Block.dropStack(world, pos, itemStack);
 					world.playSound(null, pos, SoundEvents.BLOCK_METAL_BREAK, SoundCategory.BLOCKS, 1.0F, 0.8F + world.random.nextFloat() * 0.4F);
@@ -42,7 +44,6 @@ public abstract class SpawnerBlockMixin {
 					return true;
 				}
 			}
-
 		}
 		return false;
 	}

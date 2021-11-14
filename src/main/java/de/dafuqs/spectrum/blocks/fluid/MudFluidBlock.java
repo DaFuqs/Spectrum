@@ -30,7 +30,7 @@ public class MudFluidBlock extends FluidBlock {
 	@Override
 	public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
 		if (this.receiveNeighborFluids(world, pos, state)) {
-			world.getFluidTickScheduler().schedule(pos, state.getFluidState().getFluid(), this.fluid.getTickRate(world));
+			world.createAndScheduleFluidTick(pos, state.getFluidState().getFluid(), this.fluid.getTickRate(world));
 		}
 	}
 
@@ -72,7 +72,7 @@ public class MudFluidBlock extends FluidBlock {
 	@Override
 	public void neighborUpdate(BlockState state, World world, BlockPos pos, Block block, BlockPos fromPos, boolean notify) {
 		if (this.receiveNeighborFluids(world, pos, state)) {
-			world.getFluidTickScheduler().schedule(pos, state.getFluidState().getFluid(), this.fluid.getTickRate(world));
+			world.createAndScheduleFluidTick(pos, state.getFluidState().getFluid(), this.fluid.getTickRate(world));
 		}
 	}
 

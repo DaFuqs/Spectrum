@@ -19,7 +19,7 @@ public class GravityAdvancementsManager {
 	 * @param additionalGravity The additional gravity the entity got applied for a single stack. Will be added up for each tick in this function
 	 */
 	public static void processAppliedGravityForAdvancements(@NotNull ServerPlayerEntity serverPlayerEntity, double additionalGravity) {
-		ServerWorld serverWorld = serverPlayerEntity.getServerWorld();
+		ServerWorld serverWorld = serverPlayerEntity.getWorld();
 		if(serverWorld != null) {
 			if(serverWorld.getTime() != lastGravityTick || lastServerPlayerEntity != serverPlayerEntity) {
 				lastServerPlayerEntity = serverPlayerEntity;

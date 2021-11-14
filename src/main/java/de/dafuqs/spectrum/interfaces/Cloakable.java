@@ -42,12 +42,9 @@ public interface Cloakable {
 
 	default boolean isVisibleTo(ShapeContext context) {
 		if(context instanceof EntityShapeContext) {
-			Optional<Entity> optionalEntity = ((EntityShapeContext) context).getEntity();
-			if(optionalEntity.isPresent()) {
-				Entity entity = optionalEntity.get();
-				if(entity instanceof PlayerEntity) {
-					return this.isVisibleTo((PlayerEntity) entity);
-				}
+			Entity entity = ((EntityShapeContext) context).getEntity();
+			if(entity instanceof PlayerEntity) {
+				return this.isVisibleTo((PlayerEntity) entity);
 			}
 		}
 		return true;

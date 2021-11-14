@@ -39,7 +39,7 @@ public class ShootingStarEntityRenderer extends EntityRenderer<ShootingStarEntit
 
 		int j = itemStack.isEmpty() ? 187 : Item.getRawId(itemStack.getItem()) + itemStack.getDamage();
 		this.random.setSeed(j);
-		BakedModel bakedModel = this.itemRenderer.getHeldItemModel(itemStack, shootingStarEntity.world, null, shootingStarEntity.getId());
+		BakedModel bakedModel = this.itemRenderer.getModel(itemStack, shootingStarEntity.world, null, shootingStarEntity.getId());
 		boolean bl = bakedModel.hasDepth();
 		int k = 1;
 		float l = MathHelper.sin(((float)shootingStarEntity.getAge() + g) / 10.0F + shootingStarEntity.hoverHeight) * 0.1F + 0.1F;

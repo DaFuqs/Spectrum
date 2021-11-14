@@ -4,6 +4,7 @@ import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.MobSpawnerBlockEntity;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.BlockItem;
@@ -16,9 +17,9 @@ import net.minecraft.world.World;
 import java.util.List;
 import java.util.Optional;
 
-public class Spawner extends BlockItem {
+public class SpawnerItem extends BlockItem {
 
-	public Spawner(Block block, FabricItemSettings fabricItemSettings) {
+	public SpawnerItem(Block block, FabricItemSettings fabricItemSettings) {
 		super(block, fabricItemSettings);
 	}
 
@@ -49,19 +50,17 @@ public class Spawner extends BlockItem {
 			tooltip.add(new TranslatableText("item.spectrum.spawner.tooltip.required_player_range", requiredPlayerRange));
 		}
 	}
-
-	public static ItemStack fromBlockEntity(BlockEntity blockEntity) {
+	
+	public static ItemStack toItemStack(MobSpawnerBlockEntity mobSpawnerBlockEntity) {
 		ItemStack itemStack = new ItemStack(SpectrumItems.SPAWNER, 1);
-
-		NbtCompound blockEntityTag = new NbtCompound();
-		blockEntity.writeNbt(blockEntityTag);
-
+		
+		NbtCompound blockEntityTag = mobSpawnerBlockEntity.createNbt();
 		blockEntityTag.remove("x");
 		blockEntityTag.remove("y");
 		blockEntityTag.remove("z");
 		blockEntityTag.remove("id");
 		blockEntityTag.remove("delay");
-
+		
 		NbtCompound itemStackTag = new NbtCompound();
 		itemStackTag.put("BlockEntityTag", blockEntityTag);
 		itemStack.setNbt(itemStackTag);

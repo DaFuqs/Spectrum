@@ -3,7 +3,7 @@ package de.dafuqs.spectrum.blocks.spirit_sallow;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.noise.SimplexNoiseSampler;
-import net.minecraft.world.gen.ChunkRandom;
+import net.minecraft.world.gen.random.SimpleRandom;
 
 public class WindStrength {
 	
@@ -17,9 +17,9 @@ public class WindStrength {
 	
 	public Vec3d getWindStrength(long tick) {
 		if(samplerX == null) {
-			samplerX = new SimplexNoiseSampler(new ChunkRandom());
-			samplerY = new SimplexNoiseSampler(new ChunkRandom());
-			samplerZ = new SimplexNoiseSampler(new ChunkRandom());
+			samplerX = new SimplexNoiseSampler(new SimpleRandom(0));
+			samplerY = new SimplexNoiseSampler(new SimpleRandom(1));
+			samplerZ = new SimplexNoiseSampler(new SimpleRandom(2));
 		}
 		
 		if(tick != cachedTick) {

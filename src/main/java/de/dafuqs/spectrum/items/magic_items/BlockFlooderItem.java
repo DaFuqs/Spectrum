@@ -3,6 +3,8 @@ package de.dafuqs.spectrum.items.magic_items;
 import de.dafuqs.spectrum.entity.entity.BlockFlooderProjectile;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.BowItem;
+import net.minecraft.item.EggItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.sound.SoundCategory;
@@ -30,7 +32,7 @@ public class BlockFlooderItem extends Item {
 		if (!world.isClient) {
 			BlockFlooderProjectile blockFlooderProjectile = new BlockFlooderProjectile(world, user);
 			blockFlooderProjectile.setItem(itemStack);
-			blockFlooderProjectile.setProperties(user, user.getPitch(), user.getYaw(), 0.0F, 1.5F, 1.0F);
+			blockFlooderProjectile.setVelocity(user, user.getPitch(), user.getYaw(), 0.0F, 1.5F, 1.0F);
 			world.spawnEntity(blockFlooderProjectile);
 		}
 

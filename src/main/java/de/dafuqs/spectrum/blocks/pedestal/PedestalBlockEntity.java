@@ -216,13 +216,15 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 	
 	// Called when the chunk is first loaded to initialize this be
 	public NbtCompound toInitialChunkDataNbt() {
-		NbtCompound nbtCompound = this.writeNbt(new NbtCompound());
+		NbtCompound nbtCompound = new NbtCompound();
+		this.writeNbt(nbtCompound);
+		
 		if(this.currentRecipe != null) {
 			nbtCompound.putString("CurrentRecipe", this.currentRecipe.getId().toString());
 		} else {
 			nbtCompound.putString("CurrentRecipe", "");
 		}
-		return this.writeNbt(new NbtCompound());
+		return nbtCompound;
 	}
 
 	public void readNbt(NbtCompound nbt) {
@@ -273,7 +275,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		}
 	}
 
-	public NbtCompound writeNbt(NbtCompound nbt) {
+	public void writeNbt(NbtCompound nbt) {
 		super.writeNbt(nbt);
 		nbt.putFloat("StoredXP", this.storedXP);
 		nbt.putShort("CraftingTime", (short)this.craftingTime);
@@ -292,7 +294,6 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 			nbt.putString("OwnerName", this.ownerName);
 		}
 		Inventories.writeNbt(nbt, this.inventory);
-		return nbt;
 	}
 
 	@Override

@@ -47,7 +47,7 @@ public class EtherealGlassBlock extends Block {
 				BlockState directionState = world.getBlockState(offsetPos);
 				if(directionState.getBlock() instanceof EtherealGlassBlock) {
 					world.setBlockState(offsetPos, directionState.with(AGE, MAX_AGE-1).with(EXTEND, true), Block.NOTIFY_LISTENERS);
-					world.getBlockTickScheduler().schedule(offsetPos, this, 2);
+					world.createAndScheduleBlockTick(offsetPos, this, 2);
 				}
 			}
 		}
@@ -63,7 +63,7 @@ public class EtherealGlassBlock extends Block {
 				BlockState directionState = world.getBlockState(offsetPos);
 				if(directionState.getBlock() instanceof EtherealGlassBlock && age > directionState.get(AGE)) {
 					world.setBlockState(offsetPos, directionState.with(AGE, age-1).with(EXTEND, true), Block.NOTIFY_LISTENERS);
-					world.getBlockTickScheduler().schedule(offsetPos, this, 2);
+					world.createAndScheduleBlockTick(offsetPos, this, 2);
 				}
 			}
 			world.setBlockState(pos, state.with(EXTEND, false));
@@ -74,12 +74,12 @@ public class EtherealGlassBlock extends Block {
 				mutable.set(pos, direction);
 				BlockState blockState = world.getBlockState(mutable);
 				if (blockState.isOf(this) && !this.increaseAge(blockState, world, mutable)) {
-					world.getBlockTickScheduler().schedule(mutable, this, 4);
+					world.createAndScheduleBlockTick(mutable, this, 4);
 				}
 			}
 		}
 		if(age > 0) {
-			world.getBlockTickScheduler().schedule(pos, this, 10);
+			world.createAndScheduleBlockTick(pos, this, 10);
 		}
 	}
 
@@ -96,8 +96,8 @@ public class EtherealGlassBlock extends Block {
 	@Deprecated
 	public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
 		if(context instanceof EntityShapeContext entityShapeContext) {
-			Optional<Entity> entity = entityShapeContext.getEntity();
-			if(entity.isPresent() && entity.get() instanceof LivingEntity) {
+			Entity entity = entityShapeContext.getEntity();
+			if(entity instanceof LivingEntity) {
 				return state.getOutlineShape(world, pos);
 			}
 		}

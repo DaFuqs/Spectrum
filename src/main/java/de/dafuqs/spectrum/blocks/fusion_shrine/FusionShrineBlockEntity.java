@@ -18,6 +18,7 @@ import net.fabricmc.fabric.api.block.entity.BlockEntityClientSerializable;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.MobSpawnerBlockEntity;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.ExperienceOrbEntity;
 import net.minecraft.entity.ItemEntity;
@@ -112,7 +113,7 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 		}
 	}
 
-	public NbtCompound writeNbt(NbtCompound nbt) {
+	public void writeNbt(NbtCompound nbt) {
 		super.writeNbt(nbt);
 		nbt.put("inventory", this.inventory.toNbtList());
 		nbt.putString("fluid", Registry.FLUID.getId(this.storedFluid).toString());
@@ -127,7 +128,6 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 		if(this.currentRecipe != null) {
 			nbt.putString("CurrentRecipe", this.currentRecipe.getId().toString());
 		}
-		return nbt;
 	}
 	
 	public static void clientTick(@NotNull World world, BlockPos blockPos, BlockState blockState, FusionShrineBlockEntity fusionShrineBlockEntity) {
@@ -348,15 +348,9 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 
 	// Called when the chunk is first loaded to initialize this be
 	public NbtCompound toInitialChunkDataNbt() {
-		return this.writeNbt(new NbtCompound());
-	}
-
-	// when marked dirty this is called to send updates to clients
-	// see also MobSpawnerBlockEntity for a vanilla version of this
-	@Nullable
-	public BlockEntityUpdateS2CPacket toUpdatePacket() {
-		SpectrumS2CPackets.sendBlockEntityUpdate(this, SpectrumS2CPackets.BlockEntityUpdatePacketID.FUSION_SHRINE);
-		return null;
+		NbtCompound nbtCompound = new NbtCompound();
+		this.writeNbt(nbtCompound);
+		return nbtCompound;
 	}
 
 	public Inventory getInventory() {

@@ -17,11 +17,6 @@ public class SpectrumSkullBlockEntity extends BlockEntity {
 		super(SpectrumBlockEntityRegistry.SKULL, pos, state);
 	}
 
-	public NbtCompound writeNbt(NbtCompound tag) {
-		super.writeNbt(tag);
-		return tag;
-	}
-
 	public void readNbt(NbtCompound tag) {
 		super.readNbt(tag);
 	}

@@ -14,10 +14,9 @@ public class RedstoneCalculatorBlockEntity extends BlockEntity {
 		super(SpectrumBlockEntityRegistry.REDSTONE_CALCULATOR, pos, state);
 	}
 
-	public NbtCompound writeNbt(NbtCompound nbt) {
+	public void writeNbt(NbtCompound nbt) {
 		super.writeNbt(nbt);
 		nbt.putInt("output_signal", this.outputSignal);
-		return nbt;
 	}
 
 	public void readNbt(NbtCompound nbt) {

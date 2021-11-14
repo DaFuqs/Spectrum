@@ -6,12 +6,10 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.BlockWithEntity;
+import net.minecraft.block.EndPortalBlock;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.Entity;
-import net.minecraft.fluid.Fluid;
-import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.function.BooleanBiFunction;
 import net.minecraft.util.math.BlockPos;
@@ -23,7 +21,7 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-public class DeeperDownPortalBlock extends BlockWithEntity {
+public class DeeperDownPortalBlock extends EndPortalBlock {
 
 	protected static final VoxelShape SHAPE = Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 2.5D, 16.0D);
 
@@ -61,15 +59,6 @@ public class DeeperDownPortalBlock extends BlockWithEntity {
 		double e = (double)pos.getY() + 0.3D;
 		double f = (double)pos.getZ() + random.nextDouble();
 		world.addParticle(SpectrumParticleTypes.VOID_FOG, d, e, f, 0.0D, 0.1D, 0.0D);
-	}
-
-	@Environment(EnvType.CLIENT)
-	public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state) {
-		return ItemStack.EMPTY;
-	}
-
-	public boolean canBucketPlace(BlockState state, Fluid fluid) {
-		return false;
 	}
 
 }

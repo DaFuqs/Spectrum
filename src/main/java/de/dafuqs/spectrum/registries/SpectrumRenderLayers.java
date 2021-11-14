@@ -4,8 +4,10 @@ import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.mixin.client.RenderLayerAccessor;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.client.render.*;
-import net.minecraft.client.render.block.entity.EndPortalBlockEntityRenderer;
+import net.minecraft.client.render.RenderLayer;
+import net.minecraft.client.render.RenderPhase;
+import net.minecraft.client.render.VertexFormat;
+import net.minecraft.client.render.VertexFormats;
 import net.minecraft.util.Identifier;
 
 @Environment(EnvType.CLIENT)

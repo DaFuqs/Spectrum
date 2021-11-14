@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.blocks.redstone;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.FallingBlock;
+import net.minecraft.block.SandBlock;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
@@ -64,7 +65,7 @@ public class RedstoneGravityBlock extends FallingBlock {
 			BlockState offsetBlockState = world.getBlockState(offsetPos);
 			if (offsetBlockState.isOf(this) && !offsetBlockState.get(UNSTABLE) && canFallThrough(world.getBlockState(offsetPos.down()))) {
 				world.setBlockState(offsetPos, world.getBlockState(offsetPos).with(UNSTABLE, true));
-				world.getBlockTickScheduler().schedule(offsetPos, this, getFallDelay());
+				world.createAndScheduleBlockTick(pos, this, this.getFallDelay());
 			}
 		}
 	}

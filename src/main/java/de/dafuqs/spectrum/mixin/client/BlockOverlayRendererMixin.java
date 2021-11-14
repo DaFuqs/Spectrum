@@ -48,7 +48,7 @@ public class BlockOverlayRendererMixin {
 
 		float m = -client.player.getYaw() / 64.0F;
 		float n = client.player.getPitch() / 64.0F;
-		Matrix4f matrix4f = matrixStack.peek().getModel();
+		Matrix4f matrix4f = matrixStack.peek().getPositionMatrix();
 		bufferBuilder.begin(VertexFormat.DrawMode.QUADS, VertexFormats.POSITION_TEXTURE);
 		bufferBuilder.vertex(matrix4f, -1.0F, -1.0F, -0.5F).texture(4.0F + m, 4.0F + n).next();
 		bufferBuilder.vertex(matrix4f, 1.0F, -1.0F, -0.5F).texture(0.0F + m, 4.0F + n).next();

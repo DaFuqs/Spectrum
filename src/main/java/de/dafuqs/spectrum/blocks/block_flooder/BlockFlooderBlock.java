@@ -45,7 +45,7 @@ public class BlockFlooderBlock extends BlockWithEntity {
 	public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
 		super.onBlockAdded(state, world, pos, oldState, notify);
 		if (!world.isClient) {
-			world.getBlockTickScheduler().schedule(pos, state.getBlock(), 4);
+			world.createAndScheduleBlockTick(pos, state.getBlock(), 4);
 		}
 	}
 	
@@ -152,7 +152,7 @@ public class BlockFlooderBlock extends BlockWithEntity {
 				if (targetState == null || targetState.isAir()) {
 					boolean scheduleUpdate = calculateTargetBlockAndPropagate(state, world, pos, world.getRandom());
 					if (scheduleUpdate) {
-						world.getBlockTickScheduler().schedule(pos, state.getBlock(), 2 + random.nextInt(5));
+						world.createAndScheduleBlockTick(pos, state.getBlock(), 2 + random.nextInt(5));
 					}
 				} else {
 					world.setBlockState(pos, targetState, 3);

@@ -27,7 +27,6 @@ import net.minecraft.world.gen.YOffset;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.feature.size.TwoLayersFeatureSize;
 import net.minecraft.world.gen.foliage.BlobFoliagePlacer;
-import net.minecraft.world.gen.placer.SimpleBlockPlacer;
 import net.minecraft.world.gen.stateprovider.SimpleBlockStateProvider;
 import net.minecraft.world.gen.stateprovider.WeightedBlockStateProvider;
 import net.minecraft.world.gen.trunk.StraightTrunkPlacer;
@@ -35,7 +34,7 @@ import org.apache.logging.log4j.Level;
 
 import java.util.*;
 
-public class SpectrumConfiguredFeatures extends ConfiguredFeatures {
+public class SpectrumConfiguredFeatures {
 
 	public static ConfiguredFeature<?, ?> CITRINE_GEODE;
 	public static ConfiguredFeature<?, ?> TOPAZ_GEODE;

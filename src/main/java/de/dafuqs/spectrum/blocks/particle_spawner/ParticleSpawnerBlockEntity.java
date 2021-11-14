@@ -82,7 +82,9 @@ public class ParticleSpawnerBlockEntity extends BlockEntity implements ExtendedS
 	
 	// Called when the chunk is first loaded to initialize this be
 	public NbtCompound toInitialChunkDataNbt() {
-		return this.writeNbt(new NbtCompound());
+		NbtCompound nbtCompound = new NbtCompound();
+		this.writeNbt(nbtCompound);
+		return nbtCompound;
 	}
 	
 	public void updateInClientWorld() {
@@ -131,7 +133,7 @@ public class ParticleSpawnerBlockEntity extends BlockEntity implements ExtendedS
 		}
 	}
 
-	public NbtCompound writeNbt(NbtCompound tag) {
+	public void writeNbt(NbtCompound tag) {
 		super.writeNbt(tag);
 		tag.putString("particle_identifier", this.particleSpriteIdentifier.toString());
 		tag.putFloat("particles_per_tick", this.particlesPerSecond);
@@ -156,7 +158,6 @@ public class ParticleSpawnerBlockEntity extends BlockEntity implements ExtendedS
 		tag.putInt("particle_lifetime_variance", this.lifetimeVariance);
 		tag.putFloat("particle_gravity", this.gravity);
 		tag.putBoolean("particle_collisions", this.collisions);
-		return tag;
 	}
 
 	public void readNbt(NbtCompound tag) {

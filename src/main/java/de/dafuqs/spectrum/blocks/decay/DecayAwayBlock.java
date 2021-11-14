@@ -26,7 +26,7 @@ public class DecayAwayBlock extends Block {
 
 	public void onPlaced(@NotNull World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
 		if (!world.isClient) {
-			world.getBlockTickScheduler().schedule(pos, state.getBlock(), 4);
+			world.createAndScheduleBlockTick(pos, state.getBlock(), 4);
 		}
 	}
 
@@ -41,7 +41,7 @@ public class DecayAwayBlock extends Block {
 
 			if (Support.hasTag(currentBlockState, SpectrumBlockTags.DECAY)) {
 				world.setBlockState(targetBlockPos, this.getDefaultState());
-				world.getBlockTickScheduler().schedule(targetBlockPos, state.getBlock(), 8);
+				world.createAndScheduleBlockTick(targetBlockPos, state.getBlock(), 8);
 			}
 		}
 

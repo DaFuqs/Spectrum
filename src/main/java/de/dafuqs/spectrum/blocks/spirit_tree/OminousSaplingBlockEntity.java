@@ -3,8 +3,10 @@ package de.dafuqs.spectrum.blocks.spirit_tree;
 import de.dafuqs.spectrum.interfaces.PlayerOwned;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.entity.BarrelBlockEntity;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.block.entity.MobSpawnerBlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.math.BlockPos;
@@ -35,14 +37,12 @@ public class OminousSaplingBlockEntity extends BlockEntity implements PlayerOwne
 
 	// Serialize the BlockEntity
 	@Override
-	public NbtCompound writeNbt(NbtCompound tag) {
+	public void writeNbt(NbtCompound tag) {
 		super.writeNbt(tag);
 
 		if(this.ownerUUID != null) {
 			tag.putUuid("OwnerUUID", this.ownerUUID);
 		}
-
-		return tag;
 	}
 
 	// Deserialize the BlockEntity

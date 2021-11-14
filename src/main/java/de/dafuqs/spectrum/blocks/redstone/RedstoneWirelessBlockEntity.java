@@ -30,11 +30,10 @@ public class RedstoneWirelessBlockEntity extends BlockEntity implements Wireless
 		this.listener = new WirelessRedstoneSignalListener(new BlockPositionSource(this.pos), RANGE, this);
 	}
 
-	public NbtCompound writeNbt(NbtCompound tag) {
+	public void writeNbt(NbtCompound tag) {
 		super.writeNbt(tag);
 		tag.putInt("output_signal", this.outputSignal);
 		tag.putInt("cached_signal", this.cachedSignal);
-		return tag;
 	}
 
 	public void readNbt(NbtCompound tag) {

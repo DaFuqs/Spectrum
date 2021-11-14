@@ -162,7 +162,7 @@ public class CrackedEndPortalFrameBlock extends Block {
 	public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
 		// when placed via end portal cracker => fuse
 		if(isVolatile(state)) {
-			world.getBlockTickScheduler().schedule(pos, this, 40);
+			world.createAndScheduleBlockTick(pos, this, 40);
 		}
 	}
 
@@ -199,7 +199,7 @@ public class CrackedEndPortalFrameBlock extends Block {
 				world.addParticle(ParticleTypes.SMOKE, d, e, f, 0.0D, 0.0D, 0.0D);
 			}
 		}
-		world.getBlockTickScheduler().schedule(pos, this, 10);
+		world.createAndScheduleBlockTick(pos, this, 10);
 	}
 
 	public static BlockPattern getCompletedFramePattern() {

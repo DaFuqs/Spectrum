@@ -72,19 +72,19 @@ public class UnlockedRecipeGroupToast implements Toast {
 
 		manager.drawTexture(matrices, 0, 0, 0, 32, this.getWidth(), this.getHeight());
 
-		manager.getGame().textRenderer.draw(matrices, title, 30.0F, 7.0F, 3289650); // => #323232: dark gray
-		manager.getGame().textRenderer.draw(matrices, text, 30.0F, 18.0F, 0);
+		manager.getClient().textRenderer.draw(matrices, title, 30.0F, 7.0F, 3289650); // => #323232: dark gray
+		manager.getClient().textRenderer.draw(matrices, text, 30.0F, 18.0F, 0);
 
 		if (!this.soundPlayed && startTime > 0L) {
 			this.soundPlayed = true;
 			if(this.soundEvent != null) {
-				manager.getGame().getSoundManager().play(PositionedSoundInstance.master(this.soundEvent, 1.0F, 1.0F));
+				manager.getClient().getSoundManager().play(PositionedSoundInstance.master(this.soundEvent, 1.0F, 1.0F));
 			}
 		}
 
 		int itemStackIndex = (int) (startTime / Math.max(1, 5000 / this.itemStacks.size()) % this.itemStacks.size());
 		ItemStack currentItemStack = itemStacks.get(itemStackIndex);
-		manager.getGame().getItemRenderer().renderInGui(currentItemStack, 8, 8);
+		manager.getClient().getItemRenderer().renderInGui(currentItemStack, 8, 8);
 
 		return startTime >= 5000L ? Visibility.HIDE : Visibility.SHOW;
 	}

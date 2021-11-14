@@ -164,7 +164,7 @@ public class RedstoneCalculatorBlock extends AbstractRedstoneGateBlock implement
 		} else if (!bl) {
 			world.setBlockState(pos, state.with(POWERED, true), Block.NOTIFY_LISTENERS);
 			if (!bl2) {
-				world.getBlockTickScheduler().schedule(pos, this, this.getUpdateDelayInternal(state), TickPriority.VERY_HIGH);
+				world.createAndScheduleBlockTick(pos, this, this.getUpdateDelayInternal(state), TickPriority.VERY_HIGH);
 			}
 		}
 	}

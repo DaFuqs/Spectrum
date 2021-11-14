@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.dimension;
 
 import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.worldgen.SpectrumSurfaceBuilders;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryKey;
@@ -17,7 +16,6 @@ public class DeeperDownDimension {
 	public static void setup() {
 		SpectrumCommon.log(INFO, "Registering the Deeper Down dimension...");
 		DeeperDownBiomeSource.register();
-		SpectrumSurfaceBuilders.register();
 	}
 
 }

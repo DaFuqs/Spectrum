@@ -35,8 +35,8 @@ public class PlayerOnlyGlassBlock extends AbstractGlassBlock {
 		if(context instanceof EntityShapeContext) {
 			EntityShapeContext entityShapeContext = (EntityShapeContext) context;
 
-			Optional<Entity> entity = entityShapeContext.getEntity();
-			if(entity.isPresent() && entity.get() instanceof PlayerEntity) {
+			Entity entity = entityShapeContext.getEntity();
+			if(entity instanceof PlayerEntity) {
 				return VoxelShapes.empty();
 			}
 		}

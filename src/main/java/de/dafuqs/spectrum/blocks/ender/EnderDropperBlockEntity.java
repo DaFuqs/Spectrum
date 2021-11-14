@@ -97,7 +97,7 @@ public class EnderDropperBlockEntity extends BlockEntity implements PlayerOwnedW
 		}
 	}
 
-	public NbtCompound writeNbt(NbtCompound tag) {
+	public void writeNbt(NbtCompound tag) {
 		super.writeNbt(tag);
 
 		if(this.ownerUUID != null) {
@@ -106,8 +106,6 @@ public class EnderDropperBlockEntity extends BlockEntity implements PlayerOwnedW
 		if(this.ownerName != null) {
 			tag.putString("OwnerName", this.ownerName);
 		}
-
-		return tag;
 	}
 
 }

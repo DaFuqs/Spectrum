@@ -50,7 +50,7 @@ public class BlockFlooderBlockEntity extends BlockEntity {
 		}
 	}
 
-	public NbtCompound writeNbt(NbtCompound nbt) {
+	public void writeNbt(NbtCompound nbt) {
 		super.writeNbt(nbt);
 		if(this.ownerUUID != null) {
 			nbt.putUuid("OwnerUUID", this.ownerUUID);
@@ -60,7 +60,6 @@ public class BlockFlooderBlockEntity extends BlockEntity {
 			nbt.putInt("SourcePositionY", this.sourcePos.getY());
 			nbt.putInt("SourcePositionZ", this.sourcePos.getZ());
 		}
-		return nbt;
 	}
 
 

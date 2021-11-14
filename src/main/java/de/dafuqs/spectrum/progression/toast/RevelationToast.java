@@ -50,8 +50,8 @@ public class RevelationToast implements Toast {
 
 		manager.drawTexture(matrices, 0, 0, 0, 0, this.getWidth(), this.getHeight());
 
-		List<OrderedText> wrappedText = manager.getGame().textRenderer.wrapLines(text, 125);
-		List<OrderedText> wrappedTitle = manager.getGame().textRenderer.wrapLines(title, 125);
+		List<OrderedText> wrappedText = manager.getClient().textRenderer.wrapLines(text, 125);
+		List<OrderedText> wrappedTitle = manager.getClient().textRenderer.wrapLines(title, 125);
 		int l;
 		if (startTime < 2500L) {
 			l = MathHelper.floor(MathHelper.clamp((float)(2500L - startTime) / 300.0F, 0.0F, 1.0F) * 255.0F) << 24 | 67108864;
@@ -61,7 +61,7 @@ public class RevelationToast implements Toast {
 
 			for(Iterator<OrderedText> var12 = wrappedTitle.iterator(); var12.hasNext(); m += 9) {
 				OrderedText orderedText = var12.next();
-				manager.getGame().textRenderer.draw(matrices, orderedText, 30.0F, (float)m, 3289650 | l);
+				manager.getClient().textRenderer.draw(matrices, orderedText, 30.0F, (float)m, 3289650 | l);
 			}
 		} else {
 			l = MathHelper.floor(MathHelper.clamp((float)(startTime - 2500L) / 300.0F, 0.0F, 1.0F) * 252.0F) << 24 | 67108864;
@@ -71,18 +71,18 @@ public class RevelationToast implements Toast {
 
 			for(Iterator<OrderedText> var12 = wrappedText.iterator(); var12.hasNext(); m += 9) {
 				OrderedText orderedText = var12.next();
-				manager.getGame().textRenderer.draw(matrices, orderedText, 30.0F, (float)m, l);
+				manager.getClient().textRenderer.draw(matrices, orderedText, 30.0F, (float)m, l);
 			}
 		}
 
 		if (!this.soundPlayed && startTime > 0L) {
 			this.soundPlayed = true;
 			if(this.soundEvent != null) {
-				manager.getGame().getSoundManager().play(PositionedSoundInstance.master(this.soundEvent, 1.0F, 1.0F));
+				manager.getClient().getSoundManager().play(PositionedSoundInstance.master(this.soundEvent, 1.0F, 1.0F));
 			}
 		}
 
-		manager.getGame().getItemRenderer().renderInGui(itemStack, 8, 8);
+		manager.getClient().getItemRenderer().renderInGui(itemStack, 8, 8);
 		return startTime >= 5000L ? Visibility.HIDE : Visibility.SHOW;
 	}
 

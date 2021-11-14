@@ -252,7 +252,7 @@ public class EnderHopperBlockEntity extends BlockEntity implements PlayerOwnedWi
 		}
 	}
 
-	public NbtCompound writeNbt(NbtCompound tag) {
+	public void writeNbt(NbtCompound tag) {
 		super.writeNbt(tag);
 
 		if(this.ownerUUID != null) {
@@ -261,8 +261,6 @@ public class EnderHopperBlockEntity extends BlockEntity implements PlayerOwnedWi
 		if(this.ownerName != null) {
 			tag.putString("OwnerName", this.ownerName);
 		}
-
-		return tag;
 	}
 
 }

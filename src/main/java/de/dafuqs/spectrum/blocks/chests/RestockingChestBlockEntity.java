@@ -109,10 +109,9 @@ public class RestockingChestBlockEntity extends SpectrumChestBlockEntity impleme
 		return INVENTORY_SIZE;
 	}
 
-	public NbtCompound writeNbt(NbtCompound tag) {
+	public void writeNbt(NbtCompound tag) {
 		super.writeNbt(tag);
 		tag.putInt("cooldown", coolDownTicks);
-		return tag;
 	}
 
 	public void readNbt(NbtCompound tag) {

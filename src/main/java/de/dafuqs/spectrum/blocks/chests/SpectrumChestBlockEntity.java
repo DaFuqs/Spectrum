@@ -135,10 +135,9 @@ public abstract class SpectrumChestBlockEntity extends LootableContainerBlockEnt
 		Inventories.readNbt(tag, this.inventory);
 	}
 
-	public NbtCompound writeNbt(NbtCompound tag) {
+	public void writeNbt(NbtCompound tag) {
 		super.writeNbt(tag);
 		Inventories.writeNbt(tag, inventory);
-		return tag;
 	}
 
 	public SoundEvent getOpenSound() {

@@ -12,6 +12,7 @@ import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.source.BiomeSource;
+import net.minecraft.world.biome.source.util.MultiNoiseUtil;
 
 import java.util.List;
 
@@ -60,5 +61,11 @@ public class DeeperDownBiomeSource extends BiomeSource {
 	public BiomeSource withSeed(long seed) {
 		return new DeeperDownBiomeSource(seed, this.BIOME_REGISTRY);
 	}
-
+	
+	@Override
+	public Biome getBiome(int i, int j, int k, MultiNoiseUtil.MultiNoiseSampler multiNoiseSampler) {
+		// TODO
+		return null;
+	}
+	
 }

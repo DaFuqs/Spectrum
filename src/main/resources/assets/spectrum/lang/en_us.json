@@ -199,6 +199,7 @@
   "item.spectrum.upgrade.tooltip_increase": "Similar upgrades increase the effect exponentially",
 
   "block.spectrum.fusion_shrine": "Fusion Shrine",
+  "block.spectrum.enchanter": "Echanter",
   "block.spectrum.spirit_sallow_roots": "Spirit Sallow Roots",
   "block.spectrum.spirit_sallow_log": "Spirit Sallow Log",
   "block.spectrum.spirit_sallow_bark": "Spirit Sallow Bark",
@@ -821,6 +822,7 @@
   "item.spectrum.pedestal_tier_2_structure_placer": "Spectrum Temple Structure Placer",
   "item.spectrum.pedestal_tier_3_structure_placer": "Spectrum Palace Structure Placer",
   "item.spectrum.fusion_shrine_structure_placer": "Fusion Shrine Structure Placer",
+  "item.spectrum.enchanter_structure_placer": "Enchanter Structure Placer",
   "item.spectrum.lightning_stone": "Lightning Stone",
   "item.spectrum.scarlet_fragments": "Scarlet Fragments",
   "item.spectrum.scarlet_gem": "Scarlet Gem",

@@ -25,7 +25,6 @@ import java.util.List;
 @Environment(EnvType.CLIENT)
 public class FusionShrineBlockEntityRenderer<T extends FusionShrineBlockEntity> implements BlockEntityRenderer<T> {
 	
-	
 	public FusionShrineBlockEntityRenderer(Context ctx) {
 	
 	}

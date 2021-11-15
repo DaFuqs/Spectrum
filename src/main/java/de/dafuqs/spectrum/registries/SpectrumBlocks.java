@@ -16,6 +16,7 @@ import de.dafuqs.spectrum.blocks.decay.FadingBlock;
 import de.dafuqs.spectrum.blocks.decay.FailingBlock;
 import de.dafuqs.spectrum.blocks.decay.RuinBlock;
 import de.dafuqs.spectrum.blocks.deeper_down_portal.DeeperDownPortalBlock;
+import de.dafuqs.spectrum.blocks.enchanter.EnchanterBlock;
 import de.dafuqs.spectrum.blocks.ender.EnderDropperBlock;
 import de.dafuqs.spectrum.blocks.ender.EnderHopperBlock;
 import de.dafuqs.spectrum.blocks.fluid.LiquidCrystalFluidBlock;
@@ -108,12 +109,8 @@ public class SpectrumBlocks {
 	public static final Block PEDESTAL_ONYX = new PedestalBlock(FabricBlockSettings.of(Material.STONE).strength(5.0F, 20.0F), PedestalBlock.PedestalVariant.ONYX);
 	public static final Block PEDESTAL_MOONSTONE = new PedestalBlock(FabricBlockSettings.of(Material.STONE).strength(5.0F, 20.0F), PedestalBlock.PedestalVariant.MOONSTONE);
 
-	public static final Block FUSION_SHRINE = new FusionShrineBlock(FabricBlockSettings.of(Material.STONE).strength(5.0F, 20.0F).nonOpaque().luminance(new ToIntFunction<BlockState>() {
-		@Override
-		public int applyAsInt(BlockState value) {
-			return value.get(FusionShrineBlock.LIGHT_LEVEL);
-		}
-	}));
+	public static final Block FUSION_SHRINE = new FusionShrineBlock(FabricBlockSettings.of(Material.STONE).strength(5.0F, 20.0F).nonOpaque().luminance(value -> value.get(FusionShrineBlock.LIGHT_LEVEL)));
+	public static final Block ENCHANTER = new EnchanterBlock(FabricBlockSettings.of(Material.STONE).strength(5.0F, 20.0F).nonOpaque());
 
 	// GEMS
 	public static final Block TOPAZ_CLUSTER = new AmethystClusterBlock(7, 3, FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().requiresTool().sounds(SpectrumBlockSoundGroups.TOPAZ_CLUSTER).luminance((state) -> 6));
@@ -654,6 +651,7 @@ public class SpectrumBlocks {
 		registerBlockWithItem("pedestal_onyx", PEDESTAL_ONYX, new PedestalBlockItem(PEDESTAL_ONYX, generalItemSettingsSingle, PedestalBlock.PedestalVariant.ONYX));
 		registerBlockWithItem("pedestal_moonstone", PEDESTAL_MOONSTONE, new PedestalBlockItem(PEDESTAL_MOONSTONE, generalItemSettingsSingle, PedestalBlock.PedestalVariant.MOONSTONE));
 		registerBlockWithItem("fusion_shrine", FUSION_SHRINE, generalItemSettingsSingle);
+		registerBlockWithItem("enchanter", ENCHANTER, generalItemSettingsSingle);
 		
 		registerBlockWithItem("upgrade_speed", UPGRADE_SPEED, new UpgradeBlockItem(UPGRADE_SPEED, generalItemSettingsEight, "upgrade_speed"));
 		registerBlockWithItem("upgrade_speed2", UPGRADE_SPEED2, new UpgradeBlockItem(UPGRADE_SPEED2, generalItemSettingsUncommonEight, "upgrade_speed2"));

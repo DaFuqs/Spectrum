@@ -288,7 +288,7 @@ public class SpectrumConfiguredFeatures {
 
 		MERMAIDS_BRUSH = registerConfiguredFeature(mermaidsBrushIdentifier,
 				Feature.RANDOM_PATCH.configure((
-						new RandomPatchFeatureConfig.Builder(
+						new RandomPatchFeatureConfig(
 								new SimpleBlockStateProvider(SpectrumBlocks.MERMAIDS_BRUSH.getDefaultState()),
 								SimpleBlockPlacer.INSTANCE))
 						.tries(2)
@@ -320,7 +320,7 @@ public class SpectrumConfiguredFeatures {
 
 		QUITOXIC_REEDS = registerConfiguredFeature(quitoxicReedsIdentifier,
 				Feature.RANDOM_PATCH.configure((
-						new RandomPatchFeatureConfig.Builder(
+						new RandomPatchFeatureConfig(
 								new SimpleBlockStateProvider(SpectrumBlocks.QUITOXIC_REEDS.getDefaultState()),
 								new QuitoxicReedsColumnPlacer(UniformIntProvider.create(2, 4))))
 						.tries(10).spreadX(4).spreadY(0).spreadZ(4).canReplace().cannotProject().whitelist(quitoxicReedsWhiteList).build()
@@ -343,7 +343,7 @@ public class SpectrumConfiguredFeatures {
 		DataPool dataPool = new DataPool.Builder<>().add(SpectrumBlocks.CLOVER.getDefaultState(), 19).add(SpectrumBlocks.FOUR_LEAF_CLOVER.getDefaultState(), 1).build();
 		CLOVERS = registerConfiguredFeature(cloversIdentifier,
 				Feature.RANDOM_PATCH.configure((
-						new RandomPatchFeatureConfig.Builder(new WeightedBlockStateProvider(dataPool), new SimpleBlockPlacer())
+						new RandomPatchFeatureConfig(new WeightedBlockStateProvider(dataPool), new SimpleBlockPlacer())
 								.cannotProject()
 								.tries(4)
 								.build())

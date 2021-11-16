@@ -1,0 +1,27 @@
+{
+  "name": "Production Surge",
+  "advancement": "spectrum:midgame/spectrum_midgame",
+  "icon": "spectrum:upgrade_yield",
+  "category": "spectrum:magical_blocks_category",
+  "extra_recipe_mappings": {
+    "spectrum:upgrade_yield": 1
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "This upgrade is an interesting one. Although the chance is very small, you can increase the amount of your crafting results.$(br2)$(italic)More bang for your buck!"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier3/upgrade_yield",
+      "text": "Place the Production Surge on top one of the four gemstone blocks close to your $(l:general/pedestal)Pigment Pedestal$(/l).$(br)They also work for the $(l:general/fusion_shrine)Fusion Shrine$(/l), when placed on one of the chiseled blocks.$(br2)Each additional Surge has a decreased effect."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Tier 2",
+      "recipe": "spectrum:pedestal/tier4/upgrade_yield2",
+      "text": "This upgraded version is much more potent, allowing you to get even more output for your crafting."
+    }
+  ]
+}

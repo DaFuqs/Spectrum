@@ -96,7 +96,8 @@ public class ParticleSpawnerBlockEntity extends BlockEntity implements ExtendedS
 	// see also MobSpawnerBlockEntity for a vanilla version of this
 	@Nullable
 	public BlockEntityUpdateS2CPacket toUpdatePacket() {
-		SpectrumS2CPackets.sendBlockEntityUpdate(this, SpectrumS2CPackets.BlockEntityUpdatePacketID.PARTICLE_SPAWNER);
+		// TODO
+		//SpectrumS2CPackets.sendBlockEntityUpdate(this, SpectrumS2CPackets.BlockEntityUpdatePacketID.PARTICLE_SPAWNER);
 		return null;
 	}
 

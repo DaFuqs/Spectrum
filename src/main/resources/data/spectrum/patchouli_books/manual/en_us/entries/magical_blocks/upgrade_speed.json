@@ -4,7 +4,9 @@
   "icon": "spectrum:upgrade_speed",
   "category": "spectrum:magical_blocks_category",
   "extra_recipe_mappings": {
-    "spectrum:upgrade_speed": 1
+    "spectrum:upgrade_speed": 1,
+    "spectrum:upgrade_speed2": 2,
+    "spectrum:upgrade_speed3": 3
   },
   "pages": [
     {

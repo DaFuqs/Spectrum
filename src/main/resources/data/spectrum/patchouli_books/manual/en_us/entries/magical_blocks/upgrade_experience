@@ -1,0 +1,27 @@
+{
+  "name": "Knowledge Focus",
+  "advancement": "spectrum:midgame/spectrum_midgame",
+  "icon": "spectrum:upgrade_experience",
+  "category": "spectrum:magical_blocks_category",
+  "extra_recipe_mappings": {
+    "spectrum:upgrade_experience": 1
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(italic)Crafting with the $(l:general/pedestal)Pigment Pedestal$(/l) rewards you with a bit of experience. For the most part the amount is pretty much neglegible, though. By using a similar technique like your $(l:general/speed_upgrade)Pedestal Accelerator$(/l) you found you can dramatically increase the amount gained."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Knowledge Focus",
+      "recipe": "spectrum:pedestal/tier3/upgrade_experience",
+      "text": "Place the Knowledge Focus on top one of the four gemstone blocks close to your $(l:general/pedestal)Pigment Pedestal$(/l).$(br)They also work for the $(l:general/fusion_shrine)Fusion Shrine$(/l), when placed on one of the chiseled blocks.$(br2)Each additional Focus has an increased effect."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Tier 2",
+      "recipe": "spectrum:pedestal/tier4/upgrade_experience2",
+      "text": "This improved Knowledge Focus increases the generated XP even more."
+    }
+  ]
+}

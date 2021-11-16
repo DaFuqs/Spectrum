@@ -27,6 +27,7 @@ import net.minecraft.world.gen.YOffset;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.feature.size.TwoLayersFeatureSize;
 import net.minecraft.world.gen.foliage.BlobFoliagePlacer;
+import net.minecraft.world.gen.stateprovider.BlockStateProvider;
 import net.minecraft.world.gen.stateprovider.SimpleBlockStateProvider;
 import net.minecraft.world.gen.stateprovider.WeightedBlockStateProvider;
 import net.minecraft.world.gen.trunk.StraightTrunkPlacer;
@@ -120,10 +121,9 @@ public class SpectrumConfiguredFeatures {
 		// how the colored tree will look when generated
 		ConfiguredFeature<TreeFeatureConfig, ?> configuredFeature = Feature.TREE.configure(
 				(new TreeFeatureConfig.Builder(
-						new SimpleBlockStateProvider(SpectrumBlocks.getColoredLogBlock(dyeColor).getDefaultState()),
+						BlockStateProvider.of(SpectrumBlocks.getColoredLogBlock(dyeColor).getDefaultState()),
 						new StraightTrunkPlacer(4, 2, 2), // 4-8 height
-						new SimpleBlockStateProvider(SpectrumBlocks.getColoredLeavesBlock(dyeColor).getDefaultState()),
-						new SimpleBlockStateProvider(SpectrumBlocks.getColoredSaplingBlock(dyeColor).getDefaultState()),
+						BlockStateProvider.of(SpectrumBlocks.getColoredLeavesBlock(dyeColor).getDefaultState()),
 						new BlobFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(0), 3),
 						new TwoLayersFeatureSize(1, 0, 1))
 				).ignoreVines().build()
@@ -211,11 +211,11 @@ public class SpectrumConfiguredFeatures {
 
 		CITRINE_GEODE = ((SpectrumFeatures.SOLID_BLOCKS_GEODE.configure(new GeodeFeatureConfig(
 				new GeodeLayerConfig(
-						new SimpleBlockStateProvider(AIR),
-						new SimpleBlockStateProvider(CITRINE_BLOCK),
-						new SimpleBlockStateProvider(BUDDING_CITRINE),
-						new SimpleBlockStateProvider(CALCITE),
-						new SimpleBlockStateProvider(SMOOTH_BASALT),
+						BlockStateProvider.of(AIR),
+						BlockStateProvider.of(CITRINE_BLOCK),
+						BlockStateProvider.of(BUDDING_CITRINE),
+						BlockStateProvider.of(CALCITE),
+						BlockStateProvider.of(SMOOTH_BASALT),
 						ImmutableList.of(SMALL_CITRINE_BUD, MEDIUM_CITRINE_BUD, LARGE_CITRINE_BUD, CITRINE_CLUSTER),
 						BlockTags.FEATURES_CANNOT_REPLACE.getId(),
 						BlockTags.GEODE_INVALID_BLOCKS.getId()),
@@ -231,11 +231,11 @@ public class SpectrumConfiguredFeatures {
 
 		TOPAZ_GEODE = ((SpectrumFeatures.SOLID_BLOCKS_GEODE.configure(new GeodeFeatureConfig(
 				new GeodeLayerConfig(
-						new SimpleBlockStateProvider(AIR),
-						new SimpleBlockStateProvider(TOPAZ_BLOCK),
-						new SimpleBlockStateProvider(BUDDING_TOPAZ),
-						new SimpleBlockStateProvider(CALCITE),
-						new SimpleBlockStateProvider(SMOOTH_BASALT),
+						BlockStateProvider.of(AIR),
+						BlockStateProvider.of(TOPAZ_BLOCK),
+						BlockStateProvider.of(BUDDING_TOPAZ),
+						BlockStateProvider.of(CALCITE),
+						BlockStateProvider.of(SMOOTH_BASALT),
 						ImmutableList.of(SMALL_TOPAZ_BUD, MEDIUM_TOPAZ_BUD, LARGE_TOPAZ_BUD, TOPAZ_CLUSTER),
 						BlockTags.FEATURES_CANNOT_REPLACE.getId(),
 						BlockTags.GEODE_INVALID_BLOCKS.getId()),
@@ -251,11 +251,11 @@ public class SpectrumConfiguredFeatures {
 
 		MOONSTONE_GEODE = ((SpectrumFeatures.SOLID_BLOCKS_GEODE.configure(new GeodeFeatureConfig(
 				new GeodeLayerConfig(
-						new SimpleBlockStateProvider(AIR),
-						new SimpleBlockStateProvider(MOONSTONE_BLOCK),
-						new SimpleBlockStateProvider(BUDDING_MOONSTONE),
-						new SimpleBlockStateProvider(CALCITE),
-						new SimpleBlockStateProvider(SMOOTH_BASALT),
+						BlockStateProvider.of(AIR),
+						BlockStateProvider.of(MOONSTONE_BLOCK),
+						BlockStateProvider.of(BUDDING_MOONSTONE),
+						BlockStateProvider.of(CALCITE),
+						BlockStateProvider.of(SMOOTH_BASALT),
 						ImmutableList.of(SMALL_MOONSTONE_BUD, MEDIUM_MOONSTONE_BUD, LARGE_MOONSTONE_BUD, MOONSTONE_CLUSTER),
 						BlockTags.FEATURES_CANNOT_REPLACE.getId(),
 						BlockTags.GEODE_INVALID_BLOCKS.getId()),
@@ -321,7 +321,7 @@ public class SpectrumConfiguredFeatures {
 		QUITOXIC_REEDS = registerConfiguredFeature(quitoxicReedsIdentifier,
 				Feature.RANDOM_PATCH.configure((
 						new RandomPatchFeatureConfig(
-								new SimpleBlockStateProvider(SpectrumBlocks.QUITOXIC_REEDS.getDefaultState()),
+								BlockStateProvider.of(SpectrumBlocks.QUITOXIC_REEDS.getDefaultState()),
 								new QuitoxicReedsColumnPlacer(UniformIntProvider.create(2, 4))))
 						.tries(10).spreadX(4).spreadY(0).spreadZ(4).canReplace().cannotProject().whitelist(quitoxicReedsWhiteList).build()
 				).decorate(Decorators.HEIGHTMAP_OCEAN_FLOOR)

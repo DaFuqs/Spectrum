@@ -9,13 +9,25 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "$(italic)Unlike the comparatively primitive Crafting Table, crafting in the Pigment Pedestal takes some time.\nYou found that the time these crafting processes took increased steadily with the complexity of the components.$(br)This focus should help you bring the crafting times back to acceptable levels. It helps the Pigment Pedestal collect the energy focused by the structure."
+      "text": "$(italic)Unlike the primitive Crafting Table, crafting in the $(l:general/pedestal)Pigment Pedestal$(/l) takes some time.\nYou found that the time these crafting processes took increased steadily with the complexity of the components.$(br)This focus should help you bring the crafting times back to acceptable levels. It helps the Pigment Pedestal collect the energy focused by the structure."
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier3/upgrade_speed",
-      "text": "Place the Pedestal Accelerator on top one of the four gemstone blocks close to your $(l:general/pedestal)Pigment Pedestal$().$(br)They also work for the $(l:general/fusion_shrine)Fusion Shrine$(/), when placed on one of the chiseled blocks.$(br2)Each additional Accelerator has an increased effect."
+      "text": "Place the Pedestal Accelerator on top one of the four gemstone blocks close to your $(l:general/pedestal)Pigment Pedestal$(/l).$(br)They also work for the $(l:general/fusion_shrine)Fusion Shrine$(/l), when placed on one of the chiseled blocks.$(br2)Each additional Accelerator has an increased effect."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Tier 2",
+      "recipe": "spectrum:pedestal/tier3/upgrade_speed2",
+      "text": "The Pedestal Accellerator T2 improves all aspects of the previous variant. Making your crafting even more rapid."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Tier 3",
+      "recipe": "spectrum:pedestal/tier4/upgrade_speed3",
+      "text": "Tier 3 leaves nothing to be desired - at least in terms of crafting speed."
     }
   ]
 }

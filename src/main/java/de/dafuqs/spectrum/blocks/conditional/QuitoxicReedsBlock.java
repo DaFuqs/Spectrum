@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.blocks.conditional;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.interfaces.Cloakable;
 import de.dafuqs.spectrum.registries.SpectrumBlockTags;
+import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import de.dafuqs.spectrum.registries.SpectrumFluidTags;
 import de.dafuqs.spectrum.registries.SpectrumFluids;
 import net.minecraft.block.*;
@@ -42,7 +43,7 @@ public class QuitoxicReedsBlock extends SugarCaneBlock implements Cloakable, Wat
 
 	public QuitoxicReedsBlock(Settings settings) {
 		super(settings);
-		this.setDefaultState(this.stateManager.getDefaultState().with(WATERLOGGED, false).with(AGE, 0));
+		this.setDefaultState(this.stateManager.getDefaultState().with(WATERLOGGED, false).with(LIQUID_CRYSTAL_LOGGED, false).with(AGE, 0));
 		registerCloak();
 	}
 
@@ -82,12 +83,17 @@ public class QuitoxicReedsBlock extends SugarCaneBlock implements Cloakable, Wat
 
 	public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
 		if (!state.canPlaceAt(world, pos)) {
-			return Blocks.AIR.getDefaultState();
+			if(state.get(WATERLOGGED)) {
+				return Blocks.WATER.getDefaultState();
+			} else if(state.get(LIQUID_CRYSTAL_LOGGED)) {
+				return SpectrumBlocks.LIQUID_CRYSTAL.getDefaultState();
+			} else {
+				return Blocks.AIR.getDefaultState();
+			}
 		} else {
 			if (state.get(WATERLOGGED)) {
 				world.getFluidTickScheduler().schedule(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
-			}
-			if (state.get(LIQUID_CRYSTAL_LOGGED)) {
+			} else if (state.get(LIQUID_CRYSTAL_LOGGED)) {
 				world.getFluidTickScheduler().schedule(pos, SpectrumFluids.STILL_LIQUID_CRYSTAL, SpectrumFluids.STILL_LIQUID_CRYSTAL.getTickRate(world));
 			}
 			return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
@@ -108,22 +114,35 @@ public class QuitoxicReedsBlock extends SugarCaneBlock implements Cloakable, Wat
 			int i;
 			for(i = 1; world.getBlockState(pos.down(i)).isOf(this); ++i) {
 			}
+			
+			boolean bottomLiquidCrystalLogged = world.getBlockState(pos.down(i-1)).get(LIQUID_CRYSTAL_LOGGED);
 
-			if (i < 6) {
+			// grows taller on liquid crystal
+			if (i < 5 || (bottomLiquidCrystalLogged && i < 7)) {
 				int j = state.get(AGE);
 				if (j == 15) {
-					// search for clay. 1 clay => 1 quitoxic reed
-					Optional<BlockPos> clayPos = searchClayPos(world, pos.down(i), Blocks.CLAY.getDefaultState(), random);
-					if(clayPos.isEmpty() || world.getBlockState(clayPos.get().up()).getBlock() instanceof QuitoxicReedsBlock) {
-						return;
+					// consume 1 clay block close to the reed when growing.
+					// if the quitoxic reeds are growing in liquid crystal:
+					// consume 1/4 of clay
+					if(!bottomLiquidCrystalLogged || random.nextInt(4) == 0){
+						// search for clay. 1 clay => 1 quitoxic reed
+						Optional<BlockPos> clayPos = searchClayPos(world, pos.down(i), Blocks.CLAY.getDefaultState(), random);
+						if (clayPos.isEmpty() || world.getBlockState(clayPos.get().up()).getBlock() instanceof QuitoxicReedsBlock) {
+							return;
+						}
+						world.setBlockState(clayPos.get(), Blocks.DIRT.getDefaultState(), 3);
+						world.playSound(null, clayPos.get(), SoundEvents.BLOCK_GRAVEL_BREAK, SoundCategory.BLOCKS, 1.0F, 1.0F);
 					}
-					world.setBlockState(clayPos.get(), Blocks.DIRT.getDefaultState(), 3);
-					world.playSound(null, clayPos.get(), SoundEvents.BLOCK_GRAVEL_BREAK, SoundCategory.BLOCKS, 1.0F, 1.0F);
-
-					world.setBlockState(pos.up(), this.getDefaultState());
+					
+					world.setBlockState(pos.up(), getStateForPos(world, pos.up()));
 					world.setBlockState(pos, state.with(AGE, 0), 4);
 				} else {
-					world.setBlockState(pos, state.with(AGE, j + 1), 4);
+					// grow twice as fast, if liquid crystal logged
+					if(bottomLiquidCrystalLogged) {
+						world.setBlockState(pos, state.with(AGE, Math.min(15, j + 2)), 4);
+					} else {
+						world.setBlockState(pos, state.with(AGE, j + 1), 4);
+					}
 				}
 			}
 		}
@@ -152,6 +171,16 @@ public class QuitoxicReedsBlock extends SugarCaneBlock implements Cloakable, Wat
 			return Optional.of(currentPos);
 		}
 	}
+	
+	public BlockState getStateForPos(World world, BlockPos blockPos) {
+		FluidState fluidState = world.getFluidState(blockPos);
+		if(fluidState.equals(Fluids.WATER)) {
+			return getDefaultState().with(WATERLOGGED, true);
+		} else if(fluidState.equals(SpectrumFluids.STILL_LIQUID_CRYSTAL)) {
+			return getDefaultState().with(LIQUID_CRYSTAL_LOGGED, true);
+		}
+		return getDefaultState();
+	}
 
 	@Deprecated
 	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
@@ -162,7 +191,8 @@ public class QuitoxicReedsBlock extends SugarCaneBlock implements Cloakable, Wat
 	}
 
 	/**
-	 * Can be placed in 1 high water / liquid crystal, growing on clay only
+	 * Can be placed in up to 2 blocks deep water / liquid crystal
+	 * growing on clay only
 	 */
 	@Override
 	public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
@@ -171,9 +201,10 @@ public class QuitoxicReedsBlock extends SugarCaneBlock implements Cloakable, Wat
 			return true;
 		} else {
 			BlockState topBlockState = world.getBlockState(pos.up());
-			if (bottomBlockState.isIn(SpectrumBlockTags.QUITOXIC_REEDS_PLANTABLE) && (world.isAir(pos.up()) || world.isAir(pos.up(2)) || topBlockState.isOf(this))) {
+			BlockState topBlockState2 = world.getBlockState(pos.up(2));
+			if (bottomBlockState.isIn(SpectrumBlockTags.QUITOXIC_REEDS_PLANTABLE) && (topBlockState.isAir() || topBlockState2.isAir() || topBlockState.isOf(this) || topBlockState2.isOf(this))) {
 				FluidState fluidState = world.getFluidState(pos);
-				return fluidState.isIn(FluidTags.WATER) || fluidState.isIn(SpectrumFluidTags.LIQUID_CRYSTAL);
+				return fluidState.getLevel() == 8 && (fluidState.isIn(FluidTags.WATER) || fluidState.isIn(SpectrumFluidTags.LIQUID_CRYSTAL));
 			}
 			return false;
 		}

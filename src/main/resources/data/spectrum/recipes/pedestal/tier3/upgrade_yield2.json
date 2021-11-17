@@ -1,0 +1,28 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 18000,
+  "tier": "complex",
+  "cyan": 0,
+  "magenta": 0,
+  "yellow": 0,
+  "black": 0,
+  "white": 32,
+  "experience": 4.0,
+  "pattern": [
+    "S",
+    "U"
+  ],
+  "key": {
+    "U": {
+      "item": "spectrum:upgrade_yield"
+    },
+    "S": {
+      "item": "spectrum:spectral_shard"
+    }
+  },
+  "result" : {
+    "item": "spectrum:upgrade_yield2",
+    "count": 1
+  },
+  "required_advancements": ["spectrum:progression/unlock_upgrade_yield2"]
+}

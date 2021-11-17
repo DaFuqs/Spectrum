@@ -1,22 +1,19 @@
 {
   "type": "spectrum:pedestal",
-  "time": 1200,
+  "time": 3600,
   "tier": "advanced",
-  "cyan": 2,
-  "magenta": 4,
-  "yellow": 2,
-  "black": 1,
+  "cyan": 16,
+  "magenta": 16,
+  "yellow": 16,
+  "black": 16,
   "white": 0,
   "experience": 4.0,
   "pattern": [
-    "PAP",
-    "XTX",
-    "YCY"
+    "GLG",
+    "TAC",
+    "YYY"
   ],
   "key": {
-    "X": {
-      "item": "spectrum:polished_calcite"
-    },
     "Y": {
       "item": "spectrum:polished_basalt"
     },
@@ -29,13 +26,16 @@
     "C": {
       "item": "spectrum:citrine_block"
     },
-    "P": {
-      "item": "spectrum:magenta_pigment"
+    "L": {
+      "item": "spectrum:lightning_stone"
+    },
+    "G": {
+      "item": "spectrum:green_pigment"
     }
   },
   "result" : {
-    "item": "spectrum:upgrade_speed",
+    "item": "spectrum:upgrade_efficiency",
     "count": 1
   },
-  "required_advancements": ["spectrum:midgame/spectrum_midgame"]
+  "required_advancements": ["spectrum:midgame/collect_lightning_stone"]
 }

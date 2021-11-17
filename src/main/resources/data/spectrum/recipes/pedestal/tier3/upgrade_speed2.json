@@ -1,0 +1,28 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 3600,
+  "tier": "advanced",
+  "cyan": 0,
+  "magenta": 0,
+  "yellow": 0,
+  "black": 4,
+  "white": 0,
+  "experience": 4.0,
+  "pattern": [
+    "L",
+    "U"
+  ],
+  "key": {
+    "U": {
+      "item": "spectrum:upgrade_speed"
+    },
+    "L": {
+      "item": "spectrum:lightning_stone"
+    }
+  },
+  "result" : {
+    "item": "spectrum:upgrade_speed2",
+    "count": 1
+  },
+  "required_advancements": ["spectrum:progression/unlock_upgrade_speed2"]
+}

@@ -1,0 +1,38 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 1200,
+  "tier": "advanced",
+  "cyan": 4,
+  "magenta": 8,
+  "yellow": 4,
+  "black": 0,
+  "white": 0,
+  "experience": 8.0,
+  "pattern": [
+    "PEP",
+    "XEX",
+    "YYY"
+  ],
+  "key": {
+    "E": {
+      "item": "minecraft:emerald"
+    },
+    "X": {
+      "item": "spectrum:polished_calcite"
+    },
+    "Y": {
+      "item": "spectrum:polished_basalt"
+    },
+    "L": {
+      "item": "spectrum:lightning_stone"
+    },
+    "P": {
+      "item": "spectrum:purple_pigment"
+    }
+  },
+  "result" : {
+    "item": "spectrum:upgrade_experience",
+    "count": 1
+  },
+  "required_advancements": ["spectrum:midgame/collect_lightning_stone"]
+}

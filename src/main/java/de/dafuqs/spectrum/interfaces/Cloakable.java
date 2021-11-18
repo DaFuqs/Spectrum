@@ -35,8 +35,8 @@ public interface Cloakable {
 		BlockCloakManager.registerAdvancementCloak(this, getCloakAdvancementIdentifier());
 	}
 
-	abstract Hashtable<BlockState, BlockState> getBlockStateCloaks();
-	abstract Pair<Item, Item> getItemCloak();
+	Hashtable<BlockState, BlockState> getBlockStateCloaks();
+	Pair<Item, Item> getItemCloak();
 	default void onCloak() {};
 	default void onUncloak() {};
 

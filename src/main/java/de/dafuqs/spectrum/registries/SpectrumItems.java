@@ -194,8 +194,8 @@ public class SpectrumItems {
 	public static final Item VOID_BUNDLE = new VoidBundleItem(generalItemSettingsSingle);
 
 
-	private static Item register(String name, Item item) {
-		return Registry.register(Registry.ITEM, new Identifier(SpectrumCommon.MOD_ID, name), item);
+	private static void register(String name, Item item) {
+		Registry.register(Registry.ITEM, new Identifier(SpectrumCommon.MOD_ID, name), item);
 	}
 
 	public static void register() {

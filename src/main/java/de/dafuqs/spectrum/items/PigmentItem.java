@@ -11,36 +11,20 @@ import net.minecraft.util.Pair;
 
 import java.util.Hashtable;
 
-public class PigmentItem extends Item implements Cloakable {
+public class PigmentItem extends CloakedItem {
 
-	private DyeColor color;
+	private final DyeColor color;
 
 	public PigmentItem(Settings settings, DyeColor color) {
-		super(settings);
+		super(settings, new Identifier(SpectrumCommon.MOD_ID, "craft_colored_sapling"), getDyeItemForDyeColor(color));
 		this.color = color;
-		registerCloak();
-	}
-
-	@Override
-	public Identifier getCloakAdvancementIdentifier() {
-		return new Identifier(SpectrumCommon.MOD_ID, "craft_colored_sapling");
-	}
-
-	@Override
-	public Hashtable<BlockState, BlockState> getBlockStateCloaks() {
-		return new Hashtable<>();
-	}
-
-	@Override
-	public Pair<Item, Item> getItemCloak() {
-		return new Pair<>(this, getDyeItemForDyeColor(this.color));
 	}
 
 	public DyeColor getColor() {
 		return this.color;
 	}
 
-	public Item getDyeItemForDyeColor(DyeColor dyeColor) {
+	public static Item getDyeItemForDyeColor(DyeColor dyeColor) {
 		switch (dyeColor) {
 			case BLACK -> { return Items.BLACK_DYE; }
 			case BLUE -> { return Items.BLUE_DYE; }

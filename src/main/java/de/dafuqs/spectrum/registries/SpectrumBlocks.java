@@ -74,7 +74,6 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Collection;
 import java.util.Locale;
-import java.util.function.ToIntFunction;
 
 public class SpectrumBlocks {
 

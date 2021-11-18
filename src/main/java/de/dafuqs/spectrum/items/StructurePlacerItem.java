@@ -19,9 +19,12 @@ public class StructurePlacerItem extends Item {
 
 	@Override
 	public ActionResult useOnBlock(ItemUsageContext context) {
-		IMultiblock iMultiblock = SpectrumMultiblocks.MULTIBLOCKS.get(multiBlockIdentifier);
-		if(iMultiblock != null) {
-			iMultiblock.place(context.getWorld(), context.getBlockPos().up(), BlockRotation.NONE);
+		if(context.getPlayer() != null && context.getPlayer().isCreative()) {
+			IMultiblock iMultiblock = SpectrumMultiblocks.MULTIBLOCKS.get(multiBlockIdentifier);
+			if (iMultiblock != null) {
+				iMultiblock.place(context.getWorld(), context.getBlockPos().up(), BlockRotation.NONE);
+				return ActionResult.CONSUME;
+			}
 		}
 		return ActionResult.PASS;
 	}

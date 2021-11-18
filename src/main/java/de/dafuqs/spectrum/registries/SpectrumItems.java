@@ -2,9 +2,10 @@ package de.dafuqs.spectrum.registries;
 
 import com.glisco.owo.itemgroup.OwoItemSettings;
 import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.blocks.gravity.GravityItem;
+import de.dafuqs.spectrum.blocks.gravity.CloakedGravityItem;
 import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
 import de.dafuqs.spectrum.enums.GemstoneColor;
+import de.dafuqs.spectrum.interfaces.Cloakable;
 import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.items.armor.EmergencyArmorItem;
 import de.dafuqs.spectrum.items.armor.GlowVisionHelmet;
@@ -67,17 +68,18 @@ public class SpectrumItems {
 	public static final Item ENCHANTER_STRUCTURE_PLACER = new StructurePlacerItem(generalItemSettingsSingle, new Identifier(SpectrumCommon.MOD_ID, "enchanter_structure"));
 
 	// Gem shards
-	public static final Item TOPAZ_SHARD = new Item(resourcesItemSettings);
-	public static final Item CITRINE_SHARD = new Item(resourcesItemSettings);
-	public static final Item ONYX_SHARD = new Item(resourcesItemSettings);
-	public static final Item MOONSTONE_SHARD = new Item(resourcesItemSettings);
-	public static final Item SPECTRAL_SHARD = new Item(resourcesItemSettings);
+	public static final Item TOPAZ_SHARD = new CloakedItem(resourcesItemSettings, new Identifier(SpectrumCommon.MOD_ID, "hidden/collect_shards/collect_topaz_shard"), Items.CYAN_DYE);
+	public static final Item CITRINE_SHARD = new CloakedItem(resourcesItemSettings, new Identifier(SpectrumCommon.MOD_ID, "hidden/collect_shards/collect_citrine_shard"), Items.YELLOW_DYE);
+	public static final Item ONYX_SHARD = new CloakedItem(resourcesItemSettings, new Identifier(SpectrumCommon.MOD_ID, "create_onyx_shard"), Items.BLACK_DYE);
+	public static final Item MOONSTONE_SHARD = new CloakedItem(resourcesItemSettings, new Identifier(SpectrumCommon.MOD_ID, "midgame/collect_moonstone_shard"), Items.WHITE_DYE);
+	public static final Item SPECTRAL_SHARD = new CloakedItem(resourcesItemSettings, new Identifier(SpectrumCommon.MOD_ID, "lategame/build_complex_pedestal_structure"), Items.LIGHT_GRAY_DYE);
 	
-	public static final Item TOPAZ_POWDER = new Item(resourcesItemSettings);
-	public static final Item AMETHYST_POWDER = new Item(resourcesItemSettings);
-	public static final Item CITRINE_POWDER = new Item(resourcesItemSettings);
-	public static final Item ONYX_POWDER = new Item(resourcesItemSettings);
-	public static final Item MOONSTONE_POWDER = new Item(resourcesItemSettings);
+	private static final Identifier GEMSTONE_POWDER_CLOAK_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "place_pedestal");
+	public static final Item TOPAZ_POWDER = new CloakedGemstoneColorItem(resourcesItemSettings, GEMSTONE_POWDER_CLOAK_IDENTIFIER, GemstoneColor.CYAN);
+	public static final Item AMETHYST_POWDER = new CloakedGemstoneColorItem(resourcesItemSettings, GEMSTONE_POWDER_CLOAK_IDENTIFIER, GemstoneColor.MAGENTA);
+	public static final Item CITRINE_POWDER = new CloakedGemstoneColorItem(resourcesItemSettings, GEMSTONE_POWDER_CLOAK_IDENTIFIER, GemstoneColor.YELLOW);
+	public static final Item ONYX_POWDER = new CloakedGemstoneColorItem(resourcesItemSettings, GEMSTONE_POWDER_CLOAK_IDENTIFIER, GemstoneColor.BLACK);
+	public static final Item MOONSTONE_POWDER = new CloakedGemstoneColorItem(resourcesItemSettings, GEMSTONE_POWDER_CLOAK_IDENTIFIER, GemstoneColor.WHITE);
 
 	// Pigment
 	public static final Item BLACK_PIGMENT = new PigmentItem(resourcesItemSettings, DyeColor.BLACK);
@@ -133,9 +135,9 @@ public class SpectrumItems {
 	public static final Item GLOW_VISION_HELMET = new GlowVisionHelmet(SpectrumArmorMaterials.GLOW_VISION, EquipmentSlot.HEAD, spectrumLowNightVisionArmorItemSettings);
 	
 	// Decay drops
-	public static final Item VEGETAL = new Item(resourcesItemSettings);
-	public static final Item CORRUPTED_OBSIDIAN_DUST = new Item(resourcesUncommonItemSettings);
-	public static final Item BEDROCK_DUST = new Item(resourcesRareItemSettings);
+	public static final Item VEGETAL = new CloakedItem(resourcesItemSettings, new Identifier(SpectrumCommon.MOD_ID, "craft_colored_sapling"), Items.GUNPOWDER);
+	public static final Item CORRUPTED_OBSIDIAN_DUST = new CloakedItem(resourcesUncommonItemSettings, new Identifier(SpectrumCommon.MOD_ID, "midgame/craft_bottle_of_failing"), Items.GUNPOWDER);
+	public static final Item BEDROCK_DUST = new CloakedItem(resourcesRareItemSettings, new Identifier(SpectrumCommon.MOD_ID, "midgame/break_decayed_bedrock"), Items.GUNPOWDER);
 
 	// Fluid Buckets
 	public static final Item LIQUID_CRYSTAL_BUCKET = new BucketItem(STILL_LIQUID_CRYSTAL, generalItemSettingsSingle);
@@ -148,18 +150,18 @@ public class SpectrumItems {
 	public static final Item BOTTLE_OF_DECAY_AWAY = new DecayPlacerItem(SpectrumBlocks.DECAY_AWAY, decayPlacerItemSettings);
 
 	// Resources
-	public static final Item SPARKLESTONE_GEM = new Item(resourcesItemSettings);
-	public static final Item RAW_AZURITE = new Item(resourcesItemSettings);
-	public static final Item SHAPED_AZURITE = new Item(resourcesItemSettings);
-	public static final Item SCARLET_FRAGMENTS = new GravityItem(resourcesItemSettings, 1.003F);
-	public static final Item SCARLET_GEM = new GravityItem(resourcesItemSettingsSixteen, 1.02F);
-	public static final Item PALETUR_FRAGMENTS = new GravityItem(resourcesItemSettings, 0.997F);
-	public static final Item PALETUR_GEM = new GravityItem(resourcesItemSettingsSixteen, 0.98F);
+	public static final CloakedItem SPARKLESTONE_GEM = new CloakedItem(resourcesItemSettings, ((Cloakable) SpectrumBlocks.SPARKLESTONE_ORE).getCloakAdvancementIdentifier(), Items.YELLOW_DYE);
+	public static final CloakedItem RAW_AZURITE = new CloakedItem(resourcesItemSettings, ((Cloakable) SpectrumBlocks.AZURITE_ORE).getCloakAdvancementIdentifier(), Items.BLUE_DYE);
+	public static final CloakedItem SHAPED_AZURITE = new CloakedItem(resourcesItemSettings, ((Cloakable) SpectrumBlocks.AZURITE_ORE).getCloakAdvancementIdentifier(), Items.BLUE_DYE);
+	public static final CloakedGravityItem SCARLET_FRAGMENTS = new CloakedGravityItem(resourcesItemSettings, 1.003F, ((Cloakable) SpectrumBlocks.SCARLET_ORE).getCloakAdvancementIdentifier(), Items.RED_DYE);
+	public static final CloakedGravityItem SCARLET_GEM = new CloakedGravityItem(resourcesItemSettingsSixteen, 1.02F, ((Cloakable) SpectrumBlocks.SCARLET_ORE).getCloakAdvancementIdentifier(), Items.RED_DYE);
+	public static final CloakedGravityItem PALETUR_FRAGMENTS = new CloakedGravityItem(resourcesItemSettings, 0.997F, ((Cloakable) SpectrumBlocks.PALETUR_ORE).getCloakAdvancementIdentifier(), Items.CYAN_DYE);
+	public static final CloakedGravityItem PALETUR_GEM = new CloakedGravityItem(resourcesItemSettingsSixteen, 0.98F, ((Cloakable) SpectrumBlocks.PALETUR_ORE).getCloakAdvancementIdentifier(), Items.CYAN_DYE);
 
-	public static final Item QUITOXIC_POWDER = new Item(resourcesItemSettingsSixteen);
-	public static final Item MERMAIDS_GEM = new Item(resourcesItemSettingsSixteen);
-	public static final Item SHOOTING_STAR = new Item(resourcesItemSettingsSixteen);
-	public static final Item LIGHTNING_STONE = new Item(resourcesItemSettingsSixteen);
+	public static final CloakedItem QUITOXIC_POWDER = new CloakedItem(resourcesItemSettingsSixteen, ((Cloakable) SpectrumBlocks.QUITOXIC_REEDS).getCloakAdvancementIdentifier(), Items.PURPLE_DYE);
+	public static final CloakedItem LIGHTNING_STONE = new CloakedItem(resourcesItemSettingsSixteen, ((Cloakable) SpectrumBlocks.SPARKLESTONE_ORE).getCloakAdvancementIdentifier(), Items.YELLOW_DYE);
+	public static final CloakedItem MERMAIDS_GEM = new CloakedItem(resourcesItemSettingsSixteen, new Identifier(SpectrumCommon.MOD_ID, "craft_using_pedestal"), Items.LIGHT_BLUE_DYE);
+	public static final CloakedItem SHOOTING_STAR = new CloakedItem(resourcesItemSettingsSixteen, new Identifier(SpectrumCommon.MOD_ID, "collect_all_basic_pigments"), Items.PURPLE_DYE);
 
 	// Magical Tools
 	public static final Item ENDER_BAG = new EnderBagItem(generalItemSettingsSingle);

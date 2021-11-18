@@ -27,7 +27,6 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.stat.Stats;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
@@ -72,9 +71,8 @@ public class ShootingStarEntity extends Entity {
 	public static void doShootingStarSpawns(@NotNull ServerWorld serverWorld) {
 		if(SpectrumCommon.CONFIG.ShootingStarWorlds.contains(serverWorld.getRegistryKey().getValue().toString())) {
 			if(serverWorld.getTimeOfDay() % 100 == 0 && serverWorld.getTimeOfDay() > 13000 && serverWorld.getTimeOfDay() < 22000) {
-				Identifier advancementIdentifier = new Identifier(SpectrumCommon.MOD_ID, "collect_all_basic_pigments");
 				for (PlayerEntity playerEntity : serverWorld.getEntitiesByType(EntityType.PLAYER, Entity::isAlive)) {
-					if (Support.hasAdvancement(playerEntity, advancementIdentifier) && serverWorld.getRandom().nextFloat() < SpectrumCommon.CONFIG.ShootingStarChance) {
+					if (Support.hasAdvancement(playerEntity, SpectrumItems.SHOOTING_STAR.getCloakAdvancementIdentifier()) && serverWorld.getRandom().nextFloat() < SpectrumCommon.CONFIG.ShootingStarChance) {
 						spawnShootingStar(serverWorld, playerEntity);
 					}
 				}

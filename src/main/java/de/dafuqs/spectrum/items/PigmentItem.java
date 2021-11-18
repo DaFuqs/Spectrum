@@ -1,15 +1,10 @@
 package de.dafuqs.spectrum.items;
 
 import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.interfaces.Cloakable;
-import net.minecraft.block.BlockState;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.Pair;
-
-import java.util.Hashtable;
 
 public class PigmentItem extends CloakedItem {
 

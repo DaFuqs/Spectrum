@@ -1,17 +1,17 @@
 package de.dafuqs.spectrum.items;
 
+import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.enums.GemstoneColor;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.Identifier;
+import org.jetbrains.annotations.NotNull;
 
-public class CatkinItem extends Item {
+public class CatkinItem extends CloakedGemstoneColorItem {
 
-	GemstoneColor gemstoneColor;
 	boolean lucid;
 
-	public CatkinItem(GemstoneColor gemstoneColor, boolean lucid, Settings settings) {
-		super(settings);
-		this.gemstoneColor = gemstoneColor;
+	public CatkinItem(@NotNull GemstoneColor gemstoneColor, boolean lucid, Settings settings) {
+		super(settings, new Identifier(SpectrumCommon.MOD_ID, "midgame/spectrum_midgame"), gemstoneColor);
 		this.lucid = lucid;
 	}
 

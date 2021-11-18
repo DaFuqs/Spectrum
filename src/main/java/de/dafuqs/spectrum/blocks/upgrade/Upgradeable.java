@@ -10,9 +10,7 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public interface Upgradeable {
 	
@@ -51,39 +49,15 @@ public interface Upgradeable {
 		return map;
 	}
 	
-	
-	@Contract(pure = true)
-	default double getMultiplier(@NotNull Map<UpgradeType, Double> upgrades, UpgradeType upgradeType) {
-		if(upgrades.containsKey(upgradeType)) {
-			return getMultiplier(upgrades.get(upgradeType));
-		} else {
-			return 1.0;
-		}
-	}
-	
-	@Contract(pure = true)
-	private double getMultiplier(double upgradeMod) {
-		// linear progression may be better understandable for players
-		// exponential increase could make it more interesting
-		// players could use 4 yield mods (making very cheap to craft low-level stuff),
-		// but crafting higher level stuff would take ages in return => feeling of power, player has to choose, or switch constantly
-		return Math.pow(2, upgradeMod);
-		
-		// Or logarithmic? That way specialization would be punished a bit
-		//return Math.log(2 + upgradeMod,2);
-		// Maybe a combination of both?
-	}
-	
-	
-	public static Pair<Integer, Map<UpgradeType, Double>> getUpgrades(World world, BlockPos blockPos, int horizontalOffset, int verticalOffset) {
-		Map<UpgradeType, Double> map = Maps.newLinkedHashMap();
-		
+	static Pair<Integer, Map<UpgradeType, Double>> checkUpgradeMods(World world, BlockPos blockPos, int horizontalOffset, int verticalOffset) {
 		List<BlockPos> offsetPosList = new ArrayList<>();
 		offsetPosList.add(blockPos.add(horizontalOffset, verticalOffset, horizontalOffset));
 		offsetPosList.add(blockPos.add(horizontalOffset, verticalOffset, -horizontalOffset));
 		offsetPosList.add(blockPos.add(-horizontalOffset, verticalOffset, horizontalOffset));
 		offsetPosList.add(blockPos.add(-horizontalOffset, verticalOffset, -horizontalOffset));
 		
+		// create a hash map of upgrade types and mods
+		HashMap<UpgradeType, List<Double>> upgradeMods = new HashMap<>();
 		int upgradeCount = 0;
 		for(BlockPos offsetPos : offsetPosList) {
 			Block block = world.getBlockState(offsetPos).getBlock();
@@ -91,17 +65,38 @@ public interface Upgradeable {
 				UpgradeType upgradeType = upgradeBlock.getUpgradeType();
 				double upgradeMod = upgradeBlock.getUpgradeMod();
 				
-				if(map.containsKey(upgradeType)) {
-					map.put(upgradeType, map.get(upgradeType) + upgradeMod);
+				if(upgradeMods.containsKey(upgradeType)) {
+					upgradeMods.get(upgradeType).add(upgradeMod);
 				} else {
-					map.put(upgradeType, upgradeMod);
+					ArrayList<Double> arrayList = new ArrayList<>();
+					arrayList.add(upgradeMod);
+					upgradeMods.put(upgradeType, arrayList);
 				}
 				
 				upgradeCount++;
 			}
 		}
 		
-		return new Pair<>(upgradeCount, map);
+		// iterate through that hash map, sort the mods descending by power and apply mali, if an upgrade type is used more than once
+		Map<UpgradeType, Double> upgradeMap = Maps.newLinkedHashMap();
+		for(UpgradeType upgradeType : UpgradeType.values()) {
+			if(upgradeMods.containsKey(upgradeType)) {
+				List<Double> upgradeModList = upgradeMods.get(upgradeType);
+				Collections.sort(upgradeModList);
+				Collections.reverse(upgradeModList);
+				
+				double resultingMod = 0.0;
+				for (int i = 0; i < upgradeModList.size(); i++) {
+					// highest mod counts times 1.0, second: 0.75, third: 0.5, fourth: 0.25
+					resultingMod += upgradeModList.get(i) * ((4.0-i)/4.0);
+				}
+				upgradeMap.put(upgradeType, 1.0 + resultingMod);
+			} else {
+				upgradeMap.put(upgradeType, 1.0);
+			}
+		}
+		
+		return new Pair<>(upgradeCount, upgradeMap);
 	}
 	
 }

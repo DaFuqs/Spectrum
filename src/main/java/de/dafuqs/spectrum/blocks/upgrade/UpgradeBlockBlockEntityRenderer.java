@@ -47,7 +47,7 @@ public class UpgradeBlockBlockEntityRenderer<PedestalUpgradeBlockEntity extends 
 			
 			float newYaw = (entity.getWorld().getTime() + tickDelta) / 25.0F;
 			root.pivotY = 16.0F + (float) (Math.sin(newYaw) * 0.5);
-			disk.yaw = newYaw * upgradeMod * upgradeMod * 4;
+			disk.yaw = newYaw * upgradeMod * 4;
 			root.render(matrixStack, vertexConsumer, light, overlay);
 		}
 	}

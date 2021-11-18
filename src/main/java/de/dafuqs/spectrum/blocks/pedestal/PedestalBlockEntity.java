@@ -342,11 +342,11 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 			if(validRecipe instanceof PedestalCraftingRecipe) {
 				pedestalCraftingRecipe = (PedestalCraftingRecipe) validRecipe;
 				pedestalBlockEntity.currentRecipe = validRecipe;
-				pedestalBlockEntity.craftingTimeTotal = (int) Math.ceil(pedestalCraftingRecipe.getCraftingTime() / pedestalBlockEntity.getMultiplier(pedestalBlockEntity.upgrades, UpgradeType.SPEED));
+				pedestalBlockEntity.craftingTimeTotal = (int) Math.ceil(pedestalCraftingRecipe.getCraftingTime() / pedestalBlockEntity.upgrades.get(UpgradeType.SPEED));
 			} else if(validRecipe instanceof CraftingRecipe) {
 				craftingRecipe = (CraftingRecipe) validRecipe;
 				pedestalBlockEntity.currentRecipe = validRecipe;
-				pedestalBlockEntity.craftingTimeTotal = (int) Math.ceil(20 / pedestalBlockEntity.getMultiplier(pedestalBlockEntity.upgrades, UpgradeType.SPEED));
+				pedestalBlockEntity.craftingTimeTotal = (int) Math.ceil(20 / pedestalBlockEntity.upgrades.get(UpgradeType.SPEED));
 			} else {
 				// no valid recipe
 				pedestalBlockEntity.craftingTime = 0;
@@ -569,7 +569,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 
 			// -X for all the pigment inputs
 			for(GemstoneColor gemstoneColor : GemstoneColor.values()) {
-				double efficiencyModifier = pedestalBlockEntity.getMultiplier(pedestalBlockEntity.upgrades, UpgradeType.EFFICIENCY);
+				double efficiencyModifier = pedestalBlockEntity.upgrades.get(UpgradeType.EFFICIENCY);
 				int gemstonePowderAmount = recipe.getGemstonePowderAmount(gemstoneColor);
 				int gemstonePowderAmountAfterMod = Support.getIntFromDecimalWithChance(gemstonePowderAmount / efficiencyModifier, pedestalBlockEntity.world.random);
 				pedestalBlockEntity.inventory.get(getSlotForGemstonePowder(gemstoneColor)).decrement(gemstonePowderAmountAfterMod);
@@ -595,7 +595,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 				pedestalBlockEntity.markDirty();
 			} else {
 				int resultAmountBeforeMod = recipeOutput.getCount();
-				double yieldModifier =  recipe.areYieldUpgradesDisabled() ? 1.0 : pedestalBlockEntity.getMultiplier(pedestalBlockEntity.upgrades, UpgradeType.YIELD);
+				double yieldModifier =  recipe.areYieldUpgradesDisabled() ? 1.0 : pedestalBlockEntity.upgrades.get(UpgradeType.YIELD);
 				int resultAmountAfterMod = Support.getIntFromDecimalWithChance(resultAmountBeforeMod * yieldModifier, pedestalBlockEntity.world.random);
 				
 				// Not an upgrade recipe => Add output to output slot
@@ -613,7 +613,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 			}
 
 			// Add recipe XP
-			double experienceModifier = pedestalBlockEntity.getMultiplier(pedestalBlockEntity.upgrades, UpgradeType.EXPERIENCE);
+			double experienceModifier = pedestalBlockEntity.upgrades.get(UpgradeType.EXPERIENCE);
 			float recipeExperienceBeforeMod = recipe.getExperience();
 			pedestalBlockEntity.storedXP = (float) (recipeExperienceBeforeMod * experienceModifier);
 
@@ -882,7 +882,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 	 * Search for upgrades at valid positions and apply
 	 */
 	public void calculateUpgrades() {
-		Pair<Integer, Map<UpgradeType, Double>> upgrades = Upgradeable.getUpgrades(world, pos, 3, 2);
+		Pair<Integer, Map<UpgradeType, Double>> upgrades = Upgradeable.checkUpgradeMods(world, pos, 3, 2);
 		this.upgrades = upgrades.getRight();
 		
 		if(upgrades.getLeft() == 4) {

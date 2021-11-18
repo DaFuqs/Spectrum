@@ -230,7 +230,7 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 		if(recipe == null) {
 			SpectrumS2CPackets.sendCancelBlockBoundSoundInstance((ServerWorld) fusionShrineBlockEntity.world, fusionShrineBlockEntity.pos);
 		} else {
-			fusionShrineBlockEntity.craftingTimeTotal = (int) Math.ceil(recipe.getCraftingTime() / fusionShrineBlockEntity.getMultiplier(fusionShrineBlockEntity.upgrades, Upgradeable.UpgradeType.SPEED));
+			fusionShrineBlockEntity.craftingTimeTotal = (int) Math.ceil(recipe.getCraftingTime() / fusionShrineBlockEntity.upgrades.get(Upgradeable.UpgradeType.SPEED));
 		}
 		
 		fusionShrineBlockEntity.sync();
@@ -254,7 +254,7 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 			}
 		}
 		
-		double efficiencyModifier = fusionShrineBlockEntity.getMultiplier(fusionShrineBlockEntity.upgrades, UpgradeType.EFFICIENCY);
+		double efficiencyModifier = fusionShrineBlockEntity.upgrades.get(UpgradeType.EFFICIENCY);
 		if(maxAmount > 0) {
 			for(Ingredient ingredient : recipe.getIngredients()) {
 				for(int i = 0; i < fusionShrineBlockEntity.INVENTORY_SIZE; i++) {
@@ -297,7 +297,7 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 
 	public static void spawnCraftingResultAndXP(World world, FusionShrineBlockEntity blockEntity, FusionShrineRecipe recipe, int amount) {
 		int resultAmountBeforeMod = amount * recipe.getOutput().getCount();
-		double yieldModifier =  recipe.areYieldUpgradesDisabled() ? 1.0 : blockEntity.getMultiplier(blockEntity.upgrades, UpgradeType.YIELD);
+		double yieldModifier =  recipe.areYieldUpgradesDisabled() ? 1.0 : blockEntity.upgrades.get(UpgradeType.YIELD);
 		int resultAmountAfterMod = Support.getIntFromDecimalWithChance(resultAmountBeforeMod * yieldModifier, blockEntity.world.random);
 		
 		while(resultAmountAfterMod > 0) {
@@ -311,7 +311,7 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 		}
 
 		if (recipe.getExperience() > 0) {
-			double experienceModifier = blockEntity.getMultiplier(blockEntity.upgrades, UpgradeType.EXPERIENCE);
+			double experienceModifier = blockEntity.upgrades.get(UpgradeType.EXPERIENCE);
 			float recipeExperienceBeforeMod = recipe.getExperience();
 			int spawnedXPAmount = Support.getIntFromDecimalWithChance(recipeExperienceBeforeMod * experienceModifier, blockEntity.world.random);
 			ExperienceOrbEntity experienceOrbEntity = new ExperienceOrbEntity(world, blockEntity.pos.getX() + 0.5, blockEntity.pos.getY() + 1, blockEntity.pos.getZ() + 0.5, spawnedXPAmount);
@@ -407,7 +407,7 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 	}
 	
 	public void updateUpgrades() {
-		Pair<Integer, Map<Upgradeable.UpgradeType, Double>> upgrades = Upgradeable.getUpgrades(world, pos, 2, 0);
+		Pair<Integer, Map<Upgradeable.UpgradeType, Double>> upgrades = Upgradeable.checkUpgradeMods(world, pos, 2, 0);
 		this.upgrades = upgrades.getRight();
 	}
 	

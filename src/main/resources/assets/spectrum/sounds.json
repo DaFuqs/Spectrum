@@ -1167,85 +1167,85 @@
       "spectrum:block/moonstone/block_moonstone_cluster_place4"
     ]
   },
-  "block_ammolite_block_break": {
+  "block_spectral_block_break": {
     "subtitle": "subtitles.block.generic.break",
     "sounds": [
-      "spectrum:block/ammolite/block_ammolite_break1",
-      "spectrum:block/ammolite/block_ammolite_break2",
-      "spectrum:block/ammolite/block_ammolite_break3",
-      "spectrum:block/ammolite/block_ammolite_break4"
+      "spectrum:block/spectral/block_spectral_break1",
+      "spectrum:block/spectral/block_spectral_break2",
+      "spectrum:block/spectral/block_spectral_break3",
+      "spectrum:block/spectral/block_spectral_break4"
     ]
   },
-  "block_ammolite_block_chime": {
-    "subtitle": "subtitles.block.ammolite_block.chime",
+  "block_spectral_block_chime": {
+    "subtitle": "subtitles.block.spectral_block.chime",
     "sounds": [
-      "spectrum:block/ammolite/block_ammolite_shimmer"
+      "spectrum:block/spectral/block_spectral_shimmer"
     ]
   },
-  "block_ammolite_block_fall": {
+  "block_spectral_block_fall": {
     "subtitle": "",
     "sounds": [
-      "spectrum:block/ammolite/block_ammolite_step1",
-      "spectrum:block/ammolite/block_ammolite_step2",
-      "spectrum:block/ammolite/block_ammolite_step3",
-      "spectrum:block/ammolite/block_ammolite_step4",
-      "spectrum:block/ammolite/block_ammolite_step1",
-      "spectrum:block/ammolite/block_ammolite_step6",
-      "spectrum:block/ammolite/block_ammolite_step7",
-      "spectrum:block/ammolite/block_ammolite_step8",
-      "spectrum:block/ammolite/block_ammolite_step9",
-      "spectrum:block/ammolite/block_ammolite_step10",
-      "spectrum:block/ammolite/block_ammolite_step11",
-      "spectrum:block/ammolite/block_ammolite_step12",
-      "spectrum:block/ammolite/block_ammolite_step13",
-      "spectrum:block/ammolite/block_ammolite_step14"
+      "spectrum:block/spectral/block_spectral_step1",
+      "spectrum:block/spectral/block_spectral_step2",
+      "spectrum:block/spectral/block_spectral_step3",
+      "spectrum:block/spectral/block_spectral_step4",
+      "spectrum:block/spectral/block_spectral_step1",
+      "spectrum:block/spectral/block_spectral_step6",
+      "spectrum:block/spectral/block_spectral_step7",
+      "spectrum:block/spectral/block_spectral_step8",
+      "spectrum:block/spectral/block_spectral_step9",
+      "spectrum:block/spectral/block_spectral_step10",
+      "spectrum:block/spectral/block_spectral_step11",
+      "spectrum:block/spectral/block_spectral_step12",
+      "spectrum:block/spectral/block_spectral_step13",
+      "spectrum:block/spectral/block_spectral_step14"
     ]
   },
-  "block_ammolite_block_hit": {
+  "block_spectral_block_hit": {
     "subtitle": "subtitles.block.generic.hit",
     "sounds": [
-      "spectrum:block/ammolite/block_ammolite_step1",
-      "spectrum:block/ammolite/block_ammolite_step2",
-      "spectrum:block/ammolite/block_ammolite_step3",
-      "spectrum:block/ammolite/block_ammolite_step4",
-      "spectrum:block/ammolite/block_ammolite_step1",
-      "spectrum:block/ammolite/block_ammolite_step6",
-      "spectrum:block/ammolite/block_ammolite_step7",
-      "spectrum:block/ammolite/block_ammolite_step8",
-      "spectrum:block/ammolite/block_ammolite_step9",
-      "spectrum:block/ammolite/block_ammolite_step10",
-      "spectrum:block/ammolite/block_ammolite_step11",
-      "spectrum:block/ammolite/block_ammolite_step12",
-      "spectrum:block/ammolite/block_ammolite_step13",
-      "spectrum:block/ammolite/block_ammolite_step14"
+      "spectrum:block/spectral/block_spectral_step1",
+      "spectrum:block/spectral/block_spectral_step2",
+      "spectrum:block/spectral/block_spectral_step3",
+      "spectrum:block/spectral/block_spectral_step4",
+      "spectrum:block/spectral/block_spectral_step1",
+      "spectrum:block/spectral/block_spectral_step6",
+      "spectrum:block/spectral/block_spectral_step7",
+      "spectrum:block/spectral/block_spectral_step8",
+      "spectrum:block/spectral/block_spectral_step9",
+      "spectrum:block/spectral/block_spectral_step10",
+      "spectrum:block/spectral/block_spectral_step11",
+      "spectrum:block/spectral/block_spectral_step12",
+      "spectrum:block/spectral/block_spectral_step13",
+      "spectrum:block/spectral/block_spectral_step14"
     ]
   },
-  "block_ammolite_block_place": {
+  "block_spectral_block_place": {
     "subtitle": "subtitles.block.generic.place",
     "sounds": [
-      "spectrum:block/ammolite/block_ammolite_place1",
-      "spectrum:block/ammolite/block_ammolite_place2",
-      "spectrum:block/ammolite/block_ammolite_place3",
-      "spectrum:block/ammolite/block_ammolite_place4"
+      "spectrum:block/spectral/block_spectral_place1",
+      "spectrum:block/spectral/block_spectral_place2",
+      "spectrum:block/spectral/block_spectral_place3",
+      "spectrum:block/spectral/block_spectral_place4"
     ]
   },
-  "block_ammolite_block_step": {
+  "block_spectral_block_step": {
     "subtitle": "subtitles.block.generic.footsteps",
     "sounds": [
-      "spectrum:block/ammolite/block_ammolite_step1",
-      "spectrum:block/ammolite/block_ammolite_step2",
-      "spectrum:block/ammolite/block_ammolite_step3",
-      "spectrum:block/ammolite/block_ammolite_step4",
-      "spectrum:block/ammolite/block_ammolite_step1",
-      "spectrum:block/ammolite/block_ammolite_step6",
-      "spectrum:block/ammolite/block_ammolite_step7",
-      "spectrum:block/ammolite/block_ammolite_step8",
-      "spectrum:block/ammolite/block_ammolite_step9",
-      "spectrum:block/ammolite/block_ammolite_step10",
-      "spectrum:block/ammolite/block_ammolite_step11",
-      "spectrum:block/ammolite/block_ammolite_step12",
-      "spectrum:block/ammolite/block_ammolite_step13",
-      "spectrum:block/ammolite/block_ammolite_step14"
+      "spectrum:block/spectral/block_spectral_step1",
+      "spectrum:block/spectral/block_spectral_step2",
+      "spectrum:block/spectral/block_spectral_step3",
+      "spectrum:block/spectral/block_spectral_step4",
+      "spectrum:block/spectral/block_spectral_step1",
+      "spectrum:block/spectral/block_spectral_step6",
+      "spectrum:block/spectral/block_spectral_step7",
+      "spectrum:block/spectral/block_spectral_step8",
+      "spectrum:block/spectral/block_spectral_step9",
+      "spectrum:block/spectral/block_spectral_step10",
+      "spectrum:block/spectral/block_spectral_step11",
+      "spectrum:block/spectral/block_spectral_step12",
+      "spectrum:block/spectral/block_spectral_step13",
+      "spectrum:block/spectral/block_spectral_step14"
     ]
   }
 }

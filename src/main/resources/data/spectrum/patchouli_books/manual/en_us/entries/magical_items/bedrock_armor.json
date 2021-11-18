@@ -1,6 +1,6 @@
 {
   "name": "Bedrock Armor",
-  "advancement": "spectrum:lategame/collect_bedrock_dust",
+  "advancement": "spectrum:progression/unlock_bedrock_tools",
   "icon": "spectrum:bedrock_chestplate",
   "category": "spectrum:magical_items_category",
   "extra_recipe_mappings": {

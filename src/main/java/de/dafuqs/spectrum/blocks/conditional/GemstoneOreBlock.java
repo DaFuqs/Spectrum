@@ -28,10 +28,10 @@ public class GemstoneOreBlock extends CloakedOreBlock {
 				return new Identifier(SpectrumCommon.MOD_ID, "hidden/collect_shards/collect_citrine_shard");
 			}
 			case BLACK -> {
-				return new Identifier(SpectrumCommon.MOD_ID, "hidden/collect_shards/collect_onyx_shard");
+				return new Identifier(SpectrumCommon.MOD_ID, "create_onyx_shard");
 			}
 			default -> {
-				return new Identifier(SpectrumCommon.MOD_ID, "hidden/collect_shards/collect_moonstone_shard");
+				return new Identifier(SpectrumCommon.MOD_ID, "midgame/collect_moonstone_shard");
 			}
 		}
 	}

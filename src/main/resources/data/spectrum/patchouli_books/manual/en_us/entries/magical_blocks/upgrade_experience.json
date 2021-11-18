@@ -1,6 +1,6 @@
 {
   "name": "Knowledge Focus",
-  "advancement": "spectrum:midgame/spectrum_midgame",
+  "advancement": "spectrum:midgame/collect_lightning_stone",
   "icon": "spectrum:upgrade_experience",
   "category": "spectrum:magical_blocks_category",
   "extra_recipe_mappings": {
@@ -20,6 +20,7 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
+      "advancement": "spectrum:progression/unlock_upgrade_experience2",
       "title": "Tier 2",
       "recipe": "spectrum:pedestal/tier4/upgrade_experience2",
       "text": "This improved Knowledge Focus increases the generated XP even more."

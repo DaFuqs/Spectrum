@@ -6,7 +6,7 @@
     "entries": [
     {
         "type": "minecraft:item",
-        "name": "spectrum:ammolite_block"
+        "name": "spectrum:spectral_block"
     }
     ],
     "conditions": [

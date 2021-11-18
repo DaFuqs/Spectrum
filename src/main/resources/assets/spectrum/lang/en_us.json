@@ -559,7 +559,7 @@
   "block.spectrum.glistering_melon_stem": "Glistering Melon Stem",
   "block.spectrum.attached_glistering_melon_stem": "Glistering Melon Stem",
 
-  "block.spectrum.ammolite_block": "Block of Glistering Ammolite",
+  "block.spectrum.spectral_block": "Spectral Shard Block",
   "block.spectrum.small_citrine_bud": "Small Citrine Bud",
   "block.spectrum.medium_citrine_bud": "Medium Citrine Bud",
   "block.spectrum.large_citrine_bud": "Large Citrine Bud",
@@ -906,7 +906,7 @@
   "item.spectrum.topaz_shard": "Topaz Shard",
   "item.spectrum.onyx_shard": "Onyx Shard",
   "item.spectrum.moonstone_shard": "Moonstone Shard",
-  "item.spectrum.ammolite_shard": "Glistering Ammolite Shard",
+  "item.spectrum.spectral_shard": "Spectral Shard",
 
   "item.spectrum.vegetal": "Vegetal",
   "item.spectrum.corrupted_obsidian_dust": "Neolith",
@@ -949,7 +949,7 @@
   "advancements.spectrum.build_complex_pedestal_structure.description": "Upgrade your Pedestal structure another time fully harness it's magical powers",
   "advancements.spectrum.build_complex_pedestal_structure.title": "Construct the Spectrum Complex",
   "advancements.spectrum.carry_too_many_heavy_gravity_blocks.description": "Carry so much Crimson with you that you are unable to jump",
-  "advancements.spectrum.carry_too_many_heavy_gravity_blocks.title": "Encumbrance? We always ignored that",
+  "advancements.spectrum.carry_too_many_heavy_gravity_blocks.title": "Encumbrance? We ignored that",
   "advancements.spectrum.carry_too_many_low_gravity_blocks.description": "Carry so much Paletur with you that you are taking flight",
   "advancements.spectrum.carry_too_many_low_gravity_blocks.title": "Noone could see that coming",
   "advancements.spectrum.catch_shooting_star.description": "Catch a shooting star right out of the sky",

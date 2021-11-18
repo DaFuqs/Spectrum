@@ -71,7 +71,7 @@ public class SpectrumItems {
 	public static final Item CITRINE_SHARD = new Item(resourcesItemSettings);
 	public static final Item ONYX_SHARD = new Item(resourcesItemSettings);
 	public static final Item MOONSTONE_SHARD = new Item(resourcesItemSettings);
-	public static final Item AMMOLITE_SHARD = new Item(resourcesItemSettings);
+	public static final Item SPECTRAL_SHARD = new Item(resourcesItemSettings);
 	
 	public static final Item TOPAZ_POWDER = new Item(resourcesItemSettings);
 	public static final Item AMETHYST_POWDER = new Item(resourcesItemSettings);
@@ -230,7 +230,7 @@ public class SpectrumItems {
 		register("citrine_shard", CITRINE_SHARD);
 		register("onyx_shard", ONYX_SHARD);
 		register("moonstone_shard", MOONSTONE_SHARD);
-		register("ammolite_shard", AMMOLITE_SHARD);
+		register("spectral_shard", SPECTRAL_SHARD);
 		
 		register("topaz_powder", TOPAZ_POWDER);
 		register("amethyst_powder", AMETHYST_POWDER);

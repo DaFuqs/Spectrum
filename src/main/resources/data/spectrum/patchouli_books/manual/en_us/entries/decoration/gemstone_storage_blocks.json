@@ -36,13 +36,13 @@
     },
     {
       "type": "patchouli:crafting",
-      "advancement": "spectrum:hidden/collect_shards/collect_onyx_shard",
+      "advancement": "spectrum:create_onyx_shard",
       "recipe": "spectrum:crafting_table/gem_storage_blocks/onyx_storage_block",
       "recipe2": "spectrum:crafting_table/gem_storage_blocks/onyx_shards_from_onyx_storage_block"
     },
     {
       "type": "patchouli:crafting",
-      "advancement": "spectrum:hidden/collect_shards/collect_moonstone_shard",
+      "advancement": "spectrum:midgame/collect_moonstone_shard",
       "recipe": "spectrum:crafting_table/gem_storage_blocks/moonstone_storage_block",
       "recipe2": "spectrum:crafting_table/gem_storage_blocks/moonstone_shards_from_moonstone_storage_block"
     }

@@ -2,22 +2,22 @@
   "type": "spectrum:pedestal",
   "time": 3600,
   "tier": "advanced",
-  "cyan": 0,
-  "magenta": 0,
-  "yellow": 0,
-  "black": 4,
+  "cyan": 4,
+  "magenta": 8,
+  "yellow": 4,
+  "black": 8,
   "white": 0,
   "experience": 4.0,
   "pattern": [
-    "L",
+    "S",
     "U"
   ],
   "key": {
+    "S": {
+      "item": "spectrum:lightning_stone"
+    },
     "U": {
       "item": "spectrum:upgrade_speed"
-    },
-    "L": {
-      "item": "spectrum:lightning_stone"
     }
   },
   "result" : {

@@ -1,0 +1,24 @@
+{
+  "display": {
+    "icon": {
+      "item": "spectrum:spectral_shard"
+    },
+    "frame": "challenge",
+    "title": {
+      "translate": "advancements.spectrum.create_spectral_shard.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.create_spectral_shard.description"
+    }
+  },
+  "parent": "spectrum:lategame/build_complex_pedestal_structure",
+  "criteria": {
+    "created_spectral_shard": {
+      "trigger":"spectrum:crafted_with_fusion_shrine",
+      "conditions": { "items": [{ "items": [ "spectrum:spectral_shard" ]}] }
+    }
+  },
+  "rewards": {
+    "experience": 250
+  }
+}

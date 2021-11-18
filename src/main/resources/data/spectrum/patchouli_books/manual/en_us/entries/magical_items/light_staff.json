@@ -1,6 +1,6 @@
 {
   "name": "Radiance Staff",
-  "advancement": "spectrum:midgame/unlock_light_staff",
+  "advancement": "spectrum:progression/unlock_light_staff",
   "icon": "spectrum:natures_staff",
   "category": "spectrum:magical_items_category",
   "extra_recipe_mappings": {

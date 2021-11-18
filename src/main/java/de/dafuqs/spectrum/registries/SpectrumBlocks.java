@@ -1158,7 +1158,7 @@ public class SpectrumBlocks {
 		registerBlockWithItem("large_moonstone_bud", LARGE_MOONSTONE_BUD, fabricItemSettings);
 		registerBlockWithItem("moonstone_cluster", MOONSTONE_CLUSTER, fabricItemSettings);
 
-		registerBlockWithItem("ammolite_block", AMMOLITE_BLOCK, fabricItemSettings);
+		registerBlockWithItem("spectral_block", AMMOLITE_BLOCK, fabricItemSettings);
 		registerBlockWithItem("bedrock_storage_block", BEDROCK_STORAGE_BLOCK, fabricItemSettings);
 	}
 

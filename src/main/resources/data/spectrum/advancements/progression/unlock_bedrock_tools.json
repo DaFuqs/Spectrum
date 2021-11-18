@@ -3,10 +3,6 @@
     "collected_bedrock_dust": {
       "trigger":"spectrum:has_advancement",
       "conditions": { "advancement_identifier": "spectrum:midgame/break_decayed_bedrock" }
-    },
-    "reached_endgame": {
-      "trigger":"spectrum:has_advancement",
-      "conditions": { "advancement_identifier": "spectrum:lategame/spectrum_lategame" }
     }
   }
 }

@@ -1,14 +1,13 @@
 {
   "required": true,
   "package": "de.dafuqs.spectrum.mixin",
-  "compatibilityLevel": "JAVA_16",
+  "compatibilityLevel": "JAVA_17",
   "mixins": [
     "AccessorItem",
     "AccessorShapedRecipe",
     "AnvilBlockMixin",
     "ArmorWithHitEffectProcessor",
     "BlockMixin",
-    "BlockPlacerTypeAccessor",
     "CropBlockMixin",
     "CrossbowItemMixin",
     "EnderEyeItemMixin",

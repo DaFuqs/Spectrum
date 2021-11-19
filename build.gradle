@@ -3,8 +3,8 @@ plugins {
 	id 'maven-publish'
 }
 
-sourceCompatibility = JavaVersion.VERSION_16
-targetCompatibility = JavaVersion.VERSION_16
+sourceCompatibility = JavaVersion.VERSION_17
+targetCompatibility = JavaVersion.VERSION_17
 
 archivesBaseName = project.archives_base_name
 version = project.mod_version
@@ -23,6 +23,7 @@ repositories {
 	}
 	maven { url 'https://jitpack.io' } // owo lib // 1.18: https://maven.wispforest.io/
 }
+
 dependencies {
 	// fabric
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
@@ -38,7 +39,7 @@ dependencies {
 	modApi("com.terraformersmc:modmenu:${project.modmenu_version}")
 
 	modImplementation "vazkii.patchouli:Patchouli:${project.patchouli_version}"	// https://maven.blamejared.com/vazkii/patchouli/Patchouli/
-	modImplementation "net.darkhax.enchdesc:EnchantmentDescriptionsFabric-${project.enchantment_descriptions_mc_version}:${project.enchantment_descriptions_mod_version}"
+	//modImplementation "net.darkhax.enchdesc:EnchantmentDescriptionsFabric-${project.enchantment_descriptions_mc_version}:${project.enchantment_descriptions_mod_version}"
 	modImplementation "com.github.glisco03:owo-lib:${project.owo_version}"
 
 	modCompileOnly "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"
@@ -65,7 +66,7 @@ processResources {
 // see http://yodaconditions.net/blog/fix-for-java-file-encoding-problems-with-gradle.html
 tasks.withType(JavaCompile) {
 	options.encoding = "UTF-8"
-	it.options.release = 16
+	it.options.release = 17 // Minecraft 1.18 (1.18-pre2) upwards uses Java 17.
 }
 
 java {

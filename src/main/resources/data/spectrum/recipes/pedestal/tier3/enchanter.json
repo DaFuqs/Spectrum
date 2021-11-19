@@ -1,0 +1,32 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 400,
+  "tier": "advanced",
+  "cyan": 0,
+  "magenta": 0,
+  "yellow": 4,
+  "white": 0,
+  "black": 2,
+  "experience": 2.0,
+  "pattern": [
+    "SLS",
+    "BSB",
+    "BBB"
+  ],
+  "key": {
+    "L": {
+      "item": "minecraft:lapis_block"
+    },
+    "B": {
+      "item": "spectrum:polished_basalt"
+    },
+    "S": {
+      "item": "spectrum:scarlet_fragments"
+    }
+  },
+  "result" : {
+    "item": "spectrum:enchanter",
+    "count": 1
+  },
+  "required_advancements": ["spectrum:progression/unlock_enchanter"]
+}

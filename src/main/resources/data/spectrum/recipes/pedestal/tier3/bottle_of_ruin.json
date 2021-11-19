@@ -1,0 +1,35 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 1200,
+  "tier": "advanced",
+  "cyan": 0,
+  "magenta": 0,
+  "yellow": 0,
+  "black": 4,
+  "white": 0,
+  "experience": 2.0,
+  "pattern": [
+    "FLF",
+    "PBP",
+    "FLF"
+  ],
+  "key": {
+    "L": {
+      "item": "spectrum:lightning_stone"
+    },
+    "F": {
+      "item": "minecraft:fermented_spider_eye"
+    },
+    "P": {
+      "item": "minecraft:prismarine_crystals"
+    },
+    "B": {
+      "item": "minecraft:dragon_breath"
+    }
+  },
+  "result" : {
+    "item": "spectrum:bottle_of_ruin",
+    "count": 1
+  },
+  "required_advancements": ["spectrum:progression/unlock_bottle_of_ruin"]
+}

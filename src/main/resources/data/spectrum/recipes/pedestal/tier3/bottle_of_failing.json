@@ -1,0 +1,35 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 600,
+  "tier": "advanced",
+  "cyan": 1,
+  "magenta": 1,
+  "yellow": 1,
+  "black": 1,
+  "white": 0,
+  "experience": 2.0,
+  "pattern": [
+    "FSF",
+    "QBQ",
+    "FSF"
+  ],
+  "key": {
+    "S": {
+      "item": "spectrum:scarlet_fragments"
+    },
+    "F": {
+      "item": "minecraft:fermented_spider_eye"
+    },
+    "Q": {
+      "item": "spectrum:quitoxic_powder"
+    },
+    "B": {
+      "item": "minecraft:honey_bottle"
+    }
+  },
+  "result" : {
+    "item": "spectrum:bottle_of_failing",
+    "count": 1
+  },
+  "required_advancements": ["spectrum:progression/unlock_bottle_of_failing"]
+}

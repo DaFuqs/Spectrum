@@ -18,13 +18,13 @@
       "item": "spectrum:polished_basalt"
     },
     "A": {
-      "item": "minecraft:amethyst_block"
+      "item": "spectrum:amethyst_storage_block"
     },
     "T": {
-      "item": "spectrum:topaz_block"
+      "item": "spectrum:topaz_storage_block"
     },
     "C": {
-      "item": "spectrum:citrine_block"
+      "item": "spectrum:citrine_storage_block"
     },
     "L": {
       "item": "spectrum:lightning_stone"

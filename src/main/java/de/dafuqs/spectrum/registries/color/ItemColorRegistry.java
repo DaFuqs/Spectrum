@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.registries.color;
 
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import de.dafuqs.spectrum.registries.SpectrumItems;
+import net.minecraft.block.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.util.DyeColor;
@@ -54,6 +55,23 @@ public class ItemColorRegistry extends ColorRegistry<Item> {
 		put(SpectrumItems.WHITE_PIGMENT, DyeColor.WHITE);
 		put(SpectrumItems.YELLOW_PIGMENT, DyeColor.YELLOW);
 		
+		put(SpectrumBlocks.BLACK_SAPLING.asItem(), DyeColor.BLACK);
+		put(SpectrumBlocks.BLUE_SAPLING.asItem(), DyeColor.BLUE);
+		put(SpectrumBlocks.BROWN_SAPLING.asItem(), DyeColor.BROWN);
+		put(SpectrumBlocks.CYAN_SAPLING.asItem(), DyeColor.CYAN);
+		put(SpectrumBlocks.GRAY_SAPLING.asItem(), DyeColor.GRAY);
+		put(SpectrumBlocks.GREEN_SAPLING.asItem(), DyeColor.GREEN);
+		put(SpectrumBlocks.LIGHT_BLUE_SAPLING.asItem(), DyeColor.LIGHT_BLUE);
+		put(SpectrumBlocks.LIGHT_GRAY_SAPLING.asItem(), DyeColor.LIGHT_GRAY);
+		put(SpectrumBlocks.LIME_SAPLING.asItem(), DyeColor.LIME);
+		put(SpectrumBlocks.MAGENTA_SAPLING.asItem(), DyeColor.MAGENTA);
+		put(SpectrumBlocks.ORANGE_SAPLING.asItem(), DyeColor.ORANGE);
+		put(SpectrumBlocks.PINK_SAPLING.asItem(), DyeColor.PINK);
+		put(SpectrumBlocks.PURPLE_SAPLING.asItem(), DyeColor.PURPLE);
+		put(SpectrumBlocks.RED_SAPLING.asItem(), DyeColor.RED);
+		put(SpectrumBlocks.WHITE_SAPLING.asItem(), DyeColor.WHITE);
+		put(SpectrumBlocks.YELLOW_SAPLING.asItem(), DyeColor.YELLOW);
+		
 		put(SpectrumItems.SPARKLESTONE_GEM, DyeColor.YELLOW);
 		put(SpectrumItems.RAW_AZURITE, DyeColor.BLUE);
 		put(SpectrumItems.SHAPED_AZURITE, DyeColor.BLUE);
@@ -69,13 +87,29 @@ public class ItemColorRegistry extends ColorRegistry<Item> {
 		put(SpectrumItems.CORRUPTED_OBSIDIAN_DUST, DyeColor.PURPLE);
 		put(SpectrumItems.BEDROCK_DUST, DyeColor.LIGHT_GRAY);
 		put(SpectrumBlocks.ENDER_TREASURE.asItem(), DyeColor.PURPLE);
+		put(SpectrumItems.SPECTRAL_SHARD.asItem(), DyeColor.WHITE);
 		
 		put(Items.GOLDEN_APPLE, DyeColor.YELLOW);
 		put(Items.GOLD_BLOCK, DyeColor.YELLOW);
 		put(Items.GLASS_BOTTLE, DyeColor.LIGHT_GRAY);
+		put(Items.EMERALD, DyeColor.LIME);
+		put(Items.DIAMOND, DyeColor.LIGHT_BLUE);
+		put(Items.NETHERITE_SCRAP, DyeColor.BROWN);
 		put(SpectrumBlocks.SPARKLESTONE_BLOCK.asItem(), DyeColor.YELLOW);
 		put(Items.ENCHANTED_GOLDEN_APPLE, DyeColor.YELLOW);
 		put(SpectrumItems.BOTTLE_OF_DECAY_AWAY, DyeColor.LIGHT_GRAY);
+		put(SpectrumBlocks.CLOVER.asItem(), DyeColor.LIME);
+		put(SpectrumBlocks.FOUR_LEAF_CLOVER.asItem(), DyeColor.LIME);
+		put(SpectrumBlocks.OMINOUS_SAPLING.asItem(), DyeColor.BROWN);
+		
+		put(Blocks.OAK_SAPLING.asItem(), DyeColor.GREEN);
+		put(Blocks.BIRCH_SAPLING.asItem(), DyeColor.GREEN);
+		put(Blocks.SPRUCE_SAPLING.asItem(), DyeColor.GREEN);
+		put(Blocks.JUNGLE_SAPLING.asItem(), DyeColor.GREEN);
+		put(Blocks.ACACIA_SAPLING.asItem(), DyeColor.GREEN);
+		put(Blocks.DARK_OAK_SAPLING.asItem(), DyeColor.GREEN);
+		put(Blocks.AZALEA.asItem(), DyeColor.GREEN);
+		put(Blocks.FLOWERING_AZALEA.asItem(), DyeColor.GREEN);
 	}};
 	
 	@Override

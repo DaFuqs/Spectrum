@@ -1,10 +1,10 @@
 {
     "name": "Stargazing",
-    "advancement": "spectrum:midgame/build_advanced_pedestal_structure",
+    "advancement": "spectrum:craft_something_brown",
     "icon": "minecraft:spyglass",
     "category": "spectrum:resources_category",
     "extra_recipe_mappings": {
-        "spectrum:shooting_star": 0
+        "spectrum:shooting_star": 1
     },
     "pages": [
         {
@@ -16,7 +16,7 @@
         },
         {
             "type": "patchouli:spotlight",
-            "advancement": "spectrum:hidden/collect_resource/collect_shooting_star",
+            "advancement": "spectrum:collect_shooting_star",
             "title": "Shooting Stars",
             "item": "spectrum:shooting_star",
             "text": "The small shooting stars are made of a material unknown to you thus far.$(br2)Can you catch one right off the sky?$(br2)$(italic)Tip: Stargazing is much easier when using a Telescope or Potions of Night Vision.$()"

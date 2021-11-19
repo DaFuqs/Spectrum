@@ -3,14 +3,14 @@
   "time": 400,
   "tier": "advanced",
   "cyan": 0,
-  "magenta": 0,
-  "yellow": 4,
+  "magenta": 4,
+  "yellow": 0,
   "white": 0,
   "black": 2,
   "experience": 2.0,
   "pattern": [
     "SLS",
-    "BSB",
+    "BGB",
     "BBB"
   ],
   "key": {
@@ -22,6 +22,9 @@
     },
     "S": {
       "item": "spectrum:scarlet_fragments"
+    },
+    "G": {
+      "item": "spectrum:scarlet_gem"
     }
   },
   "result" : {

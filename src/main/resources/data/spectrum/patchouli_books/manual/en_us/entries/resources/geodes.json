@@ -6,21 +6,39 @@
     "spectrum:topaz_ore": 2,
     "spectrum:amethyst_ore": 2,
     "spectrum:citrine_ore": 2,
-    "spectrum:onyx_ore": 2,
     "spectrum:moonstone_ore": 2,
     "spectrum:deepslate_topaz_ore": 2,
     "spectrum:deepslate_amethyst_ore": 2,
     "spectrum:deepslate_citrine_ore": 2,
-    "spectrum:deepslate_onyx_ore": 2,
     "spectrum:deepslate_moonstone_ore": 2,
+
+    "spectrum:small_topaz_bud": 3,
+    "spectrum:medium_topaz_bud": 3,
+    "spectrum:large_topaz_bud": 3,
+    "spectrum:topaz_cluster": 3,
     "spectrum:topaz_block": 3,
-    "minecraft:amethyst_block": 4,
-    "spectrum:citrine_block": 5,
     "spectrum:budding_topaz": 3,
+
+    "minecraft:small_amethyst_bud": 4,
+    "minecraft:medium_amethyst_bud": 4,
+    "minecraft:large_amethyst_bud": 4,
+    "minecraft:amethyst_cluster": 4,
+    "minecraft:amethyst_block": 4,
     "minecraft:budding_amethyst": 4,
+
+    "spectrum:small_citrine_bud": 5,
+    "spectrum:medium_citrine_bud": 5,
+    "spectrum:large_citrine_bud": 5,
+    "spectrum:citrine_cluster": 5,
+    "spectrum:citrine_block": 5,
     "spectrum:budding_citrine": 5,
-    "spectrum:budding_onyx": 5,
-    "spectrum:budding_moonstone": 5
+
+    "spectrum:small_moonstone_bud": 6,
+    "spectrum:medium_moonstone_bud": 6,
+    "spectrum:large_moonstone_bud": 6,
+    "spectrum:moonstone_cluster": 6,
+    "spectrum:moonstone_block": 6,
+    "spectrum:budding_moonstone": 6
   },
   "pages": [
     {
@@ -93,6 +111,13 @@
       "title": "Citrine Geodes",
       "item": "spectrum:citrine_block",
       "text": "Geodes with citrine are found in the middle layers of the world, sometimes even accessible from the surface. These geodes are small, but harbor tremendous energy, so they are cracked especially often."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:midgame/collect_moonstone_shard",
+      "title": "Moonstone Geodes",
+      "item": "spectrum:moonstone_block",
+      "text": "TODO"
     },
     {
       "type": "patchouli:text",

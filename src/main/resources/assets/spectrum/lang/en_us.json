@@ -66,6 +66,9 @@
 
   "spectrum.recipe.fusion_shrine.explanation.onyx_shard": "Midnight on a new moon only",
   "spectrum.recipe.fusion_shrine.explanation.decay_away":  "Requires a clear sky",
+  "spectrum.recipe.fusion_shrine.explanation.ominous_sapling":  "Requires daytime",
+  "spectrum.recipe.fusion_shrine.explanation.scarlet_gem":  "Requires a thunderstorm",
+  "spectrum.recipe.fusion_shrine.explanation.paletur_gem":  "Requires a thunderstorm",
 
   "spectrum.tooltip.wither_immune": "§7Witherproof",
 
@@ -964,8 +967,8 @@
   "advancements.spectrum.collect_azurite.title": "I got the Blues",
   "advancements.spectrum.collect_corrupted_obsidian_dust.description": "Get Neolith Dust",
   "advancements.spectrum.collect_corrupted_obsidian_dust.title": "Non-Non-Amorphous",
-  "advancements.spectrum.collect_four_leafed_clover.description": "Find a four-leaved clover",
-  "advancements.spectrum.collect_four_leafed_clover.title": "Getting Lucky",
+  "advancements.spectrum.collect_four_leaf_clover.description": "Find a four-leaved clover",
+  "advancements.spectrum.collect_four_leaf_clover.title": "Getting Lucky",
   "advancements.spectrum.collect_gemstone_powder.description": "Crafting in the Pigment Pedestal seems to require gemstone powder. What is the most straightforward way to crush something?",
   "advancements.spectrum.collect_gemstone_powder.title": "Smashing",
   "advancements.spectrum.collect_grayscale_pigments.description": "Complete your Pigment collection by collecting the four grayscale Pigments",

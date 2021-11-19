@@ -1,0 +1,30 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 400,
+  "tier": "advanced",
+  "magenta": 0,
+  "yellow": 0,
+  "cyan": 0,
+  "black": 2,
+  "white": 0,
+  "experience": 0.5,
+  "pattern": [
+    "###",
+    "#X#",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "spectrum:paletur_fragments"
+    },
+    "X": {
+      "item": "minecraft:diamond"
+    }
+  },
+  "result" : {
+    "item": "spectrum:paletur_gem",
+    "count": 1
+  },
+  "required_advancements": ["spectrum:lategame/collect_paletur"],
+  "disable_yield_upgrades": true
+}

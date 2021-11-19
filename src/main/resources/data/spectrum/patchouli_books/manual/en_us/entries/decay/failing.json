@@ -15,7 +15,7 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe": "spectrum:pedestal/tier2/bottle_of_failing",
+      "recipe": "spectrum:pedestal/tier3/bottle_of_failing",
       "text": "Maybe one of the strongest materials you know can satisfy their hunger?"
     },
     {

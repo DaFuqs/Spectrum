@@ -1,0 +1,23 @@
+{
+  "name": "Creating Onyx Geodes",
+  "icon": "spectrum:onyx_cluster",
+  "advancement": "spectrum:progression/unlock_onyx_bud_creation",
+  "category": "spectrum:general_category",
+  "extra_recipe_mappings": {
+    "spectrum:small_onyx_bud": 0,
+    "spectrum:medium_onyx_bud": 0,
+    "spectrum:large_onyx_bud": 0,
+    "spectrum:onyx_cluster": 0,
+    "spectrum:onyx_block": 0,
+    "spectrum:budding_onyx": 0,
+    "spectrum:onyx_ore": 0,
+    "spectrum:deepslate_onyx_ore": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Creating Onyx Geodes",
+      "text": "TODO"
+    }
+  ]
+}

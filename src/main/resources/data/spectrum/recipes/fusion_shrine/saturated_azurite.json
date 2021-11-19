@@ -1,0 +1,25 @@
+{
+  "type": "spectrum:fusion_shrine",
+  "time": 600,
+  "experience": 4.0,
+  "fluid": "minecraft:water",
+  "ingredients": [
+    {
+      "item": "spectrum:raw_azurite"
+    },
+    {
+      "item": "spectrum:moonstone_shard"
+    },
+    {
+      "item": "minecraft:netherite_scrap"
+    }
+  ],
+  "result" : {
+    "item": "spectrum:shaped_azurite"
+  },
+  "required_advancement": "spectrum:lategame/spectrum_lategame",
+  "world_conditions": [ ],
+  "start_crafting_effect": "nothing",
+  "during_crafting_effects": [ ],
+  "finish_crafting_effect": "single_visual_explosion_on_shrine"
+}

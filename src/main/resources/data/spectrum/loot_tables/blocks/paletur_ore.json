@@ -9,6 +9,7 @@
                     "children": [
                         {
                             "type": "minecraft:item",
+                            "name": "spectrum:paletur_ore",
                             "conditions": [
                                 {
                                     "condition": "minecraft:match_tool",
@@ -23,11 +24,11 @@
                                         ]
                                     }
                                 }
-                            ],
-                            "name": "spectrum:paletur_ore"
+                            ]
                         },
                         {
                             "type": "minecraft:item",
+                            "name": "spectrum:paletur_gem",
                             "conditions": [
                                 {
                                     "condition": "minecraft:match_tool",
@@ -42,22 +43,36 @@
                                         ]
                                     }
                                 }
-                            ],
-                            "name": "spectrum:paletur_gem"
+                            ]
                         },
                         {
-                            "type": "minecraft:item",
-                            "functions": [
+                            "type": "minecraft:alternatives",
+                            "children": [
                                 {
-                                    "function": "minecraft:apply_bonus",
-                                    "enchantment": "minecraft:fortune",
-                                    "formula": "minecraft:ore_drops"
+                                    "type": "minecraft:item",
+                                    "name": "spectrum:paletur_gem",
+                                    "conditions": [
+                                        {
+                                            "condition": "minecraft:random_chance",
+                                            "chance": 0.04
+                                        }
+                                    ]
                                 },
                                 {
-                                    "function": "minecraft:explosion_decay"
+                                    "type": "minecraft:item",
+                                    "name": "spectrum:paletur_fragments",
+                                    "functions": [
+                                        {
+                                            "function": "minecraft:apply_bonus",
+                                            "enchantment": "minecraft:fortune",
+                                            "formula": "minecraft:ore_drops"
+                                        },
+                                        {
+                                            "function": "minecraft:explosion_decay"
+                                        }
+                                    ]
                                 }
-                            ],
-                            "name": "spectrum:paletur_fragments"
+                            ]
                         }
                     ]
                 }

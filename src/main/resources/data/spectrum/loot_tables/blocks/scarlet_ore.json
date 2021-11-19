@@ -1,72 +1,82 @@
 {
     "type": "minecraft:block",
-    "pools": [{
-        "rolls": 1,
-        "entries": [{
-            "type": "minecraft:alternatives",
-            "children": [{
-                "type": "minecraft:item",
-                "name": "spectrum:scarlet_ore",
-                "conditions": [{
-                    "condition": "minecraft:match_tool",
-                    "predicate": {
-                        "enchantments": [{
-                            "enchantment": "minecraft:silk_touch",
-                            "levels": {
-                                "min": 1
-                            }
-                        }]
-                    }
-                }]
-            },
-                {
-                    "type": "minecraft:item",
-                    "name": "spectrum:scarlet_gem",
-                    "conditions": [{
-                        "condition": "minecraft:match_tool",
-                        "predicate": {
-                            "enchantments": [{
-                                "enchantment": "spectrum:resonance",
-                                "levels": {
-                                    "min": 1
-                                }
-                            }]
-                        }
-                    }]
-                },
+    "pools": [
+        {
+            "rolls": 1,
+            "entries": [
                 {
                     "type": "minecraft:alternatives",
-                    "children": [{
-                        "type": "minecraft:item",
-                        "name": "spectrum:scarlet_gem",
-                        "conditions": [{
-                            "condition": "minecraft:random_chance",
-                            "chance": 0.05
-                        }]
-                    },
+                    "children": [
                         {
                             "type": "minecraft:item",
-                            "name": "spectrum:scarlet_fragments",
-                            "functions": [{
-                                "function": "minecraft:set_count",
-                                "count": {
-                                    "min": 1,
-                                    "max": 2
-                                }
-                            },
+                            "name": "spectrum:scarlet_ore",
+                            "conditions": [
                                 {
-                                    "function": "minecraft:apply_bonus",
-                                    "enchantment": "minecraft:fortune",
-                                    "formula": "minecraft:ore_drops"
+                                    "condition": "minecraft:match_tool",
+                                    "predicate": {
+                                        "enchantments": [
+                                            {
+                                                "enchantment": "minecraft:silk_touch",
+                                                "levels": {
+                                                    "min": 1
+                                                }
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "type": "minecraft:item",
+                            "name": "spectrum:scarlet_gem",
+                            "conditions": [
+                                {
+                                    "condition": "minecraft:match_tool",
+                                    "predicate": {
+                                        "enchantments": [
+                                            {
+                                                "enchantment": "spectrum:resonance",
+                                                "levels": {
+                                                    "min": 1
+                                                }
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "type": "minecraft:alternatives",
+                            "children": [
+                                {
+                                    "type": "minecraft:item",
+                                    "name": "spectrum:scarlet_gem",
+                                    "conditions": [
+                                        {
+                                            "condition": "minecraft:random_chance",
+                                            "chance": 0.04
+                                        }
+                                    ]
                                 },
                                 {
-                                    "function": "minecraft:explosion_decay"
+                                    "type": "minecraft:item",
+                                    "name": "spectrum:scarlet_fragments",
+                                    "functions": [
+                                        {
+                                            "function": "minecraft:apply_bonus",
+                                            "enchantment": "minecraft:fortune",
+                                            "formula": "minecraft:ore_drops"
+                                        },
+                                        {
+                                            "function": "minecraft:explosion_decay"
+                                        }
+                                    ]
                                 }
                             ]
                         }
                     ]
                 }
             ]
-        }]
-    }]
+        }
+    ]
 }

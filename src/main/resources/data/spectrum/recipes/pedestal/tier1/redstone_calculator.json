@@ -30,5 +30,5 @@
     "item": "spectrum:redstone_calculator",
     "count": 1
   },
-  "required_advancements": ["spectrum:hidden/collect_shards/collect_citrine_shard"]
+  "required_advancements": ["spectrum:progression/unlock_redstone_calculator"]
 }

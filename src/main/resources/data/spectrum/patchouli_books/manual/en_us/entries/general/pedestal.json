@@ -20,7 +20,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "The Pigment Pedestal can be built with your personal choice of gemstone. They do look different, but are the same, functionally."
+      "text": "$(br)The Pigment Pedestal can be built with your gemstone of choice.$(br2)They do look different, but are the same, functionally."
     },
     {
       "type": "patchouli:crafting",

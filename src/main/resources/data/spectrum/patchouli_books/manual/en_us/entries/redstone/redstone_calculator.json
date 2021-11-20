@@ -1,6 +1,6 @@
 {
   "name": "Redstone Calculator",
-  "advancement": "spectrum:hidden/collect_shards/collect_citrine_shard",
+  "advancement": "spectrum:progression/unlock_redstone_calculator",
   "icon": "spectrum:redstone_calculator",
   "category": "spectrum:redstone_category",
   "extra_recipe_mappings": {

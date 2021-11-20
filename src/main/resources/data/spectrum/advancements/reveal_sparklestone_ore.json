@@ -2,7 +2,7 @@
   "parent": "spectrum:craft_using_pedestal",
   "display": {
     "icon": {
-        "item": "spectrum:sparklestone_ore"
+        "item": "minecraft:stone"
     },
     "title": {
       "translate": "advancements.spectrum.reveal_sparklestone_ore.title"

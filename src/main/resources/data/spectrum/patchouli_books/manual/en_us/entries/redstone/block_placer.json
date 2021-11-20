@@ -1,6 +1,6 @@
 {
   "name": "Block Placer",
-  "advancement": "spectrum:hidden/collect_shards/collect_topaz_shard",
+  "advancement": "spectrum:progression/unlock_block_placer",
   "icon": "spectrum:block_placer",
   "category": "spectrum:redstone_category",
   "extra_recipe_mappings": {

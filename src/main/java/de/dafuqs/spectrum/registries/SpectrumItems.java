@@ -68,10 +68,10 @@ public class SpectrumItems {
 	public static final Item ENCHANTER_STRUCTURE_PLACER = new StructurePlacerItem(generalItemSettingsSingle, new Identifier(SpectrumCommon.MOD_ID, "enchanter_structure"));
 
 	// Gem shards
-	public static final Item TOPAZ_SHARD = new CloakedItem(resourcesItemSettings, new Identifier(SpectrumCommon.MOD_ID, "hidden/collect_shards/collect_topaz_shard"), Items.CYAN_DYE);
-	public static final Item CITRINE_SHARD = new CloakedItem(resourcesItemSettings, new Identifier(SpectrumCommon.MOD_ID, "hidden/collect_shards/collect_citrine_shard"), Items.YELLOW_DYE);
+	public static final Item TOPAZ_SHARD = new Item(resourcesItemSettings);
+	public static final Item CITRINE_SHARD = new Item(resourcesItemSettings);
 	public static final Item ONYX_SHARD = new CloakedItem(resourcesItemSettings, new Identifier(SpectrumCommon.MOD_ID, "create_onyx_shard"), Items.BLACK_DYE);
-	public static final Item MOONSTONE_SHARD = new CloakedItem(resourcesItemSettings, new Identifier(SpectrumCommon.MOD_ID, "midgame/collect_moonstone_shard"), Items.WHITE_DYE);
+	public static final Item MOONSTONE_SHARD = new CloakedItem(resourcesItemSettings, new Identifier(SpectrumCommon.MOD_ID, "midgame/break_decayed_bedrock"), Items.WHITE_DYE);
 	public static final Item SPECTRAL_SHARD = new CloakedItem(resourcesItemSettings, new Identifier(SpectrumCommon.MOD_ID, "lategame/build_complex_pedestal_structure"), Items.LIGHT_GRAY_DYE);
 	
 	private static final Identifier GEMSTONE_POWDER_CLOAK_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "place_pedestal");

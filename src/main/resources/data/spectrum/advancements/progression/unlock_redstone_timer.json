@@ -1,0 +1,12 @@
+{
+  "criteria": {
+    "crafted_using_pedestal": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:craft_using_pedestal" }
+    },
+    "has_shard": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:hidden/collect_shards/collect_amethyst_shard" }
+    }
+  }
+}

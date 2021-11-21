@@ -85,7 +85,7 @@ public class SpectrumConfiguredFeatures extends ConfiguredFeatures {
 		AZURITE_ORE_TARGETS = ImmutableList.of(OreFeatureConfig.createTarget(OreFeatureConfig.Rules.STONE_ORE_REPLACEABLES, azuriteOre), OreFeatureConfig.createTarget(OreFeatureConfig.Rules.DEEPSLATE_ORE_REPLACEABLES, deepslateAzuriteOre));
 
 		SPARKLESTONE_ORE = registerConfiguredFeature(sparklestoneOreIdentifier,
-				Feature.ORE.configure(new OreFeatureConfig(SPARKLESTONE_ORE_TARGETS, 17)) // vein size
+				Feature.ORE.configure(new OreFeatureConfig(SPARKLESTONE_ORE_TARGETS, 14)) // vein size
 						.uniformRange(YOffset.aboveBottom(8), YOffset.aboveBottom(48)) // min and max height
 						.spreadHorizontally()
 						.repeat(4)); // number of veins per chunk

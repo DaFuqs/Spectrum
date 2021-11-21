@@ -14,6 +14,7 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier2/redstone_wireless",
       "text": "Click to toggle between sending and receiving. You can change the frequency of transmissions by using dye or pigment, so signals do not overlap. Range of 16 Blocks."
     }

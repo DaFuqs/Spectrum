@@ -88,7 +88,7 @@ public class SpectrumConfiguredFeatures extends ConfiguredFeatures {
 				Feature.ORE.configure(new OreFeatureConfig(SPARKLESTONE_ORE_TARGETS, 14)) // vein size
 						.uniformRange(YOffset.aboveBottom(8), YOffset.aboveBottom(48)) // min and max height
 						.spreadHorizontally()
-						.repeat(4)); // number of veins per chunk
+						.repeat(3)); // number of veins per chunk
 
 		AZURITE_ORE = registerConfiguredFeature(azuriteOreIdentifier,
 				Feature.ORE.configure(new OreFeatureConfig(AZURITE_ORE_TARGETS, 5)) // vein size

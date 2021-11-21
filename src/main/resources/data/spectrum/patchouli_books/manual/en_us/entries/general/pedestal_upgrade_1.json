@@ -13,6 +13,11 @@
       "text": "Upgrade your $(l:general/pedestal)Pigment Pedestal$() by using all the shards you collected on your journey."
     },
     {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier1/pedestal_all_basic",
+      "text": "To make use of the $(l:general/pedestal)Pigment Pedestals$() advanced abilities you will need a structure to focus gemstone energy into it.$(br2)You call it the Spectrum Focus."
+    },
+    {
       "type": "patchouli:multiblock",
       "name": "Spectrum Focus",
       "multiblock_id": "spectrum:pedestal_simple_structure",

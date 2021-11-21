@@ -14,6 +14,7 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier1/block_placer",
       "text": "It does the thing!"
     }

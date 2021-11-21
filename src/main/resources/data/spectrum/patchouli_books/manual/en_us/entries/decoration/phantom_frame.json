@@ -16,7 +16,7 @@
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier1/invisible_item_frame",
-      "text": "The Invisible ITem Frame becomes invisible as soon as you display an item in it."
+      "text": "The Phantom Frame becomes invisible as soon as you display an item in it."
     },
     {
       "type": "spectrum:pedestal_crafting",

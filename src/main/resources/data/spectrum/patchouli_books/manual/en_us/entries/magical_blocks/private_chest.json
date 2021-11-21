@@ -16,7 +16,12 @@
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier1/private_chest",
-      "text": "The Heartbound Chest provides the same space as two normal chests.$(br2)Similar to a Trapped Chest it also outputs a redstone signal. If you as the owner open it, the signal strength will be full, if a stranger wants to tamper with your belongings then only half."
+      "text": "The Heartbound Chest provides the same space as two normal chests."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Redstone Component",
+      "text": "Similar to a Trapped Chest it also outputs a redstone signal. If you as the owner open it, the signal strength will be full, if a stranger wants to tamper with your belongings then only half."
     }
   ]
 }

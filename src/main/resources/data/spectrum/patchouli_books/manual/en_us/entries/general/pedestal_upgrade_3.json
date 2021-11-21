@@ -9,6 +9,7 @@
   "pages": [
     {
       "type": "spectrum:pedestal_crafting",
+      "title": "Moonstone Variant",
       "recipe": "spectrum:pedestal/tier3/pedestal_moonstone",
       "text": "Upgrade your $(l:general/pedestal)Pigment Pedestal$() by using one of your gathered $(l:general/shards)Moonstone Shards$()"
     },

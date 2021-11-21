@@ -38,6 +38,7 @@ public class SpectrumItems {
 	public static FabricItemSettings generalItemSettingsSingle = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).maxCount(1);
 	public static FabricItemSettings generalUncommonItemSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).maxCount(64).rarity(Rarity.UNCOMMON);
 	public static FabricItemSettings generalUncommonItemSettingsSingle = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.UNCOMMON).maxCount(1);
+	public static FabricItemSettings generalUncommonItemSettingsSixteen = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.UNCOMMON).maxCount(16);
 	public static FabricItemSettings generalRareItemSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.RARE).maxCount(64);
 	public static FabricItemSettings generalRareItemSettingsSingle = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.RARE).maxCount(1);
 	public static FabricItemSettings decayPlacerItemSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).maxCount(16);
@@ -170,7 +171,7 @@ public class SpectrumItems {
 	public static final Item PLACEMENT_STAFF = new PlacementStaffItem(generalUncommonItemSettingsSingle);
 	public static final Item EXCHANGE_STAFF = new ExchangeStaffItem(generalUncommonItemSettingsSingle);
 	public static final Item BLOCK_FLOODER = new BlockFlooderItem(generalUncommonItemSettings);
-	public static final EnderSpliceItem ENDER_SPLICE = new EnderSpliceItem(generalUncommonItemSettings);
+	public static final EnderSpliceItem ENDER_SPLICE = new EnderSpliceItem(generalUncommonItemSettingsSixteen);
 	public static final Item END_PORTAL_CRACKER = new EndPortalCrackerItem(generalRareItemSettings);
 
 	// Catkin

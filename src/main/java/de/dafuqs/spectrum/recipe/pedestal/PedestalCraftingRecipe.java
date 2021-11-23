@@ -53,11 +53,10 @@ public class PedestalCraftingRecipe implements Recipe<Inventory> {
 	protected final boolean noBenefitsFromYieldUpgrades;
 
 	protected final List<Identifier> requiredAdvancementIdentifiers;
-	protected final boolean excludeRequirementsInDebugCommand;
 
 	public PedestalCraftingRecipe(Identifier id, String group, PedestalRecipeTier tier, int width, int height,
 	                              DefaultedList<Ingredient> craftingInputs, HashMap<GemstoneColor, Integer> gemstoneDustInputs, ItemStack output,
-	                              float experience, int craftingTime, boolean noBenefitsFromYieldUpgrades, List<Identifier> requiredAdvancementIdentifiers, boolean excludeRequirementsInDebugCommand) {
+	                              float experience, int craftingTime, boolean noBenefitsFromYieldUpgrades, List<Identifier> requiredAdvancementIdentifiers) {
 		this.id = id;
 		this.group = group;
 		this.tier = tier;
@@ -73,7 +72,6 @@ public class PedestalCraftingRecipe implements Recipe<Inventory> {
 		this.noBenefitsFromYieldUpgrades = noBenefitsFromYieldUpgrades;
 
 		this.requiredAdvancementIdentifiers = requiredAdvancementIdentifiers;
-		this.excludeRequirementsInDebugCommand = excludeRequirementsInDebugCommand;
 
 		if(SpectrumClient.minecraftClient != null) {
 			registerInClientToastManager();
@@ -306,10 +304,6 @@ public class PedestalCraftingRecipe implements Recipe<Inventory> {
 		return requiredAdvancementIdentifiers;
 	}
 	
-	public boolean isExcludeRequirementsInDebugCommand() {
-		return this.excludeRequirementsInDebugCommand;
-	}
-
 	public String getGroup() {
 		return this.group;
 	}

@@ -46,10 +46,6 @@ public class PedestalCraftingRecipeSerializer<T extends PedestalCraftingRecipe> 
 		float experience = JsonHelper.getFloat(jsonObject, "experience", 0);
 		int craftingTime = JsonHelper.getInt(jsonObject, "time", 200);
 		
-		boolean excludeRequirementsInDebugCommand = false;
-		if(JsonHelper.hasPrimitive(jsonObject, "exclude_ingredient_warnings_in_debug_command")) {
-			excludeRequirementsInDebugCommand = JsonHelper.getBoolean(jsonObject, "exclude_ingredient_warnings_in_debug_command", false);
-		}
 		boolean noBenefitsFromYieldUpgrades = false;
 		if(JsonHelper.hasPrimitive(jsonObject, "disable_yield_upgrades")) {
 			noBenefitsFromYieldUpgrades = JsonHelper.getBoolean(jsonObject, "disable_yield_upgrades", false);
@@ -93,7 +89,7 @@ public class PedestalCraftingRecipeSerializer<T extends PedestalCraftingRecipe> 
 		}
 
 
-		return this.recipeFactory.create(identifier, group, tier, width, height, craftingInputs, gemInputs, output, experience, craftingTime, noBenefitsFromYieldUpgrades, requiredAdvancementIdentifiers, excludeRequirementsInDebugCommand);
+		return this.recipeFactory.create(identifier, group, tier, width, height, craftingInputs, gemInputs, output, experience, craftingTime, noBenefitsFromYieldUpgrades, requiredAdvancementIdentifiers);
 	}
 
 	@Override
@@ -118,7 +114,6 @@ public class PedestalCraftingRecipeSerializer<T extends PedestalCraftingRecipe> 
 
 		float experience = packetByteBuf.readFloat();
 		int craftingTime = packetByteBuf.readInt();
-		boolean excludeRequirementsInDebugCommand = packetByteBuf.readBoolean();
 		boolean noBenefitsFromYieldUpgrades = packetByteBuf.readBoolean();
 
 		int requiredAdvancementAmount = packetByteBuf.readInt();
@@ -134,7 +129,7 @@ public class PedestalCraftingRecipeSerializer<T extends PedestalCraftingRecipe> 
 		if(black   > 0) { gemInputs.put(GemstoneColor.BLACK, black); }
 		if(white   > 0) { gemInputs.put(GemstoneColor.WHITE, white); }
 
-		return this.recipeFactory.create(identifier, group, tier, width, height, craftingInputs, gemInputs, output, experience, craftingTime, noBenefitsFromYieldUpgrades, requiredAdvancementIdentifiers, excludeRequirementsInDebugCommand);
+		return this.recipeFactory.create(identifier, group, tier, width, height, craftingInputs, gemInputs, output, experience, craftingTime, noBenefitsFromYieldUpgrades, requiredAdvancementIdentifiers);
 	}
 
 	@Override
@@ -158,7 +153,6 @@ public class PedestalCraftingRecipeSerializer<T extends PedestalCraftingRecipe> 
 
 		packetByteBuf.writeFloat(pedestalRecipe.experience);
 		packetByteBuf.writeInt(pedestalRecipe.craftingTime);
-		packetByteBuf.writeBoolean(pedestalRecipe.excludeRequirementsInDebugCommand);
 		packetByteBuf.writeBoolean(pedestalRecipe.noBenefitsFromYieldUpgrades);
 
 		packetByteBuf.writeInt(pedestalRecipe.requiredAdvancementIdentifiers.size());
@@ -170,7 +164,7 @@ public class PedestalCraftingRecipeSerializer<T extends PedestalCraftingRecipe> 
 	public interface RecipeFactory<T extends PedestalCraftingRecipe> {
 		T create(Identifier id, String group, PedestalRecipeTier tier, int width, int height,
 		         DefaultedList<Ingredient> craftingInputs, HashMap<GemstoneColor, Integer> gemInputs,
-		         ItemStack output, float experience, int craftingTime, boolean noBenefitsFromYieldUpgrades, List<Identifier> requiredAdvancementIdentifiers, boolean excludeRequirementsInDebugCommand);
+		         ItemStack output, float experience, int craftingTime, boolean noBenefitsFromYieldUpgrades, List<Identifier> requiredAdvancementIdentifiers);
 	}
 
 }

@@ -2,7 +2,7 @@
   "type": "spectrum:pedestal",
   "group": "moonstone_runes",
   "time": 80,
-  "tier": "simple",
+  "tier": "complex",
   "magenta": 0,
   "yellow": 0,
   "cyan": 0,
@@ -26,6 +26,5 @@
     "item": "spectrum:moonstone_chiseled_basalt",
     "count": 1
   },
-  "required_advancements": ["spectrum:midgame/collect_moonstone_shard"],
-  "exclude_ingredient_warnings_in_debug_command": true
+  "required_advancements": ["spectrum:midgame/collect_moonstone_shard"]
 }

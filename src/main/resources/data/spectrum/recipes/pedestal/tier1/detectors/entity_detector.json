@@ -1,7 +1,7 @@
 {
   "type": "spectrum:pedestal",
   "time": 80,
-  "tier": "basic",
+  "tier": "complex",
   "cyan": 0,
   "magenta": 0,
   "yellow": 0,
@@ -31,6 +31,5 @@
     "item": "spectrum:entity_detector",
     "count": 1
   },
-  "required_advancements": [ "spectrum:progression/detectors/unlock_entity_detector" ],
-  "exclude_ingredient_warnings_in_debug_command": true
+  "required_advancements": [ "spectrum:progression/detectors/unlock_entity_detector" ]
 }

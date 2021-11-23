@@ -18,7 +18,7 @@
       "name": "Spectrum Palace",
       "multiblock_id": "spectrum:pedestal_complex_structure_display",
       "enable_visualize": true,
-      "text": "You can switch the basalt blocks with calcite, as you like it. You can also switch amethyst blocks for any other gemstone."
+      "text": "You can switch the basalt blocks with calcite and also the amethyst blocks for any other gemstone block."
     },
     {
       "type": "patchouli:image",

@@ -2,7 +2,7 @@
   "type": "spectrum:pedestal",
   "group": "onyx_runes",
   "time": 80,
-  "tier": "simple",
+  "tier": "advanced",
   "magenta": 0,
   "yellow": 0,
   "cyan": 0,
@@ -26,6 +26,5 @@
     "item": "spectrum:onyx_chiseled_calcite",
     "count": 4
   },
-  "required_advancements": ["spectrum:create_onyx_shard"],
-  "exclude_ingredient_warnings_in_debug_command": true
+  "required_advancements": ["spectrum:create_onyx_shard"]
 }

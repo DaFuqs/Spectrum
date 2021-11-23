@@ -11,14 +11,14 @@
       "type": "spectrum:pedestal_crafting",
       "title": "Onyx Variant",
       "recipe": "spectrum:pedestal/tier2/pedestal_onyx",
-      "text": "Upgrade your $(l:general/pedestal)Pigment Pedestal$() by using one of your gathered $(l:general/shards)Onyx Shards$()"
+      "text": "Upgrade your $(l:general/pedestal)Pigment Pedestal$() by using one of your gathered $(l:general/shards)Onyx Shards$() to further increase its magical powers."
     },
     {
       "type": "patchouli:multiblock",
       "name": "Spectrum Temple",
       "multiblock_id": "spectrum:pedestal_advanced_structure_display",
       "enable_visualize": true,
-      "text": "You can switch the basalt blocks with calcite, as you like it. You can also switch amethyst blocks for any other gemstone."
+      "text": "You can switch the basalt blocks with calcite and also the amethyst blocks for any other gemstone block."
     },
     {
       "type": "patchouli:image",

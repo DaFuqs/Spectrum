@@ -61,18 +61,16 @@ public class ProgressionSanityCommand {
 			   While the player does not have access to that yet it is no problem at all
 			   To exclude those recipes in these warnings there is a boolean flag in the recipe jsons
 			 */
-			if(!pedestalRecipe.isExcludeRequirementsInDebugCommand()) {
-				if (pedestalRecipe.getTier() == PedestalRecipeTier.BASIC || pedestalRecipe.getTier() == PedestalRecipeTier.SIMPLE) {
-					if (pedestalRecipe.getGemstonePowderInputs().get(GemstoneColor.BLACK) > 0) {
-						SpectrumCommon.log(Level.WARN, "[SANITY: Pedestal Recipe Ingredients] Pedestal recipe '" + pedestalRecipe.getId() + "' of tier '" + pedestalRecipe.getTier() + "' is using onyx powder as input! Players will not have access to Onyx at that tier");
-					}
-					if (pedestalRecipe.getGemstonePowderInputs().get(GemstoneColor.WHITE) > 0) {
-						SpectrumCommon.log(Level.WARN, "[SANITY: Pedestal Recipe Ingredients] Pedestal recipe '" + pedestalRecipe.getId() + "' of tier '" + pedestalRecipe.getTier() + "' is using moonstone powder as input! Players will not have access to Moonstone at that tier");
-					}
-				} else if (pedestalRecipe.getTier() == PedestalRecipeTier.ADVANCED) {
-					if (pedestalRecipe.getGemstonePowderInputs().get(GemstoneColor.WHITE) > 0) {
-						SpectrumCommon.log(Level.WARN, "[SANITY: Pedestal Recipe Ingredients] Pedestal recipe '" + pedestalRecipe.getId() + "' of tier '" + pedestalRecipe.getTier() + "' is using moonstone powder as input! Players will not have access to Moonstone at that tier");
-					}
+			if (pedestalRecipe.getTier() == PedestalRecipeTier.BASIC || pedestalRecipe.getTier() == PedestalRecipeTier.SIMPLE) {
+				if (pedestalRecipe.getGemstonePowderInputs().get(GemstoneColor.BLACK) > 0) {
+					SpectrumCommon.log(Level.WARN, "[SANITY: Pedestal Recipe Ingredients] Pedestal recipe '" + pedestalRecipe.getId() + "' of tier '" + pedestalRecipe.getTier() + "' is using onyx powder as input! Players will not have access to Onyx at that tier");
+				}
+				if (pedestalRecipe.getGemstonePowderInputs().get(GemstoneColor.WHITE) > 0) {
+					SpectrumCommon.log(Level.WARN, "[SANITY: Pedestal Recipe Ingredients] Pedestal recipe '" + pedestalRecipe.getId() + "' of tier '" + pedestalRecipe.getTier() + "' is using moonstone powder as input! Players will not have access to Moonstone at that tier");
+				}
+			} else if (pedestalRecipe.getTier() == PedestalRecipeTier.ADVANCED) {
+				if (pedestalRecipe.getGemstonePowderInputs().get(GemstoneColor.WHITE) > 0) {
+					SpectrumCommon.log(Level.WARN, "[SANITY: Pedestal Recipe Ingredients] Pedestal recipe '" + pedestalRecipe.getId() + "' of tier '" + pedestalRecipe.getTier() + "' is using moonstone powder as input! Players will not have access to Moonstone at that tier");
 				}
 			}
 			for(Map.Entry<GemstoneColor, Integer> gemstoneDustInput : pedestalRecipe.getGemstonePowderInputs().entrySet()) {

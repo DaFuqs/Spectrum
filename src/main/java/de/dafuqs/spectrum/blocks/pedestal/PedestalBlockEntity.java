@@ -62,6 +62,7 @@ import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import vazkii.patchouli.api.IMultiblock;
+import vazkii.patchouli.api.PatchouliAPI;
 
 import java.util.*;
 
@@ -848,6 +849,9 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 				if (valid) {
 					highestAvailableRecipeTier = PedestalRecipeTier.COMPLEX;
 					SpectrumAdvancementCriteria.COMPLETED_MULTIBLOCK.trigger((ServerPlayerEntity) this.getPlayerEntityIfOnline(world), multiblock);
+					if(PatchouliAPI.get().getCurrentMultiblock().getID().equals(SpectrumMultiblocks.PEDESTAL_COMPLEX_STRUCTURE_IDENTIFIER_DISPLAY)) {
+						PatchouliAPI.get().clearMultiblock();
+					}
 					found = true;
 				}
 			}
@@ -856,6 +860,9 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 				boolean valid = multiblock.validate(world, pos.down(), BlockRotation.NONE);				if (valid) {
 					highestAvailableRecipeTier = PedestalRecipeTier.ADVANCED;
 					SpectrumAdvancementCriteria.COMPLETED_MULTIBLOCK.trigger((ServerPlayerEntity) this.getPlayerEntityIfOnline(world), multiblock);
+					if(PatchouliAPI.get().getCurrentMultiblock().getID().equals(SpectrumMultiblocks.PEDESTAL_ADVANCED_STRUCTURE_IDENTIFIER_DISPLAY)) {
+						PatchouliAPI.get().clearMultiblock();
+					}
 					found = true;
 				}
 			}

@@ -1,0 +1,23 @@
+{
+  "display": {
+    "icon": {
+      "item": "spectrum:fusion_shrine"
+    },
+    "title": {
+      "translate": "advancements.spectrum.build_fusion_shrine.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.build_fusion_shrine.description"
+    }
+  },
+  "parent": "spectrum:collect_all_basic_pigments_besides_brown",
+  "criteria": {
+    "built_structure": {
+      "trigger": "spectrum:completed_multiblock",
+      "conditions": { "multiblock_identifier": "spectrum:fusion_shrine_structure" }
+    }
+  },
+  "rewards": {
+    "experience": 50
+  }
+}

@@ -10,7 +10,7 @@
       "translate": "advancements.spectrum.dark_light_staff.description"
     }
   },
-  "parent": "spectrum:collect_sparklestone",
+  "parent": "spectrum:build_basic_pedestal_structure",
   "criteria": {
     "toggled_light": {
       "trigger": "minecraft:item_used_on_block",

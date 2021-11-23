@@ -29,7 +29,7 @@
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier1/colored_lamps/cyan_lamp",
-      "text": "They come in all colors and  are surrounded by a vibrant light, when activated. Besides, colored lamps function similar to their boring redstone counterpart."
+      "text": "They are surrounded by a vibrant light, when activated. Besides that, colored lamps function similar to their boring redstone counterpart."
     }
   ]
 }

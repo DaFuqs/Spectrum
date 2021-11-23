@@ -16,7 +16,7 @@
       "text": "$(italic)As soon as you held the first gemstone in your hands, you noticed that shard reacting to even the smallest change in it's environment.$(br)Properly crafted, you can take advantage of these properties to measure these changes and connect them to your primitive-looking dust lines."
     },
     {
-      "type": "patchouli:empty",
+      "type": "patchouli:text",
       "text": "You fine-tuned every type of detector to react a specific use-case you had in mind. $(br2)All detectors can be inverted."
     },
     {

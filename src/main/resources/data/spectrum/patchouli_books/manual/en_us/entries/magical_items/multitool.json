@@ -1,6 +1,6 @@
 {
   "name": "Multitool",
-  "advancement": "spectrum:collect_all_basic_shards",
+  "advancement": "spectrum:build_basic_pedestal_structure",
   "icon": "spectrum:multitool",
   "category": "spectrum:magical_items_category",
   "extra_recipe_mappings": {
@@ -10,13 +10,13 @@
     {
       "type": "patchouli:spotlight",
       "item": "spectrum:multitool",
-      "text": "$(italic)Whenever you leave your home, you carry half a tool shed with you. Not really worth mentioning, given the amount of stone you carry around with you. Nevertheless, a universal tool that combines the abilities of a pickaxe, axe and shovel would suit you.$()$(br)It's not as efficient in the individual tasks, but it's much better than having to change tools every three seconds."
+      "text": "$(italic)Whenever you leave your home, you carry half a tool shed with you. Not really worth mentioning, given the amount of stone you carry around with you. Nevertheless, a universal tool that combines the abilities of a pickaxe, axe and shovel would suit you.$()$(br)"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier1/tools/multitool",
-      "text": "The multitool serves as a pickaxe, shovel, axe and hoe at the same time. However, due to its special shape, it can not be formed from diamond, but only from iron."
+      "recipe": "spectrum:pedestal/tier2/multitool",
+      "text": "It's not as efficient in the individual tasks, but it's much better than having to change tools every three seconds."
     }
   ]
 }

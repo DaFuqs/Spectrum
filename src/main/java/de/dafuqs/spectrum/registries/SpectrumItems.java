@@ -71,7 +71,7 @@ public class SpectrumItems {
 	// Gem shards
 	public static final Item TOPAZ_SHARD = new Item(resourcesItemSettings);
 	public static final Item CITRINE_SHARD = new Item(resourcesItemSettings);
-	public static final Item ONYX_SHARD = new CloakedItem(resourcesItemSettings, new Identifier(SpectrumCommon.MOD_ID, "create_onyx_shard"), Items.BLACK_DYE);
+	public static final Item ONYX_SHARD = new CloakedItem(resourcesItemSettings, new Identifier(SpectrumCommon.MOD_ID, "collect_all_basic_pigments_besides_brown"), Items.BLACK_DYE);
 	public static final Item MOONSTONE_SHARD = new CloakedItem(resourcesItemSettings, new Identifier(SpectrumCommon.MOD_ID, "midgame/break_decayed_bedrock"), Items.WHITE_DYE);
 	public static final Item SPECTRAL_SHARD = new CloakedItem(resourcesItemSettings, new Identifier(SpectrumCommon.MOD_ID, "lategame/build_complex_pedestal_structure"), Items.LIGHT_GRAY_DYE);
 	
@@ -136,7 +136,7 @@ public class SpectrumItems {
 	public static final Item GLOW_VISION_HELMET = new GlowVisionHelmet(SpectrumArmorMaterials.GLOW_VISION, EquipmentSlot.HEAD, spectrumLowNightVisionArmorItemSettings);
 	
 	// Decay drops
-	public static final Item VEGETAL = new CloakedItem(resourcesItemSettings, new Identifier(SpectrumCommon.MOD_ID, "craft_colored_sapling"), Items.GUNPOWDER);
+	public static final Item VEGETAL = new CloakedItem(resourcesItemSettings, new Identifier(SpectrumCommon.MOD_ID, "craft_bottle_of_fading"), Items.GUNPOWDER);
 	public static final Item CORRUPTED_OBSIDIAN_DUST = new CloakedItem(resourcesUncommonItemSettings, new Identifier(SpectrumCommon.MOD_ID, "midgame/craft_bottle_of_failing"), Items.GUNPOWDER);
 	public static final Item BEDROCK_DUST = new CloakedItem(resourcesRareItemSettings, new Identifier(SpectrumCommon.MOD_ID, "midgame/break_decayed_bedrock"), Items.GUNPOWDER);
 

@@ -11,7 +11,7 @@
       "translate": "advancements.spectrum.create_onyx_shard.description"
     }
   },
-  "parent": "spectrum:collect_all_basic_pigments_besides_brown",
+  "parent": "spectrum:build_fusion_shrine",
   "criteria": {
     "created_onyx": {
       "trigger":"spectrum:crafted_with_fusion_shrine",

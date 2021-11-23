@@ -9,15 +9,20 @@
   },
   "pages": [
     {
-      "type": "patchouli:spotlight",
-      "item": "spectrum:lava_sponge",
-      "text": "$(italic)When you held a wet sponge in your hands, able to soak up water you thought that there must be a counterpart for lava. Even though you haven't stumbled across one yet, that hasn't stopped you from inventing one, of course. This should make navigation in the depths of the earth and beyond the portal to hell much easier..."
+      "type": "patchouli:text",
+      "title": "Lava Sponge",
+      "text": "$(italic)When you held a wet sponge in your hands, able to soak up water you thought that there must be a counterpart for lava. Even though you haven't stumbled across one yet, that hasn't stopped you from inventing one, of course. This should make navigation in the depths of the world and beyond that hellish portal much easier..."
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier1/lava_sponge",
-      "text": "... or so you thought, until you realized that the lava-soaked sponge also has an unfortunate side effect. You should have guessed.$(br)The Lava Sponge can be used as highly efficient fuel in the furnace, drying it."
+      "text": "... or so you thought, until you realized that the lava-soaked sponge also has an $(italic)unfortunate$() side effect.$(br)You should have guessed."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Furnace Fuel",
+      "text": "The Lava Sponge can be used as highly efficient fuel in the furnace, drying it in the process"
     }
   ]
 }

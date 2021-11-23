@@ -108,7 +108,7 @@ public class SpectrumBlocks {
 	public static final Block PEDESTAL_ONYX = new PedestalBlock(FabricBlockSettings.of(Material.STONE).strength(5.0F, 20.0F), PedestalBlock.PedestalVariant.ONYX);
 	public static final Block PEDESTAL_MOONSTONE = new PedestalBlock(FabricBlockSettings.of(Material.STONE).strength(5.0F, 20.0F), PedestalBlock.PedestalVariant.MOONSTONE);
 
-	public static final Block FUSION_SHRINE = new FusionShrineBlock(FabricBlockSettings.of(Material.STONE).strength(5.0F, 20.0F).nonOpaque().luminance(value -> value.get(FusionShrineBlock.LIGHT_LEVEL)));
+	public static final Block FUSION_SHRINE = new FusionShrineBlock(FabricBlockSettings.of(Material.STONE).strength(5.0F, 20.0F).requiresTool().nonOpaque().luminance(value -> value.get(FusionShrineBlock.LIGHT_LEVEL)));
 	public static final Block ENCHANTER = new EnchanterBlock(FabricBlockSettings.of(Material.STONE).strength(5.0F, 20.0F).nonOpaque());
 
 	// GEMS

@@ -2,7 +2,7 @@
   "name": "Experiment #3",
   "icon": "spectrum:bottle_of_ruin",
   "advancement": "spectrum:progression/unlock_bottle_of_ruin",
-  "category": "spectrum:decay_category",
+  "category": "spectrum:creating_life_category",
   "extra_recipe_mappings": {
     "spectrum:bottle_of_ruin": 1,
     "spectrum:bedrock_dust": 2

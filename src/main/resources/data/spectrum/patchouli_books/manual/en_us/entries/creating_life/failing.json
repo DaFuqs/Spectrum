@@ -2,7 +2,7 @@
   "name": "Experiment #2",
   "icon": "spectrum:bottle_of_failing",
   "advancement": "spectrum:progression/unlock_bottle_of_failing",
-  "category": "spectrum:decay_category",
+  "category": "spectrum:creating_life_category",
   "extra_recipe_mappings": {
     "spectrum:bottle_of_failing": 1,
     "spectrum:corrupted_obsidian_dust": 1

@@ -2,7 +2,7 @@
   "name": "Decay Away",
   "icon": "spectrum:bottle_of_decay_away",
   "advancement": "spectrum:progression/unlock_bottle_of_decay_away",
-  "category": "spectrum:decay_category",
+  "category": "spectrum:creating_life_category",
   "extra_recipe_mappings": {
     "spectrum:bottle_of_decay_away": 1
   },

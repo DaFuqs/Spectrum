@@ -1,7 +1,7 @@
 {
   "name": "Mob Heads",
   "icon": "minecraft:wither_skeleton_skull",
-  "category": "spectrum:hunting_category",
+  "category": "spectrum:creating_life_category",
   "extra_recipe_mappings": {
     "spectrum:axolotl_blue_head": 0,
     "spectrum:axolotl_brown_head": 0,

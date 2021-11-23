@@ -89,25 +89,25 @@ public class FusionShrineBlock extends BlockWithEntity {
 					}
 				}
 			} else {
-				if(verifyStructure(world, pos, (ServerPlayerEntity) player)) {
-					FusionShrineBlockEntity fusionShrineBlockEntity = ((FusionShrineBlockEntity) world.getBlockEntity(pos));
-					fusionShrineBlockEntity.setOwner(player);
-
-					// if the structure is valid the player can put / retrieve blocks into the shrine
-					if(player.isSneaking()) {
+				// if the structure is valid the player can put / retrieve blocks into the shrine
+				BlockEntity blockEntity = world.getBlockEntity(pos);
+				if(blockEntity instanceof FusionShrineBlockEntity fusionShrineBlockEntity) {
+					if (player.isSneaking()) {
 						ItemStack retrievedStack = ItemStack.EMPTY;
 						Inventory inventory = fusionShrineBlockEntity.getInventory();
-						for(int i = 0; i < inventory.size(); i++) {
+						for (int i = inventory.size() - 1; i >= 0; i--) {
 							retrievedStack = inventory.removeStack(i);
-							if(!retrievedStack.isEmpty()) {
+							if (!retrievedStack.isEmpty()) {
 								break;
 							}
 						}
-						if(!retrievedStack.isEmpty()) {
+						if (!retrievedStack.isEmpty()) {
 							player.giveItemStack(retrievedStack);
 							fusionShrineBlockEntity.updateInClientWorld();
 						}
-					} else {
+					} else if (verifyStructure(world, pos, (ServerPlayerEntity) player)) {
+						fusionShrineBlockEntity.setOwner(player);
+						
 						ItemStack remainingStack = InventoryHelper.addToInventory(itemStack, fusionShrineBlockEntity.getInventory(), null);
 						player.setStackInHand(hand, remainingStack);
 						fusionShrineBlockEntity.updateInClientWorld();
@@ -157,6 +157,12 @@ public class FusionShrineBlock extends BlockWithEntity {
 	public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
 		if(!newState.getBlock().equals(this)) { // happens when filling with fluid
 			scatterContents(world, pos);
+			IMultiblock currentMultiBlock = PatchouliAPI.get().getCurrentMultiblock();
+			if(currentMultiBlock != null) {
+				if (currentMultiBlock.getID().equals(SpectrumMultiblocks.FUSION_SHRINE_IDENTIFIER)) {
+					PatchouliAPI.get().clearMultiblock();
+				}
+			}
 		}
 		super.onStateReplaced(state, world, pos, newState, moved);
 	}

@@ -3,12 +3,12 @@
   "icon": "minecraft:amethyst_shard",
   "category": "spectrum:general_category",
   "extra_recipe_mappings": {
-    "spectrum:topaz_shard": 0,
-    "minecraft:amethyst_shard": 0,
-    "spectrum:citrine_shard": 0,
-    "spectrum:onyx_shard": 0,
-    "spectrum:moonstone_shard": 0,
-    "spectrum:spectral_shard": 0
+    "spectrum:topaz_shard": 1,
+    "minecraft:amethyst_shard": 2,
+    "spectrum:citrine_shard": 3,
+    "spectrum:onyx_shard": 4,
+    "spectrum:moonstone_shard": 5,
+    "spectrum:spectral_shard": 6
   },
   "pages": [
     {
@@ -52,10 +52,10 @@
     },
     {
       "type": "patchouli:spotlight",
-      "advancement": "spectrum:hidden/collect_shards/spectral_shard",
-      "title": "Ammolite",
+      "advancement": "spectrum:lategame/create_spectral_shard",
+      "title": "Spectral",
       "item": "spectrum:spectral_shard",
-      "text": "Ammolite shards shine in all colors of the rainbow."
+      "text": "Spectral Shards shine in all colors of the rainbow."
     }
   ]
 }

@@ -37,7 +37,7 @@
         {
             "type": "patchouli:crafting",
             "advancement": "spectrum:collect_sparklestone",
-            "recipe": "spectrum:crafting_table/gem_storage_blocks/sparklestone_block",
+            "recipe": "spectrum:crafting_table/storage_blocks/sparklestone_block",
             "text": "A full block of sparklestone emits shiny bright yellow glowing particles."
         },
         {

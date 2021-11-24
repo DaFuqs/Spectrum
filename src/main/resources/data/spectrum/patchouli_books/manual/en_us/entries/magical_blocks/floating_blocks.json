@@ -12,14 +12,14 @@
       "type": "patchouli:spotlight",
       "advancement": "spectrum:midgame/collect_scarlet",
       "item": "spectrum:scarlet_fragment_block",
-      "text": "Scarlet - as you may have already noticed - is an exceptionally heavy material. And also difficult to shape. Even the blazing heat of the Nether could not harm the material.$(br)However, shaping it over your pedestal should not be a problem whatsoever."
+      "text": "Scarlet - as you may have already noticed - is an exceptionally heavy material. And also difficult to shape. Even the blazing heat of the Nether could not harm the material.$(br)However, shaping it via your pedestal should not be a problem whatsoever."
     },
     {
       "type": "spectrum:pedestal_crafting",
       "advancement": "spectrum:midgame/collect_scarlet",
       "title": "Pedestal Recipe",
-      "item": "spectrum:scarlet_fragment_block",
-      "text": "$(b)Heavy Metal"
+      "recipe": "spectrum:pedestal/tier1/scarlet_fragment_block",
+      "text": "$(italic)Heavy Metal"
     },
     {
       "type": "patchouli:spotlight",
@@ -31,8 +31,8 @@
       "type": "spectrum:pedestal_crafting",
       "advancement": "spectrum:lategame/collect_paletur",
       "title": "Pedestal Recipe",
-      "item": "spectrum:paletur_fragment_block",
-      "text": "$(b)Fly far away"
+      "recipe": "spectrum:pedestal/tier1/paletur_fragment_block",
+      "text": "$(italic)Fly far away"
     }
   ]
 }

@@ -11,6 +11,7 @@ public class SpectrumAdvancementCriteria {
 	public static FusionShrineCraftingCriterion FUSION_SHRINE_CRAFTING;
 	public static CompletedMultiblockCriterion COMPLETED_MULTIBLOCK;
 	public static BlockBrokenCriterion BLOCK_BROKEN;
+	public static TreasureHunterDropCriterion TREASURE_HUNTER_DROP;
 
 	public static void register() {
 		ADVANCEMENT_GOTTEN = CriteriaAccessor.callRegister(new HasAdvancementCriterion());
@@ -19,6 +20,7 @@ public class SpectrumAdvancementCriteria {
 		FUSION_SHRINE_CRAFTING = CriteriaAccessor.callRegister(new FusionShrineCraftingCriterion());
 		COMPLETED_MULTIBLOCK = CriteriaAccessor.callRegister(new CompletedMultiblockCriterion());
 		BLOCK_BROKEN = CriteriaAccessor.callRegister(new BlockBrokenCriterion());
+		TREASURE_HUNTER_DROP = CriteriaAccessor.callRegister(new TreasureHunterDropCriterion());
 	}
 
 }

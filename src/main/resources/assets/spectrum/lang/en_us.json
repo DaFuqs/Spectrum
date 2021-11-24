@@ -69,6 +69,7 @@
   "spectrum.recipe.fusion_shrine.explanation.ominous_sapling":  "Requires daytime",
   "spectrum.recipe.fusion_shrine.explanation.scarlet_gem":  "Requires a thunderstorm",
   "spectrum.recipe.fusion_shrine.explanation.paletur_gem":  "Requires a thunderstorm",
+  "spectrum.recipe.fusion_shrine.explanation.spectral_shard": "Watch out for a powerful display",
 
   "spectrum.tooltip.wither_immune": "§7Witherproof",
 
@@ -977,8 +978,6 @@
   "advancements.spectrum.collect_lightning_stone.description": "Discover the source of Lightning Stones",
   "advancements.spectrum.collect_mermaids_gem.title": "What grows deep under the sea?",
   "advancements.spectrum.collect_mermaids_gem.description": "Collect a Mermaids Gem",
-  "advancements.spectrum.collect_mob_head.title": "My Precious",
-  "advancements.spectrum.collect_mob_head.description": "Kill an enemy with a Treasure Hunter enchanted weapon and collect it's head",
   "advancements.spectrum.collect_moonstone_shard.title": "The brightest of Whites",
   "advancements.spectrum.collect_moonstone_shard.description": "Discover a Moonstone Geode",
   "advancements.spectrum.collect_paletur.title": "Watch it fly by",
@@ -1067,7 +1066,14 @@
   "advancements.spectrum.wear_complete_bedrock_armor.description": "Wear a full suit of Bedrock Armor",
   "advancements.spectrum.build_fusion_shrine.title": "Powerful Display",
   "advancements.spectrum.build_fusion_shrine.description": "Construct the Fusion Shrine",
-
+  "advancements.spectrum.build_enchanting_structure.title": "Next Level Enchanting",
+  "advancements.spectrum.build_enchanting_structure.description": "Construct the Enchanter structure",
+  "advancements.spectrum.collect_mob_head_using_treasure_hunter.title": "Losing its mind",
+  "advancements.spectrum.collect_mob_head_using_treasure_hunter.description": "Kill an enemy with a Treasure Hunter enchanted weapon and collect it's head",
+  "advancements.spectrum.collect_ender_dragon_head_using_treasure_hunter.title": "Dragons last Breath",
+  "advancements.spectrum.collect_ender_dragon_head_using_treasure_hunter.description": "Collect the Ender Dragon's head using a Treasure Hunter enchanted weapon",
+  "advancements.spectrum.collect_wither_head_using_treasure_hunter.title": "A Withious Cycle",
+  "advancements.spectrum.collect_wither_head_using_treasure_hunter.description": "Collect a Wither head using a Treasure Hunter enchanted weapon",
 
   "______name_changes_for_vanilla_blocks" : "Changes:",
   "block.minecraft.polished_basalt": "Basalt Pillar",

@@ -1,0 +1,23 @@
+{
+  "parent": "spectrum:midgame/collect_mob_head_using_treasure_hunter",
+  "display": {
+    "icon": {
+      "item": "minecraft:dragon_head"
+    },
+	"hidden": true,
+    "title": {
+      "translate": "advancements.spectrum.collect_ender_dragon_head_using_treasure_hunter.title"
+    },                                          
+    "description": {                            
+      "translate": "advancements.spectrum.collect_ender_dragon_head_using_treasure_hunter.description"
+    }
+  },
+  "criteria": {
+    "dropped_ender_dragon_head": {
+      "trigger": "spectrum:treasure_hunter_drop",
+      "conditions": {
+        "dropped_item": { "items": [ "minecraft:dragon_head" ] }
+      }
+    }
+  }
+}

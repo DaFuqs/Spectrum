@@ -1,0 +1,23 @@
+{
+  "parent": "spectrum:midgame/build_advanced_pedestal_structure",
+  "display": {
+    "icon": {
+      "item": "spectrum:enchanter"
+    },
+    "title": {
+      "translate": "advancements.spectrum.build_enchanting_structure.title"
+    },                                          
+    "description": {                            
+      "translate": "advancements.spectrum.build_enchanting_structure.description"
+    }
+  },
+  "criteria": {
+    "built_structure": {
+      "trigger": "spectrum:completed_multiblock",
+      "conditions": { "multiblock_identifier": "spectrum:enchanting_structure" }
+    }
+  },
+  "rewards": {
+    "experience": 50
+  }
+}

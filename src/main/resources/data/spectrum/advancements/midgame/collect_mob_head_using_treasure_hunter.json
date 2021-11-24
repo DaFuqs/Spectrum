@@ -1,0 +1,22 @@
+{
+  "parent": "spectrum:midgame/collect_treasure_hunter_enchanted_tool",
+  "display": {
+    "icon": {
+      "item": "spectrum:cow_head"
+    },
+    "title": {
+      "translate": "advancements.spectrum.collect_mob_head_using_treasure_hunter.title"
+    },                                          
+    "description": {                            
+      "translate": "advancements.spectrum.collect_mob_head_using_treasure_hunter.description"
+    }
+  },
+  "criteria": {
+    "dropped_any_head": {
+      "trigger": "spectrum:treasure_hunter_drop",
+      "conditions": {
+        "dropped_item": { }
+      }
+    }
+  }
+}

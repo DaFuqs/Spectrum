@@ -399,13 +399,13 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 						if(putIntoAboveInventorySuccess) {
 							playCraftingFinishedSoundEvent(pedestalBlockEntity, craftingRecipe, pedestalCraftingRecipe);
 						} else {
-							// play sound when the entity can not put it's output anywhere
+							// play sound when the entity can not put its output anywhere
 							if (craftingFinished) {
 								pedestalBlockEntity.playSound(SoundEvents.BLOCK_LAVA_EXTINGUISH);
 							}
 						}
 					} else {
-						// play sound when the entity can not put it's output anywhere
+						// play sound when the entity can not put its output anywhere
 						if (craftingFinished) {
 							pedestalBlockEntity.playSound(SoundEvents.BLOCK_LAVA_EXTINGUISH);
 						}

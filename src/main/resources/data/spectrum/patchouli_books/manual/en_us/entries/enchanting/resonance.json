@@ -9,19 +9,19 @@
         },
         {
             "type": "patchouli:text",
-            "text": "$(br)Uses gentle vibrations to allow some blocks to drop themselves$(br2)Max Level: 1$(br)Applicable to mining tools.$(br)Mutually exclusive with Fortune, Foundry and Pest Control.$(br2)$(br)$(italic)We should take this geode$(br)and push it somewhere else.$()"
+            "text": "$(br)Uses gentle vibrations to allow some blocks to drop themselves.$(br2)Max Level: 1$(br)Applicable to mining tools.$(br)Mutually exclusive with Fortune, Foundry and Pest Control.$(br2)$(br)$(italic)We should take this geode$(br)and push it somewhere else.$()"
         },
         {
             "type": "patchouli:spotlight",
             "title": "Budding Blocks",
             "item": "spectrum:budding_citrine",
-            "text": "The fragility of these blocks allows them to create new gems in a short time (well, short compared to their creation history. For you, the wait still feels like eons).$(br2)Waiting for them in your own house instead of one of your minimalist outposts sounds cozier."
+            "text": "The cracks in these blocks allows them to create new buds in a short time (well, short compared to their creation history; for you, the wait still feels like eons).$(br2)Waiting for them in your own house instead of one of your minimalist outposts sounds cozier."
         },
 		{
             "type": "patchouli:spotlight",
             "title": "Gemstone Buds",
             "item": "minecraft:medium_amethyst_bud",
-            "text": "The smaller gem buds are usually too fragile to break them from their mother block.$(br2)However, if you hit the right frequency, the small gems will break from the stone almost by themselves."
+            "text": "The smaller gem buds are usually too fragile to be broken from their mother block.$(br2)However, if you hit the right frequency, the small bods will break from the stone almost by themselves."
         },
         {
             "type": "patchouli:spotlight",

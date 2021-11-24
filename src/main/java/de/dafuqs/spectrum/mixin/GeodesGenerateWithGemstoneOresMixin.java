@@ -28,7 +28,7 @@ public class GeodesGenerateWithGemstoneOresMixin {
 
 	/**
 	 * After generating a geode place gemstone ores around of it
-	 * that way it's easier for players to spot geodes, gives them
+	 * that way it is easier for players to spot geodes, gives them
 	 * a little kickstart and makes geodes more exciting to find in general
 	 * @param context The GeodeFeatures feature config
 	 */

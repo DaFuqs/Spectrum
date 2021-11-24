@@ -1,6 +1,6 @@
 {
   "name": "Redstone Components",
-  "description": "As soon as you held the first gemstone in your hands, you noticed that shard reacting to even the smallest change in it's environment.$(br)You can take advantage of these properties when connecting them to your primitive dust lines.",
+  "description": "As soon as you held the first gemstone in your hands, you noticed that shard reacting to even the smallest change in its environment.$(br)You can take advantage of these properties when connecting them to your primitive dust lines.",
   "icon": "minecraft:redstone",
   "sortnum": 6
 }

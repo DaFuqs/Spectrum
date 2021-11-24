@@ -91,7 +91,7 @@ public class RedstoneCalculatorBlock extends AbstractRedstoneGateBlock implement
 			world.playSound(player, pos, SoundEvents.BLOCK_COMPARATOR_CLICK, SoundCategory.BLOCKS, 0.3F, pitch);
 			if(player instanceof ClientPlayerEntity) {
 				// since this triggers both on server and client side: just send the
-				// message once, client side is enough, since it's pretty irrelevant on the server
+				// message once, client side is enough, since it is pretty irrelevant on the server
 				player.sendMessage(new TranslatableText("block.spectrum.redstone_calculator.mode_set").append(new TranslatableText(newModeState.get(CALCULATION_MODE).localizationString)), false);
 			}
 			this.updatePowered(world, pos, newModeState);

@@ -16,7 +16,7 @@
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier2/multitool",
-      "text": "It's not as efficient in the individual tasks, but it's much better than having to change tools every three seconds."
+      "text": "It's not as efficient in the individual tasks, but it is much better than having to change tools every three seconds."
     }
   ]
 }

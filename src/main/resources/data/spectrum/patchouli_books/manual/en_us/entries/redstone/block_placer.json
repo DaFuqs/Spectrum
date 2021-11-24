@@ -10,7 +10,7 @@
     {
       "type": "patchouli:spotlight",
       "item": "spectrum:block_placer",
-      "text": "$(italic)You can automatically break blocks, weight them, sort them or put them in one of your chests. There is one thing that all your creative contraptions could never do: Place stuff. This is a thing of the past now. $(l:general/shards)Topaz$(/l), with it's affinity of matter, let's you materialize blocks out of your storage."
+      "text": "$(italic)You can automatically break blocks, weight them, sort them or put them in one of your chests. There is one thing that all your creative contraptions could never do: Place stuff. This is a thing of the past now. $(l:general/shards)Topaz$(/l), with its affinity of matter, let's you materialize blocks out of your storage."
     },
     {
       "type": "spectrum:pedestal_crafting",

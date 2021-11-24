@@ -241,7 +241,7 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 	// note that we only check each ingredient once, if a match was found
 	// custom recipes therefore should not use items / tags that match multiple items
 	// at once, since we can not rely on positions in a grid like vanilla does
-	// in it's crafting table
+	// in its crafting table
 	private static void craft(World world, BlockPos blockPos, FusionShrineBlockEntity fusionShrineBlockEntity, FusionShrineRecipe recipe) {
 		int maxAmount = recipe.getOutput().getMaxCount();
 		for(Ingredient ingredient : recipe.getIngredients()) {

@@ -9,7 +9,7 @@
         },
         {
             "type": "patchouli:text",
-            "text": "$(br3)Puts broken blocks into your inventory instead of dropping them into the world$(br2)Max Level: 1$(br)Applicable to mining tools."
+            "text": "$(br3)Puts broken blocks into your inventory instead of dropping them into the world.$(br2)Max Level: 1$(br)Applicable to mining tools."
         }
     ]
 }

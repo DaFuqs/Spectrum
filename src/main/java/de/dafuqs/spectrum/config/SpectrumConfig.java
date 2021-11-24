@@ -25,7 +25,7 @@ public class SpectrumConfig implements ConfigData {
 
 	// The chance that an Enderman is holding a special treasure block on spawn
 	// Separate value for Endermen spawning in the end, since there are LOTS of them there
-	// Those blocks do not gate progression, so it's not that drastic not finding any right away.
+	// Those blocks do not gate progression, so it is not that drastic not finding any right away.
 	// Better to let players stumble about them organically instead of forcing it.
 	public float EndermanHoldingEnderTreasureChance = 0.05F;
 	public float EndermanHoldingEnderTreasureInEndChance = 0.0005F;

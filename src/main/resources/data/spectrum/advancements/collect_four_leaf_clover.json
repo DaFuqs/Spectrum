@@ -13,7 +13,7 @@
   },
   "parent": "spectrum:collect_pigment",
   "criteria": {
-    "has_lightning_stone": {
+    "has_four_leaf_clover": {
       "trigger": "minecraft:inventory_changed",
       "conditions": { "items": [{ "items": [ "spectrum:four_leaf_clover" ]}] }
     }

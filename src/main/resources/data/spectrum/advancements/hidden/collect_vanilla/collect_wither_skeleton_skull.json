@@ -1,0 +1,8 @@
+{
+  "criteria": {
+    "has_wither_skeleton_skull": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": { "items": [{ "items": [ "minecraft:wither_skeleton_skull" ]}] }
+    }
+  }
+}

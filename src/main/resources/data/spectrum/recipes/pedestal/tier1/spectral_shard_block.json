@@ -1,0 +1,25 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 100,
+  "tier": "basic",
+  "cyan": 0,
+  "magenta": 0,
+  "yellow": 0,
+  "black": 0,
+  "white": 0,
+  "experience": 0.0,
+  "pattern": [
+    "SS",
+    "SS"
+  ],
+  "key": {
+	"S": {
+	  "item": "spectrum:spectral_shard"
+	}
+  },
+  "result" : {
+    "item": "spectrum:spectral_shard_block",
+    "count": 1
+  },
+  "required_advancements": ["spectrum:lategame/create_spectral_shard"]
+}

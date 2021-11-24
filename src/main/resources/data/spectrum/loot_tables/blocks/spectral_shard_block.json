@@ -6,7 +6,7 @@
     "entries": [
     {
         "type": "minecraft:item",
-        "name": "spectrum:spectral_block"
+        "name": "spectrum:spectral_shard_block"
     }
     ],
     "conditions": [

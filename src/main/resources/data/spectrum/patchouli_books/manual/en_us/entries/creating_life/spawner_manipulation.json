@@ -1,5 +1,5 @@
 {
-  "name": "Mob Spawner Manipulation",
+  "name": "Spawner Manipulation",
   "icon": "spectrum:spawner",
   "category": "spectrum:creating_life_category",
   "extra_recipe_mappings": {

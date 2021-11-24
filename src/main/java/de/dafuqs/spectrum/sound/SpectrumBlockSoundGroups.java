@@ -29,7 +29,7 @@ public class SpectrumBlockSoundGroups {
 	public static BlockSoundGroup MEDIUM_MOONSTONE_BUD;
 	public static BlockSoundGroup LARGE_MOONSTONE_BUD;
 
-	public static BlockSoundGroup AMMOLITE_BLOCK;
+	public static BlockSoundGroup SPECTRAL_BLOCK;
 	public static BlockSoundGroup WAND_LIGHT;
 
 	public static void register() {
@@ -57,7 +57,7 @@ public class SpectrumBlockSoundGroups {
 		MEDIUM_MOONSTONE_BUD = new BlockSoundGroup(1.0F, 1.0F, SpectrumSoundEvents.BLOCK_MEDIUM_MOONSTONE_BUD_BREAK, SpectrumSoundEvents.BLOCK_MOONSTONE_CLUSTER_STEP, SpectrumSoundEvents.BLOCK_MEDIUM_MOONSTONE_BUD_PLACE, SpectrumSoundEvents.BLOCK_MOONSTONE_CLUSTER_HIT, SpectrumSoundEvents.BLOCK_MOONSTONE_CLUSTER_FALL);
 		LARGE_MOONSTONE_BUD = new BlockSoundGroup(1.0F, 1.0F, SpectrumSoundEvents.BLOCK_LARGE_MOONSTONE_BUD_BREAK, SpectrumSoundEvents.BLOCK_MOONSTONE_CLUSTER_STEP, SpectrumSoundEvents.BLOCK_LARGE_MOONSTONE_BUD_PLACE, SpectrumSoundEvents.BLOCK_MOONSTONE_CLUSTER_HIT, SpectrumSoundEvents.BLOCK_MOONSTONE_CLUSTER_FALL);
 
-		AMMOLITE_BLOCK = new BlockSoundGroup(1.0F, 1.0F, SpectrumSoundEvents.BLOCK_AMMOLITE_BLOCK_BREAK, SpectrumSoundEvents.BLOCK_AMMOLITE_BLOCK_STEP, SpectrumSoundEvents.BLOCK_AMMOLITE_BLOCK_PLACE, SpectrumSoundEvents.BLOCK_AMMOLITE_BLOCK_HIT, SpectrumSoundEvents.BLOCK_AMMOLITE_BLOCK_FALL);
+		SPECTRAL_BLOCK = new BlockSoundGroup(1.0F, 1.0F, SpectrumSoundEvents.SPECTRAL_BLOCK_BREAK, SpectrumSoundEvents.SPECTRAL_BLOCK_STEP, SpectrumSoundEvents.SPECTRAL_BLOCK_PLACE, SpectrumSoundEvents.SPECTRAL_BLOCK_HIT, SpectrumSoundEvents.SPECTRAL_BLOCK_FALL);
 		WAND_LIGHT = new BlockSoundGroup(1.0F, 1.0F, SpectrumSoundEvents.LIGHT_STAFF_BREAK, SoundEvents.BLOCK_AMETHYST_CLUSTER_STEP, SpectrumSoundEvents.LIGHT_STAFF_PLACE, SpectrumSoundEvents.LIGHT_STAFF_BREAK, SpectrumSoundEvents.LIGHT_STAFF_BREAK);
 	}
 

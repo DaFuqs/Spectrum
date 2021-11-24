@@ -112,12 +112,12 @@ public class SpectrumSoundEvents {
 	public static SoundEvent BLOCK_LARGE_MOONSTONE_BUD_BREAK = register("block_large_moonstone_bud_break");
 	public static SoundEvent BLOCK_LARGE_MOONSTONE_BUD_PLACE = register("block_large_moonstone_bud_place");
 
-	public static SoundEvent BLOCK_AMMOLITE_BLOCK_BREAK = register("block_spectral_block_break");
-	public static SoundEvent BLOCK_AMMOLITE_BLOCK_STEP = register("block_spectral_block_step");
-	public static SoundEvent BLOCK_AMMOLITE_BLOCK_PLACE = register("block_spectral_block_place");
-	public static SoundEvent BLOCK_AMMOLITE_BLOCK_FALL = register("block_spectral_block_fall");
-	public static SoundEvent BLOCK_AMMOLITE_BLOCK_HIT = register("block_spectral_block_hit");
-	public static SoundEvent BLOCK_AMMOLITE_BLOCK_CHIME = register("block_spectral_block_chime");
+	public static SoundEvent SPECTRAL_BLOCK_BREAK = register("block_spectral_block_break");
+	public static SoundEvent SPECTRAL_BLOCK_STEP = register("block_spectral_block_step");
+	public static SoundEvent SPECTRAL_BLOCK_PLACE = register("block_spectral_block_place");
+	public static SoundEvent SPECTRAL_BLOCK_FALL = register("block_spectral_block_fall");
+	public static SoundEvent SPECTRAL_BLOCK_HIT = register("block_spectral_block_hit");
+	public static SoundEvent SPECTRAL_BLOCK_CHIME = register("block_spectral_block_chime");
 
 	public static SoundEvent BLOCK_CITRINE_BLOCK_CHIME = register("block_citrine_block_chime");
 	public static SoundEvent BLOCK_TOPAZ_BLOCK_CHIME = register("block_topaz_block_chime");

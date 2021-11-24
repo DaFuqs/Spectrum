@@ -9,25 +9,25 @@
         },
         {
             "type": "patchouli:text",
-            "text": "$(br)Uses gentle vibrations to allow some blocks to drop themselves$(br2)Max Level: 1$(br)Applicable to mining tools.$(br)Mutually exclusive with Fortune, Foundry and Pest Control.$(br2)$(italic)We should take this geode$(br)and push it somewhere else.$()"
-        },
-		{
-            "type": "patchouli:spotlight",
-            "title": "Gemstone Buds",
-            "item": "minecraft:medium_amethyst_bud",
-            "text": "The smaller gem buds are usually too fragile to break them from their mother block. However, if you hit the right frequency, the small gems will break from the stone almost by themselves."
+            "text": "$(br)Uses gentle vibrations to allow some blocks to drop themselves$(br2)Max Level: 1$(br)Applicable to mining tools.$(br)Mutually exclusive with Fortune, Foundry and Pest Control.$(br2)$(br)$(italic)We should take this geode$(br)and push it somewhere else.$()"
         },
         {
             "type": "patchouli:spotlight",
             "title": "Budding Blocks",
             "item": "spectrum:budding_citrine",
-            "text": "The fragility of these blocks allows them to create new gems in a short time (well, short compared to their creation history. For you, the wait still feels like eons). Waiting for them in your own house instead of one of your minimalist outposts sounds cozier."
+            "text": "The fragility of these blocks allows them to create new gems in a short time (well, short compared to their creation history. For you, the wait still feels like eons).$(br2)Waiting for them in your own house instead of one of your minimalist outposts sounds cozier."
+        },
+		{
+            "type": "patchouli:spotlight",
+            "title": "Gemstone Buds",
+            "item": "minecraft:medium_amethyst_bud",
+            "text": "The smaller gem buds are usually too fragile to break them from their mother block.$(br2)However, if you hit the right frequency, the small gems will break from the stone almost by themselves."
         },
         {
             "type": "patchouli:spotlight",
             "title": "Harvesting Spawners",
             "item": "minecraft:spawner",
-            "text": "In the depths you have come across cages that seem to spit out an endless number of enemies. Which madman placed them there, what purpose they should serve and whether it was really worth the effort is a mystery to you. However, you did find some use for these parts. Whoever the maker was certainly won't miss you packing a few."
+            "text": "In the depths you have come across cages that seem to spit out an endless number of enemies. Which madman placed them there, what purpose they serve and whether it was really worth the effort is a mystery to you. However, you can definitely find some use for these. Whoever the maker was certainly won't miss you packing a few."
         },
         {
             "type": "patchouli:spotlight",

@@ -36,6 +36,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3f;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Random;
@@ -119,7 +121,7 @@ public class PedestalBlock extends BlockWithEntity implements RedstonePoweredBlo
 	 * Sets pedestal to a new tier
 	 * while keeping the inventory and all other data
 	 */
-	public static void upgradeToVariant(World world, BlockPos blockPos, PedestalVariant newPedestalVariant) {
+	public static void upgradeToVariant(@NotNull World world, BlockPos blockPos, PedestalVariant newPedestalVariant) {
 		world.setBlockState(blockPos, getPedestalBlockForVariant(newPedestalVariant).getPlacementState(new AutomaticItemPlacementContext(world, blockPos, Direction.DOWN, null, Direction.UP)));
 	}
 
@@ -136,13 +138,13 @@ public class PedestalBlock extends BlockWithEntity implements RedstonePoweredBlo
 		return true;
 	}
 
-	public int getComparatorOutput(BlockState state, World world, BlockPos pos) {
+	public int getComparatorOutput(BlockState state, @NotNull World world, BlockPos pos) {
 		return ScreenHandler.calculateComparatorOutput(world.getBlockEntity(pos));
 	}
 
 	@Override
 	@Nullable
-	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
+	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(@NotNull World world, BlockState state, BlockEntityType<T> type) {
 		if(world.isClient) {
 			return checkType(type, SpectrumBlockEntityRegistry.PEDESTAL, PedestalBlockEntity::clientTick);
 		} else {
@@ -151,7 +153,7 @@ public class PedestalBlock extends BlockWithEntity implements RedstonePoweredBlo
 	}
 
 	@Override
-	public void neighborUpdate(BlockState state, World world, BlockPos pos, Block block, BlockPos fromPos, boolean notify) {
+	public void neighborUpdate(BlockState state, @NotNull World world, BlockPos pos, Block block, BlockPos fromPos, boolean notify) {
 		if (!world.isClient) {
 			if(this.checkGettingPowered(world, pos)) {
 				this.power(world, pos);
@@ -162,7 +164,7 @@ public class PedestalBlock extends BlockWithEntity implements RedstonePoweredBlo
 	}
 
 	@Environment(EnvType.CLIENT)
-	public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
+	public void randomDisplayTick(@NotNull BlockState state, World world, BlockPos pos, Random random) {
 		if (state.get(PedestalBlock.POWERED)) {
 			Vec3f vec3f = new Vec3f(0.5F, 0.5F, 0.5F);
 			float xOffset = random.nextFloat();
@@ -171,7 +173,7 @@ public class PedestalBlock extends BlockWithEntity implements RedstonePoweredBlo
 		}
 	}
 
-	public BlockState getPlacementState(ItemPlacementContext ctx) {
+	public BlockState getPlacementState(@NotNull ItemPlacementContext ctx) {
 		BlockState placementState = this.getDefaultState();
 
 		if(ctx.getWorld().getReceivedRedstonePower(ctx.getBlockPos()) > 0) {
@@ -185,7 +187,8 @@ public class PedestalBlock extends BlockWithEntity implements RedstonePoweredBlo
 		return this.variant;
 	}
 
-	public static Block getPedestalBlockForVariant(PedestalVariant variant) {
+	@Contract(pure = true)
+	public static Block getPedestalBlockForVariant(@NotNull PedestalVariant variant) {
 		switch (variant) {
 			case BASIC_TOPAZ -> {
 				return SpectrumBlocks.PEDESTAL_BASIC_TOPAZ;
@@ -214,7 +217,7 @@ public class PedestalBlock extends BlockWithEntity implements RedstonePoweredBlo
 	 * @param newPedestalVariant The variant the pedestal has been upgraded to
 	 */
 	@Environment(EnvType.CLIENT)
-	public static void spawnUpgradeParticleEffectsForTier(BlockPos blockPos, PedestalBlock.PedestalVariant newPedestalVariant) {
+	public static void spawnUpgradeParticleEffectsForTier(BlockPos blockPos, PedestalBlock.@NotNull PedestalVariant newPedestalVariant) {
 		World world = MinecraftClient.getInstance().world;
 		Random random = world.getRandom();
 		

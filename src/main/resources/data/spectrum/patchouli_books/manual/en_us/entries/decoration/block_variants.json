@@ -6,7 +6,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "You remember the blocks that shielded your precious gemstones from external influences? Those black and white materials look really pretty, so you designed some decoration blocks from their materials.$(br2)Maybe they also absorbed some of the magical properties of the gemstones themselves?$(br)Who knows."
+      "text": "You remember the blocks that shielded your precious gemstones from external influences? Those black and white materials look really pretty, so you designed some decoration blocks out of them.$(br2)Maybe they also absorbed some of the magical properties of the gemstones themselves?$(br)Who knows."
     },
     {
       "type": "patchouli:smelting",
@@ -29,7 +29,7 @@
       "type": "patchouli:spotlight",
       "item": "spectrum:polished_calcite",
       "title": "Polished Calcite Blocks",
-      "text": "The bright white of calcite may be the brightest natural material you've stumbled across.$(br)It looks very clean and radiates dignity."
+      "text": "The bright white of calcite may be the brightest natural color you've stumbled across.$(br)It looks very clean and radiates dignity."
     },
     {
       "type": "patchouli:crafting",

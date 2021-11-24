@@ -14,6 +14,8 @@ import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.BlockRotation;
 import net.minecraft.util.Identifier;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 import vazkii.patchouli.api.IMultiblock;
 import vazkii.patchouli.api.PatchouliAPI;
 
@@ -25,7 +27,6 @@ public class PedestalScreen extends HandledScreen<PedestalScreenHandler> {
 	public static final Identifier BACKGROUND4 = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/container/pedestal4.png");
 
 	private final Identifier backgroundTexture;
-	private final PedestalBlock.PedestalVariant pedestalVariant;
 	private final PedestalRecipeTier maxPedestalRecipeTierForVariant;
 	private final boolean structureUpdateAvailable;
 
@@ -33,10 +34,8 @@ public class PedestalScreen extends HandledScreen<PedestalScreenHandler> {
 		super(handler, playerInventory, title);
 		this.backgroundHeight = 194;
 
-		backgroundTexture = getBackgroundTextureForVariant(handler.getVariant());
-
-		this.pedestalVariant = handler.getVariant();
-
+		this.backgroundTexture = getBackgroundTextureForVariant(handler.getVariant());
+		PedestalBlock.PedestalVariant pedestalVariant = handler.getVariant();
 		this.maxPedestalRecipeTierForVariant = PedestalBlockEntity.getHighestAvailableRecipeTierForVariant(pedestalVariant);
 		PedestalRecipeTier maxPedestalRecipeTier = handler.getMaxPedestalRecipeTier();
 		this.structureUpdateAvailable = this.maxPedestalRecipeTierForVariant != maxPedestalRecipeTier;
@@ -59,7 +58,8 @@ public class PedestalScreen extends HandledScreen<PedestalScreenHandler> {
 		}
 	}
 
-	public static Identifier getBackgroundTextureForTier(PedestalRecipeTier recipeTier) {
+	@Contract(pure = true)
+	public static Identifier getBackgroundTextureForTier(@NotNull PedestalRecipeTier recipeTier) {
 		switch (recipeTier) {
 			case COMPLEX -> {
 				return BACKGROUND4;

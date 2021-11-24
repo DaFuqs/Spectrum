@@ -5,7 +5,7 @@
     "pages": [
         {
             "type": "patchouli:text",
-            "text": "$(italic)You almost lost your head yourself while searching for a wither skeleton with a spine loose enough to drop it's skull. Heads up, you never were the one to bury your head in the sand. As if struck by lightning you thought out a new enchantment that will be head and shoulders above Sharpness in regards to that endeavour."
+            "text": "$(italic)You almost lost your head yourself while searching for a wither skeleton with a spine loose enough to drop it's skull. Heads up, you never were the one to bury your head in the sand.$(br2)As if struck by lightning you thought out a new enchantment that will be head and shoulders above Sharpness in regards to that endeavour."
         },
         {
             "type": "patchouli:text",

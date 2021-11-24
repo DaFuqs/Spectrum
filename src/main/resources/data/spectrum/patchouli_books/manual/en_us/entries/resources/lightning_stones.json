@@ -1,0 +1,21 @@
+{
+  "name": "Thunderstorms",
+  "advancement": "spectrum:midgame/collect_lightning_stone",
+  "icon": "spectrum:lightning_stone",
+  "category": "spectrum:resources_category",
+  "extra_recipe_mappings": {
+    "spectrum:lightning_stone": 1
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Thunderstorms",
+      "text": "Thunderstorms are a powerful sign of the forces of nature.$(br)Without a doubt, you will come across something here that has a connection to the magic of pigments."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:lightning_stone",
+      "text": "Dug into the ground by lightning strikes, you found these stones vibrating in your hand due to the inherent static.$(br2)Used in the $(l:general/fusion_shrine)Fusion Shrine$(), you can use them to summon thunderstorms yourself."
+    }
+  ]
+}

@@ -41,13 +41,13 @@
       "type": "spectrum:pedestal_crafting",
       "advancement": "spectrum:progression/tools/unlock_voiding_pickaxe",
       "recipe": "spectrum:pedestal/tier2/voiding_pickaxe",
-      "text": "As an outsider in the group, the Oblivion Pickaxe has a large amount of durability and mining speed. However, all blocks that are mined with it $(l:enchantments/curse_of_the_void)are destroyed$()."
+      "text": "As an outsider in the group, the Oblivion Pickaxe has a large amount of durability and mining speed. However, all blocks that are mined with it $(l:enchanting/curse_of_the_void)are destroyed$()."
     },
     {
       "type": "patchouli:text",
       "title": "Resonant Pickaxe",
       "advancement": "spectrum:progression/tools/unlock_resonant_pickaxe",
-      "text": "This bright blue pickaxe matches its own gentle inherent vibration to that of its surroundings. This allows you to keep blocks intact that would otherwise be irreparably destroyed by force.$(br)The Resonant Pickaxe comes pre-enchanted with $(bold)$(l:enchantments/resonance)Resonance$()."
+      "text": "This bright blue pickaxe matches its own gentle inherent vibration to that of its surroundings. This allows you to keep blocks intact that would otherwise be irreparably destroyed by force.$(br)The Resonant Pickaxe comes pre-enchanted with $(bold)$(l:enchanting/resonance)Resonance$()."
     },
     {
       "type": "spectrum:pedestal_crafting",

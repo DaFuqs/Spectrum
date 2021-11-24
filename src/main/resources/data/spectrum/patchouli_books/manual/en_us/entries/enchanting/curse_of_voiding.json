@@ -1,7 +1,7 @@
 {
     "name": "Curse of the Void",
     "icon": "minecraft:ender_pearl",
-    "category": "spectrum:enchantments_category",
+    "category": "spectrum:enchanting_category",
     "pages": [
         {
             "type": "patchouli:text",

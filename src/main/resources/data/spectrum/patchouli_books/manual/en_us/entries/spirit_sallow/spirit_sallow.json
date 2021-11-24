@@ -1,0 +1,27 @@
+{
+  "name": "Spirit Sallow",
+  "advancement": "spectrum:midgame/build_advanced_pedestal_structure",
+  "icon": "spectrum:ominous_sapling",
+  "category": "spectrum:spirit_sallow_category",
+  "priority": true,
+  "extra_recipe_mappings": {
+    "spectrum:ominous_sapling": 0,
+    "spectrum:spirit_sallow_roots": 1,
+    "spectrum:spirit_sallow_log": 1,
+    "spectrum:spirit_sallow_leaves": 1,
+    "spectrum:spirit_sallow_heart": 1
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:ominous_sapling",
+      "text": "TODO"
+    },
+    {
+      "type": "patchouli:text",
+	  "advancement": "spectrum:midgame/grow_ominous_sapling",
+      "title": "Spirit Sallow",
+      "text": "TODO"
+    }
+  ]
+}

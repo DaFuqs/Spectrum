@@ -1,0 +1,8 @@
+{
+  "criteria": {
+    "has_frostbite_crystal": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": { "items": [{ "items": ["spectrum:frostbite_crystal" ] }] }
+    }
+  }
+}

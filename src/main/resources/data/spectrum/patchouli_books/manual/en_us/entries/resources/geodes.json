@@ -123,7 +123,7 @@
       "type": "patchouli:text",
       "advancement": "spectrum:lategame/collect_resonance_enchanted_tool",
       "title": "Acquiring Budding Blocks",
-      "text": "=> $(l:enchantments/resonance)Resonance$()."
+      "text": "=> $(l:enchanting/resonance)Resonance$()."
     }
   ]
 }

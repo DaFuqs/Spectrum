@@ -1,7 +1,7 @@
 {
     "name": "Inventory Attraction",
     "icon": "minecraft:iron_ore",
-    "category": "spectrum:enchantments_category",
+    "category": "spectrum:enchanting_category",
     "pages": [
         {
             "type": "patchouli:text",

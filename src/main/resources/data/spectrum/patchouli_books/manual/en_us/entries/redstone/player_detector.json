@@ -1,0 +1,21 @@
+{
+  "name": "Player Detector",
+  "advancement": "spectrum:progression/detectors/unlock_player_detector",
+  "icon": "spectrum:player_detector",
+  "category": "spectrum:redstone_category",
+  "extra_recipe_mappings": {
+    "spectrum:player_detector": 1
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Player Detector",
+      "text": "The player detector detects players within 10 blocks of it."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier1/detectors/player_detector",
+      "text": "When it finds players, it emits a redstone signal of strength 8. However, if the player who placed the detector is nearby, it emits a full strength 15 signal instead."
+    }
+  ]
+}

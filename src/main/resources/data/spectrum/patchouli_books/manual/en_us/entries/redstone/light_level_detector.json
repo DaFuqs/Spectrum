@@ -1,0 +1,21 @@
+{
+  "name": "Light Level Detector",
+  "advancement": "spectrum:progression/detectors/unlock_light_level_detector",
+  "icon": "spectrum:player_detector",
+  "category": "spectrum:redstone_category",
+  "extra_recipe_mappings": {
+    "spectrum:light_level_detector": 1
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Block Light Detector",
+      "text": "Sunlight detectors are relatively imprecise when it comes to measuring light. The Nether Quartz used is so crudely processed that only sunlight can trigger the detector reliably. Amethyst, on the other hand, is much more sensitive when it comes to measuring light. Even the dim glow of a torch is sufficient to output decent strength."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier1/detectors/light_level_detector",
+      "text": "The Light Level Detector does not only react to sunlight, but is also able to pick up other light sources."
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 {
     "name": "Treasure Hunter",
     "icon": "minecraft:wither_skeleton_skull",
-    "category": "spectrum:enchantments_category",
+    "category": "spectrum:enchanting_category",
     "pages": [
         {
             "type": "patchouli:text",

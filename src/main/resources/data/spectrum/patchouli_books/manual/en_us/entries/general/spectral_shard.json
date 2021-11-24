@@ -1,0 +1,28 @@
+{
+  "name": "Spectral Shard",
+  "advancement": "spectrum:lategame/spectrum_lategame",
+  "icon": "spectrum:spectral_shard",
+  "category": "spectrum:general_category",
+  "extra_recipe_mappings": {
+    "spectrum:spectral_shard": 1,
+    "spectrum:spectral_shard_block": 2
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Spectral Shard",
+      "text": "TODO"
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "recipe": "spectrum:fusion_shrine/spectral_shard",
+      "text": "TODO"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+	  "advancement": "spectrum:lategame/create_spectral_shard",
+      "recipe": "spectrum:pedestal/tier1/spectral_shard_block",
+      "text": "$(italic)You thought a beacon base of Netherite Blocks was a excessive?$()"
+    }
+  ]
+}

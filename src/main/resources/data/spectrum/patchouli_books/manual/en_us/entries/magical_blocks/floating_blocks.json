@@ -18,7 +18,7 @@
       "type": "spectrum:pedestal_crafting",
       "advancement": "spectrum:midgame/collect_scarlet",
       "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier1/scarlet_fragment_block",
+      "recipe": "spectrum:pedestal/tier1/compacting/scarlet_fragment_block",
       "text": "$(italic)Heavy Metal"
     },
     {
@@ -31,7 +31,7 @@
       "type": "spectrum:pedestal_crafting",
       "advancement": "spectrum:lategame/collect_paletur",
       "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier1/paletur_fragment_block",
+      "recipe": "spectrum:pedestal/tier1/compacting/paletur_fragment_block",
       "text": "$(italic)Fly far away"
     }
   ]

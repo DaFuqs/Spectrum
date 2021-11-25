@@ -166,6 +166,7 @@ public class SpectrumBlocks {
 	public static final Block CITRINE_STORAGE_BLOCK = new Block(gemstoneStorageBlockSettings);
 	public static final Block ONYX_STORAGE_BLOCK = new Block(gemstoneStorageBlockSettings);
 	public static final Block MOONSTONE_STORAGE_BLOCK = new Block(gemstoneStorageBlockSettings);
+	public static final Block SPECTRAL_SHARD_STORAGE_BLOCK = new Block(gemstoneStorageBlockSettings);
 
 	public static final Block TUFF_SLAB = new SlabBlock(FabricBlockSettings.copyOf(Blocks.TUFF));
 	public static final Block TUFF_WALL = new WallBlock(FabricBlockSettings.copyOf(Blocks.TUFF));
@@ -817,6 +818,8 @@ public class SpectrumBlocks {
 		registerBlockWithItem("citrine_storage_block", CITRINE_STORAGE_BLOCK, fabricItemSettings);
 		registerBlockWithItem("onyx_storage_block", ONYX_STORAGE_BLOCK, fabricItemSettings);
 		registerBlockWithItem("moonstone_storage_block", MOONSTONE_STORAGE_BLOCK, fabricItemSettings);
+		registerBlockWithItem("spectral_shard_storage_block", SPECTRAL_SHARD_STORAGE_BLOCK, fabricItemSettings);
+		
 		registerBlockWithItem("azurite_block", AZURITE_BLOCK, decorationItemSettings);
 		registerBlockWithItem("sparklestone_block", SPARKLESTONE_BLOCK, decorationItemSettings);
 		registerBlockWithItem("scarlet_fragment_block", SCARLET_FRAGMENT_BLOCK, new GravityBlockItem(SCARLET_FRAGMENT_BLOCK, fabricItemSettings, 1.02F));

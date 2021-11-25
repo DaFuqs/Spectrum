@@ -6,6 +6,8 @@ $lamp = @("black_lamp", "blue_lamp", "brown_lamp", "cyan_lamp", "gray_lamp", "gr
 $ores = @("sparklestone_block", "koenigsblau_ore", "koenigsblau_block")
 $upgrades = @("upgrade_speed", "upgrade_speed2", "upgrade_speed3", "upgrade_efficiency", "upgrade_efficiency2", "upgrade_yield", "upgrade_yield2", "upgrade_experience", "upgrade_experience2")
 
+$new = @("spectral_shard_storage_block")
+
 
 enum BlockType {
     Default
@@ -309,9 +311,14 @@ Function Generate-BlockFiles {
     }
 
     Process {
-        Get-BlockObjects -Name $generate
-        Get-RegisterBlockAndItems -Name $generate
-        Get-LangEntries -Names $generate
+        Get-BlockObjects -Name $BlockNames
+        Get-RegisterBlockAndItems -Name $BlockNames
+        Get-LangEntries -Names $BlockNames
+        Write-Output ""
+        Write-Output "- Mineable Block tags"
+        Write-Output "- Manual Entry"
+        Write-Output "- Recipes"
+
         $BlockNames | ForEach-Object {
 
             # BLOCK STATES
@@ -398,4 +405,4 @@ Function Generate-BlockFiles {
 }
 
 
-Generate-BlockFiles -BlockNames $upgrades -BlockType ([BlockType]::Upgrade)
+Generate-BlockFiles -BlockNames $new -BlockType ([BlockType]::Default)

@@ -16,10 +16,10 @@
       "trigger": "minecraft:item_used_on_block",
       "conditions": {
         "item": {
-          "tag": ["spectrum:mob_eggs"]
+          "tag": "spectrum:spawn_eggs"
         },
         "block": {
-          "blocks": [ "spectrum:spawner" ]
+          "blocks": [ "spectrum:spawner", "minecraft:spawner" ]
         }
       }
     }

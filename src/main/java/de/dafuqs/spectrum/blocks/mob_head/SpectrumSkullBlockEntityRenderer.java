@@ -23,17 +23,17 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Locale;
 
 @Environment(EnvType.CLIENT)
-public class SpectrumSkullBlockEntityRenderer3D implements BlockEntityRenderer<SpectrumSkullBlockEntity> {
+public class SpectrumSkullBlockEntityRenderer implements BlockEntityRenderer<SpectrumSkullBlockEntity> {
 
 	private static EntityModelLoader entityModelLoader;
 	private static SkullEntityModel model;
 
-	public SpectrumSkullBlockEntityRenderer3D(BlockEntityRendererFactory.Context renderContext) {
+	public SpectrumSkullBlockEntityRenderer(BlockEntityRendererFactory.Context renderContext) {
 		model = new SkullEntityModel(entityModelLoader.getModelPart(EntityModelLayers.PLAYER_HEAD));
 	}
 
 	public static void setModelLoader(EntityModelLoader entityModelLoader) {
-		SpectrumSkullBlockEntityRenderer3D.entityModelLoader = entityModelLoader;
+		SpectrumSkullBlockEntityRenderer.entityModelLoader = entityModelLoader;
 	}
 
 	public void render(SpectrumSkullBlockEntity spectrumSkullBlockEntity, float f, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light, int j) {

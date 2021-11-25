@@ -7,7 +7,6 @@ import net.minecraft.nbt.NbtList;
 import net.minecraft.util.Pair;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
@@ -19,7 +18,6 @@ public interface Upgradeable {
 		EFFICIENCY, // chance to not use input resources (like gemstone powder)
 		YIELD,      // chance to increase output
 		EXPERIENCE; // increases XP output
-		
 	}
 	
 	static NbtList toNbt(@NotNull Map<UpgradeType, Double> upgrades) {

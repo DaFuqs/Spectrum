@@ -38,7 +38,7 @@
     "ServerPlayerEntityMixin",
     "ServerWorldMixin",
     "SpawnerBlockMixin",
-    "WorldRendererMixin",
+    "WorldRendererMixin"
   ],
   "client": [
     "client.AccessorClientAdvancementManager",

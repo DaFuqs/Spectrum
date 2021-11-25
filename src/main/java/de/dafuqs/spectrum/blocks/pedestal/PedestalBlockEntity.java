@@ -7,7 +7,6 @@ import de.dafuqs.spectrum.blocks.upgrade.Upgradeable;
 import de.dafuqs.spectrum.enums.GemstoneColor;
 import de.dafuqs.spectrum.enums.PedestalRecipeTier;
 import de.dafuqs.spectrum.interfaces.PlayerOwned;
-import de.dafuqs.spectrum.interfaces.PlayerOwnedWithName;
 import de.dafuqs.spectrum.inventories.AutoCraftingInventory;
 import de.dafuqs.spectrum.inventories.PedestalScreenHandler;
 import de.dafuqs.spectrum.items.CraftingTabletItem;
@@ -66,10 +65,9 @@ import vazkii.patchouli.api.PatchouliAPI;
 
 import java.util.*;
 
-public class PedestalBlockEntity extends LockableContainerBlockEntity implements RecipeInputProvider, SidedInventory, PlayerOwnedWithName, ExtendedScreenHandlerFactory, BlockEntityClientSerializable, Upgradeable {
+public class PedestalBlockEntity extends LockableContainerBlockEntity implements RecipeInputProvider, SidedInventory, PlayerOwned, ExtendedScreenHandlerFactory, BlockEntityClientSerializable, Upgradeable {
 
 	private UUID ownerUUID;
-	private String ownerName;
 	private PedestalBlock.PedestalVariant pedestalVariant;
 
 	protected DefaultedList<ItemStack> inventory;
@@ -267,11 +265,6 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		} else {
 			this.ownerUUID = null;
 		}
-		if(nbt.contains("OwnerName")) {
-			this.ownerName = nbt.getString("OwnerName");
-		} else {
-			this.ownerName = "???";
-		}
 	}
 
 	public NbtCompound writeNbt(NbtCompound nbt) {
@@ -288,9 +281,6 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 
 		if(this.ownerUUID != null) {
 			nbt.putUuid("OwnerUUID", this.ownerUUID);
-		}
-		if(this.ownerName != null) {
-			nbt.putString("OwnerName", this.ownerName);
 		}
 		Inventories.writeNbt(nbt, this.inventory);
 		return nbt;
@@ -781,15 +771,8 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 	}
 
 	@Override
-	public String getOwnerName() {
-		return this.ownerName;
-	}
-
-	@Override
 	public void setOwner(PlayerEntity playerEntity) {
 		this.ownerUUID = playerEntity.getUuid();
-		this.ownerName = playerEntity.getName().asString();
-		setCustomName(new TranslatableText("block.spectrum.pedestal.title_with_owner", ownerName));
 	}
 	
 	public Recipe getCurrentRecipe() {

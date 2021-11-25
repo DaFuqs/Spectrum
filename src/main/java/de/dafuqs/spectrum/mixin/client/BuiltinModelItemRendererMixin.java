@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.mixin.client;
 
 import de.dafuqs.spectrum.blocks.mob_head.SpectrumSkullBlock;
-import de.dafuqs.spectrum.blocks.mob_head.SpectrumSkullBlockEntityRenderer3D;
+import de.dafuqs.spectrum.blocks.mob_head.SpectrumSkullBlockEntityRenderer;
 import de.dafuqs.spectrum.blocks.mob_head.SpectrumWallSkullBlock;
 import net.minecraft.block.Block;
 import net.minecraft.client.render.RenderLayer;
@@ -24,7 +24,7 @@ public class BuiltinModelItemRendererMixin {
 
 	@Inject(at = @At("TAIL"), method = "<init>")
 	private void getModel(BlockEntityRenderDispatcher blockEntityRenderDispatcher, EntityModelLoader entityModelLoader, CallbackInfo ci) {
-		SpectrumSkullBlockEntityRenderer3D.setModelLoader(entityModelLoader);
+		SpectrumSkullBlockEntityRenderer.setModelLoader(entityModelLoader);
 	}
 
 	@Inject(method = "render(Lnet/minecraft/item/ItemStack;Lnet/minecraft/client/render/model/json/ModelTransformation$Mode;Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;II)V",
@@ -35,8 +35,8 @@ public class BuiltinModelItemRendererMixin {
 			Block block = ((BlockItem) item).getBlock();
 			if (block instanceof SpectrumSkullBlock || block instanceof SpectrumWallSkullBlock) {
 				SpectrumSkullBlock.Type spectrumSkullBlockType = (SpectrumSkullBlock.Type) ((SpectrumSkullBlock)block).getSkullType();
-				RenderLayer renderLayer = SpectrumSkullBlockEntityRenderer3D.getRenderLayer(spectrumSkullBlockType);
-				SpectrumSkullBlockEntityRenderer3D.renderSkull(null, 180.0F, 0.0F, matrices, vertexConsumers, light, renderLayer);
+				RenderLayer renderLayer = SpectrumSkullBlockEntityRenderer.getRenderLayer(spectrumSkullBlockType);
+				SpectrumSkullBlockEntityRenderer.renderSkull(null, 180.0F, 0.0F, matrices, vertexConsumers, light, renderLayer);
 				ci.cancel();
 			}
 		}

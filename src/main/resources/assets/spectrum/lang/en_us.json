@@ -672,7 +672,6 @@
   "block.spectrum.pedestal_all_basic": "Pigment Pedestal",
   "block.spectrum.pedestal_onyx": "Pigment Pedestal",
   "block.spectrum.pedestal_moonstone": "Pigment Pedestal",
-  "block.spectrum.pedestal.title_with_owner": "Pigment Pedestal of %s",
   "item.spectrum.pedestal.tooltip.basic_topaz": "§bTopaz§7 Variant",
   "item.spectrum.pedestal.tooltip.basic_amethyst": "§dAmethyst§7 Variant",
   "item.spectrum.pedestal.tooltip.basic_citrine": "§eCitrine§7 Variant",

@@ -24,7 +24,7 @@ public class SpectrumSkullBlock extends SkullBlock {
 		return null;
 	}
 
-	public static enum Type implements SkullBlock.SkullType {
+	public enum Type implements SkullBlock.SkullType {
 		AXOLOTL_BLUE,
 		AXOLOTL_BROWN,
 		AXOLOTL_CYAN,
@@ -123,10 +123,7 @@ public class SpectrumSkullBlock extends SkullBlock {
 		WOLF,
 		ZOGLIN,
 		ZOMBIE_VILLAGER,
-		ZOMBIFIED_PIGLIN;
-
-		private Type() {
-		}
+		ZOMBIFIED_PIGLIN
 	}
 
 }

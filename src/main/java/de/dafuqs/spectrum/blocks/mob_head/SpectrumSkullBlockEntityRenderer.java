@@ -35,6 +35,10 @@ public class SpectrumSkullBlockEntityRenderer implements BlockEntityRenderer<Spe
 	public static void setModelLoader(EntityModelLoader entityModelLoader) {
 		SpectrumSkullBlockEntityRenderer.entityModelLoader = entityModelLoader;
 	}
+	
+	public static EntityModelLoader getEntityModelLoader() {
+		return entityModelLoader;
+	}
 
 	public void render(SpectrumSkullBlockEntity spectrumSkullBlockEntity, float f, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light, int j) {
 		BlockState blockState = spectrumSkullBlockEntity.getCachedState();
@@ -65,7 +69,7 @@ public class SpectrumSkullBlockEntityRenderer implements BlockEntityRenderer<Spe
 		matrices.pop();
 	}
 
-	public static RenderLayer getRenderLayer(SpectrumSkullBlock.Type type) {
+	public static RenderLayer getRenderLayer(SkullBlock.SkullType type) {
 		Identifier identifier = new Identifier(SpectrumCommon.MOD_ID, "textures/entity/mob_head/" + type.toString().toLowerCase(Locale.ROOT) + ".png");
 		RenderLayer renderLayer = RenderLayer.getEntityCutoutNoCullZOffset(identifier);
 		if(renderLayer == null) {

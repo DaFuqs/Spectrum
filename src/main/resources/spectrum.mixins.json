@@ -47,6 +47,7 @@
     "client.BuiltinModelItemRendererMixin",
     "client.ClientPlayerEntityMixin",
     "client.ClientWorldMixin",
+    "client.HeadFeatureRendererMixin",
     "client.ItemFrameEntityRendererMixin",
     "client.ItemMixin",
     "client.MixinClientAdvancementManager",

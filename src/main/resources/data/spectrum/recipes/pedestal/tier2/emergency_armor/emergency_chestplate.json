@@ -10,8 +10,8 @@
   "experience": 2.0,
   "pattern": [
     "C C",
-    "ADA",
-    "T T"
+    "ANA",
+    "TAT"
   ],
   "key": {
     "T": {
@@ -23,13 +23,13 @@
     "C": {
       "item": "spectrum:citrine_shard"
     },
-    "D": {
-      "item": "minecraft:diamond"
+    "N": {
+      "item": "minecraft:nautilus_shell"
     }
   },
   "result" : {
     "item": "spectrum:emergency_chestplate",
     "count": 1
   },
-  "required_advancements": [ "spectrum:build_basic_pedestal_structure" ]
+  "required_advancements": [ "spectrum:hidden/collect_vanilla/collect_nautilus_shell" ]
 }

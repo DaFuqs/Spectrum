@@ -1,6 +1,6 @@
 {
   "name": "Glowblocks",
-  "advancement": "spectrum:midgame/spectrum_midgame",
+  "advancement": "spectrum:midgame/build_advanced_pedestal_structure",
   "icon": "spectrum:orange_glowblock",
   "category": "spectrum:decoration_category",
   "extra_recipe_mappings": {

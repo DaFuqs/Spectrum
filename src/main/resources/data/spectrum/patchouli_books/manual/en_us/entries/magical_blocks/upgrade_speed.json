@@ -1,6 +1,6 @@
 {
   "name": "Pedestal Accelerator",
-  "advancement": "spectrum:midgame/spectrum_midgame",
+  "advancement": "spectrum:midgame/build_advanced_pedestal_structure",
   "icon": "spectrum:upgrade_speed",
   "category": "spectrum:magical_blocks_category",
   "extra_recipe_mappings": {

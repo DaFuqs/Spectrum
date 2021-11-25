@@ -1,0 +1,8 @@
+{
+  "criteria": {
+    "has_phantom_membrane": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": { "items": [{ "items": [ "minecraft:phantom_membrane" ]}] }
+    }
+  }
+}

@@ -1,10 +1,10 @@
 {
   "name": "Fabrication Chest",
-  "advancement": "spectrum:midgame/spectrum_midgame",
+  "advancement": "spectrum:midgame/collect_scarlet",
   "icon": "spectrum:restocking_chest",
   "category": "spectrum:magical_blocks_category",
   "extra_recipe_mappings": {
-    "spectrum:restocking_chest": 0
+    "spectrum:restocking_chest": 1
   },
   "pages": [
     {

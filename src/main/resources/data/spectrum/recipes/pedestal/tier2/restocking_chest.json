@@ -10,7 +10,7 @@
   "experience": 2.0,
   "pattern": [
     "CCC",
-    "P P",
+    "PGP",
     "BBB"
   ],
   "key": {
@@ -22,11 +22,14 @@
     },
     "C": {
       "item": "minecraft:copper_ingot"
+    },
+    "G": {
+      "item": "spectrum:scarlet_gem"
     }
   },
   "result" : {
     "item": "spectrum:restocking_chest",
     "count": 1
   },
-  "required_advancements": [ "spectrum:build_basic_pedestal_structure" ]
+  "required_advancements": [ "spectrum:midgame/collect_scarlet" ]
 }

@@ -4,7 +4,6 @@
     "icon": {
       "item": "spectrum:raw_azurite"
     },
-    "frame": "challenge",
     "title": {
       "translate": "advancements.spectrum.collect_azurite.title"
     },

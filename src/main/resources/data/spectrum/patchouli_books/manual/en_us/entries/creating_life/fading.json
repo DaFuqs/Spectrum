@@ -1,5 +1,5 @@
 {
-  "name": "Experiment #1",
+  "name": "Experiment #1: Fading",
   "icon": "spectrum:bottle_of_fading",
   "advancement": "spectrum:progression/unlock_bottle_of_fading",
   "category": "spectrum:creating_life_category",

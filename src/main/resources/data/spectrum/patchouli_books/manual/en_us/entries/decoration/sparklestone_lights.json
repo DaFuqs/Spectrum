@@ -1,7 +1,7 @@
 {
   "name": "Sparklestone Lights",
   "icon": "spectrum:basalt_sparklestone_light",
-  "advancement": "spectrum:progression/colored_lamps/unlock_sparklestone_lights",
+  "advancement": "spectrum:progression/unlock_sparklestone_lights",
   "category": "spectrum:decoration_category",
   "extra_recipe_mappings": {
     "spectrum:andesite_sparklestone_light": 0,

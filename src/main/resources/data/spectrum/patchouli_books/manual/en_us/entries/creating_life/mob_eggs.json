@@ -1,7 +1,7 @@
 {
   "name": "Mob Eggs",
   "icon": "minecraft:cow_spawn_egg",
-  "advancement": "spectrum:collect_corrupted_obsidian_dust",
+  "advancement": "spectrum:midgame/collect_corrupted_obsidian_dust",
   "category": "spectrum:creating_life_category",
   "pages": [
     {

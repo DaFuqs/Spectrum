@@ -9,7 +9,7 @@
   "white": 0,
   "experience": 2.0,
   "pattern": [
-    "ADA",
+    "APA",
     "T T",
     "C C"
   ],
@@ -23,13 +23,13 @@
     "C": {
       "item": "spectrum:citrine_shard"
     },
-    "D": {
-      "item": "minecraft:diamond"
+    "P": {
+      "item": "minecraft:phantom_membrane"
     }
   },
   "result" : {
     "item": "spectrum:emergency_leggings",
     "count": 1
   },
-  "required_advancements": [ "spectrum:build_basic_pedestal_structure" ]
+  "required_advancements": [ "spectrum:hidden/collect_vanilla/collect_phantom_membrane" ]
 }

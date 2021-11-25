@@ -1,6 +1,6 @@
 {
   "name": "Gemstone Runes",
-  "advancement": "spectrum:midgame/spectrum_midgame",
+  "advancement": "spectrum:create_onyx_shard",
   "icon": "spectrum:citrine_chiseled_calcite",
   "category": "spectrum:decoration_category",
   "extra_recipe_mappings": {

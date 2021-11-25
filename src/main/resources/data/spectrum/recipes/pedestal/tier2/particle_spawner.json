@@ -9,9 +9,9 @@
   "black": 0,
   "experience": 2.0,
   "pattern": [
-    "PPP",
     "PSP",
-    "YXY"
+    "PXP",
+    "YRY"
   ],
   "key": {
     "P": {
@@ -25,6 +25,9 @@
     },
     "Y": {
       "item": "spectrum:polished_basalt"
+    },
+    "R": {
+      "item": "minecraft:redstone"
     }
   },
   "result" : {

@@ -29,5 +29,5 @@
     "item": "spectrum:vanilla_player_only_glass",
     "count": 8
   },
-  "required_advancements": ["spectrum:midgame/spectrum_midgame"]
+  "required_advancements": ["spectrum:midgame/build_advanced_pedestal_structure"]
 }

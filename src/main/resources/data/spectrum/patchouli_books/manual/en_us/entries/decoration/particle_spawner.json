@@ -2,19 +2,19 @@
   "name": "Particle Spawner",
   "advancement": "spectrum:progression/unlock_particle_spawner",
   "icon": "spectrum:particle_spawner",
-  "category": "spectrum:magical_blocks_category",
+  "category": "spectrum:decoration_category",
   "extra_recipe_mappings": {
     "spectrum:particle_spawner": 1
   },
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "$(italic)The shooting stars you picked up left a fantastic shower of particles on their way to the ground.$(br)You created the Particle Spawner to replicate this spectacle yourself. Using pigment, you can also create a whole range of particle effects.$(br2)A chimney? Rocket launching particles? Atmospheric particle rain for your Pedestal structure? No problem."
+      "text": "$(italic)The Shooting Star you picked up left a fantastic shower of particles on their way to the ground. You created the Particle Spawner to replicate this spectacle - and lots of others - yourself.$()$(br2)A chimney? Rocket launching particles? Atmospheric particle rain for your Pedestal structure? The Particle Spawner got you covered."
     },
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier2/particle_spawner",
-      "text": "The the particle spawners GUI you are able to configure the spawned particles to your liking."
+      "text": "Apply redstone for a fantastic display.$(br)In the the particle spawners GUI you are able to configure the spawned particles to your liking."
     }
   ]
 }

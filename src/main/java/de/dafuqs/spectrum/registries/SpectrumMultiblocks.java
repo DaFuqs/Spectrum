@@ -23,6 +23,7 @@ public class SpectrumMultiblocks {
 	public static Identifier PEDESTAL_COMPLEX_STRUCTURE_IDENTIFIER_DISPLAY;
 
 	public static Identifier FUSION_SHRINE_IDENTIFIER;
+	public static Identifier ENCHANTER_IDENTIFIER;
 
 
 	private static Identifier registerMultiBlock(String identifierString, String[][] structure, Object[] targetBlocks) {
@@ -35,6 +36,7 @@ public class SpectrumMultiblocks {
 	public static void register() {
 		registerPedestal();
 		registerFusionShrine();
+		registerEnchanter();
 	}
 
 	private static void registerFusionShrine() {
@@ -58,6 +60,29 @@ public class SpectrumMultiblocks {
 				{ "__XXXXX__", "_XXXXXXX_", "XXCXXXCXX", "XXXLLLXXX", "XXXL0LXXX", "XXXLLLXXX", "XXCXXXCXX", "_XXXXXXX_", "__XXXXX__",  }
 		};
 		FUSION_SHRINE_IDENTIFIER = registerMultiBlock("fusion_shrine_structure", structure, targetBlocks);
+	}
+
+	private static void registerEnchanter() {
+		Object[] targetBlocks = {
+				'X', "#spectrum:polished_base_blocks",
+				'P', "#spectrum:pillar_base_blocks",
+				'L', "#spectrum:gemstone_lamps",
+				'L', "#spectrum:polished_base_block_slabs",
+				'S', "#spectrum:gemstone_storage_blocks",
+				'C', "#spectrum:chiseled_base_blocks",
+				'F', "spectrum:enchanter",
+				'_', StateMatcher.ANY,
+				'0', "#spectrum:polished_base_blocks",
+		};
+
+		String[][] structure = {
+				{ "_________", "_L_____L_", "_________", "_________", "_________", "_________", "_________", "_L_ ___L_", "_________",  },
+				{ "_________", "_S_____S_", "_________", "_________", "_________", "_________", "_________", "_S_____S_", "_________",  },
+				{ "_________", "_P_____P_", "_________", "_________", "_________", "_________", "_________", "_P_____P_", "_________",  },
+				{ "__XXXXX__", "_P_____P_", "X_______X", "X_______X", "X___F___X", "X_______X", "X_______X", "_P_____P_", "__XXXXX__",  },
+				{ "__XXXXX__", "_XXXXXXX_", "XXCXXXCXX", "XXXLLLXXX", "XXXL0LXXX", "XXXLLLXXX", "XXCXXXCXX", "_XXXXXXX_", "__XXXXX__",  }
+		};
+		ENCHANTER_IDENTIFIER = registerMultiBlock("enchanter_structure", structure, targetBlocks);
 	}
 
 	private static void registerPedestal() {

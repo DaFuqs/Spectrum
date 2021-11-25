@@ -1018,7 +1018,7 @@
   "advancements.spectrum.craft_something_brown.title": "The other side of the rainbow",
   "advancements.spectrum.craft_something_brown.description": "Create something truly brown",
   "advancements.spectrum.craft_spawn_egg.title": "Back to Life",
-  "advancements.spectrum.craft_spawn_egg.description": "Use the Remnants of your Experiments with Fading to revive an once-dead creature",
+  "advancements.spectrum.craft_spawn_egg.description": "Use the payoff of your Experiments to revive an once-dead creature",
   "advancements.spectrum.craft_using_pedestal.title": "Strangely familiar",
   "advancements.spectrum.craft_using_pedestal.description": "Use your Pigment Pedestal to craft an item using gemstone powder. It seems to react to redstone?",
   "advancements.spectrum.create_onyx_shard.title": "Back in Black",
@@ -1071,6 +1071,13 @@
   "advancements.spectrum.collect_ender_dragon_head_using_treasure_hunter.description": "Collect the Ender Dragon's head using a Treasure Hunter enchanted weapon",
   "advancements.spectrum.collect_wither_head_using_treasure_hunter.title": "A Withious Cycle",
   "advancements.spectrum.collect_wither_head_using_treasure_hunter.description": "Collect a Wither head using a Treasure Hunter enchanted weapon",
+  "advancements.spectrum.use_mob_egg_on_spawner.title": "The Changeling",
+  "advancements.spectrum.use_mob_egg_on_spawner.description": "Use a mob egg on a mob spawner to change its type",
+  "advancements.spectrum.collect_raw_azurite.title": "I'm blue",
+  "advancements.spectrum.collect_raw_azurite.description": "Collect raw Azurite",
+  "advancements.spectrum.create_spectral_shard.title": "Somewhere over the Rainbow",
+  "advancements.spectrum.create_spectral_shard.description": "Create a Spectral Shard",
+
 
   "______name_changes_for_vanilla_blocks" : "Changes:",
   "block.minecraft.polished_basalt": "Basalt Pillar",

@@ -1,6 +1,7 @@
 {
     "name": "Curse of the Void",
     "icon": "minecraft:ender_pearl",
+    "advancement": "spectrum:midgame/build_enchanting_structure",
     "category": "spectrum:enchanting_category",
     "pages": [
         {

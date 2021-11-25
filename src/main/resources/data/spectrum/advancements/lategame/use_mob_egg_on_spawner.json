@@ -1,0 +1,27 @@
+{
+  "display": {
+    "icon": {
+        "item": "minecraft:spider_spawn_egg"
+    },
+    "title": {
+      "translate": "advancements.spectrum.use_mob_egg_on_spawner.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.use_mob_egg_on_spawner.description"
+    }
+  },
+  "parent": "spectrum:lategame/break_spawner_with_resonance_tool",
+  "criteria": {
+    "used": {
+      "trigger": "minecraft:item_used_on_block",
+      "conditions": {
+        "item": {
+          "tag": ["spectrum:mob_eggs"]
+        },
+        "block": {
+          "blocks": [ "spectrum:spawner" ]
+        }
+      }
+    }
+  }
+}

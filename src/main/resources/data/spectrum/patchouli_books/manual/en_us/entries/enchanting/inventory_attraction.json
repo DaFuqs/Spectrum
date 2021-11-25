@@ -1,6 +1,7 @@
 {
     "name": "Inventory Attraction",
     "icon": "minecraft:iron_ore",
+    "advancement": "spectrum:midgame/build_enchanting_structure",
     "category": "spectrum:enchanting_category",
     "pages": [
         {

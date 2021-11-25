@@ -1,6 +1,7 @@
 {
     "name": "Resonance",
     "icon": "minecraft:amethyst_cluster",
+    "advancement": "spectrum:lategame/spectrum_lategame",
     "category": "spectrum:enchanting_category",
     "pages": [
         {

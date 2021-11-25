@@ -1,0 +1,20 @@
+{
+    "name": "Enchanter",
+    "icon": "spectrum:enchanter",
+    "advancement": "spectrum:midgame/build_advanced_pedestal_structure",
+    "category": "spectrum:enchanting_category",
+    "priority": true,
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "TODO"
+        },
+        {
+            "type": "patchouli:multiblock",
+            "name": "Enchanting Structure",
+            "multiblock_id": "spectrum:enchanter_structure",
+            "enable_visualize": true,
+            "text": "You can switch the basalt blocks with calcite and choose the gemstone blocks as you like it best."
+        }
+    ]
+}

@@ -1,6 +1,7 @@
 {
     "name": "Exuberance",
     "icon": "minecraft:experience_bottle",
+    "advancement": "spectrum:midgame/build_enchanting_structure",
     "category": "spectrum:enchanting_category",
     "pages": [
         {

@@ -21,7 +21,7 @@ repositories {
 		name = "Patchouli" // https://github.com/Vazkii/Patchouli
 		url = 'https://maven.blamejared.com'
 	}
-	maven { url 'https://jitpack.io' } // owo lib
+	maven { url 'https://jitpack.io' } // owo lib // 1.18: https://maven.wispforest.io/
 }
 dependencies {
 	// fabric

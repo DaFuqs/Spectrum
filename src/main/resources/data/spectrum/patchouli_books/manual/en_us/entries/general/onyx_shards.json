@@ -4,7 +4,7 @@
   "advancement": "spectrum:collect_all_basic_pigments_besides_brown",
   "category": "spectrum:general_category",
   "extra_recipe_mappings": {
-    "spectrum:onyx_shard": 2
+    "spectrum:onyx_shard": 1
   },
   "pages": [
     {

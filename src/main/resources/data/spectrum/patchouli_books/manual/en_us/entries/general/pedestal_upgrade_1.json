@@ -9,7 +9,7 @@
   "pages": [
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "CMV Variant",
+      "title": "CMY Variant",
       "recipe": "spectrum:pedestal/tier1/pedestal_all_basic",
       "text": "Upgrade your $(l:general/pedestal)Pigment Pedestal$() by using all the shards you collected on your journey."
     },

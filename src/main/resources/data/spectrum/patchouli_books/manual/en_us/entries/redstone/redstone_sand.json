@@ -14,7 +14,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "By adding redstone and a bit of magic to sand, it gains an interesting property: like other blocks, it stays in the air until the redstone gemstones inside it start vibrating.$(br2)Redstone Sand behaves like a normal block until the moment it gets a redstone signal.$(br)The redstone trigger propagates through all connected blocks, destabilizing them and laws of gravity force it to drop."
+      "text": "By adding redstone and a bit of magic to sand, it gains an interesting property: like other blocks, it stays in the air until the gemstone dust inside it start vibrating.$(br2)Redstone Sand behaves like a solid block until the moment it gets a redstone signal.$(br)The redstone trigger propagates through all connected blocks, destabilizing them and laws of gravity force it to drop."
     },
     {
       "type": "spectrum:pedestal_crafting",

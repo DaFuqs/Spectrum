@@ -11,7 +11,7 @@
             "title":"Mud",
             "type": "patchouli:spotlight",
             "item": "spectrum:mud_bucket",
-            "text": "$(italic)Mud. It is mud. Not particularly interesting in itself. But what is practical is the collision of the dirt with water and lava. This creates dirt and coarse dirt, respectively."
+            "text": "$(italic)Mud. It is mud. Not particularly interesting in itself. But what is practical is the collision of the mud with water or lava. This creates dirt or coarse dirt, respectively."
         },
         {
             "type": "spectrum:pedestal_crafting",

@@ -1,10 +1,10 @@
 package de.dafuqs.spectrum.registries;
 
-import com.glisco.owo.itemgroup.Icon;
-import com.glisco.owo.itemgroup.OwoItemGroup;
-import com.glisco.owo.itemgroup.gui.ItemGroupButton;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.mob_head.SpectrumSkullBlock;
+import io.wispforest.owo.itemgroup.Icon;
+import io.wispforest.owo.itemgroup.OwoItemGroup;
+import io.wispforest.owo.itemgroup.gui.ItemGroupButton;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
@@ -24,7 +24,6 @@ public class SpectrumItemGroups {
 		add(ItemGroupButton.curseforge("https://github.com/DaFuqs/Spectrum"));
 		add(ItemGroupButton.modrinth("https://github.com/DaFuqs/Spectrum"));
 	}};
-	
 	
 	public static final OwoItemGroup ITEM_GROUP_GENERAL = new OwoItemGroup(new Identifier(SpectrumCommon.MOD_ID, "general")) {
 

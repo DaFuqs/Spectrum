@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.registries;
 
-import com.glisco.owo.itemgroup.OwoItemSettings;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.gravity.GravityItem;
 import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
@@ -16,6 +15,7 @@ import de.dafuqs.spectrum.items.tools.*;
 import de.dafuqs.spectrum.registries.materials.SpectrumArmorMaterials;
 import de.dafuqs.spectrum.registries.materials.SpectrumToolMaterials;
 import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
+import io.wispforest.owo.itemgroup.OwoItemSettings;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.minecraft.block.Blocks;

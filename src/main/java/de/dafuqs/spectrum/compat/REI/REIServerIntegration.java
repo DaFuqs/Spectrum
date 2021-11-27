@@ -62,7 +62,6 @@ public class REIServerIntegration implements REIServerPlugin {
     public void registerDisplaySerializer(DisplaySerializerRegistry registry) {
         //TODO
         REIServerPlugin.super.registerDisplaySerializer(registry);
-        
         //registry.register(PedestalCraftingCategory.ID, PedestalCraftingRecipeDisplay.serializer());
     }
 }

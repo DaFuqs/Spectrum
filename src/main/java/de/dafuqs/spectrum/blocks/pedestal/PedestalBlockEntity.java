@@ -7,6 +7,7 @@ import de.dafuqs.spectrum.blocks.upgrade.Upgradeable;
 import de.dafuqs.spectrum.enums.GemstoneColor;
 import de.dafuqs.spectrum.enums.PedestalRecipeTier;
 import de.dafuqs.spectrum.interfaces.PlayerOwned;
+import de.dafuqs.spectrum.interfaces.PlayerOwnedWithName;
 import de.dafuqs.spectrum.inventories.AutoCraftingInventory;
 import de.dafuqs.spectrum.inventories.PedestalScreenHandler;
 import de.dafuqs.spectrum.items.CraftingTabletItem;
@@ -65,7 +66,7 @@ import vazkii.patchouli.api.PatchouliAPI;
 
 import java.util.*;
 
-public class PedestalBlockEntity extends LockableContainerBlockEntity implements RecipeInputProvider, SidedInventory, PlayerOwned, ExtendedScreenHandlerFactory, BlockEntityClientSerializable, Upgradeable {
+public class PedestalBlockEntity extends LockableContainerBlockEntity implements RecipeInputProvider, SidedInventory, PlayerOwnedWithName, ExtendedScreenHandlerFactory, BlockEntityClientSerializable, Upgradeable {
 
 	private UUID ownerUUID;
 	private PedestalBlock.PedestalVariant pedestalVariant;
@@ -210,7 +211,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 	}
 	
 	public static void updateInClientWorld(PedestalBlockEntity pedestalBlockEntity) {
-		pedestalBlockEntity.sync();
+		((ServerWorld) pedestalBlockEntity.world).getChunkManager().markForUpdate(pedestalBlockEntity.pos);
 	}
 	
 	// Called when the chunk is first loaded to initialize this be
@@ -770,11 +771,6 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 	public UUID getOwnerUUID() {
 		return this.ownerUUID;
 	}
-
-	@Override
-	public void setOwner(PlayerEntity playerEntity) {
-		this.ownerUUID = playerEntity.getUuid();
-	}
 	
 	public Recipe getCurrentRecipe() {
 		return this.currentRecipe;
@@ -882,15 +878,5 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 				Support.grantAdvancementCriterion(owner, "midgame/use_all_pedestal_upgrades", "used_all");
 			}
 		}
-	}
-	
-	@Override
-	public void fromClientTag(NbtCompound tag) {
-		this.readNbt(tag);
-	}
-	
-	@Override
-	public NbtCompound toClientTag(NbtCompound tag) {
-		return this.toInitialChunkDataNbt();
 	}
 }

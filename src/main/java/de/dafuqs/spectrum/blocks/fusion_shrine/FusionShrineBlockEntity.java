@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.blocks.fusion_shrine;
 import de.dafuqs.spectrum.SpectrumClient;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.Support;
+import de.dafuqs.spectrum.blocks.pedestal.PedestalBlockEntity;
 import de.dafuqs.spectrum.blocks.upgrade.Upgradeable;
 import de.dafuqs.spectrum.interfaces.PlayerOwned;
 import de.dafuqs.spectrum.networking.SpectrumS2CPackets;
@@ -14,11 +15,9 @@ import de.dafuqs.spectrum.recipe.fusion_shrine.FusionShrineRecipeWorldEffect;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
 import de.dafuqs.spectrum.registries.color.ColorRegistry;
 import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
-import net.fabricmc.fabric.api.block.entity.BlockEntityClientSerializable;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.MobSpawnerBlockEntity;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.ExperienceOrbEntity;
 import net.minecraft.entity.ItemEntity;
@@ -30,7 +29,6 @@ import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
-import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.Recipe;
@@ -49,14 +47,13 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.Map;
 import java.util.Optional;
 import java.util.Random;
 import java.util.UUID;
 
-public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputProvider, PlayerOwned, BlockEntityClientSerializable, Upgradeable {
+public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputProvider, PlayerOwned, Upgradeable {
 
 	private UUID ownerUUID;
 	private Map<Upgradeable.UpgradeType, Double> upgrades;
@@ -233,7 +230,7 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 			fusionShrineBlockEntity.craftingTimeTotal = (int) Math.ceil(recipe.getCraftingTime() / fusionShrineBlockEntity.getMultiplier(fusionShrineBlockEntity.upgrades, Upgradeable.UpgradeType.SPEED));
 		}
 		
-		fusionShrineBlockEntity.sync();
+		sync(fusionShrineBlockEntity);
 		return recipe;
 	}
 	
@@ -383,15 +380,8 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 		this.ownerUUID = playerEntity.getUuid();
 	}
 	
-	// BLOCKENTITYCLIENTSERIALIZABLE
-	@Override
-	public void fromClientTag(NbtCompound tag) {
-		this.readNbt(tag);
-	}
-	
-	@Override
-	public NbtCompound toClientTag(NbtCompound tag) {
-		return this.toInitialChunkDataNbt();
+	public static void sync(@NotNull FusionShrineBlockEntity fusionShrineBlockEntity) {
+		((ServerWorld) fusionShrineBlockEntity.world).getChunkManager().markForUpdate(fusionShrineBlockEntity.pos);
 	}
 	
 	// UPGRADEABLE

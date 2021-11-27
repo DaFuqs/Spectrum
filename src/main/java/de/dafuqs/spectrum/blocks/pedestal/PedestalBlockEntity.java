@@ -20,7 +20,6 @@ import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import de.dafuqs.spectrum.registries.SpectrumMultiblocks;
 import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
-import net.fabricmc.fabric.api.block.entity.BlockEntityClientSerializable;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -65,7 +64,7 @@ import vazkii.patchouli.api.IMultiblock;
 
 import java.util.*;
 
-public class PedestalBlockEntity extends LockableContainerBlockEntity implements RecipeInputProvider, SidedInventory, PlayerOwnedWithName, ExtendedScreenHandlerFactory, BlockEntityClientSerializable, Upgradeable {
+public class PedestalBlockEntity extends LockableContainerBlockEntity implements RecipeInputProvider, SidedInventory, PlayerOwnedWithName, ExtendedScreenHandlerFactory, Upgradeable {
 
 	private UUID ownerUUID;
 	private String ownerName;
@@ -210,8 +209,8 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		}
 	}
 	
-	public static void updateInClientWorld(PedestalBlockEntity pedestalBlockEntity) {
-		pedestalBlockEntity.sync();
+	public static void sync(@NotNull PedestalBlockEntity pedestalBlockEntity) {
+		((ServerWorld) pedestalBlockEntity.world).getChunkManager().markForUpdate(pedestalBlockEntity.pos);
 	}
 	
 	// Called when the chunk is first loaded to initialize this be
@@ -484,7 +483,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 					PedestalBlock.PedestalVariant newPedestalVariant = PedestalCraftingRecipe.getUpgradedPedestalVariantForOutput(pedestalCraftingRecipe.getOutput());
 					if(newPedestalVariant != null && newPedestalVariant.ordinal() <= PedestalBlockEntity.getVariant(pedestalBlockEntity).ordinal()) {
 						if(pedestalBlockEntity.currentRecipe != null) {
-							updateInClientWorld(pedestalBlockEntity);
+							sync(pedestalBlockEntity);
 						}
 						return null;
 					}
@@ -492,12 +491,12 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 					if (pedestalCraftingRecipe.canCraft(pedestalBlockEntity)) {
 						pedestalBlockEntity.currentRecipe = pedestalCraftingRecipe;
 						pedestalBlockEntity.craftingTimeTotal = pedestalCraftingRecipe.getCraftingTime();
-						updateInClientWorld(pedestalBlockEntity);
+						sync(pedestalBlockEntity);
 						return pedestalCraftingRecipe;
 					} else {
 						SpectrumS2CPackets.sendCancelBlockBoundSoundInstance((ServerWorld) pedestalBlockEntity.getWorld(), pedestalBlockEntity.getPos());
 						if(pedestalBlockEntity.currentRecipe != null) {
-							updateInClientWorld(pedestalBlockEntity);
+							sync(pedestalBlockEntity);
 						}
 						return null;
 					}
@@ -506,12 +505,12 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 					if (craftingRecipe != null) {
 						pedestalBlockEntity.currentRecipe = craftingRecipe;
 						pedestalBlockEntity.craftingTimeTotal = 20;
-						updateInClientWorld(pedestalBlockEntity);
+						sync(pedestalBlockEntity);
 						return craftingRecipe;
 					} else {
 						SpectrumS2CPackets.sendCancelBlockBoundSoundInstance((ServerWorld) pedestalBlockEntity.getWorld(), pedestalBlockEntity.getPos());
 						if(pedestalBlockEntity.currentRecipe != null) {
-							updateInClientWorld(pedestalBlockEntity);
+							sync(pedestalBlockEntity);
 						}
 						pedestalBlockEntity.currentRecipe = null;
 						return null;
@@ -592,7 +591,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 				
 				// reset the recipe
 				pedestalBlockEntity.currentRecipe = null;
-				updateInClientWorld(pedestalBlockEntity);
+				sync(pedestalBlockEntity);
 				pedestalBlockEntity.markDirty();
 			} else {
 				int resultAmountBeforeMod = recipeOutput.getCount();
@@ -894,13 +893,4 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		}
 	}
 	
-	@Override
-	public void fromClientTag(NbtCompound tag) {
-		this.readNbt(tag);
-	}
-	
-	@Override
-	public NbtCompound toClientTag(NbtCompound tag) {
-		return this.toInitialChunkDataNbt();
-	}
 }

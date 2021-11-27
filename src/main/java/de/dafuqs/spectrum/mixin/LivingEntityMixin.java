@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.mixin;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.registries.SpectrumEnchantments;
 import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
@@ -22,13 +23,15 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class LivingEntityMixin {
 
 	@Shadow @Nullable protected PlayerEntity attackingPlayer;
-
-	@Shadow @Final private DefaultedList<ItemStack> equippedArmor;
-
-	@Shadow @Final private DefaultedList<ItemStack> equippedHand;
-
+	
 	@Shadow public abstract void swingHand(Hand hand);
-
+	
+	@Shadow protected abstract ItemStack getSyncedArmorStack(EquipmentSlot slot);
+	
+	@Shadow public abstract Iterable<ItemStack> getArmorItems();
+	
+	@Shadow @Final private DefaultedList<ItemStack> syncedArmorStacks;
+	
 	@ModifyArg(method = "dropXp()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/ExperienceOrbEntity;spawn(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/util/math/Vec3d;I)V"), index = 2)
 	protected int applyExuberance(int originalXP) {
 		return (int) (originalXP * getExuberanceMod(this.attackingPlayer));
@@ -69,9 +72,9 @@ public abstract class LivingEntityMixin {
 								break;
 							}
 						} else {
-							if(!this.equippedArmor.get(randomSlot).isEmpty()) {
-								thisEntity.dropStack(this.equippedArmor.get(randomSlot));
-								this.equippedArmor.set(randomSlot, ItemStack.EMPTY);
+							if(!this.syncedArmorStacks.get(randomSlot).isEmpty()) {
+								thisEntity.dropStack(this.syncedArmorStacks.get(randomSlot));
+								this.syncedArmorStacks.set(randomSlot, ItemStack.EMPTY);
 								break;
 							}
 						}

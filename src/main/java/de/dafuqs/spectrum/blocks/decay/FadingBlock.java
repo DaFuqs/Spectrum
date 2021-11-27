@@ -47,7 +47,7 @@ public class FadingBlock extends DecayBlock {
 		setDefaultState(getStateManager().getDefaultState().with(DECAY_STATE, DecayConversion.DEFAULT));
 
 		BlockState destinationBlockState = this.getDefaultState().with(DECAY_STATE, DecayConversion.LEAVES);
-		addDecayConversion(BlockTags.LEAVES, destinationBlockState);
+		addDecayConversion(SpectrumBlockTags.FADING_CONVERSIONS, destinationBlockState);
 
 		BlockState destinationBlockState2 = this.getDefaultState().with(DECAY_STATE, DecayConversion.MAGIC_LEAVES);
 		addDecayConversion(SpectrumBlockTags.MAGICAL_LEAVES, destinationBlockState2);

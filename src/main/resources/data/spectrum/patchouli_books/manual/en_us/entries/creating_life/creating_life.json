@@ -13,7 +13,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "The raw magical powers, which are bundled by the gems, are the best starting point for such research.$(br)Since you seem to be immortal (last time a green pig walking upright surprised you, you woke up in your own bed the next morning), you have all the time in the world to think about it.$(br2)It's time for... experiments!"
+      "text": "The raw magical powers, which are bundled by the gems, are the best starting point for such research.$(br)Since you seem to be immortal, you have all the time in the world to think about it.$(br)(last time a green pig walking upright surprised you, you woke up in your bed the next morning)$(br2)It's time for... experiments!"
     }
   ]
 }

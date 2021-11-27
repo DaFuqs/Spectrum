@@ -14,6 +14,7 @@ public class SpectrumBlockTags {
 
 	// DECAY
 	public static Tag<Block> DECAY;
+	public static Tag<Block> FADING_CONVERSIONS;
 	public static Tag<Block> MAGICAL_LEAVES;
 	public static Tag<Block> FAILING_SAFE;
 	public static Tag<Block> DECAY_OBSIDIAN_CONVERSIONS;
@@ -36,6 +37,7 @@ public class SpectrumBlockTags {
 
 		// DECAY
 		DECAY = getReference("decay");
+		FADING_CONVERSIONS = getReference("fading_conversions");
 		FAILING_SAFE = getReference("failing_safe");
 		MAGICAL_LEAVES = getReference("magical_leaves");
 		DECAY_OBSIDIAN_CONVERSIONS = getReference("decay_obsidian_conversions");

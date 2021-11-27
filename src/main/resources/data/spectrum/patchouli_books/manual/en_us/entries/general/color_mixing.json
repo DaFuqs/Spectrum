@@ -12,8 +12,7 @@
     },
     {
       "type": "patchouli:text",
-      "title": "Mixing Colors",
-      "text": "Mixing gemstone powder together was not very successful. But you have an other idea:$(br)The closeness of your gemstones to nature suggests that nature must be the answer!$(br2)Quickly you make a few notes and $(l:general/colored_trees)out tumbled a recipe$(), which looks very promising."
+      "text": "Mixing gemstone powder together was not very successful. But you have an other idea:$(br)The closeness of your gemstones to nature suggests that nature must be both source and answer!$(br2)Quickly you make a few notes and $(l:general/colored_trees)out tumbled a recipe$(), which looks very promising."
     },
     {
       "type": "patchouli:text",

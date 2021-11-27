@@ -57,10 +57,11 @@
     {
       "type": "patchouli:text",
       "title": "Colored Trees",
-      "text": "You need something organic to mix your pigments. In your experiments, you could see that the roots of seedlings absorb the color and energy of the pigments with ease.$(br)The seedlings absorb the energy of the gemstone powder and develop accordingly. The energy of the gems pulses through stem and its first leaves. You wonder what they will look like when they are fully grown?"
+      "text": "You need something organic to mix your pigments. In your experiments, you could see that the roots of saplings absorb the color of the pigments with ease and develop accordingly. The energy of the gems pulses through tiny stem and its first leaves.$(br2)How will they look like when  fully grown?"
     },
     {
       "type": "patchouli:image",
+      "title": "Pedestal Recipe",
       "advancement": "spectrum:craft_colored_sapling",
       "images": [ "spectrum:textures/gui/manual/colored_trees.png" ],
       "text": "They existed all around the world all along! Who knows what else is out there?"

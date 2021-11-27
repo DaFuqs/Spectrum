@@ -10,7 +10,7 @@
     {
       "type": "patchouli:spotlight",
       "item": "spectrum:multitool",
-      "text": "$(italic)Whenever you leave your home, you carry half a tool shed with you. Not really worth mentioning, given the amount of stone you carry around with you. Nevertheless, a universal tool that combines the abilities of a pickaxe, axe and shovel would suit you.$()$(br)"
+      "text": "$(italic)Whenever you leave your home, you carry half a tool shed with you. Given the tons of stone you can carry around with you, that is no even worth mentioning, though. Nevertheless, a universal tool that combines the abilities of a pickaxe, axe, shovel and hoe would suit you.$()$(br)"
     },
     {
       "type": "spectrum:pedestal_crafting",

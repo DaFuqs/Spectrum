@@ -15,7 +15,7 @@
             "advancement": "spectrum:reveal_ender_treasure",
             "title": "Resonating Ender",
             "item": "spectrum:ender_treasure",
-            "text": "It looks like the Endermen come to this world to place something down. But what is this stuff? And $(italic)WHY$() do they leave it here?$(br2)Now that you hold one in your hands... they are pretty much everywhere! How didn't you notice earlier? Anyways, you are sure that you can definitely take advantage of this interesting material."
+            "text": "The Endermen come to this world to place those blocks. But what is this stuff? And $(italic)WHY$() do they leave it here?$(br2)Now that you hold one in your hands... they are everywhere! How didn't you notice earlier? Anyways, you are sure that you can take advantage of this interesting material."
         }
     ]
 }

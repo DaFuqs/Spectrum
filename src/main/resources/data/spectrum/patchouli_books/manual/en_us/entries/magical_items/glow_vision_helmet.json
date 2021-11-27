@@ -10,13 +10,13 @@
     {
       "type": "patchouli:spotlight",
       "item": "spectrum:glow_vision_helmet",
-      "text": "$(italic)While searching for valuable materials, you stumbled upon a new type of octopus underground. What makes them so special is their glow, which lights your way in the darkness of the caves. As beautiful as they are, they seem to wash ashore far too often and meet their sad end there."
+      "text": "$(italic)What makes Glow Squids so special is them lighting your way in the darkness of the caves. As beautiful as they are, they seem to wash ashore far too often and meet their sad end there.$(br2)You honor their clumsy glowing legacy by designing a headdress that can continue guiding you in the darkness of the caves."
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier1/glow_vision_helmet",
-      "text": "You honor their clumsy glowing legacy by designing a headdress that can continue guiding you in the darkness of the caves.$(br2)The Glow Vision helmet offers you no protection, but if you wear Glow Ink with you, you get the Night Vision effect for some time."
+      "text": "The Glow Vision helmet offers you no protection, but if you wear Glow Ink with you, you get the Night Vision effect for some time."
     }
   ]
 }

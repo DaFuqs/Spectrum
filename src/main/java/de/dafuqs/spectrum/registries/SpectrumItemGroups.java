@@ -1,10 +1,10 @@
 package de.dafuqs.spectrum.registries;
 
-import com.glisco.owo.itemgroup.Icon;
-import com.glisco.owo.itemgroup.OwoItemGroup;
-import com.glisco.owo.itemgroup.gui.ItemGroupButton;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.mob_head.SpectrumSkullBlock;
+import io.wispforest.owo.itemgroup.Icon;
+import io.wispforest.owo.itemgroup.OwoItemGroup;
+import io.wispforest.owo.itemgroup.gui.ItemGroupButton;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;

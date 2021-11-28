@@ -4,8 +4,8 @@
 	"ambientocclusion": false,
 	"textures": {
 		"3": "spectrum:block/redstone_calculator_citrine",
-		"6": "block/redstone_torch",
-		"slab": "block/smooth_stone",
+		"6": "minecraft:block/redstone_torch",
+		"slab": "minecraft:block/smooth_stone",
 		"particle": "spectrum:block/redstone_calculator",
 		"top": "spectrum:block/redstone_calculator"
 	},

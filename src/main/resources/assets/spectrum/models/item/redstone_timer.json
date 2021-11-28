@@ -1,6 +1,6 @@
 {
-	"parent": "block/block",
 	"credit": "Made with Blockbench",
+	"parent": "block/block",
 	"ambientocclusion": false,
 	"textures": {
 		"3": "spectrum:block/amethyst_storage_block",
@@ -50,12 +50,8 @@
 			"from": [7, 2, 1],
 			"to": [9, 7, 5],
 			"faces": {
-				"north": {"uv": [0, 0, 0, 0], "texture": "#6"},
-				"east": {"uv": [6, 5, 10, 10], "texture": "#6"},
-				"south": {"uv": [0, 0, 0, 0], "texture": "#6"},
-				"west": {"uv": [6, 5, 10, 10], "texture": "#6"},
-				"up": {"uv": [0, 0, 0, 0], "texture": "#6"},
-				"down": {"uv": [0, 0, 0, 0], "texture": "#6"}
+				"east": {"uv": [10, 10, 10, 10], "texture": "#missing"},
+				"west": {"uv": [6, 5, 10, 10], "texture": "#6"}
 			}
 		},
 		{
@@ -63,11 +59,7 @@
 			"to": [10, 7, 4],
 			"faces": {
 				"north": {"uv": [6, 5, 10, 10], "texture": "#6"},
-				"east": {"uv": [0, 0, 0, 0], "texture": "#6"},
-				"south": {"uv": [6, 5, 10, 10], "texture": "#6"},
-				"west": {"uv": [0, 0, 0, 0], "texture": "#6"},
-				"up": {"uv": [0, 0, 0, 0], "texture": "#6"},
-				"down": {"uv": [0, 0, 0, 0], "texture": "#6"}
+				"south": {"uv": [6, 5, 10, 10], "texture": "#6"}
 			}
 		},
 		{
@@ -83,7 +75,11 @@
 			}
 		}
 	],
-	"groups": [0, 1, 2,
+	"display": {},
+	"groups": [
+		0,
+		1,
+		2,
 		{
 			"name": "torch",
 			"origin": [0, 0, 0],

@@ -1,9 +1,6 @@
 package de.dafuqs.spectrum.blocks.redstone;
 
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.AbstractRedstoneGateBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
+import net.minecraft.block.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.particle.DustParticleEffect;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -86,12 +83,6 @@ public class RedstoneTimerBlock extends AbstractRedstoneGateBlock {
 		builder.add(FACING, POWERED, ACTIVE_TIME, INACTIVE_TIME);
 	}
 
-	/* If I am adding that it should get a visual representation
-	   but that would mean even more block states. Oooof
-	public boolean isLocked(WorldView world, BlockPos pos, BlockState state) {
-		return this.getMaxInputLevelSides(world, pos, state) > 0 || this.getInputLevel(world, pos, state.get(FACING).getOpposite()) > 0;
-	}*/
-
 	public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
 		super.onBlockAdded(state, world, pos, oldState, notify);
 		world.getBlockTickScheduler().schedule(pos, state.getBlock(), getUpdateDelayInternal(state));
@@ -144,18 +135,19 @@ public class RedstoneTimerBlock extends AbstractRedstoneGateBlock {
 			updatePowered(world, pos, state);
 		}
 	}
-
+	
+	@Override
 	public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
 		if (state.get(POWERED)) {
 			Direction direction = state.get(FACING);
-			double d = (double)pos.getX() + 0.5D + (random.nextDouble() - 0.5D) * 0.2D;
-			double e = (double)pos.getY() + 0.4D + (random.nextDouble() - 0.5D) * 0.2D;
-			double f = (double)pos.getZ() + 0.5D + (random.nextDouble() - 0.5D) * 0.2D;
-			float g = -0.8F;
-			double h = (g * (float)direction.getOffsetX());
-			double i = (g * (float)direction.getOffsetZ());
-			world.addParticle(DustParticleEffect.DEFAULT, d + h, e, f + i, 0.0D, 0.0D, 0.0D);
+			double x = (double)pos.getX() + 0.5D + (random.nextDouble() - 0.5D) * 0.2D;
+			double y = (double)pos.getY() + 0.4D + (random.nextDouble() - 0.5D) * 0.2D;
+			double z = (double)pos.getZ() + 0.5D + (random.nextDouble() - 0.5D) * 0.2D;
+			float g = -0.3F;
+			double xOffset = (g * (float)direction.getOffsetX());
+			double zOffset = (g * (float)direction.getOffsetZ());
+			world.addParticle(DustParticleEffect.DEFAULT, x + xOffset, y, z + zOffset, 0.0D, 0.0D, 0.0D);
 		}
 	}
-
+	
 }

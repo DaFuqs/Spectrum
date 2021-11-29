@@ -23,10 +23,7 @@ import net.minecraft.screen.SimpleNamedScreenHandlerFactory;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.Hand;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.TypedActionResult;
+import net.minecraft.util.*;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
 
@@ -50,7 +47,9 @@ public class CraftingTabletItem extends Item {
 			if(storedRecipe == null || user.isSneaking()) {
 				user.openHandledScreen(createScreenHandlerFactory(world, (ServerPlayerEntity) user, itemStack));
 			} else {
-				if(!(storedRecipe instanceof PedestalCraftingRecipe)) {
+				if(storedRecipe instanceof PedestalCraftingRecipe) {
+					return TypedActionResult.pass(user.getStackInHand(hand));
+				} else {
 					tryCraftRecipe((ServerPlayerEntity) user, storedRecipe);
 				}
 			}
@@ -116,6 +115,7 @@ public class CraftingTabletItem extends Item {
 			} else {
 				tooltip.add(new TranslatableText("item.spectrum.crafting_tablet.tooltip.crafting_recipe").formatted(Formatting.GRAY));
 			}
+			tooltip.add(new TranslatableText("item.spectrum.crafting_tablet.tooltip.shift_to_view_gui").formatted(Formatting.GRAY));
 		}
 	}
 

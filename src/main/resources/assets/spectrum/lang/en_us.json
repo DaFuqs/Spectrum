@@ -917,6 +917,7 @@
   "item.spectrum.crafting_tablet": "Crafting Tablet",
   "item.spectrum.crafting_tablet.tooltip.no_recipe": "Add items to the crafting grid to set a recipe",
   "item.spectrum.crafting_tablet.tooltip.crafting_recipe": "Press use to craft",
+  "item.spectrum.crafting_tablet.tooltip.shift_to_view_gui": "Crouch-Use to open crafting grid",
   "item.spectrum.crafting_tablet.tooltip.pedestal_recipe": "Use in a Pedestal for autocrafting",
   "item.spectrum.crafting_tablet.tooltip.recipe": "%d %s",
 

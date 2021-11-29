@@ -28,6 +28,7 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Optional;
 
@@ -99,8 +100,7 @@ public class CraftingTabletScreenHandler extends AbstractRecipeScreenHandler<Inv
 		 this.addSlot(new ReadOnlySlot(craftingInventory, 12, -2000, 77));
 		 this.addSlot(new ReadOnlySlot(craftingInventory, 13, -2000, 77));
 	  }
-
-
+	  
 	  // preview slot
 	  lockableCraftingResultSlot = new LockableCraftingResultSlot(playerInventory.player, craftingInventory, craftingResultInventory, 0, 127, 37);
 	  this.addSlot(lockableCraftingResultSlot);
@@ -120,7 +120,7 @@ public class CraftingTabletScreenHandler extends AbstractRecipeScreenHandler<Inv
 
    }
 
-   protected void updateResult(ScreenHandler handler, World world, PlayerEntity player, CraftingTabletInventory inventory) {
+   protected void updateResult(ScreenHandler handler, @NotNull World world, PlayerEntity player, CraftingTabletInventory inventory) {
 	  if (!world.isClient) {
 		 ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity) player;
 
@@ -169,7 +169,7 @@ public class CraftingTabletScreenHandler extends AbstractRecipeScreenHandler<Inv
 			}
 
 			handler.setPreviousTrackedSlot(0, itemStack);
-			serverPlayerEntity.networkHandler.sendPacket(new ScreenHandlerSlotUpdateS2CPacket(handler.syncId, handler.nextRevision(), 0, itemStack));
+			serverPlayerEntity.networkHandler.sendPacket(new ScreenHandlerSlotUpdateS2CPacket(handler.syncId, handler.nextRevision(), 14, itemStack));
 
 			CraftingTabletItem.setStoredRecipe(craftingTabletItemStack, optionalPedestalCraftingRecipe.get());
 		 } else {
@@ -196,7 +196,7 @@ public class CraftingTabletScreenHandler extends AbstractRecipeScreenHandler<Inv
 
 			craftingResultInventory.setStack(0, itemStack);
 			handler.setPreviousTrackedSlot(0, itemStack);
-			serverPlayerEntity.networkHandler.sendPacket(new ScreenHandlerSlotUpdateS2CPacket(handler.syncId, handler.nextRevision(), 0, itemStack));
+			serverPlayerEntity.networkHandler.sendPacket(new ScreenHandlerSlotUpdateS2CPacket(handler.syncId, handler.nextRevision(), 14, itemStack));
 		 }
 	  }
    }
@@ -222,6 +222,7 @@ public class CraftingTabletScreenHandler extends AbstractRecipeScreenHandler<Inv
    }
 
    public void close(PlayerEntity playerEntity) {
+	   // put all items in the crafting grid back into the players inventory
 	  for(int i = 0; i < 9; i++) {
 		 ItemStack itemStack = this.craftingInventory.getStack(i);
 
@@ -254,51 +255,44 @@ public class CraftingTabletScreenHandler extends AbstractRecipeScreenHandler<Inv
    }
 
    public ItemStack transferSlot(PlayerEntity player, int index) {
-	  ItemStack itemStack = ItemStack.EMPTY;
+	  ItemStack transferStack = ItemStack.EMPTY;
 	  Slot slot = this.slots.get(index);
 	  if (slot.hasStack()) {
-		 ItemStack itemStack2 = slot.getStack();
-		 itemStack = itemStack2.copy();
-		 if (index == 0) {
-			this.context.run((world, pos) -> {
-			   itemStack2.getItem().onCraft(itemStack2, world, player);
-			});
-			if (!this.insertItem(itemStack2, 10, 46, true)) {
-			   return ItemStack.EMPTY;
-			}
-
-			slot.onQuickTransfer(itemStack2, itemStack);
-		 } else if (index >= 10 && index < 46) {
-			if (!this.insertItem(itemStack2, 1, 10, false)) {
-			   if (index < 37) {
-				  if (!this.insertItem(itemStack2, 37, 46, false)) {
-					 return ItemStack.EMPTY;
+		 ItemStack clickedSlotStack = slot.getStack();
+		 transferStack = clickedSlotStack.copy();
+		  if (index < 9) {
+			  // crafting grid
+			  if (!this.insertItem(clickedSlotStack, 15, 51, false)) {
+				  if (index < 37) {
+					  if (!this.insertItem(clickedSlotStack, 41, 51, false)) {
+						  return ItemStack.EMPTY;
+					  }
+				  } else if (!this.insertItem(clickedSlotStack, 15, 41, false)) {
+					  return ItemStack.EMPTY;
 				  }
-			   } else if (!this.insertItem(itemStack2, 10, 37, false)) {
-				  return ItemStack.EMPTY;
-			   }
-			}
-		 } else if (!this.insertItem(itemStack2, 10, 46, false)) {
+			  }
+		  } else if (index < 15) {
+		 	// gemstone and result slots
+			return ItemStack.EMPTY;
+		 } else if (!this.insertItem(clickedSlotStack, 0, 9, false)) {
+		 	// player inventory
 			return ItemStack.EMPTY;
 		 }
 
-		 if (itemStack2.isEmpty()) {
+		 if (clickedSlotStack.isEmpty()) {
 			slot.setStack(ItemStack.EMPTY);
 		 } else {
 			slot.markDirty();
 		 }
 
-		 if (itemStack2.getCount() == itemStack.getCount()) {
+		 if (clickedSlotStack.getCount() == transferStack.getCount()) {
 			return ItemStack.EMPTY;
 		 }
 
-		 slot.onTakeItem(player, itemStack2);
-		 if (index == 0) {
-			player.dropItem(itemStack2, false);
-		 }
+		 slot.onTakeItem(player, clickedSlotStack);
 	  }
 
-	  return itemStack;
+	  return transferStack;
    }
 
    public boolean canInsertIntoSlot(ItemStack stack, Slot slot) {

@@ -278,12 +278,12 @@ public class SpectrumConfiguredFeatures {
 						BlockStateProvider.of(BUDDING_MOONSTONE),
 						BlockStateProvider.of(CALCITE),
 						BlockStateProvider.of(SMOOTH_BASALT),
-						ImmutableList.of(SMALL_MOONSTONE_BUD, MEDIUM_MOONSTONE_BUD, LARGE_MOONSTONE_BUD, MOONSTONE_CLUSTER),
+						ImmutableList.of(MOONSTONE_CLUSTER), // forever untouched by man: generate with clusters only
 						BlockTags.FEATURES_CANNOT_REPLACE.getId(),
 						BlockTags.GEODE_INVALID_BLOCKS.getId()),
-				new GeodeLayerThicknessConfig(1.7D, 2.2D, 3.2D, 4.2D),
+				new GeodeLayerThicknessConfig(4.4D, 5.4D, 6.2D, 9.0D),
 				new GeodeCrackConfig(0.95D, 2.0D, 2),
-				0.35D, 0.083D, true,
+				0.7D, 0.05D, true,
 				UniformIntProvider.create(4, 6),
 				UniformIntProvider.create(3, 4),
 				UniformIntProvider.create(1, 2),
@@ -307,7 +307,7 @@ public class SpectrumConfiguredFeatures {
 		registerConfiguredAndPlacedFeature(moonstoneGeodeFeatureIdentifier, MOONSTONE_GEODE, List.of(
 			RarityFilterPlacementModifier.of(SpectrumCommon.CONFIG.MoonstoneGeodeChunkChance),
 			SquarePlacementModifier.of(),
-			HeightRangePlacementModifier.uniform(YOffset.aboveBottom(10), YOffset.belowTop(10)),
+			HeightRangePlacementModifier.uniform(YOffset.aboveBottom(16), YOffset.belowTop(128)),
 			BiomePlacementModifier.of()
 		));
 		

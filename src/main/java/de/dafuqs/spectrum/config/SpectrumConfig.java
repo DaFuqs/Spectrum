@@ -21,7 +21,7 @@ public class SpectrumConfig implements ConfigData {
 	// Every x chunks there is a chance for a geode to generate
 	public int TopazGeodeChunkChance = 5;
 	public int CitrineGeodeChunkChance = 40;
-	public int MoonstoneGeodeChunkChance = 30;
+	public int MoonstoneGeodeChunkChance = 35;
 
 	// The chance that an Enderman is holding a special treasure block on spawn
 	// Separate value for Endermen spawning in the end, since there are LOTS of them there

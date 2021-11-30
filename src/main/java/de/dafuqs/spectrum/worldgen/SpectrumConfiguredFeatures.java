@@ -36,6 +36,7 @@ import net.minecraft.world.gen.stateprovider.BlockStateProvider;
 import net.minecraft.world.gen.stateprovider.WeightedBlockStateProvider;
 import net.minecraft.world.gen.trunk.StraightTrunkPlacer;
 import org.apache.logging.log4j.Level;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
 
@@ -89,7 +90,7 @@ public class SpectrumConfiguredFeatures {
 			sparklestoneOreIdentifier,
 			Feature.ORE.configure(new OreFeatureConfig(SPARKLESTONE_ORE_TARGETS, 17)),
 				List.of(
-				HeightRangePlacementModifier.uniform(YOffset.aboveBottom(8), YOffset.belowTop(48)), // min and max height
+				HeightRangePlacementModifier.uniform(YOffset.aboveBottom(48), YOffset.belowTop(48)), // min and max height
 				CountPlacementModifier.of(4) // number of veins per chunk
 		));
 		
@@ -97,7 +98,7 @@ public class SpectrumConfiguredFeatures {
 			azuriteOreIdentifier,
 			Feature.ORE.configure(new OreFeatureConfig(AZURITE_ORE_TARGETS, 5, 0.5F)),
 				List.of(
-				HeightRangePlacementModifier.uniform(YOffset.getBottom(), YOffset.aboveBottom(64)), // min and max height
+				HeightRangePlacementModifier.trapezoid(YOffset.getBottom(), YOffset.aboveBottom(32)), // min and max height
 				CountPlacementModifier.of(4) // number of veins per chunk
 		));
 		
@@ -105,7 +106,7 @@ public class SpectrumConfiguredFeatures {
 			scarletOreIdentifier,
 			Feature.ORE.configure(new OreFeatureConfig(OreConfiguredFeatures.BASE_STONE_NETHER, scarletOre, 6)),
 				List.of(
-				HeightRangePlacementModifier.uniform(YOffset.aboveBottom(10), YOffset.belowTop(10)), // min and max height
+				HeightRangePlacementModifier.uniform(YOffset.aboveBottom(10), YOffset.belowTop(64)), // min and max height
 				CountPlacementModifier.of(8) // number of veins per chunk
 		));
 		
@@ -113,7 +114,7 @@ public class SpectrumConfiguredFeatures {
 			paleturOreIdentifier,
 			Feature.ORE.configure(new OreFeatureConfig(Rules.END_STONE, paleturOre, 4, 0.3F)),
 			List.of(
-				HeightRangePlacementModifier.uniform(YOffset.getBottom(), YOffset.aboveBottom(80)), // min and max height
+				HeightRangePlacementModifier.uniform(YOffset.getBottom(), YOffset.getTop()), // min and max height
 				CountPlacementModifier.of(6) // number of veins per chunk
 		));
 		
@@ -123,7 +124,7 @@ public class SpectrumConfiguredFeatures {
 		BiomeModifications.addFeature(BiomeSelectors.foundInTheEnd(), GenerationStep.Feature.UNDERGROUND_ORES, RegistryKey.of(Registry.PLACED_FEATURE_KEY, paleturOreIdentifier));
 	}
 
-	private static void registerColoredTree(DyeColor dyeColor) {
+	private static void registerColoredTree(@NotNull DyeColor dyeColor) {
 		String identifierString = dyeColor.toString() + "_tree";
 		RegistryKey<ConfiguredFeature<?, ?>> configuredFeatureRegistryKey = RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY, new Identifier(SpectrumCommon.MOD_ID, identifierString));
 
@@ -192,7 +193,7 @@ public class SpectrumConfiguredFeatures {
 					new WeightedRandomFeaturePatchConfig(new WeightedRandomConfig(treeList, weightList), 20, 10, 5, 10)),
 			new ArrayList<>() {{
 				add(RarityFilterPlacementModifier.of(40)); // every x chunks
-				add(HeightmapPlacementModifier.of(Heightmap.Type.OCEAN_FLOOR_WG));
+				add(HeightmapPlacementModifier.of(Heightmap.Type.WORLD_SURFACE_WG));
 		}});
 		
 		BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Feature.VEGETAL_DECORATION, RegistryKey.of(Registry.PLACED_FEATURE_KEY, randomColoredTreesFeatureIdentifier));
@@ -308,7 +309,6 @@ public class SpectrumConfiguredFeatures {
 	}
 
 	private static void registerPlants() {
-		
 		// MERMAIDS BRUSH
 		Identifier mermaidsBrushIdentifier = new Identifier(SpectrumCommon.MOD_ID, "mermaids_brush");
 		registerConfiguredAndPlacedFeature(
@@ -322,37 +322,29 @@ public class SpectrumConfiguredFeatures {
 			)
 		);
 
-		Collection<RegistryKey<Biome>> deepOceans = new ArrayList<>();
+		Collection<RegistryKey<Biome>> oceans = new ArrayList<>();
 		for(String biomeString : SpectrumCommon.CONFIG.MermaidsBrushGenerationBiomes) {
 			RegistryKey<Biome> biomeKey = RegistryKey.of(Registry.BIOME_KEY, new Identifier(biomeString));
 			if(biomeKey == null) {
 				SpectrumCommon.log(Level.ERROR, "Mermaids Brush is configured to spawn in biome "+ biomeString + ", but that does not exist!");
 			} else {
-				deepOceans.add(biomeKey);
+				oceans.add(biomeKey);
 			}
 		}
-		BiomeModifications.addFeature(BiomeSelectors.includeByKey(deepOceans), GenerationStep.Feature.VEGETAL_DECORATION, RegistryKey.of(Registry.PLACED_FEATURE_KEY, mermaidsBrushIdentifier));
-
-
-		// QUITOXIC REEDS
-		Identifier quitoxicReedsIdentifier = new Identifier(SpectrumCommon.MOD_ID, "quitoxic_reeds");
-		HashSet<Block> quitoxicReedsWhiteList = new HashSet<>();
-		quitoxicReedsWhiteList.add(Blocks.WATER);
-		quitoxicReedsWhiteList.add(Blocks.CLAY);
+		BiomeModifications.addFeature(BiomeSelectors.includeByKey(oceans), GenerationStep.Feature.VEGETAL_DECORATION, RegistryKey.of(Registry.PLACED_FEATURE_KEY, mermaidsBrushIdentifier));
 		
+		// QUITOXIC REED
+		Identifier quitoxicReedsIdentifier = new Identifier(SpectrumCommon.MOD_ID, "quitoxic_reeds");
 		registerConfiguredAndPlacedFeature(quitoxicReedsIdentifier,
 				Feature.BLOCK_COLUMN.configure(BlockColumnFeatureConfig.create(
 						BiasedToBottomIntProvider.create(2, 4),
 						BlockStateProvider.of(SpectrumBlocks.QUITOXIC_REEDS))
 				),
 				List.of(
-					BlockFilterPlacementModifier.of(
-						BlockPredicate.allOf(
-								BlockPredicate.matchingBlock(
-										Blocks.AIR,
-										BlockPos.ORIGIN),
-								BlockPredicate.wouldSurvive(SpectrumBlocks.QUITOXIC_REEDS.getDefaultState(), BlockPos.ORIGIN)
-		))));
+					PlacedFeatures.OCEAN_FLOOR_WG_HEIGHTMAP,
+					BlockFilterPlacementModifier.of(BlockPredicate.allOf(BlockPredicate.wouldSurvive(SpectrumBlocks.QUITOXIC_REEDS.getDefaultState(), BlockPos.ORIGIN)))
+				)
+		);
 
 		Collection<RegistryKey<Biome>> swamps = new ArrayList<>();
 		for(String biomeString : SpectrumCommon.CONFIG.QuitoxicReedsGenerationBiomes) {
@@ -365,7 +357,7 @@ public class SpectrumConfiguredFeatures {
 		}
 		BiomeModifications.addFeature(BiomeSelectors.includeByKey(swamps), GenerationStep.Feature.VEGETAL_DECORATION, RegistryKey.of(Registry.PLACED_FEATURE_KEY, quitoxicReedsIdentifier));
 
-		// CLOVERS
+		// CLOVER
 		Identifier cloversIdentifier = new Identifier(SpectrumCommon.MOD_ID, "clovers");
 		DataPool cloverBlockDataPool = DataPool.builder().add(SpectrumBlocks.CLOVER.getDefaultState(), 19).add(SpectrumBlocks.FOUR_LEAF_CLOVER.getDefaultState(), 1).build();
 		registerConfiguredAndPlacedFeature(
@@ -377,7 +369,6 @@ public class SpectrumConfiguredFeatures {
 						BiomePlacementModifier.of()
 				)
 		);
-
 		BiomeModifications.addFeature(BiomeSelectors.categories(Biome.Category.PLAINS), GenerationStep.Feature.VEGETAL_DECORATION, RegistryKey.of(Registry.PLACED_FEATURE_KEY, cloversIdentifier));
 	}
 

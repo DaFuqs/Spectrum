@@ -199,8 +199,7 @@ public class SpectrumConfiguredFeatures {
 				add(RarityFilterPlacementModifier.of(40)); // every x chunks
 				add(HeightmapPlacementModifier.of(Heightmap.Type.OCEAN_FLOOR_WG));
 		}});
-
-		registerConfiguredFeature(randomColoredTreesFeatureIdentifier, RANDOM_COLORED_TREES_FEATURE);
+		
 		BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Feature.VEGETAL_DECORATION, RegistryKey.of(Registry.PLACED_FEATURE_KEY, randomColoredTreesFeatureIdentifier));
 	}
 
@@ -298,14 +297,14 @@ public class SpectrumConfiguredFeatures {
 			BiomePlacementModifier.of())
 		);
 		
-		registerConfiguredAndPlacedFeature(citrineGeodeFeatureIdentifier, TOPAZ_GEODE, List.of(
+		registerConfiguredAndPlacedFeature(topazGeodeFeatureIdentifier, TOPAZ_GEODE, List.of(
 			RarityFilterPlacementModifier.of(SpectrumCommon.CONFIG.TopazGeodeChunkChance),
 			SquarePlacementModifier.of(),
 			HeightRangePlacementModifier.uniform(YOffset.fixed(SpectrumCommon.CONFIG.TopazGeodeMinFixedGenerationHeight), YOffset.belowTop(SpectrumCommon.CONFIG.TopazGeodeMaxBelowTopGenerationHeight)),
 			BiomePlacementModifier.of()
 		));
 		
-		registerConfiguredAndPlacedFeature(citrineGeodeFeatureIdentifier, MOONSTONE_GEODE, List.of(
+		registerConfiguredAndPlacedFeature(moonstoneGeodeFeatureIdentifier, MOONSTONE_GEODE, List.of(
 			RarityFilterPlacementModifier.of(SpectrumCommon.CONFIG.MoonstoneGeodeChunkChance),
 			SquarePlacementModifier.of(),
 			HeightRangePlacementModifier.uniform(YOffset.aboveBottom(10), YOffset.belowTop(10)),

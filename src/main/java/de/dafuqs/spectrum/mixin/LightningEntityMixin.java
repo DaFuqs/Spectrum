@@ -21,7 +21,7 @@ public abstract class LightningEntityMixin {
 
 	@Shadow protected abstract BlockPos getAffectedBlockPos();
 
-	@Inject(method = "tick()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LightningEntity;cleanOxidization(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;)V"))
+	@Inject(method = "tick()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LightningEntity;cleanOxidation(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;)V"))
 	private void injected(CallbackInfo ci) {
 		World world = ((LightningEntity)(Object) this).world;
 

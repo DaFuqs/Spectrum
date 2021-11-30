@@ -1,35 +1,37 @@
 package de.dafuqs.spectrum.compat.REI.info;
 
+import de.dafuqs.spectrum.compat.REI.PedestalCraftingRecipeDisplay;
+import de.dafuqs.spectrum.inventories.PedestalScreenHandler;
 import me.shedaniel.rei.api.common.display.Display;
 import me.shedaniel.rei.api.common.transfer.info.simple.SimpleGridMenuInfo;
-import net.minecraft.screen.ScreenHandler;
 
-public class PedestalGridMenuInfo<PedestalScreenHandler, PedestalCraftingRecipeDisplay> implements SimpleGridMenuInfo {
+public class PedestalGridMenuInfo<T extends PedestalScreenHandler, D extends PedestalCraftingRecipeDisplay> implements SimpleGridMenuInfo<T, D> {
 
-	private final PedestalCraftingRecipeDisplay display;
+	private final D display;
 	
-	public PedestalGridMenuInfo(PedestalCraftingRecipeDisplay display) {
-		this.display = display;
+	public PedestalGridMenuInfo(Display display) {
+		this.display = (D) display;
 	}
 	
 	@Override
-	public int getCraftingResultSlotIndex(ScreenHandler menu) {
+	public int getCraftingResultSlotIndex(T menu) {
 		return -1;
 	}
 	
 	@Override
-	public int getCraftingWidth(ScreenHandler menu) {
+	public int getCraftingWidth(T menu) {
 		return 3;
 	}
 	
 	@Override
-	public int getCraftingHeight(ScreenHandler menu) {
+	public int getCraftingHeight(T menu) {
 		return 3;
 	}
 	
 	@Override
-	public PedestalCraftingRecipeDisplay getDisplay() {
+	public D getDisplay() {
 		return display;
 	}
 	
+
 }

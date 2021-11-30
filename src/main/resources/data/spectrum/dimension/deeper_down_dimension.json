@@ -1,12 +1,25 @@
 {
   "type": "spectrum:deeper_down_type",
   "generator": {
-    "type": "minecraft:noise",
-    "settings": "spectrum:deeper_down_noise",
-    "seed": 0,
     "biome_source": {
-      "type": "spectrum:deeper_down_biome_source",
-      "seed": 0
-    }
+      "biomes": [
+        {
+          "parameters": {
+            "erosion": 0.0,
+            "depth": 0.0,
+            "weirdness": 0.0,
+            "offset": 0.0,
+            "temperature": 0.0,
+            "humidity": 0.0,
+            "continentalness": 0.0
+          },
+          "biome": "spectrum:deeper_down_biome"
+        }
+      ],
+      "type": "minecraft:multi_noise"
+    },
+    "seed": 0,
+    "settings": "spectrum:deeper_down_noise",
+    "type": "minecraft:noise"
   }
 }

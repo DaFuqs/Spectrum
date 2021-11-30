@@ -22,27 +22,43 @@
   "surface_builder": "spectrum:deeper_down_surface_builder",
   "carvers": {
     "air": [
-      "minecraft:cave"
+      "minecraft:cave",
+      "minecraft:cave_extra_underground"
     ]
   },
   "features": [
     [],
-    [],
-    [],
     [
-      "spectrum:moonstone_geode",
-      "minecraft:monster_room"
+      "minecraft:lake_lava_underground",
+      "minecraft:lake_lava_surface"
+    ],
+    [
+      "spectrum:moonstone_geode"
+    ],
+    [
+      "minecraft:monster_room",
+      "minecraft:monster_room_deep"
     ],
     [],
     [],
     [
-      "minecraft:ore_copper",
-      "minecraft:disk_sand",
-      "minecraft:disk_clay",
+      "minecraft:ore_tuff",
+      "minecraft:ore_coal_lower",
+      "minecraft:ore_iron_small",
+      "minecraft:ore_gold_lower",
+      "minecraft:ore_redstone_lower",
+      "minecraft:ore_diamond_large",
+      "minecraft:ore_diamond_buried",
+      "minecraft:ore_lapis",
+      "minecraft:ore_lapis_buried",
+      "minecraft:ore_infested",
+      "minecraft:ore_gold_extra",
       "minecraft:disk_gravel"
     ],
+    [],
     [
-      "minecraft:ore_infested"
+      "minecraft:spring_water",
+      "minecraft:spring_lava"
     ],
     [
       "minecraft:glow_lichen"
@@ -54,6 +70,8 @@
     "monster": [],
     "creature": [],
     "ambient": [],
+    "axolotls": [],
+    "underground_water_creature": [],
     "water_creature": [],
     "water_ambient": [],
     "misc": []

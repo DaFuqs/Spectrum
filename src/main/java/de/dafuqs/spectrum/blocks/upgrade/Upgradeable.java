@@ -35,7 +35,7 @@ public interface Upgradeable {
 	
 	static Map<UpgradeType, Double> fromNbt(@NotNull NbtList nbtList) {
 		Map<UpgradeType, Double> map = Maps.newLinkedHashMap();
-
+		
 		for(int i = 0; i < nbtList.size(); ++i) {
 			NbtCompound nbtCompound = nbtList.getCompound(i);
 			

@@ -56,7 +56,7 @@ public abstract class WorldRendererMixin {
     @Unique private boolean renderedExtendedOutline = false;
 
     @Inject(method = "render(Lnet/minecraft/client/util/math/MatrixStack;FJZLnet/minecraft/client/render/Camera;Lnet/minecraft/client/render/GameRenderer;Lnet/minecraft/client/render/LightmapTextureManager;Lnet/minecraft/util/math/Matrix4f;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/util/hit/HitResult;getType()Lnet/minecraft/util/hit/HitResult$Type;"), locals = LocalCapture.CAPTURE_FAILHARD)
-    private void renderExtendedBlockOutline(MatrixStack matrices, float tickDelta, long limitTime, boolean renderBlockOutline, Camera camera, GameRenderer gameRenderer, LightmapTextureManager lightmapTextureManager, Matrix4f matrix4f, CallbackInfo ci, Profiler profiler, Vec3d vec3d, double d, double e, double f, Matrix4f matrix4f2, boolean bl, Frustum frustum2, boolean bl3, VertexConsumerProvider.Immediate immediate) {
+    private void renderExtendedBlockOutline(MatrixStack matrices, float tickDelta, long limitTime, boolean renderBlockOutline, Camera camera, GameRenderer gameRenderer, LightmapTextureManager lightmapTextureManager, Matrix4f positionMatrix, CallbackInfo ci, Profiler profiler, boolean b, Vec3d vec3d, double d, double e, double f, Matrix4f matrix4f2, boolean b2, Frustum frustum2, boolean b3, VertexConsumerProvider.Immediate immediate, HitResult hitResult2) {
         renderedExtendedOutline = false;
         GuiOverlay.doNotRenderOverlay();
         
@@ -81,8 +81,7 @@ public abstract class WorldRendererMixin {
         BlockPos lookingAtPos = hitResult.getBlockPos();
         BlockState lookingAtState = this.world.getBlockState(lookingAtPos);
         Block lookingAtBlock = lookingAtState.getBlock();
-        Block placementBlock = lookingAtBlock;
-        
+    
         if(!BuildingStaffItem.isBlacklisted(lookingAtBlock)) {
             Item item = lookingAtBlock.asItem();
             VoxelShape shape = VoxelShapes.empty();

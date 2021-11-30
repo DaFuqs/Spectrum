@@ -39,13 +39,13 @@ dependencies {
 	modApi("com.terraformersmc:modmenu:${project.modmenu_version}")
 
 	modImplementation "vazkii.patchouli:Patchouli:${project.patchouli_version}"	// https://maven.blamejared.com/vazkii/patchouli/Patchouli/
-	//modImplementation "net.darkhax.enchdesc:EnchantmentDescriptions-fabric-${project.enchantment_descriptions_mc_version}:${project.enchantment_descriptions_mod_version}"
 	modImplementation "io.wispforest:owo-lib:${project.owo_version}+1.18"
 
 	modCompileOnly "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"
 	modRuntime "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"
 
 	// Soft dependencies:
+	//modImplementation "net.darkhax.enchdesc:EnchantmentDescriptions-fabric-${project.enchantment_descriptions_mc_version}:${project.enchantment_descriptions_mod_version}"
 	// https://github.com/Gegy/colored-lights // uses colored_lights/light_colors.json
 }
 

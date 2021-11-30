@@ -21,7 +21,6 @@ import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
-import java.util.Optional;
 import java.util.Random;
 
 public class EtherealGlassBlock extends Block {

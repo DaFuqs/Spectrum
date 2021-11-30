@@ -1,0 +1,13 @@
+{
+  "name": "Getting deeper down",
+  "icon": "minecraft:bedrock",
+  "advancement": "spectrum:lategame/spectrum_lategame",
+  "category": "spectrum:dimension_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "There is something lurking in the dark",
+      "text": "$(italic)Watch out not getting shredded and devoured by this monstrosity. Always present, always lurking. Just waiting for the right time to strike.$()"
+    }
+  ]
+}

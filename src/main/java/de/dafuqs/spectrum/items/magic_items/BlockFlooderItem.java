@@ -3,8 +3,6 @@ package de.dafuqs.spectrum.items.magic_items;
 import de.dafuqs.spectrum.entity.entity.BlockFlooderProjectile;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.BowItem;
-import net.minecraft.item.EggItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.sound.SoundCategory;

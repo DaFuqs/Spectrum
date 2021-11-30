@@ -23,7 +23,6 @@ import net.minecraft.util.shape.VoxelShape;
 import java.util.Collections;
 import java.util.Hashtable;
 import java.util.List;
-import java.util.Optional;
 
 public interface Cloakable {
 

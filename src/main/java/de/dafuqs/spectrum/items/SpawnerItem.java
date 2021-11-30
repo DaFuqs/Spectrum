@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.items;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.block.Block;
-import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.MobSpawnerBlockEntity;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.EntityType;

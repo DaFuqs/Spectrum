@@ -1,8 +1,8 @@
 package de.dafuqs.spectrum.blocks.particle_spawner;
 
 import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.blocks.pedestal.PedestalBlockEntity;
 import de.dafuqs.spectrum.inventories.ParticleSpawnerScreenHandler;
-import de.dafuqs.spectrum.networking.SpectrumS2CPackets;
 import de.dafuqs.spectrum.particle.effect.ParticleSpawnerParticleEffect;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
@@ -20,6 +20,7 @@ import net.minecraft.particle.DefaultParticleType;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
@@ -70,12 +71,13 @@ public class ParticleSpawnerBlockEntity extends BlockEntity implements ExtendedS
 		this.scaleVariance = 0.2F;
 		this.lifetimeTicks = 20;
 		this.lifetimeVariance = 10;
-		this.gravity = 0.98F;
+		this.gravity = 0.02F;
 		this.collisions = true;
 	}
 
 	public static void clientTick(World world, BlockPos pos, BlockState state, ParticleSpawnerBlockEntity blockEntity) {
-		if(world.getBlockState(pos).get(ParticleSpawnerBlock.POWERED).equals(true)) {
+		BlockState blockState = world.getBlockState(pos);
+		if(blockState.getBlock() instanceof ParticleSpawnerBlock && world.getBlockState(pos).get(ParticleSpawnerBlock.POWERED).equals(true)) {
 			blockEntity.spawnParticles();
 		}
 	}
@@ -92,15 +94,6 @@ public class ParticleSpawnerBlockEntity extends BlockEntity implements ExtendedS
 		world.addSyncedBlockEvent(pos, SpectrumBlocks.FUSION_SHRINE, 1, 0);
 	}
 	
-	// when marked dirty this is called to send updates to clients
-	// see also MobSpawnerBlockEntity for a vanilla version of this
-	@Nullable
-	public BlockEntityUpdateS2CPacket toUpdatePacket() {
-		// TODO
-		//SpectrumS2CPackets.sendBlockEntityUpdate(this, SpectrumS2CPackets.BlockEntityUpdatePacketID.PARTICLE_SPAWNER);
-		return null;
-	}
-
 	private void spawnParticles() {
 		float particlesToSpawn = particlesPerSecond / 20F;
 		while (particlesToSpawn > 1 || world.random.nextFloat() < particlesToSpawn) {

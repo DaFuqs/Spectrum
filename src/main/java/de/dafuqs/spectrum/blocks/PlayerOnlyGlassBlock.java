@@ -13,8 +13,6 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 
-import java.util.Optional;
-
 public class PlayerOnlyGlassBlock extends AbstractGlassBlock {
 
 	// used for tinted glass to make light not shine through

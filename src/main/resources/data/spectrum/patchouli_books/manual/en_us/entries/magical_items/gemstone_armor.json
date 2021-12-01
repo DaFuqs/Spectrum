@@ -1,6 +1,6 @@
 {
   "name": "Gemstone Armor",
-  "advancement": "spectrum:build_basic_pedestal_structure",
+  "advancement": "spectrum:progression/unlock_gemstone_armor_category",
   "icon": "spectrum:emergency_chestplate",
   "category": "spectrum:magical_items_category",
   "extra_recipe_mappings": {

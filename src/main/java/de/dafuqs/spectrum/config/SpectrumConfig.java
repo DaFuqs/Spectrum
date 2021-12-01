@@ -19,7 +19,7 @@ public class SpectrumConfig implements ConfigData {
 	public int TopazGeodeMaxBelowTopGenerationHeight = 0;
 
 	// Every x chunks there is a chance for a geode to generate
-	public int TopazGeodeChunkChance = 5;
+	public int TopazGeodeChunkChance = 10;
 	public int CitrineGeodeChunkChance = 40;
 	public int MoonstoneGeodeChunkChance = 35;
 

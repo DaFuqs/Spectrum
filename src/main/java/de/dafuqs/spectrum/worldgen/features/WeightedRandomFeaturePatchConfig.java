@@ -5,6 +5,7 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.util.dynamic.Codecs;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 
+import java.util.Random;
 import java.util.stream.Stream;
 
 public class WeightedRandomFeaturePatchConfig extends WeightedRandomFeatureConfig {
@@ -45,5 +46,4 @@ public class WeightedRandomFeaturePatchConfig extends WeightedRandomFeatureConfi
 	public Stream<ConfiguredFeature<?, ?>> getDecoratedFeatures() {
 		return this.weightedRandomConfig.features.stream();
 	}
-
 }

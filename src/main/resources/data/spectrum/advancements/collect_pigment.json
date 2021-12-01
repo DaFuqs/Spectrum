@@ -12,7 +12,7 @@
     }
   },
   "criteria": {
-    "has_black_spectrum": {
+    "has_any_pigment": {
       "trigger": "minecraft:inventory_changed",
       "conditions": { "items": [{ "tag": "spectrum:pigments" }] }
     }

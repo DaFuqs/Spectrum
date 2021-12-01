@@ -19,6 +19,7 @@ import net.minecraft.util.collection.DataPool;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.intprovider.BiasedToBottomIntProvider;
 import net.minecraft.util.math.intprovider.ConstantIntProvider;
+import net.minecraft.util.math.intprovider.IntProvider;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.minecraft.util.registry.BuiltinRegistries;
 import net.minecraft.util.registry.Registry;
@@ -187,14 +188,24 @@ public class SpectrumConfiguredFeatures {
 		
 		Identifier randomColoredTreesFeatureIdentifier = new Identifier(SpectrumCommon.MOD_ID, "random_colored_trees");
 		
+		List<PlacementModifier> treePlacementModifiers = List.of(
+				SquarePlacementModifier.of(),
+				(VegetationPlacedFeatures.NOT_IN_SURFACE_WATER_MODIFIER),
+				(PlacedFeatures.OCEAN_FLOOR_HEIGHTMAP),
+				(BiomePlacementModifier.of()),
+				(BlockFilterPlacementModifier.of(BlockPredicate.wouldSurvive(SpectrumBlocks.RED_SAPLING.getDefaultState(), BlockPos.ORIGIN)))
+		);
+		
 		registerConfiguredAndPlacedFeature(
 			randomColoredTreesFeatureIdentifier,
 			SpectrumFeatures.WEIGHTED_RANDOM_FEATURE_PATCH.configure(
-					new WeightedRandomFeaturePatchConfig(new WeightedRandomConfig(treeList, weightList), 20, 10, 5, 10)),
-			new ArrayList<>() {{
-				add(RarityFilterPlacementModifier.of(40)); // every x chunks
-				add(HeightmapPlacementModifier.of(Heightmap.Type.WORLD_SURFACE_WG));
-		}});
+					new WeightedRandomFeaturePatchConfig(new WeightedRandomConfig(treeList, weightList), 10, 4, 5, 5)),
+				List.of(
+					RarityFilterPlacementModifier.of(40), // every x chunks
+					HeightmapPlacementModifier.of(Heightmap.Type.WORLD_SURFACE_WG),
+					BiomePlacementModifier.of()
+				)
+		);
 		
 		BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Feature.VEGETAL_DECORATION, RegistryKey.of(Registry.PLACED_FEATURE_KEY, randomColoredTreesFeatureIdentifier));
 	}
@@ -242,7 +253,7 @@ public class SpectrumConfiguredFeatures {
 				UniformIntProvider.create(4, 6),
 				UniformIntProvider.create(3, 4),
 				UniformIntProvider.create(1, 2),
-				-16, 16, 0.05D, 0)
+				-16, 16, 0.05D, 1)
 		);
 		
 		TOPAZ_GEODE = Feature.GEODE.configure(new GeodeFeatureConfig(
@@ -261,7 +272,7 @@ public class SpectrumConfiguredFeatures {
 				UniformIntProvider.create(4, 6),
 				UniformIntProvider.create(3, 4),
 				UniformIntProvider.create(1, 2),
-				-16, 16, 0.05D, 0)
+				-16, 16, 0.05D, 2)
 		);
 		
 		MOONSTONE_GEODE = Feature.GEODE.configure(new GeodeFeatureConfig(
@@ -342,7 +353,8 @@ public class SpectrumConfiguredFeatures {
 				),
 				List.of(
 					PlacedFeatures.OCEAN_FLOOR_WG_HEIGHTMAP,
-					BlockFilterPlacementModifier.of(BlockPredicate.allOf(BlockPredicate.wouldSurvive(SpectrumBlocks.QUITOXIC_REEDS.getDefaultState(), BlockPos.ORIGIN)))
+					BlockFilterPlacementModifier.of(BlockPredicate.allOf(BlockPredicate.wouldSurvive(SpectrumBlocks.QUITOXIC_REEDS.getDefaultState(), BlockPos.ORIGIN))),
+					BiomePlacementModifier.of()
 				)
 		);
 

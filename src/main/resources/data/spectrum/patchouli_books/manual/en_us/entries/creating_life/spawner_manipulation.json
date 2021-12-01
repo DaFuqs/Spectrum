@@ -1,5 +1,6 @@
 {
   "name": "Spawner Manipulation",
+  "advancement": "spectrum:lategame/break_spawner_with_resonance_tool",
   "icon": "spectrum:spawner",
   "category": "spectrum:creating_life_category",
   "extra_recipe_mappings": {

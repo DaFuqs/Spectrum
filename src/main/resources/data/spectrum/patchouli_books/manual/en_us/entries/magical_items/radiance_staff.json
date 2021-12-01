@@ -9,7 +9,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Torches and your other light sources have one crucial weakness: you can only place them when you're already in the dark. In contrast the Radiance Staff, charged enough, can place lights far away and in the air, illuminating large caverns at a distance.$(br)As a final goodie, these lights are invisible, making them great for atmospherically illuminating your structures."
+      "text": "Torches have one crucial weakness: you can only place them when you're already standing in the dark. In contrast the Radiance Staff can place lights far away and in the air, illuminating large caverns at a distance.$(br)As a final goodie, these lights are invisible, making them great for illuminating your structures atmospherically."
     },
     {
       "type": "spectrum:pedestal_crafting",

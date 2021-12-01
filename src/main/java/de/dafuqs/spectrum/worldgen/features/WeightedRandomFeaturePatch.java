@@ -54,7 +54,8 @@ public class WeightedRandomFeaturePatch extends Feature<WeightedRandomFeaturePat
 					blockPos.getY() + random.nextInt(weightedRandomFeatureConfig.spreadY + 1) - random.nextInt(weightedRandomFeatureConfig.spreadY + 1),
 					blockPos.getZ() + random.nextInt(weightedRandomFeatureConfig.spreadZ + 1) - random.nextInt(weightedRandomFeatureConfig.spreadZ + 1));
 			
-			for(PlacementModifier placementModifier : placementModifiers) {
+			// TODO
+			/*for(PlacementModifier placementModifier : placementModifiers) {
 				randomOffsetPos = placementModifier.getPositions(context, random, randomOffsetPos)
 			}
 			
@@ -81,7 +82,7 @@ public class WeightedRandomFeaturePatch extends Feature<WeightedRandomFeaturePat
 					}
 				}
 
-			}
+			}*/
 		}
 
 		return i > 0;

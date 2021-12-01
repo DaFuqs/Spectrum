@@ -15,6 +15,7 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier2/ethereal_platform",
       "text": "Another practical feature of Ethereal Platforms is that the platform reacts only to living creatures. Objects, such as items, simply pass through it."
     }

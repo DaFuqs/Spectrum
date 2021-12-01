@@ -18,7 +18,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "You have designed the structure for the Fusion Shrine to optimally bundle the magical energies of $(c_cyan)Matter$(), $(c_magenta)Time$() and $(c_yellow)Energy$() and focuses them on a single, central point, the Fusion Shrine itself."
+      "text": "You have designed the structure for the Fusion Shrine to bundle the magical energies of $(c_cyan)Matter$(), $(c_magenta)Time$() and $(c_yellow)Energy$() and focus them on a single, central point, the Fusion Shrine itself."
     },
     {
       "type": "patchouli:multiblock",

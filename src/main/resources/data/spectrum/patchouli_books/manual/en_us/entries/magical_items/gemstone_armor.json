@@ -12,7 +12,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "You had more than enough time to develop your own individual fighting style.$(br)To best support this style, you've designed a range of matching gear out of interesting materials.$(br)Disadvantage: The shards used in the production are kind of brittle. Therefore, this equipment has a comparatively low durability."
+      "text": "You had more than enough time to develop your own individual fighting style.$(br)To best support this style, you've designed a range of matching gear out of interesting materials.$(br2)Disadvantage: The shards used in the production are kind of brittle. Therefore, this equipment has a comparatively low durability."
     },
     {
       "type": "spectrum:pedestal_crafting",

@@ -15,6 +15,7 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier1/glowing_glass",
       "text": "Radiant Glass is pretty much the opposite of Tinted Glass. The sparklestone used in its manufacture ensures that the glass glows from within."
     }

@@ -15,10 +15,11 @@
       "type": "patchouli:spotlight",
       "item": "spectrum:topaz_glass",
       "title": "Gemstone Glass",
-      "text": "$(italic)Your gemstones are already slightly transparent by nature. What could be more natural than to form a kind of glass from these materials?$(br)At first glance not exactly inexpensive, it is virtually a renewable raw material. Organic windows!$()"
+      "text": "$(italic)Your gemstones are already slightly transparent by nature. What could be more natural than to form a kind of glass from these materials?$(br)At first glance not exactly inexpensive, it is virtually a renewable raw material. Renewable windows!$()"
     },
     {
       "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier1/glass/topaz_glass",
       "text": "Gemstone Glass comes in all the colors of gemstones available to you."
     }

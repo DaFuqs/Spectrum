@@ -57,19 +57,20 @@
     {
       "type": "patchouli:text",
       "title": "Colored Trees",
-      "text": "You need something organic to mix your pigments. In your experiments, you could see that the roots of saplings absorb the color of the pigments with ease and develop accordingly. The energy of the gems pulses through tiny stem and its first leaves.$(br2)How will they look like when  fully grown?"
+      "text": "You need something organic to mix your pigments. In your experiments, you could see that the roots of saplings absorb the color of the pigments with ease and develop accordingly. The energy of the gems pulses through the stem and its first leaves.$(br2)How will they look like when  fully grown?"
     },
     {
       "type": "patchouli:image",
-      "title": "Pedestal Recipe",
+      "title": "Natural Generation",
       "advancement": "spectrum:craft_colored_sapling",
       "images": [ "spectrum:textures/gui/manual/colored_trees.png" ],
       "text": "They existed all around the world all along! Who knows what else is out there?"
     },
     {
       "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier1/saplings/red_sapling",
-      "text": "Oak saplings seem to be the most responsive to the change and in wide abundance. But every sapling will do."
+      "text": "Oak saplings seem to be the most receptive to the change, but every sapling will do."
     },
     {
       "type": "patchouli:crafting",

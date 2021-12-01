@@ -19,6 +19,7 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier1/sparklestone_lights/basalt_sparklestone_light",
       "text": "You can use Polished Basalt, Polished Calcite, Smooth Stone, Polished Deepslate, Polished Diorite, Polished Andesite or Polished Granite as a base."
     }

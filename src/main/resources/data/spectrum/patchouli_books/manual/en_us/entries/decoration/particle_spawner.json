@@ -13,6 +13,7 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier2/particle_spawner",
       "text": "Apply redstone for a fantastic display.$(br)In the the particle spawners GUI you are able to configure the spawned particles to your liking."
     }

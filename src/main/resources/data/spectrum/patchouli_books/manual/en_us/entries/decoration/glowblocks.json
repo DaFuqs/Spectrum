@@ -30,6 +30,7 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier3/glowblocks/orange_glowblock",
       "text": "Glowblocks come in all colors and always look the same, no matter how much light falls on their surface."
     }

@@ -22,11 +22,13 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier2/runes/topaz_chiseled_basalt_from_shards",
       "text": "Runes come in all gemstone colors. The frame can be built out of $(l:decoration/block_variants)Polished Basalt$() or $(l:decoration/block_variants)Polished Calcite$()."
     },
     {
       "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier2/runes/amethyst_chiseled_calcite_from_cluster",
       "text": "If you manage to get a hold of complete gemstone clusters the runes are much easier to construct than from shards alone."
     }

@@ -40,7 +40,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "From the leaves of $(l:general/gemstone_powder)gemstone powder$() dyed trees$() you could obtain absolutely pure color pigments.$(br)These pigments definitely feel magical, embodying the elements of nature, composed of their original forms $(bold)$(c_magenta)TIME$(), $(bold)$(c_yellow)ENERGY$() and $(bold)$(c_cyan)MATTER.$()."
+      "text": "From the leaves of $(l:general/gemstone_powder)gemstone powder$() dyed trees$() you could obtain absolutely pure color pigments.$(br)These pigments definitely feel magical, embodying the elements of nature, composed of their original forms $(bold)$(c_magenta)TIME$(), $(bold)$(c_yellow)ENERGY$() and $(bold)$(c_cyan)MATTER$()."
     },
     {
       "type": "patchouli:spotlight",

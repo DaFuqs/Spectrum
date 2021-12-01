@@ -7,7 +7,7 @@
   "experience": 0.0,
   "result" : {
     "item": "minecraft:yellow_dye",
-    "count": 2
+    "count": 4
   },
   "particleEffectIdentifier": "cloud",
   "soundEventIdentifier": "block.grass.break"

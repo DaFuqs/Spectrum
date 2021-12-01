@@ -21,7 +21,7 @@
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier1/invisible_glow_item_frame",
-      "text": "This one has another nice touch: the item in it shines in a bright light, making it look even more imposing."
+      "text": "This one has another nice touch: the presented item in it shines in a bright light, making it look even more imposing."
     }
   ]
 }

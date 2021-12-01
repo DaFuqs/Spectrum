@@ -126,7 +126,7 @@ public class SpectrumConfiguredFeatures {
 	}
 
 	private static void registerColoredTree(@NotNull DyeColor dyeColor) {
-		String identifierString = dyeColor.toString() + "_tree";
+		String identifierString = dyeColor + "_tree";
 		RegistryKey<ConfiguredFeature<?, ?>> configuredFeatureRegistryKey = RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY, new Identifier(SpectrumCommon.MOD_ID, identifierString));
 
 		// how the colored tree will look when generated

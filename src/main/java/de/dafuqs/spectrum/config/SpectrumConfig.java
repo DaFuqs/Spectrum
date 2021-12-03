@@ -15,13 +15,16 @@ public class SpectrumConfig implements ConfigData {
 	// if the worldgen has lots of high mountains consider raising the TopazGeodeMinFixedGenerationHeight
 	public int CitrineGeodeMinAboveBottomGenerationHeight = 35;
 	public int CitrineGeodeFixedMaxGenerationHeight = 60;
-	public int TopazGeodeMinFixedGenerationHeight = 85;
+	public int TopazGeodeMinFixedGenerationHeight = 90;
 	public int TopazGeodeMaxBelowTopGenerationHeight = 0;
 
 	// Every x chunks there is a chance for a geode to generate
-	public int TopazGeodeChunkChance = 10;
+	public int TopazGeodeChunkChance = 12;
 	public int CitrineGeodeChunkChance = 40;
 	public int MoonstoneGeodeChunkChance = 35;
+	
+	// The amount of colored tree patches to generate every X chunks
+	public int ColoredTreePatchChanceChunk = 50;
 
 	// The chance that an Enderman is holding a special treasure block on spawn
 	// Separate value for Endermen spawning in the end, since there are LOTS of them there

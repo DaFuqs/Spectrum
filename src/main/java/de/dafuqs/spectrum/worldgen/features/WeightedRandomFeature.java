@@ -6,8 +6,11 @@ import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.world.gen.feature.PlacedFeature;
+import net.minecraft.world.gen.feature.RandomPatchFeatureConfig;
 import net.minecraft.world.gen.feature.util.FeatureContext;
 
+import java.util.List;
 import java.util.Random;
 
 public class WeightedRandomFeature extends Feature<WeightedRandomFeatureConfig> {
@@ -18,12 +21,12 @@ public class WeightedRandomFeature extends Feature<WeightedRandomFeatureConfig> 
 
 	public boolean generate(FeatureContext<WeightedRandomFeatureConfig> context) {
 		Random random = context.getRandom();
-		WeightedRandomFeatureConfig weightedRandomFeatureConfig = context.getConfig();
 		StructureWorldAccess structureWorldAccess = context.getWorld();
 		BlockPos blockPos = context.getOrigin();
-		ChunkGenerator chunkGenerator = context.getGenerator();
-
-		ConfiguredFeature<?, ?> configuredFeature = weightedRandomFeatureConfig.weightedRandomConfig.getEntryWithWeight(random);
-		return configuredFeature.generate(structureWorldAccess, chunkGenerator, random, blockPos);
+		
+		WeightedRandomFeatureConfig weightedRandomFeatureConfig = context.getConfig();
+		PlacedFeature randomPlacedFeature = weightedRandomFeatureConfig.getWeightedRandomFeature(context.getRandom());
+		return randomPlacedFeature.generateUnregistered(structureWorldAccess, context.getGenerator(), random, blockPos);
 	}
+	
 }

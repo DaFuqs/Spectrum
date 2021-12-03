@@ -3,11 +3,10 @@ package de.dafuqs.spectrum.worldgen;
 import com.google.common.collect.ImmutableList;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
-import de.dafuqs.spectrum.worldgen.features.WeightedRandomConfig;
+import de.dafuqs.spectrum.worldgen.features.WeightedRandomFeatureConfig;
 import de.dafuqs.spectrum.worldgen.features.WeightedRandomFeaturePatchConfig;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.structure.rule.BlockMatchRuleTest;
@@ -45,8 +44,8 @@ public class SpectrumConfiguredFeatures {
 	public static ConfiguredFeature<?, ?> MOONSTONE_GEODE;
 
 	// COLORED TREES
-	public static HashMap<DyeColor, ConfiguredFeature<TreeFeatureConfig, ?>> COLORED_TREE_FEATURES = new HashMap<>(); // FOR SAPLINGS
-	public static ConfiguredFeature<?, ?> RANDOM_COLORED_TREES_FEATURE; // FOR WORLD GEN
+	public static HashMap<DyeColor, ConfiguredFeature<TreeFeatureConfig, ?>> COLORED_TREE_CONFIGURED_FEATURES = new HashMap<>(); // FOR SAPLINGS
+	public static PlacedFeature RANDOM_COLORED_TREES_FEATURE; // FOR WORLD GEN
 	
 	public static void register() {
 		registerGeodes();
@@ -63,9 +62,12 @@ public class SpectrumConfiguredFeatures {
 		return Registry.register(BuiltinRegistries.PLACED_FEATURE, identifier, placedFeature);
 	}
 
-	private static void registerConfiguredAndPlacedFeature(Identifier identifier, ConfiguredFeature<?, ?> configuredFeature, List<PlacementModifier> placementModifiers) {
+	private static PlacedFeature registerConfiguredAndPlacedFeature(Identifier identifier, ConfiguredFeature<?, ?> configuredFeature, List<PlacementModifier> placementModifiers) {
 		Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, identifier, configuredFeature);
-		Registry.register(BuiltinRegistries.PLACED_FEATURE, identifier, configuredFeature.withPlacement(placementModifiers));
+		
+		PlacedFeature placedFeature = configuredFeature.withPlacement(placementModifiers);
+		Registry.register(BuiltinRegistries.PLACED_FEATURE, identifier, placedFeature);
+		return placedFeature;
 	}
 	
 	private static void registerOres() {
@@ -137,7 +139,7 @@ public class SpectrumConfiguredFeatures {
 				).ignoreVines().build()
 		);
 
-		COLORED_TREE_FEATURES.put(dyeColor, Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, configuredFeatureRegistryKey.getValue(), configuredFeature));
+		COLORED_TREE_CONFIGURED_FEATURES.put(dyeColor, Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, configuredFeatureRegistryKey.getValue(), configuredFeature));
 	}
 
 	private static void registerColoredTrees() {
@@ -149,21 +151,21 @@ public class SpectrumConfiguredFeatures {
 		// Black/White and brown variants are not found in the wild and have to be created by the player
 		List<ConfiguredFeature<?, ?>> treeList = new ArrayList<>();
 		//treeList.add(COLORED_TREE_FEATURES.get(DyeColor.BLACK));
-		treeList.add(COLORED_TREE_FEATURES.get(DyeColor.BLUE));
+		treeList.add(COLORED_TREE_CONFIGURED_FEATURES.get(DyeColor.BLUE));
 		//treeList.add(COLORED_TREE_FEATURES.get(DyeColor.BROWN));
-		treeList.add(COLORED_TREE_FEATURES.get(DyeColor.CYAN));
+		treeList.add(COLORED_TREE_CONFIGURED_FEATURES.get(DyeColor.CYAN));
 		//treeList.add(COLORED_TREE_FEATURES.get(DyeColor.GRAY));
-		treeList.add(COLORED_TREE_FEATURES.get(DyeColor.GREEN));
-		treeList.add(COLORED_TREE_FEATURES.get(DyeColor.LIGHT_BLUE));
+		treeList.add(COLORED_TREE_CONFIGURED_FEATURES.get(DyeColor.GREEN));
+		treeList.add(COLORED_TREE_CONFIGURED_FEATURES.get(DyeColor.LIGHT_BLUE));
 		//treeList.add(COLORED_TREE_FEATURES.get(DyeColor.LIGHT_GRAY));
-		treeList.add(COLORED_TREE_FEATURES.get(DyeColor.LIME));
-		treeList.add(COLORED_TREE_FEATURES.get(DyeColor.MAGENTA));
-		treeList.add(COLORED_TREE_FEATURES.get(DyeColor.ORANGE));
-		treeList.add(COLORED_TREE_FEATURES.get(DyeColor.PINK));
-		treeList.add(COLORED_TREE_FEATURES.get(DyeColor.PURPLE));
-		treeList.add(COLORED_TREE_FEATURES.get(DyeColor.RED));
+		treeList.add(COLORED_TREE_CONFIGURED_FEATURES.get(DyeColor.LIME));
+		treeList.add(COLORED_TREE_CONFIGURED_FEATURES.get(DyeColor.MAGENTA));
+		treeList.add(COLORED_TREE_CONFIGURED_FEATURES.get(DyeColor.ORANGE));
+		treeList.add(COLORED_TREE_CONFIGURED_FEATURES.get(DyeColor.PINK));
+		treeList.add(COLORED_TREE_CONFIGURED_FEATURES.get(DyeColor.PURPLE));
+		treeList.add(COLORED_TREE_CONFIGURED_FEATURES.get(DyeColor.RED));
 		//treeList.add(COLORED_TREE_FEATURES.get(DyeColor.WHITE));
-		treeList.add(COLORED_TREE_FEATURES.get(DyeColor.YELLOW));
+		treeList.add(COLORED_TREE_CONFIGURED_FEATURES.get(DyeColor.YELLOW));
 
 		List<Integer> weightList = new ArrayList<>();
 		//weightList.add(1);
@@ -183,25 +185,28 @@ public class SpectrumConfiguredFeatures {
 		//weightList.add(1);
 		weightList.add(75);
 		
-		Identifier randomColoredTreesFeatureIdentifier = new Identifier(SpectrumCommon.MOD_ID, "random_colored_trees");
-		
 		List<PlacementModifier> treePlacementModifiers = List.of(
-				SquarePlacementModifier.of(),
-				(VegetationPlacedFeatures.NOT_IN_SURFACE_WATER_MODIFIER),
+				VegetationPlacedFeatures.NOT_IN_SURFACE_WATER_MODIFIER,
 				(PlacedFeatures.OCEAN_FLOOR_HEIGHTMAP),
-				(BiomePlacementModifier.of()),
 				(BlockFilterPlacementModifier.of(BlockPredicate.wouldSurvive(SpectrumBlocks.RED_SAPLING.getDefaultState(), BlockPos.ORIGIN)))
 		);
+		List<PlacedFeature> placedTreeFeatures = new ArrayList<>();
+		for(ConfiguredFeature<?, ?> configuredFeature : treeList) {
+			placedTreeFeatures.add(configuredFeature.withPlacement(treePlacementModifiers));
+		}
 		
-		registerConfiguredAndPlacedFeature(
+		Identifier randomColoredTreesFeatureIdentifier = new Identifier(SpectrumCommon.MOD_ID, "random_colored_trees");
+		// every x chunks
+		RANDOM_COLORED_TREES_FEATURE = registerConfiguredAndPlacedFeature(
 			randomColoredTreesFeatureIdentifier,
 			SpectrumFeatures.WEIGHTED_RANDOM_FEATURE_PATCH.configure(
-					new WeightedRandomFeaturePatchConfig(new WeightedRandomConfig(treeList, weightList), 10, 4, 5, 5)),
-				List.of(
-					RarityFilterPlacementModifier.of(40), // every x chunks
-					HeightmapPlacementModifier.of(Heightmap.Type.WORLD_SURFACE_WG),
-					BiomePlacementModifier.of()
-				)
+					new WeightedRandomFeaturePatchConfig(5, 4, 3, new WeightedRandomFeatureConfig(placedTreeFeatures, weightList))
+			),
+			List.of(
+				RarityFilterPlacementModifier.of(SpectrumCommon.CONFIG.ColoredTreePatchChanceChunk), // every x chunks
+				HeightmapPlacementModifier.of(Heightmap.Type.WORLD_SURFACE_WG),
+				BiomePlacementModifier.of()
+			)
 		);
 		
 		BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Feature.VEGETAL_DECORATION, RegistryKey.of(Registry.PLACED_FEATURE_KEY, randomColoredTreesFeatureIdentifier));

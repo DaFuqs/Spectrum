@@ -506,31 +506,33 @@ public class SpectrumBlocks {
 	public static final Block YELLOW_BLOCK = new Block(pigmentStorageBlockBlockSettings);
 
 	// SPORE BLOSSOMS
-	public static final Block BLACK_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f), DyeColor.BLACK);
-	public static final Block BLUE_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f), DyeColor.BLUE);
-	public static final Block BROWN_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f), DyeColor.BROWN);
-	public static final Block CYAN_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f), DyeColor.CYAN);
-	public static final Block GRAY_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f), DyeColor.GRAY);
-	public static final Block GREEN_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f), DyeColor.GREEN);
-	public static final Block LIGHT_BLUE_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f), DyeColor.LIGHT_BLUE);
-	public static final Block LIGHT_GRAY_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f), DyeColor.LIGHT_GRAY);
-	public static final Block LIME_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f), DyeColor.LIME);
-	public static final Block MAGENTA_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f), DyeColor.MAGENTA);
-	public static final Block ORANGE_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f), DyeColor.ORANGE);
-	public static final Block PINK_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f), DyeColor.PINK);
-	public static final Block PURPLE_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f), DyeColor.PURPLE);
-	public static final Block RED_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f), DyeColor.RED);
-	public static final Block WHITE_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f), DyeColor.WHITE);
-	public static final Block YELLOW_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f), DyeColor.YELLOW);
+	private static final FabricBlockSettings sporeBlossomBlockSettings = FabricBlockSettings.copyOf(Blocks.SPORE_BLOSSOM);
+	public static final Block BLACK_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(sporeBlossomBlockSettings, DyeColor.BLACK);
+	public static final Block BLUE_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(sporeBlossomBlockSettings, DyeColor.BLUE);
+	public static final Block BROWN_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(sporeBlossomBlockSettings, DyeColor.BROWN);
+	public static final Block CYAN_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(sporeBlossomBlockSettings, DyeColor.CYAN);
+	public static final Block GRAY_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(sporeBlossomBlockSettings, DyeColor.GRAY);
+	public static final Block GREEN_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(sporeBlossomBlockSettings, DyeColor.GREEN);
+	public static final Block LIGHT_BLUE_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(sporeBlossomBlockSettings, DyeColor.LIGHT_BLUE);
+	public static final Block LIGHT_GRAY_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(sporeBlossomBlockSettings, DyeColor.LIGHT_GRAY);
+	public static final Block LIME_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(sporeBlossomBlockSettings, DyeColor.LIME);
+	public static final Block MAGENTA_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(sporeBlossomBlockSettings, DyeColor.MAGENTA);
+	public static final Block ORANGE_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(sporeBlossomBlockSettings, DyeColor.ORANGE);
+	public static final Block PINK_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(sporeBlossomBlockSettings, DyeColor.PINK);
+	public static final Block PURPLE_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(sporeBlossomBlockSettings, DyeColor.PURPLE);
+	public static final Block RED_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(sporeBlossomBlockSettings, DyeColor.RED);
+	public static final Block WHITE_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(sporeBlossomBlockSettings, DyeColor.WHITE);
+	public static final Block YELLOW_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(sporeBlossomBlockSettings, DyeColor.YELLOW);
 
 	// SPARKLESTONE LIGHTS
-	public static final Block BASALT_SPARKLESTONE_LIGHT = new SparklestoneLightBlock(FabricBlockSettings.copyOf(SpectrumBlocks.POLISHED_BASALT).nonOpaque().luminance(15));
-	public static final Block CALCITE_SPARKLESTONE_LIGHT = new SparklestoneLightBlock(FabricBlockSettings.copyOf(SpectrumBlocks.POLISHED_CALCITE).nonOpaque().luminance(15));
-	public static final Block STONE_SPARKLESTONE_LIGHT = new SparklestoneLightBlock(FabricBlockSettings.copyOf(Blocks.SMOOTH_STONE).nonOpaque().luminance(15));
-	public static final Block GRANITE_SPARKLESTONE_LIGHT = new SparklestoneLightBlock(FabricBlockSettings.copyOf(Blocks.POLISHED_GRANITE).nonOpaque().luminance(15));
-	public static final Block DIORITE_SPARKLESTONE_LIGHT = new SparklestoneLightBlock(FabricBlockSettings.copyOf(Blocks.POLISHED_DIORITE).nonOpaque().luminance(15));
-	public static final Block ANDESITE_SPARKLESTONE_LIGHT = new SparklestoneLightBlock(FabricBlockSettings.copyOf(Blocks.POLISHED_ANDESITE).nonOpaque().luminance(15));
-	public static final Block DEEPSLATE_SPARKLESTONE_LIGHT = new SparklestoneLightBlock(FabricBlockSettings.copyOf(Blocks.POLISHED_DEEPSLATE).nonOpaque().luminance(15));
+	private static final FabricBlockSettings sparklestoneLightBlockSettings = FabricBlockSettings.of(Material.STONE).strength(1.0F, 1.0F).nonOpaque().luminance(15);
+	public static final Block BASALT_SPARKLESTONE_LIGHT = new SparklestoneLightBlock(sparklestoneLightBlockSettings);
+	public static final Block CALCITE_SPARKLESTONE_LIGHT = new SparklestoneLightBlock(sparklestoneLightBlockSettings);
+	public static final Block STONE_SPARKLESTONE_LIGHT = new SparklestoneLightBlock(sparklestoneLightBlockSettings);
+	public static final Block GRANITE_SPARKLESTONE_LIGHT = new SparklestoneLightBlock(sparklestoneLightBlockSettings);
+	public static final Block DIORITE_SPARKLESTONE_LIGHT = new SparklestoneLightBlock(sparklestoneLightBlockSettings);
+	public static final Block ANDESITE_SPARKLESTONE_LIGHT = new SparklestoneLightBlock(sparklestoneLightBlockSettings);
+	public static final Block DEEPSLATE_SPARKLESTONE_LIGHT = new SparklestoneLightBlock(sparklestoneLightBlockSettings);
 
 	// ORES
 	public static final Block SPARKLESTONE_ORE = new SparklestoneOreBlock(FabricBlockSettings.copyOf(Blocks.IRON_ORE).requiresTool(), UniformIntProvider.create(2, 4), false);

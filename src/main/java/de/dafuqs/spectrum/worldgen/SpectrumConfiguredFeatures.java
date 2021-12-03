@@ -17,10 +17,7 @@ import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DataPool;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.intprovider.BiasedToBottomIntProvider;
-import net.minecraft.util.math.intprovider.ConstantIntProvider;
-import net.minecraft.util.math.intprovider.IntProvider;
-import net.minecraft.util.math.intprovider.UniformIntProvider;
+import net.minecraft.util.math.intprovider.*;
 import net.minecraft.util.registry.BuiltinRegistries;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryKey;
@@ -324,12 +321,14 @@ public class SpectrumConfiguredFeatures {
 		Identifier mermaidsBrushIdentifier = new Identifier(SpectrumCommon.MOD_ID, "mermaids_brush");
 		registerConfiguredAndPlacedFeature(
 			mermaidsBrushIdentifier,
-			Feature.RANDOM_PATCH.configure(ConfiguredFeatures.createRandomPatchFeatureConfig(Feature.SIMPLE_BLOCK.configure(new SimpleBlockFeatureConfig(BlockStateProvider.of(SpectrumBlocks.MERMAIDS_BRUSH))), List.of())),
+			Feature.SIMPLE_BLOCK.configure(new SimpleBlockFeatureConfig(BlockStateProvider.of(SpectrumBlocks.MERMAIDS_BRUSH))),
 			List.of(
-					SquarePlacementModifier.of(),
-					PlacedFeatures.OCEAN_FLOOR_WG_HEIGHTMAP,
-					CountPlacementModifier.of(2),
-					BiomePlacementModifier.of()
+				BiomePlacementModifier.of(),
+				RarityFilterPlacementModifier.of(16),
+				CountPlacementModifier.of(UniformIntProvider.create(2, 3)),
+				SquarePlacementModifier.of(),
+				PlacedFeatures.OCEAN_FLOOR_WG_HEIGHTMAP,
+				BlockFilterPlacementModifier.of(BlockPredicate.allOf(BlockPredicate.wouldSurvive(SpectrumBlocks.MERMAIDS_BRUSH.getDefaultState(), BlockPos.ORIGIN)))
 			)
 		);
 
@@ -348,13 +347,15 @@ public class SpectrumConfiguredFeatures {
 		Identifier quitoxicReedsIdentifier = new Identifier(SpectrumCommon.MOD_ID, "quitoxic_reeds");
 		registerConfiguredAndPlacedFeature(quitoxicReedsIdentifier,
 				Feature.BLOCK_COLUMN.configure(BlockColumnFeatureConfig.create(
-						BiasedToBottomIntProvider.create(2, 4),
-						BlockStateProvider.of(SpectrumBlocks.QUITOXIC_REEDS))
+					BiasedToBottomIntProvider.create(2, 4),
+					BlockStateProvider.of(SpectrumBlocks.QUITOXIC_REEDS))
 				),
 				List.of(
+					BiomePlacementModifier.of(),
+					CountPlacementModifier.of(30),
+					SquarePlacementModifier.of(),
 					PlacedFeatures.OCEAN_FLOOR_WG_HEIGHTMAP,
-					BlockFilterPlacementModifier.of(BlockPredicate.allOf(BlockPredicate.wouldSurvive(SpectrumBlocks.QUITOXIC_REEDS.getDefaultState(), BlockPos.ORIGIN))),
-					BiomePlacementModifier.of()
+					BlockFilterPlacementModifier.of(BlockPredicate.allOf(BlockPredicate.wouldSurvive(SpectrumBlocks.QUITOXIC_REEDS.getDefaultState(), BlockPos.ORIGIN)))
 				)
 		);
 

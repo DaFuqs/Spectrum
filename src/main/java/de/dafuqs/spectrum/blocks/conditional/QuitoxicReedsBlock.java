@@ -26,10 +26,7 @@ import net.minecraft.util.Pair;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.world.BlockView;
-import net.minecraft.world.World;
-import net.minecraft.world.WorldAccess;
-import net.minecraft.world.WorldView;
+import net.minecraft.world.*;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -202,12 +199,16 @@ public class QuitoxicReedsBlock extends SugarCaneBlock implements Cloakable, Wat
 		} else {
 			BlockState topBlockState = world.getBlockState(pos.up());
 			BlockState topBlockState2 = world.getBlockState(pos.up(2));
-			if (bottomBlockState.isIn(SpectrumBlockTags.QUITOXIC_REEDS_PLANTABLE) && (topBlockState.isAir() || topBlockState2.isAir() || topBlockState.isOf(this) || topBlockState2.isOf(this))) {
+			if (bottomBlockState.isIn(SpectrumBlockTags.QUITOXIC_REEDS_PLANTABLE) && isValidTopBlock(topBlockState) && isValidTopBlock(topBlockState2)) {
 				FluidState fluidState = world.getFluidState(pos);
 				return fluidState.getLevel() == 8 && (fluidState.isIn(FluidTags.WATER) || fluidState.isIn(SpectrumFluidTags.LIQUID_CRYSTAL));
 			}
 			return false;
 		}
+	}
+	
+	public boolean isValidTopBlock(BlockState blockState) {
+		return blockState.isAir() || blockState.isOf(this) || blockState.isOf(Blocks.WATER) || blockState.isOf(SpectrumBlocks.LIQUID_CRYSTAL);
 	}
 
 }

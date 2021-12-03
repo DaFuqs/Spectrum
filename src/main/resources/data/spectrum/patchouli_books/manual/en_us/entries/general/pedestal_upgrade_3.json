@@ -1,6 +1,7 @@
 {
   "name": "Upgrading your Pedestal 3",
   "icon": "spectrum:pedestal_moonstone",
+  "sortnum": 13,
   "advancement": "spectrum:lategame/spectrum_lategame",
   "category": "spectrum:general_category",
   "extra_recipe_mappings": {

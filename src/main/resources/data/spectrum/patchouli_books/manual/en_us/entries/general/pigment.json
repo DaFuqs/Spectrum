@@ -1,6 +1,7 @@
 {
   "name": "Pigment",
   "icon": "spectrum:magenta_pigment",
+  "sortnum": 8,
   "advancement": "spectrum:collect_pigment",
   "category": "spectrum:general_category",
   "extra_recipe_mappings": {

@@ -1,6 +1,7 @@
 {
   "name": "Gemstone Powder",
   "icon": "spectrum:amethyst_powder",
+  "sortnum": 4,
   "advancement": "spectrum:place_pedestal",
   "category": "spectrum:general_category",
   "extra_recipe_mappings": {

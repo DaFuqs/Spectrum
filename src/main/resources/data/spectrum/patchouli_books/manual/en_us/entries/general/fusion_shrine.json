@@ -1,6 +1,7 @@
 {
   "name": "Fusion Shrine",
   "icon": "spectrum:fusion_shrine",
+  "sortnum": 10,
   "advancement": "spectrum:collect_all_basic_pigments_besides_brown",
   "category": "spectrum:general_category",
   "extra_recipe_mappings": {
@@ -13,6 +14,7 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier2/fusion_shrine",
       "text": "For the fusion shrine to work it requires a focus structure and clear view of the sky."
     },

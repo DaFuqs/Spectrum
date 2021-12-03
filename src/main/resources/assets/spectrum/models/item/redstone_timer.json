@@ -50,7 +50,7 @@
 			"from": [7, 2, 1],
 			"to": [9, 7, 5],
 			"faces": {
-				"east": {"uv": [10, 10, 10, 10], "texture": "#missing"},
+				"east": {"uv": [10, 10, 10, 10], "texture": "#6"},
 				"west": {"uv": [6, 5, 10, 10], "texture": "#6"}
 			}
 		},

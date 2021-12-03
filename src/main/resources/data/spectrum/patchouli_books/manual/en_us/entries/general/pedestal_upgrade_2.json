@@ -1,6 +1,7 @@
 {
   "name": "Upgrading your Pedestal 2",
   "icon": "spectrum:pedestal_onyx",
+  "sortnum": 12,
   "advancement": "spectrum:midgame/spectrum_midgame",
   "category": "spectrum:general_category",
   "extra_recipe_mappings": {

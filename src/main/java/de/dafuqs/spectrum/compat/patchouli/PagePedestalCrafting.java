@@ -65,8 +65,6 @@ public class PagePedestalCrafting extends PageDoubleRecipeRegistry<PedestalCraft
 		for (int i = 0; i < ingredients.size(); i++) {
 			parent.renderIngredient(ms, recipeX + (i % wrap) * 19 + 3, recipeY + (i / wrap) * 19 + 3, mouseX, mouseY, ingredients.get(i));
 		}
-
-		//parent.renderItemStack(ms, recipeX + 78, recipeY + 41, mouseX, mouseY, recipe.createIcon());
 	}
 
 	@Contract(pure = true)
@@ -95,13 +93,7 @@ public class PagePedestalCrafting extends PageDoubleRecipeRegistry<PedestalCraft
 	private void drawGemstonePowderSlots(PedestalCraftingRecipe recipe, GemstoneColor @NotNull [] colors, MatrixStack ms, int startX, int recipeX, int recipeY, int mouseX, int mouseY) {
 		int h = 0;
 		for(GemstoneColor color : colors) {
-			int amount;
-			if(recipe.getGemstonePowderInputs().containsKey(color)) {
-				amount = recipe.getGemstonePowderInputs().get(color);
-			} else {
-				amount = 0;
-			}
-
+			int amount = recipe.getGemstonePowderInputs().getOrDefault(color, 0);
 			if(amount > 0) {
 				parent.renderItemStack(ms, recipeX + startX + h * 19, recipeY + 72, mouseX, mouseY, new ItemStack(SpectrumItems.getGemstoneShard(color), amount));
 			}

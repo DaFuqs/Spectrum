@@ -1,6 +1,7 @@
 {
   "name": "Spectral Shard",
   "advancement": "spectrum:lategame/spectrum_lategame",
+  "sortnum": 15,
   "icon": "spectrum:spectral_shard",
   "category": "spectrum:general_category",
   "extra_recipe_mappings": {

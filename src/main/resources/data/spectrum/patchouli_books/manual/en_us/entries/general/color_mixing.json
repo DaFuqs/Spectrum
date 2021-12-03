@@ -1,6 +1,7 @@
 {
   "name": "Color mixing",
   "icon": "minecraft:light_blue_dye",
+  "sortnum": 6,
   "advancement": "spectrum:collect_vegetal",
   "category": "spectrum:general_category",
   "pages": [

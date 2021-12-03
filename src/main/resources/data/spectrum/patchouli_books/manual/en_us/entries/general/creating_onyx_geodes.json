@@ -1,6 +1,7 @@
 {
   "name": "Creating Onyx Geodes",
   "icon": "spectrum:onyx_cluster",
+  "sortnum": 14,
   "advancement": "spectrum:progression/unlock_onyx_bud_creation",
   "category": "spectrum:general_category",
   "extra_recipe_mappings": {

@@ -1,6 +1,7 @@
 {
   "name": "Colored Trees",
-  "icon": "minecraft:oak_sapling",
+  "icon": "spectrum:red_sapling",
+  "sortnum": 7,
   "advancement": "spectrum:collect_vegetal",
   "category": "spectrum:general_category",
   "extra_recipe_mappings": {

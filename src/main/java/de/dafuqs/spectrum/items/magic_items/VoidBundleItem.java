@@ -35,7 +35,7 @@ public class VoidBundleItem extends BundleItem implements InventoryInsertionAcce
 
 	public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
 		ItemStack itemStack = user.getStackInHand(hand);
-		if (dropAllBundledItems(itemStack, user)) {
+		if (dropOneBundledStack(itemStack, user)) {
 			user.incrementStat(Stats.USED.getOrCreateStat(this));
 			return TypedActionResult.success(itemStack, world.isClient());
 		} else {
@@ -172,18 +172,14 @@ public class VoidBundleItem extends BundleItem implements InventoryInsertionAcce
 		}
 	}
 
-	private static boolean dropAllBundledItems(ItemStack voidBundleStack, PlayerEntity player) {
+	private static boolean dropOneBundledStack(ItemStack voidBundleStack, PlayerEntity player) {
+		ItemStack bundledStack = getFirstBundledStack(voidBundleStack);
 		int storedAmount = getStoredAmount(voidBundleStack);
-		int currentAmount = storedAmount;
-		if(currentAmount > 0) {
-			ItemStack storedStack = getFirstBundledStack(voidBundleStack); // TODO: TEST
-			while (currentAmount > 0) {
-				int stackCount = Math.min(currentAmount, storedStack.getMaxCount());
-				storedStack.setCount(stackCount);
-				player.dropItem(new ItemStack(storedStack.getItem(), stackCount), true);
-				currentAmount -= stackCount;
-			}
-			removeBundledStackAmount(voidBundleStack, storedAmount);
+		
+		int droppedAmount = Math.min(bundledStack.getMaxCount(), storedAmount);
+		if(droppedAmount > 0) {
+			player.dropItem(new ItemStack(bundledStack.getItem(), droppedAmount), true);
+			removeBundledStackAmount(voidBundleStack, droppedAmount);
 			return true;
 		} else {
 			return false;

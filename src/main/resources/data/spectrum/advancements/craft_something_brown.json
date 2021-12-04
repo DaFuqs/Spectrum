@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:collect_all_basic_pigments",
+  "parent": "spectrum:create_onyx_shard",
   "display": {
     "icon": {
         "item": "spectrum:brown_block"

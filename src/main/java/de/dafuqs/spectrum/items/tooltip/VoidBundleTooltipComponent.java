@@ -36,16 +36,19 @@ public class VoidBundleTooltipComponent extends SpectrumTooltipComponent {
 		}
 		drawDots = totalStacks > MAX_DISPLAYED_SLOTS;
 	}
-
+	
+	@Override
 	public int getHeight() {
 		return 20 + 2 + 4;
 	}
-
+	
+	@Override
 	public int getWidth(TextRenderer textRenderer) {
 		return this.displayedSlotCount * 20 + 2 + 4;
 	}
 
-	public void drawItems(TextRenderer textRenderer, int x, int y, MatrixStack matrices, ItemRenderer itemRenderer, int z, TextureManager textureManager) {
+	@Override
+	public void drawItems(TextRenderer textRenderer, int x, int y, MatrixStack matrices, ItemRenderer itemRenderer, int z) {
 		int n = x + 1;
 		int o = y + 1;
 
@@ -53,22 +56,22 @@ public class VoidBundleTooltipComponent extends SpectrumTooltipComponent {
 			if(i == displayedSlotCount - 1) {
 				if(displayedSlotCount == MAX_DISPLAYED_SLOTS + 1) {
 					if(drawDots) {
-						this.drawDottedSlot(n + 5 * 18, o, matrices, z, textureManager);
+						this.drawDottedSlot(n + 5 * 18, o, matrices, z);
 					} else {
-						this.drawSlot(n + i * 18, o, i, ItemStack.EMPTY, textRenderer, matrices, itemRenderer, z, textureManager);
+						this.drawSlot(n + i * 18, o, i, ItemStack.EMPTY, textRenderer, matrices, itemRenderer, z);
 					}
 				} else {
 					if(this.itemStacks.size() - 1 < i) {
-						this.drawSlot(n + i * 18, o, i, ItemStack.EMPTY, textRenderer, matrices, itemRenderer, z, textureManager);
+						this.drawSlot(n + i * 18, o, i, ItemStack.EMPTY, textRenderer, matrices, itemRenderer, z);
 					} else {
-						this.drawSlot(n + i * 18, o, i, this.itemStacks.get(i), textRenderer, matrices, itemRenderer, z, textureManager);
+						this.drawSlot(n + i * 18, o, i, this.itemStacks.get(i), textRenderer, matrices, itemRenderer, z);
 					}
 				}
 			} else {
-				this.drawSlot(n + i * 18, o, i, this.itemStacks.get(i), textRenderer, matrices, itemRenderer, z, textureManager);
+				this.drawSlot(n + i * 18, o, i, this.itemStacks.get(i), textRenderer, matrices, itemRenderer, z);
 			}
 		}
-		this.drawOutline(x, y, displayedSlotCount, 1, matrices, z, textureManager);
+		this.drawOutline(x, y, displayedSlotCount, 1, matrices, z);
 	}
 
 }

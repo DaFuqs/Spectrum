@@ -21,29 +21,28 @@ public class CraftingTabletTooltipComponent extends SpectrumTooltipComponent {
 		this.itemStack = data.getItemStack();
 		this.description = data.getDescription().asOrderedText();
 	}
-
+	
+	@Override
 	public int getHeight() {
 		return 20 + 4;
 	}
-
+	
+	@Override
 	public int getWidth(TextRenderer textRenderer) {
 		return textRenderer.getWidth(this.description) + 28;
 	}
 
-	public void drawItems(TextRenderer textRenderer, int x, int y, MatrixStack matrices, ItemRenderer itemRenderer, int z, TextureManager textureManager) {
+	@Override
+	public void drawItems(TextRenderer textRenderer, int x, int y, MatrixStack matrices, ItemRenderer itemRenderer, int z) {
 		int n = x + 1;
 		int o = y + 1;
-		this.drawSlot(n, o, 0, itemStack, textRenderer, matrices, itemRenderer, z, textureManager);
-		this.drawOutline(x, y, 1, 1, matrices, z, textureManager);
+		this.drawSlot(n, o, 0, itemStack, textRenderer, matrices, itemRenderer, z);
+		this.drawOutline(x, y, 1, 1, matrices, z);
 	}
 
 	@Override
 	public void drawText(TextRenderer textRenderer, int x, int y, Matrix4f matrix4f, VertexConsumerProvider.Immediate immediate) {
 		textRenderer.draw(this.description, (float) x + 26, (float) y + 6, 11053224, true, matrix4f, immediate, false, 0, 15728880);
-	}
-
-	private int getColumns() {
-		return Math.max(2, (int) Math.ceil(Math.sqrt((double) 1 + 1.0D)));
 	}
 
 }

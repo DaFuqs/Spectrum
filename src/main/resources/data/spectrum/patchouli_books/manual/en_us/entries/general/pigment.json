@@ -83,7 +83,7 @@
       "type": "patchouli:spotlight",
       "advancement": "spectrum:hidden/collect_pigment/collect_light_blue_pigment",
       "item": "spectrum:light_blue_pigment",
-      "text": "Looking at this color, you feel a sense of optimism, but also departure.$(br2)$(c_light_blue)Light Blue$() represents $(italic)Luck$() and $(italic)Peace()."
+      "text": "Looking at this color, you feel a sense of optimism, but also departure.$(br2)$(c_light_blue)Light Blue$() represents $(italic)Luck$() and $(italic)Peace$()."
     },
     {
       "type": "patchouli:spotlight",

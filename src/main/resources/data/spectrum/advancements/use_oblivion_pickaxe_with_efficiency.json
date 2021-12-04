@@ -5,15 +5,15 @@
       "item": "spectrum:voiding_pickaxe"
     },
     "title": {
-      "translate": "advancements.spectrum.enchant_oblivion_pickaxe_with_efficiency.title"
+      "translate": "advancements.spectrum.use_oblivion_pickaxe_with_efficiency.title"
     },
     "description": {
-      "translate": "advancements.spectrum.enchant_oblivion_pickaxe_with_efficiency.description"
+      "translate": "advancements.spectrum.use_oblivion_pickaxe_with_efficiency.description"
     }
   },
   "criteria": {
     "requirement": {
-      "trigger": "minecraft:enchanted_item",
+      "trigger": "minecraft:item_durability_changed",
       "conditions": {
         "item": {
           "items": [

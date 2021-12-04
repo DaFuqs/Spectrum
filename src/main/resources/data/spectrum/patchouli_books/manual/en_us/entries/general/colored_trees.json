@@ -65,7 +65,7 @@
       "title": "Natural Generation",
       "advancement": "spectrum:craft_colored_sapling",
       "images": [ "spectrum:textures/gui/manual/colored_trees.png" ],
-      "text": "They existed all around the world all along! Who knows what else is out there?"
+      "text": "They existed around you all along! Who knows what else is out there?"
     },
     {
       "type": "spectrum:pedestal_crafting",

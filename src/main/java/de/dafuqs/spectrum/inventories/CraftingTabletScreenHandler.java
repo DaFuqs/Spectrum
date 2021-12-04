@@ -8,6 +8,7 @@ import de.dafuqs.spectrum.items.CraftingTabletItem;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.recipe.pedestal.PedestalCraftingRecipe;
 import de.dafuqs.spectrum.registries.SpectrumItems;
+import net.minecraft.client.gui.screen.ingame.CraftingScreen;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -21,12 +22,14 @@ import net.minecraft.recipe.RecipeMatcher;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.recipe.book.RecipeBookCategory;
 import net.minecraft.screen.AbstractRecipeScreenHandler;
+import net.minecraft.screen.CraftingScreenHandler;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ScreenHandlerContext;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 
@@ -258,22 +261,38 @@ public class CraftingTabletScreenHandler extends AbstractRecipeScreenHandler<Inv
 	  ItemStack transferStack = ItemStack.EMPTY;
 	  Slot slot = this.slots.get(index);
 	  if (slot.hasStack()) {
-		 ItemStack clickedSlotStack = slot.getStack();
-		 transferStack = clickedSlotStack.copy();
-		  if (index < 9) {
-			  // crafting grid
-			  if (!this.insertItem(clickedSlotStack, 15, 51, false)) {
-				  if (index < 37) {
-					  if (!this.insertItem(clickedSlotStack, 41, 51, false)) {
-						  return ItemStack.EMPTY;
-					  }
-				  } else if (!this.insertItem(clickedSlotStack, 15, 41, false)) {
-					  return ItemStack.EMPTY;
-				  }
-			  }
-		  } else if (index < 15) {
-		 	// gemstone and result slots
+		ItemStack clickedSlotStack = slot.getStack();
+		transferStack = clickedSlotStack.copy();
+		if (index < 9) {
+			// crafting grid
+			if (!this.insertItem(clickedSlotStack, 15, 51, false)) {
+				if (index < 37) {
+					if (!this.insertItem(clickedSlotStack, 41, 51, false)) {
+						return ItemStack.EMPTY;
+					}
+				} else if (!this.insertItem(clickedSlotStack, 15, 41, false)) {
+					return ItemStack.EMPTY;
+				}
+			}
+		} else if (index < 14) {
+			// gemstone and result slots
 			return ItemStack.EMPTY;
+		} else if (index == 14) {
+			ItemStack handStack = player.getStackInHand(Hand.MAIN_HAND);
+			if(handStack.getItem() instanceof CraftingTabletItem) {
+				Recipe storedRecipe = CraftingTabletItem.getStoredRecipe(world, handStack);
+				if (storedRecipe != null && !(storedRecipe instanceof PedestalCraftingRecipe)) {
+					// crafting result slot
+					this.context.run((world, pos) -> {
+						clickedSlotStack.getItem().onCraft(clickedSlotStack, world, player);
+					});
+					if (!this.insertItem(clickedSlotStack, 10, 46, true)) {
+						return ItemStack.EMPTY;
+					}
+					
+					slot.onQuickTransfer(clickedSlotStack, transferStack);
+				}
+			}
 		 } else if (!this.insertItem(clickedSlotStack, 0, 9, false)) {
 		 	// player inventory
 			return ItemStack.EMPTY;

@@ -13,6 +13,7 @@ import net.minecraft.client.texture.TextureManager;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
+import org.jetbrains.annotations.NotNull;
 
 public class SpectrumTooltipComponent implements TooltipComponent {
 
@@ -47,7 +48,7 @@ public class SpectrumTooltipComponent implements TooltipComponent {
 		this.draw(matrices, x + columns * 18 + 1, y + rows * 20, z, textureManager, Sprite.BORDER_CORNER_BOTTOM);
 	}
 
-	public void drawSlot(int x, int y, int index, ItemStack itemStack, TextRenderer textRenderer, MatrixStack matrices, ItemRenderer itemRenderer, int z, TextureManager textureManager) {
+	public void drawSlot(int x, int y, int index, ItemStack itemStack, TextRenderer textRenderer, MatrixStack matrices, @NotNull ItemRenderer itemRenderer, int z, TextureManager textureManager) {
 		this.draw(matrices, x, y, z, textureManager, Sprite.SLOT);
 
 		itemRenderer.renderInGuiWithOverrides(itemStack, x + 1, y + 1, index);
@@ -61,14 +62,14 @@ public class SpectrumTooltipComponent implements TooltipComponent {
 		this.draw(matrices, x, y, z, textureManager, Sprite.DOTTED_SLOT);
 	}
 
-	private void draw(MatrixStack matrices, int x, int y, int z, TextureManager textureManager, Sprite sprite) {
+	private void draw(MatrixStack matrices, int x, int y, int z, TextureManager textureManager, @NotNull Sprite sprite) {
 		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
 		RenderSystem.setShaderTexture(0, TEXTURE);
 		DrawableHelper.drawTexture(matrices, x, y, z, (float) sprite.u, (float) sprite.v, sprite.width, sprite.height, 128, 128);
 	}
 
 	@Environment(EnvType.CLIENT)
-	public static enum Sprite {
+	public enum Sprite {
 		SLOT(0, 0, 18, 20),
 		DOTTED_SLOT(18, 0, 18+18, 20),
 		BLOCKED_SLOT(0, 40, 18, 20),
@@ -83,7 +84,7 @@ public class SpectrumTooltipComponent implements TooltipComponent {
 		public final int width;
 		public final int height;
 
-		private Sprite(int u, int v, int width, int height) {
+		Sprite(int u, int v, int width, int height) {
 			this.u = u;
 			this.v = v;
 			this.width = width;

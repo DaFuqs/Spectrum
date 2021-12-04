@@ -25,6 +25,7 @@ public class SpectrumBlockTags {
 	public static Tag<Block> NATURES_STAFF_STACKABLE;
 	
 	public static Tag<Block> BUILDING_STAFFS_BLACKLISTED;
+	public static Tag<Block> EXEMPT_FROM_MINEABLE_DEBUG_CHECK;
 
 	private static Tag<Block> getReference(String id) {
 		return TagRegistry.block(new Identifier(SpectrumCommon.MOD_ID, id));
@@ -47,5 +48,6 @@ public class SpectrumBlockTags {
 		NATURES_STAFF_TICKABLE = getReference("natures_staff_tickable");
 		NATURES_STAFF_STACKABLE = getReference("natures_staff_stackable");
 		BUILDING_STAFFS_BLACKLISTED = getReference("building_staffs_blacklisted");
+		EXEMPT_FROM_MINEABLE_DEBUG_CHECK = getReference("exempt_from_mineable_debug_check");
 	}
 }

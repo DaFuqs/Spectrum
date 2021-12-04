@@ -10,23 +10,28 @@ import de.dafuqs.spectrum.progression.advancement.HasAdvancementCriterion;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.recipe.fusion_shrine.FusionShrineRecipe;
 import de.dafuqs.spectrum.recipe.pedestal.PedestalCraftingRecipe;
+import de.dafuqs.spectrum.registries.SpectrumBlockTags;
 import de.dafuqs.spectrum.registries.color.ColorRegistry;
 import net.minecraft.advancement.Advancement;
 import net.minecraft.advancement.AdvancementCriterion;
 import net.minecraft.advancement.criterion.CriterionConditions;
+import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.tag.BlockTags;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.util.registry.RegistryKey;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.Level;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -43,6 +48,21 @@ public class ProgressionSanityCommand {
 	private static int execute(ServerCommandSource source) {
 		SpectrumCommon.log(Level.INFO, "##### SANITY CHECK START ######");
 
+		// All blocks that do not have a mineable tag
+		for (Map.Entry<RegistryKey<Block>, Block> entry : Registry.BLOCK.getEntries()) {
+			RegistryKey<Block> registryKey = entry.getKey();
+			if (registryKey.getValue().getNamespace().equals(SpectrumCommon.MOD_ID)) {
+				Block block = entry.getValue();
+				if (!BlockTags.PICKAXE_MINEABLE.contains(block)
+						&& !BlockTags.AXE_MINEABLE.contains(block)
+						&& !BlockTags.SHOVEL_MINEABLE.contains(block)
+						&& !BlockTags.HOE_MINEABLE.contains(block)
+						&& !SpectrumBlockTags.EXEMPT_FROM_MINEABLE_DEBUG_CHECK.contains(block)) {
+					SpectrumCommon.log(Level.WARN, "[SANITY: Mineable Tags] Block " + registryKey.getValue() + " is not contained in a any vanilla mineable tag.");
+				}
+			}
+		}
+		
 		// Build an empty hashmap of hashmaps for counting used gem colors for each tier
 		// This info can be used to balance the usage times a bit
 		HashMap<PedestalRecipeTier, HashMap<GemstoneColor, Integer>> usedColorsForEachTier = new HashMap<>();

@@ -2,10 +2,7 @@ package de.dafuqs.spectrum.blocks.redstone;
 
 import de.dafuqs.spectrum.Support;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
-import net.minecraft.block.AbstractRedstoneGateBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockEntityProvider;
-import net.minecraft.block.BlockState;
+import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
@@ -104,7 +101,7 @@ public class RedstoneWirelessBlock extends AbstractRedstoneGateBlock implements 
 
 	@Override
 	public void updatePowered(World world, BlockPos pos, BlockState state) {
-		int newSignal = this.getPower(world, pos, state);
+		int newSignal = world.getReceivedRedstonePower(pos);
 		BlockEntity blockEntity = world.getBlockEntity(pos);
 		if (blockEntity instanceof RedstoneWirelessBlockEntity redstoneWirelessBlockEntity) {
 			if(state.get(SENDER)) {
@@ -127,7 +124,7 @@ public class RedstoneWirelessBlock extends AbstractRedstoneGateBlock implements 
 	 */
 	protected int getOutputLevel(@NotNull BlockView world, BlockPos pos, BlockState state) {
 		BlockEntity blockEntity = world.getBlockEntity(pos);
-		return blockEntity instanceof RedstoneWirelessBlockEntity ? ((RedstoneWirelessBlockEntity)blockEntity).getOutputSignal() : 0;
+		return blockEntity instanceof RedstoneWirelessBlockEntity ? ((RedstoneWirelessBlockEntity)blockEntity).getCurrentSignal() : 0;
 	}
 
 	@Override

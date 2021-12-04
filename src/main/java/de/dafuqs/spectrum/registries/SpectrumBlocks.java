@@ -54,6 +54,7 @@ import io.wispforest.owo.itemgroup.OwoItemSettings;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
+import net.minecraft.advancement.AdvancementCriterion;
 import net.minecraft.block.*;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.entity.EntityType;
@@ -756,7 +757,7 @@ public class SpectrumBlocks {
 
 		registerBlockWithItem("lava_sponge", LAVA_SPONGE, fabricItemSettings);
 		registerBlockWithItem("wet_lava_sponge", WET_LAVA_SPONGE, new WetLavaSpongeItem(WET_LAVA_SPONGE, new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).maxCount(1).recipeRemainder(LAVA_SPONGE.asItem())));
-
+		
 		registerBlockWithItem("ethereal_platform", ETHEREAL_PLATFORM, fabricItemSettings);
 	}
 

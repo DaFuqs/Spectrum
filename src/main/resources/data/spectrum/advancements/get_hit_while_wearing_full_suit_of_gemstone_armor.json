@@ -1,0 +1,45 @@
+{
+  "display": {
+    "icon": {
+      "item": "spectrum:emergency_chestplate"
+    },
+    "title": {
+      "translate": "advancements.spectrum.get_hit_while_wearing_full_suit_of_gemstone_armor.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.get_hit_while_wearing_full_suit_of_gemstone_armor.description"
+    }
+  },
+  "parent": "spectrum:build_basic_pedestal_structure",
+  "criteria": {
+    "got_hit_while_wearing_full_suit_of_gemstone_armor": {
+      "trigger": "minecraft:entity_hurt_player",
+      "conditions": {
+        "player": {
+          "equipment": {
+            "head": {
+              "items": [
+                "spectrum:emergency_helmet"
+              ]
+            },
+            "chest": {
+              "items": [
+                "spectrum:emergency_chestplate"
+              ]
+            },
+            "legs": {
+              "items": [
+                "spectrum:emergency_leggings"
+              ]
+            },
+            "feet": {
+              "items": [
+                "spectrum:emergency_boots"
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

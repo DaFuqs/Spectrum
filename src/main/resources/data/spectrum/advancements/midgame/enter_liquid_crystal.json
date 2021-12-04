@@ -1,0 +1,22 @@
+{
+  "parent": "spectrum:midgame/build_advanced_pedestal_structure",
+  "display": {
+    "icon": {
+      "item": "spectrum:liquid_crystal_bucket"
+    },
+    "title": {
+      "translate": "advancements.spectrum.enter_liquid_crystal.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.enter_liquid_crystal.description"
+    }
+  },
+  "criteria": {
+    "enter_liquid_crystal": {
+      "trigger": "minecraft:enter_block",
+      "conditions": {
+        "block": "spectrum:liquid_crystal"
+      }
+    }
+  }
+}

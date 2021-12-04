@@ -1,6 +1,6 @@
 {
   "criteria": {
-    "built_advanced_structure": {
+    "built_basic_structure": {
       "trigger": "spectrum:has_advancement",
       "conditions": { "advancement_identifier": "spectrum:build_basic_pedestal_structure" }
     },
@@ -23,19 +23,19 @@
   },
   "requirements": [
     [
-      "built_advanced_structure",
+      "built_basic_structure",
       "collected_ender_eye"
     ],
     [
-      "built_advanced_structure",
+      "built_basic_structure",
       "collected_nautilus_shell"
     ],
     [
-      "built_advanced_structure",
+      "built_basic_structure",
       "collected_phantom_membrane"
     ],
     [
-      "built_advanced_structure",
+      "built_basic_structure",
       "collected_ghast_tear"
     ]
   ]

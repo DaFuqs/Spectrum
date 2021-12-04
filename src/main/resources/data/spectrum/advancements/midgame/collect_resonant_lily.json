@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:midgame/craft_liquid_crystal",
+  "parent": "spectrum:midgame/enter_liquid_crystal",
   "display": {
     "icon": {
       "item": "spectrum:resonant_lily"

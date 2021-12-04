@@ -1010,8 +1010,6 @@
   "advancements.spectrum.craft_colored_pedestal.description": "Upgrade your Pigment Pedestal by using all your collected shards",
   "advancements.spectrum.craft_colored_sapling.title": "All around me are familiar aces",
   "advancements.spectrum.craft_colored_sapling.description": "Use your magical abilities to craft a colored sapling",
-  "advancements.spectrum.craft_liquid_crystal.title": "Liquid Magic",
-  "advancements.spectrum.craft_liquid_crystal.description": "Refine the magic of color into liquid form",
   "advancements.spectrum.craft_moonstone_pedestal.title": "Incandescense",
   "advancements.spectrum.craft_moonstone_pedestal.description": "Use your newly collected Moonstone Shard to upgrade your Pigment Pedestal once more",
   "advancements.spectrum.craft_ominous_sapling.title": "Let it grow, let it grow!",
@@ -1080,6 +1078,12 @@
   "advancements.spectrum.collect_raw_azurite.description": "Collect raw Azurite",
   "advancements.spectrum.create_spectral_shard.title": "Somewhere over the Rainbow",
   "advancements.spectrum.create_spectral_shard.description": "Create a Spectral Shard",
+  "advancements.spectrum.enter_liquid_crystal.title": "Liquid Magic",
+  "advancements.spectrum.enter_liquid_crystal.description": "Touch refined magic in liquid form",
+  "advancements.spectrum.gift_wet_lava_sponge.title": "Damage to you!",
+  "advancements.spectrum.gift_wet_lava_sponge.description": "Throw a Wet Lava Sponge at another player (including yourself).",
+  "advancements.spectrum.get_hit_while_wearing_full_suit_of_gemstone_armor.title": "Overcharged",
+  "advancements.spectrum.get_hit_while_wearing_full_suit_of_gemstone_armor.description": "Get hit while wearing a full suit of Gemstone Armor",
 
 
   "______name_changes_for_vanilla_blocks" : "Changes:",

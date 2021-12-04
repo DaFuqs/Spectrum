@@ -1,5 +1,5 @@
 {
-  "name": "Void Bundle",
+  "name": "Bottomless Bundle",
   "advancement": "spectrum:progression/unlock_void_bundle",
   "icon": "spectrum:void_bundle",
   "category": "spectrum:magical_items_category",
@@ -16,7 +16,7 @@
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier2/void_bundle",
-      "text": "The Void Bundle stores a virtually unlimited number of items, but of only one type."
+      "text": "The Bottomless Bundle stores a virtually unlimited number of items, but of only one type."
     }
   ]
 }

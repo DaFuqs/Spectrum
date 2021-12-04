@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:midgame/craft_ominous_sapling",
+  "parent": "spectrum:midgame/build_advanced_pedestal_structure",
   "display": {
     "icon": {
         "item": "minecraft:dead_bush"

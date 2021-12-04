@@ -176,12 +176,12 @@ public class VoidBundleItem extends BundleItem implements InventoryInsertionAcce
 		int storedAmount = getStoredAmount(voidBundleStack);
 		int currentAmount = storedAmount;
 		if(currentAmount > 0) {
-			ItemStack storedStack = getFirstBundledStack(voidBundleStack);
+			ItemStack storedStack = getFirstBundledStack(voidBundleStack); // TODO: TEST
 			while (currentAmount > 0) {
 				int stackCount = Math.min(currentAmount, storedStack.getMaxCount());
 				storedStack.setCount(stackCount);
+				player.dropItem(new ItemStack(storedStack.getItem(), stackCount), true);
 				currentAmount -= stackCount;
-				player.dropItem(storedStack, true);
 			}
 			removeBundledStackAmount(voidBundleStack, storedAmount);
 			return true;

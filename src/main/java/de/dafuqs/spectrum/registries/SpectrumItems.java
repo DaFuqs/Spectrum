@@ -159,7 +159,7 @@ public class SpectrumItems {
 	public static final CloakedGravityItem PALETUR_FRAGMENTS = new CloakedGravityItem(resourcesItemSettings, 0.997F, ((Cloakable) SpectrumBlocks.PALETUR_ORE).getCloakAdvancementIdentifier(), Items.CYAN_DYE);
 	public static final CloakedGravityItem PALETUR_GEM = new CloakedGravityItem(resourcesItemSettingsSixteen, 0.98F, ((Cloakable) SpectrumBlocks.PALETUR_ORE).getCloakAdvancementIdentifier(), Items.CYAN_DYE);
 
-	public static final CloakedItem QUITOXIC_POWDER = new CloakedItem(resourcesItemSettingsSixteen, ((Cloakable) SpectrumBlocks.QUITOXIC_REEDS).getCloakAdvancementIdentifier(), Items.PURPLE_DYE);
+	public static final CloakedItem QUITOXIC_POWDER = new CloakedItem(resourcesItemSettings, ((Cloakable) SpectrumBlocks.QUITOXIC_REEDS).getCloakAdvancementIdentifier(), Items.PURPLE_DYE);
 	public static final CloakedItem LIGHTNING_STONE = new CloakedItem(resourcesItemSettingsSixteen, ((Cloakable) SpectrumBlocks.SPARKLESTONE_ORE).getCloakAdvancementIdentifier(), Items.YELLOW_DYE);
 	public static final CloakedItem MERMAIDS_GEM = new CloakedItem(resourcesItemSettingsSixteen, new Identifier(SpectrumCommon.MOD_ID, "craft_using_pedestal"), Items.LIGHT_BLUE_DYE);
 	public static final CloakedItem SHOOTING_STAR = new CloakedItem(resourcesItemSettingsSixteen, new Identifier(SpectrumCommon.MOD_ID, "craft_something_brown"), Items.PURPLE_DYE);

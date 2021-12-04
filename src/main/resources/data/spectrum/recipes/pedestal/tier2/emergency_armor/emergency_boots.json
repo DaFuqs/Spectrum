@@ -9,7 +9,7 @@
   "white": 0,
   "experience": 2.0,
   "pattern": [
-    "A A",
+    "AGA",
     "T T"
   ],
   "key": {
@@ -18,6 +18,9 @@
     },
     "A": {
       "item": "minecraft:amethyst_shard"
+    },
+    "G": {
+      "item": "minecraft:ghast_tear"
     }
   },
   "result" : {

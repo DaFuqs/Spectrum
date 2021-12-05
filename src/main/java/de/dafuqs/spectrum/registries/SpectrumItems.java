@@ -153,7 +153,7 @@ public class SpectrumItems {
 	// Resources
 	public static final CloakedItem SPARKLESTONE_GEM = new CloakedItem(resourcesItemSettings, ((Cloakable) SpectrumBlocks.SPARKLESTONE_ORE).getCloakAdvancementIdentifier(), Items.YELLOW_DYE);
 	public static final CloakedItem RAW_AZURITE = new CloakedItem(resourcesItemSettings, ((Cloakable) SpectrumBlocks.AZURITE_ORE).getCloakAdvancementIdentifier(), Items.BLUE_DYE);
-	public static final CloakedItem SHAPED_AZURITE = new CloakedItem(resourcesItemSettings, ((Cloakable) SpectrumBlocks.AZURITE_ORE).getCloakAdvancementIdentifier(), Items.BLUE_DYE);
+	public static final CloakedItem REFINED_AZURITE = new CloakedItem(resourcesItemSettings, ((Cloakable) SpectrumBlocks.AZURITE_ORE).getCloakAdvancementIdentifier(), Items.BLUE_DYE);
 	public static final CloakedGravityItem SCARLET_FRAGMENTS = new CloakedGravityItem(resourcesItemSettings, 1.003F, ((Cloakable) SpectrumBlocks.SCARLET_ORE).getCloakAdvancementIdentifier(), Items.RED_DYE);
 	public static final CloakedGravityItem SCARLET_GEM = new CloakedGravityItem(resourcesItemSettingsSixteen, 1.02F, ((Cloakable) SpectrumBlocks.SCARLET_ORE).getCloakAdvancementIdentifier(), Items.RED_DYE);
 	public static final CloakedGravityItem PALETUR_FRAGMENTS = new CloakedGravityItem(resourcesItemSettings, 0.997F, ((Cloakable) SpectrumBlocks.PALETUR_ORE).getCloakAdvancementIdentifier(), Items.CYAN_DYE);
@@ -278,7 +278,7 @@ public class SpectrumItems {
 	public static void registerResources() {
 		register("sparklestone_gem", SPARKLESTONE_GEM);
 		register("raw_azurite", RAW_AZURITE);
-		register("shaped_azurite", SHAPED_AZURITE);
+		register("refined_azurite", REFINED_AZURITE);
 		register("paletur_fragments", PALETUR_FRAGMENTS);
 		register("paletur_gem", PALETUR_GEM);
 		register("scarlet_fragments", SCARLET_FRAGMENTS);

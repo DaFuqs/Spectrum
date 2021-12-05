@@ -8,16 +8,16 @@
       "item": "spectrum:raw_azurite"
     },
     {
-      "item": "spectrum:moonstone_shard"
+      "item": "spectrum:corrupted_obsidian_dust"
     },
     {
-      "item": "minecraft:netherite_scrap"
+      "item": "minecraft:diamond"
     }
   ],
   "result" : {
-    "item": "spectrum:shaped_azurite"
+    "item": "spectrum:refined_azurite"
   },
-  "required_advancement": "spectrum:lategame/spectrum_lategame",
+  "required_advancement": "spectrum:midgame/collect_azurite",
   "world_conditions": [ ],
   "start_crafting_effect": "nothing",
   "during_crafting_effects": [ ],

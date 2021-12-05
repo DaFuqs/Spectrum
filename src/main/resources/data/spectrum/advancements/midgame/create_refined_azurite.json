@@ -2,7 +2,7 @@
   "parent": "spectrum:midgame/collect_azurite",
   "display": {
     "icon": {
-        "item": "spectrum:bottle_of_ruin"
+        "item": "spectrum:refined_azurite"
     },
     "title": {
       "translate": "advancements.spectrum.create_refined_azurite.title"
@@ -12,11 +12,9 @@
     }
   },
   "criteria": {
-    "craft": {
-      "created_refined_azurite": {
-        "trigger":"spectrum:crafted_with_fusion_shrine",
-        "conditions": { "items": [{ "items": [ "spectrum:refined_azurite" ]}] }
-      }
+    "created_refined_azurite": {
+      "trigger":"spectrum:crafted_with_fusion_shrine",
+      "conditions": { "items": [{ "items": [ "spectrum:refined_azurite" ]}] }
     }
   }
 }

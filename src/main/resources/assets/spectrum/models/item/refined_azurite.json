@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "spectrum:item/shaped_azurite"
+    "layer0": "spectrum:item/refined_azurite"
   }
 }

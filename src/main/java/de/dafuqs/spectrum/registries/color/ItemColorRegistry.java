@@ -74,7 +74,7 @@ public class ItemColorRegistry extends ColorRegistry<Item> {
 		
 		put(SpectrumItems.SPARKLESTONE_GEM, DyeColor.YELLOW);
 		put(SpectrumItems.RAW_AZURITE, DyeColor.BLUE);
-		put(SpectrumItems.SHAPED_AZURITE, DyeColor.BLUE);
+		put(SpectrumItems.REFINED_AZURITE, DyeColor.BLUE);
 		put(SpectrumItems.SCARLET_FRAGMENTS, DyeColor.RED);
 		put(SpectrumItems.SCARLET_GEM, DyeColor.RED);
 		put(SpectrumItems.PALETUR_FRAGMENTS, DyeColor.LIGHT_BLUE);

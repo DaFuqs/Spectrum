@@ -1,0 +1,24 @@
+{
+  "parent": "spectrum:midgame/collect_wither_head_using_treasure_hunter",
+  "display": {
+    "icon": {
+      "item": "minecraft:nether_star"
+    },
+    "frame": "challenge",
+	"hidden": true,
+    "title": {
+      "translate": "advancements.spectrum.build_wither_using_wither_heads.title"
+    },                                          
+    "description": {                            
+      "translate": "advancements.spectrum.build_wither_using_wither_heads.description"
+    }
+  },
+  "criteria": {
+    "built_wither_using_wither_heads": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "experience": 250
+  }
+}

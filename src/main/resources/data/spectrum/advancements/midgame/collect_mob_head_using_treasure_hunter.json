@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:midgame/collect_treasure_hunter_enchanted_tool",
+  "parent": "spectrum:midgame/build_enchanting_structure",
   "display": {
     "icon": {
       "item": "spectrum:cow_head"

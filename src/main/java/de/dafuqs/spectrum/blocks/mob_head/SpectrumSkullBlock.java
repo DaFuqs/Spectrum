@@ -1,16 +1,37 @@
 package de.dafuqs.spectrum.blocks.mob_head;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.block.SkullBlock;
+import de.dafuqs.spectrum.Support;
+import de.dafuqs.spectrum.registries.SpectrumBlocks;
+import net.minecraft.advancement.criterion.Criteria;
+import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.block.entity.SkullBlockEntity;
+import net.minecraft.block.pattern.BlockPattern;
+import net.minecraft.block.pattern.BlockPatternBuilder;
+import net.minecraft.block.pattern.CachedBlockPosition;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.boss.WitherEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.predicate.block.BlockStatePredicate;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.tag.BlockTags;
+import net.minecraft.util.function.MaterialPredicate;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
+import net.minecraft.world.Difficulty;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-public class SpectrumSkullBlock extends SkullBlock {
+import java.util.Iterator;
 
+public class SpectrumSkullBlock extends SkullBlock {
+	
+	@Nullable
+	private static BlockPattern witherBossPattern;
+	
 	public SpectrumSkullBlock(SkullType skullType, Settings settings) {
 		super(skullType, settings);
 	}
@@ -125,5 +146,33 @@ public class SpectrumSkullBlock extends SkullBlock {
 		ZOMBIE_VILLAGER,
 		ZOMBIFIED_PIGLIN
 	}
+	
+	@Override
+	public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
+		super.onPlaced(world, pos, state, placer, itemStack);
 
+		// Trigger advancement if player builds a wither structure with using wither skulls
+		if (getSkullType().equals(Type.WITHER) && placer instanceof ServerPlayerEntity serverPlayerEntity) {
+			if (pos.getY() >= world.getBottomY()) {
+				BlockPattern blockPattern = getWitherSkullPattern();
+				BlockPattern.Result result = blockPattern.searchAround(world, pos);
+				if (result != null) {
+					Support.grantAdvancementCriterion(serverPlayerEntity, "midgame/build_wither_using_wither_heads", "built_wither_using_wither_heads");
+				}
+			}
+		}
+	}
+	
+	private static BlockPattern getWitherSkullPattern() {
+		if (witherBossPattern == null) {
+			witherBossPattern = BlockPatternBuilder.start().aisle("^^^", "###", "~#~").where('#', (pos) ->
+					pos.getBlockState().isIn(BlockTags.WITHER_SUMMON_BASE_BLOCKS))
+					.where('^', CachedBlockPosition.matchesBlockState(BlockStatePredicate.forBlock(SpectrumBlocks.getMobHead(Type.WITHER))
+							.or(BlockStatePredicate.forBlock(SpectrumBlocks.getMobWallHead(Type.WITHER)))))
+					.where('~', CachedBlockPosition.matchesBlockState(MaterialPredicate.create(Material.AIR))).build();
+		}
+		
+		return witherBossPattern;
+	}
+	
 }

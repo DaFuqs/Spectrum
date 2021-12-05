@@ -2,13 +2,13 @@
   "parent": "spectrum:midgame/build_advanced_pedestal_structure",
   "display": {
     "icon": {
-        "item": "minecraft:dead_bush"
+        "item": "spectrum:ominous_sapling"
     },
     "title": {
-      "translate": "advancements.spectrum.use_ominous_sapling.title"
+      "translate": "advancements.spectrum.craft_ominous_sapling.title"
     },
     "description": {
-      "translate": "advancements.spectrum.use_ominous_sapling.description"
+      "translate": "advancements.spectrum.craft_ominous_sapling.description"
     }
   },
   "criteria": {

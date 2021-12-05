@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:midgame/collect_moonstone_shard",
+  "parent": "spectrum:midgame/collect_corrupted_obsidian_dust",
   "display": {
     "icon": {
       "item": "spectrum:raw_azurite"

@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:lategame/build_complex_pedestal_structure",
+  "parent": "spectrum:midgame/break_decayed_bedrock",
   "display": {
     "icon": {
       "item": "spectrum:bedrock_chestplate"

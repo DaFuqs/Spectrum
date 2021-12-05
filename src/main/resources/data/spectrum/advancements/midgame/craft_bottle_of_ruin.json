@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:midgame/collect_lightning_stone",
+  "parent": "spectrum:midgame/collect_azurite",
   "display": {
     "icon": {
         "item": "spectrum:bottle_of_ruin"

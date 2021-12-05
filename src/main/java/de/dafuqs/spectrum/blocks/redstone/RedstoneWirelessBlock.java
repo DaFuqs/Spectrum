@@ -2,7 +2,10 @@ package de.dafuqs.spectrum.blocks.redstone;
 
 import de.dafuqs.spectrum.Support;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
-import net.minecraft.block.*;
+import net.minecraft.block.AbstractRedstoneGateBlock;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockEntityProvider;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;

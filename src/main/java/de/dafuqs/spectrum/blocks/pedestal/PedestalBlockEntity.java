@@ -827,9 +827,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 				if (valid) {
 					highestAvailableRecipeTier = PedestalRecipeTier.COMPLEX;
 					SpectrumAdvancementCriteria.COMPLETED_MULTIBLOCK.trigger((ServerPlayerEntity) this.getPlayerEntityIfOnline(world), multiblock);
-					if(PatchouliAPI.get().getCurrentMultiblock().getID().equals(SpectrumMultiblocks.PEDESTAL_COMPLEX_STRUCTURE_IDENTIFIER_DISPLAY)) {
-						PatchouliAPI.get().clearMultiblock();
-					}
+					clearCurrentlyRenderedMultiBlock();
 					found = true;
 				}
 			}
@@ -838,9 +836,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 				boolean valid = multiblock.validate(world, pos.down(), BlockRotation.NONE);				if (valid) {
 					highestAvailableRecipeTier = PedestalRecipeTier.ADVANCED;
 					SpectrumAdvancementCriteria.COMPLETED_MULTIBLOCK.trigger((ServerPlayerEntity) this.getPlayerEntityIfOnline(world), multiblock);
-					if(PatchouliAPI.get().getCurrentMultiblock().getID().equals(SpectrumMultiblocks.PEDESTAL_ADVANCED_STRUCTURE_IDENTIFIER_DISPLAY)) {
-						PatchouliAPI.get().clearMultiblock();
-					}
+					clearCurrentlyRenderedMultiBlock();
 					found = true;
 				}
 			}
@@ -848,14 +844,22 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 				IMultiblock multiblock = SpectrumMultiblocks.MULTIBLOCKS.get(SpectrumMultiblocks.PEDESTAL_SIMPLE_STRUCTURE_IDENTIFIER);
 				boolean valid = multiblock.validate(world, pos.down(), BlockRotation.NONE);
 				if (valid) {
-					SpectrumAdvancementCriteria.COMPLETED_MULTIBLOCK.trigger((ServerPlayerEntity) this.getPlayerEntityIfOnline(world), multiblock);
 					highestAvailableRecipeTier = PedestalRecipeTier.SIMPLE;
+					SpectrumAdvancementCriteria.COMPLETED_MULTIBLOCK.trigger((ServerPlayerEntity) this.getPlayerEntityIfOnline(world), multiblock);
+					clearCurrentlyRenderedMultiBlock();
 				}
 			}
 
 			this.cachedMaxPedestalTier = highestAvailableRecipeTier;
 			this.cachedMaxPedestalTierTick = world.getTime();
 			return highestAvailableRecipeTier;
+		}
+	}
+	
+	public void clearCurrentlyRenderedMultiBlock() {
+		IMultiblock currentlyRenderedMultiBlock = PatchouliAPI.get().getCurrentMultiblock();
+		if(currentlyRenderedMultiBlock != null && currentlyRenderedMultiBlock.getID().equals(SpectrumMultiblocks.PEDESTAL_ADVANCED_STRUCTURE_IDENTIFIER_DISPLAY)) {
+			PatchouliAPI.get().clearMultiblock();
 		}
 	}
 	

@@ -1,0 +1,13 @@
+{
+  "values": [
+    "spectrum:fading",
+    "spectrum:failing",
+    "spectrum:ruin",
+    "spectrum:decay_away",
+    "spectrum:mud",
+    "spectrum:liquid_crystal",
+    "spectrum:deeper_down_portal",
+    "spectrum:wand_light",
+    "spectrum:block_flooder"
+  ]
+}

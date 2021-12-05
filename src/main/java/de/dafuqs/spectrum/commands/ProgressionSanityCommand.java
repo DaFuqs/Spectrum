@@ -5,6 +5,7 @@ import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.enums.GemstoneColor;
 import de.dafuqs.spectrum.enums.PedestalRecipeTier;
 import de.dafuqs.spectrum.interfaces.Cloakable;
+import de.dafuqs.spectrum.mixin.LootTableAccessor;
 import de.dafuqs.spectrum.progression.BlockCloakManager;
 import de.dafuqs.spectrum.progression.advancement.HasAdvancementCriterion;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
@@ -18,6 +19,9 @@ import net.minecraft.advancement.criterion.CriterionConditions;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.loot.LootPool;
+import net.minecraft.loot.LootTable;
+import net.minecraft.loot.LootTables;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
@@ -58,6 +62,24 @@ public class ProgressionSanityCommand {
 						&& !BlockTags.HOE_MINEABLE.contains(block)
 						&& !SpectrumBlockTags.EXEMPT_FROM_MINEABLE_DEBUG_CHECK.contains(block)) {
 					SpectrumCommon.log(Level.WARN, "[SANITY: Mineable Tags] Block " + registryKey.getValue() + " is not contained in a any vanilla mineable tag.");
+				}
+			}
+		}
+		
+		// All blocks without a loot table
+		for (Map.Entry<RegistryKey<Block>, Block> entry : Registry.BLOCK.getEntries()) {
+			RegistryKey<Block> registryKey = entry.getKey();
+			if (registryKey.getValue().getNamespace().equals(SpectrumCommon.MOD_ID)) {
+				Block block = entry.getValue();
+				Identifier lootTableID = block.getLootTableId();
+				if(lootTableID.equals(LootTables.EMPTY) || lootTableID.getPath().equals("blocks/air")) {
+					SpectrumCommon.log(Level.WARN, "[SANITY: Loot Tables] Block " + registryKey.getValue() + " does have a non-existent loot table");
+				} else if(!SpectrumBlockTags.EXEMPT_FROM_LOOT_TABLE_DEBUG_CHECK.contains(block)) {
+					LootTable lootTable = source.getWorld().getServer().getLootManager().getTable(lootTableID);
+					LootPool[] lootPools = ((LootTableAccessor) lootTable).getPools();
+					if(lootPools.length == 0) {
+						SpectrumCommon.log(Level.WARN, "[SANITY: Loot Tables] Block " + registryKey.getValue() + " has an empty loot table");
+					}
 				}
 			}
 		}

@@ -27,6 +27,7 @@
     "ItemStackMixin",
     "LightningEntityMixin",
     "LivingEntityMixin",
+    "LootTableAccessor",
     "MiningToolItemMixin",
     "MobSpawnerBlockEntityMixin",
     "PlayerAdvancementTrackerMixin",

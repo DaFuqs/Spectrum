@@ -676,26 +676,21 @@ public class SpectrumBlocks {
 		
 		registerGemOreBlocks(resourcesItemSettings);
 		registerOreBlocks(resourcesItemSettings);
-
 		registerOreStorageBlocks(decorationItemSettings);
 		registerGemstoneLamps(decorationItemSettings);
 		registerSparklestoneLights(decorationItemSettings);
 		registerRunes(decorationItemSettings);
 		registerGemstoneGlass(decorationItemSettings);
 		registerPlayerOnlyGlass(generalItemSettings);
-
 		registerPigmentStorageBlocks(decorationItemSettings);
 		registerColoredLamps(decorationItemSettings);
-		registerFlatColoredBlocks(decorationItemSettings);
+		registerGlowBlocks(decorationItemSettings);
 		registerSporeBlossoms(decorationItemSettings);
-
 		registerColoredWood(coloredWoodItemSettings);
-
 		registerRedstone(generalItemSettings);
 		registerMagicalBlocks(generalItemSettings);
-
-		registerMobHeads(mobHeadItemSettings);
 		registerSpiritTree(generalItemSettings);
+		registerMobHeads(mobHeadItemSettings);
 
 		// Decay
 		registerBlock("fading", FADING);
@@ -1093,7 +1088,7 @@ public class SpectrumBlocks {
 		registerBlockWithItem("yellow_plank_slab", YELLOW_PLANK_SLAB, fabricItemSettings);
 	}
 
-	private static void registerFlatColoredBlocks(FabricItemSettings fabricItemSettings) {
+	private static void registerGlowBlocks(FabricItemSettings fabricItemSettings) {
 		registerBlockWithItem("black_glowblock", BLACK_GLOWBLOCK, fabricItemSettings);
 		registerBlockWithItem("blue_glowblock", BLUE_GLOWBLOCK, fabricItemSettings);
 		registerBlockWithItem("brown_glowblock", BROWN_GLOWBLOCK, fabricItemSettings);
@@ -1188,19 +1183,16 @@ public class SpectrumBlocks {
 
 	// Most mob heads vanilla is missing (vanilla only has: skeleton, wither skeleton, zombie, player, creeper, ender dragon)
 	private static void registerMobHeads(FabricItemSettings fabricItemSettings) {
-		FabricBlockSettings mobHeadBlockSettings = FabricBlockSettings.of(Material.DECORATION).strength(1.0F);
-
 		for(SpectrumSkullBlock.Type type : SpectrumSkullBlock.Type.values()) {
-			Block head = new SpectrumSkullBlock(type, mobHeadBlockSettings);
-			Block wallHead = new SpectrumWallSkullBlock(type, FabricBlockSettings.of(Material.DECORATION).strength(1.0F).dropsLike(head));
+			Block head = new SpectrumSkullBlock(type, FabricBlockSettings.copyOf(Blocks.SKELETON_SKULL));
+			registerBlock(type.name().toLowerCase(Locale.ROOT) + "_head", head);
+			Block wallHead = new SpectrumWallSkullBlock(type, FabricBlockSettings.copyOf(Blocks.SKELETON_SKULL).dropsLike(head));
+			registerBlock(type.name().toLowerCase(Locale.ROOT) + "_wall_head", wallHead);
 			BlockItem headItem = new SpectrumSkullBlockItem(head, wallHead, (fabricItemSettings));
+			registerBlockItem(type.name().toLowerCase(Locale.ROOT) + "_head", headItem);
 
 			MOB_HEADS.put(type, head);
 			MOB_WALL_HEADS.put(type, wallHead);
-
-			registerBlock(type.name().toLowerCase(Locale.ROOT) + "_head", head);
-			registerBlock(type.name().toLowerCase(Locale.ROOT) + "_wall_head", wallHead);
-			registerBlockItem(type.name().toLowerCase(Locale.ROOT) + "_head", headItem);
 		}
 	}
 

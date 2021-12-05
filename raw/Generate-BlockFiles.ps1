@@ -6,7 +6,11 @@ $lamp = @("black_lamp", "blue_lamp", "brown_lamp", "cyan_lamp", "gray_lamp", "gr
 $ores = @("sparklestone_block", "koenigsblau_ore", "koenigsblau_block")
 $upgrades = @("upgrade_speed", "upgrade_speed2", "upgrade_speed3", "upgrade_efficiency", "upgrade_efficiency2", "upgrade_yield", "upgrade_yield2", "upgrade_experience", "upgrade_experience2")
 
-$new = @("spectral_shard_storage_block")
+$new = @("cyan_spirit_sallow_vines_head",
+"magenta_spirit_sallow_vines_head",
+"yellow_spirit_sallow_vines_head",
+"black_spirit_sallow_vines_head",
+"white_spirit_sallow_vines_head")
 
 
 enum BlockType {
@@ -257,23 +261,18 @@ Function Generate-BlockFiles {
         function Get-LootTable($Name) {
             Write-Output @"
 {
-    "type": "minecraft:block",
-    "pools": [
-    {
-        "rolls": 1,
-        "entries": [
-            {
-                "type": "minecraft:item",
-                "name": "spectrum:$_"
-            }
-            ],
-            "conditions": [
-            {
-                "condition": "minecraft:survives_explosion"
-            }
-            ]
-        }
-    ]
+	"type": "minecraft:block",
+	"pools": [{
+		"rolls": 1,
+		"bonus_rolls": 0.0,
+		"entries": [{
+			"type": "minecraft:item",
+			"name": "spectrum:$Name"
+		}],
+		"conditions": [{
+			"condition": "minecraft:survives_explosion"
+		}]
+	}]
 }
 "@
         }

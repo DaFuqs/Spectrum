@@ -17,6 +17,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.StringIdentifiable;
 import net.minecraft.util.hit.BlockHitResult;
+import net.minecraft.util.math.BlockBox;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.TickPriority;
@@ -76,7 +77,7 @@ public class RedstoneTimerBlock extends AbstractRedstoneGateBlock {
 			return ActionResult.PASS;
 		} else {
 			if(!world.isClient) {
-				stepTiming(world, pos, (ServerPlayerEntity) player);
+				stepTiming((ServerWorld) world, pos, (ServerPlayerEntity) player);
 			}
 			return ActionResult.success(world.isClient);
 		}
@@ -88,14 +89,19 @@ public class RedstoneTimerBlock extends AbstractRedstoneGateBlock {
 
 	public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
 		super.onBlockAdded(state, world, pos, oldState, notify);
-		world.createAndScheduleBlockTick(pos, state.getBlock(), getUpdateDelayInternal(state));
+		if(world instanceof ServerWorld serverWorld) {
+			// remove currently scheduled ticks at the blocks position
+			// and schedule new ticks
+			serverWorld.getBlockTickScheduler().clearNextTicks(new BlockBox(pos));
+			serverWorld.createAndScheduleBlockTick(pos, state.getBlock(), getUpdateDelayInternal(state));
+		}
 	}
 
 	public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
 		BlockState newState = state.with(POWERED, !state.get(POWERED));
 		world.setBlockState(pos, newState, 3);
 		world.playSound(null, pos, SoundEvents.BLOCK_COMPARATOR_CLICK, SoundCategory.BLOCKS, 0.3F, 1.0F);
-		world.createAndScheduleBlockTick(pos, this, this.getUpdateDelayInternal(state), TickPriority.VERY_HIGH);
+		world.createAndScheduleBlockTick(pos, this, this.getUpdateDelayInternal(state), TickPriority.NORMAL);
 	}
 
 	protected int getPower(World world, BlockPos pos, BlockState state) {
@@ -115,7 +121,7 @@ public class RedstoneTimerBlock extends AbstractRedstoneGateBlock {
 		}
 	}
 
-	public void stepTiming(World world, BlockPos pos, ServerPlayerEntity serverPlayerEntity) {
+	public void stepTiming(ServerWorld world, BlockPos pos, ServerPlayerEntity serverPlayerEntity) {
 		if(serverPlayerEntity != null) {
 			BlockState blockState = world.getBlockState(pos);
 			if(serverPlayerEntity.isSneaking()) {
@@ -133,7 +139,8 @@ public class RedstoneTimerBlock extends AbstractRedstoneGateBlock {
 				world.playSound(null, pos, SoundEvents.BLOCK_COMPARATOR_CLICK, SoundCategory.BLOCKS, 0.3F, pitch);
 				world.setBlockState(pos, world.getBlockState(pos).with(ACTIVE_TIME, newStep));
 			}
-
+			
+			world.getBlockTickScheduler().clearNextTicks(new BlockBox(pos)); // remove currently scheduled ticks at the blocks position
 			BlockState state = world.getBlockState(pos);
 			updatePowered(world, pos, state);
 		}

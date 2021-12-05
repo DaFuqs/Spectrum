@@ -25,11 +25,11 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-public class VoidBundleItem extends BundleItem implements InventoryInsertionAcceptor {
+public class BottomlessBundleItem extends BundleItem implements InventoryInsertionAcceptor {
 
 	private static final int MAX_STORED_AMOUNT = Integer.MAX_VALUE;
 
-	public VoidBundleItem(Item.Settings settings) {
+	public BottomlessBundleItem(Item.Settings settings) {
 		super(settings);
 	}
 
@@ -74,7 +74,8 @@ public class VoidBundleItem extends BundleItem implements InventoryInsertionAcce
 			tooltip.add(new TranslatableText("item.spectrum.void_bundle.tooltip.empty").formatted(Formatting.GRAY));
 		} else {
 			ItemStack firstStack = getFirstBundledStack(stack);
-			float totalStacks = Math.round((float) storedAmount * 100 / (float) firstStack.getMaxCount()) / (float) 100;
+			//float totalStacks = Math.round((float) storedAmount * 100 / (float) firstStack.getMaxCount()) / (float) 100;
+			String totalStacks = Support.getShortenedNumberString(storedAmount / (float) firstStack.getMaxCount());
 			tooltip.add(new TranslatableText("item.spectrum.void_bundle.tooltip.count", storedAmount, MAX_STORED_AMOUNT, totalStacks).formatted(Formatting.GRAY));
 			tooltip.add(new TranslatableText("item.spectrum.void_bundle.tooltip.enter_inventory", firstStack.getName().getString()).formatted(Formatting.GRAY));
 		}

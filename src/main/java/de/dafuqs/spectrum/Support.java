@@ -23,6 +23,7 @@ import org.apache.logging.log4j.Level;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -80,6 +81,17 @@ public class Support {
 		return Optional.empty();
 	}
 	
+	private static final DecimalFormat df = new DecimalFormat("0.00");
+	
+	public static String getShortenedNumberString(double number) {
+		if(number > 1000000D) {
+			return df.format(number / 1000000D) + "m";
+		} else if(number > 1000D) {
+			return df.format(number / 1000D) + "k";
+		} else {
+			return String.valueOf(number);
+		}
+	}
 	
 	public static void givePlayer(PlayerEntity playerEntity, ItemStack itemStack) {
 		boolean insertInventorySuccess = playerEntity.getInventory().insertStack(itemStack);

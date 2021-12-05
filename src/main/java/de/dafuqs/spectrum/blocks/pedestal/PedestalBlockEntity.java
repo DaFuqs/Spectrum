@@ -244,10 +244,8 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		if(nbt.contains("CurrentRecipe")) {
 			String recipeString = nbt.getString("CurrentRecipe");
 			if(!recipeString.isEmpty()) {
-				Optional<? extends Recipe> optionalRecipe;
-				if (SpectrumClient.minecraftClient != null) {
-					optionalRecipe = MinecraftClient.getInstance().world.getRecipeManager().get(new Identifier(recipeString));
-				} else {
+				Optional<? extends Recipe> optionalRecipe = Optional.empty();
+				if (world instanceof ServerWorld) {
 					optionalRecipe = world.getRecipeManager().get(new Identifier(recipeString));
 				}
 				if(optionalRecipe.isPresent()) {

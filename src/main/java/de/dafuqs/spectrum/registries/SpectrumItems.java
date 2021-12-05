@@ -194,7 +194,7 @@ public class SpectrumItems {
 	public static final Item INVISIBLE_ITEM_FRAME = new InvisibleItemFrameItem(SpectrumEntityTypes.INVISIBLE_ITEM_FRAME, generalItemSettings);
 	public static final Item INVISIBLE_GLOW_ITEM_FRAME = new InvisibleGlowItemFrameItem(SpectrumEntityTypes.INVISIBLE_GLOW_ITEM_FRAME, generalItemSettings);
 
-	public static final Item VOID_BUNDLE = new VoidBundleItem(generalItemSettingsSingle);
+	public static final Item VOID_BUNDLE = new BottomlessBundleItem(generalItemSettingsSingle);
 
 
 	private static void register(String name, Item item) {

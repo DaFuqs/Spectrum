@@ -47,7 +47,7 @@ public class SpectrumMultiblocks {
 				'L', "#spectrum:polished_base_block_slabs",
 				'S', "#spectrum:gemstone_storage_blocks",
 				'C', "#spectrum:chiseled_base_blocks",
-				'F', "spectrum:fusion_shrine",
+				'F', "#spectrum:fusion_shrines",
 				'_', StateMatcher.ANY,
 				'0', "#spectrum:polished_base_blocks",
 		};

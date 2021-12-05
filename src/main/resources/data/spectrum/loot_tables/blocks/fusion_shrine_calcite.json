@@ -6,7 +6,7 @@
         "entries": [
             {
                 "type": "minecraft:item",
-                "name": "spectrum:fusion_shrine"
+                "name": "spectrum:fusion_shrine_calcite"
             }
             ],
             "conditions": [

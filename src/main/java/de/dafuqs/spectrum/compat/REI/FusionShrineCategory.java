@@ -26,7 +26,7 @@ import java.util.List;
 public class FusionShrineCategory<R extends FusionShrineRecipe> implements DisplayCategory<FusionShrineRecipeDisplay<R>> {
 
 	public static final CategoryIdentifier<FusionShrineRecipeDisplay> ID = CategoryIdentifier.of(new Identifier(SpectrumCommon.MOD_ID, "fusion_shrine"));
-	private static final EntryIngredient FUSION_SHRINE = EntryIngredients.of(new ItemStack(SpectrumBlocks.FUSION_SHRINE));
+	private static final EntryIngredient FUSION_SHRINE_BASALT = EntryIngredients.of(new ItemStack(SpectrumBlocks.FUSION_SHRINE_BASALT));
 
 	@Override
 	public CategoryIdentifier getCategoryIdentifier() {
@@ -40,7 +40,7 @@ public class FusionShrineCategory<R extends FusionShrineRecipe> implements Displ
 
 	@Override
 	public Renderer getIcon() {
-		return EntryStacks.of(SpectrumBlocks.FUSION_SHRINE);
+		return EntryStacks.of(SpectrumBlocks.FUSION_SHRINE_BASALT);
 	}
 
 	@Override
@@ -75,10 +75,10 @@ public class FusionShrineCategory<R extends FusionShrineRecipe> implements Displ
 
 			// shrine + fluid
 			if(!display.fluidInput.equals(EntryIngredients.of(Fluids.EMPTY))) {
-				widgets.add(Widgets.createSlot(new Point(startPoint.x + 10, startPoint.y + 35)).entries(FUSION_SHRINE).disableBackground());
+				widgets.add(Widgets.createSlot(new Point(startPoint.x + 10, startPoint.y + 35)).entries(FUSION_SHRINE_BASALT).disableBackground());
 				widgets.add(Widgets.createSlot(new Point(startPoint.x + 30, startPoint.y + 35)).markInput().entries(display.fluidInput));
 			} else {
-				widgets.add(Widgets.createSlot(new Point(startPoint.x + 20, startPoint.y + 35)).entries(FUSION_SHRINE).disableBackground());
+				widgets.add(Widgets.createSlot(new Point(startPoint.x + 20, startPoint.y + 35)).entries(FUSION_SHRINE_BASALT).disableBackground());
 			}
 
 			// output arrow and slot

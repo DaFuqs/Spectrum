@@ -1,0 +1,40 @@
+{
+  "type": "spectrum:pedestal",
+  "group": "fusion_shrine",
+  "time": 600,
+  "tier": "simple",
+  "cyan": 4,
+  "magenta": 4,
+  "yellow": 4,
+  "white": 0,
+  "black": 0,
+  "experience": 2.0,
+  "pattern": [
+    "XCX",
+    "BAB",
+    "XTX"
+  ],
+  "key": {
+    "T": {
+      "item": "spectrum:topaz_storage_block"
+    },
+    "A": {
+      "item": "spectrum:amethyst_storage_block"
+    },
+    "C": {
+      "item": "spectrum:citrine_storage_block"
+    },
+    "B": {
+      "item": "spectrum:polished_basalt"
+    },
+    "X": {
+      "item": "spectrum:polished_calcite"
+    }
+  },
+  "result" : {
+    "item": "spectrum:fusion_shrine_calcite",
+    "count": 1
+  },
+  "required_advancements": [ "spectrum:collect_all_basic_pigments_besides_brown" ],
+  "disable_yield_upgrades": true
+}

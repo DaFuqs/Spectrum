@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "item": "spectrum:fusion_shrine"
+      "item": "spectrum:fusion_shrine_basalt"
     },
     "title": {
       "translate": "advancements.spectrum.build_fusion_shrine.title"

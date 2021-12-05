@@ -124,7 +124,7 @@ public class FusionShrineRecipe implements Recipe<Inventory> {
 
 	@Override
 	public ItemStack createIcon() {
-		return new ItemStack(SpectrumBlocks.FUSION_SHRINE);
+		return new ItemStack(SpectrumBlocks.FUSION_SHRINE_BASALT);
 	}
 
 	public Identifier getId() {

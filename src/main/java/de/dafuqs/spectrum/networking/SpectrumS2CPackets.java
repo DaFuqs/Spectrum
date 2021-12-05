@@ -40,11 +40,6 @@ import java.util.Random;
 
 public class SpectrumS2CPackets {
 	
-	public enum BlockEntityUpdatePacketID {
-		FUSION_SHRINE,
-		PARTICLE_SPAWNER
-	}
-
 	public static final Identifier PLAY_LIGHT_CREATED_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "play_light_created_particle");
 	public static final Identifier PLAY_PEDESTAL_CRAFTING_FINISHED_PARTICLE_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "play_pedestal_crafting_finished_particle");
 	public static final Identifier PLAY_PEDESTAL_UPGRADED_PARTICLE_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "play_pedestal_upgraded_particle");

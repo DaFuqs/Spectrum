@@ -12,6 +12,7 @@ import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.recipe.fusion_shrine.FusionShrineRecipe;
 import de.dafuqs.spectrum.recipe.fusion_shrine.FusionShrineRecipeWorldEffect;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
+import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import de.dafuqs.spectrum.registries.color.ColorRegistry;
 import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
 import net.minecraft.block.Block;
@@ -28,6 +29,9 @@ import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
+import net.minecraft.network.Packet;
+import net.minecraft.network.listener.ClientPlayPacketListener;
+import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.Recipe;
@@ -46,6 +50,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Map;
 import java.util.Optional;
@@ -71,7 +76,8 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 		this.inventory = new SimpleInventory(INVENTORY_SIZE);
 		this.storedFluid = Fluids.EMPTY;
 	}
-
+	
+	@Override
 	public void readNbt(NbtCompound nbt) {
 		super.readNbt(nbt);
 		this.inventory = new SimpleInventory(INVENTORY_SIZE);
@@ -109,6 +115,7 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 		}
 	}
 
+	@Override
 	public void writeNbt(NbtCompound nbt) {
 		super.writeNbt(nbt);
 		nbt.put("inventory", this.inventory.toNbtList());
@@ -124,6 +131,12 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 		if(this.currentRecipe != null) {
 			nbt.putString("CurrentRecipe", this.currentRecipe.getId().toString());
 		}
+	}
+	
+	@Nullable
+	@Override
+	public Packet<ClientPlayPacketListener> toUpdatePacket() {
+		return BlockEntityUpdateS2CPacket.create(this);
 	}
 	
 	public static void clientTick(@NotNull World world, BlockPos blockPos, BlockState blockState, FusionShrineBlockEntity fusionShrineBlockEntity) {
@@ -219,7 +232,8 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 				return fusionShrineBlockEntity.currentRecipe;
 			}
 		}
-
+		
+		FusionShrineRecipe previousRecipe = fusionShrineBlockEntity.currentRecipe;
 		FusionShrineRecipe recipe = world.getRecipeManager().getFirstMatch(SpectrumRecipeTypes.FUSION_SHRINE, fusionShrineBlockEntity.inventory, world).orElse(null);
 		fusionShrineBlockEntity.craftingTime = 0;
 		fusionShrineBlockEntity.currentRecipe = recipe;
@@ -229,7 +243,9 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 			fusionShrineBlockEntity.craftingTimeTotal = (int) Math.ceil(recipe.getCraftingTime() / fusionShrineBlockEntity.upgrades.get(Upgradeable.UpgradeType.SPEED));
 		}
 		
-		sync(fusionShrineBlockEntity);
+		if(fusionShrineBlockEntity.currentRecipe != previousRecipe) {
+			fusionShrineBlockEntity.updateInClientWorld();
+		}
 		return recipe;
 	}
 	
@@ -331,10 +347,6 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 		updateInClientWorld();
 	}
 
-	public void updateInClientWorld() {
-		world.updateListeners(pos, world.getBlockState(pos), world.getBlockState(pos), Block.NOTIFY_LISTENERS);
-	}
-
 	public void setLightForFluid(World world, BlockPos blockPos, Fluid fluid) {
 		if(SpectrumCommon.fluidLuminance.containsKey(fluid)) {
 			int light = SpectrumCommon.fluidLuminance.get(fluid);
@@ -353,12 +365,7 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 		return this.inventory;
 	}
 	
-	public FusionShrineRecipe getCurrentRecipe() {
-		return this.currentRecipe;
-	}
-	
 	// RECIPE INPUT PROVIDER
-
 	@Override
 	public void provideRecipeInputs(RecipeMatcher finder) {
 
@@ -368,7 +375,6 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 	// "owned" is not to be taken literally here. The owner
 	// is always set to the last player interacting with
 	// the fusion shrine to trigger advancements
-
 	@Override
 	public UUID getOwnerUUID() {
 		return this.ownerUUID;
@@ -379,12 +385,15 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 		this.ownerUUID = playerEntity.getUuid();
 	}
 	
-	public static void sync(@NotNull FusionShrineBlockEntity fusionShrineBlockEntity) {
-		((ServerWorld) fusionShrineBlockEntity.world).getChunkManager().markForUpdate(fusionShrineBlockEntity.pos);
+	public void updateInClientWorld() {
+		// update tile entity
+		((ServerWorld) world).getChunkManager().markForUpdate(pos);
+		// update fluid (light updates automatically)
+		//fusionShrineBlockEntity.world.updateListeners(fusionShrineBlockEntity.pos, fusionShrineBlockEntity.world.getBlockState(fusionShrineBlockEntity.pos), fusionShrineBlockEntity.world.getBlockState(fusionShrineBlockEntity.pos), Block.NO_REDRAW);
+		//fusionShrineBlockEntity.world.addSyncedBlockEvent(fusionShrineBlockEntity.pos, fusionShrineBlockEntity.world.getBlockState(fusionShrineBlockEntity.pos).getBlock(), 1, 0);
 	}
 	
 	// UPGRADEABLE
-	
 	public void resetUpgrades() {
 		this.upgrades = null;
 	}

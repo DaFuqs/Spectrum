@@ -1,11 +1,12 @@
 {
   "name": "Fusion Shrine",
-  "icon": "spectrum:fusion_shrine",
+  "icon": "spectrum:fusion_shrine_basalt",
   "sortnum": 10,
   "advancement": "spectrum:collect_all_basic_pigments_besides_brown",
   "category": "spectrum:general_category",
   "extra_recipe_mappings": {
-    "spectrum:fusion_shrine": 0
+    "spectrum:fusion_shrine_basalt": 0,
+    "spectrum:fusion_shrine_calcite": 0
   },
   "pages": [
     {
@@ -15,8 +16,8 @@
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier2/fusion_shrine",
-      "text": "For the fusion shrine to work it requires a focus structure and clear view of the sky."
+      "recipe": "spectrum:pedestal/tier2/fusion_shrine_basalt",
+      "text": "Can be built with Basalt or Calcite.$(br)Requires a focus structure and clear view of the sky."
     },
     {
       "type": "patchouli:text",

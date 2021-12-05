@@ -1,6 +1,6 @@
 {
-	"credit": "Made with Blockbench",
 	"parent": "block/block",
+	"credit": "Made with Blockbench",
 	"textures": {
 		"0": "spectrum:block/polished_basalt",
 		"1": "spectrum:block/polished_calcite_pillar_side",

@@ -1,5 +1,6 @@
 {
   "type": "spectrum:pedestal",
+  "group": "fusion_shrine",
   "time": 600,
   "tier": "simple",
   "cyan": 4,
@@ -10,7 +11,7 @@
   "experience": 2.0,
   "pattern": [
     "BCB",
-    "PAP",
+    "XAX",
     "BTB"
   ],
   "key": {
@@ -26,12 +27,12 @@
     "B": {
       "item": "spectrum:polished_basalt"
     },
-    "P": {
+    "X": {
       "item": "spectrum:polished_calcite"
     }
   },
   "result" : {
-    "item": "spectrum:fusion_shrine",
+    "item": "spectrum:fusion_shrine_basalt",
     "count": 1
   },
   "required_advancements": [ "spectrum:collect_all_basic_pigments_besides_brown" ],

@@ -202,7 +202,8 @@
   "item.spectrum.upgrade_experience2.tooltip": "Greatly increased experience",
   "item.spectrum.upgrade.tooltip_increase": "Similar upgrades increase the effect exponentially",
 
-  "block.spectrum.fusion_shrine": "Fusion Shrine",
+  "block.spectrum.fusion_shrine_basalt": "Fusion Shrine",
+  "block.spectrum.fusion_shrine_calcite": "Fusion Shrine",
   "block.spectrum.enchanter": "Echanter",
   "block.spectrum.spirit_sallow_roots": "Spirit Sallow Roots",
   "block.spectrum.spirit_sallow_log": "Spirit Sallow Log",

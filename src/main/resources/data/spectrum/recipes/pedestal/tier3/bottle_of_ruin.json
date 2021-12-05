@@ -9,13 +9,13 @@
   "white": 0,
   "experience": 2.0,
   "pattern": [
-    "FLF",
+    "FAF",
     "PBP",
-    "FLF"
+    "FAF"
   ],
   "key": {
-    "L": {
-      "item": "spectrum:lightning_stone"
+    "A": {
+      "item": "spectrum:raw_azurite"
     },
     "F": {
       "item": "minecraft:fermented_spider_eye"

@@ -12,9 +12,9 @@
       "trigger":"minecraft:inventory_changed",
       "conditions": { "items": [{ "items": [ "minecraft:prismarine_crystals" ]}] }
     },
-    "has_lightning_stone": {
-      "trigger":"minecraft:inventory_changed",
-      "conditions": { "items": [{ "items": [ "spectrum:lightning_stone" ]}] }
+    "has_azurite_advancement": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:midgame/collect_azurite" }
     }
   }
 }

@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.blocks.spirit_tree;
+package de.dafuqs.spectrum.blocks.spirit_sallow;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.entity.BlockEntity;

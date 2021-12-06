@@ -20,7 +20,7 @@ import de.dafuqs.spectrum.blocks.redstone.BlockPlacerBlockEntity;
 import de.dafuqs.spectrum.blocks.redstone.PlayerDetectorBlockEntity;
 import de.dafuqs.spectrum.blocks.redstone.RedstoneCalculatorBlockEntity;
 import de.dafuqs.spectrum.blocks.redstone.RedstoneWirelessBlockEntity;
-import de.dafuqs.spectrum.blocks.spirit_tree.OminousSaplingBlockEntity;
+import de.dafuqs.spectrum.blocks.spirit_sallow.OminousSaplingBlockEntity;
 import de.dafuqs.spectrum.blocks.upgrade.UpgradeBlock;
 import de.dafuqs.spectrum.blocks.upgrade.UpgradeBlockBlockEntityRenderer;
 import de.dafuqs.spectrum.blocks.upgrade.UpgradeBlockEntity;

@@ -11,10 +11,8 @@ import net.minecraft.inventory.StackReference;
 import net.minecraft.item.BundleItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ToolItem;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.screen.slot.Slot;
-import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.stat.Stats;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
@@ -235,8 +233,6 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 		voidBundleCompound.put("StoredStack", storedItemCompound);
 		voidBundleStack.setNbt(voidBundleCompound);
 
-		testFull(amount, playerEntity);
-
 		return Math.max(0, amount - MAX_STORED_AMOUNT);
 	}
 
@@ -283,12 +279,6 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 	public int acceptItemStack(ItemStack inventoryInsertionAcceptorStack, ItemStack itemStackToAccept, PlayerEntity playerEntity) {
 		int storedAmount = getStoredAmount(inventoryInsertionAcceptorStack);
 		return bundleStack(inventoryInsertionAcceptorStack, itemStackToAccept, itemStackToAccept.getCount() + storedAmount, playerEntity);
-	}
-
-	public static void testFull(int storedAmount, PlayerEntity playerEntity) {
-		if(playerEntity instanceof ServerPlayerEntity && storedAmount == MAX_STORED_AMOUNT) {
-			Support.grantAdvancementCriterion((ServerPlayerEntity) playerEntity, "fill_void_bundle", "void_bundle_full");
-		}
 	}
 
 }

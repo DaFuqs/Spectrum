@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.blocks.spirit_tree;
+package de.dafuqs.spectrum.blocks.spirit_sallow;
 
 import de.dafuqs.spectrum.interfaces.PlayerOwned;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;

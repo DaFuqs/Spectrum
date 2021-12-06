@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.blocks.pedestal;
 
 import de.dafuqs.spectrum.InventoryHelper;
-import de.dafuqs.spectrum.SpectrumClient;
 import de.dafuqs.spectrum.Support;
 import de.dafuqs.spectrum.blocks.upgrade.Upgradeable;
 import de.dafuqs.spectrum.enums.GemstoneColor;
@@ -24,7 +23,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.LockableContainerBlockEntity;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.ExperienceOrbEntity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;

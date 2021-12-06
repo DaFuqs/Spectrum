@@ -4,7 +4,6 @@ import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.inventories.ParticleSpawnerScreenHandler;
 import de.dafuqs.spectrum.particle.effect.ParticleSpawnerParticleEffect;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
-import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

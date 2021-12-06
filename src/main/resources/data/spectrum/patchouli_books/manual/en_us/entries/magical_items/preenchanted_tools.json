@@ -41,7 +41,7 @@
       "type": "spectrum:pedestal_crafting",
       "advancement": "spectrum:progression/tools/unlock_voiding_pickaxe",
       "recipe": "spectrum:pedestal/tier2/voiding_pickaxe",
-      "text": "As an outsider in the group, the Oblivion Pickaxe has a large amount of durability and mining speed. However, all blocks that are mined with it $(l:enchanting/curse_of_the_void)are destroyed$()."
+      "text": "As an outsider in the group, the Oblivion Pickaxe has a large amount of durability and mining speed. However, all blocks that are mined with it $(l:enchanting/curse_of_voiding)are destroyed$()."
     },
     {
       "type": "patchouli:text",

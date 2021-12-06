@@ -89,7 +89,7 @@
       "advancement": "spectrum:spectrum",
       "title": "Gemstone Ores",
       "item": "spectrum:amethyst_ore",
-      "text": "Now that you're directly targeting geodes and paying attention, you'll notice small inclusions of gems in the rock over and over again.$(br2)If you see such an ore a geode is surely not far!"
+      "text": "Now that you are paying attention, you noticed small inclusions of gems in the rock all over the place.$(br2)If you see such an ore a geode is surely not far!"
     },
     {
       "type": "patchouli:spotlight",

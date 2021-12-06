@@ -18,6 +18,7 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier1/redstone_sand",
       "text": "So much room for possibilities!"
     }

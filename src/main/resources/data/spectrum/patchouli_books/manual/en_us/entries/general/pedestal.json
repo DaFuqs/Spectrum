@@ -25,7 +25,7 @@
     },
     {
       "type": "patchouli:crafting",
-      "title": "Variations",
+      "title": "Variants",
       "recipe": "spectrum:crafting_table/pedestal_basic_topaz",
       "recipe2": "spectrum:crafting_table/pedestal_basic_citrine"
     }

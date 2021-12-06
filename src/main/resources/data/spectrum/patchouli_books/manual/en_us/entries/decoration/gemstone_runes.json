@@ -18,19 +18,25 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "$(italic)Calcite and basalt keep the energies of the gems in check as long as they completely enclose the geode, that much is certain. Sometimes, however, the energy accumulated over centuries is so strong that it tears a hole in the geode.$(br)To focus these very energies, you can recreate the whole thing in miniature. For sure your new construction holds a lot of magical energy.$()"
+      "text": "$(italic)Calcite and basalt keep the energies of the gems in check as long as they completely enclose the geode, that much is certain. Sometimes, however, the energy accumulated over centuries is so strong that it tears a hole in the geode.$(br2)You recreated the whole thing in miniature. For sure your new construction holds a lot of magical energy.$()"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier2/runes/topaz_chiseled_basalt_from_shards",
-      "text": "Runes come in all gemstone colors. The frame can be built out of $(l:decoration/block_variants)Polished Basalt$() or $(l:decoration/block_variants)Polished Calcite$()."
+      "text": "Come in all gemstone colors. The frame can be built out of $(l:decoration/block_variants)Polished Basalt$() or $(l:decoration/block_variants)Polished Calcite$()."
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier2/runes/amethyst_chiseled_calcite_from_cluster",
-      "text": "If you manage to get a hold of complete gemstone clusters the runes are much easier to construct than from shards alone."
+      "recipe": "spectrum:pedestal/tier2/runes/amethyst_chiseled_basalt_from_shards",
+      "text": "Each Rune has its own special signature marking."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Alternative Recipe",
+      "recipe": "spectrum:pedestal/tier2/runes/amethyst_chiseled_basalt_from_cluster",
+      "text": "If you manage to get a hold of complete gemstone clusters the runes are much more efficient to build."
     }
   ]
 }

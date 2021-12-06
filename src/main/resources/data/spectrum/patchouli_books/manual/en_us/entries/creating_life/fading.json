@@ -16,7 +16,7 @@
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier1/bottle_of_fading",
-      "text": "Time for philosophy! Every living thing has basically the same goals: To eat in order to reproduce.$() So... what do these weak creatures eat? Blocks?"
+      "text": "Time for philosophy! Every living thing has basically the same goals: To eat in order to reproduce.$() So... what do these weak creatures eat? Other Blocks?"
     },
     {
       "type": "patchouli:spotlight",

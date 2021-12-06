@@ -18,30 +18,35 @@
     },
     {
       "type": "patchouli:crafting",
+      "title": "Polished Topaz",
       "advancement": "spectrum:hidden/collect_shards/collect_topaz_shard",
       "recipe": "spectrum:crafting_table/storage_blocks/topaz_storage_block",
       "recipe2": "spectrum:crafting_table/storage_blocks/topaz_shards_from_topaz_storage_block"
     },
     {
       "type": "patchouli:crafting",
+      "title": "Polished Amethyst",
       "advancement": "spectrum:hidden/collect_shards/collect_amethyst_shard",
       "recipe": "spectrum:crafting_table/storage_blocks/amethyst_storage_block",
       "recipe2": "spectrum:crafting_table/storage_blocks/amethyst_shards_from_amethyst_storage_block"
     },
     {
       "type": "patchouli:crafting",
+      "title": "Polished Citrine",
       "advancement": "spectrum:hidden/collect_shards/collect_citrine_shard",
       "recipe": "spectrum:crafting_table/storage_blocks/citrine_storage_block",
       "recipe2": "spectrum:crafting_table/storage_blocks/citrine_shards_from_citrine_storage_block"
     },
     {
       "type": "patchouli:crafting",
+      "title": "Polished Onyx",
       "advancement": "spectrum:create_onyx_shard",
       "recipe": "spectrum:crafting_table/storage_blocks/onyx_storage_block",
       "recipe2": "spectrum:crafting_table/storage_blocks/onyx_shards_from_onyx_storage_block"
     },
     {
       "type": "patchouli:crafting",
+      "title": "Polished Moonstone",
       "advancement": "spectrum:midgame/collect_moonstone_shard",
       "recipe": "spectrum:crafting_table/storage_blocks/moonstone_storage_block",
       "recipe2": "spectrum:crafting_table/storage_blocks/moonstone_shards_from_moonstone_storage_block"

@@ -42,7 +42,7 @@
       "advancement": "spectrum:create_onyx_shard",
       "title": "Onyx Shards",
       "item": "spectrum:onyx_shard",
-      "text": "The Onyx is almost pitch black, it almost seems as if it would even withdraw the light from its surroundings.$(br2)The onyx, as a combination of energy, matter, and time, serves as a $(bold)$(c_black)reinforcing focus and catalyst$() for magical tools and devices."
+      "text": "Onyx is almost pitch black. It almost seems as if it would even withdraw the light from its surroundings.$(br2)The Onyx, as a combination of energy, matter, and time, serves as a $(bold)$(c_black)reinforcing focus and catalyst$() for magical tools and devices."
     },
     {
       "type": "patchouli:spotlight",

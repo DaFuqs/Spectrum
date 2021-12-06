@@ -14,6 +14,7 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier1/detectors/light_level_detector",
       "text": "The Light Level Detector does not only react to sunlight, but is also able to pick up other light sources."
     }

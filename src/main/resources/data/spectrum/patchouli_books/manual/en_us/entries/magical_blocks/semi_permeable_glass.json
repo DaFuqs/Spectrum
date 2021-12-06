@@ -18,11 +18,11 @@
       "type": "patchouli:spotlight",
       "title": "Semi-permeable Glass",
       "item": "spectrum:amethyst_player_only_glass",
-      "text": "$(italic)For a long time now, those annoying monsters that always appear at night are no longer a threat to you and only serve as a resource supplier, if at all. But that doesn't stop them from pursuing you further.$(br)Qou spend more time keeping those pesky monsters out of your base than you care to admit.$()"
+      "text": "$(italic)For a long time now, those annoying monsters that always appear at night are no longer a threat to you and only serve as a resource supplier, if at all. But that doesn't stop them from pursuing you further.$(br)You spend more time keeping those pesky monsters out of your base than you care to admit.$()"
     },
     {
       "type": "patchouli:text",
-      "text": "$(italic)Then you remember the gemstone glass recipe you thought up earlier.$(br)With a bit of magical energy, it should be no problem to make it not only transparent for you (not for them!), but also passable.$(br2)Bonus: If you make it look exactly like regular glass you might even be able to fool your competition. It just needs a touch of magic.$()"
+      "text": "$(italic)Then you remember the gemstone glass recipe you thought up earlier.$(br)With a bit of magical energy, it should be no problem to make it not only transparent for you, but also passable (not for them!).$(br2)Bonus: If you make it look exactly like regular glass you might even be able to fool your competition.$()"
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -31,7 +31,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Semi-permeable Glass comes in all the gemstone colors that are available to you, including the common glass and its tinted variant.$(br2)It looks exactly like its $(l:decoration/gemstone_glass)mundane counterpart$(), but has the special property that players can pass through it without problems, while all other creatures will bounce off it like a fly off a window."
+      "text": "Semi-permeable Glass comes in all the gemstone colors, additionally the common glass and its tinted variant.$(br2)It looks exactly like its $(l:decoration/gemstone_glass)mundane counterpart$(), but has the special property that players can pass through it without problems, while all other creatures will bounce off it like a fly off a window."
     }
   ]
 }

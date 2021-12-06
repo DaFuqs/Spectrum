@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.blocks.spirit_vines;
+package de.dafuqs.spectrum.blocks.spirit_sallow;
 
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import de.dafuqs.spectrum.registries.SpectrumItems;

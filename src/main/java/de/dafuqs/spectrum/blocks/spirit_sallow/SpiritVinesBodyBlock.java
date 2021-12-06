@@ -1,9 +1,10 @@
-package de.dafuqs.spectrum.blocks.spirit_vines;
+package de.dafuqs.spectrum.blocks.spirit_sallow;
 
 import de.dafuqs.spectrum.enums.GemstoneColor;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.block.AbstractPlantBlock;
 import net.minecraft.block.AbstractPlantStemBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -21,50 +22,38 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-public class SpiritVinesHeadBlock extends AbstractPlantStemBlock implements SpiritVines {
+public class SpiritVinesBodyBlock extends AbstractPlantBlock implements SpiritVines {
 
 	private final GemstoneColor gemstoneColor;
 
-	public SpiritVinesHeadBlock(Settings settings, GemstoneColor gemstoneColor) {
-		super(settings, Direction.DOWN, SHAPE, false, 0.0D);
+	public SpiritVinesBodyBlock(Settings settings, GemstoneColor gemstoneColor) {
+		super(settings, Direction.DOWN, SHAPE, false);
 		this.setDefaultState((this.stateManager.getDefaultState()).with(YIELD, YieldType.NONE));
 		this.gemstoneColor = gemstoneColor;
 	}
 
-	protected int getGrowthLength(Random random) {
-		return 1;
-	}
-
-	protected boolean chooseStemState(BlockState state) {
-		return state.isAir();
-	}
-
-	protected Block getPlant() {
+	protected AbstractPlantStemBlock getStem() {
 		switch (gemstoneColor) {
 			case MAGENTA -> {
-				return SpectrumBlocks.MAGENTA_SPIRIT_SALLOW_VINES_HEAD;
+				return (AbstractPlantStemBlock) SpectrumBlocks.MAGENTA_SPIRIT_SALLOW_VINES_BODY;
 			}
 			case BLACK -> {
-				return SpectrumBlocks.BLACK_SPIRIT_SALLOW_VINES_HEAD;
+				return (AbstractPlantStemBlock) SpectrumBlocks.BLACK_SPIRIT_SALLOW_VINES_BODY;
 			}
 			case CYAN -> {
-				return SpectrumBlocks.CYAN_SPIRIT_SALLOW_VINES_HEAD;
+				return (AbstractPlantStemBlock) SpectrumBlocks.CYAN_SPIRIT_SALLOW_VINES_BODY;
 			}
 			case WHITE -> {
-				return SpectrumBlocks.WHITE_SPIRIT_SALLOW_VINES_HEAD;
+				return (AbstractPlantStemBlock) SpectrumBlocks.WHITE_SPIRIT_SALLOW_VINES_BODY;
 			}
 			default ->  {
-				return SpectrumBlocks.YELLOW_SPIRIT_SALLOW_VINES_HEAD;
+				return (AbstractPlantStemBlock) SpectrumBlocks.YELLOW_SPIRIT_SALLOW_VINES_BODY;
 			}
 		}
 	}
 
 	protected BlockState copyState(BlockState from, BlockState to) {
 		return to.with(YIELD, from.get(YIELD));
-	}
-
-	protected BlockState age(BlockState state, Random random) {
-		return super.age(state, random).with(YIELD, YieldType.NONE);
 	}
 
 	@Environment(EnvType.CLIENT)
@@ -77,7 +66,6 @@ public class SpiritVinesHeadBlock extends AbstractPlantStemBlock implements Spir
 	}
 
 	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-		super.appendProperties(builder);
 		builder.add(YIELD);
 	}
 

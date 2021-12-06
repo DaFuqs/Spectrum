@@ -25,7 +25,7 @@ public abstract class MudFluid extends SpectrumFluid {
 
 	@Override
 	public Fluid getStill() {
-		return SpectrumFluids.STILL_MUD;
+		return SpectrumFluids.MUD;
 	}
 
 	@Override
@@ -45,7 +45,7 @@ public abstract class MudFluid extends SpectrumFluid {
 
 	@Override
 	public boolean matchesType(Fluid fluid) {
-		return fluid == SpectrumFluids.STILL_MUD || fluid == SpectrumFluids.FLOWING_MUD;
+		return fluid == SpectrumFluids.MUD || fluid == SpectrumFluids.FLOWING_MUD;
 	}
 
 	@Environment(EnvType.CLIENT)

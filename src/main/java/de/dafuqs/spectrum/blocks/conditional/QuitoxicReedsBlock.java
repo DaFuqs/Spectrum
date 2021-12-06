@@ -77,7 +77,7 @@ public class QuitoxicReedsBlock extends SugarCaneBlock implements Cloakable, Wat
 	public BlockState getPlacementState(ItemPlacementContext ctx) {
 		FluidState fluidState = ctx.getWorld().getFluidState(ctx.getBlockPos());
 		boolean water = fluidState.getFluid() == Fluids.WATER;
-		boolean crystal = fluidState.getFluid() == SpectrumFluids.STILL_LIQUID_CRYSTAL;
+		boolean crystal = fluidState.getFluid() == SpectrumFluids.LIQUID_CRYSTAL;
 		return super.getPlacementState(ctx).with(WATERLOGGED, water).with(LIQUID_CRYSTAL_LOGGED, crystal);
 	}
 
@@ -94,14 +94,14 @@ public class QuitoxicReedsBlock extends SugarCaneBlock implements Cloakable, Wat
 			if (state.get(WATERLOGGED)) {
 				world.createAndScheduleFluidTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
 			} else if (state.get(LIQUID_CRYSTAL_LOGGED)) {
-				world.createAndScheduleFluidTick(pos, SpectrumFluids.STILL_LIQUID_CRYSTAL, SpectrumFluids.STILL_LIQUID_CRYSTAL.getTickRate(world));
+				world.createAndScheduleFluidTick(pos, SpectrumFluids.LIQUID_CRYSTAL, SpectrumFluids.LIQUID_CRYSTAL.getTickRate(world));
 			}
 			return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
 		}
 	}
 
 	public FluidState getFluidState(BlockState state) {
-		return state.get(WATERLOGGED) ? Fluids.WATER.getStill(false) : state.get(LIQUID_CRYSTAL_LOGGED) ? SpectrumFluids.STILL_LIQUID_CRYSTAL.getStill(false) : super.getFluidState(state);
+		return state.get(WATERLOGGED) ? Fluids.WATER.getStill(false) : state.get(LIQUID_CRYSTAL_LOGGED) ? SpectrumFluids.LIQUID_CRYSTAL.getStill(false) : super.getFluidState(state);
 	}
 
 	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
@@ -176,7 +176,7 @@ public class QuitoxicReedsBlock extends SugarCaneBlock implements Cloakable, Wat
 		FluidState fluidState = world.getFluidState(blockPos);
 		if(fluidState.equals(Fluids.WATER)) {
 			return getDefaultState().with(WATERLOGGED, true);
-		} else if(fluidState.equals(SpectrumFluids.STILL_LIQUID_CRYSTAL)) {
+		} else if(fluidState.equals(SpectrumFluids.LIQUID_CRYSTAL)) {
 			return getDefaultState().with(LIQUID_CRYSTAL_LOGGED, true);
 		}
 		return getDefaultState();

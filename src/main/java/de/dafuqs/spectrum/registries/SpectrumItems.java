@@ -29,8 +29,8 @@ import net.minecraft.util.registry.Registry;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
-import static de.dafuqs.spectrum.registries.SpectrumFluids.STILL_LIQUID_CRYSTAL;
-import static de.dafuqs.spectrum.registries.SpectrumFluids.STILL_MUD;
+import static de.dafuqs.spectrum.registries.SpectrumFluids.LIQUID_CRYSTAL;
+import static de.dafuqs.spectrum.registries.SpectrumFluids.MUD;
 
 public class SpectrumItems {
 
@@ -141,8 +141,8 @@ public class SpectrumItems {
 	public static final Item BEDROCK_DUST = new CloakedItem(resourcesRareItemSettings, new Identifier(SpectrumCommon.MOD_ID, "midgame/break_decayed_bedrock"), Items.GUNPOWDER);
 
 	// Fluid Buckets
-	public static final Item LIQUID_CRYSTAL_BUCKET = new BucketItem(STILL_LIQUID_CRYSTAL, generalItemSettingsSingle);
-	public static final Item MUD_BUCKET = new BucketItem(STILL_MUD, generalItemSettingsSingle);
+	public static final Item LIQUID_CRYSTAL_BUCKET = new BucketItem(LIQUID_CRYSTAL, generalItemSettingsSingle);
+	public static final Item MUD_BUCKET = new BucketItem(MUD, generalItemSettingsSingle);
 
 	// Decay bottles
 	public static final Item BOTTLE_OF_FADING = new DecayPlacerItem(SpectrumBlocks.FADING, decayPlacerItemSettings);

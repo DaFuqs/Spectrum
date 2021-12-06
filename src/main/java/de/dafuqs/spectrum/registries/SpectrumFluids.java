@@ -30,11 +30,11 @@ import java.util.function.Function;
 public class SpectrumFluids {
 
 	// LIQUID CRYSTAL
-	public static final FlowableFluid STILL_LIQUID_CRYSTAL = new LiquidCrystalFluid.StillLiquidCrystal();
+	public static final FlowableFluid LIQUID_CRYSTAL = new LiquidCrystalFluid.StillLiquidCrystal();
 	public static final FlowableFluid FLOWING_LIQUID_CRYSTAL = new LiquidCrystalFluid.FlowingLiquidCrystal();
 
 	// MUD
-	public static final FlowableFluid STILL_MUD = new MudFluid.StillMud();
+	public static final FlowableFluid MUD = new MudFluid.StillMud();
 	public static final FlowableFluid FLOWING_MUD = new MudFluid.FlowingMud();
 
 	private static void registerFluid(String name, Fluid fluid) {
@@ -42,19 +42,19 @@ public class SpectrumFluids {
 	}
 
 	public static void register() {
-		registerFluid("still_liquid_crystal", STILL_LIQUID_CRYSTAL);
+		registerFluid("liquid_crystal", LIQUID_CRYSTAL);
 		registerFluid("flowing_liquid_crystal", FLOWING_LIQUID_CRYSTAL);
-		registerFluid("still_mud", STILL_MUD);
+		registerFluid("mud", MUD);
 		registerFluid("flowing_mud", FLOWING_MUD);
 	}
 
 	@Environment(EnvType.CLIENT)
 	public static void registerClient() {
-		setupFluidRendering(STILL_LIQUID_CRYSTAL, FLOWING_LIQUID_CRYSTAL, new Identifier(SpectrumCommon.MOD_ID, "liquid_crystal"), 0xcbbbcb);
-		BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getTranslucent(), STILL_LIQUID_CRYSTAL, FLOWING_LIQUID_CRYSTAL);
+		setupFluidRendering(LIQUID_CRYSTAL, FLOWING_LIQUID_CRYSTAL, new Identifier(SpectrumCommon.MOD_ID, "liquid_crystal"), 0xcbbbcb);
+		BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getTranslucent(), LIQUID_CRYSTAL, FLOWING_LIQUID_CRYSTAL);
 
-		setupFluidRendering(STILL_MUD, FLOWING_MUD, new Identifier(SpectrumCommon.MOD_ID, "mud"), 0x4e2e0a);
-		BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getTranslucent(), STILL_MUD, FLOWING_MUD);
+		setupFluidRendering(MUD, FLOWING_MUD, new Identifier(SpectrumCommon.MOD_ID, "mud"), 0x4e2e0a);
+		BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getTranslucent(), MUD, FLOWING_MUD);
 	}
 
 	@Environment(EnvType.CLIENT)

@@ -547,12 +547,10 @@
 
   "item.spectrum.mud_bucket": "Bucket of Mud",
   "block.spectrum.mud": "Mud",
-  "block.spectrum.still_mud": "Mud",
   "block.spectrum.flowing_mud": "Mud",
   
   "item.spectrum.liquid_crystal_bucket": "Liquid Crystal Bucket",
   "block.spectrum.liquid_crystal": "Liquid Crystal",
-  "block.spectrum.still_liquid_crystal": "Liquid Crystal",
   "block.spectrum.flowing_liquid_crystal": "Liquid Crystal",
 
   "block.spectrum.paletur_ore": "Paletur Ore",

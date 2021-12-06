@@ -28,7 +28,7 @@ public abstract class LiquidCrystalFluid extends SpectrumFluid {
 
 	@Override
 	public Fluid getStill() {
-		return SpectrumFluids.STILL_LIQUID_CRYSTAL;
+		return SpectrumFluids.LIQUID_CRYSTAL;
 	}
 
 	@Override
@@ -48,7 +48,7 @@ public abstract class LiquidCrystalFluid extends SpectrumFluid {
 
 	@Override
 	public boolean matchesType(Fluid fluid) {
-		return fluid == SpectrumFluids.STILL_LIQUID_CRYSTAL || fluid == SpectrumFluids.FLOWING_LIQUID_CRYSTAL;
+		return fluid == SpectrumFluids.LIQUID_CRYSTAL || fluid == SpectrumFluids.FLOWING_LIQUID_CRYSTAL;
 	}
 
 	@Environment(EnvType.CLIENT)

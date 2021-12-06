@@ -4,9 +4,13 @@
       "trigger":"spectrum:has_advancement",
       "conditions": { "advancement_identifier": "spectrum:midgame/build_advanced_pedestal_structure" }
     },
-    "has_scarlet_fragments": {
-      "trigger":"minecraft:inventory_changed",
-      "conditions": { "items": [{ "items": [ "spectrum:scarlet_fragments" ]}] }
+    "entered_liquid_crystal": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:midgame/enter_liquid_crystal" }
+    },
+    "collected_scarlet": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:midgame/collect_scarlet" }
     }
   }
 }

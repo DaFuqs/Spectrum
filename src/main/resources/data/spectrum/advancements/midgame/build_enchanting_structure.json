@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:midgame/build_advanced_pedestal_structure",
+  "parent": "spectrum:midgame/enter_liquid_crystal",
   "display": {
     "icon": {
       "item": "spectrum:enchanter"

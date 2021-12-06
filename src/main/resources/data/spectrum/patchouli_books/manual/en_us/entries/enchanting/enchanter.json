@@ -10,6 +10,12 @@
             "text": "TODO"
         },
         {
+            "type": "spectrum:pedestal_crafting",
+            "title": "Pedestal Recipe",
+            "recipe": "spectrum:pedestal/tier3/enchanter",
+            "text": "TODO"
+        },
+        {
             "type": "patchouli:multiblock",
             "name": "Enchanting Structure",
             "multiblock_id": "spectrum:enchanter_structure",

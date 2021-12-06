@@ -11,7 +11,7 @@
   "pattern": [
     "SLS",
     "BGB",
-    "BBB"
+    "BCB"
   ],
   "key": {
     "L": {
@@ -19,6 +19,9 @@
     },
     "B": {
       "item": "spectrum:polished_basalt"
+    },
+    "C": {
+      "item": "spectrum:polished_calcite"
     },
     "S": {
       "item": "spectrum:scarlet_fragments"

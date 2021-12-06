@@ -124,14 +124,14 @@ public class PedestalScreenHandler extends AbstractRecipeScreenHandler<Inventory
 
 		this.addProperties(propertyDelegate);
 	}
-
+	
 	@Override
 	public void sendContentUpdates() {
 		super.sendContentUpdates();
 
 		// serverside only: if the recipe output has changed send update to the client
 		if(!world.isClient) {
-			ItemStack craftingItemStack = ((PedestalBlockEntity) inventory).getCraftingOutput();
+			ItemStack craftingItemStack = ((PedestalBlockEntity) inventory).getCurrentCraftingOutput();
 
 			ItemStack itemStackForOutputSlot;
 			if(craftingItemStack.isEmpty()) {

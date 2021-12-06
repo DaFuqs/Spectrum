@@ -770,8 +770,8 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		return this.currentRecipe;
 	}
 
-	public ItemStack getCraftingOutput() {
-		Recipe recipe = calculateRecipe(this.world, this);
+	public ItemStack getCurrentCraftingOutput() {
+		Recipe recipe = calculateRecipe(world, this);
 		if(recipe == null) {
 			return ItemStack.EMPTY;
 		} else {

@@ -33,33 +33,51 @@ public class PedestalCraftingRecipeDisplay<R extends PedestalCraftingRecipe> ext
 	protected final int craftingTime;
 	protected final PedestalRecipeTier pedestalRecipeTier;
 
-	public PedestalCraftingRecipeDisplay(@NotNull PedestalCraftingRecipe recipe) {
+	public PedestalCraftingRecipeDisplay(PedestalCraftingRecipe recipe) {
 		super(recipe.getIngredients().stream().map(EntryIngredients::ofIngredient).collect(Collectors.toCollection(ArrayList::new)), Collections.singletonList(EntryIngredients.of(recipe.getOutput())));
+		
 		this.pedestalCraftingRecipe = recipe;
 		this.craftingInputs = recipe.getIngredients().stream().map(EntryIngredients::ofIngredient).collect(Collectors.toCollection(ArrayList::new));
-
+		this.output = EntryIngredients.of(recipe.getOutput());
+		this.experience = recipe.getExperience();
+		this.craftingTime = recipe.getCraftingTime();
+		this.pedestalRecipeTier = recipe.getTier();
+		
 		HashMap<GemstoneColor, Integer> gemstonePowderInputs = recipe.getGemstonePowderInputs();
 		addGemstonePowderCraftingInput(gemstonePowderInputs, GemstoneColor.CYAN, SpectrumItems.TOPAZ_POWDER);
 		addGemstonePowderCraftingInput(gemstonePowderInputs, GemstoneColor.MAGENTA, SpectrumItems.AMETHYST_POWDER);
 		addGemstonePowderCraftingInput(gemstonePowderInputs, GemstoneColor.YELLOW, SpectrumItems.CITRINE_POWDER);
 		addGemstonePowderCraftingInput(gemstonePowderInputs, GemstoneColor.BLACK, SpectrumItems.ONYX_POWDER);
 		addGemstonePowderCraftingInput(gemstonePowderInputs, GemstoneColor.WHITE, SpectrumItems.MOONSTONE_POWDER);
-
-		this.output = EntryIngredients.of(recipe.getOutput());
-		this.experience = recipe.getExperience();
-		this.craftingTime = recipe.getCraftingTime();
-		this.pedestalRecipeTier = recipe.getTier();
+	}
+	
+	public PedestalCraftingRecipeDisplay(List<EntryIngredient> inputs, List<EntryIngredient> outputs, Recipe recipe) {
+		super(inputs, outputs);
+		
+		this.craftingInputs = inputs;
+		this.output = outputs.get(0);
+		if(recipe instanceof PedestalCraftingRecipe pedestalCraftingRecipe) {
+			this.pedestalCraftingRecipe = pedestalCraftingRecipe;
+			this.experience = pedestalCraftingRecipe.getExperience();
+			this.craftingTime = pedestalCraftingRecipe.getCraftingTime();
+			this.pedestalRecipeTier = pedestalCraftingRecipe.getTier();
+		} else {
+			this.pedestalCraftingRecipe = null;
+			this.experience = 0;
+			this.craftingTime = 0;
+			this.pedestalRecipeTier = PedestalRecipeTier.BASIC;
+		}
 	}
 	
 	public static Serializer<PedestalCraftingRecipeDisplay<?>> serializer() {
 		return PedestalCraftingRecipeDisplay.Serializer.<PedestalCraftingRecipeDisplay<?>>ofSimple(PedestalCraftingRecipeDisplay::simple)
-				.inputProvider(display -> display.getOrganisedInputEntries());
+				.inputProvider(PedestalCraftingRecipeDisplay::getOrganisedInputEntries);
 	}
 	
-	private static @NotNull PedestalCraftingRecipeDisplay<?> simple(List<EntryIngredient> entryIngredients, List<EntryIngredient> entryIngredients1, @NotNull Optional<Identifier> identifier) {
+	private static @NotNull PedestalCraftingRecipeDisplay<?> simple(List<EntryIngredient> inputs, List<EntryIngredient> outputs, @NotNull Optional<Identifier> identifier) {
 		Recipe<?> optionalRecipe = identifier.flatMap(resourceLocation -> RecipeManagerContext.getInstance().getRecipeManager().get(resourceLocation))
 				.orElse(null);
-		return new PedestalCraftingRecipeDisplay((PedestalCraftingRecipe) optionalRecipe);
+		return new PedestalCraftingRecipeDisplay(inputs, outputs, optionalRecipe);
 	}
 	
 	public <T extends ScreenHandler> List<EntryIngredient> getOrganisedInputEntries() {
@@ -117,7 +135,7 @@ public class PedestalCraftingRecipeDisplay<R extends PedestalCraftingRecipe> ext
 	@Override
 	public List<EntryIngredient> getOutputEntries() {
 		if(this.isUnlocked()) {
-			return Collections.singletonList(output);
+			return outputs;
 		} else {
 			return new ArrayList<>();
 		}
@@ -129,7 +147,11 @@ public class PedestalCraftingRecipeDisplay<R extends PedestalCraftingRecipe> ext
 	}
 
 	public boolean isUnlocked() {
-		return this.pedestalCraftingRecipe.canPlayerCraft(MinecraftClient.getInstance().player);
+		if(this.pedestalCraftingRecipe == null) {
+			return true;
+		} else {
+			return this.pedestalCraftingRecipe.canPlayerCraft(MinecraftClient.getInstance().player);
+		}
 	}
 
 	@Override

@@ -32,7 +32,11 @@ public class PedestalCraftingRecipeDisplay<R extends PedestalCraftingRecipe> ext
 	protected final float experience;
 	protected final int craftingTime;
 	protected final PedestalRecipeTier pedestalRecipeTier;
-
+	
+	/**
+	 * When using the REI recipe functionality
+	 * @param recipe The recipe
+	 */
 	public PedestalCraftingRecipeDisplay(PedestalCraftingRecipe recipe) {
 		super(recipe.getIngredients().stream().map(EntryIngredients::ofIngredient).collect(Collectors.toCollection(ArrayList::new)), Collections.singletonList(EntryIngredients.of(recipe.getOutput())));
 		
@@ -51,6 +55,9 @@ public class PedestalCraftingRecipeDisplay<R extends PedestalCraftingRecipe> ext
 		addGemstonePowderCraftingInput(gemstonePowderInputs, GemstoneColor.WHITE, SpectrumItems.MOONSTONE_POWDER);
 	}
 	
+	/**
+	 * When using Shift click on the plus button in the REI gui to autofill crafting grids
+	 */
 	public PedestalCraftingRecipeDisplay(List<EntryIngredient> inputs, List<EntryIngredient> outputs, Recipe recipe) {
 		super(inputs, outputs);
 		

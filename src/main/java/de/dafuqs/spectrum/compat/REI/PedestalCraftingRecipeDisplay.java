@@ -8,15 +8,20 @@ import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.display.SimpleGridMenuDisplay;
 import me.shedaniel.rei.api.common.display.basic.BasicDisplay;
 import me.shedaniel.rei.api.common.entry.EntryIngredient;
+import me.shedaniel.rei.api.common.registry.RecipeManagerContext;
 import me.shedaniel.rei.api.common.util.EntryIngredients;
+import me.shedaniel.rei.plugin.common.displays.crafting.DefaultCraftingDisplay;
+import me.shedaniel.rei.plugin.common.displays.crafting.DefaultCustomDisplay;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.recipe.Ingredient;
+import net.minecraft.recipe.Recipe;
+import net.minecraft.screen.ScreenHandler;
+import net.minecraft.util.Identifier;
+import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class PedestalCraftingRecipeDisplay<R extends PedestalCraftingRecipe> extends BasicDisplay implements SimpleGridMenuDisplay {
@@ -28,17 +33,17 @@ public class PedestalCraftingRecipeDisplay<R extends PedestalCraftingRecipe> ext
 	protected final int craftingTime;
 	protected final PedestalRecipeTier pedestalRecipeTier;
 
-	public PedestalCraftingRecipeDisplay(PedestalCraftingRecipe recipe) {
+	public PedestalCraftingRecipeDisplay(@NotNull PedestalCraftingRecipe recipe) {
 		super(recipe.getIngredients().stream().map(EntryIngredients::ofIngredient).collect(Collectors.toCollection(ArrayList::new)), Collections.singletonList(EntryIngredients.of(recipe.getOutput())));
 		this.pedestalCraftingRecipe = recipe;
 		this.craftingInputs = recipe.getIngredients().stream().map(EntryIngredients::ofIngredient).collect(Collectors.toCollection(ArrayList::new));
 
-		HashMap<GemstoneColor, Integer> spectrumInputs = recipe.getGemstonePowderInputs();
-		addGemstonePowderCraftingInput(spectrumInputs, GemstoneColor.CYAN, SpectrumItems.TOPAZ_POWDER);
-		addGemstonePowderCraftingInput(spectrumInputs, GemstoneColor.MAGENTA, SpectrumItems.AMETHYST_POWDER);
-		addGemstonePowderCraftingInput(spectrumInputs, GemstoneColor.YELLOW, SpectrumItems.CITRINE_POWDER);
-		addGemstonePowderCraftingInput(spectrumInputs, GemstoneColor.BLACK, SpectrumItems.ONYX_POWDER);
-		addGemstonePowderCraftingInput(spectrumInputs, GemstoneColor.WHITE, SpectrumItems.MOONSTONE_POWDER);
+		HashMap<GemstoneColor, Integer> gemstonePowderInputs = recipe.getGemstonePowderInputs();
+		addGemstonePowderCraftingInput(gemstonePowderInputs, GemstoneColor.CYAN, SpectrumItems.TOPAZ_POWDER);
+		addGemstonePowderCraftingInput(gemstonePowderInputs, GemstoneColor.MAGENTA, SpectrumItems.AMETHYST_POWDER);
+		addGemstonePowderCraftingInput(gemstonePowderInputs, GemstoneColor.YELLOW, SpectrumItems.CITRINE_POWDER);
+		addGemstonePowderCraftingInput(gemstonePowderInputs, GemstoneColor.BLACK, SpectrumItems.ONYX_POWDER);
+		addGemstonePowderCraftingInput(gemstonePowderInputs, GemstoneColor.WHITE, SpectrumItems.MOONSTONE_POWDER);
 
 		this.output = EntryIngredients.of(recipe.getOutput());
 		this.experience = recipe.getExperience();
@@ -46,13 +51,48 @@ public class PedestalCraftingRecipeDisplay<R extends PedestalCraftingRecipe> ext
 		this.pedestalRecipeTier = recipe.getTier();
 	}
 	
-	// TODO: I definitely need some help here
-	/*public static BasicDisplay.Serializer<PedestalCraftingRecipeDisplay<?>> serializer() {
-		//return BasicDisplay.Serializer.<PedestalCraftingRecipeDisplay<?>>ofSimple(DefaultCustomDisplay::simple).inputProvider(display -> display.getOrganisedInputEntries(3, 3));
-		return BasicDisplay.Serializer.ofRecipeLess(PedestalCraftingRecipeDisplay::new);
-	}*/
+	public static Serializer<PedestalCraftingRecipeDisplay<?>> serializer() {
+		return PedestalCraftingRecipeDisplay.Serializer.<PedestalCraftingRecipeDisplay<?>>ofSimple(PedestalCraftingRecipeDisplay::simple)
+				.inputProvider(display -> display.getOrganisedInputEntries());
+	}
 	
-	private void addGemstonePowderCraftingInput(HashMap<GemstoneColor, Integer> gemstonePowderInputs, GemstoneColor gemstoneColor, Item item) {
+	private static @NotNull PedestalCraftingRecipeDisplay<?> simple(List<EntryIngredient> entryIngredients, List<EntryIngredient> entryIngredients1, @NotNull Optional<Identifier> identifier) {
+		Recipe<?> optionalRecipe = identifier.flatMap(resourceLocation -> RecipeManagerContext.getInstance().getRecipeManager().get(resourceLocation))
+				.orElse(null);
+		return new PedestalCraftingRecipeDisplay((PedestalCraftingRecipe) optionalRecipe);
+	}
+	
+	public <T extends ScreenHandler> List<EntryIngredient> getOrganisedInputEntries() {
+		List<EntryIngredient> list = new ArrayList<>();
+		List<EntryIngredient> inputs = getInputEntries();
+		int gemstonePowderStartIndex = inputs.size() - 5;
+		
+		// crafting ingredients
+		for (int i = 0; i < 9; i++) {
+			list.add(EntryIngredient.empty());
+		}
+		for (int j = 0; j < gemstonePowderStartIndex; j++) {
+			list.set(getSlotWithSize(this, j), inputs.get(j));
+		}
+		
+		// gemstone powder ingredients
+		for(int k = gemstonePowderStartIndex; k < inputs.size(); k++) {
+			list.add(inputs.get(k));
+		}
+		return list;
+	}
+	
+	public static int getSlotWithSize(@NotNull PedestalCraftingRecipeDisplay<?> display, int index) {
+		return getSlotWithSize(display.getWidth(), index);
+	}
+	
+	public static int getSlotWithSize(int recipeWidth, int index) {
+		int x = index % recipeWidth;
+		int y = (index - x) / recipeWidth;
+		return 3 * y + x;
+	}
+	
+	private void addGemstonePowderCraftingInput(@NotNull HashMap<GemstoneColor, Integer> gemstonePowderInputs, GemstoneColor gemstoneColor, Item item) {
 		if(gemstonePowderInputs.containsKey(gemstoneColor)) {
 			int amount = gemstonePowderInputs.get(gemstoneColor);
 			if(amount > 0) {
@@ -85,7 +125,7 @@ public class PedestalCraftingRecipeDisplay<R extends PedestalCraftingRecipe> ext
 
 	@Override
 	public CategoryIdentifier<?> getCategoryIdentifier() {
-		return PedestalCraftingCategory.ID;
+		return SpectrumPlugins.PEDESTAL_CRAFTING;
 	}
 
 	public boolean isUnlocked() {

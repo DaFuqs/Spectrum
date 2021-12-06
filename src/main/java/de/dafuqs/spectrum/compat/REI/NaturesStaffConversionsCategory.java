@@ -17,12 +17,10 @@ import net.minecraft.util.Identifier;
 import java.util.List;
 
 public class NaturesStaffConversionsCategory implements DisplayCategory<NaturesStaffConversionsDisplay> {
-
-	public static final CategoryIdentifier<NaturesStaffConversionsDisplay> ID = CategoryIdentifier.of(new Identifier(SpectrumCommon.MOD_ID, "natures_staff_conversions"));
-
+	
 	@Override
 	public CategoryIdentifier<? extends NaturesStaffConversionsDisplay> getCategoryIdentifier() {
-		return ID;
+		return SpectrumPlugins.NATURES_STAFF;
 	}
 
 	@Override

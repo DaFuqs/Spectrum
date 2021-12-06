@@ -38,7 +38,7 @@ public class AnvilCrushingRecipeDisplay<R extends AnvilCrushingRecipe> implement
 
 	@Override
 	public CategoryIdentifier<?> getCategoryIdentifier() {
-		return AnvilCrushingCategory.ID;
+		return SpectrumPlugins.ANVIL_CRUSHING;
 	}
 
 }

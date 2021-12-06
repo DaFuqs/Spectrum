@@ -24,13 +24,12 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 
 public class FusionShrineCategory<R extends FusionShrineRecipe> implements DisplayCategory<FusionShrineRecipeDisplay<R>> {
-
-	public static final CategoryIdentifier<FusionShrineRecipeDisplay> ID = CategoryIdentifier.of(new Identifier(SpectrumCommon.MOD_ID, "fusion_shrine"));
+	
 	private static final EntryIngredient FUSION_SHRINE_BASALT = EntryIngredients.of(new ItemStack(SpectrumBlocks.FUSION_SHRINE_BASALT));
 
 	@Override
 	public CategoryIdentifier getCategoryIdentifier() {
-		return ID;
+		return SpectrumPlugins.FUSION_SHRINE;
 	}
 
 	@Override

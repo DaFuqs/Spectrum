@@ -23,15 +23,13 @@ import net.minecraft.util.Identifier;
 import java.util.List;
 
 public class AnvilCrushingCategory<R extends AnvilCrushingRecipe> implements DisplayCategory<AnvilCrushingRecipeDisplay<R>> {
-
-	public static final CategoryIdentifier<AnvilCrushingRecipeDisplay> ID = CategoryIdentifier.of(new Identifier(SpectrumCommon.MOD_ID, "anvil_crushing"));
-
+	
 	private final static Identifier WALL_TEXTURE = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/container/anvil_crushing.png");
 	private final static EntryIngredient ANVIL = EntryIngredients.of(new ItemStack(Items.ANVIL));
 
 	@Override
 	public CategoryIdentifier getCategoryIdentifier() {
-		return ID;
+		return SpectrumPlugins.ANVIL_CRUSHING;
 	}
 
 	@Override

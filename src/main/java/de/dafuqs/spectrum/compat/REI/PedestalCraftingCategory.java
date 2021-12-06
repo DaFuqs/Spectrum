@@ -28,12 +28,10 @@ import java.util.Collections;
 import java.util.List;
 
 public class PedestalCraftingCategory<R extends PedestalCraftingRecipe> implements DisplayCategory<PedestalCraftingRecipeDisplay<R>> {
-
-	public static final CategoryIdentifier ID = CategoryIdentifier.of(new Identifier(SpectrumCommon.MOD_ID, "pedestal_crafting"));
-
+	
 	@Override
 	public CategoryIdentifier getCategoryIdentifier() {
-		return ID;
+		return SpectrumPlugins.PEDESTAL_CRAFTING;
 	}
 
 	@Override
@@ -58,7 +56,6 @@ public class PedestalCraftingCategory<R extends PedestalCraftingRecipe> implemen
 
 	@Override
 	public List<Widget> setupDisplay(PedestalCraftingRecipeDisplay display, Rectangle bounds) {
-
 		Identifier backgroundTexture = PedestalScreen.getBackgroundTextureForTier(display.getTier());
 
 		Point startPoint = new Point(bounds.getCenterX() - 58, bounds.getCenterY() - 43);

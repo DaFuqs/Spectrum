@@ -28,7 +28,7 @@ public class NaturesStaffConversionsDisplay extends BasicDisplay {
 
 	@Override
 	public CategoryIdentifier<?> getCategoryIdentifier() {
-		return NaturesStaffConversionsCategory.ID;
+		return SpectrumPlugins.NATURES_STAFF;
 	}
 
 	public static BasicDisplay.Serializer<NaturesStaffConversionsDisplay> serializer() {

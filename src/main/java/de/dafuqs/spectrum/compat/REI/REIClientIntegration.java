@@ -39,16 +39,16 @@ public class REIClientIntegration implements REIClientPlugin {
 				EntryStacks.of(SpectrumBlocks.PEDESTAL_MOONSTONE)};
 
 		registry.addWorkstations(BuiltinPlugin.CRAFTING, pedestalEntryStacks);
-		registry.addWorkstations(PedestalCraftingCategory.ID, pedestalEntryStacks);
-		registry.addWorkstations(AnvilCrushingCategory.ID, EntryStacks.of(Blocks.ANVIL), EntryStacks.of(SpectrumBlocks.BEDROCK_ANVIL));
-		registry.addWorkstations(FusionShrineCategory.ID, EntryStacks.of(SpectrumBlocks.FUSION_SHRINE_BASALT), EntryStacks.of(SpectrumBlocks.FUSION_SHRINE_CALCITE));
-		registry.addWorkstations(NaturesStaffConversionsCategory.ID, EntryStacks.of(SpectrumItems.NATURES_STAFF));
+		registry.addWorkstations(SpectrumPlugins.PEDESTAL_CRAFTING, pedestalEntryStacks);
+		registry.addWorkstations(SpectrumPlugins.ANVIL_CRUSHING, EntryStacks.of(Blocks.ANVIL), EntryStacks.of(SpectrumBlocks.BEDROCK_ANVIL));
+		registry.addWorkstations(SpectrumPlugins.FUSION_SHRINE, EntryStacks.of(SpectrumBlocks.FUSION_SHRINE_BASALT), EntryStacks.of(SpectrumBlocks.FUSION_SHRINE_CALCITE));
+		registry.addWorkstations(SpectrumPlugins.NATURES_STAFF, EntryStacks.of(SpectrumItems.NATURES_STAFF));
 
 		// Since anvil crushing is an in world recipe there is no gui to fill
 		// therefore the plus button is obsolete
-		registry.removePlusButton(AnvilCrushingCategory.ID);
-		registry.removePlusButton(FusionShrineCategory.ID);
-		registry.removePlusButton(NaturesStaffConversionsCategory.ID);
+		registry.removePlusButton(SpectrumPlugins.ANVIL_CRUSHING);
+		registry.removePlusButton(SpectrumPlugins.FUSION_SHRINE);
+		registry.removePlusButton(SpectrumPlugins.NATURES_STAFF);
 	}
 
 	@Override
@@ -71,7 +71,7 @@ public class REIClientIntegration implements REIClientPlugin {
 		// Since the pedestal can craft both vanilla and pedestal recipes
 		// we have to split the "arrow" part of the gui into two parts
 		registry.registerContainerClickArea(new Rectangle(89, 37, 11, 15), PedestalScreen.class, BuiltinPlugin.CRAFTING);
-		registry.registerContainerClickArea(new Rectangle(100, 37, 11, 15), PedestalScreen.class, PedestalCraftingCategory.ID);
+		registry.registerContainerClickArea(new Rectangle(100, 37, 11, 15), PedestalScreen.class, SpectrumPlugins.PEDESTAL_CRAFTING);
 	}
 
 }

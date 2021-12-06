@@ -62,7 +62,7 @@ public class FusionShrineRecipeDisplay<R extends FusionShrineRecipe> implements 
 
 	@Override
 	public CategoryIdentifier<?> getCategoryIdentifier() {
-		return FusionShrineCategory.ID;
+		return SpectrumPlugins.FUSION_SHRINE;
 	}
 
 	public boolean isUnlocked() {

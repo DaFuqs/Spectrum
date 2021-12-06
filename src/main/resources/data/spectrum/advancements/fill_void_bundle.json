@@ -13,8 +13,24 @@
     }
   },
   "criteria": {
-    "void_bundle_full": {
-      "trigger":"minecraft:impossible"
+    "fill": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:void_bundle"
+            ],
+            "nbt": "{StoredStack:{Count:2000000000}}"
+          }
+        ],
+        "slots": {
+          "occupied": {
+            "min": 0,
+            "max": 50
+          }
+        }
+      }
     }
   },
   "rewards": {

@@ -11,6 +11,7 @@ import net.minecraft.inventory.StackReference;
 import net.minecraft.item.BundleItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ToolItem;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -27,7 +28,7 @@ import java.util.Optional;
 
 public class BottomlessBundleItem extends BundleItem implements InventoryInsertionAcceptor {
 
-	private static final int MAX_STORED_AMOUNT = Integer.MAX_VALUE;
+	private static final int MAX_STORED_AMOUNT = 2000000000;
 
 	public BottomlessBundleItem(Item.Settings settings) {
 		super(settings);
@@ -48,7 +49,7 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 	}
 
 	public int getItemBarStep(ItemStack stack) {
-		return Math.min(1 + 12 * getStoredAmount(stack) / MAX_STORED_AMOUNT, 13);
+		return Math.min(1 + (int) Math.round(12 * ((double) getStoredAmount(stack) / MAX_STORED_AMOUNT)), 13);
 	}
 
 	public int getItemBarColor(ItemStack stack) {
@@ -61,10 +62,9 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 	}
 
 	public Optional<TooltipData> getTooltipData(ItemStack voidBundleStack) {
-
 		ItemStack itemStack = getFirstBundledStack(voidBundleStack);
 		int storedAmount = getStoredAmount(voidBundleStack);
-
+		
 		return Optional.of(new VoidBundleTooltipData(itemStack, storedAmount));
 	}
 
@@ -74,7 +74,6 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 			tooltip.add(new TranslatableText("item.spectrum.void_bundle.tooltip.empty").formatted(Formatting.GRAY));
 		} else {
 			ItemStack firstStack = getFirstBundledStack(stack);
-			//float totalStacks = Math.round((float) storedAmount * 100 / (float) firstStack.getMaxCount()) / (float) 100;
 			String totalStacks = Support.getShortenedNumberString(storedAmount / (float) firstStack.getMaxCount());
 			tooltip.add(new TranslatableText("item.spectrum.void_bundle.tooltip.count", storedAmount, MAX_STORED_AMOUNT, totalStacks).formatted(Formatting.GRAY));
 			tooltip.add(new TranslatableText("item.spectrum.void_bundle.tooltip.enter_inventory", firstStack.getName().getString()).formatted(Formatting.GRAY));
@@ -90,9 +89,12 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 				ItemStack storedStack = getFirstBundledStack(voidBundleItemStack);
 				while (currentAmount > 0) {
 					int stackCount = Math.min(currentAmount, storedStack.getMaxCount());
-					storedStack.setCount(stackCount);
+
+					ItemStack entityStack = storedStack.copy();
+					entityStack.setCount(stackCount);
+					world.spawnEntity(new ItemEntity(world, entity.getX(), entity.getY(), entity.getZ(), entityStack));
+					
 					currentAmount -= stackCount;
-					world.spawnEntity(new ItemEntity(world, entity.getX(), entity.getY(), entity.getZ(), storedStack));
 				}
 			}
 		}
@@ -113,8 +115,10 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 			} else if (itemStack.getItem().canBeNested()) {
 				ItemStack firstStack = getFirstBundledStack(stack);
 				if(firstStack.isEmpty() || ItemStack.canCombine(firstStack, itemStack)) {
-					int amountToAdd = MAX_STORED_AMOUNT - getStoredAmount(stack) - itemStack.getCount();
-					addToBundle(stack, slot.takeStackRange(itemStack.getCount(), amountToAdd, player), player);
+					int amountAbleToStore = Math.min(itemStack.getCount(), (MAX_STORED_AMOUNT - getStoredAmount(stack)));
+					if(amountAbleToStore > 0) {
+						addToBundle(stack, slot.takeStackRange(itemStack.getCount(), amountAbleToStore, player), player);
+					}
 				}
 			}
 
@@ -145,18 +149,18 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 	private static int addToBundle(ItemStack bundle, ItemStack stackToBundle, PlayerEntity playerEntity) {
 		if (!stackToBundle.isEmpty() && stackToBundle.getItem().canBeNested()) {
 			int storedAmount = getStoredAmount(bundle);
-			int roomLeft = Math.min(stackToBundle.getCount(), (MAX_STORED_AMOUNT - storedAmount) / stackToBundle.getCount());
-			if (roomLeft > 0) {
+			int amountAbleToStore = Math.min(stackToBundle.getCount(), (MAX_STORED_AMOUNT - getStoredAmount(bundle)));
+			if (amountAbleToStore > 0) {
 				ItemStack stackInBundle = getFirstBundledStack(bundle);
 				if (stackInBundle.isEmpty()) {
 					stackInBundle = stackToBundle.copy();
-					stackInBundle.setCount(roomLeft);
+					stackInBundle.setCount(amountAbleToStore);
 					bundleStack(bundle, stackInBundle, playerEntity);
-					return roomLeft;
+					return amountAbleToStore;
 				} else if (ItemStack.canCombine(stackInBundle, stackToBundle)) {
-					stackInBundle.increment(roomLeft);
-					bundleStack(bundle, stackInBundle, storedAmount+roomLeft, playerEntity);
-					return roomLeft;
+					stackInBundle.increment(amountAbleToStore);
+					bundleStack(bundle, stackInBundle, storedAmount+amountAbleToStore, playerEntity);
+					return amountAbleToStore;
 				}
 			}
 		}
@@ -195,7 +199,7 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 			return getFirstBundledStack(nbtCompound);
 		}
 	}
-
+	
 	private static ItemStack getFirstBundledStack(NbtCompound nbtCompound) {
 		NbtCompound storedItemCompound = nbtCompound.getCompound("StoredStack");
 

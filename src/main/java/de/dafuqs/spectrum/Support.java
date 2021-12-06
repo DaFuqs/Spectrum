@@ -85,11 +85,11 @@ public class Support {
 	
 	public static String getShortenedNumberString(double number) {
 		if(number > 1000000D) {
-			return df.format(number / 1000000D) + "m";
+			return df.format(number / 1000000D) + "M";
 		} else if(number > 1000D) {
-			return df.format(number / 1000D) + "k";
+			return df.format(number / 1000D) + "K";
 		} else {
-			return String.valueOf(number);
+			return df.format(number);
 		}
 	}
 	

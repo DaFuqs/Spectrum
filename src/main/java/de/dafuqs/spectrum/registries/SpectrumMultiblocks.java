@@ -53,11 +53,11 @@ public class SpectrumMultiblocks {
 		};
 
 		String[][] structure = {
-				{ "_________", "_L_____L_", "_________", "_________", "_________", "_________", "_________", "_L_ ___L_", "_________",  },
-				{ "_________", "_S_____S_", "_________", "_________", "_________", "_________", "_________", "_S_____S_", "_________",  },
-				{ "_________", "_P_____P_", "_________", "_________", "_________", "_________", "_________", "_P_____P_", "_________",  },
-				{ "__XXXXX__", "_P_____P_", "X_______X", "X_______X", "X___F___X", "X_______X", "X_______X", "_P_____P_", "__XXXXX__",  },
-				{ "__XXXXX__", "_XXXXXXX_", "XXCXXXCXX", "XXXLLLXXX", "XXXL0LXXX", "XXXLLLXXX", "XXCXXXCXX", "_XXXXXXX_", "__XXXXX__",  }
+				{ "_________", "_L_____L_", "_________", "_________", "_________", "_________", "_________", "_L_ ___L_", "_________" },
+				{ "_________", "_S_____S_", "_________", "_________", "_________", "_________", "_________", "_S_____S_", "_________" },
+				{ "_________", "_P_____P_", "_________", "_________", "_________", "_________", "_________", "_P_____P_", "_________" },
+				{ "__XXXXX__", "_P_____P_", "X_______X", "X_______X", "X___F___X", "X_______X", "X_______X", "_P_____P_", "__XXXXX__" },
+				{ "__XXXXX__", "_XXXXXXX_", "XXCXXXCXX", "XXXLLLXXX", "XXXL0LXXX", "XXXLLLXXX", "XXCXXXCXX", "_XXXXXXX_", "__XXXXX__" }
 		};
 		FUSION_SHRINE_IDENTIFIER = registerMultiBlock("fusion_shrine_structure", structure, targetBlocks);
 	}
@@ -66,21 +66,22 @@ public class SpectrumMultiblocks {
 		Object[] targetBlocks = {
 				'X', "#spectrum:polished_base_blocks",
 				'P', "#spectrum:pillar_base_blocks",
+				'B', "#spectrum:polished_base_block_slabs",
 				'L', "#spectrum:gemstone_lamps",
-				'L', "#spectrum:polished_base_block_slabs",
-				'S', "#spectrum:gemstone_storage_blocks",
-				'C', "#spectrum:chiseled_base_blocks",
+				'G', "#spectrum:gemstone_storage_blocks",
 				'F', "spectrum:enchanter",
+				'C', "spectrum:liquid_crystal",
+				'I', "spectrum:item_bowl",
 				'_', StateMatcher.ANY,
 				'0', "#spectrum:polished_base_blocks",
 		};
 
 		String[][] structure = {
-				{ "_________", "_L_____L_", "_________", "_________", "_________", "_________", "_________", "_L_ ___L_", "_________",  },
-				{ "_________", "_S_____S_", "_________", "_________", "_________", "_________", "_________", "_S_____S_", "_________",  },
-				{ "_________", "_P_____P_", "_________", "_________", "_________", "_________", "_________", "_P_____P_", "_________",  },
-				{ "__XXXXX__", "_P_____P_", "X_______X", "X_______X", "X___F___X", "X_______X", "X_______X", "_P_____P_", "__XXXXX__",  },
-				{ "__XXXXX__", "_XXXXXXX_", "XXCXXXCXX", "XXXLLLXXX", "XXXL0LXXX", "XXXLLLXXX", "XXCXXXCXX", "_XXXXXXX_", "__XXXXX__",  }
+				{ "__I_____I__", "___________", "I_________I", "___________", "___________", "_____F_____", "___________", "___________", "I_________I", "___________", "__I_____I__",  },
+				{ "__L_____L__", "___________", "L_G_____G_L", "____BBB____", "___BBBBB___", "___BBXBB___", "___BBBBB___", "____BBB____", "L_G_____G_L", "___________", "__L_____L__",  },
+				{ "__P_____P__", "____BBB____", "P_P_XXX_P_P", "____XXX____", "_BXXXXXXXB_", "_BXXXXXXXB_", "_BXXXXXXXB_", "____XXX____", "P_P_XXX_P_P", "____BBB____", "__P_____P__",  },
+				{ "_XXXXXXXXX_", "XCCCXXXCCCX", "XCXCXXXCXCX", "XCCCXXXCCCX", "XXXXXXXXXXX", "XXXXX0XXXXX", "XXXXXXXXXXX", "XCCCXXXCCCX", "XCXCXXXCXCX", "XCCCXXXCCCX", "_XXXXXXXXX_",  },
+				{ "___________", "_XXX___XXX_", "_X_X___X_X_", "_XXX___XXX_", "___________", "___________", "___________", "_XXX___XXX_", "_X_X___X_X_", "_XXX___XXX_", "___________"   }
 		};
 		ENCHANTER_IDENTIFIER = registerMultiBlock("enchanter_structure", structure, targetBlocks);
 	}

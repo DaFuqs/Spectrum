@@ -12,7 +12,7 @@ import net.minecraft.util.math.Vec3f;
 
 public class EnchanterBlockEntityRenderer implements BlockEntityRenderer<de.dafuqs.spectrum.blocks.enchanter.EnchanterBlockEntity> {
 	
-	double renderHeight = 0.65F;
+	double itemStackRenderHeight = 0.65F;
 	
 	public EnchanterBlockEntityRenderer(BlockEntityRendererFactory.Context ctx) {
 	
@@ -29,21 +29,21 @@ public class EnchanterBlockEntityRenderer implements BlockEntityRenderer<de.dafu
 			// item stack rotation
 			switch (itemFacingDirection) {
 				case NORTH -> {
-					matrixStack.translate(0.5, renderHeight, 0.7);
+					matrixStack.translate(0.5, itemStackRenderHeight, 0.7);
 					matrixStack.multiply(Vec3f.POSITIVE_X.getDegreesQuaternion(270));
 					matrixStack.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(180));
 				}
 				case SOUTH -> { // perfect
-					matrixStack.translate(0.5, renderHeight, 0.3);
+					matrixStack.translate(0.5, itemStackRenderHeight, 0.3);
 					matrixStack.multiply(Vec3f.POSITIVE_X.getDegreesQuaternion(90));
 				}
 				case EAST -> {
-					matrixStack.translate(0.3, renderHeight, 0.5);
+					matrixStack.translate(0.3, itemStackRenderHeight, 0.5);
 					matrixStack.multiply(Vec3f.POSITIVE_X.getDegreesQuaternion(90));
 					matrixStack.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion(270));
 				}
 				case WEST -> {
-					matrixStack.translate(0.7, renderHeight, 0.5);
+					matrixStack.translate(0.7, itemStackRenderHeight, 0.5);
 					matrixStack.multiply(Vec3f.POSITIVE_X.getDegreesQuaternion(270));
 					matrixStack.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion(90));
 					matrixStack.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(180));

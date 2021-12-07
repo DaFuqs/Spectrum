@@ -22,7 +22,6 @@ public class EnchanterBlockEntityRenderer implements BlockEntityRenderer<de.dafu
 	public void render(EnchanterBlockEntity blockEntity, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light, int overlay) {
 		ItemStack stack = blockEntity.inventory.getStack(0);
 		if(!stack.isEmpty() && blockEntity.getItemFacingDirection() != null) {
-			float time = blockEntity.getWorld().getTime() + tickDelta;
 			Direction itemFacingDirection = blockEntity.getItemFacingDirection();
 			
 			matrixStack.push();

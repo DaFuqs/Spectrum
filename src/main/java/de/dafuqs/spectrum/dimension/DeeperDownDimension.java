@@ -14,8 +14,7 @@ public class DeeperDownDimension {
 	public static final RegistryKey<World> DEEPER_DOWN_DIMENSION_KEY = RegistryKey.of(Registry.WORLD_KEY, DEEPER_DOWN_DIMENSION_ID);
 
 	public static void setup() {
-		SpectrumCommon.log(INFO, "Registering the Deeper Down dimension...");
-		DeeperDownBiomeSource.register();
+
 	}
 
 }

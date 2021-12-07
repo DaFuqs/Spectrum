@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.blocks.item_bowl;
 
 import de.dafuqs.spectrum.InventoryHelper;
-import de.dafuqs.spectrum.blocks.fusion_shrine.FusionShrineBlockEntity;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;

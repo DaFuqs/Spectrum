@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.blocks.fusion_shrine;
 
-import de.dafuqs.spectrum.SpectrumClient;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.Support;
 import de.dafuqs.spectrum.blocks.upgrade.Upgradeable;
@@ -16,7 +15,6 @@ import de.dafuqs.spectrum.registries.color.ColorRegistry;
 import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.ExperienceOrbEntity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;

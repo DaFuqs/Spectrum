@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.blocks.enchanter;
 
 import de.dafuqs.spectrum.InventoryHelper;
-import de.dafuqs.spectrum.blocks.item_bowl.ItemBowlBlockEntity;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
@@ -16,7 +15,6 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;

@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.blocks.enchanter;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.HorizontalFacingBlock;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;

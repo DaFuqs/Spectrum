@@ -8,13 +8,13 @@
       "type": "patchouli:spotlight",
       "title": "Item Bowls",
       "item": "spectrum:item_bowl_basalt",
-      "text": "TODO"
+      "text": "$(italic)There is one item you always forget when caving, such as a piece of chalk to mark the way back to the surface. Placed in this decorative Item Bowl should serve as a good reminder.$()$(br2)The Item Bowl presents a single item stack floating above it."
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipes",
+      "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier3/item_bowl_calcite",
-      "text": "Use Polished Basalt or Polished Calcite as a base."
+      "text": "It comes in both a Polished Basalt and Polished Calcite variant."
     }
   ]
 }

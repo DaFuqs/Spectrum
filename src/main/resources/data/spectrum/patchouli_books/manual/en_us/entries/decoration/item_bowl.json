@@ -12,9 +12,9 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
+      "title": "Pedestal Recipes",
       "recipe": "spectrum:pedestal/tier3/item_bowl_calcite",
-      "text": "TODO"
+      "text": "Use Polished Basalt or Polished Calcite as a base."
     }
   ]
 }

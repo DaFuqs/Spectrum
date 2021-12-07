@@ -1,7 +1,7 @@
 {
   "type": "spectrum:pedestal",
   "group": "item_bowls",
-  "time": 80,
+  "time": 120,
   "tier": "advanced",
   "cyan": 0,
   "magenta": 0,
@@ -10,25 +10,16 @@
   "black": 1,
   "experience": 1.0,
   "pattern": [
-    "SLS",
-    "BGB",
-    "BCB"
+    "S S",
+    "XSX",
+    "XXX"
   ],
   "key": {
-    "L": {
-      "item": "minecraft:lapis_block"
-    },
-    "B": {
+    "X": {
       "item": "spectrum:polished_basalt"
     },
-    "C": {
-      "item": "spectrum:polished_calcite"
-    },
     "S": {
-      "item": "spectrum:scarlet_fragments"
-    },
-    "G": {
-      "item": "spectrum:scarlet_gem"
+      "item": "spectrum:sparklestone_gem"
     }
   },
   "result" : {

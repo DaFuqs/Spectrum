@@ -292,9 +292,9 @@ public class SpectrumConfiguredFeatures {
 						ImmutableList.of(MOONSTONE_CLUSTER), // forever untouched by man: generate with clusters only
 						BlockTags.FEATURES_CANNOT_REPLACE.getId(),
 						BlockTags.GEODE_INVALID_BLOCKS.getId()),
-				new GeodeLayerThicknessConfig(4.4D, 5.4D, 6.2D, 9.0D),
-				new GeodeCrackConfig(0.95D, 2.0D, 2),
-				0.7D, 0.05D, true,
+				new GeodeLayerThicknessConfig(4.0D, 5.0D, 6.0D, 7.5D),
+				new GeodeCrackConfig(0.95D, 4.0D, 4),
+				1.0D, 0.1D, true,
 				UniformIntProvider.create(4, 6),
 				UniformIntProvider.create(3, 4),
 				UniformIntProvider.create(1, 2),

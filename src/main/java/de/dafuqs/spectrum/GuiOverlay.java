@@ -17,7 +17,7 @@ public class GuiOverlay {
 	public static void register() {
 		// That one is on Patchouli. ty <3
 		HudRenderCallback.EVENT.register((matrixStack, tickDelta) -> {
-			if(amount > -1) {
+			if(amount > -1 && itemStackToRender != null) {
 				// Render the item stack next to the cursor
 				Window window = MinecraftClient.getInstance().getWindow();
 				int x = window.getScaledWidth() / 2 + 3;
@@ -28,7 +28,7 @@ public class GuiOverlay {
 				RenderHelper.renderItemStackInGui(matrixStack, itemStackToRender, (x + 8) * 2, (y + 8) * 2);
 				matrixStack.scale(2F, 2F, 1F);
 				MinecraftClient.getInstance().textRenderer.draw(matrixStack, itemStackToRender.getName(), x + 18, y + 8, 0xFFFFFF);
-				if(amount == 0) {
+				if (amount == 0) {
 					MinecraftClient.getInstance().textRenderer.draw(matrixStack, noneText, x + 18, y + 19, 0xDDDDDD);
 				} else {
 					MinecraftClient.getInstance().textRenderer.draw(matrixStack, amount + "x", x + 18, y + 19, 0xDDDDDD);

@@ -67,13 +67,13 @@ public class ItemBowlBlock extends BlockWithEntity {
 				} else {
 					Inventory inventory = itemBowlBlockEntity.getInventory();
 					ItemStack currentStack = inventory.getStack(0);
-					if (!currentStack.isEmpty()) {
-						player.giveItemStack(currentStack);
-						itemsChanged = true;
-					}
 					if(!handStack.isEmpty()) {
 						ItemStack remainingStack = InventoryHelper.addToInventory(handStack, itemBowlBlockEntity.getInventory(), null);
 						player.setStackInHand(hand, remainingStack);
+						itemsChanged = true;
+					}
+					if (!currentStack.isEmpty()) {
+						player.giveItemStack(currentStack);
 						itemsChanged = true;
 					}
 				}

@@ -1,8 +1,12 @@
 package de.dafuqs.spectrum.blocks.item_bowl;
 
 import de.dafuqs.spectrum.InventoryHelper;
+import de.dafuqs.spectrum.blocks.fusion_shrine.FusionShrineBlockEntity;
+import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityTicker;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
@@ -16,6 +20,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 
 public class ItemBowlBlock extends BlockWithEntity {
 	
@@ -28,6 +33,16 @@ public class ItemBowlBlock extends BlockWithEntity {
 	@Override
 	public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
 		return new ItemBowlBlockEntity(pos, state);
+	}
+	
+	@Nullable
+	@Override
+	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
+		if(world.isClient) {
+			return checkType(type, SpectrumBlockEntityRegistry.ITEM_BOWL, ItemBowlBlockEntity::clientTick);
+		} else {
+			return null;
+		}
 	}
 	
 	@Override
@@ -79,6 +94,7 @@ public class ItemBowlBlock extends BlockWithEntity {
 				}
 				
 				if(itemsChanged) {
+					itemBowlBlockEntity.markDirty();
 					itemBowlBlockEntity.updateInClientWorld();
 					world.playSound(null, player.getBlockPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 0.8F, 0.8F + world.random.nextFloat() * 0.6F);
 				}

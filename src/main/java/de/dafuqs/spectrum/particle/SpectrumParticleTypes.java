@@ -83,22 +83,39 @@ public class SpectrumParticleTypes {
 	public static DefaultParticleType WHITE_CRAFTING;
 	public static DefaultParticleType YELLOW_CRAFTING;
 	
-	public static DefaultParticleType BLACK_RISING;
-	public static DefaultParticleType BLUE_RISING;
-	public static DefaultParticleType BROWN_RISING;
-	public static DefaultParticleType CYAN_RISING;
-	public static DefaultParticleType GRAY_RISING;
-	public static DefaultParticleType GREEN_RISING;
-	public static DefaultParticleType LIGHT_BLUE_RISING;
-	public static DefaultParticleType LIGHT_GRAY_RISING;
-	public static DefaultParticleType LIME_RISING;
-	public static DefaultParticleType MAGENTA_RISING;
-	public static DefaultParticleType ORANGE_RISING;
-	public static DefaultParticleType PINK_RISING;
-	public static DefaultParticleType PURPLE_RISING;
-	public static DefaultParticleType RED_RISING;
-	public static DefaultParticleType WHITE_RISING;
-	public static DefaultParticleType YELLOW_RISING;
+	public static DefaultParticleType BLACK_FLUID_RISING;
+	public static DefaultParticleType BLUE_FLUID_RISING;
+	public static DefaultParticleType BROWN_FLUID_RISING;
+	public static DefaultParticleType CYAN_FLUID_RISING;
+	public static DefaultParticleType GRAY_FLUID_RISING;
+	public static DefaultParticleType GREEN_FLUID_RISING;
+	public static DefaultParticleType LIGHT_BLUE_FLUID_RISING;
+	public static DefaultParticleType LIGHT_GRAY_FLUID_RISING;
+	public static DefaultParticleType LIME_FLUID_RISING;
+	public static DefaultParticleType MAGENTA_FLUID_RISING;
+	public static DefaultParticleType ORANGE_FLUID_RISING;
+	public static DefaultParticleType PINK_FLUID_RISING;
+	public static DefaultParticleType PURPLE_FLUID_RISING;
+	public static DefaultParticleType RED_FLUID_RISING;
+	public static DefaultParticleType WHITE_FLUID_RISING;
+	public static DefaultParticleType YELLOW_FLUID_RISING;
+	
+	public static DefaultParticleType BLACK_SPARKLE_RISING;
+	public static DefaultParticleType BLUE_SPARKLE_RISING;
+	public static DefaultParticleType BROWN_SPARKLE_RISING;
+	public static DefaultParticleType CYAN_SPARKLE_RISING;
+	public static DefaultParticleType GRAY_SPARKLE_RISING;
+	public static DefaultParticleType GREEN_SPARKLE_RISING;
+	public static DefaultParticleType LIGHT_BLUE_SPARKLE_RISING;
+	public static DefaultParticleType LIGHT_GRAY_SPARKLE_RISING;
+	public static DefaultParticleType LIME_SPARKLE_RISING;
+	public static DefaultParticleType MAGENTA_SPARKLE_RISING;
+	public static DefaultParticleType ORANGE_SPARKLE_RISING;
+	public static DefaultParticleType PINK_SPARKLE_RISING;
+	public static DefaultParticleType PURPLE_SPARKLE_RISING;
+	public static DefaultParticleType RED_SPARKLE_RISING;
+	public static DefaultParticleType WHITE_SPARKLE_RISING;
+	public static DefaultParticleType YELLOW_SPARKLE_RISING;
 
 	// Simple particles
 	public static DefaultParticleType register(String name, boolean alwaysShow) {
@@ -187,22 +204,39 @@ public class SpectrumParticleTypes {
 		WHITE_CRAFTING = register("white_crafting", false);
 		YELLOW_CRAFTING = register("yellow_crafting", false);
 		
-		BLACK_RISING = register("black_rising", false);
-		BLUE_RISING = register("blue_rising", false);
-		BROWN_RISING = register("brown_rising", false);
-		CYAN_RISING = register("cyan_rising", false);
-		GRAY_RISING = register("gray_rising", false);
-		GREEN_RISING = register("green_rising", false);
-		LIGHT_BLUE_RISING = register("light_blue_rising", false);
-		LIGHT_GRAY_RISING = register("light_gray_rising", false);
-		LIME_RISING = register("lime_rising", false);
-		MAGENTA_RISING = register("magenta_rising", false);
-		ORANGE_RISING = register("orange_rising", false);
-		PINK_RISING = register("pink_rising", false);
-		PURPLE_RISING = register("purple_rising", false);
-		RED_RISING = register("red_rising", false);
-		WHITE_RISING = register("white_rising", false);
-		YELLOW_RISING = register("yellow_rising", false);
+		BLACK_FLUID_RISING = register("black_fluid_rising", false);
+		BLUE_FLUID_RISING = register("blue_fluid_rising", false);
+		BROWN_FLUID_RISING = register("brown_fluid_rising", false);
+		CYAN_FLUID_RISING = register("cyan_fluid_rising", false);
+		GRAY_FLUID_RISING = register("gray_fluid_rising", false);
+		GREEN_FLUID_RISING = register("green_fluid_rising", false);
+		LIGHT_BLUE_FLUID_RISING = register("light_blue_fluid_rising", false);
+		LIGHT_GRAY_FLUID_RISING = register("light_gray_fluid_rising", false);
+		LIME_FLUID_RISING = register("lime_fluid_rising", false);
+		MAGENTA_FLUID_RISING = register("magenta_fluid_rising", false);
+		ORANGE_FLUID_RISING = register("orange_fluid_rising", false);
+		PINK_FLUID_RISING = register("pink_fluid_rising", false);
+		PURPLE_FLUID_RISING = register("purple_fluid_rising", false);
+		RED_FLUID_RISING = register("red_fluid_rising", false);
+		WHITE_FLUID_RISING = register("white_fluid_rising", false);
+		YELLOW_FLUID_RISING = register("yellow_fluid_rising", false);
+		
+		BLACK_SPARKLE_RISING = register("black_sparkle_rising", false);
+		BLUE_SPARKLE_RISING = register("blue_sparkle_rising", false);
+		BROWN_SPARKLE_RISING = register("brown_sparkle_rising", false);
+		CYAN_SPARKLE_RISING = register("cyan_sparkle_rising", false);
+		GRAY_SPARKLE_RISING = register("gray_sparkle_rising", false);
+		GREEN_SPARKLE_RISING = register("green_sparkle_rising", false);
+		LIGHT_BLUE_SPARKLE_RISING = register("light_blue_sparkle_rising", false);
+		LIGHT_GRAY_SPARKLE_RISING = register("light_gray_sparkle_rising", false);
+		LIME_SPARKLE_RISING = register("lime_sparkle_rising", false);
+		MAGENTA_SPARKLE_RISING = register("magenta_sparkle_rising", false);
+		ORANGE_SPARKLE_RISING = register("orange_sparkle_rising", false);
+		PINK_SPARKLE_RISING = register("pink_sparkle_rising", false);
+		PURPLE_SPARKLE_RISING = register("purple_sparkle_rising", false);
+		RED_SPARKLE_RISING = register("red_sparkle_rising", false);
+		WHITE_SPARKLE_RISING = register("white_sparkle_rising", false);
+		YELLOW_SPARKLE_RISING = register("yellow_sparkle_rising", false);
 	}
 	
 	@NotNull
@@ -228,24 +262,46 @@ public class SpectrumParticleTypes {
 	}	
 	
 	@NotNull
-	public static ParticleEffect getRisingParticle(DyeColor dyeColor) {
+	public static ParticleEffect getFluidRisingParticle(DyeColor dyeColor) {
 		return switch (dyeColor) {
-			case BLACK -> BLACK_RISING;
-			case BLUE -> BLUE_RISING;
-			case BROWN -> BROWN_RISING;
-			case CYAN -> CYAN_RISING;
-			case GRAY -> GRAY_RISING;
-			case GREEN -> GREEN_RISING;
-			case LIGHT_BLUE -> LIGHT_BLUE_RISING;
-			case LIGHT_GRAY -> LIGHT_GRAY_RISING;
-			case LIME -> LIME_RISING;
-			case MAGENTA -> MAGENTA_RISING;
-			case ORANGE -> ORANGE_RISING;
-			case PINK -> PINK_RISING;
-			case PURPLE -> PURPLE_RISING;
-			case RED -> RED_RISING;
-			case YELLOW -> YELLOW_RISING;
-			default -> WHITE_RISING;
+			case BLACK -> BLACK_FLUID_RISING;
+			case BLUE -> BLUE_FLUID_RISING;
+			case BROWN -> BROWN_FLUID_RISING;
+			case CYAN -> CYAN_FLUID_RISING;
+			case GRAY -> GRAY_FLUID_RISING;
+			case GREEN -> GREEN_FLUID_RISING;
+			case LIGHT_BLUE -> LIGHT_BLUE_FLUID_RISING;
+			case LIGHT_GRAY -> LIGHT_GRAY_FLUID_RISING;
+			case LIME -> LIME_FLUID_RISING;
+			case MAGENTA -> MAGENTA_FLUID_RISING;
+			case ORANGE -> ORANGE_FLUID_RISING;
+			case PINK -> PINK_FLUID_RISING;
+			case PURPLE -> PURPLE_FLUID_RISING;
+			case RED -> RED_FLUID_RISING;
+			case YELLOW -> YELLOW_FLUID_RISING;
+			default -> WHITE_FLUID_RISING;
+		};
+	}
+	
+	@NotNull
+	public static ParticleEffect getSparkleRisingParticle(DyeColor dyeColor) {
+		return switch (dyeColor) {
+			case BLACK -> BLACK_SPARKLE_RISING;
+			case BLUE -> BLUE_SPARKLE_RISING;
+			case BROWN -> BROWN_SPARKLE_RISING;
+			case CYAN -> CYAN_SPARKLE_RISING;
+			case GRAY -> GRAY_SPARKLE_RISING;
+			case GREEN -> GREEN_SPARKLE_RISING;
+			case LIGHT_BLUE -> LIGHT_BLUE_SPARKLE_RISING;
+			case LIGHT_GRAY -> LIGHT_GRAY_SPARKLE_RISING;
+			case LIME -> LIME_SPARKLE_RISING;
+			case MAGENTA -> MAGENTA_SPARKLE_RISING;
+			case ORANGE -> ORANGE_SPARKLE_RISING;
+			case PINK -> PINK_SPARKLE_RISING;
+			case PURPLE -> PURPLE_SPARKLE_RISING;
+			case RED -> RED_SPARKLE_RISING;
+			case YELLOW -> YELLOW_SPARKLE_RISING;
+			default -> WHITE_SPARKLE_RISING;
 		};
 	}
 

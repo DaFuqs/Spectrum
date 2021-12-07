@@ -91,10 +91,8 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 		if(nbt.contains("CurrentRecipe")) {
 			String recipeString = nbt.getString("CurrentRecipe");
 			if(!recipeString.isEmpty()) {
-				Optional<? extends Recipe> optionalRecipe;
-				if (SpectrumClient.minecraftClient != null) {
-					optionalRecipe = MinecraftClient.getInstance().world.getRecipeManager().get(new Identifier(recipeString));
-				} else {
+				Optional<? extends Recipe> optionalRecipe = Optional.empty();
+				if (world != null) {
 					optionalRecipe = world.getRecipeManager().get(new Identifier(recipeString));
 				}
 				if(optionalRecipe.isPresent() && optionalRecipe.get() instanceof FusionShrineRecipe optionalFusionRecipe) {
@@ -162,11 +160,11 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 			if (fluid != Fluids.EMPTY && recipe.areConditionMetCurrently(world)) {
 				Optional<DyeColor> optionalFluidColor = ColorRegistry.FLUID_COLORS.getMapping(fluid);
 				if (optionalFluidColor.isPresent()) {
-					ParticleEffect particleEffect = SpectrumParticleTypes.getRisingParticle(optionalFluidColor.get());
+					ParticleEffect particleEffect = SpectrumParticleTypes.getFluidRisingParticle(optionalFluidColor.get());
 					
 					float randomX = 0.25F + world.getRandom().nextFloat() * 0.5F;
 					float randomZ = 0.25F + world.getRandom().nextFloat() * 0.5F;
-					world.addParticle(particleEffect, blockPos.getX() + randomX, blockPos.getY() + 1, blockPos.getZ() + randomZ, 0.0D, 0.00D, 0.0D);
+					world.addParticle(particleEffect, blockPos.getX() + randomX, blockPos.getY() + 1, blockPos.getZ() + randomZ, 0.0D, 0.0D, 0.0D);
 				}
 			}
 		}
@@ -216,6 +214,7 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 			if(fusionShrineBlockEntity.craftingTime == fusionShrineBlockEntity.craftingTimeTotal) {
 				craft(world, blockPos, fusionShrineBlockEntity, recipe);
 			}
+			fusionShrineBlockEntity.markDirty();
 		} else {
 			if(fusionShrineBlockEntity.craftingTime > 0) {
 				fusionShrineBlockEntity.craftingTime = 0;

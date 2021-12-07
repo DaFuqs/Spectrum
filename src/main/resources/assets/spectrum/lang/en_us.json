@@ -37,7 +37,9 @@
   "recipeGroup.spectrum.player_only_glass": "Semi-Permeable Glass",
   "recipeGroup.spectrum.bedrock_tools": "Bedrock Tools",
   "recipeGroup.spectrum.bedrock_armor": "Bedrock Armor",
-  
+  "recipeGroup.spectrum.fusion_shrines": "Fusion Shrine",
+  "recipeGroup.spectrum.item_bowls": "Item Bowl",
+
   "container.spectrum.rei.pedestal_crafting.title": "Pigment Pedestal Crafting",
   "container.spectrum.rei.pedestal_crafting.crafting_time_and_xp": "%f seconds - %f XP",
   "container.spectrum.rei.pedestal_crafting.crafting_time_one_second_and_xp": "%f second - %f XP",
@@ -206,6 +208,9 @@
   "block.spectrum.fusion_shrine_basalt": "Fusion Shrine",
   "block.spectrum.fusion_shrine_calcite": "Fusion Shrine",
   "block.spectrum.enchanter": "Enchanter",
+  "block.spectrum.item_bowl_basalt": "Item Bowl",
+  "block.spectrum.item_bowl_calcite": "Item Bowl",
+
   "block.spectrum.spirit_sallow_roots": "Spirit Sallow Roots",
   "block.spectrum.spirit_sallow_log": "Spirit Sallow Log",
   "block.spectrum.spirit_sallow_leaves": "Spirit Sallow Leaves",

@@ -11,6 +11,8 @@ import de.dafuqs.spectrum.blocks.ender.EnderDropperBlockEntity;
 import de.dafuqs.spectrum.blocks.ender.EnderHopperBlockEntity;
 import de.dafuqs.spectrum.blocks.fusion_shrine.FusionShrineBlockEntity;
 import de.dafuqs.spectrum.blocks.fusion_shrine.FusionShrineBlockEntityRenderer;
+import de.dafuqs.spectrum.blocks.item_bowl.ItemBowlBlockEntity;
+import de.dafuqs.spectrum.blocks.item_bowl.ItemBowlBlockEntityRenderer;
 import de.dafuqs.spectrum.blocks.mob_head.SpectrumSkullBlockEntity;
 import de.dafuqs.spectrum.blocks.mob_head.SpectrumSkullBlockEntityRenderer;
 import de.dafuqs.spectrum.blocks.particle_spawner.ParticleSpawnerBlockEntity;
@@ -44,6 +46,7 @@ public class SpectrumBlockEntityRegistry<T extends BlockEntity> {
 	public static BlockEntityType<PedestalBlockEntity> PEDESTAL;
 	public static BlockEntityType<FusionShrineBlockEntity> FUSION_SHRINE;
 	public static BlockEntityType<EnchanterBlockEntity> ENCHANTER;
+	public static BlockEntityType<ItemBowlBlockEntity> ITEM_BOWL;
 	public static BlockEntityType<EnderDropperBlockEntity> ENDER_DROPPER;
 	public static BlockEntityType<EnderHopperBlockEntity> ENDER_HOPPER;
 	public static BlockEntityType<ParticleSpawnerBlockEntity> PARTICLE_SPAWNER;
@@ -68,6 +71,7 @@ public class SpectrumBlockEntityRegistry<T extends BlockEntity> {
 		PEDESTAL = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "pedestal_block_entity"), FabricBlockEntityTypeBuilder.create(PedestalBlockEntity::new, SpectrumBlocks.PEDESTAL_BASIC_AMETHYST, SpectrumBlocks.PEDESTAL_BASIC_TOPAZ, SpectrumBlocks.PEDESTAL_BASIC_CITRINE, SpectrumBlocks.PEDESTAL_ALL_BASIC, SpectrumBlocks.PEDESTAL_ONYX, SpectrumBlocks.PEDESTAL_MOONSTONE).build());
 		FUSION_SHRINE = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "fusion_shrine_block_entity"), FabricBlockEntityTypeBuilder.create(FusionShrineBlockEntity::new, SpectrumBlocks.FUSION_SHRINE_BASALT, SpectrumBlocks.FUSION_SHRINE_CALCITE).build());
 		ENCHANTER = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "enchanter_block_entity"), FabricBlockEntityTypeBuilder.create(EnchanterBlockEntity::new, SpectrumBlocks.ENCHANTER).build());
+		ITEM_BOWL = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "item_bowl_block_entity"), FabricBlockEntityTypeBuilder.create(ItemBowlBlockEntity::new, SpectrumBlocks.ITEM_BOWL_BASALT, SpectrumBlocks.ITEM_BOWL_CALCITE).build());
 		ENDER_DROPPER = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "ender_dropper"), FabricBlockEntityTypeBuilder.create(EnderDropperBlockEntity::new, SpectrumBlocks.ENDER_DROPPER).build());
 		ENDER_HOPPER = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "ender_hopper"), FabricBlockEntityTypeBuilder.create(EnderHopperBlockEntity::new, SpectrumBlocks.ENDER_HOPPER).build());
 		PARTICLE_SPAWNER = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "particle_spawner"), FabricBlockEntityTypeBuilder.create(ParticleSpawnerBlockEntity::new, SpectrumBlocks.PARTICLE_SPAWNER).build());
@@ -107,6 +111,7 @@ public class SpectrumBlockEntityRegistry<T extends BlockEntity> {
 		BlockEntityRendererRegistry.INSTANCE.register(SpectrumBlockEntityRegistry.UPGRADE_BLOCK, UpgradeBlockBlockEntityRenderer::new);
 		BlockEntityRendererRegistry.INSTANCE.register(SpectrumBlockEntityRegistry.FUSION_SHRINE, FusionShrineBlockEntityRenderer::new);
 		BlockEntityRendererRegistry.INSTANCE.register(SpectrumBlockEntityRegistry.ENCHANTER, EnchanterBlockEntityRenderer::new);
+		BlockEntityRendererRegistry.INSTANCE.register(SpectrumBlockEntityRegistry.ITEM_BOWL, ItemBowlBlockEntityRenderer::new);
 		BlockEntityRendererRegistry.INSTANCE.register(SpectrumBlockEntityRegistry.SKULL, SpectrumSkullBlockEntityRenderer::new);
 		BlockEntityRendererRegistry.INSTANCE.register(SpectrumBlockEntityRegistry.DEEPER_DOWN_PORTAL, DeeperDownPortalBlockEntityRenderer::new);
 

@@ -43,7 +43,8 @@ public class FusionShrineBlock extends BlockWithEntity {
 		super(settings);
 		setDefaultState(getStateManager().getDefaultState().with(LIGHT_LEVEL, 0));
 	}
-
+	
+	@Override
 	public BlockRenderType getRenderType(BlockState state) {
 		return BlockRenderType.MODEL;
 	}
@@ -58,7 +59,8 @@ public class FusionShrineBlock extends BlockWithEntity {
 	public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
 		return new FusionShrineBlockEntity(pos, state);
 	}
-
+	
+	@Override
 	public boolean canPathfindThrough(BlockState state, BlockView world, BlockPos pos, NavigationType type) {
 		return false;
 	}
@@ -117,7 +119,8 @@ public class FusionShrineBlock extends BlockWithEntity {
 			return ActionResult.CONSUME;
 		}
 	}
-
+	
+	@Override
 	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
 		return SHAPE;
 	}
@@ -154,6 +157,7 @@ public class FusionShrineBlock extends BlockWithEntity {
 	}
 
 	// drop all currently stored items
+	@Override
 	public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
 		if(!newState.getBlock().equals(this)) { // happens when filling with fluid
 			scatterContents(world, pos);
@@ -170,8 +174,8 @@ public class FusionShrineBlock extends BlockWithEntity {
 	public static void scatterContents(World world, BlockPos pos) {
 		Block block = world.getBlockState(pos).getBlock();
 		BlockEntity blockEntity = world.getBlockEntity(pos);
-		if (blockEntity instanceof FusionShrineBlockEntity) {
-			ItemScatterer.spawn(world, pos, ((FusionShrineBlockEntity) blockEntity).getInventory());
+		if (blockEntity instanceof FusionShrineBlockEntity fusionShrineBlockEntity) {
+			ItemScatterer.spawn(world, pos, fusionShrineBlockEntity.getInventory());
 			world.updateComparators(pos, block);
 		}
 	}

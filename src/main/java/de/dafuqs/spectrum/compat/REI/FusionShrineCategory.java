@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.compat.REI;
 
 import com.google.common.collect.Lists;
-import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.recipe.fusion_shrine.FusionShrineRecipe;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import me.shedaniel.math.Point;
@@ -18,7 +17,6 @@ import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
-import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;

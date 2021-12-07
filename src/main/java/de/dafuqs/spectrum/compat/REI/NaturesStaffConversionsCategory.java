@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.compat.REI;
 
 import com.google.common.collect.Lists;
-import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import me.shedaniel.math.Point;
 import me.shedaniel.math.Rectangle;
@@ -12,7 +11,6 @@ import me.shedaniel.rei.api.client.registry.display.DisplayCategory;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.util.EntryStacks;
 import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
 
 import java.util.List;
 

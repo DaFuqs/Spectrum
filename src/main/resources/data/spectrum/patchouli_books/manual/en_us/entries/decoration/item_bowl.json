@@ -1,0 +1,20 @@
+{
+  "name": "Item Bowl",
+  "advancement": "spectrum:midgame/build_advanced_pedestal_structure",
+  "icon": "spectrum:item_bowl_basalt",
+  "category": "spectrum:decoration_category",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "title": "Item Bowls",
+      "item": "spectrum:item_bowl_basalt",
+      "text": "TODO"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier3/item_bowl_calcite",
+      "text": "TODO"
+    }
+  ]
+}

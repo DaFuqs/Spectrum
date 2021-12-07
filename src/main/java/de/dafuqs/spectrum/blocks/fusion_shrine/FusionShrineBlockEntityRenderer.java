@@ -68,16 +68,6 @@ public class FusionShrineBlockEntityRenderer<T extends FusionShrineBlockEntity> 
 				MinecraftClient.getInstance().getItemRenderer().renderItem(inventoryStacks.get(i), ModelTransformation.Mode.GROUND, light, overlay, matrixStack, vertexConsumerProvider, 0);
 				matrixStack.pop();
 			}
-			
-			// the ground overlay
-			// definitely does not fit the fusion shrine
-			// maybe use that for some other block
-			/*FusionShrineRecipe currentRecipe = fusionShrineBlockEntity.getCurrentRecipe();
-			if(currentRecipe != null && fusionShrineBlockEntity.getFluid().equals(currentRecipe.getFluidInput())) {
-				//circle.yaw = Math. (;
-				double overlay_mod = Math.sin((fusionShrineBlockEntity.getWorld().getTime() + tickDelta) / 25.0F);
-				circle.render(matrixStack, vertexConsumerProvider.getBuffer(GlowInTheDarkRenderLayer.get(GROUND_MARK)), light, (int) (overlay * overlay_mod));
-			}*/
 		}
 	}
 
@@ -106,16 +96,5 @@ public class FusionShrineBlockEntityRenderer<T extends FusionShrineBlockEntity> 
 		colors[3] = color & 0xff; // blue
 		return colors;
 	}
-	
-	/*public static TexturedModelData getTexturedModelData() {
-		ModelData modelData = new ModelData();
-		ModelPartData modelPartData = modelData.getRoot();
-		
-		modelPartData.addChild("circle", ModelPartBuilder.create(), ModelTransform.pivot(8.0F, 0.01F, 8.0F));
-		modelPartData.getChild("circle").addChild("circle2", ModelPartBuilder.create().uv(0, 0).cuboid(-56.0F, 0.0F, -56F, 112.0F, 0.0F, 112.0F), ModelTransform.rotation(0.0F, 0.0F, 0.0F));
-		
-		return TexturedModelData.of(modelData, 448, 448);
-	}*/
-
 
 }

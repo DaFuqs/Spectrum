@@ -25,6 +25,7 @@ import de.dafuqs.spectrum.blocks.gemstone.SpectrumBuddingBlock;
 import de.dafuqs.spectrum.blocks.gemstone.SpectrumGemstoneBlock;
 import de.dafuqs.spectrum.blocks.gravity.GravitableBlock;
 import de.dafuqs.spectrum.blocks.gravity.GravityBlockItem;
+import de.dafuqs.spectrum.blocks.item_bowl.ItemBowlBlock;
 import de.dafuqs.spectrum.blocks.lava_sponge.LavaSpongeBlock;
 import de.dafuqs.spectrum.blocks.lava_sponge.WetLavaSpongeBlock;
 import de.dafuqs.spectrum.blocks.lava_sponge.WetLavaSpongeItem;
@@ -38,11 +39,7 @@ import de.dafuqs.spectrum.blocks.particle_spawner.ParticleSpawnerBlock;
 import de.dafuqs.spectrum.blocks.pedestal.PedestalBlock;
 import de.dafuqs.spectrum.blocks.pedestal.PedestalBlockItem;
 import de.dafuqs.spectrum.blocks.redstone.*;
-import de.dafuqs.spectrum.blocks.spirit_sallow.OminousSaplingBlock;
-import de.dafuqs.spectrum.blocks.spirit_sallow.OminousSaplingBlockItem;
-import de.dafuqs.spectrum.blocks.spirit_sallow.SpiritSallowLeavesBlock;
-import de.dafuqs.spectrum.blocks.spirit_sallow.SpiritVinesBodyBlock;
-import de.dafuqs.spectrum.blocks.spirit_sallow.SpiritVinesHeadBlock;
+import de.dafuqs.spectrum.blocks.spirit_sallow.*;
 import de.dafuqs.spectrum.blocks.upgrade.UpgradeBlock;
 import de.dafuqs.spectrum.blocks.upgrade.UpgradeBlockItem;
 import de.dafuqs.spectrum.blocks.upgrade.Upgradeable;
@@ -89,6 +86,7 @@ public class SpectrumBlocks {
 	public static FabricItemSettings generalItemSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(0);
 	public static FabricItemSettings generalItemSettingsSingle = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(0).maxCount(1);
 	public static FabricItemSettings generalItemSettingsEight = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(0).maxCount(8);
+	public static FabricItemSettings generalItemSettingsSixteen = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(0).maxCount(16);
 	public static FabricItemSettings generalItemSettingsUncommon = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(0).rarity(Rarity.UNCOMMON);
 	public static FabricItemSettings generalItemSettingsUncommonEight = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(0).rarity(Rarity.UNCOMMON).maxCount(8);
 	public static FabricItemSettings generalItemSettingsRare = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(0).rarity(Rarity.RARE);
@@ -113,6 +111,8 @@ public class SpectrumBlocks {
 	public static final Block FUSION_SHRINE_BASALT = new FusionShrineBlock(FUSION_SHINE_BLOCK_SETTINGS);
 	public static final Block FUSION_SHRINE_CALCITE = new FusionShrineBlock(FUSION_SHINE_BLOCK_SETTINGS);
 	public static final Block ENCHANTER = new EnchanterBlock(FabricBlockSettings.of(Material.STONE).strength(5.0F, 20.0F).nonOpaque());
+	public static final Block ITEM_BOWL_BASALT = new ItemBowlBlock(FabricBlockSettings.of(Material.STONE).hardness(3.0f));
+	public static final Block ITEM_BOWL_CALCITE = new ItemBowlBlock(FabricBlockSettings.of(Material.STONE).hardness(3.0f));
 
 	// GEMS
 	public static final Block TOPAZ_CLUSTER = new AmethystClusterBlock(7, 3, FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().requiresTool().sounds(SpectrumBlockSoundGroups.TOPAZ_CLUSTER).luminance((state) -> 6));
@@ -658,6 +658,8 @@ public class SpectrumBlocks {
 		registerBlockWithItem("fusion_shrine_basalt", FUSION_SHRINE_BASALT, generalItemSettingsSingle);
 		registerBlockWithItem("fusion_shrine_calcite", FUSION_SHRINE_CALCITE, generalItemSettingsSingle);
 		registerBlockWithItem("enchanter", ENCHANTER, generalItemSettingsSingle);
+		registerBlockWithItem("item_bowl_basalt", ITEM_BOWL_BASALT, generalItemSettingsSixteen);
+		registerBlockWithItem("item_bowl_calcite", ITEM_BOWL_CALCITE, generalItemSettingsSixteen);
 		
 		registerBlockWithItem("upgrade_speed", UPGRADE_SPEED, new UpgradeBlockItem(UPGRADE_SPEED, generalItemSettingsEight, "upgrade_speed"));
 		registerBlockWithItem("upgrade_speed2", UPGRADE_SPEED2, new UpgradeBlockItem(UPGRADE_SPEED2, generalItemSettingsUncommonEight, "upgrade_speed2"));
@@ -1334,6 +1336,9 @@ public class SpectrumBlocks {
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.GLISTERING_MELON_STEM, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.ATTACHED_GLISTERING_MELON_STEM, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.OMINOUS_SAPLING, RenderLayer.getCutout());
+		
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.ITEM_BOWL_BASALT, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.ITEM_BOWL_CALCITE, RenderLayer.getCutout());
 
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.REDSTONE_TIMER, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.REDSTONE_WIRELESS, RenderLayer.getCutout());

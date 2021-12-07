@@ -1,6 +1,6 @@
 {
   "type": "spectrum:pedestal",
-  "group": "fusion_shrine",
+  "group": "fusion_shrines",
   "time": 600,
   "tier": "simple",
   "cyan": 4,

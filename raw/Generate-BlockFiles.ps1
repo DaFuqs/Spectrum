@@ -6,11 +6,7 @@ $lamp = @("black_lamp", "blue_lamp", "brown_lamp", "cyan_lamp", "gray_lamp", "gr
 $ores = @("sparklestone_block", "koenigsblau_ore", "koenigsblau_block")
 $upgrades = @("upgrade_speed", "upgrade_speed2", "upgrade_speed3", "upgrade_efficiency", "upgrade_efficiency2", "upgrade_yield", "upgrade_yield2", "upgrade_experience", "upgrade_experience2")
 
-$new = @("cyan_spirit_sallow_vines_head",
-"magenta_spirit_sallow_vines_head",
-"yellow_spirit_sallow_vines_head",
-"black_spirit_sallow_vines_head",
-"white_spirit_sallow_vines_head")
+$new = @("item_bowl_basalt", "item_bowl_calcite")
 
 
 enum BlockType {
@@ -85,20 +81,20 @@ Function Generate-BlockFiles {
         function Get-BlockStateLog($Name) {
             Write-Output @"
 {
-    "variants": {
-    "axis=x": {
-        "model": "minecraft:block/$Name`_horizontal",
-        "x": 90,
-        "y": 90
-    },
-    "axis=y": {
-        "model": "spectrum:block/$Name"
-    },
-    "axis=z": {
-        "model": "spectrum:block/$Name`_horizontal",
-        "x": 90
-    }
-    }
+	"variants": {
+		"axis=x": {
+			"model": "minecraft:block/$Name`_horizontal",
+			"x": 90,
+			"y": 90
+		},
+		"axis=y": {
+			"model": "spectrum:block/$Name"
+		},
+		"axis=z": {
+			"model": "spectrum:block/$Name`_horizontal",
+			"x": 90
+		}
+	}
 }
 "@
         }
@@ -106,11 +102,11 @@ Function Generate-BlockFiles {
         function Get-BlockStateDefault($Name) {
             Write-Output @"
 {
-    "variants": {
-    "": {
-        "model": "spectrum:block/$Name"
-    }
-    }
+	"variants": {
+		"": {
+			"model": "spectrum:block/$Name"
+		}
+	}
 }
 "@
 }
@@ -119,14 +115,14 @@ Function Generate-BlockFiles {
         function Get-BlockStateLamp($Name) {
             Write-Output @"
 {
-    "variants": {
-    "lit=false": {
-        "model": "spectrum:block/$Name"
-    },
-    "lit=true": {
-        "model": "spectrum:block/$Name`_on"
-    }
-    }
+	"variants": {
+		"lit=false": {
+			"model": "spectrum:block/$Name"
+		},
+		"lit=true": {
+			"model": "spectrum:block/$Name`_on"
+		}
+	}
 }
 "@
         }
@@ -135,11 +131,11 @@ Function Generate-BlockFiles {
             $NameWithoutNumber = $Name -replace "[0-9]", ""
             Write-Output @"
 {
-    "variants": {
-    "": {
-        "model": "spectrum:block/$NameWithoutNumber"
-    }
-    }
+	"variants": {
+		"": {
+			"model": "spectrum:block/$NameWithoutNumber"
+		}
+	}
 }
 "@
         }

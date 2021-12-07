@@ -71,14 +71,14 @@ public class SpectrumMultiblocks {
 				'G', "#spectrum:gemstone_storage_blocks",
 				'F', "spectrum:enchanter",
 				'C', "spectrum:liquid_crystal",
-				'I', "spectrum:item_bowl",
+				'I', "#spectrum:item_bowls",
 				'_', StateMatcher.ANY,
 				'0', "#spectrum:polished_base_blocks",
 		};
 
 		String[][] structure = {
 				{ "__I_____I__", "___________", "I_________I", "___________", "___________", "_____F_____", "___________", "___________", "I_________I", "___________", "__I_____I__",  },
-				{ "__L_____L__", "___________", "L_G_____G_L", "____BBB____", "___BBBBB___", "___BBXBB___", "___BBBBB___", "____BBB____", "L_G_____G_L", "___________", "__L_____L__",  },
+				{ "__L_____L__", "___________", "L_G_____G_L", "____BBB____", "___BXXXB___", "___BXXXB___", "___BXXXB___", "____BBB____", "L_G_____G_L", "___________", "__L_____L__",  },
 				{ "__P_____P__", "____BBB____", "P_P_XXX_P_P", "____XXX____", "_BXXXXXXXB_", "_BXXXXXXXB_", "_BXXXXXXXB_", "____XXX____", "P_P_XXX_P_P", "____BBB____", "__P_____P__",  },
 				{ "_XXXXXXXXX_", "XCCCXXXCCCX", "XCXCXXXCXCX", "XCCCXXXCCCX", "XXXXXXXXXXX", "XXXXX0XXXXX", "XXXXXXXXXXX", "XCCCXXXCCCX", "XCXCXXXCXCX", "XCCCXXXCCCX", "_XXXXXXXXX_",  },
 				{ "___________", "_XXX___XXX_", "_X_X___X_X_", "_XXX___XXX_", "___________", "___________", "___________", "_XXX___XXX_", "_X_X___X_X_", "_XXX___XXX_", "___________"   }

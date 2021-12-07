@@ -9,6 +9,8 @@
     "spectrum:pedestal_moonstone",
     "spectrum:fusion_shrine_basalt",
     "spectrum:fusion_shrine_calcite",
+	"spectrum:item_bowl_basalt",
+	"spectrum:item_bowl_calcite",
     "spectrum:ender_glass",
 	"spectrum:redstone_sand",
 	"spectrum:ominous_sapling",

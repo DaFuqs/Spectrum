@@ -1,0 +1,39 @@
+{
+  "type": "spectrum:pedestal",
+  "group": "item_bowls",
+  "time": 80,
+  "tier": "advanced",
+  "cyan": 0,
+  "magenta": 0,
+  "yellow": 0,
+  "white": 0,
+  "black": 1,
+  "experience": 1.0,
+  "pattern": [
+    "SLS",
+    "BGB",
+    "BCB"
+  ],
+  "key": {
+    "L": {
+      "item": "minecraft:lapis_block"
+    },
+    "B": {
+      "item": "spectrum:polished_basalt"
+    },
+    "C": {
+      "item": "spectrum:polished_calcite"
+    },
+    "S": {
+      "item": "spectrum:scarlet_fragments"
+    },
+    "G": {
+      "item": "spectrum:scarlet_gem"
+    }
+  },
+  "result" : {
+    "item": "spectrum:item_bowl_calcite",
+    "count": 1
+  },
+  "required_advancements": ["spectrum:midgame/build_advanced_pedestal_structure"]
+}

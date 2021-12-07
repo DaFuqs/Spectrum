@@ -15,11 +15,13 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Crafting",
       "recipe": "spectrum:pedestal/tier1/invisible_item_frame",
       "text": "The Phantom Frame becomes invisible as soon as you display an item in it."
     },
     {
       "type": "spectrum:pedestal_crafting",
+      "title": "Glow Phantom Frame",
       "recipe": "spectrum:pedestal/tier1/invisible_glow_item_frame",
       "text": "This one has another nice touch: the presented item in it shines in a bright light, making it look even more imposing."
     }

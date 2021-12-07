@@ -18,6 +18,9 @@ import net.minecraft.item.BucketItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvent;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.text.TranslatableText;
@@ -33,6 +36,8 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 import vazkii.patchouli.api.IMultiblock;
 import vazkii.patchouli.api.PatchouliAPI;
+
+import java.util.Optional;
 
 public class FusionShrineBlock extends BlockWithEntity {
 
@@ -71,29 +76,36 @@ public class FusionShrineBlock extends BlockWithEntity {
 			return ActionResult.SUCCESS;
 		} else {
 			ItemStack itemStack = player.getStackInHand(hand);
-
-			if (itemStack.getItem() instanceof BucketItem) {
-				FusionShrineBlockEntity fusionShrineBlockEntity = (FusionShrineBlockEntity) world.getBlockEntity(pos);
-				fusionShrineBlockEntity.setOwner(player);
-
-				Fluid storedFluid = fusionShrineBlockEntity.getFluid();
-				Fluid bucketFluid = ((BucketItemAccessor) itemStack.getItem()).fabric_getFluid();
-				if (storedFluid == Fluids.EMPTY && bucketFluid != Fluids.EMPTY) {
-					fusionShrineBlockEntity.setFluid(bucketFluid);
-					if (!player.isCreative()) {
-						player.setStackInHand(hand, new ItemStack(Items.BUCKET));
+			boolean itemsChanged = false;
+			Optional<SoundEvent> soundToPlay = Optional.empty();
+			
+			BlockEntity blockEntity = world.getBlockEntity(pos);
+			if(blockEntity instanceof FusionShrineBlockEntity fusionShrineBlockEntity) {
+				if (itemStack.getItem() instanceof BucketItem) {
+					fusionShrineBlockEntity.setOwner(player);
+					
+					Fluid storedFluid = fusionShrineBlockEntity.getFluid();
+					Fluid bucketFluid = ((BucketItemAccessor) itemStack.getItem()).fabric_getFluid();
+					if (storedFluid == Fluids.EMPTY && bucketFluid != Fluids.EMPTY) {
+						fusionShrineBlockEntity.setFluid(bucketFluid);
+						if (!player.isCreative()) {
+							player.setStackInHand(hand, new ItemStack(Items.BUCKET));
+						}
+						
+						soundToPlay = bucketFluid.getBucketFillSound();
+						itemsChanged = true;
+					} else if (storedFluid != Fluids.EMPTY && bucketFluid == Fluids.EMPTY) {
+						fusionShrineBlockEntity.setFluid(Fluids.EMPTY);
+						world.setBlockState(pos, world.getBlockState(pos).with(LIGHT_LEVEL, 0));
+						if (!player.isCreative()) {
+							player.setStackInHand(hand, new ItemStack(storedFluid.getBucketItem()));
+						}
+						
+						soundToPlay = storedFluid.getBucketFillSound();
+						itemsChanged = true;
 					}
-				} else if (storedFluid != Fluids.EMPTY && bucketFluid == Fluids.EMPTY) {
-					fusionShrineBlockEntity.setFluid(Fluids.EMPTY);
-					world.setBlockState(pos, world.getBlockState(pos).with(LIGHT_LEVEL, 0));
-					if (!player.isCreative()) {
-						player.setStackInHand(hand, new ItemStack(storedFluid.getBucketItem()));
-					}
-				}
-			} else {
-				// if the structure is valid the player can put / retrieve blocks into the shrine
-				BlockEntity blockEntity = world.getBlockEntity(pos);
-				if(blockEntity instanceof FusionShrineBlockEntity fusionShrineBlockEntity) {
+				} else {
+					// if the structure is valid the player can put / retrieve blocks into the shrine
 					if (player.isSneaking()) {
 						ItemStack retrievedStack = ItemStack.EMPTY;
 						Inventory inventory = fusionShrineBlockEntity.getInventory();
@@ -105,17 +117,28 @@ public class FusionShrineBlock extends BlockWithEntity {
 						}
 						if (!retrievedStack.isEmpty()) {
 							player.giveItemStack(retrievedStack);
-							fusionShrineBlockEntity.updateInClientWorld();
+							soundToPlay = Optional.of(SoundEvents.ENTITY_ITEM_PICKUP);
+							itemsChanged = true;
 						}
 					} else if (verifyStructure(world, pos, (ServerPlayerEntity) player)) {
 						fusionShrineBlockEntity.setOwner(player);
 						
 						ItemStack remainingStack = InventoryHelper.addToInventory(itemStack, fusionShrineBlockEntity.getInventory(), null);
 						player.setStackInHand(hand, remainingStack);
-						fusionShrineBlockEntity.updateInClientWorld();
+						
+						soundToPlay = Optional.of(SoundEvents.ENTITY_ITEM_PICKUP);
+						itemsChanged = true;
+					}
+				}
+				
+				if(itemsChanged) {
+					fusionShrineBlockEntity.updateInClientWorld();
+					if(soundToPlay.isPresent()) {
+						world.playSound(null, player.getBlockPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 0.8F, 0.8F + world.random.nextFloat() * 0.6F);
 					}
 				}
 			}
+			
 			return ActionResult.CONSUME;
 		}
 	}

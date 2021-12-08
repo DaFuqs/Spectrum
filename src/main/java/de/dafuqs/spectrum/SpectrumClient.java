@@ -5,6 +5,7 @@ import de.dafuqs.spectrum.entity.SpectrumEntityRenderers;
 import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
 import de.dafuqs.spectrum.inventories.SpectrumContainers;
 import de.dafuqs.spectrum.inventories.SpectrumScreenHandlerTypes;
+import de.dafuqs.spectrum.items.ExperienceStorageItem;
 import de.dafuqs.spectrum.items.magic_items.EnderSpliceItem;
 import de.dafuqs.spectrum.networking.SpectrumS2CPackets;
 import de.dafuqs.spectrum.particle.SpectrumParticleFactories;
@@ -55,6 +56,7 @@ public class SpectrumClient implements ClientModInitializer {
 		registerEnderSplicePredicates(SpectrumItems.ENDER_SPLICE);
 		registerAnimatedWandPredicates(SpectrumItems.NATURES_STAFF);
 		registerAnimatedWandPredicates(SpectrumItems.LIGHT_STAFF);
+		registerKnowledgeDropPredicates(SpectrumItems.KNOWLEDGE_DROP);
 
 		SpectrumBlockEntityRegistry.registerClient();
 		SpectrumEntityRenderers.registerClient();
@@ -159,6 +161,16 @@ public class SpectrumClient implements ClientModInitializer {
 	private void registerAnimatedWandPredicates(Item item) {
 		FabricModelPredicateProviderRegistry.register(item, new Identifier("in_use"), (itemStack, clientWorld, livingEntity, i) -> {
 			return (livingEntity != null && livingEntity.isUsingItem() && livingEntity.getActiveItem() == itemStack) ? 1.0F : 0.0F;
+		});
+	}
+
+	private void registerKnowledgeDropPredicates(Item item) {
+		FabricModelPredicateProviderRegistry.register(item, new Identifier("stored_experience_10000"), (itemStack, clientWorld, livingEntity, i) -> {
+			if(livingEntity != null && item instanceof ExperienceStorageItem experienceStorageItem) {
+				return experienceStorageItem.getStoredExperience(itemStack) / 10000F;
+			} else {
+				return 0;
+			}
 		});
 	}
 

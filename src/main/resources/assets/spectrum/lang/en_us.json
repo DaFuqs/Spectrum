@@ -838,6 +838,10 @@
   "item.spectrum.paletur_gem": "Paletur Gem",
   "item.spectrum.glistering_melon_seeds": "Glistering Melon Seeds",
 
+  "item.spectrum.knowledge_drop": "Knowledge Drop",
+  "item.spectrum.knowledge_drop.tooltip.stored_experience": "Experience stored",
+  "item.spectrum.knowledge_drop.tooltip.use": "Use to drain, or crouch-use to store experience",
+
   "item.spectrum.default_enchantment_tooltip": "Comes pre enchanted with %s",
   "item.spectrum.emergency_helmet": "Fetchling Helmet",
   "item.spectrum.emergency_chestplate": "Ferocious Chestplate",

@@ -195,6 +195,7 @@ public class SpectrumItems {
 	public static final Item INVISIBLE_GLOW_ITEM_FRAME = new InvisibleGlowItemFrameItem(SpectrumEntityTypes.INVISIBLE_GLOW_ITEM_FRAME, generalItemSettings);
 
 	public static final Item VOID_BUNDLE = new BottomlessBundleItem(generalItemSettingsSingle);
+	public static final Item KNOWLEDGE_DROP = new KnowledgeDropItem(generalItemSettings, 10000);
 
 
 	private static void register(String name, Item item) {
@@ -226,6 +227,8 @@ public class SpectrumItems {
 		register("glistering_melon_seeds", GLISTERING_MELON_SEEDS);
 		register("invisible_item_frame", INVISIBLE_ITEM_FRAME);
 		register("invisible_glow_item_frame", INVISIBLE_GLOW_ITEM_FRAME);
+		
+		register("knowledge_drop", KNOWLEDGE_DROP);
 	}
 		
 	public static void registerGemstoneItems() {

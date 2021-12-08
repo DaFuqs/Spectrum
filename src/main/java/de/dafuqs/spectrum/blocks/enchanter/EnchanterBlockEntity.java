@@ -1,18 +1,27 @@
 package de.dafuqs.spectrum.blocks.enchanter;
 
+import de.dafuqs.spectrum.Support;
+import de.dafuqs.spectrum.items.ExperienceStorageItem;
+import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.entity.ExperienceOrbEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.network.Packet;
 import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
+import net.minecraft.particle.ParticleEffect;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.world.World;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Locale;
@@ -75,6 +84,24 @@ public class EnchanterBlockEntity extends BlockEntity {
 	public Direction getItemFacingDirection() {
 		// if placed via pipe or other sources
 		return Objects.requireNonNullElse(this.itemFacing, Direction.NORTH);
+	}
+	
+	public static void clientTick(World world, BlockPos blockPos, BlockState blockState, EnchanterBlockEntity enchanterBlockEntity) {
+		ItemStack experienceStack = enchanterBlockEntity.getInventory().getStack(1);
+		if(!experienceStack.isEmpty() && experienceStack.getItem() instanceof ExperienceStorageItem) {
+			int experience = ((ExperienceStorageItem) experienceStack.getItem()).getStoredExperience(experienceStack);
+			int amount = Support.getExperienceOrbSizeForExperience(experience);
+			
+			if(world.random.nextInt(10) < amount) {
+				float randomX = world.getRandom().nextFloat();
+				float randomZ = world.getRandom().nextFloat();
+				world.addParticle(SpectrumParticleTypes.LIME_SPARKLE_RISING, blockPos.getX() + randomX, blockPos.getY() + 2, blockPos.getZ() + randomZ, 0.0D, -0.1D, 0.0D);
+			}
+		}
+	}
+	
+	public static void serverTick(World world, BlockPos blockPos, BlockState blockState, EnchanterBlockEntity enchanterBlockEntity) {
+	
 	}
 	
 }

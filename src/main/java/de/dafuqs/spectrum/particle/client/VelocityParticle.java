@@ -7,17 +7,18 @@ import net.minecraft.client.world.ClientWorld;
 import net.minecraft.particle.DefaultParticleType;
 import net.minecraft.util.math.MathHelper;
 
-public class RisingParticle extends SpriteBillboardParticle {
+public class VelocityParticle extends SpriteBillboardParticle {
 	
-	protected RisingParticle(ClientWorld clientWorld, double x, double y, double z, double velocityX, double velocityY, double velocityZ) {
+	protected VelocityParticle(ClientWorld clientWorld, double x, double y, double z, double velocityX, double velocityY, double velocityZ) {
 		super(clientWorld, x, y, z, velocityX, velocityY, velocityZ);
 		this.gravityStrength = 0.0F;
 		this.field_28787 = true;
 		this.scale *= 0.75F;
 		this.collidesWithWorld = false;
 		
+		// override the vanilla velocity randomization
 		this.velocityX = 0;
-		this.velocityY = Math.abs(this.velocityY);
+		this.velocityY = velocityY;
 		this.velocityZ = 0;
 	}
 	
@@ -50,7 +51,7 @@ public class RisingParticle extends SpriteBillboardParticle {
 		}
 		
 		public Particle createParticle(DefaultParticleType defaultParticleType, ClientWorld clientWorld, double x, double y, double z, double velocityX, double velocityY, double velocityZ) {
-			RisingParticle craftingParticle = new RisingParticle(clientWorld, x, y, z, velocityX, velocityY, velocityZ);
+			VelocityParticle craftingParticle = new VelocityParticle(clientWorld, x, y, z, velocityX, velocityY, velocityZ);
 			craftingParticle.setMaxAge((int)(8.0D / (clientWorld.random.nextDouble() * 0.8D + 0.2D)));
 			craftingParticle.setSprite(this.spriteProvider);
 			return craftingParticle;

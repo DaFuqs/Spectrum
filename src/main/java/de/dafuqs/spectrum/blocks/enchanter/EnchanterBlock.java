@@ -1,7 +1,9 @@
 package de.dafuqs.spectrum.blocks.enchanter;
 
 import de.dafuqs.spectrum.InventoryHelper;
+import de.dafuqs.spectrum.blocks.fusion_shrine.FusionShrineBlockEntity;
 import de.dafuqs.spectrum.items.ExperienceStorageItem;
+import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
@@ -46,7 +48,11 @@ public class EnchanterBlock extends BlockWithEntity {
 	@Nullable
 	@Override
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-		return super.getTicker(world, state, type);
+		if(world.isClient) {
+			return checkType(type, SpectrumBlockEntityRegistry.ENCHANTER, EnchanterBlockEntity::clientTick);
+		} else {
+			return checkType(type, SpectrumBlockEntityRegistry.ENCHANTER, EnchanterBlockEntity::serverTick);
+		}
 	}
 	
 	@Override

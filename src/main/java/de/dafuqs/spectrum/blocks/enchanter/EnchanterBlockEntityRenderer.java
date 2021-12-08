@@ -1,18 +1,15 @@
 package de.dafuqs.spectrum.blocks.enchanter;
 
-import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.items.ExperienceStorageItem;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.particle.BillboardParticle;
-import net.minecraft.client.particle.SpriteBillboardParticle;
-import net.minecraft.client.render.*;
-import net.minecraft.client.render.block.entity.BlockEntityRenderDispatcher;
+import net.minecraft.client.render.OverlayTexture;
+import net.minecraft.client.render.RenderLayer;
+import net.minecraft.client.render.VertexConsumer;
+import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.block.entity.BlockEntityRenderer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
 import net.minecraft.client.render.entity.EntityRenderDispatcher;
-import net.minecraft.client.render.entity.EntityRenderer;
 import net.minecraft.client.render.model.json.ModelTransformation;
-import net.minecraft.client.texture.Sprite;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.ExperienceOrbEntity;
 import net.minecraft.item.ItemStack;
@@ -75,7 +72,6 @@ public class EnchanterBlockEntityRenderer implements BlockEntityRenderer<de.dafu
 		// The Experience Item rendered in the air
 		ItemStack experienceItemStack = blockEntity.inventory.getStack(1);
 		if(!experienceItemStack.isEmpty() && experienceItemStack.getItem() instanceof ExperienceStorageItem experienceStorageItem) {
-			BlockPos blockPos = blockEntity.getPos();
 			render(blockEntity.getWorld(), ExperienceOrbEntity.roundToOrbSize(experienceStorageItem.getStoredExperience(experienceItemStack)), tickDelta, matrixStack, vertexConsumerProvider, experienceSpriteBrightness);
 		}
 	}

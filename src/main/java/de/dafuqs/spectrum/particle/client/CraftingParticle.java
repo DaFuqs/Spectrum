@@ -11,7 +11,7 @@ public class CraftingParticle extends SpriteBillboardParticle {
 	
 	protected CraftingParticle(ClientWorld clientWorld, double x, double y, double z, double velocityX, double velocityY, double velocityZ) {
 		super(clientWorld, x, y, z, velocityX, velocityY, velocityZ);
-		this.gravityStrength = 0.96F;
+		this.gravityStrength = 0.0F;
 		this.field_28787 = true;
 		this.scale *= 0.75F;
 		this.collidesWithWorld = false;

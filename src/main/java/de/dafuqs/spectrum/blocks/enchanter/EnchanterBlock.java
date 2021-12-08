@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.blocks.enchanter;
 
 import de.dafuqs.spectrum.InventoryHelper;
+import de.dafuqs.spectrum.items.ExperienceStorageItem;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
@@ -65,25 +66,28 @@ public class EnchanterBlock extends BlockWithEntity {
 			BlockEntity blockEntity = world.getBlockEntity(pos);
 			if(blockEntity instanceof EnchanterBlockEntity enchanterBlockEntity) {
 				boolean itemsChanged = false;
-				if (player.isSneaking()) {
-					Inventory inventory = enchanterBlockEntity.getInventory();
-					ItemStack retrievedStack = inventory.removeStack(0);
-					if (!retrievedStack.isEmpty()) {
-						player.giveItemStack(retrievedStack);
-						itemsChanged = true;
+				Inventory inventory = enchanterBlockEntity.getInventory();
+				
+				int inputInventorySlotIndex = handStack.getItem() instanceof ExperienceStorageItem ? 1 : 0;
+				if (player.isSneaking() || handStack.isEmpty()) {
+					// sneaking or empty hand: remove items
+					for(int i = 0; i < EnchanterBlockEntity.INVENTORY_SIZE; i++) {
+						ItemStack retrievedStack = inventory.removeStack(i);
+						if (!retrievedStack.isEmpty()) {
+							player.giveItemStack(retrievedStack);
+							itemsChanged = true;
+							break;
+						}
 					}
 				} else {
-					Inventory inventory = enchanterBlockEntity.getInventory();
-					ItemStack currentStack = inventory.getStack(0);
-					if(!handStack.isEmpty()) {
-						ItemStack remainingStack = InventoryHelper.addToInventory(handStack, enchanterBlockEntity.getInventory(), null);
-						player.setStackInHand(hand, remainingStack);
-						itemsChanged = true;
-					}
-					if (!currentStack.isEmpty()) {
+					// hand is full and inventory is empty: add
+					// hand is full and inventory already contains item: exchange them
+					ItemStack currentStack = inventory.getStack(inputInventorySlotIndex);
+					inventory.setStack(inputInventorySlotIndex, handStack);
+					if(!currentStack.isEmpty()) {
 						player.giveItemStack(currentStack);
-						itemsChanged = true;
 					}
+					itemsChanged = true;
 				}
 				
 				if(itemsChanged) {

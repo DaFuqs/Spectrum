@@ -195,7 +195,7 @@ public class SpectrumItems {
 	public static final Item INVISIBLE_GLOW_ITEM_FRAME = new InvisibleGlowItemFrameItem(SpectrumEntityTypes.INVISIBLE_GLOW_ITEM_FRAME, generalItemSettings);
 
 	public static final Item VOID_BUNDLE = new BottomlessBundleItem(generalItemSettingsSingle);
-	public static final Item KNOWLEDGE_DROP = new KnowledgeDropItem(generalItemSettings, 10000);
+	public static final Item KNOWLEDGE_DROP = new KnowledgeDropItem(generalUncommonItemSettingsSingle, 10000);
 
 
 	private static void register(String name, Item item) {

@@ -20,7 +20,7 @@ import java.util.Objects;
 
 public class EnchanterBlockEntity extends BlockEntity {
 	
-	protected int INVENTORY_SIZE = 1;
+	public static final int INVENTORY_SIZE = 2; // 0: any itemstack, 1: Knowledge Drop;
 	protected SimpleInventory inventory;
 	@Nullable
 	private Direction itemFacing;

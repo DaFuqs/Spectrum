@@ -1,0 +1,40 @@
+{
+  "parent": "spectrum:midgame/build_enchanting_structure",
+  "display": {
+    "icon": {
+      "item": "spectrum:knowledge_drop",
+      "nbt": "{stored_experience:10000}"
+    },
+    "frame": "challenge",
+    "title": {
+      "translate": "advancements.spectrum.fill_knowledge_drop.title"
+    },                                          
+    "description": {                            
+      "translate": "advancements.spectrum.fill_knowledge_drop.description"
+    }
+  },
+  "criteria": {
+    "filled": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:knowledge_drop"
+            ],
+            "nbt": "{stored_experience:10000}"
+          }
+        ],
+        "slots": {
+          "occupied": {
+            "min": 0,
+            "max": 50
+          }
+        }
+      }
+    }
+  },
+  "rewards": {
+    "experience": 1
+  }
+}

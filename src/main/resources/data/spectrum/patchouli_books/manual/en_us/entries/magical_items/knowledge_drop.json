@@ -1,0 +1,21 @@
+{
+  "name": "Knowledge Drop",
+  "advancement": "spectrum:progression/unlock_knowledge_drop",
+  "icon": "spectrum:knowledge_drop{stored_experience:500}",
+  "category": "spectrum:magical_items_category",
+  "extra_recipe_mappings": {
+    "spectrum:knowledge_drop": 1
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "TODO"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier3/knowledge_drop",
+      "text": "A single Drop can hold up to 10.000 experience."
+    }
+  ]
+}

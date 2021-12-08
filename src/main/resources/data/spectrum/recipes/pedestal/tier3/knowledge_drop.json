@@ -1,0 +1,32 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 160,
+  "tier": "advanced",
+  "cyan": 0,
+  "magenta": 8,
+  "yellow": 0,
+  "white": 0,
+  "black": 2,
+  "experience": 2.0,
+  "pattern": [
+    "GPG",
+    "PEP",
+    "GPG"
+  ],
+  "key": {
+    "E": {
+      "item": "minecraft:emerald"
+    },
+    "P": {
+      "item": "spectrum:purple_pigment"
+    },
+    "G": {
+      "item": "spectrum:green_pigment"
+    }
+  },
+  "result" : {
+    "item": "spectrum:knowledge_drop",
+    "count": 1
+  },
+  "required_advancements": ["spectrum:progression/unlock_knowledge_drop"]
+}

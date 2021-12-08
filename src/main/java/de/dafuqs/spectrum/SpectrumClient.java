@@ -166,13 +166,12 @@ public class SpectrumClient implements ClientModInitializer {
 
 	private void registerKnowledgeDropPredicates(Item item) {
 		FabricModelPredicateProviderRegistry.register(item, new Identifier("stored_experience_10000"), (itemStack, clientWorld, livingEntity, i) -> {
-			if(livingEntity != null && item instanceof ExperienceStorageItem experienceStorageItem) {
+			if(item instanceof ExperienceStorageItem experienceStorageItem) {
 				return experienceStorageItem.getStoredExperience(itemStack) / 10000F;
 			} else {
 				return 0;
 			}
 		});
 	}
-
-
+	
 }

@@ -1,5 +1,6 @@
-package de.dafuqs.spectrum.items;
+package de.dafuqs.spectrum.items.magic_items;
 
+import de.dafuqs.spectrum.items.ExperienceStorageItem;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;

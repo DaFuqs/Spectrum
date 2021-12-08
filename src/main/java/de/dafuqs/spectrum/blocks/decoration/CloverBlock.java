@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.blocks;
+package de.dafuqs.spectrum.blocks.decoration;
 
 import net.minecraft.block.*;
 import net.minecraft.util.math.BlockPos;

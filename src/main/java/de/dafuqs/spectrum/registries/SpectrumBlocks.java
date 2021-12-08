@@ -14,6 +14,7 @@ import de.dafuqs.spectrum.blocks.decay.DecayAwayBlock;
 import de.dafuqs.spectrum.blocks.decay.FadingBlock;
 import de.dafuqs.spectrum.blocks.decay.FailingBlock;
 import de.dafuqs.spectrum.blocks.decay.RuinBlock;
+import de.dafuqs.spectrum.blocks.decoration.*;
 import de.dafuqs.spectrum.blocks.deeper_down_portal.DeeperDownPortalBlock;
 import de.dafuqs.spectrum.blocks.enchanter.EnchanterBlock;
 import de.dafuqs.spectrum.blocks.ender.EnderDropperBlock;

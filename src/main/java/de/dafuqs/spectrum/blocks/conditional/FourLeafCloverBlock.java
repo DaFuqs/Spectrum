@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.blocks.conditional;
 
 import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.blocks.CloverBlock;
+import de.dafuqs.spectrum.blocks.decoration.CloverBlock;
 import de.dafuqs.spectrum.interfaces.Cloakable;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import net.minecraft.block.BlockState;

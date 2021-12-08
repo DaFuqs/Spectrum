@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.blocks;
+package de.dafuqs.spectrum.blocks.decoration;
 
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import net.minecraft.block.BlockState;

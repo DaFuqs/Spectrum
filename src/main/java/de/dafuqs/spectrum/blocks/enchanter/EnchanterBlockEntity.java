@@ -93,9 +93,10 @@ public class EnchanterBlockEntity extends BlockEntity {
 			int amount = Support.getExperienceOrbSizeForExperience(experience);
 			
 			if(world.random.nextInt(10) < amount) {
-				float randomX = world.getRandom().nextFloat();
-				float randomZ = world.getRandom().nextFloat();
-				world.addParticle(SpectrumParticleTypes.LIME_SPARKLE_RISING, blockPos.getX() + randomX, blockPos.getY() + 2, blockPos.getZ() + randomZ, 0.0D, -0.1D, 0.0D);
+				float randomX = 0.2F + world.getRandom().nextFloat() * 0.6F;
+				float randomZ = 0.2F + world.getRandom().nextFloat() * 0.6F;
+				float randomY = -0.1F + world.getRandom().nextFloat() * 0.4F;
+				world.addParticle(SpectrumParticleTypes.LIME_SPARKLE_RISING, blockPos.getX() + randomX, blockPos.getY() + 2.5 + randomY, blockPos.getZ() + randomZ, 0.0D, -0.1D, 0.0D);
 			}
 		}
 	}

@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.blocks.enchanter;
 
+import de.dafuqs.spectrum.Support;
 import de.dafuqs.spectrum.items.ExperienceStorageItem;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.OverlayTexture;
@@ -9,6 +10,7 @@ import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.block.entity.BlockEntityRenderer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
 import net.minecraft.client.render.entity.EntityRenderDispatcher;
+import net.minecraft.client.render.entity.ExperienceOrbEntityRenderer;
 import net.minecraft.client.render.model.json.ModelTransformation;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.ExperienceOrbEntity;
@@ -72,7 +74,7 @@ public class EnchanterBlockEntityRenderer implements BlockEntityRenderer<de.dafu
 		// The Experience Item rendered in the air
 		ItemStack experienceItemStack = blockEntity.inventory.getStack(1);
 		if(!experienceItemStack.isEmpty() && experienceItemStack.getItem() instanceof ExperienceStorageItem experienceStorageItem) {
-			render(blockEntity.getWorld(), ExperienceOrbEntity.roundToOrbSize(experienceStorageItem.getStoredExperience(experienceItemStack)), tickDelta, matrixStack, vertexConsumerProvider, experienceSpriteBrightness);
+			render(blockEntity.getWorld(), Support.getExperienceOrbSizeForExperience(experienceStorageItem.getStoredExperience(experienceItemStack)), tickDelta, matrixStack, vertexConsumerProvider, experienceSpriteBrightness);
 		}
 	}
 	
@@ -87,7 +89,7 @@ public class EnchanterBlockEntityRenderer implements BlockEntityRenderer<de.dafu
 		int s = (int)((MathHelper.sin(r + 0.0F) + 1.0F) * 0.5F * 255.0F);
 		int u = (int)((MathHelper.sin(r + 4.1887903F) + 1.0F) * 0.1F * 255.0F);
 		
-		matrixStack.translate(0.5D, 2.0D, 0.5D);
+		matrixStack.translate(0.5D, 2.5D, 0.5D);
 		matrixStack.multiply(dispatcher.camera.getRotation());
 		matrixStack.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(180.0F));
 		

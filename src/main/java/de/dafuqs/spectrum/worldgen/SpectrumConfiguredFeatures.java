@@ -362,7 +362,7 @@ public class SpectrumConfiguredFeatures {
 				),
 				List.of(
 					BiomePlacementModifier.of(),
-					CountPlacementModifier.of(30),
+					CountPlacementModifier.of(25),
 					SquarePlacementModifier.of(),
 					PlacedFeatures.OCEAN_FLOOR_WG_HEIGHTMAP,
 					BlockFilterPlacementModifier.of(BlockPredicate.allOf(BlockPredicate.wouldSurvive(SpectrumBlocks.QUITOXIC_REEDS.getDefaultState(), BlockPos.ORIGIN)))

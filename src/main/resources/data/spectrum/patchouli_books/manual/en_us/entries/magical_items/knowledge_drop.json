@@ -9,7 +9,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "TODO"
+      "text": "$(italic)Whenever you pick up one of those little green orbs that appear whenever you kill an enemy, you get smarter - supposedly.$(br2)However, the inevitable death by clumsiness means that you always lose this experience quickly. Crystallized and safely stored in your chests, however, they will be as safe as can be.$()"
     },
     {
       "type": "spectrum:pedestal_crafting",

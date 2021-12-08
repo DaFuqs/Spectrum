@@ -147,7 +147,7 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 					for (int i = 0; i < particleAmount; i++) {
 						float randomX = 3.0F - world.getRandom().nextFloat() * 7;
 						float randomZ = 3.0F - world.getRandom().nextFloat() * 7;
-						world.addParticle(particleEffect, blockPos.getX() + randomX, blockPos.getY(), blockPos.getZ() + randomZ, 0.0D, 0.01D, 0.0D);
+						world.addParticle(particleEffect, blockPos.getX() + randomX, blockPos.getY(), blockPos.getZ() + randomZ, 0.0D, 0.00D, 0.0D);
 					}
 				}
 			}

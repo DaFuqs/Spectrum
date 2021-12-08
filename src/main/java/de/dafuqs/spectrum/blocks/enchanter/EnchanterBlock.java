@@ -84,8 +84,10 @@ public class EnchanterBlock extends BlockWithEntity {
 					// hand is full and inventory already contains item: exchange them
 					ItemStack currentStack = inventory.getStack(inputInventorySlotIndex);
 					inventory.setStack(inputInventorySlotIndex, handStack);
-					if(!currentStack.isEmpty()) {
-						player.giveItemStack(currentStack);
+					if(currentStack.isEmpty()) {
+						player.setStackInHand(hand, ItemStack.EMPTY);
+					} else {
+						player.setStackInHand(hand, currentStack);
 					}
 					itemsChanged = true;
 				}

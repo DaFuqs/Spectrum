@@ -6,9 +6,8 @@
   "priority": true,
   "pages": [
     {
-      "type": "patchouli:spotlight",
+      "type": "patchouli:text",
       "title": "Creating Life",
-      "item": "spectrum:bottle_of_fading",
       "text": "It has always been the dream of people to create artificial life. Since you are now dealing with magical gems yourself, which seem to have magical powers, this should be a piece of cake."
     },
     {

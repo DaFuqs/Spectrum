@@ -2,7 +2,7 @@
   "name": "Pedestal Onyx Upgrade",
   "icon": "spectrum:pedestal_onyx",
   "sortnum": 12,
-  "advancement": "spectrum:midgame/create_onyx_shard",
+  "advancement": "spectrum:create_onyx_shard",
   "category": "spectrum:general_category",
   "extra_recipe_mappings": {
     "spectrum:pedestal_onyx": 0

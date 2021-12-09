@@ -3,7 +3,6 @@
     "icon": "spectrum:pedestal_basic_amethyst",
     "category": "spectrum:general_category",
     "sortnum": 0,
-    "priority": true,
     "pages": [
         {
             "type": "patchouli:image",

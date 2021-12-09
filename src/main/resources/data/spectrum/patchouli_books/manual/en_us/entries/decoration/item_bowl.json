@@ -1,6 +1,6 @@
 {
   "name": "Item Bowl",
-  "advancement": "spectrum:midgame/build_advanced_pedestal_structure",
+  "advancement": "spectrum:midgame/enter_liquid_crystal",
   "icon": "spectrum:item_bowl_basalt",
   "category": "spectrum:decoration_category",
   "pages": [

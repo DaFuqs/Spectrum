@@ -26,5 +26,5 @@
     "item": "spectrum:item_bowl_calcite",
     "count": 1
   },
-  "required_advancements": ["spectrum:midgame/build_advanced_pedestal_structure"]
+  "required_advancements": ["spectrum:midgame/enter_liquid_crystal"]
 }

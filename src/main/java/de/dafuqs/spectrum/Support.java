@@ -2,10 +2,12 @@ package de.dafuqs.spectrum;
 
 import de.dafuqs.spectrum.items.PigmentItem;
 import de.dafuqs.spectrum.progression.ClientAdvancements;
+import de.dafuqs.spectrum.registries.SpectrumDefaultEnchantments;
 import net.minecraft.advancement.Advancement;
 import net.minecraft.advancement.PlayerAdvancementTracker;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.DyeItem;
@@ -67,7 +69,13 @@ public class Support {
 			add(new Vec3d(0.7D, 0, -0.7D));
 			add(new Vec3d(0.75D, 0, -0.5D));
 		}};
-
+	
+	public static ItemStack getEnchantedItemStack(Item item, Enchantment enchantment, int level) {
+		ItemStack itemStack = new ItemStack(item);
+		itemStack.addEnchantment(enchantment, level);
+		return itemStack;
+	}
+	
 	public static boolean hasTag(@NotNull BlockState blockState, @NotNull Tag<Block> tag) {
 		return tag.contains(blockState.getBlock());
 	}

@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.recipe.anvil_crushing;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import de.dafuqs.spectrum.recipe.RecipeUtils;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.recipe.Ingredient;
@@ -22,7 +23,7 @@ public class AnvilCrushingRecipeSerializer<T extends AnvilCrushingRecipe> implem
 	public T read(Identifier identifier, JsonObject jsonObject) {
 		JsonElement jsonElement = JsonHelper.hasArray(jsonObject, "ingredient") ? JsonHelper.getArray(jsonObject, "ingredient") : JsonHelper.getObject(jsonObject, "ingredient");
 		Ingredient ingredient = Ingredient.fromJson(jsonElement);
-		ItemStack outputItemStack = ShapedRecipe.outputFromJson(JsonHelper.getObject(jsonObject, "result"));
+		ItemStack outputItemStack = RecipeUtils.outputWithNbtFromJson(JsonHelper.getObject(jsonObject, "result"));
 		float crushedItemsPerPointOfDamage = JsonHelper.getFloat(jsonObject, "crushedItemsPerPointOfDamage");
 		float experience = JsonHelper.getFloat(jsonObject, "experience");
 

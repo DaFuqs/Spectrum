@@ -26,6 +26,7 @@
   },
   "result" : {
     "item": "spectrum:fortune_pickaxe",
+    "nbt": "{Enchantments: [{id: \"minecraft:fortune\", lvl: 3s}]}",
     "count": 1
   },
   "required_advancements": ["spectrum:progression/tools/unlock_fortune_pickaxe"]

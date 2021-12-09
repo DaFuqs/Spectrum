@@ -20,6 +20,7 @@
   },
   "result" : {
     "item": "spectrum:bedrock_boots",
+    "nbt": "{Enchantments: [{id: \"minecraft:fire_protection\", lvl: 4s}]}",
     "count": 1
   },
   "required_advancements": ["spectrum:progression/unlock_bedrock_tools"]

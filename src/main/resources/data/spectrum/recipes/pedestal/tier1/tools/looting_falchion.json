@@ -23,6 +23,7 @@
   },
   "result" : {
     "item": "spectrum:looting_falchion",
+    "nbt": "{Enchantments: [{id: \"minecraft:looting\", lvl: 3s}]}",
     "count": 1
   },
   "required_advancements": ["spectrum:progression/tools/unlock_looting_falchion"]

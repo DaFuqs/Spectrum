@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.recipe.fusion_shrine;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.recipe.RecipeUtils;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemStack;
@@ -47,7 +48,7 @@ public class FusionShrineRecipeSerializer<T extends FusionShrineRecipe> implemen
 			fluid = Registry.FLUID.get(fluidIdentifier);
 		}
 
-		ItemStack output = ShapedRecipe.outputFromJson(JsonHelper.getObject(jsonObject, "result"));
+		ItemStack output = RecipeUtils.outputWithNbtFromJson(JsonHelper.getObject(jsonObject, "result"));
 		float experience = JsonHelper.getFloat(jsonObject, "experience", 0);
 		int craftingTime = JsonHelper.getInt(jsonObject, "time", 200);
 		

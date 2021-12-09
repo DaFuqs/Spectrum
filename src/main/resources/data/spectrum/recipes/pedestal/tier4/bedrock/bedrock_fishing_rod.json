@@ -24,6 +24,7 @@
   },
   "result" : {
     "item": "spectrum:bedrock_fishing_rod",
+    "nbt": "{Enchantments: [{id: \"minecraft:luck_of_the_sea\", lvl: 3s}]}",
     "count": 1
   },
   "required_advancements": ["spectrum:progression/unlock_bedrock_tools"]

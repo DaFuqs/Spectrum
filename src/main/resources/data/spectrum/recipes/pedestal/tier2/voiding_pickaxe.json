@@ -26,6 +26,7 @@
   },
   "result" : {
     "item": "spectrum:voiding_pickaxe",
+    "nbt": "{Enchantments: [{id: \"spectrum:voiding\", lvl: 1s}]}",
     "count": 1
   },
   "required_advancements": ["spectrum:progression/tools/unlock_voiding_pickaxe"]

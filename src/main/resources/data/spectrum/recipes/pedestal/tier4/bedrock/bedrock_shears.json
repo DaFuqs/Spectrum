@@ -20,6 +20,7 @@
   },
   "result" : {
     "item": "spectrum:bedrock_shears",
+    "nbt": "{Enchantments: [{id: \"minecraft:silk_touch\", lvl: 1s}]}",
     "count": 1
   },
   "required_advancements": ["spectrum:progression/unlock_bedrock_tools"]

@@ -46,11 +46,8 @@ public class SpectrumDefaultEnchantments {
 		SpectrumDefaultEnchantments.addDefaultEnchantment(SpectrumItems.BEDROCK_CHESTPLATE, Enchantments.PROTECTION, 4);
 		SpectrumDefaultEnchantments.addDefaultEnchantment(SpectrumItems.BEDROCK_LEGGINGS, Enchantments.BLAST_PROTECTION, 4);
 		SpectrumDefaultEnchantments.addDefaultEnchantment(SpectrumItems.BEDROCK_BOOTS, Enchantments.FIRE_PROTECTION, 4);
-
-
 	}
-
-
+	
 	public static void addDefaultEnchantment(Item item, Enchantment enchantment, int level) {
 		defaultEnchantments.put(item, new DefaultEnchantment(enchantment, level));
 	}

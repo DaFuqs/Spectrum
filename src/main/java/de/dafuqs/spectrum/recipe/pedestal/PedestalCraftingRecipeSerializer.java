@@ -6,6 +6,7 @@ import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.enums.GemstoneColor;
 import de.dafuqs.spectrum.enums.PedestalRecipeTier;
 import de.dafuqs.spectrum.mixin.AccessorShapedRecipe;
+import de.dafuqs.spectrum.recipe.RecipeUtils;
 import de.dafuqs.spectrum.registries.SpectrumDefaultEnchantments;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
@@ -35,12 +36,7 @@ public class PedestalCraftingRecipeSerializer<T extends PedestalCraftingRecipe> 
 		int width = strings[0].length();
 		int height = strings.length;
 		DefaultedList<Ingredient> craftingInputs = AccessorShapedRecipe.invokeCreatePatternMatrix(strings, map, width, height);
-		ItemStack output = ShapedRecipe.outputFromJson(JsonHelper.getObject(jsonObject, "result"));
-
-		if(SpectrumDefaultEnchantments.hasDefaultEnchants(output.getItem())) {
-			SpectrumDefaultEnchantments.DefaultEnchantment enchantData = SpectrumDefaultEnchantments.getDefaultEnchantment(output.getItem());
-			output.addEnchantment(enchantData.enchantment, enchantData.level);
-		}
+		ItemStack output = RecipeUtils.outputWithNbtFromJson(JsonHelper.getObject(jsonObject, "result"));
 
 		PedestalRecipeTier tier = PedestalRecipeTier.valueOf(JsonHelper.getString(jsonObject, "tier", "basic").toUpperCase(Locale.ROOT));
 		float experience = JsonHelper.getFloat(jsonObject, "experience", 0);

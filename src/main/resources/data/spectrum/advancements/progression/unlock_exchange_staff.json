@@ -7,6 +7,10 @@
     "collected_light_gray_pigment": {
       "trigger":"spectrum:has_advancement",
       "conditions": { "advancement_identifier": "spectrum:hidden/collect_pigment/collect_light_gray_pigment" }
+    },
+    "collected_moonstone_shard": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:midgame/collect_moonstone_shard" }
     }
   }
 }

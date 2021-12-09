@@ -35,5 +35,5 @@
     "item": "spectrum:exchange_staff",
     "nbt": "{Enchantments: [{id: \"minecraft:fortune\", lvl: 3s}]}"
   },
-  "required_advancement": "spectrum:midgame/build_enchanting_structure"
+  "required_advancement": "spectrum:progression/unlock_exchange_staff"
 }

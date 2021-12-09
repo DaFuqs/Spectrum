@@ -7,25 +7,25 @@
       "item": "spectrum:exchange_staff"
     },
     {
-      "item": "minecraft:lapis_lazuli"
+      "item": "spectrum:raw_azurite"
     },
     {
       "item": "spectrum:cyan_pigment"
     },
     {
-      "item": "minecraft:lapis_lazuli"
+      "item": "spectrum:raw_azurite"
     },
     {
       "item": "spectrum:cyan_pigment"
     },
     {
-      "item": "minecraft:lapis_lazuli"
+      "item": "spectrum:raw_azurite"
     },
     {
       "item": "spectrum:cyan_pigment"
     },
     {
-      "item": "minecraft:lapis_lazuli"
+      "item": "spectrum:raw_azurite"
     },
     {
       "item": "spectrum:cyan_pigment"
@@ -33,7 +33,7 @@
   ],
   "result" : {
     "item": "spectrum:exchange_staff",
-    "nbt": "{Enchantments: [{id: \"minecraft:silk_touch\", lvl: 1s}]}"
+    "nbt": "{Enchantments: [{id: \"minecraft:silk_touch\", lvl: 1qs}]}"
   },
-  "required_advancement": "spectrum:midgame/build_enchanting_structure"
+  "required_advancement": "spectrum:progression/unlock_exchange_staff"
 }

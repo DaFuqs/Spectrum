@@ -15,10 +15,7 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUsageContext;
-import net.minecraft.item.Items;
+import net.minecraft.item.*;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
@@ -43,7 +40,6 @@ import java.util.Optional;
 
 public class ExchangeStaffItem extends BuildingStaffItem {
 	
-	public static final boolean SILK_TOUCH = false;
 	public static final int CREATIVE_RANGE = 5;
 	
 	public ExchangeStaffItem(Settings settings) {

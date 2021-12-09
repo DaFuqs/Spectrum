@@ -1,0 +1,39 @@
+{
+  "type": "spectrum:enchanter",
+  "time": 800,
+  "required_experience": 10.0,
+  "ingredients": [
+    {
+      "item": "spectrum:exchange_staff"
+    },
+    {
+      "item": "minecraft:lapis_lazuli"
+    },
+    {
+      "item": "spectrum:cyan_pigment"
+    },
+    {
+      "item": "minecraft:lapis_lazuli"
+    },
+    {
+      "item": "spectrum:cyan_pigment"
+    },
+    {
+      "item": "minecraft:lapis_lazuli"
+    },
+    {
+      "item": "spectrum:cyan_pigment"
+    },
+    {
+      "item": "minecraft:lapis_lazuli"
+    },
+    {
+      "item": "spectrum:cyan_pigment"
+    }
+  ],
+  "result" : {
+    "item": "spectrum:exchange_staff",
+    "nbt": "{Enchantments: [{id: \"minecraft:silk_touch\", lvl: 1s}]}"
+  },
+  "required_advancement": "spectrum:midgame/build_enchanting_structure"
+}

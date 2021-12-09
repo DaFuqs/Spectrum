@@ -2,35 +2,58 @@ package de.dafuqs.spectrum.items.magic_items;
 
 import de.dafuqs.spectrum.networking.SpectrumS2CPackets;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
+import de.dafuqs.spectrum.registries.SpectrumItems;
 import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.item.TooltipContext;
+import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.Inventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsage;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
+import net.minecraft.text.Text;
+import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Hand;
+import net.minecraft.util.Pair;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.UseAction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.LightType;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 import static net.minecraft.state.property.Properties.WATERLOGGED;
 
 public class LightStaffItem extends Item {
 
 	public static int USE_DURATION = 12;
+	public static int REACH_STEP_DISTANCE = 4;
 	public static int MAX_REACH_STEPS = 8;
 	public static int MIN_LIGHT_LEVEL = 10;
-
+	
+	public static ItemStack COST = new ItemStack(SpectrumItems.SPARKLESTONE_GEM, 1);
+	
 	public LightStaffItem(Settings settings) {
 		super(settings);
+	}
+	
+	@Override
+	public void appendTooltip(ItemStack itemStack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
+		tooltip.add(new TranslatableText("item.spectrum.light_staff.tooltip"));
+		tooltip.add(new TranslatableText("item.spectrum.light_staff.tooltip2"));
 	}
 
 	public UseAction getUseAction(ItemStack stack) {
@@ -52,34 +75,45 @@ public class LightStaffItem extends Item {
 	}
 
 	public void usage(World world, LivingEntity user) {
-		int useTimes = (user.getItemUseTime() / USE_DURATION);
-		int maxCheckDistance = Math.min(MAX_REACH_STEPS, useTimes);
-
-		BlockPos sourcePos = user.getBlockPos();
-		Vec3d cameraVec = user.getRotationVec(MinecraftClient.getInstance().getTickDelta());
-
-		for(int iteration = 0; iteration < maxCheckDistance; iteration++) {
-			BlockPos targetPos = sourcePos.add(cameraVec.x * (double) iteration * 4, cameraVec.y * (double) iteration * 4, cameraVec.z * (double) iteration * 4);
-			if(world.getLightLevel(LightType.BLOCK, targetPos) < MIN_LIGHT_LEVEL) {
-				if(iteration > 0) {
+		if(user instanceof PlayerEntity playerEntity) {
+			int useTimes = (user.getItemUseTime() / USE_DURATION);
+			int maxCheckDistance = Math.min(MAX_REACH_STEPS, useTimes);
+			
+			BlockPos sourcePos = user.getBlockPos();
+			Vec3d cameraVec = user.getRotationVec(MinecraftClient.getInstance().getTickDelta());
+			
+			for (int iteration = 1; iteration < maxCheckDistance; iteration++) {
+				BlockPos targetPos = sourcePos.add(cameraVec.x * (double) iteration * REACH_STEP_DISTANCE, cameraVec.y * (double) iteration * REACH_STEP_DISTANCE, cameraVec.z * (double) iteration * 4);
+				if (iteration > 0) {
 					targetPos = targetPos.add(iteration - world.getRandom().nextInt(2 * iteration), iteration - world.getRandom().nextInt(2 * iteration), iteration - world.getRandom().nextInt(2 * iteration));
 				}
-				BlockState targetBlockState = world.getBlockState(targetPos);
-
-				if (targetBlockState.isAir()) {
-					world.setBlockState(targetPos, SpectrumBlocks.WAND_LIGHT_BLOCK.getDefaultState(), 3);
-					playSoundAndParticles(world, targetPos, user, useTimes, iteration);
-					break;
-				} else if(targetBlockState.isOf(Blocks.WATER)) {
-					world.setBlockState(targetPos, SpectrumBlocks.WAND_LIGHT_BLOCK.getDefaultState().with(WATERLOGGED, true), 3);
-					playSoundAndParticles(world, targetPos, user, useTimes, iteration);
-					break;
+				
+				if (world.getLightLevel(LightType.BLOCK, targetPos) < MIN_LIGHT_LEVEL) {
+					BlockState targetBlockState = world.getBlockState(targetPos);
+					
+					if (targetBlockState.isAir()) {
+						if (payUsageCost(playerEntity, COST)) {
+							world.setBlockState(targetPos, SpectrumBlocks.WAND_LIGHT_BLOCK.getDefaultState(), 3);
+							playSoundAndParticles(world, targetPos, playerEntity, useTimes, iteration);
+						} else {
+							playDenySound(world, playerEntity);
+						}
+						break;
+					} else if (targetBlockState.isOf(Blocks.WATER)) {
+						if (payUsageCost(playerEntity, COST)) {
+							world.setBlockState(targetPos, SpectrumBlocks.WAND_LIGHT_BLOCK.getDefaultState().with(WATERLOGGED, true), 3);
+							playSoundAndParticles(world, targetPos, playerEntity, useTimes, iteration);
+						} else {
+							playDenySound(world, playerEntity);
+						}
+						break;
+					}
 				}
 			}
 		}
 	}
 
-	private void playSoundAndParticles(World world, BlockPos targetPos, LivingEntity user, int useTimes, int iteration) {
+	private void playSoundAndParticles(World world, BlockPos targetPos, PlayerEntity playerEntity, int useTimes, int iteration) {
 		float pitch;
 		if (useTimes % 2 == 0) { // high ding <=> deep ding
 			pitch = Math.min(1.35F, 0.7F + 0.1F * useTimes);
@@ -87,11 +121,50 @@ public class LightStaffItem extends Item {
 			pitch = Math.min(1.5F, 0.7F + 0.1F * useTimes);
 		}
 		SpectrumS2CPackets.sendLightCreatedParticle(world, targetPos);
-		if(user instanceof PlayerEntity playerUser) {
-			world.playSound(playerUser, targetPos.getX() + 0.5, targetPos.getY() + 0.5, targetPos.getZ() + 0.5, SpectrumSoundEvents.LIGHT_STAFF_PLACE, SoundCategory.PLAYERS, 1.0F, pitch);
-			world.playSound(null, playerUser.getX() + 0.5, playerUser.getY() + 0.5, playerUser.getZ() + 0.5, SpectrumSoundEvents.LIGHT_STAFF_PLACE, SoundCategory.PLAYERS, (float) Math.max(0.25, 1.0F-(float)iteration*0.1F), pitch);
+		//world.playSound(playerEntity, targetPos.getX() + 0.5, targetPos.getY() + 0.5, targetPos.getZ() + 0.5, SpectrumSoundEvents.LIGHT_STAFF_PLACE, SoundCategory.PLAYERS, 1.0F, pitch);
+		world.playSound(null, playerEntity.getX() + 0.5, playerEntity.getY() + 0.5, playerEntity.getZ() + 0.5, SpectrumSoundEvents.LIGHT_STAFF_PLACE, SoundCategory.PLAYERS, (float) Math.max(0.25, 1.0F-(float)iteration*0.1F), pitch);
+	}
+	
+	private void playDenySound(World world, PlayerEntity playerEntity) {
+		world.playSound(null, playerEntity.getX(), playerEntity.getY(), playerEntity.getZ(), SoundEvents.BLOCK_LAVA_EXTINGUISH, SoundCategory.PLAYERS, 0.5F, 0.8F + playerEntity.getRandom().nextFloat() * 0.4F);
+	}
+	
+	public boolean payUsageCost(@NotNull PlayerEntity playerEntity,@NotNull ItemStack paymentStack) {
+		if(playerEntity.isCreative()) {
+			return true;
 		} else {
-			world.playSound(null, targetPos.getX() + 0.5, targetPos.getY() + 0.5, targetPos.getZ() + 0.5, SpectrumSoundEvents.LIGHT_STAFF_PLACE, SoundCategory.PLAYERS, 1.0F, pitch);
+			Inventory playerInventory = playerEntity.getInventory();
+			List<Pair<Integer, ItemStack>> matchingStacks = new ArrayList<>();
+			int paymentStackItemCount = 0;
+			for (int i = 0; i < playerInventory.size(); i++) {
+				ItemStack currentStack = playerInventory.getStack(i);
+				if (currentStack.getItem().equals(paymentStack.getItem())) {
+					matchingStacks.add(new Pair(i, currentStack));
+					paymentStackItemCount += currentStack.getCount();
+					if (paymentStackItemCount >= paymentStack.getCount()) {
+						break;
+					}
+				}
+			}
+			
+			if (paymentStackItemCount < paymentStack.getCount()) {
+				return false;
+			} else {
+				int amountToPay = paymentStack.getCount();
+				for (Pair<Integer, ItemStack> matchingStack : matchingStacks) {
+					if (matchingStack.getRight().getCount() <= amountToPay) {
+						amountToPay -= matchingStack.getRight().getCount();
+						playerEntity.getInventory().setStack(matchingStack.getLeft(), ItemStack.EMPTY);
+						if(amountToPay <= 0) {
+							break;
+						}
+					} else {
+						matchingStack.getRight().decrement(amountToPay);
+						return true;
+					}
+				}
+				return true;
+			}
 		}
 	}
 

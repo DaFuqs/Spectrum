@@ -47,7 +47,7 @@ public class FusionShrineCategory<R extends FusionShrineRecipe> implements Displ
 
 		widgets.add(Widgets.createRecipeBase(bounds));
 
-		// Searching for the usage or recipes for items will not trigger an
+		// Searching for the usage or recipes for items will not trigger a
 		// pedestal crafting recipe display. Searching for all recipes, that can
 		// be triggered with a pedestal will, though.
 		//

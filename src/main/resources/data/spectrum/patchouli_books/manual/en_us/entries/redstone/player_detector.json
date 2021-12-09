@@ -10,13 +10,13 @@
     {
       "type": "patchouli:text",
       "title": "Player Detector",
-      "text": "Detects players within 10 blocks of it."
+      "text": "$(italic)You know people who build gigantic constructions out of redstone just to open an oversized door. And then they still open it with an unsightly visible pressure plate.$(br)The Player Detector, on the other hand, is able to detect your presence - or that of other players - at a distance and sends out a corresponding redstone signal.$(br2)Much better."
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier1/detectors/player_detector",
-      "text": "If the player who placed it is nearby, it emits a full strength 15 signal instead, else 8. Range of 10 blocks."
+      "text": "Range: 10 blocks.$(br)Emits a full strength signal, if the player who placed it is detected - otherwise 8."
     }
   ]
 }

@@ -27,7 +27,7 @@ import java.util.stream.IntStream;
 
 public class InventoryHelper {
 	
-	public static boolean removeFromInventory(@NotNull PlayerEntity playerEntity, @NotNull ItemStack paymentStack) {
+	public static boolean removeFromInventory(@NotNull PlayerEntity playerEntity, @NotNull ItemStack stackToRemove) {
 		if(playerEntity.isCreative()) {
 			return true;
 		} else {
@@ -36,28 +36,28 @@ public class InventoryHelper {
 			int paymentStackItemCount = 0;
 			for (int i = 0; i < playerInventory.size(); i++) {
 				ItemStack currentStack = playerInventory.getStack(i);
-				if (currentStack.getItem().equals(paymentStack.getItem())) {
-					matchingStacks.add(new Pair(i, currentStack));
+				if (currentStack.getItem().equals(stackToRemove.getItem())) {
+					matchingStacks.add(new Pair<>(i, currentStack));
 					paymentStackItemCount += currentStack.getCount();
-					if (paymentStackItemCount >= paymentStack.getCount()) {
+					if (paymentStackItemCount >= stackToRemove.getCount()) {
 						break;
 					}
 				}
 			}
 			
-			if (paymentStackItemCount < paymentStack.getCount()) {
+			if (paymentStackItemCount < stackToRemove.getCount()) {
 				return false;
 			} else {
-				int amountToPay = paymentStack.getCount();
+				int amountToRemove = stackToRemove.getCount();
 				for (Pair<Integer, ItemStack> matchingStack : matchingStacks) {
-					if (matchingStack.getRight().getCount() <= amountToPay) {
-						amountToPay -= matchingStack.getRight().getCount();
+					if (matchingStack.getRight().getCount() <= amountToRemove) {
+						amountToRemove -= matchingStack.getRight().getCount();
 						playerEntity.getInventory().setStack(matchingStack.getLeft(), ItemStack.EMPTY);
-						if(amountToPay <= 0) {
+						if(amountToRemove <= 0) {
 							break;
 						}
 					} else {
-						matchingStack.getRight().decrement(amountToPay);
+						matchingStack.getRight().decrement(amountToRemove);
 						return true;
 					}
 				}

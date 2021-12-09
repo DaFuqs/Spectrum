@@ -1,4 +1,10 @@
 {
+  "use_fail": {
+    "subtitle": "spectrum.subtitles.use_fail",
+    "sounds": [
+      "spectrum:use_fail"
+    ]
+  },
   "light_staff_charging": {
     "subtitle": "spectrum.subtitles.light_staff_charging",
     "sounds": [

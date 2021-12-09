@@ -5,6 +5,7 @@ import de.dafuqs.spectrum.SpectrumClient;
 import de.dafuqs.spectrum.registries.SpectrumBlockTags;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import de.dafuqs.spectrum.sound.NaturesStaffUseSoundInstance;
+import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.*;
@@ -215,7 +216,7 @@ public class NaturesStaffItem extends Item {
 	}
 	
 	private void playDenySound(World world, PlayerEntity playerEntity) {
-		world.playSound(null, playerEntity.getX(), playerEntity.getY(), playerEntity.getZ(), SoundEvents.BLOCK_LAVA_EXTINGUISH, SoundCategory.PLAYERS, 0.5F, 0.8F + playerEntity.getRandom().nextFloat() * 0.4F);
+		world.playSound(null, playerEntity.getX(), playerEntity.getY(), playerEntity.getZ(), SpectrumSoundEvents.USE_FAIL, SoundCategory.PLAYERS, 1.0F, 0.8F + playerEntity.getRandom().nextFloat() * 0.4F);
 	}
 
 	/**

@@ -136,6 +136,8 @@
   "spectrum.toast.pedestal_recipes_unlocked.title": "New Pedestal recipes:",
   "spectrum.toast.fusion_shrine_recipe_unlocked.title": "New Fusion recipe:",
   "spectrum.toast.fusion_shrine_recipes_unlocked.title": "New Fusion recipes:",
+  "spectrum.toast.enchanter_recipe_unlocked.title": "New Enchanter recipe:",
+  "spectrum.toast.enchanter_recipes_unlocked.title": "New Enchanter recipes:",
 
   "text.autoconfig.Spectrum.option.CitrineGeodeMinAboveBottomGenerationHeight": "Min Citrine Geode generation height (from world floor)",
   "text.autoconfig.Spectrum.option.CitrineGeodeFixedMaxGenerationHeight": "Max Citrine Geode generation height (Y value)",

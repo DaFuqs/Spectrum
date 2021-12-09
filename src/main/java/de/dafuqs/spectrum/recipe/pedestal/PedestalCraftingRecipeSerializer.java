@@ -93,46 +93,6 @@ public class PedestalCraftingRecipeSerializer<T extends PedestalCraftingRecipe> 
 	}
 
 	@Override
-	public T read(Identifier identifier, PacketByteBuf packetByteBuf) {
-		int width = packetByteBuf.readInt();
-		int height = packetByteBuf.readInt();
-		String group = packetByteBuf.readString();
-		DefaultedList<Ingredient> craftingInputs = DefaultedList.ofSize(width * height, Ingredient.EMPTY);
-
-		for(int k = 0; k < craftingInputs.size(); ++k) {
-			craftingInputs.set(k, Ingredient.fromPacket(packetByteBuf));
-		}
-		ItemStack output = packetByteBuf.readItemStack();
-
-		PedestalRecipeTier tier = PedestalRecipeTier.values()[packetByteBuf.readInt()];
-
-		int magenta = packetByteBuf.readInt();
-		int cyan = packetByteBuf.readInt();
-		int yellow = packetByteBuf.readInt();
-		int black = packetByteBuf.readInt();
-		int white = packetByteBuf.readInt();
-
-		float experience = packetByteBuf.readFloat();
-		int craftingTime = packetByteBuf.readInt();
-		boolean noBenefitsFromYieldUpgrades = packetByteBuf.readBoolean();
-
-		int requiredAdvancementAmount = packetByteBuf.readInt();
-		List<Identifier> requiredAdvancementIdentifiers = new ArrayList<>();
-		for(int i = 0; i < requiredAdvancementAmount; i++) {
-			requiredAdvancementIdentifiers.add(packetByteBuf.readIdentifier());
-		}
-
-		HashMap<GemstoneColor, Integer> gemInputs = new HashMap<>();
-		if(magenta > 0) { gemInputs.put(GemstoneColor.MAGENTA, magenta); }
-		if(cyan	> 0) { gemInputs.put(GemstoneColor.CYAN, cyan); }
-		if(yellow  > 0) { gemInputs.put(GemstoneColor.YELLOW, yellow); }
-		if(black   > 0) { gemInputs.put(GemstoneColor.BLACK, black); }
-		if(white   > 0) { gemInputs.put(GemstoneColor.WHITE, white); }
-
-		return this.recipeFactory.create(identifier, group, tier, width, height, craftingInputs, gemInputs, output, experience, craftingTime, noBenefitsFromYieldUpgrades, requiredAdvancementIdentifiers);
-	}
-
-	@Override
 	public void write(PacketByteBuf packetByteBuf, T pedestalRecipe) {
 		packetByteBuf.writeInt(pedestalRecipe.width);
 		packetByteBuf.writeInt(pedestalRecipe.height);
@@ -159,6 +119,47 @@ public class PedestalCraftingRecipeSerializer<T extends PedestalCraftingRecipe> 
 		for(int i = 0; i < pedestalRecipe.requiredAdvancementIdentifiers.size(); i++) {
 			packetByteBuf.writeIdentifier(pedestalRecipe.requiredAdvancementIdentifiers.get(i));
 		}
+	}
+	
+	
+	@Override
+	public T read(Identifier identifier, PacketByteBuf packetByteBuf) {
+		int width = packetByteBuf.readInt();
+		int height = packetByteBuf.readInt();
+		String group = packetByteBuf.readString();
+		DefaultedList<Ingredient> craftingInputs = DefaultedList.ofSize(width * height, Ingredient.EMPTY);
+		
+		for(int k = 0; k < craftingInputs.size(); ++k) {
+			craftingInputs.set(k, Ingredient.fromPacket(packetByteBuf));
+		}
+		ItemStack output = packetByteBuf.readItemStack();
+		
+		PedestalRecipeTier tier = PedestalRecipeTier.values()[packetByteBuf.readInt()];
+		
+		int magenta = packetByteBuf.readInt();
+		int cyan = packetByteBuf.readInt();
+		int yellow = packetByteBuf.readInt();
+		int black = packetByteBuf.readInt();
+		int white = packetByteBuf.readInt();
+		
+		float experience = packetByteBuf.readFloat();
+		int craftingTime = packetByteBuf.readInt();
+		boolean noBenefitsFromYieldUpgrades = packetByteBuf.readBoolean();
+		
+		int requiredAdvancementAmount = packetByteBuf.readInt();
+		List<Identifier> requiredAdvancementIdentifiers = new ArrayList<>();
+		for(int i = 0; i < requiredAdvancementAmount; i++) {
+			requiredAdvancementIdentifiers.add(packetByteBuf.readIdentifier());
+		}
+		
+		HashMap<GemstoneColor, Integer> gemInputs = new HashMap<>();
+		if(magenta > 0) { gemInputs.put(GemstoneColor.MAGENTA, magenta); }
+		if(cyan	> 0) { gemInputs.put(GemstoneColor.CYAN, cyan); }
+		if(yellow  > 0) { gemInputs.put(GemstoneColor.YELLOW, yellow); }
+		if(black   > 0) { gemInputs.put(GemstoneColor.BLACK, black); }
+		if(white   > 0) { gemInputs.put(GemstoneColor.WHITE, white); }
+		
+		return this.recipeFactory.create(identifier, group, tier, width, height, craftingInputs, gemInputs, output, experience, craftingTime, noBenefitsFromYieldUpgrades, requiredAdvancementIdentifiers);
 	}
 
 	public interface RecipeFactory<T extends PedestalCraftingRecipe> {

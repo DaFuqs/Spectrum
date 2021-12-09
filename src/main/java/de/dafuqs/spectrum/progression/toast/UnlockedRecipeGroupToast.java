@@ -25,7 +25,8 @@ public class UnlockedRecipeGroupToast implements Toast {
 
 	public enum UnlockedRecipeToastType {
 		PEDESTAL,
-		FUSION_SHRINE;
+		FUSION_SHRINE,
+		ENCHANTER;
 	}
 
 	private final Identifier TEXTURE = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/toasts.png");
@@ -46,8 +47,10 @@ public class UnlockedRecipeGroupToast implements Toast {
 		Text title;
 		if(type == UnlockedRecipeToastType.PEDESTAL) {
 			title = new TranslatableText("spectrum.toast.pedestal_recipe_unlocked.title");
-		} else {
+		} else if(type == UnlockedRecipeToastType.FUSION_SHRINE) {
 			title = new TranslatableText("spectrum.toast.fusion_shrine_recipe_unlocked.title");
+		} else {
+			title = new TranslatableText("spectrum.toast.enchanter_recipe_unlocked.title");
 		}
 		Text text = itemStack.getName();
 		client.getToastManager().add(new UnlockedRecipeGroupToast(title, text, new ArrayList<>() {{ add(itemStack); }}));
@@ -57,8 +60,10 @@ public class UnlockedRecipeGroupToast implements Toast {
 		Text title;
 		if(type == UnlockedRecipeToastType.PEDESTAL) {
 			title = new TranslatableText("spectrum.toast.pedestal_recipes_unlocked.title");
-		} else {
+		} else if(type == UnlockedRecipeToastType.FUSION_SHRINE) {
 			title = new TranslatableText("spectrum.toast.fusion_shrine_recipes_unlocked.title");
+		} else {
+			title = new TranslatableText("spectrum.toast.enchanter_recipes_unlocked.title");
 		}
 		Text text = new TranslatableText("recipeGroup.spectrum." + groupName);
 		client.getToastManager().add(new UnlockedRecipeGroupToast(title, text, itemStacks));

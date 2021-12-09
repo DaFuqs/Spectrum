@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.progression;
 
 import de.dafuqs.spectrum.enums.PedestalRecipeTier;
 import de.dafuqs.spectrum.progression.toast.UnlockedRecipeGroupToast;
+import de.dafuqs.spectrum.recipe.enchanter.EnchanterRecipe;
 import de.dafuqs.spectrum.recipe.fusion_shrine.FusionShrineRecipe;
 import de.dafuqs.spectrum.recipe.pedestal.PedestalCraftingRecipe;
 import net.fabricmc.api.EnvType;
@@ -23,6 +24,7 @@ public class ClientRecipeToastManager {
 
 	public static final HashMap<Identifier, List<PedestalCraftingRecipe>> unlockablePedestalRecipes = new HashMap<>();
 	public static final HashMap<Identifier, List<FusionShrineRecipe>> unlockableFusionShrineRecipes = new HashMap<>();
+	public static final HashMap<Identifier, List<EnchanterRecipe>> unlockableEnchanterRecipes = new HashMap<>();
 
 	public static void registerUnlockablePedestalRecipe(@NotNull PedestalCraftingRecipe recipe) {
 		List<Identifier> requiredAdvancementIdentifiers = recipe.getRequiredAdvancementIdentifiers();
@@ -55,11 +57,28 @@ public class ClientRecipeToastManager {
 			}
 		}
 	}
+	
+	public static void registerUnlockableEnchanterRecipe(@NotNull EnchanterRecipe recipe) {
+		Identifier requiredAdvancementIdentifier = recipe.getRequiredAdvancementIdentifier();
+		if(requiredAdvancementIdentifier != null) {
+			if (unlockableEnchanterRecipes.containsKey(requiredAdvancementIdentifier)) {
+				if(!unlockableEnchanterRecipes.get(requiredAdvancementIdentifier).contains(recipe)) {
+					unlockableEnchanterRecipes.get(requiredAdvancementIdentifier).add(recipe);
+				}
+			} else {
+				List<EnchanterRecipe> recipes = new ArrayList<>();
+				recipes.add(recipe);
+				unlockableEnchanterRecipes.put(requiredAdvancementIdentifier, recipes);
+			}
+		}
+	}
 
 	public static void process(List<Identifier> doneAdvancements, boolean showToast) {
 		if(showToast) {
 			List<PedestalCraftingRecipe> pedestalRecipes = new ArrayList<>();
 			List<FusionShrineRecipe> fusionRecipes = new ArrayList<>();
+			List<EnchanterRecipe> enchanterRecipes = new ArrayList<>();
+			
 			for (Identifier doneAdvancement : doneAdvancements) {
 				if (unlockablePedestalRecipes.containsKey(doneAdvancement)) {
 					for (PedestalCraftingRecipe unlockedRecipe : unlockablePedestalRecipes.get(doneAdvancement)) {
@@ -79,7 +98,7 @@ public class ClientRecipeToastManager {
 						}
 					}
 				}
-
+				
 				if (unlockableFusionShrineRecipes.containsKey(doneAdvancement)) {
 					for (FusionShrineRecipe unlockedRecipe : unlockableFusionShrineRecipes.get(doneAdvancement)) {
 						if(!fusionRecipes.contains((unlockedRecipe))) {
@@ -87,10 +106,27 @@ public class ClientRecipeToastManager {
 						}
 					}
 				}
+				
+				if (unlockableEnchanterRecipes.containsKey(doneAdvancement)) {
+					for (EnchanterRecipe unlockedRecipe : unlockableEnchanterRecipes.get(doneAdvancement)) {
+						if(!enchanterRecipes.contains((unlockedRecipe))) {
+							enchanterRecipes.add(unlockedRecipe);
+						}
+					}
+				}
 			}
 
-			showGroupedRecipeUnlockToasts(pedestalRecipes, UnlockedRecipeGroupToast.UnlockedRecipeToastType.PEDESTAL);
-			showGroupedRecipeUnlockToasts(fusionRecipes, UnlockedRecipeGroupToast.UnlockedRecipeToastType.FUSION_SHRINE);
+			if(!pedestalRecipes.isEmpty()) {
+				showGroupedRecipeUnlockToasts(pedestalRecipes, UnlockedRecipeGroupToast.UnlockedRecipeToastType.PEDESTAL);
+			}
+			if(!pedestalRecipes.isEmpty()) {
+				showGroupedRecipeUnlockToasts(fusionRecipes, UnlockedRecipeGroupToast.UnlockedRecipeToastType.FUSION_SHRINE);
+			}
+			if(!enchanterRecipes.isEmpty()) {
+				showGroupedRecipeUnlockToasts(enchanterRecipes, UnlockedRecipeGroupToast.UnlockedRecipeToastType.ENCHANTER);
+			}
+			
+			
 		}
 	}
 

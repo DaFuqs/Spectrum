@@ -3,6 +3,8 @@ package de.dafuqs.spectrum.recipe;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.recipe.anvil_crushing.AnvilCrushingRecipe;
 import de.dafuqs.spectrum.recipe.anvil_crushing.AnvilCrushingRecipeSerializer;
+import de.dafuqs.spectrum.recipe.enchanter.EnchanterRecipe;
+import de.dafuqs.spectrum.recipe.enchanter.EnchanterRecipeSerializer;
 import de.dafuqs.spectrum.recipe.fusion_shrine.FusionShrineRecipe;
 import de.dafuqs.spectrum.recipe.fusion_shrine.FusionShrineRecipeSerializer;
 import de.dafuqs.spectrum.recipe.pedestal.PedestalCraftingRecipe;
@@ -23,6 +25,9 @@ public class SpectrumRecipeTypes {
 
 	public static RecipeSerializer<FusionShrineRecipe> FUSION_SHRINE_RECIPE_SERIALIZER;
 	public static RecipeType<FusionShrineRecipe> FUSION_SHRINE;
+
+	public static RecipeSerializer<EnchanterRecipe> ENCHANTER_RECIPE_SERIALIZER;
+	public static RecipeType<EnchanterRecipe> ENCHANTER;
 
 
 	static <S extends RecipeSerializer<T>, T extends Recipe<?>> S registerSerializer(String id, S serializer) {
@@ -50,6 +55,12 @@ public class SpectrumRecipeTypes {
 		FUSION_SHRINE = registerRecipeType("fusion_shrine", new RecipeType<FusionShrineRecipe>() {
 			@Override
 			public String toString() {return "spectrum:fusion_shrine";}
+		});
+		
+		ENCHANTER_RECIPE_SERIALIZER = registerSerializer("enchanter", new EnchanterRecipeSerializer(EnchanterRecipe::new));
+		ENCHANTER = registerRecipeType("enchanter", new RecipeType<EnchanterRecipe>() {
+			@Override
+			public String toString() {return "spectrum:enchanter";}
 		});
 
 	}

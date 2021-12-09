@@ -39,7 +39,18 @@ public class AnvilCrushingRecipeSerializer<T extends AnvilCrushingRecipe> implem
 
 		return this.recipeFactory.create(identifier, ingredient, outputItemStack, crushedItemsPerPointOfDamage, experience, particleEffectIdentifier, particleCount, soundEventIdentifier);
 	}
-
+	
+	@Override
+	public void write(PacketByteBuf packetByteBuf, T anvilCrushingRecipe) {
+		anvilCrushingRecipe.inputIngredient.write(packetByteBuf);
+		packetByteBuf.writeItemStack(anvilCrushingRecipe.outputItemStack);
+		packetByteBuf.writeFloat(anvilCrushingRecipe.crushedItemsPerPointOfDamage);
+		packetByteBuf.writeFloat(anvilCrushingRecipe.experience);
+		packetByteBuf.writeIdentifier(anvilCrushingRecipe.particleEffect);
+		packetByteBuf.writeInt(anvilCrushingRecipe.particleCount);
+		packetByteBuf.writeIdentifier(anvilCrushingRecipe.soundEvent);
+	}
+	
 	@Override
 	public T read(Identifier identifier, PacketByteBuf packetByteBuf) {
 		Ingredient ingredient = Ingredient.fromPacket(packetByteBuf);
@@ -52,17 +63,7 @@ public class AnvilCrushingRecipeSerializer<T extends AnvilCrushingRecipe> implem
 		return this.recipeFactory.create(identifier, ingredient, outputItemStack, crushedItemsPerPointOfDamage, experience, particleEffectIdentifier, particleCount, soundEventIdentifier);
 	}
 
-	@Override
-	public void write(PacketByteBuf packetByteBuf, T anvilCrushingRecipe) {
-		anvilCrushingRecipe.inputIngredient.write(packetByteBuf);
-		packetByteBuf.writeItemStack(anvilCrushingRecipe.outputItemStack);
-		packetByteBuf.writeFloat(anvilCrushingRecipe.crushedItemsPerPointOfDamage);
-		packetByteBuf.writeFloat(anvilCrushingRecipe.experience);
-		packetByteBuf.writeIdentifier(anvilCrushingRecipe.particleEffect);
-		packetByteBuf.writeInt(anvilCrushingRecipe.particleCount);
-		packetByteBuf.writeIdentifier(anvilCrushingRecipe.soundEvent);
-	}
-
+	
 	public interface RecipeFactory<T extends AnvilCrushingRecipe> {
 		T create(Identifier id, Ingredient inputIngredient, ItemStack outputItemStack, float crushedItemsPerPointOfDamage, float experience, Identifier particleEffectIdentifier, int particleCount, Identifier soundEventIdentifier);
 	}

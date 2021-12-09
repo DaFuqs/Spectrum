@@ -7,6 +7,7 @@ import net.minecraft.block.InventoryProvider;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.ChestBlockEntity;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SidedInventory;
 import net.minecraft.item.ItemStack;
@@ -17,6 +18,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -24,7 +26,46 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 public class InventoryHelper {
-
+	
+	public static boolean removeFromInventory(@NotNull PlayerEntity playerEntity, @NotNull ItemStack paymentStack) {
+		if(playerEntity.isCreative()) {
+			return true;
+		} else {
+			Inventory playerInventory = playerEntity.getInventory();
+			List<Pair<Integer, ItemStack>> matchingStacks = new ArrayList<>();
+			int paymentStackItemCount = 0;
+			for (int i = 0; i < playerInventory.size(); i++) {
+				ItemStack currentStack = playerInventory.getStack(i);
+				if (currentStack.getItem().equals(paymentStack.getItem())) {
+					matchingStacks.add(new Pair(i, currentStack));
+					paymentStackItemCount += currentStack.getCount();
+					if (paymentStackItemCount >= paymentStack.getCount()) {
+						break;
+					}
+				}
+			}
+			
+			if (paymentStackItemCount < paymentStack.getCount()) {
+				return false;
+			} else {
+				int amountToPay = paymentStack.getCount();
+				for (Pair<Integer, ItemStack> matchingStack : matchingStacks) {
+					if (matchingStack.getRight().getCount() <= amountToPay) {
+						amountToPay -= matchingStack.getRight().getCount();
+						playerEntity.getInventory().setStack(matchingStack.getLeft(), ItemStack.EMPTY);
+						if(amountToPay <= 0) {
+							break;
+						}
+					} else {
+						matchingStack.getRight().decrement(amountToPay);
+						return true;
+					}
+				}
+				return true;
+			}
+		}
+	}
+	
 	public static Pair<Integer, List<ItemStack>> getStackCountInInventory(ItemStack itemStack, List<ItemStack> inventory) {
 		List<ItemStack> foundStacks = new ArrayList<>();
 		int count = 0;

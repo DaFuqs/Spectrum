@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.items.magic_items;
 
+import de.dafuqs.spectrum.InventoryHelper;
 import de.dafuqs.spectrum.networking.SpectrumS2CPackets;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import de.dafuqs.spectrum.registries.SpectrumItems;
@@ -92,7 +93,7 @@ public class LightStaffItem extends Item {
 					BlockState targetBlockState = world.getBlockState(targetPos);
 					
 					if (targetBlockState.isAir()) {
-						if (payUsageCost(playerEntity, COST)) {
+						if (InventoryHelper.removeFromInventory(playerEntity, COST)) {
 							world.setBlockState(targetPos, SpectrumBlocks.WAND_LIGHT_BLOCK.getDefaultState(), 3);
 							playSoundAndParticles(world, targetPos, playerEntity, useTimes, iteration);
 						} else {
@@ -100,7 +101,7 @@ public class LightStaffItem extends Item {
 						}
 						break;
 					} else if (targetBlockState.isOf(Blocks.WATER)) {
-						if (payUsageCost(playerEntity, COST)) {
+						if (InventoryHelper.removeFromInventory(playerEntity, COST)) {
 							world.setBlockState(targetPos, SpectrumBlocks.WAND_LIGHT_BLOCK.getDefaultState().with(WATERLOGGED, true), 3);
 							playSoundAndParticles(world, targetPos, playerEntity, useTimes, iteration);
 						} else {
@@ -129,43 +130,4 @@ public class LightStaffItem extends Item {
 		world.playSound(null, playerEntity.getX(), playerEntity.getY(), playerEntity.getZ(), SoundEvents.BLOCK_LAVA_EXTINGUISH, SoundCategory.PLAYERS, 0.5F, 0.8F + playerEntity.getRandom().nextFloat() * 0.4F);
 	}
 	
-	public boolean payUsageCost(@NotNull PlayerEntity playerEntity,@NotNull ItemStack paymentStack) {
-		if(playerEntity.isCreative()) {
-			return true;
-		} else {
-			Inventory playerInventory = playerEntity.getInventory();
-			List<Pair<Integer, ItemStack>> matchingStacks = new ArrayList<>();
-			int paymentStackItemCount = 0;
-			for (int i = 0; i < playerInventory.size(); i++) {
-				ItemStack currentStack = playerInventory.getStack(i);
-				if (currentStack.getItem().equals(paymentStack.getItem())) {
-					matchingStacks.add(new Pair(i, currentStack));
-					paymentStackItemCount += currentStack.getCount();
-					if (paymentStackItemCount >= paymentStack.getCount()) {
-						break;
-					}
-				}
-			}
-			
-			if (paymentStackItemCount < paymentStack.getCount()) {
-				return false;
-			} else {
-				int amountToPay = paymentStack.getCount();
-				for (Pair<Integer, ItemStack> matchingStack : matchingStacks) {
-					if (matchingStack.getRight().getCount() <= amountToPay) {
-						amountToPay -= matchingStack.getRight().getCount();
-						playerEntity.getInventory().setStack(matchingStack.getLeft(), ItemStack.EMPTY);
-						if(amountToPay <= 0) {
-							break;
-						}
-					} else {
-						matchingStack.getRight().decrement(amountToPay);
-						return true;
-					}
-				}
-				return true;
-			}
-		}
-	}
-
 }

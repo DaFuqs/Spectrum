@@ -2,11 +2,13 @@ package de.dafuqs.spectrum.items.magic_items;
 
 import de.dafuqs.spectrum.SpectrumClient;
 import de.dafuqs.spectrum.registries.SpectrumBlockTags;
+import de.dafuqs.spectrum.registries.SpectrumItems;
 import de.dafuqs.spectrum.sound.NaturesStaffUseSoundInstance;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.*;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
@@ -16,6 +18,8 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.tag.BlockTags;
 import net.minecraft.tag.FluidTags;
+import net.minecraft.text.Text;
+import net.minecraft.text.TranslatableText;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
@@ -33,7 +37,9 @@ import org.jetbrains.annotations.Nullable;
 import java.util.*;
 
 public class NaturesStaffItem extends Item {
-
+	
+	public static ItemStack COST = new ItemStack(SpectrumItems.VEGETAL, 1);
+	
 	public static final Map<Block, BlockState> BLOCK_CONVERSIONS = new HashMap<>() {{
 		// BLOCKS
 		put(Blocks.DIRT, Blocks.GRASS_BLOCK.getDefaultState());
@@ -70,6 +76,11 @@ public class NaturesStaffItem extends Item {
 		put(Blocks.DEAD_TUBE_CORAL_FAN, Blocks.TUBE_CORAL_FAN.getDefaultState());
 		put(Blocks.DEAD_TUBE_CORAL_WALL_FAN, Blocks.TUBE_CORAL_WALL_FAN.getDefaultState());
 	}};
+	
+	@Override
+	public void appendTooltip(ItemStack itemStack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
+		tooltip.add(new TranslatableText("item.spectrum.natures_staff.tooltip"));
+	}
 
 	public NaturesStaffItem(Settings settings) {
 		super(settings);

@@ -1099,6 +1099,8 @@
   "advancements.spectrum.create_refined_azurite.description": "Refine Azurite into ingot form",
   "advancements.spectrum.fill_knowledge_drop.title": "I dumped CHA instead",
   "advancements.spectrum.fill_knowledge_drop.description": "Fill a Knowledge Drop with 10.000 experience",
+  "advancements.spectrum.enchant_exchange_staff.title": "More than a building tool",
+  "advancements.spectrum.enchant_exchange_staff.description": "Craft and enchant an Exchanging Staff",
 
 
   "______name_changes_for_vanilla_blocks" : "Changes:",

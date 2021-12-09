@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:lategame/spectrum_lategame",
+  "parent": "spectrum:midgame/collect_moonstone_shard",
   "display": {
     "icon": {
       "item": "spectrum:light_gray_pigment"

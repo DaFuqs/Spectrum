@@ -1,7 +1,7 @@
 {
     "name": "Treasure Hunter",
     "icon": "minecraft:iron_sword",
-    "advancement": "spectrum:midgame/build_enchanting_structure",
+    "advancement": "spectrum:progression/enchantments/treasure_hunter",
     "category": "spectrum:enchanting_category",
     "pages": [
         {

@@ -1,7 +1,7 @@
 {
     "name": "Pest Control",
     "icon": "minecraft:iron_pickaxe",
-    "advancement": "spectrum:midgame/build_enchanting_structure",
+    "advancement": "spectrum:progression/enchantments/pest_control",
     "category": "spectrum:enchanting_category",
     "pages": [
         {

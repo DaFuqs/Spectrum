@@ -1,7 +1,7 @@
 {
   "type": "spectrum:enchanter",
   "time": 800,
-  "required_experience": 10.0,
+  "required_experience": 250,
   "ingredients": [
     {
       "item": "spectrum:exchange_staff"

@@ -1,7 +1,7 @@
 {
     "name": "Damage Proof",
     "icon": "spectrum:multitool",
-    "advancement": "spectrum:midgame/build_enchanting_structure",
+    "advancement": "spectrum:progression/enchantments/damage_proof",
     "category": "spectrum:enchanting_category",
     "pages": [
         {

@@ -33,7 +33,7 @@
   ],
   "result" : {
     "item": "minecraft:enchanted_book",
-    "nbt": "{StoredEnchantments: [{id: \"spectrum:auto_smelt\", lvl: 1s}]}"
+    "nbt": "{StoredEnchantments: [{id: \"spectrum:autosmelt\", lvl: 1s}]}"
   },
-  "required_advancement": "spectrum:midgame/build_enchanting_structure"
+  "required_advancement": "spectrum:progression/enchantments/autosmelt"
 }

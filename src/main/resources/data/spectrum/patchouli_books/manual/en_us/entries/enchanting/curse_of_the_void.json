@@ -1,7 +1,7 @@
 {
     "name": "Curse of the Void",
     "icon": "minecraft:wooden_pickaxe",
-    "advancement": "spectrum:midgame/build_enchanting_structure",
+    "advancement": "spectrum:progression/unlocked_voiding_pickaxe",
     "category": "spectrum:enchanting_category",
     "pages": [
         {

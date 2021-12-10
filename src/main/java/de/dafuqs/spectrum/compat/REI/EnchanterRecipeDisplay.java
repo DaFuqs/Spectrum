@@ -26,7 +26,7 @@ public class EnchanterRecipeDisplay<R extends EnchanterRecipe> implements Simple
 	
 	protected final List<EntryIngredient> inputs; // first input is the center, all others around clockwise
 	protected final EntryIngredient output;
-	protected final float requiredExperience;
+	protected final int requiredExperience;
 	protected final int craftingTime;
 	protected final Identifier requiredAdvancementIdentifier;
 	

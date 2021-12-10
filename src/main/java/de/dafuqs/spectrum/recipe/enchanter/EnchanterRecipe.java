@@ -31,12 +31,12 @@ public class EnchanterRecipe implements Recipe<Inventory> {
 	protected final DefaultedList<Ingredient> inputs; // first input is the center, all others around clockwise
 	protected final ItemStack output;
 	
-	protected final float requiredExperience;
+	protected final int requiredExperience;
 	protected final int craftingTime;
 	@Nullable protected final Identifier requiredAdvancementIdentifier;
 	protected final boolean noBenefitsFromYieldAndEfficiencyUpgrades;
 
-	public EnchanterRecipe(Identifier id, String group, DefaultedList<Ingredient> inputs, ItemStack output, int craftingTime, float requiredExperience, boolean noBenefitsFromYieldAndEfficiencyUpgrades, @Nullable Identifier requiredAdvancementIdentifier) {
+	public EnchanterRecipe(Identifier id, String group, DefaultedList<Ingredient> inputs, ItemStack output, int craftingTime, int requiredExperience, boolean noBenefitsFromYieldAndEfficiencyUpgrades, @Nullable Identifier requiredAdvancementIdentifier) {
 		this.id = id;
 		this.group = group;
 
@@ -119,7 +119,7 @@ public class EnchanterRecipe implements Recipe<Inventory> {
 		return inputs;
 	}
 
-	public float getRequiredExperience() {
+	public int getRequiredExperience() {
 		return requiredExperience;
 	}
 

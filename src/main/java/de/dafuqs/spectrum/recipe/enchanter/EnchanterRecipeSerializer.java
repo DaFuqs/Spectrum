@@ -54,7 +54,7 @@ public class EnchanterRecipeSerializer<T extends EnchanterRecipe> implements Rec
 
 		ItemStack output = RecipeUtils.outputWithNbtFromJson(JsonHelper.getObject(jsonObject, "result"));
 		
-		float requiredExperience = JsonHelper.getFloat(jsonObject, "required_experience", 0);
+		int requiredExperience = JsonHelper.getInt(jsonObject, "required_experience", 0);
 		int craftingTime = JsonHelper.getInt(jsonObject, "time", 200);
 		
 		boolean noBenefitsFromYieldAndEfficiencyUpgrades = false;
@@ -84,7 +84,7 @@ public class EnchanterRecipeSerializer<T extends EnchanterRecipe> implements Rec
 		
 		packetByteBuf.writeItemStack(enchanterRecipe.output);
 		packetByteBuf.writeInt(enchanterRecipe.craftingTime);
-		packetByteBuf.writeFloat(enchanterRecipe.requiredExperience);
+		packetByteBuf.writeInt(enchanterRecipe.requiredExperience);
 		packetByteBuf.writeBoolean(enchanterRecipe.noBenefitsFromYieldAndEfficiencyUpgrades);
 		packetByteBuf.writeIdentifier(enchanterRecipe.requiredAdvancementIdentifier);
 	}
@@ -101,7 +101,7 @@ public class EnchanterRecipeSerializer<T extends EnchanterRecipe> implements Rec
 		
 		ItemStack output = packetByteBuf.readItemStack();
 		int craftingTime = packetByteBuf.readInt();
-		float requiredExperience = packetByteBuf.readFloat();
+		int requiredExperience = packetByteBuf.readInt();
 		boolean noBenefitsFromYieldAndEfficiencyUpgrades = packetByteBuf.readBoolean();
 		Identifier requiredAdvancementIdentifier = packetByteBuf.readIdentifier();
 		
@@ -109,7 +109,7 @@ public class EnchanterRecipeSerializer<T extends EnchanterRecipe> implements Rec
 	}
 	
 	public interface RecipeFactory<T extends EnchanterRecipe> {
-		T create(Identifier id, String group, DefaultedList<Ingredient> inputs, ItemStack output, int craftingTime, float requiredExperience, boolean noBenefitsFromYieldAndEfficiencyUpgrades, @Nullable Identifier requiredAdvancementIdentifier);
+		T create(Identifier id, String group, DefaultedList<Ingredient> inputs, ItemStack output, int craftingTime, int requiredExperience, boolean noBenefitsFromYieldAndEfficiencyUpgrades, @Nullable Identifier requiredAdvancementIdentifier);
 	}
 
 }

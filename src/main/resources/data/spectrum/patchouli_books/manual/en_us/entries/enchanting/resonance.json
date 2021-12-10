@@ -1,22 +1,22 @@
 {
     "name": "Resonance",
-    "icon": "minecraft:amethyst_cluster",
+    "icon": "minecraft:diamond_pickaxe",
     "advancement": "spectrum:lategame/spectrum_lategame",
     "category": "spectrum:enchanting_category",
     "pages": [
         {
             "type": "patchouli:text",
-            "text": "$(italic)There have always been blocks that you were very interested in, but you could never carve them out of the ground carefully enough to retrieve them flawlessly. You noticed, however, that these blocks vibrate in a similar way to the gems you've been so concerned with lately.$(br)If you hit the right frequency, your original dream could finally become a reality."
+            "text": "$(italic)There have always been blocks that you were very interested in, but you could never carve them out of the ground carefully enough to retrieve them flawlessly. You noticed, however, that these blocks vibrate in a similar way to the gems you've been so concerned with lately.$(br)If you hit the right frequency, you finally can hold some of them in your hands."
         },
         {
             "type": "patchouli:text",
-            "text": "$(br)Uses gentle vibrations to allow some blocks to drop themselves.$(br2)Max Level: 1$(br)Applicable to mining tools.$(br)Mutually exclusive with Fortune, Foundry and Pest Control.$(br2)$(br)$(italic)We should take this geode$(br)and push it somewhere else.$()"
+            "text": "$(br)Uses gentle vibrations to allow some blocks to drop themselves.$(br2)Max Level: 1$(br)Applicable to mining tools.$(br)Mutually exclusive with Fortune, Foundry and Pest Control.$(br2)$(br2)$(italic)We should take this geode$(br)and push it somewhere else.$()"
         },
         {
             "type": "patchouli:spotlight",
             "title": "Budding Blocks",
             "item": "spectrum:budding_citrine",
-            "text": "The cracks in these blocks allows them to create new buds in a short time (well, short compared to their creation history; for you, the wait still feels like eons).$(br2)Waiting for them in your own house instead of one of your minimalist outposts sounds cozier."
+            "text": "The cracks in these blocks allows them to create new buds in a short time (well, short compared to their creation history; for you, the wait still feels like eons).$(br2)Waiting for them in your own house instead of one of your outposts sounds cozier."
         },
 		{
             "type": "patchouli:spotlight",
@@ -34,7 +34,7 @@
             "type": "patchouli:spotlight",
             "title": "Infested Blocks",
             "item": "minecraft:infested_stone_bricks",
-            "text": "The gentle vibrations lull the silverfish hiding in the blocks. Not knowing what will happen to them, you can pack up the blocks and the silverfish and take them with you. They do not know what will happen to them.$(br)Sweet, sweet revenge?"
+            "text": "The gentle vibrations lull the silverfish hiding in the blocks.$(br2)You can pack up the blocks including the silverfish and take them with you, without them knowing what is happening to them.$(br)Sweet, sweet revenge?"
         }
     ]
 }

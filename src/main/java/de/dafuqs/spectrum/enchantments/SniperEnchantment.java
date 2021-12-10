@@ -23,7 +23,7 @@ public class SniperEnchantment extends Enchantment {
 	}
 
 	public int getMaxLevel() {
-		return 1;
+		return 2;
 	}
 
 	public boolean isTreasure() {

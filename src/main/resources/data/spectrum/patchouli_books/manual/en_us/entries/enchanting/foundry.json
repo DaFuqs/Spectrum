@@ -1,6 +1,6 @@
 {
     "name": "Foundry",
-    "icon": "minecraft:furnace",
+    "icon": "minecraft:iron_pickaxe",
     "advancement": "spectrum:midgame/build_enchanting_structure",
     "category": "spectrum:enchanting_category",
     "pages": [

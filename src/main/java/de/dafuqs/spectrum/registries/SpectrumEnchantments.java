@@ -16,7 +16,6 @@ public class SpectrumEnchantments {
 	public static final Enchantment VOIDING = new VoidingEnchantment(Enchantment.Rarity.RARE, EquipmentSlot.MAINHAND); // Voids all items mined
 	public static final Enchantment EXUBERANCE = new ExuberanceEnchantment(Enchantment.Rarity.UNCOMMON, EquipmentSlot.MAINHAND); // Drops more XP on kill
 	public static final Enchantment TREASURE_HUNTER = new TreasureHunterEnchantment(Enchantment.Rarity.RARE, EquipmentSlot.MAINHAND); // Drops mob heads
-
 	public static final Enchantment FIRST_STRIKE = new FirstStrikeEnchantment(Enchantment.Rarity.RARE, EquipmentSlot.MAINHAND); // Increased damage if enemy has full health
 	public static final Enchantment IMPROVED_CRITICAL = new ImprovedCriticalEnchantment(Enchantment.Rarity.RARE, EquipmentSlot.MAINHAND); // Increased damage when landing a critical hit
 	public static final Enchantment INERTIA = new InertiaEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlot.MAINHAND); // Decreases mining speed, but increases with each mined block of the same type

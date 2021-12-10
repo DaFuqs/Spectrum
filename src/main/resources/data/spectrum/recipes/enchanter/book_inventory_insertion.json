@@ -1,0 +1,39 @@
+{
+  "type": "spectrum:enchanter",
+  "time": 800,
+  "required_experience": 10.0,
+  "ingredients": [
+    {
+      "item": "minecraft:book"
+    },
+    {
+      "item": "minecraft:emerald"
+    },
+    {
+      "item": "minecraft:emerald"
+    },
+    {
+      "item": "spectrum:vegetal"
+    },
+    {
+      "item": "spectrum:vegetal"
+    },
+    {
+      "item": "minecraft:emerald"
+    },
+    {
+      "item": "minecraft:emerald"
+    },
+    {
+      "item": "spectrum:vegetal"
+    },
+    {
+      "item": "spectrum:vegetal"
+    }
+  ],
+  "result" : {
+    "item": "minecraft:enchanted_book",
+    "nbt": "{StoredEnchantments: [{id: \"spectrum:inventory_insertion\", lvl: 1s}]}"
+  },
+  "required_advancement": "spectrum:midgame/build_enchanting_structure"
+}

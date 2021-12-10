@@ -1,0 +1,16 @@
+{
+    "name": "Disarming",
+    "icon": "minecraft:iron_sword",
+    "advancement": "spectrum:midgame/build_enchanting_structure",
+    "category": "spectrum:enchanting_category",
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "$(italic)The zombies you encounter every day wear lots of valuable equipment. But when they die, it disappears never to be seen again.$(br2)No problem if you manage to snatch it from them while they are still alive. Gotcha!"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "$(br3)Small chance for mobs (and other players!) to drop their equipment when hit.$(br2)Max Level: 4$(br)Applicable to melee weapons."
+        }
+    ]
+}

@@ -1,12 +1,12 @@
 {
     "name": "Exuberance",
-    "icon": "minecraft:experience_bottle",
+    "icon": "minecraft:iron_sword",
     "advancement": "spectrum:midgame/build_enchanting_structure",
     "category": "spectrum:enchanting_category",
     "pages": [
         {
             "type": "patchouli:text",
-            "text": "$(italic)That fancy book table consisting of obsidian and diamond of yours, while useful, more or less swallows every piece of experience, as soon as you acquire it. To satisfy its never diminishing hunger to supply your ever-growing list of enchanted tools.$(br2)Squeezing the last bit of experience out of your opponents would help a lot."
+            "text": "$(italic)That fancy book table of obsidian and diamond of yours, while useful, more or less swallows every piece of experience, as soon as you acquire it. To satisfy its never diminishing hunger to supply your ever-growing list of enchanted tools.$(br2)Squeezing the last bit of experience out of your opponents will help a lot."
         },
         {
             "type": "patchouli:text",

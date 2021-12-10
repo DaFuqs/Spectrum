@@ -1,6 +1,6 @@
 {
     "name": "Pest Control",
-    "icon": "minecraft:infested_stone_bricks",
+    "icon": "minecraft:iron_pickaxe",
     "advancement": "spectrum:midgame/build_enchanting_structure",
     "category": "spectrum:enchanting_category",
     "pages": [

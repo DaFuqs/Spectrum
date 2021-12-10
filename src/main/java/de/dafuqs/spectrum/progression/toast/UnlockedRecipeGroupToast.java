@@ -11,7 +11,11 @@ import net.minecraft.client.sound.PositionedSoundInstance;
 import net.minecraft.client.toast.Toast;
 import net.minecraft.client.toast.ToastManager;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
@@ -19,6 +23,7 @@ import net.minecraft.util.Identifier;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Environment(EnvType.CLIENT)
 public class UnlockedRecipeGroupToast implements Toast {
@@ -52,7 +57,7 @@ public class UnlockedRecipeGroupToast implements Toast {
 		} else {
 			title = new TranslatableText("spectrum.toast.enchanter_recipe_unlocked.title");
 		}
-		Text text = itemStack.getName();
+		Text text = getTextForItemStack(itemStack);
 		client.getToastManager().add(new UnlockedRecipeGroupToast(title, text, new ArrayList<>() {{ add(itemStack); }}));
 	}
 
@@ -93,5 +98,20 @@ public class UnlockedRecipeGroupToast implements Toast {
 
 		return startTime >= 5000L ? Visibility.HIDE : Visibility.SHOW;
 	}
+	
+	public static Text getTextForItemStack(ItemStack itemStack) {
+		// special handling for enchanted books
+		// Instead of the text "enchanted book" the toast will
+		// read the first stored enchantment in the book
+		if(itemStack.getItem().equals(Items.ENCHANTED_BOOK)) {
+			Map<Enchantment, Integer> enchantments = EnchantmentHelper.get(itemStack);
+			if(enchantments.size() > 0) {
+				Map.Entry<Enchantment, Integer> firstEnchantment = enchantments.entrySet().iterator().next();
+				return firstEnchantment.getKey().getName(firstEnchantment.getValue());
+			}
+		}
+		return itemStack.getName();
+	}
+	
 
 }

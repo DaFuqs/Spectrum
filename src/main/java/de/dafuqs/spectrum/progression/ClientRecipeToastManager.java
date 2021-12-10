@@ -159,7 +159,9 @@ public class ClientRecipeToastManager {
 		HashMap<String, List<ItemStack>> groupedRecipes = new HashMap<>();
 		for(Recipe recipe : recipes) {
 			if(recipe.getGroup().isEmpty()) {
-				UnlockedRecipeGroupToast.showRecipeToast(MinecraftClient.getInstance(), new ItemStack(recipe.getOutput().getItem()), toastType);
+				ItemStack displayStack = recipe.getOutput().copy();
+				displayStack.setCount(1);
+				UnlockedRecipeGroupToast.showRecipeToast(MinecraftClient.getInstance(), displayStack, toastType);
 			} else {
 				if(groupedRecipes.containsKey(recipe.getGroup())) {
 					groupedRecipes.get(recipe.getGroup()).add(recipe.getOutput());

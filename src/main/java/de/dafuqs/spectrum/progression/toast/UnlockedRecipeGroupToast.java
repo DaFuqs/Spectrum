@@ -19,8 +19,10 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 
+import javax.swing.text.Style;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -103,15 +105,14 @@ public class UnlockedRecipeGroupToast implements Toast {
 		// special handling for enchanted books
 		// Instead of the text "enchanted book" the toast will
 		// read the first stored enchantment in the book
-		if(itemStack.getItem().equals(Items.ENCHANTED_BOOK)) {
+		if(itemStack.isOf(Items.ENCHANTED_BOOK)) {
 			Map<Enchantment, Integer> enchantments = EnchantmentHelper.get(itemStack);
 			if(enchantments.size() > 0) {
 				Map.Entry<Enchantment, Integer> firstEnchantment = enchantments.entrySet().iterator().next();
-				return firstEnchantment.getKey().getName(firstEnchantment.getValue());
+				return new TranslatableText(firstEnchantment.getKey().getTranslationKey());
 			}
 		}
 		return itemStack.getName();
 	}
 	
-
 }

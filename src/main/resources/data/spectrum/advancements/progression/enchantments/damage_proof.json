@@ -3,6 +3,14 @@
     "built_enchanting_structure": {
       "trigger":"spectrum:has_advancement",
       "conditions": { "advancement_identifier": "spectrum:midgame/build_enchanting_structure" }
+    },
+    "broken_decayed_bedrock": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:midgame/break_decayed_bedrock" }
+    },
+    "collected_shooting_star": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:collect_shooting_star" }
     }
   }
 }

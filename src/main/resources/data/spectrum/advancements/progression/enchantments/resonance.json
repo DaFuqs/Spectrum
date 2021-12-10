@@ -7,6 +7,10 @@
     "broken_budding_block_with_resonance_tool": {
       "trigger":"spectrum:has_advancement",
       "conditions": { "advancement_identifier": "spectrum:lategame/break_budding_block_with_resonance_tool" }
+    },
+    "collected_mermaids_gem": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:collect_mermaids_gem" }
     }
   }
 }

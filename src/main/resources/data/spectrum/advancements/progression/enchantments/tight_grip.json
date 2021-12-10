@@ -4,9 +4,9 @@
       "trigger":"spectrum:has_advancement",
       "conditions": { "advancement_identifier": "spectrum:midgame/build_enchanting_structure" }
     },
-    "collected_decayed_bedrock": {
+    "collected_corrupted_obsidian_dust": {
       "trigger":"spectrum:has_advancement",
-      "conditions": { "advancement_identifier": "spectrum:midgame/collect_decayed_bedrock" }
+      "conditions": { "advancement_identifier": "spectrum:midgame/collect_corrupted_obsidian_dust" }
     }
   }
 }

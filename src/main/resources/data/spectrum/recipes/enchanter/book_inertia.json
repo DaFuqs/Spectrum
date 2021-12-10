@@ -1,7 +1,7 @@
 {
   "type": "spectrum:enchanter",
-  "time": 800,
-  "required_experience": 10.0,
+  "time": 300,
+  "required_experience": 100,
   "ingredients": [
     {
       "item": "minecraft:book"
@@ -13,22 +13,22 @@
       "item": "spectrum:brown_pigment"
     },
     {
-      "item": "spectrum:vegetal"
+      "item": "spectrum:corrupted_obsidian_dust"
     },
     {
-      "item": "spectrum:vegetal"
-    },
-    {
-      "item": "spectrum:brown_pigment"
+      "item": "minecraft:netherite_scrap"
     },
     {
       "item": "spectrum:brown_pigment"
     },
     {
-      "item": "spectrum:vegetal"
+      "item": "spectrum:brown_pigment"
     },
     {
-      "item": "spectrum:vegetal"
+      "item": "spectrum:corrupted_obsidian_dust"
+    },
+    {
+      "item": "minecraft:netherite_scrap"
     }
   ],
   "result" : {

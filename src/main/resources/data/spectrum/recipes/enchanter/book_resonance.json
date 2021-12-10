@@ -1,7 +1,7 @@
 {
   "type": "spectrum:enchanter",
-  "time": 800,
-  "required_experience": 10.0,
+  "time": 300,
+  "required_experience": 100,
   "ingredients": [
     {
       "item": "minecraft:book"
@@ -13,22 +13,22 @@
       "item": "spectrum:cyan_pigment"
     },
     {
-      "item": "spectrum:vegetal"
+      "item": "spectrum:paletur_gem"
     },
     {
-      "item": "spectrum:vegetal"
-    },
-    {
-      "item": "spectrum:cyan_pigment"
+      "item": "spectrum:mermaids_gem"
     },
     {
       "item": "spectrum:cyan_pigment"
     },
     {
-      "item": "spectrum:vegetal"
+      "item": "spectrum:cyan_pigment"
     },
     {
-      "item": "spectrum:vegetal"
+      "item": "spectrum:paletur_gem"
+    },
+    {
+      "item": "spectrum:mermaids_gem"
     }
   ],
   "result" : {

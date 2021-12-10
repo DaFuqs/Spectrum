@@ -1,0 +1,8 @@
+{
+  "criteria": {
+    "has_netherite_scrap": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": { "items": [{ "items": [ "minecraft:netherite_scrap" ]}] }
+    }
+  }
+}

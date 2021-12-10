@@ -4,9 +4,13 @@
       "trigger":"spectrum:has_advancement",
       "conditions": { "advancement_identifier": "spectrum:midgame/build_enchanting_structure" }
     },
-    "collected_corrupted_obsidian_dust": {
+    "collected_light_gray_pigment": {
       "trigger":"spectrum:has_advancement",
-      "conditions": { "advancement_identifier": "spectrum:midgame/collect_corrupted_obsidian_dust" }
+      "conditions": { "advancement_identifier": "spectrum:hidden/collect_pigment/collect_light_gray_pigment" }
+    },
+    "collected_lightning_stone": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:midgame/collect_lightning_stone" }
     }
   }
 }

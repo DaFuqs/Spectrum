@@ -1,34 +1,34 @@
 {
   "type": "spectrum:enchanter",
-  "time": 800,
-  "required_experience": 10.0,
+  "time": 300,
+  "required_experience": 100,
   "ingredients": [
     {
       "item": "minecraft:book"
     },
     {
-      "item": "minecraft:emerald"
+      "item": "spectrum:green_pigment"
     },
     {
-      "item": "minecraft:emerald"
+      "item": "spectrum:green_pigment"
     },
     {
-      "item": "spectrum:vegetal"
+      "item": "minecraft:redstone"
     },
     {
-      "item": "spectrum:vegetal"
+      "item": "minecraft:diamond"
     },
     {
-      "item": "minecraft:emerald"
+      "item": "spectrum:green_pigment"
     },
     {
-      "item": "minecraft:emerald"
+      "item": "spectrum:green_pigment"
     },
     {
-      "item": "spectrum:vegetal"
+      "item": "minecraft:redstone"
     },
     {
-      "item": "spectrum:vegetal"
+      "item": "minecraft:diamond"
     }
   ],
   "result" : {

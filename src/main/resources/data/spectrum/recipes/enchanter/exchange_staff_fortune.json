@@ -1,31 +1,31 @@
 {
   "type": "spectrum:enchanter",
-  "time": 800,
+  "time": 1200,
   "required_experience": 250,
   "ingredients": [
     {
       "item": "spectrum:exchange_staff"
     },
     {
-      "item": "minecraft:lapis_lazuli"
+      "item": "spectrum:four_leaf_clover"
     },
     {
       "item": "spectrum:light_blue_pigment"
     },
     {
-      "item": "minecraft:lapis_lazuli"
+      "item": "spectrum:four_leaf_clover"
     },
     {
       "item": "spectrum:light_blue_pigment"
     },
     {
-      "item": "minecraft:lapis_lazuli"
+      "item": "spectrum:four_leaf_clover"
     },
     {
       "item": "spectrum:light_blue_pigment"
     },
     {
-      "item": "minecraft:lapis_lazuli"
+      "item": "spectrum:four_leaf_clover"
     },
     {
       "item": "spectrum:light_blue_pigment"
@@ -35,5 +35,5 @@
     "item": "spectrum:exchange_staff",
     "nbt": "{Enchantments: [{id: \"minecraft:fortune\", lvl: 3s}]}"
   },
-  "required_advancement": "spectrum:progression/unlock_exchange_staff"
+  "required_advancement": "spectrum:progression/unlock_exchange_staff_fortune"
 }

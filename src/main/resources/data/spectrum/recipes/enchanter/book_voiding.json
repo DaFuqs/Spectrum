@@ -1,7 +1,7 @@
 {
   "type": "spectrum:enchanter",
-  "time": 800,
-  "required_experience": 10.0,
+  "time": 300,
+  "required_experience": 100,
   "ingredients": [
     {
       "item": "minecraft:book"
@@ -13,22 +13,22 @@
       "item": "spectrum:black_pigment"
     },
     {
-      "item": "spectrum:vegetal"
+      "item": "minecraft:ender_pearl"
     },
     {
-      "item": "spectrum:vegetal"
-    },
-    {
-      "item": "spectrum:black_pigment"
+      "item": "minecraft:end_stone"
     },
     {
       "item": "spectrum:black_pigment"
     },
     {
-      "item": "spectrum:vegetal"
+      "item": "spectrum:black_pigment"
     },
     {
-      "item": "spectrum:vegetal"
+      "item": "minecraft:ender_pearl"
+    },
+    {
+      "item": "minecraft:end_stone"
     }
   ],
   "result" : {

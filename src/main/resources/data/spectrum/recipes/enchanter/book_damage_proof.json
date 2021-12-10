@@ -1,7 +1,7 @@
 {
   "type": "spectrum:enchanter",
-  "time": 800,
-  "required_experience": 10.0,
+  "time": 300,
+  "required_experience": 100,
   "ingredients": [
     {
       "item": "minecraft:book"
@@ -13,22 +13,22 @@
       "item": "spectrum:blue_pigment"
     },
     {
-      "item": "spectrum:vegetal"
+      "item": "spectrum:bedrock_dust"
     },
     {
-      "item": "spectrum:vegetal"
-    },
-    {
-      "item": "spectrum:blue_pigment"
+      "item": "spectrum:shooting_star"
     },
     {
       "item": "spectrum:blue_pigment"
     },
     {
-      "item": "spectrum:vegetal"
+      "item": "spectrum:blue_pigment"
     },
     {
-      "item": "spectrum:vegetal"
+      "item": "spectrum:bedrock_dust"
+    },
+    {
+      "item": "spectrum:shooting_star"
     }
   ],
   "result" : {

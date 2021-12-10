@@ -61,7 +61,7 @@ public class EnchanterCategory<R extends FusionShrineRecipe> implements DisplayC
 			widgets.add(Widgets.createLabel(new Point(startPoint.x, startPoint.y + 43), new TranslatableText("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_2")).leftAligned().color(0x3f3f3f).noShadow());
 		} else {
 			// center input slot
-			widgets.add(Widgets.createSlot(new Point(startPoint.x + 31, startPoint.y + 39)).markInput().entries((EntryIngredient) display.inputs.get(0)));
+			widgets.add(Widgets.createSlot(new Point(startPoint.x + 31, startPoint.y + 40)).markInput().entries((EntryIngredient) display.inputs.get(0)));
 			
 			// surrounding input slots
 			widgets.add(Widgets.createSlot(new Point(startPoint.x + 18, startPoint.y + 10)).markInput().entries((EntryIngredient) display.inputs.get(1)));

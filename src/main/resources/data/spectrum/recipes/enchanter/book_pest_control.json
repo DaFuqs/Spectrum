@@ -1,34 +1,34 @@
 {
   "type": "spectrum:enchanter",
-  "time": 800,
-  "required_experience": 10.0,
+  "time": 300,
+  "required_experience": 100,
   "ingredients": [
     {
       "item": "minecraft:book"
     },
     {
-      "item": "minecraft:emerald"
+      "item": "spectrum:light_gray_pigment"
     },
     {
-      "item": "minecraft:emerald"
+      "item": "spectrum:light_gray_pigment"
     },
     {
-      "item": "spectrum:vegetal"
+      "item": "spectrum:lightning_stone"
     },
     {
-      "item": "spectrum:vegetal"
+      "item": "minecraft:soul_sand"
     },
     {
-      "item": "minecraft:emerald"
+      "item": "spectrum:light_gray_pigment"
     },
     {
-      "item": "minecraft:emerald"
+      "item": "spectrum:light_gray_pigment"
     },
     {
-      "item": "spectrum:vegetal"
+      "item": "spectrum:lightning_stone"
     },
     {
-      "item": "spectrum:vegetal"
+      "item": "minecraft:soul_sand"
     }
   ],
   "result" : {

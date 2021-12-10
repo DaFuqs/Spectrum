@@ -78,13 +78,28 @@ public class EnchanterCategory<R extends FusionShrineRecipe> implements DisplayC
 			widgets.add(Widgets.createArrow(new Point(startPoint.x + 80, startPoint.y + 40)));
 			widgets.add(Widgets.createResultSlotBackground(new Point(startPoint.x + 111, startPoint.y + 40)));
 			widgets.add(Widgets.createSlot(new Point(startPoint.x + 111, startPoint.y + 40)).markOutput().disableBackground().entries(output.get(0)));
+			
+			// duration and XP requirements
+			// special handling for "1 second". Looks nicer
+			TranslatableText text;
+			if (display.craftingTime == 20) {
+				text = new TranslatableText("container.spectrum.rei.enchanting.crafting_time_one_second", 1);
+			} else {
+				text = new TranslatableText("container.spectrum.rei.enchanting.crafting_time", (display.craftingTime / 20));
+			}
+			widgets.add(Widgets.createLabel(new Point(startPoint.x + 70, startPoint.y + 76), text).leftAligned().color(0x3f3f3f).noShadow());
+			widgets.add(Widgets.createLabel(
+					new Point(startPoint.x + 64, startPoint.y + 85),
+					new TranslatableText("container.spectrum.rei.enchanting.required_xp", display.requiredExperience)
+			).leftAligned().color(0x3f3f3f).noShadow());
+			
 		}
 		return widgets;
 	}
 
 	@Override
 	public int getDisplayHeight() {
-		return 99;
+		return 100;
 	}
 
 }

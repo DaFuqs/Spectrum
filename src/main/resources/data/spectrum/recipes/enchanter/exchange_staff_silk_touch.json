@@ -33,7 +33,7 @@
   ],
   "result" : {
     "item": "spectrum:exchange_staff",
-    "nbt": "{Enchantments: [{id: \"minecraft:silk_touch\", lvl: 1qs}]}"
+    "nbt": "{Enchantments: [{id: \"minecraft:silk_touch\", lvl: 1s}]}"
   },
   "required_advancement": "spectrum:progression/unlock_exchange_staff"
 }

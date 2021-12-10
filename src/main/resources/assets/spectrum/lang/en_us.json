@@ -45,6 +45,9 @@
   "container.spectrum.rei.pedestal_crafting.crafting_time_one_second_and_xp": "%f second - %f XP",
   "container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_1": "You have not discovered",
   "container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_2": "this recipe yet",
+  "container.spectrum.rei.enchanting.crafting_time": "%f seconds",
+  "container.spectrum.rei.enchanting.crafting_time_one_second": "%f seconds",
+  "container.spectrum.rei.enchanting.required_xp": "drains %f XP",
 
   "container.spectrum.bedrock_anvil": "Repair & write Lore",
   "container.spectrum.bedrock_anvil.lore": "Lore:",

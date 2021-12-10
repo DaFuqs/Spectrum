@@ -9,6 +9,7 @@ import de.dafuqs.spectrum.mixin.LootTableAccessor;
 import de.dafuqs.spectrum.progression.BlockCloakManager;
 import de.dafuqs.spectrum.progression.advancement.HasAdvancementCriterion;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
+import de.dafuqs.spectrum.recipe.enchanter.EnchanterRecipe;
 import de.dafuqs.spectrum.recipe.fusion_shrine.FusionShrineRecipe;
 import de.dafuqs.spectrum.recipe.pedestal.PedestalCraftingRecipe;
 import de.dafuqs.spectrum.registries.SpectrumBlockTags;
@@ -148,6 +149,13 @@ public class ProgressionSanityCommand {
 			Item outputItem = fusionShrineRecipe.getOutput().getItem();
 			if(ColorRegistry.ITEM_COLORS.getMapping(outputItem).isEmpty()) {
 				SpectrumCommon.log(Level.WARN, "[SANITY: Fusion Shrine Recipe] Output '" + Registry.ITEM.getId(outputItem) + "' in recipe '" + fusionShrineRecipe.getId() + "', does not exist in the item color registry. Add it for nice effects!");
+			}
+		}
+		
+		// impossible to unlock enchanting recipes
+		for(EnchanterRecipe enchanterRecipe : SpectrumCommon.minecraftServer.getRecipeManager().listAllOfType(SpectrumRecipeTypes.ENCHANTER)) {
+			if(!doesAdvancementExist(enchanterRecipe.getRequiredAdvancementIdentifier())) {
+				SpectrumCommon.log(Level.WARN, "[SANITY: Enchanting Recipe Unlocks] Advancement '" + enchanterRecipe.getRequiredAdvancementIdentifier() + "' in recipe '" + enchanterRecipe.getId() + "' does not exist");
 			}
 		}
 

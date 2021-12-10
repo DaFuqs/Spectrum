@@ -1,7 +1,7 @@
 {
     "name": "Foundry",
     "icon": "minecraft:iron_pickaxe",
-    "advancement": "spectrum:progression/enchantments/foundry",
+    "advancement": "spectrum:progression/enchantments/autosmelt",
     "category": "spectrum:enchanting_category",
     "pages": [
         {

@@ -1,7 +1,7 @@
 {
     "name": "Inventory Attraction",
     "icon": "minecraft:iron_pickaxe",
-    "advancement": "spectrum:progression/enchantments/inventory_attraction",
+    "advancement": "spectrum:progression/enchantments/inventory_insertion",
     "category": "spectrum:enchanting_category",
     "pages": [
         {

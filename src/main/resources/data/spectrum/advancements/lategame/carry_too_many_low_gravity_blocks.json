@@ -10,8 +10,7 @@
     },
     "description": {
       "translate": "advancements.spectrum.carry_too_many_low_gravity_blocks.description"
-    },
-    "hidden": true
+    }
   },
   "criteria": {
     "gravity": {

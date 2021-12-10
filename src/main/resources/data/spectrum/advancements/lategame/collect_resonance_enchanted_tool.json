@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:lategame/build_complex_pedestal_structure",
+  "parent": "spectrum:lategame/collect_paletur",
   "display": {
     "icon": {
       "item": "spectrum:resonant_pickaxe"

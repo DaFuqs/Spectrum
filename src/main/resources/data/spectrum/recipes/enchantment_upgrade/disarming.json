@@ -3,19 +3,19 @@
   "enchantment": "spectrum:disarming",
   "levels": [
     {
-      "experience": 50,
-      "item": "spectrum:red_pigment",
-      "item_count": 10
-    },
-    {
       "experience": 100,
       "item": "spectrum:red_pigment",
-      "item_count": 50
+      "item_count": 8
     },
     {
-      "experience": 200,
+      "experience": 1200,
       "item": "spectrum:red_pigment",
-      "item_count": 250
+      "item_count": 32
+    },
+    {
+      "experience": 5000,
+      "item": "spectrum:red_pigment",
+      "item_count": 128
     }
   ],
   "required_advancement": "spectrum:progression/enchantments/disarming"

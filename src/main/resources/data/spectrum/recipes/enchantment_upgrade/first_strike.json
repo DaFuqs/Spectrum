@@ -3,9 +3,9 @@
   "enchantment": "spectrum:first_strike",
   "levels": [
     {
-      "experience": 50,
+      "experience": 200,
       "item": "spectrum:pink_pigment",
-      "item_count": 100
+      "item_count": 64
     }
   ],
   "required_advancement": "spectrum:progression/enchantments/first_strike"

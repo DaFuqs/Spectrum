@@ -5,12 +5,12 @@
     {
       "experience": 50,
       "item": "spectrum:brown_pigment",
-      "item_count": 50
+      "item_count": 8
     },
     {
       "experience": 50,
       "item": "spectrum:brown_pigment",
-      "item_count": 50
+      "item_count": 64
     }
   ],
   "required_advancement": "spectrum:progression/enchantments/inertia"

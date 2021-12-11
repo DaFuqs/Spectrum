@@ -3,14 +3,14 @@
   "enchantment": "spectrum:rare_loot",
   "levels": [
     {
-      "experience": 50,
+      "experience": 2500,
       "item": "spectrum:light_blue_pigment",
-      "item_count": 50
+      "item_count": 8
     },
     {
-      "experience": 50,
+      "experience": 10000,
       "item": "spectrum:light_blue_pigment",
-      "item_count": 50
+      "item_count": 256
     }
   ],
   "required_advancement": "spectrum:progression/enchantments/rare_loot"

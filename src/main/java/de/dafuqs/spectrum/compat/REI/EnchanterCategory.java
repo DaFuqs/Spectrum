@@ -33,7 +33,7 @@ public class EnchanterCategory<R extends EnchanterRecipeDisplay> implements Disp
 
 	@Override
 	public Text getTitle() {
-		return new TranslatableText("block.spectrum.enchanter");
+		return new TranslatableText("container.spectrum.rei.enchanting.title");
 	}
 
 	@Override
@@ -73,7 +73,10 @@ public class EnchanterCategory<R extends EnchanterRecipeDisplay> implements Disp
 			widgets.add(Widgets.createSlot(new Point(startPoint.x + 18, startPoint.y + 72)).markInput().entries((EntryIngredient) display.inputs.get(6)));
 			widgets.add(Widgets.createSlot(new Point(startPoint.x, startPoint.y + 54)).markInput().entries((EntryIngredient) display.inputs.get(7)));
 			widgets.add(Widgets.createSlot(new Point(startPoint.x, startPoint.y + 28)).markInput().entries((EntryIngredient) display.inputs.get(8)));
-
+			
+			// KNOWLEDGE_DROP
+			widgets.add(Widgets.createSlot(new Point(startPoint.x + 111, startPoint.y + 14)).markInput().entries((EntryIngredient) display.inputs.get(9)));
+			
 			// output arrow and slot
 			List<EntryIngredient> output = display.getOutputEntries();
 			widgets.add(Widgets.createArrow(new Point(startPoint.x + 80, startPoint.y + 40)));

@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.compat.REI;
 import de.dafuqs.spectrum.Support;
 import de.dafuqs.spectrum.recipe.enchanter.EnchanterRecipe;
 import de.dafuqs.spectrum.recipe.enchantment_upgrade.EnchantmentUpgradeRecipe;
+import de.dafuqs.spectrum.registries.SpectrumItems;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.display.SimpleGridMenuDisplay;
 import me.shedaniel.rei.api.common.entry.EntryIngredient;
@@ -34,6 +35,7 @@ public class EnchantmentUpgradeRecipeDisplay<R extends EnchantmentUpgradeRecipe>
 	
 	public EnchantmentUpgradeRecipeDisplay(@NotNull EnchantmentUpgradeRecipe recipe) {
 		this.inputs = recipe.getIngredients().stream().map(EntryIngredients::ofIngredient).collect(Collectors.toCollection(ArrayList::new));
+		this.inputs.add(EnchanterRecipeDisplay.KNOWLEDGE_DROP_INGREDIENT);
 		this.output = EntryIngredients.of(recipe.getOutput());
 		this.requiredItemCount = recipe.getRequiredItemCount();
 		

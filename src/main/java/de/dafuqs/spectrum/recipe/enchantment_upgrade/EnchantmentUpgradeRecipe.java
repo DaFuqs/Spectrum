@@ -41,7 +41,10 @@ public class EnchantmentUpgradeRecipe implements Recipe<Inventory> {
 		this.requiredAdvancementIdentifier = requiredAdvancementIdentifier;
 		
 		DefaultedList<Ingredient> inputs = DefaultedList.ofSize(2, Ingredient.EMPTY);
-		inputs.set(0, Ingredient.ofStacks(new ItemStack(Items.ENCHANTED_BOOK))); // TODO: Add enchantment nbt
+		
+		ItemStack ingredientStack = new ItemStack(Items.ENCHANTED_BOOK);
+		ingredientStack.addEnchantment(enchantment, enchantmentDestinationLevel -1);
+		inputs.set(0, Ingredient.ofStacks(ingredientStack)); // TODO: Add enchantment nbt
 		inputs.set(1, Ingredient.ofStacks(new ItemStack(requiredItem, requiredItemCount)));
 		this.inputs = inputs;
 		

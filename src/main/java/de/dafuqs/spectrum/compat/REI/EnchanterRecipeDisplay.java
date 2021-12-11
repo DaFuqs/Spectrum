@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.compat.REI;
 import de.dafuqs.spectrum.Support;
 import de.dafuqs.spectrum.recipe.enchanter.EnchanterRecipe;
 import de.dafuqs.spectrum.recipe.fusion_shrine.FusionShrineRecipe;
+import de.dafuqs.spectrum.registries.SpectrumItems;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.display.SimpleGridMenuDisplay;
 import me.shedaniel.rei.api.common.entry.EntryIngredient;
@@ -24,6 +25,8 @@ import java.util.stream.Collectors;
 
 public class EnchanterRecipeDisplay<R extends EnchanterRecipe> implements SimpleGridMenuDisplay {
 	
+	public static final EntryIngredient KNOWLEDGE_DROP_INGREDIENT = EntryIngredients.of(new ItemStack(SpectrumItems.KNOWLEDGE_DROP));
+	
 	protected final List<EntryIngredient> inputs; // first input is the center, all others around clockwise
 	protected final EntryIngredient output;
 	protected final int requiredExperience;
@@ -32,6 +35,7 @@ public class EnchanterRecipeDisplay<R extends EnchanterRecipe> implements Simple
 	
 	public EnchanterRecipeDisplay(@NotNull EnchanterRecipe recipe) {
 		this.inputs = recipe.getIngredients().stream().map(EntryIngredients::ofIngredient).collect(Collectors.toCollection(ArrayList::new));
+		this.inputs.add(KNOWLEDGE_DROP_INGREDIENT);
 		this.output = EntryIngredients.of(recipe.getOutput());
 		this.requiredExperience = recipe.getRequiredExperience();
 		this.craftingTime = recipe.getCraftingTime();

@@ -23,6 +23,8 @@ import java.util.List;
 
 public class EnchantmentUpgradeCategory<R extends EnchantmentUpgradeRecipe> implements DisplayCategory<EnchantmentUpgradeRecipeDisplay<R>> {
 	
+	private static final EntryIngredient ENCHANTER = EntryIngredients.of(new ItemStack(SpectrumBlocks.ENCHANTER));
+	
 	@Override
 	public CategoryIdentifier getCategoryIdentifier() {
 		return SpectrumPlugins.ENCHANTMENT_UPGRADE;
@@ -30,7 +32,7 @@ public class EnchantmentUpgradeCategory<R extends EnchantmentUpgradeRecipe> impl
 
 	@Override
 	public Text getTitle() {
-		return new TranslatableText("block.spectrum.enchanter");
+		return new TranslatableText("container.spectrum.rei.enchantment_upgrading.title");
 	}
 
 	@Override
@@ -60,26 +62,30 @@ public class EnchantmentUpgradeCategory<R extends EnchantmentUpgradeRecipe> impl
 		} else {
 			// center input slot
 			widgets.add(Widgets.createSlot(new Point(startPoint.x + 31, startPoint.y + 40)).markInput().entries((EntryIngredient) display.inputs.get(0)));
+			widgets.add(Widgets.createSlot(new Point(startPoint.x + 31, startPoint.y + 50)).entries(ENCHANTER).disableBackground());
 			
 			// surrounding input slots
 			widgets.add(Widgets.createSlot(new Point(startPoint.x + 18, startPoint.y + 10)).markInput().entries((EntryIngredient) display.inputs.get(1)));
 
+			// KNOWLEDGE_DROP
+			widgets.add(Widgets.createSlot(new Point(startPoint.x + 80, startPoint.y + 10)).markInput().entries((EntryIngredient) display.inputs.get(2)));
+			
 			// output arrow and slot
 			List<EntryIngredient> output = display.getOutputEntries();
 			widgets.add(Widgets.createArrow(new Point(startPoint.x + 80, startPoint.y + 40)));
 			widgets.add(Widgets.createResultSlotBackground(new Point(startPoint.x + 111, startPoint.y + 40)));
 			widgets.add(Widgets.createSlot(new Point(startPoint.x + 111, startPoint.y + 40)).markOutput().disableBackground().entries(output.get(0)));
 			
-			// duration and XP requirements
+			// item and XP requirements
 			// special handling for "1 second". Looks nicer
 			widgets.add(Widgets.createLabel(
-					new Point(startPoint.x + 64, startPoint.y + 85),
-					new TranslatableText("container.spectrum.rei.enchantment_upgrade.required_xp", display.requiredExperience)
+					new Point(startPoint.x + 70, startPoint.y + 76),
+					new TranslatableText("container.spectrum.rei.enchantment_upgrade.required_item_count", display.requiredItemCount)
 			).leftAligned().color(0x3f3f3f).noShadow());
 			
 			widgets.add(Widgets.createLabel(
 					new Point(startPoint.x + 64, startPoint.y + 85),
-					new TranslatableText("container.spectrum.rei.enchantment_upgrade.required_item_count", display.requiredItemCount)
+					new TranslatableText("container.spectrum.rei.enchantment_upgrade.required_xp", display.requiredExperience)
 			).leftAligned().color(0x3f3f3f).noShadow());
 			
 		}
@@ -88,7 +94,7 @@ public class EnchantmentUpgradeCategory<R extends EnchantmentUpgradeRecipe> impl
 
 	@Override
 	public int getDisplayHeight() {
-		return 100;
+		return 70;
 	}
 
 }

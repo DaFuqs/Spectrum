@@ -58,15 +58,22 @@ public class EnchantmentUpgradeCategory<R extends EnchantmentUpgradeRecipe> impl
 			widgets.add(Widgets.createLabel(new Point(startPoint.x, startPoint.y + 33), new TranslatableText("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_1")).leftAligned().color(0x3f3f3f).noShadow());
 			widgets.add(Widgets.createLabel(new Point(startPoint.x, startPoint.y + 43), new TranslatableText("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_2")).leftAligned().color(0x3f3f3f).noShadow());
 		} else {
+			// Knowledge Drop and Enchanter
+			widgets.add(Widgets.createSlot(new Point(startPoint.x + 111, startPoint.y + 14)).markInput().entries((EntryIngredient) display.inputs.get(9)));
+			widgets.add(Widgets.createSlot(new Point(startPoint.x + 111, startPoint.y + 60)).entries(EnchanterCategory.ENCHANTER).disableBackground());
+			
 			// center input slot
 			widgets.add(Widgets.createSlot(new Point(startPoint.x + 31, startPoint.y + 40)).markInput().entries((EntryIngredient) display.inputs.get(0)));
-			widgets.add(Widgets.createSlot(new Point(startPoint.x + 31, startPoint.y + 60)).entries(EnchanterCategory.ENCHANTER).disableBackground());
 			
 			// surrounding input slots
 			widgets.add(Widgets.createSlot(new Point(startPoint.x + 18, startPoint.y + 10)).markInput().entries((EntryIngredient) display.inputs.get(1)));
-
-			// KNOWLEDGE_DROP
-			widgets.add(Widgets.createSlot(new Point(startPoint.x + 111, startPoint.y + 10)).markInput().entries((EntryIngredient) display.inputs.get(2)));
+			widgets.add(Widgets.createSlot(new Point(startPoint.x + 44, startPoint.y + 10)).markInput().entries((EntryIngredient) display.inputs.get(2)));
+			widgets.add(Widgets.createSlot(new Point(startPoint.x + 62, startPoint.y + 28)).markInput().entries((EntryIngredient) display.inputs.get(3)));
+			widgets.add(Widgets.createSlot(new Point(startPoint.x + 62, startPoint.y + 54)).markInput().entries((EntryIngredient) display.inputs.get(4)));
+			widgets.add(Widgets.createSlot(new Point(startPoint.x + 44, startPoint.y + 72)).markInput().entries((EntryIngredient) display.inputs.get(5)));
+			widgets.add(Widgets.createSlot(new Point(startPoint.x + 18, startPoint.y + 72)).markInput().entries((EntryIngredient) display.inputs.get(6)));
+			widgets.add(Widgets.createSlot(new Point(startPoint.x, startPoint.y + 54)).markInput().entries((EntryIngredient) display.inputs.get(7)));
+			widgets.add(Widgets.createSlot(new Point(startPoint.x, startPoint.y + 28)).markInput().entries((EntryIngredient) display.inputs.get(8)));
 			
 			// output arrow and slot
 			List<EntryIngredient> output = display.getOutputEntries();
@@ -74,19 +81,19 @@ public class EnchantmentUpgradeCategory<R extends EnchantmentUpgradeRecipe> impl
 			widgets.add(Widgets.createResultSlotBackground(new Point(startPoint.x + 111, startPoint.y + 40)));
 			widgets.add(Widgets.createSlot(new Point(startPoint.x + 111, startPoint.y + 40)).markOutput().disableBackground().entries(output.get(0)));
 			
-			// item and XP requirements
-			// special handling for "1 second". Looks nicer
-			widgets.add(Widgets.createLabel(
-					new Point(startPoint.x + 70, startPoint.y + 85),
-					new TranslatableText("container.spectrum.rei.enchantment_upgrade.required_item_count", display.requiredItemCount)
-			).leftAligned().color(0x3f3f3f).noShadow());
+			// required amount
+			TranslatableText text;
+			if (display.requiredItemCount > 0) {
+				text = new TranslatableText("container.spectrum.rei.enchantment_upgrade.required_item_count", display.requiredItemCount);
+				widgets.add(Widgets.createLabel(new Point(startPoint.x + 67, startPoint.y + 78), text).leftAligned().color(0x3f3f3f).noShadow());
+			}
 		}
 		return widgets;
 	}
 
 	@Override
 	public int getDisplayHeight() {
-		return 80;
+		return 100;
 	}
 
 }

@@ -34,7 +34,16 @@ public class EnchantmentUpgradeRecipeDisplay<R extends EnchantmentUpgradeRecipe>
 	protected final EntryIngredient output;
 	
 	public EnchantmentUpgradeRecipeDisplay(@NotNull EnchantmentUpgradeRecipe recipe) {
-		this.inputs = recipe.getIngredients().stream().map(EntryIngredients::ofIngredient).collect(Collectors.toCollection(ArrayList::new));
+		this.inputs = new ArrayList<>();
+		this.inputs.add(EntryIngredients.ofIngredient(recipe.getIngredients().get(0))); // the center stack
+		
+		int requiredItemCountSplit = recipe.getRequiredItemCount() / 8;
+		int requiredItemCountModulo = recipe.getRequiredItemCount() % 8;
+		for(int i = 0; i < 8; i++) {
+			int addAmount = i < requiredItemCountModulo ? 1 : 0;
+			this.inputs.add(EntryIngredients.of(new ItemStack(recipe.getRequiredItem(), requiredItemCountSplit + addAmount)));
+		}
+		
 		this.inputs.add(EnchanterRecipeDisplay.getKnowledgeDropIngredient(recipe.getRequiredExperience()));
 		this.output = EntryIngredients.of(recipe.getOutput());
 		this.requiredItemCount = recipe.getRequiredItemCount();

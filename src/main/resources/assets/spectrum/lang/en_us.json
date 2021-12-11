@@ -49,7 +49,7 @@
   "container.spectrum.rei.enchanting.crafting_time": "%f seconds",
   "container.spectrum.rei.enchanting.crafting_time_one_second": "%f seconds",
   "container.spectrum.rei.enchantment_upgrading.title": "Enchantment Upgrading",
-  "container.spectrum.rei.enchantment_upgrade.required_item_count": "%f x",
+  "container.spectrum.rei.enchantment_upgrade.required_item_count": "(%fx)",
 
   "container.spectrum.bedrock_anvil": "Repair & write Lore",
   "container.spectrum.bedrock_anvil.lore": "Lore:",

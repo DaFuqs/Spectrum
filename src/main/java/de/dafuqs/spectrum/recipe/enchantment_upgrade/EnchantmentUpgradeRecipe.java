@@ -45,7 +45,7 @@ public class EnchantmentUpgradeRecipe implements Recipe<Inventory> {
 		ItemStack ingredientStack = new ItemStack(Items.ENCHANTED_BOOK);
 		ingredientStack.addEnchantment(enchantment, enchantmentDestinationLevel -1);
 		inputs.set(0, Ingredient.ofStacks(ingredientStack)); // TODO: Does that work in multiplayer?
-		inputs.set(1, Ingredient.ofStacks(new ItemStack(requiredItem, requiredItemCount)));
+		inputs.set(1, Ingredient.ofStacks(new ItemStack(requiredItem)));
 		this.inputs = inputs;
 		
 		ItemStack outputStack = new ItemStack(Items.ENCHANTED_BOOK);
@@ -127,6 +127,10 @@ public class EnchantmentUpgradeRecipe implements Recipe<Inventory> {
 	@Nullable
 	public Identifier getRequiredAdvancementIdentifier() {
 		return requiredAdvancementIdentifier;
+	}
+	
+	public Item getRequiredItem() {
+		return requiredItem;
 	}
 	
 	public int getRequiredItemCount() {

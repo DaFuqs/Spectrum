@@ -24,13 +24,12 @@ public class MiningToolItemMixin {
 		if(EnchantmentHelper.getLevel(SpectrumEnchantments.INERTIA, stack) > 0) {
 			NbtCompound compound = stack.getOrCreateNbt();
 			Identifier brokenBlockIdentifier = Registry.BLOCK.getId(state.getBlock());
-			if(compound.getString("LastMinedBlock").equals(brokenBlockIdentifier.toString())) {
-				compound.putLong("LastMinedBlockCount", compound.getLong("LastMinedBlockCount") + 1);
+			if(compound.getString("Inertia_LastMinedBlock").equals(brokenBlockIdentifier.toString())) {
+				compound.putLong("Inertia_LastMinedBlockCount", compound.getLong("Inertia_LastMinedBlockCount") + 1);
 			} else {
-				compound.putString("LastMinedBlock", brokenBlockIdentifier.toString());
-				compound.putLong("LastMinedBlockCount", 1);
+				compound.putString("Inertia_LastMinedBlock", brokenBlockIdentifier.toString());
+				compound.putLong("Inertia_LastMinedBlockCount", 1);
 			}
-
 		}
 	}
 
@@ -40,10 +39,10 @@ public class MiningToolItemMixin {
 		if(inertiaLevel > 0) {
 			NbtCompound compound = stack.getOrCreateNbt();
 			Identifier brokenBlockIdentifier = Registry.BLOCK.getId(state.getBlock());
-			if(compound.getString("LastMinedBlock").equals(brokenBlockIdentifier.toString())) {
-				long lastMinedBlockCount = compound.getLong("LastMinedBlockCount");
+			if(compound.getString("Inertia_LastMinedBlock").equals(brokenBlockIdentifier.toString())) {
+				long lastMinedBlockCount = compound.getLong("Inertia_LastMinedBlockCount");
 				double additionalSpeedPercent = Math.log(lastMinedBlockCount) / Math.log(Math.max(2, (6-inertiaLevel) * (6-inertiaLevel)));
-				cir.setReturnValue(cir.getReturnValue() * (0.5F + (float) additionalSpeedPercent)); // (float) Math.log10(lastMinedBlockCount));
+				cir.setReturnValue(cir.getReturnValue() * (0.5F + (float) additionalSpeedPercent));
 			} else {
 				cir.setReturnValue(cir.getReturnValue() / 4.0F);
 			}

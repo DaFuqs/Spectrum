@@ -10,6 +10,7 @@ import me.shedaniel.rei.api.common.entry.EntryIngredient;
 import me.shedaniel.rei.api.common.util.EntryIngredients;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
@@ -25,17 +26,24 @@ import java.util.stream.Collectors;
 
 public class EnchanterRecipeDisplay<R extends EnchanterRecipe> implements SimpleGridMenuDisplay {
 	
-	public static final EntryIngredient KNOWLEDGE_DROP_INGREDIENT = EntryIngredients.of(new ItemStack(SpectrumItems.KNOWLEDGE_DROP));
-	
 	protected final List<EntryIngredient> inputs; // first input is the center, all others around clockwise
 	protected final EntryIngredient output;
 	protected final int requiredExperience;
 	protected final int craftingTime;
 	protected final Identifier requiredAdvancementIdentifier;
 	
+	public static EntryIngredient getKnowledgeDropIngredient(int requiredExperience) {
+		ItemStack stack = new ItemStack(SpectrumItems.KNOWLEDGE_DROP);
+		NbtCompound compound = new NbtCompound();
+		compound.putInt("stored_experience", requiredExperience);
+		compound.putBoolean("do_not_display_store_tooltip", true);
+		stack.setNbt(compound);
+		return EntryIngredients.of(stack);
+	}
+	
 	public EnchanterRecipeDisplay(@NotNull EnchanterRecipe recipe) {
 		this.inputs = recipe.getIngredients().stream().map(EntryIngredients::ofIngredient).collect(Collectors.toCollection(ArrayList::new));
-		this.inputs.add(KNOWLEDGE_DROP_INGREDIENT);
+		this.inputs.add(getKnowledgeDropIngredient(recipe.getRequiredExperience()));
 		this.output = EntryIngredients.of(recipe.getOutput());
 		this.requiredExperience = recipe.getRequiredExperience();
 		this.craftingTime = recipe.getCraftingTime();

@@ -24,7 +24,7 @@ import java.util.List;
 
 public class EnchanterCategory<R extends EnchanterRecipeDisplay> implements DisplayCategory<EnchanterRecipeDisplay> {
 	
-	private static final EntryIngredient ENCHANTER = EntryIngredients.of(new ItemStack(SpectrumBlocks.ENCHANTER));
+	public static final EntryIngredient ENCHANTER = EntryIngredients.of(new ItemStack(SpectrumBlocks.ENCHANTER));
 
 	@Override
 	public CategoryIdentifier getCategoryIdentifier() {
@@ -74,8 +74,9 @@ public class EnchanterCategory<R extends EnchanterRecipeDisplay> implements Disp
 			widgets.add(Widgets.createSlot(new Point(startPoint.x, startPoint.y + 54)).markInput().entries((EntryIngredient) display.inputs.get(7)));
 			widgets.add(Widgets.createSlot(new Point(startPoint.x, startPoint.y + 28)).markInput().entries((EntryIngredient) display.inputs.get(8)));
 			
-			// KNOWLEDGE_DROP
+			// KNOWLEDGE_DROP & Enchanter
 			widgets.add(Widgets.createSlot(new Point(startPoint.x + 111, startPoint.y + 14)).markInput().entries((EntryIngredient) display.inputs.get(9)));
+			widgets.add(Widgets.createSlot(new Point(startPoint.x + 111, startPoint.y + 60)).entries(ENCHANTER).disableBackground());
 			
 			// output arrow and slot
 			List<EntryIngredient> output = display.getOutputEntries();
@@ -91,12 +92,7 @@ public class EnchanterCategory<R extends EnchanterRecipeDisplay> implements Disp
 			} else {
 				text = new TranslatableText("container.spectrum.rei.enchanting.crafting_time", (display.craftingTime / 20));
 			}
-			widgets.add(Widgets.createLabel(new Point(startPoint.x + 70, startPoint.y + 76), text).leftAligned().color(0x3f3f3f).noShadow());
-			widgets.add(Widgets.createLabel(
-					new Point(startPoint.x + 64, startPoint.y + 85),
-					new TranslatableText("container.spectrum.rei.enchanting.required_xp", display.requiredExperience)
-			).leftAligned().color(0x3f3f3f).noShadow());
-			
+			widgets.add(Widgets.createLabel(new Point(startPoint.x + 70, startPoint.y + 85), text).leftAligned().color(0x3f3f3f).noShadow());
 		}
 		return widgets;
 	}

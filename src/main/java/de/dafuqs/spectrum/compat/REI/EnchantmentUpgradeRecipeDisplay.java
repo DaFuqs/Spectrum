@@ -35,7 +35,7 @@ public class EnchantmentUpgradeRecipeDisplay<R extends EnchantmentUpgradeRecipe>
 	
 	public EnchantmentUpgradeRecipeDisplay(@NotNull EnchantmentUpgradeRecipe recipe) {
 		this.inputs = recipe.getIngredients().stream().map(EntryIngredients::ofIngredient).collect(Collectors.toCollection(ArrayList::new));
-		this.inputs.add(EnchanterRecipeDisplay.KNOWLEDGE_DROP_INGREDIENT);
+		this.inputs.add(EnchanterRecipeDisplay.getKnowledgeDropIngredient(recipe.getRequiredExperience()));
 		this.output = EntryIngredients.of(recipe.getOutput());
 		this.requiredItemCount = recipe.getRequiredItemCount();
 		

@@ -139,7 +139,14 @@ public class KnowledgeDropItem extends Item implements ExperienceStorageItem {
 		} else {
 			tooltip.add(new LiteralText(storedExperience + " ").formatted(Formatting.GREEN).append(new TranslatableText("item.spectrum.knowledge_drop.tooltip.stored_experience", storedExperience).formatted(Formatting.GRAY)));
 		}
-		tooltip.add(new TranslatableText("item.spectrum.knowledge_drop.tooltip.use", storedExperience).formatted(Formatting.GRAY));
+		if(shouldDisplayUsageTooltip(itemStack)) {
+			tooltip.add(new TranslatableText("item.spectrum.knowledge_drop.tooltip.use", storedExperience).formatted(Formatting.GRAY));
+		}
+	}
+	
+	public boolean shouldDisplayUsageTooltip(ItemStack itemStack) {
+		NbtCompound nbtCompound = itemStack.getNbt();
+		return nbtCompound == null || !nbtCompound.getBoolean("do_not_display_store_tooltip");
 	}
 	
 	public boolean removePlayerExperience(@NotNull PlayerEntity playerEntity, int experience) {

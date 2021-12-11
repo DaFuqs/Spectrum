@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.enchantments;
 
+import de.dafuqs.spectrum.SpectrumCommon;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentTarget;
 import net.minecraft.enchantment.Enchantments;
@@ -23,7 +24,7 @@ public class SniperEnchantment extends Enchantment {
 	}
 
 	public int getMaxLevel() {
-		return 2;
+		return 1;
 	}
 
 	public boolean isTreasure() {

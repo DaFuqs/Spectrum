@@ -21,7 +21,7 @@ public class TreasureHunterEnchantment extends Enchantment {
 	}
 
 	public int getMaxLevel() {
-		return SpectrumCommon.CONFIG.ExuberanceMaxLevel;
+		return SpectrumCommon.CONFIG.TreasureHunterMaxLevel;
 	}
 
 	public boolean isTreasure() {

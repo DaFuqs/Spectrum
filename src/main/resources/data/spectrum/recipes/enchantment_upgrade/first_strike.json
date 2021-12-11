@@ -1,0 +1,12 @@
+{
+  "type": "spectrum:enchantment_upgrade",
+  "enchantment": "spectrum:first_strike",
+  "levels": [
+    {
+      "experience": 50,
+      "item": "spectrum:pink_pigment",
+      "item_count": 100
+    }
+  ],
+  "required_advancement": "spectrum:progression/enchantments/first_strike"
+}

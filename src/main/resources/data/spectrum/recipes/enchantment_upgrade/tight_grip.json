@@ -1,0 +1,12 @@
+{
+  "type": "spectrum:enchantment_upgrade",
+  "enchantment": "spectrum:tight_grip",
+  "levels": [
+    {
+      "experience": 50,
+      "item": "spectrum:yellow_pigment",
+      "item_count": 50
+    }
+  ],
+  "required_advancement": "spectrum:progression/enchantments/tight_grip"
+}

@@ -1,66 +1,59 @@
-package de.dafuqs.spectrum.recipe.enchanter;
+package de.dafuqs.spectrum.recipe.enchantment_upgrade;
 
-import de.dafuqs.spectrum.SpectrumClient;
-import de.dafuqs.spectrum.progression.ClientRecipeToastManager;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
-import de.dafuqs.spectrum.recipe.fusion_shrine.FusionShrineRecipeWorldCondition;
-import de.dafuqs.spectrum.recipe.fusion_shrine.FusionShrineRecipeWorldEffect;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.fluid.Fluid;
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.inventory.Inventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.RecipeType;
-import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Optional;
-
-public class EnchanterRecipe implements Recipe<Inventory> {
+public class EnchantmentUpgradeRecipe implements Recipe<Inventory> {
 
 	protected final Identifier id;
-	protected final String group;
 	
-	protected final DefaultedList<Ingredient> inputs; // first input is the center, all others around clockwise
+	protected final Enchantment enchantment;
+	protected final int enchantmentDestinationLevel;
+	protected final int requiredExperience;
+	protected final Item requiredItem;
+	protected final int requiredItemCount;
+	@Nullable protected final Identifier requiredAdvancementIdentifier;
+	
+	protected final DefaultedList<Ingredient> inputs;
 	protected final ItemStack output;
 	
-	protected final int requiredExperience;
-	protected final int craftingTime;
-	@Nullable protected final Identifier requiredAdvancementIdentifier;
-	protected final boolean noBenefitsFromYieldAndEfficiencyUpgrades;
-
-	public EnchanterRecipe(Identifier id, String group, DefaultedList<Ingredient> inputs, ItemStack output, int craftingTime, int requiredExperience, boolean noBenefitsFromYieldAndEfficiencyUpgrades, @Nullable Identifier requiredAdvancementIdentifier) {
+	public EnchantmentUpgradeRecipe(Identifier id, Enchantment enchantment, int enchantmentDestinationLevel, int requiredExperience, Item requiredItem, int requiredItemCount, @Nullable Identifier requiredAdvancementIdentifier) {
 		this.id = id;
-		this.group = group;
-
-		this.inputs = inputs;
-		this.output = output;
-		this.requiredExperience = requiredExperience;
-		this.craftingTime = craftingTime;
-		this.requiredAdvancementIdentifier = requiredAdvancementIdentifier;
-		this.noBenefitsFromYieldAndEfficiencyUpgrades = noBenefitsFromYieldAndEfficiencyUpgrades;
 		
-		if(SpectrumClient.minecraftClient != null) {
-			registerInClientToastManager();
-		}
-	}
-
-	@Environment(EnvType.CLIENT)
-	private void registerInClientToastManager() {
-		ClientRecipeToastManager.registerUnlockableEnchanterRecipe(this);
+		this.enchantment = enchantment;
+		this.enchantmentDestinationLevel = enchantmentDestinationLevel;
+		this.requiredExperience = requiredExperience;
+		this.requiredItem = requiredItem;
+		this.requiredItemCount = requiredItemCount;
+		this.requiredAdvancementIdentifier = requiredAdvancementIdentifier;
+		
+		DefaultedList<Ingredient> inputs = DefaultedList.ofSize(2, Ingredient.EMPTY);
+		inputs.set(0, Ingredient.ofStacks(new ItemStack(Items.ENCHANTED_BOOK))); // TODO: Add enchantment nbt
+		inputs.set(1, Ingredient.ofStacks(new ItemStack(requiredItem, requiredItemCount)));
+		this.inputs = inputs;
+		
+		ItemStack outputStack = new ItemStack(Items.ENCHANTED_BOOK);
+		outputStack.addEnchantment(enchantment, enchantmentDestinationLevel);
+		this.output = outputStack;
 	}
 
 	@Override
 	public boolean equals(Object object) {
-		if(object instanceof EnchanterRecipe) {
-			return ((EnchanterRecipe) object).getId().equals(this.getId());
+		if(object instanceof EnchantmentUpgradeRecipe) {
+			return ((EnchantmentUpgradeRecipe) object).getId().equals(this.getId());
 		}
 		return false;
 	}
@@ -108,11 +101,11 @@ public class EnchanterRecipe implements Recipe<Inventory> {
 	}
 
 	public RecipeSerializer<?> getSerializer() {
-		return SpectrumRecipeTypes.ENCHANTER_RECIPE_SERIALIZER;
+		return SpectrumRecipeTypes.ENCHANTMENT_UPGRADE_RECIPE_SERIALIZER;
 	}
 
 	public RecipeType<?> getType() {
-		return SpectrumRecipeTypes.ENCHANTER;
+		return SpectrumRecipeTypes.ENCHANTMENT_UPGRADE;
 	}
 
 	@Override
@@ -133,12 +126,8 @@ public class EnchanterRecipe implements Recipe<Inventory> {
 		return requiredAdvancementIdentifier;
 	}
 	
-	public int getCraftingTime() {
-		return this.craftingTime;
+	public int getRequiredItemCount() {
+		return requiredItemCount;
 	}
 	
-	public boolean areYieldAndEfficiencyUpgradesDisabled() {
-		return noBenefitsFromYieldAndEfficiencyUpgrades;
-	}
-
 }

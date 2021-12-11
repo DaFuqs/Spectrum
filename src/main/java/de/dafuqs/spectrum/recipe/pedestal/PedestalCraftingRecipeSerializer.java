@@ -74,11 +74,7 @@ public class PedestalCraftingRecipeSerializer<T extends PedestalCraftingRecipe> 
 			JsonArray requiredAdvancementsArray = JsonHelper.getArray(jsonObject, "required_advancements");
 			for(int i = 0; i < requiredAdvancementsArray.size(); i++) {
 				Identifier requiredAdvancementIdentifier = Identifier.tryParse(requiredAdvancementsArray.get(i).getAsString());
-				if(SpectrumCommon.minecraftServer != null && SpectrumCommon.minecraftServer.getAdvancementLoader().get(requiredAdvancementIdentifier) == null) {
-					SpectrumCommon.log(Level.ERROR, "Pedestal recipe " + identifier + " is set to require advancement " + requiredAdvancementIdentifier + ", but it does not exist!");
-				} else {
-					requiredAdvancementIdentifiers.add(requiredAdvancementIdentifier);
-				}
+				requiredAdvancementIdentifiers.add(requiredAdvancementIdentifier);
 			}
 		} else {
 			SpectrumCommon.log(Level.WARN, "Pedestal Recipe "+ identifier.getPath() + " does not specify advancements to unlock.");

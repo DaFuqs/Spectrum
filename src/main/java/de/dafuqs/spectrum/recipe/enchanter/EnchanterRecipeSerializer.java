@@ -18,6 +18,7 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtHelper;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.recipe.Ingredient;
+import net.minecraft.recipe.RecipeManager;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.ShapedRecipe;
 import net.minecraft.text.LiteralText;
@@ -65,11 +66,8 @@ public class EnchanterRecipeSerializer<T extends EnchanterRecipe> implements Rec
 		Identifier requiredAdvancementIdentifier = null;
 		if(JsonHelper.hasString(jsonObject, "required_advancement")) {
 			requiredAdvancementIdentifier = Identifier.tryParse(JsonHelper.getString(jsonObject, "required_advancement"));
-			if(SpectrumCommon.minecraftServer != null && SpectrumCommon.minecraftServer.getAdvancementLoader().get(requiredAdvancementIdentifier) == null) {
-				SpectrumCommon.log(Level.ERROR, "Fusion Shrine recipe " + identifier + " is set to require advancement " + requiredAdvancementIdentifier + ", but it does not exist!");
-			}
 		}
-
+		
 		return this.recipeFactory.create(identifier, group, craftingInputs, output, craftingTime, requiredExperience, noBenefitsFromYieldAndEfficiencyUpgrades, requiredAdvancementIdentifier);
 	}
 	

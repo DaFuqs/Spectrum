@@ -5,6 +5,7 @@ import de.dafuqs.spectrum.items.magic_items.NaturesStaffItem;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.recipe.anvil_crushing.AnvilCrushingRecipe;
 import de.dafuqs.spectrum.recipe.enchanter.EnchanterRecipe;
+import de.dafuqs.spectrum.recipe.enchantment_upgrade.EnchantmentUpgradeRecipe;
 import de.dafuqs.spectrum.recipe.fusion_shrine.FusionShrineRecipe;
 import de.dafuqs.spectrum.recipe.pedestal.PedestalCraftingRecipe;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
@@ -30,7 +31,8 @@ public class REIClientIntegration implements REIClientPlugin {
 		registry.add(new AnvilCrushingCategory<>());
 		registry.add(new FusionShrineCategory<>());
 		registry.add(new NaturesStaffConversionsCategory());
-		registry.add(new EnchanterCategory());
+		registry.add(new EnchanterCategory<>());
+		registry.add(new EnchantmentUpgradeCategory<>());
 
 		EntryStack[] pedestalEntryStacks = new EntryStack[]{
 				EntryStacks.of(SpectrumBlocks.PEDESTAL_BASIC_TOPAZ),
@@ -46,13 +48,15 @@ public class REIClientIntegration implements REIClientPlugin {
 		registry.addWorkstations(SpectrumPlugins.FUSION_SHRINE, EntryStacks.of(SpectrumBlocks.FUSION_SHRINE_BASALT), EntryStacks.of(SpectrumBlocks.FUSION_SHRINE_CALCITE));
 		registry.addWorkstations(SpectrumPlugins.NATURES_STAFF, EntryStacks.of(SpectrumItems.NATURES_STAFF));
 		registry.addWorkstations(SpectrumPlugins.ENCHANTER, EntryStacks.of(SpectrumBlocks.ENCHANTER));
+		registry.addWorkstations(SpectrumPlugins.ENCHANTMENT_UPGRADE, EntryStacks.of(SpectrumBlocks.ENCHANTER));
 
-		// Since anvil crushing is an in world recipe there is no gui to fill
+		// Since anvil crushing etc are in-world recipes there is no gui to fill
 		// therefore the plus button is obsolete
 		registry.removePlusButton(SpectrumPlugins.ANVIL_CRUSHING);
 		registry.removePlusButton(SpectrumPlugins.FUSION_SHRINE);
 		registry.removePlusButton(SpectrumPlugins.NATURES_STAFF);
 		registry.removePlusButton(SpectrumPlugins.ENCHANTER);
+		registry.removePlusButton(SpectrumPlugins.ENCHANTMENT_UPGRADE);
 	}
 
 	@Override
@@ -64,6 +68,7 @@ public class REIClientIntegration implements REIClientPlugin {
 			registry.add(new NaturesStaffConversionsDisplay(EntryStacks.of(set.getKey()), EntryStacks.of(set.getValue().getBlock())));
 		});
 		registry.registerRecipeFiller(EnchanterRecipe.class, SpectrumRecipeTypes.ENCHANTER, EnchanterRecipeDisplay::new);
+		registry.registerRecipeFiller(EnchantmentUpgradeRecipe.class, SpectrumRecipeTypes.ENCHANTMENT_UPGRADE, EnchantmentUpgradeRecipeDisplay::new);
 	}
 
 	/**

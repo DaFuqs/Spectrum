@@ -60,9 +60,6 @@ public class FusionShrineRecipeSerializer<T extends FusionShrineRecipe> implemen
 		Identifier requiredAdvancementIdentifier = null;
 		if(JsonHelper.hasString(jsonObject, "required_advancement")) {
 			requiredAdvancementIdentifier = Identifier.tryParse(JsonHelper.getString(jsonObject, "required_advancement"));
-			if(SpectrumCommon.minecraftServer != null && SpectrumCommon.minecraftServer.getAdvancementLoader().get(requiredAdvancementIdentifier) == null) {
-				SpectrumCommon.log(Level.ERROR, "Fusion Shrine recipe " + identifier + " is set to require advancement " + requiredAdvancementIdentifier + ", but it does not exist!");
-			}
 		}
 		List<FusionShrineRecipeWorldCondition> worldConditions = new ArrayList<>();
 		if(JsonHelper.hasArray(jsonObject, "world_conditions")) {

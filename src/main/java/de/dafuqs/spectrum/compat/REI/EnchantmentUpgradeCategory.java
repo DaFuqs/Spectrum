@@ -14,7 +14,6 @@ import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.entry.EntryIngredient;
 import me.shedaniel.rei.api.common.util.EntryIngredients;
 import me.shedaniel.rei.api.common.util.EntryStacks;
-import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
@@ -22,13 +21,11 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class EnchanterCategory<R extends EnchanterRecipeDisplay> implements DisplayCategory<EnchanterRecipeDisplay> {
+public class EnchantmentUpgradeCategory<R extends EnchantmentUpgradeRecipe> implements DisplayCategory<EnchantmentUpgradeRecipeDisplay<R>> {
 	
-	private static final EntryIngredient ENCHANTER = EntryIngredients.of(new ItemStack(SpectrumBlocks.ENCHANTER));
-
 	@Override
 	public CategoryIdentifier getCategoryIdentifier() {
-		return SpectrumPlugins.ENCHANTER;
+		return SpectrumPlugins.ENCHANTMENT_UPGRADE;
 	}
 
 	@Override
@@ -42,7 +39,7 @@ public class EnchanterCategory<R extends EnchanterRecipeDisplay> implements Disp
 	}
 
 	@Override
-	public List<Widget> setupDisplay(@NotNull EnchanterRecipeDisplay display, @NotNull Rectangle bounds) {
+	public List<Widget> setupDisplay(@NotNull EnchantmentUpgradeRecipeDisplay display, @NotNull Rectangle bounds) {
 		Point startPoint = new Point(bounds.getCenterX() - 58 - 7, bounds.getCenterY() - 49);
 		List<Widget> widgets = Lists.newArrayList();
 
@@ -66,13 +63,6 @@ public class EnchanterCategory<R extends EnchanterRecipeDisplay> implements Disp
 			
 			// surrounding input slots
 			widgets.add(Widgets.createSlot(new Point(startPoint.x + 18, startPoint.y + 10)).markInput().entries((EntryIngredient) display.inputs.get(1)));
-			widgets.add(Widgets.createSlot(new Point(startPoint.x + 44, startPoint.y + 10)).markInput().entries((EntryIngredient) display.inputs.get(2)));
-			widgets.add(Widgets.createSlot(new Point(startPoint.x + 62, startPoint.y + 28)).markInput().entries((EntryIngredient) display.inputs.get(3)));
-			widgets.add(Widgets.createSlot(new Point(startPoint.x + 62, startPoint.y + 54)).markInput().entries((EntryIngredient) display.inputs.get(4)));
-			widgets.add(Widgets.createSlot(new Point(startPoint.x + 44, startPoint.y + 72)).markInput().entries((EntryIngredient) display.inputs.get(5)));
-			widgets.add(Widgets.createSlot(new Point(startPoint.x + 18, startPoint.y + 72)).markInput().entries((EntryIngredient) display.inputs.get(6)));
-			widgets.add(Widgets.createSlot(new Point(startPoint.x, startPoint.y + 54)).markInput().entries((EntryIngredient) display.inputs.get(7)));
-			widgets.add(Widgets.createSlot(new Point(startPoint.x, startPoint.y + 28)).markInput().entries((EntryIngredient) display.inputs.get(8)));
 
 			// output arrow and slot
 			List<EntryIngredient> output = display.getOutputEntries();
@@ -82,16 +72,14 @@ public class EnchanterCategory<R extends EnchanterRecipeDisplay> implements Disp
 			
 			// duration and XP requirements
 			// special handling for "1 second". Looks nicer
-			TranslatableText text;
-			if (display.craftingTime == 20) {
-				text = new TranslatableText("container.spectrum.rei.enchanting.crafting_time_one_second", 1);
-			} else {
-				text = new TranslatableText("container.spectrum.rei.enchanting.crafting_time", (display.craftingTime / 20));
-			}
-			widgets.add(Widgets.createLabel(new Point(startPoint.x + 70, startPoint.y + 76), text).leftAligned().color(0x3f3f3f).noShadow());
 			widgets.add(Widgets.createLabel(
 					new Point(startPoint.x + 64, startPoint.y + 85),
-					new TranslatableText("container.spectrum.rei.enchanting.required_xp", display.requiredExperience)
+					new TranslatableText("container.spectrum.rei.enchantment_upgrade.required_xp", display.requiredExperience)
+			).leftAligned().color(0x3f3f3f).noShadow());
+			
+			widgets.add(Widgets.createLabel(
+					new Point(startPoint.x + 64, startPoint.y + 85),
+					new TranslatableText("container.spectrum.rei.enchantment_upgrade.required_item_count", display.requiredItemCount)
 			).leftAligned().color(0x3f3f3f).noShadow());
 			
 		}

@@ -1,11 +1,13 @@
 package de.dafuqs.spectrum.blocks.enchanter;
 
+import de.dafuqs.spectrum.ExperienceHelper;
 import de.dafuqs.spectrum.Support;
 import de.dafuqs.spectrum.blocks.fusion_shrine.FusionShrineBlock;
 import de.dafuqs.spectrum.blocks.fusion_shrine.FusionShrineBlockEntity;
 import de.dafuqs.spectrum.blocks.upgrade.Upgradeable;
 import de.dafuqs.spectrum.interfaces.PlayerOwned;
 import de.dafuqs.spectrum.items.ExperienceStorageItem;
+import de.dafuqs.spectrum.items.magic_items.KnowledgeDropItem;
 import de.dafuqs.spectrum.networking.SpectrumS2CPackets;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
@@ -14,6 +16,7 @@ import de.dafuqs.spectrum.recipe.enchanter.EnchanterRecipe;
 import de.dafuqs.spectrum.recipe.enchantment_upgrade.EnchantmentUpgradeRecipe;
 import de.dafuqs.spectrum.recipe.fusion_shrine.FusionShrineRecipe;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
+import de.dafuqs.spectrum.registries.SpectrumItems;
 import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
 import net.minecraft.advancement.Advancement;
 import net.minecraft.advancement.AdvancementCriterion;
@@ -29,6 +32,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.KnowledgeBookItem;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.network.Packet;
@@ -208,11 +212,15 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 		}
 		
 		if(enchanterBlockEntity.currentRecipe instanceof EnchanterRecipe enchanterRecipe) {
-		
+			enchanterBlockEntity.craftingTime++;
+			if(enchanterBlockEntity.craftingTime == enchanterBlockEntity.craftingTimeTotal) {
+				craftEnchanterRecipe(enchanterBlockEntity, enchanterRecipe);
+			}
 		} else if(enchanterBlockEntity.currentRecipe instanceof EnchantmentUpgradeRecipe enchantmentUpgradeRecipe) {
 		
 		} else {
 			// in-code recipe for enchanting items
+			// TODO
 		}
 		
 		if(craftingSuccess) {
@@ -220,9 +228,23 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 		}
 	}
 	
+	public static void craftEnchanterRecipe(World world, EnchanterBlockEntity enchanterBlockEntity, EnchanterRecipe enchanterRecipe) {
+
+		ItemStack knowledgeDropStack = enchanterBlockEntity.getInventory().getStack(1);
+		if(knowledgeDropStack.isOf(SpectrumItems.KNOWLEDGE_DROP)) {
+			ExperienceStorageItem.removeStoredExperience(knowledgeDropStack, enchanterRecipe.getRequiredExperience());
+		}
+		
+		ItemStack resultStack = enchanterRecipe.getOutput().copy();
+		enchanterBlockEntity.getInventory().setStack(0, resultStack);
+		
+		int spentLevels = ExperienceHelper.getLevelForExperience(enchanterRecipe.getRequiredExperience());
+		grantPlayerEnchantingAdvancement(world, enchanterBlockEntity.ownerUUID, resultStack, spentLevels);
+	}
+	
 	/**
 	 * Calculates and sets a new recipe for the enchanter based on it's inventory
-	 * @param world Wthe Enchanter World
+	 * @param world The Enchanter World
 	 * @param enchanterBlockEntity The Enchanter Block Entity
 	 * @return Wether or not the previous recipe was still valid. False means it was changed
 	 */
@@ -268,11 +290,11 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 		world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), soundEvent, SoundCategory.BLOCKS, volume, 0.9F + random.nextFloat() * 0.15F);
 	}
 	
-	private void grantPlayerEnchantingAdvancement(ServerPlayerEntity player, ItemStack resultStack, int levels) {
-		ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity) PlayerOwned.getPlayerEntityIfOnline(this.world, this.ownerUUID);
+	private static void grantPlayerEnchantingAdvancement(World world, UUID playerUUID, ItemStack resultStack, int levels) {
+		ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity) PlayerOwned.getPlayerEntityIfOnline(world, playerUUID);
 		if(serverPlayerEntity != null) {
-			player.incrementStat(Stats.ENCHANT_ITEM);
-			Criteria.ENCHANTED_ITEM.trigger(player, resultStack, levels);
+			serverPlayerEntity.incrementStat(Stats.ENCHANT_ITEM);
+			Criteria.ENCHANTED_ITEM.trigger(serverPlayerEntity, resultStack, levels);
 		}
 	}
 	

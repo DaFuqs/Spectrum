@@ -1,15 +1,21 @@
 package de.dafuqs.spectrum.items;
 
+import de.dafuqs.spectrum.SpectrumCommon;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.NbtElement;
+import org.apache.logging.log4j.Level;
 
 public interface ExperienceStorageItem {
+	
+	int getMaxStoredExperience();
 	
 	/**
 	 * Returns the amount of experience this item stack has stored
 	 * @param itemStack The item stack
 	 * @return The amount of stored experience
 	 */
-	public int getStoredExperience(ItemStack itemStack);
+	int getStoredExperience(ItemStack itemStack);
 	
 	/**
 	 * Adds amount experience to an ExperienceProviderItem stack.
@@ -18,7 +24,34 @@ public interface ExperienceStorageItem {
 	 * @param amount The amount of experience to store
 	 * @return The overflow amount that could not be stored
 	 */
-	public int addStoredExperience(ItemStack itemStack, int amount);
+	static int addStoredExperience(ItemStack itemStack, int amount) {
+		if(itemStack.getItem() instanceof ExperienceStorageItem experienceStorageItem) {
+			int maxStorage = experienceStorageItem.getMaxStoredExperience();
+			
+			NbtCompound nbtCompound = itemStack.getOrCreateNbt();
+			if (!nbtCompound.contains("stored_experience", NbtElement.INT_TYPE)) {
+				nbtCompound.putInt("stored_experience", amount);
+				itemStack.setNbt(nbtCompound);
+				return 0;
+			} else {
+				int existingStoredExperience = nbtCompound.getInt("stored_experience");
+				int experienceOverflow = maxStorage - amount - existingStoredExperience;
+				
+				if (experienceOverflow < 0) {
+					nbtCompound.putInt("stored_experience", maxStorage);
+					itemStack.setNbt(nbtCompound);
+					return -experienceOverflow;
+				} else {
+					nbtCompound.putInt("stored_experience", existingStoredExperience + amount);
+					itemStack.setNbt(nbtCompound);
+					return 0;
+				}
+			}
+		} else {
+			SpectrumCommon.log (Level.ERROR, "Tried to add stored Experience to a non-ExperienceStorageItem item: " + itemStack.getItem().getName().asString());
+			return 0;
+		}
+	}
 	
 	/**
 	 * Removes amount experience from an ExperienceProviderItem stack.
@@ -27,6 +60,25 @@ public interface ExperienceStorageItem {
 	 * @param amount The amount of experience to remove
 	 * @return If there was enough experience that could be removed
 	 */
-	public boolean removeStoredExperience(ItemStack itemStack, int amount);
+	static boolean removeStoredExperience(ItemStack itemStack, int amount) {
+		if(itemStack.getItem() instanceof ExperienceStorageItem) {
+			NbtCompound nbtCompound = itemStack.getNbt();
+			if (nbtCompound == null || !nbtCompound.contains("stored_experience", NbtElement.INT_TYPE)) {
+				return false;
+			} else {
+				int existingStoredExperience = nbtCompound.getInt("stored_experience");
+				if (existingStoredExperience < amount) {
+					return false;
+				} else {
+					nbtCompound.putInt("stored_experience", existingStoredExperience - amount);
+					itemStack.setNbt(nbtCompound);
+					return true;
+				}
+			}
+		} else {
+			SpectrumCommon.log (Level.ERROR, "Tried to remove stored Experience from a non-ExperienceStorageItem item: " + itemStack.getItem().getName().asString());
+			return false;
+		}
+	}
 	
 }

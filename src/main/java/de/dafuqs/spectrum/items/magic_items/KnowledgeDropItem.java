@@ -34,52 +34,17 @@ public class KnowledgeDropItem extends Item implements ExperienceStorageItem {
 	}
 	
 	@Override
+	public int getMaxStoredExperience() {
+		return maxStorage;
+	}
+	
+	@Override
 	public int getStoredExperience(ItemStack itemStack) {
 		NbtCompound nbtCompound = itemStack.getNbt();
 		if(nbtCompound == null || !nbtCompound.contains("stored_experience", NbtElement.INT_TYPE)) {
 			return 0;
 		} else {
 			return nbtCompound.getInt("stored_experience");
-		}
-	}
-	
-	@Override
-	public int addStoredExperience(ItemStack itemStack, int amount) {
-		NbtCompound nbtCompound = itemStack.getOrCreateNbt();
-		if(!nbtCompound.contains("stored_experience", NbtElement.INT_TYPE)) {
-			nbtCompound.putInt("stored_experience", amount);
-			itemStack.setNbt(nbtCompound);
-			return 0;
-		} else {
-			int existingStoredExperience = nbtCompound.getInt("stored_experience");
-			int experienceOverflow = maxStorage - amount - existingStoredExperience;
-			
-			if(experienceOverflow < 0) {
-				nbtCompound.putInt("stored_experience", maxStorage);
-				itemStack.setNbt(nbtCompound);
-				return -experienceOverflow;
-			} else {
-				nbtCompound.putInt("stored_experience", existingStoredExperience + amount);
-				itemStack.setNbt(nbtCompound);
-				return 0;
-			}
-		}
-	}
-	
-	@Override
-	public boolean removeStoredExperience(ItemStack itemStack, int amount) {
-		NbtCompound nbtCompound = itemStack.getNbt();
-		if(nbtCompound == null || !nbtCompound.contains("stored_experience", NbtElement.INT_TYPE)) {
-			return false;
-		} else {
-			int existingStoredExperience = nbtCompound.getInt("stored_experience");
-			if(existingStoredExperience < amount) {
-				return false;
-			} else {
-				nbtCompound.putInt("stored_experience", existingStoredExperience - amount);
-				itemStack.setNbt(nbtCompound);
-				return true;
-			}
 		}
 	}
 	
@@ -109,9 +74,9 @@ public class KnowledgeDropItem extends Item implements ExperienceStorageItem {
 			if (serverPlayerEntity.isSneaking()) {
 				// Store experience
 				if(itemExperience < maxStorage && removePlayerExperience(serverPlayerEntity, 1)) {
-					addStoredExperience(stack, 1);
+					ExperienceStorageItem.addStoredExperience(stack, 1);
 					
-					if(remainingUseTicks % 4 ==0) {
+					if(remainingUseTicks % 4 == 0) {
 						world.playSound(null, user.getBlockPos(), SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.PLAYERS, 1.0F, 0.8F + world.getRandom().nextFloat() * 0.4F);
 					}
 				}
@@ -119,9 +84,9 @@ public class KnowledgeDropItem extends Item implements ExperienceStorageItem {
 				// drain experience
 				if(itemExperience > 0 && playerExperience != Integer.MAX_VALUE) {
 					serverPlayerEntity.addExperience(1);
-					removeStoredExperience(stack, 1);
+					ExperienceStorageItem.removeStoredExperience(stack, 1);
 					
-					if(remainingUseTicks % 4 ==0) {
+					if(remainingUseTicks % 4 == 0) {
 						world.playSound(null, user.getBlockPos(), SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.PLAYERS, 1.0F, 0.8F + world.getRandom().nextFloat() * 0.4F);
 					}
 				}

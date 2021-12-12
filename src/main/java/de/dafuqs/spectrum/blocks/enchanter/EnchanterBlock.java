@@ -3,7 +3,9 @@ package de.dafuqs.spectrum.blocks.enchanter;
 import de.dafuqs.spectrum.InventoryHelper;
 import de.dafuqs.spectrum.blocks.fusion_shrine.FusionShrineBlockEntity;
 import de.dafuqs.spectrum.items.ExperienceStorageItem;
+import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
+import de.dafuqs.spectrum.registries.SpectrumMultiblocks;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
@@ -11,9 +13,12 @@ import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.text.TranslatableText;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.BlockRotation;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.hit.BlockHitResult;
@@ -22,6 +27,8 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
+import vazkii.patchouli.api.IMultiblock;
+import vazkii.patchouli.api.PatchouliAPI;
 
 public class EnchanterBlock extends BlockWithEntity {
 	
@@ -66,49 +73,73 @@ public class EnchanterBlock extends BlockWithEntity {
 		if(world.isClient) {
 			return ActionResult.SUCCESS;
 		} else {
-			ItemStack handStack = player.getStackInHand(hand);
-			
-			// if the structure is valid the player can put / retrieve blocks into the shrine
-			BlockEntity blockEntity = world.getBlockEntity(pos);
-			if(blockEntity instanceof EnchanterBlockEntity enchanterBlockEntity) {
-				boolean itemsChanged = false;
-				Inventory inventory = enchanterBlockEntity.getInventory();
+			if (verifyStructure(world, pos, (ServerPlayerEntity) player)) {
+				ItemStack handStack = player.getStackInHand(hand);
 				
-				int inputInventorySlotIndex = handStack.getItem() instanceof ExperienceStorageItem ? 1 : 0;
-				if (player.isSneaking() || handStack.isEmpty()) {
-					// sneaking or empty hand: remove items
-					for(int i = 0; i < EnchanterBlockEntity.INVENTORY_SIZE; i++) {
-						ItemStack retrievedStack = inventory.removeStack(i);
-						if (!retrievedStack.isEmpty()) {
-							player.giveItemStack(retrievedStack);
-							itemsChanged = true;
-							break;
-						}
-					}
-				} else {
-					// hand is full and inventory is empty: add
-					// hand is full and inventory already contains item: exchange them
-					ItemStack currentStack = inventory.getStack(inputInventorySlotIndex);
-					inventory.setStack(inputInventorySlotIndex, handStack);
-					if(currentStack.isEmpty()) {
-						player.setStackInHand(hand, ItemStack.EMPTY);
-					} else {
-						player.setStackInHand(hand, currentStack);
-					}
-					itemsChanged = true;
-				}
-				
-				if(itemsChanged) {
-					enchanterBlockEntity.inventoryChanged();
-					enchanterBlockEntity.setItemFacingDirection(player.getHorizontalFacing());
+				// if the structure is valid the player can put / retrieve blocks into the shrine
+				BlockEntity blockEntity = world.getBlockEntity(pos);
+				if (blockEntity instanceof EnchanterBlockEntity enchanterBlockEntity) {
+					boolean itemsChanged = false;
+					Inventory inventory = enchanterBlockEntity.getInventory();
 					
-					enchanterBlockEntity.markDirty();
-					enchanterBlockEntity.updateInClientWorld();
-					world.playSound(null, player.getBlockPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 0.8F, 0.8F + world.random.nextFloat() * 0.6F);
+					int inputInventorySlotIndex = handStack.getItem() instanceof ExperienceStorageItem ? 1 : 0;
+					if (player.isSneaking() || handStack.isEmpty()) {
+						// sneaking or empty hand: remove items
+						for (int i = 0; i < EnchanterBlockEntity.INVENTORY_SIZE; i++) {
+							ItemStack retrievedStack = inventory.removeStack(i);
+							if (!retrievedStack.isEmpty()) {
+								player.giveItemStack(retrievedStack);
+								itemsChanged = true;
+								break;
+							}
+						}
+					} else {
+						// hand is full and inventory is empty: add
+						// hand is full and inventory already contains item: exchange them
+						ItemStack currentStack = inventory.getStack(inputInventorySlotIndex);
+						inventory.setStack(inputInventorySlotIndex, handStack);
+						if (currentStack.isEmpty()) {
+							player.setStackInHand(hand, ItemStack.EMPTY);
+						} else {
+							player.setStackInHand(hand, currentStack);
+						}
+						itemsChanged = true;
+					}
+					
+					if (itemsChanged) {
+						enchanterBlockEntity.inventoryChanged();
+						enchanterBlockEntity.setItemFacingDirection(player.getHorizontalFacing());
+						enchanterBlockEntity.setOwner(player);
+						
+						enchanterBlockEntity.markDirty();
+						enchanterBlockEntity.updateInClientWorld();
+						world.playSound(null, player.getBlockPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 0.8F, 0.8F + world.random.nextFloat() * 0.6F);
+					}
 				}
 			}
 			return ActionResult.CONSUME;
 		}
+	}
+	
+	public static boolean verifyStructure(World world, BlockPos blockPos, @Nullable ServerPlayerEntity serverPlayerEntity) {
+		IMultiblock multiblock = SpectrumMultiblocks.MULTIBLOCKS.get(SpectrumMultiblocks.ENCHANTER_IDENTIFIER);
+		boolean valid = multiblock.validate(world, blockPos.down(), BlockRotation.NONE);
+		
+		if(valid) {
+			if(serverPlayerEntity != null) {
+				SpectrumAdvancementCriteria.COMPLETED_MULTIBLOCK.trigger(serverPlayerEntity, multiblock);
+			}
+		} else {
+			IMultiblock currentMultiBlock = PatchouliAPI.get().getCurrentMultiblock();
+			if(currentMultiBlock == multiblock) {
+				PatchouliAPI.get().clearMultiblock();
+			} else {
+				PatchouliAPI.get().showMultiblock(multiblock, new TranslatableText("multiblock.spectrum.enchanter.structure"), blockPos.down(2), BlockRotation.NONE);
+				scatterContents(world, blockPos);
+			}
+		}
+		
+		return valid;
 	}
 	
 	public static void scatterContents(World world, BlockPos pos) {

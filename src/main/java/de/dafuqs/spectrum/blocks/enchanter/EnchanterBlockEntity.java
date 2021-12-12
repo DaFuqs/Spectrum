@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.blocks.enchanter;
 
 import de.dafuqs.spectrum.Support;
+import de.dafuqs.spectrum.blocks.fusion_shrine.FusionShrineBlock;
 import de.dafuqs.spectrum.blocks.fusion_shrine.FusionShrineBlockEntity;
 import de.dafuqs.spectrum.blocks.upgrade.Upgradeable;
 import de.dafuqs.spectrum.interfaces.PlayerOwned;
@@ -13,6 +14,7 @@ import de.dafuqs.spectrum.recipe.enchanter.EnchanterRecipe;
 import de.dafuqs.spectrum.recipe.enchantment_upgrade.EnchantmentUpgradeRecipe;
 import de.dafuqs.spectrum.recipe.fusion_shrine.FusionShrineRecipe;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
+import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
 import net.minecraft.advancement.Advancement;
 import net.minecraft.advancement.AdvancementCriterion;
 import net.minecraft.advancement.AdvancementManager;
@@ -40,6 +42,7 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.stat.Stats;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.ItemScatterer;
@@ -180,6 +183,28 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 		}
 		
 		boolean craftingSuccess = false;
+		
+		// if player d
+		if(enchanterBlockEntity.currentRecipe != null && enchanterBlockEntity.craftingTime % 60 == 1) {
+			PlayerEntity lastInteractedPlayer = PlayerOwned.getPlayerEntityIfOnline(world, enchanterBlockEntity.ownerUUID);
+			
+			boolean playerHasAdvancement = true;
+			if(enchanterBlockEntity.currentRecipe instanceof EnchanterRecipe enchanterRecipe) {
+				playerHasAdvancement = Support.hasAdvancement(lastInteractedPlayer, enchanterRecipe.getRequiredAdvancementIdentifier());
+			} else if(enchanterBlockEntity.currentRecipe instanceof EnchantmentUpgradeRecipe enchantmentUpgradeRecipe) {
+				playerHasAdvancement = Support.hasAdvancement(lastInteractedPlayer, enchantmentUpgradeRecipe.getRequiredAdvancementIdentifier());
+			}
+			boolean structureComplete = world.getBlockState(blockPos.up()).isAir() && world.isSkyVisible(blockPos) && FusionShrineBlock.verifyStructure(world, blockPos, null);
+			
+			if(!playerHasAdvancement || !structureComplete) {
+				world.playSound(null, enchanterBlockEntity.getPos(), SpectrumSoundEvents.FUSION_SHRINE_CRAFTING_ABORTED, SoundCategory.BLOCKS, 0.9F + enchanterBlockEntity.world.random.nextFloat() * 0.2F, 0.9F + fusionShrineBlockEntity.world.random.nextFloat() * 0.2F);
+				world.playSound(null, enchanterBlockEntity.getPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.9F + enchanterBlockEntity.world.random.nextFloat() * 0.2F, 0.5F + fusionShrineBlockEntity.world.random.nextFloat() * 0.2F);
+				EnchanterBlock.scatterContents(world, blockPos);
+				enchanterBlockEntity.craftingTime = 0;
+				return;
+			}
+		}
+		
 		if(enchanterBlockEntity.currentRecipe instanceof EnchanterRecipe enchanterRecipe) {
 		
 		} else if(enchanterBlockEntity.currentRecipe instanceof EnchantmentUpgradeRecipe enchantmentUpgradeRecipe) {

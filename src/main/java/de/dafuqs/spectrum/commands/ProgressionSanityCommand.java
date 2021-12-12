@@ -10,6 +10,7 @@ import de.dafuqs.spectrum.progression.BlockCloakManager;
 import de.dafuqs.spectrum.progression.advancement.HasAdvancementCriterion;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.recipe.enchanter.EnchanterRecipe;
+import de.dafuqs.spectrum.recipe.enchantment_upgrade.EnchantmentUpgradeRecipe;
 import de.dafuqs.spectrum.recipe.fusion_shrine.FusionShrineRecipe;
 import de.dafuqs.spectrum.recipe.pedestal.PedestalCraftingRecipe;
 import de.dafuqs.spectrum.registries.SpectrumBlockTags;
@@ -152,10 +153,39 @@ public class ProgressionSanityCommand {
 			}
 		}
 		
-		// impossible to unlock enchanting recipes
+		// Enchanting recipes
 		for(EnchanterRecipe enchanterRecipe : SpectrumCommon.minecraftServer.getRecipeManager().listAllOfType(SpectrumRecipeTypes.ENCHANTER)) {
 			if(!doesAdvancementExist(enchanterRecipe.getRequiredAdvancementIdentifier())) {
 				SpectrumCommon.log(Level.WARN, "[SANITY: Enchanting Recipe Unlocks] Advancement '" + enchanterRecipe.getRequiredAdvancementIdentifier() + "' in recipe '" + enchanterRecipe.getId() + "' does not exist");
+			}
+			for(Ingredient inputIngredient : enchanterRecipe.getIngredients()) {
+				for(ItemStack matchingItemStack : inputIngredient.getMatchingStacks()) {
+					if (ColorRegistry.ITEM_COLORS.getMapping(matchingItemStack.getItem()).isEmpty()) {
+						SpectrumCommon.log(Level.WARN, "[SANITY: Enchanting Recipe] Input '" + Registry.ITEM.getId(matchingItemStack.getItem()) + "' in recipe '" + enchanterRecipe.getId() + "', does not exist in the item color registry. Add it for nice effects!");
+					}
+				}
+			}
+			Item outputItem = enchanterRecipe.getOutput().getItem();
+			if(ColorRegistry.ITEM_COLORS.getMapping(outputItem).isEmpty()) {
+				SpectrumCommon.log(Level.WARN, "[SANITY: Enchanting Recipe] Output '" + Registry.ITEM.getId(outputItem) + "' in recipe '" + enchanterRecipe.getId() + "', does not exist in the item color registry. Add it for nice effects!");
+			}
+		}
+		
+		// Enchantment upgrade recipes
+		for(EnchantmentUpgradeRecipe enchantmentUpgradeRecipe : SpectrumCommon.minecraftServer.getRecipeManager().listAllOfType(SpectrumRecipeTypes.ENCHANTMENT_UPGRADE)) {
+			if(!doesAdvancementExist(enchantmentUpgradeRecipe.getRequiredAdvancementIdentifier())) {
+				SpectrumCommon.log(Level.WARN, "[SANITY: Enchantment Upgrade Recipe Unlocks] Advancement '" + enchantmentUpgradeRecipe.getRequiredAdvancementIdentifier() + "' in recipe '" + enchantmentUpgradeRecipe.getId() + "' does not exist");
+			}
+			for(Ingredient inputIngredient : enchantmentUpgradeRecipe.getIngredients()) {
+				for(ItemStack matchingItemStack : inputIngredient.getMatchingStacks()) {
+					if (ColorRegistry.ITEM_COLORS.getMapping(matchingItemStack.getItem()).isEmpty()) {
+						SpectrumCommon.log(Level.WARN, "[SANITY: Enchantment Upgrade Recipe] Input '" + Registry.ITEM.getId(matchingItemStack.getItem()) + "' in recipe '" + enchantmentUpgradeRecipe.getId() + "', does not exist in the item color registry. Add it for nice effects!");
+					}
+				}
+			}
+			Item outputItem = enchantmentUpgradeRecipe.getOutput().getItem();
+			if(ColorRegistry.ITEM_COLORS.getMapping(outputItem).isEmpty()) {
+				SpectrumCommon.log(Level.WARN, "[SANITY: Enchantment Upgrade Recipe] Output '" + Registry.ITEM.getId(outputItem) + "' in recipe '" + enchantmentUpgradeRecipe.getId() + "', does not exist in the item color registry. Add it for nice effects!");
 			}
 		}
 

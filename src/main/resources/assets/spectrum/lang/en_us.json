@@ -65,6 +65,7 @@
   "multiblock.spectrum.pedestal.advanced_structure": "Spectrum Temple",
   "multiblock.spectrum.pedestal.complex_structure": "Spectrum Palace",
   "multiblock.spectrum.fusion_shrine.structure": "Fusion Shrine",
+  "multiblock.spectrum.enchanter.structure": "Enchanter",
 
   "death.attack.spectrum_decay": "%s made contact with the void",
   

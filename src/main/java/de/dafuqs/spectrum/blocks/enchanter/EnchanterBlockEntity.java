@@ -180,7 +180,7 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 	public static void clientTick(World world, BlockPos blockPos, BlockState blockState, EnchanterBlockEntity enchanterBlockEntity) {
 		ItemStack experienceStack = enchanterBlockEntity.getInventory().getStack(1);
 		if(!experienceStack.isEmpty() && experienceStack.getItem() instanceof ExperienceStorageItem) {
-			int experience = ((ExperienceStorageItem) experienceStack.getItem()).getStoredExperience(experienceStack);
+			int experience = ExperienceStorageItem.getStoredExperience(experienceStack);
 			int amount = Support.getExperienceOrbSizeForExperience(experience);
 			
 			if(world.random.nextInt(10) < amount) {
@@ -228,20 +228,31 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 		
 		if (enchanterBlockEntity.currentRecipe instanceof EnchanterRecipe enchanterRecipe) {
 			enchanterBlockEntity.craftingTime++;
+			// TODO: Play particles
+			// TODO: Sounds
 			if (enchanterBlockEntity.craftingTime == enchanterBlockEntity.craftingTimeTotal) {
 				craftEnchanterRecipe(world, enchanterBlockEntity, enchanterRecipe);
+				// TODO: Play particles
+				// TODO: Sounds
 				craftingSuccess = true;
 			}
 		} else if (enchanterBlockEntity.currentRecipe instanceof EnchantmentUpgradeRecipe enchantmentUpgradeRecipe) {
-		int consumedItems = tickEnchantmentUpgradeRecipe(world, enchanterBlockEntity, enchantmentUpgradeRecipe);
+			int consumedItems = tickEnchantmentUpgradeRecipe(world, enchanterBlockEntity, enchantmentUpgradeRecipe);
+			// TODO: Play particles
+			// TODO: Sounds
 			enchanterBlockEntity.craftingTime += consumedItems;
 			if(enchanterBlockEntity.craftingTime >= enchanterBlockEntity.craftingTimeTotal) {
+				// TODO: Implementation
+				// TODO: Play particles
+				// TODO: Sounds
 				craftEnchantmentUpgradeRecipe(world, enchanterBlockEntity, enchantmentUpgradeRecipe);
 				craftingSuccess = true;
 			}
 		} else {
-			// in-code recipe for enchanting items
-			// TODO
+			// in-code recipe for item + books => enchanted item
+			// TODO: Implementation
+			// TODO: Play particles
+			// TODO: Sounds
 		}
 		
 		if(craftingSuccess) {
@@ -269,6 +280,7 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 				} else {
 					itemBowlBlockEntity.getInventory().getStack(0).decrement(1);
 				}
+				itemBowlBlockEntity.updateInClientWorld();
 			}
 		}
 		

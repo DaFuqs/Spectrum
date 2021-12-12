@@ -39,16 +39,6 @@ public class KnowledgeDropItem extends Item implements ExperienceStorageItem {
 	}
 	
 	@Override
-	public int getStoredExperience(ItemStack itemStack) {
-		NbtCompound nbtCompound = itemStack.getNbt();
-		if(nbtCompound == null || !nbtCompound.contains("stored_experience", NbtElement.INT_TYPE)) {
-			return 0;
-		} else {
-			return nbtCompound.getInt("stored_experience");
-		}
-	}
-	
-	@Override
 	public UseAction getUseAction(ItemStack stack) {
 		return UseAction.BLOCK;
 	}
@@ -69,7 +59,7 @@ public class KnowledgeDropItem extends Item implements ExperienceStorageItem {
 		if(user instanceof ServerPlayerEntity serverPlayerEntity) {
 			
 			int playerExperience = serverPlayerEntity.totalExperience;
-			int itemExperience = getStoredExperience(stack);
+			int itemExperience = ExperienceStorageItem.getStoredExperience(stack);
 			
 			if (serverPlayerEntity.isSneaking()) {
 				// Store experience
@@ -98,7 +88,7 @@ public class KnowledgeDropItem extends Item implements ExperienceStorageItem {
 	public void appendTooltip(ItemStack itemStack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
 		super.appendTooltip(itemStack, world, tooltip, tooltipContext);
 		
-		int storedExperience = getStoredExperience(itemStack);
+		int storedExperience = ExperienceStorageItem.getStoredExperience(itemStack);
 		if(storedExperience == 0) {
 			tooltip.add(new LiteralText("0 ").formatted(Formatting.DARK_GRAY).append(new TranslatableText("item.spectrum.knowledge_drop.tooltip.stored_experience", storedExperience).formatted(Formatting.GRAY)));
 		} else {

@@ -15,7 +15,14 @@ public interface ExperienceStorageItem {
 	 * @param itemStack The item stack
 	 * @return The amount of stored experience
 	 */
-	int getStoredExperience(ItemStack itemStack);
+	static int getStoredExperience(ItemStack itemStack) {
+		NbtCompound nbtCompound = itemStack.getNbt();
+		if(nbtCompound == null || !nbtCompound.contains("stored_experience", NbtElement.INT_TYPE)) {
+			return 0;
+		} else {
+			return nbtCompound.getInt("stored_experience");
+		}
+	}
 	
 	/**
 	 * Adds amount experience to an ExperienceProviderItem stack.

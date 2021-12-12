@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.recipe.enchanter;
 
 import de.dafuqs.spectrum.SpectrumClient;
+import de.dafuqs.spectrum.items.ExperienceStorageItem;
 import de.dafuqs.spectrum.progression.ClientRecipeToastManager;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.recipe.fusion_shrine.FusionShrineRecipeWorldCondition;
@@ -67,11 +68,13 @@ public class EnchanterRecipe implements Recipe<Inventory> {
 	
 	@Override
 	public boolean matches(Inventory inv, World world) {
-		// TODO
-		if(inv.size() > 8) {
-			for(int i = 0; i < 9; i++) {
-				if(!inputs.get(i).test(inv.getStack(i))) {
-					return false;
+		if(inv.size() > 9) {
+			inputs.get(0).test(inv.getStack(0));
+			if(this.getRequiredExperience() > 0 && inv.getStack(1).getItem() instanceof ExperienceStorageItem) {
+				for (int i = 1; i < 9; i++) {
+					if (!inputs.get(i).test(inv.getStack(i+1))) {
+						return false;
+					}
 				}
 			}
 			return true;

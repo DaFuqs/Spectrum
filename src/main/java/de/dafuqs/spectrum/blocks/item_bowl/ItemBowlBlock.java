@@ -119,20 +119,27 @@ public class ItemBowlBlock extends BlockWithEntity {
 				} else {
 					Inventory inventory = itemBowlBlockEntity.getInventory();
 					ItemStack currentStack = inventory.getStack(0);
-					if(!handStack.isEmpty()) {
-						ItemStack remainingStack = InventoryHelper.addToInventory(handStack, itemBowlBlockEntity.getInventory(), null);
-						player.setStackInHand(hand, remainingStack);
+					if(!handStack.isEmpty() && !currentStack.isEmpty()) {
+						inventory.setStack(0, handStack);
+						player.setStackInHand(hand, currentStack);
 						itemsChanged = true;
-					}
-					if (!currentStack.isEmpty()) {
-						player.giveItemStack(currentStack);
-						itemsChanged = true;
+					} else {
+						if (!handStack.isEmpty()) {
+							ItemStack remainingStack = InventoryHelper.addToInventory(handStack, itemBowlBlockEntity.getInventory(), null);
+							player.setStackInHand(hand, remainingStack);
+							itemsChanged = true;
+						}
+						if (!currentStack.isEmpty()) {
+							player.giveItemStack(currentStack);
+							itemsChanged = true;
+						}
 					}
 				}
 				
 				if(itemsChanged) {
 					itemBowlBlockEntity.markDirty();
 					itemBowlBlockEntity.updateInClientWorld();
+					updateConnectedEnchanter(world, pos);
 					world.playSound(null, player.getBlockPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 0.8F, 0.8F + world.random.nextFloat() * 0.6F);
 				}
 			}

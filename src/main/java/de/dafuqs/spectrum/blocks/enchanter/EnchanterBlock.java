@@ -123,7 +123,7 @@ public class EnchanterBlock extends BlockWithEntity {
 	
 	public static boolean verifyStructure(World world, BlockPos blockPos, @Nullable ServerPlayerEntity serverPlayerEntity) {
 		IMultiblock multiblock = SpectrumMultiblocks.MULTIBLOCKS.get(SpectrumMultiblocks.ENCHANTER_IDENTIFIER);
-		boolean valid = multiblock.validate(world, blockPos.down(), BlockRotation.NONE);
+		boolean valid = multiblock.validate(world, blockPos.down(3), BlockRotation.NONE);
 		
 		if(valid) {
 			if(serverPlayerEntity != null) {
@@ -134,7 +134,7 @@ public class EnchanterBlock extends BlockWithEntity {
 			if(currentMultiBlock == multiblock) {
 				PatchouliAPI.get().clearMultiblock();
 			} else {
-				PatchouliAPI.get().showMultiblock(multiblock, new TranslatableText("multiblock.spectrum.enchanter.structure"), blockPos.down(2), BlockRotation.NONE);
+				PatchouliAPI.get().showMultiblock(multiblock, new TranslatableText("multiblock.spectrum.enchanter.structure"), blockPos.down(4), BlockRotation.NONE);
 				scatterContents(world, blockPos);
 			}
 		}

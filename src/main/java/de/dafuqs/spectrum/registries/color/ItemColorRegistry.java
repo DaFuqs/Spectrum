@@ -86,21 +86,39 @@ public class ItemColorRegistry extends ColorRegistry<Item> {
 		put(SpectrumItems.VEGETAL, DyeColor.GREEN);
 		put(SpectrumItems.CORRUPTED_OBSIDIAN_DUST, DyeColor.PURPLE);
 		put(SpectrumItems.BEDROCK_DUST, DyeColor.LIGHT_GRAY);
-		put(SpectrumBlocks.ENDER_TREASURE.asItem(), DyeColor.PURPLE);
 		put(SpectrumItems.SPECTRAL_SHARD.asItem(), DyeColor.WHITE);
+		put(SpectrumItems.BOTTLE_OF_DECAY_AWAY, DyeColor.LIGHT_GRAY);
+		put(SpectrumItems.EXCHANGE_STAFF.asItem(), DyeColor.LIGHT_GRAY);
 		
+		put(SpectrumBlocks.SPARKLESTONE_BLOCK.asItem(), DyeColor.YELLOW);
+		put(SpectrumBlocks.ENDER_TREASURE.asItem(), DyeColor.PURPLE);
+		put(SpectrumBlocks.CLOVER.asItem(), DyeColor.LIME);
+		put(SpectrumBlocks.FOUR_LEAF_CLOVER.asItem(), DyeColor.LIME);
+		put(SpectrumBlocks.OMINOUS_SAPLING.asItem(), DyeColor.BROWN);
+		
+		// Vanilla
+		put(Items.BOOK, DyeColor.PURPLE);
+		put(Items.ENCHANTED_BOOK, DyeColor.PURPLE);
+		put(Items.END_STONE, DyeColor.LIGHT_GRAY);
+		put(Items.ENDER_PEARL, DyeColor.PURPLE);
+		put(Items.EXPERIENCE_BOTTLE, DyeColor.PURPLE);
+		put(Items.FLINT, DyeColor.LIGHT_GRAY);
+		put(Items.GHAST_TEAR, DyeColor.GRAY);
+		put(Items.GLOWSTONE, DyeColor.YELLOW);
+		put(Items.GLOWSTONE_DUST, DyeColor.YELLOW);
+		put(Items.GOLD_INGOT, DyeColor.YELLOW);
+		put(Items.IRON_INGOT, DyeColor.BROWN);
+		put(Items.LAVA_BUCKET, DyeColor.ORANGE);
+		put(Items.REDSTONE, DyeColor.RED);
+		put(Items.SOUL_SAND, DyeColor.BROWN);
+		put(Items.STRING, DyeColor.GRAY);
 		put(Items.GOLDEN_APPLE, DyeColor.YELLOW);
 		put(Items.GOLD_BLOCK, DyeColor.YELLOW);
 		put(Items.GLASS_BOTTLE, DyeColor.LIGHT_GRAY);
 		put(Items.EMERALD, DyeColor.LIME);
 		put(Items.DIAMOND, DyeColor.LIGHT_BLUE);
 		put(Items.NETHERITE_SCRAP, DyeColor.BROWN);
-		put(SpectrumBlocks.SPARKLESTONE_BLOCK.asItem(), DyeColor.YELLOW);
 		put(Items.ENCHANTED_GOLDEN_APPLE, DyeColor.YELLOW);
-		put(SpectrumItems.BOTTLE_OF_DECAY_AWAY, DyeColor.LIGHT_GRAY);
-		put(SpectrumBlocks.CLOVER.asItem(), DyeColor.LIME);
-		put(SpectrumBlocks.FOUR_LEAF_CLOVER.asItem(), DyeColor.LIME);
-		put(SpectrumBlocks.OMINOUS_SAPLING.asItem(), DyeColor.BROWN);
 		
 		put(Blocks.OAK_SAPLING.asItem(), DyeColor.GREEN);
 		put(Blocks.BIRCH_SAPLING.asItem(), DyeColor.GREEN);

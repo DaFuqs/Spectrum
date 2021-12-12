@@ -170,7 +170,7 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 
 	public static void serverTick(@NotNull World world, BlockPos blockPos, BlockState blockState, FusionShrineBlockEntity fusionShrineBlockEntity) {
 		if(fusionShrineBlockEntity.upgrades == null) {
-			fusionShrineBlockEntity.updateUpgrades();
+			fusionShrineBlockEntity.calculateUpgrades();
 		}
 		
 		FusionShrineRecipe recipe = getCurrentRecipe(world, fusionShrineBlockEntity);
@@ -368,8 +368,7 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 
 	// PLAYER OWNED
 	// "owned" is not to be taken literally here. The owner
-	// is always set to the last player interacting with
-	// the fusion shrine to trigger advancements
+	// is always set to the last player interacted with to trigger advancements
 	@Override
 	public UUID getOwnerUUID() {
 		return this.ownerUUID;
@@ -393,7 +392,7 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 		this.upgrades = null;
 	}
 	
-	public void updateUpgrades() {
+	public void calculateUpgrades() {
 		Pair<Integer, Map<Upgradeable.UpgradeType, Double>> upgrades = Upgradeable.checkUpgradeMods(world, pos, 2, 0);
 		this.upgrades = upgrades.getRight();
 	}

@@ -20,6 +20,10 @@ public interface Upgradeable {
 		EXPERIENCE; // increases XP output
 	}
 	
+	void resetUpgrades();
+	
+	void calculateUpgrades();
+	
 	static NbtList toNbt(@NotNull Map<UpgradeType, Double> upgrades) {
 		NbtList nbtList = new NbtList();
 		if(!upgrades.isEmpty()) {

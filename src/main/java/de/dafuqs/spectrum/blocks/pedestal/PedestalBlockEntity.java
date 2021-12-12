@@ -68,7 +68,7 @@ import vazkii.patchouli.api.PatchouliAPI;
 
 import java.util.*;
 
-public class PedestalBlockEntity extends LockableContainerBlockEntity implements RecipeInputProvider, SidedInventory, PlayerOwned, ExtendedScreenHandlerFactory, de.dafuqs.spectrum.blocks.upgrade.Upgradeable {
+public class PedestalBlockEntity extends LockableContainerBlockEntity implements RecipeInputProvider, SidedInventory, PlayerOwned, ExtendedScreenHandlerFactory, Upgradeable {
 
 	private UUID ownerUUID;
 	private PedestalBlock.PedestalVariant pedestalVariant;

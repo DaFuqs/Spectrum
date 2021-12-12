@@ -99,6 +99,7 @@ public class EnchanterBlock extends BlockWithEntity {
 				}
 				
 				if(itemsChanged) {
+					enchanterBlockEntity.inventoryChanged();
 					enchanterBlockEntity.setItemFacingDirection(player.getHorizontalFacing());
 					
 					enchanterBlockEntity.markDirty();

@@ -1,13 +1,29 @@
 package de.dafuqs.spectrum.blocks.enchanter;
 
 import de.dafuqs.spectrum.Support;
+import de.dafuqs.spectrum.blocks.fusion_shrine.FusionShrineBlockEntity;
+import de.dafuqs.spectrum.blocks.upgrade.Upgradeable;
+import de.dafuqs.spectrum.interfaces.PlayerOwned;
 import de.dafuqs.spectrum.items.ExperienceStorageItem;
+import de.dafuqs.spectrum.networking.SpectrumS2CPackets;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
+import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
+import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
+import de.dafuqs.spectrum.recipe.enchanter.EnchanterRecipe;
+import de.dafuqs.spectrum.recipe.enchantment_upgrade.EnchantmentUpgradeRecipe;
+import de.dafuqs.spectrum.recipe.fusion_shrine.FusionShrineRecipe;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
+import net.minecraft.advancement.Advancement;
+import net.minecraft.advancement.AdvancementCriterion;
+import net.minecraft.advancement.AdvancementManager;
+import net.minecraft.advancement.AdvancementProgress;
+import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.EnchantingTableBlockEntity;
 import net.minecraft.entity.ExperienceOrbEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
@@ -18,21 +34,39 @@ import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.recipe.Recipe;
+import net.minecraft.screen.EnchantmentScreenHandler;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvent;
+import net.minecraft.stat.Stats;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.ItemScatterer;
+import net.minecraft.util.Pair;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Locale;
-import java.util.Objects;
+import java.util.*;
 
-public class EnchanterBlockEntity extends BlockEntity {
+public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Upgradeable {
 	
 	public static final int INVENTORY_SIZE = 2; // 0: any itemstack, 1: Knowledge Drop;
+	
+	private UUID ownerUUID;
 	protected SimpleInventory inventory;
+	protected boolean inventoryChanged;
+	private Map<Upgradeable.UpgradeType, Double> upgrades;
+	
+	private Recipe currentRecipe;
+	private int craftingTime;
+	private int craftingTimeTotal;
+	
 	@Nullable
-	private Direction itemFacing;
+	private Direction itemFacing; // for rendering the item on the enchanter only
 	
 	public EnchanterBlockEntity(BlockPos pos, BlockState state) {
 		super(SpectrumBlockEntityRegistry.ENCHANTER, pos, state);
@@ -46,6 +80,32 @@ public class EnchanterBlockEntity extends BlockEntity {
 		if(nbt.contains("item_facing", NbtElement.STRING_TYPE)) {
 			this.itemFacing = Direction.valueOf(nbt.getString("item_facing").toUpperCase(Locale.ROOT));
 		}
+		if(nbt.contains("OwnerUUID")) {
+			this.ownerUUID = nbt.getUuid("OwnerUUID");
+		} else {
+			this.ownerUUID = null;
+		}
+		if(nbt.contains("CurrentRecipe")) {
+			String recipeString = nbt.getString("CurrentRecipe");
+			if(!recipeString.isEmpty()) {
+				Optional<? extends Recipe> optionalRecipe = Optional.empty();
+				if (world != null) {
+					optionalRecipe = world.getRecipeManager().get(new Identifier(recipeString));
+				}
+				if(optionalRecipe.isPresent() && optionalRecipe.get() instanceof FusionShrineRecipe optionalFusionRecipe) {
+					this.currentRecipe = optionalFusionRecipe;
+				} else {
+					this.currentRecipe = null;
+				}
+			} else {
+				this.currentRecipe = null;
+			}
+		} else {
+			this.currentRecipe = null;
+		}
+		if(nbt.contains("Upgrades", NbtElement.COMPOUND_TYPE)) {
+			this.upgrades = Upgradeable.fromNbt(nbt.getList("Upgrades", NbtElement.COMPOUND_TYPE));
+		}
 	}
 	
 	public void writeNbt(NbtCompound nbt) {
@@ -53,6 +113,15 @@ public class EnchanterBlockEntity extends BlockEntity {
 		nbt.put("inventory", this.inventory.toNbtList());
 		if(this.itemFacing != null) {
 			nbt.putString("item_facing", this.itemFacing.toString().toUpperCase(Locale.ROOT));
+		}
+		if(this.upgrades != null) {
+			nbt.put("Upgrades", Upgradeable.toNbt(this.upgrades));
+		}
+		if(this.ownerUUID != null) {
+			nbt.putUuid("OwnerUUID", this.ownerUUID);
+		}
+		if(this.currentRecipe != null) {
+			nbt.putString("CurrentRecipe", this.currentRecipe.getId().toString());
 		}
 	}
 	
@@ -102,7 +171,105 @@ public class EnchanterBlockEntity extends BlockEntity {
 	}
 	
 	public static void serverTick(World world, BlockPos blockPos, BlockState blockState, EnchanterBlockEntity enchanterBlockEntity) {
+		if(enchanterBlockEntity.upgrades == null) {
+			enchanterBlockEntity.calculateUpgrades();
+		}
+		
+		if(enchanterBlockEntity.inventoryChanged) {
+			calculateCurrentRecipe(world, enchanterBlockEntity);
+		}
+		
+		boolean craftingSuccess = false;
+		if(enchanterBlockEntity.currentRecipe instanceof EnchanterRecipe enchanterRecipe) {
+		
+		} else if(enchanterBlockEntity.currentRecipe instanceof EnchantmentUpgradeRecipe enchantmentUpgradeRecipe) {
+		
+		} else {
+			// in-code recipe for enchanting items
+		}
+		
+		if(craftingSuccess) {
+			enchanterBlockEntity.inventoryChanged();
+		}
+	}
 	
+	/**
+	 * Calculates and sets a new recipe for the enchanter based on it's inventory
+	 * @param world Wthe Enchanter World
+	 * @param enchanterBlockEntity The Enchanter Block Entity
+	 * @return Wether or not the previous recipe was still valid. False means it was changed
+	 */
+	private static boolean calculateCurrentRecipe(@NotNull World world, EnchanterBlockEntity enchanterBlockEntity) {
+		if(enchanterBlockEntity.currentRecipe != null) {
+			if(enchanterBlockEntity.currentRecipe.matches(enchanterBlockEntity.inventory, world)) {
+				return true;
+			}
+		}
+		
+		enchanterBlockEntity.craftingTime = 0;
+		
+		Recipe previousRecipe = enchanterBlockEntity.currentRecipe;
+		EnchanterRecipe enchanterRecipe = world.getRecipeManager().getFirstMatch(SpectrumRecipeTypes.ENCHANTER, enchanterBlockEntity.inventory, world).orElse(null);
+		if(enchanterRecipe == null) {
+			EnchantmentUpgradeRecipe enchantmentUpgradeRecipe = world.getRecipeManager().getFirstMatch(SpectrumRecipeTypes.ENCHANTMENT_UPGRADE, enchanterBlockEntity.inventory, world).orElse(null);
+			if(enchantmentUpgradeRecipe == null) {
+				enchanterBlockEntity.currentRecipe = null;
+			} else {
+				enchanterBlockEntity.currentRecipe = enchantmentUpgradeRecipe;
+				enchanterBlockEntity.craftingTimeTotal = enchantmentUpgradeRecipe.getRequiredItemCount();
+			}
+		} else {
+			enchanterBlockEntity.currentRecipe = enchanterRecipe;
+			enchanterBlockEntity.craftingTimeTotal = (int) Math.ceil(enchanterRecipe.getCraftingTime() / enchanterBlockEntity.upgrades.get(Upgradeable.UpgradeType.SPEED));
+		}
+		
+		if(enchanterBlockEntity.currentRecipe != previousRecipe) {
+			enchanterBlockEntity.updateInClientWorld();
+			//SpectrumS2CPackets.sendCancelBlockBoundSoundInstance((ServerWorld) enchanterBlockEntity.world, enchanterBlockEntity.pos);
+		}
+		
+		return false;
+	}
+	
+	public void inventoryChanged() {
+		this.inventory.markDirty();
+		this.inventoryChanged = true;
+	}
+	
+	public void playSound(SoundEvent soundEvent, float volume) {
+		Random random = world.random;
+		world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), soundEvent, SoundCategory.BLOCKS, volume, 0.9F + random.nextFloat() * 0.15F);
+	}
+	
+	private void grantPlayerEnchantingAdvancement(ServerPlayerEntity player, ItemStack resultStack, int levels) {
+		ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity) PlayerOwned.getPlayerEntityIfOnline(this.world, this.ownerUUID);
+		if(serverPlayerEntity != null) {
+			player.incrementStat(Stats.ENCHANT_ITEM);
+			Criteria.ENCHANTED_ITEM.trigger(player, resultStack, levels);
+		}
+	}
+	
+	// PLAYER OWNED
+	// "owned" is not to be taken literally here. The owner
+	// is always set to the last player interacted with to trigger advancements
+	@Override
+	public UUID getOwnerUUID() {
+		return this.ownerUUID;
+	}
+	
+	@Override
+	public void setOwner(PlayerEntity playerEntity) {
+		this.ownerUUID = playerEntity.getUuid();
+	}
+	
+	// UPGRADEABLE
+	public void resetUpgrades() {
+		this.upgrades = null;
+	}
+	
+	public void calculateUpgrades() {
+		Pair<Integer, Map<UpgradeType, Double>> upgrades = Upgradeable.checkUpgradeMods(world, pos, 2, 0);
+		this.upgrades = upgrades.getRight();
 	}
 	
 }

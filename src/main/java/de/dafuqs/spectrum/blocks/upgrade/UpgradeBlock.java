@@ -35,6 +35,12 @@ public class UpgradeBlock extends BlockWithEntity {
 		add(new Vec3i(-2, 0, 2));
 		add(new Vec3i(2, 0, -2));
 		add(new Vec3i(-2, 0, -2));
+		
+		// Enchanter
+		add(new Vec3i(3, 0, 3));
+		add(new Vec3i(-3, 0, 3));
+		add(new Vec3i(3, 0, -3));
+		add(new Vec3i(-3, 0, -3));
 	}};
 	
 	// Like: The further the player progresses,
@@ -74,25 +80,15 @@ public class UpgradeBlock extends BlockWithEntity {
 	}
 
 	/**
-	 * When placed or removed the upgrade block searches for a valid pedestal
+	 * When placed or removed the upgrade block searches for a valid Upgradeable block
 	 * and triggers it to update its upgrades
 	 */
 	private void updateConnectedUpgradeBlock(@NotNull World world, @NotNull BlockPos pos) {
 		for(Vec3i possibleUpgradeBlockOffset : possibleUpgradeBlockOffsets) {
 			BlockPos currentPos = pos.add(possibleUpgradeBlockOffset);
-			Block block = world.getBlockState(currentPos).getBlock();
-			if(block instanceof PedestalBlock) {
-				BlockEntity blockEntity = world.getBlockEntity(currentPos);
-				if(blockEntity instanceof PedestalBlockEntity pedestalBlockEntity) {
-					pedestalBlockEntity.resetUpgrades();
-				}
-				break;
-			} else if(block instanceof FusionShrineBlock) {
-				BlockEntity blockEntity = world.getBlockEntity(currentPos);
-				if(blockEntity instanceof FusionShrineBlockEntity fusionShrineBlockEntity) {
-					fusionShrineBlockEntity.resetUpgrades();
-				}
-				break;
+			BlockEntity blockEntity = world.getBlockEntity(currentPos);
+			if(blockEntity instanceof Upgradeable upgradeable) {
+				upgradeable.resetUpgrades();
 			}
 		}
 	}

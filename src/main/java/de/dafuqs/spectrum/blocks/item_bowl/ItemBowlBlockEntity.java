@@ -23,8 +23,6 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
 
-// since SkullBlockEntity uses the fixed BlockEntityType.SKULL we have to create our own block entity :(
-// but since there is no player type / redstone interaction it should be a bit more performant than the vanilla one
 public class ItemBowlBlockEntity extends BlockEntity {
 	
 	protected int INVENTORY_SIZE = 1;
@@ -78,7 +76,7 @@ public class ItemBowlBlockEntity extends BlockEntity {
 				for (int i = 0; i < particleAmount; i++) {
 					float randomX = 0.1F + world.getRandom().nextFloat() * 0.8F;
 					float randomZ = 0.1F + world.getRandom().nextFloat() * 0.8F;
-					world.addParticle(particleEffect, blockPos.getX() + randomX, blockPos.getY() + 0.75, blockPos.getZ() + randomZ, 0.0D, 0.0D, 0.0D);
+					world.addParticle(particleEffect, blockPos.getX() + randomX, blockPos.getY() + 0.75, blockPos.getZ() + randomZ, 0.0D, 0.05D, 0.0D);
 				}
 			}
 		}

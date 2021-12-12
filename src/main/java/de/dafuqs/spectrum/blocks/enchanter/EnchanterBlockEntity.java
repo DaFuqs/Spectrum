@@ -32,7 +32,9 @@ import net.minecraft.entity.ExperienceOrbEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.item.KnowledgeBookItem;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
@@ -54,6 +56,7 @@ import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.Pair;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -201,7 +204,6 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 		
 		boolean craftingSuccess = false;
 		
-		// if player d
 		if(enchanterBlockEntity.currentRecipe != null && enchanterBlockEntity.craftingTime % 60 == 1) {
 			PlayerEntity lastInteractedPlayer = PlayerOwned.getPlayerEntityIfOnline(world, enchanterBlockEntity.ownerUUID);
 			
@@ -224,13 +226,19 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 			}
 		}
 		
-		if(enchanterBlockEntity.currentRecipe instanceof EnchanterRecipe enchanterRecipe) {
+		if (enchanterBlockEntity.currentRecipe instanceof EnchanterRecipe enchanterRecipe) {
 			enchanterBlockEntity.craftingTime++;
-			if(enchanterBlockEntity.craftingTime == enchanterBlockEntity.craftingTimeTotal) {
+			if (enchanterBlockEntity.craftingTime == enchanterBlockEntity.craftingTimeTotal) {
 				craftEnchanterRecipe(world, enchanterBlockEntity, enchanterRecipe);
+				craftingSuccess = true;
 			}
-		} else if(enchanterBlockEntity.currentRecipe instanceof EnchantmentUpgradeRecipe enchantmentUpgradeRecipe) {
-			craftEnchantmentUpgradeRecipe(world, enchanterBlockEntity, enchantmentUpgradeRecipe);
+		} else if (enchanterBlockEntity.currentRecipe instanceof EnchantmentUpgradeRecipe enchantmentUpgradeRecipe) {
+		int consumedItems = tickEnchantmentUpgradeRecipe(world, enchanterBlockEntity, enchantmentUpgradeRecipe);
+			enchanterBlockEntity.craftingTime += consumedItems;
+			if(enchanterBlockEntity.craftingTime >= enchanterBlockEntity.craftingTimeTotal) {
+				craftEnchantmentUpgradeRecipe(world, enchanterBlockEntity, enchantmentUpgradeRecipe);
+				craftingSuccess = true;
+			}
 		} else {
 			// in-code recipe for enchanting items
 			// TODO
@@ -247,13 +255,33 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 			ExperienceStorageItem.removeStoredExperience(knowledgeDropStack, enchanterRecipe.getRequiredExperience());
 		}
 		
-		// TODO: decrement item bowl contents
+		for(int i = 0; i < 8; i++) {
+			// since this recipe uses 1 item in each slot we can just iterate them all and decrement with 1
+			BlockPos itemBowlPos = enchanterBlockEntity.pos.add(getItemBowlPositionOffset(i, enchanterBlockEntity.virtualInventoryRecipeOrientation));
+			BlockEntity blockEntity = world.getBlockEntity(itemBowlPos);
+			if(blockEntity instanceof ItemBowlBlockEntity itemBowlBlockEntity) {
+				ItemStack itemStack = itemBowlBlockEntity.getInventory().getStack(0);
+				Item recipeRemainderItem = itemStack.getItem().getRecipeRemainder();
+				if(recipeRemainderItem != null) {
+					itemBowlBlockEntity.getInventory().setStack(0, recipeRemainderItem.getDefaultStack());
+				} else if(itemStack.getCount() == 1) {
+					itemBowlBlockEntity.getInventory().setStack(0, ItemStack.EMPTY);
+				} else {
+					itemBowlBlockEntity.getInventory().getStack(0).decrement(1);
+				}
+			}
+		}
 		
 		ItemStack resultStack = enchanterRecipe.getOutput().copy();
 		enchanterBlockEntity.getInventory().setStack(0, resultStack);
 		
 		int spentLevels = ExperienceHelper.getLevelForExperience(enchanterRecipe.getRequiredExperience());
 		grantPlayerEnchantingAdvancement(world, enchanterBlockEntity.ownerUUID, resultStack, spentLevels);
+	}
+	
+	public static int tickEnchantmentUpgradeRecipe(World world, @NotNull EnchanterBlockEntity enchanterBlockEntity, @NotNull EnchantmentUpgradeRecipe enchantmentUpgradeRecipe) {
+		// TODO
+		return 0;
 	}
 	
 	public static void craftEnchantmentUpgradeRecipe(World world, @NotNull EnchanterBlockEntity enchanterBlockEntity, @NotNull EnchantmentUpgradeRecipe enchantmentUpgradeRecipe) {
@@ -269,6 +297,21 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 		
 		int spentLevels = ExperienceHelper.getLevelForExperience(enchantmentUpgradeRecipe.getRequiredExperience());
 		grantPlayerEnchantingAdvancement(world, enchanterBlockEntity.ownerUUID, resultStack, spentLevels);
+	}
+	
+	public static Vec3i getItemBowlPositionOffset(int index, int orientation) {
+		List<Vec3i> pos = new ArrayList<>();
+		pos.add(new Vec3i(5, 0, -3));
+		pos.add(new Vec3i(5, 0, 3));
+		pos.add(new Vec3i(3, 0, 5));
+		pos.add(new Vec3i(-3, 0, 5));
+		pos.add(new Vec3i(-5, 0, 3));
+		pos.add(new Vec3i(-5, 0, -3));
+		pos.add(new Vec3i(-3, 0, -5));
+		pos.add(new Vec3i(3, 0, -5));
+		
+		int offset = (orientation * 2 + index) % 8;
+		return pos.get(offset);
 	}
 	
 	/**
@@ -287,21 +330,22 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 		enchanterBlockEntity.craftingTime = 0;
 		Recipe previousRecipe = enchanterBlockEntity.currentRecipe;
 		
-		Inventory recipeTestInventory = new SimpleInventory(enchanterBlockEntity.virtualInventoryIncludingBowlStacks.size());
+		SimpleInventory recipeTestInventory = new SimpleInventory(enchanterBlockEntity.virtualInventoryIncludingBowlStacks.size());
 		recipeTestInventory.setStack(0, enchanterBlockEntity.virtualInventoryIncludingBowlStacks.getStack(0));
 		recipeTestInventory.setStack(1, enchanterBlockEntity.virtualInventoryIncludingBowlStacks.getStack(1));
+		// Cycle through 4 phases of recipe orientations
+		// This way the player can arrange the ingredients in the item bowls as he likes
+		// without resorting to specifying a fixed orientation
 		for(int orientation = 0; orientation < 4; orientation++) {
-			for(int i = 0; i < 8; i++) {
-				int offset = i + orientation * 2;
-				recipeTestInventory.setStack(2, enchanterBlockEntity.virtualInventoryIncludingBowlStacks.getStack((offset + 1 + 8) % 8));
-				recipeTestInventory.setStack(3, enchanterBlockEntity.virtualInventoryIncludingBowlStacks.getStack((offset + 2 + 8) % 8));
-				recipeTestInventory.setStack(4, enchanterBlockEntity.virtualInventoryIncludingBowlStacks.getStack((offset + 3 + 8) % 8));
-				recipeTestInventory.setStack(5, enchanterBlockEntity.virtualInventoryIncludingBowlStacks.getStack((offset + 4 + 8) % 8));
-				recipeTestInventory.setStack(6, enchanterBlockEntity.virtualInventoryIncludingBowlStacks.getStack((offset + 5 + 8) % 8));
-				recipeTestInventory.setStack(7, enchanterBlockEntity.virtualInventoryIncludingBowlStacks.getStack((offset + 6 + 8) % 8));
-				recipeTestInventory.setStack(8, enchanterBlockEntity.virtualInventoryIncludingBowlStacks.getStack((offset + 7 + 8) % 8));
-				recipeTestInventory.setStack(9, enchanterBlockEntity.virtualInventoryIncludingBowlStacks.getStack((offset + 8 + 8) % 8));
-			}
+			int offset = orientation * 2;
+			recipeTestInventory.setStack(2, enchanterBlockEntity.virtualInventoryIncludingBowlStacks.getStack((offset + 8) % 8 + 2));
+			recipeTestInventory.setStack(3, enchanterBlockEntity.virtualInventoryIncludingBowlStacks.getStack((offset + 1 + 8) % 8 + 2));
+			recipeTestInventory.setStack(4, enchanterBlockEntity.virtualInventoryIncludingBowlStacks.getStack((offset + 2 + 8) % 8 + 2));
+			recipeTestInventory.setStack(5, enchanterBlockEntity.virtualInventoryIncludingBowlStacks.getStack((offset + 3 + 8) % 8 + 2));
+			recipeTestInventory.setStack(6, enchanterBlockEntity.virtualInventoryIncludingBowlStacks.getStack((offset + 4 + 8) % 8 + 2));
+			recipeTestInventory.setStack(7, enchanterBlockEntity.virtualInventoryIncludingBowlStacks.getStack((offset + 5 + 8) % 8 + 2));
+			recipeTestInventory.setStack(8, enchanterBlockEntity.virtualInventoryIncludingBowlStacks.getStack((offset + 6 + 8) % 8 + 2));
+			recipeTestInventory.setStack(9, enchanterBlockEntity.virtualInventoryIncludingBowlStacks.getStack((offset + 7 + 8) % 8 + 2));
 			
 			EnchanterRecipe enchanterRecipe = world.getRecipeManager().getFirstMatch(SpectrumRecipeTypes.ENCHANTER, enchanterBlockEntity.virtualInventoryIncludingBowlStacks, world).orElse(null);
 			if (enchanterRecipe == null) {
@@ -311,11 +355,13 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 				} else {
 					enchanterBlockEntity.currentRecipe = enchantmentUpgradeRecipe;
 					enchanterBlockEntity.virtualInventoryRecipeOrientation = orientation;
+					enchanterBlockEntity.virtualInventoryIncludingBowlStacks = recipeTestInventory;
 					enchanterBlockEntity.craftingTimeTotal = enchantmentUpgradeRecipe.getRequiredItemCount();
 				}
 			} else {
 				enchanterBlockEntity.currentRecipe = enchanterRecipe;
 				enchanterBlockEntity.virtualInventoryRecipeOrientation = orientation;
+				enchanterBlockEntity.virtualInventoryIncludingBowlStacks = recipeTestInventory;
 				enchanterBlockEntity.craftingTimeTotal = (int) Math.ceil(enchanterRecipe.getCraftingTime() / enchanterBlockEntity.upgrades.get(Upgradeable.UpgradeType.SPEED));
 			}
 			

@@ -1,8 +1,0 @@
-{
-  "criteria": {
-    "has_ender_treasure": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": { "items": [{ "items": [ "spectrum:ender_treasure" ]}] }
-    }
-  }
-}

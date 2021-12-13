@@ -110,7 +110,6 @@ public class ItemColorRegistry extends ColorRegistry<Item> {
 		put(Items.IRON_INGOT, DyeColor.BROWN);
 		put(Items.LAVA_BUCKET, DyeColor.ORANGE);
 		put(Items.REDSTONE, DyeColor.RED);
-		put(Items.SOUL_SAND, DyeColor.BROWN);
 		put(Items.STRING, DyeColor.GRAY);
 		put(Items.GOLDEN_APPLE, DyeColor.YELLOW);
 		put(Items.GOLD_BLOCK, DyeColor.YELLOW);
@@ -119,6 +118,34 @@ public class ItemColorRegistry extends ColorRegistry<Item> {
 		put(Items.DIAMOND, DyeColor.LIGHT_BLUE);
 		put(Items.NETHERITE_SCRAP, DyeColor.BROWN);
 		put(Items.ENCHANTED_GOLDEN_APPLE, DyeColor.YELLOW);
+		put(Items.ARROW, DyeColor.RED);
+		put(Items.BLAZE_POWDER, DyeColor.ORANGE);
+		put(Items.BLAZE_ROD, DyeColor.ORANGE);
+		put(Items.FIRE_CHARGE, DyeColor.ORANGE);
+		put(Items.GUNPOWDER, DyeColor.GRAY);
+		put(Items.MAGMA_CREAM, DyeColor.ORANGE);
+		put(Items.ROTTEN_FLESH, DyeColor.GRAY);
+		put(Items.SCUTE, DyeColor.BLUE);
+		put(Items.SUGAR, DyeColor.YELLOW);
+		put(Items.WATER_BUCKET, DyeColor.LIGHT_BLUE);
+		put(Items.SPONGE, DyeColor.LIGHT_BLUE);
+		put(Items.WET_SPONGE, DyeColor.LIGHT_BLUE);
+		put(Items.PUFFERFISH, DyeColor.LIGHT_BLUE);
+		put(Items.FISHING_ROD, DyeColor.BROWN);
+		put(Items.HONEYCOMB, DyeColor.BROWN);
+		put(Items.NAUTILUS_SHELL, DyeColor.PINK);
+		put(Items.SOUL_SAND, DyeColor.BROWN);
+		put(Items.SOUL_SOIL, DyeColor.BROWN);
+		put(Items.FEATHER, DyeColor.WHITE);
+		
+		put(Blocks.ICE.asItem(), DyeColor.LIGHT_BLUE);
+		put(Blocks.PACKED_ICE.asItem(), DyeColor.LIGHT_BLUE);
+		put(Blocks.BLUE_ICE.asItem(), DyeColor.LIGHT_BLUE);
+		
+		put(Items.COAL, DyeColor.BLACK);
+		put(Blocks.COAL_BLOCK.asItem(), DyeColor.BLACK);
+		put(Blocks.COAL_ORE.asItem(), DyeColor.BLACK);
+		put(Blocks.DEEPSLATE_COAL_ORE.asItem(), DyeColor.BLACK);
 		
 		put(Blocks.OAK_SAPLING.asItem(), DyeColor.GREEN);
 		put(Blocks.BIRCH_SAPLING.asItem(), DyeColor.GREEN);

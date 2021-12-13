@@ -1,8 +1,8 @@
 {
-  "parent": "spectrum:create_onyx_shard",
+  "parent": "spectrum:midgame/build_advanced_pedestal_structure",
   "display": {
     "icon": {
-        "item": "spectrum:brown_block"
+        "item": "spectrum:brown_sapling"
     },
     "title": {
       "translate": "advancements.spectrum.craft_something_brown.title"
@@ -15,7 +15,7 @@
     "craft": {
       "trigger":"spectrum:crafted_with_pedestal",
       "conditions": {
-        "items": [{ "items": [ "spectrum:brown_spore_blossom", "spectrum:brown_sapling", "spectrum:brown_block", "spectrum:brown_lamp", "spectrum:brown_glowblock" ]}] }
+        "items": [{ "items": [ "spectrum:brown_spore_blossom", "spectrum:brown_sapling", "spectrum:brown_lamp", "spectrum:brown_glowblock" ]}] }
     }
   }
 }

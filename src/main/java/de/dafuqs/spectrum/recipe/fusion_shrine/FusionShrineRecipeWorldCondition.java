@@ -35,7 +35,7 @@ public enum FusionShrineRecipeWorldCondition {
 				return world.getMoonPhase() == 0;
 			}
 			case NEW_MOON -> {
-				return world.getMoonPhase() == 5;
+				return world.getMoonPhase() == 4;
 			}
 			case CLEAR_SKY -> {
 				return !world.isRaining();

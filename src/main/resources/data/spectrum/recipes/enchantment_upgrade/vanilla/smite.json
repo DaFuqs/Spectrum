@@ -1,6 +1,6 @@
 {
   "type": "spectrum:enchantment_upgrade",
-  "enchantment": "spectrum:smite",
+  "enchantment": "minecraft:smite",
   "levels": [
     {
       "experience": 50,

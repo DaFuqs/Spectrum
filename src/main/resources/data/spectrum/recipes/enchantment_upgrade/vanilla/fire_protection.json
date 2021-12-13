@@ -1,6 +1,6 @@
 {
   "type": "spectrum:enchantment_upgrade",
-  "enchantment": "spectrum:fire_protection",
+  "enchantment": "minecraft:fire_protection",
   "levels": [
     {
       "experience": 50,

@@ -1,6 +1,6 @@
 {
   "type": "spectrum:enchantment_upgrade",
-  "enchantment": "spectrum:soul_speed",
+  "enchantment": "minecraft:soul_speed",
   "levels": [
     {
       "experience": 100,

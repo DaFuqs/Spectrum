@@ -1,6 +1,6 @@
 {
   "type": "spectrum:enchantment_upgrade",
-  "enchantment": "spectrum:blast_protection",
+  "enchantment": "minecraft:blast_protection",
   "levels": [
     {
       "experience": 50,

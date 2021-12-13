@@ -11,6 +11,7 @@ import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
 import net.minecraft.util.registry.Registry;
+import org.apache.logging.log4j.Level;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -29,6 +30,11 @@ public class EnchantmentUpgradeRecipeSerializer<T extends EnchantmentUpgradeReci
 	@Override
 	public T read(Identifier identifier, JsonObject jsonObject) {
 		Identifier enchantmentIdentifier = Identifier.tryParse(JsonHelper.getString(jsonObject, "enchantment"));
+		
+		if(!Registry.ENCHANTMENT.containsId(enchantmentIdentifier)) {
+			SpectrumCommon.log(Level.ERROR, "Enchantment Upgrade Recipe " + identifier + " has a enchantment set that does not exist " + enchantmentIdentifier);
+		}
+		
 		Enchantment enchantment = Registry.ENCHANTMENT.get(enchantmentIdentifier);
 		
 		Identifier requiredAdvancementIdentifier = null;

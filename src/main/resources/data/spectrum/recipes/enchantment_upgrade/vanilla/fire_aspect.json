@@ -1,6 +1,6 @@
 {
   "type": "spectrum:enchantment_upgrade",
-  "enchantment": "spectrum:fire_aspect",
+  "enchantment": "minecraft:fire_aspect",
   "levels": [
     {
       "experience": 100,

@@ -1,6 +1,6 @@
 {
   "type": "spectrum:enchantment_upgrade",
-  "enchantment": "spectrum:loyalty",
+  "enchantment": "minecraft:loyalty",
   "levels": [
     {
       "experience": 100,

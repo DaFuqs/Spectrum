@@ -1,6 +1,6 @@
 {
   "type": "spectrum:enchantment_upgrade",
-  "enchantment": "spectrum:frost_walker",
+  "enchantment": "minecraft:frost_walker",
   "levels": [
     {
       "experience": 200,

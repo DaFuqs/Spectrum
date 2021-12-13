@@ -1,6 +1,6 @@
 {
   "type": "spectrum:enchantment_upgrade",
-  "enchantment": "spectrum:lure",
+  "enchantment": "minecraft:lure",
   "levels": [
     {
       "experience": 100,

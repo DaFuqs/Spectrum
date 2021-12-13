@@ -1,6 +1,6 @@
 {
   "type": "spectrum:enchantment_upgrade",
-  "enchantment": "spectrum:impaling",
+  "enchantment": "minecraft:impaling",
   "levels": [
     {
       "experience": 50,

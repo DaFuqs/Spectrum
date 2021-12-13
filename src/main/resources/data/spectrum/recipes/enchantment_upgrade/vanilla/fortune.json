@@ -1,6 +1,6 @@
 {
   "type": "spectrum:enchantment_upgrade",
-  "enchantment": "spectrum:fortune",
+  "enchantment": "minecraft:fortune",
   "levels": [
     {
       "experience": 50,

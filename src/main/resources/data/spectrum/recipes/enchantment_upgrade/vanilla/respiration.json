@@ -1,6 +1,6 @@
 {
   "type": "spectrum:enchantment_upgrade",
-  "enchantment": "spectrum:respiration",
+  "enchantment": "minecraft:respiration",
   "levels": [
     {
       "experience": 50,

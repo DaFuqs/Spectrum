@@ -1,6 +1,6 @@
 {
   "type": "spectrum:enchantment_upgrade",
-  "enchantment": "spectrum:unbreaking",
+  "enchantment": "minecraft:unbreaking",
   "levels": [
     {
       "experience": 50,

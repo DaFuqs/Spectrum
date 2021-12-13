@@ -1,6 +1,6 @@
 {
   "type": "spectrum:enchantment_upgrade",
-  "enchantment": "spectrum:luck_of_the_sea",
+  "enchantment": "minecraft:luck_of_the_sea",
   "levels": [
     {
       "experience": 100,

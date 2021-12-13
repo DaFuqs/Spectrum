@@ -1,6 +1,6 @@
 {
   "type": "spectrum:enchantment_upgrade",
-  "enchantment": "spectrum:feather_falling",
+  "enchantment": "minecraft:feather_falling",
   "levels": [
     {
       "experience": 100,

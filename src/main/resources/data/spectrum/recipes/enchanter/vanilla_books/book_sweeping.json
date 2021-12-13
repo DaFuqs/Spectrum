@@ -33,7 +33,7 @@
   ],
   "result" : {
     "item": "minecraft:enchanted_book",
-    "nbt": "{StoredEnchantments: [{id: \"minecraft:sweeping_edge\", lvl: 1s}]}"
+    "nbt": "{StoredEnchantments: [{id: \"minecraft:sweeping\", lvl: 1s}]}"
   },
   "required_advancement": "spectrum:progression/enchantments/vanilla_damage"
 }

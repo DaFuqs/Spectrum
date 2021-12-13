@@ -2,7 +2,7 @@
   "criteria": {
     "collected_moonstone_shard": {
       "trigger":"spectrum:has_advancement",
-      "conditions": { "advancement_identifier": "spectrum:midgame/collect_moonstone_shard" }
+      "conditions": { "advancement_identifier": "spectrum:midgame/collect_corrupted_obsidian_dust" }
     }
   }
 }

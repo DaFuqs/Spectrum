@@ -6,7 +6,7 @@ import net.minecraft.enchantment.EnchantmentTarget;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.EquipmentSlot;
 
-public class TreasureHunterEnchantment extends Enchantment {
+public class TreasureHunterEnchantment extends SpectrumEnchantment {
 
 	public TreasureHunterEnchantment(Rarity weight, EquipmentSlot... slotTypes) {
 		super(weight, EnchantmentTarget.WEAPON, slotTypes);
@@ -22,18 +22,6 @@ public class TreasureHunterEnchantment extends Enchantment {
 
 	public int getMaxLevel() {
 		return SpectrumCommon.CONFIG.TreasureHunterMaxLevel;
-	}
-
-	public boolean isTreasure() {
-		return false;
-	}
-
-	public boolean isAvailableForEnchantedBookOffer() {
-		return false;
-	}
-
-	public boolean isAvailableForRandomSelection() {
-		return false;
 	}
 
 	public boolean canAccept(Enchantment other) {

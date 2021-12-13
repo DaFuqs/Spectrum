@@ -74,17 +74,17 @@ public class SpectrumConfig implements ConfigData {
 	public boolean FirstStrikeEnchantmentEnabled = true;
 	public boolean ImprovedCriticalEnchantmentEnabled = true;
 	public boolean InertiaEnchantmentEnabled = true;
-	public boolean RareLootEnchantmentEnabled = true;
+	public boolean CloversFavorEnchantmentEnabled = true;
 	public boolean SniperEnchantmentEnabled = true;
 	public boolean TightGripEnchantmentEnabled = true;
 	public boolean DamageProofEnchantmentEnabled = true;
-
+	
 	public int TreasureHunterMaxLevel = 3;
-	public int DisarmingMaxLevel = 4;
+	public int DisarmingMaxLevel = 2;
 	public int FirstStrikeMaxLevel = 2;
 	public int ImprovedCriticalMaxLevel = 2;
 	public int InertiaMaxLevel = 3;
-	public int RareLootMaxLevel = 3;
+	public int CloversFavorMaxLevel = 3;
 	public int TightGripMaxLevel = 2;
 
 	// Exuberance increases experience gained when killing mobs

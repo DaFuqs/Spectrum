@@ -19,7 +19,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AutoSmeltEnchantment extends Enchantment {
+public class AutoSmeltEnchantment extends SpectrumEnchantment {
 
 	public static class AutoSmeltInventory implements Inventory, RecipeInputProvider {
 		ItemStack input = ItemStack.EMPTY;
@@ -96,18 +96,6 @@ public class AutoSmeltEnchantment extends Enchantment {
 
 	public int getMaxLevel() {
 		return 1;
-	}
-
-	public boolean isTreasure() {
-		return false;
-	}
-
-	public boolean isAvailableForEnchantedBookOffer() {
-		return false;
-	}
-
-	public boolean isAvailableForRandomSelection() {
-		return false;
 	}
 
 	public boolean canAccept(Enchantment other) {

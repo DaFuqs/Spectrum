@@ -1,7 +1,7 @@
 {
     "name": "Clover's Favor",
     "icon": "minecraft:iron_sword",
-    "advancement": "spectrum:progression/enchantments/rare_loot",
+    "advancement": "spectrum:progression/enchantments/clovers_favor",
     "category": "spectrum:enchanting_category",
     "pages": [
         {

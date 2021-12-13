@@ -1,6 +1,6 @@
 {
   "type": "spectrum:enchantment_upgrade",
-  "enchantment": "spectrum:rare_loot",
+  "enchantment": "spectrum:clovers_favor",
   "levels": [
     {
       "experience": 2500,
@@ -13,5 +13,5 @@
       "item_count": 256
     }
   ],
-  "required_advancement": "spectrum:progression/enchantments/rare_loot"
+  "required_advancement": "spectrum:progression/enchantments/clovers_favor"
 }

@@ -4,7 +4,7 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentTarget;
 import net.minecraft.entity.EquipmentSlot;
 
-public class InventoryInsertionEnchantment extends Enchantment {
+public class InventoryInsertionEnchantment extends SpectrumEnchantment {
 
 	public InventoryInsertionEnchantment(Rarity weight, EquipmentSlot... slotTypes) {
 		super(weight, EnchantmentTarget.DIGGER, slotTypes);
@@ -20,18 +20,6 @@ public class InventoryInsertionEnchantment extends Enchantment {
 
 	public int getMaxLevel() {
 		return 1;
-	}
-
-	public boolean isTreasure() {
-		return false;
-	}
-
-	public boolean isAvailableForEnchantedBookOffer() {
-		return false;
-	}
-
-	public boolean isAvailableForRandomSelection() {
-		return false;
 	}
 
 	public boolean canAccept(Enchantment other) {

@@ -5,7 +5,7 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentTarget;
 import net.minecraft.entity.EquipmentSlot;
 
-public class FirstStrikeEnchantment extends Enchantment {
+public class FirstStrikeEnchantment extends SpectrumEnchantment {
 
 	public FirstStrikeEnchantment(Rarity weight, EquipmentSlot... slotTypes) {
 		super(weight, EnchantmentTarget.WEAPON, slotTypes);
@@ -21,18 +21,6 @@ public class FirstStrikeEnchantment extends Enchantment {
 
 	public int getMaxLevel() {
 		return SpectrumCommon.CONFIG.FirstStrikeMaxLevel;
-	}
-
-	public boolean isTreasure() {
-		return false;
-	}
-
-	public boolean isAvailableForEnchantedBookOffer() {
-		return false;
-	}
-
-	public boolean isAvailableForRandomSelection() {
-		return false;
 	}
 
 	public boolean canAccept(Enchantment other) {

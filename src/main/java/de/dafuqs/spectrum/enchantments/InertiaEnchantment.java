@@ -5,7 +5,7 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentTarget;
 import net.minecraft.entity.EquipmentSlot;
 
-public class InertiaEnchantment extends Enchantment {
+public class InertiaEnchantment extends SpectrumEnchantment {
 
 	public InertiaEnchantment(Rarity weight, EquipmentSlot... slotTypes) {
 		super(weight, EnchantmentTarget.DIGGER, slotTypes);
@@ -21,18 +21,6 @@ public class InertiaEnchantment extends Enchantment {
 
 	public int getMaxLevel() {
 		return SpectrumCommon.CONFIG.InertiaMaxLevel;
-	}
-
-	public boolean isTreasure() {
-		return false;
-	}
-
-	public boolean isAvailableForEnchantedBookOffer() {
-		return false;
-	}
-
-	public boolean isAvailableForRandomSelection() {
-		return false;
 	}
 
 	public boolean canAccept(Enchantment other) {

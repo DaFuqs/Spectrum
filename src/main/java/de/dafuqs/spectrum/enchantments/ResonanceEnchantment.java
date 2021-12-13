@@ -6,7 +6,7 @@ import net.minecraft.enchantment.EnchantmentTarget;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.EquipmentSlot;
 
-public class ResonanceEnchantment extends Enchantment {
+public class ResonanceEnchantment extends SpectrumEnchantment {
 
 	public ResonanceEnchantment(Enchantment.Rarity weight, EquipmentSlot... slotTypes) {
 		super(weight, EnchantmentTarget.DIGGER, slotTypes);
@@ -22,18 +22,6 @@ public class ResonanceEnchantment extends Enchantment {
 
 	public int getMaxLevel() {
 		return 1;
-	}
-
-	public boolean isTreasure() {
-		return true;
-	}
-
-	public boolean isAvailableForEnchantedBookOffer() {
-		return false;
-	}
-
-	public boolean isAvailableForRandomSelection() {
-		return false;
 	}
 
 	public boolean canAccept(Enchantment other) {

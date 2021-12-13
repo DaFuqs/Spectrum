@@ -4,7 +4,7 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentTarget;
 import net.minecraft.entity.EquipmentSlot;
 
-public class VoidingEnchantment extends Enchantment {
+public class VoidingEnchantment extends SpectrumEnchantment {
 
 	public VoidingEnchantment(Rarity weight, EquipmentSlot... slotTypes) {
 		super(weight, EnchantmentTarget.DIGGER, slotTypes);
@@ -21,24 +21,13 @@ public class VoidingEnchantment extends Enchantment {
 	public int getMaxLevel() {
 		return 1;
 	}
-
-	public boolean isTreasure() {
-		return true;
-	}
-
+	
 	public boolean isCursed() {
-		return true;
-	}
-
-	public boolean isAvailableForEnchantedBookOffer() {
-		return false;
-	}
-
-	public boolean isAvailableForRandomSelection() {
 		return true;
 	}
 
 	public boolean canAccept(Enchantment other) {
 		return super.canAccept(other);
 	}
+	
 }

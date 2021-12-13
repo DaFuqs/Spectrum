@@ -9,7 +9,7 @@ import net.minecraft.entity.EquipmentSlot;
 /**
  * Increases the speed of shot arrows and makes them invisible
  */
-public class SniperEnchantment extends Enchantment {
+public class SniperEnchantment extends SpectrumEnchantment {
 
 	public SniperEnchantment(Rarity weight, EquipmentSlot... slotTypes) {
 		super(weight, EnchantmentTarget.CROSSBOW, slotTypes);
@@ -25,18 +25,6 @@ public class SniperEnchantment extends Enchantment {
 
 	public int getMaxLevel() {
 		return 1;
-	}
-
-	public boolean isTreasure() {
-		return false;
-	}
-
-	public boolean isAvailableForEnchantedBookOffer() {
-		return false;
-	}
-
-	public boolean isAvailableForRandomSelection() {
-		return false;
 	}
 
 	public boolean canAccept(Enchantment other) {

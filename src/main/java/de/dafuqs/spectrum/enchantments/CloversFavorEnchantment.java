@@ -5,9 +5,9 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentTarget;
 import net.minecraft.entity.EquipmentSlot;
 
-public class RareLootEnchantment extends Enchantment {
+public class CloversFavorEnchantment extends SpectrumEnchantment {
 
-	public RareLootEnchantment(Rarity weight, EquipmentSlot... slotTypes) {
+	public CloversFavorEnchantment(Rarity weight, EquipmentSlot... slotTypes) {
 		super(weight, EnchantmentTarget.WEAPON, slotTypes);
 	}
 
@@ -20,19 +20,7 @@ public class RareLootEnchantment extends Enchantment {
 	}
 
 	public int getMaxLevel() {
-		return SpectrumCommon.CONFIG.RareLootMaxLevel;
-	}
-
-	public boolean isTreasure() {
-		return false;
-	}
-
-	public boolean isAvailableForEnchantedBookOffer() {
-		return false;
-	}
-
-	public boolean isAvailableForRandomSelection() {
-		return false;
+		return SpectrumCommon.CONFIG.CloversFavorMaxLevel;
 	}
 
 	public boolean canAccept(Enchantment other) {

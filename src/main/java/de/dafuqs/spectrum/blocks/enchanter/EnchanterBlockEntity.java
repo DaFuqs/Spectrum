@@ -227,14 +227,20 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 		}
 		
 		if (enchanterBlockEntity.currentRecipe instanceof EnchanterRecipe enchanterRecipe) {
-			enchanterBlockEntity.craftingTime++;
-			// TODO: Play particles
-			// TODO: Sounds
-			if (enchanterBlockEntity.craftingTime == enchanterBlockEntity.craftingTimeTotal) {
-				craftEnchanterRecipe(world, enchanterBlockEntity, enchanterRecipe);
+			if(enchanterRecipe.getRequiredExperience() == 0 || ExperienceStorageItem.getStoredExperience(enchanterBlockEntity.inventory.getStack(1)) >= enchanterRecipe.getRequiredExperience()) {
+				enchanterBlockEntity.craftingTime++;
 				// TODO: Play particles
 				// TODO: Sounds
-				craftingSuccess = true;
+				if (enchanterBlockEntity.craftingTime == enchanterBlockEntity.craftingTimeTotal) {
+					craftEnchanterRecipe(world, enchanterBlockEntity, enchanterRecipe);
+					// TODO: Play particles
+					// TODO: Sounds
+					craftingSuccess = true;
+				}
+			} else {
+				// Missing required experience
+				// TODO: Play particles
+				// TODO: Sounds
 			}
 		} else if (enchanterBlockEntity.currentRecipe instanceof EnchantmentUpgradeRecipe enchantmentUpgradeRecipe) {
 			int consumedItems = tickEnchantmentUpgradeRecipe(world, enchanterBlockEntity, enchantmentUpgradeRecipe);

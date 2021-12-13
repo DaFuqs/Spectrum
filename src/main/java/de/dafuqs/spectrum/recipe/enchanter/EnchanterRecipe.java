@@ -70,10 +70,8 @@ public class EnchanterRecipe implements Recipe<Inventory> {
 	public boolean matches(Inventory inv, World world) {
 		if(inv.size() > 9) {
 			inputs.get(0).test(inv.getStack(0));
-			if(this.getRequiredExperience() > 0 && inv.getStack(1).getItem() instanceof ExperienceStorageItem) {
-				if(ExperienceStorageItem.getStoredExperience(inv.getStack(1)) < this.getRequiredExperience()){
-					return false;
-				}
+			if(this.getRequiredExperience() > 0 && !(inv.getStack(1).getItem() instanceof ExperienceStorageItem)) {
+				return false;
 			}
 			
 			for (int i = 1; i < 9; i++) {

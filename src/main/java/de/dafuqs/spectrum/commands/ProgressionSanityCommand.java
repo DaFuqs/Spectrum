@@ -86,7 +86,7 @@ public class ProgressionSanityCommand {
 			}
 		}
 		
-		// Build an empty hashmap of hashmaps for counting used gem colors for each tier
+		// Statistic: Build an empty hashmap of hashmaps for counting used gem colors for each tier
 		// This info can be used to balance the usage times a bit
 		HashMap<PedestalRecipeTier, HashMap<GemstoneColor, Integer>> usedColorsForEachTier = new HashMap<>();
 		for (PedestalRecipeTier pedestalRecipeTier : PedestalRecipeTier.values()) {
@@ -97,7 +97,7 @@ public class ProgressionSanityCommand {
 			usedColorsForEachTier.put(pedestalRecipeTier, colorMap);
 		}
 
-		// pedestal recipes that use gemstone powder not available at that tier yet
+		// Pedestal recipes that use gemstone powder not available at that tier yet
 		for(PedestalCraftingRecipe pedestalRecipe : SpectrumCommon.minecraftServer.getRecipeManager().listAllOfType(SpectrumRecipeTypes.PEDESTAL)) {
 			/* There are some recipes that use advanced ingredients by design
 			   despite being of a low tier, like black colored lamps.
@@ -121,7 +121,7 @@ public class ProgressionSanityCommand {
 			}
 		}
 		
-		// impossible to unlock pedestal recipes
+		// Impossible to unlock pedestal recipes
 		for(PedestalCraftingRecipe pedestalCraftingRecipe : SpectrumCommon.minecraftServer.getRecipeManager().listAllOfType(SpectrumRecipeTypes.PEDESTAL)) {
 			List<Identifier> advancementIdentifiers = pedestalCraftingRecipe.getRequiredAdvancementIdentifiers();
 			if(advancementIdentifiers == null || advancementIdentifiers.isEmpty()) {
@@ -135,7 +135,7 @@ public class ProgressionSanityCommand {
 			}
 		}
 
-		// impossible to unlock fusion shrine recipes
+		// Impossible to unlock fusion shrine recipes
 		for(FusionShrineRecipe fusionShrineRecipe : SpectrumCommon.minecraftServer.getRecipeManager().listAllOfType(SpectrumRecipeTypes.FUSION_SHRINE)) {
 			if(!doesAdvancementExist(fusionShrineRecipe.getRequiredAdvancementIdentifier())) {
 				SpectrumCommon.log(Level.WARN, "[SANITY: Fusion Shrine Recipe Unlocks] Advancement '" + fusionShrineRecipe.getRequiredAdvancementIdentifier() + "' in recipe '" + fusionShrineRecipe.getId() + "' does not exist");
@@ -189,7 +189,7 @@ public class ProgressionSanityCommand {
 			}
 		}
 
-		// impossible to unlock block cloaks
+		// Impossible to unlock block cloaks
 		for(Map.Entry<Identifier, List<Cloakable>> cloaks : BlockCloakManager.getAdvancementIdentifiersAndRegisteredCloaks().entrySet()) {
 			if(!doesAdvancementExist(cloaks.getKey())) {
 				SpectrumCommon.log(Level.WARN, "[SANITY: Block Cloaks] Advancement '" + cloaks.getKey().toString() + "' for block / item cloaking does not exist. Registered cloaks: " + cloaks.getValue().size());

@@ -10,7 +10,7 @@
         },
         {
             "type": "patchouli:text",
-            "text": "$(br3)Small chance for mobs (and other players!) to drop their equipment when hit.$(br2)Max Level: 4$(br)Applicable to melee weapons."
+            "text": "$(br3)Small chance for mobs (and other players!) to drop their equipment when hit.$(br2)Max Level: 2$(br)Applicable to melee weapons."
         }
     ]
 }

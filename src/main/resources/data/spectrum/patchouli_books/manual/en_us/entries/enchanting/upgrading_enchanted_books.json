@@ -1,0 +1,14 @@
+{
+  "name": "Upgrading Enchanted Books",
+  "icon": "minecraft:enchanted_book",
+  "priority": true,
+  "sortnum": 3,
+  "advancement": "spectrum:midgame/build_advanced_pedestal_structure",
+  "category": "spectrum:enchanting_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(italic)TODO"
+    }
+  ]
+}

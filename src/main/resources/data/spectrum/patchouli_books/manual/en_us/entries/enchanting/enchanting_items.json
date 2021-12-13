@@ -1,0 +1,15 @@
+{
+  "name": "Spectrum Enchanting",
+  "icon": "spectrum:enchanter",
+  "priority": true,
+  "sortnum": 1,
+  "advancement": "spectrum:midgame/build_advanced_pedestal_structure",
+  "category": "spectrum:enchanting_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Spectrum Enchanting",
+      "text": "Place the item you want to enchant on the enchanter and all needed ingredients, like Enchanted Books, in the surrounding $(l:decoration/item_bowl)Item Bowls$(/l)."
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "type": "spectrum:enchanter",
+  "time": 300,
+  "required_experience": 100,
+  "ingredients": [
+    {
+      "item": "minecraft:book"
+    },
+    {
+      "item": "spectrum:cyan_pigment"
+    },
+    {
+      "item": "spectrum:cyan_pigment"
+    },
+    {
+      "item": "minecraft:diamond"
+    },
+    {
+      "item": "spectrum:refined_azurite"
+    },
+    {
+      "item": "spectrum:cyan_pigment"
+    },
+    {
+      "item": "spectrum:cyan_pigment"
+    },
+    {
+      "item": "minecraft:diamond"
+    },
+    {
+      "item": "spectrum:refined_azurite"
+    }
+  ],
+  "result" : {
+    "item": "minecraft:enchanted_book",
+    "nbt": "{StoredEnchantments: [{id: \"minecraft:silk_touch\", lvl: 1s}]}"
+  },
+  "required_advancement": "spectrum:progression/enchantments/vanilla_silk_touch"
+}

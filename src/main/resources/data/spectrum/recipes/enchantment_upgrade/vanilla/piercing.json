@@ -1,0 +1,42 @@
+{
+  "type": "spectrum:enchantment_upgrade",
+  "enchantment": "spectrum:piercing",
+  "levels": [
+    {
+      "experience": 50,
+      "item": "spectrum:red_pigment",
+      "item_count": 8
+    },
+    {
+      "experience": 100,
+      "item": "spectrum:red_pigment",
+      "item_count": 16
+    },
+    {
+      "experience": 150,
+      "item": "spectrum:red_pigment",
+      "item_count": 32
+    },
+    {
+      "experience": 200,
+      "item": "spectrum:red_pigment",
+      "item_count": 64
+    },
+    {
+      "experience": 400,
+      "item": "spectrum:red_pigment",
+      "item_count": 128
+    },
+    {
+      "experience": 650,
+      "item": "spectrum:red_pigment",
+      "item_count": 256
+    },
+    {
+      "experience": 1000,
+      "item": "spectrum:red_pigment",
+      "item_count": 512
+    }
+  ],
+  "required_advancement": "spectrum:progression/enchantments/vanilla_projectile"
+}

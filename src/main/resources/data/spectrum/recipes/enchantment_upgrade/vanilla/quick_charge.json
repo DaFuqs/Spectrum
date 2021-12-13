@@ -1,0 +1,27 @@
+{
+  "type": "spectrum:enchantment_upgrade",
+  "enchantment": "spectrum:quick_sharge",
+  "levels": [
+    {
+      "experience": 100,
+      "item": "spectrum:red_pigment",
+      "item_count": 8
+    },
+    {
+      "experience": 800,
+      "item": "spectrum:red_pigment",
+      "item_count": 32
+    },
+    {
+      "experience": 2500,
+      "item": "spectrum:red_pigment",
+      "item_count": 512
+    },
+    {
+      "experience": 5000,
+      "item": "spectrum:red_pigment",
+      "item_count": 2048
+    }
+  ],
+  "required_advancement": "spectrum:progression/enchantments/vanilla_projectile"
+}

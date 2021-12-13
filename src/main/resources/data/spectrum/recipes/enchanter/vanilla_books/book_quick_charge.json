@@ -1,0 +1,39 @@
+{
+  "type": "spectrum:enchanter",
+  "time": 300,
+  "required_experience": 100,
+  "ingredients": [
+    {
+      "item": "minecraft:book"
+    },
+    {
+      "item": "spectrum:red_pigment"
+    },
+    {
+      "item": "spectrum:red_pigment"
+    },
+    {
+      "item": "minecraft:sugar"
+    },
+    {
+      "item": "spectrum:corrupted_obsidian_dust"
+    },
+    {
+      "item": "spectrum:red_pigment"
+    },
+    {
+      "item": "spectrum:red_pigment"
+    },
+    {
+      "item": "minecraft:sugar"
+    },
+    {
+      "item": "spectrum:corrupted_obsidian_dust"
+    }
+  ],
+  "result" : {
+    "item": "minecraft:enchanted_book",
+    "nbt": "{StoredEnchantments: [{id: \"minecraft:quick_sharge\", lvl: 1s}]}"
+  },
+  "required_advancement": "spectrum:progression/enchantments/vanilla_projectile"
+}

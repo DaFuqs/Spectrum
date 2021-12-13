@@ -1,0 +1,39 @@
+{
+  "type": "spectrum:enchanter",
+  "time": 300,
+  "required_experience": 100,
+  "ingredients": [
+    {
+      "item": "minecraft:book"
+    },
+    {
+      "item": "spectrum:cyan_pigment"
+    },
+    {
+      "item": "spectrum:cyan_pigment"
+    },
+    {
+      "item": "minecraft:netherite_scrap"
+    },
+    {
+      "item": "spectrum:bedrock_dust"
+    },
+    {
+      "item": "spectrum:cyan_pigment"
+    },
+    {
+      "item": "spectrum:cyan_pigment"
+    },
+    {
+      "item": "minecraft:netherite_scrap"
+    },
+    {
+      "item": "spectrum:bedrock_dust"
+    }
+  ],
+  "result" : {
+    "item": "minecraft:enchanted_book",
+    "nbt": "{StoredEnchantments: [{id: \"minecraft:unbreaking\", lvl: 1s}]}"
+  },
+  "required_advancement": "spectrum:progression/enchantments/vanilla_unbreaking"
+}

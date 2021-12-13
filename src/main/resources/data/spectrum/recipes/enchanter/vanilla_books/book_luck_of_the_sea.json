@@ -1,0 +1,39 @@
+{
+  "type": "spectrum:enchanter",
+  "time": 300,
+  "required_experience": 100,
+  "ingredients": [
+    {
+      "item": "minecraft:book"
+    },
+    {
+      "item": "spectrum:light_blue_pigment"
+    },
+    {
+      "item": "spectrum:light_blue_pigment"
+    },
+    {
+      "item": "spectrum:mermaids_gem"
+    },
+    {
+      "item": "spectrum:four_leaf_clover"
+    },
+    {
+      "item": "spectrum:light_blue_pigment"
+    },
+    {
+      "item": "spectrum:light_blue_pigment"
+    },
+    {
+      "item": "spectrum:mermaids_gem"
+    },
+    {
+      "item": "spectrum:four_leaf_clover"
+    }
+  ],
+  "result" : {
+    "item": "minecraft:enchanted_book",
+    "nbt": "{StoredEnchantments: [{id: \"minecraft:luck_of_the_sea\", lvl: 1s}]}"
+  },
+  "required_advancement": "spectrum:progression/enchantments/vanilla_water_luck"
+}

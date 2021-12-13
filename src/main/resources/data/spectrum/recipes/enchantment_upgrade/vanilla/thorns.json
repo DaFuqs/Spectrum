@@ -1,0 +1,32 @@
+{
+  "type": "spectrum:enchantment_upgrade",
+  "enchantment": "spectrum:thorns",
+  "levels": [
+    {
+      "experience": 50,
+      "item": "spectrum:red_pigment",
+      "item_count": 8
+    },
+    {
+      "experience": 200,
+      "item": "spectrum:red_pigment",
+      "item_count": 32
+    },
+    {
+      "experience": 1000,
+      "item": "spectrum:red_pigment",
+      "item_count": 128
+    },
+    {
+      "experience": 2500,
+      "item": "spectrum:red_pigment",
+      "item_count": 256
+    },
+    {
+      "experience": 5000,
+      "item": "spectrum:red_pigment",
+      "item_count": 1024
+    }
+  ],
+  "required_advancement": "spectrum:progression/enchantments/vanilla_protection"
+}

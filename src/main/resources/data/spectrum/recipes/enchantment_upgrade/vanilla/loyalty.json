@@ -1,0 +1,22 @@
+{
+  "type": "spectrum:enchantment_upgrade",
+  "enchantment": "spectrum:loyalty",
+  "levels": [
+    {
+      "experience": 100,
+      "item": "spectrum:brown_pigment",
+      "item_count": 8
+    },
+    {
+      "experience": 400,
+      "item": "spectrum:brown_pigment",
+      "item_count": 32
+    },
+    {
+      "experience": 1600,
+      "item": "spectrum:brown_pigment",
+      "item_count": 128
+    }
+  ],
+  "required_advancement": "spectrum:progression/enchantments/vanilla_trident"
+}

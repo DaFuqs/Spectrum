@@ -1,0 +1,22 @@
+{
+  "type": "spectrum:enchantment_upgrade",
+  "enchantment": "spectrum:soul_speed",
+  "levels": [
+    {
+      "experience": 100,
+      "item": "spectrum:light_gray_pigment",
+      "item_count": 8
+    },
+    {
+      "experience": 1200,
+      "item": "spectrum:light_gray_pigment",
+      "item_count": 32
+    },
+    {
+      "experience": 5000,
+      "item": "spectrum:light_gray_pigment",
+      "item_count": 128
+    }
+  ],
+  "required_advancement": "spectrum:progression/enchantments/vanilla_treasure"
+}

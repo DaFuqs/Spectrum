@@ -1,0 +1,39 @@
+{
+  "type": "spectrum:enchanter",
+  "time": 300,
+  "required_experience": 100,
+  "ingredients": [
+    {
+      "item": "minecraft:book"
+    },
+    {
+      "item": "spectrum:blue_pigment"
+    },
+    {
+      "item": "spectrum:blue_pigment"
+    },
+    {
+      "item": "minecraft:feather"
+    },
+    {
+      "item": "spectrum:quitoxic_powder"
+    },
+    {
+      "item": "spectrum:blue_pigment"
+    },
+    {
+      "item": "spectrum:blue_pigment"
+    },
+    {
+      "item": "minecraft:feather"
+    },
+    {
+      "item": "spectrum:quitoxic_powder"
+    }
+  ],
+  "result" : {
+    "item": "minecraft:enchanted_book",
+    "nbt": "{StoredEnchantments: [{id: \"minecraft:feather_falling\", lvl: 1s}]}"
+  },
+  "required_advancement": "spectrum:progression/enchantments/vanilla_quitoxic"
+}

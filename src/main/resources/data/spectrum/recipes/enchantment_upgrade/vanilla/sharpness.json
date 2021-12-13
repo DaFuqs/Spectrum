@@ -1,0 +1,42 @@
+{
+  "type": "spectrum:enchantment_upgrade",
+  "enchantment": "spectrum:sharpness",
+  "levels": [
+    {
+      "experience": 100,
+      "item": "spectrum:black_pigment",
+      "item_count": 8
+    },
+    {
+      "experience": 200,
+      "item": "spectrum:black_pigment",
+      "item_count": 16
+    },
+    {
+      "experience": 300,
+      "item": "spectrum:black_pigment",
+      "item_count": 32
+    },
+    {
+      "experience": 400,
+      "item": "spectrum:black_pigment",
+      "item_count": 64
+    },
+    {
+      "experience": 800,
+      "item": "spectrum:black_pigment",
+      "item_count": 128
+    },
+    {
+      "experience": 2000,
+      "item": "spectrum:black_pigment",
+      "item_count": 256
+    },
+    {
+      "experience": 4000,
+      "item": "spectrum:black_pigment",
+      "item_count": 512
+    }
+  ],
+  "required_advancement": "spectrum:progression/enchantments/vanilla_damage"
+}

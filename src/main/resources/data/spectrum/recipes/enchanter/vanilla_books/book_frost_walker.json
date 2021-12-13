@@ -1,0 +1,39 @@
+{
+  "type": "spectrum:enchanter",
+  "time": 1200,
+  "required_experience": 500,
+  "ingredients": [
+    {
+      "item": "minecraft:book"
+    },
+    {
+      "item": "spectrum:light_gray_pigment"
+    },
+    {
+      "item": "spectrum:light_gray_pigment"
+    },
+    {
+      "item": "minecraft:blue_ice"
+    },
+    {
+      "item": "spectrum:paletur_fragments"
+    },
+    {
+      "item": "spectrum:light_gray_pigment"
+    },
+    {
+      "item": "spectrum:light_gray_pigment"
+    },
+    {
+      "item": "minecraft:blue_ice"
+    },
+    {
+      "item": "spectrum:paletur_fragments"
+    }
+  ],
+  "result" : {
+    "item": "minecraft:enchanted_book",
+    "nbt": "{StoredEnchantments: [{id: \"minecraft:frost_walker\", lvl: 1s}]}"
+  },
+  "required_advancement": "spectrum:progression/enchantments/vanilla_treasure"
+}

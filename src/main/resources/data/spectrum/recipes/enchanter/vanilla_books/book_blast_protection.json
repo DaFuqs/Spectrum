@@ -1,0 +1,39 @@
+{
+  "type": "spectrum:enchanter",
+  "time": 300,
+  "required_experience": 100,
+  "ingredients": [
+    {
+      "item": "minecraft:book"
+    },
+    {
+      "item": "spectrum:pink_pigment"
+    },
+    {
+      "item": "spectrum:pink_pigment"
+    },
+    {
+      "item": "minecraft:gunpowder"
+    },
+    {
+      "item": "spectrum:bedrock_dust"
+    },
+    {
+      "item": "spectrum:pink_pigment"
+    },
+    {
+      "item": "spectrum:pink_pigment"
+    },
+    {
+      "item": "minecraft:gunpowder"
+    },
+    {
+      "item": "spectrum:bedrock_dust"
+    }
+  ],
+  "result" : {
+    "item": "minecraft:enchanted_book",
+    "nbt": "{StoredEnchantments: [{id: \"minecraft:blast_protection\", lvl: 1s}]}"
+  },
+  "required_advancement": "spectrum:progression/enchantments/vanilla_protection"
+}

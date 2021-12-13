@@ -1,0 +1,39 @@
+{
+  "type": "spectrum:enchanter",
+  "time": 300,
+  "required_experience": 100,
+  "ingredients": [
+    {
+      "item": "minecraft:book"
+    },
+    {
+      "item": "spectrum:blue_pigment"
+    },
+    {
+      "item": "spectrum:blue_pigment"
+    },
+    {
+      "item": "minecraft:pufferfish"
+    },
+    {
+      "item": "spectrum:mermaids_gem"
+    },
+    {
+      "item": "spectrum:blue_pigment"
+    },
+    {
+      "item": "spectrum:blue_pigment"
+    },
+    {
+      "item": "minecraft:pufferfish"
+    },
+    {
+      "item": "spectrum:mermaids_gem"
+    }
+  ],
+  "result" : {
+    "item": "minecraft:enchanted_book",
+    "nbt": "{StoredEnchantments: [{id: \"minecraft:respiration\", lvl: 1s}]}"
+  },
+  "required_advancement": "spectrum:progression/enchantments/vanilla_water"
+}

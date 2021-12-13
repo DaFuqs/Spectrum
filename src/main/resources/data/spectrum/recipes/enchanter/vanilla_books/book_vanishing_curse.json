@@ -1,0 +1,39 @@
+{
+  "type": "spectrum:enchanter",
+  "time": 600,
+  "required_experience": 250,
+  "ingredients": [
+    {
+      "item": "minecraft:book"
+    },
+    {
+      "item": "spectrum:gray_pigment"
+    },
+    {
+      "item": "spectrum:gray_pigment"
+    },
+    {
+      "item": "minecraft:coal"
+    },
+    {
+      "item": "spectrum:scarlet_fragments"
+    },
+    {
+      "item": "spectrum:gray_pigment"
+    },
+    {
+      "item": "spectrum:gray_pigment"
+    },
+    {
+      "item": "minecraft:coal"
+    },
+    {
+      "item": "spectrum:scarlet_fragments"
+    }
+  ],
+  "result" : {
+    "item": "minecraft:enchanted_book",
+    "nbt": "{StoredEnchantments: [{id: \"minecraft:vanishing_curse\", lvl: 1s}]}"
+  },
+  "required_advancement": "spectrum:progression/enchantments/vanilla_curses"
+}

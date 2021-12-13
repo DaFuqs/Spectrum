@@ -1,0 +1,32 @@
+{
+  "type": "spectrum:enchantment_upgrade",
+  "enchantment": "spectrum:feather_falling",
+  "levels": [
+    {
+      "experience": 100,
+      "item": "spectrum:blue_pigment",
+      "item_count": 8
+    },
+    {
+      "experience": 200,
+      "item": "spectrum:blue_pigment",
+      "item_count": 16
+    },
+    {
+      "experience": 400,
+      "item": "spectrum:blue_pigment",
+      "item_count": 32
+    },
+    {
+      "experience": 800,
+      "item": "spectrum:blue_pigment",
+      "item_count": 64
+    },
+    {
+      "experience": 2400,
+      "item": "spectrum:blue_pigment",
+      "item_count": 256
+    }
+  ],
+  "required_advancement": "spectrum:progression/enchantments/vanilla_quitoxic"
+}

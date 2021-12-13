@@ -5,7 +5,17 @@
     {
       "experience": 200,
       "item": "spectrum:black_pigment",
-      "item_count": 64
+      "item_count": 32
+    },
+    {
+      "experience": 1000,
+      "item": "spectrum:black_pigment",
+      "item_count": 128
+    },
+    {
+      "experience": 5000,
+      "item": "spectrum:black_pigment",
+      "item_count": 512
     }
   ],
   "required_advancement": "spectrum:progression/enchantments/improved_critical"

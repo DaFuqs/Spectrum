@@ -1,0 +1,52 @@
+{
+  "type": "spectrum:enchantment_upgrade",
+  "enchantment": "spectrum:exuberance",
+  "levels": [
+    {
+      "experience": 200,
+      "item": "spectrum:purple_pigment",
+      "item_count": 8
+    },
+    {
+      "experience": 300,
+      "item": "spectrum:purple_pigment",
+      "item_count": 16
+    },
+    {
+      "experience": 400,
+      "item": "spectrum:purple_pigment",
+      "item_count": 32
+    },
+    {
+      "experience": 500,
+      "item": "spectrum:purple_pigment",
+      "item_count": 64
+    },
+    {
+      "experience": 600,
+      "item": "spectrum:purple_pigment",
+      "item_count": 128
+    },
+    {
+      "experience": 700,
+      "item": "spectrum:purple_pigment",
+      "item_count": 256
+    },
+    {
+      "experience": 800,
+      "item": "spectrum:purple_pigment",
+      "item_count": 512
+    },
+    {
+      "experience": 900,
+      "item": "spectrum:purple_pigment",
+      "item_count": 1024
+    },
+    {
+      "experience": 1000,
+      "item": "spectrum:purple_pigment",
+      "item_count": 2048
+    }
+  ],
+  "required_advancement": "spectrum:progression/enchantments/exuberance"
+}

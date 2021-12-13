@@ -24,7 +24,7 @@ public class ColoredLogBlock extends PillarBlock implements Cloakable {
 
 	@Override
 	public Identifier getCloakAdvancementIdentifier() {
-		return new Identifier(SpectrumCommon.MOD_ID, "craft_colored_sapling");
+		return new Identifier(SpectrumCommon.MOD_ID, "milestones/reveal_colored_trees");
 	}
 
 	@Override

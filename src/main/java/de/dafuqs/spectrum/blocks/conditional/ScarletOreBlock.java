@@ -19,7 +19,7 @@ public class ScarletOreBlock extends CloakedOreBlock {
 
 	@Override
 	public Identifier getCloakAdvancementIdentifier() {
-		return new Identifier(SpectrumCommon.MOD_ID, "midgame/build_advanced_pedestal_structure");
+		return new Identifier(SpectrumCommon.MOD_ID, "milestones/reveal_scarlet");
 	}
 
 	@Override

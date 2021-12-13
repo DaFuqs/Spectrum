@@ -20,7 +20,7 @@ public class FourLeafCloverBlock extends CloverBlock implements Cloakable {
 
 	@Override
 	public Identifier getCloakAdvancementIdentifier() {
-		return new Identifier(SpectrumCommon.MOD_ID, "collect_pigment");
+		return new Identifier(SpectrumCommon.MOD_ID, "milestones/reveal_four_leaf_clover");
 	}
 
 	@Override

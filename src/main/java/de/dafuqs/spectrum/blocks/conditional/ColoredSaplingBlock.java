@@ -24,7 +24,7 @@ public class ColoredSaplingBlock extends SaplingBlock implements Cloakable {
 
 	@Override
 	public Identifier getCloakAdvancementIdentifier() {
-		return new Identifier(SpectrumCommon.MOD_ID, "collect_vegetal");
+		return new Identifier(SpectrumCommon.MOD_ID, "milestones/reveal_colored_saplings");
 	}
 
 	@Override

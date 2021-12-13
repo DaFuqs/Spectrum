@@ -49,7 +49,7 @@ public class QuitoxicReedsBlock extends SugarCaneBlock implements Cloakable, Wat
 
 	@Override
 	public Identifier getCloakAdvancementIdentifier() {
-		return new Identifier(SpectrumCommon.MOD_ID, "build_basic_pedestal_structure");
+		return new Identifier(SpectrumCommon.MOD_ID, "milestones/reveal_quitoxic_reeds");
 	}
 
 	@Override

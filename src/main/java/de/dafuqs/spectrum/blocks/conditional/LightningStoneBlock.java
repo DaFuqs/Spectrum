@@ -50,7 +50,7 @@ public class LightningStoneBlock extends Block implements Cloakable {
 
 	@Override
 	public Identifier getCloakAdvancementIdentifier() {
-		return new Identifier(SpectrumCommon.MOD_ID, "midgame/collect_corrupted_obsidian_dust");
+		return new Identifier(SpectrumCommon.MOD_ID, "milestones/reveal_lightning_stones");
 	}
 
 	@Deprecated

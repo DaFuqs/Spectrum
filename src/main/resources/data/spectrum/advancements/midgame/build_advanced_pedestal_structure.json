@@ -14,7 +14,8 @@
   },
   "criteria": {
     "built_structure": {
-      "trigger": "minecraft:impossible"
+      "trigger": "spectrum:completed_multiblock",
+      "conditions": { "multiblock_identifier": "spectrum:pedestal_advanced_structure_check" }
     }
   },
   "rewards": {

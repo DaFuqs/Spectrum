@@ -12,7 +12,7 @@ group = project.maven_group
 
 repositories {
 	maven { url "https://maven.shedaniel.me/" }
-	maven { url "https://maven.kotlindiscord.com/repository/terraformers/" }
+	maven { url "https://maven.terraformersmc.com" }
 	maven {
 		name = "Enchantment Descriptions"
 		url = 'https://maven.blamejared.com'
@@ -45,7 +45,7 @@ dependencies {
 	modRuntime "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"
 
 	// Soft dependencies:
-	//modImplementation "net.darkhax.enchdesc:EnchantmentDescriptions-fabric-${project.enchantment_descriptions_mc_version}:${project.enchantment_descriptions_mod_version}"
+	// modImplementation "net.darkhax.enchdesc:EnchantmentDescriptions-fabric-${project.enchantment_descriptions_mc_version}:${project.enchantment_descriptions_mod_version}"
 	// https://github.com/Gegy/colored-lights // uses colored_lights/light_colors.json
 }
 

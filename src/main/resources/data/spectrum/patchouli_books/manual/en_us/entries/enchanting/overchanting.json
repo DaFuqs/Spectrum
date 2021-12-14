@@ -3,12 +3,28 @@
   "icon": "minecraft:enchanted_book",
   "priority": true,
   "sortnum": 4,
-  "advancement": "spectrum:midgame/build_advanced_pedestal_structure",
+  "advancement": "spectrum:milestones/unlock_overenchanting_with_enchanter",
   "category": "spectrum:enchanting_category",
   "pages": [
     {
+      "type": "patchouli:spotlight",
+      "title": "Overchanting",
+      "item": "minecraft:enchanted_book{StoredEnchantments: [{id: \"minecraft:fortune\", lvl: 5s}]}",
+      "text": "$(italic)Being so familiar with both magic and the Enchanter opened new doors for you:$(br)Overchanting.$(br2)Pressing so much magical energy into a single Enchanted Book will be pricey. Maybe even not even worth the hassle, in most cases."
+    },
+    {
       "type": "patchouli:text",
-      "text": "$(italic)TODO"
+      "title": "Spectrum Enchantments",
+      "text": "Clover's Favor: 3 => 6$(br)Disarming: 2 => 4$(br)Exuberance: 5 => 10$(br)First Strike: 2 => 5$(br)Improved Critical: 2 => 4$(br)Inertia: 2 => 5$(br)Tight Grip: 2 => 4$(br)Treasure Hunter: 3 => 5"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Vanilla Enchantments",
+      "text": "Bane of Arthropods: 5 => 8$(br)Blast Protection: 4 => 8$(br)Depth Strider: 3 => 3$(br)Efficiency: 5 => 8$(br)Feather Falling: 4 => 6$(br)Fire Aspect: 2 => 4$(br)Fire Protection: 4 => 8$(br)Fortune: 3 => 5$(br)Frost Walker: 2 => 4$(br)Impaling: 5 => 8$(br)Knockback: 2 => 5$(br)Looting: 3 => 6$(br)Loyalty: 3 => 4$(br)Luck of the Sea: 3 => 5"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Lure: 3 => 5$(br)Piercing: 4 => 8$(br)Power: 5 => 8$(br)Projectile Protection: 4 => 8$(br)Protection: 4 => 8$(br)Punch: 2 => 5$(br)Quick Charge: 3 => 5$(br)Respiration: 3 => 6$(br)Riptide: 3 => 4$(br)Sharpness: 5 => 8$(br)Smite: 5 => 8$(br)Soul Speed: 3 => 4$(br)Sweeping Edge: 3 => 7$(br)Thorns: 3 => 6$(br)Unbreaking: 3 => 6"
     }
   ]
 }

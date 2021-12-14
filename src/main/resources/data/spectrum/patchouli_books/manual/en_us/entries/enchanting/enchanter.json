@@ -8,7 +8,7 @@
     "pages": [
         {
             "type": "patchouli:text",
-            "text": "$(italic)In your search for the perfect tool, you've found that the Enchanting Table often doesn't do your bidding. Using this highly modified Enchanting Table should resolve most of the issue you had with your original one."
+            "text": "$(italic)In your search for the perfect tool, you've found that the Enchanting Table often doesn't do your bidding. Using this highly modified Enchanting Table should resolve most of the issue you had with your original one.$()$(br2)It allows you to:$(li)$(l:enchanting/creating_enchanted_books)create new Enchanted Books$(/l)$(li)$(l:enchanting/upgrading_enchanted_books)upgrade them$(/l)$(li)$(l:enchanting/enchanting_items)enchant items without consuming Enchanted Books$(/l)"
         },
         {
             "type": "spectrum:pedestal_crafting",
@@ -21,11 +21,11 @@
             "name": "Enchanting Structure",
             "multiblock_id": "spectrum:enchanter_structure",
             "enable_visualize": true,
-            "text": "The holes have to be filled with $(l:magical_blocks/liquid_crystal)Liquid Crystal$()."
+            "text": "The holes beneath the gemstone blocks have to be filled with $(l:magical_blocks/liquid_crystal)Liquid Crystal$(). (not shown)"
         },
         {
             "type": "patchouli:text",
-            "text": "Switch the basalt blocks with calcite and choose the gemstone blocks as you like it best.$(br2)You are able to enhance the Enchanter with Upgrades by placing them on the Gemstone Blocks."
+            "text": "As usual, you are able to switch the basalt blocks with calcite and choose the gemstone blocks as you like it best.$(br2)Enhance the Enchanter with Upgrades by placing them on the Gemstone Blocks."
         }
     ]
 }

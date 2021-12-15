@@ -48,12 +48,7 @@ public class PedestalCraftingCategory<R extends PedestalCraftingRecipe> implemen
 	public Renderer getIcon() {
 		return EntryStacks.of(SpectrumBlocks.PEDESTAL_BASIC_AMETHYST);
 	}
-
-	@Override
-	public DisplayRenderer getDisplayRenderer(PedestalCraftingRecipeDisplay<R> recipe) {
-		return SimpleDisplayRenderer.from(Collections.singletonList(recipe.getInputEntries().get(0)), recipe.getOutputEntries());
-	}
-
+	
 	@Override
 	public List<Widget> setupDisplay(PedestalCraftingRecipeDisplay display, Rectangle bounds) {
 		Identifier backgroundTexture = PedestalScreen.getBackgroundTextureForTier(display.getTier());

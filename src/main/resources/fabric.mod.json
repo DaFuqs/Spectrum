@@ -38,8 +38,9 @@
     "fabric": ">=0.42.1",
     "minecraft": "1.18.x",
     "java": ">=17",
-    "cloth-config2": ">=5.0.37",
-    "owo": ">=0.3.0"
+    "cloth-config2": ">=6.0.42",
+    "patchouli": "*",
+    "owo": ">=0.3.8"
   },
   "suggests": {
     "colored_lights": ">=1.0.3",

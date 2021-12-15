@@ -18,10 +18,10 @@ public class SpectrumItemGroups {
 	private static final Identifier ITEM_GROUP_BUTTON_TEXTURE_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/item_group_button.png");
 	
 	private static final List<ItemGroupButton> ITEM_GROUP_BUTTONS = new ArrayList<>() {{
-		add(ItemGroupButton.discord("https://discord.gg/PnR9NuXQ")); // TODO: Add links, when uploaded
-		add(ItemGroupButton.github("https://github.com/DaFuqs/Spectrum")); // TODO: Add background texture, as soon as owo supports it
-		add(ItemGroupButton.curseforge("https://github.com/DaFuqs/Spectrum"));
-		add(ItemGroupButton.modrinth("https://github.com/DaFuqs/Spectrum"));
+		add(ItemGroupButton.discord("https://discord.gg/VHUPpHrj")); // TODO: Add item group background texture, as soon as owo supports it
+		add(ItemGroupButton.github("https://github.com/DaFuqs/Spectrum"));
+		add(ItemGroupButton.curseforge("https://www.curseforge.com/minecraft/mc-mods/spectrum"));
+		add(ItemGroupButton.modrinth("https://modrinth.com/mod/spectrum"));
 	}};
 	
 	public static final OwoItemGroup ITEM_GROUP_GENERAL = new OwoItemGroup(new Identifier(SpectrumCommon.MOD_ID, "general")) {

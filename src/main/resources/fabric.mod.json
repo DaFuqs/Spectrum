@@ -36,7 +36,7 @@
   "depends": {
     "fabricloader": ">=0.11.3",
     "fabric": ">=0.42.1",
-    "minecraft": "1.18.x",
+    "minecraft": ">=1.18.1",
     "java": ">=17",
     "cloth-config2": ">=6.0.42",
     "patchouli": "*",

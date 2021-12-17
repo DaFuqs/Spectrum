@@ -15,7 +15,7 @@ The heights where citrine and topaz geodes will spawn
 By default citrine will generate slightly below sea level (y=35-55)
 while topaz will generate at the top of mountains (everywhere from y=70+)
 if the worldgen has lots of high mountains consider raising the TopazGeodeMinFixedGenerationHeight""")
-	public int CitrineGeodeMinAboveBottomGenerationHeight = 35;
+	public int CitrineGeodeMinAboveBottomGenerationHeight = 96;
 	public int CitrineGeodeFixedMaxGenerationHeight = 60;
 	public int TopazGeodeMinFixedGenerationHeight = 90;
 	public int TopazGeodeMaxBelowTopGenerationHeight = 0;

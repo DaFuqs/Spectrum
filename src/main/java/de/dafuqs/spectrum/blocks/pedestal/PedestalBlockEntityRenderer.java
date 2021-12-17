@@ -45,7 +45,7 @@ public class PedestalBlockEntityRenderer<T extends PedestalBlockEntity> implemen
 
 			matrixStack.push();
 			double height = Math.sin((time) / 8.0) / 6.0; // item height
-			matrixStack.translate(0.5F, 1.25 + height, 0.5F); // position offset
+			matrixStack.translate(0.5F, 1.3 + height, 0.5F); // position offset
 			matrixStack.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion((time) * 2)); // item stack rotation
 			
 			// fixed lighting because:

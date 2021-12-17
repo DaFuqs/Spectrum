@@ -14,7 +14,7 @@
     {
       "type": "patchouli:text",
       "title": "Gemstone Blocks",
-      "text": "$(italic)The gems have an exceptionally beautiful appearance.$(br)The look of the raw gems, as you know them from the geodes, seems a little too natural for your edgier buildings. With enough resources, however, this should not be a problem. And if you run out of gems at some point, the decoration can be broken up again.$()"
+      "text": "$(italic)The gems have an exceptionally beautiful appearance.$(br)The look of the raw gems, as you know them from the geodes, seems a little too natural for your edgier buildings. With enough resources, however, this should not be a problem.$(br2)And if you run out of gems at some point, the decoration can easily be broken up again.$()"
     },
     {
       "type": "patchouli:crafting",

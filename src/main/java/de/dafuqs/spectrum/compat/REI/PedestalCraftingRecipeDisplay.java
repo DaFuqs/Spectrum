@@ -1,5 +1,7 @@
 package de.dafuqs.spectrum.compat.REI;
 
+import de.dafuqs.spectrum.SpectrumClient;
+import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.enums.GemstoneColor;
 import de.dafuqs.spectrum.enums.PedestalRecipeTier;
 import de.dafuqs.spectrum.recipe.pedestal.PedestalCraftingRecipe;
@@ -10,6 +12,8 @@ import me.shedaniel.rei.api.common.display.basic.BasicDisplay;
 import me.shedaniel.rei.api.common.entry.EntryIngredient;
 import me.shedaniel.rei.api.common.registry.RecipeManagerContext;
 import me.shedaniel.rei.api.common.util.EntryIngredients;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -154,8 +158,13 @@ public class PedestalCraftingRecipeDisplay<R extends PedestalCraftingRecipe> ext
 		if(this.pedestalCraftingRecipe == null) {
 			return true;
 		} else {
-			return this.pedestalCraftingRecipe.canPlayerCraft(MinecraftClient.getInstance().player);
+			return SpectrumClient.minecraftClient == null || isUnlockedClient();
 		}
+	}
+	
+	@Environment(EnvType.CLIENT)
+	public boolean isUnlockedClient() {
+		return this.pedestalCraftingRecipe.canPlayerCraft(MinecraftClient.getInstance().player);
 	}
 
 	@Override

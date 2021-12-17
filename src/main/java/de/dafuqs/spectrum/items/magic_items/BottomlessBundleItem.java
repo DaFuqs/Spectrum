@@ -5,6 +5,7 @@ import de.dafuqs.spectrum.interfaces.InventoryInsertionAcceptor;
 import de.dafuqs.spectrum.items.tooltip.VoidBundleTooltipData;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.client.item.TooltipData;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.StackReference;
@@ -13,6 +14,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.screen.slot.Slot;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.stat.Stats;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
@@ -35,6 +37,7 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 	public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
 		ItemStack itemStack = user.getStackInHand(hand);
 		if (dropOneBundledStack(itemStack, user)) {
+			this.playDropContentsSound(user);
 			user.incrementStat(Stats.USED.getOrCreateStat(this));
 			return TypedActionResult.success(itemStack, world.isClient());
 		} else {
@@ -107,6 +110,7 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 		} else {
 			ItemStack itemStack = slot.getStack();
 			if (itemStack.isEmpty()) {
+				playRemoveOneSound(player);
 				removeFirstBundledStack(stack).ifPresent((removedStack) -> {
 					addToBundle(stack, slot.insertStack(removedStack), player);
 				});
@@ -116,6 +120,7 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 					int amountAbleToStore = Math.min(itemStack.getCount(), (MAX_STORED_AMOUNT - getStoredAmount(stack)));
 					if(amountAbleToStore > 0) {
 						addToBundle(stack, slot.takeStackRange(itemStack.getCount(), amountAbleToStore, player), player);
+						this.playInsertSound(player);
 					}
 				}
 			}
@@ -131,11 +136,16 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 	public boolean onClicked(ItemStack stack, ItemStack otherStack, Slot slot, ClickType clickType, PlayerEntity player, StackReference cursorStackReference) {
 		if (clickType == ClickType.RIGHT && slot.canTakePartial(player)) {
 			if (otherStack.isEmpty()) {
-				Optional<ItemStack> removedItemStack = removeFirstBundledStack(stack);
-				Objects.requireNonNull(cursorStackReference);
-				removedItemStack.ifPresent(cursorStackReference::set);
+				removeFirstBundledStack(stack).ifPresent((itemStack) -> {
+					this.playRemoveOneSound(player);
+					cursorStackReference.set(itemStack);
+				});
 			} else {
-				otherStack.decrement(addToBundle(stack, otherStack, player));
+				int storedAmount = addToBundle(stack, otherStack, player);
+				if(storedAmount > 0) {
+					this.playInsertSound(player);
+					otherStack.decrement(storedAmount);
+				}
 			}
 
 			return true;
@@ -143,7 +153,14 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 			return false;
 		}
 	}
-
+	
+	/**
+	 *
+	 * @param bundle
+	 * @param stackToBundle
+	 * @param playerEntity
+	 * @return The amount of items put into the bundle
+	 */
 	private static int addToBundle(ItemStack bundle, ItemStack stackToBundle, PlayerEntity playerEntity) {
 		if (!stackToBundle.isEmpty() && stackToBundle.getItem().canBeNested()) {
 			int storedAmount = getStoredAmount(bundle);
@@ -279,6 +296,18 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 	public int acceptItemStack(ItemStack inventoryInsertionAcceptorStack, ItemStack itemStackToAccept, PlayerEntity playerEntity) {
 		int storedAmount = getStoredAmount(inventoryInsertionAcceptorStack);
 		return bundleStack(inventoryInsertionAcceptorStack, itemStackToAccept, itemStackToAccept.getCount() + storedAmount, playerEntity);
+	}
+	
+	private void playRemoveOneSound(Entity entity) {
+		entity.playSound(SoundEvents.ITEM_BUNDLE_REMOVE_ONE, 0.8F, 0.8F + entity.getWorld().getRandom().nextFloat() * 0.4F);
+	}
+	
+	private void playInsertSound(Entity entity) {
+		entity.playSound(SoundEvents.ITEM_BUNDLE_INSERT, 0.8F, 0.8F + entity.getWorld().getRandom().nextFloat() * 0.4F);
+	}
+	
+	private void playDropContentsSound(Entity entity) {
+		entity.playSound(SoundEvents.ITEM_BUNDLE_DROP_CONTENTS, 0.8F, 0.8F + entity.getWorld().getRandom().nextFloat() * 0.4F);
 	}
 
 }

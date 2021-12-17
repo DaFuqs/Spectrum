@@ -24,11 +24,11 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class KnowledgeDropItem extends Item implements ExperienceStorageItem {
+public class KnowledgeGemItem extends Item implements ExperienceStorageItem {
 	
 	public int maxStorage;
 	
-	public KnowledgeDropItem(Settings settings, int maxStorage) {
+	public KnowledgeGemItem(Settings settings, int maxStorage) {
 		super(settings);
 		this.maxStorage = maxStorage;
 	}
@@ -90,12 +90,12 @@ public class KnowledgeDropItem extends Item implements ExperienceStorageItem {
 		
 		int storedExperience = ExperienceStorageItem.getStoredExperience(itemStack);
 		if(storedExperience == 0) {
-			tooltip.add(new LiteralText("0 ").formatted(Formatting.DARK_GRAY).append(new TranslatableText("item.spectrum.knowledge_drop.tooltip.stored_experience", storedExperience).formatted(Formatting.GRAY)));
+			tooltip.add(new LiteralText("0 ").formatted(Formatting.DARK_GRAY).append(new TranslatableText("item.spectrum.knowledge_gem.tooltip.stored_experience", storedExperience).formatted(Formatting.GRAY)));
 		} else {
-			tooltip.add(new LiteralText(storedExperience + " ").formatted(Formatting.GREEN).append(new TranslatableText("item.spectrum.knowledge_drop.tooltip.stored_experience", storedExperience).formatted(Formatting.GRAY)));
+			tooltip.add(new LiteralText(storedExperience + " ").formatted(Formatting.GREEN).append(new TranslatableText("item.spectrum.knowledge_gem.tooltip.stored_experience", storedExperience).formatted(Formatting.GRAY)));
 		}
 		if(shouldDisplayUsageTooltip(itemStack)) {
-			tooltip.add(new TranslatableText("item.spectrum.knowledge_drop.tooltip.use", storedExperience).formatted(Formatting.GRAY));
+			tooltip.add(new TranslatableText("item.spectrum.knowledge_gem.tooltip.use", storedExperience).formatted(Formatting.GRAY));
 		}
 	}
 	

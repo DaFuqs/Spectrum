@@ -2,15 +2,15 @@
   "parent": "spectrum:midgame/build_enchanting_structure",
   "display": {
     "icon": {
-      "item": "spectrum:knowledge_drop",
+      "item": "spectrum:knowledge_gem",
       "nbt": "{stored_experience:10000}"
     },
     "frame": "challenge",
     "title": {
-      "translate": "advancements.spectrum.fill_knowledge_drop.title"
+      "translate": "advancements.spectrum.fill_knowledge_gem.title"
     },                                          
     "description": {                            
-      "translate": "advancements.spectrum.fill_knowledge_drop.description"
+      "translate": "advancements.spectrum.fill_knowledge_gem.description"
     }
   },
   "criteria": {
@@ -20,7 +20,7 @@
         "items": [
           {
             "items": [
-              "spectrum:knowledge_drop"
+              "spectrum:knowledge_gem"
             ],
             "nbt": "{stored_experience:10000}"
           }

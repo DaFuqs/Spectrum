@@ -2,16 +2,11 @@ package de.dafuqs.spectrum.blocks.enchanter;
 
 import de.dafuqs.spectrum.ExperienceHelper;
 import de.dafuqs.spectrum.Support;
-import de.dafuqs.spectrum.blocks.fusion_shrine.FusionShrineBlock;
-import de.dafuqs.spectrum.blocks.fusion_shrine.FusionShrineBlockEntity;
 import de.dafuqs.spectrum.blocks.item_bowl.ItemBowlBlockEntity;
 import de.dafuqs.spectrum.blocks.upgrade.Upgradeable;
 import de.dafuqs.spectrum.interfaces.PlayerOwned;
 import de.dafuqs.spectrum.items.ExperienceStorageItem;
-import de.dafuqs.spectrum.items.magic_items.KnowledgeDropItem;
-import de.dafuqs.spectrum.networking.SpectrumS2CPackets;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
-import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.recipe.enchanter.EnchanterRecipe;
 import de.dafuqs.spectrum.recipe.enchantment_upgrade.EnchantmentUpgradeRecipe;
@@ -19,40 +14,27 @@ import de.dafuqs.spectrum.recipe.fusion_shrine.FusionShrineRecipe;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
-import net.minecraft.advancement.Advancement;
-import net.minecraft.advancement.AdvancementCriterion;
-import net.minecraft.advancement.AdvancementManager;
-import net.minecraft.advancement.AdvancementProgress;
 import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.EnchantingTableBlockEntity;
-import net.minecraft.entity.ExperienceOrbEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.item.KnowledgeBookItem;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.network.Packet;
 import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
-import net.minecraft.particle.ParticleEffect;
-import net.minecraft.particle.ParticleTypes;
 import net.minecraft.recipe.Recipe;
-import net.minecraft.screen.EnchantmentScreenHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.stat.Stats;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.Pair;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -65,7 +47,7 @@ import java.util.*;
 
 public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Upgradeable {
 	
-	public static final int INVENTORY_SIZE = 2; // 0: any itemstack, 1: Knowledge Drop;
+	public static final int INVENTORY_SIZE = 2; // 0: any itemstack, 1: Knowledge Gem;
 	
 	private UUID ownerUUID;
 	protected SimpleInventory inventory;
@@ -268,7 +250,7 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 	
 	public static void craftEnchanterRecipe(World world, @NotNull EnchanterBlockEntity enchanterBlockEntity, @NotNull EnchanterRecipe enchanterRecipe) {
 		ItemStack knowledgeDropStack = enchanterBlockEntity.getInventory().getStack(1);
-		if(knowledgeDropStack.isOf(SpectrumItems.KNOWLEDGE_DROP)) {
+		if(knowledgeDropStack.isOf(SpectrumItems.KNOWLEDGE_GEM)) {
 			ExperienceStorageItem.removeStoredExperience(knowledgeDropStack, enchanterRecipe.getRequiredExperience());
 		}
 		
@@ -304,7 +286,7 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 	
 	public static void craftEnchantmentUpgradeRecipe(World world, @NotNull EnchanterBlockEntity enchanterBlockEntity, @NotNull EnchantmentUpgradeRecipe enchantmentUpgradeRecipe) {
 		ItemStack knowledgeDropStack = enchanterBlockEntity.getInventory().getStack(1);
-		if(knowledgeDropStack.isOf(SpectrumItems.KNOWLEDGE_DROP)) {
+		if(knowledgeDropStack.isOf(SpectrumItems.KNOWLEDGE_GEM)) {
 			ExperienceStorageItem.removeStoredExperience(knowledgeDropStack, enchantmentUpgradeRecipe.getRequiredExperience());
 		}
 		
@@ -395,7 +377,7 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 	public void inventoryChanged() {
 		virtualInventoryIncludingBowlStacks = new SimpleInventory(INVENTORY_SIZE + 8);
 		virtualInventoryIncludingBowlStacks.setStack(0, this.inventory.getStack(0)); // center item
-		virtualInventoryIncludingBowlStacks.setStack(1, this.inventory.getStack(1)); // knowledge drop
+		virtualInventoryIncludingBowlStacks.setStack(1, this.inventory.getStack(1)); // knowledge gem
 		virtualInventoryIncludingBowlStacks.setStack(2, getItemBowlStack(this.world, pos.add(5, 0, -3)));
 		virtualInventoryIncludingBowlStacks.setStack(3, getItemBowlStack(this.world, pos.add(5, 0, 3)));
 		virtualInventoryIncludingBowlStacks.setStack(4, getItemBowlStack(this.world, pos.add(3, 0, 5)));

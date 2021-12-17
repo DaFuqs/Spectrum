@@ -78,7 +78,7 @@ public class RevelationToast implements Toast {
 		if (!this.soundPlayed && startTime > 0L) {
 			this.soundPlayed = true;
 			if(this.soundEvent != null) {
-				manager.getClient().getSoundManager().play(PositionedSoundInstance.master(this.soundEvent, 1.0F, 1.0F));
+				manager.getClient().getSoundManager().play(PositionedSoundInstance.master(this.soundEvent, 1.0F, 0.75F));
 			}
 		}
 

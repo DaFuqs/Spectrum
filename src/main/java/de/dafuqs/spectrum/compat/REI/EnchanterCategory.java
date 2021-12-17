@@ -74,7 +74,7 @@ public class EnchanterCategory<R extends EnchanterRecipeDisplay> implements Disp
 			widgets.add(Widgets.createSlot(new Point(startPoint.x, startPoint.y + 54)).markInput().entries((EntryIngredient) display.inputs.get(7)));
 			widgets.add(Widgets.createSlot(new Point(startPoint.x, startPoint.y + 28)).markInput().entries((EntryIngredient) display.inputs.get(8)));
 			
-			// KNOWLEDGE_DROP & Enchanter
+			// KNOWLEDGE_GEM & Enchanter
 			widgets.add(Widgets.createSlot(new Point(startPoint.x + 111, startPoint.y + 14)).markInput().entries((EntryIngredient) display.inputs.get(9)));
 			widgets.add(Widgets.createSlot(new Point(startPoint.x + 111, startPoint.y + 60)).entries(ENCHANTER).disableBackground());
 			

@@ -41,100 +41,116 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "From the leaves of $(l:general/gemstone_powder)gemstone powder$() dyed trees$() you could obtain absolutely pure color pigments.$(br)These pigments definitely feel magical, embodying the elements of nature, composed of their original forms $(bold)$(c_magenta)TIME$(), $(bold)$(c_yellow)ENERGY$() and $(bold)$(c_cyan)MATTER$()."
+      "text": "Finally! You were able to obtain absolutely pure color pigments from the leaves of $(l:general/colored_trees)colored trees$().$(br)These pigments definitely feel magical, embodying elements of nature, composed of their fundamentals $(bold)$(c_magenta)TIME$(), $(bold)$(c_yellow)ENERGY$() and $(bold)$(c_cyan)MATTER$()."
     },
     {
       "type": "patchouli:spotlight",
+      "anchor": "black",
       "advancement": "spectrum:hidden/collect_pigment/collect_black_pigment",
       "item": "spectrum:black_pigment",
       "text": "The darkest material you have ever held in your hands. It looks almost surreal.$(br2)$(c_black)Black$() represents the nothingness of the $(italic)Void$(), $(italic)Power$() and $(italic)Mystery$()."
     },
     {
       "type": "patchouli:spotlight",
+      "anchor": "blue",
       "advancement": "spectrum:hidden/collect_pigment/collect_blue_pigment",
       "item": "spectrum:blue_pigment",
       "text": "Holding it in your hand gives you a sign of security. Of course, all nonsense, after all, it is only a color. But still...$(br2)$(c_blue)Blue$() represents $(italic)Safety$() and $(italic)Permanence$()."
     },
     {
       "type": "patchouli:spotlight",
+      "anchor": "brown",
       "advancement": "spectrum:hidden/collect_pigment/collect_brown_pigment",
       "item": "spectrum:brown_pigment",
       "text": "This rich brown makes you long for mother nature.$(br2)$(c_brown)Brown$() represents $(italic)Nature$() and $(italic)Stability$()."
     },
     {
       "type": "patchouli:spotlight",
+      "anchor": "cyan",
       "advancement": "spectrum:hidden/collect_pigment/collect_cyan_pigment",
       "item": "spectrum:cyan_pigment",
       "text": "It makes you feel as if you are sitting on the top of a mountain, taking in the never-ending vastness of the world.$(br2)$(c_cyan)Cyan$() represents $(italic)Matter$() and $(italic)Integrity$()."
     },
     {
       "type": "patchouli:spotlight",
+      "anchor": "gray",
       "advancement": "spectrum:hidden/collect_pigment/collect_gray_pigment",
       "item": "spectrum:gray_pigment",
       "text": "This color looks to you like the defeated older brother of light gray. Whenever you look at it you get a little sad, but you do not know exactly why.$(br2)$(c_gray)Gray$() represents $(italic)Evanescence$()."
     },
     {
       "type": "patchouli:spotlight",
+      "anchor": "green",
       "advancement": "spectrum:hidden/collect_pigment/collect_green_pigment",
       "item": "spectrum:green_pigment",
       "text": "This pigment softly radiates inner peace.$(br2)$(c_green)Green$() represents $(italic)Balance$() and $(italic)Harmony$()."
     },
     {
       "type": "patchouli:spotlight",
+      "anchor": "light_blue",
       "advancement": "spectrum:hidden/collect_pigment/collect_light_blue_pigment",
       "item": "spectrum:light_blue_pigment",
       "text": "Looking at this color, you feel a sense of optimism, but also departure.$(br2)$(c_light_blue)Light Blue$() represents $(italic)Luck$() and $(italic)Peace$()."
     },
     {
       "type": "patchouli:spotlight",
+      "anchor": "black",
       "advancement": "spectrum:hidden/collect_pigment/collect_light_gray_pigment",
       "item": "spectrum:light_gray_pigment",
       "text": "You know that feeling when you are sitting serenely, looking at the landscape, feeling life pass you by, and yet everything is okay?$(br2)$(c_light_gray)Light Gray$() represents $(italic)Change$(), but also $(italic)Quiet$()."
     },
     {
       "type": "patchouli:spotlight",
+      "anchor": "lime",
       "advancement": "spectrum:hidden/collect_pigment/collect_lime_pigment",
       "item": "spectrum:lime_pigment",
       "text": "The juicy lime almost smells like a warm spring morning. Or are you just imagining?$(br2)$(c_lime)Lime$() represents $(italic)Happiness$() and $(italic)Fertility$()."
     },
     {
       "type": "patchouli:spotlight",
+      "anchor": "magenta",
       "advancement": "spectrum:hidden/collect_pigment/collect_magenta_pigment",
       "item": "spectrum:magenta_pigment",
       "text": "The soft magenta puts you in a calm and content, almost serene mood.$(br2)$(c_magenta)Magenta$() represents $(italic)Time$(), $(italic)Kindness$() and $(italic)Tolerance$()."
     },
     {
       "type": "patchouli:spotlight",
+      "anchor": "orange",
       "advancement": "spectrum:hidden/collect_pigment/collect_orange_pigment",
       "item": "spectrum:orange_pigment",
       "text": "The orange color reminds you of autumn and makes you feel a bit like you are sitting in a cozy armchair in front of a fireplace.$(br2)$(c_orange)Orange$() represents $(italic)Warmth$() and $(italic)Comfort$()."
     },
     {
       "type": "patchouli:spotlight",
+      "anchor": "pink",
       "advancement": "spectrum:hidden/collect_pigment/collect_pink_pigment",
       "item": "spectrum:pink_pigment",
       "text": "This bright, lively cotton candy pink makes you beam with joy.$(br2)$(c_pink)Pink$() represents $(italic)Health$() and $(italic)Admiration$()."
     },
     {
       "type": "patchouli:spotlight",
+      "anchor": "purple",
       "advancement": "spectrum:hidden/collect_pigment/collect_purple_pigment",
       "item": "spectrum:purple_pigment",
       "text": "This sight makes your mind go into high gear. It not only stimulates your thirst for knowledge, but also gives you creative ideas.$(br2)$(c_purple)Purple$() represents $(italic)Wisdom$() and $(italic)Creativity$()."
     },
     {
       "type": "patchouli:spotlight",
+      "anchor": "red",
       "advancement": "spectrum:hidden/collect_pigment/collect_red_pigment",
       "item": "spectrum:red_pigment",
       "text": "You feel the urge and the desire to create something beautiful.$(br2)$(c_red)Red$() represents $(italic)Passion$() and $(italic)Willpower$()."
     },
     {
       "type": "patchouli:spotlight",
+      "anchor": "white",
       "advancement": "spectrum:hidden/collect_pigment/collect_white_pigment",
       "item": "spectrum:white_pigment",
       "text": "You can not exactly put it into words. This pigment radiates something unspeakably wonderful.$(br2)$(c_white)White$() represents $(italic)LIFE$(), $(italic)Light$() and $(italic)Purity$()."
     },
     {
       "type": "patchouli:spotlight",
+      "anchor": "yellow",
       "advancement": "spectrum:hidden/collect_pigment/collect_yellow_pigment",
       "item": "spectrum:yellow_pigment",
       "text": "The vibrant yellow is almost bursting with energy.$(br2)$(c_yellow)Yellow$() represents $(italic)ENERGY$() and $(italic)Joy$()."

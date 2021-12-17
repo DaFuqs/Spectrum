@@ -47,7 +47,7 @@
       "type": "patchouli:text",
       "title": "Resonant Pickaxe",
       "advancement": "spectrum:progression/tools/unlock_resonant_pickaxe",
-      "text": "This bright blue pickaxe matches its own gentle inherent vibration to that of its surroundings. This allows you to keep blocks intact that would otherwise be irreparably destroyed by force.$(br)The Resonant Pickaxe comes pre-enchanted with $(bold)$(l:enchanting/resonance)Resonance$()."
+      "text": "This bright blue pickaxe matches its own gentle inherent vibration to that of its surroundings. This allows you to keep blocks intact that would otherwise be irreparably destroyed by force.$(br)The Resonant Pickaxe comes pre-enchanted with $(l:enchanting/resonance)Resonance$(/l)."
     },
     {
       "type": "spectrum:pedestal_crafting",

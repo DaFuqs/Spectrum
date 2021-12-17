@@ -12,7 +12,7 @@
       "type": "spectrum:pedestal_crafting",
       "title": "Onyx Variant",
       "recipe": "spectrum:pedestal/tier2/pedestal_onyx",
-      "text": "Upgrade your $(l:general/pedestal)Pigment Pedestal$() by using one of your $(l:general/shards)Onyx Shards$() to further increase its magical powers."
+      "text": "Upgrade your $(l:general/pedestal)Pigment Pedestal$() by using one of your $(l:general/shards#onyx)Onyx Shards$() to further increase its magical powers."
     },
     {
       "type": "patchouli:multiblock",

@@ -10,6 +10,7 @@
     },
     {
       "type": "patchouli:smelting",
+      "anchor": "polished_basalt",
       "recipe": "spectrum:smelting/smooth_basalt_to_polished_basalt",
       "recipe2": "spectrum:smelting/calcite_to_polished_calcite",
       "text": "Applying heat to basalt emphasizes their dark and bright textures even more. Smelting also results in a much cleaner texture, which is perfect for building."
@@ -27,6 +28,7 @@
     },
     {
       "type": "patchouli:spotlight",
+      "anchor": "polished_calcite",
       "item": "spectrum:polished_calcite",
       "title": "Polished Calcite Blocks",
       "text": "The bright white of calcite may be the brightest natural color you've stumbled across.$(br)It looks very clean and radiates dignity."

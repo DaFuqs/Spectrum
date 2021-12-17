@@ -24,7 +24,7 @@
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier2/runes/topaz_chiseled_basalt_from_shards",
-      "text": "Come in all gemstone colors. The frame can be built out of $(l:decoration/block_variants)Polished Basalt$() or $(l:decoration/block_variants)Polished Calcite$()."
+      "text": "Come in all gemstone colors. The frame can be built out of $(l:decoration/block_variants#polished_basalt)Polished Basalt$() or $(l:decoration/block_variants#polished_calcite)Polished Calcite$()."
     },
     {
       "type": "spectrum:pedestal_crafting",

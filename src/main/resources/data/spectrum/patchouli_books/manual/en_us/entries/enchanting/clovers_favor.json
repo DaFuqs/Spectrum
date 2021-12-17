@@ -6,7 +6,7 @@
     "pages": [
         {
             "type": "patchouli:text",
-            "text": "$(italic)Every now and then you are lucky enough to have an enemy leave behind a single rare item.$(br)The connection to luck of $(l:resources/clover)Clover$(/l) and $(l:general/pigment)Light Blue Pigment$(/l) you can increase those chances dramatically."
+            "text": "$(italic)Every now and then you are lucky enough to have an enemy leave behind a single rare item.$(br)The connection to luck of $(l:resources/clover)Clover$(/l) and $(l:general/pigment#light_blue)Light Blue Pigment$(/l) you can increase those chances dramatically."
         },
         {
             "type": "patchouli:text",

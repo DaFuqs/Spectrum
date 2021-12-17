@@ -10,7 +10,7 @@
     {
       "type": "patchouli:spotlight",
       "item": "spectrum:redstone_calculator",
-      "text": "$(italic)With the red math dust from the underground, you've built gigantic constructions several times, just to emulate a parrot's ability to calculate. When you look at these, your breath literally stops (and the rest of the world, too, multiple times a second). The energy laden $(l:general/shards)Citrine$(/l) seems like a perfect match for basic arithmetic logic."
+      "text": "$(italic)With the red math dust from the underground, you've built gigantic constructions several times, just to emulate a parrot's ability to calculate. When you look at these, your breath literally stops (and the rest of the world, too, multiple times a second). The energy laden $(l:general/shards#citrine)Citrine$(/l) seems like a perfect match for basic arithmetic logic."
     },
     {
       "type": "spectrum:pedestal_crafting",

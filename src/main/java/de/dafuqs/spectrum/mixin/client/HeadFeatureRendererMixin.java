@@ -30,7 +30,7 @@ public class HeadFeatureRendererMixin<T extends LivingEntity, M extends EntityMo
 		ItemStack itemStack = livingEntity.getEquippedStack(EquipmentSlot.HEAD);
 		Item item = itemStack.getItem();
 		
-		if (item instanceof BlockItem && ((BlockItem)item).getBlock() instanceof AbstractSkullBlock) {
+		if (item instanceof BlockItem && ((BlockItem)item).getBlock() instanceof SpectrumSkullBlock) {
 			SkullBlock.SkullType skullType = ((SpectrumSkullBlock)((BlockItem)item).getBlock()).getSkullType();
 			RenderLayer renderLayer = SpectrumSkullBlockEntityRenderer.getRenderLayer(skullType);
 			SpectrumSkullBlockEntityRenderer.renderSkull(null, 180.0F, animationProgress, matrixStack, vertexConsumerProvider, light, renderLayer);

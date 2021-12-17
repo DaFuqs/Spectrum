@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.mixin.client;
 
 import de.dafuqs.spectrum.progression.ClientBlockCloaker;
 import net.minecraft.block.Block;
-import net.minecraft.item.Item;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
 import net.minecraft.util.Language;

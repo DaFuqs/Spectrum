@@ -844,9 +844,11 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 	}
 	
 	public void clearCurrentlyRenderedMultiBlock() {
-		IMultiblock currentlyRenderedMultiBlock = PatchouliAPI.get().getCurrentMultiblock();
-		if(currentlyRenderedMultiBlock != null && currentlyRenderedMultiBlock.getID().equals(SpectrumMultiblocks.PEDESTAL_ADVANCED_STRUCTURE_IDENTIFIER_DISPLAY)) {
-			PatchouliAPI.get().clearMultiblock();
+		if(world.isClient) {
+			IMultiblock currentlyRenderedMultiBlock = PatchouliAPI.get().getCurrentMultiblock();
+			if (currentlyRenderedMultiBlock != null && currentlyRenderedMultiBlock.getID().equals(SpectrumMultiblocks.PEDESTAL_ADVANCED_STRUCTURE_IDENTIFIER_DISPLAY)) {
+				PatchouliAPI.get().clearMultiblock();
+			}
 		}
 	}
 	

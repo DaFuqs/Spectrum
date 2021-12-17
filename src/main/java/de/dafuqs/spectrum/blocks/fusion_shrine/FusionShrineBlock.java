@@ -73,6 +73,7 @@ public class FusionShrineBlock extends BlockWithEntity {
 	@Override
 	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
 		if(world.isClient) {
+			verifyStructure(world, pos, null);
 			return ActionResult.SUCCESS;
 		} else {
 			ItemStack itemStack = player.getStackInHand(hand);
@@ -163,15 +164,18 @@ public class FusionShrineBlock extends BlockWithEntity {
 		boolean valid = multiblock.validate(world, blockPos.down(), BlockRotation.NONE);
 
 		if(valid) {
-			if(serverPlayerEntity != null) {
+			if (serverPlayerEntity != null) {
 				SpectrumAdvancementCriteria.COMPLETED_MULTIBLOCK.trigger(serverPlayerEntity, multiblock);
 			}
 		} else {
-			IMultiblock currentMultiBlock = PatchouliAPI.get().getCurrentMultiblock();
-			if(currentMultiBlock == multiblock) {
-				PatchouliAPI.get().clearMultiblock();
+			if(world.isClient) {
+				IMultiblock currentMultiBlock = PatchouliAPI.get().getCurrentMultiblock();
+				if(currentMultiBlock == multiblock) {
+					PatchouliAPI.get().clearMultiblock();
+				} else {
+					PatchouliAPI.get().showMultiblock(multiblock, new TranslatableText("multiblock.spectrum.fusion_shrine.structure"), blockPos.down(2), BlockRotation.NONE);
+				}
 			} else {
-				PatchouliAPI.get().showMultiblock(multiblock, new TranslatableText("multiblock.spectrum.fusion_shrine.structure"), blockPos.down(2), BlockRotation.NONE);
 				scatterContents(world, blockPos);
 			}
 		}
@@ -184,12 +188,6 @@ public class FusionShrineBlock extends BlockWithEntity {
 	public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
 		if(!newState.getBlock().equals(this)) { // happens when filling with fluid
 			scatterContents(world, pos);
-			IMultiblock currentMultiBlock = PatchouliAPI.get().getCurrentMultiblock();
-			if(currentMultiBlock != null) {
-				if (currentMultiBlock.getID().equals(SpectrumMultiblocks.FUSION_SHRINE_IDENTIFIER)) {
-					PatchouliAPI.get().clearMultiblock();
-				}
-			}
 		}
 		super.onStateReplaced(state, world, pos, newState, moved);
 	}
@@ -200,6 +198,7 @@ public class FusionShrineBlock extends BlockWithEntity {
 		if (blockEntity instanceof FusionShrineBlockEntity fusionShrineBlockEntity) {
 			ItemScatterer.spawn(world, pos, fusionShrineBlockEntity.getInventory());
 			world.updateComparators(pos, block);
+			fusionShrineBlockEntity.updateInClientWorld();
 		}
 	}
 

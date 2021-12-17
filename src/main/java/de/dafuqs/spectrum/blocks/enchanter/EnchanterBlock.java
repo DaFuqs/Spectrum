@@ -69,6 +69,7 @@ public class EnchanterBlock extends BlockWithEntity {
 	@Override
 	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
 		if(world.isClient) {
+			verifyStructure(world, pos, null);
 			return ActionResult.SUCCESS;
 		} else {
 			if (verifyStructure(world, pos, (ServerPlayerEntity) player)) {
@@ -124,16 +125,17 @@ public class EnchanterBlock extends BlockWithEntity {
 		boolean valid = multiblock.validate(world, blockPos.down(3), BlockRotation.NONE);
 		
 		if(valid) {
-			if(serverPlayerEntity != null) {
+			if (serverPlayerEntity != null) {
 				SpectrumAdvancementCriteria.COMPLETED_MULTIBLOCK.trigger(serverPlayerEntity, multiblock);
 			}
 		} else {
-			IMultiblock currentMultiBlock = PatchouliAPI.get().getCurrentMultiblock();
-			if(currentMultiBlock == multiblock) {
-				PatchouliAPI.get().clearMultiblock();
-			} else {
-				PatchouliAPI.get().showMultiblock(multiblock, new TranslatableText("multiblock.spectrum.enchanter.structure"), blockPos.down(4), BlockRotation.NONE);
-				scatterContents(world, blockPos);
+			if(world.isClient) {
+				IMultiblock currentMultiBlock = PatchouliAPI.get().getCurrentMultiblock();
+				if(currentMultiBlock == multiblock) {
+					PatchouliAPI.get().clearMultiblock();
+				} else {
+					PatchouliAPI.get().showMultiblock(multiblock, new TranslatableText("multiblock.spectrum.enchanter.structure"), blockPos.down(4), BlockRotation.NONE);
+				}
 			}
 		}
 		

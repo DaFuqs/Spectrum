@@ -25,7 +25,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class PedestalCraftingRecipeDisplay<R extends PedestalCraftingRecipe> extends BasicDisplay implements SimpleGridMenuDisplay {
+public class PedestalCraftingRecipeDisplay<R extends PedestalCraftingRecipe> extends BasicDisplay implements SimpleGridMenuDisplay, GatedRecipeDisplay {
 
 	private final PedestalCraftingRecipe pedestalCraftingRecipe;
 	protected final List<EntryIngredient> craftingInputs;

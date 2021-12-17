@@ -18,7 +18,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class EnchanterRecipeDisplay<R extends EnchanterRecipe> implements SimpleGridMenuDisplay {
+public class EnchanterRecipeDisplay<R extends EnchanterRecipe> implements SimpleGridMenuDisplay, GatedRecipeDisplay {
 	
 	protected final List<EntryIngredient> inputs; // first input is the center, all others around clockwise
 	protected final EntryIngredient output;

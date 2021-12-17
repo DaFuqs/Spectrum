@@ -65,8 +65,8 @@ public class PedestalCraftingCategory<R extends PedestalCraftingRecipe> implemen
 		// It would be way better to just skip not unlocked recipes altogether.
 		// but howwwwww...
 		if(!display.isUnlocked()) {
-			widgets.add(Widgets.createLabel(new Point(startPoint.x - 6, startPoint.y + 33), new TranslatableText("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_1")).leftAligned().color(0x3f3f3f).noShadow());
-			widgets.add(Widgets.createLabel(new Point(startPoint.x - 6, startPoint.y + 43), new TranslatableText("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_2")).leftAligned().color(0x3f3f3f).noShadow());
+			widgets.add(Widgets.createLabel(new Point(startPoint.x - 9, startPoint.y + 33), new TranslatableText("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_1")).leftAligned().color(0x3f3f3f).noShadow());
+			widgets.add(Widgets.createLabel(new Point(startPoint.x - 9, startPoint.y + 43), new TranslatableText("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_2")).leftAligned().color(0x3f3f3f).noShadow());
 		} else {
 			widgets.add(Widgets.createArrow(new Point(startPoint.x + 60, startPoint.y + 18)));
 

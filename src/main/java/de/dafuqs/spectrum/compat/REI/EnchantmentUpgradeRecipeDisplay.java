@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class EnchantmentUpgradeRecipeDisplay<R extends EnchantmentUpgradeRecipe> implements SimpleGridMenuDisplay {
+public class EnchantmentUpgradeRecipeDisplay<R extends EnchantmentUpgradeRecipe> implements SimpleGridMenuDisplay, GatedRecipeDisplay {
 	
 	protected final int requiredExperience;
 	protected final int requiredItemCount;

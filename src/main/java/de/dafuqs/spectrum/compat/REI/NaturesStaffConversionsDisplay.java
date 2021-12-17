@@ -1,14 +1,20 @@
 package de.dafuqs.spectrum.compat.REI;
 
+import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.Support;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.display.basic.BasicDisplay;
 import me.shedaniel.rei.api.common.entry.EntryIngredient;
 import me.shedaniel.rei.api.common.entry.EntryStack;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.util.Identifier;
 
 import java.util.Collections;
 import java.util.List;
 
-public class NaturesStaffConversionsDisplay extends BasicDisplay {
+public class NaturesStaffConversionsDisplay extends BasicDisplay implements GatedRecipeDisplay {
+	
+	public static final Identifier UNLOCK_ADVANCEMENT_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_natures_staff");
 
 	public NaturesStaffConversionsDisplay(EntryStack<?> in, EntryStack<?> out) {
 		this(Collections.singletonList(EntryIngredient.of(in)), Collections.singletonList(EntryIngredient.of(out)));
@@ -30,7 +36,11 @@ public class NaturesStaffConversionsDisplay extends BasicDisplay {
 	public CategoryIdentifier<?> getCategoryIdentifier() {
 		return SpectrumPlugins.NATURES_STAFF;
 	}
-
+	
+	public boolean isUnlocked() {
+		return Support.hasAdvancement(MinecraftClient.getInstance().player, UNLOCK_ADVANCEMENT_IDENTIFIER);
+	}
+	
 	public static BasicDisplay.Serializer<NaturesStaffConversionsDisplay> serializer() {
 		return BasicDisplay.Serializer.ofSimpleRecipeLess(NaturesStaffConversionsDisplay::new);
 	}

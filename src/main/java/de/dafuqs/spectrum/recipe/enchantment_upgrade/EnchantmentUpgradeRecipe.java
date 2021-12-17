@@ -140,4 +140,11 @@ public class EnchantmentUpgradeRecipe implements Recipe<Inventory> {
 		return requiredItemCount;
 	}
 	
+	public Enchantment getEnchantment() {
+		return enchantment;
+	}
+	
+	public int getEnchantmentDestinationLevel() {
+		return enchantmentDestinationLevel;
+	}
 }

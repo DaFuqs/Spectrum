@@ -1,17 +1,23 @@
 package de.dafuqs.spectrum.progression;
 
+import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.enums.PedestalRecipeTier;
+import de.dafuqs.spectrum.progression.toast.MessageToast;
 import de.dafuqs.spectrum.progression.toast.UnlockedRecipeGroupToast;
 import de.dafuqs.spectrum.recipe.enchanter.EnchanterRecipe;
 import de.dafuqs.spectrum.recipe.fusion_shrine.FusionShrineRecipe;
 import de.dafuqs.spectrum.recipe.pedestal.PedestalCraftingRecipe;
+import de.dafuqs.spectrum.registries.SpectrumBlocks;
+import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.Pair;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -25,6 +31,12 @@ public class ClientRecipeToastManager {
 	public static final HashMap<Identifier, List<PedestalCraftingRecipe>> unlockablePedestalRecipes = new HashMap<>();
 	public static final HashMap<Identifier, List<FusionShrineRecipe>> unlockableFusionShrineRecipes = new HashMap<>();
 	public static final HashMap<Identifier, List<EnchanterRecipe>> unlockableEnchanterRecipes = new HashMap<>();
+	
+	public static final HashMap<Identifier, Pair<ItemStack, String>> registeredMessageToasts = new HashMap<>() {{
+		put(new Identifier(SpectrumCommon.MOD_ID, "milestones/unlock_conflicted_enchanting_with_enchanter"), new Pair<>(new ItemStack(Items.SPYGLASS), "shooting_stars_unlocked"));
+		put(new Identifier(SpectrumCommon.MOD_ID, "milestones/unlock_overenchanting_with_enchanter"), new Pair<>(new ItemStack(SpectrumBlocks.ENCHANTER), "overchanting_unlocked"));
+		put(new Identifier(SpectrumCommon.MOD_ID, "milestones/unlock_shooting_stars"), new Pair<>(new ItemStack(SpectrumBlocks.ENCHANTER), "enchant_conflicting_enchantments_unlocked"));
+	}};
 
 	public static void registerUnlockablePedestalRecipe(@NotNull PedestalCraftingRecipe recipe) {
 		List<Identifier> requiredAdvancementIdentifiers = recipe.getRequiredAdvancementIdentifiers();
@@ -78,6 +90,7 @@ public class ClientRecipeToastManager {
 			List<PedestalCraftingRecipe> pedestalRecipes = new ArrayList<>();
 			List<FusionShrineRecipe> fusionRecipes = new ArrayList<>();
 			List<EnchanterRecipe> enchanterRecipes = new ArrayList<>();
+			List<Pair<ItemStack, String>> messageToasts = new ArrayList<>();
 			
 			for (Identifier doneAdvancement : doneAdvancements) {
 				if (unlockablePedestalRecipes.containsKey(doneAdvancement)) {
@@ -114,6 +127,10 @@ public class ClientRecipeToastManager {
 						}
 					}
 				}
+				
+				if(registeredMessageToasts.containsKey(doneAdvancement)) {
+					messageToasts.add(registeredMessageToasts.get(doneAdvancement));
+				}
 			}
 
 			if(!pedestalRecipes.isEmpty()) {
@@ -125,7 +142,9 @@ public class ClientRecipeToastManager {
 			if(!enchanterRecipes.isEmpty()) {
 				showGroupedRecipeUnlockToasts(enchanterRecipes, UnlockedRecipeGroupToast.UnlockedRecipeToastType.ENCHANTER);
 			}
-			
+			for(Pair<ItemStack, String> messageToast : messageToasts) {
+				MessageToast.showMessageToast(MinecraftClient.getInstance(), messageToast.getLeft(), messageToast.getRight());
+			}
 			
 		}
 	}
@@ -154,7 +173,7 @@ public class ClientRecipeToastManager {
 
 	// group the recipes based on their group
 	// show only 1 toast for grouped recipes, if
-	// at least 2 of that group have been unlocked at once
+	// at least 2 recipes of that group have been unlocked at once
 	private static void showGroupedRecipeUnlockToasts(@NotNull List<? extends Recipe> recipes, UnlockedRecipeGroupToast.UnlockedRecipeToastType toastType) {
 		HashMap<String, List<ItemStack>> groupedRecipes = new HashMap<>();
 		for(Recipe recipe : recipes) {

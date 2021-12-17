@@ -1,5 +1,6 @@
 {
   "type": "spectrum:enchantment_upgrade",
+  "group": "vanilla",
   "enchantment": "minecraft:blast_protection",
   "levels": [
     {

@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.blocks.enchanter;
 
 import de.dafuqs.spectrum.ExperienceHelper;
+import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.Support;
 import de.dafuqs.spectrum.blocks.item_bowl.ItemBowlBlockEntity;
 import de.dafuqs.spectrum.blocks.upgrade.Upgradeable;
@@ -46,6 +47,9 @@ import org.jetbrains.annotations.Nullable;
 import java.util.*;
 
 public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Upgradeable {
+	
+	public static final Identifier APPLY_CONFLICTING_ENCHANTMENTS_ADVANCEMENT_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "milestones/unlock_conflicted_enchanting_with_enchanter");
+	public static final Identifier OVERENCHANTING_ADVANCEMENT_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "milestones/unlock_overenchanting_with_enchanter");
 	
 	public static final int INVENTORY_SIZE = 2; // 0: any itemstack, 1: Knowledge Gem;
 	

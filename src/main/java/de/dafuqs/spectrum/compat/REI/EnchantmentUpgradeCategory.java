@@ -20,6 +20,8 @@ import java.util.List;
 
 public class EnchantmentUpgradeCategory<R extends EnchantmentUpgradeRecipe> implements DisplayCategory<EnchantmentUpgradeRecipeDisplay<R>> {
 	
+	
+	
 	@Override
 	public CategoryIdentifier getCategoryIdentifier() {
 		return SpectrumPlugins.ENCHANTMENT_UPGRADE;

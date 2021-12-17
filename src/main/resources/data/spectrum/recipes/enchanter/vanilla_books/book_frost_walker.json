@@ -1,5 +1,6 @@
 {
   "type": "spectrum:enchanter",
+  "group": "vanilla",
   "time": 1200,
   "required_experience": 500,
   "ingredients": [

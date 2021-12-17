@@ -2,7 +2,6 @@ package de.dafuqs.spectrum;
 
 import de.dafuqs.spectrum.items.PigmentItem;
 import de.dafuqs.spectrum.progression.ClientAdvancements;
-import de.dafuqs.spectrum.registries.SpectrumDefaultEnchantments;
 import net.minecraft.advancement.Advancement;
 import net.minecraft.advancement.PlayerAdvancementTracker;
 import net.minecraft.block.Block;

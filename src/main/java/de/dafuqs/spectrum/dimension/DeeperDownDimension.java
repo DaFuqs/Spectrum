@@ -6,8 +6,6 @@ import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.World;
 
-import static org.apache.logging.log4j.Level.INFO;
-
 public class DeeperDownDimension {
 
 	public static final Identifier DEEPER_DOWN_DIMENSION_ID = new Identifier(SpectrumCommon.MOD_ID, "deeper_down_dimension");

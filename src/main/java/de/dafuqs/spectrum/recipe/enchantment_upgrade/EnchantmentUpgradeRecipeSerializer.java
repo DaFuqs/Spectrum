@@ -5,7 +5,6 @@ import com.google.gson.JsonObject;
 import de.dafuqs.spectrum.SpectrumCommon;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.item.Item;
-import net.minecraft.item.Items;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.util.Identifier;

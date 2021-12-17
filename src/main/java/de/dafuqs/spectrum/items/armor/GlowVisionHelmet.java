@@ -2,16 +2,12 @@ package de.dafuqs.spectrum.items.armor;
 
 import de.dafuqs.spectrum.InventoryHelper;
 import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.registries.SpectrumBlocks;
-import de.dafuqs.spectrum.registries.SpectrumItems;
 import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.ItemStack;

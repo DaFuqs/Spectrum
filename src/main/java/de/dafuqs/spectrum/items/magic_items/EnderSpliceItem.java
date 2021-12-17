@@ -47,12 +47,7 @@ public class EnderSpliceItem extends Item {
 	public ItemStack finishUsing(ItemStack itemStack, World world, LivingEntity user) {
 		if(world.isClient) {
 			if(getTeleportTargetPos(itemStack).isEmpty() && getTeleportTargetPlayerUUID(itemStack).isEmpty()) {
-				// If aiming at an entity: trigger entity interaction
-				HitResult hitResult = MinecraftClient.getInstance().crosshairTarget;
-				if(hitResult.getType() == HitResult.Type.ENTITY) {
-					EntityHitResult entityHitResult = (EntityHitResult) hitResult;
-					MinecraftClient.getInstance().interactionManager.interactEntity(MinecraftClient.getInstance().player, entityHitResult.getEntity(), user.getActiveHand());
-				}
+				interactWithEntityClient(user);
 			}
 		} else {
 			PlayerEntity playerEntity = user instanceof PlayerEntity ? (PlayerEntity) user : null;
@@ -85,6 +80,16 @@ public class EnderSpliceItem extends Item {
 		}
 		
 		return itemStack;
+	}
+	
+	@Environment(EnvType.CLIENT)
+	public void interactWithEntityClient(LivingEntity user) {
+		// If aiming at an entity: trigger entity interaction
+		HitResult hitResult = MinecraftClient.getInstance().crosshairTarget;
+		if(hitResult.getType() == HitResult.Type.ENTITY) {
+			EntityHitResult entityHitResult = (EntityHitResult) hitResult;
+			MinecraftClient.getInstance().interactionManager.interactEntity(MinecraftClient.getInstance().player, entityHitResult.getEntity(), user.getActiveHand());
+		}
 	}
 	
 	private void teleportPlayerToPlayerWithUUID(World world, LivingEntity user, PlayerEntity playerEntity, UUID targetPlayerUUID) {

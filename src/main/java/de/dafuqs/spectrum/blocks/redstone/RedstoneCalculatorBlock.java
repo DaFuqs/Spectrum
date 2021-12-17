@@ -6,11 +6,11 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockEntityProvider;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -89,10 +89,10 @@ public class RedstoneCalculatorBlock extends AbstractRedstoneGateBlock implement
 			world.setBlockState(pos, newModeState, Block.NOTIFY_ALL);
 			float pitch = 0.5F + state.get(CALCULATION_MODE).ordinal() * 0.05F;
 			world.playSound(player, pos, SoundEvents.BLOCK_COMPARATOR_CLICK, SoundCategory.BLOCKS, 0.3F, pitch);
-			if(player instanceof ClientPlayerEntity) {
+			if(player instanceof ServerPlayerEntity serverPlayerEntity) {
 				// since this triggers both on server and client side: just send the
 				// message once, client side is enough, since it is pretty irrelevant on the server
-				player.sendMessage(new TranslatableText("block.spectrum.redstone_calculator.mode_set").append(new TranslatableText(newModeState.get(CALCULATION_MODE).localizationString)), false);
+				serverPlayerEntity.sendMessage(new TranslatableText("block.spectrum.redstone_calculator.mode_set").append(new TranslatableText(newModeState.get(CALCULATION_MODE).localizationString)), false);
 			}
 			this.updatePowered(world, pos, newModeState);
 			return ActionResult.success(world.isClient);

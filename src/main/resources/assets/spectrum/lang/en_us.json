@@ -850,9 +850,9 @@
   "item.spectrum.paletur_gem": "Paletur Gem",
   "item.spectrum.glistering_melon_seeds": "Glistering Melon Seeds",
 
-  "item.spectrum.knowledge_drop": "Knowledge Gem",
-  "item.spectrum.knowledge_drop.tooltip.stored_experience": "Experience stored",
-  "item.spectrum.knowledge_drop.tooltip.use": "Use to drain, or crouch-use to store experience",
+  "item.spectrum.knowledge_gem": "Knowledge Gem",
+  "item.spectrum.knowledge_gem.tooltip.stored_experience": "Experience stored",
+  "item.spectrum.knowledge_gem.tooltip.use": "Use to drain, or crouch-use to store experience",
 
   "item.spectrum.default_enchantment_tooltip": "Comes pre enchanted with %s",
   "item.spectrum.emergency_helmet": "Fetchling Helmet",
@@ -1103,8 +1103,8 @@
   "advancements.spectrum.build_wither_using_wither_heads.description": "Build a Wither using Wither Skulls",
   "advancements.spectrum.create_refined_azurite.title": "A dream come blue",
   "advancements.spectrum.create_refined_azurite.description": "Refine Azurite into ingot form",
-  "advancements.spectrum.fill_knowledge_drop.title": "I dumped CHA instead",
-  "advancements.spectrum.fill_knowledge_drop.description": "Fill a Knowledge Gem with 10.000 experience",
+  "advancements.spectrum.fill_knowledge_gem.title": "I dumped CHA instead",
+  "advancements.spectrum.fill_knowledge_gem.description": "Fill a Knowledge Gem with 10.000 experience",
   "advancements.spectrum.enchant_exchange_staff.title": "More than a building tool",
   "advancements.spectrum.enchant_exchange_staff.description": "Create and enchant an Exchanging Staff",
   "advancements.spectrum.get_tool_with_inertia_1000_blocks_broken.title": "The fastest Pick in the West",

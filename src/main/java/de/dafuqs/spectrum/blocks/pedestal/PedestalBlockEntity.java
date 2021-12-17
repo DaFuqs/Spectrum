@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.blocks.pedestal;
 
 import de.dafuqs.spectrum.InventoryHelper;
-import de.dafuqs.spectrum.SpectrumClient;
 import de.dafuqs.spectrum.Support;
 import de.dafuqs.spectrum.blocks.upgrade.Upgradeable;
 import de.dafuqs.spectrum.enums.GemstoneColor;
@@ -25,7 +24,6 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.LockableContainerBlockEntity;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.ExperienceOrbEntity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -278,8 +276,8 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 			} else {
 				this.currentRecipe = null;
 			}
-		} else if(MinecraftClient.getInstance().world != null) {
-			this.currentRecipe = calculateRecipe(MinecraftClient.getInstance().world, this);
+		} else if(this.world != null && this.world.isClient) {
+			this.currentRecipe = calculateRecipe(this.world, this);
 		}
 		if(nbt.contains("OwnerUUID")) {
 			this.ownerUUID = nbt.getUuid("OwnerUUID");
@@ -356,7 +354,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 				} else {
 					pedestalBlockEntity.craftingTimeTotal = (int) Math.ceil(20 / pedestalBlockEntity.upgrades.get(UpgradeType.SPEED));
 				}
-				// TODO: Check and cancel clientside
+				// TODO: Check and cancel clientside instead
 				SpectrumS2CPackets.sendCancelBlockBoundSoundInstance((ServerWorld) pedestalBlockEntity.getWorld(), pedestalBlockEntity.getPos());
 				updateInClientWorld(pedestalBlockEntity);
 			}

@@ -2,11 +2,6 @@ package de.dafuqs.spectrum.blocks.item_bowl;
 
 import de.dafuqs.spectrum.InventoryHelper;
 import de.dafuqs.spectrum.blocks.enchanter.EnchanterBlockEntity;
-import de.dafuqs.spectrum.blocks.fusion_shrine.FusionShrineBlock;
-import de.dafuqs.spectrum.blocks.fusion_shrine.FusionShrineBlockEntity;
-import de.dafuqs.spectrum.blocks.pedestal.PedestalBlock;
-import de.dafuqs.spectrum.blocks.pedestal.PedestalBlockEntity;
-import de.dafuqs.spectrum.blocks.upgrade.Upgradeable;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;

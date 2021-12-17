@@ -2,38 +2,15 @@ package de.dafuqs.spectrum.recipe.enchanter;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.JsonSyntaxException;
-import com.mojang.brigadier.exceptions.CommandSyntaxException;
-import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.recipe.RecipeUtils;
-import de.dafuqs.spectrum.recipe.fusion_shrine.FusionShrineRecipe;
-import de.dafuqs.spectrum.recipe.fusion_shrine.FusionShrineRecipeWorldCondition;
-import de.dafuqs.spectrum.recipe.fusion_shrine.FusionShrineRecipeWorldEffect;
-import net.minecraft.fluid.Fluid;
-import net.minecraft.fluid.Fluids;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtHelper;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.recipe.Ingredient;
-import net.minecraft.recipe.RecipeManager;
 import net.minecraft.recipe.RecipeSerializer;
-import net.minecraft.recipe.ShapedRecipe;
-import net.minecraft.text.LiteralText;
-import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
 import net.minecraft.util.collection.DefaultedList;
-import net.minecraft.util.registry.Registry;
-import org.apache.logging.log4j.Level;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
 
 public class EnchanterRecipeSerializer<T extends EnchanterRecipe> implements RecipeSerializer<T> {
 

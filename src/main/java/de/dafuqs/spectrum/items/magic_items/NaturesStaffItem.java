@@ -18,7 +18,6 @@ import net.minecraft.particle.BlockStateParticleEffect;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.tag.BlockTags;
 import net.minecraft.tag.FluidTags;
 import net.minecraft.text.Text;
@@ -107,17 +106,20 @@ public class NaturesStaffItem extends Item {
 
 	public void usageTick(World world, LivingEntity user, ItemStack stack, int remainingUseTicks) {
 		// trigger the items' usage action every x ticks
-		if(remainingUseTicks % 10 == 0) {
-			if(MinecraftClient.getInstance().crosshairTarget.getType() == HitResult.Type.BLOCK) {
-
-				MinecraftClient.getInstance().interactionManager.interactBlock(
-						MinecraftClient.getInstance().player,
-						MinecraftClient.getInstance().world,
-						MinecraftClient.getInstance().player.getActiveHand(),
-						(BlockHitResult) MinecraftClient.getInstance().crosshairTarget
-				);
-
-			}
+		if(remainingUseTicks % 10 == 0 && world.isClient) {
+			usageTickClient();
+		}
+	}
+	
+	@Environment(EnvType.CLIENT)
+	public void usageTickClient() {
+		if(MinecraftClient.getInstance().crosshairTarget.getType() == HitResult.Type.BLOCK) {
+			MinecraftClient.getInstance().interactionManager.interactBlock(
+					MinecraftClient.getInstance().player,
+					MinecraftClient.getInstance().world,
+					MinecraftClient.getInstance().player.getActiveHand(),
+					(BlockHitResult) MinecraftClient.getInstance().crosshairTarget
+			);
 		}
 	}
 

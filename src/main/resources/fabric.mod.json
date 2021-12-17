@@ -38,7 +38,7 @@
     "fabric": ">=0.42.1",
     "minecraft": ">=1.18.1",
     "java": ">=17",
-    "cloth-config2": ">=6.0.42",
+    "cloth-config": ">=6.0.0",
     "patchouli": "*",
     "owo": ">=0.3.8"
   },

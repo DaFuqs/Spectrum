@@ -1,9 +1,5 @@
 package de.dafuqs.spectrum.blocks.upgrade;
 
-import de.dafuqs.spectrum.blocks.fusion_shrine.FusionShrineBlock;
-import de.dafuqs.spectrum.blocks.fusion_shrine.FusionShrineBlockEntity;
-import de.dafuqs.spectrum.blocks.pedestal.PedestalBlock;
-import de.dafuqs.spectrum.blocks.pedestal.PedestalBlockEntity;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.ai.pathing.NavigationType;

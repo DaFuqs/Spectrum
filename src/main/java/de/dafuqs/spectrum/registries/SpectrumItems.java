@@ -228,7 +228,7 @@ public class SpectrumItems {
 		register("invisible_item_frame", INVISIBLE_ITEM_FRAME);
 		register("invisible_glow_item_frame", INVISIBLE_GLOW_ITEM_FRAME);
 		
-		register("knowledge_drop", KNOWLEDGE_GEM);
+		register("knowledge_gem", KNOWLEDGE_GEM);
 	}
 		
 	public static void registerGemstoneItems() {

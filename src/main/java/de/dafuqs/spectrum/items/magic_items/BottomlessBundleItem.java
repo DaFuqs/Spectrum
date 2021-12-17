@@ -23,7 +23,6 @@ import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class BottomlessBundleItem extends BundleItem implements InventoryInsertionAcceptor {

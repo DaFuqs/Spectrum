@@ -4,25 +4,19 @@ import de.dafuqs.spectrum.SpectrumClient;
 import de.dafuqs.spectrum.items.ExperienceStorageItem;
 import de.dafuqs.spectrum.progression.ClientRecipeToastManager;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
-import de.dafuqs.spectrum.recipe.fusion_shrine.FusionShrineRecipeWorldCondition;
-import de.dafuqs.spectrum.recipe.fusion_shrine.FusionShrineRecipeWorldEffect;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.fluid.Fluid;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.RecipeType;
-import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.Optional;
 
 public class EnchanterRecipe implements Recipe<Inventory> {
 

@@ -1,7 +1,5 @@
 package de.dafuqs.spectrum.blocks.enchanter;
 
-import de.dafuqs.spectrum.InventoryHelper;
-import de.dafuqs.spectrum.blocks.fusion_shrine.FusionShrineBlockEntity;
 import de.dafuqs.spectrum.items.ExperienceStorageItem;
 import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;

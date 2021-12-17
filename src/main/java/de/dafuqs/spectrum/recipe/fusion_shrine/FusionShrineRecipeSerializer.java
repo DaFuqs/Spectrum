@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.recipe.fusion_shrine;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.recipe.RecipeUtils;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.Fluids;
@@ -10,7 +9,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.RecipeSerializer;
-import net.minecraft.recipe.ShapedRecipe;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
@@ -18,7 +16,6 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.registry.Registry;
-import org.apache.logging.log4j.Level;
 
 import java.util.ArrayList;
 import java.util.List;

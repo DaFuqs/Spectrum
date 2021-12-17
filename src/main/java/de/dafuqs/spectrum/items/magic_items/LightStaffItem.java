@@ -9,32 +9,25 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.item.TooltipContext;
-import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.Inventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsage;
-import net.minecraft.nbt.NbtCompound;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Hand;
-import net.minecraft.util.Pair;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.UseAction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.LightType;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import static net.minecraft.state.property.Properties.WATERLOGGED;
 
@@ -81,13 +74,11 @@ public class LightStaffItem extends Item {
 			int maxCheckDistance = Math.min(MAX_REACH_STEPS, useTimes);
 			
 			BlockPos sourcePos = user.getBlockPos();
-			Vec3d cameraVec = user.getRotationVec(MinecraftClient.getInstance().getTickDelta());
+			Vec3d cameraVec = user.getRotationVec(0);
 			
 			for (int iteration = 1; iteration < maxCheckDistance; iteration++) {
 				BlockPos targetPos = sourcePos.add(cameraVec.x * (double) iteration * REACH_STEP_DISTANCE, cameraVec.y * (double) iteration * REACH_STEP_DISTANCE, cameraVec.z * (double) iteration * 4);
-				if (iteration > 0) {
-					targetPos = targetPos.add(iteration - world.getRandom().nextInt(2 * iteration), iteration - world.getRandom().nextInt(2 * iteration), iteration - world.getRandom().nextInt(2 * iteration));
-				}
+				targetPos = targetPos.add(iteration - world.getRandom().nextInt(2 * iteration), iteration - world.getRandom().nextInt(2 * iteration), iteration - world.getRandom().nextInt(2 * iteration));
 				
 				if (world.getLightLevel(LightType.BLOCK, targetPos) < MIN_LIGHT_LEVEL) {
 					BlockState targetBlockState = world.getBlockState(targetPos);

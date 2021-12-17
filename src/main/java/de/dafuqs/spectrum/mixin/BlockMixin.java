@@ -71,6 +71,4 @@ public abstract class BlockMixin {
 		}
 	}
 
-
-
 }

@@ -43,6 +43,7 @@
   ],
   "client": [
     "client.AccessorClientAdvancementManager",
+    "client.BlockClientMixin",
     "client.BlockModelsMixin",
     "client.BlockOverlayRendererMixin",
     "client.BuiltinModelItemRendererMixin",

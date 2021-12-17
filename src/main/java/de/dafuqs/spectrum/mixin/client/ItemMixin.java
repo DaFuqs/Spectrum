@@ -22,7 +22,7 @@ public abstract class ItemMixin {
 	public abstract Text getName();
 
 	@Inject(at = @At("HEAD"), method = "getName(Lnet/minecraft/item/ItemStack;)Lnet/minecraft/text/Text;", cancellable = true)
-	public void getName(ItemStack stack, CallbackInfoReturnable<Text> callbackInfoReturnable) {
+	public void getCloakedName(ItemStack stack, CallbackInfoReturnable<Text> callbackInfoReturnable) {
 		Item thisItem = (Item) (Object) this;
 		if(ClientBlockCloaker.isCloaked(thisItem)) {
 

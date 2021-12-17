@@ -7,6 +7,7 @@ import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.WorldRenderer;
@@ -72,6 +73,11 @@ public class ClientBlockCloaker {
 		cloakable.onCloak();
 	}
 
+	// BLOCKS
+	public static boolean isCloaked(Block block) {
+		return activeBlockSwaps.contains(block.getDefaultState());
+	}
+	
 	// BLOCKS
 	public static boolean isCloaked(BlockState blockState) {
 		return activeBlockSwaps.contains(blockState);

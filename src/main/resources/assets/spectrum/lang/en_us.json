@@ -1122,6 +1122,8 @@
   "advancements.spectrum.get_tool_with_inertia_1000_blocks_broken.description": "Break 1000 identical blocks using an Inertia enchanted tool",
   "advancements.spectrum.create_midnight_aberration.title": "The Perfect Compound",
   "advancements.spectrum.create_midnight_aberration.description": "Fuse Topaz, Amethyst, Citrine and Neolith",
+  "advancements.spectrum.use_natures_staff_on_dead_bush.title": "Revivify",
+  "advancements.spectrum.use_natures_staff_on_dead_bush.description": "Use the Nature's Staff and Vegetal on a Dead Bush to bring it back to life",
 
 
   "______name_changes_for_vanilla_blocks" : "Changes:",

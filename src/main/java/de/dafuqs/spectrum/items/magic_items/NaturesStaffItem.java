@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.items.magic_items;
 
 import de.dafuqs.spectrum.InventoryHelper;
 import de.dafuqs.spectrum.SpectrumClient;
+import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
 import de.dafuqs.spectrum.registries.SpectrumBlockTags;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import de.dafuqs.spectrum.sound.NaturesStaffUseSoundInstance;
@@ -16,6 +17,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.particle.BlockStateParticleEffect;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.tag.BlockTags;
@@ -166,6 +168,11 @@ public class NaturesStaffItem extends Item {
 						}
 						world.setBlockState(blockPos, destinationState, 3);
 						world.syncWorldEvent(2005, blockPos, 0);
+						
+						if(user instanceof ServerPlayerEntity serverPlayerEntity) {
+							SpectrumAdvancementCriteria.NATURES_STAFF_USE.trigger(serverPlayerEntity, blockState, destinationState);
+						}
+						
 						return ActionResult.success(false);
 						// fertilizable? => grow
 					} else if (useOnFertilizable(world, blockPos)) {

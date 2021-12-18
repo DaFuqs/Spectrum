@@ -1,0 +1,22 @@
+{
+  "display": {
+    "icon": {
+        "item": "spectrum:natures_staff"
+    },
+    "title": {
+      "translate": "advancements.spectrum.use_natures_staff_on_dead_bush.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.use_natures_staff_on_dead_bush.description"
+    }
+  },
+  "parent": "spectrum:collect_pigment",
+  "criteria": {
+    "used_natures_staff_on_dead_bush": {
+      "trigger": "spectrum:natures_staff_use",
+      "conditions": {
+        "source_block": "minecraft:dead_bush"
+      }
+    }
+  }
+}

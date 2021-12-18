@@ -12,6 +12,7 @@ public class SpectrumAdvancementCriteria {
 	public static CompletedMultiblockCriterion COMPLETED_MULTIBLOCK;
 	public static BlockBrokenCriterion BLOCK_BROKEN;
 	public static TreasureHunterDropCriterion TREASURE_HUNTER_DROP;
+	public static NaturesStaffUseCriterion NATURES_STAFF_USE;
 
 	public static void register() {
 		ADVANCEMENT_GOTTEN = CriteriaAccessor.callRegister(new HasAdvancementCriterion());
@@ -21,6 +22,7 @@ public class SpectrumAdvancementCriteria {
 		COMPLETED_MULTIBLOCK = CriteriaAccessor.callRegister(new CompletedMultiblockCriterion());
 		BLOCK_BROKEN = CriteriaAccessor.callRegister(new BlockBrokenCriterion());
 		TREASURE_HUNTER_DROP = CriteriaAccessor.callRegister(new TreasureHunterDropCriterion());
+		NATURES_STAFF_USE = CriteriaAccessor.callRegister(new NaturesStaffUseCriterion());
 	}
 
 }

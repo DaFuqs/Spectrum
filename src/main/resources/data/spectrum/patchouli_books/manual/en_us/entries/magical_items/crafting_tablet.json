@@ -1,9 +1,8 @@
 {
   "name": "Crafting Tablet",
   "icon": "spectrum:crafting_tablet",
-  "sortnum": 5,
   "advancement": "spectrum:progression/unlock_crafting_tablet",
-  "category": "spectrum:general_category",
+  "category": "spectrum:magical_items_category",
   "extra_recipe_mappings": {
     "spectrum:crafting_tablet": 0
   },

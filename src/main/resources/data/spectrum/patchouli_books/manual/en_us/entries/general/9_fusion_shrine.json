@@ -1,7 +1,7 @@
 {
   "name": "Fusion Shrine",
   "icon": "spectrum:fusion_shrine_basalt",
-  "sortnum": 10,
+  "sortnum": 9,
   "advancement": "spectrum:collect_all_basic_pigments_besides_brown",
   "category": "spectrum:general_category",
   "extra_recipe_mappings": {

@@ -1,0 +1,22 @@
+{
+  "name": "The Perfect Compound?",
+  "icon": "spectrum:midnight_aberration",
+  "sortnum": 12,
+  "advancement": "spectrum:collect_corrupted_obsidian_dust",
+  "category": "spectrum:general_category",
+  "extra_recipe_mappings": {
+    "spectrum:midnight_aberration": 1
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "TODO"
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Fusion Recipe",
+      "recipe": "spectrum:fusion_shrine/midnight_aberration",
+      "text": "TODO"
+    }
+  ]
+}

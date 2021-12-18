@@ -79,6 +79,7 @@
   "spectrum.recipe.fusion_shrine.explanation.ominous_sapling":  "Requires daytime",
   "spectrum.recipe.fusion_shrine.explanation.scarlet_gem":  "Requires a thunderstorm",
   "spectrum.recipe.fusion_shrine.explanation.paletur_gem":  "Requires a thunderstorm",
+  "spectrum.recipe.fusion_shrine.explanation.midnight_aberration": "Daytime with sunny weather",
   "spectrum.recipe.fusion_shrine.explanation.spectral_shard": "The perfect Compound",
 
   "spectrum.tooltip.dragon_and_wither_immune": "§7Ender Dragon and Wither proof",
@@ -944,7 +945,8 @@
   "item.spectrum.vegetal": "Vegetal",
   "item.spectrum.corrupted_obsidian_dust": "Neolith",
   "item.spectrum.bedrock_dust": "Bedrock Dust",
-  
+  "item.spectrum.midnight_aberration": "Midnight Aberration",
+
   "item.spectrum.crafting_tablet": "Crafting Tablet",
   "item.spectrum.crafting_tablet.tooltip.no_recipe": "Add items to the crafting grid to set a recipe",
   "item.spectrum.crafting_tablet.tooltip.crafting_recipe": "Press use to craft",
@@ -1118,6 +1120,8 @@
   "advancements.spectrum.enchant_exchange_staff.description": "Create and enchant an Exchanging Staff",
   "advancements.spectrum.get_tool_with_inertia_1000_blocks_broken.title": "The fastest Pick in the West",
   "advancements.spectrum.get_tool_with_inertia_1000_blocks_broken.description": "Break 1000 identical blocks using an Inertia enchanted tool",
+  "advancements.spectrum.create_midnight_aberration.title": "The Perfect Compound",
+  "advancements.spectrum.create_midnight_aberration.description": "Fuse Topaz, Amethyst, Citrine and Neolith",
 
 
   "______name_changes_for_vanilla_blocks" : "Changes:",

@@ -1,0 +1,32 @@
+{
+  "type": "spectrum:fusion_shrine",
+  "time": 600,
+  "experience": 6.0,
+  "fluid": "spectrum:liquid_crystal",
+  "ingredients": [
+    {
+	  "item": "spectrum:topaz_shard"
+    },
+    {
+	  "item": "minecraft:amethyst_shard"
+    },
+    {
+      "item": "spectrum:citrine_shard"
+    },
+    {
+      "item": "spectrum:onyx_shard"
+    },
+    {
+      "item": "spectrum:corrupted_obsidian_dust"
+    }
+  ],
+  "result" : {
+    "item": "spectrum:midnight_aberration"
+  },
+  "required_advancement": "spectrum:midgame/collect_corrupted_obsidian_dust",
+  "world_conditions": [ "day", "clear_sky" ],
+  "start_crafting_effect": "single_visual_explosion_on_shrine",
+  "during_crafting_effects": [ "nothing", "visual_explosions_on_shrine", "nothing" ],
+  "finish_crafting_effect": "lightning_on_shrine",
+  "description": "spectrum.recipe.fusion_shrine.explanation.midnight_aberration"
+}

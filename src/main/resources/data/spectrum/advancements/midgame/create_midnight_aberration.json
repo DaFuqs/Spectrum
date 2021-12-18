@@ -1,0 +1,20 @@
+{
+  "parent": "spectrum:midgame/collect_corrupted_obsidian_dust",
+  "display": {
+    "icon": {
+        "item": "spectrum:midnight_aberration"
+    },
+    "title": {
+      "translate": "advancements.spectrum.create_midnight_aberration.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.create_midnight_aberration.description"
+    }
+  },
+  "criteria": {
+    "created_midnight_aberration": {
+      "trigger":"spectrum:crafted_with_fusion_shrine",
+      "conditions": { "items": [{ "items": [ "spectrum:midnight_aberration" ]}] }
+    }
+  }
+}

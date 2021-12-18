@@ -1,7 +1,7 @@
 {
   "name": "Pedestal Onyx Upgrade",
   "icon": "spectrum:pedestal_onyx",
-  "sortnum": 12,
+  "sortnum": 11,
   "advancement": "spectrum:create_onyx_shard",
   "category": "spectrum:general_category",
   "extra_recipe_mappings": {

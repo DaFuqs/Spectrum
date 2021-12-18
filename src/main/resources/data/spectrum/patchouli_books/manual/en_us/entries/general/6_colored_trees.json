@@ -1,7 +1,7 @@
 {
   "name": "Colored Trees",
   "icon": "spectrum:red_sapling",
-  "sortnum": 7,
+  "sortnum": 6,
   "advancement": "spectrum:collect_vegetal",
   "category": "spectrum:general_category",
   "extra_recipe_mappings": {

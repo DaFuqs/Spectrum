@@ -139,6 +139,8 @@ public class SpectrumItems {
 	public static final Item VEGETAL = new CloakedItem(resourcesItemSettings, new Identifier(SpectrumCommon.MOD_ID, "craft_bottle_of_fading"), Items.GUNPOWDER);
 	public static final Item CORRUPTED_OBSIDIAN_DUST = new CloakedItem(resourcesUncommonItemSettings, new Identifier(SpectrumCommon.MOD_ID, "midgame/craft_bottle_of_failing"), Items.GUNPOWDER);
 	public static final Item BEDROCK_DUST = new CloakedItem(resourcesRareItemSettings, new Identifier(SpectrumCommon.MOD_ID, "midgame/break_decayed_bedrock"), Items.GUNPOWDER);
+	
+	public static final Item MIDNIGHT_ABERRATION = new CloakedItem(resourcesRareItemSettings, new Identifier(SpectrumCommon.MOD_ID, "midgame/create_midnight_aberration"), SpectrumItems.SPECTRAL_SHARD);
 
 	// Fluid Buckets
 	public static final Item LIQUID_CRYSTAL_BUCKET = new BucketItem(LIQUID_CRYSTAL, generalItemSettingsSingle);
@@ -204,7 +206,6 @@ public class SpectrumItems {
 
 	public static void register() {
 		register("manual", MANUAL);
-		register("crafting_tablet", CRAFTING_TABLET);
 
 		register("pedestal_tier_1_structure_placer", PEDESTAL_TIER_1_STRUCTURE_PLACER);
 		register("pedestal_tier_2_structure_placer", PEDESTAL_TIER_2_STRUCTURE_PLACER);
@@ -220,14 +221,14 @@ public class SpectrumItems {
 		registerPreEnchantedTools();
 		registerMagicalTools();
 		registerFluidBuckets();
-
+		
+		register("crafting_tablet", CRAFTING_TABLET);
 		register("void_bundle", VOID_BUNDLE);
 		register("music_disc_spectrum_theme", MUSIC_DISC_SPECTRUM_THEME);
 		register("spawner", SPAWNER);
 		register("glistering_melon_seeds", GLISTERING_MELON_SEEDS);
 		register("invisible_item_frame", INVISIBLE_ITEM_FRAME);
 		register("invisible_glow_item_frame", INVISIBLE_GLOW_ITEM_FRAME);
-		
 		register("knowledge_gem", KNOWLEDGE_GEM);
 	}
 		
@@ -295,6 +296,7 @@ public class SpectrumItems {
 		register("vegetal", VEGETAL);
 		register("corrupted_obsidian_dust", CORRUPTED_OBSIDIAN_DUST);
 		register("bedrock_dust", BEDROCK_DUST);
+		register("midnight_aberration", MIDNIGHT_ABERRATION);
 	}
 	
 	public static void registerDecayBottles() {

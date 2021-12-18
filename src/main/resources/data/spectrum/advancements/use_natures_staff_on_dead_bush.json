@@ -13,7 +13,7 @@
   "parent": "spectrum:collect_pigment",
   "criteria": {
     "used_natures_staff_on_dead_bush": {
-      "trigger": "spectrum:natures_staff_use",
+      "trigger": "spectrum:natures_staff_conversion",
       "conditions": {
         "source_block": "minecraft:dead_bush"
       }

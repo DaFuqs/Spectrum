@@ -22,7 +22,7 @@ import org.jetbrains.annotations.Nullable;
 
 public class NaturesStaffUseCriterion extends AbstractCriterion<NaturesStaffUseCriterion.Conditions> {
 
-	static final Identifier ID = new Identifier(SpectrumCommon.MOD_ID, "natures_staff_use");
+	static final Identifier ID = new Identifier(SpectrumCommon.MOD_ID, "natures_staff_conversion");
 
 	public Identifier getId() {
 		return ID;

@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.loot;
 
+import de.dafuqs.spectrum.loot.conditions.*;
 import net.minecraft.loot.condition.InvertedLootCondition;
 import net.minecraft.loot.condition.LootCondition;
 import net.minecraft.loot.condition.LootConditionType;
@@ -20,11 +21,11 @@ public class SpectrumLootConditionTypes {
 	}
 
 	public static void register() {
-		RANDOM_CHANCE_WITH_TREASURE_HUNTER = register("random_chance_with_treasure_hunter", new InvertedLootCondition.Serializer());
-		FOX_TYPE_CONDITION = register("fox_type", new InvertedLootCondition.Serializer());
-		AXOLOTL_VARIANT_CONDITION = register("axolotl_variant", new InvertedLootCondition.Serializer());
-		SHULKER_COLOR_CONDITION = register("shulker_color", new InvertedLootCondition.Serializer());
-		PARROT_VARIANT_CONDITION = register("parrot_variant", new InvertedLootCondition.Serializer());
+		RANDOM_CHANCE_WITH_TREASURE_HUNTER = register("random_chance_with_treasure_hunter", new RandomChanceWithTreasureHunterLootCondition.Serializer());
+		FOX_TYPE_CONDITION = register("fox_type", new FoxTypeLootCondition.Serializer());
+		AXOLOTL_VARIANT_CONDITION = register("axolotl_variant", new AxolotlVariantLootCondition.Serializer());
+		SHULKER_COLOR_CONDITION = register("shulker_color", new ShulkerColorLootCondition.Serializer());
+		PARROT_VARIANT_CONDITION = register("parrot_variant", new ParrotVariantLootCondition.Serializer());
 	}
 
 }

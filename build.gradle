@@ -33,7 +33,7 @@ dependencies {
 	// dependencies
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-	include("me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}"){
+	modApi("me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}"){
 		exclude(group: "net.fabricmc.fabric-api")
 	}
 	modApi("com.terraformersmc:modmenu:${project.modmenu_version}")
@@ -45,7 +45,8 @@ dependencies {
 	modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"
 
 	// Soft dependencies:
-	// modImplementation "net.darkhax.enchdesc:EnchantmentDescriptions-fabric-${project.enchantment_descriptions_mc_version}:${project.enchantment_descriptions_mod_version}"
+	// https://maven.blamejared.com/net/darkhax/enchdesc/
+	// modImplementation("net.darkhax.enchdesc:EnchantmentDescriptions-Fabric-${project.enchantment_descriptions_mc_version}:${project.enchantment_descriptions_mod_version}")
 	// https://github.com/Gegy/colored-lights // uses colored_lights/light_colors.json
 }
 

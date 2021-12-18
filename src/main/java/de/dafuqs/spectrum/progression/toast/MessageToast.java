@@ -55,8 +55,8 @@ public class MessageToast implements Toast {
 		List<OrderedText> wrappedText = manager.getClient().textRenderer.wrapLines(this.messageText, 125);
 		List<OrderedText> wrappedTitle = manager.getClient().textRenderer.wrapLines(this.titleText, 125);
 		int l;
-		if (startTime < 5000L) {
-			l = MathHelper.floor(MathHelper.clamp((float)(5000L - startTime) / 300.0F, 0.0F, 1.0F) * 255.0F) << 24 | 67108864;
+		if (startTime < 2500L) {
+			l = MathHelper.floor(MathHelper.clamp((float)(2500L - startTime) / 300.0F, 0.0F, 1.0F) * 255.0F) << 24 | 67108864;
 			int halfHeight = this.getHeight() / 2;
 			int titleSize = wrappedTitle.size();
 			int m = halfHeight - titleSize * 9 / 2;
@@ -66,7 +66,7 @@ public class MessageToast implements Toast {
 				manager.getClient().textRenderer.draw(matrices, orderedText, 30.0F, (float)m, 3289650 | l);
 			}
 		} else {
-			l = MathHelper.floor(MathHelper.clamp((float)(startTime - 5000L) / 300.0F, 0.0F, 1.0F) * 252.0F) << 24 | 67108864;
+			l = MathHelper.floor(MathHelper.clamp((float)(startTime - 2500L) / 300.0F, 0.0F, 1.0F) * 252.0F) << 24 | 67108864;
 			int halfHeight = this.getHeight() / 2;
 			int textSize = wrappedText.size();
 			int m = halfHeight - textSize * 9 / 2;
@@ -85,7 +85,7 @@ public class MessageToast implements Toast {
 		}
 
 		manager.getClient().getItemRenderer().renderInGui(itemStack, 8, 8);
-		return startTime >= 10000L ? Visibility.HIDE : Visibility.SHOW;
+		return startTime >= 5000L ? Visibility.HIDE : Visibility.SHOW;
 	}
 
 }

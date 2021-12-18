@@ -53,8 +53,8 @@ public class RevelationToast implements Toast {
 		List<OrderedText> wrappedText = manager.getClient().textRenderer.wrapLines(text, 125);
 		List<OrderedText> wrappedTitle = manager.getClient().textRenderer.wrapLines(title, 125);
 		int l;
-		if (startTime < 5000L) {
-			l = MathHelper.floor(MathHelper.clamp((float)(5000L - startTime) / 300.0F, 0.0F, 1.0F) * 255.0F) << 24 | 67108864;
+		if (startTime < 2500L) {
+			l = MathHelper.floor(MathHelper.clamp((float)(2500L - startTime) / 300.0F, 0.0F, 1.0F) * 255.0F) << 24 | 67108864;
 			int halfHeight = this.getHeight() / 2;
 			int titleSize = wrappedTitle.size();
 			int m = halfHeight - titleSize * 9 / 2;
@@ -83,7 +83,7 @@ public class RevelationToast implements Toast {
 		}
 
 		manager.getClient().getItemRenderer().renderInGui(itemStack, 8, 8);
-		return startTime >= 10000L ? Visibility.HIDE : Visibility.SHOW;
+		return startTime >= 50000L ? Visibility.HIDE : Visibility.SHOW;
 	}
 
 }

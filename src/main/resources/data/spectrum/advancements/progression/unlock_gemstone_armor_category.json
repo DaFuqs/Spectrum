@@ -23,19 +23,12 @@
   },
   "requirements": [
     [
-      "built_basic_structure",
-      "collected_ender_eye"
+      "built_basic_structure"
     ],
     [
-      "built_basic_structure",
-      "collected_nautilus_shell"
-    ],
-    [
-      "built_basic_structure",
-      "collected_phantom_membrane"
-    ],
-    [
-      "built_basic_structure",
+      "collected_nautilus_shell",
+      "collected_phantom_membrane",
+      "collected_ender_eye",
       "collected_ghast_tear"
     ]
   ]

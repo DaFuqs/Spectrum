@@ -23,6 +23,6 @@ Find your first gemstone geode to get started! Everything else is hinted at via 
 **_Spectrum is not meant to be rushed. It is best played alongside your normal playthrough._**
 
 ## Mod Integration
-- [RoughlyEnoughItems](https://github.com/shedaniel/RoughlyEnoughItems): Integration for all of Spectrums blocks and items recipe types
+- [RoughlyEnoughItems](https://github.com/shedaniel/RoughlyEnoughItems): Integration for all of Spectrums recipe types
 - [Enchantment Descriptions](https://github.com/Darkhax-Minecraft/Enchantment-Descriptions): Descriptions for all of Spectrums enchantments
 - [Colored Lights](https://github.com/Gegy/colored-lights): Colored Lights support for all of Spectrums light sources

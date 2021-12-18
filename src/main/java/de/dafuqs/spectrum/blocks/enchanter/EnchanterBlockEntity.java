@@ -81,6 +81,7 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 	public void readNbt(NbtCompound nbt) {
 		super.readNbt(nbt);
 		this.inventory = new SimpleInventory(INVENTORY_SIZE);
+		this.inventoryChanged = nbt.getBoolean("inventory_changed");
 		this.inventory.readNbtList(nbt.getList("inventory", 10));
 		this.virtualInventoryIncludingBowlStacks = new SimpleInventory(INVENTORY_SIZE + 8);
 		this.virtualInventoryIncludingBowlStacks.readNbtList(nbt.getList("virtual_inventory", 10));
@@ -118,6 +119,7 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 	public void writeNbt(NbtCompound nbt) {
 		super.writeNbt(nbt);
 		nbt.put("inventory", this.inventory.toNbtList());
+		nbt.putBoolean("inventory_changed", this.inventoryChanged);
 		nbt.put("virtual_inventory", this.virtualInventoryIncludingBowlStacks.toNbtList());
 		if(this.itemFacing != null) {
 			nbt.putString("item_facing", this.itemFacing.toString().toUpperCase(Locale.ROOT));
@@ -163,7 +165,7 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 		return Objects.requireNonNullElse(this.itemFacing, Direction.NORTH);
 	}
 	
-	public static void clientTick(World world, BlockPos blockPos, BlockState blockState, EnchanterBlockEntity enchanterBlockEntity) {
+	public static void clientTick(World world, BlockPos blockPos, BlockState blockState, @NotNull EnchanterBlockEntity enchanterBlockEntity) {
 		ItemStack experienceStack = enchanterBlockEntity.getInventory().getStack(1);
 		if(!experienceStack.isEmpty() && experienceStack.getItem() instanceof ExperienceStorageItem) {
 			int experience = ExperienceStorageItem.getStoredExperience(experienceStack);
@@ -178,7 +180,7 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 		}
 	}
 	
-	public static void serverTick(World world, BlockPos blockPos, BlockState blockState, EnchanterBlockEntity enchanterBlockEntity) {
+	public static void serverTick(World world, BlockPos blockPos, BlockState blockState, @NotNull EnchanterBlockEntity enchanterBlockEntity) {
 		if(enchanterBlockEntity.upgrades == null) {
 			enchanterBlockEntity.calculateUpgrades();
 		}
@@ -190,72 +192,85 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 		
 		boolean craftingSuccess = false;
 		
-		if(enchanterBlockEntity.currentRecipe != null && enchanterBlockEntity.craftingTime % 60 == 1) {
-			PlayerEntity lastInteractedPlayer = PlayerOwned.getPlayerEntityIfOnline(world, enchanterBlockEntity.ownerUUID);
-			
-			boolean playerHasAdvancement = true;
-			if(enchanterBlockEntity.currentRecipe instanceof EnchanterRecipe enchanterRecipe) {
-				playerHasAdvancement = Support.hasAdvancement(lastInteractedPlayer, enchanterRecipe.getRequiredAdvancementIdentifier());
-			} else if(enchanterBlockEntity.currentRecipe instanceof EnchantmentUpgradeRecipe enchantmentUpgradeRecipe) {
-				playerHasAdvancement = Support.hasAdvancement(lastInteractedPlayer, enchantmentUpgradeRecipe.getRequiredAdvancementIdentifier());
-			}
-			boolean structureComplete = EnchanterBlock.verifyStructure(world, blockPos, null);
-			
-			if(!playerHasAdvancement || !structureComplete) {
-				if(!structureComplete) {
-					world.playSound(null, enchanterBlockEntity.getPos(), SpectrumSoundEvents.FUSION_SHRINE_CRAFTING_ABORTED, SoundCategory.BLOCKS, 0.9F + enchanterBlockEntity.world.random.nextFloat() * 0.2F, 0.9F + enchanterBlockEntity.world.random.nextFloat() * 0.2F);
-					world.playSound(null, enchanterBlockEntity.getPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.9F + enchanterBlockEntity.world.random.nextFloat() * 0.2F, 0.5F + enchanterBlockEntity.world.random.nextFloat() * 0.2F);
-					EnchanterBlock.scatterContents(world, blockPos);
+		if(enchanterBlockEntity.currentRecipe != null) {
+			if(enchanterBlockEntity.craftingTime % 60 == 1) {
+				if (!checkRequirements(world, blockPos, enchanterBlockEntity)) {
+					enchanterBlockEntity.craftingTime = 0;
+					return;
 				}
-				enchanterBlockEntity.craftingTime = 0;
-				return;
 			}
-		}
-		
-		if (enchanterBlockEntity.currentRecipe instanceof EnchanterRecipe enchanterRecipe) {
-			if(enchanterRecipe.getRequiredExperience() == 0 || ExperienceStorageItem.getStoredExperience(enchanterBlockEntity.inventory.getStack(1)) >= enchanterRecipe.getRequiredExperience()) {
-				enchanterBlockEntity.craftingTime++;
-				// TODO: Play particles
-				// TODO: Sounds
-				if (enchanterBlockEntity.craftingTime == enchanterBlockEntity.craftingTimeTotal) {
-					craftEnchanterRecipe(world, enchanterBlockEntity, enchanterRecipe);
+			
+			if (enchanterBlockEntity.currentRecipe instanceof EnchanterRecipe enchanterRecipe) {
+				if (enchanterRecipe.getRequiredExperience() == 0 || ExperienceStorageItem.getStoredExperience(enchanterBlockEntity.inventory.getStack(1)) >= enchanterRecipe.getRequiredExperience()) {
+					enchanterBlockEntity.craftingTime++;
 					// TODO: Play particles
 					// TODO: Sounds
+					if (enchanterBlockEntity.craftingTime == enchanterBlockEntity.craftingTimeTotal) {
+						craftEnchanterRecipe(world, enchanterBlockEntity, enchanterRecipe);
+						// TODO: Play particles
+						// TODO: Sounds
+						craftingSuccess = true;
+					}
+				} else {
+					// Missing required experience
+					// TODO: Play particles
+					// TODO: Sounds
+				}
+			} else if (enchanterBlockEntity.currentRecipe instanceof EnchantmentUpgradeRecipe enchantmentUpgradeRecipe) {
+				int consumedItems = tickEnchantmentUpgradeRecipe(world, enchanterBlockEntity, enchantmentUpgradeRecipe);
+				// TODO: Play particles
+				// TODO: Sounds
+				enchanterBlockEntity.craftingTime += consumedItems;
+				if (enchanterBlockEntity.craftingTime >= enchanterBlockEntity.craftingTimeTotal) {
+					// TODO: Implementation
+					// TODO: Play particles
+					// TODO: Sounds
+					craftEnchantmentUpgradeRecipe(world, enchanterBlockEntity, enchantmentUpgradeRecipe);
 					craftingSuccess = true;
 				}
 			} else {
-				// Missing required experience
-				// TODO: Play particles
-				// TODO: Sounds
-			}
-		} else if (enchanterBlockEntity.currentRecipe instanceof EnchantmentUpgradeRecipe enchantmentUpgradeRecipe) {
-			int consumedItems = tickEnchantmentUpgradeRecipe(world, enchanterBlockEntity, enchantmentUpgradeRecipe);
-			// TODO: Play particles
-			// TODO: Sounds
-			enchanterBlockEntity.craftingTime += consumedItems;
-			if(enchanterBlockEntity.craftingTime >= enchanterBlockEntity.craftingTimeTotal) {
+				// in-code recipe for item + books => enchanted item
 				// TODO: Implementation
 				// TODO: Play particles
 				// TODO: Sounds
-				craftEnchantmentUpgradeRecipe(world, enchanterBlockEntity, enchantmentUpgradeRecipe);
-				craftingSuccess = true;
 			}
-		} else {
-			// in-code recipe for item + books => enchanted item
-			// TODO: Implementation
-			// TODO: Play particles
-			// TODO: Sounds
-		}
-		
-		if(craftingSuccess) {
-			enchanterBlockEntity.inventoryChanged();
+			
+			if (craftingSuccess) {
+				enchanterBlockEntity.inventoryChanged();
+			}
 		}
 	}
 	
+	private static boolean checkRequirements(World world, BlockPos blockPos, @NotNull EnchanterBlockEntity enchanterBlockEntity) {
+		PlayerEntity lastInteractedPlayer = PlayerOwned.getPlayerEntityIfOnline(world, enchanterBlockEntity.ownerUUID);
+		
+		if(lastInteractedPlayer == null) {
+			return false;
+		}
+		
+		boolean playerHasAdvancement = true;
+		if (enchanterBlockEntity.currentRecipe instanceof EnchanterRecipe enchanterRecipe) {
+			playerHasAdvancement = Support.hasAdvancement(lastInteractedPlayer, enchanterRecipe.getRequiredAdvancementIdentifier());
+		} else if (enchanterBlockEntity.currentRecipe instanceof EnchantmentUpgradeRecipe enchantmentUpgradeRecipe) {
+			playerHasAdvancement = Support.hasAdvancement(lastInteractedPlayer, enchantmentUpgradeRecipe.getRequiredAdvancementIdentifier());
+		}
+		boolean structureComplete = EnchanterBlock.verifyStructure(world, blockPos, null);
+		
+		if (!playerHasAdvancement || !structureComplete) {
+			if (!structureComplete) {
+				world.playSound(null, enchanterBlockEntity.getPos(), SpectrumSoundEvents.FUSION_SHRINE_CRAFTING_ABORTED, SoundCategory.BLOCKS, 0.9F + enchanterBlockEntity.world.random.nextFloat() * 0.2F, 0.9F + enchanterBlockEntity.world.random.nextFloat() * 0.2F);
+				world.playSound(null, enchanterBlockEntity.getPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.9F + enchanterBlockEntity.world.random.nextFloat() * 0.2F, 0.5F + enchanterBlockEntity.world.random.nextFloat() * 0.2F);
+				EnchanterBlock.scatterContents(world, blockPos);
+			}
+			return false;
+		}
+		return true;
+	}
+	
 	public static void craftEnchanterRecipe(World world, @NotNull EnchanterBlockEntity enchanterBlockEntity, @NotNull EnchanterRecipe enchanterRecipe) {
-		ItemStack knowledgeDropStack = enchanterBlockEntity.getInventory().getStack(1);
-		if(knowledgeDropStack.isOf(SpectrumItems.KNOWLEDGE_GEM)) {
-			ExperienceStorageItem.removeStoredExperience(knowledgeDropStack, enchanterRecipe.getRequiredExperience());
+		ItemStack experienceProviderStack = enchanterBlockEntity.getInventory().getStack(1);
+		if(experienceProviderStack.getItem() instanceof ExperienceStorageItem) {
+			ExperienceStorageItem.removeStoredExperience(experienceProviderStack, enchanterRecipe.getRequiredExperience());
 		}
 		
 		for(int i = 0; i < 8; i++) {
@@ -289,9 +304,9 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 	}
 	
 	public static void craftEnchantmentUpgradeRecipe(World world, @NotNull EnchanterBlockEntity enchanterBlockEntity, @NotNull EnchantmentUpgradeRecipe enchantmentUpgradeRecipe) {
-		ItemStack knowledgeDropStack = enchanterBlockEntity.getInventory().getStack(1);
-		if(knowledgeDropStack.isOf(SpectrumItems.KNOWLEDGE_GEM)) {
-			ExperienceStorageItem.removeStoredExperience(knowledgeDropStack, enchantmentUpgradeRecipe.getRequiredExperience());
+		ItemStack experienceProviderStack = enchanterBlockEntity.getInventory().getStack(1);
+		if(experienceProviderStack.getItem() instanceof ExperienceStorageItem) {
+			ExperienceStorageItem.removeStoredExperience(experienceProviderStack, enchantmentUpgradeRecipe.getRequiredExperience());
 		}
 		
 		// TODO: decrement item bowl contents
@@ -322,9 +337,9 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 	 * Calculates and sets a new recipe for the enchanter based on it's inventory
 	 * @param world The Enchanter World
 	 * @param enchanterBlockEntity The Enchanter Block Entity
-	 * @return Wether or not the previous recipe was still valid. False means it was changed
+	 * @return False if the previously valid recipe was changed
 	 */
-	private static boolean calculateCurrentRecipe(@NotNull World world, EnchanterBlockEntity enchanterBlockEntity) {
+	private static boolean calculateCurrentRecipe(@NotNull World world, @NotNull EnchanterBlockEntity enchanterBlockEntity) {
 		if(enchanterBlockEntity.currentRecipe != null) {
 			if(enchanterBlockEntity.currentRecipe.matches(enchanterBlockEntity.virtualInventoryIncludingBowlStacks, world)) {
 				return true;
@@ -351,9 +366,9 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 			recipeTestInventory.setStack(8, enchanterBlockEntity.virtualInventoryIncludingBowlStacks.getStack((offset + 6 + 8) % 8 + 2));
 			recipeTestInventory.setStack(9, enchanterBlockEntity.virtualInventoryIncludingBowlStacks.getStack((offset + 7 + 8) % 8 + 2));
 			
-			EnchanterRecipe enchanterRecipe = world.getRecipeManager().getFirstMatch(SpectrumRecipeTypes.ENCHANTER, enchanterBlockEntity.virtualInventoryIncludingBowlStacks, world).orElse(null);
+			EnchanterRecipe enchanterRecipe = world.getRecipeManager().getFirstMatch(SpectrumRecipeTypes.ENCHANTER, recipeTestInventory, world).orElse(null);
 			if (enchanterRecipe == null) {
-				EnchantmentUpgradeRecipe enchantmentUpgradeRecipe = world.getRecipeManager().getFirstMatch(SpectrumRecipeTypes.ENCHANTMENT_UPGRADE, enchanterBlockEntity.inventory, world).orElse(null);
+				EnchantmentUpgradeRecipe enchantmentUpgradeRecipe = world.getRecipeManager().getFirstMatch(SpectrumRecipeTypes.ENCHANTMENT_UPGRADE, recipeTestInventory, world).orElse(null);
 				if (enchantmentUpgradeRecipe == null) {
 					enchanterBlockEntity.currentRecipe = null;
 				} else {
@@ -367,11 +382,13 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 				enchanterBlockEntity.virtualInventoryRecipeOrientation = orientation;
 				enchanterBlockEntity.virtualInventoryIncludingBowlStacks = recipeTestInventory;
 				enchanterBlockEntity.craftingTimeTotal = (int) Math.ceil(enchanterRecipe.getCraftingTime() / enchanterBlockEntity.upgrades.get(Upgradeable.UpgradeType.SPEED));
+				
 			}
 			
 			if (enchanterBlockEntity.currentRecipe != previousRecipe) {
 				enchanterBlockEntity.updateInClientWorld();
 				//SpectrumS2CPackets.sendCancelBlockBoundSoundInstance((ServerWorld) enchanterBlockEntity.world, enchanterBlockEntity.pos);
+				return false;
 			}
 		}
 		

@@ -168,10 +168,13 @@ public class Support {
 		}
 	}
 
-	public static boolean hasAdvancement(PlayerEntity playerEntity, @Nullable Identifier advancementIdentifier) {
-		if(advancementIdentifier == null) {
+	public static boolean hasAdvancement(@NotNull PlayerEntity playerEntity, @NotNull Identifier advancementIdentifier) {
+		if(playerEntity == null) {
+			return false;
+		} else if(advancementIdentifier == null) {
 			return true;
 		}
+		
 		if (playerEntity instanceof ServerPlayerEntity) {
 			Advancement advancement = SpectrumCommon.minecraftServer.getAdvancementLoader().get(advancementIdentifier);
 			if (advancement == null) {

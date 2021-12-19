@@ -100,7 +100,7 @@ public class ItemBowlBlockEntity extends BlockEntity {
 			if(optionalItemColor.isPresent()) {
 				ParticleEffect particleEffect = SpectrumParticleTypes.getFluidRisingParticle(optionalItemColor.get());
 				SpectrumS2CPackets.playParticleWithFixedVelocity(serverWorld,
-						new Vec3d(this.pos.getX() + 0.5D, this.pos.getY() + 1.0, this.pos.getZ() + 0.5D),
+						new Vec3d(this.pos.getX() + 0.5D, this.pos.getY() + 0.5D, this.pos.getZ() + 0.5D),
 						particleEffect, decrementAmount * 10, new Vec3d(0, 0, 0),
 						new Vec3d((particleTargetBlockPos.getX() - this.pos.getX()) * 0.0045, 0, (particleTargetBlockPos.getZ() - this.pos.getZ()) * 0.0045));
 				world.playSound(null, this.pos, SpectrumSoundEvents.ENCHANTER_DING, SoundCategory.BLOCKS, 1.0F, 0.7F + this.world.random.nextFloat() * 0.6F);

@@ -208,28 +208,19 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 			}
 			
 			if (enchanterBlockEntity.currentRecipe instanceof EnchanterRecipe enchanterRecipe) {
-				if (enchanterRecipe.getRequiredExperience() == 0 || ExperienceStorageItem.getStoredExperience(enchanterBlockEntity.inventory.getStack(1)) >= enchanterRecipe.getRequiredExperience()) {
-					enchanterBlockEntity.craftingTime++;
+				enchanterBlockEntity.craftingTime++;
+				// TODO: Play particles
+				// TODO: Sounds
+				if (enchanterBlockEntity.craftingTime == enchanterBlockEntity.craftingTimeTotal) {
+					craftEnchanterRecipe(world, enchanterBlockEntity, enchanterRecipe);
 					// TODO: Play particles
 					// TODO: Sounds
-					if (enchanterBlockEntity.craftingTime == enchanterBlockEntity.craftingTimeTotal) {
-						craftEnchanterRecipe(world, enchanterBlockEntity, enchanterRecipe);
-						// TODO: Play particles
-						// TODO: Sounds
-						craftingSuccess = true;
-					}
-				} else {
-					// Missing required experience
-					// TODO: Play particles
-					// TODO: Sounds
+					craftingSuccess = true;
 				}
 			} else if (enchanterBlockEntity.currentRecipe instanceof EnchantmentUpgradeRecipe enchantmentUpgradeRecipe) {
 				int consumedItems = tickEnchantmentUpgradeRecipe(world, enchanterBlockEntity, enchantmentUpgradeRecipe, enchanterBlockEntity.craftingTimeTotal - enchanterBlockEntity.craftingTime);
-				// TODO: Play particles
-				// TODO: Sounds
 				enchanterBlockEntity.craftingTime += consumedItems;
 				if (enchanterBlockEntity.craftingTime >= enchanterBlockEntity.craftingTimeTotal) {
-					// TODO: More sounds
 					world.playSound(null, enchanterBlockEntity.pos, SoundEvents.ENTITY_PLAYER_LEVELUP, SoundCategory.BLOCKS, 1.0F, 1.0F);
 					
 					SpectrumS2CPackets.playParticle((ServerWorld) enchanterBlockEntity.world,

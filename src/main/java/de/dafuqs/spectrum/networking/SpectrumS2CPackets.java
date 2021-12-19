@@ -46,6 +46,7 @@ public class SpectrumS2CPackets {
 	public static final Identifier PLAY_FUSION_CRAFTING_FINISHED_PARTICLE_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "play_fusion_crafting_finished_particle");
 	public static final Identifier PLAY_PARTICLE_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "play_particle");
 	public static final Identifier PLAY_PARTICLE_PACKET_WITH_OFFSET_ID = new Identifier(SpectrumCommon.MOD_ID, "play_particle_with_offset");
+	public static final Identifier PLAY_PARTICLE_PACKET_WITH_OFFSET_AND_FIXED_VELOCITY_ID = new Identifier(SpectrumCommon.MOD_ID, "play_particle_with_offset_and_fixed_position");
 	public static final Identifier CHANGE_PARTICLE_SPAWNER_SETTINGS_CLIENT_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "change_particle_spawner_settings_client");
 	public static final Identifier INITIATE_ITEM_TRANSFER = new Identifier(SpectrumCommon.MOD_ID, "initiate_item_transfer");
 	public static final Identifier INITIATE_WIRELESS_REDSTONE_TRANSMISSION = new Identifier(SpectrumCommon.MOD_ID, "initiate_wireless_redstone_transmission");
@@ -91,6 +92,25 @@ public class SpectrumS2CPackets {
 						MinecraftClient.getInstance().player.getEntityWorld().addParticle(particleEffect,
 								position.getX() + randomOffsetX, position.getY() + randomOffsetY, position.getZ() + randomOffsetZ,
 								randomVelocityX, randomVelocityY, randomVelocityZ);
+					}
+				});
+			}
+		});
+		
+		ClientPlayNetworking.registerGlobalReceiver(PLAY_PARTICLE_PACKET_WITH_OFFSET_AND_FIXED_VELOCITY_ID, (client, handler, buf, responseSender) -> {
+			Vec3d position = new Vec3d(buf.readDouble(), buf.readDouble(), buf.readDouble());
+			ParticleType<?> particleType = Registry.PARTICLE_TYPE.get(buf.readIdentifier());
+			int amount = buf.readInt();
+			Vec3d randomOffset = new Vec3d(buf.readDouble(), buf.readDouble(), buf.readDouble());
+			Vec3d velocity = new Vec3d(buf.readDouble(), buf.readDouble(), buf.readDouble());
+			if(particleType instanceof ParticleEffect particleEffect) {
+				client.execute(() -> {
+					// Everything in this lambda is running on the render thread
+					Random random = client.world.random;
+					for(int i = 0; i < amount; i++) {
+						MinecraftClient.getInstance().player.getEntityWorld().addParticle(particleEffect,
+								position.getX() + randomOffset.x, position.getY() + randomOffset.y, position.getZ() + randomOffset.z,
+								velocity.x, velocity.y, velocity.z);
 					}
 				});
 			}
@@ -260,6 +280,42 @@ public class SpectrumS2CPackets {
 		// Iterate over all players tracking a position in the world and send the packet to each player
 		for (ServerPlayerEntity player : PlayerLookup.tracking(world, new BlockPos(position))) {
 			ServerPlayNetworking.send(player, SpectrumS2CPackets.PLAY_PARTICLE_PACKET_WITH_OFFSET_ID, buf);
+		}
+	}
+	
+	/**
+	 * Play anvil crafting particle effect
+	 * @param world the world of the pedestal
+	 * @param position the pos of the particles
+	 * @param particleEffect The particle effect to play
+	 */
+	public static void playParticleWithFixedVelocity(ServerWorld world, Vec3d position, ParticleEffect particleEffect, int amount, Vec3d randomOffset, Vec3d velocity) {
+		playParticleWithFixedVelocity(world, position, Registry.PARTICLE_TYPE.getId(particleEffect.getType()), amount, randomOffset, velocity);
+	}
+	
+	/**
+	 * Play anvil crafting particle effect
+	 * @param world the world of the pedestal
+	 * @param position the pos of the particles
+	 * @param particleEffectIdentifier The particle effect identifier to play
+	 */
+	public static void playParticleWithFixedVelocity(ServerWorld world, Vec3d position, Identifier particleEffectIdentifier, int amount, Vec3d randomOffset, Vec3d velocity) {
+		PacketByteBuf buf = PacketByteBufs.create();
+		buf.writeDouble(position.x);
+		buf.writeDouble(position.y);
+		buf.writeDouble(position.z);
+		buf.writeIdentifier(particleEffectIdentifier);
+		buf.writeInt(amount);
+		buf.writeDouble(randomOffset.x);
+		buf.writeDouble(randomOffset.y);
+		buf.writeDouble(randomOffset.z);
+		buf.writeDouble(velocity.x);
+		buf.writeDouble(velocity.y);
+		buf.writeDouble(velocity.z);
+		
+		// Iterate over all players tracking a position in the world and send the packet to each player
+		for (ServerPlayerEntity player : PlayerLookup.tracking(world, new BlockPos(position))) {
+			ServerPlayNetworking.send(player, SpectrumS2CPackets.PLAY_PARTICLE_PACKET_WITH_OFFSET_AND_FIXED_VELOCITY_ID, buf);
 		}
 	}
 	

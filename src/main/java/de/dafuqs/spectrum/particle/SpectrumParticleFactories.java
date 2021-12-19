@@ -124,7 +124,7 @@ public class SpectrumParticleFactories {
 
 	public static void registerColoredRisingParticle(DefaultParticleType particleType, float red, float green, float blue) {
 		ParticleFactoryRegistry.getInstance().register(particleType, provider -> (parameters, world, x, y, z, velocityX, velocityY, velocityZ) -> {
-			VelocityParticle.Factory factory = new VelocityParticle.Factory(provider);
+			FixedVelocityParticle.Factory factory = new FixedVelocityParticle.Factory(provider);
 			Particle particle = factory.createParticle(particleType, world, x, y, z, velocityX, velocityY, velocityZ);
 			particle.setColor(red, green, blue);
 			return particle;

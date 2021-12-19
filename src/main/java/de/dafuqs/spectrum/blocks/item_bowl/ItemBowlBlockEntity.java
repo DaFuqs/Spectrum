@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.blocks.item_bowl;
 
 import de.dafuqs.spectrum.Support;
+import de.dafuqs.spectrum.networking.SpectrumS2CPackets;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
 import de.dafuqs.spectrum.registries.color.ColorRegistry;
@@ -15,8 +16,10 @@ import net.minecraft.network.Packet;
 import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
 import net.minecraft.particle.ParticleEffect;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -80,6 +83,28 @@ public class ItemBowlBlockEntity extends BlockEntity {
 				}
 			}
 		}
+	}
+	
+	public int decrementBowlStack(BlockPos particleTargetBlockPos, int amount) {
+		ItemStack storedStack = this.inventory.getStack(0);
+		if(storedStack.isEmpty()) {
+			return 0;
+		}
+		int decrementAmount = Math.min(amount, storedStack.getCount());
+		storedStack.decrement(decrementAmount);
+		
+		if(decrementAmount > 0 && this.world instanceof ServerWorld serverWorld) {
+			Optional<DyeColor> optionalItemColor = ColorRegistry.ITEM_COLORS.getMapping(storedStack.getItem());
+			if(optionalItemColor.isPresent()) {
+				ParticleEffect particleEffect = SpectrumParticleTypes.getSparkleRisingParticle(optionalItemColor.get());
+				SpectrumS2CPackets.playParticle(serverWorld,
+						new Vec3d(this.pos.getX(), this.pos.getY() + 0.5, this.pos.getZ()),
+						particleEffect, decrementAmount * 2, new Vec3d(0, 0, 0),
+						new Vec3d((particleTargetBlockPos.getX() - this.pos.getX()) * 0.05, 0, (particleTargetBlockPos.getZ() - this.pos.getZ()) * 0.05));
+			}
+		}
+		
+		return decrementAmount;
 	}
 	
 }

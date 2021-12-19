@@ -4,6 +4,7 @@ import de.dafuqs.spectrum.items.ExperienceStorageItem;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -16,6 +17,8 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.Map;
 
 public class EnchantmentUpgradeRecipe implements Recipe<Inventory> {
 
@@ -66,6 +69,10 @@ public class EnchantmentUpgradeRecipe implements Recipe<Inventory> {
 	public boolean matches(Inventory inv, World world) {
 		if(inv.size() > 9) {
 			if(!inputs.get(0).test(inv.getStack(0))) {
+				return false;
+			}
+			Map<Enchantment, Integer> enchantments = EnchantmentHelper.get(inv.getStack(0));
+			if(!enchantments.containsKey(enchantment) || enchantments.get(enchantment) != enchantmentDestinationLevel - 1) {
 				return false;
 			}
 			if(this.getRequiredExperience() > 0 && !(inv.getStack(1).getItem() instanceof ExperienceStorageItem)) {

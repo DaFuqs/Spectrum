@@ -7,11 +7,16 @@ import net.minecraft.advancement.PlayerAdvancementTracker;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.DyeItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.NbtElement;
+import net.minecraft.nbt.NbtList;
 import net.minecraft.server.ServerAdvancementLoader;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
@@ -20,6 +25,7 @@ import net.minecraft.tag.Tag;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.registry.Registry;
 import org.apache.logging.log4j.Level;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -186,6 +192,34 @@ public class Support {
 		} else {
 			return ClientAdvancements.hasDone(advancementIdentifier);
 		}
+	}
+	
+	public static void addOrExchangeEnchantment(ItemStack itemStack, Enchantment enchantment, int level) {
+		Identifier enchantmentIdentifier = Registry.ENCHANTMENT.getId(enchantment);
+		
+		NbtCompound nbtCompound = itemStack.getOrCreateNbt();
+		String nbtString;
+		if(itemStack.isOf(Items.ENCHANTED_BOOK)) {
+			nbtString = "StoredEnchantments";
+		} else {
+			nbtString = "Enchantments";
+		}
+		if (!nbtCompound.contains(nbtString, 9)) {
+			nbtCompound.put(nbtString, new NbtList());
+		}
+		
+		NbtList nbtList = nbtCompound.getList(nbtString, 10);
+		for(int i = 0; i < nbtList.size(); i++) {
+			NbtCompound enchantmentCompound = nbtList.getCompound(i);
+			if(enchantmentCompound.contains("id", NbtElement.STRING_TYPE) && Identifier.tryParse(enchantmentCompound.getString("id")).equals(enchantmentIdentifier)) {
+				nbtList.remove(i);
+				i--;
+			}
+		}
+		
+		nbtList.add(EnchantmentHelper.createNbt(EnchantmentHelper.getEnchantmentId(enchantment), (byte)level));
+		nbtCompound.put(nbtString, nbtList);
+		itemStack.setNbt(nbtCompound);
 	}
 
 	public static @NotNull String getReadableDimensionString(@NotNull String dimensionKeyString) {

@@ -19,9 +19,9 @@ public class FirstStrikeEnchantmentMixin {
 	public float applyAdditionalFirstStrikeEnchantmentDamage(float amount, DamageSource source) {
 		LivingEntity target = (LivingEntity) (Object) this;
 
-		if(source.getAttacker() instanceof LivingEntity livingUser) {
-			if (amount != 0.0F && source.getSource() instanceof LivingEntity && target.getHealth() == target.getMaxHealth()) {
-				ItemStack mainHandStack = livingUser.getMainHandStack();
+		if(source.getAttacker() instanceof LivingEntity livingAttacker) {
+			if (amount != 0F && target.getHealth() == target.getMaxHealth()) {
+				ItemStack mainHandStack = livingAttacker.getMainHandStack();
 				int level = EnchantmentHelper.getLevel(SpectrumEnchantments.FIRST_STRIKE, mainHandStack);
 				if (level > 0) {
 					float additionalDamage = getAdditionalFirstStrikeEnchantmentDamage(level);

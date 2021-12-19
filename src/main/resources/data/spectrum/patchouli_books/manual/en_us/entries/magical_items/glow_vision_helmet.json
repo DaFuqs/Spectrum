@@ -16,7 +16,7 @@
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier1/glow_vision_helmet",
-      "text": "The Glow Vision helmet offers you no protection, but if you wear Glow Ink with you, you get the Night Vision effect for some time."
+      "text": "The Glow Vision helmet offers very little protection, but if you wear Glow Ink with you, you get the Night Vision effect for some time."
     }
   ]
 }

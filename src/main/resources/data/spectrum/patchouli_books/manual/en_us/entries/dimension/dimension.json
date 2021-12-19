@@ -1,6 +1,7 @@
 {
   "name": "The Deeper Down",
-  "icon": "spectrum:bottle_of_ruin",
+  "icon": "minecraft:bedrock",
+  "sortnum": 1,
   "advancement": "spectrum:midgame/enter_dimension",
   "category": "spectrum:dimension_category",
   "pages": [
@@ -11,8 +12,8 @@
     },
     {
       "type": "patchouli:text",
-      "title": "Where the sun never shines",
-      "text": ""
+      "title": "",
+      "text": "Where the sun never shines"
     }
   ]
 }

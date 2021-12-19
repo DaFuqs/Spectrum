@@ -99,9 +99,11 @@ public class ItemBowlBlockEntity extends BlockEntity {
 				ParticleEffect particleEffect = SpectrumParticleTypes.getSparkleRisingParticle(optionalItemColor.get());
 				SpectrumS2CPackets.playParticle(serverWorld,
 						new Vec3d(this.pos.getX(), this.pos.getY() + 0.5, this.pos.getZ()),
-						particleEffect, decrementAmount * 2, new Vec3d(0, 0, 0),
-						new Vec3d((particleTargetBlockPos.getX() - this.pos.getX()) * 0.05, 0, (particleTargetBlockPos.getZ() - this.pos.getZ()) * 0.05));
+						particleEffect, decrementAmount * 10, new Vec3d(0, 0, 0),
+						new Vec3d((particleTargetBlockPos.getX() - this.pos.getX()) * 0.05, particleTargetBlockPos.getY(), (particleTargetBlockPos.getZ() - this.pos.getZ()) * 0.05));
 			}
+			
+			updateInClientWorld();
 		}
 		
 		return decrementAmount;

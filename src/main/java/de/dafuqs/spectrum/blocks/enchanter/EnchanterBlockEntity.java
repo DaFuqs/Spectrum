@@ -7,6 +7,7 @@ import de.dafuqs.spectrum.blocks.item_bowl.ItemBowlBlockEntity;
 import de.dafuqs.spectrum.blocks.upgrade.Upgradeable;
 import de.dafuqs.spectrum.interfaces.PlayerOwned;
 import de.dafuqs.spectrum.items.ExperienceStorageItem;
+import de.dafuqs.spectrum.networking.SpectrumS2CPackets;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.recipe.enchanter.EnchanterRecipe;
@@ -31,6 +32,7 @@ import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
@@ -39,6 +41,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.Pair;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
@@ -222,9 +225,14 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 				// TODO: Sounds
 				enchanterBlockEntity.craftingTime += consumedItems;
 				if (enchanterBlockEntity.craftingTime >= enchanterBlockEntity.craftingTimeTotal) {
-					// TODO: Implementation
-					// TODO: Play particles
-					// TODO: Sounds
+					// TODO: More sounds
+					world.playSound(null, enchanterBlockEntity.pos, SoundEvents.ENTITY_PLAYER_LEVELUP, SoundCategory.BLOCKS, 1.0F, 1.0F);
+					
+					SpectrumS2CPackets.playParticle((ServerWorld) enchanterBlockEntity.world,
+							new Vec3d(enchanterBlockEntity.pos.getX() + 0.5D, enchanterBlockEntity.pos.getY() + 0.5, enchanterBlockEntity.pos.getZ() + 0.5D),
+							SpectrumParticleTypes.LIME_SPARKLE_RISING, 50, new Vec3d(0.5D, 0.5D, 0.5D),
+							new Vec3d(0.1D, -0.1D, 0.1D));
+					
 					craftEnchantmentUpgradeRecipe(world, enchanterBlockEntity, enchantmentUpgradeRecipe);
 					craftingSuccess = true;
 				}
@@ -302,15 +310,19 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 		int itemCountToConsume = Math.min(itemsToConsumeLeft, Support.getIntFromDecimalWithChance(enchanterBlockEntity.upgrades.get(UpgradeType.EFFICIENCY), world.random));
 		
 		int consumedAmount = 0;
-		while(consumedAmount < itemCountToConsume) {
-			int randomBowlPosition = world.random.nextInt(8);
+		int bowlsChecked = 0;
+		int randomBowlPosition = world.random.nextInt(8);
+		while(consumedAmount < itemCountToConsume && bowlsChecked < 8) {
 			Vec3i bowlOffset = getItemBowlPositionOffset(randomBowlPosition, enchanterBlockEntity.virtualInventoryRecipeOrientation);
 			
 			BlockEntity blockEntity = world.getBlockEntity(enchanterBlockEntity.pos.add(bowlOffset));
 			if(blockEntity instanceof ItemBowlBlockEntity itemBowlBlockEntity) {
 				int decrementAmount = itemBowlBlockEntity.decrementBowlStack(enchanterBlockEntity.pos, 1);
 				consumedAmount += decrementAmount;
+			} else {
+				randomBowlPosition = (randomBowlPosition + 1) % 8;
 			}
+			bowlsChecked++;
 		}
 
 		return consumedAmount;

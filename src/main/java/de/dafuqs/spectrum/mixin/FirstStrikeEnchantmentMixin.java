@@ -17,23 +17,23 @@ public class FirstStrikeEnchantmentMixin {
 
 	@ModifyVariable(method = "applyDamage(Lnet/minecraft/entity/damage/DamageSource;F)V", at = @At("HEAD"), ordinal = 0)
 	public float applyAdditionalFirstStrikeEnchantmentDamage(float amount, DamageSource source) {
-		LivingEntity user = (LivingEntity) source.getAttacker();
 		LivingEntity target = (LivingEntity) (Object) this;
 
-		if (amount != 0.0F && source.getSource() instanceof LivingEntity && user != null && target.getHealth() == target.getMaxHealth()) {
-			ItemStack mainHandStack = user.getMainHandStack();
-			int level = EnchantmentHelper.getLevel(SpectrumEnchantments.FIRST_STRIKE, mainHandStack);
-			if(level > 0) {
-				float additionalDamage = getAdditionalFirstStrikeEnchantmentDamage(user);
-				amount += additionalDamage;
+		if(source.getAttacker() instanceof LivingEntity livingUser) {
+			if (amount != 0.0F && source.getSource() instanceof LivingEntity && target.getHealth() == target.getMaxHealth()) {
+				ItemStack mainHandStack = livingUser.getMainHandStack();
+				int level = EnchantmentHelper.getLevel(SpectrumEnchantments.FIRST_STRIKE, mainHandStack);
+				if (level > 0) {
+					float additionalDamage = getAdditionalFirstStrikeEnchantmentDamage(level);
+					amount += additionalDamage;
+				}
 			}
 		}
 		return amount;
 	}
 
-	private float getAdditionalFirstStrikeEnchantmentDamage(@NotNull LivingEntity livingEntity) {
-		int firstStrikeLevel = EnchantmentHelper.getLevel(SpectrumEnchantments.FIRST_STRIKE, livingEntity.getMainHandStack());
-		return SpectrumCommon.CONFIG.FirstStrikeDamagePerLevel * firstStrikeLevel;
+	private float getAdditionalFirstStrikeEnchantmentDamage(int level) {
+		return SpectrumCommon.CONFIG.FirstStrikeDamagePerLevel * level;
 	}
 
 }

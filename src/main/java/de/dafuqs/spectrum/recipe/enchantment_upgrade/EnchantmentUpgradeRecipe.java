@@ -65,15 +65,28 @@ public class EnchantmentUpgradeRecipe implements Recipe<Inventory> {
 	@Override
 	public boolean matches(Inventory inv, World world) {
 		if(inv.size() > 9) {
-			inputs.get(0).test(inv.getStack(0));
-			if(this.getRequiredExperience() > 0 && inv.getStack(1).getItem() instanceof ExperienceStorageItem) {
-				for (int i = 1; i < 9; i++) {
-					if (!inputs.get(i).test(inv.getStack(i+1))) {
+			if(!inputs.get(0).test(inv.getStack(0))) {
+				return false;
+			}
+			if(this.getRequiredExperience() > 0 && !(inv.getStack(1).getItem() instanceof ExperienceStorageItem)) {
+				return false;
+			}
+			
+			Ingredient inputIngredient = inputs.get(1);
+			boolean ingredientFound = false;
+			for (int i = 1; i < 9; i++) {
+				ItemStack currentStack = inv.getStack(i + 1);
+				
+				if(!currentStack.isEmpty()) {
+					if (inputIngredient.test(inv.getStack(i + 1))) {
+						ingredientFound = true;
+					} else {
 						return false;
 					}
 				}
 			}
-			return true;
+			
+			return ingredientFound;
 		}
 		return false;
 	}

@@ -5,6 +5,7 @@ import de.dafuqs.spectrum.networking.SpectrumS2CPackets;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
 import de.dafuqs.spectrum.registries.color.ColorRegistry;
+import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
@@ -17,6 +18,7 @@ import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
@@ -100,7 +102,8 @@ public class ItemBowlBlockEntity extends BlockEntity {
 				SpectrumS2CPackets.playParticleWithFixedVelocity(serverWorld,
 						new Vec3d(this.pos.getX() + 0.5D, this.pos.getY() + 1.0, this.pos.getZ() + 0.5D),
 						particleEffect, decrementAmount * 10, new Vec3d(0, 0, 0),
-						new Vec3d((particleTargetBlockPos.getX() - this.pos.getX()) * 0.05, 0, (particleTargetBlockPos.getZ() - this.pos.getZ()) * 0.05));
+						new Vec3d((particleTargetBlockPos.getX() - this.pos.getX()) * 0.01, 0, (particleTargetBlockPos.getZ() - this.pos.getZ()) * 0.01));
+				world.playSound(null, this.pos, SpectrumSoundEvents.ENCHANTER_DING, SoundCategory.BLOCKS, 1.0F, 0.7F + this.world.random.nextFloat() * 0.6F);
 			}
 			
 			updateInClientWorld();

@@ -5,6 +5,18 @@
       "spectrum:use_fail"
     ]
   },
+  "enchanter_working": {
+    "subtitle": "spectrum.subtitles.enchanter_working",
+    "sounds": [
+      "spectrum:enchanter_working"
+    ]
+  },
+  "enchanter_ding": {
+    "subtitle": "spectrum.subtitles.enchanter_ding",
+    "sounds": [
+      "spectrum:enchanter_ding"
+    ]
+  },
   "light_staff_charging": {
     "subtitle": "spectrum.subtitles.light_staff_charging",
     "sounds": [

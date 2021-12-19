@@ -199,8 +199,12 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 			if(enchanterBlockEntity.craftingTime % 60 == 1) {
 				if (!checkRecipeRequirements(world, blockPos, enchanterBlockEntity)) {
 					enchanterBlockEntity.craftingTime = 0;
+					SpectrumS2CPackets.sendCancelBlockBoundSoundInstance((ServerWorld) enchanterBlockEntity.world, enchanterBlockEntity.pos);
 					return;
 				}
+			}
+			if(enchanterBlockEntity.craftingTime == 1) {
+				SpectrumS2CPackets.sendPlayBlockBoundSoundInstance(SpectrumSoundEvents.ENCHANTER_WORKING, (ServerWorld) enchanterBlockEntity.world, enchanterBlockEntity.pos, Integer.MAX_VALUE);
 			}
 			
 			if (enchanterBlockEntity.currentRecipe instanceof EnchanterRecipe enchanterRecipe) {
@@ -246,6 +250,8 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 			if (craftingSuccess) {
 				enchanterBlockEntity.inventoryChanged();
 			}
+		} else {
+			SpectrumS2CPackets.sendCancelBlockBoundSoundInstance((ServerWorld) enchanterBlockEntity.world, enchanterBlockEntity.pos);
 		}
 	}
 	
@@ -372,6 +378,7 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 		
 		enchanterBlockEntity.craftingTime = 0;
 		Recipe previousRecipe = enchanterBlockEntity.currentRecipe;
+		enchanterBlockEntity.currentRecipe = null;
 		int previousOrientation = enchanterBlockEntity.virtualInventoryRecipeOrientation;
 		
 		SimpleInventory recipeTestInventory = new SimpleInventory(enchanterBlockEntity.virtualInventoryIncludingBowlStacks.size());

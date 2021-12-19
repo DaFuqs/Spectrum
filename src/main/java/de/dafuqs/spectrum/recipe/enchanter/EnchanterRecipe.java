@@ -66,7 +66,9 @@ public class EnchanterRecipe implements Recipe<Inventory> {
 			if(!inputs.get(0).test(inv.getStack(0))) {
 				return false;
 			}
-			if(this.getRequiredExperience() > 0 && !(inv.getStack(1).getItem() instanceof ExperienceStorageItem)) {
+			if(this.getRequiredExperience() > 0
+					&& !(inv.getStack(1).getItem() instanceof ExperienceStorageItem)
+					&& ExperienceStorageItem.getStoredExperience(inv.getStack(1)) < this.getRequiredExperience()) {
 				return false;
 			}
 			

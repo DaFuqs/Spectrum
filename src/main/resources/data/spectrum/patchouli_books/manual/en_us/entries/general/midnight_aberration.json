@@ -2,7 +2,7 @@
   "name": "The Perfect Compound?",
   "icon": "spectrum:midnight_aberration",
   "sortnum": 12,
-  "advancement": "spectrum:midgame/collect_corrupted_obsidian_dust",
+  "advancement": "spectrum:midgame/collect_neolith",
   "category": "spectrum:general_category",
   "extra_recipe_mappings": {
     "spectrum:midnight_aberration": 1
@@ -23,7 +23,7 @@
       "item": "spectrum:midnight_aberration",
       "advancement": "spectrum:midgame/create_midnight_aberration",
       "title": "Midnight Aberration",
-      "text": "$(italic)This abnomination of a gemstone radiates an eerie aura."
+      "text": "$(italic)This abomination of a gemstone radiates an eerie aura."
     },
     {
       "type": "patchouli:text",

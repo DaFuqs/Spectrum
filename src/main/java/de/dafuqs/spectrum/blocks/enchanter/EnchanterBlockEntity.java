@@ -51,6 +51,7 @@ import java.util.*;
 
 public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Upgradeable {
 	
+	public static final int ENCHANTMENT_UPGRADE_RECIPE_TICKS_FOR_ITEM = 8;
 	public static final Identifier APPLY_CONFLICTING_ENCHANTMENTS_ADVANCEMENT_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "milestones/unlock_conflicted_enchanting_with_enchanter");
 	public static final Identifier OVERENCHANTING_ADVANCEMENT_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "milestones/unlock_overenchanting_with_enchanter");
 	
@@ -71,6 +72,7 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 	private Recipe currentRecipe;
 	private int craftingTime;
 	private int craftingTimeTotal;
+	private int currentItemProcessingTime;
 	
 	@Nullable
 	private Direction itemFacing; // for rendering the item on the enchanter only
@@ -85,6 +87,7 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 		super.readNbt(nbt);
 		this.inventory = new SimpleInventory(INVENTORY_SIZE);
 		this.inventoryChanged = nbt.getBoolean("inventory_changed");
+		this.currentItemProcessingTime = nbt.getInt("current_item_processing_time");
 		this.inventory.readNbtList(nbt.getList("inventory", 10));
 		this.virtualInventoryIncludingBowlStacks = new SimpleInventory(INVENTORY_SIZE + 8);
 		this.virtualInventoryIncludingBowlStacks.readNbtList(nbt.getList("virtual_inventory", 10));
@@ -122,6 +125,7 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 	public void writeNbt(NbtCompound nbt) {
 		super.writeNbt(nbt);
 		nbt.put("inventory", this.inventory.toNbtList());
+		nbt.putInt("current_item_processing_time", this.currentItemProcessingTime);
 		nbt.putBoolean("inventory_changed", this.inventoryChanged);
 		nbt.put("virtual_inventory", this.virtualInventoryIncludingBowlStacks.toNbtList());
 		if(this.itemFacing != null) {
@@ -218,18 +222,23 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 					craftingSuccess = true;
 				}
 			} else if (enchanterBlockEntity.currentRecipe instanceof EnchantmentUpgradeRecipe enchantmentUpgradeRecipe) {
-				int consumedItems = tickEnchantmentUpgradeRecipe(world, enchanterBlockEntity, enchantmentUpgradeRecipe, enchanterBlockEntity.craftingTimeTotal - enchanterBlockEntity.craftingTime);
-				enchanterBlockEntity.craftingTime += consumedItems;
-				if (enchanterBlockEntity.craftingTime >= enchanterBlockEntity.craftingTimeTotal) {
-					world.playSound(null, enchanterBlockEntity.pos, SoundEvents.ENTITY_PLAYER_LEVELUP, SoundCategory.BLOCKS, 1.0F, 1.0F);
+				enchanterBlockEntity.currentItemProcessingTime++;
+				if(enchanterBlockEntity.currentItemProcessingTime == ENCHANTMENT_UPGRADE_RECIPE_TICKS_FOR_ITEM) {
+					enchanterBlockEntity.currentItemProcessingTime = 0;
 					
-					SpectrumS2CPackets.playParticle((ServerWorld) enchanterBlockEntity.world,
-							new Vec3d(enchanterBlockEntity.pos.getX() + 0.5D, enchanterBlockEntity.pos.getY() + 0.5, enchanterBlockEntity.pos.getZ() + 0.5D),
-							SpectrumParticleTypes.LIME_SPARKLE_RISING, 50, new Vec3d(0.5D, 0.5D, 0.5D),
-							new Vec3d(0.1D, -0.1D, 0.1D));
-					
-					craftEnchantmentUpgradeRecipe(world, enchanterBlockEntity, enchantmentUpgradeRecipe);
-					craftingSuccess = true;
+					int consumedItems = tickEnchantmentUpgradeRecipe(world, enchanterBlockEntity, enchantmentUpgradeRecipe, enchanterBlockEntity.craftingTimeTotal - enchanterBlockEntity.craftingTime);
+					enchanterBlockEntity.craftingTime += consumedItems;
+					if (enchanterBlockEntity.craftingTime >= enchanterBlockEntity.craftingTimeTotal) {
+						world.playSound(null, enchanterBlockEntity.pos, SoundEvents.ENTITY_PLAYER_LEVELUP, SoundCategory.BLOCKS, 1.0F, 1.0F);
+						
+						SpectrumS2CPackets.playParticle((ServerWorld) enchanterBlockEntity.world,
+								new Vec3d(enchanterBlockEntity.pos.getX() + 0.5D, enchanterBlockEntity.pos.getY() + 0.5, enchanterBlockEntity.pos.getZ() + 0.5D),
+								SpectrumParticleTypes.LIME_SPARKLE_RISING, 50, new Vec3d(0.5D, 0.5D, 0.5D),
+								new Vec3d(0.1D, -0.1D, 0.1D));
+						
+						craftEnchantmentUpgradeRecipe(world, enchanterBlockEntity, enchantmentUpgradeRecipe);
+						craftingSuccess = true;
+					}
 				}
 			} else {
 				// in-code recipe for item + books => enchanted item
@@ -402,6 +411,7 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 			}
 		} else {
 			enchanterBlockEntity.currentRecipe = enchantmentUpgradeRecipe;
+			enchanterBlockEntity.currentItemProcessingTime = 0;
 			enchanterBlockEntity.virtualInventoryRecipeOrientation = previousOrientation;
 			enchanterBlockEntity.virtualInventoryIncludingBowlStacks = recipeTestInventory;
 			enchanterBlockEntity.craftingTimeTotal = enchantmentUpgradeRecipe.getRequiredItemCount();

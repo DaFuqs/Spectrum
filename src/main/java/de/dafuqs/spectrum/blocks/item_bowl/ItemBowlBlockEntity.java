@@ -93,7 +93,7 @@ public class ItemBowlBlockEntity extends BlockEntity {
 			Optional<DyeColor> optionalItemColor = ColorRegistry.ITEM_COLORS.getMapping(storedStack.getItem());
 			if(optionalItemColor.isPresent()) {
 				ParticleEffect sparkleRisingParticleEffect = SpectrumParticleTypes.getSparkleRisingParticle(optionalItemColor.get());
-				SpectrumS2CPackets.playParticle((ServerWorld) world, new Vec3d(pos.getX()+0.5, pos.getY()+0.5, pos.getZ()+0.5), sparkleRisingParticleEffect, 20, new Vec3d(0.4, 0.2, 0.4), new Vec3d(0.04, 0.12, 0.04));
+				SpectrumS2CPackets.playParticle((ServerWorld) world, new Vec3d(pos.getX()+0.5, pos.getY()+0.5, pos.getZ()+0.5), sparkleRisingParticleEffect, 50, new Vec3d(0.4, 0.2, 0.4), new Vec3d(0.06, 0.16, 0.06));
 				
 				ParticleEffect fluidRisingParticleEffect = SpectrumParticleTypes.getFluidRisingParticle(optionalItemColor.get());
 				SpectrumS2CPackets.playParticleWithFixedVelocity(serverWorld,

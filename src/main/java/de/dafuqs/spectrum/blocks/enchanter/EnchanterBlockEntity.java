@@ -106,8 +106,8 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 				if (world != null) {
 					optionalRecipe = world.getRecipeManager().get(new Identifier(recipeString));
 				}
-				if(optionalRecipe.isPresent() && optionalRecipe.get() instanceof FusionShrineRecipe optionalFusionRecipe) {
-					this.currentRecipe = optionalFusionRecipe;
+				if(optionalRecipe.isPresent() && (optionalRecipe.get() instanceof EnchanterRecipe || optionalRecipe.get() instanceof EnchantmentUpgradeRecipe recipe)) {
+					this.currentRecipe = optionalRecipe.get();
 				} else {
 					this.currentRecipe = null;
 				}
@@ -173,16 +173,18 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 	}
 	
 	public static void clientTick(World world, BlockPos blockPos, BlockState blockState, @NotNull EnchanterBlockEntity enchanterBlockEntity) {
-		ItemStack experienceStack = enchanterBlockEntity.getInventory().getStack(1);
-		if(!experienceStack.isEmpty() && experienceStack.getItem() instanceof ExperienceStorageItem) {
-			int experience = ExperienceStorageItem.getStoredExperience(experienceStack);
-			int amount = Support.getExperienceOrbSizeForExperience(experience);
-			
-			if(world.random.nextInt(10) < amount) {
-				float randomX = 0.2F + world.getRandom().nextFloat() * 0.6F;
-				float randomZ = 0.2F + world.getRandom().nextFloat() * 0.6F;
-				float randomY = -0.1F + world.getRandom().nextFloat() * 0.4F;
-				world.addParticle(SpectrumParticleTypes.LIME_SPARKLE_RISING, blockPos.getX() + randomX, blockPos.getY() + 2.5 + randomY, blockPos.getZ() + randomZ, 0.0D, -0.1D, 0.0D);
+		if(enchanterBlockEntity.currentRecipe != null) {
+			ItemStack experienceStack = enchanterBlockEntity.getInventory().getStack(1);
+			if (!experienceStack.isEmpty() && experienceStack.getItem() instanceof ExperienceStorageItem) {
+				int experience = ExperienceStorageItem.getStoredExperience(experienceStack);
+				int amount = Support.getExperienceOrbSizeForExperience(experience);
+				
+				if (world.random.nextInt(10) < amount) {
+					float randomX = 0.2F + world.getRandom().nextFloat() * 0.6F;
+					float randomZ = 0.2F + world.getRandom().nextFloat() * 0.6F;
+					float randomY = -0.1F + world.getRandom().nextFloat() * 0.4F;
+					world.addParticle(SpectrumParticleTypes.LIME_SPARKLE_RISING, blockPos.getX() + randomX, blockPos.getY() + 2.5 + randomY, blockPos.getZ() + randomZ, 0.0D, -0.1D, 0.0D);
+				}
 			}
 		}
 	}

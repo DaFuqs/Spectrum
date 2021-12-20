@@ -216,9 +216,8 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 				// TODO: Play particles
 				// TODO: Sounds
 				if (enchanterBlockEntity.craftingTime == enchanterBlockEntity.craftingTimeTotal) {
+					playCraftingFinishedEffects(enchanterBlockEntity);
 					craftEnchanterRecipe(world, enchanterBlockEntity, enchanterRecipe);
-					// TODO: Play particles
-					// TODO: Sounds
 					craftingSuccess = true;
 				}
 			} else if (enchanterBlockEntity.currentRecipe instanceof EnchantmentUpgradeRecipe enchantmentUpgradeRecipe) {
@@ -229,13 +228,7 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 					int consumedItems = tickEnchantmentUpgradeRecipe(world, enchanterBlockEntity, enchantmentUpgradeRecipe, enchanterBlockEntity.craftingTimeTotal - enchanterBlockEntity.craftingTime);
 					enchanterBlockEntity.craftingTime += consumedItems;
 					if (enchanterBlockEntity.craftingTime >= enchanterBlockEntity.craftingTimeTotal) {
-						world.playSound(null, enchanterBlockEntity.pos, SoundEvents.ENTITY_PLAYER_LEVELUP, SoundCategory.BLOCKS, 1.0F, 1.0F);
-						
-						SpectrumS2CPackets.playParticle((ServerWorld) enchanterBlockEntity.world,
-								new Vec3d(enchanterBlockEntity.pos.getX() + 0.5D, enchanterBlockEntity.pos.getY() + 0.5, enchanterBlockEntity.pos.getZ() + 0.5D),
-								SpectrumParticleTypes.LIME_SPARKLE_RISING, 50, new Vec3d(0.5D, 0.5D, 0.5D),
-								new Vec3d(0.1D, -0.1D, 0.1D));
-						
+						playCraftingFinishedEffects(enchanterBlockEntity);
 						craftEnchantmentUpgradeRecipe(world, enchanterBlockEntity, enchantmentUpgradeRecipe);
 						craftingSuccess = true;
 					}
@@ -253,6 +246,16 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 		} else {
 			SpectrumS2CPackets.sendCancelBlockBoundSoundInstance((ServerWorld) enchanterBlockEntity.world, enchanterBlockEntity.pos);
 		}
+	}
+	
+	public static void playCraftingFinishedEffects(EnchanterBlockEntity enchanterBlockEntity) {
+		enchanterBlockEntity.world.playSound(null, enchanterBlockEntity.pos, SoundEvents.ENTITY_PLAYER_LEVELUP, SoundCategory.BLOCKS, 1.0F, 1.0F);
+		
+		SpectrumS2CPackets.playParticle((ServerWorld) enchanterBlockEntity.world,
+				new Vec3d(enchanterBlockEntity.pos.getX() + 0.5D, enchanterBlockEntity.pos.getY() + 0.5, enchanterBlockEntity.pos.getZ() + 0.5D),
+				SpectrumParticleTypes.LIME_SPARKLE_RISING, 75, new Vec3d(0.5D, 0.5D, 0.5D),
+				new Vec3d(0.1D, -0.1D, 0.1D));
+		
 	}
 	
 	private static boolean checkRecipeRequirements(World world, BlockPos blockPos, @NotNull EnchanterBlockEntity enchanterBlockEntity) {
@@ -308,8 +311,7 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 		ItemStack resultStack = enchanterRecipe.getOutput().copy();
 		enchanterBlockEntity.getInventory().setStack(0, resultStack);
 		
-		int spentLevels = ExperienceHelper.getLevelForExperience(enchanterRecipe.getRequiredExperience());
-		grantPlayerEnchantingAdvancement(world, enchanterBlockEntity.ownerUUID, resultStack, spentLevels);
+		grantPlayerEnchantingAdvancement(world, enchanterBlockEntity.ownerUUID, resultStack, enchanterRecipe.getRequiredExperience());
 	}
 	
 	public static int tickEnchantmentUpgradeRecipe(World world, @NotNull EnchanterBlockEntity enchanterBlockEntity, @NotNull EnchantmentUpgradeRecipe enchantmentUpgradeRecipe, int itemsToConsumeLeft) {
@@ -344,8 +346,7 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 		Support.addOrExchangeEnchantment(resultStack, enchantmentUpgradeRecipe.getEnchantment(), enchantmentUpgradeRecipe.getEnchantmentDestinationLevel());
 		enchanterBlockEntity.getInventory().setStack(0, resultStack);
 		
-		int spentLevels = ExperienceHelper.getLevelForExperience(enchantmentUpgradeRecipe.getRequiredExperience());
-		grantPlayerEnchantingAdvancement(world, enchanterBlockEntity.ownerUUID, resultStack, spentLevels);
+		grantPlayerEnchantingAdvancement(world, enchanterBlockEntity.ownerUUID, resultStack, enchantmentUpgradeRecipe.getRequiredExperience());
 	}
 	
 	public static Vec3i getItemBowlPositionOffset(int index, int orientation) {
@@ -457,7 +458,8 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 		world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), soundEvent, SoundCategory.BLOCKS, volume, 0.9F + random.nextFloat() * 0.15F);
 	}
 	
-	private static void grantPlayerEnchantingAdvancement(World world, UUID playerUUID, ItemStack resultStack, int levels) {
+	private static void grantPlayerEnchantingAdvancement(World world, UUID playerUUID, ItemStack resultStack, int experience) {
+		int levels = ExperienceHelper.getLevelForExperience(experience);
 		ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity) PlayerOwned.getPlayerEntityIfOnline(world, playerUUID);
 		if(serverPlayerEntity != null) {
 			serverPlayerEntity.incrementStat(Stats.ENCHANT_ITEM);

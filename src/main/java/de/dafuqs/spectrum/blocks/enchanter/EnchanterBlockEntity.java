@@ -4,6 +4,7 @@ import de.dafuqs.spectrum.ExperienceHelper;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.Support;
 import de.dafuqs.spectrum.blocks.item_bowl.ItemBowlBlockEntity;
+import de.dafuqs.spectrum.blocks.pedestal.PedestalBlockEntity;
 import de.dafuqs.spectrum.blocks.upgrade.Upgradeable;
 import de.dafuqs.spectrum.interfaces.PlayerOwned;
 import de.dafuqs.spectrum.items.ExperienceStorageItem;
@@ -20,6 +21,8 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.ExperienceOrbEntity;
+import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
@@ -215,10 +218,12 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 			
 			if (enchanterBlockEntity.currentRecipe instanceof EnchanterRecipe enchanterRecipe) {
 				enchanterBlockEntity.craftingTime++;
-				// TODO: Play particles
-				// TODO: Sounds
-				if (enchanterBlockEntity.craftingTime == enchanterBlockEntity.craftingTimeTotal) {
+				
+				// looks cooler this way
+				if(enchanterBlockEntity.craftingTime == enchanterBlockEntity.craftingTimeTotal - 10) {
 					playCraftingFinishedEffects(enchanterBlockEntity);
+				}
+				if (enchanterBlockEntity.craftingTime == enchanterBlockEntity.craftingTimeTotal) {
 					craftEnchanterRecipe(world, enchanterBlockEntity, enchanterRecipe);
 					craftingSuccess = true;
 				}
@@ -243,6 +248,7 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 			}
 			
 			if (craftingSuccess) {
+				enchanterBlockEntity.craftingTime = 0;
 				enchanterBlockEntity.inventoryChanged();
 			}
 		} else {
@@ -302,10 +308,25 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 			}
 		}
 		
+		// if there is room: place the output on the table
+		// otherwise: pop it off
 		ItemStack resultStack = enchanterRecipe.getOutput().copy();
-		enchanterBlockEntity.getInventory().setStack(0, resultStack);
+		ItemStack existingStack = enchanterBlockEntity.getInventory().getStack(0);
+		if(existingStack.getCount() > 1) {
+			existingStack.decrement(1);
+			spawnOutputAsItemEntity(world, enchanterBlockEntity, resultStack);
+		} else {
+			enchanterBlockEntity.getInventory().setStack(0, resultStack);
+		}
+		
 		
 		grantPlayerEnchantingAdvancement(world, enchanterBlockEntity.ownerUUID, resultStack, enchanterRecipe.getRequiredExperience());
+	}
+	
+	public static void spawnOutputAsItemEntity(World world, @NotNull EnchanterBlockEntity enchanterBlockEntity, ItemStack outputItemStack) {
+		ItemEntity itemEntity = new ItemEntity(world, enchanterBlockEntity.pos.getX() + 0.5, enchanterBlockEntity.pos.getY() + 1, enchanterBlockEntity.pos.getZ() + 0.5, outputItemStack);
+		itemEntity.addVelocity(0, 0.1, 0);
+		world.spawnEntity(itemEntity);
 	}
 	
 	public static int tickEnchantmentUpgradeRecipe(World world, @NotNull EnchanterBlockEntity enchanterBlockEntity, @NotNull EnchantmentUpgradeRecipe enchantmentUpgradeRecipe, int itemsToConsumeLeft) {

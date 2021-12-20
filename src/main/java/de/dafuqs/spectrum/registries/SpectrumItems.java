@@ -294,7 +294,7 @@ public class SpectrumItems {
 		register("shooting_star", SHOOTING_STAR);
 
 		register("vegetal", VEGETAL);
-		register("corrupted_obsidian_dust", CORRUPTED_OBSIDIAN_DUST);
+		register("neolith", CORRUPTED_OBSIDIAN_DUST);
 		register("bedrock_dust", BEDROCK_DUST);
 		register("midnight_aberration", MIDNIGHT_ABERRATION);
 	}

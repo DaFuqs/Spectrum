@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:midgame/collect_corrupted_obsidian_dust",
+  "parent": "spectrum:midgame/collect_neolith",
   "display": {
     "icon": {
         "item": "spectrum:midnight_aberration"

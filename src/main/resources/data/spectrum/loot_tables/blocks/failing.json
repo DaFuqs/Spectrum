@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "spectrum:corrupted_obsidian_dust"
+          "name": "spectrum:neolith"
         }
       ],
       "conditions": [
@@ -35,7 +35,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "spectrum:corrupted_obsidian_dust"
+          "name": "spectrum:neolith"
         }
       ],
       "conditions": [

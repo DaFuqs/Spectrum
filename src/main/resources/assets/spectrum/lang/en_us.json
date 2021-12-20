@@ -949,7 +949,7 @@
   "item.spectrum.spectral_shard": "Spectral Shard",
 
   "item.spectrum.vegetal": "Vegetal",
-  "item.spectrum.corrupted_obsidian_dust": "Neolith",
+  "item.spectrum.neolith": "Neolith",
   "item.spectrum.bedrock_dust": "Bedrock Dust",
   "item.spectrum.midnight_aberration": "Midnight Aberration",
 
@@ -1004,8 +1004,8 @@
   "advancements.spectrum.collect_all_basic_shards.description": "Collect all types of naturally generating gemstones",
   "advancements.spectrum.collect_azurite.title": "I got the Blues",
   "advancements.spectrum.collect_azurite.description": "Collect raw Azurite. It has to be refined before using",
-  "advancements.spectrum.collect_corrupted_obsidian_dust.title": "Non-Non-Amorphous",
-  "advancements.spectrum.collect_corrupted_obsidian_dust.description": "Get Neolith Dust",
+  "advancements.spectrum.collect_neolith.title": "Non-Non-Amorphous",
+  "advancements.spectrum.collect_neolith.description": "Get Neolith Dust",
   "advancements.spectrum.collect_four_leaf_clover.title": "Getting Lucky",
   "advancements.spectrum.collect_four_leaf_clover.description": "Find a four-leaved clover",
   "advancements.spectrum.collect_gemstone_powder.title": "Smashing",

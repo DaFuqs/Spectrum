@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.compat.REI;
 
 import com.google.common.collect.Lists;
+import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.recipe.enchantment_upgrade.EnchantmentUpgradeRecipe;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import me.shedaniel.math.Point;
@@ -14,13 +15,14 @@ import me.shedaniel.rei.api.common.entry.EntryIngredient;
 import me.shedaniel.rei.api.common.util.EntryStacks;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
+import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
 public class EnchantmentUpgradeCategory<R extends EnchantmentUpgradeRecipe> implements DisplayCategory<EnchantmentUpgradeRecipeDisplay<R>> {
-	
-	
+
+	private final static Identifier BACKGROUND_TEXTURE = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/container/enchanter.png");
 	
 	@Override
 	public CategoryIdentifier getCategoryIdentifier() {
@@ -57,6 +59,9 @@ public class EnchantmentUpgradeCategory<R extends EnchantmentUpgradeRecipe> impl
 			widgets.add(Widgets.createLabel(new Point(startPoint.x, startPoint.y + 33), new TranslatableText("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_1")).leftAligned().color(0x3f3f3f).noShadow());
 			widgets.add(Widgets.createLabel(new Point(startPoint.x, startPoint.y + 43), new TranslatableText("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_2")).leftAligned().color(0x3f3f3f).noShadow());
 		} else {
+			// enchanter structure background					            destinationX	 destinationY   sourceX, sourceY, width, height
+			widgets.add(Widgets.createTexturedWidget(BACKGROUND_TEXTURE, startPoint.x +13, startPoint.y+22, 0, 0, 52, 52));
+
 			// Knowledge Gem and Enchanter
 			widgets.add(Widgets.createSlot(new Point(startPoint.x + 111, startPoint.y + 14)).markInput().entries((EntryIngredient) display.inputs.get(9)));
 			widgets.add(Widgets.createSlot(new Point(startPoint.x + 111, startPoint.y + 60)).entries(EnchanterCategory.ENCHANTER).disableBackground());
@@ -65,14 +70,14 @@ public class EnchantmentUpgradeCategory<R extends EnchantmentUpgradeRecipe> impl
 			widgets.add(Widgets.createSlot(new Point(startPoint.x + 31, startPoint.y + 40)).markInput().entries((EntryIngredient) display.inputs.get(0)));
 			
 			// surrounding input slots
-			widgets.add(Widgets.createSlot(new Point(startPoint.x + 18, startPoint.y + 10)).markInput().entries((EntryIngredient) display.inputs.get(1)));
-			widgets.add(Widgets.createSlot(new Point(startPoint.x + 44, startPoint.y + 10)).markInput().entries((EntryIngredient) display.inputs.get(2)));
-			widgets.add(Widgets.createSlot(new Point(startPoint.x + 62, startPoint.y + 28)).markInput().entries((EntryIngredient) display.inputs.get(3)));
-			widgets.add(Widgets.createSlot(new Point(startPoint.x + 62, startPoint.y + 54)).markInput().entries((EntryIngredient) display.inputs.get(4)));
-			widgets.add(Widgets.createSlot(new Point(startPoint.x + 44, startPoint.y + 72)).markInput().entries((EntryIngredient) display.inputs.get(5)));
-			widgets.add(Widgets.createSlot(new Point(startPoint.x + 18, startPoint.y + 72)).markInput().entries((EntryIngredient) display.inputs.get(6)));
-			widgets.add(Widgets.createSlot(new Point(startPoint.x, startPoint.y + 54)).markInput().entries((EntryIngredient) display.inputs.get(7)));
-			widgets.add(Widgets.createSlot(new Point(startPoint.x, startPoint.y + 28)).markInput().entries((EntryIngredient) display.inputs.get(8)));
+			widgets.add(Widgets.createSlot(new Point(startPoint.x + 18, startPoint.y + 9)).markInput().entries((EntryIngredient) display.inputs.get(1)));
+			widgets.add(Widgets.createSlot(new Point(startPoint.x + 44, startPoint.y + 9)).markInput().entries((EntryIngredient) display.inputs.get(2)));
+			widgets.add(Widgets.createSlot(new Point(startPoint.x + 62, startPoint.y + 27)).markInput().entries((EntryIngredient) display.inputs.get(3)));
+			widgets.add(Widgets.createSlot(new Point(startPoint.x + 62, startPoint.y + 53)).markInput().entries((EntryIngredient) display.inputs.get(4)));
+			widgets.add(Widgets.createSlot(new Point(startPoint.x + 44, startPoint.y + 71)).markInput().entries((EntryIngredient) display.inputs.get(5)));
+			widgets.add(Widgets.createSlot(new Point(startPoint.x + 18, startPoint.y + 71)).markInput().entries((EntryIngredient) display.inputs.get(6)));
+			widgets.add(Widgets.createSlot(new Point(startPoint.x, startPoint.y + 53)).markInput().entries((EntryIngredient) display.inputs.get(7)));
+			widgets.add(Widgets.createSlot(new Point(startPoint.x, startPoint.y + 27)).markInput().entries((EntryIngredient) display.inputs.get(8)));
 			
 			// output arrow and slot
 			List<EntryIngredient> output = display.getOutputEntries();

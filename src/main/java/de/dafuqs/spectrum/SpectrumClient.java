@@ -33,6 +33,9 @@ import net.minecraft.item.*;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
+import org.apache.logging.log4j.Level;
+
+import static de.dafuqs.spectrum.SpectrumCommon.log;
 
 public class SpectrumClient implements ClientModInitializer {
 
@@ -44,12 +47,18 @@ public class SpectrumClient implements ClientModInitializer {
 
 	@Override
 	public void onInitializeClient() {
+		log(Level.INFO, "Starting Client Startup");
+
+		log(Level.INFO, "Setting up Block Rendering...");
 		SpectrumBlocks.registerClient();
+		log(Level.INFO, "Setting up Fluid Rendering...");
 		SpectrumFluids.registerClient();
 
+		log(Level.INFO, "Setting up GUIs...");
 		SpectrumContainers.register();
 		SpectrumScreenHandlerTypes.registerClient();
 
+		log(Level.INFO, "Setting up ItemPredicates...");
 		registerBowPredicates(SpectrumItems.BEDROCK_BOW);
 		registerCrossbowPredicates(SpectrumItems.BEDROCK_CROSSBOW);
 		registerFishingRodPredicates(SpectrumItems.BEDROCK_FISHING_ROD);
@@ -58,23 +67,28 @@ public class SpectrumClient implements ClientModInitializer {
 		registerAnimatedWandPredicates(SpectrumItems.LIGHT_STAFF);
 		registerKnowledgeDropPredicates(SpectrumItems.KNOWLEDGE_GEM);
 
+		log(Level.INFO, "Setting up Block Entity Renderers...");
 		SpectrumBlockEntityRegistry.registerClient();
+		log(Level.INFO, "Setting up Entity Renderers...");
 		SpectrumEntityRenderers.registerClient();
 
+		log(Level.INFO, "Registering Server to Client Package Receivers...");
 		SpectrumS2CPackets.registerS2CReceivers();
+		log(Level.INFO, "Registering Particle Factories...");
 		SpectrumParticleFactories.register();
-		
+
+		log(Level.INFO, "Registering Overlays...");
 		GuiOverlay.register();
-		
-		EntityRendererRegistry.INSTANCE.register(SpectrumEntityTypes.INVISIBLE_ITEM_FRAME, ItemFrameEntityRenderer::new);
-		EntityRendererRegistry.INSTANCE.register(SpectrumEntityTypes.INVISIBLE_GLOW_ITEM_FRAME, ItemFrameEntityRenderer::new);
-		
+
 		ClientLifecycleEvents.CLIENT_STARTED.register(minecraftClient -> {
 			SpectrumClient.minecraftClient = minecraftClient;
 			registerColorProviders();
 		});
-		
+
+		log(Level.INFO, "Registering CustomPatchouli Pages...");
 		PatchouliPages.register();
+
+		log(Level.INFO, "Client startup completed!");
 	}
 
 	private static void registerColorProviders() {

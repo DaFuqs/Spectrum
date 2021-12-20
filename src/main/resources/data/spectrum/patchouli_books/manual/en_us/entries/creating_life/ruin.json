@@ -21,11 +21,13 @@
     {
       "type": "patchouli:spotlight",
       "advancement": "spectrum:midgame/break_decayed_bedrock",
+	  "title": "Bedrock Dust",
       "item": "spectrum:bedrock_dust",
       "text": "Even Bedrock was not strong enough to withstand your newly created \"life\".  It ate through the Bedrock - like dandelions through concrete."
     },
     {
       "type": "patchouli:text",
+      "title": "A Friendly Reminder",
       "text": "Should you be reading your notes here while some of that stuff is still roaming around free, you should change that as soon as possible otherwise you WILL regret it."
     }
   ]

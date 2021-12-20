@@ -1,0 +1,29 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 120,
+  "tier": "advanced",
+  "cyan": 0,
+  "magenta": 4,
+  "yellow": 0,
+  "black": 1,
+  "white": 0,
+  "experience": 2.0,
+  "pattern": [
+    "OOO",
+    "OXO",
+    "OOO"
+  ],
+  "key": {
+    "X": {
+      "item": "spectrum:midnight_aberration"
+    },
+    "O": {
+      "item": "minecraft:obsidian"
+    }
+  },
+  "result" : {
+    "item": "minecraft:crying_obsidian",
+    "count": 8
+  },
+  "required_advancements": ["spectrum:midgame/create_midnight_aberration"]
+}

@@ -13,7 +13,7 @@
     "hidden": true
   },
   "criteria": {
-    "has_corrupted_obsidian_dust": {
+    "has_neolith": {
       "trigger": "minecraft:inventory_changed",
       "conditions": { "items": [{ "items": [ "spectrum:resonant_lily" ]}] }
     }

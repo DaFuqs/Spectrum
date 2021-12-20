@@ -1,0 +1,20 @@
+{
+  "parent": "spectrum:midgame/craft_bottle_of_failing",
+  "display": {
+    "icon": {
+      "item": "spectrum:neolith"
+    },
+    "title": {
+      "translate": "advancements.spectrum.collect_neolith.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.collect_neolith.description"
+    }
+  },
+  "criteria": {
+    "has_neolith": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": { "items": [{ "items": [ "spectrum:neolith" ]}] }
+    }
+  }
+}

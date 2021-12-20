@@ -1,0 +1,12 @@
+{
+  "criteria": {
+    "created_midnight_abberation": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:midgame/create_midnight_aberration" }
+    },
+	"collected_netherite_scrap": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:hidden/collect_vanilla/collect_netherite_scrap" }
+    }
+  }
+}

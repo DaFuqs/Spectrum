@@ -83,7 +83,7 @@ public class RevelationToast implements Toast {
 		}
 
 		manager.getClient().getItemRenderer().renderInGui(itemStack, 8, 8);
-		return startTime >= 50000L ? Visibility.HIDE : Visibility.SHOW;
+		return startTime >= 5000L ? Visibility.HIDE : Visibility.SHOW;
 	}
 
 }

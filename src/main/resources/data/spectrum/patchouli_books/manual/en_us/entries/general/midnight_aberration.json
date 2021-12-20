@@ -2,7 +2,7 @@
   "name": "The Perfect Compound?",
   "icon": "spectrum:midnight_aberration",
   "sortnum": 12,
-  "advancement": "spectrum:midgame/collect_corrupted_obsidian_dust",
+  "advancement": "spectrum:midgame/collect_neolith",
   "category": "spectrum:general_category",
   "extra_recipe_mappings": {
     "spectrum:midnight_aberration": 1
@@ -10,13 +10,24 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "TODO"
-    },
+      "text": "The latest findings from your last experiment make you strive for more and more. Squeeze every last ounce of energy out of your gemstones.$(br2)Neolith is the key! Yes, it must be! If you combine all the stones you have collected so far with it, something must be created that holds incredible power. Alone for you and ONLY for you, master of Pigment!"
+	},
     {
       "type": "spectrum:fusion_shrine_crafting",
       "title": "Fusion Recipe",
       "recipe": "spectrum:fusion_shrine/midnight_aberration",
-      "text": "TODO"
-    }
+      "text": "Incredible Source of Power"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:midnight_aberration",
+      "advancement": "spectrum:midgame/create_midnight_aberration",
+      "title": "Midnight Aberration",
+      "text": "$(italic)This abomination of a gemstone radiates an eerie aura."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "While this definitely was not the outcome you craved for it still does hold immense power.$(br2)So much in fact, that if not used quicky it crumbles into dust. $(br)But not without taking the energy out on its surroundings... or more like draining it."
+	}
   ]
 }

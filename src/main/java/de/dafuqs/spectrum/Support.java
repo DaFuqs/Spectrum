@@ -193,34 +193,7 @@ public class Support {
 			return ClientAdvancements.hasDone(advancementIdentifier);
 		}
 	}
-	
-	public static void addOrExchangeEnchantment(ItemStack itemStack, Enchantment enchantment, int level) {
-		Identifier enchantmentIdentifier = Registry.ENCHANTMENT.getId(enchantment);
-		
-		NbtCompound nbtCompound = itemStack.getOrCreateNbt();
-		String nbtString;
-		if(itemStack.isOf(Items.ENCHANTED_BOOK)) {
-			nbtString = "StoredEnchantments";
-		} else {
-			nbtString = "Enchantments";
-		}
-		if (!nbtCompound.contains(nbtString, 9)) {
-			nbtCompound.put(nbtString, new NbtList());
-		}
-		
-		NbtList nbtList = nbtCompound.getList(nbtString, 10);
-		for(int i = 0; i < nbtList.size(); i++) {
-			NbtCompound enchantmentCompound = nbtList.getCompound(i);
-			if(enchantmentCompound.contains("id", NbtElement.STRING_TYPE) && Identifier.tryParse(enchantmentCompound.getString("id")).equals(enchantmentIdentifier)) {
-				nbtList.remove(i);
-				i--;
-			}
-		}
-		
-		nbtList.add(EnchantmentHelper.createNbt(EnchantmentHelper.getEnchantmentId(enchantment), (byte)level));
-		nbtCompound.put(nbtString, nbtList);
-		itemStack.setNbt(nbtCompound);
-	}
+
 
 	public static @NotNull String getReadableDimensionString(@NotNull String dimensionKeyString) {
 		switch (dimensionKeyString) {

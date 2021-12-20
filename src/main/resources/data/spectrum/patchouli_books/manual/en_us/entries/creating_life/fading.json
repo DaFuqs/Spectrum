@@ -21,6 +21,7 @@
     {
       "type": "patchouli:spotlight",
       "advancement": "spectrum:collect_vegetal",
+	  "title": "Vegetal",
       "item": "spectrum:vegetal",
       "text": "The answer seemed to be leaves! Easily digestible indeed.$(br)When the leaves were digested by the organism, an interesting by-product was created that you called Vegetal. It consists of the $(bold)raw energy of nature$().$(br)You are sure that it will get very useful for you."
     }

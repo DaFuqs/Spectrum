@@ -5,7 +5,7 @@
   "category": "spectrum:creating_life_category",
   "extra_recipe_mappings": {
     "spectrum:bottle_of_failing": 1,
-    "spectrum:neolith": 1
+    "spectrum:neolith": 2
   },
   "pages": [
     {
@@ -21,8 +21,9 @@
     {
       "type": "patchouli:spotlight",
       "advancement": "spectrum:midgame/collect_neolith",
+	  "title": "Neolith",
       "item": "spectrum:neolith",
-      "text": "The Obsidian was much easier to destroy after it was attacked by your experiment. It was literally pulverized.$(br)Result is this sturdy reagent."
+      "text": "The obsidian was literally pulverized by your experiment. This is what you call power!$(br2)The result was this sturdy reagent."
     }
   ]
 }

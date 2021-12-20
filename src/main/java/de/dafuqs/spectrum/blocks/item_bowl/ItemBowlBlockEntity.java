@@ -11,6 +11,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.Packet;
@@ -86,8 +87,14 @@ public class ItemBowlBlockEntity extends BlockEntity {
 		if(storedStack.isEmpty()) {
 			return 0;
 		}
+		
 		int decrementAmount = Math.min(amount, storedStack.getCount());
-		storedStack.decrement(decrementAmount);
+		Item recipeRemainderItem = storedStack.getItem().getRecipeRemainder();
+		if(recipeRemainderItem != null) {
+			inventory.setStack(0, recipeRemainderItem.getDefaultStack());
+		} else {
+			inventory.getStack(0).decrement(decrementAmount);
+		}
 		
 		if(decrementAmount > 0 && this.world instanceof ServerWorld serverWorld) {
 			Optional<DyeColor> optionalItemColor = ColorRegistry.ITEM_COLORS.getMapping(storedStack.getItem());

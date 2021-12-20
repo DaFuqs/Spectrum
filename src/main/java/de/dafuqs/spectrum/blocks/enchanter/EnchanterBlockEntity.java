@@ -295,15 +295,7 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 			BlockPos itemBowlPos = enchanterBlockEntity.pos.add(getItemBowlPositionOffset(i, enchanterBlockEntity.virtualInventoryRecipeOrientation));
 			BlockEntity blockEntity = world.getBlockEntity(itemBowlPos);
 			if(blockEntity instanceof ItemBowlBlockEntity itemBowlBlockEntity) {
-				ItemStack itemStack = itemBowlBlockEntity.getInventory().getStack(0);
-				Item recipeRemainderItem = itemStack.getItem().getRecipeRemainder();
-				if(recipeRemainderItem != null) {
-					itemBowlBlockEntity.getInventory().setStack(0, recipeRemainderItem.getDefaultStack());
-				} else if(itemStack.getCount() == 1) {
-					itemBowlBlockEntity.getInventory().setStack(0, ItemStack.EMPTY);
-				} else {
-					itemBowlBlockEntity.getInventory().getStack(0).decrement(1);
-				}
+				itemBowlBlockEntity.decrementBowlStack(enchanterBlockEntity.pos, 1);
 				itemBowlBlockEntity.updateInClientWorld();
 			}
 		}

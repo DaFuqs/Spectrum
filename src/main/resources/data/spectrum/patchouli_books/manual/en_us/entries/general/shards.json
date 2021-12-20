@@ -18,7 +18,7 @@
     },
     {
       "type": "patchouli:spotlight",
-      "anchor": "black",
+      "anchor": "topaz",
       "advancement": "spectrum:hidden/collect_shards/collect_topaz_shard",
       "title": "Topaz Shards",
       "item": "spectrum:topaz_shard",

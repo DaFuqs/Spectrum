@@ -11,6 +11,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.Packet;
@@ -75,14 +76,8 @@ public class ItemBowlBlockEntity extends BlockEntity {
 		if(!storedStack.isEmpty()) {
 			Optional<DyeColor> optionalItemColor = ColorRegistry.ITEM_COLORS.getMapping(storedStack.getItem());
 			if(optionalItemColor.isPresent()) {
-				ParticleEffect particleEffect = SpectrumParticleTypes.getSparkleRisingParticle(optionalItemColor.get());
-				
-				int particleAmount = Support.getIntFromDecimalWithChance(Math.max(0.1, (float) storedStack.getCount() / (storedStack.getMaxCount() * 2)), world.random);
-				for (int i = 0; i < particleAmount; i++) {
-					float randomX = 0.1F + world.getRandom().nextFloat() * 0.8F;
-					float randomZ = 0.1F + world.getRandom().nextFloat() * 0.8F;
-					world.addParticle(particleEffect, blockPos.getX() + randomX, blockPos.getY() + 0.75, blockPos.getZ() + randomZ, 0.0D, 0.05D, 0.0D);
-				}
+				int particleCount = Support.getIntFromDecimalWithChance(Math.max(0.1, (float) storedStack.getCount() / (storedStack.getMaxCount() * 2)), world.random);
+				spawnParticles(world, blockPos, storedStack, particleCount);
 			}
 		}
 	}
@@ -92,16 +87,25 @@ public class ItemBowlBlockEntity extends BlockEntity {
 		if(storedStack.isEmpty()) {
 			return 0;
 		}
+		
 		int decrementAmount = Math.min(amount, storedStack.getCount());
-		storedStack.decrement(decrementAmount);
+		Item recipeRemainderItem = storedStack.getItem().getRecipeRemainder();
+		if(recipeRemainderItem != null) {
+			inventory.setStack(0, recipeRemainderItem.getDefaultStack());
+		} else {
+			inventory.getStack(0).decrement(decrementAmount);
+		}
 		
 		if(decrementAmount > 0 && this.world instanceof ServerWorld serverWorld) {
 			Optional<DyeColor> optionalItemColor = ColorRegistry.ITEM_COLORS.getMapping(storedStack.getItem());
 			if(optionalItemColor.isPresent()) {
-				ParticleEffect particleEffect = SpectrumParticleTypes.getFluidRisingParticle(optionalItemColor.get());
+				ParticleEffect sparkleRisingParticleEffect = SpectrumParticleTypes.getSparkleRisingParticle(optionalItemColor.get());
+				SpectrumS2CPackets.playParticle((ServerWorld) world, new Vec3d(pos.getX()+0.5, pos.getY()+0.5, pos.getZ()+0.5), sparkleRisingParticleEffect, 50, new Vec3d(0.4, 0.2, 0.4), new Vec3d(0.06, 0.16, 0.06));
+				
+				ParticleEffect fluidRisingParticleEffect = SpectrumParticleTypes.getFluidRisingParticle(optionalItemColor.get());
 				SpectrumS2CPackets.playParticleWithFixedVelocity(serverWorld,
 						new Vec3d(this.pos.getX() + 0.5D, this.pos.getY() + 0.5D, this.pos.getZ() + 0.5D),
-						particleEffect, decrementAmount * 10, new Vec3d(0, 0, 0),
+						fluidRisingParticleEffect, decrementAmount * 10, new Vec3d(0, 0, 0),
 						new Vec3d((particleTargetBlockPos.getX() - this.pos.getX()) * 0.0045, 0, (particleTargetBlockPos.getZ() - this.pos.getZ()) * 0.0045));
 				world.playSound(null, this.pos, SpectrumSoundEvents.ENCHANTER_DING, SoundCategory.BLOCKS, 1.0F, 0.7F + this.world.random.nextFloat() * 0.6F);
 			}
@@ -110,6 +114,21 @@ public class ItemBowlBlockEntity extends BlockEntity {
 		}
 		
 		return decrementAmount;
+	}
+	
+	public static void spawnParticles(World world, BlockPos blockPos, ItemStack itemStack, int amount) {
+		if(amount > 0) {
+			Optional<DyeColor> optionalItemColor = ColorRegistry.ITEM_COLORS.getMapping(itemStack.getItem());
+			if (optionalItemColor.isPresent()) {
+				ParticleEffect particleEffect = SpectrumParticleTypes.getSparkleRisingParticle(optionalItemColor.get());
+				
+				for (int i = 0; i < amount; i++) {
+					float randomX = 0.1F + world.getRandom().nextFloat() * 0.8F;
+					float randomZ = 0.1F + world.getRandom().nextFloat() * 0.8F;
+					world.addParticle(particleEffect, blockPos.getX() + randomX, blockPos.getY() + 0.75, blockPos.getZ() + randomZ, 0.0D, 0.05D, 0.0D);
+				}
+			}
+		}
 	}
 	
 }

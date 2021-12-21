@@ -38,7 +38,6 @@ public class WetLavaSpongeBlock extends WetSpongeBlock {
 
 	@Override
 	public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
-		super.onBlockAdded(state, world, pos, oldState, notify);
 		world.createAndScheduleBlockTick(pos, this, getRandomTickTime(world));
 	}
 

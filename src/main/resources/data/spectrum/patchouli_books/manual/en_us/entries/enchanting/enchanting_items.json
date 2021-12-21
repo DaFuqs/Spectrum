@@ -9,7 +9,7 @@
     {
       "type": "patchouli:text",
       "title": "Spectrum Enchanting",
-      "text": "Using the Enchanter to enchant items is fairly easy:$(br)Place Enchanted Books, onto the $(l:decoration/item_bowl)Item Bowls$(/l) and the item you want to enchant on the Enchanter itself.$(br2)Unlike regular enchanting, this will not consume the books - but will require a far greater amount of experience instead."
+      "text": "Using the Enchanter to enchant items is fairly easy:$(br)Place Enchanted Books, onto the $(l:decoration/item_bowl)Item Bowls$(/l) and the item you want to enchant on the Enchanter itself.$(br2)Unlike regular enchanting, this will not consume the books - but will require a far greater amount of experience instead. You can also use this mechanism to create new Enchanted Books."
     },
     {
       "type": "patchouli:image",

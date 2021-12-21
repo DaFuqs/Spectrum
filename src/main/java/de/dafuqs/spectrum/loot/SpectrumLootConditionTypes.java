@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.loot;
 
 import de.dafuqs.spectrum.loot.conditions.*;
-import net.minecraft.loot.condition.InvertedLootCondition;
 import net.minecraft.loot.condition.LootCondition;
 import net.minecraft.loot.condition.LootConditionType;
 import net.minecraft.util.Identifier;

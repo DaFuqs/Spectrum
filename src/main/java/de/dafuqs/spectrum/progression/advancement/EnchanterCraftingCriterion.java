@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.progression.advancement;
 
 import com.google.gson.JsonObject;
 import de.dafuqs.spectrum.SpectrumCommon;
-import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.minecraft.advancement.criterion.AbstractCriterion;
 import net.minecraft.advancement.criterion.AbstractCriterionConditions;
 import net.minecraft.item.ItemStack;
@@ -13,8 +12,6 @@ import net.minecraft.predicate.entity.EntityPredicate;
 import net.minecraft.predicate.item.ItemPredicate;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
-
-import java.util.List;
 
 public class EnchanterCraftingCriterion extends AbstractCriterion<EnchanterCraftingCriterion.Conditions> {
 

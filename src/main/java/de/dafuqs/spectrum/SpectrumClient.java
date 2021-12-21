@@ -2,7 +2,6 @@ package de.dafuqs.spectrum;
 
 import de.dafuqs.spectrum.compat.patchouli.PatchouliPages;
 import de.dafuqs.spectrum.entity.SpectrumEntityRenderers;
-import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
 import de.dafuqs.spectrum.inventories.SpectrumContainers;
 import de.dafuqs.spectrum.inventories.SpectrumScreenHandlerTypes;
 import de.dafuqs.spectrum.items.ExperienceStorageItem;
@@ -19,7 +18,6 @@ import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientLifecycleEvents;
-import net.fabricmc.fabric.api.client.rendereregistry.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.client.model.FabricModelPredicateProviderRegistry;
 import net.minecraft.block.Block;
@@ -27,7 +25,6 @@ import net.minecraft.block.Blocks;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.color.block.BlockColorProvider;
 import net.minecraft.client.color.item.ItemColorProvider;
-import net.minecraft.client.render.entity.ItemFrameEntityRenderer;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.nbt.NbtCompound;
@@ -38,7 +35,7 @@ import org.apache.logging.log4j.Level;
 import static de.dafuqs.spectrum.SpectrumCommon.log;
 
 public class SpectrumClient implements ClientModInitializer {
-
+	
 	public static ToggleableBlockColorProvider coloredLeavesBlockColorProvider;
 	public static ToggleableItemColorProvider coloredLeavesItemColorProvider;
 

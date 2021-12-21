@@ -22,7 +22,6 @@
     "ImprovedCriticalEnchantmentMixin",
     "InfestedBlockMixin",
     "ItemEntityMixin",
-    "ItemFrameEntityMixin",
     "ItemModelsMixin",
     "ItemStackMixin",
     "LightningEntityMixin",

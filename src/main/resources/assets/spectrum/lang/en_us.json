@@ -73,8 +73,8 @@
 
   "entity.spectrum.block_flooder_projectile": "Block Flooder",
   "entity.spectrum.gravity_block": "Gravity Block",
-  "entity.spectrum.invisible_item_frame": "Invisible Item Frame",
-  "entity.spectrum.invisible_glow_item_frame": "Invisible Glow Item Frame",
+  "entity.spectrum.invisible_item_frame": "Phantom Frame",
+  "entity.spectrum.invisible_glow_item_frame": "Glow Phantom Frame",
   "entity.spectrum.shooting_star": "Shooting Star",
 
   "commands.spectrum.spawn_shooting_star.success": "Spawned %d shooting stars for each player",

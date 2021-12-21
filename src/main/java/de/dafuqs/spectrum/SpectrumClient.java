@@ -85,7 +85,7 @@ public class SpectrumClient implements ClientModInitializer {
 			registerColorProviders();
 		});
 
-		log(Level.INFO, "Registering CustomPatchouli Pages...");
+		log(Level.INFO, "Registering custom Patchouli Pages...");
 		PatchouliPages.register();
 
 		log(Level.INFO, "Client startup completed!");

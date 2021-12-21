@@ -1,0 +1,25 @@
+{
+  "parent": "spectrum:lategame/spectrum_lategame",
+  "display": {
+    "icon": {
+      "item": "minecraft:enchanted_book"
+    },
+    "title": {
+      "translate": "advancements.spectrum.upgrade_enchanted_book_to_fortune4.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.upgrade_enchanted_book_to_fortune4.description"
+    }
+  },
+  "criteria": {
+    "upgraded_enchanted_book_to_fortune4": {
+      "trigger": "spectrum:enchantment_upgraded",
+      "conditions": {
+        "enchantment_identifier": "minecraft:fortune",
+        "enchantment_level": {
+          "min": 4
+        }
+      }
+    }
+  }
+}

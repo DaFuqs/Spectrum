@@ -1,0 +1,24 @@
+{
+  "parent": "spectrum:lategame/spectrum_lategame",
+  "display": {
+    "icon": {
+      "item": "minecraft:enchanted_book"
+    },
+    "title": {
+      "translate": "advancements.spectrum.create_resonance_enchanted_book.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.create_resonance_enchanted_book.description"
+    }
+  },
+  "criteria": {
+    "crafted_resonance_book": {
+      "trigger": "spectrum:enchanter_crafting",
+      "conditions": {
+        "item": {},
+        "items": ["minecraft:enchanted_book"],
+        "enchantments": [{ "enchantment": "spectrum:resonance"}]
+      }
+    }
+  }
+}

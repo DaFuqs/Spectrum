@@ -5,16 +5,15 @@ import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.SpectrumEnchantmentHelper;
 import de.dafuqs.spectrum.Support;
 import de.dafuqs.spectrum.blocks.item_bowl.ItemBowlBlockEntity;
-import de.dafuqs.spectrum.blocks.pedestal.PedestalBlockEntity;
 import de.dafuqs.spectrum.blocks.upgrade.Upgradeable;
 import de.dafuqs.spectrum.interfaces.PlayerOwned;
 import de.dafuqs.spectrum.items.ExperienceStorageItem;
 import de.dafuqs.spectrum.networking.SpectrumS2CPackets;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
+import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.recipe.enchanter.EnchanterRecipe;
 import de.dafuqs.spectrum.recipe.enchantment_upgrade.EnchantmentUpgradeRecipe;
-import de.dafuqs.spectrum.recipe.fusion_shrine.FusionShrineRecipe;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
 import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
 import net.minecraft.advancement.criterion.Criteria;
@@ -22,14 +21,11 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.ExperienceOrbEntity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.EnchantedBookItem;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
@@ -354,6 +350,17 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 		} else {
 			enchanterBlockEntity.getInventory().setStack(0, centerStackCopy);
 		}
+		
+		// vanilla
+		int spentExperience = enchanterBlockEntity.currentItemProcessingTime;
+		grantPlayerEnchantingAdvancementCriterion(enchanterBlockEntity.world, enchanterBlockEntity.ownerUUID, centerStackCopy, spentExperience);
+		
+		// spectrum enchanting criterion
+		ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity) PlayerOwned.getPlayerEntityIfOnline(enchanterBlockEntity.world, enchanterBlockEntity.ownerUUID);
+		if(serverPlayerEntity != null) {
+			serverPlayerEntity.incrementStat(Stats.ENCHANT_ITEM);
+			SpectrumAdvancementCriteria.ENCHANTER_ENCHANTING.trigger(serverPlayerEntity, centerStackCopy, spentExperience);
+		}
 	}
 	
 	public static Map<Enchantment, Integer> getHighestEnchantmentsInItemBowls(@NotNull EnchanterBlockEntity enchanterBlockEntity) {
@@ -453,8 +460,15 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 			enchanterBlockEntity.getInventory().setStack(0, resultStack);
 		}
 		
+		// vanilla
+		grantPlayerEnchantingAdvancementCriterion(world, enchanterBlockEntity.ownerUUID, resultStack, enchanterRecipe.getRequiredExperience());
 		
-		grantPlayerEnchantingAdvancement(world, enchanterBlockEntity.ownerUUID, resultStack, enchanterRecipe.getRequiredExperience());
+		// enchanter crafting criterion
+		ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity) PlayerOwned.getPlayerEntityIfOnline(world, enchanterBlockEntity.ownerUUID);
+		if(serverPlayerEntity != null) {
+			serverPlayerEntity.incrementStat(Stats.ENCHANT_ITEM);
+			SpectrumAdvancementCriteria.ENCHANTER_CRAFTING.trigger(serverPlayerEntity, resultStack, enchanterRecipe.getRequiredExperience());
+		}
 	}
 	
 	public static void spawnOutputAsItemEntity(World world, @NotNull EnchanterBlockEntity enchanterBlockEntity, ItemStack outputItemStack) {
@@ -492,7 +506,15 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 		resultStack = SpectrumEnchantmentHelper.addOrExchangeEnchantment(resultStack, enchantmentUpgradeRecipe.getEnchantment(), enchantmentUpgradeRecipe.getEnchantmentDestinationLevel());
 		enchanterBlockEntity.getInventory().setStack(0, resultStack);
 		
-		grantPlayerEnchantingAdvancement(world, enchanterBlockEntity.ownerUUID, resultStack, enchantmentUpgradeRecipe.getRequiredExperience());
+		// vanilla
+		grantPlayerEnchantingAdvancementCriterion(world, enchanterBlockEntity.ownerUUID, resultStack, enchantmentUpgradeRecipe.getRequiredExperience());
+		
+		// enchantment upgrading criterion
+		ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity) PlayerOwned.getPlayerEntityIfOnline(world, enchanterBlockEntity.ownerUUID);
+		if(serverPlayerEntity != null) {
+			serverPlayerEntity.incrementStat(Stats.ENCHANT_ITEM);
+			SpectrumAdvancementCriteria.ENCHANTER_UPGRADING.trigger(serverPlayerEntity, enchantmentUpgradeRecipe.getEnchantment(), enchantmentUpgradeRecipe.getEnchantmentDestinationLevel(), enchantmentUpgradeRecipe.getRequiredExperience());
+		}
 	}
 	
 	public static Vec3i getItemBowlPositionOffset(int index, int orientation) {
@@ -606,7 +628,7 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 		world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), soundEvent, SoundCategory.BLOCKS, volume, 0.9F + random.nextFloat() * 0.15F);
 	}
 	
-	private static void grantPlayerEnchantingAdvancement(World world, UUID playerUUID, ItemStack resultStack, int experience) {
+	private static void grantPlayerEnchantingAdvancementCriterion(World world, UUID playerUUID, ItemStack resultStack, int experience) {
 		int levels = ExperienceHelper.getLevelForExperience(experience);
 		ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity) PlayerOwned.getPlayerEntityIfOnline(world, playerUUID);
 		if(serverPlayerEntity != null) {

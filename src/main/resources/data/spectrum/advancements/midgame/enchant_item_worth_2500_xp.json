@@ -1,0 +1,25 @@
+{
+  "parent": "spectrum:midgame/build_enchanting_structure",
+  "display": {
+    "icon": {
+      "item": "minecraft:experience_bottle"
+    },
+    "hidden": true,
+    "title": {
+      "translate": "advancements.spectrum.enchant_item_worth_2500_xp.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.enchant_item_worth_2500_xp.description"
+    }
+  },
+  "criteria": {
+    "enchanted_using_2500_experience": {
+      "trigger": "spectrum:enchanter_enchanting",
+      "conditions": {
+        "spent_experience": {
+          "min": 2500
+        }
+      }
+    }
+  }
+}

@@ -17,13 +17,18 @@ import java.util.Map;
 public class SpectrumEnchantmentHelper {
 	
 	
-	public static ItemStack addOrExchangeEnchantment(ItemStack itemStack, Enchantment enchantment, int level) {
+	public static ItemStack addOrExchangeEnchantment(ItemStack itemStack, Enchantment enchantment, int level, boolean forceEvenIfNotApplicable) {
 		Identifier enchantmentIdentifier = Registry.ENCHANTMENT.getId(enchantment);
 		
-		if(itemStack.isOf(Items.BOOK)) {
+		if(itemStack.isOf(Items.ENCHANTED_BOOK)) {
+			// all fine, nothing more to check here. Enchant away!
+		} else if(itemStack.isOf(Items.BOOK)) {
 			ItemStack enchantedBookStack = new ItemStack(Items.ENCHANTED_BOOK, itemStack.getCount());
 			enchantedBookStack.setNbt(itemStack.getNbt());
 			itemStack = enchantedBookStack;
+		} else if(!forceEvenIfNotApplicable && !enchantment.isAcceptableItem(itemStack)) {
+			// item can not be enchanted with this enchantment
+			return itemStack;
 		}
 		
 		NbtCompound nbtCompound = itemStack.getOrCreateNbt();

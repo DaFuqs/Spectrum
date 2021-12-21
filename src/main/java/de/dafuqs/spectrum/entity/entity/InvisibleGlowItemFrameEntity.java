@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.entity.entity;
 
 import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
+import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.decoration.ItemFrameEntity;
 import net.minecraft.item.ItemStack;
@@ -55,7 +56,7 @@ public class InvisibleGlowItemFrameEntity extends ItemFrameEntity {
 	}
 
 	protected ItemStack getAsItemStack() {
-		return new ItemStack(Items.GLOW_ITEM_FRAME);
+		return new ItemStack(SpectrumItems.INVISIBLE_GLOW_ITEM_FRAME);
 	}
 
 }

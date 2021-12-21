@@ -176,7 +176,7 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 	}
 	
 	public static void clientTick(World world, BlockPos blockPos, BlockState blockState, @NotNull EnchanterBlockEntity enchanterBlockEntity) {
-		if(enchanterBlockEntity.currentRecipe != null || enchanterBlockEntity.currentItemProcessingTime > 0) { // todo: currentItemProcessingTime is never > 0 clientside, is it?
+		if(enchanterBlockEntity.currentRecipe != null || enchanterBlockEntity.currentItemProcessingTime > 0) { // todo: currentItemProcessingTime is never > 0 clientside (not synched at that time)
 			ItemStack experienceStack = enchanterBlockEntity.getInventory().getStack(1);
 			if (!experienceStack.isEmpty() && experienceStack.getItem() instanceof ExperienceStorageItem) {
 				int experience = ExperienceStorageItem.getStoredExperience(experienceStack);
@@ -254,7 +254,7 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 				if(drained) {
 					enchanterBlockEntity.craftingTime++;
 				} else {
-					enchanterBlockEntity.currentItemProcessingTime = 0;
+					enchanterBlockEntity.currentItemProcessingTime = -1;
 				}
 				if(enchanterBlockEntity.craftingTime == enchanterBlockEntity.currentItemProcessingTime) {
 					playCraftingFinishedEffects(enchanterBlockEntity);
@@ -340,7 +340,7 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 		Map<Enchantment, Integer> highestEnchantments = getHighestEnchantmentsInItemBowls(enchanterBlockEntity);
 		
 		for(Enchantment enchantment : highestEnchantments.keySet()) {
-			centerStackCopy = SpectrumEnchantmentHelper.addOrExchangeEnchantment(centerStackCopy, enchantment, highestEnchantments.get(enchantment));
+			centerStackCopy = SpectrumEnchantmentHelper.addOrExchangeEnchantment(centerStackCopy, enchantment, highestEnchantments.get(enchantment), false);
 		}
 		
 		if(centerStack.getCount() > 1) {
@@ -355,10 +355,9 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 		int spentExperience = enchanterBlockEntity.currentItemProcessingTime;
 		grantPlayerEnchantingAdvancementCriterion(enchanterBlockEntity.world, enchanterBlockEntity.ownerUUID, centerStackCopy, spentExperience);
 		
-		// spectrum enchanting criterion
+		// enchanter enchanting criterion
 		ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity) PlayerOwned.getPlayerEntityIfOnline(enchanterBlockEntity.world, enchanterBlockEntity.ownerUUID);
 		if(serverPlayerEntity != null) {
-			serverPlayerEntity.incrementStat(Stats.ENCHANT_ITEM);
 			SpectrumAdvancementCriteria.ENCHANTER_ENCHANTING.trigger(serverPlayerEntity, centerStackCopy, spentExperience);
 		}
 	}
@@ -466,7 +465,6 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 		// enchanter crafting criterion
 		ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity) PlayerOwned.getPlayerEntityIfOnline(world, enchanterBlockEntity.ownerUUID);
 		if(serverPlayerEntity != null) {
-			serverPlayerEntity.incrementStat(Stats.ENCHANT_ITEM);
 			SpectrumAdvancementCriteria.ENCHANTER_CRAFTING.trigger(serverPlayerEntity, resultStack, enchanterRecipe.getRequiredExperience());
 		}
 	}
@@ -503,7 +501,7 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 		enchanterBlockEntity.drainExperience(enchantmentUpgradeRecipe.getRequiredExperience());
 		
 		ItemStack resultStack = enchanterBlockEntity.getInventory().getStack(0);
-		resultStack = SpectrumEnchantmentHelper.addOrExchangeEnchantment(resultStack, enchantmentUpgradeRecipe.getEnchantment(), enchantmentUpgradeRecipe.getEnchantmentDestinationLevel());
+		resultStack = SpectrumEnchantmentHelper.addOrExchangeEnchantment(resultStack, enchantmentUpgradeRecipe.getEnchantment(), enchantmentUpgradeRecipe.getEnchantmentDestinationLevel(), false);
 		enchanterBlockEntity.getInventory().setStack(0, resultStack);
 		
 		// vanilla
@@ -512,7 +510,6 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 		// enchantment upgrading criterion
 		ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity) PlayerOwned.getPlayerEntityIfOnline(world, enchanterBlockEntity.ownerUUID);
 		if(serverPlayerEntity != null) {
-			serverPlayerEntity.incrementStat(Stats.ENCHANT_ITEM);
 			SpectrumAdvancementCriteria.ENCHANTER_UPGRADING.trigger(serverPlayerEntity, enchantmentUpgradeRecipe.getEnchantment(), enchantmentUpgradeRecipe.getEnchantmentDestinationLevel(), enchantmentUpgradeRecipe.getRequiredExperience());
 		}
 	}

@@ -1,8 +1,10 @@
 package de.dafuqs.spectrum.entity.entity;
 
 import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
+import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.decoration.ItemFrameEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -40,5 +42,9 @@ public class InvisibleItemFrameEntity extends ItemFrameEntity {
 	public void readCustomDataFromNbt(NbtCompound nbt) {
 		super.readCustomDataFromNbt(nbt);
 	}
-
+	
+	protected ItemStack getAsItemStack() {
+		return new ItemStack(SpectrumItems.INVISIBLE_ITEM_FRAME);
+	}
+	
 }

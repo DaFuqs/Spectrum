@@ -13,6 +13,9 @@ public class SpectrumAdvancementCriteria {
 	public static BlockBrokenCriterion BLOCK_BROKEN;
 	public static TreasureHunterDropCriterion TREASURE_HUNTER_DROP;
 	public static NaturesStaffUseCriterion NATURES_STAFF_USE;
+	public static EnchanterCraftingCriterion ENCHANTER_CRAFTING;
+	public static EnchanterEnchantingCriterion ENCHANTER_ENCHANTING;
+	public static EnchantmentUpgradedCriterion ENCHANTER_UPGRADING;
 
 	public static void register() {
 		ADVANCEMENT_GOTTEN = CriteriaAccessor.callRegister(new HasAdvancementCriterion());
@@ -23,6 +26,9 @@ public class SpectrumAdvancementCriteria {
 		BLOCK_BROKEN = CriteriaAccessor.callRegister(new BlockBrokenCriterion());
 		TREASURE_HUNTER_DROP = CriteriaAccessor.callRegister(new TreasureHunterDropCriterion());
 		NATURES_STAFF_USE = CriteriaAccessor.callRegister(new NaturesStaffUseCriterion());
+		ENCHANTER_CRAFTING = CriteriaAccessor.callRegister(new EnchanterCraftingCriterion());
+		ENCHANTER_ENCHANTING = CriteriaAccessor.callRegister(new EnchanterEnchantingCriterion());
+		ENCHANTER_UPGRADING = CriteriaAccessor.callRegister(new EnchantmentUpgradedCriterion());
 	}
 
 }

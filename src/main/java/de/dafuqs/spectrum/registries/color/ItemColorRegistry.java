@@ -89,7 +89,8 @@ public class ItemColorRegistry extends ColorRegistry<Item> {
 		put(SpectrumItems.SPECTRAL_SHARD.asItem(), DyeColor.WHITE);
 		put(SpectrumItems.BOTTLE_OF_DECAY_AWAY, DyeColor.LIGHT_GRAY);
 		put(SpectrumItems.EXCHANGE_STAFF.asItem(), DyeColor.LIGHT_GRAY);
-		
+		put(SpectrumItems.MIDNIGHT_ABERRATION.asItem(), DyeColor.GRAY);
+
 		put(SpectrumBlocks.SPARKLESTONE_BLOCK.asItem(), DyeColor.YELLOW);
 		put(SpectrumBlocks.ENDER_TREASURE.asItem(), DyeColor.PURPLE);
 		put(SpectrumBlocks.CLOVER.asItem(), DyeColor.LIME);
@@ -117,6 +118,7 @@ public class ItemColorRegistry extends ColorRegistry<Item> {
 		put(Items.EMERALD, DyeColor.LIME);
 		put(Items.DIAMOND, DyeColor.LIGHT_BLUE);
 		put(Items.NETHERITE_SCRAP, DyeColor.BROWN);
+		put(Items.NETHERITE_INGOT, DyeColor.BROWN);
 		put(Items.ENCHANTED_GOLDEN_APPLE, DyeColor.YELLOW);
 		put(Items.ARROW, DyeColor.RED);
 		put(Items.BLAZE_POWDER, DyeColor.ORANGE);

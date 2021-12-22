@@ -106,9 +106,11 @@ public abstract class ItemEntityMixin {
 					float craftingXPFloat = recipe.getExperience() * crushingInputAmount;
 					int craftingXP = Support.getIntFromDecimalWithChance(craftingXPFloat, world.random);
 
-					ExperienceOrbEntity experienceOrbEntity = new ExperienceOrbEntity(world, position.x, position.y, position.z, craftingXP);
-					world.spawnEntity(experienceOrbEntity);
-
+					if(craftingXP > 0) {
+						ExperienceOrbEntity experienceOrbEntity = new ExperienceOrbEntity(world, position.x, position.y, position.z, craftingXP);
+						world.spawnEntity(experienceOrbEntity);
+					}
+					
 					// Play sound
 					SoundEvent soundEvent = recipe.getSoundEvent();
 					float randomVolume = 1.0F + world.getRandom().nextFloat() * 0.2F;

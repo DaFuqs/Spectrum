@@ -321,8 +321,10 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 			double experienceModifier = blockEntity.upgrades.get(UpgradeType.EXPERIENCE);
 			float recipeExperienceBeforeMod = recipe.getExperience();
 			int spawnedXPAmount = Support.getIntFromDecimalWithChance(recipeExperienceBeforeMod * experienceModifier, blockEntity.world.random);
-			ExperienceOrbEntity experienceOrbEntity = new ExperienceOrbEntity(world, blockEntity.pos.getX() + 0.5, blockEntity.pos.getY() + 1, blockEntity.pos.getZ() + 0.5, spawnedXPAmount);
-			world.spawnEntity(experienceOrbEntity);
+			if(spawnedXPAmount > 0) {
+				ExperienceOrbEntity experienceOrbEntity = new ExperienceOrbEntity(world, blockEntity.pos.getX() + 0.5, blockEntity.pos.getY() + 1, blockEntity.pos.getZ() + 0.5, spawnedXPAmount);
+				world.spawnEntity(experienceOrbEntity);
+			}
 		}
 	}
 

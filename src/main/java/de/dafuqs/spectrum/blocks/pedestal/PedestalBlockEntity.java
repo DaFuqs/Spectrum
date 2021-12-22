@@ -433,8 +433,10 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		// spawn XP
 		if (pedestalBlockEntity.storedXP > 0) {
 			int spawnedXPAmount = Support.getIntFromDecimalWithChance(pedestalBlockEntity.storedXP, pedestalBlockEntity.getWorld().random);
-			ExperienceOrbEntity experienceOrbEntity = new ExperienceOrbEntity(world, pedestalBlockEntity.pos.getX() + 0.5, pedestalBlockEntity.pos.getY() + 1, pedestalBlockEntity.pos.getZ() + 0.5, spawnedXPAmount);
-			world.spawnEntity(experienceOrbEntity);
+			if(spawnedXPAmount > 0) {
+				ExperienceOrbEntity experienceOrbEntity = new ExperienceOrbEntity(world, pedestalBlockEntity.pos.getX() + 0.5, pedestalBlockEntity.pos.getY() + 1, pedestalBlockEntity.pos.getZ() + 0.5, spawnedXPAmount);
+				world.spawnEntity(experienceOrbEntity);
+			}
 			pedestalBlockEntity.storedXP = 0;
 		}
 

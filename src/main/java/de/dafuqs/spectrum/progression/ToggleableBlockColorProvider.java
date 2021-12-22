@@ -22,7 +22,7 @@ public class ToggleableBlockColorProvider implements BlockColorProvider {
 
 	@Override
 	public int getColor(BlockState state, @Nullable BlockRenderView world, @Nullable BlockPos pos, int tintIndex) {
-		if(shouldApply) {
+		if(shouldApply && vanillaProvider != null) {
 			return vanillaProvider.getColor(state, world, pos, tintIndex);
 		} else {
 			// no tint

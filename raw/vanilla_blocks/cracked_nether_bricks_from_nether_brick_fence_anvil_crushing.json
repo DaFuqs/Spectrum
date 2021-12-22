@@ -1,0 +1,14 @@
+{
+  "type": "spectrum:anvil_crushing",
+  "ingredient": {
+    "item": "minecraft:nether_brick_fence"
+  },
+  "crushedItemsPerPointOfDamage": 0.4,
+  "experience": 0,
+  "result" : {
+    "item": "minecraft:cracked_nether_bricks",
+    "count": 1
+  },
+  "particleEffectIdentifier": "cloud",
+  "soundEventIdentifier": "blocks.nether_bricks.break"
+}

@@ -43,14 +43,18 @@ public class ColoredLeavesBlock extends LeavesBlock implements Cloakable {
 
 	@Override
 	public void onUncloak() {
-		SpectrumClient.coloredLeavesBlockColorProvider.setShouldApply(false);
-		SpectrumClient.coloredLeavesItemColorProvider.setShouldApply(false);
+		if (SpectrumClient.coloredLeavesBlockColorProvider != null && SpectrumClient.coloredLeavesItemColorProvider != null) {
+			SpectrumClient.coloredLeavesBlockColorProvider.setShouldApply(false);
+			SpectrumClient.coloredLeavesItemColorProvider.setShouldApply(false);
+		}
 	}
 
 	@Override
 	public void onCloak() {
-		SpectrumClient.coloredLeavesBlockColorProvider.setShouldApply(true);
-		SpectrumClient.coloredLeavesItemColorProvider.setShouldApply(true);
+		if (SpectrumClient.coloredLeavesBlockColorProvider != null && SpectrumClient.coloredLeavesItemColorProvider != null) {
+			SpectrumClient.coloredLeavesBlockColorProvider.setShouldApply(true);
+			SpectrumClient.coloredLeavesItemColorProvider.setShouldApply(true);
+		}
 	}
 
 	@Deprecated

@@ -1,0 +1,14 @@
+{
+  "type": "spectrum:anvil_crushing",
+  "ingredient": {
+    "item": "minecraft:smooth_quartz_slab"
+  },
+  "crushedItemsPerPointOfDamage": 0.8,
+  "experience": 0,
+  "result" : {
+    "item": "minecraft:quartz",
+    "count": 1
+  },
+  "particleEffectIdentifier": "cloud",
+  "soundEventIdentifier": "block.stone.break"
+}

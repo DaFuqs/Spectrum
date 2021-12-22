@@ -1137,6 +1137,10 @@
   "advancements.spectrum.create_resonance_enchanted_book.description": "Use the Enchanter to upgrade an Enchanted Book with Fortune III to Fortune IV",
   "advancements.spectrum.upgrade_enchanted_book_to_fortune4.title": "How Fortunate",
   "advancements.spectrum.upgrade_enchanted_book_to_fortune4.description": "Use the Enchanter to create a Book with Resonance",
+  "advancements.spectrum.craft_bottle_of_decay_away.title": "Better Safe than Sorry",
+  "advancements.spectrum.craft_bottle_of_decay_away.description": "Prep yourself with a Bottle of Decay Away, just in case anything goes horribly wrong",
+  "advancements.spectrum.enchant_book.title": "Lossless Compression",
+  "advancements.spectrum.enchant_book.description": "Use the Enchanter to copy the Enchantments from one or more Enchanted Books to another",
 
 
   "______name_changes_for_vanilla_blocks" : "Changes:",

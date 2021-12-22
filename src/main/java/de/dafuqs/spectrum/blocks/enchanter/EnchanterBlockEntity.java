@@ -8,6 +8,7 @@ import de.dafuqs.spectrum.blocks.item_bowl.ItemBowlBlockEntity;
 import de.dafuqs.spectrum.blocks.upgrade.Upgradeable;
 import de.dafuqs.spectrum.interfaces.PlayerOwned;
 import de.dafuqs.spectrum.items.ExperienceStorageItem;
+import de.dafuqs.spectrum.items.magic_items.KnowledgeGemItem;
 import de.dafuqs.spectrum.networking.SpectrumS2CPackets;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
@@ -180,7 +181,7 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 			ItemStack experienceStack = enchanterBlockEntity.getInventory().getStack(1);
 			if (!experienceStack.isEmpty() && experienceStack.getItem() instanceof ExperienceStorageItem) {
 				int experience = ExperienceStorageItem.getStoredExperience(experienceStack);
-				int amount = Support.getExperienceOrbSizeForExperience(experience);
+				int amount = ExperienceHelper.getExperienceOrbSizeForExperience(experience);
 				
 				if (world.random.nextInt(10) < amount) {
 					float randomX = 0.2F + world.getRandom().nextFloat() * 0.6F;
@@ -429,7 +430,19 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 	
 	public boolean drainExperience(int amount) {
 		ItemStack experienceProviderStack = getInventory().getStack(1);
-		if(experienceProviderStack.getItem() instanceof ExperienceStorageItem) {
+		if(experienceProviderStack.getItem() instanceof ExperienceStorageItem experienceStorageItem) {
+			if(experienceStorageItem instanceof KnowledgeGemItem knowledgeGemItem) {
+				int currentStoredExperience = ExperienceStorageItem.getStoredExperience(experienceProviderStack);
+				if(knowledgeGemItem.changedDisplayTier(currentStoredExperience, currentStoredExperience-amount)) {
+					// There was enough experience drained from the knowledge gem that the visual changed
+					// To display the updated knowledge gem size clientside the inventory has to be synched
+					// to the clients for rendering purposes
+					// TODO: play particle effect
+					this.updateInClientWorld();
+				}
+			}
+			
+			this.markDirty();
 			return ExperienceStorageItem.removeStoredExperience(experienceProviderStack, amount);
 		}
 		return false;

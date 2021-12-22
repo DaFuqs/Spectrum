@@ -52,7 +52,7 @@ public class GeodesGenerateWithGemstoneOresMixin {
 						BlockState state = world.getBlockState(pos);
 						if(state.isOf(Blocks.DEEPSLATE)) {
 							world.setBlockState(pos, deepslateOreBlockState, 3);
-						} else if (Support.hasTag(world.getBlockState(pos), BlockTags.BASE_STONE_OVERWORLD)) {
+						} else if (Support.hasBlockTag(world.getBlockState(pos), BlockTags.BASE_STONE_OVERWORLD)) {
 							world.setBlockState(pos, oreBlockState, 3);
 						}
 					}

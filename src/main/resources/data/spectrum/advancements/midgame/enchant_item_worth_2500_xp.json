@@ -1,10 +1,9 @@
 {
-  "parent": "spectrum:midgame/build_enchanting_structure",
+  "parent": "spectrum:midgame/enchant_book",
   "display": {
     "icon": {
       "item": "minecraft:experience_bottle"
     },
-    "hidden": true,
     "title": {
       "translate": "advancements.spectrum.enchant_item_worth_2500_xp.title"
     },

@@ -9,6 +9,8 @@ import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.ai.pathing.NavigationType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluid;
@@ -69,6 +71,74 @@ public class FusionShrineBlock extends BlockWithEntity {
 	public boolean canPathfindThrough(BlockState state, BlockView world, BlockPos pos, NavigationType type) {
 		return false;
 	}
+	
+	@Override
+	public void onLandedUpon(World world, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
+		if(!world.isClient && entity instanceof ItemEntity itemEntity) {
+			ItemStack remainingStack = inputItemStack(world, pos, itemEntity.getStack());
+			if(remainingStack.isEmpty()) {
+				itemEntity.remove(Entity.RemovalReason.DISCARDED);
+			} else {
+				itemEntity.setStack(remainingStack);
+			}
+		} else {
+			super.onLandedUpon(world, state, pos, entity, fallDistance);
+		}
+	}
+	
+	public ItemStack inputItemStack(World world, BlockPos pos, ItemStack itemStack) {
+		BlockEntity blockEntity = world.getBlockEntity(pos);
+		if(blockEntity instanceof FusionShrineBlockEntity fusionShrineBlockEntity) {
+			if(itemStack.getItem() instanceof BucketItem) {
+				return inputFluidViaBucket(world, pos, itemStack);
+			} else {
+				int previousCount = itemStack.getCount();
+				ItemStack remainingStack = InventoryHelper.addToInventory(itemStack, fusionShrineBlockEntity.getInventory(), null);
+				
+				if (remainingStack.getCount() != previousCount) {
+					fusionShrineBlockEntity.markDirty();
+					fusionShrineBlockEntity.updateInClientWorld();
+					world.playSound(null, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.8F, 0.8F + world.random.nextFloat() * 0.6F);
+					return remainingStack;
+				}
+			}
+		}
+		return itemStack;
+	}
+	
+	public ItemStack inputFluidViaBucket(World world, BlockPos blockPos, ItemStack bucketStack) {
+		if (bucketStack.getItem() instanceof BucketItem) {
+			BlockEntity blockEntity = world.getBlockEntity(blockPos);
+			if(blockEntity instanceof FusionShrineBlockEntity fusionShrineBlockEntity) {
+				Fluid storedFluid = fusionShrineBlockEntity.getFluid();
+				Fluid bucketFluid = ((BucketItemAccessor) bucketStack.getItem()).fabric_getFluid();
+				if (storedFluid == Fluids.EMPTY && bucketFluid != Fluids.EMPTY) {
+					fusionShrineBlockEntity.setFluid(bucketFluid);
+					fusionShrineBlockEntity.markDirty();
+					fusionShrineBlockEntity.updateInClientWorld();
+					
+					Optional<SoundEvent> soundEvent = storedFluid.getBucketFillSound();
+					if(soundEvent.isPresent()) {
+						world.playSound(null, blockPos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 0.8F, 0.8F + world.random.nextFloat() * 0.6F);
+					}
+					
+					return new ItemStack(Items.BUCKET);
+				} else if (storedFluid != Fluids.EMPTY && bucketFluid == Fluids.EMPTY) {
+					fusionShrineBlockEntity.setFluid(Fluids.EMPTY);
+					fusionShrineBlockEntity.markDirty();
+					fusionShrineBlockEntity.updateInClientWorld();
+					
+					Optional<SoundEvent> soundEvent = storedFluid.getBucketFillSound();
+					if(soundEvent.isPresent()) {
+						world.playSound(null, blockPos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 0.8F, 0.8F + world.random.nextFloat() * 0.6F);
+					}
+					
+					return storedFluid.getBucketItem().getDefaultStack();
+				}
+			}
+		}
+		return bucketStack;
+	}
 
 	@Override
 	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
@@ -97,7 +167,6 @@ public class FusionShrineBlock extends BlockWithEntity {
 						itemsChanged = true;
 					} else if (storedFluid != Fluids.EMPTY && bucketFluid == Fluids.EMPTY) {
 						fusionShrineBlockEntity.setFluid(Fluids.EMPTY);
-						world.setBlockState(pos, world.getBlockState(pos).with(LIGHT_LEVEL, 0));
 						if (!player.isCreative()) {
 							player.setStackInHand(hand, new ItemStack(storedFluid.getBucketItem()));
 						}
@@ -133,6 +202,7 @@ public class FusionShrineBlock extends BlockWithEntity {
 				}
 				
 				if(itemsChanged) {
+					fusionShrineBlockEntity.markDirty();
 					fusionShrineBlockEntity.updateInClientWorld();
 					if(soundToPlay.isPresent()) {
 						world.playSound(null, player.getBlockPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 0.8F, 0.8F + world.random.nextFloat() * 0.6F);

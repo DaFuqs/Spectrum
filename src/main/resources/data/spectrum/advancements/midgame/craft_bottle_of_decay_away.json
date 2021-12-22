@@ -1,0 +1,20 @@
+{
+  "parent": "spectrum:midgame/create_refined_azurite",
+  "display": {
+    "icon": {
+        "item": "spectrum:bottle_of_decay_away"
+    },
+    "title": {
+      "translate": "advancements.spectrum.craft_bottle_of_decay_away.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.craft_bottle_of_decay_away.description"
+    }
+  },
+  "criteria": {
+    "craft": {
+      "trigger":"spectrum:crafted_with_pedestal",
+      "conditions": { "items": [{ "items": [ "spectrum:bottle_of_decay_away" ]}] }
+    }
+  }
+}

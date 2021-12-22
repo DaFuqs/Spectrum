@@ -46,9 +46,7 @@ public abstract class BlockMixin {
 				if (enchantmentMap.containsKey(SpectrumEnchantments.INVENTORY_INSERTION)) {
 					List<ItemStack> leftoverReturnStacks = new ArrayList<>();
 
-					if(entity instanceof PlayerEntity) {
-						PlayerEntity playerEntity = (PlayerEntity) entity;
-
+					if(entity instanceof PlayerEntity playerEntity) {
 						for(ItemStack itemStack : returnStacks) {
 							Item item = itemStack.getItem();
 							int count = itemStack.getCount();

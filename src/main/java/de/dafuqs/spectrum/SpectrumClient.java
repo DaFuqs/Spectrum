@@ -89,23 +89,33 @@ public class SpectrumClient implements ClientModInitializer {
 	}
 
 	private static void registerColorProviders() {
+		log(Level.INFO, "Registering Block and Item Color Providers...");
+		
 		// Biome Colors for colored leaves items and blocks
 		// They don't use it, but their decay as oak leaves do
-		coloredLeavesBlockColorProvider = new ToggleableBlockColorProvider(ColorProviderRegistry.BLOCK.get(Blocks.OAK_LEAVES));
-		coloredLeavesItemColorProvider = new ToggleableItemColorProvider(ColorProviderRegistry.ITEM.get(Blocks.OAK_LEAVES));
-		for(DyeColor dyeColor : DyeColor.values()) {
-			Block block = SpectrumBlocks.getColoredLeavesBlock(dyeColor);
-			ColorProviderRegistry.BLOCK.register(coloredLeavesBlockColorProvider, block);
-			ColorProviderRegistry.ITEM.register(coloredLeavesItemColorProvider, block);
+		BlockColorProvider leavesBlockColorProvider = ColorProviderRegistry.BLOCK.get(Blocks.OAK_LEAVES);
+		ItemColorProvider leavesItemColorProvider = ColorProviderRegistry.ITEM.get(Blocks.OAK_LEAVES);
+		
+		if(leavesBlockColorProvider != null && leavesItemColorProvider != null) {
+			coloredLeavesBlockColorProvider = new ToggleableBlockColorProvider(leavesBlockColorProvider);
+			coloredLeavesItemColorProvider = new ToggleableItemColorProvider(leavesItemColorProvider);
+			
+			for (DyeColor dyeColor : DyeColor.values()) {
+				Block block = SpectrumBlocks.getColoredLeavesBlock(dyeColor);
+				ColorProviderRegistry.BLOCK.register(coloredLeavesBlockColorProvider, block);
+				ColorProviderRegistry.ITEM.register(coloredLeavesItemColorProvider, block);
+			}
 		}
 
 		BlockColorProvider grassBlockColorProvider = ColorProviderRegistry.BLOCK.get(Blocks.GRASS);
 		ItemColorProvider grassItemColorProvider = ColorProviderRegistry.ITEM.get(Blocks.GRASS.asItem());
-		ColorProviderRegistry.BLOCK.register(grassBlockColorProvider, SpectrumBlocks.CLOVER);
-		ColorProviderRegistry.BLOCK.register(grassBlockColorProvider, SpectrumBlocks.FOUR_LEAF_CLOVER);
-		ColorProviderRegistry.ITEM.register(grassItemColorProvider, SpectrumBlocks.CLOVER);
-		ColorProviderRegistry.ITEM.register(grassItemColorProvider, SpectrumBlocks.FOUR_LEAF_CLOVER);
-
+		
+		if(grassBlockColorProvider != null && grassItemColorProvider != null) {
+			ColorProviderRegistry.BLOCK.register(grassBlockColorProvider, SpectrumBlocks.CLOVER);
+			ColorProviderRegistry.BLOCK.register(grassBlockColorProvider, SpectrumBlocks.FOUR_LEAF_CLOVER);
+			ColorProviderRegistry.ITEM.register(grassItemColorProvider, SpectrumBlocks.CLOVER);
+			ColorProviderRegistry.ITEM.register(grassItemColorProvider, SpectrumBlocks.FOUR_LEAF_CLOVER);
+		}
 	}
 
 	// Vanilla models see: ModelPredicateProviderRegistry

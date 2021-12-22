@@ -49,7 +49,7 @@ public class InvisibleItemFrameEntityRenderer<T extends ItemFrameEntity> extends
 		Vec3d vec3d = this.getPositionOffset(itemFrameEntity, g);
 		matrixStack.translate(-vec3d.getX(), -vec3d.getY(), -vec3d.getZ());
 		double d = 0.46875D;
-		matrixStack.translate((double)direction.getOffsetX() * 0.46875D, (double)direction.getOffsetY() * 0.46875D, (double)direction.getOffsetZ() * 0.46875D);
+		matrixStack.translate((double)direction.getOffsetX() * d, (double)direction.getOffsetY() * d, (double)direction.getOffsetZ() * d);
 		matrixStack.multiply(Vec3f.POSITIVE_X.getDegreesQuaternion(itemFrameEntity.getPitch()));
 		matrixStack.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(180.0F - itemFrameEntity.getYaw()));
 		boolean bl = itemFrameEntity.isInvisible();

@@ -7,12 +7,14 @@ $p | Foreach-Object {
   "pools": [
     {
       "rolls": 1,
+      "bonus_rolls": 0,
       "entries": [
         {
           "type": "minecraft:alternatives",
           "children": [
             {
               "type": "minecraft:item",
+              "name": "spectrum:$_`_leaves",
               "conditions": [
                 {
                   "condition": "minecraft:alternative",
@@ -40,11 +42,11 @@ $p | Foreach-Object {
                     }
                   ]
                 }
-              ],
-              "name": "spectrum:$_`_leaves"
+              ]
             },
             {
               "type": "minecraft:item",
+              "name": "spectrum:$_`_sapling",
               "conditions": [
                 {
                   "condition": "minecraft:survives_explosion"
@@ -53,14 +55,21 @@ $p | Foreach-Object {
                   "condition": "minecraft:table_bonus",
                   "enchantment": "minecraft:fortune",
                   "chances": [
-                    0.005,
-                    0.00625,
-                    0.0075,
-                    0.008
+                    0.05,
+                    0.0625,
+                    0.083333336,
+                    0.1
+                  ]
+                },
+                {
+                  "condition": "minecraft:table_bonus",
+                  "enchantment": "spectrum:resonance",
+                  "chances": [
+                    0,
+                    0.8
                   ]
                 }
-              ],
-              "name": "spectrum:$_`_sapling"
+              ]
             }
           ]
         }
@@ -68,10 +77,15 @@ $p | Foreach-Object {
     },
     {
       "rolls": 1,
+      "bonus_rolls": 0,
       "entries": [
         {
           "type": "minecraft:item",
+          "name": "spectrum:$_`_pigment",
           "conditions": [
+            {
+              "condition": "minecraft:survives_explosion"
+            },
             {
               "condition": "minecraft:table_bonus",
               "enchantment": "minecraft:fortune",
@@ -83,22 +97,7 @@ $p | Foreach-Object {
                 0.4
               ]
             }
-          ],
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "type": "minecraft:uniform",
-                "min": 1.0,
-                "max": 2.0
-              },
-              "add": false
-            },
-            {
-              "function": "minecraft:explosion_decay"
-            }
-          ],
-          "name": "spectrum:$_`_pigment"
+          ]
         }
       ],
       "conditions": [

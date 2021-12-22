@@ -21,8 +21,6 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 
 public class EnchantmentUpgradeCategory<R extends EnchantmentUpgradeRecipe> implements DisplayCategory<EnchantmentUpgradeRecipeDisplay<R>> {
-
-	private final static Identifier BACKGROUND_TEXTURE = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/container/enchanter.png");
 	
 	@Override
 	public CategoryIdentifier getCategoryIdentifier() {
@@ -59,8 +57,8 @@ public class EnchantmentUpgradeCategory<R extends EnchantmentUpgradeRecipe> impl
 			widgets.add(Widgets.createLabel(new Point(startPoint.x, startPoint.y + 33), new TranslatableText("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_1")).leftAligned().color(0x3f3f3f).noShadow());
 			widgets.add(Widgets.createLabel(new Point(startPoint.x, startPoint.y + 43), new TranslatableText("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_2")).leftAligned().color(0x3f3f3f).noShadow());
 		} else {
-			// enchanter structure background					            destinationX	 destinationY   sourceX, sourceY, width, height
-			widgets.add(Widgets.createTexturedWidget(BACKGROUND_TEXTURE, startPoint.x +13, startPoint.y+22, 0, 0, 52, 52));
+			// enchanter structure background					                              destinationX	 destinationY          sourceX, sourceY, width, height
+			widgets.add(Widgets.createTexturedWidget(EnchanterCategory.BACKGROUND_TEXTURE, startPoint.x +12, startPoint.y+21, 0, 0, 54, 54));
 
 			// Knowledge Gem and Enchanter
 			widgets.add(Widgets.createSlot(new Point(startPoint.x + 111, startPoint.y + 14)).markInput().entries((EntryIngredient) display.inputs.get(9)));

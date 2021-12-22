@@ -1,0 +1,26 @@
+{
+  "parent": "spectrum:lategame/collect_paletur",
+  "display": {
+    "icon": {
+      "item": "spectrum:exchange_staff"
+    },
+    "title": {
+      "translate": "advancements.spectrum.enchant_exchange_staff.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.enchant_exchange_staff.description"
+    }
+  },
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:enchanted_item",
+      "conditions": {
+        "item": {
+          "items": [
+            "spectrum:exchange_staff"
+          ]
+        }
+      }
+    }
+  }
+}

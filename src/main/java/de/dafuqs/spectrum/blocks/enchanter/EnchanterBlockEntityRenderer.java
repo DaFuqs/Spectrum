@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.blocks.enchanter;
 
+import de.dafuqs.spectrum.ExperienceHelper;
 import de.dafuqs.spectrum.Support;
 import de.dafuqs.spectrum.items.ExperienceStorageItem;
 import net.minecraft.client.MinecraftClient;
@@ -72,7 +73,7 @@ public class EnchanterBlockEntityRenderer implements BlockEntityRenderer<de.dafu
 		// The Experience Item rendered in the air
 		ItemStack experienceItemStack = blockEntity.inventory.getStack(1);
 		if(!experienceItemStack.isEmpty() && experienceItemStack.getItem() instanceof ExperienceStorageItem) {
-			render(blockEntity.getWorld(), Support.getExperienceOrbSizeForExperience(ExperienceStorageItem.getStoredExperience(experienceItemStack)), tickDelta, matrixStack, vertexConsumerProvider, experienceSpriteBrightness);
+			render(blockEntity.getWorld(), ExperienceHelper.getExperienceOrbSizeForExperience(ExperienceStorageItem.getStoredExperience(experienceItemStack)), tickDelta, matrixStack, vertexConsumerProvider, experienceSpriteBrightness);
 		}
 	}
 	

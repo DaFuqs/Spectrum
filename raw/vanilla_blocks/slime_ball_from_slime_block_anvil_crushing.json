@@ -1,0 +1,14 @@
+{
+  "type": "spectrum:anvil_crushing",
+  "ingredient": {
+    "item": "minecraft:slime_block"
+  },
+  "crushedItemsPerPointOfDamage": 4,
+  "experience": 0,
+  "result" : {
+    "item": "minecraft:slime_ball",
+    "count": 9
+  },
+  "particleEffectIdentifier": "cloud",
+  "soundEventIdentifier": "block.slime_block.break"
+}

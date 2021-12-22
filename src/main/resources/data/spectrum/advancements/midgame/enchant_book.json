@@ -1,0 +1,26 @@
+{
+  "parent": "spectrum:midgame/build_enchanting_structure",
+  "display": {
+    "icon": {
+      "item": "minecraft:enchanted_book"
+    },
+    "title": {
+      "translate": "advancements.spectrum.enchant_book.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.enchant_book.description"
+    }
+  },
+  "criteria": {
+    "enchanted_using_2500_experience": {
+      "trigger": "spectrum:enchanter_enchanting",
+      "conditions": {
+        "item": {
+          "items": [
+            "minecraft:enchanted_book"
+          ]
+        }
+      }
+    }
+  }
+}

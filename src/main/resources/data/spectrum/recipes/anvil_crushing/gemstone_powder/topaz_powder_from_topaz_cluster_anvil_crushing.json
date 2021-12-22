@@ -1,0 +1,14 @@
+{
+  "type": "spectrum:anvil_crushing",
+  "ingredient": {
+    "item": "spectrum:topaz_cluster"
+  },
+  "crushedItemsPerPointOfDamage": 0.6,
+  "experience": 0.4,
+  "result" : {
+    "item": "spectrum:topaz_powder",
+    "count": 16
+  },
+  "particleEffectIdentifier": "explosion",
+  "soundEventIdentifier": "block.topaz_cluster.break"
+}

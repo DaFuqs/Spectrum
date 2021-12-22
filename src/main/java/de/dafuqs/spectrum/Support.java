@@ -39,76 +39,46 @@ public class Support {
 	}};
 	
 	public static final List<Vec3d> VECTORS_8 = new ArrayList<>() {{
-			add(new Vec3d(1.0D, 0, 0.0D));
-			add(new Vec3d(0.7D, 0, 0.7D));
-			add(new Vec3d(0.0D, 0, 1.0D));
-			add(new Vec3d(-0.7D, 0, 0.7D));
-			add(new Vec3d(-1.0D, 0, 0.0D));
-			add(new Vec3d(-0.7D, 0, -0.7D));
-			add(new Vec3d(0.0D, 0, -1.0D));
-			add(new Vec3d(0.7D, 0, -0.7D));
-		}};
+		add(new Vec3d(1.0D, 0, 0.0D));
+		add(new Vec3d(0.7D, 0, 0.7D));
+		add(new Vec3d(0.0D, 0, 1.0D));
+		add(new Vec3d(-0.7D, 0, 0.7D));
+		add(new Vec3d(-1.0D, 0, 0.0D));
+		add(new Vec3d(-0.7D, 0, -0.7D));
+		add(new Vec3d(0.0D, 0, -1.0D));
+		add(new Vec3d(0.7D, 0, -0.7D));
+	}};
 	
 	public static final List<Vec3d> VECTORS_16 = new ArrayList<>() {{
-			add(new Vec3d(1.0D, 0, 0.0D));
-			add(new Vec3d(0.75D, 0, 0.5D));
-			add(new Vec3d(0.7D, 0, 0.7D));
-			add(new Vec3d(0.5D, 0, 0.75D));
-			add(new Vec3d(0.0D, 0, 1.0D));
-			add(new Vec3d(-0.5D, 0, 0.75D));
-			add(new Vec3d(-0.7D, 0, 0.7D));
-			add(new Vec3d(-0.75D, 0, 0.5D));
-			add(new Vec3d(-1.0D, 0, 0.0D));
-			add(new Vec3d(-0.75D, 0, 0.5D));
-			add(new Vec3d(-0.7D, 0, -0.7D));
-			add(new Vec3d(-0.5D, 0, -0.75D));
-			add(new Vec3d(0.0D, 0, -1.0D));
-			add(new Vec3d(0.5D, 0, -0.75D));
-			add(new Vec3d(0.7D, 0, -0.7D));
-			add(new Vec3d(0.75D, 0, -0.5D));
-		}};
+		add(new Vec3d(1.0D, 0, 0.0D));
+		add(new Vec3d(0.75D, 0, 0.5D));
+		add(new Vec3d(0.7D, 0, 0.7D));
+		add(new Vec3d(0.5D, 0, 0.75D));
+		add(new Vec3d(0.0D, 0, 1.0D));
+		add(new Vec3d(-0.5D, 0, 0.75D));
+		add(new Vec3d(-0.7D, 0, 0.7D));
+		add(new Vec3d(-0.75D, 0, 0.5D));
+		add(new Vec3d(-1.0D, 0, 0.0D));
+		add(new Vec3d(-0.75D, 0, 0.5D));
+		add(new Vec3d(-0.7D, 0, -0.7D));
+		add(new Vec3d(-0.5D, 0, -0.75D));
+		add(new Vec3d(0.0D, 0, -1.0D));
+		add(new Vec3d(0.5D, 0, -0.75D));
+		add(new Vec3d(0.7D, 0, -0.7D));
+		add(new Vec3d(0.75D, 0, -0.5D));
+	}};
 	
-	public static ItemStack getEnchantedItemStack(Item item, Enchantment enchantment, int level) {
-		ItemStack itemStack = new ItemStack(item);
-		itemStack.addEnchantment(enchantment, level);
-		return itemStack;
-	}
-	
-	public static boolean hasTag(@NotNull BlockState blockState, @NotNull Tag<Block> tag) {
+	public static boolean hasBlockTag(@NotNull BlockState blockState, @NotNull Tag<Block> tag) {
 		return tag.contains(blockState.getBlock());
 	}
 
-	public static Optional<Tag> getFirstMatchingTag(@NotNull Block block, @NotNull List<Tag<Block>> tags) {
-		for(Tag tag : tags) {
+	public static Optional<Tag<Block>> getFirstMatchingBlockTag(@NotNull Block block, @NotNull List<Tag<Block>> tags) {
+		for(Tag<Block> tag : tags) {
 			if(tag.contains(block)) {
 				return Optional.of(tag);
 			}
 		}
 		return Optional.empty();
-	}
-	
-	public static int getExperienceOrbSizeForExperience(int experience) {
-		if (experience >= 2477) {
-			return 10;
-		} else if (experience >= 1237) {
-			return 9;
-		} else if (experience >= 617) {
-			return 8;
-		} else if (experience >= 307) {
-			return 7;
-		} else if (experience >= 149) {
-			return 6;
-		} else if (experience >= 73) {
-			return 5;
-		} else if (experience >= 37) {
-			return 4;
-		} else if (experience >= 17) {
-			return 3;
-		} else if (experience >= 7) {
-			return 2;
-		} else {
-			return experience >= 3 ? 1 : 0;
-		}
 	}
 	
 	private static final DecimalFormat df = new DecimalFormat("0.00");
@@ -167,7 +137,7 @@ public class Support {
 		}
 	}
 
-	public static boolean hasAdvancement(@NotNull PlayerEntity playerEntity, @NotNull Identifier advancementIdentifier) {
+	public static boolean hasAdvancement(PlayerEntity playerEntity, Identifier advancementIdentifier) {
 		if(playerEntity == null) {
 			return false;
 		} else if(advancementIdentifier == null) {

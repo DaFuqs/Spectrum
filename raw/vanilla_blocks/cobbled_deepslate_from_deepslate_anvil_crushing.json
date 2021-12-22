@@ -1,0 +1,14 @@
+{
+  "type": "spectrum:anvil_crushing",
+  "ingredient": {
+    "item": "minecraft:deepslate"
+  },
+  "crushedItemsPerPointOfDamage": 0.8,
+  "experience": 0,
+  "result" : {
+    "item": "minecraft:cobbled_deepslate",
+    "count": 1
+  },
+  "particleEffectIdentifier": "cloud",
+  "soundEventIdentifier": "block.deepslate.break"
+}

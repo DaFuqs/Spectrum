@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:midgame/collect_neolith",
+  "parent": "spectrum:midgame/collect_moonstone_shard",
   "display": {
     "icon": {
       "item": "minecraft:cow_spawn_egg"

@@ -26,9 +26,8 @@ public class SpectrumEnchantments {
 	public static final Enchantment DAMAGE_PROOF = new DamageProofEnchantment(Enchantment.Rarity.RARE, EquipmentSlot.MAINHAND); // ItemStacks with this enchantment are not destroyed by cactus, fire, lava, ...
 
 	public static void register() {
-		if(SpectrumCommon.CONFIG.ResonanceEnchantmentEnabled) {
-			Registry.register(Registry.ENCHANTMENT, new Identifier(SpectrumCommon.MOD_ID, "resonance"), RESONANCE);
-		}
+		Registry.register(Registry.ENCHANTMENT, new Identifier(SpectrumCommon.MOD_ID, "resonance"), RESONANCE);
+		
 		if(SpectrumCommon.CONFIG.PestControlEnchantmentEnabled) {
 			Registry.register(Registry.ENCHANTMENT, new Identifier(SpectrumCommon.MOD_ID, "pest_control"), PEST_CONTROL);
 		}

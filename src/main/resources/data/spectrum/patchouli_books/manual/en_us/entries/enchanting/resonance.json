@@ -26,6 +26,12 @@
         },
         {
             "type": "patchouli:spotlight",
+            "title": "Colored Leaves",
+            "item": "spectrum:orange_leaves",
+            "text": "Colored Leaves get stimulated in a way to release more saplings.$(br2)Applied to a hoe his will finally be your key to get $(l:general/colored_trees)Colored Saplings$() renewably."
+        },
+        {
+            "type": "patchouli:spotlight",
             "title": "Harvesting Spawners",
             "item": "minecraft:spawner",
             "text": "In the depths you have come across cages that seem to spit out an endless number of enemies. Which madman placed them there, what purpose they serve and whether it was really worth the effort is a mystery to you. However, you can definitely find some use for these. Whoever the maker was certainly won't miss you packing a few."

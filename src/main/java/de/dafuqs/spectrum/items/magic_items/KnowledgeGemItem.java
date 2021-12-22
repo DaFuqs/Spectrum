@@ -25,7 +25,11 @@ import java.util.List;
 
 public class KnowledgeGemItem extends Item implements ExperienceStorageItem {
 	
-	public int maxStorage;
+	protected int maxStorage;
+	
+	// these are copies from the item model file
+	// and specify the sprite used for its texture
+	protected int[] displayTiers = { 1, 10, 25, 50, 100, 250, 500, 1000, 2500, 5000 };
 	
 	public KnowledgeGemItem(Settings settings, int maxStorage) {
 		super(settings);
@@ -126,6 +130,19 @@ public class KnowledgeGemItem extends Item implements ExperienceStorageItem {
 			
 			return true;
 		}
+	}
+	
+	public boolean changedDisplayTier(int currentStoredExperience, int destinationStoredExperience) {
+		return getDisplayTierForExperience(currentStoredExperience) != getDisplayTierForExperience(destinationStoredExperience);
+	}
+	
+	public int getDisplayTierForExperience(int experience) {
+		for(int i = 0; i < displayTiers.length; i++) {
+			if(experience < displayTiers[i]) {
+				return i;
+			}
+		}
+		return displayTiers.length;
 	}
 	
 }

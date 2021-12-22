@@ -14,7 +14,7 @@
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier3/exchange_staff",
+      "recipe": "spectrum:pedestal/tier4/exchange_staff",
       "text": "Crouch-Click to get a selection of all available placement modi."
     }
   ]

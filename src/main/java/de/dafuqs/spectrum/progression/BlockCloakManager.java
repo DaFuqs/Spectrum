@@ -74,7 +74,9 @@ public class BlockCloakManager {
 			for(Cloakable cloakable : cloakablesList) {
 				BlockCloakManager.registerBlockStateCloaks(cloakable.getBlockStateCloaks());
 				Pair<Item, Item> itemCloak = cloakable.getItemCloak();
-				BlockCloakManager.registerItemCloak(itemCloak.getLeft(), itemCloak.getRight());
+				if(itemCloak != null) {
+					BlockCloakManager.registerItemCloak(itemCloak.getLeft(), itemCloak.getRight());
+				}
 			}
 		}
 	}

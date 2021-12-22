@@ -78,7 +78,7 @@ public class LightningStoneBlock extends Block implements Cloakable {
 
 	@Override
 	public Pair<Item, Item> getItemCloak() {
-		return new Pair<>(this.asItem(), Items.EMERALD);
+		return null;
 	}
 
 	/**

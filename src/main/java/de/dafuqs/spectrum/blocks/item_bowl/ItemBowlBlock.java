@@ -7,6 +7,8 @@ import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
@@ -45,6 +47,37 @@ public class ItemBowlBlock extends BlockWithEntity {
 	
 	public ItemBowlBlock(Settings settings) {
 		super(settings);
+	}
+	
+	@Override
+	public void onLandedUpon(World world, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
+		if(!world.isClient && entity instanceof ItemEntity itemEntity) {
+			ItemStack remainingStack = inputItem(world, pos, itemEntity.getStack());
+			if(remainingStack.isEmpty()) {
+				itemEntity.remove(Entity.RemovalReason.DISCARDED);
+			} else {
+				itemEntity.setStack(remainingStack);
+			}
+		} else {
+			super.onLandedUpon(world, state, pos, entity, fallDistance);
+		}
+	}
+	
+	public ItemStack inputItem(World world, BlockPos pos, ItemStack itemStack) {
+		BlockEntity blockEntity = world.getBlockEntity(pos);
+		if(blockEntity instanceof ItemBowlBlockEntity itemBowlBlockEntity) {
+			int previousCount = itemStack.getCount();
+			ItemStack remainingStack = InventoryHelper.addToInventory(itemStack, itemBowlBlockEntity.getInventory(), null);
+			
+			if(remainingStack.getCount() != previousCount) {
+				itemBowlBlockEntity.markDirty();
+				itemBowlBlockEntity.updateInClientWorld();
+				updateConnectedEnchanter(world, pos);
+				world.playSound(null, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.8F, 0.8F + world.random.nextFloat() * 0.6F);
+			}
+			return remainingStack;
+		}
+		return itemStack;
 	}
 	
 	@Override

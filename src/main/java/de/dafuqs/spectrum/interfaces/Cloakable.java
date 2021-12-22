@@ -19,6 +19,7 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Pair;
 import net.minecraft.util.shape.VoxelShape;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Collections;
 import java.util.Hashtable;
@@ -33,9 +34,9 @@ public interface Cloakable {
 	default void registerCloak() {
 		BlockCloakManager.registerAdvancementCloak(this, getCloakAdvancementIdentifier());
 	}
-
+	
 	Hashtable<BlockState, BlockState> getBlockStateCloaks();
-	Pair<Item, Item> getItemCloak();
+	@Nullable Pair<Item, Item> getItemCloak();
 	default void onCloak() {};
 	default void onUncloak() {};
 

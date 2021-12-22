@@ -70,7 +70,6 @@ spread free or using high random tick rates you can limit the rate here
 	public boolean ExuberanceEnchantmentEnabled = true;
 	public boolean InventoryInsertionEnchantmentEnabled = true;
 	public boolean PestControlEnchantmentEnabled = true;
-	public boolean ResonanceEnchantmentEnabled = true;
 	public boolean VoidingEnchantmentEnabled = true;
 	public boolean TreasureHunterEnchantmentEnabled = true;
 	public boolean DisarmingEnchantmentEnabled = true;

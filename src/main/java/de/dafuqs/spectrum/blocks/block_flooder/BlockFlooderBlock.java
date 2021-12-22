@@ -115,7 +115,7 @@ public class BlockFlooderBlock extends BlockWithEntity {
 							if(owner.isCreative() || owner.getInventory().contains(currentItemStack) && currentBlock.canPlaceAt(currentBlock.getDefaultState(), world, pos)) {
 								maxBlock = currentBlock;
 							} else {
-								Optional<Tag> tag = Support.getFirstMatchingTag(currentBlock, exchangeBlockTags);
+								Optional<Tag<Block>> tag = Support.getFirstMatchingBlockTag(currentBlock, exchangeBlockTags);
 								if (tag.isPresent()) {
 									currentBlock = exchangeableBlocks.get(tag.get());
 									blockItem = currentBlock.asItem();

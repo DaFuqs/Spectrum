@@ -13,7 +13,9 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.WorldRenderer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.Pair;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,7 +25,7 @@ import java.util.Set;
 @Environment(EnvType.CLIENT)
 public class ClientBlockCloaker {
 
-	private static final List<BlockState> activeBlockSwaps = new ArrayList<>();
+	private static final List<BlockState> activeBlockStateSwaps = new ArrayList<>();
 	private static final List<Item> activeItemSwaps = new ArrayList<>();
 
 	public static void process(List<Identifier> doneAdvancements, boolean showToast) {
@@ -55,32 +57,39 @@ public class ClientBlockCloaker {
 
 	static void uncloak(Cloakable cloakable) {
 		Set<BlockState> cloakBlockStates = cloakable.getBlockStateCloaks().keySet();
-		activeBlockSwaps.removeAll(cloakBlockStates);
+		activeBlockStateSwaps.removeAll(cloakBlockStates);
 
-		Item cloakItem = cloakable.getItemCloak().getLeft();
-		activeItemSwaps.remove(cloakItem);
+		Pair<Item, Item> itemCloak = cloakable.getItemCloak();
+		if(itemCloak != null) {
+			activeItemSwaps.remove(itemCloak.getLeft());
+		}
 
 		cloakable.onUncloak();
 	}
 
 	private static void cloak(Cloakable cloakable) {
 		Set<BlockState> cloakBlockStates = cloakable.getBlockStateCloaks().keySet();
-		activeBlockSwaps.addAll(cloakBlockStates);
-
-		Item cloakItem = cloakable.getItemCloak().getLeft();
-		activeItemSwaps.add(cloakItem);
+		activeBlockStateSwaps.addAll(cloakBlockStates);
+		
+		Pair<Item, Item> itemCloak = cloakable.getItemCloak();
+		if(itemCloak != null) {
+			Item cloakItem = itemCloak.getLeft();
+			if (cloakItem.equals(Items.AIR)) { // lightning stones have no item equivalent, for example
+				activeItemSwaps.add(cloakItem);
+			}
+		}
 
 		cloakable.onCloak();
 	}
 
 	// BLOCKS
 	public static boolean isCloaked(Block block) {
-		return activeBlockSwaps.contains(block.getDefaultState());
+		return activeBlockStateSwaps.contains(block.getDefaultState());
 	}
 	
 	// BLOCKS
 	public static boolean isCloaked(BlockState blockState) {
-		return activeBlockSwaps.contains(blockState);
+		return activeBlockStateSwaps.contains(blockState);
 	}
 
 	public static BlockState getCloakTarget(BlockState blockState) {
@@ -106,7 +115,7 @@ public class ClientBlockCloaker {
 
 	public static void cloakAll() {
 		activeItemSwaps.clear();
-		activeBlockSwaps.clear();
+		activeBlockStateSwaps.clear();
 		HashMap<Identifier, List<Cloakable>> registeredCloaks = BlockCloakManager.getAdvancementIdentifiersAndRegisteredCloaks();
 		for(List<Cloakable> registeredCloak : registeredCloaks.values()) {
 			for(Cloakable cloakable : registeredCloak) {

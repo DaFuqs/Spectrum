@@ -32,6 +32,7 @@ public class ColoredLeavesBlock extends LeavesBlock implements Cloakable {
 		Hashtable<BlockState, BlockState> hashtable = new Hashtable<>();
 		for(int distance = 1; distance < 8; distance++) {
 			hashtable.put(this.getDefaultState().with(LeavesBlock.DISTANCE, distance).with(LeavesBlock.PERSISTENT, false), Blocks.OAK_LEAVES.getDefaultState().with(LeavesBlock.DISTANCE, distance).with(LeavesBlock.PERSISTENT, false));
+			hashtable.put(this.getDefaultState().with(LeavesBlock.DISTANCE, distance).with(LeavesBlock.PERSISTENT, true), Blocks.OAK_LEAVES.getDefaultState().with(LeavesBlock.DISTANCE, distance).with(LeavesBlock.PERSISTENT, true));
 		}
 		return hashtable;
 	}

@@ -1,8 +1,8 @@
 {
   "criteria": {
     "collected_ender_treasure": {
-      "trigger":"spectrum:has_advancement",
-      "conditions": { "advancement_identifier": "spectrum:reveal_ender_treasure" }
+      "trigger":"spectrum:had_revelation",
+      "conditions": { "revelation_identifier": "spectrum:ender_treasure" }
     }
   }
 }

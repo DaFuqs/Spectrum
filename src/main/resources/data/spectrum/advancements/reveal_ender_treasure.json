@@ -13,9 +13,17 @@
   },
   "parent": "spectrum:spectrum",
   "criteria": {
-    "revealed_ender_treasure": {
-      "trigger":"spectrum:had_revelation",
-      "conditions": { "revelation_identifier": "spectrum:ender_treasure" }
+    "gotten_ender_treasure": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:ender_treasure"
+            ]
+          }
+        ]
+      }
     }
   }
 }

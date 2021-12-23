@@ -23,7 +23,7 @@ public class EnderTreasureBlock extends Block implements Cloakable {
 
 	@Override
 	public Identifier getCloakAdvancementIdentifier() {
-		return new Identifier(SpectrumCommon.MOD_ID, "milestones/reveal_ender_treasure");
+		return new Identifier(SpectrumCommon.MOD_ID, "reveal_ender_treasure");
 	}
 
 	@Override

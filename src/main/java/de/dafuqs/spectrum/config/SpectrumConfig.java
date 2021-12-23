@@ -12,8 +12,8 @@ public class SpectrumConfig implements ConfigData {
 	
 	@Comment("""
 The heights where citrine and topaz geodes will spawn
-By default citrine will generate slightly below sea level (y=35-55)
-while topaz will generate at the top of mountains (everywhere from y=70+)
+By default citrine will generate slightly below sea level (y=32-60)
+while topaz will generate at the top of mountains (everywhere from y=90+)
 if the worldgen has lots of high mountains consider raising the TopazGeodeMinFixedGenerationHeight""")
 	public int CitrineGeodeMinAboveBottomGenerationHeight = 96;
 	public int CitrineGeodeFixedMaxGenerationHeight = 60;
@@ -46,7 +46,8 @@ Better to let players stumble about them organically instead of forcing it.""")
 
 	@Comment("""
 Shooting star spawns are checked every night between time 13000 and 22000, every 100 ticks (so 90 chances per night).
-By default, there is a 0.02 ^= 2 % chance at each of those check times. Making it ~3 shooting star spawns per night.""")
+By default, there is a 0.02 ^= 2 % chance at each of those check times. Making it ~3 shooting star spawns 
+per night per player that unlocked the required progression.""")
 	public float ShootingStarChance = 0.02F;
 
 	@Comment("The biomes where the biome specific plants are growing")
@@ -57,10 +58,10 @@ By default, there is a 0.02 ^= 2 % chance at each of those check times. Making i
 How fast decay will be spreading on random tick
 can be used to slow down propagation speed of decay in the worlds
 decay does use very few resources, but if your fear of someone letting decay
-spread free or using high random tick rates you can limit the rate here
+spread free or using higher random tick rates than vanilla you can limit the spreading rate here
 1.0: every random tick (default)
 0.5: Every second random tick
-0.0: never (forbidden; players would be unable to progress)""")
+0.0: never (forbidden - players would be unable to progress)""")
 	public float FadingDecayTickRate = 1.0F;
 	public float FailingDecayTickRate = 1.0F;
 	public float RuinDecayTickRate = 1.0F;

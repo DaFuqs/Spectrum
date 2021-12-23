@@ -37,22 +37,26 @@ public class SpawnerItem extends BlockItem {
 				entityType = EntityType.get(spawningEntityType);
 			}
 			
-			short spawnCount = blockEntityTag.getShort("SpawnCount");
-			short minSpawnDelay = blockEntityTag.getShort("MinSpawnDelay");
-			short maxSpawnDelay = blockEntityTag.getShort("MaxSpawnDelay");
-			short spawnRange = blockEntityTag.getShort("SpawnRange");
-			short requiredPlayerRange = blockEntityTag.getShort("RequiredPlayerRange");
-
-			if(entityType.isPresent()) {
-				tooltip.add(new TranslatableText(entityType.get().getTranslationKey()));
-			} else {
+			try {
+				short spawnCount = blockEntityTag.getShort("SpawnCount");
+				short minSpawnDelay = blockEntityTag.getShort("MinSpawnDelay");
+				short maxSpawnDelay = blockEntityTag.getShort("MaxSpawnDelay");
+				short spawnRange = blockEntityTag.getShort("SpawnRange");
+				short requiredPlayerRange = blockEntityTag.getShort("RequiredPlayerRange");
+				
+				if (entityType.isPresent()) {
+					tooltip.add(new TranslatableText(entityType.get().getTranslationKey()));
+				} else {
+					tooltip.add(new TranslatableText("item.spectrum.spawner.tooltip.unknown_mob"));
+				}
+				tooltip.add(new TranslatableText("item.spectrum.spawner.tooltip.spawn_count", spawnCount));
+				tooltip.add(new TranslatableText("item.spectrum.spawner.tooltip.min_spawn_delay", minSpawnDelay));
+				tooltip.add(new TranslatableText("item.spectrum.spawner.tooltip.max_spawn_delay", maxSpawnDelay));
+				tooltip.add(new TranslatableText("item.spectrum.spawner.tooltip.spawn_range", spawnRange));
+				tooltip.add(new TranslatableText("item.spectrum.spawner.tooltip.required_player_range", requiredPlayerRange));
+			} catch (Exception e) {
 				tooltip.add(new TranslatableText("item.spectrum.spawner.tooltip.unknown_mob"));
 			}
-			tooltip.add(new TranslatableText("item.spectrum.spawner.tooltip.spawn_count", spawnCount));
-			tooltip.add(new TranslatableText("item.spectrum.spawner.tooltip.min_spawn_delay", minSpawnDelay));
-			tooltip.add(new TranslatableText("item.spectrum.spawner.tooltip.max_spawn_delay", maxSpawnDelay));
-			tooltip.add(new TranslatableText("item.spectrum.spawner.tooltip.spawn_range", spawnRange));
-			tooltip.add(new TranslatableText("item.spectrum.spawner.tooltip.required_player_range", requiredPlayerRange));
 		}
 	}
 	

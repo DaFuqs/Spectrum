@@ -176,6 +176,7 @@ public class SpectrumBlocks {
 
 	public static final Block POLISHED_BASALT = new Block(FabricBlockSettings.of(Material.STONE).strength(2.0F, 5.0F));
 	public static final Block POLISHED_BASALT_PILLAR = new PillarBlock(FabricBlockSettings.copyOf(POLISHED_BASALT));
+	public static final Block POLISHED_BASALT_CREST = new Block(FabricBlockSettings.copyOf(POLISHED_BASALT));
 	public static final Block CHISELED_POLISHED_BASALT = new Block(FabricBlockSettings.copyOf(POLISHED_BASALT));
 	public static final Block POLISHED_BASALT_SLAB = new SlabBlock(FabricBlockSettings.copyOf(POLISHED_BASALT));
 	public static final Block POLISHED_BASALT_WALL = new WallBlock(FabricBlockSettings.copyOf(POLISHED_BASALT));
@@ -198,6 +199,7 @@ public class SpectrumBlocks {
 
 	public static final Block POLISHED_CALCITE = new Block(FabricBlockSettings.copyOf(POLISHED_BASALT));
 	public static final Block POLISHED_CALCITE_PILLAR = new PillarBlock(FabricBlockSettings.copyOf(POLISHED_BASALT));
+	public static final Block POLISHED_CALCITE_CREST = new Block(FabricBlockSettings.copyOf(POLISHED_BASALT));
 	public static final Block CHISELED_POLISHED_CALCITE = new Block(FabricBlockSettings.copyOf(POLISHED_BASALT));
 	public static final Block POLISHED_CALCITE_SLAB = new SlabBlock(FabricBlockSettings.copyOf(POLISHED_BASALT));
 	public static final Block POLISHED_CALCITE_WALL = new WallBlock(FabricBlockSettings.copyOf(POLISHED_BASALT));
@@ -880,6 +882,7 @@ public class SpectrumBlocks {
 
 		registerBlockWithItem("polished_basalt", POLISHED_BASALT, fabricItemSettings);
 		registerBlockWithItem("polished_basalt_pillar", POLISHED_BASALT_PILLAR, fabricItemSettings);
+		registerBlockWithItem("polished_basalt_crest", POLISHED_BASALT_CREST, fabricItemSettings);
 		registerBlockWithItem("chiseled_polished_basalt", CHISELED_POLISHED_BASALT, fabricItemSettings);
 		registerBlockWithItem("polished_basalt_slab", POLISHED_BASALT_SLAB, fabricItemSettings);
 		registerBlockWithItem("polished_basalt_wall", POLISHED_BASALT_WALL, fabricItemSettings);
@@ -891,6 +894,7 @@ public class SpectrumBlocks {
 
 		registerBlockWithItem("polished_calcite", POLISHED_CALCITE, fabricItemSettings);
 		registerBlockWithItem("polished_calcite_pillar", POLISHED_CALCITE_PILLAR, fabricItemSettings);
+		registerBlockWithItem("polished_calcite_crest", POLISHED_CALCITE_CREST, fabricItemSettings);
 		registerBlockWithItem("chiseled_polished_calcite", CHISELED_POLISHED_CALCITE, fabricItemSettings);
 		registerBlockWithItem("polished_calcite_slab", POLISHED_CALCITE_SLAB, fabricItemSettings);
 		registerBlockWithItem("polished_calcite_wall", POLISHED_CALCITE_WALL, fabricItemSettings);

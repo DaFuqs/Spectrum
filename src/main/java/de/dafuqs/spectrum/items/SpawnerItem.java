@@ -9,6 +9,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.NbtElement;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.world.World;
@@ -25,12 +26,17 @@ public class SpawnerItem extends BlockItem {
 	@Override
 	public void appendTooltip(ItemStack itemStack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
 		if(itemStack.getNbt() != null && itemStack.getNbt().get("BlockEntityTag") != null) {
-			Optional<EntityType<?>> entityType;
+			Optional<EntityType<?>> entityType = Optional.empty();
 
 			NbtCompound blockEntityTag = itemStack.getNbt().getCompound("BlockEntityTag");
 
-			String spawningEntityType = blockEntityTag.getCompound("SpawnData").getString("id");
-			entityType = EntityType.get(spawningEntityType);
+			if(blockEntityTag.contains("SpawnData", NbtElement.COMPOUND_TYPE)
+					&& blockEntityTag.getCompound("SpawnData").contains("entity", NbtElement.COMPOUND_TYPE)
+					&& blockEntityTag.getCompound("SpawnData").getCompound("entity").contains("id", NbtElement.STRING_TYPE)) {
+				String spawningEntityType = blockEntityTag.getCompound("SpawnData").getCompound("entity").getString("id");
+				entityType = EntityType.get(spawningEntityType);
+			}
+			
 			short spawnCount = blockEntityTag.getShort("SpawnCount");
 			short minSpawnDelay = blockEntityTag.getShort("MinSpawnDelay");
 			short maxSpawnDelay = blockEntityTag.getShort("MaxSpawnDelay");

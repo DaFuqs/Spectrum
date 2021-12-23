@@ -32,17 +32,17 @@ public abstract class DecayBlock extends Block {
 	/**
 	 * Block state property
 	 */
-	private final HashMap<Tag<Block>, BlockState> decayConversions = new HashMap<>();
+	protected final HashMap<Tag<Block>, BlockState> decayConversions = new HashMap<>();
 	/**
 	 * Decay can only convert those blocks to more decay
 	 */
-	private final Tag<Block> whiteListBlockTag;
+	protected final Tag<Block> whiteListBlockTag;
 	/**
 	 * Decay is blocked by those blocks and can't jump over to them
 	 */
-	private final Tag<Block> blackListBlockTag;
-	private final float damageOnTouching;
-	private final int tier;
+	protected final Tag<Block> blackListBlockTag;
+	protected final float damageOnTouching;
+	protected final int tier;
 
 	public DecayBlock(Settings settings, Tag<Block> whiteListBlockTag, Tag<Block> blackListBlockTag, int tier, float damageOnTouching) {
 		super(settings);

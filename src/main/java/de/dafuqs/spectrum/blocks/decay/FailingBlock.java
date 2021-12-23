@@ -18,8 +18,8 @@ import net.minecraft.world.World;
 import java.util.Random;
 
 public class FailingBlock extends DecayBlock {
-
-	private static final EnumProperty<DecayConversion> DECAY_STATE = EnumProperty.of("decay_state", DecayConversion.class);
+	
+	public static final EnumProperty<DecayConversion> DECAY_STATE = EnumProperty.of("decay_state", DecayConversion.class);
 
 	public enum DecayConversion implements StringIdentifiable {
 		DEFAULT("default"),
@@ -28,7 +28,7 @@ public class FailingBlock extends DecayBlock {
 
 		private final String name;
 
-		private DecayConversion(String name) {
+		DecayConversion(String name) {
 			this.name = name;
 		}
 

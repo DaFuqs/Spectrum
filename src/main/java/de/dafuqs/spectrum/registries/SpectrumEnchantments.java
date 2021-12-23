@@ -27,6 +27,7 @@ public class SpectrumEnchantments {
 
 	public static void register() {
 		Registry.register(Registry.ENCHANTMENT, new Identifier(SpectrumCommon.MOD_ID, "resonance"), RESONANCE);
+		Registry.register(Registry.ENCHANTMENT, new Identifier(SpectrumCommon.MOD_ID, "voiding"), VOIDING);
 		
 		if(SpectrumCommon.CONFIG.PestControlEnchantmentEnabled) {
 			Registry.register(Registry.ENCHANTMENT, new Identifier(SpectrumCommon.MOD_ID, "pest_control"), PEST_CONTROL);
@@ -36,9 +37,6 @@ public class SpectrumEnchantments {
 		}
 		if(SpectrumCommon.CONFIG.InventoryInsertionEnchantmentEnabled) {
 			Registry.register(Registry.ENCHANTMENT, new Identifier(SpectrumCommon.MOD_ID, "inventory_insertion"), INVENTORY_INSERTION);
-		}
-		if(SpectrumCommon.CONFIG.VoidingEnchantmentEnabled) {
-			Registry.register(Registry.ENCHANTMENT, new Identifier(SpectrumCommon.MOD_ID, "voiding"), VOIDING);
 		}
 		if(SpectrumCommon.CONFIG.ExuberanceEnchantmentEnabled) {
 			Registry.register(Registry.ENCHANTMENT, new Identifier(SpectrumCommon.MOD_ID, "exuberance"), EXUBERANCE);

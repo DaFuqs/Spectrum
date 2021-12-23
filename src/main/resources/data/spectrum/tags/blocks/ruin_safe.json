@@ -6,6 +6,7 @@
 		"minecraft:chain_command_block",
 		"minecraft:repeating_command_block",
 		"minecraft:barrier",
-		"spectrum:decay_away"
+		"spectrum:decay_away",
+		"spectrum:deeper_down_portal"
 	]
 }

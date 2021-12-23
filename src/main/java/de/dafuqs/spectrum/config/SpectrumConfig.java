@@ -66,12 +66,11 @@ spread free or using higher random tick rates than vanilla you can limit the spr
 	public float FailingDecayTickRate = 1.0F;
 	public float RuinDecayTickRate = 1.0F;
 
-	@Comment("Enable or disable specific enchantments. Disabling the voiding enchantment will also disable the Oblivion Pickaxe")
+	@Comment("Enable or disable specific enchantments. Resonance and Voiding can not be disabled.")
 	public boolean AutoSmeltEnchantmentEnabled = true;
 	public boolean ExuberanceEnchantmentEnabled = true;
 	public boolean InventoryInsertionEnchantmentEnabled = true;
 	public boolean PestControlEnchantmentEnabled = true;
-	public boolean VoidingEnchantmentEnabled = true;
 	public boolean TreasureHunterEnchantmentEnabled = true;
 	public boolean DisarmingEnchantmentEnabled = true;
 	public boolean FirstStrikeEnchantmentEnabled = true;

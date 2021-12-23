@@ -78,7 +78,7 @@
   "entity.spectrum.shooting_star": "Shooting Star",
 
   "commands.spectrum.spawn_shooting_star.success": "Spawned %d shooting stars for each player",
-  "commands.spectrum.progression_sanity.success": "Printed the sanity checks output to the servers console",
+  "commands.spectrum.progression_sanity.success": "Printed the sanity checks findings to the servers console",
 
   "spectrum.recipe.fusion_shrine.explanation.onyx_shard": "Midnight on a new moon only",
   "spectrum.recipe.fusion_shrine.explanation.decay_away":  "Requires a clear sky",
@@ -183,16 +183,15 @@
 
   "text.autoconfig.Spectrum.option.AutoSmeltEnchantmentEnabled": "Enchantment Autosmelt available",
   "text.autoconfig.Spectrum.option.ExuberanceEnchantmentEnabled": "Enchantment Exuberance available",
-  "text.autoconfig.Spectrum.option.InventoryInsertionEnchantmentEnabled": "Enchantment InventoryInsertion available",
+  "text.autoconfig.Spectrum.option.InventoryInsertionEnchantmentEnabled": "Enchantment Inventory Insertion available",
   "text.autoconfig.Spectrum.option.PestControlEnchantmentEnabled": "Enchantment PestControl available",
   "text.autoconfig.Spectrum.option.ResonanceEnchantmentEnabled": "Enchantment Resonance available",
-  "text.autoconfig.Spectrum.option.VoidingEnchantmentEnabled": "Enchantment Voiding available",
   "text.autoconfig.Spectrum.option.TreasureHunterEnchantmentEnabled": "Enchantment Treasure Hunter available",
   "text.autoconfig.Spectrum.option.DisarmingEnchantmentEnabled": "Enchantment Disarming available",
   "text.autoconfig.Spectrum.option.FirstStrikeEnchantmentEnabled": "Enchantment First Strike available",
   "text.autoconfig.Spectrum.option.ImprovedCriticalEnchantmentEnabled": "Enchantment Improved Critical available",
   "text.autoconfig.Spectrum.option.InertiaEnchantmentEnabled": "Enchantment Inertia available",
-  "text.autoconfig.Spectrum.option.RareLootEnchantmentEnabled": "Enchantment Rare Loot available",
+  "text.autoconfig.Spectrum.option.CloversFavorEnchantmentEnabled": "Enchantment Clover's Favor available",
   "text.autoconfig.Spectrum.option.SniperEnchantmentEnabled": "Enchantment Sniper available",
   "text.autoconfig.Spectrum.option.TightGripEnchantmentEnabled": "Enchantment TightGrip available",
   "text.autoconfig.Spectrum.option.DamageProofEnchantmentEnabled": "Enchantment Damage Proof available",

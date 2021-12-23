@@ -19,7 +19,7 @@
     {
       "type": "patchouli:text",
       "title": "Mixing Colors",
-      "text": "There is nothing more important to an upcoming artist than mixing the right paint.$(br)Unfortunately, you found that in the case of Gemstone Powder, its not nearly as easy as it initially seemed: The powders don't quite want to mix. The result is always just a multicolored mass.$(br2)$(l:general/color_mixing)You need an intermediate solution$(). Maybe you can come up with something later?"
+      "text": "There is nothing more important to an upcoming artist than mixing the right paint.$(br)Unfortunately, you found that in the case of Gemstone Powder, its not nearly as easy as it initially seemed: The powders don't quite want to mix. The result is always just a multicolored mass.$(br2)Maybe you can come up with something later?"
     }
   ]
 }

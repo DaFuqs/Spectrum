@@ -21,11 +21,12 @@
     },
     {
       "type": "patchouli:text",
+      "title": "Variants",
       "text": "$(br)The Pigment Pedestal can be built with your gemstone of choice.$(br2)While they do look different they are the same, functionally."
     },
     {
       "type": "patchouli:crafting",
-      "title": "Variants",
+      "title": "Crafting Recipes",
       "recipe": "spectrum:crafting_table/pedestal_basic_topaz",
       "recipe2": "spectrum:crafting_table/pedestal_basic_citrine"
     }

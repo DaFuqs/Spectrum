@@ -4,10 +4,10 @@
         "item": "spectrum:ender_treasure"
     },
     "title": {
-      "translate": "advancements.spectrum.reveal_ender_treasure.title"
+      "translate": "advancements.spectrum.get_ender_treasure.title"
     },
     "description": {
-      "translate": "advancements.spectrum.reveal_ender_treasure.description"
+      "translate": "advancements.spectrum.get_ender_treasure.description"
     },
     "hidden": true
   },

@@ -10,7 +10,7 @@
     },
     "collected_ender_treasure": {
       "trigger":"spectrum:has_advancement",
-      "conditions": { "advancement_identifier": "spectrum:reveal_ender_treasure" }
+      "conditions": { "advancement_identifier": "spectrum:get_ender_treasure" }
     }
   }
 }

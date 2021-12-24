@@ -66,9 +66,15 @@
     ]
   },
   "spectrum_theme": {
-    "subtitle": "spectrum.subtitles.theme_plays",
+    "subtitle": "spectrum.subtitles.spectrum_theme_plays",
     "sounds": [
       "spectrum:spectrum_theme"
+    ]
+  },
+  "boss_theme": {
+    "subtitle": "spectrum.subtitles.boss_theme_plays",
+    "sounds": [
+      "spectrum:radiarc_irrelevance_fading"
     ]
   },
   "dimension_ambient": {

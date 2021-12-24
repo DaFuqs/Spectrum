@@ -28,6 +28,7 @@ public class SpectrumSoundEvents {
 	public static SoundEvent NEW_REVELATION = register("new_revelation");
 	public static final SoundEvent NEW_RECIPE = register("new_recipe");
 	public static SoundEvent SPECTRUM_THEME = register("spectrum_theme");
+	public static SoundEvent BOSS_THEME = register("boss_theme");
 	public static SoundEvent DIMENSION_SOUNDS = register("dimension_sounds");
 	public static SoundEvent ITEM_ARMOR_EQUIP_GLOW_VISION = register("armor_equip_glow_vision");
 	public static SoundEvent PLAYER_TELEPORTS = register("player_teleports");

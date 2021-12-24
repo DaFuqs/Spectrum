@@ -191,6 +191,7 @@ public class SpectrumItems {
 
 	// Misc
 	public static final Item MUSIC_DISC_SPECTRUM_THEME = new SpectrumMusicDiscItem(1, SpectrumSoundEvents.SPECTRUM_THEME, generalRareItemSettingsSingle);
+	public static final Item MUSIC_DISC_DIMENSION_THEME = new SpectrumMusicDiscItem(2, SpectrumSoundEvents.BOSS_THEME, generalRareItemSettingsSingle);
 	public static final Item SPAWNER = new SpawnerItem(Blocks.SPAWNER, generalRareItemSettingsSingle);
 	public static final Item GLISTERING_MELON_SEEDS = new AliasedBlockItem(SpectrumBlocks.GLISTERING_MELON_STEM, generalItemSettings);
 	public static final Item INVISIBLE_ITEM_FRAME = new InvisibleItemFrameItem(SpectrumEntityTypes.INVISIBLE_ITEM_FRAME, generalItemSettings);
@@ -225,6 +226,7 @@ public class SpectrumItems {
 		register("crafting_tablet", CRAFTING_TABLET);
 		register("void_bundle", VOID_BUNDLE);
 		register("music_disc_spectrum_theme", MUSIC_DISC_SPECTRUM_THEME);
+		register("music_disc_dimension_theme", MUSIC_DISC_DIMENSION_THEME);
 		register("spawner", SPAWNER);
 		register("glistering_melon_seeds", GLISTERING_MELON_SEEDS);
 		register("invisible_item_frame", INVISIBLE_ITEM_FRAME);

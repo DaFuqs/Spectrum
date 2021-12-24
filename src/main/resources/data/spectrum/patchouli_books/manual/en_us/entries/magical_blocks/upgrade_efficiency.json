@@ -4,8 +4,8 @@
   "icon": "spectrum:upgrade_efficiency",
   "category": "spectrum:magical_blocks_category",
   "extra_recipe_mappings": {
-    "spectrum:upgrade_efficiency": 1,
-    "spectrum:upgrade_efficiency2": 2
+    "spectrum:upgrade_efficiency": 0,
+    "spectrum:upgrade_efficiency2": 0
   },
   "pages": [
     {

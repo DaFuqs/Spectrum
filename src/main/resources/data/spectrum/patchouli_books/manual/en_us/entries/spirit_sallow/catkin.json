@@ -9,11 +9,11 @@
     "spectrum:vibrant_yellow_catkin": 0,
     "spectrum:vibrant_black_catkin": 0,
     "spectrum:vibrant_white_catkin": 0,
-    "spectrum:lucid_cyan_catkin": 1,
-    "spectrum:lucid_magenta_catkin": 1,
-    "spectrum:lucid_yellow_catkin": 1,
-    "spectrum:lucid_black_catkin": 1,
-    "spectrum:lucid_white_catkin": 1
+    "spectrum:lucid_cyan_catkin": 0,
+    "spectrum:lucid_magenta_catkin": 0,
+    "spectrum:lucid_yellow_catkin": 0,
+    "spectrum:lucid_black_catkin": 0,
+    "spectrum:lucid_white_catkin": 0
   },
   "pages": [
     {

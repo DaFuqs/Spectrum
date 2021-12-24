@@ -4,7 +4,7 @@
   "icon": "spectrum:exchange_staff",
   "category": "spectrum:magical_items_category",
   "extra_recipe_mappings": {
-    "spectrum:exchange_staff": 1
+    "spectrum:exchange_staff": 0
   },
   "pages": [
     {

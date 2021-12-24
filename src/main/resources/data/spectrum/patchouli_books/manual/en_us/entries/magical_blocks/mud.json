@@ -4,7 +4,7 @@
     "icon": "spectrum:mud_bucket",
     "category": "spectrum:magical_blocks_category",
     "extra_recipe_mappings": {
-        "spectrum:mud_bucket": 1
+        "spectrum:mud_bucket": 0
     },
     "pages": [
         {

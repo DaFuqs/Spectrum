@@ -4,7 +4,7 @@
   "icon": "spectrum:ender_bag",
   "category": "spectrum:magical_blocks_category",
   "extra_recipe_mappings": {
-    "spectrum:ender_bag": 1
+    "spectrum:ender_bag": 0
   },
   "pages": [
     {

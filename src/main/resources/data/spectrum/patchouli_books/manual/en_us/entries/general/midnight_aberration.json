@@ -5,7 +5,7 @@
   "advancement": "spectrum:midgame/collect_neolith",
   "category": "spectrum:general_category",
   "extra_recipe_mappings": {
-    "spectrum:midnight_aberration": 1
+    "spectrum:midnight_aberration": 0
   },
   "pages": [
     {

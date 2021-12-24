@@ -4,7 +4,7 @@
   "icon": "spectrum:block_placer",
   "category": "spectrum:redstone_category",
   "extra_recipe_mappings": {
-    "spectrum:block_placer": 1
+    "spectrum:block_placer": 0
   },
   "pages": [
     {

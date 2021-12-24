@@ -4,8 +4,8 @@
     "advancement": "spectrum:collect_quitoxic_reeds",
     "category": "spectrum:resources_category",
     "extra_recipe_mappings": {
-        "spectrum:quitoxic_reeds": 1,
-        "spectrum:quitoxic_powder": 1
+        "spectrum:quitoxic_reeds": 0,
+        "spectrum:quitoxic_powder": 0
     },
     "pages": [
         {

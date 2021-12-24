@@ -5,7 +5,7 @@
   "category": "spectrum:magical_items_category",
   "extra_recipe_mappings": {
     "spectrum:end_portal_cracker": 0,
-    "spectrum:cracked_end_portal_frame": 3
+    "spectrum:cracked_end_portal_frame": 0
   },
   "pages": [
     {

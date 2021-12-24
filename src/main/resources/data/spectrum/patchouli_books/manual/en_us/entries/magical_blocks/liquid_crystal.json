@@ -4,10 +4,10 @@
     "icon": "spectrum:liquid_crystal_bucket",
     "category": "spectrum:magical_blocks_category",
     "extra_recipe_mappings": {
-        "spectrum:liquid_crystal_bucket": 1,
-        "spectrum:blazing_crystal": 3,
-        "spectrum:frostbite_crystal": 4,
-        "spectrum:resonant_lily": 5
+        "spectrum:liquid_crystal_bucket": 0,
+        "spectrum:blazing_crystal": 0,
+        "spectrum:frostbite_crystal": 0,
+        "spectrum:resonant_lily": 0
     },
     "pages": [
         {

@@ -4,7 +4,7 @@
   "icon": "spectrum:ender_glass",
   "category": "spectrum:redstone_category",
   "extra_recipe_mappings": {
-    "spectrum:ender_glass": 3
+    "spectrum:ender_glass": 0
   },
   "pages": [
     {

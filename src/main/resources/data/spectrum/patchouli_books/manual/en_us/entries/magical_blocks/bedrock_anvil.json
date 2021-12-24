@@ -4,7 +4,7 @@
   "icon": "spectrum:bedrock_anvil",
   "category": "spectrum:magical_blocks_category",
   "extra_recipe_mappings": {
-    "spectrum:bedrock_anvil": 1
+    "spectrum:bedrock_anvil": 0
   },
   "pages": [
     {

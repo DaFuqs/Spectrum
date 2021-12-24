@@ -4,8 +4,8 @@
   "advancement": "spectrum:progression/unlock_bottle_of_fading",
   "category": "spectrum:creating_life_category",
   "extra_recipe_mappings": {
-    "spectrum:bottle_of_fading": 1,
-    "spectrum:vegetal": 2
+    "spectrum:bottle_of_fading": 0,
+    "spectrum:vegetal": 0
   },
   "pages": [
     {

@@ -3,24 +3,24 @@
     "icon": "spectrum:sparklestone_ore",
     "category": "spectrum:resources_category",
     "extra_recipe_mappings": {
-        "spectrum:sparklestone_ore": 1,
-        "spectrum:deepslate_sparklestone_ore": 1,
-        "spectrum:sparklestone_gem": 1,
-        "spectrum:sparklestone_block": 2,
+        "spectrum:sparklestone_ore": 0,
+        "spectrum:deepslate_sparklestone_ore": 0,
+        "spectrum:sparklestone_gem": 0,
+        "spectrum:sparklestone_block": 0,
 
-        "spectrum:scarlet_ore": 3,
-        "spectrum:scarlet_fragments": 3,
-        "spectrum:scarlet_gem": 3,
+        "spectrum:scarlet_ore": 0,
+        "spectrum:scarlet_fragments": 0,
+        "spectrum:scarlet_gem": 0,
 
-        "spectrum:paletur_ore": 4,
-        "spectrum:paletur_fragments": 4,
-        "spectrum:paletur_gem": 4,
+        "spectrum:paletur_ore": 0,
+        "spectrum:paletur_fragments": 0,
+        "spectrum:paletur_gem": 0,
 
-        "spectrum:azurite_ore": 5,
-        "spectrum:deepslate_azurite_ore": 5,
-        "spectrum:raw_azurite": 5,
-        "spectrum:refined_azurite": 5,
-        "spectrum:azurite_block": 5
+        "spectrum:azurite_ore": 0,
+        "spectrum:deepslate_azurite_ore": 0,
+        "spectrum:raw_azurite": 0,
+        "spectrum:refined_azurite": 0,
+        "spectrum:azurite_block": 0
     },
     "pages": [
         {

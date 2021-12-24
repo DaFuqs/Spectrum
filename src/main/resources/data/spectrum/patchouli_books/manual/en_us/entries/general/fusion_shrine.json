@@ -6,7 +6,7 @@
   "category": "spectrum:general_category",
   "extra_recipe_mappings": {
     "spectrum:fusion_shrine_basalt": 1,
-    "spectrum:fusion_shrine_calcite": 1
+    "spectrum:fusion_shrine_calcite": 0
   },
   "pages": [
     {

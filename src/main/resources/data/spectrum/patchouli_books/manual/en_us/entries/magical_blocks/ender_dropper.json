@@ -4,7 +4,7 @@
   "icon": "spectrum:ender_dropper",
   "category": "spectrum:magical_blocks_category",
   "extra_recipe_mappings": {
-    "spectrum:ender_dropper": 1
+    "spectrum:ender_dropper": 0
   },
   "pages": [
     {

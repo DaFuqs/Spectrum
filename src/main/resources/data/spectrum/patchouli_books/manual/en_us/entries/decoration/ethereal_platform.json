@@ -4,7 +4,7 @@
   "icon": "spectrum:ethereal_platform",
   "category": "spectrum:decoration_category",
   "extra_recipe_mappings": {
-    "spectrum:ethereal_platform": 1
+    "spectrum:ethereal_platform": 0
   },
   "pages": [
     {

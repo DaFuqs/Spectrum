@@ -4,7 +4,7 @@
   "icon": "spectrum:block_flooder",
   "category": "spectrum:magical_items_category",
   "extra_recipe_mappings": {
-    "spectrum:block_flooder": 1
+    "spectrum:block_flooder": 0
   },
   "pages": [
     {

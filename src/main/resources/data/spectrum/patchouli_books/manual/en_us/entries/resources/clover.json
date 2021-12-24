@@ -5,7 +5,7 @@
   "category": "spectrum:resources_category",
   "extra_recipe_mappings": {
     "spectrum:clover": 0,
-    "spectrum:four_leaf_clover": 1
+    "spectrum:four_leaf_clover": 0
   },
   "pages": [
     {

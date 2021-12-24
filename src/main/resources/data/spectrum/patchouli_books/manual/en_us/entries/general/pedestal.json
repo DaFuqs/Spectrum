@@ -5,8 +5,8 @@
   "sortnum": 2,
   "extra_recipe_mappings": {
     "spectrum:pedestal_basic_amethyst": 0,
-    "spectrum:pedestal_basic_topaz": 3,
-    "spectrum:pedestal_basic_citrine": 3
+    "spectrum:pedestal_basic_topaz": 0,
+    "spectrum:pedestal_basic_citrine": 0
   },
   "pages": [
     {

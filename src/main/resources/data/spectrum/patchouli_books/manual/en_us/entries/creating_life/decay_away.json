@@ -4,7 +4,7 @@
   "advancement": "spectrum:progression/unlock_bottle_of_decay_away",
   "category": "spectrum:creating_life_category",
   "extra_recipe_mappings": {
-    "spectrum:bottle_of_decay_away": 1
+    "spectrum:bottle_of_decay_away": 0
   },
   "pages": [
     {

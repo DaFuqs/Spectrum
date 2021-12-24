@@ -4,7 +4,7 @@
   "icon": "spectrum:knowledge_gem{stored_experience:500}",
   "category": "spectrum:magical_items_category",
   "extra_recipe_mappings": {
-    "spectrum:knowledge_gem": 1
+    "spectrum:knowledge_gem": 0
   },
   "pages": [
     {

@@ -4,7 +4,7 @@
   "icon": "spectrum:player_detector",
   "category": "spectrum:redstone_category",
   "extra_recipe_mappings": {
-    "spectrum:light_level_detector": 1
+    "spectrum:light_level_detector": 0
   },
   "pages": [
     {

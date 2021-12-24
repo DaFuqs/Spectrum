@@ -4,12 +4,12 @@
   "sortnum": 1,
   "category": "spectrum:general_category",
   "extra_recipe_mappings": {
-    "spectrum:topaz_shard": 1,
-    "minecraft:amethyst_shard": 2,
-    "spectrum:citrine_shard": 3,
-    "spectrum:onyx_shard": 4,
-    "spectrum:moonstone_shard": 5,
-    "spectrum:spectral_shard": 6
+    "spectrum:topaz_shard": 0,
+    "minecraft:amethyst_shard": 0,
+    "spectrum:citrine_shard": 0,
+    "spectrum:onyx_shard": 0,
+    "spectrum:moonstone_shard": 0,
+    "spectrum:spectral_shard": 0
   },
   "pages": [
     {

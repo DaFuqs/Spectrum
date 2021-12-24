@@ -4,10 +4,10 @@
   "icon": "spectrum:bedrock_chestplate",
   "category": "spectrum:magical_items_category",
   "extra_recipe_mappings": {
-    "spectrum:bedrock_helmet": 1,
-    "spectrum:bedrock_chestplate": 2,
-    "spectrum:bedrock_leggings": 3,
-    "spectrum:bedrock_boots": 4
+    "spectrum:bedrock_helmet": 0,
+    "spectrum:bedrock_chestplate": 0,
+    "spectrum:bedrock_leggings": 0,
+    "spectrum:bedrock_boots": 0
   },
   "pages": [
     {

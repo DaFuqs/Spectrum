@@ -4,7 +4,7 @@
   "icon": "spectrum:restocking_chest",
   "category": "spectrum:magical_blocks_category",
   "extra_recipe_mappings": {
-    "spectrum:restocking_chest": 1
+    "spectrum:restocking_chest": 0
   },
   "pages": [
     {

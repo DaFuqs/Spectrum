@@ -3,7 +3,7 @@
     "icon": "minecraft:ender_pearl",
     "category": "spectrum:resources_category",
     "extra_recipe_mappings": {
-        "spectrum:ender_treasure": 1
+        "spectrum:ender_treasure": 0
     },
     "pages": [
         {

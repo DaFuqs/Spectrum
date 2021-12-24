@@ -4,10 +4,10 @@
   "icon": "spectrum:emergency_chestplate",
   "category": "spectrum:magical_items_category",
   "extra_recipe_mappings": {
-    "spectrum:emergency_helmet": 1,
-    "spectrum:emergency_chestplate": 2,
-    "spectrum:emergency_leggings": 3,
-    "spectrum:emergency_boots": 4
+    "spectrum:emergency_helmet": 0,
+    "spectrum:emergency_chestplate": 0,
+    "spectrum:emergency_leggings": 0,
+    "spectrum:emergency_boots": 0
   },
   "pages": [
     {

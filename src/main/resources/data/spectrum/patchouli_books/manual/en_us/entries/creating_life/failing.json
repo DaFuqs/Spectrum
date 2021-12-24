@@ -4,8 +4,8 @@
   "advancement": "spectrum:progression/unlock_bottle_of_failing",
   "category": "spectrum:creating_life_category",
   "extra_recipe_mappings": {
-    "spectrum:bottle_of_failing": 1,
-    "spectrum:neolith": 2
+    "spectrum:bottle_of_failing": 0,
+    "spectrum:neolith": 0
   },
   "pages": [
     {

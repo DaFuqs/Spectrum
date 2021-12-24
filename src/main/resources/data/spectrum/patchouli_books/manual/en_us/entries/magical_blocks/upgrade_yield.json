@@ -4,8 +4,8 @@
   "icon": "spectrum:upgrade_yield",
   "category": "spectrum:magical_blocks_category",
   "extra_recipe_mappings": {
-    "spectrum:upgrade_yield": 1,
-    "spectrum:upgrade_yield2": 2
+    "spectrum:upgrade_yield": 0,
+    "spectrum:upgrade_yield2": 0
   },
   "pages": [
     {

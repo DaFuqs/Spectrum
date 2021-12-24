@@ -4,8 +4,8 @@
     "advancement": "spectrum:collect_mermaids_gem",
     "category": "spectrum:resources_category",
     "extra_recipe_mappings": {
-        "spectrum:mermaids_gem": 1,
-        "spectrum:mermaids_brush": 1
+        "spectrum:mermaids_gem": 0,
+        "spectrum:mermaids_brush": 0
     },
     "pages": [
         {

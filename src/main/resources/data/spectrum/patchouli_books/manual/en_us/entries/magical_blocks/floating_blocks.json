@@ -4,8 +4,8 @@
   "icon": "spectrum:scarlet_fragment_block",
   "category": "spectrum:magical_blocks_category",
   "extra_recipe_mappings": {
-    "spectrum:scarlet_fragment_block": 1,
-    "spectrum:paletur_fragment_block": 3
+    "spectrum:scarlet_fragment_block": 0,
+    "spectrum:paletur_fragment_block": 0
   },
   "pages": [
     {

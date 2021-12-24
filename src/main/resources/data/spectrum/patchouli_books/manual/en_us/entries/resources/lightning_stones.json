@@ -4,7 +4,7 @@
   "icon": "spectrum:lightning_stone",
   "category": "spectrum:resources_category",
   "extra_recipe_mappings": {
-    "spectrum:lightning_stone": 1
+    "spectrum:lightning_stone": 0
   },
   "pages": [
     {

@@ -4,11 +4,11 @@
   "icon": "spectrum:citrine_storage_block",
   "category": "spectrum:decoration_category",
   "extra_recipe_mappings": {
-    "spectrum:topaz_storage_block": 1,
-    "spectrum:amethyst_storage_block": 2,
-    "spectrum:citrine_storage_block": 3,
-    "spectrum:onyx_storage_block": 4,
-    "spectrum:moonstone_storage_block": 5
+    "spectrum:topaz_storage_block": 0,
+    "spectrum:amethyst_storage_block": 0,
+    "spectrum:citrine_storage_block": 0,
+    "spectrum:onyx_storage_block": 0,
+    "spectrum:moonstone_storage_block": 0
   },
   "pages": [
     {

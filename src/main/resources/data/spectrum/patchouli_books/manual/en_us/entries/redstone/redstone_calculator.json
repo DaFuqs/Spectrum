@@ -4,7 +4,7 @@
   "icon": "spectrum:redstone_calculator",
   "category": "spectrum:redstone_category",
   "extra_recipe_mappings": {
-    "spectrum:redstone_calculator": 1
+    "spectrum:redstone_calculator": 0
   },
   "pages": [
     {

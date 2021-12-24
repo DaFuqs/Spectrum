@@ -5,9 +5,9 @@
   "icon": "spectrum:spectral_shard",
   "category": "spectrum:general_category",
   "extra_recipe_mappings": {
-    "spectrum:spectral_shard": 1,
-    "spectrum:spectral_shard_block": 2,
-    "spectrum:spectral_shard_storage_block": 2
+    "spectrum:spectral_shard": 0,
+    "spectrum:spectral_shard_block": 0,
+    "spectrum:spectral_shard_storage_block": 0
   },
   "pages": [
     {

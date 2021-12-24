@@ -5,7 +5,7 @@
   "category": "spectrum:decoration_category",
   "extra_recipe_mappings": {
     "spectrum:invisible_item_frame": 0,
-    "spectrum:invisible_glow_item_frame": 1
+    "spectrum:invisible_glow_item_frame": 0
   },
   "pages": [
     {

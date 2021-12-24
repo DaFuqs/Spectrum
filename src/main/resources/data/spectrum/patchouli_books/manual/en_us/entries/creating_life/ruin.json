@@ -4,8 +4,8 @@
   "advancement": "spectrum:progression/unlock_bottle_of_ruin",
   "category": "spectrum:creating_life_category",
   "extra_recipe_mappings": {
-    "spectrum:bottle_of_ruin": 1,
-    "spectrum:bedrock_dust": 2
+    "spectrum:bottle_of_ruin": 0,
+    "spectrum:bedrock_dust": 0
   },
   "pages": [
     {

@@ -4,11 +4,11 @@
   "icon": "spectrum:fortune_pickaxe",
   "category": "spectrum:magical_items_category",
   "extra_recipe_mappings": {
-    "spectrum:silker_pickaxe": 2,
-    "spectrum:fortune_pickaxe": 3,
-    "spectrum:looting_falchion": 4,
-    "spectrum:voiding_pickaxe": 5,
-    "spectrum:resonant_pickaxe": 6
+    "spectrum:silker_pickaxe": 0,
+    "spectrum:fortune_pickaxe": 0,
+    "spectrum:looting_falchion": 0,
+    "spectrum:voiding_pickaxe": 0,
+    "spectrum:resonant_pickaxe": 0
   },
   "pages": [
     {

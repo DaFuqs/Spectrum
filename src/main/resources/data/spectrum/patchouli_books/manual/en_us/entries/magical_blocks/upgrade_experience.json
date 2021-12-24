@@ -4,8 +4,8 @@
   "icon": "spectrum:upgrade_experience",
   "category": "spectrum:magical_blocks_category",
   "extra_recipe_mappings": {
-    "spectrum:upgrade_experience": 1,
-    "spectrum:upgrade_experience2": 2
+    "spectrum:upgrade_experience": 0,
+    "spectrum:upgrade_experience2": 0
   },
   "pages": [
     {

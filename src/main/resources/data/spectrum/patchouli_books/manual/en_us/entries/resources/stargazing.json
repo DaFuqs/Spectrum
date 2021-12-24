@@ -4,7 +4,7 @@
     "icon": "minecraft:spyglass",
     "category": "spectrum:resources_category",
     "extra_recipe_mappings": {
-        "spectrum:shooting_star": 1
+        "spectrum:shooting_star": 0
     },
     "pages": [
         {

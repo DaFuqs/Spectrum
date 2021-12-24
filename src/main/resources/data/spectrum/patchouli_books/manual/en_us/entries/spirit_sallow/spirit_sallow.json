@@ -6,10 +6,10 @@
   "priority": true,
   "extra_recipe_mappings": {
     "spectrum:ominous_sapling": 0,
-    "spectrum:spirit_sallow_roots": 1,
-    "spectrum:spirit_sallow_log": 1,
-    "spectrum:spirit_sallow_leaves": 1,
-    "spectrum:spirit_sallow_heart": 1
+    "spectrum:spirit_sallow_roots": 0,
+    "spectrum:spirit_sallow_log": 0,
+    "spectrum:spirit_sallow_leaves": 0,
+    "spectrum:spirit_sallow_heart": 0
   },
   "pages": [
     {

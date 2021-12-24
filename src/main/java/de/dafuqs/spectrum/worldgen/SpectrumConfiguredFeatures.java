@@ -93,10 +93,10 @@ public class SpectrumConfiguredFeatures {
 		
 		registerConfiguredAndPlacedFeature(
 			sparklestoneOreIdentifier,
-			Feature.ORE.configure(new OreFeatureConfig(SPARKLESTONE_ORE_TARGETS, 17)),
+			Feature.ORE.configure(new OreFeatureConfig(SPARKLESTONE_ORE_TARGETS, 11)),
 				List.of(
 				HeightRangePlacementModifier.uniform(YOffset.aboveBottom(48), YOffset.belowTop(48)), // min and max height
-				CountPlacementModifier.of(4) // number of veins per chunk
+				CountPlacementModifier.of(6) // number of veins per chunk
 		));
 		
 		registerConfiguredAndPlacedFeature(

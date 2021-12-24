@@ -1,0 +1,20 @@
+{
+  "name": "Enchanting Mastery",
+  "icon": "minecraft:enchanted_book",
+  "priority": true,
+  "sortnum": 5,
+  "advancement": "spectrum:milestones/unlock_conflicted_enchanting_with_enchanter",
+  "category": "spectrum:enchanting_category",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "title": "Enchanting Mastery",
+      "item": "minecraft:diamond_chestplate{Enchantments: [{id: \"minecraft:protection\", lvl: 3s}, {id: \"minecraft:blast_protection\", lvl: 3s}, {id: \"minecraft:projectile_protection\", lvl: 3s}, {id: \"minecraft:fire_protection\", lvl: 3s}]}",
+      "text": "$(italic)The problems you used to have with enchanting your items with multiple, conflicting enchantments are behind you.$(br)As a master of magic, nothing is left to your desires."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "You are now able to use the enchanter to apply enchantments to your equipment that are normally mutually exclusive.$(br2)Be aware:$(br)$(italic)Such actions will require a lot of experience$()."
+    }
+  ]
+}

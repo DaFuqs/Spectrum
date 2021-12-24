@@ -372,7 +372,7 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 		if (enchanterBlockEntity.currentRecipe instanceof EnchanterRecipe enchanterRecipe) {
 			playerCanCraft = Support.hasAdvancement(lastInteractedPlayer, enchanterRecipe.getRequiredAdvancementIdentifier());
 		} else if (enchanterBlockEntity.currentRecipe instanceof EnchantmentUpgradeRecipe enchantmentUpgradeRecipe) {
-			playerCanCraft = Support.hasAdvancement(lastInteractedPlayer, enchantmentUpgradeRecipe.getRequiredAdvancementIdentifier()) && (enchanterBlockEntity.canOwnerOverenchant || enchantmentUpgradeRecipe.requiresUnlockedOverEnchanting());
+			playerCanCraft = Support.hasAdvancement(lastInteractedPlayer, enchantmentUpgradeRecipe.getRequiredAdvancementIdentifier()) && (enchanterBlockEntity.canOwnerOverenchant || !enchantmentUpgradeRecipe.requiresUnlockedOverEnchanting());
 		}
 		boolean structureComplete = EnchanterBlock.verifyStructure(world, blockPos, null);
 		
@@ -641,11 +641,13 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 				}
 			}
 		} else {
-			enchanterBlockEntity.currentRecipe = enchantmentUpgradeRecipe;
-			enchanterBlockEntity.currentItemProcessingTime = -1;
-			enchanterBlockEntity.virtualInventoryRecipeOrientation = previousOrientation;
-			enchanterBlockEntity.virtualInventoryIncludingBowlStacks = recipeTestInventory;
-			enchanterBlockEntity.craftingTimeTotal = enchantmentUpgradeRecipe.getRequiredItemCount();
+			if(enchanterBlockEntity.canOwnerOverenchant || !enchantmentUpgradeRecipe.requiresUnlockedOverEnchanting()) {
+				enchanterBlockEntity.currentRecipe = enchantmentUpgradeRecipe;
+				enchanterBlockEntity.currentItemProcessingTime = 0;
+				enchanterBlockEntity.virtualInventoryRecipeOrientation = previousOrientation;
+				enchanterBlockEntity.virtualInventoryIncludingBowlStacks = recipeTestInventory;
+				enchanterBlockEntity.craftingTimeTotal = enchantmentUpgradeRecipe.getRequiredItemCount();
+			}
 		}
 		
 		if (enchanterBlockEntity.currentRecipe != previousRecipe) {

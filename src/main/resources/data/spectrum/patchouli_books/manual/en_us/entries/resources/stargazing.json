@@ -1,6 +1,6 @@
 {
     "name": "Stargazing",
-    "advancement": "spectrum:craft_something_brown",
+    "advancement": "spectrum:milestones/unlock_shooting_stars",
     "icon": "minecraft:spyglass",
     "category": "spectrum:resources_category",
     "extra_recipe_mappings": {
@@ -12,7 +12,7 @@
             "title": "Wishing upon a Star",
             "images": [ "spectrum:textures/gui/manual/stargazing.png" ],
             "border": true,
-            "text": "The calmness of the night invites you to lie down in the grass and watch the stars."
+            "text": "$(italic)The calmness of the night invites you to lie down in the grass and watch the stars."
         },
         {
             "type": "patchouli:spotlight",

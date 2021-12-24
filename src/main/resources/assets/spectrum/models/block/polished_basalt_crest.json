@@ -1,6 +1,7 @@
 {
-    "parent": "minecraft:block/cube_all",
+    "parent": "minecraft:block/cube_column",
     "textures": {
-    "all": "spectrum:block/polished_basalt_crest"
+        "end": "spectrum:block/polished_basalt",
+        "side": "spectrum:block/polished_basalt_crest_side"
     }
 }

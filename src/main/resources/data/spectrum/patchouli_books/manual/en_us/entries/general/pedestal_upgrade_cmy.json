@@ -21,7 +21,7 @@
     {
       "type": "patchouli:multiblock",
       "name": "Spectrum Focus",
-      "multiblock_id": "spectrum:pedestal_simple_structure",
+      "multiblock_id": "spectrum:pedestal_simple_structure_check",
       "enable_visualize": true,
       "text": "You can switch the basalt blocks with calcite and choose the gemstone blocks as you like it best."
     },

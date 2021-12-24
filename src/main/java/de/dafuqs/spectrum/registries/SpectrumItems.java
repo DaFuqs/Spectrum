@@ -62,9 +62,9 @@ public class SpectrumItems {
 	public static final Item MANUAL = new ManualItem(generalItemSettingsSingle);
 	public static final Item CRAFTING_TABLET = new CraftingTabletItem(generalItemSettingsSingle);
 
-	public static final Item PEDESTAL_TIER_1_STRUCTURE_PLACER = new StructurePlacerItem(generalItemSettingsSingle, new Identifier(SpectrumCommon.MOD_ID, "pedestal_simple_structure"));
-	public static final Item PEDESTAL_TIER_2_STRUCTURE_PLACER = new StructurePlacerItem(generalItemSettingsSingle, new Identifier(SpectrumCommon.MOD_ID, "pedestal_advanced_structure_display"));
-	public static final Item PEDESTAL_TIER_3_STRUCTURE_PLACER = new StructurePlacerItem(generalItemSettingsSingle, new Identifier(SpectrumCommon.MOD_ID, "pedestal_complex_structure_display"));
+	public static final Item PEDESTAL_TIER_1_STRUCTURE_PLACER = new StructurePlacerItem(generalItemSettingsSingle, new Identifier(SpectrumCommon.MOD_ID, "pedestal_simple_structure_place"));
+	public static final Item PEDESTAL_TIER_2_STRUCTURE_PLACER = new StructurePlacerItem(generalItemSettingsSingle, new Identifier(SpectrumCommon.MOD_ID, "pedestal_advanced_structure_place"));
+	public static final Item PEDESTAL_TIER_3_STRUCTURE_PLACER = new StructurePlacerItem(generalItemSettingsSingle, new Identifier(SpectrumCommon.MOD_ID, "pedestal_complex_structure_place"));
 	public static final Item FUSION_SHRINE_STRUCTURE_PLACER = new StructurePlacerItem(generalItemSettingsSingle, new Identifier(SpectrumCommon.MOD_ID, "fusion_shrine_structure"));
 	public static final Item ENCHANTER_STRUCTURE_PLACER = new StructurePlacerItem(generalItemSettingsSingle, new Identifier(SpectrumCommon.MOD_ID, "enchanter_structure"));
 

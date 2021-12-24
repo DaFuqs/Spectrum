@@ -630,9 +630,9 @@
   "block.spectrum.deepslate_onyx_ore": "Deepslate Onyx Ore",
   "block.spectrum.deepslate_moonstone_ore": "Deepslate Moonstone Ore",
 
-  "block.spectrum.tuff_slab": "Tuff Slab",
-  "block.spectrum.tuff_wall": "Tuff Wall",
-  "block.spectrum.tuff_stairs": "Tuff Stairs",
+  "block.spectrum.smooth_basalt_slab": "Smooth Basalt Slab",
+  "block.spectrum.smooth_basalt_wall": "Smooth Basalt Wall",
+  "block.spectrum.smooth_basalt_stairs": "smooth_basalt Stairs",
   "block.spectrum.polished_basalt": "Polished Basalt",
   "block.spectrum.polished_basalt_pillar": "Polished Basalt Pillar",
   "block.spectrum.polished_basalt_crest": "Polished Basalt Crest",

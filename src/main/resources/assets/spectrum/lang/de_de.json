@@ -614,9 +614,9 @@
     "block.spectrum.deepslate_onyx_ore": "Tiefenschiefer Onyx Erz",
     "block.spectrum.deepslate_moonstone_ore": "Tiefenschiefer Mondstein Erz",
 
-    "block.spectrum.tuff_slab": "Tuffstein Stufe",
-    "block.spectrum.tuff_wall": "Tuffstein Mauer",
-    "block.spectrum.tuff_stairs": "Tuffstein Treppen",
+    "block.spectrum.smooth_basalt_slab": "smooth_basaltstein Stufe",
+    "block.spectrum.smooth_basalt_wall": "smooth_basaltstein Mauer",
+    "block.spectrum.smooth_basalt_stairs": "smooth_basaltstein Treppen",
     "block.spectrum.polished_basalt": "Polierter Basalt",
     "block.spectrum.polished_basalt_pillar": "Polierte Basalt Säule",
     "block.spectrum.chiseled_polished_basalt": "Gemeißelter Polierter Basalt",

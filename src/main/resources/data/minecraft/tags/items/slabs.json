@@ -1,7 +1,7 @@
 {
   "replace": false,
   "values": [
-		"spectrum:tuff_slab",
+		"spectrum:smooth_basalt_slab",
 		"spectrum:polished_basalt_slab",
 		"spectrum:basalt_brick_slab",
 		"spectrum:calcite_slab",

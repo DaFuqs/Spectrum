@@ -6,7 +6,7 @@
     "entries": [
     {
         "type": "minecraft:item",
-        "name": "spectrum:tuff_stairs"
+        "name": "spectrum:smooth_basalt_wall"
     }
     ],
     "conditions": [

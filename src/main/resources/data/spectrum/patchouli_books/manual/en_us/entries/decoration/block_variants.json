@@ -18,18 +18,20 @@
     "spectrum:chiseled_polished_calcite": 0,
     "spectrum:polished_basalt_wall": 0,
     "spectrum:polished_calcite_wall": 0,
-    "spectrum:polished_basalt_bricks": 0,
-    "spectrum:polished_calcite_bricks": 0,
-    "spectrum:polished_basalt_brick_slab": 0,
-    "spectrum:polished_calcite_brick_slab": 0,
-    "spectrum:polished_basalt_brick_stairs": 0,
-    "spectrum:polished_calcite_brick_stairs": 0,
-    "spectrum:basalt_slab": 0,
+    "spectrum:basalt_bricks": 0,
+    "spectrum:calcite_bricks": 0,
+    "spectrum:basalt_brick_slab": 0,
+    "spectrum:calcite_brick_slab": 0,
+    "spectrum:basalt_brick_stairs": 0,
+    "spectrum:calcite_brick_stairs": 0,
+    "spectrum:basalt_brick_wall": 0,
+    "spectrum:calcite_brick_wall": 0,
+    "spectrum:smooth_basalt_slab": 0,
     "spectrum:calcite_slab": 0,
-    "spectrum:basalt_stairs": 0,
+    "spectrum:smooth_basalt_stairs": 0,
     "spectrum:calcite_stairs": 0,
-    "spectrum:tuff_slab": 0,
-    "spectrum:tuff_stairs": 0
+    "spectrum:smooth_basalt_wall": 0,
+    "spectrum:calcite_wall": 0
   },
   "pages": [
     {
@@ -76,12 +78,6 @@
       "recipe": "spectrum:smelting/basalt_brick_stairs_to_polished_basalt",
       "recipe2": "spectrum:smelting/chiseled_polished_calcite_to_polished_calcite",
       "text": "By applying heat, all blocks can be converted back to their polished versions again."
-    },
-    {
-      "type": "patchouli:spotlight",
-      "item": "spectrum:tuff_wall",
-      "title": "Tuff Blocks",
-      "text": "While you were searching for geodes underground, you also stumbled across tuff.$(br)After you've collected a whole bunch of it, it can't hurt to make some additional shapes out of this material, too."
     }
   ]
 }

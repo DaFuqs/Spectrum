@@ -7,11 +7,11 @@
     ],
     "key": {
         "W": {
-	        "item": "minecraft:tuff"
+	        "item": "minecraft:smooth_basalt"
         }
     },
     "result": {
-    "item": "spectrum:tuff_stairs",
+    "item": "spectrum:smooth_basalt_stairs",
     "count": 6
     }
 }

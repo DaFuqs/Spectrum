@@ -13,7 +13,7 @@
               "conditions": [
                 {
                   "condition": "minecraft:block_state_property",
-                  "block": "spectrum:tuff_slab",
+                  "block": "spectrum:smooth_basalt_slab",
                   "properties": {
                     "type": "double"
                   }
@@ -26,7 +26,7 @@
               "function": "minecraft:explosion_decay"
             }
           ],
-          "name": "spectrum:tuff_slab"
+          "name": "spectrum:smooth_basalt_slab"
         }
       ]
     }

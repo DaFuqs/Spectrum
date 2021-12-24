@@ -170,9 +170,9 @@ public class SpectrumBlocks {
 	public static final Block MOONSTONE_STORAGE_BLOCK = new Block(gemstoneStorageBlockSettings);
 	public static final Block SPECTRAL_SHARD_STORAGE_BLOCK = new Block(gemstoneStorageBlockSettings);
 
-	public static final Block TUFF_SLAB = new SlabBlock(FabricBlockSettings.copyOf(Blocks.TUFF));
-	public static final Block TUFF_WALL = new WallBlock(FabricBlockSettings.copyOf(Blocks.TUFF));
-	public static final Block TUFF_STAIRS = new SpectrumStairsBlock(Blocks.TUFF.getDefaultState(), FabricBlockSettings.copyOf(Blocks.TUFF));
+	public static final Block SMOOTH_BASALT_SLAB = new SlabBlock(FabricBlockSettings.copyOf(Blocks.TUFF));
+	public static final Block SMOOTH_BASALT_WALL = new WallBlock(FabricBlockSettings.copyOf(Blocks.TUFF));
+	public static final Block SMOOTH_BASALT_STAIRS = new SpectrumStairsBlock(Blocks.TUFF.getDefaultState(), FabricBlockSettings.copyOf(Blocks.TUFF));
 
 	public static final Block POLISHED_BASALT = new Block(FabricBlockSettings.of(Material.STONE).strength(2.0F, 5.0F));
 	public static final Block POLISHED_BASALT_PILLAR = new PillarBlock(FabricBlockSettings.copyOf(POLISHED_BASALT));
@@ -872,9 +872,9 @@ public class SpectrumBlocks {
 	}
 
 	private static void registerStoneBlocks(FabricItemSettings fabricItemSettings) {
-		registerBlockWithItem("tuff_slab", TUFF_SLAB, fabricItemSettings);
-		registerBlockWithItem("tuff_wall", TUFF_WALL, fabricItemSettings);
-		registerBlockWithItem("tuff_stairs", TUFF_STAIRS, fabricItemSettings);
+		registerBlockWithItem("smooth_basalt_slab", SMOOTH_BASALT_SLAB, fabricItemSettings);
+		registerBlockWithItem("smooth_basalt_wall", SMOOTH_BASALT_WALL, fabricItemSettings);
+		registerBlockWithItem("smooth_basalt_stairs", SMOOTH_BASALT_STAIRS, fabricItemSettings);
 
 		registerBlockWithItem("calcite_slab", CALCITE_SLAB, fabricItemSettings);
 		registerBlockWithItem("calcite_wall", CALCITE_WALL, fabricItemSettings);

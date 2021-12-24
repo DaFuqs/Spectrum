@@ -15,9 +15,12 @@ import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.Packet;
 import net.minecraft.network.packet.s2c.play.EntitySpawnS2CPacket;
@@ -70,10 +73,19 @@ public class ShootingStarEntity extends Entity {
 
 	public static void doShootingStarSpawns(@NotNull ServerWorld serverWorld) {
 		if(SpectrumCommon.CONFIG.ShootingStarWorlds.contains(serverWorld.getRegistryKey().getValue().toString())) {
-			if(serverWorld.getTimeOfDay() % 100 == 0 && serverWorld.getTimeOfDay() > 13000 && serverWorld.getTimeOfDay() < 22000) {
+			long timeOfDay = serverWorld.getTimeOfDay();
+			if(timeOfDay % 100 == 0 && timeOfDay > 13000 && timeOfDay < 22000) {
 				for (PlayerEntity playerEntity : serverWorld.getEntitiesByType(EntityType.PLAYER, Entity::isAlive)) {
-					if (Support.hasAdvancement(playerEntity, SpectrumItems.SHOOTING_STAR.getCloakAdvancementIdentifier()) && serverWorld.getRandom().nextFloat() < SpectrumCommon.CONFIG.ShootingStarChance) {
-						spawnShootingStar(serverWorld, playerEntity);
+					if (!playerEntity.isSpectator() && Support.hasAdvancement(playerEntity, SpectrumItems.SHOOTING_STAR.getCloakAdvancementIdentifier()) && serverWorld.getRandom().nextFloat() < getShootingStarChanceWithMultiplier(playerEntity)) {
+						// 1 % chance for each cycle to spawn a lot of shooting stars for the player
+						// making it an amazing display
+						if(serverWorld.getRandom().nextFloat() < 0.01) {
+							for(int i = 0; i < 10; i++) {
+								spawnShootingStar(serverWorld, playerEntity);
+							}
+						} else {
+							spawnShootingStar(serverWorld, playerEntity);
+						}
 					}
 				}
 			}
@@ -85,6 +97,22 @@ public class ShootingStarEntity extends Entity {
 		ShootingStarEntity shootingStarEntity = new ShootingStarEntity(serverWorld, playerEntity.getPos().getX(), playerEntity.getPos().getY() + 200, playerEntity.getPos().getZ(), itemStack);
 		shootingStarEntity.addVelocity(3 - shootingStarEntity.random.nextFloat() * 6, 0, 3 - shootingStarEntity.random.nextFloat() * 6);
 		serverWorld.spawnEntity(shootingStarEntity);
+	}
+	
+	// If the player explicitly searches for shooting stars give them a small boost :)
+	// That these things increase the visibility of shooting stars is explicitly stated
+	// in the manual, just not that these actually give a boost, too
+	public static float getShootingStarChanceWithMultiplier(PlayerEntity playerEntity) {
+		int multiplier = 1;
+		ItemStack handStack = playerEntity.getMainHandStack();
+		if(handStack != null && handStack.isOf(Items.SPYGLASS)) {
+			multiplier++;
+		}
+		StatusEffectInstance statusEffectInstance = playerEntity.getStatusEffect(StatusEffects.NIGHT_VISION);
+		if(statusEffectInstance != null && statusEffectInstance.getDuration() > 0) {
+			multiplier++;
+		}
+		return SpectrumCommon.CONFIG.ShootingStarChance * multiplier;
 	}
 
 	protected MoveEffect getMoveEffect() {

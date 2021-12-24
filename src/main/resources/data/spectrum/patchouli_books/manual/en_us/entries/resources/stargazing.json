@@ -19,7 +19,7 @@
             "advancement": "spectrum:collect_shooting_star",
             "title": "Shooting Stars",
             "item": "spectrum:shooting_star",
-            "text": "The small shooting stars are made of a material unknown to you thus far.$(br2)Can you catch one right off the sky?$(br2)$(italic)Tip: Stargazing is much easier when using a Telescope or Potions of Night Vision.$()"
+            "text": "The small shooting stars are made of a material unknown to you thus far.$(br2)Can you catch one right off the sky?$(br2)$(italic)Tip: Shooting Stars are much easier to spot when using a Telescope or Potions of Night Vision.$()"
         }
     ]
 }

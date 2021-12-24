@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    "# #",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "item": "spectrum:polished_basalt"
+    }
+  },
+  "result": {
+    "item": "spectrum:notched_polished_basalt",
+    "count": 4
+  }
+}

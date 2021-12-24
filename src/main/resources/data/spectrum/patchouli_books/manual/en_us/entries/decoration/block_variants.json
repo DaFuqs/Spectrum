@@ -16,6 +16,8 @@
     "spectrum:polished_calcite_crest": 0,
     "spectrum:chiseled_polished_basalt": 0,
     "spectrum:chiseled_polished_calcite": 0,
+    "spectrum:notched_polished_basalt": 0,
+    "spectrum:notched_polished_calcite": 0,
     "spectrum:polished_basalt_wall": 0,
     "spectrum:polished_calcite_wall": 0,
     "spectrum:basalt_bricks": 0,
@@ -62,9 +64,14 @@
     },
     {
       "type": "patchouli:crafting",
-      "title": "Chiseled & Walls",
+      "title": "Chiseled & Notched",
       "recipe": "spectrum:crafting_table/stone_deco/chiseled_polished_basalt",
-      "recipe2": "spectrum:crafting_table/stone_deco/polished_calcite_wall"
+      "recipe2": "spectrum:crafting_table/stone_deco/notched_polished_calcite"
+    },
+    {
+      "type": "patchouli:crafting",
+      "title": "Walls",
+      "recipe2": "spectrum:crafting_table/stone_deco/polished_basalt_wall"
     },
     {
       "type": "patchouli:crafting",
@@ -75,8 +82,8 @@
     {
       "type": "patchouli:smelting",
       "title": "Smelting them back",
-      "recipe": "spectrum:smelting/basalt_brick_stairs_to_polished_basalt",
-      "recipe2": "spectrum:smelting/chiseled_polished_calcite_to_polished_calcite",
+      "recipe": "spectrum:smelting/stone_deco_unsmelting/basalt_brick_stairs_to_polished_basalt",
+      "recipe2": "spectrum:smelting/stone_deco_unsmelting/chiseled_polished_calcite_to_polished_calcite",
       "text": "By applying heat, all blocks can be converted back to their polished versions again."
     }
   ]

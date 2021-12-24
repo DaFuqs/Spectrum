@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:lategame/spectrum_lategame",
+  "parent": "spectrum:lategame/create_spectral_shard",
   "display": {
     "icon": {
       "item": "minecraft:enchanted_book"

@@ -1,0 +1,20 @@
+{
+  "parent": "spectrum:lategame/collect_paletur",
+  "display": {
+    "icon": {
+      "item": "spectrum:resonant_pickaxe"
+    },
+    "title": {
+    "translate": "advancements.spectrum.craft_resonant_pickaxe.title"
+    },
+    "description": {
+    "translate": "advancements.spectrum.craft_resonant_pickaxe.description"
+    }
+  },
+  "criteria": {
+    "craft_pedestal": {
+      "trigger": "spectrum:crafted_with_pedestal",
+      "conditions": { "items": [{ "items": [ "spectrum:resonant_pickaxe" ]}] }
+    }
+  }
+}

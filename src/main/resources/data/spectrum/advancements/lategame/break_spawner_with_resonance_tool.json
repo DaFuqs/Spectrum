@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:lategame/collect_resonance_enchanted_tool",
+  "parent": "spectrum:lategame/craft_resonant_pickaxe",
   "display": {
     "icon": {
       "item": "spectrum:spawner"

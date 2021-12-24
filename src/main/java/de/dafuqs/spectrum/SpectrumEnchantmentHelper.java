@@ -59,7 +59,7 @@ public class SpectrumEnchantmentHelper {
 	}
 	
 	public static Map<Enchantment, Integer> collectHighestEnchantments(List<ItemStack> itemStacks) {
-		Map<Enchantment, Integer> enchantmentLevelMap = new HashMap();
+		Map<Enchantment, Integer> enchantmentLevelMap = new HashMap<>();
 		
 		for(ItemStack itemStack : itemStacks) {
 			Map<Enchantment, Integer> itemStackEnchantments = EnchantmentHelper.get(itemStack);
@@ -77,6 +77,18 @@ public class SpectrumEnchantmentHelper {
 		}
 		
 		return enchantmentLevelMap;
+	}
+	
+	public static boolean canCombineAny(Map<Enchantment, Integer> existingEnchantments, Map<Enchantment, Integer> newEnchantments) {
+		for (Enchantment existingEnchantment : existingEnchantments.keySet()) {
+			for (Enchantment newEnchantment : newEnchantments.keySet()) {
+				boolean canCurrentCombine = existingEnchantment.canCombine(newEnchantment);
+				if(canCurrentCombine) {
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 	
 }

@@ -77,11 +77,11 @@ public class EnchantmentUpgradeRecipeDisplay<R extends EnchantmentUpgradeRecipe>
 	}
 
 	public boolean isUnlocked() {
-		if(enchantment.getMaxLevel() > enchantmentDestinationLevel) {
-			return Support.hasAdvancement(MinecraftClient.getInstance().player, this.requiredAdvancementIdentifier);
-		} else {
+		if(enchantmentDestinationLevel > enchantment.getMaxLevel()) {
 			return Support.hasAdvancement(MinecraftClient.getInstance().player, this.requiredAdvancementIdentifier)
 					&& Support.hasAdvancement(MinecraftClient.getInstance().player, EnchanterBlockEntity.OVERENCHANTING_ADVANCEMENT_IDENTIFIER);
+		} else {
+			return Support.hasAdvancement(MinecraftClient.getInstance().player, this.requiredAdvancementIdentifier);
 		}
 	}
 

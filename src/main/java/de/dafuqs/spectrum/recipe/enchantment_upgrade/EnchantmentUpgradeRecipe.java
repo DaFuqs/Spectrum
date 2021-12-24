@@ -169,4 +169,9 @@ public class EnchantmentUpgradeRecipe implements Recipe<Inventory> {
 	public int getEnchantmentDestinationLevel() {
 		return enchantmentDestinationLevel;
 	}
+	
+	public boolean requiresUnlockedOverEnchanting() {
+		return this.enchantmentDestinationLevel > this.enchantment.getMaxLevel();
+	}
+	
 }

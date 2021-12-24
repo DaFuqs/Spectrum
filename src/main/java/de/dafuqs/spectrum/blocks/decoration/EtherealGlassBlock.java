@@ -1,12 +1,12 @@
 package de.dafuqs.spectrum.blocks.decoration;
 
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
+import de.dafuqs.spectrum.registries.SpectrumBlocks;
+import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.EntityShapeContext;
-import net.minecraft.block.ShapeContext;
+import net.minecraft.block.*;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.server.world.ServerWorld;
@@ -23,8 +23,10 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-public class EtherealGlassBlock extends Block {
-
+public class EtherealGlassBlock extends AbstractGlassBlock {
+	
+	protected static final VoxelShape SHAPE = Block.createCuboidShape(0.0D, 15.0D, 0.0D, 16.0D, 16.0D, 16.0D);
+	
 	public static final int MAX_AGE = 5;
 	public static final BooleanProperty EXTEND = BooleanProperty.of("extend");
 	public static final IntProperty AGE = Properties.AGE_5;
@@ -91,6 +93,10 @@ public class EtherealGlassBlock extends Block {
 			return true;
 		}
 	}
+	
+	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+		return SHAPE;
+	}
 
 	@Deprecated
 	public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
@@ -110,6 +116,9 @@ public class EtherealGlassBlock extends Block {
 	@Environment(EnvType.CLIENT)
 	public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
 		int age = state.get((AGE));
+		if((world.isClient && MinecraftClient.getInstance().player.getMainHandStack().isOf(SpectrumBlocks.ETHEREAL_PLATFORM.asItem()))) {
+			age = Math.max(age, 3);
+		}
 		if(age > 0) {
 			for(int i = 0; i < age; i++) {
 				double d = pos.getX() + random.nextFloat();

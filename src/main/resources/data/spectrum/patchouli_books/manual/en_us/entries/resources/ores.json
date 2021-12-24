@@ -1,5 +1,6 @@
 {
     "name": "Ores",
+    "advancement": "spectrum:spectrum",
     "icon": "spectrum:sparklestone_ore",
     "category": "spectrum:resources_category",
     "extra_recipe_mappings": {

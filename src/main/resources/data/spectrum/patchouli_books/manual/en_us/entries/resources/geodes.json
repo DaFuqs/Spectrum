@@ -1,5 +1,6 @@
 {
   "name": "Geodes",
+  "advancement": "spectrum:spectrum",
   "icon": "minecraft:amethyst_cluster",
   "category": "spectrum:resources_category",
   "extra_recipe_mappings": {

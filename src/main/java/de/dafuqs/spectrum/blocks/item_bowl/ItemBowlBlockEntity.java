@@ -9,6 +9,7 @@ import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.client.world.ClientWorld;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.Item;
@@ -77,7 +78,7 @@ public class ItemBowlBlockEntity extends BlockEntity {
 			Optional<DyeColor> optionalItemColor = ColorRegistry.ITEM_COLORS.getMapping(storedStack.getItem());
 			if(optionalItemColor.isPresent()) {
 				int particleCount = Support.getIntFromDecimalWithChance(Math.max(0.1, (float) storedStack.getCount() / (storedStack.getMaxCount() * 2)), world.random);
-				spawnParticles(world, blockPos, storedStack, particleCount);
+				spawnRisingParticles(world, blockPos, storedStack, particleCount);
 			}
 		}
 	}
@@ -96,27 +97,57 @@ public class ItemBowlBlockEntity extends BlockEntity {
 			inventory.getStack(0).decrement(decrementAmount);
 		}
 		
-		if(decrementAmount > 0 && this.world instanceof ServerWorld serverWorld) {
-			Optional<DyeColor> optionalItemColor = ColorRegistry.ITEM_COLORS.getMapping(storedStack.getItem());
-			if(optionalItemColor.isPresent()) {
-				ParticleEffect sparkleRisingParticleEffect = SpectrumParticleTypes.getSparkleRisingParticle(optionalItemColor.get());
-				SpectrumS2CPackets.playParticle((ServerWorld) world, new Vec3d(pos.getX()+0.5, pos.getY()+0.5, pos.getZ()+0.5), sparkleRisingParticleEffect, 50, new Vec3d(0.4, 0.2, 0.4), new Vec3d(0.06, 0.16, 0.06));
-				
-				ParticleEffect fluidRisingParticleEffect = SpectrumParticleTypes.getFluidRisingParticle(optionalItemColor.get());
-				SpectrumS2CPackets.playParticleWithFixedVelocity(serverWorld,
-						new Vec3d(this.pos.getX() + 0.5D, this.pos.getY() + 0.5D, this.pos.getZ() + 0.5D),
-						fluidRisingParticleEffect, decrementAmount * 10, new Vec3d(0, 0, 0),
-						new Vec3d((particleTargetBlockPos.getX() - this.pos.getX()) * 0.0045, 0, (particleTargetBlockPos.getZ() - this.pos.getZ()) * 0.0045));
-				world.playSound(null, this.pos, SpectrumSoundEvents.ENCHANTER_DING, SoundCategory.BLOCKS, 1.0F, 0.7F + this.world.random.nextFloat() * 0.6F);
-			}
-			
+		if(decrementAmount > 0) {
+			doEnchantingEffects(particleTargetBlockPos, decrementAmount);
 			updateInClientWorld();
 		}
 		
 		return decrementAmount;
 	}
 	
-	public static void spawnParticles(World world, BlockPos blockPos, ItemStack itemStack, int amount) {
+	public void doEnchantingEffects(BlockPos enchanterBlockPos, int amount) {
+		ItemStack storedStack = this.getInventory().getStack(0);
+		if(!storedStack.isEmpty()) {
+			Optional<DyeColor> optionalItemColor = ColorRegistry.ITEM_COLORS.getMapping(storedStack.getItem());
+			if (optionalItemColor.isPresent()) {
+				ParticleEffect sparkleRisingParticleEffect = SpectrumParticleTypes.getSparkleRisingParticle(optionalItemColor.get());
+				ParticleEffect fluidRisingParticleEffect = SpectrumParticleTypes.getFluidRisingParticle(optionalItemColor.get());
+				
+				if(this.world instanceof ServerWorld serverWorld) {
+					SpectrumS2CPackets.playParticle((ServerWorld) world,
+							new Vec3d(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5),
+							sparkleRisingParticleEffect, 50,
+							new Vec3d(0.4, 0.2, 0.4), new Vec3d(0.06, 0.16, 0.06));
+					SpectrumS2CPackets.playParticleWithFixedVelocity(serverWorld,
+							new Vec3d(this.pos.getX() + 0.5D, this.pos.getY() + 0.5D, this.pos.getZ() + 0.5D),
+							fluidRisingParticleEffect, amount * 10, new Vec3d(0, 0, 0),
+							new Vec3d((enchanterBlockPos.getX() - this.pos.getX()) * 0.0045, 0, (enchanterBlockPos.getZ() - this.pos.getZ()) * 0.0045));
+				} else if(this.world instanceof ClientWorld clientWorld) {
+					for(int i = 0; i < 50; i++){
+						float randomOffsetX = pos.getX() + 0.3F + world.random.nextFloat() * 0.6F;
+						float randomOffsetY = pos.getY() + 0.3F + world.random.nextFloat() * 0.6F;
+						float randomOffsetZ = pos.getZ() + 0.3F + world.random.nextFloat() * 0.6F;
+						float randomVelocityX = 0.03F - world.random.nextFloat() * 0.06F;
+						float randomVelocityY = world.random.nextFloat() * 0.16F;
+						float randomVelocityZ = 0.03F - world.random.nextFloat() * 0.06F;
+						
+						clientWorld.addParticle(sparkleRisingParticleEffect,
+								randomOffsetX, randomOffsetY, randomOffsetZ,
+								randomVelocityX, randomVelocityY, randomVelocityZ);
+					}
+					//for(int i = 0; i < 50; i++) {
+						clientWorld.addParticle(fluidRisingParticleEffect,
+								this.pos.getX() + 0.5D, this.pos.getY() + 0.5D, this.pos.getZ() + 0.5D,
+								(enchanterBlockPos.getX() - this.pos.getX()) * 0.0045, 0, (enchanterBlockPos.getZ() - this.pos.getZ()) * 0.0045);
+					//}
+				}
+				
+				world.playSound(null, this.pos, SpectrumSoundEvents.ENCHANTER_DING, SoundCategory.BLOCKS, 1.0F, 0.7F + this.world.random.nextFloat() * 0.6F);
+			}
+		}
+	}
+	
+	public static void spawnRisingParticles(World world, BlockPos blockPos, ItemStack itemStack, int amount) {
 		if(amount > 0) {
 			Optional<DyeColor> optionalItemColor = ColorRegistry.ITEM_COLORS.getMapping(itemStack.getItem());
 			if (optionalItemColor.isPresent()) {

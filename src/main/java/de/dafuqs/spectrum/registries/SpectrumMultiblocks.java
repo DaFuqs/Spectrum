@@ -97,6 +97,7 @@ public class SpectrumMultiblocks {
 				'L', "#spectrum:gemstone_lamps",
 				'S', "#spectrum:gemstone_storage_blocks",
 				'C', "#spectrum:chiseled_base_blocks",
+				'K', "#spectrum:notched_base_blocks",
 				'R', "#spectrum:basic_gemstone_chiseled_base_blocks",
 				'O', "#spectrum:onyx_chiseled_base_blocks",
 				'm', "#spectrum:moonstone_chiseled_base_blocks",
@@ -117,6 +118,7 @@ public class SpectrumMultiblocks {
 				'L', "spectrum:amethyst_basalt_lamp",
 				'S', "spectrum:amethyst_storage_block",
 				'C', "spectrum:chiseled_polished_basalt",
+				'K', "spectrum:notched_polished_basalt",
 				'R', "spectrum:amethyst_chiseled_basalt",
 				'O', "spectrum:onyx_chiseled_basalt",
 				'm', "spectrum:moonstone_chiseled_basalt[axis=x]",
@@ -133,7 +135,7 @@ public class SpectrumMultiblocks {
 		String[][] tier1Structure = {
 				{ "C_________C", "___________", "___________", "___________", "___________", "___________", "___________", "___________", "___________", "___________", "C_________C" },
 				{ "Q_________Q", "___________", "__S_____S__", "___________", "___________", "___________", "___________", "___________", "__S_____S__", "___________", "Q_________Q" },
-				{ "X_________X", "___________", "__Q_____Q__", "___________", "___________", "_____2_____", "___________", "___________", "__Q_____Q__", "___________", "X_________X" },
+				{ "K_________K", "___________", "__Q_____Q__", "___________", "___________", "_____2_____", "___________", "___________", "__Q_____Q__", "___________", "K_________K" },
 				{ "___________", "___XXXXX___", "__XXXXXXX__", "_XXXXXXXXX_", "_XXXXXXXXX_", "_XXXX0XXXX_", "_XXXXXXXXX_", "_XXXXXXXXX_", "__XXXXXXX__", "___XXXXX___", "___________" }
 		};
 		PEDESTAL_SIMPLE_STRUCTURE_IDENTIFIER_CHECK = registerMultiBlock("pedestal_simple_structure_check", tier1Structure, targetBlocksCheck);
@@ -144,7 +146,7 @@ public class SpectrumMultiblocks {
 				{ "_____________", "_Q__Q___Q__Q_", "_____________", "_____________", "_Q_________Q_", "_____________", "_____________", "_____________", "_Q_________Q_", "_____________", "_____________", "_Q__Q___Q__Q_", "_____________" },
 				{ "_____________", "_C__Q___Q__C_", "_____________", "_____________", "_Q_________Q_", "_____________", "_____________", "_____________", "_Q_________Q_", "_____________", "_____________", "_C__Q___Q__C_", "_____________" },
 				{ "_____________", "_Q__L___L__Q_", "_____________", "___S_____S___", "_L_________L_", "_____________", "_____________", "_____________", "_L_________L_", "___S_____S___", "_____________", "_Q__L___L__Q_", "_____________" },
-				{ "_____________", "_X__Q___Q__X_", "_____________", "___Q_____Q___", "_Q_________Q_", "_____________", "______3______", "_____________", "_Q_________Q_", "___Q_____Q___", "_____________", "_X__Q___Q__X_", "_____________" },
+				{ "_____________", "_K__Q___Q__K_", "_____________", "___Q_____Q___", "_Q_________Q_", "_____________", "______3______", "_____________", "_Q_________Q_", "___Q_____Q___", "_____________", "_K__Q___Q__K_", "_____________" },
 				{ "XXXXXXXXXXXXX", "XXnnXnnnXnnXX", "XNXXXXXXXXXNX", "XNXXXXXXXXXNX", "XXXXXRXRXXXXX", "XNXXRXXXRXXNX", "XNXXXX0XXXXNX", "XNXXRXXXRXXNX", "XXXXXRXRXXXXX", "XNXXXXXXXXXNX", "XNXXXXXXXXXNX", "XXnnXnnnXnnXX", "XXXXXXXXXXXXX" }
 		};
 		PEDESTAL_ADVANCED_STRUCTURE_IDENTIFIER_CHECK = registerMultiBlock("pedestal_advanced_structure_check", tier2Structure, targetBlocksCheck);
@@ -156,7 +158,7 @@ public class SpectrumMultiblocks {
 				{ "_____________", "_Q__Q___Q__Q_", "_____________", "_____________", "_Q_________Q_", "_____________", "_____________", "_____________", "_Q_________Q_", "_____________", "_____________", "_Q__Q___Q__Q_", "_____________" },
 				{ "_____________", "_C__Q___Q__C_", "_____________", "_____________", "_Q_________Q_", "_____________", "_____________", "_____________", "_Q_________Q_", "_____________", "_____________", "_C__Q___Q__C_", "_____________" },
 				{ "_____________", "_Q__L___L__Q_", "_____________", "___S_____S___", "_L_________L_", "_____________", "_____________", "_____________", "_L_________L_", "___S_____S___", "_____________", "_Q__L___L__Q_", "_____________" },
-				{ "_____________", "_X__Q___Q__X_", "_____________", "___Q_____Q___", "_Q_________Q_", "_____________", "______4______", "_____________", "_Q_________Q_", "___Q_____Q___", "_____________", "_X__Q___Q__X_", "_____________" },
+				{ "_____________", "_K__Q___Q__K_", "_____________", "___Q_____Q___", "_Q_________Q_", "_____________", "______4______", "_____________", "_Q_________Q_", "___Q_____Q___", "_____________", "_K__Q___Q__K_", "_____________" },
 				{ "XXXXXXXXXXXXX", "XXmmXmmmXmmXX", "XMXXXXXXXXXMX", "XMXXXXXXXXXMX", "XXXXXRXRXXXXX", "XMXXRXXXRXXMX", "XMXXXX0XXXXMX", "XMXXRXXXRXXMX", "XXXXXRXRXXXXX", "XMXXXXXXXXXMX", "XMXXXXXXXXXMX", "XXmmXmmmXmmXX", "XXXXXXXXXXXXX" }
 		};
 		PEDESTAL_COMPLEX_STRUCTURE_IDENTIFIER_CHECK = registerMultiBlock("pedestal_complex_structure_check", tier3Structure, targetBlocksCheck);

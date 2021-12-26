@@ -1,5 +1,5 @@
 {
-  "name": "Sparklestone Lights",
+  "name": "Shimmerstone Lights",
   "icon": "spectrum:basalt_sparklestone_light",
   "advancement": "spectrum:progression/unlock_sparklestone_lights",
   "category": "spectrum:decoration_category",
@@ -15,7 +15,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "$(italic)The first nights in this new world you lit your improvised hut with torches.$(br)As atmospheric as that was, it was also one thing: primitive.$(br2)To turn away from your dark, torch-lit past, you designed lamps based on Sparklestone.$()"
+      "text": "$(italic)The first nights in this new world you lit your improvised hut with torches.$(br)As atmospheric as that was, it was also one thing: primitive.$(br2)To turn away from your dark, torch-lit past, you designed lamps based on Shimmerstone.$()"
     },
     {
       "type": "spectrum:pedestal_crafting",

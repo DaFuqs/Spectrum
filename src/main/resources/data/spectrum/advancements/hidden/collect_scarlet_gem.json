@@ -1,0 +1,8 @@
+{
+  "criteria": {
+    "has_scarlet_gem": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": { "items": [{ "items": ["spectrum:scarlet_gem" ] }] }
+    }
+  }
+}

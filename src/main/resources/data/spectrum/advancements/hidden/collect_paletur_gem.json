@@ -1,0 +1,8 @@
+{
+  "criteria": {
+    "has_paletur_gem": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": { "items": [{ "items": ["spectrum:paletur_gem" ] }] }
+    }
+  }
+}

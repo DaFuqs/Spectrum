@@ -1,12 +1,12 @@
 {
   "type": "spectrum:pedestal",
   "time": 400,
-  "tier": "advanced",
+  "tier": "complex",
   "magenta": 0,
   "yellow": 0,
   "cyan": 0,
-  "black": 2,
-  "white": 0,
+  "black": 0,
+  "white": 2,
   "experience": 0.5,
   "pattern": [
     "###",
@@ -25,6 +25,6 @@
     "item": "spectrum:paletur_gem",
     "count": 1
   },
-  "required_advancements": ["spectrum:lategame/collect_paletur"],
+  "required_advancements": ["spectrum:hidden/collect_paletur_gem"],
   "disable_yield_upgrades": true
 }

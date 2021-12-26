@@ -249,22 +249,22 @@ public class SpectrumItems {
 	}
 	
 	public static void registerPigments() {
-		register("black_pigment", BLACK_PIGMENT);
+		register("white_pigment", WHITE_PIGMENT);
+		register("orange_pigment", ORANGE_PIGMENT);
+		register("magenta_pigment", MAGENTA_PIGMENT);
+		register("light_blue_pigment", LIGHT_BLUE_PIGMENT);
+		register("yellow_pigment", YELLOW_PIGMENT);
+		register("lime_pigment", LIME_PIGMENT);
+		register("pink_pigment", PINK_PIGMENT);
+		register("gray_pigment", GRAY_PIGMENT);
+		register("light_gray_pigment", LIGHT_GRAY_PIGMENT);
+		register("cyan_pigment", CYAN_PIGMENT);
+		register("purple_pigment", PURPLE_PIGMENT);
 		register("blue_pigment", BLUE_PIGMENT);
 		register("brown_pigment", BROWN_PIGMENT);
-		register("cyan_pigment", CYAN_PIGMENT);
-		register("gray_pigment", GRAY_PIGMENT);
 		register("green_pigment", GREEN_PIGMENT);
-		register("light_blue_pigment", LIGHT_BLUE_PIGMENT);
-		register("light_gray_pigment", LIGHT_GRAY_PIGMENT);
-		register("lime_pigment", LIME_PIGMENT);
-		register("magenta_pigment", MAGENTA_PIGMENT);
-		register("orange_pigment", ORANGE_PIGMENT);
-		register("pink_pigment", PINK_PIGMENT);
-		register("purple_pigment", PURPLE_PIGMENT);
 		register("red_pigment", RED_PIGMENT);
-		register("white_pigment", WHITE_PIGMENT);
-		register("yellow_pigment", YELLOW_PIGMENT);
+		register("black_pigment", BLACK_PIGMENT);
 	}
 	
 	public static void registerCatkin() {

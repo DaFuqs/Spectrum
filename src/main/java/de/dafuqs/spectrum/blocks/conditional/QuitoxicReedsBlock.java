@@ -7,6 +7,8 @@ import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import de.dafuqs.spectrum.registries.SpectrumFluidTags;
 import de.dafuqs.spectrum.registries.SpectrumFluids;
 import net.minecraft.block.*;
+import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.Item;
@@ -37,13 +39,16 @@ import java.util.*;
 
 public class QuitoxicReedsBlock extends SugarCaneBlock implements Cloakable, Waterloggable {
 
-	public static final IntProperty AGE = Properties.AGE_15;
+	public static final int MAX_GROWTH_HEIGHT_WATER = 5;
+	public static final int MAX_GROWTH_HEIGHT_CRYSTAL = 7;
+	
 	public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
 	public static final BooleanProperty LIQUID_CRYSTAL_LOGGED = SpectrumCommon.LIQUID_CRYSTAL_LOGGED;
+	public static final BooleanProperty ALWAYS_DROP = BooleanProperty.of("always_drop");
 
 	public QuitoxicReedsBlock(Settings settings) {
 		super(settings);
-		this.setDefaultState(this.stateManager.getDefaultState().with(WATERLOGGED, false).with(LIQUID_CRYSTAL_LOGGED, false).with(AGE, 0));
+		this.setDefaultState(this.stateManager.getDefaultState().with(WATERLOGGED, false).with(LIQUID_CRYSTAL_LOGGED, false).with(ALWAYS_DROP, false).with(AGE, 0));
 		registerCloak();
 	}
 
@@ -58,6 +63,7 @@ public class QuitoxicReedsBlock extends SugarCaneBlock implements Cloakable, Wat
 		for(int i = 0; i < 16; i++){
 			hashtable.put(this.getDefaultState().with(WATERLOGGED, false).with(AGE, i), Blocks.AIR.getDefaultState());
 			hashtable.put(this.getDefaultState().with(WATERLOGGED, true).with(AGE, i), Blocks.WATER.getDefaultState());
+			hashtable.put(this.getDefaultState().with(LIQUID_CRYSTAL_LOGGED, true).with(AGE, i), Blocks.WATER.getDefaultState());
 		}
 		return hashtable;
 	}
@@ -66,11 +72,21 @@ public class QuitoxicReedsBlock extends SugarCaneBlock implements Cloakable, Wat
 	public Pair<Item, Item> getItemCloak() {
 		return new Pair<>(this.asItem(), Blocks.SUGAR_CANE.asItem());
 	}
+	
+	public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack stack) {
+		super.afterBreak(world, player, pos, state, blockEntity, stack);
+		
 
+		
+	}
 
 	@Deprecated
 	public List<ItemStack> getDroppedStacks(BlockState state, LootContext.Builder builder) {
-		return getCloakedDroppedStacks(state, builder);
+		if(state.get(ALWAYS_DROP)) {
+			return super.getDroppedStacks(state, builder);
+		} else {
+			return getCloakedDroppedStacks(state, builder);
+		}
 	}
 
 	@Nullable
@@ -79,6 +95,22 @@ public class QuitoxicReedsBlock extends SugarCaneBlock implements Cloakable, Wat
 		boolean water = fluidState.getFluid() == Fluids.WATER;
 		boolean crystal = fluidState.getFluid() == SpectrumFluids.LIQUID_CRYSTAL;
 		return super.getPlacementState(ctx).with(WATERLOGGED, water).with(LIQUID_CRYSTAL_LOGGED, crystal);
+	}
+	
+	public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
+		// since the quitoxic reeds are stacked and break from bottom to top
+		// bot the player that broke the other blocks is not propagated we
+		// have to apply a workaround here by counting the reeds above this
+		// and dropping that much times loot to account for it
+		for(int i = 1; i < MAX_GROWTH_HEIGHT_CRYSTAL; i++) {
+			BlockPos offsetPos = pos.add(0, i, 0);
+			if(world.getBlockState(offsetPos).isOf(this)) {
+				world.setBlockState(offsetPos, world.getBlockState(offsetPos).with(ALWAYS_DROP, true));
+			} else {
+				break;
+			}
+		}
+		super.onBreak(world, pos, state, player);
 	}
 
 	public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
@@ -105,7 +137,7 @@ public class QuitoxicReedsBlock extends SugarCaneBlock implements Cloakable, Wat
 	}
 
 	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-		builder.add(AGE, WATERLOGGED, LIQUID_CRYSTAL_LOGGED);
+		builder.add(AGE, WATERLOGGED, LIQUID_CRYSTAL_LOGGED, ALWAYS_DROP);
 	}
 
 	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
@@ -118,9 +150,9 @@ public class QuitoxicReedsBlock extends SugarCaneBlock implements Cloakable, Wat
 			boolean bottomLiquidCrystalLogged = world.getBlockState(pos.down(i-1)).get(LIQUID_CRYSTAL_LOGGED);
 
 			// grows taller on liquid crystal
-			if (i < 5 || (bottomLiquidCrystalLogged && i < 7)) {
+			if (i < MAX_GROWTH_HEIGHT_WATER || (bottomLiquidCrystalLogged && i < MAX_GROWTH_HEIGHT_CRYSTAL)) {
 				int j = state.get(AGE);
-				if (j == 15) {
+				if (j == 7) {
 					// consume 1 clay block close to the reed when growing.
 					// if the quitoxic reeds are growing in liquid crystal:
 					// consume 1/4 of clay
@@ -139,7 +171,7 @@ public class QuitoxicReedsBlock extends SugarCaneBlock implements Cloakable, Wat
 				} else {
 					// grow twice as fast, if liquid crystal logged
 					if(bottomLiquidCrystalLogged) {
-						world.setBlockState(pos, state.with(AGE, Math.min(15, j + 2)), 4);
+						world.setBlockState(pos, state.with(AGE, Math.min(7, j + 2)), 4);
 					} else {
 						world.setBlockState(pos, state.with(AGE, j + 1), 4);
 					}

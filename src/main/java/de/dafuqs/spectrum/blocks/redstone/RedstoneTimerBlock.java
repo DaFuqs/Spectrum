@@ -76,10 +76,12 @@ public class RedstoneTimerBlock extends AbstractRedstoneGateBlock {
 		if (!player.getAbilities().allowModifyWorld) {
 			return ActionResult.PASS;
 		} else {
-			if(!world.isClient) {
+			if(world.isClient) {
+				return ActionResult.SUCCESS;
+			} else {
 				stepTiming((ServerWorld) world, pos, (ServerPlayerEntity) player);
+				return ActionResult.CONSUME;
 			}
-			return ActionResult.success(world.isClient);
 		}
 	}
 

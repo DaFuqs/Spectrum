@@ -66,7 +66,7 @@ public class QuitoxicReedsBlock extends Block implements Cloakable, WaterOrLiqui
 		for(int i = 0; i < 8; i++){
 			hashtable.put(this.getDefaultState().with(FLUIDLOGGED, 0).with(AGE, i), Blocks.AIR.getDefaultState());
 			hashtable.put(this.getDefaultState().with(FLUIDLOGGED, 1).with(AGE, i), Blocks.WATER.getDefaultState());
-			hashtable.put(this.getDefaultState().with(FLUIDLOGGED, 2).with(AGE, i), Blocks.WATER.getDefaultState());
+			hashtable.put(this.getDefaultState().with(FLUIDLOGGED, 2).with(AGE, i), SpectrumBlocks.LIQUID_CRYSTAL.getDefaultState());
 		}
 		return hashtable;
 	}

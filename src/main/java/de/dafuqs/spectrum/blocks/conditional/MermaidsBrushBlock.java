@@ -6,6 +6,7 @@ import de.dafuqs.spectrum.registries.SpectrumBlockTags;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.minecraft.block.*;
 import net.minecraft.entity.ItemEntity;
+import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.Item;
@@ -21,6 +22,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.Pair;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.world.BlockView;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
 import org.jetbrains.annotations.Nullable;
@@ -29,7 +31,7 @@ import java.util.Hashtable;
 import java.util.List;
 import java.util.Random;
 
-public class MermaidsBrushBlock extends PlantBlock implements Cloakable, Waterloggable {
+public class MermaidsBrushBlock extends PlantBlock implements Cloakable, FluidFillable {
 
 	public static final IntProperty AGE = Properties.AGE_7;
 
@@ -106,6 +108,14 @@ public class MermaidsBrushBlock extends PlantBlock implements Cloakable, Waterlo
 	public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
 		FluidState fluidState = world.getFluidState(pos);
 		return fluidState.isIn(FluidTags.WATER) && world.getBlockState(pos.down()).isIn(SpectrumBlockTags.MERMAIDS_BRUSH_PLANTABLE);
+	}
+	
+	public boolean canFillWithFluid(BlockView world, BlockPos pos, BlockState state, Fluid fluid) {
+		return false;
+	}
+	
+	public boolean tryFillWithFluid(WorldAccess world, BlockPos pos, BlockState state, FluidState fluidState) {
+		return false;
 	}
 
 }

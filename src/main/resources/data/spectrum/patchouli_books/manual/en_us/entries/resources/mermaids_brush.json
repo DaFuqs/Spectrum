@@ -11,7 +11,7 @@
         {
             "type": "patchouli:spotlight",
             "item": "spectrum:mermaids_brush",
-            "text": "This inconspicuous plant grows in the deepest depths of the oceans, forever untouched by human influence.$(br)They grow a single flower, which slowly develops into a filigree shaped seed.$(br2)Mermaids Brushes can be harvested using shears."
+            "text": "$(italic)This inconspicuous plant grows in the deepest depths of the oceans, forever untouched by human influence.$(br)They grow a single blossom, which slowly develops into a filigree shaped seed.$()$(br2)Mermaids Brushes can be harvested using shears."
         },
         {
             "type": "patchouli:spotlight",

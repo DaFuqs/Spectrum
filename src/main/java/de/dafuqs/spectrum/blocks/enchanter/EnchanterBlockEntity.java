@@ -53,7 +53,6 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import javax.swing.text.html.Option;
 import java.util.*;
 
 public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Upgradeable {

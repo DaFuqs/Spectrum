@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.blocks.enchanter;
 
 import de.dafuqs.spectrum.ExperienceHelper;
-import de.dafuqs.spectrum.Support;
 import de.dafuqs.spectrum.items.ExperienceStorageItem;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.OverlayTexture;

@@ -99,7 +99,13 @@ spread free or using higher random tick rates than vanilla you can limit the spr
 
 	@Comment("Flat additional damage dealt with each level of the First Strike enchantment")
 	public float FirstStrikeDamagePerLevel = 2.0F;
-
+	
+	@Comment("The percentile a mobs armor/hand stacks are being dropped when hit with a Disarming enchanted weapon per the enchantments level")
+	public float DisarmingChancePerLevelMobs = 0.01F;
+	
+	@Comment("If > 0 the Disarming Enchantment is able to remove armor and hand tools from a hit player. Should be a far smaller chance than for mobs")
+	public float DisarmingChancePerLevelPlayers = 0.001F;
+	
 	@Comment("The duration a glow ink sac gives night vision when wearing a glow vision helmet in seconds")
 	public int GlowVisionGogglesDuration = 240;
 

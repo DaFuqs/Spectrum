@@ -52,8 +52,7 @@ public abstract class LivingEntityMixin {
 		if(cir.getReturnValue() != null && cir.getReturnValue()) {
 			if(source.getAttacker() instanceof LivingEntity livingSource) {
 				int disarmingLevel = EnchantmentHelper.getLevel(SpectrumEnchantments.DISARMING, livingSource.getMainHandStack());
-				int disarmingChance = (Object) this instanceof PlayerEntity ? 10 : 1; // there is a possibility to disarm other players, but way rarer
-				if(disarmingLevel > 0 && Math.random() * disarmingChance < disarmingLevel) {
+				if(disarmingLevel > 0 &&  Math.random() < disarmingLevel * SpectrumCommon.CONFIG.DisarmingChancePerLevelMobs) {
 					LivingEntity thisEntity = (LivingEntity)(Object) this;
 
 					int randomSlot = (int) (Math.random() * 6);

@@ -44,14 +44,14 @@
         {
             "type": "patchouli:spotlight",
             "advancement": "spectrum:midgame/collect_scarlet",
-            "title": "Scarlet Ore",
+            "title": "Crimtane Ore",
             "item": "spectrum:scarlet_ore",
             "text": "This very heavy ore is scattered around the depths of the Nether.$(br)It's probably not the best idea to carry large amounts of it home at once."
         },
         {
             "type": "patchouli:spotlight",
             "advancement": "spectrum:lategame/collect_paletur",
-            "title": "Paletur Ore",
+            "title": "Aerlialite Ore",
             "item": "spectrum:paletur_ore",
             "text": "The light blue color is the trademark of this ore. It is found exclusively in the end in small clusters.$(br)Like the end itself, the curious properties of this material are not to be overlooked."
         },

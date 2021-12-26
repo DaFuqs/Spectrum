@@ -14,11 +14,11 @@ import java.util.function.Supplier;
 
 public enum SpectrumArmorMaterials implements ArmorMaterial {
 
-   BEDROCK("bedrock", 5, new int[]{6, 10, 14, 6}, 5, SoundEvents.ITEM_ARMOR_EQUIP_NETHERITE, 4.0F, 0.25F, Ingredient::empty),
+   BEDROCK("bedrock", 5, new int[]{6, 10, 14, 6}, 5, SoundEvents.ITEM_ARMOR_EQUIP_NETHERITE, 4.0F, 0.4F, Ingredient::empty),
    GLOW_VISION("glow_vision", 15, new int[]{1, 2, 3, 1}, 7, SpectrumSoundEvents.ITEM_ARMOR_EQUIP_GLOW_VISION, 0.0F, 0.0F, () -> {
 	  return Ingredient.ofItems(Items.GLOW_INK_SAC);
    }),
-   EMERGENCY("emergency", 5, new int[]{4, 5, 6, 4}, 15, SoundEvents.BLOCK_AMETHYST_BLOCK_CHIME, 0.0F, 0.0F, () -> {
+   EMERGENCY("emergency", 10, new int[]{3, 7, 5, 3}, 15, SoundEvents.BLOCK_AMETHYST_BLOCK_CHIME, 0.0F, 0.0F, () -> {
 	  return Ingredient.fromTag(SpectrumItemTags.GEMSTONE_SHARDS);
    });
 

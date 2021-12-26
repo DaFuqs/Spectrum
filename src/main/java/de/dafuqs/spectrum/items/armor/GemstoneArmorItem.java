@@ -20,12 +20,12 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class EmergencyArmorItem extends ArmorItem implements ArmorWithHitEffect {
+public class GemstoneArmorItem extends ArmorItem implements ArmorWithHitEffect {
 
 	private final EquipmentSlot equipmentSlot;
 	private final int armorSlotID;
 
-	public EmergencyArmorItem(ArmorMaterial material, EquipmentSlot slot, Settings settings) {
+	public GemstoneArmorItem(ArmorMaterial material, EquipmentSlot slot, Settings settings) {
 		super(material, slot, settings);
 		this.equipmentSlot = slot;
 		switch (slot) {
@@ -41,23 +41,20 @@ public class EmergencyArmorItem extends ArmorItem implements ArmorWithHitEffect 
 			default -> {
 				this.armorSlotID = 3;
 			}
-
 		}
 	}
 
 	@Override
 	public void onHit(ItemStack itemStack, DamageSource source, LivingEntity targetEntity, float amount) {
-		if(amount > 0) {
-			process(equipmentSlot, source, targetEntity);
-			targetEntity.world.playSound(null, targetEntity.getBlockPos(), SoundEvents.BLOCK_AMETHYST_BLOCK_HIT, SoundCategory.PLAYERS, 1.0F, 1.0F);
-			targetEntity.world.playSound(null, targetEntity.getBlockPos(), SoundEvents.ENTITY_SPLASH_POTION_BREAK, SoundCategory.PLAYERS, 1.0F, 1.0F);
-			//targetEntity.playSound(SoundEvents.BLOCK_AMETHYST_BLOCK_HIT, 1.0F, 1.0F);
-			//targetEntity.playSound(SoundEvents.ENTITY_SPLASH_POTION_BREAK, 1.0F, 1.0F);
+		// While mostly useful against mobs, being able to trigger this effect for all kinds of damage
+		// like fall damage seems like an awesome mechanic
+		process(equipmentSlot, source, targetEntity);
+		targetEntity.world.playSound(null, targetEntity.getBlockPos(), SoundEvents.BLOCK_AMETHYST_BLOCK_HIT, SoundCategory.PLAYERS, 1.0F, 1.0F);
+		targetEntity.world.playSound(null, targetEntity.getBlockPos(), SoundEvents.ENTITY_SPLASH_POTION_BREAK, SoundCategory.PLAYERS, 1.0F, 1.0F);
 
-			itemStack.damage(5, targetEntity, (e) -> {
-				e.sendEquipmentBreakStatus(EquipmentSlot.fromTypeIndex(EquipmentSlot.Type.ARMOR, this.armorSlotID));
-			});
-		}
+		itemStack.damage(2, targetEntity, (e) -> {
+			e.sendEquipmentBreakStatus(EquipmentSlot.fromTypeIndex(EquipmentSlot.Type.ARMOR, this.armorSlotID));
+		});
 	}
 
 	@Override

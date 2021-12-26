@@ -6,7 +6,7 @@ import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
 import de.dafuqs.spectrum.enums.GemstoneColor;
 import de.dafuqs.spectrum.interfaces.Cloakable;
 import de.dafuqs.spectrum.items.*;
-import de.dafuqs.spectrum.items.armor.EmergencyArmorItem;
+import de.dafuqs.spectrum.items.armor.GemstoneArmorItem;
 import de.dafuqs.spectrum.items.armor.GlowVisionHelmet;
 import de.dafuqs.spectrum.items.armor.SpectrumArmorItem;
 import de.dafuqs.spectrum.items.item_frame.InvisibleGlowItemFrameItem;
@@ -129,10 +129,10 @@ public class SpectrumItems {
 
 	// Armor
 	public static final ArmorMaterial EMERGENCY_ARMOR_MATERIAL = SpectrumArmorMaterials.EMERGENCY;
-	public static final Item EMERGENCY_HELMET = new EmergencyArmorItem(EMERGENCY_ARMOR_MATERIAL, EquipmentSlot.HEAD, spectrumEmergencyArmorItemSettings);
-	public static final Item EMERGENCY_CHESTPLATE = new EmergencyArmorItem(EMERGENCY_ARMOR_MATERIAL, EquipmentSlot.CHEST, spectrumEmergencyArmorItemSettings);
-	public static final Item EMERGENCY_LEGGINGS = new EmergencyArmorItem(EMERGENCY_ARMOR_MATERIAL, EquipmentSlot.LEGS, spectrumEmergencyArmorItemSettings);
-	public static final Item EMERGENCY_BOOTS = new EmergencyArmorItem(EMERGENCY_ARMOR_MATERIAL, EquipmentSlot.FEET, spectrumEmergencyArmorItemSettings);
+	public static final Item EMERGENCY_HELMET = new GemstoneArmorItem(EMERGENCY_ARMOR_MATERIAL, EquipmentSlot.HEAD, spectrumEmergencyArmorItemSettings);
+	public static final Item EMERGENCY_CHESTPLATE = new GemstoneArmorItem(EMERGENCY_ARMOR_MATERIAL, EquipmentSlot.CHEST, spectrumEmergencyArmorItemSettings);
+	public static final Item EMERGENCY_LEGGINGS = new GemstoneArmorItem(EMERGENCY_ARMOR_MATERIAL, EquipmentSlot.LEGS, spectrumEmergencyArmorItemSettings);
+	public static final Item EMERGENCY_BOOTS = new GemstoneArmorItem(EMERGENCY_ARMOR_MATERIAL, EquipmentSlot.FEET, spectrumEmergencyArmorItemSettings);
 	public static final Item GLOW_VISION_HELMET = new GlowVisionHelmet(SpectrumArmorMaterials.GLOW_VISION, EquipmentSlot.HEAD, spectrumLowNightVisionArmorItemSettings);
 	
 	// Decay drops

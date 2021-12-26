@@ -457,22 +457,22 @@ public class SpectrumBlocks {
 
 	// FLAT COLORED BLOCKS
 	private static final FabricBlockSettings flatColoredBlockBlockSettings = FabricBlockSettings.of(Material.STONE).hardness(2.5F).requiresTool().luminance(1).postProcess(SpectrumBlocks::always).emissiveLighting(SpectrumBlocks::always);
-	public static final Block BLACK_GLOWBLOCK = new Block(flatColoredBlockBlockSettings);
-	public static final Block BLUE_GLOWBLOCK = new Block(flatColoredBlockBlockSettings);
-	public static final Block BROWN_GLOWBLOCK = new Block(flatColoredBlockBlockSettings);
-	public static final Block CYAN_GLOWBLOCK = new Block(flatColoredBlockBlockSettings);
-	public static final Block GRAY_GLOWBLOCK = new Block(flatColoredBlockBlockSettings);
-	public static final Block GREEN_GLOWBLOCK = new Block(flatColoredBlockBlockSettings);
-	public static final Block LIGHT_BLUE_GLOWBLOCK = new Block(flatColoredBlockBlockSettings);
-	public static final Block LIGHT_GRAY_GLOWBLOCK = new Block(flatColoredBlockBlockSettings);
-	public static final Block LIME_GLOWBLOCK = new Block(flatColoredBlockBlockSettings);
-	public static final Block MAGENTA_GLOWBLOCK = new Block(flatColoredBlockBlockSettings);
-	public static final Block ORANGE_GLOWBLOCK = new Block(flatColoredBlockBlockSettings);
-	public static final Block PINK_GLOWBLOCK = new Block(flatColoredBlockBlockSettings);
-	public static final Block PURPLE_GLOWBLOCK = new Block(flatColoredBlockBlockSettings);
-	public static final Block RED_GLOWBLOCK = new Block(flatColoredBlockBlockSettings);
-	public static final Block WHITE_GLOWBLOCK = new Block(flatColoredBlockBlockSettings);
-	public static final Block YELLOW_GLOWBLOCK = new Block(flatColoredBlockBlockSettings);
+	public static final Block BLACK_GLOWBLOCK = new GlowBlock(flatColoredBlockBlockSettings);
+	public static final Block BLUE_GLOWBLOCK = new GlowBlock(flatColoredBlockBlockSettings);
+	public static final Block BROWN_GLOWBLOCK = new GlowBlock(flatColoredBlockBlockSettings);
+	public static final Block CYAN_GLOWBLOCK = new GlowBlock(flatColoredBlockBlockSettings);
+	public static final Block GRAY_GLOWBLOCK = new GlowBlock(flatColoredBlockBlockSettings);
+	public static final Block GREEN_GLOWBLOCK = new GlowBlock(flatColoredBlockBlockSettings);
+	public static final Block LIGHT_BLUE_GLOWBLOCK = new GlowBlock(flatColoredBlockBlockSettings);
+	public static final Block LIGHT_GRAY_GLOWBLOCK = new GlowBlock(flatColoredBlockBlockSettings);
+	public static final Block LIME_GLOWBLOCK = new GlowBlock(flatColoredBlockBlockSettings);
+	public static final Block MAGENTA_GLOWBLOCK = new GlowBlock(flatColoredBlockBlockSettings);
+	public static final Block ORANGE_GLOWBLOCK = new GlowBlock(flatColoredBlockBlockSettings);
+	public static final Block PINK_GLOWBLOCK = new GlowBlock(flatColoredBlockBlockSettings);
+	public static final Block PURPLE_GLOWBLOCK = new GlowBlock(flatColoredBlockBlockSettings);
+	public static final Block RED_GLOWBLOCK = new GlowBlock(flatColoredBlockBlockSettings);
+	public static final Block WHITE_GLOWBLOCK = new GlowBlock(flatColoredBlockBlockSettings);
+	public static final Block YELLOW_GLOWBLOCK = new GlowBlock(flatColoredBlockBlockSettings);
 
 	// COLORED LAMPS
 	private static final FabricBlockSettings coloredLampBlockBlockSettings = FabricBlockSettings.copyOf(Blocks.REDSTONE_LAMP);

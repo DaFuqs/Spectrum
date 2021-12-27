@@ -672,6 +672,7 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 		
 		currentItemProcessingTime = -1;
 		
+		this.markDirty();
 		this.inventory.markDirty();
 		this.virtualInventoryIncludingBowlStacks.markDirty();
 		this.inventoryChanged = true;

@@ -211,6 +211,7 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 			// craft when enough ticks have passed
 			if(fusionShrineBlockEntity.craftingTime == fusionShrineBlockEntity.craftingTimeTotal) {
 				craft(world, blockPos, fusionShrineBlockEntity, recipe);
+				fusionShrineBlockEntity.inventory.markDirty();
 			}
 			fusionShrineBlockEntity.markDirty();
 		} else {

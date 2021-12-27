@@ -203,6 +203,7 @@ public class FusionShrineBlock extends BlockWithEntity {
 				
 				if(itemsChanged) {
 					fusionShrineBlockEntity.markDirty();
+					fusionShrineBlockEntity.inventory.markDirty();
 					fusionShrineBlockEntity.updateInClientWorld();
 					if(soundToPlay.isPresent()) {
 						world.playSound(null, player.getBlockPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 0.8F, 0.8F + world.random.nextFloat() * 0.6F);

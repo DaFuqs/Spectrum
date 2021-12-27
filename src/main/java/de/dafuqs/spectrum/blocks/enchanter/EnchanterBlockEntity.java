@@ -6,6 +6,7 @@ import de.dafuqs.spectrum.SpectrumEnchantmentHelper;
 import de.dafuqs.spectrum.Support;
 import de.dafuqs.spectrum.blocks.item_bowl.ItemBowlBlockEntity;
 import de.dafuqs.spectrum.blocks.upgrade.Upgradeable;
+import de.dafuqs.spectrum.enchantments.SpectrumEnchantment;
 import de.dafuqs.spectrum.interfaces.PlayerOwned;
 import de.dafuqs.spectrum.items.ExperienceStorageItem;
 import de.dafuqs.spectrum.items.magic_items.KnowledgeGemItem;
@@ -58,8 +59,8 @@ import java.util.*;
 public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Upgradeable {
 	
 	public static final int REQUIRED_TICKS_FOR_EACH_EXPERIENCE_POINT = 8;
-	public static final Identifier APPLY_CONFLICTING_ENCHANTMENTS_ADVANCEMENT_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "milestones/unlock_conflicted_enchanting_with_enchanter"); // TODO: USE
-	public static final Identifier OVERENCHANTING_ADVANCEMENT_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "milestones/unlock_overenchanting_with_enchanter"); // TODO: USE
+	public static final Identifier APPLY_CONFLICTING_ENCHANTMENTS_ADVANCEMENT_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "milestones/unlock_conflicted_enchanting_with_enchanter");
+	public static final Identifier OVERENCHANTING_ADVANCEMENT_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "milestones/unlock_overenchanting_with_enchanter");
 	
 	public static final int INVENTORY_SIZE = 2; // 0: any itemstack, 1: Knowledge Gem;
 	
@@ -95,12 +96,16 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 	
 	public void readNbt(NbtCompound nbt) {
 		super.readNbt(nbt);
+		this.craftingTime = nbt.getInt("crafting_time");
+		this.craftingTimeTotal = nbt.getInt("crafting_time_total");
+		this.currentItemProcessingTime = nbt.getInt("current_item_processing_time");
+		
 		this.inventory = new SimpleInventory(INVENTORY_SIZE);
 		this.inventoryChanged = nbt.getBoolean("inventory_changed");
 		this.canOwnerApplyConflictingEnchantments = nbt.getBoolean("owner_can_apply_conflicting_enchantments");
 		this.canOwnerOverenchant = nbt.getBoolean("owner_can_overenchant");
-		this.currentItemProcessingTime = nbt.getInt("current_item_processing_time");
 		this.inventory.readNbtList(nbt.getList("inventory", 10));
+		this.virtualInventoryRecipeOrientation = nbt.getInt("virtual_recipe_orientation");
 		this.virtualInventoryIncludingBowlStacks = new SimpleInventory(INVENTORY_SIZE + 8);
 		this.virtualInventoryIncludingBowlStacks.readNbtList(nbt.getList("virtual_inventory", 10));
 		if(nbt.contains("item_facing", NbtElement.STRING_TYPE)) {
@@ -136,8 +141,12 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 	
 	public void writeNbt(NbtCompound nbt) {
 		super.writeNbt(nbt);
-		nbt.put("inventory", this.inventory.toNbtList());
+		nbt.putInt("crafting_time", this.craftingTime);
+		nbt.putInt("crafting_time_total", this.craftingTimeTotal);
 		nbt.putInt("current_item_processing_time", this.currentItemProcessingTime);
+		
+		nbt.put("inventory", this.inventory.toNbtList());
+		nbt.putInt("virtual_recipe_orientation", this.virtualInventoryRecipeOrientation);
 		nbt.putBoolean("inventory_changed", this.inventoryChanged);
 		nbt.putBoolean("owner_can_apply_conflicting_enchantments", this.canOwnerApplyConflictingEnchantments);
 		nbt.putBoolean("owner_can_overenchant", this.canOwnerOverenchant);
@@ -203,7 +212,7 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 		} else if(enchanterBlockEntity.currentItemProcessingTime > -1) {
 			float randomX = 0.2F + world.getRandom().nextFloat() * 0.6F;
 			float randomZ = 0.2F + world.getRandom().nextFloat() * 0.6F;
-			float randomY = -0.2F + world.getRandom().nextFloat() * 0.6F;
+			float randomY = -0.2F + world.getRandom().nextFloat() * 0.4F;
 			world.addParticle(SpectrumParticleTypes.LIME_SPARKLE_RISING, blockPos.getX() + randomX, blockPos.getY() + 2.5 + randomY, blockPos.getZ() + randomZ, 0.0D, -0.1D, 0.0D);
 			
 			if(world.getTime() % 10 == 0) {
@@ -282,7 +291,7 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 				enchanterBlockEntity.markDirty();
 			} else if(enchanterBlockEntity.currentItemProcessingTime > -1) {
 				enchanterBlockEntity.craftingTime++;
-				if(Support.getIntFromDecimalWithChance(1.0F / REQUIRED_TICKS_FOR_EACH_EXPERIENCE_POINT, world.random) > 0) {
+				if(world.random.nextFloat() < 1.0F / REQUIRED_TICKS_FOR_EACH_EXPERIENCE_POINT) {
 					// in-code recipe for item + books => enchanted item
 					boolean drained = enchanterBlockEntity.drainExperience(1); // TODO: apply upgrades
 					if (!drained) {
@@ -392,7 +401,7 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 		Map<Enchantment, Integer> highestEnchantments = getHighestEnchantmentsInItemBowls(enchanterBlockEntity);
 		
 		for(Enchantment enchantment : highestEnchantments.keySet()) {
-			centerStackCopy = SpectrumEnchantmentHelper.addOrExchangeEnchantment(centerStackCopy, enchantment, highestEnchantments.get(enchantment), false);
+			centerStackCopy = SpectrumEnchantmentHelper.addOrExchangeEnchantment(centerStackCopy, enchantment, highestEnchantments.get(enchantment), false, enchanterBlockEntity.canOwnerApplyConflictingEnchantments);
 		}
 		
 		if(centerStack.getCount() > 1) {
@@ -424,12 +433,15 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 	}
 	
 	public static int getRequiredExperienceToEnchantCenterItem(@NotNull EnchanterBlockEntity enchanterBlockEntity) {
-		ItemStack centerStack = enchanterBlockEntity.inventory.getStack(0);
-		if(!centerStack.isEmpty() && (centerStack.isEnchantable() || centerStack.isOf(Items.BOOK))) {
+		ItemStack centerStackCopy = enchanterBlockEntity.inventory.getStack(0).copy();
+		if(!centerStackCopy.isEmpty() && (centerStackCopy.getItem().isEnchantable(centerStackCopy) || centerStackCopy.isOf(Items.BOOK))) {
 			Map<Enchantment, Integer> highestEnchantmentLevels = getHighestEnchantmentsInItemBowls(enchanterBlockEntity);
 			int requiredExperience = 0;
 			for (Enchantment enchantment : highestEnchantmentLevels.keySet()) {
-				int currentRequired = getRequiredExperienceToEnchantWithEnchantment(centerStack, enchantment, highestEnchantmentLevels.get(enchantment));
+				
+				int enchantmentLevel = highestEnchantmentLevels.get(enchantment);
+				int currentRequired = getRequiredExperienceToEnchantWithEnchantment(centerStackCopy, enchantment, enchantmentLevel, enchanterBlockEntity.canOwnerApplyConflictingEnchantments);
+				centerStackCopy = SpectrumEnchantmentHelper.addOrExchangeEnchantment(centerStackCopy, enchantment, enchantmentLevel, false, enchanterBlockEntity.canOwnerApplyConflictingEnchantments);
 				if(currentRequired > 0) {
 					requiredExperience += currentRequired;
 				} else {
@@ -449,8 +461,12 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 	 * @param level The enchantments level
 	 * @return The required experience to enchant. -1 if the enchantment is not applicable
 	 */
-	public static int getRequiredExperienceToEnchantWithEnchantment(ItemStack itemStack, Enchantment enchantment, int level) {
-		if((itemStack.isEnchantable() && enchantment.isAcceptableItem(itemStack)) || itemStack.isOf(Items.BOOK)) {
+	public static int getRequiredExperienceToEnchantWithEnchantment(ItemStack itemStack, Enchantment enchantment, int level, boolean allowEnchantmentConflicts) {
+		boolean conflicts = SpectrumEnchantmentHelper.hasEnchantmentThatConflictsWith(itemStack, enchantment);
+		
+		if(conflicts && !allowEnchantmentConflicts) {
+			return -1;
+		} else if((itemStack.getItem().getEnchantability() > 0 && enchantment.isAcceptableItem(itemStack)) || itemStack.isOf(Items.BOOK)) {
 			int enchantability = itemStack.getItem().getEnchantability();
 			if (enchantability > 0) {
 				int rarityCost;
@@ -472,8 +488,13 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 				
 				float levelCost = level + ((float) level / enchantment.getMaxLevel()); // the higher the level, the pricier. But not as bad for enchantments with high max levels
 				float specialMulti = enchantment.isTreasure() ? 2.0F : enchantment.isCursed() ? 1.5F : 1.0F;
+				float selectionAvailabilityMod = 1.0F;
+				if(!(enchantment instanceof SpectrumEnchantment)) {
+					selectionAvailabilityMod = (enchantment.isAvailableForRandomSelection() ? 0.5F : 0.75F) + (enchantment.isAvailableForEnchantedBookOffer() ? 0.5F : 0.75F);
+				}
+				float conflictMod = conflicts ? 4.0F : 1.0F;
 				
-				return (int) Math.floor(rarityCost * levelCost * specialMulti * (10.0F / enchantability));
+				return (int) Math.floor(rarityCost * levelCost * specialMulti * conflictMod * selectionAvailabilityMod * (10.0F / enchantability));
 			}
 		}
 		return -1;
@@ -565,7 +586,7 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 		enchanterBlockEntity.drainExperience(enchantmentUpgradeRecipe.getRequiredExperience());
 		
 		ItemStack resultStack = enchanterBlockEntity.getInventory().getStack(0);
-		resultStack = SpectrumEnchantmentHelper.addOrExchangeEnchantment(resultStack, enchantmentUpgradeRecipe.getEnchantment(), enchantmentUpgradeRecipe.getEnchantmentDestinationLevel(), false);
+		resultStack = SpectrumEnchantmentHelper.addOrExchangeEnchantment(resultStack, enchantmentUpgradeRecipe.getEnchantment(), enchantmentUpgradeRecipe.getEnchantmentDestinationLevel(), false, true);
 		enchanterBlockEntity.getInventory().setStack(0, resultStack);
 		
 		// vanilla

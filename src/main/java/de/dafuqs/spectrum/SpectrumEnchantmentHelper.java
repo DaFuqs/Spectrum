@@ -17,7 +17,7 @@ import java.util.Map;
 public class SpectrumEnchantmentHelper {
 	
 	
-	public static ItemStack addOrExchangeEnchantment(ItemStack itemStack, Enchantment enchantment, int level, boolean forceEvenIfNotApplicable) {
+	public static ItemStack addOrExchangeEnchantment(ItemStack itemStack, Enchantment enchantment, int level, boolean forceEvenIfNotApplicable, boolean allowEnchantmentConflicts) {
 		Identifier enchantmentIdentifier = Registry.ENCHANTMENT.getId(enchantment);
 		
 		if(itemStack.isOf(Items.ENCHANTED_BOOK)) {
@@ -28,6 +28,12 @@ public class SpectrumEnchantmentHelper {
 			itemStack = enchantedBookStack;
 		} else if(!forceEvenIfNotApplicable && !enchantment.isAcceptableItem(itemStack)) {
 			// item can not be enchanted with this enchantment
+			return itemStack;
+		}
+		
+		// if not forced check if the stack already has enchantments
+		// that conflict with the new one
+		if(!allowEnchantmentConflicts && hasEnchantmentThatConflictsWith(itemStack, enchantment)) {
 			return itemStack;
 		}
 		
@@ -58,6 +64,18 @@ public class SpectrumEnchantmentHelper {
 		return itemStack;
 	}
 	
+	public static boolean hasEnchantmentThatConflictsWith(ItemStack itemStack, Enchantment enchantment) {
+		Map<Enchantment, Integer> existingEnchantments = EnchantmentHelper.get(itemStack);
+		for(Enchantment existingEnchantment : existingEnchantments.keySet()) {
+			if(!existingEnchantment.equals(enchantment)) {
+				if(!existingEnchantment.canCombine(enchantment)) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
 	public static Map<Enchantment, Integer> collectHighestEnchantments(List<ItemStack> itemStacks) {
 		Map<Enchantment, Integer> enchantmentLevelMap = new HashMap<>();
 		
@@ -80,11 +98,15 @@ public class SpectrumEnchantmentHelper {
 	}
 	
 	public static boolean canCombineAny(Map<Enchantment, Integer> existingEnchantments, Map<Enchantment, Integer> newEnchantments) {
-		for (Enchantment existingEnchantment : existingEnchantments.keySet()) {
-			for (Enchantment newEnchantment : newEnchantments.keySet()) {
-				boolean canCurrentCombine = existingEnchantment.canCombine(newEnchantment);
-				if(canCurrentCombine) {
-					return true;
+		if(existingEnchantments.isEmpty()) {
+			return true;
+		} else {
+			for (Enchantment existingEnchantment : existingEnchantments.keySet()) {
+				for (Enchantment newEnchantment : newEnchantments.keySet()) {
+					boolean canCurrentCombine = existingEnchantment.canCombine(newEnchantment);
+					if (canCurrentCombine) {
+						return true;
+					}
 				}
 			}
 		}

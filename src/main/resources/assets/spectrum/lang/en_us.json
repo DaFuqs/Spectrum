@@ -226,8 +226,8 @@
   "item.spectrum.upgrade_efficiency2.tooltip": "Noticeable chance for ingredients to not get used up",
   "item.spectrum.upgrade_yield.tooltip": "Slight chance to increase output",
   "item.spectrum.upgrade_yield2.tooltip": "Noticeable chance to increase output",
-  "item.spectrum.upgrade_experience.tooltip": "Slightly increased experience",
-  "item.spectrum.upgrade_experience2.tooltip": "Greatly increased experience",
+  "item.spectrum.upgrade_experience.tooltip": "Slightly increased experience gain / decreased use",
+  "item.spectrum.upgrade_experience2.tooltip": "Greatly increased experience gain / decreased use",
   "item.spectrum.upgrade.tooltip_increase": "Similar upgrades increase the effect exponentially",
 
   "block.spectrum.fusion_shrine": "Fusion Shrine",

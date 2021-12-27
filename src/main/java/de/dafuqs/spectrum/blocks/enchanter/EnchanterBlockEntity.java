@@ -290,10 +290,11 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 				}
 				enchanterBlockEntity.markDirty();
 			} else if(enchanterBlockEntity.currentItemProcessingTime > -1) {
-				enchanterBlockEntity.craftingTime++;
+				int speedTicks = Support.getIntFromDecimalWithChance(1 * enchanterBlockEntity.upgrades.get(UpgradeType.SPEED), enchanterBlockEntity.world.random);
+				enchanterBlockEntity.craftingTime += speedTicks;
 				if(world.random.nextFloat() < 1.0F / REQUIRED_TICKS_FOR_EACH_EXPERIENCE_POINT) {
 					// in-code recipe for item + books => enchanted item
-					boolean drained = enchanterBlockEntity.drainExperience(1); // TODO: apply upgrades
+					boolean drained = enchanterBlockEntity.drainExperience(speedTicks);
 					if (!drained) {
 						enchanterBlockEntity.currentItemProcessingTime = -1;
 						enchanterBlockEntity.updateInClientWorld();
@@ -511,11 +512,13 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 	}
 	
 	public boolean drainExperience(int amount) {
+		int amountAfterExperienceMod = Support.getIntFromDecimalWithChance(amount / (this.upgrades.get(UpgradeType.EXPERIENCE) / 10.0), this.world.random);
+		
 		ItemStack experienceProviderStack = getInventory().getStack(1);
 		if(experienceProviderStack.getItem() instanceof ExperienceStorageItem experienceStorageItem) {
 			if(experienceStorageItem instanceof KnowledgeGemItem knowledgeGemItem) {
 				int currentStoredExperience = ExperienceStorageItem.getStoredExperience(experienceProviderStack);
-				if(knowledgeGemItem.changedDisplayTier(currentStoredExperience, currentStoredExperience-amount)) {
+				if(knowledgeGemItem.changedDisplayTier(currentStoredExperience, currentStoredExperience-amountAfterExperienceMod)) {
 					// There was enough experience drained from the knowledge gem that the visual changed
 					// To display the updated knowledge gem size clientside the inventory has to be synched
 					// to the clients for rendering purposes
@@ -525,7 +528,7 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 			}
 			
 			this.markDirty();
-			return ExperienceStorageItem.removeStoredExperience(experienceProviderStack, amount);
+			return ExperienceStorageItem.removeStoredExperience(experienceProviderStack, amountAfterExperienceMod);
 		}
 		return false;
 	}
@@ -534,12 +537,16 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 		enchanterBlockEntity.drainExperience(enchanterRecipe.getRequiredExperience());
 		
 		for(int i = 0; i < 8; i++) {
-			// since this recipe uses 1 item in each slot we can just iterate them all and decrement with 1
-			BlockPos itemBowlPos = enchanterBlockEntity.pos.add(getItemBowlPositionOffset(i, enchanterBlockEntity.virtualInventoryRecipeOrientation));
-			BlockEntity blockEntity = world.getBlockEntity(itemBowlPos);
-			if(blockEntity instanceof ItemBowlBlockEntity itemBowlBlockEntity) {
-				itemBowlBlockEntity.decrementBowlStack(enchanterBlockEntity.pos, 1);
-				itemBowlBlockEntity.updateInClientWorld();
+			double yieldModifier =  enchanterRecipe.areYieldAndEfficiencyUpgradesDisabled() ? 1.0 : enchanterBlockEntity.upgrades.get(UpgradeType.YIELD);
+			int resultAmountAfterMod = Support.getIntFromDecimalWithChance(yieldModifier, enchanterBlockEntity.world.random);
+			if(resultAmountAfterMod > 0) {
+				// since this recipe uses 1 item in each slot we can just iterate them all and decrement with 1
+				BlockPos itemBowlPos = enchanterBlockEntity.pos.add(getItemBowlPositionOffset(i, enchanterBlockEntity.virtualInventoryRecipeOrientation));
+				BlockEntity blockEntity = world.getBlockEntity(itemBowlPos);
+				if (blockEntity instanceof ItemBowlBlockEntity itemBowlBlockEntity) {
+					itemBowlBlockEntity.decrementBowlStack(enchanterBlockEntity.pos, 1);
+					itemBowlBlockEntity.updateInClientWorld();
+				}
 			}
 		}
 		
@@ -547,6 +554,12 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 		// otherwise: pop it off
 		ItemStack resultStack = enchanterRecipe.getOutput().copy();
 		ItemStack existingStack = enchanterBlockEntity.getInventory().getStack(0);
+		
+		if(!enchanterRecipe.areYieldAndEfficiencyUpgradesDisabled()) {
+			int resultCountMod = Support.getIntFromDecimalWithChance(resultStack.getCount() * enchanterBlockEntity.upgrades.get(UpgradeType.YIELD), world.random);
+			resultStack.setCount(resultCountMod);
+		}
+		
 		if(existingStack.getCount() > 1) {
 			existingStack.decrement(1);
 			spawnOutputAsItemEntity(world, enchanterBlockEntity, resultStack);
@@ -571,6 +584,7 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 	}
 	
 	public static int tickEnchantmentUpgradeRecipe(World world, @NotNull EnchanterBlockEntity enchanterBlockEntity, @NotNull EnchantmentUpgradeRecipe enchantmentUpgradeRecipe, int itemsToConsumeLeft) {
+		// TODO: efficiency
 		int itemCountToConsume = Math.min(itemsToConsumeLeft, Support.getIntFromDecimalWithChance(enchanterBlockEntity.upgrades.get(UpgradeType.EFFICIENCY), world.random));
 		
 		int consumedAmount = 0;

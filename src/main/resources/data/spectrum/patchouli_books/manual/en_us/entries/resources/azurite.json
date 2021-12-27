@@ -1,6 +1,6 @@
 {
     "name": "Azurite",
-    "advancement": "spectrum:lategame/collect_raw_azurite",
+    "advancement": "spectrum:midgame/collect_raw_azurite",
     "icon": "spectrum:azurite_ore",
     "category": "spectrum:resources_category",
     "extra_recipe_mappings": {

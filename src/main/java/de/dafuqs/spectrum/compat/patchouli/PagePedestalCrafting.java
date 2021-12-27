@@ -42,7 +42,7 @@ public class PagePedestalCrafting extends PageDoubleRecipeRegistry<PedestalCraft
 	protected void drawRecipe(MatrixStack ms, @NotNull PedestalCraftingRecipe recipe, int recipeX, int recipeY, int mouseX, int mouseY, boolean second) {
 		RenderSystem.setShaderTexture(0, getBackgroundTextureForTier(recipe.getTier()));
 		RenderSystem.enableBlend();
-		DrawableHelper.drawTexture(ms, recipeX - 2, recipeY - 2, 0, 0, 104, 97, 128, 256);
+		DrawableHelper.drawTexture(ms, recipeX - 2, recipeY - 2, 0, 0, 106, 97, 128, 256);
 
 		parent.drawCenteredStringNoShadow(ms, getTitle(second).asOrderedText(), GuiBook.PAGE_WIDTH / 2, recipeY - 10, book.headerColor);
 		parent.renderItemStack(ms, recipeX + 78, recipeY + 22, mouseX, mouseY, recipe.getOutput());

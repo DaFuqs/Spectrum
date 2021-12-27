@@ -2,9 +2,14 @@ package de.dafuqs.spectrum.blocks.conditional;
 
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.interfaces.Cloakable;
+import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.ItemEntity;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
@@ -12,6 +17,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.context.LootContext;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
@@ -23,6 +29,7 @@ import net.minecraft.util.Pair;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.BlockView;
+import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
 import org.jetbrains.annotations.Nullable;
@@ -41,7 +48,20 @@ public class MermaidsBrushBlock extends PlantBlock implements Cloakable, FluidFi
 		this.setDefaultState(this.stateManager.getDefaultState().with(AGE, 0).with(IN_LIQUID_CRYSTAL, false));
 		registerCloak();
 	}
-
+	
+	@Override
+	public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
+		super.randomDisplayTick(state, world, pos, random);
+		if(world.isClient) {
+			if(MinecraftClient.getInstance().player.getEquippedStack(EquipmentSlot.HEAD).isOf(SpectrumItems.GLOW_VISION_HELMET)) {
+				StatusEffectInstance nightVisionEffectInstance = MinecraftClient.getInstance().player.getStatusEffect(StatusEffects.NIGHT_VISION);
+				if(nightVisionEffectInstance != null && nightVisionEffectInstance.getDuration() > 0) {
+					world.addParticle(ParticleTypes.GLOW, (double) pos.getX() + 0.2 + random.nextFloat() * 0.6, (double) pos.getY() + 0.1 + random.nextFloat() * 0.6, (double) pos.getZ() + 0.2 + random.nextFloat() * 0.6, 0.0D, 0.03D, 0.0D);
+				}
+			}
+		}
+	}
+	
 	@Override
 	public Identifier getCloakAdvancementIdentifier() {
 		return new Identifier(SpectrumCommon.MOD_ID, "milestones/reveal_mermaids_brush");
@@ -51,8 +71,8 @@ public class MermaidsBrushBlock extends PlantBlock implements Cloakable, FluidFi
 	public Hashtable<BlockState, BlockState> getBlockStateCloaks() {
 		Hashtable<BlockState, BlockState> hashtable = new Hashtable<>();
 		for(int i = 0; i < 8; i++) {
-			hashtable.put(this.getDefaultState().with(AGE, i).with(IN_LIQUID_CRYSTAL, false), Blocks.WATER.getDefaultState());
-			hashtable.put(this.getDefaultState().with(AGE, i).with(IN_LIQUID_CRYSTAL, true), SpectrumBlocks.LIQUID_CRYSTAL.getDefaultState());
+			hashtable.put(this.getDefaultState().with(AGE, i).with(IN_LIQUID_CRYSTAL, false), Blocks.SEAGRASS.getDefaultState());
+			hashtable.put(this.getDefaultState().with(AGE, i).with(IN_LIQUID_CRYSTAL, true), Blocks.SEAGRASS.getDefaultState());
 		}
 		return hashtable;
 	}

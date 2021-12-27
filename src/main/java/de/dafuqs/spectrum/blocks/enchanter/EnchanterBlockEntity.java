@@ -433,6 +433,7 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 	}
 	
 	public static int getRequiredExperienceToEnchantCenterItem(@NotNull EnchanterBlockEntity enchanterBlockEntity) {
+		boolean valid = false;
 		ItemStack centerStackCopy = enchanterBlockEntity.inventory.getStack(0).copy();
 		if(!centerStackCopy.isEmpty() && (centerStackCopy.getItem().isEnchantable(centerStackCopy) || centerStackCopy.isOf(Items.BOOK))) {
 			Map<Enchantment, Integer> highestEnchantmentLevels = getHighestEnchantmentsInItemBowls(enchanterBlockEntity);
@@ -444,11 +445,16 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 				centerStackCopy = SpectrumEnchantmentHelper.addOrExchangeEnchantment(centerStackCopy, enchantment, enchantmentLevel, false, enchanterBlockEntity.canOwnerApplyConflictingEnchantments);
 				if(currentRequired > 0) {
 					requiredExperience += currentRequired;
+					valid = true;
 				} else {
 					requiredExperience += 50; // conflicting enchantments (like more enchantments in a book where not all can be applied cost extra
 				}
 			}
-			return requiredExperience;
+			if(valid) { // and applicable enchantment found
+				return requiredExperience;
+			} else {
+				return -1; // all enchantments already applied
+			}
 		}
 		return -1;
 	}
@@ -462,6 +468,10 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 	 * @return The required experience to enchant. -1 if the enchantment is not applicable
 	 */
 	public static int getRequiredExperienceToEnchantWithEnchantment(ItemStack itemStack, Enchantment enchantment, int level, boolean allowEnchantmentConflicts) {
+		int existingLevel = EnchantmentHelper.getLevel(enchantment, itemStack);
+		if(existingLevel >= level) {
+			return -1;
+		}
 		boolean conflicts = SpectrumEnchantmentHelper.hasEnchantmentThatConflictsWith(itemStack, enchantment);
 		
 		if(conflicts && !allowEnchantmentConflicts) {

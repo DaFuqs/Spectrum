@@ -36,5 +36,6 @@
     "item": "spectrum:exchange_staff",
     "nbt": "{Enchantments: [{id: \"minecraft:fortune\", lvl: 3s}]}"
   },
+  "disable_yield_and_efficiency_upgrades": true,
   "required_advancement": "spectrum:progression/unlock_exchange_staff_fortune"
 }

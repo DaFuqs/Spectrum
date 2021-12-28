@@ -215,7 +215,7 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 			float randomY = -0.2F + world.getRandom().nextFloat() * 0.4F;
 			world.addParticle(SpectrumParticleTypes.LIME_SPARKLE_RISING, blockPos.getX() + randomX, blockPos.getY() + 2.5 + randomY, blockPos.getZ() + randomZ, 0.0D, -0.1D, 0.0D);
 			
-			if(world.getTime() % 10 == 0) {
+			if(world.getTime() % 12 == 0) {
 				((ClientWorld) world).playSound(enchanterBlockEntity.pos, SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.BLOCKS, 0.8F, 0.8F + world.random.nextFloat() * 0.4F, true);
 				
 				for(int i = 0; i < 8; i++) {
@@ -300,7 +300,7 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 						enchanterBlockEntity.updateInClientWorld();
 					}
 				}
-				if (enchanterBlockEntity.craftingTime == enchanterBlockEntity.currentItemProcessingTime) {
+				if (enchanterBlockEntity.currentItemProcessingTime > 0 && enchanterBlockEntity.craftingTime >= enchanterBlockEntity.currentItemProcessingTime) {
 					playCraftingFinishedEffects(enchanterBlockEntity);
 					enchantCenterItem(enchanterBlockEntity);
 					
@@ -516,7 +516,7 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 		if(experienceProviderStack.getItem() instanceof ExperienceStorageItem experienceStorageItem) {
 			int currentStoredExperience = ExperienceStorageItem.getStoredExperience(experienceProviderStack);
 			if(currentStoredExperience > 0) {
-				int amountAfterExperienceMod = Support.getIntFromDecimalWithChance(amount * (this.upgrades.get(UpgradeType.EXPERIENCE)), this.world.random);
+				int amountAfterExperienceMod = getExperienceWithMod(amount, this.upgrades.get(UpgradeType.EXPERIENCE), world.random);
 				int drainedExperience = Math.min(currentStoredExperience, amountAfterExperienceMod);
 				
 				if (experienceStorageItem instanceof KnowledgeGemItem knowledgeGemItem) {
@@ -536,14 +536,19 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 		return false;
 	}
 	
+	public static int getExperienceWithMod(int experience, double mod, Random random) {
+		double modNormalized = 1.0 / (1.0 + Math.log10(mod));
+		return Support.getIntFromDecimalWithChance(experience * modNormalized, random);
+	}
+	
 	public static void craftEnchanterRecipe(World world, @NotNull EnchanterBlockEntity enchanterBlockEntity, @NotNull EnchanterRecipe enchanterRecipe) {
 		enchanterBlockEntity.drainExperience(enchanterRecipe.getRequiredExperience());
 		
 		for(int i = 0; i < 8; i++) {
 			int resultAmountAfterMod = 1;
 			if(!enchanterRecipe.areYieldAndEfficiencyUpgradesDisabled()) {
-				double yieldModifier = enchanterBlockEntity.upgrades.get(UpgradeType.YIELD);
-				resultAmountAfterMod = Support.getIntFromDecimalWithChance(yieldModifier, enchanterBlockEntity.world.random);
+				double efficiencyModifier = enchanterBlockEntity.upgrades.get(UpgradeType.EFFICIENCY);
+				resultAmountAfterMod = Support.getIntFromDecimalWithChance(efficiencyModifier, enchanterBlockEntity.world.random);
 			}
 
 			if(resultAmountAfterMod > 0) {

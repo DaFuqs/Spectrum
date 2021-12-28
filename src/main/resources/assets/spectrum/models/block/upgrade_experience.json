@@ -4,7 +4,8 @@
 	"textures": {
 		"inner": "spectrum:block/upgrade_experience_inner",
 		"outer": "spectrum:block/upgrade_speed_outer",
-		"base": "spectrum:block/upgrade_base"
+		"base": "spectrum:block/upgrade_base",
+		"particle": "spectrum:block/upgrade_experience_inner"
 	},
 	"elements": [
 		{

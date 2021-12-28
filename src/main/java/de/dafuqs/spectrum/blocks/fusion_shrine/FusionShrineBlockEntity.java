@@ -104,7 +104,7 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 		} else {
 			this.currentRecipe = null;
 		}
-		if(nbt.contains("Upgrades", NbtElement.COMPOUND_TYPE)) {
+		if(nbt.contains("Upgrades", NbtElement.LIST_TYPE)) {
 			this.upgrades = Upgradeable.fromNbt(nbt.getList("Upgrades", NbtElement.COMPOUND_TYPE));
 		}
 	}
@@ -393,11 +393,13 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 	// UPGRADEABLE
 	public void resetUpgrades() {
 		this.upgrades = null;
+		this.markDirty();
 	}
 	
 	public void calculateUpgrades() {
 		Pair<Integer, Map<Upgradeable.UpgradeType, Double>> upgrades = Upgradeable.checkUpgradeMods(world, pos, 2, 0);
 		this.upgrades = upgrades.getRight();
+		this.markDirty();
 	}
 	
 }

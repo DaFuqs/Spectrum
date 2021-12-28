@@ -260,7 +260,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		if(nbt.contains("CraftingTimeTotal")) {
 			this.craftingTimeTotal = nbt.getShort("CraftingTimeTotal");
 		}
-		if(nbt.contains("Upgrades", NbtElement.COMPOUND_TYPE)) {
+		if(nbt.contains("Upgrades", NbtElement.LIST_TYPE)) {
 			this.upgrades = Upgradeable.fromNbt(nbt.getList("Upgrades", NbtElement.COMPOUND_TYPE));
 		}
 		if(nbt.contains("CurrentRecipe")) {
@@ -855,6 +855,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 	
 	public void resetUpgrades() {
 		this.upgrades = null;
+		this.markDirty();
 	}
 	
 	/**
@@ -863,6 +864,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 	public void calculateUpgrades() {
 		Pair<Integer, Map<UpgradeType, Double>> upgrades = Upgradeable.checkUpgradeMods(world, pos, 3, 2);
 		this.upgrades = upgrades.getRight();
+		this.markDirty();
 		
 		if(upgrades.getLeft() == 4) {
 			ServerPlayerEntity owner = (ServerPlayerEntity) getPlayerEntityIfOnline(world);

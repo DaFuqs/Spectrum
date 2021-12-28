@@ -544,19 +544,20 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 	public static void craftEnchanterRecipe(World world, @NotNull EnchanterBlockEntity enchanterBlockEntity, @NotNull EnchanterRecipe enchanterRecipe) {
 		enchanterBlockEntity.drainExperience(enchanterRecipe.getRequiredExperience());
 		
+		// decrement stacks in item bowls
 		for(int i = 0; i < 8; i++) {
-			int resultAmountAfterMod = 1;
-			if(!enchanterRecipe.areYieldAndEfficiencyUpgradesDisabled()) {
-				double efficiencyModifier = enchanterBlockEntity.upgrades.get(UpgradeType.EFFICIENCY);
-				resultAmountAfterMod = Support.getIntFromDecimalWithChance(efficiencyModifier, enchanterBlockEntity.world.random);
+			int resultAmountAfterEfficiencyMod = 1;
+			if(!enchanterRecipe.areYieldAndEfficiencyUpgradesDisabled() && enchanterBlockEntity.upgrades.get(UpgradeType.EFFICIENCY) != 1.0) {
+				double efficiencyModifier = 1.0 / enchanterBlockEntity.upgrades.get(UpgradeType.EFFICIENCY);
+				resultAmountAfterEfficiencyMod = Support.getIntFromDecimalWithChance(efficiencyModifier, enchanterBlockEntity.world.random);
 			}
 
-			if(resultAmountAfterMod > 0) {
+			if(resultAmountAfterEfficiencyMod > 0) {
 				// since this recipe uses 1 item in each slot we can just iterate them all and decrement with 1
 				BlockPos itemBowlPos = enchanterBlockEntity.pos.add(getItemBowlPositionOffset(i, enchanterBlockEntity.virtualInventoryRecipeOrientation));
 				BlockEntity blockEntity = world.getBlockEntity(itemBowlPos);
 				if (blockEntity instanceof ItemBowlBlockEntity itemBowlBlockEntity) {
-					itemBowlBlockEntity.decrementBowlStack(enchanterBlockEntity.pos, resultAmountAfterMod);
+					itemBowlBlockEntity.decrementBowlStack(enchanterBlockEntity.pos, resultAmountAfterEfficiencyMod);
 					itemBowlBlockEntity.updateInClientWorld();
 				}
 			}
@@ -565,16 +566,16 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 		// if there is room: place the output on the table
 		// otherwise: pop it off
 		ItemStack resultStack = enchanterRecipe.getOutput().copy();
-		ItemStack existingStack = enchanterBlockEntity.getInventory().getStack(0);
+		ItemStack existingCenterStack = enchanterBlockEntity.getInventory().getStack(0);
 		
-		if(!enchanterRecipe.areYieldAndEfficiencyUpgradesDisabled()) {
+		if(!enchanterRecipe.areYieldAndEfficiencyUpgradesDisabled() && enchanterBlockEntity.upgrades.get(UpgradeType.YIELD) != 1.0) {
 			int resultCountMod = Support.getIntFromDecimalWithChance(resultStack.getCount() * enchanterBlockEntity.upgrades.get(UpgradeType.YIELD), world.random);
 			resultStack.setCount(resultCountMod);
 		}
 		
-		if(existingStack.getCount() > 1) {
-			existingStack.decrement(1);
-			spawnOutputAsItemEntity(world, enchanterBlockEntity, resultStack);
+		if(existingCenterStack.getCount() > 1) {
+			existingCenterStack.decrement(1);
+			spawnItemStackAsEntitySplitViaMaxCount(world, enchanterBlockEntity.pos, resultStack, resultStack.getCount());
 		} else {
 			enchanterBlockEntity.getInventory().setStack(0, resultStack);
 		}
@@ -586,6 +587,20 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 		ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity) PlayerOwned.getPlayerEntityIfOnline(world, enchanterBlockEntity.ownerUUID);
 		if(serverPlayerEntity != null) {
 			SpectrumAdvancementCriteria.ENCHANTER_CRAFTING.trigger(serverPlayerEntity, resultStack, enchanterRecipe.getRequiredExperience());
+		}
+	}
+	
+	public static void spawnItemStackAsEntitySplitViaMaxCount(World world, BlockPos blockPos, ItemStack itemStack, int amount) {
+		while (amount > 0) {
+			int currentAmount = Math.min(amount, itemStack.getMaxCount());
+			
+			ItemStack resultStack = itemStack.copy();
+			resultStack.setCount(currentAmount);
+			ItemEntity itemEntity = new ItemEntity(world, blockPos.getX() + 0.5, blockPos.getY() + 0.5, blockPos.getZ() + 0.5, resultStack);
+			itemEntity.setVelocity(0, 0.3, 0);
+			world.spawnEntity(itemEntity);
+			
+			amount -= currentAmount;
 		}
 	}
 	
@@ -601,16 +616,25 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 		int consumedAmount = 0;
 		int bowlsChecked = 0;
 		int randomBowlPosition = world.random.nextInt(8);
-		while(consumedAmount < itemCountToConsume && bowlsChecked < 8) {
-			Vec3i bowlOffset = getItemBowlPositionOffset(randomBowlPosition, enchanterBlockEntity.virtualInventoryRecipeOrientation);
+		
+		int itemCountToConsumeAfterMod = itemCountToConsume;
+		if(enchanterBlockEntity.upgrades.get(UpgradeType.EFFICIENCY) != 1.0) {
+			itemCountToConsumeAfterMod = Support.getIntFromDecimalWithChance(itemCountToConsume / enchanterBlockEntity.upgrades.get(UpgradeType.EFFICIENCY), world.random);
+		}
+		
+		// cycle at least once for fancy particles
+		while((consumedAmount < itemCountToConsumeAfterMod && bowlsChecked < 8) || (itemCountToConsumeAfterMod == 0 & consumedAmount == 0)) {
+			Vec3i bowlOffset = getItemBowlPositionOffset(randomBowlPosition + bowlsChecked, enchanterBlockEntity.virtualInventoryRecipeOrientation);
 			
 			BlockEntity blockEntity = world.getBlockEntity(enchanterBlockEntity.pos.add(bowlOffset));
 			if(blockEntity instanceof ItemBowlBlockEntity itemBowlBlockEntity) {
-				int toDecreaseAmount = Support.getIntFromDecimalWithChance(1.0 / enchanterBlockEntity.upgrades.get(UpgradeType.EFFICIENCY), world.random);
-				int decrementAmount = itemBowlBlockEntity.decrementBowlStack(enchanterBlockEntity.pos, toDecreaseAmount);
-				consumedAmount += decrementAmount;
-			} else {
-				randomBowlPosition = (randomBowlPosition + 1) % 8;
+				if(itemCountToConsumeAfterMod == 0) {
+					itemBowlBlockEntity.doEnchantingEffects(enchanterBlockEntity.pos, 1);
+					consumedAmount += itemCountToConsume;
+				} else {
+					int decrementedAmount = itemBowlBlockEntity.decrementBowlStack(enchanterBlockEntity.pos, itemCountToConsumeAfterMod);
+					consumedAmount += decrementedAmount;
+				}
 			}
 			bowlsChecked++;
 		}

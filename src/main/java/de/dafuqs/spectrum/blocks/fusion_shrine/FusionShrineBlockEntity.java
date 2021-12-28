@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.blocks.fusion_shrine;
 
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.Support;
+import de.dafuqs.spectrum.blocks.enchanter.EnchanterBlockEntity;
 import de.dafuqs.spectrum.blocks.upgrade.Upgradeable;
 import de.dafuqs.spectrum.interfaces.PlayerOwned;
 import de.dafuqs.spectrum.networking.SpectrumS2CPackets;
@@ -16,7 +17,6 @@ import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.ExperienceOrbEntity;
-import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.Fluids;
@@ -308,15 +308,7 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 		double yieldModifier =  recipe.areYieldUpgradesDisabled() ? 1.0 : blockEntity.upgrades.get(UpgradeType.YIELD);
 		int resultAmountAfterMod = Support.getIntFromDecimalWithChance(resultAmountBeforeMod * yieldModifier, blockEntity.world.random);
 		
-		while(resultAmountAfterMod > 0) {
-			int currentAmount = Math.min(amount, recipe.getOutput().getMaxCount());
-
-			ItemEntity itemEntity = new ItemEntity(world, blockEntity.pos.getX() + 0.5, blockEntity.pos.getY() + 1, blockEntity.pos.getZ() + 0.5, new ItemStack(recipe.getOutput().getItem(), currentAmount));
-			itemEntity.setVelocity(0, 0.3, 0);
-			world.spawnEntity(itemEntity);
-			
-			resultAmountAfterMod -= currentAmount;
-		}
+		EnchanterBlockEntity.spawnItemStackAsEntitySplitViaMaxCount(world, blockEntity.pos, recipe.getOutput(), resultAmountAfterMod);
 
 		if (recipe.getExperience() > 0) {
 			double experienceModifier = blockEntity.upgrades.get(UpgradeType.EXPERIENCE);

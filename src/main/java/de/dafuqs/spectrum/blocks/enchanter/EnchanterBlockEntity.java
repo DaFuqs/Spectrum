@@ -516,7 +516,7 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 		if(experienceProviderStack.getItem() instanceof ExperienceStorageItem experienceStorageItem) {
 			int currentStoredExperience = ExperienceStorageItem.getStoredExperience(experienceProviderStack);
 			if(currentStoredExperience > 0) {
-				int amountAfterExperienceMod = Support.getIntFromDecimalWithChance(amount / (this.upgrades.get(UpgradeType.EXPERIENCE) / 10.0), this.world.random);
+				int amountAfterExperienceMod = Support.getIntFromDecimalWithChance(amount * (this.upgrades.get(UpgradeType.EXPERIENCE)), this.world.random);
 				int drainedExperience = Math.min(currentStoredExperience, amountAfterExperienceMod);
 				
 				if (experienceStorageItem instanceof KnowledgeGemItem knowledgeGemItem) {

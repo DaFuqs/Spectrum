@@ -2,9 +2,12 @@ package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.mob_head.SpectrumSkullBlock;
+import de.dafuqs.spectrum.items.ExperienceStorageItem;
+import de.dafuqs.spectrum.items.magic_items.KnowledgeGemItem;
 import io.wispforest.owo.itemgroup.Icon;
 import io.wispforest.owo.itemgroup.OwoItemGroup;
 import io.wispforest.owo.itemgroup.gui.ItemGroupButton;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
@@ -46,6 +49,10 @@ public class SpectrumItemGroups {
 			
 			if(this.getSelectedTab() == ITEM_GROUP_GENERAL.getTab(1)) {
 				// early game tools
+				ItemStack knowledgeGemStack = new ItemStack(SpectrumItems.KNOWLEDGE_GEM);
+				ExperienceStorageItem.addStoredExperience(knowledgeGemStack, 10000);
+				stacks.add(knowledgeGemStack);
+				
 				stacks.add(SpectrumDefaultEnchantments.getEnchantedItemStack(SpectrumItems.MULTITOOL));
 				stacks.add(SpectrumDefaultEnchantments.getEnchantedItemStack(SpectrumItems.LOOTING_FALCHION));
 				stacks.add(SpectrumDefaultEnchantments.getEnchantedItemStack(SpectrumItems.SILKER_PICKAXE));

@@ -512,23 +512,26 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 	}
 	
 	public boolean drainExperience(int amount) {
-		int amountAfterExperienceMod = Support.getIntFromDecimalWithChance(amount / (this.upgrades.get(UpgradeType.EXPERIENCE) / 10.0), this.world.random);
-		
 		ItemStack experienceProviderStack = getInventory().getStack(1);
 		if(experienceProviderStack.getItem() instanceof ExperienceStorageItem experienceStorageItem) {
-			if(experienceStorageItem instanceof KnowledgeGemItem knowledgeGemItem) {
-				int currentStoredExperience = ExperienceStorageItem.getStoredExperience(experienceProviderStack);
-				if(knowledgeGemItem.changedDisplayTier(currentStoredExperience, currentStoredExperience-amountAfterExperienceMod)) {
-					// There was enough experience drained from the knowledge gem that the visual changed
-					// To display the updated knowledge gem size clientside the inventory has to be synched
-					// to the clients for rendering purposes
-					// TODO: play particle effect
-					this.updateInClientWorld();
+			int currentStoredExperience = ExperienceStorageItem.getStoredExperience(experienceProviderStack);
+			if(currentStoredExperience > 0) {
+				int amountAfterExperienceMod = Support.getIntFromDecimalWithChance(amount / (this.upgrades.get(UpgradeType.EXPERIENCE) / 10.0), this.world.random);
+				int drainedExperience = Math.min(currentStoredExperience, amountAfterExperienceMod);
+				
+				if (experienceStorageItem instanceof KnowledgeGemItem knowledgeGemItem) {
+					if (knowledgeGemItem.changedDisplayTier(currentStoredExperience, currentStoredExperience - drainedExperience)) {
+						// There was enough experience drained from the knowledge gem that the visual changed
+						// To display the updated knowledge gem size clientside the inventory has to be synched
+						// to the clients for rendering purposes
+						// TODO: play particle effect
+						this.updateInClientWorld();
+					}
 				}
+				
+				this.markDirty();
+				return ExperienceStorageItem.removeStoredExperience(experienceProviderStack, drainedExperience);
 			}
-			
-			this.markDirty();
-			return ExperienceStorageItem.removeStoredExperience(experienceProviderStack, amountAfterExperienceMod);
 		}
 		return false;
 	}

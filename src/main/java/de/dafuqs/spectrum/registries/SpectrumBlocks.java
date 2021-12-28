@@ -97,6 +97,7 @@ public class SpectrumBlocks {
 	public static FabricItemSettings resourcesItemSettingsUncommon = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(2).rarity(Rarity.UNCOMMON);
 	public static FabricItemSettings resourcesItemSettingsRare = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(2).rarity(Rarity.RARE);
 	public static FabricItemSettings decorationItemSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_BLOCKS).tab(0);
+	public static FabricItemSettings decorationItemSettingsRare = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_BLOCKS).tab(0).rarity(Rarity.RARE);
 	public static FabricItemSettings coloredWoodItemSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_BLOCKS).tab(1);
 	public static FabricItemSettings mobHeadItemSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_BLOCKS).tab(2).rarity(Rarity.UNCOMMON);
 
@@ -679,7 +680,7 @@ public class SpectrumBlocks {
 		registerStoneBlocks(decorationItemSettings);
 		registerGemBlocks(resourcesItemSettings);
 		registerBlockWithItem("spectral_shard_block", SPECTRAL_SHARD_BLOCK, resourcesItemSettingsRare);
-		registerBlockWithItem("bedrock_storage_block", BEDROCK_STORAGE_BLOCK, resourcesItemSettingsRare);
+		registerBlockWithItem("bedrock_storage_block", BEDROCK_STORAGE_BLOCK, decorationItemSettingsRare);
 		
 		registerGemOreBlocks(resourcesItemSettings);
 		registerOreBlocks(resourcesItemSettings);
@@ -741,10 +742,10 @@ public class SpectrumBlocks {
 		registerBlockWithItem("redstone_timer", REDSTONE_TIMER, fabricItemSettings);
 		registerBlockWithItem("redstone_calculator", REDSTONE_CALCULATOR, fabricItemSettings);
 		registerBlockWithItem("redstone_wireless", REDSTONE_WIRELESS, fabricItemSettings);
-		registerBlockWithItem("block_placer", BLOCK_PLACER, fabricItemSettings);
-
+		
 		registerBlockWithItem("redstone_sand", REDSTONE_SAND, fabricItemSettings);
 		registerBlockWithItem("ender_glass", ENDER_GLASS, fabricItemSettings);
+		registerBlockWithItem("block_placer", BLOCK_PLACER, fabricItemSettings);
 	}
 
 	private static void registerMagicalBlocks(FabricItemSettings fabricItemSettings) {

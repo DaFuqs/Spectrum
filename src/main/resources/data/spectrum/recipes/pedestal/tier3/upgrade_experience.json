@@ -34,5 +34,5 @@
     "item": "spectrum:upgrade_experience",
     "count": 1
   },
-  "required_advancements": ["spectrum:midgame/collect_lightning_stone"]
+  "required_advancements": ["spectrum:progression/unlock_upgrade_experience"]
 }

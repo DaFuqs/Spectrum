@@ -285,9 +285,6 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 			
 			SpectrumS2CPackets.sendPlayFusionCraftingFinishedParticles(world, blockPos, recipe.getOutput());
 			fusionShrineBlockEntity.playSound(SpectrumSoundEvents.FUSION_SHRINE_CRAFTING_FINISHED, 1.4F);
-
-			//only triggered on server side. Therefore, has to be sent to client via S2C packet
-			fusionShrineBlockEntity.grantPlayerFusionCraftingAdvancement(recipe);
 		}
 	}
 	
@@ -296,10 +293,10 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 		world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), soundEvent, SoundCategory.BLOCKS, volume, 0.9F + random.nextFloat() * 0.15F);
 	}
 	
-	private void grantPlayerFusionCraftingAdvancement(FusionShrineRecipe recipe) {
+	private void grantPlayerFusionCraftingAdvancement(FusionShrineRecipe recipe, int experience) {
 		ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity) PlayerOwned.getPlayerEntityIfOnline(this.world, this.ownerUUID);
 		if(serverPlayerEntity != null) {
-			SpectrumAdvancementCriteria.FUSION_SHRINE_CRAFTING.trigger(serverPlayerEntity, recipe.getOutput());
+			SpectrumAdvancementCriteria.FUSION_SHRINE_CRAFTING.trigger(serverPlayerEntity, recipe.getOutput(), experience);
 		}
 	}
 
@@ -310,15 +307,19 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 		
 		EnchanterBlockEntity.spawnItemStackAsEntitySplitViaMaxCount(world, blockEntity.pos, recipe.getOutput(), resultAmountAfterMod);
 
+		int spawnedXPAmount = 0;
 		if (recipe.getExperience() > 0) {
 			double experienceModifier = blockEntity.upgrades.get(UpgradeType.EXPERIENCE);
 			float recipeExperienceBeforeMod = recipe.getExperience();
-			int spawnedXPAmount = Support.getIntFromDecimalWithChance(recipeExperienceBeforeMod * experienceModifier, blockEntity.world.random);
+			spawnedXPAmount = Support.getIntFromDecimalWithChance(recipeExperienceBeforeMod * experienceModifier, blockEntity.world.random);
 			if(spawnedXPAmount > 0) {
 				ExperienceOrbEntity experienceOrbEntity = new ExperienceOrbEntity(world, blockEntity.pos.getX() + 0.5, blockEntity.pos.getY() + 1, blockEntity.pos.getZ() + 0.5, spawnedXPAmount);
 				world.spawnEntity(experienceOrbEntity);
 			}
 		}
+		
+		//only triggered on server side. Therefore, has to be sent to client via S2C packet
+		blockEntity.grantPlayerFusionCraftingAdvancement(recipe, spawnedXPAmount);
 	}
 
 	public static void scatterContents(World world, BlockPos pos, FusionShrineBlockEntity blockEntity) {

@@ -4,6 +4,10 @@
       "trigger": "spectrum:crafted_with_pedestal",
       "conditions": { "items": [{ "items": [ "spectrum:upgrade_experience" ]}] }
     },
+    "crafted_recipe_worth_25_xp": {
+      "trigger": "spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:midgame/craft_and_get_25_xp" }
+    },
     "collected_moonstone_shard": {
       "trigger":"spectrum:has_advancement",
       "conditions": { "advancement_identifier": "spectrum:midgame/collect_moonstone_shard" }

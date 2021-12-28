@@ -1,15 +1,15 @@
 {
   "type": "spectrum:pedestal",
   "time": 1600,
-  "tier": "simple",
+  "tier": "advanced",
   "cyan": 4,
   "magenta": 0,
   "yellow": 2,
-  "black": 0,
+  "black": 1,
   "white": 0,
   "experience": 2.0,
   "pattern": [
-    "CCC",
+    "CTC",
     "PGP",
     "BBB"
   ],
@@ -25,6 +25,9 @@
     },
     "G": {
       "item": "spectrum:scarlet_gem"
+    },
+    "T": {
+      "item": "spectrum:red_pigment"
     }
   },
   "result" : {

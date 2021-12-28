@@ -594,10 +594,11 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 			// Add recipe XP
 			double experienceModifier = pedestalBlockEntity.upgrades.get(UpgradeType.EXPERIENCE);
 			float recipeExperienceBeforeMod = recipe.getExperience();
-			pedestalBlockEntity.storedXP = (float) (recipeExperienceBeforeMod * experienceModifier);
+			float experienceAfterMod = (float) (recipeExperienceBeforeMod * experienceModifier);
+			pedestalBlockEntity.storedXP += experienceAfterMod;
 
 			// if the recipe unlocks an advancement unlock it
-			pedestalBlockEntity.grantPlayerCraftingAdvancement(recipe);
+			pedestalBlockEntity.grantPlayerCraftingAdvancement(recipe, (int) experienceAfterMod);
 
 			return true;
 		} else {
@@ -636,10 +637,10 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		}
 	}
 
-	private void grantPlayerCraftingAdvancement(PedestalCraftingRecipe recipe) {
+	private void grantPlayerCraftingAdvancement(PedestalCraftingRecipe recipe, int experience) {
 		ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity) PlayerOwned.getPlayerEntityIfOnline(world, this.ownerUUID);
 		if(serverPlayerEntity != null) {
-			SpectrumAdvancementCriteria.PEDESTAL_CRAFTING.trigger(serverPlayerEntity, recipe.getOutput());
+			SpectrumAdvancementCriteria.PEDESTAL_CRAFTING.trigger(serverPlayerEntity, recipe.getOutput(), experience);
 		}
 	}
 

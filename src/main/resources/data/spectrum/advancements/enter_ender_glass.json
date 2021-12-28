@@ -1,0 +1,22 @@
+{
+  "parent": "spectrum:get_ender_treasure",
+  "display": {
+    "icon": {
+      "item": "spectrum:ender_glass"
+    },
+    "title": {
+      "translate": "advancements.spectrum.enter_ender_glass.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.enter_ender_glass.description"
+    }
+  },
+  "criteria": {
+    "enter_liquid_crystal": {
+      "trigger": "minecraft:enter_block",
+      "conditions": {
+        "block": "spectrum:ender_glass"
+      }
+    }
+  }
+}

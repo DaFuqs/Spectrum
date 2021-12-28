@@ -1,6 +1,6 @@
 {
     "name": "Azurite",
-    "advancement": "spectrum:midgame/collect_raw_azurite",
+    "advancement": "spectrum:midgame/collect_azurite",
     "icon": "spectrum:azurite_ore",
     "category": "spectrum:resources_category",
     "extra_recipe_mappings": {
@@ -19,9 +19,9 @@
         },
         {
             "type": "spectrum:fusion_shrine_crafting",
-            "title": "Refining",
+            "title": "Refining Azurite",
             "recipe": "spectrum:fusion_shrine/refined_azurite",
-            "text": "Refining Azurite is not a cheap task. This pure ingot form can be used for a lot more recipes, though."
+            "text": "Refining Azurite is not a cheap task.$(br)In this pure ingot form Azurite can be used for a lot more recipes, though."
         }
     ]
 }

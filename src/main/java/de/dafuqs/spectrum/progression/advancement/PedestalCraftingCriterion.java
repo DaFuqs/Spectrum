@@ -6,6 +6,7 @@ import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.minecraft.advancement.criterion.AbstractCriterion;
 import net.minecraft.advancement.criterion.AbstractCriterionConditions;
 import net.minecraft.item.ItemStack;
+import net.minecraft.predicate.NumberRange;
 import net.minecraft.predicate.entity.AdvancementEntityPredicateDeserializer;
 import net.minecraft.predicate.entity.AdvancementEntityPredicateSerializer;
 import net.minecraft.predicate.entity.EntityPredicate;
@@ -25,44 +26,52 @@ public class PedestalCraftingCriterion extends AbstractCriterion<PedestalCraftin
 
 	public PedestalCraftingCriterion.Conditions conditionsFromJson(JsonObject jsonObject, EntityPredicate.Extended extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
 		ItemPredicate[] itemPredicates = ItemPredicate.deserializeAll(jsonObject.get("items"));
-		return new PedestalCraftingCriterion.Conditions(extended, itemPredicates);
+		NumberRange.IntRange experienceRange = NumberRange.IntRange.fromJson(jsonObject.get("gained_experience"));
+		return new PedestalCraftingCriterion.Conditions(extended, itemPredicates, experienceRange);
 	}
 
-	public void trigger(ServerPlayerEntity player, ItemStack itemStack) {
+	public void trigger(ServerPlayerEntity player, ItemStack itemStack, int experience) {
 		this.trigger(player, (conditions) -> {
-			return conditions.matches(itemStack);
+			return conditions.matches(itemStack, experience);
 		});
 	}
 
-	public static PedestalCraftingCriterion.Conditions create(ItemPredicate[] item) {
-		return new PedestalCraftingCriterion.Conditions(EntityPredicate.Extended.EMPTY, item);
+	public static PedestalCraftingCriterion.Conditions create(ItemPredicate[] item, NumberRange.IntRange experienceRange) {
+		return new PedestalCraftingCriterion.Conditions(EntityPredicate.Extended.EMPTY, item, experienceRange);
 	}
 
 	public static class Conditions extends AbstractCriterionConditions {
 		private final ItemPredicate[] itemPredicates;
+		private final NumberRange.IntRange experienceRange;
 
-		public Conditions(EntityPredicate.Extended player, ItemPredicate[] itemPredicates) {
+		public Conditions(EntityPredicate.Extended player, ItemPredicate[] itemPredicates, NumberRange.IntRange experienceRange) {
 			super(ID, player);
 			this.itemPredicates = itemPredicates;
+			this.experienceRange = experienceRange;
 		}
 
 		public JsonObject toJson(AdvancementEntityPredicateSerializer predicateSerializer) {
 			JsonObject jsonObject = super.toJson(predicateSerializer);
 			jsonObject.addProperty("items", this.itemPredicates.toString());
+			jsonObject.add("gained_experience", this.experienceRange.toJson());
 			return jsonObject;
 		}
 
-		public boolean matches(ItemStack itemStack) {
-			List<ItemPredicate> list = new ObjectArrayList(this.itemPredicates);
-			if (list.isEmpty()) {
-				return true;
-			} else {
-				if (!itemStack.isEmpty()) {
-					list.removeIf((itemPredicate) -> {
-						return itemPredicate.test(itemStack);
-					});
+		public boolean matches(ItemStack itemStack, int experience) {
+			if(this.experienceRange.test(experience)) {
+				List<ItemPredicate> list = new ObjectArrayList(this.itemPredicates);
+				if (list.isEmpty()) {
+					return true;
+				} else {
+					if (!itemStack.isEmpty()) {
+						list.removeIf((itemPredicate) -> {
+							return itemPredicate.test(itemStack);
+						});
+					}
+					return list.isEmpty();
 				}
-				return list.isEmpty();
+			} else {
+				return false;
 			}
 		}
 	}

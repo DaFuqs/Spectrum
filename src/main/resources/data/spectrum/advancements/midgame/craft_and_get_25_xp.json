@@ -1,0 +1,24 @@
+{
+  "parent": "spectrum:midgame/collect_lightning_stone",
+  "display": {
+    "icon": {
+        "item": "spectrum:upgrade_experience"
+    },
+    "title": {
+      "translate": "advancements.spectrum.craft_and_get_25_xp.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.craft_and_get_25_xp.description"
+    }
+  },
+  "criteria": {
+    "craft": {
+      "trigger":"spectrum:crafted_with_pedestal",
+      "conditions": {
+        "gained_experience": {
+          "min": 25
+        }
+      }
+    }
+  }
+}

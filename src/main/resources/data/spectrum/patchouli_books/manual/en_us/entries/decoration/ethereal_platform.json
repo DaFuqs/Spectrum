@@ -11,12 +11,12 @@
       "type": "patchouli:spotlight",
       "item": "spectrum:ethereal_platform",
       "title": "Ethereal Platform",
-      "text": "$(italic)In your search for a block that is passable for you but doesn't destroy the look of your buildings, Shooting Stars were a great help. With the intensifying power of Onyx, you were able to strengthen the particles to such an extent that they became solid."
+      "text": "$(italic)In your search for a block that is passable for you but doesn't destroy the look of your buildings, Shooting Stars were a great help.$(br)With the intensifying power of Onyx, you were able to strengthen the particles to such an extent that they became solid."
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier2/ethereal_platform",
+      "recipe": "spectrum:pedestal/tier3/ethereal_platform",
       "text": "Another practical feature of Ethereal Platforms is that the platform reacts only to living creatures. Objects, such as items, simply pass through it."
     }
   ]

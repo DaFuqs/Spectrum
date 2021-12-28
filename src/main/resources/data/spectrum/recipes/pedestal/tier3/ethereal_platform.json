@@ -1,12 +1,12 @@
 {
   "type": "spectrum:pedestal",
   "time": 1200,
-  "tier": "simple",
-  "cyan": 4,
-  "magenta": 4,
-  "yellow": 4,
+  "tier": "advanced",
+  "cyan": 2,
+  "magenta": 2,
+  "yellow": 2,
   "white": 0,
-  "black": 0,
+  "black": 1,
   "experience": 2.0,
   "pattern": [
     "YGY",

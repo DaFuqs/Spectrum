@@ -1,6 +1,6 @@
 {
   "name": "Knowledge Focus",
-  "advancement": "spectrum:midgame/collect_lightning_stone",
+  "advancement": "spectrum:progression/unlock_upgrade_experience",
   "icon": "spectrum:upgrade_experience",
   "category": "spectrum:magical_blocks_category",
   "extra_recipe_mappings": {

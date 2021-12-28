@@ -1,6 +1,6 @@
 {
   "name": "Harvesting Spawners",
-  "advancement": "spectrum:lategame/collect_resonance_enchanted_tool",
+  "advancement": "spectrum:lategame/craft_resonant_pickaxe",
   "icon": "spectrum:resonant_pickaxe",
   "category": "spectrum:creating_life_category",
   "pages": [

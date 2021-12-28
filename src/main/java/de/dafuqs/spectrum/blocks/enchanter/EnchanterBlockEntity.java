@@ -290,11 +290,12 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 				}
 				enchanterBlockEntity.markDirty();
 			} else if(enchanterBlockEntity.currentItemProcessingTime > -1) {
-				int speedTicks = Support.getIntFromDecimalWithChance(1 * enchanterBlockEntity.upgrades.get(UpgradeType.SPEED), enchanterBlockEntity.world.random);
+				int speedTicks = Support.getIntFromDecimalWithChance(1 * enchanterBlockEntity.upgrades.get(UpgradeType.SPEED), world.random);
 				enchanterBlockEntity.craftingTime += speedTicks;
 				if(world.random.nextFloat() < 1.0F / REQUIRED_TICKS_FOR_EACH_EXPERIENCE_POINT) {
 					// in-code recipe for item + books => enchanted item
-					boolean drained = enchanterBlockEntity.drainExperience(speedTicks);
+					int experienceToDrainAfterExperienceUpgrade = Support.getIntFromDecimalWithChance(speedTicks * enchanterBlockEntity.upgrades.get(UpgradeType.EXPERIENCE), world.random);
+					boolean drained = enchanterBlockEntity.drainExperience(experienceToDrainAfterExperienceUpgrade);
 					if (!drained) {
 						enchanterBlockEntity.currentItemProcessingTime = -1;
 						enchanterBlockEntity.updateInClientWorld();
@@ -335,17 +336,17 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 			boolean enchantedBookWithAdditionalEnchantmentsFound = false;
 			Map<Enchantment, Integer> existingEnchantments = EnchantmentHelper.get(centerStack);
 			for(int i = 0; i < 8; i++) {
-				ItemStack slotStack = enchanterBlockEntity.virtualInventoryIncludingBowlStacks.getStack(2+i);
-				if(slotStack.isEmpty()) {
+				ItemStack virtualSlotStack = enchanterBlockEntity.virtualInventoryIncludingBowlStacks.getStack(2+i);
+				if(virtualSlotStack.isEmpty()) {
 					// empty slots do not count
-				} else if(slotStack.getItem() instanceof EnchantedBookItem) {
-					Map<Enchantment, Integer> bookEnchantments = EnchantmentHelper.get(slotStack);
-					for(Enchantment enchantment : bookEnchantments.keySet()) {
-						if(enchantment.isAcceptableItem(centerStack) && !existingEnchantments.containsKey(enchantment) || existingEnchantments.get(enchantment) < bookEnchantments.get(enchantment)) {
+				} else if(virtualSlotStack.getItem() instanceof EnchantedBookItem) {
+					Map<Enchantment, Integer> currentEnchantedBookEnchantments = EnchantmentHelper.get(virtualSlotStack);
+					for(Enchantment enchantment : currentEnchantedBookEnchantments.keySet()) {
+						if((centerStack.isOf(Items.BOOK) || enchantment.isAcceptableItem(centerStack)) && (!existingEnchantments.containsKey(enchantment) || existingEnchantments.get(enchantment) < currentEnchantedBookEnchantments.get(enchantment))) {
 							if(enchanterBlockEntity.canOwnerApplyConflictingEnchantments) {
 								enchantedBookWithAdditionalEnchantmentsFound = true;
 								break;
-							} else if(SpectrumEnchantmentHelper.canCombineAny(existingEnchantments, bookEnchantments)) {
+							} else if(SpectrumEnchantmentHelper.canCombineAny(existingEnchantments, currentEnchantedBookEnchantments)) {
 								enchantedBookWithAdditionalEnchantmentsFound = true;
 								break;
 							}

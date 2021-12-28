@@ -31,6 +31,7 @@ public class SpectrumParticleTypes {
 	public static DefaultParticleType LIQUID_CRYSTAL_SPARKLE;
 	public static DefaultParticleType BLUE_BUBBLE_POP;
 	public static DefaultParticleType SPIRIT_SALLOW;
+	public static DefaultParticleType DECAY_PLACE;
 
 	public static DefaultParticleType BLACK_FALLING_SPORE_BLOSSOM;
 	public static DefaultParticleType BLUE_FALLING_SPORE_BLOSSOM;
@@ -152,6 +153,7 @@ public class SpectrumParticleTypes {
 		LIQUID_CRYSTAL_SPARKLE = register("liquid_crystal_sparkle", false);
 		BLUE_BUBBLE_POP = register("blue_bubble_pop", false);
 		SPIRIT_SALLOW = register("spirit_sallow", false);
+		DECAY_PLACE = register("decay_place", false);
 
 		BLACK_FALLING_SPORE_BLOSSOM = register("black_falling_spore_blossom", false);
 		BLUE_FALLING_SPORE_BLOSSOM = register("blue_falling_spore_blossom", false);

@@ -62,32 +62,6 @@ public abstract class DecayBlock extends Block {
 		this.decayConversions.put(sourceBlockTag, conversionState);
 	}
 
-	public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
-		super.onPlaced(world, pos, state, placer, itemStack);
-		
-		if (!world.isClient) {
-			SoundEvent soundEvent = switch (this.tier) {
-				case 1 -> SpectrumSoundEvents.FADING_PLACED;
-				case 2 -> SpectrumSoundEvents.FAILING_PLACED;
-				default -> SpectrumSoundEvents.RUIN_PLACED;
-			};
-
-			world.playSound(null, pos, soundEvent, SoundCategory.BLOCKS, 0.5F, 2.6F + (world.random.nextFloat() - world.random.nextFloat()) * 0.8F);
-			world.playSound(null, pos, SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.BLOCKS, 0.5F, 2.6F + (world.random.nextFloat() - world.random.nextFloat()) * 0.8F);
-		} else {
-			Random random = world.getRandom();
-			
-			switch (this.tier) {
-				case 1 -> world.addParticle(ParticleTypes.POOF, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, ((-1.0F + random.nextFloat() * 2.0F) / 12.0F), 0.05000000074505806D, ((-1.0F + random.nextFloat() * 2.0F) / 12.0F));
-				case 2 -> world.addParticle(ParticleTypes.EXPLOSION, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, ((-1.0F + random.nextFloat() * 2.0F) / 12.0F), 0.05000000074505806D, ((-1.0F + random.nextFloat() * 2.0F) / 12.0F));
-				default -> {
-					world.addParticle(ParticleTypes.EXPLOSION, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, ((-1.0F + random.nextFloat() * 2.0F) / 12.0F), 0.05000000074505806D, ((-1.0F + random.nextFloat() * 2.0F) / 12.0F));
-					world.addParticle(ParticleTypes.EXPLOSION_EMITTER, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, ((-1.0F + random.nextFloat() * 2.0F) / 12.0F), 0.05000000074505806D, ((-1.0F + random.nextFloat() * 2.0F) / 12.0F));
-				}
-			}
-		}
-	}
-
 	public void onSteppedOn(World world, BlockPos pos, BlockState state, Entity entity) {
 		if (entity instanceof LivingEntity && !entity.isFireImmune() && !EnchantmentHelper.hasFrostWalker((LivingEntity)entity)) {
 			entity.damage(SpectrumDamageSources.DECAY, damageOnTouching);

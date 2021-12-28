@@ -12,12 +12,12 @@ import java.util.Random;
 public class VoidFogParticle extends SpriteBillboardParticle {
 
 	protected VoidFogParticle(ClientWorld clientWorld, double x, double y, double z, double velocityX, double velocityY, double velocityZ) {
-		super(clientWorld, x, y - 0.125D, z, velocityX, velocityY, velocityZ);
+		super(clientWorld, x, y, z, velocityX, velocityY, velocityZ);
 		this.collidesWithWorld = true;
 
 		this.setBoundingBoxSpacing(0.01F, 0.01F);
 		this.scale *= this.random.nextFloat() * 0.2F + 0.1F;
-		this.maxAge = 120;
+		this.maxAge = 100 + (int) (this.random.nextFloat() * 20);
 
 		this.velocityX = 0;
 		this.velocityY = Math.random() * 0.05D + 0.05;
@@ -48,7 +48,7 @@ public class VoidFogParticle extends SpriteBillboardParticle {
 
 	@Override
 	protected int getBrightness(float tint) {
-		return 15728880;
+		return 0;
 	}
 
 }

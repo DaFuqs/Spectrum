@@ -69,7 +69,7 @@
   "multiblock.spectrum.fusion_shrine.structure": "Fusion Shrine",
   "multiblock.spectrum.enchanter.structure": "Enchanter",
 
-  "death.attack.spectrum_decay": "%s made contact with the void",
+  "death.attack.spectrum_decay": "%s was eaten alive",
 
   "entity.spectrum.block_flooder_projectile": "Block Flooder",
   "entity.spectrum.gravity_block": "Gravity Block",

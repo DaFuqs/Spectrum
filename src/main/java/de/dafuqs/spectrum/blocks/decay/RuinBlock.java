@@ -1,19 +1,25 @@
 package de.dafuqs.spectrum.blocks.decay;
 
 import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.registries.SpectrumBlockTags;
+import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.particle.BlockStateParticleEffect;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.EnumProperty;
 import net.minecraft.tag.Tag;
 import net.minecraft.util.StringIdentifiable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Random;
 
@@ -46,6 +52,22 @@ public class RuinBlock extends DecayBlock {
 
 		BlockState destinationBlockState = this.getDefaultState().with(DECAY_STATE, DecayConversion.BEDROCK);
 		addDecayConversion(SpectrumBlockTags.DECAY_BEDROCK_CONVERSIONS, destinationBlockState);
+	}
+	
+	public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
+		super.onPlaced(world, pos, state, placer, itemStack);
+		
+		if (!world.isClient) {
+			world.playSound(null, pos, SpectrumSoundEvents.RUIN_PLACED, SoundCategory.BLOCKS, 0.5F, 1.0F);
+		} else {
+			Random random = world.getRandom();
+			world.addParticle(ParticleTypes.EXPLOSION, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, ((-1.0F + random.nextFloat() * 2.0F) / 12.0F), 0.05, ((-1.0F + random.nextFloat() * 2.0F) / 12.0F));
+			world.addParticle(ParticleTypes.EXPLOSION_EMITTER, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, ((-1.0F + random.nextFloat() * 2.0F) / 12.0F), 0.05, ((-1.0F + random.nextFloat() * 2.0F) / 12.0F));
+			
+			for(int i = 0; i < 40; i ++) {
+				world.addParticle(SpectrumParticleTypes.DECAY_PLACE, pos.getX() - 0.5 + random.nextFloat() * 2, pos.getY() + random.nextFloat(), pos.getZ() - 0.5 + random.nextFloat() * 2, ((-1.0F + random.nextFloat() * 2.0F) / 12.0F), 0.05, ((-1.0F + random.nextFloat() * 2.0F) / 12.0F));
+			}
+		}
 	}
 
 	@Override

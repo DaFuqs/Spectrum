@@ -36,14 +36,14 @@ public class EnchantmentDrops {
 		}
 	}
 
-	private static final Map<Identifier, TreasureHunterDropDefinition> trophyHunterLootPools = new HashMap<Identifier, TreasureHunterDropDefinition>() {{
+	private static final Map<Identifier, TreasureHunterDropDefinition> trophyHunterLootPools = new HashMap<>() {{
 		// Additional vanilla head drops
 		put(new Identifier("entities/creeper"), new TreasureHunterDropDefinition(Items.CREEPER_HEAD, 0.02F));
 		put(new Identifier("entities/skeleton"), new TreasureHunterDropDefinition(Items.SKELETON_SKULL, 0.02F));
 		put(new Identifier("entities/wither_skeleton"), new TreasureHunterDropDefinition(Items.WITHER_SKELETON_SKULL, 0.1F));
 		put(new Identifier("entities/zombie"), new TreasureHunterDropDefinition(Items.ZOMBIE_HEAD, 0.02F));
 		put(new Identifier("entities/ender_dragon"), new TreasureHunterDropDefinition(Items.DRAGON_HEAD, 0.35F)); // why not!
-
+		
 		// Spectrum head drops
 		// ATTENTION: No specific enough loot tables exist for fox, axolotl, parrot and shulker variants.
 		// Those are handled separately in setup()
@@ -109,7 +109,7 @@ public class EnchantmentDrops {
 		put(new Identifier("entities/villager"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlock.Type.VILLAGER).asItem(), 0.01F));
 		put(new Identifier("entities/vindicator"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlock.Type.VINDICATOR).asItem(), 0.01F));
 		put(new Identifier("entities/wandering_trader"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlock.Type.WANDERING_TRADER).asItem(), 0.01F));
-		put(new Identifier("entities/wither"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlock.Type.WITHER).asItem(), 0.06F)); // he has 3 heads, after all!
+		put(new Identifier("entities/wither"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlock.Type.WITHER).asItem(), 0.15F)); // he has 3 heads, after all!
 		put(new Identifier("entities/wolf"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlock.Type.WOLF).asItem(), 0.01F));
 		put(new Identifier("entities/zoglin"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlock.Type.ZOGLIN).asItem(), 0.01F));
 		put(new Identifier("entities/zombie_villager"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlock.Type.ZOMBIE_VILLAGER).asItem(), 0.01F));

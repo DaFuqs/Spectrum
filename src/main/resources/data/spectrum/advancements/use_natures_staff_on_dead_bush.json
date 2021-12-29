@@ -10,7 +10,7 @@
       "translate": "advancements.spectrum.use_natures_staff_on_dead_bush.description"
     }
   },
-  "parent": "spectrum:collect_pigment",
+  "parent": "spectrum:collect_all_basic_pigments",
   "criteria": {
     "used_natures_staff_on_dead_bush": {
       "trigger": "spectrum:natures_staff_conversion",

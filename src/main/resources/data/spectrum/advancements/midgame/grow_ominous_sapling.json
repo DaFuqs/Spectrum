@@ -4,6 +4,7 @@
     "icon": {
         "item": "minecraft:dead_bush"
     },
+    "hidden": true,
     "title": {
       "translate": "advancements.spectrum.grow_ominous_sapling.title"
     },

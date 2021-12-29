@@ -4,9 +4,9 @@
       "trigger":"spectrum:has_advancement",
       "conditions": { "advancement_identifier": "spectrum:collect_sparklestone" }
     },
-    "entered_nether": {
+    "collected_blaze_rod": {
       "trigger":"spectrum:has_advancement",
-      "conditions": { "advancement_identifier": "nether/root" }
+      "conditions": { "advancement_identifier": "nether/obtain_blaze_rod" }
     }
   }
 }

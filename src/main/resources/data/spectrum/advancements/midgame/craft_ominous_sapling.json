@@ -4,6 +4,7 @@
     "icon": {
         "item": "spectrum:ominous_sapling"
     },
+    "hidden": true,
     "title": {
       "translate": "advancements.spectrum.craft_ominous_sapling.title"
     },

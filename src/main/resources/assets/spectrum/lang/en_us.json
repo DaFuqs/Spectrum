@@ -991,8 +991,8 @@
   "advancements.spectrum.break_infested_block_with_resonance_tool.description": "Break an Infested Block using a Resonance Tool",
   "advancements.spectrum.break_spawner_with_resonance_tool.title": "The Evil Within",
   "advancements.spectrum.break_spawner_with_resonance_tool.description": "Break a Mob Spawner using a Resonance Tool",
-  "advancements.spectrum.build_advanced_pedestal_structure.title": "That's it - for now!",
-  "advancements.spectrum.build_advanced_pedestal_structure.description": "You reached the end of Spectrums progression in this version, congratulations! Feel free to join Spectrums Discord to keep up to date. There is a LOT to come :)",
+  "advancements.spectrum.build_advanced_pedestal_structure.title": "Construct the Spectrum Temple",
+  "advancements.spectrum.build_advanced_pedestal_structure.description": "Add new blocks to your Structure to make use of your improved Pedestal",
   "advancements.spectrum.build_basic_pedestal_structure.title": "Funneling Magic",
   "advancements.spectrum.build_basic_pedestal_structure.description": "To fully harness the powers of your improved Pigment Pedestal you will need to build a structure that funnels the energy from gemstones to it",
   "advancements.spectrum.build_complex_pedestal_structure.title": "Construct the Spectrum Complex",
@@ -1133,8 +1133,6 @@
   "advancements.spectrum.enchant_exchange_staff.description": "Create and enchant an Exchanging Staff",
   "advancements.spectrum.get_tool_with_inertia_1000_blocks_broken.title": "The fastest Pick in the West",
   "advancements.spectrum.get_tool_with_inertia_1000_blocks_broken.description": "Break 1000 identical blocks using an Inertia enchanted tool",
-  "advancements.spectrum.create_midnight_aberration.title": "The Perfect Compound?",
-  "advancements.spectrum.create_midnight_aberration.description": "Fuse Topaz, Amethyst, Citrine, Onyx and Neolith",
   "advancements.spectrum.use_natures_staff_on_dead_bush.title": "Revivify",
   "advancements.spectrum.use_natures_staff_on_dead_bush.description": "Use the Nature's Staff and Vegetal on a Dead Bush to bring it back to life",
   "advancements.spectrum.enchant_item_worth_2500_xp.title": "Big Spender",
@@ -1151,6 +1149,8 @@
   "advancements.spectrum.craft_and_get_25_xp.description": "Craft a Pedestal Recipe single-handedly granting you 25 XP",
   "advancements.spectrum.enter_ender_glass.title": "Mesmerizing",
   "advancements.spectrum.enter_ender_glass.description": "Walk through Ender Glass",
+  "advancements.spectrum.create_midnight_aberration.title": "That's it - for now!",
+  "advancements.spectrum.create_midnight_aberration.description": "You reached the end of Spectrums progression in this version, congratulations! Feel free to join Spectrums Discord to keep up to date. There is a LOT to come :)",
 
 
   "______name_changes_for_vanilla_blocks" : "Changes:",

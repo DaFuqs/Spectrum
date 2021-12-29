@@ -123,14 +123,7 @@ public class QuitoxicReedsBlock extends Block implements Cloakable, WaterOrLiqui
 				break;
 			}
 		}
-		
-		int fluidLog = state.get(FLUIDLOGGED);
-		if(fluidLog == 1) {
-			world.setBlockState(pos, Blocks.WATER.getDefaultState(), 3);
-		} else if(fluidLog == 2) {
-			world.setBlockState(pos, SpectrumBlocks.LIQUID_CRYSTAL.getDefaultState(), 3);
-		}
-		
+
 		super.onBreak(world, pos, state, player);
 	}
 

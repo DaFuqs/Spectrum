@@ -32,9 +32,9 @@ public class ClientRecipeToastManager {
 	public static final HashMap<Identifier, List<EnchanterRecipe>> unlockableEnchanterRecipes = new HashMap<>();
 	
 	public static final HashMap<Identifier, Pair<ItemStack, String>> registeredMessageToasts = new HashMap<>() {{
-		put(new Identifier(SpectrumCommon.MOD_ID, "milestones/unlock_conflicted_enchanting_with_enchanter"), new Pair<>(new ItemStack(Items.SPYGLASS), "shooting_stars_unlocked"));
+		put(new Identifier(SpectrumCommon.MOD_ID, "milestones/unlock_shooting_stars"), new Pair<>(new ItemStack(Items.SPYGLASS), "shooting_stars_unlocked"));
 		put(new Identifier(SpectrumCommon.MOD_ID, "milestones/unlock_overenchanting_with_enchanter"), new Pair<>(new ItemStack(SpectrumBlocks.ENCHANTER), "overchanting_unlocked"));
-		put(new Identifier(SpectrumCommon.MOD_ID, "milestones/unlock_shooting_stars"), new Pair<>(new ItemStack(SpectrumBlocks.ENCHANTER), "enchant_conflicting_enchantments_unlocked"));
+		put(new Identifier(SpectrumCommon.MOD_ID, "milestones/unlock_conflicted_enchanting_with_enchanter"), new Pair<>(new ItemStack(SpectrumBlocks.ENCHANTER), "enchant_conflicting_enchantments_unlocked"));
 	}};
 
 	public static void registerUnlockablePedestalRecipe(@NotNull PedestalCraftingRecipe recipe) {

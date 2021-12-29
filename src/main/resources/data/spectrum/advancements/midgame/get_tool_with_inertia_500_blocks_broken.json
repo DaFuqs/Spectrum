@@ -1,0 +1,25 @@
+{
+  "parent": "spectrum:midgame/build_enchanting_structure",
+  "display": {
+    "icon": {
+      "item": "minecraft:diamond_pickaxe",
+      "nbt": "{Enchantments: [{lvl: 1s, id: \"spectrum:inertia\"}]}"
+    },
+    "title": {
+      "translate": "advancements.spectrum.get_tool_with_inertia_500_blocks_broken.title"
+    },                                          
+    "description": {                            
+      "translate": "advancements.spectrum.get_tool_with_inertia_500_blocks_broken.description"
+    }
+  },
+  "criteria": {
+    "500_blocks_mined_with_inertia": {
+      "trigger": "spectrum:inertia_used",
+      "conditions": {
+        "amount": {
+          "min": 500
+        }
+      }
+    }
+  }
+}

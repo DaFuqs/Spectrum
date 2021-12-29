@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.enchantments;
 import de.dafuqs.spectrum.SpectrumCommon;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentTarget;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.EquipmentSlot;
 
 public class InertiaEnchantment extends SpectrumEnchantment {
@@ -24,7 +25,7 @@ public class InertiaEnchantment extends SpectrumEnchantment {
 	}
 
 	public boolean canAccept(Enchantment other) {
-		return super.canAccept(other);
+		return other != Enchantments.EFFICIENCY && super.canAccept(other);
 	}
 
 }

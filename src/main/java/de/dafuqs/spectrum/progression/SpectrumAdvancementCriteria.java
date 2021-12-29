@@ -16,6 +16,7 @@ public class SpectrumAdvancementCriteria {
 	public static EnchanterCraftingCriterion ENCHANTER_CRAFTING;
 	public static EnchanterEnchantingCriterion ENCHANTER_ENCHANTING;
 	public static EnchantmentUpgradedCriterion ENCHANTER_UPGRADING;
+	public static InertiaUsedCriterion INERTIA_USED;
 
 	public static void register() {
 		ADVANCEMENT_GOTTEN = CriteriaAccessor.callRegister(new HasAdvancementCriterion());
@@ -29,6 +30,7 @@ public class SpectrumAdvancementCriteria {
 		ENCHANTER_CRAFTING = CriteriaAccessor.callRegister(new EnchanterCraftingCriterion());
 		ENCHANTER_ENCHANTING = CriteriaAccessor.callRegister(new EnchanterEnchantingCriterion());
 		ENCHANTER_UPGRADING = CriteriaAccessor.callRegister(new EnchantmentUpgradedCriterion());
+		INERTIA_USED = CriteriaAccessor.callRegister(new InertiaUsedCriterion());
 	}
 
 }

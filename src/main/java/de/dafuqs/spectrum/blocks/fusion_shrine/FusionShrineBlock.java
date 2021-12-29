@@ -75,11 +75,13 @@ public class FusionShrineBlock extends BlockWithEntity {
 	@Override
 	public void onLandedUpon(World world, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
 		if(!world.isClient && entity instanceof ItemEntity itemEntity) {
-			ItemStack remainingStack = inputItemStack(world, pos, itemEntity.getStack());
-			if(remainingStack.isEmpty()) {
-				itemEntity.remove(Entity.RemovalReason.DISCARDED);
-			} else {
-				itemEntity.setStack(remainingStack);
+			if(itemEntity.getPos().x % 0.5 != 0 && itemEntity.getPos().z % 0.5 != 0) { // do not pick up items that were results of crafting
+				ItemStack remainingStack = inputItemStack(world, pos, itemEntity.getStack());
+				if (remainingStack.isEmpty()) {
+					itemEntity.remove(Entity.RemovalReason.DISCARDED);
+				} else {
+					itemEntity.setStack(remainingStack);
+				}
 			}
 		} else {
 			super.onLandedUpon(world, state, pos, entity, fallDistance);

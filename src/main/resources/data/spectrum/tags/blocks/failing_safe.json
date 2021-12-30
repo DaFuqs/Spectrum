@@ -2,13 +2,10 @@
 	"values": [
 		"minecraft:air",
 		"minecraft:cave_air",
+		"minecraft:light",
 		"minecraft:nether_portal",
-		"minecraft:end_portal",
-		"minecraft:command_block",
-		"minecraft:chain_command_block",
-		"minecraft:repeating_command_block",
-		"minecraft:barrier",
-		"minecraft:bedrock",
+		"minecraft:tripwire",
+		"#wither_immune",
 		"spectrum:decay_away"
 	]
 }

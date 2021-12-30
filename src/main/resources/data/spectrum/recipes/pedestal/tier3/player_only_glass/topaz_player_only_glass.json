@@ -27,7 +27,7 @@
   },
   "result" : {
     "item": "spectrum:topaz_player_only_glass",
-    "count": 8
+    "count": 6
   },
   "required_advancements": ["spectrum:midgame/build_advanced_pedestal_structure"]
 }

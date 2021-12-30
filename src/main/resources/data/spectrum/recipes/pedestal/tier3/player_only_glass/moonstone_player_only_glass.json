@@ -27,7 +27,7 @@
   },
   "result" : {
     "item": "spectrum:moonstone_player_only_glass",
-    "count": 8
+    "count": 6
   },
   "required_advancements": ["spectrum:progression/unlock_moonstone_player_only_glass"]
 }

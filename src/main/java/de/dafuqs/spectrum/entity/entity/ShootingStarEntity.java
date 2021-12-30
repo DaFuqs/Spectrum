@@ -73,18 +73,20 @@ public class ShootingStarEntity extends Entity {
 
 	public static void doShootingStarSpawns(@NotNull ServerWorld serverWorld) {
 		if(SpectrumCommon.CONFIG.ShootingStarWorlds.contains(serverWorld.getRegistryKey().getValue().toString())) {
-			long timeOfDay = serverWorld.getTimeOfDay();
-			if(timeOfDay % 100 == 0 && timeOfDay > 13000 && timeOfDay < 22000) {
-				for (PlayerEntity playerEntity : serverWorld.getEntitiesByType(EntityType.PLAYER, Entity::isAlive)) {
-					if (!playerEntity.isSpectator() && Support.hasAdvancement(playerEntity, SpectrumItems.SHOOTING_STAR.getCloakAdvancementIdentifier()) && serverWorld.getRandom().nextFloat() < getShootingStarChanceWithMultiplier(playerEntity)) {
-						// 1 % chance for each cycle to spawn a lot of shooting stars for the player
-						// making it an amazing display
-						if(serverWorld.getRandom().nextFloat() < 0.01) {
-							for(int i = 0; i < 10; i++) {
+			if(serverWorld.getTime() % 100 == 0) {
+				long timeOfDay = serverWorld.getTimeOfDay() % 24000;
+				if(timeOfDay > 13000 && timeOfDay < 22000){
+					for (PlayerEntity playerEntity : serverWorld.getEntitiesByType(EntityType.PLAYER, Entity::isAlive)) {
+						if (!playerEntity.isSpectator() && Support.hasAdvancement(playerEntity, SpectrumItems.SHOOTING_STAR.getCloakAdvancementIdentifier()) && serverWorld.getRandom().nextFloat() < getShootingStarChanceWithMultiplier(playerEntity)) {
+							// 1 % chance for each cycle to spawn a lot of shooting stars for the player
+							// making it an amazing display
+							if (serverWorld.getRandom().nextFloat() < 0.01) {
+								for (int i = 0; i < 10; i++) {
+									spawnShootingStar(serverWorld, playerEntity);
+								}
+							} else {
 								spawnShootingStar(serverWorld, playerEntity);
 							}
-						} else {
-							spawnShootingStar(serverWorld, playerEntity);
 						}
 					}
 				}

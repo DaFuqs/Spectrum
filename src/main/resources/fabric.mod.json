@@ -40,8 +40,7 @@
     "java": ">=17",
     "cloth-config": ">=6.0.0",
     "patchouli": "*",
-    "owo": ">=0.3.11",
-    "architectury": ">=3.1.44"
+    "owo": ">=0.3.11"
   },
   "suggests": {
     "colored_lights": ">=1.0.3",

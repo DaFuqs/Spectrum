@@ -1,7 +1,7 @@
 {
     "type": "minecraft:blasting",
     "ingredient": {
-        "item": "spectrum:azurite_ore"
+        "item": "spectrum:deepslate_azurite_ore"
     },
     "result": "spectrum:raw_azurite",
     "experience": 2,

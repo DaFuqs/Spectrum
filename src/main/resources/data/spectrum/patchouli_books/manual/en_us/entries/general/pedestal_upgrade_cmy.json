@@ -16,7 +16,8 @@
     },
     {
       "type": "patchouli:text",
-      "text": "$(br2)To make use of the $(l:general/pedestal)Pigment Pedestals$() advanced abilities you will need a structure to focus gemstone energy into it.$(br2)You call it the Spectrum Focus."
+      "title": "Pedestal Structure",
+      "text": "$To make use of the $(l:general/pedestal)Pigment Pedestals$() advanced abilities you will need a structure to focus gemstone energy into it.$(br2)You call it the$(br)$(bold)Spectrum Focus$()."
     },
     {
       "type": "patchouli:multiblock",

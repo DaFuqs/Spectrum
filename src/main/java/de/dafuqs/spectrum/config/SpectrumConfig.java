@@ -39,10 +39,11 @@ Better to let players stumble about them organically instead of forcing it.""")
 	@Comment("Worlds where shooting stars spawn for players. Shooting Stars will only spawn for players with sufficient progress in the mod")
 	public List<String> ShootingStarWorlds = Arrays.asList("minecraft:overworld", "starry_sky:starry_sky");
 
-	@Comment("Worlds where lightning strikes can spawn lightning stones")
+	@Comment("Worlds where lightning strikes can spawn Lightning Stones")
 	public List<String> LightningStonesWorlds = Arrays.asList("minecraft:overworld", "starry_sky:starry_sky");
-	// chance for a lightning strike to spawn a lightning stone
-	public float LightningStonesChance = 0.4F;
+
+	@Comment("chance for a lightning strike to spawn a Lightning Stone")
+	public float LightningStonesChance = 0.5F;
 
 	@Comment("""
 Shooting star spawns are checked every night between time 13000 and 22000, every 100 ticks (so 90 chances per night).

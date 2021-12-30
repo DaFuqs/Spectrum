@@ -2,7 +2,7 @@
   "name": "The Perfect Compound?",
   "icon": "spectrum:midnight_aberration",
   "sortnum": 12,
-  "advancement": "spectrum:midgame/collect_neolith",
+  "advancement": "spectrum:midgame/__collect_neolith",
   "category": "spectrum:general_category",
   "extra_recipe_mappings": {
     "spectrum:midnight_aberration": 0
@@ -16,7 +16,7 @@
       "type": "spectrum:fusion_shrine_crafting",
       "title": "Fusion Recipe",
       "recipe": "spectrum:fusion_shrine/midnight_aberration",
-      "text": "Incredible Source of Power"
+      "text": "Fusing all those magical energies must result in an incredible source of power."
     },
     {
       "type": "patchouli:spotlight",
@@ -27,6 +27,7 @@
     },
     {
       "type": "patchouli:text",
+      "advancement": "spectrum:midgame/create_midnight_aberration",
       "text": "While this definitely was not the outcome you craved for it still does hold immense power.$(br2)So much in fact, that if not used quicky it crumbles into dust. $(br)But not without taking the energy out on its surroundings... or more like draining it."
 	}
   ]

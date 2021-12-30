@@ -93,6 +93,7 @@ public class SpectrumMultiblocks {
 		Object[] targetBlocksCheck = {
 				'X', "#spectrum:polished_base_blocks",
 				'T', "#spectrum:crest_base_blocks",
+				't', "#spectrum:crest_base_blocks",
 				'Q', "#spectrum:pillar_base_blocks",
 				'L', "#spectrum:gemstone_lamps",
 				'S', "#spectrum:gemstone_storage_blocks",
@@ -113,7 +114,8 @@ public class SpectrumMultiblocks {
 
 		Object[] targetBlocksPlace = {
 				'X', "spectrum:polished_basalt",
-				'T', "spectrum:polished_basalt_crest",
+				'T', "spectrum:polished_basalt_crest[cardinal_facing=true]",
+				't', "spectrum:polished_basalt_crest[cardinal_facing=false]",
 				'Q', "spectrum:polished_basalt_pillar[axis=y]",
 				'L', "spectrum:amethyst_basalt_lamp",
 				'S', "spectrum:amethyst_storage_block",
@@ -142,7 +144,7 @@ public class SpectrumMultiblocks {
 		PEDESTAL_SIMPLE_STRUCTURE_IDENTIFIER_PLACE = registerMultiBlock("pedestal_simple_structure_place", tier1Structure, targetBlocksPlace);
 
 		String[][] tier2Structure = {
-				{ "_____________", "_STTR___RTTS_", "_T_________T_", "_T_________T_", "_R_________R_", "_____________", "_____________", "_____________", "_R_________R_", "_T_________T_", "_T_________T_", "_STTR___RTTS_", "_____________" },
+				{ "_____________", "_SttR___RttS_", "_T_________T_", "_T_________T_", "_R_________R_", "_____________", "_____________", "_____________", "_R_________R_", "_T_________T_", "_T_________T_", "_SttR___RttS_", "_____________" },
 				{ "_____________", "_Q__Q___Q__Q_", "_____________", "_____________", "_Q_________Q_", "_____________", "_____________", "_____________", "_Q_________Q_", "_____________", "_____________", "_Q__Q___Q__Q_", "_____________" },
 				{ "_____________", "_C__Q___Q__C_", "_____________", "_____________", "_Q_________Q_", "_____________", "_____________", "_____________", "_Q_________Q_", "_____________", "_____________", "_C__Q___Q__C_", "_____________" },
 				{ "_____________", "_Q__L___L__Q_", "_____________", "___S_____S___", "_L_________L_", "_____________", "_____________", "_____________", "_L_________L_", "___S_____S___", "_____________", "_Q__L___L__Q_", "_____________" },
@@ -153,8 +155,8 @@ public class SpectrumMultiblocks {
 		PEDESTAL_ADVANCED_STRUCTURE_IDENTIFIER_PLACE = registerMultiBlock("pedestal_advanced_structure_place", tier2Structure, targetBlocksPlace);
 
 		String[][] tier3Structure = {
-				{ "_____________", "____XTSTX____", "_____________", "_____________", "_X__OTTTO__X_", "_T__T___T__T_", "_S__T___T__S_", "_T__T___T__T_", "_X__OTTTO__X_", "_____________", "_____________", "____XTSTX____", "_____________" },
-				{ "_____________", "_STTR___RTTS_", "_T__T___T__T_", "_T__T___T__T_", "_RTTX___XTTR_", "_____________", "_____________", "_____________", "_RTTX___XTTR_", "_T__T___T__T_", "_T__T___T__T_", "_STTR___RTTS_", "_____________" },
+				{ "_____________", "____XtStX____", "_____________", "_____________", "_X__OtttO__X_", "_T__T___T__T_", "_S__T___T__S_", "_T__T___T__T_", "_X__OtttO__X_", "_____________", "_____________", "____XtStX____", "_____________" },
+				{ "_____________", "_SttR___RttS_", "_T__T___T__T_", "_T__T___T__T_", "_RttX___XttR_", "_____________", "_____________", "_____________", "_RttX___XttR_", "_T__T___T__T_", "_T__T___T__T_", "_SttR___RttS_", "_____________" },
 				{ "_____________", "_Q__Q___Q__Q_", "_____________", "_____________", "_Q_________Q_", "_____________", "_____________", "_____________", "_Q_________Q_", "_____________", "_____________", "_Q__Q___Q__Q_", "_____________" },
 				{ "_____________", "_C__Q___Q__C_", "_____________", "_____________", "_Q_________Q_", "_____________", "_____________", "_____________", "_Q_________Q_", "_____________", "_____________", "_C__Q___Q__C_", "_____________" },
 				{ "_____________", "_Q__L___L__Q_", "_____________", "___S_____S___", "_L_________L_", "_____________", "_____________", "_____________", "_L_________L_", "___S_____S___", "_____________", "_Q__L___L__Q_", "_____________" },

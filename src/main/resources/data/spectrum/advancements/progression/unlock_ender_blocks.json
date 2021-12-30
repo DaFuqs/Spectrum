@@ -8,9 +8,9 @@
       "trigger":"spectrum:has_advancement",
       "conditions": { "advancement_identifier": "spectrum:get_ender_treasure" }
     },
-    "has_polished_blackstone": {
+    "has_blackstone": {
       "trigger": "minecraft:inventory_changed",
-      "conditions": { "items": [{ "items": [ "minecraft:polished_blackstone" ]}] }
+      "conditions": { "items": [{ "items": [ "minecraft:polished_blackstone", "minecraft:blackstone", "minecraft:gilded_blackstone", "minecraft:polished_blackstone_bricks" ]}] }
     }
   }
 }

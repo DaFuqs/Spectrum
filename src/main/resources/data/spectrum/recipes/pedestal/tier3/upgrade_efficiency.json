@@ -27,7 +27,7 @@
       "item": "spectrum:citrine_storage_block"
     },
     "L": {
-      "item": "spectrum:lightning_stone"
+      "item": "spectrum:refined_azurite"
     },
     "G": {
       "item": "spectrum:green_pigment"
@@ -37,5 +37,5 @@
     "item": "spectrum:upgrade_efficiency",
     "count": 1
   },
-  "required_advancements": ["spectrum:midgame/collect_lightning_stone"]
+  "required_advancements": ["spectrum:midgame/create_refined_azurite"]
 }

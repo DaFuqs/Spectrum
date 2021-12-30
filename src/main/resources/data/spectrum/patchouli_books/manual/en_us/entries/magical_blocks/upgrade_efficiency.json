@@ -1,6 +1,6 @@
 {
   "name": "Efficiency Slope",
-  "advancement": "spectrum:midgame/collect_lightning_stone",
+  "advancement": "spectrum:midgame/create_refined_azurite",
   "icon": "spectrum:upgrade_efficiency",
   "category": "spectrum:magical_blocks_category",
   "extra_recipe_mappings": {

@@ -9,8 +9,10 @@
             "text": "$(italic)All it takes is a single well-considered hit... or so the saying must have gone.$(br2)Whatever.$(br)On a related note: you invented this First Strike improvement. It will be a great help especially against many weak opponents."
         },
         {
-            "type": "patchouli:text",
-            "text": "$(br3)Greatly increased damage if the target has full life.$(br2)Max Level: 2$(br)Applicable to melee weapons."
+            "type": "patchouli:spotlight",
+            "title": "Characteristics",
+            "item": "minecraft:iron_sword{Enchantments: [{id: \"spectrum:first_strike\", lvl: 2s}]}",
+            "text": "Greatly increased damage if the target has full life.$(br2)Max Level: 2$(br)Applicable to melee weapons."
         }
     ]
 }

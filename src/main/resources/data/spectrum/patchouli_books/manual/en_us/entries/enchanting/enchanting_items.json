@@ -21,12 +21,12 @@
       "type": "patchouli:spotlight",
       "item": "minecraft:enchanted_book",
       "title": "Copy Enchanted Books",
-      "text": "You can also use this mechanism to create new Enchanted Books. Just put the enchanted book(s) you want to copy in the $(l:decoration/item_bowl)Item Bowls$(/l) and a simple book onto the $(l:enchanting/enchanter)Enchanter$(/l).$(br2)Because of the mundane nature of the books this will require lots of experience."
+      "text": "You can also use this mechanism to create new Enchanted Books. Just put the Enchanted Book(s) you want to copy in the $(l:decoration/item_bowl)Item Bowls$(/l) and a simple book onto the $(l:enchanting/enchanter)Enchanter$(/l).$(br2)Because of the mundane nature of the books this will require lots of experience, though."
     },
     {
       "type": "patchouli:text",
       "title": "Required Experience",
-      "text": "You estimate a value $(bold)between 50 and 200 experience in most cases per single enchantment$().$(br)The rarer an enchantment is, the higher its level, the better the target item is at absorbing enchantments, and a few other factors affect this result.$(br)Interfering factors further increase this cost, such as enchantments that are not suitable for the target."
+      "text": "You estimate a value $(bold)between 50 and 200 experience in most cases per enchantment$().$(br)The rarer an enchantment is, the higher its level, the better the target item is at absorbing enchantments, and a few other factors affect this result.$(br)Interferences further increase this cost, such as enchantments that are not suitable for your target."
     }
   ]
 }

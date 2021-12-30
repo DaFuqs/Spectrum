@@ -16,7 +16,7 @@
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier3/ender_splice",
-      "text": "With the first use of the Ender Splice (or a whole stack full) it saves the current position.$(br)The second use teleports you back to the original location. Can also be used on other players."
+      "text": "The first use of the Ender Splice saves the current position.$(br)The second use teleports you back to the original location. Can even be used on other players."
     }
   ]
 }

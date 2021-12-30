@@ -10,7 +10,7 @@
     {
       "type": "patchouli:text",
       "title": "Weather Detector",
-      "text": "Citrine is very sensitive to the energies released during a storm.$(br)If the weather detector is directly exposed to rain or a thunderstorm, it emits a redstone signal."
+      "text": "Citrine is very sensitive to the energies released during a storm.$(br2)If the weather detector is directly exposed to rain or a thunderstorm, it emits a redstone signal."
     },
     {
       "type": "spectrum:pedestal_crafting",

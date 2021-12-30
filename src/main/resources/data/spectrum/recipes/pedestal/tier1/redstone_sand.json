@@ -3,7 +3,7 @@
   "time": 20,
   "tier": "basic",
   "magenta": 0,
-  "yellow": 0,
+  "yellow": 1,
   "cyan": 0,
   "black": 0,
   "white": 0,
@@ -25,5 +25,5 @@
     "item": "spectrum:redstone_sand",
     "count": 1
   },
-  "required_advancements": ["spectrum:craft_using_pedestal"]
+  "required_advancements": ["spectrum:progression/unlock_redstone_sand"]
 }

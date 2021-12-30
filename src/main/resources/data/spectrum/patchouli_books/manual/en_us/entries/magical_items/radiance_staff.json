@@ -15,7 +15,7 @@
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier2/light_staff",
-      "text": "Right click placed lights with the staff to adjust the emitted light level.$(br)They can also be placed under water."
+      "text": "Right click placed lights with the staff to adjust the emitted light level.$(br)They can even be summoned under water."
     }
   ]
 }

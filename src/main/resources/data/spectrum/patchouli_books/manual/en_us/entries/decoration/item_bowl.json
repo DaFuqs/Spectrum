@@ -18,7 +18,7 @@
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier3/item_bowl_calcite",
-      "text": "The Item Bowl presents a single item stack floating above it.$(br)Use an item on the Bowl or throw it on top of it to put it in."
+      "text": "The Item Bowl presents a single item stack floating above it.$(br)Click an item into the Bowl or throw it on top to put it in."
     }
   ]
 }

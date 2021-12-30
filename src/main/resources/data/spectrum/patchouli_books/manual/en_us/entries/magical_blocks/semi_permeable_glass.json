@@ -22,7 +22,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "$(italic)Then you remember the gemstone glass recipe you thought up earlier.$(br)With a bit of magical energy, it should be no problem to make it not only transparent for you, but also passable (not for them!).$(br2)Bonus: If you make it look exactly like regular glass you might even be able to fool your competition.$()"
+      "text": "$(italic)Then you remember the gemstone glass recipe you thought up earlier.$(br2)With a bit of magical energy, it should be no problem to make it not only transparent for you, but also passable (not for them!).$(br2)Bonus: If you make it look exactly like regular glass you might even be able to fool your competition.$()"
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -31,7 +31,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Semi-permeable Glass comes in all the gemstone colors, additionally the common glass and its tinted variant.$(br2)It looks exactly like its $(l:decoration/gemstone_glass)mundane counterpart$(), but has the special property that players can pass through it without problems, while all other creatures will bounce off it like a fly off a window."
+      "text": "Semi-permeable Glass comes in all gemstone colors, common, tinted and glowing variants.$(br2)It looks exactly like its $(l:decoration/gemstone_glass)mundane counterpart$(), but has the special property that players can pass through it without problems, while all other creatures will bounce off it like a fly off a window."
     }
   ]
 }

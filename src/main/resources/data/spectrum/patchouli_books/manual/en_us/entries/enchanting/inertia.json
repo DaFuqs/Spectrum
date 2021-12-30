@@ -9,8 +9,10 @@
             "text": "$(italic)You'd almost think this enchantment breathes a little bit of life into your tools.$(br2)Like a living creature, the tool gradually gets used to the block you are mining and specializes in it. In return, however, the mining of other blocks becomes slower."
         },
         {
-            "type": "patchouli:text",
-            "text": "$(br3)Decreased mining speed. Speed increases with each block mined of the same type.$(br2)Max Level: 3$(br)Applicable to mining tools.$(br)Mutually exclusive with Efficiency."
+            "type": "patchouli:spotlight",
+            "title": "Characteristics",
+            "item": "minecraft:iron_pickaxe{Enchantments: [{id: \"spectrum:inertia\", lvl: 3s}]}",
+            "text": "Decreased mining speed. Speed increases with each block mined of the same type.$(br2)Max Level: 3$(br)Applicable to mining tools.$(br)Mutually exclusive with Efficiency."
         }
     ]
 }

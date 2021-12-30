@@ -9,8 +9,10 @@
             "text": "$(italic)You already noticed dealing significantly more damage to enemies if you jump while attacking.$(br)To further improve those jump attacks, you have developed this enhancement, which increases the additional damage even more."
         },
         {
-            "type": "patchouli:text",
-            "text": "$(br3)Additional damage when dealing crits.$(br2)Max Level: 2$(br)Applicable to melee weapons.$(br)Mutually exclusive with Sharpness."
+            "type": "patchouli:spotlight",
+            "title": "Characteristics",
+            "item": "minecraft:iron_sword{Enchantments: [{id: \"spectrum:improved_critical\", lvl: 2s}]}",
+            "text": "Additional damage when dealing crits.$(br2)Max Level: 2$(br)Applicable to melee weapons.$(br)Mutually exclusive with Sharpness."
         }
     ]
 }

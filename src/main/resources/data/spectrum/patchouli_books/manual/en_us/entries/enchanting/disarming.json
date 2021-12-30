@@ -9,8 +9,10 @@
             "text": "$(italic)The zombies you encounter every day wear lots of valuable equipment. But when they die, it disappears never to be seen again.$(br2)No problem if you manage to snatch it from them while they are still alive. Gotcha!"
         },
         {
-            "type": "patchouli:text",
-            "text": "$(br3)Small chance for mobs (and other players!) to drop their equipment when hit.$(br2)Max Level: 2$(br)Applicable to melee weapons."
+            "type": "patchouli:spotlight",
+            "title": "Characteristics",
+            "item": "minecraft:iron_sword{Enchantments: [{id: \"spectrum:disarming\", lvl: 2s}]}",
+            "text": "Small chance for mobs (and other players!) to drop their equipment when hit.$(br2)Max Level: 2$(br)Applicable to melee weapons."
         }
     ]
 }

@@ -1,7 +1,7 @@
 {
   "name": "Mob Eggs",
   "icon": "minecraft:cow_spawn_egg",
-  "advancement": "spectrum:midgame/collect_neolith",
+  "advancement": "spectrum:midgame/__collect_neolith",
   "category": "spectrum:creating_life_category",
   "pages": [
     {

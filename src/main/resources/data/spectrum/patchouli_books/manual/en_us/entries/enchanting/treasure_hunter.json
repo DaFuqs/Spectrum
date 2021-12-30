@@ -6,11 +6,13 @@
     "pages": [
         {
             "type": "patchouli:text",
-            "text": "$(italic)You almost lost your head yourself while searching for a wither skeleton with a spine loose enough to drop its skull. Heads up, you never were the one to bury your head in the sand.$(br2)As if struck by lightning you thought out a new enchantment that will be head and shoulders above Sharpness in regards to that endeavour."
+            "text": "$(italic)You almost lost your head yourself while searching for a Wither Skeleton with a spine loose enough to drop its skull. Heads up, you never were the one to bury your head in the sand.$(br2)As if struck by lightning you thought out a new enchantment."
         },
         {
-            "type": "patchouli:text",
-            "text": "$(br3)Occasionally drops mob heads on kill.$(br2)Max Level: 3$(br)Applicable to melee weapons.$(br)Mutually exclusive with Looting."
+            "type": "patchouli:spotlight",
+            "title": "Characteristics",
+            "item": "minecraft:iron_sword{Enchantments: [{id: \"spectrum:treasure_hunter\", lvl: 3s}]}",
+            "text": "Occasionally drops mob heads on kill.$(br2)Max Level: 3$(br)Applicable to melee weapons.$(br)Mutually exclusive with Looting."
         }
     ]
 }

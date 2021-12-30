@@ -9,8 +9,10 @@
             "text": "$(italic)It almost seems like a fever dream that you could strike with weapons faster than you can think. In the meantime, every blow costs you so much strength that you have to pause for a moment.$(br)Maybe you are getting old.$(br2)With a few small tweaks to your weapon, you can reduce this downtime somewhat."
         },
         {
-            "type": "patchouli:text",
-            "text": "$(br3)Decreases attack cooldown.$(br2)Max Level: 2$(br)Applicable to melee weapons."
+            "type": "patchouli:spotlight",
+            "title": "Characteristics",
+            "item": "minecraft:iron_sword{Enchantments: [{id: \"spectrum:tight_grip\", lvl: 2s}]}",
+            "text": "Decreases attack cooldown.$(br2)Max Level: 2$(br)Applicable to melee weapons."
         }
     ]
 }

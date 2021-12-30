@@ -17,7 +17,7 @@
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier3/upgrade_speed",
-      "text": "Place it on top of the four gemstone blocks close to your $(l:general/pedestal)Pigment Pedestal$(/l).$(br)They also work for the $(l:general/fusion_shrine)Fusion Shrine$(/l), placed on the chiseled blocks. Additional Accelerators have a decreased effect."
+      "text": "Place on top your $(l:general/pedestal)Pigment Pedestals $(/l) gemstone blocks or the Chiseled Blocks of your $(l:general/fusion_shrine)Fusion Shrine$(/l). Additional ones have a decreased effect."
     },
     {
       "type": "spectrum:pedestal_crafting",

@@ -18,7 +18,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "$(br2)To make it even stranger, the material seems to respond to the last applied signal alone, not the strongest.$(br2)Truly a curiosity from the end."
+      "text": "$(br2)To make it even stranger, the material seems to respond to the last applied signal alone, not the strongest.$(br2)Truly a curiosity from the End."
     },
     {
       "type": "spectrum:pedestal_crafting",

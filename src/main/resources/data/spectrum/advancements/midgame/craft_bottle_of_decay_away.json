@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:midgame/create_refined_azurite",
+  "parent": "spectrum:midgame/collect_azurite",
   "display": {
     "icon": {
         "item": "spectrum:bottle_of_decay_away"

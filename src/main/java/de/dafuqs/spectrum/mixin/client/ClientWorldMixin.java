@@ -18,7 +18,7 @@ public abstract class ClientWorldMixin {
 	void postEntityTick(CallbackInfo ci) {
 		for (Entity entry : getEntities()) {
 			if (entry instanceof GravityBlockEntity entity) {
-				entity.postTickEntities();
+				entity.onPostTick();
 			}
 			if (entry instanceof GravityBlockEntity.PostTicker entity) {
 				entity.postTick();

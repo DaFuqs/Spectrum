@@ -1,11 +1,13 @@
 package de.dafuqs.spectrum.mixin;
 
+import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.Support;
 import de.dafuqs.spectrum.interfaces.GravitableItem;
 import de.dafuqs.spectrum.inventories.AutoCompactingInventory;
 import de.dafuqs.spectrum.networking.SpectrumS2CPackets;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.recipe.anvil_crushing.AnvilCrushingRecipe;
+import de.dafuqs.spectrum.registries.SpectrumDamageSources;
 import de.dafuqs.spectrum.registries.SpectrumEnchantments;
 import de.dafuqs.spectrum.registries.SpectrumItemStackDamageImmunities;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -15,6 +17,7 @@ import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
@@ -32,6 +35,8 @@ import java.util.Optional;
 
 @Mixin(ItemEntity.class)
 public abstract class ItemEntityMixin {
+	
+	private static AutoCompactingInventory autoCompactingInventory;
 	
 	@Shadow public abstract ItemStack getStack();
 	
@@ -67,15 +72,16 @@ public abstract class ItemEntityMixin {
 
 	@Inject(at=@At("HEAD"), method= "damage(Lnet/minecraft/entity/damage/DamageSource;F)Z", cancellable = true)
 	public void doAnvilCrafting(DamageSource source, float amount, CallbackInfoReturnable<Boolean> callbackInfoReturnable) {
-		if(DamageSource.ANVIL.equals(source)) {
+		if(DamageSource.ANVIL.equals(source) || SpectrumDamageSources.FLOATBLOCK.equals(source)) {
 			ItemEntity thisEntity = (ItemEntity) (Object) this;
 			ItemStack thisItemStack = thisEntity.getStack();
 			World world = thisEntity.getEntityWorld();
-
-			AutoCompactingInventory autoCompactingInventory = new AutoCompactingInventory();
+			
+			if(autoCompactingInventory == null) {
+				autoCompactingInventory = new AutoCompactingInventory();
+			}
 			autoCompactingInventory.setCompacting(AutoCompactingInventory.AutoCraftingMode.OnexOne, thisItemStack);
-
-			Optional<AnvilCrushingRecipe> optionalAnvilCrushingRecipe = world.getServer().getRecipeManager().getFirstMatch(SpectrumRecipeTypes.ANVIL_CRUSHING, autoCompactingInventory, world);
+			Optional<AnvilCrushingRecipe> optionalAnvilCrushingRecipe = SpectrumCommon.minecraftServer.getRecipeManager().getFirstMatch(SpectrumRecipeTypes.ANVIL_CRUSHING, autoCompactingInventory, world);
 			if(optionalAnvilCrushingRecipe.isPresent()) {
 				// Item can be crafted via anvil. Do anvil crafting
 				AnvilCrushingRecipe recipe = optionalAnvilCrushingRecipe.get();

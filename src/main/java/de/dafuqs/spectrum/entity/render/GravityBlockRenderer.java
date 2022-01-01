@@ -33,7 +33,7 @@ public class GravityBlockRenderer extends EntityRenderer<GravityBlockEntity> {
 		BlockState blockState = entity.getBlockState();
 
 		if (blockState.getRenderType() == BlockRenderType.MODEL) {
-			World world = entity.getWorldObj();
+			World world = entity.getWorldClient();
 
 			if (blockState != world.getBlockState(new BlockPos(entity.getPos())) && blockState.getRenderType() != BlockRenderType.INVISIBLE) {
 				matrices.push();

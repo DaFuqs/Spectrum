@@ -1,43 +1,35 @@
 package de.dafuqs.spectrum.registries;
 
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 
 public class SpectrumDamageSources {
 
-	public static final DamageSource DECAY = new DecayDamageSource("spectrum_decay");
+	public static final DamageSource DECAY = new SpectrumDamageSource("spectrum_decay").setUnblockable().setBypassesArmor();
+	public static final DamageSource FLOATBLOCK = new SpectrumDamageSource("spectrum_floatblock").setFromFalling();
 
-	public static class DecayDamageSource extends DamageSource {
-
-		private final boolean bypassesArmor;
-		private final boolean unblockable;
-
-		protected DecayDamageSource(String name) {
+	public static class SpectrumDamageSource extends DamageSource {
+		
+		protected SpectrumDamageSource(String name) {
 			super(name);
-			bypassesArmor = true;
-			unblockable = true;
 		}
 
 		@Override
-		public boolean bypassesArmor() {
-			return this.bypassesArmor;
+		public SpectrumDamageSource setUnblockable() {
+			super.setUnblockable();
+			return this;
 		}
 
 		@Override
-		public boolean isUnblockable() {
-			return this.unblockable;
+		public SpectrumDamageSource setBypassesArmor() {
+			super.setBypassesArmor();
+			return this;
 		}
-
-		public Text getDeathMessage(LivingEntity entity) {
-			LivingEntity livingEntity = entity.getPrimeAdversary();
-			String string = "death.attack." + this.name;
-			return livingEntity != null ? new TranslatableText(string, entity.getDisplayName(), livingEntity.getDisplayName()) : new TranslatableText(string, entity.getDisplayName());
+		
+		public SpectrumDamageSource setFromFalling() {
+			super.setFromFalling();
+			return this;
 		}
-
-
+		
 	}
-
 
 }

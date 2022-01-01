@@ -25,7 +25,7 @@ public class ServerWorldMixin {
 	void postEntityTick(BooleanSupplier shouldKeepTicking, CallbackInfo ci){
 		if (this.idleTimeout < 300) {
 			for (GravityBlockEntity entry : ((ServerWorld)(Object) this).getEntitiesByType(SpectrumEntityTypes.GRAVITY_BLOCK, Entity::isAlive)) {
-				entry.postTickEntities();
+				entry.onPostTick();
 			}
 		}
 

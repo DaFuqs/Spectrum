@@ -70,6 +70,7 @@
   "multiblock.spectrum.enchanter.structure": "Enchanter",
 
   "death.attack.spectrum_decay": "%s was eaten alive",
+  "death.attack.spectrum_floatblock": "%s was smashed by a Floating Block",
 
   "entity.spectrum.block_flooder_projectile": "Block Flooder",
   "entity.spectrum.gravity_block": "Gravity Block",

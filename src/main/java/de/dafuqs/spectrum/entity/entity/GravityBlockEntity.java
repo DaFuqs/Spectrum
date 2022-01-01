@@ -4,12 +4,10 @@ import com.google.common.collect.Lists;
 import de.dafuqs.spectrum.blocks.gravity.GravitableBlock;
 import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
+import de.dafuqs.spectrum.registries.SpectrumDamageSources;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.ConcretePowderBlock;
+import net.minecraft.block.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.MovementType;
@@ -17,23 +15,16 @@ import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
-import net.minecraft.fluid.Fluids;
 import net.minecraft.item.AutomaticItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtHelper;
 import net.minecraft.network.Packet;
 import net.minecraft.network.packet.s2c.play.EntitySpawnS2CPacket;
-import net.minecraft.state.property.Properties;
-import net.minecraft.tag.BlockTags;
-import net.minecraft.tag.FluidTags;
-import net.minecraft.util.crash.CrashReportSection;
-import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.*;
 import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.GameRules;
-import net.minecraft.world.RaycastContext;
 import net.minecraft.world.World;
 
 import java.util.List;
@@ -41,21 +32,18 @@ import java.util.List;
 public class GravityBlockEntity extends Entity {
 
 	public int floatTime;
-	public boolean dropItem;
 	private BlockState blockState;
 	private float gravityModifier;
-	private boolean hurtEntities;
-	private int floatHurtMax;
-	private float floatHurtAmount;
+	private int maxDamage;
+	private float damagePerFallenBlock;
 	protected static final TrackedData<BlockPos> ORIGIN = DataTracker.registerData(GravityBlockEntity.class, TrackedDataHandlerRegistry.BLOCK_POS);
 
 	public GravityBlockEntity(EntityType<? extends GravityBlockEntity> entityTypeIn, World worldIn) {
 		super(entityTypeIn, worldIn);
 		this.blockState = Blocks.SAND.getDefaultState();
 		this.gravityModifier = 1.0F;
-		this.dropItem = true;
-		this.floatHurtMax = 40;
-		this.floatHurtAmount = 2.0F;
+		this.maxDamage = 5;
+		this.damagePerFallenBlock = 0.5F;
 	}
 
 	public GravityBlockEntity(World world, double x, double y, double z, BlockState gravityBlockState) {
@@ -76,23 +64,13 @@ public class GravityBlockEntity extends Entity {
 	}
 
 	@Override
-	public void updatePosition(double x, double y, double z) {
+	public Box calculateBoundingBox() {
 		if (dataTracker == null) {
-			super.updatePosition(x, y, z);
-		} else {
-			BlockPos origin = getOrigin();
-			VoxelShape colShape = blockState.getCollisionShape(world, origin);
-			if (colShape.isEmpty()) {
-				colShape = blockState.getOutlineShape(world, origin);
-			}
-			if (colShape.isEmpty()) {
-				super.updatePosition(x, y, z);
-			} else {
-				this.setPos(x, y, z);
-				Box box = colShape.getBoundingBox();
-				this.setBoundingBox(box.offset(getPos().subtract(new Vec3d(MathHelper.lerp(0.5D, box.minX, box.maxX), 0, MathHelper.lerp(0.5D, box.minZ, box.maxZ)))));
-			}
+			return super.calculateBoundingBox();
 		}
+		
+		VoxelShape collisionShape = VoxelShapes.fullCube();
+		return collisionShape.getBoundingBox().offset(getPos().subtract(new Vec3d(0.5, 0, 0.5)));
 	}
 
 	@Override
@@ -112,7 +90,7 @@ public class GravityBlockEntity extends Entity {
 
 	@Override
 	public boolean collides() {
-		return !this.isRemoved() && !blockState.getCollisionShape(world, getOrigin()).isEmpty();
+		return !this.isRemoved();
 	}
 
 	@Override
@@ -134,7 +112,7 @@ public class GravityBlockEntity extends Entity {
 	 * Because this entity moves other entities, including players, this entity has
 	 * to tick after the all other entities have ticked to prevent them phasing though this
 	 */
-	public void postTickEntities() {
+	public void onPostTick() {
 		if (this.blockState.isAir()) {
 			this.discard();
 		} else {
@@ -165,6 +143,7 @@ public class GravityBlockEntity extends Entity {
 			List<Entity> otherEntities = this.world.getOtherEntities(this, oldBox.union(newBox));
 			for (Entity entity : otherEntities) {
 				if (!(entity instanceof GravityBlockEntity) && !entity.noClip && this.collides()) {
+					// since this is only ticked 20 times per second it feels very bumpy, when standing on top of it
 					entity.fallDistance = 0F;
 					entity.setPosition(entity.getPos().x, getBoundingBox().maxY, entity.getPos().z);
 					entity.setOnGround(true);
@@ -173,26 +152,11 @@ public class GravityBlockEntity extends Entity {
 
 			if (!this.world.isClient) {
 				blockPos = this.getBlockPos();
-				boolean isConcrete = this.blockState.getBlock() instanceof ConcretePowderBlock;
-				boolean shouldSolidify = isConcrete && this.world.getFluidState(blockPos).isIn(FluidTags.WATER);
-				double speed = this.getVelocity().lengthSquared();
 
-				if (isConcrete && speed > 1.0D) {
-					BlockHitResult blockHitResult = this.world.raycast(
-							new RaycastContext(new Vec3d(this.prevX, this.prevY, this.prevZ),
-							new Vec3d(this.getX(), this.getY(), this.getZ()), RaycastContext.ShapeType.COLLIDER,
-							RaycastContext.FluidHandling.SOURCE_ONLY, this));
-
-					if (blockHitResult.getType() != HitResult.Type.MISS && this.world.getFluidState(blockHitResult.getBlockPos()).isIn(FluidTags.WATER)) {
-						blockPos = blockHitResult.getBlockPos();
-						shouldSolidify = true;
-					}
-				}
-
-				if (!this.verticalCollision && !shouldSolidify) {
+				if (!this.verticalCollision) {
 					if (!this.world.isClient) {
 						if (this.floatTime > 100 && blockPos.getY() < 1) {
-							if (this.dropItem && this.world.getGameRules().getBoolean(GameRules.DO_ENTITY_DROPS)) {
+							if (this.world.getGameRules().getBoolean(GameRules.DO_ENTITY_DROPS)) {
 								this.dropItem(block);
 							}
 							this.discard();
@@ -205,41 +169,38 @@ public class GravityBlockEntity extends Entity {
 					this.setVelocity(this.getVelocity().multiply(0.7, 0.5, 0.7));
 					this.discard();
 					boolean canReplace = blockState.canReplace(new AutomaticItemPlacementContext(this.world, blockPos, Direction.DOWN, ItemStack.EMPTY, Direction.UP));
-					if (!canReplace) {
+					if (canReplace) {
 						canReplace = blockState.canReplace(new AutomaticItemPlacementContext(this.world, blockPos, Direction.UP, ItemStack.EMPTY, Direction.DOWN));
 					}
 					boolean canPlace = this.blockState.canPlaceAt(this.world, blockPos);
 
 					if (canReplace && canPlace) {
-						if (this.blockState.contains(Properties.WATERLOGGED) && this.world.getFluidState(blockPos).getFluid() == Fluids.WATER) {
-							this.blockState = this.blockState.with(Properties.WATERLOGGED, true);
-						}
-
 						if (this.world.setBlockState(blockPos, this.blockState, 3)) {
-
-						} else if (this.dropItem && this.world.getGameRules().getBoolean(GameRules.DO_ENTITY_DROPS)) {
+							// replace the previously existing, replaceable block
+						} else if (this.world.getGameRules().getBoolean(GameRules.DO_ENTITY_DROPS)) {
 							this.dropItem(block);
 						}
-					} else if (this.dropItem && this.world.getGameRules().getBoolean(GameRules.DO_ENTITY_DROPS)) {
+					} else if (this.world.getGameRules().getBoolean(GameRules.DO_ENTITY_DROPS)) {
 						this.dropItem(block);
 					}
 				}
 			}
 
-			this.setVelocity(this.getVelocity().multiply(0.98D));
+			// assures terminal velocity
+			this.setVelocity(this.getVelocity().multiply(0.99D));
 		}
 	}
 
 	@Override
 	public boolean handleFallDamage(float distance, float damageMultiplier, DamageSource damageSource) {
-		if (this.hurtEntities) {
-			int i = MathHelper.ceil(distance - 1.0F);
-			if (i > 0) {
-				List<Entity> list = Lists.newArrayList(this.world.getOtherEntities(this, this.getBoundingBox()));
-				DamageSource damagesource = DamageSource.FALLING_BLOCK;
-
+		int traveledDistance = MathHelper.ceil(distance - 1.0F);
+		if (traveledDistance > 0) {
+			int damage = Math.min(MathHelper.floor(traveledDistance * this.damagePerFallenBlock), this.maxDamage);
+			if(damage > 0) {
+				// since the players position is tracked at its head and item entities are laying directly on the ground we have to use a relatively big bounding box here
+				List<Entity> list = Lists.newArrayList(this.world.getOtherEntities(this, this.getBoundingBox().expand(0, 3.0 * Math.signum(this.getVelocity().y), 0).expand(0, -0.5 * Math.signum(this.getVelocity().y), 0)));
 				for (Entity entity : list) {
-					entity.damage(damagesource, Math.min(MathHelper.floor(i * this.floatHurtAmount), this.floatHurtMax));
+					entity.damage(SpectrumDamageSources.FLOATBLOCK, damage);
 				}
 			}
 		}
@@ -250,10 +211,8 @@ public class GravityBlockEntity extends Entity {
 	protected void writeCustomDataToNbt(NbtCompound compound) {
 		compound.put("BlockState", NbtHelper.fromBlockState(this.blockState));
 		compound.putInt("Time", this.floatTime);
-		compound.putBoolean("DropItem", this.dropItem);
-		compound.putBoolean("HurtEntities", this.hurtEntities);
-		compound.putFloat("FallHurtAmount", this.floatHurtAmount);
-		compound.putInt("FallHurtMax", this.floatHurtMax);
+		compound.putFloat("FallHurtAmount", this.damagePerFallenBlock);
+		compound.putInt("FallHurtMax", this.maxDamage);
 	}
 
 	@Override
@@ -261,31 +220,21 @@ public class GravityBlockEntity extends Entity {
 		this.blockState = NbtHelper.toBlockState(compound.getCompound("BlockState"));
 		this.floatTime = compound.getInt("Time");
 		if (compound.contains("HurtEntities", 99)) {
-			this.hurtEntities = compound.getBoolean("HurtEntities");
-			this.floatHurtAmount = compound.getFloat("FallHurtAmount");
-			this.floatHurtMax = compound.getInt("FallHurtMax");
-		} else if (this.blockState.isIn(BlockTags.ANVIL)) {
-			this.hurtEntities = true;
+			this.damagePerFallenBlock = compound.getFloat("FallHurtAmount");
+			this.maxDamage = compound.getInt("FallHurtMax");
 		}
 
-		if (compound.contains("DropItem", 99)) this.dropItem = compound.getBoolean("DropItem");
 		if (this.blockState.isAir()) this.blockState = SpectrumBlocks.PALETUR_FRAGMENT_BLOCK.getDefaultState();
 	}
 
 	@Environment(EnvType.CLIENT)
-	public World getWorldObj() {
+	public World getWorldClient() {
 		return this.world;
 	}
 
 	@Override
 	public boolean doesRenderOnFire() {
 		return false;
-	}
-
-	@Override
-	public void populateCrashReport(CrashReportSection section) {
-		super.populateCrashReport(section);
-		section.add("Immitating BlockState", this.blockState.toString());
 	}
 
 	public BlockState getBlockState() {
@@ -295,10 +244,6 @@ public class GravityBlockEntity extends Entity {
 	@Override
 	public boolean entityDataRequiresOperator() {
 		return true;
-	}
-
-	public void setFallingBlockPos(BlockPos pos) {
-		this.dataTracker.set(ORIGIN, pos);
 	}
 
 	@Override
@@ -329,7 +274,7 @@ public class GravityBlockEntity extends Entity {
 		double e = packet.getY();
 		double f = packet.getZ();
 		this.setPosition(d, e + (double)((1.0F - this.getHeight()) / 2.0F), f);
-		this.setFallingBlockPos(this.getBlockPos());
+		this.setOrigin(this.getBlockPos());
 	}
 
 }

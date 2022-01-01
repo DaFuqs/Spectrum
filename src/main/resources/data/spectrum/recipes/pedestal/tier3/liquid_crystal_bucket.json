@@ -2,20 +2,23 @@
   "type": "spectrum:pedestal",
   "time": 240,
   "tier": "advanced",
-  "magenta": 2,
-  "yellow": 2,
-  "cyan": 2,
-  "black": 2,
+  "magenta": 1,
+  "yellow": 1,
+  "cyan": 1,
+  "black": 1,
   "white": 0,
   "experience": 1.0,
   "pattern": [
     "PMP",
     "SBS",
-    "PMP"
+    "YMY"
   ],
   "key": {
     "P": {
-      "item": "spectrum:light_gray_pigment"
+      "item": "spectrum:pink_pigment"
+    },
+    "Y": {
+      "item": "spectrum:yellow_pigment"
     },
     "B": {
       "item": "minecraft:bucket"

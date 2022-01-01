@@ -1,8 +1,8 @@
 {
   "criteria": {
-    "collected_light_gray_pigment": {
+    "built_advanced_pedestal_structure": {
       "trigger":"spectrum:has_advancement",
-      "conditions": { "advancement_identifier": "spectrum:hidden/collect_pigment/collect_light_gray_pigment" }
+      "conditions": { "advancement_identifier": "spectrum:midgame/build_advanced_pedestal_structure" }
     },
     "collected_mermaids_gem": {
       "trigger":"spectrum:has_advancement",

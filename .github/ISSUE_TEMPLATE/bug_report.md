@@ -14,7 +14,10 @@ A clear and concise description of what the bug is.
 Steps to reproduce the behavior.
 
 **Expected behavior**
-A clear and concise description of what you expected to happen.
+A concise description of what you expected to happen.
+
+**Mod version**
+Which version of the mod are you currently using?
 
 **Screenshots**
 If applicable, add screenshots to help explain your problem.

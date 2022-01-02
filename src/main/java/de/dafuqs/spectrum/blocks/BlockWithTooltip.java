@@ -21,7 +21,7 @@ public class BlockWithTooltip extends Block {
 
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
-		tooltip.add(tooltipText);
 		super.appendTooltip(stack, world, tooltip, options);
+		tooltip.add(tooltipText);
 	}
 }

@@ -6,8 +6,7 @@ $lamp = @("black_lamp", "blue_lamp", "brown_lamp", "cyan_lamp", "gray_lamp", "gr
 $ores = @("sparklestone_block", "koenigsblau_ore", "koenigsblau_block")
 $upgrades = @("upgrade_speed", "upgrade_speed2", "upgrade_speed3", "upgrade_efficiency", "upgrade_efficiency2", "upgrade_yield", "upgrade_yield2", "upgrade_experience", "upgrade_experience2")
 
-$new = @("notched_polished_basalt", "notched_polished_calcite")
-
+$new = @("pastel_network_provider_node", "pastel_network_puller_node", "pastel_network_pusher_node", "pastel_network_storage_node", "pastel_network_connection_node")
 
 enum BlockType {
     Default

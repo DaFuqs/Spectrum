@@ -720,8 +720,20 @@
   "item.spectrum.pedestal.tooltip.all_basic": "§bC§dM§eY§7 Variant",
   "item.spectrum.pedestal.tooltip.onyx": "§8Onyx§7 Variant",
   "item.spectrum.pedestal.tooltip.moonstone": "§fMoonstone§7 Variant",
-  
-    "item.spectrum.mob_head.tooltip.designer": "§7Head design by %s",
+
+  "block.spectrum.pastel_network_provider_node": "Pastel Network Provider Node",
+  "block.spectrum.pastel_network_puller_node": "Pastel Network Puller Node",
+  "block.spectrum.pastel_network_pusher_node": "Pastel Network Pusher Node",
+  "block.spectrum.pastel_network_storage_node": "Pastel Network Storage Node",
+  "block.spectrum.pastel_network_connection_node": "Pastel Network Connection Node",
+  "block.spectrum.pastel_network_provider_node.tooltip": "§dProvides Items to the Network",
+  "block.spectrum.pastel_network_puller_node.tooltip": "§8Pulls items from the Network",
+  "block.spectrum.pastel_network_pusher_node.tooltip": "§ePushes Items into the Network",
+  "block.spectrum.pastel_network_storage_node.tooltip": "§bStores Items with no other Destination",
+  "block.spectrum.pastel_network_connection_node.tooltip": "§fSimple Connector",
+  "block.spectrum.pastel_network_nodes.tooltip.range": "Connects to other Nodes 16 Blocks from it",
+
+  "item.spectrum.mob_head.tooltip.designer": "§7Head design by %s",
   "block.spectrum.goat_head": "Goat Head",
   "block.spectrum.glow_squid_head": "Glow Squid Head",
   "block.spectrum.axolotl_blue_head": "Blue Axolotl Head",

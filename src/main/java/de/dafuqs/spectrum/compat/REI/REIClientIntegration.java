@@ -44,7 +44,7 @@ public class REIClientIntegration implements REIClientPlugin {
 
 		registry.addWorkstations(BuiltinPlugin.CRAFTING, pedestalEntryStacks);
 		registry.addWorkstations(SpectrumPlugins.PEDESTAL_CRAFTING, pedestalEntryStacks);
-		registry.addWorkstations(SpectrumPlugins.ANVIL_CRUSHING, EntryStacks.of(Blocks.ANVIL), EntryStacks.of(SpectrumBlocks.BEDROCK_ANVIL));
+		registry.addWorkstations(SpectrumPlugins.ANVIL_CRUSHING, EntryStacks.of(Blocks.ANVIL), EntryStacks.of(SpectrumBlocks.BEDROCK_ANVIL), EntryStacks.of(SpectrumBlocks.SCARLET_FRAGMENT_BLOCK), EntryStacks.of(SpectrumBlocks.PALETUR_FRAGMENT_BLOCK));
 		registry.addWorkstations(SpectrumPlugins.FUSION_SHRINE, EntryStacks.of(SpectrumBlocks.FUSION_SHRINE_BASALT), EntryStacks.of(SpectrumBlocks.FUSION_SHRINE_CALCITE));
 		registry.addWorkstations(SpectrumPlugins.NATURES_STAFF, EntryStacks.of(SpectrumItems.NATURES_STAFF));
 		registry.addWorkstations(SpectrumPlugins.ENCHANTER, EntryStacks.of(SpectrumBlocks.ENCHANTER));
@@ -61,6 +61,10 @@ public class REIClientIntegration implements REIClientPlugin {
 
 	@Override
 	public void registerDisplays(DisplayRegistry registry) {
+		// TODO: only set displays to visible as soon as unlocked
+		// registry.registerVisibilityPredicate();
+		// RecipeHelper.registerRecipeVisibilityHandler https://github.com/shedaniel/RoughlyEnoughItems/issues/50
+		
 		registry.registerFiller(AnvilCrushingRecipe.class, AnvilCrushingRecipeDisplay::new);
 		registry.registerRecipeFiller(PedestalCraftingRecipe.class, SpectrumRecipeTypes.PEDESTAL, PedestalCraftingRecipeDisplay::new);
 		registry.registerRecipeFiller(FusionShrineRecipe.class, SpectrumRecipeTypes.FUSION_SHRINE, FusionShrineRecipeDisplay::new);

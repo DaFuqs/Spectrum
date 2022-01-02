@@ -10,5 +10,5 @@
     "count": 1
   },
   "particleEffectIdentifier": "cloud",
-  "soundEventIdentifier": "blocks.netherrack.break"
+  "soundEventIdentifier": "block.netherrack.break"
 }

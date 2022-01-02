@@ -10,5 +10,5 @@
     "count": 8
   },
   "particleEffectIdentifier": "explosion",
-  "soundEventIdentifier": "block.large_topaz_bud.break"
+  "soundEventIdentifier": "spectrum:block.large_topaz_bud.break"
 }

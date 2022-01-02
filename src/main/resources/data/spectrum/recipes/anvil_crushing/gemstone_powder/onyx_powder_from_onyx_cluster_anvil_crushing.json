@@ -10,5 +10,5 @@
     "count": 16
   },
   "particleEffectIdentifier": "explosion",
-  "soundEventIdentifier": "block.onyx_cluster.break"
+  "soundEventIdentifier": "spectrum:block.onyx_cluster.break"
 }

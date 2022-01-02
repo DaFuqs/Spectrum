@@ -231,7 +231,7 @@
       "spectrum:natures_staff_use"
     ]
   },
-  "block_citrine_block_break": {
+  "block.citrine_block.break": {
     "subtitle": "subtitles.block.generic.break",
     "sounds": [
       "spectrum:block/citrine/block_citrine_break1",
@@ -240,13 +240,13 @@
       "spectrum:block/citrine/block_citrine_break4"
     ]
   },
-  "block_citrine_block_chime": {
+  "block.citrine_block.chime": {
     "subtitle": "subtitles.block.citrine_block.chime",
     "sounds": [
       "spectrum:block/citrine/block_citrine_shimmer"
     ]
   },
-  "block_citrine_block_fall": {
+  "block.citrine_block.fall": {
     "subtitle": "",
     "sounds": [
       "spectrum:block/citrine/block_citrine_step1",
@@ -265,7 +265,7 @@
       "spectrum:block/citrine/block_citrine_step14"
     ]
   },
-  "block_citrine_block_hit": {
+  "block.citrine_block.hit": {
     "subtitle": "subtitles.block.generic.hit",
     "sounds": [
       "spectrum:block/citrine/block_citrine_step1",
@@ -284,7 +284,7 @@
       "spectrum:block/citrine/block_citrine_step14"
     ]
   },
-  "block_citrine_block_place": {
+  "block.citrine_block.place": {
     "subtitle": "subtitles.block.generic.place",
     "sounds": [
       "spectrum:block/citrine/block_citrine_place1",
@@ -293,7 +293,7 @@
       "spectrum:block/citrine/block_citrine_place4"
     ]
   },
-  "block_citrine_block_step": {
+  "block.citrine_block.step": {
     "subtitle": "subtitles.block.generic.footsteps",
     "sounds": [
       "spectrum:block/citrine/block_citrine_step1",
@@ -312,7 +312,7 @@
       "spectrum:block/citrine/block_citrine_step14"
     ]
   },
-  "block_citrine_cluster_break": {
+  "block.citrine_cluster.break": {
     "subtitle": "subtitles.block.generic.break",
     "sounds": [
       "spectrum:block/citrine/block_citrine_cluster_break1",
@@ -321,7 +321,7 @@
       "spectrum:block/citrine/block_citrine_cluster_break4"
     ]
   },
-  "block_citrine_cluster_fall": {
+  "block.citrine_cluster.fall": {
     "subtitle": "",
     "sounds": [
       "spectrum:block/citrine/block_citrine_step1",
@@ -340,7 +340,7 @@
       "spectrum:block/citrine/block_citrine_step14"
     ]
   },
-  "block_citrine_cluster_hit": {
+  "block.citrine_cluster.hit": {
     "subtitle": "subtitles.block.generic.hit",
     "sounds": [
       "spectrum:block/citrine/block_citrine_step1",
@@ -359,7 +359,7 @@
       "spectrum:block/citrine/block_citrine_step14"
     ]
   },
-  "block_citrine_cluster_place": {
+  "block.citrine_cluster.place": {
     "subtitle": "subtitles.block.generic.place",
     "sounds": [
       "spectrum:block/citrine/block_citrine_cluster_place1",
@@ -368,7 +368,7 @@
       "spectrum:block/citrine/block_citrine_cluster_place4"
     ]
   },
-  "block_citrine_cluster_step": {
+  "block.citrine_cluster.step": {
     "subtitle": "subtitles.block.generic.footsteps",
     "sounds": [
       "spectrum:block/citrine/block_citrine_step1",
@@ -387,7 +387,7 @@
       "spectrum:block/citrine/block_citrine_step14"
     ]
   },
-  "block_large_citrine_bud_break": {
+  "block.large_citrine_bud.break": {
     "subtitle": "subtitles.block.generic.break",
     "sounds": [
       "spectrum:block/citrine/block_citrine_step1",
@@ -406,7 +406,7 @@
       "spectrum:block/citrine/block_citrine_step14"
     ]
   },
-  "block_large_citrine_bud_place": {
+  "block.large_citrine_bud.place": {
     "subtitle": "subtitles.block.generic.place",
     "sounds": [
       "spectrum:block/citrine/block_citrine_cluster_place1",
@@ -415,7 +415,7 @@
       "spectrum:block/citrine/block_citrine_cluster_place4"
     ]
   },
-  "block_medium_citrine_bud_break": {
+  "block.medium_citrine_bud.break": {
     "subtitle": "subtitles.block.generic.break",
     "sounds": [
       "spectrum:block/citrine/block_citrine_step1",
@@ -434,7 +434,7 @@
       "spectrum:block/citrine/block_citrine_step14"
     ]
   },
-  "block_medium_citrine_bud_place": {
+  "block.medium_citrine_bud.place": {
     "subtitle": "subtitles.block.generic.place",
     "sounds": [
       "spectrum:block/citrine/block_citrine_cluster_place1",
@@ -443,7 +443,7 @@
       "spectrum:block/citrine/block_citrine_cluster_place4"
     ]
   },
-  "block_small_citrine_bud_break": {
+  "block.small_citrine_bud.break": {
     "subtitle": "subtitles.block.generic.break",
     "sounds": [
       "spectrum:block/citrine/block_citrine_step1",
@@ -462,7 +462,7 @@
       "spectrum:block/citrine/block_citrine_step14"
     ]
   },
-  "block_small_citrine_bud_place": {
+  "block.small_citrine_bud.place": {
     "subtitle": "subtitles.block.generic.place",
     "sounds": [
       "spectrum:block/citrine/block_citrine_cluster_place1",
@@ -471,7 +471,7 @@
       "spectrum:block/citrine/block_citrine_cluster_place4"
     ]
   },
-  "block_topaz_block_break": {
+  "block.topaz_block.break": {
     "subtitle": "subtitles.block.generic.break",
     "sounds": [
       "spectrum:block/topaz/block_topaz_break1",
@@ -480,13 +480,13 @@
       "spectrum:block/topaz/block_topaz_break4"
     ]
   },
-  "block_topaz_block_chime": {
+  "block.topaz_block.chime": {
     "subtitle": "subtitles.block.topaz_block.chime",
     "sounds": [
       "spectrum:block/topaz/block_topaz_shimmer"
     ]
   },
-  "block_topaz_block_fall": {
+  "block.topaz_block.fall": {
     "subtitle": "",
     "sounds": [
       "spectrum:block/topaz/block_topaz_step1",
@@ -505,7 +505,7 @@
       "spectrum:block/topaz/block_topaz_step14"
     ]
   },
-  "block_topaz_block_hit": {
+  "block.topaz_block.hit": {
     "subtitle": "subtitles.block.generic.hit",
     "sounds": [
       "spectrum:block/topaz/block_topaz_step1",
@@ -524,7 +524,7 @@
       "spectrum:block/topaz/block_topaz_step14"
     ]
   },
-  "block_topaz_block_place": {
+  "block.topaz_block.place": {
     "subtitle": "subtitles.block.generic.place",
     "sounds": [
       "spectrum:block/topaz/block_topaz_place1",
@@ -533,7 +533,7 @@
       "spectrum:block/topaz/block_topaz_place4"
     ]
   },
-  "block_topaz_block_step": {
+  "block.topaz_block.step": {
     "subtitle": "subtitles.block.generic.footsteps",
     "sounds": [
       "spectrum:block/topaz/block_topaz_step1",
@@ -552,7 +552,7 @@
       "spectrum:block/topaz/block_topaz_step14"
     ]
   },
-  "block_topaz_cluster_break": {
+  "block.topaz_cluster.break": {
     "subtitle": "subtitles.block.generic.break",
     "sounds": [
       "spectrum:block/topaz/block_topaz_cluster_break1",
@@ -561,7 +561,7 @@
       "spectrum:block/topaz/block_topaz_cluster_break4"
     ]
   },
-  "block_topaz_cluster_fall": {
+  "block.topaz_cluster.fall": {
     "subtitle": "",
     "sounds": [
       "spectrum:block/topaz/block_topaz_step1",
@@ -580,7 +580,7 @@
       "spectrum:block/topaz/block_topaz_step14"
     ]
   },
-  "block_topaz_cluster_hit": {
+  "block.topaz_cluster.hit": {
     "subtitle": "subtitles.block.generic.hit",
     "sounds": [
       "spectrum:block/topaz/block_topaz_step1",
@@ -599,7 +599,7 @@
       "spectrum:block/topaz/block_topaz_step14"
     ]
   },
-  "block_topaz_cluster_place": {
+  "block.topaz_cluster.place": {
     "subtitle": "subtitles.block.generic.place",
     "sounds": [
       "spectrum:block/topaz/block_topaz_cluster_place1",
@@ -608,7 +608,7 @@
       "spectrum:block/topaz/block_topaz_cluster_place4"
     ]
   },
-  "block_topaz_cluster_step": {
+  "block.topaz_cluster.step": {
     "subtitle": "subtitles.block.generic.footsteps",
     "sounds": [
       "spectrum:block/topaz/block_topaz_step1",
@@ -627,7 +627,7 @@
       "spectrum:block/topaz/block_topaz_step14"
     ]
   },
-  "block_large_topaz_bud_break": {
+  "block.large_topaz_bud.break": {
     "subtitle": "subtitles.block.generic.break",
     "sounds": [
       "spectrum:block/topaz/block_topaz_step1",
@@ -646,7 +646,7 @@
       "spectrum:block/topaz/block_topaz_step14"
     ]
   },
-  "block_large_topaz_bud_place": {
+  "block.large_topaz_bud.place": {
     "subtitle": "subtitles.block.generic.place",
     "sounds": [
       "spectrum:block/topaz/block_topaz_cluster_place1",
@@ -655,7 +655,7 @@
       "spectrum:block/topaz/block_topaz_cluster_place4"
     ]
   },
-  "block_medium_topaz_bud_break": {
+  "block.medium_topaz_bud.break": {
     "subtitle": "subtitles.block.generic.break",
     "sounds": [
       "spectrum:block/topaz/block_topaz_step1",
@@ -674,7 +674,7 @@
       "spectrum:block/topaz/block_topaz_step14"
     ]
   },
-  "block_medium_topaz_bud_place": {
+  "block.medium_topaz_bud.place": {
     "subtitle": "subtitles.block.generic.place",
     "sounds": [
       "spectrum:block/topaz/block_topaz_cluster_place1",
@@ -683,7 +683,7 @@
       "spectrum:block/topaz/block_topaz_cluster_place4"
     ]
   },
-  "block_small_topaz_bud_break": {
+  "block.small_topaz_bud.break": {
     "subtitle": "subtitles.block.generic.break",
     "sounds": [
       "spectrum:block/topaz/block_topaz_step1",
@@ -702,7 +702,7 @@
       "spectrum:block/topaz/block_topaz_step14"
     ]
   },
-  "block_small_topaz_bud_place": {
+  "block.small_topaz_bud.place": {
     "subtitle": "subtitles.block.generic.place",
     "sounds": [
       "spectrum:block/topaz/block_topaz_cluster_place1",
@@ -711,7 +711,7 @@
       "spectrum:block/topaz/block_topaz_cluster_place4"
     ]
   },
-  "block_onyx_block_break": {
+  "block.onyx_block.break": {
     "subtitle": "subtitles.block.generic.break",
     "sounds": [
       "spectrum:block/onyx/block_onyx_break1",
@@ -720,13 +720,13 @@
       "spectrum:block/onyx/block_onyx_break4"
     ]
   },
-  "block_onyx_block_chime": {
+  "block.onyx_block.chime": {
     "subtitle": "subtitles.block.onyx_block.chime",
     "sounds": [
       "spectrum:block/onyx/block_onyx_shimmer"
     ]
   },
-  "block_onyx_block_fall": {
+  "block.onyx_block.fall": {
     "subtitle": "",
     "sounds": [
       "spectrum:block/onyx/block_onyx_step1",
@@ -745,7 +745,7 @@
       "spectrum:block/onyx/block_onyx_step14"
     ]
   },
-  "block_onyx_block_hit": {
+  "block.onyx_block.hit": {
     "subtitle": "subtitles.block.generic.hit",
     "sounds": [
       "spectrum:block/onyx/block_onyx_step1",
@@ -764,7 +764,7 @@
       "spectrum:block/onyx/block_onyx_step14"
     ]
   },
-  "block_onyx_block_place": {
+  "block.onyx_block.place": {
     "subtitle": "subtitles.block.generic.place",
     "sounds": [
       "spectrum:block/onyx/block_onyx_place1",
@@ -773,7 +773,7 @@
       "spectrum:block/onyx/block_onyx_place4"
     ]
   },
-  "block_onyx_block_step": {
+  "block.onyx_block.step": {
     "subtitle": "subtitles.block.generic.footsteps",
     "sounds": [
       "spectrum:block/onyx/block_onyx_step1",
@@ -792,7 +792,7 @@
       "spectrum:block/onyx/block_onyx_step14"
     ]
   },
-  "block_onyx_cluster_break": {
+  "block.onyx_cluster.break": {
     "subtitle": "subtitles.block.generic.break",
     "sounds": [
       "spectrum:block/onyx/block_onyx_cluster_break1",
@@ -801,7 +801,7 @@
       "spectrum:block/onyx/block_onyx_cluster_break4"
     ]
   },
-  "block_onyx_cluster_fall": {
+  "block.onyx_cluster.fall": {
     "subtitle": "",
     "sounds": [
       "spectrum:block/onyx/block_onyx_step1",
@@ -820,7 +820,7 @@
       "spectrum:block/onyx/block_onyx_step14"
     ]
   },
-  "block_onyx_cluster_hit": {
+  "block.onyx_cluster.hit": {
     "subtitle": "subtitles.block.generic.hit",
     "sounds": [
       "spectrum:block/onyx/block_onyx_step1",
@@ -839,7 +839,7 @@
       "spectrum:block/onyx/block_onyx_step14"
     ]
   },
-  "block_onyx_cluster_place": {
+  "block.onyx_cluster.place": {
     "subtitle": "subtitles.block.generic.place",
     "sounds": [
       "spectrum:block/onyx/block_onyx_cluster_place1",
@@ -848,7 +848,7 @@
       "spectrum:block/onyx/block_onyx_cluster_place4"
     ]
   },
-  "block_onyx_cluster_step": {
+  "block.onyx_cluster.step": {
     "subtitle": "subtitles.block.generic.footsteps",
     "sounds": [
       "spectrum:block/onyx/block_onyx_step1",
@@ -867,7 +867,7 @@
       "spectrum:block/onyx/block_onyx_step14"
     ]
   },
-  "block_large_onyx_bud_break": {
+  "block.large_onyx_bud.break": {
     "subtitle": "subtitles.block.generic.break",
     "sounds": [
       "spectrum:block/onyx/block_onyx_step1",
@@ -886,7 +886,7 @@
       "spectrum:block/onyx/block_onyx_step14"
     ]
   },
-  "block_large_onyx_bud_place": {
+  "block.large_onyx_bud.place": {
     "subtitle": "subtitles.block.generic.place",
     "sounds": [
       "spectrum:block/onyx/block_onyx_cluster_place1",
@@ -895,7 +895,7 @@
       "spectrum:block/onyx/block_onyx_cluster_place4"
     ]
   },
-  "block_medium_onyx_bud_break": {
+  "block.medium_onyx_bud.break": {
     "subtitle": "subtitles.block.generic.break",
     "sounds": [
       "spectrum:block/onyx/block_onyx_step1",
@@ -914,7 +914,7 @@
       "spectrum:block/onyx/block_onyx_step14"
     ]
   },
-  "block_medium_onyx_bud_place": {
+  "block.medium_onyx_bud.place": {
     "subtitle": "subtitles.block.generic.place",
     "sounds": [
       "spectrum:block/onyx/block_onyx_cluster_place1",
@@ -923,7 +923,7 @@
       "spectrum:block/onyx/block_onyx_cluster_place4"
     ]
   },
-  "block_small_onyx_bud_break": {
+  "block.small_onyx_bud.break": {
     "subtitle": "subtitles.block.generic.break",
     "sounds": [
       "spectrum:block/onyx/block_onyx_step1",
@@ -942,7 +942,7 @@
       "spectrum:block/onyx/block_onyx_step14"
     ]
   },
-  "block_small_onyx_bud_place": {
+  "block.small_onyx_bud.place": {
     "subtitle": "subtitles.block.generic.place",
     "sounds": [
       "spectrum:block/onyx/block_onyx_cluster_place1",
@@ -951,7 +951,7 @@
       "spectrum:block/onyx/block_onyx_cluster_place4"
     ]
   },
-  "block_moonstone_block_break": {
+  "block.moonstone_block.break": {
     "subtitle": "subtitles.block.generic.break",
     "sounds": [
       "spectrum:block/moonstone/block_moonstone_break1",
@@ -960,13 +960,13 @@
       "spectrum:block/moonstone/block_moonstone_break4"
     ]
   },
-  "block_moonstone_block_chime": {
+  "block.moonstone_block.chime": {
     "subtitle": "subtitles.block.moonstone_block.chime",
     "sounds": [
       "spectrum:block/moonstone/block_moonstone_shimmer"
     ]
   },
-  "block_moonstone_block_fall": {
+  "block.moonstone_block.fall": {
     "subtitle": "",
     "sounds": [
       "spectrum:block/moonstone/block_moonstone_step1",
@@ -985,7 +985,7 @@
       "spectrum:block/moonstone/block_moonstone_step14"
     ]
   },
-  "block_moonstone_block_hit": {
+  "block.moonstone_block.hit": {
     "subtitle": "subtitles.block.generic.hit",
     "sounds": [
       "spectrum:block/moonstone/block_moonstone_step1",
@@ -1004,7 +1004,7 @@
       "spectrum:block/moonstone/block_moonstone_step14"
     ]
   },
-  "block_moonstone_block_place": {
+  "block.moonstone_block.place": {
     "subtitle": "subtitles.block.generic.place",
     "sounds": [
       "spectrum:block/moonstone/block_moonstone_place1",
@@ -1013,7 +1013,7 @@
       "spectrum:block/moonstone/block_moonstone_place4"
     ]
   },
-  "block_moonstone_block_step": {
+  "block.moonstone_block.step": {
     "subtitle": "subtitles.block.generic.footsteps",
     "sounds": [
       "spectrum:block/moonstone/block_moonstone_step1",
@@ -1032,7 +1032,7 @@
       "spectrum:block/moonstone/block_moonstone_step14"
     ]
   },
-  "block_moonstone_cluster_break": {
+  "block.moonstone_cluster.break": {
     "subtitle": "subtitles.block.generic.break",
     "sounds": [
       "spectrum:block/moonstone/block_moonstone_cluster_break1",
@@ -1041,7 +1041,7 @@
       "spectrum:block/moonstone/block_moonstone_cluster_break4"
     ]
   },
-  "block_moonstone_cluster_fall": {
+  "block.moonstone_cluster.fall": {
     "subtitle": "",
     "sounds": [
       "spectrum:block/moonstone/block_moonstone_step1",
@@ -1060,7 +1060,7 @@
       "spectrum:block/moonstone/block_moonstone_step14"
     ]
   },
-  "block_moonstone_cluster_hit": {
+  "block.moonstone_cluster.hit": {
     "subtitle": "subtitles.block.generic.hit",
     "sounds": [
       "spectrum:block/moonstone/block_moonstone_step1",
@@ -1079,7 +1079,7 @@
       "spectrum:block/moonstone/block_moonstone_step14"
     ]
   },
-  "block_moonstone_cluster_place": {
+  "block.moonstone_cluster.place": {
     "subtitle": "subtitles.block.generic.place",
     "sounds": [
       "spectrum:block/moonstone/block_moonstone_cluster_place1",
@@ -1088,7 +1088,7 @@
       "spectrum:block/moonstone/block_moonstone_cluster_place4"
     ]
   },
-  "block_moonstone_cluster_step": {
+  "block.moonstone_cluster.step": {
     "subtitle": "subtitles.block.generic.footsteps",
     "sounds": [
       "spectrum:block/moonstone/block_moonstone_step1",
@@ -1107,7 +1107,7 @@
       "spectrum:block/moonstone/block_moonstone_step14"
     ]
   },
-  "block_large_moonstone_bud_break": {
+  "block.large_moonstone_bud.break": {
     "subtitle": "subtitles.block.generic.break",
     "sounds": [
       "spectrum:block/moonstone/block_moonstone_step1",
@@ -1126,7 +1126,7 @@
       "spectrum:block/moonstone/block_moonstone_step14"
     ]
   },
-  "block_large_moonstone_bud_place": {
+  "block.large_moonstone_bud.place": {
     "subtitle": "subtitles.block.generic.place",
     "sounds": [
       "spectrum:block/moonstone/block_moonstone_cluster_place1",
@@ -1135,7 +1135,7 @@
       "spectrum:block/moonstone/block_moonstone_cluster_place4"
     ]
   },
-  "block_medium_moonstone_bud_break": {
+  "block.medium_moonstone_bud.break": {
     "subtitle": "subtitles.block.generic.break",
     "sounds": [
       "spectrum:block/moonstone/block_moonstone_step1",
@@ -1154,7 +1154,7 @@
       "spectrum:block/moonstone/block_moonstone_step14"
     ]
   },
-  "block_medium_moonstone_bud_place": {
+  "block.medium_moonstone_bud.place": {
     "subtitle": "subtitles.block.generic.place",
     "sounds": [
       "spectrum:block/moonstone/block_moonstone_cluster_place1",
@@ -1163,7 +1163,7 @@
       "spectrum:block/moonstone/block_moonstone_cluster_place4"
     ]
   },
-  "block_small_moonstone_bud_break": {
+  "block.small_moonstone_bud.break": {
     "subtitle": "subtitles.block.generic.break",
     "sounds": [
       "spectrum:block/moonstone/block_moonstone_step1",
@@ -1182,7 +1182,7 @@
       "spectrum:block/moonstone/block_moonstone_step14"
     ]
   },
-  "block_small_moonstone_bud_place": {
+  "block.small_moonstone_bud.place": {
     "subtitle": "subtitles.block.generic.place",
     "sounds": [
       "spectrum:block/moonstone/block_moonstone_cluster_place1",
@@ -1191,7 +1191,7 @@
       "spectrum:block/moonstone/block_moonstone_cluster_place4"
     ]
   },
-  "block_spectral_block_break": {
+  "block.spectral_block.break": {
     "subtitle": "subtitles.block.generic.break",
     "sounds": [
       "spectrum:block/spectral/block_spectral_break1",
@@ -1200,13 +1200,13 @@
       "spectrum:block/spectral/block_spectral_break4"
     ]
   },
-  "block_spectral_block_chime": {
+  "block.spectral_block.chime": {
     "subtitle": "subtitles.block.spectral_block.chime",
     "sounds": [
       "spectrum:block/spectral/block_spectral_shimmer"
     ]
   },
-  "block_spectral_block_fall": {
+  "block.spectral_block.fall": {
     "subtitle": "",
     "sounds": [
       "spectrum:block/spectral/block_spectral_step1",
@@ -1225,7 +1225,7 @@
       "spectrum:block/spectral/block_spectral_step14"
     ]
   },
-  "block_spectral_block_hit": {
+  "block.spectral_block.hit": {
     "subtitle": "subtitles.block.generic.hit",
     "sounds": [
       "spectrum:block/spectral/block_spectral_step1",
@@ -1244,7 +1244,7 @@
       "spectrum:block/spectral/block_spectral_step14"
     ]
   },
-  "block_spectral_block_place": {
+  "block.spectral_block.place": {
     "subtitle": "subtitles.block.generic.place",
     "sounds": [
       "spectrum:block/spectral/block_spectral_place1",
@@ -1253,7 +1253,7 @@
       "spectrum:block/spectral/block_spectral_place4"
     ]
   },
-  "block_spectral_block_step": {
+  "block.spectral_block.step": {
     "subtitle": "subtitles.block.generic.footsteps",
     "sounds": [
       "spectrum:block/spectral/block_spectral_step1",

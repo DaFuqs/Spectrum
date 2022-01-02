@@ -18,7 +18,6 @@ public class AnvilCrushingRecipeDisplay<R extends AnvilCrushingRecipe> implement
 	public final float crushedItemsPerPointOfDamage;
 
 	public AnvilCrushingRecipeDisplay(AnvilCrushingRecipe recipe) {
-
 		this.inputs = recipe.getIngredients().stream().map(EntryIngredients::ofIngredient).toList();
 		this.output = EntryIngredients.of(recipe.getOutput());
 

@@ -119,10 +119,12 @@ public abstract class ItemEntityMixin {
 					
 					// Play sound
 					SoundEvent soundEvent = recipe.getSoundEvent();
-					float randomVolume = 1.0F + world.getRandom().nextFloat() * 0.2F;
-					float randomPitch = 0.9F + world.getRandom().nextFloat() * 0.2F;
-					world.playSound(null, position.x, position.y, position.z, soundEvent, SoundCategory.PLAYERS, randomVolume, randomPitch);
-
+					if(soundEvent != null) {
+						float randomVolume = 1.0F + world.getRandom().nextFloat() * 0.2F;
+						float randomPitch = 0.9F + world.getRandom().nextFloat() * 0.2F;
+						world.playSound(null, position.x, position.y, position.z, soundEvent, SoundCategory.PLAYERS, randomVolume, randomPitch);
+					}
+					
 					SpectrumS2CPackets.playParticle((ServerWorld) world, new BlockPos(position), recipe.getParticleEffectIdentifier(), recipe.getParticleCount());
 				}
 

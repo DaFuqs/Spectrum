@@ -9,6 +9,7 @@ import de.dafuqs.spectrum.mixin.LootTableAccessor;
 import de.dafuqs.spectrum.progression.BlockCloakManager;
 import de.dafuqs.spectrum.progression.advancement.HasAdvancementCriterion;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
+import de.dafuqs.spectrum.recipe.anvil_crushing.AnvilCrushingRecipe;
 import de.dafuqs.spectrum.recipe.enchanter.EnchanterRecipe;
 import de.dafuqs.spectrum.recipe.enchantment_upgrade.EnchantmentUpgradeRecipe;
 import de.dafuqs.spectrum.recipe.fusion_shrine.FusionShrineRecipe;
@@ -28,6 +29,7 @@ import net.minecraft.recipe.Ingredient;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.sound.SoundEvent;
 import net.minecraft.tag.BlockTags;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
@@ -210,6 +212,15 @@ public class ProgressionSanityCommand {
 				}
 			}
 		}
+		
+		// Anvil Crushing recipes with nonexistent sounds
+		for(AnvilCrushingRecipe anvilCrushingRecipe : SpectrumCommon.minecraftServer.getRecipeManager().listAllOfType(SpectrumRecipeTypes.ANVIL_CRUSHING)) {
+			SoundEvent soundEvent = anvilCrushingRecipe.getSoundEvent();
+			if(soundEvent == null) {
+				SpectrumCommon.log(Level.WARN, "[SANITY: Anvil Crushing] Recipe '" + anvilCrushingRecipe.getId() + "' has a nonexistent sound set");
+			}
+		}
+		
 		SpectrumCommon.log(Level.INFO, "##### SANITY CHECK FINISHED ######");
 		
 		SpectrumCommon.log(Level.INFO, "##### SANITY CHECK PEDESTAL RECIPE STATISTICS ######");

@@ -1,14 +1,12 @@
 package de.dafuqs.spectrum.worldgen;
 
 import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.worldgen.features.WeightedRandomFeature;
-import de.dafuqs.spectrum.worldgen.features.WeightedRandomFeatureConfig;
-import de.dafuqs.spectrum.worldgen.features.WeightedRandomFeaturePatch;
-import de.dafuqs.spectrum.worldgen.features.WeightedRandomFeaturePatchConfig;
+import de.dafuqs.spectrum.worldgen.features.*;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.FeatureConfig;
+import net.minecraft.world.gen.feature.GeodeFeatureConfig;
 
 public class SpectrumFeatures {
 

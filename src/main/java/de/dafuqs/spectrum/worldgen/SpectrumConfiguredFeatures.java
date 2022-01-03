@@ -264,7 +264,7 @@ public class SpectrumConfiguredFeatures {
 				UniformIntProvider.create(4, 6),
 				UniformIntProvider.create(3, 4),
 				UniformIntProvider.create(1, 2),
-				-16, 16, 0.05D, 1)
+				-16, 16, 0.05D, 0)
 		);
 		
 		TOPAZ_GEODE = Feature.GEODE.configure(new GeodeFeatureConfig(
@@ -283,7 +283,7 @@ public class SpectrumConfiguredFeatures {
 				UniformIntProvider.create(4, 6),
 				UniformIntProvider.create(3, 4),
 				UniformIntProvider.create(1, 2),
-				-16, 16, 0.05D, 2)
+				-16, 16, 0.05D, 1)
 		);
 		
 		MOONSTONE_GEODE = Feature.GEODE.configure(new GeodeFeatureConfig(

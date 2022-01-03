@@ -21,7 +21,7 @@ if the worldgen has lots of high mountains consider raising the TopazGeodeMinFix
 	public int TopazGeodeMaxBelowTopGenerationHeight = 0;
 	
 	@Comment("Every x chunks there is a chance for a geode to generate, Moonstone geodes do not spawn in the Overworld")
-	public int TopazGeodeChunkChance = 12;
+	public int TopazGeodeChunkChance = 7;
 	public int CitrineGeodeChunkChance = 60;
 	public int MoonstoneGeodeChunkChance = 35;
 	

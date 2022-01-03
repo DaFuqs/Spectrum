@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.worldgen;
 
 import com.google.common.collect.ImmutableList;
 import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.blocks.conditional.MermaidsBrushBlock;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import de.dafuqs.spectrum.worldgen.features.WeightedRandomFeatureConfig;
 import de.dafuqs.spectrum.worldgen.features.WeightedRandomFeaturePatchConfig;
@@ -18,6 +19,7 @@ import net.minecraft.util.collection.DataPool;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.intprovider.BiasedToBottomIntProvider;
 import net.minecraft.util.math.intprovider.ConstantIntProvider;
+import net.minecraft.util.math.intprovider.IntProvider;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.minecraft.util.registry.BuiltinRegistries;
 import net.minecraft.util.registry.Registry;
@@ -32,6 +34,8 @@ import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.feature.size.TwoLayersFeatureSize;
 import net.minecraft.world.gen.foliage.BlobFoliagePlacer;
 import net.minecraft.world.gen.stateprovider.BlockStateProvider;
+import net.minecraft.world.gen.stateprovider.RandomizedIntBlockStateProvider;
+import net.minecraft.world.gen.stateprovider.SimpleBlockStateProvider;
 import net.minecraft.world.gen.stateprovider.WeightedBlockStateProvider;
 import net.minecraft.world.gen.trunk.StraightTrunkPlacer;
 import org.apache.logging.log4j.Level;
@@ -331,7 +335,7 @@ public class SpectrumConfiguredFeatures {
 		Identifier mermaidsBrushIdentifier = new Identifier(SpectrumCommon.MOD_ID, "mermaids_brush");
 		registerConfiguredAndPlacedFeature(
 			mermaidsBrushIdentifier,
-			Feature.SIMPLE_BLOCK.configure(new SimpleBlockFeatureConfig(BlockStateProvider.of(SpectrumBlocks.MERMAIDS_BRUSH))),
+				Feature.SIMPLE_BLOCK.configure(new SimpleBlockFeatureConfig(new RandomizedIntBlockStateProvider(SimpleBlockStateProvider.of(SpectrumBlocks.MERMAIDS_BRUSH), MermaidsBrushBlock.AGE, UniformIntProvider.create(4, 6)))),
 			List.of(
 				BiomePlacementModifier.of(),
 				RarityFilterPlacementModifier.of(16),

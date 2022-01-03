@@ -1,9 +1,0 @@
-{
-    "type": "minecraft:smelting",
-    "ingredient": {
-        "item": "spectrum:deepslate_azurite_ore"
-    },
-    "result": "spectrum:raw_azurite",
-    "experience": 2,
-    "cookingtime": 200
-}

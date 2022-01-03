@@ -4,6 +4,8 @@
     "spectrum:multitool",
     "spectrum:silker_pickaxe",
     "spectrum:fortune_pickaxe",
-    "spectrum:resonant_pickaxe"
+    "spectrum:resonant_pickaxe",
+    "spectrum:voiding_pickaxe",
+    "spectrum:bedrock_pickaxe"
   ]
 }

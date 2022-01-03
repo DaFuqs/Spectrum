@@ -1,0 +1,21 @@
+{
+  "replace": false,
+  "values": [
+    "spectrum:black_spore_blossom",
+    "spectrum:blue_spore_blossom",
+    "spectrum:brown_spore_blossom",
+    "spectrum:cyan_spore_blossom",
+    "spectrum:gray_spore_blossom",
+    "spectrum:green_spore_blossom",
+    "spectrum:light_blue_spore_blossom",
+    "spectrum:light_gray_spore_blossom",
+    "spectrum:lime_spore_blossom",
+    "spectrum:magenta_spore_blossom",
+    "spectrum:orange_spore_blossom",
+    "spectrum:pink_spore_blossom",
+    "spectrum:purple_spore_blossom",
+    "spectrum:red_spore_blossom",
+    "spectrum:white_spore_blossom",
+    "spectrum:yellow_spore_blossom"
+  ]
+}

@@ -1,21 +1,6 @@
 {
   "replace": false,
   "values": [
-    "spectrum:black_log",
-    "spectrum:blue_log",
-    "spectrum:brown_log",
-    "spectrum:cyan_log",
-    "spectrum:gray_log",
-    "spectrum:green_log",
-    "spectrum:light_blue_log",
-    "spectrum:light_gray_log",
-    "spectrum:lime_log",
-    "spectrum:magenta_log",
-    "spectrum:orange_log",
-    "spectrum:pink_log",
-    "spectrum:purple_log",
-    "spectrum:red_log",
-    "spectrum:white_log",
-    "spectrum:yellow_log"
+    "#spectrum:colored_logs"
   ]
 }

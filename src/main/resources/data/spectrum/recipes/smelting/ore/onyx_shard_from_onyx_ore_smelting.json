@@ -1,9 +1,0 @@
-{
-    "type": "minecraft:smelting",
-    "ingredient": {
-        "item": "spectrum:onyx_ore"
-    },
-    "result": "spectrum:onyx_shard",
-    "experience": 0.25,
-    "cookingtime": 200
-}

@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "spectrum:basalt_sparklestone_light",
+    "spectrum:calcite_sparklestone_light",
+    "spectrum:stone_sparklestone_light",
+    "spectrum:granite_sparklestone_light",
+    "spectrum:diorite_sparklestone_light",
+    "spectrum:andesite_sparklestone_light",
+    "spectrum:deepslate_sparklestone_light"
+  ]
+}

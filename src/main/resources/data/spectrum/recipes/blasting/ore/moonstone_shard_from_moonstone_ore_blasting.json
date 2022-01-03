@@ -1,9 +1,0 @@
-{
-    "type": "minecraft:blasting",
-    "ingredient": {
-        "item": "spectrum:deepslate_moonstone_ore"
-    },
-    "result": "spectrum:moonstone_shard",
-    "experience": 0.25,
-    "cookingtime": 100
-}

@@ -25,6 +25,9 @@ public class PedestalScreen extends HandledScreen<PedestalScreenHandler> {
 	public static final Identifier BACKGROUND2 = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/container/pedestal2.png");
 	public static final Identifier BACKGROUND3 = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/container/pedestal3.png");
 	public static final Identifier BACKGROUND4 = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/container/pedestal4.png");
+	
+	int informationIconX = 95;
+	int informationIconY = 55;
 
 	private final Identifier backgroundTexture;
 	private final PedestalRecipeTier maxPedestalRecipeTierForVariant;
@@ -92,9 +95,9 @@ public class PedestalScreen extends HandledScreen<PedestalScreenHandler> {
 		// show red blinking information icon
 		if(structureUpdateAvailable) {
 			if((client.world.getTime() >> 4) % 2 == 0) {
-				this.textRenderer.draw(matrices, "ℹ", 130, 66, 11010048);
+				this.textRenderer.draw(matrices, "ℹ", informationIconX, informationIconY, 11010048);
 			} else {
-				this.textRenderer.draw(matrices, "ℹ", 130, 66, 16252928);
+				this.textRenderer.draw(matrices, "ℹ", informationIconX, informationIconY, 16252928);
 			}
 		}
 	}
@@ -148,7 +151,7 @@ public class PedestalScreen extends HandledScreen<PedestalScreenHandler> {
 	}
 
 	private boolean mouseOverInformationIcon(int mouseX, int mouseY) {
-		return structureUpdateAvailable && mouseX > x+128 && mouseX < x+140 && mouseY > y+64 && mouseY < y+74;
+		return structureUpdateAvailable && mouseX > x+informationIconX-2 && mouseX < x+informationIconX+10 && mouseY > y+informationIconY-2 && mouseY < y+informationIconY+10;
 	}
 
 }

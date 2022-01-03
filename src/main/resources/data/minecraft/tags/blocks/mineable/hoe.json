@@ -4,21 +4,6 @@
     "spectrum:lava_sponge",
     "spectrum:wet_lava_sponge",
     "spectrum:spirit_sallow_leaves",
-    "spectrum:black_leaves",
-    "spectrum:blue_leaves",
-    "spectrum:brown_leaves",
-    "spectrum:cyan_leaves",
-    "spectrum:gray_leaves",
-    "spectrum:green_leaves",
-    "spectrum:light_blue_leaves",
-    "spectrum:light_gray_leaves",
-    "spectrum:lime_leaves",
-    "spectrum:magenta_leaves",
-    "spectrum:orange_leaves",
-    "spectrum:pink_leaves",
-    "spectrum:purple_leaves",
-    "spectrum:red_leaves",
-    "spectrum:white_leaves",
-    "spectrum:yellow_leaves"
+    "#spectrum:colored_leaves"
   ]
 }

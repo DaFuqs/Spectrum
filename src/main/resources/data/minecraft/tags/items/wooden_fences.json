@@ -1,21 +1,6 @@
 {
   "replace": false,
   "values": [
-    "spectrum:black_plank_fence",
-    "spectrum:blue_plank_fence",
-    "spectrum:brown_plank_fence",
-    "spectrum:cyan_plank_fence",
-    "spectrum:gray_plank_fence",
-    "spectrum:green_plank_fence",
-    "spectrum:light_blue_plank_fence",
-    "spectrum:light_gray_plank_fence",
-    "spectrum:lime_plank_fence",
-    "spectrum:magenta_plank_fence",
-    "spectrum:orange_plank_fence",
-    "spectrum:pink_plank_fence",
-    "spectrum:purple_plank_fence",
-    "spectrum:red_plank_fence",
-    "spectrum:white_plank_fence",
-    "spectrum:yellow_plank_fence"
+    "#spectrum:colored_fences"
   ]
 }

@@ -1,9 +1,0 @@
-{
-    "type": "minecraft:blasting",
-    "ingredient": {
-        "item": "spectrum:topaz_ore"
-    },
-    "result": "spectrum:topaz_shard",
-    "experience": 0.25,
-    "cookingtime": 100
-}

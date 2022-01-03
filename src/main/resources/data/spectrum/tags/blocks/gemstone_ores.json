@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "#spectrum:amethyst_ores",
+    "#spectrum:citrine_ores",
+    "#spectrum:topaz_ores",
+    "#spectrum:onyx_ores",
+    "#spectrum:moonstone_ores"
+  ]
+}

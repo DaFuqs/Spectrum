@@ -1,9 +1,0 @@
-{
-    "type": "minecraft:blasting",
-    "ingredient": {
-        "item": "spectrum:deepslate_amethyst_ore"
-    },
-    "result": "minecraft:amethyst_shard",
-    "experience": 0.25,
-    "cookingtime": 100
-}

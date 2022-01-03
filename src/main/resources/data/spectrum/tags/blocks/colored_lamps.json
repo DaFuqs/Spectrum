@@ -1,0 +1,21 @@
+{
+  "replace": false,
+  "values": [
+    "spectrum:black_lamp",
+    "spectrum:blue_lamp",
+    "spectrum:brown_lamp",
+    "spectrum:cyan_lamp",
+    "spectrum:gray_lamp",
+    "spectrum:green_lamp",
+    "spectrum:light_blue_lamp",
+    "spectrum:light_gray_lamp",
+    "spectrum:lime_lamp",
+    "spectrum:magenta_lamp",
+    "spectrum:orange_lamp",
+    "spectrum:pink_lamp",
+    "spectrum:purple_lamp",
+    "spectrum:red_lamp",
+    "spectrum:white_lamp",
+    "spectrum:yellow_lamp"
+  ]
+}

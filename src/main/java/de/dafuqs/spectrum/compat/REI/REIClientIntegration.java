@@ -84,7 +84,7 @@ public class REIClientIntegration implements REIClientPlugin {
 	public void registerScreens(ScreenRegistry registry) {
 		// Since the pedestal can craft both vanilla and pedestal recipes
 		// we have to split the "arrow" part of the gui into two parts
-		registry.registerContainerClickArea(new Rectangle(89, 37, 11, 15), PedestalScreen.class, BuiltinPlugin.CRAFTING);
+		registry.registerContainerClickArea(new Rectangle(89, 37, 10, 15), PedestalScreen.class, BuiltinPlugin.CRAFTING);
 		registry.registerContainerClickArea(new Rectangle(100, 37, 11, 15), PedestalScreen.class, SpectrumPlugins.PEDESTAL_CRAFTING);
 	}
 

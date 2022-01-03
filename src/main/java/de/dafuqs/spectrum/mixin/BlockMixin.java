@@ -38,7 +38,7 @@ public abstract class BlockMixin {
 				world.spawnParticles(ParticleTypes.SMOKE, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 10, 0.5, 0.5, 0.5,0.05);
 				cir.setReturnValue(new ArrayList<>());
 			} else {
-				// Autosmelt enchant: try smelting recipe for each stack
+				// Foundry enchant: try smelting recipe for each stack
 				if (enchantmentMap.containsKey(SpectrumEnchantments.AUTO_SMELT)) {
 					returnStacks = AutoSmeltEnchantment.applyAutoSmelt(world, returnStacks);
 				}

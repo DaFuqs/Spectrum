@@ -731,7 +731,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 				return false;
 			}
 
-			int resultRecipeSlot = getCraftingRecipeSlotDependingOnWidth(slot, width, 3);
+			int resultRecipeSlot = getCraftingRecipeSlotDependingOnWidth(slot, width);
 			if(resultRecipeSlot < storedRecipe.getIngredients().size()) {
 				Ingredient ingredient = (Ingredient) storedRecipe.getIngredients().get(resultRecipeSlot);
 				return ingredient.test(stack);
@@ -743,9 +743,9 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		}
 	}
 
-	private int getCraftingRecipeSlotDependingOnWidth(int slot, int recipeWidth, int gridWidth) {
-		int line = slot / gridWidth;
-		int posInLine = slot % gridWidth;
+	private int getCraftingRecipeSlotDependingOnWidth(int slot, int recipeWidth) {
+		int line = slot / 3;
+		int posInLine = slot % 3;
 		return line * recipeWidth + posInLine;
 	}
 

@@ -45,8 +45,7 @@ public class SpectrumC2SPackets {
 
 		ServerPlayNetworking.registerGlobalReceiver(CHANGE_PARTICLE_SPAWNER_SETTINGS_PACKET_ID, (server, player, handler, buf, responseSender) -> {
 			// receive the client packet...
-			if(player.currentScreenHandler instanceof ParticleSpawnerScreenHandler) {
-				ParticleSpawnerScreenHandler particleSpawnerScreenHandler = (ParticleSpawnerScreenHandler) player.currentScreenHandler;
+			if(player.currentScreenHandler instanceof ParticleSpawnerScreenHandler particleSpawnerScreenHandler) {
 				ParticleSpawnerBlockEntity blockEntity = particleSpawnerScreenHandler.getBlockEntity();
 				if(blockEntity != null) {
 					/// ...apply the new settings...

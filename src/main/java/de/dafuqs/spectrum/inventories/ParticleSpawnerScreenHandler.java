@@ -49,8 +49,7 @@ public class ParticleSpawnerScreenHandler extends ScreenHandler {
 	public boolean canUse(PlayerEntity player) {
 	  return this.context.get((world, pos) -> player.squaredDistanceTo((double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D) <= 64.0D, true);
    }
-
-   @Environment(EnvType.CLIENT)
+   
    public ParticleSpawnerBlockEntity getBlockEntity() {
 	   return this.particleSpawnerBlockEntity;
    }

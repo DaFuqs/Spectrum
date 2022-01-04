@@ -18,6 +18,7 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.explosion.Explosion;
 
 import java.util.Hashtable;
@@ -42,9 +43,19 @@ public class LightningStoneBlock extends Block implements Cloakable {
 	public void onDestroyedByExplosion(World world, BlockPos pos, Explosion explosion) {
 		super.onDestroyedByExplosion(world, pos, explosion);
 
-		LightningEntity lightningEntity =  EntityType.LIGHTNING_BOLT.create(world);
-		lightningEntity.refreshPositionAfterTeleport(Vec3d.ofBottomCenter(pos));
-		world.spawnEntity(lightningEntity);
+		if(world.isSkyVisible(pos)) {
+			LightningEntity lightningEntity = EntityType.LIGHTNING_BOLT.create(world);
+			lightningEntity.refreshPositionAfterTeleport(Vec3d.ofBottomCenter(pos));
+			world.spawnEntity(lightningEntity);
+		}
+		
+		int power = 2;
+		Biome biomeAtPos = world.getBiome(pos);
+		if(!biomeAtPos.isHot(pos) && !biomeAtPos.isCold(pos)) {
+			// there is no rain in deserts or snow
+			power = world.isThundering() ? 4 : world.isRaining() ? 3 : 2;
+		}
+		world.createExplosion(null, pos.getX(), pos.getY(), pos.getZ(), power, Explosion.DestructionType.BREAK);
 	}
 
 	@Override

@@ -16,7 +16,7 @@
       "type": "patchouli:spotlight",
       "title": "Lightning Stones",
       "item": "spectrum:lightning_stone",
-      "text": "Dug into the ground by lightning strikes, you found these stones vibrating in your hand due to the inherent static.$(br2)Used in the $(l:general/fusion_shrine)Fusion Shrine$(), you can use them to summon thunderstorms yourself."
+      "text": "Dug into the ground by lightning strikes, you found these stones vibrating in your hand due to the inherent static.$(br)Used in the $(l:general/fusion_shrine)Fusion Shrine$(), you can use them to summon thunderstorms yourself.$(br2)$(italic)Because of their volatile nature they do not react too nicely to explosions..."
     }
   ]
 }

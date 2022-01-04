@@ -30,6 +30,8 @@
   "recipeGroup.spectrum.moonstone_runes": "Moonstone Runes",
   "recipeGroup.spectrum.colored_lamps": "Colored Lamps",
   "recipeGroup.spectrum.gemstone_glass": "Gemstone Glass",
+  "recipeGroup.spectrum.decostones": "Deco Stones",
+  "recipeGroup.spectrum.gemstone_chimes": "Gemstone Chimes",
   "recipeGroup.spectrum.colored_saplings": "Colored Saplings",
   "recipeGroup.spectrum.sparklestone_lights": "Shimmerstone Lights",
   "recipeGroup.spectrum.colored_spore_blossoms": "Colored Spore Blossoms",
@@ -260,6 +262,18 @@
   "block.spectrum.lava_sponge": "Lava Sponge",
   "block.spectrum.wet_lava_sponge": "Wet Lava Sponge",
   "item.spectrum.wet_lava_sponge.tooltip": "§e⚠ Caution: Hot surface ⚠",
+
+  "block.spectrum.amethyst_decostone": "Amethyst Decostone",
+  "block.spectrum.topaz_decostone": "Topaz Decostone",
+  "block.spectrum.citrine_decostone": "Citrine Decostone",
+  "block.spectrum.moonstone_decostone": "Moonstone Decostone",
+  "block.spectrum.onyx_decostone": "Onyx Decostone",
+
+  "block.spectrum.amethyst_chime": "Amethyst Chime",
+  "block.spectrum.topaz_chime": "Topaz Chime",
+  "block.spectrum.citrine_chime": "Citrine Chime",
+  "block.spectrum.moonstone_chime": "Moonstone Chime",
+  "block.spectrum.onyx_chime": "Onyx Chime",
 
   "block.spectrum.clover": "Clover",
   "block.spectrum.four_leaf_clover": "Four-leaved Clover",

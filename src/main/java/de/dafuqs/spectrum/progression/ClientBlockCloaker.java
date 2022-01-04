@@ -74,7 +74,7 @@ public class ClientBlockCloaker {
 		Pair<Item, Item> itemCloak = cloakable.getItemCloak();
 		if(itemCloak != null) {
 			Item cloakItem = itemCloak.getLeft();
-			if (!cloakItem.equals(Items.AIR)) { // lightning stones have no item equivalent, for example
+			if (!cloakItem.equals(Items.AIR)) { // storm stones have no item equivalent, for example
 				activeItemSwaps.add(cloakItem);
 			}
 		}

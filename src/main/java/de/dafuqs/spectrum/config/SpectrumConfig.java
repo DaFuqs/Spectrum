@@ -39,10 +39,10 @@ Better to let players stumble about them organically instead of forcing it.""")
 	@Comment("Worlds where shooting stars spawn for players. Shooting Stars will only spawn for players with sufficient progress in the mod")
 	public List<String> ShootingStarWorlds = Arrays.asList("minecraft:overworld", "starry_sky:starry_sky");
 
-	@Comment("Worlds where lightning strikes can spawn Lightning Stones")
+	@Comment("Worlds where lightning strikes can spawn Storm Stones")
 	public List<String> LightningStonesWorlds = Arrays.asList("minecraft:overworld", "starry_sky:starry_sky");
 
-	@Comment("chance for a lightning strike to spawn a Lightning Stone")
+	@Comment("chance for a lightning strike to spawn a Storm Stone")
 	public float LightningStonesChance = 0.5F;
 
 	@Comment("""

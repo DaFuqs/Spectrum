@@ -1,0 +1,12 @@
+{
+  "criteria": {
+    "collected_azurite": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:__midgame/collect_azurite" }
+    },
+	"collected_moonstone": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:__midgame/collect_moonstone_shard" }
+    }
+  }
+}

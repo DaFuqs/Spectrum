@@ -1,0 +1,8 @@
+{
+  "criteria": {
+    "collected_gemstone_shard": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:hidden/collect_shards/collect_topaz_shard" }
+    }
+  }
+}

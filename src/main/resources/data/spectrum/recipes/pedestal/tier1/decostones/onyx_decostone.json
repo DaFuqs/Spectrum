@@ -1,0 +1,33 @@
+{
+  "type": "spectrum:pedestal",
+  "group": "decostones",
+  "time": 40,
+  "tier": "advanced",
+  "magenta": 0,
+  "yellow": 0,
+  "cyan": 0,
+  "black": 2,
+  "white": 0,
+  "experience": 1.0,
+  "pattern": [
+    " S ",
+    "SSS",
+    "XYX"
+  ],
+  "key": {
+    "S": {
+      "item": "spectrum:onyx_shard"
+    },
+    "X": {
+      "item": "spectrum:polished_basalt"
+    },
+    "Y": {
+      "item": "spectrum:polished_calcite"
+    }
+  },
+  "result" : {
+    "item": "spectrum:onyx_decostone",
+    "count": 1
+  },
+  "required_advancements": ["spectrum:progression/decostones/unlock_onyx_decostone"]
+}

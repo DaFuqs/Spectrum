@@ -1,0 +1,16 @@
+{
+  "criteria": {
+    "built_advanced_pedestal_structure": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:midgame/build_advanced_pedestal_structure" }
+    },
+	"collected_sparklestone_gem": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:collect_sparklestone" }
+    },
+    "collected_gemstone_shard": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:create_onyx_shard" }
+    }
+  }
+}

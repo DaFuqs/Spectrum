@@ -7,7 +7,7 @@ import net.minecraft.util.math.BlockPos;
 public class PastelNetworkProviderNode extends PastelNetworkNodeBlockEntity {
 	
 	public PastelNetworkProviderNode(BlockPos blockPos, BlockState blockState) {
-		super(SpectrumBlockEntityRegistry.PASTEL_NETWORK_PROVIDER_NODE, blockPos, blockState);
+		super(SpectrumBlockEntityRegistry.PROVIDER_NODE, blockPos, blockState);
 	}
 	
 }

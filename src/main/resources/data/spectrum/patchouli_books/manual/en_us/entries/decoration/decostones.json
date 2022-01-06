@@ -1,0 +1,26 @@
+{
+  "name": "Decostones",
+  "icon": "spectrum:amethyst_decostone",
+  "advancement": "spectrum:progression/decostones/unlock_any_decostone",
+  "category": "spectrum:decoration_category",
+  "extra_recipe_mappings": {
+    "spectrum:topaz_decostone": 0,
+    "spectrum:amethyst_decostone": 0,
+    "spectrum:citrine_decostone": 0,
+    "spectrum:onyx_decostone": 0,
+    "spectrum:moonstone_decostone": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Decostones",
+      "text": "These two-block high decorative stones are a representation of your precious find.$(br2)They make quite an imposing impression."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier1/decostones/topaz_decostone",
+      "text": "Decostones come in all gemstone colors available to you."
+    }
+  ]
+}

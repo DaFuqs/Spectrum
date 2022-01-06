@@ -4,7 +4,7 @@
 	"textures": {
 		"0": "spectrum:block/polished_basalt",
 		"1": "spectrum:block/polished_calcite",
-		"2": "spectrum:block/onyx_glass",
+		"2": "spectrum:block/onyx_decostone",
 		"3": "spectrum:block/polished_basalt_pillar_side",
 		"particle": "spectrum:block/polished_basalt"
 	},

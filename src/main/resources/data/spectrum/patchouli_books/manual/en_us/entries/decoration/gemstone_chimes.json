@@ -1,0 +1,26 @@
+{
+  "name": "Gemstone Chimes",
+  "icon": "spectrum:amethyst_chime",
+  "advancement": "spectrum:progression/gemstone_chimes/unlock_any_chime",
+  "category": "spectrum:decoration_category",
+  "extra_recipe_mappings": {
+    "spectrum:topaz_chime": 0,
+    "spectrum:amethyst_chime": 0,
+    "spectrum:citrine_chime": 0,
+    "spectrum:onyx_chime": 0,
+    "spectrum:moonstone_chime": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Gemstone Chimes",
+      "text": "$(italic)Having dealt with the gems long enough, you now find yourself able to shape these fragile resources in the finest of ways.$(br2)Slowly swaying in the wind, the chimes sounds remind you of the beginning of your journey - the first time you set foot in a geode."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier3/gemstone_chimes/topaz_chime",
+      "text": "Each Chime emits the soothing sound of their corresponding gemstone."
+    }
+  ]
+}

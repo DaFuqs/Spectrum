@@ -2,7 +2,7 @@
 	"credit": "Made with Blockbench",
 	"parent": "block/block",
 	"textures": {
-		"2": "spectrum:block/amethyst_glass",
+		"2": "spectrum:block/amethyst_decostone",
 		"particle": "spectrum:block/polished_basalt"
 	},
 	"elements": [

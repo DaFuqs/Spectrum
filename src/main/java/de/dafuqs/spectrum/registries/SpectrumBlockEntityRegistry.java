@@ -66,11 +66,11 @@ public class SpectrumBlockEntityRegistry<T extends BlockEntity> {
 	public static BlockEntityType<BlockPlacerBlockEntity> BLOCK_PLACER;
 	public static BlockEntityType<BlockFlooderBlockEntity> BLOCK_FLOODER;
 	
-	public static BlockEntityType<PastelNetworkConnectionNode> PASTEL_NETWORK_CONNECTION_NODE;
-	public static BlockEntityType<PastelNetworkProviderNode> PASTEL_NETWORK_PROVIDER_NODE;
-	public static BlockEntityType<PastelNetworkStorageNode> PASTEL_NETWORK_STORAGE_NODE;
-	public static BlockEntityType<PastelNetworkPusherNode> PASTEL_NETWORK_PUSHER_NODE;
-	public static BlockEntityType<PastelNetworkPullerNode> PASTEL_NETWORK_PULLER_NODE;
+	public static BlockEntityType<PastelNetworkConnectionNode> CONNECTION_NODE;
+	public static BlockEntityType<PastelNetworkProviderNode> PROVIDER_NODE;
+	public static BlockEntityType<PastelNetworkStorageNode> STORAGE_NODE;
+	public static BlockEntityType<PastelNetworkPusherNode> PUSHER_NODE;
+	public static BlockEntityType<PastelNetworkPullerNode> PULLER_NODE;
 
 	public static void register() {
 		OMINOUS_SAPLING = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "ominous_sapling_block_entity"), FabricBlockEntityTypeBuilder.create(OminousSaplingBlockEntity::new, SpectrumBlocks.OMINOUS_SAPLING).build());
@@ -93,11 +93,11 @@ public class SpectrumBlockEntityRegistry<T extends BlockEntity> {
 		BLOCK_FLOODER = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "block_flooder"), FabricBlockEntityTypeBuilder.create(BlockFlooderBlockEntity::new, SpectrumBlocks.BLOCK_FLOODER).build());
 		
 		// All the pastel network nodes
-		PASTEL_NETWORK_CONNECTION_NODE = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "pastel_network_connection_node"), FabricBlockEntityTypeBuilder.create(PastelNetworkConnectionNode::new, SpectrumBlocks.PASTEL_NETWORK_CONNECTION_NODE).build());
-		PASTEL_NETWORK_PROVIDER_NODE = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "pastel_network_provider_node"), FabricBlockEntityTypeBuilder.create(PastelNetworkProviderNode::new, SpectrumBlocks.PASTEL_NETWORK_PROVIDER_NODE).build());
-		PASTEL_NETWORK_STORAGE_NODE = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "pastel_network_storage_node"), FabricBlockEntityTypeBuilder.create(PastelNetworkStorageNode::new, SpectrumBlocks.PASTEL_NETWORK_STORAGE_NODE).build());
-		PASTEL_NETWORK_PUSHER_NODE = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "pastel_network_pusher_node"), FabricBlockEntityTypeBuilder.create(PastelNetworkPusherNode::new, SpectrumBlocks.PASTEL_NETWORK_PUSHER_NODE).build());
-		PASTEL_NETWORK_PULLER_NODE = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "pastel_network_puller_node"), FabricBlockEntityTypeBuilder.create(PastelNetworkPullerNode::new, SpectrumBlocks.PASTEL_NETWORK_PULLER_NODE).build());
+		CONNECTION_NODE = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "connection_node"), FabricBlockEntityTypeBuilder.create(PastelNetworkConnectionNode::new, SpectrumBlocks.CONNECTION_NODE).build());
+		PROVIDER_NODE = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "provider_node"), FabricBlockEntityTypeBuilder.create(PastelNetworkProviderNode::new, SpectrumBlocks.PROVIDER_NODE).build());
+		STORAGE_NODE = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "storage_node"), FabricBlockEntityTypeBuilder.create(PastelNetworkStorageNode::new, SpectrumBlocks.STORAGE_NODE).build());
+		PUSHER_NODE = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "pusher_node"), FabricBlockEntityTypeBuilder.create(PastelNetworkPusherNode::new, SpectrumBlocks.PUSHER_NODE).build());
+		PULLER_NODE = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "puller_node"), FabricBlockEntityTypeBuilder.create(PastelNetworkPullerNode::new, SpectrumBlocks.PULLER_NODE).build());
 		
 		// All the upgrades
 		List<Block> upgradeBlocksList = UpgradeBlock.getRegisteredUpgradeBlocks();

@@ -290,11 +290,12 @@ public class SpectrumBlocks {
 	public static final Block MUD = new MudFluidBlock(SpectrumFluids.MUD, FabricBlockSettings.copyOf(Blocks.WATER).suffocates(SpectrumBlocks::always));
 
 	// PASTEL NETWORK
-	public static final Block PASTEL_NETWORK_CONNECTION_NODE = new PastelNetworkNodeBlock(FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().requiresTool().sounds(BlockSoundGroup.AMETHYST_CLUSTER), "block.spectrum.pastel_network_connection_node.tooltip");
-	public static final Block PASTEL_NETWORK_PROVIDER_NODE = new PastelNetworkNodeBlock(FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().requiresTool().sounds(BlockSoundGroup.AMETHYST_CLUSTER), "block.spectrum.pastel_network_provider_node.tooltip");
-	public static final Block PASTEL_NETWORK_STORAGE_NODE = new PastelNetworkNodeBlock(FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().requiresTool().sounds(SpectrumBlockSoundGroups.TOPAZ_CLUSTER), "block.spectrum.pastel_network_storage_node.tooltip");
-	public static final Block PASTEL_NETWORK_PUSHER_NODE = new PastelNetworkNodeBlock(FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().requiresTool().sounds(SpectrumBlockSoundGroups.CITRINE_CLUSTER), "block.spectrum.pastel_network_pusher_node.tooltip");
-	public static final Block PASTEL_NETWORK_PULLER_NODE = new PastelNetworkNodeBlock(FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().requiresTool().sounds(SpectrumBlockSoundGroups.ONYX_CLUSTER), "block.spectrum.pastel_network_puller_node.tooltip");
+	public static final Block CONNECTION_NODE = new PastelNetworkNodeBlock(FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().requiresTool().sounds(BlockSoundGroup.AMETHYST_CLUSTER), "block.spectrum.connection_node.tooltip");
+	public static final Block PROVIDER_NODE = new PastelNetworkNodeBlock(FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().requiresTool().sounds(BlockSoundGroup.AMETHYST_CLUSTER), "block.spectrum.provider_node.tooltip");
+	public static final Block STORAGE_NODE = new PastelNetworkNodeBlock(FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().requiresTool().sounds(SpectrumBlockSoundGroups.TOPAZ_CLUSTER), "block.spectrum.storage_node.tooltip");
+	public static final Block PUSHER_NODE = new PastelNetworkNodeBlock(FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().requiresTool().sounds(SpectrumBlockSoundGroups.CITRINE_CLUSTER), "block.spectrum.pusher_node.tooltip");
+	public static final Block PULLER_NODE = new PastelNetworkNodeBlock(FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().requiresTool().sounds(SpectrumBlockSoundGroups.ONYX_CLUSTER), "block.spectrum.puller_node.tooltip");
+	public static final Block INTERACTION_NODE = new Block(FabricBlockSettings.of(Material.AMETHYST).hardness(5.0F).nonOpaque().requiresTool().sounds(SpectrumBlockSoundGroups.MOONSTONE_CLUSTER));
 	
 	// COLORED TREES
 	private static final FabricBlockSettings coloredSaplingBlockSettings = FabricBlockSettings.copyOf(Blocks.OAK_SAPLING);
@@ -1180,11 +1181,12 @@ public class SpectrumBlocks {
 	}
 	
 	public static void registerPastelNetworkNodes(FabricItemSettings fabricItemSettings) {
-		registerBlockWithItem("pastel_network_connection_node", PASTEL_NETWORK_CONNECTION_NODE, fabricItemSettings);
-		registerBlockWithItem("pastel_network_provider_node", PASTEL_NETWORK_PROVIDER_NODE, fabricItemSettings);
-		registerBlockWithItem("pastel_network_storage_node", PASTEL_NETWORK_STORAGE_NODE, fabricItemSettings);
-		registerBlockWithItem("pastel_network_pusher_node", PASTEL_NETWORK_PUSHER_NODE, fabricItemSettings);
-		registerBlockWithItem("pastel_network_puller_node", PASTEL_NETWORK_PULLER_NODE, fabricItemSettings);
+		registerBlockWithItem("connection_node", CONNECTION_NODE, fabricItemSettings);
+		registerBlockWithItem("provider_node", PROVIDER_NODE, fabricItemSettings);
+		registerBlockWithItem("storage_node", STORAGE_NODE, fabricItemSettings);
+		registerBlockWithItem("pusher_node", PUSHER_NODE, fabricItemSettings);
+		registerBlockWithItem("puller_node", PULLER_NODE, fabricItemSettings);
+		registerBlockWithItem("interaction_node", INTERACTION_NODE, fabricItemSettings);
 	}
 	
 	public static void registerSporeBlossoms(FabricItemSettings fabricItemSettings) {

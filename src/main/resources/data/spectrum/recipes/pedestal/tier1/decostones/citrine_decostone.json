@@ -1,0 +1,33 @@
+{
+  "type": "spectrum:pedestal",
+  "group": "decostones",
+  "time": 40,
+  "tier": "basic",
+  "magenta": 0,
+  "yellow": 2,
+  "cyan": 0,
+  "black": 0,
+  "white": 0,
+  "experience": 1.0,
+  "pattern": [
+    " S ",
+    "SSS",
+    "XYX"
+  ],
+  "key": {
+    "S": {
+      "item": "spectrum:citrine_shard"
+    },
+    "X": {
+      "item": "spectrum:polished_basalt"
+    },
+    "Y": {
+      "item": "spectrum:polished_calcite"
+    }
+  },
+  "result" : {
+    "item": "spectrum:citrine_decostone",
+    "count": 1
+  },
+  "required_advancements": ["spectrum:progression/decostones/unlock_citrine_decostone"]
+}

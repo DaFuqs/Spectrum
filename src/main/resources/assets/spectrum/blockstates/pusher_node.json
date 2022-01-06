@@ -1,0 +1,29 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "spectrum:block/pusher_node",
+      "x": 90,
+      "y": 90
+    },
+    "facing=north": {
+      "model": "spectrum:block/pusher_node",
+      "x": 90
+    },
+    "facing=south": {
+      "model": "spectrum:block/pusher_node",
+      "x": 270
+    },
+    "facing=west": {
+      "model": "spectrum:block/pusher_node",
+      "x": 90,
+      "y": 270
+    },
+    "facing=up": {
+      "model": "spectrum:block/pusher_node"
+    },
+    "facing=down": {
+      "model": "spectrum:block/pusher_node",
+      "x": 180
+    }
+  }
+}

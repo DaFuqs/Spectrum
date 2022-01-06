@@ -1,0 +1,39 @@
+{
+  "type": "spectrum:pedestal",
+  "group": "gemstone_chimes",
+  "time": 60,
+  "tier": "complex",
+  "magenta": 0,
+  "yellow": 0,
+  "cyan": 0,
+  "black": 0,
+  "white": 1,
+  "experience": 1,
+  "pattern": [
+    " Y ",
+    "SGS",
+    "PXP"
+  ],
+  "key": {
+    "S": {
+      "item": "spectrum:moonstone_shard"
+    },
+    "X": {
+      "item": "spectrum:polished_basalt"
+    },
+    "Y": {
+      "item": "spectrum:polished_calcite"
+    },
+    "G": {
+      "item": "minecraft:string"
+    },
+    "P": {
+      "item": "spectrum:sparklestone_gem"
+    }
+  },
+  "result" : {
+    "item": "spectrum:moonstone_chime",
+    "count": 1
+  },
+  "required_advancements": ["spectrum:progression/gemstone_chimes/unlock_moonstone_chime"]
+}

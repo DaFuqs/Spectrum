@@ -1,0 +1,36 @@
+{
+  "type": "spectrum:pedestal",
+  "group": "pastel_network",
+  "time": 80,
+  "tier": "advanced",
+  "magenta": 0,
+  "yellow": 0,
+  "cyan": 1,
+  "black": 0,
+  "white": 0,
+  "experience": 1.0,
+  "pattern": [
+    " S ",
+    "ASA",
+    "YXY"
+  ],
+  "key": {
+    "S": {
+      "item": "spectrum:topaz_shard"
+    },
+    "X": {
+      "item": "spectrum:polished_basalt"
+    },
+    "Y": {
+      "item": "spectrum:polished_calcite"
+    },
+    "A": {
+      "item": "spectrum:raw_azurite"
+    }
+  },
+  "result" : {
+    "item": "spectrum:storage_node",
+    "count": 1
+  },
+  "required_advancements": ["spectrum:progression/pastel_network/unlock_basic_nodes"]
+}

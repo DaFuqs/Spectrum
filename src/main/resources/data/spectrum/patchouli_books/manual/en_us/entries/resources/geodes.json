@@ -47,7 +47,7 @@
         "title": "Gemstone Geodes",
         "images": [ "spectrum:textures/gui/manual/geode.png" ],
         "border": true,
-        "text": "Geodes form in places where magical energy is so abundant that it crystallizes physically."
+        "text": "Geodes form in places where magical energy is so abundant, it crystallizes to physical form - as Gemstones.$(br2)Each gemstone represents a different type of fundamental property."
     },
     {
         "type": "patchouli:multiblock",
@@ -90,7 +90,7 @@
       "advancement": "spectrum:spectrum",
       "title": "Gemstone Ores",
       "item": "spectrum:amethyst_ore",
-      "text": "Now that you are paying attention, you noticed small inclusions of gems in the rock all over the place.$(br2)If you see such an ore a geode is surely not far!"
+      "text": "Now that you are paying attention, you noticed small inclusions of gems in the rock all over the place.$(br)If you see such an ore a geode is surely not far!$(br2)While not renewable like Gemstone Clusters, Gemstone Ore provides a lot of Shards, especially when broken with a Fortune-Tool."
     },
     {
       "type": "patchouli:spotlight",
@@ -111,7 +111,7 @@
       "advancement": "spectrum:hidden/collect_shards/collect_citrine_shard",
       "title": "Citrine Geodes",
       "item": "spectrum:citrine_block",
-      "text": "Geodes with citrine are found in the middle layers of the world, sometimes even accessible from the surface. These geodes are small, but harbor tremendous energy, so they are cracked especially often."
+      "text": "Geodes with Citrine are found in the middle layers of the world, sometimes even accessible from the surface. These geodes are small, but harbor tremendous energy, so they are cracked especially often."
     },
     {
       "type": "patchouli:spotlight",

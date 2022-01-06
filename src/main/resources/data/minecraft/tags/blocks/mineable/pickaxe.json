@@ -28,6 +28,8 @@
 	"spectrum:paletur_ore",
 	"spectrum:paletur_fragment_block",
 	"#spectrum:gemstone_glass",
+	"spectrum:glowing_glass",
+	"#spectrum:pastel_network_nodes",
 	"#spectrum:player_only_glass",
 	"spectrum:smooth_basalt_slab",
 	"spectrum:smooth_basalt_stairs",

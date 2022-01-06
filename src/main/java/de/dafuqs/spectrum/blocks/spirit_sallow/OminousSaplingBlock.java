@@ -54,7 +54,7 @@ public class OminousSaplingBlock extends Block implements BlockEntityProvider {
 			UUID ownerUUID = ominousSaplingBlockEntity.getOwnerUUID();
 			ServerPlayerEntity serverPlayerEntity = SpectrumCommon.minecraftServer.getPlayerManager().getPlayer(ownerUUID);
 			if(serverPlayerEntity != null) { // offline?
-				Support.grantAdvancementCriterion(serverPlayerEntity, "midgame/grow_ominous_sapling","grow");
+				Support.grantAdvancementCriterion(serverPlayerEntity, "lategame/grow_ominous_sapling","grow");
 			}
 		}
 

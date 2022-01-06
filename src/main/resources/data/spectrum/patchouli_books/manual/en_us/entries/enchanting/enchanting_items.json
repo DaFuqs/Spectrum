@@ -3,7 +3,7 @@
   "icon": "spectrum:enchanter",
   "priority": true,
   "sortnum": 1,
-  "advancement": "spectrum:midgame/build_advanced_pedestal_structure",
+  "advancement": "spectrum:midgame/enter_liquid_crystal",
   "category": "spectrum:enchanting_category",
   "pages": [
     {

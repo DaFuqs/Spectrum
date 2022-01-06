@@ -12,7 +12,7 @@
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier4/pastel_network/interaction_node",
+      "recipe": "spectrum:pedestal/tier3/pastel_network/interaction_node",
       "text": "TODO"
     }
   ]

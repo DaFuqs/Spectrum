@@ -10,7 +10,7 @@
       "translate": "advancements.spectrum.craft_bottle_of_fading.description"
     }
   },
-  "parent": "spectrum:craft_using_pedestal",
+  "parent": "spectrum:collect_sparklestone",
   "criteria": {
     "craft": {
       "trigger":"spectrum:crafted_with_pedestal",

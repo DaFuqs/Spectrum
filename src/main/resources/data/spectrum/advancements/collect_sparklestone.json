@@ -1,10 +1,9 @@
 {
-  "parent": "spectrum:reveal_sparklestone_ore",
+  "parent": "spectrum:craft_using_pedestal",
   "display": {
     "icon": {
       "item": "spectrum:sparklestone_gem"
     },
-    "hidden": true,
     "title": {
       "translate": "advancements.spectrum.collect_sparklestone.title"
     },

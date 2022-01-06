@@ -15,6 +15,7 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier3/bottle_of_ruin",
       "text": "You may not have created such lives as you initially imagined, but you still created something clearly powerful. Guess that counts?"
     },

@@ -11,10 +11,11 @@
     {
       "type": "patchouli:spotlight",
       "item": "spectrum:bottle_of_failing",
-      "text": "Empowered by the potent energy of your onyxes, this second organism is clearly... more active than your last creation.$(br2)$(bold)And DEFINITELY hungrier."
+      "text": "Empowered by the potent energy of your Onyx and Crimtane, this second organism is clearly... more active than your last creation.$(br2)$(bold)And DEFINITELY hungrier.$(br)WAY hungrier."
     },
     {
       "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier3/bottle_of_failing",
       "text": "Maybe one of the strongest materials you know can satisfy their hunger?"
     },

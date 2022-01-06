@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:midgame/build_advanced_pedestal_structure",
+  "parent": "spectrum:lategame/build_complex_pedestal_structure",
   "display": {
     "icon": {
         "item": "spectrum:ominous_sapling"

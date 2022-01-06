@@ -11,7 +11,7 @@ public class CatkinItem extends CloakedGemstoneColorItem {
 	boolean lucid;
 
 	public CatkinItem(@NotNull GemstoneColor gemstoneColor, boolean lucid, Settings settings) {
-		super(settings, new Identifier(SpectrumCommon.MOD_ID, "midgame/grow_ominous_sapling"), gemstoneColor);
+		super(settings, new Identifier(SpectrumCommon.MOD_ID, "lategame/grow_ominous_sapling"), gemstoneColor);
 		this.lucid = lucid;
 	}
 

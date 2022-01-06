@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:midgame/craft_ominous_sapling",
+  "parent": "spectrum:lategame/craft_ominous_sapling",
   "display": {
     "icon": {
         "item": "minecraft:dead_bush"

@@ -9,8 +9,7 @@
     },
     "description": {
       "translate": "advancements.spectrum.collect_scarlet.description"
-    },
-    "hidden": true
+    }
   },
   "criteria": {
     "has_ore": {

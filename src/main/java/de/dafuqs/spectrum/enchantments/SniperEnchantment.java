@@ -27,7 +27,7 @@ public class SniperEnchantment extends SpectrumEnchantment {
 	}
 
 	public boolean canAccept(Enchantment other) {
-		return other.equals(Enchantments.MULTISHOT) && super.canAccept(other);
+		return other != Enchantments.MULTISHOT && super.canAccept(other);
 	}
 
 }

@@ -276,21 +276,15 @@ public class CraftingTabletScreenHandler extends AbstractRecipeScreenHandler<Inv
 			// gemstone and result slots
 			return ItemStack.EMPTY;
 		} else if (index == 14) {
-			ItemStack handStack = player.getStackInHand(Hand.MAIN_HAND);
-			if(handStack.getItem() instanceof CraftingTabletItem) {
-				Recipe storedRecipe = CraftingTabletItem.getStoredRecipe(world, handStack);
-				if (storedRecipe != null && !(storedRecipe instanceof PedestalCraftingRecipe)) {
-					// crafting result slot
-					this.context.run((world, pos) -> {
-						clickedSlotStack.getItem().onCraft(clickedSlotStack, world, player);
-					});
-					if (!this.insertItem(clickedSlotStack, 10, 46, true)) {
-						return ItemStack.EMPTY;
-					}
-					
-					slot.onQuickTransfer(clickedSlotStack, transferStack);
-				}
+			// crafting result slot
+			this.context.run((world, pos) -> {
+				clickedSlotStack.getItem().onCraft(clickedSlotStack, world, player);
+			});
+			if (!this.insertItem(clickedSlotStack, 10, 46, true)) {
+				return ItemStack.EMPTY;
 			}
+			
+			slot.onQuickTransfer(clickedSlotStack, transferStack);
 		 } else if (!this.insertItem(clickedSlotStack, 0, 9, false)) {
 		 	// player inventory
 			return ItemStack.EMPTY;

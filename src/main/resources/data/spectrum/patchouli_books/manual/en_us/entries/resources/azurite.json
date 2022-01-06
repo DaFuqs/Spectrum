@@ -15,13 +15,13 @@
             "type": "patchouli:spotlight",
             "title": "Azurite",
             "item": "spectrum:raw_azurite",
-            "text": "A rich blue ore, which, at a distance, can almost be mistaken for lapis. In its natural form it contains many impurities, which must first be removed, before it can be used.$(br2)It is found deep underground."
+            "text": "A rich blue ore, which, at a distance, can almost be mistaken for lapis. In its natural form it contains many impurities, which must first be removed, before it can be used.$(br2)It is found deep underground and seems to be able to intensify any Pigments energy."
         },
         {
             "type": "spectrum:fusion_shrine_crafting",
             "title": "Refining Azurite",
             "recipe": "spectrum:fusion_shrine/refined_azurite",
-            "text": "Refining Azurite is not a cheap task.$(br)In this pure ingot form Azurite can be used for a lot more recipes, though."
+            "text": "Refining Azurite is not a cheap task.$(br)In this refined ingot form Azurite can be used for a lot more recipes."
         }
     ]
 }

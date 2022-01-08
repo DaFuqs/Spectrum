@@ -134,7 +134,7 @@ public class MermaidsBrushBlock extends PlantBlock implements Cloakable, FluidFi
 			world.spawnEntity(pearlEntity);
 			world.setBlockState(pos, state.with(AGE, 0), 3);
 		} else {
-			float chance = state.get(IN_LIQUID_CRYSTAL) ? 0.2F : 0.1F;
+			float chance = state.get(IN_LIQUID_CRYSTAL) ? 1.0F : 0.25F;
 			if(random.nextFloat() < chance) {
 				world.setBlockState(pos, state.with(AGE, age + 1), 3);
 			}

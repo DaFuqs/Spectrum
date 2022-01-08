@@ -9,6 +9,7 @@ import de.dafuqs.spectrum.inventories.slots.StackFilterSlot;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.CraftingResultInventory;
@@ -16,14 +17,12 @@ import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
-import net.minecraft.network.packet.s2c.play.ScreenHandlerSlotUpdateS2CPacket;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeInputProvider;
 import net.minecraft.recipe.RecipeMatcher;
 import net.minecraft.recipe.book.RecipeBookCategory;
 import net.minecraft.screen.*;
 import net.minecraft.screen.slot.Slot;
-import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
@@ -107,7 +106,7 @@ public class PedestalScreenHandler extends AbstractRecipeScreenHandler<Inventory
 		this.addSlot(new StackFilterSlot(inventory, PedestalBlockEntity.CRAFTING_TABLET_SLOT_ID, 93, 19, SpectrumItems.CRAFTING_TABLET));
 
 		// preview slot
-		this.addSlot(new ReadOnlySlot(craftingResultInventory, 0, 127, 37));
+		this.addSlot(new ReadOnlySlot(craftingResultInventory, 15, 127, 37));
 
 		// player inventory
 		int l;
@@ -130,40 +129,8 @@ public class PedestalScreenHandler extends AbstractRecipeScreenHandler<Inventory
 		super.sendContentUpdates();
 
 		// serverside only: if the recipe output has changed send update to the client
-		if(!world.isClient) {
-			ItemStack craftingItemStack = ((PedestalBlockEntity) inventory).getCurrentCraftingOutput();
+		if(world.isClient) {
 
-			ItemStack itemStackForOutputSlot;
-			if(craftingItemStack.isEmpty()) {
-				// if there is no currently valid recipe
-				// show the current output item as-is
-				itemStackForOutputSlot = inventory.getStack(15);
-			} else {
-				// if there is a valid recipe
-				// add recipe output stack and existing output stack
-				ItemStack existingItemStack = inventory.getStack(15);
-				itemStackForOutputSlot = craftingItemStack.copy();
-
-				if(existingItemStack.isEmpty()) {
-					// nothing more to do
-					// just display the recipe output
-				} else {
-					// if there is a valid recipe output
-					// output the existing stack (if not stackable)
-					// or the combined stack size (if stackable) up to a max of the max stack size
-					if(itemStackForOutputSlot.isItemEqual(existingItemStack)) {
-						if(itemStackForOutputSlot.getCount() + existingItemStack.getCount() < craftingItemStack.getMaxCount()) {
-							itemStackForOutputSlot.increment(existingItemStack.getCount());
-						} else {
-							itemStackForOutputSlot.setCount(existingItemStack.getMaxCount());
-						}
-					} else {
-						itemStackForOutputSlot = existingItemStack;
-					}
-				}
-			}
-
-			((ServerPlayerEntity) player).networkHandler.sendPacket(new ScreenHandlerSlotUpdateS2CPacket(syncId, this.nextRevision(), 15, itemStackForOutputSlot));
 		}
 	}
 
@@ -176,6 +143,13 @@ public class PedestalScreenHandler extends AbstractRecipeScreenHandler<Inventory
 	public void clearCraftingSlots() {
 		for(int i = 0; i < 9; i++) {
 			this.getSlot(i).setStack(ItemStack.EMPTY);
+		}
+	}
+	
+	public void calculateDisplayedSlotStackClient() {
+		BlockEntity blockEntity = world.getBlockEntity(pedestalPos);
+		if(blockEntity instanceof PedestalBlockEntity pedestalBlockEntity) {
+			this.slots.get(15).setStack(pedestalBlockEntity.getCurrentCraftingRecipeOutput());
 		}
 	}
 
@@ -211,6 +185,7 @@ public class PedestalScreenHandler extends AbstractRecipeScreenHandler<Inventory
 	}
 
 	public boolean isCrafting() {
+		calculateDisplayedSlotStackClient();
 		return this.propertyDelegate.get(0) > 0; // craftingTime
 	}
 

@@ -22,6 +22,7 @@ import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.HopperBlockEntity;
 import net.minecraft.block.entity.LockableContainerBlockEntity;
 import net.minecraft.entity.ExperienceOrbEntity;
 import net.minecraft.entity.ItemEntity;
@@ -169,22 +170,17 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 
 	@Override
 	public ItemStack removeStack(int slot, int amount) {
-		craftingTime = 0;
 		ItemStack removedStack = Inventories.splitStack(this.inventory, slot, amount);
 		this.inventoryChanged = true;
 		this.markDirty();
-		updateInClientWorld(this);
 		return removedStack;
 	}
 
 	@Override
 	public ItemStack removeStack(int slot) {
-		craftingTime = 0;
-		
 		ItemStack removedStack = Inventories.removeStack(this.inventory, slot);
 		this.inventoryChanged = true;
 		this.markDirty();
-		updateInClientWorld(this);
 		return removedStack;
 	}
 
@@ -199,14 +195,11 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 
 		if (slot < CRAFTING_TABLET_SLOT_ID && !isSimilarItem) {
 			this.craftingTimeTotal = getCraftingTime(this.world, SpectrumRecipeTypes.PEDESTAL, this);
-			this.craftingTime = 0;
 			this.markDirty();
 		}
 		
 		this.inventoryChanged = true;
-		this.craftingTime = 0;
 		this.markDirty();
-		updateInClientWorld(this);
 	}
 
 	@Override
@@ -236,16 +229,10 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 	}
 	
 	
-	// Called when the chunk is first loaded to initialize this be
+	// Called when the chunk is first loaded to initialize this be or manually synched via updateInClientWorld()
 	public NbtCompound toInitialChunkDataNbt() {
 		NbtCompound nbtCompound = new NbtCompound();
 		this.writeNbt(nbtCompound);
-		
-		if(this.currentRecipe != null) {
-			nbtCompound.putString("CurrentRecipe", this.currentRecipe.getId().toString());
-		} else {
-			nbtCompound.putString("CurrentRecipe", "");
-		}
 		return nbtCompound;
 	}
 
@@ -280,8 +267,8 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 			} else {
 				this.currentRecipe = null;
 			}
-		} else if(this.world != null && this.world.isClient) {
-			this.currentRecipe = calculateRecipe(this.world, this);
+		} else {
+			this.currentRecipe = null;
 		}
 		if(nbt.contains("OwnerUUID")) {
 			this.ownerUUID = nbt.getUuid("OwnerUUID");
@@ -459,6 +446,10 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 	}
 
 	public static boolean tryPutOutputIntoAboveInventory(PedestalBlockEntity pedestalBlockEntity, Inventory targetInventory, ItemStack outputItemStack) {
+		if(targetInventory instanceof HopperBlockEntity) {
+			return false;
+		}
+		
 		ItemStack remainingStack = InventoryHelper.addToInventory(outputItemStack, targetInventory, Direction.DOWN);
 		if(remainingStack.isEmpty()) {
 			pedestalBlockEntity.inventory.set(OUTPUT_SLOT_ID, ItemStack.EMPTY);
@@ -547,12 +538,12 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		}
 	}
 
-	private static boolean craftPedestalRecipe(PedestalBlockEntity pedestalBlockEntity, @Nullable PedestalCraftingRecipe recipe, DefaultedList<ItemStack> defaultedList, int maxCountPerStack) {
-		if (canAcceptRecipeOutput(recipe, defaultedList, maxCountPerStack)) {
+	private static boolean craftPedestalRecipe(PedestalBlockEntity pedestalBlockEntity, @Nullable PedestalCraftingRecipe recipe, DefaultedList<ItemStack> inventory, int maxCountPerStack) {
+		if (canAcceptRecipeOutput(recipe, inventory, maxCountPerStack)) {
 
 			// -1 for all crafting inputs
 			for(int i = 0; i < 9; i++) {
-				ItemStack itemStack = defaultedList.get(i);
+				ItemStack itemStack = inventory.get(i);
 				if(!itemStack.isEmpty()) {
 					Item recipeReminderItem = itemStack.getItem().getRecipeRemainder();
 					if(recipeReminderItem == null) {
@@ -594,16 +585,16 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 				int resultAmountAfterMod = Support.getIntFromDecimalWithChance(resultAmountBeforeMod * yieldModifier, pedestalBlockEntity.world.random);
 				
 				// Not an upgrade recipe => Add output to output slot
-				ItemStack existingOutput = defaultedList.get(OUTPUT_SLOT_ID);
+				ItemStack existingOutput = inventory.get(OUTPUT_SLOT_ID);
 				if (existingOutput.isEmpty()) {
 					ItemStack resultStack = recipeOutput.copy();
 					resultStack.setCount(Math.min(existingOutput.getMaxCount(), resultAmountAfterMod));
-					defaultedList.set(OUTPUT_SLOT_ID, resultStack);
+					inventory.set(OUTPUT_SLOT_ID, resultStack);
 				} else {
 					// protection against stacks > max stack size
 					int finalAmount = Math.min(existingOutput.getMaxCount(), existingOutput.getCount() + resultAmountAfterMod);
 					existingOutput.setCount(finalAmount);
-					defaultedList.set(OUTPUT_SLOT_ID, existingOutput);
+					inventory.set(OUTPUT_SLOT_ID, existingOutput);
 				}
 			}
 
@@ -779,7 +770,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		return this.currentRecipe;
 	}
 
-	public ItemStack getCurrentCraftingOutput() {
+	public ItemStack getCurrentCraftingRecipeOutput() {
 		if(this.currentRecipe == null) {
 			return ItemStack.EMPTY;
 		} else {

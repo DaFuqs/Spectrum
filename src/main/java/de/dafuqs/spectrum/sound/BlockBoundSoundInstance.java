@@ -91,7 +91,8 @@ public class BlockBoundSoundInstance extends AbstractSoundInstance implements Ti
 		if(!blockState.getBlock().equals(sourceBlock)) {
 			return true;
 		} else if(blockState.getBlock() instanceof PedestalBlock) {
-			return !blockState.get(PedestalBlock.POWERED);
+			return false;
+			//return !blockState.get(PedestalBlock.POWERED);
 		} else if(blockState.getBlock() instanceof FusionShrineBlock) {
 			BlockEntity blockEntity = MinecraftClient.getInstance().world.getBlockEntity(sourceBlockPos);
 			return !(blockEntity instanceof FusionShrineBlockEntity);

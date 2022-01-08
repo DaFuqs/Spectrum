@@ -1,12 +1,15 @@
 package de.dafuqs.spectrum.blocks;
 
 import de.dafuqs.spectrum.blocks.pedestal.PedestalBlock;
+import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 
 public interface RedstonePoweredBlock {
-
+	
+	BooleanProperty POWERED = BooleanProperty.of("powered");
+	
 	public default boolean checkGettingPowered(World world, BlockPos pos) {
 		Direction[] var4 = Direction.values();
 		int var5 = var4.length;
@@ -37,11 +40,11 @@ public interface RedstonePoweredBlock {
 	}
 
 	public default void power(World world, BlockPos pos) {
-		world.setBlockState(pos, world.getBlockState(pos).with(PedestalBlock.POWERED, true));
+		world.setBlockState(pos, world.getBlockState(pos).with(POWERED, true));
 	}
 
 	public default void unPower(World world, BlockPos pos) {
-		world.setBlockState(pos, world.getBlockState(pos).with(PedestalBlock.POWERED, false));
+		world.setBlockState(pos, world.getBlockState(pos).with(POWERED, false));
 	}
 
 }

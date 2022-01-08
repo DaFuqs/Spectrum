@@ -1,9 +1,6 @@
 {
   "variants": {
-    "powered=false": {
-      "model": "spectrum:block/pedestal_onyx_unpowered"
-    },
-    "powered=true": {
+    "": {
       "model": "spectrum:block/pedestal_onyx_powered"
     }
   }

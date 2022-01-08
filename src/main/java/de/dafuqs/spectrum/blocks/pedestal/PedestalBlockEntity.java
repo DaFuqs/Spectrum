@@ -66,25 +66,26 @@ import vazkii.patchouli.api.PatchouliAPI;
 import java.util.*;
 
 public class PedestalBlockEntity extends LockableContainerBlockEntity implements RecipeInputProvider, SidedInventory, PlayerOwned, ExtendedScreenHandlerFactory, Upgradeable {
-
-	private UUID ownerUUID;
-	private PedestalBlock.PedestalVariant pedestalVariant;
+	
+	protected UUID ownerUUID;
+	protected PedestalBlock.PedestalVariant pedestalVariant;
 
 	protected DefaultedList<ItemStack> inventory;
-
-	private boolean wasPoweredBefore;
-	private float storedXP;
-	private int craftingTime;
-	private int craftingTimeTotal;
+	
+	protected boolean wasPoweredBefore;
+	protected float storedXP;
+	protected int craftingTime;
+	protected int craftingTimeTotal;
 
 	protected final PropertyDelegate propertyDelegate;
-	private Recipe currentRecipe;
-
-	private static AutoCraftingInventory autoCraftingInventory;
-	private PedestalRecipeTier cachedMaxPedestalTier;
-	private long cachedMaxPedestalTierTick;
+	protected Recipe currentRecipe;
 	
-	private Map<UpgradeType, Double> upgrades;
+	protected static AutoCraftingInventory autoCraftingInventory;
+	protected PedestalRecipeTier cachedMaxPedestalTier;
+	protected long cachedMaxPedestalTierTick;
+	
+	protected Map<UpgradeType, Double> upgrades;
+	protected boolean inventoryChanged;
 
 	public static final int INVENTORY_SIZE = 16; // 9 crafting, 5 gems, 1 craftingTablet, 1 output
 	public static final int CRAFTING_TABLET_SLOT_ID = 14;
@@ -168,9 +169,9 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 
 	@Override
 	public ItemStack removeStack(int slot, int amount) {
-		currentRecipe = null;
 		craftingTime = 0;
 		ItemStack removedStack = Inventories.splitStack(this.inventory, slot, amount);
+		this.inventoryChanged = true;
 		this.markDirty();
 		updateInClientWorld(this);
 		return removedStack;
@@ -178,10 +179,10 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 
 	@Override
 	public ItemStack removeStack(int slot) {
-		currentRecipe = null;
 		craftingTime = 0;
 		
 		ItemStack removedStack = Inventories.removeStack(this.inventory, slot);
+		this.inventoryChanged = true;
 		this.markDirty();
 		updateInClientWorld(this);
 		return removedStack;
@@ -201,8 +202,9 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 			this.craftingTime = 0;
 			this.markDirty();
 		}
-		currentRecipe = null;
-		craftingTime = 0;
+		
+		this.inventoryChanged = true;
+		this.craftingTime = 0;
 		this.markDirty();
 		updateInClientWorld(this);
 	}
@@ -263,6 +265,9 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		if(nbt.contains("Upgrades", NbtElement.LIST_TYPE)) {
 			this.upgrades = Upgradeable.fromNbt(nbt.getList("Upgrades", NbtElement.COMPOUND_TYPE));
 		}
+		if(nbt.contains("inventory_changed")) {
+			this.inventoryChanged = nbt.getBoolean("inventory_changed");
+		}
 		if(nbt.contains("CurrentRecipe")) {
 			String recipeString = nbt.getString("CurrentRecipe");
 			if(!recipeString.isEmpty() && world != null) {
@@ -290,6 +295,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		nbt.putFloat("StoredXP", this.storedXP);
 		nbt.putShort("CraftingTime", (short)this.craftingTime);
 		nbt.putShort("CraftingTimeTotal", (short)this.craftingTimeTotal);
+		nbt.putBoolean("inventory_changed", this.inventoryChanged);
 		if(this.upgrades != null) {
 			nbt.put("Upgrades", Upgradeable.toNbt(this.upgrades));
 		}
@@ -336,7 +342,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 	public static void serverTick(@NotNull World world, BlockPos blockPos, BlockState blockState, PedestalBlockEntity pedestalBlockEntity) {
 		// only craft when there is redstone power
 		Block block = world.getBlockState(blockPos).getBlock();
-		if(block instanceof PedestalBlock && blockState.get(PedestalBlock.POWERED)) {
+		if(block instanceof PedestalBlock) {
 			if(pedestalBlockEntity.upgrades == null) {
 				pedestalBlockEntity.calculateUpgrades();
 			}
@@ -345,6 +351,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 			boolean shouldMarkDirty = false;
 
 			Recipe calculatedRecipe = calculateRecipe(world, pedestalBlockEntity);
+			pedestalBlockEntity.inventoryChanged = false;
 			if (pedestalBlockEntity.currentRecipe != calculatedRecipe) {
 				pedestalBlockEntity.currentRecipe = calculatedRecipe;
 				pedestalBlockEntity.craftingTime = 0;
@@ -353,6 +360,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 				} else {
 					pedestalBlockEntity.craftingTimeTotal = (int) Math.ceil(20 / pedestalBlockEntity.upgrades.get(UpgradeType.SPEED));
 				}
+				pedestalBlockEntity.markDirty();
 				// TODO: Check and cancel clientside instead
 				SpectrumS2CPackets.sendCancelBlockBoundSoundInstance((ServerWorld) pedestalBlockEntity.getWorld(), pedestalBlockEntity.getPos());
 				updateInClientWorld(pedestalBlockEntity);
@@ -366,6 +374,9 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 				if (pedestalBlockEntity.craftingTime == pedestalBlockEntity.craftingTimeTotal) {
 					pedestalBlockEntity.craftingTime = 0;
 					craftingFinished = craftPedestalRecipe(pedestalBlockEntity, pedestalCraftingRecipe, pedestalBlockEntity.inventory, maxCountPerStack);
+					if(craftingFinished) {
+						pedestalBlockEntity.inventoryChanged  = true;
+					}
 					shouldMarkDirty = true;
 				}
 			// Vanilla crafting
@@ -374,6 +385,9 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 				if (pedestalBlockEntity.craftingTime == pedestalBlockEntity.craftingTimeTotal) {
 					pedestalBlockEntity.craftingTime = 0;
 					craftingFinished = pedestalBlockEntity.craftVanillaRecipe(vanillaCraftingRecipe, pedestalBlockEntity.inventory, maxCountPerStack);
+					if(craftingFinished) {
+						pedestalBlockEntity.inventoryChanged  = true;
+					}
 					shouldMarkDirty = true;
 				}
 			}
@@ -464,8 +478,11 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 	}
 
 	public static @Nullable Recipe calculateRecipe(World world, @NotNull PedestalBlockEntity pedestalBlockEntity) {
-		Recipe newRecipe;
+		if(!pedestalBlockEntity.inventoryChanged) {
+			return pedestalBlockEntity.currentRecipe;
+		}
 		
+		Recipe newRecipe;
 		if (pedestalBlockEntity.currentRecipe instanceof PedestalCraftingRecipe && ((PedestalCraftingRecipe) pedestalBlockEntity.currentRecipe).matches(pedestalBlockEntity, world)) {
 			// unchanged pedestal recipe
 			return pedestalBlockEntity.currentRecipe;
@@ -569,7 +586,6 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 				pedestalBlockEntity.pedestalVariant = newPedestalVariant;
 				
 				// reset the recipe
-				pedestalBlockEntity.currentRecipe = null;
 				updateInClientWorld(pedestalBlockEntity);
 				pedestalBlockEntity.markDirty();
 			} else {
@@ -630,7 +646,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 				existingOutput.increment(recipeOutput.getCount());
 				defaultedList.set(OUTPUT_SLOT_ID, existingOutput);
 			}
-
+			
 			return true;
 		} else {
 			return false;
@@ -764,11 +780,10 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 	}
 
 	public ItemStack getCurrentCraftingOutput() {
-		Recipe recipe = calculateRecipe(this.world, this);
-		if(recipe == null) {
+		if(this.currentRecipe == null) {
 			return ItemStack.EMPTY;
 		} else {
-			return recipe.getOutput();
+			return this.currentRecipe.getOutput();
 		}
 	}
 

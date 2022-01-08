@@ -157,7 +157,7 @@ public class CraftingTabletScreenHandler extends AbstractRecipeScreenHandler<Inv
 			   inventory.setStack(11, ItemStack.EMPTY);
 			}
 			int black = pedestalCraftingRecipe.getGemstonePowderAmount(GemstoneColor.BLACK);
-			if(magenta > 0) {
+			if(black > 0) {
 			   inventory.setStack(12, new ItemStack(SpectrumItems.ONYX_POWDER, black));
 			} else {
 			   inventory.setStack(12, ItemStack.EMPTY);

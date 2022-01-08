@@ -4,11 +4,12 @@ import de.dafuqs.spectrum.registries.SpectrumEnchantments;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentTarget;
 import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.util.Identifier;
 
 public class PestControlEnchantment extends SpectrumEnchantment {
 
-	public PestControlEnchantment(Rarity weight, EquipmentSlot... slotTypes) {
-		super(weight, EnchantmentTarget.DIGGER, slotTypes);
+	public PestControlEnchantment(Rarity weight, Identifier unlockAdvancementIdentifier, EquipmentSlot... slotTypes) {
+		super(weight, EnchantmentTarget.DIGGER, slotTypes, unlockAdvancementIdentifier);
 	}
 
 	public int getMinPower(int level) {

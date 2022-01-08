@@ -3,11 +3,12 @@ package de.dafuqs.spectrum.enchantments;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentTarget;
 import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.util.Identifier;
 
 public class DamageProofEnchantment extends SpectrumEnchantment {
 
-	public DamageProofEnchantment(Rarity weight, EquipmentSlot... slotTypes) {
-		super(weight, EnchantmentTarget.BREAKABLE, slotTypes);
+	public DamageProofEnchantment(Rarity weight, Identifier unlockAdvancementIdentifier, EquipmentSlot... slotTypes) {
+		super(weight, EnchantmentTarget.BREAKABLE, slotTypes, unlockAdvancementIdentifier);
 	}
 
 	public int getMinPower(int level) {

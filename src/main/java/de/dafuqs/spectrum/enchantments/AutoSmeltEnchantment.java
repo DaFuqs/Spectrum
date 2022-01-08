@@ -13,6 +13,7 @@ import net.minecraft.recipe.RecipeMatcher;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.recipe.SmeltingRecipe;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 
@@ -82,8 +83,8 @@ public class AutoSmeltEnchantment extends SpectrumEnchantment {
 
 	private static final AutoSmeltInventory autoSmeltInventory = new AutoSmeltInventory();
 
-	public AutoSmeltEnchantment(Rarity weight, EquipmentSlot... slotTypes) {
-		super(weight, EnchantmentTarget.DIGGER, slotTypes);
+	public AutoSmeltEnchantment(Rarity weight, Identifier unlockAdvancementIdentifier, EquipmentSlot... slotTypes) {
+		super(weight, EnchantmentTarget.DIGGER, slotTypes, unlockAdvancementIdentifier);
 	}
 
 	public int getMinPower(int level) {

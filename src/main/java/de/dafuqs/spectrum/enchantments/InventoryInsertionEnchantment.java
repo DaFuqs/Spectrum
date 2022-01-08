@@ -3,11 +3,12 @@ package de.dafuqs.spectrum.enchantments;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentTarget;
 import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.util.Identifier;
 
 public class InventoryInsertionEnchantment extends SpectrumEnchantment {
 
-	public InventoryInsertionEnchantment(Rarity weight, EquipmentSlot... slotTypes) {
-		super(weight, EnchantmentTarget.DIGGER, slotTypes);
+	public InventoryInsertionEnchantment(Rarity weight, Identifier unlockAdvancementIdentifier, EquipmentSlot... slotTypes) {
+		super(weight, EnchantmentTarget.DIGGER, slotTypes, unlockAdvancementIdentifier);
 	}
 
 	public int getMinPower(int level) {

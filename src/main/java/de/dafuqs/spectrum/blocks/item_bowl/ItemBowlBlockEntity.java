@@ -10,6 +10,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.world.ClientWorld;
+import net.minecraft.entity.ItemEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.Item;
@@ -92,7 +93,18 @@ public class ItemBowlBlockEntity extends BlockEntity {
 		int decrementAmount = Math.min(amount, storedStack.getCount());
 		Item recipeRemainderItem = storedStack.getItem().getRecipeRemainder();
 		if(recipeRemainderItem != null) {
-			inventory.setStack(0, recipeRemainderItem.getDefaultStack());
+			if(storedStack.getCount() == 1) {
+				inventory.setStack(0, recipeRemainderItem.getDefaultStack());
+			} else {
+				inventory.getStack(0).decrement(decrementAmount);
+				
+				ItemStack remainderStack = recipeRemainderItem.getDefaultStack();
+				remainderStack.setCount(decrementAmount);
+				
+				ItemEntity itemEntity = new ItemEntity(world, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, remainderStack);
+				itemEntity.addVelocity(0, 0.1, 0);
+				world.spawnEntity(itemEntity);
+			}
 		} else {
 			inventory.getStack(0).decrement(decrementAmount);
 		}

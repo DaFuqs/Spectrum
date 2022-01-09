@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "spectrum:block/pedestal_moonstone_powered"
+      "model": "spectrum:block/pedestal_moonstone"
     }
   }
 }

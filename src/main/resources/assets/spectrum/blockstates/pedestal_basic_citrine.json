@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "spectrum:block/pedestal_basic_citrine_powered"
+      "model": "spectrum:block/pedestal_basic_citrine"
     }
   }
 }

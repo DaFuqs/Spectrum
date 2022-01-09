@@ -1,0 +1,12 @@
+{
+    "parent": "minecraft:block/cube",
+    "textures": {
+        "particle": "spectrum:block/pedestal_basic_citrine",
+        "north": "spectrum:block/pedestal_basic_citrine",
+        "south": "spectrum:block/pedestal_basic_citrine",
+        "east": "spectrum:block/pedestal_basic_citrine",
+        "west": "spectrum:block/pedestal_basic_citrine",
+        "up": "spectrum:block/pedestal_basic_citrine_top",
+        "down": "spectrum:block/pedestal_bottom"
+    }
+}

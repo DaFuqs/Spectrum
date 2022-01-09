@@ -549,7 +549,16 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 					if(recipeReminderItem == null) {
 						itemStack.decrement(1);
 					} else {
-						pedestalBlockEntity.inventory.set(i, new ItemStack(recipeReminderItem, 1));
+						if(inventory.get(i).getCount() == 1) {
+							inventory.set(i, new ItemStack(recipeReminderItem, 1));
+						} else {
+							inventory.get(i).decrement(1);
+							
+							ItemStack remainderStack = recipeReminderItem.getDefaultStack();
+							ItemEntity itemEntity = new ItemEntity(pedestalBlockEntity.world, pedestalBlockEntity.pos.getX() + 0.5, pedestalBlockEntity.pos.getY() + 1, pedestalBlockEntity.pos.getZ() + 0.5, remainderStack);
+							itemEntity.addVelocity(0, 0.05, 0);
+							pedestalBlockEntity.world.spawnEntity(itemEntity);
+						}
 					}
 				}
 			}
@@ -624,7 +633,16 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 					if(recipeReminderItem == null) {
 						itemStack.decrement(1);
 					} else {
-						inventory.set(i, new ItemStack(recipeReminderItem, 1));
+						if(inventory.get(i).getCount() == 1) {
+							inventory.set(i, new ItemStack(recipeReminderItem, 1));
+						} else {
+							inventory.get(i).decrement(1);
+							
+							ItemStack remainderStack = recipeReminderItem.getDefaultStack();
+							ItemEntity itemEntity = new ItemEntity(world, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, remainderStack);
+							itemEntity.addVelocity(0, 0.05, 0);
+							world.spawnEntity(itemEntity);
+						}
 					}
 				}
 			}

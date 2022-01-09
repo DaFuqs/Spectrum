@@ -43,7 +43,6 @@ public class SpectrumMultiblocks {
 		Object[] targetBlocks = {
 				'X', "#spectrum:polished_base_blocks",
 				'P', "#spectrum:pillar_base_blocks",
-				'L', "#spectrum:gemstone_lamps",
 				'L', "#spectrum:polished_base_block_slabs",
 				'S', "#spectrum:gemstone_storage_blocks",
 				'C', "#spectrum:chiseled_base_blocks",

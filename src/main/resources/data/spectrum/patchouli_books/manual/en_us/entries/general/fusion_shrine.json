@@ -20,16 +20,21 @@
       "text": "Can be built with Basalt or Calcite.$(br)Requires a focus structure and clear view of the sky."
     },
     {
-      "type": "patchouli:text",
-      "title": "Changing the Weather",
-      "text": "You have designed the structure for the Fusion Shrine to bundle the magical energies of $(c_cyan)Matter$(), $(c_magenta)Time$() and $(c_yellow)Energy$() and focus them on a single, central point, the Fusion Shrine itself.$(br2)These powerful bundled energies seem to even have enough power to change the weather."
-    },
-    {
       "type": "patchouli:multiblock",
       "name": "Shrine Structure",
       "multiblock_id": "spectrum:fusion_shrine_structure",
       "enable_visualize": true,
       "text": "As always you are able to switch Basalt with Calcite and choose the $(l:decoration/gemstone_storage_blocks)Gemstone Blocks$(/l) to your liking."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Block Checklist",
+      "text": "$(li)1 Fusion Shrine$(li)4 Polished Gemstone Blocks$(li)4 Chiseled Polished Blocks$(li)8 Polished Pillars$(li)12 Polished Slabs$(li)77 Polished Blocks"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Changing the Weather",
+      "text": "You have designed the structure for the Fusion Shrine to bundle the magical energies of $(c_cyan)Matter$(), $(c_magenta)Time$() and $(c_yellow)Energy$() and focus them on a single, central point, the Fusion Shrine itself.$(br2)These powerful bundled energies seem to even have enough power to change the weather."
     }
   ]
 }

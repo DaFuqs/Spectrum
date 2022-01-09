@@ -25,7 +25,8 @@
         },
         {
             "type": "patchouli:text",
-            "text": "As usual, you are able to switch the Basalt Blocks with Calcite and choose the Gemstone Blocks as you like it best.$(br2)Enhance the Enchanter with Upgrades by placing them on the Gemstone Blocks."
+            "title": "Block Checklist",
+            "text": "$(li)1 Enchanter$(li)8 Item Bowls$(li)4+ Liquid Crystal Buckets$(li)4 Polished Gemstone Blocks$(li)8 Gemstone Lamps$(li)12 Polished Pillars$(li)24 Polished Slabs$(li)159 Polished Blocks$(br2)Enhance the Enchanter with Upgrades by placing them on the Gemstone Blocks."
         }
     ]
 }

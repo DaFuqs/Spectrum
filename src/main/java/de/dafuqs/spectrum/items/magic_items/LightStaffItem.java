@@ -111,7 +111,6 @@ public class LightStaffItem extends Item {
 			pitch = Math.min(1.5F, 0.7F + 0.1F * useTimes);
 		}
 		SpectrumS2CPackets.sendLightCreatedParticle(world, targetPos);
-		//world.playSound(playerEntity, targetPos.getX() + 0.5, targetPos.getY() + 0.5, targetPos.getZ() + 0.5, SpectrumSoundEvents.LIGHT_STAFF_PLACE, SoundCategory.PLAYERS, 1.0F, pitch);
 		world.playSound(null, playerEntity.getX() + 0.5, playerEntity.getY() + 0.5, playerEntity.getZ() + 0.5, SpectrumSoundEvents.LIGHT_STAFF_PLACE, SoundCategory.PLAYERS, (float) Math.max(0.25, 1.0F-(float)iteration*0.1F), pitch);
 	}
 	

@@ -17,7 +17,7 @@
     {
       "type": "patchouli:text",
       "title": "Pedestal Structure",
-      "text": "$To make use of the $(l:general/pedestal)Pigment Pedestals$() advanced abilities you will need a structure to focus gemstone energy into it.$(br2)You call it the$(br)$(bold)Spectrum Focus$()."
+      "text": "To make use of the $(l:general/pedestal)Pigment Pedestals$() advanced abilities you will need a structure to focus gemstone energy into it.$(br2)You call it the$(br)$(bold)Spectrum Focus$()."
     },
     {
       "type": "patchouli:multiblock",
@@ -27,10 +27,15 @@
       "text": "You can switch the basalt blocks with calcite and choose the gemstone blocks as you like it best."
     },
     {
+      "type": "patchouli:text",
+      "title": "Block Checklist",
+      "text": "$(li)1 Pigment Pedestal$(li)4 Polished Gemstone Blocks$(li)4 Chiseled Polished Blocks$(li)4 Notched Polished Blocks$(li)8 Polished Pillars$(li)68 Polished Blocks"
+    },
+    {
       "type": "patchouli:image",
       "title": "Individualize!",
       "images": [ "spectrum:textures/gui/manual/spectrum_focus_customisation.png" ],
-      "text": "Mix them up to create your personal variation!"
+      "text": "Mix up Basalt and Calcite up to create your personal variation!"
     }
   ]
 }

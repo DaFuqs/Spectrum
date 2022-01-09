@@ -15,7 +15,7 @@
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier3/knowledge_gem",
-      "text": "A single Gem can hold up to 10.000 experience."
+      "text": "A Gem can hold up to 10.000 experience. $(l:enchanting/enchanting_items)Enchanted$$() with $(bold)Efficiency$() increases that limit, and $(bold)Quick Charge$() boosts the pushing/pulling of XP."
     }
   ]
 }

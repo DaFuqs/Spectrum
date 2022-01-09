@@ -22,6 +22,16 @@
       "text": "You can switch the basalt blocks with calcite and also the amethyst blocks for any other gemstone block."
     },
     {
+      "type": "patchouli:text",
+      "title": "Checklist (Complete)",
+      "text": "$(li)1 Pigment Pedestal$(li)4 Onyx Chiseled Blocks$(li)4 Notched Polished Blocks$(li)8 Gemstone Lamps$(li)4 Gemstone Chiseled Blocks$(li)12 Polished Gemstone Blocks$(li)16 CMY Gemstone Chiseled Bl.$(li)28 Moonstone Chiseled Bl.$(li)36 Polished Pillars$(li)52 Polished Crests$(li)144 Polished Blocks"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Checklist (Upgrade)",
+      "text": "$(li)4 Onyx Chiseled Blocks$(li)4 Polished Gemstone Blocks$(li)28 Moonstone Chiseled Bl.$(li)36 Polished Crests"
+    },
+    {
       "type": "patchouli:image",
       "title": "Individualize!",
       "images": [ "spectrum:textures/gui/manual/spectrum_complex_customisation.png" ],

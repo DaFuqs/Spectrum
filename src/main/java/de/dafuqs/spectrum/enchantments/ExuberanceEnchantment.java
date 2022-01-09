@@ -4,6 +4,7 @@ import de.dafuqs.spectrum.SpectrumCommon;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentTarget;
 import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
 
 public class ExuberanceEnchantment extends SpectrumEnchantment {
@@ -28,4 +29,8 @@ public class ExuberanceEnchantment extends SpectrumEnchantment {
 		return super.canAccept(other);
 	}
 
+	@Override
+	public boolean isAcceptableItem(ItemStack stack) {
+		return super.isAcceptableItem(stack) || EnchantmentTarget.DIGGER.isAcceptableItem(stack.getItem());
+	}
 }

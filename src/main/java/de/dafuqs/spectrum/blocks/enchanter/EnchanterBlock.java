@@ -81,7 +81,7 @@ public class EnchanterBlock extends BlockWithEntity {
 					boolean itemsChanged = false;
 					Inventory inventory = enchanterBlockEntity.getInventory();
 					
-					int inputInventorySlotIndex = handStack.getItem() instanceof ExperienceStorageItem ? 1 : 0;
+					int inputInventorySlotIndex = handStack.getItem() instanceof ExperienceStorageItem ? inventory.getStack(0).isEmpty() ? 0 : 1 : 0;
 					if (player.isSneaking() || handStack.isEmpty()) {
 						// sneaking or empty hand: remove items
 						for (int i = 0; i < EnchanterBlockEntity.INVENTORY_SIZE; i++) {

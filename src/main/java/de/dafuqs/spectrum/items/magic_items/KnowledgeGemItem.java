@@ -168,6 +168,6 @@ public class KnowledgeGemItem extends Item implements ExperienceStorageItem, Enc
 	
 	@Override
 	public boolean canAcceptEnchantment(Enchantment enchantment) {
-		return enchantment == Enchantments.EFFICIENCY || enchantment == Enchantments.CHANNELING;
+		return enchantment == Enchantments.EFFICIENCY || enchantment == Enchantments.QUICK_CHARGE;
 	}
 }

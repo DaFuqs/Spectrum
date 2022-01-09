@@ -436,7 +436,7 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 	public static int getRequiredExperienceToEnchantCenterItem(@NotNull EnchanterBlockEntity enchanterBlockEntity) {
 		boolean valid = false;
 		ItemStack centerStackCopy = enchanterBlockEntity.inventory.getStack(0).copy();
-		if(!centerStackCopy.isEmpty() && (centerStackCopy.getItem().isEnchantable(centerStackCopy) || centerStackCopy.isOf(Items.BOOK))) {
+		if(!centerStackCopy.isEmpty() && (centerStackCopy.getItem().isEnchantable(centerStackCopy) || centerStackCopy.isOf(Items.BOOK) || centerStackCopy.getItem() instanceof EnchanterEnchantable)) {
 			Map<Enchantment, Integer> highestEnchantmentLevels = getHighestEnchantmentsInItemBowls(enchanterBlockEntity);
 			int requiredExperience = 0;
 			for (Enchantment enchantment : highestEnchantmentLevels.keySet()) {
@@ -477,7 +477,7 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 		
 		if(conflicts && !allowEnchantmentConflicts) {
 			return -1;
-		} else if((itemStack.getItem().getEnchantability() > 0 && enchantment.isAcceptableItem(itemStack)) || itemStack.isOf(Items.BOOK)) {
+		} else if((itemStack.getItem().getEnchantability() > 0 && enchantment.isAcceptableItem(itemStack)) || itemStack.isOf(Items.BOOK) || itemStack.getItem() instanceof EnchanterEnchantable) {
 			int enchantability = itemStack.getItem().getEnchantability();
 			if (enchantability > 0) {
 				int rarityCost;

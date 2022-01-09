@@ -19,7 +19,11 @@ public class ImprovedCriticalEnchantmentMixin {
 	@ModifyConstant(method = "attack(Lnet/minecraft/entity/Entity;)V", constant = @Constant(floatValue = 1.5F))
 	public float applyImprovedCriticalEnchantmentDamage(float critModifier) {
 		PlayerEntity thisEntity = (PlayerEntity)(Object) this;
-		return getCritMultiplier(thisEntity);
+		if(SpectrumEnchantments.IMPROVED_CRITICAL.canEntityUse(thisEntity)) {
+			return getCritMultiplier(thisEntity);
+		} else {
+			return critModifier;
+		}
 	}
 
 	private float getCritMultiplier(@NotNull LivingEntity livingEntity) {

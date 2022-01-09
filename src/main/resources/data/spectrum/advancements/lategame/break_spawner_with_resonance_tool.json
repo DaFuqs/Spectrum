@@ -15,17 +15,27 @@
     "broken_spawner_with_resonance": {
       "trigger": "spectrum:block_broken",
       "conditions": {
-        "player": {
-          "equipment": {
-            "mainhand": {
-              "enchantments": [
-                {
-                  "enchantment": "spectrum:resonance"
-                }
-              ]
+        "player": [{
+          "condition": "minecraft:entity_properties",
+          "entity": "this",
+          "predicate": {
+            "equipment": {
+              "mainhand": {
+                "enchantments": [{
+                  "enchantment": "spectrum:resonance",
+                  "levels": {
+                    "min": 1
+                  }
+                }]
+              }
+            },
+            "player": {
+              "advancements": {
+                "spectrum:progression/enchantments/resonance": true
+              }
             }
           }
-        },
+        }],
         "broken_block": {
           "blocks": [
             "minecraft:spawner"

@@ -40,7 +40,6 @@ public abstract class ItemStackMixin {
 	// Injecting into onStackClicked instead of onClicked because onStackClicked is called first
 	@Inject(at = @At("HEAD"), method = "onStackClicked", cancellable = true)
 	public void onStackClicked(Slot slot, ClickType clickType, PlayerEntity player, CallbackInfoReturnable<Boolean> cir) {
-
 		if (slot instanceof ShadowSlot) {
 			if (((ShadowSlot) slot).onClicked((ItemStack) (Object) this, clickType, player)) {
 				cir.setReturnValue(true);

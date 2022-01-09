@@ -12,10 +12,16 @@ import net.minecraft.entity.passive.FoxEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.loot.LootPool;
+import net.minecraft.loot.condition.EntityPropertiesLootCondition;
+import net.minecraft.loot.condition.LootCondition;
+import net.minecraft.loot.condition.LootConditionType;
 import net.minecraft.loot.condition.MatchToolLootCondition;
+import net.minecraft.loot.context.LootContext;
 import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
 import net.minecraft.predicate.NumberRange;
+import net.minecraft.predicate.PlayerPredicate;
+import net.minecraft.predicate.entity.EntityPredicate;
 import net.minecraft.predicate.item.EnchantmentPredicate;
 import net.minecraft.predicate.item.ItemPredicate;
 import net.minecraft.util.DyeColor;
@@ -137,12 +143,19 @@ public class EnchantmentDrops {
 			if (resonanceBreakableLootPools.containsKey(id)) {
 				Item resonanceDropItem = resonanceBreakableLootPools.get(id);
 
+				// The item must have the enchantment
 				EnchantmentPredicate resonanceEnchantmentPredicate = new EnchantmentPredicate(SpectrumEnchantments.RESONANCE, NumberRange.IntRange.atLeast(1));
 				ItemPredicate.Builder itemPredicateBuilder = ItemPredicate.Builder.create().enchantment(resonanceEnchantmentPredicate);
-
+				
+				// the player must have completed the matching advancement
+				PlayerPredicate hasAdvancementPredicateBuilder = PlayerPredicate.Builder.create().advancement(SpectrumEnchantments.RESONANCE.getUnlockAdvancementIdentifier(), true).build();
+				EntityPredicate.Builder entityPredicateBuilder = EntityPredicate.Builder.create().player(hasAdvancementPredicateBuilder);
+				LootCondition entityPropertiesLootCondition = EntityPropertiesLootCondition.builder(LootContext.EntityTarget.THIS, entityPredicateBuilder).build();
+				
 				FabricLootPoolBuilder poolBuilder = FabricLootPoolBuilder.builder()
 						.rolls(ConstantLootNumberProvider.create(1))
 						.withCondition(MatchToolLootCondition.builder(itemPredicateBuilder).build())
+						.withCondition(entityPropertiesLootCondition)
 						.withEntry(ItemEntry.builder(resonanceDropItem).build());
 				supplier.withPool(poolBuilder.build());
 			}

@@ -24,7 +24,7 @@ public class RandomChanceLootConditionMixin {
 	public void applyRareLootEnchantment(LootContext lootContext, CallbackInfoReturnable<Boolean> cir) {
 		if(!cir.getReturnValue() && this.chance < 1.0F) {
 			Entity entity = lootContext.get(LootContextParameters.KILLER_ENTITY);
-			if (entity instanceof LivingEntity) {
+			if (entity instanceof LivingEntity && SpectrumEnchantments.CLOVERS_FAVOR.canEntityUse(entity)) {
 				int rareLootLevel = EnchantmentHelper.getLevel(SpectrumEnchantments.CLOVERS_FAVOR,((LivingEntity) entity).getMainHandStack());
 				if(rareLootLevel > 0) {
 					cir.setReturnValue(lootContext.getRandom().nextFloat() < this.chance * (float)rareLootLevel * rareLootLevel);

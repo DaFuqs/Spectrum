@@ -25,7 +25,7 @@ public abstract class SpawnerBlockMixin {
 
 	@Inject(method = "afterBreak", at = @At("HEAD"), cancellable = true)
 	public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack stack, CallbackInfo callbackInfo) {
-		if(checkResonanceForSpawnerMining(world, pos, state, blockEntity, stack)) {
+		if(SpectrumEnchantments.RESONANCE.canEntityUse(player) && checkResonanceForSpawnerMining(world, pos, state, blockEntity, stack) && SpectrumEnchantments.RESONANCE.canEntityUse(player)) {
 			callbackInfo.cancel();
 		}
 	}

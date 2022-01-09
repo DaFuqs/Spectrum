@@ -38,7 +38,7 @@ public abstract class LivingEntityMixin {
 	}
 
 	private float getExuberanceMod(PlayerEntity attackingPlayer) {
-		if(attackingPlayer != null) {
+		if(attackingPlayer != null && SpectrumEnchantments.EXUBERANCE.canEntityUse(attackingPlayer)) {
 			int exuberanceLevel = EnchantmentHelper.getEquipmentLevel(SpectrumEnchantments.EXUBERANCE, attackingPlayer);
 			return 1.0F + exuberanceLevel * SpectrumCommon.CONFIG.ExuberanceBonusExperiencePercentPerLevel;
 		} else {
@@ -50,7 +50,7 @@ public abstract class LivingEntityMixin {
 	public void applyDisarmingEnchantment(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
 		// true if the entity got hurt
 		if(cir.getReturnValue() != null && cir.getReturnValue()) {
-			if(source.getAttacker() instanceof LivingEntity livingSource) {
+			if(source.getAttacker() instanceof LivingEntity livingSource && SpectrumEnchantments.DISARMING.canEntityUse(livingSource)) {
 				int disarmingLevel = EnchantmentHelper.getLevel(SpectrumEnchantments.DISARMING, livingSource.getMainHandStack());
 				if(disarmingLevel > 0 &&  Math.random() < disarmingLevel * SpectrumCommon.CONFIG.DisarmingChancePerLevelMobs) {
 					LivingEntity thisEntity = (LivingEntity)(Object) this;

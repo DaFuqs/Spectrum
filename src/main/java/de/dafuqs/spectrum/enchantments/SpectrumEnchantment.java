@@ -4,6 +4,7 @@ import de.dafuqs.spectrum.Support;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentTarget;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.text.MutableText;
@@ -40,7 +41,7 @@ public abstract class SpectrumEnchantment extends Enchantment {
 		} else {
 			mutableText.formatted(Formatting.GRAY);
 		}
-		if(!canPlayerUse(MinecraftClient.getInstance().player)) {
+		if(!canEntityUse(MinecraftClient.getInstance().player)) {
 			mutableText.formatted(Formatting.byCode('k'));
 		}
 		
@@ -51,8 +52,16 @@ public abstract class SpectrumEnchantment extends Enchantment {
 		return mutableText;
 	}
 	
-	public boolean canPlayerUse(PlayerEntity playerEntity) {
-		return Support.hasAdvancement(playerEntity, unlockAdvancementIdentifier);
+	public boolean canEntityUse(Entity entity) {
+		if(entity instanceof PlayerEntity playerEntity) {
+			return Support.hasAdvancement(playerEntity, unlockAdvancementIdentifier);
+		} else {
+			return false;
+		}
+	}
+	
+	public Identifier getUnlockAdvancementIdentifier() {
+		return unlockAdvancementIdentifier;
 	}
 	
 }

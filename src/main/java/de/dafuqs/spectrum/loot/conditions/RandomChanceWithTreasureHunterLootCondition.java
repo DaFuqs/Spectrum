@@ -10,6 +10,7 @@ import de.dafuqs.spectrum.registries.SpectrumEnchantments;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.condition.LootCondition;
@@ -46,7 +47,10 @@ public class RandomChanceWithTreasureHunterLootCondition implements LootConditio
 	public boolean test(LootContext lootContext) {
 		Entity entity = lootContext.get(LootContextParameters.KILLER_ENTITY);
 		int treasureHunterLevel = 0;
-		if (entity instanceof LivingEntity) {
+		if (entity instanceof PlayerEntity playerEntity) {
+			if(!SpectrumEnchantments.TREASURE_HUNTER.canEntityUse(playerEntity)) {
+				return false;
+			}
 			treasureHunterLevel = EnchantmentHelper.getEquipmentLevel(SpectrumEnchantments.TREASURE_HUNTER, (LivingEntity)entity);
 		}
 

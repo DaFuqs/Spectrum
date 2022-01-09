@@ -1,7 +1,9 @@
 package de.dafuqs.spectrum.items.magic_items;
 
+import de.dafuqs.spectrum.blocks.enchanter.EnchanterEnchantable;
 import de.dafuqs.spectrum.items.ExperienceStorageItem;
 import net.minecraft.client.item.TooltipContext;
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.LivingEntity;
@@ -25,7 +27,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class KnowledgeGemItem extends Item implements ExperienceStorageItem {
+public class KnowledgeGemItem extends Item implements ExperienceStorageItem, EnchanterEnchantable {
 	
 	protected int maxStorageBase;
 	
@@ -164,4 +166,8 @@ public class KnowledgeGemItem extends Item implements ExperienceStorageItem {
 		return displayTiers.length;
 	}
 	
+	@Override
+	public boolean canAcceptEnchantment(Enchantment enchantment) {
+		return enchantment == Enchantments.EFFICIENCY || enchantment == Enchantments.CHANNELING;
+	}
 }

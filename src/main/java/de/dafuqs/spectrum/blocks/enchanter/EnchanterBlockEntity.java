@@ -331,7 +331,7 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 	 */
 	public static boolean isValidCenterEnchantingSetup(EnchanterBlockEntity enchanterBlockEntity) {
 		ItemStack centerStack = enchanterBlockEntity.virtualInventoryIncludingBowlStacks.getStack(0);
-		if(!centerStack.isEmpty() && (centerStack.getItem().isEnchantable(centerStack) || centerStack.isOf(Items.BOOK)) && enchanterBlockEntity.virtualInventoryIncludingBowlStacks.getStack(1).getItem() instanceof ExperienceStorageItem) {
+		if(!centerStack.isEmpty() && (centerStack.getItem().isEnchantable(centerStack) || centerStack.isOf(Items.BOOK)) || centerStack.getItem() instanceof EnchanterEnchantable && enchanterBlockEntity.virtualInventoryIncludingBowlStacks.getStack(1).getItem() instanceof ExperienceStorageItem) {
 			boolean enchantedBookWithAdditionalEnchantmentsFound = false;
 			Map<Enchantment, Integer> existingEnchantments = EnchantmentHelper.get(centerStack);
 			for(int i = 0; i < 8; i++) {
@@ -341,7 +341,7 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 				} else if(virtualSlotStack.getItem() instanceof EnchantedBookItem) {
 					Map<Enchantment, Integer> currentEnchantedBookEnchantments = EnchantmentHelper.get(virtualSlotStack);
 					for(Enchantment enchantment : currentEnchantedBookEnchantments.keySet()) {
-						if((centerStack.isOf(Items.BOOK) || enchantment.isAcceptableItem(centerStack)) && (!existingEnchantments.containsKey(enchantment) || existingEnchantments.get(enchantment) < currentEnchantedBookEnchantments.get(enchantment))) {
+						if((centerStack.isOf(Items.BOOK) || (centerStack.getItem() instanceof EnchanterEnchantable enchanterEnchantable && enchanterEnchantable.canAcceptEnchantment(enchantment)) || enchantment.isAcceptableItem(centerStack)) && (!existingEnchantments.containsKey(enchantment) || existingEnchantments.get(enchantment) < currentEnchantedBookEnchantments.get(enchantment))) {
 							if(enchanterBlockEntity.canOwnerApplyConflictingEnchantments) {
 								enchantedBookWithAdditionalEnchantmentsFound = true;
 								break;

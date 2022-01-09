@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum;
 
+import de.dafuqs.spectrum.blocks.enchanter.EnchanterEnchantable;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.item.ItemStack;
@@ -26,6 +27,10 @@ public class SpectrumEnchantmentHelper {
 			ItemStack enchantedBookStack = new ItemStack(Items.ENCHANTED_BOOK, itemStack.getCount());
 			enchantedBookStack.setNbt(itemStack.getNbt());
 			itemStack = enchantedBookStack;
+		} else if(itemStack.getItem() instanceof EnchanterEnchantable enchanterEnchantable) {
+			if(!enchanterEnchantable.canAcceptEnchantment(enchantment)) {
+				return itemStack;
+			}
 		} else if(!forceEvenIfNotApplicable && !enchantment.isAcceptableItem(itemStack)) {
 			// item can not be enchanted with this enchantment
 			return itemStack;

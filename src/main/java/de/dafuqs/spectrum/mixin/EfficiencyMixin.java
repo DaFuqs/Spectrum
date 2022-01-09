@@ -17,7 +17,7 @@ public abstract class EfficiencyMixin extends Enchantment {
         super(weight, type, slotTypes);
     }
 
-    @Inject(at = @At("HEAD"), method = "isAcceptableItem")
+    @Inject(at = @At("HEAD"), method = "isAcceptableItem", cancellable = true)
     public void isAcceptableItem(ItemStack stack, CallbackInfoReturnable<Boolean> cir) {
         cir.setReturnValue(stack.getItem().equals(SpectrumItems.KNOWLEDGE_GEM));
     }

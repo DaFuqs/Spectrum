@@ -162,7 +162,11 @@ public class FusionShrineBlock extends BlockWithEntity {
 					if (storedFluid == Fluids.EMPTY && bucketFluid != Fluids.EMPTY) {
 						fusionShrineBlockEntity.setFluid(bucketFluid);
 						if (!player.isCreative()) {
-							player.setStackInHand(hand, new ItemStack(Items.BUCKET));
+							ItemStack handStack = player.getStackInHand(hand);
+							handStack.decrement(1);
+							player.setStackInHand(hand, handStack);
+							
+							player.giveItemStack(Items.BUCKET.getDefaultStack());
 						}
 						
 						soundToPlay = bucketFluid.getBucketFillSound();
@@ -170,7 +174,11 @@ public class FusionShrineBlock extends BlockWithEntity {
 					} else if (storedFluid != Fluids.EMPTY && bucketFluid == Fluids.EMPTY) {
 						fusionShrineBlockEntity.setFluid(Fluids.EMPTY);
 						if (!player.isCreative()) {
-							player.setStackInHand(hand, new ItemStack(storedFluid.getBucketItem()));
+							ItemStack handStack = player.getStackInHand(hand);
+							handStack.decrement(1);
+							player.setStackInHand(hand, handStack);
+							
+							player.giveItemStack(new ItemStack(storedFluid.getBucketItem()));
 						}
 						
 						soundToPlay = storedFluid.getBucketFillSound();

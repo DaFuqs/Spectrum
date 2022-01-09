@@ -8,7 +8,7 @@ import org.apache.logging.log4j.Level;
 
 public interface ExperienceStorageItem {
 	
-	int getMaxStoredExperience();
+	int getMaxStoredExperience(ItemStack itemStack);
 	
 	/**
 	 * Returns the amount of experience this item stack has stored
@@ -33,7 +33,7 @@ public interface ExperienceStorageItem {
 	 */
 	static int addStoredExperience(ItemStack itemStack, int amount) {
 		if(itemStack.getItem() instanceof ExperienceStorageItem experienceStorageItem) {
-			int maxStorage = experienceStorageItem.getMaxStoredExperience();
+			int maxStorage = experienceStorageItem.getMaxStoredExperience(itemStack);
 			
 			NbtCompound nbtCompound = itemStack.getOrCreateNbt();
 			if (!nbtCompound.contains("stored_experience", NbtElement.INT_TYPE)) {

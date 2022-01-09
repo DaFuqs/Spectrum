@@ -2,6 +2,8 @@ package de.dafuqs.spectrum.items.magic_items;
 
 import de.dafuqs.spectrum.items.ExperienceStorageItem;
 import net.minecraft.client.item.TooltipContext;
+import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -25,25 +27,31 @@ import java.util.List;
 
 public class KnowledgeGemItem extends Item implements ExperienceStorageItem {
 	
-	protected int maxStorage;
+	protected int maxStorageBase;
 	
 	// these are copies from the item model file
 	// and specify the sprite used for its texture
 	protected int[] displayTiers = { 1, 10, 25, 50, 100, 250, 500, 1000, 2500, 5000 };
 	
-	public KnowledgeGemItem(Settings settings, int maxStorage) {
+	public KnowledgeGemItem(Settings settings, int maxStorageBase) {
 		super(settings);
-		this.maxStorage = maxStorage;
+		this.maxStorageBase = maxStorageBase;
 	}
 	
 	@Override
-	public int getMaxStoredExperience() {
-		return maxStorage;
+	public int getMaxStoredExperience(ItemStack itemStack) {
+		int efficiencyLevel = EnchantmentHelper.getLevel(Enchantments.EFFICIENCY, itemStack);
+		return maxStorageBase * (int) Math.pow(10, Math.min(5, efficiencyLevel)); // to not exceed int max
 	}
 	
 	@Override
 	public UseAction getUseAction(ItemStack stack) {
 		return UseAction.BLOCK;
+	}
+	
+	public int getTransferableExperiencePerTick(ItemStack itemStack) {
+		int quickChargeLevel = EnchantmentHelper.getLevel(Enchantments.QUICK_CHARGE, itemStack);
+		return (int) Math.pow(2, Math.min(10, quickChargeLevel));
 	}
 	
 	@Override
@@ -63,11 +71,14 @@ public class KnowledgeGemItem extends Item implements ExperienceStorageItem {
 			
 			int playerExperience = serverPlayerEntity.totalExperience;
 			int itemExperience = ExperienceStorageItem.getStoredExperience(stack);
+			int transferableExperience = getTransferableExperiencePerTick(stack);
 			
 			if (serverPlayerEntity.isSneaking()) {
+				int experienceToTransfer = Math.min(Math.min(transferableExperience, playerExperience), maxStorageBase - itemExperience);
+				
 				// Store experience
-				if(itemExperience < maxStorage && removePlayerExperience(serverPlayerEntity, 1)) {
-					ExperienceStorageItem.addStoredExperience(stack, 1);
+				if(itemExperience < maxStorageBase && removePlayerExperience(serverPlayerEntity, experienceToTransfer)) {
+					ExperienceStorageItem.addStoredExperience(stack, experienceToTransfer);
 					
 					if(remainingUseTicks % 4 == 0) {
 						world.playSound(null, user.getBlockPos(), SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.PLAYERS, 1.0F, 0.8F + world.getRandom().nextFloat() * 0.4F);
@@ -76,8 +87,10 @@ public class KnowledgeGemItem extends Item implements ExperienceStorageItem {
 			} else {
 				// drain experience
 				if(itemExperience > 0 && playerExperience != Integer.MAX_VALUE) {
-					serverPlayerEntity.addExperience(1);
-					ExperienceStorageItem.removeStoredExperience(stack, 1);
+					int experienceToTransfer = Math.min(Math.min(transferableExperience, playerExperience), Integer.MAX_VALUE - playerExperience);
+					
+					serverPlayerEntity.addExperience(experienceToTransfer);
+					ExperienceStorageItem.removeStoredExperience(stack, experienceToTransfer);
 					
 					if(remainingUseTicks % 4 == 0) {
 						world.playSound(null, user.getBlockPos(), SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.PLAYERS, 1.0F, 0.8F + world.getRandom().nextFloat() * 0.4F);
@@ -91,15 +104,21 @@ public class KnowledgeGemItem extends Item implements ExperienceStorageItem {
 	public void appendTooltip(ItemStack itemStack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
 		super.appendTooltip(itemStack, world, tooltip, tooltipContext);
 		
+		int maxExperience = getMaxStoredExperience(itemStack);
 		int storedExperience = ExperienceStorageItem.getStoredExperience(itemStack);
 		if(storedExperience == 0) {
-			tooltip.add(new LiteralText("0 ").formatted(Formatting.DARK_GRAY).append(new TranslatableText("item.spectrum.knowledge_gem.tooltip.stored_experience", storedExperience).formatted(Formatting.GRAY)));
+			tooltip.add(new LiteralText("0 ").formatted(Formatting.DARK_GRAY).append(new TranslatableText("item.spectrum.knowledge_gem.tooltip.stored_experience", maxExperience).formatted(Formatting.GRAY)));
 		} else {
-			tooltip.add(new LiteralText(storedExperience + " ").formatted(Formatting.GREEN).append(new TranslatableText("item.spectrum.knowledge_gem.tooltip.stored_experience", storedExperience).formatted(Formatting.GRAY)));
+			tooltip.add(new LiteralText(storedExperience + " ").formatted(Formatting.GREEN).append(new TranslatableText("item.spectrum.knowledge_gem.tooltip.stored_experience", maxExperience).formatted(Formatting.GRAY)));
 		}
 		if(shouldDisplayUsageTooltip(itemStack)) {
-			tooltip.add(new TranslatableText("item.spectrum.knowledge_gem.tooltip.use", storedExperience).formatted(Formatting.GRAY));
+			tooltip.add(new TranslatableText("item.spectrum.knowledge_gem.tooltip.use", getTransferableExperiencePerTick(itemStack)).formatted(Formatting.GRAY));
 		}
+	}
+	
+	@Override
+	public int getEnchantability() {
+		return 5;
 	}
 	
 	public boolean shouldDisplayUsageTooltip(ItemStack itemStack) {

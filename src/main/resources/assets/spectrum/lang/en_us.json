@@ -908,8 +908,8 @@
   "item.spectrum.glistering_melon_seeds": "Glistering Melon Seeds",
 
   "item.spectrum.knowledge_gem": "Knowledge Gem",
-  "item.spectrum.knowledge_gem.tooltip.stored_experience": "Experience stored",
-  "item.spectrum.knowledge_gem.tooltip.use": "Use to drain, or crouch-use to store experience",
+  "item.spectrum.knowledge_gem.tooltip.stored_experience": "/ %d Experience stored",
+  "item.spectrum.knowledge_gem.tooltip.use": "Use to drain, or crouch-use to store experience (%d/tick)",
 
   "item.spectrum.default_enchantment_tooltip": "Comes pre enchanted with %s",
   "item.spectrum.emergency_helmet": "Fetchling Helmet",

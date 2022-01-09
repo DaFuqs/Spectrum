@@ -3,7 +3,7 @@
     "pattern": [
         "FSF",
         "SSS",
-        "ERE"
+        "EEE"
     ],
     "key": {
         "S": {
@@ -14,9 +14,6 @@
         },
         "F": {
 	        "item": "spectrum:polished_basalt"
-        },
-        "R": {
-            "item": "minecraft:redstone"
         }
     },
     "result": {

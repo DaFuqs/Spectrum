@@ -153,8 +153,11 @@ public class Support {
 			} else {
 				return ((ServerPlayerEntity) playerEntity).getAdvancementTracker().getProgress(advancement).isDone();
 			}
-		} else {
+		} else if(playerEntity.getClass().getCanonicalName().equals("net.minecraft.client.network.ClientPlayerEntity")) {
 			return hasAdvancementClient(advancementIdentifier);
+		} else {
+			// thank you, Kibe FakePlayerEntity
+			return false;
 		}
 	}
 	

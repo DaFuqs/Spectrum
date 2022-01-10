@@ -1,6 +1,8 @@
 package de.dafuqs.spectrum.enchantments;
 
 import de.dafuqs.spectrum.Support;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentTarget;
@@ -34,6 +36,8 @@ public abstract class SpectrumEnchantment extends Enchantment {
 		return false;
 	}
 	
+	@Environment(EnvType.CLIENT)
+	@Override
 	public Text getName(int level) {
 		MutableText mutableText = new TranslatableText(this.getTranslationKey());
 		if (this.isCursed()) {

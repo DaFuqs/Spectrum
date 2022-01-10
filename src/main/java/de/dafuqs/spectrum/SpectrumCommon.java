@@ -130,16 +130,15 @@ public class SpectrumCommon implements ModInitializer {
 		// Default enchantments for some items
 		log(Level.INFO, "Registering Default Item Stack Damage Immunities...");
 		SpectrumItemStackDamageImmunities.registerDefaultItemStackImmunities();
-		log(Level.INFO, "Registering Default Enchantments...");
-		SpectrumDefaultEnchantments.registerDefaultEnchantments();
 		log(Level.INFO, "Registering Enchantment Drops...");
 		EnchantmentDrops.setup();
 
 		log(Level.INFO, "Registering Items to Fuel Registry...");
 		SpectrumItems.registerFuelRegistry();
-
 		log(Level.INFO, "Registering Enchantments...");
 		SpectrumEnchantments.register();
+		log(Level.INFO, "Registering Default Enchantments...");
+		SpectrumDefaultEnchantments.registerDefaultEnchantments();
 		log(Level.INFO, "Registering Entity Types...");
 		SpectrumEntityTypes.register();
 		log(Level.INFO, "Registering Commands...");

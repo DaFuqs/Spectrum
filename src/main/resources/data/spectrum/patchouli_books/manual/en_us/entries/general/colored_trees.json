@@ -185,7 +185,7 @@
       "type": "spectrum:pedestal_crafting",
       "title": "Colored Saplings",
       "recipe": "spectrum:pedestal/tier1/saplings/red_sapling",
-      "text": "Oak saplings seem to be the most receptive to the change, but every sapling will do."
+      "text": "Each Colored Sapling will need a different combination of $(l:general/gemstone_powder)Gemstone Powder$(), corresponding to the amount needed to mix its color."
     },
     {
       "type": "patchouli:image",

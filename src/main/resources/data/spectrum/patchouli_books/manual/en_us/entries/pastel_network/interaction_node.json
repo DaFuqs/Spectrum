@@ -1,7 +1,7 @@
 {
   "name": "Interaction Node",
   "icon": "spectrum:provider_node",
-  "advancement": "spectrum:progression/pastel_network/unlock_interaction_node",
+  "advancement": "spectrum:progression/pastel_network/__unlock_interaction_node",
   "category": "spectrum:pastel_network_category",
   "pages": [
     {

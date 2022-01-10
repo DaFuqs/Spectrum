@@ -2,7 +2,7 @@
   "name": "The Monstrosity",
   "icon": "minecraft:bedrock",
   "sortnum": 2,
-  "advancement": "spectrum:lategame/spectrum_lategame",
+  "advancement": "spectrum:lategame/__spectrum_lategame",
   "category": "spectrum:dimension_category",
   "pages": [
     {

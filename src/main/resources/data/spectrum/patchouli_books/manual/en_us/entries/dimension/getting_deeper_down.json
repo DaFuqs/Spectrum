@@ -2,7 +2,7 @@
   "name": "Getting Deeper Down",
   "icon": "spectrum:bottle_of_ruin",
   "sortnum": 0,
-  "advancement": "spectrum:lategame/spectrum_lategame",
+  "advancement": "spectrum:lategame/__spectrum_lategame",
   "category": "spectrum:dimension_category",
   "pages": [
     {

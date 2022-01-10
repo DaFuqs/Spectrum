@@ -56,7 +56,6 @@
     "client.MixinClientAdvancementManager",
     "client.MixinMinecraftClient",
     "client.RenderLayerAccessor",
-    "client.ScreenMixin",
     "client.TransparentBlockMixin",
     "client.WorldRendererMixin"
   ],

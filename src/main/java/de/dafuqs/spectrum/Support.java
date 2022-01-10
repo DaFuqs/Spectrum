@@ -2,6 +2,8 @@ package de.dafuqs.spectrum;
 
 import de.dafuqs.spectrum.items.PigmentItem;
 import de.dafuqs.spectrum.progression.ClientAdvancements;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.advancement.Advancement;
 import net.minecraft.advancement.PlayerAdvancementTracker;
 import net.minecraft.block.Block;
@@ -135,7 +137,7 @@ public class Support {
 			SpectrumCommon.log(Level.ERROR, "Trying to grant a criterion \"" + criterion +  "\" for an advancement that does not exist: " + advancementIdentifier);
 		}
 	}
-
+	
 	public static boolean hasAdvancement(PlayerEntity playerEntity, Identifier advancementIdentifier) {
 		if(playerEntity == null) {
 			return false;
@@ -146,16 +148,20 @@ public class Support {
 		if (playerEntity instanceof ServerPlayerEntity) {
 			Advancement advancement = SpectrumCommon.minecraftServer.getAdvancementLoader().get(advancementIdentifier);
 			if (advancement == null) {
-				SpectrumCommon.log(Level.ERROR, "Player " + playerEntity.getName() + " was getting an advancement check for an advancement that does not exist: " + advancementIdentifier.toString());
+				SpectrumCommon.log(Level.ERROR, "Player " + playerEntity.getName() + " was getting an advancement check for an advancement that does not exist: " + advancementIdentifier);
 				return false;
 			} else {
 				return ((ServerPlayerEntity) playerEntity).getAdvancementTracker().getProgress(advancement).isDone();
 			}
 		} else {
-			return ClientAdvancements.hasDone(advancementIdentifier);
+			return hasAdvancementClient(advancementIdentifier);
 		}
 	}
-
+	
+	@Environment(EnvType.CLIENT)
+	public static boolean hasAdvancementClient(Identifier advancementIdentifier) {
+		return ClientAdvancements.hasDone(advancementIdentifier);
+	}
 
 	public static @NotNull String getReadableDimensionString(@NotNull String dimensionKeyString) {
 		switch (dimensionKeyString) {

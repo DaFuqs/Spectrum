@@ -14,10 +14,7 @@ import de.dafuqs.spectrum.networking.SpectrumS2CPackets;
 import de.dafuqs.spectrum.particle.SpectrumParticleFactories;
 import de.dafuqs.spectrum.progression.ToggleableBlockColorProvider;
 import de.dafuqs.spectrum.progression.ToggleableItemColorProvider;
-import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
-import de.dafuqs.spectrum.registries.SpectrumBlocks;
-import de.dafuqs.spectrum.registries.SpectrumFluids;
-import de.dafuqs.spectrum.registries.SpectrumItems;
+import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -82,7 +79,7 @@ public class SpectrumClient implements ClientModInitializer {
 		log(Level.INFO, "Registering Overlays...");
 		GuiOverlay.register();
 		
-		registerTooltipComponents();
+		SpectrumTooltipComponents.registerTooltipComponents();
 
 		ClientLifecycleEvents.CLIENT_STARTED.register(minecraftClient -> {
 			SpectrumClient.minecraftClient = minecraftClient;
@@ -125,16 +122,7 @@ public class SpectrumClient implements ClientModInitializer {
 		}
 	}
 	
-	public static void registerTooltipComponents() {
-		TooltipComponentCallback.EVENT.register((data -> {
-			if (data instanceof CraftingTabletTooltipData) {
-				return new CraftingTabletTooltipComponent((CraftingTabletTooltipData) data);
-			} else if(data instanceof VoidBundleTooltipData) {
-				return new VoidBundleTooltipComponent((VoidBundleTooltipData) data);
-			}
-			return null;
-		}));
-	}
+
 
 	// Vanilla models see: ModelPredicateProviderRegistry
 	public static void registerBowPredicates(BowItem bowItem) {

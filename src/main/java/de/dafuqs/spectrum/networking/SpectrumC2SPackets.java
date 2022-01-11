@@ -1,13 +1,16 @@
 package de.dafuqs.spectrum.networking;
 
 import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.blocks.chests.CompactingChestBlockEntity;
 import de.dafuqs.spectrum.blocks.particle_spawner.ParticleSpawnerBlockEntity;
 import de.dafuqs.spectrum.inventories.BedrockAnvilScreenHandler;
+import de.dafuqs.spectrum.inventories.CompactingChestScreenHandler;
 import de.dafuqs.spectrum.inventories.ParticleSpawnerScreenHandler;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.SharedConstants;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
@@ -18,6 +21,7 @@ public class SpectrumC2SPackets {
 	public static final Identifier RENAME_ITEM_IN_BEDROCK_ANVIL_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "rename_item_in_bedrock_anvil");
 	public static final Identifier ADD_LORE_IN_BEDROCK_ANVIL_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "add_lore_to_item_in_bedrock_anvil");
 	public static final Identifier CHANGE_PARTICLE_SPAWNER_SETTINGS_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "change_particle_spawner_settings");
+	public static final Identifier CHANGE_COMPACTING_CHEST_SETTINGS_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "change_compacting_chest_settings");
 
 	public static void registerC2SReceivers() {
 		ServerPlayNetworking.registerGlobalReceiver(RENAME_ITEM_IN_BEDROCK_ANVIL_PACKET_ID, (server, player, handler, buf, responseSender) -> {
@@ -60,6 +64,17 @@ public class SpectrumC2SPackets {
 					for (ServerPlayerEntity serverPlayerEntity : PlayerLookup.tracking((ServerWorld) blockEntity.getWorld(), blockEntity.getPos())) {
 						ServerPlayNetworking.send(serverPlayerEntity, SpectrumS2CPackets.CHANGE_PARTICLE_SPAWNER_SETTINGS_CLIENT_PACKET_ID, packetByteBuf);
 					}
+				}
+			}
+		});
+
+		ServerPlayNetworking.registerGlobalReceiver(CHANGE_COMPACTING_CHEST_SETTINGS_PACKET_ID, (server, player, handler, buf, responseSender) -> {
+			// receive the client packet...
+			if(player.currentScreenHandler instanceof CompactingChestScreenHandler compactingChestScreenHandler) {
+				BlockEntity blockEntity = compactingChestScreenHandler.getBlockEntity();
+				if(blockEntity instanceof CompactingChestBlockEntity compactingChestBlockEntity) {
+					/// ...apply the new settings...
+					compactingChestBlockEntity.applySettings(buf);
 				}
 			}
 		});

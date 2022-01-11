@@ -182,24 +182,24 @@ public class ParticleSpawnerScreen extends HandledScreen<ParticleSpawnerScreenHa
 	  RenderSystem.setShader(GameRenderer::getPositionTexShader);
 	  RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
 	  RenderSystem.setShaderTexture(0, GUI_TEXTURE);
-	  int i = (this.width - this.backgroundWidth) / 2;
-	  int j = (this.height - this.backgroundHeight) / 2;
+	  int x = (this.width - this.backgroundWidth) / 2;
+	  int y = (this.height - this.backgroundHeight) / 2;
 
 	  // the background
-	  drawTexture(matrices, i, j, 0, 0, this.backgroundWidth, this.backgroundHeight);
+	  drawTexture(matrices, x, y, 0, 0, this.backgroundWidth, this.backgroundHeight);
 
 	  // the checked button, if enabled
 	  if(collisionsEnabled) {
-		 drawTexture(matrices, i+146, j+197, 0, 222, 16, 16);
+		 drawTexture(matrices, x+146, y+197, 0, 222, 16, 16);
 	  }
 
 	  if(particleSelectionIndex / PARTICLES_PER_PAGE == activeParticlePage) {
 		 // particle selection outline
-		 drawTexture(matrices, i + 27 + (20 * (particleSelectionIndex % PARTICLES_PER_PAGE)), j + 19, 16, 222, 22, 22);
+		 drawTexture(matrices, x + 27 + (20 * (particleSelectionIndex % PARTICLES_PER_PAGE)), y + 19, 16, 222, 22, 22);
 	  }
 
 	  RenderSystem.setShaderTexture(0, TEXTURE_PARTICLES);
-	  drawTexture(matrices, i+28, j+21, 0, activeParticlePage * 20, 20 * PARTICLES_PER_PAGE, 20);
+	  drawTexture(matrices, x+28, y+21, 0, activeParticlePage * 20, 20 * PARTICLES_PER_PAGE, 20);
    }
 
    protected void setupInputFields(ParticleSpawnerBlockEntity blockEntity) {

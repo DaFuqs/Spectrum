@@ -233,8 +233,7 @@ public class ParticleSpawnerBlockEntity extends BlockEntity implements ExtendedS
 				velocity, velocityVariance, color, scale, scaleVariance, lifetimeTicks, lifetimeVariance, gravity, collisions
 		);
 	}
-
-
+	
 	public void applySettings(Identifier particleSpriteIdentifier, float particlesPerSecond, Vec3f ParticleSourcePosition, Vec3f particleSourcePositionVariance, Vec3f velocity, Vec3f velocityVariance,
 							  Vec3f color, float scale, float scaleVariance, int lifetimeTicks, int lifetimeVariance, float gravity, boolean collisions) {
 		this.particleSpriteIdentifier = particleSpriteIdentifier;

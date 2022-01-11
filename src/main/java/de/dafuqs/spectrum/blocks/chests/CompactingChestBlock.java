@@ -1,6 +1,8 @@
 package de.dafuqs.spectrum.blocks.chests;
 
+import de.dafuqs.spectrum.blocks.particle_spawner.ParticleSpawnerBlockEntity;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
+import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
@@ -30,9 +32,9 @@ public class CompactingChestBlock extends SpectrumChestBlock {
 
 	public void openScreen(World world, BlockPos pos, PlayerEntity player) {
 		BlockEntity blockEntity = world.getBlockEntity(pos);
-		if (blockEntity instanceof CompactingChestBlockEntity) {
+		if (blockEntity instanceof CompactingChestBlockEntity compactingChestBlockEntity) {
 			if(!isChestBlocked(world, pos)) {
-				player.openHandledScreen((NamedScreenHandlerFactory) blockEntity);
+				player.openHandledScreen(compactingChestBlockEntity);
 			}
 		}
 	}

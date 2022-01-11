@@ -39,8 +39,8 @@ public class ParticleSpawnerScreenHandler extends ScreenHandler {
 		this.player = playerInventory.player;
 		this.context = null;
 		BlockEntity blockEntity = playerInventory.player.world.getBlockEntity(readBlockPos);
-		if(blockEntity instanceof ParticleSpawnerBlockEntity) {
-			this.particleSpawnerBlockEntity = (ParticleSpawnerBlockEntity) blockEntity;
+		if(blockEntity instanceof ParticleSpawnerBlockEntity particleSpawnerBlockEntity) {
+			this.particleSpawnerBlockEntity = particleSpawnerBlockEntity;
 		}
 	}
 

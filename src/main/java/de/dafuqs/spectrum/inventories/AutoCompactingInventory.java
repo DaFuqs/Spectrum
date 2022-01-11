@@ -6,9 +6,19 @@ import net.minecraft.item.ItemStack;
 public class AutoCompactingInventory extends AutoInventory {
 
 	public enum AutoCraftingMode {
-		OnexOne,
+		OneXOne,
 		TwoXTwo,
-		ThreeXTree
+		ThreeXTree;
+		
+		public int getItemCount() {
+			if(this == AutoCraftingMode.OneXOne) {
+				return 1;
+			} else if(this == AutoCraftingMode.TwoXTwo) {
+				return 4;
+			} else {
+				return 9;
+			}
+		}
 	}
 
 	private AutoCraftingMode autoCraftingMode;
@@ -65,14 +75,11 @@ public class AutoCompactingInventory extends AutoInventory {
 	}
 
 	private int getSize() {
-		switch (this.autoCraftingMode) {
-			case OnexOne:
-				return 1;
-			case TwoXTwo:
-				return 2;
-			default:
-				return 3;
-		}
+		return switch (this.autoCraftingMode) {
+			case OneXOne -> 1;
+			case TwoXTwo -> 2;
+			default -> 3;
+		};
 	}
 
 }

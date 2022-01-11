@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.blocks.chests;
 
+import de.dafuqs.spectrum.inventories.AutoCompactingInventory;
 import de.dafuqs.spectrum.inventories.RestockingChestScreenHandler;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -147,5 +148,5 @@ public abstract class SpectrumChestBlockEntity extends LootableContainerBlockEnt
 	public SoundEvent getCloseSound() {
 		return SoundEvents.BLOCK_CHEST_CLOSE;
 	}
-
+	
 }

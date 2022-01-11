@@ -31,8 +31,8 @@ public class RestockingChestScreenHandler extends ScreenHandler {
 		this(SpectrumScreenHandlerTypes.RESTOCKING_CHEST, syncId, playerInventory, inventory);
 	}
 
-	protected RestockingChestScreenHandler(ScreenHandlerType<?> type,  int i, PlayerInventory playerInventory, Inventory inventory) {
-		super(type, i);
+	protected RestockingChestScreenHandler(ScreenHandlerType<?> type,  int syncId, PlayerInventory playerInventory, Inventory inventory) {
+		super(type, syncId);
 		this.inventory = inventory;
 		this.world = playerInventory.player.world;
 
@@ -121,4 +121,10 @@ public class RestockingChestScreenHandler extends ScreenHandler {
 	public Inventory getInventory() {
 		return this.inventory;
 	}
+	
+	public void close(PlayerEntity player) {
+		super.close(player);
+		this.inventory.onClose(player);
+	}
+	
 }

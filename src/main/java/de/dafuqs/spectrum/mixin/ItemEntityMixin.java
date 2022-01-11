@@ -94,7 +94,7 @@ public abstract class ItemEntityMixin {
 		if(autoCompactingInventory == null) {
 			autoCompactingInventory = new AutoCompactingInventory();
 		}
-		autoCompactingInventory.setCompacting(AutoCompactingInventory.AutoCraftingMode.OnexOne, thisItemStack);
+		autoCompactingInventory.setCompacting(AutoCompactingInventory.AutoCraftingMode.OneXOne, thisItemStack);
 		Optional<AnvilCrushingRecipe> optionalAnvilCrushingRecipe = SpectrumCommon.minecraftServer.getRecipeManager().getFirstMatch(SpectrumRecipeTypes.ANVIL_CRUSHING, autoCompactingInventory, world);
 		if(optionalAnvilCrushingRecipe.isPresent()) {
 			// Item can be crafted via anvil. Do anvil crafting

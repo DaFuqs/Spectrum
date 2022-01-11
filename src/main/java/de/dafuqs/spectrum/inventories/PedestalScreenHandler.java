@@ -276,5 +276,10 @@ public class PedestalScreenHandler extends AbstractRecipeScreenHandler<Inventory
 	public PedestalRecipeTier getMaxPedestalRecipeTier() {
 		return this.maxPedestalRecipeTier;
 	}
+	
+	public void close(PlayerEntity player) {
+		super.close(player);
+		this.inventory.onClose(player);
+	}
 
 }

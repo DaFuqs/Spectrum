@@ -337,4 +337,5 @@ public class CraftingTabletScreenHandler extends AbstractRecipeScreenHandler<Inv
    public Optional<PedestalRecipeTier> getTier() {
 	  return this.highestUnlockedRecipeTier;
    }
+   
 }

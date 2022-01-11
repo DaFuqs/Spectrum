@@ -29,7 +29,7 @@ import java.util.List;
 
 public class KnowledgeGemItem extends Item implements ExperienceStorageItem, EnchanterEnchantable {
 	
-	protected int maxStorageBase;
+	private final int maxStorageBase;
 	
 	// these are copies from the item model file
 	// and specify the sprite used for its texture
@@ -76,10 +76,11 @@ public class KnowledgeGemItem extends Item implements ExperienceStorageItem, Enc
 			int transferableExperience = getTransferableExperiencePerTick(stack);
 			
 			if (serverPlayerEntity.isSneaking()) {
-				int experienceToTransfer = Math.min(Math.min(transferableExperience, playerExperience), maxStorageBase - itemExperience);
+				int maxStorage = getMaxStoredExperience(stack);
+				int experienceToTransfer = Math.min(Math.min(transferableExperience, playerExperience), maxStorage - itemExperience);
 				
 				// Store experience
-				if(itemExperience < maxStorageBase && removePlayerExperience(serverPlayerEntity, experienceToTransfer)) {
+				if(itemExperience < maxStorage && removePlayerExperience(serverPlayerEntity, experienceToTransfer)) {
 					ExperienceStorageItem.addStoredExperience(stack, experienceToTransfer);
 					
 					if(remainingUseTicks % 4 == 0) {

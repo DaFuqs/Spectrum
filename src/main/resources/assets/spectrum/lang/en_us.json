@@ -862,7 +862,7 @@
   "item.spectrum.placement_staff.tooltip.none_in_inventory": "none in inventory",
   "item.spectrum.light_staff": "Radiance Staff",
   "item.spectrum.light_staff.tooltip": "§7Uses §eShimmerstone Gems§7 to place lights",
-  "item.spectrum.light_staff.tooltip2": "§7Right click lights to toggle their light level",
+  "item.spectrum.light_staff.tooltip2": "§7Right click Lights to toggle their light level",
   "item.spectrum.music_disc_spectrum_theme": "Music Disc",
   "item.spectrum.music_disc_spectrum_theme.desc": "Spectrum Theme",
   "item.spectrum.music_disc_dimension_theme": "Music Disc",

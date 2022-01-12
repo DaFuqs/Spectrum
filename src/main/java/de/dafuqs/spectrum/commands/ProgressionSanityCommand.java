@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.commands;
 
 import com.mojang.brigadier.CommandDispatcher;
 import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.blocks.enchanter.EnchanterEnchantable;
 import de.dafuqs.spectrum.enchantments.SpectrumEnchantment;
 import de.dafuqs.spectrum.enums.GemstoneColor;
 import de.dafuqs.spectrum.enums.PedestalRecipeTier;
@@ -223,7 +224,7 @@ public class ProgressionSanityCommand {
 			}
 		}
 		
-		// Enchantments with nonexistant Advancement cloak
+		// Enchantments with nonexistent Advancement cloak
 		for(Map.Entry<RegistryKey<Enchantment>, Enchantment> enchantment : Registry.ENCHANTMENT.getEntries()) {
 			if(enchantment.getValue() instanceof SpectrumEnchantment spectrumEnchantment) {
 				Identifier advancementIdentifier = spectrumEnchantment.getUnlockAdvancementIdentifier();
@@ -231,6 +232,14 @@ public class ProgressionSanityCommand {
 				if(advancementCriterionAdvancement == null) {
 					SpectrumCommon.log(Level.WARN, "[SANITY: Enchantments] Enchantment '" + enchantment.getKey().getValue() + "' references advancement '" + advancementIdentifier  + "' that does not exist");
 				}
+			}
+		}
+		
+		// EnchanterEnchantables with enchantability <= 0
+		for(Map.Entry<RegistryKey<Item>, Item> item : Registry.ITEM.getEntries()) {
+			Item i = item.getValue();
+			if(i instanceof EnchanterEnchantable && i.getEnchantability() < 1) {
+				SpectrumCommon.log(Level.WARN, "[SANITY: Enchantability] Item '" + item.getKey().getValue() + "' is EnchanterEnchantable, but has enchantability of < 1");
 			}
 		}
 		

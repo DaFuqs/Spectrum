@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.items.magic_items;
 
 import de.dafuqs.spectrum.InventoryHelper;
+import de.dafuqs.spectrum.blocks.enchanter.EnchanterEnchantable;
 import de.dafuqs.spectrum.networking.SpectrumS2CPackets;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import de.dafuqs.spectrum.registries.SpectrumItems;
@@ -8,6 +9,9 @@ import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.item.TooltipContext;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -29,7 +33,7 @@ import java.util.List;
 
 import static net.minecraft.state.property.Properties.WATERLOGGED;
 
-public class LightStaffItem extends Item {
+public class LightStaffItem extends Item implements EnchanterEnchantable {
 
 	public static int USE_DURATION = 12;
 	public static int REACH_STEP_DISTANCE = 4;
@@ -44,7 +48,9 @@ public class LightStaffItem extends Item {
 	
 	@Override
 	public void appendTooltip(ItemStack itemStack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
-		tooltip.add(new TranslatableText("item.spectrum.light_staff.tooltip"));
+		if(EnchantmentHelper.getLevel(Enchantments.INFINITY, itemStack) == 0) {
+			tooltip.add(new TranslatableText("item.spectrum.light_staff.tooltip"));
+		}
 		tooltip.add(new TranslatableText("item.spectrum.light_staff.tooltip2"));
 	}
 
@@ -62,11 +68,11 @@ public class LightStaffItem extends Item {
 	public void usageTick(World world, LivingEntity user, ItemStack stack, int remainingUseTicks) {
 		// trigger the items' usage action every x ticks
 		if(world instanceof ServerWorld && user.getItemUseTime() > USE_DURATION && user.getItemUseTime() % USE_DURATION == 0) {
-			usage(world, user);
+			usage(world, stack, user);
 		}
 	}
 
-	public void usage(World world, LivingEntity user) {
+	public void usage(World world, ItemStack stack, LivingEntity user) {
 		if(user instanceof PlayerEntity playerEntity) {
 			int useTimes = (user.getItemUseTime() / USE_DURATION);
 			int maxCheckDistance = Math.min(MAX_REACH_STEPS, useTimes);
@@ -82,7 +88,7 @@ public class LightStaffItem extends Item {
 					BlockState targetBlockState = world.getBlockState(targetPos);
 					
 					if (targetBlockState.isAir()) {
-						if (InventoryHelper.removeFromInventory(playerEntity, COST)) {
+						if (EnchantmentHelper.getLevel(Enchantments.INFINITY, stack) > 0 || InventoryHelper.removeFromInventory(playerEntity, COST)) {
 							world.setBlockState(targetPos, SpectrumBlocks.WAND_LIGHT_BLOCK.getDefaultState(), 3);
 							playSoundAndParticles(world, targetPos, playerEntity, useTimes, iteration);
 						} else {
@@ -90,7 +96,7 @@ public class LightStaffItem extends Item {
 						}
 						break;
 					} else if (targetBlockState.isOf(Blocks.WATER)) {
-						if (InventoryHelper.removeFromInventory(playerEntity, COST)) {
+						if (EnchantmentHelper.getLevel(Enchantments.INFINITY, stack) > 0 || InventoryHelper.removeFromInventory(playerEntity, COST)) {
 							world.setBlockState(targetPos, SpectrumBlocks.WAND_LIGHT_BLOCK.getDefaultState().with(WATERLOGGED, true), 3);
 							playSoundAndParticles(world, targetPos, playerEntity, useTimes, iteration);
 						} else {
@@ -116,6 +122,16 @@ public class LightStaffItem extends Item {
 	
 	private void playDenySound(World world, PlayerEntity playerEntity) {
 		world.playSound(null, playerEntity.getX(), playerEntity.getY(), playerEntity.getZ(), SpectrumSoundEvents.USE_FAIL, SoundCategory.PLAYERS, 1.0F, 0.8F + playerEntity.getRandom().nextFloat() * 0.4F);
+	}
+	
+	@Override
+	public boolean canAcceptEnchantment(Enchantment enchantment) {
+		return enchantment == Enchantments.INFINITY;
+	}
+	
+	@Override
+	public int getEnchantability() {
+		return 8;
 	}
 	
 }

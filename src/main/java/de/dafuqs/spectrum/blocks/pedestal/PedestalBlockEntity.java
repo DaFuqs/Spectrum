@@ -902,4 +902,8 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		this.ownerUUID = playerEntity.getUuid();
 	}
 	
+	public void setInventoryChanged() {
+		this.inventoryChanged = true;
+	}
+	
 }

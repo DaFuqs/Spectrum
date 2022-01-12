@@ -123,16 +123,6 @@ public class PedestalScreenHandler extends AbstractRecipeScreenHandler<Inventory
 
 		this.addProperties(propertyDelegate);
 	}
-	
-	@Override
-	public void sendContentUpdates() {
-		super.sendContentUpdates();
-
-		// serverside only: if the recipe output has changed send update to the client
-		if(world.isClient) {
-
-		}
-	}
 
 	public void populateRecipeFinder(RecipeMatcher recipeMatcher) {
 		if (this.inventory != null) {
@@ -209,6 +199,12 @@ public class PedestalScreenHandler extends AbstractRecipeScreenHandler<Inventory
 	public ItemStack transferSlot(PlayerEntity player, int index) {
 		ItemStack clickedStackCopy = ItemStack.EMPTY;
 		Slot slot = this.slots.get(index);
+		
+		BlockEntity blockEntity = world.getBlockEntity(pedestalPos);
+		if(blockEntity instanceof PedestalBlockEntity pedestalBlockEntity) {
+			pedestalBlockEntity.setInventoryChanged();
+		}
+		
 		if (slot.hasStack()) {
 			ItemStack clickedStack = slot.getStack();
 			clickedStackCopy = clickedStack.copy();

@@ -93,6 +93,7 @@ public class ParticleSpawnerScreen extends HandledScreen<ParticleSpawnerScreenHa
 	  this.titleX = 48;
 	  this.titleY = 7;
 	  this.backgroundHeight = 222;
+	  this.selectableWidgets = new ArrayList<>();
    }
 
    protected void init() {

@@ -166,7 +166,7 @@ public class ParticleSpawnerScreen extends HandledScreen<ParticleSpawnerScreenHa
 	  this.textRenderer.draw(matrices, new LiteralText("x"), 66, 64, textColor);
 	  this.textRenderer.draw(matrices, new LiteralText("y"), 99, 64, textColor);
 	  this.textRenderer.draw(matrices, new LiteralText("z"), 134, 64, textColor);
-	  this.textRenderer.draw(matrices, new LiteralText("Position"), 10, 78, textColor);
+	  this.textRenderer.draw(matrices, new LiteralText("Offset"), 10, 78, textColor);
 	  this.textRenderer.draw(matrices, new LiteralText("Variance"), 21, 97, textColor);
 	  this.textRenderer.draw(matrices, new LiteralText("Velocity"), 10, 117, textColor);
 	  this.textRenderer.draw(matrices, new LiteralText("Variance"), 21, 137, textColor);

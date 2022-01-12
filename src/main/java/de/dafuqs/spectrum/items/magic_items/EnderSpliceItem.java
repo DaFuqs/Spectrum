@@ -82,7 +82,12 @@ public class EnderSpliceItem extends Item implements EnchanterEnchantable {
 			
 			playerEntity.incrementStat(Stats.USED.getOrCreateStat(this));
 			if (!playerEntity.getAbilities().creativeMode) {
-				itemStack.decrement(1);
+				int unbreakingLevel = EnchantmentHelper.getLevel(Enchantments.UNBREAKING, itemStack);
+				if(unbreakingLevel == 0) {
+					itemStack.decrement(1);
+				} else {
+					itemStack.decrement(Support.getIntFromDecimalWithChance(1.0 / (1+unbreakingLevel), world.random));
+				}
 			}
 		}
 		
@@ -251,12 +256,12 @@ public class EnderSpliceItem extends Item implements EnchanterEnchantable {
 	
 	@Override
 	public boolean canAcceptEnchantment(Enchantment enchantment) {
-		return enchantment == SpectrumEnchantments.RESONANCE;
+		return enchantment == SpectrumEnchantments.RESONANCE || enchantment == Enchantments.UNBREAKING;
 	}
 	
 	@Override
 	public int getEnchantability() {
-		return 15;
+		return 50;
 	}
 
 }

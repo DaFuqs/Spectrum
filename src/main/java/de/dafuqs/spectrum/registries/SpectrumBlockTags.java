@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.spectrum.SpectrumCommon;
+import net.fabricmc.fabric.api.tag.TagFactory;
 import net.fabricmc.fabric.api.tag.TagRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.tag.Tag;
@@ -20,6 +21,7 @@ public class SpectrumBlockTags {
 	public static Tag<Block> DECAY_OBSIDIAN_CONVERSIONS;
 	public static Tag<Block> DECAY_CRYING_OBSIDIAN_CONVERSIONS;
 	public static Tag<Block> RUIN_SAFE;
+	public static Tag<Block> TERROR_SAFE;
 	public static Tag<Block> DECAY_BEDROCK_CONVERSIONS;
 	public static Tag<Block> NATURES_STAFF_TICKABLE;
 	public static Tag<Block> NATURES_STAFF_STACKABLE;
@@ -30,7 +32,7 @@ public class SpectrumBlockTags {
 	public static Tag<Block> EXEMPT_FROM_LOOT_TABLE_DEBUG_CHECK;
 
 	private static Tag<Block> getReference(String id) {
-		return TagRegistry.block(new Identifier(SpectrumCommon.MOD_ID, id));
+		return TagFactory.BLOCK.create(new Identifier(SpectrumCommon.MOD_ID, id));
 	}
 
 	public static void getReferences() {
@@ -46,6 +48,7 @@ public class SpectrumBlockTags {
 		DECAY_OBSIDIAN_CONVERSIONS = getReference("decay_obsidian_conversions");
 		DECAY_CRYING_OBSIDIAN_CONVERSIONS = getReference("decay_crying_obsidian_conversions");
 		RUIN_SAFE = getReference("ruin_safe");
+		TERROR_SAFE = getReference("terror_safe");
 		DECAY_BEDROCK_CONVERSIONS = getReference("decay_bedrock_conversions");
 		NATURES_STAFF_TICKABLE = getReference("natures_staff_tickable");
 		NATURES_STAFF_STACKABLE = getReference("natures_staff_stackable");

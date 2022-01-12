@@ -1,0 +1,6 @@
+{
+	"variants": {
+		"decay_state=default": { "model": "spectrum:block/terror_default" },
+		"decay_state=bedrock": { "model": "spectrum:block/terror_bedrock" }
+	}
+}

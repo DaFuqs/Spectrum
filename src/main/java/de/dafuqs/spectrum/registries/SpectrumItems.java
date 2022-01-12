@@ -151,6 +151,7 @@ public class SpectrumItems {
 	public static final Item BOTTLE_OF_FADING = new DecayPlacerItem(SpectrumBlocks.FADING, decayPlacerItemSettings);
 	public static final Item BOTTLE_OF_FAILING = new DecayPlacerItem(SpectrumBlocks.FAILING, decayPlacerItemSettings);
 	public static final Item BOTTLE_OF_RUIN = new DecayPlacerItem(SpectrumBlocks.RUIN, decayPlacerItemSettings);
+	public static final Item BOTTLE_OF_TERROR = new DecayPlacerItem(SpectrumBlocks.TERROR, decayPlacerItemSettings);
 	public static final Item BOTTLE_OF_DECAY_AWAY = new DecayPlacerItem(SpectrumBlocks.DECAY_AWAY, decayPlacerItemSettings);
 
 	// Resources
@@ -306,6 +307,7 @@ public class SpectrumItems {
 		register("bottle_of_fading", BOTTLE_OF_FADING);
 		register("bottle_of_failing", BOTTLE_OF_FAILING);
 		register("bottle_of_ruin", BOTTLE_OF_RUIN);
+		register("bottle_of_terror", BOTTLE_OF_TERROR);
 		register("bottle_of_decay_away", BOTTLE_OF_DECAY_AWAY);
 	}
 	

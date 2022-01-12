@@ -1,8 +1,5 @@
 {
 	"values": [
-		"#spectrum:ruin_safe",
-		"minecraft:air",
-		"minecraft:cave_air",
-		"minecraft:light"
+		"#spectrum:ruin_safe"
 	]
 }

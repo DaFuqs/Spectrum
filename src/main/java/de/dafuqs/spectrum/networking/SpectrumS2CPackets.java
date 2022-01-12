@@ -16,6 +16,7 @@ import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.block.Block;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.entity.ExperienceOrbEntity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
@@ -49,8 +50,10 @@ public class SpectrumS2CPackets {
 	public static final Identifier PLAY_PARTICLE_PACKET_WITH_OFFSET_AND_FIXED_VELOCITY_ID = new Identifier(SpectrumCommon.MOD_ID, "play_particle_with_offset_and_fixed_position");
 	public static final Identifier CHANGE_PARTICLE_SPAWNER_SETTINGS_CLIENT_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "change_particle_spawner_settings_client");
 	public static final Identifier INITIATE_ITEM_TRANSFER = new Identifier(SpectrumCommon.MOD_ID, "initiate_item_transfer");
+	public static final Identifier INITIATE_EXPERIENCE_TRANSFER = new Identifier(SpectrumCommon.MOD_ID, "initiate_experience_transfer");
 	public static final Identifier INITIATE_WIRELESS_REDSTONE_TRANSMISSION = new Identifier(SpectrumCommon.MOD_ID, "initiate_wireless_redstone_transmission");
 	public static final Identifier PLAY_ITEM_ENTITY_ABSORBED_PARTICLE_EFFECT_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "item_entity_absorbed");
+	public static final Identifier PLAY_EXPERIENCE_ORB_ENTITY_ABSORBED_PARTICLE_EFFECT_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "experience_orb_entity_absorbed");
 	public static final Identifier PLAY_BLOCK_BOUND_SOUND_INSTANCE = new Identifier(SpectrumCommon.MOD_ID, "play_pedestal_crafting_sound_instance");
 
 	@Environment(EnvType.CLIENT)
@@ -186,6 +189,17 @@ public class SpectrumS2CPackets {
 			});
 		});
 
+		ClientPlayNetworking.registerGlobalReceiver(INITIATE_EXPERIENCE_TRANSFER, (client, handler, buf, responseSender) -> {
+			ExperienceTransfer experienceTransfer = ExperienceTransfer.readFromBuf(buf);
+			BlockPos blockPos = experienceTransfer.getOrigin();
+			client.execute(() -> {
+				// Everything in this lambda is running on the render thread
+				for(int i = 0; i < 10; i++) {
+					MinecraftClient.getInstance().player.getEntityWorld().addImportantParticle(new ExperienceTransferParticleEffect(experienceTransfer), true, (double)blockPos.getX() + 0.5D, (double)blockPos.getY() + 0.5D, (double)blockPos.getZ() + 0.5D, 0.0D, 0.0D, 0.0D);
+				}
+			});
+		});
+
 		ClientPlayNetworking.registerGlobalReceiver(INITIATE_WIRELESS_REDSTONE_TRANSMISSION, (client, handler, buf, responseSender) -> {
 			WirelessRedstoneTransmission wirelessRedstoneTransmission = WirelessRedstoneTransmission.readFromBuf(buf);
 			BlockPos blockPos = wirelessRedstoneTransmission.getOrigin();
@@ -204,9 +218,18 @@ public class SpectrumS2CPackets {
 
 			client.execute(() -> {
 				// Everything in this lambda is running on the render thread
-				for(int i = 0; i < 10; i++) {
-					MinecraftClient.getInstance().player.getEntityWorld().addParticle(SpectrumParticleTypes.BLUE_BUBBLE_POP, posX, posY, posZ, 0, 0, 0);
-				}
+				MinecraftClient.getInstance().player.getEntityWorld().addParticle(SpectrumParticleTypes.BLUE_BUBBLE_POP, posX, posY, posZ, 0, 0, 0);
+			});
+		});
+
+		ClientPlayNetworking.registerGlobalReceiver(PLAY_EXPERIENCE_ORB_ENTITY_ABSORBED_PARTICLE_EFFECT_PACKET_ID, (client, handler, buf, responseSender) -> {
+			double posX = buf.readDouble();
+			double posY = buf.readDouble();
+			double posZ = buf.readDouble();
+
+			client.execute(() -> {
+				// Everything in this lambda is running on the render thread
+				MinecraftClient.getInstance().player.getEntityWorld().addParticle(SpectrumParticleTypes.GREEN_BUBBLE_POP, posX, posY, posZ, 0, 0, 0);
 			});
 		});
 		
@@ -388,6 +411,17 @@ public class SpectrumS2CPackets {
 		}
 	}
 
+	public static void sendExperienceOrbTransferPacket(ServerWorld world, @NotNull ExperienceTransfer experienceTransfer) {
+		BlockPos blockPos = experienceTransfer.getOrigin();
+
+		PacketByteBuf buf = PacketByteBufs.create();
+		ExperienceTransfer.writeToBuf(buf, experienceTransfer);
+
+		for (ServerPlayerEntity player : PlayerLookup.tracking(world, blockPos)) {
+			ServerPlayNetworking.send(player, SpectrumS2CPackets.INITIATE_EXPERIENCE_TRANSFER, buf);
+		}
+	}
+
 	public static void sendWirelessRedstonePacket(ServerWorld world, WirelessRedstoneTransmission wirelessRedstoneTransmission) {
 		BlockPos blockPos = wirelessRedstoneTransmission.getOrigin();
 
@@ -399,6 +433,7 @@ public class SpectrumS2CPackets {
 		}
 	}
 
+	// TODO: merge with sendPlayExperienceOrbEntityAbsorbedParticle
 	public static void sendPlayItemEntityAbsorbedParticle(World world, @NotNull ItemEntity itemEntity) {
 		PacketByteBuf buf = PacketByteBufs.create();
 		buf.writeDouble(itemEntity.getPos().x);
@@ -408,6 +443,18 @@ public class SpectrumS2CPackets {
 		// Iterate over all players tracking a position in the world and send the packet to each player
 		for (ServerPlayerEntity player : PlayerLookup.tracking((ServerWorld) world, itemEntity.getBlockPos())) {
 			ServerPlayNetworking.send(player, SpectrumS2CPackets.PLAY_ITEM_ENTITY_ABSORBED_PARTICLE_EFFECT_PACKET_ID, buf);
+		}
+	}
+
+	public static void sendPlayExperienceOrbEntityAbsorbedParticle(World world, @NotNull ExperienceOrbEntity experienceOrbEntity) {
+		PacketByteBuf buf = PacketByteBufs.create();
+		buf.writeDouble(experienceOrbEntity.getPos().x);
+		buf.writeDouble(experienceOrbEntity.getPos().y);
+		buf.writeDouble(experienceOrbEntity.getPos().z);
+
+		// Iterate over all players tracking a position in the world and send the packet to each player
+		for (ServerPlayerEntity player : PlayerLookup.tracking((ServerWorld) world, experienceOrbEntity.getBlockPos())) {
+			ServerPlayNetworking.send(player, SpectrumS2CPackets.PLAY_EXPERIENCE_ORB_ENTITY_ABSORBED_PARTICLE_EFFECT_PACKET_ID, buf);
 		}
 	}
 

@@ -1,7 +1,10 @@
 {
   "variants": {
-    "": {
-      "model": "spectrum:block/pedestal_all_basic"
+    "powered=false": {
+      "model": "spectrum:block/pedestal_all_basic_unpowered"
+    },
+    "powered=true": {
+      "model": "spectrum:block/pedestal_all_basic_powered"
     }
   }
 }

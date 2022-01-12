@@ -36,7 +36,7 @@ public class CompactingChestScreen extends HandledScreen<CompactingChestScreenHa
 	protected void init() {
 		super.init();
 		
-		client.keyboard.setRepeatEvents(true);
+		//client.keyboard.setRepeatEvents(true);
 		setupInputFields(handler.getBlockEntity());
 	}
 	

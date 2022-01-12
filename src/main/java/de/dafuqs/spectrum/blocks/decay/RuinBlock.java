@@ -24,7 +24,8 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Random;
 
 public class RuinBlock extends DecayBlock {
-
+	
+	// spreads indefinitely. Though not through air
 	public static final EnumProperty<DecayConversion> DECAY_STATE = EnumProperty.of("decay_state", DecayConversion.class);
 
 	public enum DecayConversion implements StringIdentifiable {
@@ -45,11 +46,11 @@ public class RuinBlock extends DecayBlock {
 			return this.name;
 		}
 	}
-
+	
 	public RuinBlock(Settings settings, Tag<Block> whiteListBlockTag, Tag<Block> blackListBlockTag, int tier, float damageOnTouching) {
 		super(settings, whiteListBlockTag, blackListBlockTag, tier, damageOnTouching);
 		setDefaultState(getStateManager().getDefaultState().with(DECAY_STATE, DecayConversion.DEFAULT));
-
+		
 		BlockState destinationBlockState = this.getDefaultState().with(DECAY_STATE, DecayConversion.BEDROCK);
 		addDecayConversion(SpectrumBlockTags.DECAY_BEDROCK_CONVERSIONS, destinationBlockState);
 	}
@@ -79,10 +80,20 @@ public class RuinBlock extends DecayBlock {
 	protected void appendProperties(StateManager.Builder<Block, BlockState> stateManager) {
 		stateManager.add(DECAY_STATE);
 	}
-
+	
+	@Override
+	protected boolean canSpread(BlockState blockState) {
+		return true;
+	}
+	
+	@Override
+	protected BlockState getSpreadState(BlockState previousState) {
+		return this.getDefaultState();
+	}
+	
 	@Environment(EnvType.CLIENT)
 	public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
-		if (state.get(RuinBlock.DECAY_STATE).equals(DecayConversion.BEDROCK)) {
+		if (state.get(TerrorBlock.DECAY_STATE).equals(DecayConversion.BEDROCK)) {
 			float xOffset = random.nextFloat();
 			float zOffset = random.nextFloat();
 			world.addParticle(new BlockStateParticleEffect(ParticleTypes.BLOCK, state), pos.getX() + xOffset, pos.getY() + 1, pos.getZ() + zOffset, 0.0D, 0.0D, 0.0D);

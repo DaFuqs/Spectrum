@@ -64,36 +64,42 @@ public abstract class DecayBlock extends Block {
 
 	// jump to neighboring blocks
 	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-		float spreadChance = getSpreadChance();
-		if(spreadChance < 1.0F) {
-			if (random.nextFloat() > spreadChance) {
-				return;
-			}
-		}
-
-		Direction randomDirection = Direction.random(random);
-		BlockPos targetBlockPos = pos.offset(randomDirection, 1);
-		BlockState currentBlockState = world.getBlockState(targetBlockPos);
-		BlockEntity blockEntity = world.getBlockEntity(targetBlockPos);
-
-		if(blockEntity == null && !Support.hasBlockTag(currentBlockState, SpectrumBlockTags.DECAY)  // decay doesn't jump to other decay. Maybe: if tier is smaller it should still be converted?
-			&& (whiteListBlockTag == null || Support.hasBlockTag(currentBlockState, whiteListBlockTag))
-			&& (blackListBlockTag == null ||!Support.hasBlockTag(currentBlockState, blackListBlockTag))
-				// bedrock is ok, but not other modded unbreakable blocks
-		&& (currentBlockState.getBlock() == Blocks.BEDROCK || currentBlockState.getBlock().getHardness() > -1.0F && currentBlockState.getBlock().getBlastResistance() < 3600000.0F)) {
-
-			BlockState destinationBlockState = this.getDefaultState();
-			for(Map.Entry<Tag<Block>, BlockState> tagEntry : decayConversions.entrySet()) {
-				if(Support.hasBlockTag(currentBlockState, tagEntry.getKey())) {
-					destinationBlockState = tagEntry.getValue();
-					break;
+		if(canSpread(state)) {
+			float spreadChance = getSpreadChance();
+			if (spreadChance < 1.0F) {
+				if (random.nextFloat() > spreadChance) {
+					return;
 				}
 			}
-
-			world.setBlockState(targetBlockPos, destinationBlockState);
+			
+			Direction randomDirection = Direction.random(random);
+			BlockPos targetBlockPos = pos.offset(randomDirection, 1);
+			BlockState currentBlockState = world.getBlockState(targetBlockPos);
+			BlockEntity blockEntity = world.getBlockEntity(targetBlockPos);
+			
+			if (blockEntity == null && !Support.hasBlockTag(currentBlockState, SpectrumBlockTags.DECAY)  // decay doesn't jump to other decay. Maybe: if tier is smaller it should still be converted?
+					&& (whiteListBlockTag == null || Support.hasBlockTag(currentBlockState, whiteListBlockTag))
+					&& (blackListBlockTag == null || !Support.hasBlockTag(currentBlockState, blackListBlockTag))
+					// bedrock is ok, but not other modded unbreakable blocks
+					&& (currentBlockState.getBlock() == Blocks.BEDROCK || (currentBlockState.getBlock().getHardness() > -1.0F && currentBlockState.getBlock().getBlastResistance() < 3600000.0F))) {
+				
+				BlockState destinationBlockState = getSpreadState(state);
+				for (Map.Entry<Tag<Block>, BlockState> tagEntry : decayConversions.entrySet()) {
+					if (Support.hasBlockTag(currentBlockState, tagEntry.getKey())) {
+						destinationBlockState = tagEntry.getValue();
+						break;
+					}
+				}
+				
+				world.setBlockState(targetBlockPos, destinationBlockState);
+			}
 		}
 	}
 
 	protected abstract float getSpreadChance();
+	
+	protected abstract boolean canSpread(BlockState blockState);
+	
+	protected abstract BlockState getSpreadState(BlockState previousState);
 
 }

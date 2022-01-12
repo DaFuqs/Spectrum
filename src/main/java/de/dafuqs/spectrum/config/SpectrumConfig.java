@@ -60,12 +60,17 @@ How fast decay will be spreading on random tick
 can be used to slow down propagation speed of decay in the worlds
 decay does use very few resources, but if your fear of someone letting decay
 spread free or using higher random tick rates than vanilla you can limit the spreading rate here
+
+Fading and Failing do no real harm to the world. If you turn up these values too high players
+may lack the feedback they need that what they are doing is correct
+
 1.0: every random tick (default)
 0.5: Every second random tick
 0.0: never (forbidden - players would be unable to progress)""")
 	public float FadingDecayTickRate = 1.0F;
 	public float FailingDecayTickRate = 1.0F;
 	public float RuinDecayTickRate = 1.0F;
+	public float TerrorDecayTickRate = 1.0F;
 
 	@Comment("Enable or disable specific enchantments. Resonance and Voiding can not be disabled.")
 	public boolean AutoSmeltEnchantmentEnabled = true;

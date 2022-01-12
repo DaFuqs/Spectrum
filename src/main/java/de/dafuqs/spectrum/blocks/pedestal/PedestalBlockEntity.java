@@ -327,96 +327,94 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 	}
 	
 	public static void serverTick(@NotNull World world, BlockPos blockPos, BlockState blockState, PedestalBlockEntity pedestalBlockEntity) {
+		if(pedestalBlockEntity.upgrades == null) {
+			pedestalBlockEntity.calculateUpgrades();
+		}
+		
+		// check recipe crafted last tick => performance
+		boolean shouldMarkDirty = false;
+
+		Recipe calculatedRecipe = calculateRecipe(world, pedestalBlockEntity);
+		pedestalBlockEntity.inventoryChanged = false;
+		if (pedestalBlockEntity.currentRecipe != calculatedRecipe) {
+			pedestalBlockEntity.currentRecipe = calculatedRecipe;
+			pedestalBlockEntity.craftingTime = 0;
+			if (calculatedRecipe instanceof PedestalCraftingRecipe calculatedPedestalCraftingRecipe) {
+				pedestalBlockEntity.craftingTimeTotal = (int) Math.ceil(calculatedPedestalCraftingRecipe.getCraftingTime() / pedestalBlockEntity.upgrades.get(UpgradeType.SPEED));
+			} else {
+				pedestalBlockEntity.craftingTimeTotal = (int) Math.ceil(20 / pedestalBlockEntity.upgrades.get(UpgradeType.SPEED));
+			}
+			pedestalBlockEntity.markDirty();
+			SpectrumS2CPackets.sendCancelBlockBoundSoundInstance((ServerWorld) pedestalBlockEntity.getWorld(), pedestalBlockEntity.getPos());
+			updateInClientWorld(pedestalBlockEntity);
+		}
+		
 		// only craft when there is redstone power
-		Block block = world.getBlockState(blockPos).getBlock();
-		if(block instanceof PedestalBlock) {
-			if(pedestalBlockEntity.upgrades == null) {
-				pedestalBlockEntity.calculateUpgrades();
-			}
-			
-			// check recipe crafted last tick => performance
-			boolean shouldMarkDirty = false;
-
-			Recipe calculatedRecipe = calculateRecipe(world, pedestalBlockEntity);
-			pedestalBlockEntity.inventoryChanged = false;
-			if (pedestalBlockEntity.currentRecipe != calculatedRecipe) {
-				pedestalBlockEntity.currentRecipe = calculatedRecipe;
+		if(pedestalBlockEntity.craftingTime == 0 && !(blockState.getBlock() instanceof PedestalBlock && blockState.get(PedestalBlock.POWERED))) {
+			return;
+		}
+		
+		int maxCountPerStack = pedestalBlockEntity.getMaxCountPerStack();
+		// Pedestal crafting
+		boolean craftingFinished = false;
+		if (calculatedRecipe instanceof PedestalCraftingRecipe pedestalCraftingRecipe && canAcceptRecipeOutput(calculatedRecipe, pedestalBlockEntity.inventory, maxCountPerStack)) {
+			pedestalBlockEntity.craftingTime++;
+			if (pedestalBlockEntity.craftingTime == pedestalBlockEntity.craftingTimeTotal) {
 				pedestalBlockEntity.craftingTime = 0;
-				if (calculatedRecipe instanceof PedestalCraftingRecipe calculatedPedestalCraftingRecipe) {
-					pedestalBlockEntity.craftingTimeTotal = (int) Math.ceil(calculatedPedestalCraftingRecipe.getCraftingTime() / pedestalBlockEntity.upgrades.get(UpgradeType.SPEED));
-				} else {
-					pedestalBlockEntity.craftingTimeTotal = (int) Math.ceil(20 / pedestalBlockEntity.upgrades.get(UpgradeType.SPEED));
+				craftingFinished = craftPedestalRecipe(pedestalBlockEntity, pedestalCraftingRecipe, pedestalBlockEntity.inventory, maxCountPerStack);
+				if(craftingFinished) {
+					pedestalBlockEntity.inventoryChanged  = true;
 				}
-				pedestalBlockEntity.markDirty();
-				// TODO: Check and cancel clientside instead
-				SpectrumS2CPackets.sendCancelBlockBoundSoundInstance((ServerWorld) pedestalBlockEntity.getWorld(), pedestalBlockEntity.getPos());
-				updateInClientWorld(pedestalBlockEntity);
+				shouldMarkDirty = true;
 			}
-			
-			int maxCountPerStack = pedestalBlockEntity.getMaxCountPerStack();
-			// Pedestal crafting
-			boolean craftingFinished = false;
-			if (calculatedRecipe instanceof PedestalCraftingRecipe pedestalCraftingRecipe && canAcceptRecipeOutput(calculatedRecipe, pedestalBlockEntity.inventory, maxCountPerStack)) {
-				pedestalBlockEntity.craftingTime++;
-				if (pedestalBlockEntity.craftingTime == pedestalBlockEntity.craftingTimeTotal) {
-					pedestalBlockEntity.craftingTime = 0;
-					craftingFinished = craftPedestalRecipe(pedestalBlockEntity, pedestalCraftingRecipe, pedestalBlockEntity.inventory, maxCountPerStack);
-					if(craftingFinished) {
-						pedestalBlockEntity.inventoryChanged  = true;
-					}
-					shouldMarkDirty = true;
+		// Vanilla crafting
+		} else if(calculatedRecipe instanceof CraftingRecipe vanillaCraftingRecipe && canAcceptRecipeOutput(calculatedRecipe, pedestalBlockEntity.inventory, maxCountPerStack)) {
+			pedestalBlockEntity.craftingTime++;
+			if (pedestalBlockEntity.craftingTime == pedestalBlockEntity.craftingTimeTotal) {
+				pedestalBlockEntity.craftingTime = 0;
+				craftingFinished = pedestalBlockEntity.craftVanillaRecipe(vanillaCraftingRecipe, pedestalBlockEntity.inventory, maxCountPerStack);
+				if(craftingFinished) {
+					pedestalBlockEntity.inventoryChanged  = true;
 				}
-			// Vanilla crafting
-			} else if(calculatedRecipe instanceof CraftingRecipe vanillaCraftingRecipe && canAcceptRecipeOutput(calculatedRecipe, pedestalBlockEntity.inventory, maxCountPerStack)) {
-				pedestalBlockEntity.craftingTime++;
-				if (pedestalBlockEntity.craftingTime == pedestalBlockEntity.craftingTimeTotal) {
-					pedestalBlockEntity.craftingTime = 0;
-					craftingFinished = pedestalBlockEntity.craftVanillaRecipe(vanillaCraftingRecipe, pedestalBlockEntity.inventory, maxCountPerStack);
-					if(craftingFinished) {
-						pedestalBlockEntity.inventoryChanged  = true;
-					}
-					shouldMarkDirty = true;
-				}
+				shouldMarkDirty = true;
 			}
-			
-			if((!pedestalBlockEntity.wasPoweredBefore && pedestalBlockEntity.craftingTime > 0) || (pedestalBlockEntity.craftingTime == 1 && pedestalBlockEntity.craftingTimeTotal > 1)) {
-				SpectrumS2CPackets.sendPlayBlockBoundSoundInstance(SpectrumSoundEvents.PEDESTAL_CRAFTING, (ServerWorld) pedestalBlockEntity.world, pedestalBlockEntity.getPos(), pedestalBlockEntity.craftingTimeTotal - pedestalBlockEntity.craftingTime);
-			}
+		}
+		
+		if((!pedestalBlockEntity.wasPoweredBefore && pedestalBlockEntity.craftingTime > 0) || (pedestalBlockEntity.craftingTime == 1 && pedestalBlockEntity.craftingTimeTotal > 1)) {
+			SpectrumS2CPackets.sendPlayBlockBoundSoundInstance(SpectrumSoundEvents.PEDESTAL_CRAFTING, (ServerWorld) pedestalBlockEntity.world, pedestalBlockEntity.getPos(), pedestalBlockEntity.craftingTimeTotal - pedestalBlockEntity.craftingTime);
+		}
 
-			// try to output the currently stored output stack
-			ItemStack outputItemStack = pedestalBlockEntity.inventory.get(OUTPUT_SLOT_ID);
-			if (outputItemStack != ItemStack.EMPTY) {
-				if (world.getBlockState(blockPos.up()).isAir()) {
-					spawnOutputAsItemEntity(world, blockPos, pedestalBlockEntity, outputItemStack);
-					playCraftingFinishedSoundEvent(pedestalBlockEntity, calculatedRecipe);
-				} else {
-					BlockEntity aboveBlockEntity = world.getBlockEntity(blockPos.up());
-					if (aboveBlockEntity instanceof Inventory aboveInventory) {
-						boolean putIntoAboveInventorySuccess = tryPutOutputIntoAboveInventory(pedestalBlockEntity, aboveInventory, outputItemStack);
-						if(putIntoAboveInventorySuccess) {
-							playCraftingFinishedSoundEvent(pedestalBlockEntity, calculatedRecipe);
-						} else {
-							// play sound when the entity can not put its output anywhere
-							if (craftingFinished) {
-								pedestalBlockEntity.playSound(SoundEvents.BLOCK_LAVA_EXTINGUISH);
-							}
-						}
+		// try to output the currently stored output stack
+		ItemStack outputItemStack = pedestalBlockEntity.inventory.get(OUTPUT_SLOT_ID);
+		if (outputItemStack != ItemStack.EMPTY) {
+			if (world.getBlockState(blockPos.up()).isAir()) {
+				spawnOutputAsItemEntity(world, blockPos, pedestalBlockEntity, outputItemStack);
+				playCraftingFinishedSoundEvent(pedestalBlockEntity, calculatedRecipe);
+			} else {
+				BlockEntity aboveBlockEntity = world.getBlockEntity(blockPos.up());
+				if (aboveBlockEntity instanceof Inventory aboveInventory) {
+					boolean putIntoAboveInventorySuccess = tryPutOutputIntoAboveInventory(pedestalBlockEntity, aboveInventory, outputItemStack);
+					if(putIntoAboveInventorySuccess) {
+						playCraftingFinishedSoundEvent(pedestalBlockEntity, calculatedRecipe);
 					} else {
 						// play sound when the entity can not put its output anywhere
 						if (craftingFinished) {
 							pedestalBlockEntity.playSound(SoundEvents.BLOCK_LAVA_EXTINGUISH);
 						}
 					}
+				} else {
+					// play sound when the entity can not put its output anywhere
+					if (craftingFinished) {
+						pedestalBlockEntity.playSound(SoundEvents.BLOCK_LAVA_EXTINGUISH);
+					}
 				}
 			}
-
-			if (shouldMarkDirty) {
-				markDirty(world, blockPos, blockState);
-			}
-			pedestalBlockEntity.wasPoweredBefore = true;
-		} else {
-			pedestalBlockEntity.wasPoweredBefore = false;
 		}
+
+		if (shouldMarkDirty) {
+			markDirty(world, blockPos, blockState);
+		}
+		pedestalBlockEntity.wasPoweredBefore = true;
 	}
 
 	@Contract(pure = true)

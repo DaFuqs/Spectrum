@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.blocks.pedestal;
 
+import de.dafuqs.spectrum.blocks.RedstonePoweredBlock;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
@@ -17,11 +18,15 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.AutomaticItemPlacementContext;
+import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.particle.DustParticleEffect;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.state.StateManager;
+import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.Hand;
@@ -29,6 +34,7 @@ import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.Vec3f;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
@@ -36,9 +42,10 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Random;
 
-public class PedestalBlock extends BlockWithEntity {
+public class PedestalBlock extends BlockWithEntity implements RedstonePoweredBlock {
 
 	private final PedestalVariant variant;
+	public static final BooleanProperty POWERED = BooleanProperty.of("powered");
 
 	public enum PedestalVariant {
 		BASIC_TOPAZ,
@@ -52,6 +59,7 @@ public class PedestalBlock extends BlockWithEntity {
 	public PedestalBlock(Settings settings, PedestalVariant variant) {
 		super(settings);
 		this.variant = variant;
+		setDefaultState(getStateManager().getDefaultState().with(POWERED, false));
 	}
 
 	public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
@@ -62,6 +70,11 @@ public class PedestalBlock extends BlockWithEntity {
 				blockEntity.markDirty();
 			}
 		}
+	}
+
+	@Override
+	protected void appendProperties(StateManager.Builder<Block, BlockState> stateManager) {
+		stateManager.add(POWERED);
 	}
 
 	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
@@ -138,7 +151,38 @@ public class PedestalBlock extends BlockWithEntity {
 			return checkType(type, SpectrumBlockEntityRegistry.PEDESTAL, PedestalBlockEntity::serverTick);
 		}
 	}
-	
+
+	@Override
+	public void neighborUpdate(BlockState state, @NotNull World world, BlockPos pos, Block block, BlockPos fromPos, boolean notify) {
+		if (!world.isClient) {
+			if(this.checkGettingPowered(world, pos)) {
+				this.power(world, pos);
+			} else {
+				this.unPower(world, pos);
+			}
+		}
+	}
+
+	@Environment(EnvType.CLIENT)
+	public void randomDisplayTick(@NotNull BlockState state, World world, BlockPos pos, Random random) {
+		if (state.get(PedestalBlock.POWERED)) {
+			Vec3f vec3f = new Vec3f(0.5F, 0.5F, 0.5F);
+			float xOffset = random.nextFloat();
+			float zOffset = random.nextFloat();
+			world.addParticle(new DustParticleEffect(vec3f, 1.0F), pos.getX() + xOffset, pos.getY() + 1, pos.getZ() + zOffset, 0.0D, 0.0D, 0.0D);
+		}
+	}
+
+	public BlockState getPlacementState(@NotNull ItemPlacementContext ctx) {
+		BlockState placementState = this.getDefaultState();
+
+		if(ctx.getWorld().getReceivedRedstonePower(ctx.getBlockPos()) > 0) {
+			placementState = placementState.with(POWERED, true);
+		}
+
+		return placementState;
+	}
+
 	public PedestalVariant getVariant() {
 		return this.variant;
 	}

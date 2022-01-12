@@ -112,6 +112,7 @@ public class ItemBowlBlockEntity extends BlockEntity {
 		if(decrementAmount > 0) {
 			doEnchantingEffects(particleTargetBlockPos, decrementAmount);
 			updateInClientWorld();
+			markDirty();
 		}
 		
 		return decrementAmount;

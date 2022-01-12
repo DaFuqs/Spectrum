@@ -15,6 +15,8 @@ import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.EnumProperty;
+import net.minecraft.state.property.IntProperty;
+import net.minecraft.state.property.Properties;
 import net.minecraft.tag.Tag;
 import net.minecraft.util.StringIdentifiable;
 import net.minecraft.util.math.BlockPos;
@@ -25,6 +27,7 @@ import java.util.Random;
 
 public class FailingBlock extends DecayBlock {
 	
+	public static final IntProperty AGE = Properties.AGE_15; // failing may spread 15 blocks max. It consuming obsidian resets that value
 	public static final EnumProperty<DecayConversion> DECAY_STATE = EnumProperty.of("decay_state", DecayConversion.class);
 
 	public enum DecayConversion implements StringIdentifiable {
@@ -49,8 +52,9 @@ public class FailingBlock extends DecayBlock {
 
 	public FailingBlock(Settings settings, Tag<Block> whiteListBlockTag, Tag<Block> blackListBlockTag, int tier, float damageOnTouching) {
 		super(settings, whiteListBlockTag, blackListBlockTag, tier, damageOnTouching);
-		setDefaultState(getStateManager().getDefaultState().with(DECAY_STATE, DecayConversion.DEFAULT));
-
+		setDefaultState(getStateManager().getDefaultState().with(AGE, 0).with(DECAY_STATE, DecayConversion.DEFAULT));
+		
+		// consuming obsidian sets the "age" back to 0, like it consuming strength
 		BlockState destinationBlockState = this.getDefaultState().with(DECAY_STATE, DecayConversion.OBSIDIAN);
 		addDecayConversion(SpectrumBlockTags.DECAY_OBSIDIAN_CONVERSIONS, destinationBlockState);
 
@@ -80,7 +84,17 @@ public class FailingBlock extends DecayBlock {
 
 	@Override
 	protected void appendProperties(StateManager.Builder<Block, BlockState> stateManager) {
-		stateManager.add(DECAY_STATE);
+		stateManager.add(AGE, DECAY_STATE);
+	}
+	
+	@Override
+	protected boolean canSpread(BlockState blockState) {
+		return blockState.get(AGE) < Properties.AGE_15_MAX;
+	}
+	
+	@Override
+	protected BlockState getSpreadState(BlockState previousState) {
+		return this.getDefaultState().with(AGE, previousState.get(AGE) + 1);
 	}
 
 	@Environment(EnvType.CLIENT)

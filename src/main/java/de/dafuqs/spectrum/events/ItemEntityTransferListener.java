@@ -70,7 +70,7 @@ public class ItemEntityTransferListener implements GameEventListener {
 		}
 	}
 
-	private boolean shouldActivate(GameEvent event, @Nullable Entity entity) {
+	boolean shouldActivate(GameEvent event, @Nullable Entity entity) {
 		if (this.event.isEmpty()) {
 			if(entity instanceof ItemEntity itemEntity) {
 				return itemEntity.isAlive() && !itemEntity.getStack().isEmpty();

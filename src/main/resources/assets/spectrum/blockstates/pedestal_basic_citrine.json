@@ -1,7 +1,10 @@
 {
   "variants": {
-    "": {
-      "model": "spectrum:block/pedestal_basic_citrine"
+    "powered=false": {
+      "model": "spectrum:block/pedestal_basic_citrine_unpowered"
+    },
+    "powered=true": {
+      "model": "spectrum:block/pedestal_basic_citrine_powered"
     }
   }
 }

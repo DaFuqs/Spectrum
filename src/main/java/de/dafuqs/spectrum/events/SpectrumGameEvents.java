@@ -13,11 +13,11 @@ import java.util.Locale;
 
 public class SpectrumGameEvents {
 
-	public static GameEvent ITEM_TRANSFER;
+	public static GameEvent ENTITY_SPAWNED;
 	public static HashMap<DyeColor, List<RedstoneTransferGameEvent>> WIRELESS_REDSTONE_SIGNALS = new HashMap<>(); // a list of 16 * 16 events, meaning redstone strength 0-15 with each dye color
 
 	public static void register() {
-		ITEM_TRANSFER = register("item_spawned");
+		ENTITY_SPAWNED = register("entity_spawned");
 
 		for(DyeColor dyeColor : DyeColor.values()) {
 			List<RedstoneTransferGameEvent> list = new ArrayList<>();

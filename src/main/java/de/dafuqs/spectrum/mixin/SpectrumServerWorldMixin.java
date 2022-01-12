@@ -16,7 +16,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import java.util.function.BooleanSupplier;
 
 @Mixin(ServerWorld.class)
-public class ServerWorldMixin {
+public class SpectrumServerWorldMixin {
 
 	@Shadow
 	private int idleTimeout;
@@ -34,7 +34,7 @@ public class ServerWorldMixin {
 
 	@Inject(at = @At("TAIL"), method = "spawnEntity")
 	private void spawnEntity(Entity entity, final CallbackInfoReturnable<Boolean> info) {
-		entity.emitGameEvent(SpectrumGameEvents.ITEM_TRANSFER);
+		entity.emitGameEvent(SpectrumGameEvents.ENTITY_SPAWNED);
 	}
 
 }

@@ -38,7 +38,7 @@
     "RecipeManagerMixin",
     "RedstoneOreMixin",
     "ServerPlayerEntityMixin",
-    "ServerWorldMixin",
+    "SpectrumServerWorldMixin",
     "SpawnerBlockMixin",
     "WorldRendererMixin"
   ],

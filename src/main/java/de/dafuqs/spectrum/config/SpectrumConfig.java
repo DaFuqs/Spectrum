@@ -54,7 +54,10 @@ per night per player that unlocked the required progression.""")
 	@Comment("The biomes where the biome specific plants are growing")
 	public List<String> MermaidsBrushGenerationBiomes = Arrays.asList("minecraft:ocean", "minecraft:cold_ocean", "minecraft_frozen_ocean", "minecraft:lukewarm_ocean", "minecraft:warm_ocean" ,"minecraft:deep_ocean", "minecraft:deep_cold_ocean", "minecraft:deep_frozen_ocean", "minecraft:deep_warm_ocean", "minecraft:deep_lukewarm_ocean");
 	public List<String> QuitoxicReedsGenerationBiomes = Arrays.asList("minecraft:swamp");
-
+	
+	@Comment("The time in ticks it takes a Pigment Pedestal to autocraft a vanilla crafting table recipe without upgrades")
+	public int VanillaRecipeCraftingTimeTicks = 40;
+	
 	@Comment("""
 How fast decay will be spreading on random tick
 can be used to slow down propagation speed of decay in the worlds
@@ -117,6 +120,7 @@ may lack the feedback they need that what they are doing is correct
 
 	@Override
 	public void validatePostLoad() throws ValidationException {
+		if(VanillaRecipeCraftingTimeTicks <= 0) { VanillaRecipeCraftingTimeTicks = 40; }
 		if(FadingDecayTickRate <= 0) { FadingDecayTickRate = 1.0F; }
 		if(FailingDecayTickRate <= 0) { FadingDecayTickRate = 1.0F; }
 		if(RuinDecayTickRate <= 0) { RuinDecayTickRate = 1.0F; }

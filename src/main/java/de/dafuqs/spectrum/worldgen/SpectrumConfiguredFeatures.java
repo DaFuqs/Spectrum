@@ -96,32 +96,28 @@ public class SpectrumConfiguredFeatures {
 		
 		registerConfiguredAndPlacedFeature(
 			sparklestoneOreIdentifier,
-			Feature.ORE.configure(new OreFeatureConfig(SPARKLESTONE_ORE_TARGETS, 11)),
-				List.of(
-				HeightRangePlacementModifier.uniform(YOffset.aboveBottom(48), YOffset.belowTop(48)), // min and max height
-				CountPlacementModifier.of(6) // number of veins per chunk
+			Feature.ORE.configure(new OreFeatureConfig(SPARKLESTONE_ORE_TARGETS, 8)), List.of(
+				HeightRangePlacementModifier.uniform(YOffset.aboveBottom(48), YOffset.fixed(128)), // min and max height
+				CountPlacementModifier.of(9) // number of veins per chunk
 		));
 		
 		registerConfiguredAndPlacedFeature(
 			azuriteOreIdentifier,
-			Feature.ORE.configure(new OreFeatureConfig(AZURITE_ORE_TARGETS, 5, 0.5F)),
-				List.of(
+			Feature.ORE.configure(new OreFeatureConfig(AZURITE_ORE_TARGETS, 5, 0.5F)), List.of(
 				HeightRangePlacementModifier.trapezoid(YOffset.getBottom(), YOffset.aboveBottom(32)), // min and max height
 				CountPlacementModifier.of(4) // number of veins per chunk
 		));
 		
 		registerConfiguredAndPlacedFeature(
 			scarletOreIdentifier,
-			Feature.ORE.configure(new OreFeatureConfig(OreConfiguredFeatures.BASE_STONE_NETHER, scarletOre, 6)),
-				List.of(
+			Feature.ORE.configure(new OreFeatureConfig(OreConfiguredFeatures.BASE_STONE_NETHER, scarletOre, 6)), List.of(
 				HeightRangePlacementModifier.uniform(YOffset.aboveBottom(10), YOffset.belowTop(64)), // min and max height
 				CountPlacementModifier.of(8) // number of veins per chunk
 		));
 		
 		registerConfiguredAndPlacedFeature(
 			paleturOreIdentifier,
-			Feature.ORE.configure(new OreFeatureConfig(Rules.END_STONE, paleturOre, 4, 0.3F)),
-			List.of(
+			Feature.ORE.configure(new OreFeatureConfig(Rules.END_STONE, paleturOre, 4, 0.3F)), List.of(
 				HeightRangePlacementModifier.uniform(YOffset.getBottom(), YOffset.getTop()), // min and max height
 				CountPlacementModifier.of(6) // number of veins per chunk
 		));

@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.items.magic_items;
 
 import de.dafuqs.spectrum.BuildingHelper;
 import de.dafuqs.spectrum.Support;
+import de.dafuqs.spectrum.blocks.enchanter.EnchanterEnchantable;
 import de.dafuqs.spectrum.enums.PedestalRecipeTier;
 import de.dafuqs.spectrum.networking.SpectrumS2CPackets;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
@@ -13,6 +14,8 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.item.TooltipContext;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -41,7 +44,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class ExchangeStaffItem extends BuildingStaffItem {
+public class ExchangeStaffItem extends BuildingStaffItem implements EnchanterEnchantable {
 	
 	public static final int CREATIVE_RANGE = 5;
 	
@@ -210,6 +213,16 @@ public class ExchangeStaffItem extends BuildingStaffItem {
 		} else {
 			return ActionResult.FAIL;
 		}
+	}
+	
+	@Override
+	public boolean canAcceptEnchantment(Enchantment enchantment) {
+		return enchantment == Enchantments.FORTUNE || enchantment == Enchantments.SILK_TOUCH;
+	}
+	
+	@Override
+	public int getEnchantability() {
+		return 3;
 	}
 	
 }

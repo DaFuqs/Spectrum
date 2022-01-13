@@ -1,7 +1,9 @@
 package de.dafuqs.spectrum.blocks.chests;
 
 import de.dafuqs.spectrum.inventories.AutoCompactingInventory;
+import de.dafuqs.spectrum.inventories.CompactingChestScreenHandler;
 import de.dafuqs.spectrum.inventories.RestockingChestScreenHandler;
+import de.dafuqs.spectrum.inventories.SuckingChestScreenHandler;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.api.EnvironmentInterface;
@@ -62,8 +64,12 @@ public abstract class SpectrumChestBlockEntity extends LootableContainerBlockEnt
 				Inventory inventory = null;
 				if(screenHandler instanceof GenericContainerScreenHandler) {
 					inventory = ((GenericContainerScreenHandler) screenHandler).getInventory();
-				} else if (screenHandler instanceof RestockingChestScreenHandler){
-					inventory = ((RestockingChestScreenHandler) screenHandler).getInventory();
+				} else if (screenHandler instanceof RestockingChestScreenHandler restockingChestScreenHandler){
+					inventory = restockingChestScreenHandler.getInventory();
+				} else if (screenHandler instanceof SuckingChestScreenHandler suckingChestScreenHandler){
+					inventory = suckingChestScreenHandler.getInventory();
+				} else if (screenHandler instanceof CompactingChestScreenHandler compactingChestScreenHandler){
+					inventory = compactingChestScreenHandler.getInventory();
 				}
 
 				return inventory == SpectrumChestBlockEntity.this;

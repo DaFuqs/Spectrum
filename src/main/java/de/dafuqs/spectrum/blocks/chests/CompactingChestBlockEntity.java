@@ -1,16 +1,12 @@
 package de.dafuqs.spectrum.blocks.chests;
 
 import de.dafuqs.spectrum.InventoryHelper;
-import de.dafuqs.spectrum.enums.SpectrumTier;
 import de.dafuqs.spectrum.inventories.AutoCompactingInventory;
 import de.dafuqs.spectrum.inventories.CompactingChestScreenHandler;
-import de.dafuqs.spectrum.inventories.GenericSpectrumContainerScreenHandler;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.Inventories;
-import net.minecraft.inventory.Inventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
@@ -24,11 +20,9 @@ import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.Pair;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3f;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;

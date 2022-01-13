@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.spectrum.SpectrumCommon;
 import net.fabricmc.fabric.api.tag.TagFactory;
-import net.fabricmc.fabric.api.tag.TagRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.tag.Tag;
 import net.minecraft.util.Identifier;

@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.inventories;
 import com.mojang.blaze3d.systems.RenderSystem;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.chests.CompactingChestBlockEntity;
-import de.dafuqs.spectrum.blocks.particle_spawner.ParticleSpawnerBlockEntity;
 import de.dafuqs.spectrum.networking.SpectrumC2SPackets;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
@@ -17,10 +16,6 @@ import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
-
-import java.util.ArrayList;
 
 public class CompactingChestScreen extends HandledScreen<CompactingChestScreenHandler> {
 

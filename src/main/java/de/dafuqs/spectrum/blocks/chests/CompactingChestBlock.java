@@ -1,14 +1,11 @@
 package de.dafuqs.spectrum.blocks.chests;
 
-import de.dafuqs.spectrum.blocks.particle_spawner.ParticleSpawnerBlockEntity;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
-import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;

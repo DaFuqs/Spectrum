@@ -8,7 +8,6 @@ import de.dafuqs.spectrum.events.SuckingChestEventListener;
 import de.dafuqs.spectrum.inventories.SuckingChestScreenHandler;
 import de.dafuqs.spectrum.items.ExperienceStorageItem;
 import de.dafuqs.spectrum.networking.SpectrumS2CPackets;
-import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
 import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;

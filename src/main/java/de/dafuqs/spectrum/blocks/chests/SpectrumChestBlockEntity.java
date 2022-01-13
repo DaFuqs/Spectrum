@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.blocks.chests;
 
-import de.dafuqs.spectrum.inventories.AutoCompactingInventory;
 import de.dafuqs.spectrum.inventories.CompactingChestScreenHandler;
 import de.dafuqs.spectrum.inventories.RestockingChestScreenHandler;
 import de.dafuqs.spectrum.inventories.SuckingChestScreenHandler;

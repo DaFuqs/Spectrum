@@ -1,8 +1,8 @@
 {
   "criteria": {
-    "collected_scarlet": {
+    "collected_scarlet_gem": {
       "trigger":"spectrum:has_advancement",
-      "conditions": { "advancement_identifier": "spectrum:midgame/collect_scarlet" }
+      "conditions": { "advancement_identifier": "spectrum:hidden/collect_scarlet_gem" }
     },
     "reached_midgame": {
       "trigger":"spectrum:has_advancement",

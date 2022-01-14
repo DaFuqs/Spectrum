@@ -1,6 +1,6 @@
 {
     "name": "Exuberance",
-    "icon": "minecraft:iron_sword",
+    "icon": "spectrum:multitool",
     "advancement": "spectrum:progression/enchantments/exuberance",
     "category": "spectrum:enchanting_category",
     "pages": [
@@ -11,8 +11,8 @@
         {
             "type": "patchouli:spotlight",
             "title": "Characteristics",
-            "item": "minecraft:iron_sword{Enchantments: [{id: \"spectrum:exuberance\", lvl: 5s}]}",
-            "text": "Increases dropped XP for mob kills.$(br2)Max Level: 5$(br)Applicable to melee weapons."
+            "item": "spectrum:multitool{Enchantments: [{id: \"spectrum:exuberance\", lvl: 5s}]}",
+            "text": "Increases dropped XP for mob kills.$(br2)Max Level: 5$(br)Applicable to melee weapons and mining tools."
         }
     ]
 }

@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum;
 
 import de.dafuqs.spectrum.progression.ClientAdvancements;
+import io.netty.handler.logging.LogLevel;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.advancement.Advancement;
@@ -140,6 +141,8 @@ public class Support {
 		} else if(advancementIdentifier == null) {
 			return true;
 		}
+		
+		SpectrumCommon.log(Level.INFO, playerEntity.getClass().getCanonicalName());
 		
 		if (playerEntity instanceof ServerPlayerEntity) {
 			Advancement advancement = SpectrumCommon.minecraftServer.getAdvancementLoader().get(advancementIdentifier);

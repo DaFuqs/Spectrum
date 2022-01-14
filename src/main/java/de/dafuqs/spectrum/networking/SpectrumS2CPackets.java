@@ -50,6 +50,7 @@ public class SpectrumS2CPackets {
 	public static final Identifier PLAY_PARTICLE_PACKET_WITH_EXACT_OFFSET_AND_VELOCITY_ID = new Identifier(SpectrumCommon.MOD_ID, "play_particle_with_random_offset_and_velocity");
 	public static final Identifier CHANGE_PARTICLE_SPAWNER_SETTINGS_CLIENT_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "change_particle_spawner_settings_client");
 	public static final Identifier INITIATE_ITEM_TRANSFER = new Identifier(SpectrumCommon.MOD_ID, "initiate_item_transfer");
+	public static final Identifier INITIATE_TRANSPHERE = new Identifier(SpectrumCommon.MOD_ID, "initiate_transphere");
 	public static final Identifier INITIATE_EXPERIENCE_TRANSFER = new Identifier(SpectrumCommon.MOD_ID, "initiate_experience_transfer");
 	public static final Identifier INITIATE_WIRELESS_REDSTONE_TRANSMISSION = new Identifier(SpectrumCommon.MOD_ID, "initiate_wireless_redstone_transmission");
 	public static final Identifier PLAY_ITEM_ENTITY_ABSORBED_PARTICLE_EFFECT_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "item_entity_absorbed");
@@ -184,6 +185,17 @@ public class SpectrumS2CPackets {
 				// Everything in this lambda is running on the render thread
 				for(int i = 0; i < 10; i++) {
 					MinecraftClient.getInstance().player.getEntityWorld().addImportantParticle(new ItemTransferParticleEffect(itemTransfer), true, (double)blockPos.getX() + 0.5D, (double)blockPos.getY() + 0.5D, (double)blockPos.getZ() + 0.5D, 0.0D, 0.0D, 0.0D);
+				}
+			});
+		});
+
+		ClientPlayNetworking.registerGlobalReceiver(INITIATE_TRANSPHERE, (client, handler, buf, responseSender) -> {
+			Transphere transphere = Transphere.readFromBuf(buf);
+			BlockPos blockPos = transphere.getOrigin();
+			client.execute(() -> {
+				// Everything in this lambda is running on the render thread
+				for(int i = 0; i < 10; i++) {
+					MinecraftClient.getInstance().player.getEntityWorld().addImportantParticle(new TransphereParticleEffect(transphere), true, (double)blockPos.getX() + 0.5D, (double)blockPos.getY() + 0.5D, (double)blockPos.getZ() + 0.5D, 0.0D, 0.0D, 0.0D);
 				}
 			});
 		});
@@ -409,6 +421,17 @@ public class SpectrumS2CPackets {
 			ServerPlayNetworking.send(player, SpectrumS2CPackets.INITIATE_ITEM_TRANSFER, buf);
 		}
 	}
+	
+	public static void playTransphereParticle(ServerWorld world, @NotNull Transphere transphere) {
+		BlockPos blockPos = transphere.getOrigin();
+		
+		PacketByteBuf buf = PacketByteBufs.create();
+		Transphere.writeToBuf(buf, transphere);
+		
+		for (ServerPlayerEntity player : PlayerLookup.tracking(world, blockPos)) {
+			ServerPlayNetworking.send(player, SpectrumS2CPackets.INITIATE_TRANSPHERE, buf);
+		}
+	}
 
 	public static void sendExperienceOrbTransferPacket(ServerWorld world, @NotNull ExperienceTransfer experienceTransfer) {
 		BlockPos blockPos = experienceTransfer.getOrigin();
@@ -492,5 +515,5 @@ public class SpectrumS2CPackets {
 			ServerPlayNetworking.send(player, SpectrumS2CPackets.PLAY_PEDESTAL_UPGRADED_PARTICLE_PACKET_ID, buf);
 		}
 	}
-	
+
 }

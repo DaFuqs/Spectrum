@@ -129,7 +129,6 @@ public class ItemBowlBlockEntity extends BlockEntity {
 			Optional<DyeColor> optionalItemColor = ColorRegistry.ITEM_COLORS.getMapping(storedStack.getItem());
 			if (optionalItemColor.isPresent()) {
 				ParticleEffect sparkleRisingParticleEffect = SpectrumParticleTypes.getSparkleRisingParticle(optionalItemColor.get());
-				ParticleEffect sphereParticleEffect = new TransphereParticleEffect(new Transphere(this.pos, new BlockPositionSource(enchanterBlockPos), 20, optionalItemColor.get()));
 				
 				if(this.world instanceof ServerWorld serverWorld) {
 					SpectrumS2CPackets.playParticleWithRandomOffsetAndVelocity((ServerWorld) world,
@@ -137,10 +136,7 @@ public class ItemBowlBlockEntity extends BlockEntity {
 							sparkleRisingParticleEffect, 50,
 							new Vec3d(0.4, 0.2, 0.4), new Vec3d(0.06, 0.16, 0.06));
 					
-					SpectrumS2CPackets.playParticleWithExactOffsetAndVelocity(serverWorld,
-							new Vec3d(this.pos.getX() + 0.5D, this.pos.getY() + 0.5D, this.pos.getZ() + 0.5D),
-							sphereParticleEffect, amount * 10, new Vec3d(0, 0, 0),
-							new Vec3d((enchanterBlockPos.getX() - this.pos.getX()) * 0.0045, 0, (enchanterBlockPos.getZ() - this.pos.getZ()) * 0.0045));
+					SpectrumS2CPackets.playTransphereParticle(serverWorld, new Transphere(this.pos, new BlockPositionSource(enchanterBlockPos), 20, optionalItemColor.get()));
 				} else if(this.world instanceof ClientWorld clientWorld) {
 					for(int i = 0; i < 50; i++){
 						float randomOffsetX = pos.getX() + 0.3F + world.random.nextFloat() * 0.6F;
@@ -155,6 +151,7 @@ public class ItemBowlBlockEntity extends BlockEntity {
 								randomVelocityX, randomVelocityY, randomVelocityZ);
 					}
 					
+					ParticleEffect sphereParticleEffect = new TransphereParticleEffect(new Transphere(this.pos, new BlockPositionSource(enchanterBlockPos), 20, optionalItemColor.get()));
 					clientWorld.addParticle(sphereParticleEffect, this.pos.getX() + 0.5D, this.pos.getY() + 0.5D, this.pos.getZ() + 0.5D,(enchanterBlockPos.getX() - this.pos.getX()) * 0.045, 0, (enchanterBlockPos.getZ() - this.pos.getZ()) * 0.045);
 				}
 				

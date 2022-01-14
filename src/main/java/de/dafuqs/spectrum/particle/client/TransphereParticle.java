@@ -31,7 +31,7 @@ public class TransphereParticle extends SpriteBillboardParticle {
 		this.setColor(rgb.getA(), rgb.getB(), rgb.getC());
 		this.maxAge = i;
 	}
-
+	
 	public void buildGeometry(VertexConsumer vertexConsumer, Camera camera, float tickDelta) {
 		float f = MathHelper.sin(((float)this.age + tickDelta - 6.2831855F) * 0.05F) * 2.0F;
 		float g = MathHelper.lerp(tickDelta, this.field_28248, this.field_28250);

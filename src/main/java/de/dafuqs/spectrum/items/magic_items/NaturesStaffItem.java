@@ -143,7 +143,7 @@ public class NaturesStaffItem extends Item implements EnchanterEnchantable {
 			BlockPos blockPos = context.getBlockPos();
 
 			if (world.isClient) {
-				if(context.getPlayer().getInventory().contains(COST)) {
+				if(context.getPlayer().isCreative() || context.getPlayer().getInventory().contains(COST)) {
 					BlockState blockState = world.getBlockState(blockPos);
 					if (blockState.isIn(SpectrumBlockTags.NATURES_STAFF_STACKABLE) || blockState.isOf(Blocks.BAMBOO)) {
 						int i = 0;
@@ -160,7 +160,7 @@ public class NaturesStaffItem extends Item implements EnchanterEnchantable {
 					}
 				}
 			} else if(user.getItemUseTime() % 10 == 0) {
-				if(context.getPlayer().getInventory().contains(COST)) {
+				if(context.getPlayer().isCreative() || context.getPlayer().getInventory().contains(COST)) {
 					int efficiencyLevel = EnchantmentHelper.getLevel(Enchantments.EFFICIENCY, context.getStack());
 					if ((efficiencyLevel == 0 && InventoryHelper.removeFromInventory(context.getPlayer(), COST))
 							|| (context.getWorld().random.nextFloat() > (2.0 / (2 + efficiencyLevel)) || InventoryHelper.removeFromInventory(context.getPlayer(), COST))) {

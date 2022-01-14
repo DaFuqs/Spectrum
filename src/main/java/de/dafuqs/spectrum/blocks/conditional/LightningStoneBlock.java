@@ -37,16 +37,17 @@ public class LightningStoneBlock extends Block implements Cloakable {
 	public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
 		return world.getBlockState(pos.down()).isSolidBlock(world, pos);
 	}
-
-
+	
 	@Override
 	public void onDestroyedByExplosion(World world, BlockPos pos, Explosion explosion) {
 		super.onDestroyedByExplosion(world, pos, explosion);
 
 		if(world.isSkyVisible(pos)) {
 			LightningEntity lightningEntity = EntityType.LIGHTNING_BOLT.create(world);
-			lightningEntity.refreshPositionAfterTeleport(Vec3d.ofBottomCenter(pos));
-			world.spawnEntity(lightningEntity);
+			if(lightningEntity != null) {
+				lightningEntity.refreshPositionAfterTeleport(Vec3d.ofBottomCenter(pos));
+				world.spawnEntity(lightningEntity);
+			}
 		}
 		
 		int power = 2;

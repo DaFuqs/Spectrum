@@ -26,7 +26,7 @@ if the worldgen has lots of high mountains consider raising the TopazGeodeMinFix
 	public int MoonstoneGeodeChunkChance = 35;
 	
 	@Comment("The amount of colored tree patches to generate every X chunks")
-	public int ColoredTreePatchChanceChunk = 50;
+	public int ColoredTreePatchChanceChunk = 75;
 
 	@Comment("""
 The chance that an Enderman is holding a special treasure block on spawn

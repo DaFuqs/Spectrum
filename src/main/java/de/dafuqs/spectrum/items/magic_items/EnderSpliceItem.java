@@ -9,6 +9,7 @@ import de.dafuqs.spectrum.sound.EnderSpliceChargingSoundInstance;
 import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.fabricmc.fabric.api.dimension.v1.FabricDimensions;
 import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.item.TooltipContext;
@@ -23,6 +24,7 @@ import net.minecraft.item.ItemUsage;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.packet.s2c.play.PlaySoundIdS2CPacket;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.stat.Stats;
@@ -34,6 +36,7 @@ import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryKey;
+import net.minecraft.world.TeleportTarget;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -112,11 +115,16 @@ public class EnderSpliceItem extends Item implements EnchanterEnchantable {
 	}
 	
 	private void teleportPlayerToPos(World world, LivingEntity user, PlayerEntity playerEntity, World targetWorld, Vec3d targetPos, boolean hasResonance) {
-		if (hasResonance || isSameWorld(user.getEntityWorld(), targetWorld)) {
+		boolean isSameWorld = isSameWorld(user.getEntityWorld(), targetWorld);
+		if (hasResonance || isSameWorld) {
 			Vec3d currentPos = playerEntity.getPos();
 			world.playSound(playerEntity, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SpectrumSoundEvents.PLAYER_TELEPORTS, SoundCategory.PLAYERS, 1.0F, 1.0F);
 			
-			user.requestTeleport(targetPos.getX(), targetPos.y + 0.25, targetPos.z); // +0.25 makes it look way more lively
+			if(!isSameWorld) {
+				FabricDimensions.teleport(user, (ServerWorld) targetWorld, new TeleportTarget(targetPos.add(0, 0.25, 0), new Vec3d(0, 0, 0), user.getYaw(), user.getPitch()));
+			} else {
+				user.requestTeleport(targetPos.getX(), targetPos.y + 0.25, targetPos.z); // +0.25 makes it look way more lively
+			}
 			world.playSound(playerEntity, targetPos.getX(), targetPos.y, targetPos.z, SpectrumSoundEvents.PLAYER_TELEPORTS, SoundCategory.PLAYERS, 1.0F, 1.0F);
 			
 			// make sure the sound plays even when the player currently teleports

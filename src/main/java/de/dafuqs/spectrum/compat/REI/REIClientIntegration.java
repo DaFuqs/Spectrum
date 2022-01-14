@@ -15,6 +15,7 @@ import me.shedaniel.rei.api.client.plugins.REIClientPlugin;
 import me.shedaniel.rei.api.client.registry.category.CategoryRegistry;
 import me.shedaniel.rei.api.client.registry.display.DisplayRegistry;
 import me.shedaniel.rei.api.client.registry.screen.ScreenRegistry;
+import me.shedaniel.rei.api.common.entry.EntryIngredient;
 import me.shedaniel.rei.api.common.entry.EntryStack;
 import me.shedaniel.rei.api.common.util.EntryStacks;
 import me.shedaniel.rei.plugin.common.BuiltinPlugin;
@@ -33,17 +34,17 @@ public class REIClientIntegration implements REIClientPlugin {
 		registry.add(new NaturesStaffConversionsCategory());
 		registry.add(new EnchanterCategory<>());
 		registry.add(new EnchantmentUpgradeCategory<>());
-
-		EntryStack[] pedestalEntryStacks = new EntryStack[]{
+		
+		EntryIngredient pedestalStacks = EntryIngredient.of(
 				EntryStacks.of(SpectrumBlocks.PEDESTAL_BASIC_TOPAZ),
 				EntryStacks.of(SpectrumBlocks.PEDESTAL_BASIC_AMETHYST),
 				EntryStacks.of(SpectrumBlocks.PEDESTAL_BASIC_CITRINE),
 				EntryStacks.of(SpectrumBlocks.PEDESTAL_ALL_BASIC),
 				EntryStacks.of(SpectrumBlocks.PEDESTAL_ONYX),
-				EntryStacks.of(SpectrumBlocks.PEDESTAL_MOONSTONE)};
+				EntryStacks.of(SpectrumBlocks.PEDESTAL_MOONSTONE));
 
-		registry.addWorkstations(BuiltinPlugin.CRAFTING, pedestalEntryStacks);
-		registry.addWorkstations(SpectrumPlugins.PEDESTAL_CRAFTING, pedestalEntryStacks);
+		registry.addWorkstations(BuiltinPlugin.CRAFTING, pedestalStacks);
+		registry.addWorkstations(SpectrumPlugins.PEDESTAL_CRAFTING, pedestalStacks);
 		registry.addWorkstations(SpectrumPlugins.ANVIL_CRUSHING, EntryStacks.of(Blocks.ANVIL), EntryStacks.of(SpectrumBlocks.BEDROCK_ANVIL), EntryStacks.of(SpectrumBlocks.SCARLET_FRAGMENT_BLOCK), EntryStacks.of(SpectrumBlocks.PALETUR_FRAGMENT_BLOCK));
 		registry.addWorkstations(SpectrumPlugins.FUSION_SHRINE, EntryStacks.of(SpectrumBlocks.FUSION_SHRINE_BASALT), EntryStacks.of(SpectrumBlocks.FUSION_SHRINE_CALCITE));
 		registry.addWorkstations(SpectrumPlugins.NATURES_STAFF, EntryStacks.of(SpectrumItems.NATURES_STAFF));

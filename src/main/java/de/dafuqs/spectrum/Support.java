@@ -142,8 +142,6 @@ public class Support {
 			return true;
 		}
 		
-		SpectrumCommon.log(Level.INFO, playerEntity.getClass().getCanonicalName());
-		
 		if (playerEntity instanceof ServerPlayerEntity) {
 			Advancement advancement = SpectrumCommon.minecraftServer.getAdvancementLoader().get(advancementIdentifier);
 			if (advancement == null) {

@@ -45,7 +45,7 @@
   "recipeGroup.spectrum.vanilla": "Vanilla Enchantments",
   "recipeGroup.spectrum.pastel_network": "Pastel Network",
 
-  "container.spectrum.rei.pedestal_crafting.title": "Pigment Pedestal Crafting",
+  "container.spectrum.rei.pedestal_crafting.title": "Pedestal Crafting",
   "container.spectrum.rei.pedestal_crafting.crafting_time_and_xp": "%f seconds - %f XP",
   "container.spectrum.rei.pedestal_crafting.crafting_time_one_second_and_xp": "%f second - %f XP",
   "container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_1": "You have not discovered",

@@ -3,6 +3,8 @@ package de.dafuqs.spectrum.blocks.item_bowl;
 import de.dafuqs.spectrum.Support;
 import de.dafuqs.spectrum.networking.SpectrumS2CPackets;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
+import de.dafuqs.spectrum.particle.effect.Transphere;
+import de.dafuqs.spectrum.particle.effect.TransphereParticleEffect;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
 import de.dafuqs.spectrum.registries.color.ColorRegistry;
 import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
@@ -19,13 +21,16 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.Packet;
 import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
+import net.minecraft.particle.DustParticleEffect;
 import net.minecraft.particle.ParticleEffect;
+import net.minecraft.particle.ParticleType;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import net.minecraft.world.event.BlockPositionSource;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -124,16 +129,17 @@ public class ItemBowlBlockEntity extends BlockEntity {
 			Optional<DyeColor> optionalItemColor = ColorRegistry.ITEM_COLORS.getMapping(storedStack.getItem());
 			if (optionalItemColor.isPresent()) {
 				ParticleEffect sparkleRisingParticleEffect = SpectrumParticleTypes.getSparkleRisingParticle(optionalItemColor.get());
-				ParticleEffect fluidRisingParticleEffect = SpectrumParticleTypes.getFluidRisingParticle(optionalItemColor.get());
+				ParticleEffect sphereParticleEffect = new TransphereParticleEffect(new Transphere(this.pos, new BlockPositionSource(enchanterBlockPos), 20, optionalItemColor.get()));
 				
 				if(this.world instanceof ServerWorld serverWorld) {
-					SpectrumS2CPackets.playParticle((ServerWorld) world,
+					SpectrumS2CPackets.playParticleWithRandomOffsetAndVelocity((ServerWorld) world,
 							new Vec3d(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5),
 							sparkleRisingParticleEffect, 50,
 							new Vec3d(0.4, 0.2, 0.4), new Vec3d(0.06, 0.16, 0.06));
-					SpectrumS2CPackets.playParticleWithFixedVelocity(serverWorld,
+					
+					SpectrumS2CPackets.playParticleWithExactOffsetAndVelocity(serverWorld,
 							new Vec3d(this.pos.getX() + 0.5D, this.pos.getY() + 0.5D, this.pos.getZ() + 0.5D),
-							fluidRisingParticleEffect, amount * 10, new Vec3d(0, 0, 0),
+							sphereParticleEffect, amount * 10, new Vec3d(0, 0, 0),
 							new Vec3d((enchanterBlockPos.getX() - this.pos.getX()) * 0.0045, 0, (enchanterBlockPos.getZ() - this.pos.getZ()) * 0.0045));
 				} else if(this.world instanceof ClientWorld clientWorld) {
 					for(int i = 0; i < 50; i++){
@@ -148,11 +154,8 @@ public class ItemBowlBlockEntity extends BlockEntity {
 								randomOffsetX, randomOffsetY, randomOffsetZ,
 								randomVelocityX, randomVelocityY, randomVelocityZ);
 					}
-					//for(int i = 0; i < 50; i++) {
-						clientWorld.addParticle(fluidRisingParticleEffect,
-								this.pos.getX() + 0.5D, this.pos.getY() + 0.5D, this.pos.getZ() + 0.5D,
-								(enchanterBlockPos.getX() - this.pos.getX()) * 0.0045, 0, (enchanterBlockPos.getZ() - this.pos.getZ()) * 0.0045);
-					//}
+					
+					clientWorld.addParticle(sphereParticleEffect, this.pos.getX() + 0.5D, this.pos.getY() + 0.5D, this.pos.getZ() + 0.5D,(enchanterBlockPos.getX() - this.pos.getX()) * 0.045, 0, (enchanterBlockPos.getZ() - this.pos.getZ()) * 0.045);
 				}
 				
 				world.playSound(null, this.pos, SpectrumSoundEvents.ENCHANTER_DING, SoundCategory.BLOCKS, 1.0F, 0.7F + this.world.random.nextFloat() * 0.6F);

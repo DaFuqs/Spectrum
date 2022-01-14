@@ -363,7 +363,7 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 	public static void playCraftingFinishedEffects(EnchanterBlockEntity enchanterBlockEntity) {
 		enchanterBlockEntity.world.playSound(null, enchanterBlockEntity.pos, SoundEvents.ENTITY_PLAYER_LEVELUP, SoundCategory.BLOCKS, 1.0F, 1.0F);
 		
-		SpectrumS2CPackets.playParticle((ServerWorld) enchanterBlockEntity.world,
+		SpectrumS2CPackets.playParticleWithRandomOffsetAndVelocity((ServerWorld) enchanterBlockEntity.world,
 				new Vec3d(enchanterBlockEntity.pos.getX() + 0.5D, enchanterBlockEntity.pos.getY() + 0.5, enchanterBlockEntity.pos.getZ() + 0.5D),
 				SpectrumParticleTypes.LIME_SPARKLE_RISING, 75, new Vec3d(0.5D, 0.5D, 0.5D),
 				new Vec3d(0.1D, -0.1D, 0.1D));

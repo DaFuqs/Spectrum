@@ -1,12 +1,14 @@
 package de.dafuqs.spectrum.particle;
 
 import de.dafuqs.spectrum.particle.client.*;
+import de.dafuqs.spectrum.particle.effect.TransphereParticleEffect;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 import net.minecraft.client.particle.BlockLeakParticle;
 import net.minecraft.client.particle.BubblePopParticle;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.particle.WaterSuspendParticle;
 import net.minecraft.particle.DefaultParticleType;
+import net.minecraft.particle.ParticleType;
 
 public class SpectrumParticleFactories {
 
@@ -32,6 +34,12 @@ public class SpectrumParticleFactories {
 
 		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.WIRELESS_REDSTONE_TRANSMISSION, provider -> (parameters, world, x, y, z, velocityX, velocityY, velocityZ) -> {
 			WirelessRedstoneTransmissionParticle particle = new WirelessRedstoneTransmissionParticle(world, parameters.getWirelessRedstoneTransmission(), parameters.getWirelessRedstoneTransmission().getArrivalInTicks());
+			particle.setSprite(provider);
+			return particle;
+		});
+
+		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.TRANSPHERE, provider -> (parameters, world, x, y, z, velocityX, velocityY, velocityZ) -> {
+			TransphereParticle particle = new TransphereParticle(world, parameters.getTransphere(), parameters.getTransphere().getArrivalInTicks());
 			particle.setSprite(provider);
 			return particle;
 		});
@@ -154,6 +162,5 @@ public class SpectrumParticleFactories {
 			return particle;
 		});
 	}
-
 	
 }

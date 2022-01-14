@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum;
 
-import de.dafuqs.spectrum.items.PigmentItem;
 import de.dafuqs.spectrum.progression.ClientAdvancements;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -10,15 +9,12 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.DyeItem;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.ServerAdvancementLoader;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.tag.Tag;
-import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Vec3d;
 import org.apache.logging.log4j.Level;
@@ -181,18 +177,6 @@ public class Support {
 					return dimensionKeyString;
 				}
 		}
-	}
-
-	public static Optional<DyeColor> getDyeColorOfItemStack(ItemStack itemStack) {
-		if(!itemStack.isEmpty()) {
-			Item item = itemStack.getItem();
-			if(item instanceof DyeItem dyeItem) {
-				return Optional.of(dyeItem.getColor());
-			} else if(item instanceof PigmentItem pigmentItem) {
-				return Optional.of(pigmentItem.getColor());
-			}
-		}
-		return Optional.empty();
 	}
 	
 }

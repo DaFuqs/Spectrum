@@ -112,7 +112,7 @@ public class ExchangeStaffItem extends BuildingStaffItem implements EnchanterEnc
 						
 						Direction side = context.getSide();
 						Vec3d sourcePos = new Vec3d(context.getHitPos().getX() + side.getOffsetX() * 0.1, context.getHitPos().getY() + side.getOffsetY() * 0.1, context.getHitPos().getZ() + side.getOffsetZ() * 0.1);
-						SpectrumS2CPackets.playParticle(serverWorld, sourcePos, SpectrumParticleTypes.SPARKLESTONE_SPARKLE_SMALL, 15, new Vec3d(0, 0, 0), new Vec3d(0.25, 0.25, 0.25));
+						SpectrumS2CPackets.playParticleWithRandomOffsetAndVelocity(serverWorld, sourcePos, SpectrumParticleTypes.SPARKLESTONE_SPARKLE_SMALL, 15, new Vec3d(0, 0, 0), new Vec3d(0.25, 0.25, 0.25));
 						result = ActionResult.CONSUME;
 					} else {
 						result = ActionResult.SUCCESS;

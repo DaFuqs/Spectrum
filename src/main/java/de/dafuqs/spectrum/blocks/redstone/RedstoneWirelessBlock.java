@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.blocks.redstone;
 
-import de.dafuqs.spectrum.Support;
+import de.dafuqs.spectrum.ColorHelper;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
 import net.minecraft.block.AbstractRedstoneGateBlock;
 import net.minecraft.block.Block;
@@ -60,7 +60,7 @@ public class RedstoneWirelessBlock extends AbstractRedstoneGateBlock implements 
 			return ActionResult.SUCCESS;
 		} else {
 			ItemStack handStack = player.getStackInHand(hand);
-			Optional<DyeColor> itemInHandColor = Support.getDyeColorOfItemStack(handStack);
+			Optional<DyeColor> itemInHandColor = ColorHelper.getDyeColorOfItemStack(handStack);
 			if(itemInHandColor.isPresent()) {
 				DyeColor currentChannel = state.get(CHANNEL);
 				if(itemInHandColor.get() != currentChannel) {

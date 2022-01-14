@@ -10,11 +10,15 @@ import de.dafuqs.spectrum.recipe.fusion_shrine.FusionShrineRecipe;
 import de.dafuqs.spectrum.recipe.pedestal.PedestalCraftingRecipe;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import de.dafuqs.spectrum.registries.SpectrumItems;
+import dev.architectury.event.EventResult;
 import me.shedaniel.math.Rectangle;
 import me.shedaniel.rei.api.client.plugins.REIClientPlugin;
 import me.shedaniel.rei.api.client.registry.category.CategoryRegistry;
+import me.shedaniel.rei.api.client.registry.display.DisplayCategory;
 import me.shedaniel.rei.api.client.registry.display.DisplayRegistry;
+import me.shedaniel.rei.api.client.registry.display.visibility.DisplayVisibilityPredicate;
 import me.shedaniel.rei.api.client.registry.screen.ScreenRegistry;
+import me.shedaniel.rei.api.common.display.Display;
 import me.shedaniel.rei.api.common.entry.EntryIngredient;
 import me.shedaniel.rei.api.common.entry.EntryStack;
 import me.shedaniel.rei.api.common.util.EntryStacks;
@@ -62,10 +66,6 @@ public class REIClientIntegration implements REIClientPlugin {
 
 	@Override
 	public void registerDisplays(DisplayRegistry registry) {
-		// TODO: only set displays to visible as soon as unlocked
-		// registry.registerVisibilityPredicate();
-		// RecipeHelper.registerRecipeVisibilityHandler https://github.com/shedaniel/RoughlyEnoughItems/issues/50
-		
 		registry.registerFiller(AnvilCrushingRecipe.class, AnvilCrushingRecipeDisplay::new);
 		registry.registerRecipeFiller(PedestalCraftingRecipe.class, SpectrumRecipeTypes.PEDESTAL, PedestalCraftingRecipeDisplay::new);
 		registry.registerRecipeFiller(FusionShrineRecipe.class, SpectrumRecipeTypes.FUSION_SHRINE, FusionShrineRecipeDisplay::new);
@@ -74,6 +74,19 @@ public class REIClientIntegration implements REIClientPlugin {
 		});
 		registry.registerRecipeFiller(EnchanterRecipe.class, SpectrumRecipeTypes.ENCHANTER, EnchanterRecipeDisplay::new);
 		registry.registerRecipeFiller(EnchantmentUpgradeRecipe.class, SpectrumRecipeTypes.ENCHANTMENT_UPGRADE, EnchantmentUpgradeRecipeDisplay::new);
+		
+		// do not list not yet unlocked recipes in REI at all
+		registry.registerVisibilityPredicate(new DisplayVisibilityPredicate() {
+			@Override
+			public EventResult handleDisplay(DisplayCategory<?> category, Display display) {
+				if(display instanceof GatedRecipeDisplay gatedRecipeDisplay) {
+					if(!gatedRecipeDisplay.isUnlocked()) {
+						return EventResult.interruptFalse();
+					}
+				}
+				return EventResult.pass();
+			}
+		});
 	}
 
 	/**

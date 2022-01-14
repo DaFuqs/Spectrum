@@ -152,10 +152,13 @@ public class Support {
 			} else {
 				return ((ServerPlayerEntity) playerEntity).getAdvancementTracker().getProgress(advancement).isDone();
 			}
-		} else if(playerEntity.getClass().getCanonicalName().equals("net.minecraft.client.network.ClientPlayerEntity")) {
+		// we cannot test for "net.minecraft.client.network.ClientPlayerEntity" there because that will get obfuscated
+		// to "net.minecraft.class_xxxxx" in compiled versions => works in dev env, breaks in prod
+		} else if(playerEntity.getClass().getCanonicalName().startsWith("net.minecraft")) {
 			return hasAdvancementClient(advancementIdentifier);
 		} else {
 			// thank you, Kibe FakePlayerEntity
+			// it neither is a ServerPlayerEntity, nor a ClientPlayerEntity
 			return false;
 		}
 	}

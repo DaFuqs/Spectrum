@@ -7,6 +7,7 @@ import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import de.dafuqs.spectrum.worldgen.features.WeightedRandomFeatureConfig;
 import de.dafuqs.spectrum.worldgen.features.WeightedRandomFeaturePatchConfig;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
+import net.fabricmc.fabric.api.biome.v1.BiomeSelectionContext;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -44,6 +45,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
+import java.util.function.Predicate;
 
 public class SpectrumConfiguredFeatures {
 
@@ -213,7 +215,19 @@ public class SpectrumConfiguredFeatures {
 			)
 		);
 		
-		BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Feature.VEGETAL_DECORATION, RegistryKey.of(Registry.PLACED_FEATURE_KEY, randomColoredTreesFeatureIdentifier));
+		Predicate<BiomeSelectionContext> treeBiomes = BiomeSelectors.categories(
+				Biome.Category.PLAINS,
+				Biome.Category.EXTREME_HILLS,
+				Biome.Category.JUNGLE,
+				Biome.Category.FOREST,
+				Biome.Category.SWAMP,
+				Biome.Category.MESA,
+				Biome.Category.MOUNTAIN,
+				Biome.Category.DESERT,
+				Biome.Category.ICY,
+				Biome.Category.SAVANNA,
+				Biome.Category.TAIGA);
+		BiomeModifications.addFeature(treeBiomes, GenerationStep.Feature.VEGETAL_DECORATION, RegistryKey.of(Registry.PLACED_FEATURE_KEY, randomColoredTreesFeatureIdentifier));
 	}
 
 	private static void registerGeodes() {

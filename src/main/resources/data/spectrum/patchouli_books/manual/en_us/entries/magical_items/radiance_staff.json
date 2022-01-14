@@ -16,6 +16,13 @@
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier2/light_staff",
       "text": "Right click placed lights with the staff to adjust the emitted light level.$(br)They can even be summoned under water."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:midgame/build_enchanting_structure",
+      "title": "Enchanting - Infinity",
+      "item": "spectrum:light_staff{Enchantments: [{id: \"minecraft:infinity\", lvl: 1s}]}",
+      "text": "Enchanting the Radiance Staff with Infinity by using the $(l:enchanting/enchanting_items)Enchanter$(/l) will completely remove the need for Shimmerstone."
     }
   ]
 }

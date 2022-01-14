@@ -16,6 +16,20 @@
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier4/exchange_staff",
       "text": "Crouch-Click to get a selection of all available placement modi."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:midgame/build_enchanting_structure",
+      "title": "Enchanting - Fortune",
+      "item": "spectrum:exchange_staff{Enchantments: [{id: \"minecraft:fortune\", lvl: 3s}]}",
+      "text": "Enchanting an Exchanging Staff with Fortune by using the $(l:enchanting/enchanting_items)Enchanter$(/l) allows it to multiply Ore drops when exchanging similar to using a common Fortune tool."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:midgame/build_enchanting_structure",
+      "title": "Silk Touch",
+      "item": "spectrum:exchange_staff{Enchantments: [{id: \"spectrum:silk_touch\", lvl: 1s}]}",
+      "text": "Enchanting an Exchanging Staff with Silk Touch by using the $(l:enchanting/enchanting_items)Enchanter$(/l) will give it the power to exchange blocks exactly how they appear in the world, without breaking the more fragile blocks, like Glass or Ores."
     }
   ]
 }

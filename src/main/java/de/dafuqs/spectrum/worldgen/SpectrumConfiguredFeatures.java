@@ -330,7 +330,7 @@ public class SpectrumConfiguredFeatures {
 		Identifier mermaidsBrushIdentifier = new Identifier(SpectrumCommon.MOD_ID, "mermaids_brush");
 		registerConfiguredAndPlacedFeature(
 			mermaidsBrushIdentifier,
-				Feature.SIMPLE_BLOCK.configure(new SimpleBlockFeatureConfig(new RandomizedIntBlockStateProvider(SimpleBlockStateProvider.of(SpectrumBlocks.MERMAIDS_BRUSH), MermaidsBrushBlock.AGE, UniformIntProvider.create(4, 6)))),
+				Feature.SIMPLE_BLOCK.configure(new SimpleBlockFeatureConfig(new RandomizedIntBlockStateProvider(SimpleBlockStateProvider.of(SpectrumBlocks.MERMAIDS_BRUSH), MermaidsBrushBlock.AGE, UniformIntProvider.create(5, 6)))),
 			List.of(
 				BiomePlacementModifier.of(),
 				RarityFilterPlacementModifier.of(16),

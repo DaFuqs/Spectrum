@@ -1,5 +1,5 @@
 {
-  "name": "Nature's Staff",
+  "name": "Natures' Staff",
   "advancement": "spectrum:progression/unlock_natures_staff",
   "icon": "spectrum:natures_staff",
   "category": "spectrum:magical_items_category",
@@ -16,6 +16,13 @@
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier2/natures_staff",
       "text": "$(italic)Point at something you want to see blossom"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:midgame/build_enchanting_structure",
+      "title": "Enchanting - Efficiency",
+      "item": "spectrum:natures_staff{Enchantments: [{id: \"minecraft:efficiency\", lvl: 5s}]}",
+      "text": "Enchanting the Natures' Staff with Efficiency by using the $(l:enchanting/enchanting_items)Enchanter$(/l) decreases the chance of $(l:creating_life/fading#vegetal)Vegetal$(/l) to get consumed for each level."
     }
   ]
 }

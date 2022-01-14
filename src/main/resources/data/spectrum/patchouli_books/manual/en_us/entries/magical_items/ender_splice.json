@@ -10,13 +10,27 @@
     {
       "type": "patchouli:spotlight",
       "item": "spectrum:ender_splice",
-      "text": "$(italic)The most interesting thing about the Endermen is, without question, their teleportation ability. You were pretty successful replicating it! However, to determine the destination of the teleport, you must first take a snapshot of the position.$(br)Endermen don't have to do that - why?$()"
+      "text": "$(italic)The most interesting thing about the Endermen is, without question, their teleportation ability. You were pretty successful replicating it! However, to determine the destination of the teleport, you must first take a snapshot of the position.$(br)Endermen don't have to do that - why?$()$(br2)A Limitation of the Ender Splice is, that is can only be used in the same dimension it was bound to."
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier3/ender_splice",
       "text": "The first use of the Ender Splice saves the current position.$(br)The second use teleports you back to the original location. Can even be used on other players."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:midgame/build_enchanting_structure",
+      "title": "Unbreaking",
+      "item": "spectrum:ender_splice{Enchantments: [{id: \"minecraft:unbreaking\", lvl: 3s}]}",
+      "text": "Enchanting an Ender Splice with Unbreaking by using the $(l:enchanter/enchanting_items)Enchanter$(/l) decreases the chance of it breaking on use."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:lategame/create_resonance_enchanted_book",
+      "title": "Resonance",
+      "item": "spectrum:ender_splice{Enchantments: [{id: \"spectrum:resonance\", lvl: 1s}]}",
+      "text": "Enchanting an Ender Splice with Resonance by using the $(l:enchanting/enchanting_items)Enchanter$(/l) will allow for interdimensional teleport."
     }
   ]
 }

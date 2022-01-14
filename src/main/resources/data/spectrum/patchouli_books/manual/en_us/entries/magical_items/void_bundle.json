@@ -17,6 +17,20 @@
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier2/void_bundle",
       "text": "The Bottomless Bundle stores a virtually unlimited number of items, but of only one type."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:midgame/build_enchanting_structure",
+      "title": "Enchanting - Power",
+      "item": "spectrum:void_bundle{Enchantments: [{id: \"minecraft:power\", lvl: 5s}]}",
+      "text": "Enchanting a Bottomless Bundle with Power by using the $(l:enchanting/enchanting_items)Enchanter$(/l) you can increase its capacity tenfold for each level of Power.$(br2)Are you able to fill a Bottomless Bundle with Power V?"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:midgame/build_enchanting_structure",
+      "title": "Curse of the Void",
+      "item": "spectrum:void_bundle{Enchantments: [{id: \"spectrum:voiding\", lvl: 1s}]}",
+      "text": "Enchanting a Bottomless Bundle with Curse of the Void by using the $(l:enchanting/enchanting_items)Enchanter$(/l) all items that would overfill the Bottomless Bundle are voided instead.$(br2)No more useless blocks dropping your sight when mining."
     }
   ]
 }

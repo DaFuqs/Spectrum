@@ -1,14 +1,16 @@
 {
-  "parent": "spectrum:collect_quitoxic_reeds",
+  "parent": "spectrum:fill_void_bundle",
   "display": {
     "icon": {
         "item": "spectrum:void_bundle"
     },
+    "frame": "challenge",
+    "hidden": true,
     "title": {
-      "translate": "advancements.spectrum.fill_void_bundle.title"
+      "translate": "advancements.spectrum.fill_void_bundle_for_real_this_time.title"
     },
     "description": {
-      "translate": "advancements.spectrum.fill_void_bundle.description"
+      "translate": "advancements.spectrum.fill_void_bundle_for_real_this_time.description"
     }
   },
   "criteria": {
@@ -20,7 +22,7 @@
             "items": [
               "spectrum:void_bundle"
             ],
-            "nbt": "{StoredStack:{Count:20000}}"
+            "nbt": "{StoredStack:{Count:2000000000}}"
           }
         ],
         "slots": {

@@ -7,6 +7,8 @@ import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.block.Block;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ItemEntity;
@@ -17,10 +19,13 @@ import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.entity.mob.CreeperEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.loot.LootTable;
+import net.minecraft.loot.context.*;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.Packet;
 import net.minecraft.network.packet.s2c.play.EntitySpawnS2CPacket;
@@ -30,20 +35,58 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.stat.Stats;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ShootingStarEntity extends Entity {
 
+	protected enum ShootingStarType {
+		GLISTERING,
+		FIERY,
+		COLORFUL,
+		PRISTINE,
+		GEMSTONE;
+	
+		Identifier getLootTableIdentifier() {
+			switch (this) {
+				case FIERY -> {
+					return new Identifier(SpectrumCommon.MOD_ID, "entity/shooting_star_shooting_star_fiery");
+				}
+				case COLORFUL -> {
+					return new Identifier(SpectrumCommon.MOD_ID, "entity/shooting_star_shooting_star_colorful");
+				}
+				case GEMSTONE -> {
+					return new Identifier(SpectrumCommon.MOD_ID, "entity/shooting_star_shooting_star_gemstone");
+				}
+				case PRISTINE -> {
+					return new Identifier(SpectrumCommon.MOD_ID, "entity/shooting_star_shooting_star_pristine");
+				}
+				default -> {
+					return new Identifier(SpectrumCommon.MOD_ID, "entity/shooting_star_shooting_star_glistering");
+				}
+			}
+		}
+	
+	}
+	
 	private static final TrackedData<ItemStack> STACK;
 	private int age;
 	public final float hoverHeight;
+	public int availableHits;
+	public ShootingStarType shootingStarType;
 
 	public ShootingStarEntity(EntityType<? extends ShootingStarEntity> entityType, World world) {
 		super(entityType, world);
 		this.hoverHeight = (float)(Math.random() * 3.141592653589793D * 2.0D);
+		this.availableHits = 3 + world.random.nextInt(3);
+		this.shootingStarType = ShootingStarType.values()[world.random.nextInt(ShootingStarType.values().length)];
 	}
 
 	public ShootingStarEntity(World world, double x, double y, double z) {
@@ -160,12 +203,6 @@ public class ShootingStarEntity extends Entity {
 				}
 
 				this.setVelocity(this.getVelocity().multiply(g, 0.98D, g));
-				if (this.onGround) {
-					// convert to itemEntity on colliding with ground
-					ItemEntity itemEntity = new ItemEntity(this.world, this.getX(), this.getY(), this.getZ(), this.getStack());
-					this.world.spawnEntity(itemEntity);
-					this.discard();
-				}
 			}
 
 			this.velocityDirty |= this.updateWaterState();
@@ -190,7 +227,7 @@ public class ShootingStarEntity extends Entity {
 			tag.put("Item", this.getStack().writeNbt(new NbtCompound()));
 		}
 	}
-
+	
 	public void readCustomDataFromNbt(@NotNull NbtCompound tag) {
 		this.age = tag.getShort("Age");
 
@@ -202,7 +239,7 @@ public class ShootingStarEntity extends Entity {
 	}
 
 	public void onPlayerCollision(PlayerEntity player) {
-		if (!this.world.isClient) {
+		/*if (!this.world.isClient) {
 			player.damage(DamageSource.FALLING_BLOCK, 5);
 
 			ItemStack itemStack = this.getStack();
@@ -222,9 +259,43 @@ public class ShootingStarEntity extends Entity {
 					this.discard();
 				}
 			}
+		}*/
+	}
+	
+	@Override
+	public boolean damage(DamageSource source, float amount) {
+		this.availableHits--;
+		if(this.world instanceof ServerWorld serverWorld && source.getSource() instanceof ServerPlayerEntity serverPlayerEntity) {
+			spawnLootAndParticles(serverWorld, serverPlayerEntity);
+		}
+		
+		if(this.availableHits <= 0) {
+			ItemEntity itemEntity = new ItemEntity(this.world, this.getX(), this.getY(), this.getZ(), this.getStack());
+			this.world.spawnEntity(itemEntity);
+			this.discard();
+		}
+		
+		return super.damage(source, amount);
+	}
+	
+	public void spawnLootAndParticles(ServerWorld serverWorld, ServerPlayerEntity serverPlayerEntity) {
+		Identifier lootTableId = this.shootingStarType.getLootTableIdentifier();
+		LootTable lootTable = serverWorld.getServer().getLootManager().getTable(lootTableId);
+		List<ItemStack> loot = lootTable.generateLoot(new LootContext.Builder(serverWorld)
+				.random(world.random)
+				.parameter(LootContextParameters.THIS_ENTITY, this)
+				.parameter(LootContextParameters.ORIGIN, Vec3d.ofCenter(this.getBlockPos()))
+				.parameter(LootContextParameters.TOOL, serverPlayerEntity.getMainHandStack())
+				.optionalParameter(LootContextParameters.LAST_DAMAGE_PLAYER, serverPlayerEntity).build(LootContextTypes.ENTITY));
+		
+		for(ItemStack itemStack : loot) {
+			ItemEntity itemEntity = new ItemEntity(this.world, this.getX(), this.getY(), this.getZ(), itemStack);
+			this.world.spawnEntity(itemEntity);
+			this.discard();
 		}
 	}
-
+	
+	
 	public Text getName() {
 		Text text = this.getCustomName();
 		return (text != null ? text : new TranslatableText(this.getStack().getTranslationKey()));

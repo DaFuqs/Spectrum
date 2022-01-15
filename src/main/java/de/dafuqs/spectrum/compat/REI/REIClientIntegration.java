@@ -50,12 +50,17 @@ public class REIClientIntegration implements REIClientPlugin {
 		registry.addWorkstations(BuiltinPlugin.CRAFTING, pedestalStacks);
 		registry.addWorkstations(SpectrumPlugins.PEDESTAL_CRAFTING, pedestalStacks);
 		registry.addWorkstations(SpectrumPlugins.ANVIL_CRUSHING, EntryStacks.of(Blocks.ANVIL), EntryStacks.of(SpectrumBlocks.BEDROCK_ANVIL), EntryStacks.of(SpectrumBlocks.SCARLET_FRAGMENT_BLOCK), EntryStacks.of(SpectrumBlocks.PALETUR_FRAGMENT_BLOCK));
-		registry.addWorkstations(SpectrumPlugins.FUSION_SHRINE, EntryStacks.of(SpectrumBlocks.FUSION_SHRINE_BASALT), EntryStacks.of(SpectrumBlocks.FUSION_SHRINE_CALCITE));
+		
+		EntryIngredient fusionShrineStacks = EntryIngredient.of(
+				EntryStacks.of(SpectrumBlocks.FUSION_SHRINE_BASALT),
+				EntryStacks.of(SpectrumBlocks.FUSION_SHRINE_CALCITE));
+		
+		registry.addWorkstations(SpectrumPlugins.FUSION_SHRINE, fusionShrineStacks);
 		registry.addWorkstations(SpectrumPlugins.NATURES_STAFF, EntryStacks.of(SpectrumItems.NATURES_STAFF));
 		registry.addWorkstations(SpectrumPlugins.ENCHANTER, EntryStacks.of(SpectrumBlocks.ENCHANTER));
 		registry.addWorkstations(SpectrumPlugins.ENCHANTMENT_UPGRADE, EntryStacks.of(SpectrumBlocks.ENCHANTER));
 
-		// Since anvil crushing etc are in-world recipes there is no gui to fill
+		// For anvil crushing and others are in-world recipes there is no gui to fill
 		// therefore the plus button is obsolete
 		registry.removePlusButton(SpectrumPlugins.ANVIL_CRUSHING);
 		registry.removePlusButton(SpectrumPlugins.FUSION_SHRINE);
@@ -76,16 +81,11 @@ public class REIClientIntegration implements REIClientPlugin {
 		registry.registerRecipeFiller(EnchantmentUpgradeRecipe.class, SpectrumRecipeTypes.ENCHANTMENT_UPGRADE, EnchantmentUpgradeRecipeDisplay::new);
 		
 		// do not list not yet unlocked recipes in REI at all
-		registry.registerVisibilityPredicate(new DisplayVisibilityPredicate() {
-			@Override
-			public EventResult handleDisplay(DisplayCategory<?> category, Display display) {
-				if(display instanceof GatedRecipeDisplay gatedRecipeDisplay) {
-					if(!gatedRecipeDisplay.isUnlocked()) {
-						return EventResult.interruptFalse();
-					}
-				}
-				return EventResult.pass();
+		registry.registerVisibilityPredicate((category, display) -> {
+			if(display instanceof GatedRecipeDisplay gatedRecipeDisplay && !gatedRecipeDisplay.isUnlocked()) {
+				return EventResult.interruptFalse();
 			}
+			return EventResult.pass();
 		});
 	}
 

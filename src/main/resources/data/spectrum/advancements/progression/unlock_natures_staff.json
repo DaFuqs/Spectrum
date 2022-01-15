@@ -1,9 +1,5 @@
 {
   "criteria": {
-    "collected_glow_lichen": {
-      "trigger":"spectrum:has_advancement",
-      "conditions": { "advancement_identifier": "spectrum:hidden/collect_vanilla/collect_glow_lichen" }
-    },
     "collected_brown_pigment": {
       "trigger":"spectrum:has_advancement",
       "conditions": { "advancement_identifier": "spectrum:hidden/collect_pigment/collect_brown_pigment" }

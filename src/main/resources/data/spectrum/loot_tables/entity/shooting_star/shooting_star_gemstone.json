@@ -1,0 +1,102 @@
+{
+  "pools": [
+    {
+      "rolls": {
+        "min": 1,
+        "max": 2
+      },
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "name": "minecraft:amethyst_shard",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1,
+                "max": 3
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:small_amethyst_bud"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:medium_amethyst_bud"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:large_amethyst_bud"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:amethyst_cluster"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "name": "spectrum:citrine_shard",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1,
+                "max": 3
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:small_citrine_bud"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:medium_citrine_bud"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:large_citrine_bud"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:citrine_cluster"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "name": "spectrum:topaz_shard",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1,
+                "max": 3
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:small_topaz_bud"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:medium_topaz_bud"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:large_topaz_bud"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:topaz_cluster"
+        }
+      ]
+    }
+  ]
+}

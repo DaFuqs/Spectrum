@@ -35,8 +35,8 @@ public class ShootingStarEntityRenderer extends EntityRenderer<ShootingStarEntit
 	}
 
 	public void render(ShootingStarEntity shootingStarEntity, float f, float g, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i) {
-		matrixStack.push();
-		/*ShootingStarBlock.Type type = shootingStarEntity.getShootingStarType();
+		/*matrixStack.push();
+		ShootingStarBlock.Type type = shootingStarEntity.getShootingStarType();
 		ItemStack itemStack = type.getBlock().asItem().getDefaultStack();
 
 		int j = itemStack.isEmpty() ? 187 : Item.getRawId(itemStack.getItem()) + itemStack.getDamage();

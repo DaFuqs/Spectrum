@@ -638,6 +638,13 @@ public class SpectrumBlocks {
 
 	public static final Block SACRED_SOIL = new ExtraTickFarmlandBlock(FabricBlockSettings.copyOf(Blocks.FARMLAND));
 	public static final Block STUCK_LIGHTNING_STONE = new LightningStoneBlock(FabricBlockSettings.copyOf(Blocks.DIRT));
+	
+	private static final FabricBlockSettings shootingStartBlockSettings = FabricBlockSettings.copyOf(Blocks.STONE);
+	public static final Block GLISTERING_SHOOTING_STAR = new ShootingStarBlock(shootingStartBlockSettings, ShootingStarBlock.Type.GLISTERING);
+	public static final Block FIERY_SHOOTING_STAR = new ShootingStarBlock(shootingStartBlockSettings, ShootingStarBlock.Type.FIERY);
+	public static final Block COLORFUL_SHOOTING_STAR = new ShootingStarBlock(shootingStartBlockSettings, ShootingStarBlock.Type.COLORFUL);
+	public static final Block PRISTINE_SHOOTING_STAR = new ShootingStarBlock(shootingStartBlockSettings, ShootingStarBlock.Type.PRISTINE);
+	public static final Block GEMSTONE_SHOOTING_STAR = new ShootingStarBlock(shootingStartBlockSettings, ShootingStarBlock.Type.GEMSTONE);
 
 	public static final Block DEEPER_DOWN_PORTAL = new DeeperDownPortalBlock(FabricBlockSettings.copyOf(Blocks.END_PORTAL));
 	
@@ -706,6 +713,7 @@ public class SpectrumBlocks {
 		registerGemBlocks(resourcesItemSettings);
 		registerBlockWithItem("spectral_shard_block", SPECTRAL_SHARD_BLOCK, resourcesItemSettingsRare);
 		registerBlockWithItem("bedrock_storage_block", BEDROCK_STORAGE_BLOCK, decorationItemSettingsRare);
+		registerShootingStarBlocks(resourcesItemSettingsUncommon);
 		
 		registerGemOreBlocks(resourcesItemSettings);
 		registerOreBlocks(resourcesItemSettings);
@@ -1180,6 +1188,14 @@ public class SpectrumBlocks {
 		registerBlockWithItem("diorite_sparklestone_light", DIORITE_SPARKLESTONE_LIGHT, fabricItemSettings);
 		registerBlockWithItem("andesite_sparklestone_light", ANDESITE_SPARKLESTONE_LIGHT, fabricItemSettings);
 		registerBlockWithItem("deepslate_sparklestone_light", DEEPSLATE_SPARKLESTONE_LIGHT, fabricItemSettings);
+	}
+	
+	public static void registerShootingStarBlocks(FabricItemSettings fabricItemSettings) {
+		registerBlockWithItem("shooting_star_glistering", GLISTERING_SHOOTING_STAR, fabricItemSettings);
+		registerBlockWithItem("shooting_star_fiery", FIERY_SHOOTING_STAR, fabricItemSettings);
+		registerBlockWithItem("shooting_star_colorful", COLORFUL_SHOOTING_STAR, fabricItemSettings);
+		registerBlockWithItem("shooting_star_pristine", PRISTINE_SHOOTING_STAR, fabricItemSettings);
+		registerBlockWithItem("shooting_star_gemstone", GEMSTONE_SHOOTING_STAR, fabricItemSettings);
 	}
 	
 	public static void registerPastelNetworkNodes(FabricItemSettings fabricItemSettings) {

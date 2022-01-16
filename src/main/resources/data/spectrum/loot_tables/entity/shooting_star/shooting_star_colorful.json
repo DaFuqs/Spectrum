@@ -1,4 +1,5 @@
 {
+  "type": "minecraft:entity",
   "pools": [
     {
       "rolls": {
@@ -8,7 +9,8 @@
       "entries": [
         {
           "type": "minecraft:tag",
-          "name": "spectrum:dyes",
+          "name": "minecraft:diamond_ores",
+          "expand": true,
           "functions": [
             {
               "function": "minecraft:set_count",

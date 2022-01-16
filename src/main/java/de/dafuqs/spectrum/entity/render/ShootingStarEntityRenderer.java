@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.entity.render;
 
+import de.dafuqs.spectrum.blocks.decoration.ShootingStarBlock;
 import de.dafuqs.spectrum.entity.entity.ShootingStarEntity;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -35,7 +36,8 @@ public class ShootingStarEntityRenderer extends EntityRenderer<ShootingStarEntit
 
 	public void render(ShootingStarEntity shootingStarEntity, float f, float g, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i) {
 		matrixStack.push();
-		ItemStack itemStack = shootingStarEntity.getStack();
+		/*ShootingStarBlock.Type type = shootingStarEntity.getShootingStarType();
+		ItemStack itemStack = type.getBlock().asItem().getDefaultStack();
 
 		int j = itemStack.isEmpty() ? 187 : Item.getRawId(itemStack.getItem()) + itemStack.getDamage();
 		this.random.setSeed(j);
@@ -63,7 +65,7 @@ public class ShootingStarEntityRenderer extends EntityRenderer<ShootingStarEntit
 		this.itemRenderer.renderItem(itemStack, ModelTransformation.Mode.GROUND, false, matrixStack, vertexConsumerProvider, 15728880, OverlayTexture.DEFAULT_UV, bakedModel);
 		matrixStack.pop();
 
-		matrixStack.pop();
+		matrixStack.pop();*/
 		super.render(shootingStarEntity, f, g, matrixStack, vertexConsumerProvider, i);
 	}
 

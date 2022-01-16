@@ -612,6 +612,12 @@
   "block.spectrum.scarlet_ore": "Crimtane Ore",
   "block.spectrum.scarlet_fragment_block": "Crimtane Floatblock",
 
+  "block.spectrum.shooting_star_glistering": "Glistering Shooting Star",
+  "block.spectrum.shooting_star_fiery": "Fiery Shooting Star",
+  "block.spectrum.shooting_star_colorful": "Colorful Shooting Star",
+  "block.spectrum.shooting_star_pristine": "Pristine Shooting Star",
+  "block.spectrum.shooting_star_gemstone": "Gemstone Shooting Star",
+
   "block.spectrum.glistering_melon": "Glistering Melon",
   "block.spectrum.glistering_melon_stem": "Glistering Melon Stem",
   "block.spectrum.attached_glistering_melon_stem": "Glistering Melon Stem",

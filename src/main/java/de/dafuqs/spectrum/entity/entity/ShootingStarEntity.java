@@ -309,8 +309,9 @@ public class ShootingStarEntity extends Entity {
 		for(ItemStack itemStack : loot) {
 			ItemEntity itemEntity = new ItemEntity(this.world, this.getX(), this.getY(), this.getZ(), itemStack);
 			this.world.spawnEntity(itemEntity);
-			this.discard();
 		}
+		
+		// TODO: Particles
 	}
 	
 	public Text getName() {

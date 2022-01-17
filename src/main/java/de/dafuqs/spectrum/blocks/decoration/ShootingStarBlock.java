@@ -1,25 +1,25 @@
 package de.dafuqs.spectrum.blocks.decoration;
 
 import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import net.minecraft.block.Block;
+import net.minecraft.particle.ParticleEffect;
 import net.minecraft.util.Identifier;
 
 public class ShootingStarBlock extends Block {
 	
 	public enum Type {
-		GLISTERING(SpectrumBlocks.GLISTERING_SHOOTING_STAR, "glistering"),
-		FIERY(SpectrumBlocks.FIERY_SHOOTING_STAR, "fiery"),
-		COLORFUL(SpectrumBlocks.COLORFUL_SHOOTING_STAR, "colorful"),
-		PRISTINE(SpectrumBlocks.PRISTINE_SHOOTING_STAR, "pristine"),
-		GEMSTONE(SpectrumBlocks.GEMSTONE_SHOOTING_STAR, "gemstone");
+		GLISTERING("glistering"),
+		FIERY("fiery"),
+		COLORFUL("colorful"),
+		PRISTINE("pristine"),
+		GEMSTONE("gemstone");
 		
-		private final Block block;
 		private final String name;
 		
-		private Type(Block block, String name) {
+		Type(String name) {
 			this.name = name;
-			this.block = block;
 		}
 		
 		public String getName() {
@@ -27,7 +27,23 @@ public class ShootingStarBlock extends Block {
 		}
 		
 		public Block getBlock() {
-			return this.block;
+			switch (this) {
+				case PRISTINE -> {
+					return SpectrumBlocks.PRISTINE_SHOOTING_STAR;
+				}
+				case GEMSTONE -> {
+					return SpectrumBlocks.GEMSTONE_SHOOTING_STAR;
+				}
+				case FIERY -> {
+					return SpectrumBlocks.FIERY_SHOOTING_STAR;
+				}
+				case COLORFUL -> {
+					return SpectrumBlocks.COLORFUL_SHOOTING_STAR;
+				}
+				default -> {
+					return SpectrumBlocks.GLISTERING_SHOOTING_STAR;
+				}
+			}
 		}
 		
 		public static ShootingStarBlock.Type getType(int type) {

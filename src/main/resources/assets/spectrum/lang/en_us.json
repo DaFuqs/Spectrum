@@ -1012,7 +1012,7 @@
   "item.spectrum.crafting_tablet.tooltip.pedestal_recipe": "Use in a Pedestal for autocrafting",
   "item.spectrum.crafting_tablet.tooltip.recipe": "%d %s",
 
-  "item.spectrum.shooting_star": "Shooting Star",
+  "item.spectrum.shooting_star": "Star Fragment",
   "item.spectrum.stardust": "Stardust",
   "item.spectrum.bottle_of_fading": "Bottle of Fading",
   "item.spectrum.bottle_of_fading.tooltip": "§2Glibbery!",
@@ -1021,7 +1021,7 @@
   "item.spectrum.bottle_of_ruin": "Bottle of Ruin",
   "item.spectrum.bottle_of_ruin.tooltip": "§4⚠ You will probably regret this",
   "item.spectrum.bottle_of_terror": "Bottle of Terror",
-  "item.spectrum.bottle_of_terror.tooltip": "§4⚠ You know what you are doing",
+  "item.spectrum.bottle_of_terror.tooltip": "§4⚠ I hope you know what you are doing",
   "item.spectrum.bottle_of_decay_away": "Bottle of Decay Away",
   "item.spectrum.bottle_of_decay_away.tooltip": "§2Apply directly to corrupted area",
   "block.spectrum.fading": "Fading",

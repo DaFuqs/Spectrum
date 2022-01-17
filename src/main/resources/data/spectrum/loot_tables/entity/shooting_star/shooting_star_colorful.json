@@ -9,7 +9,7 @@
       "entries": [
         {
           "type": "minecraft:tag",
-          "name": "minecraft:diamond_ores",
+          "name": "spectrum:dyes",
           "expand": true,
           "functions": [
             {

@@ -1,9 +1,11 @@
 ![Spectrum Banner](/images/banner.png "Spectrums Banner")
 
 ## Overview
-Spectrum is a storydriven, exploration-based magic mod focusing on the natural energies that flow in the world, represented in color.
+Spectrum is a storydriven, exploration-focused magic mod focusing on the natural energies that flow in the world, represented in color.
 
 Spectrum is progression based and tries to not give everything away at first glance. Every step in your journey through the mod will be hinted at via advancements and the ingame manual that you will be gifted as soon as you start the mod.
+
+There is no hand-holding, so everything will require a fair bit of experiementation or exploration. That also means may not be the best fit for every play style. Everyone plays Minecraft differently and that is perfectly OK!
 
 ## Lore
 The world is interspersed with three kinds of fundamental kinds of magic: Time, Matter and Energy.

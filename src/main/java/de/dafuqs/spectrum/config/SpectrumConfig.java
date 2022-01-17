@@ -75,7 +75,10 @@ may lack the feedback they need that what they are doing is correct
 	public float RuinDecayTickRate = 1.0F;
 	public float TerrorDecayTickRate = 1.0F;
 
-	@Comment("Enable or disable specific enchantments. Resonance and Voiding can not be disabled.")
+	@Comment("""
+Enable or disable specific enchantments. Resonance and Voiding can not be disabled.
+This does only disable the registration of said Enchantments, not all recipes based on them (except for Enchantment Upgrade Recipes)
+""")
 	public boolean AutoSmeltEnchantmentEnabled = true;
 	public boolean ExuberanceEnchantmentEnabled = true;
 	public boolean InventoryInsertionEnchantmentEnabled = true;

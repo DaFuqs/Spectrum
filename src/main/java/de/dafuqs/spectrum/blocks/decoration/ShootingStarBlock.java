@@ -1,10 +1,8 @@
 package de.dafuqs.spectrum.blocks.decoration;
 
 import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import net.minecraft.block.Block;
-import net.minecraft.particle.ParticleEffect;
 import net.minecraft.util.Identifier;
 
 public class ShootingStarBlock extends Block {

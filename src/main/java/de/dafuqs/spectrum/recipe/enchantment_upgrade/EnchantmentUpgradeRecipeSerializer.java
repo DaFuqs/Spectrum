@@ -2,11 +2,13 @@ package de.dafuqs.spectrum.recipe.enchantment_upgrade;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
 import de.dafuqs.spectrum.SpectrumCommon;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.item.Item;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.recipe.RecipeSerializer;
+import net.minecraft.recipe.ShapedRecipe;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
 import net.minecraft.util.registry.Registry;
@@ -31,11 +33,10 @@ public class EnchantmentUpgradeRecipeSerializer<T extends EnchantmentUpgradeReci
 		Identifier enchantmentIdentifier = Identifier.tryParse(JsonHelper.getString(jsonObject, "enchantment"));
 		
 		if(!Registry.ENCHANTMENT.containsId(enchantmentIdentifier)) {
-			SpectrumCommon.log(Level.ERROR, "Enchantment Upgrade Recipe " + identifier + " has a enchantment set that does not exist " + enchantmentIdentifier);
+			throw new JsonParseException("Enchantment Upgrade Recipe " + identifier + " has a enchantment set that does not exist or is disabled: " + enchantmentIdentifier); // otherwise, recipe sync would break multiplayer joining with the non-existing enchantment
 		}
 		
 		Enchantment enchantment = Registry.ENCHANTMENT.get(enchantmentIdentifier);
-		
 		Identifier requiredAdvancementIdentifier = null;
 		if(JsonHelper.hasString(jsonObject, "required_advancement")) {
 			requiredAdvancementIdentifier = Identifier.tryParse(JsonHelper.getString(jsonObject, "required_advancement"));

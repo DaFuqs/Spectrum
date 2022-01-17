@@ -70,10 +70,6 @@ public class ShootingStarEntity extends Entity {
 		this.setPosition(x, y, z);
 		this.setYaw(this.random.nextFloat() * 360.0F);
 		this.setVelocity(this.random.nextDouble() * 0.2D - 0.1D, 0.2D, this.random.nextDouble() * 0.2D - 0.1D);
-	}
-
-	public ShootingStarEntity(World world, double x, double y, double z, ItemStack stack) {
-		this(world, x, y, z);
 		this.setShootingStarType(ShootingStarBlock.Type.COLORFUL);
 	}
 
@@ -112,12 +108,10 @@ public class ShootingStarEntity extends Entity {
 			}
 		}
 	}
-	
-	
 
 	public static void spawnShootingStar(ServerWorld serverWorld, @NotNull PlayerEntity playerEntity) {
-		ItemStack itemStack = new ItemStack(SpectrumItems.SHOOTING_STAR);
-		ShootingStarEntity shootingStarEntity = new ShootingStarEntity(serverWorld, playerEntity.getPos().getX(), playerEntity.getPos().getY() + 200, playerEntity.getPos().getZ(), itemStack);
+		ShootingStarEntity shootingStarEntity = new ShootingStarEntity(serverWorld, playerEntity.getPos().getX(), playerEntity.getPos().getY() + 200, playerEntity.getPos().getZ());
+		shootingStarEntity.setShootingStarType(ShootingStarBlock.Type.values()[serverWorld.getRandom().nextInt(ShootingStarBlock.Type.values().length)]);
 		shootingStarEntity.addVelocity(3 - shootingStarEntity.random.nextFloat() * 6, 0, 3 - shootingStarEntity.random.nextFloat() * 6);
 		serverWorld.spawnEntity(shootingStarEntity);
 	}
@@ -213,12 +207,11 @@ public class ShootingStarEntity extends Entity {
 		}
 	}
 
-	/*public void onPlayerCollision(PlayerEntity player) {
+	public void onPlayerCollision(PlayerEntity player) {
 		if (!this.world.isClient) {
 			player.damage(DamageSource.FALLING_BLOCK, 5);
 
-			ItemStack itemStack = this.getStack();
-			Item item = itemStack.getItem();
+			ItemStack itemStack = this.getShootingStarType().getBlock().asItem().getDefaultStack();
 			int i = itemStack.getCount();
 			if (player.getInventory().insertStack(itemStack)) {
 				if(!player.isDead()) {
@@ -229,13 +222,13 @@ public class ShootingStarEntity extends Entity {
 					}
 
 					Support.grantAdvancementCriterion((ServerPlayerEntity) player, "catch_shooting_star", "catch");
-					player.increaseStat(Stats.PICKED_UP.getOrCreateStat(item), i);
+					player.increaseStat(Stats.PICKED_UP.getOrCreateStat(itemStack.getItem()), i);
 
 					this.discard();
 				}
 			}
 		}
-	}*/
+	}
 	
 	public void pushAwayFrom(Entity entity) {
 		if (entity instanceof BoatEntity) {
@@ -320,7 +313,6 @@ public class ShootingStarEntity extends Entity {
 		}
 	}
 	
-	
 	public Text getName() {
 		Text text = this.getCustomName();
 		return (text != null ? text : asItem().getName());
@@ -338,13 +330,15 @@ public class ShootingStarEntity extends Entity {
 				ItemEntity itemEntity = new ItemEntity(this.world, this.getX(), this.getY(), this.getZ(), SpectrumItems.SHOOTING_STAR.getDefaultStack());
 				this.world.spawnEntity(itemEntity);
 				this.discard();
+				
+				return true;
 			} else {
 				this.scheduleVelocityUpdate();
 				this.emitGameEvent(GameEvent.ENTITY_DAMAGED, attacker);
 			}
 		}
 		
-		return super.handleAttack(attacker);
+		return false;
 	}
 	
 	@Override
@@ -385,11 +379,6 @@ public class ShootingStarEntity extends Entity {
 	@Environment(EnvType.CLIENT)
 	public int getAge() {
 		return this.age;
-	}
-
-	@Environment(EnvType.CLIENT)
-	public float method_27314(float f) {
-		return ((float)this.getAge() + f) / 20.0F + this.hoverHeight;
 	}
 
 	public Packet<?> createSpawnPacket() {

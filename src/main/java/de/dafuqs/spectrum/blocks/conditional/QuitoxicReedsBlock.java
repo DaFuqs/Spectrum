@@ -262,4 +262,13 @@ public class QuitoxicReedsBlock extends Block implements Cloakable, WaterOrLiqui
 		return blockState.isAir() || blockState.isOf(this) || blockState.isOf(Blocks.WATER) || blockState.isOf(SpectrumBlocks.LIQUID_CRYSTAL);
 	}
 
+	@Override
+	public float getMaxHorizontalModelOffset() {
+		return 0.15F;
+	}
+
+	@Override
+	public OffsetType getOffsetType() {
+		return OffsetType.XYZ;
+	}
 }

@@ -151,7 +151,11 @@ public class ExchangeStaffItem extends BuildingStaffItem implements EnchanterEnc
 		return Optional.empty();
 	}
 	
-	private ActionResult exchange(World world, BlockPos pos, @NotNull PlayerEntity player, @NotNull Block targetBlock, ItemStack exchangeStaffItemStack) {
+	public static ActionResult exchange(World world, BlockPos pos, @NotNull PlayerEntity player, @NotNull Block targetBlock, ItemStack exchangeStaffItemStack) {
+		return exchange(world, pos, player, targetBlock, exchangeStaffItemStack, false);
+	}
+	
+	public static ActionResult exchange(World world, BlockPos pos, @NotNull PlayerEntity player, @NotNull Block targetBlock, ItemStack exchangeStaffItemStack, boolean single) {
 		Item exchangedForBlockItem = targetBlock.asItem();
 		BlockState targetBlockState = targetBlock.getDefaultState();
 		BlockState placedBlockState = targetBlockState;
@@ -160,7 +164,7 @@ public class ExchangeStaffItem extends BuildingStaffItem implements EnchanterEnc
 		if(player.isCreative()) {
 			exchangedForBlockItemCount = Integer.MAX_VALUE;
 		} else {
-			Triplet<Block, Item, Integer> exchangeData = BuildingHelper.getBuildingItemCountIncludingSimilars(player, targetBlock);
+			Triplet<Block, Item, Integer> exchangeData = BuildingHelper.getBuildingItemCountInInventoryIncludingSimilars(player, targetBlock);
 			if(targetBlock != exchangeData.getA()) {
 				placedBlockState = exchangeData.getA().getDefaultState();
 			}
@@ -168,8 +172,11 @@ public class ExchangeStaffItem extends BuildingStaffItem implements EnchanterEnc
 			exchangedForBlockItemCount = exchangeData.getC();
 		}
 		
+		if(single) {
+			exchangedForBlockItemCount = Math.min(1, exchangedForBlockItemCount);
+		}
+		
 		if (exchangedForBlockItemCount > 0) {
-			
 			int range = getRange(player);
 			List<BlockPos> targetPositions = BuildingHelper.getConnectedBlocks(world, pos, exchangedForBlockItemCount, range);
 			if (targetPositions.isEmpty()) {

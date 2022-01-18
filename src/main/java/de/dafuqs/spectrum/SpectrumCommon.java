@@ -6,6 +6,7 @@ import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
 import de.dafuqs.spectrum.events.SpectrumGameEvents;
 import de.dafuqs.spectrum.inventories.SpectrumContainers;
 import de.dafuqs.spectrum.inventories.SpectrumScreenHandlerTypes;
+import de.dafuqs.spectrum.items.magic_items.ExchangeStaffItem;
 import de.dafuqs.spectrum.loot.EnchantmentDrops;
 import de.dafuqs.spectrum.loot.SpectrumLootConditionTypes;
 import de.dafuqs.spectrum.networking.SpectrumC2SPackets;
@@ -19,22 +20,31 @@ import de.dafuqs.spectrum.sound.SpectrumBlockSoundGroups;
 import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
 import de.dafuqs.spectrum.worldgen.SpectrumConfiguredFeatures;
 import de.dafuqs.spectrum.worldgen.SpectrumFeatures;
+import dev.architectury.event.events.common.InteractionEvent;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerWorldEvents;
+import net.fabricmc.fabric.api.event.player.AttackBlockCallback;
 import net.minecraft.block.Block;
 import net.minecraft.block.FluidBlock;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.state.property.BooleanProperty;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.world.World;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Optional;
 
 public class SpectrumCommon implements ModInitializer {
 
@@ -154,6 +164,17 @@ public class SpectrumCommon implements ModInitializer {
 
 		log(Level.INFO, "Registering Block / Item Color Registries...");
 		ColorRegistry.registerColorRegistries();
+		
+		AttackBlockCallback.EVENT.register((player, world, hand, pos, direction) -> {
+			if(!world.isClient && !player.isSpectator() && player.getMainHandStack().isOf(SpectrumItems.EXCHANGE_STAFF)) {
+				Optional<Block> blockTarget = ExchangeStaffItem.getBlockTarget(player.getMainHandStack());
+				if(blockTarget.isPresent()) {
+					ExchangeStaffItem.exchange(world, pos, player, blockTarget.get(), player.getMainHandStack(), true);
+				}
+				return ActionResult.CONSUME;
+			}
+			return ActionResult.PASS;
+		});
 
 		ServerWorldEvents.LOAD.register((minecraftServer, serverWorld) -> {
 			SpectrumCommon.minecraftServer = minecraftServer;

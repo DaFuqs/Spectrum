@@ -90,7 +90,7 @@ public class PlacementStaffItem extends BuildingStaffItem {
 				if(player.isCreative()) {
 					count = Integer.MAX_VALUE;
 				} else {
-					Triplet<Block, Item, Integer> inventoryItemAndCount = BuildingHelper.getBuildingItemCountIncludingSimilars(player, targetBlock);
+					Triplet<Block, Item, Integer> inventoryItemAndCount = BuildingHelper.getBuildingItemCountInInventoryIncludingSimilars(player, targetBlock);
 					if(targetBlock != inventoryItemAndCount.getA()) {
 						targetBlockState = inventoryItemAndCount.getA().getDefaultState();
 					}

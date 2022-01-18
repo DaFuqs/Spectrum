@@ -92,7 +92,7 @@ public abstract class WorldRendererMixin {
                 if(player.isCreative()) {
                     itemCountInInventory = Integer.MAX_VALUE;
                 } else {
-                    Triplet<Block, Item, Integer> inventoryItemAndCount = BuildingHelper.getBuildingItemCountIncludingSimilars(player, lookingAtBlock);
+                    Triplet<Block, Item, Integer> inventoryItemAndCount = BuildingHelper.getBuildingItemCountInInventoryIncludingSimilars(player, lookingAtBlock);
                     item = inventoryItemAndCount.getB();
                     itemCountInInventory = inventoryItemAndCount.getC();
                 }

@@ -43,7 +43,7 @@ public class BuildingHelper {
 		add(Direction.SOUTH.getVector().offset(Direction.WEST, 1));
 	}};
 	
-	public static Triplet<Block, Item, Integer> getBuildingItemCountIncludingSimilars(PlayerEntity player, Block block) {
+	public static Triplet<Block, Item, Integer> getBuildingItemCountInInventoryIncludingSimilars(PlayerEntity player, Block block) {
 		Item blockItem = block.asItem();
 		int count = player.getInventory().count(block.asItem());
 		if(count == 0) {

@@ -8,11 +8,9 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.item.Item;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.recipe.RecipeSerializer;
-import net.minecraft.recipe.ShapedRecipe;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
 import net.minecraft.util.registry.Registry;
-import org.apache.logging.log4j.Level;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;

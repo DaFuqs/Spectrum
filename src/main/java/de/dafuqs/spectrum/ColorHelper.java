@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum;
 
 import de.dafuqs.spectrum.items.PigmentItem;
-import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import net.minecraft.item.DyeItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

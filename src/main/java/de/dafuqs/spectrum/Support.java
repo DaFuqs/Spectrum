@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum;
 
 import de.dafuqs.spectrum.progression.ClientAdvancements;
-import io.netty.handler.logging.LogLevel;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.advancement.Advancement;

@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.registries;
 
-import de.dafuqs.spectrum.registries.SpectrumItemTags;
 import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ArmorMaterial;

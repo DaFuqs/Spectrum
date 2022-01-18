@@ -67,7 +67,7 @@ public class ItemBowlBlock extends BlockWithEntity {
 		BlockEntity blockEntity = world.getBlockEntity(pos);
 		if(blockEntity instanceof ItemBowlBlockEntity itemBowlBlockEntity) {
 			int previousCount = itemStack.getCount();
-			ItemStack remainingStack = InventoryHelper.addToInventory(itemStack, itemBowlBlockEntity.getInventory(), null);
+			ItemStack remainingStack = InventoryHelper.smartAddToInventory(itemStack, itemBowlBlockEntity.getInventory(), null);
 			
 			if(remainingStack.getCount() != previousCount) {
 				itemBowlBlockEntity.markDirty();
@@ -153,7 +153,7 @@ public class ItemBowlBlock extends BlockWithEntity {
 						itemsChanged = true;
 					} else {
 						if (!handStack.isEmpty()) {
-							ItemStack remainingStack = InventoryHelper.addToInventory(handStack, itemBowlBlockEntity.getInventory(), null);
+							ItemStack remainingStack = InventoryHelper.smartAddToInventory(handStack, itemBowlBlockEntity.getInventory(), null);
 							player.setStackInHand(hand, remainingStack);
 							itemsChanged = true;
 						}

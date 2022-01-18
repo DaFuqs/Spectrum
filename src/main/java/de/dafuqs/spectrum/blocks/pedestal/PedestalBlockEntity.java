@@ -62,7 +62,6 @@ import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import vazkii.patchouli.api.IMultiblock;
-import vazkii.patchouli.api.PatchouliAPI;
 
 import java.util.*;
 
@@ -448,7 +447,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 			return false;
 		}
 		
-		ItemStack remainingStack = InventoryHelper.addToInventory(outputItemStack, targetInventory, Direction.DOWN);
+		ItemStack remainingStack = InventoryHelper.smartAddToInventory(outputItemStack, targetInventory, Direction.DOWN);
 		if(remainingStack.isEmpty()) {
 			pedestalBlockEntity.inventory.set(OUTPUT_SLOT_ID, ItemStack.EMPTY);
 			return true;

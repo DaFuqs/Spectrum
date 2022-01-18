@@ -112,7 +112,7 @@ public class FusionShrineBlock extends BlockWithEntity {
 				return inputFluidViaBucket(world, pos, itemStack);
 			} else {
 				int previousCount = itemStack.getCount();
-				ItemStack remainingStack = InventoryHelper.addToInventory(itemStack, fusionShrineBlockEntity.getInventory(), null);
+				ItemStack remainingStack = InventoryHelper.smartAddToInventory(itemStack, fusionShrineBlockEntity.getInventory(), null);
 				
 				if (remainingStack.getCount() != previousCount) {
 					fusionShrineBlockEntity.markDirty();
@@ -220,7 +220,7 @@ public class FusionShrineBlock extends BlockWithEntity {
 					} else if (!itemStack.isEmpty() && verifyStructure(world, pos, (ServerPlayerEntity) player)) {
 						fusionShrineBlockEntity.setOwner(player);
 						
-						ItemStack remainingStack = InventoryHelper.addToInventory(itemStack, fusionShrineBlockEntity.getInventory(), null);
+						ItemStack remainingStack = InventoryHelper.smartAddToInventory(itemStack, fusionShrineBlockEntity.getInventory(), null);
 						player.setStackInHand(hand, remainingStack);
 						
 						soundToPlay = Optional.of(SoundEvents.ENTITY_ITEM_PICKUP);

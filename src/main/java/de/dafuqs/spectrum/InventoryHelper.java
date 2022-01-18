@@ -93,7 +93,7 @@ public class InventoryHelper {
 	 * @param inventory the inventory to add to
 	 * @return The remaining stack that could not be added
 	 */
-	public static ItemStack addToInventory(ItemStack itemStack, Inventory inventory, @Nullable Direction side) {
+	public static ItemStack smartAddToInventory(ItemStack itemStack, Inventory inventory, @Nullable Direction side) {
 		if(inventory instanceof SidedInventory && side != null) {
 			int[] acceptableSlots = ((SidedInventory) inventory).getAvailableSlots(side);
 			for(int acceptableSlot : acceptableSlots) {
@@ -134,18 +134,19 @@ public class InventoryHelper {
 		return originalStack;
 	}
 
-	public static boolean addToInventory(List<ItemStack> itemStacks, List<ItemStack> inventory, boolean test) {
+	public static boolean smartAddToInventory(List<ItemStack> itemStacks, List<ItemStack> inventory, boolean test) {
 		List<ItemStack> additionStacks = new ArrayList<>();
 		for(ItemStack itemStack : itemStacks) {
 			additionStacks.add(itemStack.copy());
 		}
 
+		boolean tryStackExisting = true;
 		for(int i = 0; i < inventory.size(); i++) {
 			ItemStack currentStack = inventory.get(i);
 			for(ItemStack additionStack : additionStacks) {
 				boolean doneStuff = false;
 				if (additionStack.getCount() > 0) {
-					if (currentStack.isEmpty()) {
+					if (currentStack.isEmpty() && (test || !tryStackExisting)) {
 						int maxStackCount = currentStack.getMaxCount();
 						int maxAcceptCount = Math.min(additionStack.getCount(), maxStackCount);
 
@@ -188,6 +189,11 @@ public class InventoryHelper {
 						}
 					}
 				}
+			}
+			
+			if(tryStackExisting && !test && i == inventory.size() - 1) {
+				tryStackExisting = false;
+				i = -1;
 			}
 		}
 		return false;

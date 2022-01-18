@@ -156,17 +156,17 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 			additionItemStacks.add(remainderStack);
 		}
 		
-		spaceInInventory = InventoryHelper.addToInventory(additionItemStacks, inventory, true);
+		spaceInInventory = InventoryHelper.smartAddToInventory(additionItemStacks, inventory, true);
 		
 		if (spaceInInventory) {
 			// craft
-			InventoryHelper.addToInventory(additionItemStacks, inventory, false);
+			InventoryHelper.smartAddToInventory(additionItemStacks, inventory, false);
 			this.setInvStackList(inventory);
 			
 			// cache
 			return true;
 		} else {
-			InventoryHelper.addToInventory(List.of(removalItemStack), inventory, false);
+			InventoryHelper.smartAddToInventory(List.of(removalItemStack), inventory, false);
 			return false;
 		}
 	}

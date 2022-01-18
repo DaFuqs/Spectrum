@@ -146,7 +146,7 @@ public class SuckingChestBlockEntity extends SpectrumChestBlockEntity implements
 				ItemEntity itemEntity = itemEntityTransferListener.getItemEntity();
 				if (itemEntity != null && itemEntity.isAlive() && acceptsItemStack(itemEntity.getStack())) { //&& itemEntity.cannotPickup()) { // risky. But that is always false for newly dropped items
 					int previousAmount = itemEntity.getStack().getCount();
-					ItemStack remainingStack = InventoryHelper.addToInventory(itemEntity.getStack(), this, Direction.UP);
+					ItemStack remainingStack = InventoryHelper.smartAddToInventory(itemEntity.getStack(), this, Direction.UP);
 
 					if (remainingStack.isEmpty()) {
 						SpectrumS2CPackets.sendPlayItemEntityAbsorbedParticle(world, itemEntity);

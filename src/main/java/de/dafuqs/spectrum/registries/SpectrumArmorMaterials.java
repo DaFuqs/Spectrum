@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.registries.materials;
+package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.spectrum.registries.SpectrumItemTags;
 import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
@@ -18,7 +18,7 @@ public enum SpectrumArmorMaterials implements ArmorMaterial {
    GLOW_VISION("glow_vision", 15, new int[]{1, 2, 3, 1}, 7, SpectrumSoundEvents.ITEM_ARMOR_EQUIP_GLOW_VISION, 0.0F, 0.0F, () -> {
 	  return Ingredient.ofItems(Items.GLOW_INK_SAC);
    }),
-   EMERGENCY("gemstone", 10, new int[]{3, 5, 7, 3}, 15, SoundEvents.BLOCK_AMETHYST_BLOCK_CHIME, 0.0F, 0.0F, () -> {
+   EMERGENCY("gemstone", 9, new int[]{3, 5, 7, 3}, 15, SoundEvents.BLOCK_AMETHYST_BLOCK_CHIME, 0.0F, 0.0F, () -> {
 	  return Ingredient.fromTag(SpectrumItemTags.GEMSTONE_SHARDS);
    });
 

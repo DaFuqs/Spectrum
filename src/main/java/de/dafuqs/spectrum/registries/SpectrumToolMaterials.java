@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.registries.materials;
+package de.dafuqs.spectrum.registries;
 
 import net.fabricmc.yarn.constants.MiningLevels;
 import net.minecraft.recipe.Ingredient;

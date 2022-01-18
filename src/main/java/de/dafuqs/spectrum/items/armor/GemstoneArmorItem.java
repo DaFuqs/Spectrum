@@ -74,9 +74,9 @@ public class GemstoneArmorItem extends ArmorItem implements ArmorWithHitEffect {
 				}
 			}
 			case CHEST -> {
-				StatusEffectInstance statusEffectInstance = new StatusEffectInstance(StatusEffects.ABSORPTION, 5*20, 2);
+				StatusEffectInstance statusEffectInstance = new StatusEffectInstance(StatusEffects.ABSORPTION, 5*20, 1);
 				targetEntity.addStatusEffect(statusEffectInstance);
-				statusEffectInstance = new StatusEffectInstance(StatusEffects.INSTANT_HEALTH, 1, 2);
+				statusEffectInstance = new StatusEffectInstance(StatusEffects.INSTANT_HEALTH, 1, 1);
 				targetEntity.addStatusEffect(statusEffectInstance);
 			}
 			case FEET -> {

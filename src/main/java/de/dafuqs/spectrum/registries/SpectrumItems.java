@@ -13,8 +13,6 @@ import de.dafuqs.spectrum.items.item_frame.InvisibleGlowItemFrameItem;
 import de.dafuqs.spectrum.items.item_frame.InvisibleItemFrameItem;
 import de.dafuqs.spectrum.items.magic_items.*;
 import de.dafuqs.spectrum.items.tools.*;
-import de.dafuqs.spectrum.registries.materials.SpectrumArmorMaterials;
-import de.dafuqs.spectrum.registries.materials.SpectrumToolMaterials;
 import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
 import io.wispforest.owo.itemgroup.OwoItemSettings;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;

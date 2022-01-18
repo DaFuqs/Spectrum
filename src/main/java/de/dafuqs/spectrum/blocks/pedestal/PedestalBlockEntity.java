@@ -838,7 +838,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 				if (valid) {
 					highestAvailableRecipeTier = PedestalRecipeTier.COMPLEX;
 					SpectrumAdvancementCriteria.COMPLETED_MULTIBLOCK.trigger((ServerPlayerEntity) this.getPlayerEntityIfOnline(world), multiblock);
-					clearCurrentlyRenderedMultiBlock();
+					clearCurrentlyRenderedMultiBlock(world);
 					found = true;
 				}
 			}
@@ -847,7 +847,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 				boolean valid = multiblock.validate(world, pos.down(), BlockRotation.NONE);				if (valid) {
 					highestAvailableRecipeTier = PedestalRecipeTier.ADVANCED;
 					SpectrumAdvancementCriteria.COMPLETED_MULTIBLOCK.trigger((ServerPlayerEntity) this.getPlayerEntityIfOnline(world), multiblock);
-					clearCurrentlyRenderedMultiBlock();
+					clearCurrentlyRenderedMultiBlock(world);
 					found = true;
 				}
 			}
@@ -857,7 +857,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 				if (valid) {
 					highestAvailableRecipeTier = PedestalRecipeTier.SIMPLE;
 					SpectrumAdvancementCriteria.COMPLETED_MULTIBLOCK.trigger((ServerPlayerEntity) this.getPlayerEntityIfOnline(world), multiblock);
-					clearCurrentlyRenderedMultiBlock();
+					clearCurrentlyRenderedMultiBlock(world);
 				}
 			}
 
@@ -867,10 +867,14 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		}
 	}
 	
-	public void clearCurrentlyRenderedMultiBlock() {
+	public static void clearCurrentlyRenderedMultiBlock(World world) {
 		if(world.isClient) {
 			IMultiblock currentlyRenderedMultiBlock = PatchouliAPI.get().getCurrentMultiblock();
-			if (currentlyRenderedMultiBlock != null && currentlyRenderedMultiBlock.getID().equals(SpectrumMultiblocks.PEDESTAL_ADVANCED_STRUCTURE_IDENTIFIER_PLACE)) {
+			if (currentlyRenderedMultiBlock != null
+					&& (currentlyRenderedMultiBlock.getID().equals(SpectrumMultiblocks.PEDESTAL_SIMPLE_STRUCTURE_IDENTIFIER_CHECK)
+					    || currentlyRenderedMultiBlock.getID().equals(SpectrumMultiblocks.PEDESTAL_ADVANCED_STRUCTURE_IDENTIFIER_CHECK)
+						|| currentlyRenderedMultiBlock.getID().equals(SpectrumMultiblocks.PEDESTAL_COMPLEX_STRUCTURE_IDENTIFIER_CHECK))) {
+				
 				PatchouliAPI.get().clearMultiblock();
 			}
 		}

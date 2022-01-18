@@ -107,7 +107,7 @@ public class SpectrumConfiguredFeatures {
 			azuriteOreIdentifier,
 			Feature.ORE.configure(new OreFeatureConfig(AZURITE_ORE_TARGETS, 5, 0.5F)), List.of(
 				HeightRangePlacementModifier.trapezoid(YOffset.getBottom(), YOffset.aboveBottom(32)), // min and max height
-				CountPlacementModifier.of(4) // number of veins per chunk
+				CountPlacementModifier.of(6) // number of veins per chunk
 		));
 		
 		registerConfiguredAndPlacedFeature(

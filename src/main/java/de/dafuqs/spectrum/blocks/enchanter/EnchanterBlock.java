@@ -24,6 +24,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldAccess;
 import org.jetbrains.annotations.Nullable;
 import vazkii.patchouli.api.IMultiblock;
 import vazkii.patchouli.api.PatchouliAPI;
@@ -57,6 +58,22 @@ public class EnchanterBlock extends BlockWithEntity {
 			return checkType(type, SpectrumBlockEntityRegistry.ENCHANTER, EnchanterBlockEntity::clientTick);
 		} else {
 			return checkType(type, SpectrumBlockEntityRegistry.ENCHANTER, EnchanterBlockEntity::serverTick);
+		}
+	}
+	
+	@Override
+	public void onBroken(WorldAccess world, BlockPos pos, BlockState state) {
+		if(world.isClient()) {
+			clearCurrentlyRenderedMultiBlock((World) world);
+		}
+	}
+	
+	public static void clearCurrentlyRenderedMultiBlock(World world) {
+		if(world.isClient) {
+			IMultiblock currentlyRenderedMultiBlock = PatchouliAPI.get().getCurrentMultiblock();
+			if (currentlyRenderedMultiBlock != null && currentlyRenderedMultiBlock.getID().equals(SpectrumMultiblocks.ENCHANTER_IDENTIFIER)) {
+				PatchouliAPI.get().clearMultiblock();
+			}
 		}
 	}
 	

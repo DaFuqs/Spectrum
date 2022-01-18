@@ -35,6 +35,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldAccess;
 import org.jetbrains.annotations.Nullable;
 import vazkii.patchouli.api.IMultiblock;
 import vazkii.patchouli.api.PatchouliAPI;
@@ -70,6 +71,22 @@ public class FusionShrineBlock extends BlockWithEntity {
 	@Override
 	public boolean canPathfindThrough(BlockState state, BlockView world, BlockPos pos, NavigationType type) {
 		return false;
+	}
+	
+	@Override
+	public void onBroken(WorldAccess world, BlockPos pos, BlockState state) {
+		if(world.isClient()) {
+			clearCurrentlyRenderedMultiBlock((World) world);
+		}
+	}
+	
+	public static void clearCurrentlyRenderedMultiBlock(World world) {
+		if(world.isClient) {
+			IMultiblock currentlyRenderedMultiBlock = PatchouliAPI.get().getCurrentMultiblock();
+			if (currentlyRenderedMultiBlock != null && currentlyRenderedMultiBlock.getID().equals(SpectrumMultiblocks.FUSION_SHRINE_IDENTIFIER)) {
+				PatchouliAPI.get().clearMultiblock();
+			}
+		}
 	}
 	
 	@Override

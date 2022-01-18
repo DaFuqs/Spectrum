@@ -4,6 +4,7 @@ import de.dafuqs.spectrum.blocks.RedstonePoweredBlock;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
+import de.dafuqs.spectrum.registries.SpectrumMultiblocks;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.Block;
@@ -36,9 +37,12 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3f;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldAccess;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import vazkii.patchouli.api.IMultiblock;
+import vazkii.patchouli.api.PatchouliAPI;
 
 import java.util.Random;
 
@@ -172,7 +176,27 @@ public class PedestalBlock extends BlockWithEntity implements RedstonePoweredBlo
 			world.addParticle(new DustParticleEffect(vec3f, 1.0F), pos.getX() + xOffset, pos.getY() + 1, pos.getZ() + zOffset, 0.0D, 0.0D, 0.0D);
 		}
 	}
-
+	
+	@Override
+	public void onBroken(WorldAccess world, BlockPos pos, BlockState state) {
+		if(world.isClient()) {
+			clearCurrentlyRenderedMultiBlock((World) world);
+		}
+	}
+	
+	public static void clearCurrentlyRenderedMultiBlock(World world) {
+		if(world.isClient) {
+			IMultiblock currentlyRenderedMultiBlock = PatchouliAPI.get().getCurrentMultiblock();
+			if (currentlyRenderedMultiBlock != null
+					&& (currentlyRenderedMultiBlock.getID().equals(SpectrumMultiblocks.PEDESTAL_SIMPLE_STRUCTURE_IDENTIFIER_CHECK)
+					|| currentlyRenderedMultiBlock.getID().equals(SpectrumMultiblocks.PEDESTAL_ADVANCED_STRUCTURE_IDENTIFIER_CHECK)
+					|| currentlyRenderedMultiBlock.getID().equals(SpectrumMultiblocks.PEDESTAL_COMPLEX_STRUCTURE_IDENTIFIER_CHECK))) {
+				
+				PatchouliAPI.get().clearMultiblock();
+			}
+		}
+	}
+	
 	public BlockState getPlacementState(@NotNull ItemPlacementContext ctx) {
 		BlockState placementState = this.getDefaultState();
 

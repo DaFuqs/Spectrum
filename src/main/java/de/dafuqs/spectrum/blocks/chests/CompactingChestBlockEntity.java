@@ -86,6 +86,10 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 		this.hasToCraft = true;
 	}
 	
+	public void inventoryChanged() {
+		this.hasToCraft = true;
+	}
+	
 	private boolean tryCraftOnce() {
 		Optional<CraftingRecipe> optionalCraftingRecipe = Optional.empty();
 		List<ItemStack> craftingStacks = null;

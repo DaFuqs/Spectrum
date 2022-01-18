@@ -92,9 +92,15 @@ public class CompactingChestScreenHandler extends ScreenHandler {
 			itemStack = itemStack2.copy();
 			if (index < this.ROWS * 9) {
 				if (!this.insertItem(itemStack2, this.ROWS * 9, this.slots.size(), true)) {
+					if(inventory instanceof CompactingChestBlockEntity compactingChestBlockEntity) {
+						compactingChestBlockEntity.inventoryChanged();
+					}
 					return ItemStack.EMPTY;
 				}
 			} else if (!this.insertItem(itemStack2, 0, this.ROWS * 9, false)) {
+				if(inventory instanceof CompactingChestBlockEntity compactingChestBlockEntity) {
+					compactingChestBlockEntity.inventoryChanged();
+				}
 				return ItemStack.EMPTY;
 			}
 			
@@ -105,6 +111,9 @@ public class CompactingChestScreenHandler extends ScreenHandler {
 			}
 		}
 		
+		if(inventory instanceof CompactingChestBlockEntity compactingChestBlockEntity) {
+			compactingChestBlockEntity.inventoryChanged();
+		}
 		return itemStack;
 	}
 

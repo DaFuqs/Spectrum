@@ -80,7 +80,7 @@ public class KnowledgeGemItem extends Item implements ExperienceStorageItem, Enc
 				int experienceToTransfer = Math.min(Math.min(transferableExperience, playerExperience), maxStorage - itemExperience);
 				
 				// Store experience
-				if(itemExperience < maxStorage && removePlayerExperience(serverPlayerEntity, experienceToTransfer)) {
+				if(experienceToTransfer > 0 && itemExperience < maxStorage && removePlayerExperience(serverPlayerEntity, experienceToTransfer)) {
 					ExperienceStorageItem.addStoredExperience(stack, experienceToTransfer);
 					
 					if(remainingUseTicks % 4 == 0) {
@@ -90,13 +90,15 @@ public class KnowledgeGemItem extends Item implements ExperienceStorageItem, Enc
 			} else {
 				// drain experience
 				if(itemExperience > 0 && playerExperience != Integer.MAX_VALUE) {
-					int experienceToTransfer = Math.min(Math.min(transferableExperience, playerExperience), Integer.MAX_VALUE - playerExperience);
+					int experienceToTransfer = Math.min(Math.min(transferableExperience, itemExperience), Integer.MAX_VALUE - playerExperience);
 					
-					serverPlayerEntity.addExperience(experienceToTransfer);
-					ExperienceStorageItem.removeStoredExperience(stack, experienceToTransfer);
-					
-					if(remainingUseTicks % 4 == 0) {
-						world.playSound(null, user.getBlockPos(), SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.PLAYERS, 1.0F, 0.8F + world.getRandom().nextFloat() * 0.4F);
+					if(experienceToTransfer > 0) {
+						serverPlayerEntity.addExperience(experienceToTransfer);
+						ExperienceStorageItem.removeStoredExperience(stack, experienceToTransfer);
+						
+						if (remainingUseTicks % 4 == 0) {
+							world.playSound(null, user.getBlockPos(), SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.PLAYERS, 1.0F, 0.8F + world.getRandom().nextFloat() * 0.4F);
+						}
 					}
 				}
 			}

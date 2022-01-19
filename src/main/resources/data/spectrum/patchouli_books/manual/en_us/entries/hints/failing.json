@@ -1,10 +1,10 @@
 {
     "name": "Experiment #2",
     "category": "spectrum:hints_category",
-    "icon": "minecraft:stone",
+    "icon": "minecraft:writable_book",
     "advancement": "spectrum:midgame/craft_bottle_of_failing",
 	"turnin": "spectrum:midgame/collect_neolith",
-	"secret": true
+	"secret": true,
 	"read_by_default": true,
     "pages": [
         {

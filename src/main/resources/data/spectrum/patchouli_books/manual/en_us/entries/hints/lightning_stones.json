@@ -1,10 +1,10 @@
 {
     "name": "A new Resource",
     "category": "spectrum:hints_category",
-    "icon": "minecraft:stone",
+    "icon": "minecraft:writable_book",
     "advancement": "spectrum:milestones/reveal_lightning_stones",
 	"turnin": "spectrum:midgame/collect_lightning_stone",
-	"secret": true
+	"secret": true,
 	"read_by_default": true,
     "pages": [
         {

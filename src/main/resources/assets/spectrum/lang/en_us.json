@@ -45,6 +45,8 @@
   "recipeGroup.spectrum.vanilla": "Vanilla Enchantments",
   "recipeGroup.spectrum.pastel_network": "Pastel Network",
 
+  "spectrum.gui.lexicon.reveal_hint": "Mob Heads",
+
   "container.spectrum.rei.pedestal_crafting.title": "Pedestal Crafting",
   "container.spectrum.rei.pedestal_crafting.crafting_time_and_xp": "%f seconds - %f XP",
   "container.spectrum.rei.pedestal_crafting.crafting_time_one_second_and_xp": "%f second - %f XP",

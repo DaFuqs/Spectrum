@@ -1,7 +1,7 @@
 {
     "name": "A Gemstone",
     "category": "spectrum:hints_category",
-    "icon": "minecraft:stone",
+    "icon": "minecraft:writable_book",
     "advancement": "spectrum:spectrum",
 	"turnin": "spectrum:hidden/collect_shards/collect_citrine_shard",
 	"secret": true,

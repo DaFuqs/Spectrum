@@ -1,10 +1,10 @@
 {
     "name": "A new Resource",
     "category": "spectrum:hints_category",
-    "icon": "minecraft:stone",
+    "icon": "minecraft:writable_book",
     "advancement": "spectrum:milestones/unlock_shooting_stars",
 	"turnin": "spectrum:collect_shooting_star",
-	"secret": true
+	"secret": true,
 	"read_by_default": true,
     "pages": [
         {

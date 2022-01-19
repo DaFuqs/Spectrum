@@ -1,7 +1,7 @@
 {
     "name": "A new Ore",
     "category": "spectrum:hints_category",
-    "icon": "minecraft:stone",
+    "icon": "minecraft:writable_book",
     "advancement": "spectrum:milestones/reveal_azurite",
 	"turnin": "spectrum:midgame/collect_azurite",
 	"secret": true,

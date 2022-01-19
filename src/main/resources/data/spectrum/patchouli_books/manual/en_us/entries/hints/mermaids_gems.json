@@ -1,10 +1,10 @@
 {
-    "name": "A new Ressource",
+    "name": "A new Resource",
     "category": "spectrum:hints_category",
-    "icon": "minecraft:water",
+    "icon": "minecraft:writable_book",
     "advancement": "spectrum:spectrum",
 	"turnin": "spectrum:collect_mermaids_gem",
-	"secret": true
+	"secret": true,
 	"read_by_default": true,
     "pages": [
         {

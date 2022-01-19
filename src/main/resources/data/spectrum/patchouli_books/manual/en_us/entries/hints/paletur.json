@@ -1,10 +1,10 @@
 {
     "name": "A new Ore",
     "category": "spectrum:hints_category",
-    "icon": "minecraft:stone",
+    "icon": "minecraft:writable_book",
     "advancement": "spectrum:milestones/reveal_paletur",
 	"turnin": "spectrum:lategame/collect_paletur",
-	"secret": true
+	"secret": true,
 	"read_by_default": true,
     "pages": [
         {

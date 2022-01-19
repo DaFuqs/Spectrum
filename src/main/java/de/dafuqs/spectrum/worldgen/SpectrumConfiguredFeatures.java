@@ -395,7 +395,7 @@ public class SpectrumConfiguredFeatures {
 
 		// CLOVER
 		Identifier cloversIdentifier = new Identifier(SpectrumCommon.MOD_ID, "clovers");
-		DataPool cloverBlockDataPool = DataPool.builder().add(SpectrumBlocks.CLOVER.getDefaultState(), 19).add(SpectrumBlocks.FOUR_LEAF_CLOVER.getDefaultState(), 1).build();
+		DataPool cloverBlockDataPool = DataPool.builder().add(SpectrumBlocks.CLOVER.getDefaultState(), 9).add(SpectrumBlocks.FOUR_LEAF_CLOVER.getDefaultState(), 1).build();
 		registerConfiguredAndPlacedFeature(
 				cloversIdentifier,
 				Feature.RANDOM_PATCH.configure(ConfiguredFeatures.createRandomPatchFeatureConfig(Feature.SIMPLE_BLOCK.configure(new SimpleBlockFeatureConfig(new WeightedBlockStateProvider(cloverBlockDataPool))), List.of(Blocks.GRASS_BLOCK), 4)),

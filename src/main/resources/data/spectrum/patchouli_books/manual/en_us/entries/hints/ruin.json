@@ -1,0 +1,23 @@
+{
+    "name": "Experiment #3",
+    "category": "spectrum:hints_category",
+    "icon": "minecraft:stone",
+    "advancement": "spectrum:craft_bottle_of_ruin",
+	"turnin": "spectrum:midgame/break_decayed_bedrock",
+	"secret": true
+	"read_by_default": true,
+    "pages": [
+        {
+            "type": "spectrum:hint",
+			"title": "Where to find",
+			"cost": "spectrum:amethyst_shard#8",
+            "text": "This absolutely agressive variant is able to consume the most resistant material there is."
+        },
+        {
+            "type": "spectrum:hint",
+			"title": "A Warning",
+			"cost": "spectrum:amethyst_shard#32",
+            "text": "What could be more resistant than the unbreakable Bedrock itself?$(br2)Better have a plan up your sleeve if anything goes wrong."
+        }
+    ]
+}

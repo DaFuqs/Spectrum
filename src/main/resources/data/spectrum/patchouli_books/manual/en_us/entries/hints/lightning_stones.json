@@ -1,0 +1,23 @@
+{
+    "name": "A new Resource",
+    "category": "spectrum:hints_category",
+    "icon": "minecraft:stone",
+    "advancement": "spectrum:milestones/reveal_lightning_stones",
+	"turnin": "spectrum:midgame/collect_lightning_stone",
+	"secret": true
+	"read_by_default": true,
+    "pages": [
+        {
+            "type": "spectrum:hint",
+			"title": "Where to find",
+			"cost": "spectrum:amethyst_shard#8",
+            "text": "Thunderstorms are a powerful display of nature"
+        },
+        {
+            "type": "spectrum:hint",
+			"title": "Concise Instruction",
+			"cost": "spectrum:amethyst_shard#32",
+            "text": "Sometimes you are able to find weird shards at places where lightning struck.$(br)There even should be a way to bundle Lightning to a specific position, to make searching for them even more efficient."
+        }
+    ]
+}

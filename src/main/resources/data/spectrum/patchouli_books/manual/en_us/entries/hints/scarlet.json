@@ -1,0 +1,23 @@
+{
+    "name": "A new Ore",
+    "category": "spectrum:hints_category",
+    "icon": "minecraft:stone",
+    "advancement": "spectrum:milestones/reveal_scarlet",
+	"turnin": "spectrum:midgame/collect_scarlet",
+	"secret": true
+	"read_by_default": true,
+    "pages": [
+        {
+            "type": "spectrum:hint",
+			"title": "Where to find",
+			"cost": "spectrum:amethyst_shard#8",
+            "text": "There is a new Ore found in the Nether"
+        },
+        {
+            "type": "spectrum:hint",
+			"title": "Concise Instruction",
+			"cost": "spectrum:amethyst_shard#32",
+            "text": "It generates in the bottom layers of the Nether in all biomes, below lava level."
+        }
+    ]
+}

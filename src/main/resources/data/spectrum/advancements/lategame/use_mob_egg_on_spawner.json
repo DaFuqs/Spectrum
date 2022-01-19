@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-        "item": "minecraft:spider_spawn_egg"
+      "item": "minecraft:spider_spawn_egg"
     },
     "title": {
       "translate": "advancements.spectrum.use_mob_egg_on_spawner.title"
@@ -15,11 +15,26 @@
     "used": {
       "trigger": "minecraft:item_used_on_block",
       "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "player": {
+                "advancements": {
+                  "spectrum:lategame/spectrum_lategame": true
+                }
+              }
+            }
+          }
+        ],
         "item": {
           "tag": "spectrum:spawn_eggs"
         },
-        "block": {
-          "blocks": [ "spectrum:spawner", "minecraft:spawner" ]
+        "location": {
+          "block": {
+            "tag": "spectrum:spawners"
+          }
         }
       }
     }

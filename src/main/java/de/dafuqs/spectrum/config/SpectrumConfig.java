@@ -122,7 +122,7 @@ This does only disable the registration of said Enchantments, not all recipes ba
 	public int GlowVisionGogglesDuration = 240;
 
 	@Override
-	public void validatePostLoad() throws ValidationException {
+	public void validatePostLoad() {
 		if(VanillaRecipeCraftingTimeTicks <= 0) { VanillaRecipeCraftingTimeTicks = 40; }
 		if(FadingDecayTickRate <= 0) { FadingDecayTickRate = 1.0F; }
 		if(FailingDecayTickRate <= 0) { FadingDecayTickRate = 1.0F; }

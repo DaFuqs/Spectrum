@@ -10,13 +10,13 @@
         {
             "type": "spectrum:hint",
 			"title": "Small Clue",
-			"cost": "spectrum:amethyst_shard#8",
+			"cost": "minecraft:amethyst_shard#8",
             "text": "Fading, as a small and weak organism, can only process organic blocks next to it, while also taking a while."
         },
         {
             "type": "spectrum:hint",
 			"title": "Concise Instruction",
-			"cost": "spectrum:amethyst_shard#32",
+			"cost": "minecraft:amethyst_shard#32",
             "text": "Place organic blocks, like Leaves, Pumpkins or Melons next to it and wait a while. After some time the block will get consumed and replaced with a different looking Variant.$(br)Break those converted blocks to get a new Resource."
         }
     ]

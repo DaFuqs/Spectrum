@@ -10,13 +10,13 @@
         {
             "type": "spectrum:hint",
 			"title": "Where to find",
-			"cost": "spectrum:amethyst_shard#8",
+			"cost": "minecraft:amethyst_shard#8",
             "text": "Time for an adventure trip on the surface. Try visiting as many biomes as you can!"
         },
         {
             "type": "spectrum:hint",
 			"title": "Concise Instruction",
-			"cost": "spectrum:amethyst_shard#32",
+			"cost": "minecraft:amethyst_shard#32",
             "text": "Strange looking plants have been seen in Swamps, growing on patches of Clay."
         }
     ]

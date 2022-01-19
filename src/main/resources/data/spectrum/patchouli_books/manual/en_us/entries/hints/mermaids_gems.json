@@ -10,13 +10,13 @@
         {
             "type": "spectrum:hint",
 			"title": "Where to find",
-			"cost": "spectrum:amethyst_shard#8",
+			"cost": "minecraft:amethyst_shard#8",
             "text": "Sometimes there are shiny gems found in oceans, floating on top of the water, getting rocked back and forth by the waves. If you spend some time near or in the ocean you may find one yourself!"
         },
         {
             "type": "spectrum:hint",
 			"title": "Concise Instruction",
-			"cost": "spectrum:amethyst_shard#32",
+			"cost": "minecraft:amethyst_shard#32",
             "text": "Source is a delicate flower, found at the bottom of the sea, growing in small groups.$(br)The plant emits a faint glow and if you wear an active Glow Squid helmet it also sparkles.$(br2)Wait next to it until it releases its precious treasure and collect it."
         }
     ]

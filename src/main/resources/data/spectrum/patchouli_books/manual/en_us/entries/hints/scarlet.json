@@ -10,13 +10,13 @@
         {
             "type": "spectrum:hint",
 			"title": "Where to find",
-			"cost": "spectrum:amethyst_shard#8",
+			"cost": "minecraft:amethyst_shard#8",
             "text": "There is a new Ore found in the Nether"
         },
         {
             "type": "spectrum:hint",
 			"title": "Concise Instruction",
-			"cost": "spectrum:amethyst_shard#32",
+			"cost": "minecraft:amethyst_shard#32",
             "text": "It generates in the bottom layers of the Nether in all biomes, below lava level."
         }
     ]

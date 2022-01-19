@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "item": "spectrum:spectral_shard"
+    },
+    "frame": "challenge",
+    "title": {
+      "translate": "advancements.spectrum.finish_progression.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.finish_progression.description"
+    }
+  },
+  "parent": "spectrum:lategame/spectrum_lategame",
+  "criteria": {
+    "completed_spectrum": {
+      "trigger": "spectrum:has_advancement",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/spectrum_lategame"
+      }
+    }
+  },
+  "rewards": {
+    "experience": 1000
+  }
+}

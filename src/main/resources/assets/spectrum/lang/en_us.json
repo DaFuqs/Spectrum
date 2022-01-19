@@ -1200,6 +1200,12 @@
   "advancements.spectrum.enter_ender_glass.description": "Walk through Ender Glass",
   "advancements.spectrum.create_midnight_aberration.title": "The Perfect Compound?",
   "advancements.spectrum.create_midnight_aberration.description": "- not yet available -",
+  "advancements.spectrum.finish_progression.title": "A Journeys End",
+  "advancements.spectrum.finish_progression.description": "Reach the end of your magical journey. Congratulations, Pigment Tinkerer!",
+  "advancements.spectrum.finish_progression_without_tips.title": "Legendary Artist",
+  "advancements.spectrum.finish_progression_without_tips.description": "Complete the entirety of Spectrum without using any tips. Wow! Enjoy your small gift. :)",
+  "advancements.spectrum.finish_progression_with_cheats.title": "Cheater",
+  "advancements.spectrum.finish_progression_with_cheats.description": "Anzeige ist raus",
 
 
   "______name_changes_for_vanilla_blocks" : "Changes:",
@@ -1211,8 +1217,6 @@
   "advancements.spectrum.craft_energy_collector.description": "Construct a collector powerful enough to harvest energy from gem geodes",
   "advancements.spectrum.place_energy_collector.title": "A new form of energy",
   "advancements.spectrum.place_energy_collector.description": "Place the collector in the center of a geode and watch it work",
-  "advancements.spectrum.finish_progression.title": "A journeys end",
-  "advancements.spectrum.finish_progression.description": "Reach the end of your magical journey. Congratulations, Pigment Tinkerer!",
 
   "______unused" : "UNUSED:",
   "advancements.spectrum.place_bottle_of_failing.title": "It... feeds on Obsidian?",

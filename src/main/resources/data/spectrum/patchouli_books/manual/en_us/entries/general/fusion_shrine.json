@@ -11,13 +11,13 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "For the process of creating $(l:general/onyx_shards)Black Shards$() you have developed a special construction.$(br)That said you are pretty sure you can get lots of more uses use out of it later.$(br2)You can either click or throw items onto it and fill it with a bucket."
+      "text": "For the process of creating $(l:general/onyx_shards)Black Shards$() you have developed a special construction.$(br2)You can either click or throw items and buckets onto it. You are even able to process entire stacks of fusion ingredients at once, making fusing much more efficient than with a single item per cycle."
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier2/fusion_shrine_basalt",
-      "text": "Can be built with Basalt or Calcite.$(br)Requires a focus structure and clear view of the sky."
+      "text": "Can be constructed out of Basalt or Calcite.$(br)Requires a focus structure and clear view of the sky."
     },
     {
       "type": "patchouli:multiblock",

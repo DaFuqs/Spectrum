@@ -127,10 +127,11 @@ public class Support {
 		// grant group advancement
 		Identifier advancementIdentifier = new Identifier(SpectrumCommon.MOD_ID, advancementString);
 		Advancement advancement = sal.get(advancementIdentifier);
-		if (advancement != null) {
-			tracker.grantCriterion(advancement, criterion);
-		} else {
+		if(advancement == null) {
 			SpectrumCommon.log(Level.ERROR, "Trying to grant a criterion \"" + criterion +  "\" for an advancement that does not exist: " + advancementIdentifier);
+		}
+		if (!tracker.getProgress(advancement).isDone()) {
+			tracker.grantCriterion(advancement, criterion);
 		}
 	}
 	

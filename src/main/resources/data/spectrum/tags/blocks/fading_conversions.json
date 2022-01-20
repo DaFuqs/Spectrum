@@ -5,6 +5,7 @@
 		"minecraft:moss_block",
 		"minecraft:dried_kelp_block",
 		"minecraft:melon",
-		"minecraft:pumpkin"
+		"minecraft:pumpkin",
+		"spectrum:glistering_melon"
 	]
 }

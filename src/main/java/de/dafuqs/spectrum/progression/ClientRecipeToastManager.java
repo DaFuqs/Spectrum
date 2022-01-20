@@ -35,6 +35,8 @@ public class ClientRecipeToastManager {
 		put(new Identifier(SpectrumCommon.MOD_ID, "milestones/unlock_shooting_stars"), new Pair<>(new ItemStack(Items.SPYGLASS), "shooting_stars_unlocked"));
 		put(new Identifier(SpectrumCommon.MOD_ID, "milestones/unlock_overenchanting_with_enchanter"), new Pair<>(new ItemStack(SpectrumBlocks.ENCHANTER), "overchanting_unlocked"));
 		put(new Identifier(SpectrumCommon.MOD_ID, "milestones/unlock_conflicted_enchanting_with_enchanter"), new Pair<>(new ItemStack(SpectrumBlocks.ENCHANTER), "enchant_conflicting_enchantments_unlocked"));
+		put(new Identifier(SpectrumCommon.MOD_ID, "midgame/spectrum_midgame"), new Pair<>(new ItemStack(SpectrumBlocks.PEDESTAL_ONYX), "second_advancement_tree_unlocked"));
+		put(new Identifier(SpectrumCommon.MOD_ID, "lategame/spectrum_lategame"), new Pair<>(new ItemStack(SpectrumBlocks.PEDESTAL_MOONSTONE), "third_advancement_tree_unlocked"));
 	}};
 
 	public static void registerUnlockablePedestalRecipe(@NotNull PedestalCraftingRecipe recipe) {

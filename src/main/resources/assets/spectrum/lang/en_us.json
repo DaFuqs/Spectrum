@@ -162,6 +162,10 @@
   "spectrum.toast.enchanter_recipe_unlocked.title": "New Enchanter recipe:",
   "spectrum.toast.enchanter_recipes_unlocked.title": "New Enchanter recipes:",
 
+  "spectrum.toast.message.second_advancement_tree_unlocked.title": "Chapter 2: Fall from Grace",
+  "spectrum.toast.message.second_advancement_tree_unlocked.text": "You unlocked a new Advancement Tree",
+  "spectrum.toast.message.third_advancement_tree_unlocked.title": "Chapter 3: Turn to Purity",
+  "spectrum.toast.message.third_advancement_tree_unlocked.text": "You unlocked a new Advancement Tree",
   "spectrum.toast.message.shooting_stars_unlocked.title": "Blessing of the Stars",
   "spectrum.toast.message.shooting_stars_unlocked.text": "You received the grace of the night sky",
   "spectrum.toast.message.overchanting_unlocked.title": "Studied Enchanter",

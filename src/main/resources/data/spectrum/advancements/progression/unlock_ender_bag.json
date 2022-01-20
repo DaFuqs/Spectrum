@@ -7,6 +7,10 @@
     "collected_ender_eye": {
       "trigger":"spectrum:has_advancement",
       "conditions": { "advancement_identifier": "spectrum:hidden/collect_vanilla/collect_ender_eye" }
+    },
+    "gotten_ender_treasure": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:get_ender_treasure" }
     }
   }
 }

@@ -1,0 +1,14 @@
+{
+  "type": "spectrum:anvil_crushing",
+  "ingredient": {
+    "item": "spectrum:moonstone_block"
+  },
+  "crushedItemsPerPointOfDamage": 0.4,
+  "experience": 0.2,
+  "result" : {
+    "item": "spectrum:moonstone_powder",
+    "count": 1
+  },
+  "particleEffectIdentifier": "explosion",
+  "soundEventIdentifier": "spectrum:block.moonstone_cluster.break"
+}

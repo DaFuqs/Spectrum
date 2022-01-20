@@ -1,0 +1,14 @@
+{
+  "type": "spectrum:anvil_crushing",
+  "ingredient": {
+    "item": "spectrum:citrine_block"
+  },
+  "crushedItemsPerPointOfDamage": 0.4,
+  "experience": 0.2,
+  "result" : {
+    "item": "spectrum:citrine_powder",
+    "count": 1
+  },
+  "particleEffectIdentifier": "explosion",
+  "soundEventIdentifier": "spectrum:block.citrine_cluster.break"
+}

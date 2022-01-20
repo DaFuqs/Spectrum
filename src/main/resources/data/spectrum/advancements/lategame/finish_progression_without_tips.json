@@ -34,7 +34,7 @@
   },
   "rewards": {
     "loot": [
-      "spectrum:advancement_reward/completed_spectrum_without_tips"
+      "spectrum:advancement_reward/adv_finished_progression_without_tips"
     ]
   }
 }

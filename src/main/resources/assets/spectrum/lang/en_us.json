@@ -1206,9 +1206,6 @@
   "advancements.spectrum.finish_progression.description": "Reach the end of your magical journey. Congratulations, Pigment Tinkerer!",
   "advancements.spectrum.finish_progression_without_tips.title": "Legendary Artist",
   "advancements.spectrum.finish_progression_without_tips.description": "Complete the entirety of Spectrum without using any tips. Wow! Enjoy your small gift. :)",
-  "advancements.spectrum.finish_progression_with_cheats.title": "Cheater",
-  "advancements.spectrum.finish_progression_with_cheats.description": "Anzeige ist raus",
-
 
   "______name_changes_for_vanilla_blocks" : "Changes:",
   "block.minecraft.polished_basalt": "Basalt Pillar",

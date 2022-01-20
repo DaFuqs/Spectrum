@@ -1,5 +1,7 @@
 package de.dafuqs.spectrum.compat.patchouli;
 
+import de.dafuqs.spectrum.InventoryHelper;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.resource.language.I18n;
 import net.minecraft.client.util.math.MatrixStack;
@@ -18,6 +20,8 @@ import vazkii.patchouli.client.book.gui.GuiBook;
 import vazkii.patchouli.client.book.gui.GuiBookEntry;
 import vazkii.patchouli.client.book.page.PageSpotlight;
 import vazkii.patchouli.common.book.Book;
+
+import java.util.List;
 
 public class PageHint extends BookPage {
 	
@@ -50,12 +54,22 @@ public class PageHint extends BookPage {
 
 		revealed = isRevealed(parent.book);
 		if(!revealed) {
-			ButtonWidget button = new ButtonWidget(GuiBook.PAGE_WIDTH / 2 - 50, GuiBook.PAGE_HEIGHT - 35, 100, 20, LiteralText.EMPTY, this::revealHintButtonClicked);
+			ButtonWidget button = new ButtonWidget(GuiBook.PAGE_WIDTH / 2 - 50, GuiBook.PAGE_HEIGHT - 35, 100, 20, LiteralText.EMPTY, this::revealHintButtonClicked, this::onTooltip);
 			addButton(button);
-			button.setMessage(new TranslatableText("spectrum.gui.lexicon.reveal_hint"));
+			button.setMessage(new TranslatableText("spectrum.gui.lexicon.reveal_hint_button.text"));
 			displayedText = new LiteralText("$(obf)" + displayedText.getString());
 		}
 		textRender = new BookTextRenderer(parent, displayedText, 0, getTextHeight());
+	}
+	
+	private void onTooltip(ButtonWidget buttonWidget, MatrixStack matrixStack, int i, int i1) {
+		if(InventoryHelper.removeFromInventory(List.of(ingredient), MinecraftClient.getInstance().player.getInventory(), true)) {
+			// TODO: render
+			new TranslatableText("spectrum.gui.lexicon.reveal_hint_button.tooltip.pay");
+		} else {
+			// TODO: render
+			new TranslatableText("spectrum.gui.lexicon.reveal_hint_button.tooltip.lacking_resource");
+		}
 	}
 	
 	@Override

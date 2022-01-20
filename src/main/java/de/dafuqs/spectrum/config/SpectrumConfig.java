@@ -4,6 +4,7 @@ import me.shedaniel.autoconfig.ConfigData;
 import me.shedaniel.autoconfig.annotation.Config;
 import me.shedaniel.cloth.clothconfig.shadowed.blue.endless.jankson.Comment;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -37,10 +38,10 @@ Better to let players stumble about them organically instead of forcing it.""")
 	public float EndermanHoldingEnderTreasureInEndChance = 0.005F;
 
 	@Comment("Worlds where shooting stars spawn for players. Shooting Stars will only spawn for players with sufficient progress in the mod")
-	public List<String> ShootingStarWorlds = Arrays.asList("minecraft:overworld", "starry_sky:starry_sky");
+	public List<String> ShootingStarWorlds = new ArrayList<>();
 
 	@Comment("Worlds where lightning strikes can spawn Storm Stones")
-	public List<String> LightningStonesWorlds = Arrays.asList("minecraft:overworld", "starry_sky:starry_sky");
+	public List<String> LightningStonesWorlds = new ArrayList<>();
 
 	@Comment("chance for a lightning strike to spawn a Storm Stone")
 	public float LightningStonesChance = 0.5F;
@@ -52,8 +53,8 @@ per night per player that unlocked the required progression.""")
 	public float ShootingStarChance = 0.02F;
 
 	@Comment("The biomes where the biome specific plants are growing")
-	public List<String> MermaidsBrushGenerationBiomes = Arrays.asList("minecraft:ocean", "minecraft:cold_ocean", "minecraft_frozen_ocean", "minecraft:lukewarm_ocean", "minecraft:warm_ocean" ,"minecraft:deep_ocean", "minecraft:deep_cold_ocean", "minecraft:deep_frozen_ocean", "minecraft:deep_warm_ocean", "minecraft:deep_lukewarm_ocean");
-	public List<String> QuitoxicReedsGenerationBiomes = Arrays.asList("minecraft:swamp");
+	public List<String> MermaidsBrushGenerationBiomes = new ArrayList<>();
+	public List<String> QuitoxicReedsGenerationBiomes = new ArrayList<>();
 	
 	@Comment("The time in ticks it takes a Pigment Pedestal to autocraft a vanilla crafting table recipe without upgrades")
 	public int VanillaRecipeCraftingTimeTicks = 40;
@@ -135,7 +136,30 @@ This does only disable the registration of said Enchantments, not all recipes ba
 		if(ExuberanceBonusExperiencePercentPerLevel <= 0) { ExuberanceBonusExperiencePercentPerLevel = 0.2F; }
 		if(ImprovedCriticalExtraDamageMultiplierPerLevel <= 0) { ImprovedCriticalExtraDamageMultiplierPerLevel = 0.5F; }
 		if(FirstStrikeDamagePerLevel <= 0) { FirstStrikeDamagePerLevel = 3.0F; }
+		
+		if(ShootingStarWorlds.isEmpty()) {
+			ShootingStarWorlds.add("minecraft:overworld");
+			ShootingStarWorlds.add("starry_sky:starry_sky");
+		}
+		if(LightningStonesWorlds.isEmpty()) {
+			LightningStonesWorlds.add("minecraft:overworld");
+			LightningStonesWorlds.add("starry_sky:starry_sky");
+		}
+		if(MermaidsBrushGenerationBiomes.isEmpty()) {
+			MermaidsBrushGenerationBiomes.add("minecraft:ocean");
+			MermaidsBrushGenerationBiomes.add("minecraft:cold_ocean");
+			MermaidsBrushGenerationBiomes.add("minecraft:frozen_ocean");
+			MermaidsBrushGenerationBiomes.add("minecraft:lukewarm_ocean");
+			MermaidsBrushGenerationBiomes.add("minecraft:warm_ocean");
+			MermaidsBrushGenerationBiomes.add("minecraft:deep_ocean");
+			MermaidsBrushGenerationBiomes.add("minecraft:deep_cold_ocean");
+			MermaidsBrushGenerationBiomes.add("minecraft:deep_frozen_ocean");
+			MermaidsBrushGenerationBiomes.add("minecraft:deep_warm_ocean");
+			MermaidsBrushGenerationBiomes.add("minecraft:deep_lukewarm_ocean");
+		}
+		if(QuitoxicReedsGenerationBiomes.isEmpty()) {
+			QuitoxicReedsGenerationBiomes.add("minecraft:swamp");
+		}
 	}
-
 
 }

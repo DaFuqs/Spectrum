@@ -17,9 +17,8 @@ import java.util.Random;
 public class HintRevelationSoundInstance extends AbstractSoundInstance implements TickableSoundInstance {
 
 	private final PlayerEntity player;
-	private float distance = 0.0F;
 	private boolean done;
-	private int duration;
+	private final int duration;
 	private int playtime;
 
 	public HintRevelationSoundInstance(PlayerEntity player, int duration) {

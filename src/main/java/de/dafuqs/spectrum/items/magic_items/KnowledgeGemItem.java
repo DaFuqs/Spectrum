@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.items.magic_items;
 
 import de.dafuqs.spectrum.blocks.enchanter.EnchanterEnchantable;
 import de.dafuqs.spectrum.items.ExperienceStorageItem;
+import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -38,6 +39,15 @@ public class KnowledgeGemItem extends Item implements ExperienceStorageItem, Enc
 	public KnowledgeGemItem(Settings settings, int maxStorageBase) {
 		super(settings);
 		this.maxStorageBase = maxStorageBase;
+	}
+	
+	public static ItemStack getKnowledgeDropStackWithXP(int experience) {
+		ItemStack stack = new ItemStack(SpectrumItems.KNOWLEDGE_GEM);
+		NbtCompound compound = new NbtCompound();
+		compound.putInt("stored_experience", experience);
+		compound.putBoolean("do_not_display_store_tooltip", true);
+		stack.setNbt(compound);
+		return stack;
 	}
 	
 	@Override

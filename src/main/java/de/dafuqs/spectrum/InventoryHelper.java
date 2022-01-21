@@ -213,10 +213,15 @@ public class InventoryHelper {
 				Ingredient ingredient = ingredientsToFind.get(j);
 
 				if (amount > 0 && ingredient.test(currentStack)) {
-					ingredientsToFind.remove(j);
+					int ingredientCount = ingredient.getMatchingStacks()[0].getCount();
+					if(amount >= ingredientCount) {
+						ingredientsToFind.remove(j);
+					} else {
+						ingredientsToFind.get(j).getMatchingStacks()[0].setCount(ingredientCount-amount);
+					}
 					j--;
 
-					amount--;
+					amount -= ingredientCount;
 					if(!test) {
 						if(amount > 0) {
 							currentStack.setCount(amount);

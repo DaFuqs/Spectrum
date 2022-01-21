@@ -12,7 +12,13 @@
             "type": "patchouli:spotlight",
             "title": "Characteristics",
             "item": "minecraft:crossbow{Enchantments: [{id: \"spectrum:sniper\", lvl: 2s}]}",
-            "text": "Increases damage, accuracy and projectile speed.$(br2)Max Level: 2$(br)Applicable to crossbows.$(br)Mutually exclusive with Multishot."
+            "text": "Increases damage, accuracy and projectile speed.$(br2)Max Level: 1$(br)Applicable to crossbows.$(br)Mutually exclusive with Multishot."
+        },
+        {
+            "type": "spectrum:enchanter_crafting",
+            "title": "Enchanter Recipe",
+            "recipe": "spectrum:enchanter/spectrum_books/book_sniper",
+            "text": "You can infuse a common Book with Sniping by surrounding your Enchanter with Pigment and the other required materials."
         }
     ]
 }

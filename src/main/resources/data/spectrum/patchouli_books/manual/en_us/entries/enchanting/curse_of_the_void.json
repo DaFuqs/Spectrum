@@ -13,6 +13,12 @@
             "title": "Characteristics",
             "item": "minecraft:iron_pickaxe{Enchantments: [{id: \"spectrum:voiding\", lvl: 1s}]}",
             "text": "Destroys the drops of all broken blocks.$(br2)Max Level: 1$(br)Applicable to mining tools."
+        },
+        {
+            "type": "spectrum:enchanter_crafting",
+            "title": "Enchanter Recipe",
+            "recipe": "spectrum:enchanter/spectrum_books/book_voiding",
+            "text": "You can infuse a common Book with Curse of the Void by surrounding your Enchanter with Pigment and the other required materials."
         }
     ]
 }

@@ -1,15 +1,16 @@
 package de.dafuqs.spectrum.compat.patchouli;
 
 import de.dafuqs.spectrum.InventoryHelper;
+import de.dafuqs.spectrum.networking.SpectrumC2SPackets;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.resource.language.I18n;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.recipe.Ingredient;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.LiteralText;
-import net.minecraft.text.Style;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import vazkii.patchouli.api.IVariable;
 import vazkii.patchouli.client.base.PersistentData;
 import vazkii.patchouli.client.book.BookContentsBuilder;
@@ -18,7 +19,6 @@ import vazkii.patchouli.client.book.BookPage;
 import vazkii.patchouli.client.book.gui.BookTextRenderer;
 import vazkii.patchouli.client.book.gui.GuiBook;
 import vazkii.patchouli.client.book.gui.GuiBookEntry;
-import vazkii.patchouli.client.book.page.PageSpotlight;
 import vazkii.patchouli.common.book.Book;
 
 import java.util.List;
@@ -29,7 +29,12 @@ public class PageHint extends BookPage {
 	IVariable text;
 	transient BookTextRenderer textRender;
 	transient Ingredient ingredient;
+	
 	transient boolean revealed;
+	
+	Text rawText;
+	Text displayedText;
+	transient long revealTick;
 	
 	String title;
 	
@@ -43,65 +48,69 @@ public class PageHint extends BookPage {
 		ingredient = cost.as(Ingredient.class);
 	}
 	
-	public boolean isRevealed(Book book) {
+	public boolean isQuestDone(Book book) {
 		return PersistentData.data.getBookData(book).completedManualQuests.contains(entry.getId().toString());
 	}
 	
 	@Override
 	public void onDisplayed(GuiBookEntry parent, int left, int top) {
 		super.onDisplayed(parent, left, top);
-		Text displayedText = text.as(Text.class);
+		rawText = text.as(Text.class);
 
-		revealed = isRevealed(parent.book);
+		revealed = isQuestDone(parent.book);
 		if(!revealed) {
-			ButtonWidget button = new ButtonWidget(GuiBook.PAGE_WIDTH / 2 - 50, GuiBook.PAGE_HEIGHT - 35, 100, 20, LiteralText.EMPTY, this::revealHintButtonClicked, this::onTooltip);
-			addButton(button);
-			button.setMessage(new TranslatableText("spectrum.gui.lexicon.reveal_hint_button.text"));
-			displayedText = new LiteralText("$(obf)" + displayedText.getString());
+			revealTick = -1;
+			displayedText = calculateTextToRender(rawText);
+			
+			PaymentButtonWidget paymentButtonWidget = new PaymentButtonWidget(GuiBook.PAGE_WIDTH / 2 - 50, GuiBook.PAGE_HEIGHT - 35, 100, 20, LiteralText.EMPTY, this::paymentButtonClicked, this);
+			addButton(paymentButtonWidget);
+		} else {
+			displayedText = rawText;
+			revealTick = 0;
 		}
 		textRender = new BookTextRenderer(parent, displayedText, 0, getTextHeight());
 	}
 	
-	private void onTooltip(ButtonWidget buttonWidget, MatrixStack matrixStack, int i, int i1) {
+	private Text calculateTextToRender(Text text) {
+		if(revealed || revealTick == 0) {
+			return text;
+		}
+		
+		if(revealTick < 0) {
+			return new LiteralText("$(obf)" + text.getString());
+		}
+		
+		long textRevealProgress = MinecraftClient.getInstance().world.getTime() - revealTick;
+		if(textRevealProgress > text.asString().length()) {
+			revealTick = 0;
+			return text;
+		} else {
+			return new LiteralText(text.asString().substring(0, (int) textRevealProgress) + "$(obf)" + text.asString().substring((int) textRevealProgress));
+		}
+	}
+	
+	protected void paymentButtonClicked(ButtonWidget button) {
 		if(InventoryHelper.removeFromInventory(List.of(ingredient), MinecraftClient.getInstance().player.getInventory(), true)) {
-			// TODO: render
-			new TranslatableText("spectrum.gui.lexicon.reveal_hint_button.tooltip.pay");
-		} else {
-			// TODO: render
-			new TranslatableText("spectrum.gui.lexicon.reveal_hint_button.tooltip.lacking_resource");
+			// mark as complete in book data
+			PersistentData.DataHolder.BookData data = PersistentData.data.getBookData(parent.book);
+			String entryIdRes = entry.getId().toString();
+			data.completedManualQuests.add(entryIdRes);
+			PersistentData.save();
+			entry.markReadStateDirty();
+			
+			SpectrumC2SPackets.sendGuidebookHintBoughtPaket(ingredient);
+			revealTick = MinecraftClient.getInstance().world.getTime();
+			MinecraftClient.getInstance().player.playSound(SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.PLAYERS, 1.0F, 1.0F);
 		}
-	}
-	
-	@Override
-	public boolean mouseClicked(double mouseX, double mouseY, int mouseButton) {
-		return textRender.click(mouseX, mouseY, mouseButton);
-	}
-	
-	protected void revealHintButtonClicked(ButtonWidget button) {
-		String res = entry.getId().toString();
-		PersistentData.DataHolder.BookData data = PersistentData.data.getBookData(parent.book);
-		
-		if (data.completedManualQuests.contains(res)) {
-			data.completedManualQuests.remove(res);
-		} else {
-			data.completedManualQuests.add(res);
-		}
-		
-		Text displayedText = text.as(Text.class);
-		textRender = new BookTextRenderer(parent, displayedText, 0, getTextHeight());
-		
-		// TODO: pay cost
-		// TODO: reveal cloaked entry
-		// TODO: give player "used hint" advancement
-		
-		PersistentData.save();
-		entry.markReadStateDirty();
 	}
 	
 	@Override
 	public void render(MatrixStack ms, int mouseX, int mouseY, float pticks) {
 		super.render(ms, mouseX, mouseY, pticks);
 		
+		if(revealTick > 0) {
+			textRender = new BookTextRenderer(parent, calculateTextToRender(rawText), 0, getTextHeight());
+		}
 		textRender.render(ms, mouseX, mouseY);
 		if(!revealed) {
 			parent.renderIngredient(ms, GuiBook.PAGE_WIDTH / 2 + 23, GuiBook.PAGE_HEIGHT - 34, mouseX, mouseY, ingredient);

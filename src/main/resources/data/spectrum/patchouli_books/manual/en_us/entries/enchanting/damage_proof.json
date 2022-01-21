@@ -13,6 +13,12 @@
             "title": "Characteristics",
             "item": "spectrum:multitool{Enchantments: [{id: \"spectrum:voiding\", lvl: 1s}]}",
             "text": "Protects tools from all kinds of damage when on lying the ground, even from lava or falling into the Void.$(br2)Max Level: 1$(br)Applicable to all tools."
+        },
+        {
+            "type": "spectrum:enchanter_crafting",
+            "title": "Enchanter Recipe",
+            "recipe": "spectrum:enchanter/spectrum_books/book_damage_proof",
+            "text": "You can infuse a common Book with Damage Proof by surrounding your Enchanter with Pigment and the other required materials."
         }
     ]
 }

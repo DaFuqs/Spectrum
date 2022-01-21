@@ -3,13 +3,13 @@
     "category": "spectrum:hints_category",
     "icon": "minecraft:writable_book",
     "advancement": "spectrum:midgame/craft_bottle_of_failing",
-	"turnin": "spectrum:midgame/collect_neolith",
 	"secret": true,
 	"read_by_default": true,
     "pages": [
         {
             "type": "spectrum:hint",
 			"title": "Small Clue",
+            "completion_advancement": "spectrum:midgame/collect_neolith",
 			"cost": "minecraft:amethyst_shard#8",
             "text": "Just like Fading, they prefer a specific block placed next to them. This time a lot more strong, though.$(br)'I hate mining this' strong, to be precise."
         },
@@ -17,7 +17,7 @@
             "type": "spectrum:hint",
 			"title": "Concise Instruction",
 			"cost": "minecraft:amethyst_shard#32",
-            "text": "The preferred food is Obsidian.$(br2)Watch out for their insatiable hunger. They will eat quite a lot, if given the chance..."
+            "text": "The preferred food is Obsidian.Watch out for their insatiable hunger. They will eat quite a lot, if given the chance..."
         }
     ]
 }

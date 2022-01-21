@@ -17,13 +17,13 @@
     },
     {
       "type": "patchouli:text",
-      "title": "Creating brown Pigment",
+      "title": "Creating Brown Pigment",
       "text": "You tried and tried. You could not figure out a way to create brown color by mixing your gemstone dust. The closest you came was merely a washed out orange - yuck.$(br)It can't be THAT hard. Like... $(c_brown)dirt is brown$() and it is the most common stuff around.$(br2)There has to be $(l:general/onyx_shards)a way$()..."
     },
     {
       "type": "patchouli:link",
       "advancement": "spectrum:collect_all_basic_pigments_besides_brown",
-      "text": "$(br2)$(br2)(Seriously, look it up! The way we perceive brown is fascinating!)",
+      "text": "$(br2)$(br)(Seriously, look it up! The way we perceive brown is fascinating!)",
       "url": "https://www.youtube.com/watch?v=wh4aWZRtTwU",
       "link_text": "Brown is weird"
     }

@@ -13,6 +13,18 @@
             "title": "Characteristics",
             "item": "minecraft:iron_pickaxe{Enchantments: [{id: \"spectrum:inertia\", lvl: 3s}]}",
             "text": "Decreased mining speed. Speed increases with each block mined of the same type.$(br2)Max Level: 3$(br)Applicable to mining tools.$(br)Mutually exclusive with Efficiency."
+        },
+        {
+            "type": "spectrum:enchanter_crafting",
+            "title": "Enchanter Recipe",
+            "recipe": "spectrum:enchanter/spectrum_books/book_inertia",
+            "text": "You can infuse a common Book with Inertia by surrounding your Enchanter with Pigment and the other required materials."
+        },
+        {
+            "type": "spectrum:enchanter_upgrading",
+            "title": "Enchantment Upgrading",
+            "recipe": "spectrum:enchantment_upgrade/spectrum/inertia_level_2",
+            "text": "Upgrading Inertia from level 1 to level 2 is fairly cheap at first.$(br)This price will quickly increase to more and more Pigment and Experience for each additional level."
         }
     ]
 }

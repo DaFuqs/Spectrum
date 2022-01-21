@@ -3,13 +3,13 @@
     "category": "spectrum:hints_category",
     "icon": "minecraft:writable_book",
     "advancement": "spectrum:milestones/reveal_scarlet",
-	"turnin": "spectrum:midgame/collect_scarlet",
 	"secret": true,
 	"read_by_default": true,
     "pages": [
         {
             "type": "spectrum:hint",
 			"title": "Where to find",
+            "completion_advancement": "spectrum:midgame/collect_scarlet",
 			"cost": "minecraft:amethyst_shard#8",
             "text": "There is a new Ore found in the Nether"
         },

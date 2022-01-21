@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.compat.REI;
 
 import de.dafuqs.spectrum.Support;
 import de.dafuqs.spectrum.blocks.enchanter.EnchanterBlockEntity;
+import de.dafuqs.spectrum.items.magic_items.KnowledgeGemItem;
 import de.dafuqs.spectrum.recipe.enchantment_upgrade.EnchantmentUpgradeRecipe;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.display.SimpleGridMenuDisplay;
@@ -45,7 +46,7 @@ public class EnchantmentUpgradeRecipeDisplay<R extends EnchantmentUpgradeRecipe>
 			this.inputs.add(EntryIngredients.of(new ItemStack(recipe.getRequiredItem(), requiredItemCountSplit + addAmount)));
 		}
 		
-		this.inputs.add(EnchanterRecipeDisplay.getKnowledgeDropIngredient(recipe.getRequiredExperience()));
+		this.inputs.add(EntryIngredients.of(KnowledgeGemItem.getKnowledgeDropStackWithXP(recipe.getRequiredExperience())));
 		this.output = EntryIngredients.of(recipe.getOutput());
 		this.requiredItemCount = recipe.getRequiredItemCount();
 		

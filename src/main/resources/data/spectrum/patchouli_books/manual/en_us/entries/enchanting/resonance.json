@@ -15,6 +15,12 @@
             "text": "Uses gentle vibrations to allow some blocks to drop themselves.$(br2)Max Level: 1$(br)Applicable to mining tools.$(br)Mutually exclusive with Fortune, Foundry and Pest Control.$(br2)$(br2)$(italic)We should take this geode$(br)and push it somewhere else.$()"
         },
         {
+            "type": "spectrum:enchanter_crafting",
+            "title": "Enchanter Recipe",
+            "recipe": "spectrum:enchanter/spectrum_books/book_resonance",
+            "text": "You can infuse a common Book with Resonance by surrounding your Enchanter with Pigment and the other required materials."
+        },
+        {
             "type": "patchouli:spotlight",
             "title": "Budding Blocks",
             "item": "spectrum:budding_citrine",

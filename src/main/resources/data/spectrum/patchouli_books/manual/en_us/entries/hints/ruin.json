@@ -3,13 +3,13 @@
     "category": "spectrum:hints_category",
     "icon": "minecraft:writable_book",
     "advancement": "spectrum:midgame/craft_bottle_of_ruin",
-	"turnin": "spectrum:midgame/break_decayed_bedrock",
 	"secret": true,
 	"read_by_default": true,
     "pages": [
         {
             "type": "spectrum:hint",
 			"title": "Where to find",
+            "completion_advancement": "spectrum:midgame/break_decayed_bedrock",
 			"cost": "minecraft:amethyst_shard#8",
             "text": "This absolutely agressive variant is able to consume the most resistant material there is."
         },
@@ -17,7 +17,7 @@
             "type": "spectrum:hint",
 			"title": "A Warning",
 			"cost": "minecraft:amethyst_shard#32",
-            "text": "What could be more resistant than the unbreakable Bedrock itself?$(br2)Better have a plan up your sleeve if anything goes wrong."
+            "text": "What could be more resistant than the unbreakable Bedrock itself? Better have a plan up your sleeve if anything goes wrong."
         }
     ]
 }

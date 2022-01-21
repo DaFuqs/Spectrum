@@ -6,6 +6,11 @@
 	"dont_generate_book": true,
 	"custom_book_item": "spectrum:manual",
 	"filler_texture": "spectrum:textures/gui/patchouli/page_filler.png",
+	"advancements_tab": "spectrum:spectrum",
+	"header_color ": "000000",
+	"nameplate_color ": "7b55b4",
+	"progress_bar_color ": "7b55b4",
+	"progress_bar_background": "ffcde7",
 	"macros": {
 		"$(c_black)": "$(#000000)",
 		"$(c_blue)": "$(#2c2e8e)",

@@ -3,13 +3,13 @@
     "category": "spectrum:hints_category",
     "icon": "minecraft:writable_book",
     "advancement": "spectrum:milestones/reveal_quitoxic_reeds",
-	"turnin": "spectrum:collect_quitoxic_reeds",
 	"secret": true,
 	"read_by_default": true,
     "pages": [
         {
             "type": "spectrum:hint",
 			"title": "Where to find",
+            "completion_advancement": "spectrum:collect_quitoxic_reeds",
 			"cost": "minecraft:amethyst_shard#8",
             "text": "Time for an adventure trip on the surface. Try visiting as many biomes as you can!"
         },

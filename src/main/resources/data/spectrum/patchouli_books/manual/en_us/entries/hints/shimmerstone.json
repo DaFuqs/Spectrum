@@ -3,13 +3,13 @@
     "category": "spectrum:hints_category",
     "icon": "minecraft:writable_book",
     "advancement": "spectrum:milestones/reveal_sparklestone",
-	"turnin": "spectrum:collect_sparklestone",
 	"secret": true,
 	"read_by_default": true,
     "pages": [
         {
             "type": "spectrum:hint",
 			"title": "Where to find",
+            "completion_advancement": "spectrum:collect_sparklestone",
 			"cost": "minecraft:amethyst_shard#8",
             "text": "There is a new Ore to be found in the Overworld."
         },
@@ -17,7 +17,7 @@
             "type": "spectrum:hint",
 			"title": "Concise Instruction",
 			"cost": "minecraft:amethyst_shard#32",
-            "text": "It generates in all biomes in the center and upper layers of the overworld in large veins.$(br)You can even find it exposed in mountains."
+            "text": "It generates in all biomes in the center and upper layers of the overworld in large veins. You can even find it exposed in mountains."
         }
     ]
 }

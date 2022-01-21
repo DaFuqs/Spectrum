@@ -3,13 +3,13 @@
     "category": "spectrum:hints_category",
     "icon": "minecraft:writable_book",
     "advancement": "spectrum:craft_bottle_of_fading",
-	"turnin": "spectrum:collect_vegetal",
 	"secret": true,
 	"read_by_default": true,
     "pages": [
         {
             "type": "spectrum:hint",
 			"title": "Small Clue",
+            "completion_advancement": "spectrum:collect_vegetal",
 			"cost": "minecraft:amethyst_shard#8",
             "text": "Fading, as a small and weak organism, can only process organic blocks next to it, while also taking a while."
         },

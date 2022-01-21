@@ -13,6 +13,18 @@
             "title": "Characteristics",
             "item": "minecraft:iron_sword{Enchantments: [{id: \"spectrum:treasure_hunter\", lvl: 3s}]}",
             "text": "Occasionally drops mob heads on kill.$(br2)Max Level: 3$(br)Applicable to melee weapons.$(br)Mutually exclusive with Looting."
+        },
+        {
+            "type": "spectrum:enchanter_crafting",
+            "title": "Enchanter Recipe",
+            "recipe": "spectrum:enchanter/spectrum_books/book_treasure_hunter",
+            "text": "You can infuse a common Book with Treasure Hunter by surrounding your Enchanter with Pigment and the other required materials."
+        },
+        {
+            "type": "spectrum:enchanter_upgrading",
+            "title": "Enchantment Upgrading",
+            "recipe": "spectrum:enchantment_upgrade/spectrum/treasure_hunter_level_2",
+            "text": "Upgrading Treasure Hunter from level 1 to level 2 is fairly cheap at first.$(br)This price will quickly increase to more and more Pigment and Experience for each additional level."
         }
     ]
 }

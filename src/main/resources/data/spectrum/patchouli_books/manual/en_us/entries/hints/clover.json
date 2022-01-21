@@ -2,7 +2,7 @@
     "name": "A new Resource",
     "category": "spectrum:hints_category",
     "icon": "minecraft:writable_book",
-    "advancement": "spectrum:milestones/reveal_four_leaf_clover",
+    "advancement": "spectrum:midgame/build_enchanting_structure",
 	"secret": true,
 	"read_by_default": true,
     "pages": [
@@ -10,13 +10,13 @@
             "type": "spectrum:hint",
 			"title": "Where to find",
             "completion_advancement": "spectrum:collect_four_leaf_clover",
-			"cost": "minecraft:amethyst_shard#8",
+			"cost": "spectrum:vegetal#16",
             "text": "Go for an Overworld adventure trip on the surface. Maybe you get lucky!"
         },
         {
             "type": "spectrum:hint",
 			"title": "Concise Instruction",
-			"cost": "minecraft:amethyst_shard#32",
+			"cost": "spectrum:vegetal#48",
             "text": "There is Clover growing in Plains biomes. You can immediately see if it has three or four leaves in it's block form. You can immediately notice a Four-Leaved Clover in its block form already"
         }
     ]

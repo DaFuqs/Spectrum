@@ -2,7 +2,7 @@
     "name": "A new Resource",
     "category": "spectrum:hints_category",
     "icon": "minecraft:writable_book",
-    "advancement": "spectrum:spectrum",
+    "advancement": "spectrum:midgame/spectrum_midgame",
 	"secret": true,
 	"read_by_default": true,
     "pages": [
@@ -10,14 +10,14 @@
             "type": "spectrum:hint",
 			"title": "Where to find",
             "completion_advancement": "spectrum:collect_mermaids_gem",
-			"cost": "minecraft:amethyst_shard#8",
+			"cost": "spectrum:onyx_shard#4",
             "text": "Sometimes there are shiny gems found in oceans, floating on top of the water, getting rocked back and forth by the waves. If you spend some time near or in the ocean you may find one yourself!"
         },
         {
             "type": "spectrum:hint",
 			"title": "Concise Instruction",
-			"cost": "minecraft:amethyst_shard#32",
-            "text": "Source is a delicate flower, found at the bottom of the sea, growing in small groups. The plant emits a faint glow and if you wear an active Glow Squid helmet it also sparkles. Wait next to it until it releases its precious treasure and collect it."
+			"cost": "spectrum:onyx_shard#16",
+            "text": "Source is a delicate flower, found at the bottom of the sea, growing in small groups. The plant emits a faint glow and if you wear an active Glow Squid helmet it sparkles, too. Wait next to it until it releases its precious treasure and collect it."
         }
     ]
 }

@@ -10,13 +10,13 @@
             "type": "spectrum:hint",
 			"title": "Where to find",
             "completion_advancement": "spectrum:midgame/collect_lightning_stone",
-			"cost": "minecraft:amethyst_shard#8",
+			"cost": "spectrum:neolith#8",
             "text": "Thunderstorms are a powerful display of nature"
         },
         {
             "type": "spectrum:hint",
 			"title": "Concise Instruction",
-			"cost": "minecraft:amethyst_shard#32",
+			"cost": "spectrum:neolith#24",
             "text": "Sometimes you are able to find weird shards at places where lightning struck. There even should be a way to bundle Lightning to a specific position, to make searching for them even more efficient."
         }
     ]

@@ -10,13 +10,13 @@
             "type": "spectrum:hint",
 			"title": "Where to find",
             "completion_advancement": "spectrum:collect_quitoxic_reeds",
-			"cost": "minecraft:amethyst_shard#8",
+			"cost": "minecraft:clay_ball#16",
             "text": "Time for an adventure trip on the surface. Try visiting as many biomes as you can!"
         },
         {
             "type": "spectrum:hint",
 			"title": "Concise Instruction",
-			"cost": "minecraft:amethyst_shard#32",
+			"cost": "minecraft:clay_ball#48",
             "text": "Strange looking plants have been seen in Swamps, growing on patches of Clay."
         }
     ]

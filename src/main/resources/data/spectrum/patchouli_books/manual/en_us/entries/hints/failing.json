@@ -10,13 +10,13 @@
             "type": "spectrum:hint",
 			"title": "Small Clue",
             "completion_advancement": "spectrum:midgame/collect_neolith",
-			"cost": "minecraft:amethyst_shard#8",
+			"cost": "spectrum:scarlet_fragments#8",
             "text": "Just like Fading, they prefer a specific block placed next to them. This time a lot more strong, though. 'I hate mining this' strong, to be precise."
         },
         {
             "type": "spectrum:hint",
 			"title": "Concise Instruction",
-			"cost": "minecraft:amethyst_shard#32",
+			"cost": "spectrum:scarlet_fragments#24",
             "text": "The preferred food is Obsidian.Watch out for their insatiable hunger. They will eat quite a lot, if given the chance..."
         }
     ]

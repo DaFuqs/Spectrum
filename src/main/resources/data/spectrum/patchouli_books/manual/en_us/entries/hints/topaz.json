@@ -10,7 +10,7 @@
             "type": "spectrum:hint",
 			"title": "Where to find",
             "completion_advancement": "spectrum:hidden/collect_shards/collect_topaz_shard",
-			"cost": "minecraft:amethyst_shard#8",
+			"cost": "minecraft:amethyst_shard#16",
             "text": "This type of geode is found at great heights, typically on top of sky-high mountains."
         }
     ]

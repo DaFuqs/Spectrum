@@ -10,14 +10,14 @@
             "type": "spectrum:hint",
 			"title": "Where to find",
             "completion_advancement": "spectrum:midgame/collect_azurite",
-			"cost": "minecraft:amethyst_shard#8",
-            "text": "There is a new Ore to be found in the Overworld."
+			"cost": "spectrum:neolith#8",
+            "text": "There is a new Ore to be found in the Overworld in all biomes."
         },
         {
             "type": "spectrum:hint",
 			"title": "Concise Instruction",
-			"cost": "minecraft:amethyst_shard#32",
-            "text": "It generates very deep down under the surface in all biomes and it fairly rare."
+			"cost": "spectrum:neolith#24",
+            "text": "This rich blue ore generates very deep down under the surface and is fairly rare."
         }
     ]
 }

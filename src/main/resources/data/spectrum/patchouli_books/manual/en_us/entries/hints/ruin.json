@@ -10,13 +10,13 @@
             "type": "spectrum:hint",
 			"title": "Where to find",
             "completion_advancement": "spectrum:midgame/break_decayed_bedrock",
-			"cost": "minecraft:amethyst_shard#8",
-            "text": "This absolutely agressive variant is able to consume the most resistant material there is."
+			"cost": "spectrum:brown_pigment#8",
+            "text": "This absolutely aggressive variant is able to consume the most resistant material there is."
         },
         {
             "type": "spectrum:hint",
 			"title": "A Warning",
-			"cost": "minecraft:amethyst_shard#32",
+			"cost": "spectrum:brown_pigment#24",
             "text": "What could be more resistant than the unbreakable Bedrock itself? Better have a plan up your sleeve if anything goes wrong."
         }
     ]

@@ -10,13 +10,13 @@
             "type": "spectrum:hint",
 			"title": "Where to find",
             "completion_advancement": "spectrum:midgame/collect_scarlet",
-			"cost": "minecraft:amethyst_shard#8",
+			"cost": "minecraft:quartz#16",
             "text": "There is a new Ore found in the Nether"
         },
         {
             "type": "spectrum:hint",
 			"title": "Concise Instruction",
-			"cost": "minecraft:amethyst_shard#32",
+			"cost": "minecraft:quartz#48",
             "text": "It generates in the bottom layers of the Nether in all biomes, below lava level."
         }
     ]

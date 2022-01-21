@@ -10,13 +10,13 @@
             "type": "spectrum:hint",
 			"title": "Where to find",
             "completion_advancement": "spectrum:lategame/collect_paletur",
-			"cost": "minecraft:amethyst_shard#8",
+			"cost": "spectrum:moonstone_shard#8",
             "text": "There is a new Ore found in the End."
         },
         {
             "type": "spectrum:hint",
 			"title": "Concise Instruction",
-			"cost": "minecraft:amethyst_shard#32",
+			"cost": "spectrum:moonstone_shard#32",
             "text": "This ore, that you are now able to perceive is generating at both the central island and the outer regions of the End."
         }
     ]

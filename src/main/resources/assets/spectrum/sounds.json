@@ -17,6 +17,12 @@
       "spectrum:enchanter_ding"
     ]
   },
+  "text_revealed": {
+    "subtitle": "spectrum.subtitles.text_revealed",
+    "sounds": [
+      "spectrum:text_revealed"
+    ]
+  },
   "light_staff_charging": {
     "subtitle": "spectrum.subtitles.light_staff_charging",
     "sounds": [

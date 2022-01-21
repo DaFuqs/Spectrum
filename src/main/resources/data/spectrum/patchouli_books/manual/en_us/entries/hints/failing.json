@@ -11,7 +11,7 @@
 			"title": "Small Clue",
             "completion_advancement": "spectrum:midgame/collect_neolith",
 			"cost": "minecraft:amethyst_shard#8",
-            "text": "Just like Fading, they prefer a specific block placed next to them. This time a lot more strong, though.$(br)'I hate mining this' strong, to be precise."
+            "text": "Just like Fading, they prefer a specific block placed next to them. This time a lot more strong, though. 'I hate mining this' strong, to be precise."
         },
         {
             "type": "spectrum:hint",

@@ -1,7 +1,9 @@
 package de.dafuqs.spectrum.compat.patchouli;
 
 import de.dafuqs.spectrum.InventoryHelper;
+import de.dafuqs.spectrum.SpectrumClient;
 import de.dafuqs.spectrum.networking.SpectrumC2SPackets;
+import de.dafuqs.spectrum.sound.HintRevelationSoundInstance;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.resource.language.I18n;
@@ -31,10 +33,10 @@ public class PageHint extends BookPage {
 	transient Ingredient ingredient;
 	
 	transient boolean revealed;
+	transient long revealTick;
 	
 	Text rawText;
 	Text displayedText;
-	transient long revealTick;
 	
 	String title;
 	
@@ -49,14 +51,14 @@ public class PageHint extends BookPage {
 	}
 	
 	public boolean isQuestDone(Book book) {
-		return PersistentData.data.getBookData(book).completedManualQuests.contains(entry.getId().toString());
+		return PersistentData.data.getBookData(book).completedManualQuests.contains(getEntryId());
 	}
 	
 	@Override
 	public void onDisplayed(GuiBookEntry parent, int left, int top) {
 		super.onDisplayed(parent, left, top);
 		rawText = text.as(Text.class);
-
+		
 		revealed = isQuestDone(parent.book);
 		if(!revealed) {
 			revealTick = -1;
@@ -72,7 +74,7 @@ public class PageHint extends BookPage {
 	}
 	
 	private Text calculateTextToRender(Text text) {
-		if(revealed || revealTick == 0) {
+		if(revealTick == 0) {
 			return text;
 		}
 		
@@ -89,16 +91,22 @@ public class PageHint extends BookPage {
 		}
 	}
 	
+	protected String getEntryId() {
+		return entry.getId().toString()+ "_" + this.pageNum;
+	}
+	
 	protected void paymentButtonClicked(ButtonWidget button) {
 		if(InventoryHelper.removeFromInventory(List.of(ingredient), MinecraftClient.getInstance().player.getInventory(), true)) {
 			// mark as complete in book data
 			PersistentData.DataHolder.BookData data = PersistentData.data.getBookData(parent.book);
-			String entryIdRes = entry.getId().toString();
-			data.completedManualQuests.add(entryIdRes);
+			data.completedManualQuests.add(getEntryId());
 			PersistentData.save();
 			entry.markReadStateDirty();
 			
+			SpectrumClient.minecraftClient.getSoundManager().play(new HintRevelationSoundInstance(mc.player, rawText.asString().length()));
+			
 			SpectrumC2SPackets.sendGuidebookHintBoughtPaket(ingredient);
+			revealed = true;
 			revealTick = MinecraftClient.getInstance().world.getTime();
 			MinecraftClient.getInstance().player.playSound(SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.PLAYERS, 1.0F, 1.0F);
 		}

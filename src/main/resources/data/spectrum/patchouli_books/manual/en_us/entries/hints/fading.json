@@ -17,7 +17,7 @@
             "type": "spectrum:hint",
 			"title": "Concise Instruction",
 			"cost": "minecraft:amethyst_shard#32",
-            "text": "Place organic blocks, like Leaves, Pumpkins or Melons next to it and wait a while. After some time the block will get consumed and replaced with a different looking Variant.$(br)Break those converted blocks to get a new Resource."
+            "text": "Place organic blocks, like Leaves, Pumpkins or Melons next to it and wait a while. After some time the block will get consumed and replaced with a different looking Variant. Break those converted blocks to get a new Resource."
         }
     ]
 }

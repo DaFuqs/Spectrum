@@ -64,7 +64,7 @@ public class ShootingStarEntity extends Entity {
 	public ShootingStarEntity(EntityType<? extends ShootingStarEntity> entityType, World world) {
 		super(entityType, world);
 		this.hoverHeight = (float)(Math.random() * 3.141592653589793D * 2.0D);
-		this.availableHits = 4 + world.random.nextInt(3);
+		this.availableHits = 5 + world.random.nextInt(3);
 	}
 
 	public ShootingStarEntity(World world, double x, double y, double z) {
@@ -183,12 +183,14 @@ public class ShootingStarEntity extends Entity {
 			}
 		}
 		
-		if(this.onGround) {
-			if(world.random.nextInt(10) == 0) {
-				playGroundParticles();
+		if(world.isClient) {
+			if (this.onGround) {
+				if (world.random.nextInt(10) == 0) {
+					playGroundParticles();
+				}
+			} else {
+				playFallingParticles();
 			}
-		} else {
-			playFallingParticles();
 		}
 
 		if (!this.onGround || (this.age + this.getId()) % 4 == 0) {
@@ -200,38 +202,39 @@ public class ShootingStarEntity extends Entity {
 
 			this.setVelocity(this.getVelocity().multiply(verticalVelocityMultiplier, 0.98D, verticalVelocityMultiplier));
 		}
-
-		this.velocityDirty |= this.updateWaterState();
-		if (!this.world.isClient) {
-			double d = this.getVelocity().subtract(vec3d).lengthSquared();
-			if (d > 0.01D) {
-				this.velocityDirty = true;
+		
+		if(!world.isClient) {
+			this.velocityDirty |= this.updateWaterState();
+			if (!this.world.isClient) {
+				double d = this.getVelocity().subtract(vec3d).lengthSquared();
+				if (d > 0.01D) {
+					this.velocityDirty = true;
+				}
+			}
+	
+			// despawning
+			if (!this.world.isClient && this.age >= 6000) {
+				this.discard();
+			}
+			
+			// making it pushable
+			this.checkBlockCollision();
+			List<Entity> otherEntities = this.world.getOtherEntities(this, this.getBoundingBox().expand(0.20000000298023224D, -0.009999999776482582D, 0.20000000298023224D), EntityPredicates.canBePushedBy(this));
+			if (!otherEntities.isEmpty()) {
+				for (Entity d : otherEntities) {
+					this.pushAwayFrom(d);
+				}
 			}
 		}
-
-		// despawning
-		if (!this.world.isClient && this.age >= 6000) {
-			this.discard();
-		}
-		
-		// making it pushable
-		this.checkBlockCollision();
-		List<Entity> otherEntities = this.world.getOtherEntities(this, this.getBoundingBox().expand(0.20000000298023224D, -0.009999999776482582D, 0.20000000298023224D), EntityPredicates.canBePushedBy(this));
-		if (!otherEntities.isEmpty()) {
-			for (Entity d : otherEntities) {
-				this.pushAwayFrom(d);
-			}
-		}
-		
 	}
 
 	public void onPlayerCollision(PlayerEntity player) {
 		// if the shooting star is still falling from the sky, and it hits a player:
 		// give the player the star, some damage and grant an advancement
-		if (!this.world.isClient && !this.onGround && this.getVelocity().getY() < 0.3) {
+		if (!this.world.isClient && !this.onGround && this.getVelocity().getY() < -0.2) {
 			world.playSound(null, this.getBlockPos().getX(), this.getBlockPos().getY(), this.getBlockPos().getZ(), SpectrumSoundEvents.SHOOTING_STAR_CRACKER, SoundCategory.PLAYERS, 1.5F + random.nextFloat() * 0.4F, 0.8F + random.nextFloat() * 0.4F);
 			SpectrumS2CPackets.sendPlayShootingStarParticles(this);
-			player.damage(SpectrumDamageSources.SHOOTING_STAR, 5);
+			player.damage(SpectrumDamageSources.SHOOTING_STAR, 6);
 
 			ItemStack itemStack = this.getShootingStarType().getBlock().asItem().getDefaultStack();
 			int i = itemStack.getCount();
@@ -306,16 +309,16 @@ public class ShootingStarEntity extends Entity {
 	
 	public void playGroundParticles() {
 		float randomScale = 0.5F + random.nextFloat();
-		int randomLifetime = 20 + random.nextInt(20);
+		int randomLifetime = 30 + random.nextInt(20);
 		
 		ParticleEffect particleEffect = new ParticleSpawnerParticleEffectAlwaysShow(PARTICLE_SPRITE_IDENTIFIER, 0.05F, getShootingStarType().getRandomParticleColor(random), randomScale, randomLifetime, false, true);
-		world.addParticle(particleEffect, this.getX(), this.getY(), this.getZ(), 0.2 - random.nextFloat() * 0.4, 0.4, 0.2 - random.nextFloat() * 0.4);
+		world.addParticle(particleEffect, this.getX(), this.getY() + 0.05F, this.getZ(), 0.1 - random.nextFloat() * 0.2, 0.4 + random.nextFloat() * 0.2, 0.1 - random.nextFloat() * 0.2);
 	}
 	
 	public void playFallingParticles() {
 		float randomScale = this.random.nextFloat() * 0.4F + 0.7F;
 		ParticleEffect particleEffect = new ParticleSpawnerParticleEffectAlwaysShow(PARTICLE_SPRITE_IDENTIFIER, (float) ((random.nextDouble() - 0.5F) * 0.05F - 0.125F), getShootingStarType().getRandomParticleColor(random), randomScale, 120, false, true);
-		world.addParticle(particleEffect, this.getX(), this.getY(), this.getZ(), 0.2 - random.nextFloat() * 0.4, 0.1, 0.2 - random.nextFloat() * 0.4);
+		world.addParticle(particleEffect, this.getX(), this.getY() + 0.05F, this.getZ(), 0.2 - random.nextFloat() * 0.4, 0.1, 0.2 - random.nextFloat() * 0.4);
 	}
 	
 	public static void playHitParticles(World world, double x, double y, double z, ShootingStarBlock.Type type, int amount) {
@@ -381,7 +384,7 @@ public class ShootingStarEntity extends Entity {
 		double attackerOffsetX = this.getX() - attacker.getX();
 		double attackerOffsetZ = this.getZ() - attacker.getZ();
 		double mod = Math.max(attackerOffsetX, attackerOffsetZ);
-		this.addVelocity((attackerOffsetX / mod) * 5, 0.5, (attackerOffsetZ / mod) * 5);
+		this.addVelocity((attackerOffsetX / mod) * 2, 0.5, (attackerOffsetZ / mod) * 2);
 		
 		return false;
 	}

@@ -1649,4 +1649,25 @@ public class SpectrumBlocks {
 		};
 	}
 
+	public static Block getColoredBlock(DyeColor dyeColor) {
+		return switch (dyeColor) {
+			case RED -> RED_BLOCK;
+			case BROWN -> BROWN_BLOCK;
+			case CYAN -> CYAN_BLOCK;
+			case GRAY -> GRAY_BLOCK;
+			case GREEN -> GREEN_BLOCK;
+			case LIGHT_BLUE -> LIGHT_BLUE_BLOCK;
+			case LIGHT_GRAY -> LIGHT_GRAY_BLOCK;
+			case BLUE -> BLUE_BLOCK;
+			case LIME -> LIME_BLOCK;
+			case ORANGE -> ORANGE_BLOCK;
+			case PINK -> PINK_BLOCK;
+			case PURPLE -> PURPLE_BLOCK;
+			case WHITE -> WHITE_BLOCK;
+			case YELLOW -> YELLOW_BLOCK;
+			case BLACK -> BLACK_BLOCK;
+			default -> MAGENTA_BLOCK;
+		};
+	}
+
 }

@@ -4,10 +4,12 @@ import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.Support;
 import de.dafuqs.spectrum.blocks.decoration.ShootingStarBlock;
 import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
+import de.dafuqs.spectrum.networking.SpectrumS2CPackets;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import de.dafuqs.spectrum.registries.SpectrumDamageSources;
 import de.dafuqs.spectrum.registries.SpectrumItems;
+import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.entity.*;
@@ -32,6 +34,7 @@ import net.minecraft.network.packet.s2c.play.EntitySpawnS2CPacket;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.stat.Stats;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
@@ -57,7 +60,7 @@ public class ShootingStarEntity extends Entity {
 	public ShootingStarEntity(EntityType<? extends ShootingStarEntity> entityType, World world) {
 		super(entityType, world);
 		this.hoverHeight = (float)(Math.random() * 3.141592653589793D * 2.0D);
-		this.availableHits = 3 + world.random.nextInt(3);
+		this.availableHits = 4 + world.random.nextInt(3);
 	}
 
 	public ShootingStarEntity(World world, double x, double y, double z) {
@@ -206,6 +209,8 @@ public class ShootingStarEntity extends Entity {
 		// if the shooting star is still falling from the sky and it hits a player:
 		// give the player the star, some damage and grant an advancement
 		if (!this.world.isClient && !this.onGround && this.getVelocity().getY() < 0.3) {
+			world.playSound(null, this.getX(), this.getY(), this.getZ(), SpectrumSoundEvents.SHOOTING_STAR_CRACKER, SoundCategory.PLAYERS, 0.8F + random.nextFloat() * 0.4F, 0.8F + random.nextFloat() * 0.4F);
+			SpectrumS2CPackets.sendPlayShootingStarParticles(this);
 			player.damage(SpectrumDamageSources.SHOOTING_STAR, 5);
 
 			ItemStack itemStack = this.getShootingStarType().getBlock().asItem().getDefaultStack();
@@ -220,11 +225,7 @@ public class ShootingStarEntity extends Entity {
 	}
 	
 	public void pushAwayFrom(Entity entity) {
-		if (entity instanceof BoatEntity) {
-			if (entity.getBoundingBox().minY < this.getBoundingBox().maxY) {
-				super.pushAwayFrom(entity);
-			}
-		} else if (entity.getBoundingBox().minY <= this.getBoundingBox().minY) {
+		if (entity.getBoundingBox().minY <= this.getBoundingBox().minY) {
 			super.pushAwayFrom(entity);
 		}
 	}
@@ -285,6 +286,7 @@ public class ShootingStarEntity extends Entity {
 	}*/
 	
 	public void spawnLootAndParticles(ServerWorld serverWorld, ServerPlayerEntity serverPlayerEntity) {
+		// Spawn loot
 		Identifier lootTableId = ShootingStarBlock.Type.getLootTableIdentifier(dataTracker.get(SHOOTING_STAR_TYPE));
 		LootTable lootTable = serverWorld.getServer().getLootManager().getTable(lootTableId);
 		List<ItemStack> loot = lootTable.generateLoot(new LootContext.Builder(serverWorld)
@@ -300,7 +302,8 @@ public class ShootingStarEntity extends Entity {
 			this.world.spawnEntity(itemEntity);
 		}
 		
-		// TODO: Particles
+		// spawn particles
+		SpectrumS2CPackets.sendPlayShootingStarParticles(this);
 	}
 	
 	public Text getName() {

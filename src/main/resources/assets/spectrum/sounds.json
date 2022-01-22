@@ -23,6 +23,19 @@
       "spectrum:text_revealed"
     ]
   },
+  "shooting_star_cracker": {
+    "subtitle": "spectrum.subtitles.shooting_star_cracker",
+    "sounds": [
+      "spectrum:cracker1",
+      "spectrum:cracker2",
+      "spectrum:cracker3",
+      "spectrum:cracker4",
+      "spectrum:cracker5",
+      "spectrum:cracker6",
+      "spectrum:cracker7",
+      "spectrum:cracker8"
+    ]
+  },
   "light_staff_charging": {
     "subtitle": "spectrum.subtitles.light_staff_charging",
     "sounds": [

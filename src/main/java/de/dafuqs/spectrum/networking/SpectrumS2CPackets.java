@@ -2,8 +2,10 @@ package de.dafuqs.spectrum.networking;
 
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.Support;
+import de.dafuqs.spectrum.blocks.decoration.ShootingStarBlock;
 import de.dafuqs.spectrum.blocks.particle_spawner.ParticleSpawnerBlockEntity;
 import de.dafuqs.spectrum.blocks.pedestal.PedestalBlock;
+import de.dafuqs.spectrum.entity.entity.ShootingStarEntity;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.particle.effect.*;
 import de.dafuqs.spectrum.registries.color.ColorRegistry;
@@ -15,15 +17,13 @@ import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.ExperienceOrbEntity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
-import net.minecraft.particle.ItemStackParticleEffect;
-import net.minecraft.particle.ParticleEffect;
-import net.minecraft.particle.ParticleType;
-import net.minecraft.particle.ParticleTypes;
+import net.minecraft.particle.*;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
@@ -56,6 +56,7 @@ public class SpectrumS2CPackets {
 	public static final Identifier PLAY_ITEM_ENTITY_ABSORBED_PARTICLE_EFFECT_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "item_entity_absorbed");
 	public static final Identifier PLAY_EXPERIENCE_ORB_ENTITY_ABSORBED_PARTICLE_EFFECT_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "experience_orb_entity_absorbed");
 	public static final Identifier PLAY_BLOCK_BOUND_SOUND_INSTANCE = new Identifier(SpectrumCommon.MOD_ID, "play_pedestal_crafting_sound_instance");
+	public static final Identifier PLAY_SHOOTING_STAR_PARTICLES = new Identifier(SpectrumCommon.MOD_ID, "play_shooting_star_particles");
 
 	@Environment(EnvType.CLIENT)
 	public static void registerS2CReceivers() {
@@ -138,6 +139,27 @@ public class SpectrumS2CPackets {
 				// Everything in this lambda is running on the render thread
 				for(int i = 0; i < 10; i++) {
 					MinecraftClient.getInstance().player.getEntityWorld().addParticle(new ItemStackParticleEffect(ParticleTypes.ITEM, itemStack), position.getX() + 0.5, position.getY() + 1, position.getZ() + 0.5, 0.15 - random.nextFloat() * 0.3, random.nextFloat() * 0.15 + 0.1, 0.15 - random.nextFloat() * 0.3);
+				}
+			});
+		});
+
+		ClientPlayNetworking.registerGlobalReceiver(PLAY_SHOOTING_STAR_PARTICLES, (client, handler, buf, responseSender) -> {
+			double x = buf.readDouble();
+			double y = buf.readDouble();
+			double z = buf.readDouble();
+			ShootingStarBlock.Type shootingStarType = ShootingStarBlock.Type.getType(buf.readInt());
+			Identifier particleSpriteIdentifier = new Identifier(SpectrumCommon.MOD_ID, "particle/shooting_star");
+			
+			client.execute(() -> {
+				Random random = client.world.random;
+				// Everything in this lambda is running on the render thread
+				
+				for(int i = 0; i < 20; i++) {
+					float randomScale = 0.5F + random.nextFloat();
+					int randomLifetime = 10 + random.nextInt(20);
+					
+					ParticleEffect particleEffect = new ParticleSpawnerParticleEffect(particleSpriteIdentifier, 0.98F, shootingStarType.getRandomParticleColor(random), randomScale, randomLifetime, false);
+					MinecraftClient.getInstance().player.getEntityWorld().addParticle(particleEffect, x, y, z, 0.3 - random.nextFloat() * 0.6, random.nextFloat() * 0.6, 0.3 - random.nextFloat() * 0.6);
 				}
 			});
 		});
@@ -515,5 +537,17 @@ public class SpectrumS2CPackets {
 			ServerPlayNetworking.send(player, SpectrumS2CPackets.PLAY_PEDESTAL_UPGRADED_PARTICLE_PACKET_ID, buf);
 		}
 	}
-
+	
+	public static void sendPlayShootingStarParticles(ShootingStarEntity shootingStarEntity) {
+		PacketByteBuf buf = PacketByteBufs.create();
+		buf.writeDouble(shootingStarEntity.getPos().getX());
+		buf.writeDouble(shootingStarEntity.getPos().getY());
+		buf.writeDouble(shootingStarEntity.getPos().getZ());
+		buf.writeInt(shootingStarEntity.getShootingStarType().ordinal());
+		// Iterate over all players tracking a position in the world and send the packet to each player
+		for (ServerPlayerEntity player : PlayerLookup.tracking((ServerWorld) shootingStarEntity.world, shootingStarEntity.getBlockPos())) {
+			ServerPlayNetworking.send(player, SpectrumS2CPackets.PLAY_SHOOTING_STAR_PARTICLES, buf);
+		}
+	}
+	
 }

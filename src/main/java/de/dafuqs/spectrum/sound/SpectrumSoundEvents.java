@@ -24,6 +24,7 @@ public class SpectrumSoundEvents {
 	public static SoundEvent ENCHANTER_WORKING = register("enchanter_working");
 	public static SoundEvent ENCHANTER_DING = register("enchanter_ding");
 	
+	public static SoundEvent SHOOTING_STAR_CRACKER = register("shooting_star_cracker");
 	public static SoundEvent TEXT_REVEALED = register("text_revealed");
 	public static SoundEvent USE_FAIL = register("use_fail");
 	public static SoundEvent NEW_REVELATION = register("new_revelation");

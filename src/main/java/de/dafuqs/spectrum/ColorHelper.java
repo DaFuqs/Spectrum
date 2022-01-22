@@ -5,8 +5,10 @@ import net.minecraft.item.DyeItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DyeColor;
+import net.minecraft.util.math.Vec3f;
 import oshi.util.tuples.Triplet;
 
+import java.awt.*;
 import java.util.HashMap;
 import java.util.Optional;
 
@@ -14,6 +16,7 @@ public class ColorHelper {
 	
 	private static final HashMap<DyeColor, Triplet<Float, Float, Float>> dyeColors = new HashMap<>() {{
 		put(DyeColor.BLACK, new Triplet<>(0.1F, 0.1F, 0.1F));
+		put(DyeColor.BLUE, new Triplet<>(0.05F, 0.011F, 0.95F));
 		put(DyeColor.BROWN, new Triplet<>(0.31F, 0.16F, 0.05F));
 		put(DyeColor.CYAN, new Triplet<>(0.0F, 1.0F, 1.0F));
 		put(DyeColor.GRAY, new Triplet<>(0.3F, 0.3F, 0.3F));
@@ -46,4 +49,8 @@ public class ColorHelper {
 		return Optional.empty();
 	}
 	
+	public static Vec3f getColor(DyeColor dyeColor) {
+		Triplet<Float, Float, Float> colors = getRGB(dyeColor);
+		return new Vec3f(colors.getA(), colors.getB(), colors.getC());
+	}
 }

@@ -96,9 +96,14 @@ public class SpectrumBlocks {
 	public static FabricItemSettings generalItemSettingsRare = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(0).rarity(Rarity.RARE);
 	public static FabricItemSettings generalItemSettingsRareEight = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(0).rarity(Rarity.RARE).maxCount(8);
 	
-	public static FabricItemSettings resourcesItemSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(2);
-	public static FabricItemSettings resourcesItemSettingsUncommon = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(2).rarity(Rarity.UNCOMMON);
-	public static FabricItemSettings resourcesItemSettingsRare = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(2).rarity(Rarity.RARE);
+	public static FabricItemSettings worldgenItemSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(2);
+	public static FabricItemSettings worldgenItemSettingsUncommon = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(2).rarity(Rarity.UNCOMMON);
+	public static FabricItemSettings worldgenItemSettingsRare = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(2).rarity(Rarity.RARE);
+	
+	public static FabricItemSettings resourcesItemSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(3);
+	public static FabricItemSettings resourcesItemSettingsUncommon = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(3).rarity(Rarity.UNCOMMON);
+	public static FabricItemSettings resourcesItemSettingsRare = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(3).rarity(Rarity.RARE);
+	
 	public static FabricItemSettings decorationItemSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_BLOCKS).tab(0);
 	public static FabricItemSettings decorationItemSettingsRare = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_BLOCKS).tab(0).rarity(Rarity.RARE);
 	public static FabricItemSettings coloredWoodItemSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_BLOCKS).tab(1);
@@ -639,7 +644,7 @@ public class SpectrumBlocks {
 	public static final Block SACRED_SOIL = new ExtraTickFarmlandBlock(FabricBlockSettings.copyOf(Blocks.FARMLAND));
 	public static final Block STUCK_LIGHTNING_STONE = new LightningStoneBlock(FabricBlockSettings.copyOf(Blocks.DIRT));
 	
-	private static final FabricBlockSettings shootingStartBlockSettings = FabricBlockSettings.copyOf(Blocks.STONE);
+	private static final FabricBlockSettings shootingStartBlockSettings = FabricBlockSettings.copyOf(Blocks.STONE).nonOpaque();
 	public static final Block GLISTERING_SHOOTING_STAR = new ShootingStarBlock(shootingStartBlockSettings, ShootingStarBlock.Type.GLISTERING);
 	public static final Block FIERY_SHOOTING_STAR = new ShootingStarBlock(shootingStartBlockSettings, ShootingStarBlock.Type.FIERY);
 	public static final Block COLORFUL_SHOOTING_STAR = new ShootingStarBlock(shootingStartBlockSettings, ShootingStarBlock.Type.COLORFUL);
@@ -710,13 +715,13 @@ public class SpectrumBlocks {
 		
 		registerPastelNetworkNodes(generalItemSettingsSixteen);
 		registerStoneBlocks(decorationItemSettings);
-		registerGemBlocks(resourcesItemSettings);
-		registerBlockWithItem("spectral_shard_block", SPECTRAL_SHARD_BLOCK, resourcesItemSettingsRare);
+		registerGemBlocks(worldgenItemSettings);
+		registerBlockWithItem("spectral_shard_block", SPECTRAL_SHARD_BLOCK, worldgenItemSettingsRare);
 		registerBlockWithItem("bedrock_storage_block", BEDROCK_STORAGE_BLOCK, decorationItemSettingsRare);
 		registerShootingStarBlocks(resourcesItemSettingsUncommon);
 		
-		registerGemOreBlocks(resourcesItemSettings);
-		registerOreBlocks(resourcesItemSettings);
+		registerGemOreBlocks(worldgenItemSettings);
+		registerOreBlocks(worldgenItemSettings);
 		registerOreStorageBlocks(decorationItemSettings);
 		registerGemstoneLamps(decorationItemSettings);
 		registerSparklestoneLights(decorationItemSettings);
@@ -748,13 +753,13 @@ public class SpectrumBlocks {
 		registerBlockWithItem("frostbite_crystal", FROSTBITE_CRYSTAL, generalItemSettings);
 		registerBlockWithItem("blazing_crystal", BLAZING_CRYSTAL, generalItemSettings);
 		registerBlockWithItem("resonant_lily", RESONANT_LILY, generalItemSettings);
-		registerBlockWithItem("clover", CLOVER, resourcesItemSettings);
-		registerBlockWithItem("four_leaf_clover", FOUR_LEAF_CLOVER, resourcesItemSettings);
+		registerBlockWithItem("clover", CLOVER, worldgenItemSettings);
+		registerBlockWithItem("four_leaf_clover", FOUR_LEAF_CLOVER, worldgenItemSettings);
 
 		// Worldgen
-		registerBlockWithItem("quitoxic_reeds", QUITOXIC_REEDS, resourcesItemSettings);
-		registerBlockWithItem("mermaids_brush", MERMAIDS_BRUSH, resourcesItemSettings);
-		registerBlockWithItem("ender_treasure", ENDER_TREASURE, resourcesItemSettings);
+		registerBlockWithItem("quitoxic_reeds", QUITOXIC_REEDS, worldgenItemSettings);
+		registerBlockWithItem("mermaids_brush", MERMAIDS_BRUSH, worldgenItemSettings);
+		registerBlockWithItem("ender_treasure", ENDER_TREASURE, worldgenItemSettings);
 
 		registerBlockWithItem("bedrock_anvil", BEDROCK_ANVIL, generalItemSettings);
 		registerBlockWithItem("cracked_end_portal_frame", CRACKED_END_PORTAL_FRAME, generalItemSettings);
@@ -1455,6 +1460,13 @@ public class SpectrumBlocks {
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.FOUR_LEAF_CLOVER, RenderLayer.getCutout());
 
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.ETHEREAL_PLATFORM, RenderLayer.getTranslucent());
+		
+		// Shooting stars
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.COLORFUL_SHOOTING_STAR, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.FIERY_SHOOTING_STAR, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.GEMSTONE_SHOOTING_STAR, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.GLISTERING_SHOOTING_STAR, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.PRISTINE_SHOOTING_STAR, RenderLayer.getCutout());
 	}
 
 	@NotNull

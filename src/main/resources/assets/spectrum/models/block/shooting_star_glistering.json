@@ -1,6 +1,5 @@
 {
-    "parent": "minecraft:block/cube_all",
+    "parent": "spectrum:block/template_shooting_star",
     "textures": {
-    "all": "spectrum:block/shooting_star_glistering"
     }
 }

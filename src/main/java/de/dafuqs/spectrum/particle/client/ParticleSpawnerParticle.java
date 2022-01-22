@@ -9,11 +9,14 @@ import net.minecraft.client.particle.ParticleTextureSheet;
 import net.minecraft.client.particle.SpriteBillboardParticle;
 import net.minecraft.client.texture.Sprite;
 import net.minecraft.client.world.ClientWorld;
+import net.minecraft.util.math.MathHelper;
 import org.jetbrains.annotations.NotNull;
 
 @Environment(EnvType.CLIENT)
 public class ParticleSpawnerParticle extends SpriteBillboardParticle {
 
+	protected boolean glowInTheDark;
+	
 	public ParticleSpawnerParticle(ClientWorld clientWorld, double d, double e, double f, double velocityX, double velocityY, double velocityZ) {
 		super(clientWorld, d, e, f, velocityX, velocityY, velocityZ);
 		// Override the default random particle velocities again.
@@ -21,6 +24,15 @@ public class ParticleSpawnerParticle extends SpriteBillboardParticle {
 		this.velocityX = velocityX;
 		this.velocityY = velocityY;
 		this.velocityZ = velocityZ;
+		this.glowInTheDark = false;
+	}
+	
+	public int getBrightness(float tint) {
+		if(glowInTheDark) {
+			return 255;
+		} else {
+			return super.getBrightness(tint);
+		}
 	}
 
 	@Override
@@ -33,9 +45,10 @@ public class ParticleSpawnerParticle extends SpriteBillboardParticle {
 		this.setSprite(sprite);
 		this.setMaxAge(effect.lifetimeTicks);
 		this.scale(effect.scale);
-		this.setColor(effect.color.getX(), effect.color.getY(), effect.color.getZ()); // TODO: change to CMY for the user
+		this.setColor(effect.color.getX(), effect.color.getY(), effect.color.getZ());
 		this.gravityStrength = effect.gravity;
 		this.collidesWithWorld = effect.collisions;
+		this.glowInTheDark = effect.glowInTheDark;
 	}
 
 }

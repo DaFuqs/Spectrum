@@ -120,7 +120,7 @@ public class ParticleSpawnerBlockEntity extends BlockEntity implements ExtendedS
 
 		if(randomScale > 0 && randomLifetime > 0) {
 			MinecraftClient.getInstance().player.getEntityWorld().addParticle(
-					new ParticleSpawnerParticleEffect(this.particleSpriteIdentifier, this.gravity, this.color, randomScale, randomLifetime, this.collisions),
+					new ParticleSpawnerParticleEffect(this.particleSpriteIdentifier, this.gravity, this.color, randomScale, randomLifetime, this.collisions, false),
 					(double) pos.getX() + 0.5 + particleSourcePosition.getX() + randomOffsetX,
 					(double) pos.getY() + 0.5 + particleSourcePosition.getY() + randomOffsetY,
 					(double) pos.getZ() + 0.5 + particleSourcePosition.getZ() + randomOffsetZ,

@@ -154,12 +154,12 @@ public class SpectrumS2CPackets {
 				Random random = client.world.random;
 				// Everything in this lambda is running on the render thread
 				
-				for(int i = 0; i < 20; i++) {
+				for(int i = 0; i < 25; i++) {
 					float randomScale = 0.5F + random.nextFloat();
 					int randomLifetime = 10 + random.nextInt(20);
 					
-					ParticleEffect particleEffect = new ParticleSpawnerParticleEffect(particleSpriteIdentifier, 0.98F, shootingStarType.getRandomParticleColor(random), randomScale, randomLifetime, false);
-					MinecraftClient.getInstance().player.getEntityWorld().addParticle(particleEffect, x, y, z, 0.3 - random.nextFloat() * 0.6, random.nextFloat() * 0.6, 0.3 - random.nextFloat() * 0.6);
+					ParticleEffect particleEffect = new ParticleSpawnerParticleEffect(particleSpriteIdentifier, 0.98F, shootingStarType.getRandomParticleColor(random), randomScale, randomLifetime, false, true);
+					MinecraftClient.getInstance().player.getEntityWorld().addParticle(particleEffect, x, y, z, 0.35 - random.nextFloat() * 0.7, random.nextFloat() * 0.7, 0.35 - random.nextFloat() * 0.7);
 				}
 			});
 		});
@@ -174,7 +174,7 @@ public class SpectrumS2CPackets {
 				float velocityModifier = 0.3F;
 				for(Vec3d velocity : Support.VECTORS_16) {
 					MinecraftClient.getInstance().player.getEntityWorld().addParticle(
-							new ParticleSpawnerParticleEffect(new Identifier("spectrum:particle/liquid_crystal_sparkle"), color, 1.0F, 40, false),
+							new ParticleSpawnerParticleEffect(new Identifier("spectrum:particle/liquid_crystal_sparkle"), color, 1.0F, 40, false, true),
 							sourcePos.x, sourcePos.y, sourcePos.z,
 							velocity.x * velocityModifier, velocity.y * velocityModifier, velocity.z * velocityModifier
 					);

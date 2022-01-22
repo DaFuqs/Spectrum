@@ -29,7 +29,7 @@ public class ParticleSpawnerParticle extends SpriteBillboardParticle {
 	
 	public int getBrightness(float tint) {
 		if(glowInTheDark) {
-			return 255;
+			return 16777215; // #FFFFFF
 		} else {
 			return super.getBrightness(tint);
 		}

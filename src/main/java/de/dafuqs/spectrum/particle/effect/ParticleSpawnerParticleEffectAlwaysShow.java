@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.particle.effect;
 
 import com.mojang.brigadier.StringReader;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
-import com.mojang.datafixers.util.Function6;
 import com.mojang.datafixers.util.Function7;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -15,9 +14,9 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Vec3f;
 import net.minecraft.util.registry.Registry;
 
-public class ParticleSpawnerParticleEffect implements ParticleEffect {
-
-	public static final Codec<ParticleSpawnerParticleEffect> CODEC = RecordCodecBuilder.create((instance) -> {
+public class ParticleSpawnerParticleEffectAlwaysShow extends ParticleSpawnerParticleEffect {
+	
+	public static final Codec<ParticleSpawnerParticleEffectAlwaysShow> CODEC = RecordCodecBuilder.create((instance) -> {
 		return instance.group(Vec3f.CODEC.fieldOf("color").forGetter((particleSpawnerParticleEffect) -> {
 			return particleSpawnerParticleEffect.color;
 		}), Codec.STRING.fieldOf("texture_identifier_string").forGetter((particleSpawnerParticleEffect) -> {
@@ -32,11 +31,11 @@ public class ParticleSpawnerParticleEffect implements ParticleEffect {
 			return particleSpawnerParticleEffect.collisions;
 		}), Codec.BOOL.fieldOf("glow_in_the_dark").forGetter((particleSpawnerParticleEffect) -> {
 			return particleSpawnerParticleEffect.glowInTheDark;
-		})).apply(instance, (Function7)(ParticleSpawnerParticleEffect::new));
+		})).apply(instance, (Function7)(ParticleSpawnerParticleEffectAlwaysShow::new));
 	});
 	
-	public static final ParticleEffect.Factory<ParticleSpawnerParticleEffect> FACTORY = new ParticleEffect.Factory<>() {
-		public ParticleSpawnerParticleEffect read(ParticleType<ParticleSpawnerParticleEffect> particleType, StringReader stringReader) throws CommandSyntaxException {
+	public static final ParticleEffect.Factory<ParticleSpawnerParticleEffectAlwaysShow> FACTORY = new ParticleEffect.Factory<>() {
+		public ParticleSpawnerParticleEffectAlwaysShow read(ParticleType<ParticleSpawnerParticleEffectAlwaysShow> particleType, StringReader stringReader) throws CommandSyntaxException {
 			Vec3f color = AbstractDustParticleEffect.readColor(stringReader);
 			stringReader.expect(' ');
 			Identifier textureIdentifier = new Identifier(stringReader.readString());
@@ -49,11 +48,11 @@ public class ParticleSpawnerParticleEffect implements ParticleEffect {
 			stringReader.expect(' ');
 			boolean collisions = stringReader.readBoolean();
 			boolean glowInTheDark = stringReader.readBoolean();
-
-			return new ParticleSpawnerParticleEffect(textureIdentifier, gravity, color, scale, lifetimeTicks, collisions, glowInTheDark);
+			
+			return new ParticleSpawnerParticleEffectAlwaysShow(textureIdentifier, gravity, color, scale, lifetimeTicks, collisions, glowInTheDark);
 		}
-
-		public ParticleSpawnerParticleEffect read(ParticleType<ParticleSpawnerParticleEffect> particleType, PacketByteBuf packetByteBuf) {
+		
+		public ParticleSpawnerParticleEffectAlwaysShow read(ParticleType<ParticleSpawnerParticleEffectAlwaysShow> particleType, PacketByteBuf packetByteBuf) {
 			Vec3f color = AbstractDustParticleEffect.readColor(packetByteBuf);
 			Identifier textureIdentifier = packetByteBuf.readIdentifier();
 			float scale = packetByteBuf.readFloat();
@@ -61,64 +60,29 @@ public class ParticleSpawnerParticleEffect implements ParticleEffect {
 			float gravity = packetByteBuf.readFloat();
 			boolean collisions = packetByteBuf.readBoolean();
 			boolean glowInTheDark = packetByteBuf.readBoolean();
-
-			return new ParticleSpawnerParticleEffect(textureIdentifier, gravity, color, scale, lifetimeTicks, collisions, glowInTheDark);
+			
+			return new ParticleSpawnerParticleEffectAlwaysShow(textureIdentifier, gravity, color, scale, lifetimeTicks, collisions, glowInTheDark);
 		}
 	};
-
-	public Identifier textureIdentifier;
-	public Vec3f color;
-	public float scale;
-	public int lifetimeTicks;
-	public float gravity;
-	public boolean collisions;
-	public boolean glowInTheDark;
 	
-	public ParticleSpawnerParticleEffect(Identifier textureIdentifier, float gravity, Vec3f color, float scale, int lifetimeTicks, boolean collisions, boolean glowInTheDark) {
-		this.textureIdentifier = textureIdentifier;
-		this.gravity = gravity;
-		this.color = color;
-		this.scale = scale;
-		this.lifetimeTicks = lifetimeTicks;
-		this.collisions = collisions;
-		this.glowInTheDark = glowInTheDark;
+	public ParticleSpawnerParticleEffectAlwaysShow(Identifier textureIdentifier, float gravity, Vec3f color, float scale, int lifetimeTicks, boolean collisions, boolean glowInTheDark) {
+		super(textureIdentifier, gravity, color, scale, lifetimeTicks, collisions, glowInTheDark);
 	}
 	
-	public ParticleSpawnerParticleEffect(Identifier textureIdentifier, Vec3f color, float scale, int lifetimeTicks, boolean collisions, boolean glowInTheDark) {
-		this.textureIdentifier = textureIdentifier;
-		this.gravity = 1.0F;
-		this.color = color;
-		this.scale = scale;
-		this.lifetimeTicks = lifetimeTicks;
-		this.collisions = collisions;
-		this.glowInTheDark = glowInTheDark;
+	public ParticleSpawnerParticleEffectAlwaysShow(Identifier textureIdentifier, Vec3f color, float scale, int lifetimeTicks, boolean collisions, boolean glowInTheDark) {
+		super(textureIdentifier, color, scale, lifetimeTicks, collisions, glowInTheDark);
 	}
 	
-	public ParticleSpawnerParticleEffect(Object o, Object o1, Object o2, Object o3, Object o4, Object o5, Object o6) {
-		new ParticleSpawnerParticleEffect((Identifier) o, (float) o1, (Vec3f) o2, (float) o3, (int) o4, (boolean) o5, (boolean) o6);
+	public ParticleSpawnerParticleEffectAlwaysShow(Object o, Object o1, Object o2, Object o3, Object o4, Object o5, Object o6) {
+		super(o, o1, o2, o3, o4, o5, o6);
 	}
-
-	public void write(PacketByteBuf buf) {
-		buf.writeString(this.textureIdentifier.toString());
-		buf.writeFloat(this.gravity);
-		buf.writeFloat(this.color.getX());
-		buf.writeFloat(this.color.getY());
-		buf.writeFloat(this.color.getZ());
-		buf.writeFloat(this.scale);
-		buf.writeInt(this.lifetimeTicks);
-		buf.writeBoolean(this.collisions);
-		buf.writeBoolean(this.glowInTheDark);
-	}
-
+	
 	public String asString() {
 		return String.valueOf(Registry.PARTICLE_TYPE.getId(this.getType()));
 	}
 
-	public ParticleType<ParticleSpawnerParticleEffect> getType() {
-		return SpectrumParticleTypes.PARTICLE_SPAWNER;
+	public ParticleType getType() {
+		return SpectrumParticleTypes.PARTICLE_SPAWNER_ALWAYS_SHOW;
 	}
 
-	public float getGravity() {
-		return this.gravity;
-	}
 }

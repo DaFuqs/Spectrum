@@ -17,7 +17,6 @@ import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.ExperienceOrbEntity;
 import net.minecraft.entity.ItemEntity;
@@ -148,19 +147,10 @@ public class SpectrumS2CPackets {
 			double y = buf.readDouble();
 			double z = buf.readDouble();
 			ShootingStarBlock.Type shootingStarType = ShootingStarBlock.Type.getType(buf.readInt());
-			Identifier particleSpriteIdentifier = new Identifier(SpectrumCommon.MOD_ID, "particle/shooting_star");
 			
 			client.execute(() -> {
-				Random random = client.world.random;
 				// Everything in this lambda is running on the render thread
-				
-				for(int i = 0; i < 25; i++) {
-					float randomScale = 0.5F + random.nextFloat();
-					int randomLifetime = 10 + random.nextInt(20);
-					
-					ParticleEffect particleEffect = new ParticleSpawnerParticleEffect(particleSpriteIdentifier, 0.98F, shootingStarType.getRandomParticleColor(random), randomScale, randomLifetime, false, true);
-					MinecraftClient.getInstance().player.getEntityWorld().addParticle(particleEffect, x, y, z, 0.35 - random.nextFloat() * 0.7, random.nextFloat() * 0.7, 0.35 - random.nextFloat() * 0.7);
-				}
+				ShootingStarEntity.playHitParticles(MinecraftClient.getInstance().player.getEntityWorld(), x, y, z, shootingStarType, 25);
 			});
 		});
 		

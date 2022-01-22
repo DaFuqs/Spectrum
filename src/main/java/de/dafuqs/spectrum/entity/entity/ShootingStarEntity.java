@@ -5,7 +5,8 @@ import de.dafuqs.spectrum.Support;
 import de.dafuqs.spectrum.blocks.decoration.ShootingStarBlock;
 import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
 import de.dafuqs.spectrum.networking.SpectrumS2CPackets;
-import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
+import de.dafuqs.spectrum.particle.effect.ParticleSpawnerParticleEffect;
+import de.dafuqs.spectrum.particle.effect.ParticleSpawnerParticleEffectAlwaysShow;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import de.dafuqs.spectrum.registries.SpectrumDamageSources;
 import de.dafuqs.spectrum.registries.SpectrumItems;
@@ -20,7 +21,6 @@ import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.vehicle.BoatEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -31,10 +31,11 @@ import net.minecraft.loot.context.LootContextTypes;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.Packet;
 import net.minecraft.network.packet.s2c.play.EntitySpawnS2CPacket;
+import net.minecraft.particle.ParticleEffect;
+import net.minecraft.predicate.entity.EntityPredicates;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.stat.Stats;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
@@ -49,8 +50,11 @@ import net.minecraft.world.event.GameEvent;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
+import java.util.Random;
 
 public class ShootingStarEntity extends Entity {
+	
+	private static final Identifier PARTICLE_SPRITE_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "particle/shooting_star");
 	
 	private static final TrackedData<Integer> SHOOTING_STAR_TYPE = DataTracker.registerData(ShootingStarEntity.class, TrackedDataHandlerRegistry.INTEGER);
 	private int age;
@@ -178,18 +182,23 @@ public class ShootingStarEntity extends Entity {
 				this.pushOutOfBlocks(this.getX(), (this.getBoundingBox().minY + this.getBoundingBox().maxY) / 2.0D, this.getZ());
 			}
 		}
+		
+		if(this.onGround) {
+			if(world.random.nextInt(10) == 0) {
+				playGroundParticles();
+			}
+		} else {
+			playFallingParticles();
+		}
 
 		if (!this.onGround || (this.age + this.getId()) % 4 == 0) {
-			Vec3d velocity = this.getVelocity();
-			world.addParticle(SpectrumParticleTypes.SHOOTING_STAR, this.getX(), this.getY(), this.getZ(), -velocity.x, -velocity.y, -velocity.z);
-
 			this.move(MovementType.SELF, this.getVelocity());
-			float g = 0.98F;
+			float verticalVelocityMultiplier = 0.98F;
 			if (this.onGround) {
-				g = this.world.getBlockState(new BlockPos(this.getX(), this.getY() - 1.0D, this.getZ())).getBlock().getSlipperiness() * 0.98F;
+				verticalVelocityMultiplier = this.world.getBlockState(new BlockPos(this.getX(), this.getY() - 1.0D, this.getZ())).getBlock().getSlipperiness() * 0.98F;
 			}
 
-			this.setVelocity(this.getVelocity().multiply(g, 0.98D, g));
+			this.setVelocity(this.getVelocity().multiply(verticalVelocityMultiplier, 0.98D, verticalVelocityMultiplier));
 		}
 
 		this.velocityDirty |= this.updateWaterState();
@@ -200,16 +209,27 @@ public class ShootingStarEntity extends Entity {
 			}
 		}
 
+		// despawning
 		if (!this.world.isClient && this.age >= 6000) {
 			this.discard();
 		}
+		
+		// making it pushable
+		this.checkBlockCollision();
+		List<Entity> otherEntities = this.world.getOtherEntities(this, this.getBoundingBox().expand(0.20000000298023224D, -0.009999999776482582D, 0.20000000298023224D), EntityPredicates.canBePushedBy(this));
+		if (!otherEntities.isEmpty()) {
+			for (Entity d : otherEntities) {
+				this.pushAwayFrom(d);
+			}
+		}
+		
 	}
 
 	public void onPlayerCollision(PlayerEntity player) {
-		// if the shooting star is still falling from the sky and it hits a player:
+		// if the shooting star is still falling from the sky, and it hits a player:
 		// give the player the star, some damage and grant an advancement
 		if (!this.world.isClient && !this.onGround && this.getVelocity().getY() < 0.3) {
-			world.playSound(null, this.getX(), this.getY(), this.getZ(), SpectrumSoundEvents.SHOOTING_STAR_CRACKER, SoundCategory.PLAYERS, 0.8F + random.nextFloat() * 0.4F, 0.8F + random.nextFloat() * 0.4F);
+			world.playSound(null, this.getBlockPos().getX(), this.getBlockPos().getY(), this.getBlockPos().getZ(), SpectrumSoundEvents.SHOOTING_STAR_CRACKER, SoundCategory.PLAYERS, 1.5F + random.nextFloat() * 0.4F, 0.8F + random.nextFloat() * 0.4F);
 			SpectrumS2CPackets.sendPlayShootingStarParticles(this);
 			player.damage(SpectrumDamageSources.SHOOTING_STAR, 5);
 
@@ -282,10 +302,36 @@ public class ShootingStarEntity extends Entity {
 				this.setVelocity(vec3d2.x, (vec3d2.y + f * 0.06153846016296973D) * 0.75D, vec3d2.z);
 			}
 		}
-		
 	}*/
 	
-	public void spawnLootAndParticles(ServerWorld serverWorld, ServerPlayerEntity serverPlayerEntity) {
+	public void playGroundParticles() {
+		float randomScale = 0.5F + random.nextFloat();
+		int randomLifetime = 20 + random.nextInt(20);
+		
+		ParticleEffect particleEffect = new ParticleSpawnerParticleEffectAlwaysShow(PARTICLE_SPRITE_IDENTIFIER, 0.05F, getShootingStarType().getRandomParticleColor(random), randomScale, randomLifetime, false, true);
+		world.addParticle(particleEffect, this.getX(), this.getY(), this.getZ(), 0.2 - random.nextFloat() * 0.4, 0.4, 0.2 - random.nextFloat() * 0.4);
+	}
+	
+	public void playFallingParticles() {
+		float randomScale = this.random.nextFloat() * 0.4F + 0.7F;
+		ParticleEffect particleEffect = new ParticleSpawnerParticleEffectAlwaysShow(PARTICLE_SPRITE_IDENTIFIER, (float) ((random.nextDouble() - 0.5F) * 0.05F - 0.125F), getShootingStarType().getRandomParticleColor(random), randomScale, 120, false, true);
+		world.addParticle(particleEffect, this.getX(), this.getY(), this.getZ(), 0.2 - random.nextFloat() * 0.4, 0.1, 0.2 - random.nextFloat() * 0.4);
+	}
+	
+	public static void playHitParticles(World world, double x, double y, double z, ShootingStarBlock.Type type, int amount) {
+		Random random = world.random;
+		// Everything in this lambda is running on the render thread
+		
+		for(int i = 0; i < amount; i++) {
+			float randomScale = 0.5F + random.nextFloat();
+			int randomLifetime = 10 + random.nextInt(20);
+			
+			ParticleEffect particleEffect = new ParticleSpawnerParticleEffectAlwaysShow(PARTICLE_SPRITE_IDENTIFIER, 0.98F, type.getRandomParticleColor(random), randomScale, randomLifetime, false, true);
+			world.addParticle(particleEffect, x, y, z, 0.35 - random.nextFloat() * 0.7, random.nextFloat() * 0.7, 0.35 - random.nextFloat() * 0.7);
+		}
+	}
+	
+	public void doHitEffectsAndLoot(ServerWorld serverWorld, ServerPlayerEntity serverPlayerEntity) {
 		// Spawn loot
 		Identifier lootTableId = ShootingStarBlock.Type.getLootTableIdentifier(dataTracker.get(SHOOTING_STAR_TYPE));
 		LootTable lootTable = serverWorld.getServer().getLootManager().getTable(lootTableId);
@@ -304,6 +350,7 @@ public class ShootingStarEntity extends Entity {
 		
 		// spawn particles
 		SpectrumS2CPackets.sendPlayShootingStarParticles(this);
+		world.playSound(null, this.getBlockPos().getX(), this.getBlockPos().getY(), this.getBlockPos().getZ(), SpectrumSoundEvents.SHOOTING_STAR_CRACKER, SoundCategory.PLAYERS, 1.5F + random.nextFloat() * 0.4F, 0.8F + random.nextFloat() * 0.4F);
 	}
 	
 	public Text getName() {
@@ -316,7 +363,7 @@ public class ShootingStarEntity extends Entity {
 		if (!this.world.isClient && !this.isRemoved()) {
 			this.availableHits--;
 			if(this.world instanceof ServerWorld serverWorld && attacker instanceof ServerPlayerEntity serverPlayerEntity) {
-				spawnLootAndParticles(serverWorld, serverPlayerEntity);
+				doHitEffectsAndLoot(serverWorld, serverPlayerEntity);
 			}
 			
 			if(this.availableHits <= 0) {
@@ -330,6 +377,11 @@ public class ShootingStarEntity extends Entity {
 				this.emitGameEvent(GameEvent.ENTITY_DAMAGED, attacker);
 			}
 		}
+		
+		double attackerOffsetX = this.getX() - attacker.getX();
+		double attackerOffsetZ = this.getZ() - attacker.getZ();
+		double mod = Math.max(attackerOffsetX, attackerOffsetZ);
+		this.addVelocity((attackerOffsetX / mod) * 5, 0.5, (attackerOffsetZ / mod) * 5);
 		
 		return false;
 	}

@@ -17,13 +17,14 @@ import java.util.function.Function;
 public class SpectrumParticleTypes {
 
 	public static ParticleType<ParticleSpawnerParticleEffect> PARTICLE_SPAWNER;
+	public static ParticleType<ParticleSpawnerParticleEffectAlwaysShow> PARTICLE_SPAWNER_ALWAYS_SHOW;
 	public static ParticleType<ItemTransferParticleEffect> ITEM_TRANSFER;
 	public static ParticleType<ExperienceTransferParticleEffect> EXPERIENCE_TRANSFER;
 	public static ParticleType<WirelessRedstoneTransmissionParticleEffect> WIRELESS_REDSTONE_TRANSMISSION;
 	
 	public static ParticleType<TransphereParticleEffect> TRANSPHERE;
 	
-	public static DefaultParticleType SHOOTING_STAR;
+	public static DefaultParticleType SHOOTING_STAR; // Dummy entry to get the sprite registered
 	public static DefaultParticleType SPARKLESTONE_SPARKLE;
 	public static DefaultParticleType SPARKLESTONE_SPARKLE_SMALL;
 	public static DefaultParticleType SPARKLESTONE_SPARKLE_TINY;
@@ -126,8 +127,8 @@ public class SpectrumParticleTypes {
 	}
 
 	// complex particles
-	private static <T extends ParticleEffect> ParticleType<T> register(String name, ParticleEffect.Factory<T> factory, final Function<ParticleType<T>, Codec<T>> function) {
-		return Registry.register(Registry.PARTICLE_TYPE,  new Identifier(SpectrumCommon.MOD_ID, name), new ParticleType<T>(false, factory) {
+	private static <T extends ParticleEffect> ParticleType<T> register(String name, ParticleEffect.Factory<T> factory, final Function<ParticleType<T>, Codec<T>> function, boolean alwaysShow) {
+		return Registry.register(Registry.PARTICLE_TYPE,  new Identifier(SpectrumCommon.MOD_ID, name), new ParticleType<T>(alwaysShow, factory) {
 			public Codec<T> getCodec() {
 				return function.apply(this);
 			}
@@ -136,13 +137,13 @@ public class SpectrumParticleTypes {
 
 
 	public static void register() {
-		PARTICLE_SPAWNER = register("particle_spawner", ParticleSpawnerParticleEffect.FACTORY, (particleType) -> ParticleSpawnerParticleEffect.CODEC);
-		ITEM_TRANSFER = register("item_transfer", ItemTransferParticleEffect.FACTORY, (particleType) -> ItemTransferParticleEffect.CODEC);
-		EXPERIENCE_TRANSFER = register("experience_transfer", ExperienceTransferParticleEffect.FACTORY, (particleType) -> ExperienceTransferParticleEffect.CODEC);
-		WIRELESS_REDSTONE_TRANSMISSION = register("wireless_redstone_transmission", WirelessRedstoneTransmissionParticleEffect.FACTORY, (particleType) -> WirelessRedstoneTransmissionParticleEffect.CODEC);
-		TRANSPHERE = register("transphere", TransphereParticleEffect.FACTORY, (particleType) -> TransphereParticleEffect.CODEC);
+		PARTICLE_SPAWNER = register("particle_spawner", ParticleSpawnerParticleEffect.FACTORY, (particleType) -> ParticleSpawnerParticleEffect.CODEC, false);
+		PARTICLE_SPAWNER_ALWAYS_SHOW = register("particle_spawner_always_show", ParticleSpawnerParticleEffectAlwaysShow.FACTORY, (particleType) -> ParticleSpawnerParticleEffectAlwaysShow.CODEC, true);
+		ITEM_TRANSFER = register("item_transfer", ItemTransferParticleEffect.FACTORY, (particleType) -> ItemTransferParticleEffect.CODEC, false);
+		EXPERIENCE_TRANSFER = register("experience_transfer", ExperienceTransferParticleEffect.FACTORY, (particleType) -> ExperienceTransferParticleEffect.CODEC, false);
+		WIRELESS_REDSTONE_TRANSMISSION = register("wireless_redstone_transmission", WirelessRedstoneTransmissionParticleEffect.FACTORY, (particleType) -> WirelessRedstoneTransmissionParticleEffect.CODEC, false);
+		TRANSPHERE = register("transphere", TransphereParticleEffect.FACTORY, (particleType) -> TransphereParticleEffect.CODEC, false);
 		
-		SHOOTING_STAR = register("shooting_star", true);
 		SPARKLESTONE_SPARKLE = register("sparklestone_sparkle", false);
 		SPARKLESTONE_SPARKLE_SMALL = register("sparklestone_sparkle_small", false);
 		SPARKLESTONE_SPARKLE_TINY = register("sparklestone_sparkle_tiny", false);
@@ -153,6 +154,7 @@ public class SpectrumParticleTypes {
 		GREEN_BUBBLE_POP = register("green_bubble_pop", false);
 		SPIRIT_SALLOW = register("spirit_sallow", false);
 		DECAY_PLACE = register("decay_place", false);
+		SHOOTING_STAR = register("shooting_star", false);
 		
 
 		BLACK_FALLING_SPORE_BLOSSOM = register("black_falling_spore_blossom", false);

@@ -6,6 +6,7 @@ import de.dafuqs.spectrum.blocks.decoration.ShootingStarBlock;
 import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
+import de.dafuqs.spectrum.registries.SpectrumDamageSources;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -202,25 +203,19 @@ public class ShootingStarEntity extends Entity {
 	}
 
 	public void onPlayerCollision(PlayerEntity player) {
-		if (!this.world.isClient) {
-			player.damage(DamageSource.FALLING_BLOCK, 5);
+		// if the shooting star is still falling from the sky and it hits a player:
+		// give the player the star, some damage and grant an advancement
+		if (!this.world.isClient && !this.onGround && this.getVelocity().getY() < 0.3) {
+			player.damage(SpectrumDamageSources.SHOOTING_STAR, 5);
 
 			ItemStack itemStack = this.getShootingStarType().getBlock().asItem().getDefaultStack();
 			int i = itemStack.getCount();
-			if (player.getInventory().insertStack(itemStack)) {
-				if(!player.isDead()) {
-					player.sendPickup(this, i);
-					if (itemStack.isEmpty()) {
-						this.discard();
-						itemStack.setCount(i);
-					}
-
-					Support.grantAdvancementCriterion((ServerPlayerEntity) player, "catch_shooting_star", "catch");
-					player.increaseStat(Stats.PICKED_UP.getOrCreateStat(itemStack.getItem()), i);
-
-					this.discard();
-				}
-			}
+			Support.givePlayer(player, itemStack);
+			
+			Support.grantAdvancementCriterion((ServerPlayerEntity) player, "catch_shooting_star", "catch");
+			player.increaseStat(Stats.PICKED_UP.getOrCreateStat(itemStack.getItem()), i);
+			
+			this.discard();
 		}
 	}
 	

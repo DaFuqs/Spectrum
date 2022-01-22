@@ -90,6 +90,12 @@ public class Support {
 		}
 	}
 	
+	/**
+	 * Adds a stack to the players inventory.
+	 * If there is not enough room drop it on the ground instead
+	 * @param playerEntity The player to give the stack to
+	 * @param itemStack The item stack
+	 */
 	public static void givePlayer(PlayerEntity playerEntity, ItemStack itemStack) {
 		boolean insertInventorySuccess = playerEntity.getInventory().insertStack(itemStack);
 		ItemEntity itemEntity;

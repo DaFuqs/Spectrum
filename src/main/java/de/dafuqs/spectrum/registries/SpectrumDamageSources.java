@@ -5,7 +5,8 @@ import net.minecraft.entity.damage.DamageSource;
 public class SpectrumDamageSources {
 
 	public static final DamageSource DECAY = new SpectrumDamageSource("spectrum_decay").setUnblockable().setBypassesArmor();
-	public static final DamageSource FLOATBLOCK = new SpectrumDamageSource("spectrum_floatblock").setFromFalling();
+	public static final DamageSource FLOATBLOCK = new SpectrumDamageSource("spectrum_floatblock").setFromFalling().setNeutral();
+	public static final DamageSource SHOOTING_STAR = new SpectrumDamageSource("spectrum_shooting_star").setFromFalling().setNeutral().setProjectile();
 
 	public static class SpectrumDamageSource extends DamageSource {
 		

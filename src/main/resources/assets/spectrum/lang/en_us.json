@@ -79,6 +79,7 @@
 
   "death.attack.spectrum_decay": "%s was eaten alive",
   "death.attack.spectrum_floatblock": "%s was smashed by a Floating Block",
+  "death.attack.spectrum_shooting_star": "%s was smitten by a Shooting Star. Make a wish!",
 
   "entity.spectrum.block_flooder_projectile": "Block Flooder",
   "entity.spectrum.gravity_block": "Gravity Block",

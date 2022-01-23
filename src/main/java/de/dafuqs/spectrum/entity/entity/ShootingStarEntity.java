@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.entity.entity;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.Support;
 import de.dafuqs.spectrum.blocks.decoration.ShootingStarBlock;
+import de.dafuqs.spectrum.commands.ShootingStarCommand;
 import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
 import de.dafuqs.spectrum.networking.SpectrumS2CPackets;
 import de.dafuqs.spectrum.particle.effect.ParticleSpawnerParticleEffect;
@@ -32,6 +33,7 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.Packet;
 import net.minecraft.network.packet.s2c.play.EntitySpawnS2CPacket;
 import net.minecraft.particle.ParticleEffect;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.predicate.entity.EntityPredicates;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
@@ -337,14 +339,8 @@ public class ShootingStarEntity extends Entity {
 	public void doHitEffectsAndLoot(ServerWorld serverWorld, ServerPlayerEntity serverPlayerEntity) {
 		// Spawn loot
 		Identifier lootTableId = ShootingStarBlock.Type.getLootTableIdentifier(dataTracker.get(SHOOTING_STAR_TYPE));
-		LootTable lootTable = serverWorld.getServer().getLootManager().getTable(lootTableId);
-		List<ItemStack> loot = lootTable.generateLoot(new LootContext.Builder(serverWorld)
-				.random(world.random)
-				.parameter(LootContextParameters.THIS_ENTITY, this)
-				.parameter(LootContextParameters.ORIGIN, Vec3d.ofCenter(this.getBlockPos()))
-				.parameter(LootContextParameters.DAMAGE_SOURCE, DamageSource.player(serverPlayerEntity))
-				.optionalParameter(LootContextParameters.LAST_DAMAGE_PLAYER, serverPlayerEntity)
-				.build(LootContextTypes.ENTITY));
+		List<ItemStack> loot = getLoot(serverWorld, serverPlayerEntity, lootTableId);
+		loot.addAll(getLoot(serverWorld, serverPlayerEntity, ShootingStarBlock.Type.COMMON_LOOT_TABLE));
 		
 		for(ItemStack itemStack : loot) {
 			ItemEntity itemEntity = new ItemEntity(this.world, this.getX(), this.getY(), this.getZ(), itemStack);
@@ -354,6 +350,17 @@ public class ShootingStarEntity extends Entity {
 		// spawn particles
 		SpectrumS2CPackets.sendPlayShootingStarParticles(this);
 		world.playSound(null, this.getBlockPos().getX(), this.getBlockPos().getY(), this.getBlockPos().getZ(), SpectrumSoundEvents.SHOOTING_STAR_CRACKER, SoundCategory.PLAYERS, 1.5F + random.nextFloat() * 0.4F, 0.8F + random.nextFloat() * 0.4F);
+	}
+	
+	public List<ItemStack> getLoot(ServerWorld serverWorld, ServerPlayerEntity serverPlayerEntity, Identifier lootTableId) {
+		LootTable lootTable = serverWorld.getServer().getLootManager().getTable(lootTableId);
+		return lootTable.generateLoot(new LootContext.Builder(serverWorld)
+				.random(world.random)
+				.parameter(LootContextParameters.THIS_ENTITY, this)
+				.parameter(LootContextParameters.ORIGIN, Vec3d.ofCenter(this.getBlockPos()))
+				.parameter(LootContextParameters.DAMAGE_SOURCE, DamageSource.player(serverPlayerEntity))
+				.optionalParameter(LootContextParameters.LAST_DAMAGE_PLAYER, serverPlayerEntity)
+				.build(LootContextTypes.ENTITY));
 	}
 	
 	public Text getName() {
@@ -370,7 +377,10 @@ public class ShootingStarEntity extends Entity {
 			}
 			
 			if(this.availableHits <= 0) {
+				SpectrumS2CPackets.playParticleWithExactOffsetAndVelocity((ServerWorld) world, this.getPos(), ParticleTypes.EXPLOSION, 1, new Vec3d(0, 0, 0), new Vec3d(0, 0, 0));
+				
 				ItemEntity itemEntity = new ItemEntity(this.world, this.getX(), this.getY(), this.getZ(), SpectrumItems.SHOOTING_STAR.getDefaultStack());
+				itemEntity.addVelocity(0, 0.1, 0);
 				this.world.spawnEntity(itemEntity);
 				this.discard();
 				

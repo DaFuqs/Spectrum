@@ -25,6 +25,8 @@ public class ShootingStarBlock extends Block {
 		PRISTINE("pristine"),
 		GEMSTONE("gemstone");
 		
+		public static final Identifier COMMON_LOOT_TABLE = new Identifier(SpectrumCommon.MOD_ID, "entity/shooting_star/shooting_star_common");
+		
 		private final String name;
 		
 		Type(String name) {

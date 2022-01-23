@@ -8,7 +8,6 @@ import net.minecraft.util.DyeColor;
 import net.minecraft.util.math.Vec3f;
 import oshi.util.tuples.Triplet;
 
-import java.awt.*;
 import java.util.HashMap;
 import java.util.Optional;
 

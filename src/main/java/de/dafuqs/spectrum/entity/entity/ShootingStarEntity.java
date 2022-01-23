@@ -22,6 +22,7 @@ import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.vehicle.MinecartEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -256,13 +257,7 @@ public class ShootingStarEntity extends Entity {
 	}
 	
 	public Item asItem() {
-		return switch (this.getShootingStarType()) {
-			case COLORFUL -> SpectrumBlocks.COLORFUL_SHOOTING_STAR.asItem();
-			case FIERY -> SpectrumBlocks.FIERY_SHOOTING_STAR.asItem();
-			case GEMSTONE -> SpectrumBlocks.GEMSTONE_SHOOTING_STAR.asItem();
-			case PRISTINE -> SpectrumBlocks.PRISTINE_SHOOTING_STAR.asItem();
-			case GLISTERING -> SpectrumBlocks.GLISTERING_SHOOTING_STAR.asItem();
-		};
+		return this.getShootingStarType().getBlock().asItem();
 	}
 	
 	public boolean collides() {
@@ -427,7 +422,13 @@ public class ShootingStarEntity extends Entity {
 	}
 	
 	public ActionResult interact(PlayerEntity player, Hand hand) {
-		return ActionResult.PASS;
+		if(!this.world.isClient && player.isSneaking()) {
+			Support.givePlayer(player, this.asItem().getDefaultStack());
+			this.discard();
+			return ActionResult.CONSUME;
+		} else {
+			return ActionResult.SUCCESS;
+		}
 	}
 	
 	public ItemStack getPickBlockStack() {

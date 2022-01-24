@@ -8,7 +8,7 @@ import net.minecraft.util.Identifier;
 
 public class PigmentItem extends CloakedItem {
 
-	private final DyeColor color;
+	protected final DyeColor color;
 
 	public PigmentItem(Settings settings, DyeColor color) {
 		super(settings, new Identifier(SpectrumCommon.MOD_ID, "craft_colored_sapling"), getDyeItemForDyeColor(color));

@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.entity.entity;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.Support;
 import de.dafuqs.spectrum.blocks.shooting_star.ShootingStarBlock;
+import de.dafuqs.spectrum.blocks.shooting_star.ShootingStarItem;
 import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
 import de.dafuqs.spectrum.networking.SpectrumS2CPackets;
 import de.dafuqs.spectrum.particle.effect.ParticleSpawnerParticleEffectAlwaysShow;
@@ -62,7 +63,7 @@ public class ShootingStarEntity extends Entity {
 
 	public ShootingStarEntity(EntityType<? extends ShootingStarEntity> entityType, World world) {
 		super(entityType, world);
-		this.hoverHeight = (float)(Math.random() * 3.141592653589793D * 2.0D);
+		this.hoverHeight = (float)(Math.random() * Math.PI * 2.0D);
 		this.availableHits = 5 + world.random.nextInt(3);
 	}
 
@@ -70,7 +71,7 @@ public class ShootingStarEntity extends Entity {
 		this(SpectrumEntityTypes.SHOOTING_STAR, world);
 		this.setPosition(x, y, z);
 		this.setYaw(this.random.nextFloat() * 360.0F);
-		this.setVelocity(this.random.nextDouble() * 0.2D - 0.1D, 0.2D, this.random.nextDouble() * 0.2D - 0.1D);
+		this.setVelocity(this.random.nextDouble() * 0.2D - 0.1D, 0.0D, this.random.nextDouble() * 0.2D - 0.1D);
 		this.setShootingStarType(ShootingStarBlock.Type.COLORFUL);
 	}
 
@@ -371,13 +372,12 @@ public class ShootingStarEntity extends Entity {
 				SpectrumS2CPackets.playParticleWithExactOffsetAndVelocity((ServerWorld) world, this.getPos(), ParticleTypes.EXPLOSION, 1, new Vec3d(0, 0, 0), new Vec3d(0, 0, 0));
 				
 				ItemEntity itemEntity = new ItemEntity(this.world, this.getX(), this.getY(), this.getZ(), SpectrumItems.SHOOTING_STAR.getDefaultStack());
-				itemEntity.addVelocity(0, 0.1, 0);
+				itemEntity.addVelocity(0, 0.15, 0);
 				this.world.spawnEntity(itemEntity);
 				this.discard();
 				
 				return true;
 			} else {
-				this.scheduleVelocityUpdate();
 				this.emitGameEvent(GameEvent.ENTITY_DAMAGED, attacker);
 			}
 		}
@@ -385,9 +385,14 @@ public class ShootingStarEntity extends Entity {
 		double attackerOffsetX = this.getX() - attacker.getX();
 		double attackerOffsetZ = this.getZ() - attacker.getZ();
 		double mod = Math.max(attackerOffsetX, attackerOffsetZ);
-		this.addVelocity((attackerOffsetX / mod) * 2, 0.5, (attackerOffsetZ / mod) * 2);
+		this.addVelocity((attackerOffsetX / mod) * 2, 0.3, (attackerOffsetZ / mod) * 2);
+		this.scheduleVelocityUpdate();
 		
 		return false;
+	}
+	
+	public void setAvailableHits(int availableHits) {
+		this.availableHits = availableHits;
 	}
 	
 	@Override
@@ -419,16 +424,16 @@ public class ShootingStarEntity extends Entity {
 	
 	public ActionResult interact(PlayerEntity player, Hand hand) {
 		if(!this.world.isClient && player.isSneaking()) {
-			Support.givePlayer(player, this.asItem().getDefaultStack());
+			Support.givePlayer(player, ShootingStarItem.getWithRemainingHits((ShootingStarItem) this.asItem(), this.availableHits));
 			this.discard();
 			return ActionResult.CONSUME;
 		} else {
-			return ActionResult.SUCCESS;
+			return ActionResult.PASS;
 		}
 	}
 	
 	public ItemStack getPickBlockStack() {
-		return new ItemStack(this.asItem());
+		return ShootingStarItem.getWithRemainingHits((ShootingStarItem) this.asItem(), this.availableHits);
 	}
 	
 	@Environment(EnvType.CLIENT)

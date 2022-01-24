@@ -104,6 +104,7 @@ public class SpectrumBlocks {
 	
 	public static FabricItemSettings resourcesItemSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(3);
 	public static FabricItemSettings resourcesItemSettingsUncommon = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(3).rarity(Rarity.UNCOMMON);
+	public static FabricItemSettings resourcesItemSettingUncommonSingle = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(3).rarity(Rarity.UNCOMMON).maxCount(1);
 	public static FabricItemSettings resourcesItemSettingsRare = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(3).rarity(Rarity.RARE);
 	
 	public static FabricItemSettings decorationItemSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_BLOCKS).tab(0);
@@ -720,7 +721,7 @@ public class SpectrumBlocks {
 		registerGemBlocks(worldgenItemSettings);
 		registerBlockWithItem("spectral_shard_block", SPECTRAL_SHARD_BLOCK, worldgenItemSettingsRare);
 		registerBlockWithItem("bedrock_storage_block", BEDROCK_STORAGE_BLOCK, decorationItemSettingsRare);
-		registerShootingStarBlocks(resourcesItemSettingsUncommon);
+		registerShootingStarBlocks(resourcesItemSettingUncommonSingle);
 		
 		registerGemOreBlocks(worldgenItemSettings);
 		registerOreBlocks(worldgenItemSettings);

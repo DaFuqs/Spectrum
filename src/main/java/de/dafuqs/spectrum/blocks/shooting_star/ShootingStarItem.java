@@ -5,6 +5,8 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.NbtElement;
 import net.minecraft.stat.Stats;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.math.Vec3d;
@@ -35,6 +37,7 @@ public class ShootingStarItem extends BlockItem {
 				
 				ShootingStarEntity shootingStarEntity = new ShootingStarEntity(context.getWorld(), hitPos.x, hitPos.y, hitPos.z);
 				shootingStarEntity.setShootingStarType(this.type);
+				shootingStarEntity.setAvailableHits(getRemainingHits(context.getStack()));
 				shootingStarEntity.setYaw(user.getYaw());
 				if (!world.isSpaceEmpty(shootingStarEntity, shootingStarEntity.getBoundingBox())) {
 					return ActionResult.FAIL;
@@ -52,5 +55,23 @@ public class ShootingStarItem extends BlockItem {
 			return ActionResult.success(world.isClient);
 		}
 	}
+	
+	public static int getRemainingHits(ItemStack itemStack) {
+		NbtCompound nbtCompound = itemStack.getNbt();
+		if(nbtCompound == null || !nbtCompound.contains("remaining_hits", NbtElement.INT_TYPE)) {
+			return 1;
+		} else {
+			return nbtCompound.getInt("remaining_hits");
+		}
+	}
+	
+	public static ItemStack getWithRemainingHits(ShootingStarItem shootingStarItem, int remainingHits) {
+		ItemStack stack = shootingStarItem.getDefaultStack();
+		NbtCompound nbtCompound = new NbtCompound();
+		nbtCompound.putInt("remaining_hits", remainingHits);
+		stack.setNbt(nbtCompound);
+		return stack;
+	}
+	
 	
 }

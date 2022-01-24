@@ -15,7 +15,7 @@
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier3/sucking_chest",
-      "text": "Black Hole Chests have a radius of 12 blocks. You can disable them by placing a block on top."
+      "text": "Black Hole Chests have a radius of 12 blocks. You can disable them by placing a block on top. It offers filters to specify which items it should accept."
     }
   ]
 }

@@ -17,6 +17,7 @@ import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
+import net.minecraft.entity.decoration.ArmorStandEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
@@ -174,8 +175,8 @@ public class ShootingStarEntity extends Entity {
 		if (!this.hasNoGravity()) {
 			this.setVelocity(this.getVelocity().add(0.0D, -0.04D, 0.0D));
 		}
-
-		if (this.world.isClient) {
+		
+		if (world.isClient) {
 			this.noClip = false;
 		} else {
 			this.noClip = !this.world.isSpaceEmpty(this, this.getBoundingBox().contract(1.0E-7D));
@@ -201,15 +202,23 @@ public class ShootingStarEntity extends Entity {
 			this.move(MovementType.SELF, this.getVelocity());
 			float verticalVelocityMultiplier = 0.99F;
 			if (this.onGround) {
-				verticalVelocityMultiplier = this.world.getBlockState(new BlockPos(this.getX(), this.getY() - 1.0D, this.getZ())).getBlock().getSlipperiness() * 0.98F;
+				verticalVelocityMultiplier = this.world.getBlockState(new BlockPos(this.getX(), this.getY() - 1.0D, this.getZ())).getBlock().getSlipperiness() * 0.99F;
 				if(!world.isClient && !wasOnGround && previousYVelocity < -0.3) { // hitting the ground after a long fall
 					SpectrumS2CPackets.playParticleWithExactOffsetAndVelocity((ServerWorld) world, getPos(), ParticleTypes.EXPLOSION, 1, new Vec3d(0, 0, 0), new Vec3d(0, 0, 0));
 					SpectrumS2CPackets.sendPlayShootingStarParticles(this);
 					world.playSound(null, this.getBlockPos(), SpectrumSoundEvents.SHOOTING_STAR_CRACKER, SoundCategory.BLOCKS, 1.0F, 1.0F);
 				}
 			}
-
+			
 			this.setVelocity(this.getVelocity().multiply(verticalVelocityMultiplier, 0.99D, verticalVelocityMultiplier));
+			
+			if (this.onGround) {
+				Vec3d vec3d2 = this.getVelocity();
+				if (vec3d2.y < 0.0D) {
+					this.setVelocity(vec3d2.multiply(1.0D, -0.5D, 1.0D));
+				}
+			}
+			
 		}
 		
 		if(!world.isClient) {
@@ -226,7 +235,7 @@ public class ShootingStarEntity extends Entity {
 				this.discard();
 			}
 			
-			// making it pushable
+			// push other entities away
 			this.checkBlockCollision();
 			List<Entity> otherEntities = this.world.getOtherEntities(this, this.getBoundingBox().expand(0.20000000298023224D, -0.009999999776482582D, 0.20000000298023224D), EntityPredicates.canBePushedBy(this));
 			if (!otherEntities.isEmpty()) {

@@ -181,7 +181,7 @@ public abstract class ItemEntityMixin {
 	private void isDamageProof(DamageSource source, float amount, CallbackInfoReturnable<Boolean> callbackInfoReturnable) {
 		ItemStack itemStack = ((ItemEntity)(Object) this).getStack();
 
-		if(itemStack != ItemStack.EMPTY) {
+		if(itemStack != ItemStack.EMPTY && source != DamageSource.OUT_OF_WORLD) {
 			boolean isImmune = SpectrumItemStackDamageImmunities.isDamageImmune(itemStack, source);
 			if(isImmune) {
 				callbackInfoReturnable.setReturnValue(true);

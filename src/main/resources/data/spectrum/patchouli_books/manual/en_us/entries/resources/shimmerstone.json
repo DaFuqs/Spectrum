@@ -19,7 +19,7 @@
         {
             "type": "patchouli:crafting",
             "recipe": "spectrum:crafting_table/storage_blocks/sparklestone_block",
-            "text": "A full block of Shimmerstone emits glowing bright yellow particles."
+            "text": "Full blocks of Shimmerstone emit glowing bright yellow particles."
         }
     ]
 }

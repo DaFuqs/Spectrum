@@ -172,7 +172,7 @@ public class ShootingStarEntity extends Entity {
 		Vec3d vec3d = this.getVelocity();
 
 		if (!this.hasNoGravity()) {
-			this.setVelocity(this.getVelocity().add(0.0D, -0.02D, 0.0D));
+			this.setVelocity(this.getVelocity().add(0.0D, -0.04D, 0.0D));
 		}
 
 		if (this.world.isClient) {
@@ -239,7 +239,7 @@ public class ShootingStarEntity extends Entity {
 	public void onPlayerCollision(PlayerEntity player) {
 		// if the shooting star is still falling from the sky, and it hits a player:
 		// give the player the star, some damage and grant an advancement
-		if (!this.world.isClient && !this.onGround && this.getVelocity().getY() < -0.2) {
+		if (!this.world.isClient && !this.onGround && this.getVelocity().getY() < -0.5) {
 			world.playSound(null, this.getBlockPos().getX(), this.getBlockPos().getY(), this.getBlockPos().getZ(), SpectrumSoundEvents.SHOOTING_STAR_CRACKER, SoundCategory.PLAYERS, 1.5F + random.nextFloat() * 0.4F, 0.8F + random.nextFloat() * 0.4F);
 			SpectrumS2CPackets.sendPlayShootingStarParticles(this);
 			player.damage(SpectrumDamageSources.SHOOTING_STAR, 6);

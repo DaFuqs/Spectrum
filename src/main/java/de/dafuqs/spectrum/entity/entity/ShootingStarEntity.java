@@ -204,6 +204,7 @@ public class ShootingStarEntity extends Entity {
 				verticalVelocityMultiplier = this.world.getBlockState(new BlockPos(this.getX(), this.getY() - 1.0D, this.getZ())).getBlock().getSlipperiness() * 0.98F;
 				if(!world.isClient && !wasOnGround && previousYVelocity < -0.3) { // hitting the ground after a long fall
 					SpectrumS2CPackets.playParticleWithExactOffsetAndVelocity((ServerWorld) world, getPos(), ParticleTypes.EXPLOSION, 1, new Vec3d(0, 0, 0), new Vec3d(0, 0, 0));
+					SpectrumS2CPackets.sendPlayShootingStarParticles(this);
 					world.playSound(null, this.getBlockPos(), SpectrumSoundEvents.SHOOTING_STAR_CRACKER, SoundCategory.BLOCKS, 1.0F, 1.0F);
 				}
 			}

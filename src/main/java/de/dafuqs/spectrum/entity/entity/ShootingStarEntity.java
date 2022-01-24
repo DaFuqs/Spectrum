@@ -36,6 +36,7 @@ import net.minecraft.predicate.entity.EntityPredicates;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.stat.Stats;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
@@ -171,7 +172,7 @@ public class ShootingStarEntity extends Entity {
 		Vec3d vec3d = this.getVelocity();
 
 		if (!this.hasNoGravity()) {
-			this.setVelocity(this.getVelocity().add(0.0D, -0.008D, 0.0D));
+			this.setVelocity(this.getVelocity().add(0.0D, -0.02D, 0.0D));
 		}
 
 		if (this.world.isClient) {
@@ -194,13 +195,20 @@ public class ShootingStarEntity extends Entity {
 		}
 
 		if (!this.onGround || (this.age + this.getId()) % 4 == 0) {
+			boolean wasOnGround = this.onGround;
+			double previousYVelocity = this.getVelocity().getY();
+			
 			this.move(MovementType.SELF, this.getVelocity());
-			float verticalVelocityMultiplier = 0.98F;
+			float verticalVelocityMultiplier = 0.99F;
 			if (this.onGround) {
 				verticalVelocityMultiplier = this.world.getBlockState(new BlockPos(this.getX(), this.getY() - 1.0D, this.getZ())).getBlock().getSlipperiness() * 0.98F;
+				if(!world.isClient && !wasOnGround && previousYVelocity < -0.3) { // hitting the ground after a long fall
+					SpectrumS2CPackets.playParticleWithExactOffsetAndVelocity((ServerWorld) world, getPos(), ParticleTypes.EXPLOSION, 1, new Vec3d(0, 0, 0), new Vec3d(0, 0, 0));
+					world.playSound(null, this.getBlockPos(), SpectrumSoundEvents.SHOOTING_STAR_CRACKER, SoundCategory.BLOCKS, 1.0F, 1.0F);
+				}
 			}
 
-			this.setVelocity(this.getVelocity().multiply(verticalVelocityMultiplier, 0.98D, verticalVelocityMultiplier));
+			this.setVelocity(this.getVelocity().multiply(verticalVelocityMultiplier, 0.99D, verticalVelocityMultiplier));
 		}
 		
 		if(!world.isClient) {

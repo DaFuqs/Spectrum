@@ -185,6 +185,7 @@ public class ShootingStarEntity extends Entity {
 			}
 		}
 		
+		
 		if(world.isClient) {
 			if (this.onGround) {
 				if (world.random.nextInt(10) == 0) {

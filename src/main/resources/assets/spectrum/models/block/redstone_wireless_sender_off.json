@@ -3,8 +3,8 @@
 	"ambientocclusion": false,
 	"textures": {
 		"5": "spectrum:block/onyx_block",
-		"6": "minecraft:block/redstone_torch_off",
-		"slab": "minecraft:block/smooth_stone",
+		"6": "block/redstone_torch_off",
+		"slab": "block/smooth_stone",
 		"particle": "spectrum:block/redstone_wireless_sender",
 		"top": "spectrum:block/redstone_wireless_sender"
 	},
@@ -25,12 +25,8 @@
 			"from": [7, 3, 6],
 			"to": [9, 9, 10],
 			"faces": {
-				"north": {"uv": [0, 0, 0, 0], "texture": "#6"},
 				"east": {"uv": [6, 5, 10, 11], "texture": "#6"},
-				"south": {"uv": [0, 0, 0, 0], "texture": "#6"},
-				"west": {"uv": [6, 5, 10, 11], "texture": "#6"},
-				"up": {"uv": [0, 0, 0, 0], "texture": "#6"},
-				"down": {"uv": [0, 0, 0, 0], "texture": "#6"}
+				"west": {"uv": [6, 5, 10, 11], "texture": "#6"}
 			}
 		},
 		{
@@ -38,11 +34,7 @@
 			"to": [10, 9, 9],
 			"faces": {
 				"north": {"uv": [6, 5, 10, 11], "texture": "#6"},
-				"east": {"uv": [0, 0, 0, 0], "texture": "#6"},
-				"south": {"uv": [6, 5, 10, 11], "texture": "#6"},
-				"west": {"uv": [0, 0, 0, 0], "texture": "#6"},
-				"up": {"uv": [0, 0, 0, 0], "texture": "#6"},
-				"down": {"uv": [0, 0, 0, 0], "texture": "#6"}
+				"south": {"uv": [6, 5, 10, 11], "texture": "#6"}
 			}
 		},
 		{
@@ -110,11 +102,17 @@
 			}
 		}
 	],
-	"groups": [0,
+	"groups": [
+		0,
 		{
 			"name": "torch",
 			"origin": [0, 0, 0],
 			"color": 0,
 			"children": [1, 2, 3]
-		}, 4, 5, 6, 7, 8]
+		},
+		4,
+		5,
+		6,
+		7
+	]
 }

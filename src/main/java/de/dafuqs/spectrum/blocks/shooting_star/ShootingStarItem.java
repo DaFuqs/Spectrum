@@ -59,7 +59,7 @@ public class ShootingStarItem extends BlockItem {
 	public static int getRemainingHits(ItemStack itemStack) {
 		NbtCompound nbtCompound = itemStack.getNbt();
 		if(nbtCompound == null || !nbtCompound.contains("remaining_hits", NbtElement.INT_TYPE)) {
-			return 1;
+			return 5;
 		} else {
 			return nbtCompound.getInt("remaining_hits");
 		}

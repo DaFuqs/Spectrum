@@ -261,46 +261,6 @@ public class ShootingStarEntity extends Entity {
 		return !this.isRemoved();
 	}
 	
-	/*private void updateVelocity() {
-		double d = -0.03999999910593033D;
-		double e = this.hasNoGravity() ? 0.0D : -0.03999999910593033D;
-		double f = 0.0D;
-		this.velocityDecay = 0.05F;
-		if (this.lastLocation == BoatEntity.Location.IN_AIR && this.location != BoatEntity.Location.IN_AIR && this.location != BoatEntity.Location.ON_LAND) {
-			this.waterLevel = this.getBodyY(1.0D);
-			this.setPosition(this.getX(), (double)(this.method_7544() - this.getHeight()) + 0.101D, this.getZ());
-			this.setVelocity(this.getVelocity().multiply(1.0D, 0.0D, 1.0D));
-			this.fallVelocity = 0.0D;
-			this.location = BoatEntity.Location.IN_WATER;
-		} else {
-			if (this.location == BoatEntity.Location.IN_WATER) {
-				f = (this.waterLevel - this.getY()) / (double)this.getHeight();
-				this.velocityDecay = 0.9F;
-			} else if (this.location == BoatEntity.Location.UNDER_FLOWING_WATER) {
-				e = -7.0E-4D;
-				this.velocityDecay = 0.9F;
-			} else if (this.location == BoatEntity.Location.UNDER_WATER) {
-				f = 0.009999999776482582D;
-				this.velocityDecay = 0.45F;
-			} else if (this.location == BoatEntity.Location.IN_AIR) {
-				this.velocityDecay = 0.9F;
-			} else if (this.location == BoatEntity.Location.ON_LAND) {
-				this.velocityDecay = this.field_7714;
-				if (this.getPrimaryPassenger() instanceof PlayerEntity) {
-					this.field_7714 /= 2.0F;
-				}
-			}
-			
-			Vec3d vec3d = this.getVelocity();
-			this.setVelocity(vec3d.x * (double)this.velocityDecay, vec3d.y + e, vec3d.z * (double)this.velocityDecay);
-			this.yawVelocity *= this.velocityDecay;
-			if (f > 0.0D) {
-				Vec3d vec3d2 = this.getVelocity();
-				this.setVelocity(vec3d2.x, (vec3d2.y + f * 0.06153846016296973D) * 0.75D, vec3d2.z);
-			}
-		}
-	}*/
-	
 	public void playGroundParticles() {
 		float randomScale = 0.5F + random.nextFloat();
 		int randomLifetime = 30 + random.nextInt(20);
@@ -363,6 +323,8 @@ public class ShootingStarEntity extends Entity {
 	@Override
 	public boolean handleAttack(Entity attacker) {
 		if (!this.world.isClient && !this.isRemoved()) {
+			this.age = 1; // prevent it from despawning, once interacted
+			
 			this.availableHits--;
 			if(this.world instanceof ServerWorld serverWorld && attacker instanceof ServerPlayerEntity serverPlayerEntity) {
 				doHitEffectsAndLoot(serverWorld, serverPlayerEntity);

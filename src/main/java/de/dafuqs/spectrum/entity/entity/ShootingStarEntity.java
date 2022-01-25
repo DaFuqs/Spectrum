@@ -45,6 +45,7 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.BlockLocating;
 import net.minecraft.world.World;
@@ -62,6 +63,14 @@ public class ShootingStarEntity extends Entity {
 	private int age;
 	public final float hoverHeight;
 	public int availableHits;
+	
+	private int clientInterpolationSteps;
+	private double clientX;
+	private double clientY;
+	private double clientZ;
+	private double clientXVelocity;
+	private double clientYVelocity;
+	private double clientZVelocity;
 
 	public ShootingStarEntity(EntityType<? extends ShootingStarEntity> entityType, World world) {
 		super(entityType, world);
@@ -137,7 +146,7 @@ public class ShootingStarEntity extends Entity {
 	}
 
 	protected MoveEffect getMoveEffect() {
-		return MoveEffect.NONE;
+		return MoveEffect.EVENTS;
 	}
 	
 	public boolean collidesWith(Entity other) {
@@ -163,16 +172,56 @@ public class ShootingStarEntity extends Entity {
 	protected void initDataTracker() {
 		this.getDataTracker().startTracking(SHOOTING_STAR_TYPE, ShootingStarBlock.Type.COLORFUL.ordinal());
 	}
-
+	
+	public void updateTrackedPositionAndAngles(double x, double y, double z, float yaw, float pitch, int interpolationSteps, boolean interpolate) {
+		this.clientX = x;
+		this.clientY = y;
+		this.clientZ = z;
+		this.clientInterpolationSteps = interpolationSteps + 2;
+		this.setVelocity(this.clientXVelocity, this.clientYVelocity, this.clientZVelocity);
+	}
+	
+	public void setVelocityClient(double x, double y, double z) {
+		this.clientXVelocity = x;
+		this.clientYVelocity = y;
+		this.clientZVelocity = z;
+		this.setVelocity(this.clientXVelocity, this.clientYVelocity, this.clientZVelocity);
+	}
+	
 	public void tick() {
 		super.tick();
+		
+		this.attemptTickInVoid();
+		this.tickNetherPortal();
+		
+		if(world.isClient) {
+			if (this.clientInterpolationSteps > 0) {
+				double d;
+				d = this.getX() + (this.clientX - this.getX()) / (double)this.clientInterpolationSteps;
+				double e = this.getY() + (this.clientY - this.getY()) / (double)this.clientInterpolationSteps;
+				double f = this.getZ() + (this.clientZ - this.getZ()) / (double)this.clientInterpolationSteps;
+				--this.clientInterpolationSteps;
+				this.setPosition(d, e, f);
+			} else {
+				this.refreshPosition();
+			}
+			this.setRotation(this.getYaw(), this.getPitch());
+			
+			if (this.onGround) {
+				if (world.random.nextInt(10) == 0) {
+					playGroundParticles();
+				}
+			} else {
+				playFallingParticles();
+			}
+		}
 
-		this.prevX = this.getX();
+		/*this.prevX = this.getX();
 		this.prevY = this.getY();
 		this.prevZ = this.getZ();
 		Vec3d vec3d = this.getVelocity();
 
-		if (!this.hasNoGravity()) {
+		if (!this.hasNoGravity() && this.getVelocity().getY() > -1.0D) {
 			this.setVelocity(this.getVelocity().add(0.0D, -0.04D, 0.0D));
 		}
 		
@@ -186,30 +235,13 @@ public class ShootingStarEntity extends Entity {
 		}
 		
 		
-		if(world.isClient) {
-			if (this.onGround) {
-				if (world.random.nextInt(10) == 0) {
-					playGroundParticles();
-				}
-			} else {
-				playFallingParticles();
-			}
-		}
-
+		
 		if (!this.onGround || (this.age + this.getId()) % 4 == 0) {
 			boolean wasOnGround = this.onGround;
 			double previousYVelocity = this.getVelocity().getY();
 			
 			this.move(MovementType.SELF, this.getVelocity());
 			float verticalVelocityMultiplier = 0.99F;
-			if (this.onGround) {
-				verticalVelocityMultiplier = this.world.getBlockState(new BlockPos(this.getX(), this.getY() - 1.0D, this.getZ())).getBlock().getSlipperiness() * 0.99F;
-				if(!world.isClient && !wasOnGround && previousYVelocity < -0.3) { // hitting the ground after a long fall
-					SpectrumS2CPackets.playParticleWithExactOffsetAndVelocity((ServerWorld) world, getPos(), ParticleTypes.EXPLOSION, 1, new Vec3d(0, 0, 0), new Vec3d(0, 0, 0));
-					SpectrumS2CPackets.sendPlayShootingStarParticles(this);
-					world.playSound(null, this.getBlockPos(), SpectrumSoundEvents.SHOOTING_STAR_CRACKER, SoundCategory.BLOCKS, 1.0F, 1.0F);
-				}
-			}
 			
 			this.setVelocity(this.getVelocity().multiply(verticalVelocityMultiplier, 0.99D, verticalVelocityMultiplier));
 			
@@ -219,7 +251,6 @@ public class ShootingStarEntity extends Entity {
 					this.setVelocity(vec3d2.multiply(1.0D, -0.5D, 1.0D));
 				}
 			}
-			
 		}
 		
 		if(!world.isClient) {
@@ -229,11 +260,38 @@ public class ShootingStarEntity extends Entity {
 				if (d > 0.01D) {
 					this.velocityDirty = true;
 				}
+			}*/
+		
+		if(!world.isClient) {
+			boolean wasOnGround = this.onGround;
+			
+			if (!this.hasNoGravity()) {
+				double d = this.isTouchingWater() ? -0.005D : -0.04D;
+				this.setVelocity(this.getVelocity().add(0.0D, d, 0.0D));
 			}
-	
+			
+			
+			this.move(MovementType.SELF, this.getVelocity());
+			if (!this.onGround) {
+				this.setVelocity(this.getVelocity().multiply(0.95D));
+			}
+			this.checkBlockCollision();
+			
 			// despawning
-			if (!this.world.isClient && this.age >= 6000) {
+			if (this.age >= 6000) {
 				this.discard();
+			}
+			
+			if (!wasOnGround || (this.age + this.getId()) % 4 == 0) {
+				//double previousYVelocity = this.getVelocity().getY();
+				//this.move(MovementType.SELF, this.getVelocity());
+				//float verticalVelocityMultiplier = 0.99F;
+				//verticalVelocityMultiplier = this.world.getBlockState(new BlockPos(this.getX(), this.getY() - 1.0D, this.getZ())).getBlock().getSlipperiness() * 0.99F;
+				if (!world.isClient && onGround && this.getVelocity().getY() < -0.5) { // hitting the ground after a long fall
+					SpectrumS2CPackets.playParticleWithExactOffsetAndVelocity((ServerWorld) world, getPos(), ParticleTypes.EXPLOSION, 1, new Vec3d(0, 0, 0), new Vec3d(0, 0, 0));
+					SpectrumS2CPackets.sendPlayShootingStarParticles(this);
+					world.playSound(null, this.getBlockPos(), SpectrumSoundEvents.SHOOTING_STAR_CRACKER, SoundCategory.BLOCKS, 1.0F, 1.0F);
+				}
 			}
 			
 			// push other entities away
@@ -244,6 +302,8 @@ public class ShootingStarEntity extends Entity {
 					this.pushAwayFrom(d);
 				}
 			}
+			
+			this.updateWaterState();
 		}
 	}
 

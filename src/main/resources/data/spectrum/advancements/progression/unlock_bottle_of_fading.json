@@ -3,10 +3,6 @@
     "collected_sparklestone_gem": {
       "trigger":"spectrum:has_advancement",
       "conditions": { "advancement_identifier": "spectrum:collect_sparklestone" }
-    },
-    "collected_blaze_rod": {
-      "trigger":"spectrum:has_advancement",
-      "conditions": { "advancement_identifier": "nether/obtain_blaze_rod" }
     }
   }
 }

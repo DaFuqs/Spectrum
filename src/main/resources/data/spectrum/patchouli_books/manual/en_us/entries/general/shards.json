@@ -3,6 +3,7 @@
   "icon": "minecraft:amethyst_shard",
   "sortnum": 1,
   "category": "spectrum:general_category",
+  "turnin": "spectrum:collect_all_basic_shards",
   "extra_recipe_mappings": {
     "spectrum:topaz_shard": 0,
     "minecraft:amethyst_shard": 0,

@@ -3,6 +3,7 @@
   "icon": "spectrum:fusion_shrine_basalt",
   "sortnum": 9,
   "advancement": "spectrum:collect_all_basic_pigments_besides_brown",
+  "turnin": "spectrum:build_fusion_shrine",
   "category": "spectrum:general_category",
   "extra_recipe_mappings": {
     "spectrum:fusion_shrine_basalt": 1,

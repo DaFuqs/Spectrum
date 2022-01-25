@@ -4,6 +4,7 @@
   "sortnum": 3,
   "advancement": "spectrum:place_pedestal",
   "category": "spectrum:general_category",
+  "turnin": "spectrum:collect_gemstone_powder",
   "pages": [
     {
       "type": "patchouli:image",

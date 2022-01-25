@@ -4,6 +4,7 @@
   "sortnum": 15,
   "icon": "spectrum:spectral_shard",
   "category": "spectrum:general_category",
+  "turnin": "spectrum:lategame/create_spectral_shard",
   "extra_recipe_mappings": {
     "spectrum:spectral_shard": 0,
     "spectrum:spectral_shard_block": 0,

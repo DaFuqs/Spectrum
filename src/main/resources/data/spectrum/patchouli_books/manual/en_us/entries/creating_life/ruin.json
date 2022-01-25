@@ -3,6 +3,7 @@
   "icon": "spectrum:bottle_of_ruin",
   "advancement": "spectrum:progression/unlock_bottle_of_ruin",
   "category": "spectrum:creating_life_category",
+  "turnin": "spectrum:midgame/break_decayed_bedrock",
   "extra_recipe_mappings": {
     "spectrum:bottle_of_ruin": 0,
     "spectrum:bedrock_dust": 0
@@ -11,7 +12,7 @@
     {
       "type": "patchouli:spotlight",
       "item": "spectrum:bottle_of_ruin",
-      "text": "Now, you won't even make it subtle. This stuff you thought out is $(#ff0000)NASTY$(). You didn't call it that for the fun of it.$(br)But then this may be the one thing aggressive enough to destroy even the mightiest material.$(br)$(bold)If you are not careful you may ruin the whole world. Literally.$()"
+      "text": "You won't even make it subtle. This stuff you thought out is $(#ff0000)NASTY$() by design. You didn't call it that for the fun of it.$(br)This may be the one thing aggressive enough to destroy even the mightiest material.$(br)$(bold)If you are not careful you may ruin the whole world. Literally.$()"
     },
     {
       "type": "spectrum:pedestal_crafting",

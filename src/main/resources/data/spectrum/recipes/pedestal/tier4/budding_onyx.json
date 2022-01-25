@@ -1,0 +1,30 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 400,
+  "tier": "complex",
+  "magenta": 0,
+  "yellow": 0,
+  "cyan": 0,
+  "black": 8,
+  "white": 0,
+  "experience": 0.5,
+  "pattern": [
+    "###",
+    "#X#",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "spectrum:onyx_shard"
+    },
+    "X": {
+      "item": "spectrum:spectral_shard"
+    }
+  },
+  "result" : {
+    "item": "spectrum:budding_onyx",
+    "count": 1
+  },
+  "required_advancements": ["spectrum:lategame/create_spectral_shard"],
+  "disable_yield_upgrades": true
+}

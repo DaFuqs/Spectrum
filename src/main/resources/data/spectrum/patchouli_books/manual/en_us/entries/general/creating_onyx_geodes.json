@@ -3,6 +3,7 @@
   "icon": "spectrum:onyx_cluster",
   "sortnum": 14,
   "advancement": "spectrum:progression/unlock_onyx_bud_creation",
+  "turnin": "spectrum:lategame/create_budding_onyx",
   "category": "spectrum:general_category",
   "extra_recipe_mappings": {
     "spectrum:small_onyx_bud": 0,

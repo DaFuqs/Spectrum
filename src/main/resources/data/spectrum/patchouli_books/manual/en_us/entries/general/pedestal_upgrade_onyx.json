@@ -4,6 +4,7 @@
   "sortnum": 11,
   "advancement": "spectrum:create_onyx_shard",
   "category": "spectrum:general_category",
+  "turnin": "spectrum:midgame/build_advanced_pedestal_structure",
   "extra_recipe_mappings": {
     "spectrum:pedestal_onyx": 0
   },

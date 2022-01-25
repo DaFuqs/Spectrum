@@ -1,0 +1,20 @@
+{
+  "display": {
+    "icon": {
+      "item": "spectrum:budding_onyx"
+    },
+    "title": {
+      "translate": "advancements.spectrum.create_budding_onyx.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.create_budding_onyx.description"
+    }
+  },
+  "parent": "spectrum:lategame/create_spectral_shard",
+  "criteria": {
+    "created_budding_onyx": {
+      "trigger":"spectrum:crafted_with_fusion_shrine",
+      "conditions": { "items": [{ "items": [ "spectrum:budding_onyx" ]}] }
+    }
+  }
+}

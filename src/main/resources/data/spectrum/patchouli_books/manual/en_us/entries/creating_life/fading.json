@@ -3,6 +3,7 @@
   "icon": "spectrum:bottle_of_fading",
   "advancement": "spectrum:progression/unlock_bottle_of_fading",
   "category": "spectrum:creating_life_category",
+  "turnin": "spectrum:collect_vegetal",
   "extra_recipe_mappings": {
     "spectrum:bottle_of_fading": 0,
     "spectrum:vegetal": 0

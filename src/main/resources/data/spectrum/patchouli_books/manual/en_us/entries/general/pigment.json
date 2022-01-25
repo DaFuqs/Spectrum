@@ -4,6 +4,7 @@
   "sortnum": 7,
   "advancement": "spectrum:collect_pigment",
   "category": "spectrum:general_category",
+  "turnin": "spectrum:collect_all_basic_pigments_besides_brown",
   "extra_recipe_mappings": {
     "spectrum:black_pigment": 0,
     "spectrum:blue_pigment": 0,

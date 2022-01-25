@@ -4,6 +4,7 @@
   "sortnum": 4,
   "advancement": "spectrum:place_pedestal",
   "category": "spectrum:general_category",
+  "turnin": "spectrum:collect_gemstone_powder",
   "extra_recipe_mappings": {
     "spectrum:topaz_powder": 0,
     "spectrum:amethyst_powder": 0,

@@ -4,6 +4,7 @@
   "sortnum": 13,
   "advancement": "spectrum:lategame/spectrum_lategame",
   "category": "spectrum:general_category",
+  "turnin": "spectrum:lategame/build_complex_pedestal_structure",
   "extra_recipe_mappings": {
     "spectrum:pedestal_moonstone": 0
   },

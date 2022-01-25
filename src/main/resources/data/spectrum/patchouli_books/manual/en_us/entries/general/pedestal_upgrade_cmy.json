@@ -4,6 +4,7 @@
   "sortnum": 8,
   "advancement": "spectrum:collect_all_basic_shards",
   "category": "spectrum:general_category",
+  "turnin": "spectrum:build_basic_pedestal_structure",
   "extra_recipe_mappings": {
     "spectrum:pedestal_all_basic": 0
   },

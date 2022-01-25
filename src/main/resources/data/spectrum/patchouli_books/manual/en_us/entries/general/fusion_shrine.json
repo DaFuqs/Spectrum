@@ -51,10 +51,10 @@
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "title": "Summoning Thunderstorms",
+      "title": "Thunderstorms",
       "advancement": "spectrum:midgame/collect_lightning_stone",
       "recipe": "spectrum:fusion_shrine/weather_thunder",
-      "text": "Why did the god of thunder drink water?$(br2)Because he was thorsty."
+      "text": "$(italic)Why did the god of thunder drink water?$(br2)Because he was thorsty."
     }
   ]
 }

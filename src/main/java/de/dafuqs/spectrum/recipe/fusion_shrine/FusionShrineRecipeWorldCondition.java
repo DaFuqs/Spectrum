@@ -12,7 +12,10 @@ public enum FusionShrineRecipeWorldCondition {
 	NEW_MOON,
 	CLEAR_SKY,
 	RAIN,
-	THUNDER;
+	THUNDER,
+	NOT_CLEAR_SKY,
+	NOT_RAIN,
+	NOT_THUNDER;
 
 	public boolean isMetCurrently(World world) {
 		switch (this) {
@@ -45,6 +48,15 @@ public enum FusionShrineRecipeWorldCondition {
 			}
 			case THUNDER -> {
 				return world.isThundering();
+			}
+			case NOT_CLEAR_SKY -> {
+				return world.isRaining();
+			}
+			case NOT_RAIN -> {
+				return !world.isRaining();
+			}
+			case NOT_THUNDER -> {
+				return !world.isThundering();
 			}
 		}
 		return false;

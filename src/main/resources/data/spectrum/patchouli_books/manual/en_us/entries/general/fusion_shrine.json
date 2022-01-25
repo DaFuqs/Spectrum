@@ -35,6 +35,26 @@
       "type": "patchouli:text",
       "title": "Changing the Weather",
       "text": "You have designed the structure for the Fusion Shrine to bundle the magical energies of $(c_cyan)Matter$(), $(c_magenta)Time$() and $(c_yellow)Energy$() and focus them on a single, central point, the Fusion Shrine itself.$(br2)These powerful bundled energies seem to even have enough power to change the weather."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Summoning Sun",
+      "recipe": "spectrum:fusion_shrine/weather_clear",
+      "text": "$(italic)It's a brand new day$(br)And the sun is high$(br)All the birds are singing$(br)That you're gonna die"
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Summoning Rain",
+      "advancement": "spectrum:collect_mermaids_gem",
+      "recipe": "spectrum:fusion_shrine/weather_rain",
+      "text": "$(italic)Knock Knock$(br)Who's there?$(br)Accordion$(br)Accordion who?$(br)Accordion to the forecast, it's going to rain tonight."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Summoning Thunderstorms",
+      "advancement": "spectrum:midgame/collect_lightning_stone",
+      "recipe": "spectrum:fusion_shrine/weather_thunder",
+      "text": "Why did the god of thunder drink water?$(br2)Because he was thorsty."
     }
   ]
 }

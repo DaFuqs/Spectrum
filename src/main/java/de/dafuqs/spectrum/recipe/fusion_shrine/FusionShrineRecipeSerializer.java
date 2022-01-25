@@ -45,7 +45,12 @@ public class FusionShrineRecipeSerializer<T extends FusionShrineRecipe> implemen
 			fluid = Registry.FLUID.get(fluidIdentifier);
 		}
 
-		ItemStack output = RecipeUtils.outputWithNbtFromJson(JsonHelper.getObject(jsonObject, "result"));
+		ItemStack output;
+		if(JsonHelper.hasJsonObject(jsonObject, "result")) {
+			output = RecipeUtils.outputWithNbtFromJson(JsonHelper.getObject(jsonObject, "result"));
+		} else {
+			output = ItemStack.EMPTY;
+		}
 		float experience = JsonHelper.getFloat(jsonObject, "experience", 0);
 		int craftingTime = JsonHelper.getInt(jsonObject, "time", 200);
 		

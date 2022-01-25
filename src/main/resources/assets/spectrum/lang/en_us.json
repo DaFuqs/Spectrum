@@ -97,7 +97,10 @@
   "spectrum.recipe.fusion_shrine.explanation.paletur_gem":  "Requires a thunderstorm",
   "spectrum.recipe.fusion_shrine.explanation.midnight_aberration": "Daytime with sunny weather",
   "spectrum.recipe.fusion_shrine.explanation.spectral_shard": "The perfect Compound",
-  "spectrum.recipe.fusion_shrine.explanation.netherite_ingot": "dangerous, but yielding...",
+  "spectrum.recipe.fusion_shrine.explanation.netherite_ingot": "risky, but yielding...",
+  "spectrum.recipe.fusion_shrine.explanation.weather_clear": "Summons Clear Weather",
+  "spectrum.recipe.fusion_shrine.explanation.weather_rain": "Summons Rain",
+  "spectrum.recipe.fusion_shrine.explanation.weather_thunder": "Summons a Thunderstorm",
 
   "spectrum.tooltip.dragon_and_wither_immune": "§7Ender Dragon and Wither proof",
 

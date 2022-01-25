@@ -251,25 +251,49 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 	// at once, since we can not rely on positions in a grid like vanilla does
 	// in its crafting table
 	private static void craft(World world, BlockPos blockPos, FusionShrineBlockEntity fusionShrineBlockEntity, FusionShrineRecipe recipe) {
-		int maxAmount = recipe.getOutput().getMaxCount();
-		for(Ingredient ingredient : recipe.getIngredients()) {
-			for(int i = 0; i < fusionShrineBlockEntity.INVENTORY_SIZE; i++) {
-				ItemStack currentStack = fusionShrineBlockEntity.inventory.getStack(i);
-				if(ingredient.test(currentStack)) {
-					maxAmount = Math.min(maxAmount, currentStack.getCount());
-					break;
+		if(!recipe.getOutput().isEmpty()) {
+			int maxAmount = recipe.getOutput().getMaxCount();
+			for (Ingredient ingredient : recipe.getIngredients()) {
+				for (int i = 0; i < fusionShrineBlockEntity.INVENTORY_SIZE; i++) {
+					ItemStack currentStack = fusionShrineBlockEntity.inventory.getStack(i);
+					if (ingredient.test(currentStack)) {
+						maxAmount = Math.min(maxAmount, currentStack.getCount());
+						break;
+					}
 				}
 			}
-		}
-		
-		double efficiencyModifier = fusionShrineBlockEntity.upgrades.get(UpgradeType.EFFICIENCY);
-		if(maxAmount > 0) {
-			for(Ingredient ingredient : recipe.getIngredients()) {
-				for(int i = 0; i < fusionShrineBlockEntity.INVENTORY_SIZE; i++) {
+			
+			double efficiencyModifier = fusionShrineBlockEntity.upgrades.get(UpgradeType.EFFICIENCY);
+			if (maxAmount > 0) {
+				for (Ingredient ingredient : recipe.getIngredients()) {
+					for (int i = 0; i < fusionShrineBlockEntity.INVENTORY_SIZE; i++) {
+						ItemStack currentStack = fusionShrineBlockEntity.inventory.getStack(i);
+						if (ingredient.test(currentStack)) {
+							int reducedAmount = Support.getIntFromDecimalWithChance(maxAmount / efficiencyModifier, fusionShrineBlockEntity.world.random);
+							if (currentStack.getCount() - reducedAmount < 1) {
+								fusionShrineBlockEntity.inventory.setStack(i, ItemStack.EMPTY);
+							} else {
+								currentStack.decrement(reducedAmount);
+							}
+							break;
+						}
+					}
+				}
+				
+				fusionShrineBlockEntity.setFluid(Fluids.EMPTY); // empty the shrine
+				spawnCraftingResultAndXP(world, fusionShrineBlockEntity, recipe, maxAmount); // spawn results
+				scatterContents(world, blockPos.up(), fusionShrineBlockEntity); // drop remaining items
+				
+				SpectrumS2CPackets.sendPlayFusionCraftingFinishedParticles(world, blockPos, recipe.getOutput());
+				fusionShrineBlockEntity.playSound(SpectrumSoundEvents.FUSION_SHRINE_CRAFTING_FINISHED, 1.4F);
+			}
+		} else {
+			for (Ingredient ingredient : recipe.getIngredients()) {
+				for (int i = 0; i < fusionShrineBlockEntity.INVENTORY_SIZE; i++) {
 					ItemStack currentStack = fusionShrineBlockEntity.inventory.getStack(i);
-					if(ingredient.test(currentStack)) {
-						int reducedAmount = Support.getIntFromDecimalWithChance(maxAmount / efficiencyModifier, fusionShrineBlockEntity.world.random);
-						if(currentStack.getCount() - reducedAmount < 1) {
+					if (ingredient.test(currentStack)) {
+						int reducedAmount = Support.getIntFromDecimalWithChance(1, fusionShrineBlockEntity.world.random);
+						if (currentStack.getCount() - reducedAmount < 1) {
 							fusionShrineBlockEntity.inventory.setStack(i, ItemStack.EMPTY);
 						} else {
 							currentStack.decrement(reducedAmount);
@@ -278,12 +302,9 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 					}
 				}
 			}
-
-			fusionShrineBlockEntity.setFluid(Fluids.EMPTY); // empty the shrine
-			spawnCraftingResultAndXP(world, fusionShrineBlockEntity, recipe, maxAmount); // spawn results
-			scatterContents(world, blockPos.up(), fusionShrineBlockEntity); // drop remaining items
 			
-			SpectrumS2CPackets.sendPlayFusionCraftingFinishedParticles(world, blockPos, recipe.getOutput());
+			fusionShrineBlockEntity.setFluid(Fluids.EMPTY); // empty the shrine
+			scatterContents(world, blockPos.up(), fusionShrineBlockEntity); // drop remaining items
 			fusionShrineBlockEntity.playSound(SpectrumSoundEvents.FUSION_SHRINE_CRAFTING_FINISHED, 1.4F);
 		}
 	}

@@ -1,0 +1,17 @@
+{
+  "type": "spectrum:fusion_shrine",
+  "time": 160,
+  "experience": 0.0,
+  "fluid": "minecraft:water",
+  "ingredients": [
+    {
+      "item": "spectrum:mermaids_gem"
+    }
+  ],
+  "required_advancement": "spectrum:collect_mermaids_gem",
+  "world_conditions": [ "not_rain" ],
+  "start_crafting_effect": "single_visual_explosion_on_shrine",
+  "during_crafting_effects": [],
+  "finish_crafting_effect": "weather_rain",
+  "description": "spectrum.recipe.fusion_shrine.explanation.weather_rain"
+}

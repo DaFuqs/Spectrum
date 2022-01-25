@@ -1,0 +1,17 @@
+{
+  "type": "spectrum:fusion_shrine",
+  "time": 160,
+  "experience": 0.0,
+  "fluid": "minecraft:water",
+  "ingredients": [
+    {
+      "item": "spectrum:lightning_stone"
+    }
+  ],
+  "required_advancement": "spectrum:midgame/collect_lightning_stone",
+  "world_conditions": [ "not_thunder" ],
+  "start_crafting_effect": "single_visual_explosion_on_shrine",
+  "during_crafting_effects": [ "lightning_on_shrine", "lightning_around_shrine" ],
+  "finish_crafting_effect": "weather_thunder",
+  "description": "spectrum.recipe.fusion_shrine.explanation.weather_thunder"
+}

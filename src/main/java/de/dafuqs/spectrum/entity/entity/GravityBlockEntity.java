@@ -195,14 +195,16 @@ public class GravityBlockEntity extends Entity {
 
 	@Override
 	public boolean handleFallDamage(float distance, float damageMultiplier, DamageSource damageSource) {
-		int traveledDistance = MathHelper.ceil(distance - 1.0F);
-		if (traveledDistance > 0) {
-			int damage = Math.min(MathHelper.floor(traveledDistance * this.damagePerFallenBlock), this.maxDamage);
-			if(damage > 0) {
-				// since the players position is tracked at its head and item entities are laying directly on the ground we have to use a relatively big bounding box here
-				List<Entity> list = Lists.newArrayList(this.world.getOtherEntities(this, this.getBoundingBox().expand(0, 3.0 * Math.signum(this.getVelocity().y), 0).expand(0, -0.5 * Math.signum(this.getVelocity().y), 0)));
-				for (Entity entity : list) {
-					entity.damage(SpectrumDamageSources.FLOATBLOCK, damage);
+		if(!world.isClient) {
+			int traveledDistance = MathHelper.ceil(distance - 1.0F);
+			if (traveledDistance > 0) {
+				int damage = Math.min(MathHelper.floor(traveledDistance * this.damagePerFallenBlock), this.maxDamage);
+				if (damage > 0) {
+					// since the players position is tracked at its head and item entities are laying directly on the ground we have to use a relatively big bounding box here
+					List<Entity> list = Lists.newArrayList(this.world.getOtherEntities(this, this.getBoundingBox().expand(0, 3.0 * Math.signum(this.getVelocity().y), 0).expand(0, -0.5 * Math.signum(this.getVelocity().y), 0)));
+					for (Entity entity : list) {
+						entity.damage(SpectrumDamageSources.FLOATBLOCK, damage);
+					}
 				}
 			}
 		}

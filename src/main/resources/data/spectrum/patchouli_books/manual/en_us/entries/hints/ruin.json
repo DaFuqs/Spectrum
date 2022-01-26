@@ -5,6 +5,7 @@
     "advancement": "spectrum:midgame/craft_bottle_of_ruin",
 	"secret": true,
 	"read_by_default": true,
+    "turnin": "spectrum:midgame/break_decayed_bedrock",
     "pages": [
         {
             "type": "spectrum:hint",

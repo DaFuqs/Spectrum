@@ -5,6 +5,7 @@
     "advancement": "spectrum:midgame/craft_bottle_of_failing",
 	"secret": true,
 	"read_by_default": true,
+    "turnin": "spectrum:midgame/collect_neolith",
     "pages": [
         {
             "type": "spectrum:hint",

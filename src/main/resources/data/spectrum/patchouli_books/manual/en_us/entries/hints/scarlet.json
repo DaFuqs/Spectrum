@@ -5,6 +5,7 @@
     "advancement": "spectrum:milestones/reveal_scarlet",
 	"secret": true,
 	"read_by_default": true,
+    "turnin": "spectrum:midgame/collect_scarlet",
     "pages": [
         {
             "type": "spectrum:hint",

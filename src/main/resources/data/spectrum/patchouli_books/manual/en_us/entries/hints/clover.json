@@ -5,6 +5,7 @@
     "advancement": "spectrum:midgame/build_enchanting_structure",
 	"secret": true,
 	"read_by_default": true,
+    "turnin": "spectrum:collect_four_leaf_clover",
     "pages": [
         {
             "type": "spectrum:hint",

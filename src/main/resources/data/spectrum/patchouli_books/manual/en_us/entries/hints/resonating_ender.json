@@ -5,6 +5,7 @@
     "advancement": "spectrum:midgame/spectrum_midgame",
 	"secret": true,
 	"read_by_default": true,
+    "turnin": "spectrum:get_ender_treasure",
     "pages": [
         {
             "type": "spectrum:hint",

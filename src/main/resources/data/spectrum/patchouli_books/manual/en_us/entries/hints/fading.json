@@ -5,6 +5,7 @@
     "advancement": "spectrum:craft_bottle_of_fading",
 	"secret": true,
 	"read_by_default": true,
+    "turnin": "spectrum:collect_vegetal",
     "pages": [
         {
             "type": "spectrum:hint",

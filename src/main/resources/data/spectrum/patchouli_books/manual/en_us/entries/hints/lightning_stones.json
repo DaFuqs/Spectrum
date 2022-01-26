@@ -5,6 +5,7 @@
     "advancement": "spectrum:milestones/reveal_lightning_stones",
 	"secret": true,
 	"read_by_default": true,
+    "turnin": "spectrum:midgame/collect_lightning_stone",
     "pages": [
         {
             "type": "spectrum:hint",

@@ -5,6 +5,7 @@
     "advancement": "spectrum:midgame/spectrum_midgame",
 	"secret": true,
 	"read_by_default": true,
+    "turnin": "spectrum:collect_mermaids_gem",
     "pages": [
         {
             "type": "spectrum:hint",

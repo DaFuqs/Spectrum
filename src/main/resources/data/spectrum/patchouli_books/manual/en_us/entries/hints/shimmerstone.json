@@ -5,6 +5,7 @@
     "advancement": "spectrum:milestones/reveal_sparklestone",
 	"secret": true,
 	"read_by_default": true,
+    "turnin": "spectrum:collect_sparklestone",
     "pages": [
         {
             "type": "spectrum:hint",

@@ -5,6 +5,7 @@
     "advancement": "spectrum:milestones/unlock_shooting_stars",
 	"secret": true,
 	"read_by_default": true,
+    "turnin": "spectrum:collect_shooting_star",
     "pages": [
         {
             "type": "spectrum:hint",

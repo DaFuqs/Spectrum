@@ -5,6 +5,7 @@
     "advancement": "spectrum:milestones/reveal_quitoxic_reeds",
 	"secret": true,
 	"read_by_default": true,
+    "turnin": "spectrum:collect_quitoxic_reeds",
     "pages": [
         {
             "type": "spectrum:hint",

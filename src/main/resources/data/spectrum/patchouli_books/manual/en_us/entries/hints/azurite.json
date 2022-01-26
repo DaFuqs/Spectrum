@@ -5,6 +5,7 @@
     "advancement": "spectrum:milestones/reveal_azurite",
 	"secret": true,
 	"read_by_default": true,
+    "turnin": "spectrum:midgame/collect_azurite",
     "pages": [
         {
             "type": "spectrum:hint",

@@ -5,6 +5,7 @@
     "advancement": "spectrum:milestones/reveal_paletur",
 	"secret": true,
 	"read_by_default": true,
+    "turnin": "spectrum:lategame/collect_paletur",
     "pages": [
         {
             "type": "spectrum:hint",

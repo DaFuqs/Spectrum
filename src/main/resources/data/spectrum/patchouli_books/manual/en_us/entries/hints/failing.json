@@ -15,7 +15,7 @@
         },
         {
             "type": "spectrum:hint",
-			"title": "Concise Instruction",
+			"title": "Concise Instructions",
 			"cost": "spectrum:scarlet_fragments#24",
             "text": "The preferred food is Obsidian.Watch out for their insatiable hunger. They will eat quite a lot, if given the chance..."
         }

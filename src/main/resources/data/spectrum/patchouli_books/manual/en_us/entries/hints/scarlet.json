@@ -15,7 +15,7 @@
         },
         {
             "type": "spectrum:hint",
-			"title": "Concise Instruction",
+			"title": "Concise Instructions",
 			"cost": "minecraft:quartz#48",
             "text": "It generates in the bottom layers of the Nether in all biomes, below lava level."
         }

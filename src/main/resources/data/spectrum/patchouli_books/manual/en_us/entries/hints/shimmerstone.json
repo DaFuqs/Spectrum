@@ -15,7 +15,7 @@
         },
         {
             "type": "spectrum:hint",
-			"title": "Concise Instruction",
+			"title": "Concise Instructions",
 			"cost": "minecraft:gold_ingot#24",
             "text": "It generates in all biomes in the center and upper layers of the overworld in large veins. You can even find it exposed in mountains."
         }

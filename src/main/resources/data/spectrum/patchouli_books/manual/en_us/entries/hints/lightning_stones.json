@@ -15,7 +15,7 @@
         },
         {
             "type": "spectrum:hint",
-			"title": "Concise Instruction",
+			"title": "Concise Instructions",
 			"cost": "spectrum:neolith#24",
             "text": "Sometimes you are able to find weird shards at places where lightning struck. There even should be a way to bundle Lightning to a specific position, to make searching for them even more efficient."
         }

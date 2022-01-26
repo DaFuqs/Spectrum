@@ -11,11 +11,11 @@
 			"title": "Small Clue",
             "completion_advancement": "spectrum:collect_vegetal",
 			"cost": "spectrum:sparklestone_gem#16",
-            "text": "Fading, as a small and weak organism, can only process organic blocks next to it, while also taking a while."
+            "text": "Fading, as a small and weak organism, can only process organic blocks placed next to it, while also taking quite a while."
         },
         {
             "type": "spectrum:hint",
-			"title": "Concise Instruction",
+			"title": "Concise Instructions",
 			"cost": "spectrum:sparklestone_gem#48",
             "text": "Place organic blocks, like Leaves, Pumpkins or Melons next to it and wait a while. After some time the block will get consumed and replaced with a different looking Variant. Break those converted blocks to get a new Resource."
         }

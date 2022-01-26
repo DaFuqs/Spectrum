@@ -208,7 +208,7 @@ public class ShootingStarEntity extends Entity {
 			double d = this.isTouchingWater() ? -0.005D : -0.04D;
 			this.setVelocity(this.getVelocity().add(0.0D, d, 0.0D));
 			if (!this.onGround) {
-				this.setVelocity(this.getVelocity().multiply(0.96D));
+				this.setVelocity(this.getVelocity().multiply(0.95D));
 			}
 		}
 		

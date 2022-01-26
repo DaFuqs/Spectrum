@@ -1,9 +1,7 @@
 package de.dafuqs.spectrum.items.magic_items;
 
 import de.dafuqs.spectrum.Support;
-import de.dafuqs.spectrum.blocks.bottomless_bundle.BottomlessBundleBlockEntity;
 import de.dafuqs.spectrum.blocks.enchanter.EnchanterEnchantable;
-import de.dafuqs.spectrum.entity.entity.ShootingStarEntity;
 import de.dafuqs.spectrum.interfaces.InventoryInsertionAcceptor;
 import de.dafuqs.spectrum.items.tooltip.VoidBundleTooltipData;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
@@ -11,7 +9,6 @@ import de.dafuqs.spectrum.registries.SpectrumEnchantments;
 import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
-import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.client.item.TooltipData;
 import net.minecraft.enchantment.Enchantment;
@@ -34,7 +31,6 @@ import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
@@ -249,7 +245,7 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 	 * @param stackToBundle
 	 * @return The amount of items put into the bundle
 	 */
-	private static int addToBundle(ItemStack voidBundleStack, ItemStack stackToBundle) {
+	public static int addToBundle(ItemStack voidBundleStack, ItemStack stackToBundle) {
 		if (!stackToBundle.isEmpty() && stackToBundle.getItem().canBeNested()) {
 			int storedAmount = getStoredAmount(voidBundleStack);
 			int amountAbleToStore = Math.min(stackToBundle.getCount(), (getMaxStoredAmount(voidBundleStack) - getStoredAmount(voidBundleStack)));
@@ -270,7 +266,7 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 		return 0;
 	}
 
-	private static Optional<ItemStack> removeFirstBundledStack(ItemStack voidBundleStack) {
+	public static Optional<ItemStack> removeFirstBundledStack(ItemStack voidBundleStack) {
 		ItemStack removedStack = getFirstBundledStack(voidBundleStack);
 		if (removedStack.isEmpty()) {
 			return Optional.empty();
@@ -294,7 +290,7 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 		}
 	}
 
-	private static ItemStack getFirstBundledStack(ItemStack voidBundleStack) {
+	public static ItemStack getFirstBundledStack(ItemStack voidBundleStack) {
 		NbtCompound nbtCompound = voidBundleStack.getNbt();
 		if (nbtCompound == null) {
 			return ItemStack.EMPTY;
@@ -346,7 +342,7 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 		return overflowAmount;
 	}
 
-	private static int getStoredAmount(ItemStack voidBundleStack) {
+	public static int getStoredAmount(ItemStack voidBundleStack) {
 		NbtCompound voidBundleCompound = voidBundleStack.getOrCreateNbt();
 		if(voidBundleCompound.contains("StoredStack")) {
 			NbtCompound storedStackCompound = voidBundleCompound.getCompound("StoredStack");

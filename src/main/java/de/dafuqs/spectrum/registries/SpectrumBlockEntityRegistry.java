@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.block_flooder.BlockFlooderBlockEntity;
+import de.dafuqs.spectrum.blocks.bottomless_bundle.BottomlessBundleBlockEntity;
 import de.dafuqs.spectrum.blocks.chests.*;
 import de.dafuqs.spectrum.blocks.deeper_down_portal.DeeperDownPortalBlockEntity;
 import de.dafuqs.spectrum.blocks.deeper_down_portal.DeeperDownPortalBlockEntityRenderer;
@@ -28,7 +29,6 @@ import de.dafuqs.spectrum.blocks.spirit_sallow.OminousSaplingBlockEntity;
 import de.dafuqs.spectrum.blocks.upgrade.UpgradeBlock;
 import de.dafuqs.spectrum.blocks.upgrade.UpgradeBlockBlockEntityRenderer;
 import de.dafuqs.spectrum.blocks.upgrade.UpgradeBlockEntity;
-import de.dafuqs.spectrum.blocks.bottomless_bundle.BottomlessBundleBlockEntity;
 import net.fabricmc.fabric.api.client.rendereregistry.v1.BlockEntityRendererRegistry;
 import net.fabricmc.fabric.api.event.client.ClientSpriteRegistryCallback;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;

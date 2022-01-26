@@ -198,7 +198,7 @@ public class SpectrumItems {
 	public static final Item INVISIBLE_ITEM_FRAME = new InvisibleItemFrameItem(SpectrumEntityTypes.INVISIBLE_ITEM_FRAME, generalItemSettings);
 	public static final Item INVISIBLE_GLOW_ITEM_FRAME = new InvisibleGlowItemFrameItem(SpectrumEntityTypes.INVISIBLE_GLOW_ITEM_FRAME, generalItemSettings);
 
-	public static final Item VOID_BUNDLE = new BottomlessBundleItem(generalItemSettingsSingle);
+	public static final Item BOTTOMLESS_BUNDLE = new BottomlessBundleItem(generalItemSettingsSingle);
 	public static final Item KNOWLEDGE_GEM = new KnowledgeGemItem(generalUncommonItemSettingsSingle, 10000);
 
 
@@ -225,7 +225,7 @@ public class SpectrumItems {
 		registerFluidBuckets();
 		
 		register("crafting_tablet", CRAFTING_TABLET);
-		register("void_bundle", VOID_BUNDLE);
+		register("void_bundle", BOTTOMLESS_BUNDLE);
 		register("music_disc_spectrum_theme", MUSIC_DISC_SPECTRUM_THEME);
 		register("music_disc_dimension_theme", MUSIC_DISC_DIMENSION_THEME);
 		register("spawner", SPAWNER);

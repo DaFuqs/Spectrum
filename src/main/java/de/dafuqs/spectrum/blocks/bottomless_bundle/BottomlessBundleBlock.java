@@ -1,11 +1,11 @@
 package de.dafuqs.spectrum.blocks.bottomless_bundle;
 
-import de.dafuqs.spectrum.blocks.shooting_star.ShootingStarBlockEntity;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.BlockWithEntity;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.LivingEntity;
@@ -48,7 +48,10 @@ public class BottomlessBundleBlock extends BlockWithEntity {
 	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
 		if (!world.isClient && player.isSneaking()) {
 			world.getBlockEntity(pos, SpectrumBlockEntityRegistry.BOTTOMLESS_BUNDLE).ifPresent((bottomlessBundleBlockEntity) -> {
-				ItemStack itemStack = bottomlessBundleBlockEntity.getVoidBundle();
+				ItemStack itemStack = bottomlessBundleBlockEntity.retrieveVoidBundle();
+				
+				world.setBlockState(pos, Blocks.AIR.getDefaultState());
+				
 				ItemEntity itemEntity = new ItemEntity(world, (double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D, itemStack);
 				itemEntity.setToDefaultPickupDelay();
 				world.spawnEntity(itemEntity);
@@ -62,11 +65,14 @@ public class BottomlessBundleBlock extends BlockWithEntity {
 	
 	@Override
 	public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state) {
+		if(world == null) {
+			return SpectrumItems.BOTTOMLESS_BUNDLE.getDefaultStack();
+		}
 		BlockEntity blockEntity = world.getBlockEntity(pos);
 		if(blockEntity instanceof BottomlessBundleBlockEntity bottomlessBundleBlockEntity) {
-			return bottomlessBundleBlockEntity.getVoidBundle();
+			return bottomlessBundleBlockEntity.retrieveVoidBundle();
 		} else {
-			return SpectrumItems.VOID_BUNDLE.getDefaultStack();
+			return SpectrumItems.BOTTOMLESS_BUNDLE.getDefaultStack();
 		}
 	}
 	
@@ -74,7 +80,7 @@ public class BottomlessBundleBlock extends BlockWithEntity {
 	public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
 		if (!world.isClient && !player.isCreative()) {
 			world.getBlockEntity(pos, SpectrumBlockEntityRegistry.BOTTOMLESS_BUNDLE).ifPresent((bottomlessBundleBlockEntity) -> {
-				ItemStack itemStack = bottomlessBundleBlockEntity.getVoidBundle();
+				ItemStack itemStack = bottomlessBundleBlockEntity.retrieveVoidBundle();
 				ItemEntity itemEntity = new ItemEntity(world, (double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D, itemStack);
 				itemEntity.setToDefaultPickupDelay();
 				world.spawnEntity(itemEntity);

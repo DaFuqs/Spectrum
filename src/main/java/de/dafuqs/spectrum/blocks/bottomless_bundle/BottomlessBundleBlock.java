@@ -65,15 +65,13 @@ public class BottomlessBundleBlock extends BlockWithEntity {
 	
 	@Override
 	public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state) {
-		if(world == null) {
-			return SpectrumItems.BOTTOMLESS_BUNDLE.getDefaultStack();
+		if(world != null) {
+			BlockEntity blockEntity = world.getBlockEntity(pos);
+			if(blockEntity instanceof BottomlessBundleBlockEntity bottomlessBundleBlockEntity) {
+				return bottomlessBundleBlockEntity.retrieveVoidBundle();
+			}
 		}
-		BlockEntity blockEntity = world.getBlockEntity(pos);
-		if(blockEntity instanceof BottomlessBundleBlockEntity bottomlessBundleBlockEntity) {
-			return bottomlessBundleBlockEntity.retrieveVoidBundle();
-		} else {
-			return SpectrumItems.BOTTOMLESS_BUNDLE.getDefaultStack();
-		}
+		return SpectrumItems.BOTTOMLESS_BUNDLE.getDefaultStack();
 	}
 	
 	@Override

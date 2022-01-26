@@ -6,6 +6,7 @@ import de.dafuqs.spectrum.interfaces.InventoryInsertionAcceptor;
 import de.dafuqs.spectrum.items.tooltip.VoidBundleTooltipData;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import de.dafuqs.spectrum.registries.SpectrumEnchantments;
+import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
@@ -46,7 +47,13 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 	public BottomlessBundleItem(Item.Settings settings) {
 		super(settings);
 	}
-
+	
+	public static ItemStack getWithBlockAndCount(ItemStack itemStack, int amount) {
+		ItemStack bottomlessBundleStack = new ItemStack(SpectrumItems.BOTTOMLESS_BUNDLE);
+		BottomlessBundleItem.bundleStack(bottomlessBundleStack, itemStack, amount);
+		return bottomlessBundleStack;
+	}
+	
 	public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
 		ItemStack itemStack = user.getStackInHand(hand);
 		if (dropOneBundledStack(itemStack, user)) {

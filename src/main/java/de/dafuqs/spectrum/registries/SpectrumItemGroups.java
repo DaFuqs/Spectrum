@@ -3,10 +3,13 @@ package de.dafuqs.spectrum.registries;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.mob_head.SpectrumSkullBlock;
 import de.dafuqs.spectrum.items.ExperienceStorageItem;
+import de.dafuqs.spectrum.items.magic_items.BottomlessBundleItem;
+import de.dafuqs.spectrum.items.magic_items.KnowledgeGemItem;
 import io.wispforest.owo.itemgroup.Icon;
 import io.wispforest.owo.itemgroup.OwoItemGroup;
 import io.wispforest.owo.itemgroup.gui.ItemGroupButton;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
 
@@ -38,10 +41,6 @@ public class SpectrumItemGroups {
 			
 			if(this.getSelectedTab() == ITEM_GROUP_GENERAL.getTab(1)) {
 				// early game tools
-				ItemStack knowledgeGemStack = new ItemStack(SpectrumItems.KNOWLEDGE_GEM);
-				ExperienceStorageItem.addStoredExperience(knowledgeGemStack, 10000);
-				stacks.add(knowledgeGemStack);
-				
 				stacks.add(SpectrumDefaultEnchantments.getEnchantedItemStack(SpectrumItems.MULTITOOL));
 				stacks.add(SpectrumDefaultEnchantments.getEnchantedItemStack(SpectrumItems.LOOTING_FALCHION));
 				stacks.add(SpectrumDefaultEnchantments.getEnchantedItemStack(SpectrumItems.SILKER_PICKAXE));
@@ -89,11 +88,29 @@ public class SpectrumItemGroups {
 			addTab(Icon.of(SpectrumBlocks.MOONSTONE_CHISELED_CALCITE), "decoration", null, ITEM_GROUP_BUTTON_TEXTURE_IDENTIFIER);
 			addTab(Icon.of(SpectrumBlocks.LIME_LOG), "colored_wood", null, ITEM_GROUP_BUTTON_TEXTURE_IDENTIFIER);
 			addTab(Icon.of(SpectrumBlocks.getMobHead(SpectrumSkullBlock.Type.PUFFERFISH)), "mob_heads", null, ITEM_GROUP_BUTTON_TEXTURE_IDENTIFIER);
+			addTab(Icon.of(SpectrumItems.BOTTOMLESS_BUNDLE), "predefined_items", null, ITEM_GROUP_BUTTON_TEXTURE_IDENTIFIER);
 			
 			addButton(ItemGroupButton.discord("https://discord.gg/VHUPpHrj")); // TODO: Add item group background texture, as soon as owo supports it
 			addButton(ItemGroupButton.github("https://github.com/DaFuqs/Spectrum"));
 			addButton(ItemGroupButton.curseforge("https://www.curseforge.com/minecraft/mc-mods/spectrum"));
 			addButton(ItemGroupButton.modrinth("https://modrinth.com/mod/spectrum"));
+		}
+		
+		@Override
+		public void appendStacks(DefaultedList<ItemStack> stacks) {
+			super.appendStacks(stacks);
+			
+			if(this.getSelectedTab() == ITEM_GROUP_BLOCKS.getTab(3)) {
+				stacks.add(KnowledgeGemItem.getKnowledgeDropStackWithXP(10000));
+				
+				stacks.add(BottomlessBundleItem.getWithBlockAndCount(Items.COBBLESTONE.getDefaultStack(), 20000));
+				stacks.add(BottomlessBundleItem.getWithBlockAndCount(Items.STONE.getDefaultStack(), 20000));
+				stacks.add(BottomlessBundleItem.getWithBlockAndCount(Items.DEEPSLATE.getDefaultStack(), 20000));
+				stacks.add(BottomlessBundleItem.getWithBlockAndCount(Items.OAK_PLANKS.getDefaultStack(), 20000));
+				stacks.add(BottomlessBundleItem.getWithBlockAndCount(Items.SAND.getDefaultStack(), 20000));
+				stacks.add(BottomlessBundleItem.getWithBlockAndCount(Items.GRAVEL.getDefaultStack(), 20000));
+				stacks.add(BottomlessBundleItem.getWithBlockAndCount(Items.ARROW.getDefaultStack(), 20000));
+			}
 		}
 		
 		@Override

@@ -2,7 +2,7 @@
   "parent": "spectrum:collect_shooting_star",
   "display": {
     "icon": {
-      "item": "spectrum:shooting_star"
+      "item": "spectrum:shooting_star_glistering"
     },
     "frame": "challenge",
     "title": {

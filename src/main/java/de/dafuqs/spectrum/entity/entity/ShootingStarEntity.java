@@ -145,10 +145,6 @@ public class ShootingStarEntity extends Entity {
 		return SpectrumCommon.CONFIG.ShootingStarChance * multiplier;
 	}
 
-	protected MoveEffect getMoveEffect() {
-		return MoveEffect.EVENTS;
-	}
-	
 	public boolean collidesWith(Entity other) {
 		return canCollide(this, other);
 	}
@@ -173,7 +169,7 @@ public class ShootingStarEntity extends Entity {
 		this.getDataTracker().startTracking(SHOOTING_STAR_TYPE, ShootingStarBlock.Type.COLORFUL.ordinal());
 	}
 	
-	public void updateTrackedPositionAndAngles(double x, double y, double z, float yaw, float pitch, int interpolationSteps, boolean interpolate) {
+	/*public void updateTrackedPositionAndAngles(double x, double y, double z, float yaw, float pitch, int interpolationSteps, boolean interpolate) {
 		this.clientX = x;
 		this.clientY = y;
 		this.clientZ = z;
@@ -186,7 +182,7 @@ public class ShootingStarEntity extends Entity {
 		this.clientYVelocity = y;
 		this.clientZVelocity = z;
 		this.setVelocity(this.clientXVelocity, this.clientYVelocity, this.clientZVelocity);
-	}
+	}*/
 	
 	public void tick() {
 		super.tick();
@@ -194,36 +190,10 @@ public class ShootingStarEntity extends Entity {
 		this.attemptTickInVoid();
 		this.tickNetherPortal();
 		
-		if(world.isClient) {
-			if (this.clientInterpolationSteps > 0) {
-				double d;
-				d = this.getX() + (this.clientX - this.getX()) / (double)this.clientInterpolationSteps;
-				double e = this.getY() + (this.clientY - this.getY()) / (double)this.clientInterpolationSteps;
-				double f = this.getZ() + (this.clientZ - this.getZ()) / (double)this.clientInterpolationSteps;
-				--this.clientInterpolationSteps;
-				this.setPosition(d, e, f);
-			} else {
-				this.refreshPosition();
-			}
-			this.setRotation(this.getYaw(), this.getPitch());
-			
-			if (this.onGround) {
-				if (world.random.nextInt(10) == 0) {
-					playGroundParticles();
-				}
-			} else {
-				playFallingParticles();
-			}
-		}
-
-		/*this.prevX = this.getX();
-		this.prevY = this.getY();
-		this.prevZ = this.getZ();
-		Vec3d vec3d = this.getVelocity();
-
-		if (!this.hasNoGravity() && this.getVelocity().getY() > -1.0D) {
-			this.setVelocity(this.getVelocity().add(0.0D, -0.04D, 0.0D));
-		}
+		boolean wasOnGround = this.onGround;
+		double previousXVelocity = this.getVelocity().getX();
+		double previousYVelocity = this.getVelocity().getY();
+		double previousZVelocity = this.getVelocity().getZ();
 		
 		if (world.isClient) {
 			this.noClip = false;
@@ -234,47 +204,43 @@ public class ShootingStarEntity extends Entity {
 			}
 		}
 		
-		
-		
-		if (!this.onGround || (this.age + this.getId()) % 4 == 0) {
-			boolean wasOnGround = this.onGround;
-			double previousYVelocity = this.getVelocity().getY();
-			
-			this.move(MovementType.SELF, this.getVelocity());
-			float verticalVelocityMultiplier = 0.99F;
-			
-			this.setVelocity(this.getVelocity().multiply(verticalVelocityMultiplier, 0.99D, verticalVelocityMultiplier));
-			
-			if (this.onGround) {
-				Vec3d vec3d2 = this.getVelocity();
-				if (vec3d2.y < 0.0D) {
-					this.setVelocity(vec3d2.multiply(1.0D, -0.5D, 1.0D));
-				}
+		if (!this.hasNoGravity()) {
+			double d = this.isTouchingWater() ? -0.005D : -0.04D;
+			this.setVelocity(this.getVelocity().add(0.0D, d, 0.0D));
+			if (!this.onGround) {
+				this.setVelocity(this.getVelocity().multiply(0.98D));
 			}
 		}
 		
-		if(!world.isClient) {
-			this.velocityDirty |= this.updateWaterState();
-			if (!this.world.isClient) {
-				double d = this.getVelocity().subtract(vec3d).lengthSquared();
-				if (d > 0.01D) {
-					this.velocityDirty = true;
-				}
-			}*/
+		this.move(MovementType.SELF, this.getVelocity());
 		
-		if(!world.isClient) {
-			boolean wasOnGround = this.onGround;
-			
-			if (!this.hasNoGravity()) {
-				double d = this.isTouchingWater() ? -0.005D : -0.04D;
-				this.setVelocity(this.getVelocity().add(0.0D, d, 0.0D));
+		// make it bounce back
+		boolean spawnLoot = false;
+		if(this.onGround && !wasOnGround) {
+			this.addVelocity(0, -previousYVelocity * 0.5, 0);
+		}
+		if(Math.signum(this.getVelocity().x) != Math.signum(previousXVelocity)) {
+			this.addVelocity(-previousXVelocity * 0.5, 0, 0);
+			if(Math.abs(previousXVelocity) > 0.5) {
+				spawnLoot = true;
 			}
-			
-			
-			this.move(MovementType.SELF, this.getVelocity());
-			if (!this.onGround) {
-				this.setVelocity(this.getVelocity().multiply(0.95D));
+		}
+		if(Math.signum(this.getVelocity().z) != Math.signum(previousZVelocity)) {
+			this.addVelocity(0, 0, -previousZVelocity * 0.5);
+			if(!spawnLoot && Math.abs(previousZVelocity) > 0.5) {
+				spawnLoot = true;
 			}
+		}
+		
+		if(world.isClient) {
+			if (this.onGround) {
+				if (world.random.nextInt(10) == 0) {
+					playGroundParticles();
+				}
+			} else {
+				playFallingParticles();
+			}
+		} else {
 			this.checkBlockCollision();
 			
 			// despawning
@@ -282,13 +248,22 @@ public class ShootingStarEntity extends Entity {
 				this.discard();
 			}
 			
-			if (!wasOnGround || (this.age + this.getId()) % 4 == 0) {
-				//double previousYVelocity = this.getVelocity().getY();
-				//this.move(MovementType.SELF, this.getVelocity());
-				//float verticalVelocityMultiplier = 0.99F;
-				//verticalVelocityMultiplier = this.world.getBlockState(new BlockPos(this.getX(), this.getY() - 1.0D, this.getZ())).getBlock().getSlipperiness() * 0.99F;
-				if (!world.isClient && onGround && this.getVelocity().getY() < -0.5) { // hitting the ground after a long fall
-					SpectrumS2CPackets.playParticleWithExactOffsetAndVelocity((ServerWorld) world, getPos(), ParticleTypes.EXPLOSION, 1, new Vec3d(0, 0, 0), new Vec3d(0, 0, 0));
+			if(spawnLoot) {
+				// spawn loot
+				List<ItemStack> loot = getLoot((ServerWorld) world, ShootingStarBlock.Type.COMMON_LOOT_TABLE);
+				for(ItemStack itemStack : loot) {
+					ItemEntity itemEntity = new ItemEntity(this.world, this.getX(), this.getY(), this.getZ(), itemStack);
+					this.world.spawnEntity(itemEntity);
+				}
+				
+				// do effects
+				SpectrumS2CPackets.sendPlayShootingStarParticles(this);
+				world.playSound(null, this.getBlockPos(), SpectrumSoundEvents.SHOOTING_STAR_CRACKER, SoundCategory.BLOCKS, 1.0F, 1.0F);
+			}
+			
+			if (!wasOnGround && onGround && previousYVelocity < -0.5) { // hitting the ground after a long fall
+				SpectrumS2CPackets.playParticleWithExactOffsetAndVelocity((ServerWorld) world, getPos(), ParticleTypes.EXPLOSION, 1, new Vec3d(0, 0, 0), new Vec3d(0, 0, 0));
+				if(!spawnLoot) {
 					SpectrumS2CPackets.sendPlayShootingStarParticles(this);
 					world.playSound(null, this.getBlockPos(), SpectrumSoundEvents.SHOOTING_STAR_CRACKER, SoundCategory.BLOCKS, 1.0F, 1.0F);
 				}
@@ -367,7 +342,7 @@ public class ShootingStarEntity extends Entity {
 		}
 	}
 	
-	public void doHitEffectsAndLoot(ServerWorld serverWorld, ServerPlayerEntity serverPlayerEntity) {
+	public void doPlayerHitEffectsAndLoot(ServerWorld serverWorld, ServerPlayerEntity serverPlayerEntity) {
 		// Spawn loot
 		Identifier lootTableId = ShootingStarBlock.Type.getLootTableIdentifier(dataTracker.get(SHOOTING_STAR_TYPE));
 		List<ItemStack> loot = getLoot(serverWorld, serverPlayerEntity, lootTableId);
@@ -394,6 +369,16 @@ public class ShootingStarEntity extends Entity {
 				.build(LootContextTypes.ENTITY));
 	}
 	
+	public List<ItemStack> getLoot(ServerWorld serverWorld, Identifier lootTableId) {
+		LootTable lootTable = serverWorld.getServer().getLootManager().getTable(lootTableId);
+		return lootTable.generateLoot(new LootContext.Builder(serverWorld)
+				.random(world.random)
+				.parameter(LootContextParameters.THIS_ENTITY, this)
+				.parameter(LootContextParameters.ORIGIN, Vec3d.ofCenter(this.getBlockPos()))
+				.parameter(LootContextParameters.DAMAGE_SOURCE, DamageSource.GENERIC)
+				.build(LootContextTypes.ENTITY));
+	}
+	
 	public Text getName() {
 		Text text = this.getCustomName();
 		return (text != null ? text : asItem().getName());
@@ -401,33 +386,35 @@ public class ShootingStarEntity extends Entity {
 	
 	@Override
 	public boolean handleAttack(Entity attacker) {
-		if (!this.world.isClient && !this.isRemoved()) {
-			this.age = 1; // prevent it from despawning, once interacted
-			
-			this.availableHits--;
-			if(this.world instanceof ServerWorld serverWorld && attacker instanceof ServerPlayerEntity serverPlayerEntity) {
-				doHitEffectsAndLoot(serverWorld, serverPlayerEntity);
-			}
-			
-			if(this.availableHits <= 0) {
-				SpectrumS2CPackets.playParticleWithExactOffsetAndVelocity((ServerWorld) world, this.getPos(), ParticleTypes.EXPLOSION, 1, new Vec3d(0, 0, 0), new Vec3d(0, 0, 0));
+		if (!this.isRemoved()) {
+			if (!this.world.isClient) {
+				this.age = 1; // prevent it from despawning, once interacted
 				
-				ItemEntity itemEntity = new ItemEntity(this.world, this.getX(), this.getY(), this.getZ(), SpectrumItems.SHOOTING_STAR.getDefaultStack());
-				itemEntity.addVelocity(0, 0.15, 0);
-				this.world.spawnEntity(itemEntity);
-				this.discard();
+				this.availableHits--;
+				if (this.world instanceof ServerWorld serverWorld && attacker instanceof ServerPlayerEntity serverPlayerEntity) {
+					doPlayerHitEffectsAndLoot(serverWorld, serverPlayerEntity);
+				}
 				
-				return true;
-			} else {
-				this.emitGameEvent(GameEvent.ENTITY_DAMAGED, attacker);
+				if (this.availableHits <= 0) {
+					SpectrumS2CPackets.playParticleWithExactOffsetAndVelocity((ServerWorld) world, this.getPos(), ParticleTypes.EXPLOSION, 1, new Vec3d(0, 0, 0), new Vec3d(0, 0, 0));
+					
+					ItemEntity itemEntity = new ItemEntity(this.world, this.getX(), this.getY(), this.getZ(), SpectrumItems.SHOOTING_STAR.getDefaultStack());
+					itemEntity.addVelocity(0, 0.15, 0);
+					this.world.spawnEntity(itemEntity);
+					this.discard();
+					
+					return true;
+				} else {
+					this.emitGameEvent(GameEvent.ENTITY_DAMAGED, attacker);
+				}
 			}
-		}
 		
-		double attackerOffsetX = this.getX() - attacker.getX();
-		double attackerOffsetZ = this.getZ() - attacker.getZ();
-		double mod = Math.max(attackerOffsetX, attackerOffsetZ);
-		this.addVelocity((attackerOffsetX / mod) * 2, 0.3, (attackerOffsetZ / mod) * 2);
-		this.scheduleVelocityUpdate();
+			double attackerOffsetX = this.getX() - attacker.getX();
+			double attackerOffsetZ = this.getZ() - attacker.getZ();
+			double mod = Math.max(attackerOffsetX, attackerOffsetZ);
+			this.addVelocity((attackerOffsetX / mod) * 0.75, 0.25, (attackerOffsetZ / mod) * 0.75);
+			this.scheduleVelocityUpdate();
+		}
 		
 		return false;
 	}

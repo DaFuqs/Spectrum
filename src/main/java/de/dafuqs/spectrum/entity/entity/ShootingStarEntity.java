@@ -207,8 +207,8 @@ public class ShootingStarEntity extends Entity {
 		if (!this.hasNoGravity()) {
 			double d = this.isTouchingWater() ? -0.005D : -0.04D;
 			this.setVelocity(this.getVelocity().add(0.0D, d, 0.0D));
-			if (!this.onGround) {
-				this.setVelocity(this.getVelocity().multiply(0.95D));
+			if (this.onGround) {
+				this.setVelocity(this.getVelocity().multiply(0.96D));
 			}
 		}
 		
@@ -217,7 +217,7 @@ public class ShootingStarEntity extends Entity {
 		// make it bounce back
 		boolean spawnLoot = false;
 		if(this.onGround && !wasOnGround) {
-			this.addVelocity(0, -previousYVelocity * 0.5, 0);
+			this.addVelocity(0, -previousYVelocity * 0.3, 0);
 		}
 		if(Math.signum(this.getVelocity().x) != Math.signum(previousXVelocity)) {
 			this.addVelocity(-previousXVelocity * 0.5, 0, 0);

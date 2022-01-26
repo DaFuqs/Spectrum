@@ -28,6 +28,7 @@ import de.dafuqs.spectrum.blocks.spirit_sallow.OminousSaplingBlockEntity;
 import de.dafuqs.spectrum.blocks.upgrade.UpgradeBlock;
 import de.dafuqs.spectrum.blocks.upgrade.UpgradeBlockBlockEntityRenderer;
 import de.dafuqs.spectrum.blocks.upgrade.UpgradeBlockEntity;
+import de.dafuqs.spectrum.blocks.bottomless_bundle.BottomlessBundleBlockEntity;
 import net.fabricmc.fabric.api.client.rendereregistry.v1.BlockEntityRendererRegistry;
 import net.fabricmc.fabric.api.event.client.ClientSpriteRegistryCallback;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
@@ -56,6 +57,7 @@ public class SpectrumBlockEntityRegistry<T extends BlockEntity> {
 	public static BlockEntityType<SpectrumSkullBlockEntity> SKULL;
 	public static BlockEntityType<DeeperDownPortalBlockEntity> DEEPER_DOWN_PORTAL;
 	public static BlockEntityType<ShootingStarBlockEntity> SHOOTING_STAR;
+	public static BlockEntityType<BottomlessBundleBlockEntity> BOTTOMLESS_BUNDLE;
 
 	public static BlockEntityType<CompactingChestBlockEntity> COMPACTING_CHEST;
 	public static BlockEntityType<RestockingChestBlockEntity> RESTOCKING_CHEST;
@@ -94,6 +96,7 @@ public class SpectrumBlockEntityRegistry<T extends BlockEntity> {
 		BLOCK_PLACER = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "block_placer"), FabricBlockEntityTypeBuilder.create(BlockPlacerBlockEntity::new, SpectrumBlocks.BLOCK_PLACER).build());
 		BLOCK_FLOODER = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "block_flooder"), FabricBlockEntityTypeBuilder.create(BlockFlooderBlockEntity::new, SpectrumBlocks.BLOCK_FLOODER).build());
 		SHOOTING_STAR = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "shooting_star"), FabricBlockEntityTypeBuilder.create(ShootingStarBlockEntity::new, SpectrumBlocks.COLORFUL_SHOOTING_STAR, SpectrumBlocks.FIERY_SHOOTING_STAR, SpectrumBlocks.GEMSTONE_SHOOTING_STAR, SpectrumBlocks.GLISTERING_SHOOTING_STAR, SpectrumBlocks.PRISTINE_SHOOTING_STAR).build());
+		BOTTOMLESS_BUNDLE = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "bottomless_bundle"), FabricBlockEntityTypeBuilder.create(BottomlessBundleBlockEntity::new, SpectrumBlocks.BOTTOMLESS_BUNDLE).build());
 		
 		// All the pastel network nodes
 		CONNECTION_NODE = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "connection_node"), FabricBlockEntityTypeBuilder.create(PastelNetworkConnectionNode::new, SpectrumBlocks.CONNECTION_NODE).build());
@@ -135,10 +138,10 @@ public class SpectrumBlockEntityRegistry<T extends BlockEntity> {
 	}
 
 	private static void registerTextureAtlasCallback() {
+		//TODO: needed?
 		//Register textures in chest atlas
 		ClientSpriteRegistryCallback.event(TexturedRenderLayers.CHEST_ATLAS_TEXTURE).register((texture, registry) -> {
 			registry.register(new Identifier(SpectrumCommon.MOD_ID, "entity/private_chest"));
-			//registry.register(new Identifier(SpectrumCommon.MOD_ID, "entity/sucking_chest"));
 		});
 
 		//Register textures in block atlas

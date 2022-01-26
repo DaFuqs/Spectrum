@@ -1,10 +1,17 @@
 package de.dafuqs.spectrum.items.magic_items;
 
 import de.dafuqs.spectrum.Support;
+import de.dafuqs.spectrum.blocks.bottomless_bundle.BottomlessBundleBlockEntity;
 import de.dafuqs.spectrum.blocks.enchanter.EnchanterEnchantable;
+import de.dafuqs.spectrum.entity.entity.ShootingStarEntity;
 import de.dafuqs.spectrum.interfaces.InventoryInsertionAcceptor;
 import de.dafuqs.spectrum.items.tooltip.VoidBundleTooltipData;
+import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import de.dafuqs.spectrum.registries.SpectrumEnchantments;
+import net.minecraft.advancement.criterion.Criteria;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.ShapeContext;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.client.item.TooltipData;
 import net.minecraft.enchantment.Enchantment;
@@ -14,18 +21,24 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.StackReference;
-import net.minecraft.item.BundleItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.*;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.screen.slot.Slot;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.sound.BlockSoundGroup;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.stat.Stats;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.*;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
+import net.minecraft.world.event.GameEvent;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.Optional;
@@ -47,6 +60,69 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 		} else {
 			return TypedActionResult.fail(itemStack);
 		}
+	}
+	
+	@Override
+	public ActionResult useOnBlock(ItemUsageContext context) {
+		if(context.getPlayer().isSneaking()) {
+			// place as block
+			return this.place(new ItemPlacementContext(context));
+		}
+		return super.useOnBlock(context);
+	}
+	
+	public ActionResult place(ItemPlacementContext itemPlacementContext) {
+		if (!itemPlacementContext.canPlace()) {
+			return ActionResult.FAIL;
+		} else {
+			BlockState blockState = this.getPlacementState(itemPlacementContext);
+			if (blockState == null) {
+				return ActionResult.FAIL;
+			} else if (!this.place(itemPlacementContext, blockState)) {
+				return ActionResult.FAIL;
+			} else {
+				BlockPos blockPos = itemPlacementContext.getBlockPos();
+				World world = itemPlacementContext.getWorld();
+				PlayerEntity playerEntity = itemPlacementContext.getPlayer();
+				ItemStack itemStack = itemPlacementContext.getStack();
+				BlockState blockState2 = world.getBlockState(blockPos);
+				if (blockState2.isOf(blockState.getBlock())) {
+					blockState2.getBlock().onPlaced(world, blockPos, blockState2, playerEntity, itemStack);
+					if (playerEntity instanceof ServerPlayerEntity) {
+						Criteria.PLACED_BLOCK.trigger((ServerPlayerEntity)playerEntity, blockPos, itemStack);
+					}
+				}
+				
+				BlockSoundGroup blockSoundGroup = blockState2.getSoundGroup();
+				world.playSound(playerEntity, blockPos, this.getPlaceSound(blockState2), SoundCategory.BLOCKS, (blockSoundGroup.getVolume() + 1.0F) / 2.0F, blockSoundGroup.getPitch() * 0.8F);
+				world.emitGameEvent(playerEntity, GameEvent.BLOCK_PLACE, blockPos);
+				if (playerEntity == null || !playerEntity.getAbilities().creativeMode) {
+					itemStack.decrement(1);
+				}
+				
+				return ActionResult.success(world.isClient);
+			}
+		}
+	}
+	
+	protected boolean place(ItemPlacementContext context, BlockState state) {
+		return context.getWorld().setBlockState(context.getBlockPos(), state, 11);
+	}
+	
+	protected SoundEvent getPlaceSound(BlockState state) {
+		return state.getSoundGroup().getPlaceSound();
+	}
+	
+	@Nullable
+	protected BlockState getPlacementState(ItemPlacementContext context) {
+		BlockState blockState = SpectrumBlocks.BOTTOMLESS_BUNDLE.getPlacementState(context);
+		return blockState != null && this.canPlace(context, blockState) ? blockState : null;
+	}
+	
+	protected boolean canPlace(ItemPlacementContext context, BlockState state) {
+		PlayerEntity playerEntity = context.getPlayer();
+		ShapeContext shapeContext = playerEntity == null ? ShapeContext.absent() : ShapeContext.of(playerEntity);
+		return state.canPlaceAt(context.getWorld(), context.getBlockPos()) && context.getWorld().canPlace(state, context.getBlockPos(), shapeContext);
 	}
 	
 	public static int getMaxStoredAmount(ItemStack itemStack) {
@@ -112,7 +188,7 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 			}
 		}
 	}
-
+	
 	/**
 	 * When the bundle is clicked onto another stack
 	 */

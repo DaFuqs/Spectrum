@@ -77,7 +77,6 @@ public class ShootingStarEntity extends Entity {
 		this(SpectrumEntityTypes.SHOOTING_STAR, world);
 		this.setPosition(x, y, z);
 		this.setYaw(this.random.nextFloat() * 360.0F);
-		this.setVelocity(this.random.nextDouble() * 0.2D - 0.1D, 0.0D, this.random.nextDouble() * 0.2D - 0.1D);
 		this.setShootingStarType(ShootingStarBlock.Type.COLORFUL);
 		this.lastCollisionCount = 0;
 	}
@@ -121,6 +120,7 @@ public class ShootingStarEntity extends Entity {
 
 	public static void spawnShootingStar(ServerWorld serverWorld, @NotNull PlayerEntity playerEntity) {
 		ShootingStarEntity shootingStarEntity = new ShootingStarEntity(serverWorld, playerEntity.getPos().getX(), playerEntity.getPos().getY() + 200, playerEntity.getPos().getZ());
+		shootingStarEntity.setVelocity(serverWorld.random.nextDouble() * 0.2D - 0.1D, 0.0D, serverWorld.random.nextDouble() * 0.2D - 0.1D);
 		shootingStarEntity.setShootingStarType(ShootingStarBlock.Type.values()[serverWorld.getRandom().nextInt(ShootingStarBlock.Type.values().length)]);
 		shootingStarEntity.addVelocity(3 - shootingStarEntity.random.nextFloat() * 6, 0, 3 - shootingStarEntity.random.nextFloat() * 6);
 		serverWorld.spawnEntity(shootingStarEntity);

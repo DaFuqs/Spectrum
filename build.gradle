@@ -22,7 +22,7 @@ repositories {
 		url = 'https://maven.blamejared.com'
 	}
 	maven { url 'https://maven.wispforest.io/' } // owo lib
-	//maven { url "https://jitpack.io" } // incubus core
+	maven { url "https://jitpack.io" } // incubus core
 }
 
 dependencies {
@@ -46,7 +46,7 @@ dependencies {
 	modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"
 
 	// breaks outside of dev env currently.
-	//modImplementation include("com.github.devs-immortal:Incubus-Core:${project.incubus_core_version}")
+	modImplementation include("com.github.devs-immortal:Incubus-Core:${project.incubus_core_version}")
 
 	// Soft dependencies:
 	// https://maven.blamejared.com/net/darkhax/enchdesc/

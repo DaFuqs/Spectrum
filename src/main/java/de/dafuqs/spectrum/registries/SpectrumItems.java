@@ -177,6 +177,7 @@ public class SpectrumItems {
 	public static final EnderSpliceItem ENDER_SPLICE = new EnderSpliceItem(generalUncommonItemSettingsSixteen);
 	public static final Item END_PORTAL_CRACKER = new EndPortalCrackerItem(generalRareItemSettings);
 
+
 	// Catkin
 	public static final Item VIBRANT_CYAN_CATKIN = new CatkinItem(GemstoneColor.CYAN, false, resourcesItemSettings);
 	public static final Item VIBRANT_MAGENTA_CATKIN =  new CatkinItem(GemstoneColor.MAGENTA, false, resourcesItemSettings);

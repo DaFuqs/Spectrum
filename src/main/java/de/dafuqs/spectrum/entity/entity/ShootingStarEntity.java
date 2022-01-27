@@ -17,6 +17,7 @@ import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
+import net.minecraft.entity.decoration.ArmorStandEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
@@ -37,12 +38,15 @@ import net.minecraft.predicate.entity.EntityPredicates;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.stat.Stats;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.BlockLocating;
 import net.minecraft.world.World;
@@ -185,8 +189,8 @@ public class ShootingStarEntity extends Entity {
 		if (!this.hasNoGravity()) {
 			double d = this.isTouchingWater() ? -0.005D : -0.04D;
 			this.setVelocity(this.getVelocity().add(0.0D, d, 0.0D));
-			if (this.onGround) {
-				this.setVelocity(this.getVelocity().multiply(0.96D));
+			if (!this.onGround) {
+				this.setVelocity(this.getVelocity().multiply(0.95D));
 			}
 		}
 		
@@ -195,16 +199,16 @@ public class ShootingStarEntity extends Entity {
 		// make it bounce back
 		boolean spawnLoot = false;
 		if(this.onGround && !wasOnGround) {
-			this.addVelocity(0, -previousYVelocity * 0.3, 0);
+			this.addVelocity(0, -previousYVelocity * 0.9, 0);
 		}
 		if(Math.signum(this.getVelocity().x) != Math.signum(previousXVelocity)) {
-			this.addVelocity(-previousXVelocity * 0.5, 0, 0);
+			this.addVelocity(-previousXVelocity * 0.6, 0, 0);
 			if(Math.abs(previousXVelocity) > 0.5) {
 				spawnLoot = true;
 			}
 		}
 		if(Math.signum(this.getVelocity().z) != Math.signum(previousZVelocity)) {
-			this.addVelocity(0, 0, -previousZVelocity * 0.5);
+			this.addVelocity(0, 0, -previousZVelocity * 0.6);
 			if(!spawnLoot && Math.abs(previousZVelocity) > 0.5) {
 				spawnLoot = true;
 			}

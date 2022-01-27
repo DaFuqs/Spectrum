@@ -5,19 +5,19 @@
     "frames": [
      {
        "index": 0,
-       "time": 10
+       "time": 5
      },
      {
        "index": 1,
-       "time": 100
+       "time": 80
      },
      {
        "index": 1,
-       "time": 10
+       "time": 5
      },
      {
        "index": 0,
-       "time": 20
+       "time": 12
      }
 
     ]

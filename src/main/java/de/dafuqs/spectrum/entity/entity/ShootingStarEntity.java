@@ -28,6 +28,7 @@ import net.minecraft.loot.context.LootContext;
 import net.minecraft.loot.context.LootContextParameters;
 import net.minecraft.loot.context.LootContextTypes;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.NbtElement;
 import net.minecraft.network.Packet;
 import net.minecraft.network.packet.s2c.play.EntitySpawnS2CPacket;
 import net.minecraft.particle.ParticleEffect;
@@ -59,19 +60,13 @@ public class ShootingStarEntity extends Entity {
 	private int age;
 	public final float hoverHeight;
 	public int availableHits;
-	
-	private int clientInterpolationSteps;
-	private double clientX;
-	private double clientY;
-	private double clientZ;
-	private double clientXVelocity;
-	private double clientYVelocity;
-	private double clientZVelocity;
+	public int lastCollisionCount;
 
 	public ShootingStarEntity(EntityType<? extends ShootingStarEntity> entityType, World world) {
 		super(entityType, world);
 		this.hoverHeight = (float)(Math.random() * Math.PI * 2.0D);
 		this.availableHits = 5 + world.random.nextInt(3);
+		this.lastCollisionCount = 0;
 	}
 
 	public ShootingStarEntity(World world, double x, double y, double z) {
@@ -80,6 +75,7 @@ public class ShootingStarEntity extends Entity {
 		this.setYaw(this.random.nextFloat() * 360.0F);
 		this.setVelocity(this.random.nextDouble() * 0.2D - 0.1D, 0.0D, this.random.nextDouble() * 0.2D - 0.1D);
 		this.setShootingStarType(ShootingStarBlock.Type.COLORFUL);
+		this.lastCollisionCount = 0;
 	}
 
 	public ShootingStarEntity(World world) {
@@ -93,6 +89,7 @@ public class ShootingStarEntity extends Entity {
 		this.copyPositionAndRotation(entity);
 		this.age = entity.age;
 		this.hoverHeight = entity.hoverHeight;
+		this.lastCollisionCount = entity.lastCollisionCount;
 	}
 
 	public static void doShootingStarSpawns(@NotNull ServerWorld serverWorld) {
@@ -165,21 +162,6 @@ public class ShootingStarEntity extends Entity {
 		this.getDataTracker().startTracking(SHOOTING_STAR_TYPE, ShootingStarBlock.Type.COLORFUL.ordinal());
 	}
 	
-	/*public void updateTrackedPositionAndAngles(double x, double y, double z, float yaw, float pitch, int interpolationSteps, boolean interpolate) {
-		this.clientX = x;
-		this.clientY = y;
-		this.clientZ = z;
-		this.clientInterpolationSteps = interpolationSteps + 2;
-		this.setVelocity(this.clientXVelocity, this.clientYVelocity, this.clientZVelocity);
-	}
-	
-	public void setVelocityClient(double x, double y, double z) {
-		this.clientXVelocity = x;
-		this.clientYVelocity = y;
-		this.clientZVelocity = z;
-		this.setVelocity(this.clientXVelocity, this.clientYVelocity, this.clientZVelocity);
-	}*/
-	
 	public void tick() {
 		super.tick();
 		
@@ -245,16 +227,32 @@ public class ShootingStarEntity extends Entity {
 			}
 			
 			if(spawnLoot) {
-				// spawn loot
-				List<ItemStack> loot = getLoot((ServerWorld) world, ShootingStarBlock.Type.COMMON_LOOT_TABLE);
-				for(ItemStack itemStack : loot) {
-					ItemEntity itemEntity = new ItemEntity(this.world, this.getX(), this.getY(), this.getZ(), itemStack);
-					this.world.spawnEntity(itemEntity);
+				this.lastCollisionCount++;
+				if(this.lastCollisionCount > 8) {
+					// if the block did collide a lot (maybe bugged or jammed?): break it and drop as item
+					this.availableHits--;
+					if(this.availableHits > 0) {
+						ItemStack shootingStarStack = ShootingStarItem.getWithRemainingHits((ShootingStarItem) this.asItem(), this.availableHits);
+						ItemEntity itemEntity = new ItemEntity(this.world, this.getX(), this.getY(), this.getZ(), shootingStarStack);
+						this.world.spawnEntity(itemEntity);
+					} else {
+						ItemStack shootingStarStack = SpectrumItems.SHOOTING_STAR.getDefaultStack();
+						ItemEntity itemEntity = new ItemEntity(this.world, this.getX(), this.getY(), this.getZ(), shootingStarStack);
+						this.world.spawnEntity(itemEntity);
+					}
+					this.discard();
+				} else {
+					// spawn loot
+					List<ItemStack> loot = getLoot((ServerWorld) world, ShootingStarBlock.Type.COMMON_LOOT_TABLE);
+					for (ItemStack itemStack : loot) {
+						ItemEntity itemEntity = new ItemEntity(this.world, this.getX(), this.getY(), this.getZ(), itemStack);
+						this.world.spawnEntity(itemEntity);
+					}
+					
+					// do effects
+					SpectrumS2CPackets.sendPlayShootingStarParticles(this);
+					world.playSound(null, this.getBlockPos(), SpectrumSoundEvents.SHOOTING_STAR_CRACKER, SoundCategory.BLOCKS, 1.0F, 1.0F);
 				}
-				
-				// do effects
-				SpectrumS2CPackets.sendPlayShootingStarParticles(this);
-				world.playSound(null, this.getBlockPos(), SpectrumSoundEvents.SHOOTING_STAR_CRACKER, SoundCategory.BLOCKS, 1.0F, 1.0F);
 			}
 			
 			if (!wasOnGround && onGround && previousYVelocity < -0.5) { // hitting the ground after a long fall
@@ -389,6 +387,7 @@ public class ShootingStarEntity extends Entity {
 				this.availableHits--;
 				if (this.world instanceof ServerWorld serverWorld && attacker instanceof ServerPlayerEntity serverPlayerEntity) {
 					doPlayerHitEffectsAndLoot(serverWorld, serverPlayerEntity);
+					this.lastCollisionCount = 0;
 				}
 				
 				if (this.availableHits <= 0) {
@@ -435,10 +434,14 @@ public class ShootingStarEntity extends Entity {
 	public void writeCustomDataToNbt(@NotNull NbtCompound tag) {
 		tag.putShort("Age", (short)this.age);
 		tag.putString("Type", this.getShootingStarType().getName());
+		tag.putInt("LastCollisionCount", this.lastCollisionCount);
 	}
 	
 	public void readCustomDataFromNbt(@NotNull NbtCompound tag) {
 		this.age = tag.getShort("Age");
+		if(tag.contains("LastCollisionCount", NbtElement.INT_TYPE)) {
+			this.lastCollisionCount = tag.getInt("LastCollisionCount");
+		}
 		if (tag.contains("Type", 8)) {
 			this.setShootingStarType(ShootingStarBlock.Type.getType(tag.getString("Type")));
 		} else {

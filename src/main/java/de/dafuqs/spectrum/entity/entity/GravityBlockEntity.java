@@ -56,7 +56,7 @@ public class GravityBlockEntity extends Entity {
 		} else {
 			this.gravityModifier = 1.0F;
 		}
-		this.inanimate = true;
+		this.intersectionChecked = true;
 		this.updatePosition(x, y, z);
 		this.setVelocity(Vec3d.ZERO);
 		this.prevX = x;
@@ -273,7 +273,7 @@ public class GravityBlockEntity extends Entity {
 		} else {
 			this.gravityModifier = 1.0F;
 		}
-		this.inanimate = true;
+		this.intersectionChecked = true;
 		double d = packet.getX();
 		double e = packet.getY();
 		double f = packet.getZ();

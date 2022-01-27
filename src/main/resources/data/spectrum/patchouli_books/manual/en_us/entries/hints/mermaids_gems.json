@@ -5,6 +5,7 @@
     "advancement": "spectrum:midgame/spectrum_midgame",
 	"secret": true,
 	"read_by_default": true,
+    "turnin": "spectrum:collect_mermaids_gem",
     "pages": [
         {
             "type": "spectrum:hint",
@@ -15,7 +16,7 @@
         },
         {
             "type": "spectrum:hint",
-			"title": "Concise Instruction",
+			"title": "Concise Instructions",
 			"cost": "spectrum:onyx_shard#16",
             "text": "Source is a delicate flower, found at the bottom of the sea, growing in small groups. The plant emits a faint glow and if you wear an active Glow Squid helmet it sparkles, too. Wait next to it until it releases its precious treasure and collect it."
         }

@@ -5,6 +5,7 @@
     "advancement": "spectrum:midgame/craft_bottle_of_failing",
 	"secret": true,
 	"read_by_default": true,
+    "turnin": "spectrum:midgame/collect_neolith",
     "pages": [
         {
             "type": "spectrum:hint",
@@ -15,7 +16,7 @@
         },
         {
             "type": "spectrum:hint",
-			"title": "Concise Instruction",
+			"title": "Concise Instructions",
 			"cost": "spectrum:scarlet_fragments#24",
             "text": "The preferred food is Obsidian.Watch out for their insatiable hunger. They will eat quite a lot, if given the chance..."
         }

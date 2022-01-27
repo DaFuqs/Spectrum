@@ -5,6 +5,7 @@
     "advancement": "spectrum:milestones/reveal_azurite",
 	"secret": true,
 	"read_by_default": true,
+    "turnin": "spectrum:midgame/collect_azurite",
     "pages": [
         {
             "type": "spectrum:hint",
@@ -15,7 +16,7 @@
         },
         {
             "type": "spectrum:hint",
-			"title": "Concise Instruction",
+			"title": "Concise Instructions",
 			"cost": "spectrum:neolith#24",
             "text": "This rich blue ore generates very deep down under the surface and is fairly rare."
         }

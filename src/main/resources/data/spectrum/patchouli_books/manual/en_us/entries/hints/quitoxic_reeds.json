@@ -5,6 +5,7 @@
     "advancement": "spectrum:milestones/reveal_quitoxic_reeds",
 	"secret": true,
 	"read_by_default": true,
+    "turnin": "spectrum:collect_quitoxic_reeds",
     "pages": [
         {
             "type": "spectrum:hint",
@@ -15,7 +16,7 @@
         },
         {
             "type": "spectrum:hint",
-			"title": "Concise Instruction",
+			"title": "Concise Instructions",
 			"cost": "minecraft:clay_ball#48",
             "text": "Strange looking plants have been seen in Swamps, growing on patches of Clay."
         }

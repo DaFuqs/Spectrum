@@ -5,6 +5,7 @@ import com.google.common.collect.EnumHashBiMap;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.blocks.block_flooder.BlockFlooderBlock;
+import de.dafuqs.spectrum.blocks.bottomless_bundle.BottomlessBundleBlock;
 import de.dafuqs.spectrum.blocks.chests.CompactingChestBlock;
 import de.dafuqs.spectrum.blocks.chests.PrivateChestBlock;
 import de.dafuqs.spectrum.blocks.chests.RestockingChestBlock;
@@ -285,6 +286,7 @@ public class SpectrumBlocks {
 
 	// TECHNICAL WITHOUT CORRESPONDING ITEMS
 	public static final Block BLOCK_FLOODER = new BlockFlooderBlock(FabricBlockSettings.of(Material.STONE));
+	public static final Block BOTTOMLESS_BUNDLE = new BottomlessBundleBlock(FabricBlockSettings.of(Material.WOOL).hardness(2.0F).mapColor(MapColor.PALE_PURPLE).nonOpaque());
 	public static final Block WAND_LIGHT_BLOCK = new WandLightBlock(FabricBlockSettings.copyOf(Blocks.LIGHT).sounds(SpectrumBlockSoundGroups.WAND_LIGHT).breakInstantly().breakByHand(true));
 
 	// DECAY
@@ -774,6 +776,7 @@ public class SpectrumBlocks {
 		registerBlock("stuck_lightning_stone", STUCK_LIGHTNING_STONE);
 		registerBlock("wand_light", WAND_LIGHT_BLOCK);
 		registerBlock("block_flooder", BLOCK_FLOODER);
+		registerBlock("bottomless_bundle", BOTTOMLESS_BUNDLE);
 	}
 
 	private static void registerRedstone(FabricItemSettings fabricItemSettings) {
@@ -1429,14 +1432,14 @@ public class SpectrumBlocks {
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.WHITE_LAMP, RenderLayer.getTranslucent());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.YELLOW_LAMP, RenderLayer.getTranslucent());
 
-		// DECOSTONES
+		// Decostones
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.TOPAZ_DECOSTONE, RenderLayer.getTranslucent());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.AMETHYST_DECOSTONE, RenderLayer.getTranslucent());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.CITRINE_DECOSTONE, RenderLayer.getTranslucent());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.MOONSTONE_DECOSTONE, RenderLayer.getTranslucent());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.ONYX_DECOSTONE, RenderLayer.getTranslucent());
 		
-		// CHIMES
+		// Chimes
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.TOPAZ_CHIME, RenderLayer.getTranslucent());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.AMETHYST_CHIME, RenderLayer.getTranslucent());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.CITRINE_CHIME, RenderLayer.getTranslucent());
@@ -1461,8 +1464,8 @@ public class SpectrumBlocks {
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.STUCK_LIGHTNING_STONE, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.CLOVER, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.FOUR_LEAF_CLOVER, RenderLayer.getCutout());
-
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.ETHEREAL_PLATFORM, RenderLayer.getTranslucent());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.BOTTOMLESS_BUNDLE, RenderLayer.getCutout());
 		
 		// Shooting stars
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.COLORFUL_SHOOTING_STAR, RenderLayer.getCutout());

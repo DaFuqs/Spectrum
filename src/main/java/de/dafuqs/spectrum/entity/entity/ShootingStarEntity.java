@@ -210,9 +210,6 @@ public class ShootingStarEntity extends Entity {
 			if (!this.onGround) {
 				this.setVelocity(this.getVelocity().multiply(0.95D));
 			}
-			else {
-				this.setVelocity(this.getVelocity().multiply(0.9334, 1, 0.9334));
-			}
 		}
 		
 		this.move(MovementType.SELF, this.getVelocity());

@@ -5,6 +5,7 @@
     "advancement": "spectrum:milestones/reveal_sparklestone",
 	"secret": true,
 	"read_by_default": true,
+    "turnin": "spectrum:collect_sparklestone",
     "pages": [
         {
             "type": "spectrum:hint",
@@ -15,7 +16,7 @@
         },
         {
             "type": "spectrum:hint",
-			"title": "Concise Instruction",
+			"title": "Concise Instructions",
 			"cost": "minecraft:gold_ingot#24",
             "text": "It generates in all biomes in the center and upper layers of the overworld in large veins. You can even find it exposed in mountains."
         }

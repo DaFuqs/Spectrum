@@ -210,6 +210,9 @@ public class ShootingStarEntity extends Entity {
 			if (!this.onGround) {
 				this.setVelocity(this.getVelocity().multiply(0.95D));
 			}
+			else {
+				this.setVelocity(this.getVelocity().multiply(0.9334, 1, 0.9334));
+			}
 		}
 		
 		this.move(MovementType.SELF, this.getVelocity());
@@ -217,16 +220,16 @@ public class ShootingStarEntity extends Entity {
 		// make it bounce back
 		boolean spawnLoot = false;
 		if(this.onGround && !wasOnGround) {
-			this.addVelocity(0, -previousYVelocity * 0.5, 0);
+			this.addVelocity(0, -previousYVelocity * 0.9, 0);
 		}
 		if(Math.signum(this.getVelocity().x) != Math.signum(previousXVelocity)) {
-			this.addVelocity(-previousXVelocity * 0.5, 0, 0);
+			this.addVelocity(-previousXVelocity * 0.6, 0, 0);
 			if(Math.abs(previousXVelocity) > 0.5) {
 				spawnLoot = true;
 			}
 		}
 		if(Math.signum(this.getVelocity().z) != Math.signum(previousZVelocity)) {
-			this.addVelocity(0, 0, -previousZVelocity * 0.5);
+			this.addVelocity(0, 0, -previousZVelocity * 0.6);
 			if(!spawnLoot && Math.abs(previousZVelocity) > 0.5) {
 				spawnLoot = true;
 			}

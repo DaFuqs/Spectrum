@@ -2,9 +2,9 @@
 	"parent": "block/block",
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "spectrum:block/azurite_block_side",
-		"1": "spectrum:block/polished_basalt",
-		"particle": "spectrum:block/azurite_block_side"
+		"0": "#side",
+		"1": "#core",
+		"particle": "#core"
 	},
 	"elements": [
 		{

@@ -63,7 +63,7 @@ public class KnowledgeGemItem extends Item implements ExperienceStorageItem, Enc
 	
 	public int getTransferableExperiencePerTick(ItemStack itemStack) {
 		int quickChargeLevel = EnchantmentHelper.getLevel(Enchantments.QUICK_CHARGE, itemStack);
-		return (int) Math.pow(2, Math.min(10, quickChargeLevel));
+		return (int) (2 * Math.pow(2, Math.min(10, quickChargeLevel)));
 	}
 	
 	@Override

@@ -169,7 +169,7 @@ public class SpectrumItems {
 
 	// Magical Tools
 	public static final Item ENDER_BAG = new EnderBagItem(generalItemSettingsSingle);
-	public static final Item LIGHT_STAFF = new LightStaffItem(generalUncommonItemSettingsSingle);
+	public static final Item LIGHT_STAFF = new RadianceStaffItem(generalUncommonItemSettingsSingle);
 	public static final Item NATURES_STAFF = new NaturesStaffItem(generalUncommonItemSettingsSingle);
 	public static final Item PLACEMENT_STAFF = new PlacementStaffItem(generalUncommonItemSettingsSingle);
 	public static final Item EXCHANGE_STAFF = new ExchangeStaffItem(generalUncommonItemSettingsSingle);

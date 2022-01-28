@@ -33,7 +33,7 @@ import java.util.List;
 
 import static net.minecraft.state.property.Properties.WATERLOGGED;
 
-public class LightStaffItem extends Item implements EnchanterEnchantable {
+public class RadianceStaffItem extends Item implements EnchanterEnchantable {
 
 	public static int USE_DURATION = 12;
 	public static int REACH_STEP_DISTANCE = 4;
@@ -42,7 +42,7 @@ public class LightStaffItem extends Item implements EnchanterEnchantable {
 	
 	public static ItemStack COST = new ItemStack(SpectrumItems.SPARKLESTONE_GEM, 1);
 	
-	public LightStaffItem(Settings settings) {
+	public RadianceStaffItem(Settings settings) {
 		super(settings);
 	}
 	
@@ -85,31 +85,34 @@ public class LightStaffItem extends Item implements EnchanterEnchantable {
 				targetPos = targetPos.add(iteration - world.getRandom().nextInt(2 * iteration), iteration - world.getRandom().nextInt(2 * iteration), iteration - world.getRandom().nextInt(2 * iteration));
 				
 				if (world.getLightLevel(LightType.BLOCK, targetPos) < MIN_LIGHT_LEVEL) {
-					BlockState targetBlockState = world.getBlockState(targetPos);
-					
-					if (targetBlockState.isAir()) {
-						if (EnchantmentHelper.getLevel(Enchantments.INFINITY, stack) > 0 || InventoryHelper.removeFromInventory(playerEntity, COST)) {
-							world.setBlockState(targetPos, SpectrumBlocks.WAND_LIGHT_BLOCK.getDefaultState(), 3);
-							playSoundAndParticles(world, targetPos, playerEntity, useTimes, iteration);
-						} else {
-							playDenySound(world, playerEntity);
-						}
-						break;
-					} else if (targetBlockState.isOf(Blocks.WATER)) {
-						if (EnchantmentHelper.getLevel(Enchantments.INFINITY, stack) > 0 || InventoryHelper.removeFromInventory(playerEntity, COST)) {
-							world.setBlockState(targetPos, SpectrumBlocks.WAND_LIGHT_BLOCK.getDefaultState().with(WATERLOGGED, true), 3);
-							playSoundAndParticles(world, targetPos, playerEntity, useTimes, iteration);
-						} else {
-							playDenySound(world, playerEntity);
-						}
-						break;
+					if(placeLight(world, targetPos, playerEntity, stack)) {
+						playSoundAndParticles(world, targetPos, playerEntity, useTimes, iteration);
+					} else {
+						playDenySound(world, playerEntity);
 					}
+					break;
 				}
 			}
 		}
 	}
+	
+	public static boolean placeLight(World world, BlockPos targetPos, PlayerEntity playerEntity, ItemStack stack) {
+		BlockState targetBlockState = world.getBlockState(targetPos);
+		if (targetBlockState.isAir()) {
+			if (EnchantmentHelper.getLevel(Enchantments.INFINITY, stack) > 0 || InventoryHelper.removeFromInventory(playerEntity, COST)) {
+				world.setBlockState(targetPos, SpectrumBlocks.WAND_LIGHT_BLOCK.getDefaultState(), 3);
+				return true;
+			}
+		} else if (targetBlockState.isOf(Blocks.WATER)) {
+			if (EnchantmentHelper.getLevel(Enchantments.INFINITY, stack) > 0 || InventoryHelper.removeFromInventory(playerEntity, COST)) {
+				world.setBlockState(targetPos, SpectrumBlocks.WAND_LIGHT_BLOCK.getDefaultState().with(WATERLOGGED, true), 3);
+				return true;
+			}
+		}
+		return false;
+	}
 
-	private void playSoundAndParticles(World world, BlockPos targetPos, PlayerEntity playerEntity, int useTimes, int iteration) {
+	public static void playSoundAndParticles(World world, BlockPos targetPos, PlayerEntity playerEntity, int useTimes, int iteration) {
 		float pitch;
 		if (useTimes % 2 == 0) { // high ding <=> deep ding
 			pitch = Math.min(1.35F, 0.7F + 0.1F * useTimes);
@@ -120,7 +123,7 @@ public class LightStaffItem extends Item implements EnchanterEnchantable {
 		world.playSound(null, playerEntity.getX() + 0.5, playerEntity.getY() + 0.5, playerEntity.getZ() + 0.5, SpectrumSoundEvents.LIGHT_STAFF_PLACE, SoundCategory.PLAYERS, (float) Math.max(0.25, 1.0F-(float)iteration*0.1F), pitch);
 	}
 	
-	private void playDenySound(World world, PlayerEntity playerEntity) {
+	public static void playDenySound(World world, PlayerEntity playerEntity) {
 		world.playSound(null, playerEntity.getX(), playerEntity.getY(), playerEntity.getZ(), SpectrumSoundEvents.USE_FAIL, SoundCategory.PLAYERS, 1.0F, 0.8F + playerEntity.getRandom().nextFloat() * 0.4F);
 	}
 	

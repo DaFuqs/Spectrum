@@ -7,6 +7,7 @@ import de.dafuqs.spectrum.events.SpectrumGameEvents;
 import de.dafuqs.spectrum.inventories.SpectrumContainers;
 import de.dafuqs.spectrum.inventories.SpectrumScreenHandlerTypes;
 import de.dafuqs.spectrum.items.magic_items.ExchangeStaffItem;
+import de.dafuqs.spectrum.items.magic_items.RadianceStaffItem;
 import de.dafuqs.spectrum.loot.EnchantmentDrops;
 import de.dafuqs.spectrum.loot.SpectrumLootConditionTypes;
 import de.dafuqs.spectrum.networking.SpectrumC2SPackets;
@@ -31,6 +32,7 @@ import net.minecraft.fluid.Fluid;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
@@ -160,12 +162,24 @@ public class SpectrumCommon implements ModInitializer {
 		ColorRegistry.registerColorRegistries();
 		
 		AttackBlockCallback.EVENT.register((player, world, hand, pos, direction) -> {
-			if(!world.isClient && !player.isSpectator() && player.getMainHandStack().isOf(SpectrumItems.EXCHANGE_STAFF)) {
-				Optional<Block> blockTarget = ExchangeStaffItem.getBlockTarget(player.getMainHandStack());
-				if(blockTarget.isPresent()) {
-					ExchangeStaffItem.exchange(world, pos, player, blockTarget.get(), player.getMainHandStack(), true);
+			if(!world.isClient && !player.isSpectator()) {
+				if (player.getMainHandStack().isOf(SpectrumItems.EXCHANGE_STAFF)) {
+					Optional<Block> blockTarget = ExchangeStaffItem.getBlockTarget(player.getMainHandStack());
+					if (blockTarget.isPresent()) {
+						ExchangeStaffItem.exchange(world, pos, player, blockTarget.get(), player.getMainHandStack(), true);
+					}
+					return ActionResult.CONSUME;
+				} else if (player.getMainHandStack().isOf(SpectrumItems.LIGHT_STAFF)) {
+					if(!world.getBlockState(pos).isOf(SpectrumBlocks.WAND_LIGHT_BLOCK)) { // those get destroyed instead
+						BlockPos targetPos = pos.offset(direction);
+						if (RadianceStaffItem.placeLight(world, targetPos, player, player.getMainHandStack())) {
+							RadianceStaffItem.playSoundAndParticles(world, targetPos, player, world.random.nextInt(5), world.random.nextInt(5));
+						} else {
+							RadianceStaffItem.playDenySound(world, player);
+						}
+						return ActionResult.CONSUME;
+					}
 				}
-				return ActionResult.CONSUME;
 			}
 			return ActionResult.PASS;
 		});

@@ -47,6 +47,9 @@ public class WandLightBlock extends LightBlock {
 	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
 		if (!world.isClient) {
 			BlockState newState = state.cycle(LEVEL_15);
+			if(newState.get(LEVEL_15) == 0) { // lights with a level of 0 are absolutely
+				newState = newState.cycle(LEVEL_15);
+			}
 			world.playSound(null, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, SpectrumSoundEvents.LIGHT_STAFF_PLACE, SoundCategory.PLAYERS, 1.0F, (float) (0.75 + 0.05 * newState.get(LEVEL_15)));
 			world.setBlockState(pos, newState, Block.NOTIFY_LISTENERS);
 			return ActionResult.SUCCESS;

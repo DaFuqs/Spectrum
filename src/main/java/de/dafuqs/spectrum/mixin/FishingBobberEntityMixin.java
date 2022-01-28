@@ -18,7 +18,7 @@ public abstract class FishingBobberEntityMixin {
 	 * @param playerEntity
 	 * @param callbackInfoReturnable
 	 */
-	@Inject(at = @At("HEAD"), method = "Lnet/minecraft/entity/projectile/FishingBobberEntity;removeIfInvalid(Lnet/minecraft/entity/player/PlayerEntity;)Z", cancellable = true)
+	@Inject(at = @At("HEAD"), method = "removeIfInvalid(Lnet/minecraft/entity/player/PlayerEntity;)Z", cancellable = true)
 	private void removeIfInvalid(PlayerEntity playerEntity, CallbackInfoReturnable<Boolean> callbackInfoReturnable) {
 		ItemStack itemStack = playerEntity.getMainHandStack();
 		ItemStack itemStack2 = playerEntity.getOffHandStack();

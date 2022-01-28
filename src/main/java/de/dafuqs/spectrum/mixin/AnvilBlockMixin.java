@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(AnvilBlock.class)
 public class AnvilBlockMixin {
 
-	@Inject(at = @At("HEAD"), method = "Lnet/minecraft/block/AnvilBlock;getLandingState(Lnet/minecraft/block/BlockState;)Lnet/minecraft/block/BlockState;", cancellable = true)
+	@Inject(at = @At("HEAD"), method = "getLandingState(Lnet/minecraft/block/BlockState;)Lnet/minecraft/block/BlockState;", cancellable = true)
 	private static void makeBedrockAnvilUnbreakable(BlockState fallingState, CallbackInfoReturnable<BlockState> callbackInfoReturnable) {
 		if(fallingState.isOf(SpectrumBlocks.BEDROCK_ANVIL)) {
 			callbackInfoReturnable.setReturnValue(fallingState);

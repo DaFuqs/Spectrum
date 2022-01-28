@@ -18,6 +18,7 @@
     "FishingBobberEntityRendererMixin",
     "FluidTagsAccessor",
     "GeodesGenerateWithGemstoneOresMixin",
+    "GlassBottleItemMixin",
     "HorseBaseEntityMixin",
     "ImprovedCriticalEnchantmentMixin",
     "InfestedBlockMixin",
@@ -36,8 +37,8 @@
     "RecipeManagerMixin",
     "RedstoneOreMixin",
     "ServerPlayerEntityMixin",
-    "SpectrumServerWorldMixin",
     "SpawnerBlockMixin",
+    "SpectrumServerWorldMixin",
     "WorldRendererMixin"
   ],
   "client": [

@@ -1,0 +1,44 @@
+{
+  "display": {
+    "icon": {
+      "item": "spectrum:shooting_star_gemstone"
+    },
+    "frame": "goal",
+    "title": {
+      "translate": "advancements.spectrum.collect_all_shooting_star_variants.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.collect_all_shooting_star_variants.description"
+    }
+  },
+  "parent": "spectrum:collect_shooting_star",
+  "criteria": {
+    "has_glistering_shooting_star": {
+      "trigger":"minecraft:inventory_changed",
+      "conditions": { "items": [{ "items": [ "spectrum:shooting_star_glistering" ]}] }
+    },
+    "has_fiery_shooting_star": {
+      "trigger":"minecraft:inventory_changed",
+      "conditions": { "items": [{ "items": [ "spectrum:shooting_star_fiery" ]}] }
+    },
+    "has_colorful_shooting_star": {
+      "trigger":"minecraft:inventory_changed",
+      "conditions": { "items": [{ "items": [ "spectrum:shooting_star_colorful" ]}] }
+    },
+    "has_pristine_shooting_star": {
+      "trigger":"minecraft:inventory_changed",
+      "conditions": { "items": [{ "items": [ "spectrum:shooting_star_pristine" ]}] }
+    },
+    "has_gemstone_shooting_star": {
+      "trigger":"minecraft:inventory_changed",
+      "conditions": { "items": [{ "items": [ "spectrum:shooting_star_gemstone" ]}] }
+    }
+  },
+  "requirements": [
+    ["has_glistering_shooting_star"],
+    ["has_fiery_shooting_star"],
+    ["has_colorful_shooting_star"],
+    ["has_pristine_shooting_star"],
+    ["has_gemstone_shooting_star"]
+  ]
+}

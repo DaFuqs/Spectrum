@@ -1103,7 +1103,7 @@
   "advancements.spectrum.collect_scarlet.title": "Heavy Load",
   "advancements.spectrum.collect_scarlet.description": "Retrieve Crimtane from the Depths of the Nether",
   "advancements.spectrum.collect_shooting_star.title": "Starry Skies",
-  "advancements.spectrum.collect_shooting_star.description": "Find the Remnants of a Shooting Star",
+  "advancements.spectrum.collect_shooting_star.description": "Gather the precious Remnants of a Shooting Star",
   "advancements.spectrum.collect_sparklestone.title": "More than meets the eye",
   "advancements.spectrum.collect_sparklestone.description": "You never noticed this Ore before at all.... weird. Is there more to the world than you previously thought?",
   "advancements.spectrum.collect_vegetal.title": "Organic Matter",
@@ -1222,6 +1222,8 @@
   "advancements.spectrum.finish_progression_without_tips.description": "Complete the entirety of Spectrum without using any tips. Wow! Enjoy your small gift. :)",
   "advancements.spectrum.create_budding_onyx.title": "Growing darkness",
   "advancements.spectrum.create_budding_onyx.description": "Use Spectral Shards to create Budding Onyx. Seems like you are not relying solely on Fusing anymore!",
+  "advancements.spectrum.collect_all_shooting_star_variants.title": "Star Child",
+  "advancements.spectrum.collect_all_shooting_star_variants.description": "Crouch-click on a Shooting Star to pick it up. Can you collect all variants?",
 
   "______name_changes_for_vanilla_blocks" : "Changes:",
   "block.minecraft.polished_basalt": "Basalt Pillar",

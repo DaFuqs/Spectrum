@@ -208,23 +208,23 @@ public class ParticleSpawnerScreen extends HandledScreen<ParticleSpawnerScreenHa
 	  int i = (this.width - this.backgroundWidth) / 2 + 3;
 	  int j = (this.height - this.backgroundHeight) / 2 + 3;
 
-	  amountField = addTextFieldWidget(i+110, j+47, new LiteralText("Amount"), String.valueOf(blockEntity.particlesPerSecond), this::isPositiveDecimalNumber);
-	  positionXField = addTextFieldWidget(i+61, j+74, new LiteralText("X Position"), String.valueOf(blockEntity.particleSourcePosition.getX()), this::isDecimalNumber);
-	  positionYField = addTextFieldWidget(i+96, j+74, new LiteralText("Y Position"), String.valueOf(blockEntity.particleSourcePosition.getY()), this::isDecimalNumber);
-	  positionZField = addTextFieldWidget(i+131, j+74, new LiteralText("Z Position"), String.valueOf(blockEntity.particleSourcePosition.getZ()), this::isDecimalNumber);
-	  positionXVarianceField = addTextFieldWidget(i+69, j+94, new LiteralText("X Position Variance"), String.valueOf(blockEntity.particleSourcePositionVariance.getX()), this::isPositiveDecimalNumber);
-	  positionYVarianceField = addTextFieldWidget(i+104, j+94, new LiteralText("Y Position Variance"), String.valueOf(blockEntity.particleSourcePositionVariance.getY()), this::isPositiveDecimalNumber);
-	  positionZVarianceField = addTextFieldWidget(i+140, j+94, new LiteralText("Z Position Variance"), String.valueOf(blockEntity.particleSourcePositionVariance.getZ()), this::isPositiveDecimalNumber);
-	  velocityXField = addTextFieldWidget(i+61, j+114, new LiteralText("X Velocity"), String.valueOf(blockEntity.velocity.getX()), this::isDecimalNumber);
-	  velocityYField = addTextFieldWidget(i+96, j+114, new LiteralText("Y Velocity"), String.valueOf(blockEntity.velocity.getY()), this::isDecimalNumber);
-	  velocityZField = addTextFieldWidget(i+131, j+114, new LiteralText("Z Velocity"), String.valueOf(blockEntity.velocity.getZ()), this::isDecimalNumber);
-	  velocityXVarianceField = addTextFieldWidget(i+69, j+134, new LiteralText("X Velocity Variance"), String.valueOf(blockEntity.velocityVariance.getX()), this::isPositiveDecimalNumber);
-	  velocityYVarianceField = addTextFieldWidget(i+104, j+134, new LiteralText("Y Velocity Variance"), String.valueOf(blockEntity.velocityVariance.getY()), this::isPositiveDecimalNumber);
-	  velocityZVarianceField = addTextFieldWidget(i+140, j+134, new LiteralText("Z Velocity Variance"), String.valueOf(blockEntity.velocityVariance.getZ()), this::isPositiveDecimalNumber);
-	  scale = addTextFieldWidget(i+55, j+158, new LiteralText("Scale"), String.valueOf(blockEntity.scale), this::isPositiveDecimalNumber);
-	  scaleVariance = addTextFieldWidget(i+139, j+158, new LiteralText("Scale Variance"), String.valueOf(blockEntity.scaleVariance), this::isPositiveDecimalNumber);
-	  duration = addTextFieldWidget(i+55, j+178, new LiteralText("Duration"), String.valueOf(blockEntity.lifetimeTicks), this::isPositiveWholeNumber);
-	  durationVariance = addTextFieldWidget(i+139, j+178, new LiteralText("Duration Variance"), String.valueOf(blockEntity.lifetimeVariance), this::isPositiveWholeNumber);
+	  amountField = addTextFieldWidget(i+110, j+47, new LiteralText("Amount"), String.valueOf(blockEntity.particlesPerSecond), this::isPositiveDecimalNumberUnderThousand);
+	  positionXField = addTextFieldWidget(i+61, j+74, new LiteralText("X Position"), String.valueOf(blockEntity.particleSourcePosition.getX()), this::isAbsoluteDecimalNumberThousand);
+	  positionYField = addTextFieldWidget(i+96, j+74, new LiteralText("Y Position"), String.valueOf(blockEntity.particleSourcePosition.getY()), this::isAbsoluteDecimalNumberThousand);
+	  positionZField = addTextFieldWidget(i+131, j+74, new LiteralText("Z Position"), String.valueOf(blockEntity.particleSourcePosition.getZ()), this::isAbsoluteDecimalNumberThousand);
+	  positionXVarianceField = addTextFieldWidget(i+69, j+94, new LiteralText("X Position Variance"), String.valueOf(blockEntity.particleSourcePositionVariance.getX()), this::isAbsoluteDecimalNumberThousand);
+	  positionYVarianceField = addTextFieldWidget(i+104, j+94, new LiteralText("Y Position Variance"), String.valueOf(blockEntity.particleSourcePositionVariance.getY()), this::isAbsoluteDecimalNumberThousand);
+	  positionZVarianceField = addTextFieldWidget(i+140, j+94, new LiteralText("Z Position Variance"), String.valueOf(blockEntity.particleSourcePositionVariance.getZ()), this::isAbsoluteDecimalNumberThousand);
+	  velocityXField = addTextFieldWidget(i+61, j+114, new LiteralText("X Velocity"), String.valueOf(blockEntity.velocity.getX()), this::isAbsoluteDecimalNumberThousand);
+	  velocityYField = addTextFieldWidget(i+96, j+114, new LiteralText("Y Velocity"), String.valueOf(blockEntity.velocity.getY()), this::isAbsoluteDecimalNumberThousand);
+	  velocityZField = addTextFieldWidget(i+131, j+114, new LiteralText("Z Velocity"), String.valueOf(blockEntity.velocity.getZ()), this::isAbsoluteDecimalNumberThousand);
+	  velocityXVarianceField = addTextFieldWidget(i+69, j+134, new LiteralText("X Velocity Variance"), String.valueOf(blockEntity.velocityVariance.getX()), this::isAbsoluteDecimalNumberThousand);
+	  velocityYVarianceField = addTextFieldWidget(i+104, j+134, new LiteralText("Y Velocity Variance"), String.valueOf(blockEntity.velocityVariance.getY()), this::isAbsoluteDecimalNumberThousand);
+	  velocityZVarianceField = addTextFieldWidget(i+140, j+134, new LiteralText("Z Velocity Variance"), String.valueOf(blockEntity.velocityVariance.getZ()), this::isAbsoluteDecimalNumberThousand);
+	  scale = addTextFieldWidget(i+55, j+158, new LiteralText("Scale"), String.valueOf(blockEntity.scale), this::isPositiveDecimalNumberUnderTen);
+	  scaleVariance = addTextFieldWidget(i+139, j+158, new LiteralText("Scale Variance"), String.valueOf(blockEntity.scaleVariance), this::isPositiveDecimalNumberUnderTen);
+	  duration = addTextFieldWidget(i+55, j+178, new LiteralText("Duration"), String.valueOf(blockEntity.lifetimeTicks), this::isPositiveWholeNumberUnderThousand);
+	  durationVariance = addTextFieldWidget(i+139, j+178, new LiteralText("Duration Variance"), String.valueOf(blockEntity.lifetimeVariance), this::isPositiveWholeNumberUnderThousand);
 	  gravity = addTextFieldWidget(i+55, j+198, new LiteralText("Gravity"), String.valueOf(blockEntity.gravity), this::isBetweenZeroAndOne);
 
 	  collisionsButton = new ButtonWidget(i+142, j+194, 16, 16, new LiteralText("Collisions"), this::collisionButtonPressed);
@@ -271,13 +271,13 @@ public class ParticleSpawnerScreen extends HandledScreen<ParticleSpawnerScreenHa
 		 particleSelectionIndex = selectionIndex;
 	  }
    }
-
-   private void navigationButtonPressed(ButtonWidget buttonWidget) {
-	  if(buttonWidget == forwardButton) {
-		 activeParticlePage = (activeParticlePage + 1) % ((AVAILABLE_PARTICLES.size() / PARTICLES_PER_PAGE)+1);
-	  } else {
-		 activeParticlePage = (activeParticlePage - 1) % ((AVAILABLE_PARTICLES.size() / PARTICLES_PER_PAGE)+1);
-	  }
+	
+	private void navigationButtonPressed(ButtonWidget buttonWidget) {
+		if(buttonWidget == forwardButton) {
+			activeParticlePage = (activeParticlePage + 1) % ((AVAILABLE_PARTICLES.size() / PARTICLES_PER_PAGE)+1);
+		} else {
+			activeParticlePage = (activeParticlePage - 1) % ((AVAILABLE_PARTICLES.size() / PARTICLES_PER_PAGE)+1);
+		}
    }
 
    private @NotNull TextFieldWidget addTextFieldWidget(int x, int y, Text text, String defaultText, Predicate<String> textPredicate) {
@@ -318,68 +318,99 @@ public class ParticleSpawnerScreen extends HandledScreen<ParticleSpawnerScreenHa
 	  this.onValuesChanged();
    }
 
-   private void onTextBoxValueChanged(@NotNull String newValue) {
+	private void onTextBoxValueChanged(@NotNull String newValue) {
 	  onValuesChanged();
-   }
-
-   protected boolean isDecimalNumber(@NotNull String text) {
+	}
+	
+	protected boolean isDecimalNumber(@NotNull String text) {
 	  return text.matches("^(-)?\\d*+(?:\\.\\d*)?$");
    }
-
-   protected boolean isPositiveDecimalNumber(@NotNull String text) {
+	
+	private boolean isPositiveDecimalNumberUnderThousand(String text) {
+		try {
+			return Double.parseDouble(text) < 1000;
+		} catch (NumberFormatException e) {
+			return false;
+		}
+	}
+	private boolean isAbsoluteDecimalNumberThousand(String text) {
+		try {
+			return Math.abs(Double.parseDouble(text)) < 1000;
+		} catch (NumberFormatException e) {
+			return false;
+		}
+	}
+	
+	private boolean isPositiveDecimalNumberUnderTen(String text) {
+		try {
+			return Double.parseDouble(text) < 10;
+		} catch (NumberFormatException e) {
+			return false;
+		}
+	}
+	
+	protected boolean isPositiveDecimalNumber(@NotNull String text) {
 	  return text.matches("^\\d*+(?:\\.\\d*)?$");
-   }
-
-   protected boolean isPositiveWholeNumber(@NotNull String text) {
+	}
+	
+	protected boolean isPositiveWholeNumber(@NotNull String text) {
 	  return text.matches("^\\d*$");
-   }
-
-   protected boolean isBetweenZeroAndOne(@NotNull String text) {
+	}
+	
+	protected boolean isPositiveWholeNumberUnderThousand(@NotNull String text) {
+		try {
+			return Integer.parseInt(text) < 1000;
+		} catch (NumberFormatException e) {
+			return false;
+		}
+	}
+	
+	protected boolean isBetweenZeroAndOne(@NotNull String text) {
 	  try {
 		 float f = Float.parseFloat(text);
 		 return f >= 0 && f <= 1;
 	  } catch (NumberFormatException e) {
 		 return false;
 	  }
-   }
-
-   /**
+	}
+	
+	/**
 	* Send these changes to the server to distribute to all clients
 	*/
-   private void onValuesChanged() {
-	  try {
-		 PacketByteBuf packetByteBuf = PacketByteBufs.create();
-		 writeSettings(packetByteBuf);
-		 ClientPlayNetworking.send(SpectrumC2SPackets.CHANGE_PARTICLE_SPAWNER_SETTINGS_PACKET_ID, packetByteBuf);
-	  } catch (Exception e) {
-		 // the text boxes currently are not parseable as-is.
-		 // wait until the player finished setting everything up
-	  }
-   }
-
-   @Contract("_ -> param1")
-   private @NotNull PacketByteBuf writeSettings(@NotNull PacketByteBuf packetByteBuf) {
-	  packetByteBuf.writeString(AVAILABLE_PARTICLES.get(particleSelectionIndex).toString());
-	  packetByteBuf.writeFloat(Float.parseFloat(amountField.getText()));
-	  packetByteBuf.writeFloat(Float.parseFloat(positionXField.getText()));
-	  packetByteBuf.writeFloat(Float.parseFloat(positionYField.getText()));
-	  packetByteBuf.writeFloat(Float.parseFloat(positionZField.getText()));
-	  packetByteBuf.writeFloat(Float.parseFloat(positionXVarianceField.getText()));
-	  packetByteBuf.writeFloat(Float.parseFloat(positionYVarianceField.getText()));
-	  packetByteBuf.writeFloat(Float.parseFloat(positionZVarianceField.getText()));
-	  packetByteBuf.writeFloat(Float.parseFloat(velocityXField.getText()));
-	  packetByteBuf.writeFloat(Float.parseFloat(velocityYField.getText()));
-	  packetByteBuf.writeFloat(Float.parseFloat(velocityZField.getText()));
-	  packetByteBuf.writeFloat(Float.parseFloat(velocityXVarianceField.getText()));
-	  packetByteBuf.writeFloat(Float.parseFloat(velocityYVarianceField.getText()));
-	  packetByteBuf.writeFloat(Float.parseFloat(velocityZVarianceField.getText()));
-	  packetByteBuf.writeFloat(Float.parseFloat(scale.getText()));
-	  packetByteBuf.writeFloat(Float.parseFloat(scaleVariance.getText()));
-	  packetByteBuf.writeInt(Integer.parseInt(duration.getText()));
-	  packetByteBuf.writeInt(Integer.parseInt(durationVariance.getText()));
-	  packetByteBuf.writeFloat(Float.parseFloat(gravity.getText()));
-	  packetByteBuf.writeBoolean(collisionsEnabled);
-	  return packetByteBuf;
-   }
+	private void onValuesChanged() {
+		try {
+			PacketByteBuf packetByteBuf = PacketByteBufs.create();
+			writeSettings(packetByteBuf);
+			ClientPlayNetworking.send(SpectrumC2SPackets.CHANGE_PARTICLE_SPAWNER_SETTINGS_PACKET_ID, packetByteBuf);
+		} catch (Exception e) {
+			// the text boxes currently are not parseable as-is.
+			// wait until the player finished setting everything up
+		}
+	}
+	
+	@Contract("_ -> param1")
+	private @NotNull PacketByteBuf writeSettings(@NotNull PacketByteBuf packetByteBuf) {
+		packetByteBuf.writeString(AVAILABLE_PARTICLES.get(particleSelectionIndex).toString());
+		packetByteBuf.writeFloat(Float.parseFloat(amountField.getText()));
+		packetByteBuf.writeFloat(Float.parseFloat(positionXField.getText()));
+		packetByteBuf.writeFloat(Float.parseFloat(positionYField.getText()));
+		packetByteBuf.writeFloat(Float.parseFloat(positionZField.getText()));
+		packetByteBuf.writeFloat(Float.parseFloat(positionXVarianceField.getText()));
+		packetByteBuf.writeFloat(Float.parseFloat(positionYVarianceField.getText()));
+		packetByteBuf.writeFloat(Float.parseFloat(positionZVarianceField.getText()));
+		packetByteBuf.writeFloat(Float.parseFloat(velocityXField.getText()));
+		packetByteBuf.writeFloat(Float.parseFloat(velocityYField.getText()));
+		packetByteBuf.writeFloat(Float.parseFloat(velocityZField.getText()));
+		packetByteBuf.writeFloat(Float.parseFloat(velocityXVarianceField.getText()));
+		packetByteBuf.writeFloat(Float.parseFloat(velocityYVarianceField.getText()));
+		packetByteBuf.writeFloat(Float.parseFloat(velocityZVarianceField.getText()));
+		packetByteBuf.writeFloat(Float.parseFloat(scale.getText()));
+		packetByteBuf.writeFloat(Float.parseFloat(scaleVariance.getText()));
+		packetByteBuf.writeInt(Integer.parseInt(duration.getText()));
+		packetByteBuf.writeInt(Integer.parseInt(durationVariance.getText()));
+		packetByteBuf.writeFloat(Float.parseFloat(gravity.getText()));
+		packetByteBuf.writeBoolean(collisionsEnabled);
+		return packetByteBuf;
+	}
 
 }

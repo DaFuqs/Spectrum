@@ -45,8 +45,8 @@ dependencies {
 	modCompileOnly "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"
 	modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"
 
-	// breaks outside of dev env currently.
-	modImplementation include("com.github.devs-immortal:Incubus-Core:${project.incubus_core_version}")
+	// still breaks outside of dev env still currently.
+	//modImplementation include("com.github.devs-immortal:Incubus-Core:${project.incubus_core_version}")
 
 	// Soft dependencies:
 	// https://maven.blamejared.com/net/darkhax/enchdesc/

@@ -13,7 +13,7 @@ public class SpectrumConfig implements ConfigData {
 	@Comment("""
 The heights where citrine and topaz geodes will spawn
 By default citrine will generate slightly below sea level (y=32-60)
-while topaz will generate at the top of mountains (everywhere from y=90+)
+while topaz will generate at the top of mountains (everywhere from y=82+)
 if the worldgen has lots of high mountains consider raising the TopazGeodeMinFixedGenerationHeight""")
 	public int CitrineGeodeMinAboveBottomGenerationHeight = 96;
 	public int CitrineGeodeFixedMaxGenerationHeight = 60;
@@ -47,7 +47,7 @@ Better to let players stumble about them organically instead of forcing it.""")
 
 	@Comment("""
 Shooting star spawns are checked every night between time 13000 and 22000, every 100 ticks (so 90 chances per night).
-By default, there is a 0.02 ^= 2 % chance at each of those check times. Making it ~3 shooting star spawns 
+By default, there is a 0.02 ^= 2 % chance at each of those check times. Making it ~3 shooting star spawns
 per night per player that unlocked the required progression.""")
 	public float ShootingStarChance = 0.02F;
 

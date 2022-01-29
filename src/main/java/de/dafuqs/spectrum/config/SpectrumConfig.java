@@ -17,12 +17,12 @@ while topaz will generate at the top of mountains (everywhere from y=90+)
 if the worldgen has lots of high mountains consider raising the TopazGeodeMinFixedGenerationHeight""")
 	public int CitrineGeodeMinAboveBottomGenerationHeight = 96;
 	public int CitrineGeodeFixedMaxGenerationHeight = 60;
-	public int TopazGeodeMinFixedGenerationHeight = 85;
+	public int TopazGeodeMinFixedGenerationHeight = 82;
 	public int TopazGeodeMaxBelowTopGenerationHeight = 0;
 	
 	@Comment("Every x chunks there is a chance for a geode to generate, Moonstone geodes do not spawn in the Overworld")
 	public int TopazGeodeChunkChance = 7;
-	public int CitrineGeodeChunkChance = 60;
+	public int CitrineGeodeChunkChance = 50;
 	public int MoonstoneGeodeChunkChance = 35;
 	
 	@Comment("The amount of colored tree patches to generate every X chunks")

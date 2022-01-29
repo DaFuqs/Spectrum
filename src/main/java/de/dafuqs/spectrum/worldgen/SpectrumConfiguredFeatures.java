@@ -257,7 +257,7 @@ public class SpectrumConfiguredFeatures {
 		Identifier topazGeodeFeatureIdentifier = new Identifier(SpectrumCommon.MOD_ID, "topaz_geode");
 		Identifier moonstoneGeodeFeatureIdentifier = new Identifier(SpectrumCommon.MOD_ID, "moonstone_geode");
 		
-		CITRINE_GEODE = Feature.GEODE.configure(new GeodeFeatureConfig(
+		CITRINE_GEODE = SpectrumFeatures.AIR_CHECK_GEODE.configure(new GeodeFeatureConfig(
 				new GeodeLayerConfig(
 						BlockStateProvider.of(AIR),
 						BlockStateProvider.of(CITRINE_BLOCK),
@@ -276,7 +276,7 @@ public class SpectrumConfiguredFeatures {
 				-16, 16, 0.05D, 0)
 		);
 		
-		TOPAZ_GEODE = Feature.GEODE.configure(new GeodeFeatureConfig(
+		TOPAZ_GEODE = SpectrumFeatures.AIR_CHECK_GEODE.configure(new GeodeFeatureConfig(
 				new GeodeLayerConfig(
 						BlockStateProvider.of(AIR),
 						BlockStateProvider.of(TOPAZ_BLOCK),

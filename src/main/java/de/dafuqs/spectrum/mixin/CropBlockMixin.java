@@ -25,6 +25,7 @@ public class CropBlockMixin {
 		}
 	}
 
+	// TODO: Redirect bad
 	@Redirect(method= "getAvailableMoisture(Lnet/minecraft/block/Block;Lnet/minecraft/world/BlockView;Lnet/minecraft/util/math/BlockPos;)F", at=@At(value="INVOKE", target="Lnet/minecraft/block/BlockState;isOf(Lnet/minecraft/block/Block;)Z"))
 	private static boolean getAvailableMoistureForCustomFarmland(@NotNull BlockState blockState, Block block) {
 		return blockState.isOf(block) || blockState.getBlock() instanceof ExtraTickFarmlandBlock;

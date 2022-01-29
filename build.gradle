@@ -22,10 +22,14 @@ repositories {
 		url = 'https://maven.blamejared.com'
 	}
 	maven { url 'https://maven.wispforest.io/' } // owo lib
-	maven { url "https://jitpack.io" } // incubus core
+	maven { url "https://jitpack.io" }
+	mavenCentral() // incubus core
 }
 
 dependencies {
+	// jetbrains annotations @Nullabe @NotNull
+	implementation 'org.jetbrains:annotations:22.0.0'
+
 	// fabric
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
 	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"

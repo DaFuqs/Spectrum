@@ -16,19 +16,20 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 public abstract class DecayBlock extends Block {
 
 	/**
-	 * Block state property
+	 * Since Tag is not comparable we can not use a SortedMap for decayConversions
+	 * here and therefore have to use an additional list for check order
 	 */
-	protected final HashMap<Tag<Block>, BlockState> decayConversions = new HashMap<>();
+	protected final List<Tag<Block>> decayConversionsList = new ArrayList<>();
 	/**
 	 * Decay can only convert those blocks to more decay
 	 */
+	protected final HashMap<Tag<Block>, BlockState> decayConversions = new HashMap<>();
+
 	protected final Tag<Block> whiteListBlockTag;
 	/**
 	 * Decay is blocked by those blocks and can't jump over to them
@@ -52,6 +53,7 @@ public abstract class DecayBlock extends Block {
 	 * @param conversionState The block state the source block is converted to
 	 */
 	public void addDecayConversion(Tag<Block> sourceBlockTag, BlockState conversionState) {
+		this.decayConversionsList.add(sourceBlockTag);
 		this.decayConversions.put(sourceBlockTag, conversionState);
 	}
 
@@ -84,9 +86,10 @@ public abstract class DecayBlock extends Block {
 					&& (currentBlockState.getBlock() == Blocks.BEDROCK || (currentBlockState.getBlock().getHardness() > -1.0F && currentBlockState.getBlock().getBlastResistance() < 3600000.0F))) {
 				
 				BlockState destinationBlockState = getSpreadState(state);
-				for (Map.Entry<Tag<Block>, BlockState> tagEntry : decayConversions.entrySet()) {
-					if (Support.hasBlockTag(currentBlockState, tagEntry.getKey())) {
-						destinationBlockState = tagEntry.getValue();
+				for (Tag<Block> currentCheckTag : this.decayConversionsList) {
+					BlockState targetState = decayConversions.get(currentCheckTag);
+					if (Support.hasBlockTag(currentBlockState, currentCheckTag)) {
+						destinationBlockState = targetState;
 						break;
 					}
 				}

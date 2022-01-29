@@ -55,11 +55,12 @@ public class FailingBlock extends DecayBlock {
 		setDefaultState(getStateManager().getDefaultState().with(AGE, 0).with(DECAY_STATE, DecayConversion.DEFAULT));
 		
 		// consuming obsidian sets the "age" back to 0, like it consuming strength
-		BlockState destinationBlockState = this.getDefaultState().with(DECAY_STATE, DecayConversion.OBSIDIAN);
-		addDecayConversion(SpectrumBlockTags.DECAY_OBSIDIAN_CONVERSIONS, destinationBlockState);
-
 		BlockState destinationBlockState2 = this.getDefaultState().with(DECAY_STATE, DecayConversion.CRYING_OBSIDIAN);
-		addDecayConversion(SpectrumBlockTags.DECAY_CRYING_OBSIDIAN_CONVERSIONS, destinationBlockState2);
+		addDecayConversion(SpectrumBlockTags.FAILING_SPECIAL_CONVERSIONS, destinationBlockState2);
+		
+		BlockState destinationBlockState = this.getDefaultState().with(DECAY_STATE, DecayConversion.OBSIDIAN);
+		addDecayConversion(SpectrumBlockTags.FAILING_CONVERSIONS, destinationBlockState);
+
 	}
 	
 	public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {

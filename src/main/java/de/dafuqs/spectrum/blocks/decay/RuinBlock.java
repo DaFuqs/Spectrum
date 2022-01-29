@@ -52,7 +52,7 @@ public class RuinBlock extends DecayBlock {
 		setDefaultState(getStateManager().getDefaultState().with(DECAY_STATE, DecayConversion.DEFAULT));
 		
 		BlockState destinationBlockState = this.getDefaultState().with(DECAY_STATE, DecayConversion.BEDROCK);
-		addDecayConversion(SpectrumBlockTags.DECAY_BEDROCK_CONVERSIONS, destinationBlockState);
+		addDecayConversion(SpectrumBlockTags.RUIN_BEDROCK_CONVERSIONS, destinationBlockState);
 	}
 	
 	public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {

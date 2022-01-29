@@ -15,13 +15,14 @@ public class SpectrumBlockTags {
 	// DECAY
 	public static Tag<Block> DECAY;
 	public static Tag<Block> FADING_CONVERSIONS;
+	public static Tag<Block> FADING_SPECIAL_CONVERSIONS;
 	public static Tag<Block> MAGICAL_LEAVES;
 	public static Tag<Block> FAILING_SAFE;
-	public static Tag<Block> DECAY_OBSIDIAN_CONVERSIONS;
-	public static Tag<Block> DECAY_CRYING_OBSIDIAN_CONVERSIONS;
+	public static Tag<Block> FAILING_CONVERSIONS;
+	public static Tag<Block> FAILING_SPECIAL_CONVERSIONS;
 	public static Tag<Block> RUIN_SAFE;
 	public static Tag<Block> TERROR_SAFE;
-	public static Tag<Block> DECAY_BEDROCK_CONVERSIONS;
+	public static Tag<Block> RUIN_BEDROCK_CONVERSIONS;
 	public static Tag<Block> NATURES_STAFF_TICKABLE;
 	public static Tag<Block> NATURES_STAFF_STACKABLE;
 	
@@ -42,17 +43,21 @@ public class SpectrumBlockTags {
 		// DECAY
 		DECAY = getReference("decay");
 		FADING_CONVERSIONS = getReference("fading_conversions");
+		FADING_SPECIAL_CONVERSIONS = getReference("fading_special_conversions");
 		FAILING_SAFE = getReference("failing_safe");
-		MAGICAL_LEAVES = getReference("magical_leaves");
-		DECAY_OBSIDIAN_CONVERSIONS = getReference("decay_obsidian_conversions");
-		DECAY_CRYING_OBSIDIAN_CONVERSIONS = getReference("decay_crying_obsidian_conversions");
+		FAILING_CONVERSIONS = getReference("failing_conversions");
+		FAILING_SPECIAL_CONVERSIONS = getReference("failing_special_conversions");
 		RUIN_SAFE = getReference("ruin_safe");
 		TERROR_SAFE = getReference("terror_safe");
-		DECAY_BEDROCK_CONVERSIONS = getReference("decay_bedrock_conversions");
+		RUIN_BEDROCK_CONVERSIONS = getReference("decay_bedrock_conversions");
+		
+		// MISC
+		MAGICAL_LEAVES = getReference("magical_leaves");
 		NATURES_STAFF_TICKABLE = getReference("natures_staff_tickable");
 		NATURES_STAFF_STACKABLE = getReference("natures_staff_stackable");
 		BUILDING_STAFFS_BLACKLISTED = getReference("building_staffs_blacklisted");
 		
+		// DEBUG
 		EXEMPT_FROM_MINEABLE_DEBUG_CHECK = getReference("exempt_from_mineable_debug_check");
 		EXEMPT_FROM_LOOT_TABLE_DEBUG_CHECK = getReference("exempt_from_loot_table_debug_check");
 	}

@@ -8,7 +8,7 @@
       "item": "spectrum:lightning_stone"
     }
   ],
-  "required_advancement": "spectrum:midgame/collect_lightning_stone",
+  "required_advancement": "spectrum:progression/weather/weather_thunder",
   "world_conditions": [ "not_thunder" ],
   "start_crafting_effect": "single_visual_explosion_on_shrine",
   "during_crafting_effects": [ "lightning_on_shrine", "lightning_around_shrine" ],

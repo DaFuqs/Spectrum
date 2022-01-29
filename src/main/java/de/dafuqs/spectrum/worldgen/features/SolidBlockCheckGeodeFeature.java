@@ -28,7 +28,7 @@ public class SolidBlockCheckGeodeFeature extends GeodeFeature {
 			BlockPos offsetPos = sourcePos.offset(direction, distance);
 			BlockState blockStateAtPos = world.getBlockState(offsetPos);
 			
-			if(blockStateAtPos.isAir() || !blockStateAtPos.isSolidBlock(world, offsetPos)) {
+			if(blockStateAtPos.isAir() || !blockStateAtPos.isFullCube(world, offsetPos)) {
 				airBlocks++;
 				if(airBlocks > MAX_NON_SOLID_BLOCKS) {
 					return false;
@@ -39,7 +39,7 @@ public class SolidBlockCheckGeodeFeature extends GeodeFeature {
 		// one additional check double as high to prevent them sticking out of the ground a bit more often
 		BlockPos upperPos = sourcePos.up(distance + 4);
 		BlockState blockStateAtPos = world.getBlockState(upperPos);
-		if(blockStateAtPos.isAir() || !blockStateAtPos.isSolidBlock(world, upperPos)) {
+		if(blockStateAtPos.isAir() || !blockStateAtPos.isFullCube(world, upperPos)) {
 			airBlocks++;
 			if(airBlocks > MAX_NON_SOLID_BLOCKS) {
 				return false;

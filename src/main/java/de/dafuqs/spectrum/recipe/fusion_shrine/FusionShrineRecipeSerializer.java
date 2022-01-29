@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.recipe.fusion_shrine;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.recipe.RecipeUtils;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.Fluids;
@@ -16,6 +17,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.registry.Registry;
+import org.apache.logging.log4j.Level;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,9 +61,12 @@ public class FusionShrineRecipeSerializer<T extends FusionShrineRecipe> implemen
 			noBenefitsFromYieldUpgrades = JsonHelper.getBoolean(jsonObject, "disable_yield_upgrades", false);
 		}
 		
-		Identifier requiredAdvancementIdentifier = null;
+		Identifier requiredAdvancementIdentifier;
 		if(JsonHelper.hasString(jsonObject, "required_advancement")) {
 			requiredAdvancementIdentifier = Identifier.tryParse(JsonHelper.getString(jsonObject, "required_advancement"));
+		} else {
+			SpectrumCommon.log(Level.WARN, "Fusion Shrine Recipe " + identifier + " has no unlock advancement set. Will be set to impossible");
+			requiredAdvancementIdentifier = new Identifier(SpectrumCommon.MOD_ID, "impossible");
 		}
 		List<FusionShrineRecipeWorldCondition> worldConditions = new ArrayList<>();
 		if(JsonHelper.hasArray(jsonObject, "world_conditions")) {

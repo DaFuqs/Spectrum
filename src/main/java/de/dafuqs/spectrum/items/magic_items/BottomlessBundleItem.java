@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.items.magic_items;
 
+import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.Support;
 import de.dafuqs.spectrum.blocks.enchanter.EnchanterEnchantable;
 import de.dafuqs.spectrum.interfaces.InventoryInsertionAcceptor;
@@ -9,7 +10,9 @@ import de.dafuqs.spectrum.registries.SpectrumEnchantments;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.DispenserBlock;
 import net.minecraft.block.ShapeContext;
+import net.minecraft.block.dispenser.FallibleItemDispenserBehavior;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.client.item.TooltipData;
 import net.minecraft.enchantment.Enchantment;
@@ -31,10 +34,13 @@ import net.minecraft.stat.Stats;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.*;
+import net.minecraft.util.math.BlockPointer;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
+import org.apache.logging.log4j.Level;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -415,5 +421,27 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 	public int getEnchantability() {
 		return 5;
 	}
+	
+	public static class BottomlessBundlePlacementDispenserBehavior extends FallibleItemDispenserBehavior {
+		
+		protected ItemStack dispenseSilently(BlockPointer pointer, ItemStack stack) {
+			this.setSuccess(false);
+			Item item = stack.getItem();
+			if (item instanceof BottomlessBundleItem bottomlessBundleItem) {
+				Direction direction = pointer.getBlockState().get(DispenserBlock.FACING);
+				BlockPos blockPos = pointer.getPos().offset(direction);
+				Direction direction2 = pointer.getWorld().isAir(blockPos.down()) ? direction : Direction.UP;
+				
+				try {
+					this.setSuccess(bottomlessBundleItem.place(new AutomaticItemPlacementContext(pointer.getWorld(), blockPos, direction, stack, direction2)).isAccepted());
+				} catch (Exception e) {
+					SpectrumCommon.log(Level.ERROR, "Error trying to place bottomless bundle at " + blockPos + " : " + e);
+				}
+			}
+			
+			return stack;
+		}
+	}
+	
 	
 }

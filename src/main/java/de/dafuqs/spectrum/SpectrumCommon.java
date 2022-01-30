@@ -6,6 +6,7 @@ import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
 import de.dafuqs.spectrum.events.SpectrumGameEvents;
 import de.dafuqs.spectrum.inventories.SpectrumContainers;
 import de.dafuqs.spectrum.inventories.SpectrumScreenHandlerTypes;
+import de.dafuqs.spectrum.items.magic_items.BottomlessBundleItem;
 import de.dafuqs.spectrum.items.magic_items.ExchangeStaffItem;
 import de.dafuqs.spectrum.items.magic_items.RadianceStaffItem;
 import de.dafuqs.spectrum.loot.EnchantmentDrops;
@@ -27,6 +28,7 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerWorldEvents;
 import net.fabricmc.fabric.api.event.player.AttackBlockCallback;
 import net.minecraft.block.Block;
+import net.minecraft.block.DispenserBlock;
 import net.minecraft.block.FluidBlock;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.server.MinecraftServer;
@@ -160,6 +162,9 @@ public class SpectrumCommon implements ModInitializer {
 
 		log(Level.INFO, "Registering Block / Item Color Registries...");
 		ColorRegistry.registerColorRegistries();
+		
+		log(Level.INFO, "Registering Dispenser Behaviors..");
+		DispenserBlock.registerBehavior(SpectrumItems.BOTTOMLESS_BUNDLE, new BottomlessBundleItem.BottomlessBundlePlacementDispenserBehavior());
 		
 		AttackBlockCallback.EVENT.register((player, world, hand, pos, direction) -> {
 			if(!world.isClient && !player.isSpectator()) {

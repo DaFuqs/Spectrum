@@ -7,11 +7,14 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.BlockWithEntity;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.pathing.NavigationType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.loot.context.LootContext;
+import net.minecraft.loot.context.LootContextParameters;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.ActionResult;
@@ -21,6 +24,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 public class BottomlessBundleBlock extends BlockWithEntity {
 	
@@ -42,6 +47,11 @@ public class BottomlessBundleBlock extends BlockWithEntity {
 	@Override
 	public boolean canPathfindThrough(BlockState state, BlockView world, BlockPos pos, NavigationType type) {
 		return false;
+	}
+	
+	@Override
+	public PistonBehavior getPistonBehavior(BlockState state) {
+		return PistonBehavior.DESTROY;
 	}
 	
 	@Override
@@ -81,12 +91,22 @@ public class BottomlessBundleBlock extends BlockWithEntity {
 		super.onBreak(world, pos, state, player);
 	}
 	
+	// for automatic destructions, like pistons
+	public List<ItemStack> getDroppedStacks(BlockState state, LootContext.Builder builder) {
+		BlockEntity blockEntity = builder.getNullable(LootContextParameters.BLOCK_ENTITY);
+		if (blockEntity instanceof BottomlessBundleBlockEntity bottomlessBundleBlockEntity) {
+			return List.of(bottomlessBundleBlockEntity.retrieveVoidBundle());
+		} else {
+			return super.getDroppedStacks(state, builder);
+		}
+	}
+	
 	@Override
 	public void onPlaced(World world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack itemStack) {
 		if(!world.isClient) {
 			BlockEntity blockEntity = world.getBlockEntity(pos);
 			if (blockEntity instanceof BottomlessBundleBlockEntity bottomlessBundleBlockEntity) {
-				bottomlessBundleBlockEntity.setVoidBundle(itemStack);
+				bottomlessBundleBlockEntity.setVoidBundle(itemStack.copy());
 			}
 		}
 	}

@@ -117,9 +117,9 @@ public class ShootingStarBlock extends BlockWithEntity {
 					if(r == 0) {
 						return ColorHelper.getColor(DyeColor.YELLOW);
 					} else if (r == 1) {
-						return ColorHelper.getColor(DyeColor.RED);
+						return ColorHelper.getColor(DyeColor.WHITE);
 					} else if (r == 2) {
-						return ColorHelper.getColor(DyeColor.LIGHT_BLUE);
+						return ColorHelper.getColor(DyeColor.ORANGE);
 					} else if (r == 3) {
 						return ColorHelper.getColor(DyeColor.LIME);
 					} else {
@@ -148,11 +148,13 @@ public class ShootingStarBlock extends BlockWithEntity {
 					}
 				}
 				default -> {
-					int r = random.nextInt(3);
+					int r = random.nextInt(4);
 					if(r == 0) {
 						return ColorHelper.getColor(DyeColor.CYAN);
 					} else if(r == 1) {
 						return ColorHelper.getColor(DyeColor.MAGENTA);
+					} else if(r == 2) {
+						return ColorHelper.getColor(DyeColor.WHITE);
 					} else {
 						return ColorHelper.getColor(DyeColor.YELLOW);
 					}

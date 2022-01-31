@@ -164,12 +164,12 @@ public class SpectrumS2CPackets {
 				Vec3d sourcePos = new Vec3d(position.getX() + 0.5, position.getY() + 1, position.getZ() + 0.5);
 				
 				Vec3f color = ColorRegistry.getColor(dyeColor);
-				float velocityModifier = 0.3F;
+				float velocityModifier = 0.25F;
 				for(Vec3d velocity : Support.VECTORS_16) {
 					MinecraftClient.getInstance().player.getEntityWorld().addParticle(
-							new ParticleSpawnerParticleEffect(new Identifier("spectrum:particle/liquid_crystal_sparkle"), color, 1.0F, 40, false, true),
+							new ParticleSpawnerParticleEffect(new Identifier("spectrum:particle/liquid_crystal_sparkle"), 0.0F, color, 1.5F, 40, false, true),
 							sourcePos.x, sourcePos.y, sourcePos.z,
-							velocity.x * velocityModifier, velocity.y * velocityModifier, velocity.z * velocityModifier
+							velocity.x * velocityModifier, 0.0F, velocity.z * velocityModifier
 					);
 				}
 

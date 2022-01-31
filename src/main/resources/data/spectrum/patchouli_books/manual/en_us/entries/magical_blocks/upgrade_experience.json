@@ -16,7 +16,7 @@
       "type": "spectrum:pedestal_crafting",
       "title": "Knowledge Focus",
       "recipe": "spectrum:pedestal/tier3/upgrade_experience",
-      "text": "Place on top your $(l:general/pedestal)Pigment Pedestals $(/l) gemstone blocks or the Chiseled Blocks of your $(l:general/fusion_shrine)Fusion Shrine$(/l). Additional ones have a decreased effect."
+      "text": "Place on top your $(l:general/pedestal)Pigment Pedestals$(/l) Gemstone Blocks or the Chiseled Blocks of your $(l:general/fusion_shrine)Fusion Shrine$(/l). Additional ones have a decreased effect."
     },
     {
       "type": "spectrum:pedestal_crafting",

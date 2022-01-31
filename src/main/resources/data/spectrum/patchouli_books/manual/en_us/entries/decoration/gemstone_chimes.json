@@ -20,7 +20,7 @@
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier3/gemstone_chimes/topaz_chime",
-      "text": "Each Chime emits the soothing sound of their corresponding gemstone."
+      "text": "Each Chime emits the soothing sound of its corresponding Gemstone."
     }
   ]
 }

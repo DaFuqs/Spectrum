@@ -103,9 +103,9 @@ public class ShootingStarEntity extends Entity {
 				if(timeOfDay > 13000 && timeOfDay < 22000){
 					for (PlayerEntity playerEntity : serverWorld.getEntitiesByType(EntityType.PLAYER, Entity::isAlive)) {
 						if (!playerEntity.isSpectator() && Support.hasAdvancement(playerEntity, SpectrumItems.SHOOTING_STAR.getCloakAdvancementIdentifier()) && serverWorld.getRandom().nextFloat() < getShootingStarChanceWithMultiplier(playerEntity)) {
-							// 1 % chance for each cycle to spawn a lot of shooting stars for the player
+							// 2 % chance for each cycle to spawn a lot of shooting stars for the player
 							// making it an amazing display
-							if (serverWorld.getRandom().nextFloat() < 0.01) {
+							if (serverWorld.getRandom().nextFloat() < 0.02) {
 								for (int i = 0; i < 10; i++) {
 									spawnShootingStar(serverWorld, playerEntity);
 								}
@@ -123,7 +123,7 @@ public class ShootingStarEntity extends Entity {
 		ShootingStarEntity shootingStarEntity = new ShootingStarEntity(serverWorld, playerEntity.getPos().getX(), playerEntity.getPos().getY() + 200, playerEntity.getPos().getZ());
 		shootingStarEntity.setVelocity(serverWorld.random.nextDouble() * 0.2D - 0.1D, 0.0D, serverWorld.random.nextDouble() * 0.2D - 0.1D);
 		shootingStarEntity.setShootingStarType(ShootingStarBlock.Type.values()[serverWorld.getRandom().nextInt(ShootingStarBlock.Type.values().length)], false);
-		shootingStarEntity.addVelocity(3 - shootingStarEntity.random.nextFloat() * 6, 0, 3 - shootingStarEntity.random.nextFloat() * 6);
+		shootingStarEntity.addVelocity(5 - shootingStarEntity.random.nextFloat() * 10, 0, 5 - shootingStarEntity.random.nextFloat() * 10);
 		serverWorld.spawnEntity(shootingStarEntity);
 	}
 	

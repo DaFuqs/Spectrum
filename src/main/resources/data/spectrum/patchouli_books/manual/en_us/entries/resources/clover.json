@@ -9,8 +9,9 @@
   },
   "pages": [
     {
-      "type": "patchouli:text",
+      "type": "patchouli:spotlight",
       "title": "Clover",
+      "item": "spectrum:clover",
       "text": "Growing in Plains and other green biomes that are sprouting with life grow these juicy green clovers.$(br2)$(italic)Is today your lucky day?$()"
     },
     {

@@ -23,8 +23,6 @@ $replaced.GetEnumerator() | Sort-Object -Property Count | Group-Object
 				'O', "#spectrum:onyx_chiseled_base_blocks",
 				'm', "#spectrum:moonstone_chiseled_base_blocks",
 				'M', "#spectrum:moonstone_chiseled_base_blocks",
-				'n', "#spectrum:polished_base_blocks_or_moonstone_chiseled",
-				'N', "#spectrum:polished_base_blocks_or_moonstone_chiseled",
 				'2', "#spectrum:pedestals",
 				'3', "#spectrum:pedestals",
 				'4', "#spectrum:pedestals",

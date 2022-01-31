@@ -139,6 +139,7 @@ public class ItemColorRegistry extends ColorRegistry<Item> {
 		put(Items.SOUL_SAND, DyeColor.BROWN);
 		put(Items.SOUL_SOIL, DyeColor.BROWN);
 		put(Items.FEATHER, DyeColor.WHITE);
+		put(Items.SUNFLOWER, DyeColor.YELLOW);
 		
 		put(Blocks.ICE.asItem(), DyeColor.LIGHT_BLUE);
 		put(Blocks.PACKED_ICE.asItem(), DyeColor.LIGHT_BLUE);

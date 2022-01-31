@@ -7,6 +7,10 @@
     "entered_end": {
       "trigger":"spectrum:has_advancement",
       "conditions": { "advancement_identifier": "minecraft:end/root" }
+    },
+    "has_chorus_flower": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": { "items": [{ "items": ["minecraft:chorus_flower"] }] }
     }
   }
 }

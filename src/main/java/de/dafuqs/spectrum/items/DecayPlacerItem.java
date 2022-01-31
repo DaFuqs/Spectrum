@@ -20,7 +20,7 @@ public class DecayPlacerItem extends AliasedBlockItem {
 	@Override
 	public ActionResult useOnBlock(ItemUsageContext context) {
 		ActionResult actionResult = super.useOnBlock(context);
-		if(!context.getWorld().isClient && actionResult.isAccepted() && context.getPlayer() != null) {
+		if(!context.getWorld().isClient && actionResult.isAccepted() && context.getPlayer() != null && !context.getPlayer().isCreative()) {
 			context.getPlayer().giveItemStack(Items.GLASS_BOTTLE.getDefaultStack());
 		}
 		return actionResult;

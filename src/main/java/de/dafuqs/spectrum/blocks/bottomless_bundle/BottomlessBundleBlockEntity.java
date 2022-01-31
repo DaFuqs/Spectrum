@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.blocks.bottomless_bundle;
 
-import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.items.magic_items.BottomlessBundleItem;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
 import de.dafuqs.spectrum.registries.SpectrumItems;
@@ -13,7 +12,6 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import org.apache.logging.log4j.Level;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -24,14 +22,14 @@ public class BottomlessBundleBlockEntity extends BlockEntity implements SidedInv
 	protected final static int INPUT_SLOT_ID = 0;
 	protected final static int OUTPUT_SLOT_ID = 1;
 	protected ItemStack bottomlessBundleStack;
-	protected ItemStack bottomlessBundleItemStack; // caching for performance and to prevent the bundle being emptied
+	protected ItemStack acceptedItemStack; // caching for performance and to prevent the bundle being emptied
 	                                     // and then filled with different item type
 	protected ItemStack currentOutputStack;
 	
 	public BottomlessBundleBlockEntity(BlockPos pos, BlockState state) {
 		super(SpectrumBlockEntityRegistry.BOTTOMLESS_BUNDLE, pos, state);
 		this.bottomlessBundleStack = ItemStack.EMPTY;
-		this.bottomlessBundleItemStack = ItemStack.EMPTY;
+		this.acceptedItemStack = ItemStack.EMPTY;
 		this.currentOutputStack = ItemStack.EMPTY;
 	}
 	
@@ -45,7 +43,7 @@ public class BottomlessBundleBlockEntity extends BlockEntity implements SidedInv
 			int j = nbtCompound.getByte("Slot") & 255;
 			if(j == 0) {
 				this.bottomlessBundleStack = ItemStack.fromNbt(nbtCompound);
-				this.bottomlessBundleItemStack = BottomlessBundleItem.getFirstBundledStack(bottomlessBundleStack);
+				this.acceptedItemStack = BottomlessBundleItem.getFirstBundledStack(bottomlessBundleStack);
 			} else {
 				this.currentOutputStack = ItemStack.fromNbt(nbtCompound);
 			}
@@ -76,7 +74,7 @@ public class BottomlessBundleBlockEntity extends BlockEntity implements SidedInv
 	public void setVoidBundle(@NotNull ItemStack itemStack) {
 		if(itemStack.getItem() instanceof BottomlessBundleItem) {
 			this.bottomlessBundleStack = itemStack;
-			this.bottomlessBundleItemStack = BottomlessBundleItem.getFirstBundledStack(itemStack);
+			this.acceptedItemStack = BottomlessBundleItem.getFirstBundledStack(itemStack);
 		}
 	}
 	
@@ -101,7 +99,7 @@ public class BottomlessBundleBlockEntity extends BlockEntity implements SidedInv
 	@Override
 	public boolean canInsert(int slot, ItemStack stack, @Nullable Direction dir) {
 		return slot == 0
-				&& ItemStack.canCombine(stack, this.bottomlessBundleItemStack)
+				&& (this.acceptedItemStack.isEmpty() || ItemStack.canCombine(stack, this.acceptedItemStack))
 				&& BottomlessBundleItem.getStoredAmount(this.bottomlessBundleStack) + this.currentOutputStack.getCount() < BottomlessBundleItem.getMaxStoredAmount(this.bottomlessBundleStack);
 	}
 	
@@ -126,14 +124,11 @@ public class BottomlessBundleBlockEntity extends BlockEntity implements SidedInv
 			return ItemStack.EMPTY;
 		} else {
 			this.markDirty();
-			SpectrumCommon.log(Level.INFO, "getStack called");
 			if(currentOutputStack.isEmpty()) {
 				Optional<ItemStack> newStack = BottomlessBundleItem.removeFirstBundledStack(this.bottomlessBundleStack);
 				if(newStack.isPresent()) {
-					SpectrumCommon.log(Level.INFO, "resupply: " + newStack.get().getCount());
 					currentOutputStack = newStack.get();
 				} else {
-					SpectrumCommon.log(Level.INFO, "resupply: empty");
 					currentOutputStack = ItemStack.EMPTY;
 				}
 			}
@@ -147,7 +142,6 @@ public class BottomlessBundleBlockEntity extends BlockEntity implements SidedInv
 			return ItemStack.EMPTY;
 		} else {
 			this.markDirty();
-			SpectrumCommon.log(Level.INFO, "remove: " + amount + " from " + currentOutputStack.getCount());
 			return this.currentOutputStack.split(amount);
 		}
 	}
@@ -156,7 +150,6 @@ public class BottomlessBundleBlockEntity extends BlockEntity implements SidedInv
 	public ItemStack removeStack(int slot) {
 		if(slot == 1) {
 			ItemStack removedStack = this.currentOutputStack;
-			SpectrumCommon.log(Level.INFO, "remove stack (" + removedStack.getCount() + " left)");
 			this.currentOutputStack = ItemStack.EMPTY;
 			if(!removedStack.isEmpty()) {
 				this.markDirty();
@@ -170,6 +163,9 @@ public class BottomlessBundleBlockEntity extends BlockEntity implements SidedInv
 	@Override
 	public void setStack(int slot, ItemStack stack) {
 		if(slot == 0) {
+			if(this.acceptedItemStack.isEmpty()) {
+				this.acceptedItemStack = stack;
+			}
 			BottomlessBundleItem.addToBundle(this.bottomlessBundleStack, stack);
 			this.markDirty();
 		} else {

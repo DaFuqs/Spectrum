@@ -155,7 +155,7 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 		FusionShrineRecipe recipe = fusionShrineBlockEntity.currentRecipe;
 		if(recipe != null) {
 			Fluid fluid = fusionShrineBlockEntity.getFluid();
-			if (fluid != Fluids.EMPTY && recipe.areConditionMetCurrently(world)) {
+			if (recipe.getFluidInput().equals(fluid) && recipe.areConditionMetCurrently(world)) {
 				Optional<DyeColor> optionalFluidColor = ColorRegistry.FLUID_COLORS.getMapping(fluid);
 				if (optionalFluidColor.isPresent()) {
 					ParticleEffect particleEffect = SpectrumParticleTypes.getFluidRisingParticle(optionalFluidColor.get());

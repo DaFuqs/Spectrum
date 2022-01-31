@@ -8,6 +8,8 @@
     "spectrum:liquid_crystal",
     "spectrum:deeper_down_portal",
     "spectrum:wand_light",
-    "spectrum:block_flooder"
+    "spectrum:block_flooder",
+    "#spectrum:shooting_stars",
+    "spectrum:bottomless_bundle"
   ]
 }

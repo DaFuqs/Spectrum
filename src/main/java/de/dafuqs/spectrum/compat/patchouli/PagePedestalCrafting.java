@@ -49,13 +49,13 @@ public class PagePedestalCrafting extends PageDoubleRecipeRegistry<PedestalCraft
 
 		switch (recipe.getTier()) {
 			case COMPLEX -> {
-				drawGemstonePowderSlots(recipe, PedestalRecipeTier.getAvailableGemstoneDustColors(recipe.getTier()), ms, 4, recipeX, recipeY, mouseX, mouseY);
+				drawGemstonePowderSlots(recipe, PedestalRecipeTier.getAvailableGemstoneDustColors(recipe.getTier()), ms, 3, recipeX, recipeY, mouseX, mouseY);
 			}
 			case ADVANCED -> {
 				drawGemstonePowderSlots(recipe, PedestalRecipeTier.getAvailableGemstoneDustColors(recipe.getTier()), ms, 12, recipeX, recipeY, mouseX, mouseY);
 			}
 			default -> {
-				drawGemstonePowderSlots(recipe, PedestalRecipeTier.getAvailableGemstoneDustColors(recipe.getTier()), ms, 23, recipeX, recipeY, mouseX, mouseY);
+				drawGemstonePowderSlots(recipe, PedestalRecipeTier.getAvailableGemstoneDustColors(recipe.getTier()), ms, 22, recipeX, recipeY, mouseX, mouseY);
 			}
 		}
 

@@ -18,6 +18,7 @@
             "type": "spectrum:enchanter_crafting",
             "title": "Enchanter Recipe",
             "recipe": "spectrum:enchanter/spectrum_books/book_voiding",
+            "advancement": "spectrum:progression/enchantments/voiding",
             "text": "You can infuse a common Book with Curse of the Void by surrounding your Enchanter with Pigment and the other required materials."
         }
     ]

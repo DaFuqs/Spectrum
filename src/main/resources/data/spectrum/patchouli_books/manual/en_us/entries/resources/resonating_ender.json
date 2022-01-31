@@ -1,6 +1,6 @@
 {
-    "name": "Ender Treasure",
-    "advancement": "spectrum:spectrum",
+    "name": "Resonating Ender",
+    "advancement": "spectrum:milestones/reveal_ender_treasure",
     "icon": "minecraft:ender_pearl",
     "category": "spectrum:resources_category",
     "extra_recipe_mappings": {
@@ -13,7 +13,6 @@
         },
         {
             "type": "patchouli:spotlight",
-            "advancement": "spectrum:milestones/reveal_ender_treasure",
             "title": "Resonating Ender",
             "item": "spectrum:ender_treasure",
             "text": "The Endermen come to this world to place those blocks. But what is this stuff? And $(italic)WHY$() do they leave it here?$(br2)Now that you hold one in your hands... they are everywhere! How didn't you notice earlier? Anyways, you are sure that you can take advantage of this interesting material."

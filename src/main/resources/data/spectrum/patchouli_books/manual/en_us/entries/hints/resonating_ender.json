@@ -2,7 +2,7 @@
     "name": "A new Resource",
     "category": "spectrum:hints_category",
     "icon": "minecraft:writable_book",
-    "advancement": "spectrum:midgame/spectrum_midgame",
+    "advancement": "spectrum:midgame/build_advanced_pedestal_structure",
 	"secret": true,
 	"read_by_default": true,
     "turnin": "spectrum:get_ender_treasure",

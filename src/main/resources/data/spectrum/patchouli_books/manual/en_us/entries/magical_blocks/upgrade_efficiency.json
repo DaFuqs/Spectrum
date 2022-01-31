@@ -10,13 +10,13 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "$(italic)Creating objects with the $(l:general/pedestal)Pigment Pedestal$(/l) devours vast amounts of Gemstone Powder.$(br)By using this upgrade, you should be able to cushion the consumption. Just a little, but it will add up."
+      "text": "$(italic)Creating objects with the $(l:general/pedestal)Pigment Pedestal$(/l) devours vast amounts of Gemstone Powder.$(br2)By using this upgrade, you should be able to cushion the consumption. Just a little, but it will add up."
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier3/upgrade_efficiency",
-      "text": "Place on top your $(l:general/pedestal)Pigment Pedestals $(/l) gemstone blocks or the Chiseled Blocks of your $(l:general/fusion_shrine)Fusion Shrine$(/l). Additional ones have a decreased effect."
+      "text": "Place on top your $(l:general/pedestal)Pigment Pedestals$(/l) Gemstone Blocks or the Chiseled Blocks of your $(l:general/fusion_shrine)Fusion Shrine$(/l). Additional ones have a decreased effect."
     },
     {
       "type": "spectrum:pedestal_crafting",

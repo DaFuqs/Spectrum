@@ -1,6 +1,6 @@
 {
   "type": "spectrum:pedestal",
-  "time": 1200,
+  "time": 600,
   "tier": "advanced",
   "cyan": 2,
   "magenta": 2,
@@ -10,12 +10,12 @@
   "experience": 2.0,
   "pattern": [
     "YGY",
-    "GSG",
-    "PGP"
+    "SSS",
+    "PSP"
   ],
   "key": {
     "S": {
-      "item": "spectrum:shooting_star"
+      "item": "spectrum:stardust"
     },
     "G": {
       "item": "spectrum:sparklestone_gem"
@@ -29,7 +29,7 @@
   },
   "result" : {
     "item": "spectrum:ethereal_platform",
-    "count": 16
+    "count": 8
   },
   "required_advancements": ["spectrum:progression/unlock_ethereal_platform"]
 }

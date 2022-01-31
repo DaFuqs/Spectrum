@@ -15,7 +15,7 @@
       "type": "patchouli:image",
       "images": [ "spectrum:textures/gui/manual/enchanting_items.png" ],
       "border": true,
-      "text": "Supply a steady stream of experience via $(l:magical_items/knowledge_gem)Knowledge Gem$(/l) and you are set."
+      "text": "Finally supply a steady stream of experience via $(l:magical_items/knowledge_gem)Knowledge Gem$(/l) and you are set."
     },
     {
       "type": "patchouli:spotlight",

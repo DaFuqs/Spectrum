@@ -104,8 +104,6 @@ public class SpectrumMultiblocks {
 				'O', "#spectrum:onyx_chiseled_base_blocks",
 				'm', "#spectrum:moonstone_chiseled_base_blocks",
 				'M', "#spectrum:moonstone_chiseled_base_blocks",
-				'n', "#spectrum:polished_base_blocks_or_moonstone_chiseled",
-				'N', "#spectrum:polished_base_blocks_or_moonstone_chiseled",
 				'2', "#spectrum:pedestals",
 				'3', "#spectrum:pedestals",
 				'4', "#spectrum:pedestals",
@@ -126,8 +124,6 @@ public class SpectrumMultiblocks {
 				'O', "spectrum:onyx_chiseled_basalt",
 				'm', "spectrum:moonstone_chiseled_basalt[axis=x]",
 				'M', "spectrum:moonstone_chiseled_basalt[axis=y]",
-				'n', "spectrum:polished_basalt",
-				'N', "spectrum:polished_basalt",
 				'2', "spectrum:pedestal_all_basic",
 				'3', "spectrum:pedestal_onyx",
 				'4', "spectrum:pedestal_moonstone",
@@ -150,7 +146,7 @@ public class SpectrumMultiblocks {
 				{ "_____________", "_C__Q___Q__C_", "_____________", "_____________", "_Q_________Q_", "_____________", "_____________", "_____________", "_Q_________Q_", "_____________", "_____________", "_C__Q___Q__C_", "_____________" },
 				{ "_____________", "_Q__L___L__Q_", "_____________", "___S_____S___", "_L_________L_", "_____________", "_____________", "_____________", "_L_________L_", "___S_____S___", "_____________", "_Q__L___L__Q_", "_____________" },
 				{ "_____________", "_K__Q___Q__K_", "_____________", "___Q_____Q___", "_Q_________Q_", "_____________", "______3______", "_____________", "_Q_________Q_", "___Q_____Q___", "_____________", "_K__Q___Q__K_", "_____________" },
-				{ "XXXXXXXXXXXXX", "XXnnXnnnXnnXX", "XNXXXXXXXXXNX", "XNXXXXXXXXXNX", "XXXXXRXRXXXXX", "XNXXRXXXRXXNX", "XNXXXX0XXXXNX", "XNXXRXXXRXXNX", "XXXXXRXRXXXXX", "XNXXXXXXXXXNX", "XNXXXXXXXXXNX", "XXnnXnnnXnnXX", "XXXXXXXXXXXXX" }
+				{ "XXXXXXXXXXXXX", "XXXXXXXXXXXXX", "XXXXXXXXXXXXX", "XXXXXXXXXXXXX", "XXXXXRXRXXXXX", "XXXXRXXXRXXXX", "XXXXXX0XXXXXX", "XXXXRXXXRXXXX", "XXXXXRXRXXXXX", "XXXXXXXXXXXXX", "XXXXXXXXXXXXX", "XXXXXXXXXXXXX", "XXXXXXXXXXXXX" }
 		};
 		PEDESTAL_ADVANCED_STRUCTURE_IDENTIFIER_CHECK = registerMultiBlock("pedestal_advanced_structure_check", tier2Structure, targetBlocksCheck);
 		PEDESTAL_ADVANCED_STRUCTURE_IDENTIFIER_PLACE = registerMultiBlock("pedestal_advanced_structure_place", tier2Structure, targetBlocksPlace);

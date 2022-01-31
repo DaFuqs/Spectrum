@@ -178,17 +178,19 @@ public class ClientRecipeToastManager {
 	private static void showGroupedRecipeUnlockToasts(@NotNull List<? extends Recipe> recipes, UnlockedRecipeGroupToast.UnlockedRecipeToastType toastType) {
 		HashMap<String, List<ItemStack>> groupedRecipes = new HashMap<>();
 		for(Recipe recipe : recipes) {
-			if(recipe.getGroup().isEmpty()) {
-				ItemStack displayStack = recipe.getOutput().copy();
-				displayStack.setCount(1);
-				UnlockedRecipeGroupToast.showRecipeToast(MinecraftClient.getInstance(), displayStack, toastType);
-			} else {
-				if(groupedRecipes.containsKey(recipe.getGroup())) {
-					groupedRecipes.get(recipe.getGroup()).add(recipe.getOutput());
+			if(!recipe.getOutput().isEmpty()) { // weather recipes
+				if (recipe.getGroup().isEmpty()) {
+					ItemStack displayStack = recipe.getOutput().copy();
+					displayStack.setCount(1);
+					UnlockedRecipeGroupToast.showRecipeToast(MinecraftClient.getInstance(), displayStack, toastType);
 				} else {
-					List<ItemStack> newList = new ArrayList<>();
-					newList.add(new ItemStack(recipe.getOutput().getItem()));
-					groupedRecipes.put(recipe.getGroup(), newList);
+					if (groupedRecipes.containsKey(recipe.getGroup())) {
+						groupedRecipes.get(recipe.getGroup()).add(recipe.getOutput());
+					} else {
+						List<ItemStack> newList = new ArrayList<>();
+						newList.add(new ItemStack(recipe.getOutput().getItem()));
+						groupedRecipes.put(recipe.getGroup(), newList);
+					}
 				}
 			}
 		}

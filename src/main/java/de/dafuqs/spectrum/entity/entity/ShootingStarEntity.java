@@ -12,6 +12,7 @@ import de.dafuqs.spectrum.registries.SpectrumItems;
 import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.fabricmc.loader.impl.util.log.LogLevel;
 import net.minecraft.entity.*;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.data.DataTracker;
@@ -47,10 +48,12 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.BlockLocating;
 import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
+import org.apache.logging.log4j.Level;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 public class ShootingStarEntity extends Entity {
 	
@@ -191,26 +194,44 @@ public class ShootingStarEntity extends Entity {
 		}
 		
 		this.move(MovementType.SELF, this.getVelocity());
+
+		var colidingEntities = this.world.getOtherEntities(this, getBoundingBox().expand(0.25, 0.334, 0.25));
+		colidingEntities = colidingEntities.stream().filter(entity -> !(entity instanceof ShootingStarEntity)).collect(Collectors.toList());
 		
 		// make it bounce back
 		boolean spawnLoot = false;
 		if(this.onGround && !wasOnGround) {
 			this.addVelocity(0, -previousYVelocity * 0.9, 0);
+			colidingEntities.forEach(entity -> entity.move(MovementType.SHULKER_BOX, this.getVelocity().multiply(0, 1, 0)));
 		}
 		if(Math.signum(this.getVelocity().x) != Math.signum(previousXVelocity)) {
 			this.addVelocity(-previousXVelocity * 0.6, 0, 0);
+			//colidingEntities.forEach(entity -> entity.addVelocity(-previousXVelocity, 0, 0));
 			if(Math.abs(previousXVelocity) > 0.5) {
 				spawnLoot = true;
 			}
 		}
 		if(Math.signum(this.getVelocity().z) != Math.signum(previousZVelocity)) {
 			this.addVelocity(0, 0, -previousZVelocity * 0.6);
+			//colidingEntities.forEach(entity -> entity.addVelocity(-previousZVelocity, 0, 0));
 			if(!spawnLoot && Math.abs(previousZVelocity) > 0.5) {
 				spawnLoot = true;
 			}
 		}
-		
+
+		colidingEntities.forEach(entity -> {
+			if (entity.getY() >= this.getBoundingBox().maxY) {
+				entity.fallDistance = 0F;
+				if(this.collides()) {
+					entity.setPosition(entity.getPos().x, this.getBoundingBox().maxY, entity.getPos().z);
+				}
+				entity.move(MovementType.SHULKER_BOX, this.getVelocity());
+				entity.setOnGround(true);
+			}
+		});
+
 		if(world.isClient) {
+
 			if (this.onGround) {
 				if (world.random.nextInt(10) == 0) {
 					playGroundParticles();
@@ -279,10 +300,14 @@ public class ShootingStarEntity extends Entity {
 	public void onPlayerCollision(PlayerEntity player) {
 		// if the shooting star is still falling from the sky, and it hits a player:
 		// give the player the star, some damage and grant an advancement
-		if (!this.world.isClient && !this.onGround && this.getVelocity().getY() < -0.5) {
+
+		if(this.world.isClient)
+			return;
+
+		if (!this.onGround && this.getVelocity().getY() < -0.5) {
 			world.playSound(null, this.getBlockPos().getX(), this.getBlockPos().getY(), this.getBlockPos().getZ(), SpectrumSoundEvents.SHOOTING_STAR_CRACKER, SoundCategory.PLAYERS, 1.5F + random.nextFloat() * 0.4F, 0.8F + random.nextFloat() * 0.4F);
 			SpectrumS2CPackets.sendPlayShootingStarParticles(this);
-			player.damage(SpectrumDamageSources.SHOOTING_STAR, 6);
+			player.damage(SpectrumDamageSources.SHOOTING_STAR, 18);
 
 			ItemStack itemStack = this.getShootingStarType().getBlock().asItem().getDefaultStack();
 			int i = itemStack.getCount();
@@ -290,8 +315,10 @@ public class ShootingStarEntity extends Entity {
 			
 			Support.grantAdvancementCriterion((ServerPlayerEntity) player, "catch_shooting_star", "catch");
 			player.increaseStat(Stats.PICKED_UP.getOrCreateStat(itemStack.getItem()), i);
-			
+
 			this.discard();
+		}
+		else {
 		}
 	}
 	
@@ -408,6 +435,20 @@ public class ShootingStarEntity extends Entity {
 			double attackerOffsetZ = this.getZ() - attacker.getZ();
 			double mod = Math.max(attackerOffsetX, attackerOffsetZ);
 			this.addVelocity((attackerOffsetX / mod) * 0.75, 0.25, (attackerOffsetZ / mod) * 0.75);
+
+			var colidingEntities = this.world.getOtherEntities(this, getBoundingBox().expand(0.25, 0.334, 0.25));
+			colidingEntities = colidingEntities.stream().filter(entity -> !(entity instanceof ShootingStarEntity)).collect(Collectors.toList());
+			colidingEntities.forEach(entity -> {
+				if (entity.getY() >= this.getBoundingBox().maxY) {
+					entity.fallDistance = 0F;
+					if(this.collides()) {
+						entity.setPosition(entity.getPos().x, this.getBoundingBox().maxY, entity.getPos().z);
+					}
+					entity.move(MovementType.SHULKER_BOX, this.getVelocity());
+					entity.setOnGround(true);
+				}
+			});
+
 			this.scheduleVelocityUpdate();
 		}
 		

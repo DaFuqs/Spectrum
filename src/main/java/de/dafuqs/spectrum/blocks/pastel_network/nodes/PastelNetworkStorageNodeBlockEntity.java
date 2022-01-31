@@ -4,9 +4,9 @@ import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
 
-public class PastelNetworkStorageNode extends PastelNetworkNodeBlockEntity {
+public class PastelNetworkStorageNodeBlockEntity extends PastelNetworkNodeBlockEntity {
 	
-	public PastelNetworkStorageNode(BlockPos blockPos, BlockState blockState) {
+	public PastelNetworkStorageNodeBlockEntity(BlockPos blockPos, BlockState blockState) {
 		super(SpectrumBlockEntityRegistry.STORAGE_NODE, blockPos, blockState);
 	}
 	

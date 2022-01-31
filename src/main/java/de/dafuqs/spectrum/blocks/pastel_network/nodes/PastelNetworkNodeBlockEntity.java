@@ -44,11 +44,15 @@ public abstract class PastelNetworkNodeBlockEntity extends BlockEntity {
 	
 	public void add(World world, BlockPos pos, Direction facingDirection) {
 		updateConnectedInventory(world, pos, facingDirection);
-		this.network = PastelNetwork.getNetworkForNewNode(this);
+		if(this.network != null) {
+			this.network = PastelNetwork.getNetworkForNewNode(this);
+		}
 	}
 	
 	public void remove() {
-		this.network.removeNode(this);
+		if(this.network != null) {
+			this.network.removeNode(this);
+		}
 	}
 	
 }

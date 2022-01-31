@@ -1,15 +1,15 @@
 package de.dafuqs.spectrum.blocks.pastel_network.nodes;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.FacingBlock;
-import net.minecraft.block.ShapeContext;
+import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityTicker;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.Properties;
@@ -26,7 +26,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.Random;
 
-public class PastelNetworkNodeBlock extends FacingBlock {
+public class PastelNetworkNodeBlock extends FacingBlock implements BlockEntityProvider {
 	
 	public static final DirectionProperty FACING = Properties.FACING;
 	
@@ -43,6 +43,27 @@ public class PastelNetworkNodeBlock extends FacingBlock {
 	public PastelNetworkNodeBlock(Settings settings, String tooltipName) {
 		super(settings);
 		this.nodeTypeTooltipText = new TranslatableText(tooltipName);
+	}
+	
+	public BlockRenderType getRenderType(BlockState state) {
+		return BlockRenderType.MODEL;
+	}
+	
+	public boolean onSyncedBlockEvent(BlockState state, World world, BlockPos pos, int type, int data) {
+		super.onSyncedBlockEvent(state, world, pos, type, data);
+		BlockEntity blockEntity = world.getBlockEntity(pos);
+		return blockEntity != null && blockEntity.onSyncedBlockEvent(type, data);
+	}
+	
+	@Nullable
+	public NamedScreenHandlerFactory createScreenHandlerFactory(BlockState state, World world, BlockPos pos) {
+		BlockEntity blockEntity = world.getBlockEntity(pos);
+		return blockEntity instanceof NamedScreenHandlerFactory ? (NamedScreenHandlerFactory)blockEntity : null;
+	}
+	
+	@Nullable
+	protected static <E extends BlockEntity, A extends BlockEntity> BlockEntityTicker<A> checkType(BlockEntityType<A> givenType, BlockEntityType<E> expectedType, BlockEntityTicker<? super E> ticker) {
+		return expectedType == givenType ? (BlockEntityTicker<A>) ticker : null;
 	}
 	
 	@Override
@@ -123,6 +144,13 @@ public class PastelNetworkNodeBlock extends FacingBlock {
 			return pastelNetworkNodeBlockEntity;
 		}
 		return null;
+	}
+	
+	@Nullable
+	@Override
+	public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+		// TODO
+		return new PastelNetworkConnectionNodeBlockEntity(pos, state);
 	}
 	
 }

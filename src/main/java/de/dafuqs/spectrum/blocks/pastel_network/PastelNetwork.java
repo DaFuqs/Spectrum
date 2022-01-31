@@ -52,25 +52,25 @@ public class PastelNetwork {
 	 * TOPAZ
 	 * Storage (everything that has no target gets put here)
 	 */
-	protected List<PastelNetworkStorageNode> pastelNetworkStorageNodes = new ArrayList<>();
+	protected List<PastelNetworkStorageNodeBlockEntity> pastelNetworkStorageNodes = new ArrayList<>();
 	
 	/**
 	 * AMETHYST
 	 * Passive Provider (can be requested from)
 	 */
-	protected List<PastelNetworkProviderNode> pastelNetworkProviderNodes = new ArrayList<>();
+	protected List<PastelNetworkProviderNodeBlockEntity> pastelNetworkProviderNodeBlockEntities = new ArrayList<>();
 	
 	/**
 	 * CITRINE
 	 * Active Provider (pushes items into network)
 	 */
-	protected List<PastelNetworkPusherNode> pastelNetworkPusherNodes = new ArrayList<>();
+	protected List<PastelNetworkPusherNodeBlockEntity> pastelNetworkPusherNodes = new ArrayList<>();
 	
 	/**
 	 * ONYX
 	 * Requester Nodes, requests on redstone (active>passive>storage)
 	 */
-	protected List<PastelNetworkPullerNode> pastelNetworkPullerNodes = new ArrayList<>();
+	protected List<PastelNetworkPullerNodeBlockEntity> pastelNetworkPullerNodes = new ArrayList<>();
 	
 	/**
 	 * MOONSTONE
@@ -94,13 +94,13 @@ public class PastelNetwork {
 	public void removeNode(PastelNetworkNodeBlockEntity pebbleNetworkNodeBlock) {
 		if(pebbleNetworkNodeBlock instanceof PastelNetworkConnectionNode) {
 			pastelNetworkConnectionNodes.remove(pebbleNetworkNodeBlock);
-		} else if(pebbleNetworkNodeBlock instanceof PastelNetworkProviderNode) {
-			pastelNetworkProviderNodes.remove(pebbleNetworkNodeBlock);
-		} else if(pebbleNetworkNodeBlock instanceof PastelNetworkPullerNode) {
+		} else if(pebbleNetworkNodeBlock instanceof PastelNetworkProviderNodeBlockEntity) {
+			pastelNetworkProviderNodeBlockEntities.remove(pebbleNetworkNodeBlock);
+		} else if(pebbleNetworkNodeBlock instanceof PastelNetworkPullerNodeBlockEntity) {
 			pastelNetworkPullerNodes.remove(pebbleNetworkNodeBlock);
-		} else if(pebbleNetworkNodeBlock instanceof PastelNetworkPusherNode) {
+		} else if(pebbleNetworkNodeBlock instanceof PastelNetworkPusherNodeBlockEntity) {
 			pastelNetworkPusherNodes.remove(pebbleNetworkNodeBlock);
-		} else if(pebbleNetworkNodeBlock instanceof PastelNetworkStorageNode) {
+		} else if(pebbleNetworkNodeBlock instanceof PastelNetworkStorageNodeBlockEntity) {
 			pastelNetworkStorageNodes.remove(pebbleNetworkNodeBlock);
 		}
 	}
@@ -108,7 +108,7 @@ public class PastelNetwork {
 	public boolean canConnect(PastelNetworkNodeBlockEntity newNode) {
 		List<PastelNetworkNodeBlockEntity> allNodes = new ArrayList<>();
 		allNodes.addAll(this.pastelNetworkConnectionNodes);
-		allNodes.addAll(this.pastelNetworkProviderNodes);
+		allNodes.addAll(this.pastelNetworkProviderNodeBlockEntities);
 		allNodes.addAll(this.pastelNetworkPullerNodes);
 		allNodes.addAll(this.pastelNetworkPusherNodes);
 		allNodes.addAll(this.pastelNetworkStorageNodes);
@@ -127,7 +127,7 @@ public class PastelNetwork {
 	
 	public void join(PastelNetwork network) {
 		this.pastelNetworkConnectionNodes.addAll(network.pastelNetworkConnectionNodes);
-		this.pastelNetworkProviderNodes.addAll(network.pastelNetworkProviderNodes);
+		this.pastelNetworkProviderNodeBlockEntities.addAll(network.pastelNetworkProviderNodeBlockEntities);
 		this.pastelNetworkPullerNodes.addAll(network.pastelNetworkPullerNodes);
 		this.pastelNetworkPusherNodes.addAll(network.pastelNetworkPusherNodes);
 		this.pastelNetworkStorageNodes.addAll(network.pastelNetworkStorageNodes);

@@ -60,10 +60,12 @@ public class ShootingStarEntity extends Entity {
 	private static final Identifier PARTICLE_SPRITE_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "particle/shooting_star");
 	
 	private static final TrackedData<Integer> SHOOTING_STAR_TYPE = DataTracker.registerData(ShootingStarEntity.class, TrackedDataHandlerRegistry.INTEGER);
-	private int age;
-	public final float hoverHeight;
-	public int availableHits;
-	public int lastCollisionCount;
+	private static final TrackedData<Boolean> PLAYER_PLACED = DataTracker.registerData(ShootingStarEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
+	
+	protected final float hoverHeight;
+	protected int age;
+	protected int availableHits;
+	protected int lastCollisionCount;
 
 	public ShootingStarEntity(EntityType<? extends ShootingStarEntity> entityType, World world) {
 		super(entityType, world);
@@ -76,7 +78,7 @@ public class ShootingStarEntity extends Entity {
 		this(SpectrumEntityTypes.SHOOTING_STAR, world);
 		this.setPosition(x, y, z);
 		this.setYaw(this.random.nextFloat() * 360.0F);
-		this.setShootingStarType(ShootingStarBlock.Type.COLORFUL);
+		this.setShootingStarType(ShootingStarBlock.Type.COLORFUL, false);
 		this.lastCollisionCount = 0;
 	}
 
@@ -87,7 +89,7 @@ public class ShootingStarEntity extends Entity {
 	@Environment(EnvType.CLIENT)
 	private ShootingStarEntity(@NotNull ShootingStarEntity entity) {
 		super(entity.getType(), entity.world);
-		this.setShootingStarType(entity.getShootingStarType());
+		this.setShootingStarType(entity.getShootingStarType(), false);
 		this.copyPositionAndRotation(entity);
 		this.age = entity.age;
 		this.hoverHeight = entity.hoverHeight;
@@ -120,7 +122,7 @@ public class ShootingStarEntity extends Entity {
 	public static void spawnShootingStar(ServerWorld serverWorld, @NotNull PlayerEntity playerEntity) {
 		ShootingStarEntity shootingStarEntity = new ShootingStarEntity(serverWorld, playerEntity.getPos().getX(), playerEntity.getPos().getY() + 200, playerEntity.getPos().getZ());
 		shootingStarEntity.setVelocity(serverWorld.random.nextDouble() * 0.2D - 0.1D, 0.0D, serverWorld.random.nextDouble() * 0.2D - 0.1D);
-		shootingStarEntity.setShootingStarType(ShootingStarBlock.Type.values()[serverWorld.getRandom().nextInt(ShootingStarBlock.Type.values().length)]);
+		shootingStarEntity.setShootingStarType(ShootingStarBlock.Type.values()[serverWorld.getRandom().nextInt(ShootingStarBlock.Type.values().length)], false);
 		shootingStarEntity.addVelocity(3 - shootingStarEntity.random.nextFloat() * 6, 0, 3 - shootingStarEntity.random.nextFloat() * 6);
 		serverWorld.spawnEntity(shootingStarEntity);
 	}
@@ -163,6 +165,7 @@ public class ShootingStarEntity extends Entity {
 	
 	protected void initDataTracker() {
 		this.getDataTracker().startTracking(SHOOTING_STAR_TYPE, ShootingStarBlock.Type.COLORFUL.ordinal());
+		this.getDataTracker().startTracking(PLAYER_PLACED, false);
 	}
 	
 	public void tick() {
@@ -195,31 +198,29 @@ public class ShootingStarEntity extends Entity {
 		
 		this.move(MovementType.SELF, this.getVelocity());
 
-		var colidingEntities = this.world.getOtherEntities(this, getBoundingBox().expand(0.25, 0.334, 0.25));
-		colidingEntities = colidingEntities.stream().filter(entity -> !(entity instanceof ShootingStarEntity)).collect(Collectors.toList());
+		var collidingEntities = this.world.getOtherEntities(this, getBoundingBox().expand(0.25, 0.334, 0.25));
+		collidingEntities = collidingEntities.stream().filter(entity -> !(entity instanceof ShootingStarEntity)).collect(Collectors.toList());
 		
 		// make it bounce back
 		boolean spawnLoot = false;
 		if(this.onGround && !wasOnGround) {
 			this.addVelocity(0, -previousYVelocity * 0.9, 0);
-			colidingEntities.forEach(entity -> entity.move(MovementType.SHULKER_BOX, this.getVelocity().multiply(0, 1, 0)));
+			collidingEntities.forEach(entity -> entity.move(MovementType.SHULKER_BOX, this.getVelocity().multiply(0, 1, 0)));
 		}
 		if(Math.signum(this.getVelocity().x) != Math.signum(previousXVelocity)) {
 			this.addVelocity(-previousXVelocity * 0.6, 0, 0);
-			//colidingEntities.forEach(entity -> entity.addVelocity(-previousXVelocity, 0, 0));
 			if(Math.abs(previousXVelocity) > 0.5) {
 				spawnLoot = true;
 			}
 		}
 		if(Math.signum(this.getVelocity().z) != Math.signum(previousZVelocity)) {
 			this.addVelocity(0, 0, -previousZVelocity * 0.6);
-			//colidingEntities.forEach(entity -> entity.addVelocity(-previousZVelocity, 0, 0));
 			if(!spawnLoot && Math.abs(previousZVelocity) > 0.5) {
 				spawnLoot = true;
 			}
 		}
 
-		colidingEntities.forEach(entity -> {
+		collidingEntities.forEach(entity -> {
 			if (entity.getY() >= this.getBoundingBox().maxY) {
 				entity.fallDistance = 0F;
 				if(this.collides()) {
@@ -231,19 +232,20 @@ public class ShootingStarEntity extends Entity {
 		});
 
 		if(world.isClient) {
-
-			if (this.onGround) {
-				if (world.random.nextInt(10) == 0) {
-					playGroundParticles();
+			if(!this.dataTracker.get(PLAYER_PLACED)) {
+				if (this.onGround) {
+					if (world.random.nextInt(10) == 0) {
+						playGroundParticles();
+					}
+				} else {
+					playFallingParticles();
 				}
-			} else {
-				playFallingParticles();
 			}
 		} else {
 			this.checkBlockCollision();
 			
 			// despawning
-			if (this.age >= 6000) {
+			if (!this.dataTracker.get(PLAYER_PLACED) && this.age >= 6000) {
 				this.discard();
 			}
 			
@@ -317,8 +319,6 @@ public class ShootingStarEntity extends Entity {
 			player.increaseStat(Stats.PICKED_UP.getOrCreateStat(itemStack.getItem()), i);
 
 			this.discard();
-		}
-		else {
 		}
 	}
 	
@@ -468,14 +468,16 @@ public class ShootingStarEntity extends Entity {
 		return ShootingStarBlock.Type.getType(this.getDataTracker().get(SHOOTING_STAR_TYPE));
 	}
 
-	public void setShootingStarType(ShootingStarBlock.@NotNull Type type) {
+	public void setShootingStarType(ShootingStarBlock.@NotNull Type type, boolean playerPlaced) {
 		this.getDataTracker().set(SHOOTING_STAR_TYPE, type.ordinal());
+		this.getDataTracker().set(PLAYER_PLACED, playerPlaced);
 	}
 	
 	public void writeCustomDataToNbt(@NotNull NbtCompound tag) {
 		tag.putShort("Age", (short)this.age);
 		tag.putString("Type", this.getShootingStarType().getName());
 		tag.putInt("LastCollisionCount", this.lastCollisionCount);
+		tag.putBoolean("PlayerPlaced", this.dataTracker.get(PLAYER_PLACED));
 	}
 	
 	public void readCustomDataFromNbt(@NotNull NbtCompound tag) {
@@ -483,8 +485,14 @@ public class ShootingStarEntity extends Entity {
 		if(tag.contains("LastCollisionCount", NbtElement.INT_TYPE)) {
 			this.lastCollisionCount = tag.getInt("LastCollisionCount");
 		}
+		
+		boolean playerPlaced = false;
+		
+		if (tag.contains("PlayerPlaced")) {
+			playerPlaced = tag.getBoolean("");
+		}
 		if (tag.contains("Type", 8)) {
-			this.setShootingStarType(ShootingStarBlock.Type.getType(tag.getString("Type")));
+			this.setShootingStarType(ShootingStarBlock.Type.getType(tag.getString("Type")), playerPlaced);
 		} else {
 			this.discard();
 		}

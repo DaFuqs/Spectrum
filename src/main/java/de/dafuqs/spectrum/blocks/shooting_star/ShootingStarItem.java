@@ -36,7 +36,7 @@ public class ShootingStarItem extends BlockItem {
 				PlayerEntity user = context.getPlayer();
 				
 				ShootingStarEntity shootingStarEntity = new ShootingStarEntity(context.getWorld(), hitPos.x, hitPos.y, hitPos.z);
-				shootingStarEntity.setShootingStarType(this.type);
+				shootingStarEntity.setShootingStarType(this.type, true);
 				shootingStarEntity.setAvailableHits(getRemainingHits(context.getStack()));
 				shootingStarEntity.setYaw(user.getYaw());
 				if (!world.isSpaceEmpty(shootingStarEntity, shootingStarEntity.getBoundingBox())) {

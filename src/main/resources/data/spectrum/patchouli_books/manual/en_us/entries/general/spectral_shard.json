@@ -18,6 +18,7 @@
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
+      "title": "Fusion Recipe",
       "recipe": "spectrum:fusion_shrine/spectral_shard",
       "text": "TODO"
     },

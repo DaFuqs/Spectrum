@@ -47,9 +47,9 @@ Better to let players stumble about them organically instead of forcing it.""")
 
 	@Comment("""
 Shooting star spawns are checked every night between time 13000 and 22000, every 100 ticks (so 90 chances per night).
-By default, there is a 0.02 ^= 2 % chance at each of those check times. Making it ~3 shooting star spawns
+By default, there is a 0.005 ^= 0.5 % chance at each of those check times. Making it ~1 shooting star spawn
 per night per player that unlocked the required progression.""")
-	public float ShootingStarChance = 0.02F;
+	public float ShootingStarChance = 0.005F;
 
 	@Comment("The biomes where the biome specific plants are growing")
 	public List<String> MermaidsBrushGenerationBiomes = new ArrayList<>();

@@ -42,6 +42,7 @@
     "WorldRendererMixin"
   ],
   "client": [
+    "client.enchantment_descriptions.DescriptionManagerMixin",
     "client.AccessorClientAdvancementManager",
     "client.BlockClientMixin",
     "client.BlockModelsMixin",

@@ -53,8 +53,10 @@ dependencies {
 	//modImplementation include("com.github.devs-immortal:Incubus-Core:${project.incubus_core_version}")
 
 	// Soft dependencies:
-	// https://maven.blamejared.com/net/darkhax/enchdesc/
-	// modImplementation("net.darkhax.enchdesc:EnchantmentDescriptions-Fabric-${project.enchantment_descriptions_mc_version}:${project.enchantment_descriptions_mod_version}")
+	// Descriptions for all Enchantments https://maven.blamejared.com/net/darkhax/enchdesc/
+	modImplementation("net.darkhax.enchdesc:EnchantmentDescriptions-Common-${project.enchantment_descriptions_mc_version}:${project.enchantment_descriptions_mod_version}")
+	//modImplementation("net.darkhax.enchdesc:EnchantmentDescriptions-Fabric-${project.enchantment_descriptions_mc_version}:${project.enchantment_descriptions_mod_version}")
+
 	// https://github.com/Gegy/colored-lights // uses colored_lights/light_colors.json
 }
 

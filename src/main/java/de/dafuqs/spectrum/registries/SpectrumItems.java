@@ -13,6 +13,9 @@ import de.dafuqs.spectrum.items.item_frame.InvisibleGlowItemFrameItem;
 import de.dafuqs.spectrum.items.item_frame.InvisibleItemFrameItem;
 import de.dafuqs.spectrum.items.magic_items.*;
 import de.dafuqs.spectrum.items.tools.*;
+import de.dafuqs.spectrum.items.trinkets.BlueTearstoneRingItem;
+import de.dafuqs.spectrum.items.trinkets.RedTearstoneRingItem;
+import de.dafuqs.spectrum.items.trinkets.SpeedBootsItem;
 import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
 import io.wispforest.owo.itemgroup.OwoItemSettings;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
@@ -24,7 +27,6 @@ import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
 import net.minecraft.util.registry.Registry;
-import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import static de.dafuqs.spectrum.registries.SpectrumFluids.LIQUID_CRYSTAL;
@@ -202,6 +204,10 @@ public class SpectrumItems {
 	public static final Item BOTTOMLESS_BUNDLE = new BottomlessBundleItem(generalItemSettingsSingle);
 	public static final Item KNOWLEDGE_GEM = new KnowledgeGemItem(generalUncommonItemSettingsSingle, 10000);
 
+	// Trinkets
+	public static final Item RED_TEARSTONE_RING = new RedTearstoneRingItem(generalUncommonItemSettingsSingle);
+	public static final Item BLUE_TEARSTONE_RING = new BlueTearstoneRingItem(generalUncommonItemSettingsSingle);
+	public static final Item SPEED_BOOTS = new SpeedBootsItem(generalUncommonItemSettingsSingle);
 
 	private static void register(String name, Item item) {
 		Registry.register(Registry.ITEM, new Identifier(SpectrumCommon.MOD_ID, name), item);
@@ -223,6 +229,7 @@ public class SpectrumItems {
 		registerDecayBottles();
 		registerPreEnchantedTools();
 		registerMagicalTools();
+		registerTrinkets();
 		registerFluidBuckets();
 		
 		register("crafting_tablet", CRAFTING_TABLET);
@@ -351,6 +358,12 @@ public class SpectrumItems {
 		register("block_flooder", BLOCK_FLOODER);
 		register("ender_splice", ENDER_SPLICE);
 		register("end_portal_cracker", END_PORTAL_CRACKER);
+	}
+	
+	public static void registerTrinkets() {
+		register("red_tearstone_ring", RED_TEARSTONE_RING);
+		register("blue_tearstone_ring", BLUE_TEARSTONE_RING);
+		register("speed_boots", SPEED_BOOTS);
 	}
 	
 	public static void registerFluidBuckets() {
@@ -510,8 +523,7 @@ public class SpectrumItems {
 		FuelRegistry.INSTANCE.add(SpectrumBlocks.WHITE_PLANK_SLAB.asItem(), 150);
 		FuelRegistry.INSTANCE.add(SpectrumBlocks.YELLOW_PLANK_SLAB.asItem(), 150);
 	}
-
-	@Contract(pure = true)
+	
 	public static Item getGemstoneShard(@NotNull GemstoneColor gemstoneColor) {
 		switch (gemstoneColor) {
 			case CYAN -> {

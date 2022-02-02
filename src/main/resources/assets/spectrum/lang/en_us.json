@@ -1021,6 +1021,10 @@
   "item.spectrum.bedrock_dust": "Bedrock Dust",
   "item.spectrum.midnight_aberration": "Midnight Aberration",
 
+  "item.spectrum.red_tearstone_ring": "Red Tearstone Ring",
+  "item.spectrum.blue_tearstone_ring": "Blue Tearstone Ring",
+  "item.spectrum.speed_boots": "Seven-League Boots",
+
   "item.spectrum.crafting_tablet": "Crafting Tablet",
   "item.spectrum.crafting_tablet.tooltip.no_recipe": "Add items to the crafting grid to set a recipe",
   "item.spectrum.crafting_tablet.tooltip.crafting_recipe": "Press use to craft",

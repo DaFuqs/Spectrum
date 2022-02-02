@@ -21,6 +21,10 @@ repositories {
 		name = "Patchouli" // https://github.com/Vazkii/Patchouli
 		url = 'https://maven.blamejared.com'
 	}
+	maven {
+		name = "Ladysnake Libs"
+		url = "https://ladysnake.jfrog.io/artifactory/mods"
+	}
 	maven { url 'https://maven.wispforest.io/' } // owo lib
 	maven { url "https://jitpack.io" }
 	mavenCentral() // incubus core
@@ -48,6 +52,10 @@ dependencies {
 
 	modCompileOnly "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"
 	modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"
+
+	// https://github.com/emilyploszaj/trinkets
+	// https://maven.terraformersmc.com/releases/dev/emi/trinkets/
+	modImplementation "dev.emi:trinkets:${project.trinkets_version}"
 
 	// still breaks outside of dev env still currently.
 	//modImplementation include("com.github.devs-immortal:Incubus-Core:${project.incubus_core_version}")

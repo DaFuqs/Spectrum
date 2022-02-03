@@ -82,20 +82,7 @@ public class BottomlessBundleBlock extends BlockWithEntity {
 		return SpectrumItems.BOTTOMLESS_BUNDLE.getDefaultStack();
 	}
 	
-	@Override
-	public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
-		if (!world.isClient && !player.isCreative()) {
-			world.getBlockEntity(pos, SpectrumBlockEntityRegistry.BOTTOMLESS_BUNDLE).ifPresent((bottomlessBundleBlockEntity) -> {
-				ItemStack itemStack = bottomlessBundleBlockEntity.retrieveVoidBundle();
-				ItemEntity itemEntity = new ItemEntity(world, (double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D, itemStack);
-				itemEntity.setToDefaultPickupDelay();
-				world.spawnEntity(itemEntity);
-			});
-		}
-		super.onBreak(world, pos, state, player);
-	}
-	
-	// for automatic destructions, like pistons
+	// for automatic destruction, like pistons
 	public List<ItemStack> getDroppedStacks(BlockState state, LootContext.Builder builder) {
 		BlockEntity blockEntity = builder.getNullable(LootContextParameters.BLOCK_ENTITY);
 		if (blockEntity instanceof BottomlessBundleBlockEntity bottomlessBundleBlockEntity) {

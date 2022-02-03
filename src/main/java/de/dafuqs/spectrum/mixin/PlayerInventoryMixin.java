@@ -20,10 +20,10 @@ public class PlayerInventoryMixin {
 			if(inventoryStack.getItem() instanceof InventoryInsertionAcceptor) {
 				if(((InventoryInsertionAcceptor) inventoryStack.getItem()).acceptsItemStack(inventoryStack, stack)) {
 					int remainingCount = ((InventoryInsertionAcceptor) inventoryStack.getItem()).acceptItemStack(inventoryStack, stack, playerInventory.player);
+					stack.setCount(remainingCount);
 					if(remainingCount == 0) {
 						callbackInfoReturnable.cancel();
-					} else {
-						stack.setCount(remainingCount);
+						break;
 					}
 				}
 			}

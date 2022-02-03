@@ -504,8 +504,8 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 					selectionAvailabilityMod = (enchantment.isAvailableForRandomSelection() ? 0.5F : 0.75F) + (enchantment.isAvailableForEnchantedBookOffer() ? 0.5F : 0.75F);
 				}
 				float conflictMod = conflicts ? 4.0F : 1.0F;
-				
-				return (int) Math.floor(rarityCost * levelCost * specialMulti * conflictMod * selectionAvailabilityMod * (10.0F / enchantability));
+				float enchantabilityMod = (4.0F / (2 + enchantability)) * 4.0F;
+				return (int) Math.floor(rarityCost * levelCost * specialMulti * conflictMod * selectionAvailabilityMod * enchantabilityMod);
 			}
 		}
 		return -1;

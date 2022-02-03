@@ -350,6 +350,10 @@ public class ShootingStarEntity extends Entity {
 		world.addParticle(particleEffect, this.getX(), this.getY() + 0.05F, this.getZ(), 0.2 - random.nextFloat() * 0.4, 0.1, 0.2 - random.nextFloat() * 0.4);
 	}
 	
+	public  void playHitParticles() {
+		playHitParticles(this.world, this.getX(), this.getY(), this.getZ(), this.getShootingStarType(), 25);
+	}
+	
 	public static void playHitParticles(World world, double x, double y, double z, ShootingStarBlock.Type type, int amount) {
 		Random random = world.random;
 		// Everything in this lambda is running on the render thread
@@ -461,7 +465,27 @@ public class ShootingStarEntity extends Entity {
 	
 	@Override
 	public boolean isInvulnerableTo(@NotNull DamageSource damageSource) {
-		return damageSource.isFire() || super.isInvulnerableTo(damageSource);
+		if(damageSource == DamageSource.ANVIL || damageSource == SpectrumDamageSources.FLOATBLOCK) {
+			return false;
+		} else {
+			return damageSource.isFire() || super.isInvulnerableTo(damageSource);
+		}
+	}
+	
+	@Override
+	public boolean damage(DamageSource damageSource, float amount) {
+		if (amount > 5 && (damageSource == DamageSource.ANVIL || damageSource == SpectrumDamageSources.FLOATBLOCK)) {
+			this.playHitParticles();
+			
+			ItemStack shootingStarStack = SpectrumItems.SHOOTING_STAR.getDefaultStack();
+			shootingStarStack.setCount(2);
+			ItemEntity itemEntity = new ItemEntity(this.world, this.getX(), this.getY(), this.getZ(), shootingStarStack);
+			this.world.spawnEntity(itemEntity);
+			this.discard();
+			return true;
+		}
+		this.scheduleVelocityUpdate();
+		return false;
 	}
 	
 	public ShootingStarBlock.Type getShootingStarType() {

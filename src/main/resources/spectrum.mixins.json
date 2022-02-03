@@ -5,6 +5,7 @@
   "mixins": [
     "AccessorItem",
     "AccessorShapedRecipe",
+    "AdvancementProgressMixin",
     "AnvilBlockMixin",
     "ArmorWithHitEffectProcessor",
     "BlockMixin",
@@ -42,7 +43,6 @@
     "WorldRendererMixin"
   ],
   "client": [
-    "client.enchantment_descriptions.DescriptionManagerMixin",
     "client.AccessorClientAdvancementManager",
     "client.BlockClientMixin",
     "client.BlockModelsMixin",
@@ -57,7 +57,8 @@
     "client.MixinMinecraftClient",
     "client.RenderLayerAccessor",
     "client.TransparentBlockMixin",
-    "client.WorldRendererMixin"
+    "client.WorldRendererMixin",
+    "client.enchantment_descriptions.DescriptionManagerMixin"
   ],
   "injectors": {
     "defaultRequire": 1

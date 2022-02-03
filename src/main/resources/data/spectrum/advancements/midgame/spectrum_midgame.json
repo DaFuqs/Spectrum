@@ -13,8 +13,8 @@
   },
   "criteria": {
     "get_pedestal_all_basic": {
-      "trigger": "spectrum:crafted_with_pedestal",
-      "conditions": { "items": [{ "items": [ "spectrum:pedestal_onyx" ]}] }
+      "trigger": "spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:craft_onyx_pedestal" }
     }
   }
 }

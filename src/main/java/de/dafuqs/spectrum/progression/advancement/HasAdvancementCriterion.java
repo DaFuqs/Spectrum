@@ -19,6 +19,10 @@ public class HasAdvancementCriterion extends AbstractCriterion<HasAdvancementCri
 	public Identifier getId() {
 		return ID;
 	}
+	
+	public HasAdvancementCriterion.Conditions conditionsFromAdvancementIdentifier(EntityPredicate.Extended extended, Identifier identifier) {
+		return new HasAdvancementCriterion.Conditions(extended, identifier);
+	}
 
 	public HasAdvancementCriterion.Conditions conditionsFromJson(JsonObject jsonObject, EntityPredicate.Extended extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
 		Identifier identifier = new Identifier(JsonHelper.getString(jsonObject, "advancement_identifier"));

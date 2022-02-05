@@ -30,9 +30,4 @@ public class VoidingPickaxeItem extends SpectrumPickaxeItem {
 		return true;
 	}
 
-	@Override
-	public boolean isDamageable() {
-		return true;
-	}
-
 }

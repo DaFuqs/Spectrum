@@ -266,7 +266,7 @@ public class ShootingStarEntity extends Entity {
 					this.discard();
 				} else {
 					// spawn loot
-					List<ItemStack> loot = getLoot((ServerWorld) world, ShootingStarBlock.Type.COMMON_LOOT_TABLE);
+					List<ItemStack> loot = getLoot((ServerWorld) world, ShootingStarBlock.Type.BOUNCE_LOOT_TABLE);
 					for (ItemStack itemStack : loot) {
 						ItemEntity itemEntity = new ItemEntity(this.world, this.getX(), this.getY(), this.getZ(), itemStack);
 						this.world.spawnEntity(itemEntity);
@@ -371,8 +371,7 @@ public class ShootingStarEntity extends Entity {
 		// Spawn loot
 		Identifier lootTableId = ShootingStarBlock.Type.getLootTableIdentifier(dataTracker.get(SHOOTING_STAR_TYPE));
 		List<ItemStack> loot = getLoot(serverWorld, serverPlayerEntity, lootTableId);
-		loot.addAll(getLoot(serverWorld, serverPlayerEntity, ShootingStarBlock.Type.COMMON_LOOT_TABLE));
-		
+
 		for(ItemStack itemStack : loot) {
 			ItemEntity itemEntity = new ItemEntity(this.world, this.getX(), this.getY(), this.getZ(), itemStack);
 			this.world.spawnEntity(itemEntity);

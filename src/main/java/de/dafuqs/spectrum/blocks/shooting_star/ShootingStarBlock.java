@@ -33,7 +33,7 @@ public class ShootingStarBlock extends BlockWithEntity {
 		PRISTINE("pristine"),
 		GEMSTONE("gemstone");
 		
-		public static final Identifier COMMON_LOOT_TABLE = new Identifier(SpectrumCommon.MOD_ID, "entity/shooting_star/shooting_star_common");
+		public static final Identifier BOUNCE_LOOT_TABLE = new Identifier(SpectrumCommon.MOD_ID, "entity/shooting_star/shooting_star_bounce");
 		
 		private final String name;
 		

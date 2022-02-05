@@ -5,6 +5,8 @@
   "slots": [
     "feet/shoes",
     "hand/ring",
-    "offhand/ring"
+    "offhand/ring",
+
+    "chest/pin"
   ]
 }

@@ -81,7 +81,7 @@ public abstract class ServerPlayerEntityMixin {
 					}
 					
 					World world = thisPlayer.getWorld();
-					if (SpectrumTrinketItem.hasEquipped(thisPlayer, SpectrumItems.RADIANCE_PIN) && this.spectrum$lastRadiancePinTriggerTick > world.getTime() + RadiancePinItem.COOLDOWN_TICKS) {
+					if (SpectrumTrinketItem.hasEquipped(thisPlayer, SpectrumItems.RADIANCE_PIN) && world.getTime() - this.spectrum$lastRadiancePinTriggerTick > RadiancePinItem.COOLDOWN_TICKS) {
 						doRadiancePinEffect(thisPlayer, (ServerWorld) world);
 						this.spectrum$lastRadiancePinTriggerTick = world.getTime();
 					}
@@ -121,8 +121,8 @@ public abstract class ServerPlayerEntityMixin {
 	}
 	
 	private void doRadiancePinEffect(PlayerEntity player, ServerWorld world) {
-		world.playSound(null, player.getX(), player.getY(), player.getZ(), SpectrumSoundEvents.RADIANCE_PIN_TRIGGER, SoundCategory.PLAYERS, 0.5F, 0.9F + world.getRandom().nextFloat() * 0.2F);
-		SpectrumS2CPackets.playParticleWithRandomOffsetAndVelocity(world, player.getPos(), SpectrumParticleTypes.LIQUID_CRYSTAL_SPARKLE, 20, new Vec3d(0, 0, 0), new Vec3d(0.5, 0.5, 0.5));
+		world.playSound(null, player.getX(), player.getY(), player.getZ(), SpectrumSoundEvents.RADIANCE_PIN_TRIGGER, SoundCategory.PLAYERS, 0.4F, 0.9F + world.getRandom().nextFloat() * 0.2F);
+		SpectrumS2CPackets.playParticleWithRandomOffsetAndVelocity(world, player.getPos().add(0, 0.75, 0), SpectrumParticleTypes.LIQUID_CRYSTAL_SPARKLE, 100, new Vec3d(0, 0.5, 0), new Vec3d(2.5, 0.1, 2.5));
 		
 		world.getOtherEntities(player, player.getBoundingBox().expand(RadiancePinItem.RANGE), EntityPredicates.VALID_LIVING_ENTITY).forEach((entity) -> {
 			if(entity instanceof LivingEntity livingEntity) {

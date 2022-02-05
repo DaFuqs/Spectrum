@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "spectrum:small_moonstone_bud",
+    "spectrum:medium_moonstone_bud",
+    "spectrum:large_moonstone_bud",
+    "spectrum:moonstone_cluster",
+    "spectrum:moonstone_shard"
+  ]
+}

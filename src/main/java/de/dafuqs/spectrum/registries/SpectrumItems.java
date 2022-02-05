@@ -14,6 +14,7 @@ import de.dafuqs.spectrum.items.item_frame.InvisibleItemFrameItem;
 import de.dafuqs.spectrum.items.magic_items.*;
 import de.dafuqs.spectrum.items.tools.*;
 import de.dafuqs.spectrum.items.trinkets.AttackRingItem;
+import de.dafuqs.spectrum.items.trinkets.RadiancePinItem;
 import de.dafuqs.spectrum.items.trinkets.SpeedBootsItem;
 import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
 import io.wispforest.owo.itemgroup.OwoItemSettings;
@@ -26,7 +27,6 @@ import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
 import net.minecraft.util.registry.Registry;
-import org.jetbrains.annotations.NotNull;
 
 import static de.dafuqs.spectrum.registries.SpectrumFluids.LIQUID_CRYSTAL;
 import static de.dafuqs.spectrum.registries.SpectrumFluids.MUD;
@@ -206,6 +206,7 @@ public class SpectrumItems {
 	// Trinkets
 	public static final Item ATTACK_RING = new AttackRingItem(generalUncommonItemSettingsSingle);
 	public static final Item SPEED_BOOTS = new SpeedBootsItem(generalUncommonItemSettingsSingle);
+	public static final Item RADIANCE_PIN = new RadiancePinItem(generalUncommonItemSettingsSingle);
 
 	private static void register(String name, Item item) {
 		Registry.register(Registry.ITEM, new Identifier(SpectrumCommon.MOD_ID, name), item);
@@ -361,6 +362,7 @@ public class SpectrumItems {
 	public static void registerTrinkets() {
 		register("attack_ring", ATTACK_RING);
 		register("speed_boots", SPEED_BOOTS);
+		register("radiance_pin", RADIANCE_PIN);
 	}
 	
 	public static void registerFluidBuckets() {
@@ -521,7 +523,7 @@ public class SpectrumItems {
 		FuelRegistry.INSTANCE.add(SpectrumBlocks.YELLOW_PLANK_SLAB.asItem(), 150);
 	}
 	
-	public static Item getGemstoneShard(@NotNull GemstoneColor gemstoneColor) {
+	public static Item getGemstoneShard(GemstoneColor gemstoneColor) {
 		switch (gemstoneColor) {
 			case CYAN -> {
 				return TOPAZ_POWDER;

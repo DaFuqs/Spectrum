@@ -23,6 +23,12 @@
       "spectrum:text_revealed"
     ]
   },
+  "radiance_pin_trigger": {
+    "subtitle": "spectrum.subtitles.radiance_pin_trigger",
+    "sounds": [
+      "spectrum:radiance_pin_trigger"
+    ]
+  },
   "shooting_star_cracker": {
     "subtitle": "spectrum.subtitles.shooting_star_cracker",
     "sounds": [

@@ -38,6 +38,7 @@ public class SpectrumSoundEvents {
 	public static SoundEvent ENDER_SPLICE_BOUND = register("ender_splice_bound");
 	public static SoundEvent NATURES_STAFF_USE = register("natures_staff_use");
 	public static SoundEvent EXCHANGE_STAFF_SELECT = register("exchange_staff_select");
+	public static SoundEvent RADIANCE_PIN_TRIGGER = register("radiance_pin_trigger");
 
 	public static SoundEvent SUCKING_CHEST_OPEN = register("sucking_chest_open");
 	public static SoundEvent SUCKING_CHEST_CLOSE = register("sucking_chest_close");

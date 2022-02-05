@@ -25,11 +25,8 @@ public class AttackRingItem extends SpectrumTrinketItem {
 	@Override
 	public boolean canEquip(ItemStack stack, SlotReference slot, LivingEntity entity) {
 		// Only a single trinket of that type may be equipped at once
-		Optional<TrinketComponent> trinketComponent = TrinketsApi.getTrinketComponent(entity);
-		if(trinketComponent.isPresent()) {
-			if(trinketComponent.get().isEquipped(this)) {
-				return false;
-			}
+		if(SpectrumTrinketItem.hasEquipped(entity, this)) {
+			return false;
 		}
 		
 		return super.canEquip(stack, slot, entity);

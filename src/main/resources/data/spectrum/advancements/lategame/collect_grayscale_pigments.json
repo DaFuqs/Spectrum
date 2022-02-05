@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:midgame/collect_moonstone_shard",
+  "parent": "spectrum:lategame/build_complex_pedestal_structure",
   "display": {
     "icon": {
       "item": "spectrum:light_gray_pigment"
@@ -28,6 +28,10 @@
     "has_white": {
       "trigger": "minecraft:inventory_changed",
       "conditions": { "items": [{ "items": [ "spectrum:white_pigment" ]}] }
+    },
+    "gotten_previous": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:lategame/build_complex_pedestal_structure" }
     }
   }
 }

@@ -17,6 +17,10 @@
       "conditions": {
         "block": "spectrum:ender_glass"
       }
+    },
+    "gotten_previous": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:get_ender_treasure" }
     }
   }
 }

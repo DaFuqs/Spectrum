@@ -26,6 +26,10 @@
           ]
         }
       }
+    },
+    "gotten_previous": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:lategame/create_spectral_shard" }
     }
   }
 }

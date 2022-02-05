@@ -17,6 +17,10 @@
       "conditions": {
         "block": "spectrum:liquid_crystal"
       }
+    },
+    "gotten_previous": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:midgame/build_advanced_pedestal_structure" }
     }
   }
 }

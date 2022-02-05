@@ -19,6 +19,10 @@
           "items": ["spectrum:glistering_melon_seeds"]
         }
       }
+    },
+    "gotten_previous": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:collect_vegetal" }
     }
   }
 }

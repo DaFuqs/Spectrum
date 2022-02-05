@@ -15,6 +15,10 @@
     "created_midnight_aberration": {
       "trigger":"spectrum:crafted_with_fusion_shrine",
       "conditions": { "items": [{ "items": [ "spectrum:midnight_aberration" ]}] }
+    },
+    "gotten_previous": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:midgame/collect_neolith" }
     }
   }
 }

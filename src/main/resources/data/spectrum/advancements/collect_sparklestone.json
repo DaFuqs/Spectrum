@@ -23,6 +23,10 @@
     "has_deepslate_sparklestone_ore": {
       "trigger": "minecraft:inventory_changed",
       "conditions": { "items": [{ "items": [ "spectrum:deepslate_sparklestone_ore" ]}] }
+    },
+    "gotten_previous": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:craft_using_pedestal" }
     }
   },
   "requirements": [
@@ -30,6 +34,7 @@
       "has_sparklestone_gem",
       "has_sparklestone_ore",
       "has_deepslate_sparklestone_ore"
-    ]
+    ],
+    [ "gotten_previous" ]
   ]
 }

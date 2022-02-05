@@ -624,8 +624,8 @@
   "block.spectrum.liquid_crystal": "Liquid Crystal",
   "block.spectrum.flowing_liquid_crystal": "Liquid Crystal",
 
-  "block.spectrum.paletur_ore": "Aerialite Ore",
-  "block.spectrum.paletur_fragment_block": "Aerialite Floatblock",
+  "block.spectrum.paletur_ore": "Paltaeria Ore",
+  "block.spectrum.paletur_fragment_block": "Paltaeria Floatblock",
   "block.spectrum.scarlet_ore": "Crimtane Ore",
   "block.spectrum.scarlet_fragment_block": "Crimtane Floatblock",
 
@@ -931,8 +931,8 @@
   "item.spectrum.lightning_stone": "Storm Stone",
   "item.spectrum.scarlet_fragments": "Crimtane Fragments",
   "item.spectrum.scarlet_gem": "Crimtane Gem",
-  "item.spectrum.paletur_fragments": "Aerialite Fragments",
-  "item.spectrum.paletur_gem": "Aerialite Gem",
+  "item.spectrum.paletur_fragments": "Paltaeria Fragments",
+  "item.spectrum.paletur_gem": "Paltaeria Gem",
   "item.spectrum.glistering_melon_seeds": "Glistering Melon Seeds",
 
   "item.spectrum.knowledge_gem": "Knowledge Gem",
@@ -1096,7 +1096,7 @@
   "advancements.spectrum.collect_moonstone_shard.title": "The Brightest of Whites",
   "advancements.spectrum.collect_moonstone_shard.description": "Discover a Moonstone Geode",
   "advancements.spectrum.collect_paletur.title": "Watch it fly by",
-  "advancements.spectrum.collect_paletur.description": "Collect Aerialite",
+  "advancements.spectrum.collect_paletur.description": "Collect Paltaeria",
   "advancements.spectrum.collect_pigment.title": "Collect pure Pigment",
   "advancements.spectrum.collect_pigment.description": "Break the Leaves of a Colored Tree to get the pure Pigment you so desired. The Leaves release their precious harvest only when broken by You personally",
   "advancements.spectrum.collect_quitoxic_reeds.title": "Swamped",

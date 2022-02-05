@@ -40,6 +40,10 @@
           "tag": "spectrum:budding_blocks"
         }
       }
+    },
+    "gotten_previous": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:lategame/craft_resonant_pickaxe" }
     }
   }
 }

@@ -35,6 +35,10 @@
       "conditions": {
         "items": [ { "items": [ "spectrum:bedrock_boots" ] } ]
       }
+    },
+    "gotten_previous": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:midgame/break_decayed_bedrock" }
     }
   },
   "requirements": [
@@ -43,6 +47,7 @@
       "bedrock_chestplate",
       "bedrock_leggings",
       "bedrock_boots"
-    ]
+    ],
+    [ "gotten_previous" ]
   ]
 }

@@ -16,6 +16,10 @@
     "built_structure": {
       "trigger": "spectrum:completed_multiblock",
       "conditions": { "multiblock_identifier": "spectrum:pedestal_simple_structure_check" }
+    },
+    "gotten_previous": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:craft_colored_pedestal" }
     }
   },
   "rewards": {

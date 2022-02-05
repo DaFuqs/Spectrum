@@ -60,6 +60,10 @@
     "collected_brown_pigment": {
       "trigger":"spectrum:has_advancement",
       "conditions": { "advancement_identifier": "spectrum:hidden/collect_pigment/collect_brown_pigment" }
+    },
+    "gotten_previous": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:collect_pigment" }
     }
   },
   "requirements": [
@@ -74,6 +78,7 @@
     ["collected_purple_pigment"],
     ["collected_red_pigment"],
     ["collected_yellow_pigment"],
-    ["collected_brown_pigment"]
+    ["collected_brown_pigment"],
+    ["gotten_previous"]
   ]
 }

@@ -16,16 +16,14 @@
       "trigger": "minecraft:item_durability_changed",
       "conditions": {
         "item": {
-          "items": [
-            "spectrum:voiding_pickaxe"
-          ],
-          "enchantments": [
-            {
-              "enchantment": "minecraft:efficiency"
-            }
-          ]
+          "items": [ "spectrum:voiding_pickaxe" ],
+          "enchantments": [ { "enchantment": "minecraft:efficiency" } ]
         }
       }
+    },
+    "gotten_previous": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:collect_quitoxic_reeds" }
     }
   }
 }

@@ -32,6 +32,10 @@
           }
         }
       }
+    },
+    "gotten_previous": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:midgame/enter_liquid_crystal" }
     }
   },
   "rewards": {

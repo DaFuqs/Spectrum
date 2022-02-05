@@ -13,22 +13,21 @@
   },
   "parent": "spectrum:spectrum",
   "criteria": {
+    "has_topaz_shard": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": { "items": [{ "tag": "spectrum:topaz_crystals" }] }
+    },
     "has_amethyst_shard": {
-      "trigger":"minecraft:inventory_changed",
-      "conditions": { "items": [{ "items": [ "minecraft:amethyst_shard" ]}] }
+      "trigger": "minecraft:inventory_changed",
+      "conditions": { "items": [{ "tag": "spectrum:amethyst_crystals" }] }
     },
     "has_citrine_shard": {
-      "trigger":"minecraft:inventory_changed",
-      "conditions": { "items": [{ "items": [ "spectrum:citrine_shard" ]}] }
+      "trigger": "minecraft:inventory_changed",
+      "conditions": { "items": [{ "tag": "spectrum:citrine_crystals" }] }
     },
-    "has_topaz_shard": {
-      "trigger":"minecraft:inventory_changed",
-      "conditions": { "items": [{ "items": [ "spectrum:topaz_shard" ]}] }
+    "gotten_previous": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:spectrum" }
     }
-  },
-  "requirements": [
-    ["has_amethyst_shard"],
-    ["has_citrine_shard"],
-    ["has_topaz_shard"]
-  ]
+  }
 }

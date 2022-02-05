@@ -17,6 +17,10 @@
       "conditions": {
         "source_block": "minecraft:dead_bush"
       }
+    },
+    "gotten_previous": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:collect_all_basic_pigments" }
     }
   }
 }

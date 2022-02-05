@@ -2,7 +2,7 @@
   "criteria": {
     "has_amethyst_shard": {
       "trigger": "minecraft:inventory_changed",
-      "conditions": { "items": [{ "items": [ "minecraft:amethyst_shard" ]}] }
+      "conditions": { "items": [{ "tag": "spectrum:amethyst_crystals" }] }
     }
   }
 }

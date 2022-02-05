@@ -2,7 +2,7 @@
   "criteria": {
     "has_topaz_shard": {
       "trigger": "minecraft:inventory_changed",
-      "conditions": { "items": [{ "items": [ "spectrum:topaz_shard" ]}] }
+      "conditions": { "items": [{ "tag": "spectrum:topaz_crystals" }] }
     }
   }
 }

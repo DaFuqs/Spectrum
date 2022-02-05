@@ -19,6 +19,10 @@
           "items": ["spectrum:end_portal_cracker"]
         }
       }
+    },
+    "gotten_previous": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:lategame/build_complex_pedestal_structure" }
     }
   }
 }

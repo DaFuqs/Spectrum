@@ -16,6 +16,10 @@
     "has_neolith": {
       "trigger": "minecraft:inventory_changed",
       "conditions": { "items": [{ "items": [ "spectrum:resonant_lily" ]}] }
+    },
+    "gotten_previous": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:midgame/enter_liquid_crystal" }
     }
   }
 }

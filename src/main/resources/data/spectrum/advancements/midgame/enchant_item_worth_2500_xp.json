@@ -19,6 +19,10 @@
           "min": 2500
         }
       }
+    },
+    "gotten_previous": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:midgame/enchant_book" }
     }
   }
 }

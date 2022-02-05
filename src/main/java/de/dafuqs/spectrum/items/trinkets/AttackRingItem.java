@@ -2,9 +2,7 @@ package de.dafuqs.spectrum.items.trinkets;
 
 import com.google.common.collect.Multimap;
 import de.dafuqs.spectrum.SpectrumCommon;
-import dev.emi.trinkets.api.SlotAttributes;
-import dev.emi.trinkets.api.SlotReference;
-import dev.emi.trinkets.api.TrinketItem;
+import dev.emi.trinkets.api.*;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
@@ -12,6 +10,8 @@ import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
 
+import java.util.Map;
+import java.util.Optional;
 import java.util.UUID;
 
 public class AttackRingItem extends SpectrumTrinketItem {
@@ -23,6 +23,19 @@ public class AttackRingItem extends SpectrumTrinketItem {
 	}
 	
 	@Override
+	public boolean canEquip(ItemStack stack, SlotReference slot, LivingEntity entity) {
+		// Only a single trinket of that type may be equipped at once
+		Optional<TrinketComponent> trinketComponent = TrinketsApi.getTrinketComponent(entity);
+		if(trinketComponent.isPresent()) {
+			if(trinketComponent.get().isEquipped(this)) {
+				return false;
+			}
+		}
+		
+		return super.canEquip(stack, slot, entity);
+	}
+	
+	@Override
 	protected Identifier getUnlockIdentifier() {
 		return UNLOCK_IDENTIFIER;
 	}
@@ -30,10 +43,7 @@ public class AttackRingItem extends SpectrumTrinketItem {
 	public Multimap<EntityAttribute, EntityAttributeModifier> getModifiers(ItemStack stack, SlotReference slot, LivingEntity entity, UUID uuid) {
 		Multimap<EntityAttribute, EntityAttributeModifier> modifiers = super.getModifiers(stack, slot, entity, uuid);
 		
-		// +20% movement speed
-		modifiers.put(EntityAttributes.GENERIC_MOVEMENT_SPEED, new EntityAttributeModifier(uuid, "spectrum:movement_speed", 0.2, EntityAttributeModifier.Operation.MULTIPLY_TOTAL));
-  
 		return modifiers;
 	}
-  
+	
 }

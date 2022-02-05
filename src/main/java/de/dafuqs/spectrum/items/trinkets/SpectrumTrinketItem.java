@@ -8,6 +8,8 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
 
+import java.util.List;
+
 public abstract class SpectrumTrinketItem extends TrinketItem {
 	
 	public SpectrumTrinketItem(Settings settings) {

@@ -14,11 +14,11 @@ import net.minecraft.util.Identifier;
 
 import java.util.UUID;
 
-public class RedTearstoneRingItem extends SpectrumTrinketItem {
+public class AttackRingItem extends SpectrumTrinketItem {
 	
 	private final Identifier UNLOCK_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "midgame/spectrum_midgame");
 	
-	public RedTearstoneRingItem(Settings settings) {
+	public AttackRingItem(Settings settings) {
 		super(settings);
 	}
 	

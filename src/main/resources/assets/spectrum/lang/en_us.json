@@ -903,7 +903,7 @@
   "item.spectrum.sparklestone_gem": "Shimmerstone Gem",
   "item.spectrum.refined_azurite": "Refined Azurite",
   "item.spectrum.quitoxic_powder": "Quitoxic Powder",
-  "item.spectrum.mermaids_gem": "Tearstone",
+  "item.spectrum.mermaids_gem": "Mermaids Gem",
   "item.spectrum.end_portal_cracker": "End Portal Cracker",
   "item.spectrum.manual": "Colorful World",
   "item.spectrum.multitool": "Multitool",
@@ -1021,8 +1021,7 @@
   "item.spectrum.bedrock_dust": "Bedrock Dust",
   "item.spectrum.midnight_aberration": "Midnight Aberration",
 
-  "item.spectrum.red_tearstone_ring": "Red Tearstone Ring",
-  "item.spectrum.blue_tearstone_ring": "Blue Tearstone Ring",
+  "item.spectrum.attack_ring": "Jeopardant",
   "item.spectrum.speed_boots": "Seven-League Boots",
 
   "item.spectrum.crafting_tablet": "Crafting Tablet",

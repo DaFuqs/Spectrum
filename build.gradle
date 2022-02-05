@@ -57,6 +57,9 @@ dependencies {
 	// https://maven.terraformersmc.com/releases/dev/emi/trinkets/
 	modImplementation "dev.emi:trinkets:${project.trinkets_version}"
 
+	modImplementation "com.github.emilyploszaj:step-height-entity-attribute:${project.step_height_attribute_version}"
+	include "com.github.emilyploszaj:step-height-entity-attribute:${project.step_height_attribute_version}"
+
 	// still breaks outside of dev env still currently.
 	//modImplementation include("com.github.devs-immortal:Incubus-Core:${project.incubus_core_version}")
 

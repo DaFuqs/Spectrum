@@ -13,8 +13,7 @@ import de.dafuqs.spectrum.items.item_frame.InvisibleGlowItemFrameItem;
 import de.dafuqs.spectrum.items.item_frame.InvisibleItemFrameItem;
 import de.dafuqs.spectrum.items.magic_items.*;
 import de.dafuqs.spectrum.items.tools.*;
-import de.dafuqs.spectrum.items.trinkets.BlueTearstoneRingItem;
-import de.dafuqs.spectrum.items.trinkets.RedTearstoneRingItem;
+import de.dafuqs.spectrum.items.trinkets.AttackRingItem;
 import de.dafuqs.spectrum.items.trinkets.SpeedBootsItem;
 import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
 import io.wispforest.owo.itemgroup.OwoItemSettings;
@@ -205,8 +204,7 @@ public class SpectrumItems {
 	public static final Item KNOWLEDGE_GEM = new KnowledgeGemItem(generalUncommonItemSettingsSingle, 10000);
 
 	// Trinkets
-	public static final Item RED_TEARSTONE_RING = new RedTearstoneRingItem(generalUncommonItemSettingsSingle);
-	public static final Item BLUE_TEARSTONE_RING = new BlueTearstoneRingItem(generalUncommonItemSettingsSingle);
+	public static final Item ATTACK_RING = new AttackRingItem(generalUncommonItemSettingsSingle);
 	public static final Item SPEED_BOOTS = new SpeedBootsItem(generalUncommonItemSettingsSingle);
 
 	private static void register(String name, Item item) {
@@ -361,8 +359,7 @@ public class SpectrumItems {
 	}
 	
 	public static void registerTrinkets() {
-		register("red_tearstone_ring", RED_TEARSTONE_RING);
-		register("blue_tearstone_ring", BLUE_TEARSTONE_RING);
+		register("attack_ring", ATTACK_RING);
 		register("speed_boots", SPEED_BOOTS);
 	}
 	

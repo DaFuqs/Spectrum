@@ -295,7 +295,9 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 		
 		int droppedAmount = Math.min(bundledStack.getMaxCount(), storedAmount);
 		if(droppedAmount > 0) {
-			player.dropItem(new ItemStack(bundledStack.getItem(), droppedAmount), true);
+			ItemStack stackToDrop = bundledStack.copy();
+			stackToDrop.setCount(droppedAmount);
+			player.dropItem(stackToDrop, true);
 			removeBundledStackAmount(voidBundleStack, droppedAmount);
 			return true;
 		} else {

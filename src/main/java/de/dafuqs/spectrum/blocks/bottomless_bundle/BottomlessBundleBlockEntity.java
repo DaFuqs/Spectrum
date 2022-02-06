@@ -98,7 +98,7 @@ public class BottomlessBundleBlockEntity extends BlockEntity implements SidedInv
 	
 	@Override
 	public boolean canInsert(int slot, ItemStack stack, @Nullable Direction dir) {
-		return slot == 0
+		return slot == 0 && stack.getItem().canBeNested()
 				&& (this.acceptedItemStack.isEmpty() || ItemStack.canCombine(stack, this.acceptedItemStack))
 				&& BottomlessBundleItem.getStoredAmount(this.bottomlessBundleStack) + this.currentOutputStack.getCount() < BottomlessBundleItem.getMaxStoredAmount(this.bottomlessBundleStack);
 	}

@@ -245,7 +245,7 @@ public class ShootingStarEntity extends Entity {
 			this.checkBlockCollision();
 			
 			// despawning
-			if (!this.dataTracker.get(PLAYER_PLACED) && this.age >= 6000) {
+			if (!this.dataTracker.get(PLAYER_PLACED) && this.age >= 4000) {
 				this.discard();
 			}
 			

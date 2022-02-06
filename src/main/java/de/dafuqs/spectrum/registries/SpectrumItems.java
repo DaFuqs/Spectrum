@@ -13,10 +13,7 @@ import de.dafuqs.spectrum.items.item_frame.InvisibleGlowItemFrameItem;
 import de.dafuqs.spectrum.items.item_frame.InvisibleItemFrameItem;
 import de.dafuqs.spectrum.items.magic_items.*;
 import de.dafuqs.spectrum.items.tools.*;
-import de.dafuqs.spectrum.items.trinkets.AttackRingItem;
-import de.dafuqs.spectrum.items.trinkets.RadiancePinItem;
-import de.dafuqs.spectrum.items.trinkets.SpeedBootsItem;
-import de.dafuqs.spectrum.items.trinkets.TotemPendantItem;
+import de.dafuqs.spectrum.items.trinkets.*;
 import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
 import io.wispforest.owo.itemgroup.OwoItemSettings;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
@@ -209,6 +206,7 @@ public class SpectrumItems {
 	public static final Item SPEED_BOOTS = new SpeedBootsItem(generalUncommonItemSettingsSingle);
 	public static final Item RADIANCE_PIN = new RadiancePinItem(generalUncommonItemSettingsSingle);
 	public static final Item TOTEM_PENDANT = new TotemPendantItem(generalUncommonItemSettingsSingle);
+	public static final Item AIR_LAUNCH_BELT = new AirLaunchBeltItem(generalUncommonItemSettingsSingle);
 
 	private static void register(String name, Item item) {
 		Registry.register(Registry.ITEM, new Identifier(SpectrumCommon.MOD_ID, name), item);
@@ -366,6 +364,7 @@ public class SpectrumItems {
 		register("speed_boots", SPEED_BOOTS);
 		register("radiance_pin", RADIANCE_PIN);
 		register("totem_pendant", TOTEM_PENDANT);
+		register("air_launch_belt", AIR_LAUNCH_BELT);
 	}
 	
 	public static void registerFluidBuckets() {

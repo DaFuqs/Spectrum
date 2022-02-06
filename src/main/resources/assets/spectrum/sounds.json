@@ -23,6 +23,12 @@
       "spectrum:text_revealed"
     ]
   },
+  "air_launch_belt_charging": {
+    "subtitle": "spectrum.subtitles.air_launch_belt_charging",
+    "sounds": [
+      "spectrum:air_launch_belt_charging"
+    ]
+  },
   "radiance_pin_trigger": {
     "subtitle": "spectrum.subtitles.radiance_pin_trigger",
     "sounds": [

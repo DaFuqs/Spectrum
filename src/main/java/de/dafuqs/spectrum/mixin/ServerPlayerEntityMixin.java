@@ -3,31 +3,19 @@ package de.dafuqs.spectrum.mixin;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.items.trinkets.RadiancePinItem;
 import de.dafuqs.spectrum.items.trinkets.SpectrumTrinketItem;
-import de.dafuqs.spectrum.networking.SpectrumS2CPackets;
-import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.registries.SpectrumEnchantments;
 import de.dafuqs.spectrum.registries.SpectrumItems;
-import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
-import dev.emi.trinkets.api.TrinketComponent;
-import dev.emi.trinkets.api.TrinketsApi;
-import net.minecraft.block.entity.BeaconBlockEntity;
 import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.FallingBlockEntity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.predicate.entity.EntityPredicates;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.Hand;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -82,7 +70,7 @@ public abstract class ServerPlayerEntityMixin {
 					
 					World world = thisPlayer.getWorld();
 					if (SpectrumTrinketItem.hasEquipped(thisPlayer, SpectrumItems.RADIANCE_PIN) && world.getTime() - this.spectrum$lastRadiancePinTriggerTick > RadiancePinItem.COOLDOWN_TICKS) {
-						doRadiancePinEffect(thisPlayer, (ServerWorld) world);
+						RadiancePinItem.doRadiancePinEffect(thisPlayer, (ServerWorld) world);
 						this.spectrum$lastRadiancePinTriggerTick = world.getTime();
 					}
 				}
@@ -118,17 +106,6 @@ public abstract class ServerPlayerEntityMixin {
 			randomSlot = (randomSlot + 1) % 6;
 			slotsChecked++;
 		}
-	}
-	
-	private void doRadiancePinEffect(PlayerEntity player, ServerWorld world) {
-		world.playSound(null, player.getX(), player.getY(), player.getZ(), SpectrumSoundEvents.RADIANCE_PIN_TRIGGER, SoundCategory.PLAYERS, 0.4F, 0.9F + world.getRandom().nextFloat() * 0.2F);
-		SpectrumS2CPackets.playParticleWithRandomOffsetAndVelocity(world, player.getPos().add(0, 0.75, 0), SpectrumParticleTypes.LIQUID_CRYSTAL_SPARKLE, 100, new Vec3d(0, 0.5, 0), new Vec3d(2.5, 0.1, 2.5));
-		
-		world.getOtherEntities(player, player.getBoundingBox().expand(RadiancePinItem.RANGE), EntityPredicates.VALID_LIVING_ENTITY).forEach((entity) -> {
-			if(entity instanceof LivingEntity livingEntity) {
-				livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.GLOWING, RadiancePinItem.EFFECT_DURATION, 1, true, true));
-			}
-		});
 	}
 	
 }

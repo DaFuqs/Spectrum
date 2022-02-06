@@ -129,8 +129,6 @@ public abstract class ServerPlayerEntityMixin {
 				livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.GLOWING, RadiancePinItem.EFFECT_DURATION, 1, true, true));
 			}
 		});
-		
-		
 	}
 	
 }

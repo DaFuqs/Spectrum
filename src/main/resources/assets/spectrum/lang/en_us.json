@@ -1029,6 +1029,8 @@
   "item.spectrum.speed_boots": "Seven-League Boots",
   "item.spectrum.radiance_pin": "Radiance Pin",
   "item.spectrum.radiance_pin.tooltip": "Reveals nearby Mobs when hit",
+  "item.spectrum.totem_pendant": "Totem Pendant",
+  "item.spectrum.totem_pendant.tooltip": "Once-time protection from death",
 
   "item.spectrum.crafting_tablet": "Crafting Tablet",
   "item.spectrum.crafting_tablet.tooltip.no_recipe": "Add items to the crafting grid to set a recipe",

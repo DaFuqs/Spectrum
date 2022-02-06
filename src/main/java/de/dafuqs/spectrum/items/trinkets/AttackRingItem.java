@@ -36,12 +36,6 @@ public class AttackRingItem extends SpectrumTrinketItem {
 	}
 	
 	@Override
-	public void tick(ItemStack stack, SlotReference slot, LivingEntity entity) {
-		super.tick(stack, slot, entity);
-		
-	}
-	
-	@Override
 	public void onUnequip(ItemStack stack, SlotReference slot, LivingEntity entity) {
 		super.onUnequip(stack, slot, entity);
 		if(entity.getAttributes().hasModifierForAttribute(EntityAttributes.GENERIC_ATTACK_DAMAGE, AttackRingItem.ATTACK_RING_DAMAGE_UUID)) {

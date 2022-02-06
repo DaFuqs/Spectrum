@@ -1025,7 +1025,7 @@
   "trinkets.slot.chest.pin": "Pin",
   "item.spectrum.attack_ring": "Jeopardant",
   "item.spectrum.attack_ring.tooltip.damage_zero": "§7Increased Damage on low HP (currently §8%d %%§7)",
-  "item.spectrum.attack_ring.tooltip.damage": "§7Increased Damage on low HP (currently §a%d %%§7)",
+  "item.spectrum.attack_ring.tooltip.damage": "§7Increased Damage on low HP (currently §a+%d %%§7)",
   "item.spectrum.speed_boots": "Seven-League Boots",
   "item.spectrum.radiance_pin": "Radiance Pin",
   "item.spectrum.radiance_pin.tooltip": "Reveals nearby Mobs when hit",

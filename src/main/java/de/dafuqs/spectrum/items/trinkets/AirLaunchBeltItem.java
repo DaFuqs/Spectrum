@@ -34,7 +34,7 @@ public class AirLaunchBeltItem extends SpectrumTrinketItem {
 	
 	private static final HashMap<LivingEntity, Long> sneakingTimes = new HashMap<>();
 	
-	private final Identifier UNLOCK_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "midgame/spectrum_midgame");
+	private final Identifier UNLOCK_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_take_off_belt");
 
 	public AirLaunchBeltItem(Settings settings) {
 		super(settings);

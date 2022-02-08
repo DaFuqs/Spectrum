@@ -15,7 +15,7 @@ import java.util.List;
 
 public class AzureDikeBeltItem extends SpectrumTrinketItem implements AzureDikeProvider {
 	
-	private final Identifier UNLOCK_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "midgame/spectrum_midgame");
+	private final Identifier UNLOCK_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_azure_dike_ring");
 	
 	public AzureDikeBeltItem(Settings settings) {
 		super(settings);

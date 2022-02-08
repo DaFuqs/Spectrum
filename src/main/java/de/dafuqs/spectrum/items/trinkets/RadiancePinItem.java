@@ -30,7 +30,7 @@ public class RadiancePinItem extends SpectrumTrinketItem {
 	public static final int EFFECT_DURATION = 240;
 	public static final long COOLDOWN_TICKS = 160;
 	
-    private final Identifier UNLOCK_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "midgame/spectrum_midgame");
+    private final Identifier UNLOCK_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_radiance_pin");
 
 	public RadiancePinItem(Settings settings) {
 		super(settings);

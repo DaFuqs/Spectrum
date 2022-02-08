@@ -18,7 +18,7 @@ import java.util.List;
 
 public class TotemPendantItem extends SpectrumTrinketItem {
 	
-	private final Identifier UNLOCK_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "midgame/spectrum_midgame");
+	private final Identifier UNLOCK_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_neat_ring");
 
 	public TotemPendantItem(Settings settings) {
 		super(settings);

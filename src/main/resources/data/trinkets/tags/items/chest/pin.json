@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "spectrum:radiance_pin"
+    "spectrum:radiance_pin",
+    "spectrum:gleaming_pin"
   ]
 }

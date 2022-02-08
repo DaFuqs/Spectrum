@@ -1,7 +1,7 @@
 {
   "replace": false,
   "values": [
-    "spectrum:air_launch_belt",
+    "spectrum:take_off_belt",
     "spectrum:azure_dike_belt"
   ]
 }

@@ -210,9 +210,12 @@ public class SpectrumItems {
 	public static final Item AZURE_DIKE_BELT = new AzureDikeBeltItem(generalUncommonItemSettingsSingle);
 	public static final Item AZURE_DIKE_RING = new AzureDikeRingItem(generalUncommonItemSettingsSingle);
 	public static final Item PIGMENT_PALETTE = new PigmentPaletteItem(generalUncommonItemSettingsSingle);
-	public static final Item NEAT_RING = new NeatRingItem(generalRareItemSettingsSingle);
 	public static final Item GLEAMING_PIN = new GleamingPinItem(generalUncommonItemSettingsSingle);
 	public static final Item POTION_PENDANT = new PotionPendantItem(generalUncommonItemSettingsSingle);
+	public static final Item ASHEN_CIRCLET = new AshenCircletItem(generalUncommonItemSettingsSingle);
+	public static final Item TIDAL_CIRCLET = new TidalCircletItem(generalUncommonItemSettingsSingle);
+	public static final Item PUFF_CIRCLET = new PuffCircletItem(generalUncommonItemSettingsSingle);
+	public static final Item NEAT_RING = new NeatRingItem(generalRareItemSettingsSingle);
 
 	private static void register(String name, Item item) {
 		Registry.register(Registry.ITEM, new Identifier(SpectrumCommon.MOD_ID, name), item);
@@ -374,9 +377,12 @@ public class SpectrumItems {
 		register("azure_dike_belt", AZURE_DIKE_BELT);
 		register("azure_dike_ring", AZURE_DIKE_RING);
 		register("pigment_palette", PIGMENT_PALETTE);
-		register("neat_ring", NEAT_RING);
 		register("gleaming_pin", GLEAMING_PIN);
 		register("potion_pendant", POTION_PENDANT);
+		register("ashen_circlet", ASHEN_CIRCLET);
+		register("tidal_circlet", TIDAL_CIRCLET);
+		register("puff_circlet", PUFF_CIRCLET);
+		register("neat_ring", NEAT_RING);
 	}
 	
 	public static void registerFluidBuckets() {

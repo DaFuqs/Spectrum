@@ -9,7 +9,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "During your explorations you were hit by arrows again and again, only to completely miss your enemy while looking around in panic - if he hasn't already disappeared around the next corner again, that is.$(br2)The Gleaming Pin emits a magic surge that is able to pass through walls and attaches itself to creatures so you can easily track them down."
+      "text": "During your explorations you were hit by arrows again and again, only to completely miss your enemy while looking around in panic - if it hasn't already disappeared behind the next corner already.$(br2)When you get hit, the Gleaming Pin emits a magic surge that passes through walls and attaches to nearby creatures so you can easily track them down."
     },
     {
       "type": "spectrum:pedestal_crafting",

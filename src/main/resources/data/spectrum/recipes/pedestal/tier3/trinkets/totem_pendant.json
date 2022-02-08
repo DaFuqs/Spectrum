@@ -1,12 +1,12 @@
 {
   "type": "spectrum:pedestal",
   "time": 600,
-  "tier": "advanced",
+  "tier": "complex",
   "cyan": 0,
-  "magenta": 8,
+  "magenta": 16,
   "yellow": 0,
-  "black": 0,
-  "white": 2,
+  "black": 4,
+  "white": 0,
   "experience": 4.0,
   "pattern": [
     "PPP",

@@ -9,13 +9,13 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Totems of Undying, while having a powerful effect, have the significant disadvantage that you always have to hold them in your hands. Using the pure powers of $(general/shards#moonstone)Moonstone$/l) and using Polished Basalt as a focus you can keep its life-saving effect active, even when worn around the neck."
+      "text": "Totems of Undying, while having a powerful effect, have the significant disadvantage that you always have to hold them in your hands.$(br)Using the pure powers of $(l:general/shards#moonstone)Moonstone$(/l) and using Polished Basalt as a focus you can keep its life-saving effect active, even when worn around the neck."
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier3/trinkets/totem_pendant",
-      "text": "One-time protection from death. After it is triggered, it crumbles into dust."
+      "text": "One-time protection from death. After it is triggered, crumbles into dust."
     }
   ]
 }

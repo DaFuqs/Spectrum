@@ -9,13 +9,13 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Getting from A to B is tedious. Especially in the case of $(resources/geodes)Geodes$(/l), they are usually far away, so the journey there takes quite some time. With these magic boots you are much more mobile than before."
+      "text": "Getting from A to B is tedious.$(br2)Especially in the case of $(l:resources/geodes)Geodes$(/l), they are usually far away, so the journey there takes quite some time.$(br)With these magic boots you are much more mobile than before."
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier3/trinkets/seven_league_boots",
-      "text": "Increases Movement Speed and Step Height."
+      "text": "Increases both Movement Speed and Step Height."
     }
   ]
 }

@@ -9,7 +9,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "This glistening hoop creates a protective film of air around you. This not only protects you from enemy projectiles, but can even cushion a deep fall.$(br)Gone are the days when skeletons sniped you from behind in an unforeseen moment."
+      "text": "This glistening hoop creates a protective film of air around you.$(br2)It not only protects you from enemy projectiles, but can even cushion a deep fall.$(br2)Gone are the days when skeletons sniped you from behind in an unforeseen moment."
     },
     {
       "type": "spectrum:pedestal_crafting",

@@ -1048,6 +1048,12 @@
   "item.spectrum.potion_pendant.tooltip": "§7Filled in the §fPotion Workshop",
   "item.spectrum.gleaming_pin": "Gleaming Pin",
   "item.spectrum.gleaming_pin.tooltip": "§7Automatically places Lights when in the dark",
+  "item.spectrum.ashen_circlet": "Ashen Circlet",
+  "item.spectrum.ashen_circlet.tooltip": "§7Automatically places Lights when in the dark",
+  "item.spectrum.tidal_circlet": "Circlet of the Tides",
+  "item.spectrum.tidal_circlet.tooltip": "§7Automatically places Lights when in the dark",
+  "item.spectrum.puff_circlet": "Puff Circlet",
+  "item.spectrum.puff_circlet.tooltip": "§7Protection from arrows and fall damage",
 
   "item.spectrum.crafting_tablet": "Crafting Tablet",
   "item.spectrum.crafting_tablet.tooltip.no_recipe": "Add items to the crafting grid to set a recipe",

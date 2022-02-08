@@ -1,5 +1,5 @@
 {
-  "name": "Circlet of the Tide",
+  "name": "Circlet of the Tides",
   "advancement": "spectrum:progression/unlock_tidal_circlet",
   "icon": "spectrum:tidal_circlet",
   "category": "spectrum:magical_items_category",
@@ -9,7 +9,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "While you may have had a completely different purpose in mind for your latest design, this might be even better.$(br2)Have you ever wanted to walk underwater?$(br)$(italic)No?$()$(br)Anyways, now you can. Time to build an underwater base?"
+      "text": "While you may have had a completely different purpose in mind for your latest design, this might be even better.$(br2)Have you ever wanted to walk underwater?$(br)$(italic)No?$()$(br)Whatever, now you can.$(br)Time to build an underwater base!"
     },
     {
       "type": "spectrum:pedestal_crafting",

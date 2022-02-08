@@ -21,13 +21,13 @@
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier3/trinkets/azure_dike_ring",
-      "text": "Grants you $(c_green)3$() points of $(c_blue)Azure Dike$(/l)."
+      "text": "Grants you $(c_green)3$() points of $(c_blue)Azure Dike$()."
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier3/trinkets/azure_dike_belt",
-      "text": "Grants you $(c_green)4$() points of $(c_blue)Azure Dike$(/l)."
+      "text": "Grants you $(c_green)4$() points of $(c_blue)Azure Dike$()e."
     }
   ]
 }

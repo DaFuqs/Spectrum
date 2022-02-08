@@ -27,7 +27,7 @@ public class GleamingPinItem extends SpectrumTrinketItem {
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
-		tooltip.add(new TranslatableText("item.spectrum.gleaming.tooltip"));
+		tooltip.add(new TranslatableText("item.spectrum.gleaming_pin.tooltip"));
 	}
 	
 }

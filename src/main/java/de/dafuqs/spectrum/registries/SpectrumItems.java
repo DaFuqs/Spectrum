@@ -203,7 +203,7 @@ public class SpectrumItems {
 
 	// Trinkets
 	public static final Item JEOPARDANT = new AttackRingItem(generalUncommonItemSettingsSingle);
-	public static final Item SEVEN_LEAGUE_BOOTS = new SpeedBootsItem(generalUncommonItemSettingsSingle);
+	public static final Item SEVEN_LEAGUE_BOOTS = new SevenLeagueBootsItem(generalUncommonItemSettingsSingle);
 	public static final Item RADIANCE_PIN = new RadiancePinItem(generalUncommonItemSettingsSingle);
 	public static final Item TOTEM_PENDANT = new TotemPendantItem(generalUncommonItemSettingsSingle);
 	public static final Item TAKE_OFF_BELT = new AirLaunchBeltItem(generalUncommonItemSettingsSingle);

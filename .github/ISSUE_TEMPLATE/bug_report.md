@@ -21,3 +21,6 @@ Which version of the mod are you currently using?
 
 **Screenshots**
 If applicable, add screenshots to help explain your problem.
+
+**Crash Report**
+If it is a crash bug add your crash log here

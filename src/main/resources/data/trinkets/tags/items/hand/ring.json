@@ -1,6 +1,8 @@
 {
   "replace": false,
   "values": [
-    "spectrum:attack_ring"
+    "spectrum:attack_ring",
+    "spectrum:azure_dike_ring",
+    "spectrum:neat_ring"
   ]
 }

@@ -15,7 +15,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Most recipes in your pedestal require Gemstone Powder as a source of magical energy.$(br2)Gemstone Powder comes in various colors and can be acquired by pulverizing gemstone shards via $(l:general/anvil_crushing)Anvil Crushing$()."
+      "text": "Most recipes in your pedestal require Gemstone Powder as a source of magical energy.$(br2)Gemstone Powder comes in various colors and can be acquired by pulverizing gemstone shards via $(l:general/anvil_crushing)Item Crushing$()."
     },
     {
       "type": "patchouli:text",

@@ -1,5 +1,5 @@
 {
-  "name": "Anvil Crushing",
+  "name": "Item Crushing",
   "icon": "minecraft:anvil",
   "sortnum": 3,
   "advancement": "spectrum:place_pedestal",
@@ -8,14 +8,14 @@
   "pages": [
     {
       "type": "patchouli:image",
-      "title": "Anvil Crushing",
+      "title": "Item Crushing",
       "images": [ "spectrum:textures/gui/manual/anvil_crushing.png" ],
       "border": true,
       "text": "$(italic)\"To create something new$(br)you have to go the way of destruction\"      - someone"
     },
     {
       "type": "patchouli:text",
-      "text": "Until now you primarily used your anvil to repair and upgrade your tools. Such a heavy object as an anvil can be of much more use, though! Why not use it to crush things into dust by sheer force? Like the skulls of your enemies... or items. Yeah, that's probably better.$(br2)You can use Anvil Crushing to crush $(l:general/shards)Gemstone Shards$() into $(l:general/gemstone_powder)powder$().$(br2)$(italic)Tip: The further the anvil falls, the better."
+      "text": "Until now you primarily used your anvil to repair and upgrade your tools. Such a heavy object as an anvil can be of much more use, though! Why not use it to crush things into dust by sheer force? Like the skulls of your enemies... or items. Yeah, that's probably better.$(br2)You can use Item Crushing to crush $(l:general/shards)Gemstone Shards$() into $(l:general/gemstone_powder)powder$().$(br2)$(italic)Tip: The further the anvil falls, the better."
     }
   ]
 }

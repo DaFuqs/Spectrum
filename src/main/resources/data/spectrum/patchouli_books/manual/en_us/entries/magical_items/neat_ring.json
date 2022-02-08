@@ -2,6 +2,7 @@
   "name": "Neat Ring",
   "advancement": "spectrum:progression/unlock_neat_ring",
   "icon": "spectrum:",
+  "secret": true,
   "category": "spectrum:magical_items_category",
   "extra_recipe_mappings": {
     "spectrum:neat_ring": 0

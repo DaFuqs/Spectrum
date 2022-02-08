@@ -1,0 +1,21 @@
+{
+  "name": "Seven League Boots",
+  "advancement": "spectrum:progression/unlock_seven_league_boots",
+  "icon": "spectrum:seven_league_boots",
+  "category": "spectrum:magical_items_category",
+  "extra_recipe_mappings": {
+    "spectrum:seven_league_boots": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Getting from A to B is tedious. Especially in the case of $(resources/geodes)Geodes$(/l), they are usually far away, so the journey there takes quite some time. With these magic boots you are much more mobile than before."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier3/seven_league_boots",
+      "text": "Increases Movement Speed and Step Height."
+    }
+  ]
+}

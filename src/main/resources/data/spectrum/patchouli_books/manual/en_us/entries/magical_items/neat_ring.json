@@ -1,0 +1,21 @@
+{
+  "name": "Neat Ring",
+  "advancement": "spectrum:progression/unlock_neat_ring",
+  "icon": "spectrum:",
+  "category": "spectrum:magical_items_category",
+  "extra_recipe_mappings": {
+    "spectrum:neat_ring": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(italic)I just think they're neat."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier4/neat_ring",
+      "text": ""
+    }
+  ]
+}

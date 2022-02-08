@@ -1,0 +1,21 @@
+{
+  "name": "Gleaming Pin",
+  "advancement": "spectrum:progression/unlock_gleaming_pin",
+  "icon": "spectrum:gleaming_pin",
+  "category": "spectrum:magical_items_category",
+  "extra_recipe_mappings": {
+    "spectrum:gleaming_pin": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "During your explorations you were hit by arrows again and again, only to completely miss your enemy while looking around in panic - if he hasn't already disappeared around the next corner again, that is.$(br)The Gleaming Pin emits a magic surge that even passes through walls, but attaches itself to creatures so you can easily track them down."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier3/gleaming_pin",
+      "text": "$(italic)Can't run, can't hide"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "name": "Potion Pendant",
+  "advancement": "spectrum:progression/unlock_potion_pendant",
+  "icon": "spectrum:",
+  "category": "spectrum:magical_items_category",
+  "extra_recipe_mappings": {
+    "spectrum:potion_pendant": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Potions are handy. However, carrying around half an inventory of them is more than unwieldy.$(br)The Potion Pendant has three chambers, each of which can be filled with a different potion.$(br)For each Potion your $(l:general/pigment_palette)Pigment Palette$(/l) will use up specific color energy. The higher the level, the higher the cost."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier3/potion_pendant",
+      "text": "Use the $(l:magical_blocks/potion_workshop)Potion Workshop$(/l) to fill it with potions."
+    }
+  ]
+}

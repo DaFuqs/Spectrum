@@ -1,0 +1,21 @@
+{
+  "name": "Jeopardant",
+  "advancement": "spectrum:progression/unlock_jeopardant",
+  "icon": "spectrum:",
+  "category": "spectrum:magical_items_category",
+  "extra_recipe_mappings": {
+    "spectrum:jeopardant": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Adrenaline can't be the only thing racing through your veins in the state of emergency. With every heart lost, the $(l:resources/scarlet)Crimtane Gem$() in this ring shines brighter and brighter, pulsating in the same rythm as your racing heart - granting you an exponential damage boost."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier3/jeopardant",
+      "text": "$(italic)Tell me what you think about your situation$(br)Complication, aggravation"
+    }
+  ]
+}

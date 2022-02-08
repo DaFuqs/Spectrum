@@ -1,0 +1,25 @@
+{
+  "name": "Pigment Palette",
+  "advancement": "spectrum:progression/unlock_pigment_palette",
+  "icon": "spectrum:pigment_palette",
+  "category": "spectrum:magical_items_category",
+  "extra_recipe_mappings": {
+    "spectrum:pigment_palette": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Der Unterhalt deiner magischen Ausrüstungsgegenstände ist inzwischen eine Hauptaufgabe an sich. Immer all die benötigten Arten Pigment mit dir herumzuschleppen ist außerdem ein gehöriger Platzfresser in deinem Inventar. Jetzt wo du vertraut mit Pigment bist, siehst du auch gar keinen Grund mehr, deine Pigmente herumzuschleppen, wie im Mittelalter. Du hast inzwischen so viel Wissen gesammelt, so viele Strapazen und Missgeschicke überstanden! Es wird Zeit für eine neue Schöpfung: Die Pigment Palette."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Die Pigment Palette ist imstande, die elementaren Magien der Pigmente in sich aufzunehmen, zu komprimieren und zu speichern. Die Pigment Palette ist als einzelner Ausrüstungsgegenstand im Stande, all deine magischen Apparate und Ausrüstungsgegenstände mit passendem Pigment zu versorgen.$(br)Einziger Nachteil: Ihrer weltlichen Form beraubt gibt es keine Möglichkeit mehr, die Pigmente wieder in physische Form zu verwandeln."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier3/pigment_palette",
+      "text": ""
+    }
+  ]
+}

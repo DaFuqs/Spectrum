@@ -1038,6 +1038,8 @@
   "item.spectrum.azure_dike_belt.tooltip": "Grants 4 units of Azure Dike",
   "item.spectrum.azure_dike_ring": "Azure Dike Ring",
   "item.spectrum.azure_dike_ring.tooltip": "Grants 2 units of Azure Dike",
+  "item.spectrum.pigment_palette": "Pigment Palette",
+  "item.spectrum.pigment_palette.tooltip": "Stores Pigment in its pure magical form",
   "item.spectrum.neat_ring": "A Neat Ring",
   "item.spectrum.neat_ring.tooltip": "Its neat",
 

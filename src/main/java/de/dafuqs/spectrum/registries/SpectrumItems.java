@@ -209,6 +209,7 @@ public class SpectrumItems {
 	public static final Item TAKE_OFF_BELT = new AirLaunchBeltItem(generalUncommonItemSettingsSingle);
 	public static final Item AZURE_DIKE_BELT = new AzureDikeBeltItem(generalUncommonItemSettingsSingle);
 	public static final Item AZURE_DIKE_RING = new AzureDikeRingItem(generalUncommonItemSettingsSingle);
+	public static final Item PIGMENT_PALETTE = new PigmentPaletteItem(generalUncommonItemSettingsSingle);
 	public static final Item NEAT_RING = new NeatRingItem(generalRareItemSettingsSingle);
 
 	private static void register(String name, Item item) {
@@ -370,6 +371,7 @@ public class SpectrumItems {
 		register("take_off_belt", TAKE_OFF_BELT);
 		register("azure_dike_belt", AZURE_DIKE_BELT);
 		register("azure_dike_ring", AZURE_DIKE_RING);
+		register("pigment_palette", PIGMENT_PALETTE);
 		register("neat_ring", NEAT_RING);
 	}
 	

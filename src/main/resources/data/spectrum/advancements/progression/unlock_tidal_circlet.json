@@ -1,0 +1,16 @@
+{
+  "criteria": {
+    "collected_mermaids_gem": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:collect_mermaids_gem" }
+    },
+	"collected_shooting_star": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:collect_shooting_star" }
+    },
+	"built_advanced_pedestal_structure": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:midgame/build_advanced_pedestal_structure" }
+    }
+  }
+}

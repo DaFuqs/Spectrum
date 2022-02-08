@@ -1,0 +1,35 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 1200,
+  "tier": "advanced",
+  "cyan": 4,
+  "magenta": 0,
+  "yellow": 0,
+  "black": 1,
+  "white": 0,
+  "experience": 4.0,
+  "pattern": [
+    "OOO",
+    "PNP",
+    " G "
+  ],
+  "key": {
+    "N": {
+      "item": "spectrum:neolith"
+    },
+    "G": {
+      "item": "spectrum:scarlet_gem"
+    },
+    "P": {
+      "item": "spectrum:polished_basalt"
+    },
+    "O": {
+      "item": "spectrum:orange_pigment"
+    }
+  },
+  "result" : {
+    "item": "spectrum:ashen_circlet",
+    "count": 1
+  },
+  "required_advancements": ["spectrum:progression/unlock_ashen_circlet"]
+}

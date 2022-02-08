@@ -18,7 +18,7 @@
       "tag": "spectrum:pigments"
     },
     "P": {
-      "item": "minecraft:planks"
+      "tag": "minecraft:planks"
     }
   },
   "result" : {

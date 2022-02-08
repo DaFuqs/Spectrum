@@ -1,0 +1,35 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 1200,
+  "tier": "advanced",
+  "cyan": 2,
+  "magenta": 4,
+  "yellow": 0,
+  "black": 0,
+  "white": 0,
+  "experience": 4.0,
+  "pattern": [
+    "LLL",
+    "BMB",
+    " S "
+  ],
+  "key": {
+    "B": {
+      "item": "spectrum:polished_basalt"
+    },
+    "S": {
+      "item": "spectrum:shooting_star"
+    },
+    "M": {
+      "item": "spectrum:mermaids_gem"
+    },
+    "L": {
+      "item": "spectrum:light_blue_pigment"
+    }
+  },
+  "result" : {
+    "item": "spectrum:tidal_circlet",
+    "count": 1
+  },
+  "required_advancements": ["spectrum:progression/unlock_tidal_circlet"]
+}

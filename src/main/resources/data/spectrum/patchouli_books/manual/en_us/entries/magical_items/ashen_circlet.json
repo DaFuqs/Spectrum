@@ -1,0 +1,21 @@
+{
+  "name": "Ashen Circlet",
+  "advancement": "spectrum:progression/unlock_ashen_circlet",
+  "icon": "spectrum:ashen_circlet",
+  "category": "spectrum:magical_items_category",
+  "extra_recipe_mappings": {
+    "spectrum:ashen_circlet": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "The set Crimtane gemstone, itself a creation of the Nether, can absorb high temperatures near you with ease. It even protects you from the blazing heat of lava - if only for a short time, until it has had a chance to cool down again."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier3/trinkets/ashen_circlet",
+      "text": "Prevents damage from fire and hot floors. Extinguishes close fires and grants you a 15 second protection from lava."
+    }
+  ]
+}

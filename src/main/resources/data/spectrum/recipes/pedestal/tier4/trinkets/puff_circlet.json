@@ -1,0 +1,35 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 2400,
+  "tier": "complex",
+  "cyan": 0,
+  "magenta": 0,
+  "yellow": 0,
+  "black": 2,
+  "white": 8,
+  "experience": 8.0,
+  "pattern": [
+    "WWW",
+    "CMC",
+    " P "
+  ],
+  "key": {
+    "C": {
+      "item": "spectrum:polished_calcite"
+    },
+    "P": {
+      "item": "spectrum:paletur_gem"
+    },
+    "M": {
+      "item": "spectrum:moonstone_cluster"
+    },
+    "W": {
+      "item": "spectrum:white_pigment"
+    }
+  },
+  "result" : {
+    "item": "spectrum:puff_circlet",
+    "count": 1
+  },
+  "required_advancements": ["spectrum:progression/unlock_puff_circlet"]
+}

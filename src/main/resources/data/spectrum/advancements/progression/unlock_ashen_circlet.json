@@ -1,0 +1,12 @@
+{
+  "criteria": {
+    "collected_scarlet_gem": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:hidden/collect_scarlet_gem" }
+    },
+    "collected_neolith": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:midgame/collect_neolith" }
+    }
+  }
+}

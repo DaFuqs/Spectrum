@@ -211,6 +211,8 @@ public class SpectrumItems {
 	public static final Item AZURE_DIKE_RING = new AzureDikeRingItem(generalUncommonItemSettingsSingle);
 	public static final Item PIGMENT_PALETTE = new PigmentPaletteItem(generalUncommonItemSettingsSingle);
 	public static final Item NEAT_RING = new NeatRingItem(generalRareItemSettingsSingle);
+	public static final Item GLEAMING_PIN = new GleamingPinItem(generalUncommonItemSettingsSingle);
+	public static final Item POTION_PENDANT = new PotionPendantItem(generalUncommonItemSettingsSingle);
 
 	private static void register(String name, Item item) {
 		Registry.register(Registry.ITEM, new Identifier(SpectrumCommon.MOD_ID, name), item);
@@ -373,6 +375,8 @@ public class SpectrumItems {
 		register("azure_dike_ring", AZURE_DIKE_RING);
 		register("pigment_palette", PIGMENT_PALETTE);
 		register("neat_ring", NEAT_RING);
+		register("gleaming_pin", GLEAMING_PIN);
+		register("potion_pendant", POTION_PENDANT);
 	}
 	
 	public static void registerFluidBuckets() {

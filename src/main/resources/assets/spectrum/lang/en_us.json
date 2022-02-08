@@ -1044,6 +1044,10 @@
   "item.spectrum.pigment_palette.tooltip": "§7Stores §2P§3i§cg§6m§be§en§dt§7 in its pure magical form",
   "item.spectrum.neat_ring": "A Neat Ring",
   "item.spectrum.neat_ring.tooltip": "§7§oIts neat",
+  "item.spectrum.potion_pendant": "Potion Pendant",
+  "item.spectrum.potion_pendant.tooltip": "§7Filled in the §fPotion Workshop",
+  "item.spectrum.gleaming_pin": "Gleaming Pin",
+  "item.spectrum.gleaming_pin.tooltip": "§7Automatically places Lights when in the dark",
 
   "item.spectrum.crafting_tablet": "Crafting Tablet",
   "item.spectrum.crafting_tablet.tooltip.no_recipe": "Add items to the crafting grid to set a recipe",

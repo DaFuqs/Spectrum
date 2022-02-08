@@ -24,7 +24,7 @@ public abstract class PlayerEntityMixin {
 	@Inject(at = @At("HEAD"), method = "attack(Lnet/minecraft/entity/Entity;)V")
 	protected void spectrum$calculateAttackRingMod(Entity target, CallbackInfo ci) {
 		if((Object) this instanceof PlayerEntity thisPlayerEntity) {
-			if(SpectrumTrinketItem.hasEquipped(thisPlayerEntity, SpectrumItems.ATTACK_RING)) {
+			if(SpectrumTrinketItem.hasEquipped(thisPlayerEntity, SpectrumItems.JEOPARDANT)) {
 				Multimap<EntityAttribute, EntityAttributeModifier> map = Multimaps.newMultimap(Maps.newLinkedHashMap(), ArrayList::new);
 				EntityAttributeModifier modifier = new EntityAttributeModifier(AttackRingItem.ATTACK_RING_DAMAGE_UUID, "spectrum:attack_ring", AttackRingItem.getAttackModifierForEntity(thisPlayerEntity), EntityAttributeModifier.Operation.MULTIPLY_TOTAL);
 				map.put(EntityAttributes.GENERIC_ATTACK_DAMAGE, modifier);

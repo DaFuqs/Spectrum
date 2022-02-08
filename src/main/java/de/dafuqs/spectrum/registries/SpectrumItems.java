@@ -202,11 +202,11 @@ public class SpectrumItems {
 	public static final Item KNOWLEDGE_GEM = new KnowledgeGemItem(generalUncommonItemSettingsSingle, 10000);
 
 	// Trinkets
-	public static final Item ATTACK_RING = new AttackRingItem(generalUncommonItemSettingsSingle);
-	public static final Item SPEED_BOOTS = new SpeedBootsItem(generalUncommonItemSettingsSingle);
+	public static final Item JEOPARDANT = new AttackRingItem(generalUncommonItemSettingsSingle);
+	public static final Item SEVEN_LEAGUE_BOOTS = new SpeedBootsItem(generalUncommonItemSettingsSingle);
 	public static final Item RADIANCE_PIN = new RadiancePinItem(generalUncommonItemSettingsSingle);
 	public static final Item TOTEM_PENDANT = new TotemPendantItem(generalUncommonItemSettingsSingle);
-	public static final Item AIR_LAUNCH_BELT = new AirLaunchBeltItem(generalUncommonItemSettingsSingle);
+	public static final Item TAKE_OFF_BELT = new AirLaunchBeltItem(generalUncommonItemSettingsSingle);
 	public static final Item AZURE_DIKE_BELT = new AzureDikeBeltItem(generalUncommonItemSettingsSingle);
 	public static final Item AZURE_DIKE_RING = new AzureDikeRingItem(generalUncommonItemSettingsSingle);
 	public static final Item NEAT_RING = new NeatRingItem(generalRareItemSettingsSingle);
@@ -363,11 +363,11 @@ public class SpectrumItems {
 	}
 	
 	public static void registerTrinkets() {
-		register("attack_ring", ATTACK_RING);
-		register("speed_boots", SPEED_BOOTS);
+		register("jeopardant", JEOPARDANT);
+		register("seven_league_boots", SEVEN_LEAGUE_BOOTS);
 		register("radiance_pin", RADIANCE_PIN);
 		register("totem_pendant", TOTEM_PENDANT);
-		register("air_launch_belt", AIR_LAUNCH_BELT);
+		register("take_off_belt", TAKE_OFF_BELT);
 		register("azure_dike_belt", AZURE_DIKE_BELT);
 		register("azure_dike_ring", AZURE_DIKE_RING);
 		register("neat_ring", NEAT_RING);

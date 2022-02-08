@@ -16,10 +16,10 @@
     "has_mermaids_gem": {
       "trigger": "minecraft:inventory_changed",
       "conditions": { "items": [{ "items": [ "spectrum:mermaids_gem" ]}] }
+    },
+    "gotten_previous": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:spectrum" }
     }
-  },
-  "gotten_previous": {
-    "trigger":"spectrum:has_advancement",
-    "conditions": { "advancement_identifier": "spectrum:spectrum" }
   }
 }

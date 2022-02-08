@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "spectrum:private_chest",
+    "spectrum:compacting_chest",
+    "spectrum:restocking_chest",
+    "spectrum:sucking_chest"
+  ]
+}

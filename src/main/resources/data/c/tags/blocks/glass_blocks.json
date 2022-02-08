@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "spectrum:glowing_glass",
+    "#spectrum:gemstone_glass",
+    "#spectrum:player_only_glass"
+  ]
+}

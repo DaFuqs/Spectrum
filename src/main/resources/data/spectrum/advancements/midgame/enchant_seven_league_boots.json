@@ -27,6 +27,10 @@
           }
         }]
       }
+    },
+    "gotten_previous": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:midgame/build_enchanting_structure" }
     }
   }
 }

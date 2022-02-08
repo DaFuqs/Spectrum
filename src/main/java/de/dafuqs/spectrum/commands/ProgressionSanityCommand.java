@@ -217,6 +217,22 @@ public class ProgressionSanityCommand {
 			}
 		}
 		
+		// advancements that dont require parent
+		for(Advancement advancement : SpectrumCommon.minecraftServer.getAdvancementLoader().getAdvancements()) {
+			if(advancement.getId().getNamespace().equals(SpectrumCommon.MOD_ID) && !advancement.getId().getPath().contains("hidden") && !advancement.getId().getPath().contains("progression") && !advancement.getId().getPath().contains("milestones") && advancement.getParent() != null) {
+				boolean parentFound = false;
+				for(String[] requirement : advancement.getRequirements()) {
+					if(requirement.length > 0 && requirement[0].equals("gotten_previous")) {
+						parentFound = true;
+						break;
+					}
+				}
+				if(!parentFound) {
+					SpectrumCommon.log(Level.WARN, "[SANITY: Advancement Gating] Advancement '" + advancement.getId() + "' has not set its parent set as requirement");
+				}
+			}
+		}
+		
 		// Anvil Crushing recipes with nonexistent sounds
 		for(AnvilCrushingRecipe anvilCrushingRecipe : SpectrumCommon.minecraftServer.getRecipeManager().listAllOfType(SpectrumRecipeTypes.ANVIL_CRUSHING)) {
 			SoundEvent soundEvent = anvilCrushingRecipe.getSoundEvent();

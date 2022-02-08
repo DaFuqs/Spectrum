@@ -1,5 +1,7 @@
 package de.dafuqs.spectrum.mixin;
 
+import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.Support;
 import de.dafuqs.spectrum.registries.SpectrumBlockTags;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import de.dafuqs.spectrum.registries.SpectrumItems;
@@ -11,6 +13,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Hand;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
@@ -38,13 +41,13 @@ public abstract class GlassBottleItemMixin {
 		if (blockState.isIn(SpectrumBlockTags.DECAY)) {
 			world.setBlockState(blockPos, Blocks.AIR.getDefaultState());
 			world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ITEM_BOTTLE_FILL_DRAGONBREATH, SoundCategory.NEUTRAL, 1.0F, 1.0F);
-			if(blockState.isOf(SpectrumBlocks.FADING)) {
+			if(blockState.isOf(SpectrumBlocks.FADING) && Support.hasAdvancement(user, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_bottle_of_fading"))) {
 				cir.setReturnValue(TypedActionResult.success(this.fill(handStack, user, SpectrumItems.BOTTLE_OF_FADING.getDefaultStack()), world.isClient()));
-			} else if(blockState.isOf(SpectrumBlocks.FAILING)) {
+			} else if(blockState.isOf(SpectrumBlocks.FAILING) && Support.hasAdvancement(user, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_bottle_of_failing"))) {
 				cir.setReturnValue(TypedActionResult.success(this.fill(handStack, user, SpectrumItems.BOTTLE_OF_FAILING.getDefaultStack()), world.isClient()));
-			} else if(blockState.isOf(SpectrumBlocks.RUIN)) {
+			} else if(blockState.isOf(SpectrumBlocks.RUIN) && Support.hasAdvancement(user, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_bottle_of_ruin"))) {
 				cir.setReturnValue(TypedActionResult.success(this.fill(handStack, user, SpectrumItems.BOTTLE_OF_RUIN.getDefaultStack()), world.isClient()));
-			} else if(blockState.isOf(SpectrumBlocks.TERROR)) {
+			} else if(blockState.isOf(SpectrumBlocks.TERROR) && Support.hasAdvancement(user, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_bottle_of_terror"))) {
 				cir.setReturnValue(TypedActionResult.success(this.fill(handStack, user, SpectrumItems.BOTTLE_OF_TERROR.getDefaultStack()), world.isClient()));
 			}
 		}

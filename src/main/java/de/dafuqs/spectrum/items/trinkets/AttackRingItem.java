@@ -39,7 +39,7 @@ public class AttackRingItem extends SpectrumTrinketItem {
 		super.onUnequip(stack, slot, entity);
 		if(entity.getAttributes().hasModifierForAttribute(EntityAttributes.GENERIC_ATTACK_DAMAGE, AttackRingItem.ATTACK_RING_DAMAGE_UUID)) {
 			Multimap<EntityAttribute, EntityAttributeModifier> map = Multimaps.newMultimap(Maps.newLinkedHashMap(), ArrayList::new);
-			EntityAttributeModifier modifier = new EntityAttributeModifier(AttackRingItem.ATTACK_RING_DAMAGE_UUID, "spectrum:attack_ring", AttackRingItem.getAttackModifierForEntity(entity), EntityAttributeModifier.Operation.MULTIPLY_TOTAL);
+			EntityAttributeModifier modifier = new EntityAttributeModifier(AttackRingItem.ATTACK_RING_DAMAGE_UUID, "spectrum:jeopardant", AttackRingItem.getAttackModifierForEntity(entity), EntityAttributeModifier.Operation.MULTIPLY_TOTAL);
 			map.put(EntityAttributes.GENERIC_ATTACK_DAMAGE, modifier);
 			entity.getAttributes().removeModifiers(map);
 		}
@@ -64,7 +64,12 @@ public class AttackRingItem extends SpectrumTrinketItem {
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
-		tooltip.add(new TranslatableText("item.spectrum.attack_ring.tooltip.damage", Math.round(getAttackModifierForEntity(MinecraftClient.getInstance().player) * 100)));
+		long mod = Math.round(getAttackModifierForEntity(MinecraftClient.getInstance().player) * 100);
+		if(mod == 0) {
+			tooltip.add(new TranslatableText("item.spectrum.jeopardant.tooltip.damage_zero"));
+		} else {
+			tooltip.add(new TranslatableText("item.spectrum.jeopardant.tooltip.damage", mod));
+		}
 	}
 	
 	public static double getAttackModifierForEntity(LivingEntity entity) {

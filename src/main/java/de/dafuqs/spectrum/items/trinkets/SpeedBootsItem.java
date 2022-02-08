@@ -4,13 +4,22 @@ import com.google.common.collect.Multimap;
 import de.dafuqs.spectrum.SpectrumCommon;
 import dev.emi.stepheightentityattribute.StepHeightEntityAttributeMain;
 import dev.emi.trinkets.api.SlotReference;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.item.ItemStack;
+import net.minecraft.text.Text;
+import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
+import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 
+import java.util.List;
 import java.util.UUID;
 
 public class SpeedBootsItem extends SpectrumTrinketItem {
@@ -22,6 +31,13 @@ public class SpeedBootsItem extends SpectrumTrinketItem {
 	
 	public SpeedBootsItem(Settings settings) {
 		super(settings);
+	}
+	
+	@Environment(EnvType.CLIENT)
+	@Override
+	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+		super.appendTooltip(stack, world, tooltip, context);
+		tooltip.add(new TranslatableText("item.spectrum.seven_league_boots.tooltip"));
 	}
 	
 	@Override

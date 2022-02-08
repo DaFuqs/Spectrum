@@ -49,7 +49,7 @@ public class AirLaunchBeltItem extends SpectrumTrinketItem {
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
-		tooltip.add(new TranslatableText("item.spectrum.air_launch_belt.tooltip").formatted(Formatting.GRAY));
+		tooltip.add(new TranslatableText("item.spectrum.take_off_belt.tooltip").formatted(Formatting.GRAY));
 	}
 	
 	@Override

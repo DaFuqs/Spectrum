@@ -14,12 +14,10 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.tag.Tag;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.world.TickPriority;
 import net.minecraft.world.World;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public abstract class DecayBlock extends Block {
 
@@ -66,7 +64,7 @@ public abstract class DecayBlock extends Block {
 		}
 		super.onSteppedOn(world, pos, state, entity);
 	}
-
+	
 	// jump to neighboring blocks
 	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
 		if(canSpread(state)) {
@@ -78,30 +76,72 @@ public abstract class DecayBlock extends Block {
 			}
 			
 			Direction randomDirection = Direction.random(random);
-			BlockPos targetBlockPos = pos.offset(randomDirection, 1);
-			BlockState currentBlockState = world.getBlockState(targetBlockPos);
-			BlockEntity blockEntity = world.getBlockEntity(targetBlockPos);
+			tryConvert(world, state, pos, randomDirection);
+		}
+	}
+	
+	protected boolean tryConvert(World world, BlockState state, BlockPos originPos, Direction direction) {
+		BlockPos targetBlockPos = originPos.offset(direction);
+		BlockState currentBlockState = world.getBlockState(targetBlockPos);
+		BlockEntity blockEntity = world.getBlockEntity(targetBlockPos);
+		
+		if (blockEntity == null && !Support.hasBlockTag(currentBlockState, SpectrumBlockTags.DECAY)  // decay doesn't jump to other decay. Maybe: if tier is smaller it should still be converted?
+				&& (whiteListBlockTag == null || Support.hasBlockTag(currentBlockState, whiteListBlockTag))
+				&& (blackListBlockTag == null || !Support.hasBlockTag(currentBlockState, blackListBlockTag))
+				// bedrock is ok, but not other modded unbreakable blocks
+				&& (currentBlockState.getBlock() == Blocks.BEDROCK || (currentBlockState.getBlock().getHardness() > -1.0F && currentBlockState.getBlock().getBlastResistance() < 3600000.0F))) {
 			
-			if (blockEntity == null && !Support.hasBlockTag(currentBlockState, SpectrumBlockTags.DECAY)  // decay doesn't jump to other decay. Maybe: if tier is smaller it should still be converted?
-					&& (whiteListBlockTag == null || Support.hasBlockTag(currentBlockState, whiteListBlockTag))
-					&& (blackListBlockTag == null || !Support.hasBlockTag(currentBlockState, blackListBlockTag))
-					// bedrock is ok, but not other modded unbreakable blocks
-					&& (currentBlockState.getBlock() == Blocks.BEDROCK || (currentBlockState.getBlock().getHardness() > -1.0F && currentBlockState.getBlock().getBlastResistance() < 3600000.0F))) {
-				
-				BlockState destinationBlockState = getSpreadState(state);
-				for (Tag<Block> currentCheckTag : this.decayConversionsList) {
-					BlockState targetState = decayConversions.get(currentCheckTag);
-					if (Support.hasBlockTag(currentBlockState, currentCheckTag)) {
-						destinationBlockState = targetState;
-						break;
+			BlockState destinationBlockState = getSpreadState(state);
+			for (Tag<Block> currentCheckTag : this.decayConversionsList) {
+				BlockState targetState = decayConversions.get(currentCheckTag);
+				if (Support.hasBlockTag(currentBlockState, currentCheckTag)) {
+					destinationBlockState = targetState;
+					break;
+				}
+			}
+			
+			world.setBlockState(targetBlockPos, destinationBlockState);
+			return true;
+		}
+		return false;
+	}
+	
+	/**
+	 * If a neighboring block is updated (placed by a player?), and that can be converted
+	 * schedule a tick to convert it faster. => User gets quick reaction
+	 */
+	@Override
+	public void neighborUpdate(BlockState state, World world, BlockPos pos, Block block, BlockPos fromPos, boolean notify) {
+		super.neighborUpdate(state, world, pos, block, fromPos, notify);
+		if(block == Blocks.AIR) {
+			Block updatedBlock = world.getBlockState(fromPos).getBlock();
+			if (!(updatedBlock instanceof DecayBlock) && canSpread(state)) {
+				for (Tag<Block> blockTag : decayConversionsList) {
+					if (blockTag.contains(updatedBlock)) {
+						world.createAndScheduleBlockTick(pos, this, 40 + world.random.nextInt(200), TickPriority.EXTREMELY_LOW);
 					}
 				}
-				
-				world.setBlockState(targetBlockPos, destinationBlockState);
 			}
 		}
 	}
-
+	
+	@Override
+	public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
+		this.randomTick(state, world, pos, random);
+		
+		if(canSpread(state)) {
+			List<Direction> directions = new ArrayList<>(List.of(Direction.values()));
+			Collections.shuffle(directions);
+			
+			for(Direction direction : directions) {
+				boolean converted = tryConvert(world, state, pos, direction);
+				if(converted) {
+					break;
+				}
+			}
+		}
+	}
+	
 	protected abstract float getSpreadChance();
 	
 	protected abstract boolean canSpread(BlockState blockState);

@@ -11,7 +11,7 @@
   "pattern": [
     " PL",
     "P P",
-    " P"
+    " P "
   ],
   "key": {
     "L": {
@@ -21,7 +21,7 @@
       "item": "spectrum:polished_calcite"
     }
   },
-  "result" : {
+  "result": {
     "item": "spectrum:neat_ring",
     "count": 1
   },

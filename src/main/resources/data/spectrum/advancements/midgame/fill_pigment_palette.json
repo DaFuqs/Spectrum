@@ -18,40 +18,40 @@
 		"black": {
 		  "min": 1
 		},
-		"blue: {
+		"blue": {
 		  "min": 1
 		},
-		"brown: {
+		"brown": {
 		  "min": 1
 		},
-		"cyan: {
+		"cyan": {
 		  "min": 1
 		},
-		"green: {
+		"green": {
 		  "min": 1
 		},
-		"light_blue: {
+		"light_blue": {
 		  "min": 1
 		},
-		"lime: {
+		"lime": {
 		  "min": 1
 		},
-		"magenta: {
+		"magenta": {
 		  "min": 1
 		},
-		"orange: {
+		"orange": {
 		  "min": 1
 		},
-		"pink: {
+		"pink": {
 		  "min": 1
 		},
-		"purple: {
+		"purple": {
 		  "min": 1
 		},
-		"red: {
+		"red": {
 		  "min": 1
 		},
-		"yellow: {
+		"yellow": {
 		  "min": 1
 		}
       }

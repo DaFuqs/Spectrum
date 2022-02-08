@@ -16,7 +16,7 @@
       "trigger": "spectrum:potion_pendant_fill",
 		"count": {
 		  "min": 3
-		},
+		}
       }
     }
   }

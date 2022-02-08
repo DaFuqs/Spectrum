@@ -21,10 +21,10 @@
       "item": "spectrum:polished_basalt"
     },
     "I": {
-      "tag": "spectrum:sparklestone_gem"
+      "item": "spectrum:sparklestone_gem"
     }
   },
-  "result" : {
+  "result": {
     "item": "spectrum:radiance_pin",
     "count": 1
   },

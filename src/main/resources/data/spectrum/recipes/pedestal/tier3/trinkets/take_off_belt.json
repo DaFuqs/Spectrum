@@ -18,7 +18,7 @@
       "item": "minecraft:leather"
     },
     "R": {
-      "item": "minecraft:rabbits_foot"
+      "item": "minecraft:rabbit_foot"
     },
     "L": {
       "item": "spectrum:lightning_stone"
@@ -27,7 +27,7 @@
       "item": "spectrum:stardust"
     }
   },
-  "result" : {
+  "result": {
     "item": "spectrum:take_off_belt",
     "count": 1
   },

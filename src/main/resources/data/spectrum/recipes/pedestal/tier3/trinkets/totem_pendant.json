@@ -1,0 +1,32 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 600,
+  "tier": "advanced",
+  "cyan": 0,
+  "magenta": 8,
+  "yellow": 0,
+  "black": 0,
+  "white": 2,
+  "experience": 4.0,
+  "pattern": [
+    "PPP",
+    "NTN",
+    " N "
+  ],
+  "key": {
+    "N": {
+      "item": "spectrum:neolith"
+    },
+    "P": {
+      "item": "spectrum:polished_basalt"
+    },
+    "T": {
+      "item": "minecraft:totem_of_undying"
+    }
+  },
+  "result" : {
+    "item": "spectrum:totem_pendant",
+    "count": 1
+  },
+  "required_advancements": ["spectrum:progression/unlock_totem_pendant"]
+}

@@ -9,16 +9,16 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Der Unterhalt deiner magischen Ausrüstungsgegenstände ist inzwischen eine Hauptaufgabe an sich. Immer all die benötigten Arten Pigment mit dir herumzuschleppen ist außerdem ein gehöriger Platzfresser in deinem Inventar. Jetzt wo du vertraut mit Pigment bist, siehst du auch gar keinen Grund mehr, deine Pigmente herumzuschleppen, wie im Mittelalter. Du hast inzwischen so viel Wissen gesammelt, so viele Strapazen und Missgeschicke überstanden! Es wird Zeit für eine neue Schöpfung: Die Pigment Palette."
+      "text": "Maintaining your magical equipment has become a major task in itself. Carrying around all the types of pigment you need is also a major space hog in your inventory. Now that you're familiar with pigment, you see no reason to lug it around like you did in the Middle Ages. You've accumulated so much knowledge, survived so many hardships and misfortunes! It's time for a new creation: the Pigment Palette. Now you are a true Artist of Color."
     },
     {
       "type": "patchouli:text",
-      "text": "Die Pigment Palette ist imstande, die elementaren Magien der Pigmente in sich aufzunehmen, zu komprimieren und zu speichern. Die Pigment Palette ist als einzelner Ausrüstungsgegenstand im Stande, all deine magischen Apparate und Ausrüstungsgegenstände mit passendem Pigment zu versorgen.$(br)Einziger Nachteil: Ihrer weltlichen Form beraubt gibt es keine Möglichkeit mehr, die Pigmente wieder in physische Form zu verwandeln."
+      "text": "The Pigment Palette is capable of absorbing, compressing and storing the elemental magics of $(l/general/pigment)Pigments$(/l). The Pigment Palette, as a single piece of equipment, is able to supply all your magical devices and equipment with suitable pigment.(br)The only drawback: deprived of their mundane form, there is no way to transform the pigments back into physical form."
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier3/pigment_palette",
+      "recipe": "spectrum:pedestal/tier3/trinkets/pigment_palette",
       "text": ""
     }
   ]

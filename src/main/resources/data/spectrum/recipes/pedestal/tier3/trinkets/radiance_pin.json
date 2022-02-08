@@ -1,0 +1,32 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 400,
+  "tier": "advanced",
+  "cyan": 0,
+  "magenta": 2,
+  "yellow": 4,
+  "black": 0,
+  "white": 0,
+  "experience": 4.0,
+  "pattern": [
+    " IP",
+    "ISI",
+    "PI "
+  ],
+  "key": {
+    "S": {
+      "item": "spectrum:shooting_star"
+    },
+    "P": {
+      "item": "spectrum:polished_basalt"
+    },
+    "I": {
+      "tag": "spectrum:sparklestone_gem"
+    }
+  },
+  "result" : {
+    "item": "spectrum:radiance_pin",
+    "count": 1
+  },
+  "required_advancements": ["spectrum:progression/unlock_radiance_pin"]
+}

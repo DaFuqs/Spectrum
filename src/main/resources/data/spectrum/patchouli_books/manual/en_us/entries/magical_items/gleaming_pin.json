@@ -14,7 +14,7 @@
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier3/gleaming_pin",
+      "recipe": "spectrum:pedestal/tier3/trinkets/gleaming_pin",
       "text": "$(italic)Can't run, can't hide"
     }
   ]

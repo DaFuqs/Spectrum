@@ -14,7 +14,7 @@
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier4/neat_ring",
+      "recipe": "spectrum:pedestal/tier4/trinkets/neat_ring",
       "text": ""
     }
   ]

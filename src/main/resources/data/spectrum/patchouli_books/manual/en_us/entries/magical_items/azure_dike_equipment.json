@@ -15,13 +15,13 @@
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier3/azure_dike_ring",
+      "recipe": "spectrum:pedestal/tier3/trinkets/azure_dike_ring",
       "text": "Grants you 3 points of $(magical_items/azure_dike)Azure Dike$(/l)."
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier3/azure_dike_belt",
+      "recipe": "spectrum:pedestal/tier3/trinkets/azure_dike_belt",
       "text": "Grants you 4 points of $(magical_items/azure_dike)Azure Dike$(/l)."
     }
   ]

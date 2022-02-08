@@ -1,0 +1,29 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 200,
+  "tier": "advanced",
+  "cyan": 2,
+  "magenta": 2,
+  "yellow": 2,
+  "black": 0,
+  "white": 0,
+  "experience": 4.0,
+  "pattern": [
+    "SSS",
+    "SPP",
+    "SSS"
+  ],
+  "key": {
+    "S": {
+      "tag": "spectrum:pigments"
+    },
+    "P": {
+      "item": "minecraft:planks"
+    }
+  },
+  "result" : {
+    "item": "spectrum:pigment_palette",
+    "count": 1
+  },
+  "required_advancements": ["spectrum:progression/unlock_pigment_palette"]
+}

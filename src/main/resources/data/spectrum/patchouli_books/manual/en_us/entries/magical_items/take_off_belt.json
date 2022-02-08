@@ -14,7 +14,7 @@
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier3/take_off_belt",
+      "recipe": "spectrum:pedestal/tier3/trinkets/take_off_belt",
       "text": "Sneak to charge a high jump, getting more powerful the longer you charge"
     }
   ]

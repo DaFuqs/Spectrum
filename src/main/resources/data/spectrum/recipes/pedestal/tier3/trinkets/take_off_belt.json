@@ -1,0 +1,35 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 600,
+  "tier": "advanced",
+  "cyan": 0,
+  "magenta": 4,
+  "yellow": 0,
+  "black": 1,
+  "white": 0,
+  "experience": 4.0,
+  "pattern": [
+    "PPP",
+    "LRL",
+    "SSS"
+  ],
+  "key": {
+    "P": {
+      "item": "minecraft:leather"
+    },
+    "R": {
+      "item": "minecraft:rabbits_foot"
+    },
+    "L": {
+      "item": "spectrum:lightning_stone"
+    },
+    "S": {
+      "item": "spectrum:stardust"
+    }
+  },
+  "result" : {
+    "item": "spectrum:take_off_belt",
+    "count": 1
+  },
+  "required_advancements": ["spectrum:progression/unlock_take_off_belt"]
+}

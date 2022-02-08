@@ -14,7 +14,7 @@
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier3/potion_pendant",
+      "recipe": "spectrum:pedestal/tier3/trinkets/potion_pendant",
       "text": "Use the $(l:magical_blocks/potion_workshop)Potion Workshop$(/l) to fill it with potions."
     }
   ]

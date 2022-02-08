@@ -14,7 +14,7 @@
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier3/seven_league_boots",
+      "recipe": "spectrum:pedestal/tier3/trinkets/seven_league_boots",
       "text": "Increases Movement Speed and Step Height."
     }
   ]

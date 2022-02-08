@@ -14,7 +14,7 @@
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier3/radiance_pin",
+      "recipe": "spectrum:pedestal/tier3/trinkets/radiance_pin",
       "text": "Fantastic to see the paths you've already taken in your cave explorations."
     }
   ]

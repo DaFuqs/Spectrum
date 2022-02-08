@@ -1,0 +1,32 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 600,
+  "tier": "advanced",
+  "cyan": 0,
+  "magenta": 0,
+  "yellow": 8,
+  "black": 0,
+  "white": 0,
+  "experience": 4.0,
+  "pattern": [
+    "LPL",
+    "PSP",
+    " P "
+  ],
+  "key": {
+    "S": {
+      "item": "spectrum:scarlet_gem"
+    },
+    "P": {
+      "item": "spectrum:polished_basalt"
+    },
+    "L": {
+      "item": "minecraft:leather"
+    }
+  },
+  "result" : {
+    "item": "spectrum:potion_pendant",
+    "count": 1
+  },
+  "required_advancements": ["spectrum:progression/unlock_potion_pendant"]
+}

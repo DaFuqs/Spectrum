@@ -1,0 +1,29 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 20000,
+  "tier": "complex",
+  "cyan": 0,
+  "magenta": 0,
+  "yellow": 0,
+  "black": 0,
+  "white": 64,
+  "experience": 16.0,
+  "pattern": [
+    " PL",
+    "P P",
+    " P"
+  ],
+  "key": {
+    "L": {
+      "item": "spectrum:resonant_lily"
+    },
+    "P": {
+      "item": "spectrum:polished_calcite"
+    }
+  },
+  "result" : {
+    "item": "spectrum:neat_ring",
+    "count": 1
+  },
+  "required_advancements": ["spectrum:progression/unlock_neat_ring"]
+}

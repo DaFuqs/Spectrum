@@ -1024,6 +1024,8 @@
   "item.spectrum.midnight_aberration": "Midnight Aberration",
 
   "trinkets.slot.chest.pin": "Pin",
+  "trinkets.slot.legs.pigment_palette": "Pigment Palette",
+
   "item.spectrum.attack_ring": "Jeopardant",
   "item.spectrum.attack_ring.tooltip.damage_zero": "§7Increased Damage on low HP (currently §8%d %%§7)",
   "item.spectrum.attack_ring.tooltip.damage": "§7Increased Damage on low HP (currently §a+%d %%§7)",

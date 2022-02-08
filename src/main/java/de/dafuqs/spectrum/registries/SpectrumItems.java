@@ -207,6 +207,9 @@ public class SpectrumItems {
 	public static final Item RADIANCE_PIN = new RadiancePinItem(generalUncommonItemSettingsSingle);
 	public static final Item TOTEM_PENDANT = new TotemPendantItem(generalUncommonItemSettingsSingle);
 	public static final Item AIR_LAUNCH_BELT = new AirLaunchBeltItem(generalUncommonItemSettingsSingle);
+	public static final Item AZURE_DIKE_BELT = new AzureDikeBeltItem(generalUncommonItemSettingsSingle);
+	public static final Item AZURE_DIKE_RING = new AzureDikeRingItem(generalUncommonItemSettingsSingle);
+	public static final Item NEAT_RING = new NeatRingItem(generalRareItemSettingsSingle);
 
 	private static void register(String name, Item item) {
 		Registry.register(Registry.ITEM, new Identifier(SpectrumCommon.MOD_ID, name), item);
@@ -365,6 +368,9 @@ public class SpectrumItems {
 		register("radiance_pin", RADIANCE_PIN);
 		register("totem_pendant", TOTEM_PENDANT);
 		register("air_launch_belt", AIR_LAUNCH_BELT);
+		register("azure_dike_belt", AZURE_DIKE_BELT);
+		register("azure_dike_ring", AZURE_DIKE_RING);
+		register("neat_ring", NEAT_RING);
 	}
 	
 	public static void registerFluidBuckets() {

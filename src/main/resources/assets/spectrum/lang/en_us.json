@@ -1034,6 +1034,12 @@
   "item.spectrum.totem_pendant.tooltip": "Once-time protection from death",
   "item.spectrum.air_launch_belt": "Take-off Belt",
   "item.spectrum.air_launch_belt.tooltip": "Once-time protection from death",
+  "item.spectrum.azure_dike_belt": "Azure Dike Belt",
+  "item.spectrum.azure_dike_belt.tooltip": "Grants 4 units of Azure Dike",
+  "item.spectrum.azure_dike_ring": "Azure Dike Ring",
+  "item.spectrum.azure_dike_ring.tooltip": "Grants 2 units of Azure Dike",
+  "item.spectrum.neat_ring": "A Neat Ring",
+  "item.spectrum.neat_ring.tooltip": "Its neat",
 
   "item.spectrum.crafting_tablet": "Crafting Tablet",
   "item.spectrum.crafting_tablet.tooltip.no_recipe": "Add items to the crafting grid to set a recipe",

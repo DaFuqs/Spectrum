@@ -1,0 +1,19 @@
+{
+  "parent": "spectrum:midgame/create_radiant_aberration",
+  "display": {
+    "icon": {
+      "item": "spectrum:potion_workshop"
+    },
+    "title": {
+      "translate": "advancements.spectrum.brew_potion.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.brew_potion.description"
+    }
+  },
+  "criteria": {
+    "filled_potion_pendant": {
+      "trigger": "spectrum:potion_workshop_brewing"
+    }
+  }
+}

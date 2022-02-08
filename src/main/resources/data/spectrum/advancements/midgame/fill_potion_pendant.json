@@ -1,0 +1,23 @@
+{
+  "parent": "spectrum:midgame/brew_potion",
+  "display": {
+    "icon": {
+      "item": "spectrum:potion_pendant"
+    },
+    "title": {
+      "translate": "advancements.spectrum.fill_potion_pendant.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.fill_potion_pendant.description"
+    }
+  },
+  "criteria": {
+    "filled_potion_pendant": {
+      "trigger": "spectrum:potion_pendant_fill",
+		"count": {
+		  "min": 3
+		},
+      }
+    }
+  }
+}

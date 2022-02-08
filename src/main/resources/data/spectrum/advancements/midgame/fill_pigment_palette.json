@@ -1,0 +1,60 @@
+{
+  "parent": "spectrum:midgame/craft_pigment_palette",
+  "display": {
+    "icon": {
+      "item": "spectrum:pigment_palette"
+    },
+    "title": {
+      "translate": "advancements.spectrum.fill_pigment_palette.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.fill_pigment_palette.description"
+    }
+  },
+  "criteria": {
+    "filled_pigment_palette": {
+      "trigger": "spectrum:pigment_palette_change",
+	  "conditions": {
+		"black": {
+		  "min": 1
+		},
+		"blue: {
+		  "min": 1
+		},
+		"brown: {
+		  "min": 1
+		},
+		"cyan: {
+		  "min": 1
+		},
+		"green: {
+		  "min": 1
+		},
+		"light_blue: {
+		  "min": 1
+		},
+		"lime: {
+		  "min": 1
+		},
+		"magenta: {
+		  "min": 1
+		},
+		"orange: {
+		  "min": 1
+		},
+		"pink: {
+		  "min": 1
+		},
+		"purple: {
+		  "min": 1
+		},
+		"red: {
+		  "min": 1
+		},
+		"yellow: {
+		  "min": 1
+		}
+      }
+    }
+  }
+}

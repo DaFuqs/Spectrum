@@ -1,0 +1,20 @@
+{
+  "parent": "spectrum:midgame/collect_scarlet",
+  "display": {
+    "icon": {
+      "item": "spectrum:jeopardant"
+    },
+    "title": {
+      "translate": "advancements.spectrum.kill_entity_with_jeopardant_and_half_a_heart.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.kill_entity_with_jeopardant_and_half_a_heart.description"
+    }
+  },
+  "criteria": {
+    "killed_entity_with_jeopardant_and_half_a_heart": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}
+

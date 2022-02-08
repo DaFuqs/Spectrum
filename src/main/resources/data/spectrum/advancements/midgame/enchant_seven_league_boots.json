@@ -1,0 +1,32 @@
+{
+  "parent": "spectrum:midgame/build_enchanting_structure",
+  "display": {
+    "icon": {
+      "item": "spectrum:seven_league_boots"
+    },
+    "title": {
+      "translate": "advancements.spectrum.enchant_seven_league_boots.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.enchant_seven_league_boots.description"
+    }
+  },
+  "criteria": {
+    "enchanted_seven_league_boots_with_": {
+      "trigger": "spectrum:enchanter_enchanting",
+      "conditions": {
+        "item": {
+          "items": [
+            "spectrum:seven_league_boots"
+          ]
+        },
+        "enchantments": [{
+          "enchantment": "minecraft:power",
+            "levels": {
+              "min": 5
+          }
+        }]
+      }
+    }
+  }
+}

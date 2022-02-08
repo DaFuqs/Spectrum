@@ -1,0 +1,25 @@
+{
+  "parent": "spectrum:midgame/create_refined_azurite",
+  "display": {
+    "icon": {
+      "item": "spectrum:azure_dike_ring"
+    },
+    "title": {
+      "translate": "advancements.spectrum.max_azure_dike_charge.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.max_azure_dike_charge.description"
+    }
+  },
+  "criteria": {
+    "max_azure_dike_charge": {
+      "trigger": "spectrum:azure_dike_charge_change",
+	  "new_charges": {
+	    "min": 10
+	  },
+	  "recharge_rate": {
+	    "min": 1
+	  }
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "criteria": {
+    "unlocked_advanced_crafting": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:midgame/build_advanced_pedestal_structure" }
+    },
+    "equipped_three_trinkets": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:hidden/equip_three_trinkets" }
+    }
+  }
+}

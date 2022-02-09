@@ -46,6 +46,8 @@
   "recipeGroup.spectrum.vanilla": "Vanilla Enchantments",
   "recipeGroup.spectrum.pastel_network": "Pastel Network",
 
+  "spectrum.tooltip.coming_soon": "§4Not yet available in Survival",
+
   "spectrum.gui.lexicon.reveal_hint_button.text": "Reveal Hint    ",
   "spectrum__unused:": "",
   "spectrum.gui.lexicon.reveal_hint_button.tooltip.pay": "Pay a small fee to unlock a hint",

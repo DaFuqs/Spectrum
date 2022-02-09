@@ -73,6 +73,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.BlockView;
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Collection;
@@ -925,16 +926,16 @@ public class SpectrumBlocks {
 		registerBlockWithItem("amethyst_chime", AMETHYST_CHIME, fabricItemSettings);
 		registerBlockWithItem("topaz_chime", TOPAZ_CHIME, fabricItemSettings);
 		registerBlockWithItem("citrine_chime", CITRINE_CHIME, fabricItemSettings);
-		registerBlockWithItem("moonstone_chime", MOONSTONE_CHIME, fabricItemSettings);
 		registerBlockWithItem("onyx_chime", ONYX_CHIME, fabricItemSettings);
+		registerBlockWithItem("moonstone_chime", MOONSTONE_CHIME, fabricItemSettings);
 	}
 	
 	private static void registerDecoStones(FabricItemSettings fabricItemSettings) {
 		registerBlockWithItem("amethyst_decostone", AMETHYST_DECOSTONE, fabricItemSettings);
 		registerBlockWithItem("topaz_decostone", TOPAZ_DECOSTONE, fabricItemSettings);
 		registerBlockWithItem("citrine_decostone", CITRINE_DECOSTONE, fabricItemSettings);
-		registerBlockWithItem("moonstone_decostone", MOONSTONE_DECOSTONE, fabricItemSettings);
 		registerBlockWithItem("onyx_decostone", ONYX_DECOSTONE, fabricItemSettings);
+		registerBlockWithItem("moonstone_decostone", MOONSTONE_DECOSTONE, fabricItemSettings);
 	}
 
 	private static void registerStoneBlocks(FabricItemSettings fabricItemSettings) {
@@ -1314,11 +1315,13 @@ public class SpectrumBlocks {
 		return MOB_WALL_HEADS.get(skullType);
 	}
 
-	public static Collection<Block> getMobHeads() {
+	@Contract(pure = true)
+	public static @NotNull Collection<Block> getMobHeads() {
 		return MOB_HEADS.values();
 	}
 
-	public static Collection<Block> getMobWallHeads() {
+	@Contract(pure = true)
+	public static @NotNull Collection<Block> getMobWallHeads() {
 		return MOB_WALL_HEADS.values();
 	}
 

@@ -7,7 +7,7 @@
 		"2": "spectrum:block/polished_basalt",
 		"3": "spectrum:block/polished_basalt_pillar_top",
 		"4": "spectrum:block/particle_spawner_base",
-		"particle": "spectrum:block/particle_spawner_top"
+		"particle": "spectrum:block/particle_spawner_top_off"
 	},
 	"elements": [
 		{

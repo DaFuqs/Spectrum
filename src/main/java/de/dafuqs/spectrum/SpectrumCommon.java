@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum;
 
+import de.dafuqs.spectrum.blocks.shooting_star.ShootingStarBlock;
 import de.dafuqs.spectrum.config.SpectrumConfig;
 import de.dafuqs.spectrum.dimension.DeeperDownDimension;
 import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
@@ -165,6 +166,11 @@ public class SpectrumCommon implements ModInitializer {
 		
 		log(Level.INFO, "Registering Dispenser Behaviors..");
 		DispenserBlock.registerBehavior(SpectrumItems.BOTTOMLESS_BUNDLE, new BottomlessBundleItem.BottomlessBundlePlacementDispenserBehavior());
+		DispenserBlock.registerBehavior(SpectrumBlocks.COLORFUL_SHOOTING_STAR.asItem(), new ShootingStarBlock.ShootingStarBlockDispenserBehavior());
+		DispenserBlock.registerBehavior(SpectrumBlocks.FIERY_SHOOTING_STAR.asItem(), new ShootingStarBlock.ShootingStarBlockDispenserBehavior());
+		DispenserBlock.registerBehavior(SpectrumBlocks.GEMSTONE_SHOOTING_STAR.asItem(), new ShootingStarBlock.ShootingStarBlockDispenserBehavior());
+		DispenserBlock.registerBehavior(SpectrumBlocks.GLISTERING_SHOOTING_STAR.asItem(), new ShootingStarBlock.ShootingStarBlockDispenserBehavior());
+		DispenserBlock.registerBehavior(SpectrumBlocks.PRISTINE_SHOOTING_STAR.asItem(), new ShootingStarBlock.ShootingStarBlockDispenserBehavior());
 		
 		AttackBlockCallback.EVENT.register((player, world, hand, pos, direction) -> {
 			if(!world.isClient && !player.isSpectator()) {

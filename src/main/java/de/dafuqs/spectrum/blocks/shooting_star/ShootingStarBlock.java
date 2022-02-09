@@ -2,24 +2,35 @@ package de.dafuqs.spectrum.blocks.shooting_star;
 
 import de.dafuqs.spectrum.ColorHelper;
 import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.entity.entity.ShootingStarEntity;
+import de.dafuqs.spectrum.items.magic_items.BottomlessBundleItem;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockRenderType;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.BlockWithEntity;
+import net.minecraft.block.*;
+import net.minecraft.block.dispenser.BoatDispenserBehavior;
+import net.minecraft.block.dispenser.FallibleItemDispenserBehavior;
+import net.minecraft.block.dispenser.ItemDispenserBehavior;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.pathing.NavigationType;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.vehicle.BoatEntity;
+import net.minecraft.item.AutomaticItemPlacementContext;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tag.FluidTags;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.BlockPointer;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3f;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+import org.apache.logging.log4j.Level;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Random;
@@ -86,11 +97,13 @@ public class ShootingStarBlock extends BlockWithEntity {
 			return types[0];
 		}
 		
-		public static Identifier getLootTableIdentifier(int index) {
+		@Contract("_ -> new")
+		public static @NotNull Identifier getLootTableIdentifier(int index) {
 			return getLootTableIdentifier(values()[index]);
 		}
 		
-		public static Identifier getLootTableIdentifier(Type type) {
+		@Contract("_ -> new")
+		public static @NotNull Identifier getLootTableIdentifier(@NotNull Type type) {
 			switch (type) {
 				case FIERY -> {
 					return new Identifier(SpectrumCommon.MOD_ID, "entity/shooting_star/shooting_star_fiery");
@@ -110,7 +123,7 @@ public class ShootingStarBlock extends BlockWithEntity {
 			}
 		}
 		
-		public Vec3f getRandomParticleColor(Random random) {
+		public @NotNull Vec3f getRandomParticleColor(Random random) {
 			switch (this) {
 				case GLISTERING -> {
 					int r = random.nextInt(5);
@@ -196,7 +209,7 @@ public class ShootingStarBlock extends BlockWithEntity {
 	}
 	
 	@Override
-	public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
+	public void onBreak(@NotNull World world, BlockPos pos, BlockState state, PlayerEntity player) {
 		if (!world.isClient && !player.isCreative()) {
 			ItemStack itemStack = this.shootingStarType.getBlock().asItem().getDefaultStack();
 			world.getBlockEntity(pos, SpectrumBlockEntityRegistry.SHOOTING_STAR).ifPresent((blockEntity) -> {
@@ -212,12 +225,33 @@ public class ShootingStarBlock extends BlockWithEntity {
 	}
 	
 	@Override
-	public void onPlaced(World world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack itemStack) {
+	public void onPlaced(@NotNull World world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack itemStack) {
 		if(!world.isClient) {
 			BlockEntity blockEntity = world.getBlockEntity(pos);
 			if (blockEntity instanceof ShootingStarBlockEntity shootingStarBlockEntity) {
 				shootingStarBlockEntity.setRemainingHits(ShootingStarItem.getRemainingHits(itemStack));
 			}
+		}
+	}
+	
+	public static class ShootingStarBlockDispenserBehavior extends ItemDispenserBehavior {
+		
+		public ItemStack dispenseSilently(@NotNull BlockPointer pointer, @NotNull ItemStack stack) {
+			Direction direction = pointer.getBlockState().get(DispenserBlock.FACING);
+			World world = pointer.getWorld();
+			double d = pointer.getX() + direction.getOffsetX() * 1.125F;
+			double e = pointer.getY() + direction.getOffsetY() * 1.125F;
+			double f = pointer.getZ() + direction.getOffsetZ() * 1.125F;
+			
+			ShootingStarEntity shootingStarEntity = new ShootingStarEntity(world, d, e + 0.05, f);
+			ShootingStarBlock.Type type = ((ShootingStarItem) stack.getItem()).getType();
+			shootingStarEntity.setShootingStarType(type, true);
+			shootingStarEntity.setYaw(direction.asRotation());
+			shootingStarEntity.addVelocity(direction.getOffsetX() * 0.4, direction.getOffsetY() * 0.4, direction.getOffsetZ() * 0.4);
+			world.spawnEntity(shootingStarEntity);
+			
+			stack.decrement(1);
+			return stack;
 		}
 	}
 	

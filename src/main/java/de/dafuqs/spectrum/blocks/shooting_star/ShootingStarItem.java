@@ -12,6 +12,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
+import org.jetbrains.annotations.NotNull;
 
 public class ShootingStarItem extends BlockItem {
 	
@@ -22,7 +23,7 @@ public class ShootingStarItem extends BlockItem {
 		this.type = block.shootingStarType;
 	}
 	
-	public ActionResult useOnBlock(ItemUsageContext context) {
+	public ActionResult useOnBlock(@NotNull ItemUsageContext context) {
 		if(context.getPlayer().isSneaking()) {
 			// place as block
 			return super.useOnBlock(context);
@@ -56,7 +57,7 @@ public class ShootingStarItem extends BlockItem {
 		}
 	}
 	
-	public static int getRemainingHits(ItemStack itemStack) {
+	public static int getRemainingHits(@NotNull ItemStack itemStack) {
 		NbtCompound nbtCompound = itemStack.getNbt();
 		if(nbtCompound == null || !nbtCompound.contains("remaining_hits", NbtElement.INT_TYPE)) {
 			return 5;
@@ -65,7 +66,7 @@ public class ShootingStarItem extends BlockItem {
 		}
 	}
 	
-	public static ItemStack getWithRemainingHits(ShootingStarItem shootingStarItem, int remainingHits) {
+	public static @NotNull ItemStack getWithRemainingHits(@NotNull ShootingStarItem shootingStarItem, int remainingHits) {
 		ItemStack stack = shootingStarItem.getDefaultStack();
 		NbtCompound nbtCompound = new NbtCompound();
 		nbtCompound.putInt("remaining_hits", remainingHits);
@@ -73,5 +74,8 @@ public class ShootingStarItem extends BlockItem {
 		return stack;
 	}
 	
+	public ShootingStarBlock.Type getType() {
+		return this.type;
+	}
 	
 }

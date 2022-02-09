@@ -510,7 +510,7 @@ public class ShootingStarEntity extends Entity {
 		boolean playerPlaced = false;
 		
 		if (tag.contains("PlayerPlaced")) {
-			playerPlaced = tag.getBoolean("");
+			playerPlaced = tag.getBoolean("PlayerPlaced");
 		}
 		if (tag.contains("Type", 8)) {
 			this.setShootingStarType(ShootingStarBlock.Type.getType(tag.getString("Type")), playerPlaced);

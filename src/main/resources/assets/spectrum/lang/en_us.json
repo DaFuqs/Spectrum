@@ -1082,6 +1082,8 @@
   "block.spectrum.terror": "Terror",
   "block.spectrum.decay_away": "Decay Away",
   "block.spectrum.particle_spawner": "Particle Spawner",
+  "block.spectrum.creative_particle_spawner": "Creative Particle Spawner",
+  "block.spectrum.creative_particle_spawner.tooltip": "Unbreakable - does not require Redstone",
   "block.spectrum.cracked_end_portal_frame": "Cracked End Portal Frame",
 
   "advancements.spectrum.break_decayed_bedrock.title": "Groundbreaking",

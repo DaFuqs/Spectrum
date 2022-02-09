@@ -8,6 +8,7 @@ import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -33,7 +34,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-
 public class ParticleSpawnerBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory {
 
 	public Identifier particleSpriteIdentifier;
@@ -53,7 +53,11 @@ public class ParticleSpawnerBlockEntity extends BlockEntity implements ExtendedS
 	public boolean initialized = false;
 
 	public ParticleSpawnerBlockEntity(BlockPos blockPos, BlockState blockState) {
-		super(SpectrumBlockEntityRegistry.PARTICLE_SPAWNER, blockPos, blockState);
+		this(SpectrumBlockEntityRegistry.PARTICLE_SPAWNER, blockPos, blockState);
+	}
+	
+	public ParticleSpawnerBlockEntity(BlockEntityType blockEntityType, BlockPos blockPos, BlockState blockState) {
+		super(blockEntityType, blockPos, blockState);
 
 		List<DefaultParticleType> availableParticleEffects = new ArrayList<>();
 		availableParticleEffects.add(ParticleTypes.FLAME);
@@ -214,7 +218,7 @@ public class ParticleSpawnerBlockEntity extends BlockEntity implements ExtendedS
 		packetByteBuf.writeBoolean(this.collisions);
 	}
 
-	public void applySettings(PacketByteBuf buf) {
+	public void applySettings(@NotNull PacketByteBuf buf) {
 		Identifier particleSpriteIdentifier = new Identifier(buf.readString());
 		float particlesPerSecond = buf.readFloat();
 		Vec3f particleSourcePosition = new Vec3f(buf.readFloat(), buf.readFloat(), buf.readFloat());
@@ -257,7 +261,7 @@ public class ParticleSpawnerBlockEntity extends BlockEntity implements ExtendedS
 	}
 
 	@Override
-	public void writeScreenOpeningData(ServerPlayerEntity player, PacketByteBuf buf) {
+	public void writeScreenOpeningData(ServerPlayerEntity player, @NotNull PacketByteBuf buf) {
 		buf.writeBlockPos(this.pos);
 	}
 

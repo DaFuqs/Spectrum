@@ -26,8 +26,8 @@ public class ParticleSpawnerBlock extends BlockWithEntity implements RedstonePow
 	protected static final VoxelShape SHAPE = Block.createCuboidShape(1.0D, 0.0D, 1.0D, 15.0D, 13.0D, 15.0D);
 	public static final BooleanProperty POWERED = BooleanProperty.of("powered");
 
-	public ParticleSpawnerBlock(FabricBlockSettings of) {
-		super(of);
+	public ParticleSpawnerBlock(Settings settings) {
+		super(settings);
 		setDefaultState(getStateManager().getDefaultState().with(POWERED, false));
 	}
 

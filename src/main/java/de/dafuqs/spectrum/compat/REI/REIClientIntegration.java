@@ -35,6 +35,8 @@ public class REIClientIntegration implements REIClientPlugin {
 		registry.add(new EnchanterCategory<>());
 		registry.add(new EnchantmentUpgradeCategory<>());
 		
+		registry.addWorkstations(BuiltinPlugin.CRAFTING, EntryStacks.of(SpectrumItems.CRAFTING_TABLET));
+		
 		EntryIngredient pedestalStacks = EntryIngredient.of(
 				EntryStacks.of(SpectrumBlocks.PEDESTAL_BASIC_TOPAZ),
 				EntryStacks.of(SpectrumBlocks.PEDESTAL_BASIC_AMETHYST),
@@ -42,7 +44,7 @@ public class REIClientIntegration implements REIClientPlugin {
 				EntryStacks.of(SpectrumBlocks.PEDESTAL_ALL_BASIC),
 				EntryStacks.of(SpectrumBlocks.PEDESTAL_ONYX),
 				EntryStacks.of(SpectrumBlocks.PEDESTAL_MOONSTONE));
-
+		
 		registry.addWorkstations(BuiltinPlugin.CRAFTING, pedestalStacks);
 		registry.addWorkstations(SpectrumPlugins.PEDESTAL_CRAFTING, pedestalStacks);
 		registry.addWorkstations(SpectrumPlugins.ANVIL_CRUSHING, EntryStacks.of(Blocks.ANVIL), EntryStacks.of(SpectrumBlocks.BEDROCK_ANVIL), EntryStacks.of(SpectrumBlocks.SCARLET_FRAGMENT_BLOCK), EntryStacks.of(SpectrumBlocks.PALETUR_FRAGMENT_BLOCK));

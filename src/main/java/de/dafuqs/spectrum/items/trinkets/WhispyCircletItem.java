@@ -1,17 +1,22 @@
 package de.dafuqs.spectrum.items.trinkets;
 
 import de.dafuqs.spectrum.SpectrumCommon;
+import dev.architectury.event.events.common.ChatEvent;
 import dev.emi.trinkets.api.SlotReference;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.stat.Stats;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
+import net.minecraft.world.gen.PhantomSpawner;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -45,8 +50,13 @@ public class WhispyCircletItem extends SpectrumTrinketItem {
 	@Override
 	public void tick(ItemStack stack, SlotReference slot, LivingEntity entity) {
 		super.tick(stack, slot, entity);
-		if(entity.getWorld().getTime() % TRIGGER_EVERY_X_TICKS == 0) {
+		
+		long time = entity.getWorld().getTime();
+		if(time % TRIGGER_EVERY_X_TICKS == 0) {
 			shortenNegativeStatusEffects(entity, NEGATIVE_EFFECT_SHORTENING_TICKS);
+		}
+		if(time % 10000 == 0 && entity instanceof ServerPlayerEntity serverPlayerEntity) {
+			preventPhantomSpawns(serverPlayerEntity);
 		}
 	}
 	
@@ -71,6 +81,10 @@ public class WhispyCircletItem extends SpectrumTrinketItem {
 				}
 			}
 		}
+	}
+	
+	public static void preventPhantomSpawns(@NotNull ServerPlayerEntity serverPlayerEntity) {
+		serverPlayerEntity.getStatHandler().setStat(serverPlayerEntity, Stats.CUSTOM.getOrCreateStat(Stats.TIME_SINCE_REST), 0);
 	}
 	
 	

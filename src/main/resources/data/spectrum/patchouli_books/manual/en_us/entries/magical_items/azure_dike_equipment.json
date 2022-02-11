@@ -10,12 +10,12 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The results of combining $(l:resources/azurite)Azurite$(/l) and the protective properties of $(l:general/pigment#blue)Blue Pigment$(/l) really sparked your interest. The material seemed to surround itself with a transparent aura, which took some effort to penetrate when you reached for the lump.$(br)$(italic)This is going to be interesting..."
+      "text": "The results of combining $(l:resources/azurite)Azurite$(/l) and the protective properties of $(l:general/pigment#blue)Blue Pigment$(/l) really sparked your interest. The material seemed to surround itself with a transparent aura, which took some effort to penetrate when you reached for the lump.$(br2)$(italic)This is going to be interesting..."
     },
     {
       "type": "patchouli:text",
       "title": "Azure Dike",
-      "text": "A magical aura surrounding your body, shielding you from incoming damage.$(br)Slowly recharges up to a specific amount. Each piece of Azure Dike Equipment increases the maximum amount of protection."
+      "text": "A magical aura surrounding your body, shielding you from incoming damage.$(br)Slowly recharges up to a specific amount.$(br2)Each piece of Azure Dike Equipment increases the maximum amount of protection."
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -27,7 +27,7 @@
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier3/trinkets/azure_dike_belt",
-      "text": "Grants you $(c_green)4$() points of $(c_blue)Azure Dike$()e."
+      "text": "Grants you $(c_green)4$() points of $(c_blue)Azure Dike$()."
     }
   ]
 }

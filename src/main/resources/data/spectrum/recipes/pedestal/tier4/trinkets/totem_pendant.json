@@ -5,8 +5,8 @@
   "cyan": 0,
   "magenta": 16,
   "yellow": 0,
-  "black": 4,
-  "white": 0,
+  "black": 0,
+  "white": 8,
   "experience": 4.0,
   "pattern": [
     "PPP",

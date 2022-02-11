@@ -15,7 +15,7 @@
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier3/trinkets/ashen_circlet",
-      "text": "Prevents damage from fire and hot floors. Extinguishes close fires and grants you a 15 second protection from lava."
+      "text": "$(li)Prevents damage from fire and hot floors.$(br)$(li)Extinguishes close fires and grants you a 15 second protection from lava."
     }
   ]
 }

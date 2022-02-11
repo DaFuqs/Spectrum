@@ -26,11 +26,13 @@ import de.dafuqs.spectrum.worldgen.SpectrumFeatures;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.entity.event.v1.EntitySleepEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerWorldEvents;
 import net.fabricmc.fabric.api.event.player.AttackBlockCallback;
 import net.minecraft.block.Block;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.block.FluidBlock;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.state.property.BooleanProperty;
@@ -203,6 +205,14 @@ public class SpectrumCommon implements ModInitializer {
 				if(block instanceof FluidBlock fluidBlock) {
 					fluidLuminance.put(fluidBlock.getFluidState(fluidBlock.getDefaultState()).getFluid(), fluidBlock.getDefaultState().getLuminance());
 				}
+			}
+		});
+		
+		// TODO: Whispy Circlet
+		EntitySleepEvents.STOP_SLEEPING.register(new EntitySleepEvents.StopSleeping() {
+			@Override
+			public void onStopSleeping(LivingEntity entity, BlockPos sleepingPos) {
+			
 			}
 		});
 

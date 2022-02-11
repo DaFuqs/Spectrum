@@ -1,0 +1,135 @@
+{
+  "name": "Potion Workshop",
+  "icon": "spectrum:potion_workshop",
+  "advancement": "spectrum:progression/unlock_potion_workshop",
+  "category": "spectrum:magical_blocks_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(italic)In the meantime, you have come into possession of many new materials. It's time to take a close look at each of them to see what effect they have on your potions.$(br)Your educated guess, as an expert: Awesome!"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier3/potion_workshop",
+      "text": "You always need to add Nether Wart and Blaze Powder. Depending on the Catalyst used you can modify the resulting properties of your Potions. You can add up to three Reagents per Potion. Each Reagent can only be used once per recipe."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Mermaids Gems",
+      "item": "spectrum:mermaids_gem",
+      "text": "Instead of supplying Water Bottles you can also just add $(l:resources/mermaids_brush)Mermaids Gems$(/l) to the designated slot and use empty Bottles instead."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Reagent: Redstone",
+      "item": "minecraft:redstone",
+      "text": "Increases Duration"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Reagent: Glowstone",
+      "item": "minecraft:glowstone",
+      "text": "Increases Level"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Reagent: Gunpowder",
+      "item": "minecraft:gunpowder",
+      "text": "Creates Splash Potions"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Reagent: Dragons Breath",
+      "item": "minecraft:dragon_breath",
+      "advancement": "spectrum:hidden/collect_dragon_breath",
+      "text": "Creates Lingering Potions - Also requires Gunpowder$(br2)Allows you to create Tipped Arrows, if you supply Arrows instead of Water Bottles"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Reagent: Topaz",
+      "item": "spectrum:topaz_powder",
+      "text": "Makes Effects not show any particles"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Reagent: Amethyst",
+      "item": "spectrum:amethyst_powder",
+      "text": "Slightly increases Duration"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Reagent: Citrine",
+      "item": "spectrum:citrine_powder",
+      "text": "Slight chance to increase Level"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Reagent: Onyx",
+      "item": "spectrum:onyx_powder",
+      "text": "Adds a very weird taste and smell to the potion, making it unidentifiable.$(br)Also makes its color completely black."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Reagent: Moonstone",
+      "item": "spectrum:moonstone_powder",
+      "advancement": "spectrum:midgame/collect_moonstone_shard",
+      "text": "Changes all otherwise negative Effects to their positive ones"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Reagent: Shimmerstone",
+      "item": "spectrum:sparklestone_gem",
+      "text": "Tiny chance to increase both Duration and Level"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Reagent: Quitoxic Powder",
+      "item": "spectrum:quitoxic_powder",
+      "advancement": "spectrum:collect_quitoxic_reeds",
+      "text": "Increases Level of negative Effects by 1"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Reagent: Crimtane",
+      "item": "spectrum:scarlet_fragments",
+      "advancement": "spectrum:midgame/collect_scarlet",
+      "text": "Greatly increases the Effects Potency, at the cost of adding a random negative Effect"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Reagent: Aerialite",
+      "item": "spectrum:paletur_fragments",
+      "advancement": "spectrum:lategame/collect_paletur",
+      "text": "Adds a random positive Effect"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Reagent: Stardust",
+      "item": "spectrum:stardust",
+      "advancement": "spectrum:hidden/collect_stardust",
+      "text": "$(italic)Absorbs the last drops of what remains of your previous brew.$()$(br2)Small chance to add the main Effect of the Potion that was brewed previously"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Reagent: Star Fragment",
+      "item": "spectrum:shooting_star",
+      "advancement": "spectrum:collect_shooting_star",
+      "text": "$(italic)Similar to Stardust, but much more potent.$()$(br2)Reasonable chance to add the main Effect of the Potion that was brewed previously"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Reagent: Lightning Stone",
+      "item": "spectrum:lightning_stone",
+      "advancement": "spectrum:midgame/collect_lightning_stone",
+      "text": "Increases the Potions Effect at the beginning, but wearing off over time [multiple effects with different levels / durations]"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Reagent: Azurite",
+      "item": "spectrum:raw_azurite",
+      "advancement": "spectrum:midgame/collect_azurite",
+      "text": "Removes the duration penalty for Splash and Lingering Potions, decreases the penalty for Tipped Arrows"
+    }
+  ]
+}

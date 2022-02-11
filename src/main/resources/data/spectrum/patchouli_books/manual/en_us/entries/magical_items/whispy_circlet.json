@@ -1,0 +1,18 @@
+{
+    "name": "Whispy Circlet",
+    "icon": "spectrum:whispy_circlet",
+    "advancement": "spectrum:progression/unlock_whispy_circlet",
+    "category": "spectrum:magical_items_category",
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "It's not just your bags under your eyes that are evidence of a lack of sleep. There are also those creatures that come haunt you straight out of your missed nightmares when you don't regularly lie down to sleep - almost like they feel cheated when you avoid them by skipping sleep.$(br)Now this trinket is the physical equivalent of relaxation, no sleep necessary. After just a few minutes of wearing it, you feel physically and mentally fit again.$(li)$(br)Prevents spawning of Phantoms without sleep$(li)$(br)Reduces the length of negative potion effects$(li)$(br)Sleeping fully heals & removes all negative potion effects"
+        },
+        {
+            "type": "spectrum:pedestal_crafting",
+            "title": "Pedestal Recipe",
+            "recipe": "spectrum:pedestal/tier3/trinkets/whispy_circlet",
+            "text": "$(italic)The pleasures of a good night's sleep."
+        }
+    ]
+}

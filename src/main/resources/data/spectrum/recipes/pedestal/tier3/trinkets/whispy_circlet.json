@@ -1,0 +1,35 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 1200,
+  "tier": "advanced",
+  "cyan": 0,
+  "magenta": 12,
+  "yellow": 0,
+  "black": 0,
+  "white": 0,
+  "experience": 4.0,
+  "pattern": [
+    "PPP",
+    "FMF",
+    "PFP"
+  ],
+  "key": {
+    "P": {
+      "item": "minecraft:phantom_membrane"
+    },
+    "M": {
+      "item": "spectrum:mermaids_gem"
+    },
+    "F": {
+      "item": "minecraft:feather"
+    },
+    "P": {
+      "item": "spectrum:brown_pigment"
+    }
+  },
+  "result" : {
+    "item": "spectrum:whispy_circlet",
+    "count": 1
+  },
+  "required_advancements": [ "spectrum:progression/unlock_whispy_circlet" ]
+}

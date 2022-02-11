@@ -13,10 +13,14 @@
   },
   "criteria": {
     "filled_potion_pendant": {
-      "trigger": "spectrum:potion_pendant_fill",
-		"count": {
-		  "min": 3
-		}
+      "trigger": "spectrum:potion_workshop_brewing",
+      "conditions": {
+        "items": [{
+          "items": [
+            "spectrum:potion_pendant"
+          ]
+        }],
+        "effect_count": 3
       }
     }
   }

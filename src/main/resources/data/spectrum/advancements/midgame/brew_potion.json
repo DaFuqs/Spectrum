@@ -12,8 +12,19 @@
     }
   },
   "criteria": {
-    "filled_potion_pendant": {
-      "trigger": "spectrum:potion_workshop_brewing"
+    "brewed_potion": {
+      "trigger": "spectrum:potion_workshop_brewing",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:potion",
+              "minecraft:splash_potion",
+              "minecraft:lingering_potion"
+            ]
+          }
+        ]
+      }
     }
   }
 }

@@ -1,0 +1,8 @@
+{
+  "criteria": {
+    "has_dragon_breath": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": { "items": [{ "items": ["minecraft:dragon_breath"] }] }
+    }
+  }
+}

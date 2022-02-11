@@ -1,0 +1,38 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 1200,
+  "tier": "advanced",
+  "cyan": 0,
+  "magenta": 4,
+  "yellow": 4,
+  "black": 1,
+  "white": 0,
+  "experience": 4.0,
+  "pattern": [
+    "CTC",
+    "PGP",
+    "BBB"
+  ],
+  "key": {
+    "B": {
+      "item": "spectrum:polished_basalt"
+    },
+    "P": {
+      "item": "spectrum:polished_calcite"
+    },
+    "C": {
+      "item": "minecraft:copper_ingot"
+    },
+    "G": {
+      "item": "spectrum:scarlet_fragments"
+    },
+    "T": {
+      "item": "spectrum:red_pigment"
+    }
+  },
+  "result" : {
+    "item": "spectrum:potion_workshop",
+    "count": 1
+  },
+  "required_advancements": [ "spectrum:progression/unlock_potion_workshop" ]
+}

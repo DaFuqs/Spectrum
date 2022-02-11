@@ -10,6 +10,8 @@ import de.dafuqs.spectrum.inventories.SpectrumScreenHandlerTypes;
 import de.dafuqs.spectrum.items.magic_items.BottomlessBundleItem;
 import de.dafuqs.spectrum.items.magic_items.ExchangeStaffItem;
 import de.dafuqs.spectrum.items.magic_items.RadianceStaffItem;
+import de.dafuqs.spectrum.items.trinkets.SpectrumTrinketItem;
+import de.dafuqs.spectrum.items.trinkets.WhispyCircletItem;
 import de.dafuqs.spectrum.loot.EnchantmentDrops;
 import de.dafuqs.spectrum.loot.SpectrumLootConditionTypes;
 import de.dafuqs.spectrum.networking.SpectrumC2SPackets;
@@ -32,8 +34,12 @@ import net.fabricmc.fabric.api.event.player.AttackBlockCallback;
 import net.minecraft.block.Block;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.block.FluidBlock;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.math.BlockPos;
@@ -41,10 +47,9 @@ import net.minecraft.util.registry.Registry;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.jetbrains.annotations.NotNull;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Optional;
+import java.util.*;
 
 public class SpectrumCommon implements ModInitializer {
 
@@ -208,10 +213,20 @@ public class SpectrumCommon implements ModInitializer {
 		});
 		
 		EntitySleepEvents.STOP_SLEEPING.register((entity, sleepingPos) -> {
-			// TODO: Whispy Circlet
+			// If the player wears a Whispy Cirlcet and sleeps
+			// it gets fully healed and all negative status effects removed
+			
+			// When the sleep timer reached 100 the player is fully asleep
+			if(entity instanceof ServerPlayerEntity serverPlayerEntity
+					&& serverPlayerEntity.getSleepTimer() == 100
+					&& SpectrumTrinketItem.hasEquipped(entity, SpectrumItems.WHISPY_CIRCLET)) {
+				
+				entity.setHealth(entity.getMaxHealth());
+				WhispyCircletItem.removeNegativeStatusEffects(entity);
+			}
 		});
 
 		log(Level.INFO, "Common startup completed!");
 	}
-
+	
 }

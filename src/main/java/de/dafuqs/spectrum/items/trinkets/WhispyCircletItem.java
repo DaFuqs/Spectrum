@@ -1,20 +1,29 @@
 package de.dafuqs.spectrum.items.trinkets;
 
 import de.dafuqs.spectrum.SpectrumCommon;
+import dev.emi.trinkets.api.SlotReference;
 import net.minecraft.client.item.TooltipContext;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.effect.StatusEffectCategory;
+import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Collection;
 import java.util.List;
 
 public class WhispyCircletItem extends SpectrumTrinketItem {
 	
-    private final Identifier UNLOCK_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_wispy_circlet");
+    private final int TRIGGER_EVERY_X_TICKS = 100;
+    private final int NEGATIVE_EFFECT_SHORTENING_TICKS = 100;
+	
+    private final Identifier UNLOCK_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_whispy_circlet");
 
 	public WhispyCircletItem(Settings settings) {
 		super(settings);
@@ -32,5 +41,37 @@ public class WhispyCircletItem extends SpectrumTrinketItem {
 		tooltip.add(new TranslatableText("item.spectrum.whispy_circlet.tooltip2").formatted(Formatting.GRAY));
 		tooltip.add(new TranslatableText("item.spectrum.whispy_circlet.tooltip3").formatted(Formatting.GRAY));
 	}
+	
+	@Override
+	public void tick(ItemStack stack, SlotReference slot, LivingEntity entity) {
+		super.tick(stack, slot, entity);
+		if(entity.getWorld().getTime() % TRIGGER_EVERY_X_TICKS == 0) {
+			shortenNegativeStatusEffects(entity, NEGATIVE_EFFECT_SHORTENING_TICKS);
+		}
+	}
+	
+	public static void removeNegativeStatusEffects(@NotNull LivingEntity entity) {
+		Collection<StatusEffectInstance> currentEffects = entity.getStatusEffects();
+		for(StatusEffectInstance instance : currentEffects) {
+			if(instance.getEffectType().getCategory() == StatusEffectCategory.HARMFUL) {
+				entity.removeStatusEffect(instance.getEffectType());
+			}
+		}
+	}
+	
+	public static void shortenNegativeStatusEffects(@NotNull LivingEntity entity, int duration) {
+		Collection<StatusEffectInstance> currentEffects = entity.getStatusEffects();
+		for(StatusEffectInstance instance : currentEffects) {
+			if(instance.getEffectType().getCategory() == StatusEffectCategory.HARMFUL) {
+				int newDurationTicks = instance.getDuration() - duration;
+				
+				entity.removeStatusEffect(instance.getEffectType());
+				if(newDurationTicks > 0) {
+					entity.addStatusEffect(new StatusEffectInstance(instance.getEffectType(), newDurationTicks, instance.getAmplifier(), instance.isAmbient(), true));
+				}
+			}
+		}
+	}
+	
 	
 }

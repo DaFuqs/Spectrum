@@ -98,7 +98,7 @@
     },
     {
       "type": "patchouli:spotlight",
-      "title": "Reagent: Aerialite",
+      "title": "Reagent: Paltaeria",
       "item": "spectrum:paletur_fragments",
       "advancement": "spectrum:lategame/collect_paletur",
       "text": "Adds a random positive Effect"

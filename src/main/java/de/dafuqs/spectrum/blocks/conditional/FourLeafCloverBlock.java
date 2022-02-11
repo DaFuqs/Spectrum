@@ -6,10 +6,13 @@ import de.dafuqs.spectrum.interfaces.Cloakable;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.loot.context.LootContext;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Pair;
 
 import java.util.Hashtable;
+import java.util.List;
 
 public class FourLeafCloverBlock extends CloverBlock implements Cloakable {
 
@@ -34,5 +37,10 @@ public class FourLeafCloverBlock extends CloverBlock implements Cloakable {
 	public Pair<Item, Item> getItemCloak() {
 		return new Pair<>(this.asItem(), SpectrumBlocks.CLOVER.asItem());
 	}
-
+	
+	@Deprecated
+	public List<ItemStack> getDroppedStacks(BlockState state, LootContext.Builder builder) {
+		return getCloakedDroppedStacks(state, builder);
+	}
+	
 }

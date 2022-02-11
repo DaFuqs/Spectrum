@@ -208,12 +208,8 @@ public class SpectrumCommon implements ModInitializer {
 			}
 		});
 		
-		// TODO: Whispy Circlet
-		EntitySleepEvents.STOP_SLEEPING.register(new EntitySleepEvents.StopSleeping() {
-			@Override
-			public void onStopSleeping(LivingEntity entity, BlockPos sleepingPos) {
-			
-			}
+		EntitySleepEvents.STOP_SLEEPING.register((entity, sleepingPos) -> {
+			// TODO: Whispy Circlet
 		});
 
 		log(Level.INFO, "Common startup completed!");

@@ -215,6 +215,7 @@ public class SpectrumItems {
 	public static final Item ASHEN_CIRCLET = new AshenCircletItem(generalUncommonItemSettingsSingle);
 	public static final Item TIDAL_CIRCLET = new TidalCircletItem(generalUncommonItemSettingsSingle);
 	public static final Item PUFF_CIRCLET = new PuffCircletItem(generalUncommonItemSettingsSingle);
+	public static final Item WHISPY_CIRCLET = new WhispyCircletItem(generalUncommonItemSettingsSingle);
 	public static final Item NEAT_RING = new NeatRingItem(generalRareItemSettingsSingle);
 
 	private static void register(String name, Item item) {
@@ -382,6 +383,7 @@ public class SpectrumItems {
 		register("ashen_circlet", ASHEN_CIRCLET);
 		register("tidal_circlet", TIDAL_CIRCLET);
 		register("puff_circlet", PUFF_CIRCLET);
+		register("whispy_circlet", WHISPY_CIRCLET);
 		register("neat_ring", NEAT_RING);
 	}
 	

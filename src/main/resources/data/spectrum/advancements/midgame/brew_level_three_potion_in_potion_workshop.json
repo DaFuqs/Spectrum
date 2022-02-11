@@ -10,7 +10,7 @@
       "translate": "advancements.spectrum.brew_level_three_potion_in_potion_workshop.description"
     }
   },
-  "parent": "spectrum:spectrum",
+  "parent": "spectrum:midgame/brew_potion",
   "criteria": {
     "brewed_level_three_potion_in_potion_workshop": {
       "trigger":"spectrum:potion_workshop_brewing",

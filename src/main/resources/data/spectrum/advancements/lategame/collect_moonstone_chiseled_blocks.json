@@ -1,0 +1,24 @@
+{
+  "parent": "spectrum:lategame/spectrum_lategame",
+  "display": {
+    "icon": {
+      "item": "spectrum:moonstone_chiseled_calcite"
+    },
+    "title": {
+      "translate": "advancements.spectrum.collect_moonstone_chiseled_blocks.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.collect_moonstone_chiseled_blocks.description"
+    }
+  },
+  "criteria": {
+    "has_moonstone_chiseled_base_block": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": { "items": [{ "tag": "spectrum:moonstone_chiseled_base_blocks" }] }
+    },
+    "gotten_previous": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:lategame/spectrum_lategame" }
+    }
+  }
+}

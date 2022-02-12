@@ -25,6 +25,5 @@
     "item": "spectrum:budding_onyx",
     "count": 1
   },
-  "required_advancements": ["spectrum:lategame/create_spectral_shard"],
-  "disable_yield_upgrades": true
+  "required_advancements": ["spectrum:lategame/create_spectral_shard"]
 }

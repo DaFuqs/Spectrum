@@ -1,0 +1,35 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 1200,
+  "tier": "complex",
+  "magenta": 0,
+  "yellow": 0,
+  "cyan": 2,
+  "black": 0,
+  "white": 8,
+  "experience": 4.0,
+  "pattern": [
+    "CSC",
+    "MPM",
+    "MPM"
+  ],
+  "key": {
+    "P": {
+      "item": "spectrum:paletur_fragments"
+    },
+    "S": {
+      "item": "spectrum:spectral_shard"
+    },
+    "M": {
+      "item": "minecraft:phantom_membrane"
+    },
+    "C": {
+      "item": "minecraft:chorus_fruit"
+    }
+  },
+  "result" : {
+    "item": "minecraft:elytra",
+    "count": 1
+  },
+  "required_advancements": ["spectrum:lategame/collect_paletur"]
+}

@@ -32,10 +32,10 @@ public class PotionWorkshopBrewingCriterion extends AbstractCriterion<PotionWork
 	}
 
 	public PotionWorkshopBrewingCriterion.Conditions conditionsFromJson(JsonObject jsonObject, EntityPredicate.Extended extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
-		ItemPredicate itemPredicate = ItemPredicate.fromJson(jsonObject.get("items"));
+		ItemPredicate itemPredicate = ItemPredicate.fromJson(jsonObject.get("item"));
 		EntityEffectPredicate statusEffectsPredicate = EntityEffectPredicate.fromJson(jsonObject.get("effects"));
-		NumberRange.IntRange maxAmplifierRange = NumberRange.IntRange.fromJson(jsonObject.get("max_effect_amplifier"));
-		NumberRange.IntRange maxDurationRange = NumberRange.IntRange.fromJson(jsonObject.get("max_effect_duration"));
+		NumberRange.IntRange maxAmplifierRange = NumberRange.IntRange.fromJson(jsonObject.get("max_amplifier"));
+		NumberRange.IntRange maxDurationRange = NumberRange.IntRange.fromJson(jsonObject.get("max_duration"));
 		NumberRange.IntRange effectCountRange = NumberRange.IntRange.fromJson(jsonObject.get("effect_count"));
 		return new PotionWorkshopBrewingCriterion.Conditions(extended, itemPredicate, statusEffectsPredicate, maxAmplifierRange, maxDurationRange, effectCountRange);
 	}
@@ -86,8 +86,8 @@ public class PotionWorkshopBrewingCriterion extends AbstractCriterion<PotionWork
 			JsonObject jsonObject = super.toJson(predicateSerializer);
 			jsonObject.add("items", this.itemPredicate.toJson());
 			jsonObject.add("effects", this.statusEffectsPredicate.toJson());
-			jsonObject.add("max_effect_amplifier", this.maxEffectAmplifierRange.toJson());
-			jsonObject.add("max_effect_duration", this.maxEffectDurationRange.toJson());
+			jsonObject.add("max_amplifier", this.maxEffectAmplifierRange.toJson());
+			jsonObject.add("max_duration", this.maxEffectDurationRange.toJson());
 			jsonObject.add("effect_count", this.effectCountRange.toJson());
 			return jsonObject;
 		}

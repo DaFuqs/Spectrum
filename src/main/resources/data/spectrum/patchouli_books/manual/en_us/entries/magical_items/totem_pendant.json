@@ -14,7 +14,7 @@
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier3/trinkets/totem_pendant",
+      "recipe": "spectrum:pedestal/tier4/trinkets/totem_pendant",
       "text": "One-time protection from death. After it is triggered, crumbles into dust."
     }
   ]

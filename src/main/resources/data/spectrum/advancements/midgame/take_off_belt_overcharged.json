@@ -1,14 +1,14 @@
 {
-  "parent": "spectrum:midgame/collect_lightning_stone",
+  "parent": "spectrum:midgame/high_jump_with_take_off_belt",
   "display": {
     "icon": {
       "item": "spectrum:take_off_belt"
     },
     "title": {
-      "translate": "advancements.spectrum.high_jump_with_take_off_belt.title"
+      "translate": "advancements.spectrum.take_off_belt_overcharged.title"
     },
     "description": {
-      "translate": "advancements.spectrum.high_jump_with_take_off_belt.description"
+      "translate": "advancements.spectrum.take_off_belt_overcharged.description"
     }
   },
   "criteria": {
@@ -16,7 +16,7 @@
       "trigger": "spectrum:take_off_belt_jump",
       "conditions": {
         "charges": {
-          "min": 6
+          "min": 7
         }
       }
     },

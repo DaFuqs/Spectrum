@@ -1,0 +1,32 @@
+{
+  "parent": "spectrum:midgame/create_midnight_aberration",
+  "display": {
+    "icon": {
+      "item": "spectrum:potion_workshop"
+    },
+    "title": {
+      "translate": "advancements.spectrum.brew_potion_in_potion_workshop.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.brew_potion_in_potion_workshop.description"
+    }
+  },
+  "criteria": {
+    "brewed_potion": {
+      "trigger": "spectrum:potion_workshop_brewing",
+      "conditions": {
+        "item": {
+          "items": [
+            "minecraft:potion",
+            "minecraft:splash_potion",
+            "minecraft:lingering_potion"
+          ]
+        }
+      }
+    },
+    "gotten_previous": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:midgame/create_midnight_aberration" }
+    }
+  }
+}

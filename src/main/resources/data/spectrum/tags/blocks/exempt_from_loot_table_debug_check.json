@@ -10,6 +10,7 @@
     "spectrum:wand_light",
     "spectrum:block_flooder",
     "#spectrum:shooting_stars",
-    "spectrum:bottomless_bundle"
+    "spectrum:bottomless_bundle",
+    "spectrum:creative_particle_spawner"
   ]
 }

@@ -55,6 +55,10 @@
           "min": 1
         }
       }
+    },
+    "gotten_previous": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:midgame/craft_pigment_palette" }
     }
   }
 }

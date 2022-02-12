@@ -1,4 +1,5 @@
 {
+  "parent": "spectrum:midgame/brew_potion_in_potion_workshop",
   "display": {
     "icon": {
       "item": "minecraft:potion"
@@ -10,15 +11,25 @@
       "translate": "advancements.spectrum.brew_level_three_potion_in_potion_workshop.description"
     }
   },
-  "parent": "spectrum:midgame/brew_potion",
   "criteria": {
     "brewed_level_three_potion_in_potion_workshop": {
       "trigger":"spectrum:potion_workshop_brewing",
       "conditions": {
-		"max_effect_level": {
+        "item": {
+          "items": [
+            "minecraft:potion",
+            "minecraft:splash_potion",
+            "minecraft:lingering_potion"
+          ]
+        },
+		"max_amplifier": {
 		  "min": 3
 		}
 	  }
+    },
+    "gotten_previous": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:midgame/brew_potion_in_potion_workshop" }
     }
   }
 }

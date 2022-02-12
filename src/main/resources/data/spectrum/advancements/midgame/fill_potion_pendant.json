@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:midgame/brew_potion",
+  "parent": "spectrum:midgame/brew_potion_in_potion_workshop",
   "display": {
     "icon": {
       "item": "spectrum:potion_pendant"
@@ -15,13 +15,17 @@
     "filled_potion_pendant": {
       "trigger": "spectrum:potion_workshop_brewing",
       "conditions": {
-        "items": [{
+        "item": {
           "items": [
             "spectrum:potion_pendant"
           ]
-        }],
+        },
         "effect_count": 3
       }
+    },
+    "gotten_previous": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:midgame/brew_potion_in_potion_workshop" }
     }
   }
 }

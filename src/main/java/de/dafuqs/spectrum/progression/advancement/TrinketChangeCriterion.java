@@ -10,7 +10,6 @@ import dev.emi.trinkets.api.TrinketsApi;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.minecraft.advancement.criterion.AbstractCriterion;
 import net.minecraft.advancement.criterion.AbstractCriterionConditions;
-import net.minecraft.advancement.criterion.InventoryChangedCriterion;
 import net.minecraft.item.ItemStack;
 import net.minecraft.predicate.NumberRange;
 import net.minecraft.predicate.entity.AdvancementEntityPredicateDeserializer;

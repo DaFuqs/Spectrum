@@ -34,9 +34,6 @@ import net.fabricmc.fabric.api.event.player.AttackBlockCallback;
 import net.minecraft.block.Block;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.block.FluidBlock;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -47,9 +44,10 @@ import net.minecraft.util.registry.Registry;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.jetbrains.annotations.NotNull;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Optional;
 
 public class SpectrumCommon implements ModInitializer {
 

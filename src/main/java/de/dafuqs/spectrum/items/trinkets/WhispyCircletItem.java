@@ -1,13 +1,11 @@
 package de.dafuqs.spectrum.items.trinkets;
 
 import de.dafuqs.spectrum.SpectrumCommon;
-import dev.architectury.event.events.common.ChatEvent;
 import dev.emi.trinkets.api.SlotReference;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.stat.Stats;
@@ -16,7 +14,6 @@ import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
-import net.minecraft.world.gen.PhantomSpawner;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 

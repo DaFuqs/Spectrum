@@ -1,22 +1,15 @@
 package de.dafuqs.spectrum.progression.advancement;
 
 import com.google.gson.JsonObject;
-import com.google.gson.JsonSyntaxException;
 import de.dafuqs.spectrum.SpectrumCommon;
 import net.minecraft.advancement.criterion.AbstractCriterion;
 import net.minecraft.advancement.criterion.AbstractCriterionConditions;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
 import net.minecraft.predicate.NumberRange;
-import net.minecraft.predicate.StatePredicate;
 import net.minecraft.predicate.entity.AdvancementEntityPredicateDeserializer;
 import net.minecraft.predicate.entity.AdvancementEntityPredicateSerializer;
 import net.minecraft.predicate.entity.EntityPredicate.Extended;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.JsonHelper;
-import net.minecraft.util.registry.Registry;
-import org.jetbrains.annotations.Nullable;
 
 public class AzureDikeChargeCriterion extends AbstractCriterion<AzureDikeChargeCriterion.Conditions> {
     

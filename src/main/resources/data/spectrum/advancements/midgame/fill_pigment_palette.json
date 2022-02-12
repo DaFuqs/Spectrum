@@ -13,7 +13,7 @@
   },
   "criteria": {
     "filled_pigment_palette_with_cmyk_colors": {
-      "trigger": "spectrum:pigment_palette_change",
+      "trigger": "spectrum:pigment_palette_use",
       "conditions": {
         "black": {
           "min": 1

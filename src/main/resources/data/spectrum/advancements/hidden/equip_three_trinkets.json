@@ -3,13 +3,8 @@
     "equipped_three_trinkets": {
       "trigger": "spectrum:trinket_change",
 	  "conditions": {
-        "total_count": {
-		  "min": 3,
-		  "max": 3
-	    },
 		"spectrum_count": {
-		  "min": 3,
-		  "max": 3
+		  "min": 3
 	    }
       }
     }

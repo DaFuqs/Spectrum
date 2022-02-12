@@ -13,7 +13,7 @@
   },
   "criteria": {
     "high_pigment_palette_drain": {
-      "trigger": "spectrum:pigment_palette_change",
+      "trigger": "spectrum:pigment_palette_use",
 	  "conditions": {
 		"total_change_tick": {
 		  "max": -10

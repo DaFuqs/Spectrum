@@ -4,6 +4,7 @@
     "icon": {
       "item": "spectrum:take_off_belt"
     },
+    "hidden": true,
     "title": {
       "translate": "advancements.spectrum.take_off_belt_overcharged.title"
     },
@@ -16,7 +17,8 @@
       "trigger": "spectrum:take_off_belt_jump",
       "conditions": {
         "charges": {
-          "min": 7
+          "min": 9,
+          "max": 9
         }
       }
     },

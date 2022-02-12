@@ -1,8 +1,10 @@
 package de.dafuqs.spectrum.sound;
 
+import de.dafuqs.spectrum.items.trinkets.TakeOffBeltItem;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.sound.AbstractSoundInstance;
 import net.minecraft.client.sound.TickableSoundInstance;
 import net.minecraft.entity.player.PlayerEntity;
@@ -13,19 +15,19 @@ import net.minecraft.util.math.Vec3d;
 import java.util.Random;
 
 @Environment(EnvType.CLIENT)
-public class AirLaunchBeltSoundInstance extends AbstractSoundInstance implements TickableSoundInstance {
+public class TakeOffBeltSoundInstance extends AbstractSoundInstance implements TickableSoundInstance {
 
-	private final PlayerEntity player;
 	private float distance = 0.0F;
 	private boolean done;
-	private int ticksPlayed = 0;
+	private long lastParticleTick;
 
-	public AirLaunchBeltSoundInstance(PlayerEntity player) {
+	public TakeOffBeltSoundInstance() {
 		super(SpectrumSoundEvents.AIR_LAUNCH_BELT_CHARGING, SoundCategory.PLAYERS);
+		PlayerEntity player = MinecraftClient.getInstance().player;
 		this.repeat = false;
 		this.repeatDelay = 0;
 		this.volume = 0.05F;
-		this.player = player;
+		this.lastParticleTick = player.getWorld().getTime() + TakeOffBeltItem.CHARGE_TIME_TICKS * TakeOffBeltItem.MAX_CHARGES;
 		this.x = player.getX();
 		this.y = player.getY();
 		this.z = player.getZ();
@@ -43,27 +45,27 @@ public class AirLaunchBeltSoundInstance extends AbstractSoundInstance implements
 
 	@Override
 	public void tick() {
+		PlayerEntity player = MinecraftClient.getInstance().player;
 		if (player == null || !player.isSneaking() || !player.isOnGround()) {
 			this.setDone();
 		} else {
-			this.x = ((float)this.player.getX());
-			this.y = ((float)this.player.getY());
-			this.z = ((float)this.player.getZ());
+			this.x = ((float)player.getX());
+			this.y = ((float)player.getY());
+			this.z = ((float)player.getZ());
 			this.distance = MathHelper.clamp(this.distance + 0.0025F, 0.0F, 1.0F);
 
-			if(ticksPlayed < 250) {
-				showParticles();
+			if(player.getWorld() != null && player.getWorld().getTime() < lastParticleTick) {
+				showParticles(player);
 			} else {
 				this.volume = 0.0F;
 			}
-			ticksPlayed++;
 		}
 	}
 
-	private void showParticles() {
+	private void showParticles(PlayerEntity player) {
 		Random random = player.getEntityWorld().random;
 		
-		if(random.nextInt(50) == 0) {
+		if(random.nextInt(80) == 0) {
 			Vec3d pos = player.getPos();
 			player.getEntityWorld().addParticle(SpectrumParticleTypes.LIGHT_BLUE_CRAFTING,
 					pos.x + random.nextDouble() * 0.8 - 0.4,

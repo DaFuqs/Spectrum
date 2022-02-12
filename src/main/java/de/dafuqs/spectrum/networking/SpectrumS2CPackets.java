@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.networking;
 
+import de.dafuqs.spectrum.SpectrumClient;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.Support;
 import de.dafuqs.spectrum.blocks.particle_spawner.ParticleSpawnerBlockEntity;
@@ -9,6 +10,7 @@ import de.dafuqs.spectrum.entity.entity.ShootingStarEntity;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.particle.effect.*;
 import de.dafuqs.spectrum.registries.color.ColorRegistry;
+import de.dafuqs.spectrum.sound.TakeOffBeltSoundInstance;
 import de.dafuqs.spectrum.sound.BlockBoundSoundInstance;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -18,8 +20,10 @@ import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.block.Block;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.sound.SoundInstance;
 import net.minecraft.entity.ExperienceOrbEntity;
 import net.minecraft.entity.ItemEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.particle.ItemStackParticleEffect;
@@ -58,6 +62,7 @@ public class SpectrumS2CPackets {
 	public static final Identifier PLAY_ITEM_ENTITY_ABSORBED_PARTICLE_EFFECT_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "item_entity_absorbed");
 	public static final Identifier PLAY_EXPERIENCE_ORB_ENTITY_ABSORBED_PARTICLE_EFFECT_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "experience_orb_entity_absorbed");
 	public static final Identifier PLAY_BLOCK_BOUND_SOUND_INSTANCE = new Identifier(SpectrumCommon.MOD_ID, "play_pedestal_crafting_sound_instance");
+	public static final Identifier PLAY_TAKE_OFF_BELT_SOUND_INSTANCE = new Identifier(SpectrumCommon.MOD_ID, "play_take_off_belt_sound_instance");
 	public static final Identifier PLAY_SHOOTING_STAR_PARTICLES = new Identifier(SpectrumCommon.MOD_ID, "play_shooting_star_particles");
 
 	@Environment(EnvType.CLIENT)
@@ -273,6 +278,15 @@ public class SpectrumS2CPackets {
 					Block block = Registry.BLOCK.get(blockIdentifier);
 					
 					BlockBoundSoundInstance.startSoundInstance(soundEvent, blockPos, block, maxDurationTicks);
+				}
+			});
+		});
+		
+		ClientPlayNetworking.registerGlobalReceiver(PLAY_TAKE_OFF_BELT_SOUND_INSTANCE, (client, handler, buf, responseSender) -> {
+			client.execute(() -> {
+				SoundInstance soundInstance = new TakeOffBeltSoundInstance();
+				if (!SpectrumClient.minecraftClient.getSoundManager().isPlaying(soundInstance)) {
+					SpectrumClient.minecraftClient.getSoundManager().play(soundInstance);
 				}
 			});
 		});
@@ -506,6 +520,11 @@ public class SpectrumS2CPackets {
 		for (ServerPlayerEntity player : PlayerLookup.tracking(world, blockPos)) {
 			ServerPlayNetworking.send(player, SpectrumS2CPackets.PLAY_BLOCK_BOUND_SOUND_INSTANCE, buf);
 		}
+	}
+
+	public static void sendPlayTakeOffBeltSoundInstance(ServerPlayerEntity playerEntity) {
+		PacketByteBuf buf = PacketByteBufs.create();
+		ServerPlayNetworking.send(playerEntity, SpectrumS2CPackets.PLAY_TAKE_OFF_BELT_SOUND_INSTANCE, buf);
 	}
 	
 	public static void sendCancelBlockBoundSoundInstance(ServerWorld world, BlockPos blockPos) {

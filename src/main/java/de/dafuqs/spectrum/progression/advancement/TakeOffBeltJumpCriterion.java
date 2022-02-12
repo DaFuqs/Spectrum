@@ -42,14 +42,15 @@ public class TakeOffBeltJumpCriterion extends AbstractCriterion<TakeOffBeltJumpC
 		this.trigger(player, (conditions) -> {
 			Optional<TrinketComponent> component = TrinketsApi.getTrinketComponent(player);
 			if(component.isPresent()) {
+				List<Pair<SlotReference, ItemStack>> equipped = component.get().getEquipped(SpectrumItems.TAKE_OFF_BELT);
+				ItemStack firstBelt = equipped.get(0).getRight();
 				
-				StatusEffectInstance instance = player.getStatusEffect(StatusEffects.JUMP_BOOST);
-				if(instance != null) {
-					List<Pair<SlotReference, ItemStack>> equipped = component.get().getEquipped(SpectrumItems.TAKE_OFF_BELT);
-					ItemStack firstBelt = equipped.get(0).getRight();
-					return conditions.matches(firstBelt, instance.getAmplifier() / TakeOffBeltItem.HIGH_JUMP_AMPLIFIER_PER_CHARGE);
+				if(firstBelt != null) {
+					int charge = TakeOffBeltItem.getCurrentCharge(player);
+					if(charge > 0) {
+						return conditions.matches(firstBelt, charge);
+					}
 				}
-				
 			}
 			return false;
 		});
@@ -76,8 +77,8 @@ public class TakeOffBeltJumpCriterion extends AbstractCriterion<TakeOffBeltJumpC
 			return jsonObject;
 		}
 
-		public boolean matches(ItemStack beltStack, int charges) {
-			return itemPredicate.test(beltStack) && this.chargesRange.test(charges);
+		public boolean matches(ItemStack beltStack, int charge) {
+			return itemPredicate.test(beltStack) && this.chargesRange.test(charge);
 		}
 	}
 

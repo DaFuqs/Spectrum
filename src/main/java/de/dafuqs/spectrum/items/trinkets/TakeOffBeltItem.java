@@ -1,22 +1,19 @@
 package de.dafuqs.spectrum.items.trinkets;
 
-import de.dafuqs.spectrum.SpectrumClient;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.networking.SpectrumS2CPackets;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
-import de.dafuqs.spectrum.sound.AirLaunchBeltSoundInstance;
 import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
 import dev.emi.trinkets.api.SlotReference;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.item.TooltipContext;
-import net.minecraft.client.sound.SoundInstance;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.text.Text;
@@ -33,6 +30,7 @@ import java.util.List;
 public class TakeOffBeltItem extends SpectrumTrinketItem {
 	
 	public static final int CHARGE_TIME_TICKS = 20;
+	public static final int MAX_CHARGES = 8;
 	public static final int HIGH_JUMP_AMPLIFIER_PER_CHARGE = 2;
 	
 	private static final HashMap<LivingEntity, Long> sneakingTimes = new HashMap<>();
@@ -59,21 +57,17 @@ public class TakeOffBeltItem extends SpectrumTrinketItem {
 	public void tick(ItemStack stack, SlotReference slot, LivingEntity entity) {
 		super.tick(stack, slot, entity);
 		
-		if(entity.getWorld().isClient) {
-			if (entity.isSneaking() && entity.isOnGround() && entity instanceof PlayerEntity playerEntity) {
-				startPlayingClientSoundInstance(playerEntity);
-			}
-		} else {
+		if(!entity.getWorld().isClient) {
 			if (entity.isSneaking() && entity.isOnGround()) {
   				if (sneakingTimes.containsKey(entity)) {
-					long sneakTime = entity.getWorld().getTime() - sneakingTimes.get(entity);
-					if(sneakTime % CHARGE_TIME_TICKS == 0) {
-						if (sneakTime > 250) {
+					long sneakTicks = entity.getWorld().getTime() - sneakingTimes.get(entity);
+					if(sneakTicks % CHARGE_TIME_TICKS == 0) {
+						if (sneakTicks > CHARGE_TIME_TICKS * MAX_CHARGES) {
 							entity.getWorld().playSound(null, entity.getX(), entity.getY(), entity.getZ(), SpectrumSoundEvents.BLOCK_TOPAZ_BLOCK_BREAK, SoundCategory.NEUTRAL, 4.0F, 1.05F);
 							SpectrumS2CPackets.playParticleWithRandomOffsetAndVelocity((ServerWorld) entity.getWorld(), entity.getPos(), SpectrumParticleTypes.BLACK_CRAFTING, 20, new Vec3d(0, 0, 0), new Vec3d(0.1, 0.05, 0.1));
 							entity.removeStatusEffect(StatusEffects.JUMP_BOOST);
 						} else {
-							int sneakTimeMod = (int) sneakTime / CHARGE_TIME_TICKS;
+							int sneakTimeMod = (int) sneakTicks / CHARGE_TIME_TICKS;
 							
 							entity.getWorld().playSound(null, entity.getX(), entity.getY(), entity.getZ(), SpectrumSoundEvents.BLOCK_TOPAZ_BLOCK_HIT, SoundCategory.NEUTRAL, 1.0F, 1.0F);
 							SpectrumS2CPackets.playParticleWithRandomOffsetAndVelocity((ServerWorld) entity.getWorld(), entity.getPos(), SpectrumParticleTypes.LIQUID_CRYSTAL_SPARKLE, 20, new Vec3d(0, 0, 0), new Vec3d(0.75, 0.05, 0.75));
@@ -82,21 +76,24 @@ public class TakeOffBeltItem extends SpectrumTrinketItem {
 					}
 				} else {
 					sneakingTimes.put(entity, entity.getWorld().getTime());
+					if(entity instanceof ServerPlayerEntity serverPlayerEntity) {
+						SpectrumS2CPackets.sendPlayTakeOffBeltSoundInstance(serverPlayerEntity);
+					}
 				}
 			} else if (entity.getWorld().getTime() % CHARGE_TIME_TICKS == 0 && sneakingTimes.containsKey(entity)) {
-				sneakingTimes.remove(entity);
+				long lastSneakingTime = sneakingTimes.get(entity);
+				if(lastSneakingTime < entity.getWorld().getTime() + CHARGE_TIME_TICKS) {
+					sneakingTimes.remove(entity);
+				}
 			}
 		}
 	}
 	
-	@Environment(EnvType.CLIENT)
-	private void startPlayingClientSoundInstance(PlayerEntity playerEntity) {
-		if(playerEntity == MinecraftClient.getInstance().player) {
-			SoundInstance soundInstance = new AirLaunchBeltSoundInstance(playerEntity);
-			if (!SpectrumClient.minecraftClient.getSoundManager().isPlaying(soundInstance)) {
-				SpectrumClient.minecraftClient.getSoundManager().play(soundInstance);
-			}
+	public static int getCurrentCharge(PlayerEntity playerEntity) {
+		if(sneakingTimes.containsKey(playerEntity)) {
+			return (int) (playerEntity.getWorld().getTime() - sneakingTimes.get(playerEntity)) / CHARGE_TIME_TICKS;
 		}
+		return 0;
 	}
 	
 }

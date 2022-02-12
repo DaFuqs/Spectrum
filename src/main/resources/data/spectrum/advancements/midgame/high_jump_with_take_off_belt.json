@@ -16,7 +16,8 @@
       "trigger": "spectrum:take_off_belt_jump",
       "conditions": {
         "charges": {
-          "min": 6
+          "min": 8,
+          "max": 8
         }
       }
     },

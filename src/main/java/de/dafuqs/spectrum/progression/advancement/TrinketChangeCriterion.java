@@ -1,8 +1,3 @@
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by FernFlower decompiler)
-//
-
 package de.dafuqs.spectrum.progression.advancement;
 
 import com.google.gson.JsonArray;

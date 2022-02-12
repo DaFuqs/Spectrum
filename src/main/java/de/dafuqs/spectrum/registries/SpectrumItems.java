@@ -206,7 +206,7 @@ public class SpectrumItems {
 	public static final Item SEVEN_LEAGUE_BOOTS = new SevenLeagueBootsItem(generalUncommonItemSettingsSingle);
 	public static final Item RADIANCE_PIN = new RadiancePinItem(generalUncommonItemSettingsSingle);
 	public static final Item TOTEM_PENDANT = new TotemPendantItem(generalUncommonItemSettingsSingle);
-	public static final Item TAKE_OFF_BELT = new AirLaunchBeltItem(generalUncommonItemSettingsSingle);
+	public static final Item TAKE_OFF_BELT = new TakeOffBeltItem(generalUncommonItemSettingsSingle);
 	public static final Item AZURE_DIKE_BELT = new AzureDikeBeltItem(generalUncommonItemSettingsSingle);
 	public static final Item AZURE_DIKE_RING = new AzureDikeRingItem(generalUncommonItemSettingsSingle);
 	public static final Item PIGMENT_PALETTE = new PigmentPaletteItem(generalUncommonItemSettingsSingle);

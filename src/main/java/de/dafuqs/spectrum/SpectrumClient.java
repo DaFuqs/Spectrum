@@ -112,8 +112,6 @@ public class SpectrumClient implements ClientModInitializer {
 		if(grassBlockColorProvider != null && grassItemColorProvider != null) {
 			ColorProviderRegistry.BLOCK.register(grassBlockColorProvider, SpectrumBlocks.CLOVER);
 			ColorProviderRegistry.BLOCK.register(grassBlockColorProvider, SpectrumBlocks.FOUR_LEAF_CLOVER);
-			//ColorProviderRegistry.ITEM.register(grassItemColorProvider, SpectrumBlocks.CLOVER);
-			//ColorProviderRegistry.ITEM.register(grassItemColorProvider, SpectrumBlocks.FOUR_LEAF_CLOVER);
 		}
 	}
 	

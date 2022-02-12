@@ -30,13 +30,16 @@ import org.jetbrains.annotations.Nullable;
 import java.util.HashMap;
 import java.util.List;
 
-public class AirLaunchBeltItem extends SpectrumTrinketItem {
+public class TakeOffBeltItem extends SpectrumTrinketItem {
+	
+	public static final int CHARGE_TIME_TICKS = 20;
+	public static final int HIGH_JUMP_AMPLIFIER_PER_CHARGE = 2;
 	
 	private static final HashMap<LivingEntity, Long> sneakingTimes = new HashMap<>();
 	
 	private final Identifier UNLOCK_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_take_off_belt");
 
-	public AirLaunchBeltItem(Settings settings) {
+	public TakeOffBeltItem(Settings settings) {
 		super(settings);
 	}
 	
@@ -64,23 +67,23 @@ public class AirLaunchBeltItem extends SpectrumTrinketItem {
 			if (entity.isSneaking() && entity.isOnGround()) {
   				if (sneakingTimes.containsKey(entity)) {
 					long sneakTime = entity.getWorld().getTime() - sneakingTimes.get(entity);
-					if(sneakTime % 20 == 0) {
+					if(sneakTime % CHARGE_TIME_TICKS == 0) {
 						if (sneakTime > 250) {
 							entity.getWorld().playSound(null, entity.getX(), entity.getY(), entity.getZ(), SpectrumSoundEvents.BLOCK_TOPAZ_BLOCK_BREAK, SoundCategory.NEUTRAL, 4.0F, 1.05F);
 							SpectrumS2CPackets.playParticleWithRandomOffsetAndVelocity((ServerWorld) entity.getWorld(), entity.getPos(), SpectrumParticleTypes.BLACK_CRAFTING, 20, new Vec3d(0, 0, 0), new Vec3d(0.1, 0.05, 0.1));
 							entity.removeStatusEffect(StatusEffects.JUMP_BOOST);
 						} else {
-							int sneakTimeMod = (int) sneakTime / 20;
+							int sneakTimeMod = (int) sneakTime / CHARGE_TIME_TICKS;
 							
 							entity.getWorld().playSound(null, entity.getX(), entity.getY(), entity.getZ(), SpectrumSoundEvents.BLOCK_TOPAZ_BLOCK_HIT, SoundCategory.NEUTRAL, 1.0F, 1.0F);
 							SpectrumS2CPackets.playParticleWithRandomOffsetAndVelocity((ServerWorld) entity.getWorld(), entity.getPos(), SpectrumParticleTypes.LIQUID_CRYSTAL_SPARKLE, 20, new Vec3d(0, 0, 0), new Vec3d(0.75, 0.05, 0.75));
-							entity.addStatusEffect(new StatusEffectInstance(StatusEffects.JUMP_BOOST, 20, sneakTimeMod * 2, true, false, true));
+							entity.addStatusEffect(new StatusEffectInstance(StatusEffects.JUMP_BOOST, CHARGE_TIME_TICKS, sneakTimeMod * HIGH_JUMP_AMPLIFIER_PER_CHARGE, true, false, true));
 						}
 					}
 				} else {
 					sneakingTimes.put(entity, entity.getWorld().getTime());
 				}
-			} else if (entity.getWorld().getTime() % 20 == 0 && sneakingTimes.containsKey(entity)) {
+			} else if (entity.getWorld().getTime() % CHARGE_TIME_TICKS == 0 && sneakingTimes.containsKey(entity)) {
 				sneakingTimes.remove(entity);
 			}
 		}

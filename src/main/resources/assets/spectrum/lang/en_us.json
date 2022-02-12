@@ -186,7 +186,7 @@
   "spectrum.toast.message.overchanting_unlocked.text": "Enchantment Upgrades higher than their natural level",
   "spectrum.toast.message.enchant_conflicting_enchantments_unlocked.title": "Enchanting Mastery",
   "spectrum.toast.message.enchant_conflicting_enchantments_unlocked.text": "Enchant items regardless of conflicting Enchantments",
-  "spectrum.toast.message.fourth_potion_reagent_unlocked.title": "Potion Mastery",
+  "spectrum.toast.message.fourth_potion_reagent_unlocked.title": "Brewing Mastery",
   "spectrum.toast.message.fourth_potion_reagent_unlocked.text": "Use a Fourth Reagent in the Potion Brewery",
 
   "text.autoconfig.Spectrum.option.CitrineGeodeMinAboveBottomGenerationHeight": "Min Citrine Geode generation height (from world floor)",
@@ -1029,6 +1029,7 @@
   "item.spectrum.midnight_aberration": "Midnight Aberration",
 
   "trinkets.slot.chest.pin": "Pin",
+  "trinkets.slot.head.crown": "Crown",
   "trinkets.slot.legs.pigment_palette": "Pigment Palette",
 
   "item.spectrum.jeopardant": "Jeopardant",
@@ -1285,7 +1286,7 @@
   "advancements.spectrum.high_pigment_palette_drain.description": "Drain a high Amount of Magic from your Pigment Palette with a single Action",
   "advancements.spectrum.craft_pigment_palette.title": "The Artist",
   "advancements.spectrum.craft_pigment_palette.description": "Craft a Pigment Palette to easier store the essence of your magical powers",
-  "advancements.spectrum.brew_potion_in_potion_workshop.title": "Alchemy with a Touch or Magic",
+  "advancements.spectrum.brew_potion_in_potion_workshop.title": "Alchemy with a Touch of Magic",
   "advancements.spectrum.brew_potion_in_potion_workshop.description": "Use the Potion Workshop to bew a Potion. Add Reagents to add additional Effects",
   "advancements.spectrum.fill_potion_pendant.title": "Potent Pendant",
   "advancements.spectrum.fill_potion_pendant.description": "Fill a Potion Pendant with three different Potions",

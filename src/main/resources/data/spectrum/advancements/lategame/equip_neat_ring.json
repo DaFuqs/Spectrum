@@ -15,11 +15,11 @@
     "equipped_three_trinkets": {
       "trigger": "spectrum:trinket_change",
 	  "conditions": {
-        "item": {
+        "items": [{
           "items": [
             "spectrum:neat_ring"
           ]
-        }
+        }]
       }
     },
     "gotten_previous": {

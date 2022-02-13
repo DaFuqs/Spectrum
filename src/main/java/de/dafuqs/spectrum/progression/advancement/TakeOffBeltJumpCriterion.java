@@ -43,12 +43,13 @@ public class TakeOffBeltJumpCriterion extends AbstractCriterion<TakeOffBeltJumpC
 			Optional<TrinketComponent> component = TrinketsApi.getTrinketComponent(player);
 			if(component.isPresent()) {
 				List<Pair<SlotReference, ItemStack>> equipped = component.get().getEquipped(SpectrumItems.TAKE_OFF_BELT);
-				ItemStack firstBelt = equipped.get(0).getRight();
-				
-				if(firstBelt != null) {
-					int charge = TakeOffBeltItem.getCurrentCharge(player);
-					if(charge > 0) {
-						return conditions.matches(firstBelt, charge);
+				if(!equipped.isEmpty()) {
+					ItemStack firstBelt = equipped.get(0).getRight();
+					if (firstBelt != null) {
+						int charge = TakeOffBeltItem.getCurrentCharge(player);
+						if (charge > 0) {
+							return conditions.matches(firstBelt, charge);
+						}
 					}
 				}
 			}

@@ -39,13 +39,13 @@
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "title": "Summoning Sun",
+      "title": "Sunny Weather",
       "recipe": "spectrum:fusion_shrine/weather_clear",
       "text": "$(italic)It's a brand new day$(br)And the sun is high$(br)All the birds are singing$(br)That you're gonna die"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "title": "Summoning Rain",
+      "title": "Rainy Weather",
       "advancement": "spectrum:collect_mermaids_gem",
       "recipe": "spectrum:fusion_shrine/weather_rain",
       "text": "$(italic)Knock Knock$(br)Who's there?$(br)Accordion$(br)Accordion who?$(br)Accordion to the forecast, it's going to rain tonight."

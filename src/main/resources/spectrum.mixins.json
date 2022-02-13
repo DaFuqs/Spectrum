@@ -31,6 +31,7 @@
     "LootTableAccessor",
     "MiningToolItemMixin",
     "MobSpawnerBlockEntityMixin",
+    "PersistentProjectileEntityMixin",
     "PlayerAdvancementTrackerMixin",
     "PlayerEntityMixin",
     "PlayerInventoryMixin",

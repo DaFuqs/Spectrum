@@ -1062,7 +1062,7 @@
   "item.spectrum.tidal_circlet.tooltip2": "§7greatly increases underwater maneuverability",
   "item.spectrum.tidal_circlet.tooltip3": "§7Heals your nearly §fAxolotls",
   "item.spectrum.puff_circlet": "Puff Circlet",
-  "item.spectrum.puff_circlet.tooltip": "§7Protection from arrows and fall damage",
+  "item.spectrum.puff_circlet.tooltip": "§7Protection from Priojectiles and Fall Damage",
   "item.spectrum.whispy_circlet": "Whispy Circlet",
   "item.spectrum.whispy_circlet.tooltip": "§7Prevents Spawning of Phantoms",
   "item.spectrum.whispy_circlet.tooltip2": "§7Reduces the duration of Negative Effects",
@@ -1072,7 +1072,7 @@
   "item.spectrum.crafting_tablet.tooltip.no_recipe": "Add items to the crafting grid to set a recipe",
   "item.spectrum.crafting_tablet.tooltip.crafting_recipe": "Press use to craft",
   "item.spectrum.crafting_tablet.tooltip.shift_to_view_gui": "Crouch-Use to open crafting grid",
-  "item.spectrum.crafting_tablet.tooltip.pedestal_recipe": "Use in a Pedestal for autocrafting",
+  "item.spectrum.crafting_tablet.tooltip.pedestal_recipe": "Use in a Pedestal for Autocrafting",
   "item.spectrum.crafting_tablet.tooltip.recipe": "%d %s",
 
   "item.spectrum.shooting_star": "Star Fragment",

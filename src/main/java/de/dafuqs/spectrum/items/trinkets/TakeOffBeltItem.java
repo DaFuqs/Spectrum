@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.items.trinkets;
 
 import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.Support;
 import de.dafuqs.spectrum.networking.SpectrumS2CPackets;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
@@ -63,14 +64,16 @@ public class TakeOffBeltItem extends SpectrumTrinketItem {
 					long sneakTicks = entity.getWorld().getTime() - sneakingTimes.get(entity);
 					if(sneakTicks % CHARGE_TIME_TICKS == 0) {
 						if (sneakTicks > CHARGE_TIME_TICKS * MAX_CHARGES) {
-							entity.getWorld().playSound(null, entity.getX(), entity.getY(), entity.getZ(), SpectrumSoundEvents.BLOCK_TOPAZ_BLOCK_BREAK, SoundCategory.NEUTRAL, 4.0F, 1.05F);
+							entity.getWorld().playSound(null, entity.getX(), entity.getY(), entity.getZ(), SpectrumSoundEvents.USE_FAIL, SoundCategory.NEUTRAL, 4.0F, 1.05F);
 							SpectrumS2CPackets.playParticleWithRandomOffsetAndVelocity((ServerWorld) entity.getWorld(), entity.getPos(), SpectrumParticleTypes.BLACK_CRAFTING, 20, new Vec3d(0, 0, 0), new Vec3d(0.1, 0.05, 0.1));
 							entity.removeStatusEffect(StatusEffects.JUMP_BOOST);
 						} else {
 							int sneakTimeMod = (int) sneakTicks / CHARGE_TIME_TICKS;
 							
 							entity.getWorld().playSound(null, entity.getX(), entity.getY(), entity.getZ(), SpectrumSoundEvents.BLOCK_TOPAZ_BLOCK_HIT, SoundCategory.NEUTRAL, 1.0F, 1.0F);
-							SpectrumS2CPackets.playParticleWithRandomOffsetAndVelocity((ServerWorld) entity.getWorld(), entity.getPos(), SpectrumParticleTypes.LIQUID_CRYSTAL_SPARKLE, 20, new Vec3d(0, 0, 0), new Vec3d(0.75, 0.05, 0.75));
+							for(Vec3d vec : Support.VECTORS_16) {
+								SpectrumS2CPackets.playParticleWithExactOffsetAndVelocity((ServerWorld) entity.getWorld(), entity.getPos(), SpectrumParticleTypes.LIQUID_CRYSTAL_SPARKLE, 1, new Vec3d(0, 0, 0), vec.multiply(0.5));
+							}
 							entity.addStatusEffect(new StatusEffectInstance(StatusEffects.JUMP_BOOST, CHARGE_TIME_TICKS, sneakTimeMod * HIGH_JUMP_AMPLIFIER_PER_CHARGE, true, false, true));
 						}
 					}

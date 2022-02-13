@@ -19,14 +19,14 @@ public class TakeOffBeltSoundInstance extends AbstractSoundInstance implements T
 
 	private float distance = 0.0F;
 	private boolean done;
-	private long lastParticleTick;
+	private final long lastParticleTick;
 
 	public TakeOffBeltSoundInstance() {
 		super(SpectrumSoundEvents.AIR_LAUNCH_BELT_CHARGING, SoundCategory.PLAYERS);
 		PlayerEntity player = MinecraftClient.getInstance().player;
 		this.repeat = false;
 		this.repeatDelay = 0;
-		this.volume = 0.05F;
+		this.volume = 0.4F;
 		this.lastParticleTick = player.getWorld().getTime() + TakeOffBeltItem.CHARGE_TIME_TICKS * TakeOffBeltItem.MAX_CHARGES;
 		this.x = player.getX();
 		this.y = player.getY();
@@ -55,26 +55,24 @@ public class TakeOffBeltSoundInstance extends AbstractSoundInstance implements T
 			this.distance = MathHelper.clamp(this.distance + 0.0025F, 0.0F, 1.0F);
 
 			if(player.getWorld() != null && player.getWorld().getTime() < lastParticleTick) {
-				showParticles(player);
+				spawnParticles(player);
 			} else {
 				this.volume = 0.0F;
 			}
 		}
 	}
 
-	private void showParticles(PlayerEntity player) {
+	private void spawnParticles(PlayerEntity player) {
 		Random random = player.getEntityWorld().random;
 		
-		if(random.nextInt(80) == 0) {
-			Vec3d pos = player.getPos();
-			player.getEntityWorld().addParticle(SpectrumParticleTypes.LIGHT_BLUE_CRAFTING,
-					pos.x + random.nextDouble() * 0.8 - 0.4,
-					pos.y,
-					pos.z + random.nextDouble() * 0.8 - 0.4,
-					0,
-					random.nextDouble() * 0.5,
-					0);
-		}
+		Vec3d pos = player.getPos();
+		player.getEntityWorld().addParticle(SpectrumParticleTypes.LIGHT_BLUE_CRAFTING,
+				pos.x + random.nextDouble() * 0.8 - 0.4,
+				pos.y,
+				pos.z + random.nextDouble() * 0.8 - 0.4,
+				0,
+				random.nextDouble() * 0.5,
+				0);
 	}
 
 	protected final void setDone() {

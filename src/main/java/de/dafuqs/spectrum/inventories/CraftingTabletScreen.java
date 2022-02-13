@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.inventories;
 
 import com.mojang.blaze3d.systems.RenderSystem;
+import de.dafuqs.spectrum.SpectrumCommon;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.util.math.MatrixStack;
@@ -9,8 +10,13 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
 public class CraftingTabletScreen extends HandledScreen<CraftingTabletScreenHandler> {
-
-	public static Identifier BACKGROUND = PedestalScreen.BACKGROUND1;
+	
+	public static final Identifier BACKGROUND1 = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/container/crafting_tablet1.png");
+	public static final Identifier BACKGROUND2 = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/container/crafting_tablet2.png");
+	public static final Identifier BACKGROUND3 = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/container/crafting_tablet3.png");
+	public static final Identifier BACKGROUND4 = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/container/crafting_tablet4.png");
+	
+	public static Identifier BACKGROUND = BACKGROUND1;
 
 	public CraftingTabletScreen(CraftingTabletScreenHandler handler, PlayerInventory playerInventory, Text title) {
 		super(handler, playerInventory, title);
@@ -19,13 +25,13 @@ public class CraftingTabletScreen extends HandledScreen<CraftingTabletScreenHand
 		if(handler.getTier().isPresent()) {
 			switch (handler.getTier().get()) {
 				case COMPLEX -> {
-					BACKGROUND = PedestalScreen.BACKGROUND4;
+					BACKGROUND = BACKGROUND4;
 				}
 				case ADVANCED -> {
-					BACKGROUND = PedestalScreen.BACKGROUND3;
+					BACKGROUND = BACKGROUND3;
 				}
 				case SIMPLE -> {
-					BACKGROUND = PedestalScreen.BACKGROUND2;
+					BACKGROUND = BACKGROUND2;
 				}
 			}
 		}

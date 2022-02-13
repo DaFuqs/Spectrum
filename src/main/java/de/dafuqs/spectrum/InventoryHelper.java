@@ -200,8 +200,13 @@ public class InventoryHelper {
 	}
 
 	public static boolean removeFromInventory(List<Ingredient> ingredients, Inventory inventory, boolean test) {
-		List<Ingredient> ingredientsToFind = new ArrayList<>(ingredients);
-
+		List<Ingredient> ingredientsToFind = new ArrayList<>();
+		List<Integer> requiredIngredientAmounts = new ArrayList<>();
+		for(Ingredient ingredient : ingredients) {
+			ingredientsToFind.add(ingredient);
+			requiredIngredientAmounts.add(ingredient.getMatchingStacks()[0].getCount());
+		}
+		
 		for(int i = 0; i < inventory.size(); i++) {
 			if(ingredientsToFind.size() == 0) {
 				break;
@@ -213,11 +218,12 @@ public class InventoryHelper {
 				Ingredient ingredient = ingredientsToFind.get(j);
 
 				if (amount > 0 && ingredient.test(currentStack)) {
-					int ingredientCount = ingredient.getMatchingStacks()[0].getCount();
+					int ingredientCount = requiredIngredientAmounts.get(j);
 					if(amount >= ingredientCount) {
 						ingredientsToFind.remove(j);
+						requiredIngredientAmounts.remove(j);
 					} else {
-						ingredientsToFind.get(j).getMatchingStacks()[0].setCount(ingredientCount-amount);
+						requiredIngredientAmounts.set(j, requiredIngredientAmounts.get(j) - amount);
 					}
 					j--;
 

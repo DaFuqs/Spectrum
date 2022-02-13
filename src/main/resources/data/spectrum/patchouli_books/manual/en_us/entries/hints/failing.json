@@ -12,13 +12,13 @@
 			"title": "Small Clue",
             "completion_advancement": "spectrum:midgame/collect_neolith",
 			"cost": "spectrum:scarlet_fragments#8",
-            "text": "Just like Fading, they prefer a specific block placed next to them. This time a lot more strong, though. 'I hate mining this' strong, to be precise."
+            "text": "Just like Fading, they prefer a specific block placed next to them. This time a lot more strong, though. 'I hate mining this' strong, to be precise. Like Fading, break it with an Axe or Hoe."
         },
         {
             "type": "spectrum:hint",
 			"title": "Concise Instructions",
 			"cost": "spectrum:scarlet_fragments#24",
-            "text": "The preferred food is Obsidian.Watch out for their insatiable hunger. They will eat quite a lot, if given the chance..."
+            "text": "The preferred food is Obsidian. Watch out for their insatiable hunger. They will eat quite a lot, if given the chance..."
         }
     ]
 }

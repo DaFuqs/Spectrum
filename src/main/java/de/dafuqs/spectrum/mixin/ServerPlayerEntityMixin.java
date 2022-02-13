@@ -108,4 +108,12 @@ public abstract class ServerPlayerEntityMixin {
 		}
 	}
 	
+	private void forgiveMobAnger() {
+		// TODO
+	}
+	
+	public void handleFall(double heightDifference, boolean onGround) {
+		//TODO
+	}
+	
 }

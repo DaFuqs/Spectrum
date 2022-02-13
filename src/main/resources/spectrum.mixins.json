@@ -13,6 +13,7 @@
     "EnderEyeItemMixin",
     "EndermanEntityMixin",
     "EntityApplyFluidsMixin",
+    "EntityMixin",
     "FirstStrikeEnchantmentMixin",
     "FishingBobberEntityMixin",
     "FishingBobberEntityRendererMixin",
@@ -44,6 +45,7 @@
   ],
   "client": [
     "client.AccessorClientAdvancementManager",
+    "client.BackgroundRendererMixin",
     "client.BlockClientMixin",
     "client.BlockModelsMixin",
     "client.BlockOverlayRendererMixin",

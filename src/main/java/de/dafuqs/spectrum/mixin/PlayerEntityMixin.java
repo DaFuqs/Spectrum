@@ -7,12 +7,17 @@ import de.dafuqs.spectrum.items.trinkets.AttackRingItem;
 import de.dafuqs.spectrum.items.trinkets.SpectrumTrinketItem;
 import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
 import de.dafuqs.spectrum.registries.SpectrumItems;
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.data.DataTracker;
+import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.util.math.Vec3d;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -41,5 +46,34 @@ public abstract class PlayerEntityMixin {
 			SpectrumAdvancementCriteria.TAKE_OFF_BELT_JUMP.trigger(serverPlayerEntity);
 		}
 	}
+	
+	/*
+	TODO: azure dike
+	ABSORPTION_AMOUNT = DataTracker.registerData(PlayerEntity.class, TrackedDataHandlerRegistry.FLOAT);
+	
+	public float getBlockBreakingSpeed(BlockState block) {
+		// TODO
+	}
+	
+	public boolean isInvulnerableTo(DamageSource damageSource) {
+		// TODO
+	}
+	
+	public void slowMovement(BlockState state, Vec3d multiplier) {
+		//TODO
+	}
+	
+	public void addExhaustion(float exhaustion) {
+		//TODO
+	}
+	
+	public boolean isPushedByFluids() {
+		//TODO
+	}
+	
+	public void setFireTicks(int ticks) {
+	
+	}*/
+	
 	
 }

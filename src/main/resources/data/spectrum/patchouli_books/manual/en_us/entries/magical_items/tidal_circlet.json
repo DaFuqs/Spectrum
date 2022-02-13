@@ -9,13 +9,13 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "While you may have had a completely different purpose in mind for your latest design, this might be even better.$(br2)Have you ever wanted to walk underwater?$(br)$(italic)No?$()$(br)Whatever, now you can.$(br)Time to build an underwater base!"
+      "text": "These hostile underwater temples are a hell to maneuver. Luckily, in your search for treasure you stumbled upon a Heart of The Sea.$(br)This Pendant allows you to live and mine under water as if it were the most natural thing ever. You swim and mine faster, require no air and are able to see better.$(br)It also heals your little close by Axolotl friends ♥"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier3/trinkets/tidal_circlet",
-      "text": "Allows you to walk and mine under water as if it were the most natural thing ever. Additionally, grants you water breathing and the ability to see better under water."
+      "text": "$(italic)Have you ever wanted to live underwater? No?$(br)Whatever, now you can.$(br)Time to build an underwater base!"
     }
   ]
 }

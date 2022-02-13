@@ -10,15 +10,15 @@
   "experience": 4.0,
   "pattern": [
     "LLL",
-    "BMB",
-    " S "
+    "SHS",
+    " M "
   ],
   "key": {
-    "B": {
-      "item": "spectrum:polished_basalt"
+    "H": {
+      "item": "minecraft:heart_of_the_sea"
     },
     "S": {
-      "item": "spectrum:shooting_star"
+      "item": "minecraft:prismarine_shard"
     },
     "M": {
       "item": "spectrum:mermaids_gem"

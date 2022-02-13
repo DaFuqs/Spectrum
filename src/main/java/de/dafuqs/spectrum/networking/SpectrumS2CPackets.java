@@ -20,7 +20,9 @@ import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.block.Block;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.particle.Particle;
 import net.minecraft.client.sound.SoundInstance;
+import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.ExperienceOrbEntity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -41,7 +43,9 @@ import net.minecraft.util.math.Vec3f;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 
@@ -54,6 +58,7 @@ public class SpectrumS2CPackets {
 	public static final Identifier PLAY_PARTICLE_AT_EXACT_BLOCK_POSITION_WITHOUT_VELOCITY_ID = new Identifier(SpectrumCommon.MOD_ID, "play_particle");
 	public static final Identifier PLAY_PARTICLE_PACKET_WITH_RANDOM_OFFSET_AND_VELOCITY_ID = new Identifier(SpectrumCommon.MOD_ID, "play_particle_with_offset");
 	public static final Identifier PLAY_PARTICLE_PACKET_WITH_EXACT_OFFSET_AND_VELOCITY_ID = new Identifier(SpectrumCommon.MOD_ID, "play_particle_with_random_offset_and_velocity");
+	public static final Identifier PLAY_PARTICLE_PACKET_WITH_PATTERN_AND_VELOCITY_ID = new Identifier(SpectrumCommon.MOD_ID, "play_particle_with_pattern_and_velocity");
 	public static final Identifier CHANGE_PARTICLE_SPAWNER_SETTINGS_CLIENT_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "change_particle_spawner_settings_client");
 	public static final Identifier INITIATE_ITEM_TRANSFER = new Identifier(SpectrumCommon.MOD_ID, "initiate_item_transfer");
 	public static final Identifier INITIATE_TRANSPHERE = new Identifier(SpectrumCommon.MOD_ID, "initiate_transphere");
@@ -65,6 +70,23 @@ public class SpectrumS2CPackets {
 	public static final Identifier PLAY_TAKE_OFF_BELT_SOUND_INSTANCE = new Identifier(SpectrumCommon.MOD_ID, "play_take_off_belt_sound_instance");
 	public static final Identifier PLAY_SHOOTING_STAR_PARTICLES = new Identifier(SpectrumCommon.MOD_ID, "play_shooting_star_particles");
 
+	public enum ParticlePattern {
+		FOUR(Support.VECTORS_4),
+		EIGHT(Support.VECTORS_8),
+		SIXTEEN(Support.VECTORS_16);
+		
+		private final List<Vec3d> v;
+		
+		ParticlePattern(List<Vec3d> vectors) {
+			v = vectors;
+		}
+		
+		public List<Vec3d> getVectors() {
+			return v;
+		}
+		
+	}
+	
 	@Environment(EnvType.CLIENT)
 	public static void registerS2CReceivers() {
 		ClientPlayNetworking.registerGlobalReceiver(PLAY_PARTICLE_AT_EXACT_BLOCK_POSITION_WITHOUT_VELOCITY_ID, (client, handler, buf, responseSender) -> {
@@ -123,6 +145,19 @@ public class SpectrumS2CPackets {
 								position.getX() + randomOffset.x, position.getY() + randomOffset.y, position.getZ() + randomOffset.z,
 								velocity.x, velocity.y, velocity.z);
 					}
+				});
+			}
+		});
+		
+		ClientPlayNetworking.registerGlobalReceiver(PLAY_PARTICLE_PACKET_WITH_PATTERN_AND_VELOCITY_ID, (client, handler, buf, responseSender) -> {
+			Vec3d position = new Vec3d(buf.readDouble(), buf.readDouble(), buf.readDouble());
+			ParticleType<?> particleType = Registry.PARTICLE_TYPE.get(buf.readIdentifier());
+			ParticlePattern pattern = ParticlePattern.values()[buf.readInt()];
+			double velocity = buf.readDouble();
+			if(particleType instanceof ParticleEffect particleEffect) {
+				client.execute(() -> {
+					// Everything in this lambda is running on the render thread
+					playParticleWithPatternAndVelocityClient(client.world, position, particleEffect, pattern, velocity);
 				});
 			}
 		});
@@ -290,9 +325,8 @@ public class SpectrumS2CPackets {
 				}
 			});
 		});
-
 	}
-
+	
 	/**
 	 * Play particle effect
 	 * @param world the world of the pedestal
@@ -379,6 +413,35 @@ public class SpectrumS2CPackets {
 		// Iterate over all players tracking a position in the world and send the packet to each player
 		for (ServerPlayerEntity player : PlayerLookup.tracking(world, new BlockPos(position))) {
 			ServerPlayNetworking.send(player, SpectrumS2CPackets.PLAY_PARTICLE_PACKET_WITH_EXACT_OFFSET_AND_VELOCITY_ID, buf);
+		}
+	}
+	
+	/**
+	 * Play particles matching a spawn pattern
+	 * @param world the world of the pedestal
+	 * @param position the pos of the particles
+	 * @param particleEffect The particle effect to play
+	 */
+	public static void playParticleWithPatternAndVelocity(@Nullable PlayerEntity notThisPlayerEntity, ServerWorld world, Vec3d position, ParticleEffect particleEffect, ParticlePattern pattern, double velocity) {
+		PacketByteBuf buf = PacketByteBufs.create();
+		buf.writeDouble(position.x);
+		buf.writeDouble(position.y);
+		buf.writeDouble(position.z);
+		buf.writeIdentifier(Registry.PARTICLE_TYPE.getId(particleEffect.getType()));
+		buf.writeInt(pattern.ordinal());
+		buf.writeDouble(velocity);
+		
+		// Iterate over all players tracking a position in the world and send the packet to each player
+		for (ServerPlayerEntity player : PlayerLookup.tracking(world, new BlockPos(position))) {
+			if(notThisPlayerEntity == null || !player.equals(notThisPlayerEntity)) {
+				ServerPlayNetworking.send(player, SpectrumS2CPackets.PLAY_PARTICLE_PACKET_WITH_PATTERN_AND_VELOCITY_ID, buf);
+			}
+		}
+	}
+	
+	public static void playParticleWithPatternAndVelocityClient(World world, Vec3d position, ParticleEffect particleEffect, ParticlePattern pattern, double velocity) {
+		for(Vec3d vec3d : pattern.getVectors()) {
+			world.addParticle(particleEffect, position.getX(), position.getY(), position.getZ(), vec3d.x * velocity, vec3d.y * velocity, vec3d.z * velocity);
 		}
 	}
 	

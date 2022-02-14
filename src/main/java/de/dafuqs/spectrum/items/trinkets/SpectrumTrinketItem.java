@@ -7,6 +7,7 @@ import dev.emi.trinkets.api.SlotReference;
 import dev.emi.trinkets.api.TrinketComponent;
 import dev.emi.trinkets.api.TrinketItem;
 import dev.emi.trinkets.api.TrinketsApi;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -35,7 +36,14 @@ public abstract class SpectrumTrinketItem extends TrinketItem {
 		}
 		return false;
 	}
-
+	
+	public static boolean hasEquipped(Object entity, Item item) {
+		if(entity instanceof LivingEntity livingEntity) {
+			return hasEquipped(livingEntity, item);
+		}
+		return false;
+	}
+	
 	public static boolean hasEquipped(LivingEntity entity, Item item) {
 		Optional<TrinketComponent> trinketComponent = TrinketsApi.getTrinketComponent(entity);
 		return trinketComponent.map(component -> component.isEquipped(item)).orElse(false);

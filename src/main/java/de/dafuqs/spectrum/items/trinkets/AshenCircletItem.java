@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.items.trinkets;
 
 import de.dafuqs.spectrum.SpectrumCommon;
+import dev.emi.trinkets.api.SlotReference;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -25,8 +26,22 @@ public class AshenCircletItem extends SpectrumTrinketItem {
 	public static final int FIRE_RESISTANCE_EFFECT_DURATION = 600;
 	public static final long COOLDOWN_TICKS = 3000;
 	
+	public static final float LAVA_MOVEMENT_SPEED_MOD = 0.9F; // vanilla uses 0.5 to slow the player down to half its speed
+	public static final float LAVA_VIEW_DISTANCE_MIN = -4.0F;
+	public static final float LAVA_VIEW_DISTANCE_MAX = 8.0F;
+	public static final float LAVA_VIEW_DISTANCE_MIN_POTION = -8.0F;
+	public static final float LAVA_VIEW_DISTANCE_MAX_POTION = 16.0F;
+	
     private final Identifier UNLOCK_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_ashen_circlet");
-
+	
+	@Override
+	public void tick(ItemStack stack, SlotReference slot, LivingEntity entity) {
+		super.tick(stack, slot, entity);
+		if(entity.isOnFire()) {
+			entity.setFireTicks(0);
+		}
+	}
+	
 	public AshenCircletItem(Settings settings) {
 		super(settings);
 	}

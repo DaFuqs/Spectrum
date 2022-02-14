@@ -9,13 +9,13 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The set Crimtane gemstone, itself a creation of the Nether, can absorb high temperatures near you with ease. It even protects you from the blazing heat of lava - if only for a short time, until it has had a chance to cool down again."
+      "text": "The set Crimtane Gem, itself a creation of the Nether, can absorb high temperatures on you with ease.$(br)Set in this circlet it even protects you from the blazing heat of lava - if only for a short time, until it has had a chance to cool down again."
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier3/trinkets/ashen_circlet",
-      "text": "$(li)Prevents damage from fire and hot floors.$(br)$(li)Extinguishes close fires and grants you a 15 second protection from lava."
+      "text": "$(li)Prevents damage from fire and hot floors.$(li)Grants you a short protection from lava"
     }
   ]
 }

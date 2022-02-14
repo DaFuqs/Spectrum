@@ -69,9 +69,6 @@ public abstract class PlayerEntityMixin {
 	public void spectrum$damage(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
 		// If the player is damaged by lava and wears an ashen circlet:
 		// cancel damage and grant fire resistance
-		if(source.isFire() && SpectrumTrinketItem.hasEquipped((PlayerEntity) (Object) this, SpectrumItems.ASHEN_CIRCLET)) {
-			cir.setReturnValue(false);
-		}
 		if(source.equals(DamageSource.LAVA)) {
 			PlayerEntity thisEntity = (PlayerEntity) (Object) this;
 			
@@ -82,6 +79,8 @@ public abstract class PlayerEntityMixin {
 				}
 				cir.setReturnValue(false);
 			}
+		} else if(source.isFire() && SpectrumTrinketItem.hasEquipped((PlayerEntity) (Object) this, SpectrumItems.ASHEN_CIRCLET)) {
+			cir.setReturnValue(false);
 		}
 	}
 	

@@ -37,11 +37,6 @@ public abstract class ClientPlayerEntityMixin implements GravityBlockEntity.Post
 		}
 	}
 	
-	/*@Inject(at=@At("HEAD"), method= "getUnderwaterVisibility()F", cancellable = true)
-	public void getUnderwaterVisibility(CallbackInfoReturnable<Float> cir) {
-		// TODO
-	}*/
-	
 	protected void onStatusEffectApplied(StatusEffectInstance effect, @Nullable Entity source) {
 		//TODO
 	}

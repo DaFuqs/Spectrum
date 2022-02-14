@@ -1,6 +1,8 @@
 package de.dafuqs.spectrum.mixin;
 
 import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.items.trinkets.AshenCircletItem;
+import de.dafuqs.spectrum.items.trinkets.SpectrumTrinketItem;
 import de.dafuqs.spectrum.networking.SpectrumS2CPackets;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.registries.SpectrumEnchantments;
@@ -28,9 +30,7 @@ import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.ModifyArg;
+import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
@@ -56,6 +56,14 @@ public abstract class LivingEntityMixin {
 		} else {
 			return 1.0F;
 		}
+	}
+	
+	@ModifyConstant(method = "travel", constant = {@Constant(doubleValue = 0.5D, ordinal = 0), @Constant(doubleValue = 0.5D, ordinal = 1), @Constant(doubleValue = 0.5D, ordinal = 2)})
+	private double increasedLavaSpeed(double original) {
+		if(SpectrumTrinketItem.hasEquipped(this, SpectrumItems.ASHEN_CIRCLET)) {
+			return AshenCircletItem.LAVA_MOVEMENT_SPEED_MOD;
+		}
+		return original;
 	}
 	
 	@Inject(at = @At("HEAD"), method = "fall(DZLnet/minecraft/block/BlockState;Lnet/minecraft/util/math/BlockPos;)V")

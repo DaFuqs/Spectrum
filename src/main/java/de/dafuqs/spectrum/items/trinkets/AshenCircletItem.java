@@ -55,6 +55,7 @@ public class AshenCircletItem extends SpectrumTrinketItem {
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
 		tooltip.add(new TranslatableText("item.spectrum.ashen_circlet.tooltip").formatted(Formatting.GRAY));
+		tooltip.add(new TranslatableText("item.spectrum.ashen_circlet.tooltip2").formatted(Formatting.GRAY));
 		
 		if(world != null) {
 			long cooldownTicks = getCooldownTicks(stack, world);

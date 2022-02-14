@@ -10,8 +10,8 @@
   "experience": 4.0,
   "pattern": [
     "OOO",
-    "PNP",
-    " G "
+    "NGN",
+    " N "
   ],
   "key": {
     "N": {
@@ -19,9 +19,6 @@
     },
     "G": {
       "item": "spectrum:scarlet_gem"
-    },
-    "P": {
-      "item": "spectrum:polished_basalt"
     },
     "O": {
       "item": "spectrum:orange_pigment"

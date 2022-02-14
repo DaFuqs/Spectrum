@@ -10,11 +10,12 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class PotionWorkshopBlock extends BlockWithEntity {
 	
-	protected static final VoxelShape SHAPE = Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 11.0D, 16.0D);
+	protected static final VoxelShape SHAPE = Block.createCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 13.0D, 14.0D);
 	
 	public PotionWorkshopBlock(Settings settings) {
 		super(settings);
@@ -50,7 +51,7 @@ public class PotionWorkshopBlock extends BlockWithEntity {
 		super.onStateReplaced(state, world, pos, newState, moved);
 	}
 	
-	public static void scatterContents(World world, BlockPos pos) {
+	public static void scatterContents(@NotNull World world, BlockPos pos) {
 		Block block = world.getBlockState(pos).getBlock();
 		BlockEntity blockEntity = world.getBlockEntity(pos);
 		if (blockEntity instanceof PotionWorkshopBlockEntity potionWorkshopBlockEntity) {

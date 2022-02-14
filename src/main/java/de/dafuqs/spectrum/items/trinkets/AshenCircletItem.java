@@ -8,6 +8,8 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
@@ -38,11 +40,20 @@ public class AshenCircletItem extends SpectrumTrinketItem {
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
 		tooltip.add(new TranslatableText("item.spectrum.ashen_circlet.tooltip").formatted(Formatting.GRAY));
+		
+		if(world != null) {
+			long cooldownTicks = getCooldownTicks(stack, world);
+			if(cooldownTicks == 0) {
+				tooltip.add(new TranslatableText("item.spectrum.ashen_circlet.tooltip.cooldown_full"));
+			} else {
+				tooltip.add(new TranslatableText("item.spectrum.ashen_circlet.tooltip.cooldown_seconds", cooldownTicks / 20));
+			}
+		}
 	}
 	
 	public static long getCooldownTicks(@NotNull ItemStack ashenCircletStack, @NotNull World world) {
 		NbtCompound nbt = ashenCircletStack.getNbt();
-		if(nbt == null || nbt.contains("last_cooldown_start", NbtElement.LONG_TYPE)) {
+		if(nbt == null || !nbt.contains("last_cooldown_start", NbtElement.LONG_TYPE)) {
 			return 0;
 		} else {
 			long lastCooldownStart = nbt.getLong("last_cooldown_start");
@@ -58,8 +69,8 @@ public class AshenCircletItem extends SpectrumTrinketItem {
 	
 	public static void grantFireResistance(@NotNull ItemStack ashenCircletStack, @NotNull LivingEntity livingEntity) {
 		if(!livingEntity.hasStatusEffect(StatusEffects.FIRE_RESISTANCE)) {
-			livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, FIRE_RESISTANCE_EFFECT_DURATION, 1, true, true));
-			// TODO: sound
+			livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, FIRE_RESISTANCE_EFFECT_DURATION, 0, true, true));
+			livingEntity.world.playSound(null, livingEntity.getBlockPos(), SoundEvents.ENTITY_SPLASH_POTION_BREAK, SoundCategory.PLAYERS, 1.0F, 1.0F);
 			setCooldown(ashenCircletStack, livingEntity.world);
 		}
 	}

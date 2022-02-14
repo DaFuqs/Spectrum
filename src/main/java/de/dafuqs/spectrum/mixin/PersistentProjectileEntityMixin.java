@@ -4,7 +4,6 @@ import de.dafuqs.spectrum.networking.SpectrumS2CPackets;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
-import dev.architectury.event.events.common.ChatEvent;
 import dev.emi.trinkets.api.SlotReference;
 import dev.emi.trinkets.api.TrinketComponent;
 import dev.emi.trinkets.api.TrinketsApi;
@@ -33,6 +32,8 @@ public abstract class PersistentProjectileEntityMixin {
 	
 	@Inject(at = @At("HEAD"), method = "onEntityHit(Lnet/minecraft/util/hit/EntityHitResult;)V", cancellable = true)
 	protected void spectrum$onPersistentProjectileHit(EntityHitResult entityHitResult, CallbackInfo ci) {
+		// if the target has a Puff circlet equipped
+		// protect it from this projectile
 		PersistentProjectileEntity thisEntity = (PersistentProjectileEntity) (Object) this;
 		if(!thisEntity.getWorld().isClient) {
 			Entity entity = entityHitResult.getEntity();

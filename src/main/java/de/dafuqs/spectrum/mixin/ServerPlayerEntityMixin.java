@@ -3,7 +3,7 @@ package de.dafuqs.spectrum.mixin;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.enchantments.DisarmingEnchantment;
 import de.dafuqs.spectrum.enchantments.TreasureHunterEnchantment;
-import de.dafuqs.spectrum.items.trinkets.RadiancePinItem;
+import de.dafuqs.spectrum.items.trinkets.GleamingPinItem;
 import de.dafuqs.spectrum.items.trinkets.SpectrumTrinketItem;
 import de.dafuqs.spectrum.registries.SpectrumEnchantments;
 import de.dafuqs.spectrum.registries.SpectrumItems;
@@ -25,7 +25,7 @@ public abstract class ServerPlayerEntityMixin {
 	
 	@Shadow public abstract World getWorld();
 	
-	private long spectrum$lastRadiancePinTriggerTick = 0;
+	private long spectrum$lastGleamingPinTriggerTick = 0;
 
 	@Inject(at = @At("HEAD"), method = "onDeath(Lnet/minecraft/entity/damage/DamageSource;)V")
 	protected void spectrum$dropPlayerHeadWithTreasureHunt(DamageSource source, CallbackInfo ci) {
@@ -46,9 +46,9 @@ public abstract class ServerPlayerEntityMixin {
 					}
 					
 					World world = thisPlayer.getWorld();
-					if (SpectrumTrinketItem.hasEquipped(thisPlayer, SpectrumItems.RADIANCE_PIN) && world.getTime() - this.spectrum$lastRadiancePinTriggerTick > RadiancePinItem.COOLDOWN_TICKS) {
-						RadiancePinItem.doRadiancePinEffect(thisPlayer, (ServerWorld) world);
-						this.spectrum$lastRadiancePinTriggerTick = world.getTime();
+					if (SpectrumTrinketItem.hasEquipped(thisPlayer, SpectrumItems.GLEAMING_PIN) && world.getTime() - this.spectrum$lastGleamingPinTriggerTick > GleamingPinItem.COOLDOWN_TICKS) {
+						GleamingPinItem.doGleamingPinEffect(thisPlayer, (ServerWorld) world);
+						this.spectrum$lastGleamingPinTriggerTick = world.getTime();
 					}
 				}
 			}

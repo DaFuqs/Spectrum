@@ -292,6 +292,7 @@ public class SpectrumBlocks {
 	public static final Block BLOCK_FLOODER = new BlockFlooderBlock(FabricBlockSettings.of(Material.STONE));
 	public static final Block BOTTOMLESS_BUNDLE = new BottomlessBundleBlock(FabricBlockSettings.of(Material.WOOL).hardness(2.0F).mapColor(MapColor.PALE_PURPLE).nonOpaque());
 	public static final Block WAND_LIGHT_BLOCK = new WandLightBlock(FabricBlockSettings.copyOf(Blocks.LIGHT).sounds(SpectrumBlockSoundGroups.WAND_LIGHT).breakInstantly().breakByHand(true));
+	public static final Block DECAYING_LIGHT_BLOCK = new DecayingLightBlock(FabricBlockSettings.copyOf(WAND_LIGHT_BLOCK).ticksRandomly());
 
 	// DECAY
 	public static final Block FADING = new FadingBlock(FabricBlockSettings.of(SpectrumBlockMaterials.DECAY, MapColor.BLACK).ticksRandomly().requiresTool().strength(0.5F, 0.5F), SpectrumBlockTags.FADING_CONVERSIONS, null,1,  1F);
@@ -781,6 +782,7 @@ public class SpectrumBlocks {
 		registerBlock("attached_glistering_melon_stem", ATTACHED_GLISTERING_MELON_STEM);
 		registerBlock("stuck_lightning_stone", STUCK_LIGHTNING_STONE);
 		registerBlock("wand_light", WAND_LIGHT_BLOCK);
+		registerBlock("decaying_light", DECAYING_LIGHT_BLOCK);
 		registerBlock("block_flooder", BLOCK_FLOODER);
 		registerBlock("bottomless_bundle", BOTTOMLESS_BUNDLE);
 	}

@@ -57,6 +57,7 @@ import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
 import de.dafuqs.spectrum.worldgen.ColoredSaplingGenerator;
 import io.wispforest.owo.itemgroup.OwoItemSettings;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
+import net.fabricmc.fabric.api.item.v1.FabricItem;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
@@ -115,7 +116,10 @@ public class SpectrumBlocks {
 	public static FabricItemSettings decorationItemSettingsRare = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_BLOCKS).tab(0).rarity(Rarity.RARE);
 	public static FabricItemSettings coloredWoodItemSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_BLOCKS).tab(1);
 	public static FabricItemSettings mobHeadItemSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_BLOCKS).tab(2).rarity(Rarity.UNCOMMON);
-
+	
+	public static FabricItemSettings worldgenItemSettingsFireProof = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(2).fireproof();
+	public static FabricItemSettings decorationItemSettingsFireProof = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_BLOCKS).tab(0).fireproof();
+	
 	// PEDESTALS
 	public static final Block PEDESTAL_BASIC_TOPAZ = new PedestalBlock(FabricBlockSettings.of(Material.STONE).strength(5.0F, 20.0F), PedestalBlock.PedestalVariant.BASIC_TOPAZ);
 	public static final Block PEDESTAL_BASIC_AMETHYST = new PedestalBlock(FabricBlockSettings.of(Material.STONE).strength(5.0F, 20.0F), PedestalBlock.PedestalVariant.BASIC_AMETHYST);
@@ -733,8 +737,8 @@ public class SpectrumBlocks {
 		registerShootingStarBlocks(resourcesItemSettingUncommonSingle);
 		
 		registerGemOreBlocks(worldgenItemSettings);
-		registerOreBlocks(worldgenItemSettings);
-		registerOreStorageBlocks(decorationItemSettings);
+		registerOreBlocks(worldgenItemSettings, worldgenItemSettingsFireProof);
+		registerOreStorageBlocks(decorationItemSettings, decorationItemSettingsFireProof);
 		registerGemstoneLamps(decorationItemSettings);
 		registerSparklestoneLights(decorationItemSettings);
 		registerRunes(decorationItemSettings);
@@ -864,18 +868,18 @@ public class SpectrumBlocks {
 		registerBlockWithItem("sacred_soil", SACRED_SOIL, fabricItemSettings);
 	}
 
-	private static void registerOreBlocks(FabricItemSettings fabricItemSettings) {
+	private static void registerOreBlocks(FabricItemSettings fabricItemSettings, FabricItemSettings fabricItemSettingsFireProof) {
 		registerBlockWithItem("sparklestone_ore", SPARKLESTONE_ORE, fabricItemSettings);
 		registerBlockWithItem("deepslate_sparklestone_ore", DEEPSLATE_SPARKLESTONE_ORE, fabricItemSettings);
 
 		registerBlockWithItem("azurite_ore", AZURITE_ORE, fabricItemSettings);
 		registerBlockWithItem("deepslate_azurite_ore", DEEPSLATE_AZURITE_ORE, fabricItemSettings);
 
-		registerBlockWithItem("scarlet_ore", SCARLET_ORE, new GravityBlockItem(SCARLET_ORE, fabricItemSettings, 1.01F));
+		registerBlockWithItem("scarlet_ore", SCARLET_ORE, new GravityBlockItem(SCARLET_ORE, fabricItemSettingsFireProof, 1.01F));
 		registerBlockWithItem("paletur_ore", PALETUR_ORE, new GravityBlockItem(PALETUR_ORE, fabricItemSettings, 0.99F));
 	}
 
-	private static void registerOreStorageBlocks(FabricItemSettings fabricItemSettings) {
+	private static void registerOreStorageBlocks(FabricItemSettings fabricItemSettings, FabricItemSettings fabricItemSettingsFireProof) {
 		registerBlockWithItem("topaz_storage_block", TOPAZ_STORAGE_BLOCK, fabricItemSettings);
 		registerBlockWithItem("amethyst_storage_block", AMETHYST_STORAGE_BLOCK, fabricItemSettings);
 		registerBlockWithItem("citrine_storage_block", CITRINE_STORAGE_BLOCK, fabricItemSettings);
@@ -885,7 +889,7 @@ public class SpectrumBlocks {
 		
 		registerBlockWithItem("azurite_block", AZURITE_BLOCK, decorationItemSettings);
 		registerBlockWithItem("sparklestone_block", SPARKLESTONE_BLOCK, decorationItemSettings);
-		registerBlockWithItem("scarlet_fragment_block", SCARLET_FRAGMENT_BLOCK, new GravityBlockItem(SCARLET_FRAGMENT_BLOCK, fabricItemSettings, 1.02F));
+		registerBlockWithItem("scarlet_fragment_block", SCARLET_FRAGMENT_BLOCK, new GravityBlockItem(SCARLET_FRAGMENT_BLOCK, fabricItemSettingsFireProof, 1.02F));
 		registerBlockWithItem("paletur_fragment_block", PALETUR_FRAGMENT_BLOCK, new GravityBlockItem(PALETUR_FRAGMENT_BLOCK, fabricItemSettings, 0.98F));
 	}
 

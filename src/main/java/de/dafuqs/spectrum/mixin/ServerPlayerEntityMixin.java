@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.mixin;
 
 import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.azure_dike.AzureDikeProvider;
 import de.dafuqs.spectrum.enchantments.DisarmingEnchantment;
 import de.dafuqs.spectrum.enchantments.TreasureHunterEnchantment;
 import de.dafuqs.spectrum.items.trinkets.GleamingPinItem;
@@ -23,18 +24,19 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(ServerPlayerEntity.class)
 public abstract class ServerPlayerEntityMixin {
 	
-	@Shadow public abstract World getWorld();
+	@Shadow
+	public abstract World getWorld();
 	
 	private long spectrum$lastGleamingPinTriggerTick = 0;
-
+	
 	@Inject(at = @At("HEAD"), method = "onDeath(Lnet/minecraft/entity/damage/DamageSource;)V")
 	protected void spectrum$dropPlayerHeadWithTreasureHunt(DamageSource source, CallbackInfo ci) {
-		TreasureHunterEnchantment.doTreasureHunterForPlayer((ServerPlayerEntity)(Object) this, source);
+		TreasureHunterEnchantment.doTreasureHunterForPlayer((ServerPlayerEntity) (Object) this, source);
 	}
 	
 	@Inject(at = @At("RETURN"), method = "damage(Lnet/minecraft/entity/damage/DamageSource;F)Z")
 	public void spectrum$damage(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
-		if(!this.getWorld().isClient) {
+		if (!this.getWorld().isClient) {
 			// true if the entity got hurt
 			if (cir.getReturnValue() != null && cir.getReturnValue()) {
 				if (source.getAttacker() instanceof LivingEntity livingSource) {
@@ -55,4 +57,9 @@ public abstract class ServerPlayerEntityMixin {
 		}
 	}
 	
+	/*@Inject(method = "tick", at = @At("TAIL"))
+	private void onEndTick(CallbackInfo ci) {
+		//AzureDikeProvider.AZURE_DIKE_COMPONENT.get(this).serverTick();
+	}*/
+
 }

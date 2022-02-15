@@ -226,5 +226,5 @@ public class SpectrumCommon implements ModInitializer {
 
 		log(Level.INFO, "Common startup completed!");
 	}
-	
+
 }

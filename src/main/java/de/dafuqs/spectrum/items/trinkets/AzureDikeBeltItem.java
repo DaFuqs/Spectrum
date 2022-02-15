@@ -13,7 +13,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class AzureDikeBeltItem extends SpectrumTrinketItem implements AzureDikeProvider {
+public class AzureDikeBeltItem extends AzureDikeTrinketItem {
 	
 	private final Identifier UNLOCK_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_azure_dike_ring");
 	

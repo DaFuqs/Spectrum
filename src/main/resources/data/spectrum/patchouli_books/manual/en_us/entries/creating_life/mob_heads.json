@@ -1,6 +1,6 @@
 {
   "name": "Mob Heads",
-  "advancement": "spectrum:midgame/collect_mob_head_using_treasure_hunter",
+  "advancement": "spectrum:progression/enchantments/treasure_hunter",
   "icon": "minecraft:wither_skeleton_skull",
   "category": "spectrum:creating_life_category",
   "extra_recipe_mappings": {
@@ -106,13 +106,13 @@
   },
   "pages": [
     {
-      "type": "patchouli:text",
-      "text": "$(italic)In a painting you have seen a fantastic creature that seems to be made of Soul Sand and Wither Skeleton Skulls. For hours you lay in wait in a Nether Fortress, only to return with modest loot.$(br2)Who knows... maybe there are even more trophies to snatch? You just need a sharp enough weapon."
-    },
-    {
       "type": "patchouli:spotlight",
       "item": "spectrum:cow_head",
-      "text": "But then there were the Creepers! Once struck by lightning, they explode so hefty that their explosion blows the heads of his opponents right off their heads (worst case: yourself). This effect must be imitable in the form of an enchantment, you thought.$(br)And so $(l:enchanting/treasure_hunter)Treasure Hunter$(/l) was born."
+      "text": "Using your new $(l:enchanting/treasure_hunter)Treasure Hunter$(/l) enchantment you are able to collect heads from all kinds of mobs."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "While they make for a nice display of your modest acquisitions they still inherit a small spark of that creatures existence."
     }
   ]
 }

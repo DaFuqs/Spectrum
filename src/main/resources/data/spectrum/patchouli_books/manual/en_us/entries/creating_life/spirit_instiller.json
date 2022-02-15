@@ -1,0 +1,30 @@
+{
+  "name": "Spirit Instiller",
+  "icon": "spectrum:spirit_instiller",
+  "advancement": "spectrum:midgame/__collect_neolith",
+  "category": "spectrum:creating_life_category",
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "$(italic)"
+        },
+        {
+            "type": "spectrum:pedestal_crafting",
+            "title": "Pedestal Recipe",
+            "recipe": "spectrum:pedestal/tier3/spirit_instiller",
+            "text": "The Spirit Instiller needs a focus structure to work."
+        },
+        {
+            "type": "patchouli:multiblock",
+            "name": "Spirit Instiller Structure",
+            "multiblock_id": "spectrum:spirit_instiller_structure",
+            "enable_visualize": true,
+            "text": "To boost the abilities of the structure you can place upgrades on each of the gem blocks."
+        },
+        {
+            "type": "patchouli:text",
+            "title": "Block Checklist",
+            "text": "$(li)1 Spirit Instiller$(li)4 Item Bowls"
+        }
+    ]
+}

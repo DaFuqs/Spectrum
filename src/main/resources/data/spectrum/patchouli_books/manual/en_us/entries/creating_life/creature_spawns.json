@@ -1,0 +1,30 @@
+{
+  "name": "Creature Spawns",
+  "icon": "spectrum:creature_spawn{EntityID: \"minecraft_cow\", CyclesUntilHatching: 10s, Unrecognizable: 0s}]}",
+  "advancement": "spectrum:midgame/__collect_neolith",
+  "category": "spectrum:creating_life_category",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:creature_spawn{EntityID: \"minecraft_cow\", CyclesUntilHatching: 10s, Unrecognizable: 0s}]}",
+      "text": "Using the $(l:creating_life/spirit_instiller)Spirit Instiller$(/l) you are able to breathe life into $(l:creating_life/mob_heads)Mob Head$(/l)."
+    },
+    {
+      "type": "patchouli:image",
+      "title": "Creation",
+      "images": [ "spectrum:textures/gui/manual/upgrading_enchanted_books.png" ],
+      "border": true,
+      "text": "To create a Creature Spawn you need a $(l:creating_life/mob_heads)Mob Head$(/l) of the Creature you want to resurrect and a bit of $(creating_life/fading#vegetal)Vegetal$(/l)."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Hatching",
+      "text": "The energies in the created Spawn need a bit of time to mature, almost like an egg: to hatch it you have to place it down and wait. Depending on the creature within, it may be reasonably quick, or take ages.$(br2)Placing them on top of specific Blocks seems to speed up that process or halt it entirely."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Conceiling",
+      "text": "Tip: The Addition of $(creating_life/failing#neolith)Neolith$(/l) seems to completely overpower the energies of that Spawns Creature, making the content of the resulting Spawn unrecognizable, until hatched."
+    }
+  ]
+}

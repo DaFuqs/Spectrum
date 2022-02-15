@@ -1,30 +1,35 @@
 {
-    "name": "Treasure Hunter",
-    "icon": "minecraft:iron_sword",
-    "advancement": "spectrum:progression/enchantments/treasure_hunter",
-    "category": "spectrum:enchanting_category",
-    "pages": [
-        {
-            "type": "patchouli:text",
-            "text": "$(italic)You almost lost your head yourself while searching for a Wither Skeleton with a spine loose enough to drop its skull. Heads up, you never were the one to bury your head in the sand.$(br2)As if struck by lightning you thought out a new enchantment."
-        },
-        {
-            "type": "patchouli:spotlight",
-            "title": "Characteristics",
-            "item": "minecraft:iron_sword{Enchantments: [{id: \"spectrum:treasure_hunter\", lvl: 3s}]}",
-            "text": "Occasionally drops mob heads on kill.$(br2)Max Level: 3$(br)Applicable to melee weapons.$(br)Mutually exclusive with Looting."
-        },
-        {
-            "type": "spectrum:enchanter_crafting",
-            "title": "Enchanter Recipe",
-            "recipe": "spectrum:enchanter/spectrum_books/book_treasure_hunter",
-            "text": "You can infuse a common Book with Treasure Hunter by surrounding your Enchanter with Pigment and the other required materials."
-        },
-        {
-            "type": "spectrum:enchanter_upgrading",
-            "title": "Enchantment Upgrading",
-            "recipe": "spectrum:enchantment_upgrade/spectrum/treasure_hunter_level_2",
-            "text": "Upgrading Treasure Hunter from level 1 to level 2 is fairly cheap at first.$(br)This price will quickly increase to more and more Pigment and Experience for each additional level."
-        }
-    ]
+  "name": "Treasure Hunter",
+  "icon": "minecraft:iron_sword",
+  "advancement": "spectrum:progression/enchantments/treasure_hunter",
+  "category": "spectrum:enchanting_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(italic)In a painting you have seen a fantastic creature that seems to be made of Soul Sand and Wither Skeleton Skulls. For hours you lay in wait in a Nether Fortress, only to almost almost loose your head yourself while searching for a Wither Skeleton with a spine loose enough to drop its skull. Heads up, you never were the one to bury your head in the sand."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:cow_head",
+      "text": "$(italic)But then there were the Creepers! Once struck by lightning, they explode so hefty that their explosion blows the heads of his opponents right off their heads (worst case: yourself).$(br)As if struck by lightning you thought out this new enchantment using $(l:resources/lightning_stones).$(br)And so Treasure Hunter was born, allowing you to collect $(l:creating_life/mob_heads)Heads from all kind ob Mobs$(/l)"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Characteristics",
+      "item": "minecraft:iron_sword{Enchantments: [{id: \"spectrum:treasure_hunter\", lvl: 3s}]}",
+      "text": "Occasionally drops mob heads on kill.$(br2)Max Level: 3$(br)Applicable to melee weapons.$(br)Mutually exclusive with Looting."
+    },
+    {
+      "type": "spectrum:enchanter_crafting",
+      "title": "Enchanter Recipe",
+      "recipe": "spectrum:enchanter/spectrum_books/book_treasure_hunter",
+      "text": "You can infuse a common Book with Treasure Hunter by surrounding your Enchanter with Pigment and the other required materials."
+    },
+    {
+      "type": "spectrum:enchanter_upgrading",
+      "title": "Enchantment Upgrading",
+      "recipe": "spectrum:enchantment_upgrade/spectrum/treasure_hunter_level_2",
+      "text": "Upgrading Treasure Hunter from level 1 to level 2 is fairly cheap at first.$(br)This price will quickly increase to more and more Pigment and Experience for each additional level."
+    }
+  ]
 }

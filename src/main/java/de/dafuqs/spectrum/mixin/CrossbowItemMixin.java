@@ -11,8 +11,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(CrossbowItem.class)
 public class CrossbowItemMixin {
-
-	@Inject(at = @At("HEAD"), method= "getSpeed(Lnet/minecraft/item/ItemStack;)F", cancellable = true)
+	
+	@Inject(method = "getSpeed(Lnet/minecraft/item/ItemStack;)F", at = @At("RETURN"), cancellable = true)
 	private static void getSpeed(ItemStack stack, CallbackInfoReturnable<Float> cir) {
 		int sniperLevel = EnchantmentHelper.getLevel(SpectrumEnchantments.SNIPER, stack);
 		if(sniperLevel > 0) {

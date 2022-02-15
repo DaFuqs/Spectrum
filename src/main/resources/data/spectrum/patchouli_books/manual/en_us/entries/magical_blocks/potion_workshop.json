@@ -12,7 +12,12 @@
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier3/potion_workshop",
-      "text": "You always need to add Nether Wart and Blaze Powder. Depending on the Catalyst used you can modify the resulting properties of your Potions. You can add up to three Reagents per Potion. Each Reagent can only be used once per recipe."
+      "text": "Instead of Blaze Powder, the Potion Workshop runs on Mermaids Gems. The main advantage of this is that you don't have to manually pre-fill your bottles with water each time."
+    },
+    {
+      "type": "spectrum:text",
+      "title": "Using Reagents",
+      "text": "The Base of Mermaids Gems allows you to add a wide range of additional magical ingredients to your Potions. Each of those Reagents modifies the resulting properties of your Potions. Each Reagent can only be used once per recipe."
     },
     {
       "type": "patchouli:spotlight",

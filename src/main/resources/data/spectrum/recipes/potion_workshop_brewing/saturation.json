@@ -1,0 +1,14 @@
+{
+  "type": "spectrum:potion_workshop_brewing",
+  "time": 200,
+  "base_item": "minecraft:bottle",
+  "use_up_base_item": true,
+  "ingredient1": "minecraft:nether_wart",
+  "ingredient2": "spectrum:citrine_shard",
+  "effect": "minecraft:saturation",
+  "base_duration_ticks": 900,
+  "potency_modifier": 1.0,
+  "applicable_to_potions": true,
+  "applicable_to_tipped_arrows": true,
+  "required_advancement": "spectrum:progression/unlock_potion_brewery"
+}

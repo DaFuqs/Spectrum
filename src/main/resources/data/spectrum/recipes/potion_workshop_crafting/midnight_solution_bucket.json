@@ -1,0 +1,13 @@
+{
+  "type": "spectrum:potion_workshop_crafting",
+  "time": 200,
+  "base_item": "spectrum:midnight_aberration",
+  "use_up_base_item": false,
+  "ingredient1": "minecraft:bucket",
+  "ingredient2": "spectrum:stardust",
+  "ingredient3": "spectrum:black_pigment",
+  "result" : {
+    "item": "spectrum:midnight_solution_bucket"
+  },
+  "required_advancement": "spectrum:midgame/create_midnight_aberration"
+}

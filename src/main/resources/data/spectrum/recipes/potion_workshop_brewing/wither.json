@@ -1,0 +1,15 @@
+{
+  "type": "spectrum:potion_workshop_brewing",
+  "time": 200,
+  "base_item": "minecraft:bottle",
+  "use_up_base_item": true,
+  "ingredient1": "minecraft:nether_wart",
+  "ingredient2": "spectrum:midnight_chip",
+  "ingredient3": "minecraft:fermented_spider_eye",
+  "effect": "minecraft:wither",
+  "base_duration_ticks": 400,
+  "potency_modifier": 0.3,
+  "applicable_to_potions": true,
+  "applicable_to_tipped_arrows": true,
+  "required_advancement": "spectrum:progression/unlock_potion_brewery"
+}

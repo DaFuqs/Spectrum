@@ -1,0 +1,13 @@
+{
+  "type": "spectrum:potion_workshop_crafting",
+  "time": 200,
+  "base_item": "spectrum:wet_lava_sponge",
+  "use_up_base_item": false,
+  "ingredient1": "minecraft:bucket",
+  "ingredient2": "minecraft:magma_block",
+  "ingredient3": "spectrum:light_gray_pigment",
+  "result" : {
+    "item": "minecraft:lava_bucket"
+  },
+  "required_advancement": "spectrum:hidden/collect_pigment/collect_light_gray_pigment"
+}

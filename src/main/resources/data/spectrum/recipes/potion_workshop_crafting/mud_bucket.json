@@ -1,0 +1,13 @@
+{
+  "type": "spectrum:potion_workshop_crafting",
+  "time": 200,
+  "base_item": "minecraft:bucket",
+  "use_up_base_item": true,
+  "ingredient1": "minecraft:dirt",
+  "ingredient2": "minecraft:coarse_dirt",
+  "ingredient3": "minecraft:air",
+  "result" : {
+    "item": "spectrum:mudbucket"
+  },
+  "required_advancement": "spectrum:progression/unlock_mud_bucket"
+}

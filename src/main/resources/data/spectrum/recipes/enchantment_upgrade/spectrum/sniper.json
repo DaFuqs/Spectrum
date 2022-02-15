@@ -1,0 +1,27 @@
+{
+  "type": "spectrum:enchantment_upgrade",
+  "enchantment": "spectrum:sniper",
+  "levels": [
+    {
+      "experience": 100,
+      "item": "spectrum:green_pigment",
+      "item_count": 8
+    },
+    {
+      "experience": 500,
+      "item": "spectrum:green_pigment",
+      "item_count": 32
+    },
+    {
+      "experience": 2500,
+      "item": "spectrum:green_pigment",
+      "item_count": 128
+    },
+    {
+      "experience": 5000,
+      "item": "spectrum:green_pigment",
+      "item_count": 512
+    }
+  ],
+  "required_advancement": "spectrum:progression/enchantments/sniper"
+}

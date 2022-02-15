@@ -24,7 +24,7 @@ public class SniperEnchantment extends SpectrumEnchantment {
 	}
 
 	public int getMaxLevel() {
-		return 1;
+		return 2;
 	}
 
 	public boolean canAccept(Enchantment other) {

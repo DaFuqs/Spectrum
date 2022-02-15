@@ -15,16 +15,16 @@
     {
       "type": "patchouli:text",
       "title": "Spectrum Enchantments",
-      "text": "Clovers' Favor: 3 => 6$(br)Disarming: 2 => 4$(br)Exuberance: 5 => 10$(br)First Strike: 2 => 5$(br)Improved Critical: 2 => 4$(br)Inertia: 2 => 5$(br)Tight Grip: 2 => 4$(br)Treasure Hunter: 3 => 5"
+      "text": "$(li)Clovers' Favor: 3 => 6$(li)Disarming: 2 => 4$(li)Exuberance: 5 => 10$(li)First Strike: 2 => 5$(li)Improved Critical: 2 => 4$(li)Inertia: 2 => 5$(li)Tight Grip: 2 => 4$(li)Treasure Hunter: 3 => 5$(li)Sniper: 2 => 4"
     },
     {
       "type": "patchouli:text",
       "title": "Vanilla Enchantments",
-      "text": "Bane of Arthropods: 5 => 8$(br)Blast Protection: 4 => 8$(br)Depth Strider: 3 => 3$(br)Efficiency: 5 => 8$(br)Feather Falling: 4 => 6$(br)Fire Aspect: 2 => 4$(br)Fire Protection: 4 => 8$(br)Fortune: 3 => 5$(br)Frost Walker: 2 => 4$(br)Impaling: 5 => 8$(br)Knockback: 2 => 5$(br)Looting: 3 => 6$(br)Loyalty: 3 => 4$(br)Luck of the Sea: 3 => 5"
+      "text": "Bane of Arthropods: 5 => 8$(li)Blast Protection: 4 => 8$(li)Depth Strider: 3 => 3$(li)Efficiency: 5 => 8$(li)Feather Falling: 4 => 6$(li)Fire Aspect: 2 => 4$(li)Fire Protection: 4 => 8$(li)Fortune: 3 => 5$(li)Frost Walker: 2 => 4$(li)Impaling: 5 => 8$(li)Knockback: 2 => 5$(li)Looting: 3 => 6$(li)Loyalty: 3 => 4$(li)Luck of the Sea: 3 => 5"
     },
     {
       "type": "patchouli:text",
-      "text": "Lure: 3 => 5$(br)Piercing: 4 => 8$(br)Power: 5 => 8$(br)Projectile Protection: 4 => 8$(br)Protection: 4 => 8$(br)Punch: 2 => 5$(br)Quick Charge: 3 => 5$(br)Respiration: 3 => 6$(br)Riptide: 3 => 4$(br)Sharpness: 5 => 8$(br)Smite: 5 => 8$(br)Soul Speed: 3 => 4$(br)Sweeping Edge: 3 => 7$(br)Thorns: 3 => 6$(br)Unbreaking: 3 => 6"
+      "text": "Lure: 3 => 5$(li)Piercing: 4 => 8$(li)Power: 5 => 8$(li)Projectile Protection: 4 => 8$(li)Protection: 4 => 8$(li)Punch: 2 => 5$(li)Quick Charge: 3 => 5$(li)Respiration: 3 => 6$(li)Riptide: 3 => 4$(li)Sharpness: 5 => 8$(li)Smite: 5 => 8$(li)Soul Speed: 3 => 4$(li)Sweeping Edge: 3 => 7$(li)Thorns: 3 => 6$(li)Unbreaking: 3 => 6"
     }
   ]
 }

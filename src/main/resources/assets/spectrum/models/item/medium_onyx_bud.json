@@ -1,5 +1,5 @@
 {
-  "parent": "minecraft:item/generated",
+  "parent": "minecraft:item/medium_amethyst_bud",
   "textures": {
     "layer0": "spectrum:block/medium_onyx_bud"
   }

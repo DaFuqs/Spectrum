@@ -1,5 +1,5 @@
 {
-  "parent": "minecraft:item/generated",
+  "parent": "minecraft:item/amethyst_cluster",
   "textures": {
     "layer0": "spectrum:block/moonstone_cluster"
   }

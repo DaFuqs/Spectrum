@@ -1,6 +1,6 @@
 {
   "criteria": {
-    "brewed_potion_in_potion_brewery": {
+    "brewed_potion_in_potion_workshop": {
       "trigger":"spectrum:has_advancement",
       "conditions": { "advancement_identifier": "spectrum:midgame/brew_potion_in_potion_workshop" }
     },

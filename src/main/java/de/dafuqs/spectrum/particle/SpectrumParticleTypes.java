@@ -21,7 +21,6 @@ public class SpectrumParticleTypes {
 	public static ParticleType<ItemTransferParticleEffect> ITEM_TRANSFER;
 	public static ParticleType<ExperienceTransferParticleEffect> EXPERIENCE_TRANSFER;
 	public static ParticleType<WirelessRedstoneTransmissionParticleEffect> WIRELESS_REDSTONE_TRANSMISSION;
-	
 	public static ParticleType<TransphereParticleEffect> TRANSPHERE;
 	
 	public static DefaultParticleType SHOOTING_STAR; // Dummy entry to get the sprite registered

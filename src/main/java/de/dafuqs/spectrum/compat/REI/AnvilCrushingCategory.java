@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.compat.REI;
 
 import com.google.common.collect.Lists;
 import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.recipe.anvil_crushing.AnvilCrushingRecipe;
 import me.shedaniel.math.Point;
 import me.shedaniel.math.Rectangle;
 import me.shedaniel.rei.api.client.gui.Renderer;
@@ -22,7 +21,7 @@ import net.minecraft.util.Identifier;
 
 import java.util.List;
 
-public class AnvilCrushingCategory<R extends AnvilCrushingRecipe> implements DisplayCategory<AnvilCrushingRecipeDisplay<R>> {
+public class AnvilCrushingCategory implements DisplayCategory<AnvilCrushingRecipeDisplay> {
 	
 	private final static Identifier WALL_TEXTURE = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/container/anvil_crushing.png");
 	private final static EntryIngredient ANVIL = EntryIngredients.of(new ItemStack(Items.ANVIL));

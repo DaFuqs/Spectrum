@@ -9,7 +9,7 @@ import me.shedaniel.rei.api.common.util.EntryIngredients;
 import java.util.Collections;
 import java.util.List;
 
-public class AnvilCrushingRecipeDisplay<R extends AnvilCrushingRecipe> implements Display {
+public class AnvilCrushingRecipeDisplay implements Display {
 
 	private final List<EntryIngredient> inputs;
 	private final EntryIngredient output;

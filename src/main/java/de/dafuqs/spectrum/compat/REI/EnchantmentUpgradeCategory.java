@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.compat.REI;
 
 import com.google.common.collect.Lists;
-import de.dafuqs.spectrum.recipe.enchantment_upgrade.EnchantmentUpgradeRecipe;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import me.shedaniel.math.Point;
 import me.shedaniel.math.Rectangle;
@@ -18,7 +17,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class EnchantmentUpgradeCategory<R extends EnchantmentUpgradeRecipe> implements DisplayCategory<EnchantmentUpgradeRecipeDisplay<R>> {
+public class EnchantmentUpgradeCategory implements DisplayCategory<EnchantmentUpgradeRecipeDisplay> {
 	
 	@Override
 	public CategoryIdentifier getCategoryIdentifier() {

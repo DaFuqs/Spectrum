@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.compat.REI;
 
 import com.google.common.collect.Lists;
-import de.dafuqs.spectrum.recipe.fusion_shrine.FusionShrineRecipe;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import me.shedaniel.math.Point;
 import me.shedaniel.math.Rectangle;
@@ -21,7 +20,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class FusionShrineCategory<R extends FusionShrineRecipe> implements DisplayCategory<FusionShrineRecipeDisplay<R>> {
+public class FusionShrineCategory implements DisplayCategory<FusionShrineRecipeDisplay> {
 	
 	private static final EntryIngredient FUSION_SHRINE_BASALT = EntryIngredients.of(new ItemStack(SpectrumBlocks.FUSION_SHRINE_BASALT));
 

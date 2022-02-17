@@ -28,12 +28,12 @@ public class REIClientIntegration implements REIClientPlugin {
 
 	@Override
 	public void registerCategories(CategoryRegistry registry) {
-		registry.add(new PedestalCraftingCategory<>());
-		registry.add(new AnvilCrushingCategory<>());
-		registry.add(new FusionShrineCategory<>());
+		registry.add(new PedestalCraftingCategory());
+		registry.add(new AnvilCrushingCategory());
+		registry.add(new FusionShrineCategory());
 		registry.add(new NaturesStaffConversionsCategory());
-		registry.add(new EnchanterCategory<>());
-		registry.add(new EnchantmentUpgradeCategory<>());
+		registry.add(new EnchanterCategory());
+		registry.add(new EnchantmentUpgradeCategory());
 		
 		registry.addWorkstations(BuiltinPlugin.CRAFTING, EntryStacks.of(SpectrumItems.CRAFTING_TABLET));
 		
@@ -72,13 +72,11 @@ public class REIClientIntegration implements REIClientPlugin {
 		registry.registerFiller(AnvilCrushingRecipe.class, AnvilCrushingRecipeDisplay::new);
 		registry.registerRecipeFiller(PedestalCraftingRecipe.class, SpectrumRecipeTypes.PEDESTAL, PedestalCraftingRecipeDisplay::new);
 		registry.registerRecipeFiller(FusionShrineRecipe.class, SpectrumRecipeTypes.FUSION_SHRINE, FusionShrineRecipeDisplay::new);
-		NaturesStaffItem.BLOCK_CONVERSIONS.entrySet().stream().forEach(set -> {
-			registry.add(new NaturesStaffConversionsDisplay(EntryStacks.of(set.getKey()), EntryStacks.of(set.getValue().getBlock())));
-		});
+		NaturesStaffItem.BLOCK_CONVERSIONS.forEach((key, value) -> registry.add(new NaturesStaffConversionsDisplay(EntryStacks.of(key), EntryStacks.of(value.getBlock()))));
 		registry.registerRecipeFiller(EnchanterRecipe.class, SpectrumRecipeTypes.ENCHANTER, EnchanterRecipeDisplay::new);
 		registry.registerRecipeFiller(EnchantmentUpgradeRecipe.class, SpectrumRecipeTypes.ENCHANTMENT_UPGRADE, EnchantmentUpgradeRecipeDisplay::new);
 		
-		// do not list not yet unlocked recipes in REI at all
+		// do not list recipes in REI at all, until they are unlocked
 		registry.registerVisibilityPredicate((category, display) -> {
 			if(display instanceof GatedRecipeDisplay gatedRecipeDisplay && !gatedRecipeDisplay.isUnlocked()) {
 				return EventResult.interruptFalse();

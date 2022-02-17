@@ -21,7 +21,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class EnchanterCategory<R extends EnchanterRecipeDisplay> implements DisplayCategory<EnchanterRecipeDisplay> {
+public class EnchanterCategory implements DisplayCategory<EnchanterRecipeDisplay> {
 	
 	public final static Identifier BACKGROUND_TEXTURE = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/container/enchanter.png");
 	public static final EntryIngredient ENCHANTER = EntryIngredients.of(new ItemStack(SpectrumBlocks.ENCHANTER));

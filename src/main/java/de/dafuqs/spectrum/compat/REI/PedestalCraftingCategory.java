@@ -4,7 +4,6 @@ import com.google.common.collect.Lists;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.enums.PedestalRecipeTier;
 import de.dafuqs.spectrum.inventories.PedestalScreen;
-import de.dafuqs.spectrum.recipe.pedestal.PedestalCraftingRecipe;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import me.shedaniel.math.Point;
 import me.shedaniel.math.Rectangle;
@@ -24,7 +23,7 @@ import net.minecraft.util.Identifier;
 
 import java.util.List;
 
-public class PedestalCraftingCategory<R extends PedestalCraftingRecipe> implements DisplayCategory<PedestalCraftingRecipeDisplay<R>> {
+public class PedestalCraftingCategory implements DisplayCategory<PedestalCraftingRecipeDisplay> {
 	
 	@Override
 	public CategoryIdentifier getCategoryIdentifier() {

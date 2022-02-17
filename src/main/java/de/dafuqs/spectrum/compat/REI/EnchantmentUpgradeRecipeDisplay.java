@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class EnchantmentUpgradeRecipeDisplay<R extends EnchantmentUpgradeRecipe> implements SimpleGridMenuDisplay, GatedRecipeDisplay {
+public class EnchantmentUpgradeRecipeDisplay implements SimpleGridMenuDisplay, GatedRecipeDisplay {
 	
 	protected final Enchantment enchantment;
 	protected final int enchantmentDestinationLevel;

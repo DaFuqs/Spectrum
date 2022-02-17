@@ -17,14 +17,13 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Recipe;
-import net.minecraft.screen.ScreenHandler;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class PedestalCraftingRecipeDisplay<R extends PedestalCraftingRecipe> extends BasicDisplay implements SimpleGridMenuDisplay, GatedRecipeDisplay {
+public class PedestalCraftingRecipeDisplay extends BasicDisplay implements SimpleGridMenuDisplay, GatedRecipeDisplay {
 
 	private final PedestalCraftingRecipe pedestalCraftingRecipe;
 	protected final List<EntryIngredient> craftingInputs;
@@ -76,18 +75,18 @@ public class PedestalCraftingRecipeDisplay<R extends PedestalCraftingRecipe> ext
 		}
 	}
 	
-	public static Serializer<PedestalCraftingRecipeDisplay<?>> serializer() {
-		return PedestalCraftingRecipeDisplay.Serializer.<PedestalCraftingRecipeDisplay<?>>ofSimple(PedestalCraftingRecipeDisplay::simple)
+	public static Serializer<PedestalCraftingRecipeDisplay> serializer() {
+		return PedestalCraftingRecipeDisplay.Serializer.ofSimple(PedestalCraftingRecipeDisplay::simple)
 				.inputProvider(PedestalCraftingRecipeDisplay::getOrganisedInputEntries);
 	}
 	
-	private static @NotNull PedestalCraftingRecipeDisplay<?> simple(List<EntryIngredient> inputs, List<EntryIngredient> outputs, @NotNull Optional<Identifier> identifier) {
+	private static @NotNull PedestalCraftingRecipeDisplay simple(List<EntryIngredient> inputs, List<EntryIngredient> outputs, @NotNull Optional<Identifier> identifier) {
 		Recipe<?> optionalRecipe = identifier.flatMap(resourceLocation -> RecipeManagerContext.getInstance().getRecipeManager().get(resourceLocation))
 				.orElse(null);
 		return new PedestalCraftingRecipeDisplay(inputs, outputs, optionalRecipe);
 	}
 	
-	public <T extends ScreenHandler> List<EntryIngredient> getOrganisedInputEntries() {
+	public List<EntryIngredient> getOrganisedInputEntries() {
 		List<EntryIngredient> list = new ArrayList<>();
 		List<EntryIngredient> inputs = getInputEntries();
 		int gemstonePowderStartIndex = inputs.size() - 5;
@@ -107,7 +106,7 @@ public class PedestalCraftingRecipeDisplay<R extends PedestalCraftingRecipe> ext
 		return list;
 	}
 	
-	public static int getSlotWithSize(@NotNull PedestalCraftingRecipeDisplay<?> display, int index) {
+	public static int getSlotWithSize(@NotNull PedestalCraftingRecipeDisplay display, int index) {
 		return getSlotWithSize(display.getWidth(), index);
 	}
 	

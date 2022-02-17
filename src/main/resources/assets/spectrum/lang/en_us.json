@@ -1072,7 +1072,7 @@
   "item.spectrum.whispy_circlet.tooltip3": "§7Sleeping fully heals",
 
   "item.spectrum.crafting_tablet": "Crafting Tablet",
-  "item.spectrum.crafting_tablet.tooltip.no_recipe": "Add items to the crafting grid to set a recipe",
+  "item.spectrum.crafting_tablet.tooltip.no_recipe": "Set items into the crafting grid to save a recipe",
   "item.spectrum.crafting_tablet.tooltip.crafting_recipe": "Press use to craft",
   "item.spectrum.crafting_tablet.tooltip.shift_to_view_gui": "Crouch-Use to open crafting grid",
   "item.spectrum.crafting_tablet.tooltip.pedestal_recipe": "Use in a Pedestal for Autocrafting",

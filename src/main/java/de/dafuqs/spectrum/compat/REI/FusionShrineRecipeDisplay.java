@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-public class FusionShrineRecipeDisplay<R extends FusionShrineRecipe> implements SimpleGridMenuDisplay, GatedRecipeDisplay {
+public class FusionShrineRecipeDisplay implements SimpleGridMenuDisplay, GatedRecipeDisplay {
 
 	protected final EntryIngredient fluidInput;
 	protected final List<EntryIngredient> craftingInputs;

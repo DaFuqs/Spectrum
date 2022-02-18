@@ -22,19 +22,14 @@ public class AzureDikeProvider implements EntityComponentInitializer {
 	/**
 	 * Uses as much Azure Dike as possible to protect the Provider from incoming damage
 	 * @param provider The Component Provider
-	 * @param damage The incoming damage
+	 * @param incomingDamage The incoming damage
 	 * @return All damage that could not be protected from
 	 */
-	public static float useAzureDike(LivingEntity provider, float damage) {
-		// Retrieve a provided component
-		int protection = AZURE_DIKE_COMPONENT.get(provider).getProtection();
-		
-		int usedProtection = Math.min(protection, (int) damage);
-		AZURE_DIKE_COMPONENT.get(provider).damage(usedProtection);
-		return Math.max(0, damage - usedProtection);
+	public static float absorbDamage(LivingEntity provider, float incomingDamage) {
+		return AZURE_DIKE_COMPONENT.get(provider).absorbDamage(incomingDamage);
 	}
 	
-	public static int getProtection(LivingEntity provider) {
+	public static int getAzureDikeCharges(LivingEntity provider) {
 		return AZURE_DIKE_COMPONENT.get(provider).getProtection();
 	}
 	

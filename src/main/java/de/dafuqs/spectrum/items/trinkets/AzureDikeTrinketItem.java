@@ -28,4 +28,19 @@ public abstract class AzureDikeTrinketItem extends SpectrumTrinketItem implement
 		recalculate(entity);
 	}
 	
+	@Override
+	public int maxAzureDike() {
+		return 4;
+	}
+	
+	@Override
+	public float azureDikeChargeBonusDefault() {
+		return 0;
+	}
+	
+	@Override
+	public float rechargeTicksAfterDamageBonus() {
+		return 0;
+	}
+	
 }

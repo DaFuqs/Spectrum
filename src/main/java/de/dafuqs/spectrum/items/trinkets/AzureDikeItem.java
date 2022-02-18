@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.items.trinkets;
 
 import de.dafuqs.spectrum.azure_dike.AzureDikeComponent;
 import de.dafuqs.spectrum.azure_dike.AzureDikeProvider;
+import de.dafuqs.spectrum.azure_dike.DefaultAzureDikeComponent;
 import dev.emi.trinkets.api.SlotReference;
 import dev.emi.trinkets.api.TrinketComponent;
 import dev.emi.trinkets.api.TrinketsApi;
@@ -15,7 +16,9 @@ public interface AzureDikeItem {
 	
 	int maxAzureDike();
 	
-	float azureDikeChargeBonus();
+	float azureDikeChargeBonusDefault();
+	
+	float rechargeTicksAfterDamageBonus();
 	
 	default void recalculate(LivingEntity livingEntity) {
 		if(!livingEntity.getWorld().isClient) {
@@ -24,14 +27,20 @@ public interface AzureDikeItem {
 			Optional<TrinketComponent> trinketComponent = TrinketsApi.getTrinketComponent(livingEntity);
 			if (trinketComponent.isPresent()) {
 				int maxProtection = 0;
-				float rechargeRate = 0;
+				int rechargeRateDefaultBonus = 0;
+				int rechargeTicksAfterDamageBonus = 0;
 				for (Pair<SlotReference, ItemStack> pair : trinketComponent.get().getAllEquipped()) {
 					if (pair.getRight().getItem() instanceof AzureDikeItem azureDikeItem) {
 						maxProtection += azureDikeItem.maxAzureDike();
-						rechargeRate += azureDikeItem.azureDikeChargeBonus();
+						rechargeRateDefaultBonus += azureDikeItem.azureDikeChargeBonusDefault();
+						rechargeTicksAfterDamageBonus += azureDikeItem.rechargeTicksAfterDamageBonus();
 					}
 				}
-				azureDikeComponent.set(maxProtection, rechargeRate, false);
+				
+				int rechargeRateDefault = Math.max(1, DefaultAzureDikeComponent.BASE_RECHARGE_RATE_DELAY_TICKS_DEFAULT - rechargeRateDefaultBonus);
+				int rechargeTicksAfterDamage = Math.max(1, DefaultAzureDikeComponent.BASE_RECHARGE_RATE_DELAY_TICKS_AFTER_DAMAGE - rechargeTicksAfterDamageBonus);
+				
+				azureDikeComponent.set(maxProtection, rechargeRateDefault, rechargeTicksAfterDamage, false);
 			}
 		}
 	}

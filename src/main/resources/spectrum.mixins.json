@@ -61,6 +61,7 @@
     "client.RenderLayerAccessor",
     "client.TransparentBlockMixin",
     "client.WorldRendererMixin",
+    "client.InGameHudMixin",
     "client.enchantment_descriptions.DescriptionManagerMixin"
   ],
   "injectors": {

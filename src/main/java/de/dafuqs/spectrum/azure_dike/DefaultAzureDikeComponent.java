@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.azure_dike;
 
 import dev.onyxstudios.cca.api.v3.component.sync.AutoSyncedComponent;
-import dev.onyxstudios.cca.api.v3.component.tick.ServerTickingComponent;
 import dev.onyxstudios.cca.api.v3.entity.PlayerCopyCallback;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.nbt.NbtCompound;
@@ -10,11 +9,17 @@ import org.jetbrains.annotations.NotNull;
 
 public class DefaultAzureDikeComponent implements AzureDikeComponent, AutoSyncedComponent, PlayerCopyCallback {
 	
+	public final static int BASE_RECHARGE_RATE_DELAY_TICKS_DEFAULT = 40;
+	public final static int BASE_RECHARGE_RATE_DELAY_TICKS_AFTER_DAMAGE = 200;
+	
 	private final LivingEntity provider;
 	
 	private int protection = 0;
+	private int currentRechargeDelay = 0;
+	
 	private int maxProtection = 0;
-	private float rechargeRate = 0;
+	private int rechargeDelayDefault = 0;
+	private int rechargeDelayTicksAfterDamage = 0;
 	
 	public DefaultAzureDikeComponent(LivingEntity entity) {
 		this.provider = entity;
@@ -31,19 +36,38 @@ public class DefaultAzureDikeComponent implements AzureDikeComponent, AutoSynced
 	}
 	
 	@Override
-	public float getRechargeRate() {
-		return this.rechargeRate;
+	public int getRechargeDelayDefault() {
+		return this.rechargeDelayDefault;
 	}
 	
 	@Override
-	public void damage(int usedProtection) {
-		this.protection -= usedProtection;
+	public int getCurrentRechargeDelay() {
+		return this.currentRechargeDelay;
 	}
 	
 	@Override
-	public void set(int maxProtection, float rechargeRate, boolean resetCharge) {
+	public int getRechargeDelayTicksAfterDamage() {
+		return this.rechargeDelayTicksAfterDamage;
+	}
+	
+	@Override
+	public float absorbDamage(float incomingDamage) {
+		this.currentRechargeDelay = this.rechargeDelayTicksAfterDamage;
+		if(this.protection > 0) {
+			int usedProtection = Math.min(protection, (int) incomingDamage);
+			this.protection -= usedProtection;
+			return incomingDamage - usedProtection;
+		} else {
+			return incomingDamage;
+		}
+	}
+	
+	@Override
+	public void set(int maxProtection, int rechargeDelayDefault, int fasterRechargeAfterDamageTicks, boolean resetCharge) {
 		this.maxProtection = maxProtection;
-		this.rechargeRate = rechargeRate;
+		this.rechargeDelayDefault = rechargeDelayDefault;
+		this.rechargeDelayTicksAfterDamage = fasterRechargeAfterDamageTicks;
+		this.currentRechargeDelay = this.rechargeDelayDefault;
 		if(resetCharge) {
 			this.protection = 0;
 		} else {
@@ -56,22 +80,31 @@ public class DefaultAzureDikeComponent implements AzureDikeComponent, AutoSynced
 	@Override
 	public void readFromNbt(NbtCompound tag) {
 		this.protection = tag.getInt("protection");
+		this.currentRechargeDelay = tag.getInt("current_recharge_delay");
+		
 		this.maxProtection = tag.getInt("max_protection");
-		this.rechargeRate = tag.getFloat("recharge_rate");
+		this.rechargeDelayDefault = tag.getInt("recharge_delay_default");
+		this.rechargeDelayTicksAfterDamage = tag.getInt("recharge_delay_after_damage");
 	}
 	
 	@Override
 	public void writeToNbt(NbtCompound tag) {
 		tag.putInt("protection", this.protection);
+		tag.putFloat("current_recharge_delay", this.currentRechargeDelay);
+		
 		tag.putInt("max_protection", this.maxProtection);
-		tag.putFloat("recharge_rate", this.rechargeRate);
+		tag.putFloat("recharge_delay_default", this.rechargeDelayDefault);
+		tag.putFloat("recharge_delay_after_damage", this.rechargeDelayTicksAfterDamage);
 	}
 	
 	@Override
 	public void serverTick() {
-		if(this.protection < this.maxProtection) {
+		if(this.currentRechargeDelay > 0) {
+			this.currentRechargeDelay--;
+		} else if(this.protection < this.maxProtection) {
 			this.protection++;
-			AzureDikeProvider.AZURE_DIKE_COMPONENT.sync(this.protection);
+			this.currentRechargeDelay = this.rechargeDelayDefault;
+			AzureDikeProvider.AZURE_DIKE_COMPONENT.sync(provider);
 		}
 	}
 	
@@ -80,9 +113,9 @@ public class DefaultAzureDikeComponent implements AzureDikeComponent, AutoSynced
 		AzureDikeComponent o = AzureDikeProvider.AZURE_DIKE_COMPONENT.get(original);
 		AzureDikeComponent c = AzureDikeProvider.AZURE_DIKE_COMPONENT.get(clone);
 		if(lossless) {
-			c.set(o.getMaxProtection(), o.getRechargeRate(), true);
+			c.set(o.getMaxProtection(), o.getRechargeDelayDefault(), o.getRechargeDelayTicksAfterDamage(), true);
 		} else {
-			c.set(o.getProtection(), o.getMaxProtection(), false);
+			c.set(o.getMaxProtection(), o.getRechargeDelayDefault(), o.getRechargeDelayTicksAfterDamage(), false);
 		}
 	}
 	

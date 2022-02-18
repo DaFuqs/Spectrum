@@ -50,9 +50,4 @@ public class AzureDikeRingItem extends AzureDikeTrinketItem {
 		return 3;
 	}
 	
-	@Override
-	public float azureDikeChargeBonus() {
-		return 0;
-	}
-	
 }

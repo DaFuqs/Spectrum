@@ -38,9 +38,4 @@ public class AzureDikeBeltItem extends AzureDikeTrinketItem {
 		return 4;
 	}
 	
-	@Override
-	public float azureDikeChargeBonus() {
-		return 0;
-	}
-	
 }

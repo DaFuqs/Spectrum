@@ -120,7 +120,10 @@ This does only disable the registration of said Enchantments, not all recipes ba
 	
 	@Comment("The duration a glow ink sac gives night vision when wearing a glow vision helmet in seconds")
 	public int GlowVisionGogglesDuration = 240;
-
+	
+	public int azureDikeHudX = 0;
+	public int azureDikeHudY = 0;
+	
 	@Override
 	public void validatePostLoad() {
 		if(VanillaRecipeCraftingTimeTicks <= 0) { VanillaRecipeCraftingTimeTicks = 40; }

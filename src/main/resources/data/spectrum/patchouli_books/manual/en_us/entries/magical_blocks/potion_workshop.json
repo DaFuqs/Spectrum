@@ -29,13 +29,13 @@
       "type": "patchouli:spotlight",
       "title": "Reagent: Redstone",
       "item": "minecraft:redstone",
-      "text": "Increases Duration"
+      "text": "Doubles Duration"
     },
     {
       "type": "patchouli:spotlight",
       "title": "Reagent: Glowstone",
       "item": "minecraft:glowstone",
-      "text": "Increases Level"
+      "text": "Increases Potency"
     },
     {
       "type": "patchouli:spotlight",
@@ -48,7 +48,7 @@
       "title": "Reagent: Dragons Breath",
       "item": "minecraft:dragon_breath",
       "advancement": "spectrum:hidden/collect_dragon_breath",
-      "text": "Creates Lingering Potions - Also requires Gunpowder$(br2)Allows you to create Tipped Arrows, if you supply Arrows instead of Water Bottles"
+      "text": "Creates Lingering Potions - also requires Gunpowder as reagent$(br2)Allows you to create Tipped Arrows, if you supply Arrows instead of Water Bottles"
     },
     {
       "type": "patchouli:spotlight",
@@ -60,13 +60,13 @@
       "type": "patchouli:spotlight",
       "title": "Reagent: Amethyst",
       "item": "spectrum:amethyst_powder",
-      "text": "Slightly increases Duration"
+      "text": "Adds a short flat bonus to the Potions Duration"
     },
     {
       "type": "patchouli:spotlight",
       "title": "Reagent: Citrine",
       "item": "spectrum:citrine_powder",
-      "text": "Slight chance to increase Level"
+      "text": "Slight flat Potency bonus"
     },
     {
       "type": "patchouli:spotlight",
@@ -85,21 +85,21 @@
       "type": "patchouli:spotlight",
       "title": "Reagent: Shimmerstone",
       "item": "spectrum:sparklestone_gem",
-      "text": "Tiny chance to increase both Duration and Level"
+      "text": "Tiny multiplicative bonus to both Duration and Potency"
     },
     {
       "type": "patchouli:spotlight",
       "title": "Reagent: Quitoxic Powder",
       "item": "spectrum:quitoxic_powder",
       "advancement": "spectrum:collect_quitoxic_reeds",
-      "text": "Increases Level of negative Effects by 1"
+      "text": "Increases Potency of all negative Effects by flat +1"
     },
     {
       "type": "patchouli:spotlight",
       "title": "Reagent: Crimtane",
       "item": "spectrum:scarlet_fragments",
       "advancement": "spectrum:midgame/collect_scarlet",
-      "text": "Greatly increases the Effects Potency, at the cost of adding a random negative Effect"
+      "text": "Flat +1 bonus to all Effects Potency, at the cost of adding a random negative Effect"
     },
     {
       "type": "patchouli:spotlight",
@@ -120,21 +120,49 @@
       "title": "Reagent: Star Fragment",
       "item": "spectrum:shooting_star",
       "advancement": "spectrum:collect_shooting_star",
-      "text": "$(italic)Similar to Stardust, but much more potent.$()$(br2)Reasonable chance to add the main Effect of the Potion that was brewed previously"
+      "text": "$(italic)Similar to Stardust, but much more potent.$()$(br2)Guaranteed chance to add the main Effect of the Potion that was brewed previously, at slightly decreased Potency"
     },
     {
       "type": "patchouli:spotlight",
       "title": "Reagent: Lightning Stone",
       "item": "spectrum:lightning_stone",
       "advancement": "spectrum:midgame/collect_lightning_stone",
-      "text": "Increases the Potions Effect at the beginning, but wearing off over time [multiple effects with different levels / durations]"
+      "text": "Increases the Potions Potency at the beginning, but wearing off fast over time"
     },
     {
       "type": "patchouli:spotlight",
       "title": "Reagent: Azurite",
       "item": "spectrum:raw_azurite",
       "advancement": "spectrum:midgame/collect_azurite",
-      "text": "Removes the duration penalty for Splash and Lingering Potions, decreases the penalty for Tipped Arrows"
+      "text": "Decreases the duration penalty for Splash and Lingering Potions as well as for Tipped Arrows"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Reagent: Four Leafed Clover",
+      "item": "spectrum:four_leaf_clover",
+      "advancement": "spectrum:collect_four_leaf_clover",
+      "text": "Provides a huge boost to a random stat"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Reagent: Vegetal",
+      "item": "spectrum:vegetal",
+      "advancement": "spectrum:collect_vegetal",
+      "text": "Doubles the potions Duration at the cost of their Potency"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Reagent: Neolith",
+      "item": "spectrum:neolith",
+      "advancement": "spectrum:midgame/collect_neolith",
+      "text": "Increases Yield, allowing you to brew an additional potion"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Reagent: Bedrock Dust",
+      "item": "spectrum:bedrock_dust",
+      "advancement": "spectrum:midgame/break_decayed_bedrock",
+      "text": "Doubles the Potions Potency, at the cost of their Duration"
     }
   ]
 }

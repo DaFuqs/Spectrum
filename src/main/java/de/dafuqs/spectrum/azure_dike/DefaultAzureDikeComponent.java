@@ -56,6 +56,11 @@ public class DefaultAzureDikeComponent implements AzureDikeComponent, AutoSynced
 		if(this.protection > 0) {
 			int usedProtection = Math.min(protection, (int) incomingDamage);
 			this.protection -= usedProtection;
+			
+			if(usedProtection > 0) {
+				AzureDikeProvider.AZURE_DIKE_COMPONENT.sync(provider);
+			}
+			
 			return incomingDamage - usedProtection;
 		} else {
 			return incomingDamage;

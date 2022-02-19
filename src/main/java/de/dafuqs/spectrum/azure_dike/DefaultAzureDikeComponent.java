@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.azure_dike;
 
+import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
 import dev.onyxstudios.cca.api.v3.component.sync.AutoSyncedComponent;
 import dev.onyxstudios.cca.api.v3.entity.PlayerCopyCallback;
 import net.minecraft.entity.LivingEntity;
@@ -59,6 +60,9 @@ public class DefaultAzureDikeComponent implements AzureDikeComponent, AutoSynced
 			
 			if(usedProtection > 0) {
 				AzureDikeProvider.AZURE_DIKE_COMPONENT.sync(provider);
+				if(provider instanceof ServerPlayerEntity serverPlayerEntity) {
+					SpectrumAdvancementCriteria.AZURE_DIKE_CHARGE.trigger(serverPlayerEntity, this.protection, this.rechargeDelayDefault, -usedProtection);
+				}
 			}
 			
 			return incomingDamage - usedProtection;
@@ -110,6 +114,9 @@ public class DefaultAzureDikeComponent implements AzureDikeComponent, AutoSynced
 			this.protection++;
 			this.currentRechargeDelay = this.rechargeDelayDefault;
 			AzureDikeProvider.AZURE_DIKE_COMPONENT.sync(provider);
+			if(provider instanceof ServerPlayerEntity serverPlayerEntity) {
+				SpectrumAdvancementCriteria.AZURE_DIKE_CHARGE.trigger(serverPlayerEntity, this.protection, this.rechargeDelayDefault, 1);
+			}
 		}
 	}
 	
@@ -117,11 +124,7 @@ public class DefaultAzureDikeComponent implements AzureDikeComponent, AutoSynced
 	public void copyData(@NotNull ServerPlayerEntity original, @NotNull ServerPlayerEntity clone, boolean lossless) {
 		AzureDikeComponent o = AzureDikeProvider.AZURE_DIKE_COMPONENT.get(original);
 		AzureDikeComponent c = AzureDikeProvider.AZURE_DIKE_COMPONENT.get(clone);
-		if(lossless) {
-			c.set(o.getMaxProtection(), o.getRechargeDelayDefault(), o.getRechargeDelayTicksAfterDamage(), true);
-		} else {
-			c.set(o.getMaxProtection(), o.getRechargeDelayDefault(), o.getRechargeDelayTicksAfterDamage(), false);
-		}
+		c.set(o.getMaxProtection(), o.getRechargeDelayDefault(), o.getRechargeDelayTicksAfterDamage(), lossless);
 	}
 	
 }

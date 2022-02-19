@@ -1,29 +1,26 @@
 {
-  "parent": "spectrum:midgame/create_refined_azurite",
+  "parent": "spectrum:midgame/collect_azurite",
   "display": {
     "icon": {
       "item": "spectrum:azure_dike_ring"
     },
     "title": {
-      "translate": "advancements.spectrum.max_azure_dike_charge.title"
+      "translate": "advancements.spectrum.get_azure_dike_charge.title"
     },
     "description": {
-      "translate": "advancements.spectrum.max_azure_dike_charge.description"
+      "translate": "advancements.spectrum.get_azure_dike_charge.description"
     }
   },
   "criteria": {
     "max_azure_dike_charge": {
       "trigger": "spectrum:azure_dike_charge_change",
       "new_charges": {
-        "min": 10
-      },
-      "recharge_rate": {
         "min": 1
       }
     },
     "gotten_previous": {
       "trigger":"spectrum:has_advancement",
-      "conditions": { "advancement_identifier": "spectrum:midgame/create_refined_azurite" }
+      "conditions": { "advancement_identifier": "spectrum:midgame/collect_azurite" }
     }
   }
 }

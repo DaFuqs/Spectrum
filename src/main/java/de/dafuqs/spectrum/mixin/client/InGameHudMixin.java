@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.mixin.client;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.azure_dike.AzureDikeComponent;
 import de.dafuqs.spectrum.azure_dike.AzureDikeProvider;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -24,8 +25,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(InGameHud.class)
 public class InGameHudMixin extends DrawableHelper {
     
-    private final static Identifier AZURE_DIKE_BAR_TEXTURE = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/azure_dike_overlay.png");
-    
     @Shadow
     @Final
     @Mutable
@@ -47,26 +46,23 @@ public class InGameHudMixin extends DrawableHelper {
             
             if (charges > 0) {
                 LivingEntity livingEntity = this.getRiddenEntity();
-                int variable_two;
-                int variable_three;
                 int height = this.scaledHeight - 49;
                 int width = this.scaledWidth / 2 + 91;
-                
+    
+                int v = 9;
+                int u = 0;
                 if (this.getHeartCount(livingEntity) == 0) {
                     for (int i = 0; i < 10; i++) {
-                        variable_three = height;
-                        int upperPos = 9;
-                        int lowerPos = 0;
                         
-                        variable_two = width - i * 8 - 9;
-                        variable_two = variable_two + SpectrumCommon.CONFIG.azureDikeHudX;
-                        variable_three = variable_three + SpectrumCommon.CONFIG.azureDikeHudY;
-                        RenderSystem.setShaderTexture(0, AZURE_DIKE_BAR_TEXTURE);
+                        int x = width - i * 8 - 9 + SpectrumCommon.CONFIG.azureDikeHudX;
+                        int y = height + SpectrumCommon.CONFIG.azureDikeHudY;
+                        
+                        RenderSystem.setShaderTexture(0, AzureDikeComponent.AZURE_DIKE_BAR_TEXTURE);
                         if (i * 2 + 1 < charges) {
-                            this.drawTexture(matrices, variable_two, variable_three, lowerPos, upperPos, 9, 9); // full charge icon
+                            this.drawTexture(matrices, x, y, u, v, 9, 9); // full charge icon
                         }
                         if (i * 2 + 1 == charges) {
-                            this.drawTexture(matrices, variable_two, variable_three, lowerPos + 9, upperPos, 9, 9); // half charge icon
+                            this.drawTexture(matrices, x, y, u + 9, v, 9, 9); // half charge icon
                         }
                     }
                     RenderSystem.setShaderTexture(0, GUI_ICONS_TEXTURE);

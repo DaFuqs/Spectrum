@@ -1,6 +1,8 @@
 package de.dafuqs.spectrum.mixin;
 
 import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.azure_dike.AzureDikeComponent;
+import de.dafuqs.spectrum.azure_dike.AzureDikeProvider;
 import de.dafuqs.spectrum.items.trinkets.AshenCircletItem;
 import de.dafuqs.spectrum.items.trinkets.SpectrumTrinketItem;
 import de.dafuqs.spectrum.networking.SpectrumS2CPackets;
@@ -15,6 +17,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
@@ -43,6 +46,8 @@ public abstract class LivingEntityMixin {
 	@Shadow @Nullable protected PlayerEntity attackingPlayer;
 	
 	@Shadow @Final private DefaultedList<ItemStack> syncedArmorStacks;
+	
+	@Shadow public abstract boolean removeStatusEffect(StatusEffect type);
 	
 	@ModifyArg(method = "dropXp()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/ExperienceOrbEntity;spawn(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/util/math/Vec3d;I)V"), index = 2)
 	protected int spectrum$applyExuberance(int originalXP) {
@@ -91,7 +96,16 @@ public abstract class LivingEntityMixin {
 			}
 		}
 	}
-
+	
+	@ModifyVariable(at = @At("HEAD"), method = "damage(Lnet/minecraft/entity/damage/DamageSource;F)Z", argsOnly = true)
+	public float spectrum$applyAzureDikeDamageProtection(float amount) {
+		if(amount > 0) {
+			return AzureDikeProvider.absorbDamage((LivingEntity) (Object) this, amount);
+		} else {
+			return amount;
+		}
+	}
+	
 	@Inject(at = @At("RETURN"), method = "damage(Lnet/minecraft/entity/damage/DamageSource;F)Z")
 	public void spectrum$applyDisarmingEnchantment(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
 		// true if the entity got hurt

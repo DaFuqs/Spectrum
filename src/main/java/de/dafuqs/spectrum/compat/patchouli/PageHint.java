@@ -83,7 +83,7 @@ public class PageHint extends BookPage {
 		}
 		
 		long textRevealProgress = MinecraftClient.getInstance().world.getTime() - revealTick;
-		if(textRevealProgress > text.asString().length()) {
+		if(textRevealProgress < 0 || textRevealProgress > text.asString().length()) { // for whatever reasons there are mods that tinker with global world time, instead of just day time
 			revealTick = 0;
 			return text;
 		} else {

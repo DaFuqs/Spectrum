@@ -31,7 +31,7 @@ public class EnchantmentUpgradeRecipeSerializer<T extends EnchantmentUpgradeReci
 		Identifier enchantmentIdentifier = Identifier.tryParse(JsonHelper.getString(jsonObject, "enchantment"));
 		
 		if(!Registry.ENCHANTMENT.containsId(enchantmentIdentifier)) {
-			throw new JsonParseException("Enchantment Upgrade Recipe " + identifier + " has a enchantment set that does not exist or is disabled: " + enchantmentIdentifier); // otherwise, recipe sync would break multiplayer joining with the non-existing enchantment
+			throw new JsonParseException("Enchantment Upgrade Recipe " + identifier + " has an enchantment set that does not exist or is disabled: " + enchantmentIdentifier); // otherwise, recipe sync would break multiplayer joining with the non-existing enchantment
 		}
 		
 		Enchantment enchantment = Registry.ENCHANTMENT.get(enchantmentIdentifier);

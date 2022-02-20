@@ -9,13 +9,13 @@
     "item": "minecraft:nether_wart"
   },
   "ingredient2": {
-    "item": "spectrum:citrine_shard"
+    "item": "spectrum:four_leaf_clover"
   },
   "ingredient3": {
     "item": "minecraft:fermented_spider_eye"
   },
-  "effect": "minecraft:hunger",
-  "base_duration_ticks": 900,
+  "effect": "minecraft:unluck",
+  "base_duration_ticks": 6000,
   "potency_modifier": 1.0,
   "applicable_to_potions": true,
   "applicable_to_tipped_arrows": true,

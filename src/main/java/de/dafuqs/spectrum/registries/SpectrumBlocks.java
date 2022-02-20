@@ -21,6 +21,7 @@ import de.dafuqs.spectrum.blocks.enchanter.EnchanterBlock;
 import de.dafuqs.spectrum.blocks.ender.EnderDropperBlock;
 import de.dafuqs.spectrum.blocks.ender.EnderHopperBlock;
 import de.dafuqs.spectrum.blocks.fluid.LiquidCrystalFluidBlock;
+import de.dafuqs.spectrum.blocks.fluid.MidnightSolutionFluidBlock;
 import de.dafuqs.spectrum.blocks.fluid.MudFluidBlock;
 import de.dafuqs.spectrum.blocks.fusion_shrine.FusionShrineBlock;
 import de.dafuqs.spectrum.blocks.gemstone.SpectrumBuddingBlock;
@@ -310,6 +311,7 @@ public class SpectrumBlocks {
 	// FLUIDS
 	public static final Block LIQUID_CRYSTAL = new LiquidCrystalFluidBlock(SpectrumFluids.LIQUID_CRYSTAL, FabricBlockSettings.copyOf(Blocks.WATER).luminance((state) -> 8));
 	public static final Block MUD = new MudFluidBlock(SpectrumFluids.MUD, FabricBlockSettings.copyOf(Blocks.WATER).suffocates(SpectrumBlocks::always));
+	public static final Block MIDNIGHT_SOLUTION = new MidnightSolutionFluidBlock(SpectrumFluids.MIDNIGHT_SOLUTION, FabricBlockSettings.copyOf(Blocks.WATER).suffocates(SpectrumBlocks::always));
 
 	// PASTEL NETWORK
 	public static final Block CONNECTION_NODE = new PastelNetworkNodeBlock(FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().requiresTool().sounds(BlockSoundGroup.AMETHYST_CLUSTER), "block.spectrum.connection_node.tooltip");
@@ -771,6 +773,7 @@ public class SpectrumBlocks {
 		// Fluids + Products
 		registerBlock("mud", MUD);
 		registerBlock("liquid_crystal", LIQUID_CRYSTAL);
+		registerBlock("midnight_solution", MIDNIGHT_SOLUTION);
 		registerBlockWithItem("frostbite_crystal", FROSTBITE_CRYSTAL, generalItemSettings);
 		registerBlockWithItem("blazing_crystal", BLAZING_CRYSTAL, generalItemSettings);
 		registerBlockWithItem("resonant_lily", RESONANT_LILY, generalItemSettings);

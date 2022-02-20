@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.fluid.LiquidCrystalFluid;
+import de.dafuqs.spectrum.blocks.fluid.MidnightSolutionFluid;
 import de.dafuqs.spectrum.blocks.fluid.MudFluid;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -32,10 +33,12 @@ public class SpectrumFluids {
 	// LIQUID CRYSTAL
 	public static final FlowableFluid LIQUID_CRYSTAL = new LiquidCrystalFluid.StillLiquidCrystal();
 	public static final FlowableFluid FLOWING_LIQUID_CRYSTAL = new LiquidCrystalFluid.FlowingLiquidCrystal();
-
 	// MUD
 	public static final FlowableFluid MUD = new MudFluid.StillMud();
 	public static final FlowableFluid FLOWING_MUD = new MudFluid.FlowingMud();
+	// MIDNIGHT SOLUTION
+	public static final FlowableFluid MIDNIGHT_SOLUTION = new MidnightSolutionFluid.StillMidnightSolution();
+	public static final FlowableFluid FLOWING_MIDNIGHT_SOLUTION = new MidnightSolutionFluid.FlowingMidnightSolution();
 
 	private static void registerFluid(String name, Fluid fluid) {
 		Registry.register(Registry.FLUID, new Identifier(SpectrumCommon.MOD_ID, name), fluid);
@@ -46,6 +49,8 @@ public class SpectrumFluids {
 		registerFluid("flowing_liquid_crystal", FLOWING_LIQUID_CRYSTAL);
 		registerFluid("mud", MUD);
 		registerFluid("flowing_mud", FLOWING_MUD);
+		registerFluid("midnight_solution", MIDNIGHT_SOLUTION);
+		registerFluid("flowing_midnight_solution", FLOWING_MIDNIGHT_SOLUTION);
 	}
 
 	@Environment(EnvType.CLIENT)
@@ -55,10 +60,14 @@ public class SpectrumFluids {
 
 		setupFluidRendering(MUD, FLOWING_MUD, new Identifier(SpectrumCommon.MOD_ID, "mud"), 0x4e2e0a);
 		BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getTranslucent(), MUD, FLOWING_MUD);
+		
+		// TODO: overlay
+		setupFluidRendering(MIDNIGHT_SOLUTION, FLOWING_MUD, new Identifier(SpectrumCommon.MOD_ID, "midnight_solution"), 0x4e2e0a);
+		BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getTranslucent(), MIDNIGHT_SOLUTION, FLOWING_MIDNIGHT_SOLUTION);
 	}
 
 	@Environment(EnvType.CLIENT)
-	public static void setupFluidRendering(final Fluid still, final Fluid flowing, final Identifier textureFluidId, final int color) {
+	private static void setupFluidRendering(final Fluid still, final Fluid flowing, final Identifier textureFluidId, final int color) {
 		final Identifier stillSpriteId = new Identifier(textureFluidId.getNamespace(), "block/" + textureFluidId.getPath() + "_still");
 		final Identifier flowingSpriteId = new Identifier(textureFluidId.getNamespace(), "block/" + textureFluidId.getPath() + "_flow");
 

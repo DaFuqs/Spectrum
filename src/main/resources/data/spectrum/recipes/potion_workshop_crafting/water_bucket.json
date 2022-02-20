@@ -1,13 +1,17 @@
 {
   "type": "spectrum:potion_workshop_crafting",
   "time": 200,
-  "base_item": "minecraft:bucket",
-  "use_up_base_item": false,
-  "ingredient1": "spectrum:cyan_pigment",
-  "ingredient2": "spectrum:light_blue_pigment",
-  "ingredient3": "minecraft:air",
+  "base_ingredient": {
+    "item": "minecraft:bucket"
+  },
+  "use_up_base_ingredient": false,
+  "ingredient1": {
+    "item": "spectrum:cyan_pigment"
+  },
+  "ingredient2": {
+    "item": "spectrum:light_blue_pigment"
+  },
   "result" : {
     "item": "minecraft:water_bucket"
-  },
-  "required_advancement": ""
+  }
 }

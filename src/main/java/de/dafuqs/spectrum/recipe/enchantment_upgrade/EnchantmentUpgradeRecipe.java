@@ -1,10 +1,13 @@
 package de.dafuqs.spectrum.recipe.enchantment_upgrade;
 
+import de.dafuqs.spectrum.Support;
 import de.dafuqs.spectrum.items.ExperienceStorageItem;
+import de.dafuqs.spectrum.recipe.GatedRecipe;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -20,7 +23,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Map;
 
-public class EnchantmentUpgradeRecipe implements Recipe<Inventory> {
+public class EnchantmentUpgradeRecipe implements Recipe<Inventory>, GatedRecipe {
 
 	protected final Identifier id;
 	
@@ -172,6 +175,11 @@ public class EnchantmentUpgradeRecipe implements Recipe<Inventory> {
 	
 	public boolean requiresUnlockedOverEnchanting() {
 		return this.enchantmentDestinationLevel > this.enchantment.getMaxLevel();
+	}
+	
+	@Override
+	public boolean canPlayerCraft(PlayerEntity playerEntity) {
+		return Support.hasAdvancement(playerEntity, this.requiredAdvancementIdentifier);
 	}
 	
 }

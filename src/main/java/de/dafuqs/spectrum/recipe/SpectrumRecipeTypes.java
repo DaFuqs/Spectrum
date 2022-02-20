@@ -11,6 +11,10 @@ import de.dafuqs.spectrum.recipe.fusion_shrine.FusionShrineRecipe;
 import de.dafuqs.spectrum.recipe.fusion_shrine.FusionShrineRecipeSerializer;
 import de.dafuqs.spectrum.recipe.pedestal.PedestalCraftingRecipe;
 import de.dafuqs.spectrum.recipe.pedestal.PedestalCraftingRecipeSerializer;
+import de.dafuqs.spectrum.recipe.potion_workshop.PotionWorkshopBrewingRecipe;
+import de.dafuqs.spectrum.recipe.potion_workshop.PotionWorkshopBrewingRecipeSerializer;
+import de.dafuqs.spectrum.recipe.potion_workshop.PotionWorkshopCraftingRecipe;
+import de.dafuqs.spectrum.recipe.potion_workshop.PotionWorkshopCraftingRecipeSerializer;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.RecipeType;
@@ -18,7 +22,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
 public class SpectrumRecipeTypes {
-
+	
 	public static RecipeSerializer<PedestalCraftingRecipe> PEDESTAL_RECIPE_SERIALIZER;
 	public static RecipeType<PedestalCraftingRecipe> PEDESTAL;
 
@@ -33,7 +37,12 @@ public class SpectrumRecipeTypes {
 	
 	public static RecipeSerializer<EnchantmentUpgradeRecipe> ENCHANTMENT_UPGRADE_RECIPE_SERIALIZER;
 	public static RecipeType<EnchantmentUpgradeRecipe> ENCHANTMENT_UPGRADE;
-
+	
+	public static RecipeSerializer<PotionWorkshopBrewingRecipe> POTION_WORKSHOP_BREWING_RECIPE_SERIALIZER;
+	public static RecipeType<PotionWorkshopBrewingRecipe> POTION_WORKSHOP_BREWING;
+	
+	public static RecipeSerializer<PotionWorkshopCraftingRecipe> POTION_WORKSHOP_CRAFTING_RECIPE_SERIALIZER;
+	public static RecipeType<PotionWorkshopCraftingRecipe> POTION_WORKSHOP_CRAFTING;
 
 	static <S extends RecipeSerializer<T>, T extends Recipe<?>> S registerSerializer(String id, S serializer) {
 		return Registry.register(Registry.RECIPE_SERIALIZER, new Identifier(SpectrumCommon.MOD_ID, id), serializer);
@@ -72,6 +81,18 @@ public class SpectrumRecipeTypes {
 		ENCHANTMENT_UPGRADE = registerRecipeType("enchantment_upgrade", new RecipeType<EnchantmentUpgradeRecipe>() {
 			@Override
 			public String toString() {return "spectrum:enchantment_upgrade";}
+		});
+		
+		POTION_WORKSHOP_BREWING_RECIPE_SERIALIZER = registerSerializer("potion_workshop_brewing", new PotionWorkshopBrewingRecipeSerializer(PotionWorkshopBrewingRecipe::new));
+		POTION_WORKSHOP_BREWING = registerRecipeType("potion_workshop_brewing", new RecipeType<PotionWorkshopBrewingRecipe>() {
+			@Override
+			public String toString() {return "spectrum:potion_workshop_brewing";}
+		});
+		
+		POTION_WORKSHOP_CRAFTING_RECIPE_SERIALIZER = registerSerializer("potion_workshop_crafting", new PotionWorkshopCraftingRecipeSerializer(PotionWorkshopCraftingRecipe::new));
+		POTION_WORKSHOP_CRAFTING = registerRecipeType("potion_workshop_crafting", new RecipeType<PotionWorkshopCraftingRecipe>() {
+			@Override
+			public String toString() {return "spectrum:potion_workshop_crafting";}
 		});
 
 	}

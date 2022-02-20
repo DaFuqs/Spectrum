@@ -8,6 +8,7 @@ import de.dafuqs.spectrum.blocks.pedestal.PedestalBlockItem;
 import de.dafuqs.spectrum.enums.GemstoneColor;
 import de.dafuqs.spectrum.enums.PedestalRecipeTier;
 import de.dafuqs.spectrum.progression.ClientRecipeToastManager;
+import de.dafuqs.spectrum.recipe.GatedRecipe;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import de.dafuqs.spectrum.registries.SpectrumItems;
@@ -32,7 +33,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
-public class PedestalCraftingRecipe implements Recipe<Inventory> {
+public class PedestalCraftingRecipe implements Recipe<Inventory>, GatedRecipe {
 
 	protected final Identifier id;
 	protected final String group;

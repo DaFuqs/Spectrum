@@ -1,12 +1,15 @@
 package de.dafuqs.spectrum.recipe.enchanter;
 
 import de.dafuqs.spectrum.SpectrumClient;
+import de.dafuqs.spectrum.Support;
 import de.dafuqs.spectrum.items.ExperienceStorageItem;
 import de.dafuqs.spectrum.progression.ClientRecipeToastManager;
+import de.dafuqs.spectrum.recipe.GatedRecipe;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Ingredient;
@@ -18,7 +21,7 @@ import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-public class EnchanterRecipe implements Recipe<Inventory> {
+public class EnchanterRecipe implements Recipe<Inventory>, GatedRecipe {
 
 	protected final Identifier id;
 	protected final String group;
@@ -144,5 +147,10 @@ public class EnchanterRecipe implements Recipe<Inventory> {
 	public boolean areYieldAndEfficiencyUpgradesDisabled() {
 		return noBenefitsFromYieldAndEfficiencyUpgrades;
 	}
-
+	
+	@Override
+	public boolean canPlayerCraft(PlayerEntity playerEntity) {
+		return Support.hasAdvancement(playerEntity, this.requiredAdvancementIdentifier);
+	}
+	
 }

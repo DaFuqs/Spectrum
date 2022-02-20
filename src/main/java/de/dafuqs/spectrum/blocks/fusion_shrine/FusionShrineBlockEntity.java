@@ -180,7 +180,7 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 			if(fusionShrineBlockEntity.craftingTime % 60 == 0) {
 				PlayerEntity lastInteractedPlayer = PlayerOwned.getPlayerEntityIfOnline(world, fusionShrineBlockEntity.ownerUUID);
 				
-				boolean recipeConditionsMet = Support.hasAdvancement(lastInteractedPlayer, recipe.getRequiredAdvancementIdentifier()) && recipe.areConditionMetCurrently(world);
+				boolean recipeConditionsMet = recipe.canPlayerCraft(lastInteractedPlayer) && recipe.areConditionMetCurrently(world);
 				boolean structureCompleteWithSky = FusionShrineBlock.verifyStructureWithSkyAccess(world, blockPos, null);
 				
 				if(!recipeConditionsMet || !structureCompleteWithSky) {

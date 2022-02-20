@@ -379,9 +379,9 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 		
 		boolean playerCanCraft = true;
 		if (enchanterBlockEntity.currentRecipe instanceof EnchanterRecipe enchanterRecipe) {
-			playerCanCraft = Support.hasAdvancement(lastInteractedPlayer, enchanterRecipe.getRequiredAdvancementIdentifier());
+			playerCanCraft = enchanterRecipe.canPlayerCraft(lastInteractedPlayer);
 		} else if (enchanterBlockEntity.currentRecipe instanceof EnchantmentUpgradeRecipe enchantmentUpgradeRecipe) {
-			playerCanCraft = Support.hasAdvancement(lastInteractedPlayer, enchantmentUpgradeRecipe.getRequiredAdvancementIdentifier()) && (enchanterBlockEntity.canOwnerOverenchant || !enchantmentUpgradeRecipe.requiresUnlockedOverEnchanting());
+			playerCanCraft = enchantmentUpgradeRecipe.canPlayerCraft(lastInteractedPlayer) && (enchanterBlockEntity.canOwnerOverenchant || !enchantmentUpgradeRecipe.requiresUnlockedOverEnchanting());
 		}
 		boolean structureComplete = EnchanterBlock.verifyStructure(world, blockPos, null);
 		

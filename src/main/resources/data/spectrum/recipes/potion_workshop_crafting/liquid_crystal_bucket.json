@@ -1,11 +1,19 @@
 {
   "type": "spectrum:potion_workshop_crafting",
   "time": 200,
-  "base_item": "minecraft:bucket",
-  "use_up_base_item": true,
-  "ingredient1": "spectrum:pink_pigment",
-  "ingredient2": "spectrum:yellow_pigment",
-  "ingredient3": "spectrum:sparklestone_gem",
+  "base_ingredient": {
+    "item": "minecraft:bucket"
+  },
+  "use_up_base_ingredient": true,
+  "ingredient1": {
+    "item": "spectrum:pink_pigment"
+  },
+  "ingredient2": {
+    "item": "spectrum:yellow_pigment"
+  },
+  "ingredient3": {
+    "item": "spectrum:sparklestone_gem"
+  },
   "result" : {
     "item": "spectrum:liquid_crystal_bucket"
   },

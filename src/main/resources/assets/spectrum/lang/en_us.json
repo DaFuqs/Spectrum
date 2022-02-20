@@ -1056,7 +1056,7 @@
   "item.spectrum.radiance_pin": "Radiance Pin",
   "item.spectrum.radiance_pin.tooltip": "§7Automatically places temporary Lights when in the Dark",
   "item.spectrum.ashen_circlet": "Ashen Circlet",
-  "item.spectrum.ashen_circlet.tooltip": "§7Protects you from fire damage and",
+  "item.spectrum.ashen_circlet.tooltip": "§7Protects you from Fire Damage and",
   "item.spectrum.ashen_circlet.tooltip2": "§7grants better vision and speed in Lava",
   "item.spectrum.ashen_circlet.tooltip.cooldown_full": "§2Ready to absorb immense heat",
   "item.spectrum.ashen_circlet.tooltip.cooldown_seconds": "%d§7 Seconds until fully recharged",

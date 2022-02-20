@@ -26,8 +26,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
 import net.minecraft.util.registry.Registry;
 
-import static de.dafuqs.spectrum.registries.SpectrumFluids.LIQUID_CRYSTAL;
-import static de.dafuqs.spectrum.registries.SpectrumFluids.MUD;
+import static de.dafuqs.spectrum.registries.SpectrumFluids.*;
 
 public class SpectrumItems {
 
@@ -142,10 +141,12 @@ public class SpectrumItems {
 	public static final Item BEDROCK_DUST = new CloakedItem(resourcesRareItemSettings, new Identifier(SpectrumCommon.MOD_ID, "midgame/break_decayed_bedrock"), Items.GUNPOWDER);
 	
 	public static final Item MIDNIGHT_ABERRATION = new CloakedItem(resourcesRareItemSettings, new Identifier(SpectrumCommon.MOD_ID, "midgame/create_midnight_aberration"), SpectrumItems.SPECTRAL_SHARD);
+	public static final Item MIDNIGHT_CHIP = new CloakedItem(resourcesRareItemSettings, new Identifier(SpectrumCommon.MOD_ID, "midgame/create_midnight_aberration"), SpectrumItems.SPECTRAL_SHARD);
 
 	// Fluid Buckets
 	public static final Item LIQUID_CRYSTAL_BUCKET = new BucketItem(LIQUID_CRYSTAL, generalItemSettingsSingle);
 	public static final Item MUD_BUCKET = new BucketItem(MUD, generalItemSettingsSingle);
+	public static final Item MIDNIGHT_SOLUTION_BUCKET = new BucketItem(MIDNIGHT_SOLUTION, generalItemSettingsSingle);
 
 	// Decay bottles
 	public static final Item BOTTLE_OF_FADING = new DecayPlacerItem(SpectrumBlocks.FADING, decayPlacerItemSettings);
@@ -321,6 +322,7 @@ public class SpectrumItems {
 		register("neolith", CORRUPTED_OBSIDIAN_DUST);
 		register("bedrock_dust", BEDROCK_DUST);
 		register("midnight_aberration", MIDNIGHT_ABERRATION);
+		register("midnight_chip", MIDNIGHT_CHIP);
 	}
 	
 	public static void registerDecayBottles() {
@@ -393,6 +395,7 @@ public class SpectrumItems {
 	public static void registerFluidBuckets() {
 		register("liquid_crystal_bucket", LIQUID_CRYSTAL_BUCKET);
 		register("mud_bucket", MUD_BUCKET);
+		register("midnight_solution_bucket", MIDNIGHT_SOLUTION_BUCKET);
 	}
 	
 	public static void registerFuelRegistry() {

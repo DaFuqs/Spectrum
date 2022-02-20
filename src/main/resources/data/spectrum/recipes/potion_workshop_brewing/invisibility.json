@@ -1,11 +1,19 @@
 {
   "type": "spectrum:potion_workshop_brewing",
   "time": 200,
-  "base_item": "minecraft:bottle",
-  "use_up_base_item": true,
-  "ingredient1": "minecraft:nether_wart",
-  "ingredient2": "minecraft:golden_carrot",
-  "ingredient3": "minecraft:fermented_spider_eye",
+  "base_ingredient": {
+    "item": "minecraft:glass_bottle"
+  },
+  "use_up_base_ingredient": true,
+  "ingredient1": {
+    "item": "minecraft:nether_wart"
+  },
+  "ingredient2": {
+    "item": "minecraft:golden_carrot"
+  },
+  "ingredient3": {
+    "item": "minecraft:fermented_spider_eye"
+  },
   "effect": "minecraft:invisibility",
   "base_duration_ticks": 3600,
   "potency_modifier": 0.0,

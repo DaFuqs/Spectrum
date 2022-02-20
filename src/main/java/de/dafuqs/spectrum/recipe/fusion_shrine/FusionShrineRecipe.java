@@ -1,11 +1,14 @@
 package de.dafuqs.spectrum.recipe.fusion_shrine;
 
 import de.dafuqs.spectrum.SpectrumClient;
+import de.dafuqs.spectrum.Support;
 import de.dafuqs.spectrum.progression.ClientRecipeToastManager;
+import de.dafuqs.spectrum.recipe.GatedRecipe;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
@@ -23,7 +26,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.Optional;
 
-public class FusionShrineRecipe implements Recipe<Inventory> {
+public class FusionShrineRecipe implements Recipe<Inventory>, GatedRecipe {
 
 	protected final Identifier id;
 	protected final String group;
@@ -219,5 +222,10 @@ public class FusionShrineRecipe implements Recipe<Inventory> {
 	public boolean areYieldUpgradesDisabled() {
 		return noBenefitsFromYieldUpgrades;
 	}
-
+	
+	@Override
+	public boolean canPlayerCraft(PlayerEntity playerEntity) {
+		return Support.hasAdvancement(playerEntity, this.requiredAdvancementIdentifier);
+	}
+	
 }

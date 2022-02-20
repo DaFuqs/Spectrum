@@ -27,6 +27,7 @@ public class SpectrumMultiblocks {
 
 	public static Identifier FUSION_SHRINE_IDENTIFIER;
 	public static Identifier ENCHANTER_IDENTIFIER;
+	public static Identifier SPIRIT_INSTILLER_IDENTIFIER;
 	
 	private static Identifier registerMultiBlock(String identifierString, String[][] structure, Object[] targetBlocks) {
 		Identifier identifier = new Identifier(SpectrumCommon.MOD_ID, identifierString);
@@ -39,6 +40,7 @@ public class SpectrumMultiblocks {
 		registerPedestal();
 		registerFusionShrine();
 		registerEnchanter();
+		registerSpiritInstiller();
 	}
 
 	private static void registerFusionShrine() {
@@ -61,6 +63,29 @@ public class SpectrumMultiblocks {
 				{ "__XXXXX__", "_XXXXXXX_", "XXCXXXCXX", "XXXLLLXXX", "XXXL0LXXX", "XXXLLLXXX", "XXCXXXCXX", "_XXXXXXX_", "__XXXXX__" }
 		};
 		FUSION_SHRINE_IDENTIFIER = registerMultiBlock("fusion_shrine_structure", structure, targetBlocks);
+	}
+	
+	private static void registerSpiritInstiller() {
+		// TODO
+		Object[] targetBlocks = {
+				'X', "#spectrum:polished_base_blocks",
+				'P', "#spectrum:pillar_base_blocks",
+				'L', "#spectrum:polished_base_block_slabs",
+				'S', "#spectrum:gemstone_storage_blocks",
+				'C', "#spectrum:chiseled_base_blocks",
+				'F', "#spectrum:fusion_shrines",
+				'_', StateMatcher.ANY,
+				'0', "#spectrum:polished_base_blocks",
+		};
+		
+		String[][] structure = {
+				{ "_________", "_L_____L_", "_________", "_________", "_________", "_________", "_________", "_L_ ___L_", "_________" },
+				{ "_________", "_S_____S_", "_________", "_________", "_________", "_________", "_________", "_S_____S_", "_________" },
+				{ "_________", "_P_____P_", "_________", "_________", "_________", "_________", "_________", "_P_____P_", "_________" },
+				{ "__XXXXX__", "_P_____P_", "X_______X", "X_______X", "X___F___X", "X_______X", "X_______X", "_P_____P_", "__XXXXX__" },
+				{ "__XXXXX__", "_XXXXXXX_", "XXCXXXCXX", "XXXLLLXXX", "XXXL0LXXX", "XXXLLLXXX", "XXCXXXCXX", "_XXXXXXX_", "__XXXXX__" }
+		};
+		SPIRIT_INSTILLER_IDENTIFIER = registerMultiBlock("spirit_instiller_structure", structure, targetBlocks);
 	}
 
 	private static void registerEnchanter() {

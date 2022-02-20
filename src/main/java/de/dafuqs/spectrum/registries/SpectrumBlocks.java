@@ -134,6 +134,9 @@ public class SpectrumBlocks {
 	public static final Block ITEM_BOWL_BASALT = new ItemBowlBlock(FabricBlockSettings.of(Material.STONE).hardness(3.0f).nonOpaque());
 	public static final Block ITEM_BOWL_CALCITE = new ItemBowlBlock(FabricBlockSettings.of(Material.STONE).hardness(3.0f).nonOpaque());
 	public static final Block POTION_WORKSHOP = new PotionWorkshopBlock(FabricBlockSettings.of(Material.STONE).hardness(3.0f).nonOpaque());
+	
+	public static final Block SPIRIT_INSTILLER = new Block(FabricBlockSettings.of(Material.STONE).hardness(3.0f).nonOpaque());
+	public static final Block CREATURE_SPAWN = new Block(FabricBlockSettings.of(Material.STONE).hardness(3.0f).nonOpaque());
 
 	// GEMS
 	public static final Block TOPAZ_CLUSTER = new AmethystClusterBlock(7, 3, FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().requiresTool().sounds(SpectrumBlockSoundGroups.TOPAZ_CLUSTER).luminance((state) -> 6));
@@ -717,6 +720,9 @@ public class SpectrumBlocks {
 		registerBlockWithItem("item_bowl_basalt", ITEM_BOWL_BASALT, generalItemSettingsSixteen);
 		registerBlockWithItem("item_bowl_calcite", ITEM_BOWL_CALCITE, generalItemSettingsSixteen);
 		registerBlockWithItem("potion_workshop", POTION_WORKSHOP, generalItemSettingsSingle);
+		
+		registerBlockWithItem("spirit_instiller", SPIRIT_INSTILLER, generalItemSettingsSingle);
+		registerBlockWithItem("creature_spawn", CREATURE_SPAWN, generalItemSettingsSingle);
 		
 		registerBlockWithItem("upgrade_speed", UPGRADE_SPEED, new UpgradeBlockItem(UPGRADE_SPEED, generalItemSettingsEight, "upgrade_speed"));
 		registerBlockWithItem("upgrade_speed2", UPGRADE_SPEED2, new UpgradeBlockItem(UPGRADE_SPEED2, generalItemSettingsUncommonEight, "upgrade_speed2"));

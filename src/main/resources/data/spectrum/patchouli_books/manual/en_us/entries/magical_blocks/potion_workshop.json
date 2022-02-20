@@ -15,7 +15,7 @@
       "text": "Instead of Blaze Powder, the Potion Workshop runs on Mermaids Gems. The main advantage of this is that you don't have to manually pre-fill your bottles with water each time."
     },
     {
-      "type": "spectrum:text",
+      "type": "patchouli:text",
       "title": "Using Reagents",
       "text": "The Base of Mermaids Gems allows you to add a wide range of additional magical ingredients to your Potions. Each of those Reagents modifies the resulting properties of your Potions. Each Reagent can only be used once per recipe."
     },

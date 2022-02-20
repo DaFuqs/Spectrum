@@ -30,11 +30,6 @@ public class PotionWorkshopCraftingRecipe extends PotionWorkshopRecipe {
 	}
 	
 	@Override
-	public boolean canPlayerCraft(PlayerEntity playerEntity) {
-		return Support.hasAdvancement(playerEntity, this.requiredAdvancementIdentifier);
-	}
-	
-	@Override
 	public ItemStack craft(Inventory inventory) {
 		return null;
 	}

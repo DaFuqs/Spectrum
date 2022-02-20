@@ -1,8 +1,10 @@
 package de.dafuqs.spectrum.recipe.potion_workshop;
 
+import de.dafuqs.spectrum.Support;
 import de.dafuqs.spectrum.recipe.GatedRecipe;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Ingredient;
@@ -92,5 +94,19 @@ public abstract class PotionWorkshopRecipe implements Recipe<Inventory>, GatedRe
 		}
 		return false;
 	}
-
+	
+	/**
+	 * The advancement the player has to have to let the recipe be craftable
+	 * @return The advancement identifier. A null value means the player is always able to craft this recipe
+	 */
+	@Nullable
+	public Identifier getRequiredAdvancementIdentifier() {
+		return requiredAdvancementIdentifier;
+	}
+	
+	@Override
+	public boolean canPlayerCraft(PlayerEntity playerEntity) {
+		return Support.hasAdvancement(playerEntity, this.requiredAdvancementIdentifier);
+	}
+	
 }

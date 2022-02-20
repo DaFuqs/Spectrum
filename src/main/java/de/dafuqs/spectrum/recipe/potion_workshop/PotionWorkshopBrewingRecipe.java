@@ -10,6 +10,7 @@ import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.util.Identifier;
+import org.jetbrains.annotations.Nullable;
 
 public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 
@@ -35,11 +36,6 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 
 	public RecipeType<?> getType() {
 		return SpectrumRecipeTypes.POTION_WORKSHOP_BREWING;
-	}
-	
-	@Override
-	public boolean canPlayerCraft(PlayerEntity playerEntity) {
-		return Support.hasAdvancement(playerEntity, this.requiredAdvancementIdentifier);
 	}
 	
 	@Override

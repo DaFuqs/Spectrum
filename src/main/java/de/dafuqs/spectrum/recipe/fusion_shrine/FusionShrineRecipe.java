@@ -152,7 +152,7 @@ public class FusionShrineRecipe implements Recipe<Inventory>, GatedRecipe {
 	}
 
 	/**
-	 * The advancement the player has to have to let the recipe be craftable in the pedestal
+	 * The advancement the player has to have to let the recipe be craftable
 	 * @return The advancement identifier. A null value means the player is always able to craft this recipe
 	 */
 	@Nullable

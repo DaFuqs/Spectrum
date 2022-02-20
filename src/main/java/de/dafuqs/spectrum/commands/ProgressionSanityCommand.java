@@ -16,6 +16,8 @@ import de.dafuqs.spectrum.recipe.enchanter.EnchanterRecipe;
 import de.dafuqs.spectrum.recipe.enchantment_upgrade.EnchantmentUpgradeRecipe;
 import de.dafuqs.spectrum.recipe.fusion_shrine.FusionShrineRecipe;
 import de.dafuqs.spectrum.recipe.pedestal.PedestalCraftingRecipe;
+import de.dafuqs.spectrum.recipe.potion_workshop.PotionWorkshopBrewingRecipe;
+import de.dafuqs.spectrum.recipe.potion_workshop.PotionWorkshopCraftingRecipe;
 import de.dafuqs.spectrum.registries.SpectrumBlockTags;
 import de.dafuqs.spectrum.registries.color.ColorRegistry;
 import net.minecraft.advancement.Advancement;
@@ -80,13 +82,15 @@ public class ProgressionSanityCommand {
 			if (registryKey.getValue().getNamespace().equals(SpectrumCommon.MOD_ID)) {
 				Block block = entry.getValue();
 				Identifier lootTableID = block.getLootTableId();
-				if(lootTableID.equals(LootTables.EMPTY) || lootTableID.getPath().equals("blocks/air")) {
-					SpectrumCommon.log(Level.WARN, "[SANITY: Loot Tables] Block " + registryKey.getValue() + " does have a non-existent loot table");
-				} else if(!SpectrumBlockTags.EXEMPT_FROM_LOOT_TABLE_DEBUG_CHECK.contains(block)) {
-					LootTable lootTable = source.getWorld().getServer().getLootManager().getTable(lootTableID);
-					LootPool[] lootPools = ((LootTableAccessor) lootTable).getPools();
-					if(lootPools.length == 0) {
-						SpectrumCommon.log(Level.WARN, "[SANITY: Loot Tables] Block " + registryKey.getValue() + " has an empty loot table");
+				if(!SpectrumBlockTags.EXEMPT_FROM_LOOT_TABLE_DEBUG_CHECK.contains(block)) {
+					if (lootTableID.equals(LootTables.EMPTY) || lootTableID.getPath().equals("blocks/air")) {
+						SpectrumCommon.log(Level.WARN, "[SANITY: Loot Tables] Block " + registryKey.getValue() + " does have a non-existent loot table");
+					} else {
+						LootTable lootTable = source.getWorld().getServer().getLootManager().getTable(lootTableID);
+						LootPool[] lootPools = ((LootTableAccessor) lootTable).getPools();
+						if (lootPools.length == 0) {
+							SpectrumCommon.log(Level.WARN, "[SANITY: Loot Tables] Block " + registryKey.getValue() + " has an empty loot table");
+						}
 					}
 				}
 			}
@@ -156,6 +160,20 @@ public class ProgressionSanityCommand {
 			Item outputItem = fusionShrineRecipe.getOutput().getItem();
 			if(outputItem != Items.AIR && ColorRegistry.ITEM_COLORS.getMapping(outputItem).isEmpty()) {
 				SpectrumCommon.log(Level.WARN, "[SANITY: Fusion Shrine Recipe] Output '" + Registry.ITEM.getId(outputItem) + "' in recipe '" + fusionShrineRecipe.getId() + "', does not exist in the item color registry. Add it for nice effects!");
+			}
+		}
+		
+		// Impossible to unlock potion workshop brewing recipes
+		for(PotionWorkshopBrewingRecipe potionWorkshopBrewingRecipe : SpectrumCommon.minecraftServer.getRecipeManager().listAllOfType(SpectrumRecipeTypes.POTION_WORKSHOP_BREWING)) {
+			if(!doesAdvancementExist(potionWorkshopBrewingRecipe.getRequiredAdvancementIdentifier())) {
+				SpectrumCommon.log(Level.WARN, "[SANITY: Potion Workshop Brewing Unlocks] Advancement '" + potionWorkshopBrewingRecipe.getRequiredAdvancementIdentifier() + "' in recipe '" + potionWorkshopBrewingRecipe.getId() + "' does not exist");
+			}
+		}
+		
+		// Impossible to unlock potion workshop crafting recipes
+		for(PotionWorkshopCraftingRecipe potionWorkshopCraftingRecipe : SpectrumCommon.minecraftServer.getRecipeManager().listAllOfType(SpectrumRecipeTypes.POTION_WORKSHOP_CRAFTING)) {
+			if(!doesAdvancementExist(potionWorkshopCraftingRecipe.getRequiredAdvancementIdentifier())) {
+				SpectrumCommon.log(Level.WARN, "[SANITY: Potion Workshop Crafting Unlocks] Advancement '" + potionWorkshopCraftingRecipe.getRequiredAdvancementIdentifier() + "' in recipe '" + potionWorkshopCraftingRecipe.getId() + "' does not exist");
 			}
 		}
 		

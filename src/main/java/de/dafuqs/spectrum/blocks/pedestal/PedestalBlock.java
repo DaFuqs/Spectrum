@@ -92,8 +92,7 @@ public class PedestalBlock extends BlockWithEntity implements RedstonePoweredBlo
 
 	protected void openScreen(World world, BlockPos pos, PlayerEntity player) {
 		BlockEntity blockEntity = world.getBlockEntity(pos);
-		if (blockEntity instanceof PedestalBlockEntity) {
-			PedestalBlockEntity pedestalBlockEntity = (PedestalBlockEntity) blockEntity;
+		if (blockEntity instanceof PedestalBlockEntity pedestalBlockEntity) {
 			pedestalBlockEntity.setOwner(player);
 			player.openHandledScreen((NamedScreenHandlerFactory) blockEntity);
 		}
@@ -113,8 +112,8 @@ public class PedestalBlock extends BlockWithEntity implements RedstonePoweredBlo
 			}
 		} else {
 			BlockEntity blockEntity = world.getBlockEntity(pos);
-			if (blockEntity instanceof PedestalBlockEntity) {
-				ItemScatterer.spawn(world, pos, (Inventory)blockEntity);
+			if (blockEntity instanceof PedestalBlockEntity pedestalBlockEntity) {
+				ItemScatterer.spawn(world, pos, pedestalBlockEntity);
 				world.updateComparators(pos, this);
 			}
 			super.onStateReplaced(state, world, pos, newState, moved);

@@ -1,9 +1,11 @@
 package de.dafuqs.spectrum.recipe.potion_workshop;
 
 import de.dafuqs.spectrum.Support;
+import de.dafuqs.spectrum.blocks.potion_workshop.PotionWorkshopReagents;
 import de.dafuqs.spectrum.recipe.GatedRecipe;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
+import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
@@ -14,7 +16,11 @@ import net.minecraft.recipe.RecipeType;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class PotionWorkshopRecipe implements Recipe<Inventory>, GatedRecipe {
 
@@ -23,6 +29,7 @@ public abstract class PotionWorkshopRecipe implements Recipe<Inventory>, GatedRe
 	
 	protected final Ingredient baseIngredient;
 	protected final boolean consumeBaseIngredient;
+	
 	protected final Ingredient ingredient1;
 	protected final Ingredient ingredient2;
 	protected final Ingredient ingredient3;
@@ -40,10 +47,70 @@ public abstract class PotionWorkshopRecipe implements Recipe<Inventory>, GatedRe
 		this.ingredient3 = ingredient3;
 		this.requiredAdvancementIdentifier = requiredAdvancementIdentifier;
 	}
+	
+	@Override
+	public String getGroup() {
+		return group;
+	}
+	
+	public Ingredient getBaseIngredient() {
+		return baseIngredient;
+	}
+	
+	public boolean consumesBaseIngredient() {
+		return consumeBaseIngredient;
+	}
+	
+	public List<Ingredient> getOtherIngredients() {
+		ArrayList<Ingredient> ingredients = new ArrayList<>();
+		ingredients.add(ingredient1);
+		if(!ingredient2.isEmpty()) {
+			ingredients.add(ingredient2);
+			if(!ingredient3.isEmpty()) {
+				ingredients.add(ingredient3);
+			}
+		}
+		return ingredients;
+	}
 
-	public boolean matches(Inventory inv, World world) {
-		// TODO
-		return true;
+	public boolean matches(@NotNull Inventory inv, World world) {
+		if(inv.size() > 4 && inv.getStack(0).isOf(SpectrumItems.MERMAIDS_GEM) && this.baseIngredient.test(inv.getStack(1))) {
+			// check reagents
+			if(usesReagents()) {
+				// check if all items in reagent slots are actually reagents
+				for(int i : new int[]{5,6,7,8}) {
+					ItemStack itemStack = inv.getStack(i);
+					if(!itemStack.isEmpty() && !PotionWorkshopReagents.isReagent(itemStack.getItem())) {
+						return false;
+					}
+				}
+			} else {
+				// check if all reagent slots are empty
+				for(int i : new int[]{5,6,7,8}) {
+					ItemStack itemStack = inv.getStack(i);
+					if(!itemStack.isEmpty()) {
+						return false;
+					}
+				}
+			}
+			
+			// check ingredients
+			for(Ingredient ingredient : this.getOtherIngredients()) {
+				boolean found = false;
+				for(int i = 2; i < 5; i++) {
+					if(ingredient.test(inv.getStack(i))) {
+						found = true;
+						break;
+					}
+				}
+				if(!found) {
+					return false;
+				}
+			}
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	@Override
@@ -108,5 +175,9 @@ public abstract class PotionWorkshopRecipe implements Recipe<Inventory>, GatedRe
 	public boolean canPlayerCraft(PlayerEntity playerEntity) {
 		return Support.hasAdvancement(playerEntity, this.requiredAdvancementIdentifier);
 	}
+	
+	public abstract boolean usesReagents();
+	
+	public abstract int getMinOutputCount();
 	
 }

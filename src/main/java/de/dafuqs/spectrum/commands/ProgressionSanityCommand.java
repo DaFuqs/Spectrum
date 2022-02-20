@@ -84,7 +84,7 @@ public class ProgressionSanityCommand {
 				Identifier lootTableID = block.getLootTableId();
 				if(!SpectrumBlockTags.EXEMPT_FROM_LOOT_TABLE_DEBUG_CHECK.contains(block)) {
 					if (lootTableID.equals(LootTables.EMPTY) || lootTableID.getPath().equals("blocks/air")) {
-						SpectrumCommon.log(Level.WARN, "[SANITY: Loot Tables] Block " + registryKey.getValue() + " does have a non-existent loot table");
+						SpectrumCommon.log(Level.WARN, "[SANITY: Loot Tables] Block " + registryKey.getValue() + "has a non-existent loot table");
 					} else {
 						LootTable lootTable = source.getWorld().getServer().getLootManager().getTable(lootTableID);
 						LootPool[] lootPools = ((LootTableAccessor) lootTable).getPools();

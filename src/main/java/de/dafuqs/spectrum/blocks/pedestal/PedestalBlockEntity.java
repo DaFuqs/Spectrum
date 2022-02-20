@@ -104,7 +104,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 			autoCraftingInventory = new AutoCraftingInventory(3, 3);
 		}
 
-		this.inventory  = DefaultedList.ofSize(INVENTORY_SIZE, ItemStack.EMPTY);
+		this.inventory = DefaultedList.ofSize(INVENTORY_SIZE, ItemStack.EMPTY);
 		this.propertyDelegate = new PropertyDelegate() {
 			public int get(int index) {
 				return switch (index) {
@@ -186,15 +186,14 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 	@Override
 	public void setStack(int slot, @NotNull ItemStack stack) {
 		ItemStack itemStack = this.inventory.get(slot);
-		boolean isSimilarItem = !stack.isEmpty() && stack.isItemEqualIgnoreDamage(itemStack) && ItemStack.areNbtEqual(stack, itemStack);
+		boolean isSameItem = !stack.isEmpty() && stack.isItemEqualIgnoreDamage(itemStack) && ItemStack.areNbtEqual(stack, itemStack);
 		this.inventory.set(slot, stack);
 		if (stack.getCount() > this.getMaxCountPerStack()) {
 			stack.setCount(this.getMaxCountPerStack());
 		}
 
-		if (slot < CRAFTING_TABLET_SLOT_ID && !isSimilarItem) {
+		if (slot < CRAFTING_TABLET_SLOT_ID && !isSameItem) { // TODO: is that needed?
 			this.craftingTimeTotal = getCraftingTime(this.world, SpectrumRecipeTypes.PEDESTAL, this);
-			this.markDirty();
 		}
 		
 		this.inventoryChanged = true;

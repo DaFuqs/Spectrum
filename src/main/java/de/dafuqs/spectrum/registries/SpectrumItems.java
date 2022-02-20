@@ -137,7 +137,7 @@ public class SpectrumItems {
 	
 	// Decay drops
 	public static final Item VEGETAL = new CloakedItem(resourcesItemSettings, new Identifier(SpectrumCommon.MOD_ID, "craft_bottle_of_fading"), Items.GUNPOWDER);
-	public static final Item CORRUPTED_OBSIDIAN_DUST = new CloakedItem(resourcesUncommonItemSettings, new Identifier(SpectrumCommon.MOD_ID, "midgame/craft_bottle_of_failing"), Items.GUNPOWDER);
+	public static final Item NEOLITH = new CloakedItem(resourcesUncommonItemSettings, new Identifier(SpectrumCommon.MOD_ID, "midgame/craft_bottle_of_failing"), Items.GUNPOWDER);
 	public static final Item BEDROCK_DUST = new CloakedItem(resourcesRareItemSettings, new Identifier(SpectrumCommon.MOD_ID, "midgame/break_decayed_bedrock"), Items.GUNPOWDER);
 	
 	public static final Item MIDNIGHT_ABERRATION = new CloakedItem(resourcesRareItemSettings, new Identifier(SpectrumCommon.MOD_ID, "midgame/create_midnight_aberration"), SpectrumItems.SPECTRAL_SHARD);
@@ -319,7 +319,7 @@ public class SpectrumItems {
 		register("stardust", STARDUST);
 
 		register("vegetal", VEGETAL);
-		register("neolith", CORRUPTED_OBSIDIAN_DUST);
+		register("neolith", NEOLITH);
 		register("bedrock_dust", BEDROCK_DUST);
 		register("midnight_aberration", MIDNIGHT_ABERRATION);
 		register("midnight_chip", MIDNIGHT_CHIP);

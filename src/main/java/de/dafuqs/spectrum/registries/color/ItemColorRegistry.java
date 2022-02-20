@@ -84,7 +84,7 @@ public class ItemColorRegistry extends ColorRegistry<Item> {
 		put(SpectrumItems.SHOOTING_STAR, DyeColor.PURPLE);
 		put(SpectrumItems.LIGHTNING_STONE, DyeColor.YELLOW);
 		put(SpectrumItems.VEGETAL, DyeColor.GREEN);
-		put(SpectrumItems.CORRUPTED_OBSIDIAN_DUST, DyeColor.PURPLE);
+		put(SpectrumItems.NEOLITH, DyeColor.PURPLE);
 		put(SpectrumItems.BEDROCK_DUST, DyeColor.LIGHT_GRAY);
 		put(SpectrumItems.SPECTRAL_SHARD.asItem(), DyeColor.WHITE);
 		put(SpectrumItems.BOTTLE_OF_DECAY_AWAY, DyeColor.LIGHT_GRAY);

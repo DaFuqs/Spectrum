@@ -1,8 +1,6 @@
 package de.dafuqs.spectrum.recipe.potion_workshop;
 
-import de.dafuqs.spectrum.Support;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Ingredient;
@@ -30,8 +28,23 @@ public class PotionWorkshopCraftingRecipe extends PotionWorkshopRecipe {
 	}
 	
 	@Override
+	public boolean usesReagents() {
+		return false;
+	}
+	
+	@Override
 	public ItemStack craft(Inventory inventory) {
 		return null;
+	}
+	
+	@Override
+	public ItemStack getOutput() {
+		return output;
+	}
+	
+	@Override
+	public int getMinOutputCount() {
+		return 1;
 	}
 	
 }

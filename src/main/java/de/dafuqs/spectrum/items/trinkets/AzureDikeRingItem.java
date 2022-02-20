@@ -47,7 +47,7 @@ public class AzureDikeRingItem extends AzureDikeTrinketItem {
 	
 	@Override
 	public int maxAzureDike() {
-		return 3;
+		return 4;
 	}
 	
 }

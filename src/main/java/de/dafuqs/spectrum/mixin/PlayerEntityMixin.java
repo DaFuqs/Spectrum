@@ -79,30 +79,24 @@ public abstract class PlayerEntityMixin {
 	}
 	
 	/*
-	TODO: azure dike
-	ABSORPTION_AMOUNT = DataTracker.registerData(PlayerEntity.class, TrackedDataHandlerRegistry.FLOAT);
-	
 	public float getBlockBreakingSpeed(BlockState block) {
-		// TODO
+
 	}
 	
-
-	
 	public void slowMovement(BlockState state, Vec3d multiplier) {
-		//TODO
+
 	}
 	
 	public void addExhaustion(float exhaustion) {
-		//TODO
+
 	}
 	
 	public boolean isPushedByFluids() {
-		//TODO
+
 	}
 	
 	public void setFireTicks(int ticks) {
 	
 	}*/
-	
 	
 }

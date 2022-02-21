@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.inventories.slots;
 
-import de.dafuqs.spectrum.blocks.potion_workshop.PotionWorkshopReagents;
+import de.dafuqs.spectrum.recipe.potion_workshop.PotionWorkshopReagents;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.screen.slot.Slot;

@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum;
 
-import de.dafuqs.spectrum.blocks.potion_workshop.PotionWorkshopReagents;
+import de.dafuqs.spectrum.recipe.potion_workshop.PotionWorkshopReagents;
 import de.dafuqs.spectrum.blocks.shooting_star.ShootingStarBlock;
 import de.dafuqs.spectrum.config.SpectrumConfig;
 import de.dafuqs.spectrum.dimension.DeeperDownDimension;

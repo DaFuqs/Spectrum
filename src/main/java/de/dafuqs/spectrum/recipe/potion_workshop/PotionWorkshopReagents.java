@@ -1,5 +1,6 @@
-package de.dafuqs.spectrum.blocks.potion_workshop;
+package de.dafuqs.spectrum.recipe.potion_workshop;
 
+import de.dafuqs.spectrum.blocks.potion_workshop.PotionMod;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.minecraft.item.Item;
@@ -136,7 +137,7 @@ public class PotionWorkshopReagents {
 		reagentEffects.put(SpectrumItems.VEGETAL, new PotionReagentEffect() {
 			public PotionMod modify(PotionMod potionMod, Random random) {
 				potionMod.multiplicativeDurationModifier *= 1.5F;
-				potionMod.multiplicativePotencyModifier /= 0.5F;
+				potionMod.multiplicativePotencyModifier *= 0.5F;
 				return potionMod;
 			}
 		});
@@ -148,8 +149,8 @@ public class PotionWorkshopReagents {
 		});
 		reagentEffects.put(SpectrumItems.BEDROCK_DUST, new PotionReagentEffect() {
 			public PotionMod modify(PotionMod potionMod, Random random) {
-				potionMod.multiplicativeDurationModifier *= 2.0F;
-				potionMod.multiplicativePotencyModifier /= 0.25F;
+				potionMod.multiplicativePotencyModifier *= 2.0F;
+				potionMod.multiplicativeDurationModifier *= 0.25F;
 				return potionMod;
 			}
 		});
@@ -167,7 +168,7 @@ public class PotionWorkshopReagents {
 						potionMod.multiplicativeDurationModifier *= 2.0F;
 					}
 					case 3: {
-						potionMod.multiplicativePotencyModifier /= 0.25F;
+						potionMod.multiplicativePotencyModifier *= 2.0F;
 					}
 					case 4: {
 						potionMod.flatYieldBonus += 2.0F;

@@ -37,8 +37,8 @@ public abstract class ClientPlayerEntityMixin implements GravityBlockEntity.Post
 		}
 	}
 	
-	protected void onStatusEffectApplied(StatusEffectInstance effect, @Nullable Entity source) {
-		//TODO
-	}
+	/*protected void onStatusEffectApplied(StatusEffectInstance effect, @Nullable Entity source) {
+
+	}*/
 	
 }

@@ -46,7 +46,7 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 	protected final StatusEffect statusEffect;
 	protected final int baseDurationTicks;
 	protected final float potencyModifier;
-	protected final int color;
+	protected final int color; // -1: use the default effect color
 	
 	protected final boolean applicableToPotions; // TODO: USE
 	protected final boolean applicableToTippedArrows; // TODO: USE
@@ -61,13 +61,17 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 		this.applicableToTippedArrows = applicableToTippedArrows;
 		
 		if(statusEffect.isBeneficial()) {
-			availablePositiveEffects.add(statusEffect);
-			availablePositiveEffectDurations.add(baseDurationTicks);
-			availablePositiveEffectPotencyMods.add(potencyModifier);
+			if(!availablePositiveEffects.contains(statusEffect)) {
+				availablePositiveEffects.add(statusEffect);
+				availablePositiveEffectDurations.add(baseDurationTicks);
+				availablePositiveEffectPotencyMods.add(potencyModifier);
+			}
 		} else {
-			availableNegativeEffects.add(statusEffect);
-			availableNegativeEffectDurations.add(baseDurationTicks);
-			availableNegativeEffectPotencyMods.add(potencyModifier);
+			if(!availableNegativeEffects.contains(statusEffect)) {
+				availableNegativeEffects.add(statusEffect);
+				availableNegativeEffectDurations.add(baseDurationTicks);
+				availableNegativeEffectPotencyMods.add(potencyModifier);
+			}
 		}
 	}
 	
@@ -268,14 +272,14 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 		
 		int durationTicks  = 1;
 		if(!statusEffect.isInstant()) {
-			durationTicks = (int) (((this.baseDurationTicks * potionMod.multiplicativeDurationModifier) + potionMod.flatDurationBonusTicks) * typeDurationMod);
+			durationTicks = (int) (((baseDurationTicks * potionMod.multiplicativeDurationModifier) + potionMod.flatDurationBonusTicks) * typeDurationMod);
 		}
 		
 		float posNegBonus = potionMod.flatPotencyBonusNegativeEffects;
 		if(statusEffect.isBeneficial()) {
 			posNegBonus = potionMod.flatPotencyBonusPositiveEffects;
 		}
-		int potency = Support.getIntFromDecimalWithChance( this.potencyModifier * potionMod.multiplicativePotencyModifier + potionMod.flatPotencyBonus + posNegBonus, random);
+		int potency = Support.getIntFromDecimalWithChance( potencyModifier * potionMod.multiplicativePotencyModifier + potionMod.flatPotencyBonus + posNegBonus, random);
 		
 		if(potency > 0 && (statusEffect.isInstant() || durationTicks > 0)) {
 			return new StatusEffectInstance(statusEffect, durationTicks, potency, !potionMod.noParticles, !potionMod.noParticles);
@@ -295,6 +299,10 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 		}
 		
 		return splitInstances;
+	}
+	
+	public StatusEffect getStatusEffect() {
+		return this.statusEffect;
 	}
 	
 }

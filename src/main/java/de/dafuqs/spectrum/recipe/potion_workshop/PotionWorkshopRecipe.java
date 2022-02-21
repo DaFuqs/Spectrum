@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.recipe.potion_workshop;
 
 import de.dafuqs.spectrum.Support;
-import de.dafuqs.spectrum.blocks.potion_workshop.PotionWorkshopReagents;
 import de.dafuqs.spectrum.recipe.GatedRecipe;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;

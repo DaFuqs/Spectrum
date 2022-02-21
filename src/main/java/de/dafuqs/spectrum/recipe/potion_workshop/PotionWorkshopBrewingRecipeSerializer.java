@@ -98,7 +98,7 @@ public class PotionWorkshopBrewingRecipeSerializer<T extends PotionWorkshopBrewi
 		boolean applicableToPotions = packetByteBuf.readBoolean();
 		boolean applicableToTippedArrows = packetByteBuf.readBoolean();
 		Identifier requiredAdvancementIdentifier = packetByteBuf.readIdentifier();
-		return this.recipeFactory.create(identifier, group, craftingTime, baseIngredient, consumeBaseIngredient, ingredient1, ingredient2, ingredient3, statusEffect, baseDurationTicks, potencyModifier, applicableToPotions, color, applicableToTippedArrows, requiredAdvancementIdentifier);
+		return this.recipeFactory.create(identifier, group, craftingTime, baseIngredient, consumeBaseIngredient, ingredient1, ingredient2, ingredient3, statusEffect, baseDurationTicks, potencyModifier, color, applicableToPotions, applicableToTippedArrows, requiredAdvancementIdentifier);
 	}
 
 	

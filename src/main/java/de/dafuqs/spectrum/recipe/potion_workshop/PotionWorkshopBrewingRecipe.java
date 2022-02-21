@@ -241,8 +241,12 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 			nbtCompound.putInt("CustomPotionColor", 0x2f2f2f); // dark gray
 			nbtCompound.putBoolean("spectrum_unidentifiable", true); // used in PotionItemMixin
 			itemStack.setNbt(nbtCompound);
-		} else if(color >= 0) {
-			nbtCompound.putInt("CustomPotionColor", color);
+		} else if(effects.size() > 0) {
+			if (color >= 0) {
+				nbtCompound.putInt("CustomPotionColor", color);
+			} else {
+				nbtCompound.putInt("CustomPotionColor", this.statusEffect.getColor());
+			}
 		}
 		
 		return itemStack;

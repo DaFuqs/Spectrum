@@ -1,17 +1,14 @@
 package de.dafuqs.spectrum.recipe.potion_workshop;
 
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.recipe.RecipeUtils;
-import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
-import net.minecraft.util.registry.Registry;
 import org.apache.logging.log4j.Level;
 
 public class PotionWorkshopCraftingRecipeSerializer<T extends PotionWorkshopCraftingRecipe> implements RecipeSerializer<T> {

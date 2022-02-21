@@ -46,6 +46,12 @@
   "recipeGroup.spectrum.vanilla": "Vanilla Enchantments",
   "recipeGroup.spectrum.pastel_network": "Pastel Network",
 
+  "item.spectrum.potion": "§2P§3i§cg§6m§be§en§dt§r Potion",
+  "item.spectrum.splash_potion": "Splash §2P§3i§cg§6m§be§en§dt§r Potion",
+  "item.spectrum.lingering_potion": "Lingering §2P§3i§cg§6m§be§en§dt§r Potion",
+  "item.spectrum.tipped_arrow": "§2P§3i§cg§6m§be§en§dt§r Arrow",
+  "item.spectrum.potion.tooltip.unidentifiable": "§0Blackened beyond recognition",
+
   "spectrum.tooltip.coming_soon": "§4Not available in Survival yet",
 
   "spectrum.gui.lexicon.reveal_hint_button.text": "Reveal Hint    ",

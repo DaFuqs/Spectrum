@@ -45,6 +45,7 @@
     "WorldRendererMixin"
   ],
   "client": [
+    "client.PotionItemClientMixin",
     "client.AccessorClientAdvancementManager",
     "client.BackgroundRendererMixin",
     "client.BlockClientMixin",
@@ -54,6 +55,7 @@
     "client.ClientPlayerEntityMixin",
     "client.ClientWorldMixin",
     "client.HeadFeatureRendererMixin",
+    "client.InGameHudMixin",
     "client.ItemFrameEntityRendererMixin",
     "client.ItemMixin",
     "client.MixinClientAdvancementManager",
@@ -61,7 +63,6 @@
     "client.RenderLayerAccessor",
     "client.TransparentBlockMixin",
     "client.WorldRendererMixin",
-    "client.InGameHudMixin",
     "client.enchantment_descriptions.DescriptionManagerMixin"
   ],
   "injectors": {

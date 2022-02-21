@@ -83,15 +83,15 @@ public class PedestalScreenHandler extends AbstractRecipeScreenHandler<Inventory
 				this.addSlot(new StackFilterSlot(inventory, 9, 44 + 18, 77, SpectrumItems.TOPAZ_POWDER));
 				this.addSlot(new StackFilterSlot(inventory, 10, 44 + 2 * 18, 77, SpectrumItems.AMETHYST_POWDER));
 				this.addSlot(new StackFilterSlot(inventory, 11, 44 + 3 * 18, 77, SpectrumItems.CITRINE_POWDER));
-				this.addSlot(new DisabledSlot(inventory, 12, -2000, 77, SpectrumItems.ONYX_POWDER));
-				this.addSlot(new DisabledSlot(inventory, 13, -2000, 77, SpectrumItems.MOONSTONE_POWDER));
+				this.addSlot(new DisabledSlot(inventory, 12, -2000, 77));
+				this.addSlot(new DisabledSlot(inventory, 13, -2000, 77));
 			}
 			case ONYX -> {
 				this.addSlot(new StackFilterSlot(inventory, 9, 35 + 18, 77, SpectrumItems.TOPAZ_POWDER));
 				this.addSlot(new StackFilterSlot(inventory, 10, 35 + 2 * 18, 77, SpectrumItems.AMETHYST_POWDER));
 				this.addSlot(new StackFilterSlot(inventory, 11, 35 + 3 * 18, 77, SpectrumItems.CITRINE_POWDER));
 				this.addSlot(new StackFilterSlot(inventory, 12, 35 + 4 * 18, 77, SpectrumItems.ONYX_POWDER));
-				this.addSlot(new DisabledSlot(inventory, 13, -2000, 77, SpectrumItems.MOONSTONE_POWDER));
+				this.addSlot(new DisabledSlot(inventory, 13, -2000, 77));
 			}
 			case MOONSTONE -> {
 				this.addSlot(new StackFilterSlot(inventory, 9, 44, 77, SpectrumItems.TOPAZ_POWDER));

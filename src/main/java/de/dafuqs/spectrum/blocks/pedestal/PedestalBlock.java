@@ -17,7 +17,6 @@ import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.Inventory;
 import net.minecraft.item.AutomaticItemPlacementContext;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;

@@ -27,10 +27,10 @@ public class PotionWorkshopReagents {
 		return potionMod;
 	}
 	
-	public PotionWorkshopReagents() {
+	public static void register() {
 		reagentEffects.put(Items.REDSTONE, new PotionReagentEffect() {
 			public PotionMod modify(PotionMod potionMod, Random random) {
-				potionMod.multiplicativeDurationBonus *= 1.0F;
+				potionMod.multiplicativeDurationModifier *= 2.0F;
 				return potionMod;
 			}
 		});
@@ -84,8 +84,8 @@ public class PotionWorkshopReagents {
 		});
 		reagentEffects.put(SpectrumItems.SPARKLESTONE_GEM, new PotionReagentEffect() {
 			public PotionMod modify(PotionMod potionMod, Random random) {
-				potionMod.multiplicativeDurationBonus *= 0.1F;
-				potionMod.multiplicativePotencyBonus /= 0.1F;
+				potionMod.multiplicativeDurationModifier *= 1.1F;
+				potionMod.multiplicativePotencyModifier *= 1.1F;
 				return potionMod;
 			}
 		});
@@ -117,7 +117,7 @@ public class PotionWorkshopReagents {
 		reagentEffects.put(SpectrumItems.SHOOTING_STAR, new PotionReagentEffect() {
 			public PotionMod modify(PotionMod potionMod, Random random) {
 				potionMod.chanceToAddLastEffect += 1.0F;
-				potionMod.lastEffectPotencyMod = 0.75F;
+				potionMod.lastEffectPotencyModifier = 0.75F;
 				return potionMod;
 			}
 		});
@@ -135,8 +135,8 @@ public class PotionWorkshopReagents {
 		});
 		reagentEffects.put(SpectrumItems.VEGETAL, new PotionReagentEffect() {
 			public PotionMod modify(PotionMod potionMod, Random random) {
-				potionMod.multiplicativeDurationBonus *= 2.0F;
-				potionMod.multiplicativePotencyBonus /= 0.5F;
+				potionMod.multiplicativeDurationModifier *= 1.5F;
+				potionMod.multiplicativePotencyModifier /= 0.5F;
 				return potionMod;
 			}
 		});
@@ -148,8 +148,8 @@ public class PotionWorkshopReagents {
 		});
 		reagentEffects.put(SpectrumItems.BEDROCK_DUST, new PotionReagentEffect() {
 			public PotionMod modify(PotionMod potionMod, Random random) {
-				potionMod.multiplicativeDurationBonus *= 2.0F;
-				potionMod.multiplicativePotencyBonus /= 0.25F;
+				potionMod.multiplicativeDurationModifier *= 2.0F;
+				potionMod.multiplicativePotencyModifier /= 0.25F;
 				return potionMod;
 			}
 		});
@@ -161,13 +161,13 @@ public class PotionWorkshopReagents {
 						potionMod.flatDurationBonusTicks += 2400F;
 					}
 					case 1: {
-						potionMod.flatPotencyBonus *= 2.0F;
+						potionMod.flatPotencyBonus += 2.0F;
 					}
 					case 2: {
-						potionMod.multiplicativeDurationBonus *= 2.0F;
+						potionMod.multiplicativeDurationModifier *= 2.0F;
 					}
 					case 3: {
-						potionMod.multiplicativePotencyBonus /= 0.25F;
+						potionMod.multiplicativePotencyModifier /= 0.25F;
 					}
 					case 4: {
 						potionMod.flatYieldBonus += 2.0F;

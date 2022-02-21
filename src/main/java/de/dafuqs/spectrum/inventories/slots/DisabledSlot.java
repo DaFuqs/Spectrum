@@ -9,7 +9,7 @@ import net.minecraft.screen.slot.Slot;
 public class DisabledSlot extends Slot {
 
 
-	public DisabledSlot(Inventory inventory, int index, int x, int y, Item acceptedItem) {
+	public DisabledSlot(Inventory inventory, int index, int x, int y) {
 		super(inventory, index, x, y);
 	}
 

@@ -12,7 +12,7 @@
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier3/potion_workshop",
-      "text": "Instead of Blaze Powder, the Potion Workshop runs on Mermaids Gems. The main advantage of this is that you don't have to manually pre-fill your bottles with water each time."
+      "text": "Instead of Blaze Powder, the Potion Workshop runs on Mermaids Gems. The main advantage of this is that you don't have to manually fill your bottles with water."
     },
     {
       "type": "patchouli:text",
@@ -124,7 +124,7 @@
     },
     {
       "type": "patchouli:spotlight",
-      "title": "Reagent: Lightning Stone",
+      "title": "Reagent: Storm Stone",
       "item": "spectrum:lightning_stone",
       "advancement": "spectrum:midgame/collect_lightning_stone",
       "text": "Increases the Potions Potency at the beginning, but wearing off fast over time"
@@ -138,7 +138,7 @@
     },
     {
       "type": "patchouli:spotlight",
-      "title": "Reagent: Four Leafed Clover",
+      "title": "Reagent: Clover",
       "item": "spectrum:four_leaf_clover",
       "advancement": "spectrum:collect_four_leaf_clover",
       "text": "Provides a huge boost to a random stat"
@@ -162,7 +162,7 @@
       "title": "Reagent: Bedrock Dust",
       "item": "spectrum:bedrock_dust",
       "advancement": "spectrum:midgame/break_decayed_bedrock",
-      "text": "Doubles the Potions Potency, at the cost of their Duration"
+      "text": "Doubles the Potions Potency, at the cost of Duration"
     }
   ]
 }

@@ -27,6 +27,8 @@ public abstract class PotionWorkshopRecipe implements Recipe<Inventory>, GatedRe
 	protected final Identifier id;
 	protected final String group;
 	
+	protected final int craftingTime;
+	
 	protected final Ingredient baseIngredient;
 	protected final boolean consumeBaseIngredient;
 	
@@ -37,9 +39,10 @@ public abstract class PotionWorkshopRecipe implements Recipe<Inventory>, GatedRe
 	@Nullable
 	protected final Identifier requiredAdvancementIdentifier;
 
-	public PotionWorkshopRecipe(Identifier id, String group, Ingredient baseIngredient, boolean consumeBaseIngredient, Ingredient ingredient1, Ingredient ingredient2, Ingredient ingredient3, Identifier requiredAdvancementIdentifier) {
+	public PotionWorkshopRecipe(Identifier id, String group, int craftingTime, Ingredient baseIngredient, boolean consumeBaseIngredient, Ingredient ingredient1, Ingredient ingredient2, Ingredient ingredient3, @Nullable Identifier requiredAdvancementIdentifier) {
 		this.id = id;
 		this.group = group;
+		this.craftingTime = craftingTime;
 		this.baseIngredient = baseIngredient;
 		this.consumeBaseIngredient = consumeBaseIngredient;
 		this.ingredient1 = ingredient1;
@@ -134,6 +137,10 @@ public abstract class PotionWorkshopRecipe implements Recipe<Inventory>, GatedRe
 
 	public Identifier getId() {
 		return this.id;
+	}
+	
+	public int getCraftingTime() {
+		return this.craftingTime;
 	}
 
 	public RecipeSerializer<?> getSerializer() {

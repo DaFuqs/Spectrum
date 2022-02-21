@@ -10,12 +10,10 @@ import net.minecraft.util.Identifier;
 
 public class PotionWorkshopCraftingRecipe extends PotionWorkshopRecipe {
 	
-	protected final int craftingTime;
 	protected final ItemStack output;
 
 	public PotionWorkshopCraftingRecipe(Identifier id, String group, Ingredient baseIngredient, boolean consumeBaseIngredient, Ingredient ingredient1, Ingredient ingredient2, Ingredient ingredient3, ItemStack output, int craftingTime, Identifier requiredAdvancementIdentifier) {
-		super(id, group, baseIngredient, consumeBaseIngredient, ingredient1, ingredient2, ingredient3, requiredAdvancementIdentifier);
-		this.craftingTime = craftingTime;
+		super(id, group, craftingTime, baseIngredient, consumeBaseIngredient, ingredient1, ingredient2, ingredient3, requiredAdvancementIdentifier);
 		this.output = output;
 	}
 

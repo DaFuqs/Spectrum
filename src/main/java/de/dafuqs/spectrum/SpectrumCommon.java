@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum;
 
+import de.dafuqs.spectrum.blocks.potion_workshop.PotionWorkshopReagents;
 import de.dafuqs.spectrum.blocks.shooting_star.ShootingStarBlock;
 import de.dafuqs.spectrum.config.SpectrumConfig;
 import de.dafuqs.spectrum.dimension.DeeperDownDimension;
@@ -160,6 +161,9 @@ public class SpectrumCommon implements ModInitializer {
 		SpectrumComposting.register();
 		log(Level.INFO, "Registering Game Events...");
 		SpectrumGameEvents.register();
+		
+		log(Level.INFO, "Registering Potion Workshop Reagents...");
+		PotionWorkshopReagents.register();
 
 		log(Level.INFO, "Initializing Item Groups...");
 		SpectrumItemGroups.ITEM_GROUP_GENERAL.initialize();

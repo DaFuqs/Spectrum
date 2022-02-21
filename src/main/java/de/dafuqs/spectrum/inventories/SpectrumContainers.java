@@ -13,6 +13,7 @@ public class SpectrumContainers {
 	public static Identifier PARTICLE_SPAWNER;
 	public static Identifier COMPACTING_CHEST;
 	public static Identifier SUCKING_CHEST;
+	public static Identifier POTION_WORKSHOP;
 
 	public static Identifier GENERIC_TIER1_9x3;
 	public static Identifier GENERIC_TIER1_9x6;
@@ -29,6 +30,7 @@ public class SpectrumContainers {
 		PARTICLE_SPAWNER = new Identifier(SpectrumCommon.MOD_ID, "particle_spawner");
 		COMPACTING_CHEST = new Identifier(SpectrumCommon.MOD_ID, "compacting_chest");
 		SUCKING_CHEST = new Identifier(SpectrumCommon.MOD_ID, "sucking_chest");
+		POTION_WORKSHOP = new Identifier(SpectrumCommon.MOD_ID, "potion_workshop");
 
 		GENERIC_TIER1_9x3 = new Identifier(SpectrumCommon.MOD_ID, "generic_tier1_9x3");
 		GENERIC_TIER1_9x6 = new Identifier(SpectrumCommon.MOD_ID, "generic_tier1_9x6");

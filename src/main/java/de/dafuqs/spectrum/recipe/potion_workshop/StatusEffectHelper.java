@@ -5,9 +5,7 @@ import net.minecraft.entity.effect.StatusEffects;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public class StatusEffectHelper {
 	
@@ -22,7 +20,7 @@ public class StatusEffectHelper {
 		put(StatusEffects.WITHER, StatusEffects.REGENERATION);
 	}};
 	
-	public @Nullable StatusEffect getPositiveVariant(@NotNull StatusEffect statusEffect) {
+	public static @Nullable StatusEffect getPositiveVariant(@NotNull StatusEffect statusEffect) {
 		if(statusEffect.isBeneficial()) {
 			return statusEffect;
 		} else {

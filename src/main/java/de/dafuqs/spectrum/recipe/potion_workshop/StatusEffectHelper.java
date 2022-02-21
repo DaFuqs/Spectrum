@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.recipe.potion_workshop;
 
 import net.minecraft.entity.effect.StatusEffect;
+import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.entity.effect.StatusEffects;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -21,10 +22,10 @@ public class StatusEffectHelper {
 	}};
 	
 	public static @Nullable StatusEffect getPositiveVariant(@NotNull StatusEffect statusEffect) {
-		if(statusEffect.isBeneficial()) {
-			return statusEffect;
-		} else {
+		if(statusEffect.getCategory() == StatusEffectCategory.HARMFUL) {
 			return negativeToPositiveEffect.getOrDefault(statusEffect, null);
+		} else {
+			return statusEffect;
 		}
 	}
 	

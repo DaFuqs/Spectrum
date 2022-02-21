@@ -8,6 +8,7 @@ import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.item.LingeringPotionItem;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.potion.PotionUtil;
 import net.minecraft.potion.Potions;
@@ -106,17 +107,17 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 			* public float multiplicativePotencyBonus = 0.0F;
 			* public float flatPotencyBonusPositiveEffects = 0.0F;
 			* public float flatPotencyBonusNegativeEffects = 0.0F;
-			* public int additionalRandomPositiveEffectCount = 0;
-			* public int additionalRandomNegativeEffectCount = 0;
-			* public float chanceToAddLastEffect = 0.0F;
-			* public float lastEffectPotencyMod = 0.0F;
-			* public boolean makeSplashing = false;
-			* public boolean makeLingering = false;
-			* public boolean noParticles = false;
-			* public boolean unidentifiable = false;
-			* public boolean makeEffectsPositive = false;
+			*+ public int additionalRandomPositiveEffectCount = 0;
+			*+ public int additionalRandomNegativeEffectCount = 0;
+			*+ public float chanceToAddLastEffect = 0.0F;
+			*+ public float lastEffectPotencyMod = 0.0F;
+			*+ public boolean makeSplashing = false;
+			*+ public boolean makeLingering = false;
+			*+ public boolean noParticles = false;
+			*+ public boolean unidentifiable = false;
+			*+ public boolean makeEffectsPositive = false;
 			* public boolean potentDecreasingEffect = false;
-			* public boolean negateDecreasingDuration = false;
+			*+ public boolean negateDecreasingDuration = false;
 		 */
 		
 		List<StatusEffectInstance> effects = new ArrayList<>();
@@ -196,7 +197,7 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 					}
 				}
 				
-				if(basePotency != 0) {
+				if(basePotency >= 0) {
 					StatusEffectInstance statusEffectInstance = getStatusEffectInstance(effect, baseDuration, basePotency * potionMod.lastEffectPotencyModifier, potionMod, random);
 					if(statusEffectInstance != null) {
 						effects.add(statusEffectInstance);
@@ -262,12 +263,8 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 	
 	public @Nullable StatusEffectInstance getStatusEffectInstance(@NotNull StatusEffect statusEffect, int baseDurationTicks, float potencyModifier, @NotNull PotionMod potionMod, Random random) {
 		float typeDurationMod = 1.0F;
-		if(potionMod.makeSplashing) {
-			if(potionMod.makeLingering) {
-				typeDurationMod = potionMod.negateDecreasingDuration ? 0.5F : 0.25F;
-			} else {
-				typeDurationMod = potionMod.negateDecreasingDuration ? 1.0F : 0.5F;
-			}
+		if(potionMod.makeSplashing && potionMod.makeLingering) {
+			typeDurationMod = potionMod.negateDecreasingDuration ? 1.0F : 0.25F;
 		}
 		
 		int durationTicks  = 1;
@@ -279,9 +276,9 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 		if(statusEffect.isBeneficial()) {
 			posNegBonus = potionMod.flatPotencyBonusPositiveEffects;
 		}
-		int potency = Support.getIntFromDecimalWithChance( potencyModifier * potionMod.multiplicativePotencyModifier + potionMod.flatPotencyBonus + posNegBonus, random);
+		int potency = Support.getIntFromDecimalWithChance( potencyModifier * potionMod.multiplicativePotencyModifier + potionMod.flatPotencyBonus + posNegBonus, random) - 1;
 		
-		if(potency > 0 && (statusEffect.isInstant() || durationTicks > 0)) {
+		if(potency >= 0 && (statusEffect.isInstant() || durationTicks > 0)) {
 			return new StatusEffectInstance(statusEffect, durationTicks, potency, !potionMod.noParticles, !potionMod.noParticles);
 		} else {
 			// when the effect is so borked that the effect would be too weak
@@ -294,7 +291,11 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 		
 		for(StatusEffectInstance instance : statusEffectInstances) {
 			for(Pair<Float, Float> mods : SPLIT_EFFECT_POTENCY_AND_DURATION) {
-				splitInstances.add(new StatusEffectInstance(instance.getEffectType(), (int) (instance.getDuration() * mods.getRight()), Support.getIntFromDecimalWithChance(instance.getAmplifier() * mods.getLeft(), random), instance.isAmbient(), instance.shouldShowParticles()));
+				int newDuration = (int) (instance.getDuration() * mods.getRight());
+				int newAmplifier = Support.getIntFromDecimalWithChance(instance.getAmplifier() * mods.getLeft(), random);
+				if(newAmplifier > 0) {
+					splitInstances.add(new StatusEffectInstance(instance.getEffectType(), newDuration, newAmplifier, instance.isAmbient(), instance.shouldShowParticles()));
+				}
 			}
 		}
 		

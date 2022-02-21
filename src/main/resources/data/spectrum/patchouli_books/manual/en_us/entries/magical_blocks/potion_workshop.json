@@ -12,18 +12,12 @@
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier3/potion_workshop",
-      "text": "Instead of Blaze Powder, the Potion Workshop runs on Mermaids Gems. The main advantage of this is that you don't have to manually fill your bottles with water."
+      "text": "Instead of Blaze Powder, the Potion Workshop runs on Mermaids Gems. Main advantage is that you don't have to fill your bottles with water before."
     },
     {
       "type": "patchouli:text",
       "title": "Using Reagents",
       "text": "The Base of Mermaids Gems allows you to add a wide range of additional magical ingredients to your Potions. Each of those Reagents modifies the resulting properties of your Potions. Each Reagent can only be used once per recipe."
-    },
-    {
-      "type": "patchouli:spotlight",
-      "title": "Mermaids Gems",
-      "item": "spectrum:mermaids_gem",
-      "text": "Instead of supplying Water Bottles you can also just add $(l:resources/mermaids_brush)Mermaids Gems$(/l) to the designated slot and use empty Bottles instead."
     },
     {
       "type": "patchouli:spotlight",
@@ -34,8 +28,8 @@
     {
       "type": "patchouli:spotlight",
       "title": "Reagent: Glowstone",
-      "item": "minecraft:glowstone",
-      "text": "Increases Potency"
+      "item": "minecraft:glowstone_dust",
+      "text": "Increases Potency by 1"
     },
     {
       "type": "patchouli:spotlight",
@@ -47,7 +41,7 @@
       "type": "patchouli:spotlight",
       "title": "Reagent: Dragons Breath",
       "item": "minecraft:dragon_breath",
-      "advancement": "spectrum:hidden/collect_dragon_breath",
+      "advancement": "spectrum:hidden/collect_vanilla/collect_dragon_breath",
       "text": "Creates Lingering Potions - also requires Gunpowder as reagent$(br2)Allows you to create Tipped Arrows, if you supply Arrows instead of Water Bottles"
     },
     {
@@ -66,7 +60,7 @@
       "type": "patchouli:spotlight",
       "title": "Reagent: Citrine",
       "item": "spectrum:citrine_powder",
-      "text": "Slight flat Potency bonus"
+      "text": "Slight multiplicative Potency bonus"
     },
     {
       "type": "patchouli:spotlight",
@@ -99,7 +93,7 @@
       "title": "Reagent: Crimtane",
       "item": "spectrum:scarlet_fragments",
       "advancement": "spectrum:midgame/collect_scarlet",
-      "text": "Flat +1 bonus to all Effects Potency, at the cost of adding a random negative Effect"
+      "text": "Flat +1 bonus to all Effects Potencies, at the cost of adding a random negative Effect"
     },
     {
       "type": "patchouli:spotlight",
@@ -134,7 +128,7 @@
       "title": "Reagent: Azurite",
       "item": "spectrum:raw_azurite",
       "advancement": "spectrum:midgame/collect_azurite",
-      "text": "Decreases the duration penalty for Splash and Lingering Potions as well as for Tipped Arrows"
+      "text": "Negates the duration penalty for Lingering Potions as well as for Tipped Arrows"
     },
     {
       "type": "patchouli:spotlight",

@@ -67,7 +67,7 @@ public class PotionWorkshopReagents {
 		});
 		reagentEffects.put(SpectrumItems.CITRINE_POWDER, new PotionReagentEffect() {
 			public PotionMod modify(PotionMod potionMod, Random random) {
-				potionMod.flatPotencyBonus += 0.25F;
+				potionMod.multiplicativePotencyModifier += 0.25F;
 				return potionMod;
 			}
 		});
@@ -118,7 +118,7 @@ public class PotionWorkshopReagents {
 		reagentEffects.put(SpectrumItems.SHOOTING_STAR, new PotionReagentEffect() {
 			public PotionMod modify(PotionMod potionMod, Random random) {
 				potionMod.chanceToAddLastEffect += 1.0F;
-				potionMod.lastEffectPotencyModifier = 0.75F;
+				potionMod.lastEffectPotencyModifier *= 0.75F;
 				return potionMod;
 			}
 		});

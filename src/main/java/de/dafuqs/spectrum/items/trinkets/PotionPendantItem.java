@@ -31,9 +31,4 @@ public class PotionPendantItem extends SpectrumTrinketItem implements PotionFill
 		tooltip.add(new TranslatableText("item.spectrum.potion_pendant.tooltip"));
 	}
 	
-	@Override
-	public void fill() {
-		//TODO
-	}
-	
 }

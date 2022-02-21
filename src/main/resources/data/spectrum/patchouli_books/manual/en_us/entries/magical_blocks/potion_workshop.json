@@ -39,10 +39,10 @@
     },
     {
       "type": "patchouli:spotlight",
-      "title": "Reagent: Dragons Breath",
+      "title": "Reagent: Dragon's Breath",
       "item": "minecraft:dragon_breath",
       "advancement": "spectrum:hidden/collect_vanilla/collect_dragon_breath",
-      "text": "Creates Lingering Potions - also requires Gunpowder as reagent$(br2)Allows you to create Tipped Arrows, if you supply Arrows instead of Water Bottles"
+      "text": "Creates Lingering Potions - also requires Gunpowder as reagent$(br2)Allows you to create Tipped Arrows, if you supply Arrows instead of Bottles"
     },
     {
       "type": "patchouli:spotlight",

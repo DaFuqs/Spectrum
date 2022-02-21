@@ -24,7 +24,6 @@ public class PotionWorkshopBrewingRecipeSerializer<T extends PotionWorkshopBrewi
 	public T read(Identifier identifier, JsonObject jsonObject) {
 		String group = JsonHelper.getString(jsonObject, "group", "");
 		
-		Ingredient baseIngredient = Ingredient.fromJson(JsonHelper.getObject(jsonObject, "base_ingredient"));
 		Ingredient ingredient1 = Ingredient.fromJson(JsonHelper.getObject(jsonObject, "ingredient1"));
 		Ingredient ingredient2;
 		if(JsonHelper.hasJsonObject(jsonObject, "ingredient2")) {
@@ -39,7 +38,6 @@ public class PotionWorkshopBrewingRecipeSerializer<T extends PotionWorkshopBrewi
 			ingredient3 = Ingredient.EMPTY;
 		}
 		
-		boolean consumeBaseIngredient = JsonHelper.getBoolean(jsonObject, "use_up_base_ingredient", false);
 		boolean applicableToPotions = JsonHelper.getBoolean(jsonObject, "applicable_to_potions", true);
 		boolean applicableToTippedArrows = JsonHelper.getBoolean(jsonObject, "applicable_to_tipped_arrows", true);
 		int craftingTime = JsonHelper.getInt(jsonObject, "time", 200);
@@ -61,15 +59,13 @@ public class PotionWorkshopBrewingRecipeSerializer<T extends PotionWorkshopBrewi
 			requiredAdvancementIdentifier = new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_potion_workshop");
 		}
 
-		return this.recipeFactory.create(identifier, group, craftingTime, baseIngredient, consumeBaseIngredient, ingredient1, ingredient2, ingredient3, statusEffect, baseDurationTicks, potencyModifier, color, applicableToPotions, applicableToTippedArrows, requiredAdvancementIdentifier);
+		return this.recipeFactory.create(identifier, group, craftingTime, ingredient1, ingredient2, ingredient3, statusEffect, baseDurationTicks, potencyModifier, color, applicableToPotions, applicableToTippedArrows, requiredAdvancementIdentifier);
 	}
 	
 	@Override
 	public void write(PacketByteBuf packetByteBuf, T potionWorkshopBrewingRecipe) {
 		packetByteBuf.writeString(potionWorkshopBrewingRecipe.group);
 		packetByteBuf.writeInt(potionWorkshopBrewingRecipe.craftingTime);
-		potionWorkshopBrewingRecipe.baseIngredient.write(packetByteBuf);
-		packetByteBuf.writeBoolean(potionWorkshopBrewingRecipe.consumeBaseIngredient);
 		potionWorkshopBrewingRecipe.ingredient1.write(packetByteBuf);
 		potionWorkshopBrewingRecipe.ingredient2.write(packetByteBuf);
 		potionWorkshopBrewingRecipe.ingredient3.write(packetByteBuf);
@@ -86,8 +82,6 @@ public class PotionWorkshopBrewingRecipeSerializer<T extends PotionWorkshopBrewi
 	public T read(Identifier identifier, PacketByteBuf packetByteBuf) {
 		String group = packetByteBuf.readString();
 		int craftingTime = packetByteBuf.readInt();
-		Ingredient baseIngredient = Ingredient.fromPacket(packetByteBuf);
-		boolean consumeBaseIngredient = packetByteBuf.readBoolean();
 		Ingredient ingredient1 = Ingredient.fromPacket(packetByteBuf);
 		Ingredient ingredient2 = Ingredient.fromPacket(packetByteBuf);
 		Ingredient ingredient3 = Ingredient.fromPacket(packetByteBuf);
@@ -98,12 +92,12 @@ public class PotionWorkshopBrewingRecipeSerializer<T extends PotionWorkshopBrewi
 		boolean applicableToPotions = packetByteBuf.readBoolean();
 		boolean applicableToTippedArrows = packetByteBuf.readBoolean();
 		Identifier requiredAdvancementIdentifier = packetByteBuf.readIdentifier();
-		return this.recipeFactory.create(identifier, group, craftingTime, baseIngredient, consumeBaseIngredient, ingredient1, ingredient2, ingredient3, statusEffect, baseDurationTicks, potencyModifier, color, applicableToPotions, applicableToTippedArrows, requiredAdvancementIdentifier);
+		return this.recipeFactory.create(identifier, group, craftingTime, ingredient1, ingredient2, ingredient3, statusEffect, baseDurationTicks, potencyModifier, color, applicableToPotions, applicableToTippedArrows, requiredAdvancementIdentifier);
 	}
 
 	
 	public interface RecipeFactory<T extends PotionWorkshopBrewingRecipe> {
-		T create(Identifier id, String group, int craftingTime, Ingredient baseIngredient, boolean consumeBaseIngredient, Ingredient ingredient1, Ingredient ingredient2, Ingredient ingredient3, StatusEffect statusEffect, int baseDurationTicks, float potencyModifier, int color, boolean applicableToPotions, boolean applicableToTippedArrows, Identifier requiredAdvancementIdentifier);
+		T create(Identifier id, String group, int craftingTime, Ingredient ingredient1, Ingredient ingredient2, Ingredient ingredient3, StatusEffect statusEffect, int baseDurationTicks, float potencyModifier, int color, boolean applicableToPotions, boolean applicableToTippedArrows, Identifier requiredAdvancementIdentifier);
 	}
 
 }

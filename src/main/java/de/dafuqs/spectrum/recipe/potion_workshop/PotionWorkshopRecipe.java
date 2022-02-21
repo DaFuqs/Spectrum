@@ -28,9 +28,6 @@ public abstract class PotionWorkshopRecipe implements Recipe<Inventory>, GatedRe
 	
 	protected final int craftingTime;
 	
-	protected final Ingredient baseIngredient;
-	protected final boolean consumeBaseIngredient;
-	
 	protected final Ingredient ingredient1;
 	protected final Ingredient ingredient2;
 	protected final Ingredient ingredient3;
@@ -38,12 +35,10 @@ public abstract class PotionWorkshopRecipe implements Recipe<Inventory>, GatedRe
 	@Nullable
 	protected final Identifier requiredAdvancementIdentifier;
 
-	public PotionWorkshopRecipe(Identifier id, String group, int craftingTime, Ingredient baseIngredient, boolean consumeBaseIngredient, Ingredient ingredient1, Ingredient ingredient2, Ingredient ingredient3, @Nullable Identifier requiredAdvancementIdentifier) {
+	public PotionWorkshopRecipe(Identifier id, String group, int craftingTime, Ingredient ingredient1, Ingredient ingredient2, Ingredient ingredient3, @Nullable Identifier requiredAdvancementIdentifier) {
 		this.id = id;
 		this.group = group;
 		this.craftingTime = craftingTime;
-		this.baseIngredient = baseIngredient;
-		this.consumeBaseIngredient = consumeBaseIngredient;
 		this.ingredient1 = ingredient1;
 		this.ingredient2 = ingredient2;
 		this.ingredient3 = ingredient3;
@@ -54,15 +49,7 @@ public abstract class PotionWorkshopRecipe implements Recipe<Inventory>, GatedRe
 	public String getGroup() {
 		return group;
 	}
-	
-	public Ingredient getBaseIngredient() {
-		return baseIngredient;
-	}
-	
-	public boolean consumesBaseIngredient() {
-		return consumeBaseIngredient;
-	}
-	
+
 	public List<Ingredient> getOtherIngredients() {
 		ArrayList<Ingredient> ingredients = new ArrayList<>();
 		ingredients.add(ingredient1);
@@ -76,7 +63,7 @@ public abstract class PotionWorkshopRecipe implements Recipe<Inventory>, GatedRe
 	}
 
 	public boolean matches(@NotNull Inventory inv, World world) {
-		if(inv.size() > 4 && inv.getStack(0).isOf(SpectrumItems.MERMAIDS_GEM) && this.baseIngredient.test(inv.getStack(1))) {
+		if(inv.size() > 4 && inv.getStack(0).isOf(SpectrumItems.MERMAIDS_GEM) && isValidBaseIngredient(inv.getStack(1))) {
 			// check reagents
 			if(usesReagents()) {
 				// check if all items in reagent slots are actually reagents
@@ -114,6 +101,8 @@ public abstract class PotionWorkshopRecipe implements Recipe<Inventory>, GatedRe
 			return false;
 		}
 	}
+	
+	public abstract boolean isValidBaseIngredient(ItemStack itemStack);
 
 	@Override
 	public boolean fits(int width, int height) {
@@ -148,16 +137,6 @@ public abstract class PotionWorkshopRecipe implements Recipe<Inventory>, GatedRe
 
 	public RecipeType<?> getType() {
 		return SpectrumRecipeTypes.ANVIL_CRUSHING;
-	}
-
-	@Override
-	public DefaultedList<Ingredient> getIngredients() {
-		DefaultedList<Ingredient> defaultedList = DefaultedList.of();
-		defaultedList.add(this.baseIngredient);
-		defaultedList.add(this.ingredient1);
-		defaultedList.add(this.ingredient2);
-		defaultedList.add(this.ingredient3);
-		return defaultedList;
 	}
 
 	@Override

@@ -39,6 +39,7 @@ public class PotionWorkshopCraftingRecipeSerializer<T extends PotionWorkshopCraf
 		}
 		
 		int craftingTime = JsonHelper.getInt(jsonObject, "time", 200);
+		int color = JsonHelper.getInt(jsonObject, "color", 0xc03058);
 		boolean consumeBaseIngredient = JsonHelper.getBoolean(jsonObject, "use_up_base_ingredient", false);
 		ItemStack output = RecipeUtils.outputWithNbtFromJson(JsonHelper.getObject(jsonObject, "result"));
 		
@@ -50,7 +51,7 @@ public class PotionWorkshopCraftingRecipeSerializer<T extends PotionWorkshopCraf
 			requiredAdvancementIdentifier = new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_potion_workshop");
 		}
 
-		return this.recipeFactory.create(identifier, group, baseIngredient, consumeBaseIngredient, ingredient1, ingredient2, ingredient3, output, craftingTime, requiredAdvancementIdentifier);
+		return this.recipeFactory.create(identifier, group, baseIngredient, consumeBaseIngredient, ingredient1, ingredient2, ingredient3, output, craftingTime, color, requiredAdvancementIdentifier);
 	}
 	
 	@Override
@@ -63,6 +64,7 @@ public class PotionWorkshopCraftingRecipeSerializer<T extends PotionWorkshopCraf
 		potionWorkshopCraftingRecipe.ingredient3.write(packetByteBuf);
 		packetByteBuf.writeItemStack(potionWorkshopCraftingRecipe.output);
 		packetByteBuf.writeInt(potionWorkshopCraftingRecipe.craftingTime);
+		packetByteBuf.writeInt(potionWorkshopCraftingRecipe.color);
 		packetByteBuf.writeIdentifier(potionWorkshopCraftingRecipe.requiredAdvancementIdentifier);
 	}
 	
@@ -76,12 +78,13 @@ public class PotionWorkshopCraftingRecipeSerializer<T extends PotionWorkshopCraf
 		Ingredient ingredient3 = Ingredient.fromPacket(packetByteBuf);
 		ItemStack output = packetByteBuf.readItemStack();
 		int craftingTime = packetByteBuf.readInt();
+		int color = packetByteBuf.readInt();
 		Identifier requiredAdvancementIdentifier = packetByteBuf.readIdentifier();
-		return this.recipeFactory.create(identifier, group, baseIngredient, consumeBaseIngredient, ingredient1, ingredient2, ingredient3, output, craftingTime, requiredAdvancementIdentifier);
+		return this.recipeFactory.create(identifier, group, baseIngredient, consumeBaseIngredient, ingredient1, ingredient2, ingredient3, output, craftingTime, color, requiredAdvancementIdentifier);
 	}
 	
 	public interface RecipeFactory<T extends PotionWorkshopCraftingRecipe> {
-		T create(Identifier id, String group, Ingredient baseIngredient, boolean consumeBaseIngredient, Ingredient ingredient1, Ingredient ingredient2, Ingredient ingredient3, ItemStack output, int craftingTime, Identifier requiredAdvancementIdentifier);
+		T create(Identifier id, String group, Ingredient baseIngredient, boolean consumeBaseIngredient, Ingredient ingredient1, Ingredient ingredient2, Ingredient ingredient3, ItemStack output, int craftingTime, int color, Identifier requiredAdvancementIdentifier);
 	}
 
 }

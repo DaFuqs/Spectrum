@@ -297,11 +297,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 			potionWorkshopBlockEntity.brewTime = 0;
 			if(potionWorkshopBlockEntity.currentRecipe != null) {
 				potionWorkshopBlockEntity.brewTimeTotal = calculatedRecipe.getCraftingTime();
-				if(calculatedRecipe instanceof PotionWorkshopBrewingRecipe potionWorkshopBrewingRecipe) {
-					potionWorkshopBlockEntity.potionColor = potionWorkshopBrewingRecipe.getStatusEffect().getColor();
-				} else {
-					potionWorkshopBlockEntity.potionColor = 0x0; // TODO
-				}
+				potionWorkshopBlockEntity.potionColor = calculatedRecipe.getColor();
 			}
 			shouldMarkDirty = true;
 		}

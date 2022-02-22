@@ -26,10 +26,9 @@ public class PotionWorkshopScreen extends HandledScreen<PotionWorkshopScreenHand
 
 	public static final Identifier BACKGROUND_3_SLOTS = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/container/potion_workshop_3_slots.png");
 	public static final Identifier BACKGROUND_4_SLOTS = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/container/potion_workshop_4_slots.png");
+	private static final int[] BUBBLE_PROGRESS = new int[]{0, 4, 8, 11, 13, 17, 20, 24, 26, 30, 33, 36, 41};
 	
 	private final Identifier background;
-	
-	private static final int[] BUBBLE_PROGRESS = new int[]{0, 4, 8, 11, 13, 17, 20, 24, 26, 30, 33, 36, 41};
 	
 	public PotionWorkshopScreen(PotionWorkshopScreenHandler handler, PlayerInventory playerInventory, Text title) {
 		super(handler, playerInventory, title);
@@ -68,9 +67,6 @@ public class PotionWorkshopScreen extends HandledScreen<PotionWorkshopScreenHand
 		drawTexture(matrices, startX, startY, 0, 0, backgroundWidth, backgroundHeight);
 		
 		int brewTime = (this.handler).getBrewTime();
-		int maxBrewTime = (this.handler).getMaxBrewTime();
-		int potionColor = (this.handler).getPotionColor();
-		Color color = new Color(potionColor);
 		if (brewTime > 0) {
 			// the rising bubbles
 			int n = BUBBLE_PROGRESS[brewTime / 2 % 13];
@@ -78,7 +74,10 @@ public class PotionWorkshopScreen extends HandledScreen<PotionWorkshopScreenHand
 				this.drawTexture(matrices, startX + 29, startY + 39 + 43 - n, 176, 40 - n, 12, n);
 			}
 			
-			RenderSystem.setShaderColor(color.getRed(), color.getGreen(), color.getBlue(), 1.0F);
+			int maxBrewTime = (this.handler).getMaxBrewTime();
+			int potionColor = (this.handler).getPotionColor();
+			Color color = new Color(potionColor);
+			RenderSystem.setShaderColor(color.getRed() / 255F, color.getGreen() / 255F, color.getBlue() / 255F, 1.0F);
 			n = (int) (100.0F * ((float)brewTime / maxBrewTime));
 			// the brew
 			if (n > 0) {

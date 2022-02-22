@@ -4,6 +4,7 @@
     "item": "minecraft:bucket"
   },
   "use_up_base_ingredient": true,
+  "color": 11972050,
   "ingredient1": {
     "item": "spectrum:pink_pigment"
   },

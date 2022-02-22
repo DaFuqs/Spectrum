@@ -50,17 +50,15 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 	protected final StatusEffect statusEffect;
 	protected final int baseDurationTicks;
 	protected final float potencyModifier;
-	protected final int color; // -1: use the default effect color
 	
 	protected final boolean applicableToPotions;
 	protected final boolean applicableToTippedArrows;
 
 	public PotionWorkshopBrewingRecipe(Identifier id, String group, int craftingTime, Ingredient ingredient1, Ingredient ingredient2, Ingredient ingredient3, StatusEffect statusEffect, int baseDurationTicks, float potencyModifier, int color, boolean applicableToPotions, boolean applicableToTippedArrows, Identifier requiredAdvancementIdentifier) {
-		super(id, group, craftingTime, ingredient1, ingredient2, ingredient3, requiredAdvancementIdentifier);
+		super(id, group, craftingTime, color, ingredient1, ingredient2, ingredient3, requiredAdvancementIdentifier);
 		this.statusEffect = statusEffect;
 		this.baseDurationTicks = baseDurationTicks;
 		this.potencyModifier = potencyModifier;
-		this.color = color;
 		this.applicableToPotions = applicableToPotions;
 		this.applicableToTippedArrows = applicableToTippedArrows;
 		
@@ -100,6 +98,15 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 	@Override
 	public int getMinOutputCount(ItemStack baseItemStack) {
 		return baseItemStack.isOf(Items.GLASS_BOTTLE) ? 3 : 1;
+	}
+	
+	@Override
+	public int getColor() {
+		if(this.color == -1) {
+			return this.statusEffect.getColor();
+		} else {
+			return this.color;
+		}
 	}
 	
 	@Override
@@ -313,11 +320,7 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 			nbtCompound.putBoolean("spectrum_unidentifiable", true); // used in PotionItemMixin
 			itemStack.setNbt(nbtCompound);
 		} else if(effects.size() > 0) {
-			if (color >= 0) {
-				nbtCompound.putInt("CustomPotionColor", color);
-			} else {
-				nbtCompound.putInt("CustomPotionColor", this.statusEffect.getColor());
-			}
+			nbtCompound.putInt("CustomPotionColor", getColor());
 		}
 	}
 	

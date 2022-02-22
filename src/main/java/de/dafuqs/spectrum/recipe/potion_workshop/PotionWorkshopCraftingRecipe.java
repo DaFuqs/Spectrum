@@ -16,8 +16,8 @@ public class PotionWorkshopCraftingRecipe extends PotionWorkshopRecipe {
 	protected final ItemStack output;
 	
 	
-	public PotionWorkshopCraftingRecipe(Identifier id, String group, Ingredient baseIngredient, boolean consumeBaseIngredient, Ingredient ingredient1, Ingredient ingredient2, Ingredient ingredient3, ItemStack output, int craftingTime, Identifier requiredAdvancementIdentifier) {
-		super(id, group, craftingTime, ingredient1, ingredient2, ingredient3, requiredAdvancementIdentifier);
+	public PotionWorkshopCraftingRecipe(Identifier id, String group, Ingredient baseIngredient, boolean consumeBaseIngredient, Ingredient ingredient1, Ingredient ingredient2, Ingredient ingredient3, ItemStack output, int craftingTime, int color, Identifier requiredAdvancementIdentifier) {
+		super(id, group, craftingTime, color, ingredient1, ingredient2, ingredient3, requiredAdvancementIdentifier);
 		this.output = output;
 		this.baseIngredient = baseIngredient;
 		this.consumeBaseIngredient = consumeBaseIngredient;

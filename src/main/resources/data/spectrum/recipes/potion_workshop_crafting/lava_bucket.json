@@ -4,6 +4,7 @@
     "item": "spectrum:wet_lava_sponge"
   },
   "use_up_base_ingredient": false,
+  "color": 13387304,
   "ingredient1": {
     "item": "minecraft:bucket"
   },

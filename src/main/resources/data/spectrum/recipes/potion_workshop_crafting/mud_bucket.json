@@ -4,6 +4,7 @@
     "item": "minecraft:bucket"
   },
   "use_up_base_ingredient": true,
+  "color": 4268288,
   "ingredient1": {
     "item": "minecraft:dirt"
   },

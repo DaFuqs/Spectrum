@@ -4,6 +4,7 @@
     "item": "minecraft:bucket"
   },
   "use_up_base_ingredient": false,
+  "color": 2451682,
   "ingredient1": {
     "item": "spectrum:cyan_pigment"
   },

@@ -4,6 +4,7 @@
     "item": "spectrum:midnight_aberration"
   },
   "use_up_base_ingredient": false,
+  "color": 526373,
   "ingredient1": {
     "item": "minecraft:bucket"
   },

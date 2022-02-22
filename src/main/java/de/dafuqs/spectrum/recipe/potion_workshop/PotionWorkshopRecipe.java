@@ -27,6 +27,7 @@ public abstract class PotionWorkshopRecipe implements Recipe<Inventory>, GatedRe
 	protected final String group;
 	
 	protected final int craftingTime;
+	protected final int color;
 	
 	protected final Ingredient ingredient1;
 	protected final Ingredient ingredient2;
@@ -35,9 +36,10 @@ public abstract class PotionWorkshopRecipe implements Recipe<Inventory>, GatedRe
 	@Nullable
 	protected final Identifier requiredAdvancementIdentifier;
 
-	public PotionWorkshopRecipe(Identifier id, String group, int craftingTime, Ingredient ingredient1, Ingredient ingredient2, Ingredient ingredient3, @Nullable Identifier requiredAdvancementIdentifier) {
+	public PotionWorkshopRecipe(Identifier id, String group, int craftingTime, int color, Ingredient ingredient1, Ingredient ingredient2, Ingredient ingredient3, @Nullable Identifier requiredAdvancementIdentifier) {
 		this.id = id;
 		this.group = group;
+		this.color = color;
 		this.craftingTime = craftingTime;
 		this.ingredient1 = ingredient1;
 		this.ingredient2 = ingredient2;
@@ -164,5 +166,9 @@ public abstract class PotionWorkshopRecipe implements Recipe<Inventory>, GatedRe
 	public abstract boolean usesReagents();
 	
 	public abstract int getMinOutputCount(ItemStack baseItemStack);
+	
+	public int getColor() {
+		return this.color;
+	}
 	
 }

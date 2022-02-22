@@ -70,6 +70,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 	protected PotionWorkshopRecipe currentRecipe;
 	protected int brewTime;
 	protected int brewTimeTotal;
+	protected int potionColor;
 	
 	protected UUID ownerUUID;
 	protected StatusEffect lastBrewedStatusEffect;
@@ -85,7 +86,8 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 			public int get(int index) {
 				return switch (index) {
 					case 0 -> PotionWorkshopBlockEntity.this.brewTime;
-					default -> PotionWorkshopBlockEntity.this.brewTimeTotal;
+					case 1 -> PotionWorkshopBlockEntity.this.brewTimeTotal;
+					default -> PotionWorkshopBlockEntity.this.potionColor;
 				};
 			}
 			
@@ -93,11 +95,12 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 				switch (index) {
 					case 0 -> PotionWorkshopBlockEntity.this.brewTime = value;
 					case 1 -> PotionWorkshopBlockEntity.this.brewTimeTotal = value;
+					case 2 -> PotionWorkshopBlockEntity.this.potionColor = value;
 				}
 			}
 			
 			public int size() {
-				return 2;
+				return 3;
 			}
 		};
 	}
@@ -294,6 +297,11 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 			potionWorkshopBlockEntity.brewTime = 0;
 			if(potionWorkshopBlockEntity.currentRecipe != null) {
 				potionWorkshopBlockEntity.brewTimeTotal = calculatedRecipe.getCraftingTime();
+				if(calculatedRecipe instanceof PotionWorkshopBrewingRecipe potionWorkshopBrewingRecipe) {
+					potionWorkshopBlockEntity.potionColor = potionWorkshopBrewingRecipe.getStatusEffect().getColor();
+				} else {
+					potionWorkshopBlockEntity.potionColor = 0x0; // TODO
+				}
 			}
 			shouldMarkDirty = true;
 		}

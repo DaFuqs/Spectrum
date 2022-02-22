@@ -35,14 +35,17 @@ public class PotionWorkshopScreenHandler extends ScreenHandler {
 	}
 
 	public PotionWorkshopScreenHandler(ScreenHandlerType<?> type, int i, PlayerInventory playerInventory) {
-		this(type, i, playerInventory, new SimpleInventory(PotionWorkshopBlockEntity.INVENTORY_SIZE), new ArrayPropertyDelegate(2));
+		this(type, i, playerInventory, new SimpleInventory(PotionWorkshopBlockEntity.INVENTORY_SIZE), new ArrayPropertyDelegate(3));
 	}
 
 	protected PotionWorkshopScreenHandler(ScreenHandlerType<?> type, int syncId, PlayerInventory playerInventory, Inventory inventory, PropertyDelegate propertyDelegate) {
 		super(type, syncId);
 		this.inventory = inventory;
 		this.world = playerInventory.player.world;
+		
+		checkDataCount(propertyDelegate, 3);
 		this.propertyDelegate = propertyDelegate;
+		this.addProperties(propertyDelegate);
 
 		checkSize(inventory, PotionWorkshopBlockEntity.INVENTORY_SIZE);
 		inventory.onOpen(playerInventory.player);
@@ -153,4 +156,11 @@ public class PotionWorkshopScreenHandler extends ScreenHandler {
 		return this.propertyDelegate.get(0);
 	}
 	
+	public int getMaxBrewTime() {
+		return this.propertyDelegate.get(1);
+	}
+	
+	public int getPotionColor() {
+		return this.propertyDelegate.get(2);
+	}
 }

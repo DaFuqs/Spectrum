@@ -70,7 +70,7 @@ public class PotionWorkshopCraftingRecipe extends PotionWorkshopRecipe {
 	}
 	
 	@Override
-	public int getMinOutputCount() {
+	public int getMinOutputCount(ItemStack itemStack) {
 		return 1;
 	}
 	

@@ -301,13 +301,13 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 		
 		if (calculatedRecipe != null) {
 			// if crafting has not started: check if the inventory has enough room to start
-			if(potionWorkshopBlockEntity.brewTime > 0 || hasRoomInOutputInventoryFor(potionWorkshopBlockEntity, calculatedRecipe.getMinOutputCount())) {
+			if(potionWorkshopBlockEntity.brewTime > 0 || hasRoomInOutputInventoryFor(potionWorkshopBlockEntity, calculatedRecipe.getMinOutputCount(potionWorkshopBlockEntity.inventory.get((BASE_INPUT_SLOT_ID))))) {
 				if (potionWorkshopBlockEntity.brewTime == potionWorkshopBlockEntity.brewTimeTotal) {
 					if (calculatedRecipe instanceof PotionWorkshopBrewingRecipe brewingRecipe) {
 						Item baseItem = potionWorkshopBlockEntity.inventory.get(BASE_INPUT_SLOT_ID).getItem();
 						if(baseItem instanceof PotionFillable) {
 							fillPotionFillable(potionWorkshopBlockEntity, brewingRecipe);
-						} if(baseItem.equals(Items.ARROW)) {
+						} else if(baseItem.equals(Items.ARROW)) {
 							createTippedArrows(potionWorkshopBlockEntity, brewingRecipe);
 						} else {
 							brewRecipe(potionWorkshopBlockEntity, brewingRecipe);
@@ -385,10 +385,8 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 		if(potionWorkshopBlockEntity.getStack(BASE_INPUT_SLOT_ID).isOf(Items.ARROW)) { // arrows require lingering potions as base
 			PotionMod potionMod = getPotionModFromReagents(potionWorkshopBlockEntity);
 			return potionMod.makeSplashing && potionMod.makeLingering;
-		} else if(potionWorkshopBlockEntity.getStack(BASE_INPUT_SLOT_ID).getItem() instanceof PotionFillable) {
-			PotionMod potionMod = getPotionModFromReagents(potionWorkshopBlockEntity);
-			// that would be silly, wouldn't it?
-			return !potionMod.makeSplashing;
+		} else if(potionWorkshopBlockEntity.getStack(BASE_INPUT_SLOT_ID).getItem() instanceof PotionFillable potionFillable) {
+			return !potionFillable.isFull(potionWorkshopBlockEntity.inventory.get(BASE_INPUT_SLOT_ID));
 		} else {
 			return true;
 		}
@@ -471,6 +469,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 			// consume ingredients
 			decreaseIngredientSlots(potionWorkshopBlockEntity);
 			decreaseReagentSlots(potionWorkshopBlockEntity);
+			potionWorkshopBlockEntity.inventory.set(BASE_INPUT_SLOT_ID, ItemStack.EMPTY);
 			
 			brewingRecipe.fillPotionFillable(potionFillableStack, potionMod, potionWorkshopBlockEntity.lastBrewedStatusEffect, potionWorkshopBlockEntity.world.random);
 			

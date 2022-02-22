@@ -98,8 +98,8 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 	}
 	
 	@Override
-	public int getMinOutputCount() {
-		return 3;
+	public int getMinOutputCount(ItemStack baseItemStack) {
+		return baseItemStack.isOf(Items.GLASS_BOTTLE) ? 3 : 1;
 	}
 	
 	@Override
@@ -202,22 +202,22 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 	}
 	
 	public void fillPotionFillable(ItemStack potionFillableStack, PotionMod potionMod, StatusEffect lastBrewedStatusEffect, Random random) {
-		List<StatusEffectInstance> existingEffects = PotionUtil.getCustomPotionEffects(potionFillableStack);
-		List<StatusEffectInstance> newEffects = new ArrayList<>();
-		
-		addMainEffect(potionMod, random, newEffects);
-		addRandomAdditionalEffects(potionMod, random, newEffects);
-		if(lastBrewedStatusEffect != null && (potionMod.chanceToAddLastEffect >= 1 || random.nextFloat() < potionMod.chanceToAddLastEffect)) {
-			applyLastBrewedStatusEffect(potionMod, lastBrewedStatusEffect, random, newEffects);
+		if(potionFillableStack.getItem() instanceof PotionFillable potionFillable) {
+			List<StatusEffectInstance> newEffects = new ArrayList<>();
+			
+			addMainEffect(potionMod, random, newEffects);
+			addRandomAdditionalEffects(potionMod, random, newEffects);
+			if (lastBrewedStatusEffect != null && (potionMod.chanceToAddLastEffect >= 1 || random.nextFloat() < potionMod.chanceToAddLastEffect)) {
+				applyLastBrewedStatusEffect(potionMod, lastBrewedStatusEffect, random, newEffects);
+			}
+			// split durations, if set
+			if (potionMod.potentDecreasingEffect) {
+				newEffects = applyPotentDecreasingEffect(newEffects, random);
+			}
+			
+			potionFillable.addEffects(potionFillableStack, newEffects);
+			setColor(potionFillableStack, potionMod, newEffects);
 		}
-		// split durations, if set
-		if(potionMod.potentDecreasingEffect) {
-			newEffects = applyPotentDecreasingEffect(newEffects, random);
-		}
-		
-		existingEffects.addAll(newEffects);
-		PotionUtil.setCustomPotionEffects(potionFillableStack, newEffects);
-		setColor(potionFillableStack, potionMod, newEffects);
 	}
 	
 	private void addMainEffect(PotionMod potionMod, Random random, List<StatusEffectInstance> effects) {

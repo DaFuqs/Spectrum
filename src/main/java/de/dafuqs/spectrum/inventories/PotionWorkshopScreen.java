@@ -47,7 +47,7 @@ public class PotionWorkshopScreen extends HandledScreen<PotionWorkshopScreenHand
 		int titleY = 6;
 		Text title = this.title;
 		int playerInventoryX = 8;
-		int playerInventoryY = 108;
+		int playerInventoryY = 109;
 
 		this.textRenderer.draw(matrices, title, titleX, titleY, 3289650);
 		this.textRenderer.draw(matrices, this.playerInventoryTitle, playerInventoryX, playerInventoryY, 3289650);

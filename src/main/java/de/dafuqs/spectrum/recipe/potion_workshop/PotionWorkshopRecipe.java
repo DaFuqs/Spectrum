@@ -163,6 +163,6 @@ public abstract class PotionWorkshopRecipe implements Recipe<Inventory>, GatedRe
 	
 	public abstract boolean usesReagents();
 	
-	public abstract int getMinOutputCount();
+	public abstract int getMinOutputCount(ItemStack baseItemStack);
 	
 }

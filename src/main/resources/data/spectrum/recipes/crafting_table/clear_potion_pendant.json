@@ -1,0 +1,12 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "spectrum:potion_pendant"
+        }
+    ],
+    "result": {
+        "item": "spectrum:potion_pendant",
+        "count": 1
+    }
+}

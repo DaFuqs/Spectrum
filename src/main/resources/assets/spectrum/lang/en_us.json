@@ -1058,7 +1058,7 @@
   "item.spectrum.neat_ring": "A Neat Ring",
   "item.spectrum.neat_ring.tooltip": "§7§oIts neat",
   "item.spectrum.potion_pendant": "Potion Pendant",
-  "item.spectrum.potion_pendant.tooltip": "§7Filled in the §fPotion Workshop",
+  "item.spectrum.potion_pendant.tooltip_not_full": "§7Fill with up to §f3§7 effects in the §fPotion Workshop",
   "item.spectrum.radiance_pin": "Radiance Pin",
   "item.spectrum.radiance_pin.tooltip": "§7Automatically places temporary Lights when in the Dark",
   "item.spectrum.ashen_circlet": "Ashen Circlet",

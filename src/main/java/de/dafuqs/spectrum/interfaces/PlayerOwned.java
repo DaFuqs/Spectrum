@@ -7,26 +7,26 @@ import java.util.UUID;
 
 public interface PlayerOwned {
 
-	public abstract UUID getOwnerUUID();
+	UUID getOwnerUUID();
 
-	public void setOwner(PlayerEntity playerEntity);
+	void setOwner(PlayerEntity playerEntity);
 
-	public default boolean hasOwner() {
+	default boolean hasOwner() {
 		return getOwnerUUID() != null;
 	}
 
-	public default boolean isOwner(PlayerEntity playerEntity) {
+	default boolean isOwner(PlayerEntity playerEntity) {
 		return playerEntity.getUuid().equals(getOwnerUUID());
 	}
 
-	public default PlayerEntity getPlayerEntityIfOnline(World world) {
+	default PlayerEntity getPlayerEntityIfOnline(World world) {
 		if(this.getOwnerUUID() != null) {
 			return world.getPlayerByUuid(this.getOwnerUUID());
 		}
 		return null;
 	}
 
-	public static PlayerEntity getPlayerEntityIfOnline(World world, UUID ownerUUID) {
+	static PlayerEntity getPlayerEntityIfOnline(World world, UUID ownerUUID) {
 		if(ownerUUID != null) {
 			return world.getPlayerByUuid(ownerUUID);
 		}

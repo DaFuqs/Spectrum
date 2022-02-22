@@ -31,8 +31,8 @@ import java.util.Map;
 
 public class TidalCircletItem extends SpectrumTrinketItem {
 	
-	private final int TRIGGER_EVERY_X_TICKS = 20;
-	private final int EFFECT_DURATION = TRIGGER_EVERY_X_TICKS + 20;
+	private final int TRIGGER_EVERY_X_TICKS = 40;
+	private final int EFFECT_DURATION = TRIGGER_EVERY_X_TICKS + 10;
 	
 	private final int HEAL_AXOLOTLS_EVERY_X_TICKS = 160;
 	private final int MAX_AXOLOTL_DISTANCE = 12;

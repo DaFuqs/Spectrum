@@ -1,16 +1,19 @@
 package de.dafuqs.spectrum.recipe.potion_workshop;
 
+import de.dafuqs.spectrum.SpectrumClient;
 import de.dafuqs.spectrum.Support;
 import de.dafuqs.spectrum.blocks.potion_workshop.PotionMod;
 import de.dafuqs.spectrum.interfaces.PotionFillable;
+import de.dafuqs.spectrum.progression.ClientRecipeToastManager;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.registries.SpectrumItems;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.item.LingeringPotionItem;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.potion.PotionUtil;
 import net.minecraft.potion.Potions;
@@ -75,7 +78,17 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 				availableNegativeEffectPotencyMods.add(potencyModifier);
 			}
 		}
+		
+		if(SpectrumClient.minecraftClient != null) {
+			registerInClientToastManager();
+		}
 	}
+	
+	@Environment(EnvType.CLIENT)
+	private void registerInClientToastManager() {
+		ClientRecipeToastManager.registerUnlockablePotionWorkshopRecipe(this);
+	}
+	
 	
 	@Override
 	public boolean isValidBaseIngredient(ItemStack itemStack) {

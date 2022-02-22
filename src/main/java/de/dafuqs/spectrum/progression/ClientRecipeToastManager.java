@@ -7,6 +7,8 @@ import de.dafuqs.spectrum.progression.toast.UnlockedRecipeGroupToast;
 import de.dafuqs.spectrum.recipe.enchanter.EnchanterRecipe;
 import de.dafuqs.spectrum.recipe.fusion_shrine.FusionShrineRecipe;
 import de.dafuqs.spectrum.recipe.pedestal.PedestalCraftingRecipe;
+import de.dafuqs.spectrum.recipe.potion_workshop.PotionWorkshopBrewingRecipe;
+import de.dafuqs.spectrum.recipe.potion_workshop.PotionWorkshopRecipe;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -30,6 +32,7 @@ public class ClientRecipeToastManager {
 	public static final HashMap<Identifier, List<PedestalCraftingRecipe>> unlockablePedestalRecipes = new HashMap<>();
 	public static final HashMap<Identifier, List<FusionShrineRecipe>> unlockableFusionShrineRecipes = new HashMap<>();
 	public static final HashMap<Identifier, List<EnchanterRecipe>> unlockableEnchanterRecipes = new HashMap<>();
+	public static final HashMap<Identifier, List<PotionWorkshopRecipe>> unlockablePotionWorkshopRecipes = new HashMap<>();
 	
 	public static final HashMap<Identifier, Pair<ItemStack, String>> registeredMessageToasts = new HashMap<>() {{
 		put(new Identifier(SpectrumCommon.MOD_ID, "milestones/unlock_shooting_stars"), new Pair<>(new ItemStack(Items.SPYGLASS), "shooting_stars_unlocked"));
@@ -86,12 +89,28 @@ public class ClientRecipeToastManager {
 			}
 		}
 	}
+	
+	public static void registerUnlockablePotionWorkshopRecipe(@NotNull PotionWorkshopRecipe potionWorkshopBrewingRecipe) {
+		Identifier requiredAdvancementIdentifier = potionWorkshopBrewingRecipe.getRequiredAdvancementIdentifier();
+		if(requiredAdvancementIdentifier != null) {
+			if (unlockablePotionWorkshopRecipes.containsKey(requiredAdvancementIdentifier)) {
+				if(!unlockablePotionWorkshopRecipes.get(requiredAdvancementIdentifier).contains(potionWorkshopBrewingRecipe)) {
+					unlockablePotionWorkshopRecipes.get(requiredAdvancementIdentifier).add(potionWorkshopBrewingRecipe);
+				}
+			} else {
+				List<PotionWorkshopRecipe> recipes = new ArrayList<>();
+				recipes.add(potionWorkshopBrewingRecipe);
+				unlockablePotionWorkshopRecipes.put(requiredAdvancementIdentifier, recipes);
+			}
+		}
+	}
 
 	public static void process(List<Identifier> doneAdvancements, boolean showToast) {
 		if(showToast) {
 			List<PedestalCraftingRecipe> pedestalRecipes = new ArrayList<>();
 			List<FusionShrineRecipe> fusionRecipes = new ArrayList<>();
 			List<EnchanterRecipe> enchanterRecipes = new ArrayList<>();
+			List<PotionWorkshopRecipe> potionWorkshopRecipes = new ArrayList<>();
 			List<Pair<ItemStack, String>> messageToasts = new ArrayList<>();
 			
 			for (Identifier doneAdvancement : doneAdvancements) {
@@ -130,6 +149,14 @@ public class ClientRecipeToastManager {
 					}
 				}
 				
+				if (unlockablePotionWorkshopRecipes.containsKey(doneAdvancement)) {
+					for (PotionWorkshopRecipe unlockedRecipe : unlockablePotionWorkshopRecipes.get(doneAdvancement)) {
+						if(!potionWorkshopRecipes.contains((unlockedRecipe))) {
+							potionWorkshopRecipes.add(unlockedRecipe);
+						}
+					}
+				}
+				
 				if(registeredMessageToasts.containsKey(doneAdvancement)) {
 					messageToasts.add(registeredMessageToasts.get(doneAdvancement));
 				}
@@ -144,10 +171,12 @@ public class ClientRecipeToastManager {
 			if(!enchanterRecipes.isEmpty()) {
 				showGroupedRecipeUnlockToasts(enchanterRecipes, UnlockedRecipeGroupToast.UnlockedRecipeToastType.ENCHANTER);
 			}
+			if(!potionWorkshopRecipes.isEmpty()) {
+				showGroupedRecipeUnlockToasts(potionWorkshopRecipes, UnlockedRecipeGroupToast.UnlockedRecipeToastType.POTION_WORKSHOP);
+			}
 			for(Pair<ItemStack, String> messageToast : messageToasts) {
 				MessageToast.showMessageToast(MinecraftClient.getInstance(), messageToast.getLeft(), messageToast.getRight());
 			}
-			
 		}
 	}
 
@@ -205,5 +234,5 @@ public class ClientRecipeToastManager {
 			}
 		}
 	}
-
+	
 }

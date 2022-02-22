@@ -1,6 +1,10 @@
 package de.dafuqs.spectrum.recipe.potion_workshop;
 
+import de.dafuqs.spectrum.SpectrumClient;
+import de.dafuqs.spectrum.progression.ClientRecipeToastManager;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Ingredient;
@@ -21,7 +25,17 @@ public class PotionWorkshopCraftingRecipe extends PotionWorkshopRecipe {
 		this.output = output;
 		this.baseIngredient = baseIngredient;
 		this.consumeBaseIngredient = consumeBaseIngredient;
+		
+		if(SpectrumClient.minecraftClient != null) {
+			registerInClientToastManager();
+		}
 	}
+	
+	@Environment(EnvType.CLIENT)
+	private void registerInClientToastManager() {
+		ClientRecipeToastManager.registerUnlockablePotionWorkshopRecipe(this);
+	}
+	
 	
 	public Ingredient getBaseIngredient() {
 		return baseIngredient;

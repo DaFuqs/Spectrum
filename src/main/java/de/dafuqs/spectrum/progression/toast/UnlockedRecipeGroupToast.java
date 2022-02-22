@@ -19,6 +19,7 @@ import net.minecraft.sound.SoundEvent;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,9 +29,26 @@ import java.util.Map;
 public class UnlockedRecipeGroupToast implements Toast {
 
 	public enum UnlockedRecipeToastType {
-		PEDESTAL,
-		FUSION_SHRINE,
-		ENCHANTER;
+		PEDESTAL("spectrum.toast.pedestal_recipe_unlocked.title", "spectrum.toast.pedestal_recipes_unlocked.title"),
+		FUSION_SHRINE("spectrum.toast.fusion_shrine_recipe_unlocked.title", "spectrum.toast.fusion_shrine_recipes_unlocked.title"),
+		ENCHANTER("spectrum.toast.enchanter_recipe_unlocked.title", "spectrum.toast.enchanter_recipes_unlocked.title"),
+		POTION_WORKSHOP("spectrum.toast.potion_workshop_recipe_unlocked.title", "spectrum.toast.potion_workshop_recipes_unlocked.title");
+		
+		private final TranslatableText unlockToastTextSingle;
+		private final TranslatableText unlockToastTextGroup;
+		
+		UnlockedRecipeToastType(String unlockToastStringSingle, String unlockToastStringGroup) {
+			this.unlockToastTextSingle = new TranslatableText(unlockToastStringSingle);
+			this.unlockToastTextGroup = new TranslatableText(unlockToastStringGroup);
+		}
+		
+		public TranslatableText getUnlockToastTextSingle() {
+			return unlockToastTextSingle;
+		}
+		
+		public TranslatableText getUnlockToastTextGroup() {
+			return unlockToastTextGroup;
+		}
 	}
 
 	private final Identifier TEXTURE = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/toasts.png");
@@ -47,34 +65,20 @@ public class UnlockedRecipeGroupToast implements Toast {
 		this.soundPlayed = false;
 	}
 
-	public static void showRecipeToast(MinecraftClient client, ItemStack itemStack, UnlockedRecipeToastType type) {
-		Text title;
-		if(type == UnlockedRecipeToastType.PEDESTAL) {
-			title = new TranslatableText("spectrum.toast.pedestal_recipe_unlocked.title");
-		} else if(type == UnlockedRecipeToastType.FUSION_SHRINE) {
-			title = new TranslatableText("spectrum.toast.fusion_shrine_recipe_unlocked.title");
-		} else {
-			title = new TranslatableText("spectrum.toast.enchanter_recipe_unlocked.title");
-		}
+	public static void showRecipeToast(@NotNull MinecraftClient client, ItemStack itemStack, @NotNull UnlockedRecipeToastType type) {
+		Text title = type.getUnlockToastTextSingle();
 		Text text = getTextForItemStack(itemStack);
 		client.getToastManager().add(new UnlockedRecipeGroupToast(title, text, new ArrayList<>() {{ add(itemStack); }}));
 	}
 
-	public static void showRecipeGroupToast(MinecraftClient client, String groupName, List<ItemStack> itemStacks, UnlockedRecipeToastType type) {
-		Text title;
-		if(type == UnlockedRecipeToastType.PEDESTAL) {
-			title = new TranslatableText("spectrum.toast.pedestal_recipes_unlocked.title");
-		} else if(type == UnlockedRecipeToastType.FUSION_SHRINE) {
-			title = new TranslatableText("spectrum.toast.fusion_shrine_recipes_unlocked.title");
-		} else {
-			title = new TranslatableText("spectrum.toast.enchanter_recipes_unlocked.title");
-		}
+	public static void showRecipeGroupToast(@NotNull MinecraftClient client, String groupName, List<ItemStack> itemStacks, @NotNull UnlockedRecipeToastType type) {
+		Text title = type.getUnlockToastTextGroup();
 		Text text = new TranslatableText("recipeGroup.spectrum." + groupName);
 		client.getToastManager().add(new UnlockedRecipeGroupToast(title, text, itemStacks));
 	}
 
 	@Override
-	public Visibility draw(MatrixStack matrices, ToastManager manager, long startTime) {
+	public Visibility draw(MatrixStack matrices, @NotNull ToastManager manager, long startTime) {
 		RenderSystem.setShader(GameRenderer::getPositionTexShader);
 		RenderSystem.setShaderTexture(0, TEXTURE);
 		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
@@ -98,7 +102,7 @@ public class UnlockedRecipeGroupToast implements Toast {
 		return startTime >= 5000L ? Visibility.HIDE : Visibility.SHOW;
 	}
 	
-	public static Text getTextForItemStack(ItemStack itemStack) {
+	public static Text getTextForItemStack(@NotNull ItemStack itemStack) {
 		// special handling for enchanted books
 		// Instead of the text "enchanted book" the toast will
 		// read the first stored enchantment in the book

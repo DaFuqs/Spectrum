@@ -1,18 +1,18 @@
 {
   "type": "spectrum:potion_workshop_brewing",
-
+  "group": "vanilla",
   "ingredient1": {
     "item": "minecraft:nether_wart"
   },
   "ingredient2": {
-    "item": "minecraft:rabbit_foot"
+    "item": "minecraft:glistering_melon_slice"
   },
   "ingredient3": {
     "item": "minecraft:fermented_spider_eye"
   },
-  "effect": "minecraft:slowness",
-  "base_duration_ticks": 1800,
-  "potency_modifier": 2.5,
+  "effect": "minecraft:instant_damage",
+  "base_duration_ticks": 0,
+  "potency_modifier": 1.0,
   "applicable_to_potions": true,
   "applicable_to_tipped_arrows": true,
   "required_advancement": "spectrum:progression/unlock_potion_workshop"

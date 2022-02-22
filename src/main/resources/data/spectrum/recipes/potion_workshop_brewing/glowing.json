@@ -1,6 +1,5 @@
 {
   "type": "spectrum:potion_workshop_brewing",
-
   "ingredient1": {
     "item": "minecraft:nether_wart"
   },
@@ -9,7 +8,7 @@
   },
   "effect": "minecraft:glowing",
   "base_duration_ticks": 1800,
-  "potency_modifier": 1.0,
+  "potency_modifier": 0.0,
   "applicable_to_potions": true,
   "applicable_to_tipped_arrows": true,
   "required_advancement": "spectrum:progression/unlock_potion_workshop"

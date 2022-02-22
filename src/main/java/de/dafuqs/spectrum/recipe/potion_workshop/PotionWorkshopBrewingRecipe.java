@@ -334,7 +334,11 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 		if(statusEffect.isBeneficial()) {
 			posNegBonus = potionMod.flatPotencyBonusPositiveEffects;
 		}
-		int potency = Support.getIntFromDecimalWithChance( potencyModifier * potionMod.multiplicativePotencyModifier + potionMod.flatPotencyBonus + posNegBonus, random) - 1;
+		
+		int potency = 0;
+		if(potencyModifier > 0.0F) {
+			potency = Support.getIntFromDecimalWithChance(potencyModifier * potionMod.multiplicativePotencyModifier + potionMod.flatPotencyBonus + posNegBonus, random) - 1;
+		}
 		
 		if(potency >= 0 && (statusEffect.isInstant() || durationTicks > 0)) {
 			return new StatusEffectInstance(statusEffect, durationTicks, potency, !potionMod.noParticles, !potionMod.noParticles);

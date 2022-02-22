@@ -1,6 +1,5 @@
 {
   "type": "spectrum:potion_workshop_brewing",
-
   "ingredient1": {
     "item": "minecraft:nether_wart"
   },

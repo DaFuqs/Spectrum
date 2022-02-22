@@ -12,10 +12,9 @@
     "item": "minecraft:magma_block"
   },
   "ingredient3": {
-    "item": "spectrum:light_gray_pigment"
+    "item": "spectrum:orange_pigment"
   },
   "result" : {
     "item": "minecraft:lava_bucket"
-  },
-  "required_advancement": "spectrum:hidden/collect_pigment/collect_light_gray_pigment"
+  }
 }

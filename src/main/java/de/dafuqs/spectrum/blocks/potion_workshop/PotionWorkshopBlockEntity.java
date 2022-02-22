@@ -312,13 +312,13 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 						} else {
 							brewRecipe(potionWorkshopBlockEntity, brewingRecipe);
 						}
-						
-						potionWorkshopBlockEntity.brewTime = 0;
-						potionWorkshopBlockEntity.inventoryChanged = true;
-						potionWorkshopBlockEntity.playSound(SoundEvents.BLOCK_BREWING_STAND_BREW);
 					} else {
 						craftRecipe(potionWorkshopBlockEntity, (PotionWorkshopCraftingRecipe) calculatedRecipe);
 					}
+					
+					potionWorkshopBlockEntity.brewTime = 0;
+					potionWorkshopBlockEntity.inventoryChanged = true;
+					potionWorkshopBlockEntity.playSound(SoundEvents.BLOCK_BREWING_STAND_BREW);
 				} else {
 					potionWorkshopBlockEntity.brewTime++;
 				}
@@ -403,6 +403,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 		for(int i : potionWorkshopBlockEntity.getAvailableSlots(Direction.DOWN)) {
 			if(potionWorkshopBlockEntity.getStack(i).isEmpty()) {
 				potionWorkshopBlockEntity.setStack(i, recipe.getOutput().copy());
+				break;
 			}
 		}
 	}

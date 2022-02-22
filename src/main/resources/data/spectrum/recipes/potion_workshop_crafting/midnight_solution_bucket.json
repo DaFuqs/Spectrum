@@ -1,6 +1,5 @@
 {
   "type": "spectrum:potion_workshop_crafting",
-  "time": 200,
   "base_ingredient": {
     "item": "spectrum:midnight_aberration"
   },

@@ -1,10 +1,6 @@
 {
   "type": "spectrum:potion_workshop_brewing",
-  "time": 200,
-  "base_ingredient": {
-    "item": "minecraft:glass_bottle"
-  },
-  "use_up_base_ingredient": true,
+
   "ingredient1": {
     "item": "minecraft:nether_wart"
   },

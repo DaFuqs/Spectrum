@@ -16,6 +16,7 @@ public class SpectrumItemTags {
 	public static Tag<Item> PIGMENTS;
 	public static Tag<Item> PEDESTALS;
 	public static Tag<Item> COMING_SOON_TOOLTIP;
+	public static Tag<Item> PIGLIN_SAFE_EQUIPMENT;
 
 	private static Tag<Item> getReference(String id) {
 		return TagRegistry.item(new Identifier(SpectrumCommon.MOD_ID, id));
@@ -30,5 +31,6 @@ public class SpectrumItemTags {
 		PIGMENTS = getReference("pigments");
 		PEDESTALS = getReference("pedestals");
 		COMING_SOON_TOOLTIP = getReference("coming_soon_tooltip");
+		PIGLIN_SAFE_EQUIPMENT = getReference("piglin_safe_equipment");
 	}
 }

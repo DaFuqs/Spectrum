@@ -32,6 +32,7 @@
     "MiningToolItemMixin",
     "MobSpawnerBlockEntityMixin",
     "PersistentProjectileEntityMixin",
+    "PiglinBrainMixin",
     "PlayerAdvancementTrackerMixin",
     "PlayerEntityMixin",
     "PlayerInventoryMixin",

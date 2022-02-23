@@ -5,7 +5,9 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.AliasedBlockItem;
 import net.minecraft.item.Item;
+import net.minecraft.item.Items;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3i;
@@ -45,18 +47,24 @@ public class BuildingHelper {
 	
 	public static Triplet<Block, Item, Integer> getBuildingItemCountInInventoryIncludingSimilars(PlayerEntity player, Block block) {
 		Item blockItem = block.asItem();
-		int count = player.getInventory().count(block.asItem());
-		if(count == 0) {
-			if(SIMILAR_BLOCKS.containsKey(block)) {
-				Block similarBlock = SIMILAR_BLOCKS.get(block);
-				Item similarBlockItem = similarBlock.asItem();
-				int similarCount = player.getInventory().count(similarBlockItem);
-				if(similarCount > 0) {
-					return new Triplet<>(similarBlock, similarBlockItem, similarCount);
+		if(blockItem instanceof AliasedBlockItem) {
+			// do not process seeds and similar stuff
+			// otherwise players could place fully grown crops
+			return new Triplet<>(block, blockItem, 0);
+		} else {
+			int count = player.getInventory().count(block.asItem());
+			if (count == 0) {
+				if (SIMILAR_BLOCKS.containsKey(block)) {
+					Block similarBlock = SIMILAR_BLOCKS.get(block);
+					Item similarBlockItem = similarBlock.asItem();
+					int similarCount = player.getInventory().count(similarBlockItem);
+					if (similarCount > 0) {
+						return new Triplet<>(similarBlock, similarBlockItem, similarCount);
+					}
 				}
 			}
+			return new Triplet<>(block, blockItem, count);
 		}
-		return new Triplet<>(block, blockItem, count);
 	}
 	
 	/**

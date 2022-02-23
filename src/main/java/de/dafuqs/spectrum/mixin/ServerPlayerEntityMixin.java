@@ -43,7 +43,7 @@ public abstract class ServerPlayerEntityMixin {
 					
 					int disarmingLevel = EnchantmentHelper.getLevel(SpectrumEnchantments.DISARMING, livingSource.getMainHandStack());
 					if (disarmingLevel > 0 && Math.random() < disarmingLevel * SpectrumCommon.CONFIG.DisarmingChancePerLevelPlayers) {
-						DisarmingEnchantment.doDisarmingEffect(thisPlayer);
+						DisarmingEnchantment.disarmPlayer(thisPlayer);
 					}
 					
 					World world = thisPlayer.getWorld();

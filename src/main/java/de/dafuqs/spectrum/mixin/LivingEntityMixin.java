@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.mixin;
 
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.azure_dike.AzureDikeProvider;
+import de.dafuqs.spectrum.enchantments.DisarmingEnchantment;
 import de.dafuqs.spectrum.items.trinkets.AshenCircletItem;
 import de.dafuqs.spectrum.items.trinkets.SpectrumTrinketItem;
 import de.dafuqs.spectrum.networking.SpectrumS2CPackets;
@@ -112,34 +113,7 @@ public abstract class LivingEntityMixin {
 			if(source.getAttacker() instanceof LivingEntity livingSource && SpectrumEnchantments.DISARMING.canEntityUse(livingSource)) {
 				int disarmingLevel = EnchantmentHelper.getLevel(SpectrumEnchantments.DISARMING, livingSource.getMainHandStack());
 				if(disarmingLevel > 0 &&  Math.random() < disarmingLevel * SpectrumCommon.CONFIG.DisarmingChancePerLevelMobs) {
-					LivingEntity thisEntity = (LivingEntity)(Object) this;
-
-					int randomSlot = (int) (Math.random() * 6);
-					int slotsChecked = 0;
-					while (slotsChecked < 6) {
-						if(randomSlot == 5) {
-							if(thisEntity.getMainHandStack() != null) {
-								thisEntity.dropStack(thisEntity.getMainHandStack());
-								thisEntity.setStackInHand(Hand.MAIN_HAND, ItemStack.EMPTY);
-								break;
-							}
-						} else if(randomSlot == 4) {
-							if(thisEntity.getOffHandStack() != null) {
-								thisEntity.dropStack(thisEntity.getOffHandStack());
-								thisEntity.setStackInHand(Hand.OFF_HAND, ItemStack.EMPTY);
-								break;
-							}
-						} else {
-							if(!this.syncedArmorStacks.get(randomSlot).isEmpty()) {
-								thisEntity.dropStack(this.syncedArmorStacks.get(randomSlot));
-								this.syncedArmorStacks.set(randomSlot, ItemStack.EMPTY);
-								break;
-							}
-						}
-
-						randomSlot = (randomSlot + 1) % 6;
-						slotsChecked++;
-					}
+					DisarmingEnchantment.disarmEntity((LivingEntity) (Object) this, this.syncedArmorStacks);
 				}
 			}
 		}

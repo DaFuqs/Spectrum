@@ -81,15 +81,17 @@ public class CraftingTabletItem extends Item {
 	}
 
 	public static Recipe getStoredRecipe(World world, ItemStack itemStack) {
-		NbtCompound nbtCompound = itemStack.getNbt();
-
-		if(nbtCompound != null && nbtCompound.contains("recipe")) {
-			String recipeString = nbtCompound.getString("recipe");
-			Identifier recipeIdentifier = new Identifier(recipeString);
-
-			Optional<? extends Recipe> optional = world.getRecipeManager().get(recipeIdentifier);
-			if(optional.isPresent()) {
-				return optional.get();
+		if(world != null) {
+			NbtCompound nbtCompound = itemStack.getNbt();
+			
+			if (nbtCompound != null && nbtCompound.contains("recipe")) {
+				String recipeString = nbtCompound.getString("recipe");
+				Identifier recipeIdentifier = new Identifier(recipeString);
+				
+				Optional<? extends Recipe> optional = world.getRecipeManager().get(recipeIdentifier);
+				if (optional.isPresent()) {
+					return optional.get();
+				}
 			}
 		}
 		return null;

@@ -150,7 +150,8 @@ public class SpectrumBlockEntityRegistry<T extends BlockEntity> {
 	}
 
 	private static void registerTextureAtlasCallback() {
-		//TODO: needed?
+		// textures that are only referenced in code have to be added to the texture atlas manually
+		
 		//Register textures in chest atlas
 		ClientSpriteRegistryCallback.event(TexturedRenderLayers.CHEST_ATLAS_TEXTURE).register((texture, registry) -> {
 			registry.register(new Identifier(SpectrumCommon.MOD_ID, "entity/private_chest"));

@@ -51,7 +51,7 @@ public class EnchantmentUpgradeRecipe implements Recipe<Inventory>, GatedRecipe 
 		
 		ItemStack ingredientStack = new ItemStack(Items.ENCHANTED_BOOK);
 		ingredientStack.addEnchantment(enchantment, enchantmentDestinationLevel -1);
-		inputs.set(0, Ingredient.ofStacks(ingredientStack)); // TODO: Does that work in multiplayer?
+		inputs.set(0, Ingredient.ofStacks(ingredientStack));
 		inputs.set(1, Ingredient.ofStacks(new ItemStack(requiredItem)));
 		this.inputs = inputs;
 		

@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.mixin;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import net.minecraft.block.BlockState;
-import net.minecraft.entity.EntityType;
 import net.minecraft.entity.mob.EndermanEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.World;
@@ -19,8 +18,6 @@ import java.util.Random;
 
 @Mixin(EndermanEntity.class)
 public abstract class EndermanEntityMixin {
-	
-	@Shadow public abstract boolean cannotDespawn();
 	
 	@Shadow @Nullable public abstract BlockState getCarriedBlock();
 	
@@ -49,7 +46,7 @@ public abstract class EndermanEntityMixin {
 	
 	@Inject(at = @At("RETURN"), method = "cannotDespawn()Z", cancellable = true)
 	public void cannotDespawn(CallbackInfoReturnable<Boolean> cir) {
-		if(!cir.getReturnValue() && this.getCarriedBlock().isOf(SpectrumBlocks.ENDER_TREASURE)) {
+		if(!cir.getReturnValue() && this.getCarriedBlock() != null && this.getCarriedBlock().isOf(SpectrumBlocks.ENDER_TREASURE)) {
 			cir.setReturnValue(true);
 		}
 	}

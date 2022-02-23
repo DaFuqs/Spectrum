@@ -524,7 +524,7 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 						// There was enough experience drained from the knowledge gem that the visual changed
 						// To display the updated knowledge gem size clientside the inventory has to be synched
 						// to the clients for rendering purposes
-						// TODO: play particle effect
+						SpectrumS2CPackets.playParticleWithPatternAndVelocity(null, (ServerWorld) world, new Vec3d(this.pos.getX() + 0.5, this.pos.getY() + 2.5, this.pos.getZ() + 0.5), SpectrumParticleTypes.LIME_CRAFTING, SpectrumS2CPackets.ParticlePattern.SIXTEEN, 0.05F);
 						this.updateInClientWorld();
 					}
 				}

@@ -437,7 +437,7 @@ public class SpectrumS2CPackets {
 		}
 	}
 	
-	public static void playParticleWithPatternAndVelocityClient(World world, Vec3d position, ParticleEffect particleEffect, ParticlePattern pattern, double velocity) {
+	public static void playParticleWithPatternAndVelocityClient(World world, Vec3d position, ParticleEffect particleEffect, @NotNull ParticlePattern pattern, double velocity) {
 		for(Vec3d vec3d : pattern.getVectors()) {
 			world.addParticle(particleEffect, position.getX(), position.getY(), position.getZ(), vec3d.x * velocity, vec3d.y * velocity, vec3d.z * velocity);
 		}
@@ -544,8 +544,7 @@ public class SpectrumS2CPackets {
 			ServerPlayNetworking.send(player, SpectrumS2CPackets.INITIATE_WIRELESS_REDSTONE_TRANSMISSION, buf);
 		}
 	}
-
-	// TODO: merge with sendPlayExperienceOrbEntityAbsorbedParticle
+	
 	public static void sendPlayItemEntityAbsorbedParticle(World world, @NotNull ItemEntity itemEntity) {
 		PacketByteBuf buf = PacketByteBufs.create();
 		buf.writeDouble(itemEntity.getPos().x);

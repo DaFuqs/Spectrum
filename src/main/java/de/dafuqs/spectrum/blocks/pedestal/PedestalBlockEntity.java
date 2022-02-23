@@ -191,10 +191,6 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		if (stack.getCount() > this.getMaxCountPerStack()) {
 			stack.setCount(this.getMaxCountPerStack());
 		}
-
-		if (slot < CRAFTING_TABLET_SLOT_ID && !isSameItem) { // TODO: is that needed?
-			this.craftingTimeTotal = getCraftingTime(this.world, SpectrumRecipeTypes.PEDESTAL, this);
-		}
 		
 		this.inventoryChanged = true;
 		this.markDirty();

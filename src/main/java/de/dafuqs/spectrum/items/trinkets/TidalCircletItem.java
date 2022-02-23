@@ -38,15 +38,8 @@ public class TidalCircletItem extends SpectrumTrinketItem {
 	private final int MAX_AXOLOTL_DISTANCE = 12;
 	private final int AXOLOTL_HEALING = 2;
 	
-    private final Identifier UNLOCK_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_tidal_circlet");
-
 	public TidalCircletItem(Settings settings) {
-		super(settings);
-	}
-	
-	@Override
-    protected Identifier getUnlockIdentifier() {
-		return UNLOCK_IDENTIFIER;
+		super(settings, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_tidal_circlet"));
 	}
 	
 	@Override

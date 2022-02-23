@@ -29,17 +29,10 @@ public class GleamingPinItem extends SpectrumTrinketItem {
 	public static final int EFFECT_DURATION = 240;
 	public static final long COOLDOWN_TICKS = 160;
 	
-	private final Identifier UNLOCK_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_gleaming_pin");
-
 	public GleamingPinItem(Settings settings) {
-		super(settings);
+		super(settings, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_gleaming_pin"));
 	}
-	
-	@Override
-    protected Identifier getUnlockIdentifier() {
-		return UNLOCK_IDENTIFIER;
-	}
-	
+
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);

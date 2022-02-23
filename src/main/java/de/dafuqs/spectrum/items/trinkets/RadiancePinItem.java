@@ -29,15 +29,8 @@ public class RadiancePinItem extends SpectrumTrinketItem {
 	public static final BlockState LIGHT_BLOCK_STATE = SpectrumBlocks.DECAYING_LIGHT_BLOCK.getDefaultState().with(LightBlock.LEVEL_15, 15);
 	public static final BlockState LIGHT_BLOCK_STATE_WATER = SpectrumBlocks.DECAYING_LIGHT_BLOCK.getDefaultState().with(LightBlock.LEVEL_15, 15).with(LightBlock.WATERLOGGED, true);
 	
-    private final Identifier UNLOCK_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_radiance_pin");
-
 	public RadiancePinItem(Settings settings) {
-		super(settings);
-	}
-	
-	@Override
-    protected Identifier getUnlockIdentifier() {
-		return UNLOCK_IDENTIFIER;
+		super(settings, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_radiance_pin"));
 	}
 	
 	@Override

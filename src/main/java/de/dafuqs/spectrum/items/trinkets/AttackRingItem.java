@@ -26,12 +26,10 @@ import java.util.UUID;
 
 public class AttackRingItem extends SpectrumTrinketItem {
 	
-	private final Identifier UNLOCK_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_jeopardant");
-	
 	public static final UUID ATTACK_RING_DAMAGE_UUID = UUID.fromString("15d1fb68-6440-404a-aa31-7bf3310d3f52");
 
 	public AttackRingItem(Settings settings) {
-		super(settings);
+		super(settings, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_jeopardant"));
 	}
 	
 	@Override
@@ -53,11 +51,6 @@ public class AttackRingItem extends SpectrumTrinketItem {
 		}
 		
 		return super.canEquip(stack, slot, entity);
-	}
-	
-	@Override
-	protected Identifier getUnlockIdentifier() {
-		return UNLOCK_IDENTIFIER;
 	}
 	
 	@Environment(EnvType.CLIENT)

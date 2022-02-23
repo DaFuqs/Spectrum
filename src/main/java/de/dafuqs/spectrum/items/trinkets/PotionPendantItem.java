@@ -24,20 +24,13 @@ import java.util.List;
 import java.util.Map;
 
 public class PotionPendantItem extends SpectrumTrinketItem implements PotionFillable {
-	
-    private final Identifier UNLOCK_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_potion_pendant");
-	
+
 	private final int TRIGGER_EVERY_X_TICKS = 40;
 	private final int EFFECT_DURATION = TRIGGER_EVERY_X_TICKS + 10;
 	
 	public PotionPendantItem(Settings settings) {
-		super(settings);
+		super(settings, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_potion_pendant"));
 		registerAsFillable(this);
-	}
-	
-	@Override
-    protected Identifier getUnlockIdentifier() {
-		return UNLOCK_IDENTIFIER;
 	}
 	
 	@Override

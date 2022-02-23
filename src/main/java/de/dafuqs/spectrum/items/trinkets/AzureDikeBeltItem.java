@@ -15,15 +15,8 @@ import java.util.List;
 
 public class AzureDikeBeltItem extends AzureDikeTrinketItem {
 	
-	private final Identifier UNLOCK_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_azure_dike_ring");
-	
 	public AzureDikeBeltItem(Settings settings) {
-		super(settings);
-	}
-	
-	@Override
-	protected Identifier getUnlockIdentifier() {
-		return UNLOCK_IDENTIFIER;
+		super(settings, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_azure_dike_ring"));
 	}
 	
 	@Environment(EnvType.CLIENT)

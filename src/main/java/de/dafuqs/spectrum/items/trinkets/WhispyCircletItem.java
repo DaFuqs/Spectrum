@@ -25,15 +25,8 @@ public class WhispyCircletItem extends SpectrumTrinketItem {
     private final int TRIGGER_EVERY_X_TICKS = 100;
     private final int NEGATIVE_EFFECT_SHORTENING_TICKS = 100;
 	
-    private final Identifier UNLOCK_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_whispy_circlet");
-
 	public WhispyCircletItem(Settings settings) {
-		super(settings);
-	}
-	
-	@Override
-    protected Identifier getUnlockIdentifier() {
-		return UNLOCK_IDENTIFIER;
+		super(settings, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_whispy_circlet"));
 	}
 	
 	@Override
@@ -83,6 +76,5 @@ public class WhispyCircletItem extends SpectrumTrinketItem {
 	public static void preventPhantomSpawns(@NotNull ServerPlayerEntity serverPlayerEntity) {
 		serverPlayerEntity.getStatHandler().setStat(serverPlayerEntity, Stats.CUSTOM.getOrCreateStat(Stats.TIME_SINCE_REST), 0);
 	}
-	
 	
 }

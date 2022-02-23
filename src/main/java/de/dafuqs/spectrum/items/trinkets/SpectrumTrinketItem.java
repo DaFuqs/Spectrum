@@ -19,19 +19,33 @@ import java.util.Optional;
 
 public abstract class SpectrumTrinketItem extends TrinketItem {
 	
-	public SpectrumTrinketItem(Settings settings) {
+	private final Identifier unlockIdentifier;
+	
+	public SpectrumTrinketItem(Settings settings, Identifier unlockIdentifier) {
 		super(settings);
+		this.unlockIdentifier = unlockIdentifier;
 	}
 	
-	protected abstract Identifier getUnlockIdentifier();
+	protected Identifier getUnlockIdentifier() {
+		return this.unlockIdentifier;
+	}
 	
 	@Override
 	public boolean canEquip(ItemStack stack, SlotReference slot, LivingEntity entity) {
 		if(entity instanceof PlayerEntity playerEntity) {
+			// does the player have the matching advancement?
 			if(Support.hasAdvancement(playerEntity, getUnlockIdentifier())) {
+				// Can only a single trinket of that type be equipped at once?
+				if(!canEquipMoreThanOne() && hasEquipped(entity, this)) {
+					return false;
+				}
 				return super.canEquip(stack, slot, entity);
 			}
 		}
+		return false;
+	}
+	
+	public boolean canEquipMoreThanOne() {
 		return false;
 	}
 	

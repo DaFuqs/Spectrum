@@ -14,15 +14,8 @@ import java.util.List;
 
 public class PuffCircletItem extends SpectrumTrinketItem {
 	
-    private final Identifier UNLOCK_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_ashen_circlet");
-
 	public PuffCircletItem(Settings settings) {
-		super(settings);
-	}
-	
-	@Override
-    protected Identifier getUnlockIdentifier() {
-		return UNLOCK_IDENTIFIER;
+		super(settings, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_ashen_circlet"));
 	}
 	
 	@Override

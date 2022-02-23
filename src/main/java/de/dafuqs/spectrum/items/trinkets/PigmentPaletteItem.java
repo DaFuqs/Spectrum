@@ -17,15 +17,8 @@ import java.util.List;
 
 public class PigmentPaletteItem extends SpectrumTrinketItem {
 	
-	private final Identifier UNLOCK_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_pigment_palette");
-	
 	public PigmentPaletteItem(Settings settings) {
-		super(settings);
-	}
-	
-	@Override
-	protected Identifier getUnlockIdentifier() {
-		return UNLOCK_IDENTIFIER;
+		super(settings, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_pigment_palette"));
 	}
 	
 	@Environment(EnvType.CLIENT)

@@ -32,8 +32,6 @@ public class AshenCircletItem extends SpectrumTrinketItem {
 	public static final float LAVA_VIEW_DISTANCE_MIN_POTION = -8.0F;
 	public static final float LAVA_VIEW_DISTANCE_MAX_POTION = 16.0F;
 	
-    private final Identifier UNLOCK_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_ashen_circlet");
-	
 	@Override
 	public void tick(ItemStack stack, SlotReference slot, LivingEntity entity) {
 		super.tick(stack, slot, entity);
@@ -43,12 +41,7 @@ public class AshenCircletItem extends SpectrumTrinketItem {
 	}
 	
 	public AshenCircletItem(Settings settings) {
-		super(settings);
-	}
-	
-	@Override
-    protected Identifier getUnlockIdentifier() {
-		return UNLOCK_IDENTIFIER;
+		super(settings, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_ashen_circlet"));
 	}
 	
 	@Override

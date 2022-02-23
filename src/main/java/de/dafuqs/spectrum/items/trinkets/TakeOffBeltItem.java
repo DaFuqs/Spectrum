@@ -36,15 +36,8 @@ public class TakeOffBeltItem extends SpectrumTrinketItem {
 	
 	private static final HashMap<LivingEntity, Long> sneakingTimes = new HashMap<>();
 	
-	private final Identifier UNLOCK_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_take_off_belt");
-
 	public TakeOffBeltItem(Settings settings) {
-		super(settings);
-	}
-	
-	@Override
-	protected Identifier getUnlockIdentifier() {
-		return UNLOCK_IDENTIFIER;
+		super(settings, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_take_off_belt"));
 	}
 	
 	@Environment(EnvType.CLIENT)

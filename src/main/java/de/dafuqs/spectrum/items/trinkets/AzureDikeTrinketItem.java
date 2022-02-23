@@ -3,11 +3,12 @@ package de.dafuqs.spectrum.items.trinkets;
 import dev.emi.trinkets.api.SlotReference;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.Identifier;
 
 public abstract class AzureDikeTrinketItem extends SpectrumTrinketItem implements AzureDikeItem {
 	
-	public AzureDikeTrinketItem(Settings settings) {
-		super(settings);
+	public AzureDikeTrinketItem(Settings settings, Identifier unlockIdentifier) {
+		super(settings, unlockIdentifier);
 	}
 	
 	@Override

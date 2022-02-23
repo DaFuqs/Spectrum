@@ -35,6 +35,7 @@ public class PotionPendantItem extends SpectrumTrinketItem implements PotionFill
 	
 	public PotionPendantItem(Settings settings) {
 		super(settings);
+		registerAsFillable(this);
 	}
 	
 	@Override

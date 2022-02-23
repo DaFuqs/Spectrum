@@ -6,13 +6,13 @@
   "use_up_base_ingredient": false,
   "color": 526373,
   "ingredient1": {
-    "item": "spectrum:midnight_aberration"
+    "item": "minecraft:obsidian"
   },
   "ingredient2": {
     "item": "spectrum:stardust"
   },
   "result" : {
-    "item": "spectrum:crying_obsidian"
+    "item": "minecraft:crying_obsidian"
   },
   "required_advancement": "spectrum:midgame/create_midnight_aberration"
 }

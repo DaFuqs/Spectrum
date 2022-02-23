@@ -7,11 +7,15 @@ import de.dafuqs.spectrum.interfaces.PotionFillable;
 import de.dafuqs.spectrum.progression.ClientRecipeToastManager;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.registries.SpectrumItems;
+import me.shedaniel.rei.api.common.entry.EntryIngredient;
+import me.shedaniel.rei.api.common.entry.EntryStack;
+import me.shedaniel.rei.api.common.util.EntryStacks;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.inventory.Inventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
@@ -30,6 +34,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Stream;
 
 public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 	
@@ -108,6 +113,14 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 		return true;
 	}
 	
+	public boolean isApplicableToPotions() {
+		return applicableToPotions;
+	}
+	
+	public boolean isApplicableToTippedArrows() {
+		return applicableToTippedArrows;
+	}
+	
 	@Override
 	public int getMinOutputCount(ItemStack baseItemStack) {
 		return baseItemStack.isOf(Items.GLASS_BOTTLE) ? 3 : 1;
@@ -125,11 +138,17 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 	@Override
 	public DefaultedList<Ingredient> getIngredients() {
 		DefaultedList<Ingredient> defaultedList = DefaultedList.of();
-		defaultedList.add(Ingredient.ofStacks(Items.GLASS_BOTTLE.getDefaultStack(), Items.ARROW.getDefaultStack(), SpectrumItems.POTION_PENDANT.getDefaultStack()));
+		defaultedList.add(Ingredient.ofStacks(SpectrumItems.MERMAIDS_GEM.getDefaultStack()));
+		defaultedList.add(Ingredient.ofStacks(Items.GLASS_BOTTLE.getDefaultStack()));
 		defaultedList.add(this.ingredient1);
 		defaultedList.add(this.ingredient2);
 		defaultedList.add(this.ingredient3);
 		return defaultedList;
+	}
+	
+	@Override
+	public ItemStack getOutput() {
+		return getRandomPotion(new PotionMod(), null, new Random());
 	}
 	
 	@Override

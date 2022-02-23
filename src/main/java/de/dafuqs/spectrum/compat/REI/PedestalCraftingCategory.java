@@ -14,7 +14,6 @@ import me.shedaniel.rei.api.client.gui.widgets.Widgets;
 import me.shedaniel.rei.api.client.registry.display.DisplayCategory;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.entry.EntryIngredient;
-import me.shedaniel.rei.api.common.entry.EntryStack;
 import me.shedaniel.rei.api.common.util.EntryStacks;
 import me.shedaniel.rei.plugin.common.displays.crafting.DefaultCraftingDisplay;
 import net.minecraft.text.Text;
@@ -76,7 +75,7 @@ public class PedestalCraftingCategory implements DisplayCategory<PedestalCraftin
 					slots.add(Widgets.createSlot(new Point(startPoint.x + 1 + x * 18, startPoint.y + 1 + y * 18)).disableBackground().markInput());
 
 			// set crafting slot contents
-			List<? extends List<? extends EntryStack<?>>> input = display.getInputEntries();
+			List<EntryIngredient> input = display.getInputEntries();
 			int gemstoneDustStartSlot = display.getHeight() * display.getWidth();
 			for (int i = 0; i < gemstoneDustStartSlot; i++) {
 				if (!input.get(i).isEmpty()) {

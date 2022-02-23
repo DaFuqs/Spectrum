@@ -1,9 +1,11 @@
 package de.dafuqs.spectrum.interfaces;
 
 import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -12,6 +14,8 @@ import java.util.List;
  * Think Custom Potions or Trinkets
  */
 public interface PotionFillable {
+	
+	List<Item> potionFillables = new ArrayList<>();
 	
 	int maxEffectCount();
 	
@@ -32,6 +36,10 @@ public interface PotionFillable {
 	
 	default boolean isFull(ItemStack itemStack) {
 		return PotionUtil.getCustomPotionEffects(itemStack).size() >= maxEffectCount();
+	}
+	
+	default void registerAsFillable(Item item) {
+		this.potionFillables.add (item);
 	}
 	
 }

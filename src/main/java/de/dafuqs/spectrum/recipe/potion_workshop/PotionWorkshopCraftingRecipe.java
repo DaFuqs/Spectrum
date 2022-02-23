@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.recipe.potion_workshop;
 import de.dafuqs.spectrum.SpectrumClient;
 import de.dafuqs.spectrum.progression.ClientRecipeToastManager;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
+import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.inventory.Inventory;
@@ -18,7 +19,6 @@ public class PotionWorkshopCraftingRecipe extends PotionWorkshopRecipe {
 	protected final Ingredient baseIngredient;
 	protected final boolean consumeBaseIngredient;
 	protected final ItemStack output;
-	
 	
 	public PotionWorkshopCraftingRecipe(Identifier id, String group, Ingredient baseIngredient, boolean consumeBaseIngredient, Ingredient ingredient1, Ingredient ingredient2, Ingredient ingredient3, ItemStack output, int craftingTime, int color, Identifier requiredAdvancementIdentifier) {
 		super(id, group, craftingTime, color, ingredient1, ingredient2, ingredient3, requiredAdvancementIdentifier);
@@ -71,6 +71,7 @@ public class PotionWorkshopCraftingRecipe extends PotionWorkshopRecipe {
 	@Override
 	public DefaultedList<Ingredient> getIngredients() {
 		DefaultedList<Ingredient> defaultedList = DefaultedList.of();
+		defaultedList.add(Ingredient.ofStacks(SpectrumItems.MERMAIDS_GEM.getDefaultStack()));
 		defaultedList.add(this.baseIngredient);
 		defaultedList.add(this.ingredient1);
 		defaultedList.add(this.ingredient2);

@@ -5,7 +5,7 @@
   },
   "use_up_base_ingredient": true,
   "color": 2451682,
-  "ingredient2": {
+  "ingredient1": {
     "item": "spectrum:light_blue_pigment"
   },
   "result" : {

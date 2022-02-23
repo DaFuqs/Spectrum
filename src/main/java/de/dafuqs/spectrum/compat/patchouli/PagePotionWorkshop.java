@@ -56,7 +56,7 @@ public abstract class PagePotionWorkshop extends PageDoubleRecipeRegistry<Potion
 
 	@Override
 	protected int getRecipeHeight() {
-		return 99;
+		return 97;
 	}
 
 }

@@ -7,8 +7,8 @@
     "item": "spectrum:four_leaf_clover"
   },
   "effect": "minecraft:luck",
-  "base_duration_ticks": 0,
-  "potency_modifier": 1.0,
+  "base_duration_ticks": 6000,
+  "potency_modifier": 1.5,
   "applicable_to_potions": true,
   "applicable_to_tipped_arrows": true,
   "required_advancement": "spectrum:collect_four_leaf_clover"

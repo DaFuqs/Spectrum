@@ -22,13 +22,8 @@ public class AzureDikeRingItem extends AzureDikeTrinketItem {
 	}
 	
 	@Override
-	public boolean canEquip(ItemStack stack, SlotReference slot, LivingEntity entity) {
-		// Only a single trinket of that type may be equipped at once
-		if(SpectrumTrinketItem.hasEquipped(entity, this)) {
-			return false;
-		}
-		
-		return super.canEquip(stack, slot, entity);
+	public boolean canEquipMoreThanOne() {
+		return true;
 	}
 	
 	@Environment(EnvType.CLIENT)
@@ -36,11 +31,17 @@ public class AzureDikeRingItem extends AzureDikeTrinketItem {
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
 		tooltip.add(new TranslatableText("item.spectrum.azure_dike_ring.tooltip"));
+		tooltip.add(new TranslatableText("item.spectrum.azure_dike_ring.tooltip2"));
 	}
 	
 	@Override
 	public int maxAzureDike() {
 		return 4;
+	}
+	
+	@Override
+	public float azureDikeRechargeBonusTicks() {
+		return 5;
 	}
 	
 }

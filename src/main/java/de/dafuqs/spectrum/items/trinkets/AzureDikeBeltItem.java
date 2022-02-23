@@ -24,11 +24,17 @@ public class AzureDikeBeltItem extends AzureDikeTrinketItem {
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
 		tooltip.add(new TranslatableText("item.spectrum.azure_dike_belt.tooltip"));
+		tooltip.add(new TranslatableText("item.spectrum.azure_dike_belt.tooltip2"));
 	}
 	
 	@Override
 	public int maxAzureDike() {
 		return 6;
+	}
+	
+	@Override
+	public float rechargeTicksAfterDamageBonusTicks() {
+		return 100;
 	}
 	
 }

@@ -21,16 +21,6 @@ public class NeatRingItem extends SpectrumTrinketItem {
 		super(settings, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_neat_ring"));
 	}
 	
-	@Override
-	public boolean canEquip(ItemStack stack, SlotReference slot, LivingEntity entity) {
-		// Only a single trinket of that type may be equipped at once
-		if(SpectrumTrinketItem.hasEquipped(entity, this)) {
-			return false;
-		}
-		
-		return super.canEquip(stack, slot, entity);
-	}
-	
 	@Environment(EnvType.CLIENT)
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {

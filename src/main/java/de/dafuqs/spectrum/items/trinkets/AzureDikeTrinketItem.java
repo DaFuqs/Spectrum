@@ -35,12 +35,12 @@ public abstract class AzureDikeTrinketItem extends SpectrumTrinketItem implement
 	}
 	
 	@Override
-	public float azureDikeChargeBonusDefault() {
+	public float azureDikeRechargeBonusTicks() {
 		return 0;
 	}
 	
 	@Override
-	public float rechargeTicksAfterDamageBonus() {
+	public float rechargeTicksAfterDamageBonusTicks() {
 		return 0;
 	}
 	

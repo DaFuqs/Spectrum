@@ -45,7 +45,6 @@
     "WorldRendererMixin"
   ],
   "client": [
-    "client.PotionItemClientMixin",
     "client.AccessorClientAdvancementManager",
     "client.BackgroundRendererMixin",
     "client.BlockClientMixin",
@@ -60,6 +59,7 @@
     "client.ItemMixin",
     "client.MixinClientAdvancementManager",
     "client.MixinMinecraftClient",
+    "client.PotionItemClientMixin",
     "client.RenderLayerAccessor",
     "client.TransparentBlockMixin",
     "client.WorldRendererMixin",

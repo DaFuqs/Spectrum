@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum;
 
-import de.dafuqs.spectrum.recipe.potion_workshop.PotionWorkshopReagents;
 import de.dafuqs.spectrum.blocks.shooting_star.ShootingStarBlock;
 import de.dafuqs.spectrum.config.SpectrumConfig;
 import de.dafuqs.spectrum.dimension.DeeperDownDimension;
@@ -20,6 +19,7 @@ import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.progression.BlockCloakManager;
 import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
+import de.dafuqs.spectrum.recipe.potion_workshop.PotionWorkshopReagents;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.registries.color.ColorRegistry;
 import de.dafuqs.spectrum.sound.SpectrumBlockSoundGroups;

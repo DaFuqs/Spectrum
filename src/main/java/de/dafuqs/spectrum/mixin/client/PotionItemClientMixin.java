@@ -1,7 +1,10 @@
 package de.dafuqs.spectrum.mixin.client;
 
 import net.minecraft.client.item.TooltipContext;
-import net.minecraft.item.*;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.LingeringPotionItem;
+import net.minecraft.item.PotionItem;
+import net.minecraft.item.TippedArrowItem;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.text.Text;

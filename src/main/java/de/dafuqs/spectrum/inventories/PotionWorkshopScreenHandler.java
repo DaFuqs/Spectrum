@@ -1,13 +1,11 @@
 package de.dafuqs.spectrum.inventories;
 
 import de.dafuqs.spectrum.Support;
-import de.dafuqs.spectrum.blocks.chests.CompactingChestBlockEntity;
 import de.dafuqs.spectrum.blocks.potion_workshop.PotionWorkshopBlockEntity;
 import de.dafuqs.spectrum.inventories.slots.DisabledSlot;
 import de.dafuqs.spectrum.inventories.slots.ReagentSlot;
 import de.dafuqs.spectrum.inventories.slots.StackFilterSlot;
 import de.dafuqs.spectrum.registries.SpectrumItems;
-import net.minecraft.block.entity.BrewingStandBlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;

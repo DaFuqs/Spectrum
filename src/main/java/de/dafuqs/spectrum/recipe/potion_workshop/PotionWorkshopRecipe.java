@@ -13,7 +13,6 @@ import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -109,11 +108,6 @@ public abstract class PotionWorkshopRecipe implements Recipe<Inventory>, GatedRe
 	@Override
 	public boolean fits(int width, int height) {
 		return true;
-	}
-
-	@Override
-	public ItemStack getOutput() {
-		return ItemStack.EMPTY;
 	}
 
 	public boolean isIgnoredInRecipeBook() {

@@ -7,15 +7,11 @@ import de.dafuqs.spectrum.interfaces.PotionFillable;
 import de.dafuqs.spectrum.progression.ClientRecipeToastManager;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.registries.SpectrumItems;
-import me.shedaniel.rei.api.common.entry.EntryIngredient;
-import me.shedaniel.rei.api.common.entry.EntryStack;
-import me.shedaniel.rei.api.common.util.EntryStacks;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.inventory.Inventory;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
@@ -34,7 +30,6 @@ import org.jetbrains.annotations.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.stream.Stream;
 
 public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 	
@@ -61,6 +56,8 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 	
 	protected final boolean applicableToPotions;
 	protected final boolean applicableToTippedArrows;
+	
+	protected ItemStack cacheckOutput;
 
 	public PotionWorkshopBrewingRecipe(Identifier id, String group, int craftingTime, Ingredient ingredient1, Ingredient ingredient2, Ingredient ingredient3, StatusEffect statusEffect, int baseDurationTicks, float potencyModifier, int color, boolean applicableToPotions, boolean applicableToTippedArrows, Identifier requiredAdvancementIdentifier) {
 		super(id, group, craftingTime, color, ingredient1, ingredient2, ingredient3, requiredAdvancementIdentifier);
@@ -148,7 +145,10 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 	
 	@Override
 	public ItemStack getOutput() {
-		return getRandomPotion(new PotionMod(), null, new Random());
+		if(this.cacheckOutput == null) {
+			this.cacheckOutput = getRandomPotion(new PotionMod(), null, new Random());
+		}
+		return this.cacheckOutput;
 	}
 	
 	@Override
@@ -370,6 +370,12 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 		int potency = 0;
 		if(potencyModifier > 0.0F) {
 			potency = Support.getIntFromDecimalWithChance(potencyModifier * potionMod.multiplicativePotencyModifier + potionMod.flatPotencyBonus + posNegBonus, random) - 1;
+		}
+		// if the result of the potency calulation was negative
+		// because of a very low potencyModifier (not because the player was greedy and
+		// got mali because of low multiplicativePotencyModifier) => set to 0 again
+		if(potency < 0 && potionMod.multiplicativePotencyModifier >= 1.0) {
+			potency = 0;
 		}
 		
 		if(potency >= 0 && (statusEffect.isInstant() || durationTicks > 0)) {

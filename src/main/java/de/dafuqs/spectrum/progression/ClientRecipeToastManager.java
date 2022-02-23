@@ -7,7 +7,6 @@ import de.dafuqs.spectrum.progression.toast.UnlockedRecipeGroupToast;
 import de.dafuqs.spectrum.recipe.enchanter.EnchanterRecipe;
 import de.dafuqs.spectrum.recipe.fusion_shrine.FusionShrineRecipe;
 import de.dafuqs.spectrum.recipe.pedestal.PedestalCraftingRecipe;
-import de.dafuqs.spectrum.recipe.potion_workshop.PotionWorkshopBrewingRecipe;
 import de.dafuqs.spectrum.recipe.potion_workshop.PotionWorkshopRecipe;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import net.fabricmc.api.EnvType;

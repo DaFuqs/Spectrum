@@ -110,7 +110,7 @@ public class SuckingChestScreenHandler extends ScreenHandler {
 			ItemStack itemStack2 = slot.getStack();
 			itemStack = itemStack2.copy();
 			if (index < this.ROWS * 9) {
-				if (!this.insertItem(itemStack2, this.ROWS * 9, this.slots.size(), true)) {
+				if (!this.insertItem(itemStack2, this.ROWS * 9, this.slots.size() - 6, true)) {
 					return ItemStack.EMPTY;
 				}
 			} else if (!this.insertItem(itemStack2, 0, this.ROWS * 9, false)) {

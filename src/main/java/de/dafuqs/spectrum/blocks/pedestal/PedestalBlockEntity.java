@@ -504,10 +504,6 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), soundEvent, SoundCategory.BLOCKS, 0.9F + random.nextFloat() * 0.2F, 0.9F + random.nextFloat() * 0.15F);
 	}
 
-	private static int getCraftingTime(World world, RecipeType<? extends PedestalCraftingRecipe> recipeType, Inventory inventory) {
-		return world.getRecipeManager().getFirstMatch(recipeType, inventory, world).map(PedestalCraftingRecipe::getCraftingTime).orElse(20);
-	}
-
 	private static boolean canAcceptRecipeOutput(@Nullable Recipe<?> recipe, DefaultedList<ItemStack> defaultedList, int maxCountPerStack) {
 		if (recipe != null) {
 			ItemStack output = recipe.getOutput();

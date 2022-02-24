@@ -267,7 +267,8 @@ public class PedestalCraftingRecipe implements Recipe<Inventory>, GatedRecipe {
 		if(playerEntity == null) {
 			return false;
 		} else {
-			return canPlayerCraft(playerEntity) && pedestalBlockEntity.getHighestAvailableRecipeTierWithStructure().ordinal() >= this.tier.ordinal();
+			// pedestal upgrade recipes do not require the structure
+			return canPlayerCraft(playerEntity) && (getUpgradedPedestalVariantForOutput(this.output) != null || pedestalBlockEntity.getHighestAvailableRecipeTierWithStructure().ordinal() >= this.tier.ordinal());
 		}
 	}
 

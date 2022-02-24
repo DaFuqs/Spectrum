@@ -89,7 +89,7 @@ public class SuckingChestScreenHandler extends ScreenHandler {
 			this.addSlot(new Slot(playerInventory, j, 8 + j * 18, 170+19 + i));
 		}
 		
-		// inventory provider slot
+		// experience provider slot
 		this.addSlot(new StackFilterSlot(inventory, SuckingChestBlockEntity.EXPERIENCE_STORAGE_PROVIDER_ITEM_SLOT, 152, 18, SpectrumItems.KNOWLEDGE_GEM));
 		
 		// filter slots

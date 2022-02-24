@@ -50,13 +50,13 @@ public class MiningToolItemMixin {
 	public void applyInertiaMiningSpeedMultiplier(ItemStack stack, BlockState state, CallbackInfoReturnable<Float> cir) {
 		if(stack != null) { // thank you, gobber
 			int inertiaLevel = EnchantmentHelper.getLevel(SpectrumEnchantments.INERTIA, stack);
-			inertiaLevel = Math.min(5, inertiaLevel); // inertia is capped at 5 levels. Higher and the formula would do weird stuff
+			inertiaLevel = Math.min(4, inertiaLevel); // inertia is capped at 5 levels. Higher and the formula would do weird stuff
 			if (inertiaLevel > 0) {
 				NbtCompound compound = stack.getOrCreateNbt();
 				Identifier brokenBlockIdentifier = Registry.BLOCK.getId(state.getBlock());
 				if (compound.getString("Inertia_LastMinedBlock").equals(brokenBlockIdentifier.toString())) {
 					long lastMinedBlockCount = compound.getLong("Inertia_LastMinedBlockCount");
-					double additionalSpeedPercent = 2 * Math.log(lastMinedBlockCount) / Math.log((6 - inertiaLevel) * (6 - inertiaLevel));
+					double additionalSpeedPercent = 1.5 * Math.log(lastMinedBlockCount) / Math.log((6 - inertiaLevel) * (6 - inertiaLevel) + 1);
 					
 					cir.setReturnValue(cir.getReturnValue() * (0.5F + (float) additionalSpeedPercent));
 				} else {

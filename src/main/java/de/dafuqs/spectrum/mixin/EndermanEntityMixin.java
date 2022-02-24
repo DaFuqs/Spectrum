@@ -46,8 +46,8 @@ public abstract class EndermanEntityMixin {
 	
 	@Inject(at = @At("RETURN"), method = "cannotDespawn()Z", cancellable = true)
 	public void cannotDespawn(CallbackInfoReturnable<Boolean> cir) {
-		if(!cir.getReturnValue() && this.getCarriedBlock() != null && this.getCarriedBlock().isOf(SpectrumBlocks.ENDER_TREASURE)) {
-			cir.setReturnValue(true);
+		if(cir.getReturnValue() && this.getCarriedBlock() != null && this.getCarriedBlock().isOf(SpectrumBlocks.ENDER_TREASURE)) {
+			cir.setReturnValue(false);
 		}
 	}
 

@@ -644,6 +644,10 @@
   "block.spectrum.liquid_crystal": "Liquid Crystal",
   "block.spectrum.flowing_liquid_crystal": "Liquid Crystal",
 
+  "item.spectrum.midnight_solution_bucket": "Midnight Solution Bucket",
+  "block.spectrum.midnight_solution": "Midnight Solution",
+  "block.spectrum.flowing_midnight_solution": "Midnight Solution",
+
   "block.spectrum.paletur_ore": "Paltaeria Ore",
   "block.spectrum.paletur_fragment_block": "Paltaeria Floatblock",
   "block.spectrum.scarlet_ore": "Crimtane Ore",

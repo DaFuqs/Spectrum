@@ -9,6 +9,7 @@ public class SpectrumFluidTags {
 
 	public static Tag<Fluid> LIQUID_CRYSTAL;
 	public static Tag<Fluid> MUD;
+	public static Tag<Fluid> MIDNIGHT_SOLUTION;
 
 	private static Tag<Fluid> register(String id) {
 		return FluidTagsAccessor.invokeRegister(SpectrumCommon.MOD_ID + ":" + id);
@@ -17,5 +18,6 @@ public class SpectrumFluidTags {
 	public static void register() {
 		LIQUID_CRYSTAL = register("liquid_crystal");
 		MUD = register("mud");
+		MIDNIGHT_SOLUTION = register("midnight_solution");
 	}
 }

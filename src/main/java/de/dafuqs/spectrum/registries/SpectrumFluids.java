@@ -61,8 +61,7 @@ public class SpectrumFluids {
 		setupFluidRendering(MUD, FLOWING_MUD, new Identifier(SpectrumCommon.MOD_ID, "mud"), 0x4e2e0a);
 		BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getTranslucent(), MUD, FLOWING_MUD);
 		
-		// TODO: overlay
-		setupFluidRendering(MIDNIGHT_SOLUTION, FLOWING_MUD, new Identifier(SpectrumCommon.MOD_ID, "midnight_solution"), 0x4e2e0a);
+		setupFluidRendering(MIDNIGHT_SOLUTION, FLOWING_MIDNIGHT_SOLUTION, new Identifier(SpectrumCommon.MOD_ID, "midnight_solution"), 0x4e2e0a);
 		BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getTranslucent(), MIDNIGHT_SOLUTION, FLOWING_MIDNIGHT_SOLUTION);
 	}
 
@@ -80,8 +79,7 @@ public class SpectrumFluids {
 		final Identifier fluidId = Registry.FLUID.getId(still);
 		final Identifier listenerId = new Identifier(fluidId.getNamespace(), fluidId.getPath() + "_reload_listener");
 		final Sprite[] fluidSprites = { null, null };
-
-
+		
 		ResourceManagerHelper.get(ResourceType.CLIENT_RESOURCES).registerReloadListener(new SimpleSynchronousResourceReloadListener() {
 
 			/**

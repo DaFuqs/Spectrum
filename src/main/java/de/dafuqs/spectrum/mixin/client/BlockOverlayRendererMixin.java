@@ -22,16 +22,17 @@ public class BlockOverlayRendererMixin {
 	// this does now work because "isSubmergedIn()" only matches for water
 	private static final Identifier TEXTURE_IN_LIQUID_CRYSTAL = new Identifier(SpectrumCommon.MOD_ID + ":textures/misc/liquid_crystal_overlay.png");
 	private static final Identifier TEXTURE_IN_MUD = new Identifier(SpectrumCommon.MOD_ID + ":textures/misc/mud_overlay.png");
+	private static final Identifier TEXTURE_IN_MIDNIGHT_SOLUTION = new Identifier(SpectrumCommon.MOD_ID + ":textures/misc/midnight_solution_overlay.png");
 
 	@Inject(method = "renderOverlays(Lnet/minecraft/client/MinecraftClient;Lnet/minecraft/client/util/math/MatrixStack;)V", at = @At("TAIL"), locals = LocalCapture.CAPTURE_FAILSOFT)
 	private static void blockOverlay(MinecraftClient minecraftClient, MatrixStack matrixStack, CallbackInfo ci) {
 		if (!minecraftClient.player.isSpectator()) {
 			if (minecraftClient.player.isSubmergedIn(SpectrumFluidTags.LIQUID_CRYSTAL)) {
 				renderOverlay(minecraftClient, matrixStack, TEXTURE_IN_LIQUID_CRYSTAL, 0.6F);
-			}
-
-			if (minecraftClient.player.isSubmergedIn(SpectrumFluidTags.MUD)) {
+			} else if (minecraftClient.player.isSubmergedIn(SpectrumFluidTags.MUD)) {
 				renderOverlay(minecraftClient, matrixStack, TEXTURE_IN_MUD, 0.995F);
+			} else if (minecraftClient.player.isSubmergedIn(SpectrumFluidTags.MIDNIGHT_SOLUTION)) {
+				renderOverlay(minecraftClient, matrixStack, TEXTURE_IN_MIDNIGHT_SOLUTION, 0.995F);
 			}
 		}
 	}

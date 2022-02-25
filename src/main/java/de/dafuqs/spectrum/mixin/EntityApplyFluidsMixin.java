@@ -22,7 +22,11 @@ public class EntityApplyFluidsMixin {
 	@Inject(at = @At("HEAD"), method = "isSubmergedIn(Lnet/minecraft/tag/Tag;)Z", cancellable = true)
 	public void isSubmergedIn(Tag<Fluid> fluidTag, CallbackInfoReturnable<Boolean> cir) {
 		if(fluidTag == FluidTags.WATER) {
-			cir.setReturnValue(this.submergedFluidTag == fluidTag || this.submergedFluidTag == SpectrumFluidTags.MUD || this.submergedFluidTag == SpectrumFluidTags.LIQUID_CRYSTAL);
+			cir.setReturnValue(this.submergedFluidTag == fluidTag
+					|| this.submergedFluidTag == SpectrumFluidTags.MUD
+					|| this.submergedFluidTag == SpectrumFluidTags.LIQUID_CRYSTAL
+					|| this.submergedFluidTag == SpectrumFluidTags.MIDNIGHT_SOLUTION
+			);
 		}
 	}
 
@@ -33,7 +37,7 @@ public class EntityApplyFluidsMixin {
 
 	private boolean isInFluid(FluidState fluidState, Tag<Fluid> tag) {
 		if(tag == FluidTags.WATER) {
-			return(fluidState.isIn(FluidTags.WATER) || fluidState.isIn(SpectrumFluidTags.MUD) || fluidState.isIn(SpectrumFluidTags.LIQUID_CRYSTAL));
+			return(fluidState.isIn(FluidTags.WATER) || fluidState.isIn(SpectrumFluidTags.MUD) || fluidState.isIn(SpectrumFluidTags.LIQUID_CRYSTAL) || fluidState.isIn(SpectrumFluidTags.MIDNIGHT_SOLUTION));
 		} else {
 			return fluidState.isIn(tag);
 		}

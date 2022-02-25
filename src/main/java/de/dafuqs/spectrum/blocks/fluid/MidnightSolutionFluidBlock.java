@@ -58,7 +58,7 @@ public class MidnightSolutionFluidBlock extends FluidBlock {
 
 	@Override
 	public boolean canPathfindThrough(BlockState state, BlockView world, BlockPos pos, NavigationType type) {
-		return true;
+		return false;
 	}
 
 	/**

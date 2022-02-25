@@ -56,12 +56,12 @@ public abstract class MidnightSolutionFluid extends SpectrumFluid {
 
 	@Override
 	protected int getFlowSpeed(WorldView worldView) {
-		return 3;
+		return 5;
 	}
 
 	@Override
 	protected int getLevelDecreasePerBlock(WorldView worldView) {
-		return 2;
+		return 1;
 	}
 
 	@Override

@@ -7,7 +7,7 @@ import de.dafuqs.spectrum.enums.GemstoneColor;
 import de.dafuqs.spectrum.interfaces.Cloakable;
 import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.items.armor.GemstoneArmorItem;
-import de.dafuqs.spectrum.items.armor.GlowVisionHelmet;
+import de.dafuqs.spectrum.items.trinkets.GlowVisionHelmet;
 import de.dafuqs.spectrum.items.armor.SpectrumArmorItem;
 import de.dafuqs.spectrum.items.item_frame.InvisibleGlowItemFrameItem;
 import de.dafuqs.spectrum.items.item_frame.InvisibleItemFrameItem;
@@ -40,7 +40,6 @@ public class SpectrumItems {
 	public static FabricItemSettings generalRareItemSettingsSingle = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.RARE).maxCount(1);
 	public static FabricItemSettings generalEpicItemSettingsSingle = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.EPIC).maxCount(1);
 	public static FabricItemSettings decayPlacerItemSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).maxCount(16);
-	public static FabricItemSettings spectrumLowNightVisionArmorItemSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.UNCOMMON).maxDamage(SpectrumArmorMaterials.GLOW_VISION.getDurability(EquipmentSlot.HEAD));
 	
 	// will be added to item group / tab programmatically in the item group itself with enchantments included
 	public static FabricItemSettings spectrumBedrockToolItemSettings = new FabricItemSettings().rarity(Rarity.RARE).fireproof().maxDamage(SpectrumToolMaterials.ToolMaterial.BEDROCK.getDurability());
@@ -133,7 +132,6 @@ public class SpectrumItems {
 	public static final Item EMERGENCY_CHESTPLATE = new GemstoneArmorItem(EMERGENCY_ARMOR_MATERIAL, EquipmentSlot.CHEST, spectrumEmergencyArmorItemSettings);
 	public static final Item EMERGENCY_LEGGINGS = new GemstoneArmorItem(EMERGENCY_ARMOR_MATERIAL, EquipmentSlot.LEGS, spectrumEmergencyArmorItemSettings);
 	public static final Item EMERGENCY_BOOTS = new GemstoneArmorItem(EMERGENCY_ARMOR_MATERIAL, EquipmentSlot.FEET, spectrumEmergencyArmorItemSettings);
-	public static final Item GLOW_VISION_HELMET = new GlowVisionHelmet(SpectrumArmorMaterials.GLOW_VISION, EquipmentSlot.HEAD, spectrumLowNightVisionArmorItemSettings);
 	
 	// Decay drops
 	public static final Item VEGETAL = new CloakedItem(resourcesItemSettings, new Identifier(SpectrumCommon.MOD_ID, "craft_bottle_of_fading"), Items.GUNPOWDER);
@@ -206,6 +204,7 @@ public class SpectrumItems {
 	public static final Item KNOWLEDGE_GEM = new KnowledgeGemItem(generalUncommonItemSettingsSingle, 10000);
 
 	// Trinkets
+	public static final Item GLOW_VISION_HELMET = new GlowVisionHelmet(generalUncommonItemSettingsSingle);
 	public static final Item JEOPARDANT = new AttackRingItem(generalUncommonItemSettingsSingle);
 	public static final Item SEVEN_LEAGUE_BOOTS = new SevenLeagueBootsItem(generalUncommonItemSettingsSingle);
 	public static final Item RADIANCE_PIN = new RadiancePinItem(generalUncommonItemSettingsSingle);
@@ -345,8 +344,6 @@ public class SpectrumItems {
 		register("emergency_chestplate", EMERGENCY_CHESTPLATE);
 		register("emergency_leggings", EMERGENCY_LEGGINGS);
 		register("emergency_boots", EMERGENCY_BOOTS);
-
-		register("glow_vision_helmet", GLOW_VISION_HELMET);
 		
 		register("bedrock_pickaxe", BEDROCK_PICKAXE);
 		register("bedrock_axe", BEDROCK_AXE);
@@ -375,6 +372,7 @@ public class SpectrumItems {
 	}
 	
 	public static void registerTrinkets() {
+		register("glow_vision_helmet", GLOW_VISION_HELMET);
 		register("jeopardant", JEOPARDANT);
 		register("seven_league_boots", SEVEN_LEAGUE_BOOTS);
 		register("radiance_pin", RADIANCE_PIN);

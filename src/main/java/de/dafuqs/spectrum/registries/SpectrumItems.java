@@ -66,6 +66,7 @@ public class SpectrumItems {
 	public static final Item PEDESTAL_TIER_3_STRUCTURE_PLACER = new StructurePlacerItem(generalItemSettingsSingle, new Identifier(SpectrumCommon.MOD_ID, "pedestal_complex_structure_place"));
 	public static final Item FUSION_SHRINE_STRUCTURE_PLACER = new StructurePlacerItem(generalItemSettingsSingle, new Identifier(SpectrumCommon.MOD_ID, "fusion_shrine_structure"));
 	public static final Item ENCHANTER_STRUCTURE_PLACER = new StructurePlacerItem(generalItemSettingsSingle, new Identifier(SpectrumCommon.MOD_ID, "enchanter_structure"));
+	public static final Item SPIRIT_INSTILLER_STRUCTURE_PLACER = new StructurePlacerItem(generalItemSettingsSingle, new Identifier(SpectrumCommon.MOD_ID, "spirit_instiller_structure"));
 
 	// Gem shards
 	public static final Item TOPAZ_SHARD = new Item(resourcesItemSettings);
@@ -233,6 +234,7 @@ public class SpectrumItems {
 		register("pedestal_tier_3_structure_placer", PEDESTAL_TIER_3_STRUCTURE_PLACER);
 		register("fusion_shrine_structure_placer", FUSION_SHRINE_STRUCTURE_PLACER);
 		register("enchanter_structure_placer", ENCHANTER_STRUCTURE_PLACER);
+		register("spirit_instiller_structure_placer", SPIRIT_INSTILLER_STRUCTURE_PLACER);
 
 		registerGemstoneItems();
 		registerPigments();

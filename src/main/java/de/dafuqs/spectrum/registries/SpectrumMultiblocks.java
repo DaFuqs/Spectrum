@@ -72,7 +72,7 @@ public class SpectrumMultiblocks {
 				'L', "#spectrum:polished_base_block_slabs",
 				'P', "#spectrum:pillar_base_blocks",
 				'C', "#spectrum:chiseled_base_blocks",
-				'G', "#spectrum:gemstone_chiseled_base_blocks",
+				'G', "#spectrum:onyx_chiseled_base_blocks",
 				'K', "#spectrum:notched_base_blocks",
 				'I', "#spectrum:item_bowls",
 				'M', "#spectrum:gemstone_chimes",

@@ -1055,7 +1055,7 @@
   "trinkets.slot.legs.pigment_palette": "Pigment Palette",
 
   "item.spectrum.jeopardant": "Jeopardant",
-  "item.spectrum.jeopardant.tooltip.damage_zero": "§7Increased Damage on low HP (currently §8%d %%§7)",
+  "item.spectrum.jeopardant.tooltip.damage_zero": "§7Increased Damage on low HP (currently §80 %%§7)",
   "item.spectrum.jeopardant.tooltip.damage": "§7Increased Damage on low HP (currently §a+%d %%§7)",
   "item.spectrum.seven_league_boots": "Seven-League Boots",
   "item.spectrum.gleaming_pin": "Gleaming Pin",

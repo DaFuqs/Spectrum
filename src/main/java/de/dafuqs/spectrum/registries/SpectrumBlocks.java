@@ -136,7 +136,7 @@ public class SpectrumBlocks {
 	public static final Block ITEM_BOWL_CALCITE = new ItemBowlBlock(FabricBlockSettings.of(Material.STONE).hardness(3.0f).nonOpaque());
 	public static final Block POTION_WORKSHOP = new PotionWorkshopBlock(FabricBlockSettings.of(Material.STONE).hardness(3.0f).nonOpaque());
 	
-	public static final Block SPIRIT_INSTILLER = new Block(FabricBlockSettings.of(Material.STONE).hardness(3.0f).nonOpaque());
+	public static final Block SPIRIT_INSTILLER = new Block(FabricBlockSettings.of(Material.STONE).strength(2.0F, 5.0F).nonOpaque());
 	public static final Block CREATURE_SPAWN = new Block(FabricBlockSettings.of(Material.STONE).hardness(3.0f).nonOpaque());
 
 	// GEMS
@@ -1477,6 +1477,7 @@ public class SpectrumBlocks {
 		
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.ITEM_BOWL_BASALT, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.ITEM_BOWL_CALCITE, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.CREATURE_SPAWN, RenderLayer.getCutout());
 
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.REDSTONE_TIMER, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.REDSTONE_WIRELESS, RenderLayer.getCutout());

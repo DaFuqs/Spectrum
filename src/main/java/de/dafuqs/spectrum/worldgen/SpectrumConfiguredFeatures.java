@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.worldgen;
 import com.google.common.collect.ImmutableList;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.conditional.MermaidsBrushBlock;
+import de.dafuqs.spectrum.mixin.GeodesGenerateWithGemstoneOresMixin;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import de.dafuqs.spectrum.worldgen.features.WeightedRandomFeatureConfig;
 import de.dafuqs.spectrum.worldgen.features.WeightedRandomFeaturePatchConfig;
@@ -48,10 +49,11 @@ import java.util.List;
 import java.util.function.Predicate;
 
 public class SpectrumConfiguredFeatures {
-
+	
 	public static ConfiguredFeature<?, ?> CITRINE_GEODE;
 	public static ConfiguredFeature<?, ?> TOPAZ_GEODE;
 	public static ConfiguredFeature<?, ?> MOONSTONE_GEODE;
+	public static ConfiguredFeature<?, ?> CLOVER_PATCH;
 
 	// COLORED TREES
 	public static HashMap<DyeColor, ConfiguredFeature<TreeFeatureConfig, ?>> COLORED_TREE_CONFIGURED_FEATURES = new HashMap<>(); // FOR SAPLINGS
@@ -396,9 +398,10 @@ public class SpectrumConfiguredFeatures {
 		// CLOVER
 		Identifier cloversIdentifier = new Identifier(SpectrumCommon.MOD_ID, "clovers");
 		DataPool cloverBlockDataPool = DataPool.builder().add(SpectrumBlocks.CLOVER.getDefaultState(), 9).add(SpectrumBlocks.FOUR_LEAF_CLOVER.getDefaultState(), 1).build();
+		CLOVER_PATCH = Feature.RANDOM_PATCH.configure(ConfiguredFeatures.createRandomPatchFeatureConfig(Feature.SIMPLE_BLOCK.configure(new SimpleBlockFeatureConfig(new WeightedBlockStateProvider(cloverBlockDataPool))), List.of(Blocks.GRASS_BLOCK), 4));
 		registerConfiguredAndPlacedFeature(
 				cloversIdentifier,
-				Feature.RANDOM_PATCH.configure(ConfiguredFeatures.createRandomPatchFeatureConfig(Feature.SIMPLE_BLOCK.configure(new SimpleBlockFeatureConfig(new WeightedBlockStateProvider(cloverBlockDataPool))), List.of(Blocks.GRASS_BLOCK), 4)),
+				CLOVER_PATCH,
 				List.of(
 						SquarePlacementModifier.of(),
 						PlacedFeatures.WORLD_SURFACE_WG_HEIGHTMAP,

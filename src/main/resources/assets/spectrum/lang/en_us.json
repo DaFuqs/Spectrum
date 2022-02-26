@@ -90,6 +90,7 @@
   "multiblock.spectrum.pedestal.complex_structure": "Spectrum Palace",
   "multiblock.spectrum.fusion_shrine.structure": "Fusion Shrine",
   "multiblock.spectrum.enchanter.structure": "Enchanter",
+  "multiblock.spectrum.spirit_instiller.structure": "Enchanter",
 
   "death.attack.spectrum_decay": "%s was eaten alive",
   "death.attack.spectrum_floatblock": "%s was smashed by a Floating Block",
@@ -283,6 +284,8 @@
   "block.spectrum.item_bowl_basalt": "Item Bowl",
   "block.spectrum.item_bowl_calcite": "Item Bowl",
   "block.spectrum.potion_workshop": "Potion Workshop",
+  "block.spectrum.spirit_instiller": "Spirit Instiller",
+  "block.spectrum.creature_spawn": "Creature Spawn",
 
   "block.spectrum.spirit_sallow_roots": "Spirit Sallow Roots",
   "block.spectrum.spirit_sallow_log": "Spirit Sallow Log",

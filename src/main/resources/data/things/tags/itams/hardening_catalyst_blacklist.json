@@ -1,0 +1,24 @@
+{
+  "replace": false,
+  "values": [
+    "spectrum:bedrock_helmet",
+    "spectrum:bedrock_chestplate",
+    "spectrum:bedrock_leggings",
+    "spectrum:bedrock_boots",
+
+    "spectrum:bedrock_pickaxe",
+    "spectrum:bedrock_axe",
+    "spectrum:bedrock_shovel",
+    "spectrum:bedrock_sword",
+    "spectrum:bedrock_hoe",
+    "spectrum:bedrock_bow",
+    "spectrum:bedrock_crossbow",
+    "spectrum:bedrock_shears",
+    "spectrum:bedrock_fishing_rod",
+
+    "spectrum:emergency_helmet",
+    "spectrum:emergency_chestplate",
+    "spectrum:emergency_leggings",
+    "spectrum:emergency_boots"
+  ]
+}

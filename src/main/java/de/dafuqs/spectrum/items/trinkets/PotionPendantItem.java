@@ -25,7 +25,7 @@ import java.util.Map;
 
 public class PotionPendantItem extends SpectrumTrinketItem implements PotionFillable {
 
-	private final int TRIGGER_EVERY_X_TICKS = 40;
+	private final int TRIGGER_EVERY_X_TICKS = 200;
 	private final int EFFECT_DURATION = TRIGGER_EVERY_X_TICKS + 10;
 	
 	int maxEffectCount;

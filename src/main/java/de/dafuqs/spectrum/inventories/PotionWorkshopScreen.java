@@ -62,7 +62,7 @@ public class PotionWorkshopScreen extends HandledScreen<PotionWorkshopScreenHand
 			// the rising bubbles
 			int n = BUBBLE_PROGRESS[brewTime / 2 % 13];
 			if (n > 0) {
-				this.drawTexture(matrices, startX + 29, startY + 39 + 43 - n, 176, 40 - n, 12, n);
+				this.drawTexture(matrices, startX + 29, startY + 39 + 43 - n, 176, 40 - n, 11, n);
 			}
 			
 			int maxBrewTime = (this.handler).getMaxBrewTime();

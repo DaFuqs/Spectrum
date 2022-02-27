@@ -18,15 +18,15 @@
       "text": "A magical aura surrounding your body, shielding you from incoming damage.$(br)Slowly recharges up to a specific amount.$(br2)Each piece of Azure Dike Equipment increases the maximum amount of protection."
     },
     {
-      "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier3/trinkets/azure_dike_ring",
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Fusion Recipe",
+      "recipe": "spectrum:fusion_shrine/trinkets/azure_dike_ring",
       "text": "Grants you $(c_green)3$() points of $(c_blue)Azure Dike$()."
     },
     {
-      "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier3/trinkets/azure_dike_belt",
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Fusion Recipe",
+      "recipe": "spectrum:fusion_shrine/trinkets/azure_dike_belt",
       "text": "Grants you $(c_green)4$() points of $(c_blue)Azure Dike$()."
     }
   ]

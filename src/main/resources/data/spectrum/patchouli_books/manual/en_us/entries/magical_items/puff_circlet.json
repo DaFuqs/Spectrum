@@ -12,9 +12,9 @@
       "text": "This glistening hoop creates a protective film of air around you.$(br)It not only protects you from enemy projectiles, but can even cushion a deep fall."
     },
     {
-      "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier4/trinkets/puff_circlet",
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Fusion Recipe",
+      "recipe": "spectrum:fusion_shrine/trinkets/puff_circlet",
       "text": "$(italic)Gone are the days when skeletons sniped you from behind in an unforeseen moment."
     }
   ]

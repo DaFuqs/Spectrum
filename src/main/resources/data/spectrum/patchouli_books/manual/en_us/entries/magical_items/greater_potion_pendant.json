@@ -12,9 +12,9 @@
       "text": "Works very similar to its $(l:magical_items/lesser_potion_pendant)little brother$(/l).$(br)In contrast this version has three chambers, each of which can be filled with a different potion. Since the individual chambers are smaller, it can only support Effects up to Level 2."
     },
     {
-      "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier4/trinkets/greater_potion_pendant",
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Fusion Recipe",
+      "recipe": "spectrum:fusion_shrine/trinkets/greater_potion_pendant",
       "text": "Use the $(l:magical_blocks/potion_workshop)Potion Workshop$(/l) to fill it with potions.$(br)For each Potion your $(l:general/pigment_palette)Pigment Palette$(/l) will use up specific color energy. The higher the level, the higher the cost."
     }
   ]

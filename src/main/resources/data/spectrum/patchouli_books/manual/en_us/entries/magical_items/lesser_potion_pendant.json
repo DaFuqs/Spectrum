@@ -12,9 +12,9 @@
       "text": "Potions are handy. However, carrying around half an inventory of them is more than unwieldy.$(br)The Potion Pendant has a small chamber, which can be filled with a Potion. As long as you wear it, you get the effect of that Potion."
     },
     {
-      "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier3/trinkets/lesser_potion_pendant",
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Fusion Recipe",
+      "recipe": "spectrum:fusion_shrine/trinkets/lesser_potion_pendant",
       "text": "Use the $(l:magical_blocks/potion_workshop)Potion Workshop$(/l) to fill it with a Potion, exactly as if you were using a Bottle."
     }
   ]

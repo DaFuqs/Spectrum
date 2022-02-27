@@ -16,9 +16,9 @@
       "text": "It's time for a new creation: the Pigment Palette. Now you are a true Artist of Color.$(br)The Pigment Palette is capable of absorbing, compressing and storing the elemental magics of $(l:general/pigment)Pigments$(/l). The Pigment Palette, as a single piece of equipment, is able to supply all your magical devices and equipment with suitable pigment.$(br2)Only drawback: deprived of their mundane form, there is no way to transform pigments back into physical form."
     },
     {
-      "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier3/trinkets/pigment_palette",
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Fusion Recipe",
+      "recipe": "spectrum:fusion_shrine/trinkets/pigment_palette",
       "text": ""
     }
   ]

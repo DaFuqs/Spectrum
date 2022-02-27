@@ -43,29 +43,29 @@ public class PotionPendantItem extends SpectrumTrinketItem implements PotionFill
 		
 		List<StatusEffectInstance> effects = PotionUtil.getCustomPotionEffects(stack);
 		if(effects.size() > 0) {
-			List<Pair<EntityAttribute, EntityAttributeModifier>> list3 = Lists.newArrayList();
+			List<Pair<EntityAttribute, EntityAttributeModifier>> attributeModifiers = Lists.newArrayList();
 			for (StatusEffectInstance effect : effects) {
 				TranslatableText mutableText = new TranslatableText(effect.getTranslationKey());
 				
 				if (effect.getAmplifier() > 0) {
 					mutableText = new TranslatableText("potion.withAmplifier", mutableText, new TranslatableText("potion.potency." + effect.getAmplifier()));
-					tooltip.add(mutableText.formatted(effect.getEffectType().getCategory().getFormatting()));
 				}
+				tooltip.add(mutableText.formatted(effect.getEffectType().getCategory().getFormatting()));
 				
 				Map<EntityAttribute, EntityAttributeModifier> map = effect.getEffectType().getAttributeModifiers();
 				for (Map.Entry<EntityAttribute, EntityAttributeModifier> entityAttributeEntityAttributeModifierEntry : map.entrySet()) {
 					Map.Entry<EntityAttribute, EntityAttributeModifier> entry = entityAttributeEntityAttributeModifierEntry;
 					EntityAttributeModifier entityAttributeModifier = entry.getValue();
 					EntityAttributeModifier entityAttributeModifier2 = new EntityAttributeModifier(entityAttributeModifier.getName(), effect.getEffectType().adjustModifierAmount(effect.getAmplifier(), entityAttributeModifier), entityAttributeModifier.getOperation());
-					list3.add(new Pair(entry.getKey(), entityAttributeModifier2));
+					attributeModifiers.add(new Pair(entry.getKey(), entityAttributeModifier2));
 				}
 			}
 			
-			if (!list3.isEmpty()) {
+			if (!attributeModifiers.isEmpty()) {
 				tooltip.add(LiteralText.EMPTY);
 				tooltip.add((new TranslatableText("potion.whenDrank")).formatted(Formatting.DARK_PURPLE));
 				
-				for (Pair<EntityAttribute, EntityAttributeModifier> entityAttributeEntityAttributeModifierPair : list3) {
+				for (Pair<EntityAttribute, EntityAttributeModifier> entityAttributeEntityAttributeModifierPair : attributeModifiers) {
 					EntityAttributeModifier mutableText = entityAttributeEntityAttributeModifierPair.getSecond();
 					double statusEffect = mutableText.getValue();
 					double d;
@@ -93,6 +93,11 @@ public class PotionPendantItem extends SpectrumTrinketItem implements PotionFill
 				tooltip.add(new TranslatableText("item.spectrum.potion_pendant.tooltip_not_full_count", maxEffectCount));
 			}
 		}
+	}
+	
+	@Override
+	public boolean hasGlint(ItemStack stack) {
+		return super.hasGlint(stack) || PotionUtil.getCustomPotionEffects(stack).size() > 0;
 	}
 	
 	@Override

@@ -22,12 +22,16 @@ import net.minecraft.block.Blocks;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.color.block.BlockColorProvider;
 import net.minecraft.client.color.item.ItemColorProvider;
+import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.potion.PotionUtil;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
 import org.apache.logging.log4j.Level;
+
+import java.util.List;
 
 import static de.dafuqs.spectrum.SpectrumCommon.log;
 
@@ -113,10 +117,23 @@ public class SpectrumClient implements ClientModInitializer {
 			ColorProviderRegistry.BLOCK.register(grassBlockColorProvider, SpectrumBlocks.CLOVER);
 			ColorProviderRegistry.BLOCK.register(grassBlockColorProvider, SpectrumBlocks.FOUR_LEAF_CLOVER);
 		}
+		
+		// Potion Pendant Potion Color Overlays
+		ColorProviderRegistry.ITEM.register(SpectrumClient::potionColor, SpectrumItems.LESSER_POTION_PENDANT, SpectrumItems.GREATER_POTION_PENDANT);
 	}
 	
-
-
+	private static int potionColor(ItemStack stack, int tintIndex) {
+		if(tintIndex == 1) {
+			List<StatusEffectInstance> effects = PotionUtil.getPotionEffects(stack);
+			if(effects.size() > 0) {
+				return PotionUtil.getColor(effects);
+			}
+		} else {
+			return -1;
+		}
+		return -1;
+	}
+	
 	// Vanilla models see: ModelPredicateProviderRegistry
 	public static void registerBowPredicates(BowItem bowItem) {
 		FabricModelPredicateProviderRegistry.register(bowItem, new Identifier("pull"), (itemStack, world, livingEntity, i) -> {

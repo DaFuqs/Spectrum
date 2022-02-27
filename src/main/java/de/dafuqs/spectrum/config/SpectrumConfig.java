@@ -125,10 +125,10 @@ This does only disable the registration of said Enchantments, not all recipes ba
 If the player has Azure Dike Charges: Where should they be rendered on the screen. Default: Over the food bar
 Only touch those values if you have other mods that render GUI overlays!
 """)
-	public int azureDikeHudX = 0;
-	public int azureDikeHudY = 0;
-	public int azureDikeHudXLackingAir = 0;
-	public int azureDikeHudYLackingAir = -10;
+	public int azureDikeHudOffsetX = 0;
+	public int azureDikeHudOffsetY = 0;
+	public int azureDikeHudOffsetXLackingAir = 0;
+	public int azureDikeHudOffsetYLackingAir = -10;
 	
 	@Override
 	public void validatePostLoad() {

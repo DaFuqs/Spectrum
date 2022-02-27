@@ -58,11 +58,11 @@ public class InGameHudMixin extends DrawableHelper {
                         int y;
                         boolean hasFullAir = playerEntity.getAir() == playerEntity.getMaxAir();
                         if(hasFullAir) {
-                            x = width - i * 8 - 9 + SpectrumCommon.CONFIG.azureDikeHudX;
-                            y = height + SpectrumCommon.CONFIG.azureDikeHudY;
+                            x = width - i * 8 - 9 + SpectrumCommon.CONFIG.azureDikeHudOffsetX;
+                            y = height + SpectrumCommon.CONFIG.azureDikeHudOffsetY;
                         } else {
-                            x = width - i * 8 - 9 + SpectrumCommon.CONFIG.azureDikeHudXLackingAir;
-                            y = height + SpectrumCommon.CONFIG.azureDikeHudYLackingAir;
+                            x = width - i * 8 - 9 + SpectrumCommon.CONFIG.azureDikeHudOffsetXLackingAir;
+                            y = height + SpectrumCommon.CONFIG.azureDikeHudOffsetYLackingAir;
                         }
                         
                         RenderSystem.setShaderTexture(0, AzureDikeComponent.AZURE_DIKE_BAR_TEXTURE);

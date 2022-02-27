@@ -257,6 +257,11 @@
   "text.autoconfig.Spectrum.option.DisarmingChancePerLevelMobs": "Chance to disarm Mobs on mit with a Disarming enchanted weapon per level",
   "text.autoconfig.Spectrum.option.DisarmingChancePerLevelPlayers": "Chance to disarm Players on mit with a Disarming enchanted weapon per level",
 
+  "text.autoconfig.Spectrum.option.azureDikeHudOffsetX": "X Position of the Azure Dike Overlay on the players screen. Default: Over the hunger bar",
+  "text.autoconfig.Spectrum.option.azureDikeHudOffsetY": "Y Position of the Azure Dike Overlay on the players screen. Default: Over the hunger bar",
+  "text.autoconfig.Spectrum.option.azureDikeHudOffsetXLackingAir": "X Position of the Azure Dike Overlay on the players screen when not having full air. Default: Over the air bubbles",
+  "text.autoconfig.Spectrum.option.azureDikeHudOffsetYLackingAir": "Y Position of the Azure Dike Overlay on the players screen when not having full air. Default: Over the air bubbles",
+
   "block.spectrum.upgrade_speed": "Crafting Accelerator",
   "block.spectrum.upgrade_speed2": "Crafting Accelerator T2",
   "block.spectrum.upgrade_speed3": "Crafting Accelerator T3",

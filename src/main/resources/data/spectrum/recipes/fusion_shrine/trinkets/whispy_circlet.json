@@ -1,0 +1,28 @@
+{
+  "type": "spectrum:fusion_shrine",
+  "time": 600,
+  "experience": 2.0,
+  "fluid": "minecraft:liquid_crystal",
+  "ingredients": [
+    {
+      "item": "spectrum:fanciful_circlet"
+    },
+    {
+      "item": "minecraft:phantom_membrane"
+    },
+    {
+      "item": "spectrum:mermaids_gem"
+    },
+    {
+      "item": "spectrum:brown_pigment"
+    }
+  ],
+  "result" : {
+    "item": "spectrum:whispy_circlet"
+  },
+  "required_advancement": "spectrum:progression/unlock_whispy_circlet",
+  "world_conditions": [ ],
+  "start_crafting_effect": "nothing",
+  "during_crafting_effects": [ ],
+  "finish_crafting_effect": "single_visual_explosion_on_shrine"
+}

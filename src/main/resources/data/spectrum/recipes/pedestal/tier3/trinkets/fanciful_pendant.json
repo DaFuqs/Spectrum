@@ -1,0 +1,26 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 200,
+  "tier": "advanced",
+  "cyan": 0,
+  "magenta": 0,
+  "yellow": 0,
+  "black": 0,
+  "white": 0,
+  "experience": 0.1,
+  "pattern": [
+    " L ",
+    "L L",
+    " L "
+  ],
+  "key": {
+    "L": {
+      "item": "minecraft:gold_ingot"
+    }
+  },
+  "result": {
+    "item": "spectrum:fanciful_pendant",
+    "count": 1
+  },
+  "required_advancements": ["spectrum:progression/unlock_fanciful_pendant"]
+}

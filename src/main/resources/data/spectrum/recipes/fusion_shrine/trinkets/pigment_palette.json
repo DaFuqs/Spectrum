@@ -1,0 +1,22 @@
+{
+  "type": "spectrum:fusion_shrine",
+  "time": 600,
+  "experience": 2.0,
+  "fluid": "minecraft:liquid_crystal",
+  "ingredients": [
+    {
+      "tag": "minecraft:wooden_planks"
+    },
+    {
+      "tag": "spectrum:pigments"
+    }
+  ],
+  "result" : {
+    "item": "spectrum:pigment_palette"
+  },
+  "required_advancement": "spectrum:progression/unlock_pigment_palette",
+  "world_conditions": [ ],
+  "start_crafting_effect": "nothing",
+  "during_crafting_effects": [ ],
+  "finish_crafting_effect": "single_visual_explosion_on_shrine"
+}

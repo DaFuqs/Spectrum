@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.registries.color;
 
+import de.dafuqs.spectrum.registries.SpectrumFluids;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.util.DyeColor;
@@ -14,6 +15,9 @@ public class FluidColorRegistry extends ColorRegistry<Fluid> {
 	private static final HashMap<Fluid, DyeColor> COLORS = new HashMap<>() {{
 		put(Fluids.WATER, DyeColor.BLUE);
 		put(Fluids.LAVA, DyeColor.ORANGE);
+		put(SpectrumFluids.LIQUID_CRYSTAL, DyeColor.LIGHT_GRAY);
+		put(SpectrumFluids.MUD, DyeColor.BROWN);
+		put(SpectrumFluids.MIDNIGHT_SOLUTION, DyeColor.BLACK);
 	}};
 	
 	@Override

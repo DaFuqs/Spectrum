@@ -90,12 +90,35 @@ public class ItemColorRegistry extends ColorRegistry<Item> {
 		put(SpectrumItems.BOTTLE_OF_DECAY_AWAY, DyeColor.LIGHT_GRAY);
 		put(SpectrumItems.EXCHANGE_STAFF.asItem(), DyeColor.LIGHT_GRAY);
 		put(SpectrumItems.MIDNIGHT_ABERRATION.asItem(), DyeColor.GRAY);
+		put(SpectrumItems.ASHEN_CIRCLET, DyeColor.ORANGE);
+		put(SpectrumItems.AZURE_DIKE_BELT, DyeColor.BLUE);
+		put(SpectrumItems.AZURE_DIKE_RING, DyeColor.BLUE);
+		put(SpectrumItems.FANCIFUL_BELT, DyeColor.BROWN);
+		put(SpectrumItems.FANCIFUL_CIRCLET, DyeColor.YELLOW);
+		put(SpectrumItems.FANCIFUL_PENDANT, DyeColor.YELLOW);
+		put(SpectrumItems.FANCIFUL_STONE_RING, DyeColor.BROWN);
+		put(SpectrumItems.GLEAMING_PIN, DyeColor.YELLOW);
+		put(SpectrumItems.JEOPARDANT, DyeColor.RED);
+		put(SpectrumItems.LESSER_POTION_PENDANT, DyeColor.PINK);
+		put(SpectrumItems.GREATER_POTION_PENDANT, DyeColor.PINK);
+		put(SpectrumItems.NEAT_RING, DyeColor.WHITE);
+		put(SpectrumItems.PUFF_CIRCLET, DyeColor.WHITE);
+		put(SpectrumItems.RADIANCE_PIN, DyeColor.BLUE);
+		put(SpectrumItems.SEVEN_LEAGUE_BOOTS, DyeColor.PURPLE);
+		put(SpectrumItems.STARDUST, DyeColor.PURPLE);
+		put(SpectrumItems.TAKE_OFF_BELT, DyeColor.YELLOW);
+		put(SpectrumItems.TIDAL_CIRCLET, DyeColor.LIGHT_BLUE);
+		put(SpectrumItems.TOTEM_PENDANT, DyeColor.BLUE);
+		put(SpectrumItems.WHISPY_CIRCLET, DyeColor.BROWN);
 
 		put(SpectrumBlocks.SPARKLESTONE_BLOCK.asItem(), DyeColor.YELLOW);
 		put(SpectrumBlocks.ENDER_TREASURE.asItem(), DyeColor.PURPLE);
 		put(SpectrumBlocks.CLOVER.asItem(), DyeColor.LIME);
 		put(SpectrumBlocks.FOUR_LEAF_CLOVER.asItem(), DyeColor.LIME);
 		put(SpectrumBlocks.OMINOUS_SAPLING.asItem(), DyeColor.BROWN);
+		put(SpectrumBlocks.MOONSTONE_CLUSTER.asItem(), DyeColor.WHITE);
+		put(SpectrumBlocks.POLISHED_CALCITE.asItem(), DyeColor.WHITE);
+		put(SpectrumBlocks.RESONANT_LILY.asItem(), DyeColor.WHITE);
 		
 		// Vanilla
 		put(Items.BOOK, DyeColor.PURPLE);
@@ -144,6 +167,14 @@ public class ItemColorRegistry extends ColorRegistry<Item> {
 		put(Items.CHORUS_FRUIT, DyeColor.MAGENTA);
 		put(Items.CHORUS_PLANT, DyeColor.MAGENTA);
 		put(Items.POPPED_CHORUS_FRUIT, DyeColor.MAGENTA);
+		put(Items.GLASS, DyeColor.WHITE);
+		put(Items.HEART_OF_THE_SEA, DyeColor.LIGHT_BLUE);
+		put(Items.LAPIS_LAZULI, DyeColor.BLUE);
+		put(Items.LEATHER_BOOTS, DyeColor.BROWN);
+		put(Items.PHANTOM_MEMBRANE, DyeColor.LIGHT_GRAY);
+		put(Items.PRISMARINE_SHARD, DyeColor.LIGHT_BLUE);
+		put(Items.RABBIT_FOOT, DyeColor.BROWN);
+		put(Items.TOTEM_OF_UNDYING, DyeColor.PINK);
 		
 		put(Blocks.ICE.asItem(), DyeColor.LIGHT_BLUE);
 		put(Blocks.PACKED_ICE.asItem(), DyeColor.LIGHT_BLUE);

@@ -121,8 +121,14 @@ This does only disable the registration of said Enchantments, not all recipes ba
 	@Comment("The duration a glow ink sac gives night vision when wearing a glow vision helmet in seconds")
 	public int GlowVisionGogglesDuration = 240;
 	
+	@Comment("""
+If the player has Azure Dike Charges: Where should they be rendered on the screen. Default: Over the food bar
+Only touch those values if you have other mods that render GUI overlays!
+""")
 	public int azureDikeHudX = 0;
 	public int azureDikeHudY = 0;
+	public int azureDikeHudXLackingAir = 0;
+	public int azureDikeHudYLackingAir = -10;
 	
 	@Override
 	public void validatePostLoad() {

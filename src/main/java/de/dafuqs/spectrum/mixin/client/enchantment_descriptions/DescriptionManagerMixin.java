@@ -23,8 +23,8 @@ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 public class DescriptionManagerMixin {
 	
 	private static final Language language = Language.getInstance();
-
-	@Inject(at = @At("RETURN"), method= "Lnet/darkhax/enchdesc/DescriptionManager;getDescription(L;)L;", cancellable = true, locals = LocalCapture.CAPTURE_FAILSOFT)
+	
+	@Inject(at = @At("RETURN"), method= "Lnet/darkhax/enchdesc/DescriptionManager;getDescription(L;)L;", cancellable = true, remap = false, locals = LocalCapture.CAPTURE_FAILSOFT)
 	private static void getDescription(Enchantment ench, CallbackInfoReturnable<Text> cir) {
 		if(ench instanceof SpectrumEnchantment spectrumEnchantment) {
 			if(!spectrumEnchantment.canEntityUse(MinecraftClient.getInstance().player)) {

@@ -4,6 +4,7 @@ import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.block_flooder.BlockFlooderBlockEntity;
 import de.dafuqs.spectrum.blocks.bottomless_bundle.BottomlessBundleBlockEntity;
 import de.dafuqs.spectrum.blocks.chests.*;
+import de.dafuqs.spectrum.blocks.creature_spawn.CreatureSpawnBlockEntity;
 import de.dafuqs.spectrum.blocks.deeper_down_portal.DeeperDownPortalBlockEntity;
 import de.dafuqs.spectrum.blocks.deeper_down_portal.DeeperDownPortalBlockEntityRenderer;
 import de.dafuqs.spectrum.blocks.enchanter.EnchanterBlockEntity;
@@ -27,6 +28,7 @@ import de.dafuqs.spectrum.blocks.redstone.PlayerDetectorBlockEntity;
 import de.dafuqs.spectrum.blocks.redstone.RedstoneCalculatorBlockEntity;
 import de.dafuqs.spectrum.blocks.redstone.RedstoneWirelessBlockEntity;
 import de.dafuqs.spectrum.blocks.shooting_star.ShootingStarBlockEntity;
+import de.dafuqs.spectrum.blocks.spirit_instiller.SpiritInstillerBlockEntity;
 import de.dafuqs.spectrum.blocks.spirit_sallow.OminousSaplingBlockEntity;
 import de.dafuqs.spectrum.blocks.upgrade.UpgradeBlock;
 import de.dafuqs.spectrum.blocks.upgrade.UpgradeBlockBlockEntityRenderer;
@@ -73,6 +75,8 @@ public class SpectrumBlockEntityRegistry<T extends BlockEntity> {
 	public static BlockEntityType<RedstoneWirelessBlockEntity> REDSTONE_WIRELESS;
 	public static BlockEntityType<BlockPlacerBlockEntity> BLOCK_PLACER;
 	public static BlockEntityType<BlockFlooderBlockEntity> BLOCK_FLOODER;
+	public static BlockEntityType<SpiritInstillerBlockEntity> SPIRIT_INSTILLER;
+	public static BlockEntityType<CreatureSpawnBlockEntity> CREATURE_SPAWN;
 	
 	public static BlockEntityType<PastelNetworkConnectionNode> CONNECTION_NODE;
 	public static BlockEntityType<PastelNetworkProviderNodeBlockEntity> PROVIDER_NODE;
@@ -103,6 +107,8 @@ public class SpectrumBlockEntityRegistry<T extends BlockEntity> {
 		SHOOTING_STAR = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "shooting_star"), FabricBlockEntityTypeBuilder.create(ShootingStarBlockEntity::new, SpectrumBlocks.COLORFUL_SHOOTING_STAR, SpectrumBlocks.FIERY_SHOOTING_STAR, SpectrumBlocks.GEMSTONE_SHOOTING_STAR, SpectrumBlocks.GLISTERING_SHOOTING_STAR, SpectrumBlocks.PRISTINE_SHOOTING_STAR).build());
 		BOTTOMLESS_BUNDLE = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "bottomless_bundle"), FabricBlockEntityTypeBuilder.create(BottomlessBundleBlockEntity::new, SpectrumBlocks.BOTTOMLESS_BUNDLE).build());
 		POTION_WORKSHOP = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "potion_workshop"), FabricBlockEntityTypeBuilder.create(PotionWorkshopBlockEntity::new, SpectrumBlocks.POTION_WORKSHOP).build());
+		SPIRIT_INSTILLER = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "spirit_instiller"), FabricBlockEntityTypeBuilder.create(SpiritInstillerBlockEntity::new, SpectrumBlocks.SPIRIT_INSTILLER).build());
+		CREATURE_SPAWN = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "creature_spawn"), FabricBlockEntityTypeBuilder.create(CreatureSpawnBlockEntity::new, SpectrumBlocks.CREATURE_SPAWN).build());
 		
 		// All the pastel network nodes
 		CONNECTION_NODE = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "connection_node"), FabricBlockEntityTypeBuilder.create(PastelNetworkConnectionNode::new, SpectrumBlocks.CONNECTION_NODE).build());

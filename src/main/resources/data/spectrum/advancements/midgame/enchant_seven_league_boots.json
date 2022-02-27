@@ -4,6 +4,7 @@
     "icon": {
       "item": "spectrum:seven_league_boots"
     },
+    "hidden": true,
     "title": {
       "translate": "advancements.spectrum.enchant_seven_league_boots.title"
     },

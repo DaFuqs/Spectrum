@@ -4,6 +4,7 @@
     "icon": {
       "item": "spectrum:pigment_palette"
     },
+    "hidden": true,
     "title": {
       "translate": "advancements.spectrum.craft_pigment_palette.title"
     },

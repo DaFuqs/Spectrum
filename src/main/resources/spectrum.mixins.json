@@ -2,6 +2,7 @@
   "required": true,
   "package": "de.dafuqs.spectrum.mixin",
   "compatibilityLevel": "JAVA_17",
+  "plugin": "de.dafuqs.spectrum.mixin.Plugin",
   "mixins": [
     "AccessorItem",
     "AccessorShapedRecipe",

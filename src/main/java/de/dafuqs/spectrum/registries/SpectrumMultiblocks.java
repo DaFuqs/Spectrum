@@ -66,24 +66,27 @@ public class SpectrumMultiblocks {
 	}
 	
 	private static void registerSpiritInstiller() {
-		// TODO
 		Object[] targetBlocks = {
+				'S', "spectrum:spirit_instiller",
 				'X', "#spectrum:polished_base_blocks",
-				'P', "#spectrum:pillar_base_blocks",
 				'L', "#spectrum:polished_base_block_slabs",
-				'S', "#spectrum:gemstone_storage_blocks",
+				'P', "#spectrum:pillar_base_blocks",
 				'C', "#spectrum:chiseled_base_blocks",
-				'F', "#spectrum:fusion_shrines",
+				'G', "#spectrum:onyx_chiseled_base_blocks",
+				'K', "#spectrum:notched_base_blocks",
+				'I', "#spectrum:item_bowls",
+				'M', "#spectrum:gemstone_chimes",
 				'_', StateMatcher.ANY,
 				'0', "#spectrum:polished_base_blocks",
 		};
 		
 		String[][] structure = {
-				{ "_________", "_L_____L_", "_________", "_________", "_________", "_________", "_________", "_L_ ___L_", "_________" },
-				{ "_________", "_S_____S_", "_________", "_________", "_________", "_________", "_________", "_S_____S_", "_________" },
-				{ "_________", "_P_____P_", "_________", "_________", "_________", "_________", "_________", "_P_____P_", "_________" },
-				{ "__XXXXX__", "_P_____P_", "X_______X", "X_______X", "X___F___X", "X_______X", "X_______X", "_P_____P_", "__XXXXX__" },
-				{ "__XXXXX__", "_XXXXXXX_", "XXCXXXCXX", "XXXLLLXXX", "XXXL0LXXX", "XXXLLLXXX", "XXCXXXCXX", "_XXXXXXX_", "__XXXXX__" }
+				{ "_________", "_________", "__M___M__", "_________", "_________", "_________", "_________", "_________", "_________" },
+				{ "_________", "_________", "_________", "_________", "_________", "_________", "_________", "_________", "_________" },
+				{ "_K_____K_", "_________", "__I___I__", "_________", "_________", "_________", "_________", "_________", "_________" },
+				{ "_P_____P_", "___LLL___", "__CLSLC__", "___LLL___", "___LLL___", "___LLL___", "G_______G", "_________", "_________" },
+				{ "_PXXXXXP_", "_XXXXXXX_", "_XXXXXXX_", "_XXXXXXX_", "_XXXXXXX_", "__XXXXX__", "P__XXX__P", "___LLL___", "_________" },
+				{ "XXXXXXXXX", "XXXXXXXXX", "XXXXXXXXX", "XXXXXXXXX", "XXXX0XXXX", "XXXXXXXXX", "XXXXXXXXX", "_XXXXXXX_", "__XXXXX__" }
 		};
 		SPIRIT_INSTILLER_IDENTIFIER = registerMultiBlock("spirit_instiller_structure", structure, targetBlocks);
 	}

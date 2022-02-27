@@ -45,16 +45,25 @@ public class InGameHudMixin extends DrawableHelper {
             
             if (charges > 0) {
                 LivingEntity livingEntity = this.getRiddenEntity();
-                int height = this.scaledHeight - 49;
-                int width = this.scaledWidth / 2 + 91;
     
                 int v = 9;
                 int u = 0;
                 if (this.getHeartCount(livingEntity) == 0) {
                     for (int i = 0; i < 10; i++) {
                         
-                        int x = width - i * 8 - 9 + SpectrumCommon.CONFIG.azureDikeHudX;
-                        int y = height + SpectrumCommon.CONFIG.azureDikeHudY;
+                        int height = this.scaledHeight - 49;
+                        int width = this.scaledWidth / 2 + 91;
+                        
+                        int x;
+                        int y;
+                        boolean hasFullAir = playerEntity.getAir() == playerEntity.getMaxAir();
+                        if(hasFullAir) {
+                            x = width - i * 8 - 9 + SpectrumCommon.CONFIG.azureDikeHudX;
+                            y = height + SpectrumCommon.CONFIG.azureDikeHudY;
+                        } else {
+                            x = width - i * 8 - 9 + SpectrumCommon.CONFIG.azureDikeHudXLackingAir;
+                            y = height + SpectrumCommon.CONFIG.azureDikeHudYLackingAir;
+                        }
                         
                         RenderSystem.setShaderTexture(0, AzureDikeComponent.AZURE_DIKE_BAR_TEXTURE);
                         if (i * 2 + 1 < charges) {

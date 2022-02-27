@@ -41,20 +41,14 @@
     "spectrum:bedrock_boots",
     "spectrum:exchange_staff",
     "spectrum:end_portal_cracker",
-    "spectrum:jeopardant",
-    "spectrum:seven_league_boots",
-    "spectrum:radiance_pin",
+
     "spectrum:totem_pendant",
-    "spectrum:take_off_belt",
-    "spectrum:azure_dike_belt",
-    "spectrum:azure_dike_ring",
     "spectrum:pigment_palette",
-    "spectrum:gleaming_pin",
-    "spectrum:potion_pendant",
-    "spectrum:ashen_circlet",
-    "spectrum:tidal_circlet",
     "spectrum:puff_circlet",
     "spectrum:neat_ring",
+    "spectrum:midnight_solution_bucket",
+    "spectrum:spirit_instiller",
+    "spectrum:creature_spawn",
 
     "spectrum:pedestal_moonstone",
     "spectrum:upgrade_speed3",
@@ -140,8 +134,6 @@
     "spectrum:large_moonstone_bud",
     "spectrum:moonstone_cluster",
     "spectrum:moonstone_ore",
-    "spectrum:deepslate_moonstone_ore",
-    "spectrum:whispy_circlet",
-    "spectrum:potion_workshop"
+    "spectrum:deepslate_moonstone_ore"
   ]
 }

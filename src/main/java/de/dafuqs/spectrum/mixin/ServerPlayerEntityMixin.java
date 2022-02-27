@@ -24,7 +24,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class ServerPlayerEntityMixin {
 	
 	@Shadow
-	public abstract World getWorld();
+	public abstract ServerWorld getWorld();
 	
 	private long spectrum$lastGleamingPinTriggerTick = 0;
 	

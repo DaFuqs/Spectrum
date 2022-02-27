@@ -22,7 +22,8 @@ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 @Mixin(DescriptionManager.class)
 public class DescriptionManagerMixin {
 	
-	private static final Language language = Language.getInstance();
+	// TODO
+	/*private static final Language language = Language.getInstance();
 	
 	@Inject(at = @At("RETURN"), method= "Lnet/darkhax/enchdesc/DescriptionManager;getDescription(L;)L;", cancellable = true, remap = false, locals = LocalCapture.CAPTURE_FAILSOFT)
 	private static void getDescription(Enchantment ench, CallbackInfoReturnable<Text> cir) {
@@ -31,6 +32,6 @@ public class DescriptionManagerMixin {
 				cir.setReturnValue(new LiteralText(language.get(((TranslatableText) cir.getReturnValue()).getKey())).formatted(Formatting.OBFUSCATED).formatted(Formatting.DARK_GRAY));
 			}
 		}
-	}
+	}*/
 
 }

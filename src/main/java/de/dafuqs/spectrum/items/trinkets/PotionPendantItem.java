@@ -28,9 +28,13 @@ public class PotionPendantItem extends SpectrumTrinketItem implements PotionFill
 	private final int TRIGGER_EVERY_X_TICKS = 40;
 	private final int EFFECT_DURATION = TRIGGER_EVERY_X_TICKS + 10;
 	
-	public PotionPendantItem(Settings settings) {
-		super(settings, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_potion_pendant"));
-		registerAsFillable(this);
+	int maxEffectCount;
+	int maxAmplifier;
+	
+	public PotionPendantItem(Settings settings, int maxEffectCount, int maxAmplifier, Identifier unlockIdentifier) {
+		super(settings, unlockIdentifier);
+		this.maxEffectCount = maxEffectCount;
+		this.maxAmplifier = maxAmplifier;
 	}
 	
 	@Override
@@ -88,7 +92,12 @@ public class PotionPendantItem extends SpectrumTrinketItem implements PotionFill
 	
 	@Override
 	public int maxEffectCount() {
-		return 3;
+		return maxEffectCount;
+	}
+	
+	@Override
+	public int maxEffectAmplifier() {
+		return maxAmplifier;
 	}
 	
 	@Override

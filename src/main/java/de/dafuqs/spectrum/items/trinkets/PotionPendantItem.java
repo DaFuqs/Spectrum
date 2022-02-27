@@ -85,8 +85,13 @@ public class PotionPendantItem extends SpectrumTrinketItem implements PotionFill
 			}
 		}
 		
-		if(effects.size() < maxEffectCount()) {
-			tooltip.add(new TranslatableText("item.spectrum.potion_pendant.tooltip_not_full"));
+		int maxEffectCount = maxEffectCount();
+		if(effects.size() < maxEffectCount) {
+			if(maxEffectCount == 1) {
+				tooltip.add(new TranslatableText("item.spectrum.potion_pendant.tooltip_not_full_one"));
+			} else {
+				tooltip.add(new TranslatableText("item.spectrum.potion_pendant.tooltip_not_full_count", maxEffectCount));
+			}
 		}
 	}
 	

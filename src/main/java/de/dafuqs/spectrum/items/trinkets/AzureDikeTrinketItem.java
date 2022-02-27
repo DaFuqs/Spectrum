@@ -1,9 +1,18 @@
 package de.dafuqs.spectrum.items.trinkets;
 
 import dev.emi.trinkets.api.SlotReference;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.text.Text;
+import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
+import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 public abstract class AzureDikeTrinketItem extends SpectrumTrinketItem implements AzureDikeItem {
 	
@@ -28,6 +37,14 @@ public abstract class AzureDikeTrinketItem extends SpectrumTrinketItem implement
 		super.onBreak(stack, slot, entity);
 		recalculate(entity);
 	}
+	
+	@Environment(EnvType.CLIENT)
+	@Override
+	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+		super.appendTooltip(stack, world, tooltip, context);
+		tooltip.add(new TranslatableText("item.spectrum.azure_dike_provider.tooltip", maxAzureDike()));
+	}
+	
 	
 	@Override
 	public int maxAzureDike() {

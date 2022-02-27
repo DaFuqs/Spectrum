@@ -29,7 +29,6 @@ public class AzureDikeRingItem extends AzureDikeTrinketItem {
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
 		tooltip.add(new TranslatableText("item.spectrum.azure_dike_ring.tooltip"));
-		tooltip.add(new TranslatableText("item.spectrum.azure_dike_ring.tooltip2"));
 	}
 	
 	@Override

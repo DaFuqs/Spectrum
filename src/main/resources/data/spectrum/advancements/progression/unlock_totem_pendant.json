@@ -1,8 +1,8 @@
 {
   "criteria": {
-    "unlocked_complex_crafting": {
+    "collected_neolith": {
       "trigger":"spectrum:has_advancement",
-      "conditions": { "advancement_identifier": "spectrum:lategame/build_complex_pedestal_structure" }
+      "conditions": { "advancement_identifier": "spectrum:midgame/collect_neolith" }
     },
     "collected_totem_of_undying": {
       "trigger": "minecraft:inventory_changed",

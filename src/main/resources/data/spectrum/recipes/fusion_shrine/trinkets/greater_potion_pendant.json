@@ -5,19 +5,19 @@
   "fluid": "minecraft:liquid_crystal",
   "ingredients": [
     {
-      "item": "spectrum:fanciful_stone_ring"
+      "item": "spectrum:fanciful_pendant"
     },
     {
-      "item": "spectrum:resonant_lily"
+      "item": "spectrum:paletur_gem"
     },
     {
-      "item": "spectrum:moonstone_shard"
+      "item": "minecraft:glass"
     }
   ],
   "result" : {
-    "item": "spectrum:neat_ring"
+    "item": "spectrum:greater_potion_pendant"
   },
-  "required_advancement": "spectrum:progression/unlock_neat_ring",
+  "required_advancement": "spectrum:progression/unlock_greater_potion_pendant",
   "world_conditions": [ ],
   "start_crafting_effect": "nothing",
   "during_crafting_effects": [ ],

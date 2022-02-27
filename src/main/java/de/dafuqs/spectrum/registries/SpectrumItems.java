@@ -178,8 +178,7 @@ public class SpectrumItems {
 	public static final Item BLOCK_FLOODER = new BlockFlooderItem(generalUncommonItemSettings);
 	public static final EnderSpliceItem ENDER_SPLICE = new EnderSpliceItem(generalUncommonItemSettingsSixteen);
 	public static final Item END_PORTAL_CRACKER = new EndPortalCrackerItem(generalRareItemSettings);
-
-
+	
 	// Catkin
 	public static final Item VIBRANT_CYAN_CATKIN = new CatkinItem(GemstoneColor.CYAN, false, resourcesItemSettings);
 	public static final Item VIBRANT_MAGENTA_CATKIN =  new CatkinItem(GemstoneColor.MAGENTA, false, resourcesItemSettings);
@@ -205,6 +204,10 @@ public class SpectrumItems {
 	public static final Item KNOWLEDGE_GEM = new KnowledgeGemItem(generalUncommonItemSettingsSingle, 10000);
 
 	// Trinkets
+	public static final Item FANCIFUL_BELT = new Item(generalUncommonItemSettingsSixteen);
+	public static final Item FANCIFUL_PENDANT = new Item(generalUncommonItemSettingsSixteen);
+	public static final Item FANCIFUL_STONE_RING = new Item(generalUncommonItemSettingsSixteen);
+	
 	public static final Item GLOW_VISION_HELMET = new GlowVisionHelmet(generalUncommonItemSettingsSingle);
 	public static final Item JEOPARDANT = new AttackRingItem(generalUncommonItemSettingsSingle);
 	public static final Item SEVEN_LEAGUE_BOOTS = new SevenLeagueBootsItem(generalUncommonItemSettingsSingle);
@@ -375,6 +378,10 @@ public class SpectrumItems {
 	}
 	
 	public static void registerTrinkets() {
+		register("fanciful_stone_ring", FANCIFUL_STONE_RING);
+		register("fanciful_belt", FANCIFUL_BELT);
+		register("fanciful_pendant", FANCIFUL_PENDANT);
+		
 		register("glow_vision_helmet", GLOW_VISION_HELMET);
 		register("jeopardant", JEOPARDANT);
 		register("seven_league_boots", SEVEN_LEAGUE_BOOTS);

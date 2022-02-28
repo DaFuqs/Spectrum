@@ -76,7 +76,7 @@
       "title": "Quitoxic Powder",
       "item": "spectrum:quitoxic_powder",
       "advancement": "spectrum:collect_quitoxic_reeds",
-      "text": "Increases Potency of all negative Effects by flat +1"
+      "text": "Increases Potency of all negative Effects by flat +2"
     },
     {
       "type": "patchouli:spotlight",

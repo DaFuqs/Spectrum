@@ -92,7 +92,7 @@ public class PotionWorkshopReagents {
 		});
 		reagentEffects.put(SpectrumItems.QUITOXIC_POWDER, new PotionReagentEffect() {
 			public PotionMod modify(PotionMod potionMod, Random random) {
-				potionMod.flatPotencyBonusNegativeEffects += 1.0F;
+				potionMod.flatPotencyBonusNegativeEffects += 2.0F;
 				return potionMod;
 			}
 		});

@@ -1,19 +1,7 @@
 package de.dafuqs.spectrum.mixin.client.enchantment_descriptions;
 
-import de.dafuqs.spectrum.enchantments.SpectrumEnchantment;
 import net.darkhax.enchdesc.DescriptionManager;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.text.LiteralText;
-import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.Language;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 /**
  * If Enchantment descriptions is installed:
@@ -23,6 +11,7 @@ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 public class DescriptionManagerMixin {
 	
 	// TODO
+	// breaks in prod
 	/*private static final Language language = Language.getInstance();
 	
 	@Inject(at = @At("RETURN"), method= "Lnet/darkhax/enchdesc/DescriptionManager;getDescription(L;)L;", cancellable = true, remap = false, locals = LocalCapture.CAPTURE_FAILSOFT)

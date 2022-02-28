@@ -38,6 +38,7 @@ public class PotionWorkshopCraftingRecipeSerializer<T extends PotionWorkshopCraf
 			ingredient3 = Ingredient.EMPTY;
 		}
 		
+		int requiredExperience = JsonHelper.getInt(jsonObject, "required_experience", 0);
 		int craftingTime = JsonHelper.getInt(jsonObject, "time", 200);
 		int color = JsonHelper.getInt(jsonObject, "color", 0xc03058);
 		boolean consumeBaseIngredient = JsonHelper.getBoolean(jsonObject, "use_up_base_ingredient", false);
@@ -51,7 +52,7 @@ public class PotionWorkshopCraftingRecipeSerializer<T extends PotionWorkshopCraf
 			requiredAdvancementIdentifier = new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_potion_workshop");
 		}
 
-		return this.recipeFactory.create(identifier, group, baseIngredient, consumeBaseIngredient, ingredient1, ingredient2, ingredient3, output, craftingTime, color, requiredAdvancementIdentifier);
+		return this.recipeFactory.create(identifier, group, baseIngredient, consumeBaseIngredient, requiredExperience, ingredient1, ingredient2, ingredient3, output, craftingTime, color, requiredAdvancementIdentifier);
 	}
 	
 	@Override
@@ -59,6 +60,7 @@ public class PotionWorkshopCraftingRecipeSerializer<T extends PotionWorkshopCraf
 		packetByteBuf.writeString(potionWorkshopCraftingRecipe.group);
 		potionWorkshopCraftingRecipe.baseIngredient.write(packetByteBuf);
 		packetByteBuf.writeBoolean(potionWorkshopCraftingRecipe.consumeBaseIngredient);
+		packetByteBuf.writeInt(potionWorkshopCraftingRecipe.requiredExperience);
 		potionWorkshopCraftingRecipe.ingredient1.write(packetByteBuf);
 		potionWorkshopCraftingRecipe.ingredient2.write(packetByteBuf);
 		potionWorkshopCraftingRecipe.ingredient3.write(packetByteBuf);
@@ -73,6 +75,7 @@ public class PotionWorkshopCraftingRecipeSerializer<T extends PotionWorkshopCraf
 		String group = packetByteBuf.readString();
 		Ingredient baseIngredient = Ingredient.fromPacket(packetByteBuf);
 		boolean consumeBaseIngredient = packetByteBuf.readBoolean();
+		int requiredExperience = packetByteBuf.readInt();
 		Ingredient ingredient1 = Ingredient.fromPacket(packetByteBuf);
 		Ingredient ingredient2 = Ingredient.fromPacket(packetByteBuf);
 		Ingredient ingredient3 = Ingredient.fromPacket(packetByteBuf);
@@ -80,11 +83,11 @@ public class PotionWorkshopCraftingRecipeSerializer<T extends PotionWorkshopCraf
 		int craftingTime = packetByteBuf.readInt();
 		int color = packetByteBuf.readInt();
 		Identifier requiredAdvancementIdentifier = packetByteBuf.readIdentifier();
-		return this.recipeFactory.create(identifier, group, baseIngredient, consumeBaseIngredient, ingredient1, ingredient2, ingredient3, output, craftingTime, color, requiredAdvancementIdentifier);
+		return this.recipeFactory.create(identifier, group, baseIngredient, consumeBaseIngredient, requiredExperience, ingredient1, ingredient2, ingredient3, output, craftingTime, color, requiredAdvancementIdentifier);
 	}
 	
 	public interface RecipeFactory<T extends PotionWorkshopCraftingRecipe> {
-		T create(Identifier id, String group, Ingredient baseIngredient, boolean consumeBaseIngredient, Ingredient ingredient1, Ingredient ingredient2, Ingredient ingredient3, ItemStack output, int craftingTime, int color, Identifier requiredAdvancementIdentifier);
+		T create(Identifier id, String group, Ingredient baseIngredient, boolean consumeBaseIngredient, int requiredExperience, Ingredient ingredient1, Ingredient ingredient2, Ingredient ingredient3, ItemStack output, int craftingTime, int color, Identifier requiredAdvancementIdentifier);
 	}
 
 }

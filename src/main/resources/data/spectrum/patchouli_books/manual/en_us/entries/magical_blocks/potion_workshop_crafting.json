@@ -35,6 +35,12 @@
     },
     {
       "type": "spectrum:potion_workshop_crafting",
+      "title": "Bottles o' Enchanting",
+      "recipe": "spectrum:potion_workshop_crafting/experience_bottle",
+      "text": "Will consume 10 XP from the Knowledge Gem"
+    },
+    {
+      "type": "spectrum:potion_workshop_crafting",
       "title": "Crying Obsidian",
       "advancement": "spectrum:midgame/create_midnight_aberration",
       "recipe": "spectrum:potion_workshop_crafting/crying_obsidian",

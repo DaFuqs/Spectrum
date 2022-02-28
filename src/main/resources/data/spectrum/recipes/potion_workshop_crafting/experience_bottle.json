@@ -1,0 +1,21 @@
+{
+  "type": "spectrum:potion_workshop_crafting",
+  "base_ingredient": {
+    "item": "minecraft:glass_bottle"
+  },
+  "use_up_base_ingredient": true,
+  "required_experience": 10,
+  "color": 11665152,
+  "ingredient1": {
+    "item": "spectrum:knowledge_gem"
+  },
+  "ingredient2": {
+    "item": "spectrum:purple_pigment"
+  },
+  "ingredient3": {
+    "item": "spectrum:lime_pigment"
+  },
+  "result" : {
+    "item": "minecraft:experience_bottle"
+  }
+}

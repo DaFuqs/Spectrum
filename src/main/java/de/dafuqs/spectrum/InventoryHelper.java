@@ -133,6 +133,21 @@ public class InventoryHelper {
 		}
 		return originalStack;
 	}
+	
+	public static void addToInventory(List<ItemStack> inventory, ItemStack itemStack, int rangeStart, int rangeEnd) {
+		for(int i = rangeStart; i < rangeEnd; i++) {
+			ItemStack currentStack = inventory.get(i);
+			if(currentStack.isEmpty()) {
+				inventory.set(i, itemStack);
+				return;
+			} else if(itemStack.isStackable()) {
+				combineStacks(currentStack, itemStack);
+				if (itemStack.isEmpty()) {
+					return;
+				}
+			}
+		}
+	}
 
 	public static boolean smartAddToInventory(List<ItemStack> itemStacks, List<ItemStack> inventory, boolean test) {
 		List<ItemStack> additionStacks = new ArrayList<>();
@@ -307,5 +322,5 @@ public class InventoryHelper {
 
 		return inventory;
 	}
-
+	
 }

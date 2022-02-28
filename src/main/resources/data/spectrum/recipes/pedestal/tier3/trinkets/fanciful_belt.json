@@ -11,11 +11,14 @@
   "pattern": [
     " L ",
     "L L",
-    " L "
+    "GL "
   ],
   "key": {
     "L": {
       "item": "minecraft:leather"
+    },
+    "G": {
+      "item": "minecraft:gold_ingot"
     }
   },
   "result": {

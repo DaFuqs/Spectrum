@@ -9,21 +9,21 @@
   "white": 0,
   "experience": 0.1,
   "pattern": [
-    " G ",
-    "G G",
-    "LG "
+    " L ",
+    "L L",
+    "QL "
   ],
   "key": {
-    "G": {
-      "item": "minecraft:gold_ingot"
-    },
     "L": {
-      "item": "minecraft:lapis_lazuli"
+      "item": "spectrum:polished_basalt"
+    },
+    "Q": {
+      "item": "minecraft:quartz"
     }
   },
   "result": {
-    "item": "spectrum:fanciful_pendant",
+    "item": "spectrum:fanciful_circlet",
     "count": 1
   },
-  "required_advancements": ["spectrum:progression/unlock_fanciful_pendant"]
+  "required_advancements": ["spectrum:progression/unlock_fanciful_circlet"]
 }

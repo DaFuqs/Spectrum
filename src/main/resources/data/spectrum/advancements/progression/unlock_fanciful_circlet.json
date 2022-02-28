@@ -1,0 +1,28 @@
+{
+  "criteria": {
+    "unlocked_ashen_circlet": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:progression/unlock_totem_pendant" }
+    },
+    "unlocked_tidal_circlet": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:progression/unlock_lesser_potion_pendant" }
+    },
+    "unlocked_puff_circlet": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:progression/unlock_greater_potion_pendant" }
+    },
+    "unlocked_whispy_circlet": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:progression/unlock_greater_potion_pendant" }
+    }
+  },
+  "requirements": [
+    [
+      "unlocked_ashen_circlet",
+      "unlocked_tidal_circlet",
+      "unlocked_puff_circlet",
+      "unlocked_whispy_circlet"
+    ]
+  ]
+}

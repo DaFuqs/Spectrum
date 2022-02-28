@@ -13,8 +13,11 @@ import net.minecraft.client.toast.ToastManager;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.item.PotionItem;
+import net.minecraft.potion.PotionUtil;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
@@ -103,14 +106,21 @@ public class UnlockedRecipeGroupToast implements Toast {
 	}
 	
 	public static Text getTextForItemStack(@NotNull ItemStack itemStack) {
-		// special handling for enchanted books
-		// Instead of the text "enchanted book" the toast will
-		// read the first stored enchantment in the book
 		if(itemStack.isOf(Items.ENCHANTED_BOOK)) {
+			// special handling for enchanted books
+			// Instead of the text "enchanted book" the toast will
+			// read the first stored enchantment in the book
 			Map<Enchantment, Integer> enchantments = EnchantmentHelper.get(itemStack);
 			if(enchantments.size() > 0) {
 				Map.Entry<Enchantment, Integer> firstEnchantment = enchantments.entrySet().iterator().next();
 				return new TranslatableText(firstEnchantment.getKey().getTranslationKey());
+			}
+		} else if(itemStack.isOf(Items.POTION)) {
+			// special handling for potions
+			// use the name of the first custom potion effect
+			List<StatusEffectInstance> effects = PotionUtil.getCustomPotionEffects(itemStack);
+			if(effects.size() > 0) {
+				return new TranslatableText(effects.get(0).getTranslationKey()).append(" ").append(new TranslatableText("item.minecraft.potion"));
 			}
 		}
 		return itemStack.getName();

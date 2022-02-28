@@ -7,7 +7,6 @@ import de.dafuqs.spectrum.enums.GemstoneColor;
 import de.dafuqs.spectrum.interfaces.Cloakable;
 import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.items.armor.GemstoneArmorItem;
-import de.dafuqs.spectrum.items.trinkets.GlowVisionHelmet;
 import de.dafuqs.spectrum.items.armor.SpectrumArmorItem;
 import de.dafuqs.spectrum.items.item_frame.InvisibleGlowItemFrameItem;
 import de.dafuqs.spectrum.items.item_frame.InvisibleItemFrameItem;

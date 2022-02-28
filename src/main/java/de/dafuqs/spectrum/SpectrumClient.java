@@ -6,7 +6,7 @@ import de.dafuqs.spectrum.inventories.SpectrumContainers;
 import de.dafuqs.spectrum.inventories.SpectrumScreenHandlerTypes;
 import de.dafuqs.spectrum.items.ExperienceStorageItem;
 import de.dafuqs.spectrum.items.magic_items.EnderSpliceItem;
-import de.dafuqs.spectrum.networking.SpectrumS2CPackets;
+import de.dafuqs.spectrum.networking.SpectrumS2CPacketReceiver;
 import de.dafuqs.spectrum.particle.SpectrumParticleFactories;
 import de.dafuqs.spectrum.progression.ToggleableBlockColorProvider;
 import de.dafuqs.spectrum.progression.ToggleableItemColorProvider;
@@ -71,7 +71,7 @@ public class SpectrumClient implements ClientModInitializer {
 		SpectrumEntityRenderers.registerClient();
 
 		log(Level.INFO, "Registering Server to Client Package Receivers...");
-		SpectrumS2CPackets.registerS2CReceivers();
+		SpectrumS2CPacketReceiver.registerS2CReceivers();
 		log(Level.INFO, "Registering Particle Factories...");
 		SpectrumParticleFactories.register();
 

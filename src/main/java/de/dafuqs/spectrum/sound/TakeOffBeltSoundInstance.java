@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.sound;
 
+import de.dafuqs.spectrum.SpectrumClient;
 import de.dafuqs.spectrum.items.trinkets.TakeOffBeltItem;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import net.fabricmc.api.EnvType;
@@ -32,7 +33,14 @@ public class TakeOffBeltSoundInstance extends AbstractSoundInstance implements T
 		this.y = player.getY();
 		this.z = player.getZ();
 	}
-
+	
+	public static void startSoundInstance() {
+		TakeOffBeltSoundInstance soundInstance = new TakeOffBeltSoundInstance();
+		if (!SpectrumClient.minecraftClient.getSoundManager().isPlaying(soundInstance)) {
+			SpectrumClient.minecraftClient.getSoundManager().play(soundInstance);
+		}
+	}
+	
 	@Override
 	public boolean isDone() {
 		return this.done;

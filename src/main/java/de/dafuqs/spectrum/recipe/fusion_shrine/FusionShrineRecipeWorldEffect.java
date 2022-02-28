@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.recipe.fusion_shrine;
 
-import de.dafuqs.spectrum.networking.SpectrumS2CPackets;
+import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LightningEntity;
 import net.minecraft.particle.ParticleTypes;
@@ -58,12 +58,12 @@ public enum FusionShrineRecipeWorldEffect {
 			case VISUAL_EXPLOSIONS_ON_SHRINE -> {
 				if (world.getRandom().nextFloat() < 0.1) {
 					world.playSound(null, shrinePos.up(), SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.BLOCKS, 0.5F, 0.8F + world.random.nextFloat() * 0.4F);
-					SpectrumS2CPackets.playParticleWithRandomOffsetAndVelocity(world, shrinePos.up(), ParticleTypes.EXPLOSION, 1);
+					SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity(world, shrinePos.up(), ParticleTypes.EXPLOSION, 1);
 				}
 			}
 			case SINGLE_VISUAL_EXPLOSION_ON_SHRINE -> {
 				world.playSound(null, shrinePos.up(), SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.BLOCKS, 0.8F, 0.8F + world.random.nextFloat() * 0.4F);
-				SpectrumS2CPackets.playParticleWithRandomOffsetAndVelocity(world, shrinePos, ParticleTypes.EXPLOSION, 1);
+				SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity(world, shrinePos, ParticleTypes.EXPLOSION, 1);
 			}
 		}
 	}

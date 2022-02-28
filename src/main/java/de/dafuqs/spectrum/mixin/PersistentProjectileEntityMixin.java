@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.mixin;
 
-import de.dafuqs.spectrum.networking.SpectrumS2CPackets;
+import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
@@ -43,7 +43,7 @@ public abstract class PersistentProjectileEntityMixin {
 					List<Pair<SlotReference, ItemStack>> equipped = component.get().getEquipped(SpectrumItems.PUFF_CIRCLET);
 					if (!equipped.isEmpty()) {
 						this.setVelocity(0, 0, 0, 0, 0);
-						SpectrumS2CPackets.playParticleWithRandomOffsetAndVelocity((ServerWorld) thisEntity.getWorld(), thisEntity.getPos(),
+						SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) thisEntity.getWorld(), thisEntity.getPos(),
 								SpectrumParticleTypes.WHITE_CRAFTING, 10,
 								new Vec3d(0, 0, 0),
 								new Vec3d(thisEntity.getX() - livingEntity.getPos().x, thisEntity.getY() - livingEntity.getPos().y, thisEntity.getZ() - livingEntity.getPos().z));

@@ -4,8 +4,7 @@ import de.dafuqs.spectrum.SpectrumClient;
 import de.dafuqs.spectrum.Support;
 import de.dafuqs.spectrum.blocks.enchanter.EnchanterEnchantable;
 import de.dafuqs.spectrum.interfaces.PlayerOwned;
-import de.dafuqs.spectrum.networking.SpectrumC2SPackets;
-import de.dafuqs.spectrum.networking.SpectrumS2CPackets;
+import de.dafuqs.spectrum.networking.SpectrumC2SPacketSender;
 import de.dafuqs.spectrum.registries.SpectrumEnchantments;
 import de.dafuqs.spectrum.sound.EnderSpliceChargingSoundInstance;
 import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
@@ -106,7 +105,7 @@ public class EnderSpliceItem extends Item implements EnchanterEnchantable {
 		if(hitResult.getType() == HitResult.Type.ENTITY) {
 			EntityHitResult entityHitResult = (EntityHitResult) hitResult;
 			if(entityHitResult.getEntity() instanceof PlayerEntity playerEntity) {
-				SpectrumC2SPackets.sendBindEnderSpliceToPlayer(playerEntity);
+				SpectrumC2SPacketSender.sendBindEnderSpliceToPlayer(playerEntity);
 			}
 		}
 	}

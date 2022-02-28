@@ -7,7 +7,7 @@ import de.dafuqs.spectrum.events.SpectrumGameEvents;
 import de.dafuqs.spectrum.events.SuckingChestEventListener;
 import de.dafuqs.spectrum.inventories.SuckingChestScreenHandler;
 import de.dafuqs.spectrum.items.ExperienceStorageItem;
-import de.dafuqs.spectrum.networking.SpectrumS2CPackets;
+import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
 import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
@@ -149,12 +149,12 @@ public class SuckingChestBlockEntity extends SpectrumChestBlockEntity implements
 					ItemStack remainingStack = InventoryHelper.smartAddToInventory(itemEntity.getStack(), this, Direction.UP);
 
 					if (remainingStack.isEmpty()) {
-						SpectrumS2CPackets.sendPlayItemEntityAbsorbedParticle(world, itemEntity);
+						SpectrumS2CPacketSender.sendPlayItemEntityAbsorbedParticle(world, itemEntity);
 						world.playSound(null, itemEntity.getBlockPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.9F + this.world.random.nextFloat() * 0.2F, 0.9F + this.world.random.nextFloat() * 0.2F);
 						itemEntity.setStack(ItemStack.EMPTY);
 					} else {
 						if(remainingStack.getCount() != previousAmount) {
-							SpectrumS2CPackets.sendPlayItemEntityAbsorbedParticle(world, itemEntity);
+							SpectrumS2CPacketSender.sendPlayItemEntityAbsorbedParticle(world, itemEntity);
 							world.playSound(null, itemEntity.getBlockPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.9F + this.world.random.nextFloat() * 0.2F, 0.9F + this.world.random.nextFloat() * 0.2F);
 							itemEntity.setStack(remainingStack);
 						}
@@ -167,7 +167,7 @@ public class SuckingChestBlockEntity extends SpectrumChestBlockEntity implements
 				if (experienceOrbEntity != null && experienceOrbEntity.isAlive() && hasExperienceStorageItem()) {
 					ExperienceStorageItem.addStoredExperience(this.inventory.get(EXPERIENCE_STORAGE_PROVIDER_ITEM_SLOT), experienceOrbEntity.getExperienceAmount()); // overflow experience is void, to not lag the world on large farms
 					
-					SpectrumS2CPackets.sendPlayExperienceOrbEntityAbsorbedParticle(world, experienceOrbEntity);
+					SpectrumS2CPacketSender.sendPlayExperienceOrbEntityAbsorbedParticle(world, experienceOrbEntity);
 					world.playSound(null, experienceOrbEntity.getBlockPos(), SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.BLOCKS, 0.9F + this.world.random.nextFloat() * 0.2F, 0.9F + this.world.random.nextFloat() * 0.2F);
 					experienceOrbEntity.remove(Entity.RemovalReason.DISCARDED);
 				}

@@ -9,7 +9,6 @@ import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
-import org.apache.logging.log4j.Level;
 
 public class PotionWorkshopCraftingRecipeSerializer<T extends PotionWorkshopCraftingRecipe> implements RecipeSerializer<T> {
 

@@ -2,7 +2,7 @@ package de.dafuqs.spectrum.items.magic_items;
 
 import de.dafuqs.spectrum.InventoryHelper;
 import de.dafuqs.spectrum.blocks.enchanter.EnchanterEnchantable;
-import de.dafuqs.spectrum.networking.SpectrumS2CPackets;
+import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
@@ -119,7 +119,7 @@ public class RadianceStaffItem extends Item implements EnchanterEnchantable {
 		} else {
 			pitch = Math.min(1.5F, 0.7F + 0.1F * useTimes);
 		}
-		SpectrumS2CPackets.sendLightCreatedParticle(world, targetPos);
+		SpectrumS2CPacketSender.sendLightCreatedParticle(world, targetPos);
 		world.playSound(null, playerEntity.getX() + 0.5, playerEntity.getY() + 0.5, playerEntity.getZ() + 0.5, SpectrumSoundEvents.LIGHT_STAFF_PLACE, SoundCategory.PLAYERS, (float) Math.max(0.25, 1.0F-(float)iteration*0.1F), pitch);
 	}
 	

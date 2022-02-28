@@ -2,7 +2,7 @@ package de.dafuqs.spectrum.compat.patchouli;
 
 import de.dafuqs.spectrum.InventoryHelper;
 import de.dafuqs.spectrum.SpectrumClient;
-import de.dafuqs.spectrum.networking.SpectrumC2SPackets;
+import de.dafuqs.spectrum.networking.SpectrumC2SPacketSender;
 import de.dafuqs.spectrum.sound.HintRevelationSoundInstance;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.widget.ButtonWidget;
@@ -105,7 +105,7 @@ public class PageHint extends BookPage {
 			
 			SpectrumClient.minecraftClient.getSoundManager().play(new HintRevelationSoundInstance(mc.player, rawText.asString().length()));
 			
-			SpectrumC2SPackets.sendGuidebookHintBoughtPaket(ingredient);
+			SpectrumC2SPacketSender.sendGuidebookHintBoughtPaket(ingredient);
 			revealed = true;
 			revealTick = MinecraftClient.getInstance().world.getTime();
 			MinecraftClient.getInstance().player.playSound(SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.PLAYERS, 1.0F, 1.0F);

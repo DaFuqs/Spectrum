@@ -3,7 +3,7 @@ package de.dafuqs.spectrum.inventories;
 import com.mojang.blaze3d.systems.RenderSystem;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.chests.CompactingChestBlockEntity;
-import de.dafuqs.spectrum.networking.SpectrumC2SPackets;
+import de.dafuqs.spectrum.networking.SpectrumC2SPacketSender;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
@@ -91,7 +91,7 @@ public class CompactingChestScreen extends HandledScreen<CompactingChestScreenHa
 	private void onValuesChanged() {
 		PacketByteBuf packetByteBuf = PacketByteBufs.create();
 		packetByteBuf.writeInt(autoCraftingMode.ordinal());
-		ClientPlayNetworking.send(SpectrumC2SPackets.CHANGE_COMPACTING_CHEST_SETTINGS_PACKET_ID, packetByteBuf);
+		ClientPlayNetworking.send(SpectrumC2SPacketSender.CHANGE_COMPACTING_CHEST_SETTINGS_PACKET_ID, packetByteBuf);
 	}
 	
 }

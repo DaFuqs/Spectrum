@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.blocks.item_bowl;
 
 import de.dafuqs.spectrum.Support;
-import de.dafuqs.spectrum.networking.SpectrumS2CPackets;
+import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.particle.effect.Transphere;
 import de.dafuqs.spectrum.particle.effect.TransphereParticleEffect;
@@ -129,12 +129,12 @@ public class ItemBowlBlockEntity extends BlockEntity {
 				ParticleEffect sparkleRisingParticleEffect = SpectrumParticleTypes.getSparkleRisingParticle(optionalItemColor.get());
 				
 				if(this.world instanceof ServerWorld serverWorld) {
-					SpectrumS2CPackets.playParticleWithRandomOffsetAndVelocity((ServerWorld) world,
+					SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) world,
 							new Vec3d(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5),
 							sparkleRisingParticleEffect, 50,
 							new Vec3d(0.4, 0.2, 0.4), new Vec3d(0.06, 0.16, 0.06));
 					
-					SpectrumS2CPackets.playTransphereParticle(serverWorld, new Transphere(this.pos, new BlockPositionSource(enchanterBlockPos), 20, optionalItemColor.get()));
+					SpectrumS2CPacketSender.playTransphereParticle(serverWorld, new Transphere(this.pos, new BlockPositionSource(enchanterBlockPos), 20, optionalItemColor.get()));
 				} else if(this.world instanceof ClientWorld clientWorld) {
 					for(int i = 0; i < 50; i++){
 						float randomOffsetX = pos.getX() + 0.3F + world.random.nextFloat() * 0.6F;

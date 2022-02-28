@@ -5,6 +5,8 @@ import de.dafuqs.spectrum.azure_dike.AzureDikeProvider;
 import de.dafuqs.spectrum.enchantments.DisarmingEnchantment;
 import de.dafuqs.spectrum.items.trinkets.AshenCircletItem;
 import de.dafuqs.spectrum.items.trinkets.SpectrumTrinketItem;
+import de.dafuqs.spectrum.networking.SpectrumS2CPacketReceiver;
+import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
 import de.dafuqs.spectrum.networking.SpectrumS2CPackets;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.registries.SpectrumEnchantments;
@@ -81,12 +83,12 @@ public abstract class LivingEntityMixin {
 						thisEntity.fallDistance = 0;
 						thisEntity.setVelocity(thisEntity.getVelocity().x, 0.5, thisEntity.getVelocity().z);
 						if(thisEntity.world.isClient) {
-							SpectrumS2CPackets.playParticleWithPatternAndVelocityClient(thisEntity.getWorld(), thisEntity.getPos(), SpectrumParticleTypes.WHITE_CRAFTING, SpectrumS2CPackets.ParticlePattern.SIXTEEN, 0.4);
+							SpectrumS2CPacketReceiver.playParticleWithPatternAndVelocityClient(thisEntity.getWorld(), thisEntity.getPos(), SpectrumParticleTypes.WHITE_CRAFTING, SpectrumS2CPackets.ParticlePattern.SIXTEEN, 0.4);
 						} else {
 							if(thisEntity instanceof ServerPlayerEntity serverPlayerEntity) {
-								SpectrumS2CPackets.playParticleWithPatternAndVelocity(serverPlayerEntity, (ServerWorld) thisEntity.getWorld(), thisEntity.getPos(), SpectrumParticleTypes.WHITE_CRAFTING, SpectrumS2CPackets.ParticlePattern.SIXTEEN, 0.4);
+								SpectrumS2CPacketSender.playParticleWithPatternAndVelocity(serverPlayerEntity, (ServerWorld) thisEntity.getWorld(), thisEntity.getPos(), SpectrumParticleTypes.WHITE_CRAFTING, SpectrumS2CPackets.ParticlePattern.SIXTEEN, 0.4);
 							} else {
-								SpectrumS2CPackets.playParticleWithPatternAndVelocity(null, (ServerWorld) thisEntity.getWorld(), thisEntity.getPos(), SpectrumParticleTypes.WHITE_CRAFTING, SpectrumS2CPackets.ParticlePattern.SIXTEEN, 0.4);
+								SpectrumS2CPacketSender.playParticleWithPatternAndVelocity(null, (ServerWorld) thisEntity.getWorld(), thisEntity.getPos(), SpectrumParticleTypes.WHITE_CRAFTING, SpectrumS2CPackets.ParticlePattern.SIXTEEN, 0.4);
 							}
 						}
 						thisEntity.getWorld().playSound(null, thisEntity.getBlockPos(), SpectrumSoundEvents.PUFF_CIRCLET_PFFT, SoundCategory.PLAYERS, 1.0F, 1.0F);

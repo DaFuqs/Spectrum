@@ -14,7 +14,7 @@ import de.dafuqs.spectrum.items.trinkets.SpectrumTrinketItem;
 import de.dafuqs.spectrum.items.trinkets.WhispyCircletItem;
 import de.dafuqs.spectrum.loot.EnchantmentDrops;
 import de.dafuqs.spectrum.loot.SpectrumLootConditionTypes;
-import de.dafuqs.spectrum.networking.SpectrumC2SPackets;
+import de.dafuqs.spectrum.networking.SpectrumC2SPacketReceiver;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.progression.BlockCloakManager;
 import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
@@ -149,7 +149,7 @@ public class SpectrumCommon implements ModInitializer {
 		SpectrumCommands.register();
 
 		log(Level.INFO, "Registering Client To ServerPackage Receivers...");
-		SpectrumC2SPackets.registerC2SReceivers();
+		SpectrumC2SPacketReceiver.registerC2SReceivers();
 
 		log(Level.INFO, "Registering Block Cloaker...");
 		BlockCloakManager.setupCloaks();

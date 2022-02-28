@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.items.trinkets;
 
 import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.networking.SpectrumS2CPackets;
+import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
 import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
 import dev.emi.trinkets.api.SlotReference;
 import net.minecraft.client.item.TooltipContext;
@@ -86,7 +86,7 @@ public class TidalCircletItem extends SpectrumTrinketItem {
 			if(axolotlEntity.getHealth() < axolotlEntity.getMaxHealth() && axolotlEntity.getLovingPlayer() != null && axolotlEntity.getLovingPlayer().equals(entity)) {
 				axolotlEntity.heal(AXOLOTL_HEALING);
 				entity.playSound(SpectrumSoundEvents.BLOCK_CITRINE_BLOCK_CHIME, SoundCategory.NEUTRAL, 1.0F, 0.9F + entity.getWorld().random.nextFloat() * 0.2F);
-				SpectrumS2CPackets.playParticleWithRandomOffsetAndVelocity((ServerWorld) axolotlEntity.getWorld(), axolotlEntity.getPos(), ParticleTypes.WAX_OFF, 10, new Vec3d(0.5, 0.5, 0.5), new Vec3d(0, 0, 0));
+				SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) axolotlEntity.getWorld(), axolotlEntity.getPos(), ParticleTypes.WAX_OFF, 10, new Vec3d(0.5, 0.5, 0.5), new Vec3d(0, 0, 0));
 			}
 		}
 	}

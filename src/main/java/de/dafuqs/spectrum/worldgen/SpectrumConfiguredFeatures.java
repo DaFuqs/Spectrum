@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.worldgen;
 import com.google.common.collect.ImmutableList;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.conditional.MermaidsBrushBlock;
-import de.dafuqs.spectrum.mixin.GeodesGenerateWithGemstoneOresMixin;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import de.dafuqs.spectrum.worldgen.features.WeightedRandomFeatureConfig;
 import de.dafuqs.spectrum.worldgen.features.WeightedRandomFeaturePatchConfig;

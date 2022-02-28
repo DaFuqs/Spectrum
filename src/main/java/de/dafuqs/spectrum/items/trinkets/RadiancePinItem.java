@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.items.trinkets;
 
 import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.networking.SpectrumS2CPackets;
+import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
 import dev.emi.trinkets.api.SlotReference;
@@ -66,7 +66,7 @@ public class RadiancePinItem extends SpectrumTrinketItem {
 					placed = true;
 				}
 				if(placed) {
-					SpectrumS2CPackets.sendLightCreatedParticle(world, entity.getBlockPos());
+					SpectrumS2CPacketSender.sendLightCreatedParticle(world, entity.getBlockPos());
 					world.playSound(null, entity.getX() + 0.5, entity.getY() + 0.5, entity.getZ() + 0.5, SpectrumSoundEvents.LIGHT_STAFF_PLACE, SoundCategory.PLAYERS, 0.4F, 0.9F + world.random.nextFloat() * 0.2F);
 				}
 			}

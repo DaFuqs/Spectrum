@@ -4,7 +4,7 @@ import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.Support;
 import de.dafuqs.spectrum.interfaces.GravitableItem;
 import de.dafuqs.spectrum.inventories.AutoCompactingInventory;
-import de.dafuqs.spectrum.networking.SpectrumS2CPackets;
+import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.recipe.anvil_crushing.AnvilCrushingRecipe;
 import de.dafuqs.spectrum.registries.SpectrumDamageSources;
@@ -139,7 +139,7 @@ public abstract class ItemEntityMixin {
 					world.playSound(null, position.x, position.y, position.z, soundEvent, SoundCategory.PLAYERS, randomVolume, randomPitch);
 				}
 				
-				SpectrumS2CPackets.playParticleWithRandomOffsetAndVelocity((ServerWorld) world, new BlockPos(position), recipe.getParticleEffectIdentifier(), recipe.getParticleCount());
+				SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) world, new BlockPos(position), recipe.getParticleEffectIdentifier(), recipe.getParticleCount());
 			}
 		}
 	}

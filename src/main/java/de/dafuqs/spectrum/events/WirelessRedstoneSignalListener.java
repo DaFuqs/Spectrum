@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.events;
 
 import blue.endless.jankson.annotation.Nullable;
-import de.dafuqs.spectrum.networking.SpectrumS2CPackets;
+import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
 import de.dafuqs.spectrum.particle.effect.WirelessRedstoneTransmission;
 import net.minecraft.entity.Entity;
 import net.minecraft.server.world.ServerWorld;
@@ -77,7 +77,7 @@ public class WirelessRedstoneSignalListener implements GameEventListener {
 		if (world instanceof ServerWorld) {
 			this.distance = MathHelper.floor(Math.sqrt(pos.getSquaredDistance(sourcePos, false)));
 			this.delay = this.distance;
-			SpectrumS2CPackets.sendWirelessRedstonePacket((ServerWorld) world, new WirelessRedstoneTransmission(pos, this.positionSource, this.delay));
+			SpectrumS2CPacketSender.sendWirelessRedstonePacket((ServerWorld) world, new WirelessRedstoneTransmission(pos, this.positionSource, this.delay));
 		}
 	}
 

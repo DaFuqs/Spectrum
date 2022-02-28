@@ -1,11 +1,9 @@
 package de.dafuqs.spectrum.interfaces;
 
 import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionUtil;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

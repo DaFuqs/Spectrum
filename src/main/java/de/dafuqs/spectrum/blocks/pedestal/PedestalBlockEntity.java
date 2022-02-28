@@ -10,7 +10,7 @@ import de.dafuqs.spectrum.interfaces.PlayerOwned;
 import de.dafuqs.spectrum.inventories.AutoCraftingInventory;
 import de.dafuqs.spectrum.inventories.PedestalScreenHandler;
 import de.dafuqs.spectrum.items.CraftingTabletItem;
-import de.dafuqs.spectrum.networking.SpectrumS2CPackets;
+import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
@@ -223,7 +223,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 	}
 	
 	
-	// Called when the chunk is first loaded to initialize this be or manually synched via updateInClientWorld()
+	// Called when the chunk is first loaded to initialize this be or manually synced via updateInClientWorld()
 	public NbtCompound toInitialChunkDataNbt() {
 		NbtCompound nbtCompound = new NbtCompound();
 		this.writeNbt(nbtCompound);
@@ -339,7 +339,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 				pedestalBlockEntity.craftingTimeTotal = (int) Math.ceil(SpectrumCommon.CONFIG.VanillaRecipeCraftingTimeTicks / pedestalBlockEntity.upgrades.get(UpgradeType.SPEED));
 			}
 			pedestalBlockEntity.markDirty();
-			SpectrumS2CPackets.sendCancelBlockBoundSoundInstance((ServerWorld) pedestalBlockEntity.getWorld(), pedestalBlockEntity.getPos());
+			SpectrumS2CPacketSender.sendCancelBlockBoundSoundInstance((ServerWorld) pedestalBlockEntity.getWorld(), pedestalBlockEntity.getPos());
 			updateInClientWorld(pedestalBlockEntity);
 		}
 		
@@ -375,7 +375,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		}
 		
 		if((!pedestalBlockEntity.wasPoweredBefore && pedestalBlockEntity.craftingTime > 0) || (pedestalBlockEntity.craftingTime == 1 && pedestalBlockEntity.craftingTimeTotal > 1)) {
-			SpectrumS2CPackets.sendPlayBlockBoundSoundInstance(SpectrumSoundEvents.PEDESTAL_CRAFTING, (ServerWorld) pedestalBlockEntity.world, pedestalBlockEntity.getPos(), pedestalBlockEntity.craftingTimeTotal - pedestalBlockEntity.craftingTime);
+			SpectrumS2CPacketSender.sendPlayBlockBoundSoundInstance(SpectrumSoundEvents.PEDESTAL_CRAFTING, (ServerWorld) pedestalBlockEntity.world, pedestalBlockEntity.getPos(), pedestalBlockEntity.craftingTimeTotal - pedestalBlockEntity.craftingTime);
 		}
 
 		// try to output the currently stored output stack
@@ -434,7 +434,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		}
 
 		// only triggered on server side. Therefore, has to be sent to client via S2C packet
-		SpectrumS2CPackets.sendPlayPedestalCraftingFinishedParticle(world, blockPos, outputItemStack);
+		SpectrumS2CPacketSender.sendPlayPedestalCraftingFinishedParticle(world, blockPos, outputItemStack);
 	}
 
 	public static boolean tryPutOutputIntoAboveInventory(PedestalBlockEntity pedestalBlockEntity, Inventory targetInventory, ItemStack outputItemStack) {
@@ -569,7 +569,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 				// => Upgrade
 				pedestalBlockEntity.playSound(SpectrumSoundEvents.PEDESTAL_UPGRADE);
 				PedestalBlock.upgradeToVariant(pedestalBlockEntity.world, pedestalBlockEntity.getPos(), newPedestalVariant);
-				SpectrumS2CPackets.spawnPedestalUpgradeParticles(pedestalBlockEntity.world, pedestalBlockEntity.pos, newPedestalVariant);
+				SpectrumS2CPacketSender.spawnPedestalUpgradeParticles(pedestalBlockEntity.world, pedestalBlockEntity.pos, newPedestalVariant);
 				
 				pedestalBlockEntity.pedestalVariant = newPedestalVariant;
 				

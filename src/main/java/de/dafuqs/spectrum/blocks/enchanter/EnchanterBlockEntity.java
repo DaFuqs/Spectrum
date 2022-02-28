@@ -10,6 +10,7 @@ import de.dafuqs.spectrum.enchantments.SpectrumEnchantment;
 import de.dafuqs.spectrum.interfaces.PlayerOwned;
 import de.dafuqs.spectrum.items.ExperienceStorageItem;
 import de.dafuqs.spectrum.items.magic_items.KnowledgeGemItem;
+import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
 import de.dafuqs.spectrum.networking.SpectrumS2CPackets;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
@@ -255,12 +256,12 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 			if(enchanterBlockEntity.craftingTime % 60 == 1) {
 				if (!checkRecipeRequirements(world, blockPos, enchanterBlockEntity)) {
 					enchanterBlockEntity.craftingTime = 0;
-					SpectrumS2CPackets.sendCancelBlockBoundSoundInstance((ServerWorld) enchanterBlockEntity.world, enchanterBlockEntity.pos);
+					SpectrumS2CPacketSender.sendCancelBlockBoundSoundInstance((ServerWorld) enchanterBlockEntity.world, enchanterBlockEntity.pos);
 					return;
 				}
 			}
 			if(enchanterBlockEntity.craftingTime == 1) {
-				SpectrumS2CPackets.sendPlayBlockBoundSoundInstance(SpectrumSoundEvents.ENCHANTER_WORKING, (ServerWorld) enchanterBlockEntity.world, enchanterBlockEntity.pos, Integer.MAX_VALUE);
+				SpectrumS2CPacketSender.sendPlayBlockBoundSoundInstance(SpectrumSoundEvents.ENCHANTER_WORKING, (ServerWorld) enchanterBlockEntity.world, enchanterBlockEntity.pos, Integer.MAX_VALUE);
 			}
 			
 			if (enchanterBlockEntity.currentRecipe instanceof EnchanterRecipe enchanterRecipe) {
@@ -319,7 +320,7 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 				enchanterBlockEntity.inventoryChanged();
 			}
 		} else {
-			SpectrumS2CPackets.sendCancelBlockBoundSoundInstance((ServerWorld) enchanterBlockEntity.world, enchanterBlockEntity.pos);
+			SpectrumS2CPacketSender.sendCancelBlockBoundSoundInstance((ServerWorld) enchanterBlockEntity.world, enchanterBlockEntity.pos);
 		}
 	}
 	
@@ -363,11 +364,10 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 	public static void playCraftingFinishedEffects(EnchanterBlockEntity enchanterBlockEntity) {
 		enchanterBlockEntity.world.playSound(null, enchanterBlockEntity.pos, SoundEvents.ENTITY_PLAYER_LEVELUP, SoundCategory.BLOCKS, 1.0F, 1.0F);
 		
-		SpectrumS2CPackets.playParticleWithRandomOffsetAndVelocity((ServerWorld) enchanterBlockEntity.world,
+		SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) enchanterBlockEntity.world,
 				new Vec3d(enchanterBlockEntity.pos.getX() + 0.5D, enchanterBlockEntity.pos.getY() + 0.5, enchanterBlockEntity.pos.getZ() + 0.5D),
 				SpectrumParticleTypes.LIME_SPARKLE_RISING, 75, new Vec3d(0.5D, 0.5D, 0.5D),
 				new Vec3d(0.1D, -0.1D, 0.1D));
-		
 	}
 	
 	private static boolean checkRecipeRequirements(World world, BlockPos blockPos, @NotNull EnchanterBlockEntity enchanterBlockEntity) {
@@ -524,7 +524,7 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 						// There was enough experience drained from the knowledge gem that the visual changed
 						// To display the updated knowledge gem size clientside the inventory has to be synched
 						// to the clients for rendering purposes
-						SpectrumS2CPackets.playParticleWithPatternAndVelocity(null, (ServerWorld) world, new Vec3d(this.pos.getX() + 0.5, this.pos.getY() + 2.5, this.pos.getZ() + 0.5), SpectrumParticleTypes.LIME_CRAFTING, SpectrumS2CPackets.ParticlePattern.SIXTEEN, 0.05F);
+						SpectrumS2CPacketSender.playParticleWithPatternAndVelocity(null, (ServerWorld) world, new Vec3d(this.pos.getX() + 0.5, this.pos.getY() + 2.5, this.pos.getZ() + 0.5), SpectrumParticleTypes.LIME_CRAFTING, SpectrumS2CPackets.ParticlePattern.SIXTEEN, 0.05F);
 						this.updateInClientWorld();
 					}
 				}

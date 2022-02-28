@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.progression.advancement;
 import com.google.gson.JsonObject;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.interfaces.PotionFillable;
-import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.minecraft.advancement.criterion.AbstractCriterion;
 import net.minecraft.advancement.criterion.AbstractCriterionConditions;
 import net.minecraft.entity.effect.StatusEffect;
@@ -23,7 +22,6 @@ import net.minecraft.util.Identifier;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 
 public class PotionWorkshopBrewingCriterion extends AbstractCriterion<PotionWorkshopBrewingCriterion.Conditions> {
 

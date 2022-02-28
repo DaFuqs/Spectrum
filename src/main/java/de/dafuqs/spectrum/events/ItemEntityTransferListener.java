@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.events;
 
 import blue.endless.jankson.annotation.Nullable;
-import de.dafuqs.spectrum.networking.SpectrumS2CPackets;
+import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
 import de.dafuqs.spectrum.particle.effect.ItemTransfer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ItemEntity;
@@ -84,7 +84,7 @@ public class ItemEntityTransferListener implements GameEventListener {
 		if (world instanceof ServerWorld) {
 			this.distance = MathHelper.floor(Math.sqrt(pos.getSquaredDistance(sourcePos, false)));
 			this.delay = this.distance;
-			SpectrumS2CPackets.sendItemTransferPacket((ServerWorld) world, new ItemTransfer(pos, this.positionSource, this.delay));
+			SpectrumS2CPacketSender.sendItemTransferPacket((ServerWorld) world, new ItemTransfer(pos, this.positionSource, this.delay));
 		}
 	}
 

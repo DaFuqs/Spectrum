@@ -2,16 +2,10 @@ package de.dafuqs.spectrum.blocks.creature_spawn;
 
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.item.ItemStack;
-import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.List;
 
 public class CreatureSpawnBlock extends BlockWithEntity {
 	

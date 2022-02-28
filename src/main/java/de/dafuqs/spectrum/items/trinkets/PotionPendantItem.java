@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.items.trinkets;
 
 import com.google.common.collect.Lists;
 import com.mojang.datafixers.util.Pair;
-import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.interfaces.PotionFillable;
 import dev.emi.trinkets.api.SlotReference;
 import net.minecraft.client.item.TooltipContext;

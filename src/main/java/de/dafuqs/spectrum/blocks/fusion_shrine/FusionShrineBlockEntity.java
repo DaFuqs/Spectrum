@@ -5,7 +5,7 @@ import de.dafuqs.spectrum.Support;
 import de.dafuqs.spectrum.blocks.enchanter.EnchanterBlockEntity;
 import de.dafuqs.spectrum.blocks.upgrade.Upgradeable;
 import de.dafuqs.spectrum.interfaces.PlayerOwned;
-import de.dafuqs.spectrum.networking.SpectrumS2CPackets;
+import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
@@ -199,7 +199,7 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 			fusionShrineBlockEntity.markDirty();
 			
 			if(fusionShrineBlockEntity.craftingTime == 1 && fusionShrineBlockEntity.craftingTimeTotal > 1) {
-				SpectrumS2CPackets.sendPlayBlockBoundSoundInstance(SpectrumSoundEvents.FUSION_SHRINE_CRAFTING, (ServerWorld) fusionShrineBlockEntity.world, fusionShrineBlockEntity.getPos(), fusionShrineBlockEntity.craftingTimeTotal - fusionShrineBlockEntity.craftingTime);
+				SpectrumS2CPacketSender.sendPlayBlockBoundSoundInstance(SpectrumSoundEvents.FUSION_SHRINE_CRAFTING, (ServerWorld) fusionShrineBlockEntity.world, fusionShrineBlockEntity.getPos(), fusionShrineBlockEntity.craftingTimeTotal - fusionShrineBlockEntity.craftingTime);
 			}
 
 			// play the current crafting effect
@@ -234,7 +234,7 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 		fusionShrineBlockEntity.craftingTime = 0;
 		fusionShrineBlockEntity.currentRecipe = recipe;
 		if(recipe == null) {
-			SpectrumS2CPackets.sendCancelBlockBoundSoundInstance((ServerWorld) fusionShrineBlockEntity.world, fusionShrineBlockEntity.pos);
+			SpectrumS2CPacketSender.sendCancelBlockBoundSoundInstance((ServerWorld) fusionShrineBlockEntity.world, fusionShrineBlockEntity.pos);
 		} else {
 			fusionShrineBlockEntity.craftingTimeTotal = (int) Math.ceil(recipe.getCraftingTime() / fusionShrineBlockEntity.upgrades.get(Upgradeable.UpgradeType.SPEED));
 		}
@@ -284,7 +284,7 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 				spawnCraftingResultAndXP(world, fusionShrineBlockEntity, recipe, maxAmount); // spawn results
 				scatterContents(world, blockPos.up(), fusionShrineBlockEntity); // drop remaining items
 				
-				SpectrumS2CPackets.sendPlayFusionCraftingFinishedParticles(world, blockPos, recipe.getOutput());
+				SpectrumS2CPacketSender.sendPlayFusionCraftingFinishedParticles(world, blockPos, recipe.getOutput());
 				fusionShrineBlockEntity.playSound(SpectrumSoundEvents.FUSION_SHRINE_CRAFTING_FINISHED, 1.4F);
 			}
 		} else {

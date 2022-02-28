@@ -77,7 +77,6 @@ public class BlockBoundSoundInstance extends AbstractSoundInstance implements Ti
 		}
 	}
 	
-	@Environment(EnvType.CLIENT)
 	public static void startSoundInstance(SoundEvent soundEvent, BlockPos sourceBlockPos, Block sourceBlock, int maxDurationTicks) {
 		stopPlayingOnPos(sourceBlockPos);
 		

@@ -4,7 +4,7 @@ import de.dafuqs.spectrum.BuildingHelper;
 import de.dafuqs.spectrum.Support;
 import de.dafuqs.spectrum.blocks.enchanter.EnchanterEnchantable;
 import de.dafuqs.spectrum.enums.PedestalRecipeTier;
-import de.dafuqs.spectrum.networking.SpectrumS2CPackets;
+import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
 import net.fabricmc.api.EnvType;
@@ -112,7 +112,7 @@ public class ExchangeStaffItem extends BuildingStaffItem implements EnchanterEnc
 						
 						Direction side = context.getSide();
 						Vec3d sourcePos = new Vec3d(context.getHitPos().getX() + side.getOffsetX() * 0.1, context.getHitPos().getY() + side.getOffsetY() * 0.1, context.getHitPos().getZ() + side.getOffsetZ() * 0.1);
-						SpectrumS2CPackets.playParticleWithRandomOffsetAndVelocity(serverWorld, sourcePos, SpectrumParticleTypes.SPARKLESTONE_SPARKLE_SMALL, 15, new Vec3d(0, 0, 0), new Vec3d(0.25, 0.25, 0.25));
+						SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity(serverWorld, sourcePos, SpectrumParticleTypes.SPARKLESTONE_SPARKLE_SMALL, 15, new Vec3d(0, 0, 0), new Vec3d(0.25, 0.25, 0.25));
 						result = ActionResult.CONSUME;
 					} else {
 						result = ActionResult.SUCCESS;

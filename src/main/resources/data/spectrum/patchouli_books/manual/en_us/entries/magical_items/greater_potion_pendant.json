@@ -9,7 +9,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Works very similar to its $(l:magical_items/lesser_potion_pendant)little brother$(/l).$(br)In contrast this version has three chambers, each of which can be filled with a different potion. Since the individual chambers are smaller, it can only support Effects up to Level 2."
+      "text": "Works very similar to its $(l:magical_items/lesser_potion_pendant)little brother$(/l).$(br)In contrast this version has three chambers, each of which can be filled with a different potion. Since the individual chambers are smaller, it can only support Effects up to Level II."
     },
     {
       "type": "spectrum:fusion_shrine_crafting",

@@ -143,21 +143,6 @@ public class EnderSpliceItem extends Item implements EnchanterEnchantable {
 		return world1.getRegistryKey().getValue().toString().equals(world2.getRegistryKey().getValue().toString());
 	}
 	
-	/*@Override
-	public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
-		if(user.getWorld().isClient) {
-			return ActionResult.PASS;
-		} else {
-			if (user.getItemUseTime() >= getMaxUseTime(stack)) { // only true when triggered via onFinishUsing()
-				if (entity instanceof ServerPlayerEntity serverPlayerEntity && getTeleportTargetPlayerUUID(stack).isEmpty()) {
-					setTeleportTargetPlayer(stack, serverPlayerEntity);
-									}
-				user.stopUsingItem();
-			}
-			return ActionResult.SUCCESS;
-		}
-	}*/
-	
 	public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
 		if(world.isClient) {
 			startSoundInstance(user);

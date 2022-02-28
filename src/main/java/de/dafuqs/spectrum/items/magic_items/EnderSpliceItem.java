@@ -4,6 +4,8 @@ import de.dafuqs.spectrum.SpectrumClient;
 import de.dafuqs.spectrum.Support;
 import de.dafuqs.spectrum.blocks.enchanter.EnchanterEnchantable;
 import de.dafuqs.spectrum.interfaces.PlayerOwned;
+import de.dafuqs.spectrum.networking.SpectrumC2SPackets;
+import de.dafuqs.spectrum.networking.SpectrumS2CPackets;
 import de.dafuqs.spectrum.registries.SpectrumEnchantments;
 import de.dafuqs.spectrum.sound.EnderSpliceChargingSoundInstance;
 import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
@@ -55,7 +57,7 @@ public class EnderSpliceItem extends Item implements EnchanterEnchantable {
 	public ItemStack finishUsing(ItemStack itemStack, World world, LivingEntity user) {
 		if(world.isClient) {
 			if(getTeleportTargetPos(itemStack).isEmpty() && getTeleportTargetPlayerUUID(itemStack).isEmpty()) {
-				interactWithEntityClient(user);
+				interactWithEntityClient();
 			}
 		} else {
 			PlayerEntity playerEntity = user instanceof PlayerEntity ? (PlayerEntity) user : null;
@@ -98,12 +100,14 @@ public class EnderSpliceItem extends Item implements EnchanterEnchantable {
 	}
 	
 	@Environment(EnvType.CLIENT)
-	public void interactWithEntityClient(LivingEntity user) {
+	public void interactWithEntityClient() {
 		// If aiming at an entity: trigger entity interaction
 		HitResult hitResult = MinecraftClient.getInstance().crosshairTarget;
 		if(hitResult.getType() == HitResult.Type.ENTITY) {
 			EntityHitResult entityHitResult = (EntityHitResult) hitResult;
-			MinecraftClient.getInstance().interactionManager.interactEntity(MinecraftClient.getInstance().player, entityHitResult.getEntity(), user.getActiveHand());
+			if(entityHitResult.getEntity() instanceof PlayerEntity playerEntity) {
+				SpectrumC2SPackets.sendBindEnderSpliceToPlayer(playerEntity);
+			}
 		}
 	}
 	
@@ -139,22 +143,20 @@ public class EnderSpliceItem extends Item implements EnchanterEnchantable {
 		return world1.getRegistryKey().getValue().toString().equals(world2.getRegistryKey().getValue().toString());
 	}
 	
-	
-	@Override
+	/*@Override
 	public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
-		if(user.getItemUseTime() >= getMaxUseTime(stack)) { // only true when triggered via onFinishUsing()
-			if (entity instanceof PlayerEntity && getTeleportTargetPlayerUUID(stack).isEmpty()) {
-				if (entity instanceof ServerPlayerEntity serverPlayerEntity) {
+		if(user.getWorld().isClient) {
+			return ActionResult.PASS;
+		} else {
+			if (user.getItemUseTime() >= getMaxUseTime(stack)) { // only true when triggered via onFinishUsing()
+				if (entity instanceof ServerPlayerEntity serverPlayerEntity && getTeleportTargetPlayerUUID(stack).isEmpty()) {
 					setTeleportTargetPlayer(stack, serverPlayerEntity);
-					((ServerPlayerEntity) user).networkHandler.sendPacket(new PlaySoundIdS2CPacket(SpectrumSoundEvents.ENDER_SPLICE_BOUND.getId(), SoundCategory.PLAYERS, user.getPos(), 1.0F, 1.0F));
-					serverPlayerEntity.networkHandler.sendPacket(new PlaySoundIdS2CPacket(SpectrumSoundEvents.ENDER_SPLICE_BOUND.getId(), SoundCategory.PLAYERS, user.getPos(), 1.0F, 1.0F));
-				}
+									}
 				user.stopUsingItem();
 			}
+			return ActionResult.SUCCESS;
 		}
-		
-		return ActionResult.SUCCESS;
-	}
+	}*/
 	
 	public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
 		if(world.isClient) {
@@ -202,7 +204,7 @@ public class EnderSpliceItem extends Item implements EnchanterEnchantable {
 		tooltip.add(new TranslatableText("item.spectrum.ender_splice.tooltip.unbound"));
 	}
 	
-	public void setTeleportTargetPos(@NotNull ItemStack itemStack, World world, Vec3d pos) {
+	public static void setTeleportTargetPos(@NotNull ItemStack itemStack, World world, Vec3d pos) {
 		NbtCompound nbtCompound = itemStack.getOrCreateNbt();
 		
 		// Remove player tags, if present
@@ -217,7 +219,7 @@ public class EnderSpliceItem extends Item implements EnchanterEnchantable {
 		itemStack.setNbt(nbtCompound);
 	}
 	
-	public void setTeleportTargetPlayer(@NotNull ItemStack itemStack, ServerPlayerEntity player) {
+	public static void setTeleportTargetPlayer(@NotNull ItemStack itemStack, ServerPlayerEntity player) {
 		NbtCompound nbtCompound = itemStack.getOrCreateNbt();
 		
 		// Override target pos, if present

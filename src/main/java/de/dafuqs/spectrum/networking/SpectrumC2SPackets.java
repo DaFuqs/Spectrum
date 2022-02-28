@@ -8,6 +8,9 @@ import de.dafuqs.spectrum.blocks.particle_spawner.ParticleSpawnerBlockEntity;
 import de.dafuqs.spectrum.inventories.BedrockAnvilScreenHandler;
 import de.dafuqs.spectrum.inventories.CompactingChestScreenHandler;
 import de.dafuqs.spectrum.inventories.ParticleSpawnerScreenHandler;
+import de.dafuqs.spectrum.items.magic_items.EnderSpliceItem;
+import de.dafuqs.spectrum.registries.SpectrumItems;
+import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
@@ -16,7 +19,10 @@ import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.SharedConstants;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.network.PacketByteBuf;
+import net.minecraft.network.packet.s2c.play.PlaySoundIdS2CPacket;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
@@ -33,6 +39,7 @@ public class SpectrumC2SPackets {
 	public static final Identifier CHANGE_PARTICLE_SPAWNER_SETTINGS_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "change_particle_spawner_settings");
 	public static final Identifier CHANGE_COMPACTING_CHEST_SETTINGS_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "change_compacting_chest_settings");
 	public static final Identifier GUIDEBOOK_HINT_BOUGHT = new Identifier(SpectrumCommon.MOD_ID, "guidebook_tip_used");
+	public static final Identifier BIND_ENDER_SPLICE_TO_PLAYER = new Identifier(SpectrumCommon.MOD_ID, "bind_ender_splice_to_player");
 
 	public static void registerC2SReceivers() {
 		ServerPlayNetworking.registerGlobalReceiver(RENAME_ITEM_IN_BEDROCK_ANVIL_PACKET_ID, (server, player, handler, buf, responseSender) -> {
@@ -99,6 +106,20 @@ public class SpectrumC2SPackets {
 				player.getWorld().playSound(player, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.PLAYERS, 1.0F, 1.0F);
 			}
 		});
+
+		ServerPlayNetworking.registerGlobalReceiver(BIND_ENDER_SPLICE_TO_PLAYER, (server, player, handler, buf, responseSender) -> {
+			int entityId = buf.readInt();
+			Entity entity = player.getWorld().getEntityById(entityId);
+			if(entity instanceof ServerPlayerEntity targetPlayerEntity
+					&& player.distanceTo(targetPlayerEntity) < 8
+					&& player.getMainHandStack().isOf(SpectrumItems.ENDER_SPLICE)) {
+				
+				EnderSpliceItem.setTeleportTargetPlayer(player.getMainHandStack(), targetPlayerEntity);
+				
+				player.playSound(SpectrumSoundEvents.ENDER_SPLICE_BOUND, SoundCategory.PLAYERS, 1.0F, 1.0F);
+				targetPlayerEntity.playSound(SpectrumSoundEvents.ENDER_SPLICE_BOUND, SoundCategory.PLAYERS, 1.0F, 1.0F);
+			}
+		});
 		
 	}
 	
@@ -107,6 +128,13 @@ public class SpectrumC2SPackets {
 		PacketByteBuf packetByteBuf = PacketByteBufs.create();
 		ingredient.write(packetByteBuf);
 		ClientPlayNetworking.send(SpectrumC2SPackets.GUIDEBOOK_HINT_BOUGHT, packetByteBuf);
+	}
+	
+	@Environment(EnvType.CLIENT)
+	public static void sendBindEnderSpliceToPlayer(PlayerEntity playerEntity) {
+		PacketByteBuf packetByteBuf = PacketByteBufs.create();
+		packetByteBuf.writeInt(playerEntity.getId());
+		ClientPlayNetworking.send(SpectrumC2SPackets.BIND_ENDER_SPLICE_TO_PLAYER, packetByteBuf);
 	}
 
 }

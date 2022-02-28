@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.recipe.enchanter;
 
 import de.dafuqs.spectrum.SpectrumClient;
+import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.Support;
 import de.dafuqs.spectrum.items.ExperienceStorageItem;
 import de.dafuqs.spectrum.progression.ClientRecipeToastManager;
@@ -23,6 +24,8 @@ import org.jetbrains.annotations.Nullable;
 
 public class EnchanterRecipe implements Recipe<Inventory>, GatedRecipe {
 
+	public static final Identifier UNLOCK_ENCHANTING_ADVANCEMENT_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "midgame/build_enchanting_structure");
+	
 	protected final Identifier id;
 	protected final String group;
 	
@@ -150,7 +153,7 @@ public class EnchanterRecipe implements Recipe<Inventory>, GatedRecipe {
 	
 	@Override
 	public boolean canPlayerCraft(PlayerEntity playerEntity) {
-		return Support.hasAdvancement(playerEntity, this.requiredAdvancementIdentifier);
+		return Support.hasAdvancement(playerEntity, EnchanterRecipe.UNLOCK_ENCHANTING_ADVANCEMENT_IDENTIFIER) && Support.hasAdvancement(playerEntity, this.requiredAdvancementIdentifier);
 	}
 	
 }

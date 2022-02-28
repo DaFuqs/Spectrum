@@ -9,7 +9,7 @@
   "white": 0,
   "experience": 4.0,
   "pattern": [
-    "CTC",
+    "CQC",
     "PGP",
     "BBB"
   ],
@@ -26,8 +26,8 @@
     "G": {
       "item": "spectrum:scarlet_fragments"
     },
-    "T": {
-      "item": "spectrum:pink_pigment"
+    "Q": {
+      "item": "spectrum:quitoxic_powder"
     }
   },
   "result" : {

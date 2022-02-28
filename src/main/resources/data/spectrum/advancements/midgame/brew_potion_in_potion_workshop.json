@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:midgame/create_midnight_aberration",
+  "parent": "spectrum:midgame/collect_scarlet",
   "display": {
     "icon": {
       "item": "spectrum:potion_workshop"

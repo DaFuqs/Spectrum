@@ -2,6 +2,8 @@
   "parent": "minecraft:item/handheld",
   "textures": {
     "layer0": "spectrum:item/greater_potion_pendant_base",
-    "layer1": "spectrum:item/greater_potion_pendant_overlay"
+    "layer1": "spectrum:item/greater_potion_pendant_overlay_1",
+    "layer2": "spectrum:item/greater_potion_pendant_overlay_2",
+    "layer3": "spectrum:item/greater_potion_pendant_overlay_3"
   }
 }

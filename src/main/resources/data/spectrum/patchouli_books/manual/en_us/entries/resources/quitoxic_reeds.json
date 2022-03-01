@@ -10,7 +10,7 @@
     "pages": [
         {
             "type": "patchouli:image",
-            "title": "Quitoxic Reed",
+            "title": "Quitoxic Reeds",
             "images": [ "spectrum:textures/gui/manual/quitoxic_reed.png" ],
             "border": true,
             "text": "Grows exclusively in Swamps and seems to devour Clay as a form of nutrient."

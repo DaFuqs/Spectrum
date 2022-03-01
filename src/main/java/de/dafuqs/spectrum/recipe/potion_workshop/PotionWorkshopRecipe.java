@@ -88,19 +88,26 @@ public abstract class PotionWorkshopRecipe implements Recipe<Inventory>, GatedRe
 			}
 			
 			// check ingredients
-			for(Ingredient ingredient : this.getOtherIngredients()) {
-				boolean found = false;
-				for(int i = 2; i < 5; i++) {
-					if(ingredient.test(inv.getStack(i))) {
-						found = true;
-						break;
+			int inputStackCount = 0;
+			List<Ingredient> ingredients = this.getOtherIngredients();
+			for(int i : new int[]{2, 3, 4}) {
+				ItemStack itemStack = inv.getStack(i);
+				if (!itemStack.isEmpty()) {
+					inputStackCount++;
+					boolean found = false;
+					for(Ingredient ingredient : ingredients) {
+						if(ingredient.test(inv.getStack(i))) {
+							found = true;
+							break;
+						}
+					}
+					if(!found) {
+						return false;
 					}
 				}
-				if(!found) {
-					return false;
-				}
 			}
-			return true;
+			
+			return inputStackCount == ingredients.size(); // no ingredients in unused slots
 		} else {
 			return false;
 		}

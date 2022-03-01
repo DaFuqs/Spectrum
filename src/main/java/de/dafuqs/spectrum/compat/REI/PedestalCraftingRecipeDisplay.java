@@ -13,6 +13,7 @@ import me.shedaniel.rei.api.common.registry.RecipeManagerContext;
 import me.shedaniel.rei.api.common.util.EntryIngredients;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -156,7 +157,7 @@ public class PedestalCraftingRecipeDisplay extends BasicDisplay implements Simpl
 		if(this.pedestalCraftingRecipe == null) {
 			return true;
 		} else {
-			return SpectrumClient.minecraftClient == null || isUnlockedClient();
+			return FabricLoader.getInstance().getEnvironmentType() == EnvType.SERVER || isUnlockedClient();
 		}
 	}
 	

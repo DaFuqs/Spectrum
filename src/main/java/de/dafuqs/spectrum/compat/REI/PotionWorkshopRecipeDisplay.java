@@ -8,6 +8,7 @@ import me.shedaniel.rei.api.common.entry.EntryIngredient;
 import me.shedaniel.rei.api.common.util.EntryIngredients;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.MinecraftClient;
 
 import java.util.ArrayList;
@@ -81,7 +82,7 @@ public abstract class PotionWorkshopRecipeDisplay extends BasicDisplay implement
 		if(this.potionWorkshopRecipe == null) {
 			return true;
 		} else {
-			return SpectrumClient.minecraftClient == null || isUnlockedClient();
+			return FabricLoader.getInstance().getEnvironmentType() == EnvType.SERVER || isUnlockedClient();
 		}
 	}
 	

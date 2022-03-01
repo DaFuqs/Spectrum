@@ -15,6 +15,7 @@ import de.dafuqs.spectrum.registries.SpectrumItems;
 import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.Item;
@@ -74,7 +75,7 @@ public class PedestalCraftingRecipe implements Recipe<Inventory>, GatedRecipe {
 
 		this.requiredAdvancementIdentifiers = requiredAdvancementIdentifiers;
 
-		if(SpectrumClient.minecraftClient != null) {
+		if(FabricLoader.getInstance().getEnvironmentType() != EnvType.SERVER) {
 			registerInClientToastManager();
 		}
 	}

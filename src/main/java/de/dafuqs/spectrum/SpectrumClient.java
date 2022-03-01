@@ -219,7 +219,7 @@ public class SpectrumClient implements ClientModInitializer {
 	
 	public static void registerAshenCircletPredicates(Item ashenCircletItem) {
 		FabricModelPredicateProviderRegistry.register(ashenCircletItem, new Identifier("cooldown"), (itemStack, clientWorld, livingEntity, i) -> {
-			if (AshenCircletItem.getCooldownTicks(itemStack, clientWorld) == 0) {
+			if (livingEntity != null && AshenCircletItem.getCooldownTicks(itemStack, livingEntity.world) == 0) {
 				return 0.0F;
 			} else {
 				return 1.0F;

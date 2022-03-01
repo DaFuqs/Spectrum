@@ -8,6 +8,7 @@ import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.inventory.Inventory;
@@ -67,8 +68,8 @@ public class FusionShrineRecipe implements Recipe<Inventory>, GatedRecipe {
 		this.finishWorldEffect = finishWorldEffect;
 		this.requiredAdvancementIdentifier = requiredAdvancementIdentifier;
 		this.description = description;
-
-		if(SpectrumClient.minecraftClient != null) {
+		
+		if(FabricLoader.getInstance().getEnvironmentType() != EnvType.SERVER) {
 			registerInClientToastManager();
 		}
 	}

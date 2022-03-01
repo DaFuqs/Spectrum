@@ -9,6 +9,7 @@ import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.inventory.Inventory;
@@ -81,7 +82,7 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 			}
 		}
 		
-		if(SpectrumClient.minecraftClient != null) {
+		if(FabricLoader.getInstance().getEnvironmentType() != EnvType.SERVER) {
 			registerInClientToastManager();
 		}
 	}

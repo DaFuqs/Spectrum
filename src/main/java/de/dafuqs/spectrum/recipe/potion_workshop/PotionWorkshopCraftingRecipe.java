@@ -8,6 +8,7 @@ import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Ingredient;
@@ -32,7 +33,7 @@ public class PotionWorkshopCraftingRecipe extends PotionWorkshopRecipe {
 		this.requiredExperience = requiredExperience;
 		this.consumeBaseIngredient = consumeBaseIngredient;
 		
-		if(SpectrumClient.minecraftClient != null) {
+		if(FabricLoader.getInstance().getEnvironmentType() != EnvType.SERVER) {
 			registerInClientToastManager();
 		}
 	}

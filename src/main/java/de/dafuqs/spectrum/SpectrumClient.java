@@ -119,7 +119,26 @@ public class SpectrumClient implements ClientModInitializer {
 		}
 		
 		// Potion Pendant Potion Color Overlays
-		ColorProviderRegistry.ITEM.register(SpectrumClient::potionColor, SpectrumItems.LESSER_POTION_PENDANT, SpectrumItems.GREATER_POTION_PENDANT);
+		ColorProviderRegistry.ITEM.register(SpectrumClient::potionColor, SpectrumItems.LESSER_POTION_PENDANT);
+		ColorProviderRegistry.ITEM.register((stack, tintIndex) -> {
+			if(tintIndex != 0 && tintIndex < 4) {
+				List<StatusEffectInstance> effects = PotionUtil.getPotionEffects(stack);
+				if(tintIndex == 1) {
+					if(effects.size() > 0) {
+						return effects.get(0).getEffectType().getColor();
+					}
+				} else if(tintIndex == 2) {
+					if(effects.size() > 1) {
+						return effects.get(1).getEffectType().getColor();
+					}
+				} else {
+					if(effects.size() > 2) {
+						return effects.get(2).getEffectType().getColor();
+					}
+				}
+			}
+			return -1;
+		}, SpectrumItems.GREATER_POTION_PENDANT);
 	}
 	
 	private static int potionColor(ItemStack stack, int tintIndex) {

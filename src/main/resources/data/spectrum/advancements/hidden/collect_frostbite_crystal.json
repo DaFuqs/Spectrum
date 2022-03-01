@@ -1,5 +1,9 @@
 {
   "criteria": {
+    "reached_midgame": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:midgame/spectrum_midgame" }
+    },
     "has_frostbite_crystal": {
       "trigger": "minecraft:inventory_changed",
       "conditions": { "items": [{ "items": ["spectrum:frostbite_crystal" ] }] }

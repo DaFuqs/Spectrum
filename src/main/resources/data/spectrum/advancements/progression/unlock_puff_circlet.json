@@ -3,6 +3,10 @@
     "collected_paletur_gem": {
       "trigger":"spectrum:has_advancement",
       "conditions": { "advancement_identifier": "spectrum:hidden/collect_paletur_gem" }
+    },
+    "created_refined_azurite": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:midgame/create_refined_azurite" }
     }
   }
 }

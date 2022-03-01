@@ -18,7 +18,7 @@ public interface AzureDikeItem {
 	
 	float azureDikeRechargeBonusTicks();
 	
-	float rechargeTicksAfterDamageBonusTicks();
+	float rechargeBonusAfterDamageTicks();
 	
 	default void recalculate(LivingEntity livingEntity) {
 		if(!livingEntity.getWorld().isClient) {
@@ -33,7 +33,7 @@ public interface AzureDikeItem {
 					if (pair.getRight().getItem() instanceof AzureDikeItem azureDikeItem) {
 						maxProtection += azureDikeItem.maxAzureDike();
 						rechargeRateDefaultBonus += azureDikeItem.azureDikeRechargeBonusTicks();
-						rechargeTicksAfterDamageBonus += azureDikeItem.rechargeTicksAfterDamageBonusTicks();
+						rechargeTicksAfterDamageBonus += azureDikeItem.rechargeBonusAfterDamageTicks();
 					}
 				}
 				

@@ -1,5 +1,9 @@
 {
   "criteria": {
+    "collected_moonstone": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:midgame/collect_moonstone_shard" }
+    },
     "has_pigment": {
       "trigger": "minecraft:inventory_changed",
       "conditions": { "items": [{ "items": [ "spectrum:gray_pigment" ]}] }

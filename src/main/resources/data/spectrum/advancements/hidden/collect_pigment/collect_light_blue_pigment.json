@@ -1,5 +1,9 @@
 {
   "criteria": {
+    "crafted_colored_sapling": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:craft_colored_sapling" }
+    },
     "has_pigment": {
       "trigger": "minecraft:inventory_changed",
       "conditions": { "items": [{ "items": [ "spectrum:light_blue_pigment" ]}] }

@@ -32,7 +32,7 @@ public class AzureDikeBeltItem extends AzureDikeTrinketItem {
 	}
 	
 	@Override
-	public float rechargeTicksAfterDamageBonusTicks() {
+	public float rechargeBonusAfterDamageTicks() {
 		return 100;
 	}
 	

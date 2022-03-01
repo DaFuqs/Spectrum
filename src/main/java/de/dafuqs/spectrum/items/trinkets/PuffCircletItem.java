@@ -12,7 +12,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class PuffCircletItem extends SpectrumTrinketItem {
+public class PuffCircletItem extends AzureDikeTrinketItem {
 	
 	public PuffCircletItem(Settings settings) {
 		super(settings, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_ashen_circlet"));
@@ -21,7 +21,13 @@ public class PuffCircletItem extends SpectrumTrinketItem {
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
-		tooltip.add(new TranslatableText("item.spectrum.puff_circlet.tooltip").formatted(Formatting.GRAY));
+		tooltip.add(new TranslatableText("item.spectrum.puff_circlet.tooltip"));
+		tooltip.add(new TranslatableText("item.spectrum.puff_circlet.tooltip2"));
+	}
+	
+	@Override
+	public int maxAzureDike() {
+		return 4;
 	}
 	
 }

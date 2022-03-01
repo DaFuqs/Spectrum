@@ -1092,7 +1092,7 @@
   "item.spectrum.ashen_circlet.tooltip": "§7Protects you from Fire Damage and",
   "item.spectrum.ashen_circlet.tooltip2": "§7grants better Vision and Speed in Lava",
   "item.spectrum.ashen_circlet.tooltip.cooldown_full": "§2Ready to absorb immense heat",
-  "item.spectrum.ashen_circlet.tooltip.cooldown_seconds": "%d§7 Seconds until fully recharged",
+  "item.spectrum.ashen_circlet.tooltip.cooldown_seconds": "%d§7 Seconds until recharged",
   "item.spectrum.tidal_circlet": "Weeping Circlet",
   "item.spectrum.tidal_circlet.tooltip": "§7Filters Oxygen out of the Water and",
   "item.spectrum.tidal_circlet.tooltip2": "§7greatly increases underwater maneuverability",

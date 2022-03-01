@@ -1,6 +1,14 @@
 {
-  "parent": "minecraft:item/generated",
+  "parent": "minecraft:item/handheld",
   "textures": {
     "layer0": "spectrum:item/ashen_circlet"
-  }
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "cooldown": 1
+      },
+      "model": "spectrum:item/ashen_circlet_cooldown"
+    }
+  ]
 }

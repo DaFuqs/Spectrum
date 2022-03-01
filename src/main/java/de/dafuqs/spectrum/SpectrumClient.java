@@ -6,6 +6,7 @@ import de.dafuqs.spectrum.inventories.SpectrumContainers;
 import de.dafuqs.spectrum.inventories.SpectrumScreenHandlerTypes;
 import de.dafuqs.spectrum.items.ExperienceStorageItem;
 import de.dafuqs.spectrum.items.magic_items.EnderSpliceItem;
+import de.dafuqs.spectrum.items.trinkets.AshenCircletItem;
 import de.dafuqs.spectrum.networking.SpectrumS2CPacketReceiver;
 import de.dafuqs.spectrum.particle.SpectrumParticleFactories;
 import de.dafuqs.spectrum.progression.ToggleableBlockColorProvider;
@@ -64,6 +65,7 @@ public class SpectrumClient implements ClientModInitializer {
 		registerAnimatedWandPredicates(SpectrumItems.NATURES_STAFF);
 		registerAnimatedWandPredicates(SpectrumItems.LIGHT_STAFF);
 		registerKnowledgeDropPredicates(SpectrumItems.KNOWLEDGE_GEM);
+		registerAshenCircletPredicates(SpectrumItems.ASHEN_CIRCLET);
 
 		log(Level.INFO, "Setting up Block Entity Renderers...");
 		SpectrumBlockEntityRegistry.registerClient();
@@ -78,6 +80,7 @@ public class SpectrumClient implements ClientModInitializer {
 		log(Level.INFO, "Registering Overlays...");
 		GuiOverlay.register();
 		
+		log(Level.INFO, "Registering Item Tooltips...");
 		SpectrumTooltipComponents.registerTooltipComponents();
 
 		ClientLifecycleEvents.CLIENT_STARTED.register(minecraftClient -> {
@@ -213,7 +216,17 @@ public class SpectrumClient implements ClientModInitializer {
 			}
 		});
 	}
-
+	
+	public static void registerAshenCircletPredicates(Item ashenCircletItem) {
+		FabricModelPredicateProviderRegistry.register(ashenCircletItem, new Identifier("cooldown"), (itemStack, clientWorld, livingEntity, i) -> {
+			if (AshenCircletItem.getCooldownTicks(itemStack, clientWorld) == 0) {
+				return 0.0F;
+			} else {
+				return 1.0F;
+			}
+		});
+	}
+	
 	private void registerAnimatedWandPredicates(Item item) {
 		FabricModelPredicateProviderRegistry.register(item, new Identifier("in_use"), (itemStack, clientWorld, livingEntity, i) -> {
 			return (livingEntity != null && livingEntity.isUsingItem() && livingEntity.getActiveItem() == itemStack) ? 1.0F : 0.0F;

@@ -33,7 +33,7 @@
     "MiningToolItemMixin",
     "MixinFarmlandBlock",
     "MobSpawnerBlockEntityMixin",
-    "PersistentProjectileEntityMixin",
+    "ProjectileEntityMixin",
     "PiglinBrainMixin",
     "PlayerAdvancementTrackerMixin",
     "PlayerEntityMixin",

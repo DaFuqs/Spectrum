@@ -1,5 +1,7 @@
 package de.dafuqs.spectrum.mixin;
 
+import de.dafuqs.spectrum.azure_dike.AzureDikeProvider;
+import de.dafuqs.spectrum.items.trinkets.PuffCircletItem;
 import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.registries.SpectrumItems;
@@ -42,13 +44,24 @@ public abstract class PersistentProjectileEntityMixin {
 				if (component.isPresent()) {
 					List<Pair<SlotReference, ItemStack>> equipped = component.get().getEquipped(SpectrumItems.PUFF_CIRCLET);
 					if (!equipped.isEmpty()) {
-						this.setVelocity(0, 0, 0, 0, 0);
-						SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) thisEntity.getWorld(), thisEntity.getPos(),
-								SpectrumParticleTypes.WHITE_CRAFTING, 10,
-								new Vec3d(0, 0, 0),
-								new Vec3d(thisEntity.getX() - livingEntity.getPos().x, thisEntity.getY() - livingEntity.getPos().y, thisEntity.getZ() - livingEntity.getPos().z));
-						thisEntity.getWorld().playSound(null, thisEntity.getBlockPos(), SpectrumSoundEvents.PUFF_CIRCLET_PFFT, SoundCategory.PLAYERS, 1.0F, 1.0F);
-						ci.cancel();
+						int charges = AzureDikeProvider.getAzureDikeCharges(livingEntity);
+						if (charges > 0) {
+							AzureDikeProvider.absorbDamage(livingEntity, PuffCircletItem.PROJECTILE_DEFLECTION_COST);
+							
+							this.setVelocity(0, 0, 0, 0, 0);
+							
+							SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) thisEntity.getWorld(), thisEntity.getPos(),
+									SpectrumParticleTypes.WHITE_CRAFTING, 6,
+									new Vec3d(0, 0, 0),
+									new Vec3d(thisEntity.getX() - livingEntity.getPos().x, thisEntity.getY() - livingEntity.getPos().y, thisEntity.getZ() - livingEntity.getPos().z));
+							SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) thisEntity.getWorld(), thisEntity.getPos(),
+									SpectrumParticleTypes.BLUE_CRAFTING, 6,
+									new Vec3d(0, 0, 0),
+									new Vec3d(thisEntity.getX() - livingEntity.getPos().x, thisEntity.getY() - livingEntity.getPos().y, thisEntity.getZ() - livingEntity.getPos().z));
+							
+							thisEntity.getWorld().playSound(null, thisEntity.getBlockPos(), SpectrumSoundEvents.PUFF_CIRCLET_PFFT, SoundCategory.PLAYERS, 1.0F, 1.0F);
+							ci.cancel();
+						}
 					}
 				}
 			}

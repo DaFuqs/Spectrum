@@ -9,7 +9,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "This glistening hoop creates a protective film of air around you.$(br)It not only protects you from enemy projectiles, but can even cushion a deep fall."
+      "text": "This glistening hoop creates a protective film of air around you.$(br)It not only protects you from enemy projectiles, but can even cushion a deep fall.$(br)The Puff Circlet also prevents Farmland from being trampled."
     },
     {
       "type": "spectrum:fusion_shrine_crafting",

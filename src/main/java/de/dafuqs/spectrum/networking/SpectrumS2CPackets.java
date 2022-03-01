@@ -31,6 +31,7 @@ public class SpectrumS2CPackets {
 	public enum ParticlePattern {
 		FOUR(Support.VECTORS_4),
 		EIGHT(Support.VECTORS_8),
+		EIGHT_OFFSET(Support.VECTORS_8_OFFSET),
 		SIXTEEN(Support.VECTORS_16);
 		
 		private final List<Vec3d> v;

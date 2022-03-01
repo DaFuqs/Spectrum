@@ -4,6 +4,7 @@ import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.azure_dike.AzureDikeProvider;
 import de.dafuqs.spectrum.enchantments.DisarmingEnchantment;
 import de.dafuqs.spectrum.items.trinkets.AshenCircletItem;
+import de.dafuqs.spectrum.items.trinkets.PuffCircletItem;
 import de.dafuqs.spectrum.items.trinkets.SpectrumTrinketItem;
 import de.dafuqs.spectrum.networking.SpectrumS2CPacketReceiver;
 import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
@@ -80,18 +81,21 @@ public abstract class LivingEntityMixin {
 				Optional<TrinketComponent> component = TrinketsApi.getTrinketComponent(thisEntity);
 				if (component.isPresent()) {
 					if (!component.get().getEquipped(SpectrumItems.PUFF_CIRCLET).isEmpty()) {
-						thisEntity.fallDistance = 0;
-						thisEntity.setVelocity(thisEntity.getVelocity().x, 0.5, thisEntity.getVelocity().z);
-						if(thisEntity.world.isClient) {
-							SpectrumS2CPacketReceiver.playParticleWithPatternAndVelocityClient(thisEntity.getWorld(), thisEntity.getPos(), SpectrumParticleTypes.WHITE_CRAFTING, SpectrumS2CPackets.ParticlePattern.SIXTEEN, 0.4);
-						} else {
-							if(thisEntity instanceof ServerPlayerEntity serverPlayerEntity) {
-								SpectrumS2CPacketSender.playParticleWithPatternAndVelocity(serverPlayerEntity, (ServerWorld) thisEntity.getWorld(), thisEntity.getPos(), SpectrumParticleTypes.WHITE_CRAFTING, SpectrumS2CPackets.ParticlePattern.SIXTEEN, 0.4);
-							} else {
-								SpectrumS2CPacketSender.playParticleWithPatternAndVelocity(null, (ServerWorld) thisEntity.getWorld(), thisEntity.getPos(), SpectrumParticleTypes.WHITE_CRAFTING, SpectrumS2CPackets.ParticlePattern.SIXTEEN, 0.4);
+						int charges = AzureDikeProvider.getAzureDikeCharges(thisEntity);
+						if(charges > 0) {
+							AzureDikeProvider.absorbDamage(thisEntity, PuffCircletItem.FALL_DAMAGE_NEGATING_COST);
+							
+							thisEntity.fallDistance = 0;
+							thisEntity.setVelocity(thisEntity.getVelocity().x, 0.5, thisEntity.getVelocity().z);
+							if (thisEntity.world.isClient) { // it is split here so the particles spawn immediately, without network lag
+								SpectrumS2CPacketReceiver.playParticleWithPatternAndVelocityClient(thisEntity.getWorld(), thisEntity.getPos(), SpectrumParticleTypes.WHITE_CRAFTING, SpectrumS2CPackets.ParticlePattern.EIGHT, 0.4);
+								SpectrumS2CPacketReceiver.playParticleWithPatternAndVelocityClient(thisEntity.getWorld(), thisEntity.getPos(), SpectrumParticleTypes.BLUE_CRAFTING, SpectrumS2CPackets.ParticlePattern.EIGHT_OFFSET, 0.5);
+							} else if (thisEntity instanceof ServerPlayerEntity serverPlayerEntity) {
+								SpectrumS2CPacketSender.playParticleWithPatternAndVelocity(serverPlayerEntity, (ServerWorld) thisEntity.getWorld(), thisEntity.getPos(), SpectrumParticleTypes.WHITE_CRAFTING, SpectrumS2CPackets.ParticlePattern.EIGHT, 0.4);
+								SpectrumS2CPacketSender.playParticleWithPatternAndVelocity(serverPlayerEntity, (ServerWorld) thisEntity.getWorld(), thisEntity.getPos(), SpectrumParticleTypes.BLUE_CRAFTING, SpectrumS2CPackets.ParticlePattern.EIGHT_OFFSET, 0.5);
 							}
+							thisEntity.getWorld().playSound(null, thisEntity.getBlockPos(), SpectrumSoundEvents.PUFF_CIRCLET_PFFT, SoundCategory.PLAYERS, 1.0F, 1.0F);
 						}
-						thisEntity.getWorld().playSound(null, thisEntity.getBlockPos(), SpectrumSoundEvents.PUFF_CIRCLET_PFFT, SoundCategory.PLAYERS, 1.0F, 1.0F);
 					}
 				}
 			}

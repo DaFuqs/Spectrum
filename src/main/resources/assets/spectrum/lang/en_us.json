@@ -1098,7 +1098,7 @@
   "item.spectrum.tidal_circlet.tooltip2": "§7greatly increases underwater maneuverability",
   "item.spectrum.tidal_circlet.tooltip3": "§7Heals your nearly §fAxolotls",
   "item.spectrum.puff_circlet": "Puff Circlet",
-  "item.spectrum.puff_circlet.tooltip": "§7Uses charges of §9Azure Dike§7 to protect you",
+  "item.spectrum.puff_circlet.tooltip": "§7Uses §9Azure Dike§7 to protect you",
   "item.spectrum.puff_circlet.tooltip2": "§7from Projectiles and Fall Damage",
   "item.spectrum.whispy_circlet": "Whispy Circlet",
   "item.spectrum.whispy_circlet.tooltip": "§7Prevents Spawning of Phantoms",

@@ -46,6 +46,18 @@ public class Support {
 		add(new Vec3d(0.7D, 0, -0.7D));
 	}};
 	
+	// Like eight, just turned clockwise
+	public static final List<Vec3d> VECTORS_8_OFFSET = new ArrayList<>() {{
+		add(new Vec3d(0.75D, 0, 0.5D));
+		add(new Vec3d(0.5D, 0, 0.75D));
+		add(new Vec3d(-0.5D, 0, 0.75D));
+		add(new Vec3d(-0.75D, 0, 0.5D));
+		add(new Vec3d(-0.75D, 0, 0.5D));
+		add(new Vec3d(-0.5D, 0, -0.75D));
+		add(new Vec3d(0.5D, 0, -0.75D));
+		add(new Vec3d(0.75D, 0, -0.5D));
+	}};
+	
 	public static final List<Vec3d> VECTORS_16 = new ArrayList<>() {{
 		add(new Vec3d(1.0D, 0, 0.0D));
 		add(new Vec3d(0.75D, 0, 0.5D));

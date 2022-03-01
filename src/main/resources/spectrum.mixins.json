@@ -31,6 +31,7 @@
     "LivingEntityMixin",
     "LootTableAccessor",
     "MiningToolItemMixin",
+    "MixinFarmlandBlock",
     "MobSpawnerBlockEntityMixin",
     "PersistentProjectileEntityMixin",
     "PiglinBrainMixin",

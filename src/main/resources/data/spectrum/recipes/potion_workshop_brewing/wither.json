@@ -14,5 +14,5 @@
   "potency_modifier": 0.3,
   "applicable_to_potions": true,
   "applicable_to_tipped_arrows": true,
-  "required_advancement": "spectrum:progression/unlock_potion_workshop"
+  "required_advancement": "spectrum:midgame/collect_midnight_chip"
 }

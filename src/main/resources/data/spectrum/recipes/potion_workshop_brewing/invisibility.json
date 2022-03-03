@@ -14,6 +14,5 @@
   "base_duration_ticks": 3600,
   "potency_modifier": 0.0,
   "applicable_to_potions": true,
-  "applicable_to_tipped_arrows": true,
-  "required_advancement": "spectrum:progression/unlock_potion_workshop"
+  "applicable_to_tipped_arrows": true
 }

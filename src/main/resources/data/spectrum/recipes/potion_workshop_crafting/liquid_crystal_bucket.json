@@ -16,6 +16,5 @@
   },
   "result" : {
     "item": "spectrum:liquid_crystal_bucket"
-  },
-  "required_advancement": "spectrum:progression/unlock_liquid_crystal_bucket"
+  }
 }

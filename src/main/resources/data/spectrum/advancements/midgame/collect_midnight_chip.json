@@ -1,0 +1,24 @@
+{
+  "parent": "spectrum:midgame/create_midnight_aberration",
+  "display": {
+    "icon": {
+        "item": "spectrum:midnight_chip"
+    },
+    "title": {
+      "translate": "advancements.spectrum.collect_midnight_chip.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.collect_midnight_chip.description"
+    }
+  },
+  "criteria": {
+    "has_midnight_chip": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": { "items": [{ "items": [ "spectrum:midnight_chip" ]}] }
+    },
+    "gotten_previous": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:midgame/create_midnight_aberration" }
+    }
+  }
+}

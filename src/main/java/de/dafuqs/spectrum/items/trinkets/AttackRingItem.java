@@ -28,9 +28,6 @@ public class AttackRingItem extends SpectrumTrinketItem {
 	
 	public static final UUID ATTACK_RING_DAMAGE_UUID = UUID.fromString("15d1fb68-6440-404a-aa31-7bf3310d3f52");
 	
-	public static final Identifier ATTACK_RING_ADVANCEMENT_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "");
-	public static final String ATTACK_RING_ADVANCEMENT_CRITERION = "kill_with_one_life_left";
-
 	public AttackRingItem(Settings settings) {
 		super(settings, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_jeopardant"));
 	}

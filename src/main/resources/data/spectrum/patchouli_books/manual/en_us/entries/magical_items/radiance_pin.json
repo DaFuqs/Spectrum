@@ -1,7 +1,7 @@
 {
   "name": "Radiance Pin",
   "advancement": "spectrum:progression/unlock_radiance_pin",
-  "icon": "spectrum:",
+  "icon": "spectrum:radiance_pin",
   "category": "spectrum:magical_items_category",
   "extra_recipe_mappings": {
     "spectrum:radiance_pin": 0

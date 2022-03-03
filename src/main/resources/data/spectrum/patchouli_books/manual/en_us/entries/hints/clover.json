@@ -9,7 +9,7 @@
     "pages": [
         {
             "type": "spectrum:hint",
-			"title": "What to look for",
+			"title": "Where to look",
             "completion_advancement": "spectrum:collect_four_leaf_clover",
 			"cost": "spectrum:vegetal#16",
             "text": "Go for an Overworld adventure trip on the surface. Maybe you get lucky!"
@@ -18,7 +18,7 @@
             "type": "spectrum:hint",
 			"title": "Concise Instructions",
 			"cost": "spectrum:vegetal#48",
-            "text": "There is Clover growing in Plains biomes. You can immediately see if it has three or four leaves in it's block form. You can immediately notice a Four-Leaved Clover in its block form already"
+            "text": "There is Clover growing in Plains biomes. You can immediately notice a Four-Leaved Clover in its block form already. Break to harvest, Bonemeal/Natures' Staff to grow."
         }
     ]
 }

@@ -1,7 +1,7 @@
 {
   "name": "Jeopardant",
   "advancement": "spectrum:progression/unlock_jeopardant",
-  "icon": "spectrum:",
+  "icon": "spectrum:jeopardant",
   "category": "spectrum:magical_items_category",
   "extra_recipe_mappings": {
     "spectrum:jeopardant": 0

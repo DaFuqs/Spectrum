@@ -241,7 +241,7 @@ public class ShootingStarEntity extends Entity {
 			}
 		} else {
 			// despawning
-			if (this.dataTracker.get(PLAYER_PLACED) && this.age < 4000) {
+			if (this.age < 6000 && !this.dataTracker.get(PLAYER_PLACED)) {
 				this.age++;
 			} else {
 				this.discard();

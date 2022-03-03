@@ -13,7 +13,12 @@
   },
   "criteria": {
     "killed_entity_with_jeopardant_and_half_a_heart": {
-      "trigger": "minecraft:impossible"
+      "trigger": "spectrum:jeopardant_kill",
+      "conditions": {
+        "lives_left": {
+          "max": 1
+        }
+      }
     },
     "gotten_previous": {
       "trigger":"spectrum:has_advancement",

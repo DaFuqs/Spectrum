@@ -23,6 +23,7 @@ public class SpectrumAdvancementCriteria {
 	public static PotionWorkshopBrewingCriterion POTION_WORKSHOP_BREWING;
 	public static TakeOffBeltJumpCriterion TAKE_OFF_BELT_JUMP;
 	public static PigmentPaletteUseCriterion PIGMENT_PALETTE_USE;
+	public static JeopardantKillCriterion JEOPARDANT_KILL;
 
 	public static void register() {
 		ADVANCEMENT_GOTTEN = CriteriaAccessor.callRegister(new HasAdvancementCriterion());
@@ -43,6 +44,7 @@ public class SpectrumAdvancementCriteria {
 		POTION_WORKSHOP_BREWING = CriteriaAccessor.callRegister(new PotionWorkshopBrewingCriterion());
 		TAKE_OFF_BELT_JUMP = CriteriaAccessor.callRegister(new TakeOffBeltJumpCriterion());
 		PIGMENT_PALETTE_USE = CriteriaAccessor.callRegister(new PigmentPaletteUseCriterion());
+		JEOPARDANT_KILL = CriteriaAccessor.callRegister(new JeopardantKillCriterion());
 	}
 
 }

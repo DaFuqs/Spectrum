@@ -1,7 +1,7 @@
 {
     "name": "Crimtane",
     "advancement": "spectrum:midgame/collect_scarlet",
-    "icon": "spectrum:scarlet_ore",
+    "icon": "spectrum:scarlet_fragments",
     "category": "spectrum:resources_category",
     "extra_recipe_mappings": {
         "spectrum:scarlet_ore": 0,

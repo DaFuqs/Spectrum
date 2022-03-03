@@ -238,15 +238,24 @@ public class ProgressionSanityCommand {
 		// advancements that dont require parent
 		for(Advancement advancement : SpectrumCommon.minecraftServer.getAdvancementLoader().getAdvancements()) {
 			if(advancement.getId().getNamespace().equals(SpectrumCommon.MOD_ID) && !advancement.getId().getPath().contains("hidden") && !advancement.getId().getPath().contains("progression") && !advancement.getId().getPath().contains("milestones") && advancement.getParent() != null) {
-				boolean parentFound = false;
+				Identifier previousAdvancementIdentifier = null;
 				for(String[] requirement : advancement.getRequirements()) {
 					if(requirement.length > 0 && requirement[0].equals("gotten_previous")) {
-						parentFound = true;
-						break;
+						CriterionConditions conditions = advancement.getCriteria().get("gotten_previous").getConditions();
+						if(conditions instanceof HasAdvancementCriterion.Conditions advancementConditions) {
+							previousAdvancementIdentifier = advancementConditions.getAdvancementIdentifier();
+							break;
+						} else {
+							SpectrumCommon.log(Level.WARN, "[SANITY: Advancement Gating] Advancement '" + advancement.getId() + "' has a \"gotten_previous\" requirement, but its not spectrum:has_advancement?");
+						}
 					}
 				}
-				if(!parentFound) {
+				if(previousAdvancementIdentifier == null) {
 					SpectrumCommon.log(Level.WARN, "[SANITY: Advancement Gating] Advancement '" + advancement.getId() + "' has not set its parent set as requirement");
+				} else {
+					if(!advancement.getParent().getId().equals(previousAdvancementIdentifier)) {
+						SpectrumCommon.log(Level.WARN, "[SANITY: Advancement Gating] Advancement '" + advancement.getId() + "' has its \"gotten_previous\" advancement set to something else than their parent. Intended?");
+					}
 				}
 			}
 		}

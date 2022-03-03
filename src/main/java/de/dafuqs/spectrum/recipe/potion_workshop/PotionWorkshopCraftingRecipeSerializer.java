@@ -47,7 +47,7 @@ public class PotionWorkshopCraftingRecipeSerializer<T extends PotionWorkshopCraf
 		if(JsonHelper.hasString(jsonObject, "required_advancement")) {
 			requiredAdvancementIdentifier = Identifier.tryParse(JsonHelper.getString(jsonObject, "required_advancement"));
 		} else {
-			// Potion Workshop Brewing Recipe has no unlock advancement set. Will be set to the unlock advancement of the Potion Workshop itself
+			// Potion Workshop Recipe has no unlock advancement set. Will be set to the unlock advancement of the Potion Workshop itself
 			requiredAdvancementIdentifier = new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_potion_workshop");
 		}
 

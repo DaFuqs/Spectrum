@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:lategame/spectrum_lategame",
+  "parent": "spectrum:lategame/collect_paletur",
   "display": {
     "icon": {
       "item": "spectrum:neat_ring"

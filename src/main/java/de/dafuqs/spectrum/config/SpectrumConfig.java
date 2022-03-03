@@ -43,13 +43,13 @@ Better to let players stumble about them organically instead of forcing it.""")
 	public List<String> LightningStonesWorlds = new ArrayList<>();
 
 	@Comment("chance for a lightning strike to spawn a Storm Stone")
-	public float LightningStonesChance = 0.5F;
+	public float LightningStonesChance = 0.4F;
 
 	@Comment("""
 Shooting star spawns are checked every night between time 13000 and 22000, every 100 ticks (so 90 chances per night).
-By default, there is a 0.005 ^= 0.5 % chance at each of those check times. Making it ~1 shooting star spawn
+By default, there is a 0.004 ^= 0.4 % chance at each of those check times. Making it ~1 shooting star spawn
 per night per player that unlocked the required progression.""")
-	public float ShootingStarChance = 0.005F;
+	public float ShootingStarChance = 0.004F;
 
 	@Comment("The biomes where the biome specific plants are growing")
 	public List<String> MermaidsBrushGenerationBiomes = new ArrayList<>();

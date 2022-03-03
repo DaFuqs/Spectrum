@@ -572,10 +572,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 				SpectrumS2CPacketSender.spawnPedestalUpgradeParticles(pedestalBlockEntity.world, pedestalBlockEntity.pos, newPedestalVariant);
 				
 				pedestalBlockEntity.pedestalVariant = newPedestalVariant;
-				
-				// reset the recipe
-				updateInClientWorld(pedestalBlockEntity);
-				pedestalBlockEntity.markDirty();
+				pedestalBlockEntity.currentRecipe = null; // reset the recipe, otherwise pedestal would remember crafting the update
 			} else {
 				int resultAmountBeforeMod = recipeOutput.getCount();
 				double yieldModifier =  recipe.areYieldUpgradesDisabled() ? 1.0 : pedestalBlockEntity.upgrades.get(UpgradeType.YIELD);
@@ -603,7 +600,11 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 
 			// if the recipe unlocks an advancement unlock it
 			pedestalBlockEntity.grantPlayerCraftingAdvancement(recipe, (int) experienceAfterMod);
-
+			
+			pedestalBlockEntity.markDirty();
+			pedestalBlockEntity.inventoryChanged = true;
+			updateInClientWorld(pedestalBlockEntity);
+			
 			return true;
 		} else {
 			return false;

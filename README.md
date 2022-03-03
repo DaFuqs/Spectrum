@@ -1,4 +1,4 @@
-![Spectrum Banner](/images/banner.png "Spectrums Banner")
+![Spectrum Banner](/images/icons_banners/banner.png "Spectrums Banner")
 
 ## Overview
 Spectrum is a storydriven, exploration-focused magic mod focusing on the natural energies that flow in the world, represented in color.

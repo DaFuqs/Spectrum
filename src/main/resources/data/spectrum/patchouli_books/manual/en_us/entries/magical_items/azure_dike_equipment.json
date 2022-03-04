@@ -19,13 +19,13 @@
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "title": "Fusion Recipe",
+      "title": "Azure Dike Ring",
       "recipe": "spectrum:fusion_shrine/trinkets/azure_dike_ring",
       "text": "Grants you $(c_green)3$() points of $(c_blue)Azure Dike$()."
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "title": "Fusion Recipe",
+      "title": "Azure Dike Belt",
       "recipe": "spectrum:fusion_shrine/trinkets/azure_dike_belt",
       "text": "Grants you $(c_green)4$() points of $(c_blue)Azure Dike$()."
     }

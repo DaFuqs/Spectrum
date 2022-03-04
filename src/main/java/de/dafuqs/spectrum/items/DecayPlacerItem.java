@@ -1,12 +1,17 @@
 package de.dafuqs.spectrum.items;
 
+import de.dafuqs.spectrum.registries.SpectrumBlockTags;
+import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.*;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.TickPriority;
 import net.minecraft.world.World;
 
 import java.util.List;
@@ -20,6 +25,15 @@ public class DecayPlacerItem extends AliasedBlockItem {
 	@Override
 	public ActionResult useOnBlock(ItemUsageContext context) {
 		ActionResult actionResult = super.useOnBlock(context);
+		if(actionResult.isAccepted()) {
+			ItemPlacementContext itemPlacementContext = this.getPlacementContext(new ItemPlacementContext(context));
+			BlockPos blockPos = itemPlacementContext.getBlockPos();
+			
+			BlockState placedBlockState = context.getWorld().getBlockState(blockPos);
+			if(SpectrumBlockTags.DECAY.contains(placedBlockState.getBlock())) {
+				context.getWorld().createAndScheduleBlockTick(blockPos, placedBlockState.getBlock(), 40 + context.getWorld().random.nextInt(200), TickPriority.EXTREMELY_LOW);
+			}
+		}
 		if(!context.getWorld().isClient && actionResult.isAccepted() && context.getPlayer() != null && !context.getPlayer().isCreative()) {
 			context.getPlayer().giveItemStack(Items.GLASS_BOTTLE.getDefaultStack());
 		}

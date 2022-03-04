@@ -9,7 +9,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "This glistening hoop creates a protective film of air around you.$(br)It not only protects you from enemy projectiles, but can even cushion a deep fall.$(br)The Puff Circlet also prevents Farmland from being trampled."
+      "text": "This glistening hoop creates a protective film of air around you.$(br)Using a few charges of $(l:magical_items/azure_dike_equipment)$(c_blue)Azure Dike$(), it not only protects you from enemy projectiles, but can even cushion a deep fall.$(br)The Puff Circlet also prevents Farmland from being trampled."
     },
     {
       "type": "spectrum:fusion_shrine_crafting",

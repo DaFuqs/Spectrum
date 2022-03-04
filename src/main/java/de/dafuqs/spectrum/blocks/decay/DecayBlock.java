@@ -111,11 +111,11 @@ public abstract class DecayBlock extends Block {
 	 * schedule a tick to convert it faster. => User gets quick reaction
 	 */
 	@Override
-	public void neighborUpdate(BlockState state, World world, BlockPos pos, Block block, BlockPos fromPos, boolean notify) {
-		super.neighborUpdate(state, world, pos, block, fromPos, notify);
-		if(block == Blocks.AIR) {
+	public void neighborUpdate(BlockState state, World world, BlockPos pos, Block previousBlock, BlockPos fromPos, boolean notify) {
+		super.neighborUpdate(state, world, pos, previousBlock, fromPos, notify);
+		if(previousBlock == Blocks.AIR) {
 			Block updatedBlock = world.getBlockState(fromPos).getBlock();
-			if (!(updatedBlock instanceof DecayBlock) && canSpread(state)) {
+			if (!(updatedBlock instanceof DecayBlock) && !(updatedBlock instanceof DecayAwayBlock) && canSpread(state)) {
 				for (Tag<Block> blockTag : decayConversionsList) {
 					if (blockTag.contains(updatedBlock)) {
 						world.createAndScheduleBlockTick(pos, this, 40 + world.random.nextInt(200), TickPriority.EXTREMELY_LOW);

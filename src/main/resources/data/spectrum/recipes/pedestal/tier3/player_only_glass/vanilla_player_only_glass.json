@@ -11,13 +11,10 @@
   "experience": 1.0,
   "pattern": [
     "GPG",
-    "PSP",
+    "PGP",
     "GPG"
   ],
   "key": {
-    "S": {
-      "item": "spectrum:moonstone_shard"
-    },
     "P": {
       "item": "spectrum:purple_pigment"
     },

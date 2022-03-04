@@ -17,6 +17,7 @@
     {
       "type": "patchouli:spotlight",
       "item": "spectrum:four_leaf_clover",
+      "advancement": "spectrum:collect_four_leaf_clover",
       "text": "Indeed it is!$(br)You are sure this tiny sign of luck could come in handy."
     }
   ]

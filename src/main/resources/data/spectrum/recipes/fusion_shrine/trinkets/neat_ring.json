@@ -8,10 +8,13 @@
       "item": "spectrum:fanciful_stone_ring"
     },
     {
-      "item": "spectrum:resonant_lily"
+      "item": "minecraft:gold_ingot"
     },
     {
       "item": "spectrum:moonstone_shard"
+    },
+    {
+      "item": "spectrum:resonant_lily"
     }
   ],
   "result" : {

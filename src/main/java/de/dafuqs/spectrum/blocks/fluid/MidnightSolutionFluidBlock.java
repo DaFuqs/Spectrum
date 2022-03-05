@@ -1,16 +1,29 @@
 package de.dafuqs.spectrum.blocks.fluid;
 
+import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
+import de.dafuqs.spectrum.registries.SpectrumBlocks;
+import de.dafuqs.spectrum.registries.SpectrumDamageSources;
+import de.dafuqs.spectrum.registries.SpectrumFluidTags;
+import de.dafuqs.spectrum.registries.SpectrumFluids;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.FluidBlock;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.pathing.NavigationType;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.fluid.FlowableFluid;
+import net.minecraft.fluid.FluidState;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.tag.FluidTags;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
 
@@ -26,62 +39,61 @@ public class MidnightSolutionFluidBlock extends FluidBlock {
 			world.createAndScheduleFluidTick(pos, state.getFluidState().getFluid(), this.fluid.getTickRate(world));
 		}
 	}
-
-	/**
-	 * Entities colliding with mud will get a slowness effect
-	 * and losing their breath far quicker
-	 */
+	
 	@Override
 	public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
 		super.onEntityCollision(state, world, pos, entity);
-		if(entity instanceof LivingEntity) {
-			LivingEntity livingEntity = (LivingEntity) entity;
-			// TODO: hurt entities
+		if(entity instanceof LivingEntity livingEntity) {
+			if(livingEntity.isSubmergedIn(SpectrumFluidTags.MIDNIGHT_SOLUTION) && world.getTime() % 20 == 0) {
+				livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS,50, 0));
+				livingEntity.damage(SpectrumDamageSources.MIDNIGHT_SOLUTION, 2);
+			} else {
+				livingEntity.damage(SpectrumDamageSources.MIDNIGHT_SOLUTION, 1);
+			}
 		}
 	}
 
 	@Override
 	public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
 		super.randomDisplayTick(state, world, pos, random);
-		// TODO: effects
-		/*if(!world.getBlockState(pos.up()).isSolidBlock(world, pos.up()) && random.nextFloat() < 0.03F) {
-			//world.addParticle(SpectrumParticleTypes.MUD_POP, pos.getX() + random.nextDouble(), pos.getY()+1, pos.getZ() + random.nextDouble(), 0, random.nextDouble() * 0.1, 0);
-		}*/
+		if(!world.getBlockState(pos.up()).isSolidBlock(world, pos.up()) && random.nextFloat() < 0.03F) {
+			world.addParticle(SpectrumParticleTypes.VOID_FOG, pos.getX() + random.nextDouble(), pos.getY()+1, pos.getZ() + random.nextDouble(), 0, random.nextDouble() * 0.1, 0);
+		}
 	}
 
 	@Override
 	public void neighborUpdate(BlockState state, World world, BlockPos pos, Block block, BlockPos fromPos, boolean notify) {
-		if (this.receiveNeighborFluids(world, pos, state)) {
-			world.createAndScheduleFluidTick(pos, state.getFluidState().getFluid(), this.fluid.getTickRate(world));
-		}
+		world.createAndScheduleFluidTick(pos, state.getFluidState().getFluid(), this.fluid.getTickRate(world));
 	}
 
 	@Override
 	public boolean canPathfindThrough(BlockState state, BlockView world, BlockPos pos, NavigationType type) {
 		return false;
 	}
-
-	/**
-	 * @param world The world
-	 * @param pos The position in the world
-	 * @param state BlockState of the mud. Included the height/fluid level
-	 * @return Dunno, actually. I just mod things.
-	 */
-	private boolean receiveNeighborFluids(World world, BlockPos pos, BlockState state) {
-		// TODO: collisions
-		/*  for (Direction direction : Direction.values()) {
-			BlockPos blockPos = pos.offset(direction);
-			if (world.getFluidState(blockPos).isIn(FluidTags.WATER)) {
-				world.setBlockState(pos, Blocks.DIRT.getDefaultState());
-				this.playExtinguishSound(world, pos);
-				return false;
+	
+	private boolean receiveNeighborFluids(@NotNull World world, BlockPos pos, BlockState state) {
+		return tryConvertNeighborFluids(world, pos);
+	}
+	
+	private boolean tryConvertNeighborFluids(@NotNull World world, BlockPos pos) {
+		boolean b = true;
+		for(Direction direction : Direction.values()) {
+			if (!this.tryConvertFluid(world, pos, pos.offset(direction))) {
+				b = false;
 			}
-			if (world.getFluidState(blockPos).isIn(FluidTags.LAVA)) {
-				world.setBlockState(pos, Blocks.COARSE_DIRT.getDefaultState());
-				this.playExtinguishSound(world, pos);
-				return false;
-			}
-		}*/
+		}
+		return b;
+	}
+	
+	private boolean tryConvertFluid(@NotNull World world, BlockPos pos, BlockPos fromPos) {
+		FluidState fluidState = world.getFluidState(fromPos);
+		if (!fluidState.isEmpty() && !fluidState.isIn(SpectrumFluidTags.MIDNIGHT_SOLUTION)) {
+			world.setBlockState(fromPos, SpectrumBlocks.MIDNIGHT_SOLUTION.getDefaultState());
+			world.createAndScheduleFluidTick(fromPos, SpectrumFluids.MIDNIGHT_SOLUTION, 20);
+			world.createAndScheduleBlockTick(fromPos, SpectrumBlocks.MIDNIGHT_SOLUTION, 20);
+			this.playExtinguishSound(world, fromPos);
+			return false;
+		}
 		return true;
 	}
 

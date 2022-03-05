@@ -41,9 +41,8 @@ public class MudFluidBlock extends FluidBlock {
 	@Override
 	public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
 		super.onEntityCollision(state, world, pos, entity);
-		if(entity instanceof LivingEntity) {
-			LivingEntity livingEntity = (LivingEntity) entity;
-
+		if(entity instanceof LivingEntity livingEntity) {
+			
 			// the entity is hurt at air == -20 and then reset to air = 0
 			// this way the entity loses its breath way faster, but gets damaged just as slow afterwards
 			if(livingEntity.isSubmergedIn(SpectrumFluidTags.MUD) && world.getTime() % 2 == 0 && livingEntity.getAir() > 0) {

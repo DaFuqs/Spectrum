@@ -53,9 +53,8 @@ public class LiquidCrystalFluidBlock extends FluidBlock {
 	@Override
 	public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
 		super.onEntityCollision(state, world, pos, entity);
-		if(entity instanceof LivingEntity) {
-			LivingEntity livingEntity = (LivingEntity) entity;
-
+		if(entity instanceof LivingEntity livingEntity) {
+			
 			// just check every 100 ticks for performance and slow healing
 			if(world.getTime() % 200 == 0) {
 				StatusEffectInstance regenerationInstance = livingEntity.getStatusEffect(StatusEffects.REGENERATION);

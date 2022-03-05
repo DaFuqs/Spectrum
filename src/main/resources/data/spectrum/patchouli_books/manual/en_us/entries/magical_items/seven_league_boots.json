@@ -16,6 +16,13 @@
       "title": "Fusion Recipe",
       "recipe": "spectrum:fusion_shrine/trinkets/seven_league_boots",
       "text": "Increases both Movement Speed and Step Height."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:progression/enchantments/vanilla_projectile",
+      "title": "Power",
+      "item": "spectrum:seven_league_boots{Enchantments: [{id: \"spectrum:power\", lvl: 5s}]}",
+      "text": "The Power enchantment increases the movement speed bonus further."
     }
   ]
 }

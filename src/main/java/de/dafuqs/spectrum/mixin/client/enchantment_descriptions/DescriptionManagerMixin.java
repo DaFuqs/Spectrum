@@ -19,10 +19,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
  * If Enchantment descriptions is installed:
  * Obfuscate descriptions for Enchantments that the user does not have discovered yet
  */
-/*@Pseudo
+@Pseudo
 @Mixin(value = DescriptionManager.class, remap = false)
 public class DescriptionManagerMixin {
-	
+/*
 	private static final Language spectrum$language = Language.getInstance();
 	
 	@Inject(at = @At("RETURN"), method= "Lnet/darkhax/enchdesc/DescriptionManager;getDescription(L;)L;", cancellable = true)
@@ -33,6 +33,5 @@ public class DescriptionManagerMixin {
 			}
 		}
 	}
-
-}
 */
+}

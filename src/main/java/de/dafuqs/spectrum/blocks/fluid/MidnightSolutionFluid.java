@@ -7,6 +7,7 @@ import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.FluidBlock;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.item.Item;
@@ -16,6 +17,7 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
 
@@ -64,10 +66,23 @@ public abstract class MidnightSolutionFluid extends SpectrumFluid {
 	protected int getLevelDecreasePerBlock(WorldView worldView) {
 		return 1;
 	}
-
+	
+	@Override
+	public void onScheduledTick(World world, BlockPos pos, FluidState state) {
+		super.onScheduledTick(world, pos, state);
+		
+		/*if(state.getHeight() < 1.0) {
+			for (Direction direction : Direction.values()) {
+				if (MidnightSolutionFluidBlock.tryConvertNeighbor(world, pos, pos.offset(direction))) {
+					break;
+				}
+			}
+		}*/
+	}
+	
 	@Override
 	public int getTickRate(WorldView worldView) {
-		return 25;
+		return 12;
 	}
 
 	@Override

@@ -239,8 +239,10 @@ public class ShootingStarEntity extends Entity {
 			}
 		} else {
 			// despawning
-			if (this.age < 6000 && !this.dataTracker.get(PLAYER_PLACED)) {
-				this.age++;
+			if (this.age < 6000) {
+				if(!this.dataTracker.get(PLAYER_PLACED)) {
+					this.age++;
+				}
 			} else {
 				this.discard();
 			}
@@ -298,14 +300,11 @@ public class ShootingStarEntity extends Entity {
 		}
 	}
 
+	@Override
 	public void onPlayerCollision(PlayerEntity player) {
 		// if the shooting star is still falling from the sky, and it hits a player:
 		// give the player the star, some damage and grant an advancement
-
-		if(this.world.isClient)
-			return;
-
-		if (!this.onGround && this.getVelocity().getY() < -0.5) {
+		if(!this.world.isClient && !this.onGround && this.getVelocity().getY() < -0.5) {
 			world.playSound(null, this.getBlockPos().getX(), this.getBlockPos().getY(), this.getBlockPos().getZ(), SpectrumSoundEvents.SHOOTING_STAR_CRACKER, SoundCategory.PLAYERS, 1.5F + random.nextFloat() * 0.4F, 0.8F + random.nextFloat() * 0.4F);
 			SpectrumS2CPacketSender.sendPlayShootingStarParticles(this);
 			player.damage(SpectrumDamageSources.SHOOTING_STAR, 18);

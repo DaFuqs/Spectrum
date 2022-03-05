@@ -168,8 +168,6 @@ public class ShootingStarEntity extends Entity {
 	
 	public void tick() {
 		super.tick();
-		
-		this.attemptTickInVoid();
 		this.tickNetherPortal();
 		
 		boolean wasOnGround = this.onGround;

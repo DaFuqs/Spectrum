@@ -10,16 +10,16 @@ import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
 
-public class PotionWorkshopCraftingRecipeSerializer<T extends PotionWorkshopCraftingRecipe> implements RecipeSerializer<T> {
+public class PotionWorkshopCraftingRecipeSerializer implements RecipeSerializer<PotionWorkshopCraftingRecipe> {
 
-	public final PotionWorkshopCraftingRecipeSerializer.RecipeFactory<T> recipeFactory;
+	public final PotionWorkshopCraftingRecipeSerializer.RecipeFactory<PotionWorkshopCraftingRecipe> recipeFactory;
 
-	public PotionWorkshopCraftingRecipeSerializer(PotionWorkshopCraftingRecipeSerializer.RecipeFactory<T> recipeFactory) {
+	public PotionWorkshopCraftingRecipeSerializer(PotionWorkshopCraftingRecipeSerializer.RecipeFactory<PotionWorkshopCraftingRecipe> recipeFactory) {
 		this.recipeFactory = recipeFactory;
 	}
 
 	@Override
-	public T read(Identifier identifier, JsonObject jsonObject) {
+	public PotionWorkshopCraftingRecipe read(Identifier identifier, JsonObject jsonObject) {
 		String group = JsonHelper.getString(jsonObject, "group", "");
 		
 		Ingredient baseIngredient = Ingredient.fromJson(JsonHelper.getObject(jsonObject, "base_ingredient"));
@@ -55,7 +55,7 @@ public class PotionWorkshopCraftingRecipeSerializer<T extends PotionWorkshopCraf
 	}
 	
 	@Override
-	public void write(PacketByteBuf packetByteBuf, T potionWorkshopCraftingRecipe) {
+	public void write(PacketByteBuf packetByteBuf, PotionWorkshopCraftingRecipe potionWorkshopCraftingRecipe) {
 		packetByteBuf.writeString(potionWorkshopCraftingRecipe.group);
 		potionWorkshopCraftingRecipe.baseIngredient.write(packetByteBuf);
 		packetByteBuf.writeBoolean(potionWorkshopCraftingRecipe.consumeBaseIngredient);
@@ -70,7 +70,7 @@ public class PotionWorkshopCraftingRecipeSerializer<T extends PotionWorkshopCraf
 	}
 	
 	@Override
-	public T read(Identifier identifier, PacketByteBuf packetByteBuf) {
+	public PotionWorkshopCraftingRecipe read(Identifier identifier, PacketByteBuf packetByteBuf) {
 		String group = packetByteBuf.readString();
 		Ingredient baseIngredient = Ingredient.fromPacket(packetByteBuf);
 		boolean consumeBaseIngredient = packetByteBuf.readBoolean();
@@ -85,8 +85,8 @@ public class PotionWorkshopCraftingRecipeSerializer<T extends PotionWorkshopCraf
 		return this.recipeFactory.create(identifier, group, baseIngredient, consumeBaseIngredient, requiredExperience, ingredient1, ingredient2, ingredient3, output, craftingTime, color, requiredAdvancementIdentifier);
 	}
 	
-	public interface RecipeFactory<T extends PotionWorkshopCraftingRecipe> {
-		T create(Identifier id, String group, Ingredient baseIngredient, boolean consumeBaseIngredient, int requiredExperience, Ingredient ingredient1, Ingredient ingredient2, Ingredient ingredient3, ItemStack output, int craftingTime, int color, Identifier requiredAdvancementIdentifier);
+	public interface RecipeFactory<PotionWorkshopCraftingRecipe> {
+		PotionWorkshopCraftingRecipe create(Identifier id, String group, Ingredient baseIngredient, boolean consumeBaseIngredient, int requiredExperience, Ingredient ingredient1, Ingredient ingredient2, Ingredient ingredient3, ItemStack output, int craftingTime, int color, Identifier requiredAdvancementIdentifier);
 	}
 
 }

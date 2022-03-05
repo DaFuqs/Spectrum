@@ -1,31 +1,20 @@
 package de.dafuqs.spectrum.progression.advancement;
 
 import com.google.gson.JsonObject;
-import com.google.gson.JsonSyntaxException;
 import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
-import net.minecraft.advancement.criterion.*;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
+import net.minecraft.advancement.criterion.AbstractCriterion;
+import net.minecraft.advancement.criterion.AbstractCriterionConditions;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.loot.context.LootContext;
-import net.minecraft.predicate.DamagePredicate;
 import net.minecraft.predicate.NumberRange;
-import net.minecraft.predicate.StatePredicate;
 import net.minecraft.predicate.entity.AdvancementEntityPredicateDeserializer;
 import net.minecraft.predicate.entity.AdvancementEntityPredicateSerializer;
 import net.minecraft.predicate.entity.DamageSourcePredicate;
 import net.minecraft.predicate.entity.EntityPredicate;
 import net.minecraft.predicate.entity.EntityPredicate.Extended;
 import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.state.property.IntProperty;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.JsonHelper;
-import net.minecraft.util.registry.Registry;
-import org.jetbrains.annotations.Nullable;
-
-import java.util.function.IntPredicate;
 
 public class JeopardantKillCriterion extends AbstractCriterion<JeopardantKillCriterion.Conditions> {
     

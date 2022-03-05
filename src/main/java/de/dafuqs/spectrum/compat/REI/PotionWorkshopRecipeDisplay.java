@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.compat.REI;
 
-import de.dafuqs.spectrum.SpectrumClient;
 import de.dafuqs.spectrum.recipe.potion_workshop.PotionWorkshopRecipe;
 import me.shedaniel.rei.api.common.display.SimpleGridMenuDisplay;
 import me.shedaniel.rei.api.common.display.basic.BasicDisplay;

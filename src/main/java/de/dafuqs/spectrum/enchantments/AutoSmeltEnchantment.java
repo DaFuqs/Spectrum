@@ -1,7 +1,5 @@
 package de.dafuqs.spectrum.enchantments;
 
-import de.dafuqs.spectrum.InventoryHelper;
-import de.dafuqs.spectrum.Support;
 import de.dafuqs.spectrum.registries.SpectrumEnchantments;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentTarget;

@@ -82,7 +82,7 @@ public class SpectrumRecipeTypes {
 			public String toString() {return "spectrum:enchanter";}
 		});
 		
-		ENCHANTMENT_UPGRADE_RECIPE_SERIALIZER = registerSerializer("enchantment_upgrade", new EnchantmentUpgradeRecipeSerializer<>(EnchantmentUpgradeRecipe::new));
+		ENCHANTMENT_UPGRADE_RECIPE_SERIALIZER = registerSerializer("enchantment_upgrade", new EnchantmentUpgradeRecipeSerializer(EnchantmentUpgradeRecipe::new));
 		ENCHANTMENT_UPGRADE = registerRecipeType("enchantment_upgrade", new RecipeType<EnchantmentUpgradeRecipe>() {
 			@Override
 			public String toString() {return "spectrum:enchantment_upgrade";}

@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.recipe.potion_workshop;
 
-import de.dafuqs.spectrum.SpectrumClient;
 import de.dafuqs.spectrum.Support;
 import de.dafuqs.spectrum.blocks.potion_workshop.PotionMod;
 import de.dafuqs.spectrum.interfaces.PotionFillable;

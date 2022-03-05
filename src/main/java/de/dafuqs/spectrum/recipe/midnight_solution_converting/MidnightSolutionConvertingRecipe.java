@@ -24,6 +24,7 @@ public class MidnightSolutionConvertingRecipe implements Recipe<Inventory> {
 		this.outputItemStack = outputItemStack;
 	}
 
+	@Override
 	public boolean matches(Inventory inv, World world) {
 		return this.inputIngredient.test(inv.getStack(0));
 	}

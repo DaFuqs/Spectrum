@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.recipe.potion_workshop;
 
-import de.dafuqs.spectrum.SpectrumClient;
 import de.dafuqs.spectrum.blocks.potion_workshop.PotionWorkshopBlockEntity;
 import de.dafuqs.spectrum.items.ExperienceStorageItem;
 import de.dafuqs.spectrum.progression.ClientRecipeToastManager;

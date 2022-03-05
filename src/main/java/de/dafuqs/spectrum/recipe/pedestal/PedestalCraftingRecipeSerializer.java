@@ -18,16 +18,16 @@ import org.apache.logging.log4j.Level;
 
 import java.util.*;
 
-public class PedestalCraftingRecipeSerializer<T extends PedestalCraftingRecipe> implements RecipeSerializer<T> {
+public class PedestalCraftingRecipeSerializer implements RecipeSerializer<PedestalCraftingRecipe> {
 
-	public final PedestalCraftingRecipeSerializer.RecipeFactory<T> recipeFactory;
+	public final PedestalCraftingRecipeSerializer.RecipeFactory<PedestalCraftingRecipe> recipeFactory;
 
-	public PedestalCraftingRecipeSerializer(PedestalCraftingRecipeSerializer.RecipeFactory<T> recipeFactory) {
+	public PedestalCraftingRecipeSerializer(PedestalCraftingRecipeSerializer.RecipeFactory<PedestalCraftingRecipe> recipeFactory) {
 		this.recipeFactory = recipeFactory;
 	}
 
 	@Override
-	public T read(Identifier identifier, JsonObject jsonObject) {
+	public PedestalCraftingRecipe read(Identifier identifier, JsonObject jsonObject) {
 		String group = JsonHelper.getString(jsonObject, "group", "");
 		Map<String, Ingredient> map = AccessorShapedRecipe.invokeReadSymbols(JsonHelper.getObject(jsonObject, "key"));
 		String[] strings = AccessorShapedRecipe.invokeRemovePadding(AccessorShapedRecipe.invokeGetPattern(JsonHelper.getArray(jsonObject, "pattern")));
@@ -83,7 +83,7 @@ public class PedestalCraftingRecipeSerializer<T extends PedestalCraftingRecipe> 
 	}
 
 	@Override
-	public void write(PacketByteBuf packetByteBuf, T pedestalRecipe) {
+	public void write(PacketByteBuf packetByteBuf, PedestalCraftingRecipe pedestalRecipe) {
 		packetByteBuf.writeInt(pedestalRecipe.width);
 		packetByteBuf.writeInt(pedestalRecipe.height);
 		packetByteBuf.writeString(pedestalRecipe.group);
@@ -113,7 +113,7 @@ public class PedestalCraftingRecipeSerializer<T extends PedestalCraftingRecipe> 
 	
 	
 	@Override
-	public T read(Identifier identifier, PacketByteBuf packetByteBuf) {
+	public PedestalCraftingRecipe read(Identifier identifier, PacketByteBuf packetByteBuf) {
 		int width = packetByteBuf.readInt();
 		int height = packetByteBuf.readInt();
 		String group = packetByteBuf.readString();
@@ -152,8 +152,8 @@ public class PedestalCraftingRecipeSerializer<T extends PedestalCraftingRecipe> 
 		return this.recipeFactory.create(identifier, group, tier, width, height, craftingInputs, gemInputs, output, experience, craftingTime, noBenefitsFromYieldUpgrades, requiredAdvancementIdentifiers);
 	}
 
-	public interface RecipeFactory<T extends PedestalCraftingRecipe> {
-		T create(Identifier id, String group, PedestalRecipeTier tier, int width, int height,
+	public interface RecipeFactory<PedestalCraftingRecipe> {
+		PedestalCraftingRecipe create(Identifier id, String group, PedestalRecipeTier tier, int width, int height,
 		         DefaultedList<Ingredient> craftingInputs, HashMap<GemstoneColor, Integer> gemInputs,
 		         ItemStack output, float experience, int craftingTime, boolean noBenefitsFromYieldUpgrades, List<Identifier> requiredAdvancementIdentifiers);
 	}

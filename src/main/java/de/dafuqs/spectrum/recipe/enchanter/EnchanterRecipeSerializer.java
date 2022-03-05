@@ -12,16 +12,16 @@ import net.minecraft.util.JsonHelper;
 import net.minecraft.util.collection.DefaultedList;
 import org.jetbrains.annotations.Nullable;
 
-public class EnchanterRecipeSerializer<T extends EnchanterRecipe> implements RecipeSerializer<T> {
+public class EnchanterRecipeSerializer implements RecipeSerializer<EnchanterRecipe> {
 
-	public final EnchanterRecipeSerializer.RecipeFactory<T> recipeFactory;
+	public final EnchanterRecipeSerializer.RecipeFactory<EnchanterRecipe> recipeFactory;
 
-	public EnchanterRecipeSerializer(EnchanterRecipeSerializer.RecipeFactory<T> recipeFactory) {
+	public EnchanterRecipeSerializer(EnchanterRecipeSerializer.RecipeFactory<EnchanterRecipe> recipeFactory) {
 		this.recipeFactory = recipeFactory;
 	}
 
 	@Override
-	public T read(Identifier identifier, JsonObject jsonObject) {
+	public EnchanterRecipe read(Identifier identifier, JsonObject jsonObject) {
 		String group = JsonHelper.getString(jsonObject, "group", "");
 		
 		JsonArray ingredientArray = JsonHelper.getArray(jsonObject, "ingredients");
@@ -49,7 +49,7 @@ public class EnchanterRecipeSerializer<T extends EnchanterRecipe> implements Rec
 	}
 	
 	@Override
-	public void write(PacketByteBuf packetByteBuf, T enchanterRecipe) {
+	public void write(PacketByteBuf packetByteBuf, EnchanterRecipe enchanterRecipe) {
 		packetByteBuf.writeString(enchanterRecipe.group);
 
 		packetByteBuf.writeShort(enchanterRecipe.inputs.size());
@@ -65,7 +65,7 @@ public class EnchanterRecipeSerializer<T extends EnchanterRecipe> implements Rec
 	}
 	
 	@Override
-	public T read(Identifier identifier, PacketByteBuf packetByteBuf) {
+	public EnchanterRecipe read(Identifier identifier, PacketByteBuf packetByteBuf) {
 		String group = packetByteBuf.readString();
 		
 		short craftingInputCount = packetByteBuf.readShort();
@@ -83,8 +83,8 @@ public class EnchanterRecipeSerializer<T extends EnchanterRecipe> implements Rec
 		return this.recipeFactory.create(identifier, group, ingredients, output, craftingTime, requiredExperience, noBenefitsFromYieldAndEfficiencyUpgrades, requiredAdvancementIdentifier);
 	}
 	
-	public interface RecipeFactory<T extends EnchanterRecipe> {
-		T create(Identifier id, String group, DefaultedList<Ingredient> inputs, ItemStack output, int craftingTime, int requiredExperience, boolean noBenefitsFromYieldAndEfficiencyUpgrades, @Nullable Identifier requiredAdvancementIdentifier);
+	public interface RecipeFactory<EnchanterRecipe> {
+		EnchanterRecipe create(Identifier id, String group, DefaultedList<Ingredient> inputs, ItemStack output, int craftingTime, int requiredExperience, boolean noBenefitsFromYieldAndEfficiencyUpgrades, @Nullable Identifier requiredAdvancementIdentifier);
 	}
 
 }

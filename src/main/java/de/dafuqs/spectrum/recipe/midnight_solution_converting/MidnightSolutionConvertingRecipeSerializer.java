@@ -3,11 +3,9 @@ package de.dafuqs.spectrum.recipe.midnight_solution_converting;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import de.dafuqs.spectrum.recipe.RecipeUtils;
-import de.dafuqs.spectrum.recipe.anvil_crushing.AnvilCrushingRecipe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.recipe.Ingredient;
-import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
@@ -22,7 +20,7 @@ public class MidnightSolutionConvertingRecipeSerializer implements RecipeSeriali
 
 	@Override
 	public MidnightSolutionConvertingRecipe read(Identifier identifier, JsonObject jsonObject) {
-		JsonElement jsonElement = JsonHelper.hasArray(jsonObject, "ingredient") ? JsonHelper.getArray(jsonObject, "ingredient") : JsonHelper.getObject(jsonObject, "ingredient");
+		JsonElement jsonElement = JsonHelper.getObject(jsonObject, "ingredient");
 		Ingredient ingredient = Ingredient.fromJson(jsonElement);
 		ItemStack outputItemStack = RecipeUtils.outputWithNbtFromJson(JsonHelper.getObject(jsonObject, "result"));
 		return this.recipeFactory.create(identifier, ingredient, outputItemStack);

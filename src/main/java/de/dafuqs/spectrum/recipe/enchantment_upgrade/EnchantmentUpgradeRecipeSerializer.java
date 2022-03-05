@@ -16,18 +16,18 @@ import org.jetbrains.annotations.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EnchantmentUpgradeRecipeSerializer<T extends EnchantmentUpgradeRecipe> implements RecipeSerializer<T> {
+public class EnchantmentUpgradeRecipeSerializer implements RecipeSerializer<EnchantmentUpgradeRecipe> {
 	
 	public static List<EnchantmentUpgradeRecipe> enchantmentUpgradeRecipesToInject = new ArrayList<>();
 	
-	public final EnchantmentUpgradeRecipeSerializer.RecipeFactory<T> recipeFactory;
+	public final EnchantmentUpgradeRecipeSerializer.RecipeFactory<EnchantmentUpgradeRecipe> recipeFactory;
 
-	public EnchantmentUpgradeRecipeSerializer(EnchantmentUpgradeRecipeSerializer.RecipeFactory<T> recipeFactory) {
+	public EnchantmentUpgradeRecipeSerializer(EnchantmentUpgradeRecipeSerializer.RecipeFactory<EnchantmentUpgradeRecipe> recipeFactory) {
 		this.recipeFactory = recipeFactory;
 	}
 
 	@Override
-	public T read(Identifier identifier, JsonObject jsonObject) {
+	public EnchantmentUpgradeRecipe read(Identifier identifier, JsonObject jsonObject) {
 		Identifier enchantmentIdentifier = Identifier.tryParse(JsonHelper.getString(jsonObject, "enchantment"));
 		
 		if(!Registry.ENCHANTMENT.containsId(enchantmentIdentifier)) {
@@ -45,7 +45,7 @@ public class EnchantmentUpgradeRecipeSerializer<T extends EnchantmentUpgradeReci
 		int requiredExperience;
 		Item requiredItem;
 		int requiredItemCount;
-		T recipe = null;
+		EnchantmentUpgradeRecipe recipe = null;
 		for(int i = 0; i < levelArray.size(); i++) {
 			JsonObject currentElement = levelArray.get(i).getAsJsonObject();
 			level = i + 2;
@@ -63,7 +63,7 @@ public class EnchantmentUpgradeRecipeSerializer<T extends EnchantmentUpgradeReci
 	}
 	
 	@Override
-	public void write(PacketByteBuf packetByteBuf, T enchantmentUpgradeRecipe) {
+	public void write(PacketByteBuf packetByteBuf, EnchantmentUpgradeRecipe enchantmentUpgradeRecipe) {
 		packetByteBuf.writeIdentifier(Registry.ENCHANTMENT.getId(enchantmentUpgradeRecipe.enchantment));
 		packetByteBuf.writeInt(enchantmentUpgradeRecipe.enchantmentDestinationLevel);
 		packetByteBuf.writeInt(enchantmentUpgradeRecipe.requiredExperience);
@@ -73,7 +73,7 @@ public class EnchantmentUpgradeRecipeSerializer<T extends EnchantmentUpgradeReci
 	}
 	
 	@Override
-	public T read(Identifier identifier, PacketByteBuf packetByteBuf) {
+	public EnchantmentUpgradeRecipe read(Identifier identifier, PacketByteBuf packetByteBuf) {
 		Enchantment enchantment = Registry.ENCHANTMENT.get(packetByteBuf.readIdentifier());
 		int enchantmentDestinationLevel = packetByteBuf.readInt();
 		int requiredExperience = packetByteBuf.readInt();
@@ -84,8 +84,8 @@ public class EnchantmentUpgradeRecipeSerializer<T extends EnchantmentUpgradeReci
 		return this.recipeFactory.create(identifier, enchantment, enchantmentDestinationLevel, requiredExperience, requiredItem, requiredItemCount, requiredAdvancementIdentifier);
 	}
 	
-	public interface RecipeFactory<T extends EnchantmentUpgradeRecipe> {
-		T create(Identifier id, Enchantment enchantment, int enchantmentDestinationLevel, int requiredExperience, Item requiredItem, int requiredItemCount, @Nullable Identifier requiredAdvancementIdentifier);
+	public interface RecipeFactory<EnchantmentUpgradeRecipe> {
+		EnchantmentUpgradeRecipe create(Identifier id, Enchantment enchantment, int enchantmentDestinationLevel, int requiredExperience, Item requiredItem, int requiredItemCount, @Nullable Identifier requiredAdvancementIdentifier);
 	}
 
 }

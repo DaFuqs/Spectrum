@@ -10,18 +10,17 @@ import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
 import net.minecraft.util.registry.Registry;
-import org.apache.logging.log4j.Level;
 
-public class PotionWorkshopBrewingRecipeSerializer<T extends PotionWorkshopBrewingRecipe> implements RecipeSerializer<T> {
+public class PotionWorkshopBrewingRecipeSerializer implements RecipeSerializer<PotionWorkshopBrewingRecipe> {
 
-	public final PotionWorkshopBrewingRecipeSerializer.RecipeFactory<T> recipeFactory;
+	public final PotionWorkshopBrewingRecipeSerializer.RecipeFactory<PotionWorkshopBrewingRecipe> recipeFactory;
 
-	public PotionWorkshopBrewingRecipeSerializer(PotionWorkshopBrewingRecipeSerializer.RecipeFactory<T> recipeFactory) {
+	public PotionWorkshopBrewingRecipeSerializer(PotionWorkshopBrewingRecipeSerializer.RecipeFactory<PotionWorkshopBrewingRecipe> recipeFactory) {
 		this.recipeFactory = recipeFactory;
 	}
 
 	@Override
-	public T read(Identifier identifier, JsonObject jsonObject) {
+	public PotionWorkshopBrewingRecipe read(Identifier identifier, JsonObject jsonObject) {
 		String group = JsonHelper.getString(jsonObject, "group", "");
 		
 		Ingredient ingredient1 = Ingredient.fromJson(JsonHelper.getObject(jsonObject, "ingredient1"));
@@ -63,7 +62,7 @@ public class PotionWorkshopBrewingRecipeSerializer<T extends PotionWorkshopBrewi
 	}
 	
 	@Override
-	public void write(PacketByteBuf packetByteBuf, T potionWorkshopBrewingRecipe) {
+	public void write(PacketByteBuf packetByteBuf, PotionWorkshopBrewingRecipe potionWorkshopBrewingRecipe) {
 		packetByteBuf.writeString(potionWorkshopBrewingRecipe.group);
 		packetByteBuf.writeInt(potionWorkshopBrewingRecipe.craftingTime);
 		potionWorkshopBrewingRecipe.ingredient1.write(packetByteBuf);
@@ -79,7 +78,7 @@ public class PotionWorkshopBrewingRecipeSerializer<T extends PotionWorkshopBrewi
 	}
 	
 	@Override
-	public T read(Identifier identifier, PacketByteBuf packetByteBuf) {
+	public PotionWorkshopBrewingRecipe read(Identifier identifier, PacketByteBuf packetByteBuf) {
 		String group = packetByteBuf.readString();
 		int craftingTime = packetByteBuf.readInt();
 		Ingredient ingredient1 = Ingredient.fromPacket(packetByteBuf);
@@ -96,8 +95,8 @@ public class PotionWorkshopBrewingRecipeSerializer<T extends PotionWorkshopBrewi
 	}
 
 	
-	public interface RecipeFactory<T extends PotionWorkshopBrewingRecipe> {
-		T create(Identifier id, String group, int craftingTime, Ingredient ingredient1, Ingredient ingredient2, Ingredient ingredient3, StatusEffect statusEffect, int baseDurationTicks, float potencyModifier, int color, boolean applicableToPotions, boolean applicableToTippedArrows, Identifier requiredAdvancementIdentifier);
+	public interface RecipeFactory<PotionWorkshopBrewingRecipe> {
+		PotionWorkshopBrewingRecipe create(Identifier id, String group, int craftingTime, Ingredient ingredient1, Ingredient ingredient2, Ingredient ingredient3, StatusEffect statusEffect, int baseDurationTicks, float potencyModifier, int color, boolean applicableToPotions, boolean applicableToTippedArrows, Identifier requiredAdvancementIdentifier);
 	}
 
 }

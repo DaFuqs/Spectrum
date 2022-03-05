@@ -23,16 +23,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class FusionShrineRecipeSerializer<T extends FusionShrineRecipe> implements RecipeSerializer<T> {
+public class FusionShrineRecipeSerializer implements RecipeSerializer<FusionShrineRecipe> {
 
-	public final FusionShrineRecipeSerializer.RecipeFactory<T> recipeFactory;
+	public final FusionShrineRecipeSerializer.RecipeFactory<FusionShrineRecipe> recipeFactory;
 
-	public FusionShrineRecipeSerializer(FusionShrineRecipeSerializer.RecipeFactory<T> recipeFactory) {
+	public FusionShrineRecipeSerializer(FusionShrineRecipeSerializer.RecipeFactory<FusionShrineRecipe> recipeFactory) {
 		this.recipeFactory = recipeFactory;
 	}
 
 	@Override
-	public T read(Identifier identifier, JsonObject jsonObject) {
+	public FusionShrineRecipe read(Identifier identifier, JsonObject jsonObject) {
 		String group = JsonHelper.getString(jsonObject, "group", "");
 
 		JsonArray ingredientArray = JsonHelper.getArray(jsonObject, "ingredients");
@@ -108,7 +108,7 @@ public class FusionShrineRecipeSerializer<T extends FusionShrineRecipe> implemen
 	}
 
 	@Override
-	public void write(PacketByteBuf packetByteBuf, T fusionShrineRecipe) {
+	public void write(PacketByteBuf packetByteBuf, FusionShrineRecipe fusionShrineRecipe) {
 		packetByteBuf.writeString(fusionShrineRecipe.group);
 
 		packetByteBuf.writeShort(fusionShrineRecipe.craftingInputs.size());
@@ -143,7 +143,7 @@ public class FusionShrineRecipeSerializer<T extends FusionShrineRecipe> implemen
 	
 	
 	@Override
-	public T read(Identifier identifier, PacketByteBuf packetByteBuf) {
+	public FusionShrineRecipe read(Identifier identifier, PacketByteBuf packetByteBuf) {
 		String group = packetByteBuf.readString();
 		short craftingInputCount = packetByteBuf.readShort();
 		DefaultedList<Ingredient> ingredients = DefaultedList.ofSize(craftingInputCount, Ingredient.EMPTY);
@@ -176,8 +176,8 @@ public class FusionShrineRecipeSerializer<T extends FusionShrineRecipe> implemen
 		return this.recipeFactory.create(identifier, group, ingredients, fluid, output, experience, craftingTime, noBenefitsFromYieldUpgrades, requiredAdvancementIdentifier, worldConditions, startWorldEffect, duringWorldEffects, finishWorldEffect, description);
 	}
 	
-	public interface RecipeFactory<T extends FusionShrineRecipe> {
-		T create(Identifier id, String group, DefaultedList<Ingredient> craftingInputs, Fluid fluidInput, ItemStack output, float experience, int craftingTime, boolean noBenefitsFromYieldUpgrades, Identifier requiredAdvancementIdentifier,
+	public interface RecipeFactory<FusionShrineRecipe> {
+		FusionShrineRecipe create(Identifier id, String group, DefaultedList<Ingredient> craftingInputs, Fluid fluidInput, ItemStack output, float experience, int craftingTime, boolean noBenefitsFromYieldUpgrades, Identifier requiredAdvancementIdentifier,
 				 List<FusionShrineRecipeWorldCondition> worldConditions, FusionShrineRecipeWorldEffect startWorldEffect, List<FusionShrineRecipeWorldEffect> duringWorldEffects, FusionShrineRecipeWorldEffect finishWorldEffect, Text description);
 	}
 

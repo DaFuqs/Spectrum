@@ -166,6 +166,12 @@
       "spectrum:liquid_crystal_ambient"
     ]
   },
+  "midnight_solution_ambient": {
+    "subtitle": "spectrum.subtitles.block.midnight_solution.ambient",
+    "sounds": [
+      "spectrum:midnight_solution_ambient"
+    ]
+  },
   "dimension_sounds": {
     "subtitle": "spectrum.subtitles.dimension.ambient",
     "sounds": [

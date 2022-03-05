@@ -51,6 +51,7 @@ public class SpectrumSoundEvents {
 
 	public static SoundEvent LIQUID_CRYSTAL_AMBIENT = register("liquid_crystal_ambient");
 	public static SoundEvent MUD_AMBIENT = register("mud_ambient");
+	public static SoundEvent MIDNIGHT_SOLUTION_AMBIENT = register("midnight_solution_ambient");
 	
 	public static SoundEvent FADING_PLACED = register("fading_placed");;
 	public static SoundEvent FAILING_PLACED = register("failing_placed");

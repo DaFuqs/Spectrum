@@ -7,7 +7,7 @@ public class SpectrumDamageSources {
 	public static final DamageSource DECAY = new SpectrumDamageSource("spectrum_decay").setUnblockable().setBypassesArmor();
 	public static final DamageSource FLOATBLOCK = new SpectrumDamageSource("spectrum_floatblock").setFromFalling().setNeutral();
 	public static final DamageSource SHOOTING_STAR = new SpectrumDamageSource("spectrum_shooting_star").setFromFalling().setNeutral().setProjectile();
-	public static final DamageSource MIDNIGHT_SOLUTION = new SpectrumDamageSource("spectrum_midnight_solution").setUnblockable().setBypassesArmor().setNeutral();
+	public static final DamageSource MIDNIGHT_SOLUTION = new SpectrumDamageSource("spectrum_midnight_solution").setUnblockable().setBypassesArmor().setNeutral().setUsesMagic();
 
 	public static class SpectrumDamageSource extends DamageSource {
 		

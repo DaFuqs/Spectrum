@@ -26,7 +26,7 @@ public class ResonanceEnchantment extends SpectrumEnchantment {
 	}
 
 	public boolean canAccept(Enchantment other) {
-		return super.canAccept(other) && other != SpectrumEnchantments.PEST_CONTROL && other != SpectrumEnchantments.AUTO_SMELT && other != Enchantments.FORTUNE;
+		return super.canAccept(other) && other != SpectrumEnchantments.PEST_CONTROL && other != SpectrumEnchantments.FOUNDRY && other != Enchantments.FORTUNE;
 	}
 
 }

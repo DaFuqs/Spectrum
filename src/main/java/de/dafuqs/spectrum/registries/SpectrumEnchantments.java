@@ -11,7 +11,7 @@ public class SpectrumEnchantments {
 
 	public static final SpectrumEnchantment RESONANCE = new ResonanceEnchantment(Enchantment.Rarity.VERY_RARE, new Identifier(SpectrumCommon.MOD_ID, "progression/enchantments/resonance"), EquipmentSlot.MAINHAND); // Silk Touch, just for different blocks
 	public static final SpectrumEnchantment PEST_CONTROL = new PestControlEnchantment(Enchantment.Rarity.VERY_RARE, new Identifier(SpectrumCommon.MOD_ID, "progression/enchantments/pest_control"), EquipmentSlot.MAINHAND); // Kills silverfish when mining infested blocks
-	public static final SpectrumEnchantment AUTO_SMELT = new AutoSmeltEnchantment(Enchantment.Rarity.RARE, new Identifier(SpectrumCommon.MOD_ID, "progression/enchantments/autosmelt"), EquipmentSlot.MAINHAND); // applies smelting recipe before dropping items after mining
+	public static final SpectrumEnchantment FOUNDRY = new AutoSmeltEnchantment(Enchantment.Rarity.RARE, new Identifier(SpectrumCommon.MOD_ID, "progression/enchantments/autosmelt"), EquipmentSlot.MAINHAND); // applies smelting recipe before dropping items after mining
 	public static final SpectrumEnchantment INVENTORY_INSERTION = new InventoryInsertionEnchantment(Enchantment.Rarity.RARE, new Identifier(SpectrumCommon.MOD_ID, "progression/enchantments/inventory_insertion"), EquipmentSlot.MAINHAND); // don't drop items into the world, add to inv instead
 	public static final SpectrumEnchantment VOIDING = new VoidingEnchantment(Enchantment.Rarity.RARE, new Identifier(SpectrumCommon.MOD_ID, "spectrum"), EquipmentSlot.MAINHAND); // Voids all items mined
 	public static final SpectrumEnchantment EXUBERANCE = new ExuberanceEnchantment(Enchantment.Rarity.UNCOMMON, new Identifier(SpectrumCommon.MOD_ID, "progression/enchantments/exuberance"), EquipmentSlot.MAINHAND); // Drops more XP on kill
@@ -33,7 +33,7 @@ public class SpectrumEnchantments {
 			Registry.register(Registry.ENCHANTMENT, new Identifier(SpectrumCommon.MOD_ID, "pest_control"), PEST_CONTROL);
 		}
 		if(SpectrumCommon.CONFIG.AutoSmeltEnchantmentEnabled) {
-			Registry.register(Registry.ENCHANTMENT, new Identifier(SpectrumCommon.MOD_ID, "autosmelt"), AUTO_SMELT);
+			Registry.register(Registry.ENCHANTMENT, new Identifier(SpectrumCommon.MOD_ID, "autosmelt"), FOUNDRY);
 		}
 		if(SpectrumCommon.CONFIG.InventoryInsertionEnchantmentEnabled) {
 			Registry.register(Registry.ENCHANTMENT, new Identifier(SpectrumCommon.MOD_ID, "inventory_insertion"), INVENTORY_INSERTION);

@@ -26,9 +26,9 @@ public class MixinFarmlandBlock extends Block {
     @Inject(method = {"onLandedUpon(Lnet/minecraft/world/World;Lnet/minecraft/block/BlockState;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/entity/Entity;F)V"},
             at = {@At("HEAD")}, cancellable = true)
     private void onLandedUpon(World world, BlockState state, BlockPos pos, Entity entity, float fallDistance, CallbackInfo info) {
-        super.onLandedUpon(world, state, pos, entity, fallDistance);
+        super.onLandedUpon(world, state, pos, entity, fallDistance); // fall damage
     
-        // Don't cancel fall damage
+        // if carrying puff circlet: no trampling
         if(entity instanceof LivingEntity livingEntity) {
             Optional<TrinketComponent> component = TrinketsApi.getTrinketComponent(livingEntity);
             if (component.isPresent()) {

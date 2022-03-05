@@ -45,7 +45,7 @@ public abstract class BlockMixin {
                 cir.setReturnValue(new ArrayList<>());
             } else {
                 // Foundry enchant: try smelting recipe for each stack
-                if (enchantmentMap.containsKey(SpectrumEnchantments.AUTO_SMELT) && SpectrumEnchantments.AUTO_SMELT.canEntityUse(entity)) {
+                if (enchantmentMap.containsKey(SpectrumEnchantments.FOUNDRY) && SpectrumEnchantments.FOUNDRY.canEntityUse(entity)) {
                     returnStacks = AutoSmeltEnchantment.applyAutoSmelt(world, returnStacks);
                 }
                 // Inventory Insertion enchant? Add it to players inventory if there is room

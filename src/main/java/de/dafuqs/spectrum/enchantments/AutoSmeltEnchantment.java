@@ -1,5 +1,7 @@
 package de.dafuqs.spectrum.enchantments;
 
+import de.dafuqs.spectrum.InventoryHelper;
+import de.dafuqs.spectrum.Support;
 import de.dafuqs.spectrum.registries.SpectrumEnchantments;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentTarget;
@@ -110,7 +112,7 @@ public class AutoSmeltEnchantment extends SpectrumEnchantment {
 			recipeOutputStack.setCount(recipeOutputStack.getCount() * inputItemStack.getCount());
 			return recipeOutputStack;
 		} else {
-			return inputItemStack;
+			return null;
 		}
 	}
 
@@ -119,11 +121,17 @@ public class AutoSmeltEnchantment extends SpectrumEnchantment {
 		List<ItemStack> returnItemStacks = new ArrayList<>();
 
 		for (ItemStack is : originalStacks) {
-			ItemStack s = AutoSmeltEnchantment.getAutoSmeltedItemStack(is, world);
-			while (s.getCount() > 0) {
-				int currentAmount = Math.min(s.getCount(), s.getItem().getMaxCount());
-				returnItemStacks.add(new ItemStack(s.getItem(), currentAmount));
-				s.setCount(s.getCount() - currentAmount);
+			ItemStack smeltedStack = AutoSmeltEnchantment.getAutoSmeltedItemStack(is, world);
+			if(smeltedStack == null) {
+				returnItemStacks.add(is);
+			} else {
+				while (smeltedStack.getCount() > 0) {
+					int currentAmount = Math.min(smeltedStack.getCount(), smeltedStack.getItem().getMaxCount());
+					ItemStack currentStack = smeltedStack.copy();
+					currentStack.setCount(currentAmount);
+					returnItemStacks.add(currentStack);
+					smeltedStack.setCount(smeltedStack.getCount() - currentAmount);
+				}
 			}
 		}
 		return returnItemStacks;

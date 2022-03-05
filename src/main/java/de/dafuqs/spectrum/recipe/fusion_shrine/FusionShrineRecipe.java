@@ -130,15 +130,18 @@ public class FusionShrineRecipe implements Recipe<Inventory>, GatedRecipe {
 	public ItemStack createIcon() {
 		return new ItemStack(SpectrumBlocks.FUSION_SHRINE_BASALT);
 	}
-
+	
+	@Override
 	public Identifier getId() {
 		return this.id;
 	}
-
+	
+	@Override
 	public RecipeSerializer<?> getSerializer() {
 		return SpectrumRecipeTypes.FUSION_SHRINE_RECIPE_SERIALIZER;
 	}
-
+	
+	@Override
 	public RecipeType<?> getType() {
 		return SpectrumRecipeTypes.FUSION_SHRINE;
 	}

@@ -106,7 +106,7 @@ public abstract class ItemEntityMixin {
 			if(crushingInputAmount > 0) {
 				Vec3d position = thisEntity.getPos();
 				
-				ItemStack crushingOutput = recipe.getOutputItemStack();
+				ItemStack crushingOutput = recipe.getOutput();
 				crushingOutput.setCount(crushingOutput.getCount() * crushingInputAmount);
 				
 				// Remove the input amount from the source stack

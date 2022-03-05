@@ -129,15 +129,18 @@ public class EnchantmentUpgradeRecipe implements Recipe<Inventory>, GatedRecipe 
 	public ItemStack createIcon() {
 		return new ItemStack(SpectrumBlocks.ENCHANTER);
 	}
-
+	
+	@Override
 	public Identifier getId() {
 		return this.id;
 	}
-
+	
+	@Override
 	public RecipeSerializer<?> getSerializer() {
 		return SpectrumRecipeTypes.ENCHANTMENT_UPGRADE_RECIPE_SERIALIZER;
 	}
-
+	
+	@Override
 	public RecipeType<?> getType() {
 		return SpectrumRecipeTypes.ENCHANTMENT_UPGRADE;
 	}

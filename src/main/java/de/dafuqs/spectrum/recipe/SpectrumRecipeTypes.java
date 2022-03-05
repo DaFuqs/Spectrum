@@ -9,6 +9,8 @@ import de.dafuqs.spectrum.recipe.enchantment_upgrade.EnchantmentUpgradeRecipe;
 import de.dafuqs.spectrum.recipe.enchantment_upgrade.EnchantmentUpgradeRecipeSerializer;
 import de.dafuqs.spectrum.recipe.fusion_shrine.FusionShrineRecipe;
 import de.dafuqs.spectrum.recipe.fusion_shrine.FusionShrineRecipeSerializer;
+import de.dafuqs.spectrum.recipe.midnight_solution_converting.MidnightSolutionConvertingRecipe;
+import de.dafuqs.spectrum.recipe.midnight_solution_converting.MidnightSolutionConvertingRecipeSerializer;
 import de.dafuqs.spectrum.recipe.pedestal.PedestalCraftingRecipe;
 import de.dafuqs.spectrum.recipe.pedestal.PedestalCraftingRecipeSerializer;
 import de.dafuqs.spectrum.recipe.potion_workshop.PotionWorkshopBrewingRecipe;
@@ -43,6 +45,9 @@ public class SpectrumRecipeTypes {
 	
 	public static RecipeSerializer<PotionWorkshopCraftingRecipe> POTION_WORKSHOP_CRAFTING_RECIPE_SERIALIZER;
 	public static RecipeType<PotionWorkshopCraftingRecipe> POTION_WORKSHOP_CRAFTING;
+	
+	public static RecipeSerializer<MidnightSolutionConvertingRecipe> MIDNIGHT_SOLUTION_CONVERTING_RECIPE_SERIALIZER;
+	public static RecipeType<MidnightSolutionConvertingRecipe> MIDNIGHT_SOLUTION_CONVERTING_RECIPE;
 
 	static <S extends RecipeSerializer<T>, T extends Recipe<?>> S registerSerializer(String id, S serializer) {
 		return Registry.register(Registry.RECIPE_SERIALIZER, new Identifier(SpectrumCommon.MOD_ID, id), serializer);
@@ -93,6 +98,12 @@ public class SpectrumRecipeTypes {
 		POTION_WORKSHOP_CRAFTING = registerRecipeType("potion_workshop_crafting", new RecipeType<PotionWorkshopCraftingRecipe>() {
 			@Override
 			public String toString() {return "spectrum:potion_workshop_crafting";}
+		});
+		
+		MIDNIGHT_SOLUTION_CONVERTING_RECIPE_SERIALIZER = registerSerializer("midnight_solution_converting", new MidnightSolutionConvertingRecipeSerializer(MidnightSolutionConvertingRecipe::new));
+		MIDNIGHT_SOLUTION_CONVERTING_RECIPE = registerRecipeType("midnight_solution_converting", new RecipeType<MidnightSolutionConvertingRecipe>() {
+			@Override
+			public String toString() {return "spectrum:midnight_solution_converting";}
 		});
 
 	}

@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.recipe.enchanter;
 
-import de.dafuqs.spectrum.SpectrumClient;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.Support;
 import de.dafuqs.spectrum.items.ExperienceStorageItem;
@@ -113,15 +112,18 @@ public class EnchanterRecipe implements Recipe<Inventory>, GatedRecipe {
 	public ItemStack createIcon() {
 		return new ItemStack(SpectrumBlocks.ENCHANTER);
 	}
-
+	
+	@Override
 	public Identifier getId() {
 		return this.id;
 	}
-
+	
+	@Override
 	public RecipeSerializer<?> getSerializer() {
 		return SpectrumRecipeTypes.ENCHANTER_RECIPE_SERIALIZER;
 	}
-
+	
+	@Override
 	public RecipeType<?> getType() {
 		return SpectrumRecipeTypes.ENCHANTER;
 	}

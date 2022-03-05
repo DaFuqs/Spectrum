@@ -153,7 +153,8 @@ public class PedestalCraftingRecipe implements Recipe<Inventory>, GatedRecipe {
 	private boolean isStackAtLeast(ItemStack sourceItemStack, Item item, int amount) {
 		return sourceItemStack.getItem().equals(item) && sourceItemStack.getCount() >= amount;
 	}
-
+	
+	@Override
 	public DefaultedList<Ingredient> getIngredients() {
 		return craftingInputs;
 	}
@@ -162,13 +163,7 @@ public class PedestalCraftingRecipe implements Recipe<Inventory>, GatedRecipe {
 	public ItemStack craft(Inventory inv) {
 		return this.output.copy();
 	}
-
-	public DefaultedList<Ingredient> getPreviewInputs() {
-		DefaultedList<Ingredient> defaultedList = DefaultedList.of();
-		defaultedList.addAll(this.craftingInputs);
-		return defaultedList;
-	}
-
+	
 	public PedestalRecipeTier getTier() {
 		return this.tier;
 	}
@@ -272,11 +267,12 @@ public class PedestalCraftingRecipe implements Recipe<Inventory>, GatedRecipe {
 			return canPlayerCraft(playerEntity) && (getUpgradedPedestalVariantForOutput(this.output) != null || pedestalBlockEntity.getHighestAvailableRecipeTierWithStructure().ordinal() >= this.tier.ordinal());
 		}
 	}
-
+	
+	@Override
 	public boolean canPlayerCraft(PlayerEntity playerEntity) {
 		return PedestalRecipeTier.hasUnlockedRequiredTier(playerEntity, this.tier) && hasUnlockedRequiredAdvancements(playerEntity);
 	}
-
+	
 	public boolean hasUnlockedRequiredAdvancements(PlayerEntity playerEntity) {
 		for(Identifier advancementIdentifier : this.requiredAdvancementIdentifiers) {
 			if(!Support.hasAdvancement(playerEntity, advancementIdentifier)) {
@@ -307,6 +303,7 @@ public class PedestalCraftingRecipe implements Recipe<Inventory>, GatedRecipe {
 		return requiredAdvancementIdentifiers;
 	}
 	
+	@Override
 	public String getGroup() {
 		return this.group;
 	}

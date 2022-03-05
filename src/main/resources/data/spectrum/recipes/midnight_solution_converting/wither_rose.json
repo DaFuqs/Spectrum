@@ -1,0 +1,10 @@
+{
+  "type": "spectrum:midnight_solution_converting",
+  "ingredient": {
+    "tag": "minecraft:flowers"
+  },
+  "result" : {
+    "item": "minecraft:wither_rose",
+    "count": 1
+  }
+}

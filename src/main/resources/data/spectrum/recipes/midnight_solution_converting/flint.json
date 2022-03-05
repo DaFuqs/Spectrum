@@ -1,0 +1,10 @@
+{
+  "type": "spectrum:midnight_solution_converting",
+  "ingredient": {
+    "item": "minecraft:gravel"
+  },
+  "result" : {
+    "item": "minecraft:flint",
+    "count": 1
+  }
+}

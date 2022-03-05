@@ -1,0 +1,10 @@
+{
+  "type": "spectrum:midnight_solution_converting",
+  "ingredient": {
+    "item": "minecraft:dirt"
+  },
+  "result" : {
+    "item": "minecraft:soul_soil",
+    "count": 1
+  }
+}

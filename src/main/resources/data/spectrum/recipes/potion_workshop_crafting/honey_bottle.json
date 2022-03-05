@@ -1,0 +1,20 @@
+{
+  "type": "spectrum:potion_workshop_crafting",
+  "base_ingredient": {
+    "item": "minecraft:glass_bottle"
+  },
+  "use_up_base_ingredient": true,
+  "color": 16697227,
+  "ingredient1": {
+    "item": "minecraft:honeycomb"
+  },
+  "ingredient2": {
+    "item": "spectrum:orange_pigment"
+  },
+  "ingredient3": {
+    "item": "spectrum:green_pigment"
+  },
+  "result" : {
+    "item": "minecraft:honey_bottle"
+  }
+}

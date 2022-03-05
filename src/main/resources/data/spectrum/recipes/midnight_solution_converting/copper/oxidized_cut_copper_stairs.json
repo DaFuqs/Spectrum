@@ -1,0 +1,10 @@
+{
+  "type": "spectrum:midnight_solution_converting",
+  "ingredient": {
+    "item": "minecraft:weathered_cut_copper_stairs"
+  },
+  "result" : {
+    "item": "minecraft:oxidized_cut_copper_stairs",
+    "count": 1
+  }
+}

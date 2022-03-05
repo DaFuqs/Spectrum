@@ -1,0 +1,10 @@
+{
+  "type": "spectrum:midnight_solution_converting",
+  "ingredient": {
+    "item": "minecraft:cut_copper_slab"
+  },
+  "result" : {
+    "item": "minecraft:exposed_cut_copper_slab",
+    "count": 1
+  }
+}

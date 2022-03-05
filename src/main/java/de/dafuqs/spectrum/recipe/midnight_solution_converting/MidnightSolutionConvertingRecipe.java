@@ -13,6 +13,7 @@ import net.minecraft.recipe.RecipeType;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,22 +23,15 @@ public class MidnightSolutionConvertingRecipe implements Recipe<Inventory> {
 	protected final Identifier id;
 	protected final Ingredient inputIngredient;
 	protected final ItemStack outputItemStack;
-	
-	// these can be blacklisted in solution logic for better performance
-	public static final List<Item> ALL_OUTPUTS = new ArrayList<>();
 
-	public MidnightSolutionConvertingRecipe(Identifier id, Ingredient inputIngredient, ItemStack outputItemStack) {
+	public MidnightSolutionConvertingRecipe(Identifier id, @NotNull Ingredient inputIngredient, ItemStack outputItemStack) {
 		this.id = id;
 		this.inputIngredient = inputIngredient;
 		this.outputItemStack = outputItemStack;
-		
-		for(ItemStack itemStack : inputIngredient.getMatchingStacks()) {
-			ALL_OUTPUTS.add(itemStack.getItem());
-		}
 	}
 
 	@Override
-	public boolean matches(Inventory inv, World world) {
+	public boolean matches(@NotNull Inventory inv, World world) {
 		return this.inputIngredient.test(inv.getStack(0));
 	}
 

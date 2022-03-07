@@ -1,0 +1,18 @@
+{
+  "type": "spectrum:spirit_instiller",
+  "time": 800,
+  "experience": 4.0,
+  "ingredient1": {
+    "tag": "spectrum:mob_heads"   
+  },
+  "ingredient2": {
+    "item": "minecraft:wheat"
+  },
+  "center_ingredient": {
+    "item": "spectrum:vegetal"
+  },
+  "result" : {
+    "item": "spectrum:creature_spawn"
+  },
+  "required_advancement": "spectrum:__lategame/spectrum_lategame"
+}

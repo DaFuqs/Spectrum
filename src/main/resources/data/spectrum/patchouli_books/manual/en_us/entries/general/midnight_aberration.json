@@ -24,12 +24,12 @@
       "item": "spectrum:midnight_aberration",
       "advancement": "spectrum:midgame/create_midnight_aberration",
       "title": "Midnight Aberration",
-      "text": "$(italic)This abomination of a gemstone radiates an eerie aura."
+      "text": "$(italic)This abomination of a Gemstone radiates an eerie aura."
     },
     {
       "type": "patchouli:text",
       "advancement": "spectrum:midgame/create_midnight_aberration",
-      "text": "While this definitely was not the outcome you craved for it still does hold immense power.$(br2)So much in fact, that if not used quicky it crumbles into dust. $(br)But not without taking the energy out on its surroundings... or more like draining it."
+      "text": "While this definitely was not the outcome you craved for it still does hold immense power.$(br2)So much in fact, that if not used quick it crumbles into dust. $(br)But not without taking the energy out on its surroundings... or more like draining it."
 	}
   ]
 }

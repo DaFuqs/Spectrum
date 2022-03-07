@@ -1,0 +1,18 @@
+{
+  "type": "spectrum:spirit_instiller",
+  "time": 800,
+  "experience": 4.0,
+  "ingredient1": {
+    "tag": "spectrum:spawners"   
+  },
+  "ingredient2": {
+    "tag": "spectrum:mob_heads"
+  },
+  "center_ingredient": {
+    "item": "spectrum:vegetal"
+  },
+  "result" : {
+    "item": "spectrum:spawner"
+  },
+  "required_advancement": "spectrum:__lategame/spectrum_lategame"
+}

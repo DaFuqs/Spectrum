@@ -1,0 +1,18 @@
+{
+  "type": "spectrum:spirit_instiller",
+  "time": 800,
+  "experience": 4.0,
+  "ingredient1": {
+    "tag": "minecraft:sapling"   
+  },
+  "ingredient2": {
+    "item": "spectrum:spectral_shard"
+  },
+  "center_ingredient": {
+    "item": "spectrum:vegetal"
+  },
+  "result" : {
+    "item": "spectrum:ominous_sapling"
+  },
+  "required_advancement": "spectrum:__lategame/spectrum_lategame"
+}

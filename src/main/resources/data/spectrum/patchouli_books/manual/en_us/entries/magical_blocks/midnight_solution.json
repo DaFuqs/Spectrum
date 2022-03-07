@@ -1,0 +1,41 @@
+{
+  "name": "Midnight Solution",
+  "icon": "spectrum:midnight_solution_bucket",
+  "advancement": "spectrum:progression/unlock_midnight_solution",
+  "category": "spectrum:magical_blocks_category",
+    "extra_recipe_mappings": {
+    "spectrum:midnight_solution": 0,
+    "spectrum:midnight_solution_bucket": 0,
+    "spectrum:midnight_chip": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "You first saw this bizarre liquid as a direct result of $(l:general/midnight_aberration)your failed fusion experiment$().$(br)Creatures that touch it seem to get their life drained out of them. Better not get caught in it yourself."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Midnight Chip",
+      "item": "spectrum:midnight_chip",
+      "advancement": "spectrum:midgame/collect_midnight_chip",
+      "text": "Mobs that died in that feisty liquid sometimes drop a small splinter that almost resembles a $(l:general/midnight_aberration)Midnight Aberration$(/l), just way, way smaller. Sharp-Edged and vicious. Almost as if it had been this splinter in their heart from which they finally perished.$(br)They even drop those rarer items as if they were killed by a player."
+    },
+    {
+      "type": "spectrum:potion_workshop_crafting",
+      "title": "Workshop Recipe",
+      "recipe": "spectrum:potion_workshop_crafting/midnight_solution_bucket",
+      "advancement": "spectrum:midgame/collect_midnight_chip",
+      "text": "Using the exact drop that you got by killing creatures with that fluid you can create even more of it. Quite morbid, if you think about it."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Item Conversion",
+      "text": "Throwing some items into the liquid seems to corrupt them up to a point they turn into something else entirely."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Disenchanting",
+      "text": "Even more, if you throw enchanted items into it, they will be stripped of their special abilities. All that's left is the ordinary item and a bunch of experience. "
+    }
+  ]
+}

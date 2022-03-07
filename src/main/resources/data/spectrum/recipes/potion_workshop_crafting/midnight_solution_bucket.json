@@ -1,12 +1,12 @@
 {
   "type": "spectrum:potion_workshop_crafting",
   "base_ingredient": {
-    "item": "spectrum:midnight_aberration"
+    "item": "minecraft:bucket"
   },
   "use_up_base_ingredient": false,
   "color": 526373,
   "ingredient1": {
-    "item": "minecraft:bucket"
+    "item": "spectrum:midnight_chip"
   },
   "ingredient2": {
     "item": "spectrum:quitoxic_powder"
@@ -17,5 +17,5 @@
   "result" : {
     "item": "spectrum:midnight_solution_bucket"
   },
-  "required_advancement": "spectrum:midgame/create_midnight_aberration"
+  "required_advancement": "spectrum:midgame/collect_midnight_chip"
 }

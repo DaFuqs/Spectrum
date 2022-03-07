@@ -1,12 +1,15 @@
 {
   "name": "Spirit Instiller",
   "icon": "spectrum:spirit_instiller",
-  "advancement": "spectrum:midgame/__collect_neolith",
+  "advancement": "spectrum:progression/unlock_spirit_instiller",
   "category": "spectrum:creating_life_category",
+  "extra_recipe_mappings": {
+    "spectrum:spirit_instiller": 0
+  },
     "pages": [
         {
             "type": "patchouli:text",
-            "text": "$(italic)"
+            "text": "Imbue the energies of one item into another, using a compound."
         },
         {
             "type": "spectrum:pedestal_crafting",
@@ -19,12 +22,12 @@
             "name": "Spirit Instiller Structure",
             "multiblock_id": "spectrum:spirit_instiller_structure",
             "enable_visualize": true,
-            "text": "To boost the abilities of the structure you can place upgrades on each of the gem blocks."
+            "text": "To boost the abilities of the structure you can place upgrades on each of the Gem Blocks."
         },
         {
             "type": "patchouli:text",
             "title": "Block Checklist",
-            "text": "$(li)1 Spirit Instiller$(li)4 Item Bowls"
+            "text": "$(li)1 Spirit Instiller$(li)2 Polished Gemstone Blocks$(li)2 Item Bowls$(li)2 Notched Polished Blocks$(li)2 Onyx Chiseled Blocks$(li)6 Polished Pillars$(li)17 Polished Slabs$(li)116 Polished Blocks$(li)2 Gemstone Chimes"
         }
     ]
 }

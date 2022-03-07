@@ -11,5 +11,50 @@
       "type": "patchouli:text",
       "text": "TODO"
     }
+    {
+      "type": "patchouli:spotlight",
+      "title": "Harvesting Spawners",
+      "item": "spectrum:resonant_pickaxe",
+      "text": "The $(l:enchanting/resonance)Resonance$(/l) enchantment enables you to gather Spawners and actually get them to drop to be collected by you. Using the $(l:creating_life/spirit_instiller)Spirit Instiller$(/l) you can change that spawners properties to your liking."
+    },
+    {
+      "type": "spectrum:spirit_instiller_crafting",
+      "title": "Changing Creature",
+      "recipe": "spectrum:spirit_instiller/spawner_change",
+      "text": "Using a similar technique to $(l:creating_life/creature_spawn)creating Creature Spawns($/l) you can change the Spawners creature association."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:spectrum:progression/enchantments/clovers_favor",
+      "title": "Clovers' Favor",
+      "item": "spectrum:spawner{Enchantments: [{id: \"spectrum:clovers_favor\", lvl: 1s}]}",
+      "text": "Increases the amount of mobs that is spawned in one cycle."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:spectrum:progression/enchantments/vanilla_projectile",
+      "title": "Quick Charge",
+      "item": "spectrum:spawner{Enchantments: [{id: \"minecraft:quick_charge\", lvl: 1s}]}",
+      "text": "Decreases the Delay between Spawns, making the Spawner spew out new creatures even quicker."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:spectrum:progression/enchantments/pest_control",
+      "title": "Pest Control",
+      "item": "spectrum:spawner{Enchantments: [{id: \"spectrum:pest_control\", lvl: 1s}]}",
+      "text": "Normally, Spawners would suddenly stop working if they notice a lot of hostile auras around them. Almost like if waiting for you to do the next move.$(br)Enchanted with $(l:enchantments/pest_control)Pest Control$(/l) it will function much more relentless, spewing out wave after wave of enemies."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:spectrum:progression/enchantments/clovers_favor",
+      "title": "Resonance",
+      "item": "spectrum:spawner{Enchantments: [{id: \"spectrum:resonance\", lvl: 1s}]}",
+      "text": "Makes the Spawner work even if no-one is close-by."
+    }
   ]
 }
+
+- SpawnCount: Clovers' Favor
+- MinSpawnDelay+MaxSpawnDelay: Quick Charge
+- Spawn even if mobs near: Pest Control
+- RequiredPlayerRange: Resonance

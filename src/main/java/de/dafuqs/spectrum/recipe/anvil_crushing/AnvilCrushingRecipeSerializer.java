@@ -64,8 +64,8 @@ public class AnvilCrushingRecipeSerializer implements RecipeSerializer<AnvilCrus
 	}
 
 	
-	public interface RecipeFactory<T extends AnvilCrushingRecipe> {
-		T create(Identifier id, Ingredient inputIngredient, ItemStack outputItemStack, float crushedItemsPerPointOfDamage, float experience, Identifier particleEffectIdentifier, int particleCount, Identifier soundEventIdentifier);
+	public interface RecipeFactory<AnvilCrushingRecipe> {
+		AnvilCrushingRecipe create(Identifier id, Ingredient inputIngredient, ItemStack outputItemStack, float crushedItemsPerPointOfDamage, float experience, Identifier particleEffectIdentifier, int particleCount, Identifier soundEventIdentifier);
 	}
 
 }

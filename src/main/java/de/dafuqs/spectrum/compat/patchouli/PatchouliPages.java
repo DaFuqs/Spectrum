@@ -13,6 +13,8 @@ public class PatchouliPages {
 		ClientBookRegistry.INSTANCE.pageTypes.put(new Identifier(SpectrumCommon.MOD_ID, "enchanter_upgrading"), PageEnchantmentUpgradeRecipe.class);
 		ClientBookRegistry.INSTANCE.pageTypes.put(new Identifier(SpectrumCommon.MOD_ID, "potion_workshop_brewing"), PagePotionWorkshopBrewing.class);
 		ClientBookRegistry.INSTANCE.pageTypes.put(new Identifier(SpectrumCommon.MOD_ID, "potion_workshop_crafting"), PagePotionWorkshopCrafting.class);
+		ClientBookRegistry.INSTANCE.pageTypes.put(new Identifier(SpectrumCommon.MOD_ID, "spirit_instiller_crafting"), PageSpiritInstillerCrafting.class);
+		ClientBookRegistry.INSTANCE.pageTypes.put(new Identifier(SpectrumCommon.MOD_ID, "midnight_solution_converting"), PageMidnightSolutionCrafting.class);
 		
 		ClientBookRegistry.INSTANCE.pageTypes.put(new Identifier(SpectrumCommon.MOD_ID, "hint"), PageHint.class);
 	}

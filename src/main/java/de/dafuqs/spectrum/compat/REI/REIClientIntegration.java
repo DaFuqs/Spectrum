@@ -39,6 +39,8 @@ public class REIClientIntegration implements REIClientPlugin {
 		registry.add(new EnchantmentUpgradeCategory());
 		registry.add(new PotionWorkshopBrewingCategory());
 		registry.add(new PotionWorkshopCraftingCategory());
+		registry.add(new SpiritInstillerCategory());
+		registry.add(new MidnightSolutionConvertingCategory());
 		
 		registry.addWorkstations(BuiltinPlugin.CRAFTING, EntryStacks.of(SpectrumItems.CRAFTING_TABLET));
 		
@@ -66,6 +68,9 @@ public class REIClientIntegration implements REIClientPlugin {
 		registry.addWorkstations(BuiltinPlugin.BREWING, EntryStacks.of(SpectrumBlocks.POTION_WORKSHOP));
 		registry.addWorkstations(SpectrumPlugins.POTION_WORKSHOP_BREWING, EntryStacks.of(SpectrumBlocks.POTION_WORKSHOP));
 		registry.addWorkstations(SpectrumPlugins.POTION_WORKSHOP_CRAFTING, EntryStacks.of(SpectrumBlocks.POTION_WORKSHOP));
+		
+		registry.addWorkstations(SpectrumPlugins.MIDNIGHT_SOLUTION_CONVERTING, EntryStacks.of(SpectrumItems.MIDNIGHT_SOLUTION_BUCKET));
+		registry.addWorkstations(SpectrumPlugins.SPIRIT_INSTILLER, EntryStacks.of(SpectrumBlocks.SPIRIT_INSTILLER));
 
 		// For anvil crushing and others are in-world recipes there is no gui to fill
 		// therefore the plus button is obsolete
@@ -74,6 +79,8 @@ public class REIClientIntegration implements REIClientPlugin {
 		registry.removePlusButton(SpectrumPlugins.NATURES_STAFF);
 		registry.removePlusButton(SpectrumPlugins.ENCHANTER);
 		registry.removePlusButton(SpectrumPlugins.ENCHANTMENT_UPGRADE);
+		registry.removePlusButton(SpectrumPlugins.MIDNIGHT_SOLUTION_CONVERTING);
+		registry.removePlusButton(SpectrumPlugins.SPIRIT_INSTILLER);
 	}
 
 	@Override

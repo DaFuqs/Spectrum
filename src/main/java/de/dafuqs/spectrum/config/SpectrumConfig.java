@@ -74,6 +74,9 @@ may lack the feedback they need that what they are doing is correct
 	public float FailingDecayTickRate = 1.0F;
 	public float RuinDecayTickRate = 1.0F;
 	public float TerrorDecayTickRate = 1.0F;
+	
+	@Comment("The audio volume for Spectrums crafting blocks. Set to 0.0 to turn those sounds off, completely.")
+	public float BlockSoundVolume = 1.0F;
 
 	@Comment("""
 Enable or disable specific enchantments. Resonance and Voiding can not be disabled.

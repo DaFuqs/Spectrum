@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.networking;
 
+import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.Support;
 import de.dafuqs.spectrum.blocks.particle_spawner.ParticleSpawnerBlockEntity;
 import de.dafuqs.spectrum.blocks.pedestal.PedestalBlock;
@@ -8,7 +9,7 @@ import de.dafuqs.spectrum.entity.entity.ShootingStarEntity;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.particle.effect.*;
 import de.dafuqs.spectrum.registries.color.ColorRegistry;
-import de.dafuqs.spectrum.sound.BlockBoundSoundInstance;
+import de.dafuqs.spectrum.sound.CraftingBlockSoundInstance;
 import de.dafuqs.spectrum.sound.TakeOffBeltSoundInstance;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -246,21 +247,23 @@ public class SpectrumS2CPacketReceiver {
 		});
 		
 		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.PLAY_BLOCK_BOUND_SOUND_INSTANCE, (client, handler, buf, responseSender) -> {
-			Identifier soundEffectIdentifier = buf.readIdentifier();
-			Identifier blockIdentifier = buf.readIdentifier();
-			BlockPos blockPos = buf.readBlockPos();
-			int maxDurationTicks = buf.readInt();
-
-			client.execute(() -> {
-				if(soundEffectIdentifier.getPath().equals("stop")) {
-					BlockBoundSoundInstance.stopPlayingOnPos(blockPos);
-				} else {
-					SoundEvent soundEvent = Registry.SOUND_EVENT.get(soundEffectIdentifier);
-					Block block = Registry.BLOCK.get(blockIdentifier);
-					
-					BlockBoundSoundInstance.startSoundInstance(soundEvent, blockPos, block, maxDurationTicks);
-				}
-			});
+			if(SpectrumCommon.CONFIG.BlockSoundVolume > 0) {
+				Identifier soundEffectIdentifier = buf.readIdentifier();
+				Identifier blockIdentifier = buf.readIdentifier();
+				BlockPos blockPos = buf.readBlockPos();
+				int maxDurationTicks = buf.readInt();
+				
+				client.execute(() -> {
+					if (soundEffectIdentifier.getPath().equals("stop")) {
+						CraftingBlockSoundInstance.stopPlayingOnPos(blockPos);
+					} else {
+						SoundEvent soundEvent = Registry.SOUND_EVENT.get(soundEffectIdentifier);
+						Block block = Registry.BLOCK.get(blockIdentifier);
+						
+						CraftingBlockSoundInstance.startSoundInstance(soundEvent, blockPos, block, maxDurationTicks);
+					}
+				});
+			}
 		});
 		
 		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.PLAY_TAKE_OFF_BELT_SOUND_INSTANCE, (client, handler, buf, responseSender) -> {

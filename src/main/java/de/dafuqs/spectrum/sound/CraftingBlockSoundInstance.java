@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.sound;
 
 import de.dafuqs.spectrum.SpectrumClient;
+import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.fusion_shrine.FusionShrineBlock;
 import de.dafuqs.spectrum.blocks.fusion_shrine.FusionShrineBlockEntity;
 import de.dafuqs.spectrum.blocks.pedestal.PedestalBlock;
@@ -24,9 +25,9 @@ import java.util.List;
 import java.util.Objects;
 
 @Environment(EnvType.CLIENT)
-public class BlockBoundSoundInstance extends AbstractSoundInstance implements TickableSoundInstance {
+public class CraftingBlockSoundInstance extends AbstractSoundInstance implements TickableSoundInstance {
 	
-	private static List<BlockBoundSoundInstance> playingSoundInstances = new ArrayList<>();
+	private static List<CraftingBlockSoundInstance> playingSoundInstances = new ArrayList<>();
 	
 	RegistryKey<World> worldKey;
 	BlockPos sourceBlockPos;
@@ -37,7 +38,7 @@ public class BlockBoundSoundInstance extends AbstractSoundInstance implements Ti
 	private float distance = 0.0F;
 	private boolean done;
 
-	protected BlockBoundSoundInstance(SoundEvent soundEvent, RegistryKey<World> worldKey, BlockPos sourceBlockPos, Block sourceBlock, int maxDurationTicks) {
+	protected CraftingBlockSoundInstance(SoundEvent soundEvent, RegistryKey<World> worldKey, BlockPos sourceBlockPos, Block sourceBlock, int maxDurationTicks) {
 		super(soundEvent, SoundCategory.BLOCKS);
 		
 		this.worldKey = worldKey;
@@ -47,7 +48,7 @@ public class BlockBoundSoundInstance extends AbstractSoundInstance implements Ti
 		
 		this.repeat = true;
 		this.repeatDelay = 0;
-		this.volume = 1.0F;
+		this.volume = SpectrumCommon.CONFIG.BlockSoundVolume;
 	}
 
 	@Override
@@ -80,7 +81,7 @@ public class BlockBoundSoundInstance extends AbstractSoundInstance implements Ti
 	public static void startSoundInstance(SoundEvent soundEvent, BlockPos sourceBlockPos, Block sourceBlock, int maxDurationTicks) {
 		stopPlayingOnPos(sourceBlockPos);
 		
-		BlockBoundSoundInstance newInstance = new BlockBoundSoundInstance(soundEvent, MinecraftClient.getInstance().world.getRegistryKey(), sourceBlockPos, sourceBlock, maxDurationTicks);
+		CraftingBlockSoundInstance newInstance = new CraftingBlockSoundInstance(soundEvent, MinecraftClient.getInstance().world.getRegistryKey(), sourceBlockPos, sourceBlock, maxDurationTicks);
 		playingSoundInstances.add(newInstance);
 		SpectrumClient.minecraftClient.getSoundManager().play(newInstance);
 	}
@@ -107,8 +108,8 @@ public class BlockBoundSoundInstance extends AbstractSoundInstance implements Ti
 	
 	// if there is already a sound instance playing at given pos: cancel it
 	public static void stopPlayingOnPos(BlockPos blockPos) {
-		List<BlockBoundSoundInstance> newInstances = new ArrayList<>();
-		for(BlockBoundSoundInstance soundInstance : playingSoundInstances) {
+		List<CraftingBlockSoundInstance> newInstances = new ArrayList<>();
+		for(CraftingBlockSoundInstance soundInstance : playingSoundInstances) {
 			if(soundInstance.sourceBlockPos.equals(blockPos)) {
 				soundInstance.setDone();
 			} else {

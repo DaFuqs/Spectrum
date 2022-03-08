@@ -39,8 +39,8 @@ public class REIClientIntegration implements REIClientPlugin {
 		registry.add(new EnchantmentUpgradeCategory());
 		registry.add(new PotionWorkshopBrewingCategory());
 		registry.add(new PotionWorkshopCraftingCategory());
-		registry.add(new SpiritInstillerCategory());
-		registry.add(new MidnightSolutionConvertingCategory());
+		//registry.add(new SpiritInstillerCategory());
+		//registry.add(new MidnightSolutionConvertingCategory());
 		
 		registry.addWorkstations(BuiltinPlugin.CRAFTING, EntryStacks.of(SpectrumItems.CRAFTING_TABLET));
 		

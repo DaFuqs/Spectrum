@@ -8,9 +8,10 @@
   },
   "pages": [
     {
-      "type": "patchouli:text",
-      "text": "TODO"
-    }
+      "type": "spectrum:midnight_solution_converting",
+      "recipe": "spectrum:midnight_solution_converting/blackstone",
+      "text": "TODO sd fasdfds fsdf dsfsd fadsfds fdsaf dsfdsfdasf dsfasdf f sddf asfd s"
+    },
     {
       "type": "patchouli:spotlight",
       "title": "Harvesting Spawners",
@@ -21,7 +22,7 @@
       "type": "spectrum:spirit_instiller_crafting",
       "title": "Changing Creature",
       "recipe": "spectrum:spirit_instiller/spawner_change",
-      "text": "Using a similar technique to $(l:creating_life/creature_spawn)creating Creature Spawns($/l) you can change the Spawners creature association."
+      "text": "Using a similar technique to $(l:creating_life/creature_spawn)creating Creature Spawns$(/l) you can change the Spawners creature association."
     },
     {
       "type": "patchouli:spotlight",
@@ -53,8 +54,3 @@
     }
   ]
 }
-
-- SpawnCount: Clovers' Favor
-- MinSpawnDelay+MaxSpawnDelay: Quick Charge
-- Spawn even if mobs near: Pest Control
-- RequiredPlayerRange: Resonance

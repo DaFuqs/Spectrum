@@ -16,7 +16,7 @@
       "type": "spectrum:spirit_instiller_crafting",
       "title": "Spirit Inst. Recipe",
       "recipe": "spectrum:spirit_instiller/creature_spawn",
-      "text": "You need a $(l:creating_life/mob_heads)Mob Head$(/l), that mobs most beloved item and $(creating_life/fading#vegetal)Vegetal$(/l) as a bonding agent."
+      "text": "You need a $(l:creating_life/mob_heads)Mob Head$(/l), that mobs most beloved item and $(l:creating_life/fading#vegetal)Vegetal$(/l) as a bonding agent."
     },
     {
       "type": "patchouli:text",
@@ -26,7 +26,7 @@
     {
       "type": "patchouli:text",
       "title": "Concealing",
-      "text": "Tip: The Use of $(creating_life/failing#neolith)Neolith$(/l) instead of Vegetal seems to completely overpower the energies of that Spawns Creature, making the content of the resulting Spawn unrecognizable, until hatched."
+      "text": "Tip: The Use of $(l:creating_life/failing#neolith)Neolith$(/l) instead of Vegetal seems to completely overpower the energies of that Spawns Creature, making the content of the resulting Spawn unrecognizable, until hatched."
     }
   ]
 }

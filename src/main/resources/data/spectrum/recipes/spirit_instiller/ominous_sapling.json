@@ -3,7 +3,7 @@
   "time": 800,
   "experience": 4.0,
   "ingredient1": {
-    "tag": "minecraft:sapling"   
+    "tag": "minecraft:saplings"
   },
   "ingredient2": {
     "item": "spectrum:spectral_shard"

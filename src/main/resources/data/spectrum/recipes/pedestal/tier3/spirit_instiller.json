@@ -1,0 +1,32 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 1200,
+  "tier": "advanced",
+  "cyan": 0,
+  "magenta": 0,
+  "yellow": 0,
+  "white": 0,
+  "black": 1,
+  "experience": 2.0,
+  "pattern": [
+    "CCC",
+    " B ",
+    "AAA"
+  ],
+  "key": {
+    "B": {
+      "item": "spectrum:polished_basalt"
+    },
+    "C": {
+      "item": "spectrum:polished_calcite"
+    },
+    "A": {
+      "item": "spectrum:azurite_block"
+    }
+  },
+  "result" : {
+    "item": "spectrum:spirit_instiller",
+    "count": 1
+  },
+  "required_advancements": ["spectrum:progression/unlock_spirit_instiller"]
+}

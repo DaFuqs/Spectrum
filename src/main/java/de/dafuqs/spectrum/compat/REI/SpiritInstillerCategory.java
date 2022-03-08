@@ -26,7 +26,7 @@ public class SpiritInstillerCategory implements DisplayCategory<SpiritInstillerR
 	private static final EntryIngredient ITEM_BOWL_CALCITE = EntryIngredients.of(new ItemStack(SpectrumBlocks.ITEM_BOWL_CALCITE));
 
 	@Override
-	public CategoryIdentifier getCategoryIdentifier() {
+	public CategoryIdentifier<SpiritInstillerRecipeDisplay> getCategoryIdentifier() {
 		return SpectrumPlugins.SPIRIT_INSTILLER;
 	}
 

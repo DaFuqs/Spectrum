@@ -1057,6 +1057,7 @@
   "item.spectrum.neolith": "Neolith",
   "item.spectrum.bedrock_dust": "Bedrock Dust",
   "item.spectrum.midnight_aberration": "Midnight Aberration",
+  "item.spectrum.midnight_chip": "Midnight Chip",
 
   "trinkets.slot.chest.pin": "Pin",
   "trinkets.slot.head.crown": "Crown",
@@ -1341,6 +1342,8 @@
   "advancements.spectrum.enchant_seven_league_boots.description": "Enchant your Seven League Boots with Power to become even Quicker",
   "advancements.spectrum.collect_moonstone_chiseled_blocks.title": "Hostile Paradise Below",
   "advancements.spectrum.collect_moonstone_chiseled_blocks.description": "Pick up Moonstone Chiseled Blocks from a Structure Deeper Down to expand your own Pedestals Structure",
+  "advancements.spectrum.build_spirit_instiller_structure.title": "The Will of the Wisps",
+  "advancements.spectrum.build_spirit_instiller_structure.description": "- not yet available -",
 
   "______name_changes_for_vanilla_blocks" : "Changes:",
   "block.minecraft.polished_basalt": "Basalt Pillar",

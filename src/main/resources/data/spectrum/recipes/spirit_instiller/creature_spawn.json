@@ -13,6 +13,5 @@
   },
   "result" : {
     "item": "spectrum:creature_spawn"
-  },
-  "required_advancement": "spectrum:__lategame/spectrum_lategame"
+  }
 }

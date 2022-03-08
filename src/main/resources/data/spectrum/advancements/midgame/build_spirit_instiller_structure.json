@@ -1,0 +1,27 @@
+{
+  "parent": "spectrum:midgame/collect_midnight_chip",
+  "display": {
+    "icon": {
+      "item": "spectrum:spirit_instiller"
+    },
+    "title": {
+      "translate": "advancements.spectrum.build_spirit_instiller_structure.title"
+    },                                          
+    "description": {                            
+      "translate": "advancements.spectrum.build_spirit_instiller_structure.description"
+    }
+  },
+  "criteria": {
+    "built_structure": {
+      "trigger": "spectrum:completed_multiblock",
+      "conditions": { "multiblock_identifier": "spectrum:enchanter_structure" }
+    },
+    "gotten_previous": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:midgame/collect_midnight_chip" }
+    }
+  },
+  "rewards": {
+    "experience": 50
+  }
+}

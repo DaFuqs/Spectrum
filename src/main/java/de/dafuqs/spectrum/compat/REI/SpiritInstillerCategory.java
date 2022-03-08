@@ -42,7 +42,7 @@ public class SpiritInstillerCategory implements DisplayCategory<SpiritInstillerR
 
 	@Override
 	public List<Widget> setupDisplay(@NotNull SpiritInstillerRecipeDisplay display, @NotNull Rectangle bounds) {
-		Point startPoint = new Point(bounds.getCenterX() - 58, bounds.getCenterY() - 43);
+		Point startPoint = new Point(bounds.getCenterX() - 58, bounds.getCenterY() - 23);
 		List<Widget> widgets = Lists.newArrayList();
 
 		widgets.add(Widgets.createRecipeBase(bounds));
@@ -56,18 +56,18 @@ public class SpiritInstillerCategory implements DisplayCategory<SpiritInstillerR
 			// input slots
 			int ingredientSize  = display.craftingInputs.size();
 			int startX = Math.max(0, 10 - ingredientSize * 10);
-			widgets.add(Widgets.createSlot(new Point(startPoint.x + startX + 20, startPoint.y + 9)).markInput().entries(display.craftingInputs.get(0)));
-			widgets.add(Widgets.createSlot(new Point(startPoint.x + startX + 60, startPoint.y + 9)).markInput().entries(display.craftingInputs.get(1)));
-			widgets.add(Widgets.createSlot(new Point(startPoint.x + startX + 40, startPoint.y + 9)).markInput().entries(display.craftingInputs.get(2)));
+			widgets.add(Widgets.createSlot(new Point(startPoint.x + startX, startPoint.y)).markInput().entries(display.craftingInputs.get(0)));
+			widgets.add(Widgets.createSlot(new Point(startPoint.x + startX + 40, startPoint.y)).markInput().entries(display.craftingInputs.get(1)));
+			widgets.add(Widgets.createSlot(new Point(startPoint.x + startX + 20, startPoint.y)).markInput().entries(display.craftingInputs.get(2)));
 			
-			widgets.add(Widgets.createSlot(new Point(startPoint.x + 20, startPoint.y + 35)).entries(ITEM_BOWL_CALCITE).disableBackground());
-			widgets.add(Widgets.createSlot(new Point(startPoint.x + 40, startPoint.y + 35)).entries(SPIRIT_INSTILLER).disableBackground());
-			widgets.add(Widgets.createSlot(new Point(startPoint.x + 60, startPoint.y + 35)).entries(ITEM_BOWL_CALCITE).disableBackground());
+			widgets.add(Widgets.createSlot(new Point(startPoint.x, startPoint.y + 17)).entries(ITEM_BOWL_CALCITE).disableBackground());
+			widgets.add(Widgets.createSlot(new Point(startPoint.x + 20, startPoint.y + 17)).entries(SPIRIT_INSTILLER).disableBackground());
+			widgets.add(Widgets.createSlot(new Point(startPoint.x + 40, startPoint.y + 17)).entries(ITEM_BOWL_CALCITE).disableBackground());
 			
 			// output arrow and slot
-			widgets.add(Widgets.createArrow(new Point(startPoint.x + 60, startPoint.y + 35)));
-			widgets.add(Widgets.createResultSlotBackground(new Point(startPoint.x + 95, startPoint.y + 35)));
-			widgets.add(Widgets.createSlot(new Point(startPoint.x + 95, startPoint.y + 35)).markOutput().disableBackground().entries(output.get(0)));
+			widgets.add(Widgets.createArrow(new Point(startPoint.x + 60, startPoint.y + 9)));
+			widgets.add(Widgets.createResultSlotBackground(new Point(startPoint.x + 95, startPoint.y + 9)));
+			widgets.add(Widgets.createSlot(new Point(startPoint.x + 95, startPoint.y + 9)).markOutput().disableBackground().entries(output.get(0)));
 
 			// description text
 			// special handling for "1 second". Looks nicer
@@ -77,14 +77,14 @@ public class SpiritInstillerCategory implements DisplayCategory<SpiritInstillerR
 			} else {
 				text = new TranslatableText("container.spectrum.rei.pedestal_crafting.crafting_time_and_xp", (display.craftingTime / 20), display.experience);
 			}
-			widgets.add(Widgets.createLabel(new Point(startPoint.x - 10, startPoint.y + 75), text).leftAligned().color(0x3f3f3f).noShadow());
+			widgets.add(Widgets.createLabel(new Point(startPoint.x - 10, startPoint.y + 39), text).leftAligned().color(0x3f3f3f).noShadow());
 		}
 		return widgets;
 	}
 
 	@Override
 	public int getDisplayHeight() {
-		return 100;
+		return 60;
 	}
 
 }

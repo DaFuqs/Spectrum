@@ -60,9 +60,9 @@ public class SpiritInstillerCategory implements DisplayCategory<SpiritInstillerR
 			widgets.add(Widgets.createSlot(new Point(startPoint.x + startX + 60, startPoint.y + 9)).markInput().entries(display.craftingInputs.get(1)));
 			widgets.add(Widgets.createSlot(new Point(startPoint.x + startX + 40, startPoint.y + 9)).markInput().entries(display.craftingInputs.get(2)));
 			
-			widgets.add(Widgets.createSlot(new Point(startPoint.x + 20, startPoint.y + 35)).entries(SPIRIT_INSTILLER).disableBackground());
+			widgets.add(Widgets.createSlot(new Point(startPoint.x + 20, startPoint.y + 35)).entries(ITEM_BOWL_CALCITE).disableBackground());
+			widgets.add(Widgets.createSlot(new Point(startPoint.x + 40, startPoint.y + 35)).entries(SPIRIT_INSTILLER).disableBackground());
 			widgets.add(Widgets.createSlot(new Point(startPoint.x + 60, startPoint.y + 35)).entries(ITEM_BOWL_CALCITE).disableBackground());
-			widgets.add(Widgets.createSlot(new Point(startPoint.x + 40, startPoint.y + 35)).entries(ITEM_BOWL_CALCITE).disableBackground());
 			
 			// output arrow and slot
 			widgets.add(Widgets.createArrow(new Point(startPoint.x + 60, startPoint.y + 35)));

@@ -4,7 +4,6 @@
   "advancement": "spectrum:progression/unlock_midnight_solution",
   "category": "spectrum:magical_blocks_category",
     "extra_recipe_mappings": {
-    "spectrum:midnight_solution": 0,
     "spectrum:midnight_solution_bucket": 0,
     "spectrum:midnight_chip": 0
   },

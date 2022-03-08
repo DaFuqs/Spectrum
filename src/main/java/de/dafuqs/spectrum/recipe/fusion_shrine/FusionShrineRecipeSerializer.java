@@ -3,6 +3,8 @@ package de.dafuqs.spectrum.recipe.fusion_shrine;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.blocks.fusion_shrine.FusionShrineBlock;
+import de.dafuqs.spectrum.blocks.potion_workshop.PotionWorkshopBlock;
 import de.dafuqs.spectrum.recipe.RecipeUtils;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.Fluids;
@@ -65,9 +67,10 @@ public class FusionShrineRecipeSerializer implements RecipeSerializer<FusionShri
 		if(JsonHelper.hasString(jsonObject, "required_advancement")) {
 			requiredAdvancementIdentifier = Identifier.tryParse(JsonHelper.getString(jsonObject, "required_advancement"));
 		} else {
-			SpectrumCommon.log(Level.WARN, "Fusion Shrine Recipe " + identifier + " has no unlock advancement set. Will be set to impossible");
-			requiredAdvancementIdentifier = new Identifier(SpectrumCommon.MOD_ID, "impossible");
+			// No unlock advancement set. Will be set to the unlock advancement of the block itself
+			requiredAdvancementIdentifier = FusionShrineBlock.UNLOCK_IDENTIFIER;
 		}
+		
 		List<FusionShrineRecipeWorldCondition> worldConditions = new ArrayList<>();
 		if(JsonHelper.hasArray(jsonObject, "world_conditions")) {
 			JsonArray conditionsArray = JsonHelper.getArray(jsonObject, "world_conditions");

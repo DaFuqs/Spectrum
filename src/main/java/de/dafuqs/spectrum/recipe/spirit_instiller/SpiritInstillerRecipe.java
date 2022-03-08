@@ -19,15 +19,20 @@ public class SpiritInstillerRecipe implements Recipe<Inventory> {
 	protected final Ingredient inputIngredient2;
 	protected final Ingredient centerIngredient;
 	protected final ItemStack outputItemStack;
+	
+	protected final int craftingTime;
 	protected final float experience;
+	protected final Identifier requiredAdvancementIdentifier;
 
-	public SpiritInstillerRecipe(Identifier id, Ingredient inputIngredient1, Ingredient inputIngredient2, Ingredient centerIngredient, ItemStack outputItemStack, float experience) {
+	public SpiritInstillerRecipe(Identifier id, Ingredient inputIngredient1, Ingredient inputIngredient2, Ingredient centerIngredient, ItemStack outputItemStack, int craftingTime, float experience, Identifier requiredAdvancementIdentifier) {
 		this.id = id;
 		this.inputIngredient1 = inputIngredient1;
 		this.inputIngredient2 = inputIngredient2;
 		this.centerIngredient = centerIngredient;
 		this.outputItemStack = outputItemStack;
+		this.craftingTime = craftingTime;
 		this.experience = experience;
+		this.requiredAdvancementIdentifier = requiredAdvancementIdentifier;
 	}
 	
 	@Override
@@ -95,6 +100,14 @@ public class SpiritInstillerRecipe implements Recipe<Inventory> {
 	
 	public float getExperience() {
 		return experience;
+	}
+	
+	public int getCraftingTime() {
+		return craftingTime;
+	}
+	
+	public Identifier getRequiredAdvancementIdentifier() {
+		return requiredAdvancementIdentifier;
 	}
 	
 }

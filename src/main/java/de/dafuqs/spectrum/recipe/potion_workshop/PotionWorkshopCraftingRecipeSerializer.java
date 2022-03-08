@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.recipe.potion_workshop;
 
 import com.google.gson.JsonObject;
 import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.blocks.potion_workshop.PotionWorkshopBlock;
 import de.dafuqs.spectrum.recipe.RecipeUtils;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
@@ -48,7 +49,7 @@ public class PotionWorkshopCraftingRecipeSerializer implements RecipeSerializer<
 			requiredAdvancementIdentifier = Identifier.tryParse(JsonHelper.getString(jsonObject, "required_advancement"));
 		} else {
 			// Potion Workshop Recipe has no unlock advancement set. Will be set to the unlock advancement of the Potion Workshop itself
-			requiredAdvancementIdentifier = new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_potion_workshop");
+			requiredAdvancementIdentifier = PotionWorkshopBlock.UNLOCK_IDENTIFIER;
 		}
 
 		return this.recipeFactory.create(identifier, group, baseIngredient, consumeBaseIngredient, requiredExperience, ingredient1, ingredient2, ingredient3, output, craftingTime, color, requiredAdvancementIdentifier);

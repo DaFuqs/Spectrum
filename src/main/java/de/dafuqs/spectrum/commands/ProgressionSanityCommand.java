@@ -18,6 +18,7 @@ import de.dafuqs.spectrum.recipe.fusion_shrine.FusionShrineRecipe;
 import de.dafuqs.spectrum.recipe.pedestal.PedestalCraftingRecipe;
 import de.dafuqs.spectrum.recipe.potion_workshop.PotionWorkshopBrewingRecipe;
 import de.dafuqs.spectrum.recipe.potion_workshop.PotionWorkshopCraftingRecipe;
+import de.dafuqs.spectrum.recipe.spirit_instiller.SpiritInstillerRecipe;
 import de.dafuqs.spectrum.registries.SpectrumBlockTags;
 import de.dafuqs.spectrum.registries.color.ColorRegistry;
 import net.minecraft.advancement.Advancement;
@@ -132,48 +133,55 @@ public class ProgressionSanityCommand {
 		}
 		
 		// Impossible to unlock pedestal recipes
-		for(PedestalCraftingRecipe pedestalCraftingRecipe : SpectrumCommon.minecraftServer.getRecipeManager().listAllOfType(SpectrumRecipeTypes.PEDESTAL)) {
-			List<Identifier> advancementIdentifiers = pedestalCraftingRecipe.getRequiredAdvancementIdentifiers();
+		for(PedestalCraftingRecipe recipe : SpectrumCommon.minecraftServer.getRecipeManager().listAllOfType(SpectrumRecipeTypes.PEDESTAL)) {
+			List<Identifier> advancementIdentifiers = recipe.getRequiredAdvancementIdentifiers();
 			if(advancementIdentifiers == null || advancementIdentifiers.isEmpty()) {
-				SpectrumCommon.log(Level.WARN, "[SANITY: Pedestal Recipe Unlocks] Pedestal recipe '" + pedestalCraftingRecipe.getId() + "' has no required advancements set!");
+				SpectrumCommon.log(Level.WARN, "[SANITY: Pedestal Recipe Unlocks] Pedestal recipe '" + recipe.getId() + "' has no required advancements set!");
 			} else {
 				for (Identifier advancementIdentifier : advancementIdentifiers) {
 					if (!doesAdvancementExist(advancementIdentifier)) {
-						SpectrumCommon.log(Level.WARN, "[SANITY: Pedestal Recipe Unlocks] Advancement '" + advancementIdentifier + "' in '" + pedestalCraftingRecipe.getId() + "' does not exist");
+						SpectrumCommon.log(Level.WARN, "[SANITY: Pedestal Recipe Unlocks] Advancement '" + advancementIdentifier + "' in '" + recipe.getId() + "' does not exist");
 					}
 				}
 			}
 		}
 
 		// Impossible to unlock fusion shrine recipes
-		for(FusionShrineRecipe fusionShrineRecipe : SpectrumCommon.minecraftServer.getRecipeManager().listAllOfType(SpectrumRecipeTypes.FUSION_SHRINE)) {
-			if(!doesAdvancementExist(fusionShrineRecipe.getRequiredAdvancementIdentifier())) {
-				SpectrumCommon.log(Level.WARN, "[SANITY: Fusion Shrine Recipe Unlocks] Advancement '" + fusionShrineRecipe.getRequiredAdvancementIdentifier() + "' in recipe '" + fusionShrineRecipe.getId() + "' does not exist");
+		for(FusionShrineRecipe recipe : SpectrumCommon.minecraftServer.getRecipeManager().listAllOfType(SpectrumRecipeTypes.FUSION_SHRINE)) {
+			if(!doesAdvancementExist(recipe.getRequiredAdvancementIdentifier())) {
+				SpectrumCommon.log(Level.WARN, "[SANITY: Fusion Shrine Recipe Unlocks] Advancement '" + recipe.getRequiredAdvancementIdentifier() + "' in recipe '" + recipe.getId() + "' does not exist");
 			}
-			for(Ingredient inputIngredient : fusionShrineRecipe.getIngredients()) {
+			for(Ingredient inputIngredient : recipe.getIngredients()) {
 				for(ItemStack matchingItemStack : inputIngredient.getMatchingStacks()) {
 					if (ColorRegistry.ITEM_COLORS.getMapping(matchingItemStack.getItem()).isEmpty()) {
-						SpectrumCommon.log(Level.WARN, "[SANITY: Fusion Shrine Recipe] Input '" + Registry.ITEM.getId(matchingItemStack.getItem()) + "' in recipe '" + fusionShrineRecipe.getId() + "', does not exist in the item color registry. Add it for nice effects!");
+						SpectrumCommon.log(Level.WARN, "[SANITY: Fusion Shrine Recipe] Input '" + Registry.ITEM.getId(matchingItemStack.getItem()) + "' in recipe '" + recipe.getId() + "', does not exist in the item color registry. Add it for nice effects!");
 					}
 				}
 			}
-			Item outputItem = fusionShrineRecipe.getOutput().getItem();
+			Item outputItem = recipe.getOutput().getItem();
 			if(outputItem != Items.AIR && ColorRegistry.ITEM_COLORS.getMapping(outputItem).isEmpty()) {
-				SpectrumCommon.log(Level.WARN, "[SANITY: Fusion Shrine Recipe] Output '" + Registry.ITEM.getId(outputItem) + "' in recipe '" + fusionShrineRecipe.getId() + "', does not exist in the item color registry. Add it for nice effects!");
+				SpectrumCommon.log(Level.WARN, "[SANITY: Fusion Shrine Recipe] Output '" + Registry.ITEM.getId(outputItem) + "' in recipe '" + recipe.getId() + "', does not exist in the item color registry. Add it for nice effects!");
 			}
 		}
 		
 		// Impossible to unlock potion workshop brewing recipes
-		for(PotionWorkshopBrewingRecipe potionWorkshopBrewingRecipe : SpectrumCommon.minecraftServer.getRecipeManager().listAllOfType(SpectrumRecipeTypes.POTION_WORKSHOP_BREWING)) {
-			if(!doesAdvancementExist(potionWorkshopBrewingRecipe.getRequiredAdvancementIdentifier())) {
-				SpectrumCommon.log(Level.WARN, "[SANITY: Potion Workshop Brewing Unlocks] Advancement '" + potionWorkshopBrewingRecipe.getRequiredAdvancementIdentifier() + "' in recipe '" + potionWorkshopBrewingRecipe.getId() + "' does not exist");
+		for(PotionWorkshopBrewingRecipe recipe : SpectrumCommon.minecraftServer.getRecipeManager().listAllOfType(SpectrumRecipeTypes.POTION_WORKSHOP_BREWING)) {
+			if(!doesAdvancementExist(recipe.getRequiredAdvancementIdentifier())) {
+				SpectrumCommon.log(Level.WARN, "[SANITY: Potion Workshop Brewing Unlocks] Advancement '" + recipe.getRequiredAdvancementIdentifier() + "' in recipe '" + recipe.getId() + "' does not exist");
 			}
 		}
 		
 		// Impossible to unlock potion workshop crafting recipes
-		for(PotionWorkshopCraftingRecipe potionWorkshopCraftingRecipe : SpectrumCommon.minecraftServer.getRecipeManager().listAllOfType(SpectrumRecipeTypes.POTION_WORKSHOP_CRAFTING)) {
-			if(!doesAdvancementExist(potionWorkshopCraftingRecipe.getRequiredAdvancementIdentifier())) {
-				SpectrumCommon.log(Level.WARN, "[SANITY: Potion Workshop Crafting Unlocks] Advancement '" + potionWorkshopCraftingRecipe.getRequiredAdvancementIdentifier() + "' in recipe '" + potionWorkshopCraftingRecipe.getId() + "' does not exist");
+		for(PotionWorkshopCraftingRecipe recipe : SpectrumCommon.minecraftServer.getRecipeManager().listAllOfType(SpectrumRecipeTypes.POTION_WORKSHOP_CRAFTING)) {
+			if(!doesAdvancementExist(recipe.getRequiredAdvancementIdentifier())) {
+				SpectrumCommon.log(Level.WARN, "[SANITY: Potion Workshop Crafting Unlocks] Advancement '" + recipe.getRequiredAdvancementIdentifier() + "' in recipe '" + recipe.getId() + "' does not exist");
+			}
+		}
+		
+		// Impossible to unlock spirit instiller recipes
+		for(SpiritInstillerRecipe recipe : SpectrumCommon.minecraftServer.getRecipeManager().listAllOfType(SpectrumRecipeTypes.SPIRIT_INSTILLER_RECIPE)) {
+			if(!doesAdvancementExist(recipe.getRequiredAdvancementIdentifier())) {
+				SpectrumCommon.log(Level.WARN, "[SANITY: Spirit Instiller Recipe Unlocks] Advancement '" + recipe.getRequiredAdvancementIdentifier() + "' in recipe '" + recipe.getId() + "' does not exist");
 			}
 		}
 		

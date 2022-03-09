@@ -19,10 +19,10 @@
         },
         {
             "type": "patchouli:multiblock",
-            "name": "Spirit Instiller Structure",
+            "name": "Instiller Structure",
             "multiblock_id": "spectrum:spirit_instiller_structure",
             "enable_visualize": true,
-            "text": "To boost the abilities of the structure you can place upgrades on each of the Gem Blocks."
+            "text": "To boost the abilities of the structure you can place upgrades on the two Onyx Chiseled Blocks."
         },
         {
             "type": "patchouli:text",

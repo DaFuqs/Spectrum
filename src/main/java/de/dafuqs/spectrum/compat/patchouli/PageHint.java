@@ -32,8 +32,10 @@ public class PageHint extends BookPage {
 	transient BookTextRenderer textRender;
 	transient Ingredient ingredient;
 	
-	transient boolean revealed;
-	transient long revealTick;
+	// this once was a single property. But because the world sometimes got backdated we have to go this
+	// a tad more complicated approach, comparing the current tick with the last reveled tick every time
+	transient long lastRevealTick; // advance revealProgress each time this does not match the previous tick
+	transient long revealProgress; // -1: not revealed, 0: fully revealed; 1+: currently revealing (+1 every tick)
 	
 	Text rawText;
 	Text displayedText;
@@ -59,36 +61,43 @@ public class PageHint extends BookPage {
 		super.onDisplayed(parent, left, top);
 		rawText = text.as(Text.class);
 		
-		revealed = isQuestDone(parent.book);
-		if(!revealed) {
-			revealTick = -1;
+		boolean isDone = isQuestDone(parent.book);
+		if(!isDone) {
+			revealProgress = -1;
 			displayedText = calculateTextToRender(rawText);
 			
 			PaymentButtonWidget paymentButtonWidget = new PaymentButtonWidget(GuiBook.PAGE_WIDTH / 2 - 50, GuiBook.PAGE_HEIGHT - 35, 100, 20, LiteralText.EMPTY, this::paymentButtonClicked, this);
 			addButton(paymentButtonWidget);
 		} else {
 			displayedText = rawText;
-			revealTick = 0;
+			revealProgress = 0;
 		}
 		textRender = new BookTextRenderer(parent, displayedText, 0, getTextHeight());
 	}
 	
 	private Text calculateTextToRender(Text text) {
-		if(revealTick == 0) {
+		if(revealProgress == 0) {
 			return text;
-		}
-		
-		if(revealTick < 0) {
+		} else if(revealProgress < 0) {
 			return new LiteralText("$(obf)" + text.getString());
 		}
 		
-		long textRevealProgress = MinecraftClient.getInstance().world.getTime() - revealTick;
-		if(textRevealProgress < 0 || textRevealProgress > text.asString().length()) { // for whatever reasons there are mods that tinker with global world time, instead of just day time
-			revealTick = 0;
-			return text;
-		} else {
-			return new LiteralText(text.asString().substring(0, (int) textRevealProgress) + "$(obf)" + text.asString().substring((int) textRevealProgress));
+		// Show a new letter each tick
+		LiteralText calculatedText = new LiteralText(text.asString().substring(0, (int) revealProgress) + "$(obf)" + text.asString().substring((int) revealProgress));
+		
+		long currentTime = MinecraftClient.getInstance().world.getTime();
+		if(currentTime != lastRevealTick) {
+			lastRevealTick = currentTime;
+			
+			revealProgress++;
+			revealProgress = Math.min(text.asString().length(), revealProgress);
+			if(text.asString().length() < revealProgress) {
+				revealProgress = 0;
+				return text;
+			}
 		}
+		
+		return calculatedText;
 	}
 	
 	protected String getEntryId() {
@@ -106,8 +115,8 @@ public class PageHint extends BookPage {
 			SpectrumClient.minecraftClient.getSoundManager().play(new HintRevelationSoundInstance(mc.player, rawText.asString().length()));
 			
 			SpectrumC2SPacketSender.sendGuidebookHintBoughtPaket(ingredient);
-			revealed = true;
-			revealTick = MinecraftClient.getInstance().world.getTime();
+			revealProgress = 1;
+			lastRevealTick = MinecraftClient.getInstance().world.getTime();
 			MinecraftClient.getInstance().player.playSound(SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.PLAYERS, 1.0F, 1.0F);
 		}
 	}
@@ -116,11 +125,11 @@ public class PageHint extends BookPage {
 	public void render(MatrixStack ms, int mouseX, int mouseY, float pticks) {
 		super.render(ms, mouseX, mouseY, pticks);
 		
-		if(revealTick > 0) {
+		if(revealProgress >= 0) {
 			textRender = new BookTextRenderer(parent, calculateTextToRender(rawText), 0, getTextHeight());
 		}
 		textRender.render(ms, mouseX, mouseY);
-		if(!revealed) {
+		if(revealProgress == -1) {
 			parent.renderIngredient(ms, GuiBook.PAGE_WIDTH / 2 + 23, GuiBook.PAGE_HEIGHT - 34, mouseX, mouseY, ingredient);
 		}
 		

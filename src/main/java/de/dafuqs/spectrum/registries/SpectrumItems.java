@@ -208,7 +208,7 @@ public class SpectrumItems {
 	public static final Item FANCIFUL_STONE_RING = new Item(generalUncommonItemSettingsSixteen);
 	public static final Item FANCIFUL_CIRCLET = new Item(generalUncommonItemSettingsSixteen);
 	
-	public static final Item GLOW_VISION_HELMET = new GlowVisionHelmet(generalUncommonItemSettingsSingle);
+	public static final Item GLOW_VISION_GOGGLES = new GlowVisionGogglesItem(generalUncommonItemSettingsSingle);
 	public static final Item JEOPARDANT = new AttackRingItem(generalUncommonItemSettingsSingle);
 	public static final Item SEVEN_LEAGUE_BOOTS = new SevenLeagueBootsItem(generalUncommonItemSettingsSingle);
 	public static final Item RADIANCE_PIN = new RadiancePinItem(generalUncommonItemSettingsSingle);
@@ -383,7 +383,7 @@ public class SpectrumItems {
 		register("fanciful_pendant", FANCIFUL_PENDANT);
 		register("fanciful_circlet", FANCIFUL_CIRCLET);
 		
-		register("glow_vision_helmet", GLOW_VISION_HELMET);
+		register("glow_vision_helmet", GLOW_VISION_GOGGLES);
 		register("jeopardant", JEOPARDANT);
 		register("seven_league_boots", SEVEN_LEAGUE_BOOTS);
 		register("radiance_pin", RADIANCE_PIN);

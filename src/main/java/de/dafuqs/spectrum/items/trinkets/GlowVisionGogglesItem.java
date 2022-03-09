@@ -19,11 +19,11 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public class GlowVisionHelmet extends SpectrumTrinketItem {
+public class GlowVisionGogglesItem extends SpectrumTrinketItem {
 	
 	public static ItemStack COST = new ItemStack(Items.GLOW_INK_SAC, 1);
 	
-	public GlowVisionHelmet(Settings settings) {
+	public GlowVisionGogglesItem(Settings settings) {
 		super(settings, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_glow_vision_helmet"));
 	}
 	

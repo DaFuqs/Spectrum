@@ -55,7 +55,7 @@ public class MermaidsBrushBlock extends PlantBlock implements Cloakable, FluidFi
 	public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
 		super.randomDisplayTick(state, world, pos, random);
 		if(world.isClient) {
-			if(MinecraftClient.getInstance().player.getEquippedStack(EquipmentSlot.HEAD).isOf(SpectrumItems.GLOW_VISION_HELMET)) {
+			if(MinecraftClient.getInstance().player.getEquippedStack(EquipmentSlot.HEAD).isOf(SpectrumItems.GLOW_VISION_GOGGLES)) {
 				StatusEffectInstance nightVisionEffectInstance = MinecraftClient.getInstance().player.getStatusEffect(StatusEffects.NIGHT_VISION);
 				if(nightVisionEffectInstance != null && nightVisionEffectInstance.getDuration() > 0) {
 					world.addParticle(ParticleTypes.GLOW, (double) pos.getX() + 0.2 + random.nextFloat() * 0.6, (double) pos.getY() + 0.1 + random.nextFloat() * 0.6, (double) pos.getZ() + 0.2 + random.nextFloat() * 0.6, 0.0D, 0.03D, 0.0D);

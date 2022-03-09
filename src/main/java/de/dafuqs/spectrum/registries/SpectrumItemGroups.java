@@ -4,13 +4,21 @@ import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.mob_head.SpectrumSkullBlock;
 import de.dafuqs.spectrum.items.magic_items.BottomlessBundleItem;
 import de.dafuqs.spectrum.items.magic_items.KnowledgeGemItem;
+import de.dafuqs.spectrum.recipe.enchantment_upgrade.EnchantmentUpgradeRecipe;
+import de.dafuqs.spectrum.recipe.enchantment_upgrade.EnchantmentUpgradeRecipeSerializer;
 import io.wispforest.owo.itemgroup.Icon;
 import io.wispforest.owo.itemgroup.OwoItemGroup;
 import io.wispforest.owo.itemgroup.gui.ItemGroupButton;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnchantmentLevelEntry;
+import net.minecraft.item.EnchantedBookItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class SpectrumItemGroups {
 	
@@ -109,6 +117,24 @@ public class SpectrumItemGroups {
 				stacks.add(BottomlessBundleItem.getWithBlockAndCount(Items.SAND.getDefaultStack(), 20000));
 				stacks.add(BottomlessBundleItem.getWithBlockAndCount(Items.GRAVEL.getDefaultStack(), 20000));
 				stacks.add(BottomlessBundleItem.getWithBlockAndCount(Items.ARROW.getDefaultStack(), 20000));
+				
+				HashMap<Enchantment, Integer> highestEnchantmentLevels = new HashMap<>();
+				for(EnchantmentUpgradeRecipe enchantmentUpgradeRecipe : EnchantmentUpgradeRecipeSerializer.enchantmentUpgradeRecipesToInject) {
+					Enchantment enchantment = enchantmentUpgradeRecipe.getEnchantment();
+					int destinationLevel = enchantmentUpgradeRecipe.getEnchantmentDestinationLevel();
+					if(highestEnchantmentLevels.containsKey(enchantment)) {
+						if(highestEnchantmentLevels.get(enchantment) < destinationLevel) {
+							highestEnchantmentLevels.put(enchantment, destinationLevel);
+						}
+					} else {
+						highestEnchantmentLevels.put(enchantment, destinationLevel);
+					}
+				}
+				for(Map.Entry<Enchantment, Integer> s : highestEnchantmentLevels.entrySet()) {
+					if(s.getValue() > s.getKey().getMaxLevel()) {
+						stacks.add(EnchantedBookItem.forEnchantment(new EnchantmentLevelEntry(s.getKey(), s.getValue())));
+					}
+				}
 			}
 		}
 		

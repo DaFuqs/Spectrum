@@ -4,6 +4,7 @@ import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import de.dafuqs.spectrum.registries.SpectrumDamageSources;
 import de.dafuqs.spectrum.registries.SpectrumFluidTags;
+import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.FluidBlock;
@@ -38,11 +39,16 @@ public class MidnightSolutionFluidBlock extends FluidBlock {
 		super.onEntityCollision(state, world, pos, entity);
 		if(entity instanceof LivingEntity livingEntity) {
 			
-			if(livingEntity.isSubmergedIn(SpectrumFluidTags.MIDNIGHT_SOLUTION) && world.getTime() % 20 == 0) {
-				livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS,50, 0));
-				livingEntity.damage(SpectrumDamageSources.MIDNIGHT_SOLUTION, 2);
-			} else {
-				livingEntity.damage(SpectrumDamageSources.MIDNIGHT_SOLUTION, 1);
+			if(!livingEntity.isDead()) {
+				if (livingEntity.isSubmergedIn(SpectrumFluidTags.MIDNIGHT_SOLUTION) && world.getTime() % 20 == 0) {
+					livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS, 50, 0));
+					livingEntity.damage(SpectrumDamageSources.MIDNIGHT_SOLUTION, 2);
+				} else {
+					livingEntity.damage(SpectrumDamageSources.MIDNIGHT_SOLUTION, 1);
+				}
+				if (livingEntity.isDead()) {
+					livingEntity.dropStack(SpectrumItems.MIDNIGHT_CHIP.getDefaultStack());
+				}
 			}
 		}
 	}

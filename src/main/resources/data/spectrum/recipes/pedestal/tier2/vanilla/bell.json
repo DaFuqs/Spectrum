@@ -1,0 +1,29 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 120,
+  "tier": "simple",
+  "magenta": 0,
+  "yellow": 4,
+  "cyan": 0,
+  "black": 0,
+  "white": 0,
+  "experience": 1.0,
+  "pattern": [
+    "SSS",
+    "GGG",
+    "G G"
+  ],
+  "key": {
+    "G": {
+      "item": "minecraft:gold_ingot"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result" : {
+    "item": "minecraft:bell",
+    "count": 1
+  },
+  "required_advancements": ["spectrum:build_basic_pedestal_structure"]
+}

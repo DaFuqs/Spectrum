@@ -10,20 +10,23 @@
   "experience": 0.25,
   "pattern": [
     " S ",
-    "SAS",
+    "QAQ",
     " S "
   ],
   "key": {
-    "A": {
-      "item": "minecraft:arrow"
-    },
     "S": {
-      "item": "spectrum:sparklestone_gem"
+      "item": "minecraft:string"
+    },
+    "A": {
+      "item": "minecraft:spider_eye"
+    },
+    "Q": {
+      "item": "spectrum:quitoxic_powder"
     }
   },
   "result" : {
-    "item": "minecraft:spectral_arrow",
+    "item": "minecraft:cobweb",
     "count": 2
   },
-  "required_advancements": ["spectrum:collect_sparklestone"]
+  "required_advancements": ["spectrum:collect_quitoxic_reeds"]
 }

@@ -17,7 +17,7 @@ public class FluidColorRegistry extends ColorRegistry<Fluid> {
 		put(Fluids.LAVA, DyeColor.ORANGE);
 		put(SpectrumFluids.LIQUID_CRYSTAL, DyeColor.LIGHT_GRAY);
 		put(SpectrumFluids.MUD, DyeColor.BROWN);
-		put(SpectrumFluids.MIDNIGHT_SOLUTION, DyeColor.BLACK);
+		put(SpectrumFluids.MIDNIGHT_SOLUTION, DyeColor.GRAY);
 	}};
 	
 	@Override

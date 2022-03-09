@@ -1,0 +1,27 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 120,
+  "tier": "simple",
+  "magenta": 2,
+  "yellow": 0,
+  "cyan": 2,
+  "black": 0,
+  "white": 0,
+  "experience": 1.0,
+  "pattern": [
+    "PPS"
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:string"
+    },
+    "P": {
+      "item": "minecraft:paper"
+    }
+  },
+  "result" : {
+    "item": "minecraft:name_tag",
+    "count": 1
+  },
+  "required_advancements": ["spectrum:build_basic_pedestal_structure"]
+}

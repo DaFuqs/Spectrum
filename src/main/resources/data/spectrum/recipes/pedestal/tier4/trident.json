@@ -1,0 +1,32 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 1200,
+  "tier": "complex",
+  "magenta": 0,
+  "yellow": 0,
+  "cyan": 4,
+  "black": 0,
+  "white": 4,
+  "experience": 4.0,
+  "pattern": [
+    " PP",
+    " MP",
+    "S  "
+  ],
+  "key": {
+    "M": {
+      "item": "spectrum:mermaids_gem"
+    },
+    "P": {
+      "item": "minecraft:prismarine_shard"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result" : {
+    "item": "minecraft:trident",
+    "count": 1
+  },
+  "required_advancements": ["spectrum:__lategame/spectrum_lategame"]
+}

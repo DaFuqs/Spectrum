@@ -121,6 +121,29 @@ public class ItemColorRegistry extends ColorRegistry<Item> {
 		put(SpectrumBlocks.RESONANT_LILY.asItem(), DyeColor.WHITE);
 		
 		// Vanilla
+		put(Blocks.BLACK_WOOL.asItem(), DyeColor.BLACK);
+		put(Blocks.BLUE_WOOL.asItem(), DyeColor.BLUE);
+		put(Blocks.BROWN_WOOL.asItem(), DyeColor.BROWN);
+		put(Blocks.CYAN_WOOL.asItem(), DyeColor.CYAN);
+		put(Blocks.GRAY_WOOL.asItem(), DyeColor.GRAY);
+		put(Blocks.GREEN_WOOL.asItem(), DyeColor.GREEN);
+		put(Blocks.LIGHT_BLUE_WOOL.asItem(), DyeColor.LIGHT_BLUE);
+		put(Blocks.LIGHT_GRAY_WOOL.asItem(), DyeColor.LIGHT_GRAY);
+		put(Blocks.LIME_WOOL.asItem(), DyeColor.LIME);
+		put(Blocks.MAGENTA_WOOL.asItem(), DyeColor.MAGENTA);
+		put(Blocks.ORANGE_WOOL.asItem(), DyeColor.ORANGE);
+		put(Blocks.PINK_WOOL.asItem(), DyeColor.PINK);
+		put(Blocks.PURPLE_WOOL.asItem(), DyeColor.PURPLE);
+		put(Blocks.RED_WOOL.asItem(), DyeColor.RED);
+		put(Blocks.WHITE_WOOL.asItem(), DyeColor.WHITE);
+		put(Blocks.YELLOW_WOOL.asItem(), DyeColor.YELLOW);
+		
+		put(Items.DIAMOND_HORSE_ARMOR, DyeColor.LIGHT_BLUE);
+		put(Items.GOLDEN_HORSE_ARMOR, DyeColor.YELLOW);
+		put(Items.LEATHER_HORSE_ARMOR, DyeColor.BROWN);
+		
+		put(Items.COPPER_INGOT, DyeColor.BROWN);
+		put(Items.LEATHER, DyeColor.BROWN);
 		put(Items.BOOK, DyeColor.PURPLE);
 		put(Items.ENCHANTED_BOOK, DyeColor.PURPLE);
 		put(Items.END_STONE, DyeColor.LIGHT_GRAY);

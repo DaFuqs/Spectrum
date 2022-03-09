@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.recipe.midnight_solution_converting;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.minecraft.inventory.Inventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.Recipe;
@@ -13,16 +14,23 @@ import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MidnightSolutionConvertingRecipe implements Recipe<Inventory> {
 
 	protected final Identifier id;
 	protected final Ingredient inputIngredient;
 	protected final ItemStack outputItemStack;
+	
+	private static final List<Item> outputItems = new ArrayList<>();
 
 	public MidnightSolutionConvertingRecipe(Identifier id, @NotNull Ingredient inputIngredient, ItemStack outputItemStack) {
 		this.id = id;
 		this.inputIngredient = inputIngredient;
 		this.outputItemStack = outputItemStack;
+		
+		outputItems.add(outputItemStack.getItem());
 	}
 
 	@Override
@@ -83,6 +91,10 @@ public class MidnightSolutionConvertingRecipe implements Recipe<Inventory> {
 			return ((MidnightSolutionConvertingRecipe) object).getId().equals(this.getId());
 		}
 		return false;
+	}
+	
+	public static boolean isExistingOutputItem(@NotNull ItemStack itemStack) {
+		return outputItems.contains(itemStack.getItem());
 	}
 
 }

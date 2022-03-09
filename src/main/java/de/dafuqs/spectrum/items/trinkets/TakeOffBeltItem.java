@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.items.trinkets;
 
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.Support;
+import de.dafuqs.spectrum.blocks.enchanter.EnchanterEnchantable;
 import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
@@ -9,6 +10,9 @@ import dev.emi.trinkets.api.SlotReference;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.item.TooltipContext;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
@@ -28,11 +32,10 @@ import org.jetbrains.annotations.Nullable;
 import java.util.HashMap;
 import java.util.List;
 
-public class TakeOffBeltItem extends SpectrumTrinketItem {
+public class TakeOffBeltItem extends SpectrumTrinketItem implements EnchanterEnchantable {
 	
 	public static final int CHARGE_TIME_TICKS = 20;
 	public static final int MAX_CHARGES = 8;
-	public static final int HIGH_JUMP_AMPLIFIER_PER_CHARGE = 2;
 	
 	private static final HashMap<LivingEntity, Long> sneakingTimes = new HashMap<>();
 	
@@ -67,7 +70,13 @@ public class TakeOffBeltItem extends SpectrumTrinketItem {
 							for(Vec3d vec : Support.VECTORS_16) {
 								SpectrumS2CPacketSender.playParticleWithExactOffsetAndVelocity((ServerWorld) entity.getWorld(), entity.getPos(), SpectrumParticleTypes.LIQUID_CRYSTAL_SPARKLE, 1, new Vec3d(0, 0, 0), vec.multiply(0.5));
 							}
-							entity.addStatusEffect(new StatusEffectInstance(StatusEffects.JUMP_BOOST, CHARGE_TIME_TICKS, sneakTimeMod * HIGH_JUMP_AMPLIFIER_PER_CHARGE, true, false, true));
+							
+							int powerEnchantmentLevel = EnchantmentHelper.getLevel(Enchantments.POWER, stack);
+							int featherFallingEnchantmentLevel = EnchantmentHelper.getLevel(Enchantments.FEATHER_FALLING, stack);
+							entity.addStatusEffect(new StatusEffectInstance(StatusEffects.JUMP_BOOST, CHARGE_TIME_TICKS, getJumpBoostAmplifier(sneakTimeMod, powerEnchantmentLevel), true, false, true));
+							if(featherFallingEnchantmentLevel > 0) {
+								entity.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOW_FALLING, CHARGE_TIME_TICKS + featherFallingEnchantmentLevel * 20, 0, true, false, true));
+							}
 						}
 					}
 				} else {
@@ -85,6 +94,10 @@ public class TakeOffBeltItem extends SpectrumTrinketItem {
 		}
 	}
 	
+	public static int getJumpBoostAmplifier(int sneakTime, int powerEnchantmentLevel) {
+		return (int) Math.floor(sneakTime * (1.5 + powerEnchantmentLevel * 0.25));
+	}
+	
 	public static int getCurrentCharge(PlayerEntity playerEntity) {
 		if(sneakingTimes.containsKey(playerEntity)) {
 			return (int) (playerEntity.getWorld().getTime() - sneakingTimes.get(playerEntity)) / CHARGE_TIME_TICKS;
@@ -92,4 +105,13 @@ public class TakeOffBeltItem extends SpectrumTrinketItem {
 		return 0;
 	}
 	
+	@Override
+	public int getEnchantability() {
+		return 8;
+	}
+	
+	@Override
+	public boolean canAcceptEnchantment(Enchantment enchantment) {
+		return enchantment == Enchantments.POWER || enchantment == Enchantments.FEATHER_FALLING;
+	}
 }

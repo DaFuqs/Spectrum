@@ -12,6 +12,7 @@ import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.World;
@@ -21,6 +22,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+
+import java.util.Optional;
 
 @Mixin(ServerPlayerEntity.class)
 public abstract class ServerPlayerEntityMixin {
@@ -49,8 +52,9 @@ public abstract class ServerPlayerEntityMixin {
 					}
 					
 					World world = thisPlayer.getWorld();
-					if (SpectrumTrinketItem.hasEquipped(thisPlayer, SpectrumItems.GLEAMING_PIN) && world.getTime() - this.spectrum$lastGleamingPinTriggerTick > GleamingPinItem.COOLDOWN_TICKS) {
-						GleamingPinItem.doGleamingPinEffect(thisPlayer, (ServerWorld) world);
+					Optional<ItemStack> gleamingPinStack = SpectrumTrinketItem.getFirstEquipped(thisPlayer, SpectrumItems.GLEAMING_PIN);
+					if(gleamingPinStack.isPresent() && world.getTime() - this.spectrum$lastGleamingPinTriggerTick > GleamingPinItem.COOLDOWN_TICKS) {
+						GleamingPinItem.doGleamingPinEffect(thisPlayer, (ServerWorld) world, gleamingPinStack.get());
 						this.spectrum$lastGleamingPinTriggerTick = world.getTime();
 					}
 				}

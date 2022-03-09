@@ -16,6 +16,13 @@
       "title": "Fusion Recipe",
       "recipe": "spectrum:fusion_shrine/trinkets/gleaming_pin",
       "text": "$(br)$(italic)Can't run, can't hide"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:progression/enchantments/sniper",
+      "title": "Sniping",
+      "item": "spectrum:gleaming_pin{Enchantments: [{id: \"spectrum:sniping\", lvl: 2s}]}",
+      "text": "Enchanting the Gleaming Pin with Sniping allows the surge to pierce even more matter, further increasing its range."
     }
   ]
 }

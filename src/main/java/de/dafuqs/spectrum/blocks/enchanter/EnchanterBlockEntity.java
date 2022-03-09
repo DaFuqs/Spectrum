@@ -228,7 +228,6 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 				}
 			}
 		}
-		
 	}
 	
 	public static void serverTick(World world, BlockPos blockPos, BlockState blockState, @NotNull EnchanterBlockEntity enchanterBlockEntity) {
@@ -479,34 +478,43 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 			return -1;
 		} else if((itemStack.getItem().getEnchantability() > 0 && enchantment.isAcceptableItem(itemStack)) || itemStack.isOf(Items.BOOK) || itemStack.getItem() instanceof EnchanterEnchantable) {
 			int enchantability = itemStack.getItem().getEnchantability();
-			if (enchantability > 0) {
-				int rarityCost;
-				Enchantment.Rarity rarity = enchantment.getRarity();
-				switch (rarity) {
-					case COMMON -> {
-						rarityCost = 10;
-					}
-					case UNCOMMON -> {
-						rarityCost = 25;
-					}
-					case RARE -> {
-						rarityCost = 50;
-					}
-					default -> {
-						rarityCost = 80;
-					}
-				}
-				
-				float levelCost = level + ((float) level / enchantment.getMaxLevel()); // the higher the level, the pricier. But not as bad for enchantments with high max levels
-				float specialMulti = enchantment.isTreasure() ? 2.0F : enchantment.isCursed() ? 1.5F : 1.0F;
-				float selectionAvailabilityMod = 1.0F;
-				if(!(enchantment instanceof SpectrumEnchantment)) {
-					selectionAvailabilityMod = (enchantment.isAvailableForRandomSelection() ? 0.5F : 0.75F) + (enchantment.isAvailableForEnchantedBookOffer() ? 0.5F : 0.75F);
-				}
-				float conflictMod = conflicts ? 4.0F : 1.0F;
-				float enchantabilityMod = (4.0F / (2 + enchantability)) * 4.0F;
-				return (int) Math.floor(rarityCost * levelCost * specialMulti * conflictMod * selectionAvailabilityMod * enchantabilityMod);
+			int requiredExperience = getRequiredExperienceForEnchantment(enchantability, enchantment, level);
+			if(conflicts) {
+				return requiredExperience * 4;
+			} else {
+				return requiredExperience;
 			}
+		}
+		return -1;
+	}
+	
+	public static int getRequiredExperienceForEnchantment(int enchantability, Enchantment enchantment, int level) {
+		if (enchantability > 0) {
+			int rarityCost;
+			Enchantment.Rarity rarity = enchantment.getRarity();
+			switch (rarity) {
+				case COMMON -> {
+					rarityCost = 10;
+				}
+				case UNCOMMON -> {
+					rarityCost = 25;
+				}
+				case RARE -> {
+					rarityCost = 50;
+				}
+				default -> {
+					rarityCost = 80;
+				}
+			}
+			
+			float levelCost = level + ((float) level / enchantment.getMaxLevel()); // the higher the level, the pricier. But not as bad for enchantments with high max levels
+			float specialMulti = enchantment.isTreasure() ? 2.0F : enchantment.isCursed() ? 1.5F : 1.0F;
+			float selectionAvailabilityMod = 1.0F;
+			if(!(enchantment instanceof SpectrumEnchantment)) {
+				selectionAvailabilityMod = (enchantment.isAvailableForRandomSelection() ? 0.5F : 0.75F) + (enchantment.isAvailableForEnchantedBookOffer() ? 0.5F : 0.75F);
+			}
+			float enchantabilityMod = (4.0F / (2 + enchantability)) * 4.0F;
+			return (int) Math.floor(rarityCost * levelCost * specialMulti * selectionAvailabilityMod * enchantabilityMod);
 		}
 		return -1;
 	}

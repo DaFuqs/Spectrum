@@ -8,12 +8,15 @@ import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.nbt.NbtList;
+import net.minecraft.screen.AnvilScreenHandler;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class SpectrumEnchantmentHelper {
 	
@@ -116,6 +119,16 @@ public class SpectrumEnchantmentHelper {
 			}
 		}
 		return false;
+	}
+	
+	public static @NotNull ItemStack removeEnchantments(@NotNull ItemStack itemStack) {
+		if (itemStack.isOf(Items.ENCHANTED_BOOK)) {
+			return new ItemStack(Items.BOOK);
+		} else {
+			itemStack.removeSubNbt("Enchantments");
+			itemStack.removeSubNbt("StoredEnchantments");
+			return itemStack;
+		}
 	}
 	
 }

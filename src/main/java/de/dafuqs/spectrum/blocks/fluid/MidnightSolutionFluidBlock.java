@@ -1,5 +1,7 @@
 package de.dafuqs.spectrum.blocks.fluid;
 
+import de.dafuqs.spectrum.SpectrumEnchantmentHelper;
+import de.dafuqs.spectrum.blocks.enchanter.EnchanterBlockEntity;
 import de.dafuqs.spectrum.inventories.AutoCraftingInventory;
 import de.dafuqs.spectrum.inventories.AutoInventory;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
@@ -12,14 +14,21 @@ import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.FluidBlock;
+import net.minecraft.client.gui.screen.ingame.GrindstoneScreen;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.ExperienceOrbEntity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.pathing.NavigationType;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.fluid.FlowableFluid;
+import net.minecraft.item.EnchantedBookItem;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.screen.GrindstoneScreenHandler;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
@@ -30,9 +39,12 @@ import net.minecraft.world.WorldAccess;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Collections;
+import java.util.Map;
 import java.util.Random;
 
 public class MidnightSolutionFluidBlock extends FluidBlock {
+	
+	private static final int EXPERIENCE_DISENCHANT_RETURN_DIV = 3;
 	
 	private static AutoCraftingInventory AUTO_INVENTORY;
 
@@ -63,6 +75,29 @@ public class MidnightSolutionFluidBlock extends FluidBlock {
 			}
 		} else if(entity instanceof ItemEntity itemEntity && itemEntity.age % 120 == 0 && !itemEntity.cannotPickup()) { // cannotPickup: looks nicer, also exploit protection
 			ItemStack itemStack = itemEntity.getStack();
+			
+			// if the item is enchanted: remove enchantments and spawn XP
+			// basically disenchanting the item
+			if(itemStack.hasEnchantments() || itemStack.isOf(Items.ENCHANTED_BOOK)) {
+				int experience = 0;
+				int enchantability = itemStack.getItem().getEnchantability();
+				if(enchantability == 0) {
+					enchantability = 10; // like for enchanted book disenchanting
+				}
+				for(Map.Entry<Enchantment, Integer> enchantmentEntry : EnchantmentHelper.get(itemStack).entrySet()) {
+					experience += EnchanterBlockEntity.getRequiredExperienceForEnchantment(enchantability, enchantmentEntry.getKey(), enchantmentEntry.getValue());
+				}
+				
+				experience /= EXPERIENCE_DISENCHANT_RETURN_DIV;
+				
+				if(experience > 0) {
+					ExperienceOrbEntity experienceOrbEntity = new ExperienceOrbEntity(world, itemEntity.getX(), itemEntity.getY(), itemEntity.getZ(), experience);
+					world.spawnEntity(experienceOrbEntity);
+					world.playSound(null, itemEntity.getBlockPos(), SoundEvents.BLOCK_GRINDSTONE_USE, SoundCategory.NEUTRAL, 1.0F, 0.9F + world.getRandom().nextFloat() * 0.2F);
+				}
+				itemEntity.setStack(SpectrumEnchantmentHelper.removeEnchantments(itemStack));
+			}
+			
 			// do not try to search conversion recipes for items that are recipe outputs already
 			// => better performance
 			if(!MidnightSolutionConvertingRecipe.isExistingOutputItem(itemStack)) {

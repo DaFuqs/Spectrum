@@ -50,7 +50,7 @@ public class GleamingPinItem extends SpectrumTrinketItem implements EnchanterEnc
 		
 		world.getOtherEntities(player, player.getBoundingBox().expand(getEffectRange(gleamingPinStack)), EntityPredicates.VALID_LIVING_ENTITY).forEach((entity) -> {
 			if(entity instanceof LivingEntity livingEntity) {
-				livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.GLOWING, EFFECT_DURATION, 1, true, true));
+				livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.GLOWING, EFFECT_DURATION, 0, true, true));
 			}
 		});
 	}

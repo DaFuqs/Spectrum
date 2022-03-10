@@ -2,9 +2,7 @@ package de.dafuqs.spectrum.recipe.fusion_shrine;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.fusion_shrine.FusionShrineBlock;
-import de.dafuqs.spectrum.blocks.potion_workshop.PotionWorkshopBlock;
 import de.dafuqs.spectrum.recipe.RecipeUtils;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.Fluids;
@@ -19,7 +17,6 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.registry.Registry;
-import org.apache.logging.log4j.Level;
 
 import java.util.ArrayList;
 import java.util.List;

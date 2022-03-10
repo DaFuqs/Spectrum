@@ -1,16 +1,10 @@
 package de.dafuqs.spectrum.items.tools;
 
-import de.dafuqs.spectrum.interfaces.PreEnchantedTooltip;
 import de.dafuqs.spectrum.registries.SpectrumDefaultEnchantments;
-import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.CrossbowItem;
 import net.minecraft.item.ItemStack;
-import net.minecraft.text.Text;
-import net.minecraft.world.World;
 
-import java.util.List;
-
-public class BedrockCrossbowItem extends CrossbowItem implements PreEnchantedTooltip {
+public class BedrockCrossbowItem extends CrossbowItem {
 
 	public BedrockCrossbowItem(Settings settings) {
 		super(settings);
@@ -19,13 +13,6 @@ public class BedrockCrossbowItem extends CrossbowItem implements PreEnchantedToo
 	@Override
 	public boolean isDamageable() {
 		return false;
-	}
-
-
-	@Override
-	public void appendTooltip(ItemStack itemStack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
-		super.appendTooltip(itemStack, world, tooltip, tooltipContext);
-		addPreEnchantedTooltip(tooltip, itemStack);
 	}
 	
 	@Override

@@ -2,16 +2,11 @@ package de.dafuqs.spectrum.items.tools;
 
 import de.dafuqs.spectrum.registries.SpectrumDefaultEnchantments;
 import net.minecraft.block.BlockState;
-import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
 import net.minecraft.item.Items;
 import net.minecraft.item.ToolMaterial;
-import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
-import net.minecraft.world.World;
-
-import java.util.List;
 
 public class MultiToolItem extends SpectrumPickaxeItem {
 
@@ -43,12 +38,6 @@ public class MultiToolItem extends SpectrumPickaxeItem {
 			}
 		}
 		return actionResult;
-	}
-	
-	@Override
-	public void appendTooltip(ItemStack itemStack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
-		super.appendTooltip(itemStack, world, tooltip, tooltipContext);
-		addPreEnchantedTooltip(tooltip, itemStack);
 	}
 	
 	@Override

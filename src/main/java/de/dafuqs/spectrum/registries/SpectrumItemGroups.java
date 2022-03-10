@@ -48,12 +48,12 @@ public class SpectrumItemGroups {
 			
 			if(this.getSelectedTab() == ITEM_GROUP_GENERAL.getTab(1)) {
 				// early game tools
-				stacks.add(SpectrumDefaultEnchantments.getEnchantedItemStack(SpectrumItems.MULTITOOL));
-				stacks.add(SpectrumDefaultEnchantments.getEnchantedItemStack(SpectrumItems.LOOTING_FALCHION));
-				stacks.add(SpectrumDefaultEnchantments.getEnchantedItemStack(SpectrumItems.SILKER_PICKAXE));
-				stacks.add(SpectrumDefaultEnchantments.getEnchantedItemStack(SpectrumItems.FORTUNE_PICKAXE));
-				stacks.add(SpectrumDefaultEnchantments.getEnchantedItemStack(SpectrumItems.VOIDING_PICKAXE));
-				stacks.add(SpectrumDefaultEnchantments.getEnchantedItemStack(SpectrumItems.RESONANT_PICKAXE));
+				stacks.add(SpectrumItems.MULTITOOL.getDefaultStack());
+				stacks.add(SpectrumItems.LOOTING_FALCHION.getDefaultStack());
+				stacks.add(SpectrumItems.SILKER_PICKAXE.getDefaultStack());
+				stacks.add(SpectrumItems.FORTUNE_PICKAXE.getDefaultStack());
+				stacks.add(SpectrumItems.VOIDING_PICKAXE.getDefaultStack());
+				stacks.add(SpectrumItems.RESONANT_PICKAXE.getDefaultStack());
 				
 				// emergency armor
 				stacks.add(new ItemStack(SpectrumItems.EMERGENCY_HELMET));
@@ -62,21 +62,21 @@ public class SpectrumItemGroups {
 				stacks.add(new ItemStack(SpectrumItems.EMERGENCY_BOOTS));
 				
 				// bedrock tools
-				stacks.add(SpectrumDefaultEnchantments.getEnchantedItemStack(SpectrumItems.BEDROCK_PICKAXE));
-				stacks.add(SpectrumDefaultEnchantments.getEnchantedItemStack(SpectrumItems.BEDROCK_AXE));
-				stacks.add(SpectrumDefaultEnchantments.getEnchantedItemStack(SpectrumItems.BEDROCK_SHOVEL));
-				stacks.add(SpectrumDefaultEnchantments.getEnchantedItemStack(SpectrumItems.BEDROCK_SWORD));
-				stacks.add(SpectrumDefaultEnchantments.getEnchantedItemStack(SpectrumItems.BEDROCK_HOE));
-				stacks.add(SpectrumDefaultEnchantments.getEnchantedItemStack(SpectrumItems.BEDROCK_BOW));
-				stacks.add(SpectrumDefaultEnchantments.getEnchantedItemStack(SpectrumItems.BEDROCK_CROSSBOW));
-				stacks.add(SpectrumDefaultEnchantments.getEnchantedItemStack(SpectrumItems.BEDROCK_SHEARS));
-				stacks.add(SpectrumDefaultEnchantments.getEnchantedItemStack(SpectrumItems.BEDROCK_FISHING_ROD));
+				stacks.add(SpectrumItems.BEDROCK_PICKAXE.getDefaultStack());
+				stacks.add(SpectrumItems.BEDROCK_AXE.getDefaultStack());
+				stacks.add(SpectrumItems.BEDROCK_SHOVEL.getDefaultStack());
+				stacks.add(SpectrumItems.BEDROCK_SWORD.getDefaultStack());
+				stacks.add(SpectrumItems.BEDROCK_HOE.getDefaultStack());
+				stacks.add(SpectrumItems.BEDROCK_BOW.getDefaultStack());
+				stacks.add(SpectrumItems.BEDROCK_CROSSBOW.getDefaultStack());
+				stacks.add(SpectrumItems.BEDROCK_SHEARS.getDefaultStack());
+				stacks.add(SpectrumItems.BEDROCK_FISHING_ROD.getDefaultStack());
 				
 				// bedrock armor
-				stacks.add(SpectrumDefaultEnchantments.getEnchantedItemStack(SpectrumItems.BEDROCK_HELMET));
-				stacks.add(SpectrumDefaultEnchantments.getEnchantedItemStack(SpectrumItems.BEDROCK_CHESTPLATE));
-				stacks.add(SpectrumDefaultEnchantments.getEnchantedItemStack(SpectrumItems.BEDROCK_LEGGINGS));
-				stacks.add(SpectrumDefaultEnchantments.getEnchantedItemStack(SpectrumItems.BEDROCK_BOOTS));
+				stacks.add(SpectrumItems.BEDROCK_HELMET.getDefaultStack());
+				stacks.add(SpectrumItems.BEDROCK_CHESTPLATE.getDefaultStack());
+				stacks.add(SpectrumItems.BEDROCK_LEGGINGS.getDefaultStack());
+				stacks.add(SpectrumItems.BEDROCK_BOOTS.getDefaultStack());
 			}
 		}
 		

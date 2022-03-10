@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.recipe.potion_workshop;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
-import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.potion_workshop.PotionWorkshopBlock;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.network.PacketByteBuf;

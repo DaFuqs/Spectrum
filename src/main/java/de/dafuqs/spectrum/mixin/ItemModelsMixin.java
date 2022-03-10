@@ -25,8 +25,8 @@ public class ItemModelsMixin {
 	@Final
 	private BakedModelManager modelManager;
 
-	@Inject(at = @At("HEAD"), method = "Lnet/minecraft/client/render/item/ItemModels;getModel(Lnet/minecraft/item/ItemStack;)Lnet/minecraft/client/render/model/BakedModel;", cancellable = true)
-	private void getModel(ItemStack itemStack, CallbackInfoReturnable<BakedModel> callbackInfoReturnable) {
+	@Inject(at = @At("HEAD"), method = "getModel(Lnet/minecraft/item/ItemStack;)Lnet/minecraft/client/render/model/BakedModel;", cancellable = true)
+	private void spectrum$getModel(ItemStack itemStack, CallbackInfoReturnable<BakedModel> callbackInfoReturnable) {
 		if(ClientBlockCloaker.isCloaked(itemStack.getItem())) {
 			Item destinationItem = ClientBlockCloaker.getCloakTarget(itemStack.getItem());
 

@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.networking;
 
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.Support;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Vec3d;
 
@@ -27,7 +28,8 @@ public class SpectrumS2CPackets {
 	public static final Identifier PLAY_BLOCK_BOUND_SOUND_INSTANCE = new Identifier(SpectrumCommon.MOD_ID, "play_pedestal_crafting_sound_instance");
 	public static final Identifier PLAY_TAKE_OFF_BELT_SOUND_INSTANCE = new Identifier(SpectrumCommon.MOD_ID, "play_take_off_belt_sound_instance");
 	public static final Identifier PLAY_SHOOTING_STAR_PARTICLES = new Identifier(SpectrumCommon.MOD_ID, "play_shooting_star_particles");
-	
+	public static final Identifier START_SKY_LERPING = new Identifier(SpectrumCommon.MOD_ID, "start_sky_lerping");
+
 	public enum ParticlePattern {
 		FOUR(Support.VECTORS_4),
 		EIGHT(Support.VECTORS_8),

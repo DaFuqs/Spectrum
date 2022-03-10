@@ -302,7 +302,7 @@ public class SpectrumS2CPacketSender {
 		}
 	}
 	
-	public static void spawnPedestalUpgradeParticles(World world, BlockPos blockPos, PedestalBlock.PedestalVariant newPedestalVariant) {
+	public static void spawnPedestalUpgradeParticles(World world, BlockPos blockPos, PedestalBlock.@NotNull PedestalVariant newPedestalVariant) {
 		PacketByteBuf buf = PacketByteBufs.create();
 		buf.writeBlockPos(blockPos);
 		buf.writeInt(newPedestalVariant.ordinal());
@@ -312,7 +312,7 @@ public class SpectrumS2CPacketSender {
 		}
 	}
 	
-	public static void sendPlayShootingStarParticles(ShootingStarEntity shootingStarEntity) {
+	public static void sendPlayShootingStarParticles(@NotNull ShootingStarEntity shootingStarEntity) {
 		PacketByteBuf buf = PacketByteBufs.create();
 		buf.writeDouble(shootingStarEntity.getPos().getX());
 		buf.writeDouble(shootingStarEntity.getPos().getY());
@@ -323,5 +323,15 @@ public class SpectrumS2CPacketSender {
 			ServerPlayNetworking.send(player, SpectrumS2CPackets.PLAY_SHOOTING_STAR_PARTICLES, buf);
 		}
 	}
-	
+
+    public static void startSkyLerping(@NotNull ServerWorld serverWorld, int duration) {
+		PacketByteBuf buf = PacketByteBufs.create();
+		long timeOfDay = serverWorld.getTimeOfDay();
+		buf.writeLong(timeOfDay);
+		buf.writeLong(timeOfDay+duration);
+
+		for(ServerPlayerEntity player :serverWorld.getPlayers()) {
+			ServerPlayNetworking.send(player, SpectrumS2CPackets.START_SKY_LERPING, buf);
+		}
+    }
 }

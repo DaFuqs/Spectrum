@@ -14,7 +14,7 @@ public abstract class ClientWorldMixin {
 
 	@Shadow public abstract Iterable<Entity> getEntities();
 
-	@Inject(at = @At(value = "INVOKE", target = "Lnet/minecraft/client/world/ClientWorld;tickBlockEntities()V"), method = "tickEntities")
+	@Inject(method = "tickEntities", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/world/ClientWorld;tickBlockEntities()V"))
 	void postEntityTick(CallbackInfo ci) {
 		for (Entity entry : getEntities()) {
 			if (entry instanceof GravityBlockEntity entity) {

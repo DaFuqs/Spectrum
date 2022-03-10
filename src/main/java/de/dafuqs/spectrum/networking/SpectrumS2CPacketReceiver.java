@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.networking;
 
+import de.dafuqs.spectrum.SpectrumClient;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.Support;
 import de.dafuqs.spectrum.blocks.particle_spawner.ParticleSpawnerBlockEntity;
@@ -15,6 +16,7 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.minecraft.block.Block;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ItemStackParticleEffect;
 import net.minecraft.particle.ParticleEffect;
@@ -28,6 +30,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.Vec3f;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
+import net.minecraft.world.dimension.DimensionType;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
@@ -118,6 +121,13 @@ public class SpectrumS2CPacketReceiver {
 					client.getInstance().player.world.addParticle(SpectrumParticleTypes.SPARKLESTONE_SPARKLE, position.getX() + 0.5, position.getY() + 0.5, position.getZ() + 0.5, 0.3 - random.nextFloat() * 0.6, 0.3 - random.nextFloat() * 0.6, 0.3 - random.nextFloat() * 0.6);
 				}
 			});
+		});
+
+		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.START_SKY_LERPING, (client, handler, buf, responseSender) -> {
+			DimensionType dimensionType = client.world.getDimension();
+			long sourceTime = buf.readLong();
+			long targetTime = buf.readLong();
+			SpectrumClient.skyLerper.trigger(dimensionType, sourceTime, client.getTickDelta(), targetTime);
 		});
 
 		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.PLAY_PEDESTAL_CRAFTING_FINISHED_PARTICLE_PACKET_ID, (client, handler, buf, responseSender) -> {

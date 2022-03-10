@@ -41,6 +41,8 @@ public class SpectrumClient implements ClientModInitializer {
 	public static ToggleableBlockColorProvider coloredLeavesBlockColorProvider;
 	public static ToggleableItemColorProvider coloredLeavesItemColorProvider;
 
+	public static final SkyLerper skyLerper = new SkyLerper();
+
 	@Environment(EnvType.CLIENT)
 	public static MinecraftClient minecraftClient;
 

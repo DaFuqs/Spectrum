@@ -975,6 +975,11 @@
   "item.spectrum.knowledge_gem.tooltip.stored_experience": "/ %d Experience stored",
   "item.spectrum.knowledge_gem.tooltip.use": "Use to drain, or crouch-use to store experience (%d/tick)",
 
+  "item.spectrum.celestial_pocketwatch": "Celestial Pocketwatch",
+  "item.spectrum.celestial_pocketwatch.tooltip.working": "Gives you reign over Day and Night",
+  "item.spectrum.celestial_pocketwatch.tooltip.use_blocked_gamerule": "A great power prevents the use of your watch",
+  "item.spectrum.celestial_pocketwatch.tooltip.use_blocked_fixed_time": "Your clock seems dysfunctional in this strange dimension",
+
   "item.spectrum.default_enchantment_tooltip": "Comes pre enchanted with %s",
   "item.spectrum.emergency_helmet": "Fetchling Helmet",
   "item.spectrum.emergency_chestplate": "Ferocious Chestplate",

@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.items.armor;
 
 import de.dafuqs.spectrum.interfaces.PreEnchantedTooltip;
+import de.dafuqs.spectrum.registries.SpectrumDefaultEnchantments;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ArmorItem;
@@ -22,5 +23,10 @@ public class SpectrumArmorItem extends ArmorItem implements PreEnchantedTooltip 
 		super.appendTooltip(itemStack, world, tooltip, tooltipContext);
 		addPreEnchantedTooltip(tooltip, itemStack);
 	}
-
+	
+	@Override
+	public ItemStack getDefaultStack() {
+		return SpectrumDefaultEnchantments.getDefaultEnchantedStack(this);
+	}
+	
 }

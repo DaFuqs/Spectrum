@@ -103,7 +103,7 @@ public class SpectrumItems {
 	public static final Item MULTITOOL = new MultiToolItem(ToolMaterials.IRON, 2, -2.4F, spectrumMultiToolItemSettings);
 	public static final Item SILKER_PICKAXE = new SpectrumPickaxeItem(SpectrumToolMaterials.ToolMaterial.LOW_HEALTH, 1, -2.8F, spectrumLowHealthToolItemSettings);
 	public static final Item FORTUNE_PICKAXE = new SpectrumPickaxeItem(SpectrumToolMaterials.ToolMaterial.LOW_HEALTH, 1, -2.8F, spectrumLowHealthToolItemSettings);
-	public static final Item LOOTING_FALCHION = new SwordItem(SpectrumToolMaterials.ToolMaterial.LOW_HEALTH, 4, -2.2F, spectrumLowHealthToolItemSettings);
+	public static final Item LOOTING_FALCHION = new SpectrumSwordItem(SpectrumToolMaterials.ToolMaterial.LOW_HEALTH, 4, -2.2F, spectrumLowHealthToolItemSettings);
 	public static final Item VOIDING_PICKAXE = new VoidingPickaxeItem(SpectrumToolMaterials.ToolMaterial.VOIDING, 1, -2.8F, spectrumLowVoidingToolItemSettings);
 	public static final Item RESONANT_PICKAXE = new SpectrumPickaxeItem(SpectrumToolMaterials.ToolMaterial.LOW_HEALTH, 1, -2.8F, spectrumLowHealthToolItemSettings);
 

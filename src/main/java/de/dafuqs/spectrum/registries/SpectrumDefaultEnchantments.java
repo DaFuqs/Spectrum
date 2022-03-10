@@ -69,5 +69,14 @@ public class SpectrumDefaultEnchantments {
 	public static DefaultEnchantment getDefaultEnchantment(Item item) {
 		return defaultEnchantments.getOrDefault(item, null);
 	}
+	
+	public static ItemStack getDefaultEnchantedStack(Item item) {
+		ItemStack itemStack = new ItemStack(item);
+		SpectrumDefaultEnchantments.DefaultEnchantment def = getDefaultEnchantment(item);
+		if(def != null) {
+			itemStack.addEnchantment(def.enchantment, def.level);
+		}
+		return itemStack;
+	}
 
 }

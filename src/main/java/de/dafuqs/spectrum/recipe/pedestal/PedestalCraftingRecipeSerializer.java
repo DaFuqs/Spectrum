@@ -3,6 +3,8 @@ package de.dafuqs.spectrum.recipe.pedestal;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.blocks.enchanter.EnchanterBlock;
+import de.dafuqs.spectrum.blocks.pedestal.PedestalBlock;
 import de.dafuqs.spectrum.enums.GemstoneColor;
 import de.dafuqs.spectrum.enums.PedestalRecipeTier;
 import de.dafuqs.spectrum.mixin.AccessorShapedRecipe;
@@ -75,9 +77,9 @@ public class PedestalCraftingRecipeSerializer implements RecipeSerializer<Pedest
 				requiredAdvancementIdentifiers.add(requiredAdvancementIdentifier);
 			}
 		} else {
-			SpectrumCommon.log(Level.WARN, "Pedestal Recipe "+ identifier.getPath() + " does not specify advancements to unlock.");
+			// Recipe has no unlock advancement set. Will be set to the unlock advancement of the Enchanter itself
+			requiredAdvancementIdentifiers.add(PedestalBlock.UNLOCK_IDENTIFIER);
 		}
-
 
 		return this.recipeFactory.create(identifier, group, tier, width, height, craftingInputs, gemInputs, output, experience, craftingTime, noBenefitsFromYieldUpgrades, requiredAdvancementIdentifiers);
 	}

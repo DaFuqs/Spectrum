@@ -2,6 +2,8 @@ package de.dafuqs.spectrum.recipe.enchanter;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import de.dafuqs.spectrum.blocks.enchanter.EnchanterBlock;
+import de.dafuqs.spectrum.blocks.potion_workshop.PotionWorkshopBlock;
 import de.dafuqs.spectrum.recipe.RecipeUtils;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
@@ -43,6 +45,9 @@ public class EnchanterRecipeSerializer implements RecipeSerializer<EnchanterReci
 		Identifier requiredAdvancementIdentifier = null;
 		if(JsonHelper.hasString(jsonObject, "required_advancement")) {
 			requiredAdvancementIdentifier = Identifier.tryParse(JsonHelper.getString(jsonObject, "required_advancement"));
+		} else {
+			// Recipe has no unlock advancement set. Will be set to the unlock advancement of the Enchanter itself
+			requiredAdvancementIdentifier = EnchanterBlock.UNLOCK_IDENTIFIER;
 		}
 		
 		return this.recipeFactory.create(identifier, group, craftingInputs, output, craftingTime, requiredExperience, noBenefitsFromYieldAndEfficiencyUpgrades, requiredAdvancementIdentifier);

@@ -4,6 +4,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.blocks.enchanter.EnchanterBlock;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.item.Item;
 import net.minecraft.network.PacketByteBuf;
@@ -38,6 +39,9 @@ public class EnchantmentUpgradeRecipeSerializer implements RecipeSerializer<Ench
 		Identifier requiredAdvancementIdentifier = null;
 		if(JsonHelper.hasString(jsonObject, "required_advancement")) {
 			requiredAdvancementIdentifier = Identifier.tryParse(JsonHelper.getString(jsonObject, "required_advancement"));
+		} else {
+			// Recipe has no unlock advancement set. Will be set to the unlock advancement of the Enchanter itself
+			requiredAdvancementIdentifier = EnchanterBlock.UNLOCK_IDENTIFIER;
 		}
 		
 		JsonArray levelArray = JsonHelper.getArray(jsonObject, "levels");

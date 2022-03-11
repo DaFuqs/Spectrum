@@ -1,6 +1,9 @@
 {
   "replace": false,
   "values": [
+    "spectrum:failing",
+    "spectrum:ruin",
+    "spectrum:terror",
 	"#spectrum:decostones",
 	"#spectrum:gemstone_chimes",
 	"#spectrum:pedestals",

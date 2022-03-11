@@ -1,7 +1,7 @@
 {
   "replace": false,
   "values": [
-    "#spectrum:decay",
+    "spectrum:fading",
     "spectrum:private_chest",
     "spectrum:light_level_detector",
     "spectrum:weather_detector",

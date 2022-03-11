@@ -1,7 +1,7 @@
 {
   "replace": false,
   "values": [
-    "#spectrum:decay",
+    "spectrum:fading",
     "spectrum:lava_sponge",
     "spectrum:wet_lava_sponge",
     "spectrum:spirit_sallow_leaves",

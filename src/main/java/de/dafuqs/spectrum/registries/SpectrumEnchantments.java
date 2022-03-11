@@ -23,7 +23,7 @@ public class SpectrumEnchantments {
 	public static final SpectrumEnchantment TIGHT_GRIP = new TightGripEnchantment(Enchantment.Rarity.RARE, new Identifier(SpectrumCommon.MOD_ID, "progression/enchantments/tight_grip"), EquipmentSlot.MAINHAND); // Increases attack speed
 	public static final SpectrumEnchantment DISARMING = new DisarmingEnchantment(Enchantment.Rarity.VERY_RARE, new Identifier(SpectrumCommon.MOD_ID, "progression/enchantments/disarming"), EquipmentSlot.MAINHAND); // Drops mob equipment on hit (and players, but way less often)
 	public static final SpectrumEnchantment SNIPER = new SniperEnchantment(Enchantment.Rarity.VERY_RARE, new Identifier(SpectrumCommon.MOD_ID, "progression/enchantments/sniper"), EquipmentSlot.MAINHAND); // Increases projectile speed => increased damage + range
-	public static final SpectrumEnchantment DAMAGE_PROOF = new DamageProofEnchantment(Enchantment.Rarity.RARE, new Identifier(SpectrumCommon.MOD_ID, "progression/enchantments/damage_proof"), EquipmentSlot.MAINHAND); // ItemStacks with this enchantment are not destroyed by cactus, fire, lava, ...
+	public static final SpectrumEnchantment DAMAGE_PROOF = new DamageProofEnchantment(Enchantment.Rarity.COMMON, new Identifier(SpectrumCommon.MOD_ID, "progression/enchantments/damage_proof"), EquipmentSlot.MAINHAND); // ItemStacks with this enchantment are not destroyed by cactus, fire, lava, ...
 
 	public static void register() {
 		Registry.register(Registry.ENCHANTMENT, new Identifier(SpectrumCommon.MOD_ID, "resonance"), RESONANCE);

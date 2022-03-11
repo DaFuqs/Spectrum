@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.compat.REI;
 
-import de.dafuqs.spectrum.Support;
 import de.dafuqs.spectrum.blocks.enchanter.EnchanterBlockEntity;
+import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.items.magic_items.KnowledgeGemItem;
 import de.dafuqs.spectrum.recipe.enchantment_upgrade.EnchantmentUpgradeRecipe;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;

@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.inventories;
 
-import de.dafuqs.spectrum.Support;
 import de.dafuqs.spectrum.blocks.potion_workshop.PotionWorkshopBlockEntity;
+import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.inventories.slots.DisabledSlot;
 import de.dafuqs.spectrum.inventories.slots.ReagentSlot;
 import de.dafuqs.spectrum.inventories.slots.StackFilterSlot;

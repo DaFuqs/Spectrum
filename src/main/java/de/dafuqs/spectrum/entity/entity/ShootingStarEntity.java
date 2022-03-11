@@ -1,10 +1,10 @@
 package de.dafuqs.spectrum.entity.entity;
 
 import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.Support;
 import de.dafuqs.spectrum.blocks.shooting_star.ShootingStarBlock;
 import de.dafuqs.spectrum.blocks.shooting_star.ShootingStarItem;
 import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
+import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
 import de.dafuqs.spectrum.particle.effect.ParticleSpawnerParticleEffectAlwaysShow;
 import de.dafuqs.spectrum.registries.SpectrumDamageSources;

@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.mixin;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.azure_dike.AzureDikeProvider;
 import de.dafuqs.spectrum.enchantments.DisarmingEnchantment;
+import de.dafuqs.spectrum.interfaces.ArmorWithHitEffect;
 import de.dafuqs.spectrum.items.trinkets.AshenCircletItem;
 import de.dafuqs.spectrum.items.trinkets.PuffCircletItem;
 import de.dafuqs.spectrum.items.trinkets.SpectrumTrinketItem;
@@ -23,6 +24,7 @@ import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -147,6 +149,27 @@ public abstract class LivingEntityMixin {
 						
 						// override the previous return value
 						cir.setReturnValue(true);
+					}
+				}
+			}
+		}
+	}
+
+	@Inject(method = "damage(Lnet/minecraft/entity/damage/DamageSource;F)Z", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;isDead()Z", ordinal = 1))
+	public void spectrum$TriggerArmorWithHitEffect(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
+		if (!((LivingEntity)(Object) this).world.isClient) {
+			if (((Object) this) instanceof MobEntity) {
+				MobEntity thisMobEntity = (MobEntity) (Object) this;
+				for (ItemStack armorItemStack : thisMobEntity.getArmorItems()) {
+					if (armorItemStack.getItem() instanceof ArmorWithHitEffect) {
+						((ArmorWithHitEffect) armorItemStack.getItem()).onHit(armorItemStack, source, thisMobEntity, amount);
+					}
+				}
+			} else if (((Object) this) instanceof ServerPlayerEntity) {
+				ServerPlayerEntity thisPlayerEntity = (ServerPlayerEntity) (Object) this;
+				for (ItemStack armorItemStack : thisPlayerEntity.getArmorItems()) {
+					if (armorItemStack.getItem() instanceof ArmorWithHitEffect) {
+						((ArmorWithHitEffect) armorItemStack.getItem()).onHit(armorItemStack, source, thisPlayerEntity, amount);
 					}
 				}
 			}

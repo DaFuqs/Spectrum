@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum;
+package de.dafuqs.spectrum.render;
 
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.minecraft.client.MinecraftClient;

@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum;
+package de.dafuqs.spectrum.helpers;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

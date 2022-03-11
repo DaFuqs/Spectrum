@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(ClientAdvancementManager.class)
-public abstract class MixinClientAdvancementManager {
+public abstract class ClientAdvancementManagerMixin {
 
 	/**
 	 * Intercepts advancement packets sent from server to client

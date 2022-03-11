@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.recipe.fusion_shrine;
 
-import de.dafuqs.spectrum.Support;
+import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.progression.ClientRecipeToastManager;
 import de.dafuqs.spectrum.recipe.GatedRecipe;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;

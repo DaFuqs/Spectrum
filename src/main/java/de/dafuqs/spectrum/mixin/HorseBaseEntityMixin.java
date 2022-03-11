@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.mixin;
 
-import de.dafuqs.spectrum.Support;
+import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.interfaces.GravitableItem;
 import de.dafuqs.spectrum.interfaces.PlayerOwned;
 import net.minecraft.entity.damage.DamageSource;

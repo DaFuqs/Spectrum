@@ -12,6 +12,8 @@ import de.dafuqs.spectrum.particle.SpectrumParticleFactories;
 import de.dafuqs.spectrum.progression.ToggleableBlockColorProvider;
 import de.dafuqs.spectrum.progression.ToggleableItemColorProvider;
 import de.dafuqs.spectrum.registries.*;
+import de.dafuqs.spectrum.render.GuiOverlay;
+import de.dafuqs.spectrum.render.SkyLerper;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;

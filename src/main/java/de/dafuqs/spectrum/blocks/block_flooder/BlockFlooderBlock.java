@@ -1,8 +1,8 @@
 package de.dafuqs.spectrum.blocks.block_flooder;
 
 import com.google.common.collect.ImmutableList;
-import de.dafuqs.spectrum.InventoryHelper;
-import de.dafuqs.spectrum.Support;
+import de.dafuqs.spectrum.helpers.InventoryHelper;
+import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.interfaces.PlayerOwned;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;

@@ -1,8 +1,8 @@
 package de.dafuqs.spectrum.inventories;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import de.dafuqs.spectrum.LoreHelper;
 import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.helpers.LoreHelper;
 import de.dafuqs.spectrum.networking.SpectrumC2SPacketSender;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;

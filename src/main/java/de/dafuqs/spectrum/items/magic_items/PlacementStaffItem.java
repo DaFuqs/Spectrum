@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.items.magic_items;
 
-import de.dafuqs.spectrum.BuildingHelper;
 import de.dafuqs.spectrum.enums.PedestalRecipeTier;
+import de.dafuqs.spectrum.helpers.BuildingHelper;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.Block;

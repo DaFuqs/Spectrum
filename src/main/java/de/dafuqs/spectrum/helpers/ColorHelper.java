@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum;
+package de.dafuqs.spectrum.helpers;
 
 import de.dafuqs.spectrum.items.PigmentItem;
 import net.minecraft.item.DyeItem;

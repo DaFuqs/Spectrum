@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.recipe.potion_workshop;
 
 import com.google.gson.JsonObject;
-import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.potion_workshop.PotionWorkshopBlock;
 import de.dafuqs.spectrum.recipe.RecipeUtils;
 import net.minecraft.item.ItemStack;

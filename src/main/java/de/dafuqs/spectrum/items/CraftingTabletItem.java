@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.items;
 
-import de.dafuqs.spectrum.InventoryHelper;
-import de.dafuqs.spectrum.Support;
+import de.dafuqs.spectrum.helpers.InventoryHelper;
+import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.inventories.CraftingTabletScreenHandler;
 import de.dafuqs.spectrum.items.tooltip.CraftingTabletTooltipData;
 import de.dafuqs.spectrum.recipe.pedestal.PedestalCraftingRecipe;

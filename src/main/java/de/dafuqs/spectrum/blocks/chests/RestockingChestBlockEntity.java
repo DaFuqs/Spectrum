@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.blocks.chests;
 
-import de.dafuqs.spectrum.InventoryHelper;
+import de.dafuqs.spectrum.helpers.InventoryHelper;
 import de.dafuqs.spectrum.inventories.RestockingChestScreenHandler;
 import de.dafuqs.spectrum.items.CraftingTabletItem;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;

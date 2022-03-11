@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.interfaces;
 
-import de.dafuqs.spectrum.Support;
+import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.progression.BlockCloakManager;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

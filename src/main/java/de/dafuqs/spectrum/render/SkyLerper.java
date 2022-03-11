@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum;
+package de.dafuqs.spectrum.render;
 
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.dimension.DimensionType;

@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.mixin.client;
+package de.dafuqs.spectrum.mixin.client.accessors;
 
 import net.minecraft.advancement.Advancement;
 import net.minecraft.advancement.AdvancementProgress;

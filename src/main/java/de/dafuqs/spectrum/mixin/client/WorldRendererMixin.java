@@ -1,10 +1,11 @@
 package de.dafuqs.spectrum.mixin.client;
 
-import de.dafuqs.spectrum.BuildingHelper;
-import de.dafuqs.spectrum.GuiOverlay;
+import de.dafuqs.spectrum.helpers.BuildingHelper;
+import de.dafuqs.spectrum.interfaces.WorldRendererAccessor;
 import de.dafuqs.spectrum.items.magic_items.BuildingStaffItem;
 import de.dafuqs.spectrum.items.magic_items.ExchangeStaffItem;
 import de.dafuqs.spectrum.items.magic_items.PlacementStaffItem;
+import de.dafuqs.spectrum.render.GuiOverlay;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.Block;
@@ -13,6 +14,7 @@ import net.minecraft.block.ShapeContext;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.render.*;
+import net.minecraft.client.render.chunk.ChunkBuilder;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.Entity;
@@ -43,8 +45,8 @@ import java.util.List;
 import java.util.Optional;
 
 @Environment(EnvType.CLIENT)
-@Mixin(WorldRenderer.class)
-public abstract class WorldRendererMixin {
+@Mixin(value = WorldRenderer.class, priority = 900)
+public abstract class WorldRendererMixin implements WorldRendererAccessor {
 
     @Shadow @Final private MinecraftClient client;
     
@@ -54,6 +56,26 @@ public abstract class WorldRendererMixin {
     
     // if the mixin renders a bigger outline than the default 1:1. Cancels default outline
     @Unique private boolean renderedExtendedOutline = false;
+
+    @Shadow
+    private BuiltChunkStorage chunks;
+
+    @Shadow public abstract void scheduleTerrainUpdate();
+
+    /**
+     * When triggered on client side lets the client redraw ALL chunks
+     * Warning: Costly + LagSpike!
+     */
+    public void rebuildAllChunks() {
+        if (MinecraftClient.getInstance().world != null) {
+            if (MinecraftClient.getInstance().worldRenderer != null && MinecraftClient.getInstance().player != null) {
+                for(ChunkBuilder.BuiltChunk chunk : this.chunks.chunks) {
+                    chunk.scheduleRebuild(true);
+                }
+                scheduleTerrainUpdate();
+            }
+        }
+    }
 
     @Inject(method = "render(Lnet/minecraft/client/util/math/MatrixStack;FJZLnet/minecraft/client/render/Camera;Lnet/minecraft/client/render/GameRenderer;Lnet/minecraft/client/render/LightmapTextureManager;Lnet/minecraft/util/math/Matrix4f;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/util/hit/HitResult;getType()Lnet/minecraft/util/hit/HitResult$Type;"), locals = LocalCapture.CAPTURE_FAILHARD)
     private void renderExtendedBlockOutline(MatrixStack matrices, float tickDelta, long limitTime, boolean renderBlockOutline, Camera camera, GameRenderer gameRenderer, LightmapTextureManager lightmapTextureManager, Matrix4f positionMatrix, CallbackInfo ci, Profiler profiler, boolean b, Vec3d vec3d, double d, double e, double f, Matrix4f matrix4f2, boolean b2, Frustum frustum2, boolean b3, VertexConsumerProvider.Immediate immediate, HitResult hitResult2) {

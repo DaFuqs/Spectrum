@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.blocks.mob_head;
 
-import de.dafuqs.spectrum.Support;
+import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Material;

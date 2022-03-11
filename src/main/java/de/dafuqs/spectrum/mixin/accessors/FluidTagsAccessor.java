@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.mixin;
+package de.dafuqs.spectrum.mixin.accessors;
 
 import net.minecraft.fluid.Fluid;
 import net.minecraft.tag.FluidTags;

@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.mixin.client.RenderLayerAccessor;
+import de.dafuqs.spectrum.mixin.accessors.RenderLayerAccessor;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.render.RenderLayer;

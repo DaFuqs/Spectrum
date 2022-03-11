@@ -1,10 +1,10 @@
 package de.dafuqs.spectrum.blocks.chests;
 
-import de.dafuqs.spectrum.InventoryHelper;
 import de.dafuqs.spectrum.events.ExperienceOrbEntityTransferListener;
 import de.dafuqs.spectrum.events.ItemEntityTransferListener;
 import de.dafuqs.spectrum.events.SpectrumGameEvents;
 import de.dafuqs.spectrum.events.SuckingChestEventListener;
+import de.dafuqs.spectrum.helpers.InventoryHelper;
 import de.dafuqs.spectrum.inventories.SuckingChestScreenHandler;
 import de.dafuqs.spectrum.items.ExperienceStorageItem;
 import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;

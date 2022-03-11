@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.mixin;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import de.dafuqs.spectrum.inventories.slots.ShadowSlot;
+import de.dafuqs.spectrum.mixin.accessors.ItemAccessor;
 import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
 import de.dafuqs.spectrum.registries.SpectrumEnchantments;
 import de.dafuqs.spectrum.registries.SpectrumItemTags;
@@ -68,7 +69,7 @@ public abstract class ItemStackMixin {
 			for(Map.Entry<EntityAttribute, EntityAttributeModifier> s : cir.getReturnValue().entries()) {
 				if(s.getKey().equals(EntityAttributes.GENERIC_ATTACK_SPEED)) {
 					double newSpeed =  s.getValue().getValue() * Math.max(0.25, 1.0-tightGripLevel * 0.25);
-					builder.put(s.getKey(), new EntityAttributeModifier(AccessorItem.getAttackSpeedModifierId(), "Weapon modifier", newSpeed, EntityAttributeModifier.Operation.ADDITION));
+					builder.put(s.getKey(), new EntityAttributeModifier(ItemAccessor.getAttackSpeedModifierId(), "Weapon modifier", newSpeed, EntityAttributeModifier.Operation.ADDITION));
 				} else {
 					builder.put(s.getKey(), s.getValue());
 				}

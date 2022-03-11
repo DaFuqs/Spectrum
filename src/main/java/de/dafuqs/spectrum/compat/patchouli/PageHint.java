@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.compat.patchouli;
 
-import de.dafuqs.spectrum.InventoryHelper;
 import de.dafuqs.spectrum.SpectrumClient;
+import de.dafuqs.spectrum.helpers.InventoryHelper;
 import de.dafuqs.spectrum.networking.SpectrumC2SPacketSender;
 import de.dafuqs.spectrum.sound.HintRevelationSoundInstance;
 import net.minecraft.client.MinecraftClient;

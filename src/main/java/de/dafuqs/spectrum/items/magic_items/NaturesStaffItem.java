@@ -1,8 +1,8 @@
 package de.dafuqs.spectrum.items.magic_items;
 
-import de.dafuqs.spectrum.InventoryHelper;
 import de.dafuqs.spectrum.SpectrumClient;
 import de.dafuqs.spectrum.blocks.enchanter.EnchanterEnchantable;
+import de.dafuqs.spectrum.helpers.InventoryHelper;
 import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
 import de.dafuqs.spectrum.registries.SpectrumBlockTags;
 import de.dafuqs.spectrum.registries.SpectrumItems;

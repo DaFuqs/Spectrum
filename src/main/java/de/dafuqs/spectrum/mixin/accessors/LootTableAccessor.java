@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.mixin;
+package de.dafuqs.spectrum.mixin.accessors;
 
 import net.minecraft.loot.LootPool;
 import net.minecraft.loot.LootTable;

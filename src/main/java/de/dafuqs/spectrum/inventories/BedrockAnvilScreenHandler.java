@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.inventories;
 
-import de.dafuqs.spectrum.LoreHelper;
+import de.dafuqs.spectrum.helpers.LoreHelper;
 import net.minecraft.block.BlockState;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;

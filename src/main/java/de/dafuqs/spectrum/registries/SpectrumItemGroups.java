@@ -108,8 +108,10 @@ public class SpectrumItemGroups {
 			super.appendStacks(stacks);
 			
 			if(this.getSelectedTab() == ITEM_GROUP_BLOCKS.getTab(3)) {
+				// fully filled Knowledge Gem
 				stacks.add(KnowledgeGemItem.getKnowledgeDropStackWithXP(10000));
-				
+
+				// Bottomless Bundles willed with useful, basic materials
 				stacks.add(BottomlessBundleItem.getWithBlockAndCount(Items.COBBLESTONE.getDefaultStack(), 20000));
 				stacks.add(BottomlessBundleItem.getWithBlockAndCount(Items.STONE.getDefaultStack(), 20000));
 				stacks.add(BottomlessBundleItem.getWithBlockAndCount(Items.DEEPSLATE.getDefaultStack(), 20000));
@@ -117,7 +119,8 @@ public class SpectrumItemGroups {
 				stacks.add(BottomlessBundleItem.getWithBlockAndCount(Items.SAND.getDefaultStack(), 20000));
 				stacks.add(BottomlessBundleItem.getWithBlockAndCount(Items.GRAVEL.getDefaultStack(), 20000));
 				stacks.add(BottomlessBundleItem.getWithBlockAndCount(Items.ARROW.getDefaultStack(), 20000));
-				
+
+				// Enchanted books with the max upgrade level available via Enchantment Upgrading
 				HashMap<Enchantment, Integer> highestEnchantmentLevels = new HashMap<>();
 				for(EnchantmentUpgradeRecipe enchantmentUpgradeRecipe : EnchantmentUpgradeRecipeSerializer.enchantmentUpgradeRecipesToInject) {
 					Enchantment enchantment = enchantmentUpgradeRecipe.getEnchantment();

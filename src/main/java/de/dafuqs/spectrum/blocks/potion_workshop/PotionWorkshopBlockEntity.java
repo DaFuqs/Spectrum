@@ -1,8 +1,8 @@
 package de.dafuqs.spectrum.blocks.potion_workshop;
 
-import de.dafuqs.spectrum.InventoryHelper;
 import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.Support;
+import de.dafuqs.spectrum.helpers.InventoryHelper;
+import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.interfaces.PlayerOwned;
 import de.dafuqs.spectrum.interfaces.PotionFillable;
 import de.dafuqs.spectrum.inventories.PotionWorkshopScreenHandler;

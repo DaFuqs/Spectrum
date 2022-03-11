@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.progression;
 
-import de.dafuqs.spectrum.mixin.client.AccessorClientAdvancementManager;
+import de.dafuqs.spectrum.mixin.client.accessors.AccessorClientAdvancementManager;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.advancement.Advancement;

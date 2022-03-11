@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.particle.client;
 
-import de.dafuqs.spectrum.ColorHelper;
+import de.dafuqs.spectrum.helpers.ColorHelper;
 import de.dafuqs.spectrum.particle.effect.Transphere;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;

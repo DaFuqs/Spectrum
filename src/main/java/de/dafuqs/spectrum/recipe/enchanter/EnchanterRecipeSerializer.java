@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.recipe.enchanter;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import de.dafuqs.spectrum.blocks.enchanter.EnchanterBlock;
-import de.dafuqs.spectrum.blocks.potion_workshop.PotionWorkshopBlock;
 import de.dafuqs.spectrum.recipe.RecipeUtils;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;

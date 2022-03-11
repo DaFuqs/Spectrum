@@ -1,5 +1,6 @@
-package de.dafuqs.spectrum;
+package de.dafuqs.spectrum.helpers;
 
+import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.progression.ClientAdvancements;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;

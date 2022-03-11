@@ -1,12 +1,12 @@
 package de.dafuqs.spectrum.blocks.enchanter;
 
-import de.dafuqs.spectrum.ExperienceHelper;
 import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.SpectrumEnchantmentHelper;
-import de.dafuqs.spectrum.Support;
 import de.dafuqs.spectrum.blocks.item_bowl.ItemBowlBlockEntity;
 import de.dafuqs.spectrum.blocks.upgrade.Upgradeable;
 import de.dafuqs.spectrum.enchantments.SpectrumEnchantment;
+import de.dafuqs.spectrum.helpers.ExperienceHelper;
+import de.dafuqs.spectrum.helpers.SpectrumEnchantmentHelper;
+import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.interfaces.PlayerOwned;
 import de.dafuqs.spectrum.items.ExperienceStorageItem;
 import de.dafuqs.spectrum.items.magic_items.KnowledgeGemItem;

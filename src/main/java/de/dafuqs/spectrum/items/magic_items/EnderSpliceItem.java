@@ -1,8 +1,8 @@
 package de.dafuqs.spectrum.items.magic_items;
 
 import de.dafuqs.spectrum.SpectrumClient;
-import de.dafuqs.spectrum.Support;
 import de.dafuqs.spectrum.blocks.enchanter.EnchanterEnchantable;
+import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.interfaces.PlayerOwned;
 import de.dafuqs.spectrum.networking.SpectrumC2SPacketSender;
 import de.dafuqs.spectrum.registries.SpectrumEnchantments;

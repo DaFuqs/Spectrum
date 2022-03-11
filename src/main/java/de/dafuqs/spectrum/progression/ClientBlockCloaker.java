@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.progression;
 
-import de.dafuqs.spectrum.accessor.WorldRendererAccessor;
 import de.dafuqs.spectrum.interfaces.Cloakable;
+import de.dafuqs.spectrum.interfaces.WorldRendererAccessor;
 import de.dafuqs.spectrum.progression.toast.RevelationToast;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import de.dafuqs.spectrum.sound.SpectrumSoundEvents;

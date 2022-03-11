@@ -18,14 +18,14 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.Optional;
 
 @Mixin(FarmlandBlock.class)
-public class MixinFarmlandBlock extends Block {
-    public MixinFarmlandBlock(Settings settings) {
+public class FarmlandBlockMixin extends Block {
+    public FarmlandBlockMixin(Settings settings) {
         super(settings);
     }
 
     @Inject(method = {"onLandedUpon(Lnet/minecraft/world/World;Lnet/minecraft/block/BlockState;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/entity/Entity;F)V"},
             at = {@At("HEAD")}, cancellable = true)
-    private void onLandedUpon(World world, BlockState state, BlockPos pos, Entity entity, float fallDistance, CallbackInfo info) {
+    private void spectrum$onLandedUpon(World world, BlockState state, BlockPos pos, Entity entity, float fallDistance, CallbackInfo info) {
         super.onLandedUpon(world, state, pos, entity, fallDistance); // fall damage
     
         // if carrying puff circlet: no trampling

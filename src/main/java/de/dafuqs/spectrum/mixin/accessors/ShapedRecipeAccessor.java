@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.mixin;
+package de.dafuqs.spectrum.mixin.accessors;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.gen.Invoker;
 import java.util.Map;
 
 @Mixin(ShapedRecipe.class)
-public interface AccessorShapedRecipe {
+public interface ShapedRecipeAccessor {
 
 	@Invoker(value = "createPatternMatrix")
 	static DefaultedList<Ingredient> invokeCreatePatternMatrix(String[] pattern, Map<String, Ingredient> key, int width, int height) {

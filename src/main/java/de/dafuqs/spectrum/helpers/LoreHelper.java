@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum;
+package de.dafuqs.spectrum.helpers;
 
 import com.google.gson.JsonParseException;
 import net.minecraft.item.ItemStack;

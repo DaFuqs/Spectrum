@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.mixin.FluidTagsAccessor;
+import de.dafuqs.spectrum.mixin.accessors.FluidTagsAccessor;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.tag.Tag;
 

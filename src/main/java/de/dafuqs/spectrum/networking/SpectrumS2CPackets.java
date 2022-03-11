@@ -1,7 +1,8 @@
 package de.dafuqs.spectrum.networking;
 
 import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.helpers.Support;
+import de.dafuqs.spectrum.Support;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Vec3d;
 

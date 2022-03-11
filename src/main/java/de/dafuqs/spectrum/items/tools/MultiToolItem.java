@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.items.tools;
 
+import de.dafuqs.spectrum.registries.SpectrumDefaultEnchantments;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
@@ -37,6 +38,11 @@ public class MultiToolItem extends SpectrumPickaxeItem {
 			}
 		}
 		return actionResult;
+	}
+	
+	@Override
+	public ItemStack getDefaultStack() {
+		return SpectrumDefaultEnchantments.getDefaultEnchantedStack(this);
 	}
 
 }

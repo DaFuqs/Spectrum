@@ -2,7 +2,8 @@
   "parent": "spectrum:midgame/brew_potion_in_potion_workshop",
   "display": {
     "icon": {
-      "item": "spectrum:lesser_potion_pendant"
+      "item": "spectrum:lesser_potion_pendant",
+      "nbt": "{CustomPotionEffects: [{Duration: 3600, Id: 12b, Amplifier: 0b}], CustomPotionColor: 14981690}"
     },
     "title": {
       "translate": "advancements.spectrum.fill_potion_pendant.title"

@@ -3,11 +3,11 @@
   "time": 1200,
   "tier": "complex",
   "magenta": 0,
-  "yellow": 0,
+  "yellow": 2,
   "cyan": 4,
   "black": 0,
   "white": 4,
-  "experience": 4.0,
+  "experience": 2.0,
   "pattern": [
     " PP",
     " MP",
@@ -28,5 +28,5 @@
     "item": "minecraft:trident",
     "count": 1
   },
-  "required_advancements": ["spectrum:__lategame/spectrum_lategame"]
+  "required_advancements": ["spectrum:lategame/build_complex_pedestal_structure"]
 }

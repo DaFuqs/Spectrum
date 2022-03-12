@@ -2,7 +2,7 @@
   "criteria": {
   	"unlocked_complex_crafting": {
       "trigger":"spectrum:has_advancement",
-      "conditions": { "advancement_identifier": "spectrum:lategame/build_complex_pedestal_structure" }
+      "conditions": { "advancement_identifier": "spectrum:midgame/collect_moonstone_shard" }
     },
   	"collected_resonant_lily": {
       "trigger":"spectrum:has_advancement",

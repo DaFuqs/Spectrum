@@ -2,7 +2,8 @@
   "parent": "spectrum:midgame/build_enchanting_structure",
   "display": {
     "icon": {
-      "item": "spectrum:seven_league_boots"
+      "item": "spectrum:seven_league_boots",
+      "nbt": "{Enchantments: [{id: \"minecraft:power\", lvl: 1s}]}"
     },
     "hidden": true,
     "title": {

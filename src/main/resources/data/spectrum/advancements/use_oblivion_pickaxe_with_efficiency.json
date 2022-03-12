@@ -2,7 +2,8 @@
   "parent": "spectrum:collect_quitoxic_reeds",
   "display": {
     "icon": {
-      "item": "spectrum:voiding_pickaxe"
+      "item": "spectrum:voiding_pickaxe",
+      "nbt": "{Enchantments: [{id: \"minecraft:efficiency\", lvl: 1s}]}"
     },
     "title": {
       "translate": "advancements.spectrum.use_oblivion_pickaxe_with_efficiency.title"

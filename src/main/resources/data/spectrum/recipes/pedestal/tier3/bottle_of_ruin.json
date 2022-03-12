@@ -10,7 +10,7 @@
   "experience": 2.0,
   "pattern": [
     "FAF",
-    "PBP",
+    "MBM",
     "FAF"
   ],
   "key": {
@@ -20,8 +20,8 @@
     "F": {
       "item": "minecraft:fermented_spider_eye"
     },
-    "P": {
-      "item": "minecraft:prismarine_crystals"
+    "M": {
+      "item": "spectrum:midnight_chip"
     },
     "B": {
       "item": "minecraft:dragon_breath"

@@ -2,7 +2,8 @@
   "parent": "spectrum:lategame/collect_paletur",
   "display": {
     "icon": {
-      "item": "spectrum:resonant_pickaxe"
+      "item": "spectrum:resonant_pickaxe",
+      "nbt": "{Enchantments: [{id: \"spectrum:resonance\", lvl: 1s}]}"
     },
     "title": {
     "translate": "advancements.spectrum.craft_resonant_pickaxe.title"

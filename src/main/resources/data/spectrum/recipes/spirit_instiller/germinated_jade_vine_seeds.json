@@ -1,0 +1,17 @@
+{
+  "type": "spectrum:spirit_instiller",
+  "time": 1600,
+  "experience": 1.0,
+  "ingredient1": {
+    "item": "spectrum:ancient_jade_vine_seeds"
+  },
+  "ingredient2": {
+    "item": "spectrum:liquid_crystal_bucket"
+  },
+  "center_ingredient": {
+    "item": "spectrum:vegetal"
+  },
+  "result" : {
+    "item": "spectrum:creature_spawn"
+  }
+}

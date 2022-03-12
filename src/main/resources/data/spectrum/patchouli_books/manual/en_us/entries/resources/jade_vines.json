@@ -17,7 +17,7 @@
       "type": "spectrum:spirit_instiller_crafting",
       "title": "Nurturing",
 	  "advancement": "spectrum:midgame/build_spirit_instiller_structure",
-      "recipe": "spectrum:spirit_instiller/jade_vines",
+      "recipe": "spectrum:spirit_instiller/germinated_jade_vine_seeds",
       "text": "Once almost a lost cause you now have an ace up your sleeve: With the help of the Spirit Instiller you are sure that you can breathe life back into the little seed."
     },
     {

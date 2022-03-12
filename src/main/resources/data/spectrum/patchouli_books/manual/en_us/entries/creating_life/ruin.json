@@ -12,7 +12,7 @@
     {
       "type": "patchouli:spotlight",
       "item": "spectrum:bottle_of_ruin",
-      "text": "The only thing left to do was to perfect your recipe and this is it. You won't even make it subtle. This stuff you thought out is $(#ff0000)NASTY$() by design. You didn't call it that for the fun of it.$(br)This may be the one thing aggressive enough to destroy even the mightiest material.$(br)$(bold)If you are not careful you may ruin the whole world. Literally.$()"
+      "text": "This is it. The perfection of your recipe. You won't even make it subtle. This stuff is $(#ff0000)NASTY$() by design, you didn't call it that for the fun of it.$(br)This may be the one thing aggressive enough to destroy even materials previously deemed unbreakable.$(br)$(bold)If you are not careful you may ruin the world. Literally.$()"
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -25,12 +25,12 @@
       "advancement": "spectrum:midgame/break_decayed_bedrock",
 	  "title": "Bedrock Dust",
       "item": "spectrum:bedrock_dust",
-      "text": "Even Bedrock was not strong enough to withstand your newly created \"life\".  It ate through the Bedrock - like dandelions through concrete."
+      "text": "Even Bedrock was not strong enough to withstand your newly created \"life\".  It broke through the Bedrock like dandelions through concrete."
     },
     {
       "type": "patchouli:text",
       "title": "A Friendly Reminder",
-      "text": "Should you be reading your notes here while some of that stuff is still roaming around free, you should change that as soon as possible otherwise you WILL regret it."
+      "text": "Should you be reading your notes here while some of that stuff is still roaming around free, you should change that as soon as possible otherwise you WILL regret it.$(br2)Luckily you already invented a $(l:creating_life/decay_away)suitable counteragent$(/l)"
     }
   ]
 }

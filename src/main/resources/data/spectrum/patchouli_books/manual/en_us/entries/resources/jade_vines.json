@@ -4,7 +4,8 @@
   "icon": "spectrum:ancient_jade_vine_seeds",
   "category": "spectrum:resources_category",
   "extra_recipe_mappings": {
-    "spectrum:jade_vines": 0
+    "spectrum:ancient_jade_vine_seeds": 0,
+    "spectrum:germinated_jade_vine_seeds": 0
   },
   "pages": [
     {

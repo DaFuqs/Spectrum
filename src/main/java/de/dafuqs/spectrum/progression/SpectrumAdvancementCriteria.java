@@ -17,13 +17,13 @@ public class SpectrumAdvancementCriteria {
 	public static EnchanterEnchantingCriterion ENCHANTER_ENCHANTING;
 	public static EnchantmentUpgradedCriterion ENCHANTER_UPGRADING;
 	public static InertiaUsedCriterion INERTIA_USED;
-	
 	public static AzureDikeChargeCriterion AZURE_DIKE_CHARGE;
 	public static TrinketChangeCriterion TRINKET_CHANGE;
 	public static PotionWorkshopBrewingCriterion POTION_WORKSHOP_BREWING;
 	public static TakeOffBeltJumpCriterion TAKE_OFF_BELT_JUMP;
 	public static PigmentPaletteUseCriterion PIGMENT_PALETTE_USE;
 	public static JeopardantKillCriterion JEOPARDANT_KILL;
+	public static CreatureSpawnHatchCriterion CREATURE_SPAWN_HATCH;
 
 	public static void register() {
 		ADVANCEMENT_GOTTEN = CriteriaAccessor.callRegister(new HasAdvancementCriterion());
@@ -38,13 +38,13 @@ public class SpectrumAdvancementCriteria {
 		ENCHANTER_ENCHANTING = CriteriaAccessor.callRegister(new EnchanterEnchantingCriterion());
 		ENCHANTER_UPGRADING = CriteriaAccessor.callRegister(new EnchantmentUpgradedCriterion());
 		INERTIA_USED = CriteriaAccessor.callRegister(new InertiaUsedCriterion());
-		
 		AZURE_DIKE_CHARGE = CriteriaAccessor.callRegister(new AzureDikeChargeCriterion());
 		TRINKET_CHANGE = CriteriaAccessor.callRegister(new TrinketChangeCriterion());
 		POTION_WORKSHOP_BREWING = CriteriaAccessor.callRegister(new PotionWorkshopBrewingCriterion());
 		TAKE_OFF_BELT_JUMP = CriteriaAccessor.callRegister(new TakeOffBeltJumpCriterion());
 		PIGMENT_PALETTE_USE = CriteriaAccessor.callRegister(new PigmentPaletteUseCriterion());
 		JEOPARDANT_KILL = CriteriaAccessor.callRegister(new JeopardantKillCriterion());
+		CREATURE_SPAWN_HATCH = CriteriaAccessor.callRegister(new CreatureSpawnHatchCriterion());
 	}
 
 }

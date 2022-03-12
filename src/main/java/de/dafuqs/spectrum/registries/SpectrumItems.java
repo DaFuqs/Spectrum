@@ -167,6 +167,11 @@ public class SpectrumItems {
 	public static final CloakedItem MERMAIDS_GEM = new CloakedItem(resourcesItemSettingsSixteen, new Identifier(SpectrumCommon.MOD_ID, "craft_using_pedestal"), Items.LIGHT_BLUE_DYE);
 	public static final CloakedItem SHOOTING_STAR = new CloakedItem(resourcesItemSettingsSixteen, new Identifier(SpectrumCommon.MOD_ID, "milestones/unlock_shooting_stars"), Items.PURPLE_DYE);
 	public static final CloakedItem STARDUST = new CloakedItem(resourcesItemSettings, new Identifier(SpectrumCommon.MOD_ID, "milestones/unlock_shooting_stars"), Items.PURPLE_DYE);
+	
+	public static final Item ANCIENT_JADE_VINE_SEEDS = new Item(resourcesItemSettingsSixteen);
+	public static final CloakedItem GERMINATED_JADE_VINE_SEEDS = new CloakedItem(resourcesItemSettingsSixteen, new Identifier(SpectrumCommon.MOD_ID, "midgame/build_spirit_instiller_structure"), Items.LIME_DYE);
+	public static final CloakedItem JADE_VINE_PETALS = new CloakedItem(resourcesItemSettings, new Identifier(SpectrumCommon.MOD_ID, "midgame/build_spirit_instiller_structure"), Items.LIME_DYE);
+	public static final CloakedItem MOONSTRUCK_NECTAR = new CloakedItem(resourcesItemSettings, new Identifier(SpectrumCommon.MOD_ID, "midgame/build_spirit_instiller_structure"), Items.LIME_DYE);
 
 	// Magical Tools
 	public static final Item ENDER_BAG = new EnderBagItem(generalItemSettingsSingle);
@@ -323,6 +328,11 @@ public class SpectrumItems {
 		register("lightning_stone", LIGHTNING_STONE);
 		register("shooting_star", SHOOTING_STAR);
 		register("stardust", STARDUST);
+		
+		register("ancient_jade_vine_seeds", ANCIENT_JADE_VINE_SEEDS);
+		register("germinated_jade_vine_seeds", GERMINATED_JADE_VINE_SEEDS);
+		register("jade_vine_petals", JADE_VINE_PETALS);
+		register("moonstruck_nectar", MOONSTRUCK_NECTAR);
 
 		register("vegetal", VEGETAL);
 		register("neolith", NEOLITH);

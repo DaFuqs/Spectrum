@@ -14,7 +14,7 @@
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier3/celestial_pocketwatch",
+      "recipe": "spectrum:pedestal/tier4/celestial_pocketwatch",
       "text": "$(italic)What a stellar idea of yours"
     }
   ]

@@ -1,15 +1,16 @@
 {
   "name": "Jade Vines",
-  "advancement": "spectrum:midgame/collect_jade_vine_seeds",
-  "icon": "spectrum:jade_vines",
+  "advancement": "spectrum:hidden/collect_ancient_jade_vine_seeds",
+  "icon": "spectrum:ancient_jade_vine_seeds",
   "category": "spectrum:resources_category",
   "extra_recipe_mappings": {
     "spectrum:jade_vines": 0
   },
   "pages": [
     {
-      "type": "patchouli:text",
+      "type": "patchouli:spotlight",
       "title": "Jade Vine Seeds",
+      "item": "spectrum:ancient_jade_vine_seeds",
 	  "text": "The remaining energy of this plant from aeons ago is barely still perceptible. So light and vulnerable that you think any wrong move could breathe the last bit of life out of your fragile seed.$(br)$(italic)Will the history of this plant remain elusive to you forever?"
     },
     {
@@ -20,8 +21,9 @@
       "text": "Once almost a lost cause you now have an ace up your sleeve: With the help of the Spirit Instiller you are sure that you can breathe life back into the little seed."
     },
     {
-      "type": "patchouli:text",
+      "type": "patchouli:spotlight",
       "title": "Planting & Growing",
+      "item": "spectrum:germinated_jade_vine_seeds",
 	  "advancement": "spectrum:midgame/create_germinated_jade_vine_seeds",
 	  "text": "Palid, fragile hanging plants, Grows down fence blocks. Can only grow one stage per night. Only grow when exposed to the night sky, but will die if exposed to sunlight (Use Star Lantern as a proxy?)."
     },

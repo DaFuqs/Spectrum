@@ -1,0 +1,8 @@
+{
+  "criteria": {
+    "has_ancient_jade_vine_seeds": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": { "items": [{ "items": ["spectrum:ancient_jade_vine_seeds" ] }] }
+    }
+  }
+}

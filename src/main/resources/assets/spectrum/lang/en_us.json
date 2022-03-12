@@ -1122,6 +1122,11 @@
 
   "item.spectrum.shooting_star": "Star Fragment",
   "item.spectrum.stardust": "Stardust",
+  "item.spectrum.ancient_jade_vine_seeds": "Ancient Jade Vine Seeds",
+  "item.spectrum.germinated_jade_vine_seeds": "Germinated Jade Vine Seeds",
+  "item.spectrum.jade_vine_petals": "Jade Vine Petals",
+  "item.spectrum.moonstruck_nectar": "Moonstruck Nectar",
+
   "item.spectrum.bottle_of_fading": "Bottle of Fading",
   "item.spectrum.bottle_of_fading.tooltip": "§2Glibbery",
   "item.spectrum.bottle_of_failing": "Bottle of Failing",

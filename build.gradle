@@ -25,6 +25,13 @@ repositories {
 		name = "Ladysnake Libs"
 		url = "https://ladysnake.jfrog.io/artifactory/mods"
 	}
+	maven {
+		name "entity reach attribute"
+		url "https://maven.jamieswhiteshirt.com/libs-release/"
+	}
+	maven {
+		url 'https://server.bbkr.space/artifactory/libs-release/'
+	}
 	maven { url 'https://maven.wispforest.io/' } // owo lib
 	maven { url "https://jitpack.io" }
 	mavenCentral() // incubus core
@@ -32,7 +39,7 @@ repositories {
 
 dependencies {
 	// jetbrains annotations @Nullabe @NotNull
-	implementation 'org.jetbrains:annotations:22.0.0'
+	implementation 'org.jetbrains:annotations:23.0.0'
 
 	// fabric
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
@@ -65,6 +72,12 @@ dependencies {
 
 	modImplementation "com.github.emilyploszaj:step-height-entity-attribute:${project.step_height_attribute_version}"
 	include "com.github.emilyploszaj:step-height-entity-attribute:${project.step_height_attribute_version}"
+
+	//modImplementation "com.jamieswhiteshirt:reach-entity-attributes:2.1.1"
+	//include "com.jamieswhiteshirt:reach-entity-attributes:2.1.1"
+
+	// outdated
+	// modImplementation "io.github.fablabsmc:bannerpp:2.0.4+mc.1.17-rc1"
 
 	// still breaks outside of dev env still currently.
 	//modImplementation include("com.github.devs-immortal:Incubus-Core:${project.incubus_core_version}")

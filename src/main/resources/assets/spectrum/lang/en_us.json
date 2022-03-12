@@ -1218,8 +1218,6 @@
   "advancements.spectrum.craft_onyx_pedestal.description": "Use the Onyx Shard to further upgrade your Pigment Pedestal",
   "advancements.spectrum.craft_something_brown.title": "The other Side of the Rainbow",
   "advancements.spectrum.craft_something_brown.description": "Using Onyx Powder create something truly Brown in your improved Pigment Pedestal",
-  "advancements.spectrum.craft_spawn_egg.title": "Back to Life",
-  "advancements.spectrum.craft_spawn_egg.description": "Use the payoff of your experiments to revive an once-dead creature",
   "advancements.spectrum.craft_using_pedestal.title": "Strangely familiar",
   "advancements.spectrum.craft_using_pedestal.description": "Use your Pigment Pedestal to craft an item using Gemstone Powder. It seems to react to Redstone?",
   "advancements.spectrum.create_onyx_shard.title": "Back in Black",
@@ -1258,8 +1256,7 @@
   "advancements.spectrum.use_glistering_melon_seeds.description": "Get a Glistering Melon... Plant!",
   "advancements.spectrum.craft_ominous_sapling.title": "Let it grow, let it grow!",
   "advancements.spectrum.craft_ominous_sapling.description": "You're sure combining Vegetal with a Young sapling will yield something interesting",
-  "advancements.spectrum.use_spawn_egg_on_spawner.title": "Cracking up",
-  "advancements.spectrum.use_spawn_egg_on_spawner.description": "Use a spawn Egg on a Mob Spawner to change its type",
+
   "advancements.spectrum.wear_complete_bedrock_armor.title": "Indestructible",
   "advancements.spectrum.wear_complete_bedrock_armor.description": "Wear a full suit of Bedrock Armor",
   "advancements.spectrum.build_fusion_shrine.title": "Powerful Display",
@@ -1270,8 +1267,6 @@
   "advancements.spectrum.collect_ender_dragon_head_using_treasure_hunter.description": "Collect the Ender Dragons Head using a Weapon enchanted with Treasure Hunter",
   "advancements.spectrum.collect_wither_head_using_treasure_hunter.title": "A Withious Cycle",
   "advancements.spectrum.collect_wither_head_using_treasure_hunter.description": "Collect a Wither Skull using a weapon enchanted with Treasure Hunter",
-  "advancements.spectrum.use_mob_egg_on_spawner.title": "The Changeling",
-  "advancements.spectrum.use_mob_egg_on_spawner.description": "Use a mob egg on a mob spawner to change its type",
   "advancements.spectrum.create_spectral_shard.title": "Somewhere over the Rainbow",
   "advancements.spectrum.create_spectral_shard.description": "Create a Spectral Shard",
   "advancements.spectrum.enter_liquid_crystal.title": "Liquid Magic",
@@ -1362,5 +1357,7 @@
   "advancements.spectrum.place_bottle_of_failing.title": "It... feeds on Obsidian?",
   "advancements.spectrum.place_bottle_of_failing.description": "It's WAY more powerful than your first experiment. It seems to destroy everything it touches after a while. Is there something sturdy enough to withstand its destructive potential?",
   "advancements.spectrum.place_bottle_of_ruin.title": "What have you done",
-  "advancements.spectrum.place_bottle_of_ruin.description": "There is no going back... (for now?)"
+  "advancements.spectrum.place_bottle_of_ruin.description": "There is no going back... (for now?)",
+  "advancements.spectrum.craft_spawn_egg.title": "Back to Life",
+  "advancements.spectrum.craft_spawn_egg.description": "Use the payoff of your experiments to revive an once-dead creature"
 }

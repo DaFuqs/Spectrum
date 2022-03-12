@@ -1,0 +1,53 @@
+{
+  "name": "Jade Vines",
+  "advancement": "spectrum:midgame/collect_jade_vine_seeds",
+  "icon": "spectrum:jade_vines",
+  "category": "spectrum:resources_category",
+  "extra_recipe_mappings": {
+    "spectrum:jade_vines": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Jade Vine Seeds",
+	  "text": "The remaining energy of this plant from aeons ago is barely still perceptible. So light and vulnerable that you think any wrong move could breathe the last bit of life out of your fragile seed.$(br)$(italic)Will the history of this plant remain elusive to you forever?"
+    },
+    {
+      "type": "spectrum:spirit_instiller_crafting",
+      "title": "Nurturing",
+	  "advancement": "spectrum:midgame/build_spirit_instiller_structure",
+      "recipe": "spectrum:spirit_instiller/jade_vines",
+      "text": "Once almost a lost cause you now have an ace up your sleeve: With the help of the Spirit Instiller you are sure that you can breathe life back into the little seed."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Planting & Growing",
+	  "advancement": "spectrum:midgame/create_germinated_jade_vine_seeds",
+	  "text": "Palid, fragile hanging plants, Grows down fence blocks. Can only grow one stage per night. Only grow when exposed to the night sky, but will die if exposed to sunlight (Use Star Lantern as a proxy?)."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Jade Petals",
+	  "advancement": "spectrum:midgame/collect_jade_petals",
+	  "text": "Dropped when mostly grown. Also rarely germinated seeds."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Jade Petal Carpety Thing",
+	  "advancement": "spectrum:midgame/collect_jade_petals",
+	  "text": "Purely Decorational"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Jade Petal Leaf-like Block",
+	  "advancement": "spectrum:midgame/collect_jade_petals",
+	  "text": "Purely Decorational"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Moonstruck Nectar",
+	  "advancement": "spectrum:midgame/collect_moonstruck_nectar",
+	  "text": "After many nights full bloom, if full moon. Collect with glass bottle/bowl. Great restorative properties. Used to repair tools. Can purify certain items. Required for 'damage proof' enchant. Drink for healing."
+    }
+  ]
+}

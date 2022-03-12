@@ -1,0 +1,24 @@
+{
+  "parent": "spectrum:midgame/build_advanced_pedestal_structure",
+  "display": {
+    "icon": {
+      "item": "spectrum:moonstruck_nectar"
+    },
+    "title": {
+      "translate": "advancements.spectrum.collect_moonstuck_nectar.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.collect_moonstuck_nectar.description"
+    }
+  },
+  "criteria": {
+    "has_moonstruck_nectar": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": { "items": [{ "items": [ "spectrum:moonstruck_nectar" ]}] }
+    },
+    "gotten_previous": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:midgame/build_advanced_pedestal_structure" }
+    }
+  }
+}

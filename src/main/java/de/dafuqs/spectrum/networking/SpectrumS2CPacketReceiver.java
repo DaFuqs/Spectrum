@@ -11,6 +11,7 @@ import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.particle.effect.*;
 import de.dafuqs.spectrum.registries.color.ColorRegistry;
 import de.dafuqs.spectrum.sound.CraftingBlockSoundInstance;
+import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
 import de.dafuqs.spectrum.sound.TakeOffBeltSoundInstance;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -21,6 +22,7 @@ import net.minecraft.particle.ItemStackParticleEffect;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleType;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
@@ -127,6 +129,10 @@ public class SpectrumS2CPacketReceiver {
 			long sourceTime = buf.readLong();
 			long targetTime = buf.readLong();
 			SpectrumClient.skyLerper.trigger(dimensionType, sourceTime, client.getTickDelta(), targetTime);
+			
+			if(client.world.isSkyVisible(client.player.getBlockPos())) {
+				client.player.playSound(SpectrumSoundEvents.CELESTIAL_POCKET_WATCH_FLY_BY, SoundCategory.NEUTRAL, 0.15F, 1.0F);
+			}
 		});
 
 		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.PLAY_PEDESTAL_CRAFTING_FINISHED_PARTICLE_PACKET_ID, (client, handler, buf, responseSender) -> {

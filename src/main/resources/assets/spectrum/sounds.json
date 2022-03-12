@@ -17,6 +17,17 @@
       "spectrum:enchanter_ding"
     ]
   },
+  "celestial_pocket_watch_ticking": {
+    "subtitle": "spectrum.subtitles.celestial_pocket_watch_ticking",
+    "sounds": [
+      "spectrum:celestial_pocket_watch_ticking"
+    ]
+  },
+  "celestial_pocket_watch_sky_fly_by": {
+    "sounds": [
+      "spectrum:celestial_pocket_watch_sky_fly_by"
+    ]
+  },
   "puff_circlet": {
     "subtitle": "spectrum.subtitles.puff_circlet",
     "sounds": [

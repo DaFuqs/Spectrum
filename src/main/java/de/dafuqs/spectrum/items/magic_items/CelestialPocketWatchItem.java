@@ -1,12 +1,14 @@
 package de.dafuqs.spectrum.items.magic_items;
 
 import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
+import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Hand;
@@ -33,7 +35,11 @@ public class CelestialPocketWatchItem extends Item {
 
 		if(!world.isClient) {
 			// the clocks use is blocked if the world has a fixed daylight cycle
-			advanceTime((ServerPlayerEntity) user, (ServerWorld) world);
+			if(advanceTime((ServerPlayerEntity) user, (ServerWorld) world)) {
+				world.playSound(null, user.getBlockPos(), SpectrumSoundEvents.CELESTIAL_POCKET_WATCH_TICKING, SoundCategory.PLAYERS, 1.0F, 1.0F);
+			} else {
+				world.playSound(null, user.getBlockPos(), SpectrumSoundEvents.USE_FAIL, SoundCategory.PLAYERS, 1.0F, 1.0F);
+			}
 			return TypedActionResult.consume(itemStack);
 		}
 		return TypedActionResult.success(itemStack, true);
@@ -47,7 +53,7 @@ public class CelestialPocketWatchItem extends Item {
 			} else {
 				SpectrumS2CPacketSender.startSkyLerping(world, TIME_STEP_TICKS);
 				long timeOfDay = world.getTimeOfDay();
-				world.setTimeOfDay((timeOfDay+ TIME_STEP_TICKS) % 24000L);
+				world.setTimeOfDay((timeOfDay + TIME_STEP_TICKS) % 24000L);
 				return true;
 			}
 		} else {

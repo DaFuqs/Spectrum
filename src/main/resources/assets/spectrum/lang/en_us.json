@@ -152,6 +152,7 @@
   "enchantment.spectrum.damage_proof": "Damage Proof",
   "enchantment.spectrum.damage_proof.desc": "Immunity to most forms of damage, despawning and the void",
 
+  "spectrum.subtitles.celestial_pocket_watch_ticking": "Pocketwatch ticks",
   "spectrum.subtitles.shooting_star_cracker": "Shooting Star cracks",
   "spectrum.subtitles.block.mud.ambient": "Mud flows",
   "spectrum.subtitles.block.liquid_crystal.ambient": "Liquid Crystal chimes",
@@ -169,7 +170,7 @@
   "spectrum.subtitles.ender_splice_charges": "Ender Splice charges",
   "spectrum.subtitles.ender_splice_binds": "Ender Splice binds",
   "spectrum.subtitles.use_fail": "Use fails",
-  "spectrum.subtitles.natures_staff_use": "Harmonic melodies jingles",
+  "spectrum.subtitles.natures_staff_use": "Harmonic melodies jingle",
   "spectrum.subtitles.block.sucking_chest.open": "Black Hole Chest opens",
   "spectrum.subtitles.block.sucking_chest.close": "Black Hole Chest closes",
   "spectrum.subtitles.light_staff_charging": "Light Staff charges",

@@ -252,6 +252,19 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 		}
 	}
 	
+	@Override
+	public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
+		super.inventoryTick(stack, world, entity, slot, selected);
+		
+		// tick stack inside the bundle. I hope that kinda wrong slot reference does not break anything
+		ItemStack bundledStack = BottomlessBundleItem.getFirstBundledStack(stack);
+		if(!bundledStack.isEmpty()) {
+			int amount = BottomlessBundleItem.getStoredAmount(stack);
+			bundledStack.setCount(amount);
+			bundledStack.getItem().inventoryTick(bundledStack, world, entity, slot, selected);
+		}
+	}
+	
 	/**
 	 *
 	 * @param voidBundleStack

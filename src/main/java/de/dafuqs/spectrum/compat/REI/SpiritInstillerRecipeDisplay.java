@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.compat.REI;
 
-import de.dafuqs.spectrum.Support;
+import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.recipe.fusion_shrine.FusionShrineRecipe;
 import de.dafuqs.spectrum.recipe.spirit_instiller.SpiritInstillerRecipe;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;

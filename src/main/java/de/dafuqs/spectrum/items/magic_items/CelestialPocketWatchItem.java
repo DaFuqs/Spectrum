@@ -53,7 +53,7 @@ public class CelestialPocketWatchItem extends Item {
 			} else {
 				SpectrumS2CPacketSender.startSkyLerping(world, TIME_STEP_TICKS);
 				long timeOfDay = world.getTimeOfDay();
-				world.setTimeOfDay((timeOfDay + TIME_STEP_TICKS) % 24000L);
+				world.setTimeOfDay(timeOfDay + TIME_STEP_TICKS);
 				return true;
 			}
 		} else {

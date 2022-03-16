@@ -32,5 +32,8 @@ public class AzureDikeProvider implements EntityComponentInitializer {
 	public static int getAzureDikeCharges(LivingEntity provider) {
 		return AZURE_DIKE_COMPONENT.get(provider).getProtection();
 	}
-	
+
+	public static int getMaxAzureDikeCharges(LivingEntity provider) {
+		return AZURE_DIKE_COMPONENT.get(provider).getMaxProtection();
+	}
 }

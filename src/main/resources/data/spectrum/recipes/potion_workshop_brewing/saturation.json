@@ -8,7 +8,7 @@
   },
   "effect": "minecraft:saturation",
   "base_duration_ticks": 900,
-  "potency_modifier": 1.0,
+  "potency_modifier": 0.5,
   "applicable_to_potions": true,
   "applicable_to_tipped_arrows": true
 }

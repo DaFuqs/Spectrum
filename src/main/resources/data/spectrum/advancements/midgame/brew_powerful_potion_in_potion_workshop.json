@@ -5,10 +5,10 @@
       "item": "minecraft:potion"
     },
     "title": {
-      "translate": "advancements.spectrum.brew_level_three_potion_in_potion_workshop.title"
+      "translate": "advancements.spectrum.brew_powerful_potion_in_potion_workshop.title"
     },
     "description": {
-      "translate": "advancements.spectrum.brew_level_three_potion_in_potion_workshop.description"
+      "translate": "advancements.spectrum.brew_powerful_potion_in_potion_workshop.description"
     }
   },
   "criteria": {

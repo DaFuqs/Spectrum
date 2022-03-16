@@ -1,6 +1,6 @@
 {
   "type": "spectrum:pedestal",
-  "time": 600,
+  "time": 800,
   "tier": "advanced",
   "cyan": 1,
   "magenta": 1,
@@ -18,13 +18,13 @@
       "item": "spectrum:scarlet_fragments"
     },
     "F": {
-      "item": "minecraft:experience_bottle"
+      "item": "minecraft:fermented_spider_eye"
     },
     "Q": {
       "item": "spectrum:quitoxic_powder"
     },
     "B": {
-      "item": "minecraft:honey_bottle"
+      "item": "minecraft:experience_bottle"
     }
   },
   "result" : {

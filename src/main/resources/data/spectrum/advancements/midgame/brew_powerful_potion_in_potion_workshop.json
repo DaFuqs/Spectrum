@@ -23,7 +23,7 @@
           ]
         },
 		"max_amplifier": {
-		  "min": 3
+		  "min": 4
 		}
 	  }
     },

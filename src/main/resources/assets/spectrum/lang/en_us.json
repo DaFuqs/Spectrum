@@ -46,6 +46,7 @@
   "recipeGroup.spectrum.vanilla": "Vanilla Enchantments",
   "recipeGroup.spectrum.pastel_network": "Pastel Network",
   "recipeGroup.spectrum.vanilla_potions": "Vanilla Potions",
+  "recipeGroup.spectrum.horse_armor": "Horse Armor",
 
   "item.spectrum.potion": "§2P§3i§cg§6m§be§en§dt§f Potion",
   "item.spectrum.splash_potion": "Splash §2P§3i§cg§6m§be§en§dt§f Potion",
@@ -1330,7 +1331,7 @@
   "advancements.spectrum.take_off_belt_overcharged.title": "Not-So-Perfect Timing",
   "advancements.spectrum.take_off_belt_overcharged.description": "Charge up a Take-Off Belt too far and lose its charge",
   "advancements.spectrum.kill_entity_with_jeopardant_and_half_a_heart.title": "Living on the Edge",
-  "advancements.spectrum.kill_entity_with_jeopardant_and_half_a_heart.description": "Equip a Jeopardant and kill an entity while having only half a heart left",
+  "advancements.spectrum.kill_entity_with_jeopardant_and_half_a_heart.description": "Equip a Jeopardant and deal a killing blow while having only half a heart left",
   "advancements.spectrum.get_azure_dike_charge.title": "Shield Up",
   "advancements.spectrum.get_azure_dike_charge.description": "Charge up a Point of Azure Dike by equipping a Trinket made out of Azurite",
   "advancements.spectrum.high_pigment_palette_drain.title": "Power User",

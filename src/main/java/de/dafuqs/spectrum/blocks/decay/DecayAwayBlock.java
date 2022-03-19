@@ -77,7 +77,7 @@ public class DecayAwayBlock extends Block {
 			BlockPos targetBlockPos = pos.offset(direction);
 			BlockState currentBlockState = world.getBlockState(targetBlockPos);
 
-			if (Support.hasBlockTag(currentBlockState, SpectrumBlockTags.DECAY)) {
+			if (currentBlockState.isIn(SpectrumBlockTags.DECAY)) {
 				world.setBlockState(targetBlockPos, getTargetState(currentBlockState));
 				world.createAndScheduleBlockTick(targetBlockPos, state.getBlock(), 8);
 			}

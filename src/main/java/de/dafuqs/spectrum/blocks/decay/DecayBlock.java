@@ -12,6 +12,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.tag.Tag;
+import net.minecraft.tag.TagKey;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.TickPriority;
@@ -25,21 +26,21 @@ public abstract class DecayBlock extends Block {
 	 * Since Tag is not comparable we can not use a SortedMap for decayConversions
 	 * here and therefore have to use an additional list for check order
 	 */
-	protected final List<Tag<Block>> decayConversionsList = new ArrayList<>();
+	protected final List<TagKey<Block>> decayConversionsList = new ArrayList<>();
 	/**
 	 * Decay can only convert those blocks to more decay
 	 */
-	protected final HashMap<Tag<Block>, BlockState> decayConversions = new HashMap<>();
+	protected final HashMap<TagKey<Block>, BlockState> decayConversions = new HashMap<>();
 
-	protected final Tag<Block> whiteListBlockTag;
+	protected final TagKey<Block> whiteListBlockTag;
 	/**
 	 * Decay is blocked by those blocks and can't jump over to them
 	 */
-	protected final Tag<Block> blackListBlockTag;
+	protected final TagKey<Block> blackListBlockTag;
 	protected final float damageOnTouching;
 	protected final int tier;
 
-	public DecayBlock(Settings settings, Tag<Block> whiteListBlockTag, Tag<Block> blackListBlockTag, int tier, float damageOnTouching) {
+	public DecayBlock(Settings settings, TagKey<Block> whiteListBlockTag, TagKey<Block> blackListBlockTag, int tier, float damageOnTouching) {
 		super(settings);
 		this.whiteListBlockTag = whiteListBlockTag;
 		this.blackListBlockTag = blackListBlockTag;
@@ -53,7 +54,7 @@ public abstract class DecayBlock extends Block {
 	 * @param sourceBlockTag The block tag checked for a conversion through decay
 	 * @param conversionState The block state the source block is converted to
 	 */
-	public void addDecayConversion(Tag<Block> sourceBlockTag, BlockState conversionState) {
+	public void addDecayConversion(TagKey<Block> sourceBlockTag, BlockState conversionState) {
 		this.decayConversionsList.add(sourceBlockTag);
 		this.decayConversions.put(sourceBlockTag, conversionState);
 	}
@@ -85,16 +86,16 @@ public abstract class DecayBlock extends Block {
 		BlockState currentBlockState = world.getBlockState(targetBlockPos);
 		BlockEntity blockEntity = world.getBlockEntity(targetBlockPos);
 		
-		if (blockEntity == null && !Support.hasBlockTag(currentBlockState, SpectrumBlockTags.DECAY)  // decay doesn't jump to other decay. Maybe: if tier is smaller it should still be converted?
-				&& (whiteListBlockTag == null || Support.hasBlockTag(currentBlockState, whiteListBlockTag))
-				&& (blackListBlockTag == null || !Support.hasBlockTag(currentBlockState, blackListBlockTag))
+		if (blockEntity == null && currentBlockState.isIn(SpectrumBlockTags.DECAY) // decay doesn't jump to other decay. Maybe: if tier is smaller it should still be converted?
+				&& (whiteListBlockTag == null || currentBlockState.isIn(whiteListBlockTag))
+				&& (blackListBlockTag == null || !currentBlockState.isIn(blackListBlockTag))
 				// bedrock is ok, but not other modded unbreakable blocks
 				&& (currentBlockState.getBlock() == Blocks.BEDROCK || (currentBlockState.getBlock().getHardness() > -1.0F && currentBlockState.getBlock().getBlastResistance() < 3600000.0F))) {
 			
 			BlockState destinationBlockState = getSpreadState(state);
-			for (Tag<Block> currentCheckTag : this.decayConversionsList) {
+			for (TagKey<Block> currentCheckTag : this.decayConversionsList) {
 				BlockState targetState = decayConversions.get(currentCheckTag);
-				if (Support.hasBlockTag(currentBlockState, currentCheckTag)) {
+				if (currentBlockState.isIn(currentCheckTag)) {
 					destinationBlockState = targetState;
 					break;
 				}
@@ -114,10 +115,11 @@ public abstract class DecayBlock extends Block {
 	public void neighborUpdate(BlockState state, World world, BlockPos pos, Block previousBlock, BlockPos fromPos, boolean notify) {
 		super.neighborUpdate(state, world, pos, previousBlock, fromPos, notify);
 		if(previousBlock == Blocks.AIR) {
-			Block updatedBlock = world.getBlockState(fromPos).getBlock();
+			BlockState updatedBlockState = world.getBlockState(fromPos);
+			Block updatedBlock = updatedBlockState.getBlock();
 			if (!(updatedBlock instanceof DecayBlock) && !(updatedBlock instanceof DecayAwayBlock) && canSpread(state)) {
-				for (Tag<Block> blockTag : decayConversionsList) {
-					if (blockTag.contains(updatedBlock)) {
+				for (TagKey<Block> blockTag : decayConversionsList) {
+					if (updatedBlockState.isIn(blockTag)) {
 						world.createAndScheduleBlockTick(pos, this, 40 + world.random.nextInt(200), TickPriority.EXTREMELY_LOW);
 					}
 				}

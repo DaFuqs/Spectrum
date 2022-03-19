@@ -4,15 +4,18 @@ import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.mixin.accessors.FluidTagsAccessor;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.tag.Tag;
+import net.minecraft.tag.TagKey;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.Registry;
 
 public class SpectrumFluidTags {
 
-	public static Tag<Fluid> LIQUID_CRYSTAL;
-	public static Tag<Fluid> MUD;
-	public static Tag<Fluid> MIDNIGHT_SOLUTION;
+	public static TagKey<Fluid> LIQUID_CRYSTAL;
+	public static TagKey<Fluid> MUD;
+	public static TagKey<Fluid> MIDNIGHT_SOLUTION;
 
-	private static Tag<Fluid> register(String id) {
-		return FluidTagsAccessor.invokeRegister(SpectrumCommon.MOD_ID + ":" + id);
+	private static TagKey<Fluid> register(String id) {
+		return TagKey.of(Registry.FLUID_KEY, new Identifier(SpectrumCommon.MOD_ID + ":" + id));
 	}
 
 	public static void register() {

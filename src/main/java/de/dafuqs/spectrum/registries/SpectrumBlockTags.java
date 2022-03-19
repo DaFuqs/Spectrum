@@ -4,35 +4,37 @@ import de.dafuqs.spectrum.SpectrumCommon;
 import net.fabricmc.fabric.api.tag.TagFactory;
 import net.minecraft.block.Block;
 import net.minecraft.tag.Tag;
+import net.minecraft.tag.TagKey;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.Registry;
 
 public class SpectrumBlockTags {
 	
 	// PLANTS
-	public static Tag<Block> MERMAIDS_BRUSH_PLANTABLE;
-	public static Tag<Block> QUITOXIC_REEDS_PLANTABLE;
+	public static TagKey<Block> MERMAIDS_BRUSH_PLANTABLE;
+	public static TagKey<Block> QUITOXIC_REEDS_PLANTABLE;
 
 	// DECAY
-	public static Tag<Block> DECAY;
-	public static Tag<Block> FADING_CONVERSIONS;
-	public static Tag<Block> FADING_SPECIAL_CONVERSIONS;
-	public static Tag<Block> MAGICAL_LEAVES;
-	public static Tag<Block> FAILING_SAFE;
-	public static Tag<Block> FAILING_CONVERSIONS;
-	public static Tag<Block> FAILING_SPECIAL_CONVERSIONS;
-	public static Tag<Block> RUIN_SAFE;
-	public static Tag<Block> TERROR_SAFE;
-	public static Tag<Block> RUIN_BEDROCK_CONVERSIONS;
-	public static Tag<Block> NATURES_STAFF_TICKABLE;
-	public static Tag<Block> NATURES_STAFF_STACKABLE;
+	public static TagKey<Block> DECAY;
+	public static TagKey<Block> FADING_CONVERSIONS;
+	public static TagKey<Block> FADING_SPECIAL_CONVERSIONS;
+	public static TagKey<Block> MAGICAL_LEAVES;
+	public static TagKey<Block> FAILING_SAFE;
+	public static TagKey<Block> FAILING_CONVERSIONS;
+	public static TagKey<Block> FAILING_SPECIAL_CONVERSIONS;
+	public static TagKey<Block> RUIN_SAFE;
+	public static TagKey<Block> TERROR_SAFE;
+	public static TagKey<Block> RUIN_BEDROCK_CONVERSIONS;
+	public static TagKey<Block> NATURES_STAFF_TICKABLE;
+	public static TagKey<Block> NATURES_STAFF_STACKABLE;
 	
-	public static Tag<Block> BUILDING_STAFFS_BLACKLISTED;
+	public static TagKey<Block> BUILDING_STAFFS_BLACKLISTED;
 	
-	public static Tag<Block> EXEMPT_FROM_MINEABLE_DEBUG_CHECK;
-	public static Tag<Block> EXEMPT_FROM_LOOT_TABLE_DEBUG_CHECK;
+	public static TagKey<Block> EXEMPT_FROM_MINEABLE_DEBUG_CHECK;
+	public static TagKey<Block> EXEMPT_FROM_LOOT_TABLE_DEBUG_CHECK;
 
-	private static Tag<Block> getReference(String id) {
-		return TagFactory.BLOCK.create(new Identifier(SpectrumCommon.MOD_ID, id));
+	private static TagKey<Block> getReference(String id) {
+		return TagKey.of(Registry.BLOCK_KEY, new Identifier(SpectrumCommon.MOD_ID, id));
 	}
 
 	public static void getReferences() {

@@ -19,8 +19,7 @@ public abstract class PiglinBrainMixin {
 	private static void wearsGoldArmor(LivingEntity entity, @NotNull CallbackInfoReturnable<Boolean> cir) {
 		if (!cir.getReturnValue()) {
 			for (ItemStack itemStack : entity.getArmorItems()) {
-				Item item = itemStack.getItem();
-				if (SpectrumItemTags.PIGLIN_SAFE_EQUIPMENT.contains(item)) {
+				if (itemStack.isIn(SpectrumItemTags.PIGLIN_SAFE_EQUIPMENT)) {
 					cir.setReturnValue(true);
 				}
 			}

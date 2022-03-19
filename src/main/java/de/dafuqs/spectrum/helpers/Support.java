@@ -77,10 +77,6 @@ public class Support {
 		add(new Vec3d(0.7D, 0, -0.7D));
 		add(new Vec3d(0.75D, 0, -0.5D));
 	}};
-	
-	public static boolean hasBlockTag(@NotNull BlockState blockState, @NotNull Tag<Block> tag) {
-		return tag.contains(blockState.getBlock());
-	}
 
 	public static Optional<Tag<Block>> getFirstMatchingBlockTag(@NotNull Block block, @NotNull List<Tag<Block>> tags) {
 		for(Tag<Block> tag : tags) {

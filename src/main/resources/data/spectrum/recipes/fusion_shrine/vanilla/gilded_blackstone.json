@@ -1,0 +1,24 @@
+{
+  "type": "spectrum:fusion_shrine",
+  "time": 200,
+  "experience": 0.25,
+  "fluid": "minecraft:lava",
+  "ingredients": [
+    {
+      "item": "minecraft:blackstone"
+    },
+    {
+      "item": "minecraft:gold_ingot"
+    },
+    {
+      "item": "spectrum:yellow_pigment"
+    }
+  ],
+  "result" : {
+    "item": "minecraft:gilded_blackstone"
+  },
+  "world_conditions": [],
+  "start_crafting_effect": "nothing",
+  "during_crafting_effects": [ "nothing", "visual_explosions_on_shrine" ],
+  "finish_crafting_effect": "single_visual_explosion_on_shrine"
+}

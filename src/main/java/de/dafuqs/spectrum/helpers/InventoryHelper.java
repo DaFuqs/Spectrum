@@ -219,7 +219,11 @@ public class InventoryHelper {
 		List<Integer> requiredIngredientAmounts = new ArrayList<>();
 		for(Ingredient ingredient : ingredients) {
 			ingredientsToFind.add(ingredient);
-			requiredIngredientAmounts.add(ingredient.getMatchingStacks()[0].getCount());
+			if(ingredient.getMatchingStacks().length > 0) {
+				requiredIngredientAmounts.add(ingredient.getMatchingStacks()[0].getCount());
+			} else {
+				requiredIngredientAmounts.add(1);
+			}
 		}
 		
 		for(int i = 0; i < inventory.size(); i++) {

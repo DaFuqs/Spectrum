@@ -20,6 +20,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.tag.TagKey;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.ClickType;
@@ -43,7 +44,9 @@ public abstract class ItemStackMixin {
 	@Shadow public abstract Item getItem();
 
 	@Shadow @Nullable public abstract NbtCompound getNbt();
-
+	
+	@Shadow public abstract boolean isIn(TagKey<Item> tag);
+	
 	// Injecting into onStackClicked instead of onClicked because onStackClicked is called first
 	@Inject(at = @At("HEAD"), method = "onStackClicked", cancellable = true)
 	public void spectrum$onStackClicked(Slot slot, ClickType clickType, PlayerEntity player, CallbackInfoReturnable<Boolean> cir) {
@@ -80,7 +83,7 @@ public abstract class ItemStackMixin {
 	
 	@Inject(at = @At("TAIL"), method= "getTooltip(Lnet/minecraft/entity/player/PlayerEntity;Lnet/minecraft/client/item/TooltipContext;)Ljava/util/List;", locals = LocalCapture.CAPTURE_FAILSOFT)
 	public void spectrum$applyComingSoonTooltip(PlayerEntity player, TooltipContext context, CallbackInfoReturnable<List<Text>> cir, List<Text> list) {
-		if(SpectrumItemTags.COMING_SOON_TOOLTIP.contains(this.getItem())) {
+		if(this.isIn(SpectrumItemTags.COMING_SOON_TOOLTIP)) {
 			list.add(new TranslatableText("spectrum.tooltip.coming_soon"));
 		}
 	}

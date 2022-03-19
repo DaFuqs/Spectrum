@@ -21,6 +21,7 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.explosion.Explosion;
@@ -167,7 +168,7 @@ public abstract class ItemEntityMixin {
 		
 		// ...and boom!
 		float powerMod = 1.0F;
-		Biome biomeAtPos = world.getBiome(blockPos);
+		Biome biomeAtPos = world.getBiome(blockPos).value();
 		if(!biomeAtPos.isHot(blockPos) && !biomeAtPos.isCold(blockPos)) {
 			// there is no rain/thunder in deserts or snowy biomes
 			powerMod = world.isThundering() ? 1.5F : world.isRaining() ? 1.25F : 1.0F;

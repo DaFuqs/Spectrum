@@ -99,11 +99,11 @@ public class DefaultAzureDikeComponent implements AzureDikeComponent, AutoSynced
 	@Override
 	public void writeToNbt(NbtCompound tag) {
 		tag.putInt("protection", this.protection);
-		tag.putFloat("current_recharge_delay", this.currentRechargeDelay);
+		tag.putInt("current_recharge_delay", this.currentRechargeDelay);
 		
 		tag.putInt("max_protection", this.maxProtection);
-		tag.putFloat("recharge_delay_default", this.rechargeDelayDefault);
-		tag.putFloat("recharge_delay_after_damage", this.rechargeDelayTicksAfterDamage);
+		tag.putInt("recharge_delay_default", this.rechargeDelayDefault);
+		tag.putInt("recharge_delay_after_damage", this.rechargeDelayTicksAfterDamage);
 	}
 	
 	@Override

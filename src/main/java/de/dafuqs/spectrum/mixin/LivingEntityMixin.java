@@ -51,8 +51,6 @@ public abstract class LivingEntityMixin {
 	
 	@Shadow @Final private DefaultedList<ItemStack> syncedArmorStacks;
 	
-	@Shadow public abstract boolean removeStatusEffect(StatusEffect type);
-	
 	@ModifyArg(method = "dropXp()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/ExperienceOrbEntity;spawn(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/util/math/Vec3d;I)V"), index = 2)
 	protected int spectrum$applyExuberance(int originalXP) {
 		return (int) (originalXP * spectrum$getExuberanceMod(this.attackingPlayer));

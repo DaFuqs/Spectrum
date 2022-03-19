@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.compat.REI;
 
+import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.recipe.potion_workshop.PotionWorkshopRecipe;
 import me.shedaniel.rei.api.common.display.SimpleGridMenuDisplay;
 import me.shedaniel.rei.api.common.display.basic.BasicDisplay;
@@ -70,7 +71,7 @@ public abstract class PotionWorkshopRecipeDisplay extends BasicDisplay implement
 
 	@Override
 	public List<EntryIngredient> getOutputEntries() {
-		if(this.isUnlocked()) {
+		if(this.isUnlocked() || SpectrumCommon.CONFIG.REIListsRecipesAsNotUnlocked) {
 			return outputs;
 		} else {
 			return new ArrayList<>();

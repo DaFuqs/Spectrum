@@ -262,6 +262,7 @@
   "text.autoconfig.Spectrum.option.DisarmingChancePerLevelMobs": "Chance to disarm Mobs on mit with a Disarming enchanted weapon per level",
   "text.autoconfig.Spectrum.option.DisarmingChancePerLevelPlayers": "Chance to disarm Players on mit with a Disarming enchanted weapon per level",
 
+  "text.autoconfig.Spectrum.option.REIListsRecipesAsNotUnlocked": "Show 'recipe not unlocked yet' REI screens for not unlocked recipes",
   "text.autoconfig.Spectrum.option.azureDikeHudOffsetX": "X Position of the Azure Dike Overlay on the players screen. Default: Over the hunger bar",
   "text.autoconfig.Spectrum.option.azureDikeHudOffsetY": "Y Position of the Azure Dike Overlay on the players screen. Default: Over the hunger bar",
   "text.autoconfig.Spectrum.option.azureDikeHudOffsetXLackingAir": "X Position of the Azure Dike Overlay on the players screen when not having full air. Default: Over the air bubbles",

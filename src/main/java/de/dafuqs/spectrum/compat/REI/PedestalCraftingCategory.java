@@ -52,16 +52,7 @@ public class PedestalCraftingCategory implements DisplayCategory<PedestalCraftin
 		List<Widget> widgets = Lists.newArrayList();
 
 		widgets.add(Widgets.createRecipeBase(bounds));
-
-		// Searching for the usage or recipes for items will not trigger a
-		// pedestal crafting recipe display. Searching for all recipes, that can
-		// be triggered with a pedestal will, though.
-		//
-		// For the sake of not spoiling the surprise there will just be
-		// a placeholder displayed instead of the actual recipe.
-		//
-		// It would be way better to just skip not unlocked recipes altogether.
-		// but howwwwww...
+		
 		if(!display.isUnlocked()) {
 			widgets.add(Widgets.createLabel(new Point(startPoint.x - 9, startPoint.y + 33), new TranslatableText("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_1")).leftAligned().color(0x3f3f3f).noShadow());
 			widgets.add(Widgets.createLabel(new Point(startPoint.x - 9, startPoint.y + 43), new TranslatableText("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_2")).leftAligned().color(0x3f3f3f).noShadow());

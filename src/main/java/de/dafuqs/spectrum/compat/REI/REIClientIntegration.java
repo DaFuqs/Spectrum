@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.compat.REI;
 
+import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.inventories.PedestalScreen;
 import de.dafuqs.spectrum.inventories.PotionWorkshopScreen;
 import de.dafuqs.spectrum.items.magic_items.NaturesStaffItem;
@@ -98,13 +99,16 @@ public class REIClientIntegration implements REIClientPlugin {
 		registry.registerRecipeFiller(SpiritInstillerRecipe.class, SpectrumRecipeTypes.SPIRIT_INSTILLER_RECIPE, SpiritInstillerRecipeDisplay::new);
 		registry.registerRecipeFiller(MidnightSolutionConvertingRecipe.class, SpectrumRecipeTypes.MIDNIGHT_SOLUTION_CONVERTING_RECIPE, MidnightSolutionConvertingDisplay::new);
 		
-		// do not list recipes in REI at all, until they are unlocked
-		registry.registerVisibilityPredicate((category, display) -> {
-			if(display instanceof GatedRecipeDisplay gatedRecipeDisplay && !gatedRecipeDisplay.isUnlocked()) {
-				return EventResult.interruptFalse();
-			}
-			return EventResult.pass();
-		});
+		if(!SpectrumCommon.CONFIG.REIListsRecipesAsNotUnlocked) {
+			// do not list recipes in REI at all, until they are unlocked
+			registry.registerVisibilityPredicate((category, display) -> {
+				if(display instanceof GatedRecipeDisplay gatedRecipeDisplay && !gatedRecipeDisplay.isUnlocked()) {
+					return EventResult.interruptFalse();
+				}
+				return EventResult.pass();
+			});
+		}
+
 	}
 
 	/**

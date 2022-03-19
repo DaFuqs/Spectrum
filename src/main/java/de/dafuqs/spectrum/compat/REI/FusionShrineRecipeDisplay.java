@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.compat.REI;
 
+import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.recipe.fusion_shrine.FusionShrineRecipe;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
@@ -53,7 +54,7 @@ public class FusionShrineRecipeDisplay implements SimpleGridMenuDisplay, GatedRe
 
 	@Override
 	public List<EntryIngredient> getOutputEntries() {
-		if(this.isUnlocked()) {
+		if(this.isUnlocked() || SpectrumCommon.CONFIG.REIListsRecipesAsNotUnlocked) {
 			return Collections.singletonList(output);
 		} else {
 			return new ArrayList<>();

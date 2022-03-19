@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.compat.REI;
 
+import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.items.magic_items.KnowledgeGemItem;
 import de.dafuqs.spectrum.recipe.enchanter.EnchanterRecipe;
@@ -35,7 +36,7 @@ public class EnchanterRecipeDisplay implements SimpleGridMenuDisplay, GatedRecip
 
 	@Override
 	public List<EntryIngredient> getInputEntries() {
-		if(this.isUnlocked()) {
+		if(this.isUnlocked() || SpectrumCommon.CONFIG.REIListsRecipesAsNotUnlocked) {
 			return inputs;
 		} else {
 			return new ArrayList<>();

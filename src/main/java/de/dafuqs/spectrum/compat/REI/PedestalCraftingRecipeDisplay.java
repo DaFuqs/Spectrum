@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.compat.REI;
 
+import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.enums.GemstoneColor;
 import de.dafuqs.spectrum.enums.PedestalRecipeTier;
 import de.dafuqs.spectrum.recipe.pedestal.PedestalCraftingRecipe;
@@ -140,7 +141,7 @@ public class PedestalCraftingRecipeDisplay extends BasicDisplay implements Simpl
 
 	@Override
 	public List<EntryIngredient> getOutputEntries() {
-		if(this.isUnlocked()) {
+		if(this.isUnlocked() || SpectrumCommon.CONFIG.REIListsRecipesAsNotUnlocked) {
 			return outputs;
 		} else {
 			return new ArrayList<>();

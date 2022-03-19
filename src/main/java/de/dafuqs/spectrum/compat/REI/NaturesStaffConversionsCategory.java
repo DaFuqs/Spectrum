@@ -39,8 +39,8 @@ public class NaturesStaffConversionsCategory implements DisplayCategory<NaturesS
 		widgets.add(Widgets.createRecipeBase(bounds));
 		
 		if(!display.isUnlocked()) {
-			widgets.add(Widgets.createLabel(new Point(startPoint.x - 18, startPoint.y + 4), new TranslatableText("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_1")).leftAligned().color(0x3f3f3f).noShadow());
-			widgets.add(Widgets.createLabel(new Point(startPoint.x - 18, startPoint.y + 14), new TranslatableText("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_2")).leftAligned().color(0x3f3f3f).noShadow());
+			widgets.add(Widgets.createLabel(new Point(startPoint.x - 23, startPoint.y + 4), new TranslatableText("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_1")).leftAligned().color(0x3f3f3f).noShadow());
+			widgets.add(Widgets.createLabel(new Point(startPoint.x - 23, startPoint.y + 14), new TranslatableText("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_2")).leftAligned().color(0x3f3f3f).noShadow());
 		} else {
 			widgets.add(Widgets.createArrow(new Point(startPoint.x + 27, startPoint.y + 4)));
 			widgets.add(Widgets.createResultSlotBackground(new Point(startPoint.x + 61, startPoint.y + 5)));

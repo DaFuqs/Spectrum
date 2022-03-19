@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.compat.REI;
 
+import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.recipe.fusion_shrine.FusionShrineRecipe;
 import de.dafuqs.spectrum.recipe.spirit_instiller.SpiritInstillerRecipe;
@@ -45,7 +46,7 @@ public class SpiritInstillerRecipeDisplay implements SimpleGridMenuDisplay, Gate
 
 	@Override
 	public List<EntryIngredient> getOutputEntries() {
-		if(this.isUnlocked()) {
+		if(this.isUnlocked() || SpectrumCommon.CONFIG.REIListsRecipesAsNotUnlocked) {
 			return Collections.singletonList(output);
 		} else {
 			return new ArrayList<>();

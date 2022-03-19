@@ -11,6 +11,7 @@ import de.dafuqs.spectrum.networking.SpectrumS2CPacketReceiver;
 import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
 import de.dafuqs.spectrum.networking.SpectrumS2CPackets;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
+import de.dafuqs.spectrum.registries.SpectrumDamageSources;
 import de.dafuqs.spectrum.registries.SpectrumEnchantments;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
@@ -103,11 +104,11 @@ public abstract class LivingEntityMixin {
 	}
 	
 	@ModifyVariable(at = @At("HEAD"), method = "damage(Lnet/minecraft/entity/damage/DamageSource;F)Z", argsOnly = true)
-	public float spectrum$applyAzureDikeDamageProtection(float amount) {
-		if(amount > 0) {
-			return AzureDikeProvider.absorbDamage((LivingEntity) (Object) this, amount);
-		} else {
+	public float spectrum$applyAzureDikeDamageProtection(float amount, DamageSource source) {
+		if(source.isOutOfWorld() || source.isUnblockable() || amount <= 0) {
 			return amount;
+		} else {
+			return AzureDikeProvider.absorbDamage((LivingEntity) (Object) this, amount);
 		}
 	}
 	

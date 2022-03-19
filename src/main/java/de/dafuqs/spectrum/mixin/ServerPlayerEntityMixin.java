@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.mixin;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.enchantments.DisarmingEnchantment;
 import de.dafuqs.spectrum.enchantments.TreasureHunterEnchantment;
+import de.dafuqs.spectrum.items.trinkets.AshenCircletItem;
 import de.dafuqs.spectrum.items.trinkets.GleamingPinItem;
 import de.dafuqs.spectrum.items.trinkets.SpectrumTrinketItem;
 import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
@@ -12,6 +13,7 @@ import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
@@ -38,8 +40,27 @@ public abstract class ServerPlayerEntityMixin {
 		TreasureHunterEnchantment.doTreasureHunterForPlayer((ServerPlayerEntity) (Object) this, source);
 	}
 	
+	@Inject(at = @At("HEAD"), method = "damage(Lnet/minecraft/entity/damage/DamageSource;F)Z", cancellable = true)
+	public void spectrum$damageHead(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
+		// If the player is damaged by lava and wears an ashen circlet:
+		// cancel damage and grant fire resistance
+		if(source.equals(DamageSource.LAVA)) {
+			PlayerEntity thisEntity = (PlayerEntity) (Object) this;
+			
+			Optional<ItemStack> ashenCircletStack = SpectrumTrinketItem.getFirstEquipped(thisEntity, SpectrumItems.ASHEN_CIRCLET);
+			if(ashenCircletStack.isPresent()) {
+				if(AshenCircletItem.getCooldownTicks(ashenCircletStack.get(), thisEntity.world) == 0) {
+					AshenCircletItem.grantFireResistance(ashenCircletStack.get(), thisEntity);
+				}
+				cir.setReturnValue(false);
+			}
+		} else if(source.isFire() && SpectrumTrinketItem.hasEquipped((PlayerEntity) (Object) this, SpectrumItems.ASHEN_CIRCLET)) {
+			cir.setReturnValue(false);
+		}
+	}
+	
 	@Inject(at = @At("RETURN"), method = "damage(Lnet/minecraft/entity/damage/DamageSource;F)Z")
-	public void spectrum$damage(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
+	public void spectrum$damageReturn(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
 		if (!this.getWorld().isClient) {
 			// true if the entity got hurt
 			if (cir.getReturnValue() != null && cir.getReturnValue()) {
@@ -69,9 +90,4 @@ public abstract class ServerPlayerEntityMixin {
 		}
 	}
 	
-	/*@Inject(method = "tick", at = @At("TAIL"))
-	private void onEndTick(CallbackInfo ci) {
-		//AzureDikeProvider.AZURE_DIKE_COMPONENT.get(this).serverTick();
-	}*/
-
 }

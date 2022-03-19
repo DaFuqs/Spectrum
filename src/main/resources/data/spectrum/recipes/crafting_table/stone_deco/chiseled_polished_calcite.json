@@ -1,8 +1,9 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "##",
-    "##"
+    " # ",
+    "###",
+    " # "
   ],
   "key": {
     "#": {
@@ -11,6 +12,6 @@
   },
   "result": {
     "item": "spectrum:chiseled_polished_calcite",
-    "count": 4
+    "count": 5
   }
 }

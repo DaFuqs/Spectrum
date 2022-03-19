@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "spectrum:polished_basalt"
+  },
+  "result": "spectrum:notched_polished_basalt",
+  "count": 1
+}

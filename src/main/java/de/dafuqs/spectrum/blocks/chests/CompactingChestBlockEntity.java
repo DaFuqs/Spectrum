@@ -28,6 +28,10 @@ import net.minecraft.world.World;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Map;
+import java.util.EnumMap;
+import java.util.HashMap;
+import java.util.Objects;
 
 public class CompactingChestBlockEntity extends SpectrumChestBlockEntity implements ExtendedScreenHandlerFactory {
 	
@@ -36,6 +40,8 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 	ItemStack lastCraftingItemStack;// cache
 	CraftingRecipe lastCraftingRecipe; // cache
 	boolean hasToCraft;
+
+	private static Map<AutoCompactingInventory.AutoCraftingMode, Map<InputItem, Optional<CraftingRecipe>>> cache = new EnumMap<>(AutoCompactingInventory.AutoCraftingMode.class);
 	
 	public CompactingChestBlockEntity(BlockPos blockPos, BlockState blockState) {
 		super(SpectrumBlockEntityRegistry.COMPACTING_CHEST, blockPos, blockState);
@@ -53,7 +59,7 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 		if (world.isClient) {
 			compactingChestBlockEntity.lidAnimator.step();
 		} else {
-			if (compactingChestBlockEntity.hasToCraft) {
+			if (compactingChestBlockEntity.hasToCraft || compactingChestBlockEntity.world.getTime() % 20 == 0) {
 				boolean couldCraft = compactingChestBlockEntity.tryCraftOnce();
 				if (!couldCraft) {
 					compactingChestBlockEntity.hasToCraft = false;
@@ -107,7 +113,7 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 			}
 		}
 		
-		if (!optionalCraftingRecipe.isPresent()) {
+		if (optionalCraftingRecipe.isEmpty()) {
 			for (ItemStack itemStack : inventory) {
 				if (itemStack.isEmpty()) {
 					continue;
@@ -116,13 +122,24 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 				if (stackPair.getLeft() >= this.autoCraftingMode.getItemCount()) {
 					craftingStacks = stackPair.getRight();
 				}
-				
 				if (craftingStacks != null) {
+					Map<InputItem, Optional<CraftingRecipe>> currentCache = cache.computeIfAbsent(autoCraftingMode, mode -> new HashMap<>());
+					InputItem itemKey = new InputItem(itemStack.getItem(), itemStack.getNbt());
+
+					Optional<CraftingRecipe> recipe = currentCache.get(itemKey);
+					if (recipe != null) {
+						if (recipe.isEmpty())
+							continue;
+						optionalCraftingRecipe = recipe;
+						break;
+					}
 					autoCompactingInventory.setCompacting(autoCraftingMode, craftingStacks.get(0).copy());
-					optionalCraftingRecipe = world.getServer().getRecipeManager().getFirstMatch(RecipeType.CRAFTING, autoCompactingInventory, world);
-					if (!optionalCraftingRecipe.isPresent() || optionalCraftingRecipe.get().getOutput().isEmpty()) {
+					optionalCraftingRecipe = world.getRecipeManager().getFirstMatch(RecipeType.CRAFTING, autoCompactingInventory, world);
+					if (optionalCraftingRecipe.isEmpty() || optionalCraftingRecipe.get().getOutput().isEmpty()) {
 						optionalCraftingRecipe = Optional.empty();
+						currentCache.put(itemKey, optionalCraftingRecipe);
 					} else {
+						currentCache.put(itemKey, optionalCraftingRecipe);
 						break;
 					}
 				}
@@ -206,4 +223,22 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 		buf.writeInt(this.autoCraftingMode.ordinal());
 	}
 
+	public static void clearCache() {
+		cache.clear();
+	}
+
+	private static record InputItem(Item item, NbtCompound nbt) {
+		@Override
+		public boolean equals(Object o) {
+			if (this == o) return true;
+			if (o == null || getClass() != o.getClass()) return false;
+			InputItem that = (InputItem) o;
+			return item.equals(that.item) && Objects.equals(nbt, that.nbt);
+		}
+
+		@Override
+		public int hashCode() {
+			return Objects.hash(item, nbt);
+		}
+	}
 }

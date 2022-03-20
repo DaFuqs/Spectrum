@@ -25,6 +25,7 @@ import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -124,7 +125,7 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 				}
 				if (craftingStacks != null) {
 					Map<InputItem, Optional<CraftingRecipe>> currentCache = cache.computeIfAbsent(autoCraftingMode, mode -> new HashMap<>());
-					InputItem itemKey = new InputItem(itemStack.getItem(), itemStack.getNbt());
+					InputItem itemKey = InputItem.ofItemStack(itemStack);
 
 					Optional<CraftingRecipe> recipe = currentCache.get(itemKey);
 					if (recipe != null) {
@@ -227,7 +228,14 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 		cache.clear();
 	}
 
-	private static record InputItem(Item item, NbtCompound nbt) {
+	private static record InputItem(Item item, @Nullable NbtCompound nbt) {
+
+		public static InputItem ofItemStack(ItemStack itemStack) {
+			NbtCompound nbt = null;
+			if (itemStack.getNbt() != null)
+				nbt = itemStack.getNbt().copy();
+			return new InputItem(itemStack.getItem(), nbt);
+		}
 		@Override
 		public boolean equals(Object o) {
 			if (this == o) return true;

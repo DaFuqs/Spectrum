@@ -3,15 +3,17 @@
   "time": 800,
   "experience": 4.0,
   "ingredient1": {
-    "tag": "spectrum:mob_heads"   
+    "item": "spectrum:fox_head"
   },
   "ingredient2": {
-    "item": "minecraft:wheat"
+    "item": "minecraft:sweet_berries"
   },
   "center_ingredient": {
     "item": "spectrum:vegetal"
   },
   "result" : {
-    "item": "spectrum:creature_spawn"
+    "item": "spectrum:creature_spawn",
+    "nbt": "{TicksToHatch: 20, EntityTag: {id: \"minecraft:fox\"}}",
+    "count": 1
   }
 }

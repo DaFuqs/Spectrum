@@ -296,7 +296,16 @@
   "block.spectrum.item_bowl_calcite": "Item Bowl",
   "block.spectrum.potion_workshop": "Potion Workshop",
   "block.spectrum.spirit_instiller": "Spirit Instiller",
+
   "block.spectrum.creature_spawn": "Creature Spawn",
+  "item.spectrum.creature_spawn.tooltip.entity_type": "§7Spawn for §f%s",
+  "item.spectrum.creature_spawn.tooltip.hidden_entity_type": "What could be inside?",
+  "item.spectrum.creature_spawn.tooltip.unset_entity_type": "Feels Empty?",
+  "item.spectrum.creature_spawn.tooltip.extra_long_time_to_hatch": "Hatching will take Aeons",
+  "item.spectrum.creature_spawn.tooltip.long_time_to_hatch": "Hatching will take quite a while",
+  "item.spectrum.creature_spawn.tooltip.medium_time_to_hatch": "May hatch the next few days",
+  "item.spectrum.creature_spawn.tooltip.short_time_to_hatch": "Seems to hatch soon!",
+  "item.spectrum.creature_spawn.tooltip.does_not_hatch": "Will not hatch in your lifetime",
 
   "block.spectrum.spirit_sallow_roots": "Spirit Sallow Roots",
   "block.spectrum.spirit_sallow_log": "Spirit Sallow Log",

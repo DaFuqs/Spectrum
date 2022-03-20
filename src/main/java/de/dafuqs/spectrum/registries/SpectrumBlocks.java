@@ -12,6 +12,7 @@ import de.dafuqs.spectrum.blocks.chests.RestockingChestBlock;
 import de.dafuqs.spectrum.blocks.chests.SuckingChestBlock;
 import de.dafuqs.spectrum.blocks.conditional.*;
 import de.dafuqs.spectrum.blocks.creature_spawn.CreatureSpawnBlock;
+import de.dafuqs.spectrum.blocks.creature_spawn.CreatureSpawnItem;
 import de.dafuqs.spectrum.blocks.decay.DecayAwayBlock;
 import de.dafuqs.spectrum.blocks.decay.FadingBlock;
 import de.dafuqs.spectrum.blocks.decay.FailingBlock;
@@ -98,6 +99,7 @@ public class SpectrumBlocks {
 
 	public static FabricItemSettings generalItemSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(0);
 	public static FabricItemSettings generalItemSettingsSingle = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(0).maxCount(1);
+	public static FabricItemSettings generalItemSettingsSingleUncommon = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(0).maxCount(1).rarity(Rarity.UNCOMMON);
 	public static FabricItemSettings generalItemSettingsEight = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(0).maxCount(8);
 	public static FabricItemSettings generalItemSettingsSixteen = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(0).maxCount(16);
 	public static FabricItemSettings generalItemSettingsUncommon = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(0).rarity(Rarity.UNCOMMON);
@@ -139,7 +141,7 @@ public class SpectrumBlocks {
 	public static final Block POTION_WORKSHOP = new PotionWorkshopBlock(FabricBlockSettings.of(Material.STONE).hardness(3.0f).nonOpaque());
 	
 	public static final Block SPIRIT_INSTILLER = new SpiritInstillerBlock(FabricBlockSettings.of(Material.STONE).strength(2.0F, 5.0F).nonOpaque());
-	public static final Block CREATURE_SPAWN = new CreatureSpawnBlock(FabricBlockSettings.of(Material.STONE).hardness(3.0f).nonOpaque());
+	public static final Block CREATURE_SPAWN = new CreatureSpawnBlock(FabricBlockSettings.of(Material.STONE).hardness(3.0f).nonOpaque().ticksRandomly());
 
 	// GEMS
 	public static final Block TOPAZ_CLUSTER = new AmethystClusterBlock(7, 3, FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().requiresTool().sounds(SpectrumBlockSoundGroups.TOPAZ_CLUSTER).luminance(6));
@@ -726,7 +728,7 @@ public class SpectrumBlocks {
 		registerBlockWithItem("potion_workshop", POTION_WORKSHOP, generalItemSettingsSingle);
 		
 		registerBlockWithItem("spirit_instiller", SPIRIT_INSTILLER, generalItemSettingsSingle);
-		registerBlockWithItem("creature_spawn", CREATURE_SPAWN, generalItemSettingsSingle);
+		registerBlockWithItem("creature_spawn", CREATURE_SPAWN, new CreatureSpawnItem(CREATURE_SPAWN, generalItemSettingsSingleUncommon));
 		
 		registerBlockWithItem("upgrade_speed", UPGRADE_SPEED, new UpgradeBlockItem(UPGRADE_SPEED, generalItemSettingsEight, "upgrade_speed"));
 		registerBlockWithItem("upgrade_speed2", UPGRADE_SPEED2, new UpgradeBlockItem(UPGRADE_SPEED2, generalItemSettingsUncommonEight, "upgrade_speed2"));

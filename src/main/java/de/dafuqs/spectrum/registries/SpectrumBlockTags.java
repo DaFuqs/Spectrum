@@ -30,6 +30,10 @@ public class SpectrumBlockTags {
 	
 	public static TagKey<Block> EXEMPT_FROM_MINEABLE_DEBUG_CHECK;
 	public static TagKey<Block> EXEMPT_FROM_LOOT_TABLE_DEBUG_CHECK;
+	
+	public static TagKey<Block> CREATURE_SPAWN_NEVER_HATCHERS;
+	public static TagKey<Block> CREATURE_SPAWN_FAST_HATCHERS;
+	public static TagKey<Block> CREATURE_SPAWN_VERY_FAST_HATCHERS;
 
 	private static TagKey<Block> getReference(String id) {
 		return TagKey.of(Registry.BLOCK_KEY, new Identifier(SpectrumCommon.MOD_ID, id));
@@ -60,5 +64,10 @@ public class SpectrumBlockTags {
 		// DEBUG
 		EXEMPT_FROM_MINEABLE_DEBUG_CHECK = getReference("exempt_from_mineable_debug_check");
 		EXEMPT_FROM_LOOT_TABLE_DEBUG_CHECK = getReference("exempt_from_loot_table_debug_check");
+		
+		// CREATURE SPAWN
+		CREATURE_SPAWN_NEVER_HATCHERS = getReference("creature_spawn_never_hatchers");
+		CREATURE_SPAWN_FAST_HATCHERS = getReference("creature_spawn_fast_hatchers");
+		CREATURE_SPAWN_VERY_FAST_HATCHERS = getReference("creature_spawn_very_fast_hatchers");
 	}
 }

@@ -4,7 +4,7 @@
       "sound": "spectrum:dimension_ambient",
       "tick_delay": 6000,
       "block_search_extent": 8,
-      "offset": 2.0
+      "offset": 2
     },
     "sky_color": 7907327,
     "foliage_color": 10387789,

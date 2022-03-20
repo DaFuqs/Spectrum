@@ -65,7 +65,7 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 	
 	public static final int INVENTORY_SIZE = 2; // 0: any itemstack, 1: Knowledge Gem;
 	
-	private UUID ownerUUID;
+	protected UUID ownerUUID;
 	protected SimpleInventory inventory;
 	
 	protected boolean canOwnerApplyConflictingEnchantments;

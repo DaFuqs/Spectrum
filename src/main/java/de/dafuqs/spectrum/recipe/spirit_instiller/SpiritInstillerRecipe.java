@@ -37,8 +37,14 @@ public class SpiritInstillerRecipe implements Recipe<Inventory> {
 	
 	@Override
 	public boolean matches(Inventory inv, World world) {
-		// TODO
-		return this.inputIngredient1.test(inv.getStack(0));
+		if(inv.size() > 2) {
+			if(inputIngredient1.test(inv.getStack(0)) && inputIngredient2.test(inv.getStack(1))) {
+				return centerIngredient.test(inv.getStack(2));
+			} else if(inputIngredient1.test(inv.getStack(1)) && inputIngredient2.test(inv.getStack(0))) {
+				return centerIngredient.test(inv.getStack(2));
+			}
+		}
+		return false;
 	}
 
 	@Override

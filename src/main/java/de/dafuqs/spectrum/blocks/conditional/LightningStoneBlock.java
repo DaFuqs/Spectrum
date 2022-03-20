@@ -54,7 +54,7 @@ public class LightningStoneBlock extends Block implements Cloakable {
 		}
 		
 		int power = 2;
-		Biome biomeAtPos = world.getBiome(pos);
+		Biome biomeAtPos = world.getBiome(pos).value();
 		if(!biomeAtPos.isHot(pos) && !biomeAtPos.isCold(pos)) {
 			// there is no rain in deserts or snow
 			power = world.isThundering() ? 4 : world.isRaining() ? 3 : 2;

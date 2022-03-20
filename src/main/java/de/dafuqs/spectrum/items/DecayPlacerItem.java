@@ -29,7 +29,7 @@ public class DecayPlacerItem extends AliasedBlockItem {
 			BlockPos blockPos = itemPlacementContext.getBlockPos();
 			
 			BlockState placedBlockState = context.getWorld().getBlockState(blockPos);
-			if(SpectrumBlockTags.DECAY.contains(placedBlockState.getBlock())) {
+			if(placedBlockState.isIn(SpectrumBlockTags.DECAY)) {
 				context.getWorld().createAndScheduleBlockTick(blockPos, placedBlockState.getBlock(), 40 + context.getWorld().random.nextInt(200), TickPriority.EXTREMELY_LOW);
 			}
 		}

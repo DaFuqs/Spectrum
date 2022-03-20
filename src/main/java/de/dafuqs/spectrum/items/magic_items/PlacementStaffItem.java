@@ -80,9 +80,9 @@ public class PlacementStaffItem extends BuildingStaffItem {
 		BlockPos pos = context.getBlockPos();
 		
 		BlockState targetBlockState = world.getBlockState(pos);
-		Block targetBlock = targetBlockState.getBlock();
 		
-		if(!isBlacklisted(targetBlock)) {
+		if(!isBlacklisted(targetBlockState)) {
+			Block targetBlock = targetBlockState.getBlock();
 			Item targetBlockItem = targetBlock.asItem();
 			
 			if (player != null && targetBlockItem != Items.AIR && context.getHand() == Hand.MAIN_HAND) {

@@ -15,7 +15,7 @@ import net.minecraft.server.ServerAdvancementLoader;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.tag.Tag;
+import net.minecraft.tag.TagKey;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Vec3d;
 import org.apache.logging.log4j.Level;
@@ -78,13 +78,8 @@ public class Support {
 		add(new Vec3d(0.75D, 0, -0.5D));
 	}};
 
-	public static Optional<Tag<Block>> getFirstMatchingBlockTag(@NotNull Block block, @NotNull List<Tag<Block>> tags) {
-		for(Tag<Block> tag : tags) {
-			if(tag.contains(block)) {
-				return Optional.of(tag);
-			}
-		}
-		return Optional.empty();
+	public static @NotNull Optional<TagKey<Block>> getFirstMatchingBlockTag(@NotNull BlockState blockState, @NotNull List<TagKey<Block>> tags) {
+		return blockState.streamTags().filter(tags::contains).findFirst();
 	}
 	
 	private static final DecimalFormat df = new DecimalFormat("0.00");

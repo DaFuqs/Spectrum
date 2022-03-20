@@ -99,10 +99,10 @@ public class ExchangeStaffItem extends BuildingStaffItem implements EnchanterEnc
 		World world = context.getWorld();
 		BlockPos pos = context.getBlockPos();
 		BlockState targetBlockState = world.getBlockState(pos);
-		Block targetBlock = targetBlockState.getBlock();
 		
 		ActionResult result = ActionResult.FAIL;
-		if (!isBlacklisted(targetBlock)) {
+		if (!isBlacklisted(targetBlockState)) {
+			Block targetBlock = targetBlockState.getBlock();
 			Item targetBlockItem = targetBlockState.getBlock().asItem();
 			if (player != null && targetBlockItem != Items.AIR && context.getHand() == Hand.MAIN_HAND) {
 				if(player.isSneaking()) {
@@ -132,14 +132,14 @@ public class ExchangeStaffItem extends BuildingStaffItem implements EnchanterEnc
 		return result;
 	}
 	
-	public void storeBlockAsTarget(ItemStack exchangeStaffItemStack, Block block) {
+	public void storeBlockAsTarget(@NotNull ItemStack exchangeStaffItemStack, Block block) {
 		NbtCompound compound = exchangeStaffItemStack.getOrCreateNbt();
 		Identifier blockIdentifier = Registry.BLOCK.getId(block);
 		compound.putString("TargetBlock", blockIdentifier.toString());
 		exchangeStaffItemStack.setNbt(compound);
 	}
 	
-	public static Optional<Block> getBlockTarget(ItemStack exchangeStaffItemStack) {
+	public static Optional<Block> getBlockTarget(@NotNull ItemStack exchangeStaffItemStack) {
 		NbtCompound compound = exchangeStaffItemStack.getOrCreateNbt();
 		if(compound.contains("TargetBlock")) {
 			String targetBlockString = compound.getString("TargetBlock");

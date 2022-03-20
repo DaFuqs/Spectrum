@@ -13,6 +13,7 @@ import net.minecraft.item.Items;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.tag.BlockTags;
 import net.minecraft.tag.Tag;
+import net.minecraft.tag.TagKey;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3i;
@@ -29,13 +30,13 @@ public class BlockFlooderBlock extends BlockWithEntity {
 	// when replacing blocks there may be cases when there is a good reason to use replacement blocks
 	// like using dirt instead of grass, because grass will be growing anyways and silk touching grass
 	// is absolutely not worth it / fun
-	public static final HashMap<Tag<Block>, Block> exchangeableBlocks = new HashMap<>() {{
+	public static final HashMap<TagKey<Block>, Block> exchangeableBlocks = new HashMap<>() {{
 	   put(BlockTags.DIRT, Blocks.DIRT); // grass, podzol, mycelium, ...
 	   put(BlockTags.BASE_STONE_OVERWORLD, Blocks.STONE);
 	   put(BlockTags.BASE_STONE_NETHER, Blocks.NETHERRACK);
 	   put(BlockTags.SAND, Blocks.SAND);
 	}};
-	public static final List<Tag<Block>> exchangeBlockTags = ImmutableList.copyOf(exchangeableBlocks.keySet()); // for quick lookup
+	public static final List<TagKey<Block>> exchangeBlockTags = ImmutableList.copyOf(exchangeableBlocks.keySet()); // for quick lookup
 
 	public BlockFlooderBlock(Settings settings) {
 		super(settings);
@@ -115,7 +116,7 @@ public class BlockFlooderBlock extends BlockWithEntity {
 							if(owner.isCreative() || owner.getInventory().contains(currentItemStack) && currentBlock.canPlaceAt(currentBlock.getDefaultState(), world, pos)) {
 								maxBlock = currentBlock;
 							} else {
-								Optional<Tag<Block>> tag = Support.getFirstMatchingBlockTag(currentBlock, exchangeBlockTags);
+								Optional<TagKey<Block>> tag = Support.getFirstMatchingBlockTag(currentBlock.getDefaultState(), exchangeBlockTags);
 								if (tag.isPresent()) {
 									currentBlock = exchangeableBlocks.get(tag.get());
 									blockItem = currentBlock.asItem();

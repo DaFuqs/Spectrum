@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.mixin;
 import de.dafuqs.spectrum.registries.SpectrumItemTags;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.mob.PiglinBrain;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Mixin;

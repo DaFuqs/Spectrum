@@ -102,9 +102,9 @@ public abstract class WorldRendererMixin implements WorldRendererAccessor {
     private boolean renderPlacementStaffOutline(MatrixStack matrices, Camera camera, double d, double e, double f, VertexConsumerProvider.Immediate immediate, @NotNull BlockHitResult hitResult) {
         BlockPos lookingAtPos = hitResult.getBlockPos();
         BlockState lookingAtState = this.world.getBlockState(lookingAtPos);
-        Block lookingAtBlock = lookingAtState.getBlock();
     
-        if(!BuildingStaffItem.isBlacklisted(lookingAtBlock)) {
+        if(!BuildingStaffItem.isBlacklisted(lookingAtState)) {
+            Block lookingAtBlock = lookingAtState.getBlock();
             Item item = lookingAtBlock.asItem();
             VoxelShape shape = VoxelShapes.empty();
             ClientPlayerEntity player = client.player;
@@ -148,9 +148,9 @@ public abstract class WorldRendererMixin implements WorldRendererAccessor {
     private boolean renderExchangeStaffOutline(MatrixStack matrices, Camera camera, double d, double e, double f, VertexConsumerProvider.Immediate immediate, ItemStack exchangeStaffItemStack, @NotNull BlockHitResult hitResult) {
         BlockPos lookingAtPos = hitResult.getBlockPos();
         BlockState lookingAtState = this.world.getBlockState(lookingAtPos);
-        Block lookingAtBlock = lookingAtState.getBlock();
     
-        if(!BuildingStaffItem.isBlacklisted(lookingAtBlock)) {
+        if(!BuildingStaffItem.isBlacklisted(lookingAtState)) {
+            Block lookingAtBlock = lookingAtState.getBlock();
             Optional<Block> exchangeBlock = ExchangeStaffItem.getBlockTarget(exchangeStaffItemStack);
             if(exchangeBlock.isPresent() && exchangeBlock.get() != lookingAtBlock) {
                 Item exchangeBlockItem = exchangeBlock.get().asItem();

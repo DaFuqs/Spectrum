@@ -25,10 +25,8 @@ public class BlockBrokenCriterion extends AbstractCriterion<BlockBrokenCriterion
 		return new BlockBrokenCriterion.Conditions(extended, brokenBlockPredicate);
 	}
 
-	public void trigger(ServerPlayerEntity player, BlockState blockState) {
-		this.trigger(player, (conditions) -> {
-			return conditions.matches(blockState);
-		});
+	public void trigger(ServerPlayerEntity player, BlockState minedBlock) {
+		this.trigger(player, (conditions) -> conditions.matches(minedBlock));
 	}
 
 	public static class Conditions extends AbstractCriterionConditions {

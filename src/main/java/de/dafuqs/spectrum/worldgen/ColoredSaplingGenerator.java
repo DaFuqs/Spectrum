@@ -1,8 +1,11 @@
 package de.dafuqs.spectrum.worldgen;
 
 import net.minecraft.block.sapling.SaplingGenerator;
+import net.minecraft.block.sapling.SpruceSaplingGenerator;
 import net.minecraft.util.DyeColor;
+import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
+import net.minecraft.world.gen.feature.TreeConfiguredFeatures;
 import net.minecraft.world.gen.feature.TreeFeatureConfig;
 import org.jetbrains.annotations.Nullable;
 
@@ -10,19 +13,16 @@ import java.util.Random;
 
 public class ColoredSaplingGenerator extends SaplingGenerator {
 
-	DyeColor dyeColor;
+	private final DyeColor dyeColor;
 	
 	public ColoredSaplingGenerator(DyeColor dyeColor) {
 		this.dyeColor = dyeColor;
 	}
 	
-	private ConfiguredFeature<TreeFeatureConfig, ?> getConfiguredFeature(DyeColor dyeColor) {
-		return SpectrumConfiguredFeatures.COLORED_TREE_CONFIGURED_FEATURES.get(dyeColor);
-	}
-
 	@Nullable
 	@Override
-	protected ConfiguredFeature<TreeFeatureConfig, ?> getTreeFeature(Random random, boolean bees) {
-		return getConfiguredFeature(this.dyeColor);
+	protected RegistryEntry<? extends ConfiguredFeature<?, ?>> getTreeFeature(Random random, boolean bees) {
+		return SpectrumConfiguredFeatures.COLORED_TREE_CONFIGURED_FEATURES.get(dyeColor);
 	}
+	
 }

@@ -36,10 +36,13 @@ import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.registry.Registry;
+import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeKeys;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
@@ -241,7 +244,7 @@ public class NaturesStaffItem extends Item implements EnchanterEnchantable {
 		return ActionResult.PASS;
 	}
 	
-	private void playDenySound(World world, PlayerEntity playerEntity) {
+	private void playDenySound(@NotNull World world, @NotNull PlayerEntity playerEntity) {
 		world.playSound(null, playerEntity.getX(), playerEntity.getY(), playerEntity.getZ(), SpectrumSoundEvents.USE_FAIL, SoundCategory.PLAYERS, 1.0F, 0.8F + playerEntity.getRandom().nextFloat() * 0.4F);
 	}
 
@@ -249,7 +252,7 @@ public class NaturesStaffItem extends Item implements EnchanterEnchantable {
 	 * Near identical copy of BonemealItem.useOnFertilizable
 	 * just with stack decrement removed
 	 */
-	public static boolean useOnFertilizable(World world, BlockPos pos) {
+	public static boolean useOnFertilizable(@NotNull World world, BlockPos pos) {
 		BlockState blockState = world.getBlockState(pos);
 		if (blockState.getBlock() instanceof Fertilizable fertilizable) {
 			if (fertilizable.isFertilizable(world, pos, blockState, world.isClient)) {
@@ -268,34 +271,37 @@ public class NaturesStaffItem extends Item implements EnchanterEnchantable {
 	 * Near identical copy of BonemealItem.useOnGround
 	 * just with stack decrement removed
 	 */
-	public static boolean useOnGround(World world, BlockPos blockPos, @Nullable Direction facing) {
+	public static boolean useOnGround(@NotNull World world, BlockPos blockPos, @Nullable Direction facing) {
 		if (world.getBlockState(blockPos).isOf(Blocks.WATER) && world.getFluidState(blockPos).getLevel() == 8) {
 			if (world instanceof ServerWorld) {
 				Random random = world.getRandom();
 				
-				label76:
+				label78:
 				for (int i = 0; i < 128; ++i) {
 					BlockPos blockPos2 = blockPos;
 					BlockState blockState = Blocks.SEAGRASS.getDefaultState();
 					
-					for (int j = 0; j < i / 16; ++j) {
+					for(int j = 0; j < i / 16; ++j) {
 						blockPos2 = blockPos2.add(random.nextInt(3) - 1, (random.nextInt(3) - 1) * random.nextInt(3) / 2, random.nextInt(3) - 1);
 						if (world.getBlockState(blockPos2).isFullCube(world, blockPos2)) {
-							continue label76;
+							continue label78;
 						}
 					}
 					
-					Optional<RegistryKey<Biome>> j = world.getBiomeKey(blockPos2);
-					if (Objects.equals(j, Optional.of(BiomeKeys.WARM_OCEAN))) {
+					RegistryEntry<Biome> j = world.getBiome(blockPos2);
+					if (j.matchesKey(BiomeKeys.WARM_OCEAN)) {
 						if (i == 0 && facing != null && facing.getAxis().isHorizontal()) {
-							blockState = (BlockTags.WALL_CORALS.getRandom(world.random)).getDefaultState().with(DeadCoralWallFanBlock.FACING, facing);
+							blockState = Registry.BLOCK.getEntryList(BlockTags.WALL_CORALS).flatMap((blocks) -> blocks.getRandom(world.random)).map((blockEntry) -> (blockEntry.value()).getDefaultState()).orElse(blockState);
+							if (blockState.contains(DeadCoralWallFanBlock.FACING)) {
+								blockState = blockState.with(DeadCoralWallFanBlock.FACING, facing);
+							}
 						} else if (random.nextInt(4) == 0) {
-							blockState = (BlockTags.UNDERWATER_BONEMEALS.getRandom(random)).getDefaultState();
+							blockState = Registry.BLOCK.getEntryList(BlockTags.UNDERWATER_BONEMEALS).flatMap((blocks) -> blocks.getRandom(world.random)).map((blockEntry) -> (blockEntry.value()).getDefaultState()).orElse(blockState);
 						}
 					}
 					
-					if (blockState.isIn(BlockTags.WALL_CORALS)) {
-						for (int k = 0; !blockState.canPlaceAt(world, blockPos2) && k < 4; ++k) {
+					if (blockState.isIn(BlockTags.WALL_CORALS, (state) -> state.contains(DeadCoralWallFanBlock.FACING))) {
+						for(int k = 0; !blockState.canPlaceAt(world, blockPos2) && k < 4; ++k) {
 							blockState = blockState.with(DeadCoralWallFanBlock.FACING, Direction.Type.HORIZONTAL.random(random));
 						}
 					}
@@ -305,7 +311,7 @@ public class NaturesStaffItem extends Item implements EnchanterEnchantable {
 						if (k.isOf(Blocks.WATER) && world.getFluidState(blockPos2).getLevel() == 8) {
 							world.setBlockState(blockPos2, blockState, 3);
 						} else if (k.isOf(Blocks.SEAGRASS) && random.nextInt(10) == 0) {
-							((Fertilizable) Blocks.SEAGRASS).grow((ServerWorld) world, random, blockPos2, k);
+							((Fertilizable)Blocks.SEAGRASS).grow((ServerWorld)world, random, blockPos2, k);
 						}
 					}
 				}

@@ -25,6 +25,7 @@ import net.minecraft.advancement.Advancement;
 import net.minecraft.advancement.AdvancementCriterion;
 import net.minecraft.advancement.criterion.CriterionConditions;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -63,27 +64,28 @@ public class ProgressionSanityCommand {
 		SpectrumCommon.log(Level.INFO, "##### SANITY CHECK START ######");
 
 		// All blocks that do not have a mineable tag
-		for (Map.Entry<RegistryKey<Block>, Block> entry : Registry.BLOCK.getEntries()) {
+		for (Map.Entry<RegistryKey<Block>, Block> entry : Registry.BLOCK.getEntrySet()) {
 			RegistryKey<Block> registryKey = entry.getKey();
 			if (registryKey.getValue().getNamespace().equals(SpectrumCommon.MOD_ID)) {
-				Block block = entry.getValue();
-				if (!BlockTags.PICKAXE_MINEABLE.contains(block)
-						&& !BlockTags.AXE_MINEABLE.contains(block)
-						&& !BlockTags.SHOVEL_MINEABLE.contains(block)
-						&& !BlockTags.HOE_MINEABLE.contains(block)
-						&& !SpectrumBlockTags.EXEMPT_FROM_MINEABLE_DEBUG_CHECK.contains(block)) {
+				BlockState blockState = entry.getValue().getDefaultState();
+				if (!blockState.isIn(BlockTags.PICKAXE_MINEABLE)
+						&& !blockState.isIn(BlockTags.AXE_MINEABLE)
+						&& !blockState.isIn(BlockTags.SHOVEL_MINEABLE)
+						&& !blockState.isIn(BlockTags.HOE_MINEABLE)
+						&& !blockState.isIn(SpectrumBlockTags.EXEMPT_FROM_MINEABLE_DEBUG_CHECK)) {
 					SpectrumCommon.log(Level.WARN, "[SANITY: Mineable Tags] Block " + registryKey.getValue() + " is not contained in a any vanilla mineable tag.");
 				}
 			}
 		}
 		
 		// All blocks without a loot table
-		for (Map.Entry<RegistryKey<Block>, Block> entry : Registry.BLOCK.getEntries()) {
+		for (Map.Entry<RegistryKey<Block>, Block> entry : Registry.BLOCK.getEntrySet()) {
 			RegistryKey<Block> registryKey = entry.getKey();
 			if (registryKey.getValue().getNamespace().equals(SpectrumCommon.MOD_ID)) {
 				Block block = entry.getValue();
+				BlockState blockState = entry.getValue().getDefaultState();
 				Identifier lootTableID = block.getLootTableId();
-				if(!SpectrumBlockTags.EXEMPT_FROM_LOOT_TABLE_DEBUG_CHECK.contains(block)) {
+				if(!blockState.isIn(SpectrumBlockTags.EXEMPT_FROM_LOOT_TABLE_DEBUG_CHECK)) {
 					if (lootTableID.equals(LootTables.EMPTY) || lootTableID.getPath().equals("blocks/air")) {
 						SpectrumCommon.log(Level.WARN, "[SANITY: Loot Tables] Block " + registryKey.getValue() + "has a non-existent loot table");
 					} else {
@@ -277,7 +279,7 @@ public class ProgressionSanityCommand {
 		}
 		
 		// Enchantments with nonexistent Advancement cloak
-		for(Map.Entry<RegistryKey<Enchantment>, Enchantment> enchantment : Registry.ENCHANTMENT.getEntries()) {
+		for(Map.Entry<RegistryKey<Enchantment>, Enchantment> enchantment : Registry.ENCHANTMENT.getEntrySet()) {
 			if(enchantment.getValue() instanceof SpectrumEnchantment spectrumEnchantment) {
 				Identifier advancementIdentifier = spectrumEnchantment.getUnlockAdvancementIdentifier();
 				Advancement advancementCriterionAdvancement = SpectrumCommon.minecraftServer.getAdvancementLoader().get(advancementIdentifier);
@@ -288,7 +290,7 @@ public class ProgressionSanityCommand {
 		}
 		
 		// EnchanterEnchantables with enchantability <= 0
-		for(Map.Entry<RegistryKey<Item>, Item> item : Registry.ITEM.getEntries()) {
+		for(Map.Entry<RegistryKey<Item>, Item> item : Registry.ITEM.getEntrySet()) {
 			Item i = item.getValue();
 			if(i instanceof EnchanterEnchantable && i.getEnchantability() < 1) {
 				SpectrumCommon.log(Level.WARN, "[SANITY: Enchantability] Item '" + item.getKey().getValue() + "' is EnchanterEnchantable, but has enchantability of < 1");

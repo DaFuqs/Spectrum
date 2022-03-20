@@ -23,22 +23,24 @@ import net.minecraft.util.math.intprovider.ConstantIntProvider;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.minecraft.util.registry.BuiltinRegistries;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.Heightmap;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.YOffset;
 import net.minecraft.world.gen.blockpredicate.BlockPredicate;
-import net.minecraft.world.gen.decorator.*;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.feature.size.TwoLayersFeatureSize;
 import net.minecraft.world.gen.foliage.BlobFoliagePlacer;
+import net.minecraft.world.gen.placementmodifier.*;
 import net.minecraft.world.gen.stateprovider.BlockStateProvider;
 import net.minecraft.world.gen.stateprovider.RandomizedIntBlockStateProvider;
 import net.minecraft.world.gen.stateprovider.SimpleBlockStateProvider;
 import net.minecraft.world.gen.stateprovider.WeightedBlockStateProvider;
 import net.minecraft.world.gen.trunk.StraightTrunkPlacer;
 import org.apache.logging.log4j.Level;
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -55,7 +57,7 @@ public class SpectrumConfiguredFeatures {
 	public static ConfiguredFeature<?, ?> CLOVER_PATCH;
 
 	// COLORED TREES
-	public static HashMap<DyeColor, ConfiguredFeature<TreeFeatureConfig, ?>> COLORED_TREE_CONFIGURED_FEATURES = new HashMap<>(); // FOR SAPLINGS
+	public static HashMap<DyeColor, RegistryEntry<? extends ConfiguredFeature<?, ?>>> COLORED_TREE_CONFIGURED_FEATURES = new HashMap<>(); // FOR SAPLINGS
 	public static PlacedFeature RANDOM_COLORED_TREES_FEATURE; // FOR WORLD GEN
 	
 	public static void register() {
@@ -64,20 +66,26 @@ public class SpectrumConfiguredFeatures {
 		registerColoredTrees();
 		registerPlants();
 	}
-
-	private static <FC extends FeatureConfig> ConfiguredFeature<?, ?> registerConfiguredFeature(Identifier identifier, ConfiguredFeature<?, ?> configuredFeature) {
-		return Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, identifier, configuredFeature);
+	
+	public static <T extends FeatureConfig> Feature<T> registerFeature(Feature<T> feature, Identifier id) {
+		return Registry.register(Registry.FEATURE, id, feature);
 	}
 	
-	private static PlacedFeature registerPlacedFeature(Identifier identifier, PlacedFeature placedFeature) {
-		return Registry.register(BuiltinRegistries.PLACED_FEATURE, identifier, placedFeature);
+	protected static <FC extends FeatureConfig, F extends Feature<FC>> RegistryEntry<ConfiguredFeature<FC, ?>> registerConfiguredFeature(Identifier identifier, F feature, FC featureConfig) {
+		return registerConfiguredFeature(BuiltinRegistries.CONFIGURED_FEATURE, identifier, new ConfiguredFeature<>(feature, featureConfig));
 	}
-
-	private static PlacedFeature registerConfiguredAndPlacedFeature(Identifier identifier, ConfiguredFeature<?, ?> configuredFeature, List<PlacementModifier> placementModifiers) {
-		Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, identifier, configuredFeature);
-		
-		PlacedFeature placedFeature = configuredFeature.withPlacement(placementModifiers);
-		Registry.register(BuiltinRegistries.PLACED_FEATURE, identifier, placedFeature);
+	
+	private static <V extends T, T> RegistryEntry<V> registerConfiguredFeature(Registry<T> registry, Identifier identifier, V value) {
+		return (RegistryEntry<V>) BuiltinRegistries.add(registry, identifier, value);
+	}
+	
+	static RegistryEntry<PlacedFeature> registerPlacedFeature(Identifier identifier, RegistryEntry<? extends ConfiguredFeature<?, ?>> feature, PlacementModifier... modifiers) {
+		return BuiltinRegistries.add(BuiltinRegistries.PLACED_FEATURE, identifier, new PlacedFeature(RegistryEntry.upcast(feature), List.of(modifiers)));
+	}
+	
+	private static RegistryEntry<PlacedFeature> registerConfiguredAndPlacedFeature(Identifier identifier, Feature feature, FeatureConfig featureConfig, PlacementModifier... placementModifiers) {
+		RegistryEntry<ConfiguredFeature<FeatureConfig, ?>> configuredFeature = registerConfiguredFeature(identifier, feature, featureConfig);
+		RegistryEntry<PlacedFeature> placedFeature = registerPlacedFeature(identifier, configuredFeature, placementModifiers);
 		return placedFeature;
 	}
 	
@@ -99,10 +107,11 @@ public class SpectrumConfiguredFeatures {
 		
 		registerConfiguredAndPlacedFeature(
 			sparklestoneOreIdentifier,
-			Feature.ORE.configure(new OreFeatureConfig(SPARKLESTONE_ORE_TARGETS, 8)), List.of(
-				HeightRangePlacementModifier.uniform(YOffset.aboveBottom(48), YOffset.fixed(128)), // min and max height
-				CountPlacementModifier.of(9) // number of veins per chunk
-		));
+			Feature.ORE,
+			new OreFeatureConfig(SPARKLESTONE_ORE_TARGETS, 8),
+			HeightRangePlacementModifier.uniform(YOffset.aboveBottom(48), YOffset.fixed(128)), // min and max height
+			CountPlacementModifier.of(9) // number of veins per chunk
+		);
 		
 		registerConfiguredAndPlacedFeature(
 			azuriteOreIdentifier,

@@ -54,14 +54,12 @@ public class ClientAdvancements {
 	public static List<Identifier> getDoneAdvancements(AdvancementUpdateS2CPacket packet) {
 		List<Identifier> doneAdvancements = new ArrayList<>();
 
-		for(Map.Entry<Identifier, Advancement.Task> earnedEntry : packet.getAdvancementsToEarn().entrySet()) {
-			Identifier earnedAdvancementIdentifier = earnedEntry.getKey();
+		for(Identifier earnedAdvancementIdentifier : packet.getAdvancementsToEarn().keySet()) {
 			if(ClientAdvancements.hasDone(earnedAdvancementIdentifier)) {
 				doneAdvancements.add(earnedAdvancementIdentifier);
 			}
 		}
-		for(Map.Entry<Identifier, AdvancementProgress> progressedEntry : packet.getAdvancementsToProgress().entrySet()) {
-			Identifier progressedAdvancementIdentifier = progressedEntry.getKey();
+		for(Identifier progressedAdvancementIdentifier : packet.getAdvancementsToProgress().keySet()) {
 			if(ClientAdvancements.hasDone(progressedAdvancementIdentifier)) {
 				if(!doneAdvancements.contains(progressedAdvancementIdentifier)) {
 					doneAdvancements.add(progressedAdvancementIdentifier);

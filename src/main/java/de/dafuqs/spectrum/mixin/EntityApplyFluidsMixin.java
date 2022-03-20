@@ -6,6 +6,8 @@ import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.tag.FluidTags;
 import net.minecraft.tag.Tag;
+import net.minecraft.tag.TagKey;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -13,14 +15,19 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+import java.util.Set;
+
 @Mixin(Entity.class)
 public class EntityApplyFluidsMixin {
 
+	@Final
 	@Shadow
-	protected Tag<Fluid> submergedFluidTag;
+	private Set<TagKey<Fluid>> submergedFluidTag;
 
-	@Inject(at = @At("HEAD"), method = "isSubmergedIn(Lnet/minecraft/tag/Tag;)Z", cancellable = true)
-	public void isSubmergedIn(Tag<Fluid> fluidTag, CallbackInfoReturnable<Boolean> cir) {
+	/*
+	TODO
+	@Inject(at = @At("HEAD"), method = "isSubmergedIn(Lnet/minecraft/tag/TagKey;)Z", cancellable = true)
+	public void isSubmergedIn(TagKey<Fluid> fluidTag, CallbackInfoReturnable<Boolean> cir) {
 		if(fluidTag == FluidTags.WATER) {
 			cir.setReturnValue(this.submergedFluidTag == fluidTag
 					|| this.submergedFluidTag == SpectrumFluidTags.MUD
@@ -30,7 +37,7 @@ public class EntityApplyFluidsMixin {
 		}
 	}
 
-	@Redirect(method = "updateMovementInFluid(Lnet/minecraft/tag/Tag;D)Z", at = @At(value = "INVOKE", target = "Lnet/minecraft/fluid/FluidState;isIn(Lnet/minecraft/tag/Tag;)Z"))
+	@Redirect(method = "updateMovementInFluid(Lnet/minecraft/tag/TagKey;D)Z", at = @At(value = "INVOKE", target = "Lnet/minecraft/fluid/FluidState;isIn(Lnet/minecraft/tag/Tag;)Z"))
 	public boolean updateMovementInFluid(FluidState fluidState, Tag<Fluid> tag) {
 		  return isInFluid(fluidState, tag);
 	}
@@ -41,7 +48,7 @@ public class EntityApplyFluidsMixin {
 		} else {
 			return fluidState.isIn(tag);
 		}
-	}
+	}*/
 
 
 }

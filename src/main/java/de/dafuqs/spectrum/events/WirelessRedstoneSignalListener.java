@@ -75,7 +75,7 @@ public class WirelessRedstoneSignalListener implements GameEventListener {
 	private void listen(World world, GameEvent event, BlockPos pos, BlockPos sourcePos) {
 		this.event = Optional.of(event);
 		if (world instanceof ServerWorld) {
-			this.distance = MathHelper.floor(Math.sqrt(pos.getSquaredDistance(sourcePos, false)));
+			this.distance = MathHelper.floor(Math.sqrt(pos.getSquaredDistance(sourcePos)));
 			this.delay = this.distance;
 			SpectrumS2CPacketSender.sendWirelessRedstonePacket((ServerWorld) world, new WirelessRedstoneTransmission(pos, this.positionSource, this.delay));
 		}

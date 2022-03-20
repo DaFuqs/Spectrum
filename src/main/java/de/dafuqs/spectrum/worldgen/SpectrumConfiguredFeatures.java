@@ -51,14 +51,11 @@ import java.util.function.Predicate;
 
 public class SpectrumConfiguredFeatures {
 	
-	public static ConfiguredFeature<?, ?> CITRINE_GEODE;
-	public static ConfiguredFeature<?, ?> TOPAZ_GEODE;
-	public static ConfiguredFeature<?, ?> MOONSTONE_GEODE;
 	public static ConfiguredFeature<?, ?> CLOVER_PATCH;
 
-	// COLORED TREES
-	public static HashMap<DyeColor, RegistryEntry<? extends ConfiguredFeature<?, ?>>> COLORED_TREE_CONFIGURED_FEATURES = new HashMap<>(); // FOR SAPLINGS
-	public static PlacedFeature RANDOM_COLORED_TREES_FEATURE; // FOR WORLD GEN
+	// Colored Trees
+	public static HashMap<DyeColor, RegistryEntry<? extends ConfiguredFeature<?, ?>>> COLORED_TREE_CONFIGURED_FEATURES = new HashMap<>(); // for saplings
+	public static RegistryEntry<PlacedFeature> RANDOM_COLORED_TREES_FEATURE; // for worldgen
 	
 	public static void register() {
 		registerGeodes();
@@ -84,9 +81,8 @@ public class SpectrumConfiguredFeatures {
 	}
 	
 	private static RegistryEntry<PlacedFeature> registerConfiguredAndPlacedFeature(Identifier identifier, Feature feature, FeatureConfig featureConfig, PlacementModifier... placementModifiers) {
-		RegistryEntry<ConfiguredFeature<FeatureConfig, ?>> configuredFeature = registerConfiguredFeature(identifier, feature, featureConfig);
-		RegistryEntry<PlacedFeature> placedFeature = registerPlacedFeature(identifier, configuredFeature, placementModifiers);
-		return placedFeature;
+		RegistryEntry configuredFeature = registerConfiguredFeature(identifier, feature, featureConfig);
+		return registerPlacedFeature(identifier, configuredFeature, placementModifiers);
 	}
 	
 	private static void registerOres() {
@@ -115,24 +111,27 @@ public class SpectrumConfiguredFeatures {
 		
 		registerConfiguredAndPlacedFeature(
 			azuriteOreIdentifier,
-			Feature.ORE.configure(new OreFeatureConfig(AZURITE_ORE_TARGETS, 5, 0.5F)), List.of(
-				HeightRangePlacementModifier.trapezoid(YOffset.getBottom(), YOffset.aboveBottom(32)), // min and max height
-				CountPlacementModifier.of(6) // number of veins per chunk
-		));
+			Feature.ORE,
+			new OreFeatureConfig(AZURITE_ORE_TARGETS, 5, 0.5F),
+			HeightRangePlacementModifier.trapezoid(YOffset.getBottom(), YOffset.aboveBottom(32)), // min and max height
+			CountPlacementModifier.of(6) // number of veins per chunk
+		);
 		
 		registerConfiguredAndPlacedFeature(
 			scarletOreIdentifier,
-			Feature.ORE.configure(new OreFeatureConfig(OreConfiguredFeatures.BASE_STONE_NETHER, scarletOre, 6)), List.of(
-				HeightRangePlacementModifier.uniform(YOffset.aboveBottom(10), YOffset.belowTop(64)), // min and max height
-				CountPlacementModifier.of(14) // number of veins per chunk
-		));
+			Feature.ORE,
+			new OreFeatureConfig(OreConfiguredFeatures.BASE_STONE_NETHER, scarletOre, 6),
+			HeightRangePlacementModifier.uniform(YOffset.aboveBottom(10), YOffset.belowTop(64)), // min and max height
+			CountPlacementModifier.of(14) // number of veins per chunk
+		);
 		
 		registerConfiguredAndPlacedFeature(
 			paleturOreIdentifier,
-			Feature.ORE.configure(new OreFeatureConfig(Rules.END_STONE, paleturOre, 4, 0.3F)), List.of(
-				HeightRangePlacementModifier.uniform(YOffset.getBottom(), YOffset.getTop()), // min and max height
-				CountPlacementModifier.of(10) // number of veins per chunk
-		));
+			Feature.ORE,
+			new OreFeatureConfig(Rules.END_STONE, paleturOre, 4, 0.3F),
+			HeightRangePlacementModifier.uniform(YOffset.getBottom(), YOffset.getTop()), // min and max height
+			CountPlacementModifier.of(10) // number of veins per chunk
+		);
 		
 		BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Feature.UNDERGROUND_ORES, RegistryKey.of(Registry.PLACED_FEATURE_KEY, sparklestoneOreIdentifier));
 		BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Feature.UNDERGROUND_ORES, RegistryKey.of(Registry.PLACED_FEATURE_KEY, azuriteOreIdentifier));
@@ -142,17 +141,17 @@ public class SpectrumConfiguredFeatures {
 
 	private static void registerColoredTree(@NotNull DyeColor dyeColor) {
 		String identifierString = dyeColor + "_tree";
-		RegistryKey<ConfiguredFeature<?, ?>> configuredFeatureRegistryKey = RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY, new Identifier(SpectrumCommon.MOD_ID, identifierString));
+		Identifier identifier = new Identifier(SpectrumCommon.MOD_ID, identifierString);
+		RegistryKey<ConfiguredFeature<?, ?>> configuredFeatureRegistryKey = RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY, identifier);
 
 		// how the colored tree will look when generated
-		ConfiguredFeature<TreeFeatureConfig, ?> configuredFeature = Feature.TREE.configure(
-				(new TreeFeatureConfig.Builder(
-						BlockStateProvider.of(SpectrumBlocks.getColoredLogBlock(dyeColor).getDefaultState()),
-						new StraightTrunkPlacer(4, 2, 2), // 4-8 height
-						BlockStateProvider.of(SpectrumBlocks.getColoredLeavesBlock(dyeColor).getDefaultState()),
-						new BlobFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(0), 3),
-						new TwoLayersFeatureSize(1, 0, 1))
-				).ignoreVines().build()
+		ConfiguredFeature<TreeFeatureConfig, ?> configuredFeature = registerConfiguredFeature(identifier, Feature.TREE, new TreeFeatureConfig.Builder(
+				BlockStateProvider.of(SpectrumBlocks.getColoredLogBlock(dyeColor).getDefaultState()),
+				new StraightTrunkPlacer(4, 2, 2), // 4-8 height
+				BlockStateProvider.of(SpectrumBlocks.getColoredLeavesBlock(dyeColor).getDefaultState()),
+				new BlobFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(0), 3),
+				new TwoLayersFeatureSize(1, 0, 1))
+			).ignoreVines().build()
 		);
 
 		COLORED_TREE_CONFIGURED_FEATURES.put(dyeColor, Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, configuredFeatureRegistryKey.getValue(), configuredFeature));
@@ -165,7 +164,7 @@ public class SpectrumConfiguredFeatures {
 		}
 
 		// Black/White and brown variants are not found in the wild and have to be created by the player
-		List<ConfiguredFeature<?, ?>> treeList = new ArrayList<>();
+		List<RegistryEntry> treeList = new ArrayList<>();
 		//treeList.add(COLORED_TREE_FEATURES.get(DyeColor.BLACK));
 		treeList.add(COLORED_TREE_CONFIGURED_FEATURES.get(DyeColor.BLUE));
 		//treeList.add(COLORED_TREE_FEATURES.get(DyeColor.BROWN));
@@ -207,7 +206,7 @@ public class SpectrumConfiguredFeatures {
 				(BlockFilterPlacementModifier.of(BlockPredicate.wouldSurvive(SpectrumBlocks.RED_SAPLING.getDefaultState(), BlockPos.ORIGIN)))
 		);
 		List<PlacedFeature> placedTreeFeatures = new ArrayList<>();
-		for(ConfiguredFeature<?, ?> configuredFeature : treeList) {
+		for(RegistryEntry configuredFeature : treeList) {
 			placedTreeFeatures.add(configuredFeature.withPlacement(treePlacementModifiers));
 		}
 		
@@ -215,14 +214,11 @@ public class SpectrumConfiguredFeatures {
 		// every x chunks
 		RANDOM_COLORED_TREES_FEATURE = registerConfiguredAndPlacedFeature(
 			randomColoredTreesFeatureIdentifier,
-			SpectrumFeatures.WEIGHTED_RANDOM_FEATURE_PATCH.configure(
-					new WeightedRandomFeaturePatchConfig(5, 4, 3, new WeightedRandomFeatureConfig(placedTreeFeatures, weightList))
-			),
-			List.of(
-				RarityFilterPlacementModifier.of(SpectrumCommon.CONFIG.ColoredTreePatchChanceChunk), // every x chunks
-				HeightmapPlacementModifier.of(Heightmap.Type.WORLD_SURFACE_WG),
-				BiomePlacementModifier.of()
-			)
+			SpectrumFeatures.WEIGHTED_RANDOM_FEATURE_PATCH,
+			new WeightedRandomFeaturePatchConfig(5, 4, 3, new WeightedRandomFeatureConfig(placedTreeFeatures, weightList)),
+			RarityFilterPlacementModifier.of(SpectrumCommon.CONFIG.ColoredTreePatchChanceChunk), // every x chunks
+			HeightmapPlacementModifier.of(Heightmap.Type.WORLD_SURFACE_WG),
+			BiomePlacementModifier.of()
 		);
 		
 		Predicate<BiomeSelectionContext> treeBiomes = BiomeSelectors.categories(
@@ -267,7 +263,10 @@ public class SpectrumConfiguredFeatures {
 		Identifier topazGeodeFeatureIdentifier = new Identifier(SpectrumCommon.MOD_ID, "topaz_geode");
 		Identifier moonstoneGeodeFeatureIdentifier = new Identifier(SpectrumCommon.MOD_ID, "moonstone_geode");
 		
-		CITRINE_GEODE = SpectrumFeatures.AIR_CHECK_GEODE.configure(new GeodeFeatureConfig(
+		registerConfiguredAndPlacedFeature(
+			citrineGeodeFeatureIdentifier,
+			SpectrumFeatures.AIR_CHECK_GEODE,
+			new GeodeFeatureConfig(
 				new GeodeLayerConfig(
 						BlockStateProvider.of(AIR),
 						BlockStateProvider.of(CITRINE_BLOCK),
@@ -283,67 +282,64 @@ public class SpectrumConfiguredFeatures {
 				UniformIntProvider.create(4, 6),
 				UniformIntProvider.create(3, 4),
 				UniformIntProvider.create(1, 2),
-				-16, 16, 0.05D, 0)
-		);
-		
-		TOPAZ_GEODE = SpectrumFeatures.AIR_CHECK_GEODE.configure(new GeodeFeatureConfig(
-				new GeodeLayerConfig(
-						BlockStateProvider.of(AIR),
-						BlockStateProvider.of(TOPAZ_BLOCK),
-						BlockStateProvider.of(BUDDING_TOPAZ),
-						BlockStateProvider.of(CALCITE),
-						BlockStateProvider.of(SMOOTH_BASALT),
-						ImmutableList.of(SMALL_TOPAZ_BUD, MEDIUM_TOPAZ_BUD, LARGE_TOPAZ_BUD, TOPAZ_CLUSTER),
-						BlockTags.FEATURES_CANNOT_REPLACE.getId(),
-						BlockTags.GEODE_INVALID_BLOCKS.getId()),
-				new GeodeLayerThicknessConfig(1.9D, 2.5D, 3.9D, 5.0D),
-				new GeodeCrackConfig(0.6D, 2.0D, 2),
-				0.35D, 0.073D, true,
-				UniformIntProvider.create(4, 6),
-				UniformIntProvider.create(3, 4),
-				UniformIntProvider.create(1, 2),
-				-16, 16, 0.05D, 1)
-		);
-		
-		MOONSTONE_GEODE = Feature.GEODE.configure(new GeodeFeatureConfig(
-				new GeodeLayerConfig(
-						BlockStateProvider.of(AIR),
-						BlockStateProvider.of(MOONSTONE_BLOCK),
-						BlockStateProvider.of(BUDDING_MOONSTONE),
-						BlockStateProvider.of(CALCITE),
-						BlockStateProvider.of(SMOOTH_BASALT),
-						ImmutableList.of(MOONSTONE_CLUSTER), // forever untouched by man: generate with clusters only
-						BlockTags.FEATURES_CANNOT_REPLACE.getId(),
-						BlockTags.GEODE_INVALID_BLOCKS.getId()),
-				new GeodeLayerThicknessConfig(4.0D, 5.0D, 6.0D, 7.5D),
-				new GeodeCrackConfig(0.95D, 4.0D, 4),
-				1.0D, 0.1D, true,
-				UniformIntProvider.create(4, 6),
-				UniformIntProvider.create(3, 4),
-				UniformIntProvider.create(1, 2),
-				-16, 16, 0.05D, 1)
-		);
-		
-		registerConfiguredAndPlacedFeature(citrineGeodeFeatureIdentifier, CITRINE_GEODE, List.of(
+				-16, 16, 0.05D, 0),
 			RarityFilterPlacementModifier.of(SpectrumCommon.CONFIG.CitrineGeodeChunkChance),
 			SquarePlacementModifier.of(),
 			HeightRangePlacementModifier.uniform(YOffset.aboveBottom(SpectrumCommon.CONFIG.CitrineGeodeMinAboveBottomGenerationHeight), YOffset.fixed(SpectrumCommon.CONFIG.CitrineGeodeFixedMaxGenerationHeight)),
-			BiomePlacementModifier.of())
+			BiomePlacementModifier.of()
 		);
 		
-		registerConfiguredAndPlacedFeature(topazGeodeFeatureIdentifier, TOPAZ_GEODE, List.of(
+		registerConfiguredAndPlacedFeature(
+			topazGeodeFeatureIdentifier,
+			SpectrumFeatures.AIR_CHECK_GEODE,
+			new GeodeFeatureConfig(
+					new GeodeLayerConfig(
+							BlockStateProvider.of(AIR),
+							BlockStateProvider.of(TOPAZ_BLOCK),
+							BlockStateProvider.of(BUDDING_TOPAZ),
+							BlockStateProvider.of(CALCITE),
+							BlockStateProvider.of(SMOOTH_BASALT),
+							ImmutableList.of(SMALL_TOPAZ_BUD, MEDIUM_TOPAZ_BUD, LARGE_TOPAZ_BUD, TOPAZ_CLUSTER),
+							BlockTags.FEATURES_CANNOT_REPLACE.getId(),
+							BlockTags.GEODE_INVALID_BLOCKS.getId()),
+					new GeodeLayerThicknessConfig(1.9D, 2.5D, 3.9D, 5.0D),
+					new GeodeCrackConfig(0.6D, 2.0D, 2),
+					0.35D, 0.073D, true,
+					UniformIntProvider.create(4, 6),
+					UniformIntProvider.create(3, 4),
+					UniformIntProvider.create(1, 2),
+					-16, 16, 0.05D, 1),
 			RarityFilterPlacementModifier.of(SpectrumCommon.CONFIG.TopazGeodeChunkChance),
 			SquarePlacementModifier.of(),
 			HeightRangePlacementModifier.uniform(YOffset.fixed(SpectrumCommon.CONFIG.TopazGeodeMinFixedGenerationHeight), YOffset.belowTop(SpectrumCommon.CONFIG.TopazGeodeMaxBelowTopGenerationHeight)),
 			BiomePlacementModifier.of()
-		));
+		);
 		
-		registerConfiguredAndPlacedFeature(moonstoneGeodeFeatureIdentifier, MOONSTONE_GEODE, List.of(
+		registerConfiguredAndPlacedFeature(
+				moonstoneGeodeFeatureIdentifier,
+				Feature.GEODE,
+				new GeodeFeatureConfig(
+					new GeodeLayerConfig(
+							BlockStateProvider.of(AIR),
+							BlockStateProvider.of(MOONSTONE_BLOCK),
+							BlockStateProvider.of(BUDDING_MOONSTONE),
+							BlockStateProvider.of(CALCITE),
+							BlockStateProvider.of(SMOOTH_BASALT),
+							ImmutableList.of(MOONSTONE_CLUSTER), // forever untouched by man: generate with clusters only
+							BlockTags.FEATURES_CANNOT_REPLACE.getId(),
+							BlockTags.GEODE_INVALID_BLOCKS.getId()),
+					new GeodeLayerThicknessConfig(4.0D, 5.0D, 6.0D, 7.5D),
+					new GeodeCrackConfig(0.95D, 4.0D, 4),
+					1.0D, 0.1D, true,
+					UniformIntProvider.create(4, 6),
+					UniformIntProvider.create(3, 4),
+					UniformIntProvider.create(1, 2),
+					-16, 16, 0.05D, 1),
 			RarityFilterPlacementModifier.of(SpectrumCommon.CONFIG.MoonstoneGeodeChunkChance),
 			SquarePlacementModifier.of(),
 			HeightRangePlacementModifier.uniform(YOffset.aboveBottom(16), YOffset.belowTop(128)),
 			BiomePlacementModifier.of()
-		));
+		);
 		
 		BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Feature.UNDERGROUND_STRUCTURES, RegistryKey.of(Registry.PLACED_FEATURE_KEY, citrineGeodeFeatureIdentifier));
 		BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Feature.UNDERGROUND_STRUCTURES, RegistryKey.of(Registry.PLACED_FEATURE_KEY, topazGeodeFeatureIdentifier));
@@ -354,15 +350,14 @@ public class SpectrumConfiguredFeatures {
 		Identifier mermaidsBrushIdentifier = new Identifier(SpectrumCommon.MOD_ID, "mermaids_brush");
 		registerConfiguredAndPlacedFeature(
 			mermaidsBrushIdentifier,
-				Feature.SIMPLE_BLOCK.configure(new SimpleBlockFeatureConfig(new RandomizedIntBlockStateProvider(SimpleBlockStateProvider.of(SpectrumBlocks.MERMAIDS_BRUSH), MermaidsBrushBlock.AGE, UniformIntProvider.create(5, 6)))),
-			List.of(
-				BiomePlacementModifier.of(),
-				RarityFilterPlacementModifier.of(16),
-				CountPlacementModifier.of(UniformIntProvider.create(2, 3)),
-				SquarePlacementModifier.of(),
-				PlacedFeatures.OCEAN_FLOOR_WG_HEIGHTMAP,
-				BlockFilterPlacementModifier.of(BlockPredicate.allOf(BlockPredicate.wouldSurvive(SpectrumBlocks.MERMAIDS_BRUSH.getDefaultState(), BlockPos.ORIGIN)))
-			)
+			Feature.SIMPLE_BLOCK,
+			new SimpleBlockFeatureConfig(new RandomizedIntBlockStateProvider(SimpleBlockStateProvider.of(SpectrumBlocks.MERMAIDS_BRUSH), MermaidsBrushBlock.AGE, UniformIntProvider.create(5, 6))),
+			BiomePlacementModifier.of(),
+			RarityFilterPlacementModifier.of(16),
+			CountPlacementModifier.of(UniformIntProvider.create(2, 3)),
+			SquarePlacementModifier.of(),
+			PlacedFeatures.OCEAN_FLOOR_WG_HEIGHTMAP,
+			BlockFilterPlacementModifier.of(BlockPredicate.allOf(BlockPredicate.wouldSurvive(SpectrumBlocks.MERMAIDS_BRUSH.getDefaultState(), BlockPos.ORIGIN)))
 		);
 
 		Collection<RegistryKey<Biome>> oceans = new ArrayList<>();
@@ -379,17 +374,13 @@ public class SpectrumConfiguredFeatures {
 		// QUITOXIC REED
 		Identifier quitoxicReedsIdentifier = new Identifier(SpectrumCommon.MOD_ID, "quitoxic_reeds");
 		registerConfiguredAndPlacedFeature(quitoxicReedsIdentifier,
-				Feature.BLOCK_COLUMN.configure(BlockColumnFeatureConfig.create(
-					BiasedToBottomIntProvider.create(2, 4),
-					BlockStateProvider.of(SpectrumBlocks.QUITOXIC_REEDS))
-				),
-				List.of(
-					BiomePlacementModifier.of(),
-					CountPlacementModifier.of(25),
-					SquarePlacementModifier.of(),
-					PlacedFeatures.OCEAN_FLOOR_WG_HEIGHTMAP,
-					BlockFilterPlacementModifier.of(BlockPredicate.allOf(BlockPredicate.wouldSurvive(SpectrumBlocks.QUITOXIC_REEDS.getDefaultState(), BlockPos.ORIGIN)))
-				)
+			Feature.BLOCK_COLUMN,
+			BlockColumnFeatureConfig.create(BiasedToBottomIntProvider.create(2, 4), BlockStateProvider.of(SpectrumBlocks.QUITOXIC_REEDS)),
+			BiomePlacementModifier.of(),
+			CountPlacementModifier.of(25),
+			SquarePlacementModifier.of(),
+			PlacedFeatures.OCEAN_FLOOR_WG_HEIGHTMAP,
+			BlockFilterPlacementModifier.of(BlockPredicate.allOf(BlockPredicate.wouldSurvive(SpectrumBlocks.QUITOXIC_REEDS.getDefaultState(), BlockPos.ORIGIN)))
 		);
 
 		Collection<RegistryKey<Biome>> swamps = new ArrayList<>();
@@ -408,13 +399,11 @@ public class SpectrumConfiguredFeatures {
 		DataPool cloverBlockDataPool = DataPool.builder().add(SpectrumBlocks.CLOVER.getDefaultState(), 9).add(SpectrumBlocks.FOUR_LEAF_CLOVER.getDefaultState(), 1).build();
 		CLOVER_PATCH = Feature.RANDOM_PATCH.configure(ConfiguredFeatures.createRandomPatchFeatureConfig(Feature.SIMPLE_BLOCK.configure(new SimpleBlockFeatureConfig(new WeightedBlockStateProvider(cloverBlockDataPool))), List.of(Blocks.GRASS_BLOCK), 4));
 		registerConfiguredAndPlacedFeature(
-				cloversIdentifier,
-				CLOVER_PATCH,
-				List.of(
-						SquarePlacementModifier.of(),
-						PlacedFeatures.WORLD_SURFACE_WG_HEIGHTMAP,
-						BiomePlacementModifier.of()
-				)
+			cloversIdentifier,
+			CLOVER_PATCH,
+			SquarePlacementModifier.of(),
+			PlacedFeatures.WORLD_SURFACE_WG_HEIGHTMAP,
+			BiomePlacementModifier.of()
 		);
 		BiomeModifications.addFeature(BiomeSelectors.categories(Biome.Category.PLAINS), GenerationStep.Feature.VEGETAL_DECORATION, RegistryKey.of(Registry.PLACED_FEATURE_KEY, cloversIdentifier));
 	}

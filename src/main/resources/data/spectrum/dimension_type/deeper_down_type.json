@@ -2,7 +2,7 @@
   "logical_height" : 192,
   "infiniburn": "#minecraft:infiniburn_overworld",
   "effects": "spectrum:deeper_down",
-  "ambient_light": -0.35,
+  "ambient_light": -0.4,
   "respawn_anchor_works": false,
   "has_raids" : false,
   "min_y" : 0,

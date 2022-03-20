@@ -51,7 +51,7 @@ import java.util.function.Predicate;
 
 public class SpectrumConfiguredFeatures {
 	
-	public static ConfiguredFeature<?, ?> CLOVER_PATCH;
+	public static RegistryEntry<ConfiguredFeature<RandomPatchFeatureConfig, ?>> CLOVER_PATCH;
 
 	// Colored Trees
 	public static HashMap<DyeColor, RegistryEntry<? extends ConfiguredFeature<?, ?>>> COLORED_TREE_CONFIGURED_FEATURES = new HashMap<>(); // for saplings
@@ -274,8 +274,8 @@ public class SpectrumConfiguredFeatures {
 						BlockStateProvider.of(CALCITE),
 						BlockStateProvider.of(SMOOTH_BASALT),
 						ImmutableList.of(SMALL_CITRINE_BUD, MEDIUM_CITRINE_BUD, LARGE_CITRINE_BUD, CITRINE_CLUSTER),
-						BlockTags.FEATURES_CANNOT_REPLACE.getId(),
-						BlockTags.GEODE_INVALID_BLOCKS.getId()),
+						BlockTags.FEATURES_CANNOT_REPLACE,
+						BlockTags.GEODE_INVALID_BLOCKS),
 				new GeodeLayerThicknessConfig(1.3D, 1.7D, 2.5D, 3.1),
 				new GeodeCrackConfig(0.98D, 2.0D, 2),
 				0.35D, 0.093D, true,
@@ -300,8 +300,8 @@ public class SpectrumConfiguredFeatures {
 							BlockStateProvider.of(CALCITE),
 							BlockStateProvider.of(SMOOTH_BASALT),
 							ImmutableList.of(SMALL_TOPAZ_BUD, MEDIUM_TOPAZ_BUD, LARGE_TOPAZ_BUD, TOPAZ_CLUSTER),
-							BlockTags.FEATURES_CANNOT_REPLACE.getId(),
-							BlockTags.GEODE_INVALID_BLOCKS.getId()),
+							BlockTags.FEATURES_CANNOT_REPLACE,
+							BlockTags.GEODE_INVALID_BLOCKS),
 					new GeodeLayerThicknessConfig(1.9D, 2.5D, 3.9D, 5.0D),
 					new GeodeCrackConfig(0.6D, 2.0D, 2),
 					0.35D, 0.073D, true,
@@ -326,8 +326,8 @@ public class SpectrumConfiguredFeatures {
 							BlockStateProvider.of(CALCITE),
 							BlockStateProvider.of(SMOOTH_BASALT),
 							ImmutableList.of(MOONSTONE_CLUSTER), // forever untouched by man: generate with clusters only
-							BlockTags.FEATURES_CANNOT_REPLACE.getId(),
-							BlockTags.GEODE_INVALID_BLOCKS.getId()),
+							BlockTags.FEATURES_CANNOT_REPLACE,
+							BlockTags.GEODE_INVALID_BLOCKS),
 					new GeodeLayerThicknessConfig(4.0D, 5.0D, 6.0D, 7.5D),
 					new GeodeCrackConfig(0.95D, 4.0D, 4),
 					1.0D, 0.1D, true,
@@ -397,8 +397,12 @@ public class SpectrumConfiguredFeatures {
 		// CLOVER
 		Identifier cloversIdentifier = new Identifier(SpectrumCommon.MOD_ID, "clovers");
 		DataPool cloverBlockDataPool = DataPool.builder().add(SpectrumBlocks.CLOVER.getDefaultState(), 9).add(SpectrumBlocks.FOUR_LEAF_CLOVER.getDefaultState(), 1).build();
-		CLOVER_PATCH = Feature.RANDOM_PATCH.configure(ConfiguredFeatures.createRandomPatchFeatureConfig(Feature.SIMPLE_BLOCK.configure(new SimpleBlockFeatureConfig(new WeightedBlockStateProvider(cloverBlockDataPool))), List.of(Blocks.GRASS_BLOCK), 4));
-		registerConfiguredAndPlacedFeature(
+		RandomPatchFeatureConfig cloverPatchFeatureConfig = ConfiguredFeatures.createRandomPatchFeatureConfig(Feature.SIMPLE_BLOCK, new SimpleBlockFeatureConfig(new WeightedBlockStateProvider(cloverBlockDataPool)), List.of(Blocks.GRASS_BLOCK), 4);
+		CLOVER_PATCH = registerConfiguredFeature(
+				cloversIdentifier,
+				Feature.RANDOM_PATCH,
+				cloverPatchFeatureConfig);
+		registerPlacedFeature(
 			cloversIdentifier,
 			CLOVER_PATCH,
 			SquarePlacementModifier.of(),

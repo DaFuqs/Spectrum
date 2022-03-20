@@ -37,7 +37,7 @@ public class CloverBlock extends FernBlock {
 	}
 	
 	public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
-		SpectrumConfiguredFeatures.CLOVER_PATCH.generate(world, world.getChunkManager().getChunkGenerator(), random, pos.up());
+		SpectrumConfiguredFeatures.CLOVER_PATCH.value().generate(world, world.getChunkManager().getChunkGenerator(), random, pos.up());
 	}
 	
 }

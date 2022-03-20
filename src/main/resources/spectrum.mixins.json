@@ -42,7 +42,6 @@
     "ServerPlayerEntityMixin",
     "ServerWorldMixin",
     "SpawnerBlockMixin",
-    "accessors.FluidTagsAccessor",
     "accessors.ItemAccessor",
     "accessors.LootTableAccessor",
     "accessors.ShapedRecipeAccessor"

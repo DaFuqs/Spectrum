@@ -142,19 +142,16 @@ public class SpectrumConfiguredFeatures {
 	private static void registerColoredTree(@NotNull DyeColor dyeColor) {
 		String identifierString = dyeColor + "_tree";
 		Identifier identifier = new Identifier(SpectrumCommon.MOD_ID, identifierString);
-		RegistryKey<ConfiguredFeature<?, ?>> configuredFeatureRegistryKey = RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY, identifier);
+		
+		TreeFeatureConfig treeFeatureConfig = new TreeFeatureConfig.Builder(
+			BlockStateProvider.of(SpectrumBlocks.getColoredLogBlock(dyeColor).getDefaultState()),
+			new StraightTrunkPlacer(4, 2, 2), // 4-8 height
+			BlockStateProvider.of(SpectrumBlocks.getColoredLeavesBlock(dyeColor).getDefaultState()),
+			new BlobFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(0), 3),
+			new TwoLayersFeatureSize(1, 0, 1)
+		).ignoreVines().build();
 
-		// how the colored tree will look when generated
-		ConfiguredFeature<TreeFeatureConfig, ?> configuredFeature = registerConfiguredFeature(identifier, Feature.TREE, new TreeFeatureConfig.Builder(
-				BlockStateProvider.of(SpectrumBlocks.getColoredLogBlock(dyeColor).getDefaultState()),
-				new StraightTrunkPlacer(4, 2, 2), // 4-8 height
-				BlockStateProvider.of(SpectrumBlocks.getColoredLeavesBlock(dyeColor).getDefaultState()),
-				new BlobFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(0), 3),
-				new TwoLayersFeatureSize(1, 0, 1))
-			).ignoreVines().build()
-		);
-
-		COLORED_TREE_CONFIGURED_FEATURES.put(dyeColor, Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, configuredFeatureRegistryKey.getValue(), configuredFeature));
+		COLORED_TREE_CONFIGURED_FEATURES.put(dyeColor, registerConfiguredFeature(identifier, Feature.TREE, treeFeatureConfig));
 	}
 
 	private static void registerColoredTrees() {
@@ -201,13 +198,14 @@ public class SpectrumConfiguredFeatures {
 		weightList.add(75);
 		
 		List<PlacementModifier> treePlacementModifiers = List.of(
-				VegetationPlacedFeatures.NOT_IN_SURFACE_WATER_MODIFIER,
-				(PlacedFeatures.OCEAN_FLOOR_HEIGHTMAP),
-				(BlockFilterPlacementModifier.of(BlockPredicate.wouldSurvive(SpectrumBlocks.RED_SAPLING.getDefaultState(), BlockPos.ORIGIN)))
+			VegetationPlacedFeatures.NOT_IN_SURFACE_WATER_MODIFIER,
+			(PlacedFeatures.OCEAN_FLOOR_HEIGHTMAP),
+			(BlockFilterPlacementModifier.of(BlockPredicate.wouldSurvive(SpectrumBlocks.RED_SAPLING.getDefaultState(), BlockPos.ORIGIN)))
 		);
+		
 		List<PlacedFeature> placedTreeFeatures = new ArrayList<>();
 		for(RegistryEntry configuredFeature : treeList) {
-			placedTreeFeatures.add(configuredFeature.withPlacement(treePlacementModifiers));
+			placedTreeFeatures.add(new PlacedFeature(configuredFeature, treePlacementModifiers));
 		}
 		
 		Identifier randomColoredTreesFeatureIdentifier = new Identifier(SpectrumCommon.MOD_ID, "random_colored_trees");
@@ -233,6 +231,7 @@ public class SpectrumConfiguredFeatures {
 				Biome.Category.ICY,
 				Biome.Category.SAVANNA,
 				Biome.Category.TAIGA);
+		
 		BiomeModifications.addFeature(treeBiomes, GenerationStep.Feature.VEGETAL_DECORATION, RegistryKey.of(Registry.PLACED_FEATURE_KEY, randomColoredTreesFeatureIdentifier));
 	}
 

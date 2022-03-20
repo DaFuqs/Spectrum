@@ -48,7 +48,7 @@
     "java": ">=17",
     "cloth-config": ">=6.0.0",
     "patchouli": "*",
-    "owo": ">=0.5.2",
+    "owo": ">=0.5.4",
     "trinkets": ">=3.3.0"
   },
   "suggests": {

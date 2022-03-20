@@ -1,12 +1,4 @@
 {
-  "precipitation": "none",
-  "category": "none",
-  "player_spawn_friendly": false,
-  "depth": 0.3,
-  "scale": 0,
-  "temperature": 1.5,
-  "temperature_modifier": "none",
-  "downfall": 0.0,
   "effects": {
     "mood_sound": {
       "sound": "spectrum:dimension_ambient",
@@ -15,11 +7,12 @@
       "offset": 2.0
     },
     "sky_color": 7907327,
+    "foliage_color": 10387789,
+    "grass_color": 9470285,
     "fog_color": 6200513,
     "water_color": 4159204,
     "water_fog_color": 329011
   },
-  "surface_builder": "spectrum:deeper_down_surface_builder",
   "carvers": {
     "air": [
       "minecraft:cave",
@@ -29,8 +22,7 @@
   "features": [
     [],
     [
-      "minecraft:lake_lava_underground",
-      "minecraft:lake_lava_surface"
+      "minecraft:lake_lava_underground"
     ],
     [
       "spectrum:moonstone_geode"
@@ -65,7 +57,6 @@
     ],
     []
   ],
-  "starts": [],
   "spawners": {
     "monster": [],
     "creature": [],
@@ -76,6 +67,13 @@
     "water_ambient": [],
     "misc": []
   },
-  "creature_spawn_probability": 0.0,
-  "spawn_costs": {}
+  "spawn_costs": {},
+  "precipitation": "none",
+  "category": "none",
+  "player_spawn_friendly": false,
+  "depth": 0.3,
+  "scale": 0,
+  "temperature": 1.5,
+  "temperature_modifier": "none",
+  "downfall": 0.0
 }

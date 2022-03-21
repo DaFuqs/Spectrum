@@ -68,6 +68,21 @@ public class ShootingStarBlock extends BlockWithEntity {
 			}
 		}
 		
+		public static ShootingStarBlock.Type getWeightedRandomType(@NotNull Random random) {
+			int r = random.nextInt(16);
+			if(r == 0) {
+				return FIERY;
+			} else if(r < 3) {
+				return PRISTINE;
+			} else if(r < 7) {
+				return GLISTERING;
+			} else if(r < 11) {
+				return COLORFUL;
+			} else {
+				return GEMSTONE;
+			}
+		}
+		
 		public static ShootingStarBlock.Type getType(int type) {
 			ShootingStarBlock.Type[] types = values();
 			if (type < 0 || type >= types.length) {

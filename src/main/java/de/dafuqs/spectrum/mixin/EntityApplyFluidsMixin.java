@@ -24,31 +24,24 @@ public class EntityApplyFluidsMixin {
 	@Shadow
 	private Set<TagKey<Fluid>> submergedFluidTag;
 
-	/*
-	TODO
-	@Inject(at = @At("HEAD"), method = "isSubmergedIn(Lnet/minecraft/tag/TagKey;)Z", cancellable = true)
+	@Inject(at = @At("RETURN"), method = "isSubmergedIn(Lnet/minecraft/tag/TagKey;)Z", cancellable = true)
 	public void isSubmergedIn(TagKey<Fluid> fluidTag, CallbackInfoReturnable<Boolean> cir) {
-		if(fluidTag == FluidTags.WATER) {
-			cir.setReturnValue(this.submergedFluidTag == fluidTag
-					|| this.submergedFluidTag == SpectrumFluidTags.MUD
-					|| this.submergedFluidTag == SpectrumFluidTags.LIQUID_CRYSTAL
-					|| this.submergedFluidTag == SpectrumFluidTags.MIDNIGHT_SOLUTION
-			);
+		if(!cir.getReturnValue() && fluidTag == FluidTags.WATER) {
+			cir.setReturnValue(this.submergedFluidTag.contains(fluidTag) || this.submergedFluidTag.contains(SpectrumFluidTags.SWIMMABLE_FLUID));
 		}
 	}
 
-	@Redirect(method = "updateMovementInFluid(Lnet/minecraft/tag/TagKey;D)Z", at = @At(value = "INVOKE", target = "Lnet/minecraft/fluid/FluidState;isIn(Lnet/minecraft/tag/Tag;)Z"))
-	public boolean updateMovementInFluid(FluidState fluidState, Tag<Fluid> tag) {
+	@Redirect(method = "updateMovementInFluid(Lnet/minecraft/tag/TagKey;D)Z", at = @At(value = "INVOKE", target = "Lnet/minecraft/fluid/FluidState;isIn(Lnet/minecraft/tag/TagKey;)Z"))
+	public boolean updateMovementInFluid(FluidState fluidState, TagKey<Fluid> tag) {
 		  return isInFluid(fluidState, tag);
 	}
 
-	private boolean isInFluid(FluidState fluidState, Tag<Fluid> tag) {
+	private boolean isInFluid(FluidState fluidState, TagKey<Fluid> tag) {
 		if(tag == FluidTags.WATER) {
-			return(fluidState.isIn(FluidTags.WATER) || fluidState.isIn(SpectrumFluidTags.MUD) || fluidState.isIn(SpectrumFluidTags.LIQUID_CRYSTAL) || fluidState.isIn(SpectrumFluidTags.MIDNIGHT_SOLUTION));
+			return(fluidState.isIn(FluidTags.WATER) || fluidState.isIn(SpectrumFluidTags.SWIMMABLE_FLUID));
 		} else {
 			return fluidState.isIn(tag);
 		}
-	}*/
-
+	}
 
 }

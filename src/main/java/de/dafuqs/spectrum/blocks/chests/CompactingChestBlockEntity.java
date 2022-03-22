@@ -5,6 +5,7 @@ import de.dafuqs.spectrum.inventories.AutoCompactingInventory;
 import de.dafuqs.spectrum.inventories.CompactingChestScreenHandler;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
+import net.fabricmc.fabric.api.transfer.v1.item.ItemVariant;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.Item;
@@ -25,14 +26,12 @@ import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Map;
 import java.util.EnumMap;
 import java.util.HashMap;
-import java.util.Objects;
 
 public class CompactingChestBlockEntity extends SpectrumChestBlockEntity implements ExtendedScreenHandlerFactory {
 	
@@ -42,7 +41,7 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 	CraftingRecipe lastCraftingRecipe; // cache
 	boolean hasToCraft;
 
-	private static Map<AutoCompactingInventory.AutoCraftingMode, Map<InputItem, Optional<CraftingRecipe>>> cache = new EnumMap<>(AutoCompactingInventory.AutoCraftingMode.class);
+	private static Map<AutoCompactingInventory.AutoCraftingMode, Map<ItemVariant, Optional<CraftingRecipe>>> cache = new EnumMap<>(AutoCompactingInventory.AutoCraftingMode.class);
 	
 	public CompactingChestBlockEntity(BlockPos blockPos, BlockState blockState) {
 		super(SpectrumBlockEntityRegistry.COMPACTING_CHEST, blockPos, blockState);
@@ -124,8 +123,8 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 					craftingStacks = stackPair.getRight();
 				}
 				if (craftingStacks != null) {
-					Map<InputItem, Optional<CraftingRecipe>> currentCache = cache.computeIfAbsent(autoCraftingMode, mode -> new HashMap<>());
-					InputItem itemKey = InputItem.ofItemStack(itemStack);
+					Map<ItemVariant, Optional<CraftingRecipe>> currentCache = cache.computeIfAbsent(autoCraftingMode, mode -> new HashMap<>());
+					ItemVariant itemKey = ItemVariant.of(itemStack);
 
 					Optional<CraftingRecipe> recipe = currentCache.get(itemKey);
 					if (recipe != null) {
@@ -228,25 +227,4 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 		cache.clear();
 	}
 
-	private static record InputItem(Item item, @Nullable NbtCompound nbt) {
-
-		public static InputItem ofItemStack(ItemStack itemStack) {
-			NbtCompound nbt = null;
-			if (itemStack.getNbt() != null)
-				nbt = itemStack.getNbt().copy();
-			return new InputItem(itemStack.getItem(), nbt);
-		}
-		@Override
-		public boolean equals(Object o) {
-			if (this == o) return true;
-			if (o == null || getClass() != o.getClass()) return false;
-			InputItem that = (InputItem) o;
-			return item.equals(that.item) && Objects.equals(nbt, that.nbt);
-		}
-
-		@Override
-		public int hashCode() {
-			return Objects.hash(item, nbt);
-		}
-	}
 }

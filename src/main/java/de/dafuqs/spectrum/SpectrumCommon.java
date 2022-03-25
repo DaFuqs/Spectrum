@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum;
 
+import de.dafuqs.spectrum.blocks.chests.CompactingChestBlockEntity;
 import de.dafuqs.spectrum.blocks.shooting_star.ShootingStarBlock;
 import de.dafuqs.spectrum.config.SpectrumConfig;
 import de.dafuqs.spectrum.dimension.DeeperDownDimension;
@@ -32,14 +33,19 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.entity.event.v1.EntitySleepEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerWorldEvents;
 import net.fabricmc.fabric.api.event.player.AttackBlockCallback;
+import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
+import net.fabricmc.fabric.api.resource.SimpleSynchronousResourceReloadListener;
 import net.minecraft.block.Block;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.block.FluidBlock;
 import net.minecraft.fluid.Fluid;
+import net.minecraft.resource.ResourceManager;
+import net.minecraft.resource.ResourceType;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
 import org.apache.logging.log4j.Level;
@@ -225,6 +231,20 @@ public class SpectrumCommon implements ModInitializer {
 				
 				entity.setHealth(entity.getMaxHealth());
 				WhispyCircletItem.removeNegativeStatusEffects(entity);
+			}
+		});
+
+		log(Level.INFO, "Registering RecipeCache reload listener");
+		ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(new SimpleSynchronousResourceReloadListener() {
+			private final Identifier id = new Identifier(SpectrumCommon.MOD_ID, "compacting_cache_clearer");
+			@Override
+			public void reload(ResourceManager manager) {
+				CompactingChestBlockEntity.clearCache();
+			}
+
+			@Override
+			public Identifier getFabricId() {
+				return id;
 			}
 		});
 

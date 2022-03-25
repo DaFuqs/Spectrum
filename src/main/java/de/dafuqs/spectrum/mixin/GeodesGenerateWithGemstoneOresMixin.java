@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.mixin;
 
-import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -21,7 +20,7 @@ import java.util.Random;
 @Mixin(GeodeFeature.class)
 public class GeodesGenerateWithGemstoneOresMixin {
 
-	@Inject(at = @At("TAIL"), method = "Lnet/minecraft/world/gen/feature/GeodeFeature;generate(Lnet/minecraft/world/gen/feature/util/FeatureContext;)Z")
+	@Inject(at = @At("TAIL"), method = "generate(Lnet/minecraft/world/gen/feature/util/FeatureContext;)Z")
 	public void generate(FeatureContext<GeodeFeatureConfig> context, CallbackInfoReturnable<Boolean> cir) {
 		generateGemstoneOres(context);
 	}

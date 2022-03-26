@@ -46,7 +46,7 @@ public class BlackMateriaBlock extends FallingBlock {
 			BlockState neighborBlockState = world.getBlockState(neighborPos);
 			if(!(neighborBlockState.getBlock() instanceof BlackMateriaBlock) && neighborBlockState.isIn(SpectrumBlockTags.BLACK_MATERIA_CONVERSIONS)) {
 				world.setBlockState(neighborPos, targetState);
-				world.playSound(null, neighborPos, SoundEvents.BLOCK_SAND_PLACE, SoundCategory.BLOCKS, 1.0F, 0.9F + random.nextFloat() * 0.2F);
+				world.playSound(null, neighborPos, SoundEvents.BLOCK_GRAVEL_PLACE, SoundCategory.BLOCKS, 1.0F, 0.9F + random.nextFloat() * 0.2F);
 				replacedAny = true;
 			}
 		}

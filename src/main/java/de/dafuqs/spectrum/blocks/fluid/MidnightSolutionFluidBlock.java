@@ -7,12 +7,10 @@ import de.dafuqs.spectrum.inventories.AutoCraftingInventory;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.recipe.midnight_solution_converting.MidnightSolutionConvertingRecipe;
-import de.dafuqs.spectrum.registries.SpectrumBlocks;
-import de.dafuqs.spectrum.registries.SpectrumDamageSources;
-import de.dafuqs.spectrum.registries.SpectrumFluidTags;
-import de.dafuqs.spectrum.registries.SpectrumItems;
+import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.FluidBlock;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -30,7 +28,9 @@ import net.minecraft.item.Items;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.tag.FluidTags;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
@@ -53,7 +53,16 @@ public class MidnightSolutionFluidBlock extends FluidBlock {
 
 	@Override
 	public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
-		world.createAndScheduleFluidTick(pos, state.getFluidState().getFluid(), this.fluid.getTickRate(world));
+		if (this.receiveNeighborFluids(world, pos, state)) {
+			world.createAndScheduleFluidTick(pos, state.getFluidState().getFluid(), this.fluid.getTickRate(world));
+		}
+	}
+	
+	@Override
+	public void neighborUpdate(BlockState state, World world, BlockPos pos, Block block, BlockPos fromPos, boolean notify) {
+		if (this.receiveNeighborFluids(world, pos, state)) {
+			world.createAndScheduleFluidTick(pos, state.getFluidState().getFluid(), this.fluid.getTickRate(world));
+		}
 	}
 	
 	@Override
@@ -140,11 +149,6 @@ public class MidnightSolutionFluidBlock extends FluidBlock {
 	}
 
 	@Override
-	public void neighborUpdate(BlockState state, World world, BlockPos pos, Block block, BlockPos fromPos, boolean notify) {
-		world.createAndScheduleFluidTick(pos, state.getFluidState().getFluid(), this.fluid.getTickRate(world));
-	}
-
-	@Override
 	public boolean canPathfindThrough(BlockState state, BlockView world, BlockPos pos, NavigationType type) {
 		return false;
 	}
@@ -161,6 +165,33 @@ public class MidnightSolutionFluidBlock extends FluidBlock {
 
 	private static void playExtinguishSound(@NotNull WorldAccess world, BlockPos pos) {
 		world.syncWorldEvent(1501, pos, 0);
+	}
+	
+	/**
+	 * @param world The world
+	 * @param pos The position in the world
+	 * @param state BlockState of the midnight solution. Included the height/fluid level
+	 * @return Dunno, actually. I just mod things.
+	 */
+	private boolean receiveNeighborFluids(World world, BlockPos pos, BlockState state) {
+		for (Direction direction : Direction.values()) {
+			BlockPos neighborPos = pos.offset(direction);
+			if (world.getFluidState(neighborPos).isIn(FluidTags.LAVA)) {
+				world.setBlockState(pos, Blocks.TERRACOTTA.getDefaultState());
+				playExtinguishSound(world, pos);
+				return false;
+			}
+			
+			FluidState neighborFluidState = world.getFluidState(neighborPos);
+			boolean neighborIsOtherFluid = !neighborFluidState.isEmpty() && !neighborFluidState.isOf(this.fluid);
+			if (neighborIsOtherFluid && !neighborFluidState.isIn(SpectrumFluidTags.MIDNIGHT_SOLUTION_CONVERTED)) {
+				if(!world.getBlockState(neighborPos).isOf(this)) {
+					world.setBlockState(neighborPos, SPREAD_BLOCKSTATE);
+					playExtinguishSound(world, neighborPos);
+				}
+			}
+		}
+		return true;
 	}
 
 }

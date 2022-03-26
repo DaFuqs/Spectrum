@@ -318,7 +318,7 @@ public class SpectrumBlocks {
 	public static final Block MIDNIGHT_SOLUTION = new MidnightSolutionFluidBlock(SpectrumFluids.MIDNIGHT_SOLUTION, FabricBlockSettings.copyOf(Blocks.WATER).suffocates(SpectrumBlocks::always));
 	
 	// TODO
-	// public static final Block BLACK_MATERIA = new Block(FabricBlockSettings.copyOf(Blocks.SAND));
+	public static final Block BLACK_MATERIA = new Block(FabricBlockSettings.copyOf(Blocks.SAND));
 
 	// PASTEL NETWORK
 	public static final Block CONNECTION_NODE = new PastelNetworkNodeBlock(FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().requiresTool().sounds(BlockSoundGroup.AMETHYST_CLUSTER), "block.spectrum.connection_node.tooltip");
@@ -781,6 +781,7 @@ public class SpectrumBlocks {
 		registerBlock("mud", MUD);
 		registerBlock("liquid_crystal", LIQUID_CRYSTAL);
 		registerBlock("midnight_solution", MIDNIGHT_SOLUTION);
+		registerBlockWithItem("black_materia", BLACK_MATERIA, generalItemSettings);
 		registerBlockWithItem("frostbite_crystal", FROSTBITE_CRYSTAL, generalItemSettings);
 		registerBlockWithItem("blazing_crystal", BLAZING_CRYSTAL, generalItemSettings);
 		registerBlockWithItem("resonant_lily", RESONANT_LILY, generalItemSettings);

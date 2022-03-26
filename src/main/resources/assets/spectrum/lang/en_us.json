@@ -307,6 +307,8 @@
   "item.spectrum.memory.tooltip.short_time_to_manifest": "Seems to manifest soon!",
   "item.spectrum.memory.tooltip.does_not_manifest": "Will not manifest in your lifetime",
 
+  "block.spectrum.black_materia": "Black Materia",
+
   "block.spectrum.spirit_sallow_roots": "Spirit Sallow Roots",
   "block.spectrum.spirit_sallow_log": "Spirit Sallow Log",
   "block.spectrum.spirit_sallow_leaves": "Spirit Sallow Leaves",

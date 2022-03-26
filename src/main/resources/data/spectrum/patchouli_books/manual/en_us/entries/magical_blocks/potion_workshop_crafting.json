@@ -3,6 +3,14 @@
   "icon": "spectrum:potion_workshop",
   "advancement": "spectrum:progression/unlock_potion_workshop",
   "category": "spectrum:magical_blocks_category",
+  "extra_recipe_mappings": {
+    "minecraft:water_bucket": 0,
+    "minecraft:lava_bucket": 0,
+    "minecraft:midnight_solution_bucket": 0,
+    "minecraft:honey_bottle": 0,
+    "minecraft:powder_snow_bucket": 0,
+    "minecraft:experience_bottle": 0
+  },
   "pages": [
     {
       "type": "patchouli:text",

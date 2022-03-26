@@ -6,6 +6,7 @@ import de.dafuqs.spectrum.inventories.AutoCraftingInventory;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.recipe.midnight_solution_converting.MidnightSolutionConvertingRecipe;
+import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import de.dafuqs.spectrum.registries.SpectrumDamageSources;
 import de.dafuqs.spectrum.registries.SpectrumFluidTags;
 import de.dafuqs.spectrum.registries.SpectrumItems;
@@ -22,6 +23,7 @@ import net.minecraft.entity.ai.pathing.NavigationType;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.fluid.FlowableFluid;
+import net.minecraft.fluid.FluidState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.sound.SoundCategory;
@@ -88,8 +90,8 @@ public class MidnightSolutionFluidBlock extends FluidBlock {
 				if(experience > 0) {
 					ExperienceOrbEntity experienceOrbEntity = new ExperienceOrbEntity(world, itemEntity.getX(), itemEntity.getY(), itemEntity.getZ(), experience);
 					world.spawnEntity(experienceOrbEntity);
-					world.playSound(null, itemEntity.getBlockPos(), SoundEvents.BLOCK_GRINDSTONE_USE, SoundCategory.NEUTRAL, 1.0F, 0.9F + world.getRandom().nextFloat() * 0.2F);
 				}
+				world.playSound(null, itemEntity.getBlockPos(), SoundEvents.BLOCK_GRINDSTONE_USE, SoundCategory.NEUTRAL, 1.0F, 0.9F + world.getRandom().nextFloat() * 0.2F);
 				itemEntity.setStack(SpectrumEnchantmentHelper.removeEnchantments(itemStack));
 			}
 			
@@ -145,15 +147,15 @@ public class MidnightSolutionFluidBlock extends FluidBlock {
 		return false;
 	}
 	
-	/*public static boolean tryConvertNeighbor(@NotNull World world, BlockPos pos, BlockPos fromPos) {
+	public static boolean tryConvertNeighbor(@NotNull World world, BlockPos pos, BlockPos fromPos) {
 		FluidState fluidState = world.getFluidState(fromPos);
-		if (!fluidState.isEmpty() && !fluidState.isIn(SpectrumFluidTags.MIDNIGHT_SOLUTION)) {
+		if (!fluidState.isEmpty() && fluidState.isIn(SpectrumFluidTags.MIDNIGHT_SOLUTION_CONVERTED)) {
 			world.setBlockState(fromPos, SpectrumBlocks.MIDNIGHT_SOLUTION.getDefaultState());
 			playExtinguishSound(world, fromPos);
 			return true;
 		}
 		return false;
-	}*/
+	}
 
 	private static void playExtinguishSound(@NotNull WorldAccess world, BlockPos pos) {
 		world.syncWorldEvent(1501, pos, 0);

@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.blocks.creature_spawn;
+package de.dafuqs.spectrum.blocks.memory;
 
 import de.dafuqs.spectrum.interfaces.PlayerOwned;
 import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
@@ -23,21 +23,21 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Optional;
 import java.util.UUID;
 
-public class CreatureSpawnBlockEntity extends BlockEntity implements PlayerOwned {
+public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 	
 	protected ItemStack creatureSpawnItemStack = ItemStack.EMPTY;
 	protected int ticksToHatch = -1; // zero or negative values: never hatch
 	
 	protected UUID ownerUUID;
 	
-	public CreatureSpawnBlockEntity(BlockPos pos, BlockState state) {
-		super(SpectrumBlockEntityRegistry.CREATURE_SPAWN, pos, state);
+	public MemoryBlockEntity(BlockPos pos, BlockState state) {
+		super(SpectrumBlockEntityRegistry.MEMORY, pos, state);
 	}
 	
 	public void setData(PlayerEntity playerEntity, @NotNull ItemStack creatureSpawnItemStack) {
 		setOwner(playerEntity);
 		
-		if(creatureSpawnItemStack.getItem() instanceof CreatureSpawnItem) {
+		if(creatureSpawnItemStack.getItem() instanceof MemoryItem) {
 			this.creatureSpawnItemStack = creatureSpawnItemStack;
 		}
 	}
@@ -46,8 +46,8 @@ public class CreatureSpawnBlockEntity extends BlockEntity implements PlayerOwned
 	public void readNbt(NbtCompound nbt) {
 		super.readNbt(nbt);
 		
-		if(nbt.contains("CreatureSpawn", NbtElement.COMPOUND_TYPE)) {
-			NbtCompound creatureSpawnCompound = nbt.getCompound("CreatureSpawn");
+		if(nbt.contains("MemoryItem", NbtElement.COMPOUND_TYPE)) {
+			NbtCompound creatureSpawnCompound = nbt.getCompound("MemoryItem");
 			this.creatureSpawnItemStack = ItemStack.fromNbt(creatureSpawnCompound);
 		}
 	}
@@ -58,7 +58,7 @@ public class CreatureSpawnBlockEntity extends BlockEntity implements PlayerOwned
 		if(this.creatureSpawnItemStack != null) {
 			NbtCompound creatureSpawnCompound = new NbtCompound();
 			creatureSpawnItemStack.writeNbt(creatureSpawnCompound);
-			nbt.put("CreatureSpawn", creatureSpawnCompound);
+			nbt.put("MemoryItem", creatureSpawnCompound);
 		}
 	}
 	
@@ -81,13 +81,13 @@ public class CreatureSpawnBlockEntity extends BlockEntity implements PlayerOwned
 	protected void triggerHatchingAdvancementCriterion(Entity hatchedEntity) {
 		PlayerEntity owner = PlayerOwned.getPlayerEntityIfOnline(world, this.ownerUUID);
 		if(owner instanceof ServerPlayerEntity serverPlayerEntity) {
-			SpectrumAdvancementCriteria.CREATURE_SPAWN_HATCH.trigger(serverPlayerEntity, hatchedEntity);
+			SpectrumAdvancementCriteria.MEMORY_MANIFESTING.trigger(serverPlayerEntity, hatchedEntity);
 		}
 	}
 	
 	protected Optional<Entity> hatchEntity(ServerWorld world, BlockPos blockPos, ItemStack itemStack) {
-		if(!(this.creatureSpawnItemStack.getItem() instanceof CreatureSpawnItem)) {
-			Optional<EntityType<?>> entityType = CreatureSpawnItem.getEntityType(creatureSpawnItemStack.getNbt());
+		if(!(this.creatureSpawnItemStack.getItem() instanceof MemoryItem)) {
+			Optional<EntityType<?>> entityType = MemoryItem.getEntityType(creatureSpawnItemStack.getNbt());
 			if(entityType.isPresent()) {
 				// alignPosition: center the mob in the center of the blockPos
 				Entity entity = entityType.get().spawnFromItemStack(world, creatureSpawnItemStack, null, blockPos, SpawnReason.SPAWN_EGG, true, false);
@@ -109,11 +109,11 @@ public class CreatureSpawnBlockEntity extends BlockEntity implements PlayerOwned
 	
 	public static int getHatchAdvanceSteps(@NotNull World world, @NotNull BlockPos blockPos) {
 		BlockState belowBlockState = world.getBlockState(blockPos.down());
-		if(belowBlockState.isIn(SpectrumBlockTags.CREATURE_SPAWN_NEVER_HATCHERS)) {
+		if(belowBlockState.isIn(SpectrumBlockTags.MEMORY_NEVER_MANIFESTERS)) {
 			return 0;
-		} else if(belowBlockState.isIn(SpectrumBlockTags.CREATURE_SPAWN_VERY_FAST_HATCHERS)) {
+		} else if(belowBlockState.isIn(SpectrumBlockTags.MEMORY_VERY_FAST_MANIFESTERS)) {
 			return 8;
-		} else if(belowBlockState.isIn(SpectrumBlockTags.CREATURE_SPAWN_FAST_HATCHERS)) {
+		} else if(belowBlockState.isIn(SpectrumBlockTags.MEMORY_FAST_MANIFESTERS)) {
 			return 3;
 		} else {
 			return 1;

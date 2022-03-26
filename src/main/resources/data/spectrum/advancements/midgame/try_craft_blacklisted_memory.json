@@ -2,14 +2,14 @@
   "parent": "spectrum:midgame/build_spirit_instiller_structure",
   "display": {
     "icon": {
-      "item": "spectrum:creature_spawn"
+      "item": "spectrum:memory"
     },
 	"hidden": true,
     "title": {
-      "translate": "advancements.spectrum.try_craft_blacklisted_creature_spawn.title"
+      "translate": "advancements.spectrum.try_craft_blacklisted_memory.title"
     },                                    
     "description": {                      
-      "translate": "advancements.spectrum.try_craft_blacklisted_creature_spawn.description"
+      "translate": "advancements.spectrum.try_craft_blacklisted_memory.description"
     }
   },
   "criteria": {

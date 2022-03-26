@@ -16,6 +16,7 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
 
@@ -69,13 +70,13 @@ public abstract class MidnightSolutionFluid extends SpectrumFluid {
 	public void onScheduledTick(World world, BlockPos pos, FluidState state) {
 		super.onScheduledTick(world, pos, state);
 		
-		/*if(state.getHeight() < 1.0) {
+		if(state.getHeight() < 1.0) {
 			for (Direction direction : Direction.values()) {
 				if (MidnightSolutionFluidBlock.tryConvertNeighbor(world, pos, pos.offset(direction))) {
 					break;
 				}
 			}
-		}*/
+		}
 	}
 	
 	@Override

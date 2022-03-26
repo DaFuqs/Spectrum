@@ -11,8 +11,8 @@ import de.dafuqs.spectrum.blocks.chests.PrivateChestBlock;
 import de.dafuqs.spectrum.blocks.chests.RestockingChestBlock;
 import de.dafuqs.spectrum.blocks.chests.SuckingChestBlock;
 import de.dafuqs.spectrum.blocks.conditional.*;
-import de.dafuqs.spectrum.blocks.creature_spawn.CreatureSpawnBlock;
-import de.dafuqs.spectrum.blocks.creature_spawn.CreatureSpawnItem;
+import de.dafuqs.spectrum.blocks.memory.MemoryBlock;
+import de.dafuqs.spectrum.blocks.memory.MemoryItem;
 import de.dafuqs.spectrum.blocks.decay.DecayAwayBlock;
 import de.dafuqs.spectrum.blocks.decay.FadingBlock;
 import de.dafuqs.spectrum.blocks.decay.FailingBlock;
@@ -141,7 +141,7 @@ public class SpectrumBlocks {
 	public static final Block POTION_WORKSHOP = new PotionWorkshopBlock(FabricBlockSettings.of(Material.STONE).hardness(3.0f).nonOpaque());
 	
 	public static final Block SPIRIT_INSTILLER = new SpiritInstillerBlock(FabricBlockSettings.of(Material.STONE).strength(2.0F, 5.0F).nonOpaque());
-	public static final Block CREATURE_SPAWN = new CreatureSpawnBlock(FabricBlockSettings.of(Material.STONE).hardness(3.0f).nonOpaque().ticksRandomly());
+	public static final Block MEMORY = new MemoryBlock(FabricBlockSettings.of(Material.STONE).hardness(3.0f).nonOpaque().ticksRandomly());
 
 	// GEMS
 	public static final Block TOPAZ_CLUSTER = new AmethystClusterBlock(7, 3, FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().requiresTool().sounds(SpectrumBlockSoundGroups.TOPAZ_CLUSTER).luminance(6));
@@ -316,6 +316,9 @@ public class SpectrumBlocks {
 	public static final Block LIQUID_CRYSTAL = new LiquidCrystalFluidBlock(SpectrumFluids.LIQUID_CRYSTAL, FabricBlockSettings.copyOf(Blocks.WATER).luminance((state) -> 8));
 	public static final Block MUD = new MudFluidBlock(SpectrumFluids.MUD, FabricBlockSettings.copyOf(Blocks.WATER).suffocates(SpectrumBlocks::always));
 	public static final Block MIDNIGHT_SOLUTION = new MidnightSolutionFluidBlock(SpectrumFluids.MIDNIGHT_SOLUTION, FabricBlockSettings.copyOf(Blocks.WATER).suffocates(SpectrumBlocks::always));
+	
+	// TODO
+	// public static final Block BLACK_MATERIA = new Block(FabricBlockSettings.copyOf(Blocks.SAND));
 
 	// PASTEL NETWORK
 	public static final Block CONNECTION_NODE = new PastelNetworkNodeBlock(FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().requiresTool().sounds(BlockSoundGroup.AMETHYST_CLUSTER), "block.spectrum.connection_node.tooltip");
@@ -728,7 +731,7 @@ public class SpectrumBlocks {
 		registerBlockWithItem("potion_workshop", POTION_WORKSHOP, generalItemSettingsSingle);
 		
 		registerBlockWithItem("spirit_instiller", SPIRIT_INSTILLER, generalItemSettingsSingle);
-		registerBlockWithItem("creature_spawn", CREATURE_SPAWN, new CreatureSpawnItem(CREATURE_SPAWN, generalItemSettingsSingleUncommon));
+		registerBlockWithItem("memory", MEMORY, new MemoryItem(MEMORY, generalItemSettingsSingleUncommon));
 		
 		registerBlockWithItem("upgrade_speed", UPGRADE_SPEED, new UpgradeBlockItem(UPGRADE_SPEED, generalItemSettingsEight, "upgrade_speed"));
 		registerBlockWithItem("upgrade_speed2", UPGRADE_SPEED2, new UpgradeBlockItem(UPGRADE_SPEED2, generalItemSettingsUncommonEight, "upgrade_speed2"));
@@ -1481,7 +1484,7 @@ public class SpectrumBlocks {
 		
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.ITEM_BOWL_BASALT, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.ITEM_BOWL_CALCITE, RenderLayer.getCutout());
-		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.CREATURE_SPAWN, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.MEMORY, RenderLayer.getCutout());
 
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.REDSTONE_TIMER, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.REDSTONE_WIRELESS, RenderLayer.getCutout());
@@ -1663,7 +1666,7 @@ public class SpectrumBlocks {
 		return getColoredLeavesBlock(dyeColor).asItem();
 	}
 
-	public static Block getColoredSaplingBlock(DyeColor dyeColor) {
+	/*public static Block getColoredSaplingBlock(DyeColor dyeColor) {
 		return switch (dyeColor) {
 			case RED -> RED_SAPLING;
 			case BROWN -> BROWN_SAPLING;
@@ -1703,6 +1706,6 @@ public class SpectrumBlocks {
 			case BLACK -> BLACK_BLOCK;
 			default -> MAGENTA_BLOCK;
 		};
-	}
+	}*/
 
 }

@@ -24,7 +24,7 @@ public class SpectrumAdvancementCriteria {
 	public static TakeOffBeltJumpCriterion TAKE_OFF_BELT_JUMP;
 	public static PigmentPaletteUseCriterion PIGMENT_PALETTE_USE;
 	public static JeopardantKillCriterion JEOPARDANT_KILL;
-	public static CreatureSpawnHatchCriterion CREATURE_SPAWN_HATCH;
+	public static MemoryManifestingCriterion MEMORY_MANIFESTING;
 
 	public static void register() {
 		ADVANCEMENT_GOTTEN = CriteriaAccessor.callRegister(new HasAdvancementCriterion());
@@ -46,7 +46,7 @@ public class SpectrumAdvancementCriteria {
 		TAKE_OFF_BELT_JUMP = CriteriaAccessor.callRegister(new TakeOffBeltJumpCriterion());
 		PIGMENT_PALETTE_USE = CriteriaAccessor.callRegister(new PigmentPaletteUseCriterion());
 		JEOPARDANT_KILL = CriteriaAccessor.callRegister(new JeopardantKillCriterion());
-		CREATURE_SPAWN_HATCH = CriteriaAccessor.callRegister(new CreatureSpawnHatchCriterion());
+		MEMORY_MANIFESTING = CriteriaAccessor.callRegister(new MemoryManifestingCriterion());
 	}
 
 }

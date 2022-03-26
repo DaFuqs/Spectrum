@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.blocks.creature_spawn;
+package de.dafuqs.spectrum.blocks.memory;
 
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
@@ -10,11 +10,11 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Random;
 
-public class CreatureSpawnBlock extends BlockWithEntity {
+public class MemoryBlock extends BlockWithEntity {
 	
 	protected static final VoxelShape SHAPE = Block.createCuboidShape(3.0D, 0.0D, 3.0D, 13.0D, 13.0D, 13.0D);
 	
-	public CreatureSpawnBlock(Settings settings) {
+	public MemoryBlock(Settings settings) {
 		super(settings);
 	}
 	
@@ -27,7 +27,7 @@ public class CreatureSpawnBlock extends BlockWithEntity {
 	@Nullable
 	@Override
 	public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
-		return new CreatureSpawnBlockEntity(pos, state);
+		return new MemoryBlockEntity(pos, state);
 	}
 	
 	@Override
@@ -40,8 +40,8 @@ public class CreatureSpawnBlock extends BlockWithEntity {
 		super.randomTick(state, world, pos, random);
 		
 		BlockEntity blockEntity = world.getBlockEntity(pos);
-		if(blockEntity instanceof CreatureSpawnBlockEntity creatureSpawnBlockEntity) {
-			creatureSpawnBlockEntity.advanceHatching(world, pos);
+		if(blockEntity instanceof MemoryBlockEntity memoryBlockEntity) {
+			memoryBlockEntity.advanceHatching(world, pos);
 		}
 	}
 	

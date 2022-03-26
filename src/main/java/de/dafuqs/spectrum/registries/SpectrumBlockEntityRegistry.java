@@ -4,7 +4,6 @@ import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.block_flooder.BlockFlooderBlockEntity;
 import de.dafuqs.spectrum.blocks.bottomless_bundle.BottomlessBundleBlockEntity;
 import de.dafuqs.spectrum.blocks.chests.*;
-import de.dafuqs.spectrum.blocks.creature_spawn.CreatureSpawnBlockEntity;
 import de.dafuqs.spectrum.blocks.deeper_down_portal.DeeperDownPortalBlockEntity;
 import de.dafuqs.spectrum.blocks.deeper_down_portal.DeeperDownPortalBlockEntityRenderer;
 import de.dafuqs.spectrum.blocks.enchanter.EnchanterBlockEntity;
@@ -15,6 +14,7 @@ import de.dafuqs.spectrum.blocks.fusion_shrine.FusionShrineBlockEntity;
 import de.dafuqs.spectrum.blocks.fusion_shrine.FusionShrineBlockEntityRenderer;
 import de.dafuqs.spectrum.blocks.item_bowl.ItemBowlBlockEntity;
 import de.dafuqs.spectrum.blocks.item_bowl.ItemBowlBlockEntityRenderer;
+import de.dafuqs.spectrum.blocks.memory.MemoryBlockEntity;
 import de.dafuqs.spectrum.blocks.mob_head.SpectrumSkullBlockEntity;
 import de.dafuqs.spectrum.blocks.mob_head.SpectrumSkullBlockEntityRenderer;
 import de.dafuqs.spectrum.blocks.particle_spawner.CreativeParticleSpawnerBlockEntity;
@@ -33,7 +33,6 @@ import de.dafuqs.spectrum.blocks.spirit_sallow.OminousSaplingBlockEntity;
 import de.dafuqs.spectrum.blocks.upgrade.UpgradeBlock;
 import de.dafuqs.spectrum.blocks.upgrade.UpgradeBlockBlockEntityRenderer;
 import de.dafuqs.spectrum.blocks.upgrade.UpgradeBlockEntity;
-import net.fabricmc.fabric.api.client.rendereregistry.v1.BlockEntityRendererRegistry;
 import net.fabricmc.fabric.api.event.client.ClientSpriteRegistryCallback;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.minecraft.block.Block;
@@ -43,6 +42,7 @@ import net.minecraft.client.render.TexturedRenderLayers;
 import net.minecraft.client.texture.SpriteAtlasTexture;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
+import net.fabricmc.fabric.api.client.rendering.v1.BlockEntityRendererRegistry;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -76,7 +76,7 @@ public class SpectrumBlockEntityRegistry<T extends BlockEntity> {
 	public static BlockEntityType<BlockPlacerBlockEntity> BLOCK_PLACER;
 	public static BlockEntityType<BlockFlooderBlockEntity> BLOCK_FLOODER;
 	public static BlockEntityType<SpiritInstillerBlockEntity> SPIRIT_INSTILLER;
-	public static BlockEntityType<CreatureSpawnBlockEntity> CREATURE_SPAWN;
+	public static BlockEntityType<MemoryBlockEntity> MEMORY;
 	
 	public static BlockEntityType<PastelNetworkConnectionNode> CONNECTION_NODE;
 	public static BlockEntityType<PastelNetworkProviderNodeBlockEntity> PROVIDER_NODE;
@@ -108,7 +108,7 @@ public class SpectrumBlockEntityRegistry<T extends BlockEntity> {
 		BOTTOMLESS_BUNDLE = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "bottomless_bundle"), FabricBlockEntityTypeBuilder.create(BottomlessBundleBlockEntity::new, SpectrumBlocks.BOTTOMLESS_BUNDLE).build());
 		POTION_WORKSHOP = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "potion_workshop"), FabricBlockEntityTypeBuilder.create(PotionWorkshopBlockEntity::new, SpectrumBlocks.POTION_WORKSHOP).build());
 		SPIRIT_INSTILLER = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "spirit_instiller"), FabricBlockEntityTypeBuilder.create(SpiritInstillerBlockEntity::new, SpectrumBlocks.SPIRIT_INSTILLER).build());
-		CREATURE_SPAWN = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "creature_spawn"), FabricBlockEntityTypeBuilder.create(CreatureSpawnBlockEntity::new, SpectrumBlocks.CREATURE_SPAWN).build());
+		MEMORY = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "memory"), FabricBlockEntityTypeBuilder.create(MemoryBlockEntity::new, SpectrumBlocks.MEMORY).build());
 		
 		// All the pastel network nodes
 		CONNECTION_NODE = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "connection_node"), FabricBlockEntityTypeBuilder.create(PastelNetworkConnectionNode::new, SpectrumBlocks.CONNECTION_NODE).build());
@@ -134,23 +134,23 @@ public class SpectrumBlockEntityRegistry<T extends BlockEntity> {
 	}
 
 	public static void registerClient() {
-		BlockEntityRendererRegistry.INSTANCE.register(SpectrumBlockEntityRegistry.PEDESTAL, PedestalBlockEntityRenderer::new);
-		BlockEntityRendererRegistry.INSTANCE.register(SpectrumBlockEntityRegistry.PRIVATE_CHEST, PrivateChestBlockEntityRenderer::new);
-		BlockEntityRendererRegistry.INSTANCE.register(SpectrumBlockEntityRegistry.COMPACTING_CHEST, CompactingChestBlockEntityRenderer::new);
-		BlockEntityRendererRegistry.INSTANCE.register(SpectrumBlockEntityRegistry.RESTOCKING_CHEST, RestockingChestBlockEntityRenderer::new);
-		BlockEntityRendererRegistry.INSTANCE.register(SpectrumBlockEntityRegistry.SUCKING_CHEST, SuckingChestBlockEntityRenderer::new);
-		BlockEntityRendererRegistry.INSTANCE.register(SpectrumBlockEntityRegistry.UPGRADE_BLOCK, UpgradeBlockBlockEntityRenderer::new);
-		BlockEntityRendererRegistry.INSTANCE.register(SpectrumBlockEntityRegistry.FUSION_SHRINE, FusionShrineBlockEntityRenderer::new);
-		BlockEntityRendererRegistry.INSTANCE.register(SpectrumBlockEntityRegistry.ENCHANTER, EnchanterBlockEntityRenderer::new);
-		BlockEntityRendererRegistry.INSTANCE.register(SpectrumBlockEntityRegistry.ITEM_BOWL, ItemBowlBlockEntityRenderer::new);
-		BlockEntityRendererRegistry.INSTANCE.register(SpectrumBlockEntityRegistry.SKULL, SpectrumSkullBlockEntityRenderer::new);
-		BlockEntityRendererRegistry.INSTANCE.register(SpectrumBlockEntityRegistry.DEEPER_DOWN_PORTAL, DeeperDownPortalBlockEntityRenderer::new);
+		BlockEntityRendererRegistry.register(SpectrumBlockEntityRegistry.PEDESTAL, PedestalBlockEntityRenderer::new);
+		BlockEntityRendererRegistry.register(SpectrumBlockEntityRegistry.PRIVATE_CHEST, PrivateChestBlockEntityRenderer::new);
+		BlockEntityRendererRegistry.register(SpectrumBlockEntityRegistry.COMPACTING_CHEST, CompactingChestBlockEntityRenderer::new);
+		BlockEntityRendererRegistry.register(SpectrumBlockEntityRegistry.RESTOCKING_CHEST, RestockingChestBlockEntityRenderer::new);
+		BlockEntityRendererRegistry.register(SpectrumBlockEntityRegistry.SUCKING_CHEST, SuckingChestBlockEntityRenderer::new);
+		BlockEntityRendererRegistry.register(SpectrumBlockEntityRegistry.UPGRADE_BLOCK, UpgradeBlockBlockEntityRenderer::new);
+		BlockEntityRendererRegistry.register(SpectrumBlockEntityRegistry.FUSION_SHRINE, FusionShrineBlockEntityRenderer::new);
+		BlockEntityRendererRegistry.register(SpectrumBlockEntityRegistry.ENCHANTER, EnchanterBlockEntityRenderer::new);
+		BlockEntityRendererRegistry.register(SpectrumBlockEntityRegistry.ITEM_BOWL, ItemBowlBlockEntityRenderer::new);
+		BlockEntityRendererRegistry.register(SpectrumBlockEntityRegistry.SKULL, SpectrumSkullBlockEntityRenderer::new);
+		BlockEntityRendererRegistry.register(SpectrumBlockEntityRegistry.DEEPER_DOWN_PORTAL, DeeperDownPortalBlockEntityRenderer::new);
 		
-		BlockEntityRendererRegistry.INSTANCE.register(SpectrumBlockEntityRegistry.CONNECTION_NODE, PastelNetworkNodeBlockEntityRenderer::new);
-		BlockEntityRendererRegistry.INSTANCE.register(SpectrumBlockEntityRegistry.PROVIDER_NODE, PastelNetworkNodeBlockEntityRenderer::new);
-		BlockEntityRendererRegistry.INSTANCE.register(SpectrumBlockEntityRegistry.STORAGE_NODE, PastelNetworkNodeBlockEntityRenderer::new);
-		BlockEntityRendererRegistry.INSTANCE.register(SpectrumBlockEntityRegistry.PUSHER_NODE, PastelNetworkNodeBlockEntityRenderer::new);
-		BlockEntityRendererRegistry.INSTANCE.register(SpectrumBlockEntityRegistry.PULLER_NODE, PastelNetworkNodeBlockEntityRenderer::new);
+		BlockEntityRendererRegistry.register(SpectrumBlockEntityRegistry.CONNECTION_NODE, PastelNetworkNodeBlockEntityRenderer::new);
+		BlockEntityRendererRegistry.register(SpectrumBlockEntityRegistry.PROVIDER_NODE, PastelNetworkNodeBlockEntityRenderer::new);
+		BlockEntityRendererRegistry.register(SpectrumBlockEntityRegistry.STORAGE_NODE, PastelNetworkNodeBlockEntityRenderer::new);
+		BlockEntityRendererRegistry.register(SpectrumBlockEntityRegistry.PUSHER_NODE, PastelNetworkNodeBlockEntityRenderer::new);
+		BlockEntityRendererRegistry.register(SpectrumBlockEntityRegistry.PULLER_NODE, PastelNetworkNodeBlockEntityRenderer::new);
 
 		registerTextureAtlasCallback();
 	}

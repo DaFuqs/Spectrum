@@ -1,0 +1,19 @@
+{
+  "type": "spectrum:spirit_instiller",
+  "time": 800,
+  "experience": 4.0,
+  "ingredient1": {
+    "item": "spectrum:drowned_head"
+  },
+  "ingredient2": {
+    "item": "minecraft:water_bucket"
+  },
+  "center_ingredient": {
+    "item": "spectrum:vegetal"
+  },
+  "result" : {
+    "item": "spectrum:memory",
+    "nbt": "{EntityType: \"minecraft:drowned\" }",
+    "count": 1
+  }
+}

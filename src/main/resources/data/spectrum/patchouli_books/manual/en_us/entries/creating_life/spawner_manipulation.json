@@ -22,7 +22,7 @@
       "type": "spectrum:spirit_instiller_crafting",
       "title": "Changing Creature",
       "recipe": "spectrum:spirit_instiller/spawner_change",
-      "text": "Using a similar technique to $(l:creating_life/creature_spawn)creating Creature Spawns$(/l) you can change the Spawners creature association."
+      "text": "Using a similar technique to $(l:creating_life/memory)remembering Memories$(/l) you can change the Spawners creature association."
     },
     {
       "type": "patchouli:spotlight",

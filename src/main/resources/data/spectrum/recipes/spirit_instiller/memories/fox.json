@@ -3,17 +3,18 @@
   "time": 800,
   "experience": 4.0,
   "ingredient1": {
-    "item": "spectrum:drowned_head"
+    "item": "spectrum:fox_head"
   },
   "ingredient2": {
-    "item": "minecraft:water_bucket"
+    "item": "minecraft:sweet_berries"
   },
   "center_ingredient": {
     "item": "spectrum:vegetal"
   },
   "result" : {
-    "item": "spectrum:creature_spawn",
-    "nbt": "{EntityType: \"minecraft:drowned\" }",
+    "item": "spectrum:memory",
+    "nbt": "{EntityTag: {id: \"minecraft:fox\", TicksToManifest: 20, Type: \"red\"}}",
     "count": 1
   }
 }
+

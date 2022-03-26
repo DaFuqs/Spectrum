@@ -17,7 +17,7 @@
       "type": "spectrum:spirit_instiller_crafting",
       "title": "Spirit Inst. Recipe",
       "recipe": "spectrum:spirit_instiller/memories/fox",
-      "text": "To remember a creature, you need a $(l:creating_life/mob_heads)Mob Head$(/l), its once most beloved item and $(l:creating_life/fading#vegetal)Vegetal$(/l) as a bonding agent."
+      "text": "To remember the memories about a creature, you need its $(l:creating_life/mob_heads)Head$(/l), as well as its most beloved item and $(l:creating_life/fading#vegetal)Vegetal$(/l) as a bonding agent."
     },
     {
       "type": "patchouli:text",

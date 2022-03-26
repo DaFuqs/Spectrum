@@ -11,7 +11,7 @@
       "type": "patchouli:spotlight",
       "title": "Memories",
       "item": "spectrum:memory{EntityTag: {id: \"minecraft:fox\"}, TicksToManifest: 20}",
-      "text": "Using the $(l:creating_life/spirit_instiller)Spirit Instiller$(/l), a $(l:creating_life/mob_heads)Creatures Head$(/l) you are able to breathe new life into a once-dead creature.$(br)It will get materialised in form of a $(italic)Memory$()."
+      "text": "With the $(l:creating_life/spirit_instiller)Spirit Instiller$(/l), you are able to breathe new life into a once dead creature.$(br)It will materialise in the form of a $(italic)Memory$()."
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
@@ -22,12 +22,12 @@
     {
       "type": "patchouli:text",
       "title": "Manifesting",
-      "text": "Memories need a bit of time to manifest, almost like an egg: you have to place it down and wait. Depending on the creature, it may be reasonably quick, or take ages.$(br2)$(italic)Placing them on top of specific blocks seems to speed up that process or halt it entirely."
+      "text": "Memories need a certain amount of time to manifest, almost like an egg: you have to place them down and wait. Depending on the creature, it may be reasonably quick, or take forever.$(br2)$(italic)Placing them on top of certain blocks seems to speed up that process or stop it entirely."
     },
     {
       "type": "patchouli:text",
       "title": "Concealing",
-      "text": "Tip: The Use of $(l:creating_life/failing#neolith)Neolith$(/l) instead of Vegetal seems to completely overpower the energies of the creature, making the resulting Memory unrecognizable, until it is finally manifested."
+      "text": "Tip: The Use of $(l:creating_life/failing#neolith)Neolith$(/l) instead of Vegetal seems to completely overpower the energies of the creature, making the resulting Memory unrecognizable, until it manifests."
     }
   ]
 }

@@ -25,6 +25,7 @@ public class SpectrumBlockTags {
 	public static TagKey<Block> RUIN_BEDROCK_CONVERSIONS;
 	public static TagKey<Block> NATURES_STAFF_TICKABLE;
 	public static TagKey<Block> NATURES_STAFF_STACKABLE;
+	public static TagKey<Block> BLACK_MATERIA_CONVERSIONS;
 	
 	public static TagKey<Block> BUILDING_STAFFS_BLACKLISTED;
 	
@@ -54,6 +55,7 @@ public class SpectrumBlockTags {
 		RUIN_SAFE = getReference("ruin_safe");
 		TERROR_SAFE = getReference("terror_safe");
 		RUIN_BEDROCK_CONVERSIONS = getReference("decay_bedrock_conversions");
+		BLACK_MATERIA_CONVERSIONS = getReference("black_materia_conversions");
 		
 		// MISC
 		MAGICAL_LEAVES = getReference("magical_leaves");

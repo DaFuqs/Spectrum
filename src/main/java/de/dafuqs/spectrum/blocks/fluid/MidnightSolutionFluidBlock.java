@@ -1,15 +1,13 @@
 package de.dafuqs.spectrum.blocks.fluid;
 
+import de.dafuqs.spectrum.blocks.BlackMateriaBlock;
 import de.dafuqs.spectrum.blocks.enchanter.EnchanterBlockEntity;
 import de.dafuqs.spectrum.helpers.SpectrumEnchantmentHelper;
 import de.dafuqs.spectrum.inventories.AutoCraftingInventory;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.recipe.midnight_solution_converting.MidnightSolutionConvertingRecipe;
-import de.dafuqs.spectrum.registries.SpectrumBlocks;
-import de.dafuqs.spectrum.registries.SpectrumDamageSources;
-import de.dafuqs.spectrum.registries.SpectrumFluidTags;
-import de.dafuqs.spectrum.registries.SpectrumItems;
+import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.FluidBlock;
@@ -26,6 +24,7 @@ import net.minecraft.fluid.FlowableFluid;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
@@ -42,7 +41,6 @@ import java.util.Random;
 public class MidnightSolutionFluidBlock extends FluidBlock {
 	
 	private static final int EXPERIENCE_DISENCHANT_RETURN_DIV = 3;
-	
 	private static AutoCraftingInventory AUTO_INVENTORY;
 
 	public MidnightSolutionFluidBlock(FlowableFluid fluid, Settings settings) {
@@ -119,6 +117,10 @@ public class MidnightSolutionFluidBlock extends FluidBlock {
 			
 			amount -= currentAmount;
 		}
+	}
+	
+	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
+		BlackMateriaBlock.spreadBlackMateria(world, pos, random, SpectrumBlocks.BLACK_MATERIA.getDefaultState());
 	}
 	
 	public MidnightSolutionConvertingRecipe getConversionRecipeFor(@NotNull World world, ItemStack itemStack) {

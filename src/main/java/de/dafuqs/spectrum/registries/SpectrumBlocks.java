@@ -315,10 +315,9 @@ public class SpectrumBlocks {
 	// FLUIDS
 	public static final Block LIQUID_CRYSTAL = new LiquidCrystalFluidBlock(SpectrumFluids.LIQUID_CRYSTAL, FabricBlockSettings.copyOf(Blocks.WATER).luminance((state) -> 8));
 	public static final Block MUD = new MudFluidBlock(SpectrumFluids.MUD, FabricBlockSettings.copyOf(Blocks.WATER).suffocates(SpectrumBlocks::always));
-	public static final Block MIDNIGHT_SOLUTION = new MidnightSolutionFluidBlock(SpectrumFluids.MIDNIGHT_SOLUTION, FabricBlockSettings.copyOf(Blocks.WATER).suffocates(SpectrumBlocks::always));
+	public static final Block MIDNIGHT_SOLUTION = new MidnightSolutionFluidBlock(SpectrumFluids.MIDNIGHT_SOLUTION, FabricBlockSettings.copyOf(Blocks.WATER).suffocates(SpectrumBlocks::always).ticksRandomly());
 	
-	// TODO
-	public static final Block BLACK_MATERIA = new Block(FabricBlockSettings.copyOf(Blocks.SAND));
+	public static final Block BLACK_MATERIA = new BlackMateriaBlock(FabricBlockSettings.copyOf(Blocks.SAND).ticksRandomly());
 
 	// PASTEL NETWORK
 	public static final Block CONNECTION_NODE = new PastelNetworkNodeBlock(FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().requiresTool().sounds(BlockSoundGroup.AMETHYST_CLUSTER), "block.spectrum.connection_node.tooltip");

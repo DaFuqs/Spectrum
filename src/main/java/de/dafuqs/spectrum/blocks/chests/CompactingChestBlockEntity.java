@@ -45,7 +45,7 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 	
 	public CompactingChestBlockEntity(BlockPos blockPos, BlockState blockState) {
 		super(SpectrumBlockEntityRegistry.COMPACTING_CHEST, blockPos, blockState);
-		this.autoCraftingMode = AutoCompactingInventory.AutoCraftingMode.ThreeXTree;
+		this.autoCraftingMode = AutoCompactingInventory.AutoCraftingMode.ThreeXThree;
 		this.lastCraftingItemStack = ItemStack.EMPTY;
 		this.lastCraftingRecipe = null;
 		this.hasToCraft = false;

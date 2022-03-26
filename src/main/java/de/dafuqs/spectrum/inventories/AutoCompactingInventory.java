@@ -8,7 +8,7 @@ public class AutoCompactingInventory extends AutoInventory {
 	public enum AutoCraftingMode {
 		OneXOne,
 		TwoXTwo,
-		ThreeXTree;
+		ThreeXThree;
 		
 		public int getItemCount() {
 			if(this == AutoCraftingMode.OneXOne) {
@@ -27,7 +27,7 @@ public class AutoCompactingInventory extends AutoInventory {
 	public AutoCompactingInventory() {
 		super(3, 3);
 		this.inputItemStack = ItemStack.EMPTY;
-		this.autoCraftingMode = AutoCraftingMode.ThreeXTree;
+		this.autoCraftingMode = AutoCraftingMode.ThreeXThree;
 	}
 
 	public void setCompacting(AutoCraftingMode autoCraftingMode, ItemStack itemStack) {

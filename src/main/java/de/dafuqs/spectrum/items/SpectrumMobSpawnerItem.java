@@ -17,9 +17,9 @@ import net.minecraft.world.World;
 import java.util.List;
 import java.util.Optional;
 
-public class SpawnerItem extends BlockItem {
+public class SpectrumMobSpawnerItem extends BlockItem {
 
-	public SpawnerItem(Block block, FabricItemSettings fabricItemSettings) {
+	public SpectrumMobSpawnerItem(Block block, FabricItemSettings fabricItemSettings) {
 		super(block, fabricItemSettings);
 	}
 

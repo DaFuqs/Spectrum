@@ -48,11 +48,11 @@ public class PageSpiritInstillerCrafting extends PageDoubleRecipeRegistry<Spirit
 		parent.renderIngredient(ms, recipeX + 23, recipeY + 11, mouseX, mouseY, ingredients.get(2)); // center
 		
 		// spirit instiller
-		parent.renderItemStack(ms, recipeX + 23, recipeY + 24, mouseX, mouseY, recipe.createIcon());
+		parent.renderItemStack(ms, recipeX + 23, recipeY + 25, mouseX, mouseY, recipe.createIcon());
 		
 		// item bowls
-		parent.renderItemStack(ms, recipeX + 3, recipeY + 22, mouseX, mouseY, ITEM_BOWL_STACK);
-		parent.renderItemStack(ms, recipeX + 44, recipeY + 22, mouseX, mouseY, ITEM_BOWL_STACK);
+		parent.renderItemStack(ms, recipeX + 3, recipeY + 25, mouseX, mouseY, ITEM_BOWL_STACK);
+		parent.renderItemStack(ms, recipeX + 44, recipeY + 25, mouseX, mouseY, ITEM_BOWL_STACK);
 		
 		// the output
 		parent.renderItemStack(ms, recipeX + 79, recipeY + 8, mouseX, mouseY, recipe.getOutput());
@@ -60,7 +60,7 @@ public class PageSpiritInstillerCrafting extends PageDoubleRecipeRegistry<Spirit
 
 	@Override
 	protected int getRecipeHeight() {
-		return 57;
+		return 58;
 	}
 
 }

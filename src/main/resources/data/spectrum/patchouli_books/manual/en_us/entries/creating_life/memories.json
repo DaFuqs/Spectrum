@@ -1,6 +1,6 @@
 {
   "name": "Memories",
-  "icon": "spectrum:memory{EntityID: \"minecraft:cow\", CyclesUntilHatching: 10s, Unrecognizable: 0s}",
+  "icon": "spectrum:memory{EntityTag: {id: \"minecraft:fox\"}, TicksToManifest: 20}",
   "advancement": "spectrum:midgame/collect_neolith",
   "category": "spectrum:creating_life_category",
   "extra_recipe_mappings": {
@@ -9,19 +9,20 @@
   "pages": [
     {
       "type": "patchouli:spotlight",
-      "item": "spectrum:memory{EntityID: \"minecraft:cow\", CyclesUntilManifesting: 10s, Unrecognizable: 0s}",
-      "text": "Using the $(l:creating_life/spirit_instiller)Spirit Instiller$(/l), a $(l:creating_life/mob_heads)Creatures Head$(/l) you are able to breathe new life into a once-dead creature, manifesting it in the form of a Memory."
+      "title": "Memories",
+      "item": "spectrum:memory{EntityTag: {id: \"minecraft:fox\"}, TicksToManifest: 20}",
+      "text": "Using the $(l:creating_life/spirit_instiller)Spirit Instiller$(/l), a $(l:creating_life/mob_heads)Creatures Head$(/l) you are able to breathe new life into a once-dead creature.$(br)It will get materialised in form of a $(italic)Memory$()."
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
       "title": "Spirit Inst. Recipe",
       "recipe": "spectrum:spirit_instiller/memories/fox",
-      "text": "To remember a creature, you need a $(l:creating_life/mob_heads)Mob Head$(/l), its once most beloved item and $(l:creating_life/fading#vegetal)Vegetal$(/l) as a bonding agent$(br)(what a cute way to describe it, you think ♥)."
+      "text": "To remember a creature, you need a $(l:creating_life/mob_heads)Mob Head$(/l), its once most beloved item and $(l:creating_life/fading#vegetal)Vegetal$(/l) as a bonding agent."
     },
     {
       "type": "patchouli:text",
       "title": "Manifesting",
-      "text": "Memories need a bit of time to manifest, almost like an egg: you have to place it down and wait. Depending on the creature, it may be reasonably quick, or take ages.$(br2)Placing them on top of specific blocks seems to speed up that process or halt it entirely."
+      "text": "Memories need a bit of time to manifest, almost like an egg: you have to place it down and wait. Depending on the creature, it may be reasonably quick, or take ages.$(br2)$(italic)Placing them on top of specific blocks seems to speed up that process or halt it entirely."
     },
     {
       "type": "patchouli:text",

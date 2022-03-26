@@ -13,7 +13,7 @@
   },
   "result" : {
     "item": "spectrum:memory",
-    "nbt": "{EntityType: \"minecraft:drowned\" }",
+    "nbt": "{EntityTag: {id: \"minecraft:drowned\"}, TicksToManifest: 20}",
     "count": 1
   }
 }

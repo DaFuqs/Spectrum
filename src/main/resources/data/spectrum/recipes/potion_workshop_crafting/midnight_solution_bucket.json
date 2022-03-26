@@ -17,5 +17,5 @@
   "result" : {
     "item": "spectrum:midnight_solution_bucket"
   },
-  "required_advancement": "spectrum:midgame/collect_midnight_chip"
+  "required_advancement": "spectrum:progression/unlock_midnight_solution"
 }

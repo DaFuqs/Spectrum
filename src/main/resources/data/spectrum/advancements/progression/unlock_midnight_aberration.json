@@ -1,0 +1,8 @@
+{
+  "criteria": {
+    "collected_neolith": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:midgame/collect_neolith" }
+    }
+  }
+}

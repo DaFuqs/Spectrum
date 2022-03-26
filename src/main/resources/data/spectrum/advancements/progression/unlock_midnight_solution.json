@@ -1,0 +1,12 @@
+{
+  "criteria": {
+    "crafted_midnight_aberration": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:midgame/create_midnight_aberration" }
+    },
+    "collected_midnight_chip": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:midgame/collect_midnight_chip" }
+    }
+  }
+}

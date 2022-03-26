@@ -1367,7 +1367,7 @@
   "advancements.spectrum.manifest_memory.title": "Back Again",
   "advancements.spectrum.manifest_memory.description": "Manifest a Memory",
   "advancements.spectrum.try_craft_blacklisted_memory.title": "Slack Again",
-  "advancements.spectrum.try_craft_blacklisted_memory.description": "Try to remember a Memory of a creature to powerful to be resurrected.",
+  "advancements.spectrum.try_craft_blacklisted_memory.description": "Successfully fail to remember a Memory of a creature to powerful to be resurrected",
 
   "______name_changes_for_vanilla_blocks" : "Changes:",
   "block.minecraft.polished_basalt": "Basalt Pillar",

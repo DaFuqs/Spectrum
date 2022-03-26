@@ -5,12 +5,13 @@
   "category": "spectrum:magical_blocks_category",
     "extra_recipe_mappings": {
     "spectrum:midnight_solution_bucket": 0,
-    "spectrum:midnight_chip": 0
+    "spectrum:midnight_chip": 0,
+    "spectrum:black_materia": 0
   },
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "You first saw this bizarre liquid as a direct result of $(l:general/midnight_aberration)your failed fusion experiment$().$(br)Creatures that touch it seem to get their life drained out of them. Better not get caught in it yourself."
+      "text": "You first stumbled about this bizarre liquid as a direct result of $(l:general/midnight_aberration)your failed fusion experiment$().$(br)Creatures that touch it seem to get their life drained out of them. Better not get caught in it yourself."
     },
     {
       "type": "patchouli:spotlight",
@@ -21,7 +22,7 @@
     },
     {
       "type": "spectrum:potion_workshop_crafting",
-      "title": "Workshop Recipe",
+      "title": "Midnight Solution Bucket",
       "recipe": "spectrum:potion_workshop_crafting/midnight_solution_bucket",
       "advancement": "spectrum:midgame/collect_midnight_chip",
       "text": "Using the exact drop that you got by killing creatures with that fluid you can create even more of it. Quite morbid, if you think about it."
@@ -34,7 +35,14 @@
     {
       "type": "patchouli:text",
       "title": "Disenchanting",
-      "text": "Even more, if you throw enchanted items into it, they will be stripped of their special abilities. All that's left is the ordinary item and a bunch of experience. "
+      "text": "Even more, if you throw enchanted items into it, they will be stripped of their special abilities. All that's left is the ordinary item and a bunch of experience."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Black Materia",
+      "item": "spectrum:black_materia",
+      "advancement": "spectrum:hidden/break_black_materia",
+      "text": "A seemingly useless material that forms around Midnight Solution pools."
     }
   ]
 }

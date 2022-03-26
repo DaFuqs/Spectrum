@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "spectrum:sacred_soil"
+    "spectrum:sacred_soil",
+    "spectrum:black_materia"
   ]
 }

@@ -45,13 +45,20 @@ import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryKey;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.Level;
+import org.lwjgl.system.CallbackI;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class ProgressionSanityCommand {
 
+	private static final List<Identifier> advancementGatingWarningWhitelist = new ArrayList<>() {{
+		add(new Identifier(SpectrumCommon.MOD_ID, "midgame/take_off_belt_overcharged"));
+	}};
+	
+	
 	public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
 		dispatcher.register((CommandManager.literal("spectrum_test_progression_sanity").requires((source) -> {
 			return source.hasPermissionLevel(2);
@@ -263,7 +270,7 @@ public class ProgressionSanityCommand {
 				if(previousAdvancementIdentifier == null) {
 					SpectrumCommon.log(Level.WARN, "[SANITY: Advancement Gating] Advancement '" + advancement.getId() + "' has not set its parent set as requirement");
 				} else {
-					if(!advancement.getParent().getId().equals(previousAdvancementIdentifier)) {
+					if(!advancement.getParent().getId().equals(previousAdvancementIdentifier) && !advancementGatingWarningWhitelist.contains(advancement.getId())) {
 						SpectrumCommon.log(Level.WARN, "[SANITY: Advancement Gating] Advancement '" + advancement.getId() + "' has its \"gotten_previous\" advancement set to something else than their parent. Intended?");
 					}
 				}

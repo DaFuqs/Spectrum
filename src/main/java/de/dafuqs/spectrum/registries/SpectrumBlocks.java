@@ -11,8 +11,6 @@ import de.dafuqs.spectrum.blocks.chests.PrivateChestBlock;
 import de.dafuqs.spectrum.blocks.chests.RestockingChestBlock;
 import de.dafuqs.spectrum.blocks.chests.SuckingChestBlock;
 import de.dafuqs.spectrum.blocks.conditional.*;
-import de.dafuqs.spectrum.blocks.memory.MemoryBlock;
-import de.dafuqs.spectrum.blocks.memory.MemoryItem;
 import de.dafuqs.spectrum.blocks.decay.DecayAwayBlock;
 import de.dafuqs.spectrum.blocks.decay.FadingBlock;
 import de.dafuqs.spectrum.blocks.decay.FailingBlock;
@@ -37,6 +35,8 @@ import de.dafuqs.spectrum.blocks.lava_sponge.WetLavaSpongeItem;
 import de.dafuqs.spectrum.blocks.melon.AttachedGlisteringStemBlock;
 import de.dafuqs.spectrum.blocks.melon.GlisteringMelonBlock;
 import de.dafuqs.spectrum.blocks.melon.GlisteringStemBlock;
+import de.dafuqs.spectrum.blocks.memory.MemoryBlock;
+import de.dafuqs.spectrum.blocks.memory.MemoryItem;
 import de.dafuqs.spectrum.blocks.mob_head.SpectrumSkullBlock;
 import de.dafuqs.spectrum.blocks.mob_head.SpectrumSkullBlockItem;
 import de.dafuqs.spectrum.blocks.mob_head.SpectrumWallSkullBlock;
@@ -311,14 +311,13 @@ public class SpectrumBlocks {
 	public static final Block RUIN = new TerrorBlock(FabricBlockSettings.copyOf(FADING).strength(100.0F, 3600000.0F), null, SpectrumBlockTags.RUIN_SAFE, 3, 5F);
 	public static final Block TERROR = new TerrorBlock(FabricBlockSettings.copyOf(FADING).strength(100.0F, 3600000.0F), null, SpectrumBlockTags.TERROR_SAFE, 4, 7.5F);
 	public static final Block DECAY_AWAY = new DecayAwayBlock(FabricBlockSettings.copyOf(Blocks.DIRT));
-
+	public static final Block BLACK_MATERIA = new BlackMateriaBlock(FabricBlockSettings.copyOf(Blocks.SAND).ticksRandomly());
+	
 	// FLUIDS
 	public static final Block LIQUID_CRYSTAL = new LiquidCrystalFluidBlock(SpectrumFluids.LIQUID_CRYSTAL, FabricBlockSettings.copyOf(Blocks.WATER).luminance((state) -> 8));
-	public static final Block MUD = new MudFluidBlock(SpectrumFluids.MUD, FabricBlockSettings.copyOf(Blocks.WATER).suffocates(SpectrumBlocks::always));
-	public static final Block MIDNIGHT_SOLUTION = new MidnightSolutionFluidBlock(SpectrumFluids.MIDNIGHT_SOLUTION, FabricBlockSettings.copyOf(Blocks.WATER).suffocates(SpectrumBlocks::always).ticksRandomly());
+	public static final Block MUD = new MudFluidBlock(SpectrumFluids.MUD, FabricBlockSettings.copyOf(Blocks.WATER));
+	public static final Block MIDNIGHT_SOLUTION = new MidnightSolutionFluidBlock(SpectrumFluids.MIDNIGHT_SOLUTION, FabricBlockSettings.copyOf(Blocks.WATER));
 	
-	public static final Block BLACK_MATERIA = new BlackMateriaBlock(FabricBlockSettings.copyOf(Blocks.SAND).ticksRandomly());
-
 	// PASTEL NETWORK
 	public static final Block CONNECTION_NODE = new PastelNetworkNodeBlock(FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().requiresTool().sounds(BlockSoundGroup.AMETHYST_CLUSTER), "block.spectrum.connection_node.tooltip");
 	public static final Block PROVIDER_NODE = new PastelNetworkNodeBlock(FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().requiresTool().sounds(BlockSoundGroup.AMETHYST_CLUSTER), "block.spectrum.provider_node.tooltip");

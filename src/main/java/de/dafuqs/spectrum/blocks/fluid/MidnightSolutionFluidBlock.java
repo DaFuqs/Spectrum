@@ -7,7 +7,10 @@ import de.dafuqs.spectrum.inventories.AutoCraftingInventory;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.recipe.midnight_solution_converting.MidnightSolutionConvertingRecipe;
-import de.dafuqs.spectrum.registries.*;
+import de.dafuqs.spectrum.registries.SpectrumBlocks;
+import de.dafuqs.spectrum.registries.SpectrumDamageSources;
+import de.dafuqs.spectrum.registries.SpectrumFluidTags;
+import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.FluidBlock;
@@ -40,9 +43,10 @@ import java.util.Random;
 
 public class MidnightSolutionFluidBlock extends FluidBlock {
 	
+	public static final BlockState SPREAD_BLOCKSTATE = SpectrumBlocks.BLACK_MATERIA.getDefaultState().with(BlackMateriaBlock.AGE, 0);
 	private static final int EXPERIENCE_DISENCHANT_RETURN_DIV = 3;
 	private static AutoCraftingInventory AUTO_INVENTORY;
-
+	
 	public MidnightSolutionFluidBlock(FlowableFluid fluid, Settings settings) {
 		super(fluid, settings);
 	}
@@ -117,10 +121,6 @@ public class MidnightSolutionFluidBlock extends FluidBlock {
 			
 			amount -= currentAmount;
 		}
-	}
-	
-	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-		BlackMateriaBlock.spreadBlackMateria(world, pos, random, SpectrumBlocks.BLACK_MATERIA.getDefaultState());
 	}
 	
 	public MidnightSolutionConvertingRecipe getConversionRecipeFor(@NotNull World world, ItemStack itemStack) {

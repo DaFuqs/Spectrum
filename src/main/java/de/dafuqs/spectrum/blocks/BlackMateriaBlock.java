@@ -1,15 +1,19 @@
 package de.dafuqs.spectrum.blocks;
 
+import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.registries.SpectrumBlockTags;
-import net.minecraft.block.*;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.FallingBlock;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.state.property.Properties;
-import net.minecraft.state.property.Property;
-import net.minecraft.tag.BlockTags;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.world.World;
 
 import java.util.Random;
 
@@ -22,7 +26,7 @@ public class BlackMateriaBlock extends FallingBlock {
 	
 	public BlackMateriaBlock(Settings settings) {
 		super(settings);
-		setDefaultState(this.stateManager.getDefaultState().with(Properties.AGE_3, 0));
+		setDefaultState(this.stateManager.getDefaultState().with(Properties.AGE_3, 3));
 	}
 	
 	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
@@ -34,20 +38,23 @@ public class BlackMateriaBlock extends FallingBlock {
 		}
 	}
 	
-	public static void spreadBlackMateria(ServerWorld world, BlockPos pos, Random random, BlockState targetState) {
+	public static boolean spreadBlackMateria(World world, BlockPos pos, Random random, BlockState targetState) {
+		boolean replacedAny = false;
 		for(int i = 0; i < PROPAGATION_TRIES; i++) {
 			Direction randomDirection = Direction.random(random);
 			BlockPos neighborPos = pos.offset(randomDirection);
 			BlockState neighborBlockState = world.getBlockState(neighborPos);
 			if(!(neighborBlockState.getBlock() instanceof BlackMateriaBlock) && neighborBlockState.isIn(SpectrumBlockTags.BLACK_MATERIA_CONVERSIONS)) {
 				world.setBlockState(neighborPos, targetState);
+				world.playSound(null, neighborPos, SoundEvents.BLOCK_SAND_PLACE, SoundCategory.BLOCKS, 1.0F, 0.9F + random.nextFloat() * 0.2F);
+				replacedAny = true;
 			}
 		}
+		return replacedAny;
 	}
 	
 	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
 		builder.add(AGE);
 	}
-	
 	
 }

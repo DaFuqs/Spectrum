@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.blocks.fluid;
 
+import de.dafuqs.spectrum.blocks.BlackMateriaBlock;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import de.dafuqs.spectrum.registries.SpectrumFluids;
 import de.dafuqs.spectrum.registries.SpectrumItems;
@@ -12,6 +13,7 @@ import net.minecraft.fluid.FluidState;
 import net.minecraft.item.Item;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.Properties;
@@ -23,7 +25,7 @@ import net.minecraft.world.WorldView;
 import java.util.Random;
 
 public abstract class MidnightSolutionFluid extends SpectrumFluid {
-
+	
 	@Override
 	public Fluid getStill() {
 		return SpectrumFluids.MIDNIGHT_SOLUTION;
@@ -76,6 +78,11 @@ public abstract class MidnightSolutionFluid extends SpectrumFluid {
 					break;
 				}
 			}
+		}
+		
+		boolean converted = BlackMateriaBlock.spreadBlackMateria(world, pos, world.random, MidnightSolutionFluidBlock.SPREAD_BLOCKSTATE);
+		if(converted) {
+			world.createAndScheduleFluidTick(pos, state.getFluid(), 100 + world.random.nextInt(200));
 		}
 	}
 	

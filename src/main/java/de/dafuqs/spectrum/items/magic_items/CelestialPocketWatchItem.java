@@ -11,6 +11,7 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.GameRules;
@@ -71,12 +72,12 @@ public class CelestialPocketWatchItem extends Item {
 			GameRules.BooleanRule doDaylightCycleRule = world.getGameRules().get(GameRules.DO_DAYLIGHT_CYCLE);
 			if (doDaylightCycleRule.get()) {
 				if (world.getDimension().hasFixedTime()) {
-					tooltip.add(new TranslatableText("item.spectrum.celestial_pocketwatch.tooltip.use_blocked_fixed_time"));
+					tooltip.add(new TranslatableText("item.spectrum.celestial_pocketwatch.tooltip.use_blocked_fixed_time").formatted(Formatting.GRAY));
 				} else {
-					tooltip.add(new TranslatableText("item.spectrum.celestial_pocketwatch.tooltip.working"));
+					tooltip.add(new TranslatableText("item.spectrum.celestial_pocketwatch.tooltip.working").formatted(Formatting.GRAY));
 				}
 			} else {
-				tooltip.add(new TranslatableText("item.spectrum.celestial_pocketwatch.tooltip.use_blocked_gamerule"));
+				tooltip.add(new TranslatableText("item.spectrum.celestial_pocketwatch.tooltip.use_blocked_gamerule").formatted(Formatting.GRAY));
 			}
 		}
 	}

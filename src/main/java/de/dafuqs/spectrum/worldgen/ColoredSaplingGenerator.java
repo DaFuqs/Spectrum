@@ -1,12 +1,9 @@
 package de.dafuqs.spectrum.worldgen;
 
 import net.minecraft.block.sapling.SaplingGenerator;
-import net.minecraft.block.sapling.SpruceSaplingGenerator;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
-import net.minecraft.world.gen.feature.TreeConfiguredFeatures;
-import net.minecraft.world.gen.feature.TreeFeatureConfig;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Random;

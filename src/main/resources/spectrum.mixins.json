@@ -40,7 +40,6 @@
     "RedstoneOreMixin",
     "ServerPlayerEntityMixin",
     "ServerWorldMixin",
-    "SpawnerBlockMixin",
     "accessors.ItemAccessor",
     "accessors.LootTableAccessor",
     "accessors.ShapedRecipeAccessor"

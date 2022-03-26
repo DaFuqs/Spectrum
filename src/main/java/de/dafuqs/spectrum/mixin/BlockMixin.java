@@ -1,7 +1,8 @@
 package de.dafuqs.spectrum.mixin;
 
-import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.enchantments.AutoSmeltEnchantment;
+import de.dafuqs.spectrum.enchantments.ExuberanceEnchantment;
+import de.dafuqs.spectrum.enchantments.ResonanceEnchantment;
 import de.dafuqs.spectrum.registries.SpectrumEnchantments;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -17,6 +18,7 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.stat.Stats;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -31,10 +33,10 @@ import java.util.Map;
 @Mixin(Block.class)
 public abstract class BlockMixin {
 
-    PlayerEntity breakingPlayer;
+    PlayerEntity spectrum$breakingPlayer;
 
     @Inject(method = "getDroppedStacks(Lnet/minecraft/block/BlockState;Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/entity/BlockEntity;Lnet/minecraft/entity/Entity;Lnet/minecraft/item/ItemStack;)Ljava/util/List;", at = @At("RETURN"), cancellable = true)
-    private static void getDroppedStacks(BlockState state, ServerWorld world, BlockPos pos, BlockEntity blockEntity, Entity entity, ItemStack stack, CallbackInfoReturnable<List<ItemStack>> cir) {
+    private static void spectrum$getDroppedStacks(BlockState state, ServerWorld world, BlockPos pos, BlockEntity blockEntity, Entity entity, ItemStack stack, CallbackInfoReturnable<List<ItemStack>> cir) {
         List<ItemStack> returnStacks = cir.getReturnValue();
         if (returnStacks.size() > 0) {
             Map<Enchantment, Integer> enchantmentMap = EnchantmentHelper.get(stack);
@@ -74,30 +76,22 @@ public abstract class BlockMixin {
             }
         }
     }
+    
+    @Inject(method = "afterBreak", at = @At("HEAD"))
+    private void spectrum$saveBreakingPlayerReference(World world, PlayerEntity player, BlockPos pos, BlockState state, BlockEntity blockEntity, ItemStack stack, CallbackInfo ci) {
+        spectrum$breakingPlayer = player;
+    }
 
-    private float getExuberanceMod(PlayerEntity breakingPlayer) {
-        if (breakingPlayer != null && EnchantmentHelper.getLevel(SpectrumEnchantments.EXUBERANCE, breakingPlayer.getMainHandStack()) > 0) {
-            int exuberanceLevel = EnchantmentHelper.getEquipmentLevel(SpectrumEnchantments.EXUBERANCE, breakingPlayer);
-            return 1.0F + exuberanceLevel * SpectrumCommon.CONFIG.ExuberanceBonusExperiencePercentPerLevel;
-        } else {
-            return 1.0F;
+    @ModifyArg(method = "dropExperience", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/ExperienceOrbEntity;spawn(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/util/math/Vec3d;I)V"), index = 2)
+    private int spectrum$applyExuberance(int originalXP){
+        return (int) (originalXP * ExuberanceEnchantment.getExuberanceMod(spectrum$breakingPlayer));
+    }
+    
+    @Inject(method = "afterBreak", at = @At("HEAD"), cancellable = true)
+    public void spectrum$afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack stack, CallbackInfo callbackInfo) {
+        if(ResonanceEnchantment.checkResonanceForSpawnerMining(world, pos, state, blockEntity, stack) && SpectrumEnchantments.RESONANCE.canEntityUse(player)) {
+            callbackInfo.cancel();
         }
     }
-
-    @Inject(method = "afterBreak", at = @At("HEAD"))
-    private void savePlayerReference(World world, PlayerEntity player, BlockPos pos, BlockState state, BlockEntity blockEntity, ItemStack stack, CallbackInfo ci) {
-        breakingPlayer = player;
-    }
-
-    @ModifyArg(
-            method = "dropExperience",
-            at = @At(
-                    value = "INVOKE",
-                    target = "Lnet/minecraft/entity/ExperienceOrbEntity;spawn(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/util/math/Vec3d;I)V"
-            ),
-            index = 2
-    )
-    private int applyExuberance(int originalXP){
-        return (int) (originalXP * getExuberanceMod(breakingPlayer));
-    }
+    
 }

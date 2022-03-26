@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.blocks.decay;
 
 import de.dafuqs.spectrum.SpectrumCommon;
 import net.minecraft.block.Block;
-import net.minecraft.tag.Tag;
 import net.minecraft.tag.TagKey;
 
 public class TerrorBlock extends RuinBlock {

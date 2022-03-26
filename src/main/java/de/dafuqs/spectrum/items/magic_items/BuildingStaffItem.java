@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.items.magic_items;
 
 import de.dafuqs.spectrum.registries.SpectrumBlockTags;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.Item;
 

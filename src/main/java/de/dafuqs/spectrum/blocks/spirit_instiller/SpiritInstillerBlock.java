@@ -142,8 +142,11 @@ public class SpiritInstillerBlock extends BlockWithEntity {
 		BlockRotation checkRotation = lastBlockRotation;
 		for(int i = 0; i < BlockRotation.values().length; i++) {
 			valid = multiblock.validate(world, blockPos.down(3).offset(Support.directionFromRotation(lastBlockRotation), 2), lastBlockRotation);
-			if(valid && i != 0) {
-				spiritInstillerBlockEntity.setMultiblockRotation(checkRotation);
+			if(valid) {
+				if(i != 0) {
+					spiritInstillerBlockEntity.setMultiblockRotation(checkRotation);
+				}
+				break;
 			} else {
 				checkRotation = BlockRotation.values()[(checkRotation.ordinal() + 1) % BlockRotation.values().length];
 			}

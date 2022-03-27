@@ -163,7 +163,7 @@ public class MidnightSolutionFluidBlock extends FluidBlock {
 		return false;
 	}
 
-	private static void playExtinguishSound(@NotNull WorldAccess world, BlockPos pos) {
+	public static void playExtinguishSound(@NotNull WorldAccess world, BlockPos pos) {
 		world.syncWorldEvent(1501, pos, 0);
 	}
 	

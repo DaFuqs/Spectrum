@@ -1,6 +1,8 @@
 package de.dafuqs.spectrum.recipe.fusion_shrine;
 
+import de.dafuqs.spectrum.blocks.fluid.MidnightSolutionFluidBlock;
 import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
+import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LightningEntity;
 import net.minecraft.particle.ParticleTypes;
@@ -22,7 +24,9 @@ public enum FusionShrineRecipeWorldEffect {
 	LIGHTNING_ON_SHRINE,
 	LIGHTNING_AROUND_SHRINE,
 	VISUAL_EXPLOSIONS_ON_SHRINE,
-	SINGLE_VISUAL_EXPLOSION_ON_SHRINE;
+	SINGLE_VISUAL_EXPLOSION_ON_SHRINE,
+	MAYBE_PLACE_MIDNIGHT_SOLUTION,
+	PLACE_MIDNIGHT_SOLUTION;
 
 	public void doEffect(ServerWorld world, BlockPos shrinePos) {
 		switch (this) {
@@ -48,9 +52,9 @@ public enum FusionShrineRecipeWorldEffect {
 					int randomX = shrinePos.getX() + 12 - world.getRandom().nextInt(24);
 					int randomZ = shrinePos.getZ() + 12 - world.getRandom().nextInt(24);
 
-					BlockPos randomPos = new BlockPos(randomX, world.getTopY(Heightmap.Type.WORLD_SURFACE, randomX, randomZ), randomZ);
+					BlockPos randomTopPos = new BlockPos(randomX, world.getTopY(Heightmap.Type.WORLD_SURFACE, randomX, randomZ), randomZ);
 					LightningEntity lightningEntity = EntityType.LIGHTNING_BOLT.create(world);
-					lightningEntity.refreshPositionAfterTeleport(Vec3d.ofBottomCenter(randomPos));
+					lightningEntity.refreshPositionAfterTeleport(Vec3d.ofBottomCenter(randomTopPos));
 					lightningEntity.setCosmetic(false);
 					world.spawnEntity(lightningEntity);
 				}
@@ -64,6 +68,16 @@ public enum FusionShrineRecipeWorldEffect {
 			case SINGLE_VISUAL_EXPLOSION_ON_SHRINE -> {
 				world.playSound(null, shrinePos.up(), SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.BLOCKS, 0.8F, 0.8F + world.random.nextFloat() * 0.4F);
 				SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity(world, shrinePos, ParticleTypes.EXPLOSION, 1);
+			}
+			case PLACE_MIDNIGHT_SOLUTION, MAYBE_PLACE_MIDNIGHT_SOLUTION -> {
+				if (this == PLACE_MIDNIGHT_SOLUTION || world.getRandom().nextFloat() < 0.05F) {
+					int randomX = shrinePos.getX() + 5 - world.getRandom().nextInt(10);
+					int randomZ = shrinePos.getZ() + 5 - world.getRandom().nextInt(10);
+					
+					BlockPos randomTopPos = new BlockPos(randomX, world.getTopY(Heightmap.Type.WORLD_SURFACE, randomX, randomZ), randomZ);
+					world.setBlockState(randomTopPos, SpectrumBlocks.MIDNIGHT_SOLUTION.getDefaultState());
+					MidnightSolutionFluidBlock.playExtinguishSound(world, randomTopPos);
+				}
 			}
 		}
 	}

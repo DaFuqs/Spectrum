@@ -4,7 +4,9 @@ import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.progression.ClientRecipeToastManager;
 import de.dafuqs.spectrum.recipe.GatedRecipe;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
+import de.dafuqs.spectrum.recipe.potion_workshop.PotionWorkshopReagents;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
+import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.loader.api.FabricLoader;
@@ -91,19 +93,30 @@ public class FusionShrineRecipe implements Recipe<Inventory>, GatedRecipe {
 	 */
 	@Override
 	public boolean matches(Inventory inv, World world) {
-		for(Ingredient ingredient : this.craftingInputs) {
-			boolean found = false;
+		List<Ingredient> ingredients = this.getIngredients();
+		if(inv.size() >= ingredients.size()) {
+			int inputStackCount = 0;
 			for(int i = 0; i < inv.size(); i++) {
-				if(ingredient.test(inv.getStack(i))) {
-					found = true;
-					break;
+				ItemStack itemStack = inv.getStack(i);
+				if (!itemStack.isEmpty()) {
+					inputStackCount++;
+					boolean found = false;
+					for(Ingredient ingredient : ingredients) {
+						if(ingredient.test(inv.getStack(i))) {
+							found = true;
+							break;
+						}
+					}
+					if(!found) {
+						return false;
+					}
 				}
 			}
-			if(!found) {
-				return false;
-			}
+			
+			return inputStackCount == ingredients.size(); // no ingredients in unused slots
+		} else {
+			return false;
 		}
-		return true;
 	}
 
 	@Override

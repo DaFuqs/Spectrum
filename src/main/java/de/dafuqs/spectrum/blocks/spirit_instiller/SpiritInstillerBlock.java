@@ -94,7 +94,6 @@ public class SpiritInstillerBlock extends BlockWithEntity {
 		} else {
 			ItemStack itemStack = player.getStackInHand(hand);
 			boolean itemsChanged = false;
-			Optional<SoundEvent> soundToPlay = Optional.empty();
 			
 			BlockEntity blockEntity = world.getBlockEntity(pos);
 			if(blockEntity instanceof SpiritInstillerBlockEntity spiritInstillerBlockEntity) {
@@ -110,7 +109,6 @@ public class SpiritInstillerBlock extends BlockWithEntity {
 					}
 					if (!retrievedStack.isEmpty()) {
 						player.giveItemStack(retrievedStack);
-						soundToPlay = Optional.of(SoundEvents.ENTITY_ITEM_PICKUP);
 						itemsChanged = true;
 					}
 				} else if (!itemStack.isEmpty() && verifyStructure(world, pos, (ServerPlayerEntity) player, spiritInstillerBlockEntity)) {
@@ -119,7 +117,6 @@ public class SpiritInstillerBlock extends BlockWithEntity {
 					ItemStack remainingStack = InventoryHelper.smartAddToInventory(itemStack, spiritInstillerBlockEntity.getInventory(), null);
 					player.setStackInHand(hand, remainingStack);
 					
-					soundToPlay = Optional.of(SoundEvents.ENTITY_ITEM_PICKUP);
 					itemsChanged = true;
 				}
 				
@@ -127,9 +124,7 @@ public class SpiritInstillerBlock extends BlockWithEntity {
 					spiritInstillerBlockEntity.markDirty();
 					spiritInstillerBlockEntity.inventory.markDirty();
 					spiritInstillerBlockEntity.updateInClientWorld();
-					if(soundToPlay.isPresent()) {
-						world.playSound(null, player.getBlockPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 0.8F, 0.8F + world.random.nextFloat() * 0.6F);
-					}
+					world.playSound(null, player.getBlockPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 0.8F, 0.8F + world.random.nextFloat() * 0.6F);
 				}
 			}
 			
@@ -137,9 +132,22 @@ public class SpiritInstillerBlock extends BlockWithEntity {
 		}
 	}
 	
-	private static boolean verifyStructure(World world, @NotNull BlockPos blockPos, @Nullable ServerPlayerEntity serverPlayerEntity, SpiritInstillerBlockEntity spiritInstillerBlockEntity) {
+	private static boolean verifyStructure(World world, @NotNull BlockPos blockPos, @Nullable ServerPlayerEntity serverPlayerEntity, @NotNull SpiritInstillerBlockEntity spiritInstillerBlockEntity) {
 		IMultiblock multiblock = SpectrumMultiblocks.MULTIBLOCKS.get(SpectrumMultiblocks.SPIRIT_INSTILLER_IDENTIFIER);
-		boolean valid = multiblock.validate(world, blockPos.down(2), BlockRotation.NONE);
+		
+		BlockRotation lastBlockRotation = spiritInstillerBlockEntity.getMultiblockRotation();
+		boolean valid = false;
+		
+		// try all 4 rotations
+		BlockRotation checkRotation = lastBlockRotation;
+		for(int i = 0; i < BlockRotation.values().length; i++) {
+			valid = multiblock.validate(world, blockPos.down(3).offset(Support.directionFromRotation(lastBlockRotation), 2), lastBlockRotation);
+			if(valid && i != 0) {
+				spiritInstillerBlockEntity.setMultiblockRotation(checkRotation);
+			} else {
+				checkRotation = BlockRotation.values()[(checkRotation.ordinal() + 1) % BlockRotation.values().length];
+			}
+		}
 		
 		if(valid) {
 			if (serverPlayerEntity != null) {
@@ -148,9 +156,8 @@ public class SpiritInstillerBlock extends BlockWithEntity {
 		} else {
 			if(world.isClient) {
 				IMultiblock currentMultiBlock = PatchouliAPI.get().getCurrentMultiblock();
-				BlockRotation lastBlockRotation = spiritInstillerBlockEntity.getMultiblockRotation();
 				if(currentMultiBlock == multiblock) {
-					lastBlockRotation = BlockRotation.values()[(lastBlockRotation.ordinal() + 1) % BlockRotation.values().length];
+					lastBlockRotation = BlockRotation.values()[(lastBlockRotation.ordinal() + 1) % BlockRotation.values().length]; // cycle rotation
 					spiritInstillerBlockEntity.setMultiblockRotation(lastBlockRotation);
 				} else {
 					lastBlockRotation = BlockRotation.NONE;

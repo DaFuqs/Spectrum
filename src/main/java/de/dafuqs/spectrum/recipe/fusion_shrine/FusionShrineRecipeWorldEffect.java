@@ -75,8 +75,10 @@ public enum FusionShrineRecipeWorldEffect {
 					int randomZ = shrinePos.getZ() + 5 - world.getRandom().nextInt(10);
 					
 					BlockPos randomTopPos = new BlockPos(randomX, world.getTopY(Heightmap.Type.WORLD_SURFACE, randomX, randomZ), randomZ);
-					world.setBlockState(randomTopPos, SpectrumBlocks.MIDNIGHT_SOLUTION.getDefaultState());
-					MidnightSolutionFluidBlock.playExtinguishSound(world, randomTopPos);
+					if(world.isAir(randomTopPos)) {
+						world.setBlockState(randomTopPos, SpectrumBlocks.MIDNIGHT_SOLUTION.getDefaultState());
+						MidnightSolutionFluidBlock.playExtinguishSound(world, randomTopPos);
+					}
 				}
 			}
 		}

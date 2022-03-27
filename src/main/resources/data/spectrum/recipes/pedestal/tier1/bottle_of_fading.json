@@ -8,6 +8,7 @@
   "black": 0,
   "white": 0,
   "experience": 2.0,
+  "skip_recipe_remainders": true,
   "pattern": [
     "FSF",
     "CBC",

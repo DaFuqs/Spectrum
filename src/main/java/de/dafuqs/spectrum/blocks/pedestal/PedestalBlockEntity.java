@@ -533,7 +533,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 			for(int i = 0; i < 9; i++) {
 				ItemStack itemStack = inventory.get(i);
 				if(!itemStack.isEmpty()) {
-					Item recipeReminderItem = itemStack.getItem().getRecipeRemainder();
+					Item recipeReminderItem = recipe.skipRecipeRemainders() ? null : itemStack.getItem().getRecipeRemainder();
 					if(recipeReminderItem == null) {
 						itemStack.decrement(1);
 					} else {

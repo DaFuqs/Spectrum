@@ -1,21 +1,40 @@
 package de.dafuqs.spectrum.blocks.spirit_instiller;
 
 import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.helpers.InventoryHelper;
+import de.dafuqs.spectrum.helpers.Support;
+import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
+import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
+import de.dafuqs.spectrum.registries.SpectrumMultiblocks;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.util.Identifier;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.Inventory;
+import net.minecraft.item.ItemStack;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvent;
+import net.minecraft.sound.SoundEvents;
+import net.minecraft.text.TranslatableText;
+import net.minecraft.util.*;
+import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldAccess;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import vazkii.patchouli.api.IMultiblock;
+import vazkii.patchouli.api.PatchouliAPI;
+
+import java.util.Optional;
 
 public class SpiritInstillerBlock extends BlockWithEntity {
 	
 	public static final Identifier UNLOCK_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "midgame/build_spirit_instiller_structure");
-	
 	protected static final VoxelShape SHAPE = Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 15.0D, 16.0D);
 	
 	public SpiritInstillerBlock(Settings settings) {
@@ -36,12 +55,131 @@ public class SpiritInstillerBlock extends BlockWithEntity {
 	@Nullable
 	@Override
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-		return super.getTicker(world, state, type);
+		if(world.isClient) {
+			return null;
+		} else {
+			return checkType(type, SpectrumBlockEntityRegistry.SPIRIT_INSTILLER, SpiritInstillerBlockEntity::serverTick);
+		}
 	}
 	
 	@Override
 	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
 		return SHAPE;
+	}
+	
+	@Override
+	public void onBroken(WorldAccess world, BlockPos pos, BlockState state) {
+		if(world.isClient()) {
+			clearCurrentlyRenderedMultiBlock((World) world);
+		}
+	}
+	
+	public static void clearCurrentlyRenderedMultiBlock(World world) {
+		if(world.isClient) {
+			IMultiblock currentlyRenderedMultiBlock = PatchouliAPI.get().getCurrentMultiblock();
+			if (currentlyRenderedMultiBlock != null && currentlyRenderedMultiBlock.getID().equals(SpectrumMultiblocks.SPIRIT_INSTILLER_IDENTIFIER)) {
+				PatchouliAPI.get().clearMultiblock();
+			}
+		}
+	}
+	
+	@Override
+	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+		if(world.isClient) {
+			BlockEntity blockEntity = world.getBlockEntity(pos);
+			if(blockEntity instanceof SpiritInstillerBlockEntity spiritInstillerBlockEntity) {
+				verifyStructure(world, pos, null, spiritInstillerBlockEntity);
+			}
+			return ActionResult.SUCCESS;
+		} else {
+			ItemStack itemStack = player.getStackInHand(hand);
+			boolean itemsChanged = false;
+			Optional<SoundEvent> soundToPlay = Optional.empty();
+			
+			BlockEntity blockEntity = world.getBlockEntity(pos);
+			if(blockEntity instanceof SpiritInstillerBlockEntity spiritInstillerBlockEntity) {
+				// if the structure is valid the player can put / retrieve blocks into the shrine
+				if (player.isSneaking()) {
+					ItemStack retrievedStack = ItemStack.EMPTY;
+					Inventory inventory = spiritInstillerBlockEntity.getInventory();
+					for (int i = inventory.size() - 1; i >= 0; i--) {
+						retrievedStack = inventory.removeStack(i);
+						if (!retrievedStack.isEmpty()) {
+							break;
+						}
+					}
+					if (!retrievedStack.isEmpty()) {
+						player.giveItemStack(retrievedStack);
+						soundToPlay = Optional.of(SoundEvents.ENTITY_ITEM_PICKUP);
+						itemsChanged = true;
+					}
+				} else if (!itemStack.isEmpty() && verifyStructure(world, pos, (ServerPlayerEntity) player, spiritInstillerBlockEntity)) {
+					spiritInstillerBlockEntity.setOwner(player);
+					
+					ItemStack remainingStack = InventoryHelper.smartAddToInventory(itemStack, spiritInstillerBlockEntity.getInventory(), null);
+					player.setStackInHand(hand, remainingStack);
+					
+					soundToPlay = Optional.of(SoundEvents.ENTITY_ITEM_PICKUP);
+					itemsChanged = true;
+				}
+				
+				if(itemsChanged) {
+					spiritInstillerBlockEntity.markDirty();
+					spiritInstillerBlockEntity.inventory.markDirty();
+					spiritInstillerBlockEntity.updateInClientWorld();
+					if(soundToPlay.isPresent()) {
+						world.playSound(null, player.getBlockPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 0.8F, 0.8F + world.random.nextFloat() * 0.6F);
+					}
+				}
+			}
+			
+			return ActionResult.CONSUME;
+		}
+	}
+	
+	private static boolean verifyStructure(World world, @NotNull BlockPos blockPos, @Nullable ServerPlayerEntity serverPlayerEntity, SpiritInstillerBlockEntity spiritInstillerBlockEntity) {
+		IMultiblock multiblock = SpectrumMultiblocks.MULTIBLOCKS.get(SpectrumMultiblocks.SPIRIT_INSTILLER_IDENTIFIER);
+		boolean valid = multiblock.validate(world, blockPos.down(2), BlockRotation.NONE);
+		
+		if(valid) {
+			if (serverPlayerEntity != null) {
+				SpectrumAdvancementCriteria.COMPLETED_MULTIBLOCK.trigger(serverPlayerEntity, multiblock);
+			}
+		} else {
+			if(world.isClient) {
+				IMultiblock currentMultiBlock = PatchouliAPI.get().getCurrentMultiblock();
+				BlockRotation lastBlockRotation = spiritInstillerBlockEntity.getMultiblockRotation();
+				if(currentMultiBlock == multiblock) {
+					lastBlockRotation = BlockRotation.values()[(lastBlockRotation.ordinal() + 1) % BlockRotation.values().length];
+					spiritInstillerBlockEntity.setMultiblockRotation(lastBlockRotation);
+				} else {
+					lastBlockRotation = BlockRotation.NONE;
+				}
+				PatchouliAPI.get().showMultiblock(multiblock, new TranslatableText("multiblock.spectrum.spirit_instiller.structure"), blockPos.down(3).offset(Support.directionFromRotation(lastBlockRotation), 2), lastBlockRotation);
+			} else {
+				scatterContents(world, blockPos);
+			}
+		}
+		
+		return valid;
+	}
+	
+	
+	// drop all currently stored items
+	@Override
+	public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
+		scatterContents(world, pos);
+		super.onStateReplaced(state, world, pos, newState, moved);
+	}
+	
+	public static void scatterContents(World world, BlockPos pos) {
+		Block block = world.getBlockState(pos).getBlock();
+		BlockEntity blockEntity = world.getBlockEntity(pos);
+		if (blockEntity instanceof SpiritInstillerBlockEntity spiritInstillerBlockEntity) {
+			ItemScatterer.spawn(world, pos, spiritInstillerBlockEntity.getInventory());
+			world.updateComparators(pos, block);
+			spiritInstillerBlockEntity.updateInClientWorld();
+		}
 	}
 	
 }

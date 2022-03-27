@@ -46,9 +46,9 @@ import java.util.Optional;
 public class FusionShrineBlock extends BlockWithEntity {
 	
 	public static final Identifier UNLOCK_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "collect_all_basic_pigments_besides_brown");
+	protected static final VoxelShape SHAPE = Block.createCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 15.0D, 14.0D);
 	
 	public static final IntProperty LIGHT_LEVEL = IntProperty.of("light_level", 0, 15);
-	protected static final VoxelShape SHAPE = Block.createCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 15.0D, 14.0D);
 
 	public FusionShrineBlock(Settings settings) {
 		super(settings);

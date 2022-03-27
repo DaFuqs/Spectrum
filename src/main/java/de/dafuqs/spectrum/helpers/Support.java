@@ -16,16 +16,16 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.tag.TagKey;
+import net.minecraft.util.BlockRotation;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
 import org.apache.logging.log4j.Level;
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.Random;
+import java.util.*;
 
 public class Support {
 	
@@ -190,6 +190,24 @@ public class Support {
 				} else {
 					return dimensionKeyString;
 				}
+		}
+	}
+	
+	@Contract(pure = true)
+	public static Direction directionFromRotation(@NotNull BlockRotation blockRotation) {
+		switch (blockRotation) {
+			case NONE -> {
+				return Direction.EAST;
+			}
+			case CLOCKWISE_90 -> {
+				return Direction.SOUTH;
+			}
+			case CLOCKWISE_180 -> {
+				return Direction.WEST;
+			}
+			default -> {
+				return Direction.NORTH;
+			}
 		}
 	}
 	

@@ -92,7 +92,7 @@
   "multiblock.spectrum.pedestal.complex_structure": "Spectrum Palace",
   "multiblock.spectrum.fusion_shrine.structure": "Fusion Shrine",
   "multiblock.spectrum.enchanter.structure": "Enchanter",
-  "multiblock.spectrum.spirit_instiller.structure": "Enchanter",
+  "multiblock.spectrum.spirit_instiller.structure": "Spirit Instiller",
 
   "death.attack.spectrum_decay": "%s was eaten alive",
   "death.attack.spectrum_floatblock": "%s was smashed by a Floating Block",
@@ -185,6 +185,10 @@
   "spectrum.subtitles.radiance_pin_trigger": "Radiance Pin triggers",
   "spectrum.subtitles.air_launch_belt_charging": "Take-Off Belt charging",
   "spectrum.subtitles.midnight_aberration_crumbling": "Midnight Aberration crumbles",
+  "subtitles.block.citrine_block.chime": "Citrine chimes",
+  "subtitles.block.topaz_block.chime": "Topaz chimes",
+  "subtitles.block.onyx_block.chime": "Onyx chimes",
+  "subtitles.block.moonstone_block.chime": "Moonstone chimes",
 
   "spectrum.toast.revelation.title": "You gained knowledge about the world",
   "spectrum.toast.revelation.text": "New things reveal themselves to you",

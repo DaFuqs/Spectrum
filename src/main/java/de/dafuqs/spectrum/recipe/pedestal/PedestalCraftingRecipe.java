@@ -46,6 +46,7 @@ public class PedestalCraftingRecipe implements Recipe<Inventory>, GatedRecipe {
 	protected final ItemStack output;
 	protected final float experience;
 	protected final int craftingTime;
+	protected final boolean skipRecipeRemainders; // true means the recipe does not return remainders, like empty buckets from water buckets
 	// since there are a few recipes that are basically compacting recipes
 	// they could be crafted ingots>block and block>ingots back
 	// In that case:
@@ -57,7 +58,7 @@ public class PedestalCraftingRecipe implements Recipe<Inventory>, GatedRecipe {
 
 	public PedestalCraftingRecipe(Identifier id, String group, PedestalRecipeTier tier, int width, int height,
 	                              DefaultedList<Ingredient> craftingInputs, HashMap<GemstoneColor, Integer> gemstoneDustInputs, ItemStack output,
-	                              float experience, int craftingTime, boolean noBenefitsFromYieldUpgrades, List<Identifier> requiredAdvancementIdentifiers) {
+	                              float experience, int craftingTime, boolean skipRecipeRemainders, boolean noBenefitsFromYieldUpgrades, List<Identifier> requiredAdvancementIdentifiers) {
 		this.id = id;
 		this.group = group;
 		this.tier = tier;
@@ -70,6 +71,7 @@ public class PedestalCraftingRecipe implements Recipe<Inventory>, GatedRecipe {
 		this.output = output;
 		this.experience = experience;
 		this.craftingTime = craftingTime;
+		this.skipRecipeRemainders = skipRecipeRemainders;
 		this.noBenefitsFromYieldUpgrades = noBenefitsFromYieldUpgrades;
 
 		this.requiredAdvancementIdentifiers = requiredAdvancementIdentifiers;
@@ -309,6 +311,10 @@ public class PedestalCraftingRecipe implements Recipe<Inventory>, GatedRecipe {
 
 	public boolean areYieldUpgradesDisabled() {
 		return noBenefitsFromYieldUpgrades;
+	}
+	
+	public boolean skipRecipeRemainders() {
+		return this.skipRecipeRemainders;
 	}
 	
 }

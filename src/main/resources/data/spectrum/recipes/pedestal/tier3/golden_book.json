@@ -1,0 +1,32 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 600,
+  "tier": "advanced",
+  "magenta": 0,
+  "yellow": 0,
+  "cyan": 0,
+  "black": 2,
+  "white": 0,
+  "experience": 2.0,
+  "pattern": [
+    "GGG",
+    "MBM",
+    "GGG"
+  ],
+  "key": {
+    "B": {
+      "item": "minecraft:book"
+    },
+    "G": {
+      "item": "minecraft:gold_ingot"
+    },
+    "M": {
+      "item": "spectrum:moonstone_shard"
+    }
+  },
+  "result" : {
+    "item": "spectrum:golden_book",
+    "count": 1
+  },
+  "required_advancements": ["spectrum:progression/unlock_golden_book"]
+}

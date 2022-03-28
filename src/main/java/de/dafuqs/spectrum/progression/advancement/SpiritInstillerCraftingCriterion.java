@@ -64,9 +64,7 @@ public class SpiritInstillerCraftingCriterion extends AbstractCriterion<SpiritIn
 					return true;
 				} else {
 					if (!itemStack.isEmpty()) {
-						list.removeIf((itemPredicate) -> {
-							return itemPredicate.test(itemStack);
-						});
+						list.removeIf((itemPredicate) -> itemPredicate.test(itemStack));
 					}
 					return list.isEmpty();
 				}

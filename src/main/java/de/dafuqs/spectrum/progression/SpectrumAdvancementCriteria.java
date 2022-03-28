@@ -25,6 +25,7 @@ public class SpectrumAdvancementCriteria {
 	public static PigmentPaletteUseCriterion PIGMENT_PALETTE_USE;
 	public static JeopardantKillCriterion JEOPARDANT_KILL;
 	public static MemoryManifestingCriterion MEMORY_MANIFESTING;
+	public static SpiritInstillerCraftingCriterion SPIRIT_INSTILLER_CRAFTING;
 
 	public static void register() {
 		ADVANCEMENT_GOTTEN = CriteriaAccessor.callRegister(new HasAdvancementCriterion());
@@ -47,6 +48,7 @@ public class SpectrumAdvancementCriteria {
 		PIGMENT_PALETTE_USE = CriteriaAccessor.callRegister(new PigmentPaletteUseCriterion());
 		JEOPARDANT_KILL = CriteriaAccessor.callRegister(new JeopardantKillCriterion());
 		MEMORY_MANIFESTING = CriteriaAccessor.callRegister(new MemoryManifestingCriterion());
+		SPIRIT_INSTILLER_CRAFTING = CriteriaAccessor.callRegister(new SpiritInstillerCraftingCriterion());
 	}
 
 }

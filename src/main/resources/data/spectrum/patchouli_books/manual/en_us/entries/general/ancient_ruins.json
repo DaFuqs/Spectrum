@@ -1,0 +1,45 @@
+{
+  "name": "Ancient Ruins",
+  "icon": "spectrum:dike_chiseled_preservation_stone",
+  "advancement": "spectrum:find_ancient_ruins",
+  "sortnum": 16,
+  "turnin": "spectrum:generate_ancient_ruins_loot",
+  "category": "spectrum:general_category",
+  "extra_recipe_mappings": {
+    "spectrum:preservation_stone": 0,
+    "spectrum:dike_chiseled_preservation_stone": 0,
+    "spectrum:ancient_treasure_chest": 0,
+    "spectrum:preservation_glass": 0,
+    "spectrum:dike_gate": 0,
+    "spectrum:courier_statue": 0,
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "title": "Ancient Ruins",
+      "item": "spectrum:dike_chiseled_preservation_stone",
+      "text": "Deep underground you found this huge structure, which entrance seems to be protected by a strong, magical force."
+    },
+    {
+	  "type": "patchouli:image",
+	  "title": "The Entrance",
+	  "images": [ "spectrum:textures/gui/manual/ancient_ruins.png" ],
+	  "border": true,
+      "text": "What might be hiding from you behind this barrier? What do these glyphs mean?"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Being Worthy?",
+      "item": "spectrum:azure_dike_ring",
+      "advancement": "spectrum:enter_ancient_ruins",
+      "text": "It looks like wearing Azure Dike equipment allowed you to enter.$(br)Until now, you thought you were alone in your creative power with the gems and pigments. From the looks of it, you were wrong. Very, very wrong..."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "A Challenge",
+      "item": "spectrum:dike_chiseled_preservation_stone",
+      "advancement": "spectrum:generate_ancient_ruins_loot",
+      "text": "Whoever built these structures, they obviously followed the same path as you, but they were technologically miles ahead of you.$(br2)Still, anyway. You accept the challenge, of course. You have one huge advantage:$(br)$(italic)YOU are still alive."
+    },
+  ]
+}

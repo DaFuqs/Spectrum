@@ -1,9 +1,9 @@
 {
-  "name": "Creating Onyx Geodes",
+  "name": "Creating Budding Onyx",
   "icon": "spectrum:onyx_cluster",
   "sortnum": 14,
-  "advancement": "spectrum:progression/unlock_onyx_bud_creation",
-  "turnin": "spectrum:lategame/create_budding_onyx",
+  "advancement": "spectrum:progression/unlock_budding_onyx",
+  "turnin": "spectrum:midgame/create_budding_onyx",
   "category": "spectrum:general_category",
   "extra_recipe_mappings": {
     "spectrum:small_onyx_bud": 0,
@@ -18,8 +18,14 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "title": "Creating Onyx Geodes",
+      "title": "Creating Budding Onyx",
       "text": "TODO"
-    }
+    },
+    {
+      "type": "spectrum:spirit_instiller_crafting",
+      "title": "Spirit Inst. Recipe",
+      "recipe": "spectrum:spirit_instiller/budding_onyx",
+      "text": ""
+    },
   ]
 }

@@ -25,31 +25,31 @@
       "type": "patchouli:spotlight",
       "title": "Planting & Growing",
       "item": "spectrum:germinated_jade_vine_seeds",
-	  "advancement": "spectrum:midgame/create_germinated_jade_vine_seeds",
+	  "advancement": "spectrum:hidden/instilled_germinated_jade_vine_seeds",
 	  "text": "Palid, fragile hanging plants, Grows down fence blocks. Can only grow one stage per night. Only grow when exposed to the night sky, but will die if exposed to sunlight (Use Star Lantern as a proxy?)."
     },
     {
       "type": "patchouli:text",
       "title": "Jade Petals",
-	  "advancement": "spectrum:midgame/collect_jade_petals",
+	  "advancement": "spectrum:hidden/collect_jade_petals",
 	  "text": "Dropped when mostly grown. Also rarely germinated seeds."
     },
     {
       "type": "patchouli:text",
       "title": "Jade Petal Carpety Thing",
-	  "advancement": "spectrum:midgame/collect_jade_petals",
+	  "advancement": "spectrum:hidden/collect_jade_petals",
 	  "text": "Purely Decorational"
     },
     {
       "type": "patchouli:text",
       "title": "Jade Petal Leaf-like Block",
-	  "advancement": "spectrum:midgame/collect_jade_petals",
+	  "advancement": "spectrum:hidden/collect_jade_petals",
 	  "text": "Purely Decorational"
     },
     {
       "type": "patchouli:text",
       "title": "Moonstruck Nectar",
-	  "advancement": "spectrum:midgame/collect_moonstruck_nectar",
+	  "advancement": "spectrum:midgame/harvest_moonstruck_nectar",
 	  "text": "After many nights full bloom, if full moon. Collect with glass bottle/bowl. Great restorative properties. Used to repair tools. Can purify certain items. Required for 'damage proof' enchant. Drink for healing."
     }
   ]

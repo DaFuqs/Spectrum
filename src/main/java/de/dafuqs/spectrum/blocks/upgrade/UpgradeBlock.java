@@ -37,6 +37,12 @@ public class UpgradeBlock extends BlockWithEntity {
 		add(new Vec3i(-3, 0, 3));
 		add(new Vec3i(3, 0, -3));
 		add(new Vec3i(-3, 0, -3));
+		
+		// Spirit Instiller
+		add(new Vec3i(4, -1, 4));
+		add(new Vec3i(-4, -1, 4));
+		add(new Vec3i(4, -1, -4));
+		add(new Vec3i(-4, -1, -4));
 	}};
 	
 	// Like: The further the player progresses,

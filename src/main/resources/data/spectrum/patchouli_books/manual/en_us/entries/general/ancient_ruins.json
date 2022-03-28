@@ -11,7 +11,7 @@
     "spectrum:ancient_treasure_chest": 0,
     "spectrum:preservation_glass": 0,
     "spectrum:dike_gate": 0,
-    "spectrum:courier_statue": 0,
+    "spectrum:courier_statue": 0
   },
   "pages": [
     {
@@ -40,6 +40,6 @@
       "item": "spectrum:dike_chiseled_preservation_stone",
       "advancement": "spectrum:generate_ancient_ruins_loot",
       "text": "Whoever built these structures, they obviously followed the same path as you, but they were technologically miles ahead of you.$(br2)Still, anyway. You accept the challenge, of course. You have one huge advantage:$(br)$(italic)YOU are still alive."
-    },
+    }
   ]
 }

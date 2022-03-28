@@ -1,0 +1,37 @@
+{
+  "parent": "spectrum:enter_ancient_ruins",
+  "display": {
+    "icon": {
+      "item": "spectrum:ancient_treasure_chest"
+    },
+	"hidden": true,
+    "title": {
+      "translate": "advancements.spectrum.generate_ancient_ruins_loot.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.generate_ancient_ruins_loot.description"
+    }
+  },
+  "criteria": {
+    "open_ancient_ruins_treasure_chest": {
+      "trigger": "minecraft:player_generates_container_loot",
+      "conditions": {
+	      "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "location": {
+                "feature": "spectrum:ancient_ruins_structure"
+              }
+            }
+          }
+        ],
+        "loot_table": "spectrum:ancient_ruins_loot"
+      }
+    },
+    "gotten_previous": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:enter_ancient_ruins" }
+    }
+  }
+}

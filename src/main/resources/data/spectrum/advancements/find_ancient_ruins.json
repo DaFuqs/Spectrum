@@ -1,0 +1,25 @@
+{
+  "parent": "spectrum:spectrum",
+  "display": {
+    "icon": {
+      "item": "spectrum:preservation_stone"
+    },
+	"hidden": true,
+    "title": {
+      "translate": "advancements.spectrum.find_ancient_ruins.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.find_ancient_ruins.description"
+    }
+  },
+  "criteria": {
+    "in_ancient_ruins": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "feature": "spectrum:ancient_ruins"
+        }
+      }
+    }
+  }
+}

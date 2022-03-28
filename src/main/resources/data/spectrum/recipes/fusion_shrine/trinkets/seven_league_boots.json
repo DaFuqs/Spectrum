@@ -2,7 +2,7 @@
   "type": "spectrum:fusion_shrine",
   "time": 600,
   "experience": 2.0,
-  "fluid": "minecraft:liquid_crystal",
+  "fluid": "spectrum:liquid_crystal",
   "ingredients": [
     {
       "item": "minecraft:leather_boots"

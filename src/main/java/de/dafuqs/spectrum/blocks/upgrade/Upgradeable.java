@@ -4,9 +4,11 @@ import com.google.common.collect.Maps;
 import net.minecraft.block.Block;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtList;
+import net.minecraft.util.BlockRotation;
 import net.minecraft.util.Pair;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
@@ -51,17 +53,46 @@ public interface Upgradeable {
 		return map;
 	}
 	
-	static Pair<Integer, Map<UpgradeType, Double>> checkUpgradeMods(World world, BlockPos blockPos, int horizontalOffset, int verticalOffset) {
-		List<BlockPos> offsetPosList = new ArrayList<>();
-		offsetPosList.add(blockPos.add(horizontalOffset, verticalOffset, horizontalOffset));
-		offsetPosList.add(blockPos.add(horizontalOffset, verticalOffset, -horizontalOffset));
-		offsetPosList.add(blockPos.add(-horizontalOffset, verticalOffset, horizontalOffset));
-		offsetPosList.add(blockPos.add(-horizontalOffset, verticalOffset, -horizontalOffset));
+	static @NotNull Pair<Integer, Map<UpgradeType, Double>> checkUpgradeMods4(World world, @NotNull BlockPos blockPos, int horizontalOffset, int verticalOffset) {
+		List<BlockPos> posList = new ArrayList<>();
+		posList.add(blockPos.add(horizontalOffset, verticalOffset, horizontalOffset));
+		posList.add(blockPos.add(horizontalOffset, verticalOffset, -horizontalOffset));
+		posList.add(blockPos.add(-horizontalOffset, verticalOffset, horizontalOffset));
+		posList.add(blockPos.add(-horizontalOffset, verticalOffset, -horizontalOffset));
 		
+		return countUpgrades(world, posList);
+	}
+	
+	static @NotNull Pair<Integer, Map<UpgradeType, Double>> checkUpgradeMods2(World world, BlockPos blockPos, @NotNull BlockRotation multiblockRotation, int horizontalOffset, int verticalOffset) {
+		List<BlockPos> positions = new ArrayList<>();
+		switch (multiblockRotation) {
+			case NONE: {
+				positions.add(blockPos.add(horizontalOffset, verticalOffset, -horizontalOffset));
+				positions.add(blockPos.add(horizontalOffset, verticalOffset,  horizontalOffset));
+			}
+			case CLOCKWISE_90: {
+				positions.add(blockPos.add(-horizontalOffset, verticalOffset, horizontalOffset));
+				positions.add(blockPos.add( horizontalOffset, verticalOffset, horizontalOffset));
+			}
+			case CLOCKWISE_180: {
+				positions.add(blockPos.add(-horizontalOffset, verticalOffset,  horizontalOffset));
+				positions.add(blockPos.add(-horizontalOffset, verticalOffset, -horizontalOffset));
+			}
+			default: {
+				positions.add(blockPos.add(-horizontalOffset, verticalOffset, horizontalOffset));
+				positions.add(blockPos.add( horizontalOffset, verticalOffset, -horizontalOffset));
+			}
+		}
+		
+		return countUpgrades(world, positions);
+	}
+	
+	@Contract("_, _ -> new")
+	static @NotNull Pair<Integer, Map<UpgradeType, Double>> countUpgrades(World world, @NotNull List<BlockPos> positions) {
 		// create a hash map of upgrade types and mods
 		HashMap<UpgradeType, List<Double>> upgradeMods = new HashMap<>();
 		int upgradeCount = 0;
-		for(BlockPos offsetPos : offsetPosList) {
+		for(BlockPos offsetPos : positions) {
 			Block block = world.getBlockState(offsetPos).getBlock();
 			if(block instanceof UpgradeBlock upgradeBlock) {
 				UpgradeType upgradeType = upgradeBlock.getUpgradeType();

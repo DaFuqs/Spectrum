@@ -864,7 +864,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 	 * Search for upgrades at valid positions and apply
 	 */
 	public void calculateUpgrades() {
-		Pair<Integer, Map<UpgradeType, Double>> upgrades = Upgradeable.checkUpgradeMods(world, pos, 3, 2);
+		Pair<Integer, Map<UpgradeType, Double>> upgrades = Upgradeable.checkUpgradeMods4(world, pos, 3, 2);
 		this.upgrades = upgrades.getRight();
 		this.markDirty();
 		

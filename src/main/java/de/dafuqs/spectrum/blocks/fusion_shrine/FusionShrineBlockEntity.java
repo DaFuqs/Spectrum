@@ -68,7 +68,6 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 
 	public FusionShrineBlockEntity(BlockPos pos, BlockState state) {
 		super(SpectrumBlockEntityRegistry.FUSION_SHRINE, pos, state);
-		
 		this.inventory = new SimpleInventory(INVENTORY_SIZE);
 		this.storedFluid = Fluids.EMPTY;
 	}
@@ -411,7 +410,7 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 	}
 	
 	public void calculateUpgrades() {
-		Pair<Integer, Map<Upgradeable.UpgradeType, Double>> upgrades = Upgradeable.checkUpgradeMods(world, pos, 2, 0);
+		Pair<Integer, Map<Upgradeable.UpgradeType, Double>> upgrades = Upgradeable.checkUpgradeMods4(world, pos, 2, 0);
 		this.upgrades = upgrades.getRight();
 		this.markDirty();
 	}

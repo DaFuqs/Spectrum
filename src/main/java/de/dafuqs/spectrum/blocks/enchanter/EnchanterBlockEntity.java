@@ -812,7 +812,7 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 	}
 	
 	public void calculateUpgrades() {
-		Pair<Integer, Map<UpgradeType, Double>> upgrades = Upgradeable.checkUpgradeMods(world, pos, 3, 0);
+		Pair<Integer, Map<UpgradeType, Double>> upgrades = Upgradeable.checkUpgradeMods4(world, pos, 3, 0);
 		this.upgrades = upgrades.getRight();
 		this.markDirty();
 	}

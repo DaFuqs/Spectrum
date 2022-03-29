@@ -41,12 +41,14 @@ public class WhispyCircletItem extends SpectrumTrinketItem {
 	public void tick(ItemStack stack, SlotReference slot, LivingEntity entity) {
 		super.tick(stack, slot, entity);
 		
-		long time = entity.getWorld().getTime();
-		if(time % TRIGGER_EVERY_X_TICKS == 0) {
-			shortenNegativeStatusEffects(entity, NEGATIVE_EFFECT_SHORTENING_TICKS);
-		}
-		if(time % 10000 == 0 && entity instanceof ServerPlayerEntity serverPlayerEntity) {
-			preventPhantomSpawns(serverPlayerEntity);
+		if(!entity.world.isClient) {
+			long time = entity.getWorld().getTime();
+			if (time % TRIGGER_EVERY_X_TICKS == 0) {
+				shortenNegativeStatusEffects(entity, NEGATIVE_EFFECT_SHORTENING_TICKS);
+			}
+			if (time % 10000 == 0 && entity instanceof ServerPlayerEntity serverPlayerEntity) {
+				preventPhantomSpawns(serverPlayerEntity);
+			}
 		}
 	}
 	
@@ -61,11 +63,16 @@ public class WhispyCircletItem extends SpectrumTrinketItem {
 	
 	public static void shortenNegativeStatusEffects(@NotNull LivingEntity entity, int duration) {
 		Collection<StatusEffectInstance> currentEffects = entity.getStatusEffects();
+		// remove them first, so hidden "stacked" effects are preserved
+		for(StatusEffectInstance instance : currentEffects) {
+			if(instance.getEffectType().getCategory() == StatusEffectCategory.HARMFUL) {
+				entity.removeStatusEffect(instance.getEffectType());
+			}
+		}
+		
 		for(StatusEffectInstance instance : currentEffects) {
 			if(instance.getEffectType().getCategory() == StatusEffectCategory.HARMFUL) {
 				int newDurationTicks = instance.getDuration() - duration;
-				
-				entity.removeStatusEffect(instance.getEffectType());
 				if(newDurationTicks > 0) {
 					entity.addStatusEffect(new StatusEffectInstance(instance.getEffectType(), newDurationTicks, instance.getAmplifier(), instance.isAmbient(), true));
 				}

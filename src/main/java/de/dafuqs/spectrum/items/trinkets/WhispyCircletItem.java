@@ -2,9 +2,9 @@ package de.dafuqs.spectrum.items.trinkets;
 
 import de.dafuqs.spectrum.SpectrumCommon;
 import dev.emi.trinkets.api.SlotReference;
-import it.unimi.dsi.fastutil.objects.AbstractReference2ReferenceMap;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.item.ItemStack;
@@ -64,22 +64,26 @@ public class WhispyCircletItem extends SpectrumTrinketItem {
 	}
 	
 	public static void shortenNegativeStatusEffects(@NotNull LivingEntity entity, int duration) {
-		Collection<StatusEffectInstance> currentEffects = entity.getStatusEffects();
 		Collection<StatusEffectInstance> newEffects = new ArrayList<>();
+		Collection<StatusEffect> effectTypesToClear = new ArrayList<>();
 		
 		// remove them first, so hidden "stacked" effects are preserved
-		for(StatusEffectInstance instance : currentEffects) {
+		for(StatusEffectInstance instance : entity.getStatusEffects()) {
 			if(instance.getEffectType().getCategory() == StatusEffectCategory.HARMFUL) {
 				int newDurationTicks = instance.getDuration() - duration;
-				newEffects.add(new StatusEffectInstance(instance.getEffectType(), newDurationTicks, instance.getAmplifier(), instance.isAmbient(), true));
-				
-			} else {
-				newEffects.add(instance);
+				if(newDurationTicks > 0) {
+					newEffects.add(new StatusEffectInstance(instance.getEffectType(), newDurationTicks, instance.getAmplifier(), instance.isAmbient(), true));
+				}
+				if(!effectTypesToClear.contains(instance.getEffectType())) {
+					effectTypesToClear.add(instance.getEffectType());
+				}
 			}
 		}
 		
+		for(StatusEffect effectTypeToClear : effectTypesToClear) {
+			entity.removeStatusEffect(effectTypeToClear);
+		}
 		for(StatusEffectInstance newEffect : newEffects) {
-			entity.removeStatusEffect(newEffect.getEffectType());
 			entity.addStatusEffect(newEffect);
 		}
 	}

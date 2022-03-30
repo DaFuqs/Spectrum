@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.items.trinkets;
 
 import de.dafuqs.spectrum.SpectrumCommon;
 import dev.emi.trinkets.api.SlotReference;
+import it.unimi.dsi.fastutil.objects.AbstractReference2ReferenceMap;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectCategory;
@@ -17,13 +18,14 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 public class WhispyCircletItem extends SpectrumTrinketItem {
 	
     private final int TRIGGER_EVERY_X_TICKS = 100;
-    private final int NEGATIVE_EFFECT_SHORTENING_TICKS = 100;
+    private final int NEGATIVE_EFFECT_SHORTENING_TICKS = 200;
 	
 	public WhispyCircletItem(Settings settings) {
 		super(settings, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_whispy_circlet"));
@@ -63,20 +65,22 @@ public class WhispyCircletItem extends SpectrumTrinketItem {
 	
 	public static void shortenNegativeStatusEffects(@NotNull LivingEntity entity, int duration) {
 		Collection<StatusEffectInstance> currentEffects = entity.getStatusEffects();
+		Collection<StatusEffectInstance> newEffects = new ArrayList<>();
+		
 		// remove them first, so hidden "stacked" effects are preserved
 		for(StatusEffectInstance instance : currentEffects) {
 			if(instance.getEffectType().getCategory() == StatusEffectCategory.HARMFUL) {
-				entity.removeStatusEffect(instance.getEffectType());
+				int newDurationTicks = instance.getDuration() - duration;
+				newEffects.add(new StatusEffectInstance(instance.getEffectType(), newDurationTicks, instance.getAmplifier(), instance.isAmbient(), true));
+				
+			} else {
+				newEffects.add(instance);
 			}
 		}
 		
-		for(StatusEffectInstance instance : currentEffects) {
-			if(instance.getEffectType().getCategory() == StatusEffectCategory.HARMFUL) {
-				int newDurationTicks = instance.getDuration() - duration;
-				if(newDurationTicks > 0) {
-					entity.addStatusEffect(new StatusEffectInstance(instance.getEffectType(), newDurationTicks, instance.getAmplifier(), instance.isAmbient(), true));
-				}
-			}
+		for(StatusEffectInstance newEffect : newEffects) {
+			entity.removeStatusEffect(newEffect.getEffectType());
+			entity.addStatusEffect(newEffect);
 		}
 	}
 	

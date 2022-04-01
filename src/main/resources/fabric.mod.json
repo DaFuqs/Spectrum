@@ -54,5 +54,8 @@
   "suggests": {
     "colored_lights": ">=1.0.3",
     "advancements-enlarger": ">=0.2.4"
+  },
+  "breaks": {
+    "Dashloader": "<=3.0.9"
   }
 }

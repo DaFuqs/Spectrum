@@ -207,6 +207,8 @@ public class SpectrumItems {
 	public static final Item BOTTOMLESS_BUNDLE = new BottomlessBundleItem(generalItemSettingsSingle);
 	public static final Item KNOWLEDGE_GEM = new KnowledgeGemItem(generalUncommonItemSettingsSingle, 10000);
 	public static final Item CELESTIAL_POCKETWATCH = new CelestialPocketWatchItem(generalUncommonItemSettingsSingle);
+	public static final Item GILDED_BOOK = new GildedBookItem(generalUncommonItemSettingsSingle);
+	
 	// Trinkets
 	public static final Item FANCIFUL_BELT = new Item(generalUncommonItemSettingsSixteen);
 	public static final Item FANCIFUL_PENDANT = new Item(generalUncommonItemSettingsSixteen);
@@ -265,6 +267,7 @@ public class SpectrumItems {
 		register("invisible_glow_item_frame", INVISIBLE_GLOW_ITEM_FRAME);
 		register("knowledge_gem", KNOWLEDGE_GEM);
 		register("celestial_pocketwatch", CELESTIAL_POCKETWATCH);
+		register("gilded_book", GILDED_BOOK);
 	}
 		
 	public static void registerGemstoneItems() {

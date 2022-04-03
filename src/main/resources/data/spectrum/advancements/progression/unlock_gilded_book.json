@@ -2,7 +2,7 @@
   "criteria": {
     "found_puzzle_structure_loot": {
       "trigger":"spectrum:has_advancement",
-      "conditions": { "advancement_identifier": "spectrum:midgame/generate_puzzle_structure_loot" }
+      "conditions": { "advancement_identifier": "spectrum:generate_puzzle_structure_loot" }
     },
     "gotten_gilded_book_in_puzzle_structure": {
 	  "trigger": "minecraft:inventory_changed",

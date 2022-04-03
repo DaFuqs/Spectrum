@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.blocks;
 
-import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.registries.SpectrumBlockTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

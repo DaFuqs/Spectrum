@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.helpers;
 
 import de.dafuqs.spectrum.blocks.enchanter.EnchanterEnchantable;
 import de.dafuqs.spectrum.registries.SpectrumItemTags;
-import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.item.BookItem;

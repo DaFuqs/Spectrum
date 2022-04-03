@@ -30,6 +30,7 @@ import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
+import net.minecraft.item.BookItem;
 import net.minecraft.item.EnchantedBookItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -331,7 +332,7 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 	 */
 	public static boolean isValidCenterEnchantingSetup(EnchanterBlockEntity enchanterBlockEntity) {
 		ItemStack centerStack = enchanterBlockEntity.virtualInventoryIncludingBowlStacks.getStack(0);
-		if(!centerStack.isEmpty() && (centerStack.getItem().isEnchantable(centerStack) || centerStack.isOf(Items.BOOK)) || centerStack.getItem() instanceof EnchanterEnchantable && enchanterBlockEntity.virtualInventoryIncludingBowlStacks.getStack(1).getItem() instanceof ExperienceStorageItem) {
+		if(!centerStack.isEmpty() && (centerStack.getItem().isEnchantable(centerStack) || centerStack.getItem() instanceof BookItem) || centerStack.getItem() instanceof EnchanterEnchantable && enchanterBlockEntity.virtualInventoryIncludingBowlStacks.getStack(1).getItem() instanceof ExperienceStorageItem) {
 			boolean enchantedBookWithAdditionalEnchantmentsFound = false;
 			Map<Enchantment, Integer> existingEnchantments = EnchantmentHelper.get(centerStack);
 			for(int i = 0; i < 8; i++) {
@@ -341,7 +342,7 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 				} else if(virtualSlotStack.getItem() instanceof EnchantedBookItem) {
 					Map<Enchantment, Integer> currentEnchantedBookEnchantments = EnchantmentHelper.get(virtualSlotStack);
 					for(Enchantment enchantment : currentEnchantedBookEnchantments.keySet()) {
-						if((centerStack.isOf(Items.BOOK) || (centerStack.getItem() instanceof EnchanterEnchantable enchanterEnchantable && enchanterEnchantable.canAcceptEnchantment(enchantment)) || enchantment.isAcceptableItem(centerStack)) && (!existingEnchantments.containsKey(enchantment) || existingEnchantments.get(enchantment) < currentEnchantedBookEnchantments.get(enchantment))) {
+						if((centerStack.getItem() instanceof BookItem || (centerStack.getItem() instanceof EnchanterEnchantable enchanterEnchantable && enchanterEnchantable.canAcceptEnchantment(enchantment)) || enchantment.isAcceptableItem(centerStack)) && (!existingEnchantments.containsKey(enchantment) || existingEnchantments.get(enchantment) < currentEnchantedBookEnchantments.get(enchantment))) {
 							if(enchanterBlockEntity.canOwnerApplyConflictingEnchantments) {
 								enchantedBookWithAdditionalEnchantmentsFound = true;
 								break;
@@ -435,7 +436,7 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 	public static int getRequiredExperienceToEnchantCenterItem(@NotNull EnchanterBlockEntity enchanterBlockEntity) {
 		boolean valid = false;
 		ItemStack centerStackCopy = enchanterBlockEntity.inventory.getStack(0).copy();
-		if(!centerStackCopy.isEmpty() && (centerStackCopy.getItem().isEnchantable(centerStackCopy) || centerStackCopy.isOf(Items.BOOK) || centerStackCopy.getItem() instanceof EnchanterEnchantable)) {
+		if(!centerStackCopy.isEmpty() && (centerStackCopy.getItem().isEnchantable(centerStackCopy) || centerStackCopy.getItem() instanceof BookItem || centerStackCopy.getItem() instanceof EnchanterEnchantable)) {
 			Map<Enchantment, Integer> highestEnchantmentLevels = getHighestEnchantmentsInItemBowls(enchanterBlockEntity);
 			int requiredExperience = 0;
 			for (Enchantment enchantment : highestEnchantmentLevels.keySet()) {
@@ -476,7 +477,7 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 		
 		if(conflicts && !allowEnchantmentConflicts) {
 			return -1;
-		} else if((itemStack.getItem().getEnchantability() > 0 && enchantment.isAcceptableItem(itemStack)) || itemStack.isOf(Items.BOOK) || itemStack.getItem() instanceof EnchanterEnchantable) {
+		} else if((itemStack.getItem().getEnchantability() > 0 && enchantment.isAcceptableItem(itemStack)) || itemStack.getItem() instanceof BookItem || itemStack.getItem() instanceof EnchanterEnchantable) {
 			int enchantability = itemStack.getItem().getEnchantability();
 			int requiredExperience = getRequiredExperienceForEnchantment(enchantability, enchantment, level);
 			if(conflicts) {

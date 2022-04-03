@@ -110,6 +110,7 @@ public class ItemColorRegistry extends ColorRegistry<Item> {
 		put(SpectrumItems.TIDAL_CIRCLET, DyeColor.LIGHT_BLUE);
 		put(SpectrumItems.TOTEM_PENDANT, DyeColor.BLUE);
 		put(SpectrumItems.WHISPY_CIRCLET, DyeColor.BROWN);
+		put(SpectrumItems.GILDED_BOOK, DyeColor.YELLOW);
 
 		put(SpectrumBlocks.SPARKLESTONE_BLOCK.asItem(), DyeColor.YELLOW);
 		put(SpectrumBlocks.ENDER_TREASURE.asItem(), DyeColor.PURPLE);

@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.helpers;
 import de.dafuqs.spectrum.blocks.enchanter.EnchanterEnchantable;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.item.BookItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
@@ -24,7 +25,7 @@ public class SpectrumEnchantmentHelper {
 		
 		if(itemStack.isOf(Items.ENCHANTED_BOOK)) {
 			// all fine, nothing more to check here. Enchant away!
-		} else if(itemStack.isOf(Items.BOOK)) {
+		} else if(itemStack.getItem() instanceof BookItem) {
 			ItemStack enchantedBookStack = new ItemStack(Items.ENCHANTED_BOOK, itemStack.getCount());
 			enchantedBookStack.setNbt(itemStack.getNbt());
 			itemStack = enchantedBookStack;

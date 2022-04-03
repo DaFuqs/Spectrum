@@ -1,6 +1,8 @@
 package de.dafuqs.spectrum.helpers;
 
 import de.dafuqs.spectrum.blocks.enchanter.EnchanterEnchantable;
+import de.dafuqs.spectrum.registries.SpectrumItemTags;
+import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.item.BookItem;
@@ -25,7 +27,7 @@ public class SpectrumEnchantmentHelper {
 		
 		if(itemStack.isOf(Items.ENCHANTED_BOOK)) {
 			// all fine, nothing more to check here. Enchant away!
-		} else if(itemStack.getItem() instanceof BookItem) {
+		} else if(isEnchantableBook(itemStack)) {
 			ItemStack enchantedBookStack = new ItemStack(Items.ENCHANTED_BOOK, itemStack.getCount());
 			enchantedBookStack.setNbt(itemStack.getNbt());
 			itemStack = enchantedBookStack;
@@ -69,6 +71,15 @@ public class SpectrumEnchantmentHelper {
 		itemStack.setNbt(nbtCompound);
 		
 		return itemStack;
+	}
+	
+	/**
+	 * Checks if an itemstack can be used as the source to create an enchanted book
+	 * @param itemStack The itemstack to check
+	 * @return true if it is a book that can be turned into an enchanted book by enchanting
+	 */
+	public static boolean isEnchantableBook(@NotNull ItemStack itemStack) {
+		return itemStack.isIn(SpectrumItemTags.ENCHANTABLE_BOOKS) || itemStack.getItem() instanceof BookItem;
 	}
 	
 	public static boolean hasEnchantmentThatConflictsWith(ItemStack itemStack, Enchantment enchantment) {

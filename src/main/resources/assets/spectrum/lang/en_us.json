@@ -1145,7 +1145,10 @@
   "item.spectrum.germinated_jade_vine_seeds": "Germinated Jade Vine Seeds",
   "item.spectrum.jade_vine_petals": "Jade Vine Petals",
   "item.spectrum.moonstruck_nectar": "Moonstruck Nectar",
-  "item.spectrum.golden_book": "Golden Book",
+  "item.spectrum.gilded_book": "Gilded Book",
+  "item.spectrum.gilded_book.tooltip.enchantability": "High Enchantability",
+  "item.spectrum.gilded_book.tooltip.copy_enchantments": "Use in the Enchanter to copy Enchantments",
+  "item.spectrum.gilded_book.tooltip.copy_enchantments2": "from existing items onto this book",
 
   "item.spectrum.bottle_of_fading": "Bottle of Fading",
   "item.spectrum.bottle_of_fading.tooltip": "§2Glibbery",

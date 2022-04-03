@@ -9,6 +9,7 @@ import de.dafuqs.spectrum.helpers.SpectrumEnchantmentHelper;
 import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.interfaces.PlayerOwned;
 import de.dafuqs.spectrum.items.ExperienceStorageItem;
+import de.dafuqs.spectrum.items.magic_items.GildedBookItem;
 import de.dafuqs.spectrum.items.magic_items.KnowledgeGemItem;
 import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
 import de.dafuqs.spectrum.networking.SpectrumS2CPackets;
@@ -18,6 +19,7 @@ import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.recipe.enchanter.EnchanterRecipe;
 import de.dafuqs.spectrum.recipe.enchantment_upgrade.EnchantmentUpgradeRecipe;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
+import de.dafuqs.spectrum.registries.SpectrumItems;
 import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
 import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.block.Block;
@@ -224,7 +226,7 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 					BlockPos itemBowlPos = enchanterBlockEntity.pos.add(getItemBowlPositionOffset(i, 0));
 					BlockEntity blockEntity = world.getBlockEntity(itemBowlPos);
 					if(blockEntity instanceof ItemBowlBlockEntity itemBowlBlockEntity) {
-						itemBowlBlockEntity.doEnchantingEffects(enchanterBlockEntity.pos, 1);
+						itemBowlBlockEntity.doEnchantingEffects(enchanterBlockEntity.pos);
 					}
 				}
 			}
@@ -330,19 +332,22 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 	 * @param enchanterBlockEntity The Enchanter to check
 	 * @return True if the enchanters inventory matches an enchanting setup
 	 */
-	public static boolean isValidCenterEnchantingSetup(EnchanterBlockEntity enchanterBlockEntity) {
+	public static boolean isValidCenterEnchantingSetup(@NotNull EnchanterBlockEntity enchanterBlockEntity) {
 		ItemStack centerStack = enchanterBlockEntity.virtualInventoryIncludingBowlStacks.getStack(0);
-		if(!centerStack.isEmpty() && (centerStack.getItem().isEnchantable(centerStack) || SpectrumEnchantmentHelper.isEnchantableBook(centerStack)) || centerStack.getItem() instanceof EnchanterEnchantable && enchanterBlockEntity.virtualInventoryIncludingBowlStacks.getStack(1).getItem() instanceof ExperienceStorageItem) {
+		boolean isEnchantableBookInCenter = SpectrumEnchantmentHelper.isEnchantableBook(centerStack);
+		if(!centerStack.isEmpty() && (isEnchantableBookInCenter || centerStack.getItem().isEnchantable(centerStack) || centerStack.getItem() instanceof EnchanterEnchantable) && enchanterBlockEntity.virtualInventoryIncludingBowlStacks.getStack(1).getItem() instanceof ExperienceStorageItem) {
+			// gilded books can copy enchantments from any source item
+			boolean centerStackIsGildedBook = centerStack.isOf(SpectrumItems.GILDED_BOOK);
 			boolean enchantedBookWithAdditionalEnchantmentsFound = false;
 			Map<Enchantment, Integer> existingEnchantments = EnchantmentHelper.get(centerStack);
 			for(int i = 0; i < 8; i++) {
 				ItemStack virtualSlotStack = enchanterBlockEntity.virtualInventoryIncludingBowlStacks.getStack(2+i);
 				if(virtualSlotStack.isEmpty()) {
 					// empty slots do not count
-				} else if(virtualSlotStack.getItem() instanceof EnchantedBookItem) {
+				} else if(centerStackIsGildedBook || virtualSlotStack.getItem() instanceof EnchantedBookItem) {
 					Map<Enchantment, Integer> currentEnchantedBookEnchantments = EnchantmentHelper.get(virtualSlotStack);
 					for(Enchantment enchantment : currentEnchantedBookEnchantments.keySet()) {
-						if((SpectrumEnchantmentHelper.isEnchantableBook(centerStack) || (centerStack.getItem() instanceof EnchanterEnchantable enchanterEnchantable && enchanterEnchantable.canAcceptEnchantment(enchantment)) || enchantment.isAcceptableItem(centerStack)) && (!existingEnchantments.containsKey(enchantment) || existingEnchantments.get(enchantment) < currentEnchantedBookEnchantments.get(enchantment))) {
+						if((isEnchantableBookInCenter || (centerStack.getItem() instanceof EnchanterEnchantable enchanterEnchantable && enchanterEnchantable.canAcceptEnchantment(enchantment)) || enchantment.isAcceptableItem(centerStack)) && (!existingEnchantments.containsKey(enchantment) || existingEnchantments.get(enchantment) < currentEnchantedBookEnchantments.get(enchantment))) {
 							if(enchanterBlockEntity.canOwnerApplyConflictingEnchantments) {
 								enchantedBookWithAdditionalEnchantmentsFound = true;
 								break;
@@ -638,7 +643,7 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 			BlockEntity blockEntity = world.getBlockEntity(enchanterBlockEntity.pos.add(bowlOffset));
 			if(blockEntity instanceof ItemBowlBlockEntity itemBowlBlockEntity) {
 				if(itemCountToConsumeAfterMod == 0) {
-					itemBowlBlockEntity.doEnchantingEffects(enchanterBlockEntity.pos, 1);
+					itemBowlBlockEntity.doEnchantingEffects(enchanterBlockEntity.pos);
 					consumedAmount += itemCountToConsume;
 				} else {
 					int decrementedAmount = itemBowlBlockEntity.decrementBowlStack(enchanterBlockEntity.pos, itemCountToConsumeAfterMod);

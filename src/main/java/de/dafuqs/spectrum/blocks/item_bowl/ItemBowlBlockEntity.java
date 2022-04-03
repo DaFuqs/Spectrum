@@ -113,7 +113,7 @@ public class ItemBowlBlockEntity extends BlockEntity {
 		}
 		
 		if(decrementAmount > 0) {
-			doEnchantingEffects(particleTargetBlockPos, decrementAmount);
+			doEnchantingEffects(particleTargetBlockPos);
 			updateInClientWorld();
 			markDirty();
 		}
@@ -121,10 +121,25 @@ public class ItemBowlBlockEntity extends BlockEntity {
 		return decrementAmount;
 	}
 	
-	public void doEnchantingEffects(BlockPos enchanterBlockPos, int amount) {
+	public static void spawnRisingParticles(World world, BlockPos blockPos, ItemStack itemStack, int amount) {
+		if(amount > 0) {
+			Optional<DyeColor> optionalItemColor = ColorRegistry.ITEM_COLORS.getMapping(itemStack.getItem());
+			if (optionalItemColor.isPresent()) {
+				ParticleEffect particleEffect = SpectrumParticleTypes.getSparkleRisingParticle(optionalItemColor.get());
+				
+				for (int i = 0; i < amount; i++) {
+					float randomX = 0.1F + world.getRandom().nextFloat() * 0.8F;
+					float randomZ = 0.1F + world.getRandom().nextFloat() * 0.8F;
+					world.addParticle(particleEffect, blockPos.getX() + randomX, blockPos.getY() + 0.75, blockPos.getZ() + randomZ, 0.0D, 0.05D, 0.0D);
+				}
+			}
+		}
+	}
+	
+	public void doEnchantingEffects(BlockPos enchanterBlockPos) {
 		ItemStack storedStack = this.getInventory().getStack(0);
 		if(!storedStack.isEmpty()) {
-			Optional<DyeColor> optionalItemColor = ColorRegistry.ITEM_COLORS.getMapping(storedStack.getItem());
+			Optional<DyeColor> optionalItemColor = ColorRegistry.ITEM_COLORS.getMapping(storedStack.getItem(), DyeColor.PURPLE);
 			if (optionalItemColor.isPresent()) {
 				ParticleEffect sparkleRisingParticleEffect = SpectrumParticleTypes.getSparkleRisingParticle(optionalItemColor.get());
 				
@@ -154,21 +169,6 @@ public class ItemBowlBlockEntity extends BlockEntity {
 				}
 				
 				world.playSound(null, this.pos, SpectrumSoundEvents.ENCHANTER_DING, SoundCategory.BLOCKS, 1.0F, 0.7F + this.world.random.nextFloat() * 0.6F);
-			}
-		}
-	}
-	
-	public static void spawnRisingParticles(World world, BlockPos blockPos, ItemStack itemStack, int amount) {
-		if(amount > 0) {
-			Optional<DyeColor> optionalItemColor = ColorRegistry.ITEM_COLORS.getMapping(itemStack.getItem());
-			if (optionalItemColor.isPresent()) {
-				ParticleEffect particleEffect = SpectrumParticleTypes.getSparkleRisingParticle(optionalItemColor.get());
-				
-				for (int i = 0; i < amount; i++) {
-					float randomX = 0.1F + world.getRandom().nextFloat() * 0.8F;
-					float randomZ = 0.1F + world.getRandom().nextFloat() * 0.8F;
-					world.addParticle(particleEffect, blockPos.getX() + randomX, blockPos.getY() + 0.75, blockPos.getZ() + randomZ, 0.0D, 0.05D, 0.0D);
-				}
 			}
 		}
 	}

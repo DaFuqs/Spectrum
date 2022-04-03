@@ -1,20 +1,20 @@
 {
-  "name": "Golden Book",
-  "icon": "spectrum:golden_book",
+  "name": "Gilded Book",
+  "icon": "spectrum:gilded_book",
   "advancement": "spectrum:progression/unlock_golden_book",
   "category": "spectrum:magical_items_category",
   "extra_recipe_mappings": {
-    "spectrum:golden_book": 0
+    "spectrum:gilded_book": 0
   },
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Golden books can be used instead of normal books for Enchanting in the $(l:enchanting/enchanter)Enchanter$(/l). They are much more receptive, making the enchanting process both faster and cheaper.$(br)More than that, they can even be used to copy enchantments from Items in the item bowls around the enchanter onto itself, albeit for a hefty sum of XP."
+      "text": "Gilded books can be used instead of normal books for Enchanting in the $(l:enchanting/enchanter)Enchanter$(/l). They are much more receptive, making the enchanting process both faster and cheaper.$(br)More than that, they can even be used to copy enchantments from Items in the item bowls around the enchanter onto itself, albeit for a hefty sum of XP."
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier3/golden_book",
+      "recipe": "spectrum:pedestal/tier3/gilded_book",
       "text": "$(italic)All is not gold that glitters.$(br)These books, however, they are."
     }
   ]

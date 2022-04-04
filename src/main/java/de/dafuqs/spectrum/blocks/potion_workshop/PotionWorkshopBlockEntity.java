@@ -15,8 +15,14 @@ import de.dafuqs.spectrum.recipe.potion_workshop.PotionWorkshopReagents;
 import de.dafuqs.spectrum.recipe.potion_workshop.PotionWorkshopRecipe;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
 import de.dafuqs.spectrum.registries.SpectrumItems;
+import net.minecraft.advancement.AdvancementCriterion;
+import net.minecraft.advancement.AdvancementManager;
+import net.minecraft.advancement.AdvancementProgress;
+import net.minecraft.advancement.criterion.BrewedPotionCriterion;
+import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BrewingStandBlockEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -26,6 +32,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionUtil;
 import net.minecraft.recipe.RecipeInputProvider;
 import net.minecraft.recipe.RecipeMatcher;
 import net.minecraft.screen.NamedScreenHandlerFactory;
@@ -442,6 +450,9 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 			InventoryHelper.addToInventory(potionWorkshopBlockEntity.inventory, potion, FIRST_INVENTORY_SLOT, FIRST_INVENTORY_SLOT + 12);
 			if(serverPlayerEntity != null) {
 				SpectrumAdvancementCriteria.POTION_WORKSHOP_BREWING.trigger(serverPlayerEntity, potion);
+				
+				Potion potionStack = PotionUtil.getPotion(potion);
+				Criteria.BREWED_POTION.trigger(serverPlayerEntity, potionStack);
 			}
 		}
 		

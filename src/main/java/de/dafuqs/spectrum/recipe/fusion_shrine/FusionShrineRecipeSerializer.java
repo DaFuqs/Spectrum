@@ -47,7 +47,7 @@ public class FusionShrineRecipeSerializer implements RecipeSerializer<FusionShri
 			Identifier fluidIdentifier = Identifier.tryParse(JsonHelper.getString(jsonObject, "fluid"));
 			fluid = Registry.FLUID.get(fluidIdentifier);
 			if(fluid.getDefaultState().isEmpty()) {
-				SpectrumCommon.log(Level.ERROR, "Fusion Shrine Recipe " + identifier + " specifies fluid " + fluidIdentifier + " that does not exist! This recipe will not be craftable.");
+				SpectrumCommon.logError("Fusion Shrine Recipe " + identifier + " specifies fluid " + fluidIdentifier + " that does not exist! This recipe will not be craftable.");
 			}
 		}
 

@@ -141,7 +141,7 @@ public class Support {
 		Identifier advancementIdentifier = new Identifier(SpectrumCommon.MOD_ID, advancementString);
 		Advancement advancement = sal.get(advancementIdentifier);
 		if(advancement == null) {
-			SpectrumCommon.log(Level.ERROR, "Trying to grant a criterion \"" + criterion +  "\" for an advancement that does not exist: " + advancementIdentifier);
+			SpectrumCommon.logError("Trying to grant a criterion \"" + criterion +  "\" for an advancement that does not exist: " + advancementIdentifier);
 		}
 		if (!tracker.getProgress(advancement).isDone()) {
 			tracker.grantCriterion(advancement, criterion);
@@ -158,7 +158,7 @@ public class Support {
 		if (playerEntity instanceof ServerPlayerEntity) {
 			Advancement advancement = SpectrumCommon.minecraftServer.getAdvancementLoader().get(advancementIdentifier);
 			if (advancement == null) {
-				SpectrumCommon.log(Level.ERROR, "Player " + playerEntity.getName() + " was getting an advancement check for an advancement that does not exist: " + advancementIdentifier);
+				SpectrumCommon.logError("Player " + playerEntity.getName() + " was getting an advancement check for an advancement that does not exist: " + advancementIdentifier);
 				return false;
 			} else {
 				return ((ServerPlayerEntity) playerEntity).getAdvancementTracker().getProgress(advancement).isDone();

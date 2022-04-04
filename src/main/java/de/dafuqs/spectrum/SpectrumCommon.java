@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum;
 
-import de.dafuqs.additionalentityattributes.AdditionalEntityAttributes;
+import com.mojang.logging.LogUtils;
 import de.dafuqs.spectrum.blocks.chests.CompactingChestBlockEntity;
 import de.dafuqs.spectrum.blocks.shooting_star.ShootingStarBlock;
 import de.dafuqs.spectrum.config.SpectrumConfig;
@@ -49,9 +49,8 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
-import org.apache.logging.log4j.Level;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -62,7 +61,7 @@ public class SpectrumCommon implements ModInitializer {
 	public static final String MOD_ID = "spectrum";
 
 	public static SpectrumConfig CONFIG;
-	private static final Logger LOGGER = LogManager.getLogger(MOD_ID);
+	private static final Logger LOGGER = LoggerFactory.getLogger("Spectrum");
 
 	public static MinecraftServer minecraftServer;
 	/**
@@ -76,110 +75,118 @@ public class SpectrumCommon implements ModInitializer {
 	 */
 	public static final BooleanProperty LIQUID_CRYSTAL_LOGGED = BooleanProperty.of("liquidcrystallogged");
 
-	public static void log(Level logLevel, String message) {
-		LOGGER.log(logLevel, "[Spectrum] " + message);
+	public static void logInfo(String message) {
+		LOGGER.info("[Spectrum] " + message);
+	}
+	
+	public static void logWarning(String message) {
+		LOGGER.warn("[Spectrum] " + message);
+	}
+	
+	public static void logError(String message) {
+		LOGGER.error("[Spectrum] " + message);
 	}
 
 	@Override
 	public void onInitialize() {
-		log(Level.INFO, "Starting Common Startup");
+		logInfo("Starting Common Startup");
 
 		//Set up config
-		log(Level.INFO, "Loading config file...");
+		logInfo("Loading config file...");
 		AutoConfig.register(SpectrumConfig.class, JanksonConfigSerializer::new);
 		CONFIG = AutoConfig.getConfigHolder(SpectrumConfig.class).getConfig();
-		log(Level.INFO, "Finished loading config file.");
+		logInfo("Finished loading config file.");
 
 		// Register ALL the stuff
-		log(Level.INFO, "Registering Advancement Criteria...");
+		logInfo("Registering Advancement Criteria...");
 		SpectrumAdvancementCriteria.register();
-		log(Level.INFO, "Registering Particle Types...");
+		logInfo("Registering Particle Types...");
 		SpectrumParticleTypes.register();
-		log(Level.INFO, "Registering Sound Events...");
+		logInfo("Registering Sound Events...");
 		SpectrumSoundEvents.register();
-		log(Level.INFO, "Registering BlockSound Groups...");
+		logInfo("Registering BlockSound Groups...");
 		SpectrumBlockSoundGroups.register();
-		log(Level.INFO, "Registering Fluid Tags...");
+		logInfo("Registering Fluid Tags...");
 		SpectrumFluidTags.register();
-		log(Level.INFO, "Fetching Block Tags...");
+		logInfo("Fetching Block Tags...");
 		SpectrumBlockTags.getReferences();
-		log(Level.INFO, "Registering Fluids...");
+		logInfo("Registering Fluids...");
 		SpectrumFluids.register();
-		log(Level.INFO, "Registering Blocks...");
+		logInfo("Registering Blocks...");
 		SpectrumBlocks.register();
-		log(Level.INFO, "Registering Items...");
+		logInfo("Registering Items...");
 		SpectrumItems.register();
 		
 		// Tags
-		log(Level.INFO, "Fetching Item Tags...");
+		logInfo("Fetching Item Tags...");
 		SpectrumItemTags.getReferences();
-		log(Level.INFO, "Registering Block Entities...");
+		logInfo("Registering Block Entities...");
 		SpectrumBlockEntityRegistry.register();
 		
 		// Worldgen
-		log(Level.INFO, "Registering Worldgen Features...");
+		logInfo("Registering Worldgen Features...");
 		SpectrumFeatures.register();
-		log(Level.INFO, "Registering Configured and Placed Features...");
+		logInfo("Registering Configured and Placed Features...");
 		SpectrumConfiguredFeatures.register();
 
 		// Dimension
-		log(Level.INFO, "Registering Dimension...");
+		logInfo("Registering Dimension...");
 		DeeperDownDimension.setup();
 
 		// Recipes
-		log(Level.INFO, "Registering Recipe Types...");
+		logInfo("Registering Recipe Types...");
 		SpectrumRecipeTypes.registerSerializer();
-		log(Level.INFO, "Registering Loot Conditions...");
+		logInfo("Registering Loot Conditions...");
 		SpectrumLootConditionTypes.register();
 
 		// GUI
-		log(Level.INFO, "Registering Containers...");
+		logInfo("Registering Containers...");
 		SpectrumContainers.register();
-		log(Level.INFO, "Registering Screen Handler Types...");
+		logInfo("Registering Screen Handler Types...");
 		SpectrumScreenHandlerTypes.register();
 
 		// Default enchantments for some items
-		log(Level.INFO, "Registering Default Item Stack Damage Immunities...");
+		logInfo("Registering Default Item Stack Damage Immunities...");
 		SpectrumItemStackDamageImmunities.registerDefaultItemStackImmunities();
-		log(Level.INFO, "Registering Enchantment Drops...");
+		logInfo("Registering Enchantment Drops...");
 		EnchantmentDrops.setup();
 
-		log(Level.INFO, "Registering Items to Fuel Registry...");
+		logInfo("Registering Items to Fuel Registry...");
 		SpectrumItems.registerFuelRegistry();
-		log(Level.INFO, "Registering Enchantments...");
+		logInfo("Registering Enchantments...");
 		SpectrumEnchantments.register();
-		log(Level.INFO, "Registering Default Enchantments...");
+		logInfo("Registering Default Enchantments...");
 		SpectrumDefaultEnchantments.registerDefaultEnchantments();
-		log(Level.INFO, "Registering Entity Types...");
+		logInfo("Registering Entity Types...");
 		SpectrumEntityTypes.register();
-		log(Level.INFO, "Registering Commands...");
+		logInfo("Registering Commands...");
 		SpectrumCommands.register();
 
-		log(Level.INFO, "Registering Client To ServerPackage Receivers...");
+		logInfo("Registering Client To ServerPackage Receivers...");
 		SpectrumC2SPacketReceiver.registerC2SReceivers();
 
-		log(Level.INFO, "Registering Block Cloaker...");
+		logInfo("Registering Block Cloaker...");
 		BlockCloakManager.setupCloaks();
-		log(Level.INFO, "Registering MultiBlocks...");
+		logInfo("Registering MultiBlocks...");
 		SpectrumMultiblocks.register();
-		log(Level.INFO, "Registering Flammable Blocks...");
+		logInfo("Registering Flammable Blocks...");
 		SpectrumFlammableBlocks.register();
-		log(Level.INFO, "Registering Compostable Blocks...");
+		logInfo("Registering Compostable Blocks...");
 		SpectrumComposting.register();
-		log(Level.INFO, "Registering Game Events...");
+		logInfo("Registering Game Events...");
 		SpectrumGameEvents.register();
 		
-		log(Level.INFO, "Registering Potion Workshop Reagents...");
+		logInfo("Registering Potion Workshop Reagents...");
 		PotionWorkshopReagents.register();
 
-		log(Level.INFO, "Initializing Item Groups...");
+		logInfo("Initializing Item Groups...");
 		SpectrumItemGroups.ITEM_GROUP_GENERAL.initialize();
 		SpectrumItemGroups.ITEM_GROUP_BLOCKS.initialize();
 
-		log(Level.INFO, "Registering Block / Item Color Registries...");
+		logInfo("Registering Block / Item Color Registries...");
 		ColorRegistry.registerColorRegistries();
 		
-		log(Level.INFO, "Registering Dispenser Behaviors..");
+		logInfo("Registering Dispenser Behaviors..");
 		DispenserBlock.registerBehavior(SpectrumItems.BOTTOMLESS_BUNDLE, new BottomlessBundleItem.BottomlessBundlePlacementDispenserBehavior());
 		DispenserBlock.registerBehavior(SpectrumBlocks.COLORFUL_SHOOTING_STAR.asItem(), new ShootingStarBlock.ShootingStarBlockDispenserBehavior());
 		DispenserBlock.registerBehavior(SpectrumBlocks.FIERY_SHOOTING_STAR.asItem(), new ShootingStarBlock.ShootingStarBlockDispenserBehavior());
@@ -235,7 +242,7 @@ public class SpectrumCommon implements ModInitializer {
 			}
 		});
 
-		log(Level.INFO, "Registering RecipeCache reload listener");
+		logInfo("Registering RecipeCache reload listener");
 		ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(new SimpleSynchronousResourceReloadListener() {
 			private final Identifier id = new Identifier(SpectrumCommon.MOD_ID, "compacting_cache_clearer");
 			@Override
@@ -249,7 +256,7 @@ public class SpectrumCommon implements ModInitializer {
 			}
 		});
 
-		log(Level.INFO, "Common startup completed!");
+		logInfo("Common startup completed!");
 	}
 
 }

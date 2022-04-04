@@ -67,7 +67,7 @@ public class ProgressionSanityCommand {
 	}
 
 	private static int execute(ServerCommandSource source) {
-		SpectrumCommon.log(Level.INFO, "##### SANITY CHECK START ######");
+		SpectrumCommon.logInfo("##### SANITY CHECK START ######");
 
 		// All blocks that do not have a mineable tag
 		for (Map.Entry<RegistryKey<Block>, Block> entry : Registry.BLOCK.getEntrySet()) {
@@ -79,7 +79,7 @@ public class ProgressionSanityCommand {
 						&& !blockState.isIn(BlockTags.SHOVEL_MINEABLE)
 						&& !blockState.isIn(BlockTags.HOE_MINEABLE)
 						&& !blockState.isIn(SpectrumBlockTags.EXEMPT_FROM_MINEABLE_DEBUG_CHECK)) {
-					SpectrumCommon.log(Level.WARN, "[SANITY: Mineable Tags] Block " + registryKey.getValue() + " is not contained in a any vanilla mineable tag.");
+					SpectrumCommon.logWarning("[SANITY: Mineable Tags] Block " + registryKey.getValue() + " is not contained in a any vanilla mineable tag.");
 				}
 			}
 		}
@@ -93,12 +93,12 @@ public class ProgressionSanityCommand {
 				Identifier lootTableID = block.getLootTableId();
 				if(!blockState.isIn(SpectrumBlockTags.EXEMPT_FROM_LOOT_TABLE_DEBUG_CHECK)) {
 					if (lootTableID.equals(LootTables.EMPTY) || lootTableID.getPath().equals("blocks/air")) {
-						SpectrumCommon.log(Level.WARN, "[SANITY: Loot Tables] Block " + registryKey.getValue() + "has a non-existent loot table");
+						SpectrumCommon.logWarning("[SANITY: Loot Tables] Block " + registryKey.getValue() + "has a non-existent loot table");
 					} else {
 						LootTable lootTable = source.getWorld().getServer().getLootManager().getTable(lootTableID);
 						LootPool[] lootPools = ((LootTableAccessor) lootTable).getPools();
 						if (lootPools.length == 0) {
-							SpectrumCommon.log(Level.WARN, "[SANITY: Loot Tables] Block " + registryKey.getValue() + " has an empty loot table");
+							SpectrumCommon.logWarning("[SANITY: Loot Tables] Block " + registryKey.getValue() + " has an empty loot table");
 						}
 					}
 				}
@@ -125,14 +125,14 @@ public class ProgressionSanityCommand {
 			 */
 			if (pedestalRecipe.getTier() == PedestalRecipeTier.BASIC || pedestalRecipe.getTier() == PedestalRecipeTier.SIMPLE) {
 				if (pedestalRecipe.getGemstonePowderInputs().get(GemstoneColor.BLACK) > 0) {
-					SpectrumCommon.log(Level.WARN, "[SANITY: Pedestal Recipe Ingredients] Pedestal recipe '" + pedestalRecipe.getId() + "' of tier '" + pedestalRecipe.getTier() + "' is using onyx powder as input! Players will not have access to Onyx at that tier");
+					SpectrumCommon.logWarning("[SANITY: Pedestal Recipe Ingredients] Pedestal recipe '" + pedestalRecipe.getId() + "' of tier '" + pedestalRecipe.getTier() + "' is using onyx powder as input! Players will not have access to Onyx at that tier");
 				}
 				if (pedestalRecipe.getGemstonePowderInputs().get(GemstoneColor.WHITE) > 0) {
-					SpectrumCommon.log(Level.WARN, "[SANITY: Pedestal Recipe Ingredients] Pedestal recipe '" + pedestalRecipe.getId() + "' of tier '" + pedestalRecipe.getTier() + "' is using moonstone powder as input! Players will not have access to Moonstone at that tier");
+					SpectrumCommon.logWarning("[SANITY: Pedestal Recipe Ingredients] Pedestal recipe '" + pedestalRecipe.getId() + "' of tier '" + pedestalRecipe.getTier() + "' is using moonstone powder as input! Players will not have access to Moonstone at that tier");
 				}
 			} else if (pedestalRecipe.getTier() == PedestalRecipeTier.ADVANCED) {
 				if (pedestalRecipe.getGemstonePowderInputs().get(GemstoneColor.WHITE) > 0) {
-					SpectrumCommon.log(Level.WARN, "[SANITY: Pedestal Recipe Ingredients] Pedestal recipe '" + pedestalRecipe.getId() + "' of tier '" + pedestalRecipe.getTier() + "' is using moonstone powder as input! Players will not have access to Moonstone at that tier");
+					SpectrumCommon.logWarning("[SANITY: Pedestal Recipe Ingredients] Pedestal recipe '" + pedestalRecipe.getId() + "' of tier '" + pedestalRecipe.getTier() + "' is using moonstone powder as input! Players will not have access to Moonstone at that tier");
 				}
 			}
 			for(Map.Entry<GemstoneColor, Integer> gemstoneDustInput : pedestalRecipe.getGemstonePowderInputs().entrySet()) {
@@ -144,11 +144,11 @@ public class ProgressionSanityCommand {
 		for(PedestalCraftingRecipe recipe : SpectrumCommon.minecraftServer.getRecipeManager().listAllOfType(SpectrumRecipeTypes.PEDESTAL)) {
 			List<Identifier> advancementIdentifiers = recipe.getRequiredAdvancementIdentifiers();
 			if(advancementIdentifiers == null || advancementIdentifiers.isEmpty()) {
-				SpectrumCommon.log(Level.WARN, "[SANITY: Pedestal Recipe Unlocks] Pedestal recipe '" + recipe.getId() + "' has no required advancements set!");
+				SpectrumCommon.logWarning("[SANITY: Pedestal Recipe Unlocks] Pedestal recipe '" + recipe.getId() + "' has no required advancements set!");
 			} else {
 				for (Identifier advancementIdentifier : advancementIdentifiers) {
 					if (!doesAdvancementExist(advancementIdentifier)) {
-						SpectrumCommon.log(Level.WARN, "[SANITY: Pedestal Recipe Unlocks] Advancement '" + advancementIdentifier + "' in '" + recipe.getId() + "' does not exist");
+						SpectrumCommon.logWarning("[SANITY: Pedestal Recipe Unlocks] Advancement '" + advancementIdentifier + "' in '" + recipe.getId() + "' does not exist");
 					}
 				}
 			}
@@ -157,82 +157,82 @@ public class ProgressionSanityCommand {
 		// Impossible to unlock fusion shrine recipes
 		for(FusionShrineRecipe recipe : SpectrumCommon.minecraftServer.getRecipeManager().listAllOfType(SpectrumRecipeTypes.FUSION_SHRINE)) {
 			if(!doesAdvancementExist(recipe.getRequiredAdvancementIdentifier())) {
-				SpectrumCommon.log(Level.WARN, "[SANITY: Fusion Shrine Recipe Unlocks] Advancement '" + recipe.getRequiredAdvancementIdentifier() + "' in recipe '" + recipe.getId() + "' does not exist");
+				SpectrumCommon.logWarning("[SANITY: Fusion Shrine Recipe Unlocks] Advancement '" + recipe.getRequiredAdvancementIdentifier() + "' in recipe '" + recipe.getId() + "' does not exist");
 			}
 			for(Ingredient inputIngredient : recipe.getIngredients()) {
 				for(ItemStack matchingItemStack : inputIngredient.getMatchingStacks()) {
 					if (ColorRegistry.ITEM_COLORS.getMapping(matchingItemStack.getItem()).isEmpty()) {
-						SpectrumCommon.log(Level.WARN, "[SANITY: Fusion Shrine Recipe] Input '" + Registry.ITEM.getId(matchingItemStack.getItem()) + "' in recipe '" + recipe.getId() + "', does not exist in the item color registry. Add it for nice effects!");
+						SpectrumCommon.logWarning("[SANITY: Fusion Shrine Recipe] Input '" + Registry.ITEM.getId(matchingItemStack.getItem()) + "' in recipe '" + recipe.getId() + "', does not exist in the item color registry. Add it for nice effects!");
 					}
 				}
 			}
 			Item outputItem = recipe.getOutput().getItem();
 			if(outputItem != Items.AIR && ColorRegistry.ITEM_COLORS.getMapping(outputItem).isEmpty()) {
-				SpectrumCommon.log(Level.WARN, "[SANITY: Fusion Shrine Recipe] Output '" + Registry.ITEM.getId(outputItem) + "' in recipe '" + recipe.getId() + "', does not exist in the item color registry. Add it for nice effects!");
+				SpectrumCommon.logWarning("[SANITY: Fusion Shrine Recipe] Output '" + Registry.ITEM.getId(outputItem) + "' in recipe '" + recipe.getId() + "', does not exist in the item color registry. Add it for nice effects!");
 			}
 		}
 		
 		// Impossible to unlock potion workshop brewing recipes
 		for(PotionWorkshopBrewingRecipe recipe : SpectrumCommon.minecraftServer.getRecipeManager().listAllOfType(SpectrumRecipeTypes.POTION_WORKSHOP_BREWING)) {
 			if(!doesAdvancementExist(recipe.getRequiredAdvancementIdentifier())) {
-				SpectrumCommon.log(Level.WARN, "[SANITY: Potion Workshop Brewing Unlocks] Advancement '" + recipe.getRequiredAdvancementIdentifier() + "' in recipe '" + recipe.getId() + "' does not exist");
+				SpectrumCommon.logWarning("[SANITY: Potion Workshop Brewing Unlocks] Advancement '" + recipe.getRequiredAdvancementIdentifier() + "' in recipe '" + recipe.getId() + "' does not exist");
 			}
 		}
 		
 		// Impossible to unlock potion workshop crafting recipes
 		for(PotionWorkshopCraftingRecipe recipe : SpectrumCommon.minecraftServer.getRecipeManager().listAllOfType(SpectrumRecipeTypes.POTION_WORKSHOP_CRAFTING)) {
 			if(!doesAdvancementExist(recipe.getRequiredAdvancementIdentifier())) {
-				SpectrumCommon.log(Level.WARN, "[SANITY: Potion Workshop Crafting Unlocks] Advancement '" + recipe.getRequiredAdvancementIdentifier() + "' in recipe '" + recipe.getId() + "' does not exist");
+				SpectrumCommon.logWarning("[SANITY: Potion Workshop Crafting Unlocks] Advancement '" + recipe.getRequiredAdvancementIdentifier() + "' in recipe '" + recipe.getId() + "' does not exist");
 			}
 		}
 		
 		// Impossible to unlock spirit instiller recipes
 		for(SpiritInstillerRecipe recipe : SpectrumCommon.minecraftServer.getRecipeManager().listAllOfType(SpectrumRecipeTypes.SPIRIT_INSTILLER_RECIPE)) {
 			if(!doesAdvancementExist(recipe.getRequiredAdvancementIdentifier())) {
-				SpectrumCommon.log(Level.WARN, "[SANITY: Spirit Instiller Recipe Unlocks] Advancement '" + recipe.getRequiredAdvancementIdentifier() + "' in recipe '" + recipe.getId() + "' does not exist");
+				SpectrumCommon.logWarning("[SANITY: Spirit Instiller Recipe Unlocks] Advancement '" + recipe.getRequiredAdvancementIdentifier() + "' in recipe '" + recipe.getId() + "' does not exist");
 			}
 		}
 		
 		// Enchanting recipes
 		for(EnchanterRecipe enchanterRecipe : SpectrumCommon.minecraftServer.getRecipeManager().listAllOfType(SpectrumRecipeTypes.ENCHANTER)) {
 			if(!doesAdvancementExist(enchanterRecipe.getRequiredAdvancementIdentifier())) {
-				SpectrumCommon.log(Level.WARN, "[SANITY: Enchanting Recipe Unlocks] Advancement '" + enchanterRecipe.getRequiredAdvancementIdentifier() + "' in recipe '" + enchanterRecipe.getId() + "' does not exist");
+				SpectrumCommon.logWarning("[SANITY: Enchanting Recipe Unlocks] Advancement '" + enchanterRecipe.getRequiredAdvancementIdentifier() + "' in recipe '" + enchanterRecipe.getId() + "' does not exist");
 			}
 			for(Ingredient inputIngredient : enchanterRecipe.getIngredients()) {
 				for(ItemStack matchingItemStack : inputIngredient.getMatchingStacks()) {
 					if (ColorRegistry.ITEM_COLORS.getMapping(matchingItemStack.getItem()).isEmpty()) {
-						SpectrumCommon.log(Level.WARN, "[SANITY: Enchanting Recipe] Input '" + Registry.ITEM.getId(matchingItemStack.getItem()) + "' in recipe '" + enchanterRecipe.getId() + "', does not exist in the item color registry. Add it for nice effects!");
+						SpectrumCommon.logWarning("[SANITY: Enchanting Recipe] Input '" + Registry.ITEM.getId(matchingItemStack.getItem()) + "' in recipe '" + enchanterRecipe.getId() + "', does not exist in the item color registry. Add it for nice effects!");
 					}
 				}
 			}
 			Item outputItem = enchanterRecipe.getOutput().getItem();
 			if(ColorRegistry.ITEM_COLORS.getMapping(outputItem).isEmpty()) {
-				SpectrumCommon.log(Level.WARN, "[SANITY: Enchanting Recipe] Output '" + Registry.ITEM.getId(outputItem) + "' in recipe '" + enchanterRecipe.getId() + "', does not exist in the item color registry. Add it for nice effects!");
+				SpectrumCommon.logWarning("[SANITY: Enchanting Recipe] Output '" + Registry.ITEM.getId(outputItem) + "' in recipe '" + enchanterRecipe.getId() + "', does not exist in the item color registry. Add it for nice effects!");
 			}
 		}
 		
 		// Enchantment upgrade recipes
 		for(EnchantmentUpgradeRecipe enchantmentUpgradeRecipe : SpectrumCommon.minecraftServer.getRecipeManager().listAllOfType(SpectrumRecipeTypes.ENCHANTMENT_UPGRADE)) {
 			if(!doesAdvancementExist(enchantmentUpgradeRecipe.getRequiredAdvancementIdentifier())) {
-				SpectrumCommon.log(Level.WARN, "[SANITY: Enchantment Upgrade Recipe Unlocks] Advancement '" + enchantmentUpgradeRecipe.getRequiredAdvancementIdentifier() + "' in recipe '" + enchantmentUpgradeRecipe.getId() + "' does not exist");
+				SpectrumCommon.logWarning("[SANITY: Enchantment Upgrade Recipe Unlocks] Advancement '" + enchantmentUpgradeRecipe.getRequiredAdvancementIdentifier() + "' in recipe '" + enchantmentUpgradeRecipe.getId() + "' does not exist");
 			}
 			for(Ingredient inputIngredient : enchantmentUpgradeRecipe.getIngredients()) {
 				for(ItemStack matchingItemStack : inputIngredient.getMatchingStacks()) {
 					if (ColorRegistry.ITEM_COLORS.getMapping(matchingItemStack.getItem()).isEmpty()) {
-						SpectrumCommon.log(Level.WARN, "[SANITY: Enchantment Upgrade Recipe] Input '" + Registry.ITEM.getId(matchingItemStack.getItem()) + "' in recipe '" + enchantmentUpgradeRecipe.getId() + "', does not exist in the item color registry. Add it for nice effects!");
+						SpectrumCommon.logWarning("[SANITY: Enchantment Upgrade Recipe] Input '" + Registry.ITEM.getId(matchingItemStack.getItem()) + "' in recipe '" + enchantmentUpgradeRecipe.getId() + "', does not exist in the item color registry. Add it for nice effects!");
 					}
 				}
 			}
 			Item outputItem = enchantmentUpgradeRecipe.getOutput().getItem();
 			if(ColorRegistry.ITEM_COLORS.getMapping(outputItem).isEmpty()) {
-				SpectrumCommon.log(Level.WARN, "[SANITY: Enchantment Upgrade Recipe] Output '" + Registry.ITEM.getId(outputItem) + "' in recipe '" + enchantmentUpgradeRecipe.getId() + "', does not exist in the item color registry. Add it for nice effects!");
+				SpectrumCommon.logWarning("[SANITY: Enchantment Upgrade Recipe] Output '" + Registry.ITEM.getId(outputItem) + "' in recipe '" + enchantmentUpgradeRecipe.getId() + "', does not exist in the item color registry. Add it for nice effects!");
 			}
 		}
 
 		// Impossible to unlock block cloaks
 		for(Map.Entry<Identifier, List<Cloakable>> cloaks : BlockCloakManager.getAdvancementIdentifiersAndRegisteredCloaks().entrySet()) {
 			if(!doesAdvancementExist(cloaks.getKey())) {
-				SpectrumCommon.log(Level.WARN, "[SANITY: Block Cloaks] Advancement '" + cloaks.getKey().toString() + "' for block / item cloaking does not exist. Registered cloaks: " + cloaks.getValue().size());
+				SpectrumCommon.logWarning("[SANITY: Block Cloaks] Advancement '" + cloaks.getKey().toString() + "' for block / item cloaking does not exist. Registered cloaks: " + cloaks.getValue().size());
 			}
 		}
 
@@ -245,7 +245,7 @@ public class ProgressionSanityCommand {
 					Identifier advancementIdentifier = hasAdvancementConditions.getAdvancementIdentifier();
 					Advancement advancementCriterionAdvancement = SpectrumCommon.minecraftServer.getAdvancementLoader().get(advancementIdentifier);
 					if(advancementCriterionAdvancement == null) {
-						SpectrumCommon.log(Level.WARN, "[SANITY: Has_Advancement Criteria] Advancement '" + advancement.getId() + "' references advancement '" + advancementIdentifier  + "' that does not exist");
+						SpectrumCommon.logWarning("[SANITY: Has_Advancement Criteria] Advancement '" + advancement.getId() + "' references advancement '" + advancementIdentifier  + "' that does not exist");
 					}
 				}
 			}
@@ -262,15 +262,15 @@ public class ProgressionSanityCommand {
 							previousAdvancementIdentifier = advancementConditions.getAdvancementIdentifier();
 							break;
 						} else {
-							SpectrumCommon.log(Level.WARN, "[SANITY: Advancement Gating] Advancement '" + advancement.getId() + "' has a \"gotten_previous\" requirement, but its not spectrum:has_advancement?");
+							SpectrumCommon.logWarning("[SANITY: Advancement Gating] Advancement '" + advancement.getId() + "' has a \"gotten_previous\" requirement, but its not spectrum:has_advancement?");
 						}
 					}
 				}
 				if(previousAdvancementIdentifier == null) {
-					SpectrumCommon.log(Level.WARN, "[SANITY: Advancement Gating] Advancement '" + advancement.getId() + "' has not set its parent set as requirement");
+					SpectrumCommon.logWarning("[SANITY: Advancement Gating] Advancement '" + advancement.getId() + "' has not set its parent set as requirement");
 				} else {
 					if(!advancement.getParent().getId().equals(previousAdvancementIdentifier) && !advancementGatingWarningWhitelist.contains(advancement.getId())) {
-						SpectrumCommon.log(Level.WARN, "[SANITY: Advancement Gating] Advancement '" + advancement.getId() + "' has its \"gotten_previous\" advancement set to something else than their parent. Intended?");
+						SpectrumCommon.logWarning("[SANITY: Advancement Gating] Advancement '" + advancement.getId() + "' has its \"gotten_previous\" advancement set to something else than their parent. Intended?");
 					}
 				}
 			}
@@ -280,7 +280,7 @@ public class ProgressionSanityCommand {
 		for(AnvilCrushingRecipe anvilCrushingRecipe : SpectrumCommon.minecraftServer.getRecipeManager().listAllOfType(SpectrumRecipeTypes.ANVIL_CRUSHING)) {
 			SoundEvent soundEvent = anvilCrushingRecipe.getSoundEvent();
 			if(soundEvent == null) {
-				SpectrumCommon.log(Level.WARN, "[SANITY: Item Crushing] Recipe '" + anvilCrushingRecipe.getId() + "' has a nonexistent sound set");
+				SpectrumCommon.logWarning("[SANITY: Item Crushing] Recipe '" + anvilCrushingRecipe.getId() + "' has a nonexistent sound set");
 			}
 		}
 		
@@ -290,7 +290,7 @@ public class ProgressionSanityCommand {
 				Identifier advancementIdentifier = spectrumEnchantment.getUnlockAdvancementIdentifier();
 				Advancement advancementCriterionAdvancement = SpectrumCommon.minecraftServer.getAdvancementLoader().get(advancementIdentifier);
 				if(advancementCriterionAdvancement == null) {
-					SpectrumCommon.log(Level.WARN, "[SANITY: Enchantments] Enchantment '" + enchantment.getKey().getValue() + "' references advancement '" + advancementIdentifier  + "' that does not exist");
+					SpectrumCommon.logWarning("[SANITY: Enchantments] Enchantment '" + enchantment.getKey().getValue() + "' references advancement '" + advancementIdentifier  + "' that does not exist");
 				}
 			}
 		}
@@ -299,16 +299,16 @@ public class ProgressionSanityCommand {
 		for(Map.Entry<RegistryKey<Item>, Item> item : Registry.ITEM.getEntrySet()) {
 			Item i = item.getValue();
 			if(i instanceof EnchanterEnchantable && i.getEnchantability() < 1) {
-				SpectrumCommon.log(Level.WARN, "[SANITY: Enchantability] Item '" + item.getKey().getValue() + "' is EnchanterEnchantable, but has enchantability of < 1");
+				SpectrumCommon.logWarning("[SANITY: Enchantability] Item '" + item.getKey().getValue() + "' is EnchanterEnchantable, but has enchantability of < 1");
 			}
 		}
 		
-		SpectrumCommon.log(Level.INFO, "##### SANITY CHECK FINISHED ######");
+		SpectrumCommon.logInfo("##### SANITY CHECK FINISHED ######");
 		
-		SpectrumCommon.log(Level.INFO, "##### SANITY CHECK PEDESTAL RECIPE STATISTICS ######");
+		SpectrumCommon.logInfo("##### SANITY CHECK PEDESTAL RECIPE STATISTICS ######");
 		for(PedestalRecipeTier pedestalRecipeTier : PedestalRecipeTier.values()) {
 			HashMap<GemstoneColor, Integer> entry = usedColorsForEachTier.get(pedestalRecipeTier);
-			SpectrumCommon.log(Level.INFO, "[SANITY: Pedestal Recipe Gemstone Usages] Gemstone Powder for tier " + StringUtils.leftPad(pedestalRecipeTier.toString(), 8) +
+			SpectrumCommon.logInfo("[SANITY: Pedestal Recipe Gemstone Usages] Gemstone Powder for tier " + StringUtils.leftPad(pedestalRecipeTier.toString(), 8) +
 					": C:" + StringUtils.leftPad(entry.get(GemstoneColor.CYAN).toString(), 3) +
 					" M:" + StringUtils.leftPad(entry.get(GemstoneColor.MAGENTA).toString(), 3) +
 					" Y:" + StringUtils.leftPad(entry.get(GemstoneColor.YELLOW).toString(), 3) +

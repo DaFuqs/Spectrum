@@ -362,7 +362,7 @@ public class SpectrumConfiguredFeatures {
 		for(String biomeString : SpectrumCommon.CONFIG.MermaidsBrushGenerationBiomes) {
 			RegistryKey<Biome> biomeKey = RegistryKey.of(Registry.BIOME_KEY, new Identifier(biomeString));
 			if(biomeKey == null) {
-				SpectrumCommon.log(Level.ERROR, "Mermaids Brush is configured to spawn in biome "+ biomeString + ", but that does not exist!");
+				SpectrumCommon.logError("Mermaids Brush is configured to spawn in biome "+ biomeString + ", but that does not exist!");
 			} else {
 				oceans.add(biomeKey);
 			}
@@ -385,7 +385,7 @@ public class SpectrumConfiguredFeatures {
 		for(String biomeString : SpectrumCommon.CONFIG.QuitoxicReedsGenerationBiomes) {
 			RegistryKey<Biome> biomeKey = RegistryKey.of(Registry.BIOME_KEY, new Identifier(biomeString));
 			if(biomeKey == null) {
-				SpectrumCommon.log(Level.ERROR, "Quitoxic Reeds are configured to spawn in biome "+ biomeString + " but that does not exist!");
+				SpectrumCommon.logError("Quitoxic Reeds are configured to spawn in biome "+ biomeString + " but that does not exist!");
 			} else {
 				swamps.add(biomeKey);
 			}

@@ -32,11 +32,10 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.potion.PotionUtil;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
-import org.apache.logging.log4j.Level;
 
 import java.util.List;
 
-import static de.dafuqs.spectrum.SpectrumCommon.log;
+import static de.dafuqs.spectrum.SpectrumCommon.logInfo;
 
 public class SpectrumClient implements ClientModInitializer {
 	
@@ -50,18 +49,18 @@ public class SpectrumClient implements ClientModInitializer {
 
 	@Override
 	public void onInitializeClient() {
-		log(Level.INFO, "Starting Client Startup");
+		logInfo("Starting Client Startup");
 
-		log(Level.INFO, "Setting up Block Rendering...");
+		logInfo("Setting up Block Rendering...");
 		SpectrumBlocks.registerClient();
-		log(Level.INFO, "Setting up Fluid Rendering...");
+		logInfo("Setting up Fluid Rendering...");
 		SpectrumFluids.registerClient();
 
-		log(Level.INFO, "Setting up GUIs...");
+		logInfo("Setting up GUIs...");
 		SpectrumContainers.register();
 		SpectrumScreenHandlerTypes.registerClient();
 
-		log(Level.INFO, "Setting up ItemPredicates...");
+		logInfo("Setting up ItemPredicates...");
 		registerBowPredicates(SpectrumItems.BEDROCK_BOW);
 		registerCrossbowPredicates(SpectrumItems.BEDROCK_CROSSBOW);
 		registerFishingRodPredicates(SpectrumItems.BEDROCK_FISHING_ROD);
@@ -71,20 +70,20 @@ public class SpectrumClient implements ClientModInitializer {
 		registerKnowledgeDropPredicates(SpectrumItems.KNOWLEDGE_GEM);
 		registerAshenCircletPredicates(SpectrumItems.ASHEN_CIRCLET);
 
-		log(Level.INFO, "Setting up Block Entity Renderers...");
+		logInfo("Setting up Block Entity Renderers...");
 		SpectrumBlockEntityRegistry.registerClient();
-		log(Level.INFO, "Setting up Entity Renderers...");
+		logInfo("Setting up Entity Renderers...");
 		SpectrumEntityRenderers.registerClient();
 
-		log(Level.INFO, "Registering Server to Client Package Receivers...");
+		logInfo("Registering Server to Client Package Receivers...");
 		SpectrumS2CPacketReceiver.registerS2CReceivers();
-		log(Level.INFO, "Registering Particle Factories...");
+		logInfo("Registering Particle Factories...");
 		SpectrumParticleFactories.register();
 
-		log(Level.INFO, "Registering Overlays...");
+		logInfo("Registering Overlays...");
 		GuiOverlay.register();
 		
-		log(Level.INFO, "Registering Item Tooltips...");
+		logInfo("Registering Item Tooltips...");
 		SpectrumTooltipComponents.registerTooltipComponents();
 
 		ClientLifecycleEvents.CLIENT_STARTED.register(minecraftClient -> {
@@ -92,14 +91,14 @@ public class SpectrumClient implements ClientModInitializer {
 			registerColorProviders();
 		});
 
-		log(Level.INFO, "Registering custom Patchouli Pages...");
+		logInfo("Registering custom Patchouli Pages...");
 		PatchouliPages.register();
 
-		log(Level.INFO, "Client startup completed!");
+		logInfo("Client startup completed!");
 	}
 
 	private static void registerColorProviders() {
-		log(Level.INFO, "Registering Block and Item Color Providers...");
+		logInfo("Registering Block and Item Color Providers...");
 		
 		// Biome Colors for colored leaves items and blocks
 		// They don't use it, but their decay as oak leaves do

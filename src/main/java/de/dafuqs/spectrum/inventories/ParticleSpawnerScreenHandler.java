@@ -41,7 +41,7 @@ public class ParticleSpawnerScreenHandler extends ScreenHandler {
 		if(blockEntity instanceof ParticleSpawnerBlockEntity particleSpawnerBlockEntity) {
 			this.particleSpawnerBlockEntity = particleSpawnerBlockEntity;
 		} else {
-			SpectrumCommon.log(Level.WARN, "Particle Spawner GUI called with a position where no ParticleSpawnerBlockEntity exists");
+			SpectrumCommon.logWarning("Particle Spawner GUI called with a position where no ParticleSpawnerBlockEntity exists");
 		}
 	}
    

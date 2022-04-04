@@ -450,7 +450,7 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 				try {
 					this.setSuccess(bottomlessBundleItem.place(new AutomaticItemPlacementContext(pointer.getWorld(), blockPos, direction, stack, direction2)).isAccepted());
 				} catch (Exception e) {
-					SpectrumCommon.log(Level.ERROR, "Error trying to place bottomless bundle at " + blockPos + " : " + e);
+					SpectrumCommon.logError("Error trying to place bottomless bundle at " + blockPos + " : " + e);
 				}
 			}
 			

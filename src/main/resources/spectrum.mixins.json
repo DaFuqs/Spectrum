@@ -18,7 +18,6 @@
     "GeodesGenerateWithGemstoneOresMixin",
     "GlassBottleItemMixin",
     "HorseBaseEntityMixin",
-    "ImprovedCriticalEnchantmentMixin",
     "InfestedBlockMixin",
     "ItemEntityMixin",
     "ItemFrameEntityMixin",
@@ -46,7 +45,6 @@
   ],
   "client": [
     "accessors.RenderLayerAccessor",
-    "client.BackgroundRendererMixin",
     "client.BlockClientMixin",
     "client.BlockModelsMixin",
     "client.BlockOverlayRendererMixin",

@@ -1,9 +1,17 @@
 package de.dafuqs.spectrum.items.trinkets;
 
+import com.google.common.collect.Multimap;
+import de.dafuqs.additionalentityattributes.AdditionalEntityAttributes;
 import de.dafuqs.spectrum.SpectrumCommon;
+import dev.emi.stepheightentityattribute.StepHeightEntityAttributeMain;
 import dev.emi.trinkets.api.SlotReference;
 import net.minecraft.client.item.TooltipContext;
+import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.attribute.EntityAttribute;
+import net.minecraft.entity.attribute.EntityAttributeModifier;
+import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.ItemStack;
@@ -20,17 +28,15 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.UUID;
 
 public class AshenCircletItem extends SpectrumTrinketItem {
 	
 	public static final int FIRE_RESISTANCE_EFFECT_DURATION = 600;
 	public static final long COOLDOWN_TICKS = 3000;
 	
-	public static final float LAVA_MOVEMENT_SPEED_MOD = 0.9F; // vanilla uses 0.5 to slow the player down to half its speed
-	public static final float LAVA_VIEW_DISTANCE_MIN = -4.0F;
-	public static final float LAVA_VIEW_DISTANCE_MAX = 8.0F;
-	public static final float LAVA_VIEW_DISTANCE_MIN_POTION = -8.0F;
-	public static final float LAVA_VIEW_DISTANCE_MAX_POTION = 16.0F;
+	public static final double LAVA_MOVEMENT_SPEED_MOD = 0.4; // vanilla uses 0.5 to slow the player down to half its speed
+	public static final double LAVA_VIEW_DISTANCE_MOD = 24.0;
 	
 	@Override
 	public void tick(ItemStack stack, SlotReference slot, LivingEntity entity) {
@@ -82,6 +88,16 @@ public class AshenCircletItem extends SpectrumTrinketItem {
 			livingEntity.world.playSound(null, livingEntity.getBlockPos(), SoundEvents.ENTITY_SPLASH_POTION_BREAK, SoundCategory.PLAYERS, 1.0F, 1.0F);
 			setCooldown(ashenCircletStack, livingEntity.world);
 		}
+	}
+	
+	@Override
+	public Multimap<EntityAttribute, EntityAttributeModifier> getModifiers(ItemStack stack, SlotReference slot, LivingEntity entity, UUID uuid) {
+		Multimap<EntityAttribute, EntityAttributeModifier> modifiers = super.getModifiers(stack, slot, entity, uuid);
+		
+		modifiers.put(AdditionalEntityAttributes.LAVA_SPEED, new EntityAttributeModifier(uuid, "spectrum:ashen_circlet", LAVA_MOVEMENT_SPEED_MOD, EntityAttributeModifier.Operation.ADDITION));
+		modifiers.put(AdditionalEntityAttributes.LAVA_VISIBILITY, new EntityAttributeModifier(uuid, "spectrum:ashen_circlet", LAVA_VIEW_DISTANCE_MOD, EntityAttributeModifier.Operation.ADDITION));
+		
+		return modifiers;
 	}
 	
 }

@@ -64,14 +64,6 @@ public abstract class LivingEntityMixin {
 		}
 	}
 	
-	@ModifyConstant(method = "travel", constant = {@Constant(doubleValue = 0.5D, ordinal = 0), @Constant(doubleValue = 0.5D, ordinal = 1), @Constant(doubleValue = 0.5D, ordinal = 2)})
-	private double increasedLavaSpeed(double original) {
-		if(SpectrumTrinketItem.hasEquipped(this, SpectrumItems.ASHEN_CIRCLET)) {
-			return AshenCircletItem.LAVA_MOVEMENT_SPEED_MOD;
-		}
-		return original;
-	}
-	
 	@Inject(at = @At("HEAD"), method = "fall(DZLnet/minecraft/block/BlockState;Lnet/minecraft/util/math/BlockPos;)V")
 	public void spectrum$mitigateFallDamageWithPuffCirclet(double heightDifference, boolean onGround, BlockState landedState, BlockPos landedPosition, CallbackInfo ci) {
 		if(onGround) {

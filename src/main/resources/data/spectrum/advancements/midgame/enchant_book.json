@@ -12,7 +12,7 @@
     }
   },
   "criteria": {
-    "enchanted_using_2500_experience": {
+    "enchanted_book": {
       "trigger": "spectrum:enchanter_enchanting",
       "conditions": {
         "item": {

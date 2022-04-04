@@ -36,6 +36,9 @@ repositories {
 	maven { url 'https://maven.wispforest.io/' } // owo lib
 	maven { url "https://jitpack.io" }
 	mavenCentral() // incubus core
+	flatDir {
+		dirs 'I:\\FabricModding\\localdeps'
+	}
 }
 
 dependencies {
@@ -74,6 +77,9 @@ dependencies {
 
 	modImplementation "com.github.emilyploszaj:step-height-entity-attribute:${project.step_height_attribute_version}"
 	include "com.github.emilyploszaj:step-height-entity-attribute:${project.step_height_attribute_version}"
+
+	modImplementation "de.dafuqs.additionalentityattributes:Additionalentityattributes-1.0.0"
+	include "de.dafuqs.additionalentityattributes:Additionalentityattributes-1.0.0"
 
 	//modImplementation "com.jamieswhiteshirt:reach-entity-attributes:2.1.1"
 	//include "com.jamieswhiteshirt:reach-entity-attributes:2.1.1"

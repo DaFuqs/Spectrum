@@ -141,7 +141,7 @@ public class SpectrumBlocks {
 	public static final Block POTION_WORKSHOP = new PotionWorkshopBlock(FabricBlockSettings.of(Material.STONE).hardness(3.0f).nonOpaque());
 	
 	public static final Block SPIRIT_INSTILLER = new SpiritInstillerBlock(FabricBlockSettings.of(Material.STONE).strength(2.0F, 5.0F).nonOpaque());
-	public static final Block MEMORY = new MemoryBlock(FabricBlockSettings.of(Material.STONE).hardness(3.0f).nonOpaque().ticksRandomly());
+	public static final Block MEMORY = new MemoryBlock(FabricBlockSettings.of(Material.STONE).hardness(1.0f).nonOpaque().ticksRandomly());
 
 	// GEMS
 	public static final Block TOPAZ_CLUSTER = new AmethystClusterBlock(7, 3, FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().requiresTool().sounds(SpectrumBlockSoundGroups.TOPAZ_CLUSTER).luminance(6));

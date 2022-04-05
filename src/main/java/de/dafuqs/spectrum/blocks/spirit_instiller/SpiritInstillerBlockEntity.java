@@ -247,12 +247,8 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 				resultStack.setCount(resultCountMod);
 			}
 			
-			// place / spawn the result stack, depending on if the instiller is empty
-			if (spiritInstillerBlockEntity.getInventory().getStack(0).isEmpty()) {
-				spiritInstillerBlockEntity.getInventory().setStack(0, resultStack);
-			} else {
-				EnchanterBlockEntity.spawnItemStackAsEntitySplitViaMaxCount(world, spiritInstillerBlockEntity.pos, resultStack, resultStack.getCount());
-			}
+			// spawn the result stack in world
+			EnchanterBlockEntity.spawnItemStackAsEntitySplitViaMaxCount(world, spiritInstillerBlockEntity.pos, resultStack, resultStack.getCount());
 			
 			// Calculate and spawn experience
 			double experienceModifier = spiritInstillerBlockEntity.upgrades.get(UpgradeType.EXPERIENCE);

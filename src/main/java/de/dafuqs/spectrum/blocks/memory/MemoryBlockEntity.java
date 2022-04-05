@@ -46,7 +46,7 @@ public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 			setOwner(playerEntity);
 		}
 		if(creatureSpawnItemStack.getItem() instanceof MemoryItem) {
-			this.memoryItemStack = creatureSpawnItemStack;
+			this.memoryItemStack = creatureSpawnItemStack.copy();
 		}
 	}
 	

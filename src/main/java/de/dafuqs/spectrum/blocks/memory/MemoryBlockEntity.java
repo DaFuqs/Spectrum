@@ -74,15 +74,17 @@ public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 		int ticksToManifest = MemoryItem.getTicksToManifest(this.memoryItemStack.getNbt());
 		if(ticksToManifest > 0) {
 			int additionalManifestAdvanceSteps = getManifestAdvanceSteps(world, blockPos);
-			int newTicksToManifest = ticksToManifest - additionalManifestAdvanceSteps;
-			if(newTicksToManifest <= 0) {
-				this.manifest(world, blockPos);
-			} else {
-				Optional<EntityType<?>> entityTypeOptional = MemoryItem.getEntityType(this.memoryItemStack.getNbt());
-				if(entityTypeOptional.isPresent()) {
-					MemoryItem.setTicksToManifest(this.memoryItemStack, newTicksToManifest);
-					SpectrumS2CPacketSender.playMemoryManifestingParticles(world, blockPos, entityTypeOptional.get(), 3);
-					world.playSound(null, this.pos, SoundEvents.ENTITY_TURTLE_EGG_CRACK, SoundCategory.BLOCKS, 0.7F, 0.9F + world.random.nextFloat() * 0.2F); // TODO: fitting sound
+			if(additionalManifestAdvanceSteps > 0) {
+				int newTicksToManifest = ticksToManifest - additionalManifestAdvanceSteps;
+				if (newTicksToManifest <= 0) {
+					this.manifest(world, blockPos);
+				} else {
+					Optional<EntityType<?>> entityTypeOptional = MemoryItem.getEntityType(this.memoryItemStack.getNbt());
+					if (entityTypeOptional.isPresent()) {
+						MemoryItem.setTicksToManifest(this.memoryItemStack, newTicksToManifest);
+						SpectrumS2CPacketSender.playMemoryManifestingParticles(world, blockPos, entityTypeOptional.get(), 3);
+						world.playSound(null, this.pos, SoundEvents.ENTITY_TURTLE_EGG_CRACK, SoundCategory.BLOCKS, 0.7F, 0.9F + world.random.nextFloat() * 0.2F); // TODO: fitting sound
+					}
 				}
 			}
 		}

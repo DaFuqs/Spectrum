@@ -285,6 +285,16 @@
       "spectrum:block/moonstone/block_moonstone_cluster_break4"
     ]
   },
+  "spirit_instiller_crafting": {
+    "sounds": [
+      "spectrum:spirit_instiller_crafting"
+    ]
+  },
+  "spirit_instiller_crafting_finished": {
+    "sounds": [
+      "spectrum:spirit_instiller_crafting_finished"
+    ]
+  },
   "natures_staff_use": {
     "subtitle": "spectrum.subtitles.natures_staff_use",
     "sounds": [

@@ -5,6 +5,7 @@ import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
 import de.dafuqs.spectrum.registries.SpectrumBlockTags;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.TurtleEggBlock;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -17,6 +18,8 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
@@ -26,8 +29,7 @@ import java.util.UUID;
 
 public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 	
-	protected ItemStack creatureSpawnItemStack = ItemStack.EMPTY;
-	protected int ticksToHatch = -1; // zero or negative values: never hatch
+	protected ItemStack memoryItemStack = ItemStack.EMPTY; // zero or negative values: never hatch
 	
 	protected UUID ownerUUID;
 	
@@ -40,7 +42,7 @@ public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 			setOwner(playerEntity);
 		}
 		if(creatureSpawnItemStack.getItem() instanceof MemoryItem) {
-			this.creatureSpawnItemStack = creatureSpawnItemStack;
+			this.memoryItemStack = creatureSpawnItemStack;
 		}
 	}
 	
@@ -50,31 +52,36 @@ public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 		
 		if(nbt.contains("MemoryItem", NbtElement.COMPOUND_TYPE)) {
 			NbtCompound creatureSpawnCompound = nbt.getCompound("MemoryItem");
-			this.creatureSpawnItemStack = ItemStack.fromNbt(creatureSpawnCompound);
+			this.memoryItemStack = ItemStack.fromNbt(creatureSpawnCompound);
 		}
 	}
 	
 	@Override
 	protected void writeNbt(NbtCompound nbt) {
 		super.writeNbt(nbt);
-		if(this.creatureSpawnItemStack != null) {
+		if(this.memoryItemStack != null) {
 			NbtCompound creatureSpawnCompound = new NbtCompound();
-			creatureSpawnItemStack.writeNbt(creatureSpawnCompound);
+			memoryItemStack.writeNbt(creatureSpawnCompound);
 			nbt.put("MemoryItem", creatureSpawnCompound);
 		}
 	}
 	
-	public void advanceHatching(ServerWorld world, BlockPos blockPos) {
-		if(this.ticksToHatch > 0) {
-			this.ticksToHatch -= getHatchAdvanceSteps(world, blockPos);
-			if(this.ticksToHatch <= 0) {
+	public void advanceManifesting(ServerWorld world, BlockPos blockPos) {
+		int ticksToManifest = MemoryItem.getTicksToManifest(this.memoryItemStack.getNbt());
+		if(ticksToManifest > 0) {
+			int additionalManifestAdvanceSteps = getManifestAdvanceSteps(world, blockPos);
+			int newTicksToManifest = ticksToManifest - additionalManifestAdvanceSteps;
+			if(newTicksToManifest <= 0) {
 				this.hatch(world, blockPos);
+			} else {
+				MemoryItem.setTicksToManifest(this.memoryItemStack, newTicksToManifest);
+				world.playSound(null, this.pos, SoundEvents.ENTITY_TURTLE_EGG_CRACK, SoundCategory.BLOCKS, 0.7F, 0.9F + world.random.nextFloat() * 0.2F);
 			}
 		}
 	}
 	
 	public void hatch(ServerWorld world, BlockPos blockPos) {
-		Optional<Entity> hatchedEntity = hatchEntity(world, blockPos, this.creatureSpawnItemStack);
+		Optional<Entity> hatchedEntity = hatchEntity(world, blockPos, this.memoryItemStack);
 		if(hatchedEntity.isPresent()) {
 			triggerHatchingAdvancementCriterion(hatchedEntity.get());
 		}
@@ -88,11 +95,11 @@ public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 	}
 	
 	protected Optional<Entity> hatchEntity(ServerWorld world, BlockPos blockPos, ItemStack itemStack) {
-		if(!(this.creatureSpawnItemStack.getItem() instanceof MemoryItem)) {
-			Optional<EntityType<?>> entityType = MemoryItem.getEntityType(creatureSpawnItemStack.getNbt());
+		if(!(this.memoryItemStack.getItem() instanceof MemoryItem)) {
+			Optional<EntityType<?>> entityType = MemoryItem.getEntityType(memoryItemStack.getNbt());
 			if(entityType.isPresent()) {
 				// alignPosition: center the mob in the center of the blockPos
-				Entity entity = entityType.get().spawnFromItemStack(world, creatureSpawnItemStack, null, blockPos, SpawnReason.SPAWN_EGG, true, false);
+				Entity entity = entityType.get().spawnFromItemStack(world, memoryItemStack, null, blockPos, SpawnReason.SPAWN_EGG, true, false);
 				if(entity != null) {
 					if (entity instanceof MobEntity mobEntity) {
 						mobEntity.setBaby(true);
@@ -109,7 +116,7 @@ public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 		return Optional.empty();
 	}
 	
-	public static int getHatchAdvanceSteps(@NotNull World world, @NotNull BlockPos blockPos) {
+	public static int getManifestAdvanceSteps(@NotNull World world, @NotNull BlockPos blockPos) {
 		BlockState belowBlockState = world.getBlockState(blockPos.down());
 		if(belowBlockState.isIn(SpectrumBlockTags.MEMORY_NEVER_MANIFESTERS)) {
 			return 0;

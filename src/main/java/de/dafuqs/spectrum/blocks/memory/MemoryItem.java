@@ -57,6 +57,14 @@ public class MemoryItem extends BlockItem {
 		return -1;
 	}
 	
+	public static void setTicksToManifest(ItemStack itemStack, int newTicksToManifest) {
+		NbtCompound nbtCompound = itemStack.getNbt();
+		if(nbtCompound != null) {
+			nbtCompound.putInt("TicksToManifest", newTicksToManifest);
+			itemStack.setNbt(nbtCompound);
+		}
+	}
+	
 	public static boolean isEntityTypeUnrecognizable(@Nullable NbtCompound nbtCompound) {
 		if(nbtCompound != null && nbtCompound.contains("Unrecognizable", NbtElement.INT_TYPE)) {
 			return nbtCompound.getBoolean("Unrecognizable");

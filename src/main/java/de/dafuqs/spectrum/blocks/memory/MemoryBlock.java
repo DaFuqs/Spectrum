@@ -3,10 +3,7 @@ package de.dafuqs.spectrum.blocks.memory;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
@@ -55,7 +52,7 @@ public class MemoryBlock extends BlockWithEntity {
 		
 		BlockEntity blockEntity = world.getBlockEntity(pos);
 		if(blockEntity instanceof MemoryBlockEntity memoryBlockEntity) {
-			memoryBlockEntity.advanceHatching(world, pos);
+			memoryBlockEntity.advanceManifesting(world, pos);
 		}
 	}
 	

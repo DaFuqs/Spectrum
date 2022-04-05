@@ -5,7 +5,6 @@ import de.dafuqs.spectrum.blocks.enchanter.EnchanterBlock;
 import de.dafuqs.spectrum.blocks.enchanter.EnchanterBlockEntity;
 import de.dafuqs.spectrum.blocks.item_bowl.ItemBowlBlockEntity;
 import de.dafuqs.spectrum.blocks.upgrade.Upgradeable;
-import de.dafuqs.spectrum.helpers.ExperienceHelper;
 import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.interfaces.PlayerOwned;
 import de.dafuqs.spectrum.inventories.AutoCraftingInventory;
@@ -13,12 +12,9 @@ import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
-import de.dafuqs.spectrum.recipe.enchanter.EnchanterRecipe;
-import de.dafuqs.spectrum.recipe.enchantment_upgrade.EnchantmentUpgradeRecipe;
 import de.dafuqs.spectrum.recipe.spirit_instiller.SpiritInstillerRecipe;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
 import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
-import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -31,13 +27,11 @@ import net.minecraft.network.Packet;
 import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
 import net.minecraft.recipe.Recipe;
-import net.minecraft.recipe.RecipeInputProvider;
 import net.minecraft.recipe.RecipeMatcher;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.stat.Stats;
 import net.minecraft.util.BlockRotation;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Pair;
@@ -149,7 +143,7 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 				}
 			}
 			if(spiritInstillerBlockEntity.craftingTime == 1) {
-				SpectrumS2CPacketSender.sendPlayBlockBoundSoundInstance(SpectrumSoundEvents.SPIRIT_INSTILLER_WORKING, (ServerWorld) spiritInstillerBlockEntity.world, spiritInstillerBlockEntity.pos, Integer.MAX_VALUE);
+				SpectrumS2CPacketSender.sendPlayBlockBoundSoundInstance(SpectrumSoundEvents.SPIRIT_INSTILLER_CRAFTING, (ServerWorld) spiritInstillerBlockEntity.world, spiritInstillerBlockEntity.pos, Integer.MAX_VALUE);
 			}
 			
 			if (spiritInstillerBlockEntity.currentRecipe != null) {
@@ -206,21 +200,21 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 		return false;
 	}
 	
-	public static BlockPos getItemBowlPos(SpiritInstillerBlockEntity spiritInstillerBlockEntity, boolean right) {
+	public static BlockPos getItemBowlPos(@NotNull SpiritInstillerBlockEntity spiritInstillerBlockEntity, boolean right) {
 		BlockPos blockPos = spiritInstillerBlockEntity.pos;
 		switch (spiritInstillerBlockEntity.multiblockRotation) {
 			case NONE, CLOCKWISE_180 -> {
 				if(right) {
-					blockPos.up().north(2);
+					return blockPos.up().north(2);
 				} else {
-					blockPos.up().south(2);
+					return blockPos.up().south(2);
 				}
 			}
 			default -> {
 				if(right) {
-					blockPos.up().east(2);
+					return blockPos.up().east(2);
 				} else {
-					blockPos.up().west(2);
+					return blockPos.up().west(2);
 				}
 			}
 		}
@@ -252,45 +246,56 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 	
 	public static void craftSpiritInstillerRecipe(World world, @NotNull SpiritInstillerBlockEntity spiritInstillerBlockEntity, @NotNull SpiritInstillerRecipe spiritInstillerRecipe) {
 		if(decrementItems(spiritInstillerBlockEntity)) {
-			// if there is room: place the output on the table
+			// if there is room: place the output on the instiller
 			// otherwise: pop it off
 			ItemStack resultStack = spiritInstillerRecipe.getOutput().copy();
-			ItemStack existingCenterStack = spiritInstillerBlockEntity.getInventory().getStack(0);
 			
 			if (!spiritInstillerRecipe.areYieldAndEfficiencyUpgradesDisabled() && spiritInstillerBlockEntity.upgrades.get(UpgradeType.YIELD) != 1.0) {
 				int resultCountMod = Support.getIntFromDecimalWithChance(resultStack.getCount() * spiritInstillerBlockEntity.upgrades.get(UpgradeType.YIELD), world.random);
 				resultStack.setCount(resultCountMod);
 			}
 			
-			if (existingCenterStack.getCount() > 1) {
-				existingCenterStack.decrement(1);
+			if (spiritInstillerBlockEntity.getInventory().getStack(0).isEmpty()) {
 				EnchanterBlockEntity.spawnItemStackAsEntitySplitViaMaxCount(world, spiritInstillerBlockEntity.pos, resultStack, resultStack.getCount());
 			} else {
 				spiritInstillerBlockEntity.getInventory().setStack(0, resultStack);
 			}
 			
 			int awardedExperience = Support.getIntFromDecimalWithChance(spiritInstillerRecipe.getExperience(), spiritInstillerBlockEntity.world.random);
+			MultiblockCrafter.spawnExperience(spiritInstillerBlockEntity.world, spiritInstillerBlockEntity.pos, awardedExperience);
 			
 			grantPlayerSpiritInstillingAdvancementCriterion(world, spiritInstillerBlockEntity.ownerUUID, resultStack, awardedExperience);
 		}
 	}
 	
-	public static boolean decrementItems(SpiritInstillerBlockEntity spiritInstillerBlockEntity) {
+	public static boolean decrementItems(@NotNull SpiritInstillerBlockEntity spiritInstillerBlockEntity) {
 		SpiritInstillerRecipe spiritInstillerRecipe = spiritInstillerBlockEntity.currentRecipe;
-		if(!spiritInstillerRecipe.areYieldAndEfficiencyUpgradesDisabled() && spiritInstillerBlockEntity.upgrades.get(UpgradeType.EFFICIENCY) != 1.0) {
-			double efficiencyModifier = 1.0 / spiritInstillerBlockEntity.upgrades.get(UpgradeType.EFFICIENCY);
-			resultAmountAfterEfficiencyMod = Support.getIntFromDecimalWithChance(efficiencyModifier, spiritInstillerBlockEntity.world.random);
-		}
-		
-		if(resultAmountAfterEfficiencyMod > 0) {
-			// since this recipe uses 1 item in each slot we can just iterate them all and decrement with 1
-			BlockPos itemBowlPos = spiritInstillerBlockEntity.pos.add(getItemBowlPositionOffset(i, spiritInstillerBlockEntity.virtualInventoryRecipeOrientation));
-			BlockEntity blockEntity = world.getBlockEntity(itemBowlPos);
-			if (blockEntity instanceof ItemBowlBlockEntity itemBowlBlockEntity) {
-				itemBowlBlockEntity.decrementBowlStack(spiritInstillerBlockEntity.pos, resultAmountAfterEfficiencyMod);
-				itemBowlBlockEntity.updateInClientWorld();
+		boolean success = true;
+
+		int resultAmountAfterEfficiencyMod = 1;
+		for(int i = 0; i < 3; i++) {
+			if(!spiritInstillerRecipe.areYieldAndEfficiencyUpgradesDisabled() && spiritInstillerBlockEntity.upgrades.get(UpgradeType.EFFICIENCY) != 1.0) {
+				double efficiencyModifier = 1.0 / spiritInstillerBlockEntity.upgrades.get(UpgradeType.EFFICIENCY);
+				resultAmountAfterEfficiencyMod = Support.getIntFromDecimalWithChance(efficiencyModifier, spiritInstillerBlockEntity.world.random);
+			}
+			
+			if(resultAmountAfterEfficiencyMod > 0) {
+				if(i == 0) {
+					spiritInstillerBlockEntity.inventory.getStack(0).decrement(resultAmountAfterEfficiencyMod);
+				} else {
+					BlockPos itemBowlPos = spiritInstillerBlockEntity.pos.add(getItemBowlPos(spiritInstillerBlockEntity, i == 1));
+					BlockEntity blockEntity = spiritInstillerBlockEntity.world.getBlockEntity(itemBowlPos);
+					if (blockEntity instanceof ItemBowlBlockEntity itemBowlBlockEntity) {
+						itemBowlBlockEntity.decrementBowlStack(spiritInstillerBlockEntity.pos, resultAmountAfterEfficiencyMod);
+						itemBowlBlockEntity.updateInClientWorld();
+					} else {
+						success = false;
+					}
+				}
 			}
 		}
+		
+		return success;
 	}
 	
 	private static void grantPlayerSpiritInstillingAdvancementCriterion(World world, UUID playerUUID, ItemStack resultStack, int experience) {
@@ -300,8 +305,8 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 		}
 	}
 	
-	public static void playCraftingFinishedEffects(SpiritInstillerBlockEntity spiritInstillerBlockEntity) {
-		spiritInstillerBlockEntity.world.playSound(null, spiritInstillerBlockEntity.pos, SpectrumSoundEvents.SPIRIT_INSTILLER_FINISHED, SoundCategory.BLOCKS, 1.0F, 1.0F);
+	public static void playCraftingFinishedEffects(@NotNull SpiritInstillerBlockEntity spiritInstillerBlockEntity) {
+		spiritInstillerBlockEntity.world.playSound(null, spiritInstillerBlockEntity.pos, SpectrumSoundEvents.SPIRIT_INSTILLER_CRAFTING_FINISHED, SoundCategory.BLOCKS, 1.0F, 1.0F);
 		
 		SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) spiritInstillerBlockEntity.world,
 				new Vec3d(spiritInstillerBlockEntity.pos.getX() + 0.5D, spiritInstillerBlockEntity.pos.getY() + 0.5, spiritInstillerBlockEntity.pos.getZ() + 0.5D),

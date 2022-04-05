@@ -191,6 +191,7 @@ public class SpiritInstillerBlock extends BlockWithEntity {
 		BlockEntity blockEntity = world.getBlockEntity(pos);
 		if (blockEntity instanceof SpiritInstillerBlockEntity spiritInstillerBlockEntity) {
 			ItemScatterer.spawn(world, pos, spiritInstillerBlockEntity.getInventory());
+			spiritInstillerBlockEntity.inventoryChanged = true;
 			world.updateComparators(pos, block);
 			spiritInstillerBlockEntity.updateInClientWorld();
 		}

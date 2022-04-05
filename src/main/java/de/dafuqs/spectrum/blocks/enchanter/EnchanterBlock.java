@@ -164,6 +164,7 @@ public class EnchanterBlock extends BlockWithEntity {
 		BlockEntity blockEntity = world.getBlockEntity(pos);
 		if (blockEntity instanceof EnchanterBlockEntity enchanterBlockEntity) {
 			ItemScatterer.spawn(world, pos, enchanterBlockEntity.getInventory());
+			enchanterBlockEntity.inventoryChanged = true;
 			world.updateComparators(pos, block);
 		}
 	}

@@ -254,7 +254,7 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 			double experienceModifier = spiritInstillerBlockEntity.upgrades.get(UpgradeType.EXPERIENCE);
 			float recipeExperienceBeforeMod = spiritInstillerRecipe.getExperience();
 			int awardedExperience = Support.getIntFromDecimalWithChance(recipeExperienceBeforeMod * experienceModifier, spiritInstillerBlockEntity.world.random);
-			MultiblockCrafter.spawnExperience(spiritInstillerBlockEntity.world, spiritInstillerBlockEntity.pos, awardedExperience);
+			MultiblockCrafter.spawnExperience(spiritInstillerBlockEntity.world, spiritInstillerBlockEntity.pos.up(), awardedExperience);
 			
 			// Award advancements
 			grantPlayerSpiritInstillingAdvancementCriterion(world, spiritInstillerBlockEntity.ownerUUID, resultStack, awardedExperience);

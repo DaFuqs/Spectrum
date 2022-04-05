@@ -239,24 +239,28 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 	
 	public static void craftSpiritInstillerRecipe(World world, @NotNull SpiritInstillerBlockEntity spiritInstillerBlockEntity, @NotNull SpiritInstillerRecipe spiritInstillerRecipe) {
 		if(decrementItemsInInstillerAndBowls(spiritInstillerBlockEntity)) {
-			// if there is room: place the output on the instiller
-			// otherwise: pop it off
 			ItemStack resultStack = spiritInstillerRecipe.getOutput().copy();
 			
+			// Yield upgrade
 			if (!spiritInstillerRecipe.areYieldAndEfficiencyUpgradesDisabled() && spiritInstillerBlockEntity.upgrades.get(UpgradeType.YIELD) != 1.0) {
 				int resultCountMod = Support.getIntFromDecimalWithChance(resultStack.getCount() * spiritInstillerBlockEntity.upgrades.get(UpgradeType.YIELD), world.random);
 				resultStack.setCount(resultCountMod);
 			}
 			
+			// place / spawn the result stack, depending on if the instiller is empty
 			if (spiritInstillerBlockEntity.getInventory().getStack(0).isEmpty()) {
 				spiritInstillerBlockEntity.getInventory().setStack(0, resultStack);
 			} else {
 				EnchanterBlockEntity.spawnItemStackAsEntitySplitViaMaxCount(world, spiritInstillerBlockEntity.pos, resultStack, resultStack.getCount());
 			}
 			
-			int awardedExperience = Support.getIntFromDecimalWithChance(spiritInstillerRecipe.getExperience(), spiritInstillerBlockEntity.world.random);
+			// Calculate and spawn experience
+			double experienceModifier = spiritInstillerBlockEntity.upgrades.get(UpgradeType.EXPERIENCE);
+			float recipeExperienceBeforeMod = spiritInstillerRecipe.getExperience();
+			int awardedExperience = Support.getIntFromDecimalWithChance(recipeExperienceBeforeMod * experienceModifier, spiritInstillerBlockEntity.world.random);
 			MultiblockCrafter.spawnExperience(spiritInstillerBlockEntity.world, spiritInstillerBlockEntity.pos, awardedExperience);
 			
+			// Award advancements
 			grantPlayerSpiritInstillingAdvancementCriterion(world, spiritInstillerBlockEntity.ownerUUID, resultStack, awardedExperience);
 		}
 	}

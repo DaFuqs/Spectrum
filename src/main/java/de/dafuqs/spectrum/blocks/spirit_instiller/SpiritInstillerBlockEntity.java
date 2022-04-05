@@ -1,13 +1,11 @@
 package de.dafuqs.spectrum.blocks.spirit_instiller;
 
 import de.dafuqs.spectrum.blocks.MultiblockCrafter;
-import de.dafuqs.spectrum.blocks.enchanter.EnchanterBlock;
 import de.dafuqs.spectrum.blocks.enchanter.EnchanterBlockEntity;
 import de.dafuqs.spectrum.blocks.item_bowl.ItemBowlBlockEntity;
 import de.dafuqs.spectrum.blocks.upgrade.Upgradeable;
 import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.interfaces.PlayerOwned;
-import de.dafuqs.spectrum.inventories.AutoCraftingInventory;
 import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
@@ -31,7 +29,6 @@ import net.minecraft.recipe.RecipeMatcher;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.BlockRotation;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Pair;
@@ -162,13 +159,15 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 		}
 	}
 	
-	private static boolean calculateCurrentRecipe(@NotNull World world, @NotNull SpiritInstillerBlockEntity spiritInstillerBlockEntity) {
+	private static void calculateCurrentRecipe(@NotNull World world, @NotNull SpiritInstillerBlockEntity spiritInstillerBlockEntity) {
+		// test the cached recipe => faster
 		if(spiritInstillerBlockEntity.currentRecipe != null) {
 			if(spiritInstillerBlockEntity.currentRecipe.matches(spiritInstillerBlockEntity.autoCraftingInventory, world)) {
-				return true;
+				return;
 			}
 		}
 		
+		// cached recipe did not match => calculate new
 		spiritInstillerBlockEntity.craftingTime = 0;
 		spiritInstillerBlockEntity.currentRecipe = null;
 		
@@ -194,7 +193,6 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 			}
 		}
 		
-		return false;
 	}
 	
 	public static BlockPos getItemBowlPos(@NotNull SpiritInstillerBlockEntity spiritInstillerBlockEntity, boolean right) {
@@ -240,7 +238,7 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 	}
 	
 	public static void craftSpiritInstillerRecipe(World world, @NotNull SpiritInstillerBlockEntity spiritInstillerBlockEntity, @NotNull SpiritInstillerRecipe spiritInstillerRecipe) {
-		if(decrementItems(spiritInstillerBlockEntity)) {
+		if(decrementItemsInInstillerAndBowls(spiritInstillerBlockEntity)) {
 			// if there is room: place the output on the instiller
 			// otherwise: pop it off
 			ItemStack resultStack = spiritInstillerRecipe.getOutput().copy();
@@ -251,9 +249,9 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 			}
 			
 			if (spiritInstillerBlockEntity.getInventory().getStack(0).isEmpty()) {
-				EnchanterBlockEntity.spawnItemStackAsEntitySplitViaMaxCount(world, spiritInstillerBlockEntity.pos, resultStack, resultStack.getCount());
-			} else {
 				spiritInstillerBlockEntity.getInventory().setStack(0, resultStack);
+			} else {
+				EnchanterBlockEntity.spawnItemStackAsEntitySplitViaMaxCount(world, spiritInstillerBlockEntity.pos, resultStack, resultStack.getCount());
 			}
 			
 			int awardedExperience = Support.getIntFromDecimalWithChance(spiritInstillerRecipe.getExperience(), spiritInstillerBlockEntity.world.random);
@@ -263,7 +261,7 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 		}
 	}
 	
-	public static boolean decrementItems(@NotNull SpiritInstillerBlockEntity spiritInstillerBlockEntity) {
+	public static boolean decrementItemsInInstillerAndBowls(@NotNull SpiritInstillerBlockEntity spiritInstillerBlockEntity) {
 		SpiritInstillerRecipe spiritInstillerRecipe = spiritInstillerBlockEntity.currentRecipe;
 		boolean success = true;
 

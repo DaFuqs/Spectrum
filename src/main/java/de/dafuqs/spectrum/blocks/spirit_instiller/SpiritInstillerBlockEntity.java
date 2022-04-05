@@ -56,7 +56,7 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 	private BlockRotation multiblockRotation = BlockRotation.NONE;
 	protected boolean inventoryChanged;
 	
-	private final AutoCraftingInventory autoCraftingInventory;
+	private final Inventory autoCraftingInventory;
 	private SpiritInstillerRecipe currentRecipe;
 	private int craftingTime;
 	private int craftingTimeTotal;
@@ -64,7 +64,7 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 	public SpiritInstillerBlockEntity(BlockPos pos, BlockState state) {
 		super(SpectrumBlockEntityRegistry.SPIRIT_INSTILLER, pos, state);
 		this.inventory = new SimpleInventory(INVENTORY_SIZE);
-		this.autoCraftingInventory = new AutoCraftingInventory(3, 1);
+		this.autoCraftingInventory = new SimpleInventory(INVENTORY_SIZE + 2); // 2 item bowls
 	}
 	
 	@Override
@@ -132,8 +132,6 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 			spiritInstillerBlockEntity.inventoryChanged = false;
 		}
 		
-		boolean craftingSuccess = false;
-		
 		if(spiritInstillerBlockEntity.currentRecipe != null) {
 			if(spiritInstillerBlockEntity.craftingTime % 60 == 1) {
 				if (!checkRecipeRequirements(world, blockPos, spiritInstillerBlockEntity)) {
@@ -149,20 +147,15 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 			if (spiritInstillerBlockEntity.currentRecipe != null) {
 				spiritInstillerBlockEntity.craftingTime++;
 				
-				// looks cooler this way
-				if (spiritInstillerBlockEntity.craftingTime == spiritInstillerBlockEntity.craftingTimeTotal - 10) {
-					playCraftingFinishedEffects(spiritInstillerBlockEntity);
-				}
 				if (spiritInstillerBlockEntity.craftingTime == spiritInstillerBlockEntity.craftingTimeTotal) {
 					craftSpiritInstillerRecipe(world, spiritInstillerBlockEntity, spiritInstillerBlockEntity.currentRecipe);
-					craftingSuccess = true;
+					playCraftingFinishedEffects(spiritInstillerBlockEntity);
+					
+					spiritInstillerBlockEntity.craftingTime = 0;
+					spiritInstillerBlockEntity.inventoryChanged();
 				}
+				
 				spiritInstillerBlockEntity.markDirty();
-			}
-			
-			if (craftingSuccess) {
-				spiritInstillerBlockEntity.craftingTime = 0;
-				spiritInstillerBlockEntity.inventoryChanged();
 			}
 		} else {
 			SpectrumS2CPacketSender.sendCancelBlockBoundSoundInstance((ServerWorld) spiritInstillerBlockEntity.world, spiritInstillerBlockEntity.pos);
@@ -179,22 +172,26 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 		spiritInstillerBlockEntity.craftingTime = 0;
 		spiritInstillerBlockEntity.currentRecipe = null;
 		
-		spiritInstillerBlockEntity.autoCraftingInventory.setStack(0, spiritInstillerBlockEntity.inventory.getStack(0));
-		if(world.getBlockEntity(getItemBowlPos(spiritInstillerBlockEntity, false)) instanceof ItemBowlBlockEntity itemBowlBlockEntity) {
-			spiritInstillerBlockEntity.autoCraftingInventory.setStack(1, itemBowlBlockEntity.getInventory().getStack(0));
-		} else {
-			spiritInstillerBlockEntity.autoCraftingInventory.setStack(1, ItemStack.EMPTY);
-		}
-		if(world.getBlockEntity(getItemBowlPos(spiritInstillerBlockEntity, true)) instanceof ItemBowlBlockEntity itemBowlBlockEntity) {
-			spiritInstillerBlockEntity.autoCraftingInventory.setStack(2, itemBowlBlockEntity.getInventory().getStack(0));
-		} else {
-			spiritInstillerBlockEntity.autoCraftingInventory.setStack(2, ItemStack.EMPTY);
-		}
-		
-		SpiritInstillerRecipe spiritInstillerRecipe = world.getRecipeManager().getFirstMatch(SpectrumRecipeTypes.SPIRIT_INSTILLER_RECIPE, spiritInstillerBlockEntity.autoCraftingInventory, world).orElse(null);
-		if (spiritInstillerRecipe != null) {
-			spiritInstillerBlockEntity.currentRecipe = spiritInstillerRecipe;
-			spiritInstillerBlockEntity.craftingTimeTotal = (int) Math.ceil(spiritInstillerRecipe.getCraftingTime() / spiritInstillerBlockEntity.upgrades.get(Upgradeable.UpgradeType.SPEED));
+		ItemStack instillerStack = spiritInstillerBlockEntity.inventory.getStack(0);
+		if(!instillerStack.isEmpty()) {
+			spiritInstillerBlockEntity.autoCraftingInventory.setStack(0, instillerStack);
+			
+			if (world.getBlockEntity(getItemBowlPos(spiritInstillerBlockEntity, false)) instanceof ItemBowlBlockEntity itemBowlBlockEntity) {
+				spiritInstillerBlockEntity.autoCraftingInventory.setStack(1, itemBowlBlockEntity.getInventory().getStack(0));
+			} else {
+				spiritInstillerBlockEntity.autoCraftingInventory.setStack(1, ItemStack.EMPTY);
+			}
+			if (world.getBlockEntity(getItemBowlPos(spiritInstillerBlockEntity, true)) instanceof ItemBowlBlockEntity itemBowlBlockEntity) {
+				spiritInstillerBlockEntity.autoCraftingInventory.setStack(2, itemBowlBlockEntity.getInventory().getStack(0));
+			} else {
+				spiritInstillerBlockEntity.autoCraftingInventory.setStack(2, ItemStack.EMPTY);
+			}
+			
+			SpiritInstillerRecipe spiritInstillerRecipe = world.getRecipeManager().getFirstMatch(SpectrumRecipeTypes.SPIRIT_INSTILLER_RECIPE, spiritInstillerBlockEntity.autoCraftingInventory, world).orElse(null);
+			if (spiritInstillerRecipe != null) {
+				spiritInstillerBlockEntity.currentRecipe = spiritInstillerRecipe;
+				spiritInstillerBlockEntity.craftingTimeTotal = (int) Math.ceil(spiritInstillerRecipe.getCraftingTime() / spiritInstillerBlockEntity.upgrades.get(Upgradeable.UpgradeType.SPEED));
+			}
 		}
 		
 		return false;
@@ -231,13 +228,11 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 		if (spiritInstillerBlockEntity.currentRecipe != null) {
 			playerCanCraft = spiritInstillerBlockEntity.currentRecipe.canPlayerCraft(lastInteractedPlayer);
 		}
-		boolean structureComplete = EnchanterBlock.verifyStructure(world, blockPos, null);
-		
+
+		boolean structureComplete = SpiritInstillerBlock.verifyStructure(world, blockPos, null, spiritInstillerBlockEntity);
 		if (!playerCanCraft || !structureComplete) {
 			if (!structureComplete) {
 				world.playSound(null, spiritInstillerBlockEntity.getPos(), SpectrumSoundEvents.CRAFTING_ABORTED, SoundCategory.BLOCKS, 0.9F + spiritInstillerBlockEntity.world.random.nextFloat() * 0.2F, 0.9F + spiritInstillerBlockEntity.world.random.nextFloat() * 0.2F);
-				world.playSound(null, spiritInstillerBlockEntity.getPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.9F + spiritInstillerBlockEntity.world.random.nextFloat() * 0.2F, 0.5F + spiritInstillerBlockEntity.world.random.nextFloat() * 0.2F);
-				EnchanterBlock.scatterContents(world, blockPos);
 			}
 			return false;
 		}
@@ -283,7 +278,7 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 				if(i == 0) {
 					spiritInstillerBlockEntity.inventory.getStack(0).decrement(resultAmountAfterEfficiencyMod);
 				} else {
-					BlockPos itemBowlPos = spiritInstillerBlockEntity.pos.add(getItemBowlPos(spiritInstillerBlockEntity, i == 1));
+					BlockPos itemBowlPos = getItemBowlPos(spiritInstillerBlockEntity, i == 1);
 					BlockEntity blockEntity = spiritInstillerBlockEntity.world.getBlockEntity(itemBowlPos);
 					if (blockEntity instanceof ItemBowlBlockEntity itemBowlBlockEntity) {
 						itemBowlBlockEntity.decrementBowlStack(spiritInstillerBlockEntity.pos, resultAmountAfterEfficiencyMod);

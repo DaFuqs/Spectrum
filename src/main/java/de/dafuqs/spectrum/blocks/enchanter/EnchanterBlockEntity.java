@@ -125,7 +125,7 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 				if (world != null) {
 					optionalRecipe = world.getRecipeManager().get(new Identifier(recipeString));
 				}
-				if(optionalRecipe.isPresent() && (optionalRecipe.get() instanceof EnchanterRecipe || optionalRecipe.get() instanceof EnchantmentUpgradeRecipe recipe)) {
+				if(optionalRecipe.isPresent() && (optionalRecipe.get() instanceof EnchanterRecipe || optionalRecipe.get() instanceof EnchantmentUpgradeRecipe)) {
 					this.currentRecipe = optionalRecipe.get();
 				} else {
 					this.currentRecipe = null;

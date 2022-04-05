@@ -89,32 +89,41 @@ public class SpiritInstillerBlock extends BlockWithEntity {
 			}
 			return ActionResult.SUCCESS;
 		} else {
-			ItemStack itemStack = player.getStackInHand(hand);
+			ItemStack handStack = player.getStackInHand(hand);
 			boolean itemsChanged = false;
 			
 			BlockEntity blockEntity = world.getBlockEntity(pos);
 			if(blockEntity instanceof SpiritInstillerBlockEntity spiritInstillerBlockEntity) {
 				// if the structure is valid the player can put / retrieve blocks into the shrine
 				if (player.isSneaking()) {
-					ItemStack retrievedStack = ItemStack.EMPTY;
 					Inventory inventory = spiritInstillerBlockEntity.getInventory();
-					for (int i = inventory.size() - 1; i >= 0; i--) {
-						retrievedStack = inventory.removeStack(i);
-						if (!retrievedStack.isEmpty()) {
-							break;
-						}
-					}
+					ItemStack retrievedStack = inventory.removeStack(0);
 					if (!retrievedStack.isEmpty()) {
 						player.giveItemStack(retrievedStack);
 						itemsChanged = true;
 					}
-				} else if (!itemStack.isEmpty() && verifyStructure(world, pos, (ServerPlayerEntity) player, spiritInstillerBlockEntity)) {
+				} else {
+					Inventory inventory = spiritInstillerBlockEntity.getInventory();
+					ItemStack currentStack = inventory.getStack(0);
+					if(!handStack.isEmpty() && !currentStack.isEmpty()) {
+						inventory.setStack(0, handStack);
+						player.setStackInHand(hand, currentStack);
+						itemsChanged = true;
+					} else {
+						if (!handStack.isEmpty()) {
+							ItemStack remainingStack = InventoryHelper.smartAddToInventory(handStack, spiritInstillerBlockEntity.getInventory(), null);
+							player.setStackInHand(hand, remainingStack);
+							itemsChanged = true;
+						}
+						if (!currentStack.isEmpty()) {
+							player.giveItemStack(currentStack);
+							itemsChanged = true;
+						}
+					}
+				}
+				
+				if (verifyStructure(world, pos, (ServerPlayerEntity) player, spiritInstillerBlockEntity)) {
 					spiritInstillerBlockEntity.setOwner(player);
-					
-					ItemStack remainingStack = InventoryHelper.smartAddToInventory(itemStack, spiritInstillerBlockEntity.getInventory(), null);
-					player.setStackInHand(hand, remainingStack);
-					
-					itemsChanged = true;
 				}
 				
 				if(itemsChanged) {

@@ -29,6 +29,7 @@ import de.dafuqs.spectrum.blocks.redstone.RedstoneCalculatorBlockEntity;
 import de.dafuqs.spectrum.blocks.redstone.RedstoneWirelessBlockEntity;
 import de.dafuqs.spectrum.blocks.shooting_star.ShootingStarBlockEntity;
 import de.dafuqs.spectrum.blocks.spirit_instiller.SpiritInstillerBlockEntity;
+import de.dafuqs.spectrum.blocks.spirit_instiller.SpiritInstillerBlockEntityRenderer;
 import de.dafuqs.spectrum.blocks.spirit_sallow.OminousSaplingBlockEntity;
 import de.dafuqs.spectrum.blocks.upgrade.UpgradeBlock;
 import de.dafuqs.spectrum.blocks.upgrade.UpgradeBlockBlockEntityRenderer;
@@ -145,6 +146,7 @@ public class SpectrumBlockEntityRegistry<T extends BlockEntity> {
 		BlockEntityRendererRegistry.register(SpectrumBlockEntityRegistry.ITEM_BOWL, ItemBowlBlockEntityRenderer::new);
 		BlockEntityRendererRegistry.register(SpectrumBlockEntityRegistry.SKULL, SpectrumSkullBlockEntityRenderer::new);
 		BlockEntityRendererRegistry.register(SpectrumBlockEntityRegistry.DEEPER_DOWN_PORTAL, DeeperDownPortalBlockEntityRenderer::new);
+		BlockEntityRendererRegistry.register(SpectrumBlockEntityRegistry.SPIRIT_INSTILLER, SpiritInstillerBlockEntityRenderer::new);
 		
 		BlockEntityRendererRegistry.register(SpectrumBlockEntityRegistry.CONNECTION_NODE, PastelNetworkNodeBlockEntityRenderer::new);
 		BlockEntityRendererRegistry.register(SpectrumBlockEntityRegistry.PROVIDER_NODE, PastelNetworkNodeBlockEntityRenderer::new);

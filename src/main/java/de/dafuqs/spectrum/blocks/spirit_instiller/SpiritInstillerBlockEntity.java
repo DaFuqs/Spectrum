@@ -11,6 +11,9 @@ import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
+import net.minecraft.network.Packet;
+import net.minecraft.network.listener.ClientPlayPacketListener;
+import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeInputProvider;
 import net.minecraft.recipe.RecipeMatcher;
@@ -20,6 +23,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.Pair;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Map;
 import java.util.Optional;
@@ -30,7 +34,7 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements RecipeInp
 	private UUID ownerUUID;
 	private Map<UpgradeType, Double> upgrades;
 	
-	protected int INVENTORY_SIZE = 8;
+	protected int INVENTORY_SIZE = 1;
 	protected SimpleInventory inventory;
 	
 	private BlockRotation multiblockRotation = BlockRotation.NONE;
@@ -146,6 +150,12 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements RecipeInp
 		NbtCompound nbtCompound = new NbtCompound();
 		this.writeNbt(nbtCompound);
 		return nbtCompound;
+	}
+	
+	@Nullable
+	@Override
+	public Packet<ClientPlayPacketListener> toUpdatePacket() {
+		return BlockEntityUpdateS2CPacket.create(this);
 	}
 	
 	public BlockRotation getMultiblockRotation() {

@@ -4,13 +4,17 @@ import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.loot.context.LootContext;
+import net.minecraft.loot.context.LootContextParameters;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.List;
 import java.util.Random;
 
 public class MemoryBlock extends BlockWithEntity {
@@ -39,7 +43,7 @@ public class MemoryBlock extends BlockWithEntity {
 	}
 	
 	@Override
-	public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
+	public void onPlaced(@NotNull World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
 		BlockEntity blockEntity = world.getBlockEntity(pos);
 		if(blockEntity instanceof MemoryBlockEntity memoryBlockEntity) {
 			memoryBlockEntity.setData(placer, itemStack);
@@ -53,6 +57,16 @@ public class MemoryBlock extends BlockWithEntity {
 		BlockEntity blockEntity = world.getBlockEntity(pos);
 		if(blockEntity instanceof MemoryBlockEntity memoryBlockEntity) {
 			memoryBlockEntity.advanceManifesting(world, pos);
+		}
+	}
+	
+	// drop the memory when broken
+	public List<ItemStack> getDroppedStacks(BlockState state, LootContext.@NotNull Builder builder) {
+		BlockEntity blockEntity = builder.getNullable(LootContextParameters.BLOCK_ENTITY);
+		if (blockEntity instanceof MemoryBlockEntity memoryBlockEntity) {
+			return List.of(memoryBlockEntity.getMemoryItemStack());
+		} else {
+			return super.getDroppedStacks(state, builder);
 		}
 	}
 	

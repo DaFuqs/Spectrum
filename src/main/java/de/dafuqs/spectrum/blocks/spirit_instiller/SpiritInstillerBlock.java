@@ -178,7 +178,6 @@ public class SpiritInstillerBlock extends BlockWithEntity {
 		return valid;
 	}
 	
-	
 	// drop all currently stored items
 	@Override
 	public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {

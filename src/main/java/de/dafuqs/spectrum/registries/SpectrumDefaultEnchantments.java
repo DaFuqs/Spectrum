@@ -4,6 +4,7 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 
@@ -56,7 +57,7 @@ public class SpectrumDefaultEnchantments {
 		return defaultEnchantments.getOrDefault(item, null);
 	}
 	
-	public static ItemStack getDefaultEnchantedStack(Item item) {
+	public static @NotNull ItemStack getDefaultEnchantedStack(Item item) {
 		ItemStack itemStack = new ItemStack(item);
 		SpectrumDefaultEnchantments.DefaultEnchantment def = getDefaultEnchantment(item);
 		if(def != null) {

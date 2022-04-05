@@ -167,4 +167,8 @@ public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 		this.ownerUUID = playerEntity.getUuid();
 	}
 	
+	public ItemStack getMemoryItemStack() {
+		return this.memoryItemStack;
+	}
+	
 }

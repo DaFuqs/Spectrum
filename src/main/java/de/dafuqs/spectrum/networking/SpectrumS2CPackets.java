@@ -28,7 +28,8 @@ public class SpectrumS2CPackets {
 	public static final Identifier PLAY_TAKE_OFF_BELT_SOUND_INSTANCE = new Identifier(SpectrumCommon.MOD_ID, "play_take_off_belt_sound_instance");
 	public static final Identifier PLAY_SHOOTING_STAR_PARTICLES = new Identifier(SpectrumCommon.MOD_ID, "play_shooting_star_particles");
 	public static final Identifier START_SKY_LERPING = new Identifier(SpectrumCommon.MOD_ID, "start_sky_lerping");
-
+	public static final Identifier PLAY_MEMORY_MANIFESTING_PARTICLES = new Identifier(SpectrumCommon.MOD_ID, "play_memory_manifesting_particles");
+	
 	public enum ParticlePattern {
 		FOUR(Support.VECTORS_4),
 		EIGHT(Support.VECTORS_8),

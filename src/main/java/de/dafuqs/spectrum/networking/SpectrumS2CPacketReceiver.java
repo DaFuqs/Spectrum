@@ -178,6 +178,39 @@ public class SpectrumS2CPacketReceiver {
 			});
 		});
 		
+		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.PLAY_MEMORY_MANIFESTING_PARTICLES, (client, handler, buf, responseSender) -> {
+			BlockPos position = buf.readBlockPos();
+			int color1 = buf.readInt();
+			int color2 = buf.readInt();
+			int amount = buf.readInt();
+			
+			client.execute(() -> {
+				Random random = client.world.random;
+				
+				Vec3f colorVec1 = ColorRegistry.colorIntToVec(color1);
+				Vec3f colorVec2 = ColorRegistry.colorIntToVec(color2);
+				
+				for(int i = 0; i < amount; i++) {
+					int randomLifetime = 30 + random.nextInt(20);
+					
+					// color1
+					client.getInstance().player.world.addParticle(
+							new ParticleSpawnerParticleEffect(new Identifier("spectrum:particle/liquid_crystal_sparkle"), 0.5F, colorVec1, 1.0F, randomLifetime, false, true),
+							position.getX() + 0.5, position.getY() + 0.5, position.getZ(),
+							0.15 - random.nextFloat() * 0.3, random.nextFloat() * 0.15 + 0.1, 0.15 - random.nextFloat() * 0.3
+					);
+				
+					// color2
+					client.getInstance().player.world.addParticle(
+							new ParticleSpawnerParticleEffect(new Identifier("spectrum:particle/liquid_crystal_sparkle"), 0.5F, colorVec2, 1.0F, randomLifetime, false, true),
+							position.getX() + 0.5, position.getY(), position.getZ() + 0.5,
+							0.15 - random.nextFloat() * 0.3, random.nextFloat() * 0.15 + 0.1, 0.15 - random.nextFloat() * 0.3
+					);
+				}
+				
+			});
+		});
+		
 		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.PLAY_PEDESTAL_UPGRADED_PARTICLE_PACKET_ID, (client, handler, buf, responseSender) -> {
 			BlockPos position = buf.readBlockPos(); // the block pos of the pedestal
 			PedestalBlock.PedestalVariant variant = PedestalBlock.PedestalVariant.values()[buf.readInt()]; // the item stack that was crafted

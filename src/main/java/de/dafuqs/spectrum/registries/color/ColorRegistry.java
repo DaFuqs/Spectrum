@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.registries.color;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Vec3f;
+import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;
 import java.util.Optional;
@@ -16,7 +17,7 @@ public abstract class ColorRegistry<T> {
 		ITEM_COLORS = new ItemColorRegistry();
 		FLUID_COLORS = new FluidColorRegistry();
 	}
-	
+
 	public abstract void registerColorMapping(Identifier identifier, DyeColor dyeColor);
 	
 	public abstract void registerColorMapping(T object, DyeColor dyeColor);
@@ -59,6 +60,14 @@ public abstract class ColorRegistry<T> {
 				(int) (b * 255 + 0.5),
 				(int) (a * 255 + 0.5)
 		);
+	}
+	
+	@NotNull
+	public static Vec3f colorIntToVec(int color2) {
+		Color colorValue2 = new Color(color2);
+		float[] argb2 = new float[4];
+		colorValue2.getColorComponents(argb2);
+		return new Vec3f(argb2[0], argb2[1], argb2[2]);
 	}
 	
 }

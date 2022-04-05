@@ -1,27 +1,37 @@
 package de.dafuqs.spectrum.blocks.memory;
 
 import de.dafuqs.spectrum.interfaces.PlayerOwned;
+import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
+import de.dafuqs.spectrum.networking.SpectrumS2CPackets;
 import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
 import de.dafuqs.spectrum.registries.SpectrumBlockTags;
+import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
+import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.TurtleEggBlock;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.mob.MobEntity;
+import net.minecraft.entity.passive.FoxEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.SpawnEggItem;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
+import net.minecraft.network.PacketByteBuf;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.util.Pair;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Optional;
@@ -74,15 +84,28 @@ public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 			if(newTicksToManifest <= 0) {
 				this.hatch(world, blockPos);
 			} else {
-				MemoryItem.setTicksToManifest(this.memoryItemStack, newTicksToManifest);
-				world.playSound(null, this.pos, SoundEvents.ENTITY_TURTLE_EGG_CRACK, SoundCategory.BLOCKS, 0.7F, 0.9F + world.random.nextFloat() * 0.2F);
+				Optional<EntityType<?>> entityTypeOptional = MemoryItem.getEntityType(this.memoryItemStack.getNbt());
+				if(entityTypeOptional.isPresent()) {
+					MemoryItem.setTicksToManifest(this.memoryItemStack, newTicksToManifest);
+					SpectrumS2CPacketSender.playMemoryManifestingParticles(world, blockPos, entityTypeOptional.get(), 3);
+					world.playSound(null, this.pos, SoundEvents.ENTITY_TURTLE_EGG_CRACK, SoundCategory.BLOCKS, 0.7F, 0.9F + world.random.nextFloat() * 0.2F); // TODO: fitting sound
+				}
 			}
 		}
 	}
 	
 	public void hatch(ServerWorld world, BlockPos blockPos) {
+		world.setBlockState(blockPos, Blocks.AIR.getDefaultState());
 		Optional<Entity> hatchedEntity = hatchEntity(world, blockPos, this.memoryItemStack);
+		
 		if(hatchedEntity.isPresent()) {
+			SpectrumS2CPacketSender.playMemoryManifestingParticles(world, blockPos, hatchedEntity.get().getType(), 10);
+			
+			if(hatchedEntity.get() instanceof MobEntity hatchedMobEntity) {
+				hatchedMobEntity.playAmbientSound();
+				hatchedMobEntity.playSpawnEffects();
+			}
+			
 			triggerHatchingAdvancementCriterion(hatchedEntity.get());
 		}
 	}
@@ -94,8 +117,17 @@ public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 		}
 	}
 	
+	@Contract("_ -> new")
+	public static @NotNull Pair<Integer, Integer> getEggColorsForEntity(EntityType entityType) {
+		SpawnEggItem spawnEggItem = SpawnEggItem.forEntity(entityType);
+		if(spawnEggItem != null) {
+			return new Pair<>(spawnEggItem.getColor(0), spawnEggItem.getColor(1));
+		}
+		return new Pair<>(0x222222, 0xDDDDDD);
+	}
+	
 	protected Optional<Entity> hatchEntity(ServerWorld world, BlockPos blockPos, ItemStack itemStack) {
-		if(!(this.memoryItemStack.getItem() instanceof MemoryItem)) {
+		if(this.memoryItemStack.getItem() instanceof MemoryItem) {
 			Optional<EntityType<?>> entityType = MemoryItem.getEntityType(memoryItemStack.getNbt());
 			if(entityType.isPresent()) {
 				// alignPosition: center the mob in the center of the blockPos

@@ -4,7 +4,6 @@ import de.dafuqs.spectrum.SpectrumCommon;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
-import org.apache.logging.log4j.Level;
 
 public interface ExperienceStorageItem {
 	

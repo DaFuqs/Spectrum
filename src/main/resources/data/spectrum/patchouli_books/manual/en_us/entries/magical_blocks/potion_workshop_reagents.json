@@ -143,6 +143,13 @@
     },
     {
       "type": "patchouli:spotlight",
+      "title": "Midnight Chip",
+      "item": "spectrum:midnight_chip",
+      "advancement": "spectrum:midgame/collect_midnight Chip",
+      "text": "Increases Potency and adds 30 seconds to the Duration, but drastically lowers Yield."
+    },
+    {
+      "type": "patchouli:spotlight",
       "title": "Bedrock Dust",
       "item": "spectrum:bedrock_dust",
       "advancement": "spectrum:midgame/break_decayed_bedrock",

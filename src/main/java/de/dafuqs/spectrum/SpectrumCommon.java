@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum;
 
-import com.mojang.logging.LogUtils;
 import de.dafuqs.spectrum.blocks.chests.CompactingChestBlockEntity;
 import de.dafuqs.spectrum.blocks.shooting_star.ShootingStarBlock;
 import de.dafuqs.spectrum.config.SpectrumConfig;

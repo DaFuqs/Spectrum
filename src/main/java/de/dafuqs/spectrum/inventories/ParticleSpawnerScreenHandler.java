@@ -9,7 +9,6 @@ import net.minecraft.network.PacketByteBuf;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ScreenHandlerContext;
 import net.minecraft.util.math.BlockPos;
-import org.apache.logging.log4j.Level;
 
 public class ParticleSpawnerScreenHandler extends ScreenHandler {
 	

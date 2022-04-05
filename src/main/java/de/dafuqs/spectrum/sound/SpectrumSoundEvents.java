@@ -4,7 +4,6 @@ import de.dafuqs.spectrum.SpectrumCommon;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
-import org.apache.logging.log4j.Level;
 
 public class SpectrumSoundEvents {
 	

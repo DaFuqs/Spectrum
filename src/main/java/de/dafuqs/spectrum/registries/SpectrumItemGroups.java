@@ -138,6 +138,10 @@ public class SpectrumItemGroups {
 						stacks.add(EnchantedBookItem.forEnchantment(new EnchantmentLevelEntry(s.getKey(), s.getValue())));
 					}
 				}
+				
+				//stacks.add(SpectrumEnchantmentHelper.getMaxEnchantedStack(SpectrumItems.SEVEN_LEAGUE_BOOTS));
+				
+				
 			}
 		}
 		

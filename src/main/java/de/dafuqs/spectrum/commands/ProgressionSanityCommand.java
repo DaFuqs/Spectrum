@@ -44,7 +44,6 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryKey;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.logging.log4j.Level;
 
 import java.util.ArrayList;
 import java.util.HashMap;

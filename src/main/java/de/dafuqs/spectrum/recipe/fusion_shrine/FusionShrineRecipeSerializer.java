@@ -18,7 +18,6 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.registry.Registry;
-import org.apache.logging.log4j.Level;
 
 import java.util.ArrayList;
 import java.util.List;

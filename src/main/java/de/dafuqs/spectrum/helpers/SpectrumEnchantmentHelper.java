@@ -5,6 +5,7 @@ import de.dafuqs.spectrum.registries.SpectrumItemTags;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.item.BookItem;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
@@ -138,6 +139,16 @@ public class SpectrumEnchantmentHelper {
 			itemStack.removeSubNbt("StoredEnchantments");
 			return itemStack;
 		}
+	}
+	
+	public static ItemStack getMaxEnchantedStack(Item item, Enchantment... enchantments) {
+		ItemStack itemStack = item.getDefaultStack();
+		for(int i = 0; i < enchantments.length; i++) {
+			Enchantment enchantment = enchantments[i];
+			int maxLevel = enchantment.getMaxLevel();
+			
+		}
+		return itemStack;
 	}
 	
 }

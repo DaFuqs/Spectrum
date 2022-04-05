@@ -154,12 +154,20 @@ public class PotionWorkshopReagents {
 				return potionMod;
 			}
 		});
+		reagentEffects.put(SpectrumItems.MIDNIGHT_CHIP, new PotionReagentEffect() {
+			public PotionMod modify(PotionMod potionMod, Random random) {
+				potionMod.flatPotencyBonus += 1.0F;
+				potionMod.flatDurationBonusTicks += 600;
+				potionMod.flatYieldBonus -= 2;
+				return potionMod;
+			}
+		});
 		reagentEffects.put(SpectrumBlocks.FOUR_LEAF_CLOVER.asItem(), new PotionReagentEffect() {
 			public PotionMod modify(PotionMod potionMod, Random random) {
 				int rand = random.nextInt(5);
 				switch (rand) {
 					case 0: {
-						potionMod.flatDurationBonusTicks += 2400F;
+						potionMod.flatDurationBonusTicks += 1200F;
 					}
 					case 1: {
 						potionMod.flatPotencyBonus += 2.0F;

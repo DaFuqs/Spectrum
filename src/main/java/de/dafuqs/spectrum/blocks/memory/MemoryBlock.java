@@ -2,10 +2,16 @@ package de.dafuqs.spectrum.blocks.memory;
 
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
+import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Random;
@@ -33,6 +39,14 @@ public class MemoryBlock extends BlockWithEntity {
 	@Override
 	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
 		return SHAPE;
+	}
+	
+	@Override
+	public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
+		BlockEntity blockEntity = world.getBlockEntity(pos);
+		if(blockEntity instanceof MemoryBlockEntity memoryBlockEntity) {
+			memoryBlockEntity.setData(placer, itemStack);
+		}
 	}
 	
 	@Override

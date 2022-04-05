@@ -1,23 +1,34 @@
 package de.dafuqs.spectrum.blocks.memory;
 
+import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItem;
+import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.sound.BlockSoundGroup;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.state.StateManager;
+import net.minecraft.state.property.Property;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.event.GameEvent;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,21 +36,6 @@ public class MemoryItem extends BlockItem {
 	
 	public MemoryItem(Block block, Settings settings) {
 		super(block, settings);
-	}
-	
-	protected boolean postPlacement(BlockPos pos, World world, @Nullable PlayerEntity player, ItemStack stack, BlockState state) {
-		MinecraftServer minecraftServer = world.getServer();
-		if (minecraftServer != null && !world.isClient) {
-			NbtCompound nbtCompound = getBlockEntityNbt(stack);
-			if (nbtCompound != null) {
-				BlockEntity blockEntity = world.getBlockEntity(pos);
-				if (blockEntity instanceof MemoryBlockEntity memoryBlockEntity) {
-					memoryBlockEntity.setData(player, stack);
-					return true;
-				}
-			}
-		}
-		return false;
 	}
 	
 	public static Optional<EntityType<?>> getEntityType(@Nullable NbtCompound nbt) {

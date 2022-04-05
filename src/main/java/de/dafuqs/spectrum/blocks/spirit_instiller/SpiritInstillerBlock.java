@@ -186,7 +186,7 @@ public class SpiritInstillerBlock extends BlockWithEntity {
 		super.onStateReplaced(state, world, pos, newState, moved);
 	}
 	
-	public static void scatterContents(World world, BlockPos pos) {
+	public static void scatterContents(@NotNull World world, BlockPos pos) {
 		Block block = world.getBlockState(pos).getBlock();
 		BlockEntity blockEntity = world.getBlockEntity(pos);
 		if (blockEntity instanceof SpiritInstillerBlockEntity spiritInstillerBlockEntity) {

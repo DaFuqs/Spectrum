@@ -23,6 +23,7 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import vazkii.patchouli.api.IMultiblock;
 import vazkii.patchouli.api.PatchouliAPI;
@@ -159,7 +160,7 @@ public class EnchanterBlock extends BlockWithEntity {
 		return valid;
 	}
 	
-	public static void scatterContents(World world, BlockPos pos) {
+	public static void scatterContents(@NotNull World world, BlockPos pos) {
 		Block block = world.getBlockState(pos).getBlock();
 		BlockEntity blockEntity = world.getBlockEntity(pos);
 		if (blockEntity instanceof EnchanterBlockEntity enchanterBlockEntity) {

@@ -8,6 +8,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -34,9 +35,10 @@ public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 		super(SpectrumBlockEntityRegistry.MEMORY, pos, state);
 	}
 	
-	public void setData(PlayerEntity playerEntity, @NotNull ItemStack creatureSpawnItemStack) {
-		setOwner(playerEntity);
-		
+	public void setData(LivingEntity livingEntity, @NotNull ItemStack creatureSpawnItemStack) {
+		if(livingEntity instanceof PlayerEntity playerEntity) {
+			setOwner(playerEntity);
+		}
 		if(creatureSpawnItemStack.getItem() instanceof MemoryItem) {
 			this.creatureSpawnItemStack = creatureSpawnItemStack;
 		}

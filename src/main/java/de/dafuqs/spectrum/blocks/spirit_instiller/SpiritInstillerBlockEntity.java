@@ -378,6 +378,7 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 	}
 	
 	public void inventoryChanged() {
+		this.inventoryChanged = true;
 		markDirty();
 		inventory.markDirty();
 		updateInClientWorld();

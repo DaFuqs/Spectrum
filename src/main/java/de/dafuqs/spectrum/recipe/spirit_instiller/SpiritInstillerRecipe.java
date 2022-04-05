@@ -64,7 +64,7 @@ public class SpiritInstillerRecipe implements Recipe<Inventory>, GatedRecipe {
 
 	@Override
 	public boolean fits(int width, int height) {
-		return true;
+		return width * height >= 3;
 	}
 
 	@Override

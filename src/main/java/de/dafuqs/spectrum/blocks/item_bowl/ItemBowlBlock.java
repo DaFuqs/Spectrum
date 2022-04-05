@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.blocks.item_bowl;
 
 import de.dafuqs.spectrum.blocks.enchanter.EnchanterBlockEntity;
+import de.dafuqs.spectrum.blocks.spirit_instiller.SpiritInstillerBlockEntity;
 import de.dafuqs.spectrum.helpers.InventoryHelper;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
 import net.minecraft.block.*;
@@ -45,6 +46,14 @@ public class ItemBowlBlock extends BlockWithEntity {
 		add(new Vec3i(5, 0, -3));
 	}};
 	
+	// Positions to check on place / destroy to upgrade those blocks upgrade counts
+	private final List<Vec3i> possibleSpiritInstillerOffsets = new ArrayList<>() {{
+		add(new Vec3i(0, -1, 2));
+		add(new Vec3i(0, -1, -2));
+		add(new Vec3i(2, -1, 0));
+		add(new Vec3i(-2, -1, 0));
+	}};
+	
 	public ItemBowlBlock(Settings settings) {
 		super(settings);
 	}
@@ -72,7 +81,7 @@ public class ItemBowlBlock extends BlockWithEntity {
 			if(remainingStack.getCount() != previousCount) {
 				itemBowlBlockEntity.markDirty();
 				itemBowlBlockEntity.updateInClientWorld();
-				updateConnectedEnchanter(world, pos);
+				updateConnectedMultiBlocks(world, pos);
 				world.playSound(null, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.8F, 0.8F + world.random.nextFloat() * 0.6F);
 			}
 			return remainingStack;
@@ -108,14 +117,14 @@ public class ItemBowlBlock extends BlockWithEntity {
 	@Override
 	public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
 		scatterContents(world, pos);
-		updateConnectedEnchanter(world, pos);
+		updateConnectedMultiBlocks(world, pos);
 		super.onStateReplaced(state, world, pos, newState, moved);
 	}
 	
 	/**
-	 * When placed or removed the item bowl searches for a valid enchanter and triggers it to update its current recipe
+	 * When placed or removed the item bowl searches for a valid block entity and triggers it to update its current recipe
 	 */
-	private void updateConnectedEnchanter(@NotNull World world, @NotNull BlockPos pos) {
+	private void updateConnectedMultiBlocks(@NotNull World world, @NotNull BlockPos pos) {
 		for(Vec3i possibleUpgradeBlockOffset : possibleEnchanterOffsets) {
 			BlockPos currentPos = pos.add(possibleUpgradeBlockOffset);
 			BlockEntity blockEntity = world.getBlockEntity(currentPos);
@@ -124,8 +133,17 @@ public class ItemBowlBlock extends BlockWithEntity {
 				break;
 			}
 		}
+		
+		for(Vec3i possibleUpgradeBlockOffset : possibleSpiritInstillerOffsets) {
+			BlockPos currentPos = pos.add(possibleUpgradeBlockOffset);
+			BlockEntity blockEntity = world.getBlockEntity(currentPos);
+			if(blockEntity instanceof SpiritInstillerBlockEntity spiritInstillerBlockEntity) {
+				spiritInstillerBlockEntity.inventoryChanged();
+				break;
+			}
+		}
 	}
-	
+
 	@Override
 	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
 		if(world.isClient) {
@@ -167,7 +185,7 @@ public class ItemBowlBlock extends BlockWithEntity {
 				if(itemsChanged) {
 					itemBowlBlockEntity.markDirty();
 					itemBowlBlockEntity.updateInClientWorld();
-					updateConnectedEnchanter(world, pos);
+					updateConnectedMultiBlocks(world, pos);
 					world.playSound(null, player.getBlockPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 0.8F, 0.8F + world.random.nextFloat() * 0.6F);
 				}
 			}

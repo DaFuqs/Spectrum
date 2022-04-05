@@ -76,7 +76,7 @@ public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 			int additionalManifestAdvanceSteps = getManifestAdvanceSteps(world, blockPos);
 			int newTicksToManifest = ticksToManifest - additionalManifestAdvanceSteps;
 			if(newTicksToManifest <= 0) {
-				this.hatch(world, blockPos);
+				this.manifest(world, blockPos);
 			} else {
 				Optional<EntityType<?>> entityTypeOptional = MemoryItem.getEntityType(this.memoryItemStack.getNbt());
 				if(entityTypeOptional.isPresent()) {
@@ -88,7 +88,7 @@ public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 		}
 	}
 	
-	public void hatch(@NotNull ServerWorld world, BlockPos blockPos) {
+	public void manifest(@NotNull ServerWorld world, BlockPos blockPos) {
 		world.setBlockState(blockPos, Blocks.AIR.getDefaultState());
 		Optional<Entity> hatchedEntity = hatchEntity(world, blockPos, this.memoryItemStack);
 		
@@ -100,11 +100,11 @@ public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 				hatchedMobEntity.playSpawnEffects();
 			}
 			
-			triggerHatchingAdvancementCriterion(hatchedEntity.get());
+			triggerManifestingAdvancementCriterion(hatchedEntity.get());
 		}
 	}
 	
-	protected void triggerHatchingAdvancementCriterion(Entity hatchedEntity) {
+	protected void triggerManifestingAdvancementCriterion(Entity hatchedEntity) {
 		PlayerEntity owner = PlayerOwned.getPlayerEntityIfOnline(world, this.ownerUUID);
 		if(owner instanceof ServerPlayerEntity serverPlayerEntity) {
 			SpectrumAdvancementCriteria.MEMORY_MANIFESTING.trigger(serverPlayerEntity, hatchedEntity);

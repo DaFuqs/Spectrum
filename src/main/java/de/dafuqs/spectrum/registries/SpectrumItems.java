@@ -175,7 +175,7 @@ public class SpectrumItems {
 
 	// Magical Tools
 	public static final Item ENDER_BAG = new EnderBagItem(generalItemSettingsSingle);
-	public static final Item LIGHT_STAFF = new RadianceStaffItem(generalUncommonItemSettingsSingle);
+	public static final Item RADIANCE_STAFF = new RadianceStaffItem(generalUncommonItemSettingsSingle);
 	public static final Item NATURES_STAFF = new NaturesStaffItem(generalUncommonItemSettingsSingle);
 	public static final Item PLACEMENT_STAFF = new PlacementStaffItem(generalUncommonItemSettingsSingle);
 	public static final Item EXCHANGE_STAFF = new ExchangeStaffItem(generalUncommonItemSettingsSingle);
@@ -382,7 +382,7 @@ public class SpectrumItems {
 	
 	public static void registerMagicalTools() {
 		register("ender_bag", ENDER_BAG);
-		register("light_staff", LIGHT_STAFF);
+		register("light_staff", RADIANCE_STAFF);
 		register("natures_staff", NATURES_STAFF);
 		register("placement_staff", PLACEMENT_STAFF);
 		register("exchange_staff", EXCHANGE_STAFF);

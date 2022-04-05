@@ -201,7 +201,7 @@ public class SpectrumCommon implements ModInitializer {
 						ExchangeStaffItem.exchange(world, pos, player, blockTarget.get(), player.getMainHandStack(), true);
 					}
 					return ActionResult.CONSUME;
-				} else if (player.getMainHandStack().isOf(SpectrumItems.LIGHT_STAFF)) {
+				} else if (player.getMainHandStack().isOf(SpectrumItems.RADIANCE_STAFF)) {
 					if(!world.getBlockState(pos).isOf(SpectrumBlocks.WAND_LIGHT_BLOCK)) { // those get destroyed instead
 						BlockPos targetPos = pos.offset(direction);
 						if (RadianceStaffItem.placeLight(world, targetPos, player, player.getMainHandStack())) {

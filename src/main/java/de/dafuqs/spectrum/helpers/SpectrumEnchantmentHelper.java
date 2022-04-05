@@ -141,12 +141,12 @@ public class SpectrumEnchantmentHelper {
 		}
 	}
 	
-	public static ItemStack getMaxEnchantedStack(Item item, Enchantment... enchantments) {
+	public static ItemStack getMaxEnchantedStack(@NotNull Item item, Enchantment... enchantments) {
 		ItemStack itemStack = item.getDefaultStack();
 		for(int i = 0; i < enchantments.length; i++) {
 			Enchantment enchantment = enchantments[i];
 			int maxLevel = enchantment.getMaxLevel();
-			
+			itemStack = addOrExchangeEnchantment(itemStack, enchantment, maxLevel, true, true);
 		}
 		return itemStack;
 	}

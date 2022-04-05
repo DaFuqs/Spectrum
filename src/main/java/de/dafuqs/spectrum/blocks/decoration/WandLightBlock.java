@@ -29,19 +29,19 @@ public class WandLightBlock extends LightBlock {
 	}
 
 	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-		return context.isHolding(SpectrumItems.LIGHT_STAFF) ? VoxelShapes.fullCube() : VoxelShapes.empty();
+		return context.isHolding(SpectrumItems.RADIANCE_STAFF) ? VoxelShapes.fullCube() : VoxelShapes.empty();
 	}
 
 	@Override
 	public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
 		super.randomDisplayTick(state, world, pos, random);
-		if(world.isClient && MinecraftClient.getInstance().player.getMainHandStack().isOf(SpectrumItems.LIGHT_STAFF)) {
+		if(world.isClient && MinecraftClient.getInstance().player.getMainHandStack().isOf(SpectrumItems.RADIANCE_STAFF)) {
 			world.addParticle(SpectrumParticleTypes.SPARKLESTONE_SPARKLE_SMALL, (double) pos.getX() + 0.2 + random.nextFloat() * 0.6, (double) pos.getY() + 0.1 + random.nextFloat() * 0.6, (double) pos.getZ() + 0.2 + random.nextFloat() * 0.6, 0.0D, 0.03D, 0.0D);
 		}
 	}
 
 	public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state) {
-		return new ItemStack(SpectrumItems.LIGHT_STAFF);
+		return new ItemStack(SpectrumItems.RADIANCE_STAFF);
 	}
 
 	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {

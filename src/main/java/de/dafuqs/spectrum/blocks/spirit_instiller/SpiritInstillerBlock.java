@@ -127,9 +127,7 @@ public class SpiritInstillerBlock extends BlockWithEntity {
 				}
 				
 				if(itemsChanged) {
-					spiritInstillerBlockEntity.markDirty();
-					spiritInstillerBlockEntity.inventory.markDirty();
-					spiritInstillerBlockEntity.updateInClientWorld();
+					spiritInstillerBlockEntity.inventoryChanged();
 					world.playSound(null, player.getBlockPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 0.8F, 0.8F + world.random.nextFloat() * 0.6F);
 				}
 			}

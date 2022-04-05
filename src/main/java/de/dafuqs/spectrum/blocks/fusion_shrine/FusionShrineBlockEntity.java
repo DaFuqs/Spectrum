@@ -184,7 +184,7 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 				
 				if(!recipeConditionsMet || !structureCompleteWithSky) {
 					if(!structureCompleteWithSky) {
-						world.playSound(null, fusionShrineBlockEntity.getPos(), SpectrumSoundEvents.FUSION_SHRINE_CRAFTING_ABORTED, SoundCategory.BLOCKS, 0.9F + fusionShrineBlockEntity.world.random.nextFloat() * 0.2F, 0.9F + fusionShrineBlockEntity.world.random.nextFloat() * 0.2F);
+						world.playSound(null, fusionShrineBlockEntity.getPos(), SpectrumSoundEvents.CRAFTING_ABORTED, SoundCategory.BLOCKS, 0.9F + fusionShrineBlockEntity.world.random.nextFloat() * 0.2F, 0.9F + fusionShrineBlockEntity.world.random.nextFloat() * 0.2F);
 						world.playSound(null, fusionShrineBlockEntity.getPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.9F + fusionShrineBlockEntity.world.random.nextFloat() * 0.2F, 0.5F + fusionShrineBlockEntity.world.random.nextFloat() * 0.2F);
 						FusionShrineBlock.scatterContents(world, blockPos);
 					}

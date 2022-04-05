@@ -5,6 +5,7 @@ import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.items.ExperienceStorageItem;
 import de.dafuqs.spectrum.recipe.GatedRecipe;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
+import de.dafuqs.spectrum.recipe.enchanter.EnchanterRecipe;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -25,9 +26,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Map;
 
 public class EnchantmentUpgradeRecipe implements Recipe<Inventory>, GatedRecipe {
-	
-	public static final Identifier UNLOCK_FUSION_ADVANCEMENT_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "midgame/build_fusion_shrine");
-	
+
 	protected final Identifier id;
 	
 	protected final Enchantment enchantment;
@@ -185,7 +184,7 @@ public class EnchantmentUpgradeRecipe implements Recipe<Inventory>, GatedRecipe 
 	
 	@Override
 	public boolean canPlayerCraft(PlayerEntity playerEntity) {
-		return Support.hasAdvancement(playerEntity, UNLOCK_FUSION_ADVANCEMENT_IDENTIFIER) && Support.hasAdvancement(playerEntity, this.requiredAdvancementIdentifier);
+		return Support.hasAdvancement(playerEntity, EnchanterRecipe.UNLOCK_ENCHANTING_ADVANCEMENT_IDENTIFIER) && Support.hasAdvancement(playerEntity, this.requiredAdvancementIdentifier);
 	}
 	
 }

@@ -1,7 +1,11 @@
 package de.dafuqs.spectrum.recipe.spirit_instiller;
 
+import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.helpers.Support;
+import de.dafuqs.spectrum.recipe.GatedRecipe;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Ingredient;
@@ -12,8 +16,10 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
 
-public class SpiritInstillerRecipe implements Recipe<Inventory> {
-
+public class SpiritInstillerRecipe implements Recipe<Inventory>, GatedRecipe {
+	
+	public static final Identifier UNLOCK_SPIRIT_INSTILLER_ADVANCEMENT_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "midgame/build_spirit_instiller_structure");
+	
 	protected final Identifier id;
 	protected final Ingredient inputIngredient1;
 	protected final Ingredient inputIngredient2;
@@ -23,8 +29,9 @@ public class SpiritInstillerRecipe implements Recipe<Inventory> {
 	protected final int craftingTime;
 	protected final float experience;
 	protected final Identifier requiredAdvancementIdentifier;
+	protected final boolean noBenefitsFromYieldAndEfficiencyUpgrades;
 
-	public SpiritInstillerRecipe(Identifier id, Ingredient inputIngredient1, Ingredient inputIngredient2, Ingredient centerIngredient, ItemStack outputItemStack, int craftingTime, float experience, Identifier requiredAdvancementIdentifier) {
+	public SpiritInstillerRecipe(Identifier id, Ingredient inputIngredient1, Ingredient inputIngredient2, Ingredient centerIngredient, ItemStack outputItemStack, int craftingTime, float experience, boolean noBenefitsFromYieldAndEfficiencyUpgrades, Identifier requiredAdvancementIdentifier) {
 		this.id = id;
 		this.inputIngredient1 = inputIngredient1;
 		this.inputIngredient2 = inputIngredient2;
@@ -33,15 +40,18 @@ public class SpiritInstillerRecipe implements Recipe<Inventory> {
 		this.craftingTime = craftingTime;
 		this.experience = experience;
 		this.requiredAdvancementIdentifier = requiredAdvancementIdentifier;
+		this.noBenefitsFromYieldAndEfficiencyUpgrades = noBenefitsFromYieldAndEfficiencyUpgrades;
 	}
 	
 	@Override
 	public boolean matches(Inventory inv, World world) {
 		if(inv.size() > 2) {
-			if(inputIngredient1.test(inv.getStack(0)) && inputIngredient2.test(inv.getStack(1))) {
-				return centerIngredient.test(inv.getStack(2));
-			} else if(inputIngredient1.test(inv.getStack(1)) && inputIngredient2.test(inv.getStack(0))) {
-				return centerIngredient.test(inv.getStack(2));
+			if(centerIngredient.test(inv.getStack(0))) {
+				if(inputIngredient1.test(inv.getStack(1))) {
+					return inputIngredient2.test(inv.getStack(2));
+				} else if(inputIngredient1.test(inv.getStack(2))) {
+					return inputIngredient2.test(inv.getStack(1));
+				}
 			}
 		}
 		return false;
@@ -114,6 +124,15 @@ public class SpiritInstillerRecipe implements Recipe<Inventory> {
 	
 	public Identifier getRequiredAdvancementIdentifier() {
 		return requiredAdvancementIdentifier;
+	}
+	
+	public boolean areYieldAndEfficiencyUpgradesDisabled() {
+		return noBenefitsFromYieldAndEfficiencyUpgrades;
+	}
+	
+	@Override
+	public boolean canPlayerCraft(PlayerEntity playerEntity) {
+		return Support.hasAdvancement(playerEntity, UNLOCK_SPIRIT_INSTILLER_ADVANCEMENT_IDENTIFIER) && Support.hasAdvancement(playerEntity, this.requiredAdvancementIdentifier);
 	}
 	
 }

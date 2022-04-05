@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.blocks.pedestal;
 
 import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.blocks.MultiblockCrafter;
 import de.dafuqs.spectrum.blocks.upgrade.Upgradeable;
 import de.dafuqs.spectrum.enums.GemstoneColor;
 import de.dafuqs.spectrum.enums.PedestalRecipeTier;
@@ -65,7 +66,7 @@ import vazkii.patchouli.api.IMultiblock;
 
 import java.util.*;
 
-public class PedestalBlockEntity extends LockableContainerBlockEntity implements RecipeInputProvider, SidedInventory, PlayerOwned, ExtendedScreenHandlerFactory, Upgradeable {
+public class PedestalBlockEntity extends LockableContainerBlockEntity implements MultiblockCrafter, SidedInventory, ExtendedScreenHandlerFactory {
 	
 	protected UUID ownerUUID;
 	protected PedestalBlock.PedestalVariant pedestalVariant;
@@ -426,17 +427,14 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		// spawn XP
 		if (pedestalBlockEntity.storedXP > 0) {
 			int spawnedXPAmount = Support.getIntFromDecimalWithChance(pedestalBlockEntity.storedXP, pedestalBlockEntity.getWorld().random);
-			if(spawnedXPAmount > 0) {
-				ExperienceOrbEntity experienceOrbEntity = new ExperienceOrbEntity(world, pedestalBlockEntity.pos.getX() + 0.5, pedestalBlockEntity.pos.getY() + 1, pedestalBlockEntity.pos.getZ() + 0.5, spawnedXPAmount);
-				world.spawnEntity(experienceOrbEntity);
-			}
+			spawnExperienceOrbs(world, pedestalBlockEntity.pos, spawnedXPAmount);
 			pedestalBlockEntity.storedXP = 0;
 		}
 
 		// only triggered on server side. Therefore, has to be sent to client via S2C packet
 		SpectrumS2CPacketSender.sendPlayPedestalCraftingFinishedParticle(world, blockPos, outputItemStack);
 	}
-
+	
 	public static boolean tryPutOutputIntoAboveInventory(PedestalBlockEntity pedestalBlockEntity, Inventory targetInventory, ItemStack outputItemStack) {
 		if(targetInventory instanceof HopperBlockEntity) {
 			return false;

@@ -74,7 +74,7 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 	
 	// since the item bowls around the enchanter hold some items themselves
 	// they get cached here for faster recipe lookup
-	// virtualInventoryRecipeOrientation is the order the items are ordered for the recipe to match (rotations form 0-3)
+	// virtualInventoryRecipeOrientation is the order the items are ordered for the recipe to match (rotations from 0-3)
 	protected SimpleInventory virtualInventoryIncludingBowlStacks;
 	protected int virtualInventoryRecipeOrientation;
 	
@@ -364,7 +364,7 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 		return false;
 	}
 	
-	public static void playCraftingFinishedEffects(EnchanterBlockEntity enchanterBlockEntity) {
+	public static void playCraftingFinishedEffects(@NotNull EnchanterBlockEntity enchanterBlockEntity) {
 		enchanterBlockEntity.world.playSound(null, enchanterBlockEntity.pos, SoundEvents.ENTITY_PLAYER_LEVELUP, SoundCategory.BLOCKS, 1.0F, 1.0F);
 		
 		SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) enchanterBlockEntity.world,
@@ -390,7 +390,7 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 		
 		if (!playerCanCraft || !structureComplete) {
 			if (!structureComplete) {
-				world.playSound(null, enchanterBlockEntity.getPos(), SpectrumSoundEvents.FUSION_SHRINE_CRAFTING_ABORTED, SoundCategory.BLOCKS, 0.9F + enchanterBlockEntity.world.random.nextFloat() * 0.2F, 0.9F + enchanterBlockEntity.world.random.nextFloat() * 0.2F);
+				world.playSound(null, enchanterBlockEntity.getPos(), SpectrumSoundEvents.CRAFTING_ABORTED, SoundCategory.BLOCKS, 0.9F + enchanterBlockEntity.world.random.nextFloat() * 0.2F, 0.9F + enchanterBlockEntity.world.random.nextFloat() * 0.2F);
 				world.playSound(null, enchanterBlockEntity.getPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.9F + enchanterBlockEntity.world.random.nextFloat() * 0.2F, 0.5F + enchanterBlockEntity.world.random.nextFloat() * 0.2F);
 				EnchanterBlock.scatterContents(world, blockPos);
 			}
@@ -744,7 +744,6 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 		
 		if (enchanterBlockEntity.currentRecipe != previousRecipe) {
 			enchanterBlockEntity.updateInClientWorld();
-			//SpectrumS2CPackets.sendCancelBlockBoundSoundInstance((ServerWorld) enchanterBlockEntity.world, enchanterBlockEntity.pos);
 		}
 		
 		return false;

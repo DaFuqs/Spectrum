@@ -18,7 +18,7 @@ public class SpectrumSoundEvents {
 	
 	public static SoundEvent FUSION_SHRINE_CRAFTING = register("fusion_shrine_crafting");
 	public static SoundEvent FUSION_SHRINE_CRAFTING_FINISHED = register("fusion_shrine_crafting_finished");
-	public static SoundEvent FUSION_SHRINE_CRAFTING_ABORTED = register("fusion_shrine_crafting_aborted");
+	public static SoundEvent CRAFTING_ABORTED = register("fusion_shrine_crafting_aborted");
 	
 	public static SoundEvent ENCHANTER_WORKING = register("enchanter_working");
 	public static SoundEvent ENCHANTER_DING = register("enchanter_ding");

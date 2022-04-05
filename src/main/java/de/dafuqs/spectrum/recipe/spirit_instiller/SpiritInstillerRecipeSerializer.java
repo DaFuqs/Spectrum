@@ -28,6 +28,11 @@ public class SpiritInstillerRecipeSerializer implements RecipeSerializer<SpiritI
 		int craftingTime = JsonHelper.getInt(jsonObject, "time", 200);
 		float experience = JsonHelper.getFloat(jsonObject, "experience");
 		
+		boolean noBenefitsFromYieldAndEfficiencyUpgrades = false;
+		if(JsonHelper.hasPrimitive(jsonObject, "disable_yield_and_efficiency_upgrades")) {
+			noBenefitsFromYieldAndEfficiencyUpgrades = JsonHelper.getBoolean(jsonObject, "disable_yield_and_efficiency_upgrades", false);
+		}
+		
 		Identifier requiredAdvancementIdentifier;
 		if(JsonHelper.hasString(jsonObject, "required_advancement")) {
 			requiredAdvancementIdentifier = Identifier.tryParse(JsonHelper.getString(jsonObject, "required_advancement"));
@@ -36,7 +41,7 @@ public class SpiritInstillerRecipeSerializer implements RecipeSerializer<SpiritI
 			requiredAdvancementIdentifier = SpiritInstillerBlock.UNLOCK_IDENTIFIER;
 		}
 		
-		return this.recipeFactory.create(identifier, ingredient1, ingredient2, centerIngredient, outputItemStack, craftingTime, experience, requiredAdvancementIdentifier);
+		return this.recipeFactory.create(identifier, ingredient1, ingredient2, centerIngredient, outputItemStack, craftingTime, experience, noBenefitsFromYieldAndEfficiencyUpgrades, requiredAdvancementIdentifier);
 	}
 	
 	@Override
@@ -47,6 +52,7 @@ public class SpiritInstillerRecipeSerializer implements RecipeSerializer<SpiritI
 		packetByteBuf.writeItemStack(spiritInstillerRecipe.outputItemStack);
 		packetByteBuf.writeInt(spiritInstillerRecipe.craftingTime);
 		packetByteBuf.writeFloat(spiritInstillerRecipe.experience);
+		packetByteBuf.writeBoolean(spiritInstillerRecipe.noBenefitsFromYieldAndEfficiencyUpgrades);
 		packetByteBuf.writeIdentifier(spiritInstillerRecipe.requiredAdvancementIdentifier);
 	}
 	
@@ -58,13 +64,15 @@ public class SpiritInstillerRecipeSerializer implements RecipeSerializer<SpiritI
 		ItemStack outputItemStack = packetByteBuf.readItemStack();
 		int craftingTime = packetByteBuf.readInt();
 		float experience = packetByteBuf.readFloat();
+		boolean noBenefitsFromYieldAndEfficiencyUpgrades = packetByteBuf.readBoolean();
 		Identifier requiredAdvancementIdentifier = packetByteBuf.readIdentifier();
-		return this.recipeFactory.create(identifier, ingredient1, ingredient2, centerIngredient, outputItemStack, craftingTime, experience, requiredAdvancementIdentifier);
+		
+		return this.recipeFactory.create(identifier, ingredient1, ingredient2, centerIngredient, outputItemStack, craftingTime, experience, noBenefitsFromYieldAndEfficiencyUpgrades, requiredAdvancementIdentifier);
 	}
 
 	
 	public interface RecipeFactory<SpiritInstillerRecipe> {
-		SpiritInstillerRecipe create(Identifier id, Ingredient inputIngredient1, Ingredient inputIngredient2, Ingredient centerIngredient, ItemStack outputItemStack, int craftingTime, float experience, Identifier requiredAdvancementIdentifier);
+		SpiritInstillerRecipe create(Identifier id, Ingredient inputIngredient1, Ingredient inputIngredient2, Ingredient centerIngredient, ItemStack outputItemStack, int craftingTime, float experience, boolean noBenefitsFromYieldAndEfficiencyUpgrades, Identifier requiredAdvancementIdentifier);
 	}
 
 }

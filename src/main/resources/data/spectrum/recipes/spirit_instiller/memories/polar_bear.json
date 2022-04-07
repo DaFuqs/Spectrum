@@ -1,19 +1,18 @@
-{
+﻿{
   "type": "spectrum:spirit_instiller",
   "time": 800,
   "experience": 4.0,
   "ingredient1": {
-    "item": "spectrum:fox_head"
+    "item": "spectrum:polar_bear_head"
   },
   "ingredient2": {
-    "tag": "minecraft:fox_food"
+    "tag": "minecraft:fishes"
   },
   "center_ingredient": {
     "item": "spectrum:vegetal"
   },
   "result" : {
     "item": "spectrum:memory",
-    "nbt": "{EntityTag: {id: \"minecraft:fox\", Type: \"red\"}, TicksToManifest: 20}"
+    "nbt": "{EntityTag: {id: \"minecraft:polar_bear\"}, TicksToManifest: 20}"
   }
 }
-

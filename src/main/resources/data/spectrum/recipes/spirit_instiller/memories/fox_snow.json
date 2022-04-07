@@ -6,15 +6,14 @@
     "item": "spectrum:fox_arctic_head"
   },
   "ingredient2": {
-    "item": "minecraft:sweet_berries"
+    "tag": "minecraft:fox_food"
   },
   "center_ingredient": {
     "item": "spectrum:vegetal"
   },
   "result" : {
     "item": "spectrum:memory",
-    "nbt": "{EntityTag: {id: \"minecraft:fox\", Type: \"snow\"}, TicksToManifest: 20}",
-    "count": 1
+    "nbt": "{EntityTag: {id: \"minecraft:fox\", Type: \"snow\"}, TicksToManifest: 20}"
   }
 }
 

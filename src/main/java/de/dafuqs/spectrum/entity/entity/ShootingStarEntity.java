@@ -89,6 +89,7 @@ public class ShootingStarEntity extends Entity {
 		super(entity.getType(), entity.world);
 		this.setShootingStarType(entity.getShootingStarType(), false);
 		this.copyPositionAndRotation(entity);
+		this.availableHits = entity.availableHits;
 		this.age = entity.age;
 		this.hoverHeight = entity.hoverHeight;
 		this.lastCollisionCount = entity.lastCollisionCount;

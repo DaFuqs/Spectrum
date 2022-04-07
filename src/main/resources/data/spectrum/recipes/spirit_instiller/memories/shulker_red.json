@@ -1,19 +1,18 @@
-{
+﻿{
   "type": "spectrum:spirit_instiller",
   "time": 800,
   "experience": 4.0,
   "ingredient1": {
-    "item": "spectrum:fox_head"
+    "item": "spectrum:shulker_red_head"
   },
   "ingredient2": {
-    "tag": "minecraft:fox_food"
+    "item": "minecraft:popped_chorus_fruit"
   },
   "center_ingredient": {
     "item": "spectrum:vegetal"
   },
   "result" : {
     "item": "spectrum:memory",
-    "nbt": "{EntityTag: {id: \"minecraft:fox\", Type: \"red\"}, TicksToManifest: 20}"
+    "nbt": "{EntityTag: {id: \"minecraft:shulker_red\"}, TicksToManifest: 20}"
   }
 }
-

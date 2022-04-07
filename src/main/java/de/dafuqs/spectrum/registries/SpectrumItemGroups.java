@@ -163,7 +163,6 @@ public class SpectrumItemGroups {
 						stacks.add(recipe.getOutput());
 					}
 				}
-				
 			}
 		}
 		

@@ -1,8 +1,8 @@
 {
-  "parent": "spectrum:midgame/build_spirit_instiller_structure",
+  "parent": "spectrum:midgame/harvest_moonstruck_nectar",
   "display": {
     "icon": {
-      "item": "spectrum:onyx_cluster"
+      "item": "spectrum:budding_onyx"
     },
     "title": {
       "translate": "advancements.spectrum.create_budding_onyx.title"

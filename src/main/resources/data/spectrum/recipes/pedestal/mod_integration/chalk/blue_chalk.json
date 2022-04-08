@@ -1,0 +1,36 @@
+﻿{
+  "type": "spectrum:pedestal",
+  "time": 400,
+  "tier": "basic",
+  "cyan": 0,
+  "magenta": 0,
+  "yellow": 0,
+  "white": 0,
+  "black": 0,
+  "experience": 0.25,
+  "pattern": [
+    " C ",
+    "CDC",
+    " C "
+  ],
+  "key": {
+    "C": {
+      "item": "minecraft:calcite"
+    },
+    "D": {
+      "item": "minecraft:blue_dye"
+    }
+  },
+  "result" : {
+    "item": "chalk:blue_chalk",
+    "nbt": "{Unbreakable:1}"
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "chalk"
+      ]
+    }
+  ]
+}

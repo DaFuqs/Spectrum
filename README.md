@@ -20,9 +20,14 @@ At first you as a player are just tinkering around with what is possible, but so
 Your final goal? Discovering what's up with the magical energies surrounding the world and what is waiting for you beneath the once impenetratable bedrock floor.
 
 # Progressing through the mod
-Find your first gemstone geode to get started! Everything else is hinted at via advancements and the guidebook gifted to you. You can find more details in [Spectrums Wiki](https://github.com/DaFuqs/Spectrum/wiki). 
+Find your first gemstone geode to get started! Everything else is hinted at via advancements and the guidebook gifted to you. You can find all details that you need to know in Spectrums Guidebook that is given to you the first time you find gemstone shards. 
 
 **_Spectrum is not meant to be rushed. It is best played alongside your normal playthrough._**
+
+# Spectrums Discord
+You will find a lot of helpful people on Spectrums Discord. There always are friendly and helpful people around. Swing around too, if you like! :)
+
+https://discord.com/invite/EXU9XFXT8a
 
 ## Mod Integration
 - [RoughlyEnoughItems](https://github.com/shedaniel/RoughlyEnoughItems): Integration for all of Spectrums recipe types

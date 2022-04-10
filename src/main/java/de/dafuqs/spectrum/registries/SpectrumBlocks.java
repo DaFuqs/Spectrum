@@ -593,7 +593,20 @@ public class SpectrumBlocks {
 	public static final Block DIORITE_SPARKLESTONE_LIGHT = new SparklestoneLightBlock(sparklestoneLightBlockSettings);
 	public static final Block ANDESITE_SPARKLESTONE_LIGHT = new SparklestoneLightBlock(sparklestoneLightBlockSettings);
 	public static final Block DEEPSLATE_SPARKLESTONE_LIGHT = new SparklestoneLightBlock(sparklestoneLightBlockSettings);
-
+	
+	// STRUCTURE BLOCKS
+	private static final FabricBlockSettings preservationBlockSettings = FabricBlockSettings.of(Material.STONE).strength(-1.0F).dropsNothing();
+	public static final Block PRESERVATION_CONTROLLER = new Block(preservationBlockSettings);
+	public static final Block PRESERVATION_STONE = new Block(preservationBlockSettings);
+	public static final Block PRESERVATION_GLASS = new Block(preservationBlockSettings);
+	public static final Block DIKE_CHISELED_PRESERVATION_STONE = new Block(preservationBlockSettings);
+	public static final Block DIKE_GATE = new Block(preservationBlockSettings);
+	
+	// JADE VINES
+	public static final Block JADE_VINES = new Block(AbstractBlock.Settings.of(Material.CACTUS, MapColor.PALE_GREEN).strength(3.0F).sounds(BlockSoundGroup.WOOL));
+	public static final Block JADE_VINE_PETAL_BLOCK = new Block(AbstractBlock.Settings.of(Material.WOOL, MapColor.PALE_GREEN).strength(0.1F).sounds(BlockSoundGroup.WOOL));
+	public static final Block JADE_VINE_PETAL_CARPET = new CarpetBlock(AbstractBlock.Settings.of(Material.CARPET, MapColor.PALE_GREEN).strength(0.1F).sounds(BlockSoundGroup.WOOL));
+	
 	// ORES
 	public static final Block SPARKLESTONE_ORE = new SparklestoneOreBlock(FabricBlockSettings.copyOf(Blocks.IRON_ORE).requiresTool(), UniformIntProvider.create(2, 4), false);
 	public static final Block DEEPSLATE_SPARKLESTONE_ORE = new SparklestoneOreBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_IRON_ORE).requiresTool(), UniformIntProvider.create(2, 4), true);
@@ -740,6 +753,9 @@ public class SpectrumBlocks {
 		registerBlockWithItem("upgrade_yield2", UPGRADE_YIELD2, new UpgradeBlockItem(UPGRADE_YIELD2, generalItemSettingsRareEight, "upgrade_yield2"));
 		registerBlockWithItem("upgrade_experience", UPGRADE_EXPERIENCE, new UpgradeBlockItem(UPGRADE_EXPERIENCE, generalItemSettingsEight, "upgrade_experience"));
 		registerBlockWithItem("upgrade_experience2", UPGRADE_EXPERIENCE2, new UpgradeBlockItem(UPGRADE_EXPERIENCE2, generalItemSettingsUncommonEight, "upgrade_experience2"));
+		
+		registerStructureBlocks(generalItemSettings);
+		registerJadeVineBlocks(generalItemSettings);
 		
 		registerPastelNetworkNodes(generalItemSettingsSixteen);
 		registerStoneBlocks(decorationItemSettings);
@@ -1308,6 +1324,20 @@ public class SpectrumBlocks {
 		registerBlockWithItem("deepslate_citrine_ore", DEEPSLATE_CITRINE_ORE, fabricItemSettings);
 		registerBlockWithItem("deepslate_onyx_ore", DEEPSLATE_ONYX_ORE, fabricItemSettings);
 		registerBlockWithItem("deepslate_moonstone_ore", DEEPSLATE_MOONSTONE_ORE, fabricItemSettings);
+	}
+
+	private static void registerStructureBlocks(FabricItemSettings fabricItemSettings) {
+		registerBlockWithItem("preservation_controller", PRESERVATION_CONTROLLER, fabricItemSettings);
+		registerBlockWithItem("preservation_stone", PRESERVATION_STONE, fabricItemSettings);
+		registerBlockWithItem("dike_chiseled_preservation_stone", DIKE_CHISELED_PRESERVATION_STONE, fabricItemSettings);
+		registerBlockWithItem("preservation_glass", PRESERVATION_GLASS, fabricItemSettings);
+		registerBlockWithItem("dike_gate", DIKE_GATE, fabricItemSettings);
+	}
+
+	private static void registerJadeVineBlocks(FabricItemSettings fabricItemSettings) {
+		registerBlock("jade_vines", JADE_VINES);
+		registerBlockWithItem("jade_vine_petal_block", JADE_VINE_PETAL_BLOCK, fabricItemSettings);
+		registerBlockWithItem("jade_vine_petal_carpet", JADE_VINE_PETAL_CARPET, fabricItemSettings);
 	}
 
 	// Most mob heads vanilla is missing (vanilla only has: skeleton, wither skeleton, zombie, player, creeper, ender dragon)

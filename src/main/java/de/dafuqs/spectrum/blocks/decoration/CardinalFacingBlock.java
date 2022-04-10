@@ -23,7 +23,7 @@ public class CardinalFacingBlock extends FacingBlock {
 		boolean facingVertical = facing.equals(Direction.EAST) || facing.equals(Direction.WEST);
 		return (this.getDefaultState().with(CARDINAL_FACING, facingVertical));
 	}
-
+	
 	@Override
 	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
 		builder.add(CARDINAL_FACING);

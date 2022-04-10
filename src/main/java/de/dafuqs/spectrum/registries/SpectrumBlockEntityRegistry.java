@@ -14,6 +14,7 @@ import de.dafuqs.spectrum.blocks.fusion_shrine.FusionShrineBlockEntity;
 import de.dafuqs.spectrum.blocks.fusion_shrine.FusionShrineBlockEntityRenderer;
 import de.dafuqs.spectrum.blocks.item_bowl.ItemBowlBlockEntity;
 import de.dafuqs.spectrum.blocks.item_bowl.ItemBowlBlockEntityRenderer;
+import de.dafuqs.spectrum.blocks.jade_vines.JadeVinesBlockEntity;
 import de.dafuqs.spectrum.blocks.memory.MemoryBlockEntity;
 import de.dafuqs.spectrum.blocks.mob_head.SpectrumSkullBlockEntity;
 import de.dafuqs.spectrum.blocks.mob_head.SpectrumSkullBlockEntityRenderer;
@@ -82,6 +83,7 @@ public class SpectrumBlockEntityRegistry<T extends BlockEntity> {
 	public static BlockEntityType<BlockFlooderBlockEntity> BLOCK_FLOODER;
 	public static BlockEntityType<SpiritInstillerBlockEntity> SPIRIT_INSTILLER;
 	public static BlockEntityType<MemoryBlockEntity> MEMORY;
+	public static BlockEntityType<JadeVinesBlockEntity> JADE_VINES;
 	
 	public static BlockEntityType<PastelNetworkConnectionNode> CONNECTION_NODE;
 	public static BlockEntityType<PastelNetworkProviderNodeBlockEntity> PROVIDER_NODE;
@@ -115,6 +117,7 @@ public class SpectrumBlockEntityRegistry<T extends BlockEntity> {
 		POTION_WORKSHOP = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "potion_workshop"), FabricBlockEntityTypeBuilder.create(PotionWorkshopBlockEntity::new, SpectrumBlocks.POTION_WORKSHOP).build());
 		SPIRIT_INSTILLER = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "spirit_instiller"), FabricBlockEntityTypeBuilder.create(SpiritInstillerBlockEntity::new, SpectrumBlocks.SPIRIT_INSTILLER).build());
 		MEMORY = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "memory"), FabricBlockEntityTypeBuilder.create(MemoryBlockEntity::new, SpectrumBlocks.MEMORY).build());
+		JADE_VINES = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "jade_vines"), FabricBlockEntityTypeBuilder.create(JadeVinesBlockEntity::new, SpectrumBlocks.JADE_VINES).build());
 		
 		// All the pastel network nodes
 		CONNECTION_NODE = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "connection_node"), FabricBlockEntityTypeBuilder.create(PastelNetworkConnectionNode::new, SpectrumBlocks.CONNECTION_NODE).build());

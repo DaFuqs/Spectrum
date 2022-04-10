@@ -1,8 +1,12 @@
 package de.dafuqs.spectrum.inventories;
 
+import de.dafuqs.spectrum.enums.SpectrumTier;
 import net.fabricmc.fabric.api.client.screenhandler.v1.ScreenRegistry;
 import net.fabricmc.fabric.api.screenhandler.v1.ScreenHandlerRegistry;
 import net.minecraft.screen.ScreenHandlerType;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class SpectrumScreenHandlerTypes {
 	
@@ -14,9 +18,15 @@ public class SpectrumScreenHandlerTypes {
 	public static ScreenHandlerType<CompactingChestScreenHandler> COMPACTING_CHEST;
 	public static ScreenHandlerType<SuckingChestScreenHandler> SUCKING_CHEST;
 	public static ScreenHandlerType<PotionWorkshopScreenHandler> POTION_WORKSHOP;
-
+	
 	public static ScreenHandlerType<GenericSpectrumContainerScreenHandler> GENERIC_TIER1_9X3;
+	public static ScreenHandlerType<GenericSpectrumContainerScreenHandler> GENERIC_TIER2_9X3;
+	public static ScreenHandlerType<GenericSpectrumContainerScreenHandler> GENERIC_TIER3_9X3;
+	
 	public static ScreenHandlerType<GenericSpectrumContainerScreenHandler> GENERIC_TIER1_9X6;
+	public static ScreenHandlerType<GenericSpectrumContainerScreenHandler> GENERIC_TIER2_9X6;
+	public static ScreenHandlerType<GenericSpectrumContainerScreenHandler> GENERIC_TIER3_9X6;
+	
 	public static ScreenHandlerType<Spectrum3x3ContainerScreenHandler> GENERIC_TIER1_3X3;
 	public static ScreenHandlerType<Spectrum3x3ContainerScreenHandler> GENERIC_TIER2_3X3;
 	public static ScreenHandlerType<Spectrum3x3ContainerScreenHandler> GENERIC_TIER3_3X3;
@@ -30,9 +40,14 @@ public class SpectrumScreenHandlerTypes {
 		COMPACTING_CHEST = ScreenHandlerRegistry.registerExtended(SpectrumContainers.COMPACTING_CHEST, CompactingChestScreenHandler::new);
 		SUCKING_CHEST = ScreenHandlerRegistry.registerExtended(SpectrumContainers.SUCKING_CHEST, SuckingChestScreenHandler::new);
 		POTION_WORKSHOP = ScreenHandlerRegistry.registerSimple(SpectrumContainers.POTION_WORKSHOP, PotionWorkshopScreenHandler::new);
-
+		
 		GENERIC_TIER1_9X3 = ScreenHandlerRegistry.registerSimple(SpectrumContainers.GENERIC_TIER1_9x3, GenericSpectrumContainerScreenHandler::createGeneric9x3_Tier1);
+		GENERIC_TIER2_9X3 = ScreenHandlerRegistry.registerSimple(SpectrumContainers.GENERIC_TIER2_9x3, GenericSpectrumContainerScreenHandler::createGeneric9x3_Tier2);
+		GENERIC_TIER3_9X3 = ScreenHandlerRegistry.registerSimple(SpectrumContainers.GENERIC_TIER3_9x3, GenericSpectrumContainerScreenHandler::createGeneric9x3_Tier3);
+		
 		GENERIC_TIER1_9X6 = ScreenHandlerRegistry.registerSimple(SpectrumContainers.GENERIC_TIER1_9x6, GenericSpectrumContainerScreenHandler::createGeneric9x6_Tier1);
+		GENERIC_TIER2_9X6 = ScreenHandlerRegistry.registerSimple(SpectrumContainers.GENERIC_TIER2_9x6, GenericSpectrumContainerScreenHandler::createGeneric9x6_Tier2);
+		GENERIC_TIER3_9X6 = ScreenHandlerRegistry.registerSimple(SpectrumContainers.GENERIC_TIER3_9x6, GenericSpectrumContainerScreenHandler::createGeneric9x6_Tier3);
 
 		GENERIC_TIER1_3X3 = ScreenHandlerRegistry.registerSimple(SpectrumContainers.GENERIC_TIER1_3X3, Spectrum3x3ContainerScreenHandler::createTier1);
 		GENERIC_TIER2_3X3 = ScreenHandlerRegistry.registerSimple(SpectrumContainers.GENERIC_TIER2_3X3, Spectrum3x3ContainerScreenHandler::createTier2);
@@ -50,10 +65,14 @@ public class SpectrumScreenHandlerTypes {
 		ScreenRegistry.register(SpectrumScreenHandlerTypes.POTION_WORKSHOP, PotionWorkshopScreen::new);
 
 		ScreenRegistry.register(SpectrumScreenHandlerTypes.GENERIC_TIER1_9X3, SpectrumGenericContainerScreen::new);
+		ScreenRegistry.register(SpectrumScreenHandlerTypes.GENERIC_TIER2_9X3, SpectrumGenericContainerScreen::new);
+		ScreenRegistry.register(SpectrumScreenHandlerTypes.GENERIC_TIER3_9X3, SpectrumGenericContainerScreen::new);
 		ScreenRegistry.register(SpectrumScreenHandlerTypes.GENERIC_TIER1_9X6, SpectrumGenericContainerScreen::new);
+		ScreenRegistry.register(SpectrumScreenHandlerTypes.GENERIC_TIER2_9X6, SpectrumGenericContainerScreen::new);
+		ScreenRegistry.register(SpectrumScreenHandlerTypes.GENERIC_TIER3_9X6, SpectrumGenericContainerScreen::new);
 		ScreenRegistry.register(SpectrumScreenHandlerTypes.GENERIC_TIER1_3X3, Spectrum3x3ContainerScreen::new);
 		ScreenRegistry.register(SpectrumScreenHandlerTypes.GENERIC_TIER2_3X3, Spectrum3x3ContainerScreen::new);
 		ScreenRegistry.register(SpectrumScreenHandlerTypes.GENERIC_TIER3_3X3, Spectrum3x3ContainerScreen::new);
 	}
-
+	
 }

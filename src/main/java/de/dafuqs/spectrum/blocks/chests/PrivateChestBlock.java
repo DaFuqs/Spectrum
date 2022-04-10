@@ -34,9 +34,8 @@ public class PrivateChestBlock extends SpectrumChestBlock {
 
 	public void openScreen(World world, BlockPos pos, PlayerEntity player) {
 		BlockEntity blockEntity = world.getBlockEntity(pos);
-		if(blockEntity instanceof PrivateChestBlockEntity) {
-			PrivateChestBlockEntity privateChestBlockEntity = ((PrivateChestBlockEntity) blockEntity);
-
+		if(blockEntity instanceof PrivateChestBlockEntity privateChestBlockEntity) {
+			
 			if(!privateChestBlockEntity.hasOwner()) {
 				privateChestBlockEntity.setOwner(player);
 			}
@@ -93,8 +92,7 @@ public class PrivateChestBlock extends SpectrumChestBlock {
 	public float calcBlockBreakingDelta(BlockState state, PlayerEntity player, BlockView world, BlockPos pos) {
 		BlockEntity blockEntity = world.getBlockEntity(pos);
 
-		if (blockEntity instanceof PrivateChestBlockEntity) {
-			PrivateChestBlockEntity privateChestBlockEntity = (PrivateChestBlockEntity) blockEntity;
+		if (blockEntity instanceof PrivateChestBlockEntity privateChestBlockEntity) {
 			if (privateChestBlockEntity.canBreak(player.getUuid())) {
 				return super.calcBlockBreakingDelta(state, player, world, pos);
 			}

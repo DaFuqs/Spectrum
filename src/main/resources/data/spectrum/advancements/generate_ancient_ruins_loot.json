@@ -2,7 +2,7 @@
   "parent": "spectrum:enter_ancient_ruins",
   "display": {
     "icon": {
-      "item": "spectrum:ancient_treasure_chest"
+      "item": "spectrum:treasure_chest"
     },
 	"hidden": true,
     "title": {

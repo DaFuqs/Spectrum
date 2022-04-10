@@ -41,7 +41,7 @@ public class SpectrumChestBlockEntityRenderer<T extends BlockEntity & ChestAnima
 		BlockState blockState = bl ? entity.getCachedState() : SpectrumBlocks.PRIVATE_CHEST.getDefaultState().with(ChestBlock.FACING, Direction.SOUTH);
 
 		Block block = blockState.getBlock();
-		if (block instanceof SpectrumChestBlock) {
+		if (block instanceof SpectrumChestBlock spectrumChestBlock) {
 			matrices.push();
 			float f = (blockState.get(ChestBlock.FACING)).asRotation();
 			matrices.translate(0.5D, 0.5D, 0.5D);
@@ -51,9 +51,8 @@ public class SpectrumChestBlockEntityRenderer<T extends BlockEntity & ChestAnima
 			float openFactor = entity.getAnimationProgress(tickDelta);
 			openFactor = 1.0F - openFactor;
 			openFactor = 1.0F - openFactor * openFactor * openFactor;
-
-			SpriteIdentifier spriteIdentifier = ((SpectrumChestBlock) block).getTexture();
-			VertexConsumer vertexConsumer = spriteIdentifier.getVertexConsumer(vertexConsumers, RenderLayer::getEntityCutout);
+			
+			VertexConsumer vertexConsumer = spectrumChestBlock.getTexture().getVertexConsumer(vertexConsumers, RenderLayer::getEntityCutout);
 
 			this.render(matrices, vertexConsumer, this.singleChestLid, this.singleChestLatch, this.singleChestBase, openFactor, light, overlay);
 

@@ -52,6 +52,7 @@ import de.dafuqs.spectrum.blocks.shooting_star.ShootingStarItem;
 import de.dafuqs.spectrum.blocks.spirit_instiller.SpiritInstillerBlock;
 import de.dafuqs.spectrum.blocks.spirit_sallow.*;
 import de.dafuqs.spectrum.blocks.structure.DikeGateBlock;
+import de.dafuqs.spectrum.blocks.structure.TreasureChestBlock;
 import de.dafuqs.spectrum.blocks.upgrade.UpgradeBlock;
 import de.dafuqs.spectrum.blocks.upgrade.UpgradeBlockItem;
 import de.dafuqs.spectrum.blocks.upgrade.Upgradeable;
@@ -65,6 +66,7 @@ import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.effect.StatusEffects;
@@ -603,6 +605,7 @@ public class SpectrumBlocks {
 	public static final Block PRESERVATION_GLASS = new GlassBlock(FabricBlockSettings.of(Material.GLASS).strength(-1.0F).dropsNothing().sounds(BlockSoundGroup.GLASS).nonOpaque().allowsSpawning(SpectrumBlocks::never).solidBlock(SpectrumBlocks::never).suffocates(SpectrumBlocks::never).blockVision(SpectrumBlocks::never));
 	public static final Block DIKE_GATE = new DikeGateBlock(FabricBlockSettings.of(Material.GLASS).strength(-1.0F).dropsNothing().luminance(3).sounds(BlockSoundGroup.GLASS).nonOpaque().allowsSpawning(SpectrumBlocks::never).solidBlock(SpectrumBlocks::never).suffocates(SpectrumBlocks::never).blockVision(SpectrumBlocks::never));
 	public static final Block COURIER_STATUE = new DecoStoneBlock(preservationBlockSettings);
+	public static final Block TREASURE_CHEST = new TreasureChestBlock(FabricBlockSettings.copyOf(Blocks.CHEST).hardness(-1.0F));
 	
 	// JADE VINES
 	public static final Block JADE_VINES = new Block(AbstractBlock.Settings.of(Material.CACTUS, MapColor.PALE_GREEN).strength(3.0F).sounds(BlockSoundGroup.WOOL));
@@ -1335,6 +1338,7 @@ public class SpectrumBlocks {
 		registerBlockWithItem("preservation_glass", PRESERVATION_GLASS, fabricItemSettings);
 		registerBlockWithItem("dike_gate", DIKE_GATE, fabricItemSettings);
 		registerBlockWithItem("courier_statue", COURIER_STATUE, fabricItemSettings);
+		registerBlockWithItem("treasure_chest", TREASURE_CHEST, fabricItemSettings);
 	}
 
 	private static void registerJadeVineBlocks(FabricItemSettings fabricItemSettings) {

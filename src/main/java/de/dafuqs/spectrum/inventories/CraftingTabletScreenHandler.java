@@ -273,11 +273,7 @@ public class CraftingTabletScreenHandler extends AbstractRecipeScreenHandler<Inv
 			} else if (index < 9) {
 				// crafting grid
 				if (!this.insertItem(clickedSlotStack, 15, 51, false)) {
-					if (index < 37) {
-						if (!this.insertItem(clickedSlotStack, 41, 51, false)) {
-							return ItemStack.EMPTY;
-						}
-					} else if (!this.insertItem(clickedSlotStack, 15, 41, false)) {
+					if (!this.insertItem(clickedSlotStack, 41, 51, false)) {
 						return ItemStack.EMPTY;
 					}
 				}
@@ -300,7 +296,7 @@ public class CraftingTabletScreenHandler extends AbstractRecipeScreenHandler<Inv
 			}
 			
 			slot.onTakeItem(player, clickedSlotStack);
-			if (index == 0) {
+			if (index == 14) {
 				player.dropItem(clickedSlotStack, false);
 			}
 		}

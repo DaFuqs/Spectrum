@@ -32,7 +32,7 @@
       "title": "Being Worthy?",
       "item": "spectrum:azure_dike_ring",
       "advancement": "spectrum:enter_ancient_ruins",
-      "text": "It looks like wearing Azure Dike equipment allowed you to enter.$(br)Until now, you thought you were alone in your creative power with the gems and pigments. From the looks of it, you were wrong. Very, very wrong..."
+      "text": "It looks like wearing Azure Dike equipment allowed you to enter.$(br2)Until now, you thought you were alone in your creative endeavour with the gems and pigments. From the looks of it, you were wrong. $(italic)So very, very wrong..."
     },
     {
       "type": "patchouli:spotlight",

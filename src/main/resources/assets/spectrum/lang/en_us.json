@@ -314,6 +314,17 @@
 
   "block.spectrum.black_materia": "Black Materia",
 
+  "block.spectrum.preservation_controller": "Preservation Controller",
+  "block.spectrum.preservation_glass": "Preservation Glass",
+  "block.spectrum.preservation_stone": "Preservation Stone",
+  "block.spectrum.dike_chiseled_preservation_stone": "Dike Chiseled Preservation Stone",
+  "block.spectrum.dike_gate": "Dike Gate",
+  "block.spectrum.courier_statue": "Unindentifiable Statue",
+
+  "block.spectrum.jade_vines": "Jade Vines",
+  "block.spectrum.jade_vine_petal_block": "Jade Vine Petal Block",
+  "block.spectrum.jade_vine_petal_carpet": "Jade Vine Petal Carpet",
+
   "block.spectrum.spirit_sallow_roots": "Spirit Sallow Roots",
   "block.spectrum.spirit_sallow_log": "Spirit Sallow Log",
   "block.spectrum.spirit_sallow_leaves": "Spirit Sallow Leaves",

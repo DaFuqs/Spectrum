@@ -21,7 +21,7 @@
             "condition": "minecraft:entity_properties",
             "predicate": {
               "location": {
-                "feature": "spectrum:ancient_ruins_structure"
+                "feature": "spectrum:ancient_ruins"
               }
             }
           }

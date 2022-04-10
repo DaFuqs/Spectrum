@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:midgame/get_azure_dike_charge",
+  "parent": "spectrum:find_ancient_ruins",
   "display": {
     "icon": {
       "item": "spectrum:dike_chiseled_preservation_stone"

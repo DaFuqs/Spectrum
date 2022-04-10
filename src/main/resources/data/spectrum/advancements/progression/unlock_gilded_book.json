@@ -4,7 +4,7 @@
       "trigger":"spectrum:has_advancement",
       "conditions": { "advancement_identifier": "spectrum:generate_puzzle_structure_loot" }
     },
-    "gotten_gilded_book_in_puzzle_structure": {
+    "gotten_gilded_book_in_ancient_ruins": {
 	  "trigger": "minecraft:inventory_changed",
       "conditions": {
 	      "player": [
@@ -17,7 +17,7 @@
 			},
             "predicate": {
               "location": {
-                "feature": "spectrum:puzzle_structure"
+                "feature": "spectrum:ancient_ruins"
               }
             }
           }

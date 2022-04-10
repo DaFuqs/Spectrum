@@ -601,6 +601,7 @@ public class SpectrumBlocks {
 	public static final Block PRESERVATION_GLASS = new Block(preservationBlockSettings);
 	public static final Block DIKE_CHISELED_PRESERVATION_STONE = new Block(preservationBlockSettings);
 	public static final Block DIKE_GATE = new Block(preservationBlockSettings);
+	public static final Block COURIER_STATUE = new DecoStoneBlock(preservationBlockSettings);
 	
 	// JADE VINES
 	public static final Block JADE_VINES = new Block(AbstractBlock.Settings.of(Material.CACTUS, MapColor.PALE_GREEN).strength(3.0F).sounds(BlockSoundGroup.WOOL));
@@ -1332,6 +1333,7 @@ public class SpectrumBlocks {
 		registerBlockWithItem("dike_chiseled_preservation_stone", DIKE_CHISELED_PRESERVATION_STONE, fabricItemSettings);
 		registerBlockWithItem("preservation_glass", PRESERVATION_GLASS, fabricItemSettings);
 		registerBlockWithItem("dike_gate", DIKE_GATE, fabricItemSettings);
+		registerBlockWithItem("courier_statue", COURIER_STATUE, fabricItemSettings);
 	}
 
 	private static void registerJadeVineBlocks(FabricItemSettings fabricItemSettings) {

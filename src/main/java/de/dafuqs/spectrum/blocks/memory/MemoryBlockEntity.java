@@ -55,6 +55,10 @@ public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 		if(creatureSpawnItemStack.getItem() instanceof MemoryItem) {
 			this.memoryItemStack = creatureSpawnItemStack.copy();
 		}
+		if(!livingEntity.world.isClient) {
+			this.updateInClientWorld();
+		}
+		this.markDirty();
 	}
 	
 	@Override
@@ -156,6 +160,17 @@ public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 		} else {
 			return tint2;
 		}
+	}
+	
+	public void updateInClientWorld() {
+		((ServerWorld) world).getChunkManager().markForUpdate(pos);
+	}
+	
+	// Called when the chunk is first loaded to initialize this be
+	public NbtCompound toInitialChunkDataNbt() {
+		NbtCompound nbtCompound = new NbtCompound();
+		this.writeNbt(nbtCompound);
+		return nbtCompound;
 	}
 	
 	@Contract("_ -> new")

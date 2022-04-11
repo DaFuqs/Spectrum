@@ -40,21 +40,21 @@
     {
       "type": "spectrum:fusion_shrine_crafting",
       "title": "Sunny Weather",
-      "recipe": "spectrum:fusion_shrine/weather_clear",
+      "recipe": "spectrum:fusion_shrine/weather/weather_clear",
       "text": "$(italic)It's a brand new day$(br)And the sun is high$(br)All the birds are singing$(br)That you're gonna die"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "title": "Rainy Weather",
       "advancement": "spectrum:collect_mermaids_gem",
-      "recipe": "spectrum:fusion_shrine/weather_rain",
+      "recipe": "spectrum:fusion_shrine/weather/weather_rain",
       "text": "$(italic)Knock Knock$(br)Who's there?$(br)Accordion$(br)Accordion who?$(br)Accordion to the forecast, it's going to rain tonight."
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "title": "Thunderstorms",
       "advancement": "spectrum:midgame/collect_lightning_stone",
-      "recipe": "spectrum:fusion_shrine/weather_thunder",
+      "recipe": "spectrum:fusion_shrine/weather/weather_thunder",
       "text": "$(italic)Why did the god of thunder drink water?$(br2)Because he was thorsty."
     }
   ]

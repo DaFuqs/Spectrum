@@ -59,7 +59,7 @@ public class MemoryBlock extends BlockWithEntity implements Waterloggable {
 	@Override
 	public void onPlaced(@NotNull World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
 		BlockEntity blockEntity = world.getBlockEntity(pos);
-		if(blockEntity instanceof MemoryBlockEntity memoryBlockEntity) {
+		if (blockEntity instanceof MemoryBlockEntity memoryBlockEntity) {
 			memoryBlockEntity.setData(placer, itemStack);
 		}
 	}

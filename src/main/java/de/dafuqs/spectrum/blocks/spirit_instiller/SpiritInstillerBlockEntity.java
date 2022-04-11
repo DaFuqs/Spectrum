@@ -118,7 +118,6 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 		}
 	}
 	
-	// TODO: test
 	public static void serverTick(World world, BlockPos blockPos, BlockState blockState, SpiritInstillerBlockEntity spiritInstillerBlockEntity) {
 		if(spiritInstillerBlockEntity.upgrades == null) {
 			spiritInstillerBlockEntity.calculateUpgrades();

@@ -11,5 +11,5 @@
   "potency_modifier": 1.5,
   "applicable_to_potions": true,
   "applicable_to_tipped_arrows": true,
-  "required_advancement": "spectrum:collect_four_leaf_clover"
+  "required_advancement": "spectrum:progression/unlock_luck_potion"
 }

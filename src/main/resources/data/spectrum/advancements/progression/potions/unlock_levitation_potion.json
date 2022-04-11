@@ -1,0 +1,12 @@
+{
+  "criteria": {
+    "crafted_potion_in_potion_brewery": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:midgame/brew_potion_in_potion_workshop" }
+    },
+    "collected_paletur": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:lategame/collect_paletur" }
+    }
+  }
+}

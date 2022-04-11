@@ -7,6 +7,7 @@ import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
 import de.dafuqs.spectrum.registries.SpectrumBlockTags;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.Waterloggable;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -22,6 +23,7 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.state.property.Properties;
 import net.minecraft.util.Pair;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -91,7 +93,13 @@ public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 	}
 	
 	public void manifest(@NotNull ServerWorld world, BlockPos blockPos) {
-		world.setBlockState(blockPos, Blocks.AIR.getDefaultState());
+		BlockState blockState = world.getBlockState(blockPos);
+		if(blockState instanceof Waterloggable && blockState.get(Properties.WATERLOGGED)) {
+			world.setBlockState(blockPos, Blocks.WATER.getDefaultState());
+		} else {
+			world.setBlockState(blockPos, Blocks.AIR.getDefaultState());
+		}
+		
 		Optional<Entity> hatchedEntity = hatchEntity(world, blockPos, this.memoryItemStack);
 		
 		if(hatchedEntity.isPresent()) {

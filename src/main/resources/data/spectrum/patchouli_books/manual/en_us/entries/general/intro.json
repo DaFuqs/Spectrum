@@ -22,7 +22,7 @@
         },
         {
             "type": "patchouli:link",
-            "text": "No idea on how to progress? Take a look at your advancements. These give a lot of hints on what to do next.$(br2)$(br)Spectrum is still in heavy development. If you find a bug or have a suggestion, visit me in Spectrums Discord or report them on GitHub.$(br2)$(br)Have fun!$(br)                - DaFuqs",
+            "text": "No idea on how to progress? Take a look at your advancements. These give a lot of hints on what to do next.$(br2)$(br)Spectrum is still in heavy development. If you find a bug or have a suggestion, visit me in Spectrums Discord or report them on GitHub.$(br2)Have fun!$(br)                - DaFuqs",
             "url": "https://discord.com/invite/EXU9XFXT8a",
             "link_text": "Spectrums Discord"
         }

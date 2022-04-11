@@ -1,5 +1,7 @@
 package de.dafuqs.spectrum.blocks.jade_vines;
 
+import de.dafuqs.spectrum.helpers.TimeHelper;
+import de.dafuqs.spectrum.progression.advancement.FusionShrineCraftingCriterion;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.BlockWithEntity;
@@ -15,6 +17,8 @@ import net.minecraft.state.property.Properties;
 import net.minecraft.util.StringIdentifiable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.world.LightType;
+import net.minecraft.world.World;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -40,14 +44,17 @@ public class JadeVinesBlock extends BlockWithEntity {
 	}
 	
 	public enum JadeVinesGrowthStage {
+		DEAD,
 		LEAVES,
 		PETALS,
 		NECTAR;
 		
-		public JadeVinesGrowthStage fromAge(int age) {
-			if(age == Properties.AGE_7_MAX) {
+		public static JadeVinesGrowthStage fromAge(int age) {
+			if(age == 0) {
+				return DEAD;
+			} else if(age == Properties.AGE_7_MAX) {
 				return NECTAR;
-			} else if(age > 3) {
+			} else if(age > 2) {
 				return PETALS;
 			} else {
 				return LEAVES;
@@ -56,6 +63,10 @@ public class JadeVinesBlock extends BlockWithEntity {
 		
 		public static boolean fullyGrown(int age) {
 			return age == Properties.AGE_7_MAX;
+		}
+		
+		public static boolean dead(int age) {
+			return age == 0;
 		}
 		
 	}
@@ -67,7 +78,7 @@ public class JadeVinesBlock extends BlockWithEntity {
 	
 	public JadeVinesBlock(Settings settings) {
 		super(settings);
-		this.setDefaultState((this.stateManager.getDefaultState()).with(PART, JadeVinesBlockPart.UPPER).with(AGE, 0));
+		this.setDefaultState((this.stateManager.getDefaultState()).with(PART, JadeVinesBlockPart.UPPER).with(AGE, 1));
 	}
 	
 	@Override
@@ -75,16 +86,27 @@ public class JadeVinesBlock extends BlockWithEntity {
 		super.randomTick(state, world, pos, random);
 		
 		int age = state.get(AGE);
-		if(!JadeVinesGrowthStage.fullyGrown(age)) {
-			BlockEntity blockEntity = world.getBlockEntity(pos);
-			if (blockEntity instanceof JadeVinesBlockEntity jadeVinesBlockEntity) {
-				if (jadeVinesBlockEntity.canGrow(world)) {
-					BlockState newState = state.cycle(AGE);
-					world.setBlockState(pos, newState);
-					world.playSound(null, pos, SoundEvents.BLOCK_GROWING_PLANT_CROP, SoundCategory.BLOCKS, 0.5F, 0.9F + 0.2F * world.random.nextFloat() * 0.2F);
+		JadeVinesGrowthStage stage = JadeVinesGrowthStage.fromAge(age);
+		if(stage != JadeVinesGrowthStage.DEAD) {
+			// die in sunlight
+			if(doesDie(world, pos)) {
+				world.setBlockState(pos, state.with(AGE, 0));
+				world.playSound(null, pos, SoundEvents.BLOCK_GROWING_PLANT_CROP, SoundCategory.BLOCKS, 0.5F, 0.9F + 0.2F * world.random.nextFloat() * 0.2F);
+			} else if (!JadeVinesGrowthStage.fullyGrown(age)) {
+				BlockEntity blockEntity = world.getBlockEntity(pos);
+				if (blockEntity instanceof JadeVinesBlockEntity jadeVinesBlockEntity) {
+					if (jadeVinesBlockEntity.canGrow(world, pos)) {
+						BlockState newState = state.cycle(AGE);
+						world.setBlockState(pos, newState);
+						world.playSound(null, pos, SoundEvents.BLOCK_GROWING_PLANT_CROP, SoundCategory.BLOCKS, 0.5F, 0.9F + 0.2F * world.random.nextFloat() * 0.2F);
+					}
 				}
 			}
 		}
+	}
+	
+	public static boolean doesDie(@NotNull World world, BlockPos blockPos) {
+		return world.getLightLevel(LightType.SKY, blockPos) > 8 && TimeHelper.isBrightSunlight(world);
 	}
 	
 	@Override

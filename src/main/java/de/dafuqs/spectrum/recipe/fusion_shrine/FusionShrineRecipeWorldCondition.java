@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.recipe.fusion_shrine;
 
+import de.dafuqs.spectrum.helpers.TimeHelper;
 import net.minecraft.world.World;
 
 public enum FusionShrineRecipeWorldCondition {
@@ -12,27 +13,24 @@ public enum FusionShrineRecipeWorldCondition {
 	NEW_MOON,
 	CLEAR_SKY,
 	RAIN,
-	THUNDER,
-	NOT_CLEAR_SKY,
-	NOT_RAIN,
-	NOT_THUNDER;
+	THUNDER;
 
 	public boolean isMetCurrently(World world) {
 		switch (this) {
 			case DAY -> {
-				return world.getTimeOfDay() % 24000 > 0 && world.getTimeOfDay() % 24000 < 12000;
+				return TimeHelper.getTimeOfDay(world) == TimeHelper.TimeOfDay.DAY;
 			}
 			case NIGHT -> {
-				return world.getTimeOfDay() % 24000 >= 13000 && world.getTimeOfDay() % 24000 < 23000;
+				return TimeHelper.getTimeOfDay(world) == TimeHelper.TimeOfDay.NIGHT;
 			}
 			case SUNRISE -> {
-				return world.getTimeOfDay() % 24000 >= 23000;
+				return TimeHelper.getTimeOfDay(world) == TimeHelper.TimeOfDay.SUNRISE;
 			}
 			case SUNSET -> {
-				return world.getTimeOfDay() % 24000 >= 12000 && world.getTimeOfDay() % 24000 < 13000;
+				return TimeHelper.getTimeOfDay(world) == TimeHelper.TimeOfDay.SUNSET;
 			}
 			case MIDNIGHT -> {
-				return world.getTimeOfDay() % 24000 >= 18000 && world.getTimeOfDay() % 24000 < 19000;
+				return TimeHelper.getTimeOfDay(world) == TimeHelper.TimeOfDay.MIDNIGHT;
 			}
 			case FULL_MOON -> {
 				return world.getMoonPhase() == 0;
@@ -48,15 +46,6 @@ public enum FusionShrineRecipeWorldCondition {
 			}
 			case THUNDER -> {
 				return world.isThundering();
-			}
-			case NOT_CLEAR_SKY -> {
-				return world.isRaining();
-			}
-			case NOT_RAIN -> {
-				return !world.isRaining();
-			}
-			case NOT_THUNDER -> {
-				return !world.isThundering();
 			}
 		}
 		return false;

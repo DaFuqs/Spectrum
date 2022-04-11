@@ -14,6 +14,6 @@
   },
   "result" : {
     "item": "spectrum:memory",
-    "nbt": "{EntityTag: {id: \"minecraft:illusioner\"}, TicksToManifest: 20}"
+    "nbt": "{EntityTag: {id: \"minecraft:illusioner\"}, TicksToManifest: 80}"
   }
 }

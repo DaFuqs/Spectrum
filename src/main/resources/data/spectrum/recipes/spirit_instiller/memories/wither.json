@@ -14,7 +14,7 @@
   },
   "result" : {
     "item": "spectrum:memory",
-    "nbt": "{EntityTag: {id: \"minecraft:wither\"}, TicksToManifest: 20}"
+    "nbt": "{EntityTag: {id: \"minecraft:wither\"}, TicksToManifest: 160}"
   },
   "advancement": "spectrum:milestones/unlock_remembering_boss_memories"
 }

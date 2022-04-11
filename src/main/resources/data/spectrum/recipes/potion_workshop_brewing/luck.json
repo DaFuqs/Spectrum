@@ -11,5 +11,5 @@
   "potency_modifier": 1.5,
   "applicable_to_potions": true,
   "applicable_to_tipped_arrows": true,
-  "required_advancement": "spectrum:progression/unlock_luck_potion"
+  "required_advancement": "spectrum:progression/potions/unlock_luck_potion"
 }

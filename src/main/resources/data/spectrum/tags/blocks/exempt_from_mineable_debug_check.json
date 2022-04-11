@@ -1,5 +1,6 @@
 {
 	"values": [
+		"#spectrum:mob_heads",
 		"spectrum:mud",
 		"spectrum:liquid_crystal",
 		"spectrum:midnight_solution",
@@ -8,7 +9,6 @@
 		"spectrum:wand_light",
 		"spectrum:block_flooder",
 		"spectrum:cracked_end_portal_frame",
-		"#spectrum:mob_heads",
 		"spectrum:creative_particle_spawner"
 	]
 }

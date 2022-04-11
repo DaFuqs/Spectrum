@@ -10,7 +10,7 @@
     "item": "minecraft:iron_block"
   },
   "center_ingredient": {
-    "item": "spectrum:vegetal"
+    "tag": "spectrum:memory_bonding_agents"
   },
   "result" : {
     "item": "spectrum:memory",

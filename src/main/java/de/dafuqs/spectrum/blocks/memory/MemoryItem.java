@@ -12,6 +12,7 @@ import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -42,7 +43,7 @@ public class MemoryItem extends BlockItem {
 		return -1;
 	}
 	
-	public static void setTicksToManifest(ItemStack itemStack, int newTicksToManifest) {
+	public static void setTicksToManifest(@NotNull ItemStack itemStack, int newTicksToManifest) {
 		NbtCompound nbtCompound = itemStack.getNbt();
 		if(nbtCompound != null) {
 			nbtCompound.putInt("TicksToManifest", newTicksToManifest);
@@ -75,10 +76,16 @@ public class MemoryItem extends BlockItem {
 	}
 	
 	public static boolean isEntityTypeUnrecognizable(@Nullable NbtCompound nbtCompound) {
-		if(nbtCompound != null && nbtCompound.contains("Unrecognizable", NbtElement.INT_TYPE)) {
+		if(nbtCompound != null && nbtCompound.contains("Unrecognizable")) {
 			return nbtCompound.getBoolean("Unrecognizable");
 		}
 		return false;
+	}
+	
+	public static void makeUnrecognizable(@NotNull ItemStack itemStack) {
+		NbtCompound nbtCompound = itemStack.getOrCreateNbt();
+		nbtCompound.putBoolean("Unrecognizable", true);
+		itemStack.setNbt(nbtCompound);
 	}
 	
 	@Override

@@ -1,12 +1,8 @@
 package de.dafuqs.spectrum.inventories;
 
-import de.dafuqs.spectrum.enums.SpectrumTier;
 import net.fabricmc.fabric.api.client.screenhandler.v1.ScreenRegistry;
 import net.fabricmc.fabric.api.screenhandler.v1.ScreenHandlerRegistry;
 import net.minecraft.screen.ScreenHandlerType;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class SpectrumScreenHandlerTypes {
 	

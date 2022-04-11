@@ -4,7 +4,6 @@ import de.dafuqs.spectrum.blocks.chests.SpectrumChestBlockEntity;
 import de.dafuqs.spectrum.enums.SpectrumTier;
 import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.inventories.GenericSpectrumContainerScreenHandler;
-import de.dafuqs.spectrum.inventories.RestockingChestScreenHandler;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
 import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.block.BlockState;

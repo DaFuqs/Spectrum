@@ -1,11 +1,9 @@
 package de.dafuqs.spectrum.blocks.jade_vines;
 
 import de.dafuqs.spectrum.helpers.TimeHelper;
-import de.dafuqs.spectrum.progression.advancement.FusionShrineCraftingCriterion;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.BlockWithEntity;
-import net.minecraft.block.CropBlock;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;

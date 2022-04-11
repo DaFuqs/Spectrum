@@ -17,12 +17,14 @@
         },
         {
             "type": "patchouli:text",
-            "title": "The Progression System",
-            "text": "Spectrum comes with a complex progression system where you unlock new things as you progress.$(br2)As you delve deeper, you will notice changes in the world. Differences, that only you can perceive.$(br2)Everything you learn will bring you closer to your final destination: Finding out what is waiting for you beneath the impenetrable bedrock floor."
+            "title": "Progression System",
+            "text": "Spectrum comes with a complex progression system where you unlock new things as you progress.$(br)As you delve deeper, you will notice changes in the world. Differences, that only you can perceive.$(br2)Everything you learn will bring you closer to your final destination: Finding out what is waiting for you beneath the impenetrable bedrock floor."
         },
         {
-            "type": "patchouli:text",
-            "text": "No idea on how to progress? Take a look at your advancements. These give a lot of hints on what to do next.$(br2)$(br)Spectrum is still in heavy development. If you find a bug or have a suggestion, visit me in Spectrums Discord or report them on GitHub.$(br2)$(br)Have fun!$(br)                - DaFuqs"
+            "type": "patchouli:link",
+            "text": "No idea on how to progress? Take a look at your advancements. These give a lot of hints on what to do next.$(br2)$(br)Spectrum is still in heavy development. If you find a bug or have a suggestion, visit me in Spectrums Discord or report them on GitHub.$(br2)$(br)Have fun!$(br)                - DaFuqs",
+            "url": "https://discord.com/invite/EXU9XFXT8a",
+            "link_text": "Spectrums Discord"
         }
     ]
 }

@@ -47,7 +47,7 @@
         "title": "Gemstone Geodes",
         "images": [ "spectrum:textures/gui/manual/geode.png" ],
         "border": true,
-        "text": "Geodes form in places where magical energy is so abundant, it crystallizes to physical form - as Gemstones.$(br2)Each gemstone represents a different type of fundamental property."
+        "text": "Geodes form in places where magical energy is so abundant, it crystallizes to physical form - as Gemstones. Each type of gemstone seems to represent a different type of fundamental property."
     },
     {
         "type": "patchouli:multiblock",

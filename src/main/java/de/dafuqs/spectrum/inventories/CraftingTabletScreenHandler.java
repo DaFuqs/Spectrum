@@ -21,6 +21,7 @@ import net.minecraft.recipe.RecipeMatcher;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.recipe.book.RecipeBookCategory;
 import net.minecraft.screen.AbstractRecipeScreenHandler;
+import net.minecraft.screen.CraftingScreenHandler;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ScreenHandlerContext;
 import net.minecraft.screen.slot.Slot;
@@ -255,6 +256,15 @@ public class CraftingTabletScreenHandler extends AbstractRecipeScreenHandler<Inv
 	}
 	
 	public ItemStack transferSlot(PlayerEntity player, int index) {
+		/*
+			SLOTS:
+			0-8: Crafting Input
+			9-13: Readonly Gemstone Powder
+			14: Crafting Output
+			15-50: player inventory
+				42-50: player inv 0++ (hotbar)
+				15-41: player inv 9-35 (inventory)
+		 */
 		ItemStack transferStack = ItemStack.EMPTY;
 		Slot slot = this.slots.get(index);
 		if (slot.hasStack()) {
@@ -265,20 +275,23 @@ public class CraftingTabletScreenHandler extends AbstractRecipeScreenHandler<Inv
 				this.context.run((world, pos) -> {
 					clickedSlotStack.getItem().onCraft(clickedSlotStack, world, player);
 				});
-				if (!this.insertItem(clickedSlotStack, 10, 46, true)) {
-					return ItemStack.EMPTY;
+				
+				if (!this.insertItem(clickedSlotStack, 42, 51, false)) {
+					if (!this.insertItem(clickedSlotStack, 15, 42, false)) {
+						return ItemStack.EMPTY;
+					}
 				}
 				
 				slot.onQuickTransfer(clickedSlotStack, transferStack);
 			} else if (index < 9) {
 				// crafting grid
-				if (!this.insertItem(clickedSlotStack, 15, 51, false)) {
-					if (!this.insertItem(clickedSlotStack, 41, 51, false)) {
+				if (!this.insertItem(clickedSlotStack, 42, 51, false)) {
+					if (!this.insertItem(clickedSlotStack, 15, 42, false)) {
 						return ItemStack.EMPTY;
 					}
 				}
 			} else if (index < 14) {
-				// gemstone and result slots
+				// gemstone slots
 				return ItemStack.EMPTY;
 			} else if (!this.insertItem(clickedSlotStack, 0, 9, false)) {
 				// player inventory

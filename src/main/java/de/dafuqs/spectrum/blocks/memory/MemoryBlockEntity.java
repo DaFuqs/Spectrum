@@ -38,8 +38,11 @@ import java.util.UUID;
 public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 	
 	protected ItemStack memoryItemStack = ItemStack.EMPTY; // zero or negative values: never hatch
-	
 	protected UUID ownerUUID;
+	
+	// rendering color cache
+	private int tint1 = -1;
+	private int tint2 = -1;
 	
 	public MemoryBlockEntity(BlockPos pos, BlockState state) {
 		super(SpectrumBlockEntityRegistry.MEMORY, pos, state);
@@ -134,6 +137,24 @@ public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 		PlayerEntity owner = PlayerOwned.getPlayerEntityIfOnline(world, this.ownerUUID);
 		if(owner instanceof ServerPlayerEntity serverPlayerEntity) {
 			SpectrumAdvancementCriteria.MEMORY_MANIFESTING.trigger(serverPlayerEntity, hatchedEntity);
+		}
+	}
+	
+	public int getEggColor(int tintIndex) {
+		if(tint1 == -1) {
+			if(this.memoryItemStack == null) {
+				this.tint1 = 0x222222;
+				this.tint2 = 0xDDDDDD;
+			} else {
+				this.tint1 = MemoryItem.getEggColor(this.memoryItemStack.getNbt(), 0);
+				this.tint2 = MemoryItem.getEggColor(this.memoryItemStack.getNbt(), 1);
+			}
+		}
+		
+		if(tintIndex == 0) {
+			return tint1;
+		} else {
+			return tint2;
 		}
 	}
 	

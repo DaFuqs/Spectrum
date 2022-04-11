@@ -5,6 +5,7 @@ import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.SpawnEggItem;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.text.Text;
@@ -46,6 +47,30 @@ public class MemoryItem extends BlockItem {
 		if(nbtCompound != null) {
 			nbtCompound.putInt("TicksToManifest", newTicksToManifest);
 			itemStack.setNbt(nbtCompound);
+		}
+	}
+	
+	public static int getEggColor(NbtCompound nbtCompound, int tintIndex) {
+		if(nbtCompound == null || isEntityTypeUnrecognizable(nbtCompound)) {
+			if(tintIndex == 0) {
+				return 0x222222;
+			} else {
+				return 0xDDDDDD;
+			}
+		}
+		
+		Optional<EntityType<?>> entityType = MemoryItem.getEntityType(nbtCompound);
+		if(entityType.isPresent()) {
+			SpawnEggItem spawnEggItem = SpawnEggItem.forEntity(entityType.get());
+			if (spawnEggItem != null) {
+				return spawnEggItem.getColor(tintIndex);
+			}
+		}
+		
+		if(tintIndex == 0) {
+			return 0x222222;
+		} else {
+			return 0xDDDDDD;
 		}
 	}
 	

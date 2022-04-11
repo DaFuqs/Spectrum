@@ -1,5 +1,7 @@
 package de.dafuqs.spectrum;
 
+import de.dafuqs.spectrum.blocks.memory.MemoryBlockEntity;
+import de.dafuqs.spectrum.blocks.memory.MemoryItem;
 import de.dafuqs.spectrum.compat.patchouli.PatchouliPages;
 import de.dafuqs.spectrum.entity.SpectrumEntityRenderers;
 import de.dafuqs.spectrum.inventories.SpectrumContainers;
@@ -21,7 +23,9 @@ import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientLifecycleEvents;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.client.model.FabricModelPredicateProviderRegistry;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.color.block.BlockColorProvider;
 import net.minecraft.client.color.item.ItemColorProvider;
@@ -32,6 +36,9 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.potion.PotionUtil;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.BlockRenderView;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
@@ -123,6 +130,21 @@ public class SpectrumClient implements ClientModInitializer {
 			ColorProviderRegistry.BLOCK.register(grassBlockColorProvider, SpectrumBlocks.CLOVER);
 			ColorProviderRegistry.BLOCK.register(grassBlockColorProvider, SpectrumBlocks.FOUR_LEAF_CLOVER);
 		}
+		
+		// MEMORIES
+		ColorProviderRegistry.BLOCK.register((state, world, pos, tintIndex) -> {
+			if(world == null) {
+				return 0x0;
+			}
+			
+			BlockEntity blockEntity = world.getBlockEntity(pos);
+			if(blockEntity instanceof MemoryBlockEntity memoryBlockEntity) {
+				return memoryBlockEntity.getEggColor(tintIndex);
+			}
+			
+			return 0x0;
+		}, SpectrumBlocks.MEMORY);
+		ColorProviderRegistry.ITEM.register((stack, tintIndex) -> MemoryItem.getEggColor(stack.getNbt(), tintIndex), SpectrumBlocks.MEMORY.asItem());
 		
 		// Potion Pendant Potion Color Overlays
 		ColorProviderRegistry.ITEM.register(SpectrumClient::potionColor, SpectrumItems.LESSER_POTION_PENDANT);

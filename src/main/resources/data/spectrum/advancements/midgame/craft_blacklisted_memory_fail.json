@@ -1,19 +1,19 @@
 {
-  "parent": "spectrum:midgame/build_spirit_instiller_structure",
+  "parent": "spectrum:midgame/manifest_memory",
   "display": {
     "icon": {
       "item": "spectrum:memory"
     },
 	"hidden": true,
     "title": {
-      "translate": "advancements.spectrum.try_craft_blacklisted_memory.title"
+      "translate": "advancements.spectrum.craft_blacklisted_memory_fail.title"
     },                                    
     "description": {                      
-      "translate": "advancements.spectrum.try_craft_blacklisted_memory.description"
+      "translate": "advancements.spectrum.craft_blacklisted_memory_fail.description"
     }
   },
   "criteria": {
-    "try_craft_blacklisted": {
+    "fail_to_craft_boss_memory": {
       "trigger": "minecraft:impossible"
     },
     "gotten_previous": {

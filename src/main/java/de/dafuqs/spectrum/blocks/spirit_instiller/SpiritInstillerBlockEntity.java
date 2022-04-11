@@ -228,13 +228,30 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 		}
 
 		boolean structureComplete = SpiritInstillerBlock.verifyStructure(world, blockPos, null, spiritInstillerBlockEntity);
+		boolean canCraft = true;
 		if (!playerCanCraft || !structureComplete) {
 			if (!structureComplete) {
 				world.playSound(null, spiritInstillerBlockEntity.getPos(), SpectrumSoundEvents.CRAFTING_ABORTED, SoundCategory.BLOCKS, 0.9F + spiritInstillerBlockEntity.world.random.nextFloat() * 0.2F, 0.9F + spiritInstillerBlockEntity.world.random.nextFloat() * 0.2F);
 			}
-			return false;
+			
+			canCraft = false;
 		}
-		return true;
+		
+		if(lastInteractedPlayer instanceof ServerPlayerEntity serverPlayerEntity) {
+			testAndUnlockUnlockBossMemoryAdvancement(serverPlayerEntity, spiritInstillerBlockEntity.currentRecipe, canCraft);
+		}
+		return canCraft;
+	}
+	
+	public static void testAndUnlockUnlockBossMemoryAdvancement(ServerPlayerEntity player, SpiritInstillerRecipe spiritInstillerRecipe, boolean canActuallyCraft) {
+		boolean isBossMemory = spiritInstillerRecipe.getGroup() != null && spiritInstillerRecipe.getGroup().equals("boss_memories");
+		if(isBossMemory) {
+			if(canActuallyCraft) {
+				Support.grantAdvancementCriterion(player, "midgame/craft_blacklisted_memory_success", "succeed_crafting_boss_memory");
+			} else {
+				Support.grantAdvancementCriterion(player, "midgame/craft_blacklisted_memory_fail", "fail_to_craft_boss_memory");
+			}
+		}
 	}
 	
 	public static void craftSpiritInstillerRecipe(World world, @NotNull SpiritInstillerBlockEntity spiritInstillerBlockEntity, @NotNull SpiritInstillerRecipe spiritInstillerRecipe) {

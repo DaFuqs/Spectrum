@@ -21,6 +21,8 @@ public class SpiritInstillerRecipe implements Recipe<Inventory>, GatedRecipe {
 	public static final Identifier UNLOCK_SPIRIT_INSTILLER_ADVANCEMENT_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "midgame/build_spirit_instiller_structure");
 	
 	protected final Identifier id;
+	protected final String group;
+	
 	protected final Ingredient inputIngredient1;
 	protected final Ingredient inputIngredient2;
 	protected final Ingredient centerIngredient;
@@ -31,8 +33,9 @@ public class SpiritInstillerRecipe implements Recipe<Inventory>, GatedRecipe {
 	protected final Identifier requiredAdvancementIdentifier;
 	protected final boolean noBenefitsFromYieldAndEfficiencyUpgrades;
 
-	public SpiritInstillerRecipe(Identifier id, Ingredient inputIngredient1, Ingredient inputIngredient2, Ingredient centerIngredient, ItemStack outputItemStack, int craftingTime, float experience, boolean noBenefitsFromYieldAndEfficiencyUpgrades, Identifier requiredAdvancementIdentifier) {
+	public SpiritInstillerRecipe(Identifier id, String group, Ingredient inputIngredient1, Ingredient inputIngredient2, Ingredient centerIngredient, ItemStack outputItemStack, int craftingTime, float experience, boolean noBenefitsFromYieldAndEfficiencyUpgrades, Identifier requiredAdvancementIdentifier) {
 		this.id = id;
+		this.group = group;
 		this.inputIngredient1 = inputIngredient1;
 		this.inputIngredient2 = inputIngredient2;
 		this.centerIngredient = centerIngredient;
@@ -112,6 +115,11 @@ public class SpiritInstillerRecipe implements Recipe<Inventory>, GatedRecipe {
 			return anvilCrushingRecipe.getId().equals(this.getId());
 		}
 		return false;
+	}
+	
+	@Override
+	public String getGroup() {
+		return this.group;
 	}
 	
 	public float getExperience() {

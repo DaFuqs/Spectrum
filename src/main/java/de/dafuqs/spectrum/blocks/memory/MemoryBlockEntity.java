@@ -121,6 +121,7 @@ public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 					PlayerEntity player = getPlayerEntityIfOnline(world);
 					if(player != null) {
 						animalEntity.lovePlayer(player);
+						animalEntity.resetLoveTicks();
 					}
 				}
 			}

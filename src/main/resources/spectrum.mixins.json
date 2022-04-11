@@ -39,6 +39,7 @@
     "RedstoneOreMixin",
     "ServerPlayerEntityMixin",
     "ServerWorldMixin",
+    "accessors.FoxEntityAccessor",
     "accessors.ItemAccessor",
     "accessors.LootTableAccessor",
     "accessors.ShapedRecipeAccessor"

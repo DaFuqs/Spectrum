@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.blocks.memory;
 
 import de.dafuqs.spectrum.interfaces.PlayerOwned;
+import de.dafuqs.spectrum.mixin.accessors.FoxEntityAccessor;
 import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
 import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
@@ -14,6 +15,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.mob.MobEntity;
+import net.minecraft.entity.passive.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SpawnEggItem;
@@ -108,6 +110,19 @@ public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 			if(hatchedEntity.get() instanceof MobEntity hatchedMobEntity) {
 				hatchedMobEntity.playAmbientSound();
 				hatchedMobEntity.playSpawnEffects();
+			}
+			if(this.ownerUUID != null) {
+				if (hatchedEntity.get() instanceof HorseBaseEntity horseBaseEntity) {
+					horseBaseEntity.setOwnerUuid(this.ownerUUID);
+				} else if (hatchedEntity.get() instanceof FoxEntity foxEntity) {
+					((FoxEntityAccessor) foxEntity).invokeAddTrustedUuid(this.ownerUUID);
+				}
+				if(hatchedEntity.get() instanceof AnimalEntity animalEntity) {
+					PlayerEntity player = getPlayerEntityIfOnline(world);
+					if(player != null) {
+						animalEntity.lovePlayer(player);
+					}
+				}
 			}
 			
 			triggerManifestingAdvancementCriterion(hatchedEntity.get());

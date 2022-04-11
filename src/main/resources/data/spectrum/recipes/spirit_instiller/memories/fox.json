@@ -1,5 +1,6 @@
 {
   "type": "spectrum:spirit_instiller",
+  "group": "memories",
   "time": 800,
   "experience": 4.0,
   "ingredient1": {

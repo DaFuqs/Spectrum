@@ -3,6 +3,9 @@
   "icon": "spectrum:potion_workshop",
   "advancement": "spectrum:progression/unlock_potion_workshop",
   "category": "spectrum:magical_blocks_category",
+  "extra_recipe_mappings": {
+    "minecraft:potion": 0
+  },
   "pages": [
     {
       "type": "patchouli:text",

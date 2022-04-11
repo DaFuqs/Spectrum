@@ -33,24 +33,17 @@ public class JadeVinesBlockEntity extends BlockEntity {
 		nbt.putLong("LastGrowthTick", this.lastGrowthTick);
 	}
 	
-	public boolean isLaterNight(World world) {
-		TimeHelper.TimeOfDay timeOfDay = TimeHelper.getTimeOfDay(world);
-		
-		if(timeOfDay == TimeHelper.TimeOfDay.NIGHT) { // timeOfDay % 24000 >= 13000 && timeOfDay % 24000 < 23000
-			return TimeHelper.getDay(world.getTime() + 6000) != TimeHelper.getDay(lastGrowthTick + 6000);
+	public boolean isLaterNight(@NotNull World world) {
+		long time = world.getTime();
+		if(TimeHelper.getTimeOfDay(time) == TimeHelper.TimeOfDay.NIGHT) { // timeOfDay % 24000 >= 13000 && timeOfDay % 24000 < 23000
+			return TimeHelper.getDay(time + 1000) != TimeHelper.getDay(lastGrowthTick + 1000);
 		}
 		return false;
 	}
 	
-	public boolean canGrow(@NotNull World world, BlockPos blockPos) {
-		if(world.getLightLevel(LightType.SKY, blockPos) > 8 && isLaterNight(world)) {
-			this.lastGrowthTick = world.getTime();
-			this.markDirty();
-			return true;
-		}
-		return false;
+	public void setLastGrownTime(long time) {
+		this.lastGrowthTick = time;
+		this.markDirty();
 	}
-	
-
 	
 }

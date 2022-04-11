@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.gravity.CloakedGravityItem;
+import de.dafuqs.spectrum.blocks.jade_vines.GerminatedJadeVineSeedsItem;
 import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
 import de.dafuqs.spectrum.enums.GemstoneColor;
 import de.dafuqs.spectrum.interfaces.Cloakable;
@@ -169,7 +170,7 @@ public class SpectrumItems {
 	public static final CloakedItem STARDUST = new CloakedItem(resourcesItemSettings, new Identifier(SpectrumCommon.MOD_ID, "milestones/unlock_shooting_stars"), Items.PURPLE_DYE);
 	
 	public static final Item ANCIENT_JADE_VINE_SEEDS = new Item(resourcesItemSettingsSixteen);
-	public static final CloakedItem GERMINATED_JADE_VINE_SEEDS = new CloakedItem(resourcesItemSettingsSixteen, new Identifier(SpectrumCommon.MOD_ID, "midgame/build_spirit_instiller_structure"), Items.LIME_DYE);
+	public static final CloakedItem GERMINATED_JADE_VINE_SEEDS = new GerminatedJadeVineSeedsItem(resourcesItemSettingsSixteen, new Identifier(SpectrumCommon.MOD_ID, "midgame/build_spirit_instiller_structure"), Items.LIME_DYE);
 	public static final CloakedItem JADE_VINE_PETALS = new CloakedItem(resourcesItemSettings, new Identifier(SpectrumCommon.MOD_ID, "midgame/build_spirit_instiller_structure"), Items.LIME_DYE);
 	public static final CloakedItem MOONSTRUCK_NECTAR = new CloakedItem(resourcesItemSettings, new Identifier(SpectrumCommon.MOD_ID, "midgame/build_spirit_instiller_structure"), Items.LIME_DYE);
 

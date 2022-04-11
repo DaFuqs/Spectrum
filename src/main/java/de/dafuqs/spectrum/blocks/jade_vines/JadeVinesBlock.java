@@ -92,21 +92,27 @@ public class JadeVinesBlock extends BlockWithEntity {
 			if(doesDie(world, pos)) {
 				world.setBlockState(pos, state.with(AGE, 0));
 				world.playSound(null, pos, SoundEvents.BLOCK_GROWING_PLANT_CROP, SoundCategory.BLOCKS, 0.5F, 0.9F + 0.2F * world.random.nextFloat() * 0.2F);
-			} else if (!JadeVinesGrowthStage.fullyGrown(age)) {
-				BlockEntity blockEntity = world.getBlockEntity(pos);
-				if (blockEntity instanceof JadeVinesBlockEntity jadeVinesBlockEntity) {
-					if (jadeVinesBlockEntity.canGrow(world, pos)) {
-						BlockState newState = state.cycle(AGE);
-						world.setBlockState(pos, newState);
-						world.playSound(null, pos, SoundEvents.BLOCK_GROWING_PLANT_CROP, SoundCategory.BLOCKS, 0.5F, 0.9F + 0.2F * world.random.nextFloat() * 0.2F);
-					}
-				}
+			} else if (!JadeVinesGrowthStage.fullyGrown(age) && canGrow(world, pos)) {
+				BlockState newState = state.cycle(AGE);
+				world.setBlockState(pos, newState);
+				world.playSound(null, pos, SoundEvents.BLOCK_GROWING_PLANT_CROP, SoundCategory.BLOCKS, 0.5F, 0.9F + 0.2F * world.random.nextFloat() * 0.2F);
 			}
 		}
 	}
 	
 	public static boolean doesDie(@NotNull World world, BlockPos blockPos) {
 		return world.getLightLevel(LightType.SKY, blockPos) > 8 && TimeHelper.isBrightSunlight(world);
+	}
+	
+	public static boolean canGrow(@NotNull World world, BlockPos blockPos) {
+		BlockEntity blockEntity = world.getBlockEntity(blockPos);
+		if (blockEntity instanceof JadeVinesBlockEntity jadeVinesBlockEntity) {
+			if (world.getLightLevel(LightType.SKY, blockPos) > 8 && jadeVinesBlockEntity.isLaterNight(world)) {
+				jadeVinesBlockEntity.setLastGrownTime(world.getTime());
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	@Override

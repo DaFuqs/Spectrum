@@ -609,7 +609,7 @@ public class SpectrumBlocks {
 	public static final Block TREASURE_CHEST = new TreasureChestBlock(FabricBlockSettings.copyOf(Blocks.CHEST).hardness(-1.0F));
 	
 	// JADE VINES
-	public static final Block JADE_VINES = new JadeVinesBlock(AbstractBlock.Settings.of(Material.CACTUS, MapColor.PALE_GREEN).strength(3.0F).sounds(BlockSoundGroup.WOOL).ticksRandomly());
+	public static final Block JADE_VINES = new JadeVinesBlock(AbstractBlock.Settings.of(Material.CACTUS, MapColor.PALE_GREEN).strength(3.0F).sounds(BlockSoundGroup.WOOL).ticksRandomly().nonOpaque());
 	public static final Block JADE_VINE_PETAL_BLOCK = new Block(AbstractBlock.Settings.of(Material.WOOL, MapColor.PALE_GREEN).strength(0.1F).sounds(BlockSoundGroup.WOOL));
 	public static final Block JADE_VINE_PETAL_CARPET = new CarpetBlock(AbstractBlock.Settings.of(Material.CARPET, MapColor.PALE_GREEN).strength(0.1F).sounds(BlockSoundGroup.WOOL));
 	
@@ -1522,6 +1522,7 @@ public class SpectrumBlocks {
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.ITEM_BOWL_BASALT, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.ITEM_BOWL_CALCITE, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.MEMORY, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.JADE_VINES, RenderLayer.getCutout());
 		
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.DIKE_GATE, RenderLayer.getTranslucent());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.PRESERVATION_GLASS, RenderLayer.getTranslucent());

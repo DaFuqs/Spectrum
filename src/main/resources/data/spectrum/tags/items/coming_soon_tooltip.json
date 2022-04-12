@@ -136,6 +136,20 @@
     "spectrum:large_moonstone_bud",
     "spectrum:moonstone_cluster",
     "spectrum:moonstone_ore",
-    "spectrum:deepslate_moonstone_ore"
+    "spectrum:deepslate_moonstone_ore",
+    "spectrum:spirit_instiller",
+    "spectrum:memory",
+    "spectrum:preservation_controller",
+    "spectrum:preservation_stone",
+    "spectrum:dike_chiseled_preservation_stone",
+    "spectrum:preservation_glass",
+    "spectrum:dike_gate",
+    "spectrum:courier_statue",
+    "spectrum:treasure_chest",
+    "spectrum:jade_vine_petal_block",
+    "spectrum:jade_vine_petal_carpet",
+    "spectrum:celestial_pocketwatch",
+    "spectrum:gilded_book",
+    "spectrum:midnight_aberration"
   ]
 }

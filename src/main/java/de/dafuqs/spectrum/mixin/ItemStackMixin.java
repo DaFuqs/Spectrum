@@ -40,10 +40,6 @@ import java.util.Map;
 
 @Mixin(ItemStack.class)
 public abstract class ItemStackMixin {
-
-	@Shadow public abstract Item getItem();
-
-	@Shadow @Nullable public abstract NbtCompound getNbt();
 	
 	@Shadow public abstract boolean isIn(TagKey<Item> tag);
 	
@@ -81,7 +77,9 @@ public abstract class ItemStackMixin {
 		}
 	}
 	
-	@Inject(at = @At("TAIL"), method= "getTooltip(Lnet/minecraft/entity/player/PlayerEntity;Lnet/minecraft/client/item/TooltipContext;)Ljava/util/List;", locals = LocalCapture.CAPTURE_FAILSOFT)
+	@Inject(method= "getTooltip(Lnet/minecraft/entity/player/PlayerEntity;Lnet/minecraft/client/item/TooltipContext;)Ljava/util/List;",
+			at = @At(value = "INVOKE", target = "Lnet/minecraft/client/item/TooltipContext;isAdvanced()Z", ordinal = 0),
+			locals = LocalCapture.CAPTURE_FAILSOFT)
 	public void spectrum$applyComingSoonTooltip(PlayerEntity player, TooltipContext context, CallbackInfoReturnable<List<Text>> cir, List<Text> list) {
 		if(this.isIn(SpectrumItemTags.COMING_SOON_TOOLTIP)) {
 			list.add(new TranslatableText("spectrum.tooltip.coming_soon"));

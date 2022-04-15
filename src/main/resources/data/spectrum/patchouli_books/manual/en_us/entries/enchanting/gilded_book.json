@@ -1,0 +1,21 @@
+{
+  "name": "Gilded Book",
+  "icon": "spectrum:gilded_book",
+  "advancement": "spectrum:progression/unlock_gilded_book",
+  "category": "spectrum:enchanting_category",
+  "extra_recipe_mappings": {
+    "spectrum:gilded_book": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Gilded books serve as an alternative to mundane Books for enchanting in the $(l:enchanting/enchanter)Enchanter$(/l). Being much more receptive for magic, the enchanting process will be both faster and cheaper.$(br)More than that, they can even be used to copy enchantments from all forms of Items in the Item Bowls around the Enchanter onto itself, not just other Enchanted Books."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier3/gilded_book",
+      "text": "$(italic)All is not gold that glitters.$(br)These books, however, they are."
+    }
+  ]
+}

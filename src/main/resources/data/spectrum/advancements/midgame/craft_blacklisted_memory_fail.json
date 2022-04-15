@@ -2,7 +2,8 @@
   "parent": "spectrum:midgame/manifest_memory",
   "display": {
     "icon": {
-      "item": "spectrum:memory"
+      "item": "spectrum:memory",
+      "nbt": "{EntityTag:{id:\"minecraft:wither\"}}"
     },
 	"hidden": true,
     "title": {

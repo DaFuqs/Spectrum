@@ -2,7 +2,8 @@
   "parent": "spectrum:midgame/craft_blacklisted_memory_fail",
   "display": {
     "icon": {
-      "item": "spectrum:memory"
+      "item": "spectrum:memory",
+      "nbt": "{EntityTag:{id:\"minecraft:ender_dragon\"}}"
     },
 	"hidden": true,
     "title": {

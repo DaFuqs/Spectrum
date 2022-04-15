@@ -2,7 +2,8 @@
   "parent": "spectrum:midgame/build_spirit_instiller_structure",
   "display": {
     "icon": {
-      "item": "spectrum:memory"
+      "item": "spectrum:memory",
+      "nbt": "{EntityTag:{id:\"minecraft:fox\"}}"
     },
     "title": {
       "translate": "advancements.spectrum.manifest_memory.title"

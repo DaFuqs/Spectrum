@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.compat.patchouli;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.enums.BuiltinGemstoneColor;
 import de.dafuqs.spectrum.enums.GemstoneColor;
 import de.dafuqs.spectrum.enums.PedestalRecipeTier;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
@@ -95,7 +96,9 @@ public class PagePedestalCrafting extends PageDoubleRecipeRegistry<PedestalCraft
 		for(GemstoneColor color : colors) {
 			int amount = recipe.getGemstonePowderInputs().getOrDefault(color, 0);
 			if(amount > 0) {
-				parent.renderItemStack(ms, recipeX + startX + h * 19, recipeY + 72, mouseX, mouseY, new ItemStack(SpectrumItems.getGemstoneShard(color), amount));
+				ItemStack stack = color.getGemstonePowderItem().getDefaultStack();
+				stack.setCount(amount);
+				parent.renderItemStack(ms, recipeX + startX + h * 19, recipeY + 72, mouseX, mouseY, stack);
 			}
 			h++;
 		}

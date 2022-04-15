@@ -4,6 +4,7 @@ import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.gravity.CloakedGravityItem;
 import de.dafuqs.spectrum.blocks.jade_vines.GerminatedJadeVineSeedsItem;
 import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
+import de.dafuqs.spectrum.enums.BuiltinGemstoneColor;
 import de.dafuqs.spectrum.enums.GemstoneColor;
 import de.dafuqs.spectrum.interfaces.Cloakable;
 import de.dafuqs.spectrum.items.*;
@@ -25,6 +26,8 @@ import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
 import net.minecraft.util.registry.Registry;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 
 import static de.dafuqs.spectrum.registries.SpectrumFluids.*;
 
@@ -76,11 +79,11 @@ public class SpectrumItems {
 	public static final Item SPECTRAL_SHARD = new CloakedItem(resourcesRareItemSettings, new Identifier(SpectrumCommon.MOD_ID, "lategame/build_complex_pedestal_structure"), Items.LIGHT_GRAY_DYE);
 	
 	private static final Identifier GEMSTONE_POWDER_CLOAK_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "place_pedestal");
-	public static final Item TOPAZ_POWDER = new CloakedGemstoneColorItem(resourcesItemSettings, GEMSTONE_POWDER_CLOAK_IDENTIFIER, GemstoneColor.CYAN);
-	public static final Item AMETHYST_POWDER = new CloakedGemstoneColorItem(resourcesItemSettings, GEMSTONE_POWDER_CLOAK_IDENTIFIER, GemstoneColor.MAGENTA);
-	public static final Item CITRINE_POWDER = new CloakedGemstoneColorItem(resourcesItemSettings, GEMSTONE_POWDER_CLOAK_IDENTIFIER, GemstoneColor.YELLOW);
-	public static final Item ONYX_POWDER = new CloakedGemstoneColorItem(resourcesItemSettings, new Identifier(SpectrumCommon.MOD_ID, "create_onyx_shard"), GemstoneColor.BLACK);
-	public static final Item MOONSTONE_POWDER = new CloakedGemstoneColorItem(resourcesItemSettings, new Identifier(SpectrumCommon.MOD_ID, "midgame/collect_moonstone_shard"), GemstoneColor.WHITE);
+	public static final Item TOPAZ_POWDER = new CloakedGemstoneColorItem(resourcesItemSettings, GEMSTONE_POWDER_CLOAK_IDENTIFIER, BuiltinGemstoneColor.CYAN);
+	public static final Item AMETHYST_POWDER = new CloakedGemstoneColorItem(resourcesItemSettings, GEMSTONE_POWDER_CLOAK_IDENTIFIER, BuiltinGemstoneColor.MAGENTA);
+	public static final Item CITRINE_POWDER = new CloakedGemstoneColorItem(resourcesItemSettings, GEMSTONE_POWDER_CLOAK_IDENTIFIER, BuiltinGemstoneColor.YELLOW);
+	public static final Item ONYX_POWDER = new CloakedGemstoneColorItem(resourcesItemSettings, new Identifier(SpectrumCommon.MOD_ID, "create_onyx_shard"), BuiltinGemstoneColor.BLACK);
+	public static final Item MOONSTONE_POWDER = new CloakedGemstoneColorItem(resourcesItemSettings, new Identifier(SpectrumCommon.MOD_ID, "midgame/collect_moonstone_shard"), BuiltinGemstoneColor.WHITE);
 
 	// Pigment
 	public static final Item BLACK_PIGMENT = new PigmentItem(resourcesItemSettings, DyeColor.BLACK);
@@ -185,17 +188,17 @@ public class SpectrumItems {
 	public static final Item END_PORTAL_CRACKER = new EndPortalCrackerItem(generalRareItemSettings);
 	
 	// Catkin
-	public static final Item VIBRANT_CYAN_CATKIN = new CatkinItem(GemstoneColor.CYAN, false, resourcesItemSettings);
-	public static final Item VIBRANT_MAGENTA_CATKIN =  new CatkinItem(GemstoneColor.MAGENTA, false, resourcesItemSettings);
-	public static final Item VIBRANT_YELLOW_CATKIN = new CatkinItem(GemstoneColor.YELLOW, false, resourcesItemSettings);
-	public static final Item VIBRANT_BLACK_CATKIN = new CatkinItem(GemstoneColor.BLACK, false, resourcesItemSettings);
-	public static final Item VIBRANT_WHITE_CATKIN = new CatkinItem(GemstoneColor.WHITE, false, resourcesItemSettings);
+	public static final Item VIBRANT_CYAN_CATKIN = new CatkinItem(BuiltinGemstoneColor.CYAN, false, resourcesItemSettings);
+	public static final Item VIBRANT_MAGENTA_CATKIN =  new CatkinItem(BuiltinGemstoneColor.MAGENTA, false, resourcesItemSettings);
+	public static final Item VIBRANT_YELLOW_CATKIN = new CatkinItem(BuiltinGemstoneColor.YELLOW, false, resourcesItemSettings);
+	public static final Item VIBRANT_BLACK_CATKIN = new CatkinItem(BuiltinGemstoneColor.BLACK, false, resourcesItemSettings);
+	public static final Item VIBRANT_WHITE_CATKIN = new CatkinItem(BuiltinGemstoneColor.WHITE, false, resourcesItemSettings);
 	
-	public static final Item LUCID_CYAN_CATKIN =  new CatkinItem(GemstoneColor.CYAN, true, resourcesUncommonItemSettings);
-	public static final Item LUCID_MAGENTA_CATKIN = new CatkinItem(GemstoneColor.MAGENTA, true, resourcesUncommonItemSettings);
-	public static final Item LUCID_YELLOW_CATKIN = new CatkinItem(GemstoneColor.YELLOW, true, resourcesUncommonItemSettings);
-	public static final Item LUCID_BLACK_CATKIN = new CatkinItem(GemstoneColor.BLACK, true, resourcesUncommonItemSettings);
-	public static final Item LUCID_WHITE_CATKIN = new CatkinItem(GemstoneColor.WHITE, true, resourcesUncommonItemSettings);
+	public static final Item LUCID_CYAN_CATKIN =  new CatkinItem(BuiltinGemstoneColor.CYAN, true, resourcesUncommonItemSettings);
+	public static final Item LUCID_MAGENTA_CATKIN = new CatkinItem(BuiltinGemstoneColor.MAGENTA, true, resourcesUncommonItemSettings);
+	public static final Item LUCID_YELLOW_CATKIN = new CatkinItem(BuiltinGemstoneColor.YELLOW, true, resourcesUncommonItemSettings);
+	public static final Item LUCID_BLACK_CATKIN = new CatkinItem(BuiltinGemstoneColor.BLACK, true, resourcesUncommonItemSettings);
+	public static final Item LUCID_WHITE_CATKIN = new CatkinItem(BuiltinGemstoneColor.WHITE, true, resourcesUncommonItemSettings);
 
 	// Misc
 	public static final Item MUSIC_DISC_SPECTRUM_THEME = new SpectrumMusicDiscItem(1, SpectrumSoundEvents.SPECTRUM_THEME, generalRareItemSettingsSingle);
@@ -574,26 +577,6 @@ public class SpectrumItems {
 		FuelRegistry.INSTANCE.add(SpectrumBlocks.RED_PLANK_SLAB.asItem(), 150);
 		FuelRegistry.INSTANCE.add(SpectrumBlocks.WHITE_PLANK_SLAB.asItem(), 150);
 		FuelRegistry.INSTANCE.add(SpectrumBlocks.YELLOW_PLANK_SLAB.asItem(), 150);
-	}
-	
-	public static Item getGemstoneShard(GemstoneColor gemstoneColor) {
-		switch (gemstoneColor) {
-			case CYAN -> {
-				return TOPAZ_POWDER;
-			}
-			case MAGENTA -> {
-				return AMETHYST_POWDER;
-			}
-			case YELLOW -> {
-				return CITRINE_POWDER;
-			}
-			case BLACK -> {
-				return ONYX_POWDER;
-			}
-			default -> {
-				return MOONSTONE_POWDER;
-			}
-		}
 	}
 
 }

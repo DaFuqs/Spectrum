@@ -19,13 +19,13 @@ public enum PedestalRecipeTier {
 	public static GemstoneColor[] getAvailableGemstoneDustColors(@NotNull PedestalRecipeTier pedestalRecipeTier) {
 		switch (pedestalRecipeTier) {
 			case COMPLEX -> {
-				return GemstoneColor.values();
+				return BuiltinGemstoneColor.values();
 			}
 			case ADVANCED -> {
-				return new GemstoneColor[]{GemstoneColor.CYAN, GemstoneColor.MAGENTA, GemstoneColor.YELLOW, GemstoneColor.BLACK};
+				return new GemstoneColor[]{BuiltinGemstoneColor.CYAN, BuiltinGemstoneColor.MAGENTA, BuiltinGemstoneColor.YELLOW, BuiltinGemstoneColor.BLACK};
 			}
 			default -> {
-				return new GemstoneColor[]{GemstoneColor.CYAN, GemstoneColor.MAGENTA, GemstoneColor.YELLOW};
+				return new GemstoneColor[]{BuiltinGemstoneColor.CYAN, BuiltinGemstoneColor.MAGENTA, BuiltinGemstoneColor.YELLOW};
 			}
 		}
 	}

@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.recipe.pedestal;
 import de.dafuqs.spectrum.blocks.pedestal.PedestalVariant;
 import de.dafuqs.spectrum.blocks.pedestal.PedestalBlockEntity;
 import de.dafuqs.spectrum.blocks.pedestal.PedestalBlockItem;
+import de.dafuqs.spectrum.enums.BuiltinGemstoneColor;
 import de.dafuqs.spectrum.enums.GemstoneColor;
 import de.dafuqs.spectrum.enums.PedestalRecipeTier;
 import de.dafuqs.spectrum.helpers.Support;
@@ -42,7 +43,7 @@ public class PedestalCraftingRecipe implements Recipe<Inventory>, GatedRecipe {
 
 	protected final PedestalRecipeTier tier;
 	protected final DefaultedList<Ingredient> craftingInputs;
-	protected final HashMap<GemstoneColor, Integer> gemstoneDustInputs;
+	protected final HashMap<BuiltinGemstoneColor, Integer> gemstoneDustInputs;
 	protected final ItemStack output;
 	protected final float experience;
 	protected final int craftingTime;
@@ -57,7 +58,7 @@ public class PedestalCraftingRecipe implements Recipe<Inventory>, GatedRecipe {
 	protected final List<Identifier> requiredAdvancementIdentifiers;
 
 	public PedestalCraftingRecipe(Identifier id, String group, PedestalRecipeTier tier, int width, int height,
-	                              DefaultedList<Ingredient> craftingInputs, HashMap<GemstoneColor, Integer> gemstoneDustInputs, ItemStack output,
+	                              DefaultedList<Ingredient> craftingInputs, HashMap<BuiltinGemstoneColor, Integer> gemstoneDustInputs, ItemStack output,
 	                              float experience, int craftingTime, boolean skipRecipeRemainders, boolean noBenefitsFromYieldUpgrades, List<Identifier> requiredAdvancementIdentifiers) {
 		this.id = id;
 		this.group = group;
@@ -92,11 +93,11 @@ public class PedestalCraftingRecipe implements Recipe<Inventory>, GatedRecipe {
 			return false;
 		}
 
-		int topazPowderAmount = this.gemstoneDustInputs.get(GemstoneColor.CYAN);
-		int amethystPowderAmount = this.gemstoneDustInputs.get(GemstoneColor.MAGENTA);
-		int citrinePowderAmount = this.gemstoneDustInputs.get(GemstoneColor.YELLOW);
-		int onyxPowderAmount = this.gemstoneDustInputs.get(GemstoneColor.BLACK);
-		int moonstonePowderAmount = this.gemstoneDustInputs.get(GemstoneColor.WHITE);
+		int topazPowderAmount = this.gemstoneDustInputs.get(BuiltinGemstoneColor.CYAN);
+		int amethystPowderAmount = this.gemstoneDustInputs.get(BuiltinGemstoneColor.MAGENTA);
+		int citrinePowderAmount = this.gemstoneDustInputs.get(BuiltinGemstoneColor.YELLOW);
+		int onyxPowderAmount = this.gemstoneDustInputs.get(BuiltinGemstoneColor.BLACK);
+		int moonstonePowderAmount = this.gemstoneDustInputs.get(BuiltinGemstoneColor.WHITE);
 
 		return ((topazPowderAmount == 0 || isStackAtLeast(inv.getStack(9), SpectrumItems.TOPAZ_POWDER, topazPowderAmount))
 			&& (amethystPowderAmount == 0 || isStackAtLeast(inv.getStack(10), SpectrumItems.AMETHYST_POWDER, amethystPowderAmount))
@@ -216,7 +217,7 @@ public class PedestalCraftingRecipe implements Recipe<Inventory>, GatedRecipe {
 		return this.experience;
 	}
 
-	public HashMap<GemstoneColor, Integer> getGemstonePowderInputs() {
+	public HashMap<BuiltinGemstoneColor, Integer> getGemstonePowderInputs() {
 		return this.gemstoneDustInputs;
 	}
 
@@ -236,19 +237,19 @@ public class PedestalCraftingRecipe implements Recipe<Inventory>, GatedRecipe {
 	public SoundEvent getSoundEvent(Random random) {
 		List<SoundEvent> choices = new ArrayList<>();
 		
-		for (int i = 0; i < this.gemstoneDustInputs.get(GemstoneColor.MAGENTA); i++) {
+		for (int i = 0; i < this.gemstoneDustInputs.get(BuiltinGemstoneColor.MAGENTA); i++) {
 			choices.add(SpectrumSoundEvents.PEDESTAL_CRAFTING_FINISHED_AMETHYST);
 		}
-		for (int i = 0; i < this.gemstoneDustInputs.get(GemstoneColor.YELLOW); i++) {
+		for (int i = 0; i < this.gemstoneDustInputs.get(BuiltinGemstoneColor.YELLOW); i++) {
 			choices.add(SpectrumSoundEvents.PEDESTAL_CRAFTING_FINISHED_CITRINE);
 		}
-		for (int i = 0; i < this.gemstoneDustInputs.get(GemstoneColor.CYAN); i++) {
+		for (int i = 0; i < this.gemstoneDustInputs.get(BuiltinGemstoneColor.CYAN); i++) {
 			choices.add(SpectrumSoundEvents.PEDESTAL_CRAFTING_FINISHED_TOPAZ);
 		}
-		for (int i = 0; i < this.gemstoneDustInputs.get(GemstoneColor.BLACK); i++) {
+		for (int i = 0; i < this.gemstoneDustInputs.get(BuiltinGemstoneColor.BLACK); i++) {
 			choices.add(SpectrumSoundEvents.PEDESTAL_CRAFTING_FINISHED_ONYX);
 		}
-		for (int i = 0; i < this.gemstoneDustInputs.get(GemstoneColor.WHITE); i++) {
+		for (int i = 0; i < this.gemstoneDustInputs.get(BuiltinGemstoneColor.WHITE); i++) {
 			choices.add(SpectrumSoundEvents.PEDESTAL_CRAFTING_FINISHED_MOONSTONE);
 		}
 		

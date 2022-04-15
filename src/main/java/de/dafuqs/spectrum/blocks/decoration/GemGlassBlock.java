@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.blocks.decoration;
 
+import de.dafuqs.spectrum.enums.GemstoneColor;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -8,11 +9,16 @@ import net.minecraft.block.GlassBlock;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.BlockView;
+import org.jetbrains.annotations.Nullable;
 
 public class GemGlassBlock extends GlassBlock {
+	
+	@Nullable
+	GemstoneColor gemstoneColor;
 
-	public GemGlassBlock(Settings settings) {
+	public GemGlassBlock(Settings settings, @Nullable GemstoneColor gemstoneColor) {
 		super(settings);
+		this.gemstoneColor = gemstoneColor;
 	}
 
 	@Environment(EnvType.CLIENT)
@@ -20,13 +26,9 @@ public class GemGlassBlock extends GlassBlock {
 		if(stateFrom.isOf(this)) {
 			return true;
 		}
-		if(state.getBlock().equals(SpectrumBlocks.AMETHYST_GLASS) && stateFrom.getBlock().equals(SpectrumBlocks.AMETHYST_PLAYER_ONLY_GLASS)
-			|| state.getBlock().equals(SpectrumBlocks.CITRINE_GLASS) && stateFrom.getBlock().equals(SpectrumBlocks.CITRINE_PLAYER_ONLY_GLASS)
-			|| state.getBlock().equals(SpectrumBlocks.TOPAZ_GLASS) && stateFrom.getBlock().equals(SpectrumBlocks.TOPAZ_PLAYER_ONLY_GLASS)
-			|| state.getBlock().equals(SpectrumBlocks.MOONSTONE_GLASS) && stateFrom.getBlock().equals(SpectrumBlocks.MOONSTONE_PLAYER_ONLY_GLASS)
-			|| state.getBlock().equals(SpectrumBlocks.ONYX_GLASS) && stateFrom.getBlock().equals(SpectrumBlocks.ONYX_PLAYER_ONLY_GLASS)
-			|| state.getBlock().equals(SpectrumBlocks.GLOWING_GLASS) && stateFrom.getBlock().equals(SpectrumBlocks.GLOWING_PLAYER_ONLY_GLASS)) {
-			return true;
+		
+		if(state.getBlock() instanceof GemGlassBlock sourceGemGlassBlock && stateFrom.getBlock() instanceof GemGlassBlock targetGemGlassBlock) {
+			return sourceGemGlassBlock.gemstoneColor == targetGemGlassBlock.gemstoneColor;
 		}
 		return super.isSideInvisible(state, stateFrom, direction);
 	}

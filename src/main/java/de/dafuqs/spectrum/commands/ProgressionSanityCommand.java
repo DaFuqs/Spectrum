@@ -4,6 +4,7 @@ import com.mojang.brigadier.CommandDispatcher;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.enchanter.EnchanterEnchantable;
 import de.dafuqs.spectrum.enchantments.SpectrumEnchantment;
+import de.dafuqs.spectrum.enums.BuiltinGemstoneColor;
 import de.dafuqs.spectrum.enums.GemstoneColor;
 import de.dafuqs.spectrum.enums.PedestalRecipeTier;
 import de.dafuqs.spectrum.interfaces.Cloakable;
@@ -109,10 +110,10 @@ public class ProgressionSanityCommand {
 		
 		// Statistic: Build an empty hashmap of hashmaps for counting used gem colors for each tier
 		// This info can be used to balance the usage times a bit
-		HashMap<PedestalRecipeTier, HashMap<GemstoneColor, Integer>> usedColorsForEachTier = new HashMap<>();
+		HashMap<PedestalRecipeTier, HashMap<BuiltinGemstoneColor, Integer>> usedColorsForEachTier = new HashMap<>();
 		for (PedestalRecipeTier pedestalRecipeTier : PedestalRecipeTier.values()) {
-			HashMap<GemstoneColor, Integer> colorMap = new HashMap<>();
-			for(GemstoneColor gemstoneColor : GemstoneColor.values()) {
+			HashMap<BuiltinGemstoneColor, Integer> colorMap = new HashMap<>();
+			for(BuiltinGemstoneColor gemstoneColor : BuiltinGemstoneColor.values()) {
 				colorMap.put(gemstoneColor, 0);
 			}
 			usedColorsForEachTier.put(pedestalRecipeTier, colorMap);
@@ -126,18 +127,18 @@ public class ProgressionSanityCommand {
 			   To exclude those recipes in these warnings there is a boolean flag in the recipe jsons
 			 */
 			if (pedestalRecipe.getTier() == PedestalRecipeTier.BASIC || pedestalRecipe.getTier() == PedestalRecipeTier.SIMPLE) {
-				if (pedestalRecipe.getGemstonePowderInputs().get(GemstoneColor.BLACK) > 0) {
+				if (pedestalRecipe.getGemstonePowderInputs().get(BuiltinGemstoneColor.BLACK) > 0) {
 					SpectrumCommon.logWarning("[SANITY: Pedestal Recipe Ingredients] Pedestal recipe '" + pedestalRecipe.getId() + "' of tier '" + pedestalRecipe.getTier() + "' is using onyx powder as input! Players will not have access to Onyx at that tier");
 				}
-				if (pedestalRecipe.getGemstonePowderInputs().get(GemstoneColor.WHITE) > 0) {
+				if (pedestalRecipe.getGemstonePowderInputs().get(BuiltinGemstoneColor.WHITE) > 0) {
 					SpectrumCommon.logWarning("[SANITY: Pedestal Recipe Ingredients] Pedestal recipe '" + pedestalRecipe.getId() + "' of tier '" + pedestalRecipe.getTier() + "' is using moonstone powder as input! Players will not have access to Moonstone at that tier");
 				}
 			} else if (pedestalRecipe.getTier() == PedestalRecipeTier.ADVANCED) {
-				if (pedestalRecipe.getGemstonePowderInputs().get(GemstoneColor.WHITE) > 0) {
+				if (pedestalRecipe.getGemstonePowderInputs().get(BuiltinGemstoneColor.WHITE) > 0) {
 					SpectrumCommon.logWarning("[SANITY: Pedestal Recipe Ingredients] Pedestal recipe '" + pedestalRecipe.getId() + "' of tier '" + pedestalRecipe.getTier() + "' is using moonstone powder as input! Players will not have access to Moonstone at that tier");
 				}
 			}
-			for(Map.Entry<GemstoneColor, Integer> gemstoneDustInput : pedestalRecipe.getGemstonePowderInputs().entrySet()) {
+			for(Map.Entry<BuiltinGemstoneColor, Integer> gemstoneDustInput : pedestalRecipe.getGemstonePowderInputs().entrySet()) {
 				usedColorsForEachTier.get(pedestalRecipe.getTier()).put(gemstoneDustInput.getKey(), usedColorsForEachTier.get(pedestalRecipe.getTier()).get(gemstoneDustInput.getKey()) + gemstoneDustInput.getValue());
 			}
 		}
@@ -309,13 +310,13 @@ public class ProgressionSanityCommand {
 		
 		SpectrumCommon.logInfo("##### SANITY CHECK PEDESTAL RECIPE STATISTICS ######");
 		for(PedestalRecipeTier pedestalRecipeTier : PedestalRecipeTier.values()) {
-			HashMap<GemstoneColor, Integer> entry = usedColorsForEachTier.get(pedestalRecipeTier);
+			HashMap<BuiltinGemstoneColor, Integer> entry = usedColorsForEachTier.get(pedestalRecipeTier);
 			SpectrumCommon.logInfo("[SANITY: Pedestal Recipe Gemstone Usages] Gemstone Powder for tier " + StringUtils.leftPad(pedestalRecipeTier.toString(), 8) +
-					": C:" + StringUtils.leftPad(entry.get(GemstoneColor.CYAN).toString(), 3) +
-					" M:" + StringUtils.leftPad(entry.get(GemstoneColor.MAGENTA).toString(), 3) +
-					" Y:" + StringUtils.leftPad(entry.get(GemstoneColor.YELLOW).toString(), 3) +
-					" K:" + StringUtils.leftPad(entry.get(GemstoneColor.BLACK).toString(), 3) +
-					" W:" + StringUtils.leftPad(entry.get(GemstoneColor.WHITE).toString(), 3));
+					": C:" + StringUtils.leftPad(entry.get(BuiltinGemstoneColor.CYAN).toString(), 3) +
+					" M:" + StringUtils.leftPad(entry.get(BuiltinGemstoneColor.MAGENTA).toString(), 3) +
+					" Y:" + StringUtils.leftPad(entry.get(BuiltinGemstoneColor.YELLOW).toString(), 3) +
+					" K:" + StringUtils.leftPad(entry.get(BuiltinGemstoneColor.BLACK).toString(), 3) +
+					" W:" + StringUtils.leftPad(entry.get(BuiltinGemstoneColor.WHITE).toString(), 3));
 		}
 		
 		if(source.getEntity() instanceof ServerPlayerEntity serverPlayerEntity) {

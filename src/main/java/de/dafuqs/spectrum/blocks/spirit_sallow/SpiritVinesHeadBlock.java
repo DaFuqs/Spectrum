@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.blocks.spirit_sallow;
 
+import de.dafuqs.spectrum.enums.BuiltinGemstoneColor;
 import de.dafuqs.spectrum.enums.GemstoneColor;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import net.fabricmc.api.EnvType;
@@ -23,9 +24,9 @@ import java.util.Random;
 
 public class SpiritVinesHeadBlock extends AbstractPlantStemBlock implements SpiritVines {
 
-	private final GemstoneColor gemstoneColor;
+	private final BuiltinGemstoneColor gemstoneColor;
 
-	public SpiritVinesHeadBlock(Settings settings, GemstoneColor gemstoneColor) {
+	public SpiritVinesHeadBlock(Settings settings, BuiltinGemstoneColor gemstoneColor) {
 		super(settings, Direction.DOWN, SHAPE, false, 0.0D);
 		this.setDefaultState((this.stateManager.getDefaultState()).with(YIELD, YieldType.NONE));
 		this.gemstoneColor = gemstoneColor;

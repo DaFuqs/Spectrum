@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.compat.REI;
 
 import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.enums.BuiltinGemstoneColor;
 import de.dafuqs.spectrum.enums.GemstoneColor;
 import de.dafuqs.spectrum.enums.PedestalRecipeTier;
 import de.dafuqs.spectrum.recipe.pedestal.PedestalCraftingRecipe;
@@ -47,12 +48,12 @@ public class PedestalCraftingRecipeDisplay extends BasicDisplay implements Simpl
 		this.craftingTime = recipe.getCraftingTime();
 		this.pedestalRecipeTier = recipe.getTier();
 		
-		HashMap<GemstoneColor, Integer> gemstonePowderInputs = recipe.getGemstonePowderInputs();
-		addGemstonePowderCraftingInput(gemstonePowderInputs, GemstoneColor.CYAN, SpectrumItems.TOPAZ_POWDER);
-		addGemstonePowderCraftingInput(gemstonePowderInputs, GemstoneColor.MAGENTA, SpectrumItems.AMETHYST_POWDER);
-		addGemstonePowderCraftingInput(gemstonePowderInputs, GemstoneColor.YELLOW, SpectrumItems.CITRINE_POWDER);
-		addGemstonePowderCraftingInput(gemstonePowderInputs, GemstoneColor.BLACK, SpectrumItems.ONYX_POWDER);
-		addGemstonePowderCraftingInput(gemstonePowderInputs, GemstoneColor.WHITE, SpectrumItems.MOONSTONE_POWDER);
+		HashMap<BuiltinGemstoneColor, Integer> gemstonePowderInputs = recipe.getGemstonePowderInputs();
+		addGemstonePowderCraftingInput(gemstonePowderInputs, BuiltinGemstoneColor.CYAN, SpectrumItems.TOPAZ_POWDER);
+		addGemstonePowderCraftingInput(gemstonePowderInputs, BuiltinGemstoneColor.MAGENTA, SpectrumItems.AMETHYST_POWDER);
+		addGemstonePowderCraftingInput(gemstonePowderInputs, BuiltinGemstoneColor.YELLOW, SpectrumItems.CITRINE_POWDER);
+		addGemstonePowderCraftingInput(gemstonePowderInputs, BuiltinGemstoneColor.BLACK, SpectrumItems.ONYX_POWDER);
+		addGemstonePowderCraftingInput(gemstonePowderInputs, BuiltinGemstoneColor.WHITE, SpectrumItems.MOONSTONE_POWDER);
 	}
 	
 	/**
@@ -117,7 +118,7 @@ public class PedestalCraftingRecipeDisplay extends BasicDisplay implements Simpl
 		return 3 * y + x;
 	}
 	
-	private void addGemstonePowderCraftingInput(@NotNull HashMap<GemstoneColor, Integer> gemstonePowderInputs, GemstoneColor gemstoneColor, Item item) {
+	private void addGemstonePowderCraftingInput(@NotNull HashMap<BuiltinGemstoneColor, Integer> gemstonePowderInputs, BuiltinGemstoneColor gemstoneColor, Item item) {
 		if(gemstonePowderInputs.containsKey(gemstoneColor)) {
 			int amount = gemstonePowderInputs.get(gemstoneColor);
 			if(amount > 0) {

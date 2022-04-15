@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.inventories;
 
+import de.dafuqs.spectrum.enums.BuiltinGemstoneColor;
 import de.dafuqs.spectrum.enums.GemstoneColor;
 import de.dafuqs.spectrum.enums.PedestalRecipeTier;
 import de.dafuqs.spectrum.inventories.slots.LockableCraftingResultSlot;
@@ -137,31 +138,31 @@ public class CraftingTabletScreenHandler extends AbstractRecipeScreenHandler<Inv
 				ItemStack itemStack = pedestalCraftingRecipe.getOutput().copy();
 				craftingResultInventory.setStack(0, itemStack);
 				
-				int magenta = pedestalCraftingRecipe.getGemstonePowderAmount(GemstoneColor.CYAN);
+				int magenta = pedestalCraftingRecipe.getGemstonePowderAmount(BuiltinGemstoneColor.CYAN);
 				if (magenta > 0) {
 					inventory.setStack(9, new ItemStack(SpectrumItems.TOPAZ_POWDER, magenta));
 				} else {
 					inventory.setStack(9, ItemStack.EMPTY);
 				}
-				int yellow = pedestalCraftingRecipe.getGemstonePowderAmount(GemstoneColor.MAGENTA);
+				int yellow = pedestalCraftingRecipe.getGemstonePowderAmount(BuiltinGemstoneColor.MAGENTA);
 				if (yellow > 0) {
 					inventory.setStack(10, new ItemStack(SpectrumItems.AMETHYST_POWDER, yellow));
 				} else {
 					inventory.setStack(10, ItemStack.EMPTY);
 				}
-				int cyan = pedestalCraftingRecipe.getGemstonePowderAmount(GemstoneColor.YELLOW);
+				int cyan = pedestalCraftingRecipe.getGemstonePowderAmount(BuiltinGemstoneColor.YELLOW);
 				if (cyan > 0) {
 					inventory.setStack(11, new ItemStack(SpectrumItems.CITRINE_POWDER, cyan));
 				} else {
 					inventory.setStack(11, ItemStack.EMPTY);
 				}
-				int black = pedestalCraftingRecipe.getGemstonePowderAmount(GemstoneColor.BLACK);
+				int black = pedestalCraftingRecipe.getGemstonePowderAmount(BuiltinGemstoneColor.BLACK);
 				if (black > 0) {
 					inventory.setStack(12, new ItemStack(SpectrumItems.ONYX_POWDER, black));
 				} else {
 					inventory.setStack(12, ItemStack.EMPTY);
 				}
-				int white = pedestalCraftingRecipe.getGemstonePowderAmount(GemstoneColor.WHITE);
+				int white = pedestalCraftingRecipe.getGemstonePowderAmount(BuiltinGemstoneColor.WHITE);
 				if (white > 0) {
 					inventory.setStack(13, new ItemStack(SpectrumItems.MOONSTONE_POWDER, white));
 				} else {

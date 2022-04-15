@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.recipe.pedestal;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import de.dafuqs.spectrum.blocks.pedestal.PedestalBlock;
+import de.dafuqs.spectrum.enums.BuiltinGemstoneColor;
 import de.dafuqs.spectrum.enums.GemstoneColor;
 import de.dafuqs.spectrum.enums.PedestalRecipeTier;
 import de.dafuqs.spectrum.mixin.accessors.ShapedRecipeAccessor;
@@ -44,26 +45,26 @@ public class PedestalCraftingRecipeSerializer implements RecipeSerializer<Pedest
 			noBenefitsFromYieldUpgrades = JsonHelper.getBoolean(jsonObject, "disable_yield_upgrades", false);
 		}
 
-		HashMap<GemstoneColor, Integer> gemInputs = new HashMap<>();
+		HashMap<BuiltinGemstoneColor, Integer> gemInputs = new HashMap<>();
 		if(JsonHelper.hasPrimitive(jsonObject, "cyan")) {
 			int amount = JsonHelper.getInt(jsonObject, "cyan", 0);
-			gemInputs.put(GemstoneColor.CYAN, amount);
+			gemInputs.put(BuiltinGemstoneColor.CYAN, amount);
 		}
 		if(JsonHelper.hasPrimitive(jsonObject, "magenta")) {
 			int amount = JsonHelper.getInt(jsonObject, "magenta", 0);
-			gemInputs.put(GemstoneColor.MAGENTA, amount);
+			gemInputs.put(BuiltinGemstoneColor.MAGENTA, amount);
 		}
 		if(JsonHelper.hasPrimitive(jsonObject, "yellow")) {
 			int amount = JsonHelper.getInt(jsonObject, "yellow", 0);
-			gemInputs.put(GemstoneColor.YELLOW, amount);
+			gemInputs.put(BuiltinGemstoneColor.YELLOW, amount);
 		}
 		if(JsonHelper.hasPrimitive(jsonObject, "white")) {
 			int amount = JsonHelper.getInt(jsonObject, "white", 0);
-			gemInputs.put(GemstoneColor.WHITE, amount);
+			gemInputs.put(BuiltinGemstoneColor.WHITE, amount);
 		}
 		if(JsonHelper.hasPrimitive(jsonObject, "black")) {
 			int amount = JsonHelper.getInt(jsonObject, "black", 0);
-			gemInputs.put(GemstoneColor.BLACK, amount);
+			gemInputs.put(BuiltinGemstoneColor.BLACK, amount);
 		}
 		
 		boolean skipRecipeRemainders = false;
@@ -99,11 +100,11 @@ public class PedestalCraftingRecipeSerializer implements RecipeSerializer<Pedest
 		packetByteBuf.writeItemStack(pedestalRecipe.output);
 
 		packetByteBuf.writeInt(pedestalRecipe.tier.ordinal());
-		packetByteBuf.writeInt(pedestalRecipe.getGemstonePowderAmount(GemstoneColor.MAGENTA));
-		packetByteBuf.writeInt(pedestalRecipe.getGemstonePowderAmount(GemstoneColor.CYAN));
-		packetByteBuf.writeInt(pedestalRecipe.getGemstonePowderAmount(GemstoneColor.YELLOW));
-		packetByteBuf.writeInt(pedestalRecipe.getGemstonePowderAmount(GemstoneColor.BLACK));
-		packetByteBuf.writeInt(pedestalRecipe.getGemstonePowderAmount(GemstoneColor.WHITE));
+		packetByteBuf.writeInt(pedestalRecipe.getGemstonePowderAmount(BuiltinGemstoneColor.MAGENTA));
+		packetByteBuf.writeInt(pedestalRecipe.getGemstonePowderAmount(BuiltinGemstoneColor.CYAN));
+		packetByteBuf.writeInt(pedestalRecipe.getGemstonePowderAmount(BuiltinGemstoneColor.YELLOW));
+		packetByteBuf.writeInt(pedestalRecipe.getGemstonePowderAmount(BuiltinGemstoneColor.BLACK));
+		packetByteBuf.writeInt(pedestalRecipe.getGemstonePowderAmount(BuiltinGemstoneColor.WHITE));
 
 		packetByteBuf.writeFloat(pedestalRecipe.experience);
 		packetByteBuf.writeInt(pedestalRecipe.craftingTime);
@@ -148,19 +149,19 @@ public class PedestalCraftingRecipeSerializer implements RecipeSerializer<Pedest
 			requiredAdvancementIdentifiers.add(packetByteBuf.readIdentifier());
 		}
 		
-		HashMap<GemstoneColor, Integer> gemInputs = new HashMap<>();
-		if(magenta > 0) { gemInputs.put(GemstoneColor.MAGENTA, magenta); }
-		if(cyan	> 0) { gemInputs.put(GemstoneColor.CYAN, cyan); }
-		if(yellow  > 0) { gemInputs.put(GemstoneColor.YELLOW, yellow); }
-		if(black   > 0) { gemInputs.put(GemstoneColor.BLACK, black); }
-		if(white   > 0) { gemInputs.put(GemstoneColor.WHITE, white); }
+		HashMap<BuiltinGemstoneColor, Integer> gemInputs = new HashMap<>();
+		if(magenta > 0) { gemInputs.put(BuiltinGemstoneColor.MAGENTA, magenta); }
+		if(cyan	> 0) { gemInputs.put(BuiltinGemstoneColor.CYAN, cyan); }
+		if(yellow  > 0) { gemInputs.put(BuiltinGemstoneColor.YELLOW, yellow); }
+		if(black   > 0) { gemInputs.put(BuiltinGemstoneColor.BLACK, black); }
+		if(white   > 0) { gemInputs.put(BuiltinGemstoneColor.WHITE, white); }
 		
 		return this.recipeFactory.create(identifier, group, tier, width, height, craftingInputs, gemInputs, output, experience, craftingTime, skipRecipeRemainders, noBenefitsFromYieldUpgrades, requiredAdvancementIdentifiers);
 	}
 
 	public interface RecipeFactory<PedestalCraftingRecipe> {
 		PedestalCraftingRecipe create(Identifier id, String group, PedestalRecipeTier tier, int width, int height,
-		         DefaultedList<Ingredient> craftingInputs, HashMap<GemstoneColor, Integer> gemInputs,
+		         DefaultedList<Ingredient> craftingInputs, HashMap<BuiltinGemstoneColor, Integer> gemInputs,
 		         ItemStack output, float experience, int craftingTime, boolean skipRecipeRemainders, boolean noBenefitsFromYieldUpgrades, List<Identifier> requiredAdvancementIdentifiers);
 	}
 

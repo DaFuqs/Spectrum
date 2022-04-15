@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.blocks.pedestal;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.MultiblockCrafter;
 import de.dafuqs.spectrum.blocks.upgrade.Upgradeable;
+import de.dafuqs.spectrum.enums.BuiltinGemstoneColor;
 import de.dafuqs.spectrum.enums.GemstoneColor;
 import de.dafuqs.spectrum.enums.PedestalRecipeTier;
 import de.dafuqs.spectrum.helpers.InventoryHelper;
@@ -300,9 +301,9 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 	public static void clientTick(@NotNull World world, BlockPos blockPos, BlockState blockState, PedestalBlockEntity pedestalBlockEntity) {
 		Recipe currentRecipe = pedestalBlockEntity.getCurrentRecipe();
 		if (currentRecipe instanceof PedestalCraftingRecipe pedestalCraftingRecipe) {
-			HashMap<GemstoneColor, Integer> gemstonePowderInputs = pedestalCraftingRecipe.getGemstonePowderInputs();
+			HashMap<BuiltinGemstoneColor, Integer> gemstonePowderInputs = pedestalCraftingRecipe.getGemstonePowderInputs();
 			
-			for (Map.Entry<GemstoneColor, Integer> entry : gemstonePowderInputs.entrySet()) {
+			for (Map.Entry<BuiltinGemstoneColor, Integer> entry : gemstonePowderInputs.entrySet()) {
 				int amount = entry.getValue();
 				if (amount > 0) {
 					ParticleEffect particleEffect = SpectrumParticleTypes.getCraftingParticle(entry.getKey().getDyeColor());
@@ -547,7 +548,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 			}
 
 			// -X for all the pigment inputs
-			for(GemstoneColor gemstoneColor : GemstoneColor.values()) {
+			for(BuiltinGemstoneColor gemstoneColor : BuiltinGemstoneColor.values()) {
 				double efficiencyModifier = pedestalBlockEntity.upgrades.get(UpgradeType.EFFICIENCY);
 				int gemstonePowderAmount = recipe.getGemstonePowderAmount(gemstoneColor);
 				int gemstonePowderAmountAfterMod = Support.getIntFromDecimalWithChance(gemstonePowderAmount / efficiencyModifier, pedestalBlockEntity.world.random);
@@ -675,7 +676,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		};
 	}
 
-	public static int getSlotForGemstonePowder(GemstoneColor gemstoneColor) {
+	public static int getSlotForGemstonePowder(BuiltinGemstoneColor gemstoneColor) {
 		return switch (gemstoneColor) {
 			case CYAN -> 9;
 			case MAGENTA -> 10;

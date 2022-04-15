@@ -1,8 +1,7 @@
 package de.dafuqs.spectrum.blocks;
 
-import de.dafuqs.spectrum.blocks.decoration.GemGlassBlock;
+import de.dafuqs.spectrum.blocks.decoration.GemstoneGlassBlock;
 import de.dafuqs.spectrum.enums.GemstoneColor;
-import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.*;
@@ -15,13 +14,16 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 
-public class PlayerOnlyGlassBlock extends GemGlassBlock {
+public class AlternatePlayerOnlyGlassBlock extends GlassBlock {
 
+	private final Block alternateBlock;
+	
 	// used for tinted glass to make light not shine through
 	private final boolean tinted;
 
-	public PlayerOnlyGlassBlock(Settings settings, GemstoneColor gemstoneColor, boolean tinted) {
-		super(settings, gemstoneColor);
+	public AlternatePlayerOnlyGlassBlock(Settings settings, Block block, boolean tinted) {
+		super(settings);
+		this.alternateBlock = block;
 		this.tinted = tinted;
 	}
 
@@ -51,6 +53,15 @@ public class PlayerOnlyGlassBlock extends GemGlassBlock {
 		} else {
 			return super.getOpacity(state, world, pos);
 		}
+	}
+	
+	@Environment(EnvType.CLIENT)
+	public boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
+		if(stateFrom.isOf(this) || stateFrom.getBlock() == alternateBlock) {
+			return true;
+		}
+		
+		return super.isSideInvisible(state, stateFrom, direction);
 	}
 
 }

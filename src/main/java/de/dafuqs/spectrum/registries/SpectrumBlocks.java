@@ -59,7 +59,6 @@ import de.dafuqs.spectrum.blocks.upgrade.UpgradeBlock;
 import de.dafuqs.spectrum.blocks.upgrade.UpgradeBlockItem;
 import de.dafuqs.spectrum.blocks.upgrade.Upgradeable;
 import de.dafuqs.spectrum.enums.BuiltinGemstoneColor;
-import de.dafuqs.spectrum.enums.GemstoneColor;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.sound.SpectrumBlockSoundGroups;
 import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
@@ -264,12 +263,12 @@ public class SpectrumBlocks {
 	public static final Block MOONSTONE_BASALT_LAMP = new Block(FabricBlockSettings.copyOf(POLISHED_BASALT).luminance(15).nonOpaque());
 
 	// GLASS
-	public static final Block TOPAZ_GLASS = new GemGlassBlock(FabricBlockSettings.copy(Blocks.GLASS), BuiltinGemstoneColor.CYAN);
-	public static final Block AMETHYST_GLASS = new GemGlassBlock(FabricBlockSettings.copy(Blocks.GLASS), BuiltinGemstoneColor.MAGENTA);
-	public static final Block CITRINE_GLASS = new GemGlassBlock(FabricBlockSettings.copy(Blocks.GLASS), BuiltinGemstoneColor.YELLOW);
-	public static final Block ONYX_GLASS = new GemGlassBlock(FabricBlockSettings.copy(Blocks.GLASS), BuiltinGemstoneColor.BLACK);
-	public static final Block MOONSTONE_GLASS = new GemGlassBlock(FabricBlockSettings.copy(Blocks.GLASS), BuiltinGemstoneColor.WHITE);
-	public static final Block GLOWING_GLASS = new GlassBlock(FabricBlockSettings.copy(Blocks.GLASS).luminance(value -> 12));
+	public static final Block TOPAZ_GLASS = new GemstoneGlassBlock(FabricBlockSettings.copy(Blocks.GLASS), BuiltinGemstoneColor.CYAN);
+	public static final Block AMETHYST_GLASS = new GemstoneGlassBlock(FabricBlockSettings.copy(Blocks.GLASS), BuiltinGemstoneColor.MAGENTA);
+	public static final Block CITRINE_GLASS = new GemstoneGlassBlock(FabricBlockSettings.copy(Blocks.GLASS), BuiltinGemstoneColor.YELLOW);
+	public static final Block ONYX_GLASS = new GemstoneGlassBlock(FabricBlockSettings.copy(Blocks.GLASS), BuiltinGemstoneColor.BLACK);
+	public static final Block MOONSTONE_GLASS = new GemstoneGlassBlock(FabricBlockSettings.copy(Blocks.GLASS), BuiltinGemstoneColor.WHITE);
+	public static final Block RADIANT_GLASS = new RadiantGlassBlock(FabricBlockSettings.copy(Blocks.GLASS).luminance(value -> 12));
 
 	public static final Block ETHEREAL_PLATFORM = new EtherealGlassBlock(FabricBlockSettings.copy(Blocks.SMALL_AMETHYST_BUD).sounds(BlockSoundGroup.AMETHYST_BLOCK));
 	
@@ -286,15 +285,15 @@ public class SpectrumBlocks {
 	public static final Block MOONSTONE_DECOSTONE = new DecoStoneBlock(FabricBlockSettings.copyOf(MOONSTONE_BLOCK).hardness(3.0F).sounds(SpectrumBlockSoundGroups.MOONSTONE_CLUSTER).nonOpaque());
 	
 	// PLAYER GLASS
-	public static final Block VANILLA_PLAYER_ONLY_GLASS = new PlayerOnlyGlassBlock(FabricBlockSettings.copy(Blocks.GLASS).nonOpaque().allowsSpawning(SpectrumBlocks::never).solidBlock(SpectrumBlocks::never).suffocates(SpectrumBlocks::never).blockVision(SpectrumBlocks::never), null, false);
-	public static final Block TINTED_PLAYER_ONLY_GLASS = new PlayerOnlyGlassBlock(FabricBlockSettings.copy(Blocks.TINTED_GLASS).nonOpaque().allowsSpawning(SpectrumBlocks::never).solidBlock(SpectrumBlocks::never).suffocates(SpectrumBlocks::never).blockVision(SpectrumBlocks::never), null, true);
-	public static final Block GLOWING_PLAYER_ONLY_GLASS = new PlayerOnlyGlassBlock(FabricBlockSettings.copy(SpectrumBlocks.GLOWING_GLASS).nonOpaque().allowsSpawning(SpectrumBlocks::never).solidBlock(SpectrumBlocks::never).suffocates(SpectrumBlocks::never).blockVision(SpectrumBlocks::never).luminance((state) -> 15), null, false);
+	public static final Block VANILLA_PLAYER_ONLY_GLASS = new AlternatePlayerOnlyGlassBlock(FabricBlockSettings.copy(Blocks.GLASS).nonOpaque().allowsSpawning(SpectrumBlocks::never).solidBlock(SpectrumBlocks::never).suffocates(SpectrumBlocks::never).blockVision(SpectrumBlocks::never), Blocks.GLASS, false);
+	public static final Block TINTED_PLAYER_ONLY_GLASS = new AlternatePlayerOnlyGlassBlock(FabricBlockSettings.copy(Blocks.TINTED_GLASS).nonOpaque().allowsSpawning(SpectrumBlocks::never).solidBlock(SpectrumBlocks::never).suffocates(SpectrumBlocks::never).blockVision(SpectrumBlocks::never), Blocks.TINTED_GLASS, true);
+	public static final Block RADIANT_PLAYER_ONLY_GLASS = new AlternatePlayerOnlyGlassBlock(FabricBlockSettings.copy(SpectrumBlocks.RADIANT_GLASS).nonOpaque().allowsSpawning(SpectrumBlocks::never).solidBlock(SpectrumBlocks::never).suffocates(SpectrumBlocks::never).blockVision(SpectrumBlocks::never).luminance((state) -> 15), SpectrumBlocks.RADIANT_GLASS, false);
 
-	public static final Block TOPAZ_PLAYER_ONLY_GLASS = new PlayerOnlyGlassBlock(FabricBlockSettings.copy(SpectrumBlocks.TOPAZ_GLASS).nonOpaque().allowsSpawning(SpectrumBlocks::never).solidBlock(SpectrumBlocks::never).suffocates(SpectrumBlocks::never).blockVision(SpectrumBlocks::never), BuiltinGemstoneColor.CYAN, false);
-	public static final Block AMETHYST_PLAYER_ONLY_GLASS = new PlayerOnlyGlassBlock(FabricBlockSettings.copy(SpectrumBlocks.AMETHYST_GLASS).nonOpaque().allowsSpawning(SpectrumBlocks::never).solidBlock(SpectrumBlocks::never).suffocates(SpectrumBlocks::never).blockVision(SpectrumBlocks::never), BuiltinGemstoneColor.MAGENTA, false);
-	public static final Block CITRINE_PLAYER_ONLY_GLASS = new PlayerOnlyGlassBlock(FabricBlockSettings.copy(SpectrumBlocks.CITRINE_GLASS).nonOpaque().allowsSpawning(SpectrumBlocks::never).solidBlock(SpectrumBlocks::never).suffocates(SpectrumBlocks::never).blockVision(SpectrumBlocks::never), BuiltinGemstoneColor.YELLOW, false);
-	public static final Block ONYX_PLAYER_ONLY_GLASS = new PlayerOnlyGlassBlock(FabricBlockSettings.copy(SpectrumBlocks.ONYX_GLASS).nonOpaque().allowsSpawning(SpectrumBlocks::never).solidBlock(SpectrumBlocks::never).suffocates(SpectrumBlocks::never).blockVision(SpectrumBlocks::never), BuiltinGemstoneColor.BLACK, false);
-	public static final Block MOONSTONE_PLAYER_ONLY_GLASS = new PlayerOnlyGlassBlock(FabricBlockSettings.copy(SpectrumBlocks.MOONSTONE_GLASS).nonOpaque().allowsSpawning(SpectrumBlocks::never).solidBlock(SpectrumBlocks::never).suffocates(SpectrumBlocks::never).blockVision(SpectrumBlocks::never), BuiltinGemstoneColor.WHITE, false);
+	public static final Block TOPAZ_PLAYER_ONLY_GLASS = new GemstonePlayerOnlyGlassBlock(FabricBlockSettings.copy(SpectrumBlocks.TOPAZ_GLASS).nonOpaque().allowsSpawning(SpectrumBlocks::never).solidBlock(SpectrumBlocks::never).suffocates(SpectrumBlocks::never).blockVision(SpectrumBlocks::never), BuiltinGemstoneColor.CYAN);
+	public static final Block AMETHYST_PLAYER_ONLY_GLASS = new GemstonePlayerOnlyGlassBlock(FabricBlockSettings.copy(SpectrumBlocks.AMETHYST_GLASS).nonOpaque().allowsSpawning(SpectrumBlocks::never).solidBlock(SpectrumBlocks::never).suffocates(SpectrumBlocks::never).blockVision(SpectrumBlocks::never), BuiltinGemstoneColor.MAGENTA);
+	public static final Block CITRINE_PLAYER_ONLY_GLASS = new GemstonePlayerOnlyGlassBlock(FabricBlockSettings.copy(SpectrumBlocks.CITRINE_GLASS).nonOpaque().allowsSpawning(SpectrumBlocks::never).solidBlock(SpectrumBlocks::never).suffocates(SpectrumBlocks::never).blockVision(SpectrumBlocks::never), BuiltinGemstoneColor.YELLOW);
+	public static final Block ONYX_PLAYER_ONLY_GLASS = new GemstonePlayerOnlyGlassBlock(FabricBlockSettings.copy(SpectrumBlocks.ONYX_GLASS).nonOpaque().allowsSpawning(SpectrumBlocks::never).solidBlock(SpectrumBlocks::never).suffocates(SpectrumBlocks::never).blockVision(SpectrumBlocks::never), BuiltinGemstoneColor.BLACK);
+	public static final Block MOONSTONE_PLAYER_ONLY_GLASS = new GemstonePlayerOnlyGlassBlock(FabricBlockSettings.copy(SpectrumBlocks.MOONSTONE_GLASS).nonOpaque().allowsSpawning(SpectrumBlocks::never).solidBlock(SpectrumBlocks::never).suffocates(SpectrumBlocks::never).blockVision(SpectrumBlocks::never), BuiltinGemstoneColor.WHITE);
 
 	// MELON
 	public static final Block GLISTERING_MELON = new GlisteringMelonBlock(FabricBlockSettings.copyOf(Blocks.MELON));
@@ -957,13 +956,13 @@ public class SpectrumBlocks {
 		registerBlockWithItem("onyx_glass", ONYX_GLASS, fabricItemSettings);
 		registerBlockWithItem("moonstone_glass", MOONSTONE_GLASS, fabricItemSettings);
 
-		registerBlockWithItem("glowing_glass", GLOWING_GLASS, fabricItemSettings);
+		registerBlockWithItem("glowing_glass", RADIANT_GLASS, fabricItemSettings);
 	}
 
 	private static void registerPlayerOnlyGlass(FabricItemSettings fabricItemSettings) {
 		registerBlockWithItem("vanilla_player_only_glass", VANILLA_PLAYER_ONLY_GLASS, fabricItemSettings);
 		registerBlockWithItem("tinted_player_only_glass", TINTED_PLAYER_ONLY_GLASS, fabricItemSettings);
-		registerBlockWithItem("glowing_player_only_glass", GLOWING_PLAYER_ONLY_GLASS, fabricItemSettings);
+		registerBlockWithItem("glowing_player_only_glass", RADIANT_PLAYER_ONLY_GLASS, fabricItemSettings);
 
 		registerBlockWithItem("topaz_player_only_glass", TOPAZ_PLAYER_ONLY_GLASS, fabricItemSettings);
 		registerBlockWithItem("amethyst_player_only_glass", AMETHYST_PLAYER_ONLY_GLASS, fabricItemSettings);
@@ -1420,8 +1419,8 @@ public class SpectrumBlocks {
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.MOONSTONE_GLASS, RenderLayer.getTranslucent());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.ONYX_GLASS, RenderLayer.getTranslucent());
 
-		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.GLOWING_GLASS, RenderLayer.getTranslucent());
-		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.GLOWING_PLAYER_ONLY_GLASS, RenderLayer.getTranslucent());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.RADIANT_GLASS, RenderLayer.getTranslucent());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.RADIANT_PLAYER_ONLY_GLASS, RenderLayer.getTranslucent());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.TINTED_PLAYER_ONLY_GLASS, RenderLayer.getTranslucent());
 
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.VANILLA_PLAYER_ONLY_GLASS, RenderLayer.getTranslucent());

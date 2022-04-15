@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.blocks.decoration;
 
 import de.dafuqs.spectrum.enums.GemstoneColor;
-import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.BlockState;
@@ -11,12 +10,12 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.world.BlockView;
 import org.jetbrains.annotations.Nullable;
 
-public class GemGlassBlock extends GlassBlock {
+public class GemstoneGlassBlock extends GlassBlock {
 	
 	@Nullable
 	GemstoneColor gemstoneColor;
 
-	public GemGlassBlock(Settings settings, @Nullable GemstoneColor gemstoneColor) {
+	public GemstoneGlassBlock(Settings settings, @Nullable GemstoneColor gemstoneColor) {
 		super(settings);
 		this.gemstoneColor = gemstoneColor;
 	}
@@ -27,8 +26,8 @@ public class GemGlassBlock extends GlassBlock {
 			return true;
 		}
 		
-		if(state.getBlock() instanceof GemGlassBlock sourceGemGlassBlock && stateFrom.getBlock() instanceof GemGlassBlock targetGemGlassBlock) {
-			return sourceGemGlassBlock.gemstoneColor == targetGemGlassBlock.gemstoneColor;
+		if(state.getBlock() instanceof GemstoneGlassBlock sourceGemstoneGlassBlock && stateFrom.getBlock() instanceof GemstoneGlassBlock targetGemstoneGlassBlock) {
+			return sourceGemstoneGlassBlock.gemstoneColor == targetGemstoneGlassBlock.gemstoneColor;
 		}
 		return super.isSideInvisible(state, stateFrom, direction);
 	}

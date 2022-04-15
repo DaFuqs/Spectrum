@@ -318,11 +318,13 @@
   "block.spectrum.black_materia": "Black Materia",
 
   "block.spectrum.preservation_controller": "Preservation Controller",
-  "block.spectrum.preservation_glass": "Preservation Glass",
   "block.spectrum.preservation_stone": "Preservation Stone",
+  "block.spectrum.preservation_glass": "Preservation Glass",
+  "block.spectrum.tinted_preservation_glass": "Tinted Preservation Glass",
   "block.spectrum.dike_chiseled_preservation_stone": "Dike Chiseled Preservation Stone",
   "block.spectrum.dike_gate": "Dike Gate",
-  "block.spectrum.courier_statue": "Unindentifiable Statue",
+  "block.spectrum.dike_gate_fountain": "Dike Gate Fountain",
+  "block.spectrum.courier_statue": "Ancient Statue",
   "block.spectrum.treasure_chest": "Ancient Treasure Chest",
 
   "block.spectrum.jade_vines": "Jade Vines",
@@ -363,6 +365,7 @@
   "block.spectrum.clover": "Clover",
   "block.spectrum.four_leaf_clover": "Four-leaved Clover",
   "block.spectrum.ethereal_platform": "Ethereal Platform",
+  "block.spectrum.universe_spyhole": "Universe Spyhole",
   "block.spectrum.ender_glass": "Ender Glass",
   "block.spectrum.redstone_sand": "Redstone Sand",
   "block.spectrum.stuck_lightning_stone": "Storm Stone",

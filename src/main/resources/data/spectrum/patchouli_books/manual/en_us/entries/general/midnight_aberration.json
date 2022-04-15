@@ -29,7 +29,7 @@
     {
       "type": "patchouli:text",
       "advancement": "spectrum:midgame/create_midnight_aberration",
-      "text": "While the chaos, that ensued definitely was not the outcome you craved for, the result still does hold immense power.$(br2)So much in fact, that if not used quick it crumbles into dust.$(br)And then there is that blackish fluid that manifested. Because of its color you named it $(l:magical_blocks/midnight_solution)Midnight Solution$(/l)."
+      "text": "While the chaos that ensued $(italic)definitely$() was not the outcome you craved for, the result still does hold immense power.$(br)So much in fact, that if not used quick it crumbles into dust.$(br2)And then there is that aggressive blackish fluid that manifested in the process. Because of its color you named it $(l:magical_blocks/midnight_solution)Midnight Solution$(/l)."
 	}
   ]
 }

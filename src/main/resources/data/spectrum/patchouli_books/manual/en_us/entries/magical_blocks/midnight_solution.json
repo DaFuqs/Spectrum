@@ -11,14 +11,14 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "You first stumbled about this bizarre liquid as a direct result of $(l:general/midnight_aberration)your failed fusion experiment$().$(br)Creatures that touch it seem to get their life drained out of them. Better not get caught in it yourself."
+      "text": "You first stumbled about this bizarre liquid as a direct result of $(l:general/midnight_aberration)your failed fusion experiment$().$(br)Creatures that touch it seem to get their life drained out of them. Better not get caught in it yourself.$(br)! Creatures unalived by this cruel process seem to drop items as if they were killed by a player."
     },
     {
       "type": "patchouli:spotlight",
       "title": "Midnight Chip",
       "item": "spectrum:midnight_chip",
       "advancement": "spectrum:midgame/collect_midnight_chip",
-      "text": "Mobs that died in that feisty liquid sometimes drop a small splinter that almost resembles a $(l:general/midnight_aberration)Midnight Aberration$(/l), just way, way smaller. Sharp-Edged and vicious. Almost as if it had been this splinter in their heart from which they finally perished.$(br)They even drop those rarer items as if they were killed by a player."
+      "text": "Creatures that died in that feisty liquid drop a small splinter that almost resembles a $(l:general/midnight_aberration)Midnight Aberration$(/l), just way, way smaller. Sharp-Edged and vicious. Almost as if it was that splinter in her heart that finally caused their demise."
     },
     {
       "type": "spectrum:potion_workshop_crafting",

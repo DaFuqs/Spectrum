@@ -1,0 +1,32 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 600,
+  "tier": "advanced",
+  "magenta": 2,
+  "yellow": 2,
+  "cyan": 2,
+  "black": 2,
+  "white": 0,
+  "experience": 2.0,
+  "pattern": [
+    "PMP",
+    "MEM",
+    "PMP"
+  ],
+  "key": {
+    "E": {
+      "item": "spectrum:ender_treasure"
+    },
+    "M": {
+      "item": "spectrum:midnight_chip"
+    },
+    "P": {
+      "item": "spectrum:black_pigment"
+    }
+  },
+  "result" : {
+    "item": "spectrum:universe_spyhole",
+    "count": 4
+  },
+  "required_advancements": ["spectrum:progression/unlock_universe_spyhole"]
+}

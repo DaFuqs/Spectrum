@@ -11,14 +11,27 @@ import net.minecraft.nbt.NbtElement;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
+import net.minecraft.util.Pair;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
 public class MemoryItem extends BlockItem {
+	
+	// There are a few entities in vanilla that do not have a corresponding spawn egg
+	// therefore to make it nicer we specify custom colors for them here
+	private static final HashMap<EntityType, Pair<Integer, Integer>> customColors = new HashMap<>() {{
+		put(EntityType.BAT, new Pair<>(0x463d2b, 0x191307));
+		put(EntityType.SNOW_GOLEM, new Pair<>(0xc9cbcf, 0xa26e28));
+		put(EntityType.WITHER, new Pair<>(0x101211, 0x3e4140));
+		put(EntityType.ILLUSIONER, new Pair<>(0x29578d, 0x4b4e4f));
+		put(EntityType.ENDER_DRAGON, new Pair<>(0x111111, 0x856c8f));
+		put(EntityType.IRON_GOLEM, new Pair<>(0x9a9a9a, 0x8b7464));
+	}};
 	
 	public MemoryItem(Block block, Settings settings) {
 		super(block, settings);
@@ -62,9 +75,16 @@ public class MemoryItem extends BlockItem {
 		
 		Optional<EntityType<?>> entityType = MemoryItem.getEntityType(nbtCompound);
 		if(entityType.isPresent()) {
-			SpawnEggItem spawnEggItem = SpawnEggItem.forEntity(entityType.get());
-			if (spawnEggItem != null) {
-				return spawnEggItem.getColor(tintIndex);
+			EntityType type = entityType.get();
+			if(customColors.containsKey(type)) {
+				// statically defined: fetch from map
+				return tintIndex == 0 ? customColors.get(type).getLeft() : customColors.get(type).getRight();
+			} else {
+				// dynamically defined: fetch from spawn egg
+				SpawnEggItem spawnEggItem = SpawnEggItem.forEntity(entityType.get());
+				if (spawnEggItem != null) {
+					return spawnEggItem.getColor(tintIndex);
+				}
 			}
 		}
 		

@@ -4,8 +4,10 @@ import de.dafuqs.spectrum.SpectrumClient;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.particle_spawner.ParticleSpawnerBlockEntity;
 import de.dafuqs.spectrum.blocks.pedestal.PedestalBlock;
+import de.dafuqs.spectrum.blocks.pedestal.BuiltinPedestalVariant;
 import de.dafuqs.spectrum.blocks.shooting_star.ShootingStarBlock;
 import de.dafuqs.spectrum.entity.entity.ShootingStarEntity;
+import de.dafuqs.spectrum.enums.PedestalRecipeTier;
 import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.particle.effect.*;
@@ -213,11 +215,10 @@ public class SpectrumS2CPacketReceiver {
 		
 		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.PLAY_PEDESTAL_UPGRADED_PARTICLE_PACKET_ID, (client, handler, buf, responseSender) -> {
 			BlockPos position = buf.readBlockPos(); // the block pos of the pedestal
-			PedestalBlock.PedestalVariant variant = PedestalBlock.PedestalVariant.values()[buf.readInt()]; // the item stack that was crafted
+			PedestalRecipeTier tier = PedestalRecipeTier.values()[buf.readInt()]; // the item stack that was crafted
 			client.execute(() -> {
-				Random random = client.world.random;
 				// Everything in this lambda is running on the render thread
-				PedestalBlock.spawnUpgradeParticleEffectsForTier(position, variant);
+				PedestalBlock.spawnUpgradeParticleEffectsForTier(position, tier);
 			});
 		});
 

@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.recipe.pedestal;
 
-import de.dafuqs.spectrum.blocks.pedestal.PedestalBlock;
+import de.dafuqs.spectrum.blocks.pedestal.PedestalVariant;
 import de.dafuqs.spectrum.blocks.pedestal.PedestalBlockEntity;
 import de.dafuqs.spectrum.blocks.pedestal.PedestalBlockItem;
 import de.dafuqs.spectrum.enums.GemstoneColor;
@@ -288,7 +288,7 @@ public class PedestalCraftingRecipe implements Recipe<Inventory>, GatedRecipe {
 	 * it is treated as an upgrade recipe. Meaning the item does not
 	 * get crafted, but the current pedestal replaced with the new one.
 	 */
-	public static PedestalBlock.PedestalVariant getUpgradedPedestalVariantForOutput(ItemStack outputItemStack) {
+	public static PedestalVariant getUpgradedPedestalVariantForOutput(ItemStack outputItemStack) {
 		if(outputItemStack.getItem() instanceof PedestalBlockItem) {
 			return ((PedestalBlockItem) outputItemStack.getItem()).getVariant();
 		} else {

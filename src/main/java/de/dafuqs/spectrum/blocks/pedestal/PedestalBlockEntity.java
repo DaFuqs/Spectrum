@@ -68,7 +68,7 @@ import java.util.*;
 public class PedestalBlockEntity extends LockableContainerBlockEntity implements MultiblockCrafter, SidedInventory, ExtendedScreenHandlerFactory {
 	
 	protected UUID ownerUUID;
-	protected PedestalBlock.PedestalVariant pedestalVariant;
+	protected PedestalVariant pedestalVariant;
 
 	protected DefaultedList<ItemStack> inventory;
 	
@@ -97,7 +97,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		if(blockState.getBlock() instanceof PedestalBlock) {
 			this.pedestalVariant = ((PedestalBlock)(blockState.getBlock())).getVariant();
 		} else {
-			this.pedestalVariant = PedestalBlock.PedestalVariant.BASIC_AMETHYST;
+			this.pedestalVariant = BuiltinPedestalVariant.BASIC_AMETHYST;
 		}
 
 		if(autoCraftingInventory == null) {
@@ -126,9 +126,9 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		};
 	}
 	
-	public void setVariant(PedestalBlock.@NotNull PedestalVariant pedestalVariant) {
+	public void setVariant(PedestalVariant pedestalVariant) {
 		this.pedestalVariant = pedestalVariant;
-		this.propertyDelegate.set(2, pedestalVariant.ordinal());
+		this.propertyDelegate.set(2, pedestalVariant.getRecipeTier().ordinal());
 	}
 
 	@Override
@@ -138,7 +138,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 
 	@Override
 	protected ScreenHandler createScreenHandler(int syncId, PlayerInventory playerInventory) {
-		return new PedestalScreenHandler(syncId, playerInventory, this, this.propertyDelegate, this.pedestalVariant.ordinal(), this.getHighestAvailableRecipeTierWithStructure().ordinal(), this.pos);
+		return new PedestalScreenHandler(syncId, playerInventory, this, this.propertyDelegate, this.pedestalVariant.getRecipeTier().ordinal(), this.getHighestAvailableRecipeTierWithStructure().ordinal(), this.pos);
 	}
 
 	@Override
@@ -185,8 +185,6 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 
 	@Override
 	public void setStack(int slot, @NotNull ItemStack stack) {
-		ItemStack itemStack = this.inventory.get(slot);
-		boolean isSameItem = !stack.isEmpty() && stack.isItemEqualIgnoreDamage(itemStack) && ItemStack.areNbtEqual(stack, itemStack);
 		this.inventory.set(slot, stack);
 		if (stack.getCount() > this.getMaxCountPerStack()) {
 			stack.setCount(this.getMaxCountPerStack());
@@ -412,7 +410,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 	}
 
 	@Contract(pure = true)
-	public static PedestalBlock.PedestalVariant getVariant(@NotNull PedestalBlockEntity pedestalBlockEntity) {
+	public static PedestalVariant getVariant(@NotNull PedestalBlockEntity pedestalBlockEntity) {
 		return pedestalBlockEntity.pedestalVariant;
 	}
 
@@ -477,8 +475,8 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 				PedestalCraftingRecipe pedestalCraftingRecipe = world.getRecipeManager().getFirstMatch(SpectrumRecipeTypes.PEDESTAL, pedestalBlockEntity, world).orElse(null);
 				if (pedestalCraftingRecipe != null) {
 					// check if the recipe is an upgrade. If it is: don't allow to craft it if the current tier is already sufficient
-					PedestalBlock.PedestalVariant newPedestalVariant = PedestalCraftingRecipe.getUpgradedPedestalVariantForOutput(pedestalCraftingRecipe.getOutput());
-					if (newPedestalVariant != null && newPedestalVariant.ordinal() <= PedestalBlockEntity.getVariant(pedestalBlockEntity).ordinal()) {
+					PedestalVariant newPedestalVariant = PedestalCraftingRecipe.getUpgradedPedestalVariantForOutput(pedestalCraftingRecipe.getOutput());
+					if (newPedestalVariant != null && newPedestalVariant.getRecipeTier().ordinal() <= pedestalBlockEntity.pedestalVariant.getRecipeTier().ordinal()) {
 						newRecipe = null;
 					} else {
 						if (pedestalCraftingRecipe.canCraft(pedestalBlockEntity)) {
@@ -560,8 +558,8 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 
 			// if it was a recipe to upgrade the pedestal itself
 			// => upgrade
-			PedestalBlock.PedestalVariant newPedestalVariant = PedestalCraftingRecipe.getUpgradedPedestalVariantForOutput(recipeOutput);
-			if(newPedestalVariant != null && newPedestalVariant.ordinal() > getVariant(pedestalBlockEntity).ordinal()) {
+			PedestalVariant newPedestalVariant = PedestalCraftingRecipe.getUpgradedPedestalVariantForOutput(recipeOutput);
+			if(newPedestalVariant != null && newPedestalVariant.isBetterThan(getVariant(pedestalBlockEntity))) {
 				// It is an upgrade recipe (output is a pedestal block item)
 				// => Upgrade
 				pedestalBlockEntity.playSound(SpectrumSoundEvents.PEDESTAL_UPGRADE);
@@ -694,15 +692,15 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		} else if(side == Direction.UP) {
 			return new int[]{0, 1, 2, 3, 4, 5, 6, 7, 8};
 		} else {
-			switch (this.pedestalVariant) {
-				case BASIC_AMETHYST, BASIC_CITRINE, BASIC_TOPAZ, CMY -> {
-					return new int[]{9, 10, 11};
+			switch (this.pedestalVariant.getRecipeTier()) {
+				case COMPLEX -> {
+					return new int[]{9, 10, 11, 12, 13};
 				}
-				case ONYX -> {
+				case ADVANCED -> {
 					return new int[]{9, 10, 11, 12};
 				}
 				default -> {
-					return new int[]{9, 10, 11, 12, 13};
+					return new int[]{9, 10, 11};
 				}
 			}
 		}
@@ -724,14 +722,12 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 			Recipe storedRecipe = CraftingTabletItem.getStoredRecipe(this.world, craftingTabletItem);
 
 			int width = 3;
-			if(storedRecipe instanceof ShapedRecipe) {
-				ShapedRecipe shapedRecipe = (ShapedRecipe) storedRecipe;
+			if(storedRecipe instanceof ShapedRecipe shapedRecipe) {
 				width = shapedRecipe.getWidth();
 				if(slot % 3 >= width) {
 					return false;
 				}
-			} else if(storedRecipe instanceof PedestalCraftingRecipe) {
-				PedestalCraftingRecipe pedestalCraftingRecipe = (PedestalCraftingRecipe) storedRecipe;
+			} else if(storedRecipe instanceof PedestalCraftingRecipe pedestalCraftingRecipe) {
 				width = pedestalCraftingRecipe.getWidth();
 				if(slot % 3 >= width) {
 					return false;
@@ -784,32 +780,13 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 
 	@Override
 	public void writeScreenOpeningData(ServerPlayerEntity player, PacketByteBuf buf) {
-		buf.writeInt(this.pedestalVariant.ordinal());
+		buf.writeInt(this.pedestalVariant.getRecipeTier().ordinal());
 		buf.writeInt(this.getHighestAvailableRecipeTierWithStructure().ordinal());
 		buf.writeBlockPos(this.pos);
 	}
 
 	private PedestalRecipeTier getHighestAvailableRecipeTierForVariant() {
-		return getHighestAvailableRecipeTierForVariant(this.pedestalVariant);
-	}
-
-	@Contract(pure = true)
-	public static PedestalRecipeTier getHighestAvailableRecipeTierForVariant(PedestalBlock.@NotNull PedestalVariant pedestalVariant) {
-		switch (pedestalVariant) {
-			case CMY -> {
-				return PedestalRecipeTier.SIMPLE;
-			}
-			case ONYX -> {
-				return PedestalRecipeTier.ADVANCED;
-			}
-			case MOONSTONE -> {
-				return PedestalRecipeTier.COMPLEX;
-			}
-			default -> {
-				// BASIC_TOPAZ, BASIC_AMETHYST, BASIC_CITRINE, no structure
-				return PedestalRecipeTier.BASIC;
-			}
-		}
+		return this.pedestalVariant.getRecipeTier();
 	}
 
 	public PedestalRecipeTier getHighestAvailableRecipeTierWithStructure() {

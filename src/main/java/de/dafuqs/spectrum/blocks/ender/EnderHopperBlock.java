@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.blocks.ender;
 
-import de.dafuqs.spectrum.enums.SpectrumTier;
+import de.dafuqs.spectrum.enums.ProgressionStage;
 import de.dafuqs.spectrum.inventories.GenericSpectrumContainerScreenHandler;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
 import net.minecraft.block.*;
@@ -134,7 +134,7 @@ public class EnderHopperBlock extends BlockWithEntity {
 					EnderChestInventory enderChestInventory = player.getEnderChestInventory();
 
 					player.openHandledScreen(new SimpleNamedScreenHandlerFactory((i, playerInventory, playerEntity) -> {
-						return GenericSpectrumContainerScreenHandler.createGeneric9x3(i, playerInventory, enderChestInventory, SpectrumTier.TIER1);
+						return GenericSpectrumContainerScreenHandler.createGeneric9x3(i, playerInventory, enderChestInventory, ProgressionStage.EARLYGAME);
 					}, enderHopperBlockEntity.getContainerName()));
 					player.incrementStat(Stats.OPEN_ENDERCHEST);
 					PiglinBrain.onGuardedBlockInteracted(player, true);

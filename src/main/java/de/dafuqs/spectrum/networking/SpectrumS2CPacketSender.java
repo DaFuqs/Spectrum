@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.networking;
 
 import de.dafuqs.spectrum.blocks.memory.MemoryBlockEntity;
-import de.dafuqs.spectrum.blocks.pedestal.PedestalBlock;
+import de.dafuqs.spectrum.blocks.pedestal.PedestalVariant;
 import de.dafuqs.spectrum.entity.entity.ShootingStarEntity;
 import de.dafuqs.spectrum.particle.effect.ExperienceTransfer;
 import de.dafuqs.spectrum.particle.effect.ItemTransfer;
@@ -69,7 +69,7 @@ public class SpectrumS2CPacketSender {
 	 * @param position the pos of the particles
 	 * @param particleEffectIdentifier The particle effect identifier to play
 	 */
-	public static void playParticleWithRandomOffsetAndVelocity(ServerWorld world, Vec3d position, Identifier particleEffectIdentifier, int amount, Vec3d randomOffset, Vec3d randomVelocity) {
+	public static void playParticleWithRandomOffsetAndVelocity(ServerWorld world, @NotNull Vec3d position, Identifier particleEffectIdentifier, int amount, @NotNull Vec3d randomOffset, @NotNull Vec3d randomVelocity) {
 		PacketByteBuf buf = PacketByteBufs.create();
 		buf.writeDouble(position.x);
 		buf.writeDouble(position.y);
@@ -95,7 +95,7 @@ public class SpectrumS2CPacketSender {
 	 * @param position the pos of the particles
 	 * @param particleEffect The particle effect to play
 	 */
-	public static void playParticleWithExactOffsetAndVelocity(ServerWorld world, Vec3d position, ParticleEffect particleEffect, int amount, Vec3d randomOffset, Vec3d randomVelocity) {
+	public static void playParticleWithExactOffsetAndVelocity(ServerWorld world, Vec3d position, @NotNull ParticleEffect particleEffect, int amount, Vec3d randomOffset, Vec3d randomVelocity) {
 		playParticleWithExactOffsetAndVelocity(world, position, Registry.PARTICLE_TYPE.getId(particleEffect.getType()), amount, randomOffset, randomVelocity);
 	}
 	
@@ -105,7 +105,7 @@ public class SpectrumS2CPacketSender {
 	 * @param position the pos of the particles
 	 * @param particleEffectIdentifier The particle effect identifier to play
 	 */
-	public static void playParticleWithExactOffsetAndVelocity(ServerWorld world, Vec3d position, Identifier particleEffectIdentifier, int amount, Vec3d randomOffset, Vec3d velocity) {
+	public static void playParticleWithExactOffsetAndVelocity(ServerWorld world, @NotNull Vec3d position, Identifier particleEffectIdentifier, int amount, @NotNull Vec3d randomOffset, @NotNull Vec3d velocity) {
 		PacketByteBuf buf = PacketByteBufs.create();
 		buf.writeDouble(position.x);
 		buf.writeDouble(position.y);
@@ -131,7 +131,7 @@ public class SpectrumS2CPacketSender {
 	 * @param position the pos of the particles
 	 * @param particleEffect The particle effect to play
 	 */
-	public static void playParticleWithPatternAndVelocity(@Nullable PlayerEntity notThisPlayerEntity, ServerWorld world, Vec3d position, ParticleEffect particleEffect, SpectrumS2CPackets.ParticlePattern pattern, double velocity) {
+	public static void playParticleWithPatternAndVelocity(@Nullable PlayerEntity notThisPlayerEntity, ServerWorld world, @NotNull Vec3d position, @NotNull ParticleEffect particleEffect, SpectrumS2CPackets.@NotNull ParticlePattern pattern, double velocity) {
 		PacketByteBuf buf = PacketByteBufs.create();
 		buf.writeDouble(position.x);
 		buf.writeDouble(position.y);
@@ -154,7 +154,7 @@ public class SpectrumS2CPacketSender {
 	 * @param position the pos of the particles
 	 * @param particleEffect The particle effect to play
 	 */
-	public static void playParticleWithRandomOffsetAndVelocity(ServerWorld world, Vec3d position, ParticleEffect particleEffect, int amount, Vec3d randomOffset, Vec3d randomVelocity) {
+	public static void playParticleWithRandomOffsetAndVelocity(ServerWorld world, Vec3d position, @NotNull ParticleEffect particleEffect, int amount, Vec3d randomOffset, Vec3d randomVelocity) {
 		playParticleWithRandomOffsetAndVelocity(world, position, Registry.PARTICLE_TYPE.getId(particleEffect.getType()), amount, randomOffset, randomVelocity);
 	}
 
@@ -188,7 +188,7 @@ public class SpectrumS2CPacketSender {
 		}
 	}
 	
-	public static void sendPlayFusionCraftingFinishedParticles(World world, BlockPos blockPos, ItemStack itemStack) {
+	public static void sendPlayFusionCraftingFinishedParticles(World world, BlockPos blockPos, @NotNull ItemStack itemStack) {
 		Optional<DyeColor> optionalItemColor = ColorRegistry.ITEM_COLORS.getMapping(itemStack.getItem());
 		
 		PacketByteBuf buf = PacketByteBufs.create();
@@ -239,7 +239,7 @@ public class SpectrumS2CPacketSender {
 		}
 	}
 
-	public static void sendWirelessRedstonePacket(ServerWorld world, WirelessRedstoneTransmission wirelessRedstoneTransmission) {
+	public static void sendWirelessRedstonePacket(ServerWorld world, @NotNull WirelessRedstoneTransmission wirelessRedstoneTransmission) {
 		BlockPos blockPos = wirelessRedstoneTransmission.getOrigin();
 
 		PacketByteBuf buf = PacketByteBufs.create();
@@ -274,7 +274,7 @@ public class SpectrumS2CPacketSender {
 		}
 	}
 
-	public static void sendPlayBlockBoundSoundInstance(SoundEvent soundEvent, ServerWorld world, BlockPos blockPos, int maxDurationTicks) {
+	public static void sendPlayBlockBoundSoundInstance(SoundEvent soundEvent, @NotNull ServerWorld world, BlockPos blockPos, int maxDurationTicks) {
 		PacketByteBuf buf = PacketByteBufs.create();
 		buf.writeIdentifier(Registry.SOUND_EVENT.getId(soundEvent));
 		buf.writeIdentifier(Registry.BLOCK.getId(world.getBlockState(blockPos).getBlock()));
@@ -292,7 +292,7 @@ public class SpectrumS2CPacketSender {
 		ServerPlayNetworking.send(playerEntity, SpectrumS2CPackets.PLAY_TAKE_OFF_BELT_SOUND_INSTANCE, buf);
 	}
 	
-	public static void sendCancelBlockBoundSoundInstance(ServerWorld world, BlockPos blockPos) {
+	public static void sendCancelBlockBoundSoundInstance(@NotNull ServerWorld world, BlockPos blockPos) {
 		PacketByteBuf buf = PacketByteBufs.create();
 		buf.writeIdentifier(new Identifier("stop"));
 		buf.writeIdentifier(Registry.BLOCK.getId(world.getBlockState(blockPos).getBlock()));
@@ -305,10 +305,10 @@ public class SpectrumS2CPacketSender {
 		}
 	}
 	
-	public static void spawnPedestalUpgradeParticles(World world, BlockPos blockPos, PedestalBlock.@NotNull PedestalVariant newPedestalVariant) {
+	public static void spawnPedestalUpgradeParticles(World world, BlockPos blockPos, @NotNull PedestalVariant newPedestalVariant) {
 		PacketByteBuf buf = PacketByteBufs.create();
 		buf.writeBlockPos(blockPos);
-		buf.writeInt(newPedestalVariant.ordinal());
+		buf.writeInt(newPedestalVariant.getRecipeTier().ordinal());
 		// Iterate over all players tracking a position in the world and send the packet to each player
 		for (ServerPlayerEntity player : PlayerLookup.tracking((ServerWorld) world, blockPos)) {
 			ServerPlayNetworking.send(player, SpectrumS2CPackets.PLAY_PEDESTAL_UPGRADED_PARTICLE_PACKET_ID, buf);

@@ -2,7 +2,7 @@ package de.dafuqs.spectrum.inventories;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.enums.SpectrumTier;
+import de.dafuqs.spectrum.enums.ProgressionStage;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.util.math.MatrixStack;
@@ -22,7 +22,7 @@ public class Spectrum3x3ContainerScreen extends HandledScreen<Spectrum3x3Contain
 
 	public Spectrum3x3ContainerScreen(Spectrum3x3ContainerScreenHandler handler, PlayerInventory inventory, Text title) {
 		super(handler, inventory, title);
-		SpectrumTier tier = handler.getTier();
+		ProgressionStage tier = handler.getTier();
 		this.backgroundTexture = getBackground(tier);
 	}
 
@@ -50,12 +50,12 @@ public class Spectrum3x3ContainerScreen extends HandledScreen<Spectrum3x3Contain
 	}
 
 	@Contract(pure = true)
-	private Identifier getBackground(@NotNull SpectrumTier tier) {
+	private Identifier getBackground(@NotNull ProgressionStage tier) {
 		switch (tier) {
-			case TIER1 -> {
+			case EARLYGAME -> {
 				return TIER_1_TEXTURE_3x3;
 			}
-			case TIER2 -> {
+			case MIDGAME -> {
 				return TIER_2_TEXTURE_3x3;
 			}
 			default -> {

@@ -2,8 +2,6 @@ package de.dafuqs.spectrum.inventories;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.blocks.pedestal.PedestalBlock;
-import de.dafuqs.spectrum.blocks.pedestal.PedestalBlockEntity;
 import de.dafuqs.spectrum.enums.PedestalRecipeTier;
 import de.dafuqs.spectrum.registries.SpectrumMultiblocks;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
@@ -36,23 +34,22 @@ public class PedestalScreen extends HandledScreen<PedestalScreenHandler> {
 	public PedestalScreen(PedestalScreenHandler handler, PlayerInventory playerInventory, Text title) {
 		super(handler, playerInventory, title);
 		this.backgroundHeight = 194;
-
-		this.backgroundTexture = getBackgroundTextureForVariant(handler.getVariant());
-		PedestalBlock.PedestalVariant pedestalVariant = handler.getVariant();
-		this.maxPedestalRecipeTierForVariant = PedestalBlockEntity.getHighestAvailableRecipeTierForVariant(pedestalVariant);
+		
+		this.maxPedestalRecipeTierForVariant = handler.getPedestalRecipeTier();
+		this.backgroundTexture = getBackgroundTextureForVariant(this.maxPedestalRecipeTierForVariant);
 		PedestalRecipeTier maxPedestalRecipeTier = handler.getMaxPedestalRecipeTier();
 		this.structureUpdateAvailable = this.maxPedestalRecipeTierForVariant != maxPedestalRecipeTier;
 	}
 
-	public static Identifier getBackgroundTextureForVariant(PedestalBlock.PedestalVariant pedestalVariant) {
-		switch (pedestalVariant) {
-			case MOONSTONE -> {
+	public static Identifier getBackgroundTextureForVariant(PedestalRecipeTier pedestalRecipeTier) {
+		switch (pedestalRecipeTier) {
+			case COMPLEX -> {
 				return BACKGROUND4;
 			}
-			case ONYX -> {
+			case ADVANCED -> {
 				return BACKGROUND3;
 			}
-			case CMY -> {
+			case SIMPLE -> {
 				return BACKGROUND2;
 			}
 			default -> {

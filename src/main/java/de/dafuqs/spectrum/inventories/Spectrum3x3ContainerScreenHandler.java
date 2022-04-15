@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.inventories;
 
 import de.dafuqs.spectrum.blocks.redstone.BlockPlacerBlockEntity;
-import de.dafuqs.spectrum.enums.SpectrumTier;
+import de.dafuqs.spectrum.enums.ProgressionStage;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
@@ -15,47 +15,47 @@ import org.jetbrains.annotations.NotNull;
 
 public class Spectrum3x3ContainerScreenHandler extends ScreenHandler {
 
-	private final SpectrumTier tier;
+	private final ProgressionStage tier;
 	private final Inventory inventory;
 
 	@Contract("_, _ -> new")
 	public static @NotNull Spectrum3x3ContainerScreenHandler createTier1(int syncId, PlayerInventory playerInventory) {
-		return new Spectrum3x3ContainerScreenHandler(syncId, playerInventory, SpectrumTier.TIER1);
+		return new Spectrum3x3ContainerScreenHandler(syncId, playerInventory, ProgressionStage.EARLYGAME);
 	}
 
 	@Contract("_, _, _ -> new")
 	public static @NotNull ScreenHandler createTier1(int syncId, PlayerInventory playerInventory, BlockPlacerBlockEntity blockPlacerBlockEntity) {
-		return new Spectrum3x3ContainerScreenHandler(SpectrumScreenHandlerTypes.GENERIC_TIER1_3X3, syncId, playerInventory, blockPlacerBlockEntity, SpectrumTier.TIER1);
+		return new Spectrum3x3ContainerScreenHandler(SpectrumScreenHandlerTypes.GENERIC_TIER1_3X3, syncId, playerInventory, blockPlacerBlockEntity, ProgressionStage.EARLYGAME);
 	}
 
 	@Contract("_, _ -> new")
 	public static @NotNull Spectrum3x3ContainerScreenHandler createTier2(int syncId, PlayerInventory playerInventory) {
-		return new Spectrum3x3ContainerScreenHandler(syncId, playerInventory, SpectrumTier.TIER2);
+		return new Spectrum3x3ContainerScreenHandler(syncId, playerInventory, ProgressionStage.MIDGAME);
 	}
 
 	@Contract("_, _, _ -> new")
 	public static @NotNull ScreenHandler createTier2(int syncId, PlayerInventory playerInventory, BlockPlacerBlockEntity blockPlacerBlockEntity) {
-		return new Spectrum3x3ContainerScreenHandler(SpectrumScreenHandlerTypes.GENERIC_TIER1_3X3, syncId, playerInventory, blockPlacerBlockEntity, SpectrumTier.TIER2);
+		return new Spectrum3x3ContainerScreenHandler(SpectrumScreenHandlerTypes.GENERIC_TIER1_3X3, syncId, playerInventory, blockPlacerBlockEntity, ProgressionStage.MIDGAME);
 	}
 
 	@Contract("_, _ -> new")
 	public static @NotNull Spectrum3x3ContainerScreenHandler createTier3(int syncId, PlayerInventory playerInventory) {
-		return new Spectrum3x3ContainerScreenHandler(syncId, playerInventory, SpectrumTier.TIER3);
+		return new Spectrum3x3ContainerScreenHandler(syncId, playerInventory, ProgressionStage.LATEGAME);
 	}
 
 	@Contract("_, _, _ -> new")
 	public static @NotNull ScreenHandler createTier3(int syncId, PlayerInventory playerInventory, BlockPlacerBlockEntity blockPlacerBlockEntity) {
-		return new Spectrum3x3ContainerScreenHandler(SpectrumScreenHandlerTypes.GENERIC_TIER1_3X3, syncId, playerInventory, blockPlacerBlockEntity, SpectrumTier.TIER3);
+		return new Spectrum3x3ContainerScreenHandler(SpectrumScreenHandlerTypes.GENERIC_TIER1_3X3, syncId, playerInventory, blockPlacerBlockEntity, ProgressionStage.LATEGAME);
 	}
 
-	public Spectrum3x3ContainerScreenHandler(int syncId, PlayerInventory playerInventory, SpectrumTier spectrumTier) {
-		this(SpectrumScreenHandlerTypes.GENERIC_TIER1_3X3, syncId, playerInventory, new SimpleInventory(9), spectrumTier);
+	public Spectrum3x3ContainerScreenHandler(int syncId, PlayerInventory playerInventory, ProgressionStage progressionStage) {
+		this(SpectrumScreenHandlerTypes.GENERIC_TIER1_3X3, syncId, playerInventory, new SimpleInventory(9), progressionStage);
 	}
 
-	public Spectrum3x3ContainerScreenHandler(ScreenHandlerType screenHandlerType, int syncId, PlayerInventory playerInventory, Inventory inventory, SpectrumTier spectrumTier) {
+	public Spectrum3x3ContainerScreenHandler(ScreenHandlerType screenHandlerType, int syncId, PlayerInventory playerInventory, Inventory inventory, ProgressionStage progressionStage) {
 		super(screenHandlerType, syncId);
 		checkSize(inventory, 9);
-		this.tier = spectrumTier;
+		this.tier = progressionStage;
 		this.inventory = inventory;
 		inventory.onOpen(playerInventory.player);
 
@@ -117,7 +117,7 @@ public class Spectrum3x3ContainerScreenHandler extends ScreenHandler {
 		this.inventory.onClose(player);
 	}
 
-	public SpectrumTier getTier() {
+	public ProgressionStage getTier() {
 		return this.tier;
 	}
 

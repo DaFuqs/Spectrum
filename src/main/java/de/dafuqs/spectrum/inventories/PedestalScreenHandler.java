@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.inventories;
 
-import de.dafuqs.spectrum.blocks.pedestal.PedestalBlock;
 import de.dafuqs.spectrum.blocks.pedestal.PedestalBlockEntity;
 import de.dafuqs.spectrum.enums.PedestalRecipeTier;
 import de.dafuqs.spectrum.inventories.slots.DisabledSlot;
@@ -36,7 +35,7 @@ public class PedestalScreenHandler extends AbstractRecipeScreenHandler<Inventory
 	private final RecipeBookCategory category;
 	
 	private final BlockPos pedestalPos;
-	private final PedestalBlock.PedestalVariant variant;
+	private final PedestalRecipeTier pedestalRecipeTier;
 	private final PedestalRecipeTier maxPedestalRecipeTier;
 
 	public PedestalScreenHandler(int syncId, PlayerInventory playerInventory, @NotNull PacketByteBuf buf) {
@@ -51,7 +50,7 @@ public class PedestalScreenHandler extends AbstractRecipeScreenHandler<Inventory
 		this(SpectrumScreenHandlerTypes.PEDESTAL, ScreenHandlerContext.EMPTY, RecipeBookCategory.CRAFTING, syncId, playerInventory, inventory, propertyDelegate, variant, maxRecipeTier, pedestalPos);
 	}
 
-	protected PedestalScreenHandler(ScreenHandlerType<?> type, ScreenHandlerContext context, RecipeBookCategory recipeBookCategory, int i, @NotNull PlayerInventory playerInventory, Inventory inventory, PropertyDelegate propertyDelegate, int variant, int maxRecipeTier, BlockPos pedestalPos) {
+	protected PedestalScreenHandler(ScreenHandlerType<?> type, ScreenHandlerContext context, RecipeBookCategory recipeBookCategory, int i, @NotNull PlayerInventory playerInventory, Inventory inventory, PropertyDelegate propertyDelegate, int pedestalRecipeTier, int maxRecipeTier, BlockPos pedestalPos) {
 		super(type, i);
 		this.player = playerInventory.player;
 		this.inventory = inventory;
@@ -61,7 +60,7 @@ public class PedestalScreenHandler extends AbstractRecipeScreenHandler<Inventory
 		CraftingResultInventory craftingResultInventory = new CraftingResultInventory();
 
 		this.pedestalPos = pedestalPos;
-		this.variant = PedestalBlock.PedestalVariant.values()[variant];
+		this.pedestalRecipeTier = PedestalRecipeTier.values()[pedestalRecipeTier];
 		this.maxPedestalRecipeTier = PedestalRecipeTier.values()[maxRecipeTier];
 
 		checkSize(inventory, PedestalBlockEntity.INVENTORY_SIZE);
@@ -78,22 +77,22 @@ public class PedestalScreenHandler extends AbstractRecipeScreenHandler<Inventory
 		}
 
 		// gemstone powder slots
-		switch (this.variant) {
-			case BASIC_TOPAZ, BASIC_AMETHYST, BASIC_CITRINE, CMY -> {
+		switch (this.pedestalRecipeTier) {
+			case BASIC, SIMPLE -> {
 				this.addSlot(new StackFilterSlot(inventory, 9, 44 + 18, 77, SpectrumItems.TOPAZ_POWDER));
 				this.addSlot(new StackFilterSlot(inventory, 10, 44 + 2 * 18, 77, SpectrumItems.AMETHYST_POWDER));
 				this.addSlot(new StackFilterSlot(inventory, 11, 44 + 3 * 18, 77, SpectrumItems.CITRINE_POWDER));
 				this.addSlot(new DisabledSlot(inventory, 12, -2000, 77));
 				this.addSlot(new DisabledSlot(inventory, 13, -2000, 77));
 			}
-			case ONYX -> {
+			case ADVANCED -> {
 				this.addSlot(new StackFilterSlot(inventory, 9, 35 + 18, 77, SpectrumItems.TOPAZ_POWDER));
 				this.addSlot(new StackFilterSlot(inventory, 10, 35 + 2 * 18, 77, SpectrumItems.AMETHYST_POWDER));
 				this.addSlot(new StackFilterSlot(inventory, 11, 35 + 3 * 18, 77, SpectrumItems.CITRINE_POWDER));
 				this.addSlot(new StackFilterSlot(inventory, 12, 35 + 4 * 18, 77, SpectrumItems.ONYX_POWDER));
 				this.addSlot(new DisabledSlot(inventory, 13, -2000, 77));
 			}
-			case MOONSTONE -> {
+			case COMPLEX -> {
 				this.addSlot(new StackFilterSlot(inventory, 9, 44, 77, SpectrumItems.TOPAZ_POWDER));
 				this.addSlot(new StackFilterSlot(inventory, 10, 44 + 18, 77, SpectrumItems.AMETHYST_POWDER));
 				this.addSlot(new StackFilterSlot(inventory, 11, 44 + 2 * 18, 77, SpectrumItems.CITRINE_POWDER));
@@ -265,8 +264,8 @@ public class PedestalScreenHandler extends AbstractRecipeScreenHandler<Inventory
 		return this.pedestalPos;
 	}
 
-	public PedestalBlock.PedestalVariant getVariant() {
-		return this.variant;
+	public PedestalRecipeTier getPedestalRecipeTier() {
+		return this.pedestalRecipeTier;
 	}
 
 	public PedestalRecipeTier getMaxPedestalRecipeTier() {

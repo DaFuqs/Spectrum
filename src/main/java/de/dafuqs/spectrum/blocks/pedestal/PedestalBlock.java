@@ -2,9 +2,9 @@ package de.dafuqs.spectrum.blocks.pedestal;
 
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.RedstonePoweredBlock;
+import de.dafuqs.spectrum.enums.PedestalRecipeTier;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
-import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import de.dafuqs.spectrum.registries.SpectrumMultiblocks;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -35,7 +35,6 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3f;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
-import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import vazkii.patchouli.api.IMultiblock;
@@ -49,16 +48,7 @@ public class PedestalBlock extends BlockWithEntity implements RedstonePoweredBlo
 
     private final PedestalVariant variant;
 	public static final BooleanProperty POWERED = BooleanProperty.of("powered");
-
-	public enum PedestalVariant {
-		BASIC_TOPAZ,
-		BASIC_AMETHYST,
-		BASIC_CITRINE,
-		CMY,
-		ONYX,
-		MOONSTONE
-	}
-
+	
 	public PedestalBlock(Settings settings, PedestalVariant variant) {
 		super(settings);
 		this.variant = variant;
@@ -124,7 +114,7 @@ public class PedestalBlock extends BlockWithEntity implements RedstonePoweredBlo
 	 * while keeping the inventory and all other data
 	 */
 	public static void upgradeToVariant(@NotNull World world, BlockPos blockPos, PedestalVariant newPedestalVariant) {
-		world.setBlockState(blockPos, getPedestalBlockForVariant(newPedestalVariant).getPlacementState(new AutomaticItemPlacementContext(world, blockPos, Direction.DOWN, null, Direction.UP)));
+		world.setBlockState(blockPos, newPedestalVariant.getPedestalBlock().getPlacementState(new AutomaticItemPlacementContext(world, blockPos, Direction.DOWN, null, Direction.UP)));
 	}
 
 	@Nullable
@@ -208,43 +198,19 @@ public class PedestalBlock extends BlockWithEntity implements RedstonePoweredBlo
 	public PedestalVariant getVariant() {
 		return this.variant;
 	}
-
-	@Contract(pure = true)
-	public static Block getPedestalBlockForVariant(@NotNull PedestalVariant variant) {
-		switch (variant) {
-			case BASIC_TOPAZ -> {
-				return SpectrumBlocks.PEDESTAL_BASIC_TOPAZ;
-			}
-			case BASIC_AMETHYST -> {
-				return SpectrumBlocks.PEDESTAL_BASIC_AMETHYST;
-			}
-			case BASIC_CITRINE -> {
-				return SpectrumBlocks.PEDESTAL_BASIC_CITRINE;
-			}
-			case CMY -> {
-				return SpectrumBlocks.PEDESTAL_ALL_BASIC;
-			}
-			case ONYX -> {
-				return SpectrumBlocks.PEDESTAL_ONYX;
-			}
-			default -> {
-				return SpectrumBlocks.PEDESTAL_MOONSTONE;
-			}
-		}
-	}
 	
 	/**
 	 * Called when a pedestal is upgraded to a new tier
 	 * (like amethyst to the cmy variant). Spawns lots of matching particles.
-	 * @param newPedestalVariant The variant the pedestal has been upgraded to
+	 * @param newPedestalRecipeTier The tier the pedestal has been upgraded to
 	 */
 	@Environment(EnvType.CLIENT)
-	public static void spawnUpgradeParticleEffectsForTier(BlockPos blockPos, PedestalBlock.@NotNull PedestalVariant newPedestalVariant) {
+	public static void spawnUpgradeParticleEffectsForTier(BlockPos blockPos, @NotNull PedestalRecipeTier newPedestalRecipeTier) {
 		World world = MinecraftClient.getInstance().world;
 		Random random = world.getRandom();
 		
-		switch (newPedestalVariant) {
-			case MOONSTONE -> {
+		switch (newPedestalRecipeTier) {
+			case COMPLEX -> {
 				ParticleEffect particleEffect = SpectrumParticleTypes.getCraftingParticle(DyeColor.WHITE);
 				for (int i = 0; i < 25; i++) {
 					float randomZ = random.nextFloat() * 1.2F;
@@ -263,7 +229,7 @@ public class PedestalBlock extends BlockWithEntity implements RedstonePoweredBlo
 					world.addParticle(particleEffect, blockPos.getX() + randomX, blockPos.getY(), blockPos.getZ() -0.1, 0.0D, 0.03D, 0.0D);
 				}
 			}
-			case ONYX -> {
+			case ADVANCED -> {
 				ParticleEffect particleEffect = SpectrumParticleTypes.getCraftingParticle(DyeColor.BLACK);
 				for (int i = 0; i < 25; i++) {
 					float randomZ = random.nextFloat() * 1.2F;
@@ -282,7 +248,7 @@ public class PedestalBlock extends BlockWithEntity implements RedstonePoweredBlo
 					world.addParticle(particleEffect, blockPos.getX() + randomX, blockPos.getY(), blockPos.getZ() -0.1, 0.0D, 0.03D, 0.0D);
 				}
 			}
-			case CMY -> {
+			case SIMPLE -> {
 				ParticleEffect particleEffectC = SpectrumParticleTypes.getCraftingParticle(DyeColor.CYAN);
 				ParticleEffect particleEffectM = SpectrumParticleTypes.getCraftingParticle(DyeColor.MAGENTA);
 				ParticleEffect particleEffectY = SpectrumParticleTypes.getCraftingParticle(DyeColor.YELLOW);

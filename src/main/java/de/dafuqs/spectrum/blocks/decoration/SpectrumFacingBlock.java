@@ -25,6 +25,5 @@ public class SpectrumFacingBlock extends FacingBlock {
 	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
 		builder.add(FACING);
 	}
-
-
+	
 }

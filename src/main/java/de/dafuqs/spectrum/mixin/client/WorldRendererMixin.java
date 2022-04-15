@@ -22,6 +22,7 @@ import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
@@ -31,6 +32,7 @@ import net.minecraft.util.profiler.Profiler;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -61,7 +63,9 @@ public abstract class WorldRendererMixin implements WorldRendererAccessor {
     private BuiltChunkStorage chunks;
 
     @Shadow public abstract void scheduleTerrainUpdate();
-
+    
+    @Shadow public abstract void playSong(@Nullable SoundEvent song, BlockPos songPosition);
+    
     /**
      * When triggered on client side lets the client redraw ALL chunks
      * Warning: Costly + LagSpike!
@@ -103,11 +107,11 @@ public abstract class WorldRendererMixin implements WorldRendererAccessor {
         BlockPos lookingAtPos = hitResult.getBlockPos();
         BlockState lookingAtState = this.world.getBlockState(lookingAtPos);
     
-        if(!BuildingStaffItem.isBlacklisted(lookingAtState)) {
+        ClientPlayerEntity player = client.player;
+        if(player.isCreative() || !BuildingStaffItem.isBlacklisted(lookingAtState)) {
             Block lookingAtBlock = lookingAtState.getBlock();
             Item item = lookingAtBlock.asItem();
             VoxelShape shape = VoxelShapes.empty();
-            ClientPlayerEntity player = client.player;
 
             if (item != Items.AIR) {
                 int itemCountInInventory;
@@ -149,13 +153,13 @@ public abstract class WorldRendererMixin implements WorldRendererAccessor {
         BlockPos lookingAtPos = hitResult.getBlockPos();
         BlockState lookingAtState = this.world.getBlockState(lookingAtPos);
     
-        if(!BuildingStaffItem.isBlacklisted(lookingAtState)) {
+        ClientPlayerEntity player = client.player;
+        if(player.isCreative() || !BuildingStaffItem.isBlacklisted(lookingAtState)) {
             Block lookingAtBlock = lookingAtState.getBlock();
             Optional<Block> exchangeBlock = ExchangeStaffItem.getBlockTarget(exchangeStaffItemStack);
             if(exchangeBlock.isPresent() && exchangeBlock.get() != lookingAtBlock) {
                 Item exchangeBlockItem = exchangeBlock.get().asItem();
                 VoxelShape shape = VoxelShapes.empty();
-                ClientPlayerEntity player = client.player;
     
                 if (exchangeBlockItem != Items.AIR) {
                     int itemCountInInventory;

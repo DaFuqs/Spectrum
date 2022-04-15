@@ -101,7 +101,7 @@ public class ExchangeStaffItem extends BuildingStaffItem implements EnchanterEnc
 		BlockState targetBlockState = world.getBlockState(pos);
 		
 		ActionResult result = ActionResult.FAIL;
-		if (!isBlacklisted(targetBlockState)) {
+		if ((player != null && player.isCreative()) || !isBlacklisted(targetBlockState)) {
 			Block targetBlock = targetBlockState.getBlock();
 			Item targetBlockItem = targetBlockState.getBlock().asItem();
 			if (player != null && targetBlockItem != Items.AIR && context.getHand() == Hand.MAIN_HAND) {

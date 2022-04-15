@@ -81,7 +81,7 @@ public class PlacementStaffItem extends BuildingStaffItem {
 		
 		BlockState targetBlockState = world.getBlockState(pos);
 		
-		if(!isBlacklisted(targetBlockState)) {
+		if((player != null && player.isCreative()) || !isBlacklisted(targetBlockState)) {
 			Block targetBlock = targetBlockState.getBlock();
 			Item targetBlockItem = targetBlock.asItem();
 			

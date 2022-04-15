@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.blocks.glass;
 
-import de.dafuqs.spectrum.enums.GemstoneColor;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -9,7 +8,6 @@ import net.minecraft.block.GlassBlock;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.BlockView;
-import org.jetbrains.annotations.Nullable;
 
 public class RadiantGlassBlock extends GlassBlock {
 	

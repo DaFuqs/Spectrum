@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.inventories;
 
 import de.dafuqs.spectrum.enums.BuiltinGemstoneColor;
-import de.dafuqs.spectrum.enums.GemstoneColor;
 import de.dafuqs.spectrum.enums.PedestalRecipeTier;
 import de.dafuqs.spectrum.inventories.slots.LockableCraftingResultSlot;
 import de.dafuqs.spectrum.inventories.slots.ReadOnlySlot;

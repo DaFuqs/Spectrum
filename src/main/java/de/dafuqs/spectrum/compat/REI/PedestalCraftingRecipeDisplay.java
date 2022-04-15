@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.compat.REI;
 
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.enums.BuiltinGemstoneColor;
-import de.dafuqs.spectrum.enums.GemstoneColor;
 import de.dafuqs.spectrum.enums.PedestalRecipeTier;
 import de.dafuqs.spectrum.recipe.pedestal.PedestalCraftingRecipe;
 import de.dafuqs.spectrum.registries.SpectrumItems;

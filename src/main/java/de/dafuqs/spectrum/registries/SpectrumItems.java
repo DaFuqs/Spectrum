@@ -5,7 +5,6 @@ import de.dafuqs.spectrum.blocks.gravity.CloakedGravityItem;
 import de.dafuqs.spectrum.blocks.jade_vines.GerminatedJadeVineSeedsItem;
 import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
 import de.dafuqs.spectrum.enums.BuiltinGemstoneColor;
-import de.dafuqs.spectrum.enums.GemstoneColor;
 import de.dafuqs.spectrum.interfaces.Cloakable;
 import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.items.armor.GemstoneArmorItem;
@@ -26,8 +25,6 @@ import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
 import net.minecraft.util.registry.Registry;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
 
 import static de.dafuqs.spectrum.registries.SpectrumFluids.*;
 

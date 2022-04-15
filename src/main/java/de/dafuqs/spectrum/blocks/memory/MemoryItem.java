@@ -124,6 +124,7 @@ public class MemoryItem extends BlockItem {
 			}
 		} else {
 			tooltip.add(new TranslatableText("item.spectrum.memory.tooltip.unset_entity_type").formatted(Formatting.GRAY));
+			return;
 		}
 		
 		if(ticksToHatch <= 0) {

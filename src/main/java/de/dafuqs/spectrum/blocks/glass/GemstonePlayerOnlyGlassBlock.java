@@ -1,6 +1,5 @@
-package de.dafuqs.spectrum.blocks;
+package de.dafuqs.spectrum.blocks.glass;
 
-import de.dafuqs.spectrum.blocks.decoration.GemstoneGlassBlock;
 import de.dafuqs.spectrum.enums.GemstoneColor;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.EntityShapeContext;

@@ -26,6 +26,7 @@ import de.dafuqs.spectrum.blocks.fluid.MudFluidBlock;
 import de.dafuqs.spectrum.blocks.fusion_shrine.FusionShrineBlock;
 import de.dafuqs.spectrum.blocks.gemstone.SpectrumBuddingBlock;
 import de.dafuqs.spectrum.blocks.gemstone.SpectrumGemstoneBlock;
+import de.dafuqs.spectrum.blocks.glass.*;
 import de.dafuqs.spectrum.blocks.gravity.GravitableBlock;
 import de.dafuqs.spectrum.blocks.gravity.GravityBlockItem;
 import de.dafuqs.spectrum.blocks.item_bowl.ItemBowlBlock;

@@ -1,7 +1,5 @@
-package de.dafuqs.spectrum.blocks;
+package de.dafuqs.spectrum.blocks.glass;
 
-import de.dafuqs.spectrum.blocks.decoration.GemstoneGlassBlock;
-import de.dafuqs.spectrum.enums.GemstoneColor;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.*;

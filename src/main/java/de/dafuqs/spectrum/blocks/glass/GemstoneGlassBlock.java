@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.blocks.decoration;
+package de.dafuqs.spectrum.blocks.glass;
 
 import de.dafuqs.spectrum.enums.GemstoneColor;
 import net.fabricmc.api.EnvType;

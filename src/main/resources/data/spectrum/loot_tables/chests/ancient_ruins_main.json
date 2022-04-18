@@ -143,7 +143,7 @@
       "entries": [
         {
           "type": "minecraft:tag",
-          "name": "spectrum:pigments",
+          "name": "spectrum:pigments_non_w",
           "expand": true,
           "functions": [
             {
@@ -165,7 +165,13 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "spectrum:music_disc_spectrum_theme"
+          "name": "spectrum:music_disc_spectrum_theme",
+          "conditions": [
+            {
+              "condition": "minecraft:random_chance",
+              "chance": 0.5
+            }
+          ]
         }
       ]
     },

@@ -1,0 +1,17 @@
+{
+  "values": [
+    "spectrum:black_pigment",
+    "spectrum:blue_pigment",
+    "spectrum:brown_pigment",
+    "spectrum:cyan_pigment",
+    "spectrum:green_pigment",
+    "spectrum:light_blue_pigment",
+    "spectrum:lime_pigment",
+    "spectrum:magenta_pigment",
+    "spectrum:orange_pigment",
+    "spectrum:pink_pigment",
+    "spectrum:purple_pigment",
+    "spectrum:red_pigment",
+    "spectrum:yellow_pigment"
+  ]
+}

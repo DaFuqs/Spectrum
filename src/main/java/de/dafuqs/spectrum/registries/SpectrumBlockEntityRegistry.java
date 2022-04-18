@@ -32,6 +32,7 @@ import de.dafuqs.spectrum.blocks.shooting_star.ShootingStarBlockEntity;
 import de.dafuqs.spectrum.blocks.spirit_instiller.SpiritInstillerBlockEntity;
 import de.dafuqs.spectrum.blocks.spirit_instiller.SpiritInstillerBlockEntityRenderer;
 import de.dafuqs.spectrum.blocks.spirit_sallow.OminousSaplingBlockEntity;
+import de.dafuqs.spectrum.blocks.structure.PreservationControllerBlockEntity;
 import de.dafuqs.spectrum.blocks.structure.TreasureChestBlockEntity;
 import de.dafuqs.spectrum.blocks.upgrade.UpgradeBlock;
 import de.dafuqs.spectrum.blocks.upgrade.UpgradeBlockBlockEntityRenderer;
@@ -51,7 +52,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SpectrumBlockEntityRegistry<T extends BlockEntity> {
-
+	
 	public static BlockEntityType<OminousSaplingBlockEntity> OMINOUS_SAPLING;
 	public static BlockEntityType<PedestalBlockEntity> PEDESTAL;
 	public static BlockEntityType<FusionShrineBlockEntity> FUSION_SHRINE;
@@ -88,6 +89,8 @@ public class SpectrumBlockEntityRegistry<T extends BlockEntity> {
 	public static BlockEntityType<PastelNetworkStorageNodeBlockEntity> STORAGE_NODE;
 	public static BlockEntityType<PastelNetworkPusherNodeBlockEntity> PUSHER_NODE;
 	public static BlockEntityType<PastelNetworkPullerNodeBlockEntity> PULLER_NODE;
+	
+	public static BlockEntityType<PreservationControllerBlockEntity> PRESERVATION_CONTROLLER;
 
 	public static void register() {
 		OMINOUS_SAPLING = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "ominous_sapling_block_entity"), FabricBlockEntityTypeBuilder.create(OminousSaplingBlockEntity::new, SpectrumBlocks.OMINOUS_SAPLING).build());
@@ -123,6 +126,8 @@ public class SpectrumBlockEntityRegistry<T extends BlockEntity> {
 		STORAGE_NODE = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "storage_node"), FabricBlockEntityTypeBuilder.create(PastelNetworkStorageNodeBlockEntity::new, SpectrumBlocks.STORAGE_NODE).build());
 		PUSHER_NODE = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "pusher_node"), FabricBlockEntityTypeBuilder.create(PastelNetworkPusherNodeBlockEntity::new, SpectrumBlocks.PUSHER_NODE).build());
 		PULLER_NODE = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "puller_node"), FabricBlockEntityTypeBuilder.create(PastelNetworkPullerNodeBlockEntity::new, SpectrumBlocks.PULLER_NODE).build());
+		
+		PRESERVATION_CONTROLLER = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "preservation_controller"), FabricBlockEntityTypeBuilder.create(PreservationControllerBlockEntity::new, SpectrumBlocks.PRESERVATION_CONTROLLER).build());
 		
 		// All the upgrades
 		List<Block> upgradeBlocksList = UpgradeBlock.getRegisteredUpgradeBlocks();

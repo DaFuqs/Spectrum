@@ -1,0 +1,11 @@
+{
+  "values": [
+    "spectrum:preservation_controller",
+    "spectrum:preservation_stone",
+    "spectrum:dike_chiseled_preservation_stone",
+    "spectrum:preservation_glass",
+    "spectrum:dike_gate",
+    "spectrum:courier_statue",
+    "spectrum:treasure_chest"
+  ]
+}

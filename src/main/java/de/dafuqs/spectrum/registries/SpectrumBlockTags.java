@@ -35,6 +35,8 @@ public class SpectrumBlockTags {
 	public static TagKey<Block> MEMORY_NEVER_MANIFESTERS;
 	public static TagKey<Block> MEMORY_FAST_MANIFESTERS;
 	public static TagKey<Block> MEMORY_VERY_FAST_MANIFESTERS;
+	
+	public static TagKey<Block> UNBREAKABLE_STRUCTURE_BLOCKS;
 
 	private static TagKey<Block> getReference(String id) {
 		return TagKey.of(Registry.BLOCK_KEY, new Identifier(SpectrumCommon.MOD_ID, id));
@@ -71,5 +73,7 @@ public class SpectrumBlockTags {
 		MEMORY_NEVER_MANIFESTERS = getReference("memory_never_manifesters");
 		MEMORY_FAST_MANIFESTERS = getReference("memory_fast_manifesters");
 		MEMORY_VERY_FAST_MANIFESTERS = getReference("memory_very_fast_manifesters");
+		
+		UNBREAKABLE_STRUCTURE_BLOCKS = getReference("unbreakable_structure_blocks");
 	}
 }

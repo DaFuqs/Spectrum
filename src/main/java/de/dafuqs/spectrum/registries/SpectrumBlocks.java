@@ -607,7 +607,7 @@ public class SpectrumBlocks {
 	public static final Block PRESERVATION_STONE = new Block(preservationBlockSettings);
 	public static final Block DIKE_CHISELED_PRESERVATION_STONE = new Block(FabricBlockSettings.copyOf(PRESERVATION_STONE).luminance(6));
 	public static final Block PRESERVATION_GLASS = new GlassBlock(preservationGlassBlockSettings);
-	public static final Block TINTED_PRESERVATION_GLASS = new GlassBlock(preservationGlassBlockSettings);
+	public static final Block TINTED_PRESERVATION_GLASS = new GlassBlock(FabricBlockSettings.copyOf(PRESERVATION_GLASS).luminance(10));
 	public static final Block DIKE_GATE_FOUNTAIN = new SpectrumFacingBlock(preservationBlockSettings);
 	public static final Block DIKE_GATE = new DikeGateBlock(FabricBlockSettings.of(Material.GLASS).strength(-1.0F).dropsNothing().luminance(3).sounds(BlockSoundGroup.GLASS).nonOpaque().allowsSpawning(SpectrumBlocks::never).solidBlock(SpectrumBlocks::never).suffocates(SpectrumBlocks::never).blockVision(SpectrumBlocks::never));
 	public static final Block COURIER_STATUE = new DecoStoneBlock(preservationBlockSettings);

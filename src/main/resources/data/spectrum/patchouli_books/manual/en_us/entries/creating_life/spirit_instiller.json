@@ -6,28 +6,28 @@
   "extra_recipe_mappings": {
     "spectrum:spirit_instiller": 0
   },
-    "pages": [
-        {
-            "type": "patchouli:text",
-            "text": "Imbue the energies of one item into another, using a compound."
-        },
-        {
-            "type": "spectrum:pedestal_crafting",
-            "title": "Pedestal Recipe",
-            "recipe": "spectrum:pedestal/tier3/spirit_instiller",
-            "text": "The Spirit Instiller needs a focus structure to work."
-        },
-        {
-            "type": "patchouli:multiblock",
-            "name": "Instiller Structure",
-            "multiblock_id": "spectrum:spirit_instiller_structure",
-            "enable_visualize": true,
-            "text": "To boost the abilities of the structure you can place upgrades on the two Onyx Chiseled Blocks."
-        },
-        {
-            "type": "patchouli:text",
-            "title": "Block Checklist",
-            "text": "$(li)1 Spirit Instiller$(li)2 Polished Gemstone Blocks$(li)2 Item Bowls$(li)2 Notched Polished Blocks$(li)2 Onyx Chiseled Blocks$(li)6 Polished Pillars$(li)17 Polished Slabs$(li)116 Polished Blocks$(li)2 Gemstone Chimes"
-        }
-    ]
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Created with all the knowledge you have gathered, you have created the Spirit Instiller. It serves to be able to connect the energies of two items, with the help of a third object to bind them.$(br)An almost spiritual process."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier3/spirit_instiller",
+      "text": "The Spirit Instiller needs a focus structure to work. To rotate the structure hologram in the direction you want it to, click on the placed Spirit Instiller itself."
+    },
+    {
+      "type": "patchouli:multiblock",
+      "name": "Instiller Structure",
+      "multiblock_id": "spectrum:spirit_instiller_structure",
+      "enable_visualize": true,
+      "text": "To boost the abilities of the Spirit Instiller via Upgrades, place them on the two Onyx Chiseled Blocks."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Block Checklist",
+      "text": "$(li)1 Spirit Instiller$(li)2 Polished Gemstone Blocks$(li)2 Item Bowls$(li)2 Notched Polished Blocks$(li)2 Onyx Chiseled Blocks$(li)6 Polished Pillars$(li)17 Polished Slabs$(li)116 Polished Blocks$(li)2 Gemstone Chimes"
+    }
+  ]
 }

@@ -55,6 +55,7 @@ import de.dafuqs.spectrum.blocks.shooting_star.ShootingStarItem;
 import de.dafuqs.spectrum.blocks.spirit_instiller.SpiritInstillerBlock;
 import de.dafuqs.spectrum.blocks.spirit_sallow.*;
 import de.dafuqs.spectrum.blocks.structure.DikeGateBlock;
+import de.dafuqs.spectrum.blocks.structure.HorizontalFacingDoubleBlock;
 import de.dafuqs.spectrum.blocks.structure.PreservationControllerBlock;
 import de.dafuqs.spectrum.blocks.structure.TreasureChestBlock;
 import de.dafuqs.spectrum.blocks.upgrade.UpgradeBlock;
@@ -611,7 +612,7 @@ public class SpectrumBlocks {
 	public static final Block TINTED_PRESERVATION_GLASS = new GlassBlock(FabricBlockSettings.copyOf(PRESERVATION_GLASS).luminance(12).hardness(Float.MAX_VALUE));
 	public static final Block DIKE_GATE_FOUNTAIN = new SpectrumFacingBlock(preservationBlockSettings);
 	public static final Block DIKE_GATE = new DikeGateBlock(FabricBlockSettings.of(Material.GLASS).strength(-1.0F).dropsNothing().luminance(3).sounds(BlockSoundGroup.GLASS).nonOpaque().allowsSpawning(SpectrumBlocks::never).solidBlock(SpectrumBlocks::never).suffocates(SpectrumBlocks::never).blockVision(SpectrumBlocks::never));
-	public static final Block COURIER_STATUE = new DecoStoneBlock(preservationBlockSettings);
+	public static final Block COURIER_STATUE = new HorizontalFacingDoubleBlock(preservationBlockSettings);
 	public static final Block TREASURE_CHEST = new TreasureChestBlock(FabricBlockSettings.copyOf(Blocks.CHEST).hardness(-1.0F));
 	
 	// JADE VINES

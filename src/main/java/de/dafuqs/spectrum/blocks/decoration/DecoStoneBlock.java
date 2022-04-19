@@ -33,11 +33,13 @@ public class DecoStoneBlock extends Block {
 		super(settings);
 		this.setDefaultState((this.stateManager.getDefaultState()).with(HALF, DoubleBlockHalf.LOWER));
 	}
-
+	
+	@Override
 	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
 		return state.get(HALF) == DoubleBlockHalf.LOWER ? BOTTOM_SHAPE : TOP_SHAPE;
 	}
 	
+	@Override
 	public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
 		DoubleBlockHalf doubleBlockHalf = state.get(HALF);
 		if (direction.getAxis() == Direction.Axis.Y && doubleBlockHalf == DoubleBlockHalf.LOWER == (direction == Direction.UP) && (!neighborState.isOf(this) || neighborState.get(HALF) == doubleBlockHalf)) {
@@ -54,10 +56,12 @@ public class DecoStoneBlock extends Block {
 		return blockPos.getY() < world.getTopY() - 1 && world.getBlockState(blockPos.up()).canReplace(ctx) ? super.getPlacementState(ctx) : null;
 	}
 	
+	@Override
 	public void onPlaced(World world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack itemStack) {
 		world.setBlockState(pos.up(), this.getDefaultState().with(HALF, DoubleBlockHalf.UPPER), 3);
 	}
 	
+	@Override
 	public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
 		if (state.get(HALF) != DoubleBlockHalf.UPPER) {
 			return super.canPlaceAt(state, world, pos);
@@ -67,6 +71,7 @@ public class DecoStoneBlock extends Block {
 		}
 	}
 	
+	@Override
 	public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
 		if (!world.isClient) {
 			if (player.isCreative()) {
@@ -79,6 +84,7 @@ public class DecoStoneBlock extends Block {
 		super.onBreak(world, pos, state, player);
 	}
 	
+	@Override
 	public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack stack) {
 		super.afterBreak(world, player, pos, Blocks.AIR.getDefaultState(), blockEntity, stack);
 	}
@@ -94,10 +100,12 @@ public class DecoStoneBlock extends Block {
 		}
 	}
 	
+	@Override
 	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
 		builder.add(HALF);
 	}
 	
+	@Override
 	public long getRenderingSeed(BlockState state, BlockPos pos) {
 		return MathHelper.hashCode(pos.getX(), pos.down(state.get(HALF) == DoubleBlockHalf.LOWER ? 0 : 1).getY(), pos.getZ());
 	}

@@ -267,11 +267,8 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 			if (enchanterBlockEntity.currentRecipe instanceof EnchanterRecipe enchanterRecipe) {
 				enchanterBlockEntity.craftingTime++;
 				
-				// looks cooler this way
-				if(enchanterBlockEntity.craftingTime == enchanterBlockEntity.craftingTimeTotal - 10) {
-					playCraftingFinishedEffects(enchanterBlockEntity);
-				}
 				if (enchanterBlockEntity.craftingTime == enchanterBlockEntity.craftingTimeTotal) {
+					playCraftingFinishedEffects(enchanterBlockEntity);
 					craftEnchanterRecipe(world, enchanterBlockEntity, enchanterRecipe);
 					craftingSuccess = true;
 				}

@@ -303,7 +303,7 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 					BlockPos itemBowlPos = getItemBowlPos(spiritInstillerBlockEntity, i == 1);
 					BlockEntity blockEntity = spiritInstillerBlockEntity.world.getBlockEntity(itemBowlPos);
 					if (blockEntity instanceof ItemBowlBlockEntity itemBowlBlockEntity) {
-						itemBowlBlockEntity.decrementBowlStack(spiritInstillerBlockEntity.pos, resultAmountAfterEfficiencyMod);
+						itemBowlBlockEntity.decrementBowlStack(spiritInstillerBlockEntity.pos, resultAmountAfterEfficiencyMod, true);
 						itemBowlBlockEntity.updateInClientWorld();
 					} else {
 						success = false;

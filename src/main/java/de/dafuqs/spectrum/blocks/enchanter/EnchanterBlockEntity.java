@@ -219,14 +219,17 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 			
 			if(world.getTime() % 12 == 0) {
 				((ClientWorld) world).playSound(enchanterBlockEntity.pos, SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.BLOCKS, 0.8F, 0.8F + world.random.nextFloat() * 0.4F, true);
-				
-				for(int i = 0; i < 8; i++) {
-					BlockPos itemBowlPos = enchanterBlockEntity.pos.add(getItemBowlPositionOffset(i, 0));
-					BlockEntity blockEntity = world.getBlockEntity(itemBowlPos);
-					if(blockEntity instanceof ItemBowlBlockEntity itemBowlBlockEntity) {
-						itemBowlBlockEntity.doEnchantingEffects(enchanterBlockEntity.pos);
-					}
-				}
+				enchanterBlockEntity.doItemBowlOrbs(world);
+			}
+		}
+	}
+	
+	private void doItemBowlOrbs(World world) {
+		for(int i = 0; i < 8; i++) {
+			BlockPos itemBowlPos = pos.add(getItemBowlPositionOffset(i, 0));
+			BlockEntity blockEntity = world.getBlockEntity(itemBowlPos);
+			if(blockEntity instanceof ItemBowlBlockEntity itemBowlBlockEntity) {
+				itemBowlBlockEntity.doEnchantingEffects(pos);
 			}
 		}
 	}
@@ -267,7 +270,10 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 			if (enchanterBlockEntity.currentRecipe instanceof EnchanterRecipe enchanterRecipe) {
 				enchanterBlockEntity.craftingTime++;
 				
-				if (enchanterBlockEntity.craftingTime == enchanterBlockEntity.craftingTimeTotal) {
+				// looks cooler this way
+				if(enchanterBlockEntity.craftingTime == enchanterBlockEntity.craftingTimeTotal - 20) {
+					enchanterBlockEntity.doItemBowlOrbs(world);
+				} else if (enchanterBlockEntity.craftingTime == enchanterBlockEntity.craftingTimeTotal) {
 					playCraftingFinishedEffects(enchanterBlockEntity);
 					craftEnchanterRecipe(world, enchanterBlockEntity, enchanterRecipe);
 					craftingSuccess = true;
@@ -566,7 +572,7 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 				BlockPos itemBowlPos = enchanterBlockEntity.pos.add(getItemBowlPositionOffset(i, enchanterBlockEntity.virtualInventoryRecipeOrientation));
 				BlockEntity blockEntity = world.getBlockEntity(itemBowlPos);
 				if (blockEntity instanceof ItemBowlBlockEntity itemBowlBlockEntity) {
-					itemBowlBlockEntity.decrementBowlStack(enchanterBlockEntity.pos, resultAmountAfterEfficiencyMod);
+					itemBowlBlockEntity.decrementBowlStack(enchanterBlockEntity.pos, resultAmountAfterEfficiencyMod, false);
 					itemBowlBlockEntity.updateInClientWorld();
 				}
 			}
@@ -641,7 +647,7 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 					itemBowlBlockEntity.doEnchantingEffects(enchanterBlockEntity.pos);
 					consumedAmount += itemCountToConsume;
 				} else {
-					int decrementedAmount = itemBowlBlockEntity.decrementBowlStack(enchanterBlockEntity.pos, itemCountToConsumeAfterMod);
+					int decrementedAmount = itemBowlBlockEntity.decrementBowlStack(enchanterBlockEntity.pos, itemCountToConsumeAfterMod, true);
 					consumedAmount += decrementedAmount;
 				}
 			}

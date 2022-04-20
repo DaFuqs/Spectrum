@@ -87,7 +87,7 @@ public class ItemBowlBlockEntity extends BlockEntity {
 		}
 	}
 	
-	public int decrementBowlStack(BlockPos particleTargetBlockPos, int amount) {
+	public int decrementBowlStack(BlockPos particleTargetBlockPos, int amount, boolean doEffects) {
 		ItemStack storedStack = this.inventory.getStack(0);
 		if(storedStack.isEmpty()) {
 			return 0;
@@ -113,7 +113,9 @@ public class ItemBowlBlockEntity extends BlockEntity {
 		}
 		
 		if(decrementAmount > 0) {
-			doEnchantingEffects(particleTargetBlockPos);
+			if(doEffects) {
+				doEnchantingEffects(particleTargetBlockPos);
+			}
 			updateInClientWorld();
 			markDirty();
 		}

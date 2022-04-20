@@ -20,7 +20,7 @@ public class SpectrumEntityTypes {
 	public static EntityType<? extends ThrownItemEntity> BLOCK_FLOODER_PROJECTILE;
 
 	public static void register() {
-		SHOOTING_STAR = register("shooting_star", 240, 20, true, EntityDimensions.changing(0.98F, 0.98F), false, ShootingStarEntity::new);
+		SHOOTING_STAR = register("shooting_star", 240, 20, true, EntityDimensions.changing(0.8F, 0.8F), true, ShootingStarEntity::new);
 		GRAVITY_BLOCK = register("gravity_block", 160, 20, true, EntityDimensions.changing(0.98F, 0.98F), true, GravityBlockEntity::new);
 		INVISIBLE_ITEM_FRAME = register("invisible_item_frame", 10, 2147483647, false, EntityDimensions.changing(0.5F, 0.5F), false, InvisibleItemFrameEntity::new);
 		INVISIBLE_GLOW_ITEM_FRAME = register("invisible_glow_item_frame", 10, 2147483647, false, EntityDimensions.changing(0.5F, 0.5F), false, InvisibleGlowItemFrameEntity::new);

@@ -19,6 +19,7 @@ import net.minecraft.util.math.BlockPointer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3f;
+import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Contract;
@@ -28,6 +29,8 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Random;
 
 public class ShootingStarBlock extends BlockWithEntity {
+	
+	protected static final VoxelShape SHAPE = Block.createCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 12.0D, 14.0D);
 	
 	public enum Type {
 		GLISTERING("glistering"),
@@ -239,6 +242,11 @@ public class ShootingStarBlock extends BlockWithEntity {
 				shootingStarBlockEntity.setRemainingHits(ShootingStarItem.getRemainingHits(itemStack));
 			}
 		}
+	}
+	
+	@Override
+	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+		return SHAPE;
 	}
 	
 	public static class ShootingStarBlockDispenserBehavior extends ItemDispenserBehavior {

@@ -15,6 +15,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.TickPriority;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
 
@@ -79,21 +80,21 @@ public abstract class DecayBlock extends Block {
 		}
 	}
 	
-	protected boolean tryConvert(World world, BlockState state, BlockPos originPos, Direction direction) {
+	protected boolean tryConvert(@NotNull World world, BlockState state, @NotNull BlockPos originPos, Direction direction) {
 		BlockPos targetBlockPos = originPos.offset(direction);
-		BlockState currentBlockState = world.getBlockState(targetBlockPos);
+		BlockState targetBlockState = world.getBlockState(targetBlockPos);
 		BlockEntity blockEntity = world.getBlockEntity(targetBlockPos);
 		
-		if (blockEntity == null && currentBlockState.isIn(SpectrumBlockTags.DECAY) // decay doesn't jump to other decay. Maybe: if tier is smaller it should still be converted?
-				&& (whiteListBlockTag == null || currentBlockState.isIn(whiteListBlockTag))
-				&& (blackListBlockTag == null || !currentBlockState.isIn(blackListBlockTag))
+		if (blockEntity == null && !targetBlockState.isIn(SpectrumBlockTags.DECAY) // decay doesn't jump to other decay. Maybe: if tier is smaller it should still be converted?
+				&& (whiteListBlockTag == null || targetBlockState.isIn(whiteListBlockTag))
+				&& (blackListBlockTag == null || !targetBlockState.isIn(blackListBlockTag))
 				// bedrock is ok, but not other modded unbreakable blocks
-				&& (currentBlockState.getBlock() == Blocks.BEDROCK || (currentBlockState.getBlock().getHardness() > -1.0F && currentBlockState.getBlock().getBlastResistance() < 3600000.0F))) {
+				&& (targetBlockState.getBlock() == Blocks.BEDROCK || (targetBlockState.getBlock().getHardness() > -1.0F && targetBlockState.getBlock().getBlastResistance() < 3600000.0F))) {
 			
 			BlockState destinationBlockState = getSpreadState(state);
 			for (TagKey<Block> currentCheckTag : this.decayConversionsList) {
 				BlockState targetState = decayConversions.get(currentCheckTag);
-				if (currentBlockState.isIn(currentCheckTag)) {
+				if (targetBlockState.isIn(currentCheckTag)) {
 					destinationBlockState = targetState;
 					break;
 				}

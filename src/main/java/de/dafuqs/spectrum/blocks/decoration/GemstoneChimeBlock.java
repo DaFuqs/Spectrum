@@ -72,4 +72,8 @@ public class GemstoneChimeBlock extends Block {
 		return false;
 	}
 	
+	public ParticleEffect getParticleEffect() {
+		return this.particleEffect;
+	}
+	
 }

@@ -53,7 +53,7 @@ public class SpiritInstillerBlock extends BlockWithEntity {
 	@Override
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
 		if(world.isClient) {
-			return null;
+			return checkType(type, SpectrumBlockEntityRegistry.SPIRIT_INSTILLER, SpiritInstillerBlockEntity::clientTick);
 		} else {
 			return checkType(type, SpectrumBlockEntityRegistry.SPIRIT_INSTILLER, SpiritInstillerBlockEntity::serverTick);
 		}

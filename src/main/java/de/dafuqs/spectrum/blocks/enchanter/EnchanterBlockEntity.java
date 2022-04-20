@@ -60,6 +60,17 @@ import java.util.*;
 
 public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Upgradeable {
 	
+	public static final List<Vec3i> itemBowlOffsets = new ArrayList<>() {{
+		add(new Vec3i(5, 0, -3));
+		add(new Vec3i(5, 0, 3));
+		add(new Vec3i(3, 0, 5));
+		add(new Vec3i(-3, 0, 5));
+		add(new Vec3i(-5, 0, 3));
+		add(new Vec3i(-5, 0, -3));
+		add(new Vec3i(-3, 0, -5));
+		add(new Vec3i(3, 0, -5));
+	}};
+	
 	public static final int REQUIRED_TICKS_FOR_EACH_EXPERIENCE_POINT = 4;
 	public static final Identifier APPLY_CONFLICTING_ENCHANTMENTS_ADVANCEMENT_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "milestones/unlock_conflicted_enchanting_with_enchanter");
 	public static final Identifier OVERENCHANTING_ADVANCEMENT_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "milestones/unlock_overenchanting_with_enchanter");
@@ -675,18 +686,8 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 	}
 	
 	public static Vec3i getItemBowlPositionOffset(int index, int orientation) {
-		List<Vec3i> pos = new ArrayList<>();
-		pos.add(new Vec3i(5, 0, -3));
-		pos.add(new Vec3i(5, 0, 3));
-		pos.add(new Vec3i(3, 0, 5));
-		pos.add(new Vec3i(-3, 0, 5));
-		pos.add(new Vec3i(-5, 0, 3));
-		pos.add(new Vec3i(-5, 0, -3));
-		pos.add(new Vec3i(-3, 0, -5));
-		pos.add(new Vec3i(3, 0, -5));
-		
 		int offset = (orientation * 2 + index) % 8;
-		return pos.get(offset);
+		return itemBowlOffsets.get(offset);
 	}
 	
 	/**

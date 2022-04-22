@@ -371,7 +371,7 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 		if(potencyModifier > 0.0F) {
 			potency = Support.getIntFromDecimalWithChance(potencyModifier * potionMod.multiplicativePotencyModifier + potionMod.flatPotencyBonus + posNegBonus, random) - 1;
 		}
-		// if the result of the potency calulation was negative
+		// if the result of the potency calculation was negative
 		// because of a very low potencyModifier (not because the player was greedy and
 		// got mali because of low multiplicativePotencyModifier) => set to 0 again
 		if(potency < 0 && potionMod.multiplicativePotencyModifier >= 1.0) {

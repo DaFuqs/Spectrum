@@ -33,6 +33,7 @@ import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.NbtElement;
 import net.minecraft.potion.PotionUtil;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.DyeColor;
@@ -175,12 +176,15 @@ public class SpectrumClient implements ClientModInitializer {
 	
 	private static int potionColor(ItemStack stack, int tintIndex) {
 		if(tintIndex == 1) {
+			NbtCompound nbtCompound = stack.getNbt();
+			if(nbtCompound != null && nbtCompound.contains("CustomPotionColor", NbtElement.INT_TYPE)) {
+				return nbtCompound.getInt("CustomPotionColor");
+			}
+			
 			List<StatusEffectInstance> effects = PotionUtil.getPotionEffects(stack);
 			if(effects.size() > 0) {
 				return PotionUtil.getColor(effects);
 			}
-		} else {
-			return -1;
 		}
 		return -1;
 	}

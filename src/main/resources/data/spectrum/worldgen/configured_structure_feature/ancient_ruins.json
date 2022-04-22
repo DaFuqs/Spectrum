@@ -1,10 +1,15 @@
 {
-  "type": "minecraft:village",
+  "type": "spectrum:underground_structures",
   "config": {
     "start_pool": "spectrum:ancient_ruins",
     "size": 1
   },
-  "biomes": "#minecraft:has_structure/mineshaft",
+  "biomes": "#spectrum:has_structure/underground_structures",
   "adapt_noise": true,
-  "spawn_overrides": {}
+  "spawn_overrides": {
+    "monster": {
+      "bounding_box": "piece",
+      "spawns": []
+    }
+  }
 }

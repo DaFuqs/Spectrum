@@ -132,12 +132,10 @@ public class Support {
 		}
 	}
 
-	public static void grantAdvancementCriterion(@NotNull ServerPlayerEntity serverPlayerEntity, String advancementString, String criterion) {
+	public static void grantAdvancementCriterion(@NotNull ServerPlayerEntity serverPlayerEntity, Identifier advancementIdentifier, String criterion) {
 		ServerAdvancementLoader sal = SpectrumCommon.minecraftServer.getAdvancementLoader();
 		PlayerAdvancementTracker tracker = serverPlayerEntity.getAdvancementTracker();
-
-		// grant group advancement
-		Identifier advancementIdentifier = new Identifier(SpectrumCommon.MOD_ID, advancementString);
+		
 		Advancement advancement = sal.get(advancementIdentifier);
 		if(advancement == null) {
 			SpectrumCommon.logError("Trying to grant a criterion \"" + criterion +  "\" for an advancement that does not exist: " + advancementIdentifier);
@@ -145,6 +143,10 @@ public class Support {
 		if (!tracker.getProgress(advancement).isDone()) {
 			tracker.grantCriterion(advancement, criterion);
 		}
+	}
+	
+	public static void grantAdvancementCriterion(@NotNull ServerPlayerEntity serverPlayerEntity, String advancementString, String criterion) {
+		grantAdvancementCriterion(serverPlayerEntity, new Identifier(SpectrumCommon.MOD_ID, advancementString), criterion);
 	}
 	
 	public static boolean hasAdvancement(PlayerEntity playerEntity, Identifier advancementIdentifier) {

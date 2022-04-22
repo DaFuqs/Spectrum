@@ -15,6 +15,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -30,6 +31,9 @@ public class PreservationControllerBlockEntity extends BlockEntity {
 	private Vec3i entranceOffset;
 	private Vec3i checkRange;
 	private Identifier requiredAdvancement;
+	
+	private Identifier unlockedAdvancement;
+	private String unlockedAdvancementCriterion;
 	
 	private Box checkBox;
 	private BlockPos destinationPos;
@@ -56,6 +60,10 @@ public class PreservationControllerBlockEntity extends BlockEntity {
 		if(this.requiredAdvancement != null) {
 			tag.putString("RequiredAdvancement", this.requiredAdvancement.toString());
 		}
+		if(this.unlockedAdvancement != null && this.unlockedAdvancementCriterion != null) {
+			tag.putString("UnlockedAdvancement", this.unlockedAdvancement.toString());
+			tag.putString("UnlockedAdvancementCriterion", this.unlockedAdvancementCriterion);
+		}
 	}
 	
 	public void readNbt(NbtCompound tag) {
@@ -74,6 +82,10 @@ public class PreservationControllerBlockEntity extends BlockEntity {
 			this.entranceOffset = new Vec3i(0, -4, -14);
 			this.requiredAdvancement = new Identifier(SpectrumCommon.MOD_ID, "midgame/get_azure_dike_charge");
 		}
+		if(tag.contains("UnlockedAdvancement", NbtElement.STRING_TYPE) && tag.contains("UnlockedAdvancementCriterion", NbtElement.STRING_TYPE)) {
+			this.unlockedAdvancement = Identifier.tryParse(tag.getString("UnlockedAdvancement"));
+			this.unlockedAdvancementCriterion = tag.getString("UnlockedAdvancementCriterion");
+		}
 	}
 	
 	public static void serverTick(@NotNull World world, BlockPos blockPos, BlockState blockState, PreservationControllerBlockEntity blockEntity) {
@@ -87,7 +99,7 @@ public class PreservationControllerBlockEntity extends BlockEntity {
 			}
 			
 			if(blockEntity.requiredAdvancement != null) {
-				blockEntity.yeetUnworthyPlayers();
+				blockEntity.yeetUnworthyPlayersAndGrantAdvancement();
 			}
 		}
 	}
@@ -166,12 +178,14 @@ public class PreservationControllerBlockEntity extends BlockEntity {
 		}
 	}
 	
-	public void yeetUnworthyPlayers() {
+	public void yeetUnworthyPlayersAndGrantAdvancement() {
 		if(checkBox != null) {
 			List<PlayerEntity> players = world.getEntitiesByType(EntityType.PLAYER, checkBox, LivingEntity::isAlive);
 			for (PlayerEntity playerEntity : players) {
-				if (playerEntity.isCreative() || playerEntity.isSpectator() || Support.hasAdvancement(playerEntity, requiredAdvancement)) {
+				if (playerEntity.isCreative() || playerEntity.isSpectator()) {
 					// fine
+				} else if(Support.hasAdvancement(playerEntity, requiredAdvancement)) {
+					Support.grantAdvancementCriterion((ServerPlayerEntity) playerEntity, unlockedAdvancement, unlockedAdvancementCriterion);
 				} else {
 					// yeet
 					yeetPlayer(playerEntity);

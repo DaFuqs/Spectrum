@@ -42,7 +42,8 @@
     "accessors.FoxEntityAccessor",
     "accessors.ItemAccessor",
     "accessors.LootTableAccessor",
-    "accessors.ShapedRecipeAccessor"
+    "accessors.ShapedRecipeAccessor",
+    "accessors.StructureFeatureAccessor"
   ],
   "client": [
     "accessors.RenderLayerAccessor",

@@ -27,6 +27,7 @@ import de.dafuqs.spectrum.sound.SpectrumBlockSoundGroups;
 import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
 import de.dafuqs.spectrum.worldgen.SpectrumConfiguredFeatures;
 import de.dafuqs.spectrum.worldgen.SpectrumFeatures;
+import de.dafuqs.spectrum.worldgen.structure_features.SpectrumStructureFeatures;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
@@ -123,6 +124,8 @@ public class SpectrumCommon implements ModInitializer {
 		SpectrumBlockEntityRegistry.register();
 		
 		// Worldgen
+		logInfo("Registering Structure Features...");
+		SpectrumStructureFeatures.register();
 		logInfo("Registering Worldgen Features...");
 		SpectrumFeatures.register();
 		logInfo("Registering Configured and Placed Features...");

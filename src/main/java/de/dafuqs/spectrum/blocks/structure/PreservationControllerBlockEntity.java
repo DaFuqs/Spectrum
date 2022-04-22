@@ -11,6 +11,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
@@ -21,6 +22,7 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.*;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 
@@ -31,6 +33,7 @@ public class PreservationControllerBlockEntity extends BlockEntity {
 	private Vec3i entranceOffset;
 	private Vec3i checkRange;
 	private Identifier requiredAdvancement;
+	private StatusEffect requiredEffect;
 	
 	private Identifier unlockedAdvancement;
 	private String unlockedAdvancementCriterion;
@@ -60,6 +63,12 @@ public class PreservationControllerBlockEntity extends BlockEntity {
 		if(this.requiredAdvancement != null) {
 			tag.putString("RequiredAdvancement", this.requiredAdvancement.toString());
 		}
+		if(this.requiredEffect != null) {
+			Identifier effectIdentifier = Registry.STATUS_EFFECT.getId(this.requiredEffect);
+			if(effectIdentifier != null) {
+				tag.putString("RequiredStatusEffect", effectIdentifier.toString());
+			}
+		}
 		if(this.unlockedAdvancement != null && this.unlockedAdvancementCriterion != null) {
 			tag.putString("UnlockedAdvancement", this.unlockedAdvancement.toString());
 			tag.putString("UnlockedAdvancementCriterion", this.unlockedAdvancementCriterion);
@@ -74,6 +83,12 @@ public class PreservationControllerBlockEntity extends BlockEntity {
 		}
 		if(tag.contains("CheckRangeX")) {
 			this.checkRange = new Vec3i(tag.getInt("CheckRangeX"), tag.getInt("CheckRangeY"), tag.getInt("CheckRangeZ"));
+		}
+		if(tag.contains("RequiredStatusEffect", NbtElement.STRING_TYPE)) {
+			StatusEffect statusEffect = Registry.STATUS_EFFECT.get(new Identifier(tag.getString("RequiredStatusEffect")));
+			if(this.requiredEffect != null) {
+				this.requiredEffect = statusEffect;
+			}
 		}
 		if(tag.contains("RequiredAdvancement", NbtElement.STRING_TYPE)) {
 			this.requiredAdvancement = new Identifier(tag.getString("RequiredAdvancement"));
@@ -184,7 +199,9 @@ public class PreservationControllerBlockEntity extends BlockEntity {
 			for (PlayerEntity playerEntity : players) {
 				if (playerEntity.isCreative() || playerEntity.isSpectator()) {
 					// fine
-				} else if(Support.hasAdvancement(playerEntity, requiredAdvancement)) {
+				} else if(this.requiredAdvancement != null && Support.hasAdvancement(playerEntity, requiredAdvancement)) {
+					Support.grantAdvancementCriterion((ServerPlayerEntity) playerEntity, unlockedAdvancement, unlockedAdvancementCriterion);
+				} else if(this.requiredEffect != null && playerEntity.hasStatusEffect(this.requiredEffect)) {
 					Support.grantAdvancementCriterion((ServerPlayerEntity) playerEntity, unlockedAdvancement, unlockedAdvancementCriterion);
 				} else {
 					// yeet

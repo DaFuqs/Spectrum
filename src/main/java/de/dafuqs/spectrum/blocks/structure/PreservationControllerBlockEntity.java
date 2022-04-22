@@ -96,6 +96,8 @@ public class PreservationControllerBlockEntity extends BlockEntity {
 			this.checkRange = new Vec3i(6, 6,11);
 			this.entranceOffset = new Vec3i(0, -4, -14);
 			this.requiredAdvancement = new Identifier(SpectrumCommon.MOD_ID, "midgame/get_azure_dike_charge");
+			this.unlockedAdvancement = new Identifier(SpectrumCommon.MOD_ID, "enter_ancient_ruins");
+			this.unlockedAdvancementCriterion = "code_triggered";
 		}
 		if(tag.contains("UnlockedAdvancement", NbtElement.STRING_TYPE) && tag.contains("UnlockedAdvancementCriterion", NbtElement.STRING_TYPE)) {
 			this.unlockedAdvancement = Identifier.tryParse(tag.getString("UnlockedAdvancement"));

@@ -139,9 +139,10 @@ public class Support {
 		Advancement advancement = sal.get(advancementIdentifier);
 		if(advancement == null) {
 			SpectrumCommon.logError("Trying to grant a criterion \"" + criterion +  "\" for an advancement that does not exist: " + advancementIdentifier);
-		}
-		if (!tracker.getProgress(advancement).isDone()) {
-			tracker.grantCriterion(advancement, criterion);
+		} else {
+			if (!tracker.getProgress(advancement).isDone()) {
+				tracker.grantCriterion(advancement, criterion);
+			}
 		}
 	}
 	

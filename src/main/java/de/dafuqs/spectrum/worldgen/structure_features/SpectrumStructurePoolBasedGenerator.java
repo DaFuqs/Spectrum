@@ -1,8 +1,3 @@
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by FernFlower decompiler)
-//
-
 package de.dafuqs.spectrum.worldgen.structure_features;
 
 import com.google.common.collect.Lists;
@@ -52,6 +47,7 @@ import org.apache.commons.lang3.mutable.MutableObject;
 import org.slf4j.Logger;
 
 public class SpectrumStructurePoolBasedGenerator {
+    
     static final Logger LOGGER = LogUtils.getLogger();
 
     public SpectrumStructurePoolBasedGenerator() {

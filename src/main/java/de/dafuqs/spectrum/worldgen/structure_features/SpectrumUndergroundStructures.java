@@ -1,9 +1,11 @@
 package de.dafuqs.spectrum.worldgen.structure_features;
 
-import net.minecraft.structure.*;
+import net.minecraft.structure.PoolStructurePiece;
+import net.minecraft.structure.PostPlacementProcessor;
+import net.minecraft.structure.StructureGeneratorFactory;
+import net.minecraft.structure.StructurePiecesGenerator;
 import net.minecraft.structure.pool.StructurePoolBasedGenerator;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.Heightmap;
 import net.minecraft.world.gen.feature.StructureFeature;
 import net.minecraft.world.gen.feature.StructurePoolFeatureConfig;

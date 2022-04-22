@@ -119,22 +119,19 @@ public class PreservationControllerBlockEntity extends BlockEntity {
 		}
 	}
 	
-	private static void calculateLocationData(BlockPos blockPos, @NotNull BlockState blockState, PreservationControllerBlockEntity blockEntity) {
+	private static void calculateLocationData(BlockPos blockPos, @NotNull BlockState blockState, @NotNull PreservationControllerBlockEntity blockEntity) {
+		blockEntity.checkBox = Box.of(Vec3d.ofCenter(blockPos), blockEntity.checkRange.getX() * 2, blockEntity.checkRange.getY() * 2, blockEntity.checkRange.getZ() * 2);
 		switch (blockState.get(PreservationControllerBlock.FACING)) {
 			case NORTH -> {
-				blockEntity.checkBox = Box.of(Vec3d.ofCenter(blockPos), blockEntity.checkRange.getX() * 2, blockEntity.checkRange.getY() * 2, blockEntity.checkRange.getZ() * 2);
 				blockEntity.destinationPos = blockEntity.pos.add(blockEntity.entranceOffset.getX(), blockEntity.entranceOffset.getY(), blockEntity.entranceOffset.getZ());
 			}
 			case EAST -> {
-				blockEntity.checkBox = Box.of(Vec3d.ofCenter(blockPos), blockEntity.checkRange.getZ() * 2, blockEntity.checkRange.getY() * 2, blockEntity.checkRange.getX() * 2);
 				blockEntity.destinationPos = blockEntity.pos.add(blockEntity.entranceOffset.getZ(), blockEntity.entranceOffset.getY(), blockEntity.entranceOffset.getX());
 			}
 			case SOUTH -> {
-				blockEntity.checkBox = Box.of(Vec3d.ofCenter(blockPos), -blockEntity.checkRange.getX() * 2, blockEntity.checkRange.getY() * 2, blockEntity.checkRange.getZ() * 2);
 				blockEntity.destinationPos = blockEntity.pos.add(-blockEntity.entranceOffset.getX(), blockEntity.entranceOffset.getY(), blockEntity.entranceOffset.getZ());
 			}
 			default -> {
-				blockEntity.checkBox = Box.of(Vec3d.ofCenter(blockPos), -blockEntity.checkRange.getZ() * 2, blockEntity.checkRange.getY() * 2, blockEntity.checkRange.getX() * 2);
 				blockEntity.destinationPos = blockEntity.pos.add(-blockEntity.entranceOffset.getZ(), blockEntity.entranceOffset.getY(), blockEntity.entranceOffset.getX());
 			}
 		}

@@ -121,7 +121,7 @@ public class PotionPendantItem extends SpectrumTrinketItem implements PotionFill
 	private void giveEffects(ItemStack stack, LivingEntity entity) {
 		List<StatusEffectInstance> effects = PotionUtil.getCustomPotionEffects(stack);
 		for(StatusEffectInstance effect : effects) {
-			entity.addStatusEffect(new StatusEffectInstance(effect.getEffectType(), EFFECT_DURATION, effect.getAmplifier(), true, true));
+			entity.addStatusEffect(new StatusEffectInstance(effect.getEffectType(), EFFECT_DURATION, effect.getAmplifier(), effect.isAmbient(), effect.shouldShowParticles(), true));
 		}
 	}
 }

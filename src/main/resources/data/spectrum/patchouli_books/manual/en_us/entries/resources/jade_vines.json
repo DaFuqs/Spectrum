@@ -26,7 +26,7 @@
       "title": "Planting & Growing",
       "item": "spectrum:germinated_jade_vine_seeds",
 	  "advancement": "spectrum:hidden/instilled_germinated_jade_vine_seeds",
-	  "text": "Palid, fragile but beautiful hanging plants, twining down wooden fences.$(br2)$(c_red)Not used to the intense sunlight, they will die when exposed directly to it.$(br)$(c_light_blue)They only grow one stage per night and only when exposed to the way more soft, indirect light of the moon."
+	  "text": "Palid, fragile but beautiful hanging plants, twining down wooden fences.$(br2)$(c_red)Not used to the intense light after all these aeons, they will die when exposed directly to sunlight.$(br)$(c_light_blue)They only grow one stage per night and only when exposed to the way more soft, indirect light of the moon."
     },
     {
       "type": "patchouli:spotlight",
@@ -40,7 +40,7 @@
       "title": "Moonstruck Nectar",
       "item": "spectrum:moonstruck_nectar",
       "advancement": "spectrum:hidden/instilled_germinated_jade_vine_seeds",
-	  "text": "After many nights on a full moon, the plants reach full bloom. The nectar that they collect in their blossoms can be harvested with a Glass Bottle.$(br)It contains great restorative properties and can be drunk for healing."
+	  "text": "After many nights on a full moon, the plants reach full bloom. The nectar that they collect in their blossoms can be harvested with a Glass Bottle.$(br)Bears great restorative properties and can be drunk for healing."
     }
   ]
 }

@@ -1,8 +1,13 @@
 package de.dafuqs.spectrum.blocks.jade_vines;
 
+import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.helpers.TimeHelper;
+import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -11,7 +16,10 @@ import net.minecraft.state.property.EnumProperty;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.tag.BlockTags;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
 import net.minecraft.util.StringIdentifiable;
+import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.*;
@@ -20,7 +28,6 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Random;
-import java.util.concurrent.ForkJoinWorkerThread;
 
 public class JadeVinesBlock extends BlockWithEntity {
 	
@@ -41,7 +48,7 @@ public class JadeVinesBlock extends BlockWithEntity {
 			return this == UPPER ? "upper" : this == CENTER ? "center" : "lower";
 		}
 		
-		public static int getTopPartOffset(BlockState blockState) {
+		public static int getTopPartOffset(@NotNull BlockState blockState) {
 			JadeVinesBlockPart part = blockState.get(PART);
 			if(part == UPPER) {
 				return 0;
@@ -51,7 +58,7 @@ public class JadeVinesBlock extends BlockWithEntity {
 			return 2;
 		}
 		
-		public static @Nullable BlockState getDownwardsState(BlockState blockState) {
+		public static @Nullable BlockState getDownwardsState(@NotNull BlockState blockState) {
 			JadeVinesBlockPart part = blockState.get(PART);
 			if(part == UPPER) {
 				return blockState.with(PART, CENTER);
@@ -80,8 +87,16 @@ public class JadeVinesBlock extends BlockWithEntity {
 			}
 		}
 		
-		public static boolean fullyGrown(int age) {
+		public boolean isFullyGrown() {
+			return this == BLOOM;
+		}
+		
+		public static boolean isFullyGrown(int age) {
 			return age == Properties.AGE_7_MAX;
+		}
+		
+		public boolean canHarvestPetals() {
+			return this == PETALS || this == BLOOM;
 		}
 		
 		public static boolean dead(int age) {
@@ -96,6 +111,42 @@ public class JadeVinesBlock extends BlockWithEntity {
 	public JadeVinesBlock(Settings settings) {
 		super(settings);
 		this.setDefaultState((this.stateManager.getDefaultState()).with(PART, JadeVinesBlockPart.UPPER).with(AGE, 1));
+	}
+	
+	@Override
+	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+		JadeVinesGrowthStage growthStage = JadeVinesGrowthStage.fromAge(state.get(AGE));
+		if(growthStage.isFullyGrown()) {
+			for (ItemStack handStack : player.getItemsHand()) {
+				if(handStack.isOf(Items.GLASS_BOTTLE)) {
+					if(world.isClient) {
+						return ActionResult.SUCCESS;
+					} else {
+						handStack.decrement(1);
+						Support.givePlayer(player, SpectrumItems.MOONSTRUCK_NECTAR.getDefaultStack());
+						setPlantToAge(state, world, pos, 1);
+						return ActionResult.CONSUME;
+					}
+				}
+			}
+		} else if(growthStage.canHarvestPetals()) {
+			if(world.isClient) {
+				return ActionResult.SUCCESS;
+			} else {
+				ItemStack petalStack = SpectrumItems.JADE_VINE_PETALS.getDefaultStack();
+				petalStack.setCount(4 + world.random.nextInt(4));
+				Support.givePlayer(player, petalStack);
+				setPlantToAge(state, world, pos, 1);
+				return ActionResult.CONSUME;
+			}
+		}
+	
+		return super.onUse(state, world, pos, player, hand, hit);
+	}
+	
+	@Override
+	public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state) {
+		return SpectrumItems.GERMINATED_JADE_VINE_SEEDS.getDefaultStack();
 	}
 	
 	@Override
@@ -139,8 +190,7 @@ public class JadeVinesBlock extends BlockWithEntity {
 		super.randomTick(state, world, pos, random);
 		
 		int age = state.get(AGE);
-		JadeVinesGrowthStage stage = JadeVinesGrowthStage.fromAge(age);
-		if(stage != JadeVinesGrowthStage.DEAD) {
+		if(age != 0) {
 			// die in sunlight
 			if(doesDie(world, pos)) {
 				die(state, world, pos);
@@ -148,7 +198,7 @@ public class JadeVinesBlock extends BlockWithEntity {
 			} else if(canGrow(world, pos, state)) {
 				if(tryGrowDownwards(state, world, pos)) {
 					world.playSound(null, pos, SoundEvents.BLOCK_GROWING_PLANT_CROP, SoundCategory.BLOCKS, 0.5F, 0.9F + 0.2F * world.random.nextFloat() * 0.2F);
-				} else if(!JadeVinesGrowthStage.fullyGrown(age)) {
+				} else if(!JadeVinesGrowthStage.isFullyGrown(age)) {
 					grow(state, world, pos);
 					world.playSound(null, pos, SoundEvents.BLOCK_GROWING_PLANT_CROP, SoundCategory.BLOCKS, 0.5F, 0.9F + 0.2F * world.random.nextFloat() * 0.2F);
 				}
@@ -164,25 +214,22 @@ public class JadeVinesBlock extends BlockWithEntity {
 	 * Set all 3 blocks (up and down) to dead
 	 */
 	public static void die(@NotNull BlockState blockState, @NotNull World world, @NotNull BlockPos blockPos) {
-		JadeVinesBlockPart jadeVinesBlockPart = blockState.get(PART);
-		world.setBlockState(blockPos, blockState.with(AGE, 0));
-		
-		if(jadeVinesBlockPart == JadeVinesBlockPart.UPPER) {
-			setDeadIf(world, blockPos.down(), JadeVinesBlockPart.CENTER);
-			setDeadIf(world, blockPos.down(2), JadeVinesBlockPart.LOWER);
-		} else if(jadeVinesBlockPart == JadeVinesBlockPart.CENTER) {
-			setDeadIf(world, blockPos.up(), JadeVinesBlockPart.UPPER);
-			setDeadIf(world, blockPos.down(), JadeVinesBlockPart.LOWER);
-		} else {
-			setDeadIf(world, blockPos.up(2), JadeVinesBlockPart.UPPER);
-			setDeadIf(world, blockPos.up(), JadeVinesBlockPart.CENTER);
-		}
+		setPlantToAge(blockState, world, blockPos, 0);
 	}
 	
-	protected static void setDeadIf(@NotNull World world, BlockPos blockPos, JadeVinesBlockPart part) {
-		BlockState state = world.getBlockState(blockPos);
-		if(state.getBlock() instanceof JadeVinesBlock && state.get(PART) == part && state.get(AGE) != 0) {
-			world.setBlockState(blockPos, state.with(AGE, 0));
+	public static void setPlantToAge(@NotNull BlockState blockState, @NotNull World world, @NotNull BlockPos blockPos, int age) {
+		JadeVinesBlockPart jadeVinesBlockPart = blockState.get(PART);
+		world.setBlockState(blockPos, blockState.with(AGE, age));
+		
+		if(jadeVinesBlockPart == JadeVinesBlockPart.UPPER) {
+			setToAge(world, blockPos.down(), JadeVinesBlockPart.CENTER, age);
+			setToAge(world, blockPos.down(2), JadeVinesBlockPart.LOWER, age);
+		} else if(jadeVinesBlockPart == JadeVinesBlockPart.CENTER) {
+			setToAge(world, blockPos.up(), JadeVinesBlockPart.UPPER, age);
+			setToAge(world, blockPos.down(), JadeVinesBlockPart.LOWER, age);
+		} else {
+			setToAge(world, blockPos.up(2), JadeVinesBlockPart.UPPER, age);
+			setToAge(world, blockPos.up(), JadeVinesBlockPart.CENTER, age);
 		}
 	}
 	
@@ -193,24 +240,11 @@ public class JadeVinesBlock extends BlockWithEntity {
 		int age = blockState.get(AGE);
 		if(age != 0 && age != Properties.AGE_7_MAX) {
 			age += 1;
-			JadeVinesBlockPart jadeVinesBlockPart = blockState.get(PART);
-			if (jadeVinesBlockPart == JadeVinesBlockPart.UPPER) {
-				growIf(world, blockPos, JadeVinesBlockPart.UPPER, age);
-				growIf(world, blockPos.down(), JadeVinesBlockPart.CENTER, age);
-				growIf(world, blockPos.down(2), JadeVinesBlockPart.LOWER, age);
-			} else if (jadeVinesBlockPart == JadeVinesBlockPart.CENTER) {
-				growIf(world, blockPos.up(), JadeVinesBlockPart.UPPER, age);
-				growIf(world, blockPos, JadeVinesBlockPart.CENTER, age);
-				growIf(world, blockPos.down(), JadeVinesBlockPart.LOWER, age);
-			} else {
-				growIf(world, blockPos.up(2), JadeVinesBlockPart.UPPER, age);
-				growIf(world, blockPos.up(), JadeVinesBlockPart.CENTER, age);
-				growIf(world, blockPos, JadeVinesBlockPart.LOWER, age);
-			}
+			setPlantToAge(blockState, world, blockPos, age);
 		}
 	}
 	
-	protected static void growIf(@NotNull World world, BlockPos blockPos, JadeVinesBlockPart part, int newAge) {
+	protected static void setToAge(@NotNull World world, BlockPos blockPos, JadeVinesBlockPart part, int newAge) {
 		BlockState state = world.getBlockState(blockPos);
 		if(state.getBlock() instanceof JadeVinesBlock && state.get(PART) == part) {
 			world.setBlockState(blockPos, state.with(AGE, newAge));

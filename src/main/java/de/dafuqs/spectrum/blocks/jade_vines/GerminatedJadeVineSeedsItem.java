@@ -4,7 +4,6 @@ import de.dafuqs.spectrum.items.CloakedItem;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemUsageContext;
-import net.minecraft.tag.BlockTags;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
@@ -21,7 +20,7 @@ public class GerminatedJadeVineSeedsItem extends CloakedItem {
 		World world = context.getWorld();
 		BlockPos pos = context.getBlockPos();
 
-		if(world.getBlockState(pos).isIn(BlockTags.WOODEN_FENCES)) {
+		if(JadeVinesBlock.canBePlacedOn(world.getBlockState(pos))) {
 			if(context.getWorld().isClient) {
 				return ActionResult.SUCCESS;
 			} else {

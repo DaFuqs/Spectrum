@@ -10,6 +10,7 @@ import net.minecraft.state.StateManager;
 import net.minecraft.state.property.EnumProperty;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.state.property.Properties;
+import net.minecraft.tag.BlockTags;
 import net.minecraft.util.StringIdentifiable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
@@ -19,6 +20,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Random;
+import java.util.concurrent.ForkJoinWorkerThread;
 
 public class JadeVinesBlock extends BlockWithEntity {
 	
@@ -37,6 +39,16 @@ public class JadeVinesBlock extends BlockWithEntity {
 		@Contract(pure = true)
 		public @NotNull String asString() {
 			return this == UPPER ? "upper" : this == CENTER ? "center" : "lower";
+		}
+		
+		public static int getTopPartOffset(BlockState blockState) {
+			JadeVinesBlockPart part = blockState.get(PART);
+			if(part == UPPER) {
+				return 0;
+			} else if(part == CENTER) {
+				return 1;
+			}
+			return 2;
 		}
 		
 		public static @Nullable BlockState getDownwardsState(BlockState blockState) {
@@ -105,15 +117,21 @@ public class JadeVinesBlock extends BlockWithEntity {
 	@Override
 	public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
 		super.onStateReplaced(state, world, pos, newState, moved);
-		BlockEntity blockEntity = world.getBlockEntity(pos);
-		if (blockEntity instanceof JadeVinesBlockEntity jadeVinesBlockEntity) {
-			world.setBlockState(pos, jadeVinesBlockEntity.getFenceBlockState());
+		if(!newState.isOf(this)) {
+			BlockEntity blockEntity = world.getBlockEntity(pos);
+			if (blockEntity instanceof JadeVinesBlockEntity jadeVinesBlockEntity) {
+				world.setBlockState(pos, jadeVinesBlockEntity.getFenceBlockState());
+			}
 		}
 	}
 	
 	@Override
 	public boolean canPlaceAt(@NotNull BlockState state, WorldView world, BlockPos pos) {
-		return state.getBlock() instanceof FenceBlock;
+		return canBePlacedOn(world.getBlockState(pos));
+	}
+	
+	public static boolean canBePlacedOn(BlockState blockState) {
+		return blockState.isIn(BlockTags.WOODEN_FENCES);
 	}
 	
 	@Override
@@ -127,10 +145,10 @@ public class JadeVinesBlock extends BlockWithEntity {
 			if(doesDie(world, pos)) {
 				die(state, world, pos);
 				world.playSound(null, pos, SoundEvents.BLOCK_GROWING_PLANT_CROP, SoundCategory.BLOCKS, 0.5F, 0.9F + 0.2F * world.random.nextFloat() * 0.2F);
-			} else {
+			} else if(canGrow(world, pos, state)) {
 				if(tryGrowDownwards(state, world, pos)) {
 					world.playSound(null, pos, SoundEvents.BLOCK_GROWING_PLANT_CROP, SoundCategory.BLOCKS, 0.5F, 0.9F + 0.2F * world.random.nextFloat() * 0.2F);
-				} else if(!JadeVinesGrowthStage.fullyGrown(age) && canGrow(world, pos)) {
+				} else if(!JadeVinesGrowthStage.fullyGrown(age)) {
 					grow(state, world, pos);
 					world.playSound(null, pos, SoundEvents.BLOCK_GROWING_PLANT_CROP, SoundCategory.BLOCKS, 0.5F, 0.9F + 0.2F * world.random.nextFloat() * 0.2F);
 				}
@@ -147,6 +165,8 @@ public class JadeVinesBlock extends BlockWithEntity {
 	 */
 	public static void die(@NotNull BlockState blockState, @NotNull World world, @NotNull BlockPos blockPos) {
 		JadeVinesBlockPart jadeVinesBlockPart = blockState.get(PART);
+		world.setBlockState(blockPos, blockState.with(AGE, 0));
+		
 		if(jadeVinesBlockPart == JadeVinesBlockPart.UPPER) {
 			setDeadIf(world, blockPos.down(), JadeVinesBlockPart.CENTER);
 			setDeadIf(world, blockPos.down(2), JadeVinesBlockPart.LOWER);
@@ -161,7 +181,7 @@ public class JadeVinesBlock extends BlockWithEntity {
 	
 	protected static void setDeadIf(@NotNull World world, BlockPos blockPos, JadeVinesBlockPart part) {
 		BlockState state = world.getBlockState(blockPos);
-		if(state.getBlock() instanceof JadeVinesBlock && state.get(PART) == part) {
+		if(state.getBlock() instanceof JadeVinesBlock && state.get(PART) == part && state.get(AGE) != 0) {
 			world.setBlockState(blockPos, state.with(AGE, 0));
 		}
 	}
@@ -193,12 +213,13 @@ public class JadeVinesBlock extends BlockWithEntity {
 	protected static void growIf(@NotNull World world, BlockPos blockPos, JadeVinesBlockPart part, int newAge) {
 		BlockState state = world.getBlockState(blockPos);
 		if(state.getBlock() instanceof JadeVinesBlock && state.get(PART) == part) {
-			world.setBlockState(blockPos, state.with(AGE, 0));
+			world.setBlockState(blockPos, state.with(AGE, newAge));
 		}
 	}
 	
-	public static boolean canGrow(@NotNull World world, @NotNull BlockPos blockPos) {
-		BlockEntity blockEntity = world.getBlockEntity(blockPos);
+	public static boolean canGrow(@NotNull World world, @NotNull BlockPos blockPos, BlockState blockState) {
+		int offset = JadeVinesBlockPart.getTopPartOffset(blockState);
+		BlockEntity blockEntity = world.getBlockEntity(blockPos.up(offset));
 		if (blockEntity instanceof JadeVinesBlockEntity jadeVinesBlockEntity) {
 			if (world.getLightLevel(LightType.SKY, blockPos) > 8 && jadeVinesBlockEntity.isLaterNight(world)) {
 				jadeVinesBlockEntity.setLastGrownTime(world.getTime());
@@ -210,9 +231,13 @@ public class JadeVinesBlock extends BlockWithEntity {
 	
 	public static boolean tryGrowDownwards(@NotNull BlockState blockState, @NotNull World world, @NotNull BlockPos blockPos) {
 		BlockState downwardsState = JadeVinesBlockPart.getDownwardsState(blockState);
-		if(downwardsState != null && world.getBlockState(blockPos.down()) != downwardsState) {
-			world.setBlockState(blockPos.down(), downwardsState);
-			return true;
+		if(downwardsState != null) {
+			BlockPos targetPos = blockPos.down();
+			BlockState currentDownState = world.getBlockState(targetPos);
+			if(canBePlacedOn(currentDownState)) {
+				world.setBlockState(targetPos, downwardsState);
+				return true;
+			}
 		}
 		return false;
 	}

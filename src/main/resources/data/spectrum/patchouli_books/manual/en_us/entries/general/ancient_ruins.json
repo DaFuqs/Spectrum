@@ -29,17 +29,17 @@
     },
     {
       "type": "patchouli:spotlight",
-      "title": "Being Worthy?",
+      "title": "Being Worthy",
       "item": "spectrum:azure_dike_ring",
       "advancement": "spectrum:enter_ancient_ruins",
       "text": "It looks like wearing Azure Dike equipment allowed you to enter.$(br2)Until now, you thought you were alone in your creative endeavour with the gems and pigments. From the looks of it, you were wrong. $(italic)So very, very wrong..."
     },
     {
       "type": "patchouli:spotlight",
-      "title": "A Challenge",
+      "title": "A Challenge?",
       "item": "spectrum:dike_chiseled_preservation_stone",
       "advancement": "spectrum:generate_ancient_ruins_loot",
-      "text": "Whoever built these structures, they obviously followed the same path as you, but they were technologically miles ahead of you.$(br2)Still, anyway. You accept the challenge, of course. You have one huge advantage:$(br)$(italic)YOU are still alive."
+      "text": "Whoever built these structures, they obviously followed the same path as you, but they were miles ahead of you, technologically.$(br2)Still, anyway. You accept the challenge, of course. You have one huge advantage:$(br)$(italic)YOU are still alive."
     }
   ]
 }

@@ -4,7 +4,7 @@
   "sortnum": 12,
   "advancement": "spectrum:midgame/collect_neolith",
   "category": "spectrum:general_category",
-  "turnin": "spectrum:midgame_create_midnight_aberration",
+  "turnin": "spectrum:midgame/create_midnight_aberration",
   "extra_recipe_mappings": {
     "spectrum:midnight_aberration": 0
   },

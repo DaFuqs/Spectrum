@@ -12,45 +12,35 @@
       "type": "patchouli:spotlight",
       "title": "Jade Vine Seeds",
       "item": "spectrum:ancient_jade_vine_seeds",
-	  "text": "The remaining energy of this plant from aeons ago is barely still perceptible. So light and vulnerable that you think any wrong move could breathe the last bit of life out of your fragile seed.$(br)$(italic)Will the history of this plant remain elusive to you forever?"
+	  "text": "The remaining energy of this plant from aeons ago is barely still perceptible. So light and vulnerable that you think any wrong move could breathe the last bit of life out of your fragile bulb.$(br2)$(italic)Will the history of this plant remain elusive to you forever?"
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
-      "title": "Nurturing",
+      "title": "Germinating ",
 	  "advancement": "spectrum:midgame/build_spirit_instiller_structure",
       "recipe": "spectrum:spirit_instiller/germinated_jade_vine_seeds",
-      "text": "Once almost a lost cause you now have an ace up your sleeve: With the help of the Spirit Instiller you are sure that you can breathe life back into the little seed."
+      "text": "Once almost a lost cause you now have an ace up your sleeve: With the help of the $(l:creating_life/spirit_instiller)Spirit Instiller$(/l) you are sure that you can breathe life back into the little bulb."
     },
     {
       "type": "patchouli:spotlight",
       "title": "Planting & Growing",
       "item": "spectrum:germinated_jade_vine_seeds",
 	  "advancement": "spectrum:hidden/instilled_germinated_jade_vine_seeds",
-	  "text": "Palid, fragile hanging plants, growing down fence blocks. Can only grow one stage per night and only when exposed to the night sky. Not used to the intense sunlight, they will die when exposed to it."
+	  "text": "Palid, fragile but beautiful hanging plants, twining down wooden fences. Not used to the intense sunlight, they will die when exposed directly to it. They only grow one stage per night and only when exposed to the way more soft, indirect light of the moon."
     },
     {
-      "type": "patchouli:text",
+      "type": "patchouli:spotlight",
       "title": "Jade Petals",
+      "item": "spectrum:jade_petals",
 	  "advancement": "spectrum:hidden/collect_jade_petals",
-	  "text": "Dropped when mostly grown. Also rarely germinated seeds."
+	  "text": "Shiny petals can be plucked carefully when partly grown.$(br)These Petals can be used as $(l:decoration/jade_vine_petal_blocks)decoration$(). Very rarely, an additional adolescent Bulb can be found, too."
     },
     {
-      "type": "patchouli:text",
-      "title": "Jade Petal Carpety Thing",
-	  "advancement": "spectrum:hidden/collect_jade_petals",
-	  "text": "Purely Decorational"
-    },
-    {
-      "type": "patchouli:text",
-      "title": "Jade Petal Leaf-like Block",
-	  "advancement": "spectrum:hidden/collect_jade_petals",
-	  "text": "Purely Decorational"
-    },
-    {
-      "type": "patchouli:text",
+      "type": "patchouli:spotlight",
       "title": "Moonstruck Nectar",
+      "item": "spectrum:moonstruck_nectar",
 	  "advancement": "spectrum:midgame/harvest_moonstruck_nectar",
-	  "text": "After many nights full bloom, if full moon. Collect with glass bottle/bowl. Great restorative properties. Used to repair tools. Can purify certain items. Required for 'damage proof' enchant. Drink for healing."
+	  "text": "After many nights on a full moon, the plants reach full bloom. The nectar that they collect in their blossoms can be harvested with a Glass Bottle.$(br)It contains great restorative properties and can be drunk for healing."
     }
   ]
 }

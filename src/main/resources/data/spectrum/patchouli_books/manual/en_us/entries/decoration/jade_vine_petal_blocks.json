@@ -1,22 +1,24 @@
 {
-  "name": "Jade Vines",
+  "name": "Jade Vine Petal Blocks",
   "advancement": "spectrum:hidden/collect_jade_vine_petals",
-  "icon": "spectrum:ancient_jade_vine_seeds",
-  "category": "spectrum:resources_category",
+  "icon": "spectrum:jade_vine_petal_block",
+  "category": "spectrum:decoration_category",
   "extra_recipe_mappings": {
-    "spectrum:ancient_jade_vine_seeds": 0,
-    "spectrum:germinated_jade_vine_seeds": 0
+    "spectrum:jade_vine_petal_block": 0,
+    "spectrum:jade_vine_petal_carpet": 0
   },
   "pages": [
     {
       "type": "patchouli:crafting",
       "title": "Jade Vine Petal Blocks",
-      "text": "Purely Decorational"
+      "recipe": "spectrum:crafting_table/jade_vines/jade_vine_petal_block",
+      "text": "From the petals harvested from $(l:resources/jade_vines)Jade Vines$(/l) you created a small range of decoration blocks."
     },
     {
       "type": "patchouli:crafting",
-      "title": "Carpets",
-      "text": "Purely Decorational"
+      "title": "Carpet",
+      "recipe": "spectrum:crafting_table/jade_vines/jade_vine_petal_carpet",
+      "text": ""
     }
   ]
 }

@@ -10,7 +10,7 @@
   "experience": 2.0,
   "pattern": [
     "GGG",
-    "MBM",
+    "ABA",
     "GGG"
   ],
   "key": {
@@ -20,8 +20,8 @@
     "G": {
       "item": "minecraft:gold_ingot"
     },
-    "M": {
-      "item": "spectrum:moonstone_shard"
+    "A": {
+      "item": "spectrum:jade_vine_petals"
     }
   },
   "result" : {

@@ -15,7 +15,7 @@
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier3/gilded_book",
-      "text": "$(italic)All is not gold that glitters.$(br)These books, however, they are."
+      "text": "$(italic)All is not gold that glitters.$(br)These books, however, are."
     }
   ]
 }

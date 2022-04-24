@@ -9,6 +9,8 @@ import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.NbtElement;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
@@ -80,6 +82,11 @@ public class RestorationTeaItem extends Item {
 		
 		tooltip.add(new TranslatableText("item.spectrum.restoration_tea.tooltip"));
 		tooltip.add(new TranslatableText("item.spectrum.restoration_tea.tooltip2"));
+		
+		NbtCompound nbtCompound = itemStack.getNbt();
+		if(nbtCompound != null && nbtCompound.contains("Milk")) {
+			tooltip.add(new TranslatableText("item.spectrum.restoration_tea.tooltip_milk"));
+		}
 	}
 	
 }

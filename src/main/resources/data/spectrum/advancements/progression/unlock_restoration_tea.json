@@ -1,0 +1,8 @@
+{
+  "criteria": {
+    "collected_jade_vine_petals": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:hidden/collect_jade_vine_petals" }
+    }
+  }
+}

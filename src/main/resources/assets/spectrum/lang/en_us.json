@@ -49,6 +49,7 @@
   "recipeGroup.spectrum.horse_armor": "Horse Armor",
   "recipeGroup.spectrum.memories": "Memories",
   "recipeGroup.spectrum.boss_memories": "Boss Memories",
+  "recipeGroup.spectrum.restoration_tea": "Restoration Tea",
 
   "effect.spectrum.immunity": "Immunity",
 
@@ -1169,8 +1170,8 @@
   "item.spectrum.jade_vine_petals": "Jade Vine Petals",
   "item.spectrum.moonstruck_nectar": "Moonstruck Nectar",
   "item.spectrum.restoration_tea": "Restoration Tea",
-  "item.spectrum.restoration_tea.tooltip": "§7Heals any negative Status Effects",
-  "item.spectrum.restoration_tea.tooltip2": "§7and makes you immune to them for a short time",
+  "item.spectrum.restoration_tea.tooltip": "§7Cures all negative Status Effects and",
+  "item.spectrum.restoration_tea.tooltip2": "§7makes you immune to them for a short time",
   "item.spectrum.gilded_book": "Gilded Book",
   "item.spectrum.gilded_book.tooltip.enchantability": "High Enchantability",
   "item.spectrum.gilded_book.tooltip.copy_enchantments": "Use in the Enchanter to copy Enchantments",

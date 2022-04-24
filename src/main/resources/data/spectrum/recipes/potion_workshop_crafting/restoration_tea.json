@@ -1,0 +1,20 @@
+{
+  "type": "spectrum:potion_workshop_crafting",
+  "group": "restoration_tea",
+  "base_ingredient": {
+    "item": "minecraft:glass_bottle"
+  },
+  "use_up_base_ingredient": true,
+  "color": 5807774,
+  "ingredient1": {
+    "item": "spectrum:jade_vine_petals"
+  },
+  "ingredient2": {
+    "item": "minecraft:cocoa_beans"
+  },
+  "result" : {
+    "item": "spectrum:restoration_tea",
+    "count": 1
+  },
+  "required_advancement": "spectrum:progression/unlock_restoration_tea"
+}

@@ -199,9 +199,13 @@ public class PreservationControllerBlockEntity extends BlockEntity {
 				if (playerEntity.isCreative() || playerEntity.isSpectator()) {
 					// fine
 				} else if(this.requiredAdvancement != null && Support.hasAdvancement(playerEntity, requiredAdvancement)) {
-					Support.grantAdvancementCriterion((ServerPlayerEntity) playerEntity, unlockedAdvancement, unlockedAdvancementCriterion);
+					if(this.unlockedAdvancement != null && this.unlockedAdvancementCriterion != null) {
+						Support.grantAdvancementCriterion((ServerPlayerEntity) playerEntity, unlockedAdvancement, unlockedAdvancementCriterion);
+					}
 				} else if(this.requiredEffect != null && playerEntity.hasStatusEffect(this.requiredEffect)) {
-					Support.grantAdvancementCriterion((ServerPlayerEntity) playerEntity, unlockedAdvancement, unlockedAdvancementCriterion);
+					if(this.unlockedAdvancement != null && this.unlockedAdvancementCriterion != null) {
+						Support.grantAdvancementCriterion((ServerPlayerEntity) playerEntity, unlockedAdvancement, unlockedAdvancementCriterion);
+					}
 				} else {
 					// yeet
 					yeetPlayer(playerEntity);

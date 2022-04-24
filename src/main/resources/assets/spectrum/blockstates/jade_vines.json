@@ -1,0 +1,78 @@
+{
+	"variants": {
+		"age=0,part=upper": {
+			"model": "spectrum:block/jade_vines_upper_dead"
+		},
+		"age=1,part=upper": {
+			"model": "spectrum:block/jade_vines_upper_leaves"
+		},
+		"age=2,part=upper": {
+			"model": "spectrum:block/jade_vines_upper_leaves"
+		},
+		"age=3,part=upper": {
+			"model": "spectrum:block/jade_vines_upper_petals"
+		},
+		"age=4,part=upper": {
+			"model": "spectrum:block/jade_vines_upper_petals"
+		},
+		"age=5,part=upper": {
+			"model": "spectrum:block/jade_vines_upper_petals"
+		},
+		"age=6,part=upper": {
+			"model": "spectrum:block/jade_vines_upper_petals"
+		},
+		"age=7,part=upper": {
+			"model": "spectrum:block/jade_vines_upper_bloom"
+		},
+
+		"age=0,part=center": {
+			"model": "spectrum:block/jade_vines_center_dead"
+		},
+		"age=1,part=center": {
+			"model": "spectrum:block/jade_vines_center_leaves"
+		},
+		"age=2,part=center": {
+			"model": "spectrum:block/jade_vines_center_leaves"
+		},
+		"age=3,part=center": {
+			"model": "spectrum:block/jade_vines_center_petals"
+		},
+		"age=4,part=center": {
+			"model": "spectrum:block/jade_vines_center_petals"
+		},
+		"age=5,part=center": {
+			"model": "spectrum:block/jade_vines_center_petals"
+		},
+		"age=6,part=center": {
+			"model": "spectrum:block/jade_vines_center_petals"
+		},
+		"age=7,part=center": {
+			"model": "spectrum:block/jade_vines_center_bloom"
+		},
+
+		"age=0,part=lower": {
+			"model": "spectrum:block/jade_vines_lower_dead"
+		},
+		"age=1,part=lower": {
+			"model": "spectrum:block/jade_vines_lower_leaves"
+		},
+		"age=2,part=lower": {
+			"model": "spectrum:block/jade_vines_lower_leaves"
+		},
+		"age=3,part=lower": {
+			"model": "spectrum:block/jade_vines_lower_petals"
+		},
+		"age=4,part=lower": {
+			"model": "spectrum:block/jade_vines_lower_petals"
+		},
+		"age=5,part=lower": {
+			"model": "spectrum:block/jade_vines_lower_petals"
+		},
+		"age=6,part=lower": {
+			"model": "spectrum:block/jade_vines_lower_petals"
+		},
+		"age=7,part=lower": {
+			"model": "spectrum:block/jade_vines_lower_bloom"
+		}
+	}
+}

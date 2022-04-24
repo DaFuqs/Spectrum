@@ -15,6 +15,7 @@ import de.dafuqs.spectrum.blocks.fusion_shrine.FusionShrineBlockEntityRenderer;
 import de.dafuqs.spectrum.blocks.item_bowl.ItemBowlBlockEntity;
 import de.dafuqs.spectrum.blocks.item_bowl.ItemBowlBlockEntityRenderer;
 import de.dafuqs.spectrum.blocks.jade_vines.JadeVinesBlockEntity;
+import de.dafuqs.spectrum.blocks.jade_vines.JadeVinesBlockEntityRenderer;
 import de.dafuqs.spectrum.blocks.memory.MemoryBlockEntity;
 import de.dafuqs.spectrum.blocks.mob_head.SpectrumSkullBlockEntity;
 import de.dafuqs.spectrum.blocks.mob_head.SpectrumSkullBlockEntityRenderer;
@@ -159,6 +160,7 @@ public class SpectrumBlockEntityRegistry<T extends BlockEntity> {
 		BlockEntityRendererRegistry.register(SpectrumBlockEntityRegistry.SKULL, SpectrumSkullBlockEntityRenderer::new);
 		BlockEntityRendererRegistry.register(SpectrumBlockEntityRegistry.DEEPER_DOWN_PORTAL, DeeperDownPortalBlockEntityRenderer::new);
 		BlockEntityRendererRegistry.register(SpectrumBlockEntityRegistry.SPIRIT_INSTILLER, SpiritInstillerBlockEntityRenderer::new);
+		BlockEntityRendererRegistry.register(SpectrumBlockEntityRegistry.JADE_VINES, JadeVinesBlockEntityRenderer::new);
 		
 		BlockEntityRendererRegistry.register(SpectrumBlockEntityRegistry.CONNECTION_NODE, PastelNetworkNodeBlockEntityRenderer::new);
 		BlockEntityRendererRegistry.register(SpectrumBlockEntityRegistry.PROVIDER_NODE, PastelNetworkNodeBlockEntityRenderer::new);

@@ -1,9 +1,11 @@
 package de.dafuqs.spectrum.items.magic_items;
 
 import de.dafuqs.spectrum.helpers.Support;
+import de.dafuqs.spectrum.registries.SpectrumStatusEffects;
 import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
@@ -23,6 +25,7 @@ import java.util.List;
 public class RestorationTeaItem extends Item {
 	
 	private static final int MAX_USE_TIME = 40;
+	private static final int EFFECT_DURATION_TICKS = 1200;
 	
 	public RestorationTeaItem(Settings settings) {
 		super(settings);
@@ -37,7 +40,7 @@ public class RestorationTeaItem extends Item {
 		}
 		
 		if (!world.isClient) {
-			user.removeStatusEffect(StatusEffects.POISON);
+			user.addStatusEffect(new StatusEffectInstance(SpectrumStatusEffects.IMMUNITY, EFFECT_DURATION_TICKS, 0, true, true));
 		}
 		
 		if (stack.isEmpty()) {

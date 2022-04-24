@@ -50,6 +50,8 @@
   "recipeGroup.spectrum.memories": "Memories",
   "recipeGroup.spectrum.boss_memories": "Boss Memories",
 
+  "effect.spectrum.immunity": "Immunity",
+
   "item.spectrum.potion": "§2P§3i§cg§6m§be§en§dt§f Potion",
   "item.spectrum.splash_potion": "Splash §2P§3i§cg§6m§be§en§dt§f Potion",
   "item.spectrum.lingering_potion": "Lingering §2P§3i§cg§6m§be§en§dt§f Potion",
@@ -59,7 +61,6 @@
   "spectrum.tooltip.coming_soon": "§4Not available in Survival yet",
 
   "spectrum.gui.lexicon.reveal_hint_button.text": "Reveal Hint    ",
-  "spectrum__unused:": "",
   "spectrum.gui.lexicon.reveal_hint_button.tooltip.pay": "Pay a small fee to unlock a hint",
   "spectrum.gui.lexicon.reveal_hint_button.tooltip.lacking_resource": "You do not have the fee in your inventory",
 

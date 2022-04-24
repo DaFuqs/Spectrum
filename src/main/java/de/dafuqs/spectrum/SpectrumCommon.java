@@ -146,6 +146,10 @@ public class SpectrumCommon implements ModInitializer {
 		SpectrumContainers.register();
 		logInfo("Registering Screen Handler Types...");
 		SpectrumScreenHandlerTypes.register();
+		
+		// Status Effects
+		logInfo("Registering Status Effects...");
+		SpectrumStatusEffects.register();
 
 		// Default enchantments for some items
 		logInfo("Registering Default Item Stack Damage Immunities...");

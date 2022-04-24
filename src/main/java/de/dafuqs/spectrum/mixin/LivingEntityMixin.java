@@ -11,14 +11,17 @@ import de.dafuqs.spectrum.networking.SpectrumS2CPackets;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.registries.SpectrumEnchantments;
 import de.dafuqs.spectrum.registries.SpectrumItems;
+import de.dafuqs.spectrum.registries.SpectrumStatusEffects;
 import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
 import dev.emi.trinkets.api.SlotReference;
 import dev.emi.trinkets.api.TrinketComponent;
 import dev.emi.trinkets.api.TrinketsApi;
 import net.minecraft.block.BlockState;
 import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.EntityGroup;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.MobEntity;
@@ -50,6 +53,8 @@ public abstract class LivingEntityMixin {
 	@Shadow @Nullable protected PlayerEntity attackingPlayer;
 	
 	@Shadow @Final private DefaultedList<ItemStack> syncedArmorStacks;
+	
+	@Shadow public abstract boolean hasStatusEffect(StatusEffect effect);
 	
 	@ModifyArg(method = "dropXp()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/ExperienceOrbEntity;spawn(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/util/math/Vec3d;I)V"), index = 2)
 	protected int spectrum$applyExuberance(int originalXP) {
@@ -163,6 +168,13 @@ public abstract class LivingEntityMixin {
 					}
 				}
 			}
+		}
+	}
+	
+	@Inject(method = "canHaveStatusEffect(Lnet/minecraft/entity/effect/StatusEffectInstance;)Z", at = @At("RETURN"), cancellable = true)
+	public void canHaveStatusEffect(StatusEffectInstance effect, CallbackInfoReturnable<Boolean> cir) {
+		if(cir.getReturnValue() && this.hasStatusEffect(SpectrumStatusEffects.IMMUNITY)) {
+			cir.setReturnValue(false);
 		}
 	}
 

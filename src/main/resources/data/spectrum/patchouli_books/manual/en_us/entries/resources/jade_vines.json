@@ -26,7 +26,7 @@
       "title": "Planting & Growing",
       "item": "spectrum:germinated_jade_vine_seeds",
 	  "advancement": "spectrum:hidden/instilled_germinated_jade_vine_seeds",
-	  "text": "Palid, fragile hanging plants, Grows down fence blocks. Can only grow one stage per night. Only grow when exposed to the night sky, but will die if exposed to sunlight (Use Star Lantern as a proxy?)."
+	  "text": "Palid, fragile hanging plants, growing down fence blocks. Can only grow one stage per night and only when exposed to the night sky. Not used to the intense sunlight, they will die when exposed to it."
     },
     {
       "type": "patchouli:text",

@@ -1,15 +1,15 @@
 {
   "criteria": {
-    "requirement": {
-      "trigger": "minecraft:item_used_on_block",
+    "collected_jade_vines": {
+      "trigger": "minecraft:inventory_changed",
       "conditions": {
-        "location": {
-          "block": {
-            "blocks": [
-              "spectrum:jade_vines"
+        "items": [
+          {
+            "items": [
+              "spectrum:jade_vine_petals"
             ]
           }
-        }
+        ]
       }
     },
     "gotten_previous": {

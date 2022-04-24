@@ -54,9 +54,9 @@ public class JadeVinesBlockEntity extends BlockEntity {
 	}
 	
 	public boolean isLaterNight(@NotNull World world) {
-		long time = world.getTime();
-		if(TimeHelper.getTimeOfDay(time) == TimeHelper.TimeOfDay.NIGHT) { // timeOfDay % 24000 >= 13000 && timeOfDay % 24000 < 23000
-			return TimeHelper.getDay(time + 1000) != TimeHelper.getDay(lastGrowthTick + 1000);
+		long dayTime = world.getTimeOfDay();
+		if(TimeHelper.getTimeOfDay(dayTime).isNight()) { // timeOfDay % 24000 >= 13000 && timeOfDay % 24000 < 23000
+			return TimeHelper.getDay(dayTime + 1000) != TimeHelper.getDay(lastGrowthTick + 1000);
 		}
 		return false;
 	}

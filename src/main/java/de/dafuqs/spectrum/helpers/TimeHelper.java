@@ -10,7 +10,11 @@ public class TimeHelper {
 		NIGHT,
 		SUNRISE,
 		SUNSET,
-		MIDNIGHT
+		MIDNIGHT;
+		
+		public boolean isNight() {
+			return this == NIGHT || this == MIDNIGHT;
+		}
 	}
 	
 	public static TimeOfDay getTimeOfDay(@NotNull World world) {

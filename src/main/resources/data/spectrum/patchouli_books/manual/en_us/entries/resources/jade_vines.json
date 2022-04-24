@@ -31,8 +31,8 @@
     {
       "type": "patchouli:spotlight",
       "title": "Jade Petals",
-      "item": "spectrum:jade_petals",
-	  "advancement": "spectrum:hidden/collect_jade_petals",
+      "item": "spectrum:jade_vine_petals",
+	  "advancement": "spectrum:hidden/collect_jade_vine_petals",
 	  "text": "Shiny petals can be plucked carefully when partly grown.$(br)These Petals can be used as $(l:decoration/jade_vine_petal_blocks)decoration$(). Very rarely, an additional adolescent Bulb can be found, too."
     },
     {

@@ -22,7 +22,7 @@
         },
         "location": {
           "block": {
-            "tag": "minecraft:fences"
+            "tag": "minecraft:wooden_fences"
           }
         }
       }

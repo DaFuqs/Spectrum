@@ -1,13 +1,23 @@
 package de.dafuqs.spectrum.blocks.jade_vines;
 
+import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.blocks.shooting_star.ShootingStarBlock;
 import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.helpers.TimeHelper;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.ItemEntity;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.loot.LootTable;
+import net.minecraft.loot.LootTables;
+import net.minecraft.loot.context.LootContext;
+import net.minecraft.loot.context.LootContextParameters;
+import net.minecraft.loot.context.LootContextTypes;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -18,18 +28,25 @@ import net.minecraft.state.property.Properties;
 import net.minecraft.tag.BlockTags;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.StringIdentifiable;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 
 public class JadeVinesBlock extends BlockWithEntity {
+	
+	protected static final Identifier PETAL_HARVESTING_LOOT_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "dynamic/jade_vine_petal_harvesting");
+	protected static final Identifier NECTAR_HARVESTING_LOOT_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "dynamic/jade_vine_nectar_harvesting");
 	
 	protected static final VoxelShape SHAPE = Block.createCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 16.0D, 14.0D);
 	
@@ -116,6 +133,7 @@ public class JadeVinesBlock extends BlockWithEntity {
 	@Override
 	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
 		JadeVinesGrowthStage growthStage = JadeVinesGrowthStage.fromAge(state.get(AGE));
+		
 		if(growthStage.isFullyGrown()) {
 			for (ItemStack handStack : player.getItemsHand()) {
 				if(handStack.isOf(Items.GLASS_BOTTLE)) {
@@ -123,8 +141,13 @@ public class JadeVinesBlock extends BlockWithEntity {
 						return ActionResult.SUCCESS;
 					} else {
 						handStack.decrement(1);
-						Support.givePlayer(player, SpectrumItems.MOONSTRUCK_NECTAR.getDefaultStack());
-						setPlantToAge(state, world, pos, 1);
+						setPlantToAge(state, world, pos, 2);
+						
+						List<ItemStack> harvestedStacks = getHarvestedStacks(state, (ServerWorld) world, pos, world.getBlockEntity(pos), player, handStack, NECTAR_HARVESTING_LOOT_IDENTIFIER);
+						for(ItemStack harvestedStack : harvestedStacks){
+							Support.givePlayer(player, harvestedStack);
+						}
+						
 						return ActionResult.CONSUME;
 					}
 				}
@@ -133,15 +156,30 @@ public class JadeVinesBlock extends BlockWithEntity {
 			if(world.isClient) {
 				return ActionResult.SUCCESS;
 			} else {
-				ItemStack petalStack = SpectrumItems.JADE_VINE_PETALS.getDefaultStack();
-				petalStack.setCount(4 + world.random.nextInt(4));
-				Support.givePlayer(player, petalStack);
-				setPlantToAge(state, world, pos, 1);
+				setPlantToAge(state, world, pos, 2);
+				
+				List<ItemStack> harvestedStacks = getHarvestedStacks(state, (ServerWorld) world, pos, world.getBlockEntity(pos), player, player.getMainHandStack(), PETAL_HARVESTING_LOOT_IDENTIFIER);
+				for(ItemStack harvestedStack : harvestedStacks){
+					Support.givePlayer(player, harvestedStack);
+				}
+				
 				return ActionResult.CONSUME;
 			}
 		}
 	
 		return super.onUse(state, world, pos, player, hand, hit);
+	}
+	
+	public static List<ItemStack> getHarvestedStacks(BlockState state, ServerWorld world, BlockPos pos, @Nullable BlockEntity blockEntity, @Nullable Entity entity, ItemStack stack, Identifier lootTableIdentifier) {
+		LootContext.Builder builder = (new LootContext.Builder(world)).random(world.random)
+				.parameter(LootContextParameters.BLOCK_STATE, state)
+				.parameter(LootContextParameters.ORIGIN, Vec3d.ofCenter(pos))
+				.parameter(LootContextParameters.TOOL, stack)
+				.optionalParameter(LootContextParameters.THIS_ENTITY, entity)
+				.optionalParameter(LootContextParameters.BLOCK_ENTITY, blockEntity);
+		
+		LootTable lootTable = world.getServer().getLootManager().getTable(lootTableIdentifier);
+		return lootTable.generateLoot(builder.build(LootContextTypes.BLOCK));
 	}
 	
 	@Override
@@ -221,6 +259,12 @@ public class JadeVinesBlock extends BlockWithEntity {
 		JadeVinesBlockPart jadeVinesBlockPart = blockState.get(PART);
 		world.setBlockState(blockPos, blockState.with(AGE, age));
 		
+		int offset = JadeVinesBlockPart.getTopPartOffset(blockState);
+		BlockEntity blockEntity = world.getBlockEntity(blockPos.up(offset));
+		if (blockEntity instanceof JadeVinesBlockEntity jadeVinesBlockEntity) {
+			jadeVinesBlockEntity.setLastGrownTime(world.getTimeOfDay());
+		}
+		
 		if(jadeVinesBlockPart == JadeVinesBlockPart.UPPER) {
 			setToAge(world, blockPos.down(), JadeVinesBlockPart.CENTER, age);
 			setToAge(world, blockPos.down(2), JadeVinesBlockPart.LOWER, age);
@@ -255,10 +299,7 @@ public class JadeVinesBlock extends BlockWithEntity {
 		int offset = JadeVinesBlockPart.getTopPartOffset(blockState);
 		BlockEntity blockEntity = world.getBlockEntity(blockPos.up(offset));
 		if (blockEntity instanceof JadeVinesBlockEntity jadeVinesBlockEntity) {
-			if (world.getLightLevel(LightType.SKY, blockPos) > 8 && jadeVinesBlockEntity.isLaterNight(world)) {
-				jadeVinesBlockEntity.setLastGrownTime(world.getTime());
-				return true;
-			}
+			return world.getLightLevel(LightType.SKY, blockPos) > 8 && jadeVinesBlockEntity.isLaterNight(world);
 		}
 		return false;
 	}

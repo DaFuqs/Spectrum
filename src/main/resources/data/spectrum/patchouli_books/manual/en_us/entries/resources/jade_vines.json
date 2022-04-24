@@ -26,20 +26,20 @@
       "title": "Planting & Growing",
       "item": "spectrum:germinated_jade_vine_seeds",
 	  "advancement": "spectrum:hidden/instilled_germinated_jade_vine_seeds",
-	  "text": "Palid, fragile but beautiful hanging plants, twining down wooden fences. Not used to the intense sunlight, they will die when exposed directly to it. They only grow one stage per night and only when exposed to the way more soft, indirect light of the moon."
+	  "text": "Palid, fragile but beautiful hanging plants, twining down wooden fences.$(br2)$(c_red)Not used to the intense sunlight, they will die when exposed directly to it.$(br)$(c_light_blue)They only grow one stage per night and only when exposed to the way more soft, indirect light of the moon."
     },
     {
       "type": "patchouli:spotlight",
       "title": "Jade Petals",
       "item": "spectrum:jade_vine_petals",
-	  "advancement": "spectrum:hidden/collect_jade_vine_petals",
-	  "text": "Shiny petals can be plucked carefully when partly grown.$(br)These Petals can be used as $(l:decoration/jade_vine_petal_blocks)decoration$(). Very rarely, an additional adolescent Bulb can be found, too."
+      "advancement": "spectrum:hidden/instilled_germinated_jade_vine_seeds",
+	  "text": "Shiny petals can be plucked carefully when partly grown.$(br)These Petals can be used as $(l:decoration/jade_vine_petal_blocks)decoration$().$(br)Very rarely, an additional adolescent Bulb can be found, too."
     },
     {
       "type": "patchouli:spotlight",
       "title": "Moonstruck Nectar",
       "item": "spectrum:moonstruck_nectar",
-	  "advancement": "spectrum:midgame/harvest_moonstruck_nectar",
+      "advancement": "spectrum:hidden/instilled_germinated_jade_vine_seeds",
 	  "text": "After many nights on a full moon, the plants reach full bloom. The nectar that they collect in their blossoms can be harvested with a Glass Bottle.$(br)It contains great restorative properties and can be drunk for healing."
     }
   ]

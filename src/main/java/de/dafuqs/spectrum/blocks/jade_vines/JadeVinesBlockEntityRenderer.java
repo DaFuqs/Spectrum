@@ -24,31 +24,27 @@ public class JadeVinesBlockEntityRenderer implements BlockEntityRenderer<JadeVin
 
 	@Override
 	public void render(JadeVinesBlockEntity entity, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light, int overlay) {
-		if(entity.getWorld() == null) {
-			return;
+		if(entity.getWorld() != null) {
+			BlockState fenceBlockState = entity.getFenceBlockState();
+			if (fenceBlockState.getRenderType() == BlockRenderType.MODEL && fenceBlockState.getRenderType() != BlockRenderType.INVISIBLE) {
+				matrixStack.push();
+				
+				BlockRenderManager blockRenderManager = MinecraftClient.getInstance().getBlockRenderManager();
+				blockRenderManager.getModelRenderer().render(entity.getWorld(),
+						blockRenderManager.getModel(fenceBlockState),
+						fenceBlockState,
+						entity.getPos(),
+						matrixStack,
+						vertexConsumerProvider.getBuffer(RenderLayers.getMovingBlockLayer(fenceBlockState)),
+						true,
+						new Random(),
+						fenceBlockState.getRenderingSeed(entity.getPos()),
+						OverlayTexture.DEFAULT_UV
+				);
+				
+				matrixStack.pop();
+			}
 		}
-		
-		BlockState fenceBlockState = entity.getFenceBlockState();
-		if (fenceBlockState.getRenderType() == BlockRenderType.MODEL && fenceBlockState.getRenderType() != BlockRenderType.INVISIBLE) {
-			matrixStack.push();
-			//matrixStack.translate(-0.5, 0.0, -0.5);
-			
-			BlockRenderManager blockRenderManager = MinecraftClient.getInstance().getBlockRenderManager();
-			blockRenderManager.getModelRenderer().render(entity.getWorld(),
-					blockRenderManager.getModel(fenceBlockState),
-					fenceBlockState,
-					entity.getPos(),
-					matrixStack,
-					vertexConsumerProvider.getBuffer(RenderLayers.getMovingBlockLayer(fenceBlockState)),
-					true,
-					new Random(),
-					fenceBlockState.getRenderingSeed(entity.getPos()),
-					OverlayTexture.DEFAULT_UV
-			);
-			
-			matrixStack.pop();
-		}
-		
 	}
 
 }

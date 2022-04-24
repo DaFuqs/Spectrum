@@ -33,7 +33,7 @@
       "title": "Jade Petals",
       "item": "spectrum:jade_vine_petals",
       "advancement": "spectrum:hidden/instilled_germinated_jade_vine_seeds",
-	  "text": "Shiny petals can be plucked carefully when partly grown.$(br)These Petals can be used as $(l:decoration/jade_vine_petal_blocks)decoration$().$(br)Very rarely, an additional adolescent Bulb can be found, too."
+	  "text": "Shiny petals can be plucked carefully when partly grown.$(br)These Petals can be used as $(l:decoration/jade_vine_petal_blocks)decoration$().$(br)Very rarely when searching the petals, an additional adolescent Bulb can be found, too."
     },
     {
       "type": "patchouli:spotlight",

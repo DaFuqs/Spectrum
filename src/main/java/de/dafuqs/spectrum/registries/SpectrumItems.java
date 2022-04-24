@@ -173,6 +173,7 @@ public class SpectrumItems {
 	public static final CloakedItem GERMINATED_JADE_VINE_SEEDS = new GerminatedJadeVineSeedsItem(resourcesItemSettingsSixteen, new Identifier(SpectrumCommon.MOD_ID, "midgame/build_spirit_instiller_structure"), Items.LIME_DYE);
 	public static final CloakedItem JADE_VINE_PETALS = new CloakedItem(resourcesItemSettings, new Identifier(SpectrumCommon.MOD_ID, "midgame/build_spirit_instiller_structure"), Items.LIME_DYE);
 	public static final CloakedItem MOONSTRUCK_NECTAR = new CloakedItem(resourcesItemSettings, new Identifier(SpectrumCommon.MOD_ID, "midgame/build_spirit_instiller_structure"), Items.LIME_DYE);
+	public static final Item RESTORATION_TEA = new RestorationTeaItem(resourcesItemSettings);
 
 	// Magical Tools
 	public static final Item ENDER_BAG = new EnderBagItem(generalItemSettingsSingle);
@@ -390,6 +391,7 @@ public class SpectrumItems {
 		register("block_flooder", BLOCK_FLOODER);
 		register("ender_splice", ENDER_SPLICE);
 		register("end_portal_cracker", END_PORTAL_CRACKER);
+		register("restoration_tea", RESTORATION_TEA);
 	}
 	
 	public static void registerTrinkets() {

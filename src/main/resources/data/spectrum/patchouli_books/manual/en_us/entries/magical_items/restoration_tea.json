@@ -1,0 +1,21 @@
+{
+  "name": "Restoration Tea",
+  "advancement": "spectrum:build_basic_pedestal_structure",
+  "icon": "spectrum:restoration_tea",
+  "category": "spectrum:magical_items_category",
+  "extra_recipe_mappings": {
+    "spectrum:restoration_tea": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": ""
+    },
+    {
+      "type": "spectrum:potion_workshop_crafting",
+      "title": "Workshop Recipe",
+      "recipe": "spectrum:potion_workshop_crafting/restoration_tea",
+      "text": "$(italic)Don't even think about drinking that with milk!"
+    }
+  ]
+}

@@ -1,15 +1,15 @@
 {
   "type": "spectrum:spirit_instiller",
-  "time": 1600,
-  "experience": 1.0,
+  "time": 1200,
+  "experience": 20.0,
   "ingredient1": {
-    "item": "spectrum:ancient_jade_vine_seeds"
-  },
-  "ingredient2": {
     "item": "spectrum:liquid_crystal_bucket"
   },
-  "center_ingredient": {
+  "ingredient2": {
     "item": "spectrum:vegetal"
+  },
+  "center_ingredient": {
+    "item": "spectrum:ancient_jade_vine_seeds"
   },
   "result" : {
     "item": "spectrum:germinated_jade_vine_seeds"

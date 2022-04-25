@@ -278,7 +278,7 @@ public class ProgressionSanityCommand {
 			}
 		}
 		
-		// Anvil Crushing recipes with nonexistent sounds
+		// Item Crushing recipes with nonexistent sounds
 		for(AnvilCrushingRecipe anvilCrushingRecipe : SpectrumCommon.minecraftServer.getRecipeManager().listAllOfType(SpectrumRecipeTypes.ANVIL_CRUSHING)) {
 			SoundEvent soundEvent = anvilCrushingRecipe.getSoundEvent();
 			if(soundEvent == null) {

@@ -4,7 +4,8 @@
   "icon": "spectrum:particle_spawner",
   "category": "spectrum:decoration_category",
   "extra_recipe_mappings": {
-    "spectrum:particle_spawner": 0
+    "spectrum:particle_spawner": 0,
+    "spectrum:creative_particle_spawner": 0
   },
   "pages": [
     {

@@ -5,7 +5,9 @@
   "category": "spectrum:resources_category",
   "extra_recipe_mappings": {
     "spectrum:ancient_jade_vine_seeds": 0,
-    "spectrum:germinated_jade_vine_seeds": 0
+    "spectrum:germinated_jade_vine_seeds": 0,
+    "spectrum:jade_vine_petals": 0,
+    "spectrum:moonstruck_nectar": 0
   },
   "pages": [
     {

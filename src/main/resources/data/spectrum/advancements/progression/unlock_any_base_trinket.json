@@ -1,0 +1,28 @@
+{
+  "criteria": {
+    "unlocked_fanciful_stone_ring": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:progression/unlock_fanciful_stone_ring" }
+    },
+    "unlocked_fanciful_circlet": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:progression/unlock_fanciful_circlet" }
+    },
+    "unlocked_fanciful_belt": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:progression/unlock_fanciful_belt" }
+    },
+    "unlocked_fanciful_pendant": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:progression/unlock_fanciful_pendant" }
+    }
+  },
+  "requirements": [
+    [
+      "unlocked_fanciful_stone_ring",
+      "unlocked_fanciful_circlet",
+      "unlocked_fanciful_belt",
+      "unlocked_fanciful_pendant"
+    ]
+  ]
+}

@@ -3,13 +3,13 @@
   "time": 800,
   "experience": 4.0,
   "ingredient1": {
-    "item": "spectrum:onyx_block"
+    "item": "spectrum:midnight_aberration"
   },
   "ingredient2": {
     "item": "spectrum:moonstruck_nectar"
   },
   "center_ingredient": {
-    "item": "spectrum:midnight_aberration"
+    "item": "spectrum:onyx_block"
   },
   "result" : {
     "item": "spectrum:budding_onyx"

@@ -75,7 +75,7 @@ public class REIClientIntegration implements REIClientPlugin {
 		registry.addWorkstations(SpectrumPlugins.MIDNIGHT_SOLUTION_CONVERTING, EntryStacks.of(SpectrumItems.MIDNIGHT_SOLUTION_BUCKET));
 		registry.addWorkstations(SpectrumPlugins.SPIRIT_INSTILLER, EntryStacks.of(SpectrumBlocks.SPIRIT_INSTILLER));
 
-		// For anvil crushing and others are in-world recipes there is no gui to fill
+		// For item crushing and others are in-world recipes there is no gui to fill
 		// therefore the plus button is obsolete
 		registry.removePlusButton(SpectrumPlugins.ANVIL_CRUSHING);
 		registry.removePlusButton(SpectrumPlugins.FUSION_SHRINE);

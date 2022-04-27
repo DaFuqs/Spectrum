@@ -5,6 +5,7 @@ import net.minecraft.world.World;
 
 public enum FusionShrineRecipeWorldCondition {
 	DAY,
+	NOON,
 	NIGHT,
 	SUNRISE,
 	SUNSET,
@@ -19,10 +20,13 @@ public enum FusionShrineRecipeWorldCondition {
 	public boolean isMetCurrently(World world) {
 		switch (this) {
 			case DAY -> {
-				return TimeHelper.getTimeOfDay(world) == TimeHelper.TimeOfDay.DAY;
+				return TimeHelper.getTimeOfDay(world).isDay();
+			}
+			case NOON -> {
+				return TimeHelper.getTimeOfDay(world) == TimeHelper.TimeOfDay.NOON;
 			}
 			case NIGHT -> {
-				return TimeHelper.getTimeOfDay(world) == TimeHelper.TimeOfDay.NIGHT;
+				return TimeHelper.getTimeOfDay(world).isNight();
 			}
 			case SUNRISE -> {
 				return TimeHelper.getTimeOfDay(world) == TimeHelper.TimeOfDay.SUNRISE;

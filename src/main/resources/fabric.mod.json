@@ -9,7 +9,8 @@
   ],
   "contact": {
     "homepage": "https://github.com/DaFuqs/",
-    "sources": "https://github.com/DaFuqs/Spectrum"
+    "sources": "https://github.com/DaFuqs/Spectrum",
+    "issues": "https://github.com/DaFuqs/Spectrum/issues"
   },
   "license": "",
   "icon": "assets/spectrum/icon.png",

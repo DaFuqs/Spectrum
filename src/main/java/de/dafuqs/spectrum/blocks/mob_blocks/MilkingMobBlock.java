@@ -16,8 +16,11 @@ import java.util.List;
 
 public class MilkingMobBlock extends MobBlock {
 	
-	public MilkingMobBlock(Settings settings) {
+	protected int range;
+	
+	public MilkingMobBlock(Settings settings, int range) {
 		super(settings);
+		this.range = range;
 	}
 	
 	@Override

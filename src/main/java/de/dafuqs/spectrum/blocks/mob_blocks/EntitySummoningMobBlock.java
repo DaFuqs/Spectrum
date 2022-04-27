@@ -32,7 +32,7 @@ public class EntitySummoningMobBlock extends MobBlock {
 	
 	@Override
 	public void trigger(World world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
-	
+		// TODO
 	}
 	
 }

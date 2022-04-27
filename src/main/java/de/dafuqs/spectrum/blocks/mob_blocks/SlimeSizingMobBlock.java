@@ -16,8 +16,11 @@ import java.util.List;
 
 public class SlimeSizingMobBlock extends MobBlock {
 	
-	public SlimeSizingMobBlock(Settings settings) {
+	protected int range;
+	
+	public SlimeSizingMobBlock(Settings settings, int range) {
 		super(settings);
+		this.range = range;
 	}
 	
 	@Override

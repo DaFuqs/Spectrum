@@ -16,8 +16,11 @@ import java.util.List;
 
 public class ShearingMobBlock extends MobBlock {
 	
-	public ShearingMobBlock(Settings settings) {
+	protected int range;
+	
+	public ShearingMobBlock(Settings settings, int range) {
 		super(settings);
+		this.range = range;
 	}
 	
 	@Override

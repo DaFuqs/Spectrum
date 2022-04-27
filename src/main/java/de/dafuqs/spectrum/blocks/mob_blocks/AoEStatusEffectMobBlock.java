@@ -3,41 +3,49 @@ package de.dafuqs.spectrum.blocks.mob_blocks;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
+import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class PotionEffectMobBlock extends MobBlock {
+public class AoEStatusEffectMobBlock extends MobBlock {
 	
 	protected StatusEffect statusEffect;
 	protected int amplifier;
 	protected int duration;
+	protected final int range;
 	
-	public PotionEffectMobBlock(Settings settings, StatusEffect statusEffect, int amplifier, int duration) {
+	public AoEStatusEffectMobBlock(Settings settings, StatusEffect statusEffect, int amplifier, int duration, int range) {
 		super(settings);
 		this.statusEffect = statusEffect;
 		this.amplifier = amplifier;
 		this.duration = duration;
+		this.range = range;
 	}
 	
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
 		super.appendTooltip(stack, world, tooltip, options);
-		tooltip.add(new TranslatableText( "block.spectrum.potion_effect_mob_block.tooltip", this.statusEffect.getName()));
+		tooltip.add(new TranslatableText( "block.spectrum.echolocating_mob_block.tooltip", range));
 	}
 	
 	@Override
 	public void trigger(World world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
-	
+		List<LivingEntity> livingEntities = world.getNonSpectatingEntities(LivingEntity.class, Box.of(Vec3d.ofCenter(blockPos), range, range, range));
+		for(LivingEntity livingEntity : livingEntities) {
+			livingEntity.addStatusEffect(new StatusEffectInstance(statusEffect, amplifier, duration, true, true));
+		};
 	}
-	
 	
 }

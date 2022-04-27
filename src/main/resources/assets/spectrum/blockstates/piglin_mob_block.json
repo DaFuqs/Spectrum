@@ -1,0 +1,7 @@
+{
+	"variants": {
+		"": {
+			"model": "spectrum:block/piglin_mob_block"
+		}
+	}
+}

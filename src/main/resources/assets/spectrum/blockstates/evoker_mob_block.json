@@ -1,0 +1,7 @@
+{
+	"variants": {
+		"": {
+			"model": "spectrum:block/evoker_mob_block"
+		}
+	}
+}

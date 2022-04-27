@@ -1,0 +1,7 @@
+{
+	"variants": {
+		"": {
+			"model": "spectrum:block/drowned_mob_block"
+		}
+	}
+}

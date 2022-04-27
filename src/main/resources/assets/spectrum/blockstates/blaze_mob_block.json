@@ -1,0 +1,7 @@
+{
+	"variants": {
+		"": {
+			"model": "spectrum:block/blaze_mob_block"
+		}
+	}
+}

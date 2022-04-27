@@ -1,0 +1,7 @@
+{
+	"variants": {
+		"": {
+			"model": "spectrum:block/zombie_mob_block"
+		}
+	}
+}

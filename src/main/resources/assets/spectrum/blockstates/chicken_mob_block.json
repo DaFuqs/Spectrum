@@ -1,0 +1,7 @@
+{
+	"variants": {
+		"": {
+			"model": "spectrum:block/chicken_mob_block"
+		}
+	}
+}

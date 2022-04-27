@@ -1,0 +1,7 @@
+{
+	"variants": {
+		"": {
+			"model": "spectrum:block/snow_golem_mob_block"
+		}
+	}
+}

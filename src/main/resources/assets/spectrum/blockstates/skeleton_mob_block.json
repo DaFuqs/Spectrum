@@ -1,0 +1,7 @@
+{
+	"variants": {
+		"": {
+			"model": "spectrum:block/skeleton_mob_block"
+		}
+	}
+}

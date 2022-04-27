@@ -1,0 +1,7 @@
+{
+	"variants": {
+		"": {
+			"model": "spectrum:block/ghast_mob_block"
+		}
+	}
+}

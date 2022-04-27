@@ -1,0 +1,7 @@
+{
+	"variants": {
+		"": {
+			"model": "spectrum:block/wither_skeleton_mob_block"
+		}
+	}
+}

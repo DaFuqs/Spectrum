@@ -39,6 +39,7 @@ import de.dafuqs.spectrum.blocks.melon.GlisteringMelonBlock;
 import de.dafuqs.spectrum.blocks.melon.GlisteringStemBlock;
 import de.dafuqs.spectrum.blocks.memory.MemoryBlock;
 import de.dafuqs.spectrum.blocks.memory.MemoryItem;
+import de.dafuqs.spectrum.blocks.mob_blocks.*;
 import de.dafuqs.spectrum.blocks.mob_head.SpectrumSkullBlock;
 import de.dafuqs.spectrum.blocks.mob_head.SpectrumSkullBlockItem;
 import de.dafuqs.spectrum.blocks.mob_head.SpectrumWallSkullBlock;
@@ -86,6 +87,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.BlockView;
+import net.minecraft.world.explosion.Explosion;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
@@ -127,6 +129,7 @@ public class SpectrumBlocks {
 	public static FabricItemSettings decorationItemSettingsRare = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_BLOCKS).tab(0).rarity(Rarity.RARE);
 	public static FabricItemSettings coloredWoodItemSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_BLOCKS).tab(1);
 	public static FabricItemSettings mobHeadItemSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_BLOCKS).tab(2).rarity(Rarity.UNCOMMON);
+	public static FabricItemSettings mobBlockItemSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_BLOCKS).tab(2).rarity(Rarity.UNCOMMON);
 	
 	public static FabricItemSettings worldgenItemSettingsFireProof = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(2).fireproof();
 	public static FabricItemSettings decorationItemSettingsFireProof = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_BLOCKS).tab(0).fireproof();
@@ -722,7 +725,55 @@ public class SpectrumBlocks {
 
 	public static final Block CLOVER = new CloverBlock(FabricBlockSettings.copyOf(Blocks.GRASS));
 	public static final Block FOUR_LEAF_CLOVER = new FourLeafCloverBlock(FabricBlockSettings.copyOf(Blocks.GRASS));
-
+	
+	public static FabricBlockSettings mobBlockSettings = FabricBlockSettings.of(new Material.Builder(MapColor.BLUE).build()).sounds(BlockSoundGroup.BONE).strength(3.0F, 8.0F);
+	public static final Block AXOLOTL_MOB_BLOCK = new PotionEffectMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.AXOLOTL_MOB_BLOCK), StatusEffects.REGENERATION, 0, 2);
+	public static final Block BAT_MOB_BLOCK = new EchoLocatingMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.BAT_MOB_BLOCK), 8);
+	public static final Block BEE_MOB_BLOCK = new BonemealingMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.BEE_MOB_BLOCK));
+	public static final Block BLAZE_MOB_BLOCK = new FirestarterMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.BLAZE_MOB_BLOCK));
+	public static final Block CAT_MOB_BLOCK = new FallDamageNegatingMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.CAT_MOB_BLOCK));
+	public static final Block CHICKEN_MOB_BLOCK = new PotionEffectMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.CHICKEN_MOB_BLOCK), StatusEffects.SLOW_FALLING, 0, 80);
+	public static final Block COW_MOB_BLOCK = new MilkingMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.COW_MOB_BLOCK));
+	public static final Block CREEPER_MOB_BLOCK = new ExplosionMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.CREEPER_MOB_BLOCK), 3, false, Explosion.DestructionType.BREAK);
+	public static final Block DROWNED_MOB_BLOCK = new BreathtakingMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.DROWNED_MOB_BLOCK), 6);
+	public static final Block ENDER_DRAGON_MOB_BLOCK = new ProjectileMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.ENDER_DRAGON_MOB_BLOCK), EntityType.DRAGON_FIREBALL);
+	public static final Block ENDERMAN_MOB_BLOCK = new TeleportingMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.ENDERMAN_MOB_BLOCK), 16);
+	public static final Block ENDERMITE_MOB_BLOCK = new TeleportingMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.ENDERMITE_MOB_BLOCK), 5);
+	public static final Block EVOKER_MOB_BLOCK = new EntitySummoningMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.EVOKER_MOB_BLOCK), EntityType.VEX);
+	public static final Block FISH_MOB_BLOCK = new PotionEffectMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.FISH_MOB_BLOCK), StatusEffects.WATER_BREATHING, 0, 160);
+	public static final Block FOX_MOB_BLOCK = new PotionEffectMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.FOX_MOB_BLOCK), StatusEffects.HASTE, 0, 160);
+	public static final Block GHAST_MOB_BLOCK = new ProjectileMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.GHAST_MOB_BLOCK), EntityType.FIREBALL);
+	public static final Block GLOW_SQUID_MOB_BLOCK = new PotionEffectMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.GLOW_SQUID_MOB_BLOCK), StatusEffects.GLOWING, 0, 160);
+	public static final Block GOAT_MOB_BLOCK = new KnockbackMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.GOAT_MOB_BLOCK), 5.0F, 0.5F); // knocks mostly sideways
+	public static final Block GUARDIAN_MOB_BLOCK = new PotionEffectMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.GUARDIAN_MOB_BLOCK), StatusEffects.MINING_FATIGUE, 1, 80);
+	public static final Block HORSE_MOB_BLOCK = new PotionEffectMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.HORSE_MOB_BLOCK), StatusEffects.STRENGTH, 0, 80);
+	public static final Block ILLUSIONER_MOB_BLOCK = new PotionEffectMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.ILLUSIONER_MOB_BLOCK), StatusEffects.INVISIBILITY, 0, 80);
+	public static final Block LLAMA_MOB_BLOCK = new ProjectileMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.LLAMA_MOB_BLOCK), EntityType.LLAMA_SPIT);
+	public static final Block OCELOT_MOB_BLOCK = new PotionEffectMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.OCELOT_MOB_BLOCK), StatusEffects.NIGHT_VISION, 0, 80);
+	public static final Block PARROT_MOB_BLOCK = new PotionEffectMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.PARROT_MOB_BLOCK), StatusEffects.SLOW_FALLING, 0, 80);
+	public static final Block PHANTOM_MOB_BLOCK = new InsomniaMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.PHANTOM_MOB_BLOCK));
+	public static final Block PIG_MOB_BLOCK = new PotionEffectMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.PIG_MOB_BLOCK), StatusEffects.SATURATION, 0, 2);
+	public static final Block PIGLIN_MOB_BLOCK = new PiglinTradeMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.PIGLIN_MOB_BLOCK));
+	public static final Block POLAR_BEAR_MOB_BLOCK = new FreezingMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.POLAR_BEAR_MOB_BLOCK));
+	public static final Block PUFFERFISH_MOB_BLOCK = new PotionEffectMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.PUFFERFISH_MOB_BLOCK), StatusEffects.NAUSEA, 0, 80);
+	public static final Block RABBIT_MOB_BLOCK = new PotionEffectMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.RABBIT_MOB_BLOCK), StatusEffects.JUMP_BOOST, 1, 80);
+	public static final Block SHEEP_MOB_BLOCK = new ShearingMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.SHEEP_MOB_BLOCK));
+	public static final Block SHULKER_MOB_BLOCK = new PotionEffectMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.SHULKER_MOB_BLOCK), StatusEffects.LEVITATION, 0, 80);
+	public static final Block SILVERFISH_MOB_BLOCK = new SilverfishInsertingMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.SILVERFISH_MOB_BLOCK));
+	public static final Block SKELETON_MOB_BLOCK = new ProjectileMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.SKELETON_MOB_BLOCK), EntityType.ARROW);
+	public static final Block SLIME_MOB_BLOCK = new SlimeSizingMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.SLIME_MOB_BLOCK));
+	public static final Block SNOW_GOLEM_MOB_BLOCK = new ProjectileMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.SNOW_GOLEM_MOB_BLOCK), EntityType.SNOWBALL);
+	public static final Block SPIDER_MOB_BLOCK = new PotionEffectMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.SPIDER_MOB_BLOCK), StatusEffects.POISON, 0, 80);
+	public static final Block SQUID_MOB_BLOCK = new PotionEffectMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.SQUID_MOB_BLOCK), StatusEffects.BLINDNESS, 0, 80);
+	public static final Block STRAY_MOB_BLOCK = new PotionEffectMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.STRAY_MOB_BLOCK), StatusEffects.SLOWNESS, 2, 80);
+	public static final Block STRIDER_MOB_BLOCK = new PotionEffectMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.STRIDER_MOB_BLOCK), StatusEffects.FIRE_RESISTANCE, 0, 80);
+	public static final Block TURTLE_MOB_BLOCK = new PotionEffectMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.TURTLE_MOB_BLOCK), StatusEffects.RESISTANCE, 1, 40);
+	public static final Block VINDICATOR_MOB_BLOCK = new PotionEffectMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.VINDICATOR_MOB_BLOCK), StatusEffects.INSTANT_DAMAGE, 0, 0);
+	public static final Block WITCH_MOB_BLOCK = new PotionEffectMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.WITCH_MOB_BLOCK), StatusEffects.WEAKNESS, 0, 80);
+	public static final Block WITHER_MOB_BLOCK = new ExplosionMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.WITHER_MOB_BLOCK), 7.0F, true, Explosion.DestructionType.BREAK);
+	public static final Block WITHER_SKELETON_MOB_BLOCK = new PotionEffectMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.WITHER_SKELETON_MOB_BLOCK), StatusEffects.WITHER, 0, 40);
+	public static final Block ZOMBIE_MOB_BLOCK = new PotionEffectMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.ZOMBIE_MOB_BLOCK), StatusEffects.HUNGER, 0, 40);
+	
 	private static void registerBlock(String name, Block block) {
 		Registry.register(Registry.BLOCK, new Identifier(SpectrumCommon.MOD_ID, name), block);
 	}
@@ -797,6 +848,7 @@ public class SpectrumBlocks {
 		registerMagicalBlocks(generalItemSettings);
 		registerSpiritTree(generalItemSettings);
 		registerMobHeads(mobHeadItemSettings);
+		registerMobBlocks(mobBlockItemSettings);
 
 		// Decay
 		registerBlock("fading", FADING);
@@ -1357,6 +1409,55 @@ public class SpectrumBlocks {
 		registerBlock("jade_vines", JADE_VINES);
 		registerBlockWithItem("jade_vine_petal_block", JADE_VINE_PETAL_BLOCK, fabricItemSettings);
 		registerBlockWithItem("jade_vine_petal_carpet", JADE_VINE_PETAL_CARPET, fabricItemSettings);
+	}
+	
+	private static void registerMobBlocks(FabricItemSettings fabricItemSettings) {
+		registerBlockWithItem("axolotl_mob_block", AXOLOTL_MOB_BLOCK, fabricItemSettings);
+		registerBlockWithItem("bat_mob_block", BAT_MOB_BLOCK, fabricItemSettings);
+		registerBlockWithItem("bee_mob_block", BEE_MOB_BLOCK, fabricItemSettings);
+		registerBlockWithItem("blaze_mob_block", BLAZE_MOB_BLOCK, fabricItemSettings);
+		registerBlockWithItem("cat_mob_block", CAT_MOB_BLOCK, fabricItemSettings);
+		registerBlockWithItem("chicken_mob_block", CHICKEN_MOB_BLOCK, fabricItemSettings);
+		registerBlockWithItem("cow_mob_block", COW_MOB_BLOCK, fabricItemSettings);
+		registerBlockWithItem("creeper_mob_block", CREEPER_MOB_BLOCK, fabricItemSettings);
+		registerBlockWithItem("drowned_mob_block", DROWNED_MOB_BLOCK, fabricItemSettings);
+		registerBlockWithItem("ender_dragon_mob_block", ENDER_DRAGON_MOB_BLOCK, fabricItemSettings);
+		registerBlockWithItem("enderman_mob_block", ENDERMAN_MOB_BLOCK, fabricItemSettings);
+		registerBlockWithItem("endermite_mob_block", ENDERMITE_MOB_BLOCK, fabricItemSettings);
+		registerBlockWithItem("evoker_mob_block", EVOKER_MOB_BLOCK, fabricItemSettings);
+		registerBlockWithItem("fish_mob_block", FISH_MOB_BLOCK, fabricItemSettings);
+		registerBlockWithItem("fox_mob_block", FOX_MOB_BLOCK, fabricItemSettings);
+		registerBlockWithItem("ghast_mob_block", GHAST_MOB_BLOCK, fabricItemSettings);
+		registerBlockWithItem("glow_squid_mob_block", GLOW_SQUID_MOB_BLOCK, fabricItemSettings);
+		registerBlockWithItem("goat_mob_block", GOAT_MOB_BLOCK, fabricItemSettings);
+		registerBlockWithItem("guardian_mob_block", GUARDIAN_MOB_BLOCK, fabricItemSettings);
+		registerBlockWithItem("horse_mob_block", HORSE_MOB_BLOCK, fabricItemSettings);
+		registerBlockWithItem("illusioner_mob_block", ILLUSIONER_MOB_BLOCK, fabricItemSettings);
+		registerBlockWithItem("llama_mob_block", LLAMA_MOB_BLOCK, fabricItemSettings);
+		registerBlockWithItem("ocelot_mob_block", OCELOT_MOB_BLOCK, fabricItemSettings);
+		registerBlockWithItem("parrot_mob_block", PARROT_MOB_BLOCK, fabricItemSettings);
+		registerBlockWithItem("phantom_mob_block", PHANTOM_MOB_BLOCK, fabricItemSettings);
+		registerBlockWithItem("pig_mob_block", PIG_MOB_BLOCK, fabricItemSettings);
+		registerBlockWithItem("piglin_mob_block", PIGLIN_MOB_BLOCK, fabricItemSettings);
+		registerBlockWithItem("polar_bear_mob_block", POLAR_BEAR_MOB_BLOCK, fabricItemSettings);
+		registerBlockWithItem("pufferfish_mob_block", PUFFERFISH_MOB_BLOCK, fabricItemSettings);
+		registerBlockWithItem("rabbit_mob_block", RABBIT_MOB_BLOCK, fabricItemSettings);
+		registerBlockWithItem("sheep_mob_block", SHEEP_MOB_BLOCK, fabricItemSettings);
+		registerBlockWithItem("shulker_mob_block", SHULKER_MOB_BLOCK, fabricItemSettings);
+		registerBlockWithItem("silverfish_mob_block", SILVERFISH_MOB_BLOCK, fabricItemSettings);
+		registerBlockWithItem("skeleton_mob_block", SKELETON_MOB_BLOCK, fabricItemSettings);
+		registerBlockWithItem("slime_mob_block", SLIME_MOB_BLOCK, fabricItemSettings);
+		registerBlockWithItem("snow_golem_mob_block", SNOW_GOLEM_MOB_BLOCK, fabricItemSettings);
+		registerBlockWithItem("spider_mob_block", SPIDER_MOB_BLOCK, fabricItemSettings);
+		registerBlockWithItem("squid_mob_block", SQUID_MOB_BLOCK, fabricItemSettings);
+		registerBlockWithItem("stray_mob_block", STRAY_MOB_BLOCK, fabricItemSettings);
+		registerBlockWithItem("strider_mob_block", STRIDER_MOB_BLOCK, fabricItemSettings);
+		registerBlockWithItem("turtle_mob_block", TURTLE_MOB_BLOCK, fabricItemSettings);
+		registerBlockWithItem("vindicator_mob_block", VINDICATOR_MOB_BLOCK, fabricItemSettings);
+		registerBlockWithItem("witch_mob_block", WITCH_MOB_BLOCK, fabricItemSettings);
+		registerBlockWithItem("wither_mob_block", WITHER_MOB_BLOCK, fabricItemSettings);
+		registerBlockWithItem("wither_skeleton_mob_block", WITHER_SKELETON_MOB_BLOCK, fabricItemSettings);
+		registerBlockWithItem("zombie_mob_block", ZOMBIE_MOB_BLOCK, fabricItemSettings);
 	}
 
 	// Most mob heads vanilla is missing (vanilla only has: skeleton, wither skeleton, zombie, player, creeper, ender dragon)

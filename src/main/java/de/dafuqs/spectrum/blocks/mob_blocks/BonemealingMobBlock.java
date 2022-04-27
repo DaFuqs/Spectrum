@@ -6,7 +6,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
-import net.minecraft.util.Formatting;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.BlockView;
@@ -24,7 +23,7 @@ public class BonemealingMobBlock extends MobBlock {
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
 		super.appendTooltip(stack, world, tooltip, options);
-		tooltip.add(new TranslatableText( "block.spectrum.mob_block.tooltip").formatted(Formatting.GRAY));
+		tooltip.add(new TranslatableText( "block.spectrum.bonemealing_mob_block.tooltip"));
 	}
 	
 	@Override

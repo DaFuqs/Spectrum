@@ -72,27 +72,42 @@ import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
+import net.minecraft.block.dispenser.ProjectileDispenserBehavior;
 import net.minecraft.client.render.RenderLayer;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.entity.passive.LlamaEntity;
+import net.minecraft.entity.projectile.*;
+import net.minecraft.entity.projectile.thrown.SnowballEntity;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.BlockSoundGroup;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
+import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.Position;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.BlockView;
+import net.minecraft.world.World;
 import net.minecraft.world.explosion.Explosion;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Collection;
 import java.util.Locale;
+import java.util.Random;
 
 public class SpectrumBlocks {
 
@@ -736,22 +751,35 @@ public class SpectrumBlocks {
 	public static final Block COW_MOB_BLOCK = new MilkingMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.COW_MOB_BLOCK), 6);
 	public static final Block CREEPER_MOB_BLOCK = new ExplosionMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.CREEPER_MOB_BLOCK), 3, false, Explosion.DestructionType.BREAK);
 	public static final Block DROWNED_MOB_BLOCK = new BreathtakingMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.DROWNED_MOB_BLOCK), 6);
-	public static final Block ENDER_DRAGON_MOB_BLOCK = new ProjectileMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.ENDER_DRAGON_MOB_BLOCK), EntityType.DRAGON_FIREBALL);
-	public static final Block ENDERMAN_MOB_BLOCK = new TeleportingMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.ENDERMAN_MOB_BLOCK), 16);
-	public static final Block ENDERMITE_MOB_BLOCK = new TeleportingMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.ENDERMITE_MOB_BLOCK), 5);
+	public static final Block ENDER_DRAGON_MOB_BLOCK = new ProjectileMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.ENDER_DRAGON_MOB_BLOCK), EntityType.DRAGON_FIREBALL, SoundEvents.ENTITY_ENDER_DRAGON_SHOOT, 6.0F, 1.1F) {
+		@Override
+		public ProjectileEntity createProjectile(ServerWorld world, Position position) {
+			ArrowEntity arrowEntity = new ArrowEntity(world, position.getX(), position.getY(), position.getZ());
+			arrowEntity.pickupType = PersistentProjectileEntity.PickupPermission.DISALLOWED;
+			return arrowEntity;
+		}
+	};
+	public static final Block ENDERMAN_MOB_BLOCK = new RandomTeleportingMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.ENDERMAN_MOB_BLOCK), 16, 16);
+	public static final Block ENDERMITE_MOB_BLOCK = new LineTeleportingMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.ENDERMITE_MOB_BLOCK), 12);
 	public static final Block EVOKER_MOB_BLOCK = new EntitySummoningMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.EVOKER_MOB_BLOCK), EntityType.VEX);
 	public static final Block FISH_MOB_BLOCK = new StatusEffectMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.FISH_MOB_BLOCK), StatusEffects.WATER_BREATHING, 0, 160);
 	public static final Block FOX_MOB_BLOCK = new StatusEffectMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.FOX_MOB_BLOCK), StatusEffects.HASTE, 0, 160);
-	public static final Block GHAST_MOB_BLOCK = new ProjectileMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.GHAST_MOB_BLOCK), EntityType.FIREBALL);
+	public static final Block GHAST_MOB_BLOCK = new ProjectileMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.GHAST_MOB_BLOCK), EntityType.FIREBALL, SoundEvents.ENTITY_GHAST_SHOOT, 6.0F, 1.1F) {
+		@Override
+		public ProjectileEntity createProjectile(ServerWorld world, Position position) {
+			ArrowEntity arrowEntity = new ArrowEntity(world, position.getX(), position.getY(), position.getZ());
+			arrowEntity.pickupType = PersistentProjectileEntity.PickupPermission.DISALLOWED;
+			return arrowEntity;
+		}
+	};
 	public static final Block GLOW_SQUID_MOB_BLOCK = new StatusEffectMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.GLOW_SQUID_MOB_BLOCK), StatusEffects.GLOWING, 0, 160);
 	public static final Block GOAT_MOB_BLOCK = new KnockbackMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.GOAT_MOB_BLOCK), 5.0F, 0.5F); // knocks mostly sideways
 	public static final Block GUARDIAN_MOB_BLOCK = new StatusEffectMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.GUARDIAN_MOB_BLOCK), StatusEffects.MINING_FATIGUE, 1, 80);
 	public static final Block HORSE_MOB_BLOCK = new StatusEffectMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.HORSE_MOB_BLOCK), StatusEffects.STRENGTH, 0, 80);
 	public static final Block ILLUSIONER_MOB_BLOCK = new StatusEffectMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.ILLUSIONER_MOB_BLOCK), StatusEffects.INVISIBILITY, 0, 80);
-	public static final Block LLAMA_MOB_BLOCK = new ProjectileMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.LLAMA_MOB_BLOCK), EntityType.LLAMA_SPIT);
 	public static final Block OCELOT_MOB_BLOCK = new StatusEffectMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.OCELOT_MOB_BLOCK), StatusEffects.NIGHT_VISION, 0, 80);
 	public static final Block PARROT_MOB_BLOCK = new StatusEffectMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.PARROT_MOB_BLOCK), StatusEffects.SLOW_FALLING, 0, 80);
-	public static final Block PHANTOM_MOB_BLOCK = new InsomniaMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.PHANTOM_MOB_BLOCK));
+	public static final Block PHANTOM_MOB_BLOCK = new InsomniaMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.PHANTOM_MOB_BLOCK), 24000); // 1 ingame day
 	public static final Block PIG_MOB_BLOCK = new StatusEffectMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.PIG_MOB_BLOCK), StatusEffects.SATURATION, 0, 2);
 	public static final Block PIGLIN_MOB_BLOCK = new PiglinTradeMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.PIGLIN_MOB_BLOCK));
 	public static final Block POLAR_BEAR_MOB_BLOCK = new FreezingMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.POLAR_BEAR_MOB_BLOCK));
@@ -760,9 +788,21 @@ public class SpectrumBlocks {
 	public static final Block SHEEP_MOB_BLOCK = new ShearingMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.SHEEP_MOB_BLOCK), 6);
 	public static final Block SHULKER_MOB_BLOCK = new StatusEffectMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.SHULKER_MOB_BLOCK), StatusEffects.LEVITATION, 0, 80);
 	public static final Block SILVERFISH_MOB_BLOCK = new SilverfishInsertingMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.SILVERFISH_MOB_BLOCK));
-	public static final Block SKELETON_MOB_BLOCK = new ProjectileMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.SKELETON_MOB_BLOCK), EntityType.ARROW);
+	public static final Block SKELETON_MOB_BLOCK = new ProjectileMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.SKELETON_MOB_BLOCK), EntityType.ARROW, SoundEvents.ENTITY_ARROW_SHOOT, 6.0F, 1.1F) {
+		@Override
+		public ProjectileEntity createProjectile(ServerWorld world, Position position) {
+			ArrowEntity arrowEntity = new ArrowEntity(world, position.getX(), position.getY(), position.getZ());
+			arrowEntity.pickupType = PersistentProjectileEntity.PickupPermission.DISALLOWED;
+			return arrowEntity;
+		}
+	};
 	public static final Block SLIME_MOB_BLOCK = new SlimeSizingMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.SLIME_MOB_BLOCK), 6);
-	public static final Block SNOW_GOLEM_MOB_BLOCK = new ProjectileMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.SNOW_GOLEM_MOB_BLOCK), EntityType.SNOWBALL);
+	public static final Block SNOW_GOLEM_MOB_BLOCK = new ProjectileMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.SNOW_GOLEM_MOB_BLOCK), EntityType.SNOWBALL, SoundEvents.ENTITY_ARROW_SHOOT, 6.0F, 1.1F) {
+		@Override
+		public ProjectileEntity createProjectile(ServerWorld world, Position position) {
+			return new SnowballEntity(world, position.getX(), position.getY(), position.getZ());
+		}
+	};
 	public static final Block SPIDER_MOB_BLOCK = new StatusEffectMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.SPIDER_MOB_BLOCK), StatusEffects.POISON, 0, 80);
 	public static final Block SQUID_MOB_BLOCK = new StatusEffectMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.SQUID_MOB_BLOCK), StatusEffects.BLINDNESS, 0, 80);
 	public static final Block STRAY_MOB_BLOCK = new StatusEffectMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.STRAY_MOB_BLOCK), StatusEffects.SLOWNESS, 2, 80);
@@ -1433,7 +1473,6 @@ public class SpectrumBlocks {
 		registerBlockWithItem("guardian_mob_block", GUARDIAN_MOB_BLOCK, fabricItemSettings);
 		registerBlockWithItem("horse_mob_block", HORSE_MOB_BLOCK, fabricItemSettings);
 		registerBlockWithItem("illusioner_mob_block", ILLUSIONER_MOB_BLOCK, fabricItemSettings);
-		registerBlockWithItem("llama_mob_block", LLAMA_MOB_BLOCK, fabricItemSettings);
 		registerBlockWithItem("ocelot_mob_block", OCELOT_MOB_BLOCK, fabricItemSettings);
 		registerBlockWithItem("parrot_mob_block", PARROT_MOB_BLOCK, fabricItemSettings);
 		registerBlockWithItem("phantom_mob_block", PHANTOM_MOB_BLOCK, fabricItemSettings);

@@ -1,28 +1,67 @@
 package de.dafuqs.spectrum.blocks.mob_blocks;
 
+import de.dafuqs.spectrum.helpers.TimeHelper;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityData;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.SpawnReason;
+import net.minecraft.entity.mob.PhantomEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
+import net.minecraft.stat.Stats;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.BlockView;
+import net.minecraft.world.GameRules;
+import net.minecraft.world.spawner.PhantomSpawner;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.Random;
 
 public class InsomniaMobBlock extends MobBlock {
 	
-	public InsomniaMobBlock(Settings settings) {
+	public final int additionalTicksSinceLastRest;
+	
+	public InsomniaMobBlock(Settings settings, int additionalTicksSinceLastRest) {
 		super(settings);
+		this.additionalTicksSinceLastRest = additionalTicksSinceLastRest;
 	}
 	
 	@Override
 	public void trigger(ServerWorld world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
-	
+		// spawn phantoms regardless of gamerule
+		// makes phantom drops accessible even with gamerule disabled
+		if(entity instanceof ServerPlayerEntity serverPlayerEntity /*&& !world.getGameRules().getBoolean(GameRules.DO_INSOMNIA)*/) {
+			Random random = world.random;
+			
+			// play a phantom sound
+			world.playSound(null, blockPos, SoundEvents.ENTITY_PHANTOM_AMBIENT, SoundCategory.BLOCKS, 1.0F, 0.8F + random.nextFloat() * 0.4F);
+			
+			// cause insomnia
+			int currentStatValue = serverPlayerEntity.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(Stats.TIME_SINCE_REST));
+			currentStatValue = MathHelper.clamp(currentStatValue, 0, 2147483647 - additionalTicksSinceLastRest); // prevent overflows
+			serverPlayerEntity.getStatHandler().setStat(serverPlayerEntity, Stats.CUSTOM.getOrCreateStat(Stats.TIME_SINCE_REST), currentStatValue + this.additionalTicksSinceLastRest);
+			
+			// if sky visible & night: immediately spawn phantom
+			if(world.isSkyVisible(blockPos) && TimeHelper.getTimeOfDay(world).isNight()) {
+				PhantomEntity phantomEntity = EntityType.PHANTOM.create(world);
+				if(phantomEntity != null) {
+					phantomEntity.refreshPositionAndAngles(blockPos.up(20 + random.nextInt(15)).east(-10 + random.nextInt(21)).south(-10 + random.nextInt(21)), 0.0F, 0.0F);
+					phantomEntity.initialize(world, world.getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, null, null);
+					world.spawnEntityAndPassengers(phantomEntity);
+				}
+			}
+		}
 	}
 	
 	@Override

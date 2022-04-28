@@ -3,12 +3,22 @@ package de.dafuqs.spectrum.blocks.mob_blocks;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.Shearable;
+import net.minecraft.entity.passive.GoatEntity;
+import net.minecraft.entity.passive.SheepEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvent;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.BlockView;
 import org.jetbrains.annotations.Nullable;
 
@@ -31,7 +41,12 @@ public class ShearingMobBlock extends MobBlock {
 	
 	@Override
 	public void trigger(ServerWorld world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
-	
+		List<LivingEntity> entities = world.getNonSpectatingEntities(LivingEntity.class, Box.of(Vec3d.ofCenter(blockPos), range, range, range));
+		for(LivingEntity currentEntity : entities) {
+			if(currentEntity instanceof Shearable shearable && shearable.isShearable()) {
+				shearable.sheared(SoundCategory.BLOCKS);
+			}
+		}
 	}
 	
 }

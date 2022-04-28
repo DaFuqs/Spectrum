@@ -43,7 +43,9 @@
     "accessors.FoxEntityAccessor",
     "accessors.ItemAccessor",
     "accessors.LootTableAccessor",
+    "accessors.MooshroomEntityAccessor",
     "accessors.ShapedRecipeAccessor",
+    "accessors.SlimeEntityAccessor",
     "accessors.StructureFeatureAccessor"
   ],
   "client": [

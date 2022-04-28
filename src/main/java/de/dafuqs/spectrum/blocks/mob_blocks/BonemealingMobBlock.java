@@ -4,6 +4,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Fertilizable;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
+import net.minecraft.item.BoneMealItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
@@ -34,7 +35,9 @@ public class BonemealingMobBlock extends MobBlock {
 			BlockState offsetState = world.getBlockState(offsetPos);
 			if(offsetState.getBlock() instanceof Fertilizable fertilizable) {
 				if(fertilizable.isFertilizable(world, offsetPos, offsetState, false) && fertilizable.canGrow(world, world.random, offsetPos, offsetState)) {
-					fertilizable.grow((ServerWorld) world, world.getRandom(), offsetPos, offsetState);
+					// TODO: also bonemeal ground. Use Growth Staff functions?
+					fertilizable.grow(world, world.getRandom(), offsetPos, offsetState);
+					world.syncWorldEvent(1505, offsetPos, 0); // particles
 				}
 			}
 		}

@@ -36,7 +36,7 @@ public class ExplosionMobBlock extends MobBlock {
 	
 	@Override
 	public void trigger(ServerWorld world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
-	
+		world.createExplosion(null, blockPos.getX(), blockPos.getY(), blockPos.getZ(), this.power, this.createFire, this.destructionType);
 	}
 	
 }

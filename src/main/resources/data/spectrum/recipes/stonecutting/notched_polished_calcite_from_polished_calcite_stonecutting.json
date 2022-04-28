@@ -1,8 +1,8 @@
 {
   "type": "minecraft:stonecutting",
   "ingredient": {
-    "item": "spectrum:polished_basalt"
+    "item": "spectrum:polished_calcite"
   },
-  "result": "spectrum:notched_polished_basalt",
+  "result": "spectrum:notched_polished_calcite",
   "count": 1
 }

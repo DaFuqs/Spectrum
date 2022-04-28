@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.status_effects;
+/*package de.dafuqs.spectrum.status_effects;
 
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttributeInstance;
@@ -41,3 +41,4 @@ public class MilleniaDiseaseStatusEffect extends StatusEffect {
 	}
 	
 }
+*/

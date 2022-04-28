@@ -4,13 +4,14 @@ import net.minecraft.block.BlockState;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.SpawnReason;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.BlockView;
-import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -31,8 +32,12 @@ public class EntitySummoningMobBlock extends MobBlock {
 	}
 	
 	@Override
-	public void trigger(World world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
-		// TODO
+	public void trigger(ServerWorld world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
+		// alignPosition: center the mob in the center of the blockPos
+		Entity summonedEntity = entityType.spawn(world, null, null, null, blockPos.up(), SpawnReason.MOB_SUMMONED, true, false);
+		if (summonedEntity != null) {
+			world.spawnEntityAndPassengers(summonedEntity);
+		}
 	}
 	
 }

@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.blocks.mob_blocks;
 
 import net.minecraft.block.BlockState;
-import net.minecraft.block.CropBlock;
 import net.minecraft.block.Fertilizable;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
@@ -12,7 +11,6 @@ import net.minecraft.text.TranslatableText;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.BlockView;
-import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -30,7 +28,7 @@ public class BonemealingMobBlock extends MobBlock {
 	}
 	
 	@Override
-	public void trigger(World world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
+	public void trigger(ServerWorld world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
 		for(Direction direction : Direction.values()) {
 			BlockPos offsetPos = blockPos.offset(direction);
 			BlockState offsetState = world.getBlockState(offsetPos);

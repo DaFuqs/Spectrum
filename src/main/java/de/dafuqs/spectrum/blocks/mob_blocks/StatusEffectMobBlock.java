@@ -7,12 +7,12 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.BlockView;
-import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -37,7 +37,7 @@ public class StatusEffectMobBlock extends MobBlock {
 	}
 	
 	@Override
-	public void trigger(World world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
+	public void trigger(ServerWorld world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
 		if(entity instanceof LivingEntity livingEntity) {
 			livingEntity.addStatusEffect(new StatusEffectInstance(statusEffect, amplifier, duration, true, true));
 		}

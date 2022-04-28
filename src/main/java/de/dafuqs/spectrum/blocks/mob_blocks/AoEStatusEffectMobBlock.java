@@ -7,6 +7,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.math.BlockPos;
@@ -14,7 +15,6 @@ import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.BlockView;
-import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -41,7 +41,7 @@ public class AoEStatusEffectMobBlock extends MobBlock {
 	}
 	
 	@Override
-	public void trigger(World world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
+	public void trigger(ServerWorld world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
 		List<LivingEntity> livingEntities = world.getNonSpectatingEntities(LivingEntity.class, Box.of(Vec3d.ofCenter(blockPos), range, range, range));
 		for(LivingEntity livingEntity : livingEntities) {
 			livingEntity.addStatusEffect(new StatusEffectInstance(statusEffect, amplifier, duration, true, true));

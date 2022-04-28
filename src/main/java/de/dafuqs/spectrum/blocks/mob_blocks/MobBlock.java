@@ -7,6 +7,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.ActionResult;
@@ -36,7 +37,7 @@ public abstract class MobBlock extends Block {
 	@Override
 	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
 		if(!world.isClient) {
-			trigger(world, pos, state, player, hit.getSide());
+			trigger((ServerWorld) world, pos, state, player, hit.getSide());
 		}
 		return super.onUse(state, world, pos, player, hand, hit);
 	}
@@ -45,17 +46,17 @@ public abstract class MobBlock extends Block {
 	public void onSteppedOn(World world, BlockPos pos, BlockState state, Entity entity) {
 		super.onSteppedOn(world, pos, state, entity);
 		if(!world.isClient) {
-			trigger(world, pos, state, entity, Direction.DOWN);
+			trigger((ServerWorld) world, pos, state, entity, Direction.DOWN);
 		}
 	}
 	
 	public void onProjectileHit(World world, BlockState state, BlockHitResult hit, ProjectileEntity projectile) {
 		if(!world.isClient) {
-			trigger(world, hit.getBlockPos(), state, projectile.getOwner(), hit.getSide());
+			trigger((ServerWorld) world, hit.getBlockPos(), state, projectile.getOwner(), hit.getSide());
 		}
 	}
 	
-	public abstract void trigger(World world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side);
+	public abstract void trigger(ServerWorld world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side);
 	
 	
 }

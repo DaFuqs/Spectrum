@@ -1,8 +1,9 @@
 package de.dafuqs.spectrum.mixin;
 
 import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.blocks.decay.RuinBlock;
+import de.dafuqs.spectrum.blocks.decay.TerrorBlock;
 import de.dafuqs.spectrum.helpers.Support;
-import de.dafuqs.spectrum.registries.SpectrumBlockTags;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.minecraft.block.BlockState;
@@ -38,20 +39,31 @@ public abstract class GlassBottleItemMixin {
 			locals = LocalCapture.CAPTURE_FAILHARD)
 	public void onUse(World world, PlayerEntity user, Hand hand, CallbackInfoReturnable<TypedActionResult> cir, List list, ItemStack handStack, HitResult areaEffectCloudEntity, BlockPos blockPos) {
 		BlockState blockState = world.getBlockState(blockPos);
-		if (blockState.isIn(SpectrumBlockTags.DECAY)) {
+		if(blockState.isOf(SpectrumBlocks.FADING) && Support.hasAdvancement(user, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_bottle_of_fading"))) {
 			world.setBlockState(blockPos, Blocks.AIR.getDefaultState());
 			world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ITEM_BOTTLE_FILL_DRAGONBREATH, SoundCategory.NEUTRAL, 1.0F, 1.0F);
-			if(blockState.isOf(SpectrumBlocks.FADING) && Support.hasAdvancement(user, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_bottle_of_fading"))) {
-				cir.setReturnValue(TypedActionResult.success(this.fill(handStack, user, SpectrumItems.BOTTLE_OF_FADING.getDefaultStack()), world.isClient()));
-			} else if(blockState.isOf(SpectrumBlocks.FAILING) && Support.hasAdvancement(user, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_bottle_of_failing"))) {
-				cir.setReturnValue(TypedActionResult.success(this.fill(handStack, user, SpectrumItems.BOTTLE_OF_FAILING.getDefaultStack()), world.isClient()));
-			} else if(blockState.isOf(SpectrumBlocks.RUIN) && Support.hasAdvancement(user, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_bottle_of_ruin"))) {
-				cir.setReturnValue(TypedActionResult.success(this.fill(handStack, user, SpectrumItems.BOTTLE_OF_RUIN.getDefaultStack()), world.isClient()));
-			} else if(blockState.isOf(SpectrumBlocks.TERROR) && Support.hasAdvancement(user, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_bottle_of_terror"))) {
-				cir.setReturnValue(TypedActionResult.success(this.fill(handStack, user, SpectrumItems.BOTTLE_OF_TERROR.getDefaultStack()), world.isClient()));
+			cir.setReturnValue(TypedActionResult.success(this.fill(handStack, user, SpectrumItems.BOTTLE_OF_FADING.getDefaultStack()), world.isClient()));
+		} else if(blockState.isOf(SpectrumBlocks.FAILING) && Support.hasAdvancement(user, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_bottle_of_failing"))) {
+			world.setBlockState(blockPos, Blocks.AIR.getDefaultState());
+			world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ITEM_BOTTLE_FILL_DRAGONBREATH, SoundCategory.NEUTRAL, 1.0F, 1.0F);
+			cir.setReturnValue(TypedActionResult.success(this.fill(handStack, user, SpectrumItems.BOTTLE_OF_FAILING.getDefaultStack()), world.isClient()));
+		} else if(blockState.isOf(SpectrumBlocks.RUIN) && Support.hasAdvancement(user, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_bottle_of_ruin"))) {
+			if(blockState.get(RuinBlock.DECAY_STATE) == RuinBlock.DecayConversion.BEDROCK) {
+				world.setBlockState(blockPos, Blocks.BEDROCK.getDefaultState());
+			} else {
+				world.setBlockState(blockPos, Blocks.AIR.getDefaultState());
 			}
+			world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ITEM_BOTTLE_FILL_DRAGONBREATH, SoundCategory.NEUTRAL, 1.0F, 1.0F);
+			cir.setReturnValue(TypedActionResult.success(this.fill(handStack, user, SpectrumItems.BOTTLE_OF_RUIN.getDefaultStack()), world.isClient()));
+		} else if(blockState.isOf(SpectrumBlocks.TERROR) && Support.hasAdvancement(user, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_bottle_of_terror"))) {
+			if(blockState.get(TerrorBlock.DECAY_STATE) == TerrorBlock.DecayConversion.BEDROCK) {
+				world.setBlockState(blockPos, Blocks.BEDROCK.getDefaultState());
+			} else {
+				world.setBlockState(blockPos, Blocks.AIR.getDefaultState());
+			}
+			world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ITEM_BOTTLE_FILL_DRAGONBREATH, SoundCategory.NEUTRAL, 1.0F, 1.0F);
+			cir.setReturnValue(TypedActionResult.success(this.fill(handStack, user, SpectrumItems.BOTTLE_OF_TERROR.getDefaultStack()), world.isClient()));
 		}
-		
 	}
 	
 }

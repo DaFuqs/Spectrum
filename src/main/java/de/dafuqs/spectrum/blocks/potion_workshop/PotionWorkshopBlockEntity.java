@@ -361,10 +361,10 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 		if (potionWorkshopBlockEntity.currentRecipe instanceof PotionWorkshopBrewingRecipe potionWorkshopBrewingRecipe && potionWorkshopBlockEntity.currentRecipe.matches(potionWorkshopBlockEntity, world)) {
 			// we check for reagents here instead of the recipe itself because of performance
 			if (isBrewingRecipeApplicable(potionWorkshopBrewingRecipe, potionWorkshopBlockEntity.getStack(BASE_INPUT_SLOT_ID), potionWorkshopBlockEntity)) {
-				return potionWorkshopBlockEntity.currentRecipe;
+				newRecipe = potionWorkshopBlockEntity.currentRecipe;
 			}
 		} else if(potionWorkshopBlockEntity.currentRecipe instanceof PotionWorkshopCraftingRecipe && potionWorkshopBlockEntity.currentRecipe.matches(potionWorkshopBlockEntity, world)) {
-			return potionWorkshopBlockEntity.currentRecipe;
+			newRecipe = potionWorkshopBlockEntity.currentRecipe;
 		} else {
 			// current recipe does not match last recipe
 			// => search valid recipe
@@ -386,7 +386,22 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 			}
 		}
 		
-		return newRecipe;
+		return hasUniqueReagents(potionWorkshopBlockEntity) ? newRecipe : null;
+	}
+	
+	private static boolean hasUniqueReagents(PotionWorkshopBlockEntity potionWorkshopBlockEntity) {
+		List<Item> reagentItems = new ArrayList<>();
+		for(int i = FIRST_REAGENT_SLOT; i < FIRST_INVENTORY_SLOT; i++) {
+			ItemStack reagentStack = potionWorkshopBlockEntity.getStack(i);
+			if(!reagentStack.isEmpty()) {
+				if(reagentItems.contains(reagentStack.getItem())) {
+					return false;
+				} else {
+					reagentItems.add(reagentStack.getItem());
+				}
+			}
+		}
+		return true;
 	}
 	
 	private static boolean isBrewingRecipeApplicable(PotionWorkshopBrewingRecipe recipe, ItemStack baseIngredient, PotionWorkshopBlockEntity potionWorkshopBlockEntity) {
@@ -442,7 +457,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 		// calculate outputs
 		List<ItemStack> results = new ArrayList<>();
 		for(int i = 0; i < brewedAmount; i++) {
-			results.add(brewingRecipe.getRandomPotion(potionMod, potionWorkshopBlockEntity.lastBrewedStatusEffect, potionWorkshopBlockEntity.world.random));
+			results.add(brewingRecipe.brewRandomPotion(potionMod, potionWorkshopBlockEntity.lastBrewedStatusEffect, potionWorkshopBlockEntity.world.random));
 		}
 		
 		// trigger advancements for all brewed potions

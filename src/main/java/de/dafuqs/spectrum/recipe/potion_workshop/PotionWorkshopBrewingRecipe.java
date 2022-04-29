@@ -58,7 +58,7 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 	protected final boolean applicableToTippedArrows;
 	protected final boolean applicableToPotionFillabes;
 	
-	protected ItemStack cacheckOutput;
+	protected ItemStack cachedOutput;
 
 	public PotionWorkshopBrewingRecipe(Identifier id, String group, int craftingTime, Ingredient ingredient1, Ingredient ingredient2, Ingredient ingredient3, StatusEffect statusEffect, int baseDurationTicks, float potencyModifier, int color, boolean applicableToPotions, boolean applicableToTippedArrows, boolean applicableToPotionFillabes, Identifier requiredAdvancementIdentifier) {
 		super(id, group, craftingTime, color, ingredient1, ingredient2, ingredient3, requiredAdvancementIdentifier);
@@ -151,10 +151,10 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 	
 	@Override
 	public ItemStack getOutput() {
-		if(this.cacheckOutput == null) {
-			this.cacheckOutput = getRandomPotion(new PotionMod(), null, new Random());
+		if(this.cachedOutput == null) {
+			this.cachedOutput = brewRandomPotion(new PotionMod(), null, new Random());
 		}
-		return this.cacheckOutput;
+		return this.cachedOutput;
 	}
 	
 	@Override
@@ -162,7 +162,7 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 		return null;
 	}
 	
-	public ItemStack getRandomPotion(PotionMod potionMod, StatusEffect lastBrewedStatusEffect, Random random) {
+	public ItemStack brewRandomPotion(PotionMod potionMod, StatusEffect lastBrewedStatusEffect, Random random) {
 		List<StatusEffectInstance> effects = new ArrayList<>();
 		
 		if(potionMod.makeSplashing && potionMod.makeLingering) {

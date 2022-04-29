@@ -87,7 +87,7 @@ public class KnowledgeGemItem extends Item implements ExperienceStorageItem, Enc
 			
 			if (serverPlayerEntity.isSneaking()) {
 				int maxStorage = getMaxStoredExperience(stack);
-				int experienceToTransfer = Math.min(Math.min(transferableExperience, playerExperience), maxStorage - itemExperience);
+				int experienceToTransfer = serverPlayerEntity.isCreative() ? Math.min(transferableExperience, maxStorage - itemExperience) : Math.min(Math.min(transferableExperience, playerExperience), maxStorage - itemExperience);
 				
 				// Store experience
 				if(experienceToTransfer > 0 && itemExperience < maxStorage && removePlayerExperience(serverPlayerEntity, experienceToTransfer)) {
@@ -103,7 +103,9 @@ public class KnowledgeGemItem extends Item implements ExperienceStorageItem, Enc
 					int experienceToTransfer = Math.min(Math.min(transferableExperience, itemExperience), Integer.MAX_VALUE - playerExperience);
 					
 					if(experienceToTransfer > 0) {
-						serverPlayerEntity.addExperience(experienceToTransfer);
+						if (!serverPlayerEntity.isCreative()) {
+							serverPlayerEntity.addExperience(experienceToTransfer);
+						}
 						ExperienceStorageItem.removeStoredExperience(stack, experienceToTransfer);
 						
 						if (remainingUseTicks % 4 == 0) {

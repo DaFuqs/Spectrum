@@ -5,11 +5,13 @@ import com.mojang.datafixers.util.Pair;
 import de.dafuqs.spectrum.interfaces.PotionFillable;
 import dev.emi.trinkets.api.SlotReference;
 import net.minecraft.client.item.TooltipContext;
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.PotionItem;
 import net.minecraft.potion.PotionUtil;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
@@ -91,6 +93,7 @@ public class PotionPendantItem extends SpectrumTrinketItem implements PotionFill
 			} else {
 				tooltip.add(new TranslatableText("item.spectrum.potion_pendant.tooltip_not_full_count", maxEffectCount));
 			}
+			tooltip.add(new TranslatableText("item.spectrum.potion_pendant.tooltip_max_level").append(new TranslatableText("enchantment.level." + (this.maxAmplifier+1))));
 		}
 	}
 	

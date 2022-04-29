@@ -1206,6 +1206,7 @@
   "item.spectrum.greater_potion_pendant": "Greater Potion Pendant",
   "item.spectrum.potion_pendant.tooltip_not_full_one": "§7Fill with an Effect in the §fPotion Workshop",
   "item.spectrum.potion_pendant.tooltip_not_full_count": "§7Fill with up to §f%d§7 Effects in the §fPotion Workshop",
+  "item.spectrum.potion_pendant.tooltip_max_level": "§7Supports Effects up to level ",
   "item.spectrum.radiance_pin": "Radiance Pin",
   "item.spectrum.radiance_pin.tooltip": "§7Places temporary Lights when in the Dark",
   "item.spectrum.ashen_circlet": "Ashen Circlet",

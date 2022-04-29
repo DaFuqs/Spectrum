@@ -254,12 +254,16 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 			calculateCurrentRecipe(world, enchanterBlockEntity);
 			
 			// if no default recipe found => check in-code recipe for enchanting the center item with enchanted books
-			if(enchanterBlockEntity.currentRecipe == null && isValidCenterEnchantingSetup(enchanterBlockEntity)) {
-				int requiredExperience = getRequiredExperienceToEnchantCenterItem(enchanterBlockEntity);
-				if(requiredExperience > 0) {
-					enchanterBlockEntity.currentItemProcessingTime = requiredExperience * REQUIRED_TICKS_FOR_EACH_EXPERIENCE_POINT;
-					enchanterBlockEntity.updateInClientWorld();
+			if(enchanterBlockEntity.currentRecipe == null) {
+				if(isValidCenterEnchantingSetup(enchanterBlockEntity)) {
+					int requiredExperience = getRequiredExperienceToEnchantCenterItem(enchanterBlockEntity);
+					if (requiredExperience > 0) {
+						enchanterBlockEntity.currentItemProcessingTime = requiredExperience * REQUIRED_TICKS_FOR_EACH_EXPERIENCE_POINT;
+					}
+				} else {
+					enchanterBlockEntity.currentItemProcessingTime = -1;
 				}
+				enchanterBlockEntity.updateInClientWorld();
 			}
 			enchanterBlockEntity.inventoryChanged = false;
 		}

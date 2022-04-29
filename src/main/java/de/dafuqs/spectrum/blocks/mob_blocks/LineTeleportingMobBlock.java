@@ -33,14 +33,16 @@ public class LineTeleportingMobBlock extends MobBlock {
 	}
 	
 	@Override
-	public void trigger(ServerWorld world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
+	public boolean trigger(ServerWorld world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
 		if(entity != null) {
 			Optional<BlockPos> foundBlockPos = searchForBlock(world, blockPos, state, side, this.range);
 			if (foundBlockPos.isPresent()) {
 				BlockPos targetPos = foundBlockPos.get().up();
 				RandomTeleportingMobBlock.teleportTo(world, entity, targetPos.getX() + 0.5, targetPos.getY() + 0.5, targetPos.getZ() + 0.5);
+				return true;
 			}
 		}
+		return false;
 	}
 	
 	public static Optional<BlockPos> searchForBlock(World world, BlockPos pos, BlockState searchedState, Direction direction, int range) {

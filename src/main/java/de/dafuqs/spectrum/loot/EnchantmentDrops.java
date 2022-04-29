@@ -114,6 +114,7 @@ public class EnchantmentDrops {
 		put(new Identifier("entities/villager"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlock.Type.VILLAGER).asItem(), 0.01F));
 		put(new Identifier("entities/vindicator"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlock.Type.VINDICATOR).asItem(), 0.01F));
 		put(new Identifier("entities/wandering_trader"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlock.Type.WANDERING_TRADER).asItem(), 0.01F));
+		put(new Identifier("entities/witch"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlock.Type.WITCH).asItem(), 0.01F));
 		put(new Identifier("entities/wither"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlock.Type.WITHER).asItem(), 0.15F)); // he has 3 heads, after all!
 		put(new Identifier("entities/wolf"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlock.Type.WOLF).asItem(), 0.01F));
 		put(new Identifier("entities/zoglin"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlock.Type.ZOGLIN).asItem(), 0.01F));

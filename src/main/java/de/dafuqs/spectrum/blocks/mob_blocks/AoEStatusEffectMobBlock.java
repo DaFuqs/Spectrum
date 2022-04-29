@@ -41,11 +41,13 @@ public class AoEStatusEffectMobBlock extends MobBlock {
 	}
 	
 	@Override
-	public void trigger(ServerWorld world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
+	public boolean trigger(ServerWorld world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
 		List<LivingEntity> livingEntities = world.getNonSpectatingEntities(LivingEntity.class, Box.of(Vec3d.ofCenter(blockPos), range, range, range));
 		for(LivingEntity livingEntity : livingEntities) {
 			livingEntity.addStatusEffect(new StatusEffectInstance(statusEffect, amplifier, duration, true, true));
+			return true;
 		};
+		return false;
 	}
 	
 }

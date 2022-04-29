@@ -37,10 +37,12 @@ public class StatusEffectMobBlock extends MobBlock {
 	}
 	
 	@Override
-	public void trigger(ServerWorld world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
-		if(entity instanceof LivingEntity livingEntity) {
-			livingEntity.addStatusEffect(new StatusEffectInstance(statusEffect, amplifier, duration, true, true));
+	public boolean trigger(ServerWorld world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
+		if(entity instanceof LivingEntity livingEntity && !livingEntity.hasStatusEffect(statusEffect)) {
+			livingEntity.addStatusEffect(new StatusEffectInstance(statusEffect, duration, amplifier, true, true));
+			return true;
 		}
+		return false;
 	}
 	
 	

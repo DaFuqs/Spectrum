@@ -1,0 +1,285 @@
+{
+  "name": "Mob Blocks",
+  "advancement": "spectrum:progression/unlock_mob_blocks",
+  "icon": "spectrum:fox_mob_block",
+  "category": "spectrum:magical_blocks_category",
+  "extra_recipe_mappings": {
+    "axolotl_mob_block": 0,
+    "bat_mob_block": 0,
+    "bee_mob_block": 0,
+    "blaze_mob_block": 0,
+    "cat_mob_block": 0,
+    "chicken_mob_block": 0,
+    "cow_mob_block": 0,
+    "creeper_mob_block": 0,
+    "drowned_mob_block": 0,
+    "ender_dragon_mob_block": 0,
+    "enderman_mob_block": 0,
+    "endermite_mob_block": 0,
+    "evoker_mob_block": 0,
+    "fish_mob_block": 0,
+    "fox_mob_block": 0,
+    "ghast_mob_block": 0,
+    "glow_squid_mob_block": 0,
+    "goat_mob_block": 0,
+    "guardian_mob_block": 0,
+    "horse_mob_block": 0,
+    "illusioner_mob_block": 0,
+    "ocelot_mob_block": 0,
+    "parrot_mob_block": 0,
+    "phantom_mob_block": 0,
+    "pig_mob_block": 0,
+    "piglin_mob_block": 0,
+    "polar_bear_mob_block": 0,
+    "pufferfish_mob_block": 0,
+    "rabbit_mob_block": 0,
+    "sheep_mob_block": 0,
+    "shulker_mob_block": 0,
+    "silverfish_mob_block": 0,
+    "skeleton_mob_block": 0,
+    "slime_mob_block": 0,
+    "snow_golem_mob_block": 0,
+    "spider_mob_block": 0,
+    "squid_mob_block": 0,
+    "stray_mob_block": 0,
+    "strider_mob_block": 0,
+    "turtle_mob_block": 0,
+    "vindicator_mob_block": 0,
+    "witch_mob_block": 0,
+    "wither_mob_block": 0,
+    "wither_skeleton_mob_block": 0,
+    "zombie_mob_block": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Idols",
+      "text": "Manifestations of a creature in block form.$(br)Using them, walking on them, or hitting them with a projectile triggers an action that is specifically associated with that creature."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/axolotl_mob_block",
+      "text": "Gives a short burst of Regeneration."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/bat_mob_block",
+      "text": "Echolocates creatures in a 8 blocks radius around it."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/bee_mob_block",
+      "text": "Fertilizes plants next to it."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/blaze_mob_block",
+      "text": "Sets the creature that triggered it and blocks next to it on fire."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/cat_mob_block",
+      "text": "Negates all fall damage when fallen on."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/chicken_mob_block",
+      "text": "Gives a short burst of Slow Falling."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/cow_mob_block",
+      "text": "Milks all Cows, Goats and Mooshrooms in a 6 block radius."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/creeper_mob_block",
+      "text": "Causes a small explosion."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/drowned_mob_block",
+      "text": "Presses air out of the lungs of the triggered Creature.$(br2)(italic)breathtaking"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/ender_dragon_mob_block",
+      "text": "Shoots a Dragon Projectile."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/enderman_mob_block",
+      "text": "Teleports to a random position in a 16 block radius."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/endermite_mob_block",
+      "text": "Teleports to another block of the same type that is placed in a straight line on the side that was hit up to 16 blocks away."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/evoker_mob_block",
+      "text": "Summons a Vex."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/fish_mob_block",
+      "text": "Gives a short burst of Water Breathing."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/fox_mob_block",
+      "text": "Gives a short burst of Haste."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/ghast_mob_block",
+      "text": "Shoots a Fireball"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/glow_squid_mob_block",
+      "text": "Gives a short burst of Glowing."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/goat_mob_block",
+      "text": "Causes knockback."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/guardian_mob_block",
+      "text": "Gives a short burst Mining Fatigue."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/horse_mob_block",
+      "text": "Gives a short burst of Strength."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/illusioner_mob_block",
+      "text": "Gives a short burst of Invisibility."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/ocelot_mob_block",
+      "text": "Gives a short burst of Night Vision."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/parrot_mob_block",
+      "text": "Gives a short burst of Absorption."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/phantom_mob_block",
+      "text": "Causes Insomnia.$(br)When in open sky, a player will immediately get haunted by a Phantom."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/pig_mob_block",
+      "text": "Gives a short burst of Saturation."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/piglin_mob_block",
+      "text": "Trades with you."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/polar_bear_mob_block",
+      "text": "Freezes blocks around it."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/pufferfish_mob_block",
+      "text": "Gives a short burst of Nausea."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/rabbit_mob_block",
+      "text": "Gives a short burst of Jump Boost."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/sheep_mob_block",
+      "text": "Shears Creatures in a 6 block radius."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/shulker_mob_block",
+      "text": "Gives a short burst of Levitation."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/silverfish_mob_block",
+      "text": "Invades blocks next to it with Silverfish."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/skeleton_mob_block",
+      "text": "Shoots an Arrow."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/slime_mob_block",
+      "text": "Increases the size of Slimes in a 6 block radius."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/snow_golem_mob_block",
+      "text": "Shoots a Snowball."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/spider_mob_block",
+      "text": "Gives a short burst of Poison."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/squid_mob_block",
+      "text": "Gives a short burst of Blindness."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/stray_mob_block",
+      "text": "Gives a short burst of Hunger."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/strider_mob_block",
+      "text": "Gives a short burst of Fire Resistance."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/turtle_mob_block",
+      "text": "Gives a short burst of Resistance."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/vindicator_mob_block",
+      "text": "Inflicts Instant Damage."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/witch_mob_block",
+      "text": "Gives a short burst of Weakness."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/wither_mob_block",
+      "text": "Creates a huge explosion."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/wither_skeleton_mob_block",
+      "text": "Gives a short burst of Wither."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/zombie_mob_block",
+      "text": "Gives a short burst of Hunger."
+    }
+  ]
+}

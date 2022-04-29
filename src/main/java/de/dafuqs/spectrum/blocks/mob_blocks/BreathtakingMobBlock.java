@@ -30,10 +30,11 @@ public class BreathtakingMobBlock extends MobBlock {
 	}
 	
 	@Override
-	public void trigger(ServerWorld world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
+	public boolean trigger(ServerWorld world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
 		if(entity != null) {
 			entity.setAir(Math.max(0, entity.getAir() - amount));
 		}
+		return true;
 	}
 	
 }

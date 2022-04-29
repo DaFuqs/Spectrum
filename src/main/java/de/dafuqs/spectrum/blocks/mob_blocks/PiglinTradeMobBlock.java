@@ -5,7 +5,6 @@ import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.mob.PiglinBrain;
-import net.minecraft.entity.mob.PiglinEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.LootTable;
@@ -19,7 +18,6 @@ import net.minecraft.text.TranslatableText;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.BlockView;
-import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -32,7 +30,7 @@ public class PiglinTradeMobBlock extends MobBlock {
 	}
 	
 	@Override
-	public void trigger(ServerWorld world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
+	public boolean trigger(ServerWorld world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
 		if(entity instanceof PlayerEntity player) {
 			for(ItemStack handStack : player.getItemsHand()) {
 				if(handStack.isOf(PiglinBrain.BARTERING_ITEM)) {
@@ -43,10 +41,11 @@ public class PiglinTradeMobBlock extends MobBlock {
 						itemEntity.addVelocity(side.getOffsetX() * 0.5, side.getOffsetY() * 0.5 + 0.2, side.getOffsetZ() * 0.5);
 						world.spawnEntity(itemEntity);
 					}
-					return;
+					return true;
 				}
 			}
 		}
+		return false;
 	}
 	
 	private static List<ItemStack> getBarteredItem(@NotNull ServerWorld world) {

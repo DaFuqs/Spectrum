@@ -5,8 +5,8 @@ import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnReason;
+import net.minecraft.entity.mob.EvokerEntity;
 import net.minecraft.entity.mob.MobEntity;
-import net.minecraft.entity.mob.PhantomEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
@@ -17,9 +17,8 @@ import net.minecraft.world.BlockView;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
-import java.util.Random;
 
-public class EntitySummoningMobBlock extends MobBlock {
+public abstract class EntitySummoningMobBlock extends MobBlock {
 	
 	protected final EntityType entityType;
 	
@@ -35,7 +34,7 @@ public class EntitySummoningMobBlock extends MobBlock {
 	}
 	
 	@Override
-	public void trigger(ServerWorld world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
+	public boolean trigger(ServerWorld world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
 		// alignPosition: center the mob in the center of the blockPos
 		Entity summonedEntity = entityType.create(world);
 		if (summonedEntity != null) {
@@ -43,8 +42,12 @@ public class EntitySummoningMobBlock extends MobBlock {
 			if(summonedEntity instanceof MobEntity mobEntity) {
 				mobEntity.initialize(world, world.getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, null, null);
 			}
+			afterSummon(world, summonedEntity);
 			world.spawnEntityAndPassengers(summonedEntity);
 		}
+		return true;
 	}
+	
+	public abstract void afterSummon(ServerWorld world, Entity entity);
 	
 }

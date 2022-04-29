@@ -4,13 +4,9 @@ import de.dafuqs.spectrum.mixin.accessors.SlimeEntityAccessor;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.Shearable;
-import net.minecraft.entity.mob.MagmaCubeEntity;
 import net.minecraft.entity.mob.SlimeEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundCategory;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.math.BlockPos;
@@ -39,7 +35,7 @@ public class SlimeSizingMobBlock extends MobBlock {
 	}
 	
 	@Override
-	public void trigger(ServerWorld world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
+	public boolean trigger(ServerWorld world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
 		List<SlimeEntity> slimeEntities = world.getNonSpectatingEntities(SlimeEntity.class, Box.of(Vec3d.ofCenter(blockPos), range, range, range));
 		for(SlimeEntity slimeEntity : slimeEntities) {
 			if(slimeEntity.getSize() < MAX_SIZE) {
@@ -47,6 +43,7 @@ public class SlimeSizingMobBlock extends MobBlock {
 				((SlimeEntityAccessor) slimeEntity).invokeSetSize(newSize, true);
 			}
 		}
+		return true;
 	}
 	
 }

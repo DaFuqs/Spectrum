@@ -1,24 +1,18 @@
 package de.dafuqs.spectrum.blocks.mob_blocks;
 
-import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.block.*;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.FlintAndSteelItem;
 import net.minecraft.item.ItemStack;
-import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.property.Properties;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
-import net.minecraft.util.ActionResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.BlockView;
-import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
 import org.jetbrains.annotations.Nullable;
 
@@ -31,10 +25,14 @@ public class FirestarterMobBlock extends MobBlock {
 	}
 	
 	@Override
-	public void trigger(ServerWorld world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
+	public boolean trigger(ServerWorld world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
+		if(entity != null) {
+			entity.setOnFireFor(40);
+		}
 		for(Direction direction : Direction.values()) {
 			causeFire(world, blockPos.offset(direction), direction);
 		}
+		return true;
 	}
 	
 	public static boolean causeFire(ServerWorld world, BlockPos blockPos, Direction side) {
@@ -62,6 +60,7 @@ public class FirestarterMobBlock extends MobBlock {
 	public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
 		super.appendTooltip(stack, world, tooltip, options);
 		tooltip.add(new TranslatableText( "block.spectrum.firestarter_mob_block.tooltip"));
+		tooltip.add(new TranslatableText( "block.spectrum.firestarter_mob_block.tooltip2"));
 	}
 	
 }

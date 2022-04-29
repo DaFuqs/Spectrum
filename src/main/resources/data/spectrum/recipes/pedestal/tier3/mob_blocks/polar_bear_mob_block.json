@@ -1,0 +1,36 @@
+{
+  "type": "spectrum:pedestal",
+  "group": "mob_blocks",
+  "time": 200,
+  "tier": "advanced",
+  "magenta": 4,
+  "yellow": 2,
+  "cyan": 0,
+  "black": 1,
+  "white": 0,
+  "experience": 2.0,
+  "pattern": [
+    "SVS",
+    "VHV",
+    "QVQ"
+  ],
+  "key": {
+    "H": {
+      "item": "spectrum:polar_bear_head"
+    },
+    "V": {
+      "item": "spectrum:vegetal"
+    },
+    "Q": {
+      "item": "spectrum:quitoxic_powder"
+    },
+    "S": {
+      "item": "spectrum:stardust"
+    }
+  },
+  "result" : {
+    "item": "spectrum:polar_bear_mob_block",
+    "count": 1
+  },
+  "required_advancements": ["spectrum:progression/unlock_mob_blocks"]
+}

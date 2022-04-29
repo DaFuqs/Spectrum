@@ -23,10 +23,11 @@ public class FallDamageNegatingMobBlock extends MobBlock {
 	}
 	
 	@Override
-	public void trigger(ServerWorld world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
+	public boolean trigger(ServerWorld world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
 		if(entity != null) {
 			entity.setVelocity(0, 0, 0);
 		}
+		return false;
 	}
 	
 	@Override
@@ -38,6 +39,7 @@ public class FallDamageNegatingMobBlock extends MobBlock {
 	@Override
 	public void onLandedUpon(World world, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
 		entity.handleFallDamage(fallDistance, 0.0F, DamageSource.FALL);
+		playTriggerSound(world, pos);
 	}
 	
 }

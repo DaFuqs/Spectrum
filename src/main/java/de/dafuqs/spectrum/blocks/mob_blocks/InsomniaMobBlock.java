@@ -4,12 +4,10 @@ import de.dafuqs.spectrum.helpers.TimeHelper;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityData;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.mob.PhantomEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
@@ -21,8 +19,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.BlockView;
-import net.minecraft.world.GameRules;
-import net.minecraft.world.spawner.PhantomSpawner;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -38,7 +34,7 @@ public class InsomniaMobBlock extends MobBlock {
 	}
 	
 	@Override
-	public void trigger(ServerWorld world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
+	public boolean trigger(ServerWorld world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
 		// spawn phantoms regardless of gamerule
 		// makes phantom drops accessible even with gamerule disabled
 		if(entity instanceof ServerPlayerEntity serverPlayerEntity /*&& !world.getGameRules().getBoolean(GameRules.DO_INSOMNIA)*/) {
@@ -61,7 +57,10 @@ public class InsomniaMobBlock extends MobBlock {
 					world.spawnEntityAndPassengers(phantomEntity);
 				}
 			}
+			
+			return true;
 		}
+		return false;
 	}
 	
 	@Override

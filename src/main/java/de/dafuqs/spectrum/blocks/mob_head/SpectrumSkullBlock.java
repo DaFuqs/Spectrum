@@ -135,6 +135,7 @@ public class SpectrumSkullBlock extends SkullBlock {
 		VILLAGER,
 		VINDICATOR,
 		WANDERING_TRADER,
+		WITCH,
 		WITHER,
 		WOLF,
 		ZOGLIN,

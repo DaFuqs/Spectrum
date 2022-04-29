@@ -4,8 +4,6 @@ import net.minecraft.block.BlockState;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.mob.EndermanEntity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
@@ -15,13 +13,10 @@ import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.BlockView;
-import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.Random;
 
 public class RandomTeleportingMobBlock extends MobBlock {
@@ -42,14 +37,16 @@ public class RandomTeleportingMobBlock extends MobBlock {
 	}
 	
 	@Override
-	public void trigger(ServerWorld world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
+	public boolean trigger(ServerWorld world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
 		if (entity != null) {
 			Random random = world.getRandom();
 			double x = blockPos.getX() + (random.nextDouble() - 0.5D) * this.horizontalRange;
 			double y = blockPos.getY() + (double)(random.nextInt(this.verticalRange) - (this.verticalRange / 2));
 			double z = blockPos.getZ() + (random.nextDouble() - 0.5D) * this.horizontalRange;
 			teleportTo(world, entity, x, y, z);
+			return true;
 		}
+		return false;
 	}
 	
 	public static boolean teleportTo(ServerWorld world, Entity entity, double x, double y, double z) {

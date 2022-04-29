@@ -38,7 +38,7 @@ public class MilkingMobBlock extends MobBlock {
 	}
 	
 	@Override
-	public void trigger(@NotNull ServerWorld world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
+	public boolean trigger(@NotNull ServerWorld world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
 		// Goats
 		List<GoatEntity> goatEntities = world.getNonSpectatingEntities(GoatEntity.class, Box.of(Vec3d.ofCenter(blockPos), milkingRange, milkingRange, milkingRange));
 		for(GoatEntity goatEntity : goatEntities) {
@@ -90,6 +90,7 @@ public class MilkingMobBlock extends MobBlock {
 				}
 			}
 		}
+		return true;
 	}
 	
 	private void spawnItemStackAtEntity(ServerWorld world, @NotNull LivingEntity livingEntity, ItemStack itemStack) {

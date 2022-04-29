@@ -26,7 +26,7 @@ public class KnockbackMobBlock extends MobBlock {
 	}
 	
 	@Override
-	public void trigger(ServerWorld world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
+	public boolean trigger(ServerWorld world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
 		if(entity != null) {
 			switch (side) {
 				case NORTH -> {
@@ -48,7 +48,9 @@ public class KnockbackMobBlock extends MobBlock {
 					entity.addVelocity(0, - horizontalKnockback - verticalKnockback, 0);
 				}
 			}
+			return true;
 		}
+		return false;
 	}
 	
 	@Override

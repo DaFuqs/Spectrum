@@ -4,7 +4,6 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Fertilizable;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
-import net.minecraft.item.BoneMealItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
@@ -29,7 +28,7 @@ public class BonemealingMobBlock extends MobBlock {
 	}
 	
 	@Override
-	public void trigger(ServerWorld world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
+	public boolean trigger(ServerWorld world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
 		for(Direction direction : Direction.values()) {
 			BlockPos offsetPos = blockPos.offset(direction);
 			BlockState offsetState = world.getBlockState(offsetPos);
@@ -41,6 +40,7 @@ public class BonemealingMobBlock extends MobBlock {
 				}
 			}
 		}
+		return true;
 	}
 	
 }

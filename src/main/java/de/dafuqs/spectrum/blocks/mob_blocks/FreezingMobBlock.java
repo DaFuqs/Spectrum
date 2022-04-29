@@ -36,10 +36,11 @@ public class FreezingMobBlock extends MobBlock {
 	}
 	
 	@Override
-	public void trigger(ServerWorld world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
+	public boolean trigger(ServerWorld world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
 		for(Direction direction : Direction.values()) {
 			freeze(world, blockPos.offset(direction));
 		}
+		return true;
 	}
 	
 	public static boolean freeze(@NotNull ServerWorld world, BlockPos blockPos) {

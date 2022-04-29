@@ -14,7 +14,6 @@ import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.math.*;
 import net.minecraft.world.BlockView;
-import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -42,7 +41,7 @@ public abstract class ProjectileMobBlock extends MobBlock {
 	}
 	
 	@Override
-	public void trigger(@NotNull ServerWorld world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
+	public boolean trigger(@NotNull ServerWorld world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
 		BlockPointer pointer = new BlockPointerImpl(world, blockPos);
 		Position outputLocation = DispenserBlock.getOutputLocation(pointer);
 		Direction direction = pointer.getBlockState().get(DispenserBlock.FACING);
@@ -50,6 +49,7 @@ public abstract class ProjectileMobBlock extends MobBlock {
 		projectileEntity.setVelocity(direction.getOffsetX(), ((float) direction.getOffsetY() + 0.1F), direction.getOffsetZ(), this.force, this.divergence);
 		world.spawnEntity(projectileEntity);
 		world.playSound(null, blockPos, this.triggerSoundEvent, SoundCategory.BLOCKS, 1.0F, 1.0F);
+		return true;
 	}
 	
 	public abstract ProjectileEntity createProjectile(ServerWorld world, Position position);

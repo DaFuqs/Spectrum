@@ -1,11 +1,9 @@
 package de.dafuqs.spectrum.blocks.mob_blocks;
 
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Fertilizable;
 import net.minecraft.block.InfestedBlock;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.mob.SilverfishEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
@@ -30,7 +28,8 @@ public class SilverfishInsertingMobBlock extends MobBlock {
 	}
 	
 	@Override
-	public void trigger(ServerWorld world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
+	public boolean trigger(ServerWorld world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
+		boolean anyConverted = false;
 		for(Direction direction : Direction.values()) {
 			BlockPos offsetPos = blockPos.offset(direction);
 			BlockState offsetState = world.getBlockState(offsetPos);
@@ -38,8 +37,10 @@ public class SilverfishInsertingMobBlock extends MobBlock {
 				BlockState infestedState = InfestedBlock.fromRegularState(offsetState);
 				world.setBlockState(offsetPos, infestedState);
 				world.addBlockBreakParticles(offsetPos, infestedState);
+				anyConverted = true;
 			}
 		}
+		return anyConverted;
 	}
 	
 }

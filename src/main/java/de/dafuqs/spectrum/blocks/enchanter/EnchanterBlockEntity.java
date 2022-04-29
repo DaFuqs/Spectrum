@@ -259,6 +259,8 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 					int requiredExperience = getRequiredExperienceToEnchantCenterItem(enchanterBlockEntity);
 					if (requiredExperience > 0) {
 						enchanterBlockEntity.currentItemProcessingTime = requiredExperience * REQUIRED_TICKS_FOR_EACH_EXPERIENCE_POINT;
+					} else {
+						enchanterBlockEntity.currentItemProcessingTime = -1;
 					}
 				} else {
 					enchanterBlockEntity.currentItemProcessingTime = -1;

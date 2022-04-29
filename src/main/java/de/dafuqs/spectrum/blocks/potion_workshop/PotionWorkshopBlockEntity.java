@@ -361,7 +361,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 		if (potionWorkshopBlockEntity.currentRecipe instanceof PotionWorkshopBrewingRecipe potionWorkshopBrewingRecipe && potionWorkshopBlockEntity.currentRecipe.matches(potionWorkshopBlockEntity, world)) {
 			// we check for reagents here instead of the recipe itself because of performance
 			if (isBrewingRecipeApplicable(potionWorkshopBrewingRecipe, potionWorkshopBlockEntity.getStack(BASE_INPUT_SLOT_ID), potionWorkshopBlockEntity)) {
-				newRecipe = potionWorkshopBlockEntity.currentRecipe;
+				return hasUniqueReagents(potionWorkshopBlockEntity) ? potionWorkshopBlockEntity.currentRecipe : null;
 			}
 		} else if(potionWorkshopBlockEntity.currentRecipe instanceof PotionWorkshopCraftingRecipe && potionWorkshopBlockEntity.currentRecipe.matches(potionWorkshopBlockEntity, world)) {
 			newRecipe = potionWorkshopBlockEntity.currentRecipe;
@@ -373,7 +373,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 				if (newPotionWorkshopBrewingRecipe.canPlayerCraft(potionWorkshopBlockEntity.getPlayerEntityIfOnline(potionWorkshopBlockEntity.world))) {
 					// we check for reagents here instead of the recipe itself because of performance
 					if (isBrewingRecipeApplicable(newPotionWorkshopBrewingRecipe, potionWorkshopBlockEntity.getStack(BASE_INPUT_SLOT_ID), potionWorkshopBlockEntity)) {
-						newRecipe = newPotionWorkshopBrewingRecipe;
+						return hasUniqueReagents(potionWorkshopBlockEntity) ? newPotionWorkshopBrewingRecipe : null;
 					}
 				}
 			} else {
@@ -386,7 +386,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 			}
 		}
 		
-		return hasUniqueReagents(potionWorkshopBlockEntity) ? newRecipe : null;
+		return newRecipe;
 	}
 	
 	private static boolean hasUniqueReagents(PotionWorkshopBlockEntity potionWorkshopBlockEntity) {

@@ -1,7 +1,10 @@
 {
 	"variants": {
-		"": {
+		"cooldown=false": {
 			"model": "spectrum:block/enderman_mob_block"
+		},
+		"cooldown=true": {
+			"model": "spectrum:block/enderman_mob_block_cooldown"
 		}
 	}
 }

@@ -54,6 +54,7 @@ public class InsomniaMobBlock extends MobBlock {
 				if(phantomEntity != null) {
 					phantomEntity.refreshPositionAndAngles(blockPos.up(20 + random.nextInt(15)).east(-10 + random.nextInt(21)).south(-10 + random.nextInt(21)), 0.0F, 0.0F);
 					phantomEntity.initialize(world, world.getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, null, null);
+					// TODO: set size
 					world.spawnEntityAndPassengers(phantomEntity);
 				}
 			}

@@ -9,6 +9,8 @@ import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
+import net.minecraft.state.StateManager;
+import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.ActionResult;
@@ -22,11 +24,20 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.Random;
 
 public abstract class MobBlock extends Block {
 	
+	public static final BooleanProperty COOLDOWN = BooleanProperty.of("cooldown");
+	
 	public MobBlock(Settings settings) {
 		super(settings);
+		setDefaultState(getStateManager().getDefaultState().with(COOLDOWN, false));
+	}
+	
+	@Override
+	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+		builder.add(COOLDOWN);
 	}
 	
 	@Override
@@ -38,8 +49,9 @@ public abstract class MobBlock extends Block {
 	@Override
 	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
 		if(!world.isClient) {
-			if(trigger((ServerWorld) world, pos, state, player, hit.getSide())) {
+			if(!hasCooldown(world, pos) && trigger((ServerWorld) world, pos, state, player, hit.getSide())) {
 				playTriggerSound(world, pos);
+				triggerCooldown(world, pos);
 			}
 			return ActionResult.CONSUME;
 		} else {
@@ -48,19 +60,28 @@ public abstract class MobBlock extends Block {
 	}
 	
 	@Override
+	public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
+		super.scheduledTick(state, world, pos, random);
+		world.setBlockState(pos, world.getBlockState(pos).with(COOLDOWN, false));
+	}
+	
+	@Override
 	public void onSteppedOn(World world, BlockPos pos, BlockState state, Entity entity) {
 		super.onSteppedOn(world, pos, state, entity);
-		if(!world.isClient) {
+		if(!world.isClient && !hasCooldown(world, pos)) {
 			if(trigger((ServerWorld) world, pos, state, entity, Direction.DOWN)) {
 				playTriggerSound(world, pos);
+				triggerCooldown(world, pos);
 			}
 		}
 	}
 	
 	public void onProjectileHit(World world, BlockState state, BlockHitResult hit, ProjectileEntity projectile) {
 		if(!world.isClient) {
-			if(trigger((ServerWorld) world, hit.getBlockPos(), state, projectile.getOwner(), hit.getSide())) {
-				playTriggerSound(world, hit.getBlockPos());
+			BlockPos hitPos = hit.getBlockPos();
+			if(!hasCooldown(world, hitPos) && trigger((ServerWorld) world, hitPos, state, projectile.getOwner(), hit.getSide())) {
+				playTriggerSound(world, hitPos);
+				triggerCooldown(world, hitPos);
 			}
 		}
 	}
@@ -69,6 +90,19 @@ public abstract class MobBlock extends Block {
 	
 	public void playTriggerSound(World world, BlockPos blockPos) {
 		world.playSound(null, blockPos, this.soundGroup.getPlaceSound(), SoundCategory.PLAYERS, 1.0F, 1.0F);
+	}
+	
+	public boolean hasCooldown(World world, BlockPos pos) {
+		return world.getBlockState(pos).get(COOLDOWN);
+	}
+	
+	public void triggerCooldown(World world, BlockPos pos) {
+		world.setBlockState(pos, world.getBlockState(pos).with(COOLDOWN, true));
+		world.createAndScheduleBlockTick(pos, this, getCooldownTicks());
+	}
+	
+	public int getCooldownTicks() {
+		return 20;
 	}
 	
 }

@@ -358,9 +358,9 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 		}
 		
 		PotionWorkshopRecipe newRecipe = null;
-		if (potionWorkshopBlockEntity.currentRecipe instanceof PotionWorkshopBrewingRecipe && potionWorkshopBlockEntity.currentRecipe.matches(potionWorkshopBlockEntity, world)) {
+		if (potionWorkshopBlockEntity.currentRecipe instanceof PotionWorkshopBrewingRecipe potionWorkshopBrewingRecipe && potionWorkshopBlockEntity.currentRecipe.matches(potionWorkshopBlockEntity, world)) {
 			// we check for reagents here instead of the recipe itself because of performance
-			if (isBrewingRecipeApplicableToBaseIngredient(potionWorkshopBlockEntity)) {
+			if (isBrewingRecipeApplicable(potionWorkshopBrewingRecipe, potionWorkshopBlockEntity.getStack(BASE_INPUT_SLOT_ID), potionWorkshopBlockEntity)) {
 				return potionWorkshopBlockEntity.currentRecipe;
 			}
 		} else if(potionWorkshopBlockEntity.currentRecipe instanceof PotionWorkshopCraftingRecipe && potionWorkshopBlockEntity.currentRecipe.matches(potionWorkshopBlockEntity, world)) {
@@ -372,7 +372,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 			if (newPotionWorkshopBrewingRecipe != null) {
 				if (newPotionWorkshopBrewingRecipe.canPlayerCraft(potionWorkshopBlockEntity.getPlayerEntityIfOnline(potionWorkshopBlockEntity.world))) {
 					// we check for reagents here instead of the recipe itself because of performance
-					if (isBrewingRecipeApplicableToBaseIngredient(potionWorkshopBlockEntity)) {
+					if (isBrewingRecipeApplicable(newPotionWorkshopBrewingRecipe, potionWorkshopBlockEntity.getStack(BASE_INPUT_SLOT_ID), potionWorkshopBlockEntity)) {
 						newRecipe = newPotionWorkshopBrewingRecipe;
 					}
 				}
@@ -389,12 +389,18 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 		return newRecipe;
 	}
 	
-	private static boolean isBrewingRecipeApplicableToBaseIngredient(@NotNull PotionWorkshopBlockEntity potionWorkshopBlockEntity) {
-		if(potionWorkshopBlockEntity.getStack(BASE_INPUT_SLOT_ID).isOf(Items.ARROW)) { // arrows require lingering potions as base
-			PotionMod potionMod = getPotionModFromReagents(potionWorkshopBlockEntity);
-			return potionMod.makeSplashing && potionMod.makeLingering;
-		} else if(potionWorkshopBlockEntity.getStack(BASE_INPUT_SLOT_ID).getItem() instanceof PotionFillable potionFillable) {
-			return !potionFillable.isFull(potionWorkshopBlockEntity.inventory.get(BASE_INPUT_SLOT_ID));
+	private static boolean isBrewingRecipeApplicable(PotionWorkshopBrewingRecipe recipe, ItemStack baseIngredient, PotionWorkshopBlockEntity potionWorkshopBlockEntity) {
+		if(recipe.getOutput().isOf(Items.TIPPED_ARROW)) { // arrows require lingering potions as base
+			if(recipe.isApplicableToTippedArrows()) {
+				PotionMod potionMod = getPotionModFromReagents(potionWorkshopBlockEntity);
+				return potionMod.makeSplashing && potionMod.makeLingering;
+			} else {
+				return false;
+			}
+		} else if(baseIngredient.getItem() instanceof PotionFillable potionFillable) {
+			return recipe.isApplicableToPotionPendants() && !potionFillable.isFull(baseIngredient);
+		} else if(recipe.getOutput().isOf(Items.POTION)) {
+			return recipe.isApplicableToPotions();
 		} else {
 			return true;
 		}

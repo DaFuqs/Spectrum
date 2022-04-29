@@ -56,16 +56,18 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 	
 	protected final boolean applicableToPotions;
 	protected final boolean applicableToTippedArrows;
+	protected final boolean applicableToPotionPendants;
 	
 	protected ItemStack cacheckOutput;
 
-	public PotionWorkshopBrewingRecipe(Identifier id, String group, int craftingTime, Ingredient ingredient1, Ingredient ingredient2, Ingredient ingredient3, StatusEffect statusEffect, int baseDurationTicks, float potencyModifier, int color, boolean applicableToPotions, boolean applicableToTippedArrows, Identifier requiredAdvancementIdentifier) {
+	public PotionWorkshopBrewingRecipe(Identifier id, String group, int craftingTime, Ingredient ingredient1, Ingredient ingredient2, Ingredient ingredient3, StatusEffect statusEffect, int baseDurationTicks, float potencyModifier, int color, boolean applicableToPotions, boolean applicableToTippedArrows, boolean applicableToPotionPendants, Identifier requiredAdvancementIdentifier) {
 		super(id, group, craftingTime, color, ingredient1, ingredient2, ingredient3, requiredAdvancementIdentifier);
 		this.statusEffect = statusEffect;
 		this.baseDurationTicks = baseDurationTicks;
 		this.potencyModifier = potencyModifier;
 		this.applicableToPotions = applicableToPotions;
 		this.applicableToTippedArrows = applicableToTippedArrows;
+		this.applicableToPotionPendants = applicableToPotionPendants;
 		
 		if(statusEffect.isBeneficial()) {
 			if(!availablePositiveEffects.contains(statusEffect)) {
@@ -116,6 +118,10 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 	
 	public boolean isApplicableToTippedArrows() {
 		return applicableToTippedArrows;
+	}
+	
+	public boolean isApplicableToPotionPendants() {
+		return applicableToPotionPendants;
 	}
 	
 	@Override

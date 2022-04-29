@@ -15,8 +15,6 @@ import java.util.Optional;
 public class PotionWorkshopBrewingRecipeDisplay extends PotionWorkshopRecipeDisplay {
 	
 	protected final StatusEffect statusEffect;
-	protected final boolean applicableToPotions;
-	protected final boolean applicableToTippedArrows;
 	
 	/**
 	 * When using the REI recipe functionality
@@ -24,8 +22,6 @@ public class PotionWorkshopBrewingRecipeDisplay extends PotionWorkshopRecipeDisp
 	 */
 	public PotionWorkshopBrewingRecipeDisplay(PotionWorkshopBrewingRecipe recipe) {
 		super(recipe);
-		this.applicableToPotions = recipe.isApplicableToPotions();
-		this.applicableToTippedArrows = recipe.isApplicableToTippedArrows();
 		this.statusEffect = recipe.getStatusEffect();
 	}
 	
@@ -34,8 +30,6 @@ public class PotionWorkshopBrewingRecipeDisplay extends PotionWorkshopRecipeDisp
 	 */
 	public PotionWorkshopBrewingRecipeDisplay(List<EntryIngredient> inputs, List<EntryIngredient> outputs, PotionWorkshopBrewingRecipe recipe) {
 		super(inputs, outputs, recipe);
-		this.applicableToPotions = recipe.isApplicableToPotions();
-		this.applicableToTippedArrows = recipe.isApplicableToTippedArrows();
 		this.statusEffect = recipe.getStatusEffect();
 	}
 

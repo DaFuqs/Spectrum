@@ -36,7 +36,9 @@ public class ShearingMobBlock extends MobBlock {
 	
 	@Override
 	public boolean trigger(ServerWorld world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
-		List<LivingEntity> entities = world.getNonSpectatingEntities(LivingEntity.class, Box.of(Vec3d.ofCenter(blockPos), range, range, range));
+		int boxSize = range + range;
+		
+		List<LivingEntity> entities = world.getNonSpectatingEntities(LivingEntity.class, Box.of(Vec3d.ofCenter(blockPos), boxSize, boxSize, boxSize));
 		for(LivingEntity currentEntity : entities) {
 			if(currentEntity instanceof Shearable shearable && shearable.isShearable()) {
 				shearable.sheared(SoundCategory.BLOCKS);

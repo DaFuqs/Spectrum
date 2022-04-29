@@ -31,7 +31,7 @@ import java.util.List;
 
 public class MilkingMobBlock extends MobBlock {
 	
-	protected static final int BUCKET_SEARCH_RANGE = 3;
+	protected static final int BUCKET_SEARCH_RANGE = 7;
 	
 	protected int milkingRange;
 	
@@ -42,8 +42,10 @@ public class MilkingMobBlock extends MobBlock {
 	
 	@Override
 	public boolean trigger(@NotNull ServerWorld world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
+		int boxSize = milkingRange + milkingRange;
+		
 		// Goats
-		List<GoatEntity> goatEntities = world.getNonSpectatingEntities(GoatEntity.class, Box.of(Vec3d.ofCenter(blockPos), milkingRange, milkingRange, milkingRange));
+		List<GoatEntity> goatEntities = world.getNonSpectatingEntities(GoatEntity.class, Box.of(Vec3d.ofCenter(blockPos), boxSize, boxSize, boxSize));
 		for(GoatEntity goatEntity : goatEntities) {
 			if(!goatEntity.isBaby()) {
 				boolean emptyBucketFound = findAndDecreaseClosestItemEntityOfItem(world, goatEntity, Items.BUCKET, BUCKET_SEARCH_RANGE);
@@ -56,7 +58,7 @@ public class MilkingMobBlock extends MobBlock {
 		}
 		
 		// Cows
-		List<CowEntity> cowEntities = world.getNonSpectatingEntities(CowEntity.class, Box.of(Vec3d.ofCenter(blockPos), milkingRange, milkingRange, milkingRange));
+		List<CowEntity> cowEntities = world.getNonSpectatingEntities(CowEntity.class, Box.of(Vec3d.ofCenter(blockPos), boxSize, boxSize, boxSize));
 		for(CowEntity cowEntity : cowEntities) {
 			if(cowEntity.isBaby()) {
 				boolean emptyBucketFound = findAndDecreaseClosestItemEntityOfItem(world, cowEntity, Items.BUCKET, BUCKET_SEARCH_RANGE);
@@ -68,7 +70,7 @@ public class MilkingMobBlock extends MobBlock {
 		}
 		
 		// Mooshrooms (Mooshroom Stew / Suspicious Stew)
-		List<MooshroomEntity> mooshroomEntities = world.getNonSpectatingEntities(MooshroomEntity.class, Box.of(Vec3d.ofCenter(blockPos), milkingRange, milkingRange, milkingRange));
+		List<MooshroomEntity> mooshroomEntities = world.getNonSpectatingEntities(MooshroomEntity.class, Box.of(Vec3d.ofCenter(blockPos), boxSize, boxSize, boxSize));
 		for(MooshroomEntity mooshroomEntity : mooshroomEntities) {
 			if(!mooshroomEntity.isBaby()) {
 				boolean emptyBowlFound = findAndDecreaseClosestItemEntityOfItem(world, mooshroomEntity, Items.BOWL, BUCKET_SEARCH_RANGE);

@@ -1002,7 +1002,7 @@
   "block.spectrum.zombie_mob_block": "Forsaken Idol",
   
   "block.spectrum.mob_block.tooltip": "When triggered via use/stepping on/projectile hit:",
-  "block.spectrum.bonemealing_mob_block.tooltip": "§7Bonemeals plants",
+  "block.spectrum.bonemealing_mob_block.tooltip": "§7Fertilises a plant next to it",
   "block.spectrum.breathtaking_mob_block.tooltip": "§7Drowns it's target",
   "block.spectrum.echolocating_mob_block.tooltip": "§7Echolocates creatures in a %d block radius",
   "block.spectrum.entity_summoning_mob_block.tooltip": "§7Summons %s",

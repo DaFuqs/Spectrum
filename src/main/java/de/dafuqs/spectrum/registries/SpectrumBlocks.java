@@ -788,7 +788,7 @@ public class SpectrumBlocks {
 			return arrowEntity;
 		}
 	};
-	public static final Block SLIME_MOB_BLOCK = new SlimeSizingMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.SLIME_MOB_BLOCK), 6);
+	public static final Block SLIME_MOB_BLOCK = new SlimeSizingMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.SLIME_MOB_BLOCK), 6, 8);
 	public static final Block SNOW_GOLEM_MOB_BLOCK = new ProjectileMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.SNOW_GOLEM_MOB_BLOCK), EntityType.SNOWBALL, SoundEvents.ENTITY_ARROW_SHOOT, 6.0F, 1.1F) {
 		@Override
 		public ProjectileEntity createProjectile(ServerWorld world, Position position) {

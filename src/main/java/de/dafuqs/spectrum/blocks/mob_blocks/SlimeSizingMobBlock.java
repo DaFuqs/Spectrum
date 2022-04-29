@@ -20,10 +20,10 @@ import java.util.List;
 
 public class SlimeSizingMobBlock extends MobBlock {
 	
-	protected static final int MAX_SIZE = 8; // Huge Chungus
+	protected int maxSize; // Huge Chungus
 	protected int range;
 	
-	public SlimeSizingMobBlock(Settings settings, int range) {
+	public SlimeSizingMobBlock(Settings settings, int range, int maxSize) {
 		super(settings);
 		this.range = range;
 	}
@@ -38,7 +38,7 @@ public class SlimeSizingMobBlock extends MobBlock {
 	public boolean trigger(ServerWorld world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
 		List<SlimeEntity> slimeEntities = world.getNonSpectatingEntities(SlimeEntity.class, Box.of(Vec3d.ofCenter(blockPos), range, range, range));
 		for(SlimeEntity slimeEntity : slimeEntities) {
-			if(slimeEntity.getSize() < MAX_SIZE) {
+			if(slimeEntity.getSize() < maxSize) {
 				int newSize = slimeEntity.getSize() +1;
 				((SlimeEntityAccessor) slimeEntity).invokeSetSize(newSize, true);
 			}

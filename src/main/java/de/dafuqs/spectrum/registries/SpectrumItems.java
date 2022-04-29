@@ -227,8 +227,8 @@ public class SpectrumItems {
 	public static final Item AZURE_DIKE_RING = new AzureDikeRingItem(generalUncommonItemSettingsSingle);
 	public static final Item PIGMENT_PALETTE = new PigmentPaletteItem(generalUncommonItemSettingsSingle);
 	public static final Item GLEAMING_PIN = new GleamingPinItem(generalUncommonItemSettingsSingle);
-	public static final Item LESSER_POTION_PENDANT = new PotionPendantItem(generalUncommonItemSettingsSingle, 1, 255, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_lesser_potion_pendant"));
-	public static final Item GREATER_POTION_PENDANT = new PotionPendantItem(generalUncommonItemSettingsSingle, 3, 1,  new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_greater_potion_pendant"));
+	public static final Item LESSER_POTION_PENDANT = new PotionPendantItem(generalUncommonItemSettingsSingle, 1, 2, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_lesser_potion_pendant"));
+	public static final Item GREATER_POTION_PENDANT = new PotionPendantItem(generalUncommonItemSettingsSingle, 3, 0,  new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_greater_potion_pendant"));
 	public static final Item ASHEN_CIRCLET = new AshenCircletItem(generalUncommonItemSettingsSingleFireproof);
 	public static final Item TIDAL_CIRCLET = new TidalCircletItem(generalUncommonItemSettingsSingle);
 	public static final Item PUFF_CIRCLET = new PuffCircletItem(generalUncommonItemSettingsSingle);

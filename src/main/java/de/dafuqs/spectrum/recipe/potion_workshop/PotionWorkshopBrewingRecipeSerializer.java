@@ -39,7 +39,7 @@ public class PotionWorkshopBrewingRecipeSerializer implements RecipeSerializer<P
 		
 		boolean applicableToPotions = JsonHelper.getBoolean(jsonObject, "applicable_to_potions", true);
 		boolean applicableToTippedArrows = JsonHelper.getBoolean(jsonObject, "applicable_to_tipped_arrows", true);
-		boolean applicableToPotionPendants = JsonHelper.getBoolean(jsonObject, "applicable_to_potion_pendants", true);
+		boolean applicableToPotionFillabes = JsonHelper.getBoolean(jsonObject, "applicable_to_potion_fillabes", true);
 		int craftingTime = JsonHelper.getInt(jsonObject, "time", 200);
 		int baseDurationTicks = JsonHelper.getInt(jsonObject, "base_duration_ticks", 1600);
 		int color = JsonHelper.getInt(jsonObject, "potion_color", -1);
@@ -59,7 +59,7 @@ public class PotionWorkshopBrewingRecipeSerializer implements RecipeSerializer<P
 			requiredAdvancementIdentifier = PotionWorkshopBlock.UNLOCK_IDENTIFIER;
 		}
 
-		return this.recipeFactory.create(identifier, group, craftingTime, ingredient1, ingredient2, ingredient3, statusEffect, baseDurationTicks, potencyModifier, color, applicableToPotions, applicableToTippedArrows, applicableToPotionPendants, requiredAdvancementIdentifier);
+		return this.recipeFactory.create(identifier, group, craftingTime, ingredient1, ingredient2, ingredient3, statusEffect, baseDurationTicks, potencyModifier, color, applicableToPotions, applicableToTippedArrows, applicableToPotionFillabes, requiredAdvancementIdentifier);
 	}
 	
 	@Override
@@ -75,7 +75,7 @@ public class PotionWorkshopBrewingRecipeSerializer implements RecipeSerializer<P
 		packetByteBuf.writeInt(potionWorkshopBrewingRecipe.color);
 		packetByteBuf.writeBoolean(potionWorkshopBrewingRecipe.applicableToPotions);
 		packetByteBuf.writeBoolean(potionWorkshopBrewingRecipe.applicableToTippedArrows);
-		packetByteBuf.writeBoolean(potionWorkshopBrewingRecipe.applicableToPotionPendants);
+		packetByteBuf.writeBoolean(potionWorkshopBrewingRecipe.applicableToPotionFillabes);
 		packetByteBuf.writeIdentifier(potionWorkshopBrewingRecipe.requiredAdvancementIdentifier);
 	}
 	
@@ -92,14 +92,14 @@ public class PotionWorkshopBrewingRecipeSerializer implements RecipeSerializer<P
 		int color = packetByteBuf.readInt();
 		boolean applicableToPotions = packetByteBuf.readBoolean();
 		boolean applicableToTippedArrows = packetByteBuf.readBoolean();
-		boolean applicableToPotionPendants = packetByteBuf.readBoolean();
+		boolean applicableToPotionFillabes = packetByteBuf.readBoolean();
 		Identifier requiredAdvancementIdentifier = packetByteBuf.readIdentifier();
-		return this.recipeFactory.create(identifier, group, craftingTime, ingredient1, ingredient2, ingredient3, statusEffect, baseDurationTicks, potencyModifier, color, applicableToPotions, applicableToTippedArrows, applicableToPotionPendants, requiredAdvancementIdentifier);
+		return this.recipeFactory.create(identifier, group, craftingTime, ingredient1, ingredient2, ingredient3, statusEffect, baseDurationTicks, potencyModifier, color, applicableToPotions, applicableToTippedArrows, applicableToPotionFillabes, requiredAdvancementIdentifier);
 	}
 
 	
 	public interface RecipeFactory<PotionWorkshopBrewingRecipe> {
-		PotionWorkshopBrewingRecipe create(Identifier id, String group, int craftingTime, Ingredient ingredient1, Ingredient ingredient2, Ingredient ingredient3, StatusEffect statusEffect, int baseDurationTicks, float potencyModifier, int color, boolean applicableToPotions, boolean applicableToTippedArrows, boolean applicableToPotionPendants, Identifier requiredAdvancementIdentifier);
+		PotionWorkshopBrewingRecipe create(Identifier id, String group, int craftingTime, Ingredient ingredient1, Ingredient ingredient2, Ingredient ingredient3, StatusEffect statusEffect, int baseDurationTicks, float potencyModifier, int color, boolean applicableToPotions, boolean applicableToTippedArrows, boolean applicableToPotionFillabes, Identifier requiredAdvancementIdentifier);
 	}
 
 }

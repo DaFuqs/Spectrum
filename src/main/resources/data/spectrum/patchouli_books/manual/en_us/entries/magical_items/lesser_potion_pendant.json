@@ -9,7 +9,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Potions are handy. However, carrying around half an inventory of them is more than unwieldy.$(br)The Potion Pendant has a small chamber, which can be filled with a Potion. As long as you wear it, you get the effect of that Potion."
+      "text": "Potions are handy. However, carrying around half an inventory of them is more than unwieldy.$(br)The Potion Pendant has a small chamber, which can be filled with a Potion. As long as you wear it, you get the effect of that Potion.$(br)Since the Potions are not ingested the Effects only reach up to Level III."
     },
     {
       "type": "spectrum:fusion_shrine_crafting",

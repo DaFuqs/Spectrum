@@ -341,7 +341,7 @@ public class SpectrumBlocks {
 	public static final Block RUIN = new TerrorBlock(FabricBlockSettings.copyOf(FADING).strength(100.0F, 3600000.0F), null, SpectrumBlockTags.RUIN_SAFE, 3, 5F);
 	public static final Block TERROR = new TerrorBlock(FabricBlockSettings.copyOf(FADING).strength(100.0F, 3600000.0F), null, SpectrumBlockTags.TERROR_SAFE, 4, 7.5F);
 	public static final Block DECAY_AWAY = new DecayAwayBlock(FabricBlockSettings.copyOf(Blocks.DIRT));
-	public static final Block BLACK_MATERIA = new BlackMateriaBlock(FabricBlockSettings.copyOf(Blocks.SAND).ticksRandomly());
+	public static final Block BLACK_MATERIA = new BlackMateriaBlock(FabricBlockSettings.copyOf(Blocks.SAND).ticksRandomly().breakInstantly());
 	
 	// FLUIDS
 	public static final Block LIQUID_CRYSTAL = new LiquidCrystalFluidBlock(SpectrumFluids.LIQUID_CRYSTAL, FabricBlockSettings.copyOf(Blocks.WATER).luminance((state) -> 8));

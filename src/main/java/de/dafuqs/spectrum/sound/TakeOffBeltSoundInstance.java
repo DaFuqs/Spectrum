@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.sound;
 import de.dafuqs.spectrum.SpectrumClient;
 import de.dafuqs.spectrum.items.trinkets.TakeOffBeltItem;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
+import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;

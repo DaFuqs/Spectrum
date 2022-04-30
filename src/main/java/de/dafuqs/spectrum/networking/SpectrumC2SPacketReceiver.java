@@ -9,7 +9,7 @@ import de.dafuqs.spectrum.inventories.CompactingChestScreenHandler;
 import de.dafuqs.spectrum.inventories.ParticleSpawnerScreenHandler;
 import de.dafuqs.spectrum.items.magic_items.EnderSpliceItem;
 import de.dafuqs.spectrum.registries.SpectrumItems;
-import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
+import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;

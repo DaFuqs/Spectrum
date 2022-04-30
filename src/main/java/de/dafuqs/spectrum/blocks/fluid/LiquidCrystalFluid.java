@@ -3,7 +3,7 @@ package de.dafuqs.spectrum.blocks.fluid;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import de.dafuqs.spectrum.registries.SpectrumFluids;
 import de.dafuqs.spectrum.registries.SpectrumItems;
-import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
+import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.Block;

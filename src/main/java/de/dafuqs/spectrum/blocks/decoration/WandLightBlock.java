@@ -2,7 +2,7 @@ package de.dafuqs.spectrum.blocks.decoration;
 
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.registries.SpectrumItems;
-import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
+import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.LightBlock;

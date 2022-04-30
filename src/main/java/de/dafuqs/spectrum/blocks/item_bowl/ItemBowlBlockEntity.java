@@ -7,7 +7,7 @@ import de.dafuqs.spectrum.particle.effect.Transphere;
 import de.dafuqs.spectrum.particle.effect.TransphereParticleEffect;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
 import de.dafuqs.spectrum.registries.color.ColorRegistry;
-import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
+import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;

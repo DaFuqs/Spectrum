@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.sound;
 
 import de.dafuqs.spectrum.registries.SpectrumItems;
+import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.sound.AbstractSoundInstance;

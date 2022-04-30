@@ -12,7 +12,7 @@ import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.particle.effect.*;
 import de.dafuqs.spectrum.registries.color.ColorRegistry;
 import de.dafuqs.spectrum.sound.CraftingBlockSoundInstance;
-import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
+import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
 import de.dafuqs.spectrum.sound.TakeOffBeltSoundInstance;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;

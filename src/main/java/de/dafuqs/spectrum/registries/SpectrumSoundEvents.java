@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.sound;
+package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.spectrum.SpectrumCommon;
 import net.minecraft.sound.SoundEvent;

@@ -5,7 +5,7 @@ import de.dafuqs.spectrum.blocks.enchanter.EnchanterEnchantable;
 import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
-import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
+import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
 import dev.emi.trinkets.api.SlotReference;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;

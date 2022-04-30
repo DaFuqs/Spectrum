@@ -7,7 +7,7 @@ import de.dafuqs.spectrum.interfaces.PlayerOwned;
 import de.dafuqs.spectrum.networking.SpectrumC2SPacketSender;
 import de.dafuqs.spectrum.registries.SpectrumEnchantments;
 import de.dafuqs.spectrum.sound.EnderSpliceChargingSoundInstance;
-import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
+import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.dimension.v1.FabricDimensions;

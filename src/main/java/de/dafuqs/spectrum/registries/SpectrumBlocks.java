@@ -64,8 +64,6 @@ import de.dafuqs.spectrum.blocks.upgrade.UpgradeBlockItem;
 import de.dafuqs.spectrum.blocks.upgrade.Upgradeable;
 import de.dafuqs.spectrum.enums.BuiltinGemstoneColor;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
-import de.dafuqs.spectrum.sound.SpectrumBlockSoundGroups;
-import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
 import de.dafuqs.spectrum.worldgen.ColoredSaplingGenerator;
 import io.wispforest.owo.itemgroup.OwoItemSettings;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;

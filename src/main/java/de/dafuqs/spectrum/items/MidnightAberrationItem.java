@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.items;
 
 import de.dafuqs.spectrum.helpers.Support;
-import de.dafuqs.spectrum.sound.SpectrumSoundEvents;
+import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;

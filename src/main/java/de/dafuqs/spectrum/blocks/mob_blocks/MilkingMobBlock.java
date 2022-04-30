@@ -60,7 +60,7 @@ public class MilkingMobBlock extends MobBlock {
 		// Cows
 		List<CowEntity> cowEntities = world.getNonSpectatingEntities(CowEntity.class, Box.of(Vec3d.ofCenter(blockPos), boxSize, boxSize, boxSize));
 		for(CowEntity cowEntity : cowEntities) {
-			if(cowEntity.isBaby()) {
+			if(!cowEntity.isBaby()) {
 				boolean emptyBucketFound = findAndDecreaseClosestItemEntityOfItem(world, cowEntity, Items.BUCKET, BUCKET_SEARCH_RANGE);
 				if (emptyBucketFound) {
 					world.playSound(null, cowEntity.getBlockPos(), SoundEvents.ENTITY_COW_MILK, SoundCategory.NEUTRAL, 1.0F, 1.0F);
@@ -99,8 +99,8 @@ public class MilkingMobBlock extends MobBlock {
 	}
 	
 	private void spawnItemStackAtEntity(ServerWorld world, @NotNull LivingEntity livingEntity, ItemStack itemStack) {
-		ItemEntity itemEntity = new ItemEntity(world, livingEntity.getPos().getX(), livingEntity.getPos().getY(), livingEntity.getPos().getX(), itemStack);
-		itemEntity.addVelocity(0, 0.2F, 0);
+		ItemEntity itemEntity = new ItemEntity(world, livingEntity.getPos().getX(), livingEntity.getPos().getY() + 0.5, livingEntity.getPos().getZ(), itemStack);
+		itemEntity.addVelocity(0, -0.2F, 0);
 		world.spawnEntity(itemEntity);
 	}
 	

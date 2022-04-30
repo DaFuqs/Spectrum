@@ -38,14 +38,14 @@ public class ExplosionMobBlock extends MobBlock {
 	
 	@Override
 	public boolean trigger(ServerWorld world, final BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
-		// why power + 1 you ask? Since the explosion happens inside the block, some of the explosion power
+		// why power + 1 you ask? Since the explosion happens inside the block, some explosion power
 		// is blocked by this block itself, weakening it. So to better match the original value we have to make it a tad stronger
 		world.createExplosion(null, DamageSource.explosion((Explosion) null), new SpareBlockExplosionBehavior(blockPos), blockPos.getX() + 0.5, blockPos.getY() + 0.5, blockPos.getZ() + 0.5, this.power+1, this.createFire, Explosion.DestructionType.DESTROY);
 		return true;
 	}
 	
 	/**
-	 * Overriding canDestroyBlock makes it so the mobblock itself does not get destroyed
+	 * Overriding canDestroyBlock makes it so the mob block itself does not get destroyed
 	 * Increasing its hardness would make the block immune to other explosions, too
 	 * and would not let explosions happen from the center of it
 	 */

@@ -739,7 +739,6 @@ public class SpectrumBlocks {
 	public static final Block CHICKEN_MOB_BLOCK = new StatusEffectMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.CHICKEN_MOB_BLOCK), StatusEffects.SLOW_FALLING, 0, 100);
 	public static final Block COW_MOB_BLOCK = new MilkingMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.COW_MOB_BLOCK), 6);
 	public static final Block CREEPER_MOB_BLOCK = new ExplosionMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.CREEPER_MOB_BLOCK), 3, false, Explosion.DestructionType.BREAK);
-	public static final Block DROWNED_MOB_BLOCK = new BreathtakingMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.DROWNED_MOB_BLOCK), 10);
 	public static final Block ENDER_DRAGON_MOB_BLOCK = new ProjectileMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.ENDER_DRAGON_MOB_BLOCK), EntityType.DRAGON_FIREBALL, SoundEvents.ENTITY_ENDER_DRAGON_SHOOT, 6.0F, 1.1F) {
 		@Override
 		public ProjectileEntity createProjectile(ServerWorld world, Position position) {
@@ -1450,7 +1449,6 @@ public class SpectrumBlocks {
 		registerBlockWithItem("chicken_mob_block", CHICKEN_MOB_BLOCK, fabricItemSettings);
 		registerBlockWithItem("cow_mob_block", COW_MOB_BLOCK, fabricItemSettings);
 		registerBlockWithItem("creeper_mob_block", CREEPER_MOB_BLOCK, fabricItemSettings);
-		registerBlockWithItem("drowned_mob_block", DROWNED_MOB_BLOCK, fabricItemSettings);
 		registerBlockWithItem("ender_dragon_mob_block", ENDER_DRAGON_MOB_BLOCK, fabricItemSettings);
 		registerBlockWithItem("enderman_mob_block", ENDERMAN_MOB_BLOCK, fabricItemSettings);
 		registerBlockWithItem("endermite_mob_block", ENDERMITE_MOB_BLOCK, fabricItemSettings);

@@ -41,7 +41,6 @@ public class SpectrumBlockSoundGroups {
 	public static BlockSoundGroup CHICKEN_MOB_BLOCK;
 	public static BlockSoundGroup COW_MOB_BLOCK;
 	public static BlockSoundGroup CREEPER_MOB_BLOCK;
-	public static BlockSoundGroup DROWNED_MOB_BLOCK;
 	public static BlockSoundGroup ENDER_DRAGON_MOB_BLOCK;
 	public static BlockSoundGroup ENDERMAN_MOB_BLOCK;
 	public static BlockSoundGroup ENDERMITE_MOB_BLOCK;
@@ -117,7 +116,6 @@ public class SpectrumBlockSoundGroups {
 		CHICKEN_MOB_BLOCK = new BlockSoundGroup(1.0F, 1.0F, SoundEvents.ENTITY_CHICKEN_DEATH, SoundEvents.BLOCK_WOOL_STEP, SoundEvents.ENTITY_CHICKEN_AMBIENT, SoundEvents.ENTITY_CHICKEN_HURT, SoundEvents.ENTITY_CHICKEN_AMBIENT);
 		COW_MOB_BLOCK = new BlockSoundGroup(1.0F, 1.0F, SoundEvents.ENTITY_COW_DEATH, SoundEvents.BLOCK_WOOL_STEP, SoundEvents.ENTITY_COW_AMBIENT, SoundEvents.ENTITY_COW_HURT, SoundEvents.ENTITY_COW_AMBIENT);
 		CREEPER_MOB_BLOCK = new BlockSoundGroup(1.0F, 1.0F, SoundEvents.ENTITY_CREEPER_DEATH, SoundEvents.BLOCK_WOOL_STEP, SoundEvents.ENTITY_CREEPER_HURT, SoundEvents.ENTITY_CREEPER_HURT, SoundEvents.ENTITY_CREEPER_HURT);
-		DROWNED_MOB_BLOCK = new BlockSoundGroup(1.0F, 1.0F, SoundEvents.ENTITY_DROWNED_DEATH, SoundEvents.BLOCK_WOOL_STEP, SoundEvents.ENTITY_DROWNED_AMBIENT, SoundEvents.ENTITY_DROWNED_HURT, SoundEvents.ENTITY_DROWNED_AMBIENT);
 		ENDER_DRAGON_MOB_BLOCK = new BlockSoundGroup(1.0F, 1.0F, SoundEvents.ENTITY_ENDER_DRAGON_DEATH, SoundEvents.BLOCK_WOOL_STEP, SoundEvents.ENTITY_ENDER_DRAGON_AMBIENT, SoundEvents.ENTITY_ENDER_DRAGON_HURT, SoundEvents.ENTITY_ENDER_DRAGON_AMBIENT);
 		ENDERMAN_MOB_BLOCK = new BlockSoundGroup(1.0F, 1.0F, SoundEvents.ENTITY_ENDERMAN_DEATH, SoundEvents.BLOCK_WOOL_STEP, SoundEvents.ENTITY_ENDERMAN_AMBIENT, SoundEvents.ENTITY_ENDERMAN_HURT, SoundEvents.ENTITY_ENDERMAN_AMBIENT);
 		ENDERMITE_MOB_BLOCK = new BlockSoundGroup(1.0F, 1.0F, SoundEvents.ENTITY_ENDERMITE_DEATH, SoundEvents.BLOCK_WOOL_STEP, SoundEvents.ENTITY_ENDERMITE_AMBIENT, SoundEvents.ENTITY_ENDERMITE_HURT, SoundEvents.ENTITY_ENDERMITE_AMBIENT);

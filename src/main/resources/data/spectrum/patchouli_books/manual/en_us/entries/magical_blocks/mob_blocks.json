@@ -12,7 +12,6 @@
     "chicken_mob_block": 0,
     "cow_mob_block": 0,
     "creeper_mob_block": 0,
-    "drowned_mob_block": 0,
     "ender_dragon_mob_block": 0,
     "enderman_mob_block": 0,
     "endermite_mob_block": 0,
@@ -95,11 +94,6 @@
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier3/mob_blocks/creeper_mob_block",
       "text": "Causes a small explosion."
-    },
-    {
-      "type": "spectrum:pedestal_crafting",
-      "recipe": "spectrum:pedestal/tier3/mob_blocks/drowned_mob_block",
-      "text": "Presses air out of the lungs of the triggered Creature.$(br2)(italic)breathtaking"
     },
     {
       "type": "spectrum:pedestal_crafting",

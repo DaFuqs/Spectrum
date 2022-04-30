@@ -25,7 +25,10 @@ public class FallDamageNegatingMobBlock extends MobBlock {
 	@Override
 	public boolean trigger(ServerWorld world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
 		if(entity != null && entity.getVelocity().getY() < -0.01) {
-			entity.setVelocity(0, 0, 0);
+			entity.setVelocity(0, 0.5, 0); // makes it feel bouncy
+			entity.velocityModified = true;
+			entity.velocityDirty = true;
+			entity.fallDistance = 0;
 			return true;
 		}
 		return false;

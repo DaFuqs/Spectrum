@@ -1008,7 +1008,7 @@
   "block.spectrum.entity_summoning_mob_block.tooltip": "§7Summons %s",
   "block.spectrum.explosion_mob_block.tooltip": "§7Causes a %d block large explosion",
   "block.spectrum.fall_damage_negating_mob_block.tooltip": "§7Negates all fall damage when landing on it",
-  "block.spectrum.fall_damage_negating_mob_block.tooltip": "§7Also cancels falls",
+  "block.spectrum.fall_damage_negating_mob_block.tooltip2": "§7CAn also temporarily hold a fall",
   "block.spectrum.firestarter_mob_block.tooltip": "§7Starts fire around it",
   "block.spectrum.firestarter_mob_block.tooltip2": "§7Sets the triggered creature on fire",
   "block.spectrum.freezing_mob_block.tooltip": "§7Freezes blocks around it",

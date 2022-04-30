@@ -24,8 +24,9 @@ public class FallDamageNegatingMobBlock extends MobBlock {
 	
 	@Override
 	public boolean trigger(ServerWorld world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
-		if(entity != null) {
+		if(entity != null && entity.getVelocity().getY() < -0.01) {
 			entity.setVelocity(0, 0, 0);
+			return true;
 		}
 		return false;
 	}
@@ -34,12 +35,16 @@ public class FallDamageNegatingMobBlock extends MobBlock {
 	public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
 		super.appendTooltip(stack, world, tooltip, options);
 		tooltip.add(new TranslatableText( "block.spectrum.fall_damage_negating_mob_block.tooltip"));
+		tooltip.add(new TranslatableText( "block.spectrum.fall_damage_negating_mob_block.tooltip2"));
 	}
 	
 	@Override
 	public void onLandedUpon(World world, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
-		entity.handleFallDamage(fallDistance, 0.0F, DamageSource.FALL);
-		playTriggerSound(world, pos);
+		if(!hasCooldown(state) && fallDistance > 3F) {
+			entity.handleFallDamage(fallDistance, 0.0F, DamageSource.FALL);
+			playTriggerSound(world, pos);
+			triggerCooldown(world, pos);
+		}
 	}
 	
 }

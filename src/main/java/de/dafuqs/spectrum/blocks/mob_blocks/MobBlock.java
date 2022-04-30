@@ -49,7 +49,7 @@ public abstract class MobBlock extends Block {
 	@Override
 	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
 		if(!world.isClient) {
-			if(!hasCooldown(world, pos) && trigger((ServerWorld) world, pos, state, player, hit.getSide())) {
+			if(!hasCooldown(state) && trigger((ServerWorld) world, pos, state, player, hit.getSide())) {
 				playTriggerSound(world, pos);
 				triggerCooldown(world, pos);
 			}
@@ -68,7 +68,7 @@ public abstract class MobBlock extends Block {
 	@Override
 	public void onSteppedOn(World world, BlockPos pos, BlockState state, Entity entity) {
 		super.onSteppedOn(world, pos, state, entity);
-		if(!world.isClient && !hasCooldown(world, pos)) {
+		if(!world.isClient && !hasCooldown(state)) {
 			if(trigger((ServerWorld) world, pos, state, entity, Direction.DOWN)) {
 				playTriggerSound(world, pos);
 				triggerCooldown(world, pos);
@@ -79,7 +79,7 @@ public abstract class MobBlock extends Block {
 	public void onProjectileHit(World world, BlockState state, BlockHitResult hit, ProjectileEntity projectile) {
 		if(!world.isClient) {
 			BlockPos hitPos = hit.getBlockPos();
-			if(!hasCooldown(world, hitPos) && trigger((ServerWorld) world, hitPos, state, projectile.getOwner(), hit.getSide())) {
+			if(!hasCooldown(state) && trigger((ServerWorld) world, hitPos, state, projectile.getOwner(), hit.getSide())) {
 				playTriggerSound(world, hitPos);
 				triggerCooldown(world, hitPos);
 			}
@@ -92,8 +92,8 @@ public abstract class MobBlock extends Block {
 		world.playSound(null, blockPos, this.soundGroup.getPlaceSound(), SoundCategory.PLAYERS, 1.0F, 1.0F);
 	}
 	
-	public boolean hasCooldown(World world, BlockPos pos) {
-		return world.getBlockState(pos).get(COOLDOWN);
+	public boolean hasCooldown(BlockState state) {
+		return state.get(COOLDOWN);
 	}
 	
 	public void triggerCooldown(World world, BlockPos pos) {
@@ -102,7 +102,7 @@ public abstract class MobBlock extends Block {
 	}
 	
 	public int getCooldownTicks() {
-		return 20;
+		return 40;
 	}
 	
 }

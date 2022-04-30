@@ -6,6 +6,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
@@ -38,8 +39,16 @@ public class StatusEffectMobBlock extends MobBlock {
 	
 	@Override
 	public boolean trigger(ServerWorld world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
-		if(entity instanceof LivingEntity livingEntity && !livingEntity.hasStatusEffect(statusEffect)) {
-			livingEntity.addStatusEffect(new StatusEffectInstance(statusEffect, duration, amplifier, true, true));
+		if(entity instanceof LivingEntity livingEntity) {
+			if(!livingEntity.hasStatusEffect(statusEffect)) {
+				livingEntity.addStatusEffect(new StatusEffectInstance(statusEffect, duration, amplifier, true, true));
+			}
+			
+			// if entity is burning: put out fire
+			if(statusEffect == StatusEffects.FIRE_RESISTANCE && livingEntity.isOnFire()) {
+				livingEntity.setFireTicks(0);
+			}
+
 			return true;
 		}
 		return false;

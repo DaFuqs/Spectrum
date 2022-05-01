@@ -1,10 +1,9 @@
 package de.dafuqs.spectrum.blocks.mob_blocks;
 
-import dev.architectury.event.events.common.TickEvent;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
@@ -61,8 +60,9 @@ public class LineTeleportingMobBlock extends MobBlock {
 		if(entity != null) {
 			Optional<BlockPos> foundBlockPos = searchForBlock(world, blockPos, state, side.getOpposite(), this.range);
 			if (foundBlockPos.isPresent()) {
-				BlockPos targetPos = foundBlockPos.get().up();
-				RandomTeleportingMobBlock.teleportTo(world, entity, targetPos.getX() + 0.5, targetPos.getY() + 0.5, targetPos.getZ() + 0.5);
+				BlockPos targetPos = foundBlockPos.get();
+				triggerCooldown(world, targetPos);
+				RandomTeleportingMobBlock.teleportTo(world, entity, targetPos);
 				return true;
 			}
 		}
@@ -71,7 +71,7 @@ public class LineTeleportingMobBlock extends MobBlock {
 	
 	@Override
 	public int getCooldownTicks() {
-		return 40;
+		return 10;
 	}
 	
 	public static Optional<BlockPos> searchForBlock(World world, BlockPos pos, BlockState searchedState, Direction direction, int range) {

@@ -9,13 +9,13 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.tag.FluidTags;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.BlockView;
 import org.jetbrains.annotations.Nullable;
+import org.lwjgl.system.CallbackI;
 
 import java.util.List;
 import java.util.Random;
@@ -41,17 +41,21 @@ public class RandomTeleportingMobBlock extends MobBlock {
 	public boolean trigger(ServerWorld world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
 		if (entity != null) {
 			Random random = world.getRandom();
-			double x = blockPos.getX() + (random.nextDouble() - 0.5D) * (this.horizontalRange+this.horizontalRange);
-			double y = blockPos.getY() + (random.nextInt(this.verticalRange+this.verticalRange) - (this.verticalRange));
-			double z = blockPos.getZ() + (random.nextDouble() - 0.5D) * (this.horizontalRange+this.horizontalRange);
+			int x = (int) (blockPos.getX() + (random.nextDouble() - 0.5D) * (this.horizontalRange+this.horizontalRange));
+			int y = blockPos.getY() + (random.nextInt(this.verticalRange+this.verticalRange) - (this.verticalRange));
+			int z = (int) (blockPos.getZ() + (random.nextDouble() - 0.5D) * (this.horizontalRange+this.horizontalRange));
 			teleportTo(world, entity, x, y, z);
 			return true;
 		}
 		return false;
 	}
 	
-	public static boolean teleportTo(ServerWorld world, Entity entity, double x, double y, double z) {
-		BlockPos.Mutable mutable = new BlockPos.Mutable(x, y, z);
+	public static boolean teleportTo(ServerWorld world, Entity entity, int x, int y, int z) {
+		return teleportTo(world, entity, new BlockPos(x, y, z));
+	}
+	
+	public static boolean teleportTo(ServerWorld world, Entity entity, BlockPos blockPos) {
+		BlockPos.Mutable mutable = new BlockPos.Mutable(blockPos.getX(), blockPos.getY(), blockPos.getZ());
 		// if in solid: move up
 		while(mutable.getY() < world.getTopY() && world.getBlockState(mutable).getMaterial().blocksMovement()) {
 			mutable.move(Direction.UP);
@@ -69,7 +73,7 @@ public class RandomTeleportingMobBlock extends MobBlock {
 				world.sendEntityStatus(serverPlayerEntity, (byte)46); // particles
 				return true;
 			} else if(entity instanceof LivingEntity livingEntity) {
-				boolean success = livingEntity.teleport(mutable.getX() + 0.5, mutable.getY() + 0.5, mutable.getZ() + boundingBoxY, true);
+				boolean success = livingEntity.teleport(mutable.getX() + 0.5, mutable.getY() + boundingBoxY, mutable.getZ() + 0.5, true);
 				if(success) {
 					world.playSound(null, entity.prevX, entity.prevY, entity.prevZ, SoundEvents.ENTITY_ENDERMAN_TELEPORT, SoundCategory.BLOCKS, 1.0F, 1.0F);
 					entity.playSound(SoundEvents.ENTITY_ENDERMAN_TELEPORT, 1.0F, 1.0F);

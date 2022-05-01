@@ -26,6 +26,8 @@ public class FreezingMobBlock extends MobBlock {
 	// BlockState: The BlockState when Block is getting frozen
 	// Float: The chance to freeze
 	public static final Map<Block, Pair<BlockState, Float>> FREEZING_MAP = new HashMap<>() {{
+		put(Blocks.SNOW, new Pair<>(Blocks.POWDER_SNOW.getDefaultState(), 0.25F));
+		put(Blocks.POWDER_SNOW, new Pair<>(Blocks.SNOW_BLOCK.getDefaultState(), 0.5F));
 		put(Blocks.WATER, new Pair<>(Blocks.ICE.getDefaultState(), 1.0F));
 		put(Blocks.ICE, new Pair<>(Blocks.PACKED_ICE.getDefaultState(), 0.25F));
 		put(Blocks.PACKED_ICE, new Pair<>(Blocks.BLUE_ICE.getDefaultState(), 0.1F));
@@ -47,7 +49,7 @@ public class FreezingMobBlock extends MobBlock {
 		BlockState sourceState = world.getBlockState(blockPos);
 		if(FREEZING_MAP.containsKey(sourceState.getBlock())) {
 			Pair<BlockState, Float> recipe = FREEZING_MAP.get(sourceState.getBlock());
-			if(recipe.getRight() >= 1.0F || recipe.getRight() < world.random.nextFloat()) {
+			if(recipe.getRight() >= 1.0F || world.random.nextFloat() < recipe.getRight()) {
 				// freeze
 				world.setBlockState(blockPos, recipe.getLeft());
 				return true;

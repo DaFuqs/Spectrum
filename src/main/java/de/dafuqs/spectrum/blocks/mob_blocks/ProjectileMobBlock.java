@@ -2,9 +2,13 @@ package de.dafuqs.spectrum.blocks.mob_blocks;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.DispenserBlock;
+import net.minecraft.block.EntityShapeContext;
+import net.minecraft.block.ShapeContext;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.MarkerEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
@@ -13,7 +17,10 @@ import net.minecraft.sound.SoundEvent;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.math.*;
+import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
+import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -42,16 +49,41 @@ public abstract class ProjectileMobBlock extends MobBlock {
 	
 	@Override
 	public boolean trigger(@NotNull ServerWorld world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
-		BlockPointer pointer = new BlockPointerImpl(world, blockPos);
-		Position outputLocation = DispenserBlock.getOutputLocation(pointer);
-		Direction direction = pointer.getBlockState().get(DispenserBlock.FACING);
-		ProjectileEntity projectileEntity = createProjectile(world, outputLocation);
-		projectileEntity.setVelocity(direction.getOffsetX(), ((float) direction.getOffsetY() + 0.1F), direction.getOffsetZ(), this.force, this.divergence);
-		world.spawnEntity(projectileEntity);
-		world.playSound(null, blockPos, this.triggerSoundEvent, SoundCategory.BLOCKS, 1.0F, 1.0F);
+		side = side.getOpposite(); // shoot out the other side of the block
+		
+		BlockPos outputBlockPos = blockPos.offset(side);
+		if(world.getBlockState(outputBlockPos).getCollisionShape(world, outputBlockPos).isEmpty()) {
+			BlockPointer pointer = new BlockPointerImpl(world, blockPos);
+			Position outputLocation = getOutputLocation(pointer, side);
+			
+			ProjectileEntity projectileEntity = createProjectile(world, blockPos, outputLocation, side);
+			projectileEntity.setVelocity(side.getOffsetX(), side.getOffsetY(), side.getOffsetZ(), this.force, this.divergence);
+			world.spawnEntity(projectileEntity);
+			world.playSound(null, blockPos, this.triggerSoundEvent, SoundCategory.BLOCKS, 1.0F, 1.0F);
+		}
+		
 		return true;
 	}
 	
-	public abstract ProjectileEntity createProjectile(ServerWorld world, Position position);
+	public static Position getOutputLocation(BlockPointer pointer, Direction direction) {
+		double d = pointer.getX() + 0.7D * (double)direction.getOffsetX();
+		double e = pointer.getY() + 0.7D * (double)direction.getOffsetY();
+		double f = pointer.getZ() + 0.7D * (double)direction.getOffsetZ();
+		return new PositionImpl(d, e, f);
+	}
 	
+	public abstract ProjectileEntity createProjectile(ServerWorld world, BlockPos mobBlockPos, Position projectilePos, Direction side);
+	
+	@Override
+	public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+		// lets the projectiles start really close to the block without blowing itself up
+		if(context instanceof EntityShapeContext entityShapeContext) {
+			Entity entity = entityShapeContext.getEntity();
+			if(entity != null && entity.getType() == this.entityType && entity.age < 2) {
+				return VoxelShapes.empty();
+			}
+		}
+		return state.getOutlineShape(world, pos);
+	}
+
 }

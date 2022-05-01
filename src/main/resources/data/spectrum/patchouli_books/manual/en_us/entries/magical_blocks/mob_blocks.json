@@ -43,7 +43,6 @@
     "stray_mob_block": 0,
     "strider_mob_block": 0,
     "turtle_mob_block": 0,
-    "vindicator_mob_block": 0,
     "witch_mob_block": 0,
     "wither_mob_block": 0,
     "wither_skeleton_mob_block": 0,
@@ -249,11 +248,6 @@
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier3/mob_blocks/turtle_mob_block",
       "text": "Gives a short burst of Resistance."
-    },
-    {
-      "type": "spectrum:pedestal_crafting",
-      "recipe": "spectrum:pedestal/tier3/mob_blocks/vindicator_mob_block",
-      "text": "Inflicts Instant Damage."
     },
     {
       "type": "spectrum:pedestal_crafting",

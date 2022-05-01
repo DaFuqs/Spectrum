@@ -1,18 +1,17 @@
 package de.dafuqs.spectrum.entity;
 
 import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.blocks.mob_blocks.LivingMarkerEntity;
 import de.dafuqs.spectrum.entity.entity.*;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityDimensions;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.SpawnGroup;
+import net.minecraft.entity.*;
 import net.minecraft.entity.projectile.thrown.ThrownItemEntity;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
 public class SpectrumEntityTypes {
-
+	
+	public static EntityType<LivingMarkerEntity> LIVING_MARKER;
 	public static EntityType<ShootingStarEntity> SHOOTING_STAR;
 	public static EntityType<GravityBlockEntity> GRAVITY_BLOCK;
 	public static EntityType<InvisibleItemFrameEntity> INVISIBLE_ITEM_FRAME;
@@ -20,6 +19,7 @@ public class SpectrumEntityTypes {
 	public static EntityType<? extends ThrownItemEntity> BLOCK_FLOODER_PROJECTILE;
 
 	public static void register() {
+		LIVING_MARKER = register("living_marker", 0, 2147483647, false, EntityDimensions.changing(0F, 0F), true, LivingMarkerEntity::new);
 		SHOOTING_STAR = register("shooting_star", 15, 20, true, EntityDimensions.changing(0.8F, 0.8F), true, ShootingStarEntity::new);
 		GRAVITY_BLOCK = register("gravity_block", 10, 20, true, EntityDimensions.changing(0.98F, 0.98F), true, GravityBlockEntity::new);
 		INVISIBLE_ITEM_FRAME = register("invisible_item_frame", 10, 2147483647, false, EntityDimensions.changing(0.5F, 0.5F), false, InvisibleItemFrameEntity::new);

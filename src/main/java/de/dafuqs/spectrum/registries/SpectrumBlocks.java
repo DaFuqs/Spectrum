@@ -62,6 +62,7 @@ import de.dafuqs.spectrum.blocks.structure.TreasureChestBlock;
 import de.dafuqs.spectrum.blocks.upgrade.UpgradeBlock;
 import de.dafuqs.spectrum.blocks.upgrade.UpgradeBlockItem;
 import de.dafuqs.spectrum.blocks.upgrade.Upgradeable;
+import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
 import de.dafuqs.spectrum.enums.BuiltinGemstoneColor;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.worldgen.ColoredSaplingGenerator;
@@ -73,6 +74,7 @@ import net.minecraft.block.*;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.MarkerEntity;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.VexEntity;
 import net.minecraft.entity.projectile.*;
@@ -87,7 +89,9 @@ import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Position;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.BlockView;
@@ -741,8 +745,15 @@ public class SpectrumBlocks {
 	public static final Block CREEPER_MOB_BLOCK = new ExplosionMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.CREEPER_MOB_BLOCK), 3, false, Explosion.DestructionType.BREAK);
 	public static final Block ENDER_DRAGON_MOB_BLOCK = new ProjectileMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.ENDER_DRAGON_MOB_BLOCK), EntityType.DRAGON_FIREBALL, SoundEvents.ENTITY_ENDER_DRAGON_SHOOT, 6.0F, 1.1F) {
 		@Override
-		public ProjectileEntity createProjectile(ServerWorld world, Position position) {
-			return new DragonFireballEntity(world, null, position.getX(), position.getY(), position.getZ());
+		public ProjectileEntity createProjectile(ServerWorld world, BlockPos mobBlockPos, Position position, Direction side) {
+			LivingMarkerEntity markerEntity = new LivingMarkerEntity(SpectrumEntityTypes.LIVING_MARKER, world);
+			markerEntity.setPos(position.getX(), position.getY(), position.getZ());
+			
+			Vec3d targetDirection = Vec3d.ofCenter(mobBlockPos.offset(side.getOpposite(), 10));
+			DragonFireballEntity entity = new DragonFireballEntity(world, markerEntity, targetDirection.getX(), targetDirection.getY(), targetDirection.getZ());
+			
+			markerEntity.discard();
+			return entity;
 		}
 	};
 	public static final Block ENDERMAN_MOB_BLOCK = new RandomTeleportingMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.ENDERMAN_MOB_BLOCK), 16, 16);
@@ -757,8 +768,15 @@ public class SpectrumBlocks {
 	public static final Block FOX_MOB_BLOCK = new StatusEffectMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.FOX_MOB_BLOCK), StatusEffects.HASTE, 0, 200);
 	public static final Block GHAST_MOB_BLOCK = new ProjectileMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.GHAST_MOB_BLOCK), EntityType.FIREBALL, SoundEvents.ENTITY_GHAST_SHOOT, 6.0F, 1.1F) {
 		@Override
-		public ProjectileEntity createProjectile(ServerWorld world, Position position) {
-			return new FireballEntity(world, null, position.getX(), position.getY(), position.getZ(), 1);
+		public ProjectileEntity createProjectile(ServerWorld world, BlockPos mobBlockPos, Position position, Direction side) {
+			LivingMarkerEntity markerEntity = new LivingMarkerEntity(SpectrumEntityTypes.LIVING_MARKER, world);
+			markerEntity.setPos(position.getX(), position.getY(), position.getZ());
+			
+			Vec3d targetDirection = Vec3d.ofCenter(mobBlockPos.offset(side.getOpposite(), 10));
+			FireballEntity entity = new FireballEntity(world, markerEntity, targetDirection.getX(), targetDirection.getY(), targetDirection.getZ(), 1);
+			
+			markerEntity.discard();
+			return entity;
 		}
 	};
 	public static final Block GLOW_SQUID_MOB_BLOCK = new StatusEffectMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.GLOW_SQUID_MOB_BLOCK), StatusEffects.GLOWING, 0, 200);
@@ -779,7 +797,7 @@ public class SpectrumBlocks {
 	public static final Block SILVERFISH_MOB_BLOCK = new SilverfishInsertingMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.SILVERFISH_MOB_BLOCK));
 	public static final Block SKELETON_MOB_BLOCK = new ProjectileMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.SKELETON_MOB_BLOCK), EntityType.ARROW, SoundEvents.ENTITY_ARROW_SHOOT, 6.0F, 1.1F) {
 		@Override
-		public ProjectileEntity createProjectile(ServerWorld world, Position position) {
+		public ProjectileEntity createProjectile(ServerWorld world, BlockPos mobBlockPos, Position position, Direction side) {
 			ArrowEntity arrowEntity = new ArrowEntity(world, position.getX(), position.getY(), position.getZ());
 			arrowEntity.pickupType = PersistentProjectileEntity.PickupPermission.DISALLOWED;
 			return arrowEntity;
@@ -788,7 +806,7 @@ public class SpectrumBlocks {
 	public static final Block SLIME_MOB_BLOCK = new SlimeSizingMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.SLIME_MOB_BLOCK), 6, 8);
 	public static final Block SNOW_GOLEM_MOB_BLOCK = new ProjectileMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.SNOW_GOLEM_MOB_BLOCK), EntityType.SNOWBALL, SoundEvents.ENTITY_ARROW_SHOOT, 6.0F, 1.1F) {
 		@Override
-		public ProjectileEntity createProjectile(ServerWorld world, Position position) {
+		public ProjectileEntity createProjectile(ServerWorld world, BlockPos mobBlockPos, Position position, Direction side) {
 			return new SnowballEntity(world, position.getX(), position.getY(), position.getZ());
 		}
 	};
@@ -797,7 +815,6 @@ public class SpectrumBlocks {
 	public static final Block STRAY_MOB_BLOCK = new StatusEffectMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.STRAY_MOB_BLOCK), StatusEffects.SLOWNESS, 2, 100);
 	public static final Block STRIDER_MOB_BLOCK = new StatusEffectMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.STRIDER_MOB_BLOCK), StatusEffects.FIRE_RESISTANCE, 0, 200);
 	public static final Block TURTLE_MOB_BLOCK = new StatusEffectMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.TURTLE_MOB_BLOCK), StatusEffects.RESISTANCE, 1, 200);
-	public static final Block VINDICATOR_MOB_BLOCK = new StatusEffectMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.VINDICATOR_MOB_BLOCK), StatusEffects.INSTANT_DAMAGE, 0, 1);
 	public static final Block WITCH_MOB_BLOCK = new StatusEffectMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.WITCH_MOB_BLOCK), StatusEffects.WEAKNESS, 0, 200);
 	public static final Block WITHER_MOB_BLOCK = new ExplosionMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.WITHER_MOB_BLOCK), 7.0F, true, Explosion.DestructionType.BREAK);
 	public static final Block WITHER_SKELETON_MOB_BLOCK = new StatusEffectMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.WITHER_SKELETON_MOB_BLOCK), StatusEffects.WITHER, 0, 100);
@@ -1480,7 +1497,6 @@ public class SpectrumBlocks {
 		registerBlockWithItem("stray_mob_block", STRAY_MOB_BLOCK, fabricItemSettings);
 		registerBlockWithItem("strider_mob_block", STRIDER_MOB_BLOCK, fabricItemSettings);
 		registerBlockWithItem("turtle_mob_block", TURTLE_MOB_BLOCK, fabricItemSettings);
-		registerBlockWithItem("vindicator_mob_block", VINDICATOR_MOB_BLOCK, fabricItemSettings);
 		registerBlockWithItem("witch_mob_block", WITCH_MOB_BLOCK, fabricItemSettings);
 		registerBlockWithItem("wither_mob_block", WITHER_MOB_BLOCK, fabricItemSettings);
 		registerBlockWithItem("wither_skeleton_mob_block", WITHER_SKELETON_MOB_BLOCK, fabricItemSettings);

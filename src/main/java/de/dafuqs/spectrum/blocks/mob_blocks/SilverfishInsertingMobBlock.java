@@ -1,9 +1,13 @@
 package de.dafuqs.spectrum.blocks.mob_blocks;
 
+import de.dafuqs.spectrum.mixin.client.ClientWorldMixin;
+import de.dafuqs.spectrum.networking.SpectrumS2CPackets;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Fertilizable;
 import net.minecraft.block.InfestedBlock;
 import net.minecraft.client.item.TooltipContext;
+import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
@@ -12,6 +16,8 @@ import net.minecraft.text.TranslatableText;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.BlockView;
+import net.minecraft.world.World;
+import net.minecraft.world.WorldEvents;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -30,7 +36,6 @@ public class SilverfishInsertingMobBlock extends MobBlock {
 	
 	@Override
 	public boolean trigger(ServerWorld world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
-		boolean anyConverted = false;
 		int startDirection = world.random.nextInt(4);
 		for(int i = 0; i < 4; i++) {
 			Direction currentDirection = Direction.fromHorizontal(startDirection+i);
@@ -39,12 +44,12 @@ public class SilverfishInsertingMobBlock extends MobBlock {
 			if(InfestedBlock.isInfestable(offsetState)) {
 				BlockState infestedState = InfestedBlock.fromRegularState(offsetState);
 				world.setBlockState(offsetPos, infestedState);
-				world.addBlockBreakParticles(offsetPos, infestedState);
-				anyConverted = true;
+				world.syncWorldEvent(WorldEvents.BLOCK_BROKEN, offsetPos, Block.getRawIdFromState(offsetState)); // processed in WorldRenderer processGlobalEvent()
+				return true;
 			}
 		}
 		
-		return anyConverted;
+		return false;
 	}
 	
 }

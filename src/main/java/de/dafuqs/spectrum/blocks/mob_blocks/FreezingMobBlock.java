@@ -13,6 +13,7 @@ import net.minecraft.util.Pair;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.BlockView;
+import net.minecraft.world.WorldEvents;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -52,6 +53,7 @@ public class FreezingMobBlock extends MobBlock {
 			if(recipe.getRight() >= 1.0F || world.random.nextFloat() < recipe.getRight()) {
 				// freeze
 				world.setBlockState(blockPos, recipe.getLeft());
+				world.syncWorldEvent(WorldEvents.BLOCK_BROKEN, blockPos, Block.getRawIdFromState(recipe.getLeft())); // processed in WorldRenderer processGlobalEvent()
 				return true;
 			}
 		}

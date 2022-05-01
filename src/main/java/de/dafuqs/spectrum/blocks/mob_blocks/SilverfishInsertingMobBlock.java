@@ -1,13 +1,9 @@
 package de.dafuqs.spectrum.blocks.mob_blocks;
 
-import de.dafuqs.spectrum.mixin.client.ClientWorldMixin;
-import de.dafuqs.spectrum.networking.SpectrumS2CPackets;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Fertilizable;
 import net.minecraft.block.InfestedBlock;
 import net.minecraft.client.item.TooltipContext;
-import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
@@ -16,7 +12,6 @@ import net.minecraft.text.TranslatableText;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.BlockView;
-import net.minecraft.world.World;
 import net.minecraft.world.WorldEvents;
 import org.jetbrains.annotations.Nullable;
 

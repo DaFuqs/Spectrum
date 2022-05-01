@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.blocks.mob_blocks;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;

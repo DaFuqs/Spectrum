@@ -74,10 +74,8 @@ import net.minecraft.block.*;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.MarkerEntity;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.VexEntity;
-import net.minecraft.entity.passive.SnowGolemEntity;
 import net.minecraft.entity.projectile.*;
 import net.minecraft.entity.projectile.thrown.SnowballEntity;
 import net.minecraft.item.BlockItem;
@@ -797,7 +795,7 @@ public class SpectrumBlocks {
 	public static final Block OCELOT_MOB_BLOCK = new StatusEffectMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.OCELOT_MOB_BLOCK), StatusEffects.NIGHT_VISION, 0, 100);
 	public static final Block PARROT_MOB_BLOCK = new StatusEffectMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.PARROT_MOB_BLOCK), StatusEffects.ABSORPTION, 0, 100);
 	public static final Block PHANTOM_MOB_BLOCK = new InsomniaMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.PHANTOM_MOB_BLOCK), 24000); // +1 ingame day without sleep
-	public static final Block PIG_MOB_BLOCK = new StatusEffectMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.PIG_MOB_BLOCK), StatusEffects.SATURATION, 0, 1);
+	public static final Block PIG_MOB_BLOCK = new FeedingMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.PIG_MOB_BLOCK), 6);
 	public static final Block PIGLIN_MOB_BLOCK = new PiglinTradeMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.PIGLIN_MOB_BLOCK));
 	public static final Block POLAR_BEAR_MOB_BLOCK = new FreezingMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.POLAR_BEAR_MOB_BLOCK));
 	public static final Block PUFFERFISH_MOB_BLOCK = new StatusEffectMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.PUFFERFISH_MOB_BLOCK), StatusEffects.NAUSEA, 0, 200);

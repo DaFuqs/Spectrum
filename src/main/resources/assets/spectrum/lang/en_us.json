@@ -1020,6 +1020,7 @@
   "block.spectrum.random_teleporting_mob_block.tooltip": "§7Teleports you up to %d blocks in a random direction",
   "block.spectrum.line_teleporting_mob_block.tooltip": "§7Teleports you on top of the next block of this type ",
   "block.spectrum.line_teleporting_mob_block.tooltip2": "§7in a straight line within %d blocks",
+  "block.spectrum.feeding_mob_block.tooltip": "§7Feeds animals in a range of %d§7 blocks with food on the ground",
 
   "item.spectrum.exchange_staff": "Exchanging Staff",
   "item.spectrum.exchange_staff.tooltip.range": "Exchanges blocks up to %s blocks around it",

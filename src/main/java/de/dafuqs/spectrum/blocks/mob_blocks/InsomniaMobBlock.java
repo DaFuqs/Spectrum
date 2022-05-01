@@ -6,7 +6,6 @@ import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnReason;
-import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.mob.PhantomEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;

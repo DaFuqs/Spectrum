@@ -15,7 +15,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.BlockView;
 import org.jetbrains.annotations.Nullable;
-import org.lwjgl.system.CallbackI;
 
 import java.util.List;
 import java.util.Random;

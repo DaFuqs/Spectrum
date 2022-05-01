@@ -23,8 +23,6 @@ import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.recipe.potion_workshop.PotionWorkshopReagents;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.registries.color.ColorRegistry;
-import de.dafuqs.spectrum.registries.SpectrumBlockSoundGroups;
-import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
 import de.dafuqs.spectrum.worldgen.SpectrumConfiguredFeatures;
 import de.dafuqs.spectrum.worldgen.SpectrumFeatures;
 import de.dafuqs.spectrum.worldgen.structure_features.SpectrumStructureFeatures;

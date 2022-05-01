@@ -66,6 +66,7 @@ public class RandomTeleportingMobBlock extends MobBlock {
 			double boundingBoxY = entity.getBoundingBox().getYLength(); // bouncy
 			if(entity instanceof ServerPlayerEntity serverPlayerEntity) {
 				serverPlayerEntity.teleport((ServerWorld) serverPlayerEntity.world, mutable.getX() + 0.5, mutable.getY() + boundingBoxY, mutable.getZ() + 0.5, serverPlayerEntity.getYaw(), serverPlayerEntity.getPitch());
+				world.sendEntityStatus(serverPlayerEntity, (byte)46); // particles
 				return true;
 			} else if(entity instanceof LivingEntity livingEntity) {
 				boolean success = livingEntity.teleport(mutable.getX() + 0.5, mutable.getY() + 0.5, mutable.getZ() + boundingBoxY, true);

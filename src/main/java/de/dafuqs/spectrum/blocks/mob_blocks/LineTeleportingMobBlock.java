@@ -1,8 +1,10 @@
 package de.dafuqs.spectrum.blocks.mob_blocks;
 
+import dev.architectury.event.events.common.TickEvent;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
@@ -11,6 +13,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -33,9 +36,30 @@ public class LineTeleportingMobBlock extends MobBlock {
 	}
 	
 	@Override
+	public void onSteppedOn(World world, BlockPos pos, BlockState state, Entity entity) {
+		if(!world.isClient && !hasCooldown(state)) {
+			if(trigger((ServerWorld) world, pos, state, entity, getLookDirection(entity, true, false).getOpposite())) { // we want the movement direction here, instead of only "top"
+				playTriggerSound(world, pos);
+				triggerCooldown(world, pos);
+			}
+		}
+	}
+	
+	public static Direction getLookDirection(@NotNull Entity entity, boolean mirrorVertical, boolean mirrorHorizontal) {
+		double pitch = entity.getPitch();
+		if(pitch < -60) {
+			return mirrorVertical ? Direction.UP : Direction.DOWN;
+		} else if(pitch > 60) {
+			return mirrorVertical ? Direction.DOWN : Direction.UP;
+		} else {
+			return mirrorHorizontal ? entity.getMovementDirection().getOpposite() : entity.getMovementDirection();
+		}
+	}
+	
+	@Override
 	public boolean trigger(ServerWorld world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
 		if(entity != null) {
-			Optional<BlockPos> foundBlockPos = searchForBlock(world, blockPos, state, side, this.range);
+			Optional<BlockPos> foundBlockPos = searchForBlock(world, blockPos, state, side.getOpposite(), this.range);
 			if (foundBlockPos.isPresent()) {
 				BlockPos targetPos = foundBlockPos.get().up();
 				RandomTeleportingMobBlock.teleportTo(world, entity, targetPos.getX() + 0.5, targetPos.getY() + 0.5, targetPos.getZ() + 0.5);
@@ -43,6 +67,11 @@ public class LineTeleportingMobBlock extends MobBlock {
 			}
 		}
 		return false;
+	}
+	
+	@Override
+	public int getCooldownTicks() {
+		return 40;
 	}
 	
 	public static Optional<BlockPos> searchForBlock(World world, BlockPos pos, BlockState searchedState, Direction direction, int range) {

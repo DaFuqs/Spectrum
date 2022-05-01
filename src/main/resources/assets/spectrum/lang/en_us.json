@@ -1019,8 +1019,8 @@
   "block.spectrum.silverfish_inserting_mob_block.tooltip": "§7Puts a Silverfish in the block above",
   "block.spectrum.slime_sizing_mob_block.tooltip": "§7Increases close-by Slime's sizes",
   "block.spectrum.random_teleporting_mob_block.tooltip": "§7Teleports you up to %d blocks in a random direction",
-  "block.spectrum.line_teleporting_mob_block.tooltip": "§7Teleports you to the next block of this type ",
-  "block.spectrum.line_teleporting_mob_block2.tooltip": "§7in a straight line within %d blocks",
+  "block.spectrum.line_teleporting_mob_block.tooltip": "§7Teleports you on top of the next block of this type ",
+  "block.spectrum.line_teleporting_mob_block.tooltip2": "§7in a straight line within %d blocks",
 
   "item.spectrum.exchange_staff": "Exchanging Staff",
   "item.spectrum.exchange_staff.tooltip.range": "Exchanges blocks up to %s blocks around it",

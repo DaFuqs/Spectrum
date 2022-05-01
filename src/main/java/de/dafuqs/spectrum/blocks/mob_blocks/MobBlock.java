@@ -17,8 +17,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.*;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
@@ -103,6 +102,13 @@ public abstract class MobBlock extends Block {
 	
 	public int getCooldownTicks() {
 		return 40;
+	}
+	
+	public Position getOutputLocation(BlockPointer pointer, Direction direction) {
+		double d = pointer.getX() + 0.7D * (double)direction.getOffsetX();
+		double e = pointer.getY() + 0.7D * (double)direction.getOffsetY();
+		double f = pointer.getZ() + 0.7D * (double)direction.getOffsetZ();
+		return new PositionImpl(d, e, f);
 	}
 	
 }

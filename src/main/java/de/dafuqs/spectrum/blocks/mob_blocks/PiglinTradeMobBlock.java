@@ -3,8 +3,10 @@ package de.dafuqs.spectrum.blocks.mob_blocks;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.mob.PiglinBrain;
+import net.minecraft.entity.mob.PiglinEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.LootTable;
@@ -15,8 +17,7 @@ import net.minecraft.loot.context.LootContextTypes;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.*;
 import net.minecraft.world.BlockView;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -31,16 +32,25 @@ public class PiglinTradeMobBlock extends MobBlock {
 	
 	@Override
 	public boolean trigger(ServerWorld world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
-		if(entity instanceof PlayerEntity player) {
+		if(entity instanceof ItemEntity itemEntity) {
+			ItemStack stack = itemEntity.getStack();
+			if (stack.isOf(PiglinBrain.BARTERING_ITEM)) {
+				int newAmount = stack.getCount() - 1;
+				if (newAmount <= 0) {
+					itemEntity.discard();
+				} else {
+					stack.decrement(1);
+				}
+				
+				outputLoot(world, blockPos, side);
+				return true;
+			}
+		} else if(entity instanceof PlayerEntity player) {
 			for(ItemStack handStack : player.getItemsHand()) {
 				if(handStack.isOf(PiglinBrain.BARTERING_ITEM)) {
 					handStack.decrement(1);
-					for(ItemStack barteredStack : getBarteredItem(world)) {
-						BlockPos offsetPos = blockPos.offset(side);
-						ItemEntity itemEntity = new ItemEntity(world, offsetPos.getX() + 0.5, offsetPos.getY() + 0.5, offsetPos.getX() + 0.5, barteredStack);
-						itemEntity.addVelocity(side.getOffsetX() * 0.5, side.getOffsetY() * 0.5 + 0.2, side.getOffsetZ() * 0.5);
-						world.spawnEntity(itemEntity);
-					}
+					
+					outputLoot(world, blockPos, side);
 					return true;
 				}
 			}
@@ -48,9 +58,25 @@ public class PiglinTradeMobBlock extends MobBlock {
 		return false;
 	}
 	
-	private static List<ItemStack> getBarteredItem(@NotNull ServerWorld world) {
+	private void outputLoot(ServerWorld world, BlockPos blockPos, Direction side) {
+		Position outputLocation = getOutputLocation(new BlockPointerImpl(world, blockPos), side);
+		for(ItemStack barteredStack : getBarteredStacks(world, blockPos)) {
+			ItemEntity itemEntity = new ItemEntity(world, outputLocation.getX(), outputLocation.getY(), outputLocation.getZ(), barteredStack);
+			itemEntity.addVelocity(side.getOffsetX() * 0.25, side.getOffsetY() * 0.25 + 0.03, side.getOffsetZ() * 0.25);
+			world.spawnEntity(itemEntity);
+		}
+	}
+	
+	private static List<ItemStack> getBarteredStacks(@NotNull ServerWorld world, BlockPos blockPos) {
+		PiglinEntity piglin = new PiglinEntity(EntityType.PIGLIN, world);
+		piglin.setPos(blockPos.getX(), blockPos.getY(), blockPos.getZ());
+		
 		LootTable lootTable = world.getServer().getLootManager().getTable(LootTables.PIGLIN_BARTERING_GAMEPLAY);
-		return lootTable.generateLoot(new LootContext.Builder(world).parameter(LootContextParameters.THIS_ENTITY, null).random(world.random).build(LootContextTypes.BARTER));
+		List<ItemStack> loot = lootTable.generateLoot(new LootContext.Builder(world).parameter(LootContextParameters.THIS_ENTITY, piglin).random(world.random).build(LootContextTypes.BARTER));
+		
+		piglin.discard();
+		
+		return loot;
 	}
 	
 	@Override

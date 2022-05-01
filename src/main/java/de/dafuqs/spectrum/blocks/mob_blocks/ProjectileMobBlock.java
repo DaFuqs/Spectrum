@@ -61,13 +61,6 @@ public abstract class ProjectileMobBlock extends MobBlock {
 		return true;
 	}
 	
-	public Position getOutputLocation(BlockPointer pointer, Direction direction) {
-		double d = pointer.getX() + 0.7D * (double)direction.getOffsetX();
-		double e = pointer.getY() + 0.7D * (double)direction.getOffsetY();
-		double f = pointer.getZ() + 0.7D * (double)direction.getOffsetZ();
-		return new PositionImpl(d, e, f);
-	}
-	
 	public abstract ProjectileEntity createProjectile(ServerWorld world, BlockPos mobBlockPos, Position projectilePos, Direction side);
 	
 	@Override

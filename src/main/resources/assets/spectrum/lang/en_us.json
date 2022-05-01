@@ -1002,7 +1002,7 @@
   "block.spectrum.mob_block.tooltip": "When triggered via use/stepping on/projectile hit:",
   "block.spectrum.bonemealing_mob_block.tooltip": "§7Fertilises a plant next to it",
   "block.spectrum.echolocating_mob_block.tooltip": "§7Echolocates creatures in a %d block radius",
-  "block.spectrum.entity_summoning_mob_block.tooltip": "§7Summons %s",
+  "block.spectrum.entity_summoning_mob_block.tooltip": "§7Summons a %s",
   "block.spectrum.explosion_mob_block.tooltip": "§7Causes a %d block large explosion",
   "block.spectrum.fall_damage_negating_mob_block.tooltip": "§7Negates all fall damage when landing on it",
   "block.spectrum.fall_damage_negating_mob_block.tooltip2": "§7Will also temporarily hold a fall",

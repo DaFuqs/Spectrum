@@ -69,7 +69,7 @@ public abstract class MobBlock extends Block {
 	public void onSteppedOn(World world, BlockPos pos, BlockState state, Entity entity) {
 		super.onSteppedOn(world, pos, state, entity);
 		if(!world.isClient && !hasCooldown(state)) {
-			if(trigger((ServerWorld) world, pos, state, entity, Direction.DOWN)) {
+			if(trigger((ServerWorld) world, pos, state, entity, Direction.UP)) {
 				playTriggerSound(world, pos);
 				triggerCooldown(world, pos);
 			}

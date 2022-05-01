@@ -30,22 +30,28 @@ public class KnockbackMobBlock extends MobBlock {
 		if(entity != null) {
 			switch (side) {
 				case NORTH -> {
-					entity.addVelocity(horizontalKnockback, verticalKnockback, 0);
+					entity.addVelocity(0, verticalKnockback, -horizontalKnockback);
+					entity.velocityModified = true;
 				}
 				case EAST -> {
-					entity.addVelocity(0, verticalKnockback, horizontalKnockback);
+					entity.addVelocity(horizontalKnockback, verticalKnockback, 0);
+					entity.velocityModified = true;
 				}
 				case SOUTH -> {
-					entity.addVelocity(-horizontalKnockback, verticalKnockback, 0);
+					entity.addVelocity(0, verticalKnockback, horizontalKnockback);
+					entity.velocityModified = true;
 				}
 				case WEST -> {
-					entity.addVelocity(0, verticalKnockback, -horizontalKnockback);
+					entity.addVelocity(-horizontalKnockback, verticalKnockback, 0);
+					entity.velocityModified = true;
 				}
 				case UP -> {
-					entity.addVelocity(0, horizontalKnockback + verticalKnockback, 0);
+					entity.addVelocity(0,  (horizontalKnockback/4), 0);
+					entity.velocityModified = true;
 				}
 				default -> {
-					entity.addVelocity(0, - horizontalKnockback - verticalKnockback, 0);
+					entity.addVelocity(0, -(horizontalKnockback/4), 0);
+					entity.velocityModified = true;
 				}
 			}
 			return true;

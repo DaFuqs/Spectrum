@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.blocks.mob_blocks;
 
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Fertilizable;
 import net.minecraft.block.InfestedBlock;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
@@ -30,8 +31,10 @@ public class SilverfishInsertingMobBlock extends MobBlock {
 	@Override
 	public boolean trigger(ServerWorld world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
 		boolean anyConverted = false;
-		for(Direction direction : Direction.values()) {
-			BlockPos offsetPos = blockPos.offset(direction);
+		int startDirection = world.random.nextInt(4);
+		for(int i = 0; i < 4; i++) {
+			Direction currentDirection = Direction.fromHorizontal(startDirection+i);
+			BlockPos offsetPos = blockPos.offset(currentDirection);
 			BlockState offsetState = world.getBlockState(offsetPos);
 			if(InfestedBlock.isInfestable(offsetState)) {
 				BlockState infestedState = InfestedBlock.fromRegularState(offsetState);
@@ -40,6 +43,7 @@ public class SilverfishInsertingMobBlock extends MobBlock {
 				anyConverted = true;
 			}
 		}
+		
 		return anyConverted;
 	}
 	

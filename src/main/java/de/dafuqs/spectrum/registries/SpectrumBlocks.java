@@ -77,12 +77,14 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.MarkerEntity;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.VexEntity;
+import net.minecraft.entity.passive.SnowGolemEntity;
 import net.minecraft.entity.projectile.*;
 import net.minecraft.entity.projectile.thrown.SnowballEntity;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.BlockSoundGroup;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.DyeColor;
@@ -749,8 +751,12 @@ public class SpectrumBlocks {
 			LivingMarkerEntity markerEntity = new LivingMarkerEntity(SpectrumEntityTypes.LIVING_MARKER, world);
 			markerEntity.setPos(position.getX(), position.getY(), position.getZ());
 			
-			Vec3d targetDirection = Vec3d.ofCenter(mobBlockPos.offset(side.getOpposite(), 10));
-			DragonFireballEntity entity = new DragonFireballEntity(world, markerEntity, targetDirection.getX(), targetDirection.getY(), targetDirection.getZ());
+			Vec3d targetPosition = Vec3d.ofCenter(mobBlockPos.offset(side, 50));
+			double f = targetPosition.getX() - markerEntity.getX();
+			double g = targetPosition.getY() - markerEntity.getY();
+			double h = targetPosition.getZ() - markerEntity.getZ();
+			
+			DragonFireballEntity entity = new DragonFireballEntity(world, markerEntity, f, g, h);
 			
 			markerEntity.discard();
 			return entity;
@@ -772,9 +778,13 @@ public class SpectrumBlocks {
 			LivingMarkerEntity markerEntity = new LivingMarkerEntity(SpectrumEntityTypes.LIVING_MARKER, world);
 			markerEntity.setPos(position.getX(), position.getY(), position.getZ());
 			
-			Vec3d targetDirection = Vec3d.ofCenter(mobBlockPos.offset(side.getOpposite(), 10));
-			FireballEntity entity = new FireballEntity(world, markerEntity, targetDirection.getX(), targetDirection.getY(), targetDirection.getZ(), 1);
+			Vec3d targetPosition = Vec3d.ofCenter(mobBlockPos.offset(side, 50));
+			double f = targetPosition.getX() - markerEntity.getX();
+			double g = targetPosition.getY() - markerEntity.getY();
+			double h = targetPosition.getZ() - markerEntity.getZ();
 			
+			FireballEntity entity = new FireballEntity(world, markerEntity, f, g, h, 1);
+
 			markerEntity.discard();
 			return entity;
 		}
@@ -804,9 +814,10 @@ public class SpectrumBlocks {
 		}
 	};
 	public static final Block SLIME_MOB_BLOCK = new SlimeSizingMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.SLIME_MOB_BLOCK), 6, 8);
-	public static final Block SNOW_GOLEM_MOB_BLOCK = new ProjectileMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.SNOW_GOLEM_MOB_BLOCK), EntityType.SNOWBALL, SoundEvents.ENTITY_ARROW_SHOOT, 6.0F, 1.1F) {
+	public static final Block SNOW_GOLEM_MOB_BLOCK = new ProjectileMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.SNOW_GOLEM_MOB_BLOCK), EntityType.SNOWBALL, SoundEvents.ENTITY_ARROW_SHOOT, 3.0F, 1.1F) {
 		@Override
 		public ProjectileEntity createProjectile(ServerWorld world, BlockPos mobBlockPos, Position position, Direction side) {
+			world.playSound(null, mobBlockPos.getX(), mobBlockPos.getY(), mobBlockPos.getZ(), SoundEvents.ENTITY_SNOW_GOLEM_SHOOT, SoundCategory.BLOCKS, 1.0F, 0.4F / world.random.nextFloat() * 0.4F + 0.8F);
 			return new SnowballEntity(world, position.getX(), position.getY(), position.getZ());
 		}
 	};

@@ -5,6 +5,7 @@ import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -40,9 +41,9 @@ public class RandomTeleportingMobBlock extends MobBlock {
 	public boolean trigger(ServerWorld world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
 		if (entity != null) {
 			Random random = world.getRandom();
-			double x = blockPos.getX() + (random.nextDouble() - 0.5D) * this.horizontalRange;
-			double y = blockPos.getY() + (double)(random.nextInt(this.verticalRange) - (this.verticalRange / 2));
-			double z = blockPos.getZ() + (random.nextDouble() - 0.5D) * this.horizontalRange;
+			double x = blockPos.getX() + (random.nextDouble() - 0.5D) * (this.horizontalRange+this.horizontalRange);
+			double y = blockPos.getY() + (random.nextInt(this.verticalRange+this.verticalRange) - (this.verticalRange));
+			double z = blockPos.getZ() + (random.nextDouble() - 0.5D) * (this.horizontalRange+this.horizontalRange);
 			teleportTo(world, entity, x, y, z);
 			return true;
 		}
@@ -51,22 +52,30 @@ public class RandomTeleportingMobBlock extends MobBlock {
 	
 	public static boolean teleportTo(ServerWorld world, Entity entity, double x, double y, double z) {
 		BlockPos.Mutable mutable = new BlockPos.Mutable(x, y, z);
-		
+		// if in solid: move up
+		while(mutable.getY() < world.getTopY() && world.getBlockState(mutable).getMaterial().blocksMovement()) {
+			mutable.move(Direction.UP);
+		}
+		// if in air: move down
 		while(mutable.getY() > world.getBottomY() && !world.getBlockState(mutable).getMaterial().blocksMovement()) {
 			mutable.move(Direction.DOWN);
 		}
 		
 		BlockState blockState = world.getBlockState(mutable);
-		boolean blocksMovement = blockState.getMaterial().blocksMovement();
-		boolean isWater = blockState.getFluidState().isIn(FluidTags.WATER);
-		if (blocksMovement && !isWater) {
-			if(entity instanceof LivingEntity livingEntity) {
-				boolean success = livingEntity.teleport(x, y, z, true);
-				world.playSound(null, entity.prevX, entity.prevY, entity.prevZ, SoundEvents.ENTITY_ENDERMAN_TELEPORT, SoundCategory.BLOCKS, 1.0F, 1.0F);
-				entity.playSound(SoundEvents.ENTITY_ENDERMAN_TELEPORT, 1.0F, 1.0F);
+		if (blockState.getMaterial().blocksMovement()) {
+			double boundingBoxY = entity.getBoundingBox().getYLength(); // bouncy
+			if(entity instanceof ServerPlayerEntity serverPlayerEntity) {
+				serverPlayerEntity.teleport((ServerWorld) serverPlayerEntity.world, mutable.getX() + 0.5, mutable.getY() + boundingBoxY, mutable.getZ() + 0.5, serverPlayerEntity.getYaw(), serverPlayerEntity.getPitch());
+				return true;
+			} else if(entity instanceof LivingEntity livingEntity) {
+				boolean success = livingEntity.teleport(mutable.getX() + 0.5, mutable.getY() + 0.5, mutable.getZ() + boundingBoxY, true);
+				if(success) {
+					world.playSound(null, entity.prevX, entity.prevY, entity.prevZ, SoundEvents.ENTITY_ENDERMAN_TELEPORT, SoundCategory.BLOCKS, 1.0F, 1.0F);
+					entity.playSound(SoundEvents.ENTITY_ENDERMAN_TELEPORT, 1.0F, 1.0F);
+				}
 				return success;
 			} else {
-				entity.teleport(x, y, z);
+				entity.teleport(mutable.getX() + 0.5, mutable.getY() + boundingBoxY, mutable.getZ() + 0.5);
 				world.playSound(null, entity.prevX, entity.prevY, entity.prevZ, SoundEvents.ENTITY_ENDERMAN_TELEPORT, SoundCategory.BLOCKS, 1.0F, 1.0F);
 				entity.playSound(SoundEvents.ENTITY_ENDERMAN_TELEPORT, 1.0F, 1.0F);
 				return true;

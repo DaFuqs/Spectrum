@@ -6,6 +6,7 @@ import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnReason;
+import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.mob.PhantomEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -45,16 +46,19 @@ public class InsomniaMobBlock extends MobBlock {
 			
 			// cause insomnia
 			int currentStatValue = serverPlayerEntity.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(Stats.TIME_SINCE_REST));
-			currentStatValue = MathHelper.clamp(currentStatValue, 0, 2147483647 - additionalTicksSinceLastRest); // prevent overflows
-			serverPlayerEntity.getStatHandler().setStat(serverPlayerEntity, Stats.CUSTOM.getOrCreateStat(Stats.TIME_SINCE_REST), currentStatValue + this.additionalTicksSinceLastRest);
+			int newValue = MathHelper.clamp(currentStatValue, 0, 2147483647 - additionalTicksSinceLastRest) + this.additionalTicksSinceLastRest; // prevent overflows
+			serverPlayerEntity.getStatHandler().setStat(serverPlayerEntity, Stats.CUSTOM.getOrCreateStat(Stats.TIME_SINCE_REST), newValue);
 			
 			// if sky visible & night: immediately spawn phantom
-			if(world.isSkyVisible(blockPos) && TimeHelper.getTimeOfDay(world).isNight()) {
+			if(world.isSkyVisible(blockPos.up()) && TimeHelper.getTimeOfDay(world).isNight()) {
 				PhantomEntity phantomEntity = EntityType.PHANTOM.create(world);
 				if(phantomEntity != null) {
 					phantomEntity.refreshPositionAndAngles(blockPos.up(20 + random.nextInt(15)).east(-10 + random.nextInt(21)).south(-10 + random.nextInt(21)), 0.0F, 0.0F);
 					phantomEntity.initialize(world, world.getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, null, null);
-					// TODO: set size
+
+					int phantomSize = Math.min(64, newValue / 24000);
+					phantomEntity.setPhantomSize(phantomSize);
+					
 					world.spawnEntityAndPassengers(phantomEntity);
 				}
 			}
@@ -62,6 +66,10 @@ public class InsomniaMobBlock extends MobBlock {
 			return true;
 		}
 		return false;
+	}
+	
+	public int getCooldownTicks() {
+		return 200;
 	}
 	
 	@Override

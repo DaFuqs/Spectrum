@@ -11,6 +11,7 @@ import net.minecraft.state.property.Properties;
 import net.minecraft.tag.BlockTags;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
+import net.minecraft.util.Pair;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.BlockView;
@@ -18,9 +19,19 @@ import net.minecraft.world.event.GameEvent;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class FirestarterMobBlock extends MobBlock {
+	
+	// Block: The Block to freeze
+	// BlockState: The BlockState when Block is getting frozen
+	// Float: The chance to freeze
+	public static final Map<Block, Pair<BlockState, Float>> BURNING_MAP = new HashMap<>() {{
+		put(Blocks.NETHERRACK, new Pair<>(Blocks.MAGMA_BLOCK.getDefaultState(), 0.25F));
+		put(Blocks.MAGMA_BLOCK, new Pair<>(Blocks.LAVA.getDefaultState(), 0.5F));
+	}};
 	
 	public FirestarterMobBlock(Settings settings) {
 		super(settings);
@@ -45,6 +56,13 @@ public class FirestarterMobBlock extends MobBlock {
 			// smelt ice
 			world.playSound(null, blockPos, SoundEvents.ITEM_FLINTANDSTEEL_USE, SoundCategory.BLOCKS, 1.0F, world.getRandom().nextFloat() * 0.4F + 0.8F);
 			world.setBlockState(blockPos, Blocks.WATER.getDefaultState());
+		} else if(BURNING_MAP.containsKey(blockState.getBlock())) {
+			Pair<BlockState, Float> dest = BURNING_MAP.get(blockState.getBlock());
+			if(dest.getRight() >= 1.0F || world.random.nextFloat() < dest.getRight()) {
+				// convert netherrack to magma blocks
+				world.setBlockState(blockPos, dest.getLeft(), 11);
+				world.emitGameEvent(null, GameEvent.BLOCK_PLACE, blockPos);
+			}
 		} else {
 			// place fire
 			if (AbstractFireBlock.canPlaceAt(world, blockPos, side)) {
@@ -60,7 +78,6 @@ public class FirestarterMobBlock extends MobBlock {
 	public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
 		super.appendTooltip(stack, world, tooltip, options);
 		tooltip.add(new TranslatableText( "block.spectrum.firestarter_mob_block.tooltip"));
-		tooltip.add(new TranslatableText( "block.spectrum.firestarter_mob_block.tooltip2"));
 	}
 	
 }

@@ -1,5 +1,5 @@
 {
-  "name": "Mob Blocks",
+  "name": "Idols",
   "advancement": "spectrum:progression/unlock_mob_blocks",
   "icon": "spectrum:fox_mob_block",
   "category": "spectrum:magical_blocks_category",
@@ -77,7 +77,7 @@
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier3/mob_blocks/cat_mob_block",
-      "text": "Negates all fall damage when fallen on."
+      "text": "Negates all fall damage when landed upon. Can also temporarily reset your fall."
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -107,7 +107,7 @@
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier3/mob_blocks/endermite_mob_block",
-      "text": "Teleports to another block of the same type that is placed in a straight line on the side that was hit up to 16 blocks away."
+      "text": "Teleports to another Jagged Idol in a straight line on the side that was hit (up to 16 blocks away)."
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -172,17 +172,17 @@
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier3/mob_blocks/pig_mob_block",
-      "text": "Gives a short burst of Saturation."
+      "text": "Feeds animals in a 6 block radius if food is lying around."
     },
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier3/mob_blocks/piglin_mob_block",
-      "text": "Trades with you."
+      "text": "Trades Gold Ingots with you."
     },
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier3/mob_blocks/polar_bear_mob_block",
-      "text": "Freezes blocks around it."
+      "text": "Freezes blocks around it (Water to Ice, Snow to Snow Blocks)."
     },
     {
       "type": "spectrum:pedestal_crafting",

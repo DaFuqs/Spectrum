@@ -902,8 +902,8 @@ public class SpectrumBlocks {
 		registerRedstone(generalItemSettings);
 		registerMagicalBlocks(generalItemSettings);
 		registerSpiritTree(generalItemSettings);
-		registerMobHeads(mobHeadItemSettings);
 		registerMobBlocks(mobBlockItemSettings);
+		registerMobHeads(mobHeadItemSettings);
 
 		// Decay
 		registerBlock("fading", FADING);

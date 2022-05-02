@@ -32,7 +32,6 @@ import java.util.List;
 public class MilkingMobBlock extends MobBlock {
 	
 	protected static final int BUCKET_SEARCH_RANGE = 7;
-	
 	protected int milkingRange;
 	
 	public MilkingMobBlock(Settings settings, int milkingRange) {
@@ -122,7 +121,8 @@ public class MilkingMobBlock extends MobBlock {
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
 		super.appendTooltip(stack, world, tooltip, options);
-		tooltip.add(new TranslatableText( "block.spectrum.milking_mob_block.tooltip"));
+		tooltip.add(new TranslatableText( "block.spectrum.milking_mob_block.tooltip", this.milkingRange));
+		tooltip.add(new TranslatableText( "block.spectrum.milking_mob_block.tooltip2"));
 	}
 	
 }

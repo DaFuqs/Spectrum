@@ -1013,7 +1013,7 @@
   "block.spectrum.milking_mob_block.tooltip": "§7Milks close-by creatures in a %d block radius",
   "block.spectrum.milking_mob_block.tooltip2": "§7Requires §fBuckets§7 or §fBowls§7 close to the animals",
   "block.spectrum.piglin_trade_mob_block.tooltip": "§7Trades §fGold Ingots§7 with you",
-  "block.spectrum.potion_effect_mob_block.tooltip": "§7Gives you %s",
+  "block.spectrum.potion_effect_mob_block.tooltip": "§7Triggers %s",
   "block.spectrum.projectile_mob_block.tooltip": "§7Shoots a %s",
   "block.spectrum.shearing_mob_block.tooltip": "§7Shears close-by Entities",
   "block.spectrum.silverfish_inserting_mob_block.tooltip": "§7Puts a Silverfish in the block above",

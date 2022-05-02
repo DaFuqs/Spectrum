@@ -1,6 +1,0 @@
-{
-    "parent": "minecraft:block/cube_all",
-    "textures": {
-    "all": "spectrum:block/zombie_mob_block_cooldown"
-    }
-}

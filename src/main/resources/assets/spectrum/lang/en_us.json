@@ -1489,6 +1489,8 @@
   "advancements.spectrum.enter_ancient_ruins.description": "What are these signs supposed to tell you? There HAS to be a way to get into them! If not now, then later... better keep this place in mind",
   "advancements.spectrum.generate_ancient_ruins_loot.title": "Gift from an Ancient Civilization",
   "advancements.spectrum.generate_ancient_ruins_loot.description": "Discover the contents of an Ancient Treasure Chest",
+  "advancements.spectrum.create_huge_slime.title": "Huge Chungus",
+  "advancements.spectrum.create_huge_slime.description": "Use a Bouncy Idol to create a Slime or Magma Cube of humongous size",
 
   "______name_changes_for_vanilla_blocks" : "Changes:",
   "block.minecraft.polished_basalt": "Basalt Pillar",

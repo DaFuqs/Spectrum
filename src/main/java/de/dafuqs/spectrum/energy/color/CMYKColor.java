@@ -23,6 +23,10 @@ public abstract class CMYKColor {
 		return COLORS.get(dyeColor);
 	}
 	
+	public static CMYKColor of(String colorString) {
+		return COLORS.get(DyeColor.valueOf(colorString));
+	}
+	
 	public static Collection<CMYKColor> all() {
 		return COLORS.values();
 	}
@@ -36,13 +40,19 @@ public abstract class CMYKColor {
 	}
 	
 	@Override
+	public String toString() {
+		return this.dyeColor.toString();
+	}
+	
+	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
 		CMYKColor that = (CMYKColor) o;
 		return this.dyeColor.equals(that.dyeColor);
 	}
-
+	
+	// hash table lookup go wheeeeee!
 	@Override
 	public int hashCode() {
 		return dyeColor.ordinal();

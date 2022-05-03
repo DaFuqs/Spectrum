@@ -34,6 +34,9 @@ public class PigmentPaletteItem extends SpectrumTrinketItem implements CappedEle
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
 		tooltip.add(new TranslatableText("item.spectrum.pigment_palette.tooltip"));
+		
+		PigmentEnergyStorage energyStorage = getEnergyStorage(stack);
+		((PigmentPaletteEnergyStorage) energyStorage).addTooltip(world, tooltip, context);
 	}
 	
 	@Override

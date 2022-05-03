@@ -4,7 +4,7 @@ import net.minecraft.util.DyeColor;
 
 import java.util.HashMap;
 
-public class PigmentColor {
+public class PigmentColors {
 	
 	public static ElementalColor CYAN = new ElementalColor(DyeColor.CYAN);
 	public static ElementalColor MAGENTA = new ElementalColor(DyeColor.MAGENTA);
@@ -24,5 +24,9 @@ public class PigmentColor {
 	
 	public static CMYKColor LIGHT_GRAY = new CompoundColor(DyeColor.LIGHT_GRAY, new HashMap<>() {{ put(CYAN, 2F/6F); put(MAGENTA, 2F/6F); put(YELLOW, 2F/6F); }});
 	public static CMYKColor GRAY = new CompoundColor(DyeColor.GRAY, new HashMap<>() {{ put(CYAN, 2F/6F); put(MAGENTA, 2F/6F); put(YELLOW, 2F/6F); }});
+	
+	public static void register() {
+	
+	}
 	
 }

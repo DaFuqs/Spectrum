@@ -2,7 +2,7 @@ package de.dafuqs.spectrum.energy.storage;
 
 import de.dafuqs.spectrum.energy.color.CMYKColor;
 import de.dafuqs.spectrum.energy.color.ElementalColor;
-import de.dafuqs.spectrum.energy.color.PigmentColor;
+import de.dafuqs.spectrum.energy.color.PigmentColors;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import org.jetbrains.annotations.NotNull;
@@ -10,7 +10,7 @@ import org.jetbrains.annotations.Nullable;
 
 public class CappedElementalPigmentEnergyStorage extends ElementalPigmentEnergyStorage {
 	
-	private final long maxEnergyPerColor;
+	protected final long maxEnergyPerColor;
 	
 	public CappedElementalPigmentEnergyStorage(long maxEnergyTotal, long maxEnergyPerColor) {
 		super(maxEnergyTotal);
@@ -67,11 +67,11 @@ public class CappedElementalPigmentEnergyStorage extends ElementalPigmentEnergyS
 		NbtCompound compound = new NbtCompound();
 		compound.putLong("MaxEnergyTotal", this.maxEnergyTotal);
 		compound.putLong("MaxEnergyPerColor", this.maxEnergyPerColor);
-		compound.putLong("Cyan", this.storedEnergy.get(PigmentColor.CYAN));
-		compound.putLong("Magenta", this.storedEnergy.get(PigmentColor.MAGENTA));
-		compound.putLong("Yellow", this.storedEnergy.get(PigmentColor.YELLOW));
-		compound.putLong("Black", this.storedEnergy.get(PigmentColor.BLACK));
-		compound.putLong("White", this.storedEnergy.get(PigmentColor.WHITE));
+		compound.putLong("Cyan", this.storedEnergy.get(PigmentColors.CYAN));
+		compound.putLong("Magenta", this.storedEnergy.get(PigmentColors.MAGENTA));
+		compound.putLong("Yellow", this.storedEnergy.get(PigmentColors.YELLOW));
+		compound.putLong("Black", this.storedEnergy.get(PigmentColors.BLACK));
+		compound.putLong("White", this.storedEnergy.get(PigmentColors.WHITE));
 		return compound;
 	}
 	

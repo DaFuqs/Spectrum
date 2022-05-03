@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.energy.storage;
 
 import de.dafuqs.spectrum.energy.color.CMYKColor;
-import de.dafuqs.spectrum.energy.color.PigmentColor;
+import de.dafuqs.spectrum.energy.color.PigmentColors;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import org.jetbrains.annotations.NotNull;
@@ -20,7 +20,7 @@ public class SinglePigmentEnergyStorage implements PigmentEnergyStorage {
 	 **/
 	public SinglePigmentEnergyStorage(int maxEnergyTotal) {
 		this.maxEnergyTotal = maxEnergyTotal;
-		this.storedColor = PigmentColor.CYAN;
+		this.storedColor = PigmentColors.CYAN;
 		this.storedEnergy = 0;
 	}
 	
@@ -53,20 +53,6 @@ public class SinglePigmentEnergyStorage implements PigmentEnergyStorage {
 		return amount;
 	}
 	
-	/*@Override
-	public boolean requestEnergy(Map<CMYKColor, Integer> colors) {
-		if (colors.size() == 0) {
-			return true;
-		} else if (colors.size() == 1 && colors.containsKey(this.storedColor)) {
-			int amount = colors.get(this.storedColor);
-			if(this.storedEnergy >= amount) {
-				this.storedEnergy -= amount;
-				return true;
-			}
-		}
-		return false;
-	}*/
-	
 	@Override
 	public boolean requestEnergy(CMYKColor color, long amount) {
 		if (color == this.storedColor && amount >= this.storedEnergy) {
@@ -95,11 +81,6 @@ public class SinglePigmentEnergyStorage implements PigmentEnergyStorage {
 			return 0;
 		}
 	}
-	
-	/*@Override
-	public Map<ICMYKColor, Integer> getEnergy() {
-		return Map.of(this.storedColor, this.storedEnergy);
-	}*/
 	
 	@Override
 	public long getMaxTotal() {

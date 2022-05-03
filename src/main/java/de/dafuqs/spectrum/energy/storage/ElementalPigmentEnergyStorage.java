@@ -3,7 +3,7 @@ package de.dafuqs.spectrum.energy.storage;
 import de.dafuqs.spectrum.energy.color.CMYKColor;
 import de.dafuqs.spectrum.energy.color.CompoundColor;
 import de.dafuqs.spectrum.energy.color.ElementalColor;
-import de.dafuqs.spectrum.energy.color.PigmentColor;
+import de.dafuqs.spectrum.energy.color.PigmentColors;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import org.apache.commons.lang3.NotImplementedException;
@@ -34,11 +34,11 @@ public class ElementalPigmentEnergyStorage implements PigmentEnergyStorage {
 		this.currentTotal = cyan+magenta+yellow+black+white;
 		
 		this.storedEnergy = new HashMap<>();
-		this.storedEnergy.put(PigmentColor.CYAN, cyan);
-		this.storedEnergy.put(PigmentColor.MAGENTA, magenta);
-		this.storedEnergy.put(PigmentColor.YELLOW, yellow);
-		this.storedEnergy.put(PigmentColor.BLACK, black);
-		this.storedEnergy.put(PigmentColor.WHITE, white);
+		this.storedEnergy.put(PigmentColors.CYAN, cyan);
+		this.storedEnergy.put(PigmentColors.MAGENTA, magenta);
+		this.storedEnergy.put(PigmentColors.YELLOW, yellow);
+		this.storedEnergy.put(PigmentColors.BLACK, black);
+		this.storedEnergy.put(PigmentColors.WHITE, white);
 	}
 	
 	@Override
@@ -198,11 +198,11 @@ public class ElementalPigmentEnergyStorage implements PigmentEnergyStorage {
 	public NbtCompound toNbt() {
 		NbtCompound compound = new NbtCompound();
 		compound.putLong("MaxEnergyTotal", this.maxEnergyTotal);
-		compound.putLong("Cyan", this.storedEnergy.get(PigmentColor.CYAN));
-		compound.putLong("Magenta", this.storedEnergy.get(PigmentColor.MAGENTA));
-		compound.putLong("Yellow", this.storedEnergy.get(PigmentColor.YELLOW));
-		compound.putLong("Black", this.storedEnergy.get(PigmentColor.BLACK));
-		compound.putLong("White", this.storedEnergy.get(PigmentColor.WHITE));
+		compound.putLong("Cyan", this.storedEnergy.get(PigmentColors.CYAN));
+		compound.putLong("Magenta", this.storedEnergy.get(PigmentColors.MAGENTA));
+		compound.putLong("Yellow", this.storedEnergy.get(PigmentColors.YELLOW));
+		compound.putLong("Black", this.storedEnergy.get(PigmentColors.BLACK));
+		compound.putLong("White", this.storedEnergy.get(PigmentColors.WHITE));
 		return compound;
 	}
 	

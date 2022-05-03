@@ -1,6 +1,12 @@
 package de.dafuqs.spectrum.energy.storage;
 
 import de.dafuqs.spectrum.energy.color.CMYKColor;
+import net.minecraft.client.item.TooltipContext;
+import net.minecraft.text.Text;
+import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 /**
  * This interface defines that an object can

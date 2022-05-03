@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:midgame/fill_pigment_palette",
+  "parent": "spectrum:midgame/craft_pigment_palette",
   "display": {
     "icon": {
       "item": "spectrum:pigment_palette"
@@ -16,13 +16,13 @@
       "trigger": "spectrum:pigment_palette_use",
 	  "conditions": {
 		"total_change_tick": {
-		  "max": -10
+		  "max": -50
 		}
       }
     },
     "gotten_previous": {
       "trigger":"spectrum:has_advancement",
-      "conditions": { "advancement_identifier": "spectrum:midgame/fill_pigment_palette" }
+      "conditions": { "advancement_identifier": "spectrum:midgame/craft_pigment_palette" }
     }
   }
 }

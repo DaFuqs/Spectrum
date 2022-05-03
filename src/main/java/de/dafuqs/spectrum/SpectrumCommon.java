@@ -4,6 +4,7 @@ import de.dafuqs.spectrum.blocks.chests.CompactingChestBlockEntity;
 import de.dafuqs.spectrum.blocks.shooting_star.ShootingStarBlock;
 import de.dafuqs.spectrum.config.SpectrumConfig;
 import de.dafuqs.spectrum.dimension.DeeperDownDimension;
+import de.dafuqs.spectrum.energy.color.PigmentColors;
 import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
 import de.dafuqs.spectrum.events.SpectrumGameEvents;
 import de.dafuqs.spectrum.inventories.SpectrumContainers;
@@ -94,7 +95,10 @@ public class SpectrumCommon implements ModInitializer {
 		AutoConfig.register(SpectrumConfig.class, JanksonConfigSerializer::new);
 		CONFIG = AutoConfig.getConfigHolder(SpectrumConfig.class).getConfig();
 		logInfo("Finished loading config file.");
-
+		
+		// Register internals
+		PigmentColors.register();
+		
 		// Register ALL the stuff
 		logInfo("Registering Advancement Criteria...");
 		SpectrumAdvancementCriteria.register();

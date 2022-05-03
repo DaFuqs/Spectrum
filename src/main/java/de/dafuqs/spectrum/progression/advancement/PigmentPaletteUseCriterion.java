@@ -2,7 +2,7 @@ package de.dafuqs.spectrum.progression.advancement;
 
 import com.google.gson.JsonObject;
 import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.energy.color.PigmentColor;
+import de.dafuqs.spectrum.energy.color.PigmentColors;
 import de.dafuqs.spectrum.energy.storage.PigmentPaletteEnergyStorage;
 import net.minecraft.advancement.criterion.AbstractCriterion;
 import net.minecraft.advancement.criterion.AbstractCriterionConditions;
@@ -35,11 +35,11 @@ public class PigmentPaletteUseCriterion extends AbstractCriterion<PigmentPalette
 
 	public void trigger(ServerPlayerEntity player, PigmentPaletteEnergyStorage storage, long change) {
 		this.trigger(player, (conditions) -> conditions.matches(
-				storage.getEnergy(PigmentColor.BLACK),
-				storage.getEnergy(PigmentColor.CYAN),
-				storage.getEnergy(PigmentColor.MAGENTA),
-				storage.getEnergy(PigmentColor.WHITE),
-				storage.getEnergy(PigmentColor.YELLOW),
+				storage.getEnergy(PigmentColors.BLACK),
+				storage.getEnergy(PigmentColors.CYAN),
+				storage.getEnergy(PigmentColors.MAGENTA),
+				storage.getEnergy(PigmentColors.WHITE),
+				storage.getEnergy(PigmentColors.YELLOW),
 				change
 		));
 	}

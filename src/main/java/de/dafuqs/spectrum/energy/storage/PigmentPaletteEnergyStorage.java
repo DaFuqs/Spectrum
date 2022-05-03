@@ -1,12 +1,26 @@
 package de.dafuqs.spectrum.energy.storage;
 
+import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.energy.color.CMYKColor;
+import de.dafuqs.spectrum.energy.color.PigmentColors;
+import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.item.TooltipContext;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.text.Text;
+import net.minecraft.text.TranslatableText;
+import net.minecraft.util.Identifier;
+import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 public class PigmentPaletteEnergyStorage extends CappedElementalPigmentEnergyStorage {
 	
@@ -56,4 +70,21 @@ public class PigmentPaletteEnergyStorage extends CappedElementalPigmentEnergySto
 		return null;
 	}
 	
+	@Environment(EnvType.CLIENT)
+	public void addTooltip(World world, List<Text> tooltip, TooltipContext context) {
+		tooltip.add(new TranslatableText("item.spectrum.pigment_palette.tooltip.max_energy", this.maxEnergyPerColor));
+		tooltip.add(new TranslatableText("item.spectrum.pigment_palette.tooltip.stored_energy.cyan", this.storedEnergy.get(PigmentColors.CYAN)));
+		tooltip.add(new TranslatableText("item.spectrum.pigment_palette.tooltip.stored_energy.magenta", this.storedEnergy.get(PigmentColors.MAGENTA)));
+		tooltip.add(new TranslatableText("item.spectrum.pigment_palette.tooltip.stored_energy.yellow", this.storedEnergy.get(PigmentColors.YELLOW)));
+		
+		PlayerEntity player = MinecraftClient.getInstance().player;
+		if(player != null) {
+			if(Support.hasAdvancement(player, new Identifier(SpectrumCommon.MOD_ID, "create_onyx_shard"))) {
+				tooltip.add(new TranslatableText("item.spectrum.pigment_palette.tooltip.stored_energy.black", this.storedEnergy.get(PigmentColors.BLACK)));
+			}
+			if(Support.hasAdvancement(player, new Identifier(SpectrumCommon.MOD_ID, "midgame/collect_moonstone_shard"))) {
+				tooltip.add(new TranslatableText("item.spectrum.pigment_palette.tooltip.stored_energy.white", this.storedEnergy.get(PigmentColors.WHITE)));
+			}
+		}
+	}
 }

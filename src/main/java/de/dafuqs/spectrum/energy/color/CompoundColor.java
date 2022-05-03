@@ -13,16 +13,12 @@ public class CompoundColor extends CMYKColor {
 		this.compoundColors = compoundColors;
 		
 		for(Map.Entry<ElementalColor, Float> entry : compoundColors.entrySet()) {
-			entry.getKey().addCompoundAmount(dyeColor, entry.getValue());
+			entry.getKey().addCompoundAmount(this, entry.getValue());
 		}
 	}
 	
-	public boolean isUsedForMixing(CompoundColor dyeColor) {
-		return false;
-	}
-	
-	public boolean isMixedUsing(CompoundColor dyeColor) {
-		return this.compoundColors.containsKey(this.dyeColor);
+	public boolean isMixedUsing(ElementalColor elementalColor) {
+		return this.compoundColors.containsKey(elementalColor);
 	}
 	
 	public Map<ElementalColor, Float> getElementalColorsToMix() {

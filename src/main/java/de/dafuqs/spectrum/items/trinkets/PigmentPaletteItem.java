@@ -2,9 +2,9 @@ package de.dafuqs.spectrum.items.trinkets;
 
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.energy.CappedElementalPigmentEnergyStorageItem;
-import de.dafuqs.spectrum.energy.color.CMYKColor;
 import de.dafuqs.spectrum.energy.storage.CappedElementalPigmentEnergyStorage;
 import de.dafuqs.spectrum.energy.storage.PigmentEnergyStorage;
+import de.dafuqs.spectrum.energy.storage.PigmentPaletteEnergyStorage;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.item.TooltipContext;
@@ -40,9 +40,9 @@ public class PigmentPaletteItem extends SpectrumTrinketItem implements CappedEle
 	public PigmentEnergyStorage getEnergyStorage(ItemStack itemStack) {
 		NbtCompound compound = itemStack.getNbt();
 		if(compound != null && compound.contains("EnergyStore")) {
-			return CappedElementalPigmentEnergyStorage.fromNbt(compound.getCompound("EnergyStore"));
+			return PigmentPaletteEnergyStorage.fromNbt(compound.getCompound("EnergyStore"));
 		}
-		return new CappedElementalPigmentEnergyStorage(this.maxEnergyTotal, this.maxEnergyPerColor);
+		return new PigmentPaletteEnergyStorage(this.maxEnergyTotal, this.maxEnergyPerColor);
 	}
 	
 	@Override

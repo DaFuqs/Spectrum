@@ -21,19 +21,16 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
-import java.util.Map;
 
-public class PigmentPaletteEnergyStorage extends IndividuallyCappedSimplePigmentEnergyStorage {
+public class ArtistsPaletteEnergyStorage extends IndividualAndTotalCappedElementalPigmentEnergyStorage {
 	
-	public PigmentPaletteEnergyStorage(long maxEnergyPerColor) {
-		super(maxEnergyPerColor);
+	public ArtistsPaletteEnergyStorage(long maxEnergyTotal, long maxEnergyPerColor) {
+		super(maxEnergyTotal, maxEnergyPerColor);
 	}
 	
-	public PigmentPaletteEnergyStorage(long maxEnergyPerColor, Map<CMYKColor, Long> colors) {
-		super(maxEnergyPerColor, colors);
+	public ArtistsPaletteEnergyStorage(long maxEnergyTotal, long maxEnergyPerColor, long cyan, long magenta, long yellow, long black, long white) {
+		super(maxEnergyTotal, maxEnergyPerColor, cyan, magenta, yellow, black, white);
 	}
 	
 	public long addEnergy(CMYKColor color, long amount, ItemStack stack, ServerPlayerEntity serverPlayerEntity) {
@@ -60,24 +57,33 @@ public class PigmentPaletteEnergyStorage extends IndividuallyCappedSimplePigment
 		return drainedAmount;
 	}
 	
-	public static @Nullable PigmentPaletteEnergyStorage fromNbt(@NotNull NbtCompound compound) {
-		if(compound.contains("MaxEnergyPerColor", NbtElement.LONG_TYPE)) {
+	public static @Nullable ArtistsPaletteEnergyStorage fromNbt(@NotNull NbtCompound compound) {
+		if(compound.contains("MaxEnergyTotal", NbtElement.LONG_TYPE)) {
+			long maxEnergyTotal = compound.getLong("MaxEnergyTotal");
 			long maxEnergyPerColor = compound.getLong("MaxEnergyPerColor");
-			
-			Map<CMYKColor, Long> colors = new HashMap<>();
-			for(CMYKColor color : CMYKColor.all()) {
-				colors.put(color, compound.getLong(color.toString()));
-			}
-			return new PigmentPaletteEnergyStorage(maxEnergyPerColor, colors);
+			long cyan = compound.getLong("Cyan");
+			long magenta = compound.getLong("Magenta");
+			long yellow = compound.getLong("Yellow");
+			long black = compound.getLong("Black");
+			long white = compound.getLong("White");
+			return new ArtistsPaletteEnergyStorage(maxEnergyTotal, maxEnergyPerColor, cyan, magenta, yellow, black, white);
 		}
 		return null;
 	}
 	
 	@Environment(EnvType.CLIENT)
 	public void addTooltip(World world, List<Text> tooltip, TooltipContext context) {
-		for(Map.Entry<CMYKColor, Long> color : this.storedEnergy.entrySet()) {
-			if(color.getValue() > 0) {
-				tooltip.add(new TranslatableText("item.spectrum.artists_palette.tooltip.stored_energy." + color.getKey().toString().toLowerCase(Locale.ROOT), color.getValue()));
+		tooltip.add(new TranslatableText("item.spectrum.pigment_palette.tooltip.stored_energy.cyan", this.storedEnergy.get(PigmentColors.CYAN)));
+		tooltip.add(new TranslatableText("item.spectrum.pigment_palette.tooltip.stored_energy.magenta", this.storedEnergy.get(PigmentColors.MAGENTA)));
+		tooltip.add(new TranslatableText("item.spectrum.pigment_palette.tooltip.stored_energy.yellow", this.storedEnergy.get(PigmentColors.YELLOW)));
+		
+		PlayerEntity player = MinecraftClient.getInstance().player;
+		if(player != null) {
+			if(Support.hasAdvancement(player, new Identifier(SpectrumCommon.MOD_ID, "create_onyx_shard"))) {
+				tooltip.add(new TranslatableText("item.spectrum.pigment_palette.tooltip.stored_energy.black", this.storedEnergy.get(PigmentColors.BLACK)));
+			}
+			if(Support.hasAdvancement(player, new Identifier(SpectrumCommon.MOD_ID, "midgame/collect_moonstone_shard"))) {
+				tooltip.add(new TranslatableText("item.spectrum.pigment_palette.tooltip.stored_energy.white", this.storedEnergy.get(PigmentColors.WHITE)));
 			}
 		}
 	}

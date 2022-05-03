@@ -8,16 +8,16 @@ import net.minecraft.nbt.NbtElement;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class CappedElementalPigmentEnergyStorage extends ElementalPigmentEnergyStorage {
+public class IndividualAndTotalCappedElementalPigmentEnergyStorage extends ElementalPigmentEnergyStorage {
 	
 	protected final long maxEnergyPerColor;
 	
-	public CappedElementalPigmentEnergyStorage(long maxEnergyTotal, long maxEnergyPerColor) {
+	public IndividualAndTotalCappedElementalPigmentEnergyStorage(long maxEnergyTotal, long maxEnergyPerColor) {
 		super(maxEnergyTotal);
 		this.maxEnergyPerColor = maxEnergyPerColor;
 	}
 	
-	public CappedElementalPigmentEnergyStorage(long maxEnergyTotal, long maxEnergyPerColor, long cyan, long magenta, long yellow, long black, long white) {
+	public IndividualAndTotalCappedElementalPigmentEnergyStorage(long maxEnergyTotal, long maxEnergyPerColor, long cyan, long magenta, long yellow, long black, long white) {
 		super(maxEnergyTotal, cyan, magenta, yellow, black, white);
 		this.maxEnergyPerColor = maxEnergyPerColor;
 	}
@@ -26,7 +26,6 @@ public class CappedElementalPigmentEnergyStorage extends ElementalPigmentEnergyS
 	public long addEnergy(CMYKColor color, long amount) {
 		if(color instanceof ElementalColor elementalColor) {
 			long currentAmount = this.storedEnergy.get(color);
-			
 			long freeTotalEnergy = this.maxEnergyTotal - this.currentTotal;
 			long freeColorEnergy = this.maxEnergyPerColor - currentAmount;
 			long free = Math.min(freeTotalEnergy, freeColorEnergy);
@@ -49,7 +48,7 @@ public class CappedElementalPigmentEnergyStorage extends ElementalPigmentEnergyS
 		return this.maxEnergyPerColor;
 	}
 	
-	public static @Nullable CappedElementalPigmentEnergyStorage fromNbt(@NotNull NbtCompound compound) {
+	public static @Nullable IndividualAndTotalCappedElementalPigmentEnergyStorage fromNbt(@NotNull NbtCompound compound) {
 		if(compound.contains("MaxEnergyTotal", NbtElement.LONG_TYPE)) {
 			long maxEnergyTotal = compound.getLong("MaxEnergyTotal");
 			long maxEnergyPerColor = compound.getLong("MaxEnergyPerColor");
@@ -58,7 +57,7 @@ public class CappedElementalPigmentEnergyStorage extends ElementalPigmentEnergyS
 			long yellow = compound.getLong("Yellow");
 			long black = compound.getLong("Black");
 			long white = compound.getLong("White");
-			return new CappedElementalPigmentEnergyStorage(maxEnergyTotal, maxEnergyPerColor, cyan, magenta, yellow, black, white);
+			return new IndividualAndTotalCappedElementalPigmentEnergyStorage(maxEnergyTotal, maxEnergyPerColor, cyan, magenta, yellow, black, white);
 		}
 		return null;
 	}

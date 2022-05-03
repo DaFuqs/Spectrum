@@ -61,10 +61,10 @@ public class SpectrumItemGroups {
 				stacks.add(SpectrumItems.RESONANT_PICKAXE.getDefaultStack());
 				
 				// emergency armor
-				stacks.add(new ItemStack(SpectrumItems.EMERGENCY_HELMET));
-				stacks.add(new ItemStack(SpectrumItems.EMERGENCY_CHESTPLATE));
-				stacks.add(new ItemStack(SpectrumItems.EMERGENCY_LEGGINGS));
-				stacks.add(new ItemStack(SpectrumItems.EMERGENCY_BOOTS));
+				stacks.add(SpectrumItems.EMERGENCY_HELMET.getDefaultStack());
+				stacks.add(SpectrumItems.EMERGENCY_CHESTPLATE.getDefaultStack());
+				stacks.add(SpectrumItems.EMERGENCY_LEGGINGS.getDefaultStack());
+				stacks.add(SpectrumItems.EMERGENCY_BOOTS.getDefaultStack());
 				
 				// bedrock tools
 				stacks.add(SpectrumItems.BEDROCK_PICKAXE.getDefaultStack());

@@ -6,7 +6,6 @@ import de.dafuqs.spectrum.energy.color.ElementalColor;
 import de.dafuqs.spectrum.energy.color.PigmentColors;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
-import org.apache.commons.lang3.NotImplementedException;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -17,13 +16,12 @@ public class ElementalPigmentEnergyStorage implements PigmentEnergyStorage {
 	
 	protected final long maxEnergyTotal;
 	protected long currentTotal; // This is a cache for quick lookup. Can be recalculated anytime using the values in storedEnergy.
-	protected final Map<ElementalColor, Long> storedEnergy;
+	protected final Map<ElementalColor, Long> storedEnergy = new HashMap<>();
 	
 	public ElementalPigmentEnergyStorage(long maxEnergyTotal) {
 		this.maxEnergyTotal = maxEnergyTotal;
 		this.currentTotal = 0;
-		
-		this.storedEnergy = new HashMap<>();
+
 		for(ElementalColor color : CMYKColor.elementals()) {
 			this.storedEnergy.put(color, 0L);
 		}
@@ -33,7 +31,6 @@ public class ElementalPigmentEnergyStorage implements PigmentEnergyStorage {
 		this.maxEnergyTotal = maxEnergyTotal;
 		this.currentTotal = cyan+magenta+yellow+black+white;
 		
-		this.storedEnergy = new HashMap<>();
 		this.storedEnergy.put(PigmentColors.CYAN, cyan);
 		this.storedEnergy.put(PigmentColors.MAGENTA, magenta);
 		this.storedEnergy.put(PigmentColors.YELLOW, yellow);
@@ -51,7 +48,7 @@ public class ElementalPigmentEnergyStorage implements PigmentEnergyStorage {
 		if(color instanceof ElementalColor elementalColor) {
 			long resultingAmount = this.storedEnergy.get(color) + amount;
 			if(resultingAmount > this.maxEnergyTotal) {
-				long overflow = resultingAmount - this.maxEnergyTotal;
+				long overflow = resultingAmount - this.maxEnergyTotal + this.currentTotal;
 				this.currentTotal = this.currentTotal + (resultingAmount - this.maxEnergyTotal);
 				this.storedEnergy.put(elementalColor, this.maxEnergyTotal);
 				return overflow;
@@ -169,7 +166,7 @@ public class ElementalPigmentEnergyStorage implements PigmentEnergyStorage {
 	
 	@Override
 	public long getCurrentTotal() {
-		throw new NotImplementedException("TODO");
+		return this.currentTotal;
 	}
 	
 	@Override

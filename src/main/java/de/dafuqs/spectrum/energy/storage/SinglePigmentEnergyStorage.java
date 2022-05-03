@@ -2,15 +2,21 @@ package de.dafuqs.spectrum.energy.storage;
 
 import de.dafuqs.spectrum.energy.color.CMYKColor;
 import de.dafuqs.spectrum.energy.color.PigmentColors;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
+import net.minecraft.text.Text;
+import net.minecraft.text.TranslatableText;
+import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.List;
+import java.util.Locale;
+
 public class SinglePigmentEnergyStorage implements PigmentEnergyStorage {
 	
-	private final long maxEnergyTotal;
-	
+	private final long maxEnergy;
 	private CMYKColor storedColor;
 	private long storedEnergy;
 	
@@ -18,14 +24,14 @@ public class SinglePigmentEnergyStorage implements PigmentEnergyStorage {
 	 * Stores a single type of Pigment Energy
 	 * Can only be filled with a new type if it is empty
 	 **/
-	public SinglePigmentEnergyStorage(int maxEnergyTotal) {
-		this.maxEnergyTotal = maxEnergyTotal;
+	public SinglePigmentEnergyStorage(long maxEnergy) {
+		this.maxEnergy = maxEnergy;
 		this.storedColor = PigmentColors.CYAN;
 		this.storedEnergy = 0;
 	}
 	
-	public SinglePigmentEnergyStorage(long maxEnergyTotal, CMYKColor color, long amount) {
-		this.maxEnergyTotal = maxEnergyTotal;
+	public SinglePigmentEnergyStorage(long maxEnergy, CMYKColor color, long amount) {
+		this.maxEnergy = maxEnergy;
 		this.storedColor = color;
 		this.storedEnergy = amount;
 	}
@@ -40,9 +46,9 @@ public class SinglePigmentEnergyStorage implements PigmentEnergyStorage {
 		if(color == storedColor) {
 			long resultingAmount = this.storedEnergy + amount;
 			this.storedEnergy = resultingAmount;
-			if(resultingAmount > this.maxEnergyTotal) {
-				long overflow = this.storedEnergy - this.maxEnergyTotal;
-				this.storedEnergy = this.maxEnergyTotal;
+			if(resultingAmount > this.maxEnergy) {
+				long overflow = this.storedEnergy - this.maxEnergy;
+				this.storedEnergy = this.maxEnergy;
 				return overflow;
 			}
 			return 0;
@@ -84,12 +90,12 @@ public class SinglePigmentEnergyStorage implements PigmentEnergyStorage {
 	
 	@Override
 	public long getMaxTotal() {
-		return this.maxEnergyTotal;
+		return this.maxEnergy;
 	}
 	
 	@Override
 	public long getMaxPerColor() {
-		return this.maxEnergyTotal;
+		return this.maxEnergy;
 	}
 	
 	@Override
@@ -104,7 +110,7 @@ public class SinglePigmentEnergyStorage implements PigmentEnergyStorage {
 	
 	@Override
 	public boolean isFull() {
-		return this.storedEnergy >= this.maxEnergyTotal;
+		return this.storedEnergy >= this.maxEnergy;
 	}
 	
 	public static @Nullable SinglePigmentEnergyStorage fromNbt(@NotNull NbtCompound compound) {
@@ -119,10 +125,16 @@ public class SinglePigmentEnergyStorage implements PigmentEnergyStorage {
 	
 	public NbtCompound toNbt() {
 		NbtCompound compound = new NbtCompound();
-		compound.putLong("MaxEnergyTotal", this.maxEnergyTotal);
+		compound.putLong("MaxEnergyTotal", this.maxEnergy);
 		compound.putString("Color", this.storedColor.toString());
 		compound.putLong("Amount", this.storedEnergy);
 		return compound;
+	}
+	
+	public void addTooltip(World world, List<Text> tooltip, TooltipContext context) {
+		if(this.storedEnergy > 0) {
+			tooltip.add(new TranslatableText("item.spectrum.pigment_palette.tooltip.stored_energy." + this.storedColor.toString().toLowerCase(Locale.ROOT), this.storedEnergy));
+		}
 	}
 	
 }

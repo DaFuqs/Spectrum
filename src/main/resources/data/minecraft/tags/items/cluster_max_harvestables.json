@@ -1,8 +1,6 @@
 {
   "replace": false,
   "values": [
-    "#fabric:pickaxes",
-
     "spectrum:multitool",
     "spectrum:silker_pickaxe",
     "spectrum:fortune_pickaxe",

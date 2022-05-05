@@ -15,9 +15,11 @@
   "criteria": {
     "filled_ink_container": {
   	  "trigger": "spectrum:ink_container_interaction",
+      "conditions": {
         "change_amount": {
           "min": 1
         }
+      }
     },
     "gotten_previous": {
   	  "trigger":"spectrum:has_advancement",

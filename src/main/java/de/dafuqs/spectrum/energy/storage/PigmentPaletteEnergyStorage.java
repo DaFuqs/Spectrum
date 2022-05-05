@@ -25,7 +25,7 @@ public class PigmentPaletteEnergyStorage extends IndividualCappedSimplePigmentEn
 	public long addEnergy(CMYKColor color, long amount, ItemStack stack, ServerPlayerEntity serverPlayerEntity) {
 		long leftoverEnergy = super.addEnergy(color, amount);
 		if(leftoverEnergy != amount) {
-			SpectrumAdvancementCriteria.PIGMENT_PALETTE_USE.trigger(serverPlayerEntity, stack, this, amount - leftoverEnergy);
+			SpectrumAdvancementCriteria.INK_CONTAINER_INTERACTION.trigger(serverPlayerEntity, stack, this, color, amount - leftoverEnergy);
 		}
 		return leftoverEnergy;
 	}
@@ -33,7 +33,7 @@ public class PigmentPaletteEnergyStorage extends IndividualCappedSimplePigmentEn
 	public boolean requestEnergy(CMYKColor color, long amount, ItemStack stack, ServerPlayerEntity serverPlayerEntity) {
 		boolean success = super.requestEnergy(color, amount);
 		if(success) {
-			SpectrumAdvancementCriteria.PIGMENT_PALETTE_USE.trigger(serverPlayerEntity, stack, this, -amount);
+			SpectrumAdvancementCriteria.INK_CONTAINER_INTERACTION.trigger(serverPlayerEntity, stack, this, color, -amount);
 		}
 		return success;
 	}
@@ -41,7 +41,7 @@ public class PigmentPaletteEnergyStorage extends IndividualCappedSimplePigmentEn
 	public long drainEnergy(CMYKColor color, long amount, ItemStack stack, ServerPlayerEntity serverPlayerEntity) {
 		long drainedAmount = super.drainEnergy(color, amount);
 		if(drainedAmount != 0) {
-			SpectrumAdvancementCriteria.PIGMENT_PALETTE_USE.trigger(serverPlayerEntity, stack, this, -drainedAmount);
+			SpectrumAdvancementCriteria.INK_CONTAINER_INTERACTION.trigger(serverPlayerEntity, stack, this, color, -drainedAmount);
 		}
 		return drainedAmount;
 	}

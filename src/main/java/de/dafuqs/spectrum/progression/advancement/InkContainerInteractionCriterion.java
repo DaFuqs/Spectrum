@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.progression.advancement;
 
 import com.google.gson.JsonObject;
 import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.energy.color.CMYKColor;
 import de.dafuqs.spectrum.energy.color.PigmentColors;
 import de.dafuqs.spectrum.energy.storage.PigmentEnergyStorage;
 import net.minecraft.advancement.criterion.AbstractCriterion;
@@ -14,15 +15,15 @@ import net.minecraft.predicate.item.ItemPredicate;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
 
-public class PigmentPaletteUseCriterion extends AbstractCriterion<PigmentPaletteUseCriterion.Conditions> {
+public class InkContainerInteractionCriterion extends AbstractCriterion<InkContainerInteractionCriterion.Conditions> {
 
-	static final Identifier ID = new Identifier(SpectrumCommon.MOD_ID, "pigment_palette_use");
+	static final Identifier ID = new Identifier(SpectrumCommon.MOD_ID, "ink_container_interaction");
 
 	public Identifier getId() {
 		return ID;
 	}
 
-	public PigmentPaletteUseCriterion.Conditions conditionsFromJson(JsonObject jsonObject, EntityPredicate.Extended extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
+	public InkContainerInteractionCriterion.Conditions conditionsFromJson(JsonObject jsonObject, EntityPredicate.Extended extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
 		LongRange blackRange = LongRange.fromJson(jsonObject.get("black"));
 		LongRange blueRange = LongRange.fromJson(jsonObject.get("blue"));
 		LongRange brownRange = LongRange.fromJson(jsonObject.get("brown"));
@@ -40,12 +41,13 @@ public class PigmentPaletteUseCriterion extends AbstractCriterion<PigmentPalette
 		LongRange whiteRange = LongRange.fromJson(jsonObject.get("white"));
 		LongRange yellowRange = LongRange.fromJson(jsonObject.get("yellow"));
 		
-		LongRange changeRange = LongRange.fromJson(jsonObject.get("change"));
+		ColorPredicate changeColor = ColorPredicate.fromJson(jsonObject.get("change_color"));
+		LongRange changeRange = LongRange.fromJson(jsonObject.get("change_range"));
 		ItemPredicate itemPredicate = ItemPredicate.fromJson(jsonObject.get("item"));
-		return new PigmentPaletteUseCriterion.Conditions(extended, itemPredicate, blackRange, blueRange, brownRange, cyanRange, grayRange, greenRange, lightBlueRange, lightGrayRange, limeRange, magentaRange, orangeRange, pinkRange, purpleRange, redRange, whiteRange, yellowRange, changeRange);
+		return new InkContainerInteractionCriterion.Conditions(extended, itemPredicate, blackRange, blueRange, brownRange, cyanRange, grayRange, greenRange, lightBlueRange, lightGrayRange, limeRange, magentaRange, orangeRange, pinkRange, purpleRange, redRange, whiteRange, yellowRange, changeColor, changeRange);
 	}
 
-	public void trigger(ServerPlayerEntity player, ItemStack stack, PigmentEnergyStorage storage, long change) {
+	public void trigger(ServerPlayerEntity player, ItemStack stack, PigmentEnergyStorage storage, CMYKColor changeColor, long changeAmount) {
 		this.trigger(player, (conditions) -> conditions.matches(
 				stack,
 				storage.getEnergy(PigmentColors.BLACK),
@@ -64,12 +66,13 @@ public class PigmentPaletteUseCriterion extends AbstractCriterion<PigmentPalette
 				storage.getEnergy(PigmentColors.RED),
 				storage.getEnergy(PigmentColors.WHITE),
 				storage.getEnergy(PigmentColors.YELLOW),
-				change
+				changeColor,
+				changeAmount
 		));
 	}
 
-	public static PigmentPaletteUseCriterion.Conditions create(ItemPredicate itemPredicate, LongRange blackRange, LongRange blueRange, LongRange brownRange, LongRange cyanRange, LongRange grayRange, LongRange greenRange, LongRange lightBlueRange, LongRange lightGrayRange, LongRange limeRange, LongRange magentaRange, LongRange orangeRange, LongRange pinkRange, LongRange purpleRange, LongRange redRange, LongRange whiteRange, LongRange yellowRange, LongRange changeRange) {
-		return new PigmentPaletteUseCriterion.Conditions(EntityPredicate.Extended.EMPTY, itemPredicate, blackRange, blueRange, brownRange, cyanRange, grayRange, greenRange, lightBlueRange, lightGrayRange, limeRange, magentaRange, orangeRange, pinkRange, purpleRange, redRange, whiteRange, yellowRange, changeRange);
+	public static InkContainerInteractionCriterion.Conditions create(ItemPredicate itemPredicate, LongRange blackRange, LongRange blueRange, LongRange brownRange, LongRange cyanRange, LongRange grayRange, LongRange greenRange, LongRange lightBlueRange, LongRange lightGrayRange, LongRange limeRange, LongRange magentaRange, LongRange orangeRange, LongRange pinkRange, LongRange purpleRange, LongRange redRange, LongRange whiteRange, LongRange yellowRange, ColorPredicate changeColor, LongRange changeRange) {
+		return new InkContainerInteractionCriterion.Conditions(EntityPredicate.Extended.EMPTY, itemPredicate, blackRange, blueRange, brownRange, cyanRange, grayRange, greenRange, lightBlueRange, lightGrayRange, limeRange, magentaRange, orangeRange, pinkRange, purpleRange, redRange, whiteRange, yellowRange, changeColor, changeRange);
 	}
 
 	public static class Conditions extends AbstractCriterionConditions {
@@ -92,9 +95,10 @@ public class PigmentPaletteUseCriterion extends AbstractCriterion<PigmentPalette
 		private final LongRange whiteRange;
 		private final LongRange yellowRange;
 		
+		private final ColorPredicate changeColor;
 		private final LongRange changeRange;
 
-		public Conditions(EntityPredicate.Extended player, ItemPredicate itemPredicate, LongRange blackRange, LongRange blueRange, LongRange brownRange, LongRange cyanRange, LongRange grayRange, LongRange greenRange, LongRange lightBlueRange, LongRange lightGrayRange, LongRange limeRange, LongRange magentaRange, LongRange orangeRange, LongRange pinkRange, LongRange purpleRange, LongRange redRange, LongRange whiteRange, LongRange yellowRange, LongRange changeRange) {
+		public Conditions(EntityPredicate.Extended player, ItemPredicate itemPredicate, LongRange blackRange, LongRange blueRange, LongRange brownRange, LongRange cyanRange, LongRange grayRange, LongRange greenRange, LongRange lightBlueRange, LongRange lightGrayRange, LongRange limeRange, LongRange magentaRange, LongRange orangeRange, LongRange pinkRange, LongRange purpleRange, LongRange redRange, LongRange whiteRange, LongRange yellowRange, ColorPredicate changeColor, LongRange changeRange) {
 			super(ID, player);
 			this.itemPredicate = itemPredicate;
 			
@@ -115,6 +119,7 @@ public class PigmentPaletteUseCriterion extends AbstractCriterion<PigmentPalette
 			this.whiteRange = whiteRange;
 			this.yellowRange = yellowRange;
 			
+			this.changeColor = changeColor;
 			this.changeRange = changeRange;
 		}
 
@@ -137,17 +142,18 @@ public class PigmentPaletteUseCriterion extends AbstractCriterion<PigmentPalette
 			jsonObject.addProperty("red", this.redRange.toString());
 			jsonObject.addProperty("white", this.whiteRange.toString());
 			jsonObject.addProperty("yellow", this.yellowRange.toString());
-			jsonObject.addProperty("change", this.changeRange.toString());
+			jsonObject.addProperty("change_color", this.changeColor.toString());
+			jsonObject.addProperty("change_range", this.changeRange.toString());
 			return jsonObject;
 		}
 
-		public boolean matches(ItemStack stack, long black, long blue, long brown, long cyan, long gray, long green, long lightBlue, long lightGray, long lime, long magenta, long o, long pink, long purple, long red, long white, long yellow, long change) {
-			return itemPredicate.test(stack) && blackRange.test(black) && blueRange.test(blue) && brownRange.test(brown)
+		public boolean matches(ItemStack stack, long black, long blue, long brown, long cyan, long gray, long green, long lightBlue, long lightGray, long lime, long magenta, long o, long pink, long purple, long red, long white, long yellow, CMYKColor color, long change) {
+			return itemPredicate.test(stack) && changeRange.test(change) && changeColor.test(color)
+					&& blackRange.test(black) && blueRange.test(blue) && brownRange.test(brown)
 					&& cyanRange.test(cyan) && grayRange.test(gray) && greenRange.test(green)
 					&& lightBlueRange.test(lightBlue) && lightGrayRange.test(lightGray) && limeRange.test(lime)
 					&& magentaRange.test(magenta) && orangeRange.test(o) && pinkRange.test(pink)
-					&& purpleRange.test(purple) && redRange.test(red) && whiteRange.test(white) && yellowRange.test(yellow)
-					&& changeRange.test(change);
+					&& purpleRange.test(purple) && redRange.test(red) && whiteRange.test(white) && yellowRange.test(yellow);
 
 		}
 	}

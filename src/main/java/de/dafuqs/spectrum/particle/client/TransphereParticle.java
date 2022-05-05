@@ -10,7 +10,6 @@ import net.minecraft.client.render.Camera;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.util.math.*;
-import oshi.util.tuples.Triplet;
 
 import java.util.Optional;
 import java.util.function.Consumer;

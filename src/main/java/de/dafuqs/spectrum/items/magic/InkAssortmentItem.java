@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.items.magic;
 
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.energy.PigmentEnergyStorageItem;
-import de.dafuqs.spectrum.energy.storage.ArtistsPaletteEnergyStorage;
 import de.dafuqs.spectrum.energy.storage.IndividualCappedSimplePigmentEnergyStorage;
 import de.dafuqs.spectrum.items.trinkets.SpectrumTrinketItem;
 import net.fabricmc.api.EnvType;

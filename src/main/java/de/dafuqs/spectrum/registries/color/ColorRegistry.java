@@ -2,10 +2,7 @@ package de.dafuqs.spectrum.registries.color;
 
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.math.Vec3f;
-import org.jetbrains.annotations.NotNull;
 
-import java.awt.*;
 import java.util.Optional;
 
 public abstract class ColorRegistry<T> {

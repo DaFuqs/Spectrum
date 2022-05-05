@@ -4,10 +4,11 @@ import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 public class PastelNetwork {
-
+	
 	List<String> networkNames = List.of(
 			"Alpha",
 			"Beta",
@@ -46,37 +47,37 @@ public class PastelNetwork {
 	 * CLEAR
 	 * Basic connection node, not interacting actively ("connectors")
 	 */
-	protected List<PastelNetworkConnectionNode> pastelNetworkConnectionNodes = new ArrayList<>();
+	protected HashSet<PastelNetworkConnectionNode> pastelNetworkConnectionNodes = new HashSet<>();
 	
 	/**
 	 * TOPAZ
 	 * Storage (everything that has no target gets put here)
 	 */
-	protected List<PastelNetworkStorageNodeBlockEntity> pastelNetworkStorageNodes = new ArrayList<>();
+	protected HashSet<PastelNetworkStorageNodeBlockEntity> pastelNetworkStorageNodes = new HashSet<>();
 	
 	/**
 	 * AMETHYST
 	 * Passive Provider (can be requested from)
 	 */
-	protected List<PastelNetworkProviderNodeBlockEntity> pastelNetworkProviderNodeBlockEntities = new ArrayList<>();
+	protected HashSet<PastelNetworkProviderNodeBlockEntity> pastelNetworkProviderNodeBlockEntities = new HashSet<>();
 	
 	/**
 	 * CITRINE
 	 * Active Provider (pushes items into network)
 	 */
-	protected List<PastelNetworkPusherNodeBlockEntity> pastelNetworkPusherNodes = new ArrayList<>();
+	protected HashSet<PastelNetworkPusherNodeBlockEntity> pastelNetworkPusherNodes = new HashSet<>();
 	
 	/**
 	 * ONYX
 	 * Requester Nodes, requests on redstone (active>passive>storage)
 	 */
-	protected List<PastelNetworkPullerNodeBlockEntity> pastelNetworkPullerNodes = new ArrayList<>();
+	protected HashSet<PastelNetworkPullerNodeBlockEntity> pastelNetworkPullerNodes = new HashSet<>();
 	
 	/**
 	 * MOONSTONE
 	 * Giant node. Getting close to it lets the player get items from the network
 	 */
-	//protected List<InteractionNode> interactionNodes = new ArrayList<>();
+	//protected HashSet<InteractionNode> interactionNodes = new ArrayList<>();
 	
 	protected static List<PastelNetwork> networks = new ArrayList<>();
 	
@@ -91,17 +92,17 @@ public class PastelNetwork {
 		return new PastelNetwork(pastelNetworkNodeBlockEntity.getWorld());
 	}
 	
-	public void removeNode(PastelNetworkNodeBlockEntity pebbleNetworkNodeBlock) {
-		if(pebbleNetworkNodeBlock instanceof PastelNetworkConnectionNode) {
-			pastelNetworkConnectionNodes.remove(pebbleNetworkNodeBlock);
-		} else if(pebbleNetworkNodeBlock instanceof PastelNetworkProviderNodeBlockEntity) {
-			pastelNetworkProviderNodeBlockEntities.remove(pebbleNetworkNodeBlock);
-		} else if(pebbleNetworkNodeBlock instanceof PastelNetworkPullerNodeBlockEntity) {
-			pastelNetworkPullerNodes.remove(pebbleNetworkNodeBlock);
-		} else if(pebbleNetworkNodeBlock instanceof PastelNetworkPusherNodeBlockEntity) {
-			pastelNetworkPusherNodes.remove(pebbleNetworkNodeBlock);
-		} else if(pebbleNetworkNodeBlock instanceof PastelNetworkStorageNodeBlockEntity) {
-			pastelNetworkStorageNodes.remove(pebbleNetworkNodeBlock);
+	public void removeNode(PastelNetworkNodeBlockEntity pastelNetworkNodeBlockEntity) {
+		if(pastelNetworkNodeBlockEntity instanceof PastelNetworkConnectionNode) {
+			pastelNetworkConnectionNodes.remove(pastelNetworkNodeBlockEntity);
+		} else if(pastelNetworkNodeBlockEntity instanceof PastelNetworkProviderNodeBlockEntity) {
+			pastelNetworkProviderNodeBlockEntities.remove(pastelNetworkNodeBlockEntity);
+		} else if(pastelNetworkNodeBlockEntity instanceof PastelNetworkPullerNodeBlockEntity) {
+			pastelNetworkPullerNodes.remove(pastelNetworkNodeBlockEntity);
+		} else if(pastelNetworkNodeBlockEntity instanceof PastelNetworkPusherNodeBlockEntity) {
+			pastelNetworkPusherNodes.remove(pastelNetworkNodeBlockEntity);
+		} else if(pastelNetworkNodeBlockEntity instanceof PastelNetworkStorageNodeBlockEntity) {
+			pastelNetworkStorageNodes.remove(pastelNetworkNodeBlockEntity);
 		}
 	}
 	

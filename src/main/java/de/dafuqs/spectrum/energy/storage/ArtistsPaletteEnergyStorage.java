@@ -1,29 +1,13 @@
 package de.dafuqs.spectrum.energy.storage;
 
-import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.energy.color.CMYKColor;
-import de.dafuqs.spectrum.energy.color.PigmentColors;
-import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
-import net.minecraft.util.Identifier;
-import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.List;
-
-import static de.dafuqs.spectrum.helpers.Support.getShortenedNumberString;
 
 public class ArtistsPaletteEnergyStorage extends TotalCappedElementalPigmentEnergyStorage {
 	

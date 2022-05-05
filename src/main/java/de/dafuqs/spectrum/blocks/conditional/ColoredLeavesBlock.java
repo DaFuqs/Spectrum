@@ -1,8 +1,8 @@
 package de.dafuqs.spectrum.blocks.conditional;
 
-import de.dafuqs.spectrum.registries.client.SpectrumColorProviders;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.interfaces.Cloakable;
+import de.dafuqs.spectrum.registries.client.SpectrumColorProviders;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.LeavesBlock;

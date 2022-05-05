@@ -18,6 +18,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import static de.dafuqs.spectrum.helpers.Support.getShortenedNumberString;
+
 public class IndividualCappedSimplePigmentEnergyStorage implements PigmentEnergyStorage {
 	
 	protected final long maxEnergyPerColor;
@@ -139,10 +141,10 @@ public class IndividualCappedSimplePigmentEnergyStorage implements PigmentEnergy
 	
 	@Environment(EnvType.CLIENT)
 	public void addTooltip(World world, List<Text> tooltip, TooltipContext context) {
-		tooltip.add(new TranslatableText("item.spectrum.pigment_palette.tooltip", maxEnergyPerColor));
+		tooltip.add(new TranslatableText("item.spectrum.pigment_palette.tooltip", getShortenedNumberString(maxEnergyPerColor)));
 		for(Map.Entry<CMYKColor, Long> color : this.storedEnergy.entrySet()) {
 			if(color.getValue() > 0) {
-				tooltip.add(new TranslatableText("item.spectrum.pigment_palette.tooltip.stored_energy." + color.getKey().toString().toLowerCase(Locale.ROOT), color.getValue()));
+				tooltip.add(new TranslatableText("item.spectrum.pigment_palette.tooltip.stored_energy." + color.getKey().toString().toLowerCase(Locale.ROOT),  getShortenedNumberString(color.getValue())));
 			}
 		}
 	}

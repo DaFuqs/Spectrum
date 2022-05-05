@@ -14,6 +14,8 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.Locale;
 
+import static de.dafuqs.spectrum.helpers.Support.getShortenedNumberString;
+
 public class SinglePigmentEnergyStorage implements PigmentEnergyStorage {
 	
 	private final long maxEnergy;
@@ -136,9 +138,9 @@ public class SinglePigmentEnergyStorage implements PigmentEnergyStorage {
 	}
 	
 	public void addTooltip(World world, List<Text> tooltip, TooltipContext context) {
-		tooltip.add(new TranslatableText("item.spectrum.ink_flask.tooltip", this.maxEnergy));
+		tooltip.add(new TranslatableText("item.spectrum.ink_flask.tooltip",  getShortenedNumberString(this.maxEnergy)));
 		if(this.storedEnergy > 0) {
-			tooltip.add(new TranslatableText("item.spectrum.pigment_palette.tooltip.stored_energy." + this.storedColor.toString().toLowerCase(Locale.ROOT), this.storedEnergy));
+			tooltip.add(new TranslatableText("item.spectrum.pigment_palette.tooltip.stored_energy." + this.storedColor.toString().toLowerCase(Locale.ROOT),  getShortenedNumberString(this.storedEnergy)));
 		}
 	}
 	

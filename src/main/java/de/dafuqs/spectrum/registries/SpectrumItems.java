@@ -229,7 +229,7 @@ public class SpectrumItems {
 	public static final Item AZURE_DIKE_BELT = new AzureDikeBeltItem(generalUncommonItemSettingsSingle);
 	public static final Item AZURE_DIKE_RING = new AzureDikeRingItem(generalUncommonItemSettingsSingle);
 	
-	public static final InkFlaskItem INK_FLASK = new InkFlaskItem(generalItemSettingsSingle, 64 * 64 * 100);
+	public static final InkFlaskItem INK_FLASK = new InkFlaskItem(generalItemSettingsSingle, 64 * 64 * 100); // 64 stacks of pigments (1 pigment => 100 energy)
 	public static final InkAssortmentItem INK_ASSORTMENT = new InkAssortmentItem(generalItemSettingsSingle, 64 * 100);
 	public static final PigmentPaletteItem PIGMENT_PALETTE = new PigmentPaletteItem(generalUncommonItemSettingsSingle, 64 * 64 * 64 * 100);
 	public static final ArtistsPaletteItem ARTISTS_PALETTE = new ArtistsPaletteItem(generalUncommonItemSettingsSingle, 64 * 64 * 64 * 64 * 100);

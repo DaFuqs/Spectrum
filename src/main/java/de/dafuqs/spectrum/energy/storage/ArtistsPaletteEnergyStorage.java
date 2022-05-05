@@ -23,6 +23,8 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
+import static de.dafuqs.spectrum.helpers.Support.getShortenedNumberString;
+
 public class ArtistsPaletteEnergyStorage extends TotalCappedElementalPigmentEnergyStorage {
 	
 	public ArtistsPaletteEnergyStorage(long maxEnergyTotal) {
@@ -72,19 +74,19 @@ public class ArtistsPaletteEnergyStorage extends TotalCappedElementalPigmentEner
 	
 	@Environment(EnvType.CLIENT)
 	public void addTooltip(World world, List<Text> tooltip, TooltipContext context) {
-		tooltip.add(new TranslatableText("item.spectrum.artists_palette.tooltip", this.maxEnergyTotal));
+		tooltip.add(new TranslatableText("item.spectrum.artists_palette.tooltip", getShortenedNumberString(this.maxEnergyTotal)));
 		
-		tooltip.add(new TranslatableText("item.spectrum.pigment_palette.tooltip.stored_energy.cyan", this.storedEnergy.get(PigmentColors.CYAN)));
-		tooltip.add(new TranslatableText("item.spectrum.pigment_palette.tooltip.stored_energy.magenta", this.storedEnergy.get(PigmentColors.MAGENTA)));
-		tooltip.add(new TranslatableText("item.spectrum.pigment_palette.tooltip.stored_energy.yellow", this.storedEnergy.get(PigmentColors.YELLOW)));
+		tooltip.add(new TranslatableText("item.spectrum.pigment_palette.tooltip.stored_energy.cyan",  getShortenedNumberString(this.storedEnergy.get(PigmentColors.CYAN))));
+		tooltip.add(new TranslatableText("item.spectrum.pigment_palette.tooltip.stored_energy.magenta",  getShortenedNumberString(this.storedEnergy.get(PigmentColors.MAGENTA))));
+		tooltip.add(new TranslatableText("item.spectrum.pigment_palette.tooltip.stored_energy.yellow",  getShortenedNumberString(this.storedEnergy.get(PigmentColors.YELLOW))));
 		
 		PlayerEntity player = MinecraftClient.getInstance().player;
 		if(player != null) {
 			if(Support.hasAdvancement(player, new Identifier(SpectrumCommon.MOD_ID, "create_onyx_shard"))) {
-				tooltip.add(new TranslatableText("item.spectrum.pigment_palette.tooltip.stored_energy.black", this.storedEnergy.get(PigmentColors.BLACK)));
+				tooltip.add(new TranslatableText("item.spectrum.pigment_palette.tooltip.stored_energy.black",  getShortenedNumberString(this.storedEnergy.get(PigmentColors.BLACK))));
 			}
 			if(Support.hasAdvancement(player, new Identifier(SpectrumCommon.MOD_ID, "midgame/collect_moonstone_shard"))) {
-				tooltip.add(new TranslatableText("item.spectrum.pigment_palette.tooltip.stored_energy.white", this.storedEnergy.get(PigmentColors.WHITE)));
+				tooltip.add(new TranslatableText("item.spectrum.pigment_palette.tooltip.stored_energy.white",  getShortenedNumberString(this.storedEnergy.get(PigmentColors.WHITE))));
 			}
 		}
 	}

@@ -85,11 +85,24 @@ public class Support {
 	}
 	
 	private static final DecimalFormat df = new DecimalFormat("0.00");
-	
 	public static String getShortenedNumberString(double number) {
-		if(number > 1000000D) {
+		if(number > 1000000000D) {
+			return df.format(number / 1000000000D) + "G";
+		} else if(number > 1000000D) {
 			return df.format(number / 1000000D) + "M";
 		} else if(number > 1000D) {
+			return df.format(number / 1000D) + "K";
+		} else {
+			return df.format(number);
+		}
+	}
+	
+	public static String getShortenedNumberString(long number) {
+		if(number > 1000000000L) {
+			return df.format(number / 1000000000D) + "G";
+		} else if(number > 1000000L) {
+			return df.format(number / 1000000D) + "M";
+		} else if(number > 1000L) {
 			return df.format(number / 1000D) + "K";
 		} else {
 			return df.format(number);

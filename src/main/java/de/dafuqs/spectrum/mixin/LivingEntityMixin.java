@@ -171,8 +171,8 @@ public abstract class LivingEntityMixin {
 	}
 	
 	@Inject(method = "canHaveStatusEffect(Lnet/minecraft/entity/effect/StatusEffectInstance;)Z", at = @At("RETURN"), cancellable = true)
-	public void canHaveStatusEffect(StatusEffectInstance effect, CallbackInfoReturnable<Boolean> cir) {
-		if(cir.getReturnValue() && this.hasStatusEffect(SpectrumStatusEffects.IMMUNITY)) {
+	public void canHaveStatusEffect(StatusEffectInstance statusEffectInstance, CallbackInfoReturnable<Boolean> cir) {
+		if(cir.getReturnValue() && this.hasStatusEffect(SpectrumStatusEffects.IMMUNITY) && !SpectrumStatusEffects.isUncurable(statusEffectInstance.getEffectType())) {
 			cir.setReturnValue(false);
 		}
 	}

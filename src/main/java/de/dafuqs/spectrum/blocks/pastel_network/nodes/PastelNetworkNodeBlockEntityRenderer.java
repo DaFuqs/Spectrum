@@ -7,6 +7,7 @@ import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.block.entity.BlockEntityRenderer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 
 @Environment(EnvType.CLIENT)
@@ -21,8 +22,8 @@ public class PastelNetworkNodeBlockEntityRenderer<T extends PastelNetworkNodeBlo
 		int startColor = 0xff00ffff;
 		int endColor = 0xffff00ff;
 		
-		for (PastelNetworkNodeBlockEntity connectedNode : entity.connectedNodes) {
-			var offset = Vec3d.ofCenter(connectedNode.getPos()).subtract(Vec3d.of(entity.getPos()));
+		for (BlockPos pos : entity.receivers) {
+			var offset = Vec3d.ofCenter(pos).subtract(Vec3d.of(entity.getPos()));
 			
 			vertexConsumerProvider.getBuffer(RenderLayer.LINES)
 					.vertex(matrixStack.peek().getPositionMatrix(), .5f, .5f, .5f)

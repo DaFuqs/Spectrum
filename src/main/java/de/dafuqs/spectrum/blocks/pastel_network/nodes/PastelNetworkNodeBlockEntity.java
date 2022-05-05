@@ -25,7 +25,7 @@ public abstract class PastelNetworkNodeBlockEntity extends BlockEntity {
 	private final SchedulerMap<BlockPos> particleCooldowns = new SchedulerMap<>();
 	
 	private final HashSet<BlockPos> senders = new HashSet<>();
-	private final HashSet<BlockPos> receivers = new HashSet<>();
+	final HashSet<BlockPos> receivers = new HashSet<>();
 	
 	public PastelNetworkNodeBlockEntity(BlockEntityType blockEntityType, BlockPos blockPos, BlockState blockState) {
 		super(blockEntityType, blockPos, blockState);

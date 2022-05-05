@@ -89,7 +89,7 @@ public class PastelNetworkNodeBlock extends FacingBlock implements BlockEntityPr
 		PastelNetworkNodeBlockEntity pastelNetworkNodeBlockEntity = getBlockEntity(world, pos);
 		if(pastelNetworkNodeBlockEntity != null) {
 			Direction facingDirection = state.get(FACING);
-			pastelNetworkNodeBlockEntity.add(world, pos, facingDirection);
+			pastelNetworkNodeBlockEntity.initialize(world, pos, facingDirection);
 		}
 	}
 	

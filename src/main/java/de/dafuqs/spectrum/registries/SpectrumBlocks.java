@@ -345,6 +345,12 @@ public class SpectrumBlocks {
 	public static final Block PULLER_NODE = new PastelNetworkNodeBlock(FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().requiresTool().sounds(SpectrumBlockSoundGroups.ONYX_CLUSTER), "block.spectrum.puller_node.tooltip");
 	public static final Block INTERACTION_NODE = new Block(FabricBlockSettings.of(Material.AMETHYST).hardness(5.0F).nonOpaque().requiresTool().sounds(SpectrumBlockSoundGroups.MOONSTONE_CLUSTER));
 	
+	// ENERGY
+	public static final Block COLOR_PICKER = new Block(FabricBlockSettings.of(Material.STONE).hardness(3.0F));
+	public static final Block INKWELL = new Block(FabricBlockSettings.of(Material.STONE).hardness(3.0F));
+	public static final Block INK_DUCT = new Block(FabricBlockSettings.of(Material.STONE).hardness(3.0F));
+	public static final Block GEMSTONE_FARMER = new Block(FabricBlockSettings.of(Material.STONE).hardness(3.0F));
+	
 	// COLORED TREES
 	private static final FabricBlockSettings coloredSaplingBlockSettings = FabricBlockSettings.copyOf(Blocks.OAK_SAPLING);
 	private static final FabricBlockSettings coloredLeavesBlockSettings = FabricBlockSettings.copyOf(Blocks.OAK_LEAVES).luminance((state) -> 2);
@@ -877,6 +883,7 @@ public class SpectrumBlocks {
 		registerStructureBlocks(generalItemSettings);
 		registerJadeVineBlocks(generalItemSettings);
 		
+		registerMachines(generalItemSettingsEight);
 		registerPastelNetworkNodes(generalItemSettingsSixteen);
 		registerStoneBlocks(decorationItemSettings);
 		registerGemBlocks(worldgenItemSettings);
@@ -1381,6 +1388,13 @@ public class SpectrumBlocks {
 		registerBlockWithItem("pusher_node", PUSHER_NODE, fabricItemSettings);
 		registerBlockWithItem("puller_node", PULLER_NODE, fabricItemSettings);
 		registerBlockWithItem("interaction_node", INTERACTION_NODE, fabricItemSettings);
+	}
+	
+	public static void registerMachines(FabricItemSettings fabricItemSettings) {
+		registerBlockWithItem("gemstone_farmer", GEMSTONE_FARMER, fabricItemSettings);
+		registerBlockWithItem("color_picker", COLOR_PICKER, fabricItemSettings);
+		registerBlockWithItem("inkwell", INKWELL, fabricItemSettings);
+		registerBlockWithItem("ink_duct", INK_DUCT, fabricItemSettings);
 	}
 	
 	public static void registerSporeBlossoms(FabricItemSettings fabricItemSettings) {

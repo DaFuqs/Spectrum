@@ -1,0 +1,18 @@
+{
+  "name": "Color Picker",
+  "advancement": "spectrum:midgame/unlock_color_picker",
+  "icon": "spectrum:color_picker",
+  "category": "spectrum:magic_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Converts $(l:general/pigment)Pigment$(/l) into INK.($br)Used to fill items that store INK, like $(l:magic/pigment_flask)Pigment Flasks$()."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier3/color_picker",
+      "text": ""
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.blocks.conditional;
 
-import de.dafuqs.spectrum.SpectrumClient;
+import de.dafuqs.spectrum.registries.client.SpectrumColorProviders;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.interfaces.Cloakable;
 import net.minecraft.block.BlockState;
@@ -44,17 +44,17 @@ public class ColoredLeavesBlock extends LeavesBlock implements Cloakable {
 
 	@Override
 	public void onUncloak() {
-		if (SpectrumClient.coloredLeavesBlockColorProvider != null && SpectrumClient.coloredLeavesItemColorProvider != null) {
-			SpectrumClient.coloredLeavesBlockColorProvider.setShouldApply(false);
-			SpectrumClient.coloredLeavesItemColorProvider.setShouldApply(false);
+		if (SpectrumColorProviders.coloredLeavesBlockColorProvider != null && SpectrumColorProviders.coloredLeavesItemColorProvider != null) {
+			SpectrumColorProviders.coloredLeavesBlockColorProvider.setShouldApply(false);
+			SpectrumColorProviders.coloredLeavesItemColorProvider.setShouldApply(false);
 		}
 	}
 
 	@Override
 	public void onCloak() {
-		if (SpectrumClient.coloredLeavesBlockColorProvider != null && SpectrumClient.coloredLeavesItemColorProvider != null) {
-			SpectrumClient.coloredLeavesBlockColorProvider.setShouldApply(true);
-			SpectrumClient.coloredLeavesItemColorProvider.setShouldApply(true);
+		if (SpectrumColorProviders.coloredLeavesBlockColorProvider != null && SpectrumColorProviders.coloredLeavesItemColorProvider != null) {
+			SpectrumColorProviders.coloredLeavesBlockColorProvider.setShouldApply(true);
+			SpectrumColorProviders.coloredLeavesItemColorProvider.setShouldApply(true);
 		}
 	}
 

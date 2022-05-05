@@ -1,0 +1,35 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 1600,
+  "tier": "advanced",
+  "cyan": 8,
+  "magenta": 8,
+  "yellow": 8,
+  "black": 0,
+  "white": 0,
+  "experience": 4.0,
+  "pattern": [
+    "CBC",
+    "BNB",
+    "CNC"
+  ],
+  "key": {
+    "P": {
+      "item": "spectrum:pigments"
+    },
+    "N": {
+      "item": "spectrum:neolith"
+    },
+    "C": {
+      "item": "spectrum:polished_calcite"
+    },
+    "B": {
+      "item": "spectrum:polished_basalt"
+    }
+  },
+  "result" : {
+    "item": "spectrum:inkwell",
+    "count": 1
+  },
+  "required_advancements": ["spectrum:progression/unlock_inkwell"]
+}

@@ -1,0 +1,20 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "spectrum:item/ink_flask_base"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "fill_state": 0.01
+      },
+      "model": "spectrum:item/ink_flask_partially_filled"
+    },
+    {
+      "predicate": {
+        "fill_state": 1
+      },
+      "model": "spectrum:item/ink_flask_full"
+    }
+  ]
+}

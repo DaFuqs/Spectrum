@@ -12,7 +12,8 @@ import de.dafuqs.spectrum.items.armor.SpectrumArmorItem;
 import de.dafuqs.spectrum.items.item_frame.InvisibleGlowItemFrameItem;
 import de.dafuqs.spectrum.items.item_frame.InvisibleItemFrameItem;
 import de.dafuqs.spectrum.items.magic.ArtistsPaletteItem;
-import de.dafuqs.spectrum.items.magic.PigmentFlaskItem;
+import de.dafuqs.spectrum.items.magic.InkAssortmentItem;
+import de.dafuqs.spectrum.items.magic.InkFlaskItem;
 import de.dafuqs.spectrum.items.magic.PigmentPaletteItem;
 import de.dafuqs.spectrum.items.magic_items.*;
 import de.dafuqs.spectrum.items.tools.*;
@@ -49,7 +50,7 @@ public class SpectrumItems {
 	public static FabricItemSettings spectrumEmergencyArmorItemSettings = new FabricItemSettings().rarity(Rarity.RARE).maxDamage(SpectrumArmorMaterials.EMERGENCY.getDurability(EquipmentSlot.CHEST));
 	public static FabricItemSettings spectrumLowHealthToolItemSettings = new FabricItemSettings().rarity(Rarity.UNCOMMON).maxDamage(SpectrumToolMaterials.ToolMaterial.LOW_HEALTH.getDurability());
 	public static FabricItemSettings spectrumLowVoidingToolItemSettings = new FabricItemSettings().rarity(Rarity.UNCOMMON).maxDamage(SpectrumToolMaterials.ToolMaterial.VOIDING.getDurability());
-	public static FabricItemSettings spectrumMultiToolItemSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.UNCOMMON).maxDamage(ToolMaterials.IRON.getDurability());
+	public static FabricItemSettings spectrumMultiToolItemSettings = new FabricItemSettings().rarity(Rarity.UNCOMMON).maxDamage(ToolMaterials.IRON.getDurability());
 	
 	public static FabricItemSettings resourcesItemSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(3).maxCount(64);
 	public static FabricItemSettings resourcesItemSettingsSixteen = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(3).maxCount(16);
@@ -228,9 +229,10 @@ public class SpectrumItems {
 	public static final Item AZURE_DIKE_BELT = new AzureDikeBeltItem(generalUncommonItemSettingsSingle);
 	public static final Item AZURE_DIKE_RING = new AzureDikeRingItem(generalUncommonItemSettingsSingle);
 	
-	public static final Item PIGMENT_FLASK = new PigmentFlaskItem(generalItemSettingsSingle, 256);
-	public static final Item PIGMENT_PALETTE = new PigmentPaletteItem(generalUncommonItemSettingsSingle, 256);
-	public static final Item ARTISTS_PALETTE = new ArtistsPaletteItem(generalUncommonItemSettingsSingle, Integer.MAX_VALUE, 65536);
+	public static final InkFlaskItem INK_FLASK = new InkFlaskItem(generalItemSettingsSingle, 64 * 64 * 100);
+	public static final InkAssortmentItem INK_ASSORTMENT = new InkAssortmentItem(generalItemSettingsSingle, 64 * 100);
+	public static final PigmentPaletteItem PIGMENT_PALETTE = new PigmentPaletteItem(generalUncommonItemSettingsSingle, 64 * 64 * 64 * 100);
+	public static final ArtistsPaletteItem ARTISTS_PALETTE = new ArtistsPaletteItem(generalUncommonItemSettingsSingle, 64 * 64 * 64 * 64 * 100);
 	
 	public static final Item GLEAMING_PIN = new GleamingPinItem(generalUncommonItemSettingsSingle);
 	public static final Item LESSER_POTION_PENDANT = new PotionPendantItem(generalUncommonItemSettingsSingle, 1, 2, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_lesser_potion_pendant"));
@@ -423,7 +425,8 @@ public class SpectrumItems {
 		register("whispy_circlet", WHISPY_CIRCLET);
 		register("neat_ring", NEAT_RING);
 		
-		register("pigment_flask", PIGMENT_FLASK);
+		register("ink_flask", INK_FLASK);
+		register("ink_assortment", INK_ASSORTMENT);
 		register("pigment_palette", PIGMENT_PALETTE);
 		register("artists_palette", ARTISTS_PALETTE);
 	}

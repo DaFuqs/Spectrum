@@ -8,7 +8,7 @@ import net.minecraft.nbt.NbtElement;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class IndividualAndTotalCappedElementalPigmentEnergyStorage extends ElementalPigmentEnergyStorage {
+public class IndividualAndTotalCappedElementalPigmentEnergyStorage extends TotalCappedElementalPigmentEnergyStorage {
 	
 	protected final long maxEnergyPerColor;
 	

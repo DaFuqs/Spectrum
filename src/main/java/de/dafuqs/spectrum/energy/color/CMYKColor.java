@@ -2,10 +2,7 @@ package de.dafuqs.spectrum.energy.color;
 
 import net.minecraft.util.DyeColor;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public abstract class CMYKColor {
 	
@@ -24,7 +21,7 @@ public abstract class CMYKColor {
 	}
 	
 	public static CMYKColor of(String colorString) {
-		return COLORS.get(DyeColor.valueOf(colorString));
+		return COLORS.get(DyeColor.valueOf(colorString.toUpperCase(Locale.ROOT)));
 	}
 	
 	public static Collection<CMYKColor> all() {

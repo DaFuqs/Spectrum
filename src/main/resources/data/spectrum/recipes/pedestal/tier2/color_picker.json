@@ -1,0 +1,38 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 800,
+  "tier": "simple",
+  "cyan": 8,
+  "magenta": 8,
+  "yellow": 8,
+  "black": 0,
+  "white": 0,
+  "experience": 4.0,
+  "pattern": [
+    "B B",
+    "CMY",
+    "PPP"
+  ],
+  "key": {
+    "C": {
+      "item": "spectrum:cyan_pigment"
+    },
+    "M": {
+      "item": "spectrum:magenta_pigment"
+    },
+    "Y": {
+      "item": "spectrum:yellow_pigment"
+    },
+    "P": {
+      "item": "spectrum:polished_calcite"
+    },
+    "B": {
+      "item": "spectrum:polished_basalt"
+    }
+  },
+  "result" : {
+    "item": "spectrum:color_picker",
+    "count": 1
+  },
+  "required_advancements": ["spectrum:progression/unlock_color_picker"]
+}

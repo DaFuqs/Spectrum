@@ -129,4 +129,10 @@ public class TotalCappedSimplePigmentEnergyStorage implements PigmentEnergyStora
 		return compound;
 	}
 	
+	@Override
+	public void fillCompletely() {
+		long energyPerColor = this.maxEnergyTotal / this.storedEnergy.size();
+		this.storedEnergy.replaceAll((c, v) -> energyPerColor);
+	}
+	
 }

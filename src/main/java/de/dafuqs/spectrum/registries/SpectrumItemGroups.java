@@ -2,7 +2,10 @@ package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.mob_head.SpectrumSkullBlock;
+import de.dafuqs.spectrum.energy.color.CMYKColor;
+import de.dafuqs.spectrum.energy.color.PigmentColors;
 import de.dafuqs.spectrum.helpers.SpectrumEnchantmentHelper;
+import de.dafuqs.spectrum.items.magic.InkFlaskItem;
 import de.dafuqs.spectrum.items.magic_items.BottomlessBundleItem;
 import de.dafuqs.spectrum.items.magic_items.KnowledgeGemItem;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
@@ -115,6 +118,13 @@ public class SpectrumItemGroups {
 			if(this.getSelectedTab() == ITEM_GROUP_BLOCKS.getTab(3)) {
 				// fully filled Knowledge Gem
 				stacks.add(KnowledgeGemItem.getKnowledgeDropStackWithXP(10000));
+				
+				for(CMYKColor color : CMYKColor.all()) {
+					stacks.add(SpectrumItems.INK_FLASK.getFullStack(color));
+				}
+				stacks.add(SpectrumItems.INK_ASSORTMENT.getFullStack());
+				stacks.add(SpectrumItems.PIGMENT_PALETTE.getFullStack());
+				stacks.add(SpectrumItems.ARTISTS_PALETTE.getFullStack());
 
 				// Bottomless Bundles willed with useful, basic materials
 				stacks.add(BottomlessBundleItem.getWithBlockAndCount(Items.COBBLESTONE.getDefaultStack(), 20000));

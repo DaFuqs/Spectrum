@@ -1,32 +1,18 @@
 package de.dafuqs.spectrum.energy.storage;
 
-import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.energy.color.CMYKColor;
-import de.dafuqs.spectrum.energy.color.PigmentColors;
-import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
-import net.minecraft.util.Identifier;
-import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
-public class PigmentPaletteEnergyStorage extends IndividuallyCappedSimplePigmentEnergyStorage {
+public class PigmentPaletteEnergyStorage extends IndividualCappedSimplePigmentEnergyStorage {
 	
 	public PigmentPaletteEnergyStorage(long maxEnergyPerColor) {
 		super(maxEnergyPerColor);
@@ -73,12 +59,4 @@ public class PigmentPaletteEnergyStorage extends IndividuallyCappedSimplePigment
 		return null;
 	}
 	
-	@Environment(EnvType.CLIENT)
-	public void addTooltip(World world, List<Text> tooltip, TooltipContext context) {
-		for(Map.Entry<CMYKColor, Long> color : this.storedEnergy.entrySet()) {
-			if(color.getValue() > 0) {
-				tooltip.add(new TranslatableText("item.spectrum.artists_palette.tooltip.stored_energy." + color.getKey().toString().toLowerCase(Locale.ROOT), color.getValue()));
-			}
-		}
-	}
 }

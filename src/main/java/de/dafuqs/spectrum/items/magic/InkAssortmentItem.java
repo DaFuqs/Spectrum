@@ -2,8 +2,8 @@ package de.dafuqs.spectrum.items.magic;
 
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.energy.PigmentEnergyStorageItem;
+import de.dafuqs.spectrum.energy.storage.ArtistsPaletteEnergyStorage;
 import de.dafuqs.spectrum.energy.storage.IndividualCappedSimplePigmentEnergyStorage;
-import de.dafuqs.spectrum.energy.storage.PigmentPaletteEnergyStorage;
 import de.dafuqs.spectrum.items.trinkets.SpectrumTrinketItem;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -17,26 +17,26 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class PigmentPaletteItem extends SpectrumTrinketItem implements PigmentEnergyStorageItem<PigmentPaletteEnergyStorage> {
+public class InkAssortmentItem extends SpectrumTrinketItem implements PigmentEnergyStorageItem<IndividualCappedSimplePigmentEnergyStorage> {
 	
-	private final long maxEnergyPerColor;
+	private final long maxEnergy;
 	
-	public PigmentPaletteItem(Settings settings, long maxEnergyPerColor) {
-		super(settings, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_pigment_palette"));
-		this.maxEnergyPerColor = maxEnergyPerColor;
+	public InkAssortmentItem(Settings settings, long maxEnergy) {
+		super(settings, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_pigment_flask"));
+		this.maxEnergy = maxEnergy;
 	}
 	
 	@Override
-	public PigmentPaletteEnergyStorage getEnergyStorage(ItemStack itemStack) {
+	public IndividualCappedSimplePigmentEnergyStorage getEnergyStorage(ItemStack itemStack) {
 		NbtCompound compound = itemStack.getNbt();
 		if(compound != null && compound.contains("EnergyStore")) {
-			return PigmentPaletteEnergyStorage.fromNbt(compound.getCompound("EnergyStore"));
+			return IndividualCappedSimplePigmentEnergyStorage.fromNbt(compound.getCompound("EnergyStore"));
 		}
-		return new PigmentPaletteEnergyStorage(this.maxEnergyPerColor);
+		return new IndividualCappedSimplePigmentEnergyStorage(this.maxEnergy);
 	}
 	
 	@Override
-	public void setEnergyStorage(ItemStack itemStack, PigmentPaletteEnergyStorage storage) {
+	public void setEnergyStorage(ItemStack itemStack, IndividualCappedSimplePigmentEnergyStorage storage) {
 		NbtCompound compound = itemStack.getOrCreateNbt();
 		compound.put("EnergyStore", storage.toNbt());
 	}

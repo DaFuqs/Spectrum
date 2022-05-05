@@ -1,0 +1,21 @@
+{
+  "name": "Ink Flask",
+  "advancement": "spectrum:progression/unlock_ink_flask",
+  "icon": "spectrum:ink_flask",
+  "category": "spectrum:magic_category",
+  "extra_recipe_mappings": {
+    "spectrum:ink_flask": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "The Ink Flask is able to hold a sizable amount of INK, albeit of only a single color."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier3/ink_flask",
+      "text": ""
+    }
+  ]
+}

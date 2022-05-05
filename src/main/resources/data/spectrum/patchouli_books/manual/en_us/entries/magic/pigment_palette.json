@@ -1,0 +1,21 @@
+{
+  "name": "Pigment Palette",
+  "advancement": "spectrum:progression/unlock_pigment_palette",
+  "icon": "spectrum:pigment_palette",
+  "category": "spectrum:magic_category",
+  "extra_recipe_mappings": {
+    "spectrum:pigment_palette": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Carrying around enough INK with you to maintain your magical equipment has become both a chore and a space hog in your inventory.$(br)It's time for a new creation: the Pigment Palette. It is capable of storing sizable amounts of INK to supply all your magical devices and equipment."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Fusion Recipe",
+      "recipe": "spectrum:fusion_shrine/trinkets/pigment_palette",
+      "text": "$(italic)Now you are a true Artist of Color."
+    }
+  ]
+}

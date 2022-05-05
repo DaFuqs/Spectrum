@@ -25,7 +25,6 @@ public interface PigmentEnergyStorage {
 	// if not enough energy is stored, the amount of stored energy remains unchanged
     boolean requestEnergy(CMYKColor color, long requestedAmount);
 	
-
 	// gets the amount of stored energy of that type
 	long getEnergy(CMYKColor color);
 	
@@ -46,5 +45,8 @@ public interface PigmentEnergyStorage {
 	
 	// returns true if the max total is reached
 	boolean isFull();
+	
+	// fill up the storage with as much energy as possible
+	void fillCompletely();
 	
 }

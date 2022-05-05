@@ -12,13 +12,13 @@ import org.jetbrains.annotations.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ElementalPigmentEnergyStorage implements PigmentEnergyStorage {
+public class TotalCappedElementalPigmentEnergyStorage implements PigmentEnergyStorage {
 	
 	protected final long maxEnergyTotal;
 	protected long currentTotal; // This is a cache for quick lookup. Can be recalculated anytime using the values in storedEnergy.
 	protected final Map<ElementalColor, Long> storedEnergy = new HashMap<>();
 	
-	public ElementalPigmentEnergyStorage(long maxEnergyTotal) {
+	public TotalCappedElementalPigmentEnergyStorage(long maxEnergyTotal) {
 		this.maxEnergyTotal = maxEnergyTotal;
 		this.currentTotal = 0;
 
@@ -27,7 +27,7 @@ public class ElementalPigmentEnergyStorage implements PigmentEnergyStorage {
 		}
 	}
 	
-	public ElementalPigmentEnergyStorage(long maxEnergyTotal, long cyan, long magenta, long yellow, long black, long white) {
+	public TotalCappedElementalPigmentEnergyStorage(long maxEnergyTotal, long cyan, long magenta, long yellow, long black, long white) {
 		this.maxEnergyTotal = maxEnergyTotal;
 		this.currentTotal = cyan+magenta+yellow+black+white;
 		
@@ -179,7 +179,7 @@ public class ElementalPigmentEnergyStorage implements PigmentEnergyStorage {
 		return this.currentTotal >= this.maxEnergyTotal;
 	}
 	
-	public static @Nullable ElementalPigmentEnergyStorage fromNbt(@NotNull NbtCompound compound) {
+	public static @Nullable TotalCappedElementalPigmentEnergyStorage fromNbt(@NotNull NbtCompound compound) {
 		if(compound.contains("MaxEnergyTotal", NbtElement.LONG_TYPE)) {
 			long maxEnergyTotal = compound.getLong("MaxEnergyTotal");
 			long cyan = compound.getLong("Cyan");
@@ -187,7 +187,7 @@ public class ElementalPigmentEnergyStorage implements PigmentEnergyStorage {
 			long yellow = compound.getLong("Yellow");
 			long black = compound.getLong("Black");
 			long white = compound.getLong("White");
-			return new ElementalPigmentEnergyStorage(maxEnergyTotal, cyan, magenta, yellow, black, white);
+			return new TotalCappedElementalPigmentEnergyStorage(maxEnergyTotal, cyan, magenta, yellow, black, white);
 		}
 		return null;
 	}
@@ -201,6 +201,12 @@ public class ElementalPigmentEnergyStorage implements PigmentEnergyStorage {
 		compound.putLong("Black", this.storedEnergy.get(PigmentColors.BLACK));
 		compound.putLong("White", this.storedEnergy.get(PigmentColors.WHITE));
 		return compound;
+	}
+	
+	@Override
+	public void fillCompletely() {
+		long energyPerColor = this.maxEnergyTotal / this.storedEnergy.size();
+		this.storedEnergy.replaceAll((c, v) -> energyPerColor);
 	}
 	
 }

@@ -4,19 +4,20 @@
     "icon": {
       "item": "spectrum:pigment_palette"
     },
+    "hidden": true,
     "title": {
-      "translate": "advancements.spectrum.high_pigment_palette_drain.title"
+      "translate": "advancements.spectrum.high_ink_use.title"
     },
     "description": {
-      "translate": "advancements.spectrum.high_pigment_palette_drain.description"
+      "translate": "advancements.spectrum.high_ink_use.description"
     }
   },
   "criteria": {
-    "high_pigment_palette_drain": {
-      "trigger": "spectrum:pigment_palette_use",
+    "high_ink_use": {
+      "trigger": "spectrum:ink_container_interaction",
 	  "conditions": {
-		"total_change_tick": {
-		  "max": -50
+		"change_amount": {
+		  "max": -100
 		}
       }
     },

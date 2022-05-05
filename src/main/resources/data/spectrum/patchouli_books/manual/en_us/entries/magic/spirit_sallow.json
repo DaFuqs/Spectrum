@@ -2,7 +2,7 @@
   "name": "Spirit Sallow",
   "advancement": "spectrum:midgame/TODO",
   "icon": "spectrum:ominous_sapling",
-  "category": "spectrum:spirit_sallow_category",
+  "category": "spectrum:magic_category",
   "priority": true,
   "extra_recipe_mappings": {
     "spectrum:ominous_sapling": 0,

@@ -27,8 +27,8 @@ public class TransphereParticle extends SpriteBillboardParticle {
 		this.scale = 0.2F;
 		this.transphere = transphere;
 		
-		Triplet<Float, Float, Float> rgb = ColorHelper.getRGB(transphere.getDyeColor());
-		this.setColor(rgb.getA(), rgb.getB(), rgb.getC());
+		Vec3f rgb = ColorHelper.getVec(transphere.getDyeColor());
+		this.setColor(rgb.getX(), rgb.getY(), rgb.getZ());
 		this.maxAge = i;
 	}
 	

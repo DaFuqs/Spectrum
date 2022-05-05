@@ -1,0 +1,21 @@
+{
+  "name": "Artists Palette",
+  "advancement": "spectrum:progression/unlock_artists_palette",
+  "icon": "spectrum:artists_palette",
+  "category": "spectrum:magic_category",
+  "extra_recipe_mappings": {
+    "spectrum:artists_palette": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "The Artists Palette combines the INK-storing ability of the $(l:magic/pigment_palette)Pigment Palette$(/l) with the mixing of the $(l:magic/color_picker)Color Picker$(/l).$(br)It directly stores elemental INK and mixes the others on demand, while having vastly increased capacity."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Fusion Recipe",
+      "recipe": "spectrum:fusion_shrine/trinkets/artists_palette",
+      "text": ""
+    }
+  ]
+}

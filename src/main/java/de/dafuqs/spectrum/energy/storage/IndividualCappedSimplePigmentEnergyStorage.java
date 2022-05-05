@@ -2,21 +2,29 @@ package de.dafuqs.spectrum.energy.storage;
 
 import de.dafuqs.spectrum.energy.color.CMYKColor;
 import de.dafuqs.spectrum.energy.color.ElementalColor;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
+import net.minecraft.text.Text;
+import net.minecraft.text.TranslatableText;
+import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
-public class IndividuallyCappedSimplePigmentEnergyStorage implements PigmentEnergyStorage {
+public class IndividualCappedSimplePigmentEnergyStorage implements PigmentEnergyStorage {
 	
 	protected final long maxEnergyPerColor;
 	protected long currentTotal; // This is a cache for quick lookup. Can be recalculated anytime using the values in storedEnergy.
 	protected final Map<CMYKColor, Long> storedEnergy;
 	
-	public IndividuallyCappedSimplePigmentEnergyStorage(long maxEnergyPerColor) {
+	public IndividualCappedSimplePigmentEnergyStorage(long maxEnergyPerColor) {
 		this.maxEnergyPerColor = maxEnergyPerColor;
 		this.currentTotal = 0;
 		
@@ -26,7 +34,7 @@ public class IndividuallyCappedSimplePigmentEnergyStorage implements PigmentEner
 		}
 	}
 	
-	public IndividuallyCappedSimplePigmentEnergyStorage(long maxEnergyPerColor, Map<CMYKColor, Long> colors) {
+	public IndividualCappedSimplePigmentEnergyStorage(long maxEnergyPerColor, Map<CMYKColor, Long> colors) {
 		this.maxEnergyPerColor = maxEnergyPerColor;
 		
 		this.storedEnergy = colors;
@@ -107,7 +115,7 @@ public class IndividuallyCappedSimplePigmentEnergyStorage implements PigmentEner
 		return this.currentTotal >= this.getMaxTotal();
 	}
 	
-	public static @Nullable IndividuallyCappedSimplePigmentEnergyStorage fromNbt(@NotNull NbtCompound compound) {
+	public static @Nullable IndividualCappedSimplePigmentEnergyStorage fromNbt(@NotNull NbtCompound compound) {
 		if(compound.contains("MaxEnergyPerColor", NbtElement.LONG_TYPE)) {
 			long maxEnergyPerColor = compound.getLong("MaxEnergyPerColor");
 			
@@ -115,7 +123,7 @@ public class IndividuallyCappedSimplePigmentEnergyStorage implements PigmentEner
 			for(CMYKColor color : CMYKColor.all()) {
 				colors.put(color, compound.getLong(color.toString()));
 			}
-			return new IndividuallyCappedSimplePigmentEnergyStorage(maxEnergyPerColor, colors);
+			return new IndividualCappedSimplePigmentEnergyStorage(maxEnergyPerColor, colors);
 		}
 		return null;
 	}
@@ -127,6 +135,22 @@ public class IndividuallyCappedSimplePigmentEnergyStorage implements PigmentEner
 			compound.putLong(color.getKey().toString(), color.getValue());
 		}
 		return compound;
+	}
+	
+	@Environment(EnvType.CLIENT)
+	public void addTooltip(World world, List<Text> tooltip, TooltipContext context) {
+		tooltip.add(new TranslatableText("item.spectrum.pigment_palette.tooltip", maxEnergyPerColor));
+		for(Map.Entry<CMYKColor, Long> color : this.storedEnergy.entrySet()) {
+			if(color.getValue() > 0) {
+				tooltip.add(new TranslatableText("item.spectrum.pigment_palette.tooltip.stored_energy." + color.getKey().toString().toLowerCase(Locale.ROOT), color.getValue()));
+			}
+		}
+	}
+	
+	public void fillCompletely() {
+		for(CMYKColor color : CMYKColor.all()) {
+			storedEnergy.put(color, this.maxEnergyPerColor);
+		}
 	}
 	
 }

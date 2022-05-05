@@ -36,6 +36,10 @@ public class SinglePigmentEnergyStorage implements PigmentEnergyStorage {
 		this.storedEnergy = amount;
 	}
 	
+	public CMYKColor getStoredColor() {
+		return storedColor;
+	}
+	
 	@Override
 	public boolean accepts(CMYKColor color) {
 		return this.storedEnergy == 0 || this.storedColor == color;
@@ -132,9 +136,19 @@ public class SinglePigmentEnergyStorage implements PigmentEnergyStorage {
 	}
 	
 	public void addTooltip(World world, List<Text> tooltip, TooltipContext context) {
+		tooltip.add(new TranslatableText("item.spectrum.ink_flask.tooltip", this.maxEnergy));
 		if(this.storedEnergy > 0) {
 			tooltip.add(new TranslatableText("item.spectrum.pigment_palette.tooltip.stored_energy." + this.storedColor.toString().toLowerCase(Locale.ROOT), this.storedEnergy));
 		}
+	}
+	
+	@Override
+	public void fillCompletely() {
+		this.storedEnergy = this.maxEnergy;
+	}
+	
+	public void convertColor(CMYKColor color) {
+		this.storedColor = color;
 	}
 	
 }

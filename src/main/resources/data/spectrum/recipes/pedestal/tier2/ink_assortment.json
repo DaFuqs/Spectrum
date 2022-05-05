@@ -1,0 +1,32 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 800,
+  "tier": "simple",
+  "cyan": 1,
+  "magenta": 1,
+  "yellow": 1,
+  "black": 1,
+  "white": 0,
+  "experience": 4.0,
+  "pattern": [
+    " C ",
+    "PPP",
+    "GGG"
+  ],
+  "key": {
+    "P": {
+      "tag": "spectrum:pigments"
+    },
+    "G": {
+      "item": "minecraft:glass"
+    },
+	"C": {
+      "item": "spectrum:four_leaf_clover"
+    },
+  },
+  "result" : {
+    "item": "spectrum:ink_assortment",
+    "count": 1
+  },
+  "required_advancements": ["spectrum:progression/unlock_ink_assortment"]
+}

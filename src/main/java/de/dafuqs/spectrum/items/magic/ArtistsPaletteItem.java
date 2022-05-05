@@ -1,11 +1,10 @@
 package de.dafuqs.spectrum.items.magic;
 
 import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.energy.CappedElementalPigmentEnergyStorageItem;
+import de.dafuqs.spectrum.energy.PigmentEnergyStorageItem;
 import de.dafuqs.spectrum.energy.storage.ArtistsPaletteEnergyStorage;
 import de.dafuqs.spectrum.energy.storage.IndividualAndTotalCappedElementalPigmentEnergyStorage;
-import de.dafuqs.spectrum.energy.storage.PigmentEnergyStorage;
-import de.dafuqs.spectrum.energy.storage.PigmentPaletteEnergyStorage;
+import de.dafuqs.spectrum.energy.storage.IndividualCappedSimplePigmentEnergyStorage;
 import de.dafuqs.spectrum.items.trinkets.SpectrumTrinketItem;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -13,31 +12,19 @@ import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class ArtistsPaletteItem extends SpectrumTrinketItem implements CappedElementalPigmentEnergyStorageItem {
+public class ArtistsPaletteItem extends SpectrumTrinketItem implements PigmentEnergyStorageItem<ArtistsPaletteEnergyStorage> {
 	
 	private final long maxEnergyTotal;
-	private final long maxEnergyPerColor;
 	
-	public ArtistsPaletteItem(Settings settings, long maxEnergyTotal, long maxEnergyPerColor) {
+	public ArtistsPaletteItem(Settings settings, long maxEnergyTotal) {
 		super(settings, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_artists_palette"));
 		this.maxEnergyTotal = maxEnergyTotal;
-		this.maxEnergyPerColor = maxEnergyPerColor;
-	}
-	
-	@Environment(EnvType.CLIENT)
-	@Override
-	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-		super.appendTooltip(stack, world, tooltip, context);
-		tooltip.add(new TranslatableText("item.spectrum.artists_palette.tooltip", this.maxEnergyPerColor));
-		
-		getEnergyStorage(stack).addTooltip(world, tooltip, context);
 	}
 	
 	@Override
@@ -46,13 +33,20 @@ public class ArtistsPaletteItem extends SpectrumTrinketItem implements CappedEle
 		if(compound != null && compound.contains("EnergyStore")) {
 			return ArtistsPaletteEnergyStorage.fromNbt(compound.getCompound("EnergyStore"));
 		}
-		return new ArtistsPaletteEnergyStorage(this.maxEnergyTotal, this.maxEnergyPerColor);
+		return new ArtistsPaletteEnergyStorage(this.maxEnergyTotal);
 	}
 	
 	@Override
-	public void setEnergyStorage(ItemStack itemStack, IndividualAndTotalCappedElementalPigmentEnergyStorage storage) {
+	public void setEnergyStorage(ItemStack itemStack, ArtistsPaletteEnergyStorage storage) {
 		NbtCompound compound = itemStack.getOrCreateNbt();
 		compound.put("EnergyStore", storage.toNbt());
+	}
+	
+	@Override
+	@Environment(EnvType.CLIENT)
+	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+		super.appendTooltip(stack, world, tooltip, context);
+		getEnergyStorage(stack).addTooltip(world, tooltip, context);
 	}
 	
 }

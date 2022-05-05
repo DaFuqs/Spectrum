@@ -1,8 +1,9 @@
 package de.dafuqs.spectrum.items.magic;
 
 import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.energy.CappedElementalPigmentEnergyStorageItem;
-import de.dafuqs.spectrum.energy.storage.IndividualAndTotalCappedElementalPigmentEnergyStorage;
+import de.dafuqs.spectrum.energy.PigmentEnergyStorageItem;
+import de.dafuqs.spectrum.energy.color.CMYKColor;
+import de.dafuqs.spectrum.energy.storage.IndividualCappedSimplePigmentEnergyStorage;
 import de.dafuqs.spectrum.energy.storage.SinglePigmentEnergyStorage;
 import de.dafuqs.spectrum.items.trinkets.SpectrumTrinketItem;
 import net.fabricmc.api.EnvType;
@@ -18,22 +19,13 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class PigmentFlaskItem extends SpectrumTrinketItem implements CappedElementalPigmentEnergyStorageItem {
+public class InkFlaskItem extends SpectrumTrinketItem implements PigmentEnergyStorageItem<SinglePigmentEnergyStorage> {
 	
 	private final long maxEnergy;
 	
-	public PigmentFlaskItem(Settings settings, long maxEnergy) {
+	public InkFlaskItem(Settings settings, long maxEnergy) {
 		super(settings, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_pigment_flask"));
 		this.maxEnergy = maxEnergy;
-	}
-	
-	@Environment(EnvType.CLIENT)
-	@Override
-	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-		super.appendTooltip(stack, world, tooltip, context);
-		tooltip.add(new TranslatableText("item.spectrum.pigment_flask.tooltip", this.maxEnergy));
-		
-		getEnergyStorage(stack).addTooltip(world, tooltip, context);
 	}
 	
 	@Override
@@ -46,9 +38,25 @@ public class PigmentFlaskItem extends SpectrumTrinketItem implements CappedEleme
 	}
 	
 	@Override
-	public void setEnergyStorage(ItemStack itemStack, IndividualAndTotalCappedElementalPigmentEnergyStorage storage) {
+	public void setEnergyStorage(ItemStack itemStack, SinglePigmentEnergyStorage storage) {
 		NbtCompound compound = itemStack.getOrCreateNbt();
 		compound.put("EnergyStore", storage.toNbt());
+	}
+	
+	@Override
+	@Environment(EnvType.CLIENT)
+	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+		super.appendTooltip(stack, world, tooltip, context);
+		getEnergyStorage(stack).addTooltip(world, tooltip, context);
+	}
+	
+	public ItemStack getFullStack(CMYKColor color) {
+		ItemStack stack = this.getDefaultStack();
+		SinglePigmentEnergyStorage storage = getEnergyStorage(stack);
+		storage.fillCompletely();
+		storage.convertColor(color);
+		setEnergyStorage(stack, storage);
+		return stack;
 	}
 	
 }

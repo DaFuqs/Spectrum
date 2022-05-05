@@ -23,14 +23,14 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class ArtistsPaletteEnergyStorage extends IndividualAndTotalCappedElementalPigmentEnergyStorage {
+public class ArtistsPaletteEnergyStorage extends TotalCappedElementalPigmentEnergyStorage {
 	
-	public ArtistsPaletteEnergyStorage(long maxEnergyTotal, long maxEnergyPerColor) {
-		super(maxEnergyTotal, maxEnergyPerColor);
+	public ArtistsPaletteEnergyStorage(long maxEnergyTotal) {
+		super(maxEnergyTotal);
 	}
 	
-	public ArtistsPaletteEnergyStorage(long maxEnergyTotal, long maxEnergyPerColor, long cyan, long magenta, long yellow, long black, long white) {
-		super(maxEnergyTotal, maxEnergyPerColor, cyan, magenta, yellow, black, white);
+	public ArtistsPaletteEnergyStorage(long maxEnergyTotal, long cyan, long magenta, long yellow, long black, long white) {
+		super(maxEnergyTotal, cyan, magenta, yellow, black, white);
 	}
 	
 	public long addEnergy(CMYKColor color, long amount, ItemStack stack, ServerPlayerEntity serverPlayerEntity) {
@@ -60,19 +60,20 @@ public class ArtistsPaletteEnergyStorage extends IndividualAndTotalCappedElement
 	public static @Nullable ArtistsPaletteEnergyStorage fromNbt(@NotNull NbtCompound compound) {
 		if(compound.contains("MaxEnergyTotal", NbtElement.LONG_TYPE)) {
 			long maxEnergyTotal = compound.getLong("MaxEnergyTotal");
-			long maxEnergyPerColor = compound.getLong("MaxEnergyPerColor");
 			long cyan = compound.getLong("Cyan");
 			long magenta = compound.getLong("Magenta");
 			long yellow = compound.getLong("Yellow");
 			long black = compound.getLong("Black");
 			long white = compound.getLong("White");
-			return new ArtistsPaletteEnergyStorage(maxEnergyTotal, maxEnergyPerColor, cyan, magenta, yellow, black, white);
+			return new ArtistsPaletteEnergyStorage(maxEnergyTotal, cyan, magenta, yellow, black, white);
 		}
 		return null;
 	}
 	
 	@Environment(EnvType.CLIENT)
 	public void addTooltip(World world, List<Text> tooltip, TooltipContext context) {
+		tooltip.add(new TranslatableText("item.spectrum.artists_palette.tooltip", this.maxEnergyTotal));
+		
 		tooltip.add(new TranslatableText("item.spectrum.pigment_palette.tooltip.stored_energy.cyan", this.storedEnergy.get(PigmentColors.CYAN)));
 		tooltip.add(new TranslatableText("item.spectrum.pigment_palette.tooltip.stored_energy.magenta", this.storedEnergy.get(PigmentColors.MAGENTA)));
 		tooltip.add(new TranslatableText("item.spectrum.pigment_palette.tooltip.stored_energy.yellow", this.storedEnergy.get(PigmentColors.YELLOW)));

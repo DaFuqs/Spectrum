@@ -7,11 +7,11 @@ import de.dafuqs.spectrum.blocks.pedestal.PedestalBlock;
 import de.dafuqs.spectrum.blocks.shooting_star.ShootingStarBlock;
 import de.dafuqs.spectrum.entity.entity.ShootingStarEntity;
 import de.dafuqs.spectrum.enums.PedestalRecipeTier;
+import de.dafuqs.spectrum.helpers.ColorHelper;
 import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.particle.effect.*;
 import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
-import de.dafuqs.spectrum.registries.color.ColorRegistry;
 import de.dafuqs.spectrum.sound.CraftingBlockSoundInstance;
 import de.dafuqs.spectrum.sound.TakeOffBeltSoundInstance;
 import net.fabricmc.api.EnvType;
@@ -166,7 +166,7 @@ public class SpectrumS2CPacketReceiver {
 			client.execute(() -> {
 				Vec3d sourcePos = new Vec3d(position.getX() + 0.5, position.getY() + 1, position.getZ() + 0.5);
 				
-				Vec3f color = ColorRegistry.getColor(dyeColor);
+				Vec3f color = ColorHelper.getVec(dyeColor);
 				float velocityModifier = 0.25F;
 				for(Vec3d velocity : Support.VECTORS_16) {
 					client.getInstance().player.world.addParticle(
@@ -188,8 +188,8 @@ public class SpectrumS2CPacketReceiver {
 			client.execute(() -> {
 				Random random = client.world.random;
 				
-				Vec3f colorVec1 = ColorRegistry.colorIntToVec(color1);
-				Vec3f colorVec2 = ColorRegistry.colorIntToVec(color2);
+				Vec3f colorVec1 = ColorHelper.colorIntToVec(color1);
+				Vec3f colorVec2 = ColorHelper.colorIntToVec(color2);
 				
 				for(int i = 0; i < amount; i++) {
 					int randomLifetime = 30 + random.nextInt(20);

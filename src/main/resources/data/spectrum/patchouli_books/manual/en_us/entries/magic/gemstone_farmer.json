@@ -1,0 +1,21 @@
+{
+  "name": "Gemstone Farmer",
+  "advancement": "spectrum:progression/unlock_gemstone_farmer",
+  "icon": "spectrum:gemstone_farmer",
+  "category": "spectrum:magic_category",
+  "extra_recipe_mappings": {
+    "spectrum:gemstone_farmer": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Placed in $(l:general/geodes)Geodes$(/l), automatically harvests fully grown Gemstone Clusters."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier3/gemstone_farmer",
+      "text": ""
+    }
+  ]
+}

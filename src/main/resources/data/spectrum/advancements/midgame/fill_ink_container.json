@@ -2,7 +2,8 @@
   "parent": "spectrum:midgame/spectrum_midgame",
   "display": {
     "icon": {
-      "item": "spectrum:ink_flask"
+      "item": "spectrum:ink_flask",
+      "nbt": "{EnergyStore: {MaxEnergyTotal: 409600L, Color: \"purple\", Amount: 409600L}}"
     },
     "hidden": true,
     "title": {

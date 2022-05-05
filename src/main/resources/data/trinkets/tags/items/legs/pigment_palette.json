@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "spectrum:pigment_palette"
+    "spectrum:pigment_palette",
+    "spectrum:artists_palette"
   ]
 }

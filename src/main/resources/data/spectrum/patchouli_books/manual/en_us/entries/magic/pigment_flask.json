@@ -14,7 +14,7 @@
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier3/ink_flask",
+      "recipe": "spectrum:pedestal/tier2/ink_flask",
       "text": ""
     }
   ]

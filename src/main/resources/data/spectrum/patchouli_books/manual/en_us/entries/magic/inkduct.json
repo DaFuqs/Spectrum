@@ -1,6 +1,6 @@
 {
   "name": "Ink Duct",
-  "advancement": "spectrum:midgame/unlock_inkduct",
+  "advancement": "spectrum:midgame/unlock_ink_duct",
   "icon": "spectrum:inkduct",
   "category": "spectrum:magic_category",
   "pages": [
@@ -11,7 +11,7 @@
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier3/inkduct",
+      "recipe": "spectrum:pedestal/tier3/ink_duct",
       "text": ""
     }
   ]

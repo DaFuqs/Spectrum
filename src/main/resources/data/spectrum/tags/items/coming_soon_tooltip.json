@@ -152,6 +152,15 @@
     "spectrum:midnight_aberration",
     "spectrum:budding_onyx",
     "spectrum:restoration_tea",
-    "#spectrum:mob_blocks"
+    "#spectrum:mob_blocks",
+    "spectrum:inkwell",
+    "spectrum:ink_duct",
+    "spectrum:gemstone_farmer",
+    "spectrum:color_picker",
+    "spectrum:tinted_preservation_glass",
+    "spectrum:dike_gate_fountain",
+    "spectrum:ink_flask",
+    "spectrum:ink_assortment",
+    "spectrum:artists_palette"
   ]
 }

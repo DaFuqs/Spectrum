@@ -4,13 +4,22 @@ import de.dafuqs.spectrum.energy.color.CMYKColor;
 import de.dafuqs.spectrum.energy.color.CompoundColor;
 import de.dafuqs.spectrum.energy.color.ElementalColor;
 import de.dafuqs.spectrum.energy.color.PigmentColors;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
+import net.minecraft.text.Text;
+import net.minecraft.text.TranslatableText;
+import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+import static de.dafuqs.spectrum.helpers.Support.getShortenedNumberString;
 
 public class TotalCappedElementalPigmentEnergyStorage implements PigmentEnergyStorage {
 	
@@ -207,6 +216,33 @@ public class TotalCappedElementalPigmentEnergyStorage implements PigmentEnergySt
 	public void fillCompletely() {
 		long energyPerColor = this.maxEnergyTotal / this.storedEnergy.size();
 		this.storedEnergy.replaceAll((c, v) -> energyPerColor);
+	}
+	
+	@Environment(EnvType.CLIENT)
+	public void addTooltip(World world, List<Text> tooltip, TooltipContext context) {
+		tooltip.add(new TranslatableText("item.spectrum.artists_palette.tooltip", getShortenedNumberString(this.maxEnergyTotal)));
+		tooltip.add(new TranslatableText("item.spectrum.artists_palette.tooltip.mix_on_demand"));
+		
+		long cyan = this.storedEnergy.get(PigmentColors.CYAN);
+		if(cyan > 0) {
+			tooltip.add(new TranslatableText("item.spectrum.pigment_palette.tooltip.stored_energy.cyan", getShortenedNumberString(cyan)));
+		}
+		long magenta = this.storedEnergy.get(PigmentColors.MAGENTA);
+		if(magenta > 0) {
+			tooltip.add(new TranslatableText("item.spectrum.pigment_palette.tooltip.stored_energy.magenta", getShortenedNumberString(magenta)));
+		}
+		long yellow = this.storedEnergy.get(PigmentColors.YELLOW);
+		if(yellow > 0) {
+			tooltip.add(new TranslatableText("item.spectrum.pigment_palette.tooltip.stored_energy.yellow", getShortenedNumberString(yellow)));
+		}
+		long black = this.storedEnergy.get(PigmentColors.BLACK);
+		if(black > 0) {
+			tooltip.add(new TranslatableText("item.spectrum.pigment_palette.tooltip.stored_energy.black", getShortenedNumberString(black)));
+		}
+		long white = this.storedEnergy.get(PigmentColors.WHITE);
+		if(white > 0) {
+			tooltip.add(new TranslatableText("item.spectrum.pigment_palette.tooltip.stored_energy.white", getShortenedNumberString(white)));
+		}
 	}
 	
 }

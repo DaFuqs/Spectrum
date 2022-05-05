@@ -72,22 +72,4 @@ public class ArtistsPaletteEnergyStorage extends TotalCappedElementalPigmentEner
 		return null;
 	}
 	
-	@Environment(EnvType.CLIENT)
-	public void addTooltip(World world, List<Text> tooltip, TooltipContext context) {
-		tooltip.add(new TranslatableText("item.spectrum.artists_palette.tooltip", getShortenedNumberString(this.maxEnergyTotal)));
-		
-		tooltip.add(new TranslatableText("item.spectrum.pigment_palette.tooltip.stored_energy.cyan",  getShortenedNumberString(this.storedEnergy.get(PigmentColors.CYAN))));
-		tooltip.add(new TranslatableText("item.spectrum.pigment_palette.tooltip.stored_energy.magenta",  getShortenedNumberString(this.storedEnergy.get(PigmentColors.MAGENTA))));
-		tooltip.add(new TranslatableText("item.spectrum.pigment_palette.tooltip.stored_energy.yellow",  getShortenedNumberString(this.storedEnergy.get(PigmentColors.YELLOW))));
-		
-		PlayerEntity player = MinecraftClient.getInstance().player;
-		if(player != null) {
-			if(Support.hasAdvancement(player, new Identifier(SpectrumCommon.MOD_ID, "create_onyx_shard"))) {
-				tooltip.add(new TranslatableText("item.spectrum.pigment_palette.tooltip.stored_energy.black",  getShortenedNumberString(this.storedEnergy.get(PigmentColors.BLACK))));
-			}
-			if(Support.hasAdvancement(player, new Identifier(SpectrumCommon.MOD_ID, "midgame/collect_moonstone_shard"))) {
-				tooltip.add(new TranslatableText("item.spectrum.pigment_palette.tooltip.stored_energy.white",  getShortenedNumberString(this.storedEnergy.get(PigmentColors.WHITE))));
-			}
-		}
-	}
 }

@@ -1,6 +1,11 @@
 package de.dafuqs.spectrum.energy.storage;
 
 import de.dafuqs.spectrum.energy.color.CMYKColor;
+import net.minecraft.client.item.TooltipContext;
+import net.minecraft.text.Text;
+import net.minecraft.world.World;
+
+import java.util.List;
 
 /**
  * This interface defines that an object can
@@ -48,5 +53,7 @@ public interface PigmentEnergyStorage {
 	
 	// fill up the storage with as much energy as possible
 	void fillCompletely();
+	
+	void addTooltip(World world, List<Text> tooltip, TooltipContext context);
 	
 }

@@ -1217,8 +1217,11 @@
   "item.spectrum.pigment_palette.tooltip.stored_energy.purple": "%d§5 Purple",
   "item.spectrum.pigment_palette.tooltip.stored_energy.red": "%d§c Red",
 
+  "item.spectrum.total_capped_simple_pigment_energy_storage.tooltip": "§7Stores up to %d§7 INK in total",
+
   "item.spectrum.artists_palette": "Artists Palette",
   "item.spectrum.artists_palette.tooltip": "§7Stores up to %d§7 of elemental INK in total",
+  "item.spectrum.artists_palette.tooltip.mix_on_demand": "§7Mixes other types of INK on demand",
 
   "item.spectrum.ink_flask": "INK Flask",
   "item.spectrum.ink_flask.tooltip": "§7Stores up to %d§7 of one type of INK",

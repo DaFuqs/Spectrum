@@ -11,7 +11,7 @@
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier3/color_picker",
+      "recipe": "spectrum:pedestal/tier2/color_picker",
       "text": ""
     }
   ]

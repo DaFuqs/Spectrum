@@ -59,10 +59,10 @@ public class GemstoneFarmerBlockEntity extends LootableContainerBlockEntity impl
 	}
 	
 	protected Text getContainerName() {
-		if(this.ownerName == null) {
-			return new TranslatableText("block.spectrum.gemstone_farmer");
+		if(hasOwner()) {
+			return new TranslatableText("block.spectrum.gemstone_farmer").append(new TranslatableText("container.spectrum.owned_by_player", this.ownerName));
 		} else {
-			return new TranslatableText("block.spectrum.gemstone_farmer").append(new TranslatableText("owned_by_player", this.ownerName));
+			return new TranslatableText("block.spectrum.gemstone_farmer");
 		}
 	}
 	

@@ -38,12 +38,12 @@ public class GemstoneFarmerBlock extends BlockWithEntity {
 	
 	@Override
 	public void onPlaced(World world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack itemStack) {
-		if (itemStack.hasCustomName()) {
-			BlockEntity blockEntity = world.getBlockEntity(pos);
-			if (blockEntity instanceof GemstoneFarmerBlockEntity gemstoneFarmerBlockEntity) {
-				if(placer instanceof ServerPlayerEntity serverPlayerEntity) {
-					gemstoneFarmerBlockEntity.setOwner(serverPlayerEntity);
-				}
+		BlockEntity blockEntity = world.getBlockEntity(pos);
+		if (blockEntity instanceof GemstoneFarmerBlockEntity gemstoneFarmerBlockEntity) {
+			if(placer instanceof ServerPlayerEntity serverPlayerEntity) {
+				gemstoneFarmerBlockEntity.setOwner(serverPlayerEntity);
+			}
+			if (itemStack.hasCustomName()) {
 				gemstoneFarmerBlockEntity.setCustomName(itemStack.getName());
 			}
 		}

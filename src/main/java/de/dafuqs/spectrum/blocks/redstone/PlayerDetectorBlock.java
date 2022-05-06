@@ -38,9 +38,10 @@ public class PlayerDetectorBlock extends DetectorBlock implements BlockEntityPro
 			return ActionResult.SUCCESS;
 		} else {
 			if(player.isSneaking()) {
+				
 				String ownerName = getOwnerName(world, pos);
 				if (ownerName != null && !ownerName.equals("")) {
-					player.sendMessage(new TranslatableText("block.spectrum.player_detector.message", ownerName), false);
+					player.sendMessage(new TranslatableText("block.spectrum.player_detector").append(new TranslatableText("container.spectrum.owned_by_player", ownerName)), false);
 				}
 				return ActionResult.CONSUME;
 			} else {

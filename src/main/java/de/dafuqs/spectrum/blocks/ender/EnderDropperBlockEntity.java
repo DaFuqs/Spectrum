@@ -24,10 +24,10 @@ public class EnderDropperBlockEntity extends BlockEntity implements PlayerOwnedW
 	}
 
 	protected Text getContainerName() {
-		if(this.ownerName == null) {
-			return new TranslatableText("block.spectrum.ender_dropper");
+		if(hasOwner()) {
+			return new TranslatableText("block.spectrum.ender_dropper").append(new TranslatableText("container.spectrum.owned_by_player", this.ownerName));
 		} else {
-			return new TranslatableText("block.spectrum.ender_dropper_with_owner", this.ownerName);
+			return new TranslatableText("block.spectrum.ender_dropper");
 		}
 	}
 

@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.blocks.chests;
 
 import de.dafuqs.spectrum.enums.ProgressionStage;
 import de.dafuqs.spectrum.interfaces.PlayerOwned;
+import de.dafuqs.spectrum.interfaces.PlayerOwnedWithName;
 import de.dafuqs.spectrum.inventories.GenericSpectrumContainerScreenHandler;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
 import net.minecraft.block.BlockState;
@@ -22,7 +23,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.UUID;
 
-public class PrivateChestBlockEntity extends SpectrumChestBlockEntity implements SidedInventory, PlayerOwned {
+public class PrivateChestBlockEntity extends SpectrumChestBlockEntity implements SidedInventory, PlayerOwnedWithName {
 
 	private UUID ownerUUID;
 	private String ownerName;
@@ -62,8 +63,8 @@ public class PrivateChestBlockEntity extends SpectrumChestBlockEntity implements
 	}
 
 	protected Text getContainerName() {
-		if(this.hasOwner()) {
-			return new TranslatableText("block.spectrum.private_chest.title_with_owner", this.getOwnerName());
+		if(hasOwner()) {
+			return new TranslatableText("block.spectrum.private_chest").append(new TranslatableText("container.spectrum.owned_by_player", this.ownerName));
 		} else {
 			return new TranslatableText("block.spectrum.private_chest");
 		}

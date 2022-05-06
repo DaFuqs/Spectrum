@@ -28,7 +28,7 @@ import java.util.Random;
 public class MemoryBlock extends BlockWithEntity implements Waterloggable {
 	
 	public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
-	protected static final VoxelShape SHAPE = Block.createCuboidShape(3.0D, 0.0D, 3.0D, 13.0D, 13.0D, 13.0D);
+	protected static final VoxelShape SHAPE = Block.createCuboidShape(4.0D, 2.0D, 4.0D, 12.0D, 14.0D, 12.0D);
 	
 	public MemoryBlock(Settings settings) {
 		super(settings);

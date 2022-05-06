@@ -233,9 +233,7 @@ public class SpectrumS2CPacketReceiver {
 			BlockPos blockPos = itemTransfer.getOrigin();
 			client.execute(() -> {
 				// Everything in this lambda is running on the render thread
-				for(int i = 0; i < 10; i++) {
-					client.getInstance().player.world.addImportantParticle(new ItemTransferParticleEffect(itemTransfer), true, (double)blockPos.getX() + 0.5D, (double)blockPos.getY() + 0.5D, (double)blockPos.getZ() + 0.5D, 0.0D, 0.0D, 0.0D);
-				}
+				client.getInstance().player.world.addImportantParticle(new ItemTransferParticleEffect(itemTransfer), true, (double)blockPos.getX() + 0.5D, (double)blockPos.getY() + 0.5D, (double)blockPos.getZ() + 0.5D, 0.0D, 0.0D, 0.0D);
 			});
 		});
 
@@ -244,9 +242,7 @@ public class SpectrumS2CPacketReceiver {
 			BlockPos blockPos = transphere.getOrigin();
 			client.execute(() -> {
 				// Everything in this lambda is running on the render thread
-				for(int i = 0; i < 10; i++) {
-					client.getInstance().player.world.addImportantParticle(new TransphereParticleEffect(transphere), true, (double)blockPos.getX() + 0.5D, (double)blockPos.getY() + 0.5D, (double)blockPos.getZ() + 0.5D, 0.0D, 0.0D, 0.0D);
-				}
+				client.getInstance().player.world.addImportantParticle(new TransphereParticleEffect(transphere), true, (double)blockPos.getX() + 0.5D, (double)blockPos.getY() + 0.5D, (double)blockPos.getZ() + 0.5D, 0.0D, 0.0D, 0.0D);
 			});
 		});
 
@@ -255,9 +251,16 @@ public class SpectrumS2CPacketReceiver {
 			BlockPos blockPos = experienceTransfer.getOrigin();
 			client.execute(() -> {
 				// Everything in this lambda is running on the render thread
-				for(int i = 0; i < 10; i++) {
-					client.getInstance().player.world.addImportantParticle(new ExperienceTransferParticleEffect(experienceTransfer), true, (double)blockPos.getX() + 0.5D, (double)blockPos.getY() + 0.5D, (double)blockPos.getZ() + 0.5D, 0.0D, 0.0D, 0.0D);
-				}
+				client.getInstance().player.world.addImportantParticle(new ExperienceTransferParticleEffect(experienceTransfer), true, (double)blockPos.getX() + 0.5D, (double)blockPos.getY() + 0.5D, (double)blockPos.getZ() + 0.5D, 0.0D, 0.0D, 0.0D);
+			});
+		});
+		
+		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.INITIATE_BLOCK_POS_EVENT_TRANSFER, (client, handler, buf, responseSender) -> {
+			BlockPosEventTransfer blockPosEventTransfer = BlockPosEventTransfer.readFromBuf(buf);
+			BlockPos blockPos = blockPosEventTransfer.getOrigin();
+			client.execute(() -> {
+				// Everything in this lambda is running on the render thread
+				client.getInstance().player.world.addImportantParticle(new BlockPosEventTransferParticleEffect(blockPosEventTransfer), true, (double)blockPos.getX() + 0.5D, (double)blockPos.getY() + 0.5D, (double)blockPos.getZ() + 0.5D, 0.0D, 0.0D, 0.0D);
 			});
 		});
 

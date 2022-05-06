@@ -14,10 +14,13 @@ import java.util.Locale;
 public class SpectrumGameEvents {
 
 	public static GameEvent ENTITY_SPAWNED;
+	public static GameEvent GEMSTONE_FARMER_FARMABLE_GROWN;
+	
 	public static HashMap<DyeColor, List<RedstoneTransferGameEvent>> WIRELESS_REDSTONE_SIGNALS = new HashMap<>(); // a list of 16 * 16 events, meaning redstone strength 0-15 with each dye color
 
 	public static void register() {
 		ENTITY_SPAWNED = register("entity_spawned");
+		GEMSTONE_FARMER_FARMABLE_GROWN = register("gemstone_farmer_farmable_grown");
 
 		for(DyeColor dyeColor : DyeColor.values()) {
 			List<RedstoneTransferGameEvent> list = new ArrayList<>();

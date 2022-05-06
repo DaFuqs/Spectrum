@@ -366,6 +366,7 @@
   "block.spectrum.moonstone_chime": "Moonstone Chime",
   "block.spectrum.onyx_chime": "Onyx Chime",
 
+  "owned_by_player": "of %s",
   "block.spectrum.clover": "Clover",
   "block.spectrum.four_leaf_clover": "Four-leaved Clover",
   "block.spectrum.ethereal_platform": "Ethereal Platform",

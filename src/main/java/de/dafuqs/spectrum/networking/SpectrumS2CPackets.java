@@ -21,6 +21,7 @@ public class SpectrumS2CPackets {
 	public static final Identifier INITIATE_ITEM_TRANSFER = new Identifier(SpectrumCommon.MOD_ID, "initiate_item_transfer");
 	public static final Identifier INITIATE_TRANSPHERE = new Identifier(SpectrumCommon.MOD_ID, "initiate_transphere");
 	public static final Identifier INITIATE_EXPERIENCE_TRANSFER = new Identifier(SpectrumCommon.MOD_ID, "initiate_experience_transfer");
+	public static final Identifier INITIATE_BLOCK_POS_EVENT_TRANSFER = new Identifier(SpectrumCommon.MOD_ID, "block_pos_event_transfer");
 	public static final Identifier INITIATE_WIRELESS_REDSTONE_TRANSMISSION = new Identifier(SpectrumCommon.MOD_ID, "initiate_wireless_redstone_transmission");
 	public static final Identifier PLAY_ITEM_ENTITY_ABSORBED_PARTICLE_EFFECT_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "item_entity_absorbed");
 	public static final Identifier PLAY_EXPERIENCE_ORB_ENTITY_ABSORBED_PARTICLE_EFFECT_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "experience_orb_entity_absorbed");

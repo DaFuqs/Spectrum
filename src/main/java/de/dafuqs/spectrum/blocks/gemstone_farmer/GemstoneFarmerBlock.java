@@ -1,9 +1,7 @@
 package de.dafuqs.spectrum.blocks.gemstone_farmer;
 
-import de.dafuqs.spectrum.blocks.chests.RestockingChestBlockEntity;
 import de.dafuqs.spectrum.blocks.chests.SpectrumChestBlockEntity;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.BlockWithEntity;
@@ -15,7 +13,7 @@ import net.minecraft.entity.ai.pathing.NavigationType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.screen.NamedScreenHandlerFactory;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ItemScatterer;
@@ -38,10 +36,14 @@ public class GemstoneFarmerBlock extends BlockWithEntity {
 		return new GemstoneFarmerBlockEntity(pos, state);
 	}
 	
+	@Override
 	public void onPlaced(World world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack itemStack) {
 		if (itemStack.hasCustomName()) {
 			BlockEntity blockEntity = world.getBlockEntity(pos);
 			if (blockEntity instanceof GemstoneFarmerBlockEntity gemstoneFarmerBlockEntity) {
+				if(placer instanceof ServerPlayerEntity serverPlayerEntity) {
+					gemstoneFarmerBlockEntity.setOwner(serverPlayerEntity);
+				}
 				gemstoneFarmerBlockEntity.setCustomName(itemStack.getName());
 			}
 		}
@@ -53,13 +55,14 @@ public class GemstoneFarmerBlock extends BlockWithEntity {
 			return ActionResult.SUCCESS;
 		} else {
 			BlockEntity blockEntity = world.getBlockEntity(pos);
-			if (blockEntity instanceof GemstoneFarmerBlockEntity) {
-				player.openHandledScreen((NamedScreenHandlerFactory) blockEntity);
+			if (blockEntity instanceof GemstoneFarmerBlockEntity gemstoneFarmerBlockEntity) {
+				player.openHandledScreen(gemstoneFarmerBlockEntity);
 			}
 			return ActionResult.CONSUME;
 		}
 	}
 	
+	@Override
 	public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
 		if (!state.isOf(newState.getBlock())) {
 			BlockEntity blockEntity = world.getBlockEntity(pos);
@@ -72,10 +75,12 @@ public class GemstoneFarmerBlock extends BlockWithEntity {
 		}
 	}
 	
+	@Override
 	public BlockRenderType getRenderType(BlockState state) {
 		return BlockRenderType.MODEL;
 	}
 	
+	@Override
 	public boolean canPathfindThrough(BlockState state, BlockView world, BlockPos pos, NavigationType type) {
 		return false;
 	}
@@ -87,8 +92,8 @@ public class GemstoneFarmerBlock extends BlockWithEntity {
 	}
 	
 	@Nullable
-	@Override
 	public <T extends BlockEntity> GameEventListener getGameEventListener(World world, T blockEntity) {
-		return super.getGameEventListener(world, blockEntity);
+		return blockEntity instanceof GemstoneFarmerBlockEntity gemstoneFarmerBlockEntity ? gemstoneFarmerBlockEntity.getEventListener() : null;
 	}
+	
 }

@@ -82,29 +82,29 @@ public class EnderDropperBlockEntity extends BlockEntity implements PlayerOwnedW
 		this.ownerName = playerEntity.getName().asString();
 	}
 
-	public void readNbt(NbtCompound tag) {
-		super.readNbt(tag);
+	public void readNbt(NbtCompound nbt) {
+		super.readNbt(nbt);
 
-		if(tag.contains("OwnerUUID")) {
-			this.ownerUUID = tag.getUuid("OwnerUUID");
+		if(nbt.contains("OwnerUUID")) {
+			this.ownerUUID = nbt.getUuid("OwnerUUID");
 		} else {
 			this.ownerUUID = null;
 		}
-		if(tag.contains("OwnerName")) {
-			this.ownerName = tag.getString("OwnerName");
+		if(nbt.contains("OwnerName")) {
+			this.ownerName = nbt.getString("OwnerName");
 		} else {
 			this.ownerName = null;
 		}
 	}
 
-	public void writeNbt(NbtCompound tag) {
-		super.writeNbt(tag);
+	public void writeNbt(NbtCompound nbt) {
+		super.writeNbt(nbt);
 
 		if(this.ownerUUID != null) {
-			tag.putUuid("OwnerUUID", this.ownerUUID);
+			nbt.putUuid("OwnerUUID", this.ownerUUID);
 		}
 		if(this.ownerName != null) {
-			tag.putString("OwnerName", this.ownerName);
+			nbt.putString("OwnerName", this.ownerName);
 		}
 	}
 

@@ -3,10 +3,7 @@ package de.dafuqs.spectrum.networking;
 import de.dafuqs.spectrum.blocks.memory.MemoryBlockEntity;
 import de.dafuqs.spectrum.blocks.pedestal.PedestalVariant;
 import de.dafuqs.spectrum.entity.entity.ShootingStarEntity;
-import de.dafuqs.spectrum.particle.effect.ExperienceTransfer;
-import de.dafuqs.spectrum.particle.effect.ItemTransfer;
-import de.dafuqs.spectrum.particle.effect.Transphere;
-import de.dafuqs.spectrum.particle.effect.WirelessRedstoneTransmission;
+import de.dafuqs.spectrum.particle.effect.*;
 import de.dafuqs.spectrum.registries.color.ColorRegistry;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
@@ -238,7 +235,18 @@ public class SpectrumS2CPacketSender {
 			ServerPlayNetworking.send(player, SpectrumS2CPackets.INITIATE_EXPERIENCE_TRANSFER, buf);
 		}
 	}
-
+	
+	public static void sendBlockPosEventTransferPacket(ServerWorld world, @NotNull BlockPosEventTransfer blockPosEventTransfer) {
+		BlockPos blockPos = blockPosEventTransfer.getOrigin();
+		
+		PacketByteBuf buf = PacketByteBufs.create();
+		BlockPosEventTransfer.writeToBuf(buf, blockPosEventTransfer);
+		
+		for (ServerPlayerEntity player : PlayerLookup.tracking(world, blockPos)) {
+			ServerPlayNetworking.send(player, SpectrumS2CPackets.INITIATE_BLOCK_POS_EVENT_TRANSFER, buf);
+		}
+	}
+	
 	public static void sendWirelessRedstonePacket(ServerWorld world, @NotNull WirelessRedstoneTransmission wirelessRedstoneTransmission) {
 		BlockPos blockPos = wirelessRedstoneTransmission.getOrigin();
 

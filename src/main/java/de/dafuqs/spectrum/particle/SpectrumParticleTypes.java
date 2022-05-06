@@ -22,6 +22,7 @@ public class SpectrumParticleTypes {
 	public static ParticleType<ExperienceTransferParticleEffect> EXPERIENCE_TRANSFER;
 	public static ParticleType<WirelessRedstoneTransmissionParticleEffect> WIRELESS_REDSTONE_TRANSMISSION;
 	public static ParticleType<TransphereParticleEffect> TRANSPHERE;
+	public static ParticleType<BlockPosEventTransferParticleEffect> BLOCK_POS_EVENT_TRANSFER;
 	
 	public static DefaultParticleType SHOOTING_STAR; // Dummy entry to get the sprite registered
 	public static DefaultParticleType SPARKLESTONE_SPARKLE;
@@ -133,8 +134,7 @@ public class SpectrumParticleTypes {
 			}
 		});
 	}
-
-
+	
 	public static void register() {
 		PARTICLE_SPAWNER = register("particle_spawner", ParticleSpawnerParticleEffect.FACTORY, (particleType) -> ParticleSpawnerParticleEffect.CODEC, false);
 		PARTICLE_SPAWNER_ALWAYS_SHOW = register("particle_spawner_always_show", ParticleSpawnerParticleEffectAlwaysShow.FACTORY, (particleType) -> ParticleSpawnerParticleEffectAlwaysShow.CODEC, true);
@@ -142,6 +142,7 @@ public class SpectrumParticleTypes {
 		EXPERIENCE_TRANSFER = register("experience_transfer", ExperienceTransferParticleEffect.FACTORY, (particleType) -> ExperienceTransferParticleEffect.CODEC, false);
 		WIRELESS_REDSTONE_TRANSMISSION = register("wireless_redstone_transmission", WirelessRedstoneTransmissionParticleEffect.FACTORY, (particleType) -> WirelessRedstoneTransmissionParticleEffect.CODEC, false);
 		TRANSPHERE = register("transphere", TransphereParticleEffect.FACTORY, (particleType) -> TransphereParticleEffect.CODEC, false);
+		BLOCK_POS_EVENT_TRANSFER = register("block_pos_event_transfer", BlockPosEventTransferParticleEffect.FACTORY, (particleType) -> BlockPosEventTransferParticleEffect.CODEC, false);
 		
 		SPARKLESTONE_SPARKLE = register("sparklestone_sparkle", false);
 		SPARKLESTONE_SPARKLE_SMALL = register("sparklestone_sparkle_small", false);

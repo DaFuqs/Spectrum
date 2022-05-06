@@ -6,6 +6,7 @@
   "mixins": [
     "AnvilBlockMixin",
     "BlockMixin",
+    "BuddingAmethystBlockMixin",
     "CropBlockMixin",
     "CrossbowItemMixin",
     "EnderEyeItemMixin",

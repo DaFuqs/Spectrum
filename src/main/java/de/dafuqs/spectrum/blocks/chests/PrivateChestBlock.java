@@ -43,7 +43,7 @@ public class PrivateChestBlock extends SpectrumChestBlock {
 			if(!isChestBlocked(world, pos)) {
 				// Permissions are handled with vanilla lock()
 				// => TileEntities "checkUnlocked" function
-				player.openHandledScreen((NamedScreenHandlerFactory) blockEntity);
+				player.openHandledScreen(privateChestBlockEntity);
 			}
 		}
 	}
@@ -51,9 +51,11 @@ public class PrivateChestBlock extends SpectrumChestBlock {
 	public void onPlaced(World world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack itemStack) {
 		if (itemStack.hasCustomName()) {
 			BlockEntity blockEntity = world.getBlockEntity(pos);
-			if (blockEntity instanceof PrivateChestBlockEntity) {
-				((PrivateChestBlockEntity) blockEntity).setOwner((ServerPlayerEntity) placer);
-				((PrivateChestBlockEntity)blockEntity).setCustomName(itemStack.getName());
+			if (blockEntity instanceof PrivateChestBlockEntity privateChestBlockEntity) {
+				if(placer instanceof ServerPlayerEntity serverPlayerEntity) {
+					privateChestBlockEntity.setOwner(serverPlayerEntity);
+				}
+				privateChestBlockEntity.setCustomName(itemStack.getName());
 			}
 		}
 	}

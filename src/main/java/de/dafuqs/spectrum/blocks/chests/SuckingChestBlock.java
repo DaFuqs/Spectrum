@@ -47,7 +47,7 @@ public class SuckingChestBlock extends SpectrumChestBlock {
 
 	@Nullable
 	public <T extends BlockEntity> GameEventListener getGameEventListener(World world, T blockEntity) {
-		return blockEntity instanceof SuckingChestBlockEntity ? ((SuckingChestBlockEntity)blockEntity).getEventListener() : null;
+		return blockEntity instanceof SuckingChestBlockEntity suckingChestBlockEntity ? suckingChestBlockEntity.getEventListener() : null;
 	}
 
 	public BlockRenderType getRenderType(BlockState state) {

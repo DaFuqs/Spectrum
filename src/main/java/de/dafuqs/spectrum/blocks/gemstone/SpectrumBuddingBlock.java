@@ -1,5 +1,7 @@
 package de.dafuqs.spectrum.blocks.gemstone;
 
+import de.dafuqs.spectrum.events.SpectrumGameEvents;
+import de.dafuqs.spectrum.registries.SpectrumBlockTags;
 import net.minecraft.block.AmethystClusterBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -60,6 +62,9 @@ public class SpectrumBuddingBlock extends BuddingAmethystBlock {
 			if (block != null) {
 				BlockState blockState2 = (block.getDefaultState().with(AmethystClusterBlock.FACING, direction)).with(AmethystClusterBlock.WATERLOGGED, blockState.getFluidState().getFluid() == Fluids.WATER);
 				world.setBlockState(blockPos, blockState2);
+				if(blockState2.isIn(SpectrumBlockTags.GEMSTONE_FARMER_FARMABLE)) {
+					world.emitGameEvent(SpectrumGameEvents.GEMSTONE_FARMER_FARMABLE_GROWN, blockPos);
+				}
 			}
 		}
 	}

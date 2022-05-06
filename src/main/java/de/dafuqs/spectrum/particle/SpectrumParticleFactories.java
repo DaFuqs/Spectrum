@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.particle;
 
 import de.dafuqs.spectrum.particle.client.*;
+import de.dafuqs.spectrum.particle.effect.BlockPosEventTransfer;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 import net.minecraft.client.particle.BlockLeakParticle;
 import net.minecraft.client.particle.BubblePopParticle;
@@ -45,6 +46,12 @@ public class SpectrumParticleFactories {
 
 		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.TRANSPHERE, provider -> (parameters, world, x, y, z, velocityX, velocityY, velocityZ) -> {
 			TransphereParticle particle = new TransphereParticle(world, parameters.getTransphere(), parameters.getTransphere().getArrivalInTicks());
+			particle.setSprite(provider);
+			return particle;
+		});
+
+		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.BLOCK_POS_EVENT_TRANSFER, provider -> (parameters, world, x, y, z, velocityX, velocityY, velocityZ) -> {
+			BlockPosEventTransferParticle particle = new BlockPosEventTransferParticle(world, parameters.getBlockPosEvent(), parameters.getBlockPosEvent().getArrivalInTicks());
 			particle.setSprite(provider);
 			return particle;
 		});

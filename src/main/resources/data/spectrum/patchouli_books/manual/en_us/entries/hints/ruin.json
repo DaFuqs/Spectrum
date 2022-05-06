@@ -12,7 +12,7 @@
 			"title": "Small Clue",
             "completion_advancement": "spectrum:midgame/break_decayed_bedrock",
 			"cost": "spectrum:brown_pigment#8",
-            "text": "This absolutely aggressive variant is able to consume the most resistant material there is. Too resistant for you to ever break."
+            "text": "This absolutely aggressive variant called Ruin is able to consume the most resistant material there is. Even ones too resistant for you to ever break before."
         },
         {
             "type": "spectrum:hint",

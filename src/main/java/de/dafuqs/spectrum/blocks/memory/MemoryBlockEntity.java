@@ -6,6 +6,7 @@ import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
 import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
 import de.dafuqs.spectrum.registries.SpectrumBlockTags;
+import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.Waterloggable;
@@ -26,7 +27,6 @@ import net.minecraft.nbt.NbtElement;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.Pair;
 import net.minecraft.util.math.BlockPos;
@@ -96,7 +96,7 @@ public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 					if (entityTypeOptional.isPresent()) {
 						MemoryItem.setTicksToManifest(this.memoryItemStack, newTicksToManifest);
 						SpectrumS2CPacketSender.playMemoryManifestingParticles(world, blockPos, entityTypeOptional.get(), 3);
-						world.playSound(null, this.pos, SoundEvents.ENTITY_TURTLE_EGG_CRACK, SoundCategory.BLOCKS, 0.7F, 0.9F + world.random.nextFloat() * 0.2F); // TODO: fitting sound
+						world.playSound(null, this.pos, SpectrumSoundEvents.BLOCK_MEMORY_ADVANCE, SoundCategory.BLOCKS, 0.7F, 0.9F + world.random.nextFloat() * 0.2F);
 					}
 				}
 			}
@@ -105,7 +105,7 @@ public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 	
 	public void manifest(@NotNull ServerWorld world, BlockPos blockPos) {
 		BlockState blockState = world.getBlockState(blockPos);
-		if(blockState instanceof Waterloggable && blockState.get(Properties.WATERLOGGED)) {
+		if(blockState.getBlock() instanceof Waterloggable && blockState.get(Properties.WATERLOGGED)) {
 			world.setBlockState(blockPos, Blocks.WATER.getDefaultState());
 		} else {
 			world.setBlockState(blockPos, Blocks.AIR.getDefaultState());

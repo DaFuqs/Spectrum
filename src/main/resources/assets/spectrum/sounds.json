@@ -17,6 +17,12 @@
       "spectrum:enchanter_ding"
     ]
   },
+  "block.memory.advance": {
+    "subtitle": "spectrum.subtitles.block.memory.advance",
+    "sounds": [
+      "spectrum:block.memory.advance"
+    ]
+  },
   "midnight_aberration_crumbling": {
     "subtitle": "spectrum.subtitles.midnight_aberration_crumbling",
     "sounds": [

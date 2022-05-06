@@ -12,7 +12,7 @@
 			"title": "Where to look",
             "completion_advancement": "spectrum:collect_four_leaf_clover",
 			"cost": "spectrum:vegetal#16",
-            "text": "Go for an Overworld adventure trip on the surface. Maybe you get lucky!"
+            "text": "Go for an Overworld adventure trip on the surface in Plains biomes. Maybe you get lucky!"
         },
         {
             "type": "spectrum:hint",

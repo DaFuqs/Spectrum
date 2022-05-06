@@ -63,6 +63,8 @@ public class SpectrumSoundEvents {
 	public static final SoundEvent FAILING_PLACED = register("failing_placed");
 	public static final SoundEvent RUIN_PLACED = register("ruin_placed");
 	
+	public static final SoundEvent BLOCK_MEMORY_ADVANCE = register("block.memory.advance");
+	
 	public static final SoundEvent BLOCK_CITRINE_BLOCK_BREAK = register("block.citrine_block.break");
 	public static final SoundEvent BLOCK_CITRINE_BLOCK_STEP = register("block.citrine_block.step");
 	public static final SoundEvent BLOCK_CITRINE_BLOCK_PLACE = register("block.citrine_block.place");

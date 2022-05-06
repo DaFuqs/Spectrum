@@ -12,7 +12,7 @@
 			"title": "Where to find",
             "completion_advancement": "spectrum:get_ender_treasure",
 			"cost": "minecraft:ender_pearl#4",
-            "text": "Not every block that an Enderman carries seems to be what is looks like from the outside."
+            "text": "Not every block that an Enderman carries seems to be what is looks like at first glance."
         },
         {
             "type": "spectrum:hint",

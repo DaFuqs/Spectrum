@@ -18,6 +18,7 @@ import dev.emi.trinkets.api.TrinketComponent;
 import dev.emi.trinkets.api.TrinketsApi;
 import net.minecraft.block.BlockState;
 import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffect;
@@ -100,7 +101,7 @@ public abstract class LivingEntityMixin {
 	
 	@ModifyVariable(at = @At("HEAD"), method = "damage(Lnet/minecraft/entity/damage/DamageSource;F)Z", argsOnly = true)
 	public float spectrum$applyAzureDikeDamageProtection(float amount, DamageSource source) {
-		if(source.isOutOfWorld() || source.isUnblockable() || amount <= 0) {
+		if(source.isOutOfWorld() || source.isUnblockable() || amount <= 0 || ((Entity)(Object) this).isInvulnerableTo(source) || source.isFire() && hasStatusEffect(StatusEffects.FIRE_RESISTANCE)) {
 			return amount;
 		} else {
 			return AzureDikeProvider.absorbDamage((LivingEntity) (Object) this, amount);

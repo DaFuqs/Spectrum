@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.particle;
 
 import de.dafuqs.spectrum.particle.client.*;
-import de.dafuqs.spectrum.particle.effect.BlockPosEventTransfer;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 import net.minecraft.client.particle.BlockLeakParticle;
 import net.minecraft.client.particle.BubblePopParticle;

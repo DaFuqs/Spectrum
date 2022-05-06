@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.blocks.chests;
 import de.dafuqs.spectrum.SpectrumCommon;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.ChestBlockEntity;
 import net.minecraft.client.util.SpriteIdentifier;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.pathing.NavigationType;

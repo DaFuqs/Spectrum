@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.blocks.chests;
 
 import de.dafuqs.spectrum.enums.ProgressionStage;
-import de.dafuqs.spectrum.interfaces.PlayerOwned;
 import de.dafuqs.spectrum.interfaces.PlayerOwnedWithName;
 import de.dafuqs.spectrum.inventories.GenericSpectrumContainerScreenHandler;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;

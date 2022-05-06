@@ -3,11 +3,14 @@ package de.dafuqs.spectrum.blocks.chests;
 import de.dafuqs.spectrum.SpectrumCommon;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.ChestBlockEntity;
 import net.minecraft.client.util.SpriteIdentifier;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.pathing.NavigationType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.DirectionProperty;
@@ -84,6 +87,15 @@ public abstract class SpectrumChestBlock extends BlockWithEntity {
 		BlockEntity blockEntity = world.getBlockEntity(pos);
 		if (blockEntity instanceof SpectrumChestBlockEntity) {
 			((SpectrumChestBlockEntity)blockEntity).onScheduledTick();
+		}
+	}
+	
+	public void onPlaced(World world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack itemStack) {
+		if (itemStack.hasCustomName()) {
+			BlockEntity blockEntity = world.getBlockEntity(pos);
+			if (blockEntity instanceof SpectrumChestBlockEntity spectrumChestBlockEntity) {
+				spectrumChestBlockEntity.setCustomName(itemStack.getName());
+			}
 		}
 	}
 

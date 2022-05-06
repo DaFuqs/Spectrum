@@ -26,6 +26,7 @@ import de.dafuqs.spectrum.blocks.fluid.MudFluidBlock;
 import de.dafuqs.spectrum.blocks.fusion_shrine.FusionShrineBlock;
 import de.dafuqs.spectrum.blocks.gemstone.SpectrumBuddingBlock;
 import de.dafuqs.spectrum.blocks.gemstone.SpectrumGemstoneBlock;
+import de.dafuqs.spectrum.blocks.gemstone_farmer.GemstoneFarmerBlock;
 import de.dafuqs.spectrum.blocks.glass.*;
 import de.dafuqs.spectrum.blocks.gravity.GravitableBlock;
 import de.dafuqs.spectrum.blocks.gravity.GravityBlockItem;
@@ -349,7 +350,7 @@ public class SpectrumBlocks {
 	public static final Block COLOR_PICKER = new Block(FabricBlockSettings.of(Material.STONE).hardness(3.0F));
 	public static final Block INKWELL = new Block(FabricBlockSettings.of(Material.STONE).hardness(3.0F));
 	public static final Block INK_DUCT = new Block(FabricBlockSettings.of(Material.STONE).hardness(3.0F));
-	public static final Block GEMSTONE_FARMER = new Block(FabricBlockSettings.of(Material.STONE).hardness(3.0F));
+	public static final Block GEMSTONE_FARMER = new GemstoneFarmerBlock(FabricBlockSettings.of(Material.STONE).hardness(3.0F));
 	
 	// COLORED TREES
 	private static final FabricBlockSettings coloredSaplingBlockSettings = FabricBlockSettings.copyOf(Blocks.OAK_SAPLING);

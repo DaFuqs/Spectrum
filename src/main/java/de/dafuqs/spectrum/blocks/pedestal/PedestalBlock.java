@@ -15,6 +15,7 @@ import net.minecraft.block.BlockWithEntity;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.block.entity.ChestBlockEntity;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -58,8 +59,11 @@ public class PedestalBlock extends BlockWithEntity implements RedstonePoweredBlo
 	public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
 		if(placer instanceof ServerPlayerEntity) {
 			BlockEntity blockEntity = world.getBlockEntity(pos);
-			if(blockEntity instanceof PedestalBlockEntity) {
-				((PedestalBlockEntity) blockEntity).setOwner((ServerPlayerEntity) placer);
+			if(blockEntity instanceof PedestalBlockEntity pedestalBlockEntity) {
+				pedestalBlockEntity.setOwner((ServerPlayerEntity) placer);
+				if (itemStack.hasCustomName()) {
+					pedestalBlockEntity.setCustomName(itemStack.getName());
+				}
 				blockEntity.markDirty();
 			}
 		}

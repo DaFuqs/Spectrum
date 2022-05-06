@@ -6,7 +6,7 @@ $lamp = @("black_lamp", "blue_lamp", "brown_lamp", "cyan_lamp", "gray_lamp", "gr
 $ores = @("sparklestone_block", "koenigsblau_ore", "koenigsblau_block")
 $upgrades = @("upgrade_speed", "upgrade_speed2", "upgrade_speed3", "upgrade_efficiency", "upgrade_efficiency2", "upgrade_yield", "upgrade_yield2", "upgrade_experience", "upgrade_experience2")
 
-$new = @('axolotl_mob_block', 'bat_mob_block', 'bee_mob_block', 'blaze_mob_block', 'cat_mob_block', 'chicken_mob_block', 'cow_mob_block', 'creeper_mob_block', 'drowned_mob_block', 'ender_dragon_mob_block', 'enderman_mob_block', 'endermite_mob_block', 'evoker_mob_block', 'fish_mob_block', 'fox_mob_block', 'ghast_mob_block', 'glow_squid_mob_block', 'goat_mob_block', 'guardian_mob_block', 'horse_mob_block', 'illusioner_mob_block', 'llama_mob_block', 'ocelot_mob_block', 'parrot_mob_block', 'phantom_mob_block', 'pig_mob_block', 'piglin_mob_block', 'polar_bear_mob_block', 'pufferfish_mob_block', 'rabbit_mob_block', 'sheep_mob_block', 'shulker_mob_block', 'silverfish_mob_block', 'skeleton_mob_block', 'slime_mob_block', 'snow_golem_mob_block', 'spider_mob_block', 'squid_mob_block', 'stray_mob_block', 'strider_mob_block', 'turtle_mob_block', 'vindicator_mob_block', 'witch_mob_block', 'wither_mob_block', 'wither_skeleton_mob_block', 'zombie_mob_block')
+$new = @('color_picker', 'inkwell', 'ink_duct', 'gemstone_farmer')
 
 enum BlockType {
     Default

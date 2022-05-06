@@ -12,6 +12,7 @@ import de.dafuqs.spectrum.blocks.ender.EnderDropperBlockEntity;
 import de.dafuqs.spectrum.blocks.ender.EnderHopperBlockEntity;
 import de.dafuqs.spectrum.blocks.fusion_shrine.FusionShrineBlockEntity;
 import de.dafuqs.spectrum.blocks.fusion_shrine.FusionShrineBlockEntityRenderer;
+import de.dafuqs.spectrum.blocks.gemstone_farmer.GemstoneFarmerBlockEntity;
 import de.dafuqs.spectrum.blocks.item_bowl.ItemBowlBlockEntity;
 import de.dafuqs.spectrum.blocks.item_bowl.ItemBowlBlockEntityRenderer;
 import de.dafuqs.spectrum.blocks.jade_vines.JadeVinesBlockEntity;
@@ -69,6 +70,8 @@ public class SpectrumBlockEntityRegistry<T extends BlockEntity> {
 	public static BlockEntityType<ShootingStarBlockEntity> SHOOTING_STAR;
 	public static BlockEntityType<BottomlessBundleBlockEntity> BOTTOMLESS_BUNDLE;
 	public static BlockEntityType<PotionWorkshopBlockEntity> POTION_WORKSHOP;
+	
+	public static BlockEntityType<GemstoneFarmerBlockEntity> GEMSTONE_FARMER;
 
 	public static BlockEntityType<CompactingChestBlockEntity> COMPACTING_CHEST;
 	public static BlockEntityType<RestockingChestBlockEntity> RESTOCKING_CHEST;
@@ -120,6 +123,7 @@ public class SpectrumBlockEntityRegistry<T extends BlockEntity> {
 		SPIRIT_INSTILLER = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "spirit_instiller"), FabricBlockEntityTypeBuilder.create(SpiritInstillerBlockEntity::new, SpectrumBlocks.SPIRIT_INSTILLER).build());
 		MEMORY = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "memory"), FabricBlockEntityTypeBuilder.create(MemoryBlockEntity::new, SpectrumBlocks.MEMORY).build());
 		JADE_VINES = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "jade_vines"), FabricBlockEntityTypeBuilder.create(JadeVinesBlockEntity::new, SpectrumBlocks.JADE_VINES).build());
+		GEMSTONE_FARMER = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "gemstone_farmer"), FabricBlockEntityTypeBuilder.create(GemstoneFarmerBlockEntity::new, SpectrumBlocks.GEMSTONE_FARMER).build());
 		
 		// All the pastel network nodes
 		CONNECTION_NODE = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "connection_node"), FabricBlockEntityTypeBuilder.create(PastelNetworkConnectionNode::new, SpectrumBlocks.CONNECTION_NODE).build());

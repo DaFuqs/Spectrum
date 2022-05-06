@@ -1,6 +1,6 @@
 {
-  "name": "INK",
-  "advancement": "spectrum:progression/unlock_pigment_flask",
+  "name": "Ink",
+  "advancement": "spectrum:progression/unlock_ink_flask",
   "icon": "spectrum:pigment_flask",
   "category": "spectrum:magic_category",
   "priority": true,
@@ -12,7 +12,7 @@
     {
       "type": "patchouli:text",
       "title": "TODO",
-      "text": "Only drawback: deprived of it's physical form, there is no way to transform INK back into Pigment."
+      "text": "Only drawback: deprived of it's physical form, there is no way to transform Ink back into Pigment."
     }
   ]
 }

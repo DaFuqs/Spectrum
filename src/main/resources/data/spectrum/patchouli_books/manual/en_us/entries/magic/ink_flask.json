@@ -9,7 +9,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The Ink Flask is able to hold a sizable amount of INK, albeit of only a single color."
+      "text": "The Ink Flask is able to hold a sizable amount of Ink, albeit of only a single color."
     },
     {
       "type": "spectrum:pedestal_crafting",

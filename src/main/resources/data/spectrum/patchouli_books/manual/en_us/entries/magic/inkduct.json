@@ -1,6 +1,6 @@
 {
   "name": "Ink Duct",
-  "advancement": "spectrum:midgame/unlock_ink_duct",
+  "advancement": "spectrum:progression/unlock_ink_duct",
   "icon": "spectrum:inkduct",
   "category": "spectrum:magic_category",
   "pages": [

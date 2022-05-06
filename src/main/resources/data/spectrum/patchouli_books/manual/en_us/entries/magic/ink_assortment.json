@@ -1,5 +1,5 @@
 {
-  "name": "INK Assortment",
+  "name": "Ink Assortment",
   "advancement": "spectrum:progression/unlock_ink_assortment",
   "icon": "spectrum:ink_assortment",
   "category": "spectrum:magic_category",
@@ -9,7 +9,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "This collection of small vials is able to store all kinds of INK, albeit just small amounts of it."
+      "text": "This collection of small vials is able to store all kinds of Ink, albeit just small amounts of it."
     },
     {
       "type": "spectrum:pedestal_crafting",

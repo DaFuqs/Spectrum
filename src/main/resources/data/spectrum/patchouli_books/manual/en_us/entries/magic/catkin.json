@@ -1,6 +1,6 @@
 {
   "name": "Catkin",
-  "advancement": "spectrum:lategame/__grow_ominous_sapling",
+  "advancement": "spectrum:progression/__grow_ominous_sapling",
   "icon": "spectrum:vibrant_cyan_catkin",
   "category": "spectrum:magic_category",
   "extra_recipe_mappings": {

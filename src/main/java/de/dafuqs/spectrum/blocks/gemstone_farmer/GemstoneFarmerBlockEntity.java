@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.blocks.gemstone_farmer;
 
 import de.dafuqs.spectrum.enums.ProgressionStage;
 import de.dafuqs.spectrum.events.BlockPosEventTransferListener;
+import de.dafuqs.spectrum.events.QueuedBlockPosEventTransferListener;
 import de.dafuqs.spectrum.events.SpectrumGameEvents;
 import de.dafuqs.spectrum.helpers.InventoryHelper;
 import de.dafuqs.spectrum.interfaces.PlayerOwnedWithName;
@@ -41,10 +42,10 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.UUID;
 
-public class GemstoneFarmerBlockEntity extends LootableContainerBlockEntity implements PlayerOwnedWithName, BlockPosEventTransferListener.Callback {
+public class GemstoneFarmerBlockEntity extends LootableContainerBlockEntity implements PlayerOwnedWithName, QueuedBlockPosEventTransferListener.Callback {
 	
 	private static final int RANGE = 16;
-	private final BlockPosEventTransferListener blockPosEventTransferListener;
+	private final QueuedBlockPosEventTransferListener blockPosEventTransferListener;
 	private DefaultedList<ItemStack> inventory;
 	private boolean listenerPaused;
 	
@@ -53,7 +54,7 @@ public class GemstoneFarmerBlockEntity extends LootableContainerBlockEntity impl
 	
 	public GemstoneFarmerBlockEntity(BlockPos blockPos, BlockState blockState) {
 		super(SpectrumBlockEntityRegistry.GEMSTONE_FARMER, blockPos, blockState);
-		this.blockPosEventTransferListener = new BlockPosEventTransferListener(new BlockPositionSource(this.pos), RANGE, this);
+		this.blockPosEventTransferListener = new QueuedBlockPosEventTransferListener(new BlockPositionSource(this.pos), RANGE, this);
 		this.inventory = DefaultedList.ofSize(27, ItemStack.EMPTY);
 		this.listenerPaused = false;
 	}
@@ -66,13 +67,16 @@ public class GemstoneFarmerBlockEntity extends LootableContainerBlockEntity impl
 		}
 	}
 	
-	public BlockPosEventTransferListener getEventListener() {
+	public QueuedBlockPosEventTransferListener getEventListener() {
 		return this.blockPosEventTransferListener;
 	}
 	
 	public static void tick(World world, BlockPos pos, BlockState state, GemstoneFarmerBlockEntity blockEntity) {
 		if (!world.isClient) {
 			blockEntity.blockPosEventTransferListener.tick(world);
+			if(world.getTime() % 1000 == 0) {
+				blockEntity.listenerPaused = false; // try to reset from time to time, to search for new clusters, even if full
+			}
 		}
 	}
 	
@@ -138,14 +142,14 @@ public class GemstoneFarmerBlockEntity extends LootableContainerBlockEntity impl
 	}
 	
 	@Override
-	public boolean accepts(World world, GameEventListener listener, BlockPos pos, GameEvent event, @Nullable Entity entity) {
+	public boolean acceptsEvent(World world, GameEventListener listener, BlockPos pos, GameEvent event, BlockPos sourcePos) {
 		return event == SpectrumGameEvents.GEMSTONE_FARMER_FARMABLE_GROWN && !this.listenerPaused;
 	}
 	
 	@Override
-	public void accept(World world, GameEventListener listener, GameEvent event, int distance) {
-		if(listener instanceof BlockPosEventTransferListener blockPosEventTransferListener && this.world != null) {
-			BlockPos eventPos = blockPosEventTransferListener.getSourceBlockPos();
+	public void triggerEvent(World world, GameEventListener listener, Object entry) {
+		if(listener instanceof QueuedBlockPosEventTransferListener && this.world != null) {
+			BlockPos eventPos = ((QueuedBlockPosEventTransferListener.BlockPosEventEntry) entry).eventSourceBlockPos;
 			BlockState eventState = world.getBlockState(eventPos);
 			if(eventState.isIn(SpectrumBlockTags.GEMSTONE_FARMER_FARMABLE)) {
 				// harvest
@@ -157,18 +161,23 @@ public class GemstoneFarmerBlockEntity extends LootableContainerBlockEntity impl
 						.optionalParameter(LootContextParameters.BLOCK_ENTITY, blockEntity);
 				
 				List<ItemStack> drops = eventState.getDroppedStacks(builder);
+				boolean anyDropsUsed = drops.size() == 0;
 				for(ItemStack drop : drops) {
 					ItemStack remainingStack = InventoryHelper.smartAddToInventory(drop, this, null);
-					if(!remainingStack.isEmpty()) {
-						this.listenerPaused = true;
+					if(remainingStack.isEmpty() || drop.getCount() != remainingStack.getCount()) {
+						anyDropsUsed = true;
 					}
 				}
 				
-				world.syncWorldEvent(WorldEvents.BLOCK_BROKEN, eventPos, Block.getRawIdFromState(eventState)); // block break particles & sound
-				if(eventState.getBlock() instanceof Waterloggable && eventState.get(Properties.WATERLOGGED)) {
-					world.setBlockState(eventPos, Blocks.WATER.getDefaultState());
+				if(anyDropsUsed) {
+					world.syncWorldEvent(WorldEvents.BLOCK_BROKEN, eventPos, Block.getRawIdFromState(eventState)); // block break particles & sound
+					if (eventState.getBlock() instanceof Waterloggable && eventState.get(Properties.WATERLOGGED)) {
+						world.setBlockState(eventPos, Blocks.WATER.getDefaultState());
+					} else {
+						world.setBlockState(eventPos, Blocks.AIR.getDefaultState());
+					}
 				} else {
-					world.setBlockState(eventPos, Blocks.AIR.getDefaultState());
+					this.listenerPaused = true;
 				}
 			}
 		}

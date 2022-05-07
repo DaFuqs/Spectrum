@@ -4,70 +4,70 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-public class SchedulerMap<V> {
+public class SchedulerMap<K> {
 
-	private final Map<V, Integer> timer;
+	private final Map<K, Integer> map;
 
 	public SchedulerMap() {
-		this(new HashMap());
+		this(new HashMap<>());
 	}
 
-	public SchedulerMap(Map<V, Integer> map) {
-		timer = map;
+	public SchedulerMap(Map<K, Integer> map) {
+		this.map = map;
 	}
 
-	public void put(V val, int time) {
-		this.timer.put(val, time);
+	public void put(K val, int time) {
+		this.map.put(val, time);
 	}
 	
 	public void clear() {
-		timer.clear();
+		map.clear();
 	}
 
-	public boolean containsKey(V val) {
-		return timer.containsKey(val);
+	public boolean containsKey(K val) {
+		return map.containsKey(val);
 	}
 
 	public boolean isEmpty() {
-		return timer.isEmpty();
+		return map.isEmpty();
 	}
 	
-	public int get(V val) {
-		return timer.get(val);
+	public int get(K val) {
+		return map.get(val);
 	}
 	
 	public final String toString() {
-		return timer.toString();
+		return map.toString();
 	}
 
 	public final int size() {
-		return timer.size();
+		return map.size();
 	}
 	
 	public void tick() {
-		if(!timer.isEmpty()) {
-			Iterator<Map.Entry<V, Integer>> it = timer.entrySet().iterator();
-			while (it.hasNext()) {
-				Map.Entry<V, Integer> e = it.next();
-				V key = e.getKey();
+		if(!map.isEmpty()) {
+			Iterator<Map.Entry<K, Integer>> iterator = map.entrySet().iterator();
+			while (iterator.hasNext()) {
+				Map.Entry<K, Integer> next = iterator.next();
+				K key = next.getKey();
 				if (key instanceof Freezable freezableTimer && freezableTimer.isFrozen()) {
 					continue;
 				}
 				
-				if (e.getValue() >= 1) {
-					e.setValue(e.getValue()-1);
+				if (next.getValue() >= 1) {
+					next.setValue(next.getValue()-1);
 				} else {
 					if (key instanceof SchedulerMap.Callback) {
-						((Callback)key).call();
+						((Callback)key).trigger();
 					}
-					it.remove();
+					iterator.remove();
 				}
 			}
 		}
 	}
 
 	public interface Callback {
-		void call();
+		void trigger();
 	}
 
 	public interface Freezable extends Callback {

@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.blocks.gemstone_farmer;
+package de.dafuqs.spectrum.blocks.energy;
 
 import de.dafuqs.spectrum.blocks.chests.SpectrumChestBlockEntity;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
@@ -8,13 +8,17 @@ import net.minecraft.block.BlockWithEntity;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.pathing.NavigationType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.text.Text;
+import net.minecraft.text.TranslatableText;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.hit.BlockHitResult;
@@ -23,6 +27,8 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.event.listener.GameEventListener;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 public class GemstoneFarmerBlock extends BlockWithEntity {
 	
@@ -34,6 +40,12 @@ public class GemstoneFarmerBlock extends BlockWithEntity {
 	@Override
 	public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
 		return new GemstoneFarmerBlockEntity(pos, state);
+	}
+	
+	@Override
+	public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
+		super.appendTooltip(stack, world, tooltip, options);
+		tooltip.add(new TranslatableText("block.spectrum.gemstone_farmer.tooltip").formatted(Formatting.GRAY));
 	}
 	
 	@Override

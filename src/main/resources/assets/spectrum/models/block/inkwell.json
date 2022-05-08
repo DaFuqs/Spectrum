@@ -4,10 +4,11 @@
 	"textures": {
 		"0": "spectrum:block/polished_calcite_pillar_side",
 		"5": "spectrum:block/polished_basalt_pillar_side",
-		"9": "block/amethyst_block",
+		"9": "minecraft:block/amethyst_block",
 		"10": "spectrum:block/citrine_block",
 		"12": "spectrum:block/topaz_block",
-		"14": "spectrum:block/polished_basalt"
+		"14": "spectrum:block/polished_basalt",
+		"particle": "spectrum:block/amethyst_block"
 	},
 	"elements": [
 		{

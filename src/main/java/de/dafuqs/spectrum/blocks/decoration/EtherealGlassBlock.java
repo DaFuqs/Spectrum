@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.blocks.glass;
+package de.dafuqs.spectrum.blocks.decoration;
 
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;

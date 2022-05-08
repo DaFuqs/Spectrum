@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.blocks.color_picker;
+package de.dafuqs.spectrum.blocks.energy;
 
 import net.minecraft.block.*;
 import net.minecraft.client.item.TooltipContext;
@@ -35,7 +35,7 @@ public class ColorPickerBlock extends FacingBlock {
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
 		super.appendTooltip(stack, world, tooltip, options);
-		tooltip.add(new TranslatableText("block.spectrum.ink_duct.tooltip.range").formatted(Formatting.GRAY));
+		tooltip.add(new TranslatableText("block.spectrum.color_picker.tooltip").formatted(Formatting.GRAY));
 	}
 	
 	@Override

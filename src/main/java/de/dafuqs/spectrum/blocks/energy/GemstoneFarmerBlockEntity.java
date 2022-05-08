@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.blocks.gemstone_farmer;
+package de.dafuqs.spectrum.blocks.energy;
 
 import de.dafuqs.spectrum.enums.ProgressionStage;
 import de.dafuqs.spectrum.events.QueuedBlockPosEventTransferListener;

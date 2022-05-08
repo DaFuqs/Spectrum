@@ -12,7 +12,7 @@ import de.dafuqs.spectrum.blocks.ender.EnderDropperBlockEntity;
 import de.dafuqs.spectrum.blocks.ender.EnderHopperBlockEntity;
 import de.dafuqs.spectrum.blocks.fusion_shrine.FusionShrineBlockEntity;
 import de.dafuqs.spectrum.blocks.fusion_shrine.FusionShrineBlockEntityRenderer;
-import de.dafuqs.spectrum.blocks.gemstone_farmer.GemstoneFarmerBlockEntity;
+import de.dafuqs.spectrum.blocks.energy.GemstoneFarmerBlockEntity;
 import de.dafuqs.spectrum.blocks.item_bowl.ItemBowlBlockEntity;
 import de.dafuqs.spectrum.blocks.item_bowl.ItemBowlBlockEntityRenderer;
 import de.dafuqs.spectrum.blocks.jade_vines.JadeVinesBlockEntity;

@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.blocks.glass;
+package de.dafuqs.spectrum.blocks.decoration;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;

@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.blocks.ink_duct;
+package de.dafuqs.spectrum.blocks.energy;
 
 import net.minecraft.block.*;
 import net.minecraft.client.item.TooltipContext;
@@ -52,7 +52,7 @@ public class InkwellBlock extends FacingBlock {
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
 		super.appendTooltip(stack, world, tooltip, options);
-		tooltip.add(new TranslatableText("block.spectrum.inkwell.tooltip.range").formatted(Formatting.GRAY));
+		tooltip.add(new TranslatableText("block.spectrum.inkwell.tooltip").formatted(Formatting.GRAY));
 	}
 	
 	@Override

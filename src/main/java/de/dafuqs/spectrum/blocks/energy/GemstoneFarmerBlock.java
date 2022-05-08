@@ -78,8 +78,8 @@ public class GemstoneFarmerBlock extends BlockWithEntity {
 	public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
 		if (!state.isOf(newState.getBlock())) {
 			BlockEntity blockEntity = world.getBlockEntity(pos);
-			if (blockEntity instanceof SpectrumChestBlockEntity) {
-				ItemScatterer.spawn(world, pos, (Inventory)blockEntity);
+			if (blockEntity instanceof GemstoneFarmerBlockEntity gemstoneFarmerBlockEntity) {
+				ItemScatterer.spawn(world, pos, gemstoneFarmerBlockEntity);
 				world.updateComparators(pos, this);
 			}
 			

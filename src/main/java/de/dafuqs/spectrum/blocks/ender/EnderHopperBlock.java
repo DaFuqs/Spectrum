@@ -90,8 +90,8 @@ public class EnderHopperBlock extends BlockWithEntity {
 	public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
 		if (!state.isOf(newState.getBlock())) {
 			BlockEntity blockEntity = world.getBlockEntity(pos);
-			if (blockEntity instanceof HopperBlockEntity) {
-				ItemScatterer.spawn(world, pos, (HopperBlockEntity)blockEntity);
+			if (blockEntity instanceof HopperBlockEntity hopperBlockEntity) {
+				ItemScatterer.spawn(world, pos, hopperBlockEntity);
 				world.updateComparators(pos, this);
 			}
 

@@ -51,8 +51,8 @@ public abstract class SpectrumChestBlock extends BlockWithEntity {
 	public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
 		if (!state.isOf(newState.getBlock())) {
 			BlockEntity blockEntity = world.getBlockEntity(pos);
-			if (blockEntity instanceof SpectrumChestBlockEntity) {
-				ItemScatterer.spawn(world, pos, (Inventory)blockEntity);
+			if (blockEntity instanceof SpectrumChestBlockEntity spectrumChestBlockEntity) {
+				ItemScatterer.spawn(world, pos, spectrumChestBlockEntity);
 				world.updateComparators(pos, this);
 			}
 

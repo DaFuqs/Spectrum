@@ -1,13 +1,13 @@
 {
   "type": "spectrum:pedestal",
-  "time": 800,
+  "time": 300,
   "tier": "simple",
-  "cyan": 8,
-  "magenta": 8,
-  "yellow": 8,
+  "cyan": 4,
+  "magenta": 4,
+  "yellow": 4,
   "black": 0,
   "white": 0,
-  "experience": 4.0,
+  "experience": 6.0,
   "pattern": [
     "B B",
     "CMY",

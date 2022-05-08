@@ -1,6 +1,6 @@
 {
   "type": "spectrum:pedestal",
-  "time": 1600,
+  "time": 300,
   "tier": "advanced",
   "cyan": 2,
   "magenta": 2,
@@ -10,7 +10,7 @@
   "experience": 1.0,
   "pattern": [
     " P ",
-    "NNN",
+    "PNP",
     "BCB"
   ],
   "key": {

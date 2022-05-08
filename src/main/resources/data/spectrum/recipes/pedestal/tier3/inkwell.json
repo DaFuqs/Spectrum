@@ -1,17 +1,17 @@
 {
   "type": "spectrum:pedestal",
-  "time": 1600,
+  "time": 300,
   "tier": "advanced",
-  "cyan": 8,
-  "magenta": 8,
-  "yellow": 8,
-  "black": 0,
+  "cyan": 4,
+  "magenta": 4,
+  "yellow": 4,
+  "black": 1,
   "white": 0,
   "experience": 4.0,
   "pattern": [
-    "CBC",
-    "BNB",
-    "CNC"
+    " P ",
+    "CNC",
+    "BNB"
   ],
   "key": {
     "N": {
@@ -22,6 +22,9 @@
     },
     "B": {
       "item": "spectrum:polished_basalt"
+    },
+    "P": {
+      "tag": "spectrum:pigments"
     }
   },
   "result" : {

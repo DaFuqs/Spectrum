@@ -32,19 +32,53 @@ import net.minecraft.util.registry.Registry;
 import static de.dafuqs.spectrum.registries.SpectrumFluids.*;
 
 public class SpectrumItems {
-
-	public static FabricItemSettings generalItemSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).maxCount(64);
-	public static FabricItemSettings generalItemSettingsSingle = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).maxCount(1);
-	public static FabricItemSettings generalUncommonItemSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).maxCount(64).rarity(Rarity.UNCOMMON);
-	public static FabricItemSettings generalUncommonItemSettingsSingle = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.UNCOMMON).maxCount(1);
-	public static FabricItemSettings generalUncommonItemSettingsSingleFireproof = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.UNCOMMON).maxCount(1).fireproof();
-	public static FabricItemSettings generalUncommonItemSettingsSixteen = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.UNCOMMON).maxCount(16);
-	public static FabricItemSettings generalRareItemSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.RARE).maxCount(64);
-	public static FabricItemSettings generalRareItemSettingsSingle = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.RARE).maxCount(1);
-	public static FabricItemSettings generalEpicItemSettingsSingle = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.EPIC).maxCount(1);
-	public static FabricItemSettings decayPlacerItemSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).maxCount(16);
 	
-	// will be added to item group / tab programmatically in the item group itself with enchantments included
+	// FIRST ITEM GROUP
+	public static FabricItemSettings generalItemSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(0);
+	public static FabricItemSettings generalItemSettingsSingle = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(0).maxCount(1);
+	public static FabricItemSettings generalItemSettingsSingleUncommon = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(0).maxCount(1).rarity(Rarity.UNCOMMON);
+	public static FabricItemSettings generalItemSettingsEight = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(0).maxCount(8);
+	public static FabricItemSettings generalItemSettingsSixteen = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(0).maxCount(16);
+	public static FabricItemSettings generalUncommonItemSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(0).rarity(Rarity.UNCOMMON);
+	public static FabricItemSettings generalUncommonItemSettingsEight = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(0).rarity(Rarity.UNCOMMON).maxCount(8);
+	public static FabricItemSettings generalRareItemSettingsEight = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(0).rarity(Rarity.RARE).maxCount(8);
+	public static FabricItemSettings generalRareItemSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(0).rarity(Rarity.RARE).maxCount(64);
+	public static FabricItemSettings generalRareItemSettingsSingle = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(0).rarity(Rarity.RARE).maxCount(1);
+	public static FabricItemSettings generalEpicItemSettingsSingle = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(0).rarity(Rarity.EPIC).maxCount(1);
+	
+	public static FabricItemSettings toolItemSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1);
+	public static FabricItemSettings toolItemSettingsSingle = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).maxCount(1);
+	public static FabricItemSettings toolItemSettingsSixteen = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).maxCount(16);
+	public static FabricItemSettings toolUncommonItemSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).maxCount(64).rarity(Rarity.UNCOMMON);
+	public static FabricItemSettings toolUncommonItemSettingsSingle = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.UNCOMMON).maxCount(1);
+	public static FabricItemSettings toolUncommonItemSettingsSingleFireproof = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.UNCOMMON).maxCount(1).fireproof();
+	public static FabricItemSettings toolUncommonItemSettingsSixteen = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.UNCOMMON).maxCount(16);
+	public static FabricItemSettings toolRareItemSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.RARE);
+	public static FabricItemSettings toolRareItemSettingsSingle = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.RARE).maxCount(1);
+	
+	public static FabricItemSettings worldgenItemSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(2);
+	public static FabricItemSettings worldgenItemSettingsFireproof = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(2).fireproof();
+	public static FabricItemSettings worldgenItemSettingsRare = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(2).rarity(Rarity.RARE);
+	
+	public static FabricItemSettings resourcesItemSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(3);
+	public static FabricItemSettings resourcesItemSettingsSixteen = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(3).maxCount(16);
+	public static FabricItemSettings resourcesItemSettingUncommonSingle = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(3).rarity(Rarity.UNCOMMON).maxCount(1);
+	public static FabricItemSettings resourcesUncommonItemSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(3).rarity(Rarity.UNCOMMON).maxCount(64);
+	public static FabricItemSettings resourcesRareItemSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(3).rarity(Rarity.RARE).maxCount(64);
+	public static FabricItemSettings resourcesItemSettingsFireproof = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(3).maxCount(64).fireproof();
+	public static FabricItemSettings resourcesItemSettingsSixteenFireproof = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(3).maxCount(16).fireproof();
+	
+	// SECOND ITEM GROUP
+	public static FabricItemSettings decorationItemSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_BLOCKS).tab(0);
+	public static FabricItemSettings decorationItemSettingsRare = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_BLOCKS).tab(0).rarity(Rarity.RARE);
+	public static FabricItemSettings decorationItemSettingsFireProof = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_BLOCKS).tab(0).fireproof();
+	
+	public static FabricItemSettings coloredWoodItemSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_BLOCKS).tab(1);
+	
+	public static FabricItemSettings mobHeadItemSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_BLOCKS).tab(2).rarity(Rarity.UNCOMMON);
+	public static FabricItemSettings mobBlockItemSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_BLOCKS).tab(2).rarity(Rarity.UNCOMMON);
+	
+	// added to item group / tab programmatically in the item group itself with enchantments included
 	public static FabricItemSettings spectrumBedrockToolItemSettings = new FabricItemSettings().rarity(Rarity.RARE).fireproof().maxDamage(SpectrumToolMaterials.ToolMaterial.BEDROCK.getDurability());
 	public static FabricItemSettings spectrumBedrockArmorItemSettings = new FabricItemSettings().rarity(Rarity.RARE).fireproof().maxDamage(0);
 	public static FabricItemSettings spectrumEmergencyArmorItemSettings = new FabricItemSettings().rarity(Rarity.RARE).maxDamage(SpectrumArmorMaterials.EMERGENCY.getDurability(EquipmentSlot.CHEST));
@@ -52,24 +86,16 @@ public class SpectrumItems {
 	public static FabricItemSettings spectrumLowVoidingToolItemSettings = new FabricItemSettings().rarity(Rarity.UNCOMMON).maxDamage(SpectrumToolMaterials.ToolMaterial.VOIDING.getDurability());
 	public static FabricItemSettings spectrumMultiToolItemSettings = new FabricItemSettings().rarity(Rarity.UNCOMMON).maxDamage(ToolMaterials.IRON.getDurability());
 	
-	public static FabricItemSettings resourcesItemSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(3).maxCount(64);
-	public static FabricItemSettings resourcesItemSettingsSixteen = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(3).maxCount(16);
-	public static FabricItemSettings resourcesUncommonItemSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(3).rarity(Rarity.UNCOMMON).maxCount(64);
-	public static FabricItemSettings resourcesRareItemSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(3).rarity(Rarity.RARE).maxCount(64);
-	
-	public static FabricItemSettings resourcesItemSettingsFireProof = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(3).maxCount(64).fireproof();
-	public static FabricItemSettings resourcesItemSettingsSixteenFireProof = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(3).maxCount(16).fireproof();
-	
 	// Main items
-	public static final Item MANUAL = new ManualItem(generalItemSettingsSingle);
-	public static final Item CRAFTING_TABLET = new CraftingTabletItem(generalItemSettingsSingle);
+	public static final Item MANUAL = new ManualItem(toolItemSettingsSingle);
+	public static final Item CRAFTING_TABLET = new CraftingTabletItem(toolItemSettingsSingle);
 
-	public static final Item PEDESTAL_TIER_1_STRUCTURE_PLACER = new StructurePlacerItem(generalItemSettingsSingle, new Identifier(SpectrumCommon.MOD_ID, "pedestal_simple_structure_place"));
-	public static final Item PEDESTAL_TIER_2_STRUCTURE_PLACER = new StructurePlacerItem(generalItemSettingsSingle, new Identifier(SpectrumCommon.MOD_ID, "pedestal_advanced_structure_place"));
-	public static final Item PEDESTAL_TIER_3_STRUCTURE_PLACER = new StructurePlacerItem(generalItemSettingsSingle, new Identifier(SpectrumCommon.MOD_ID, "pedestal_complex_structure_place"));
-	public static final Item FUSION_SHRINE_STRUCTURE_PLACER = new StructurePlacerItem(generalItemSettingsSingle, new Identifier(SpectrumCommon.MOD_ID, "fusion_shrine_structure"));
-	public static final Item ENCHANTER_STRUCTURE_PLACER = new StructurePlacerItem(generalItemSettingsSingle, new Identifier(SpectrumCommon.MOD_ID, "enchanter_structure"));
-	public static final Item SPIRIT_INSTILLER_STRUCTURE_PLACER = new StructurePlacerItem(generalItemSettingsSingle, new Identifier(SpectrumCommon.MOD_ID, "spirit_instiller_structure"));
+	public static final Item PEDESTAL_TIER_1_STRUCTURE_PLACER = new StructurePlacerItem(toolItemSettingsSingle, new Identifier(SpectrumCommon.MOD_ID, "pedestal_simple_structure_place"));
+	public static final Item PEDESTAL_TIER_2_STRUCTURE_PLACER = new StructurePlacerItem(toolItemSettingsSingle, new Identifier(SpectrumCommon.MOD_ID, "pedestal_advanced_structure_place"));
+	public static final Item PEDESTAL_TIER_3_STRUCTURE_PLACER = new StructurePlacerItem(toolItemSettingsSingle, new Identifier(SpectrumCommon.MOD_ID, "pedestal_complex_structure_place"));
+	public static final Item FUSION_SHRINE_STRUCTURE_PLACER = new StructurePlacerItem(toolItemSettingsSingle, new Identifier(SpectrumCommon.MOD_ID, "fusion_shrine_structure"));
+	public static final Item ENCHANTER_STRUCTURE_PLACER = new StructurePlacerItem(toolItemSettingsSingle, new Identifier(SpectrumCommon.MOD_ID, "enchanter_structure"));
+	public static final Item SPIRIT_INSTILLER_STRUCTURE_PLACER = new StructurePlacerItem(toolItemSettingsSingle, new Identifier(SpectrumCommon.MOD_ID, "spirit_instiller_structure"));
 
 	// Gem shards
 	public static final Item TOPAZ_SHARD = new Item(resourcesItemSettings);
@@ -146,23 +172,23 @@ public class SpectrumItems {
 	public static final Item MIDNIGHT_CHIP = new CloakedItem(resourcesRareItemSettings, new Identifier(SpectrumCommon.MOD_ID, "midgame/create_midnight_aberration"), SpectrumItems.SPECTRAL_SHARD);
 
 	// Fluid Buckets
-	public static final Item LIQUID_CRYSTAL_BUCKET = new BucketItem(LIQUID_CRYSTAL, generalItemSettingsSingle);
-	public static final Item MUD_BUCKET = new BucketItem(MUD, generalItemSettingsSingle);
-	public static final Item MIDNIGHT_SOLUTION_BUCKET = new BucketItem(MIDNIGHT_SOLUTION, generalItemSettingsSingle);
+	public static final Item LIQUID_CRYSTAL_BUCKET = new BucketItem(LIQUID_CRYSTAL, toolItemSettingsSingle);
+	public static final Item MUD_BUCKET = new BucketItem(MUD, toolItemSettingsSingle);
+	public static final Item MIDNIGHT_SOLUTION_BUCKET = new BucketItem(MIDNIGHT_SOLUTION, toolItemSettingsSingle);
 
 	// Decay bottles
-	public static final Item BOTTLE_OF_FADING = new DecayPlacerItem(SpectrumBlocks.FADING, decayPlacerItemSettings);
-	public static final Item BOTTLE_OF_FAILING = new DecayPlacerItem(SpectrumBlocks.FAILING, decayPlacerItemSettings);
-	public static final Item BOTTLE_OF_RUIN = new DecayPlacerItem(SpectrumBlocks.RUIN, decayPlacerItemSettings);
-	public static final Item BOTTLE_OF_TERROR = new DecayPlacerItem(SpectrumBlocks.TERROR, decayPlacerItemSettings);
-	public static final Item BOTTLE_OF_DECAY_AWAY = new DecayPlacerItem(SpectrumBlocks.DECAY_AWAY, decayPlacerItemSettings);
+	public static final Item BOTTLE_OF_FADING = new DecayPlacerItem(SpectrumBlocks.FADING, toolItemSettingsSixteen);
+	public static final Item BOTTLE_OF_FAILING = new DecayPlacerItem(SpectrumBlocks.FAILING, toolItemSettingsSixteen);
+	public static final Item BOTTLE_OF_RUIN = new DecayPlacerItem(SpectrumBlocks.RUIN, toolItemSettingsSixteen);
+	public static final Item BOTTLE_OF_TERROR = new DecayPlacerItem(SpectrumBlocks.TERROR, toolItemSettingsSixteen);
+	public static final Item BOTTLE_OF_DECAY_AWAY = new DecayPlacerItem(SpectrumBlocks.DECAY_AWAY, toolItemSettingsSixteen);
 
 	// Resources
 	public static final CloakedItem SPARKLESTONE_GEM = new CloakedItem(resourcesItemSettings, ((Cloakable) SpectrumBlocks.SPARKLESTONE_ORE).getCloakAdvancementIdentifier(), Items.YELLOW_DYE);
 	public static final CloakedItem RAW_AZURITE = new CloakedItem(resourcesItemSettings, ((Cloakable) SpectrumBlocks.AZURITE_ORE).getCloakAdvancementIdentifier(), Items.BLUE_DYE);
 	public static final CloakedItem REFINED_AZURITE = new CloakedItem(resourcesItemSettings, ((Cloakable) SpectrumBlocks.AZURITE_ORE).getCloakAdvancementIdentifier(), Items.BLUE_DYE);
-	public static final CloakedGravityItem SCARLET_FRAGMENTS = new CloakedGravityItem(resourcesItemSettingsFireProof, 1.003F, ((Cloakable) SpectrumBlocks.SCARLET_ORE).getCloakAdvancementIdentifier(), Items.RED_DYE);
-	public static final CloakedGravityItem SCARLET_GEM = new CloakedGravityItem(resourcesItemSettingsSixteenFireProof, 1.02F, ((Cloakable) SpectrumBlocks.SCARLET_ORE).getCloakAdvancementIdentifier(), Items.RED_DYE);
+	public static final CloakedGravityItem SCARLET_FRAGMENTS = new CloakedGravityItem(resourcesItemSettingsFireproof, 1.003F, ((Cloakable) SpectrumBlocks.SCARLET_ORE).getCloakAdvancementIdentifier(), Items.RED_DYE);
+	public static final CloakedGravityItem SCARLET_GEM = new CloakedGravityItem(resourcesItemSettingsSixteenFireproof, 1.02F, ((Cloakable) SpectrumBlocks.SCARLET_ORE).getCloakAdvancementIdentifier(), Items.RED_DYE);
 	public static final CloakedGravityItem PALETUR_FRAGMENTS = new CloakedGravityItem(resourcesItemSettings, 0.997F, ((Cloakable) SpectrumBlocks.PALETUR_ORE).getCloakAdvancementIdentifier(), Items.CYAN_DYE);
 	public static final CloakedGravityItem PALETUR_GEM = new CloakedGravityItem(resourcesItemSettingsSixteen, 0.98F, ((Cloakable) SpectrumBlocks.PALETUR_ORE).getCloakAdvancementIdentifier(), Items.CYAN_DYE);
 
@@ -176,17 +202,17 @@ public class SpectrumItems {
 	public static final CloakedItem GERMINATED_JADE_VINE_SEEDS = new GerminatedJadeVineSeedsItem(resourcesItemSettingsSixteen, new Identifier(SpectrumCommon.MOD_ID, "midgame/build_spirit_instiller_structure"), Items.LIME_DYE);
 	public static final CloakedItem JADE_VINE_PETALS = new CloakedItem(resourcesItemSettings, new Identifier(SpectrumCommon.MOD_ID, "midgame/build_spirit_instiller_structure"), Items.LIME_DYE);
 	public static final CloakedItem MOONSTRUCK_NECTAR = new CloakedItem(resourcesItemSettings, new Identifier(SpectrumCommon.MOD_ID, "midgame/build_spirit_instiller_structure"), Items.LIME_DYE);
-	public static final Item RESTORATION_TEA = new RestorationTeaItem(resourcesItemSettings);
+	public static final Item RESTORATION_TEA = new RestorationTeaItem(toolUncommonItemSettingsSixteen);
 
 	// Magical Tools
-	public static final Item ENDER_BAG = new EnderBagItem(generalItemSettingsSingle);
-	public static final Item RADIANCE_STAFF = new RadianceStaffItem(generalUncommonItemSettingsSingle);
-	public static final Item NATURES_STAFF = new NaturesStaffItem(generalUncommonItemSettingsSingle);
-	public static final Item PLACEMENT_STAFF = new PlacementStaffItem(generalUncommonItemSettingsSingle);
-	public static final Item EXCHANGE_STAFF = new ExchangeStaffItem(generalUncommonItemSettingsSingle);
-	public static final Item BLOCK_FLOODER = new BlockFlooderItem(generalUncommonItemSettings);
-	public static final EnderSpliceItem ENDER_SPLICE = new EnderSpliceItem(generalUncommonItemSettingsSixteen);
-	public static final Item END_PORTAL_CRACKER = new EndPortalCrackerItem(generalRareItemSettings);
+	public static final Item ENDER_BAG = new EnderBagItem(toolItemSettingsSingle);
+	public static final Item RADIANCE_STAFF = new RadianceStaffItem(toolUncommonItemSettingsSingle);
+	public static final Item NATURES_STAFF = new NaturesStaffItem(toolUncommonItemSettingsSingle);
+	public static final Item PLACEMENT_STAFF = new PlacementStaffItem(toolUncommonItemSettingsSingle);
+	public static final Item EXCHANGE_STAFF = new ExchangeStaffItem(toolUncommonItemSettingsSingle);
+	public static final Item BLOCK_FLOODER = new BlockFlooderItem(toolUncommonItemSettings);
+	public static final EnderSpliceItem ENDER_SPLICE = new EnderSpliceItem(toolUncommonItemSettingsSixteen);
+	public static final Item END_PORTAL_CRACKER = new EndPortalCrackerItem(toolRareItemSettings);
 	
 	// Catkin
 	public static final Item VIBRANT_CYAN_CATKIN = new CatkinItem(BuiltinGemstoneColor.CYAN, false, resourcesItemSettings);
@@ -202,46 +228,46 @@ public class SpectrumItems {
 	public static final Item LUCID_WHITE_CATKIN = new CatkinItem(BuiltinGemstoneColor.WHITE, true, resourcesUncommonItemSettings);
 
 	// Misc
-	public static final Item MUSIC_DISC_SPECTRUM_THEME = new SpectrumMusicDiscItem(1, SpectrumSoundEvents.SPECTRUM_THEME, generalRareItemSettingsSingle);
-	public static final Item MUSIC_DISC_DIMENSION_THEME = new SpectrumMusicDiscItem(2, SpectrumSoundEvents.BOSS_THEME, generalRareItemSettingsSingle);
+	public static final Item MUSIC_DISC_SPECTRUM_THEME = new SpectrumMusicDiscItem(1, SpectrumSoundEvents.SPECTRUM_THEME, toolRareItemSettingsSingle);
+	public static final Item MUSIC_DISC_DIMENSION_THEME = new SpectrumMusicDiscItem(2, SpectrumSoundEvents.BOSS_THEME, toolRareItemSettingsSingle);
 	public static final Item SPAWNER = new SpectrumMobSpawnerItem(Blocks.SPAWNER, generalEpicItemSettingsSingle);
-	public static final Item GLISTERING_MELON_SEEDS = new AliasedBlockItem(SpectrumBlocks.GLISTERING_MELON_STEM, generalItemSettings);
-	public static final Item INVISIBLE_ITEM_FRAME = new InvisibleItemFrameItem(SpectrumEntityTypes.INVISIBLE_ITEM_FRAME, generalItemSettings);
-	public static final Item INVISIBLE_GLOW_ITEM_FRAME = new InvisibleGlowItemFrameItem(SpectrumEntityTypes.INVISIBLE_GLOW_ITEM_FRAME, generalItemSettings);
+	public static final Item GLISTERING_MELON_SEEDS = new AliasedBlockItem(SpectrumBlocks.GLISTERING_MELON_STEM, toolItemSettings);
+	public static final Item INVISIBLE_ITEM_FRAME = new InvisibleItemFrameItem(SpectrumEntityTypes.INVISIBLE_ITEM_FRAME, toolItemSettings);
+	public static final Item INVISIBLE_GLOW_ITEM_FRAME = new InvisibleGlowItemFrameItem(SpectrumEntityTypes.INVISIBLE_GLOW_ITEM_FRAME, toolItemSettings);
 
-	public static final Item BOTTOMLESS_BUNDLE = new BottomlessBundleItem(generalItemSettingsSingle);
-	public static final Item KNOWLEDGE_GEM = new KnowledgeGemItem(generalUncommonItemSettingsSingle, 10000);
-	public static final Item CELESTIAL_POCKETWATCH = new CelestialPocketWatchItem(generalUncommonItemSettingsSingle);
-	public static final Item GILDED_BOOK = new GildedBookItem(generalUncommonItemSettingsSingle);
+	public static final Item BOTTOMLESS_BUNDLE = new BottomlessBundleItem(toolItemSettingsSingle);
+	public static final Item KNOWLEDGE_GEM = new KnowledgeGemItem(toolUncommonItemSettingsSingle, 10000);
+	public static final Item CELESTIAL_POCKETWATCH = new CelestialPocketWatchItem(toolUncommonItemSettingsSingle);
+	public static final Item GILDED_BOOK = new GildedBookItem(toolUncommonItemSettingsSingle);
 	
 	// Trinkets
-	public static final Item FANCIFUL_BELT = new Item(generalUncommonItemSettingsSixteen);
-	public static final Item FANCIFUL_PENDANT = new Item(generalUncommonItemSettingsSixteen);
-	public static final Item FANCIFUL_STONE_RING = new Item(generalUncommonItemSettingsSixteen);
-	public static final Item FANCIFUL_CIRCLET = new Item(generalUncommonItemSettingsSixteen);
+	public static final Item FANCIFUL_BELT = new Item(toolUncommonItemSettingsSixteen);
+	public static final Item FANCIFUL_PENDANT = new Item(toolUncommonItemSettingsSixteen);
+	public static final Item FANCIFUL_STONE_RING = new Item(toolUncommonItemSettingsSixteen);
+	public static final Item FANCIFUL_CIRCLET = new Item(toolUncommonItemSettingsSixteen);
 	
-	public static final Item GLOW_VISION_GOGGLES = new GlowVisionGogglesItem(generalUncommonItemSettingsSingle);
-	public static final Item JEOPARDANT = new AttackRingItem(generalUncommonItemSettingsSingle);
-	public static final Item SEVEN_LEAGUE_BOOTS = new SevenLeagueBootsItem(generalUncommonItemSettingsSingle);
-	public static final Item RADIANCE_PIN = new RadiancePinItem(generalUncommonItemSettingsSingle);
-	public static final Item TOTEM_PENDANT = new TotemPendantItem(generalUncommonItemSettingsSingle);
-	public static final Item TAKE_OFF_BELT = new TakeOffBeltItem(generalUncommonItemSettingsSingle);
-	public static final Item AZURE_DIKE_BELT = new AzureDikeBeltItem(generalUncommonItemSettingsSingle);
-	public static final Item AZURE_DIKE_RING = new AzureDikeRingItem(generalUncommonItemSettingsSingle);
+	public static final Item GLOW_VISION_GOGGLES = new GlowVisionGogglesItem(toolUncommonItemSettingsSingle);
+	public static final Item JEOPARDANT = new AttackRingItem(toolUncommonItemSettingsSingle);
+	public static final Item SEVEN_LEAGUE_BOOTS = new SevenLeagueBootsItem(toolUncommonItemSettingsSingle);
+	public static final Item RADIANCE_PIN = new RadiancePinItem(toolUncommonItemSettingsSingle);
+	public static final Item TOTEM_PENDANT = new TotemPendantItem(toolUncommonItemSettingsSingle);
+	public static final Item TAKE_OFF_BELT = new TakeOffBeltItem(toolUncommonItemSettingsSingle);
+	public static final Item AZURE_DIKE_BELT = new AzureDikeBeltItem(toolUncommonItemSettingsSingle);
+	public static final Item AZURE_DIKE_RING = new AzureDikeRingItem(toolUncommonItemSettingsSingle);
 	
-	public static final InkFlaskItem INK_FLASK = new InkFlaskItem(generalItemSettingsSingle, 64 * 64 * 100); // 64 stacks of pigments (1 pigment => 100 energy)
-	public static final InkAssortmentItem INK_ASSORTMENT = new InkAssortmentItem(generalItemSettingsSingle, 64 * 100);
-	public static final PigmentPaletteItem PIGMENT_PALETTE = new PigmentPaletteItem(generalUncommonItemSettingsSingle, 64 * 64 * 64 * 100);
-	public static final ArtistsPaletteItem ARTISTS_PALETTE = new ArtistsPaletteItem(generalUncommonItemSettingsSingle, 64 * 64 * 64 * 64 * 100);
+	public static final InkFlaskItem INK_FLASK = new InkFlaskItem(toolItemSettingsSingle, 64 * 64 * 100); // 64 stacks of pigments (1 pigment => 100 energy)
+	public static final InkAssortmentItem INK_ASSORTMENT = new InkAssortmentItem(toolItemSettingsSingle, 64 * 100);
+	public static final PigmentPaletteItem PIGMENT_PALETTE = new PigmentPaletteItem(toolUncommonItemSettingsSingle, 64 * 64 * 64 * 100);
+	public static final ArtistsPaletteItem ARTISTS_PALETTE = new ArtistsPaletteItem(toolUncommonItemSettingsSingle, 64 * 64 * 64 * 64 * 100);
 	
-	public static final Item GLEAMING_PIN = new GleamingPinItem(generalUncommonItemSettingsSingle);
-	public static final Item LESSER_POTION_PENDANT = new PotionPendantItem(generalUncommonItemSettingsSingle, 1, 2, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_lesser_potion_pendant"));
-	public static final Item GREATER_POTION_PENDANT = new PotionPendantItem(generalUncommonItemSettingsSingle, 3, 0,  new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_greater_potion_pendant"));
-	public static final Item ASHEN_CIRCLET = new AshenCircletItem(generalUncommonItemSettingsSingleFireproof);
-	public static final Item TIDAL_CIRCLET = new TidalCircletItem(generalUncommonItemSettingsSingle);
-	public static final Item PUFF_CIRCLET = new PuffCircletItem(generalUncommonItemSettingsSingle);
-	public static final Item WHISPY_CIRCLET = new WhispyCircletItem(generalUncommonItemSettingsSingle);
-	public static final Item NEAT_RING = new NeatRingItem(generalRareItemSettingsSingle);
+	public static final Item GLEAMING_PIN = new GleamingPinItem(toolUncommonItemSettingsSingle);
+	public static final Item LESSER_POTION_PENDANT = new PotionPendantItem(toolUncommonItemSettingsSingle, 1, 2, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_lesser_potion_pendant"));
+	public static final Item GREATER_POTION_PENDANT = new PotionPendantItem(toolUncommonItemSettingsSingle, 3, 0,  new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_greater_potion_pendant"));
+	public static final Item ASHEN_CIRCLET = new AshenCircletItem(toolUncommonItemSettingsSingleFireproof);
+	public static final Item TIDAL_CIRCLET = new TidalCircletItem(toolUncommonItemSettingsSingle);
+	public static final Item PUFF_CIRCLET = new PuffCircletItem(toolUncommonItemSettingsSingle);
+	public static final Item WHISPY_CIRCLET = new WhispyCircletItem(toolUncommonItemSettingsSingle);
+	public static final Item NEAT_RING = new NeatRingItem(toolRareItemSettingsSingle);
 
 	private static void register(String name, Item item) {
 		Registry.register(Registry.ITEM, new Identifier(SpectrumCommon.MOD_ID, name), item);

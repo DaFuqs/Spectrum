@@ -69,7 +69,6 @@ import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
 import de.dafuqs.spectrum.enums.BuiltinGemstoneColor;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.worldgen.ColoredSaplingGenerator;
-import io.wispforest.owo.itemgroup.OwoItemSettings;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
@@ -105,6 +104,8 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Collection;
 import java.util.Locale;
 
+import static de.dafuqs.spectrum.registries.SpectrumItems.*;
+
 public class SpectrumBlocks {
 
 	private static boolean never(BlockState state, BlockView world, BlockPos pos, EntityType<?> type) {
@@ -116,34 +117,6 @@ public class SpectrumBlocks {
 	private static boolean never(BlockState state, BlockView world, BlockPos pos) {
 		return false;
 	}
-
-	public static FabricItemSettings generalItemSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(0);
-	public static FabricItemSettings generalItemSettingsSingle = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(0).maxCount(1);
-	public static FabricItemSettings generalItemSettingsSingleUncommon = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(0).maxCount(1).rarity(Rarity.UNCOMMON);
-	public static FabricItemSettings generalItemSettingsEight = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(0).maxCount(8);
-	public static FabricItemSettings generalItemSettingsSixteen = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(0).maxCount(16);
-	public static FabricItemSettings generalItemSettingsUncommon = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(0).rarity(Rarity.UNCOMMON);
-	public static FabricItemSettings generalItemSettingsUncommonEight = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(0).rarity(Rarity.UNCOMMON).maxCount(8);
-	public static FabricItemSettings generalItemSettingsRare = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(0).rarity(Rarity.RARE);
-	public static FabricItemSettings generalItemSettingsRareEight = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(0).rarity(Rarity.RARE).maxCount(8);
-	
-	public static FabricItemSettings worldgenItemSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(2);
-	public static FabricItemSettings worldgenItemSettingsUncommon = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(2).rarity(Rarity.UNCOMMON);
-	public static FabricItemSettings worldgenItemSettingsRare = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(2).rarity(Rarity.RARE);
-	
-	public static FabricItemSettings resourcesItemSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(3);
-	public static FabricItemSettings resourcesItemSettingsUncommon = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(3).rarity(Rarity.UNCOMMON);
-	public static FabricItemSettings resourcesItemSettingUncommonSingle = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(3).rarity(Rarity.UNCOMMON).maxCount(1);
-	public static FabricItemSettings resourcesItemSettingsRare = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(3).rarity(Rarity.RARE);
-	
-	public static FabricItemSettings decorationItemSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_BLOCKS).tab(0);
-	public static FabricItemSettings decorationItemSettingsRare = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_BLOCKS).tab(0).rarity(Rarity.RARE);
-	public static FabricItemSettings coloredWoodItemSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_BLOCKS).tab(1);
-	public static FabricItemSettings mobHeadItemSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_BLOCKS).tab(2).rarity(Rarity.UNCOMMON);
-	public static FabricItemSettings mobBlockItemSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_BLOCKS).tab(2).rarity(Rarity.UNCOMMON);
-	
-	public static FabricItemSettings worldgenItemSettingsFireProof = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(2).fireproof();
-	public static FabricItemSettings decorationItemSettingsFireProof = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_BLOCKS).tab(0).fireproof();
 	
 	// PEDESTALS
 	public static final Block PEDESTAL_BASIC_TOPAZ = new PedestalBlock(FabricBlockSettings.of(Material.STONE).strength(5.0F, 20.0F), BuiltinPedestalVariant.BASIC_TOPAZ);
@@ -874,14 +847,14 @@ public class SpectrumBlocks {
 		registerBlockWithItem("memory", MEMORY, new MemoryItem(MEMORY, generalItemSettingsSingleUncommon));
 		
 		registerBlockWithItem("upgrade_speed", UPGRADE_SPEED, new UpgradeBlockItem(UPGRADE_SPEED, generalItemSettingsEight, "upgrade_speed"));
-		registerBlockWithItem("upgrade_speed2", UPGRADE_SPEED2, new UpgradeBlockItem(UPGRADE_SPEED2, generalItemSettingsUncommonEight, "upgrade_speed2"));
-		registerBlockWithItem("upgrade_speed3", UPGRADE_SPEED3, new UpgradeBlockItem(UPGRADE_SPEED3, generalItemSettingsRareEight, "upgrade_speed3"));
-		registerBlockWithItem("upgrade_efficiency", UPGRADE_EFFICIENCY, new UpgradeBlockItem(UPGRADE_EFFICIENCY, generalItemSettingsUncommonEight, "upgrade_efficiency"));
-		registerBlockWithItem("upgrade_efficiency2", UPGRADE_EFFICIENCY2, new UpgradeBlockItem(UPGRADE_EFFICIENCY2, generalItemSettingsRareEight, "upgrade_efficiency2"));
-		registerBlockWithItem("upgrade_yield", UPGRADE_YIELD, new UpgradeBlockItem(UPGRADE_YIELD, generalItemSettingsUncommonEight, "upgrade_yield"));
-		registerBlockWithItem("upgrade_yield2", UPGRADE_YIELD2, new UpgradeBlockItem(UPGRADE_YIELD2, generalItemSettingsRareEight, "upgrade_yield2"));
+		registerBlockWithItem("upgrade_speed2", UPGRADE_SPEED2, new UpgradeBlockItem(UPGRADE_SPEED2, generalUncommonItemSettingsEight, "upgrade_speed2"));
+		registerBlockWithItem("upgrade_speed3", UPGRADE_SPEED3, new UpgradeBlockItem(UPGRADE_SPEED3, generalRareItemSettingsEight, "upgrade_speed3"));
+		registerBlockWithItem("upgrade_efficiency", UPGRADE_EFFICIENCY, new UpgradeBlockItem(UPGRADE_EFFICIENCY, generalUncommonItemSettingsEight, "upgrade_efficiency"));
+		registerBlockWithItem("upgrade_efficiency2", UPGRADE_EFFICIENCY2, new UpgradeBlockItem(UPGRADE_EFFICIENCY2, generalRareItemSettingsEight, "upgrade_efficiency2"));
+		registerBlockWithItem("upgrade_yield", UPGRADE_YIELD, new UpgradeBlockItem(UPGRADE_YIELD, generalUncommonItemSettingsEight, "upgrade_yield"));
+		registerBlockWithItem("upgrade_yield2", UPGRADE_YIELD2, new UpgradeBlockItem(UPGRADE_YIELD2, generalRareItemSettingsEight, "upgrade_yield2"));
 		registerBlockWithItem("upgrade_experience", UPGRADE_EXPERIENCE, new UpgradeBlockItem(UPGRADE_EXPERIENCE, generalItemSettingsEight, "upgrade_experience"));
-		registerBlockWithItem("upgrade_experience2", UPGRADE_EXPERIENCE2, new UpgradeBlockItem(UPGRADE_EXPERIENCE2, generalItemSettingsUncommonEight, "upgrade_experience2"));
+		registerBlockWithItem("upgrade_experience2", UPGRADE_EXPERIENCE2, new UpgradeBlockItem(UPGRADE_EXPERIENCE2, generalUncommonItemSettingsEight, "upgrade_experience2"));
 		
 		registerStructureBlocks(generalItemSettings);
 		registerJadeVineBlocks(generalItemSettings);
@@ -895,7 +868,7 @@ public class SpectrumBlocks {
 		registerShootingStarBlocks(resourcesItemSettingUncommonSingle);
 		
 		registerGemOreBlocks(worldgenItemSettings);
-		registerOreBlocks(worldgenItemSettings, worldgenItemSettingsFireProof);
+		registerOreBlocks(worldgenItemSettings, worldgenItemSettingsFireproof);
 		registerOreStorageBlocks(decorationItemSettings, decorationItemSettingsFireProof);
 		registerGemstoneLamps(decorationItemSettings);
 		registerSparklestoneLights(decorationItemSettings);

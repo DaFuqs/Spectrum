@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.blocks.gemstone_farmer;
 
 import de.dafuqs.spectrum.enums.ProgressionStage;
-import de.dafuqs.spectrum.events.BlockPosEventTransferListener;
 import de.dafuqs.spectrum.events.QueuedBlockPosEventTransferListener;
 import de.dafuqs.spectrum.events.SpectrumGameEvents;
 import de.dafuqs.spectrum.helpers.InventoryHelper;
@@ -16,7 +15,6 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.Waterloggable;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.LootableContainerBlockEntity;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventories;
@@ -37,7 +35,6 @@ import net.minecraft.world.WorldEvents;
 import net.minecraft.world.event.BlockPositionSource;
 import net.minecraft.world.event.GameEvent;
 import net.minecraft.world.event.listener.GameEventListener;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.UUID;

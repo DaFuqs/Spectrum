@@ -10,6 +10,7 @@ import de.dafuqs.spectrum.blocks.chests.CompactingChestBlock;
 import de.dafuqs.spectrum.blocks.chests.PrivateChestBlock;
 import de.dafuqs.spectrum.blocks.chests.RestockingChestBlock;
 import de.dafuqs.spectrum.blocks.chests.SuckingChestBlock;
+import de.dafuqs.spectrum.blocks.color_picker.ColorPickerBlock;
 import de.dafuqs.spectrum.blocks.conditional.*;
 import de.dafuqs.spectrum.blocks.decay.DecayAwayBlock;
 import de.dafuqs.spectrum.blocks.decay.FadingBlock;
@@ -30,6 +31,8 @@ import de.dafuqs.spectrum.blocks.gemstone_farmer.GemstoneFarmerBlock;
 import de.dafuqs.spectrum.blocks.glass.*;
 import de.dafuqs.spectrum.blocks.gravity.GravitableBlock;
 import de.dafuqs.spectrum.blocks.gravity.GravityBlockItem;
+import de.dafuqs.spectrum.blocks.ink_duct.InkDuctBlock;
+import de.dafuqs.spectrum.blocks.ink_duct.InkwellBlock;
 import de.dafuqs.spectrum.blocks.item_bowl.ItemBowlBlock;
 import de.dafuqs.spectrum.blocks.jade_vines.JadeVinesBlock;
 import de.dafuqs.spectrum.blocks.lava_sponge.LavaSpongeBlock;
@@ -347,9 +350,9 @@ public class SpectrumBlocks {
 	public static final Block INTERACTION_NODE = new Block(FabricBlockSettings.of(Material.AMETHYST).hardness(5.0F).nonOpaque().requiresTool().sounds(SpectrumBlockSoundGroups.MOONSTONE_CLUSTER));
 	
 	// ENERGY
-	public static final Block COLOR_PICKER = new Block(FabricBlockSettings.of(Material.STONE).hardness(3.0F));
-	public static final Block INKWELL = new Block(FabricBlockSettings.of(Material.STONE).hardness(3.0F));
-	public static final Block INK_DUCT = new Block(FabricBlockSettings.of(Material.STONE).hardness(3.0F));
+	public static final Block COLOR_PICKER = new ColorPickerBlock(FabricBlockSettings.of(Material.STONE).hardness(3.0F).nonOpaque());
+	public static final Block INKWELL = new InkwellBlock(FabricBlockSettings.of(Material.STONE).hardness(3.0F));
+	public static final Block INK_DUCT = new InkDuctBlock(FabricBlockSettings.of(Material.STONE).hardness(3.0F).nonOpaque());
 	public static final Block GEMSTONE_FARMER = new GemstoneFarmerBlock(FabricBlockSettings.of(Material.STONE).hardness(3.0F));
 	
 	// COLORED TREES
@@ -1707,6 +1710,10 @@ public class SpectrumBlocks {
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.PRESERVATION_GLASS, RenderLayer.getTranslucent());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.TINTED_PRESERVATION_GLASS, RenderLayer.getTranslucent());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.COURIER_STATUE, RenderLayer.getCutout());
+		
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.COLOR_PICKER, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.INK_DUCT, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.INKWELL, RenderLayer.getCutout());
 
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.REDSTONE_TIMER, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.REDSTONE_WIRELESS, RenderLayer.getCutout());

@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:collect_all_basic_shards",
+  "parent": "spectrum:craft_using_pedestal",
   "display": {
     "icon": {
       "item": "spectrum:pedestal_all_basic"
@@ -18,7 +18,7 @@
     },
     "gotten_previous": {
       "trigger":"spectrum:has_advancement",
-      "conditions": { "advancement_identifier": "spectrum:collect_all_basic_shards" }
+      "conditions": { "advancement_identifier": "spectrum:craft_using_pedestal" }
     }
   }
 }

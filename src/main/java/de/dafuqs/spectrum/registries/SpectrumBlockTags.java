@@ -27,7 +27,7 @@ public class SpectrumBlockTags {
 	public static TagKey<Block> NATURES_STAFF_TICKABLE;
 	public static TagKey<Block> NATURES_STAFF_STACKABLE;
 	public static TagKey<Block> BLACK_MATERIA_CONVERSIONS;
-	public static TagKey<Block> GEMSTONE_FARMER_FARMABLE;
+	public static TagKey<Block> CRYSTAL_APOTHECARY_HARVESTABLE;
 	
 	public static TagKey<Block> BUILDING_STAFFS_BLACKLISTED;
 	
@@ -67,7 +67,7 @@ public class SpectrumBlockTags {
 		NATURES_STAFF_TICKABLE = getReference("natures_staff_tickable");
 		NATURES_STAFF_STACKABLE = getReference("natures_staff_stackable");
 		BUILDING_STAFFS_BLACKLISTED = getReference("building_staffs_blacklisted");
-		GEMSTONE_FARMER_FARMABLE = getReference("gemstone_farmer_farmable");
+		CRYSTAL_APOTHECARY_HARVESTABLE = getReference("crystal_apothecary_harvestable");
 		
 		// DEBUG
 		EXEMPT_FROM_MINEABLE_DEBUG_CHECK = getReference("exempt_from_mineable_debug_check");

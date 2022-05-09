@@ -5,7 +5,7 @@
 		"bonus_rolls": 0.0,
 		"entries": [{
 			"type": "minecraft:item",
-			"name": "spectrum:gemstone_farmer"
+			"name": "spectrum:crystal_apothecary"
 		}],
 		"conditions": [{
 			"condition": "minecraft:survives_explosion"

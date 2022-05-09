@@ -27,7 +27,7 @@ import de.dafuqs.spectrum.blocks.fluid.MudFluidBlock;
 import de.dafuqs.spectrum.blocks.fusion_shrine.FusionShrineBlock;
 import de.dafuqs.spectrum.blocks.gemstone.SpectrumBuddingBlock;
 import de.dafuqs.spectrum.blocks.gemstone.SpectrumGemstoneBlock;
-import de.dafuqs.spectrum.blocks.energy.GemstoneFarmerBlock;
+import de.dafuqs.spectrum.blocks.energy.CrystalApothecaryBlock;
 import de.dafuqs.spectrum.blocks.gravity.GravitableBlock;
 import de.dafuqs.spectrum.blocks.gravity.GravityBlockItem;
 import de.dafuqs.spectrum.blocks.energy.InkDuctBlock;
@@ -325,7 +325,7 @@ public class SpectrumBlocks {
 	public static final Block COLOR_PICKER = new ColorPickerBlock(FabricBlockSettings.of(Material.STONE).hardness(3.0F).nonOpaque());
 	public static final Block INKWELL = new InkwellBlock(FabricBlockSettings.of(Material.STONE).hardness(3.0F));
 	public static final Block INK_DUCT = new InkDuctBlock(FabricBlockSettings.of(Material.STONE).hardness(3.0F).nonOpaque());
-	public static final Block GEMSTONE_FARMER = new GemstoneFarmerBlock(FabricBlockSettings.of(Material.STONE).hardness(3.0F));
+	public static final Block CRYSTAL_APOTHECARY = new CrystalApothecaryBlock(FabricBlockSettings.of(Material.STONE).hardness(3.0F));
 	
 	// COLORED TREES
 	private static final FabricBlockSettings coloredSaplingBlockSettings = FabricBlockSettings.copyOf(Blocks.OAK_SAPLING);
@@ -1367,7 +1367,7 @@ public class SpectrumBlocks {
 	}
 	
 	public static void registerMachines(FabricItemSettings fabricItemSettings) {
-		registerBlockWithItem("gemstone_farmer", GEMSTONE_FARMER, fabricItemSettings);
+		registerBlockWithItem("crystal_apothecary", CRYSTAL_APOTHECARY, fabricItemSettings);
 		registerBlockWithItem("color_picker", COLOR_PICKER, fabricItemSettings);
 		registerBlockWithItem("inkwell", INKWELL, fabricItemSettings);
 		registerBlockWithItem("ink_duct", INK_DUCT, fabricItemSettings);

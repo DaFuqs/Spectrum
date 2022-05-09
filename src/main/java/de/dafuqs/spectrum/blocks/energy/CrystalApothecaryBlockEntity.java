@@ -38,11 +38,10 @@ import net.minecraft.world.event.BlockPositionSource;
 import net.minecraft.world.event.GameEvent;
 import net.minecraft.world.event.listener.GameEventListener;
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
 
-public class GemstoneFarmerBlockEntity extends LootableContainerBlockEntity implements PlayerOwnedWithName, QueuedBlockPosEventTransferListener.Callback {
+public class CrystalApothecaryBlockEntity extends LootableContainerBlockEntity implements PlayerOwnedWithName, QueuedBlockPosEventTransferListener.Callback {
 	
 	private static final int RANGE = 12;
 	private final QueuedBlockPosEventTransferListener blockPosEventTransferListener;
@@ -52,8 +51,8 @@ public class GemstoneFarmerBlockEntity extends LootableContainerBlockEntity impl
 	private UUID ownerUUID;
 	private String ownerName;
 	
-	public GemstoneFarmerBlockEntity(BlockPos blockPos, BlockState blockState) {
-		super(SpectrumBlockEntityRegistry.GEMSTONE_FARMER, blockPos, blockState);
+	public CrystalApothecaryBlockEntity(BlockPos blockPos, BlockState blockState) {
+		super(SpectrumBlockEntityRegistry.CRYSTAL_APOTHECARY, blockPos, blockState);
 		this.blockPosEventTransferListener = new QueuedBlockPosEventTransferListener(new BlockPositionSource(this.pos), RANGE, this);
 		this.inventory = DefaultedList.ofSize(27, ItemStack.EMPTY);
 		this.listenerPaused = false;
@@ -61,9 +60,9 @@ public class GemstoneFarmerBlockEntity extends LootableContainerBlockEntity impl
 	
 	protected Text getContainerName() {
 		if(hasOwner()) {
-			return new TranslatableText("block.spectrum.gemstone_farmer").append(new TranslatableText("container.spectrum.owned_by_player", this.ownerName));
+			return new TranslatableText("block.spectrum.crystal_apothecary").append(new TranslatableText("container.spectrum.owned_by_player", this.ownerName));
 		} else {
-			return new TranslatableText("block.spectrum.gemstone_farmer");
+			return new TranslatableText("block.spectrum.crystal_apothecary");
 		}
 	}
 	
@@ -71,7 +70,7 @@ public class GemstoneFarmerBlockEntity extends LootableContainerBlockEntity impl
 		return this.blockPosEventTransferListener;
 	}
 	
-	public static void tick(World world, BlockPos pos, BlockState state, GemstoneFarmerBlockEntity blockEntity) {
+	public static void tick(World world, BlockPos pos, BlockState state, CrystalApothecaryBlockEntity blockEntity) {
 		if (!world.isClient) {
 			blockEntity.blockPosEventTransferListener.tick(world);
 			if(world.getTime() % 1000 == 0) {
@@ -146,7 +145,7 @@ public class GemstoneFarmerBlockEntity extends LootableContainerBlockEntity impl
 	
 	@Override
 	public boolean acceptsEvent(World world, GameEventListener listener, BlockPos pos, GameEvent event, BlockPos sourcePos) {
-		return event == SpectrumGameEvents.GEMSTONE_FARMER_FARMABLE_GROWN && !this.listenerPaused;
+		return event == SpectrumGameEvents.CRYSTAL_APOTHECARY_HARVESTABLE_GROWN && !this.listenerPaused;
 	}
 	
 	@Override
@@ -154,7 +153,7 @@ public class GemstoneFarmerBlockEntity extends LootableContainerBlockEntity impl
 		if(listener instanceof QueuedBlockPosEventTransferListener && this.world != null) {
 			BlockPos eventPos = ((QueuedBlockPosEventTransferListener.BlockPosEventEntry) entry).eventSourceBlockPos;
 			BlockState eventState = world.getBlockState(eventPos);
-			if(eventState.isIn(SpectrumBlockTags.GEMSTONE_FARMER_FARMABLE)) {
+			if(eventState.isIn(SpectrumBlockTags.CRYSTAL_APOTHECARY_HARVESTABLE)) {
 				// harvest
 				BlockEntity blockEntity = eventState.hasBlockEntity() ? this.world.getBlockEntity(eventPos) : null;
 				LootContext.Builder builder = (new LootContext.Builder((ServerWorld)this.world))
@@ -169,7 +168,7 @@ public class GemstoneFarmerBlockEntity extends LootableContainerBlockEntity impl
 					if(hasOwner()) {
 						PlayerEntity owner = getPlayerEntityIfOnline(world);
 						if(owner instanceof ServerPlayerEntity serverPlayerEntity) {
-							SpectrumAdvancementCriteria.GEMSTONE_FARMER_COLLECTING.trigger(serverPlayerEntity, drop);
+							SpectrumAdvancementCriteria.CRYSTAL_APOTHECARY_COLLECTING.trigger(serverPlayerEntity, drop);
 						}
 					}
 					ItemStack remainingStack = InventoryHelper.smartAddToInventory(drop, this, null);
@@ -211,8 +210,8 @@ public class GemstoneFarmerBlockEntity extends LootableContainerBlockEntity impl
 	
 	public void harvestExistingClusters() {
 		for (BlockPos currPos : BlockPos.iterateOutwards(this.pos, RANGE, RANGE, RANGE)) {
-			if (world.getBlockState(currPos).isIn(SpectrumBlockTags.GEMSTONE_FARMER_FARMABLE)) {
-				this.blockPosEventTransferListener.acceptEvent(world, currPos, SpectrumGameEvents.GEMSTONE_FARMER_FARMABLE_GROWN, this.pos);
+			if (world.getBlockState(currPos).isIn(SpectrumBlockTags.CRYSTAL_APOTHECARY_HARVESTABLE)) {
+				this.blockPosEventTransferListener.acceptEvent(world, currPos, SpectrumGameEvents.CRYSTAL_APOTHECARY_HARVESTABLE_GROWN, this.pos);
 			}
 		}
 	}

@@ -12,7 +12,7 @@
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier3/inkwell",
-      "text": "The Inkwell, placed on a $(l:magic/gemstone_farmer)Gemstone Farmer$(/l) directly converts the geodes energy into INK, allowing it to be transmitted via $(l:magic/ink_duct)Ink Ducsts$(/l)."
+      "text": "The Inkwell, placed on a $(l:magic/crystal_apothecary)Crystal Apothecary$(/l) directly converts the geodes energy into INK, allowing it to be transmitted via $(l:magic/ink_duct)Ink Ducsts$(/l)."
     }
   ]
 }

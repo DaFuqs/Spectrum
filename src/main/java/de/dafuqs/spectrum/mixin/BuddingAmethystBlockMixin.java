@@ -23,8 +23,8 @@ public class BuddingAmethystBlockMixin {
 			at = @At(value = "INVOKE", target = "Lnet/minecraft/server/world/ServerWorld;setBlockState(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;)Z", shift = At.Shift.AFTER),
 			locals = LocalCapture.CAPTURE_FAILHARD)
 	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random, CallbackInfo ci, Direction direction, BlockPos offsetPos, BlockState originalOffsetState, Block blockToGrow, BlockState blockStateToGrow) {
-		if(blockStateToGrow.isIn(SpectrumBlockTags.GEMSTONE_FARMER_FARMABLE)) {
-			world.emitGameEvent(SpectrumGameEvents.GEMSTONE_FARMER_FARMABLE_GROWN, offsetPos);
+		if(blockStateToGrow.isIn(SpectrumBlockTags.CRYSTAL_APOTHECARY_HARVESTABLE)) {
+			world.emitGameEvent(SpectrumGameEvents.CRYSTAL_APOTHECARY_HARVESTABLE_GROWN, offsetPos);
 		}
 	}
 	

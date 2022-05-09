@@ -1,10 +1,10 @@
 {
   "name": "Crystal Apothecary",
-  "advancement": "spectrum:progression/unlock_gemstone_farmer",
-  "icon": "spectrum:gemstone_farmer",
+  "advancement": "spectrum:progression/unlock_crystal_apothecary",
+  "icon": "spectrum:crystal_apothecary",
   "category": "spectrum:magic_category",
   "extra_recipe_mappings": {
-    "spectrum:gemstone_farmer": 0
+    "spectrum:crystal_apothecary": 0
   },
   "pages": [
     {
@@ -14,7 +14,7 @@
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier3/gemstone_farmer",
+      "recipe": "spectrum:pedestal/tier3/crystal_apothecary",
       "text": ""
     }
   ]

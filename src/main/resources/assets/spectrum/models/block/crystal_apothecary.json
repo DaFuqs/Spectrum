@@ -2,10 +2,10 @@
 	"credit": "Made with Blockbench",
 	"parent": "block/block",
 	"textures": {
-		"0": "spectrum:block/gemstone_farmer",
+		"0": "spectrum:block/crystal_apothecary",
 		"1": "spectrum:block/polished_basalt",
 		"2": "spectrum:block/polished_calcite_pillar_side",
-		"particle": "spectrum:block/gemstone_farmer"
+		"particle": "spectrum:block/crystal_apothecary"
 	},
 	"elements": [
 		{

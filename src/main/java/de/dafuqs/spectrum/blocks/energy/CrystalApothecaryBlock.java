@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.blocks.energy;
 
-import de.dafuqs.spectrum.blocks.chests.SpectrumChestBlockEntity;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
@@ -12,7 +11,6 @@ import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.pathing.NavigationType;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
@@ -30,35 +28,35 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class GemstoneFarmerBlock extends BlockWithEntity {
+public class CrystalApothecaryBlock extends BlockWithEntity {
 	
-	public GemstoneFarmerBlock(Settings settings) {
+	public CrystalApothecaryBlock(Settings settings) {
 		super(settings);
 	}
 	
 	@Nullable
 	@Override
 	public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
-		return new GemstoneFarmerBlockEntity(pos, state);
+		return new CrystalApothecaryBlockEntity(pos, state);
 	}
 	
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
 		super.appendTooltip(stack, world, tooltip, options);
-		tooltip.add(new TranslatableText("block.spectrum.gemstone_farmer.tooltip").formatted(Formatting.GRAY));
+		tooltip.add(new TranslatableText("block.spectrum.crystal_apothecary.tooltip").formatted(Formatting.GRAY));
 	}
 	
 	@Override
 	public void onPlaced(World world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack itemStack) {
 		BlockEntity blockEntity = world.getBlockEntity(pos);
-		if (blockEntity instanceof GemstoneFarmerBlockEntity gemstoneFarmerBlockEntity) {
+		if (blockEntity instanceof CrystalApothecaryBlockEntity crystalApothecaryBlockEntity) {
 			if(placer instanceof ServerPlayerEntity serverPlayerEntity) {
-				gemstoneFarmerBlockEntity.setOwner(serverPlayerEntity);
+				crystalApothecaryBlockEntity.setOwner(serverPlayerEntity);
 			}
 			if (itemStack.hasCustomName()) {
-				gemstoneFarmerBlockEntity.setCustomName(itemStack.getName());
+				crystalApothecaryBlockEntity.setCustomName(itemStack.getName());
 			}
-			gemstoneFarmerBlockEntity.harvestExistingClusters();
+			crystalApothecaryBlockEntity.harvestExistingClusters();
 		}
 	}
 	
@@ -68,8 +66,8 @@ public class GemstoneFarmerBlock extends BlockWithEntity {
 			return ActionResult.SUCCESS;
 		} else {
 			BlockEntity blockEntity = world.getBlockEntity(pos);
-			if (blockEntity instanceof GemstoneFarmerBlockEntity gemstoneFarmerBlockEntity) {
-				player.openHandledScreen(gemstoneFarmerBlockEntity);
+			if (blockEntity instanceof CrystalApothecaryBlockEntity crystalApothecaryBlockEntity) {
+				player.openHandledScreen(crystalApothecaryBlockEntity);
 			}
 			return ActionResult.CONSUME;
 		}
@@ -79,8 +77,8 @@ public class GemstoneFarmerBlock extends BlockWithEntity {
 	public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
 		if (!state.isOf(newState.getBlock())) {
 			BlockEntity blockEntity = world.getBlockEntity(pos);
-			if (blockEntity instanceof GemstoneFarmerBlockEntity gemstoneFarmerBlockEntity) {
-				ItemScatterer.spawn(world, pos, gemstoneFarmerBlockEntity);
+			if (blockEntity instanceof CrystalApothecaryBlockEntity crystalApothecaryBlockEntity) {
+				ItemScatterer.spawn(world, pos, crystalApothecaryBlockEntity);
 				world.updateComparators(pos, this);
 			}
 			
@@ -101,12 +99,12 @@ public class GemstoneFarmerBlock extends BlockWithEntity {
 	@Override
 	@Nullable
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-		return checkType(type, SpectrumBlockEntityRegistry.GEMSTONE_FARMER, GemstoneFarmerBlockEntity::tick);
+		return checkType(type, SpectrumBlockEntityRegistry.CRYSTAL_APOTHECARY, CrystalApothecaryBlockEntity::tick);
 	}
 	
 	@Nullable
 	public <T extends BlockEntity> GameEventListener getGameEventListener(World world, T blockEntity) {
-		return blockEntity instanceof GemstoneFarmerBlockEntity gemstoneFarmerBlockEntity ? gemstoneFarmerBlockEntity.getEventListener() : null;
+		return blockEntity instanceof CrystalApothecaryBlockEntity crystalApothecaryBlockEntity ? crystalApothecaryBlockEntity.getEventListener() : null;
 	}
 	
 }

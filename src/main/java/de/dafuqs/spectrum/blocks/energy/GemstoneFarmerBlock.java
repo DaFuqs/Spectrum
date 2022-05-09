@@ -58,6 +58,7 @@ public class GemstoneFarmerBlock extends BlockWithEntity {
 			if (itemStack.hasCustomName()) {
 				gemstoneFarmerBlockEntity.setCustomName(itemStack.getName());
 			}
+			gemstoneFarmerBlockEntity.harvestExistingClusters();
 		}
 	}
 	

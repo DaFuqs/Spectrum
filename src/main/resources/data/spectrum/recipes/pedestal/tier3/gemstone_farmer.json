@@ -1,9 +1,9 @@
 {
   "type": "spectrum:pedestal",
-  "time": 1600,
+  "time": 800,
   "tier": "advanced",
-  "cyan": 8,
-  "magenta": 8,
+  "cyan": 0,
+  "magenta": 0,
   "yellow": 8,
   "black": 0,
   "white": 0,

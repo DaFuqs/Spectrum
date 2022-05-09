@@ -36,12 +36,13 @@ import net.minecraft.world.event.BlockPositionSource;
 import net.minecraft.world.event.GameEvent;
 import net.minecraft.world.event.listener.GameEventListener;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
 
 public class GemstoneFarmerBlockEntity extends LootableContainerBlockEntity implements PlayerOwnedWithName, QueuedBlockPosEventTransferListener.Callback {
 	
-	private static final int RANGE = 16;
+	private static final int RANGE = 12;
 	private final QueuedBlockPosEventTransferListener blockPosEventTransferListener;
 	private DefaultedList<ItemStack> inventory;
 	private boolean listenerPaused;
@@ -120,7 +121,10 @@ public class GemstoneFarmerBlockEntity extends LootableContainerBlockEntity impl
 	@Override
 	public void setStack(int slot, ItemStack stack) {
 		super.setStack(slot, stack);
-		this.listenerPaused = false;
+		if(this.listenerPaused) {
+			this.listenerPaused = false;
+			harvestExistingClusters();
+		}
 	}
 	
 	@Override
@@ -196,4 +200,11 @@ public class GemstoneFarmerBlockEntity extends LootableContainerBlockEntity impl
 		this.ownerName = playerEntity.getName().asString();
 	}
 	
+	public void harvestExistingClusters() {
+		for (BlockPos currPos : BlockPos.iterateOutwards(this.pos, RANGE, RANGE, RANGE)) {
+			if (world.getBlockState(currPos).isIn(SpectrumBlockTags.GEMSTONE_FARMER_FARMABLE)) {
+				this.blockPosEventTransferListener.acceptEvent(world, currPos, SpectrumGameEvents.GEMSTONE_FARMER_FARMABLE_GROWN, this.pos);
+			}
+		}
+	}
 }

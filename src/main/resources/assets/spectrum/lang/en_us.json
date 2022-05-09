@@ -1232,7 +1232,7 @@
   "block.spectrum.inkwell.tooltip": "Place on a Gemstone Farmer to extract Ink",
   "block.spectrum.ink_duct": "Ink Duct",
   "block.spectrum.ink_duct.tooltip": "Transfers Ink in a straight line",
-  "block.spectrum.gemstone_farmer": "Gemstone Farmer",
+  "block.spectrum.gemstone_farmer": "Crystal Apothecary",
   "block.spectrum.gemstone_farmer.tooltip": "Place in a Geode to harvest Gemstone Shards",
 
   "item.spectrum.neat_ring": "A Neat Ring",

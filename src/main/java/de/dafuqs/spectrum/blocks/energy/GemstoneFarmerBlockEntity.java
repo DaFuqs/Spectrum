@@ -6,6 +6,7 @@ import de.dafuqs.spectrum.events.SpectrumGameEvents;
 import de.dafuqs.spectrum.helpers.InventoryHelper;
 import de.dafuqs.spectrum.interfaces.PlayerOwnedWithName;
 import de.dafuqs.spectrum.inventories.GenericSpectrumContainerScreenHandler;
+import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
 import de.dafuqs.spectrum.registries.SpectrumBlockTags;
 import de.dafuqs.spectrum.registries.SpectrumItems;
@@ -23,6 +24,7 @@ import net.minecraft.loot.context.LootContext;
 import net.minecraft.loot.context.LootContextParameters;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.screen.ScreenHandler;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.property.Properties;
 import net.minecraft.text.Text;
@@ -164,10 +166,17 @@ public class GemstoneFarmerBlockEntity extends LootableContainerBlockEntity impl
 				List<ItemStack> drops = eventState.getDroppedStacks(builder);
 				boolean anyDropsUsed = drops.size() == 0;
 				for(ItemStack drop : drops) {
+					if(hasOwner()) {
+						PlayerEntity owner = getPlayerEntityIfOnline(world);
+						if(owner instanceof ServerPlayerEntity serverPlayerEntity) {
+							SpectrumAdvancementCriteria.GEMSTONE_FARMER_COLLECTING.trigger(serverPlayerEntity, drop);
+						}
+					}
 					ItemStack remainingStack = InventoryHelper.smartAddToInventory(drop, this, null);
 					if(remainingStack.isEmpty() || drop.getCount() != remainingStack.getCount()) {
 						anyDropsUsed = true;
 					}
+					// remaining items are voided to not cause lag
 				}
 				
 				if(anyDropsUsed) {

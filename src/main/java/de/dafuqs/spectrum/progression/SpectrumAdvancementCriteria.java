@@ -27,6 +27,7 @@ public class SpectrumAdvancementCriteria {
 	public static MemoryManifestingCriterion MEMORY_MANIFESTING;
 	public static SpiritInstillerCraftingCriterion SPIRIT_INSTILLER_CRAFTING;
 	public static SlimeSizingCriterion SLIME_SIZING;
+	public static GemstoneFarmerCollectingCriterion GEMSTONE_FARMER_COLLECTING;
 
 	public static void register() {
 		ADVANCEMENT_GOTTEN = CriteriaAccessor.callRegister(new HasAdvancementCriterion());
@@ -51,6 +52,7 @@ public class SpectrumAdvancementCriteria {
 		MEMORY_MANIFESTING = CriteriaAccessor.callRegister(new MemoryManifestingCriterion());
 		SPIRIT_INSTILLER_CRAFTING = CriteriaAccessor.callRegister(new SpiritInstillerCraftingCriterion());
 		SLIME_SIZING = CriteriaAccessor.callRegister(new SlimeSizingCriterion());
+		GEMSTONE_FARMER_COLLECTING = CriteriaAccessor.callRegister(new GemstoneFarmerCollectingCriterion());
 	}
 
 }

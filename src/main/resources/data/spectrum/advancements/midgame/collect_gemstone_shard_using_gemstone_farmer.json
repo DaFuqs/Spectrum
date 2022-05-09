@@ -1,0 +1,28 @@
+{
+  "parent": "spectrum:midgame/collect_lightning_stone",
+  "display": {
+    "icon": {
+      "item": "spectrum:gemstone_farmer"
+    },
+    "title": {
+      "translate": "advancements.spectrum.collect_gemstone_shard_using_gemstone_farmer.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.collect_gemstone_shard_using_gemstone_farmer.description"
+    }
+  },
+  "criteria": {
+    "collected_gemstone_shard_using_gemstone_farmer": {
+      "trigger":"spectrum:collect_using_gemstone_farmer",
+      "conditions": {
+        "item": {
+          "tag": "spectrum:gemstone_shards"
+        }
+      }
+    },
+    "gotten_previous": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:midgame/collect_lightning_stone" }
+    }
+  }
+}

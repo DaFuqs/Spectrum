@@ -21,7 +21,7 @@ public class InkAssortmentItem extends SpectrumTrinketItem implements PigmentEne
 	private final long maxEnergy;
 	
 	public InkAssortmentItem(Settings settings, long maxEnergy) {
-		super(settings, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_pigment_flask"));
+		super(settings, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_ink_assortment"));
 		this.maxEnergy = maxEnergy;
 	}
 	

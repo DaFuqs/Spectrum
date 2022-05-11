@@ -22,7 +22,7 @@ public class InkFlaskItem extends SpectrumTrinketItem implements PigmentEnergySt
 	private final long maxEnergy;
 	
 	public InkFlaskItem(Settings settings, long maxEnergy) {
-		super(settings, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_pigment_flask"));
+		super(settings, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_ink_flask"));
 		this.maxEnergy = maxEnergy;
 	}
 	

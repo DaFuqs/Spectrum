@@ -1,7 +1,7 @@
 {
   "name": "Ink",
   "advancement": "spectrum:progression/unlock_ink_flask",
-  "icon": "spectrum:pigment_flask",
+  "icon": "spectrum:ink_flask",
   "category": "spectrum:magic_category",
   "priority": true,
   "pages": [

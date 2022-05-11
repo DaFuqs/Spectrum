@@ -7,10 +7,17 @@ import de.dafuqs.spectrum.items.magic_items.EnderSpliceItem;
 import de.dafuqs.spectrum.items.trinkets.AshenCircletItem;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.fabricmc.fabric.api.object.builder.v1.client.model.FabricModelPredicateProviderRegistry;
+import net.minecraft.client.item.UnclampedModelPredicateProvider;
+import net.minecraft.client.world.ClientWorld;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 
 // Vanilla models see: ModelPredicateProviderRegistry
 public class SpectrumItemPredicates {
@@ -25,6 +32,33 @@ public class SpectrumItemPredicates {
 		registerKnowledgeDropPredicates(SpectrumItems.KNOWLEDGE_GEM);
 		registerAshenCircletPredicates(SpectrumItems.ASHEN_CIRCLET);
 		registerSinglePigmentEnergyStorageItemPredicates(SpectrumItems.INK_FLASK);
+		registerMoonPhasePredicates(SpectrumItems.CRESCENT_CLOCK);
+	}
+	
+	private static void registerMoonPhasePredicates(Item item) {
+		FabricModelPredicateProviderRegistry.register(item, new Identifier("phase"), (itemStack, clientWorld, livingEntity, i) -> {
+			Entity entity = livingEntity != null ? livingEntity : itemStack.getHolder();
+			if (entity == null) {
+				return 0.0F;
+			} else {
+				if (clientWorld == null && entity.world instanceof ClientWorld clientWorld1) {
+					clientWorld = clientWorld1;
+				}
+				
+				if (clientWorld == null) {
+					return 0.0F;
+				} else {
+					float moonPhase;
+					if (clientWorld.getDimension().isNatural()) {
+						moonPhase = clientWorld.getMoonPhase() / 8F;
+					} else {
+						moonPhase = (float) Math.random();
+					}
+					
+					return moonPhase;
+				}
+			}
+		});
 	}
 	
 	private static void registerBowPredicates(BowItem bowItem) {

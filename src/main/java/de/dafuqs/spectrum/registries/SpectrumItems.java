@@ -214,6 +214,7 @@ public class SpectrumItems {
 	public static final Item BLOCK_FLOODER = new BlockFlooderItem(toolUncommonItemSettings);
 	public static final EnderSpliceItem ENDER_SPLICE = new EnderSpliceItem(toolUncommonItemSettingsSixteen);
 	public static final Item END_PORTAL_CRACKER = new EndPortalCrackerItem(toolRareItemSettings);
+	public static final Item CRESCENT_CLOCK = new Item(toolItemSettingsSingle);
 	
 	// Catkin
 	public static final Item VIBRANT_CYAN_CATKIN = new CatkinItem(BuiltinGemstoneColor.CYAN, false, resourcesItemSettings);
@@ -426,6 +427,7 @@ public class SpectrumItems {
 		register("block_flooder", BLOCK_FLOODER);
 		register("ender_splice", ENDER_SPLICE);
 		register("end_portal_cracker", END_PORTAL_CRACKER);
+		register("crescent_clock", CRESCENT_CLOCK);
 		register("restoration_tea", RESTORATION_TEA);
 	}
 	

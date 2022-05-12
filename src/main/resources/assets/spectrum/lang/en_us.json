@@ -330,7 +330,8 @@
   "block.spectrum.dike_gate": "Dike Gate",
   "block.spectrum.dike_gate_fountain": "Dike Gate Fountain",
   "block.spectrum.courier_statue": "Ancient Statue",
-  "block.spectrum.treasure_chest": "Ancient Treasure Chest",
+  "block.spectrum.treasure_chest": "Shiny Treasure Chest",
+  "block.spectrum.amethyst_treasure_chest": "Amethyst Treasure Chest",
 
   "block.spectrum.jade_vines": "Jade Vines",
   "block.spectrum.jade_vine_petal_block": "Jade Vine Petal Block",

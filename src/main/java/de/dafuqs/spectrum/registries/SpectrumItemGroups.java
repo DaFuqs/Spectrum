@@ -49,48 +49,10 @@ public class SpectrumItemGroups {
 		}
 		
 		@Override
-		public void appendStacks(DefaultedList<ItemStack> stacks) {
-			super.appendStacks(stacks);
-			
-			// since owo creative tab does not handle itemStack.appendStacks() for items to add
-			// items dynamically we have to do it here
-			if(this.getSelectedTab() == ITEM_GROUP_GENERAL.getTab(1)) {
-				// early game tools
-				stacks.add(SpectrumItems.LOOTING_FALCHION.getDefaultStack());
-				stacks.add(SpectrumItems.SILKER_PICKAXE.getDefaultStack());
-				stacks.add(SpectrumItems.FORTUNE_PICKAXE.getDefaultStack());
-				stacks.add(SpectrumItems.VOIDING_PICKAXE.getDefaultStack());
-				stacks.add(SpectrumItems.RESONANT_PICKAXE.getDefaultStack());
-				
-				// emergency armor
-				stacks.add(SpectrumItems.EMERGENCY_HELMET.getDefaultStack());
-				stacks.add(SpectrumItems.EMERGENCY_CHESTPLATE.getDefaultStack());
-				stacks.add(SpectrumItems.EMERGENCY_LEGGINGS.getDefaultStack());
-				stacks.add(SpectrumItems.EMERGENCY_BOOTS.getDefaultStack());
-				
-				// bedrock tools
-				stacks.add(SpectrumItems.BEDROCK_PICKAXE.getDefaultStack());
-				stacks.add(SpectrumItems.BEDROCK_AXE.getDefaultStack());
-				stacks.add(SpectrumItems.BEDROCK_SHOVEL.getDefaultStack());
-				stacks.add(SpectrumItems.BEDROCK_SWORD.getDefaultStack());
-				stacks.add(SpectrumItems.BEDROCK_HOE.getDefaultStack());
-				stacks.add(SpectrumItems.BEDROCK_BOW.getDefaultStack());
-				stacks.add(SpectrumItems.BEDROCK_CROSSBOW.getDefaultStack());
-				stacks.add(SpectrumItems.BEDROCK_SHEARS.getDefaultStack());
-				stacks.add(SpectrumItems.BEDROCK_FISHING_ROD.getDefaultStack());
-				
-				// bedrock armor
-				stacks.add(SpectrumItems.BEDROCK_HELMET.getDefaultStack());
-				stacks.add(SpectrumItems.BEDROCK_CHESTPLATE.getDefaultStack());
-				stacks.add(SpectrumItems.BEDROCK_LEGGINGS.getDefaultStack());
-				stacks.add(SpectrumItems.BEDROCK_BOOTS.getDefaultStack());
-			}
-		}
-		
-		@Override
 		public ItemStack createIcon() {
 			return new ItemStack(SpectrumBlocks.PEDESTAL_BASIC_AMETHYST);
 		}
+		
 	};
 	
 	public static final OwoItemGroup ITEM_GROUP_BLOCKS = new OwoItemGroup(new Identifier(SpectrumCommon.MOD_ID, "blocks")) {

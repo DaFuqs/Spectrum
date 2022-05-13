@@ -13,14 +13,13 @@ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 @Mixin(PiglinBrain.class)
 public abstract class PiglinBrainMixin {
-
-	@Inject(method = "wearsGoldArmor", at = @At("RETURN"), cancellable = true, locals = LocalCapture.CAPTURE_FAILHARD)
-	private static void wearsGoldArmor(LivingEntity entity, @NotNull CallbackInfoReturnable<Boolean> cir) {
-		if (!cir.getReturnValue()) {
-			for (ItemStack itemStack : entity.getArmorItems()) {
-				if (itemStack.isIn(SpectrumItemTags.PIGLIN_SAFE_EQUIPMENT)) {
-					cir.setReturnValue(true);
-				}
+	
+	@Inject(at = @At("HEAD"), method = "wearsGoldArmor", cancellable = true)
+	private static void spectrum$piglinSafeEquipment(LivingEntity entity, CallbackInfoReturnable<Boolean> cir) {
+		for (ItemStack itemStack : entity.getArmorItems()) {
+			if (itemStack.isIn(SpectrumItemTags.PIGLIN_SAFE_EQUIPMENT)) {
+				cir.setReturnValue(true);
+				break;
 			}
 		}
 	}

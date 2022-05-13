@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.status_effects.NourishingStatusEffect;
 import de.dafuqs.spectrum.status_effects.ImmunityStatusEffect;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
@@ -18,6 +19,10 @@ public class SpectrumStatusEffects {
 	 * and makes it immune against new ones
 	 */
 	public static StatusEffect IMMUNITY;
+	/**
+	 * Like Saturation, but not OP
+	 */
+	public static StatusEffect NOURISHING;
 	/**
 	 * Ouch.
 	 */
@@ -45,6 +50,7 @@ public class SpectrumStatusEffects {
 	
 	public static void register() {
 		IMMUNITY = registerStatusEffect("immunity", new ImmunityStatusEffect(StatusEffectCategory.NEUTRAL, 0x4bbed5));
+		NOURISHING = registerStatusEffect("nourishing", new NourishingStatusEffect(StatusEffectCategory.BENEFICIAL, 16262179));
 		//MILLENIA_DISEASE = registerStatusEffect("millenia_disease", new MilleniaDiseaseStatusEffect(StatusEffectCategory.NEUTRAL, 0x222222).addAttributeModifier(EntityAttributes.GENERIC_MAX_HEALTH, MilleniaDiseaseStatusEffect.ATTRIBUTE_UUID_STRING, -0.05, EntityAttributeModifier.Operation.MULTIPLY_TOTAL));
 		
 		UNCURABLE = getReference("uncurable");

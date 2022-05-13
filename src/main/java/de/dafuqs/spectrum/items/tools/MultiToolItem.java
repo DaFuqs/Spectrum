@@ -1,24 +1,38 @@
 package de.dafuqs.spectrum.items.tools;
 
-import de.dafuqs.spectrum.registries.SpectrumDefaultEnchantments;
+import de.dafuqs.spectrum.items.Preenchanted;
 import net.minecraft.block.BlockState;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
 import net.minecraft.item.Items;
 import net.minecraft.item.ToolMaterial;
 import net.minecraft.util.ActionResult;
 
-public class MultiToolItem extends SpectrumPickaxeItem {
+import java.util.Map;
+
+public class MultiToolItem extends SpectrumPickaxeItem implements Preenchanted {
 
 	public MultiToolItem(ToolMaterial material, int attackDamage, float attackSpeed, Settings settings) {
 		super(material, attackDamage, attackSpeed, settings);
 	}
 
 	@Override
+	public Map<Enchantment, Integer> getDefaultEnchantments() {
+		return Map.of(Enchantments.EFFICIENCY, 1);
+	}
+	
+	@Override
+	public ItemStack getDefaultStack() {
+		return getDefaultEnchantedStack(this);
+	}
+	
+	@Override
 	public boolean isSuitableFor(BlockState state) {
 		return true;
 	}
-
+	
 	@Override
 	public float getMiningSpeedMultiplier(ItemStack stack, BlockState state) {
 		return miningSpeed;
@@ -40,9 +54,4 @@ public class MultiToolItem extends SpectrumPickaxeItem {
 		return actionResult;
 	}
 	
-	@Override
-	public ItemStack getDefaultStack() {
-		return SpectrumDefaultEnchantments.getDefaultEnchantedStack(this);
-	}
-
 }

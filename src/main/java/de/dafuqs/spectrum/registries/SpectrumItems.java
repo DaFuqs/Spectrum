@@ -22,6 +22,8 @@ import io.wispforest.owo.itemgroup.OwoItemSettings;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.minecraft.block.Blocks;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.*;
 import net.minecraft.util.DyeColor;
@@ -29,11 +31,14 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
 import net.minecraft.util.registry.Registry;
 
+import java.util.Map;
+
 import static de.dafuqs.spectrum.registries.SpectrumFluids.*;
 
 public class SpectrumItems {
 	
 	// FIRST ITEM GROUP
+	// GENERAL TAB
 	public static FabricItemSettings generalItemSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(0);
 	public static FabricItemSettings generalItemSettingsSingle = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(0).maxCount(1);
 	public static FabricItemSettings generalItemSettingsSingleUncommon = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(0).maxCount(1).rarity(Rarity.UNCOMMON);
@@ -46,6 +51,7 @@ public class SpectrumItems {
 	public static FabricItemSettings generalRareItemSettingsSingle = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(0).rarity(Rarity.RARE).maxCount(1);
 	public static FabricItemSettings generalEpicItemSettingsSingle = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(0).rarity(Rarity.EPIC).maxCount(1);
 	
+	// TOOL TAB
 	public static FabricItemSettings toolItemSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1);
 	public static FabricItemSettings toolItemSettingsSingle = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).maxCount(1);
 	public static FabricItemSettings toolItemSettingsSixteen = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).maxCount(16);
@@ -56,10 +62,19 @@ public class SpectrumItems {
 	public static FabricItemSettings toolRareItemSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.RARE);
 	public static FabricItemSettings toolRareItemSettingsSingle = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.RARE).maxCount(1);
 	
+	public static FabricItemSettings bedrockToolItemSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.RARE).fireproof().maxDamage(SpectrumToolMaterials.ToolMaterial.BEDROCK.getDurability());
+	public static FabricItemSettings bedrockArmorItemSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.RARE).fireproof().maxDamage(0);
+	public static FabricItemSettings gemstoneArmorItemSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.RARE).maxDamage(SpectrumArmorMaterials.EMERGENCY.getDurability(EquipmentSlot.CHEST));
+	public static FabricItemSettings lowHealthToolItemSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.UNCOMMON).maxDamage(SpectrumToolMaterials.ToolMaterial.LOW_HEALTH.getDurability());
+	public static FabricItemSettings voidingToolItemSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.UNCOMMON).maxDamage(SpectrumToolMaterials.ToolMaterial.VOIDING.getDurability());
+	public static FabricItemSettings multiToolItemSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.UNCOMMON).maxDamage(ToolMaterials.IRON.getDurability());
+	
+	// WORLDGEN TAB
 	public static FabricItemSettings worldgenItemSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(2);
 	public static FabricItemSettings worldgenItemSettingsFireproof = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(2).fireproof();
 	public static FabricItemSettings worldgenItemSettingsRare = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(2).rarity(Rarity.RARE);
 	
+	// RESOURCES TAB
 	public static FabricItemSettings resourcesItemSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(3);
 	public static FabricItemSettings resourcesItemSettingsSixteen = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(3).maxCount(16);
 	public static FabricItemSettings resourcesItemSettingUncommonSingle = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(3).rarity(Rarity.UNCOMMON).maxCount(1);
@@ -69,22 +84,17 @@ public class SpectrumItems {
 	public static FabricItemSettings resourcesItemSettingsSixteenFireproof = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(3).maxCount(16).fireproof();
 	
 	// SECOND ITEM GROUP
+	// DECORATION TAB
 	public static FabricItemSettings decorationItemSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_BLOCKS).tab(0);
 	public static FabricItemSettings decorationItemSettingsRare = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_BLOCKS).tab(0).rarity(Rarity.RARE);
 	public static FabricItemSettings decorationItemSettingsFireProof = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_BLOCKS).tab(0).fireproof();
 	
+	// COLORED WOOD TAB
 	public static FabricItemSettings coloredWoodItemSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_BLOCKS).tab(1);
 	
+	// MOB HEADS+BLOCKS TAB
 	public static FabricItemSettings mobHeadItemSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_BLOCKS).tab(2).rarity(Rarity.UNCOMMON);
 	public static FabricItemSettings mobBlockItemSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_BLOCKS).tab(2).rarity(Rarity.UNCOMMON);
-	
-	// added to item group / tab programmatically in the item group itself with enchantments included
-	public static FabricItemSettings bedrockToolItemSettings = new FabricItemSettings().rarity(Rarity.RARE).fireproof().maxDamage(SpectrumToolMaterials.ToolMaterial.BEDROCK.getDurability());
-	public static FabricItemSettings bedrockArmorItemSettings = new FabricItemSettings().rarity(Rarity.RARE).fireproof().maxDamage(0);
-	public static FabricItemSettings gemstoneArmorItemSettings = new FabricItemSettings().rarity(Rarity.RARE).maxDamage(SpectrumArmorMaterials.EMERGENCY.getDurability(EquipmentSlot.CHEST));
-	public static FabricItemSettings lowHealthToolItemSettings = new FabricItemSettings().rarity(Rarity.UNCOMMON).maxDamage(SpectrumToolMaterials.ToolMaterial.LOW_HEALTH.getDurability());
-	public static FabricItemSettings voidingToolItemSettings = new FabricItemSettings().rarity(Rarity.UNCOMMON).maxDamage(SpectrumToolMaterials.ToolMaterial.VOIDING.getDurability());
-	public static FabricItemSettings multiToolItemSettings = new FabricItemSettings().rarity(Rarity.UNCOMMON).maxDamage(ToolMaterials.IRON.getDurability());
 	
 	
 	// Main items
@@ -132,11 +142,26 @@ public class SpectrumItems {
 
 	// Preenchanted tools
 	public static final Item MULTITOOL = new MultiToolItem(ToolMaterials.IRON, 2, -2.4F, multiToolItemSettings);
-	public static final Item SILKER_PICKAXE = new SpectrumPickaxeItem(SpectrumToolMaterials.ToolMaterial.LOW_HEALTH, 1, -2.8F, lowHealthToolItemSettings);
-	public static final Item FORTUNE_PICKAXE = new SpectrumPickaxeItem(SpectrumToolMaterials.ToolMaterial.LOW_HEALTH, 1, -2.8F, lowHealthToolItemSettings);
-	public static final Item LOOTING_FALCHION = new SpectrumSwordItem(SpectrumToolMaterials.ToolMaterial.LOW_HEALTH, 4, -2.2F, lowHealthToolItemSettings);
+	public static final Item SILKER_PICKAXE = new SpectrumPickaxeItem(SpectrumToolMaterials.ToolMaterial.LOW_HEALTH, 1, -2.8F, lowHealthToolItemSettings) {
+		@Override
+		public Map<Enchantment, Integer> getDefaultEnchantments() {
+			return Map.of(Enchantments.SILK_TOUCH, 1);
+		}
+	};
+	public static final Item FORTUNE_PICKAXE = new SpectrumPickaxeItem(SpectrumToolMaterials.ToolMaterial.LOW_HEALTH, 1, -2.8F, lowHealthToolItemSettings) {
+		@Override
+		public Map<Enchantment, Integer> getDefaultEnchantments() {
+			return Map.of(Enchantments.FORTUNE, 3);
+		}
+	};
+	public static final Item LOOTING_FALCHION = new LootingFalchionItem(SpectrumToolMaterials.ToolMaterial.LOW_HEALTH, 4, -2.2F, lowHealthToolItemSettings);
 	public static final Item VOIDING_PICKAXE = new VoidingPickaxeItem(SpectrumToolMaterials.ToolMaterial.VOIDING, 1, -2.8F, voidingToolItemSettings);
-	public static final Item RESONANT_PICKAXE = new SpectrumPickaxeItem(SpectrumToolMaterials.ToolMaterial.LOW_HEALTH, 1, -2.8F, lowHealthToolItemSettings);
+	public static final Item RESONANT_PICKAXE = new SpectrumPickaxeItem(SpectrumToolMaterials.ToolMaterial.LOW_HEALTH, 1, -2.8F, lowHealthToolItemSettings) {
+		@Override
+		public Map<Enchantment, Integer> getDefaultEnchantments() {
+			return Map.of(SpectrumEnchantments.RESONANCE, 1);
+		}
+	};
 
 	// Bedrock Tools
 	public static final SpectrumToolMaterials.ToolMaterial BEDROCK_MATERIAL = SpectrumToolMaterials.ToolMaterial.BEDROCK;
@@ -152,10 +177,30 @@ public class SpectrumItems {
 	
 	// Bedrock Armor
 	public static final ArmorMaterial BEDROCK_ARMOR_MATERIAL = SpectrumArmorMaterials.BEDROCK;
-	public static final Item BEDROCK_HELMET = new SpectrumArmorItem(BEDROCK_ARMOR_MATERIAL, EquipmentSlot.HEAD, bedrockArmorItemSettings);
-	public static final Item BEDROCK_CHESTPLATE = new SpectrumArmorItem(BEDROCK_ARMOR_MATERIAL, EquipmentSlot.CHEST, bedrockArmorItemSettings);
-	public static final Item BEDROCK_LEGGINGS = new SpectrumArmorItem(BEDROCK_ARMOR_MATERIAL, EquipmentSlot.LEGS, bedrockArmorItemSettings);
-	public static final Item BEDROCK_BOOTS = new SpectrumArmorItem(BEDROCK_ARMOR_MATERIAL, EquipmentSlot.FEET, bedrockArmorItemSettings);
+	public static final Item BEDROCK_HELMET = new SpectrumArmorItem(BEDROCK_ARMOR_MATERIAL, EquipmentSlot.HEAD, bedrockArmorItemSettings) {
+		@Override
+		public Map<Enchantment, Integer> getDefaultEnchantments() {
+			return Map.of(Enchantments.PROJECTILE_PROTECTION, 4);
+		}
+	};
+	public static final Item BEDROCK_CHESTPLATE = new SpectrumArmorItem(BEDROCK_ARMOR_MATERIAL, EquipmentSlot.CHEST, bedrockArmorItemSettings) {
+		@Override
+		public Map<Enchantment, Integer> getDefaultEnchantments() {
+			return Map.of(Enchantments.PROTECTION, 4);
+		}
+	};
+	public static final Item BEDROCK_LEGGINGS = new SpectrumArmorItem(BEDROCK_ARMOR_MATERIAL, EquipmentSlot.LEGS, bedrockArmorItemSettings) {
+		@Override
+		public Map<Enchantment, Integer> getDefaultEnchantments() {
+			return Map.of(Enchantments.BLAST_PROTECTION, 4);
+		}
+	};
+	public static final Item BEDROCK_BOOTS = new SpectrumArmorItem(BEDROCK_ARMOR_MATERIAL, EquipmentSlot.FEET, bedrockArmorItemSettings) {
+		@Override
+		public Map<Enchantment, Integer> getDefaultEnchantments() {
+			return Map.of(Enchantments.FIRE_PROTECTION, 4);
+		}
+	};
 
 	// Armor
 	public static final ArmorMaterial EMERGENCY_ARMOR_MATERIAL = SpectrumArmorMaterials.EMERGENCY;

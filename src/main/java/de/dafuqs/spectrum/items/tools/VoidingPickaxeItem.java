@@ -1,14 +1,20 @@
 package de.dafuqs.spectrum.items.tools;
 
+import de.dafuqs.spectrum.enchantments.SpectrumEnchantment;
+import de.dafuqs.spectrum.items.Preenchanted;
 import de.dafuqs.spectrum.registries.SpectrumEnchantments;
 import net.minecraft.block.BlockState;
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ToolMaterial;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+
+import java.util.Map;
 
 public class VoidingPickaxeItem extends SpectrumPickaxeItem {
 
@@ -28,6 +34,16 @@ public class VoidingPickaxeItem extends SpectrumPickaxeItem {
 		}
 
 		return true;
+	}
+	
+	@Override
+	public Map<Enchantment, Integer> getDefaultEnchantments() {
+		return Map.of(SpectrumEnchantments.VOIDING, 1);
+	}
+	
+	@Override
+	public ItemStack getDefaultStack() {
+		return getDefaultEnchantedStack(this);
 	}
 
 }

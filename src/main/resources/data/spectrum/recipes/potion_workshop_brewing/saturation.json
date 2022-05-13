@@ -6,9 +6,9 @@
   "ingredient2": {
     "item": "spectrum:citrine_shard"
   },
-  "effect": "minecraft:saturation",
+  "effect": "spectrum:nourishing",
   "base_duration_ticks": 900,
-  "potency_modifier": 0.5,
+  "potency_modifier": 1.0,
   "applicable_to_potions": true,
   "applicable_to_tipped_arrows": true,
   "required_advancement": "spectrum:midgame/brew_potion_in_potion_workshop"

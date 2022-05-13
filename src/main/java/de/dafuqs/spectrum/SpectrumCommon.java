@@ -163,8 +163,6 @@ public class SpectrumCommon implements ModInitializer {
 		SpectrumItems.registerFuelRegistry();
 		logInfo("Registering Enchantments...");
 		SpectrumEnchantments.register();
-		logInfo("Registering Default Enchantments...");
-		SpectrumDefaultEnchantments.registerDefaultEnchantments();
 		logInfo("Registering Entity Types...");
 		SpectrumEntityTypes.register();
 		logInfo("Registering Commands...");

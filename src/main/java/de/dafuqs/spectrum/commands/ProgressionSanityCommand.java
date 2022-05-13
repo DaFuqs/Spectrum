@@ -268,11 +268,13 @@ public class ProgressionSanityCommand {
 						}
 					}
 				}
-				if(previousAdvancementIdentifier == null) {
-					SpectrumCommon.logWarning("[SANITY: Advancement Gating] Advancement '" + advancement.getId() + "' has not set its parent set as requirement");
-				} else {
-					if(!advancement.getParent().getId().equals(previousAdvancementIdentifier) && !advancementGatingWarningWhitelist.contains(advancement.getId())) {
-						SpectrumCommon.logWarning("[SANITY: Advancement Gating] Advancement '" + advancement.getId() + "' has its \"gotten_previous\" advancement set to something else than their parent. Intended?");
+				if(!advancementGatingWarningWhitelist.contains(advancement.getId())) {
+					if(previousAdvancementIdentifier == null) {
+						SpectrumCommon.logWarning("[SANITY: Advancement Gating] Advancement '" + advancement.getId() + "' has not set its parent set as requirement");
+					} else {
+						if(!advancement.getParent().getId().equals(previousAdvancementIdentifier)) {
+							SpectrumCommon.logWarning("[SANITY: Advancement Gating] Advancement '" + advancement.getId() + "' has its \"gotten_previous\" advancement set to something else than their parent. Intended?");
+						}
 					}
 				}
 			}

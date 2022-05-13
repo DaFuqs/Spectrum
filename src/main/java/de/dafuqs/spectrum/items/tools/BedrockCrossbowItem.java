@@ -1,10 +1,14 @@
 package de.dafuqs.spectrum.items.tools;
 
-import de.dafuqs.spectrum.registries.SpectrumDefaultEnchantments;
+import de.dafuqs.spectrum.items.Preenchanted;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.item.CrossbowItem;
 import net.minecraft.item.ItemStack;
 
-public class BedrockCrossbowItem extends CrossbowItem {
+import java.util.Map;
+
+public class BedrockCrossbowItem extends CrossbowItem implements Preenchanted {
 
 	public BedrockCrossbowItem(Settings settings) {
 		super(settings);
@@ -16,8 +20,13 @@ public class BedrockCrossbowItem extends CrossbowItem {
 	}
 	
 	@Override
+	public Map<Enchantment, Integer> getDefaultEnchantments() {
+		return Map.of(Enchantments.QUICK_CHARGE, 3);
+	}
+	
+	@Override
 	public ItemStack getDefaultStack() {
-		return SpectrumDefaultEnchantments.getDefaultEnchantedStack(this);
+		return getDefaultEnchantedStack(this);
 	}
 
 }

@@ -604,7 +604,6 @@ public class SpectrumBlocks {
 	public static final Block DIKE_GATE = new DikeGateBlock(FabricBlockSettings.of(Material.GLASS).strength(-1.0F).dropsNothing().luminance(3).sounds(BlockSoundGroup.GLASS).nonOpaque().allowsSpawning(SpectrumBlocks::never).solidBlock(SpectrumBlocks::never).suffocates(SpectrumBlocks::never).blockVision(SpectrumBlocks::never));
 	public static final Block COURIER_STATUE = new StatueBlock(preservationBlockSettings);
 	public static final Block TREASURE_CHEST = new TreasureChestBlock(FabricBlockSettings.copyOf(Blocks.CHEST).hardness(-1.0F));
-	public static final Block AMETHYST_TREASURE_CHEST = new AmethystChestBlock(FabricBlockSettings.copyOf(Blocks.CHEST).hardness(-1.0F));
 	
 	// JADE VINES
 	public static final Block JADE_VINES = new JadeVinesBlock(AbstractBlock.Settings.of(Material.PLANT, MapColor.PALE_GREEN).strength(1.0F).sounds(BlockSoundGroup.WOOL).ticksRandomly().nonOpaque());
@@ -1446,7 +1445,6 @@ public class SpectrumBlocks {
 		registerBlockWithItem("dike_gate", DIKE_GATE, fabricItemSettings);
 		registerBlockWithItem("courier_statue", COURIER_STATUE, fabricItemSettings);
 		registerBlockWithItem("treasure_chest", TREASURE_CHEST, fabricItemSettings);
-		registerBlockWithItem("amethyst_treasure_chest", AMETHYST_TREASURE_CHEST, fabricItemSettings);
 	}
 
 	private static void registerJadeVineBlocks(FabricItemSettings fabricItemSettings) {

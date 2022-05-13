@@ -30,5 +30,4 @@ public class PrivateChestBlockEntityRenderer extends SpectrumChestBlockEntityRen
 		return modelData.getRoot().createPart(64, 64);
 	}
 
-
 }

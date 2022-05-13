@@ -1,11 +1,15 @@
 package de.dafuqs.spectrum.items.tools;
 
-import de.dafuqs.spectrum.registries.SpectrumDefaultEnchantments;
+import de.dafuqs.spectrum.items.Preenchanted;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
 import net.minecraft.item.ToolMaterial;
 
-public class BedrockSwordItem extends SwordItem {
+import java.util.Map;
+
+public class BedrockSwordItem extends SwordItem implements Preenchanted {
 
 	public BedrockSwordItem(ToolMaterial material, int attackDamage, float attackSpeed, Settings settings) {
 		super(material, attackDamage, attackSpeed, settings);
@@ -17,8 +21,13 @@ public class BedrockSwordItem extends SwordItem {
 	}
 	
 	@Override
+	public Map<Enchantment, Integer> getDefaultEnchantments() {
+		return Map.of(Enchantments.SHARPNESS, 5);
+	}
+	
+	@Override
 	public ItemStack getDefaultStack() {
-		return SpectrumDefaultEnchantments.getDefaultEnchantedStack(this);
+		return getDefaultEnchantedStack(this);
 	}
 
 }

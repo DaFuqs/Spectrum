@@ -52,9 +52,10 @@ public class SpectrumItemGroups {
 		public void appendStacks(DefaultedList<ItemStack> stacks) {
 			super.appendStacks(stacks);
 			
+			// since owo creative tab does not handle itemStack.appendStacks() for items to add
+			// items dynamically we have to do it here
 			if(this.getSelectedTab() == ITEM_GROUP_GENERAL.getTab(1)) {
 				// early game tools
-				stacks.add(SpectrumItems.MULTITOOL.getDefaultStack());
 				stacks.add(SpectrumItems.LOOTING_FALCHION.getDefaultStack());
 				stacks.add(SpectrumItems.SILKER_PICKAXE.getDefaultStack());
 				stacks.add(SpectrumItems.FORTUNE_PICKAXE.getDefaultStack());

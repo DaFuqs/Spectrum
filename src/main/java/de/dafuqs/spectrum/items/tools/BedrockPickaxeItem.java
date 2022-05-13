@@ -1,10 +1,14 @@
 package de.dafuqs.spectrum.items.tools;
 
-import de.dafuqs.spectrum.registries.SpectrumDefaultEnchantments;
+import de.dafuqs.spectrum.items.Preenchanted;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ToolMaterial;
 
-public class BedrockPickaxeItem extends SpectrumPickaxeItem {
+import java.util.Map;
+
+public class BedrockPickaxeItem extends SpectrumPickaxeItem implements Preenchanted {
 
 	public BedrockPickaxeItem(ToolMaterial material, int attackDamage, float attackSpeed, Settings settings) {
 		super(material, attackDamage, attackSpeed, settings);
@@ -16,8 +20,13 @@ public class BedrockPickaxeItem extends SpectrumPickaxeItem {
 	}
 	
 	@Override
+	public Map<Enchantment, Integer> getDefaultEnchantments() {
+		return Map.of(Enchantments.SILK_TOUCH, 1);
+	}
+	
+	@Override
 	public ItemStack getDefaultStack() {
-		return SpectrumDefaultEnchantments.getDefaultEnchantedStack(this);
+		return getDefaultEnchantedStack(this);
 	}
 	
 }

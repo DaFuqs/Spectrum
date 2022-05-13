@@ -10,9 +10,9 @@ import de.dafuqs.spectrum.blocks.enchanter.EnchanterBlockEntity;
 import de.dafuqs.spectrum.blocks.enchanter.EnchanterBlockEntityRenderer;
 import de.dafuqs.spectrum.blocks.ender.EnderDropperBlockEntity;
 import de.dafuqs.spectrum.blocks.ender.EnderHopperBlockEntity;
+import de.dafuqs.spectrum.blocks.energy.CrystalApothecaryBlockEntity;
 import de.dafuqs.spectrum.blocks.fusion_shrine.FusionShrineBlockEntity;
 import de.dafuqs.spectrum.blocks.fusion_shrine.FusionShrineBlockEntityRenderer;
-import de.dafuqs.spectrum.blocks.energy.CrystalApothecaryBlockEntity;
 import de.dafuqs.spectrum.blocks.item_bowl.ItemBowlBlockEntity;
 import de.dafuqs.spectrum.blocks.item_bowl.ItemBowlBlockEntityRenderer;
 import de.dafuqs.spectrum.blocks.jade_vines.JadeVinesBlockEntity;
@@ -34,8 +34,6 @@ import de.dafuqs.spectrum.blocks.shooting_star.ShootingStarBlockEntity;
 import de.dafuqs.spectrum.blocks.spirit_instiller.SpiritInstillerBlockEntity;
 import de.dafuqs.spectrum.blocks.spirit_instiller.SpiritInstillerBlockEntityRenderer;
 import de.dafuqs.spectrum.blocks.spirit_sallow.OminousSaplingBlockEntity;
-import de.dafuqs.spectrum.blocks.structure.AmethystChestBlockEntity;
-import de.dafuqs.spectrum.blocks.structure.AmethystChestBlockEntityRenderer;
 import de.dafuqs.spectrum.blocks.structure.PreservationControllerBlockEntity;
 import de.dafuqs.spectrum.blocks.structure.TreasureChestBlockEntity;
 import de.dafuqs.spectrum.blocks.upgrade.UpgradeBlock;
@@ -80,7 +78,6 @@ public class SpectrumBlockEntityRegistry<T extends BlockEntity> {
 	public static BlockEntityType<PrivateChestBlockEntity> PRIVATE_CHEST;
 	public static BlockEntityType<SuckingChestBlockEntity> SUCKING_CHEST;
 	public static BlockEntityType<TreasureChestBlockEntity> TREASURE_CHEST;
-	public static BlockEntityType<AmethystChestBlockEntity> AMETHYST_CHEST;
 
 	public static BlockEntityType<PlayerDetectorBlockEntity> PLAYER_DETECTOR;
 	public static BlockEntityType<RedstoneCalculatorBlockEntity> REDSTONE_CALCULATOR;
@@ -115,7 +112,6 @@ public class SpectrumBlockEntityRegistry<T extends BlockEntity> {
 		PRIVATE_CHEST = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "private_chest"), FabricBlockEntityTypeBuilder.create(PrivateChestBlockEntity::new, SpectrumBlocks.PRIVATE_CHEST).build());
 		SUCKING_CHEST = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "sucking_chest"), FabricBlockEntityTypeBuilder.create(SuckingChestBlockEntity::new, SpectrumBlocks.SUCKING_CHEST).build());
 		TREASURE_CHEST = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "treasure_chest"), FabricBlockEntityTypeBuilder.create(TreasureChestBlockEntity::new, SpectrumBlocks.TREASURE_CHEST).build());
-		AMETHYST_CHEST = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "amethyst_chest"), FabricBlockEntityTypeBuilder.create(AmethystChestBlockEntity::new, SpectrumBlocks.AMETHYST_TREASURE_CHEST).build());
 		PLAYER_DETECTOR = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "player_detector"), FabricBlockEntityTypeBuilder.create(PlayerDetectorBlockEntity::new, SpectrumBlocks.PLAYER_DETECTOR).build());
 		REDSTONE_CALCULATOR = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "redstone_calculator"), FabricBlockEntityTypeBuilder.create(RedstoneCalculatorBlockEntity::new, SpectrumBlocks.REDSTONE_CALCULATOR).build());
 		REDSTONE_WIRELESS = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "redstone_wireless"), FabricBlockEntityTypeBuilder.create(RedstoneWirelessBlockEntity::new, SpectrumBlocks.REDSTONE_WIRELESS).build());
@@ -160,7 +156,6 @@ public class SpectrumBlockEntityRegistry<T extends BlockEntity> {
 		BlockEntityRendererRegistry.register(SpectrumBlockEntityRegistry.COMPACTING_CHEST, CompactingChestBlockEntityRenderer::new);
 		BlockEntityRendererRegistry.register(SpectrumBlockEntityRegistry.RESTOCKING_CHEST, RestockingChestBlockEntityRenderer::new);
 		BlockEntityRendererRegistry.register(SpectrumBlockEntityRegistry.TREASURE_CHEST, SpectrumChestBlockEntityRenderer::new);
-		BlockEntityRendererRegistry.register(SpectrumBlockEntityRegistry.AMETHYST_CHEST, AmethystChestBlockEntityRenderer::new);
 		BlockEntityRendererRegistry.register(SpectrumBlockEntityRegistry.SUCKING_CHEST, SuckingChestBlockEntityRenderer::new);
 		BlockEntityRendererRegistry.register(SpectrumBlockEntityRegistry.UPGRADE_BLOCK, UpgradeBlockBlockEntityRenderer::new);
 		BlockEntityRendererRegistry.register(SpectrumBlockEntityRegistry.FUSION_SHRINE, FusionShrineBlockEntityRenderer::new);
@@ -187,7 +182,6 @@ public class SpectrumBlockEntityRegistry<T extends BlockEntity> {
 		ClientSpriteRegistryCallback.event(TexturedRenderLayers.CHEST_ATLAS_TEXTURE).register((texture, registry) -> {
 			registry.register(new Identifier(SpectrumCommon.MOD_ID, "entity/private_chest"));
 			registry.register(new Identifier(SpectrumCommon.MOD_ID, "entity/treasure_chest"));
-			registry.register(new Identifier(SpectrumCommon.MOD_ID, "entity/amethyst_chest"));
 		});
 
 		//Register textures in block atlas

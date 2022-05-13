@@ -1,5 +1,7 @@
 package de.dafuqs.spectrum;
 
+import com.google.common.collect.ImmutableCollection;
+import com.google.common.collect.ImmutableMap;
 import de.dafuqs.spectrum.blocks.chests.CompactingChestBlockEntity;
 import de.dafuqs.spectrum.blocks.shooting_star.ShootingStarBlock;
 import de.dafuqs.spectrum.config.SpectrumConfig;
@@ -16,11 +18,15 @@ import de.dafuqs.spectrum.items.trinkets.SpectrumTrinketItem;
 import de.dafuqs.spectrum.items.trinkets.WhispyCircletItem;
 import de.dafuqs.spectrum.loot.EnchantmentDrops;
 import de.dafuqs.spectrum.loot.SpectrumLootConditionTypes;
+import de.dafuqs.spectrum.mixin.RecipeManagerMixin;
+import de.dafuqs.spectrum.mixin.accessors.FoxEntityAccessor;
 import de.dafuqs.spectrum.networking.SpectrumC2SPacketReceiver;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.progression.BlockCloakManager;
 import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
+import de.dafuqs.spectrum.recipe.enchantment_upgrade.EnchantmentUpgradeRecipe;
+import de.dafuqs.spectrum.recipe.enchantment_upgrade.EnchantmentUpgradeRecipeSerializer;
 import de.dafuqs.spectrum.recipe.potion_workshop.PotionWorkshopReagents;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.registries.color.ColorRegistry;
@@ -39,6 +45,9 @@ import net.minecraft.block.Block;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.block.FluidBlock;
 import net.minecraft.fluid.Fluid;
+import net.minecraft.recipe.Recipe;
+import net.minecraft.recipe.RecipeManager;
+import net.minecraft.recipe.RecipeType;
 import net.minecraft.resource.ResourceManager;
 import net.minecraft.resource.ResourceType;
 import net.minecraft.server.MinecraftServer;
@@ -48,12 +57,11 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.world.World;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Optional;
+import java.util.*;
 
 public class SpectrumCommon implements ModInitializer {
 
@@ -232,6 +240,8 @@ public class SpectrumCommon implements ModInitializer {
 					fluidLuminance.put(fluidBlock.getFluidState(fluidBlock.getDefaultState()).getFluid(), fluidBlock.getDefaultState().getLuminance());
 				}
 			}
+			
+			injectEnchantmentUpgradeRecipes(minecraftServer);
 		});
 		
 		EntitySleepEvents.STOP_SLEEPING.register((entity, sleepingPos) -> {
@@ -254,6 +264,10 @@ public class SpectrumCommon implements ModInitializer {
 			@Override
 			public void reload(ResourceManager manager) {
 				CompactingChestBlockEntity.clearCache();
+				
+				if(minecraftServer != null) {
+					injectEnchantmentUpgradeRecipes(minecraftServer);
+				}
 			}
 
 			@Override
@@ -263,6 +277,24 @@ public class SpectrumCommon implements ModInitializer {
 		});
 
 		logInfo("Common startup completed!");
+	}
+	
+	// It could have been so much easier and performant, but KubeJS overrides the ENTIRE recipe manager
+	// and cancels all sorts of functions at HEAD unconditionally, so Spectrum can not mixin into it
+	public void injectEnchantmentUpgradeRecipes(MinecraftServer minecraftServer) {
+		if(!EnchantmentUpgradeRecipeSerializer.enchantmentUpgradeRecipesToInject.isEmpty()) {
+			ImmutableMap<Identifier, Recipe<?>> collectedRecipes = EnchantmentUpgradeRecipeSerializer.enchantmentUpgradeRecipesToInject.stream().collect(ImmutableMap.toImmutableMap(EnchantmentUpgradeRecipe::getId, enchantmentUpgradeRecipe -> enchantmentUpgradeRecipe));
+			Map<RecipeType<?>, Map<Identifier, Recipe<?>>> recipes = ((RecipeManagerMixin) minecraftServer.getRecipeManager()).getRecipes();
+			
+			ArrayList<Recipe<?>> newList = new ArrayList<>();
+			newList.addAll(collectedRecipes.values());
+			for (Map<Identifier, Recipe<?>> r : recipes.values()) {
+				newList.addAll(r.values());
+			}
+			
+			minecraftServer.getRecipeManager().setRecipes(newList);
+		}
+		EnchantmentUpgradeRecipeSerializer.enchantmentUpgradeRecipesToInject.clear();
 	}
 
 }

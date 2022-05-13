@@ -58,7 +58,7 @@ public class EnchantmentUpgradeRecipeSerializer implements RecipeSerializer<Ench
 			requiredItemCount = JsonHelper.getInt(currentElement, "item_count");
 			
 			recipe = this.recipeFactory.create(new Identifier(SpectrumCommon.MOD_ID, identifier.getPath() + "_level_" + (i + 2)), enchantment, level, requiredExperience, requiredItem, requiredItemCount, requiredAdvancementIdentifier);
-			if(!enchantmentUpgradeRecipesToInject.contains(recipe)) {
+			if(!enchantmentUpgradeRecipesToInject.contains(recipe) && i < levelArray.size() -1) { // we return the last one, no need to inject
 				enchantmentUpgradeRecipesToInject.add(recipe);
 			}
 		}

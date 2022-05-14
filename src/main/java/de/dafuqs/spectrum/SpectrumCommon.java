@@ -283,9 +283,13 @@ public class SpectrumCommon implements ModInitializer {
 			Map<RecipeType<?>, Map<Identifier, Recipe<?>>> recipes = ((RecipeManagerMixin) minecraftServer.getRecipeManager()).getRecipes();
 			
 			ArrayList<Recipe<?>> newList = new ArrayList<>();
-			newList.addAll(collectedRecipes.values());
 			for (Map<Identifier, Recipe<?>> r : recipes.values()) {
 				newList.addAll(r.values());
+			}
+			for(Recipe<?> recipe : collectedRecipes.values()) {
+				if(!newList.contains(recipe)) {
+					newList.add(recipe);
+				}
 			}
 			
 			minecraftServer.getRecipeManager().setRecipes(newList);

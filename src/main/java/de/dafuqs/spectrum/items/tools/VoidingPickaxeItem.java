@@ -1,12 +1,9 @@
 package de.dafuqs.spectrum.items.tools;
 
-import de.dafuqs.spectrum.enchantments.SpectrumEnchantment;
-import de.dafuqs.spectrum.items.Preenchanted;
 import de.dafuqs.spectrum.registries.SpectrumEnchantments;
 import net.minecraft.block.BlockState;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;

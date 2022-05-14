@@ -10,6 +10,7 @@
     { "predicate": { "phase": 0.5 }, "model": "spectrum:item/crescent_clock_4" },
     { "predicate": { "phase": 0.625 }, "model": "spectrum:item/crescent_clock_5" },
     { "predicate": { "phase": 0.75 }, "model": "spectrum:item/crescent_clock_6" },
-    { "predicate": { "phase": 0.875 }, "model": "spectrum:item/crescent_clock_7" }
+    { "predicate": { "phase": 0.875 }, "model": "spectrum:item/crescent_clock_7" },
+    { "predicate": { "phase": 1.0 }, "model": "spectrum:item/crescent_clock_spinning" }
   ]
 }

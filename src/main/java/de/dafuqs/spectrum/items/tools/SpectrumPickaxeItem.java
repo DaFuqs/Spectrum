@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.items.tools;
 
 import de.dafuqs.spectrum.items.Preenchanted;
 import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.Enchantments;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.PickaxeItem;
 import net.minecraft.item.ToolMaterial;

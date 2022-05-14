@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum;
 
-import com.google.common.collect.ImmutableCollection;
 import com.google.common.collect.ImmutableMap;
 import de.dafuqs.spectrum.blocks.chests.CompactingChestBlockEntity;
 import de.dafuqs.spectrum.blocks.shooting_star.ShootingStarBlock;
@@ -19,7 +18,6 @@ import de.dafuqs.spectrum.items.trinkets.WhispyCircletItem;
 import de.dafuqs.spectrum.loot.EnchantmentDrops;
 import de.dafuqs.spectrum.loot.SpectrumLootConditionTypes;
 import de.dafuqs.spectrum.mixin.RecipeManagerMixin;
-import de.dafuqs.spectrum.mixin.accessors.FoxEntityAccessor;
 import de.dafuqs.spectrum.networking.SpectrumC2SPacketReceiver;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.progression.BlockCloakManager;
@@ -46,7 +44,6 @@ import net.minecraft.block.DispenserBlock;
 import net.minecraft.block.FluidBlock;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.recipe.Recipe;
-import net.minecraft.recipe.RecipeManager;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.resource.ResourceManager;
 import net.minecraft.resource.ResourceType;
@@ -57,7 +54,6 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
-import net.minecraft.world.World;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

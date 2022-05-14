@@ -7,17 +7,12 @@ import de.dafuqs.spectrum.items.magic_items.EnderSpliceItem;
 import de.dafuqs.spectrum.items.trinkets.AshenCircletItem;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.fabricmc.fabric.api.object.builder.v1.client.model.FabricModelPredicateProviderRegistry;
-import net.minecraft.client.item.UnclampedModelPredicateProvider;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
 
 // Vanilla models see: ModelPredicateProviderRegistry
 public class SpectrumItemPredicates {
@@ -47,15 +42,10 @@ public class SpectrumItemPredicates {
 				
 				if (clientWorld == null) {
 					return 0.0F;
+				} else if(!clientWorld.getDimension().isNatural()) {
+					return 1.0F;
 				} else {
-					float moonPhase;
-					if (clientWorld.getDimension().isNatural()) {
-						moonPhase = clientWorld.getMoonPhase() / 8F;
-					} else {
-						moonPhase = (float) Math.random();
-					}
-					
-					return moonPhase;
+					return clientWorld.getMoonPhase() / 8F;
 				}
 			}
 		});

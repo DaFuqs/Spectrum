@@ -1,8 +1,8 @@
 package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.status_effects.NourishingStatusEffect;
 import de.dafuqs.spectrum.status_effects.ImmunityStatusEffect;
+import de.dafuqs.spectrum.status_effects.NourishingStatusEffect;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.tag.TagKey;

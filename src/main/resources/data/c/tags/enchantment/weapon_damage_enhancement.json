@@ -1,8 +1,17 @@
 {
   "replace": false,
   "values": [
-    "spectrum:improved_critical",
-    "spectrum:first_strike",
-    "spectrum:sniper"
+    {
+      "id": "spectrum:improved_critical",
+      "required": false
+    },
+    {
+      "id": "spectrum:first_strike",
+      "required": false
+    },
+    {
+      "id": "spectrum:sniper",
+      "required": false
+    }
   ]
 }

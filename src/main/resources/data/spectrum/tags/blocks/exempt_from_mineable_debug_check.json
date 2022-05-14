@@ -1,6 +1,7 @@
 {
 	"values": [
 		"#spectrum:mob_heads",
+		"#spectrum:unbreakable",
 		"spectrum:mud",
 		"spectrum:liquid_crystal",
 		"spectrum:midnight_solution",
@@ -9,6 +10,7 @@
 		"spectrum:wand_light",
 		"spectrum:block_flooder",
 		"spectrum:cracked_end_portal_frame",
-		"spectrum:creative_particle_spawner"
+		"spectrum:creative_particle_spawner",
+		"spectrum:tinted_preservation_glass"
 	]
 }

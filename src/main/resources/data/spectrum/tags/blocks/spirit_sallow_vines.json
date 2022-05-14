@@ -1,0 +1,16 @@
+{
+  "replace": false,
+  "values": [
+    "spectrum:cyan_spirit_sallow_vines_body",
+    "spectrum:magenta_spirit_sallow_vines_body",
+    "spectrum:yellow_spirit_sallow_vines_body",
+    "spectrum:black_spirit_sallow_vines_body",
+    "spectrum:white_spirit_sallow_vines_body",
+
+    "spectrum:cyan_spirit_sallow_vines_head",
+    "spectrum:magenta_spirit_sallow_vines_head",
+    "spectrum:yellow_spirit_sallow_vines_head",
+    "spectrum:black_spirit_sallow_vines_head",
+    "spectrum:white_spirit_sallow_vines_head"
+  ]
+}

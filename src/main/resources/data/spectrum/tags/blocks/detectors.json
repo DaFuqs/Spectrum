@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "spectrum:light_level_detector",
+    "spectrum:weather_detector",
+    "spectrum:item_detector",
+    "spectrum:player_detector",
+    "spectrum:entity_detector"
+  ]
+}

@@ -157,8 +157,10 @@
   "enchantment.spectrum.sniper.desc": "Increased projectile speed",
   "enchantment.spectrum.tight_grip": "Tight Grip",
   "enchantment.spectrum.tight_grip.desc": "Decreased attack cooldown",
-  "enchantment.spectrum.damage_proof": "Damage Proof",
-  "enchantment.spectrum.damage_proof.desc": "Immunity to most forms of damage, despawning and the void",
+  "enchantment.spectrum.steadfast": "Steadfast",
+  "enchantment.spectrum.steadfast.desc": "When on the ground, immune to most forms of damage, despawning and the void",
+  "enchantment.spectrum.indestructible": "Indestructible",
+  "enchantment.spectrum.indestructible.desc": "Makes the tool fully unbreakable",
 
   "spectrum.subtitles.celestial_pocket_watch_ticking": "Pocketwatch ticks",
   "spectrum.subtitles.shooting_star_cracker": "Shooting Star cracks",
@@ -257,8 +259,9 @@
   "text.autoconfig.Spectrum.option.CloversFavorEnchantmentEnabled": "Enchantment Clovers' Favor available",
   "text.autoconfig.Spectrum.option.SniperEnchantmentEnabled": "Enchantment Sniper available",
   "text.autoconfig.Spectrum.option.TightGripEnchantmentEnabled": "Enchantment TightGrip available",
-  "text.autoconfig.Spectrum.option.DamageProofEnchantmentEnabled": "Enchantment Damage Proof available",
-  
+  "text.autoconfig.Spectrum.option.SteadfastEnchantmentEnabled": "Enchantment Steadfast available",
+  "text.autoconfig.Spectrum.option.IndestructibleEnchantmentEnabled": "Enchantment Indestructible available",
+
   "text.autoconfig.Spectrum.option.TreasureHunterMaxLevel": "Max level for Treasure Hunter enchantment",
   "text.autoconfig.Spectrum.option.DisarmingMaxLevel": "Max level for Disarming enchantment",
   "text.autoconfig.Spectrum.option.FirstStrikeMaxLevel": "Max level for First Strike enchantment",

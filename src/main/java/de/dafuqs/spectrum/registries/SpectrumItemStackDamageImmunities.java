@@ -55,7 +55,7 @@ public class SpectrumItemStackDamageImmunities {
 		if(generalImmunities.contains(item)) {
 			return true;
 		// does itemStack have Damage Proof enchantment?
-		} else if(EnchantmentHelper.getLevel(SpectrumEnchantments.DAMAGE_PROOF, itemStack) > 0) {
+		} else if(EnchantmentHelper.getLevel(SpectrumEnchantments.STEADFAST, itemStack) > 0) {
 			return true;
 		// is item immune to this specific kind of damage?
 		} else if(damageSourceImmunities.containsKey(damageSource.getName())) {

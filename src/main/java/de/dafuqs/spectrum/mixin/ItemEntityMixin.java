@@ -45,7 +45,7 @@ public abstract class ItemEntityMixin {
 	@Inject(at=@At("TAIL"), method= "<init>(Lnet/minecraft/world/World;DDDLnet/minecraft/item/ItemStack;DDD)V")
 	public void ItemEntity(World world, double x, double y, double z, ItemStack stack, double velocityX, double velocityY, double velocityZ, CallbackInfo ci) {
 		// item stacks that are enchanted with damage proof should never despawn
-		if(EnchantmentHelper.getLevel(SpectrumEnchantments.DAMAGE_PROOF, stack) > 0) {
+		if(EnchantmentHelper.getLevel(SpectrumEnchantments.STEADFAST, stack) > 0) {
 			setNeverDespawn();
 		}
 	}
@@ -58,7 +58,7 @@ public abstract class ItemEntityMixin {
 			int worldMinY = thisItemEntity.world.getDimension().getMinimumY();
 			if(!thisItemEntity.isOnGround()
 					&& thisItemEntity.getPos().getY() < worldMinY + 2
-					&& EnchantmentHelper.getLevel(SpectrumEnchantments.DAMAGE_PROOF, thisItemEntity.getStack()) > 0) {
+					&& EnchantmentHelper.getLevel(SpectrumEnchantments.STEADFAST, thisItemEntity.getStack()) > 0) {
 				
 				if(thisItemEntity.getPos().getY() < worldMinY + 1) {
 					thisItemEntity.setPosition(thisItemEntity.getPos().x, worldMinY + 1, thisItemEntity.getPos().z);

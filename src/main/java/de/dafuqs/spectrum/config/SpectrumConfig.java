@@ -94,7 +94,8 @@ This does only disable the registration of said Enchantments, not all recipes ba
 	public boolean CloversFavorEnchantmentEnabled = true;
 	public boolean SniperEnchantmentEnabled = true;
 	public boolean TightGripEnchantmentEnabled = true;
-	public boolean DamageProofEnchantmentEnabled = true;
+	public boolean SteadfastEnchantmentEnabled = true;
+	public boolean IndestructibleEnchantmentEnabled = true;
 	
 	@Comment("The max levels for all Enchantments")
 	public int TreasureHunterMaxLevel = 3;

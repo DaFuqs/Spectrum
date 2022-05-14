@@ -1,7 +1,7 @@
 {
-    "name": "Damage Proof",
+    "name": "Steadfast",
     "icon": "spectrum:multitool",
-    "advancement": "spectrum:progression/enchantments/damage_proof",
+    "advancement": "spectrum:progression/enchantments/steadfast",
     "category": "spectrum:enchanting_category",
     "pages": [
         {
@@ -11,14 +11,14 @@
         {
             "type": "patchouli:spotlight",
             "title": "Characteristics",
-            "item": "spectrum:multitool{Enchantments: [{id: \"spectrum:damage_proof\", lvl: 1s}]}",
+            "item": "spectrum:multitool{Enchantments: [{id: \"spectrum:steadfast\", lvl: 1s}]}",
             "text": "Protects tools from all kinds of damage when on lying the ground, even from lava or falling into the Void.$(br2)Max Level: 1$(br)Applicable to all tools."
         },
         {
             "type": "spectrum:enchanter_crafting",
             "title": "Enchanter Recipe",
-            "recipe": "spectrum:enchanter/spectrum_books/book_damage_proof",
-            "text": "You can infuse a common Book with Damage Proof by surrounding your Enchanter with Pigment and the other required materials."
+            "recipe": "spectrum:enchanter/spectrum_books/book_steadfast",
+            "text": "You can infuse a common Book with Steadfast by surrounding your Enchanter with Pigment and the other required materials."
         }
     ]
 }

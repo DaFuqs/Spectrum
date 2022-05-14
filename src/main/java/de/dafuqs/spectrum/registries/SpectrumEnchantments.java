@@ -23,7 +23,8 @@ public class SpectrumEnchantments {
 	public static final SpectrumEnchantment TIGHT_GRIP = new TightGripEnchantment(Enchantment.Rarity.RARE, new Identifier(SpectrumCommon.MOD_ID, "progression/enchantments/tight_grip"), EquipmentSlot.MAINHAND); // Increases attack speed
 	public static final SpectrumEnchantment DISARMING = new DisarmingEnchantment(Enchantment.Rarity.VERY_RARE, new Identifier(SpectrumCommon.MOD_ID, "progression/enchantments/disarming"), EquipmentSlot.MAINHAND); // Drops mob equipment on hit (and players, but way less often)
 	public static final SpectrumEnchantment SNIPER = new SniperEnchantment(Enchantment.Rarity.VERY_RARE, new Identifier(SpectrumCommon.MOD_ID, "progression/enchantments/sniper"), EquipmentSlot.MAINHAND); // Increases projectile speed => increased damage + range
-	public static final SpectrumEnchantment DAMAGE_PROOF = new DamageProofEnchantment(Enchantment.Rarity.COMMON, new Identifier(SpectrumCommon.MOD_ID, "progression/enchantments/damage_proof"), EquipmentSlot.MAINHAND); // ItemStacks with this enchantment are not destroyed by cactus, fire, lava, ...
+	public static final SpectrumEnchantment STEADFAST = new DamageProofEnchantment(Enchantment.Rarity.COMMON, new Identifier(SpectrumCommon.MOD_ID, "progression/enchantments/steadfast"), EquipmentSlot.MAINHAND); // ItemStacks with this enchantment are not destroyed by cactus, fire, lava, ...
+	public static final SpectrumEnchantment INDESTRUCTIBLE = new IndestructibleEnchantment(Enchantment.Rarity.RARE, new Identifier(SpectrumCommon.MOD_ID, "progression/enchantments/indestructible"), EquipmentSlot.MAINHAND); // Make tools not use up durability
 
 	public static void register() {
 		Registry.register(Registry.ENCHANTMENT, new Identifier(SpectrumCommon.MOD_ID, "resonance"), RESONANCE);
@@ -65,8 +66,11 @@ public class SpectrumEnchantments {
 		if(SpectrumCommon.CONFIG.TightGripEnchantmentEnabled) {
 			Registry.register(Registry.ENCHANTMENT, new Identifier(SpectrumCommon.MOD_ID, "tight_grip"), TIGHT_GRIP);
 		}
-		if(SpectrumCommon.CONFIG.DamageProofEnchantmentEnabled) {
-			Registry.register(Registry.ENCHANTMENT, new Identifier(SpectrumCommon.MOD_ID, "damage_proof"), DAMAGE_PROOF);
+		if(SpectrumCommon.CONFIG.SteadfastEnchantmentEnabled) {
+			Registry.register(Registry.ENCHANTMENT, new Identifier(SpectrumCommon.MOD_ID, "steadfast"), STEADFAST);
+		}
+		if(SpectrumCommon.CONFIG.IndestructibleEnchantmentEnabled) {
+			Registry.register(Registry.ENCHANTMENT, new Identifier(SpectrumCommon.MOD_ID, "indestructible"), INDESTRUCTIBLE);
 		}
 	}
 

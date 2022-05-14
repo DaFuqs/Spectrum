@@ -2,11 +2,13 @@ package de.dafuqs.spectrum.mixin;
 
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
+import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.inventories.slots.ShadowSlot;
 import de.dafuqs.spectrum.mixin.accessors.ItemAccessor;
 import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
 import de.dafuqs.spectrum.registries.SpectrumEnchantments;
 import net.minecraft.block.BlockState;
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.attribute.EntityAttribute;
@@ -66,6 +68,13 @@ public abstract class ItemStackMixin {
 				}
 			}
 			cir.setReturnValue(builder.build());
+		}
+	}
+	
+	@Inject(at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;getNbt()Lnet/minecraft/nbt/NbtCompound;"), method= "isDamageable()Z", cancellable = true)
+	public void spectrum$checkIndestructibleEnchantment(CallbackInfoReturnable<Boolean> cir) {
+		if(SpectrumCommon.CONFIG.IndestructibleEnchantmentEnabled && EnchantmentHelper.getLevel(SpectrumEnchantments.INDESTRUCTIBLE, (ItemStack)(Object) this) > 0) {
+			cir.setReturnValue(false);
 		}
 	}
 

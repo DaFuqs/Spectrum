@@ -57,6 +57,8 @@ public class CrystalApothecaryBlockEntity extends LootableContainerBlockEntity i
 	}};
 	
 	private static final int RANGE = 12;
+	private static final ItemStack HARVEST_ITEMSTACK =  ItemStack.EMPTY;
+	
 	private final QueuedBlockPosEventTransferListener blockPosEventTransferListener;
 	private DefaultedList<ItemStack> inventory;
 	private boolean listenerPaused;
@@ -255,7 +257,7 @@ public class CrystalApothecaryBlockEntity extends LootableContainerBlockEntity i
 				LootContext.Builder builder = (new LootContext.Builder((ServerWorld)this.world))
 						.random(this.world.random)
 						.parameter(LootContextParameters.ORIGIN, Vec3d.ofCenter(eventPos))
-						.parameter(LootContextParameters.TOOL, SpectrumItems.FORTUNE_PICKAXE.getDefaultStack()) // TODO: use bare hands
+						.parameter(LootContextParameters.TOOL, HARVEST_ITEMSTACK)
 						.optionalParameter(LootContextParameters.BLOCK_ENTITY, blockEntity);
 				
 				List<ItemStack> drops = eventState.getDroppedStacks(builder);

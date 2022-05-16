@@ -2,6 +2,9 @@ package de.dafuqs.spectrum.items;
 
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.progression.advancement.HasAdvancementCriterion;
+import de.dafuqs.spectrum.registries.SpectrumBannerPatterns;
+import io.github.fablabsmc.fablabs.api.bannerpattern.v1.LoomPattern;
+import io.github.fablabsmc.fablabs.api.bannerpattern.v1.LoomPatternProvider;
 import net.minecraft.advancement.Advancement;
 import net.minecraft.advancement.AdvancementCriterion;
 import net.minecraft.advancement.AdvancementProgress;
@@ -20,7 +23,7 @@ import vazkii.patchouli.api.PatchouliAPI;
 
 import java.util.Map;
 
-public class ManualItem extends Item {
+public class ManualItem extends Item implements LoomPatternProvider {
 
 
 	public ManualItem(Settings settings) {
@@ -88,6 +91,11 @@ public class ManualItem extends Item {
 				}
 			}
 		}
+	}
+	
+	@Override
+	public LoomPattern getPattern() {
+		return SpectrumBannerPatterns.MANUAL;
 	}
 
 }

@@ -1,20 +1,22 @@
-package de.dafuqs.spectrum.items;
+package de.dafuqs.spectrum.items.confitional;
 
 import de.dafuqs.spectrum.interfaces.Cloakable;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Pair;
 
 import java.util.Hashtable;
 
-public class CloakedItem extends Item implements Cloakable {
+public class CloakedBlockItem extends BlockItem implements Cloakable {
 
     Identifier cloakAdvancementIdentifier;
     Item cloakItem;
 
-    public CloakedItem(Settings settings, Identifier cloakAdvancementIdentifier, Item cloakItem) {
-        super(settings);
+    public CloakedBlockItem(Block block, Settings settings, Identifier cloakAdvancementIdentifier, Item cloakItem) {
+        super(block, settings);
         this.cloakAdvancementIdentifier = cloakAdvancementIdentifier;
         this.cloakItem = cloakItem;
 
@@ -35,4 +37,5 @@ public class CloakedItem extends Item implements Cloakable {
     public Pair<Item, Item> getItemCloak() {
         return new Pair<>(this, cloakItem);
     }
+    
 }

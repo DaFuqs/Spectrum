@@ -1173,7 +1173,9 @@
   "item.spectrum.neolith": "Neolith",
   "item.spectrum.bedrock_dust": "Bedrock Dust",
   "item.spectrum.midnight_aberration": "Midnight Aberration",
-  "item.spectrum.midnight_chip": "Midnight Chip",
+
+  "item.spectrum.amethyst_shard_banner_pattern": "Banner Pattern",
+  "item.spectrum.amethyst_cluster_banner_pattern": "Banner Pattern",
 
   "trinkets.slot.chest.pin": "Pin",
   "trinkets.slot.head.crown": "Crown",

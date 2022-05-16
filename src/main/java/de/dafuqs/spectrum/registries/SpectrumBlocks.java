@@ -67,6 +67,7 @@ import de.dafuqs.spectrum.blocks.upgrade.UpgradeBlockItem;
 import de.dafuqs.spectrum.blocks.upgrade.Upgradeable;
 import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
 import de.dafuqs.spectrum.enums.BuiltinGemstoneColor;
+import de.dafuqs.spectrum.items.FourLeafCloverItem;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.worldgen.ColoredSaplingGenerator;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
@@ -904,7 +905,7 @@ public class SpectrumBlocks {
 		registerBlockWithItem("blazing_crystal", BLAZING_CRYSTAL, generalItemSettings);
 		registerBlockWithItem("resonant_lily", RESONANT_LILY, generalItemSettings);
 		registerBlockWithItem("clover", CLOVER, worldgenItemSettings);
-		registerBlockWithItem("four_leaf_clover", FOUR_LEAF_CLOVER, worldgenItemSettings);
+		registerBlockWithItem("four_leaf_clover", FOUR_LEAF_CLOVER, new FourLeafCloverItem(FOUR_LEAF_CLOVER, worldgenItemSettings, new Identifier(SpectrumCommon.MOD_ID, "milestones/reveal_four_leaf_clover"), CLOVER.asItem()));
 
 		// Worldgen
 		registerBlockWithItem("quitoxic_reeds", QUITOXIC_REEDS, worldgenItemSettings);

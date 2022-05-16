@@ -255,7 +255,7 @@ public class CrystalApothecaryBlockEntity extends LootableContainerBlockEntity i
 				LootContext.Builder builder = (new LootContext.Builder((ServerWorld)this.world))
 						.random(this.world.random)
 						.parameter(LootContextParameters.ORIGIN, Vec3d.ofCenter(eventPos))
-						.parameter(LootContextParameters.TOOL, SpectrumItems.FORTUNE_PICKAXE.getDefaultStack())
+						.parameter(LootContextParameters.TOOL, SpectrumItems.FORTUNE_PICKAXE.getDefaultStack()) // TODO: use bare hands
 						.optionalParameter(LootContextParameters.BLOCK_ENTITY, blockEntity);
 				
 				List<ItemStack> drops = eventState.getDroppedStacks(builder);

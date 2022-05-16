@@ -4,6 +4,9 @@ import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.energy.PigmentEnergyStorageItem;
 import de.dafuqs.spectrum.energy.storage.ArtistsPaletteEnergyStorage;
 import de.dafuqs.spectrum.items.trinkets.SpectrumTrinketItem;
+import de.dafuqs.spectrum.registries.SpectrumBannerPatterns;
+import io.github.fablabsmc.fablabs.api.bannerpattern.v1.LoomPattern;
+import io.github.fablabsmc.fablabs.api.bannerpattern.v1.LoomPatternProvider;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.item.TooltipContext;
@@ -16,7 +19,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class ArtistsPaletteItem extends SpectrumTrinketItem implements PigmentEnergyStorageItem<ArtistsPaletteEnergyStorage> {
+public class ArtistsPaletteItem extends SpectrumTrinketItem implements PigmentEnergyStorageItem<ArtistsPaletteEnergyStorage>, LoomPatternProvider {
 	
 	private final long maxEnergyTotal;
 	
@@ -45,6 +48,11 @@ public class ArtistsPaletteItem extends SpectrumTrinketItem implements PigmentEn
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
 		getEnergyStorage(stack).addTooltip(world, tooltip, context);
+	}
+	
+	@Override
+	public LoomPattern getPattern() {
+		return SpectrumBannerPatterns.PALETTE;
 	}
 	
 }

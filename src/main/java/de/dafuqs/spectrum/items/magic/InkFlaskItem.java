@@ -5,6 +5,9 @@ import de.dafuqs.spectrum.energy.PigmentEnergyStorageItem;
 import de.dafuqs.spectrum.energy.color.CMYKColor;
 import de.dafuqs.spectrum.energy.storage.SinglePigmentEnergyStorage;
 import de.dafuqs.spectrum.items.trinkets.SpectrumTrinketItem;
+import de.dafuqs.spectrum.registries.SpectrumBannerPatterns;
+import io.github.fablabsmc.fablabs.api.bannerpattern.v1.LoomPattern;
+import io.github.fablabsmc.fablabs.api.bannerpattern.v1.LoomPatternProvider;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.item.TooltipContext;
@@ -17,7 +20,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class InkFlaskItem extends SpectrumTrinketItem implements PigmentEnergyStorageItem<SinglePigmentEnergyStorage> {
+public class InkFlaskItem extends SpectrumTrinketItem implements PigmentEnergyStorageItem<SinglePigmentEnergyStorage>, LoomPatternProvider {
 	
 	private final long maxEnergy;
 	
@@ -55,6 +58,11 @@ public class InkFlaskItem extends SpectrumTrinketItem implements PigmentEnergySt
 		storage.convertColor(color);
 		setEnergyStorage(stack, storage);
 		return stack;
+	}
+	
+	@Override
+	public LoomPattern getPattern() {
+		return SpectrumBannerPatterns.INK_FLASK;
 	}
 	
 }

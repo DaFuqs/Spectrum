@@ -2,7 +2,10 @@ package de.dafuqs.spectrum.items.magic_items;
 
 import de.dafuqs.spectrum.blocks.enchanter.EnchanterEnchantable;
 import de.dafuqs.spectrum.items.ExperienceStorageItem;
+import de.dafuqs.spectrum.registries.SpectrumBannerPatterns;
 import de.dafuqs.spectrum.registries.SpectrumItems;
+import io.github.fablabsmc.fablabs.api.bannerpattern.v1.LoomPattern;
+import io.github.fablabsmc.fablabs.api.bannerpattern.v1.LoomPatternProvider;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -28,7 +31,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class KnowledgeGemItem extends Item implements ExperienceStorageItem, EnchanterEnchantable {
+public class KnowledgeGemItem extends Item implements ExperienceStorageItem, EnchanterEnchantable, LoomPatternProvider {
 	
 	private final int maxStorageBase;
 	
@@ -185,4 +188,10 @@ public class KnowledgeGemItem extends Item implements ExperienceStorageItem, Enc
 	public boolean canAcceptEnchantment(Enchantment enchantment) {
 		return enchantment == Enchantments.EFFICIENCY || enchantment == Enchantments.QUICK_CHARGE;
 	}
+	
+	@Override
+	public LoomPattern getPattern() {
+		return SpectrumBannerPatterns.KNOWLEDGE_GEM;
+	}
+	
 }

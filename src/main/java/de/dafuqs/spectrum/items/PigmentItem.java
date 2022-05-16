@@ -1,12 +1,16 @@
 package de.dafuqs.spectrum.items;
 
 import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.items.confitional.CloakedItem;
+import de.dafuqs.spectrum.registries.SpectrumBannerPatterns;
+import io.github.fablabsmc.fablabs.api.bannerpattern.v1.LoomPattern;
+import io.github.fablabsmc.fablabs.api.bannerpattern.v1.LoomPatternProvider;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
 
-public class PigmentItem extends CloakedItem {
+public class PigmentItem extends CloakedItem implements LoomPatternProvider {
 
 	protected final DyeColor color;
 
@@ -38,6 +42,11 @@ public class PigmentItem extends CloakedItem {
 			case WHITE -> { return Items.WHITE_DYE; }
 			default -> { return Items.YELLOW_DYE; }
 		}
+	}
+	
+	@Override
+	public LoomPattern getPattern() {
+		return SpectrumBannerPatterns.PIGMENT;
 	}
 
 }

@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.items;
 
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.enums.GemstoneColor;
+import de.dafuqs.spectrum.items.confitional.CloakedGemstoneColorItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.NotNull;

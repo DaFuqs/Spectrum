@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.items;
+package de.dafuqs.spectrum.items.confitional;
 
 import de.dafuqs.spectrum.enums.GemstoneColor;
 import net.minecraft.item.DyeItem;

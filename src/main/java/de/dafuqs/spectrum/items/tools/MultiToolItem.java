@@ -1,6 +1,9 @@
 package de.dafuqs.spectrum.items.tools;
 
 import de.dafuqs.spectrum.items.Preenchanted;
+import de.dafuqs.spectrum.registries.SpectrumBannerPatterns;
+import io.github.fablabsmc.fablabs.api.bannerpattern.v1.LoomPattern;
+import io.github.fablabsmc.fablabs.api.bannerpattern.v1.LoomPatternProvider;
 import net.minecraft.block.BlockState;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.Enchantments;
@@ -12,7 +15,7 @@ import net.minecraft.util.ActionResult;
 
 import java.util.Map;
 
-public class MultiToolItem extends SpectrumPickaxeItem implements Preenchanted {
+public class MultiToolItem extends SpectrumPickaxeItem implements Preenchanted, LoomPatternProvider {
 
 	public MultiToolItem(ToolMaterial material, int attackDamage, float attackSpeed, Settings settings) {
 		super(material, attackDamage, attackSpeed, settings);
@@ -52,6 +55,11 @@ public class MultiToolItem extends SpectrumPickaxeItem implements Preenchanted {
 			}
 		}
 		return actionResult;
+	}
+	
+	@Override
+	public LoomPattern getPattern() {
+		return SpectrumBannerPatterns.MULTITOOL;
 	}
 	
 }

@@ -5,6 +5,9 @@ import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.inventories.CraftingTabletScreenHandler;
 import de.dafuqs.spectrum.items.tooltip.CraftingTabletTooltipData;
 import de.dafuqs.spectrum.recipe.pedestal.PedestalCraftingRecipe;
+import de.dafuqs.spectrum.registries.SpectrumBannerPatterns;
+import io.github.fablabsmc.fablabs.api.bannerpattern.v1.LoomPattern;
+import io.github.fablabsmc.fablabs.api.bannerpattern.v1.LoomPatternProvider;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
@@ -33,7 +36,7 @@ import net.minecraft.world.World;
 import java.util.List;
 import java.util.Optional;
 
-public class CraftingTabletItem extends Item {
+public class CraftingTabletItem extends Item implements LoomPatternProvider {
 
 	private static final Text TITLE = new TranslatableText("item.spectrum.crafting_tablet");
 
@@ -134,5 +137,10 @@ public class CraftingTabletItem extends Item {
 			return Optional.empty();
 		}
 	}
-
+	
+	@Override
+	public LoomPattern getPattern() {
+		return SpectrumBannerPatterns.CRAFTING_TABLET;
+	}
+	
 }

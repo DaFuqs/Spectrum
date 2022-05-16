@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.blocks.jade_vines;
 
-import de.dafuqs.spectrum.items.CloakedItem;
+import de.dafuqs.spectrum.items.confitional.CloakedItem;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.Item;

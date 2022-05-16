@@ -7,6 +7,7 @@ import de.dafuqs.spectrum.inventories.GenericSpectrumContainerScreenHandler;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
 import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -25,6 +26,7 @@ import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.Vec3i;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -36,6 +38,8 @@ public class TreasureChestBlockEntity extends SpectrumChestBlockEntity {
 	
 	private Identifier requiredAdvancementIdentifierToOpen;
 	private final List<UUID> playersThatOpenedAlready = new ArrayList<>();
+	
+	private Vec3i controllerOffset;
 	
 	public TreasureChestBlockEntity(BlockEntityType<?> blockEntityType, BlockPos pos, BlockState state) {
 		super(blockEntityType, pos, state);
@@ -51,6 +55,12 @@ public class TreasureChestBlockEntity extends SpectrumChestBlockEntity {
 		
 		if(this.requiredAdvancementIdentifierToOpen != null) {
 			tag.putString("RequiredAdvancement", this.requiredAdvancementIdentifierToOpen.toString());
+		}
+		
+		if(this.controllerOffset !=  null) {
+			tag.putInt("ControllerOffsetX", this.controllerOffset.getX());
+			tag.putInt("ControllerOffsetY", this.controllerOffset.getY());
+			tag.putInt("ControllerOffsetZ", this.controllerOffset.getZ());
 		}
 		
 		if(!playersThatOpenedAlready.isEmpty()) {
@@ -82,6 +92,10 @@ public class TreasureChestBlockEntity extends SpectrumChestBlockEntity {
 			this.requiredAdvancementIdentifierToOpen = Identifier.tryParse(tag.getString("RequiredAdvancement"));
 		}
 		
+		if(tag.contains("ControllerOffsetX")) {
+			this.controllerOffset = new Vec3i(tag.getInt("ControllerOffsetX"), tag.getInt("ControllerOffsetY"), tag.getInt("ControllerOffsetZ"));
+		}
+		
 		this.playersThatOpenedAlready.clear();
 		if(tag.contains("OpenedPlayers", NbtElement.LIST_TYPE)) {
 			NbtList list = tag.getList("OpenedPlayers", NbtElement.COMPOUND_TYPE);
@@ -89,6 +103,15 @@ public class TreasureChestBlockEntity extends SpectrumChestBlockEntity {
 				NbtCompound compound = list.getCompound(i);
 				UUID uuid = compound.getUuid("UUID");
 				this.playersThatOpenedAlready.add(uuid);
+			}
+		}
+	}
+	
+	public void onClose() {
+		if(!world.isClient && controllerOffset != null) {
+			BlockEntity blockEntity = world.getBlockEntity(Support.getBlockPosViaOriginAndOffset(this.pos, this.controllerOffset, world.getBlockState(this.pos).get(PreservationControllerBlock.FACING))); //TODO: test
+			if(blockEntity instanceof PreservationControllerBlockEntity controller) {
+				controller.openExit();
 			}
 		}
 	}

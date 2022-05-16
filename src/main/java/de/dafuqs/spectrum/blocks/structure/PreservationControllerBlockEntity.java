@@ -3,14 +3,13 @@ package de.dafuqs.spectrum.blocks.structure;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
-import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
-import de.dafuqs.spectrum.registries.SpectrumBlockTags;
-import de.dafuqs.spectrum.registries.SpectrumBlocks;
-import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
@@ -24,6 +23,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.*;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldEvents;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
@@ -123,20 +123,7 @@ public class PreservationControllerBlockEntity extends BlockEntity {
 	
 	private static void calculateLocationData(BlockPos blockPos, @NotNull BlockState blockState, @NotNull PreservationControllerBlockEntity blockEntity) {
 		blockEntity.checkBox = Box.of(Vec3d.ofCenter(blockPos), blockEntity.checkRange.getX() * 2, blockEntity.checkRange.getY() * 2, blockEntity.checkRange.getZ() * 2);
-		switch (blockState.get(PreservationControllerBlock.FACING)) {
-			case NORTH -> {
-				blockEntity.destinationPos = blockEntity.pos.add(blockEntity.entranceOffset.getX(), blockEntity.entranceOffset.getY(), blockEntity.entranceOffset.getZ());
-			}
-			case EAST -> {
-				blockEntity.destinationPos = blockEntity.pos.add(blockEntity.entranceOffset.getZ(), blockEntity.entranceOffset.getY(), blockEntity.entranceOffset.getX());
-			}
-			case SOUTH -> {
-				blockEntity.destinationPos = blockEntity.pos.add(-blockEntity.entranceOffset.getX(), blockEntity.entranceOffset.getY(), blockEntity.entranceOffset.getZ());
-			}
-			default -> {
-				blockEntity.destinationPos = blockEntity.pos.add(-blockEntity.entranceOffset.getZ(), blockEntity.entranceOffset.getY(), blockEntity.entranceOffset.getX());
-			}
-		}
+		blockEntity.destinationPos = Support.getBlockPosViaOriginAndOffset(blockEntity.pos, blockEntity.entranceOffset, blockState.get(PreservationControllerBlock.FACING));
 	}
 	
 	public void spawnParticles() {
@@ -161,6 +148,7 @@ public class PreservationControllerBlockEntity extends BlockEntity {
 					BlockState offsetState = world.getBlockState(offsetPos);
 					if(offsetState.isIn(SpectrumBlockTags.UNBREAKABLE_STRUCTURE_BLOCKS)) {
 						world.setBlockState(offsetPos, SpectrumBlocks.POLISHED_CALCITE.getDefaultState());
+						world.syncGlobalEvent(WorldEvents.BLOCK_BROKEN, offsetPos, Block.getRawIdFromState(offsetState));
 						didSomething = true;
 					}
 				}
@@ -172,6 +160,7 @@ public class PreservationControllerBlockEntity extends BlockEntity {
 					BlockState offsetState = world.getBlockState(offsetPos);
 					if(offsetState.isIn(SpectrumBlockTags.UNBREAKABLE_STRUCTURE_BLOCKS)) {
 						world.setBlockState(offsetPos, SpectrumBlocks.POLISHED_CALCITE.getDefaultState());
+						world.syncGlobalEvent(WorldEvents.BLOCK_BROKEN, offsetPos, Block.getRawIdFromState(offsetState));
 						didSomething = true;
 					}
 				}
@@ -185,7 +174,7 @@ public class PreservationControllerBlockEntity extends BlockEntity {
 	
 	public void yeetPlayer(@NotNull PlayerEntity player) {
 		if(this.destinationPos != null) {
-			//playerEntity.damage(DamageSource.MAGIC, 5.0F);
+			player.damage(SpectrumDamageSources.DIKE_GATE, 1.0F);
 			Vec3d vec = Vec3d.ofCenter(destinationPos);
 			player.requestTeleport(vec.getX(), vec.getY(), vec.getZ());
 			world.playSound(null, destinationPos, SpectrumSoundEvents.USE_FAIL, SoundCategory.PLAYERS, 1.0F, 1.0F);

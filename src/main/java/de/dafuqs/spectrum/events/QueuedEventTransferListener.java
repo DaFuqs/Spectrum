@@ -19,6 +19,7 @@ public abstract class QueuedEventTransferListener<D> implements GameEventListene
 	protected final int range;
 	protected final QueuedEventTransferListener.Callback callback;
 	private final Map<D, Integer> eventQueue;
+	private boolean frozen = false; // protect against ConcurrentModificationExceptions
 
 	public QueuedEventTransferListener(PositionSource positionSource, int range, QueuedEventTransferListener.Callback listener) {
 		this.positionSource = positionSource;
@@ -29,6 +30,7 @@ public abstract class QueuedEventTransferListener<D> implements GameEventListene
 
 	public void tick(World world) {
 		if(!eventQueue.isEmpty()) {
+			frozen = true;
 			Iterator<Map.Entry<D, Integer>> iterator = eventQueue.entrySet().iterator();
 			while (iterator.hasNext()) {
 				Map.Entry<D, Integer> next = iterator.next();
@@ -41,6 +43,7 @@ public abstract class QueuedEventTransferListener<D> implements GameEventListene
 					iterator.remove();
 				}
 			}
+			frozen = false;
 		}
 	}
 
@@ -54,7 +57,7 @@ public abstract class QueuedEventTransferListener<D> implements GameEventListene
 	
 	public boolean listen(World world, GameEvent event, @Nullable Entity entity, BlockPos pos) {
 		Optional<BlockPos> positionSourcePosOptional = this.positionSource.getPos(world);
-		if (positionSourcePosOptional.isEmpty()) {
+		if (frozen || positionSourcePosOptional.isEmpty()) {
 			return false;
 		} else {
 			if (!this.callback.acceptsEvent(world, this, pos, event, positionSourcePosOptional.get())) {
@@ -69,7 +72,9 @@ public abstract class QueuedEventTransferListener<D> implements GameEventListene
 	protected abstract void acceptEvent(World world, BlockPos pos, GameEvent event, BlockPos sourcePos);
 	
 	protected void schedule(D object, int delay) {
-		this.eventQueue.put(object, delay);
+		if(!frozen) {
+			this.eventQueue.put(object, delay);
+		}
 	}
 	
 	public interface Callback<D> {

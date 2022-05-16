@@ -18,8 +18,10 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.tag.TagKey;
 import net.minecraft.util.BlockRotation;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.Vec3i;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
@@ -142,6 +144,27 @@ public class Support {
 			return ((int) d) + 1;
 		} else {
 			return (int) d;
+		}
+	}
+	
+	public static BlockPos getBlockPosViaOriginAndOffset(BlockPos origin, Vec3i offset, @NotNull Direction horizontalFacing) {
+		switch (horizontalFacing) {
+			case NORTH -> {
+				return origin.add(offset.getX(), offset.getY(), offset.getZ());
+			}
+			case EAST -> {
+				return origin.add(offset.getZ(), offset.getY(), offset.getX());
+			}
+			case SOUTH -> {
+				return origin.add(-offset.getX(), offset.getY(), offset.getZ());
+			}
+			case WEST -> {
+				return origin.add(-offset.getZ(), offset.getY(), offset.getX());
+			}
+			default -> {
+				SpectrumCommon.logWarning("Called getBlockPosViaOriginAndOffset with facing" + horizontalFacing + " this is not supported.");
+				return origin;
+			}
 		}
 	}
 

@@ -47,10 +47,12 @@ public abstract class SpectrumChestBlockEntity extends LootableContainerBlockEnt
 		this.stateManager = new ViewerCountManager() {
 			protected void onContainerOpen(World world, BlockPos pos, BlockState state) {
 				playSound(world, pos, state, getOpenSound());
+				onOpen();
 			}
 
 			protected void onContainerClose(World world, BlockPos pos, BlockState state) {
 				playSound(world, pos, state, getCloseSound());
+				onClose();
 			}
 
 			protected void onViewerCountUpdate(World world, BlockPos pos, BlockState state, int oldViewerCount, int newViewerCount) {
@@ -87,6 +89,14 @@ public abstract class SpectrumChestBlockEntity extends LootableContainerBlockEnt
 
 	public static void clientTick(World world, BlockPos pos, BlockState state, SpectrumChestBlockEntity blockEntity) {
 		blockEntity.lidAnimator.step();
+	}
+	
+	public void onOpen() {
+	
+	}
+	
+	public void onClose() {
+	
 	}
 
 	public boolean onSyncedBlockEvent(int type, int data) {

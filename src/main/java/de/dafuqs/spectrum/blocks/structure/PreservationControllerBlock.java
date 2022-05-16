@@ -32,14 +32,14 @@ public class PreservationControllerBlock extends BlockWithEntity {
 	
 	@Override
 	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-		if(!world.isClient && player.isCreative()) {
+		if(!world.isClient && player.isCreative()) { // for testing and building structures
 			BlockEntity blockEntity = world.getBlockEntity(pos);
 			if(blockEntity instanceof PreservationControllerBlockEntity preservationControllerBlockEntity) {
 				if(player.isSneaking()) {
-					preservationControllerBlockEntity.openExit();
-				} else {
 					preservationControllerBlockEntity.yeetPlayer(player);
 					preservationControllerBlockEntity.toggleParticles();
+				} else {
+					preservationControllerBlockEntity.openExit();
 				}
 			}
 		}

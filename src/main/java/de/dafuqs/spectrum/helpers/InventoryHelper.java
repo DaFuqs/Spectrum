@@ -89,7 +89,7 @@ public class InventoryHelper {
 
 	/**
 	 * Adds a single itemstack to an inventory
-	 * @param itemStack the itemstack to add
+	 * @param itemStack the itemstack to add. The stack can have a size > maxStackSize and will be split accordingly
 	 * @param inventory the inventory to add to
 	 * @return The remaining stack that could not be added
 	 */
@@ -98,8 +98,7 @@ public class InventoryHelper {
 			int[] acceptableSlots = ((SidedInventory) inventory).getAvailableSlots(side);
 			for(int acceptableSlot : acceptableSlots) {
 				if (((SidedInventory) inventory).canInsert(acceptableSlot, itemStack, side)) {
-					ItemStack existingItemStack = inventory.getStack(acceptableSlot);
-					inventory.setStack(acceptableSlot, combineStacks(existingItemStack, itemStack));
+					itemStack = setOrCombineStack(inventory, acceptableSlot, itemStack);
 					if (itemStack.isEmpty()) {
 						break;
 					}
@@ -107,21 +106,34 @@ public class InventoryHelper {
 			}
 		} else {
 			for(int i = 0; i < inventory.size(); i++) {
-				ItemStack existingItemStack = inventory.getStack(i);
-				if(existingItemStack.isEmpty()) {
-					inventory.setStack(i, itemStack);
-					return ItemStack.EMPTY;
-				} else {
-					inventory.setStack(i, combineStacks(existingItemStack, itemStack));
-					if(itemStack.isEmpty()) {
-						break;
-					}
+				itemStack = setOrCombineStack(inventory, i, itemStack);
+				if (itemStack.isEmpty()) {
+					break;
 				}
 			}
 		}
 		return itemStack;
 	}
 
+	public static ItemStack setOrCombineStack(Inventory inventory, int slot, ItemStack addingStack) {
+		ItemStack existingStack = inventory.getStack(slot);
+		if(existingStack.isEmpty()) {
+			if(addingStack.getCount() > addingStack.getMaxCount()) {
+				int amount = Math.min(addingStack.getMaxCount(), addingStack.getCount());
+				ItemStack newStack = addingStack.copy();
+				newStack.setCount(amount);
+				addingStack.decrement(amount);
+				inventory.setStack(slot, newStack);
+			} else {
+				inventory.setStack(slot, addingStack);
+				return ItemStack.EMPTY;
+			}
+		} else {
+			combineStacks(existingStack, addingStack);
+		}
+		return addingStack;
+	}
+	
 	public static ItemStack combineStacks(ItemStack originalStack, ItemStack addingStack) {
 		if(ItemStack.canCombine(originalStack, addingStack)) {
 			int leftOverAmountInExistingStack = originalStack.getMaxCount() - originalStack.getCount();
@@ -147,71 +159,6 @@ public class InventoryHelper {
 				}
 			}
 		}
-	}
-
-	public static boolean smartAddToInventory(List<ItemStack> itemStacks, List<ItemStack> inventory, boolean test) {
-		List<ItemStack> additionStacks = new ArrayList<>();
-		for(ItemStack itemStack : itemStacks) {
-			additionStacks.add(itemStack.copy());
-		}
-
-		boolean tryStackExisting = true;
-		for(int i = 0; i < inventory.size(); i++) {
-			ItemStack currentStack = inventory.get(i);
-			for(ItemStack additionStack : additionStacks) {
-				boolean doneStuff = false;
-				if (additionStack.getCount() > 0) {
-					if (currentStack.isEmpty() && (test || !tryStackExisting)) {
-						int maxStackCount = currentStack.getMaxCount();
-						int maxAcceptCount = Math.min(additionStack.getCount(), maxStackCount);
-
-						if (!test) {
-							ItemStack newStack = additionStack.copy();
-							newStack.setCount(maxAcceptCount);
-							inventory.set(i, newStack);
-						}
-						additionStack.setCount(additionStack.getCount() - maxAcceptCount);
-						doneStuff = true;
-					} else if (additionStack.isItemEqual(currentStack)) {
-						// add to stack;
-						int maxStackCount = currentStack.getMaxCount();
-						int canAcceptCount = maxStackCount - currentStack.getCount();
-
-						if (canAcceptCount > 0) {
-							if (!test) {
-								inventory.get(i).increment(Math.min(additionStack.getCount(), canAcceptCount));
-							}
-							if (canAcceptCount >= additionStack.getCount()) {
-								additionStack.setCount(0);
-							} else {
-								additionStack.setCount(additionStack.getCount() - canAcceptCount);
-							}
-							doneStuff = true;
-						}
-					}
-
-					// if there were changes: check if all stacks have count 0
-					if(doneStuff) {
-						boolean allEmpty = true;
-						for(ItemStack itemStack : additionStacks) {
-							if (itemStack.getCount() > 0) {
-								allEmpty = false;
-								break;
-							}
-						}
-						if(allEmpty) {
-							return true;
-						}
-					}
-				}
-			}
-			
-			if(tryStackExisting && !test && i == inventory.size() - 1) {
-				tryStackExisting = false;
-				i = -1;
-			}
-		}
-		return false;
 	}
 
 	public static boolean removeFromInventory(List<Ingredient> ingredients, Inventory inventory, boolean test) {

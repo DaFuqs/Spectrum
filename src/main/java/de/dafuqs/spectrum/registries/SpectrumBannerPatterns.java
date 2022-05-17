@@ -8,6 +8,7 @@ import net.minecraft.util.registry.Registry;
 
 public class SpectrumBannerPatterns {
 	
+	public static LoomPattern SPECTRUM_LOGO;
 	public static LoomPattern AMETHYST_CLUSTER;
 	public static LoomPattern AMETHYST_SHARD;
 	public static LoomPattern CRAFTING_TABLET;
@@ -24,6 +25,7 @@ public class SpectrumBannerPatterns {
 	public static LoomPattern VEGETAL;
 	
 	public static void register() {
+		SPECTRUM_LOGO = Registry.register(LoomPatterns.REGISTRY, new Identifier(SpectrumCommon.MOD_ID, "logo"), new LoomPattern(true));
 		AMETHYST_CLUSTER = Registry.register(LoomPatterns.REGISTRY, new Identifier(SpectrumCommon.MOD_ID, "amethyst_cluster"), new LoomPattern(true));
 		AMETHYST_SHARD = Registry.register(LoomPatterns.REGISTRY, new Identifier(SpectrumCommon.MOD_ID, "amethyst_shard"), new LoomPattern(true));
 		CRAFTING_TABLET = Registry.register(LoomPatterns.REGISTRY, new Identifier(SpectrumCommon.MOD_ID, "crafting_tablet"), new LoomPattern(true));

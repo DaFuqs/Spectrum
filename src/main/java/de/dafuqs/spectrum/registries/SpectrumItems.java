@@ -254,6 +254,7 @@ public class SpectrumItems {
 	public static final Item RESTORATION_TEA = new RestorationTeaItem(toolUncommonItemSettingsSixteen);
 
 	// Banner Patterns
+	public static final Item LOGO_BANNER_PATTERN = new SpectrumBannerPatternItem(toolRareItemSettingsSingle, SpectrumBannerPatterns.SPECTRUM_LOGO, "item.spectrum.logo_banner_pattern.desc");
 	public static final Item AMETHYST_SHARD_BANNER_PATTERN = new SpectrumBannerPatternItem(toolItemSettingsSingle, SpectrumBannerPatterns.AMETHYST_SHARD, "item.minecraft.amethyst_shard");
 	public static final Item AMETHYST_CLUSTER_BANNER_PATTERN = new SpectrumBannerPatternItem(toolItemSettingsSingle, SpectrumBannerPatterns.AMETHYST_CLUSTER, "block.minecraft.amethyst_cluster");
 	
@@ -362,6 +363,7 @@ public class SpectrumItems {
 	}
 	
 	public static void registerBannerPatterns() {
+		register("logo_banner_pattern", LOGO_BANNER_PATTERN);
 		register("amethyst_shard_banner_pattern", AMETHYST_SHARD_BANNER_PATTERN);
 		register("amethyst_cluster_banner_pattern", AMETHYST_CLUSTER_BANNER_PATTERN);
 	}

@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.helpers;
 
+import net.fabricmc.fabric.api.transfer.v1.item.ItemVariant;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ChestBlock;
@@ -76,6 +77,47 @@ public class InventoryHelper {
 			}
 		}
 		return new Pair(count, foundStacks);
+	}
+	
+	public static boolean isItemCountInInventory(List<ItemStack> inventory, ItemVariant itemVariant, int maxSearchAmount) {
+		int count = 0;
+		for(ItemStack inventoryStack : inventory) {
+			if(itemVariant.matches(inventoryStack)) {
+				count += inventoryStack.getCount();
+				if(count >= maxSearchAmount) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
+	public static Pair<Integer, List<ItemStack>> getStackCountInInventory(ItemStack itemStack, List<ItemStack> inventory, int maxSearchAmount) {
+		List<ItemStack> foundStacks = new ArrayList<>();
+		int count = 0;
+		for(ItemStack inventoryStack : inventory) {
+			if(inventoryStack.isItemEqual(itemStack)) {
+				foundStacks.add(inventoryStack);
+				count += inventoryStack.getCount();
+				if(count >= maxSearchAmount) {
+					return new Pair<>(count, foundStacks);
+				}
+			}
+		}
+		return new Pair<>(count, foundStacks);
+	}
+	
+	public static boolean isIngredientCountInInventory(Ingredient ingredient, List<ItemStack> inventory, int maxSearchAmount) {
+		int count = 0;
+		for(ItemStack inventoryStack : inventory) {
+			if(ingredient.test(inventoryStack)) {
+				count += inventoryStack.getCount();
+				if(count >= maxSearchAmount) {
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 
 	public static boolean existsStackInInventory(ItemStack itemStack, List<ItemStack> inventory) {

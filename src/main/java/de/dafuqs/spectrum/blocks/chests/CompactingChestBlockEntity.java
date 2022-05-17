@@ -32,8 +32,8 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 	
 	AutoCompactingInventory autoCompactingInventory = new AutoCompactingInventory();
 	AutoCompactingInventory.AutoCraftingMode autoCraftingMode;
-	ItemStack lastCraftingItemStack;// cache
 	CraftingRecipe lastCraftingRecipe; // cache
+	ItemVariant lastItemVariant; // cache
 	boolean hasToCraft;
 
 	private static Map<AutoCompactingInventory.AutoCraftingMode, Map<ItemVariant, Optional<CraftingRecipe>>> cache = new EnumMap<>(AutoCompactingInventory.AutoCraftingMode.class);
@@ -41,7 +41,7 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 	public CompactingChestBlockEntity(BlockPos blockPos, BlockState blockState) {
 		super(SpectrumBlockEntityRegistry.COMPACTING_CHEST, blockPos, blockState);
 		this.autoCraftingMode = AutoCompactingInventory.AutoCraftingMode.ThreeXThree;
-		this.lastCraftingItemStack = ItemStack.EMPTY;
+		this.lastItemVariant = null;
 		this.lastCraftingRecipe = null;
 		this.hasToCraft = false;
 	}
@@ -54,7 +54,7 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 		if (world.isClient) {
 			compactingChestBlockEntity.lidAnimator.step();
 		} else {
-			if (compactingChestBlockEntity.hasToCraft || compactingChestBlockEntity.world.getTime() % 20 == 0) {
+			if (compactingChestBlockEntity.hasToCraft) {
 				boolean couldCraft = compactingChestBlockEntity.tryCraftOnce();
 				if (!couldCraft) {
 					compactingChestBlockEntity.hasToCraft = false;
@@ -93,84 +93,90 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 	
 	private boolean tryCraftOnce() {
 		Optional<CraftingRecipe> optionalCraftingRecipe = Optional.empty();
-		List<ItemStack> craftingStacks = null;
 		DefaultedList<ItemStack> inventory = this.getInvStackList();
 		
+		// try last recipe
 		if (lastCraftingRecipe != null) {
-			// try craft
-			Pair<Integer, List<ItemStack>> stackPair = InventoryHelper.getStackCountInInventory(lastCraftingItemStack, inventory);
-			if (stackPair.getLeft() >= this.autoCraftingMode.getItemCount()) {
-				craftingStacks = stackPair.getRight();
+			int requiredItemCount = this.autoCraftingMode.getItemCount();
+			if (InventoryHelper.isItemCountInInventory(inventory, lastItemVariant, requiredItemCount)) {
 				optionalCraftingRecipe = Optional.ofNullable(lastCraftingRecipe);
 			} else {
 				lastCraftingRecipe = null;
-				lastCraftingItemStack = ItemStack.EMPTY;
+				lastItemVariant = null;
 			}
 		}
-		
-		if (optionalCraftingRecipe.isEmpty()) {
-			for (ItemStack itemStack : inventory) {
-				if (itemStack.isEmpty()) {
-					continue;
-				}
-				Pair<Integer, List<ItemStack>> stackPair = InventoryHelper.getStackCountInInventory(itemStack, inventory);
-				if (stackPair.getLeft() >= this.autoCraftingMode.getItemCount()) {
-					craftingStacks = stackPair.getRight();
-				}
-				if (craftingStacks != null) {
-					Map<ItemVariant, Optional<CraftingRecipe>> currentCache = cache.computeIfAbsent(autoCraftingMode, mode -> new HashMap<>());
-					ItemVariant itemKey = ItemVariant.of(itemStack);
-
-					Optional<CraftingRecipe> recipe = currentCache.get(itemKey);
-					if (recipe != null) {
-						if (recipe.isEmpty())
-							continue;
-						optionalCraftingRecipe = recipe;
-						break;
-					}
-					autoCompactingInventory.setCompacting(autoCraftingMode, craftingStacks.get(0).copy());
-					optionalCraftingRecipe = world.getRecipeManager().getFirstMatch(RecipeType.CRAFTING, autoCompactingInventory, world);
-					if (optionalCraftingRecipe.isEmpty() || optionalCraftingRecipe.get().getOutput().isEmpty()) {
-						optionalCraftingRecipe = Optional.empty();
-						currentCache.put(itemKey, optionalCraftingRecipe);
-					} else {
-						currentCache.put(itemKey, optionalCraftingRecipe);
-						break;
-					}
-				}
-			}
+		// search for other recipes
+		if(optionalCraftingRecipe.isEmpty()) {
+			optionalCraftingRecipe = searchRecipeToCraft();
 		}
 		
-		if (optionalCraftingRecipe.isPresent()) {
-			ItemStack craftingInput = craftingStacks.get(0).copy();
-			craftingInput.setCount(this.autoCraftingMode.getItemCount());
-			ItemStack craftingOutput = optionalCraftingRecipe.get().getOutput().copy();
-			
-			if (tryCraftInInventory(inventory, craftingInput, craftingOutput)) {
+		if (optionalCraftingRecipe.isPresent() && this.lastItemVariant != null) {
+			if (tryCraftInInventory(inventory, optionalCraftingRecipe.get(), this.lastItemVariant)) {
 				this.lastCraftingRecipe = optionalCraftingRecipe.get();
-				this.lastCraftingItemStack = craftingInput;
 				return true;
 			}
 		}
 		return false;
 	}
 	
-	public boolean tryCraftInInventory(DefaultedList<ItemStack> inventory, ItemStack removalItemStack, ItemStack additionItemStack) {
-		InventoryHelper.removeFromInventory(removalItemStack, inventory);
+	public Optional<CraftingRecipe> searchRecipeToCraft() {
+		for (ItemStack itemStack : inventory) {
+			if (itemStack.isEmpty()) {
+				continue;
+			}
+			
+			int requiredItemCount = this.autoCraftingMode.getItemCount();
+			Pair<Integer, List<ItemStack>> stackPair = InventoryHelper.getStackCountInInventory(itemStack, inventory, requiredItemCount);
+			if (stackPair.getLeft() >= requiredItemCount) {
+				Map<ItemVariant, Optional<CraftingRecipe>> currentCache = cache.computeIfAbsent(autoCraftingMode, mode -> new HashMap<>());
+				ItemVariant itemKey = ItemVariant.of(itemStack);
+				
+				Optional<CraftingRecipe> recipe = currentCache.get(itemKey);
+				if (recipe != null) {
+					if (recipe.isEmpty()) {
+						continue;
+					}
+					this.lastItemVariant = itemKey;
+					return recipe;
+				}
+				
+				autoCompactingInventory.setCompacting(autoCraftingMode, itemKey.toStack());
+				Optional<CraftingRecipe> optionalCraftingRecipe = world.getRecipeManager().getFirstMatch(RecipeType.CRAFTING, autoCompactingInventory, world);
+				if (optionalCraftingRecipe.isEmpty() || optionalCraftingRecipe.get().getOutput().isEmpty()) {
+					optionalCraftingRecipe = Optional.empty();
+					currentCache.put(itemKey, optionalCraftingRecipe);
+				} else {
+					currentCache.put(itemKey, optionalCraftingRecipe);
+					
+					this.lastItemVariant = itemKey;
+					return optionalCraftingRecipe;
+				}
+			}
+		}
+		
+		return Optional.empty();
+	}
+	
+	public boolean tryCraftInInventory(DefaultedList<ItemStack> inventory, CraftingRecipe craftingRecipe, ItemVariant itemVariant) {
+		ItemStack inputStack = itemVariant.toStack(this.autoCraftingMode.getItemCount());
+		InventoryHelper.removeFromInventory(inputStack, inventory);
+		
+		boolean spaceInInventory;
 		
 		List<ItemStack> additionItemStacks = new ArrayList<>();
-		additionItemStacks.add(additionItemStack);
+		additionItemStacks.add(craftingRecipe.getOutput());
 		
 		// room for output?
 		ItemStack remainderStack;
-		Item recipeRemainderItem = removalItemStack.getItem().getRecipeRemainder();
+		Item recipeRemainderItem = itemVariant.getItem().getRecipeRemainder();
 		if (recipeRemainderItem != null) {
 			remainderStack = recipeRemainderItem.getDefaultStack();
-			remainderStack.setCount(9);
+			remainderStack.setCount(this.autoCraftingMode.getItemCount());
 			additionItemStacks.add(remainderStack);
 		}
 		
-		if (smartAddToInventory(additionItemStacks, inventory, true)) {
+		spaceInInventory = smartAddToInventory(additionItemStacks, inventory, true);
+		if (spaceInInventory) {
 			// craft
 			smartAddToInventory(additionItemStacks, inventory, false);
 			this.setInvStackList(inventory);
@@ -178,7 +184,7 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 			// cache
 			return true;
 		} else {
-			smartAddToInventory(List.of(removalItemStack), inventory, false);
+			smartAddToInventory(List.of(inputStack), inventory, false);
 			return false;
 		}
 	}

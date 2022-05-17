@@ -13,6 +13,7 @@
     "EndermanEntityMixin",
     "EntityApplyFluidsMixin",
     "EntityTypeMixin",
+    "ItemPredicateMixin",
     "FarmlandBlockMixin",
     "FirstStrikeEnchantmentMixin",
     "FishingBobberEntityMixin",

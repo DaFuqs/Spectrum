@@ -7,6 +7,7 @@ import de.dafuqs.spectrum.inventories.slots.ShadowSlot;
 import de.dafuqs.spectrum.mixin.accessors.ItemAccessor;
 import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
 import de.dafuqs.spectrum.registries.SpectrumEnchantments;
+import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.minecraft.block.BlockState;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -17,6 +18,7 @@ import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.tag.TagKey;
@@ -36,6 +38,8 @@ import java.util.Map;
 public abstract class ItemStackMixin {
 	
 	@Shadow public abstract boolean isIn(TagKey<Item> tag);
+	
+	@Shadow public abstract boolean isOf(Item item);
 	
 	// Injecting into onStackClicked instead of onClicked because onStackClicked is called first
 	@Inject(at = @At("HEAD"), method = "onStackClicked", cancellable = true)
@@ -77,5 +81,17 @@ public abstract class ItemStackMixin {
 			cir.setReturnValue(false);
 		}
 	}
+	
+	// thank you so, so much @williewillus / @Botania for this snippet of code
+	// https://github.com/VazkiiMods/Botania/blob/1.18.x/Fabric/src/main/java/vazkii/botania/fabric/mixin/FabricMixinItemStack.java
+	@Inject(at = @At("HEAD"), method = "isOf(Lnet/minecraft/item/Item;)Z", cancellable = true)
+	private void isSpectrumShears(Item item, CallbackInfoReturnable<Boolean> cir) {
+		if (item == Items.SHEARS) {
+			if (isOf(SpectrumItems.BEDROCK_SHEARS)) {
+				cir.setReturnValue(true);
+			}
+		}
+	}
+	
 
 }

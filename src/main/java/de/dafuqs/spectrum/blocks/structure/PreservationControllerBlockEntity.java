@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.blocks.structure;
 
-import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
 import de.dafuqs.spectrum.registries.*;
@@ -9,7 +8,6 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
@@ -18,7 +16,6 @@ import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.*;
 import net.minecraft.util.registry.Registry;
@@ -92,12 +89,6 @@ public class PreservationControllerBlockEntity extends BlockEntity {
 		}
 		if(tag.contains("RequiredAdvancement", NbtElement.STRING_TYPE)) {
 			this.requiredAdvancement = new Identifier(tag.getString("RequiredAdvancement"));
-		} else {
-			this.checkRange = new Vec3i(6, 6,11);
-			this.entranceOffset = new Vec3i(0, -4, -14);
-			this.requiredAdvancement = new Identifier(SpectrumCommon.MOD_ID, "midgame/get_azure_dike_charge");
-			this.unlockedAdvancement = new Identifier(SpectrumCommon.MOD_ID, "enter_ancient_ruins");
-			this.unlockedAdvancementCriterion = "code_triggered";
 		}
 		if(tag.contains("UnlockedAdvancement", NbtElement.STRING_TYPE) && tag.contains("UnlockedAdvancementCriterion", NbtElement.STRING_TYPE)) {
 			this.unlockedAdvancement = Identifier.tryParse(tag.getString("UnlockedAdvancement"));
@@ -108,7 +99,7 @@ public class PreservationControllerBlockEntity extends BlockEntity {
 	public static void serverTick(@NotNull World world, BlockPos blockPos, BlockState blockState, PreservationControllerBlockEntity blockEntity) {
 		if(world.getTime() % 20 == 0 && blockEntity.entranceOffset != null && blockEntity.checkRange != null && blockEntity.requiredAdvancement != null) {
 			if(blockEntity.checkBox == null) {
-				calculateLocationData(blockPos, blockState, blockEntity);
+				calculateLocationData(world, blockPos, blockState, blockEntity);
 			}
 			
 			if(blockEntity.spawnParticles) {
@@ -121,15 +112,20 @@ public class PreservationControllerBlockEntity extends BlockEntity {
 		}
 	}
 	
-	private static void calculateLocationData(BlockPos blockPos, @NotNull BlockState blockState, @NotNull PreservationControllerBlockEntity blockEntity) {
-		blockEntity.checkBox = Box.of(Vec3d.ofCenter(blockPos), blockEntity.checkRange.getX() * 2, blockEntity.checkRange.getY() * 2, blockEntity.checkRange.getZ() * 2);
-		blockEntity.destinationPos = Support.getBlockPosViaOriginAndOffset(blockEntity.pos, blockEntity.entranceOffset, blockState.get(PreservationControllerBlock.FACING));
+	private static void calculateLocationData(World world, BlockPos blockPos, @NotNull BlockState blockState, @NotNull PreservationControllerBlockEntity blockEntity) {
+		Direction facing = world.getBlockState(blockPos).get(PreservationControllerBlock.FACING);
+		if(facing == Direction.NORTH || facing == Direction.SOUTH) {
+			blockEntity.checkBox = Box.of(Vec3d.ofCenter(blockPos), blockEntity.checkRange.getX() * 2, blockEntity.checkRange.getY() * 2, blockEntity.checkRange.getZ() * 2);
+		} else {
+			blockEntity.checkBox = Box.of(Vec3d.ofCenter(blockPos), blockEntity.checkRange.getZ() * 2, blockEntity.checkRange.getY() * 2, blockEntity.checkRange.getX() * 2);
+		}
+		blockEntity.destinationPos = Support.directionalOffset(blockEntity.pos, blockEntity.entranceOffset, blockState.get(PreservationControllerBlock.FACING));
 	}
 	
 	public void spawnParticles() {
 		if(spawnParticles && checkBox != null && destinationPos != null) {
 			SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) world, Vec3d.ofCenter(pos), ParticleTypes.FLAME, 250,
-					new Vec3d(checkBox.getXLength(), checkBox.getYLength(), checkBox.getZLength()),
+					new Vec3d(checkBox.getXLength() / 2, checkBox.getYLength() / 2, checkBox.getZLength() / 2),
 					new Vec3d(0, 0, 0));
 		}
 	}
@@ -141,7 +137,7 @@ public class PreservationControllerBlockEntity extends BlockEntity {
 	public void openExit() {
 		boolean didSomething = false;
 		Direction facing = world.getBlockState(pos).get(PreservationControllerBlock.FACING);
-		if(facing.getAxis().isHorizontal()) {
+		if(facing == Direction.NORTH || facing == Direction.SOUTH) {
 			for(int x = -1; x < 2; x++) {
 				for(int y = -3; y < 0; y++) {
 					BlockPos offsetPos = pos.add(x, y, 0);

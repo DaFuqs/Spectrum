@@ -109,7 +109,7 @@ public class TreasureChestBlockEntity extends SpectrumChestBlockEntity {
 	
 	public void onClose() {
 		if(!world.isClient && controllerOffset != null) {
-			BlockEntity blockEntity = world.getBlockEntity(Support.getBlockPosViaOriginAndOffset(this.pos, this.controllerOffset, world.getBlockState(this.pos).get(PreservationControllerBlock.FACING))); //TODO: test
+			BlockEntity blockEntity = world.getBlockEntity(Support.directionalOffset(this.pos, this.controllerOffset, world.getBlockState(this.pos).get(PreservationControllerBlock.FACING))); //TODO: test
 			if(blockEntity instanceof PreservationControllerBlockEntity controller) {
 				controller.openExit();
 			}

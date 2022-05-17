@@ -147,22 +147,22 @@ public class Support {
 		}
 	}
 	
-	public static BlockPos getBlockPosViaOriginAndOffset(BlockPos origin, Vec3i offset, @NotNull Direction horizontalFacing) {
+	public static BlockPos directionalOffset(BlockPos origin, Vec3i offset, @NotNull Direction horizontalFacing) {
 		switch (horizontalFacing) {
 			case NORTH -> {
-				return origin.add(offset.getX(), offset.getY(), offset.getZ());
+				return origin.add(offset.getZ(), offset.getY(), -offset.getX());
 			}
 			case EAST -> {
-				return origin.add(offset.getZ(), offset.getY(), offset.getX());
+				return origin.add(offset.getX(), offset.getY(), offset.getZ());
 			}
 			case SOUTH -> {
-				return origin.add(-offset.getX(), offset.getY(), offset.getZ());
+				return origin.add(offset.getZ(), offset.getY(), offset.getX());
 			}
 			case WEST -> {
-				return origin.add(-offset.getZ(), offset.getY(), offset.getX());
+				return origin.add(-offset.getX(), offset.getY(), offset.getZ());
 			}
 			default -> {
-				SpectrumCommon.logWarning("Called getBlockPosViaOriginAndOffset with facing" + horizontalFacing + " this is not supported.");
+				SpectrumCommon.logWarning("Called directionalOffset with facing" + horizontalFacing + " this is not supported.");
 				return origin;
 			}
 		}

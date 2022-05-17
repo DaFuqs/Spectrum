@@ -32,43 +32,85 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:diamond"
+          "name": "minecraft:diamond",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 2,
+                "max": 4
+              }
+            }
+          ]
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:emerald"
-        }
-      ],
-      "functions": [
-        {
-          "function": "minecraft:set_count",
-          "count": {
-            "min": 2,
-            "max": 4
-          }
+          "name": "minecraft:emerald",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 2,
+                "max": 4
+              }
+            }
+          ]
         }
       ]
     },
     {
       "rolls": {
         "min": 2,
-        "max": 3
+        "max": 5
       },
       "entries": [
         {
           "type": "minecraft:item",
-          "weight": 5,
           "name": "minecraft:amethyst_shard",
           "functions": [
             {
               "function": "minecraft:set_count",
               "count": {
-                "min": 1,
-                "max": 3
+                "min": 3,
+                "max": 7
               }
             }
           ]
         },
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:citrine_shard",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 3,
+                "max": 7
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:topaz_shard",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 3,
+                "max": 7
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rolls": {
+        "min": 0,
+        "max": 3
+      },
+      "entries": [
         {
           "type": "minecraft:item",
           "name": "minecraft:small_amethyst_bud"
@@ -87,20 +129,6 @@
         },
         {
           "type": "minecraft:item",
-          "weight": 5,
-          "name": "spectrum:citrine_shard",
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "min": 1,
-                "max": 3
-              }
-            }
-          ]
-        },
-        {
-          "type": "minecraft:item",
           "name": "spectrum:small_citrine_bud"
         },
         {
@@ -114,20 +142,6 @@
         {
           "type": "minecraft:item",
           "name": "spectrum:citrine_cluster"
-        },
-        {
-          "type": "minecraft:item",
-          "weight": 5,
-          "name": "spectrum:topaz_shard",
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "min": 1,
-                "max": 3
-              }
-            }
-          ]
         },
         {
           "type": "minecraft:item",
@@ -162,8 +176,8 @@
             {
               "function": "minecraft:set_count",
               "count": {
-                "min": 1,
-                "max": 8
+                "min": 3,
+                "max": 15
               }
             }
           ]
@@ -183,16 +197,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "spectrum:budding_topaz",
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "min": 1,
-                "max": 2
-              }
-            }
-          ]
+          "name": "spectrum:budding_topaz"
         }
       ]
     }

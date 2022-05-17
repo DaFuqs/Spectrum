@@ -126,24 +126,6 @@
       ]
     },
     {
-      "rolls": {
-        "min": 0,
-        "max": 1
-      },
-      "entries": [
-        {
-          "type": "minecraft:item",
-          "name": "spectrum:music_disc_spectrum_theme",
-          "conditions": [
-            {
-              "condition": "minecraft:random_chance",
-              "chance": 0.5
-            }
-          ]
-        }
-      ]
-    },
-    {
       "rolls": 1,
       "entries": [
         {

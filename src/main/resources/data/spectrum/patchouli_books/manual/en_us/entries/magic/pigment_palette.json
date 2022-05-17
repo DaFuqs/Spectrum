@@ -9,7 +9,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Carrying around enough Ink with you to maintain your magical equipment has become both a chore and a space hog in your inventory.$(br)It's time for a new creation: the Pigment Palette. It is capable of storing sizable amounts of Ink to supply all your magical devices and equipment."
+      "text": "Carrying around enough Ink with you to maintain your magical equipment has become both a chore and a space hog in your inventory.$(br2)It's time for a new creation: the Pigment Palette. It is capable of storing sizable amounts of Ink to supply all your magical devices and equipment."
     },
     {
       "type": "spectrum:fusion_shrine_crafting",

@@ -6,7 +6,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Converts $(l:general/pigment)Pigment$(/l) into Ink.($br)Used to fill items that store Ink, like $(l:magic/ink_flask)Ink Flasks$()."
+      "text": "Converts $(l:general/pigment)Pigment$(/l) into pure Ink.$(br)Used to fill items that store Ink, like $(l:magic/ink_flask)Ink Flasks$()."
     },
     {
       "type": "spectrum:pedestal_crafting",

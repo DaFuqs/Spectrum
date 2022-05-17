@@ -168,7 +168,7 @@ public class PreservationControllerBlockEntity extends BlockEntity {
 		}
 		
 		if(didSomething) {
-			world.playSound(null, pos, SoundEvents.BLOCK_AMETHYST_BLOCK_BREAK, SoundCategory.BLOCKS, 1.0F, 1.0F);
+			world.playSound(null, pos, SpectrumSoundEvents.STRUCTURE_SUCCESS, SoundCategory.BLOCKS, 1.0F, 1.0F);
 		}
 	}
 	

@@ -17,6 +17,12 @@
       "spectrum:enchanter_ding"
     ]
   },
+  "structure_success": {
+    "subtitle": "spectrum.subtitles.structure_success",
+    "sounds": [
+      "spectrum:structure_success"
+    ]
+  },
   "block.memory.advance": {
     "subtitle": "spectrum.subtitles.block.memory.advance",
     "sounds": [

@@ -47,6 +47,7 @@ public class SpectrumSoundEvents {
 	public static final SoundEvent AIR_LAUNCH_BELT_CHARGING = register("air_launch_belt_charging");
 	public static final SoundEvent PUFF_CIRCLET_PFFT = register("puff_circlet");
 	public static final SoundEvent MIDNIGHT_ABERRATION_CRUMBLING = register("midnight_aberration_crumbling");
+	public static final SoundEvent STRUCTURE_SUCCESS = register("structure_success");
 	
 	public static final SoundEvent SUCKING_CHEST_OPEN = register("sucking_chest_open");
 	public static final SoundEvent SUCKING_CHEST_CLOSE = register("sucking_chest_close");

@@ -13,5 +13,6 @@
   },
   "result" : {
     "item": "spectrum:germinated_jade_vine_seeds"
-  }
+  },
+  "required_advancement": "spectrum:__hidden/collect_ancient_jade_vine_seeds"
 }

@@ -1,0 +1,30 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 80,
+  "tier": "basic",
+  "magenta": 0,
+  "yellow": 2,
+  "cyan": 0,
+  "black": 0,
+  "white": 0,
+  "experience": 2.0,
+  "pattern": [
+    "QSQ",
+    "SQS",
+    "QSQ"
+  ],
+  "key": {
+    "Q": {
+      "item": "spectrum:quitoxic_powder"
+    },
+    "S": {
+      "item": "minecraft:sand"
+    }
+  },
+  "result" : {
+    "item": "minecraft:tnt",
+    "nbt": "{BlockStateTag:{unstable:\"true\"},display: {Lore: ['{\"text\":\"unstable\"}']}}",
+    "count": 2
+  },
+  "required_advancements": ["spectrum:collect_quitoxic_reeds"]
+}

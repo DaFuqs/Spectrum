@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.blocks.jade_vines;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.helpers.TimeHelper;
+import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
@@ -105,6 +106,23 @@ public class JadeVinesBlock extends BlockWithEntity {
 	public JadeVinesBlock(Settings settings) {
 		super(settings);
 		this.setDefaultState((this.stateManager.getDefaultState()).with(PART, JadeVinesBlockPart.UPPER).with(AGE, 1));
+	}
+	
+	@Override
+	public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
+		super.randomDisplayTick(state, world, pos, random);
+		
+		if(state.get(AGE) > 0) {
+			double x = pos.getX() + 0.2 + (random.nextFloat() * 0.6);
+			double y = pos.getY() + 0.2 + (random.nextFloat() * 0.6);
+			double z = pos.getZ() + 0.2 + (random.nextFloat() * 0.6);
+			
+			double velX = 0.06 - random.nextFloat() * 0.12;
+			double velY = 0.06 - random.nextFloat() * 0.12;
+			double velZ = 0.06 - random.nextFloat() * 0.12;
+			
+			world.addParticle(SpectrumParticleTypes.JADE_VINES, x, y, z, velX, velY, velZ);
+		}
 	}
 	
 	@Override
@@ -224,7 +242,7 @@ public class JadeVinesBlock extends BlockWithEntity {
 	public boolean canPlaceAt(@NotNull BlockState state, WorldView world, BlockPos pos) {
 		JadeVinesBlockPart part = state.get(PART);
 		if(part == JadeVinesBlockPart.UPPER) {
-			return state.isOf(this) || canUpperBePlacedOn(world.getBlockState(pos));
+			return state.isOf(this) || canBePlantedOn(world.getBlockState(pos));
 		} else if(part == JadeVinesBlockPart.CENTER) {
 			BlockState upState = world.getBlockState(pos.up());
 			return upState.getBlock() == state.getBlock() && upState.get(PART) == JadeVinesBlockPart.UPPER;
@@ -234,7 +252,7 @@ public class JadeVinesBlock extends BlockWithEntity {
 		}
 	}
 	
-	public static boolean canUpperBePlacedOn(BlockState blockState) {
+	public static boolean canBePlantedOn(BlockState blockState) {
 		return blockState.isIn(BlockTags.WOODEN_FENCES);
 	}
 	
@@ -376,7 +394,7 @@ public class JadeVinesBlock extends BlockWithEntity {
 		}
 		
 		BlockState targetState = world.getBlockState(blockPos);
-		if(canUpperBePlacedOn(targetState)) {
+		if(canBePlantedOn(targetState)) {
 			world.setBlockState(blockPos, blockState.with(PART, JadeVinesBlockPart.UPPER).with(AGE, blockState.get(AGE)));
 			
 			BlockEntity blockEntity = world.getBlockEntity(blockPos);
@@ -406,7 +424,7 @@ public class JadeVinesBlock extends BlockWithEntity {
 				return true;
 			}
 		} else {
-			if (canUpperBePlacedOn(targetState)) {
+			if (canBePlantedOn(targetState)) {
 				if(lastPlantState.get(AGE) == 1) {
 					world.setBlockState(blockPos.up(), lastPlantState.with(AGE, 2));
 					world.setBlockState(blockPos, blockState.with(PART, JadeVinesBlockPart.UPPER).with(AGE, 2));

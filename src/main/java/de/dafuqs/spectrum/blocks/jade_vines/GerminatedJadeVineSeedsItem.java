@@ -26,7 +26,7 @@ public class GerminatedJadeVineSeedsItem extends CloakedItem {
 		World world = context.getWorld();
 		BlockPos pos = context.getBlockPos();
 
-		if(JadeVinesBlock.canUpperBePlacedOn(world.getBlockState(pos))) {
+		if(JadeVinesBlock.canBePlantedOn(world.getBlockState(pos))) {
 			if(context.getWorld().isClient) {
 				return ActionResult.SUCCESS;
 			} else {

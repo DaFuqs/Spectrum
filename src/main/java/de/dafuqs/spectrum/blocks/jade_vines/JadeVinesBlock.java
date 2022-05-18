@@ -28,12 +28,10 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.StringIdentifiable;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.world.BlockView;
-import net.minecraft.world.LightType;
-import net.minecraft.world.World;
-import net.minecraft.world.WorldView;
+import net.minecraft.world.*;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -63,25 +61,6 @@ public class JadeVinesBlock extends BlockWithEntity {
 			return this == UPPER ? "upper" : this == CENTER ? "center" : "lower";
 		}
 		
-		public static int getTopPartOffset(@NotNull BlockState blockState) {
-			JadeVinesBlockPart part = blockState.get(PART);
-			if(part == UPPER) {
-				return 0;
-			} else if(part == CENTER) {
-				return 1;
-			}
-			return 2;
-		}
-		
-		public static @Nullable BlockState getDownwardsState(@NotNull BlockState blockState) {
-			JadeVinesBlockPart part = blockState.get(PART);
-			if(part == UPPER) {
-				return blockState.with(PART, CENTER);
-			} else if(part == CENTER) {
-				return blockState.with(PART, LOWER);
-			}
-			return null;
-		}
 	}
 	
 	public enum JadeVinesGrowthStage {
@@ -129,6 +108,35 @@ public class JadeVinesBlock extends BlockWithEntity {
 	}
 	
 	@Override
+	public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
+		if (!state.canPlaceAt(world, pos)) {
+			world.createAndScheduleBlockTick(pos, this, 1);
+		}
+		return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
+	}
+	
+	@Override
+	public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
+		if (!state.canPlaceAt(world, pos)) {
+			BlockState fenceBlockState = null;
+			BlockEntity blockEntity = world.getBlockEntity(pos);
+			if (blockEntity instanceof JadeVinesBlockEntity jadeVinesBlockEntity) {
+				fenceBlockState = jadeVinesBlockEntity.getFenceBlockState();
+			}
+			
+			world.breakBlock(pos, false);
+			if(fenceBlockState != null) {
+				world.setBlockState(pos, fenceBlockState);
+			}
+		}
+	}
+	
+	@Override
+	public BlockRenderType getRenderType(BlockState state) {
+		return BlockRenderType.MODEL;
+	}
+	
+	@Override
 	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
 		JadeVinesGrowthStage growthStage = JadeVinesGrowthStage.fromAge(state.get(AGE));
 		
@@ -139,7 +147,7 @@ public class JadeVinesBlock extends BlockWithEntity {
 						return ActionResult.SUCCESS;
 					} else {
 						handStack.decrement(1);
-						setPlantToAge(state, world, pos, 2);
+						setHarvested(state, world, pos);
 						
 						List<ItemStack> harvestedStacks = getHarvestedStacks(state, (ServerWorld) world, pos, world.getBlockEntity(pos), player, handStack, NECTAR_HARVESTING_LOOT_IDENTIFIER);
 						for(ItemStack harvestedStack : harvestedStacks){
@@ -154,7 +162,7 @@ public class JadeVinesBlock extends BlockWithEntity {
 			if(world.isClient) {
 				return ActionResult.SUCCESS;
 			} else {
-				setPlantToAge(state, world, pos, 2);
+				setHarvested(state, world, pos);
 				
 				List<ItemStack> harvestedStacks = getHarvestedStacks(state, (ServerWorld) world, pos, world.getBlockEntity(pos), player, player.getMainHandStack(), PETAL_HARVESTING_LOOT_IDENTIFIER);
 				for(ItemStack harvestedStack : harvestedStacks){
@@ -214,10 +222,19 @@ public class JadeVinesBlock extends BlockWithEntity {
 	
 	@Override
 	public boolean canPlaceAt(@NotNull BlockState state, WorldView world, BlockPos pos) {
-		return canBePlacedOn(world.getBlockState(pos));
+		JadeVinesBlockPart part = state.get(PART);
+		if(part == JadeVinesBlockPart.UPPER) {
+			return state.isOf(this) || canUpperBePlacedOn(world.getBlockState(pos));
+		} else if(part == JadeVinesBlockPart.CENTER) {
+			BlockState upState = world.getBlockState(pos.up());
+			return upState.getBlock() == state.getBlock() && upState.get(PART) == JadeVinesBlockPart.UPPER;
+		} else {
+			BlockState upState = world.getBlockState(pos.up());
+			return upState.getBlock() == state.getBlock() && upState.get(PART) == JadeVinesBlockPart.CENTER;
+		}
 	}
 	
-	public static boolean canBePlacedOn(BlockState blockState) {
+	public static boolean canUpperBePlacedOn(BlockState blockState) {
 		return blockState.isIn(BlockTags.WOODEN_FENCES);
 	}
 	
@@ -229,14 +246,19 @@ public class JadeVinesBlock extends BlockWithEntity {
 		if(age != 0) {
 			// die in sunlight
 			if(doesDie(world, pos)) {
-				die(state, world, pos);
-				world.playSound(null, pos, SoundEvents.BLOCK_GROWING_PLANT_CROP, SoundCategory.BLOCKS, 0.5F, 0.9F + 0.2F * world.random.nextFloat() * 0.2F);
+				setDead(state, world, pos);
+				world.playSound(null, pos, SoundEvents.ITEM_CROP_PLANT, SoundCategory.BLOCKS, 0.5F, 0.9F + 0.2F * world.random.nextFloat() * 0.2F);
 			} else if(canGrow(world, pos, state)) {
-				if(tryGrowDownwards(state, world, pos)) {
-					world.playSound(null, pos, SoundEvents.BLOCK_GROWING_PLANT_CROP, SoundCategory.BLOCKS, 0.5F, 0.9F + 0.2F * world.random.nextFloat() * 0.2F);
+				if(world.random.nextInt(4) == 0 && tryGrowUpwards(state, world, pos)) {
+					rememberGrownTime(state, world, pos);
+					world.playSound(null, pos, SoundEvents.ITEM_CROP_PLANT, SoundCategory.BLOCKS, 0.5F, 0.9F + 0.2F * world.random.nextFloat() * 0.2F);
+				} else if(tryGrowDownwards(state, world, pos)) {
+					rememberGrownTime(state, world, pos);
+					world.playSound(null, pos, SoundEvents.ITEM_CROP_PLANT, SoundCategory.BLOCKS, 0.5F, 0.9F + 0.2F * world.random.nextFloat() * 0.2F);
 				} else if(!JadeVinesGrowthStage.isFullyGrown(age)) {
 					grow(state, world, pos);
-					world.playSound(null, pos, SoundEvents.BLOCK_GROWING_PLANT_CROP, SoundCategory.BLOCKS, 0.5F, 0.9F + 0.2F * world.random.nextFloat() * 0.2F);
+					rememberGrownTime(state, world, pos);
+					world.playSound(null, pos, SoundEvents.ITEM_CROP_PLANT, SoundCategory.BLOCKS, 0.5F, 0.9F + 0.2F * world.random.nextFloat() * 0.2F);
 				}
 			}
 		}
@@ -246,32 +268,50 @@ public class JadeVinesBlock extends BlockWithEntity {
 		return world.getLightLevel(LightType.SKY, blockPos) > 8 && TimeHelper.isBrightSunlight(world);
 	}
 	
-	/**
-	 * Set all 3 blocks (up and down) to dead
-	 */
-	public static void die(@NotNull BlockState blockState, @NotNull World world, @NotNull BlockPos blockPos) {
+	public static void setDead(@NotNull BlockState blockState, @NotNull World world, @NotNull BlockPos blockPos) {
 		setPlantToAge(blockState, world, blockPos, 0);
+	}
+	
+	public static void setHarvested(@NotNull BlockState blockState, @NotNull World world, @NotNull BlockPos blockPos) {
+		setPlantToAge(blockState, world, blockPos, 2);
 	}
 	
 	public static void setPlantToAge(@NotNull BlockState blockState, @NotNull World world, @NotNull BlockPos blockPos, int age) {
 		JadeVinesBlockPart jadeVinesBlockPart = blockState.get(PART);
 		world.setBlockState(blockPos, blockState.with(AGE, age));
 		
-		int offset = JadeVinesBlockPart.getTopPartOffset(blockState);
-		BlockEntity blockEntity = world.getBlockEntity(blockPos.up(offset));
-		if (blockEntity instanceof JadeVinesBlockEntity jadeVinesBlockEntity) {
-			jadeVinesBlockEntity.setLastGrownTime(world.getTimeOfDay());
-		}
-		
-		if(jadeVinesBlockPart == JadeVinesBlockPart.UPPER) {
-			setToAge(world, blockPos.down(), JadeVinesBlockPart.CENTER, age);
-			setToAge(world, blockPos.down(2), JadeVinesBlockPart.LOWER, age);
+		if(jadeVinesBlockPart == JadeVinesBlockPart.LOWER) {
+			setToAge(world, blockPos.up(), JadeVinesBlockPart.CENTER, age);
+			
+			int yUp = 2;
+			while(setToAge(world, blockPos.up(yUp), JadeVinesBlockPart.UPPER, age)) {
+				yUp++;
+			}
 		} else if(jadeVinesBlockPart == JadeVinesBlockPart.CENTER) {
-			setToAge(world, blockPos.up(), JadeVinesBlockPart.UPPER, age);
+			int yUp = 1;
+			while(setToAge(world, blockPos.up(yUp), JadeVinesBlockPart.UPPER, age)) {
+				yUp++;
+			}
 			setToAge(world, blockPos.down(), JadeVinesBlockPart.LOWER, age);
 		} else {
-			setToAge(world, blockPos.up(2), JadeVinesBlockPart.UPPER, age);
-			setToAge(world, blockPos.up(), JadeVinesBlockPart.CENTER, age);
+			int yUp = 1;
+			while(setToAge(world, blockPos.up(yUp), JadeVinesBlockPart.UPPER, age)) {
+				yUp++;
+			}
+			int yDown = 1;
+			while(setToAge(world, blockPos.down(yDown), JadeVinesBlockPart.UPPER, age)) {
+				yDown++;
+			}
+			if(setToAge(world, blockPos.down(yDown), JadeVinesBlockPart.CENTER, age)) {
+				setToAge(world, blockPos.down(yDown+1), JadeVinesBlockPart.LOWER, age);
+			}
+		}
+	}
+	
+	private static void rememberGrownTime(@NotNull BlockState blockState, @NotNull World world, @NotNull BlockPos blockPos) {
+		BlockEntity blockEntity = world.getBlockEntity(getMainBlockEntityPos(world, blockPos, blockState));
+		if (blockEntity instanceof JadeVinesBlockEntity jadeVinesBlockEntity) {
+			jadeVinesBlockEntity.setLastGrownTime(world.getTimeOfDay());
 		}
 	}
 	
@@ -286,29 +326,119 @@ public class JadeVinesBlock extends BlockWithEntity {
 		}
 	}
 	
-	protected static void setToAge(@NotNull World world, BlockPos blockPos, JadeVinesBlockPart part, int newAge) {
+	protected static boolean setToAge(@NotNull World world, BlockPos blockPos, JadeVinesBlockPart part, int newAge) {
 		BlockState state = world.getBlockState(blockPos);
 		if(state.getBlock() instanceof JadeVinesBlock && state.get(PART) == part) {
 			world.setBlockState(blockPos, state.with(AGE, newAge));
+			return true;
+		}
+		return false;
+	}
+	
+	// only the upper block states have BlockEntities
+	// each one saves and renders the stick these roots are growing on,
+	// the lowest of those is considered the "main" one, also keeping track
+	// when the plant has grown last
+	public static BlockPos getMainBlockEntityPos(@NotNull World world, @NotNull BlockPos blockPos, @NotNull BlockState blockState) {
+		JadeVinesBlockPart part = blockState.get(PART);
+		if(part == JadeVinesBlockPart.CENTER) {
+			return blockPos.up();
+		} else if(part == JadeVinesBlockPart.LOWER) {
+			return blockPos.up(2);
+		} else {
+			// search for the lowest upper state in this column
+			for(int i = 1; i < 20; i++) {
+				if(blockPos.getY() - i < world.getBottomY()) {
+					return blockPos;
+				}
+				BlockState downState = world.getBlockState(blockPos.down(i));
+				if(!(downState.getBlock() instanceof JadeVinesBlock) || downState.get(PART) != JadeVinesBlockPart.UPPER) {
+					return blockPos.down(i-1);
+				}
+			}
+			return blockPos;
 		}
 	}
 	
 	public static boolean canGrow(@NotNull World world, @NotNull BlockPos blockPos, BlockState blockState) {
-		int offset = JadeVinesBlockPart.getTopPartOffset(blockState);
-		BlockEntity blockEntity = world.getBlockEntity(blockPos.up(offset));
+		BlockEntity blockEntity = world.getBlockEntity(getMainBlockEntityPos(world, blockPos, blockState));
 		if (blockEntity instanceof JadeVinesBlockEntity jadeVinesBlockEntity) {
 			return world.getLightLevel(LightType.SKY, blockPos) > 8 && jadeVinesBlockEntity.isLaterNight(world);
 		}
 		return false;
 	}
 	
+	public static boolean tryGrowUpwards(@NotNull BlockState blockState, @NotNull World world, @NotNull BlockPos blockPos) {
+		blockPos = blockPos.up();
+		while(world.getBlockState(blockPos).getBlock() instanceof JadeVinesBlock) {
+			// search up until no jade vines block is hit
+			blockPos = blockPos.up();
+		}
+		
+		BlockState targetState = world.getBlockState(blockPos);
+		if(canUpperBePlacedOn(targetState)) {
+			world.setBlockState(blockPos, blockState.with(PART, JadeVinesBlockPart.UPPER).with(AGE, blockState.get(AGE)));
+			
+			BlockEntity blockEntity = world.getBlockEntity(blockPos);
+			if(blockEntity instanceof JadeVinesBlockEntity jadeVinesBlockEntity) {
+				jadeVinesBlockEntity.setFenceBlockState(targetState.getBlock().getDefaultState());
+			}
+			return true;
+		}
+		return false;
+	}
+	
 	public static boolean tryGrowDownwards(@NotNull BlockState blockState, @NotNull World world, @NotNull BlockPos blockPos) {
-		BlockState downwardsState = JadeVinesBlockPart.getDownwardsState(blockState);
-		if(downwardsState != null) {
-			BlockPos targetPos = blockPos.down();
-			BlockState currentDownState = world.getBlockState(targetPos);
-			if(canBePlacedOn(currentDownState)) {
-				world.setBlockState(targetPos, downwardsState);
+		blockPos = blockPos.down();
+		while(world.getBlockState(blockPos).getBlock() instanceof JadeVinesBlock) {
+			// search up until no jade vines block is hit
+			blockPos = blockPos.down();
+		}
+		
+		BlockState targetState = world.getBlockState(blockPos);
+		BlockState lastPlantState = world.getBlockState(blockPos.up());
+		JadeVinesBlockPart lastPart = lastPlantState.get(PART);
+		if(lastPart == JadeVinesBlockPart.LOWER) {
+			return false;
+		} else if(lastPart == JadeVinesBlockPart.CENTER) {
+			if(targetState.isAir()) {
+				world.setBlockState(blockPos, blockState.with(PART, JadeVinesBlockPart.LOWER));
+				return true;
+			}
+		} else {
+			if (canUpperBePlacedOn(targetState)) {
+				if(lastPlantState.get(AGE) == 1) {
+					world.setBlockState(blockPos.up(), lastPlantState.with(AGE, 2));
+					world.setBlockState(blockPos, blockState.with(PART, JadeVinesBlockPart.UPPER).with(AGE, 2));
+				} else {
+					world.setBlockState(blockPos, blockState.with(PART, JadeVinesBlockPart.UPPER).with(AGE, blockState.get(AGE)));
+				}
+				
+				long lastGrowTime = -1;
+				BlockEntity currentBlockEntity = world.getBlockEntity(blockPos.up());
+				if (currentBlockEntity instanceof JadeVinesBlockEntity jadeVinesBlockEntity) {
+					lastGrowTime = jadeVinesBlockEntity.getLastGrownTime();
+				}
+				
+				BlockEntity newBlockEntity = world.getBlockEntity(blockPos);
+				if (newBlockEntity instanceof JadeVinesBlockEntity jadeVinesBlockEntity) {
+					jadeVinesBlockEntity.setFenceBlockState(targetState.getBlock().getDefaultState());
+					if(lastGrowTime > 0) {
+						jadeVinesBlockEntity.setLastGrownTime(lastGrowTime);
+					} else {
+						jadeVinesBlockEntity.setLastGrownTime(world.getTime());
+					}
+				}
+				
+
+				return true;
+			} else if (targetState.isAir()) {
+				if(lastPlantState.get(AGE) == 1) {
+					world.setBlockState(blockPos.up(), lastPlantState.with(AGE, 2));
+					world.setBlockState(blockPos, blockState.with(PART, JadeVinesBlockPart.CENTER).with(AGE, 2));
+				} else {
+					world.setBlockState(blockPos, blockState.with(PART, JadeVinesBlockPart.CENTER).with(AGE, blockState.get(AGE)));
+				}
 				return true;
 			}
 		}
@@ -323,7 +453,11 @@ public class JadeVinesBlock extends BlockWithEntity {
 	@Nullable
 	@Override
 	public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
-		return new JadeVinesBlockEntity(pos, state);
+		if(state.get(PART) == JadeVinesBlockPart.UPPER) {
+			return new JadeVinesBlockEntity(pos, state);
+		} else {
+			return null;
+		}
 	}
 	
 }

@@ -4,25 +4,25 @@
 			"model": "spectrum:block/jade_vines_upper_dead"
 		},
 		"age=1,part=upper": {
-			"model": "spectrum:block/jade_vines_upper_leaves"
+			"model": "spectrum:block/jade_vines_upper_new"
 		},
 		"age=2,part=upper": {
-			"model": "spectrum:block/jade_vines_upper_leaves"
+			"model": "spectrum:block/jade_vines_upper_grown"
 		},
 		"age=3,part=upper": {
-			"model": "spectrum:block/jade_vines_upper_petals"
+			"model": "spectrum:block/jade_vines_upper_grown"
 		},
 		"age=4,part=upper": {
-			"model": "spectrum:block/jade_vines_upper_petals"
+			"model": "spectrum:block/jade_vines_upper_grown"
 		},
 		"age=5,part=upper": {
-			"model": "spectrum:block/jade_vines_upper_petals"
+			"model": "spectrum:block/jade_vines_upper_grown"
 		},
 		"age=6,part=upper": {
-			"model": "spectrum:block/jade_vines_upper_petals"
+			"model": "spectrum:block/jade_vines_upper_grown"
 		},
 		"age=7,part=upper": {
-			"model": "spectrum:block/jade_vines_upper_bloom"
+			"model": "spectrum:block/jade_vines_upper_grown"
 		},
 
 		"age=0,part=center": {

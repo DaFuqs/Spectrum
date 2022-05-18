@@ -66,12 +66,17 @@ public class JadeVinesBlockEntity extends BlockEntity {
 		this.markDirty();
 	}
 	
+	public long getLastGrownTime() {
+		return lastGrowthTick;
+	}
+	
 	public BlockState getFenceBlockState() {
 		return fenceBlockState;
 	}
 	
 	public void setFenceBlockState(BlockState fenceBlockState) {
 		this.fenceBlockState = fenceBlockState;
+		this.markDirty();
 		this.updateInClientWorld();
 	}
 	

@@ -35,6 +35,7 @@
     "PlayerAdvancementTrackerMixin",
     "PlayerEntityMixin",
     "PlayerInventoryMixin",
+    "PotionItemMixin",
     "ProjectileEntityMixin",
     "RandomChanceLootConditionMixin",
     "RandomChanceWithLootingLootConditionMixin",

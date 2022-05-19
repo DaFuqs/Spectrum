@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.recipe.potion_workshop;
 
-import de.dafuqs.spectrum.blocks.potion_workshop.PotionMod;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.minecraft.item.Item;
@@ -159,6 +158,12 @@ public class PotionWorkshopReagents {
 				potionMod.flatPotencyBonus += 1.0F;
 				potionMod.flatDurationBonusTicks += 600;
 				potionMod.flatYieldBonus -= 2;
+				return potionMod;
+			}
+		});
+		reagentEffects.put(SpectrumItems.MOONSTRUCK_NECTAR, new PotionReagentEffect() {
+			public PotionMod modify(PotionMod potionMod, Random random) {
+				potionMod.fastDrinkable = true;
 				return potionMod;
 			}
 		});

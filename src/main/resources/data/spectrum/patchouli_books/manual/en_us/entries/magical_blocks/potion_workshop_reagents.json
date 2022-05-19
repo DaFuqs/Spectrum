@@ -150,6 +150,13 @@
     },
     {
       "type": "patchouli:spotlight",
+      "title": "Moonstruck Nectar",
+      "item": "spectrum:moonstruck_nectar",
+      "advancement": "spectrum:hidden/harvest_moonstruck_nectar",
+      "text": "Makes the Potion much more smooth, resulting in it being way faster to drink. Might come in handy when every second is crucial."
+    },
+    {
+      "type": "patchouli:spotlight",
       "title": "Bedrock Dust",
       "item": "spectrum:bedrock_dust",
       "advancement": "spectrum:midgame/break_decayed_bedrock",

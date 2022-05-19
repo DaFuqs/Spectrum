@@ -85,7 +85,7 @@ public abstract class ItemStackMixin {
 	// thank you so, so much @williewillus / @Botania for this snippet of code
 	// https://github.com/VazkiiMods/Botania/blob/1.18.x/Fabric/src/main/java/vazkii/botania/fabric/mixin/FabricMixinItemStack.java
 	@Inject(at = @At("HEAD"), method = "isOf(Lnet/minecraft/item/Item;)Z", cancellable = true)
-	private void isSpectrumShears(Item item, CallbackInfoReturnable<Boolean> cir) {
+	private void spectrum$isSpectrumShears(Item item, CallbackInfoReturnable<Boolean> cir) {
 		if (item == Items.SHEARS) {
 			if (isOf(SpectrumItems.BEDROCK_SHEARS)) {
 				cir.setReturnValue(true);

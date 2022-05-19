@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.recipe.potion_workshop;
 
-import de.dafuqs.spectrum.blocks.potion_workshop.PotionMod;
 import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.interfaces.PotionFillable;
 import de.dafuqs.spectrum.progression.ClientRecipeToastManager;
@@ -211,6 +210,11 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 			}
 		} else {
 			itemStack.setCustomName(new TranslatableText("item.spectrum.potion"));
+		}
+		if(potionMod.fastDrinkable) {
+			NbtCompound compound = itemStack.getOrCreateNbt();
+			compound.putBoolean("SpectrumFastDrinkable", true);
+			itemStack.setNbt(compound);
 		}
 		
 		// potion color

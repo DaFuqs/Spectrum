@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.blocks.potion_workshop;
+package de.dafuqs.spectrum.recipe.potion_workshop;
 
 public class PotionMod {
 	public int flatDurationBonusTicks = 0;
@@ -26,4 +26,5 @@ public class PotionMod {
 	public boolean makeEffectsPositive = false;
 	public boolean potentDecreasingEffect = false;
 	public boolean negateDecreasingDuration = false;
+	public boolean fastDrinkable = false;
 }

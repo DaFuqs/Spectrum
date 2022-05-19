@@ -58,7 +58,6 @@
     "client.BlockOverlayRendererMixin",
     "client.BuiltinModelItemRendererMixin",
     "client.ClientAdvancementManagerMixin",
-    "client.ClientPlayerEntityMixin",
     "client.ClientWorldMixin",
     "client.DimensionTypeMixin",
     "client.HeadFeatureRendererMixin",

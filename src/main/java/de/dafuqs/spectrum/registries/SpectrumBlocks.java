@@ -605,6 +605,8 @@ public class SpectrumBlocks {
 	public static final Block PRESERVATION_GLASS = new GlassBlock(preservationGlassBlockSettings);
 	public static final Block TINTED_PRESERVATION_GLASS = new GlassBlock(FabricBlockSettings.copyOf(PRESERVATION_GLASS).luminance(12).hardness(Float.MAX_VALUE));
 	public static final Block DIKE_GATE_FOUNTAIN = new SpectrumFacingBlock(preservationBlockSettings);
+	public static final Block PRESERVATION_BRICKS = new Block(preservationBlockSettings);
+	public static final Block SHIMMERING_PRESERVATION_BRICKS = new Block(FabricBlockSettings.copyOf(preservationBlockSettings).luminance(5));
 	public static final Block DIKE_GATE = new DikeGateBlock(FabricBlockSettings.of(Material.GLASS).strength(-1.0F).dropsNothing().luminance(3).sounds(BlockSoundGroup.GLASS).nonOpaque().allowsSpawning(SpectrumBlocks::never).solidBlock(SpectrumBlocks::never).suffocates(SpectrumBlocks::never).blockVision(SpectrumBlocks::never));
 	public static final Block COURIER_STATUE = new StatueBlock(preservationBlockSettings);
 	public static final Block TREASURE_CHEST = new TreasureChestBlock(FabricBlockSettings.copyOf(Blocks.CHEST).hardness(-1.0F));
@@ -1442,6 +1444,8 @@ public class SpectrumBlocks {
 	private static void registerStructureBlocks(FabricItemSettings fabricItemSettings) {
 		registerBlockWithItem("preservation_controller", PRESERVATION_CONTROLLER, fabricItemSettings);
 		registerBlockWithItem("preservation_stone", PRESERVATION_STONE, fabricItemSettings);
+		registerBlockWithItem("preservation_bricks", PRESERVATION_BRICKS, fabricItemSettings);
+		registerBlockWithItem("shimmering_preservation_bricks", SHIMMERING_PRESERVATION_BRICKS, fabricItemSettings);
 		registerBlockWithItem("dike_chiseled_preservation_stone", DIKE_CHISELED_PRESERVATION_STONE, fabricItemSettings);
 		registerBlockWithItem("preservation_glass", PRESERVATION_GLASS, fabricItemSettings);
 		registerBlockWithItem("tinted_preservation_glass", TINTED_PRESERVATION_GLASS, fabricItemSettings);

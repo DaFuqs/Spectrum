@@ -1,7 +1,7 @@
 {
   "type": "spectrum:fusion_shrine",
   "time": 600,
-  "experience": 2.0,
+  "experience": 4.0,
   "fluid": "spectrum:liquid_crystal",
   "ingredients": [
     {
@@ -15,6 +15,9 @@
     },
     {
       "item": "spectrum:blue_pigment"
+    },
+    {
+      "item": "spectrum:moonstruck_nectar"
     }
   ],
   "result" : {

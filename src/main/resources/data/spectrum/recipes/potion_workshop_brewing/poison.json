@@ -11,5 +11,6 @@
   "base_duration_ticks": 900,
   "potency_modifier": 1.0,
   "applicable_to_potions": true,
-  "applicable_to_tipped_arrows": true
+  "applicable_to_tipped_arrows": true,
+  "applicable_to_potion_fillables": true
 }

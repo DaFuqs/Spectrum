@@ -11,5 +11,6 @@
   "potency_modifier": 1.0,
   "applicable_to_potions": true,
   "applicable_to_tipped_arrows": true,
+  "applicable_to_potion_fillables": true,
   "required_advancement": "spectrum:midgame/brew_potion_in_potion_workshop"
 }

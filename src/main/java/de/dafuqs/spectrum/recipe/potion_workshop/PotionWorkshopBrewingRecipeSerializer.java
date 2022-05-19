@@ -39,7 +39,7 @@ public class PotionWorkshopBrewingRecipeSerializer implements RecipeSerializer<P
 		
 		boolean applicableToPotions = JsonHelper.getBoolean(jsonObject, "applicable_to_potions", true);
 		boolean applicableToTippedArrows = JsonHelper.getBoolean(jsonObject, "applicable_to_tipped_arrows", true);
-		boolean applicableToPotionFillabes = JsonHelper.getBoolean(jsonObject, "applicable_to_potion_fillabes", true);
+		boolean applicableToPotionFillabes = JsonHelper.getBoolean(jsonObject, "applicable_to_potion_fillables", true);
 		int craftingTime = JsonHelper.getInt(jsonObject, "time", 200);
 		int baseDurationTicks = JsonHelper.getInt(jsonObject, "base_duration_ticks", 1600);
 		int color = JsonHelper.getInt(jsonObject, "potion_color", -1);

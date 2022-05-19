@@ -12,7 +12,7 @@
     }
   },
   "criteria": {
-    "brewed_level_three_potion_in_potion_workshop": {
+    "brewed_level_four_potion_in_potion_workshop": {
       "trigger":"spectrum:potion_workshop_brewing",
       "conditions": {
         "item": {
@@ -23,7 +23,7 @@
           ]
         },
 		"max_amplifier": {
-		  "min": 4
+		  "min": 3
 		}
 	  }
     },

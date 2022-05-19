@@ -2,13 +2,11 @@ package de.dafuqs.spectrum.progression.advancement;
 
 import com.google.gson.JsonObject;
 import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.interfaces.PotionFillable;
 import net.minecraft.advancement.criterion.AbstractCriterion;
 import net.minecraft.advancement.criterion.AbstractCriterionConditions;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.PotionItem;
 import net.minecraft.potion.PotionUtil;
 import net.minecraft.predicate.NumberRange;
 import net.minecraft.predicate.entity.AdvancementEntityPredicateDeserializer;
@@ -41,29 +39,26 @@ public class PotionWorkshopBrewingCriterion extends AbstractCriterion<PotionWork
 	}
 
 	public void trigger(ServerPlayerEntity player, ItemStack itemStack) {
-		this.trigger(player, (conditions) -> {
+		this.trigger(player, conditions -> {
 			// instanceof PotionItem is true for Potions, Splash Potions and Lingering Potions
-			if(itemStack.getItem() instanceof PotionItem || itemStack.getItem() instanceof PotionFillable) {
-				List<StatusEffectInstance> effects = PotionUtil.getPotionEffects(itemStack);
-				int maxAmplifier = 0;
-				int maxDuration = 0;
-				for(StatusEffectInstance instance : effects) {
-					if(instance.getAmplifier() > maxAmplifier) {
-						maxAmplifier = instance.getAmplifier();
-					}
-					if(instance.getDuration() > maxDuration) {
-						maxDuration = instance.getDuration();
-					}
+			List<StatusEffectInstance> effects = PotionUtil.getPotionEffects(itemStack);
+			int maxAmplifier = 0;
+			int maxDuration = 0;
+			for(StatusEffectInstance instance : effects) {
+				if(instance.getAmplifier() > maxAmplifier) {
+					maxAmplifier = instance.getAmplifier();
 				}
-				
-				return conditions.matches(itemStack, effects, maxAmplifier, maxDuration, effects.size());
+				if(instance.getDuration() > maxDuration) {
+					maxDuration = instance.getDuration();
+				}
 			}
-			return false;
+			
+			return conditions.matches(itemStack, effects, maxAmplifier, maxDuration, effects.size());
 		});
 	}
 
-	public static PotionWorkshopBrewingCriterion.Conditions create(ItemPredicate itemPredicate, EntityEffectPredicate effectsPredicate, NumberRange.IntRange maxLevelRange, NumberRange.IntRange maxDurationRange, NumberRange.IntRange effectCountRange) {
-		return new PotionWorkshopBrewingCriterion.Conditions(EntityPredicate.Extended.EMPTY, itemPredicate, effectsPredicate, maxLevelRange, maxDurationRange, effectCountRange);
+	public static PotionWorkshopBrewingCriterion.Conditions create(ItemPredicate itemPredicate, EntityEffectPredicate effectsPredicate, NumberRange.IntRange maxAmplifierRange, NumberRange.IntRange maxDurationRange, NumberRange.IntRange effectCountRange) {
+		return new PotionWorkshopBrewingCriterion.Conditions(EntityPredicate.Extended.EMPTY, itemPredicate, effectsPredicate, maxAmplifierRange, maxDurationRange, effectCountRange);
 	}
 
 	public static class Conditions extends AbstractCriterionConditions {

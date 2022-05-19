@@ -2,7 +2,7 @@
   "criteria": {
     "reached_midgame": {
       "trigger":"spectrum:has_advancement",
-      "conditions": { "advancement_identifier": "spectrum:midgame/spectrum_midgame" }
+      "conditions": { "advancement_identifier": "spectrum:__midgame/spectrum_midgame" }
     },
     "collected_four_leaf_clover": {
       "trigger":"spectrum:has_advancement",

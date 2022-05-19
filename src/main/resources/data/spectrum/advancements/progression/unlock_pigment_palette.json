@@ -2,7 +2,7 @@
   "criteria": {
     "refined_azurite": {
       "trigger":"spectrum:has_advancement",
-      "conditions": { "advancement_identifier": "spectrum:midgame/create_refined_azurite" }
+      "conditions": { "advancement_identifier": "spectrum:__midgame/create_refined_azurite" }
     },
     "equipped_three_trinkets": {
       "trigger": "spectrum:trinket_change",

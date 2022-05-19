@@ -16,7 +16,7 @@
       "trigger": "spectrum:enchanter_enchanting",
       "conditions": {
         "item": {
-          "tag": "spectrum:enchantable_books"
+          "item": "minecraft:enchanted_book"
         }
       }
     },

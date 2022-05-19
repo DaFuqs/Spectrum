@@ -496,12 +496,14 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 		if(existingLevel >= level) {
 			return -1;
 		}
-		boolean conflicts = SpectrumEnchantmentHelper.hasEnchantmentThatConflictsWith(itemStack, enchantment);
 		
+		boolean conflicts = SpectrumEnchantmentHelper.hasEnchantmentThatConflictsWith(itemStack, enchantment);
 		if(conflicts && !allowEnchantmentConflicts) {
 			return -1;
-		} else if((itemStack.getItem().getEnchantability() > 0 && enchantment.isAcceptableItem(itemStack)) || itemStack.getItem() instanceof BookItem || itemStack.getItem() instanceof EnchanterEnchantable) {
-			int enchantability = itemStack.getItem().getEnchantability();
+		}
+		
+		int enchantability = Math.max(1, itemStack.getItem().getEnchantability()); // items like Elytras have an enchantability of 0, but can get unbreaking
+		if(enchantment.isAcceptableItem(itemStack) || itemStack.getItem() instanceof BookItem || (itemStack.getItem() instanceof EnchanterEnchantable enchanterEnchantable && (enchanterEnchantable.canAcceptEnchantment(enchantment)))) {
 			int requiredExperience = getRequiredExperienceForEnchantment(enchantability, enchantment, level);
 			if(conflicts) {
 				return requiredExperience * 4;

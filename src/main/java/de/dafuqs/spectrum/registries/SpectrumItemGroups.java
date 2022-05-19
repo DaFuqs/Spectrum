@@ -2,7 +2,7 @@ package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.mob_head.SpectrumSkullBlock;
-import de.dafuqs.spectrum.energy.color.CMYKColor;
+import de.dafuqs.spectrum.energy.color.InkColor;
 import de.dafuqs.spectrum.helpers.SpectrumEnchantmentHelper;
 import de.dafuqs.spectrum.items.magic_items.BottomlessBundleItem;
 import de.dafuqs.spectrum.items.magic_items.KnowledgeGemItem;
@@ -80,7 +80,7 @@ public class SpectrumItemGroups {
 				// fully filled Knowledge Gem
 				stacks.add(KnowledgeGemItem.getKnowledgeDropStackWithXP(10000));
 				
-				for(CMYKColor color : CMYKColor.all()) {
+				for(InkColor color : InkColor.all()) {
 					stacks.add(SpectrumItems.INK_FLASK.getFullStack(color));
 				}
 				stacks.add(SpectrumItems.INK_ASSORTMENT.getFullStack());

@@ -1,8 +1,8 @@
 package de.dafuqs.spectrum.items.magic;
 
 import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.energy.PigmentEnergyStorageItem;
-import de.dafuqs.spectrum.energy.storage.IndividualCappedSimplePigmentEnergyStorage;
+import de.dafuqs.spectrum.energy.InkStorageItem;
+import de.dafuqs.spectrum.energy.storage.IndividualCappedSimpleInkStorage;
 import de.dafuqs.spectrum.items.trinkets.SpectrumTrinketItem;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -16,7 +16,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class InkAssortmentItem extends SpectrumTrinketItem implements PigmentEnergyStorageItem<IndividualCappedSimplePigmentEnergyStorage> {
+public class InkAssortmentItem extends SpectrumTrinketItem implements InkStorageItem<IndividualCappedSimpleInkStorage> {
 	
 	private final long maxEnergy;
 	
@@ -26,16 +26,16 @@ public class InkAssortmentItem extends SpectrumTrinketItem implements PigmentEne
 	}
 	
 	@Override
-	public IndividualCappedSimplePigmentEnergyStorage getEnergyStorage(ItemStack itemStack) {
+	public IndividualCappedSimpleInkStorage getEnergyStorage(ItemStack itemStack) {
 		NbtCompound compound = itemStack.getNbt();
 		if(compound != null && compound.contains("EnergyStore")) {
-			return IndividualCappedSimplePigmentEnergyStorage.fromNbt(compound.getCompound("EnergyStore"));
+			return IndividualCappedSimpleInkStorage.fromNbt(compound.getCompound("EnergyStore"));
 		}
-		return new IndividualCappedSimplePigmentEnergyStorage(this.maxEnergy);
+		return new IndividualCappedSimpleInkStorage(this.maxEnergy);
 	}
 	
 	@Override
-	public void setEnergyStorage(ItemStack itemStack, IndividualCappedSimplePigmentEnergyStorage storage) {
+	public void setEnergyStorage(ItemStack itemStack, IndividualCappedSimpleInkStorage storage) {
 		NbtCompound compound = itemStack.getOrCreateNbt();
 		compound.put("EnergyStore", storage.toNbt());
 	}

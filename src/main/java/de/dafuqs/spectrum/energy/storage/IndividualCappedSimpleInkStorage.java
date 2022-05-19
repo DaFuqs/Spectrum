@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.energy.storage;
 
-import de.dafuqs.spectrum.energy.color.CMYKColor;
+import de.dafuqs.spectrum.energy.color.InkColor;
 import de.dafuqs.spectrum.energy.color.ElementalColor;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -20,44 +20,44 @@ import java.util.Map;
 
 import static de.dafuqs.spectrum.helpers.Support.getShortenedNumberString;
 
-public class TotalCappedSimplePigmentEnergyStorage implements PigmentEnergyStorage {
+public class IndividualCappedSimpleInkStorage implements InkStorage {
 	
-	protected final long maxEnergyTotal;
+	protected final long maxEnergyPerColor;
 	protected long currentTotal; // This is a cache for quick lookup. Can be recalculated anytime using the values in storedEnergy.
-	protected final Map<CMYKColor, Long> storedEnergy;
+	protected final Map<InkColor, Long> storedEnergy;
 	
-	public TotalCappedSimplePigmentEnergyStorage(long maxEnergyTotal) {
-		this.maxEnergyTotal = maxEnergyTotal;
+	public IndividualCappedSimpleInkStorage(long maxEnergyPerColor) {
+		this.maxEnergyPerColor = maxEnergyPerColor;
 		this.currentTotal = 0;
 		
 		this.storedEnergy = new HashMap<>();
-		for(CMYKColor color : CMYKColor.all()) {
+		for(InkColor color : InkColor.all()) {
 			this.storedEnergy.put(color, 0L);
 		}
 	}
 	
-	public TotalCappedSimplePigmentEnergyStorage(long maxEnergyTotal, Map<CMYKColor, Long> colors) {
-		this.maxEnergyTotal = maxEnergyTotal;
+	public IndividualCappedSimpleInkStorage(long maxEnergyPerColor, Map<InkColor, Long> colors) {
+		this.maxEnergyPerColor = maxEnergyPerColor;
 		
 		this.storedEnergy = colors;
-		for(Map.Entry<CMYKColor, Long> color : colors.entrySet()) {
+		for(Map.Entry<InkColor, Long> color : colors.entrySet()) {
 			this.storedEnergy.put(color.getKey(), color.getValue());
 			this.currentTotal += color.getValue();
 		}
 	}
 	
 	@Override
-	public boolean accepts(CMYKColor color) {
+	public boolean accepts(InkColor color) {
 		return color instanceof ElementalColor;
 	}
 	
 	@Override
-	public long addEnergy(CMYKColor color, long amount) {
+	public long addEnergy(InkColor color, long amount) {
 		long resultingAmount = this.storedEnergy.get(color) + amount;
-		if(resultingAmount > this.maxEnergyTotal - this.currentTotal) {
-			long overflow = resultingAmount - this.maxEnergyTotal + this.currentTotal;
-			this.currentTotal = this.currentTotal + (resultingAmount - this.maxEnergyTotal);
-			this.storedEnergy.put(color, this.maxEnergyTotal);
+		if(resultingAmount > this.maxEnergyPerColor) {
+			long overflow = resultingAmount - this.maxEnergyPerColor;
+			this.currentTotal = this.maxEnergyPerColor;
+			this.storedEnergy.put(color, this.maxEnergyPerColor);
 			return overflow;
 		} else {
 			this.currentTotal += amount;
@@ -67,7 +67,7 @@ public class TotalCappedSimplePigmentEnergyStorage implements PigmentEnergyStora
 	}
 	
 	@Override
-	public boolean requestEnergy(CMYKColor color, long amount) {
+	public boolean requestEnergy(InkColor color, long amount) {
 		long storedAmount = this.storedEnergy.get(color);
 		if(storedAmount < amount) {
 			return false;
@@ -79,7 +79,7 @@ public class TotalCappedSimplePigmentEnergyStorage implements PigmentEnergyStora
 	}
 	
 	@Override
-	public long drainEnergy(CMYKColor color, long amount) {
+	public long drainEnergy(InkColor color, long amount) {
 		long storedAmount = this.storedEnergy.get(color);
 		long drainedAmount = Math.min(storedAmount, amount);
 		this.storedEnergy.put(color, storedAmount - drainedAmount);
@@ -88,18 +88,18 @@ public class TotalCappedSimplePigmentEnergyStorage implements PigmentEnergyStora
 	}
 	
 	@Override
-	public long getEnergy(CMYKColor color) {
+	public long getEnergy(InkColor color) {
 		return this.storedEnergy.get(color);
 	}
 	
 	@Override
 	public long getMaxTotal() {
-		return this.maxEnergyTotal;
+		return this.maxEnergyPerColor * this.storedEnergy.size();
 	}
 	
 	@Override
 	public long getMaxPerColor() {
-		return this.maxEnergyTotal;
+		return this.maxEnergyPerColor;
 	}
 	
 	@Override
@@ -114,44 +114,44 @@ public class TotalCappedSimplePigmentEnergyStorage implements PigmentEnergyStora
 	
 	@Override
 	public boolean isFull() {
-		return this.currentTotal >= this.maxEnergyTotal;
+		return this.currentTotal >= this.getMaxTotal();
 	}
 	
-	public static @Nullable TotalCappedSimplePigmentEnergyStorage fromNbt(@NotNull NbtCompound compound) {
-		if(compound.contains("MaxEnergyTotal", NbtElement.LONG_TYPE)) {
-			long maxEnergyTotal = compound.getLong("MaxEnergyTotal");
+	public static @Nullable IndividualCappedSimpleInkStorage fromNbt(@NotNull NbtCompound compound) {
+		if(compound.contains("MaxEnergyPerColor", NbtElement.LONG_TYPE)) {
+			long maxEnergyPerColor = compound.getLong("MaxEnergyPerColor");
 			
-			Map<CMYKColor, Long> colors = new HashMap<>();
-			for(CMYKColor color : CMYKColor.all()) {
+			Map<InkColor, Long> colors = new HashMap<>();
+			for(InkColor color : InkColor.all()) {
 				colors.put(color, compound.getLong(color.toString()));
 			}
-			return new TotalCappedSimplePigmentEnergyStorage(maxEnergyTotal, colors);
+			return new IndividualCappedSimpleInkStorage(maxEnergyPerColor, colors);
 		}
 		return null;
 	}
 	
 	public NbtCompound toNbt() {
 		NbtCompound compound = new NbtCompound();
-		compound.putLong("MaxEnergyTotal", this.maxEnergyTotal);
-		for(Map.Entry<CMYKColor, Long> color : this.storedEnergy.entrySet()) {
+		compound.putLong("MaxEnergyPerColor", this.maxEnergyPerColor);
+		for(Map.Entry<InkColor, Long> color : this.storedEnergy.entrySet()) {
 			compound.putLong(color.getKey().toString(), color.getValue());
 		}
 		return compound;
 	}
 	
-	@Override
-	public void fillCompletely() {
-		long energyPerColor = this.maxEnergyTotal / this.storedEnergy.size();
-		this.storedEnergy.replaceAll((c, v) -> energyPerColor);
-	}
-	
 	@Environment(EnvType.CLIENT)
 	public void addTooltip(World world, List<Text> tooltip, TooltipContext context) {
-		tooltip.add(new TranslatableText("item.spectrum.total_capped_simple_pigment_energy_storage.tooltip", getShortenedNumberString(maxEnergyTotal)));
-		for(Map.Entry<CMYKColor, Long> color : this.storedEnergy.entrySet()) {
+		tooltip.add(new TranslatableText("item.spectrum.pigment_palette.tooltip", getShortenedNumberString(maxEnergyPerColor)));
+		for(Map.Entry<InkColor, Long> color : this.storedEnergy.entrySet()) {
 			if(color.getValue() > 0) {
 				tooltip.add(new TranslatableText("item.spectrum.pigment_palette.tooltip.stored_energy." + color.getKey().toString().toLowerCase(Locale.ROOT),  getShortenedNumberString(color.getValue())));
 			}
+		}
+	}
+	
+	public void fillCompletely() {
+		for(InkColor color : InkColor.all()) {
+			storedEnergy.put(color, this.maxEnergyPerColor);
 		}
 	}
 	

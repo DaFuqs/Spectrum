@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.energy.storage;
 
-import de.dafuqs.spectrum.energy.color.CMYKColor;
-import de.dafuqs.spectrum.energy.color.PigmentColors;
+import de.dafuqs.spectrum.energy.color.InkColor;
+import de.dafuqs.spectrum.energy.color.InkColors;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
@@ -16,39 +16,39 @@ import java.util.Locale;
 
 import static de.dafuqs.spectrum.helpers.Support.getShortenedNumberString;
 
-public class SinglePigmentEnergyStorage implements PigmentEnergyStorage {
+public class SingleInkStorage implements InkStorage {
 	
 	private final long maxEnergy;
-	private CMYKColor storedColor;
+	private InkColor storedColor;
 	private long storedEnergy;
 	
 	/**
 	 * Stores a single type of Pigment Energy
 	 * Can only be filled with a new type if it is empty
 	 **/
-	public SinglePigmentEnergyStorage(long maxEnergy) {
+	public SingleInkStorage(long maxEnergy) {
 		this.maxEnergy = maxEnergy;
-		this.storedColor = PigmentColors.CYAN;
+		this.storedColor = InkColors.CYAN;
 		this.storedEnergy = 0;
 	}
 	
-	public SinglePigmentEnergyStorage(long maxEnergy, CMYKColor color, long amount) {
+	public SingleInkStorage(long maxEnergy, InkColor color, long amount) {
 		this.maxEnergy = maxEnergy;
 		this.storedColor = color;
 		this.storedEnergy = amount;
 	}
 	
-	public CMYKColor getStoredColor() {
+	public InkColor getStoredColor() {
 		return storedColor;
 	}
 	
 	@Override
-	public boolean accepts(CMYKColor color) {
+	public boolean accepts(InkColor color) {
 		return this.storedEnergy == 0 || this.storedColor == color;
 	}
 	
 	@Override
-	public long addEnergy(CMYKColor color, long amount) {
+	public long addEnergy(InkColor color, long amount) {
 		if(color == storedColor) {
 			long resultingAmount = this.storedEnergy + amount;
 			this.storedEnergy = resultingAmount;
@@ -66,7 +66,7 @@ public class SinglePigmentEnergyStorage implements PigmentEnergyStorage {
 	}
 	
 	@Override
-	public boolean requestEnergy(CMYKColor color, long amount) {
+	public boolean requestEnergy(InkColor color, long amount) {
 		if (color == this.storedColor && amount >= this.storedEnergy) {
 			this.storedEnergy -= amount;
 			return true;
@@ -75,7 +75,7 @@ public class SinglePigmentEnergyStorage implements PigmentEnergyStorage {
 		}
 	}
 	
-	public long drainEnergy(CMYKColor color, long amount) {
+	public long drainEnergy(InkColor color, long amount) {
 		if (color == this.storedColor) {
 			long drainedAmount = Math.min(this.storedEnergy, amount);
 			this.storedEnergy -= drainedAmount;
@@ -86,7 +86,7 @@ public class SinglePigmentEnergyStorage implements PigmentEnergyStorage {
 	}
 	
 	@Override
-	public long getEnergy(CMYKColor color) {
+	public long getEnergy(InkColor color) {
 		if (color == this.storedColor) {
 			return this.storedEnergy;
 		} else {
@@ -119,12 +119,12 @@ public class SinglePigmentEnergyStorage implements PigmentEnergyStorage {
 		return this.storedEnergy >= this.maxEnergy;
 	}
 	
-	public static @Nullable SinglePigmentEnergyStorage fromNbt(@NotNull NbtCompound compound) {
+	public static @Nullable SingleInkStorage fromNbt(@NotNull NbtCompound compound) {
 		if(compound.contains("MaxEnergyTotal", NbtElement.LONG_TYPE)) {
 			long maxEnergyTotal = compound.getLong("MaxEnergyTotal");
-			CMYKColor color = CMYKColor.of(compound.getString("Color"));
+			InkColor color = InkColor.of(compound.getString("Color"));
 			long amount = compound.getLong("Amount");
-			return new SinglePigmentEnergyStorage(maxEnergyTotal, color, amount);
+			return new SingleInkStorage(maxEnergyTotal, color, amount);
 		}
 		return null;
 	}
@@ -149,7 +149,7 @@ public class SinglePigmentEnergyStorage implements PigmentEnergyStorage {
 		this.storedEnergy = this.maxEnergy;
 	}
 	
-	public void convertColor(CMYKColor color) {
+	public void convertColor(InkColor color) {
 		this.storedColor = color;
 	}
 	

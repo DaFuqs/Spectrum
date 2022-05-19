@@ -1,9 +1,9 @@
 package de.dafuqs.spectrum.items.magic;
 
 import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.energy.PigmentEnergyStorageItem;
-import de.dafuqs.spectrum.energy.color.CMYKColor;
-import de.dafuqs.spectrum.energy.storage.SinglePigmentEnergyStorage;
+import de.dafuqs.spectrum.energy.InkStorageItem;
+import de.dafuqs.spectrum.energy.color.InkColor;
+import de.dafuqs.spectrum.energy.storage.SingleInkStorage;
 import de.dafuqs.spectrum.items.trinkets.SpectrumTrinketItem;
 import de.dafuqs.spectrum.registries.SpectrumBannerPatterns;
 import io.github.fablabsmc.fablabs.api.bannerpattern.v1.LoomPattern;
@@ -20,7 +20,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class InkFlaskItem extends SpectrumTrinketItem implements PigmentEnergyStorageItem<SinglePigmentEnergyStorage>, LoomPatternProvider {
+public class InkFlaskItem extends SpectrumTrinketItem implements InkStorageItem<SingleInkStorage>, LoomPatternProvider {
 	
 	private final long maxEnergy;
 	
@@ -30,16 +30,16 @@ public class InkFlaskItem extends SpectrumTrinketItem implements PigmentEnergySt
 	}
 	
 	@Override
-	public SinglePigmentEnergyStorage getEnergyStorage(ItemStack itemStack) {
+	public SingleInkStorage getEnergyStorage(ItemStack itemStack) {
 		NbtCompound compound = itemStack.getNbt();
 		if(compound != null && compound.contains("EnergyStore")) {
-			return SinglePigmentEnergyStorage.fromNbt(compound.getCompound("EnergyStore"));
+			return SingleInkStorage.fromNbt(compound.getCompound("EnergyStore"));
 		}
-		return new SinglePigmentEnergyStorage(this.maxEnergy);
+		return new SingleInkStorage(this.maxEnergy);
 	}
 	
 	@Override
-	public void setEnergyStorage(ItemStack itemStack, SinglePigmentEnergyStorage storage) {
+	public void setEnergyStorage(ItemStack itemStack, SingleInkStorage storage) {
 		NbtCompound compound = itemStack.getOrCreateNbt();
 		compound.put("EnergyStore", storage.toNbt());
 	}
@@ -51,9 +51,9 @@ public class InkFlaskItem extends SpectrumTrinketItem implements PigmentEnergySt
 		getEnergyStorage(stack).addTooltip(world, tooltip, context);
 	}
 	
-	public ItemStack getFullStack(CMYKColor color) {
+	public ItemStack getFullStack(InkColor color) {
 		ItemStack stack = this.getDefaultStack();
-		SinglePigmentEnergyStorage storage = getEnergyStorage(stack);
+		SingleInkStorage storage = getEnergyStorage(stack);
 		storage.fillCompletely();
 		storage.convertColor(color);
 		setEnergyStorage(stack, storage);

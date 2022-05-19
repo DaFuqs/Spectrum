@@ -1,8 +1,8 @@
 package de.dafuqs.spectrum.items.magic;
 
 import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.energy.PigmentEnergyStorageItem;
-import de.dafuqs.spectrum.energy.storage.ArtistsPaletteEnergyStorage;
+import de.dafuqs.spectrum.energy.InkStorageItem;
+import de.dafuqs.spectrum.energy.storage.ArtistsPaletteInkStorage;
 import de.dafuqs.spectrum.items.trinkets.SpectrumTrinketItem;
 import de.dafuqs.spectrum.registries.SpectrumBannerPatterns;
 import io.github.fablabsmc.fablabs.api.bannerpattern.v1.LoomPattern;
@@ -19,7 +19,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class ArtistsPaletteItem extends SpectrumTrinketItem implements PigmentEnergyStorageItem<ArtistsPaletteEnergyStorage>, LoomPatternProvider {
+public class ArtistsPaletteItem extends SpectrumTrinketItem implements InkStorageItem<ArtistsPaletteInkStorage>, LoomPatternProvider {
 	
 	private final long maxEnergyTotal;
 	
@@ -29,16 +29,16 @@ public class ArtistsPaletteItem extends SpectrumTrinketItem implements PigmentEn
 	}
 	
 	@Override
-	public ArtistsPaletteEnergyStorage getEnergyStorage(ItemStack itemStack) {
+	public ArtistsPaletteInkStorage getEnergyStorage(ItemStack itemStack) {
 		NbtCompound compound = itemStack.getNbt();
 		if(compound != null && compound.contains("EnergyStore")) {
-			return ArtistsPaletteEnergyStorage.fromNbt(compound.getCompound("EnergyStore"));
+			return ArtistsPaletteInkStorage.fromNbt(compound.getCompound("EnergyStore"));
 		}
-		return new ArtistsPaletteEnergyStorage(this.maxEnergyTotal);
+		return new ArtistsPaletteInkStorage(this.maxEnergyTotal);
 	}
 	
 	@Override
-	public void setEnergyStorage(ItemStack itemStack, ArtistsPaletteEnergyStorage storage) {
+	public void setEnergyStorage(ItemStack itemStack, ArtistsPaletteInkStorage storage) {
 		NbtCompound compound = itemStack.getOrCreateNbt();
 		compound.put("EnergyStore", storage.toNbt());
 	}

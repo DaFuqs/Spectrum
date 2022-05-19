@@ -4,7 +4,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonNull;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
-import de.dafuqs.spectrum.energy.color.CMYKColor;
+import de.dafuqs.spectrum.energy.color.InkColor;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Locale;
@@ -13,13 +13,13 @@ public class ColorPredicate {
 
 	public static final ColorPredicate ANY;
 	@Nullable
-	private final CMYKColor color;
+	private final InkColor color;
 
-	public ColorPredicate(@Nullable CMYKColor color) {
+	public ColorPredicate(@Nullable InkColor color) {
 		this.color = color;
 	}
 
-	public boolean test(CMYKColor color) {
+	public boolean test(InkColor color) {
 		if (this == ANY || color == null) {
 			return true;
 		}
@@ -29,7 +29,7 @@ public class ColorPredicate {
 	public static ColorPredicate fromJson(@Nullable JsonElement json) {
 		if (json != null && !json.isJsonNull() && json instanceof JsonPrimitive) {
 			String colorString = json.getAsString();
-			CMYKColor color = CMYKColor.of(colorString.toUpperCase(Locale.ROOT));
+			InkColor color = InkColor.of(colorString.toUpperCase(Locale.ROOT));
 			return new ColorPredicate(color);
 		} else {
 			return ANY;
@@ -54,7 +54,7 @@ public class ColorPredicate {
 
 	public static class Builder {
 		@Nullable
-		private CMYKColor color;
+		private InkColor color;
 
 		private Builder() {
 			this.color = null;
@@ -64,7 +64,7 @@ public class ColorPredicate {
 			return new ColorPredicate.Builder();
 		}
 
-		public ColorPredicate.Builder color(CMYKColor color) {
+		public ColorPredicate.Builder color(InkColor color) {
 			this.color = color;
 			return this;
 		}

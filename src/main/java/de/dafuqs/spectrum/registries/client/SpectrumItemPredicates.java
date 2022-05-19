@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.registries.client;
 
-import de.dafuqs.spectrum.energy.storage.SinglePigmentEnergyStorage;
+import de.dafuqs.spectrum.energy.storage.SingleInkStorage;
 import de.dafuqs.spectrum.items.ExperienceStorageItem;
 import de.dafuqs.spectrum.items.magic.InkFlaskItem;
 import de.dafuqs.spectrum.items.magic_items.EnderSpliceItem;
@@ -139,7 +139,7 @@ public class SpectrumItemPredicates {
 	
 	private static void registerSinglePigmentEnergyStorageItemPredicates(InkFlaskItem singlePigmentEnergyStorage) {
 		FabricModelPredicateProviderRegistry.register(singlePigmentEnergyStorage, new Identifier("fill_state"), (itemStack, world, livingEntity, i) -> {
-			SinglePigmentEnergyStorage storage = singlePigmentEnergyStorage.getEnergyStorage(itemStack);
+			SingleInkStorage storage = singlePigmentEnergyStorage.getEnergyStorage(itemStack);
 			long current = storage.getCurrentTotal();
 			if (current == 0) {
 				return 0.0F;

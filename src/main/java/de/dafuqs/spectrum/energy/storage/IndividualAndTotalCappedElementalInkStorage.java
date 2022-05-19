@@ -1,29 +1,29 @@
 package de.dafuqs.spectrum.energy.storage;
 
-import de.dafuqs.spectrum.energy.color.CMYKColor;
+import de.dafuqs.spectrum.energy.color.InkColor;
+import de.dafuqs.spectrum.energy.color.InkColors;
 import de.dafuqs.spectrum.energy.color.ElementalColor;
-import de.dafuqs.spectrum.energy.color.PigmentColors;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class IndividualAndTotalCappedElementalPigmentEnergyStorage extends TotalCappedElementalPigmentEnergyStorage {
+public class IndividualAndTotalCappedElementalInkStorage extends TotalCappedElementalInkStorage {
 	
 	protected final long maxEnergyPerColor;
 	
-	public IndividualAndTotalCappedElementalPigmentEnergyStorage(long maxEnergyTotal, long maxEnergyPerColor) {
+	public IndividualAndTotalCappedElementalInkStorage(long maxEnergyTotal, long maxEnergyPerColor) {
 		super(maxEnergyTotal);
 		this.maxEnergyPerColor = maxEnergyPerColor;
 	}
 	
-	public IndividualAndTotalCappedElementalPigmentEnergyStorage(long maxEnergyTotal, long maxEnergyPerColor, long cyan, long magenta, long yellow, long black, long white) {
+	public IndividualAndTotalCappedElementalInkStorage(long maxEnergyTotal, long maxEnergyPerColor, long cyan, long magenta, long yellow, long black, long white) {
 		super(maxEnergyTotal, cyan, magenta, yellow, black, white);
 		this.maxEnergyPerColor = maxEnergyPerColor;
 	}
 	
 	@Override
-	public long addEnergy(CMYKColor color, long amount) {
+	public long addEnergy(InkColor color, long amount) {
 		if(color instanceof ElementalColor elementalColor) {
 			long currentAmount = this.storedEnergy.get(color);
 			long freeTotalEnergy = this.maxEnergyTotal - this.currentTotal;
@@ -48,7 +48,7 @@ public class IndividualAndTotalCappedElementalPigmentEnergyStorage extends Total
 		return this.maxEnergyPerColor;
 	}
 	
-	public static @Nullable IndividualAndTotalCappedElementalPigmentEnergyStorage fromNbt(@NotNull NbtCompound compound) {
+	public static @Nullable IndividualAndTotalCappedElementalInkStorage fromNbt(@NotNull NbtCompound compound) {
 		if(compound.contains("MaxEnergyTotal", NbtElement.LONG_TYPE)) {
 			long maxEnergyTotal = compound.getLong("MaxEnergyTotal");
 			long maxEnergyPerColor = compound.getLong("MaxEnergyPerColor");
@@ -57,7 +57,7 @@ public class IndividualAndTotalCappedElementalPigmentEnergyStorage extends Total
 			long yellow = compound.getLong("Yellow");
 			long black = compound.getLong("Black");
 			long white = compound.getLong("White");
-			return new IndividualAndTotalCappedElementalPigmentEnergyStorage(maxEnergyTotal, maxEnergyPerColor, cyan, magenta, yellow, black, white);
+			return new IndividualAndTotalCappedElementalInkStorage(maxEnergyTotal, maxEnergyPerColor, cyan, magenta, yellow, black, white);
 		}
 		return null;
 	}
@@ -66,11 +66,11 @@ public class IndividualAndTotalCappedElementalPigmentEnergyStorage extends Total
 		NbtCompound compound = new NbtCompound();
 		compound.putLong("MaxEnergyTotal", this.maxEnergyTotal);
 		compound.putLong("MaxEnergyPerColor", this.maxEnergyPerColor);
-		compound.putLong("Cyan", this.storedEnergy.get(PigmentColors.CYAN));
-		compound.putLong("Magenta", this.storedEnergy.get(PigmentColors.MAGENTA));
-		compound.putLong("Yellow", this.storedEnergy.get(PigmentColors.YELLOW));
-		compound.putLong("Black", this.storedEnergy.get(PigmentColors.BLACK));
-		compound.putLong("White", this.storedEnergy.get(PigmentColors.WHITE));
+		compound.putLong("Cyan", this.storedEnergy.get(InkColors.CYAN));
+		compound.putLong("Magenta", this.storedEnergy.get(InkColors.MAGENTA));
+		compound.putLong("Yellow", this.storedEnergy.get(InkColors.YELLOW));
+		compound.putLong("Black", this.storedEnergy.get(InkColors.BLACK));
+		compound.putLong("White", this.storedEnergy.get(InkColors.WHITE));
 		return compound;
 	}
 	

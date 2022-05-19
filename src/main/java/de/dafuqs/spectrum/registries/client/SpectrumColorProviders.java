@@ -3,7 +3,7 @@ package de.dafuqs.spectrum.registries.client;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.memory.MemoryBlockEntity;
 import de.dafuqs.spectrum.blocks.memory.MemoryItem;
-import de.dafuqs.spectrum.energy.storage.SinglePigmentEnergyStorage;
+import de.dafuqs.spectrum.energy.storage.SingleInkStorage;
 import de.dafuqs.spectrum.helpers.ColorHelper;
 import de.dafuqs.spectrum.items.magic.InkFlaskItem;
 import de.dafuqs.spectrum.progression.ToggleableBlockColorProvider;
@@ -96,7 +96,7 @@ public class SpectrumColorProviders {
 		ColorProviderRegistry.ITEM.register((stack, tintIndex) -> {
 			if (tintIndex == 1) {
 				InkFlaskItem i = (InkFlaskItem) stack.getItem();
-				SinglePigmentEnergyStorage storage = i.getEnergyStorage(stack);
+				SingleInkStorage storage = i.getEnergyStorage(stack);
 				return ColorHelper.getInt(storage.getStoredColor().getDyeColor());
 			}
 			return -1;

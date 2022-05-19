@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.energy.storage;
 
-import de.dafuqs.spectrum.energy.color.CMYKColor;
+import de.dafuqs.spectrum.energy.color.InkColor;
 import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
@@ -12,17 +12,17 @@ import org.jetbrains.annotations.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class PigmentPaletteEnergyStorage extends IndividualCappedSimplePigmentEnergyStorage {
+public class PigmentPaletteInkStorage extends IndividualCappedSimpleInkStorage {
 	
-	public PigmentPaletteEnergyStorage(long maxEnergyPerColor) {
+	public PigmentPaletteInkStorage(long maxEnergyPerColor) {
 		super(maxEnergyPerColor);
 	}
 	
-	public PigmentPaletteEnergyStorage(long maxEnergyPerColor, Map<CMYKColor, Long> colors) {
+	public PigmentPaletteInkStorage(long maxEnergyPerColor, Map<InkColor, Long> colors) {
 		super(maxEnergyPerColor, colors);
 	}
 	
-	public long addEnergy(CMYKColor color, long amount, ItemStack stack, ServerPlayerEntity serverPlayerEntity) {
+	public long addEnergy(InkColor color, long amount, ItemStack stack, ServerPlayerEntity serverPlayerEntity) {
 		long leftoverEnergy = super.addEnergy(color, amount);
 		if(leftoverEnergy != amount) {
 			SpectrumAdvancementCriteria.INK_CONTAINER_INTERACTION.trigger(serverPlayerEntity, stack, this, color, amount - leftoverEnergy);
@@ -30,7 +30,7 @@ public class PigmentPaletteEnergyStorage extends IndividualCappedSimplePigmentEn
 		return leftoverEnergy;
 	}
 	
-	public boolean requestEnergy(CMYKColor color, long amount, ItemStack stack, ServerPlayerEntity serverPlayerEntity) {
+	public boolean requestEnergy(InkColor color, long amount, ItemStack stack, ServerPlayerEntity serverPlayerEntity) {
 		boolean success = super.requestEnergy(color, amount);
 		if(success) {
 			SpectrumAdvancementCriteria.INK_CONTAINER_INTERACTION.trigger(serverPlayerEntity, stack, this, color, -amount);
@@ -38,7 +38,7 @@ public class PigmentPaletteEnergyStorage extends IndividualCappedSimplePigmentEn
 		return success;
 	}
 	
-	public long drainEnergy(CMYKColor color, long amount, ItemStack stack, ServerPlayerEntity serverPlayerEntity) {
+	public long drainEnergy(InkColor color, long amount, ItemStack stack, ServerPlayerEntity serverPlayerEntity) {
 		long drainedAmount = super.drainEnergy(color, amount);
 		if(drainedAmount != 0) {
 			SpectrumAdvancementCriteria.INK_CONTAINER_INTERACTION.trigger(serverPlayerEntity, stack, this, color, -drainedAmount);
@@ -46,15 +46,15 @@ public class PigmentPaletteEnergyStorage extends IndividualCappedSimplePigmentEn
 		return drainedAmount;
 	}
 	
-	public static @Nullable PigmentPaletteEnergyStorage fromNbt(@NotNull NbtCompound compound) {
+	public static @Nullable PigmentPaletteInkStorage fromNbt(@NotNull NbtCompound compound) {
 		if(compound.contains("MaxEnergyPerColor", NbtElement.LONG_TYPE)) {
 			long maxEnergyPerColor = compound.getLong("MaxEnergyPerColor");
 			
-			Map<CMYKColor, Long> colors = new HashMap<>();
-			for(CMYKColor color : CMYKColor.all()) {
+			Map<InkColor, Long> colors = new HashMap<>();
+			for(InkColor color : InkColor.all()) {
 				colors.put(color, compound.getLong(color.toString()));
 			}
-			return new PigmentPaletteEnergyStorage(maxEnergyPerColor, colors);
+			return new PigmentPaletteInkStorage(maxEnergyPerColor, colors);
 		}
 		return null;
 	}

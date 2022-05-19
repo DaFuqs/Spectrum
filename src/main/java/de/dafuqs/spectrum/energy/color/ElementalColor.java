@@ -5,7 +5,7 @@ import net.minecraft.util.DyeColor;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ElementalColor extends CMYKColor {
+public class ElementalColor extends InkColor {
 	
 	protected Map<CompoundColor, Float> mixedColors = new HashMap<>(); // colors that can be mixed from this
 	

@@ -1,9 +1,9 @@
 package de.dafuqs.spectrum.energy.storage;
 
-import de.dafuqs.spectrum.energy.color.CMYKColor;
+import de.dafuqs.spectrum.energy.color.InkColor;
 import de.dafuqs.spectrum.energy.color.CompoundColor;
 import de.dafuqs.spectrum.energy.color.ElementalColor;
-import de.dafuqs.spectrum.energy.color.PigmentColors;
+import de.dafuqs.spectrum.energy.color.InkColors;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.item.TooltipContext;
@@ -21,39 +21,39 @@ import java.util.Map;
 
 import static de.dafuqs.spectrum.helpers.Support.getShortenedNumberString;
 
-public class TotalCappedElementalPigmentEnergyStorage implements PigmentEnergyStorage {
+public class TotalCappedElementalInkStorage implements InkStorage {
 	
 	protected final long maxEnergyTotal;
 	protected long currentTotal; // This is a cache for quick lookup. Can be recalculated anytime using the values in storedEnergy.
 	protected final Map<ElementalColor, Long> storedEnergy = new HashMap<>();
 	
-	public TotalCappedElementalPigmentEnergyStorage(long maxEnergyTotal) {
+	public TotalCappedElementalInkStorage(long maxEnergyTotal) {
 		this.maxEnergyTotal = maxEnergyTotal;
 		this.currentTotal = 0;
 
-		for(ElementalColor color : CMYKColor.elementals()) {
+		for(ElementalColor color : InkColor.elementals()) {
 			this.storedEnergy.put(color, 0L);
 		}
 	}
 	
-	public TotalCappedElementalPigmentEnergyStorage(long maxEnergyTotal, long cyan, long magenta, long yellow, long black, long white) {
+	public TotalCappedElementalInkStorage(long maxEnergyTotal, long cyan, long magenta, long yellow, long black, long white) {
 		this.maxEnergyTotal = maxEnergyTotal;
 		this.currentTotal = cyan+magenta+yellow+black+white;
 		
-		this.storedEnergy.put(PigmentColors.CYAN, cyan);
-		this.storedEnergy.put(PigmentColors.MAGENTA, magenta);
-		this.storedEnergy.put(PigmentColors.YELLOW, yellow);
-		this.storedEnergy.put(PigmentColors.BLACK, black);
-		this.storedEnergy.put(PigmentColors.WHITE, white);
+		this.storedEnergy.put(InkColors.CYAN, cyan);
+		this.storedEnergy.put(InkColors.MAGENTA, magenta);
+		this.storedEnergy.put(InkColors.YELLOW, yellow);
+		this.storedEnergy.put(InkColors.BLACK, black);
+		this.storedEnergy.put(InkColors.WHITE, white);
 	}
 	
 	@Override
-	public boolean accepts(CMYKColor color) {
+	public boolean accepts(InkColor color) {
 		return color instanceof ElementalColor;
 	}
 	
 	@Override
-	public long addEnergy(CMYKColor color, long amount) {
+	public long addEnergy(InkColor color, long amount) {
 		if(color instanceof ElementalColor elementalColor) {
 			long resultingAmount = this.storedEnergy.get(color) + amount;
 			if(resultingAmount > this.maxEnergyTotal) {
@@ -71,7 +71,7 @@ public class TotalCappedElementalPigmentEnergyStorage implements PigmentEnergySt
 	}
 	
 	@Override
-	public boolean requestEnergy(CMYKColor color, long amount) {
+	public boolean requestEnergy(InkColor color, long amount) {
 		if(color instanceof ElementalColor elementalColor) {
 			// can be output directly
 			long storedAmount = this.storedEnergy.get(elementalColor);
@@ -108,7 +108,7 @@ public class TotalCappedElementalPigmentEnergyStorage implements PigmentEnergySt
 	}
 	
 	@Override
-	public long drainEnergy(CMYKColor color, long amount) {
+	public long drainEnergy(InkColor color, long amount) {
 		if(color instanceof ElementalColor elementalColor) {
 			// can be output directly
 			long storedAmount = this.storedEnergy.get(elementalColor);
@@ -146,7 +146,7 @@ public class TotalCappedElementalPigmentEnergyStorage implements PigmentEnergySt
 	}
 	
 	@Override
-	public long getEnergy(CMYKColor color) {
+	public long getEnergy(InkColor color) {
 		if(color instanceof ElementalColor elementalColor) {
 			// can be output directly
 			return this.storedEnergy.get(elementalColor);
@@ -188,7 +188,7 @@ public class TotalCappedElementalPigmentEnergyStorage implements PigmentEnergySt
 		return this.currentTotal >= this.maxEnergyTotal;
 	}
 	
-	public static @Nullable TotalCappedElementalPigmentEnergyStorage fromNbt(@NotNull NbtCompound compound) {
+	public static @Nullable TotalCappedElementalInkStorage fromNbt(@NotNull NbtCompound compound) {
 		if(compound.contains("MaxEnergyTotal", NbtElement.LONG_TYPE)) {
 			long maxEnergyTotal = compound.getLong("MaxEnergyTotal");
 			long cyan = compound.getLong("Cyan");
@@ -196,7 +196,7 @@ public class TotalCappedElementalPigmentEnergyStorage implements PigmentEnergySt
 			long yellow = compound.getLong("Yellow");
 			long black = compound.getLong("Black");
 			long white = compound.getLong("White");
-			return new TotalCappedElementalPigmentEnergyStorage(maxEnergyTotal, cyan, magenta, yellow, black, white);
+			return new TotalCappedElementalInkStorage(maxEnergyTotal, cyan, magenta, yellow, black, white);
 		}
 		return null;
 	}
@@ -204,11 +204,11 @@ public class TotalCappedElementalPigmentEnergyStorage implements PigmentEnergySt
 	public NbtCompound toNbt() {
 		NbtCompound compound = new NbtCompound();
 		compound.putLong("MaxEnergyTotal", this.maxEnergyTotal);
-		compound.putLong("Cyan", this.storedEnergy.get(PigmentColors.CYAN));
-		compound.putLong("Magenta", this.storedEnergy.get(PigmentColors.MAGENTA));
-		compound.putLong("Yellow", this.storedEnergy.get(PigmentColors.YELLOW));
-		compound.putLong("Black", this.storedEnergy.get(PigmentColors.BLACK));
-		compound.putLong("White", this.storedEnergy.get(PigmentColors.WHITE));
+		compound.putLong("Cyan", this.storedEnergy.get(InkColors.CYAN));
+		compound.putLong("Magenta", this.storedEnergy.get(InkColors.MAGENTA));
+		compound.putLong("Yellow", this.storedEnergy.get(InkColors.YELLOW));
+		compound.putLong("Black", this.storedEnergy.get(InkColors.BLACK));
+		compound.putLong("White", this.storedEnergy.get(InkColors.WHITE));
 		return compound;
 	}
 	
@@ -223,23 +223,23 @@ public class TotalCappedElementalPigmentEnergyStorage implements PigmentEnergySt
 		tooltip.add(new TranslatableText("item.spectrum.artists_palette.tooltip", getShortenedNumberString(this.maxEnergyTotal)));
 		tooltip.add(new TranslatableText("item.spectrum.artists_palette.tooltip.mix_on_demand"));
 		
-		long cyan = this.storedEnergy.get(PigmentColors.CYAN);
+		long cyan = this.storedEnergy.get(InkColors.CYAN);
 		if(cyan > 0) {
 			tooltip.add(new TranslatableText("item.spectrum.pigment_palette.tooltip.stored_energy.cyan", getShortenedNumberString(cyan)));
 		}
-		long magenta = this.storedEnergy.get(PigmentColors.MAGENTA);
+		long magenta = this.storedEnergy.get(InkColors.MAGENTA);
 		if(magenta > 0) {
 			tooltip.add(new TranslatableText("item.spectrum.pigment_palette.tooltip.stored_energy.magenta", getShortenedNumberString(magenta)));
 		}
-		long yellow = this.storedEnergy.get(PigmentColors.YELLOW);
+		long yellow = this.storedEnergy.get(InkColors.YELLOW);
 		if(yellow > 0) {
 			tooltip.add(new TranslatableText("item.spectrum.pigment_palette.tooltip.stored_energy.yellow", getShortenedNumberString(yellow)));
 		}
-		long black = this.storedEnergy.get(PigmentColors.BLACK);
+		long black = this.storedEnergy.get(InkColors.BLACK);
 		if(black > 0) {
 			tooltip.add(new TranslatableText("item.spectrum.pigment_palette.tooltip.stored_energy.black", getShortenedNumberString(black)));
 		}
-		long white = this.storedEnergy.get(PigmentColors.WHITE);
+		long white = this.storedEnergy.get(InkColors.WHITE);
 		if(white > 0) {
 			tooltip.add(new TranslatableText("item.spectrum.pigment_palette.tooltip.stored_energy.white", getShortenedNumberString(white)));
 		}

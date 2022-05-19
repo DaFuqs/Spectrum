@@ -4,27 +4,27 @@ import net.minecraft.util.DyeColor;
 
 import java.util.*;
 
-public abstract class CMYKColor {
+public abstract class InkColor {
 	
-	protected static final Map<DyeColor, CMYKColor> COLORS = new HashMap<>();
+	protected static final Map<DyeColor, InkColor> COLORS = new HashMap<>();
 	protected static final Collection<ElementalColor> ELEMENTAL_COLORS = new ArrayList<>();
 	
 	protected final DyeColor dyeColor;
 	
-	protected CMYKColor(DyeColor dyeColor) {
+	protected InkColor(DyeColor dyeColor) {
 		this.dyeColor = dyeColor;
 		COLORS.put(dyeColor, this);
 	}
 	
-	public static CMYKColor of(DyeColor dyeColor) {
+	public static InkColor of(DyeColor dyeColor) {
 		return COLORS.get(dyeColor);
 	}
 	
-	public static CMYKColor of(String colorString) {
+	public static InkColor of(String colorString) {
 		return COLORS.get(DyeColor.valueOf(colorString.toUpperCase(Locale.ROOT)));
 	}
 	
-	public static Collection<CMYKColor> all() {
+	public static Collection<InkColor> all() {
 		return COLORS.values();
 	}
 	
@@ -45,7 +45,7 @@ public abstract class CMYKColor {
 	public boolean equals(Object o) {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
-		CMYKColor that = (CMYKColor) o;
+		InkColor that = (InkColor) o;
 		return this.dyeColor.equals(that.dyeColor);
 	}
 	

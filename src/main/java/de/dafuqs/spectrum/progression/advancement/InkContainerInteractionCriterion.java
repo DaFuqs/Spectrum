@@ -2,9 +2,9 @@ package de.dafuqs.spectrum.progression.advancement;
 
 import com.google.gson.JsonObject;
 import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.energy.color.CMYKColor;
-import de.dafuqs.spectrum.energy.color.PigmentColors;
-import de.dafuqs.spectrum.energy.storage.PigmentEnergyStorage;
+import de.dafuqs.spectrum.energy.color.InkColor;
+import de.dafuqs.spectrum.energy.color.InkColors;
+import de.dafuqs.spectrum.energy.storage.InkStorage;
 import net.minecraft.advancement.criterion.AbstractCriterion;
 import net.minecraft.advancement.criterion.AbstractCriterionConditions;
 import net.minecraft.item.ItemStack;
@@ -47,25 +47,25 @@ public class InkContainerInteractionCriterion extends AbstractCriterion<InkConta
 		return new InkContainerInteractionCriterion.Conditions(extended, itemPredicate, blackRange, blueRange, brownRange, cyanRange, grayRange, greenRange, lightBlueRange, lightGrayRange, limeRange, magentaRange, orangeRange, pinkRange, purpleRange, redRange, whiteRange, yellowRange, changeColor, changeRange);
 	}
 
-	public void trigger(ServerPlayerEntity player, ItemStack stack, PigmentEnergyStorage storage, CMYKColor changeColor, long changeAmount) {
+	public void trigger(ServerPlayerEntity player, ItemStack stack, InkStorage storage, InkColor changeColor, long changeAmount) {
 		this.trigger(player, (conditions) -> conditions.matches(
 				stack,
-				storage.getEnergy(PigmentColors.BLACK),
-				storage.getEnergy(PigmentColors.BLUE),
-				storage.getEnergy(PigmentColors.BROWN),
-				storage.getEnergy(PigmentColors.CYAN),
-				storage.getEnergy(PigmentColors.GRAY),
-				storage.getEnergy(PigmentColors.GREEN),
-				storage.getEnergy(PigmentColors.LIGHT_BLUE),
-				storage.getEnergy(PigmentColors.LIGHT_GRAY),
-				storage.getEnergy(PigmentColors.LIME),
-				storage.getEnergy(PigmentColors.MAGENTA),
-				storage.getEnergy(PigmentColors.ORANGE),
-				storage.getEnergy(PigmentColors.PINK),
-				storage.getEnergy(PigmentColors.PURPLE),
-				storage.getEnergy(PigmentColors.RED),
-				storage.getEnergy(PigmentColors.WHITE),
-				storage.getEnergy(PigmentColors.YELLOW),
+				storage.getEnergy(InkColors.BLACK),
+				storage.getEnergy(InkColors.BLUE),
+				storage.getEnergy(InkColors.BROWN),
+				storage.getEnergy(InkColors.CYAN),
+				storage.getEnergy(InkColors.GRAY),
+				storage.getEnergy(InkColors.GREEN),
+				storage.getEnergy(InkColors.LIGHT_BLUE),
+				storage.getEnergy(InkColors.LIGHT_GRAY),
+				storage.getEnergy(InkColors.LIME),
+				storage.getEnergy(InkColors.MAGENTA),
+				storage.getEnergy(InkColors.ORANGE),
+				storage.getEnergy(InkColors.PINK),
+				storage.getEnergy(InkColors.PURPLE),
+				storage.getEnergy(InkColors.RED),
+				storage.getEnergy(InkColors.WHITE),
+				storage.getEnergy(InkColors.YELLOW),
 				changeColor,
 				changeAmount
 		));
@@ -147,7 +147,7 @@ public class InkContainerInteractionCriterion extends AbstractCriterion<InkConta
 			return jsonObject;
 		}
 
-		public boolean matches(ItemStack stack, long black, long blue, long brown, long cyan, long gray, long green, long lightBlue, long lightGray, long lime, long magenta, long o, long pink, long purple, long red, long white, long yellow, CMYKColor color, long change) {
+		public boolean matches(ItemStack stack, long black, long blue, long brown, long cyan, long gray, long green, long lightBlue, long lightGray, long lime, long magenta, long o, long pink, long purple, long red, long white, long yellow, InkColor color, long change) {
 			return itemPredicate.test(stack) && changeRange.test(change) && changeColor.test(color)
 					&& blackRange.test(black) && blueRange.test(blue) && brownRange.test(brown)
 					&& cyanRange.test(cyan) && grayRange.test(gray) && greenRange.test(green)

@@ -4,7 +4,7 @@ import net.minecraft.util.DyeColor;
 
 import java.util.HashMap;
 
-public class PigmentColors {
+public class InkColors {
 	
 	public static ElementalColor CYAN = new ElementalColor(DyeColor.CYAN);
 	public static ElementalColor MAGENTA = new ElementalColor(DyeColor.MAGENTA);

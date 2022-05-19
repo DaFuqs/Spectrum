@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.energy;
 
-import de.dafuqs.spectrum.energy.storage.PigmentEnergyStorage;
+import de.dafuqs.spectrum.energy.storage.InkStorage;
 import net.minecraft.item.ItemStack;
 
 /**
@@ -8,7 +8,7 @@ import net.minecraft.item.ItemStack;
  * Objects are supposed to be items (so they implement getDefaultStack())
  * @param <PStorage>
  */
-public interface PigmentEnergyStorageItem<PStorage extends PigmentEnergyStorage> {
+public interface InkStorageItem<PStorage extends InkStorage> {
 	
 	PStorage getEnergyStorage(ItemStack itemStack);
 	void setEnergyStorage(ItemStack itemStack, PStorage storage);

@@ -4,7 +4,7 @@ import net.minecraft.util.DyeColor;
 
 import java.util.Map;
 
-public class CompoundColor extends CMYKColor {
+public class CompoundColor extends InkColor {
 	
 	protected final Map<ElementalColor, Float> compoundColors; // colors used to directly mix this
 

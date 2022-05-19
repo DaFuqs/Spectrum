@@ -5,7 +5,7 @@ import de.dafuqs.spectrum.blocks.chests.CompactingChestBlockEntity;
 import de.dafuqs.spectrum.blocks.shooting_star.ShootingStarBlock;
 import de.dafuqs.spectrum.config.SpectrumConfig;
 import de.dafuqs.spectrum.dimension.DeeperDownDimension;
-import de.dafuqs.spectrum.energy.color.PigmentColors;
+import de.dafuqs.spectrum.energy.color.InkColors;
 import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
 import de.dafuqs.spectrum.events.SpectrumGameEvents;
 import de.dafuqs.spectrum.inventories.SpectrumContainers;
@@ -101,7 +101,7 @@ public class SpectrumCommon implements ModInitializer {
 		logInfo("Finished loading config file.");
 		
 		// Register internals
-		PigmentColors.register();
+		InkColors.register();
 		
 		logInfo("Registering Banner Patterns...");
 		SpectrumBannerPatterns.register();

@@ -96,7 +96,7 @@ dependencies {
 	// modImplementation "io.github.fablabsmc:bannerpp:2.0.4+mc.1.17-rc1"
 
 	// still breaks outside of dev env still currently.
-	//modImplementation include("com.github.devs-immortal:Incubus-Core:${project.incubus_core_version}")
+	modImplementation include("com.github.devs-immortal:Incubus-Core:${project.incubus_core_version}")
 
 	// Soft dependencies:
 	// Descriptions for all Enchantments https://maven.blamejared.com/net/darkhax/enchdesc/

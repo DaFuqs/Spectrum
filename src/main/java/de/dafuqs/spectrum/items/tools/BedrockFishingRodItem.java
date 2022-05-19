@@ -28,5 +28,10 @@ public class BedrockFishingRodItem extends FishingRodItem implements Preenchante
 	public ItemStack getDefaultStack() {
 		return getDefaultEnchantedStack(this);
 	}
-
+	
+	@Override
+	public boolean isEnchantable(ItemStack stack) {
+		return true;
+	}
+	
 }

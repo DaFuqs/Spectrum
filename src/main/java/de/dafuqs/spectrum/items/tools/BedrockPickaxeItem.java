@@ -29,4 +29,9 @@ public class BedrockPickaxeItem extends SpectrumPickaxeItem implements Preenchan
 		return getDefaultEnchantedStack(this);
 	}
 	
+	@Override
+	public boolean isEnchantable(ItemStack stack) {
+		return true;
+	}
+	
 }

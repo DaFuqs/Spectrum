@@ -2,22 +2,32 @@ package de.dafuqs.spectrum.entity.entity;
 
 import com.google.common.collect.Lists;
 import de.dafuqs.spectrum.blocks.gravity.FloatBlock;
+import de.dafuqs.spectrum.blocks.shooting_star.ShootingStarItem;
 import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
+import de.dafuqs.spectrum.helpers.Support;
+import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import de.dafuqs.spectrum.registries.SpectrumDamageSources;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.id.incubus_core.blocklikeentities.api.BlockLikeEntity;
 import net.id.incubus_core.blocklikeentities.util.PostTickEntity;
-import net.minecraft.block.BlockState;
+import net.minecraft.block.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.MovementType;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.network.packet.s2c.play.EntitySpawnS2CPacket;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import net.minecraft.world.explosion.Explosion;
 
 import java.util.List;
 
@@ -57,13 +67,47 @@ public class FloatBlockEntity extends BlockLikeEntity implements PostTickEntity 
 	@Override
 	public void postTickMovement() {
 		if (!this.hasNoGravity()) {
-			if (this.moveTime > 100) {
-				this.addVelocity(0.0D, (gravityModifier / 10), 0.0D);
-			} else {
-				this.addVelocity(0.0D, Math.min(Math.sin((Math.PI * this.age) / 100D), 1) * (gravityModifier / 10), 0.0D);
+			if(this.gravityModifier != 0) {
+				if (this.moveTime > 100) {
+					this.addVelocity(0.0D, (gravityModifier / 10), 0.0D);
+				} else {
+					this.addVelocity(0.0D, Math.min(Math.sin((Math.PI * this.age) / 100D), 1) * (gravityModifier / 10), 0.0D);
+				}
 			}
 			this.move(MovementType.SELF, this.getVelocity());
 		}
+	}
+	
+	@Override
+	public void tick() {
+	
+	}
+	
+	@Override
+	public void postTickMoveEntities() {
+		super.postTickMoveEntities();
+		
+		List<Entity> otherEntities = this.world.getOtherEntities(this, getBoundingBox().union(getBoundingBox().offset(0, 2 * (this.prevY - this.getY()), 0)));
+		for (Entity entity : otherEntities) {
+			if (!(entity instanceof BlockLikeEntity) && !entity.noClip && this.collides()) {
+				entity.setPosition(entity.getX(), this.getBoundingBox().maxY, entity.getZ());
+			}
+		}
+	}
+	
+	@Override
+	public boolean isAttackable() {
+		return false;
+	}
+	
+	@Override
+	public boolean isCollidable() {
+		return true;
+	}
+	
+	@Override
+	public boolean isPushable() {
+		return true;
 	}
 	
 	@Override
@@ -88,6 +132,20 @@ public class FloatBlockEntity extends BlockLikeEntity implements PostTickEntity 
 		}
 		return false;
 	}
+	
+	@Override
+	public ActionResult interact(PlayerEntity player, Hand hand) {
+		if(!this.world.isClient && player.isSneaking()) {
+			Item item = this.blockState.getBlock().asItem();
+			if(item != null) {
+				Support.givePlayer(player, item.getDefaultStack());
+				this.discard();
+			}
+			return ActionResult.CONSUME;
+		} else {
+			return ActionResult.SUCCESS;
+		}
+	}
 
 	@Override
 	@Environment(EnvType.CLIENT)
@@ -99,5 +157,31 @@ public class FloatBlockEntity extends BlockLikeEntity implements PostTickEntity 
 			this.gravityModifier = 1.0F;
 		}
 	}
-
+	
+	@Override
+	public void postTickEntityCollision(Entity entity) {
+		super.postTickEntityCollision(entity);
+		if(isPaltaeriaCrimtaneCollision(entity)) {
+			world.createExplosion(this, this.getX(), this.getY(), this.getZ(), 1.0F, Explosion.DestructionType.NONE);
+			this.discard();
+			entity.discard();
+			
+			ItemStack collisionStack = SpectrumBlocks.HOVER_BLOCK.asItem().getDefaultStack();
+			ItemEntity itemEntity = new ItemEntity(this.world, this.getX(), this.getY(), this.getZ(), collisionStack);
+			itemEntity.addVelocity(0.1 - world.random.nextFloat() * 0.2, 0.1 - world.random.nextFloat() * 0.2, 0.1 - world.random.nextFloat() * 0.2);
+			world.spawnEntity(itemEntity);
+		}
+	}
+	
+	public boolean isPaltaeriaCrimtaneCollision(Entity other) {
+		if(other instanceof BlockLikeEntity otherBlockLikeEntity) {
+			Block thisBlock = this.blockState.getBlock();
+			Block otherBlock = otherBlockLikeEntity.getBlockState().getBlock();
+			return thisBlock == SpectrumBlocks.PALETUR_FRAGMENT_BLOCK && otherBlock == SpectrumBlocks.SCARLET_FRAGMENT_BLOCK
+					|| thisBlock == SpectrumBlocks.SCARLET_FRAGMENT_BLOCK && otherBlock == SpectrumBlocks.PALETUR_FRAGMENT_BLOCK;
+		}
+		return false;
+	}
+	
+	
 }

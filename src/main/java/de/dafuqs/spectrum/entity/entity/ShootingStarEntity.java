@@ -438,9 +438,9 @@ public class ShootingStarEntity extends Entity {
 			double mod = Math.max(attackerOffsetX, attackerOffsetZ);
 			this.addVelocity((attackerOffsetX / mod) * 0.75, 0.25, (attackerOffsetZ / mod) * 0.75);
 
-			var colidingEntities = this.world.getOtherEntities(this, getBoundingBox().expand(0.25, 0.334, 0.25));
-			colidingEntities = colidingEntities.stream().filter(entity -> !(entity instanceof ShootingStarEntity)).collect(Collectors.toList());
-			colidingEntities.forEach(entity -> {
+			var collidingEntities = this.world.getOtherEntities(this, getBoundingBox().expand(0.25, 0.334, 0.25));
+			collidingEntities = collidingEntities.stream().filter(entity -> !(entity instanceof ShootingStarEntity)).collect(Collectors.toList());
+			collidingEntities.forEach(entity -> {
 				if (entity.getY() >= this.getBoundingBox().maxY) {
 					entity.fallDistance = 0F;
 					if(this.collides()) {
@@ -520,6 +520,7 @@ public class ShootingStarEntity extends Entity {
 		}
 	}
 	
+	@Override
 	public ActionResult interact(PlayerEntity player, Hand hand) {
 		if(!this.world.isClient && player.isSneaking()) {
 			Support.givePlayer(player, ShootingStarItem.getWithRemainingHits((ShootingStarItem) this.asItem(), this.availableHits));
@@ -530,6 +531,7 @@ public class ShootingStarEntity extends Entity {
 		}
 	}
 	
+	@Override
 	public ItemStack getPickBlockStack() {
 		return ShootingStarItem.getWithRemainingHits((ShootingStarItem) this.asItem(), this.availableHits);
 	}
@@ -538,11 +540,13 @@ public class ShootingStarEntity extends Entity {
 	public int getAge() {
 		return this.age;
 	}
-
+	
+	@Override
 	public Packet<?> createSpawnPacket() {
 		return new EntitySpawnS2CPacket(this);
 	}
-
+	
+	@Override
 	public SoundCategory getSoundCategory() {
 		return SoundCategory.AMBIENT;
 	}

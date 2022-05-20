@@ -707,6 +707,7 @@
   "block.spectrum.paletur_fragment_block": "Paltaeria Floatblock",
   "block.spectrum.scarlet_ore": "Crimtane Ore",
   "block.spectrum.scarlet_fragment_block": "Crimtane Floatblock",
+  "block.spectrum.hover_block": "Hover Block",
 
   "block.spectrum.shooting_star_glistering": "Glistering Shooting Star",
   "block.spectrum.shooting_star_fiery": "Fiery Shooting Star",
@@ -1786,6 +1787,8 @@
   "advancements.spectrum.generate_ancient_ruins_loot.description": "Discover the contents of an Ancient Treasure Chest",
   "advancements.spectrum.create_huge_slime.title": "Huge Chungus",
   "advancements.spectrum.create_huge_slime.description": "Use a Bouncy Idol to create a Slime or Magma Cube of humongous size",
+  "advancements.spectrum.collect_hover_block.title": "Immovable Object vs. Unstoppable Force",
+  "advancements.spectrum.collect_hover_block.description": "I wonder...",
 
   "______name_changes_for_vanilla_blocks" : "Changes:",
   "block.minecraft.polished_basalt": "Basalt Pillar",

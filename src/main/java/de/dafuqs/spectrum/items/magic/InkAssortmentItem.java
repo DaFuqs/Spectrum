@@ -7,6 +7,7 @@ import de.dafuqs.spectrum.items.trinkets.SpectrumTrinketItem;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.item.TooltipContext;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.text.Text;
@@ -16,12 +17,12 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class InkAssortmentItem extends SpectrumTrinketItem implements InkStorageItem<IndividualCappedSimpleInkStorage> {
+public class InkAssortmentItem extends Item implements InkStorageItem<IndividualCappedSimpleInkStorage> {
 	
 	private final long maxEnergy;
 	
 	public InkAssortmentItem(Settings settings, long maxEnergy) {
-		super(settings, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_ink_assortment"));
+		super(settings);
 		this.maxEnergy = maxEnergy;
 	}
 	
@@ -32,6 +33,12 @@ public class InkAssortmentItem extends SpectrumTrinketItem implements InkStorage
 			return IndividualCappedSimpleInkStorage.fromNbt(compound.getCompound("EnergyStore"));
 		}
 		return new IndividualCappedSimpleInkStorage(this.maxEnergy);
+	}
+	
+	// Omitting this would crash outside the dev env o.O
+	@Override
+	public ItemStack getDefaultStack() {
+		return super.getDefaultStack();
 	}
 	
 	@Override

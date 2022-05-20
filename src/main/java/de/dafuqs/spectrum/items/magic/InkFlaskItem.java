@@ -11,6 +11,7 @@ import io.github.fablabsmc.fablabs.api.bannerpattern.v1.LoomPatternProvider;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.item.TooltipContext;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.text.Text;
@@ -20,12 +21,12 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class InkFlaskItem extends SpectrumTrinketItem implements InkStorageItem<SingleInkStorage>, LoomPatternProvider {
+public class InkFlaskItem extends Item implements InkStorageItem<SingleInkStorage>, LoomPatternProvider {
 	
 	private final long maxEnergy;
 	
 	public InkFlaskItem(Settings settings, long maxEnergy) {
-		super(settings, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_ink_flask"));
+		super(settings);
 		this.maxEnergy = maxEnergy;
 	}
 	
@@ -36,6 +37,12 @@ public class InkFlaskItem extends SpectrumTrinketItem implements InkStorageItem<
 			return SingleInkStorage.fromNbt(compound.getCompound("EnergyStore"));
 		}
 		return new SingleInkStorage(this.maxEnergy);
+	}
+	
+	// Omitting this would crash outside the dev env o.O
+	@Override
+	public ItemStack getDefaultStack() {
+		return super.getDefaultStack();
 	}
 	
 	@Override

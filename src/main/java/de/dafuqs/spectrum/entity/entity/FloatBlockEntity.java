@@ -96,11 +96,6 @@ public class FloatBlockEntity extends BlockLikeEntity implements PostTickEntity 
 	}
 	
 	@Override
-	public boolean isAttackable() {
-		return false;
-	}
-	
-	@Override
 	public boolean isCollidable() {
 		return true;
 	}

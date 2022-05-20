@@ -37,6 +37,12 @@ public class PigmentPaletteItem extends SpectrumTrinketItem implements InkStorag
 		return new PigmentPaletteInkStorage(this.maxEnergyPerColor);
 	}
 	
+	// Omitting this would crash outside the dev env o.O
+	@Override
+	public ItemStack getDefaultStack() {
+		return super.getDefaultStack();
+	}
+	
 	@Override
 	public void setEnergyStorage(ItemStack itemStack, PigmentPaletteInkStorage storage) {
 		NbtCompound compound = itemStack.getOrCreateNbt();

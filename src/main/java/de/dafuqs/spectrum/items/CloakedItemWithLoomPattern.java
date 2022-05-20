@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.items;
 
-import de.dafuqs.spectrum.items.confitional.CloakedItem;
-import de.dafuqs.spectrum.registries.SpectrumBannerPatterns;
+import de.dafuqs.spectrum.items.conditional.CloakedItem;
 import io.github.fablabsmc.fablabs.api.bannerpattern.v1.LoomPattern;
 import io.github.fablabsmc.fablabs.api.bannerpattern.v1.LoomPatternProvider;
 import net.minecraft.item.Item;

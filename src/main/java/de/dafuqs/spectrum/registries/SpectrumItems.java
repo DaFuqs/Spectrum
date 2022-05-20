@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.blocks.gravity.CloakedGravityItem;
+import de.dafuqs.spectrum.blocks.gravity.CloakedFloatItem;
 import de.dafuqs.spectrum.blocks.jade_vines.GerminatedJadeVineSeedsItem;
 import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
 import de.dafuqs.spectrum.enums.BuiltinGemstoneColor;
@@ -9,8 +9,8 @@ import de.dafuqs.spectrum.interfaces.Cloakable;
 import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.items.armor.GemstoneArmorItem;
 import de.dafuqs.spectrum.items.armor.SpectrumArmorItem;
-import de.dafuqs.spectrum.items.confitional.CloakedGemstoneColorItem;
-import de.dafuqs.spectrum.items.confitional.CloakedItem;
+import de.dafuqs.spectrum.items.conditional.CloakedGemstoneColorItem;
+import de.dafuqs.spectrum.items.conditional.CloakedItem;
 import de.dafuqs.spectrum.items.item_frame.InvisibleGlowItemFrameItem;
 import de.dafuqs.spectrum.items.item_frame.InvisibleItemFrameItem;
 import de.dafuqs.spectrum.items.magic.ArtistsPaletteItem;
@@ -28,7 +28,6 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.*;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
@@ -236,10 +235,10 @@ public class SpectrumItems {
 	public static final CloakedItem SPARKLESTONE_GEM = new CloakedItem(resourcesItemSettings, ((Cloakable) SpectrumBlocks.SPARKLESTONE_ORE).getCloakAdvancementIdentifier(), Items.YELLOW_DYE);
 	public static final CloakedItem RAW_AZURITE = new CloakedItemWithLoomPattern(resourcesItemSettings, ((Cloakable) SpectrumBlocks.AZURITE_ORE).getCloakAdvancementIdentifier(), Items.BLUE_DYE, SpectrumBannerPatterns.RAW_AZURITE);
 	public static final CloakedItem REFINED_AZURITE = new CloakedItem(resourcesItemSettings, ((Cloakable) SpectrumBlocks.AZURITE_ORE).getCloakAdvancementIdentifier(), Items.BLUE_DYE);
-	public static final CloakedGravityItem SCARLET_FRAGMENTS = new CloakedGravityItem(resourcesItemSettingsFireproof, 1.003F, ((Cloakable) SpectrumBlocks.SCARLET_ORE).getCloakAdvancementIdentifier(), Items.RED_DYE);
-	public static final CloakedGravityItem SCARLET_GEM = new CloakedGravityItem(resourcesItemSettingsSixteenFireproof, 1.02F, ((Cloakable) SpectrumBlocks.SCARLET_ORE).getCloakAdvancementIdentifier(), Items.RED_DYE);
-	public static final CloakedGravityItem PALETUR_FRAGMENTS = new CloakedGravityItem(resourcesItemSettings, 0.997F, ((Cloakable) SpectrumBlocks.PALETUR_ORE).getCloakAdvancementIdentifier(), Items.CYAN_DYE);
-	public static final CloakedGravityItem PALETUR_GEM = new CloakedGravityItem(resourcesItemSettingsSixteen, 0.98F, ((Cloakable) SpectrumBlocks.PALETUR_ORE).getCloakAdvancementIdentifier(), Items.CYAN_DYE);
+	public static final CloakedFloatItem SCARLET_FRAGMENTS = new CloakedFloatItem(resourcesItemSettingsFireproof, 1.003F, ((Cloakable) SpectrumBlocks.SCARLET_ORE).getCloakAdvancementIdentifier(), Items.RED_DYE);
+	public static final CloakedFloatItem SCARLET_GEM = new CloakedFloatItem(resourcesItemSettingsSixteenFireproof, 1.02F, ((Cloakable) SpectrumBlocks.SCARLET_ORE).getCloakAdvancementIdentifier(), Items.RED_DYE);
+	public static final CloakedFloatItem PALETUR_FRAGMENTS = new CloakedFloatItem(resourcesItemSettings, 0.997F, ((Cloakable) SpectrumBlocks.PALETUR_ORE).getCloakAdvancementIdentifier(), Items.CYAN_DYE);
+	public static final CloakedFloatItem PALETUR_GEM = new CloakedFloatItem(resourcesItemSettingsSixteen, 0.98F, ((Cloakable) SpectrumBlocks.PALETUR_ORE).getCloakAdvancementIdentifier(), Items.CYAN_DYE);
 
 	public static final CloakedItem QUITOXIC_POWDER = new CloakedItem(resourcesItemSettings, ((Cloakable) SpectrumBlocks.QUITOXIC_REEDS).getCloakAdvancementIdentifier(), Items.PURPLE_DYE);
 	public static final CloakedItem LIGHTNING_STONE = new CloakedItem(resourcesItemSettingsSixteen, ((Cloakable) SpectrumBlocks.STUCK_LIGHTNING_STONE).getCloakAdvancementIdentifier(), Items.YELLOW_DYE);

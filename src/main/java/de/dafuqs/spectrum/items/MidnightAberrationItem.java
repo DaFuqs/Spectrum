@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.items;
 
 import de.dafuqs.spectrum.helpers.Support;
-import de.dafuqs.spectrum.items.confitional.CloakedItem;
+import de.dafuqs.spectrum.items.conditional.CloakedItem;
 import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;

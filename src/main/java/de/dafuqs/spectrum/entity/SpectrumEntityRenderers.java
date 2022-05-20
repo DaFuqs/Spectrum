@@ -15,7 +15,7 @@ import net.minecraft.entity.EntityType;
 public class SpectrumEntityRenderers {
 
 	public static void registerClient() {
-		register(SpectrumEntityTypes.GRAVITY_BLOCK, BlockLikeEntityRenderer::new);
+		register(SpectrumEntityTypes.FLOAT_BLOCK, BlockLikeEntityRenderer::new);
 		register(SpectrumEntityTypes.SHOOTING_STAR, ShootingStarEntityRenderer::new);
 		register(SpectrumEntityTypes.INVISIBLE_ITEM_FRAME, InvisibleItemFrameEntityRenderer::new);
 		register(SpectrumEntityTypes.INVISIBLE_GLOW_ITEM_FRAME, InvisibleItemFrameEntityRenderer::new);

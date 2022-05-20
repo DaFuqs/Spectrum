@@ -6,11 +6,11 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class GravityItem extends Item implements GravitableItem {
+public class FloatItem extends Item implements GravitableItem {
 
 	private final float gravityMod;
 
-	public GravityItem(Settings settings, float gravityMod) {
+	public FloatItem(Settings settings, float gravityMod) {
 		super(settings);
 		this.gravityMod = gravityMod;
 	}

@@ -1,20 +1,18 @@
 package de.dafuqs.spectrum.entity.entity;
 
 import com.google.common.collect.Lists;
-import de.dafuqs.spectrum.blocks.gravity.GravitableBlock;
+import de.dafuqs.spectrum.blocks.gravity.FloatBlock;
 import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
 import de.dafuqs.spectrum.registries.SpectrumDamageSources;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.id.incubus_core.blocklikeentities.api.BlockLikeEntity;
 import net.id.incubus_core.blocklikeentities.util.PostTickEntity;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.MovementType;
 import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.network.Packet;
 import net.minecraft.network.packet.s2c.play.EntitySpawnS2CPacket;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -23,19 +21,19 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public class GravityBlockEntity extends BlockLikeEntity implements PostTickEntity {
+public class FloatBlockEntity extends BlockLikeEntity implements PostTickEntity {
 	
 	private static final float MAX_DAMAGE = 5.0F;
 	private static final float DAMAGE_PER_FALLEN_BLOCK = 0.5F;
 	
 	private float gravityModifier = 1.0F;
 
-	public GravityBlockEntity(EntityType<? extends GravityBlockEntity> entityType, World world) {
+	public FloatBlockEntity(EntityType<? extends FloatBlockEntity> entityType, World world) {
 		super(entityType, world);
 	}
 
-	public GravityBlockEntity(World world, double x, double y, double z, BlockState blockState) {
-		this(SpectrumEntityTypes.GRAVITY_BLOCK, world);
+	public FloatBlockEntity(World world, double x, double y, double z, BlockState blockState) {
+		this(SpectrumEntityTypes.FLOAT_BLOCK, world);
 		this.blockState = blockState;
 		this.intersectionChecked = true;
 		this.setPosition(x, y, z);
@@ -44,14 +42,14 @@ public class GravityBlockEntity extends BlockLikeEntity implements PostTickEntit
 		this.prevY = y;
 		this.prevZ = z;
 		this.setOrigin(new BlockPos(this.getPos()));
-		if(blockState.getBlock() instanceof GravitableBlock) {
-			this.gravityModifier = ((GravitableBlock) blockState.getBlock()).getGravityMod();
+		if(blockState.getBlock() instanceof FloatBlock) {
+			this.gravityModifier = ((FloatBlock) blockState.getBlock()).getGravityMod();
 		} else {
 			this.gravityModifier = 1.0F;
 		}
 	}
 	
-	public GravityBlockEntity(World world, BlockPos pos, BlockState blockState, boolean partOfSet) {
+	public FloatBlockEntity(World world, BlockPos pos, BlockState blockState, boolean partOfSet) {
 		this(world, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, blockState);
 		this.partOfSet = partOfSet;
 	}
@@ -95,8 +93,8 @@ public class GravityBlockEntity extends BlockLikeEntity implements PostTickEntit
 	@Environment(EnvType.CLIENT)
 	public void onSpawnPacket(EntitySpawnS2CPacket packet) {
 		super.onSpawnPacket(packet);
-		if(this.blockState.getBlock() instanceof GravitableBlock) {
-			this.gravityModifier = ((GravitableBlock) blockState.getBlock()).getGravityMod();
+		if(this.blockState.getBlock() instanceof FloatBlock) {
+			this.gravityModifier = ((FloatBlock) blockState.getBlock()).getGravityMod();
 		} else {
 			this.gravityModifier = 1.0F;
 		}

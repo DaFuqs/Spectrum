@@ -30,8 +30,8 @@ import de.dafuqs.spectrum.blocks.fluid.MudFluidBlock;
 import de.dafuqs.spectrum.blocks.fusion_shrine.FusionShrineBlock;
 import de.dafuqs.spectrum.blocks.gemstone.SpectrumBuddingBlock;
 import de.dafuqs.spectrum.blocks.gemstone.SpectrumGemstoneBlock;
-import de.dafuqs.spectrum.blocks.gravity.GravitableBlock;
-import de.dafuqs.spectrum.blocks.gravity.GravityBlockItem;
+import de.dafuqs.spectrum.blocks.gravity.FloatBlock;
+import de.dafuqs.spectrum.blocks.gravity.FloatBlockItem;
 import de.dafuqs.spectrum.blocks.item_bowl.ItemBowlBlock;
 import de.dafuqs.spectrum.blocks.jade_vines.JadeVinesBlock;
 import de.dafuqs.spectrum.blocks.lava_sponge.LavaSpongeBlock;
@@ -626,8 +626,8 @@ public class SpectrumBlocks {
 
 	public static final Block SPARKLESTONE_BLOCK = new SparklestoneBlock(FabricBlockSettings.of(Material.GLASS, MapColor.YELLOW).strength(2.0F).sounds(BlockSoundGroup.GLASS).luminance((state) -> 15));
 	public static final Block AZURITE_BLOCK = new SpectrumFacingBlock(FabricBlockSettings.copyOf(Blocks.LAPIS_BLOCK));
-	public static final Block PALETUR_FRAGMENT_BLOCK = new GravitableBlock(FabricBlockSettings.of(Material.METAL, MapColor.LIGHT_BLUE).requiresTool().strength(5.0F, 6.0F).sounds(BlockSoundGroup.METAL), 0.02F);
-	public static final Block SCARLET_FRAGMENT_BLOCK = new GravitableBlock(FabricBlockSettings.of(Material.METAL, MapColor.DARK_RED).requiresTool().strength(5.0F, 6.0F).sounds(BlockSoundGroup.METAL), -0.2F);
+	public static final Block PALETUR_FRAGMENT_BLOCK = new FloatBlock(FabricBlockSettings.of(Material.METAL, MapColor.LIGHT_BLUE).requiresTool().strength(5.0F, 6.0F).sounds(BlockSoundGroup.METAL), 0.2F);
+	public static final Block SCARLET_FRAGMENT_BLOCK = new FloatBlock(FabricBlockSettings.of(Material.METAL, MapColor.DARK_RED).requiresTool().strength(5.0F, 6.0F).sounds(BlockSoundGroup.METAL), -0.2F);
 
 	// FUNCTIONAL BLOCKS
 	public static final Block PRIVATE_CHEST = new PrivateChestBlock(FabricBlockSettings.of(Material.STONE).requiresTool().strength(4.0F, 3600000.0F).sounds(BlockSoundGroup.STONE));
@@ -1013,8 +1013,8 @@ public class SpectrumBlocks {
 		registerBlockWithItem("azurite_ore", AZURITE_ORE, fabricItemSettings);
 		registerBlockWithItem("deepslate_azurite_ore", DEEPSLATE_AZURITE_ORE, fabricItemSettings);
 
-		registerBlockWithItem("scarlet_ore", SCARLET_ORE, new GravityBlockItem(SCARLET_ORE, fabricItemSettingsFireProof, 1.01F));
-		registerBlockWithItem("paletur_ore", PALETUR_ORE, new GravityBlockItem(PALETUR_ORE, fabricItemSettings, 0.99F));
+		registerBlockWithItem("scarlet_ore", SCARLET_ORE, new FloatBlockItem(SCARLET_ORE, fabricItemSettingsFireProof, 1.01F));
+		registerBlockWithItem("paletur_ore", PALETUR_ORE, new FloatBlockItem(PALETUR_ORE, fabricItemSettings, 0.99F));
 	}
 
 	private static void registerOreStorageBlocks(FabricItemSettings fabricItemSettings, FabricItemSettings fabricItemSettingsFireProof) {
@@ -1027,8 +1027,8 @@ public class SpectrumBlocks {
 		
 		registerBlockWithItem("azurite_block", AZURITE_BLOCK, decorationItemSettings);
 		registerBlockWithItem("sparklestone_block", SPARKLESTONE_BLOCK, decorationItemSettings);
-		registerBlockWithItem("scarlet_fragment_block", SCARLET_FRAGMENT_BLOCK, new GravityBlockItem(SCARLET_FRAGMENT_BLOCK, fabricItemSettingsFireProof, 1.02F));
-		registerBlockWithItem("paletur_fragment_block", PALETUR_FRAGMENT_BLOCK, new GravityBlockItem(PALETUR_FRAGMENT_BLOCK, fabricItemSettings, 0.98F));
+		registerBlockWithItem("scarlet_fragment_block", SCARLET_FRAGMENT_BLOCK, new FloatBlockItem(SCARLET_FRAGMENT_BLOCK, fabricItemSettingsFireProof, 1.02F));
+		registerBlockWithItem("paletur_fragment_block", PALETUR_FRAGMENT_BLOCK, new FloatBlockItem(PALETUR_FRAGMENT_BLOCK, fabricItemSettings, 0.98F));
 	}
 
 	private static void registerColoredLamps(FabricItemSettings fabricItemSettings) {

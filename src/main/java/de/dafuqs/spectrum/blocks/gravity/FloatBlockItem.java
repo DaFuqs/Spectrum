@@ -7,11 +7,11 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class GravityBlockItem extends BlockItem implements GravitableItem {
+public class FloatBlockItem extends BlockItem implements GravitableItem {
 
 	private final float gravityMod;
 
-	public GravityBlockItem(Block block, Settings settings, float gravityMod) {
+	public FloatBlockItem(Block block, Settings settings, float gravityMod) {
 		super(block, settings);
 		this.gravityMod = gravityMod;
 	}

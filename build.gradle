@@ -70,6 +70,7 @@ dependencies {
 
 	// https://github.com/TheEpicBlock/banner-plus-plus
 	modImplementation "io.github.fablabsmc:bannerpp:2.0.6-teb.1+mc.1.18.2"
+	include "io.github.fablabsmc:bannerpp:2.0.6-teb.1+mc.1.18.2"
 
 	// https://github.com/shedaniel/RoughlyEnoughItems
 	modCompileOnly "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"

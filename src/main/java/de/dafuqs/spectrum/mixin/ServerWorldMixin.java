@@ -17,18 +17,9 @@ import java.util.function.BooleanSupplier;
 
 @Mixin(ServerWorld.class)
 public class ServerWorldMixin {
-
-	@Shadow
-	private int idleTimeout;
-
+	
 	@Inject(at = @At(value = "RETURN"), method = "tick")
 	void postEntityTick(BooleanSupplier shouldKeepTicking, CallbackInfo ci){
-		if (this.idleTimeout < 300) {
-			for (GravityBlockEntity entry : ((ServerWorld)(Object) this).getEntitiesByType(SpectrumEntityTypes.GRAVITY_BLOCK, Entity::isAlive)) {
-				entry.onPostTick();
-			}
-		}
-
 		ShootingStarEntity.doShootingStarSpawns((ServerWorld)(Object) this);
 	}
 

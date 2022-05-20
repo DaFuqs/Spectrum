@@ -40,8 +40,8 @@ public class GravitableBlock extends FallingBlock {
 		this.checkGravitable(worldIn, posIn);
 	}
 
-	private void checkGravitable(World worldIn, BlockPos pos) {
-		if (!worldIn.isClient) {
+	private void checkGravitable(World world, BlockPos pos) {
+		if (!world.isClient) {
 			BlockPos collisionBlockPos;
 			if (gravityMod > 0) {
 				collisionBlockPos = pos.up();
@@ -49,9 +49,9 @@ public class GravitableBlock extends FallingBlock {
 				collisionBlockPos = pos.down();
 			}
 
-			if ((worldIn.isAir(collisionBlockPos) || canFallThrough(worldIn.getBlockState(collisionBlockPos)))) {
-				GravityBlockEntity blockEntity = new GravityBlockEntity(worldIn, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, worldIn.getBlockState(pos));
-				worldIn.spawnEntity(blockEntity);
+			if ((world.isAir(collisionBlockPos) || canFallThrough(world.getBlockState(collisionBlockPos)))) {
+				GravityBlockEntity blockEntity = new GravityBlockEntity(world, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, world.getBlockState(pos));
+				world.spawnEntity(blockEntity);
 			}
 		}
 	}

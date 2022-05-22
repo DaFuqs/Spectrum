@@ -396,6 +396,9 @@ public class JadeVinesBlock extends BlockWithEntity {
 		BlockState targetState = world.getBlockState(blockPos);
 		if(canBePlantedOn(targetState)) {
 			world.setBlockState(blockPos, blockState.with(PART, JadeVinesBlockPart.UPPER).with(AGE, blockState.get(AGE)));
+			if(blockState.get(AGE) == 1) {
+				world.setBlockState(blockPos.down(), blockState.with(AGE, 2));
+			}
 			
 			BlockEntity blockEntity = world.getBlockEntity(blockPos);
 			if(blockEntity instanceof JadeVinesBlockEntity jadeVinesBlockEntity) {

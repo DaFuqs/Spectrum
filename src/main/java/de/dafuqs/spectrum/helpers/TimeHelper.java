@@ -44,7 +44,7 @@ public class TimeHelper {
 	
 	public static boolean isBrightSunlight(World world) {
 		TimeOfDay timeOfDay = getTimeOfDay(world);
-		return timeOfDay == TimeOfDay.DAY && !world.isRaining();
+		return timeOfDay.isDay() && !world.isRaining();
 	}
 	
 	public static long getDay(long time) {

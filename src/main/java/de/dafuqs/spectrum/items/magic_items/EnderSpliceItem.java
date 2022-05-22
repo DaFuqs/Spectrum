@@ -159,7 +159,7 @@ public class EnderSpliceItem extends Item implements EnchanterEnchantable {
 	}
 
 	public UseAction getUseAction(ItemStack stack) {
-		return UseAction.BLOCK;
+		return UseAction.BOW;
 	}
 
 	@Environment(EnvType.CLIENT)

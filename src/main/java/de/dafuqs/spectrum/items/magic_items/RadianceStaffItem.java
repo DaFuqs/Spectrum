@@ -55,7 +55,7 @@ public class RadianceStaffItem extends Item implements EnchanterEnchantable {
 	}
 
 	public UseAction getUseAction(ItemStack stack) {
-		return UseAction.BLOCK;
+		return UseAction.BOW;
 	}
 
 	public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {

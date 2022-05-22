@@ -62,7 +62,7 @@ public class KnowledgeGemItem extends Item implements ExperienceStorageItem, Enc
 	
 	@Override
 	public UseAction getUseAction(ItemStack stack) {
-		return UseAction.BLOCK;
+		return UseAction.BOW;
 	}
 	
 	public int getTransferableExperiencePerTick(ItemStack itemStack) {

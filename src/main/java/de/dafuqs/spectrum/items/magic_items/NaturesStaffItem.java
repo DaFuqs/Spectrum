@@ -118,7 +118,7 @@ public class NaturesStaffItem extends Item implements EnchanterEnchantable {
 	}
 
 	public UseAction getUseAction(ItemStack stack) {
-		return UseAction.BLOCK;
+		return UseAction.BOW;
 	}
 
 	public void usageTick(World world, LivingEntity user, ItemStack stack, int remainingUseTicks) {

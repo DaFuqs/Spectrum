@@ -23,6 +23,8 @@ public class SpectrumBannerPatterns {
 	public static LoomPattern RAW_AZURITE;
 	public static LoomPattern SHIMMER;
 	public static LoomPattern VEGETAL;
+	public static LoomPattern BEDROCK_DUST;
+	public static LoomPattern SHIMMERSTONE;
 	
 	public static void register() {
 		SPECTRUM_LOGO = Registry.register(LoomPatterns.REGISTRY, new Identifier(SpectrumCommon.MOD_ID, "logo"), new LoomPattern(true));
@@ -40,6 +42,8 @@ public class SpectrumBannerPatterns {
 		RAW_AZURITE = Registry.register(LoomPatterns.REGISTRY, new Identifier(SpectrumCommon.MOD_ID, "raw_azurite"), new LoomPattern(true));
 		SHIMMER = Registry.register(LoomPatterns.REGISTRY, new Identifier(SpectrumCommon.MOD_ID, "shimmer"), new LoomPattern(true));
 		VEGETAL = Registry.register(LoomPatterns.REGISTRY, new Identifier(SpectrumCommon.MOD_ID, "vegetal"), new LoomPattern(true));
+		BEDROCK_DUST = Registry.register(LoomPatterns.REGISTRY, new Identifier(SpectrumCommon.MOD_ID, "bedrock_dust"), new LoomPattern(true));
+		SHIMMERSTONE = Registry.register(LoomPatterns.REGISTRY, new Identifier(SpectrumCommon.MOD_ID, "shimmerstone"), new LoomPattern(true));
 	}
 	
 }

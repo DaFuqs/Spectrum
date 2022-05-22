@@ -32,6 +32,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.Optional;
@@ -125,6 +126,8 @@ public class CraftingTabletItem extends Item implements LoomPatternProvider {
 			}
 			tooltip.add(new TranslatableText("item.spectrum.crafting_tablet.tooltip.shift_to_view_gui").formatted(Formatting.GRAY));
 		}
+		
+		SpectrumBannerPatternItem.addBannerPatternProviderTooltip(tooltip);
 	}
 
 	@Environment(EnvType.CLIENT)

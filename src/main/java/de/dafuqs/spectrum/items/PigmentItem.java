@@ -5,10 +5,17 @@ import de.dafuqs.spectrum.items.conditional.CloakedItem;
 import de.dafuqs.spectrum.registries.SpectrumBannerPatterns;
 import io.github.fablabsmc.fablabs.api.bannerpattern.v1.LoomPattern;
 import io.github.fablabsmc.fablabs.api.bannerpattern.v1.LoomPatternProvider;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.text.Text;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
+import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 public class PigmentItem extends CloakedItem implements LoomPatternProvider {
 
@@ -47,6 +54,12 @@ public class PigmentItem extends CloakedItem implements LoomPatternProvider {
 	@Override
 	public LoomPattern getPattern() {
 		return SpectrumBannerPatterns.PIGMENT;
+	}
+	
+	@Override
+	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+		super.appendTooltip(stack, world, tooltip, context);
+		SpectrumBannerPatternItem.addBannerPatternProviderTooltip(tooltip);
 	}
 
 }

@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.items.magic;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.energy.InkStorageItem;
 import de.dafuqs.spectrum.energy.storage.PigmentPaletteInkStorage;
+import de.dafuqs.spectrum.items.SpectrumBannerPatternItem;
 import de.dafuqs.spectrum.items.trinkets.SpectrumTrinketItem;
 import de.dafuqs.spectrum.registries.SpectrumBannerPatterns;
 import io.github.fablabsmc.fablabs.api.bannerpattern.v1.LoomPattern;
@@ -54,6 +55,7 @@ public class PigmentPaletteItem extends SpectrumTrinketItem implements InkStorag
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
 		getEnergyStorage(stack).addTooltip(world, tooltip, context);
+		SpectrumBannerPatternItem.addBannerPatternProviderTooltip(tooltip);
 	}
 	
 	@Override

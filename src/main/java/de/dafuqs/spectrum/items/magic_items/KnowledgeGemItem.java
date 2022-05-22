@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.items.magic_items;
 
 import de.dafuqs.spectrum.blocks.enchanter.EnchanterEnchantable;
 import de.dafuqs.spectrum.items.ExperienceStorageItem;
+import de.dafuqs.spectrum.items.SpectrumBannerPatternItem;
 import de.dafuqs.spectrum.registries.SpectrumBannerPatterns;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import io.github.fablabsmc.fablabs.api.bannerpattern.v1.LoomPattern;
@@ -28,6 +29,7 @@ import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.UseAction;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
@@ -133,6 +135,7 @@ public class KnowledgeGemItem extends Item implements ExperienceStorageItem, Enc
 		}
 		if(shouldDisplayUsageTooltip(itemStack)) {
 			tooltip.add(new TranslatableText("item.spectrum.knowledge_gem.tooltip.use", getTransferableExperiencePerTick(itemStack)).formatted(Formatting.GRAY));
+			SpectrumBannerPatternItem.addBannerPatternProviderTooltip(tooltip);
 		}
 	}
 	

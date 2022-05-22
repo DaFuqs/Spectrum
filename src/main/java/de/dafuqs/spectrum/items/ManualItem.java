@@ -10,17 +10,21 @@ import net.minecraft.advancement.AdvancementCriterion;
 import net.minecraft.advancement.AdvancementProgress;
 import net.minecraft.advancement.PlayerAdvancementTracker;
 import net.minecraft.advancement.criterion.CriterionConditions;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.stat.Stats;
+import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 import vazkii.patchouli.api.PatchouliAPI;
 
+import java.util.List;
 import java.util.Map;
 
 public class ManualItem extends Item implements LoomPatternProvider {
@@ -96,6 +100,12 @@ public class ManualItem extends Item implements LoomPatternProvider {
 	@Override
 	public LoomPattern getPattern() {
 		return SpectrumBannerPatterns.MANUAL;
+	}
+	
+	@Override
+	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+		super.appendTooltip(stack, world, tooltip, context);
+		SpectrumBannerPatternItem.addBannerPatternProviderTooltip(tooltip);
 	}
 
 }

@@ -1,0 +1,55 @@
+{
+  "display": {
+    "icon": {
+      "item": "spectrum:bedrock_chestplate"
+    },
+    "title": {
+      "translate": "advancements.spectrum.wear_complete_set_of_bedrock_armor.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.wear_complete_set_of_bedrock_armor.description"
+    }
+  },
+  "parent": "spectrum:midgame/break_decayed_bedrock",
+  "criteria": {
+    "wears_complete_set_of_bedrock_armor": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "equipment": {
+                "head": {
+                  "items": [
+                    "spectrum:bedrock_helmet"
+                  ]
+                },
+                "chest": {
+                  "items": [
+                    "spectrum:bedrock_chestplate"
+                  ]
+                },
+                "legs": {
+                  "items": [
+                    "spectrum:bedrock_leggings"
+                  ]
+                },
+                "feet": {
+                  "items": [
+                    "spectrum:bedrock_boots"
+                  ]
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "gotten_previous": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:midgame/break_decayed_bedrock" }
+    }
+  }
+}

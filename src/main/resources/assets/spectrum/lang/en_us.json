@@ -1679,8 +1679,6 @@
   "advancements.spectrum.craft_ominous_sapling.title": "Let it grow, let it grow!",
   "advancements.spectrum.craft_ominous_sapling.description": "You're sure combining Vegetal with a Young sapling will yield something interesting",
 
-  "advancements.spectrum.wear_complete_bedrock_armor.title": "Indestructible",
-  "advancements.spectrum.wear_complete_bedrock_armor.description": "Wear a full suit of Bedrock Armor",
   "advancements.spectrum.build_fusion_shrine.title": "Powerful Display",
   "advancements.spectrum.build_fusion_shrine.description": "Construct the Fusion Shrine",
   "advancements.spectrum.build_enchanting_structure.title": "Next Level Enchanting",
@@ -1787,8 +1785,10 @@
   "advancements.spectrum.generate_ancient_ruins_loot.description": "Discover the contents of an Ancient Treasure Chest",
   "advancements.spectrum.create_huge_slime.title": "Huge Chungus",
   "advancements.spectrum.create_huge_slime.description": "Use a Bouncy Idol to create a Slime or Magma Cube of humongous size",
-  "advancements.spectrum.collect_hover_block.title": "Immovable Object vs. Unstoppable Force",
+  "advancements.spectrum.collect_hover_block.title": "Unstoppable Force vs. Self",
   "advancements.spectrum.collect_hover_block.description": "I wonder...",
+  "advancements.spectrum.wear_complete_set_of_bedrock_armor.title": "Black Knight",
+  "advancements.spectrum.wear_complete_set_of_bedrock_armor.description": "Wear a full suit of Bedrock Armor. Never wilt, stone blossom",
 
   "______name_changes_for_vanilla_blocks" : "Changes:",
   "block.minecraft.polished_basalt": "Basalt Pillar",

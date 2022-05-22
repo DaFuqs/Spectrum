@@ -14,6 +14,7 @@
     "spectrum:pedestal_moonstone",
     "spectrum:upgrade_speed3",
     "spectrum:upgrade_efficiency2",
+    "spectrum:upgrade_yield",
     "spectrum:upgrade_yield2",
     "spectrum:upgrade_experience2",
     "spectrum:cracked_end_portal_frame",
@@ -25,7 +26,6 @@
     "spectrum:ink_flask",
     "spectrum:ink_assortment",
     "spectrum:artists_palette",
-    "spectrum:production_surge",
 
     "spectrum:paletur_ore",
     "spectrum:paletur_fragments",

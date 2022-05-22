@@ -13,7 +13,7 @@
   },
   "criteria": {
     "used_jade_vines_on_fence": {
-      "trigger": "minecraft:item_used_on_block",
+      "trigger": "minecraft:placed_block",
       "conditions": {
         "item": {
           "items": [

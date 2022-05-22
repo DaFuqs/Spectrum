@@ -6,15 +6,15 @@
     },
     "hidden": true,
     "title": {
-      "translate": "advancements.spectrum.craft_ominous_sapling.title"
+      "translate": "advancements.spectrum.plant_ominous_sapling.title"
     },
     "description": {
-      "translate": "advancements.spectrum.craft_ominous_sapling.description"
+      "translate": "advancements.spectrum.plant_ominous_sapling.description"
     }
   },
   "criteria": {
     "planted_ominous_sapling": {
-      "trigger": "minecraft:item_used_on_block",
+      "trigger": "minecraft:placed_block",
       "conditions": {
         "item": {
           "items": ["spectrum:ominous_sapling"]

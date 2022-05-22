@@ -4,6 +4,8 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.recipe.fusion_shrine.FusionShrineRecipe;
+import net.id.incubus_core.recipe.IngredientStack;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.fluid.Fluids;
@@ -13,8 +15,11 @@ import net.minecraft.recipe.Ingredient;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
 import org.jetbrains.annotations.NotNull;
+import vazkii.patchouli.client.RenderHelper;
 import vazkii.patchouli.client.book.gui.GuiBook;
 import vazkii.patchouli.client.book.page.abstr.PageDoubleRecipeRegistry;
+
+import java.util.List;
 
 public class PageFusionShrine extends PageDoubleRecipeRegistry<FusionShrineRecipe> {
 
@@ -42,10 +47,10 @@ public class PageFusionShrine extends PageDoubleRecipeRegistry<FusionShrineRecip
 		parent.drawCenteredStringNoShadow(ms, getTitle(second).asOrderedText(), GuiBook.PAGE_WIDTH / 2, recipeY - 10, book.headerColor);
 
 		// the ingredients
-		DefaultedList<Ingredient> ingredients = recipe.getIngredients();
+		List<IngredientStack> ingredients = recipe.getIngredientStacks();
 		int startX = Math.max(3, 30 - ingredients.size() * 8);
 		for (int i = 0; i < ingredients.size(); i++) {
-			parent.renderIngredient(ms, recipeX + startX + i * 16, recipeY + 3, mouseX, mouseY, ingredients.get(i));
+			PatchouliHelper.renderIngredientStack(parent, ms, recipeX + startX + i * 16, recipeY + 3, mouseX, mouseY, ingredients.get(i));
 		}
 
 		if(recipe.getFluidInput() != Fluids.EMPTY) {

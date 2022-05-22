@@ -1,8 +1,8 @@
 package de.dafuqs.spectrum.energy.storage;
 
+import de.dafuqs.spectrum.energy.color.ElementalColor;
 import de.dafuqs.spectrum.energy.color.InkColor;
 import de.dafuqs.spectrum.energy.color.InkColors;
-import de.dafuqs.spectrum.energy.color.ElementalColor;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import org.jetbrains.annotations.NotNull;

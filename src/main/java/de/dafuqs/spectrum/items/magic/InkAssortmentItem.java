@@ -1,9 +1,7 @@
 package de.dafuqs.spectrum.items.magic;
 
-import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.energy.InkStorageItem;
 import de.dafuqs.spectrum.energy.storage.IndividualCappedSimpleInkStorage;
-import de.dafuqs.spectrum.items.trinkets.SpectrumTrinketItem;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.item.TooltipContext;
@@ -11,7 +9,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 

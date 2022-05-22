@@ -5,7 +5,7 @@
   "fluid": "spectrum:liquid_crystal",
   "ingredients": [
     {
-      "tag": "minecraft:wooden_planks"
+      "tag": "minecraft:planks"
     },
     {
       "tag": "spectrum:pigments"

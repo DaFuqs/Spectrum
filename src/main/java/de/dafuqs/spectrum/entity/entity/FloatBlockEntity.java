@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.entity.entity;
 
 import com.google.common.collect.Lists;
 import de.dafuqs.spectrum.blocks.gravity.FloatBlock;
-import de.dafuqs.spectrum.blocks.shooting_star.ShootingStarItem;
 import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
 import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
@@ -11,7 +10,8 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.id.incubus_core.blocklikeentities.api.BlockLikeEntity;
 import net.id.incubus_core.blocklikeentities.util.PostTickEntity;
-import net.minecraft.block.*;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ItemEntity;

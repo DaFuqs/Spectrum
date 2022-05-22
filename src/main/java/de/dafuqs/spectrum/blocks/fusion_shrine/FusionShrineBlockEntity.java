@@ -14,6 +14,7 @@ import de.dafuqs.spectrum.recipe.fusion_shrine.FusionShrineRecipeWorldEffect;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
 import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
 import de.dafuqs.spectrum.registries.color.ColorRegistry;
+import net.id.incubus_core.recipe.IngredientStack;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.ExperienceOrbEntity;
@@ -252,11 +253,12 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 	private static void craft(World world, BlockPos blockPos, FusionShrineBlockEntity fusionShrineBlockEntity, FusionShrineRecipe recipe) {
 		if(!recipe.getOutput().isEmpty()) {
 			int maxAmount = recipe.getOutput().getMaxCount();
-			for (Ingredient ingredient : recipe.getIngredients()) {
+			for (IngredientStack ingredientStack : recipe.getIngredientStacks()) {
 				for (int i = 0; i < fusionShrineBlockEntity.INVENTORY_SIZE; i++) {
 					ItemStack currentStack = fusionShrineBlockEntity.inventory.getStack(i);
-					if (ingredient.test(currentStack)) {
-						maxAmount = Math.min(maxAmount, currentStack.getCount());
+					if (ingredientStack.test(currentStack)) {
+						int ingredientStackAmount = ingredientStack.getCount();
+						maxAmount = Math.min(maxAmount, currentStack.getCount() / ingredientStackAmount);
 						break;
 					}
 				}
@@ -264,15 +266,16 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 			
 			double efficiencyModifier = fusionShrineBlockEntity.upgrades.get(UpgradeType.EFFICIENCY);
 			if (maxAmount > 0) {
-				for (Ingredient ingredient : recipe.getIngredients()) {
+				for (IngredientStack ingredientStack : recipe.getIngredientStacks()) {
 					for (int i = 0; i < fusionShrineBlockEntity.INVENTORY_SIZE; i++) {
 						ItemStack currentStack = fusionShrineBlockEntity.inventory.getStack(i);
-						if (ingredient.test(currentStack)) {
-							int reducedAmount = Support.getIntFromDecimalWithChance(maxAmount / efficiencyModifier, fusionShrineBlockEntity.world.random);
-							if (currentStack.getCount() - reducedAmount < 1) {
+						if (ingredientStack.test(currentStack)) {
+							int reducedAmount = maxAmount * ingredientStack.getCount();
+							int reducedAmountAfterMod = Support.getIntFromDecimalWithChance(reducedAmount / efficiencyModifier, fusionShrineBlockEntity.world.random);
+							if (currentStack.getCount() - reducedAmountAfterMod < 1) {
 								fusionShrineBlockEntity.inventory.setStack(i, ItemStack.EMPTY);
 							} else {
-								currentStack.decrement(reducedAmount);
+								currentStack.decrement(reducedAmountAfterMod);
 							}
 							break;
 						}
@@ -287,15 +290,15 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 				fusionShrineBlockEntity.playSound(SpectrumSoundEvents.FUSION_SHRINE_CRAFTING_FINISHED, 1.4F);
 			}
 		} else {
-			for (Ingredient ingredient : recipe.getIngredients()) {
+			for (IngredientStack ingredientStack : recipe.getIngredientStacks()) {
 				for (int i = 0; i < fusionShrineBlockEntity.INVENTORY_SIZE; i++) {
 					ItemStack currentStack = fusionShrineBlockEntity.inventory.getStack(i);
-					if (ingredient.test(currentStack)) {
-						int reducedAmount = Support.getIntFromDecimalWithChance(1, fusionShrineBlockEntity.world.random);
-						if (currentStack.getCount() - reducedAmount < 1) {
+					if (ingredientStack.test(currentStack)) {
+						int reducedAmountAfterMod = Support.getIntFromDecimalWithChance(ingredientStack.getCount(), fusionShrineBlockEntity.world.random);
+						if (currentStack.getCount() - reducedAmountAfterMod < 1) {
 							fusionShrineBlockEntity.inventory.setStack(i, ItemStack.EMPTY);
 						} else {
-							currentStack.decrement(reducedAmount);
+							currentStack.decrement(reducedAmountAfterMod);
 						}
 						break;
 					}

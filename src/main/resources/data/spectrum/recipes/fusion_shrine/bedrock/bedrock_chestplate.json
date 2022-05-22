@@ -1,24 +1,27 @@
 {
   "type": "spectrum:fusion_shrine",
-  "time": 6000,
+  "time": 1200,
   "experience": 16.0,
   "fluid": "spectrum:liquid_crystal",
   "ingredients": [
     {
-      "tag": "minecraft:planks"
+      "tag": "minecraft:planks",
+      "count": 3
     },
     {
-      "tag": "spectrum:pigments"
+      "tag": "spectrum:pigments",
+      "count": 2
     },
     {
-      "item": "spectrum:refined_azurite"
+      "item": "spectrum:refined_azurite",
+      "count": 1
     },
     {
       "item": "spectrum:spectral_shard"
     }
   ],
   "result" : {
-    "item": "spectrum:artists_palette"
+    "item": "spectrum:bedrock_chestplate"
   },
   "required_advancement": "spectrum:progression/unlock_artists_palette",
   "world_conditions": [ ],

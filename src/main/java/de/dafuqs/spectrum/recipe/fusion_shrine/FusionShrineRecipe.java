@@ -8,6 +8,7 @@ import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.loader.api.FabricLoader;
+import net.id.incubus_core.recipe.IngredientStack;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.inventory.Inventory;
@@ -31,7 +32,7 @@ public class FusionShrineRecipe implements Recipe<Inventory>, GatedRecipe {
 	protected final Identifier id;
 	protected final String group;
 
-	protected final DefaultedList<Ingredient> craftingInputs;
+	protected final List<IngredientStack> craftingInputs;
 	protected final Fluid fluidInput;
 	protected final ItemStack output;
 	protected final float experience;
@@ -50,7 +51,8 @@ public class FusionShrineRecipe implements Recipe<Inventory>, GatedRecipe {
 	@Nullable protected final Identifier requiredAdvancementIdentifier;
 	@Nullable protected final Text description;
 
-	public FusionShrineRecipe(Identifier id, String group, DefaultedList<Ingredient> craftingInputs, Fluid fluidInput, ItemStack output, float experience, int craftingTime, boolean noBenefitsFromYieldUpgrades, Identifier requiredAdvancementIdentifier, List<FusionShrineRecipeWorldCondition> worldConditions, FusionShrineRecipeWorldEffect startWorldEffect, List<FusionShrineRecipeWorldEffect> duringWorldEffects, FusionShrineRecipeWorldEffect finishWorldEffect, Text description) {
+	public FusionShrineRecipe(Identifier id, String group, List<IngredientStack> craftingInputs, Fluid fluidInput, ItemStack output, float experience, int craftingTime, boolean noBenefitsFromYieldUpgrades, Identifier requiredAdvancementIdentifier,
+	                          List<FusionShrineRecipeWorldCondition> worldConditions, FusionShrineRecipeWorldEffect startWorldEffect, List<FusionShrineRecipeWorldEffect> duringWorldEffects, FusionShrineRecipeWorldEffect finishWorldEffect, Text description) {
 		this.id = id;
 		this.group = group;
 
@@ -91,30 +93,7 @@ public class FusionShrineRecipe implements Recipe<Inventory>, GatedRecipe {
 	 */
 	@Override
 	public boolean matches(Inventory inv, World world) {
-		List<Ingredient> ingredients = this.getIngredients();
-		if(inv.size() >= ingredients.size()) {
-			int inputStackCount = 0;
-			for(int i = 0; i < inv.size(); i++) {
-				ItemStack itemStack = inv.getStack(i);
-				if (!itemStack.isEmpty()) {
-					inputStackCount++;
-					boolean found = false;
-					for(Ingredient ingredient : ingredients) {
-						if(ingredient.test(inv.getStack(i))) {
-							found = true;
-							break;
-						}
-					}
-					if(!found) {
-						return false;
-					}
-				}
-			}
-			
-			return inputStackCount == ingredients.size(); // no ingredients in unused slots
-		} else {
-			return false;
-		}
+		return IngredientStack.matchInvExclusively(inv, this.craftingInputs, this.craftingInputs.size(), 0);
 	}
 
 	@Override
@@ -156,8 +135,14 @@ public class FusionShrineRecipe implements Recipe<Inventory>, GatedRecipe {
 		return SpectrumRecipeTypes.FUSION_SHRINE;
 	}
 
+	// should not be used. Instead use getIngredientStacks(), which includes item counts
 	@Override
+	@Deprecated
 	public DefaultedList<Ingredient> getIngredients() {
+		return IngredientStack.listIngredients(this.craftingInputs);
+	}
+	
+	public List<IngredientStack> getIngredientStacks() {
 		return this.craftingInputs;
 	}
 

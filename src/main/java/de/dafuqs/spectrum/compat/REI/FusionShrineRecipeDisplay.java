@@ -35,7 +35,7 @@ public class FusionShrineRecipeDisplay implements SimpleGridMenuDisplay, GatedRe
 	protected final Optional<Text> description;
 
 	public FusionShrineRecipeDisplay(@NotNull FusionShrineRecipe recipe) {
-		this.craftingInputs = recipe.getIngredientStacks().stream().map(FusionShrineRecipeDisplay::ofIngredientStack).collect(Collectors.toCollection(ArrayList::new));
+		this.craftingInputs = recipe.getIngredientStacks().stream().map(REIHelper::ofIngredientStack).collect(Collectors.toCollection(ArrayList::new));
 		this.output = EntryIngredients.of(recipe.getOutput());
 		this.experience = recipe.getExperience();
 		this.craftingTime = recipe.getCraftingTime();
@@ -45,25 +45,6 @@ public class FusionShrineRecipeDisplay implements SimpleGridMenuDisplay, GatedRe
 		this.allInputs.add(this.fluidInput);
 		this.description = recipe.getDescription();
 		this.requiredAdvancementIdentifier = recipe.getRequiredAdvancementIdentifier();
-	}
-	
-	public static EntryIngredient ofIngredientStack(@NotNull IngredientStack ingredientStack) {
-		if (ingredientStack.isEmpty()) return EntryIngredient.empty();
-		List<ItemStack> matchingStacks = ingredientStack.getStacks();
-		if (matchingStacks.isEmpty()) return EntryIngredient.empty();
-		
-		for(ItemStack stack : matchingStacks) {
-			stack.setCount(ingredientStack.getCount());
-		}
-		
-		if (matchingStacks.size() == 1) return EntryIngredient.of(EntryStacks.of(matchingStacks.get(0)));
-		EntryIngredient.Builder result = EntryIngredient.builder(matchingStacks.size());
-		for (ItemStack matchingStack : matchingStacks) {
-			if (!matchingStack.isEmpty()) {
-				result.add(EntryStacks.of(matchingStack));
-			}
-		}
-		return result.build();
 	}
 
 	@Override

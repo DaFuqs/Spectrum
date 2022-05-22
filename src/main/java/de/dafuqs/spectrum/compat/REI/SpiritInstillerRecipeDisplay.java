@@ -25,7 +25,7 @@ public class SpiritInstillerRecipeDisplay implements SimpleGridMenuDisplay, Gate
 	protected final Identifier requiredAdvancementIdentifier;
 
 	public SpiritInstillerRecipeDisplay(@NotNull SpiritInstillerRecipe recipe) {
-		this.craftingInputs = recipe.getIngredients().stream().map(EntryIngredients::ofIngredient).collect(Collectors.toCollection(ArrayList::new));
+		this.craftingInputs = recipe.getIngredientStacks().stream().map(REIHelper::ofIngredientStack).collect(Collectors.toCollection(ArrayList::new));
 		this.output = EntryIngredients.of(recipe.getOutput());
 		this.experience = recipe.getExperience();
 		this.craftingTime = recipe.getCraftingTime();

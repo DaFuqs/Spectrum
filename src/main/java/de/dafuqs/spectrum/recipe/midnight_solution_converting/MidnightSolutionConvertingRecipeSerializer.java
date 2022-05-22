@@ -22,7 +22,7 @@ public class MidnightSolutionConvertingRecipeSerializer implements RecipeSeriali
 	public MidnightSolutionConvertingRecipe read(Identifier identifier, JsonObject jsonObject) {
 		JsonElement jsonElement = JsonHelper.getObject(jsonObject, "ingredient");
 		Ingredient ingredient = Ingredient.fromJson(jsonElement);
-		ItemStack outputItemStack = RecipeUtils.outputWithNbtFromJson(JsonHelper.getObject(jsonObject, "result"));
+		ItemStack outputItemStack = RecipeUtils.itemStackWithNbtFromJson(JsonHelper.getObject(jsonObject, "result"));
 		return this.recipeFactory.create(identifier, ingredient, outputItemStack);
 	}
 	

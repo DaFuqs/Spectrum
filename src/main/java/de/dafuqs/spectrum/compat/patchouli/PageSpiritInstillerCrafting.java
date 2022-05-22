@@ -5,6 +5,7 @@ import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.recipe.spirit_instiller.SpiritInstillerRecipe;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
+import net.id.incubus_core.recipe.IngredientStack;
 import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
@@ -14,6 +15,8 @@ import net.minecraft.util.collection.DefaultedList;
 import org.jetbrains.annotations.NotNull;
 import vazkii.patchouli.client.book.gui.GuiBook;
 import vazkii.patchouli.client.book.page.abstr.PageDoubleRecipeRegistry;
+
+import java.util.List;
 
 public class PageSpiritInstillerCrafting extends PageDoubleRecipeRegistry<SpiritInstillerRecipe> {
 
@@ -42,10 +45,10 @@ public class PageSpiritInstillerCrafting extends PageDoubleRecipeRegistry<Spirit
 		parent.drawCenteredStringNoShadow(ms, getTitle(second).asOrderedText(), GuiBook.PAGE_WIDTH / 2, recipeY - 10, book.headerColor);
 
 		// the ingredients
-		DefaultedList<Ingredient> ingredients = recipe.getIngredients();
-		parent.renderIngredient(ms, recipeX + 3, recipeY + 8, mouseX, mouseY, ingredients.get(0)); // left
-		parent.renderIngredient(ms, recipeX + 44, recipeY + 8, mouseX, mouseY, ingredients.get(1)); // right
-		parent.renderIngredient(ms, recipeX + 23, recipeY + 11, mouseX, mouseY, ingredients.get(2)); // center
+		List<IngredientStack> ingredients = recipe.getIngredientStacks();
+		PatchouliHelper.renderIngredientStack(parent, ms, recipeX + 3, recipeY + 8, mouseX, mouseY, ingredients.get(0)); // left
+		PatchouliHelper.renderIngredientStack(parent, ms, recipeX + 44, recipeY + 8, mouseX, mouseY, ingredients.get(1)); // right
+		PatchouliHelper.renderIngredientStack(parent, ms, recipeX + 23, recipeY + 11, mouseX, mouseY, ingredients.get(2)); // center
 		
 		// spirit instiller
 		parent.renderItemStack(ms, recipeX + 23, recipeY + 25, mouseX, mouseY, recipe.createIcon());

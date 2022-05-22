@@ -22,7 +22,7 @@ public class AnvilCrushingRecipeSerializer implements RecipeSerializer<AnvilCrus
 	public AnvilCrushingRecipe read(Identifier identifier, JsonObject jsonObject) {
 		JsonElement jsonElement = JsonHelper.hasArray(jsonObject, "ingredient") ? JsonHelper.getArray(jsonObject, "ingredient") : JsonHelper.getObject(jsonObject, "ingredient");
 		Ingredient ingredient = Ingredient.fromJson(jsonElement);
-		ItemStack outputItemStack = RecipeUtils.outputWithNbtFromJson(JsonHelper.getObject(jsonObject, "result"));
+		ItemStack outputItemStack = RecipeUtils.itemStackWithNbtFromJson(JsonHelper.getObject(jsonObject, "result"));
 		float crushedItemsPerPointOfDamage = JsonHelper.getFloat(jsonObject, "crushedItemsPerPointOfDamage");
 		float experience = JsonHelper.getFloat(jsonObject, "experience");
 

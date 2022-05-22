@@ -1,19 +1,25 @@
 package de.dafuqs.spectrum.recipe;
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSyntaxException;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
+import net.id.incubus_core.recipe.IngredientStack;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtHelper;
+import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.ShapedRecipe;
 import net.minecraft.util.JsonHelper;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class RecipeUtils {
 	
-	public static ItemStack outputWithNbtFromJson(JsonObject json) {
+	public static ItemStack itemStackWithNbtFromJson(JsonObject json) {
 		Item item = ShapedRecipe.getItem(json);
 		if (json.has("data")) {
 			throw new JsonParseException("Disallowed data tag found");
@@ -39,6 +45,27 @@ public class RecipeUtils {
 				return stack;
 			}
 		}
+	}
+	
+	public static List<IngredientStack> ingredientsFromJson(JsonArray array, int size) {
+		List<IngredientStack> ingredients = new ArrayList<>(size);
+		int dif = size - array.size();
+		for (int i = 0; i < array.size() && i < size; i++) {
+			JsonObject object = array.get(i).getAsJsonObject();
+			ingredients.add(ingredientFromJson(object));
+		}
+		if(dif > 0) {
+			for (int i = 0; i < dif; i++) {
+				ingredients.add(IngredientStack.EMPTY);
+			}
+		}
+		return ingredients;
+	}
+	
+	public static IngredientStack ingredientFromJson(JsonObject json) {
+		Ingredient ingredient = Ingredient.fromJson(json);
+		int count = json.has("count") ? json.get("count").getAsInt() : 1;
+		return IngredientStack.of(ingredient, count);
 	}
 	
 }

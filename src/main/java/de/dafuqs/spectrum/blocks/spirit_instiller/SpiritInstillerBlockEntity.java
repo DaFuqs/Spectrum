@@ -17,6 +17,7 @@ import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import de.dafuqs.spectrum.registries.SpectrumItemTags;
 import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
+import net.id.incubus_core.recipe.IngredientStack;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -206,11 +207,15 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 				
 				if(spiritInstillerBlockEntity.craftingTime == 1) {
 					SpectrumS2CPacketSender.sendPlayBlockBoundSoundInstance(SpectrumSoundEvents.SPIRIT_INSTILLER_CRAFTING, (ServerWorld) spiritInstillerBlockEntity.world, spiritInstillerBlockEntity.pos, Integer.MAX_VALUE);
-				} else if(spiritInstillerBlockEntity.craftingTime == spiritInstillerBlockEntity.craftingTimeTotal * 0.5
+				} else if(spiritInstillerBlockEntity.craftingTime == spiritInstillerBlockEntity.craftingTimeTotal * 0.01
+							|| spiritInstillerBlockEntity.craftingTime == spiritInstillerBlockEntity.craftingTimeTotal * 0.25
+							|| spiritInstillerBlockEntity.craftingTime == spiritInstillerBlockEntity.craftingTimeTotal * 0.5
 							|| spiritInstillerBlockEntity.craftingTime == spiritInstillerBlockEntity.craftingTimeTotal * 0.75
-							|| spiritInstillerBlockEntity.craftingTime == spiritInstillerBlockEntity.craftingTimeTotal * 0.875
+							|| spiritInstillerBlockEntity.craftingTime == spiritInstillerBlockEntity.craftingTimeTotal * 0.83
+							|| spiritInstillerBlockEntity.craftingTime == spiritInstillerBlockEntity.craftingTimeTotal * 0.90
 							|| spiritInstillerBlockEntity.craftingTime == spiritInstillerBlockEntity.craftingTimeTotal * 0.95
-							|| spiritInstillerBlockEntity.craftingTime == spiritInstillerBlockEntity.craftingTimeTotal * 0.98) {
+							|| spiritInstillerBlockEntity.craftingTime == spiritInstillerBlockEntity.craftingTimeTotal * 0.98
+							|| spiritInstillerBlockEntity.craftingTime == spiritInstillerBlockEntity.craftingTimeTotal * 0.99) {
 					spiritInstillerBlockEntity.doItemBowlOrbs(world);
 				} else if (spiritInstillerBlockEntity.craftingTime == spiritInstillerBlockEntity.craftingTimeTotal) {
 					craftSpiritInstillerRecipe(world, spiritInstillerBlockEntity, spiritInstillerBlockEntity.currentRecipe);
@@ -243,11 +248,13 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 		if(!instillerStack.isEmpty()) {
 			spiritInstillerBlockEntity.autoCraftingInventory.setStack(0, instillerStack);
 			
+			// left item bowl
 			if (world.getBlockEntity(getItemBowlPos(spiritInstillerBlockEntity, false)) instanceof ItemBowlBlockEntity itemBowlBlockEntity) {
 				spiritInstillerBlockEntity.autoCraftingInventory.setStack(1, itemBowlBlockEntity.getInventory().getStack(0));
 			} else {
 				spiritInstillerBlockEntity.autoCraftingInventory.setStack(1, ItemStack.EMPTY);
 			}
+			// right item bowl
 			if (world.getBlockEntity(getItemBowlPos(spiritInstillerBlockEntity, true)) instanceof ItemBowlBlockEntity itemBowlBlockEntity) {
 				spiritInstillerBlockEntity.autoCraftingInventory.setStack(2, itemBowlBlockEntity.getInventory().getStack(0));
 			} else {
@@ -323,7 +330,6 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 	}
 	
 	public static void craftSpiritInstillerRecipe(World world, @NotNull SpiritInstillerBlockEntity spiritInstillerBlockEntity, @NotNull SpiritInstillerRecipe spiritInstillerRecipe) {
-		boolean makeUnrecognizable = spiritInstillerBlockEntity.inventory.getStack(0).isIn(SpectrumItemTags.MEMORY_BONDING_AGENTS_CONCEILABLE);
 		if(decrementItemsInInstillerAndBowls(spiritInstillerBlockEntity)) {
 			ItemStack resultStack = spiritInstillerRecipe.getOutput().copy();
 			
@@ -333,8 +339,11 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 				resultStack.setCount(resultCountMod);
 			}
 			
-			if(makeUnrecognizable && resultStack.isOf(SpectrumBlocks.MEMORY.asItem())) {
-				MemoryItem.makeUnrecognizable(resultStack);
+			if(resultStack.isOf(SpectrumBlocks.MEMORY.asItem())) {
+				boolean makeUnrecognizable = spiritInstillerBlockEntity.inventory.getStack(0).isIn(SpectrumItemTags.MEMORY_BONDING_AGENTS_CONCEILABLE);
+				if(makeUnrecognizable) {
+					MemoryItem.makeUnrecognizable(resultStack);
+				}
 			}
 			
 			// spawn the result stack in world
@@ -352,33 +361,48 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 	}
 	
 	public static boolean decrementItemsInInstillerAndBowls(@NotNull SpiritInstillerBlockEntity spiritInstillerBlockEntity) {
-		SpiritInstillerRecipe spiritInstillerRecipe = spiritInstillerBlockEntity.currentRecipe;
-		boolean success = true;
-
-		int resultAmountAfterEfficiencyMod = 1;
-		for(int i = 0; i < 3; i++) {
-			if(!spiritInstillerRecipe.areYieldAndEfficiencyUpgradesDisabled() && spiritInstillerBlockEntity.upgrades.get(UpgradeType.EFFICIENCY) != 1.0) {
-				double efficiencyModifier = 1.0 / spiritInstillerBlockEntity.upgrades.get(UpgradeType.EFFICIENCY);
-				resultAmountAfterEfficiencyMod = Support.getIntFromDecimalWithChance(efficiencyModifier, spiritInstillerBlockEntity.world.random);
-			}
-			
-			if(resultAmountAfterEfficiencyMod > 0) {
-				if(i == 0) {
-					spiritInstillerBlockEntity.inventory.getStack(0).decrement(resultAmountAfterEfficiencyMod);
-				} else {
-					BlockPos itemBowlPos = getItemBowlPos(spiritInstillerBlockEntity, i == 1);
-					BlockEntity blockEntity = spiritInstillerBlockEntity.world.getBlockEntity(itemBowlPos);
-					if (blockEntity instanceof ItemBowlBlockEntity itemBowlBlockEntity) {
-						itemBowlBlockEntity.decrementBowlStack(spiritInstillerBlockEntity.pos, resultAmountAfterEfficiencyMod, true);
-						itemBowlBlockEntity.updateInClientWorld();
-					} else {
-						success = false;
-					}
-				}
-			}
+		SpiritInstillerRecipe recipe = spiritInstillerBlockEntity.currentRecipe;
+		
+		double efficiencyModifier = 1.0;
+		if(!recipe.areYieldAndEfficiencyUpgradesDisabled() && spiritInstillerBlockEntity.upgrades.get(UpgradeType.EFFICIENCY) != 1.0) {
+			efficiencyModifier = 1.0 / spiritInstillerBlockEntity.upgrades.get(UpgradeType.EFFICIENCY);
 		}
 		
-		return success;
+		BlockEntity leftBowlBlockEntity = spiritInstillerBlockEntity.world.getBlockEntity(getItemBowlPos(spiritInstillerBlockEntity, false));
+		BlockEntity rightBowlBlockEntity = spiritInstillerBlockEntity.world.getBlockEntity(getItemBowlPos(spiritInstillerBlockEntity, true));
+		if(leftBowlBlockEntity instanceof ItemBowlBlockEntity leftBowl && rightBowlBlockEntity instanceof ItemBowlBlockEntity rightBowl) {
+			// center ingredient
+			int decreasedAmountAfterEfficiencyMod = Support.getIntFromDecimalWithChance(recipe.getIngredientStacks().get(2).getCount() * efficiencyModifier, spiritInstillerBlockEntity.world.random);
+			if (decreasedAmountAfterEfficiencyMod > 0) {
+				spiritInstillerBlockEntity.inventory.getStack(0).decrement(decreasedAmountAfterEfficiencyMod);
+			}
+			
+			List<IngredientStack> ingredientStacks = recipe.getIngredientStacks();
+			
+			// first side ingredient
+			decreasedAmountAfterEfficiencyMod = Support.getIntFromDecimalWithChance(ingredientStacks.get(0).getCount() * efficiencyModifier, spiritInstillerBlockEntity.world.random);
+			if (decreasedAmountAfterEfficiencyMod > 0) {
+				if(ingredientStacks.get(0).test(leftBowl.getInventory().getStack(0))) {
+					leftBowl.decrementBowlStack(spiritInstillerBlockEntity.pos, decreasedAmountAfterEfficiencyMod, true);
+				} else{
+					rightBowl.decrementBowlStack(spiritInstillerBlockEntity.pos, decreasedAmountAfterEfficiencyMod, true);
+				}
+			}
+			
+			// second side ingredient
+			decreasedAmountAfterEfficiencyMod = Support.getIntFromDecimalWithChance(ingredientStacks.get(1).getCount() * efficiencyModifier, spiritInstillerBlockEntity.world.random);
+			if (decreasedAmountAfterEfficiencyMod > 0) {
+				if(ingredientStacks.get(1).test(leftBowl.getInventory().getStack(0))) {
+					leftBowl.decrementBowlStack(spiritInstillerBlockEntity.pos, decreasedAmountAfterEfficiencyMod, true);
+				} else{
+					rightBowl.decrementBowlStack(spiritInstillerBlockEntity.pos, decreasedAmountAfterEfficiencyMod, true);
+				}
+			}
+			
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
 	private static void grantPlayerSpiritInstillingAdvancementCriterion(World world, UUID playerUUID, ItemStack resultStack, int experience) {

@@ -6,13 +6,15 @@
     "item": "spectrum:liquid_crystal_bucket"
   },
   "ingredient2": {
-    "item": "spectrum:vegetal"
+    "item": "spectrum:ancient_jade_vine_seeds",
+    "count": 3
   },
   "center_ingredient": {
-    "item": "spectrum:ancient_jade_vine_seeds"
+    "item": "spectrum:vegetal",
+    "count": 16
   },
   "result" : {
     "item": "spectrum:germinated_jade_vine_seeds"
   },
-  "required_advancement": "spectrum:__hidden/collect_ancient_jade_vine_seeds"
+  "required_advancement": "spectrum:hidden/collect_ancient_jade_vine_seeds"
 }

@@ -33,7 +33,7 @@ public class PedestalCraftingRecipeSerializer implements RecipeSerializer<Pedest
 		int width = strings[0].length();
 		int height = strings.length;
 		DefaultedList<Ingredient> craftingInputs = ShapedRecipeAccessor.invokeCreatePatternMatrix(strings, map, width, height);
-		ItemStack output = RecipeUtils.outputWithNbtFromJson(JsonHelper.getObject(jsonObject, "result"));
+		ItemStack output = RecipeUtils.itemStackWithNbtFromJson(JsonHelper.getObject(jsonObject, "result"));
 
 		PedestalRecipeTier tier = PedestalRecipeTier.valueOf(JsonHelper.getString(jsonObject, "tier", "basic").toUpperCase(Locale.ROOT));
 		float experience = JsonHelper.getFloat(jsonObject, "experience", 0);

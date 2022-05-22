@@ -31,7 +31,7 @@ public class EnchanterRecipeSerializer implements RecipeSerializer<EnchanterReci
 			craftingInputs.add(Ingredient.fromJson(ingredientArray.get(i)));
 		}
 
-		ItemStack output = RecipeUtils.outputWithNbtFromJson(JsonHelper.getObject(jsonObject, "result"));
+		ItemStack output = RecipeUtils.itemStackWithNbtFromJson(JsonHelper.getObject(jsonObject, "result"));
 		
 		int requiredExperience = JsonHelper.getInt(jsonObject, "required_experience", 0);
 		int craftingTime = JsonHelper.getInt(jsonObject, "time", 200);

@@ -3,9 +3,9 @@ package de.dafuqs.spectrum.recipe.spirit_instiller;
 import com.google.gson.JsonObject;
 import de.dafuqs.spectrum.blocks.spirit_instiller.SpiritInstillerBlock;
 import de.dafuqs.spectrum.recipe.RecipeUtils;
+import net.id.incubus_core.recipe.IngredientStack;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
-import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
@@ -21,10 +21,10 @@ public class SpiritInstillerRecipeSerializer implements RecipeSerializer<SpiritI
 	@Override
 	public SpiritInstillerRecipe read(Identifier identifier, JsonObject jsonObject) {
 		String group = JsonHelper.getString(jsonObject, "group", "");
-		Ingredient ingredient1 = Ingredient.fromJson(JsonHelper.getObject(jsonObject, "ingredient1"));
-		Ingredient ingredient2 = Ingredient.fromJson(JsonHelper.getObject(jsonObject, "ingredient2"));
-		Ingredient centerIngredient = Ingredient.fromJson(JsonHelper.getObject(jsonObject, "center_ingredient"));
-		ItemStack outputItemStack = RecipeUtils.outputWithNbtFromJson(JsonHelper.getObject(jsonObject, "result"));
+		IngredientStack ingredientStack1 = RecipeUtils.ingredientFromJson(JsonHelper.getObject(jsonObject, "ingredient1"));
+		IngredientStack ingredientStack2 = RecipeUtils.ingredientFromJson(JsonHelper.getObject(jsonObject, "ingredient2"));
+		IngredientStack centerIngredientStack = RecipeUtils.ingredientFromJson(JsonHelper.getObject(jsonObject, "center_ingredient"));
+		ItemStack outputItemStack = RecipeUtils.itemStackWithNbtFromJson(JsonHelper.getObject(jsonObject, "result"));
 		
 		int craftingTime = JsonHelper.getInt(jsonObject, "time", 200);
 		float experience = JsonHelper.getFloat(jsonObject, "experience");
@@ -42,7 +42,7 @@ public class SpiritInstillerRecipeSerializer implements RecipeSerializer<SpiritI
 			requiredAdvancementIdentifier = SpiritInstillerBlock.UNLOCK_IDENTIFIER;
 		}
 		
-		return this.recipeFactory.create(identifier, group, ingredient1, ingredient2, centerIngredient, outputItemStack, craftingTime, experience, noBenefitsFromYieldAndEfficiencyUpgrades, requiredAdvancementIdentifier);
+		return this.recipeFactory.create(identifier, group, ingredientStack1, ingredientStack2, centerIngredientStack, outputItemStack, craftingTime, experience, noBenefitsFromYieldAndEfficiencyUpgrades, requiredAdvancementIdentifier);
 	}
 	
 	@Override
@@ -61,9 +61,9 @@ public class SpiritInstillerRecipeSerializer implements RecipeSerializer<SpiritI
 	@Override
 	public SpiritInstillerRecipe read(Identifier identifier, PacketByteBuf packetByteBuf) {
 		String group = packetByteBuf.readString();
-		Ingredient ingredient1 = Ingredient.fromPacket(packetByteBuf);
-		Ingredient ingredient2 = Ingredient.fromPacket(packetByteBuf);
-		Ingredient centerIngredient = Ingredient.fromPacket(packetByteBuf);
+		IngredientStack ingredient1 = IngredientStack.fromByteBuf(packetByteBuf);
+		IngredientStack ingredient2 = IngredientStack.fromByteBuf(packetByteBuf);
+		IngredientStack centerIngredient = IngredientStack.fromByteBuf(packetByteBuf);
 		ItemStack outputItemStack = packetByteBuf.readItemStack();
 		int craftingTime = packetByteBuf.readInt();
 		float experience = packetByteBuf.readFloat();
@@ -75,7 +75,8 @@ public class SpiritInstillerRecipeSerializer implements RecipeSerializer<SpiritI
 
 	
 	public interface RecipeFactory<SpiritInstillerRecipe> {
-		SpiritInstillerRecipe create(Identifier id, String group, Ingredient inputIngredient1, Ingredient inputIngredient2, Ingredient centerIngredient, ItemStack outputItemStack, int craftingTime, float experience, boolean noBenefitsFromYieldAndEfficiencyUpgrades, Identifier requiredAdvancementIdentifier);
+		SpiritInstillerRecipe create(Identifier id, String group, IngredientStack inputIngredient1, IngredientStack inputIngredient2, IngredientStack centerIngredient, ItemStack outputItemStack,
+		                             int craftingTime, float experience, boolean noBenefitsFromYieldAndEfficiencyUpgrades, Identifier requiredAdvancementIdentifier);
 	}
 
 }

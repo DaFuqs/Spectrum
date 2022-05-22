@@ -4,22 +4,18 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.fusion_shrine.FusionShrineBlock;
-import de.dafuqs.spectrum.helpers.IngredientStackHelper;
 import de.dafuqs.spectrum.recipe.RecipeUtils;
-import net.id.incubus_core.json.JsonUtils;
 import net.id.incubus_core.recipe.IngredientStack;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
-import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
-import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.registry.Registry;
 
 import java.util.ArrayList;
@@ -39,7 +35,7 @@ public class FusionShrineRecipeSerializer implements RecipeSerializer<FusionShri
 		String group = JsonHelper.getString(jsonObject, "group", "");
 
 		JsonArray ingredientArray = JsonHelper.getArray(jsonObject, "ingredients");
-		List<IngredientStack> craftingInputs = IngredientStackHelper.ingredientsFromJson(ingredientArray, ingredientArray.size());
+		List<IngredientStack> craftingInputs = RecipeUtils.ingredientsFromJson(ingredientArray, ingredientArray.size());
 
 		Fluid fluid = Fluids.EMPTY;
 		if(JsonHelper.hasString(jsonObject, "fluid")) {
@@ -52,7 +48,7 @@ public class FusionShrineRecipeSerializer implements RecipeSerializer<FusionShri
 
 		ItemStack output;
 		if(JsonHelper.hasJsonObject(jsonObject, "result")) {
-			output = RecipeUtils.outputWithNbtFromJson(JsonHelper.getObject(jsonObject, "result"));
+			output = RecipeUtils.itemStackWithNbtFromJson(JsonHelper.getObject(jsonObject, "result"));
 		} else {
 			output = ItemStack.EMPTY;
 		}

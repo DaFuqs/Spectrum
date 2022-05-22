@@ -41,7 +41,7 @@ public class PotionWorkshopCraftingRecipeSerializer implements RecipeSerializer<
 		int craftingTime = JsonHelper.getInt(jsonObject, "time", 200);
 		int color = JsonHelper.getInt(jsonObject, "color", 0xc03058);
 		boolean consumeBaseIngredient = JsonHelper.getBoolean(jsonObject, "use_up_base_ingredient", false);
-		ItemStack output = RecipeUtils.outputWithNbtFromJson(JsonHelper.getObject(jsonObject, "result"));
+		ItemStack output = RecipeUtils.itemStackWithNbtFromJson(JsonHelper.getObject(jsonObject, "result"));
 		
 		Identifier requiredAdvancementIdentifier;
 		if(JsonHelper.hasString(jsonObject, "required_advancement")) {

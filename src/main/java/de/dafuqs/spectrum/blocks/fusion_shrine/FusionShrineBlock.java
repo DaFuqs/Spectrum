@@ -118,12 +118,12 @@ public class FusionShrineBlock extends BlockWithEntity {
 				ItemStack remainingStack = InventoryHelper.smartAddToInventory(itemStack, fusionShrineBlockEntity.getInventory(), null);
 				
 				if (remainingStack.getCount() != previousCount) {
-					fusionShrineBlockEntity.markDirty();
-					fusionShrineBlockEntity.updateInClientWorld();
+					fusionShrineBlockEntity.inventoryChanged();
 					world.playSound(null, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.8F, 0.8F + world.random.nextFloat() * 0.6F);
 					return remainingStack;
 				}
 			}
+			
 		}
 		return itemStack;
 	}
@@ -136,8 +136,7 @@ public class FusionShrineBlock extends BlockWithEntity {
 				Fluid bucketFluid = ((BucketItemAccessor) bucketStack.getItem()).fabric_getFluid();
 				if (storedFluid == Fluids.EMPTY && bucketFluid != Fluids.EMPTY) {
 					fusionShrineBlockEntity.setFluid(bucketFluid);
-					fusionShrineBlockEntity.markDirty();
-					fusionShrineBlockEntity.updateInClientWorld();
+					fusionShrineBlockEntity.inventoryChanged();
 					
 					Optional<SoundEvent> soundEvent = storedFluid.getBucketFillSound();
 					if(soundEvent.isPresent()) {
@@ -147,8 +146,7 @@ public class FusionShrineBlock extends BlockWithEntity {
 					return new ItemStack(Items.BUCKET);
 				} else if (storedFluid != Fluids.EMPTY && bucketFluid == Fluids.EMPTY) {
 					fusionShrineBlockEntity.setFluid(Fluids.EMPTY);
-					fusionShrineBlockEntity.markDirty();
-					fusionShrineBlockEntity.updateInClientWorld();
+					fusionShrineBlockEntity.inventoryChanged();
 					
 					Optional<SoundEvent> soundEvent = storedFluid.getBucketFillSound();
 					if(soundEvent.isPresent()) {
@@ -232,12 +230,8 @@ public class FusionShrineBlock extends BlockWithEntity {
 				}
 				
 				if(itemsChanged) {
-					fusionShrineBlockEntity.markDirty();
-					fusionShrineBlockEntity.inventory.markDirty();
-					fusionShrineBlockEntity.updateInClientWorld();
-					if(soundToPlay.isPresent()) {
-						world.playSound(null, player.getBlockPos(), soundToPlay.get(), SoundCategory.PLAYERS, 0.8F, 0.8F + world.random.nextFloat() * 0.6F);
-					}
+					fusionShrineBlockEntity.inventoryChanged();
+					soundToPlay.ifPresent(soundEvent -> world.playSound(null, player.getBlockPos(), soundEvent, SoundCategory.PLAYERS, 0.8F, 0.8F + world.random.nextFloat() * 0.6F));
 				}
 			}
 			
@@ -314,7 +308,7 @@ public class FusionShrineBlock extends BlockWithEntity {
 		if (blockEntity instanceof FusionShrineBlockEntity fusionShrineBlockEntity) {
 			ItemScatterer.spawn(world, pos, fusionShrineBlockEntity.getInventory());
 			world.updateComparators(pos, block);
-			fusionShrineBlockEntity.updateInClientWorld();
+			fusionShrineBlockEntity.inventoryChanged();
 		}
 	}
 

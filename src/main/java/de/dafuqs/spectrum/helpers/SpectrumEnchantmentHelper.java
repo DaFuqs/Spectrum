@@ -18,6 +18,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class SpectrumEnchantmentHelper {
 	
@@ -141,10 +142,42 @@ public class SpectrumEnchantmentHelper {
 		}
 	}
 	
+	public static @NotNull ItemStack removeEnchantment(@NotNull ItemStack itemStack, Enchantment enchantment) {
+		NbtCompound compound = itemStack.getNbt();
+		if(compound == null) {
+			return itemStack;
+		}
+		
+		NbtList enchantmentList;
+		if (itemStack.isOf(Items.ENCHANTED_BOOK)) {
+			enchantmentList = compound.getList("StoredEnchantments", 10);
+		} else {
+			enchantmentList = compound.getList("Enchantments", 10);
+		}
+		
+		Identifier enchantmentIdentifier = Registry.ENCHANTMENT.getId(enchantment);
+		for(int i = 0; i < enchantmentList.size(); i++) {
+			NbtCompound currentCompound = enchantmentList.getCompound(i);
+			if(currentCompound.contains("id", NbtElement.STRING_TYPE) && Objects.equals(Identifier.tryParse(currentCompound.getString("id")), enchantmentIdentifier)) {
+				enchantmentList.remove(i);
+				break;
+			}
+		}
+		
+		if (itemStack.isOf(Items.ENCHANTED_BOOK)) {
+			compound.put("StoredEnchantments", enchantmentList);
+		} else {
+			compound.put("Enchantments", enchantmentList);
+			
+		}
+		itemStack.setNbt(compound);
+		
+		return itemStack;
+	}
+	
 	public static ItemStack getMaxEnchantedStack(@NotNull Item item, Enchantment... enchantments) {
 		ItemStack itemStack = item.getDefaultStack();
-		for(int i = 0; i < enchantments.length; i++) {
-			Enchantment enchantment = enchantments[i];
+		for (Enchantment enchantment : enchantments) {
 			int maxLevel = enchantment.getMaxLevel();
 			itemStack = addOrExchangeEnchantment(itemStack, enchantment, maxLevel, true, true);
 		}

@@ -4,6 +4,7 @@ import de.dafuqs.spectrum.blocks.BlackMateriaBlock;
 import de.dafuqs.spectrum.blocks.enchanter.EnchanterBlockEntity;
 import de.dafuqs.spectrum.helpers.SpectrumEnchantmentHelper;
 import de.dafuqs.spectrum.inventories.AutoCraftingInventory;
+import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.recipe.midnight_solution_converting.MidnightSolutionConvertingRecipe;
@@ -11,6 +12,7 @@ import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import de.dafuqs.spectrum.registries.SpectrumDamageSources;
 import de.dafuqs.spectrum.registries.SpectrumFluidTags;
 import de.dafuqs.spectrum.registries.SpectrumItems;
+import dev.architectury.event.events.common.ChatEvent;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -28,6 +30,7 @@ import net.minecraft.fluid.FlowableFluid;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.tag.FluidTags;
@@ -71,51 +74,54 @@ public class MidnightSolutionFluidBlock extends FluidBlock {
 	public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
 		super.onEntityCollision(state, world, pos, entity);
 		
-		if(entity instanceof LivingEntity livingEntity) {
-			if(!livingEntity.isDead()) {
-				if (livingEntity.isSubmergedIn(SpectrumFluidTags.MIDNIGHT_SOLUTION) && world.getTime() % 20 == 0) {
-					livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS, 50, 0));
-					livingEntity.damage(SpectrumDamageSources.MIDNIGHT_SOLUTION, 2);
-				} else {
-					livingEntity.damage(SpectrumDamageSources.MIDNIGHT_SOLUTION, 1);
+		if(!world.isClient) {
+			if (entity instanceof LivingEntity livingEntity) {
+				if (!livingEntity.isDead()) {
+					if (livingEntity.isSubmergedIn(SpectrumFluidTags.MIDNIGHT_SOLUTION) && world.getTime() % 20 == 0) {
+						livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS, 50, 0));
+						livingEntity.damage(SpectrumDamageSources.MIDNIGHT_SOLUTION, 2);
+					} else {
+						livingEntity.damage(SpectrumDamageSources.MIDNIGHT_SOLUTION, 1);
+					}
+					if (livingEntity.isDead()) {
+						livingEntity.dropStack(SpectrumItems.MIDNIGHT_CHIP.getDefaultStack());
+					}
 				}
-				if (livingEntity.isDead()) {
-					livingEntity.dropStack(SpectrumItems.MIDNIGHT_CHIP.getDefaultStack());
-				}
-			}
-		} else if(entity instanceof ItemEntity itemEntity && itemEntity.age % 120 == 0 && !itemEntity.cannotPickup()) { // cannotPickup: looks nicer, also exploit protection
-			ItemStack itemStack = itemEntity.getStack();
-			
-			// if the item is enchanted: remove enchantments and spawn XP
-			// basically disenchanting the item
-			if(itemStack.hasEnchantments() || itemStack.isOf(Items.ENCHANTED_BOOK)) {
-				int experience = 0;
-				int enchantability = itemStack.getItem().getEnchantability();
-				if(enchantability == 0) {
-					enchantability = 10; // like for enchanted book disenchanting
-				}
-				for(Map.Entry<Enchantment, Integer> enchantmentEntry : EnchantmentHelper.get(itemStack).entrySet()) {
-					experience += EnchanterBlockEntity.getRequiredExperienceForEnchantment(enchantability, enchantmentEntry.getKey(), enchantmentEntry.getValue());
+			} else if (entity instanceof ItemEntity itemEntity && itemEntity.age % 120 == 0 && !itemEntity.cannotPickup()) { // cannotPickup: looks nicer, also exploit protection
+				ItemStack itemStack = itemEntity.getStack();
+				
+				// if the item is enchanted: remove enchantments and spawn XP
+				// basically disenchanting the item
+				if (itemStack.hasEnchantments() || itemStack.isOf(Items.ENCHANTED_BOOK)) {
+					Map<Enchantment, Integer> enchantments = EnchantmentHelper.get(itemStack);
+					if (enchantments.size() > 0) {
+						int randomEnchantmentIndex = world.random.nextInt(enchantments.size());
+						Enchantment enchantmentToRemove = (Enchantment) enchantments.keySet().toArray()[randomEnchantmentIndex];
+						
+						int experience = EnchanterBlockEntity.getEnchantingPrice(itemStack, enchantmentToRemove, enchantments.get(enchantmentToRemove));
+						experience /= EXPERIENCE_DISENCHANT_RETURN_DIV;
+						
+						if (experience > 0) {
+							ExperienceOrbEntity experienceOrbEntity = new ExperienceOrbEntity(world, itemEntity.getX(), itemEntity.getY(), itemEntity.getZ(), experience);
+							world.spawnEntity(experienceOrbEntity);
+						}
+						world.playSound(null, itemEntity.getBlockPos(), SoundEvents.BLOCK_GRINDSTONE_USE, SoundCategory.NEUTRAL, 1.0F, 0.9F + world.getRandom().nextFloat() * 0.2F);
+						SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) world, itemEntity.getPos(), SpectrumParticleTypes.GRAY_SPARKLE_RISING, 10, Vec3d.ZERO, new Vec3d(0.2, 0.4, 0.2));
+						itemEntity.setStack(SpectrumEnchantmentHelper.removeEnchantment(itemStack, enchantmentToRemove));
+						itemEntity.setToDefaultPickupDelay();
+						return;
+					}
 				}
 				
-				experience /= EXPERIENCE_DISENCHANT_RETURN_DIV;
-				
-				if(experience > 0) {
-					ExperienceOrbEntity experienceOrbEntity = new ExperienceOrbEntity(world, itemEntity.getX(), itemEntity.getY(), itemEntity.getZ(), experience);
-					world.spawnEntity(experienceOrbEntity);
-				}
-				world.playSound(null, itemEntity.getBlockPos(), SoundEvents.BLOCK_GRINDSTONE_USE, SoundCategory.NEUTRAL, 1.0F, 0.9F + world.getRandom().nextFloat() * 0.2F);
-				itemEntity.setStack(SpectrumEnchantmentHelper.removeEnchantments(itemStack));
-			}
-			
-			// do not try to search conversion recipes for items that are recipe outputs already
-			// => better performance
-			if(!MidnightSolutionConvertingRecipe.isExistingOutputItem(itemStack)) {
-				MidnightSolutionConvertingRecipe recipe = getConversionRecipeFor(world, itemStack);
-				if(recipe != null) {
-					world.playSound(null, itemEntity.getBlockPos(), SoundEvents.BLOCK_WOOL_BREAK, SoundCategory.NEUTRAL, 1.0F, 0.9F + world.getRandom().nextFloat() * 0.2F);
-					spawnItemStackAsEntitySplitViaMaxCount(world, itemEntity.getPos(), recipe.getOutput(), recipe.getOutput().getCount() * itemStack.getCount());
-					itemEntity.discard();
+				// do not try to search conversion recipes for items that are recipe outputs already
+				// => better performance
+				if (!MidnightSolutionConvertingRecipe.isExistingOutputItem(itemStack)) {
+					MidnightSolutionConvertingRecipe recipe = getConversionRecipeFor(world, itemStack);
+					if (recipe != null) {
+						world.playSound(null, itemEntity.getBlockPos(), SoundEvents.BLOCK_WOOL_BREAK, SoundCategory.NEUTRAL, 1.0F, 0.9F + world.getRandom().nextFloat() * 0.2F);
+						spawnItemStackAsEntitySplitViaMaxCount(world, itemEntity.getPos(), recipe.getOutput(), recipe.getOutput().getCount() * itemStack.getCount());
+						itemEntity.discard();
+					}
 				}
 			}
 		}

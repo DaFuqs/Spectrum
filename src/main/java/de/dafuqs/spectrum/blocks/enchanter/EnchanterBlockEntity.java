@@ -502,14 +502,17 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 			return -1;
 		}
 		
+		Integer requiredExperience = getEnchantingPrice(itemStack, enchantment, level);
+		if(conflicts) {
+			requiredExperience *= 4;
+		}
+		return requiredExperience;
+	}
+	
+	public static Integer getEnchantingPrice(ItemStack itemStack, Enchantment enchantment, int level) {
 		int enchantability = Math.max(1, itemStack.getItem().getEnchantability()); // items like Elytras have an enchantability of 0, but can get unbreaking
 		if(enchantment.isAcceptableItem(itemStack) || itemStack.getItem() instanceof BookItem || (itemStack.getItem() instanceof EnchanterEnchantable enchanterEnchantable && (enchanterEnchantable.canAcceptEnchantment(enchantment)))) {
-			int requiredExperience = getRequiredExperienceForEnchantment(enchantability, enchantment, level);
-			if(conflicts) {
-				return requiredExperience * 4;
-			} else {
-				return requiredExperience;
-			}
+			return getRequiredExperienceForEnchantment(enchantability, enchantment, level);
 		}
 		return -1;
 	}

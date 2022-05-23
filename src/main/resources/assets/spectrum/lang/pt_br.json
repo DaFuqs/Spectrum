@@ -80,6 +80,8 @@
   "container.spectrum.rei.midnight_solution_converting.title": "Mergulho da Meia Noite",
 
   "container.spectrum.bedrock_anvil": "Reparar & Escrever contos",
+  "container.spectrum.bedrock_anvil.tooltip": "Indestrutível. Renomear de graça, sem limite",
+  "container.spectrum.bedrock_anvil.tooltip2": "de reparos & pode adicionar Contos(Lore) a Itens",
   "container.spectrum.bedrock_anvil.lore": "Conto:",
 
   "container.spectrum.rei.anvil_crushing.title": "Esmagar Item",

@@ -5,32 +5,32 @@
   "fluid": "spectrum:midnight_solution",
   "ingredients": [
     {
-      "item": "minecraft:golden_chestplate"
+      "item": "minecraft:golden_sword"
     },
     {
       "item": "spectrum:bedrock_dust",
-      "count": 8
+      "count": 2
     },
     {
       "item": "spectrum:black_pigment",
-	  "count": 8
+	  "count": 2
     },
     {
       "item": "spectrum:onyx_powder",
-	  "count": 8
+	  "count": 2
     },
     {
       "item": "spectrum:scarlet_gem",
       "count": 1
     },
     {
-      "item": "minecraft:rose_bush",
-      "count": 1
+      "item": "spectrum:scarlet_fragments",
+      "count": 2
     }
   ],
   "result" : {
-    "item": "spectrum:bedrock_chestplate",
-    "nbt": "{Enchantments: [{id: \"minecraft:protection\", lvl: 5s}]}"
+    "item": "spectrum:bedrock_sword",
+    "nbt": "{Enchantments: [{id: \"minecraft:sharpness\", lvl: 6s}]}"
   },
   "required_advancement": "spectrum:progression/unlock_bedrock_tools",
   "world_conditions": [ ],

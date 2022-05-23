@@ -1,7 +1,7 @@
 {
   "type": "spectrum:pedestal",
   "time": 120,
-  "tier": "complex",
+  "tier": "advanced",
   "magenta": 0,
   "yellow": 0,
   "cyan": 0,
@@ -9,18 +9,16 @@
   "white": 0,
   "experience": 0.0,
   "pattern": [
-    "BBB",
-    "BBB",
-    "BBB"
+    "B"
   ],
   "key": {
     "B": {
-      "item": "spectrum:bedrock_dust"
+      "item": "spectrum:bedrock_storage_block"
     }
   },
   "result" : {
-    "item": "spectrum:bedrock_storage_block",
-    "count": 1
+    "item": "spectrum:bedrock_dust",
+    "count": 9
   },
   "required_advancements": ["spectrum:progression/unlock_bedrock_tools"],
   "disable_yield_upgrades": true

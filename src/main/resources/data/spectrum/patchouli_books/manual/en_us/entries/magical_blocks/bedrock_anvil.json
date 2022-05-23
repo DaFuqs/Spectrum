@@ -14,7 +14,7 @@
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier4/bedrock/bedrock_anvil",
+      "recipe": "spectrum:pedestal/tier3/bedrock/bedrock_anvil",
       "text": "Allows you to rename items for free and has no maximum repair limit. In addition, you can also add descriptions to your items.$(br)$(italic)Tip: use \"\\n\" to split your text into multiple lines."
     }
   ]

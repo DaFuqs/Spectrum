@@ -1,27 +1,28 @@
 {
   "type": "spectrum:pedestal",
-  "group": "bedrock_armor",
   "time": 600,
-  "tier": "complex",
+  "tier": "advanced",
   "magenta": 0,
   "yellow": 0,
   "cyan": 0,
   "black": 0,
   "white": 0,
-  "experience": 4.0,
+  "experience": 8.0,
   "pattern": [
     "BBB",
-    "B B",
-    "B B"
+    " I ",
+    "III"
   ],
   "key": {
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
     "B": {
-      "item": "spectrum:bedrock_dust"
+      "item": "spectrum:bedrock_storage_block"
     }
   },
   "result" : {
-    "item": "spectrum:bedrock_leggings",
-    "nbt": "{Enchantments: [{id: \"minecraft:blast_protection\", lvl: 4s}]}",
+    "item": "spectrum:bedrock_anvil",
     "count": 1
   },
   "required_advancements": ["spectrum:progression/unlock_bedrock_tools"]

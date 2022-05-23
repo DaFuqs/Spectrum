@@ -14,7 +14,8 @@
       "item": "minecraft:phantom_membrane"
     },
     {
-      "item": "spectrum:purple_pigment"
+      "item": "spectrum:purple_pigment",
+	  "count": 16
     }
   ],
   "result" : {

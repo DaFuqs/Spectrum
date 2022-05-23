@@ -11,10 +11,12 @@
       "item": "minecraft:rabbit_foot"
     },
     {
-      "item": "spectrum:lightning_stone"
+      "item": "spectrum:lightning_stone",
+	  "count": 2
     },
     {
-      "item": "spectrum:yellow_pigment"
+      "item": "spectrum:yellow_pigment",
+	  "count": 16
     }
   ],
   "result" : {

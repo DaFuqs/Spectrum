@@ -8,13 +8,15 @@
       "item": "spectrum:fanciful_circlet"
     },
     {
-      "item": "spectrum:neolith"
-    },
-    {
       "item": "spectrum:scarlet_gem"
     },
     {
-      "item": "spectrum:orange_pigment"
+      "item": "spectrum:neolith",
+	  "count": 4
+    },
+    {
+      "item": "spectrum:orange_pigment",
+	  "count": 16
     }
   ],
   "result" : {

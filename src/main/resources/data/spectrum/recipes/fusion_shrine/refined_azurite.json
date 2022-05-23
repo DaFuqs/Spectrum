@@ -5,7 +5,8 @@
   "fluid": "minecraft:water",
   "ingredients": [
     {
-      "item": "spectrum:raw_azurite"
+      "item": "spectrum:raw_azurite",
+      "count": 4
     },
     {
       "item": "spectrum:neolith"

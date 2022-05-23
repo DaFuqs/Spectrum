@@ -11,13 +11,15 @@
       "item": "minecraft:heart_of_the_sea"
     },
     {
-      "item": "minecraft:copper_ingot"
-    },
-    {
       "item": "spectrum:mermaids_gem"
     },
     {
-      "item": "spectrum:light_blue_pigment"
+      "item": "minecraft:copper_ingot",
+	  "count": 4
+    },
+    {
+      "item": "spectrum:light_blue_pigment",
+	  "count": 16
     }
   ],
   "result" : {

@@ -5,10 +5,10 @@
   "fluid": "spectrum:liquid_crystal",
   "ingredients": [
     {
-	  "item": "spectrum:topaz_shard"
+      "item": "spectrum:topaz_shard"
     },
     {
-	  "item": "minecraft:amethyst_shard"
+      "item": "minecraft:amethyst_shard"
     },
     {
       "item": "spectrum:citrine_shard"

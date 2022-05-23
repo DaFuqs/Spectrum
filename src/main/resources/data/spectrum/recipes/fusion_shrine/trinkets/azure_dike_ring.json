@@ -11,7 +11,8 @@
       "item": "spectrum:refined_azurite"
     },
     {
-      "item": "spectrum:blue_pigment"
+      "item": "spectrum:blue_pigment",
+	  "count": 16
     }
   ],
   "result" : {

@@ -8,16 +8,18 @@
       "item": "spectrum:fanciful_pendant"
     },
     {
-      "item": "spectrum:neolith"
-    },
-    {
       "item": "minecraft:totem_of_undying"
     },
     {
-      "item": "spectrum:blue_pigment"
+      "item": "spectrum:moonstruck_nectar"
     },
     {
-      "item": "spectrum:moonstruck_nectar"
+      "item": "spectrum:neolith",
+	  "count": 2
+    },
+    {
+      "item": "spectrum:blue_pigment",
+	  "count": 16
     }
   ],
   "result" : {

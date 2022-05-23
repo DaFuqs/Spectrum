@@ -8,7 +8,8 @@
       "item": "spectrum:fanciful_stone_ring"
     },
     {
-      "item": "minecraft:gold_ingot"
+      "item": "minecraft:gold_ingot",
+	  "count": 8
     },
     {
       "item": "spectrum:moonstone_shard"

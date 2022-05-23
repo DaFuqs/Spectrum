@@ -8,10 +8,16 @@
       "item": "spectrum:fanciful_pendant"
     },
     {
-      "item": "spectrum:paletur_gem"
+      "item": "spectrum:paletur_gem",
+      "count": 3
     },
     {
-      "item": "minecraft:glass"
+      "item": "minecraft:glass",
+      "count": 4
+    },
+    {
+      "item": "spectrum:pink_pigment",
+      "count": 16
     }
   ],
   "result" : {

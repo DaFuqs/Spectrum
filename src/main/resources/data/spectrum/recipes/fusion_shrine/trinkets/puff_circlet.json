@@ -17,7 +17,8 @@
       "item": "spectrum:moonstone_cluster"
     },
     {
-      "item": "spectrum:white_pigment"
+      "item": "spectrum:white_pigment",
+	  "count": 16
     }
   ],
   "result" : {

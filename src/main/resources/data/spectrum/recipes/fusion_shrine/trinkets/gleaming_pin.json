@@ -5,16 +5,19 @@
   "fluid": "spectrum:liquid_crystal",
   "ingredients": [
     {
-      "item": "spectrum:polished_calcite"
+      "item": "spectrum:polished_calcite",
+	  "count": 4
     },
     {
       "item": "spectrum:shooting_star"
     },
     {
-      "item": "spectrum:stardust"
+      "item": "spectrum:stardust",
+	  "count": 16
     },
     {
-      "item": "spectrum:yellow_pigment"
+      "item": "spectrum:yellow_pigment",
+	  "count": 16
     }
   ],
   "result" : {

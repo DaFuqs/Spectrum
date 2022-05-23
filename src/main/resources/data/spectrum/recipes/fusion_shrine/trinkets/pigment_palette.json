@@ -5,10 +5,12 @@
   "fluid": "spectrum:liquid_crystal",
   "ingredients": [
     {
-      "tag": "minecraft:planks"
+      "tag": "minecraft:planks",
+	  "count": 4
     },
     {
-      "tag": "spectrum:pigments"
+      "tag": "spectrum:pigments",
+	  "count": 16
     },
     {
       "item": "spectrum:refined_azurite"

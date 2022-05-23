@@ -8,13 +8,16 @@
       "item": "spectrum:fanciful_circlet"
     },
     {
-      "item": "minecraft:phantom_membrane"
+      "item": "spectrum:mermaids_gem",
+	  "count": 2
     },
     {
-      "item": "spectrum:mermaids_gem"
+      "item": "minecraft:phantom_membrane",
+	  "count": 4
     },
     {
-      "item": "spectrum:brown_pigment"
+      "item": "spectrum:brown_pigment",
+	  "count": 16
     }
   ],
   "result" : {

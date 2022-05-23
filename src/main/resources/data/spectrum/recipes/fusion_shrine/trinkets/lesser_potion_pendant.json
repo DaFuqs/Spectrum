@@ -11,10 +11,12 @@
       "item": "spectrum:scarlet_gem"
     },
     {
-      "item": "minecraft:glass"
+      "item": "minecraft:glass",
+	  "count": 4
     },
     {
-      "item": "spectrum:pink_pigment"
+      "item": "spectrum:pink_pigment",
+	  "count": 16
     }
   ],
   "result" : {

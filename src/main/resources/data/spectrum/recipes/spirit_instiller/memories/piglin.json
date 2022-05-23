@@ -11,6 +11,7 @@
   },
   "center_ingredient": {
     "tag": "spectrum:memory_bonding_agents"
+    "count": 4
   },
   "result" : {
     "item": "spectrum:memory",

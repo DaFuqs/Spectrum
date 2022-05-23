@@ -19,6 +19,7 @@ import net.minecraft.util.BlockRotation;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -48,7 +49,11 @@ public class PreservationControllerBlock extends BlockWithEntity {
 	
 	@Override
 	public BlockState getPlacementState(ItemPlacementContext ctx) {
-		return this.getDefaultState().with(FACING, ctx.getSide().getOpposite());
+		Direction direction = ctx.getSide().getOpposite();
+		if(direction == Direction.UP || direction == Direction.DOWN) { // those do not exist in Properties.HORIZONTAL_FACING
+			direction = Direction.NORTH;
+		}
+		return this.getDefaultState().with(FACING, direction);
 	}
 	
 	@Nullable

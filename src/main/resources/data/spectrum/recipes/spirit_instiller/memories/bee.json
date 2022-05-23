@@ -10,7 +10,7 @@
     "item": "minecraft:honeycomb"
   },
   "center_ingredient": {
-    "tag": "spectrum:memory_bonding_agents"
+    "tag": "spectrum:memory_bonding_agents",
     "count": 4
   },
   "result" : {

@@ -80,6 +80,8 @@
   "container.spectrum.rei.midnight_solution_converting.title": "Midnight Dipping",
 
   "container.spectrum.bedrock_anvil": "Repair & write Lore",
+  "container.spectrum.bedrock_anvil.tooltip": "Indestructible. Free renaming, unlimited",
+  "container.spectrum.bedrock_anvil.tooltip2": "repair cap & able to add Lore to Items",
   "container.spectrum.bedrock_anvil.lore": "Lore:",
 
   "container.spectrum.rei.anvil_crushing.title": "Item Crushing",

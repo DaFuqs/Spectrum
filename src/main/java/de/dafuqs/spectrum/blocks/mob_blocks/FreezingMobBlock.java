@@ -33,6 +33,9 @@ public class FreezingMobBlock extends MobBlock {
 		put(Blocks.ICE, new Pair<>(Blocks.PACKED_ICE.getDefaultState(), 0.25F));
 		put(Blocks.PACKED_ICE, new Pair<>(Blocks.BLUE_ICE.getDefaultState(), 0.1F));
 	}};
+	public static final Map<BlockState, Pair<BlockState, Float>> FREEZING_STATE_MAP = new HashMap<>() {{
+		put(Blocks.LAVA.getDefaultState(), new Pair<>(Blocks.OBSIDIAN.getDefaultState(), 1.0F)); // just full, not flowing
+	}};
 	
 	public FreezingMobBlock(Settings settings) {
 		super(settings);
@@ -57,6 +60,16 @@ public class FreezingMobBlock extends MobBlock {
 				return true;
 			}
 		}
+		if(FREEZING_STATE_MAP.containsKey(sourceState)) {
+			Pair<BlockState, Float> recipe = FREEZING_STATE_MAP.get(sourceState);
+			if(recipe.getRight() >= 1.0F || world.random.nextFloat() < recipe.getRight()) {
+				// freeze
+				world.setBlockState(blockPos, recipe.getLeft());
+				world.syncWorldEvent(WorldEvents.BLOCK_BROKEN, blockPos, Block.getRawIdFromState(recipe.getLeft())); // processed in WorldRenderer processGlobalEvent()
+				return true;
+			}
+		}
+		
 		return false;
 	}
 	

@@ -61,7 +61,7 @@ public class SpectrumFluids {
 		setupFluidRendering(MUD, FLOWING_MUD, new Identifier(SpectrumCommon.MOD_ID, "mud"), 0x4e2e0a);
 		BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getTranslucent(), MUD, FLOWING_MUD);
 		
-		setupFluidRendering(MIDNIGHT_SOLUTION, FLOWING_MIDNIGHT_SOLUTION, new Identifier(SpectrumCommon.MOD_ID, "midnight_solution"), 0x4e2e0a);
+		setupFluidRendering(MIDNIGHT_SOLUTION, FLOWING_MIDNIGHT_SOLUTION, new Identifier(SpectrumCommon.MOD_ID, "midnight_solution"), 0x11183b);
 		BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getTranslucent(), MIDNIGHT_SOLUTION, FLOWING_MIDNIGHT_SOLUTION);
 	}
 

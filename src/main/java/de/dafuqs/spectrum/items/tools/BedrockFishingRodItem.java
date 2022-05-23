@@ -21,7 +21,7 @@ public class BedrockFishingRodItem extends FishingRodItem implements Preenchante
 	
 	@Override
 	public Map<Enchantment, Integer> getDefaultEnchantments() {
-		return Map.of(Enchantments.LUCK_OF_THE_SEA, 3);
+		return Map.of(Enchantments.LUCK_OF_THE_SEA, 4);
 	}
 	
 	@Override

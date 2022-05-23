@@ -21,7 +21,7 @@ public class BedrockBowItem extends BowItem implements Preenchanted {
 	
 	@Override
 	public Map<Enchantment, Integer> getDefaultEnchantments() {
-		return Map.of(Enchantments.POWER, 5);
+		return Map.of(Enchantments.POWER, 6);
 	}
 	
 	@Override

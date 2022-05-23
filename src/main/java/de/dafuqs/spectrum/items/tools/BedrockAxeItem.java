@@ -22,7 +22,7 @@ public class BedrockAxeItem extends AxeItem implements Preenchanted {
 	
 	@Override
 	public Map<Enchantment, Integer> getDefaultEnchantments() {
-		return Map.of(Enchantments.EFFICIENCY, 5);
+		return Map.of(Enchantments.EFFICIENCY, 6);
 	}
 	
 	@Override

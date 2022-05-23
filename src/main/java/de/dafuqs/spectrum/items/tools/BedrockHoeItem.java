@@ -22,7 +22,7 @@ public class BedrockHoeItem extends HoeItem implements Preenchanted {
 	
 	@Override
 	public Map<Enchantment, Integer> getDefaultEnchantments() {
-		return Map.of(Enchantments.FORTUNE, 3);
+		return Map.of(Enchantments.FORTUNE, 4);
 	}
 	
 	@Override

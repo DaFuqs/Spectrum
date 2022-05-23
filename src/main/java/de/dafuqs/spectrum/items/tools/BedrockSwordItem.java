@@ -22,7 +22,7 @@ public class BedrockSwordItem extends SwordItem implements Preenchanted {
 	
 	@Override
 	public Map<Enchantment, Integer> getDefaultEnchantments() {
-		return Map.of(Enchantments.SHARPNESS, 5);
+		return Map.of(Enchantments.SHARPNESS, 6);
 	}
 	
 	@Override

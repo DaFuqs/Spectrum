@@ -183,25 +183,25 @@ public class SpectrumItems {
 	public static final Item BEDROCK_HELMET = new SpectrumArmorItem(BEDROCK_ARMOR_MATERIAL, EquipmentSlot.HEAD, bedrockArmorItemSettings) {
 		@Override
 		public Map<Enchantment, Integer> getDefaultEnchantments() {
-			return Map.of(Enchantments.PROJECTILE_PROTECTION, 4);
+			return Map.of(Enchantments.PROJECTILE_PROTECTION, 5);
 		}
 	};
 	public static final Item BEDROCK_CHESTPLATE = new SpectrumArmorItem(BEDROCK_ARMOR_MATERIAL, EquipmentSlot.CHEST, bedrockArmorItemSettings) {
 		@Override
 		public Map<Enchantment, Integer> getDefaultEnchantments() {
-			return Map.of(Enchantments.PROTECTION, 4);
+			return Map.of(Enchantments.PROTECTION, 5);
 		}
 	};
 	public static final Item BEDROCK_LEGGINGS = new SpectrumArmorItem(BEDROCK_ARMOR_MATERIAL, EquipmentSlot.LEGS, bedrockArmorItemSettings) {
 		@Override
 		public Map<Enchantment, Integer> getDefaultEnchantments() {
-			return Map.of(Enchantments.BLAST_PROTECTION, 4);
+			return Map.of(Enchantments.BLAST_PROTECTION, 5);
 		}
 	};
 	public static final Item BEDROCK_BOOTS = new SpectrumArmorItem(BEDROCK_ARMOR_MATERIAL, EquipmentSlot.FEET, bedrockArmorItemSettings) {
 		@Override
 		public Map<Enchantment, Integer> getDefaultEnchantments() {
-			return Map.of(Enchantments.FIRE_PROTECTION, 4);
+			return Map.of(Enchantments.FIRE_PROTECTION, 5);
 		}
 	};
 

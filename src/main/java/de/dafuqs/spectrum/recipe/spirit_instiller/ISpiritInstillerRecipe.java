@@ -1,6 +1,8 @@
 package de.dafuqs.spectrum.recipe.spirit_instiller;
 
 import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.interfaces.PlayerOwned;
+import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
 import de.dafuqs.spectrum.recipe.GatedRecipe;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
@@ -11,44 +13,46 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeType;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
 
 import java.util.List;
+import java.util.UUID;
 
 public interface ISpiritInstillerRecipe extends Recipe<Inventory>, GatedRecipe {
 	
-	public static final Identifier UNLOCK_SPIRIT_INSTILLER_ADVANCEMENT_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "midgame/build_spirit_instiller_structure");
+	Identifier UNLOCK_SPIRIT_INSTILLER_ADVANCEMENT_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "midgame/build_spirit_instiller_structure");
 	
 	@Override
-	public ItemStack getOutput();
+	ItemStack getOutput();
 
 	@Override
-	public default boolean isIgnoredInRecipeBook() {
+	default boolean isIgnoredInRecipeBook() {
 		return true;
 	}
 
 	@Override
-	public default ItemStack createIcon() {
+	default ItemStack createIcon() {
 		return new ItemStack(SpectrumBlocks.SPIRIT_INSTILLER);
 	}
 	
 	@Override
-	public Identifier getId();
+	Identifier getId();
 	
 	@Override
-	public default RecipeType<?> getType() {
+	default RecipeType<?> getType() {
 		return SpectrumRecipeTypes.SPIRIT_INSTILLER_RECIPE;
 	}
 	
 	@Override
-	public default ItemStack craft(Inventory inv) {
+	default ItemStack craft(Inventory inv) {
 		return null;
 	}
 	
 	@Override
-	public default boolean matches(Inventory inv, World world) {
+	default boolean matches(Inventory inv, World world) {
 		List<IngredientStack> ingredientStacks = getIngredientStacks();
 		if(inv.size() > 2) {
 			if(ingredientStacks.get(2).test(inv.getStack(0))) {
@@ -62,31 +66,40 @@ public interface ISpiritInstillerRecipe extends Recipe<Inventory>, GatedRecipe {
 		return false;
 	}
 	
+	// Use getIngredientStacks() instead
+	// that includes counts in stacks
 	@Deprecated
 	@Override
-	public DefaultedList<Ingredient> getIngredients();
+	DefaultedList<Ingredient> getIngredients();
 	
-	public List<IngredientStack> getIngredientStacks();
+	List<IngredientStack> getIngredientStacks();
 	
 	@Override
-	public default boolean fits(int width, int height) {
+	default boolean fits(int width, int height) {
 		return width * height >= 3;
 	}
 	
 	@Override
-	public default String getGroup() {
+	default String getGroup() {
 		return null;
 	}
 	
-	public float getExperience();
+	float getExperience();
 	
-	public int getCraftingTime();
+	int getCraftingTime();
 	
-	public Identifier getRequiredAdvancementIdentifier();
+	Identifier getRequiredAdvancementIdentifier();
 	
-	public boolean areYieldAndEfficiencyUpgradesDisabled();
+	boolean areYieldAndEfficiencyUpgradesDisabled();
 	
 	@Override
-	public boolean canPlayerCraft(PlayerEntity playerEntity);
+	boolean canPlayerCraft(PlayerEntity playerEntity);
+	
+	static void grantPlayerSpiritInstillingAdvancementCriterion(World world, UUID playerUUID, ItemStack resultStack, int experience) {
+		ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity) PlayerOwned.getPlayerEntityIfOnline(world, playerUUID);
+		if(serverPlayerEntity != null) {
+			SpectrumAdvancementCriteria.SPIRIT_INSTILLER_CRAFTING.trigger(serverPlayerEntity, resultStack, experience);
+		}
+	}
 	
 }

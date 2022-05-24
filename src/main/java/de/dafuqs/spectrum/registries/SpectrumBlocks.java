@@ -672,8 +672,8 @@ public class SpectrumBlocks {
 	public static final Block ENDER_DROPPER = new EnderDropperBlock(FabricBlockSettings.copyOf(Blocks.DROPPER).requiresTool().strength(15F, 60.0F));
 	public static final Block ENDER_HOPPER = new EnderHopperBlock(FabricBlockSettings.copyOf(Blocks.HOPPER).requiresTool().strength(15F, 60.0F));
 
-	private static final BiMap<SpectrumSkullBlock.Type, Block> MOB_HEADS = EnumHashBiMap.create(SpectrumSkullBlock.Type.class);
-	private static final BiMap<SpectrumSkullBlock.Type, Block> MOB_WALL_HEADS = EnumHashBiMap.create(SpectrumSkullBlock.Type.class);
+	private static final BiMap<SpectrumSkullBlock.SpectrumSkullBlockType, Block> MOB_HEADS = EnumHashBiMap.create(SpectrumSkullBlock.SpectrumSkullBlockType.class);
+	private static final BiMap<SpectrumSkullBlock.SpectrumSkullBlockType, Block> MOB_WALL_HEADS = EnumHashBiMap.create(SpectrumSkullBlock.SpectrumSkullBlockType.class);
 
 	public static final Block SPIRIT_SALLOW_LOG = new PillarBlock(FabricBlockSettings.copyOf(Blocks.OAK_WOOD));
 	public static final Block SPIRIT_SALLOW_LEAVES = new SpiritSallowLeavesBlock(spiritSallowLeavesBlockSettings);
@@ -1515,12 +1515,12 @@ public class SpectrumBlocks {
 
 	// Most mob heads vanilla is missing (vanilla only has: skeleton, wither skeleton, zombie, player, creeper, ender dragon)
 	private static void registerMobHeads(FabricItemSettings fabricItemSettings) {
-		for(SpectrumSkullBlock.Type type : SpectrumSkullBlock.Type.values()) {
+		for(SpectrumSkullBlock.SpectrumSkullBlockType type : SpectrumSkullBlock.SpectrumSkullBlockType.values()) {
 			Block head = new SpectrumSkullBlock(type, FabricBlockSettings.copyOf(Blocks.SKELETON_SKULL));
 			registerBlock(type.name().toLowerCase(Locale.ROOT) + "_head", head);
 			Block wallHead = new SpectrumWallSkullBlock(type, FabricBlockSettings.copyOf(Blocks.SKELETON_SKULL).dropsLike(head));
 			registerBlock(type.name().toLowerCase(Locale.ROOT) + "_wall_head", wallHead);
-			BlockItem headItem = new SpectrumSkullBlockItem(head, wallHead, (fabricItemSettings));
+			BlockItem headItem = new SpectrumSkullBlockItem(head, wallHead, (fabricItemSettings), type.entityType);
 			registerBlockItem(type.name().toLowerCase(Locale.ROOT) + "_head", headItem);
 
 			MOB_HEADS.put(type, head);
@@ -1528,11 +1528,11 @@ public class SpectrumBlocks {
 		}
 	}
 
-	public static Block getMobHead(SpectrumSkullBlock.Type skullType) {
+	public static Block getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType skullType) {
 		return MOB_HEADS.get(skullType);
 	}
 
-	public static SpectrumSkullBlock.Type getSkullType(Block block) {
+	public static SpectrumSkullBlock.SpectrumSkullBlockType getSkullType(Block block) {
 		if(block instanceof SpectrumWallSkullBlock) {
 			return MOB_WALL_HEADS.inverse().get(block);
 		} else {
@@ -1540,7 +1540,7 @@ public class SpectrumBlocks {
 		}
 	}
 
-	public static Block getMobWallHead(SpectrumSkullBlock.Type skullType) {
+	public static Block getMobWallHead(SpectrumSkullBlock.SpectrumSkullBlockType skullType) {
 		return MOB_WALL_HEADS.get(skullType);
 	}
 

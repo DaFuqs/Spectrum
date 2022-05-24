@@ -28,8 +28,9 @@
       "text": "Using the exact drop that you got by killing creatures with that fluid you can create even more of it. Quite morbid, if you think about it."
     },
     {
-      "type": "patchouli:text",
+      "type": "spectrum:midnight_solution_converting",
       "title": "Item Conversion",
+      "recipe": "spectrum:midnight_solution_converting/blackstone",
       "text": "Throwing some items into the liquid seems to corrupt them up to a point they turn into something else entirely."
     },
     {

@@ -9,7 +9,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Gilded books serve as an alternative to mundane Books for enchanting in the $(l:enchanting/enchanter)Enchanter$(/l). Being much more receptive for magic, the enchanting process will be both faster and cheaper.$(br)More than that, they can even be used to copy enchantments from all forms of Items in the Item Bowls around the Enchanter onto itself, not just other Enchanted Books."
+      "text": "Gilded books serve as an alternative to mundane Books for enchanting in the $(l:enchanting/enchanter)Enchanter$(/l). Being much more receptive for magic, the enchanting process will be both faster and cheaper.$(br)More than that, they can even be used to copy enchantments from all kinds of Items in the Item Bowls around the Enchanter onto itself (not just from other Enchanted Books)."
     },
     {
       "type": "spectrum:pedestal_crafting",

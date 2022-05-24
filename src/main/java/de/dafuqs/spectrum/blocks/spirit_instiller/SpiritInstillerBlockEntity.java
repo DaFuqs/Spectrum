@@ -48,7 +48,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 
-public class SpiritInstillerBlockEntity extends BlockEntity implements MultiblockCrafter {
+public class SpiritInstillerBlockEntity extends BlockEntity implements MultiblockCrafter, Inventory {
 	
 	public static final List<Vec3i> itemBowlOffsetsHorizontal = new ArrayList<>() {{
 		add(new Vec3i(0, 0, 2));
@@ -332,32 +332,7 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 	
 	public static void craftSpiritInstillerRecipe(World world, @NotNull SpiritInstillerBlockEntity spiritInstillerBlockEntity, @NotNull ISpiritInstillerRecipe spiritInstillerRecipe) {
 		if(decrementItemsInInstillerAndBowls(spiritInstillerBlockEntity)) {
-			ItemStack resultStack = spiritInstillerRecipe.getOutput().copy();
-			
-			// Yield upgrade
-			if (!spiritInstillerRecipe.areYieldAndEfficiencyUpgradesDisabled() && spiritInstillerBlockEntity.upgrades.get(UpgradeType.YIELD) != 1.0) {
-				int resultCountMod = Support.getIntFromDecimalWithChance(resultStack.getCount() * spiritInstillerBlockEntity.upgrades.get(UpgradeType.YIELD), world.random);
-				resultStack.setCount(resultCountMod);
-			}
-			
-			if(resultStack.isOf(SpectrumBlocks.MEMORY.asItem())) {
-				boolean makeUnrecognizable = spiritInstillerBlockEntity.inventory.getStack(0).isIn(SpectrumItemTags.MEMORY_BONDING_AGENTS_CONCEILABLE);
-				if(makeUnrecognizable) {
-					MemoryItem.makeUnrecognizable(resultStack);
-				}
-			}
-			
-			// spawn the result stack in world
-			EnchanterBlockEntity.spawnItemStackAsEntitySplitViaMaxCount(world, spiritInstillerBlockEntity.pos, resultStack, resultStack.getCount());
-			
-			// Calculate and spawn experience
-			double experienceModifier = spiritInstillerBlockEntity.upgrades.get(UpgradeType.EXPERIENCE);
-			float recipeExperienceBeforeMod = spiritInstillerRecipe.getExperience();
-			int awardedExperience = Support.getIntFromDecimalWithChance(recipeExperienceBeforeMod * experienceModifier, spiritInstillerBlockEntity.world.random);
-			MultiblockCrafter.spawnExperience(spiritInstillerBlockEntity.world, spiritInstillerBlockEntity.pos.up(), awardedExperience);
-			
-			// Award advancements
-			grantPlayerSpiritInstillingAdvancementCriterion(world, spiritInstillerBlockEntity.ownerUUID, resultStack, awardedExperience);
+			spiritInstillerRecipe.craft(spiritInstillerBlockEntity);
 		}
 	}
 	
@@ -403,13 +378,6 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 			return true;
 		} else {
 			return false;
-		}
-	}
-	
-	private static void grantPlayerSpiritInstillingAdvancementCriterion(World world, UUID playerUUID, ItemStack resultStack, int experience) {
-		ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity) PlayerOwned.getPlayerEntityIfOnline(world, playerUUID);
-		if(serverPlayerEntity != null) {
-			SpectrumAdvancementCriteria.SPIRIT_INSTILLER_CRAFTING.trigger(serverPlayerEntity, resultStack, experience);
 		}
 	}
 	
@@ -490,6 +458,54 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 		markDirty();
 		inventory.markDirty();
 		updateInClientWorld();
+	}
+	
+	@Override
+	public int size() {
+		return INVENTORY_SIZE;
+	}
+	
+	@Override
+	public boolean isEmpty() {
+		return this.inventory.isEmpty();
+	}
+	
+	@Override
+	public ItemStack getStack(int slot) {
+		return this.inventory.getStack(slot);
+	}
+	
+	@Override
+	public ItemStack removeStack(int slot, int amount) {
+		this.inventoryChanged();
+		return this.inventory.removeStack(slot, amount);
+	}
+	
+	@Override
+	public ItemStack removeStack(int slot) {
+		this.inventoryChanged();
+		return this.inventory.removeStack(slot);
+	}
+	
+	@Override
+	public void setStack(int slot, ItemStack stack) {
+		this.inventoryChanged();
+		this.inventory.setStack(slot, stack);
+	}
+	
+	@Override
+	public boolean canPlayerUse(PlayerEntity player) {
+		return true;
+	}
+	
+	@Override
+	public void clear() {
+		this.inventoryChanged();
+		this.inventory.clear();
+	}
+	
+	public Map<UpgradeType, Double> getUpgrades() {
+		return this.upgrades;
 	}
 	
 }

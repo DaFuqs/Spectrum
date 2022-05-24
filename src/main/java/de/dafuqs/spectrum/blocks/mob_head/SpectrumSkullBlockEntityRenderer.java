@@ -45,9 +45,9 @@ public class SpectrumSkullBlockEntityRenderer implements BlockEntityRenderer<Spe
 		boolean bl = blockState.getBlock() instanceof WallSkullBlock;
 		Direction direction = bl ? blockState.get(WallSkullBlock.FACING) : null;
 		float h = 22.5F * (float)(bl ? (2 + direction.getHorizontal()) * 4 : blockState.get(SkullBlock.ROTATION));
-		SpectrumSkullBlock.Type skullType = spectrumSkullBlockEntity.getSkullType();
+		SpectrumSkullBlock.SpectrumSkullBlockType skullType = spectrumSkullBlockEntity.getSkullType();
 		if(skullType == null) {
-			skullType = SpectrumSkullBlock.Type.PIG;
+			skullType = SpectrumSkullBlock.SpectrumSkullBlockType.PIG;
 		}
 		RenderLayer renderLayer = getRenderLayer(skullType);
 		renderSkull(direction, h, 0, matrixStack, vertexConsumerProvider, light, renderLayer);

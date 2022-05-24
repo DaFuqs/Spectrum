@@ -1,0 +1,8 @@
+{
+  "criteria": {
+    "broken_spawner_with_resonance_tool": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:lategame/break_spawner_with_resonance_tool" }
+    }
+  }
+}

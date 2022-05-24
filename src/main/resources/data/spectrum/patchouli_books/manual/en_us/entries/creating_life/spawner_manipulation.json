@@ -1,15 +1,15 @@
 {
   "name": "Spawner Manipulation",
-  "advancement": "spectrum:lategame/break_spawner_with_resonance_tool",
+  "advancement": "spectrum:milestones/unlock_spawner_manipulation",
   "icon": "spectrum:spawner",
   "category": "spectrum:creating_life_category",
   "extra_recipe_mappings": {
+    "minecraft:spawner": 0,
     "spectrum:spawner": 0
   },
   "pages": [
     {
-      "type": "spectrum:midnight_solution_converting",
-      "recipe": "spectrum:midnight_solution_converting/blackstone",
+      "type": "patchouli:text",
       "text": "TODO"
     },
     {

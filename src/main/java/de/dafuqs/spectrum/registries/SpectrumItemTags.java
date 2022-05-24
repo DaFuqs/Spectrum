@@ -20,6 +20,7 @@ public class SpectrumItemTags {
 	public static TagKey<Item> ENCHANTABLE_BOOKS;
 	public static TagKey<Item> MEMORY_BONDING_AGENTS_CONCEILABLE;
 	public static TagKey<Item> MOB_HEADS;
+	public static TagKey<Item> SPAWNERS;
 
 	private static TagKey<Item> getReference(String id) {
 		return TagKey.of(Registry.ITEM_KEY, new Identifier(SpectrumCommon.MOD_ID, id));
@@ -38,5 +39,6 @@ public class SpectrumItemTags {
 		ENCHANTABLE_BOOKS = getReference("enchantable_books");
 		MEMORY_BONDING_AGENTS_CONCEILABLE = getReference("memory_bonding_agents_conceilable");
 		MOB_HEADS = getReference("mob_heads");
+		SPAWNERS = getReference("spawners");
 	}
 }

@@ -3,20 +3,26 @@ package de.dafuqs.spectrum.blocks.mob_head;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.client.item.TooltipContext;
+import net.minecraft.entity.EntityType;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.item.WallStandingBlockItem;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.world.World;
 
 import java.util.List;
+import java.util.Optional;
 
 public class SpectrumSkullBlockItem extends WallStandingBlockItem {
 
-	private String artistCached;
+	protected EntityType entityType;
+	protected String artistCached;
 
-	public SpectrumSkullBlockItem(Block standingBlock, Block wallBlock, Settings settings) {
+	public SpectrumSkullBlockItem(Block standingBlock, Block wallBlock, Settings settings, EntityType entityType) {
 		super(standingBlock, wallBlock, settings);
+		this.entityType = entityType;
 	}
 
 	@Override
@@ -34,7 +40,7 @@ public class SpectrumSkullBlockItem extends WallStandingBlockItem {
 	}
 	
 	// MANY thanks to the people at https://minecraft-heads.com/ !
-	private String getHeadArtist(SpectrumSkullBlock.Type type) {
+	private String getHeadArtist(SpectrumSkullBlock.SpectrumSkullBlockType type) {
 		return switch (type) {
 			case FOX_ARCTIC, BEE, CAT, CLOWNFISH, FOX, PANDA, RAVAGER, SALMON, WITHER, PUFFERFISH -> "Pandaclod";
 			case GHAST, CAVE_SPIDER, CHICKEN, COW, ENDERMAN, IRON_GOLEM, BLAZE, MAGMA_CUBE, MOOSHROOM_RED, MOOSHROOM_BROWN, OCELOT, PIG, SLIME, SPIDER, SQUID, VILLAGER, WITCH, ZOMBIFIED_PIGLIN -> "Mojang";
@@ -49,6 +55,25 @@ public class SpectrumSkullBlockItem extends WallStandingBlockItem {
 			case STRIDER -> "Deadly_Golem";
 			default -> "";
 		};
+	}
+	
+	public static Optional<EntityType> getEntityTypeOfSkullStack(ItemStack itemStack) {
+		Item item = itemStack.getItem();
+		if(item instanceof SpectrumSkullBlockItem spectrumSkullBlockItem) {
+			return Optional.of(spectrumSkullBlockItem.entityType);
+		}
+		if (Items.CREEPER_HEAD.equals(item)) {
+			return Optional.of(EntityType.CREEPER);
+		} else if (Items.DRAGON_HEAD.equals(item)) {
+			return Optional.of(EntityType.ENDER_DRAGON);
+		} else if (Items.ZOMBIE_HEAD.equals(item)) {
+			return Optional.of(EntityType.ZOMBIE);
+		} else if (Items.SKELETON_SKULL.equals(item)) {
+			return Optional.of(EntityType.SKELETON);
+		} else if (Items.WITHER_SKELETON_SKULL.equals(item)) {
+			return Optional.of(EntityType.WITHER_SKELETON);
+		}
+		return Optional.empty();
 	}
 
 }

@@ -1,0 +1,40 @@
+﻿{
+  "type": "spectrum:pedestal",
+  "group": "chalk_glow_chalk",
+  "time": 400,
+  "tier": "basic",
+  "cyan": 0,
+  "magenta": 0,
+  "yellow": 0,
+  "white": 0,
+  "black": 0,
+  "experience": 0.25,
+  "pattern": [
+    "GCG",
+    "CDC",
+    "GCG"
+  ],
+  "key": {
+    "C": {
+      "item": "minecraft:calcite"
+    },
+    "D": {
+      "item": "minecraft:lime_dye"
+    },
+    "G": {
+      "item": "minecraft:glow_ink_sac"
+    }
+  },
+  "result" : {
+    "item": "chalk:lime_glow_chalk",
+    "nbt": "{Unbreakable:1}"
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "chalk"
+      ]
+    }
+  ]
+}

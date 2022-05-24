@@ -1,0 +1,39 @@
+{
+  "type": "spectrum:pedestal",
+  "group": "botania_mushrooms",
+  "time": 100,
+  "tier": "basic",
+  "cyan": 0,
+  "magenta": 0,
+  "yellow": 0,
+  "white": 0,
+  "black": 0,
+  "experience": 0.1,
+  "pattern": [
+    "MPS"
+  ],
+  "key": {
+    "M": {
+      "item": "minecraft:bone_meal"
+    },
+    "P": {
+      "tag": "spectrum:pigments"
+    },
+    "S": {
+      "tag": "spectrum:pigments"
+    }
+  },
+  "result" : {
+    "item": "botania:fertilizer",
+    "count": 4
+  },
+  "required_advancements": ["spectrum:collect_pigment"],
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "botania"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "type": "spectrum:pedestal",
+  "group": "botania_glimmering_flowers",
+  "time": 100,
+  "tier": "basic",
+  "cyan": 0,
+  "magenta": 0,
+  "yellow": 0,
+  "white": 0,
+  "black": 0,
+  "experience": 0.1,
+  "pattern": [
+    "PS"
+  ],
+  "key": {
+    "P": {
+      "item": "botania:green_mystical_flower"
+	},
+    "S": {
+      "item": "spectrum:sparklestone_gem"
+    }
+  },
+  "result" : {
+    "item": "botania:green_shiny_flower",
+    "count": 1
+  },
+  "required_advancements": ["spectrum:collect_sparklestone"],
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "botania"
+      ]
+    }
+  ]
+}

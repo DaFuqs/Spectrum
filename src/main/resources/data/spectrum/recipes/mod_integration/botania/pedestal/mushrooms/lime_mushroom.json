@@ -1,0 +1,39 @@
+{
+  "type": "spectrum:pedestal",
+  "group": "botania_mushrooms",
+  "time": 100,
+  "tier": "basic",
+  "cyan": 0,
+  "magenta": 0,
+  "yellow": 0,
+  "white": 0,
+  "black": 0,
+  "experience": 0.1,
+  "pattern": [
+    "MPS"
+  ],
+  "key": {
+    "M": {
+      "tag": "c:mushrooms"
+    },
+    "P": {
+      "item": "spectrum:lime_pigment"
+    },
+    "S": {
+      "item": "spectrum:sparklestone_gem"
+    }
+  },
+  "result" : {
+    "item": "botania:lime_mushroom",
+    "count": 3
+  },
+  "required_advancements": ["spectrum:hidden/collect_pigment/collect_lime_pigment"],
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "botania"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "type": "spectrum:spirit_instiller",
+  "time": 200,
+  "experience": 4.0,
+  "ingredient1": {
+    "item": "spectrum:vegetal",
+	"count": 4
+  },
+  "ingredient2": {
+    "item": "spectrum:jade_vine_petals",
+	"count": 4
+  },
+  "center_ingredient": {
+    "item": "botania:black_lotus"
+  },
+  "result" : {
+    "item": "botania:blacker_lotus"
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "botania"
+      ]
+    }
+  ]
+}

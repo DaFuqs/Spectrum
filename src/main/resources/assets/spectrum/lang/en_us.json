@@ -52,6 +52,11 @@
   "recipeGroup.spectrum.restoration_tea": "Restoration Tea",
   "recipeGroup.spectrum.mob_blocks": "Idols",
 
+  "recipeGroup.spectrum.botania_mushrooms": "Colored Mushrooms",
+  "recipeGroup.spectrum.botania_glimmering_flowers": "Glimmering Flowers",
+  "recipeGroup.spectrum.chalk_chalk": "Unbreakable Chalk",
+  "recipeGroup.spectrum.chalk_glow_chalk": "Unbr. Glow Chalk",
+
   "effect.spectrum.immunity": "Immunity",
 
   "item.spectrum.potion": "§2P§3i§cg§6m§be§en§dt§f Potion",

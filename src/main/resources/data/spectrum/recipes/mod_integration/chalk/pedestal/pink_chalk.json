@@ -1,0 +1,37 @@
+﻿{
+  "type": "spectrum:pedestal",
+  "group": "chalk_chalk",
+  "time": 400,
+  "tier": "basic",
+  "cyan": 0,
+  "magenta": 0,
+  "yellow": 0,
+  "white": 0,
+  "black": 0,
+  "experience": 0.25,
+  "pattern": [
+    " C ",
+    "CDC",
+    " C "
+  ],
+  "key": {
+    "C": {
+      "item": "minecraft:calcite"
+    },
+    "D": {
+      "item": "minecraft:pink_dye"
+    }
+  },
+  "result" : {
+    "item": "chalk:pink_chalk",
+    "nbt": "{Unbreakable:1}"
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "chalk"
+      ]
+    }
+  ]
+}

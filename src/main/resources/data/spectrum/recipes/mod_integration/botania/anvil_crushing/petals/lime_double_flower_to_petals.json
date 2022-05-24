@@ -1,0 +1,23 @@
+{
+  "type": "spectrum:anvil_crushing",
+  "ingredient": {
+    "item": "botania:lime_double_flower"
+  },
+  "crushedItemsPerPointOfDamage": 2,
+  "experience": 0.2,
+  "result" : {
+    "item": "botania:lime_petal",
+    "count": 8
+  },
+  "particleEffectIdentifier": "cloud",
+  "particleCount": 4,
+  "soundEventIdentifier": "block.grass.break",
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "botania"
+      ]
+    }
+  ]
+}

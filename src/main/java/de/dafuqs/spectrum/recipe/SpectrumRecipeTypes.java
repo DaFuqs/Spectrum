@@ -17,6 +17,7 @@ import de.dafuqs.spectrum.recipe.potion_workshop.PotionWorkshopBrewingRecipe;
 import de.dafuqs.spectrum.recipe.potion_workshop.PotionWorkshopBrewingRecipeSerializer;
 import de.dafuqs.spectrum.recipe.potion_workshop.PotionWorkshopCraftingRecipe;
 import de.dafuqs.spectrum.recipe.potion_workshop.PotionWorkshopCraftingRecipeSerializer;
+import de.dafuqs.spectrum.recipe.spirit_instiller.ISpiritInstillerRecipe;
 import de.dafuqs.spectrum.recipe.spirit_instiller.SpiritInstillerRecipe;
 import de.dafuqs.spectrum.recipe.spirit_instiller.SpiritInstillerRecipeSerializer;
 import net.minecraft.recipe.Recipe;
@@ -52,7 +53,7 @@ public class SpectrumRecipeTypes {
 	public static RecipeType<MidnightSolutionConvertingRecipe> MIDNIGHT_SOLUTION_CONVERTING_RECIPE;
 	
 	public static RecipeSerializer<SpiritInstillerRecipe> SPIRIT_INSTILLER_RECIPE_SERIALIZER;
-	public static RecipeType<SpiritInstillerRecipe> SPIRIT_INSTILLER_RECIPE;
+	public static RecipeType<ISpiritInstillerRecipe> SPIRIT_INSTILLER_RECIPE;
 
 	static <S extends RecipeSerializer<T>, T extends Recipe<?>> S registerSerializer(String id, S serializer) {
 		return Registry.register(Registry.RECIPE_SERIALIZER, new Identifier(SpectrumCommon.MOD_ID, id), serializer);
@@ -112,7 +113,7 @@ public class SpectrumRecipeTypes {
 		});
 		
 		SPIRIT_INSTILLER_RECIPE_SERIALIZER = registerSerializer("spirit_instiller", new SpiritInstillerRecipeSerializer(SpiritInstillerRecipe::new));
-		SPIRIT_INSTILLER_RECIPE = registerRecipeType("spirit_instiller", new RecipeType<SpiritInstillerRecipe>() {
+		SPIRIT_INSTILLER_RECIPE = registerRecipeType("spirit_instiller", new RecipeType<ISpiritInstillerRecipe>() {
 			@Override
 			public String toString() {return "spectrum:spirit_instiller";}
 		});

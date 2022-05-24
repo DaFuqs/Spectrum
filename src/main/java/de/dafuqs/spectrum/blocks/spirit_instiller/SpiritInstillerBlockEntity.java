@@ -12,6 +12,7 @@ import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
+import de.dafuqs.spectrum.recipe.spirit_instiller.ISpiritInstillerRecipe;
 import de.dafuqs.spectrum.recipe.spirit_instiller.SpiritInstillerRecipe;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
@@ -69,7 +70,7 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 	protected boolean inventoryChanged;
 	
 	private final Inventory autoCraftingInventory;
-	private SpiritInstillerRecipe currentRecipe;
+	private ISpiritInstillerRecipe currentRecipe;
 	private int craftingTime;
 	private int craftingTimeTotal;
 	
@@ -261,7 +262,7 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 				spiritInstillerBlockEntity.autoCraftingInventory.setStack(2, ItemStack.EMPTY);
 			}
 			
-			SpiritInstillerRecipe spiritInstillerRecipe = world.getRecipeManager().getFirstMatch(SpectrumRecipeTypes.SPIRIT_INSTILLER_RECIPE, spiritInstillerBlockEntity.autoCraftingInventory, world).orElse(null);
+			ISpiritInstillerRecipe spiritInstillerRecipe = world.getRecipeManager().getFirstMatch(SpectrumRecipeTypes.SPIRIT_INSTILLER_RECIPE, spiritInstillerBlockEntity.autoCraftingInventory, world).orElse(null);
 			if (spiritInstillerRecipe != null) {
 				spiritInstillerBlockEntity.currentRecipe = spiritInstillerRecipe;
 				spiritInstillerBlockEntity.craftingTimeTotal = (int) Math.ceil(spiritInstillerRecipe.getCraftingTime() / spiritInstillerBlockEntity.upgrades.get(Upgradeable.UpgradeType.SPEED));
@@ -318,7 +319,7 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 		return canCraft;
 	}
 	
-	public static void testAndUnlockUnlockBossMemoryAdvancement(ServerPlayerEntity player, SpiritInstillerRecipe spiritInstillerRecipe, boolean canActuallyCraft) {
+	public static void testAndUnlockUnlockBossMemoryAdvancement(ServerPlayerEntity player, ISpiritInstillerRecipe spiritInstillerRecipe, boolean canActuallyCraft) {
 		boolean isBossMemory = spiritInstillerRecipe.getGroup() != null && spiritInstillerRecipe.getGroup().equals("boss_memories");
 		if(isBossMemory) {
 			if(canActuallyCraft) {
@@ -329,7 +330,7 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 		}
 	}
 	
-	public static void craftSpiritInstillerRecipe(World world, @NotNull SpiritInstillerBlockEntity spiritInstillerBlockEntity, @NotNull SpiritInstillerRecipe spiritInstillerRecipe) {
+	public static void craftSpiritInstillerRecipe(World world, @NotNull SpiritInstillerBlockEntity spiritInstillerBlockEntity, @NotNull ISpiritInstillerRecipe spiritInstillerRecipe) {
 		if(decrementItemsInInstillerAndBowls(spiritInstillerBlockEntity)) {
 			ItemStack resultStack = spiritInstillerRecipe.getOutput().copy();
 			
@@ -361,7 +362,7 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 	}
 	
 	public static boolean decrementItemsInInstillerAndBowls(@NotNull SpiritInstillerBlockEntity spiritInstillerBlockEntity) {
-		SpiritInstillerRecipe recipe = spiritInstillerBlockEntity.currentRecipe;
+		ISpiritInstillerRecipe recipe = spiritInstillerBlockEntity.currentRecipe;
 		
 		double efficiencyModifier = 1.0;
 		if(!recipe.areYieldAndEfficiencyUpgradesDisabled() && spiritInstillerBlockEntity.upgrades.get(UpgradeType.EFFICIENCY) != 1.0) {

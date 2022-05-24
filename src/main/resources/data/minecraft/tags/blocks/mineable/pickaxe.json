@@ -42,6 +42,7 @@
 	"spectrum:azurite_block",
 	"spectrum:scarlet_fragment_block",
 	"spectrum:paletur_fragment_block",
+	"spectrum:hover_block",
 	"#spectrum:gemstone_glass",
 	"spectrum:glowing_glass",
 	"#spectrum:pastel_network_nodes",

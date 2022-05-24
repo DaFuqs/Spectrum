@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.compat.patchouli;
 import com.mojang.blaze3d.systems.RenderSystem;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
+import de.dafuqs.spectrum.recipe.spirit_instiller.ISpiritInstillerRecipe;
 import de.dafuqs.spectrum.recipe.spirit_instiller.SpiritInstillerRecipe;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import net.id.incubus_core.recipe.IngredientStack;
@@ -18,7 +19,7 @@ import vazkii.patchouli.client.book.page.abstr.PageDoubleRecipeRegistry;
 
 import java.util.List;
 
-public class PageSpiritInstillerCrafting extends PageDoubleRecipeRegistry<SpiritInstillerRecipe> {
+public class PageSpiritInstillerCrafting extends PageDoubleRecipeRegistry<ISpiritInstillerRecipe> {
 
 	private static final Identifier BACKGROUND_TEXTURE = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/patchouli/spirit_instiller.png");
 	private static final ItemStack ITEM_BOWL_STACK = SpectrumBlocks.ITEM_BOWL_CALCITE.asItem().getDefaultStack();
@@ -28,7 +29,7 @@ public class PageSpiritInstillerCrafting extends PageDoubleRecipeRegistry<Spirit
 	}
 
 	@Override
-	protected ItemStack getRecipeOutput(SpiritInstillerRecipe recipe) {
+	protected ItemStack getRecipeOutput(ISpiritInstillerRecipe recipe) {
 		if (recipe == null) {
 			return ItemStack.EMPTY;
 		} else {
@@ -37,7 +38,7 @@ public class PageSpiritInstillerCrafting extends PageDoubleRecipeRegistry<Spirit
 	}
 
 	@Override
-	protected void drawRecipe(MatrixStack ms, @NotNull SpiritInstillerRecipe recipe, int recipeX, int recipeY, int mouseX, int mouseY, boolean second) {
+	protected void drawRecipe(MatrixStack ms, @NotNull ISpiritInstillerRecipe recipe, int recipeX, int recipeY, int mouseX, int mouseY, boolean second) {
 		RenderSystem.setShaderTexture(0, BACKGROUND_TEXTURE);
 		RenderSystem.enableBlend();
 		DrawableHelper.drawTexture(ms, recipeX - 2, recipeY - 2, 0, 0, 104, 97, 128, 256);

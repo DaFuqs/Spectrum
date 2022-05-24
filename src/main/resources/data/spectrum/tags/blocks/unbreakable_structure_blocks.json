@@ -2,6 +2,8 @@
   "values": [
     "spectrum:preservation_controller",
     "spectrum:preservation_stone",
+    "spectrum:preservation_bricks",
+    "spectrum:shimmering_preservation_bricks",
     "spectrum:dike_chiseled_preservation_stone",
     "spectrum:preservation_glass",
     "spectrum:dike_gate",

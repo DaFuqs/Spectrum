@@ -26,6 +26,7 @@ import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.recipe.enchantment_upgrade.EnchantmentUpgradeRecipe;
 import de.dafuqs.spectrum.recipe.enchantment_upgrade.EnchantmentUpgradeRecipeSerializer;
 import de.dafuqs.spectrum.recipe.potion_workshop.PotionWorkshopReagents;
+import de.dafuqs.spectrum.recipe.spirit_instiller.SpiritInstillerSpawnerChangeRecipe;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.registries.color.ColorRegistry;
 import de.dafuqs.spectrum.worldgen.SpectrumConfiguredFeatures;
@@ -44,6 +45,7 @@ import net.minecraft.block.DispenserBlock;
 import net.minecraft.block.FluidBlock;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.recipe.Recipe;
+import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.resource.ResourceManager;
 import net.minecraft.resource.ResourceType;
@@ -58,6 +60,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.*;
+import java.util.function.BiConsumer;
 
 public class SpectrumCommon implements ModInitializer {
 
@@ -199,6 +202,9 @@ public class SpectrumCommon implements ModInitializer {
 		logInfo("Registering Block / Item Color Registries...");
 		ColorRegistry.registerColorRegistries();
 		
+		logInfo("Registering Special Recipes...");
+		registerRecipeSerializers(registerInRegistry(Registry.RECIPE_SERIALIZER));
+		
 		logInfo("Registering Dispenser Behaviors..");
 		DispenserBlock.registerBehavior(SpectrumItems.BOTTOMLESS_BUNDLE, new BottomlessBundleItem.BottomlessBundlePlacementDispenserBehavior());
 		DispenserBlock.registerBehavior(SpectrumBlocks.COLORFUL_SHOOTING_STAR.asItem(), new ShootingStarBlock.ShootingStarBlockDispenserBehavior());
@@ -298,6 +304,14 @@ public class SpectrumCommon implements ModInitializer {
 			minecraftServer.getRecipeManager().setRecipes(newList);
 		}
 		EnchantmentUpgradeRecipeSerializer.enchantmentUpgradeRecipesToInject.clear();
+	}
+	
+	private static <T> BiConsumer<T, Identifier> registerInRegistry(Registry<? super T> registry) {
+		return (t, id) -> Registry.register(registry, id, t);
+	}
+	
+	public static void registerRecipeSerializers(BiConsumer<RecipeSerializer<?>, Identifier> identifier) {
+		identifier.accept(SpiritInstillerSpawnerChangeRecipe.SERIALIZER, new Identifier(SpectrumCommon.MOD_ID, "spirit_instiller_spawner_change"));
 	}
 
 }

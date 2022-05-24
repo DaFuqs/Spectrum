@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.compat.REI;
 
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.helpers.Support;
+import de.dafuqs.spectrum.recipe.spirit_instiller.ISpiritInstillerRecipe;
 import de.dafuqs.spectrum.recipe.spirit_instiller.SpiritInstillerRecipe;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.display.SimpleGridMenuDisplay;
@@ -24,7 +25,7 @@ public class SpiritInstillerRecipeDisplay implements SimpleGridMenuDisplay, Gate
 	protected final int craftingTime;
 	protected final Identifier requiredAdvancementIdentifier;
 
-	public SpiritInstillerRecipeDisplay(@NotNull SpiritInstillerRecipe recipe) {
+	public SpiritInstillerRecipeDisplay(@NotNull ISpiritInstillerRecipe recipe) {
 		this.craftingInputs = recipe.getIngredientStacks().stream().map(REIHelper::ofIngredientStack).collect(Collectors.toCollection(ArrayList::new));
 		this.output = EntryIngredients.of(recipe.getOutput());
 		this.experience = recipe.getExperience();

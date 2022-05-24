@@ -13,6 +13,7 @@ import de.dafuqs.spectrum.recipe.midnight_solution_converting.MidnightSolutionCo
 import de.dafuqs.spectrum.recipe.pedestal.PedestalCraftingRecipe;
 import de.dafuqs.spectrum.recipe.potion_workshop.PotionWorkshopBrewingRecipe;
 import de.dafuqs.spectrum.recipe.potion_workshop.PotionWorkshopCraftingRecipe;
+import de.dafuqs.spectrum.recipe.spirit_instiller.ISpiritInstillerRecipe;
 import de.dafuqs.spectrum.recipe.spirit_instiller.SpiritInstillerRecipe;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import de.dafuqs.spectrum.registries.SpectrumItems;
@@ -96,7 +97,7 @@ public class REIClientIntegration implements REIClientPlugin {
 		registry.registerRecipeFiller(EnchantmentUpgradeRecipe.class, SpectrumRecipeTypes.ENCHANTMENT_UPGRADE, EnchantmentUpgradeRecipeDisplay::new);
 		registry.registerRecipeFiller(PotionWorkshopBrewingRecipe.class, SpectrumRecipeTypes.POTION_WORKSHOP_BREWING, PotionWorkshopBrewingRecipeDisplay::new);
 		registry.registerRecipeFiller(PotionWorkshopCraftingRecipe.class, SpectrumRecipeTypes.POTION_WORKSHOP_CRAFTING, PotionWorkshopCraftingRecipeDisplay::new);
-		registry.registerRecipeFiller(SpiritInstillerRecipe.class, SpectrumRecipeTypes.SPIRIT_INSTILLER_RECIPE, SpiritInstillerRecipeDisplay::new);
+		registry.registerRecipeFiller(ISpiritInstillerRecipe.class, SpectrumRecipeTypes.SPIRIT_INSTILLER_RECIPE, SpiritInstillerRecipeDisplay::new);
 		registry.registerRecipeFiller(MidnightSolutionConvertingRecipe.class, SpectrumRecipeTypes.MIDNIGHT_SOLUTION_CONVERTING_RECIPE, MidnightSolutionConvertingDisplay::new);
 		
 		if(!SpectrumCommon.CONFIG.REIListsRecipesAsNotUnlocked) {

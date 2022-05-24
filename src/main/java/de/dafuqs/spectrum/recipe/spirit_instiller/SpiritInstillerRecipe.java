@@ -1,27 +1,20 @@
 package de.dafuqs.spectrum.recipe.spirit_instiller;
 
-import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.helpers.Support;
-import de.dafuqs.spectrum.recipe.GatedRecipe;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
-import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import net.id.incubus_core.recipe.IngredientStack;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Ingredient;
-import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeSerializer;
-import net.minecraft.recipe.RecipeType;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
 
 import java.util.List;
 
-public class SpiritInstillerRecipe implements Recipe<Inventory>, GatedRecipe {
-	
-	public static final Identifier UNLOCK_SPIRIT_INSTILLER_ADVANCEMENT_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "midgame/build_spirit_instiller_structure");
+public class SpiritInstillerRecipe implements ISpiritInstillerRecipe {
 	
 	protected final Identifier id;
 	protected final String group;
@@ -48,44 +41,10 @@ public class SpiritInstillerRecipe implements Recipe<Inventory>, GatedRecipe {
 		this.requiredAdvancementIdentifier = requiredAdvancementIdentifier;
 		this.noBenefitsFromYieldAndEfficiencyUpgrades = noBenefitsFromYieldAndEfficiencyUpgrades;
 	}
-	
-	@Override
-	public boolean matches(Inventory inv, World world) {
-		if(inv.size() > 2) {
-			if(centerIngredient.test(inv.getStack(0))) {
-				if(inputIngredient1.test(inv.getStack(1))) {
-					return inputIngredient2.test(inv.getStack(2));
-				} else if(inputIngredient1.test(inv.getStack(2))) {
-					return inputIngredient2.test(inv.getStack(1));
-				}
-			}
-		}
-		return false;
-	}
-
-	@Override
-	public ItemStack craft(Inventory inv) {
-		return null;
-	}
-
-	@Override
-	public boolean fits(int width, int height) {
-		return width * height >= 3;
-	}
 
 	@Override
 	public ItemStack getOutput() {
 		return outputItemStack.copy();
-	}
-	
-	@Override
-	public boolean isIgnoredInRecipeBook() {
-		return true;
-	}
-
-	@Override
-	public ItemStack createIcon() {
-		return new ItemStack(SpectrumBlocks.SPIRIT_INSTILLER);
 	}
 	
 	@Override
@@ -97,12 +56,7 @@ public class SpiritInstillerRecipe implements Recipe<Inventory>, GatedRecipe {
 	public RecipeSerializer<?> getSerializer() {
 		return SpectrumRecipeTypes.SPIRIT_INSTILLER_RECIPE_SERIALIZER;
 	}
-	
-	@Override
-	public RecipeType<?> getType() {
-		return SpectrumRecipeTypes.SPIRIT_INSTILLER_RECIPE;
-	}
-	
+
 	@Deprecated
 	@Override
 	public DefaultedList<Ingredient> getIngredients() {

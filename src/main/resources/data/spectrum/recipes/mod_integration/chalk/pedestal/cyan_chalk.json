@@ -10,18 +10,19 @@
   "black": 0,
   "experience": 0.25,
   "pattern": [
-    " C ",
-    "CDC",
-    " C "
+    " D ",
+    "DCD",
+    " D "
   ],
   "key": {
     "C": {
       "item": "minecraft:calcite"
     },
     "D": {
-      "item": "minecraft:cyan_dye"
+      "item": "spectrum:cyan_pigment"
     }
   },
+  "required_advancements": ["spectrum:hidden/collect_pigment/collect_cyan_pigment"],
   "result" : {
     "item": "chalk:cyan_chalk",
     "nbt": "{Unbreakable:1}"

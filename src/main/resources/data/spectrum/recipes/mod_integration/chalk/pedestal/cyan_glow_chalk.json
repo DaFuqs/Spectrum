@@ -10,16 +10,16 @@
   "black": 0,
   "experience": 0.25,
   "pattern": [
+    "DDD",
     "GCG",
-    "CDC",
-    "GCG"
+    "DDD"
   ],
   "key": {
     "C": {
       "item": "minecraft:calcite"
     },
     "D": {
-      "item": "minecraft:cyan_dye"
+      "item": "spectrum:cyan_pigment"
     },
     "G": {
       "item": "minecraft:glow_ink_sac"
@@ -29,6 +29,7 @@
     "item": "chalk:cyan_glow_chalk",
     "nbt": "{Unbreakable:1}"
   },
+  "required_advancements": ["spectrum:hidden/collect_pigment/collect_cyan_pigment"],
   "fabric:load_conditions": [
     {
       "condition": "fabric:all_mods_loaded",

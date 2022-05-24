@@ -10,22 +10,23 @@
   "black": 0,
   "experience": 0.25,
   "pattern": [
-    " C ",
-    "CDC",
-    " C "
+    " D ",
+    "DCD",
+    " D "
   ],
   "key": {
     "C": {
       "item": "minecraft:calcite"
     },
     "D": {
-      "item": "minecraft:pink_dye"
+      "item": "spectrum:pink_pigment"
     }
   },
   "result" : {
     "item": "chalk:pink_chalk",
     "nbt": "{Unbreakable:1}"
   },
+  "required_advancements": ["spectrum:hidden/collect_pigment/collect_pink_pigment"],
   "fabric:load_conditions": [
     {
       "condition": "fabric:all_mods_loaded",

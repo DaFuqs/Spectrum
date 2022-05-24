@@ -43,6 +43,7 @@
     "RedstoneOreMixin",
     "ServerPlayerEntityMixin",
     "ServerWorldMixin",
+    "WitherEntityMixin",
     "accessors.FoxEntityAccessor",
     "accessors.ItemAccessor",
     "accessors.LootTableAccessor",

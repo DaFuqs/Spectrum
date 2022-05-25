@@ -331,9 +331,8 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 	}
 	
 	public static void craftSpiritInstillerRecipe(World world, @NotNull SpiritInstillerBlockEntity spiritInstillerBlockEntity, @NotNull ISpiritInstillerRecipe spiritInstillerRecipe) {
-		if(decrementItemsInInstillerAndBowls(spiritInstillerBlockEntity)) {
-			spiritInstillerRecipe.craft(spiritInstillerBlockEntity);
-		}
+		spiritInstillerRecipe.craft(spiritInstillerBlockEntity);
+		decrementItemsInInstillerAndBowls(spiritInstillerBlockEntity);
 	}
 	
 	public static boolean decrementItemsInInstillerAndBowls(@NotNull SpiritInstillerBlockEntity spiritInstillerBlockEntity) {

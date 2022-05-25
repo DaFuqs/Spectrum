@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.recipe.spirit_instiller;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.MultiblockCrafter;
 import de.dafuqs.spectrum.blocks.enchanter.EnchanterBlockEntity;
+import de.dafuqs.spectrum.blocks.item_bowl.ItemBowlBlockEntity;
 import de.dafuqs.spectrum.blocks.memory.MemoryItem;
 import de.dafuqs.spectrum.blocks.mob_head.SpectrumSkullBlockItem;
 import de.dafuqs.spectrum.blocks.spirit_instiller.SpiritInstillerBlockEntity;
@@ -13,6 +14,7 @@ import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import de.dafuqs.spectrum.registries.SpectrumItemTags;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.id.incubus_core.recipe.IngredientStack;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
@@ -53,75 +55,86 @@ public class SpiritInstillerSpawnerChangeRecipe implements ISpiritInstillerRecip
 	@Override
 	public ItemStack craft(Inventory inv) {
 		if(inv instanceof SpiritInstillerBlockEntity spiritInstillerBlockEntity) {
-			Map<Upgradeable.UpgradeType, Double> upgrades = spiritInstillerBlockEntity.getUpgrades();
-			World world = spiritInstillerBlockEntity.getWorld();
-			BlockPos pos = spiritInstillerBlockEntity.getPos();
-			
-			ItemStack firstBowlStack = inv.getStack(0);
-			ItemStack secondBowlStack = inv.getStack(1);
-			
-			ItemStack inputSpawnerStack;
-			ItemStack mobHeadStack;
-			if(firstBowlStack.isIn(SpectrumItemTags.SPAWNERS)) {
-				if(!secondBowlStack.isIn(SpectrumItemTags.MOB_HEADS)) {
+			BlockEntity leftBowlBlockEntity = spiritInstillerBlockEntity.getWorld().getBlockEntity(SpiritInstillerBlockEntity.getItemBowlPos(spiritInstillerBlockEntity, false));
+			BlockEntity rightBowlBlockEntity = spiritInstillerBlockEntity.getWorld().getBlockEntity(SpiritInstillerBlockEntity.getItemBowlPos(spiritInstillerBlockEntity, true));
+			if (leftBowlBlockEntity instanceof ItemBowlBlockEntity leftBowl && rightBowlBlockEntity instanceof ItemBowlBlockEntity rightBowl) {
+				Map<Upgradeable.UpgradeType, Double> upgrades = spiritInstillerBlockEntity.getUpgrades();
+				World world = spiritInstillerBlockEntity.getWorld();
+				BlockPos pos = spiritInstillerBlockEntity.getPos();
+				
+				ItemStack firstBowlStack = leftBowl.getInventory().getStack(0);
+				ItemStack secondBowlStack =  rightBowl.getInventory().getStack(0);
+				
+				ItemStack inputSpawnerStack;
+				ItemStack mobHeadStack;
+				if (firstBowlStack.isIn(SpectrumItemTags.SPAWNERS)) {
+					if (!secondBowlStack.isIn(SpectrumItemTags.MOB_HEADS)) {
+						return ItemStack.EMPTY;
+					}
+					inputSpawnerStack = firstBowlStack;
+					mobHeadStack = secondBowlStack;
+				} else {
+					if (!firstBowlStack.isIn(SpectrumItemTags.MOB_HEADS)) {
+						return ItemStack.EMPTY;
+					}
+					inputSpawnerStack = secondBowlStack;
+					mobHeadStack = firstBowlStack;
+				}
+				
+				Optional<EntityType> entityType = SpectrumSkullBlockItem.getEntityTypeOfSkullStack(mobHeadStack);
+				if (entityType.isEmpty()) {
 					return ItemStack.EMPTY;
 				}
-				inputSpawnerStack = firstBowlStack;
-				mobHeadStack = secondBowlStack;
-			} else {
-				if(!firstBowlStack.isIn(SpectrumItemTags.MOB_HEADS)) {
-					return ItemStack.EMPTY;
+				
+				Identifier entityTypeIdentifier = Registry.ENTITY_TYPE.getId(entityType.get());
+				
+				// Example spawner tag:
+				/* {
+					MaxNearbyEntities: 6s,
+					RequiredPlayerRange: 16s,
+					SpawnCount: 4s,
+					SpawnData: {entity: {id: "minecraft:zombie"}},
+					MaxSpawnDelay: 800s,
+					SpawnRange: 4s,
+					Delay: 83s,
+					MinSpawnDelay: 200s,
+					SpawnPotentials: []
+				   }
+				 */
+				NbtCompound spawnerNbt = inputSpawnerStack.getOrCreateNbt();
+				NbtCompound blockEntityTagCompound;
+				if(spawnerNbt.contains("BlockEntityTag")) {
+					blockEntityTagCompound = spawnerNbt.getCompound("BlockEntityTag");
+				} else {
+					blockEntityTagCompound = new NbtCompound();
 				}
-				inputSpawnerStack = secondBowlStack;
-				mobHeadStack = firstBowlStack;
+				
+				NbtCompound idCompound = new NbtCompound();
+				idCompound.putString("id", entityTypeIdentifier.toString());
+				NbtCompound entityCompound = new NbtCompound();
+				entityCompound.put("entity", idCompound);
+				blockEntityTagCompound.put("SpawnData", entityCompound);
+				
+				if (blockEntityTagCompound.contains("SpawnPotentials")) {
+					blockEntityTagCompound.remove("SpawnPotentials");
+				}
+				
+				spawnerNbt.put("BlockEntityTag", blockEntityTagCompound);
+				ItemStack resultStack = SpectrumItems.SPAWNER.getDefaultStack();
+				resultStack.setNbt(spawnerNbt);
+				
+				// spawn the result stack in world
+				EnchanterBlockEntity.spawnItemStackAsEntitySplitViaMaxCount(world, pos, resultStack, resultStack.getCount());
+				
+				// Calculate and spawn experience
+				double experienceModifier = upgrades.get(Upgradeable.UpgradeType.EXPERIENCE);
+				float recipeExperienceBeforeMod = getExperience();
+				int awardedExperience = Support.getIntFromDecimalWithChance(recipeExperienceBeforeMod * experienceModifier, world.random);
+				MultiblockCrafter.spawnExperience(world, pos.up(), awardedExperience);
+				
+				// Run Advancement trigger
+				ISpiritInstillerRecipe.grantPlayerSpiritInstillingAdvancementCriterion(world, spiritInstillerBlockEntity.getOwnerUUID(), resultStack, awardedExperience);
 			}
-			
-			Optional<EntityType> entityType = SpectrumSkullBlockItem.getEntityTypeOfSkullStack(mobHeadStack);
-			if(entityType.isEmpty()) {
-				return ItemStack.EMPTY;
-			}
-			
-			Identifier entityTypeIdentifier = Registry.ENTITY_TYPE.getId(entityType.get());
-			
-			// Example spawner tag:
-			/* {
-				MaxNearbyEntities: 6s,
-				RequiredPlayerRange: 16s,
-				SpawnCount: 4s,
-				SpawnData: {entity: {id: "minecraft:zombie"}},
-				MaxSpawnDelay: 800s,
-				SpawnRange: 4s,
-				Delay: 83s,
-				MinSpawnDelay: 200s,
-				SpawnPotentials: []
-			   }
-			 */
-			NbtCompound spawnerNbt = inputSpawnerStack.getOrCreateNbt();
-			NbtCompound idCompound = new NbtCompound();
-			idCompound.putString("id", entityTypeIdentifier.toString());
-			NbtCompound entityCompound = new NbtCompound();
-			entityCompound.put("entity", idCompound);
-			spawnerNbt.put("SpawnData", entityCompound);
-			
-			if(spawnerNbt.contains("SpawnPotentials")) {
-				spawnerNbt.remove("SpawnPotentials");
-			}
-			
-			ItemStack resultStack = SpectrumItems.SPAWNER.getDefaultStack();
-			resultStack.setNbt(spawnerNbt);
-			
-			// spawn the result stack in world
-			// TODO: it just vanishes?
-			EnchanterBlockEntity.spawnItemStackAsEntitySplitViaMaxCount(world, pos, resultStack, resultStack.getCount());
-			
-			// Calculate and spawn experience
-			double experienceModifier = upgrades.get(Upgradeable.UpgradeType.EXPERIENCE);
-			float recipeExperienceBeforeMod = getExperience();
-			int awardedExperience = Support.getIntFromDecimalWithChance(recipeExperienceBeforeMod * experienceModifier, world.random);
-			MultiblockCrafter.spawnExperience(world, pos.up(), awardedExperience);
-			
-			// Run Advancement trigger
-			ISpiritInstillerRecipe.grantPlayerSpiritInstillingAdvancementCriterion(world, spiritInstillerBlockEntity.getOwnerUUID(), resultStack, awardedExperience);
 		}
 		
 		return ItemStack.EMPTY;

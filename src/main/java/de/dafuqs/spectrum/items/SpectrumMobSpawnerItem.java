@@ -12,6 +12,7 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
+import net.minecraft.util.Formatting;
 import net.minecraft.world.World;
 
 import java.util.List;
@@ -49,11 +50,21 @@ public class SpectrumMobSpawnerItem extends BlockItem {
 				} else {
 					tooltip.add(new TranslatableText("item.spectrum.spawner.tooltip.unknown_mob"));
 				}
-				tooltip.add(new TranslatableText("item.spectrum.spawner.tooltip.spawn_count", spawnCount));
-				tooltip.add(new TranslatableText("item.spectrum.spawner.tooltip.min_spawn_delay", minSpawnDelay));
-				tooltip.add(new TranslatableText("item.spectrum.spawner.tooltip.max_spawn_delay", maxSpawnDelay));
-				tooltip.add(new TranslatableText("item.spectrum.spawner.tooltip.spawn_range", spawnRange));
-				tooltip.add(new TranslatableText("item.spectrum.spawner.tooltip.required_player_range", requiredPlayerRange));
+				if(spawnCount > 0) {
+					tooltip.add(new TranslatableText("item.spectrum.spawner.tooltip.spawn_count", spawnCount).formatted(Formatting.GRAY));
+				}
+				if(minSpawnDelay > 0) {
+					tooltip.add(new TranslatableText("item.spectrum.spawner.tooltip.min_spawn_delay", minSpawnDelay).formatted(Formatting.GRAY));
+				}
+				if(maxSpawnDelay > 0) {
+					tooltip.add(new TranslatableText("item.spectrum.spawner.tooltip.max_spawn_delay", maxSpawnDelay).formatted(Formatting.GRAY));
+				}
+				if (spawnRange > 0) {
+					tooltip.add(new TranslatableText("item.spectrum.spawner.tooltip.spawn_range", spawnRange).formatted(Formatting.GRAY));
+				}
+				if(requiredPlayerRange > 0) {
+					tooltip.add(new TranslatableText("item.spectrum.spawner.tooltip.required_player_range", requiredPlayerRange).formatted(Formatting.GRAY));
+				}
 			} catch (Exception e) {
 				tooltip.add(new TranslatableText("item.spectrum.spawner.tooltip.unknown_mob"));
 			}

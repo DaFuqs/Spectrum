@@ -1035,7 +1035,7 @@
   "block.spectrum.line_teleporting_mob_block.tooltip2": "§7in a straight line within %d blocks",
   "block.spectrum.feeding_mob_block.tooltip": "§7Feeds animals in a range of %d§7 blocks using food on the ground",
 
-  "item.spectrum.tooltip.loom_pattern_available": "Usable as Banner Pattern",
+  "item.spectrum.tooltip.loom_pattern_available": "✿Usable as Banner Pattern",
   "item.spectrum.exchange_staff": "Exchanging Staff",
   "item.spectrum.exchange_staff.tooltip.range": "Exchanges blocks up to %s blocks around it",
   "item.spectrum.exchange_staff.tooltip.crouch": "Crouch to only exchange exposed blocks",

@@ -18,6 +18,7 @@ import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import de.dafuqs.spectrum.registries.SpectrumItemTags;
 import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
+import de.dafuqs.spectrum.registries.color.ItemColorRegistry;
 import net.id.incubus_core.recipe.IngredientStack;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
@@ -37,6 +38,7 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.BlockRotation;
+import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Pair;
 import net.minecraft.util.math.BlockPos;
@@ -100,7 +102,7 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 				if (world != null) {
 					optionalRecipe = world.getRecipeManager().get(new Identifier(recipeString));
 				}
-				if(optionalRecipe.isPresent() && optionalRecipe.get() instanceof SpiritInstillerRecipe spiritInstillerRecipe) {
+				if(optionalRecipe.isPresent() && optionalRecipe.get() instanceof ISpiritInstillerRecipe spiritInstillerRecipe) {
 					this.currentRecipe = spiritInstillerRecipe;
 				} else {
 					this.currentRecipe = null;
@@ -135,8 +137,27 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 	}
 	
 	public static void clientTick(World world, BlockPos blockPos, BlockState blockState, @NotNull SpiritInstillerBlockEntity spiritInstillerBlockEntity) {
-		if(spiritInstillerBlockEntity.currentRecipe != null && world.getTime() % 40 == 0) {
-			spiritInstillerBlockEntity.doChimeParticles(world);
+		if(spiritInstillerBlockEntity.currentRecipe != null) {
+			spiritInstillerBlockEntity.doInstillerParticles(world);
+			 if(world.getTime() % 40 == 0) {
+				 spiritInstillerBlockEntity.doChimeParticles(world);
+			 }
+		}
+	}
+	
+	private void doInstillerParticles(@NotNull World world) {
+		Random random = world.random;
+		Optional<DyeColor> stackColor = ItemColorRegistry.ITEM_COLORS.getMapping(this.inventory.getStack(0).getItem());
+		
+		if(stackColor.isPresent()) {
+			ParticleEffect particleEffect = SpectrumParticleTypes.getSparkleRisingParticle(stackColor.get());
+				world.addParticle(particleEffect,
+						pos.getX() + 0.25 + random.nextDouble() * 0.5,
+						pos.getY() + 0.75,
+						pos.getZ() + 0.25 + random.nextDouble() * 0.5,
+						0.02 - random.nextDouble() * 0.04,
+						0.01 + random.nextDouble() * 0.05,
+						0.02 - random.nextDouble() * 0.04);
 		}
 	}
 	

@@ -3,22 +3,22 @@
     "category": "spectrum:hints_category",
     "icon": "minecraft:writable_book",
     "advancement": "spectrum:midgame/build_enchanting_structure",
-	"secret": true,
-	"read_by_default": true,
+    "secret": true,
+    "read_by_default": true,
     "turnin": "spectrum:collect_four_leaf_clover",
     "pages": [
         {
             "type": "spectrum:hint",
-			"title": "Where to look",
+            "title": "Where to look",
             "completion_advancement": "spectrum:collect_four_leaf_clover",
-			"cost": "spectrum:vegetal#16",
-            "text": "Go for an Overworld adventure trip on the surface in Plains biomes. Maybe you get lucky!"
+            "cost": "spectrum:vegetal#16",
+            "text": "Search for a Plains biome. Maybe you get lucky!"
         },
         {
             "type": "spectrum:hint",
-			"title": "Concise Instructions",
-			"cost": "spectrum:vegetal#48",
-            "text": "There is Clover growing in Plains biomes. You can immediately notice a Four-Leaved Clover in its block form already. Break to harvest, Bonemeal/Natures' Staff to grow."
+            "title": "Concise Instructions",
+            "cost": "spectrum:vegetal#48",
+            "text": "There is Clover growing in Plains biomes. You can immediately notice a Four-Leaved Clover in its block form already. Break to harvest, Bonemeal/Natures' Staff to spread them."
         }
     ]
 }

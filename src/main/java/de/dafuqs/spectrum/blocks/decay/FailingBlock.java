@@ -60,7 +60,6 @@ public class FailingBlock extends DecayBlock {
 		
 		BlockState destinationBlockState = this.getDefaultState().with(DECAY_STATE, DecayConversion.OBSIDIAN);
 		addDecayConversion(SpectrumBlockTags.FAILING_CONVERSIONS, destinationBlockState);
-
 	}
 	
 	public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
@@ -76,6 +75,11 @@ public class FailingBlock extends DecayBlock {
 				world.addParticle(SpectrumParticleTypes.DECAY_PLACE, pos.getX() - 0.2 + random.nextFloat() * 1.4, pos.getY() + random.nextFloat(), pos.getZ() - 0.2 + random.nextFloat() * 1.4, ((-1.0F + random.nextFloat() * 2.0F) / 12.0F), 0.05, ((-1.0F + random.nextFloat() * 2.0F) / 12.0F));
 			}
 		}
+	}
+	
+	@Override
+	public boolean hasRandomTicks(BlockState state) {
+		return state.get(AGE) != Properties.AGE_15_MAX;
 	}
 
 	@Override

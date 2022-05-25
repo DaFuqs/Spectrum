@@ -28,6 +28,11 @@ public class BlackMateriaBlock extends FallingBlock {
 		setDefaultState(this.stateManager.getDefaultState().with(Properties.AGE_3, 3));
 	}
 	
+	@Override
+	public boolean hasRandomTicks(BlockState state) {
+		return state.get(AGE) != Properties.AGE_3_MAX;
+	}
+	
 	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
 		int age = state.get(AGE);
 		if(age < MAX_AGE) {

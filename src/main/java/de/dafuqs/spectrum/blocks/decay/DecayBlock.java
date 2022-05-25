@@ -58,7 +58,7 @@ public abstract class DecayBlock extends Block {
 		this.decayConversionsList.add(sourceBlockTag);
 		this.decayConversions.put(sourceBlockTag, conversionState);
 	}
-
+	
 	public void onSteppedOn(World world, BlockPos pos, BlockState state, Entity entity) {
 		if (entity instanceof LivingEntity && !entity.isFireImmune() && !EnchantmentHelper.hasFrostWalker((LivingEntity)entity)) {
 			entity.damage(SpectrumDamageSources.DECAY, damageOnTouching);

@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.blocks.chests;
 
-import de.dafuqs.spectrum.events.*;
+import de.dafuqs.spectrum.events.SpectrumGameEvents;
 import de.dafuqs.spectrum.events.listeners.EventQueue;
 import de.dafuqs.spectrum.events.listeners.ExperienceOrbEventQueue;
 import de.dafuqs.spectrum.events.listeners.ItemAndExperienceEventQueue;

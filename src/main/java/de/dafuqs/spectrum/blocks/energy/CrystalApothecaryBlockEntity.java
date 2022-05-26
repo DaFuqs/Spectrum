@@ -1,8 +1,8 @@
 package de.dafuqs.spectrum.blocks.energy;
 
 import de.dafuqs.spectrum.enums.ProgressionStage;
-import de.dafuqs.spectrum.events.listeners.BlockPosEventQueue;
 import de.dafuqs.spectrum.events.SpectrumGameEvents;
+import de.dafuqs.spectrum.events.listeners.BlockPosEventQueue;
 import de.dafuqs.spectrum.helpers.InventoryHelper;
 import de.dafuqs.spectrum.interfaces.PlayerOwnedWithName;
 import de.dafuqs.spectrum.inventories.GenericSpectrumContainerScreenHandler;

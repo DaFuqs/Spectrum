@@ -10,7 +10,7 @@
     {
       "type": "patchouli:spotlight",
       "item": "spectrum:redstone_wireless",
-      "text": "$(italic)Gentle resonances are amplified by $(l:general/shards#onyx)Onyx$(/l) to such an extent that they can even be measured through walls, given a suitable receiver. Based on your previous experiments with gemstone shards, it was easy for you to devise such transmitter and receiver systems. These relays do not react well to fast changing currencies, though."
+      "text": "$(italic)Gentle resonances are amplified by $(l:general/shards#onyx)Onyx$(/l) to such an extent that they can even be measured through walls, given a suitable receiver. Based on your previous experiments with gemstone shards, it was easy for you to devise such transmitter and receiver systems. These relays do not react well to fast changing signals, though."
     },
     {
       "type": "spectrum:pedestal_crafting",

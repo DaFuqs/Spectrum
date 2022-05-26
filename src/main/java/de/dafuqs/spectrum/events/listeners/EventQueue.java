@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.events;
+package de.dafuqs.spectrum.events.listeners;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.BlockPos;
@@ -13,15 +13,15 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Optional;
 
-public abstract class QueuedEventTransferListener<D> implements GameEventListener {
+public abstract class EventQueue<D> implements GameEventListener {
 
 	protected final PositionSource positionSource;
 	protected final int range;
-	protected final QueuedEventTransferListener.Callback callback;
+	protected final EventQueue.Callback callback;
 	private final Map<D, Integer> eventQueue;
 	private boolean frozen = false; // protect against ConcurrentModificationExceptions
 
-	public QueuedEventTransferListener(PositionSource positionSource, int range, QueuedEventTransferListener.Callback listener) {
+	public EventQueue(PositionSource positionSource, int range, EventQueue.Callback listener) {
 		this.positionSource = positionSource;
 		this.range = range;
 		this.callback = listener;
@@ -55,21 +55,22 @@ public abstract class QueuedEventTransferListener<D> implements GameEventListene
 		return this.range;
 	}
 	
+	@Override
 	public boolean listen(World world, GameEvent event, @Nullable Entity entity, BlockPos pos) {
 		Optional<BlockPos> positionSourcePosOptional = this.positionSource.getPos(world);
 		if (frozen || positionSourcePosOptional.isEmpty()) {
 			return false;
 		} else {
-			if (!this.callback.acceptsEvent(world, this, pos, event, positionSourcePosOptional.get())) {
+			if (!this.callback.canAcceptEvent(world, this, pos, event, entity, positionSourcePosOptional.get())) {
 				return false;
 			} else {
-				this.acceptEvent(world, pos, event, positionSourcePosOptional.get());
+				this.acceptEvent(world, pos, event, entity, positionSourcePosOptional.get());
 				return true;
 			}
 		}
 	}
 	
-	protected abstract void acceptEvent(World world, BlockPos pos, GameEvent event, BlockPos sourcePos);
+	protected abstract void acceptEvent(World world, BlockPos pos, GameEvent event, @Nullable Entity entity, BlockPos sourcePos);
 	
 	protected void schedule(D object, int delay) {
 		if(!frozen) {
@@ -81,7 +82,7 @@ public abstract class QueuedEventTransferListener<D> implements GameEventListene
 		/**
 		 * Returns whether the callback wants to accept this event.
 		 */
-		boolean acceptsEvent(World world, GameEventListener listener, BlockPos pos, GameEvent event, BlockPos sourcePos);
+		boolean canAcceptEvent(World world, GameEventListener listener, BlockPos pos, GameEvent event, @Nullable Entity entity, BlockPos sourcePos);
 
 		/**
 		 * Accepts a game event after delay.

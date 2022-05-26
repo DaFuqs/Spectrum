@@ -5,8 +5,8 @@ import net.minecraft.world.event.GameEvent;
 
 public class RedstoneTransferGameEvent extends GameEvent {
 
-	private DyeColor dyeColor;
-	private int power;
+	private final DyeColor dyeColor;
+	private final int power;
 
 	public RedstoneTransferGameEvent(String id, int range, DyeColor dyeColor, int power) {
 		super(id, range);

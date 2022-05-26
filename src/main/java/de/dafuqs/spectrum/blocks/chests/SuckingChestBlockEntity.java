@@ -1,9 +1,10 @@
 package de.dafuqs.spectrum.blocks.chests;
 
-import de.dafuqs.spectrum.events.ExperienceOrbEntityTransferListener;
-import de.dafuqs.spectrum.events.ItemEntityTransferListener;
-import de.dafuqs.spectrum.events.SpectrumGameEvents;
-import de.dafuqs.spectrum.events.SuckingChestEventListener;
+import de.dafuqs.spectrum.events.*;
+import de.dafuqs.spectrum.events.listeners.EventQueue;
+import de.dafuqs.spectrum.events.listeners.ExperienceOrbEventQueue;
+import de.dafuqs.spectrum.events.listeners.ItemAndExperienceEventQueue;
+import de.dafuqs.spectrum.events.listeners.ItemEntityEventQueue;
 import de.dafuqs.spectrum.helpers.InventoryHelper;
 import de.dafuqs.spectrum.inventories.SuckingChestScreenHandler;
 import de.dafuqs.spectrum.items.ExperienceStorageItem;
@@ -43,22 +44,23 @@ import net.minecraft.world.event.GameEvent;
 import net.minecraft.world.event.listener.GameEventListener;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class SuckingChestBlockEntity extends SpectrumChestBlockEntity implements ExtendedScreenHandlerFactory, SuckingChestEventListener.Callback {
+public class SuckingChestBlockEntity extends SpectrumChestBlockEntity implements ExtendedScreenHandlerFactory, EventQueue.Callback {
 	
 	private static final int RANGE = 12;
 	public static final int INVENTORY_SIZE = 28;
 	public static final int ITEM_FILTER_SLOTS = 5;
 	public static final int EXPERIENCE_STORAGE_PROVIDER_ITEM_SLOT = 27;
 	
-	private final SuckingChestEventListener suckingChestEventListener;
+	private final ItemAndExperienceEventQueue itemAndExperienceEventQueue;
 	private final List<Item> filterItems;
 
 	public SuckingChestBlockEntity(BlockPos blockPos, BlockState blockState) {
 		super(SpectrumBlockEntityRegistry.SUCKING_CHEST, blockPos, blockState);
-		this.suckingChestEventListener = new SuckingChestEventListener(new BlockPositionSource(this.pos), RANGE, this);
+		this.itemAndExperienceEventQueue = new ItemAndExperienceEventQueue(new BlockPositionSource(this.pos), RANGE, this);
 		this.filterItems = DefaultedList.ofSize(ITEM_FILTER_SLOTS, Items.AIR);
 	}
 
@@ -91,7 +93,7 @@ public class SuckingChestBlockEntity extends SpectrumChestBlockEntity implements
 		if(world.isClient) {
 			blockEntity.lidAnimator.step();
 		} else {
-			blockEntity.suckingChestEventListener.tick(world);
+			blockEntity.itemAndExperienceEventQueue.tick(world);
 			if(world.getTime() % 40 == 0 && !SpectrumChestBlock.isChestBlocked(world, pos)) {
 				triggerNearbyEntities(blockEntity);
 			}
@@ -124,52 +126,49 @@ public class SuckingChestBlockEntity extends SpectrumChestBlockEntity implements
 		return 27+1; // 3 rows, 1 knowledge gem, 5 item filters (they are not real slots, though)
 	}
 
-	public SuckingChestEventListener getEventListener() {
-		return this.suckingChestEventListener;
+	public ItemAndExperienceEventQueue getEventListener() {
+		return this.itemAndExperienceEventQueue;
 	}
-
+	
 	@Override
-	public boolean accepts(World world, GameEventListener listener, BlockPos pos, GameEvent event, Entity entity) {
-		boolean isEntitySpawnEvent = event == SpectrumGameEvents.ENTITY_SPAWNED;
-		return isEntitySpawnEvent
-				&& !SpectrumChestBlock.isChestBlocked(this.world, this.pos)
-				&& (
-						(entity instanceof ItemEntity itemEntity && acceptsItemStack(itemEntity.getStack()))
-					 || (entity instanceof ExperienceOrbEntity && hasExperienceStorageItem())
-				);
+	public boolean canAcceptEvent(World world, GameEventListener listener, BlockPos pos, GameEvent event, @Nullable Entity entity, BlockPos sourcePos) {
+		if(SpectrumChestBlock.isChestBlocked(world, this.pos)) {
+			return false;
+		}
+		return entity instanceof ExperienceOrbEntity && hasExperienceStorageItem();
 	}
-
+	
 	@Override
-	public void accept(World world, GameEventListener listener, GameEvent event, int distance) {
-		if(listener instanceof ItemEntityTransferListener itemEntityTransferListener) {
-			if(!SpectrumChestBlock.isChestBlocked(world, pos)) {
-				ItemEntity itemEntity = itemEntityTransferListener.getItemEntity();
-				if (itemEntity != null && itemEntity.isAlive() && acceptsItemStack(itemEntity.getStack())) { //&& itemEntity.cannotPickup()) { // risky. But that is always false for newly dropped items
-					int previousAmount = itemEntity.getStack().getCount();
-					ItemStack remainingStack = InventoryHelper.smartAddToInventory(itemEntity.getStack(), this, Direction.UP);
-
-					if (remainingStack.isEmpty()) {
+	public void triggerEvent(World world, GameEventListener listener, Object entry) {
+		if(SpectrumChestBlock.isChestBlocked(world, pos)) {
+			return;
+		}
+		
+		if(entry instanceof ExperienceOrbEventQueue.EventEntry experienceEntry) {
+			ExperienceOrbEntity experienceOrbEntity = experienceEntry.experienceOrbEntity;
+			if (experienceOrbEntity != null && experienceOrbEntity.isAlive() && hasExperienceStorageItem()) {
+				ExperienceStorageItem.addStoredExperience(this.inventory.get(EXPERIENCE_STORAGE_PROVIDER_ITEM_SLOT), experienceOrbEntity.getExperienceAmount()); // overflow experience is void, to not lag the world on large farms
+				
+				SpectrumS2CPacketSender.sendPlayExperienceOrbEntityAbsorbedParticle(world, experienceOrbEntity);
+				world.playSound(null, experienceOrbEntity.getBlockPos(), SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.BLOCKS, 0.9F + this.world.random.nextFloat() * 0.2F, 0.9F + this.world.random.nextFloat() * 0.2F);
+				experienceOrbEntity.remove(Entity.RemovalReason.DISCARDED);
+			}
+		} else if(entry instanceof ItemEntityEventQueue.EventEntry itemEntry) {
+			ItemEntity itemEntity = itemEntry.itemEntity;
+			if (itemEntity != null && itemEntity.isAlive() && acceptsItemStack(itemEntity.getStack())) { //&& itemEntity.cannotPickup()) { // risky. But that is always false for newly dropped items
+				int previousAmount = itemEntity.getStack().getCount();
+				ItemStack remainingStack = InventoryHelper.smartAddToInventory(itemEntity.getStack(), this, Direction.UP);
+				
+				if (remainingStack.isEmpty()) {
+					SpectrumS2CPacketSender.sendPlayItemEntityAbsorbedParticle(world, itemEntity);
+					world.playSound(null, itemEntity.getBlockPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.9F + this.world.random.nextFloat() * 0.2F, 0.9F + this.world.random.nextFloat() * 0.2F);
+					itemEntity.setStack(ItemStack.EMPTY);
+				} else {
+					if(remainingStack.getCount() != previousAmount) {
 						SpectrumS2CPacketSender.sendPlayItemEntityAbsorbedParticle(world, itemEntity);
 						world.playSound(null, itemEntity.getBlockPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.9F + this.world.random.nextFloat() * 0.2F, 0.9F + this.world.random.nextFloat() * 0.2F);
-						itemEntity.setStack(ItemStack.EMPTY);
-					} else {
-						if(remainingStack.getCount() != previousAmount) {
-							SpectrumS2CPacketSender.sendPlayItemEntityAbsorbedParticle(world, itemEntity);
-							world.playSound(null, itemEntity.getBlockPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.9F + this.world.random.nextFloat() * 0.2F, 0.9F + this.world.random.nextFloat() * 0.2F);
-							itemEntity.setStack(remainingStack);
-						}
+						itemEntity.setStack(remainingStack);
 					}
-				}
-			}
-		} else if(listener instanceof ExperienceOrbEntityTransferListener experienceOrbEntityTransferListener) {
-			if(!SpectrumChestBlock.isChestBlocked(world, pos)) {
-				ExperienceOrbEntity experienceOrbEntity = experienceOrbEntityTransferListener.getExperienceOrbEntity();
-				if (experienceOrbEntity != null && experienceOrbEntity.isAlive() && hasExperienceStorageItem()) {
-					ExperienceStorageItem.addStoredExperience(this.inventory.get(EXPERIENCE_STORAGE_PROVIDER_ITEM_SLOT), experienceOrbEntity.getExperienceAmount()); // overflow experience is void, to not lag the world on large farms
-					
-					SpectrumS2CPacketSender.sendPlayExperienceOrbEntityAbsorbedParticle(world, experienceOrbEntity);
-					world.playSound(null, experienceOrbEntity.getBlockPos(), SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.BLOCKS, 0.9F + this.world.random.nextFloat() * 0.2F, 0.9F + this.world.random.nextFloat() * 0.2F);
-					experienceOrbEntity.remove(Entity.RemovalReason.DISCARDED);
 				}
 			}
 		}

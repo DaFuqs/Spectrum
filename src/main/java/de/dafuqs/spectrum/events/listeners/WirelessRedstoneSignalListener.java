@@ -1,7 +1,9 @@
-package de.dafuqs.spectrum.events;
+package de.dafuqs.spectrum.events.listeners;
 
+import blue.endless.jankson.annotation.Nullable;
+import de.dafuqs.spectrum.events.RedstoneTransferGameEvent;
 import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
-import de.dafuqs.spectrum.particle.effect.BlockPosEventTransfer;
+import de.dafuqs.spectrum.particle.effect.WirelessRedstoneTransmission;
 import net.minecraft.entity.Entity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
@@ -10,22 +12,19 @@ import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
 import net.minecraft.world.event.PositionSource;
 import net.minecraft.world.event.listener.GameEventListener;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
 
-public class BlockPosEventTransferListener implements GameEventListener {
+public class WirelessRedstoneSignalListener implements GameEventListener {
 
 	protected final PositionSource positionSource;
 	protected final int range;
-	protected final BlockPosEventTransferListener.Callback callback;
+	protected final WirelessRedstoneSignalListener.Callback callback;
 	protected Optional<GameEvent> event = Optional.empty();
-	
-	protected BlockPos eventSourceBlockPos;
 	protected int distance;
 	protected int delay = 0;
 
-	public BlockPosEventTransferListener(PositionSource positionSource, int range, BlockPosEventTransferListener.Callback listener) {
+	public WirelessRedstoneSignalListener(PositionSource positionSource, int range, WirelessRedstoneSignalListener.Callback listener) {
 		this.positionSource = positionSource;
 		this.range = range;
 		this.callback = listener;
@@ -50,6 +49,7 @@ public class BlockPosEventTransferListener implements GameEventListener {
 		return this.range;
 	}
 
+	@Override
 	public boolean listen(World world, GameEvent event, @Nullable Entity entity, BlockPos pos) {
 		if (!this.shouldActivate(event, entity)) {
 			return false;
@@ -59,7 +59,6 @@ public class BlockPosEventTransferListener implements GameEventListener {
 				return false;
 			} else {
 				BlockPos blockPos = optional.get();
-				this.eventSourceBlockPos = new BlockPos(pos.getX(), pos.getY(), pos.getZ()); // copy
 				if (!this.callback.accepts(world, this, pos, event, entity)) {
 					return false;
 				} else {
@@ -69,22 +68,18 @@ public class BlockPosEventTransferListener implements GameEventListener {
 			}
 		}
 	}
-	
-	boolean shouldActivate(GameEvent event, @Nullable Entity entity) {
-		return true;
+
+	private boolean shouldActivate(GameEvent event, @Nullable Entity entity) {
+		return(this.event.isEmpty() && event instanceof RedstoneTransferGameEvent);
 	}
 
 	private void listen(World world, GameEvent event, BlockPos pos, BlockPos sourcePos) {
 		this.event = Optional.of(event);
 		if (world instanceof ServerWorld) {
 			this.distance = MathHelper.floor(Math.sqrt(pos.getSquaredDistance(sourcePos)));
-			this.delay = this.distance * 2;
-			SpectrumS2CPacketSender.sendBlockPosEventTransferPacket((ServerWorld) world, new BlockPosEventTransfer(pos, this.positionSource, this.delay));
+			this.delay = this.distance;
+			SpectrumS2CPacketSender.sendWirelessRedstonePacket((ServerWorld) world, new WirelessRedstoneTransmission(pos, this.positionSource, this.delay));
 		}
-	}
-	
-	public BlockPos getSourceBlockPos() {
-		return this.eventSourceBlockPos;
 	}
 
 	public interface Callback {

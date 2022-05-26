@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.blocks.energy;
 
 import de.dafuqs.spectrum.enums.ProgressionStage;
-import de.dafuqs.spectrum.events.QueuedBlockPosEventTransferListener;
+import de.dafuqs.spectrum.events.listeners.BlockPosEventQueue;
 import de.dafuqs.spectrum.events.SpectrumGameEvents;
 import de.dafuqs.spectrum.helpers.InventoryHelper;
 import de.dafuqs.spectrum.interfaces.PlayerOwnedWithName;
@@ -17,6 +17,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.Waterloggable;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.LootableContainerBlockEntity;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventories;
@@ -46,7 +47,7 @@ import net.minecraft.world.event.listener.GameEventListener;
 
 import java.util.*;
 
-public class CrystalApothecaryBlockEntity extends LootableContainerBlockEntity implements PlayerOwnedWithName, QueuedBlockPosEventTransferListener.Callback {
+public class CrystalApothecaryBlockEntity extends LootableContainerBlockEntity implements PlayerOwnedWithName, BlockPosEventQueue.Callback {
 	
 	public static final Map<BlockState, Pair<Item, Integer>> UNLOADED_COMPENSATION_MAP = new HashMap<>() {{
 		put(Blocks.BUDDING_AMETHYST.getDefaultState(), new Pair<>(Items.AMETHYST_SHARD, 2));
@@ -59,7 +60,7 @@ public class CrystalApothecaryBlockEntity extends LootableContainerBlockEntity i
 	private static final int RANGE = 12;
 	private static final ItemStack HARVEST_ITEMSTACK =  ItemStack.EMPTY;
 	
-	private final QueuedBlockPosEventTransferListener blockPosEventTransferListener;
+	private final BlockPosEventQueue blockPosEventTransferListener;
 	private DefaultedList<ItemStack> inventory;
 	private boolean listenerPaused;
 	
@@ -70,7 +71,7 @@ public class CrystalApothecaryBlockEntity extends LootableContainerBlockEntity i
 	
 	public CrystalApothecaryBlockEntity(BlockPos blockPos, BlockState blockState) {
 		super(SpectrumBlockEntityRegistry.CRYSTAL_APOTHECARY, blockPos, blockState);
-		this.blockPosEventTransferListener = new QueuedBlockPosEventTransferListener(new BlockPositionSource(this.pos), RANGE, this);
+		this.blockPosEventTransferListener = new BlockPosEventQueue(new BlockPositionSource(this.pos), RANGE, this);
 		this.inventory = DefaultedList.ofSize(27, ItemStack.EMPTY);
 		this.listenerPaused = false;
 		this.compensationWorldTime = -1;
@@ -84,7 +85,7 @@ public class CrystalApothecaryBlockEntity extends LootableContainerBlockEntity i
 		}
 	}
 	
-	public QueuedBlockPosEventTransferListener getEventListener() {
+	public BlockPosEventQueue getEventListener() {
 		return this.blockPosEventTransferListener;
 	}
 	
@@ -242,14 +243,14 @@ public class CrystalApothecaryBlockEntity extends LootableContainerBlockEntity i
 	}
 	
 	@Override
-	public boolean acceptsEvent(World world, GameEventListener listener, BlockPos pos, GameEvent event, BlockPos sourcePos) {
+	public boolean canAcceptEvent(World world, GameEventListener listener, BlockPos pos, GameEvent event, Entity entity, BlockPos sourcePos) {
 		return event == SpectrumGameEvents.CRYSTAL_APOTHECARY_HARVESTABLE_GROWN && !this.listenerPaused;
 	}
 	
 	@Override
 	public void triggerEvent(World world, GameEventListener listener, Object entry) {
-		if(listener instanceof QueuedBlockPosEventTransferListener && this.world != null) {
-			BlockPos eventPos = ((QueuedBlockPosEventTransferListener.BlockPosEventEntry) entry).eventSourceBlockPos;
+		if(listener instanceof BlockPosEventQueue && this.world != null) {
+			BlockPos eventPos = ((BlockPosEventQueue.EventEntry) entry).eventSourceBlockPos;
 			BlockState eventState = world.getBlockState(eventPos);
 			if(eventState.isIn(SpectrumBlockTags.CRYSTAL_APOTHECARY_HARVESTABLE)) {
 				// harvest
@@ -307,9 +308,11 @@ public class CrystalApothecaryBlockEntity extends LootableContainerBlockEntity i
 	}
 	
 	public void harvestExistingClusters() {
-		for (BlockPos currPos : BlockPos.iterateOutwards(this.pos, RANGE, RANGE, RANGE)) {
-			if (world.getBlockState(currPos).isIn(SpectrumBlockTags.CRYSTAL_APOTHECARY_HARVESTABLE)) {
-				this.blockPosEventTransferListener.acceptEvent(world, currPos, SpectrumGameEvents.CRYSTAL_APOTHECARY_HARVESTABLE_GROWN, this.pos);
+		if(world instanceof ServerWorld) {
+			for (BlockPos currPos : BlockPos.iterateOutwards(this.pos, RANGE, RANGE, RANGE)) {
+				if (world.getBlockState(currPos).isIn(SpectrumBlockTags.CRYSTAL_APOTHECARY_HARVESTABLE)) {
+					this.blockPosEventTransferListener.acceptEvent(world, currPos, SpectrumGameEvents.CRYSTAL_APOTHECARY_HARVESTABLE_GROWN, null, this.pos);
+				}
 			}
 		}
 	}

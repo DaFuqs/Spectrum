@@ -2,7 +2,7 @@ package de.dafuqs.spectrum.blocks.redstone;
 
 import de.dafuqs.spectrum.events.RedstoneTransferGameEvent;
 import de.dafuqs.spectrum.events.SpectrumGameEvents;
-import de.dafuqs.spectrum.events.WirelessRedstoneSignalListener;
+import de.dafuqs.spectrum.events.listeners.WirelessRedstoneSignalListener;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

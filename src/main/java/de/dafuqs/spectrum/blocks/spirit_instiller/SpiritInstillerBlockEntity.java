@@ -2,21 +2,15 @@ package de.dafuqs.spectrum.blocks.spirit_instiller;
 
 import de.dafuqs.spectrum.blocks.MultiblockCrafter;
 import de.dafuqs.spectrum.blocks.decoration.GemstoneChimeBlock;
-import de.dafuqs.spectrum.blocks.enchanter.EnchanterBlockEntity;
 import de.dafuqs.spectrum.blocks.item_bowl.ItemBowlBlockEntity;
-import de.dafuqs.spectrum.blocks.memory.MemoryItem;
 import de.dafuqs.spectrum.blocks.upgrade.Upgradeable;
 import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.interfaces.PlayerOwned;
 import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
-import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.recipe.spirit_instiller.ISpiritInstillerRecipe;
-import de.dafuqs.spectrum.recipe.spirit_instiller.SpiritInstillerRecipe;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
-import de.dafuqs.spectrum.registries.SpectrumBlocks;
-import de.dafuqs.spectrum.registries.SpectrumItemTags;
 import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
 import de.dafuqs.spectrum.registries.color.ItemColorRegistry;
 import net.id.incubus_core.recipe.IngredientStack;
@@ -241,10 +235,6 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 					spiritInstillerBlockEntity.doItemBowlOrbs(world);
 				} else if (spiritInstillerBlockEntity.craftingTime == spiritInstillerBlockEntity.craftingTimeTotal) {
 					craftSpiritInstillerRecipe(world, spiritInstillerBlockEntity, spiritInstillerBlockEntity.currentRecipe);
-					playCraftingFinishedEffects(spiritInstillerBlockEntity);
-					
-					spiritInstillerBlockEntity.craftingTime = 0;
-					spiritInstillerBlockEntity.inventoryChanged();
 				}
 				
 				spiritInstillerBlockEntity.markDirty();
@@ -314,7 +304,6 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 	
 	private static boolean checkRecipeRequirements(World world, BlockPos blockPos, @NotNull SpiritInstillerBlockEntity spiritInstillerBlockEntity) {
 		PlayerEntity lastInteractedPlayer = PlayerOwned.getPlayerEntityIfOnline(world, spiritInstillerBlockEntity.ownerUUID);
-		
 		if(lastInteractedPlayer == null) {
 			return false;
 		}
@@ -354,6 +343,10 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 	public static void craftSpiritInstillerRecipe(World world, @NotNull SpiritInstillerBlockEntity spiritInstillerBlockEntity, @NotNull ISpiritInstillerRecipe spiritInstillerRecipe) {
 		spiritInstillerRecipe.craft(spiritInstillerBlockEntity);
 		decrementItemsInInstillerAndBowls(spiritInstillerBlockEntity);
+		
+		playCraftingFinishedEffects(spiritInstillerBlockEntity);
+		spiritInstillerBlockEntity.craftingTime = 0;
+		spiritInstillerBlockEntity.inventoryChanged();
 	}
 	
 	public static boolean decrementItemsInInstillerAndBowls(@NotNull SpiritInstillerBlockEntity spiritInstillerBlockEntity) {

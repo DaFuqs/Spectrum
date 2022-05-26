@@ -1,10 +1,10 @@
-package de.dafuqs.spectrum.events;
+package de.dafuqs.spectrum.events.listeners;
 
 import blue.endless.jankson.annotation.Nullable;
 import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
-import de.dafuqs.spectrum.particle.effect.ExperienceTransfer;
+import de.dafuqs.spectrum.particle.effect.ItemTransfer;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.ExperienceOrbEntity;
+import net.minecraft.entity.ItemEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -15,17 +15,17 @@ import net.minecraft.world.event.listener.GameEventListener;
 
 import java.util.Optional;
 
-public class ExperienceOrbEntityTransferListener implements GameEventListener {
+public class ItemEntityListener implements GameEventListener {
 
 	protected final PositionSource positionSource;
 	protected final int range;
-	protected final ExperienceOrbEntityTransferListener.Callback callback;
+	protected final ItemEntityListener.Callback callback;
 	protected Optional<GameEvent> event = Optional.empty();
 	protected int distance;
 	protected int delay = 0;
-	protected ExperienceOrbEntity experienceOrbEntity;
+	protected ItemEntity itemEntity;
 
-	public ExperienceOrbEntityTransferListener(PositionSource positionSource, int range, ExperienceOrbEntityTransferListener.Callback listener) {
+	public ItemEntityListener(PositionSource positionSource, int range, ItemEntityListener.Callback listener) {
 		this.positionSource = positionSource;
 		this.range = range;
 		this.callback = listener;
@@ -58,7 +58,7 @@ public class ExperienceOrbEntityTransferListener implements GameEventListener {
 			if (!optional.isPresent()) {
 				return false;
 			} else {
-				experienceOrbEntity = (ExperienceOrbEntity) entity;
+				itemEntity = (ItemEntity) entity;
 				BlockPos blockPos = optional.get();
 				if (!this.callback.accepts(world, this, pos, event, entity)) {
 					return false;
@@ -72,8 +72,8 @@ public class ExperienceOrbEntityTransferListener implements GameEventListener {
 
 	boolean shouldActivate(GameEvent event, @Nullable Entity entity) {
 		if (this.event.isEmpty()) {
-			if(entity instanceof ExperienceOrbEntity experienceOrbEntity) {
-				return experienceOrbEntity.isAlive();
+			if(entity instanceof ItemEntity itemEntity) {
+				return itemEntity.isAlive() && !itemEntity.getStack().isEmpty();
 			}
 		}
 		return false;
@@ -84,12 +84,12 @@ public class ExperienceOrbEntityTransferListener implements GameEventListener {
 		if (world instanceof ServerWorld) {
 			this.distance = MathHelper.floor(Math.sqrt(pos.getSquaredDistance(sourcePos)));
 			this.delay = this.distance;
-			SpectrumS2CPacketSender.sendExperienceOrbTransferPacket((ServerWorld) world, new ExperienceTransfer(pos, this.positionSource, this.delay));
+			SpectrumS2CPacketSender.sendItemTransferPacket((ServerWorld) world, new ItemTransfer(pos, this.positionSource, this.delay));
 		}
 	}
 
-	public ExperienceOrbEntity getExperienceOrbEntity() {
-		return this.experienceOrbEntity;
+	public ItemEntity getItemEntity() {
+		return this.itemEntity;
 	}
 
 	public interface Callback {

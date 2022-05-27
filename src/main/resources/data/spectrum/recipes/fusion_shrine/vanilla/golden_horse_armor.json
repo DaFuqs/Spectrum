@@ -6,16 +6,20 @@
   "fluid": "minecraft:water",
   "ingredients": [
     {
-      "item": "minecraft:gold_block"
+      "item": "minecraft:gold_ingot",
+      "count": 6
     },
     {
-      "item": "minecraft:leather"
+      "item": "minecraft:leather",
+      "count": 6
     },
     {
-      "tag": "minecraft:wool"
+      "tag": "minecraft:wool",
+      "count": 2
     },
     {
-      "item": "spectrum:citrine_shard"
+      "item": "spectrum:citrine_shard",
+      "count": 3
     }
   ],
   "result" : {

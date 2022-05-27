@@ -8,10 +8,12 @@
       "item": "minecraft:golden_apple"
     },
     {
-      "item": "minecraft:gold_block"
+      "item": "minecraft:gold_block",
+      "count": 4
     },
     {
-      "item": "spectrum:sparklestone_block"
+      "item": "spectrum:sparklestone_block",
+      "count": 4
     }
   ],
   "result" : {

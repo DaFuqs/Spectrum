@@ -6,16 +6,16 @@
   "fluid": "minecraft:water",
   "ingredients": [
     {
-      "item": "minecraft:leather_chestplate"
+      "item": "minecraft:leather",
+      "count": 12
     },
     {
-      "item": "minecraft:leather"
+      "tag": "minecraft:wool",
+      "count": 2
     },
     {
-      "tag": "minecraft:wool"
-    },
-    {
-      "item": "minecraft:amethyst_shard"
+      "item": "minecraft:amethyst_shard",
+      "count": 3
     }
   ],
   "result" : {

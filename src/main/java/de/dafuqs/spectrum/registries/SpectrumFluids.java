@@ -4,6 +4,7 @@ import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.fluid.LiquidCrystalFluid;
 import de.dafuqs.spectrum.blocks.fluid.MidnightSolutionFluid;
 import de.dafuqs.spectrum.blocks.fluid.MudFluid;
+import de.dafuqs.spectrum.registries.color.ItemColors;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
@@ -21,6 +22,7 @@ import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.resource.ResourceManager;
 import net.minecraft.resource.ResourceType;
+import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
@@ -40,17 +42,18 @@ public class SpectrumFluids {
 	public static final FlowableFluid MIDNIGHT_SOLUTION = new MidnightSolutionFluid.StillMidnightSolution();
 	public static final FlowableFluid FLOWING_MIDNIGHT_SOLUTION = new MidnightSolutionFluid.FlowingMidnightSolution();
 
-	private static void registerFluid(String name, Fluid fluid) {
+	private static void registerFluid(String name, Fluid fluid, DyeColor dyeColor) {
 		Registry.register(Registry.FLUID, new Identifier(SpectrumCommon.MOD_ID, name), fluid);
+		ItemColors.FLUID_COLORS.registerColorMapping(fluid, dyeColor);
 	}
 
 	public static void register() {
-		registerFluid("liquid_crystal", LIQUID_CRYSTAL);
-		registerFluid("flowing_liquid_crystal", FLOWING_LIQUID_CRYSTAL);
-		registerFluid("mud", MUD);
-		registerFluid("flowing_mud", FLOWING_MUD);
-		registerFluid("midnight_solution", MIDNIGHT_SOLUTION);
-		registerFluid("flowing_midnight_solution", FLOWING_MIDNIGHT_SOLUTION);
+		registerFluid("liquid_crystal", LIQUID_CRYSTAL, DyeColor.LIGHT_GRAY);
+		registerFluid("flowing_liquid_crystal", FLOWING_LIQUID_CRYSTAL, DyeColor.LIGHT_GRAY);
+		registerFluid("mud", MUD, DyeColor.BROWN);
+		registerFluid("flowing_mud", FLOWING_MUD, DyeColor.BROWN);
+		registerFluid("midnight_solution", MIDNIGHT_SOLUTION, DyeColor.GRAY);
+		registerFluid("flowing_midnight_solution", FLOWING_MIDNIGHT_SOLUTION, DyeColor.GRAY);
 	}
 
 	@Environment(EnvType.CLIENT)

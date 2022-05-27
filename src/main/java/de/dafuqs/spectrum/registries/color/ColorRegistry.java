@@ -7,12 +7,12 @@ import java.util.Optional;
 
 public abstract class ColorRegistry<T> {
 	
-	public static ItemColorRegistry ITEM_COLORS;
-	public static FluidColorRegistry FLUID_COLORS;
+	public static ItemColors ITEM_COLORS;
+	public static FluidColors FLUID_COLORS;
 	
 	public static void registerColorRegistries() {
-		ITEM_COLORS = new ItemColorRegistry();
-		FLUID_COLORS = new FluidColorRegistry();
+		ITEM_COLORS = new ItemColors();
+		FLUID_COLORS = new FluidColors();
 	}
 
 	public abstract void registerColorMapping(Identifier identifier, DyeColor dyeColor);

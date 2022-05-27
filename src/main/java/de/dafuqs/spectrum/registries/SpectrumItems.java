@@ -20,6 +20,7 @@ import de.dafuqs.spectrum.items.magic.PigmentPaletteItem;
 import de.dafuqs.spectrum.items.magic_items.*;
 import de.dafuqs.spectrum.items.tools.*;
 import de.dafuqs.spectrum.items.trinkets.*;
+import de.dafuqs.spectrum.registries.color.ItemColors;
 import io.wispforest.owo.itemgroup.OwoItemSettings;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
@@ -323,20 +324,15 @@ public class SpectrumItems {
 	public static final Item WHISPY_CIRCLET = new WhispyCircletItem(toolUncommonItemSettingsSingle);
 	public static final Item NEAT_RING = new NeatRingItem(toolRareItemSettingsSingle);
 
-	private static void register(String name, Item item) {
+	private static void register(String name, Item item, DyeColor dyeColor) {
 		Registry.register(Registry.ITEM, new Identifier(SpectrumCommon.MOD_ID, name), item);
+		ItemColors.ITEM_COLORS.registerColorMapping(item, dyeColor);
 	}
 
 	public static void register() {
-		register("manual", MANUAL);
-
-		register("pedestal_tier_1_structure_placer", PEDESTAL_TIER_1_STRUCTURE_PLACER);
-		register("pedestal_tier_2_structure_placer", PEDESTAL_TIER_2_STRUCTURE_PLACER);
-		register("pedestal_tier_3_structure_placer", PEDESTAL_TIER_3_STRUCTURE_PLACER);
-		register("fusion_shrine_structure_placer", FUSION_SHRINE_STRUCTURE_PLACER);
-		register("enchanter_structure_placer", ENCHANTER_STRUCTURE_PLACER);
-		register("spirit_instiller_structure_placer", SPIRIT_INSTILLER_STRUCTURE_PLACER);
-
+		register("manual", MANUAL, DyeColor.WHITE);
+		
+		registerStructurePlacers();
 		registerGemstoneItems();
 		registerPigments();
 		registerCatkin();
@@ -348,181 +344,191 @@ public class SpectrumItems {
 		registerFluidBuckets();
 		registerBannerPatterns();
 		
-		register("crafting_tablet", CRAFTING_TABLET);
-		register("void_bundle", BOTTOMLESS_BUNDLE);
-		register("music_disc_spectrum_theme", MUSIC_DISC_SPECTRUM_THEME);
-		register("music_disc_dimension_theme", MUSIC_DISC_DIMENSION_THEME);
-		register("spawner", SPAWNER);
-		register("glistering_melon_seeds", GLISTERING_MELON_SEEDS);
-		register("invisible_item_frame", INVISIBLE_ITEM_FRAME);
-		register("invisible_glow_item_frame", INVISIBLE_GLOW_ITEM_FRAME);
-		register("knowledge_gem", KNOWLEDGE_GEM);
-		register("celestial_pocketwatch", CELESTIAL_POCKETWATCH);
-		register("gilded_book", GILDED_BOOK);
+		register("crafting_tablet", CRAFTING_TABLET, DyeColor.LIGHT_GRAY);
+		register("void_bundle", BOTTOMLESS_BUNDLE, DyeColor.LIGHT_GRAY);
+		register("music_disc_spectrum_theme", MUSIC_DISC_SPECTRUM_THEME, DyeColor.GREEN);
+		register("music_disc_dimension_theme", MUSIC_DISC_DIMENSION_THEME, DyeColor.GREEN);
+		register("spawner", SPAWNER, DyeColor.LIGHT_GRAY);
+		register("glistering_melon_seeds", GLISTERING_MELON_SEEDS, DyeColor.LIME);
+		register("invisible_item_frame", INVISIBLE_ITEM_FRAME, DyeColor.YELLOW);
+		register("invisible_glow_item_frame", INVISIBLE_GLOW_ITEM_FRAME, DyeColor.YELLOW);
+		register("knowledge_gem", KNOWLEDGE_GEM, DyeColor.PURPLE);
+		register("celestial_pocketwatch", CELESTIAL_POCKETWATCH, DyeColor.MAGENTA);
+		register("gilded_book", GILDED_BOOK, DyeColor.PURPLE);
+	}
+	
+	public static void registerStructurePlacers() {
+		register("pedestal_tier_1_structure_placer", PEDESTAL_TIER_1_STRUCTURE_PLACER, DyeColor.WHITE);
+		register("pedestal_tier_2_structure_placer", PEDESTAL_TIER_2_STRUCTURE_PLACER, DyeColor.WHITE);
+		register("pedestal_tier_3_structure_placer", PEDESTAL_TIER_3_STRUCTURE_PLACER, DyeColor.WHITE);
+		register("fusion_shrine_structure_placer", FUSION_SHRINE_STRUCTURE_PLACER, DyeColor.WHITE);
+		register("enchanter_structure_placer", ENCHANTER_STRUCTURE_PLACER, DyeColor.WHITE);
+		register("spirit_instiller_structure_placer", SPIRIT_INSTILLER_STRUCTURE_PLACER, DyeColor.WHITE);
 	}
 	
 	public static void registerBannerPatterns() {
-		register("logo_banner_pattern", LOGO_BANNER_PATTERN);
-		register("amethyst_shard_banner_pattern", AMETHYST_SHARD_BANNER_PATTERN);
-		register("amethyst_cluster_banner_pattern", AMETHYST_CLUSTER_BANNER_PATTERN);
+		register("logo_banner_pattern", LOGO_BANNER_PATTERN, DyeColor.LIGHT_BLUE);
+		register("amethyst_shard_banner_pattern", AMETHYST_SHARD_BANNER_PATTERN, DyeColor.LIGHT_BLUE);
+		register("amethyst_cluster_banner_pattern", AMETHYST_CLUSTER_BANNER_PATTERN, DyeColor.LIGHT_BLUE);
 	}
 	
 	public static void registerGemstoneItems() {
-		register("topaz_shard", TOPAZ_SHARD);
-		register("citrine_shard", CITRINE_SHARD);
-		register("onyx_shard", ONYX_SHARD);
-		register("moonstone_shard", MOONSTONE_SHARD);
-		register("spectral_shard", SPECTRAL_SHARD);
+		register("topaz_shard", TOPAZ_SHARD, DyeColor.CYAN);
+		register("citrine_shard", CITRINE_SHARD, DyeColor.YELLOW);
+		register("onyx_shard", ONYX_SHARD, DyeColor.BLACK);
+		register("moonstone_shard", MOONSTONE_SHARD, DyeColor.WHITE);
+		register("spectral_shard", SPECTRAL_SHARD, DyeColor.WHITE);
 		
-		register("topaz_powder", TOPAZ_POWDER);
-		register("amethyst_powder", AMETHYST_POWDER);
-		register("citrine_powder", CITRINE_POWDER);
-		register("onyx_powder", ONYX_POWDER);
-		register("moonstone_powder", MOONSTONE_POWDER);
+		register("topaz_powder", TOPAZ_POWDER, DyeColor.CYAN);
+		register("amethyst_powder", AMETHYST_POWDER, DyeColor.MAGENTA);
+		register("citrine_powder", CITRINE_POWDER, DyeColor.YELLOW);
+		register("onyx_powder", ONYX_POWDER, DyeColor.BLACK);
+		register("moonstone_powder", MOONSTONE_POWDER, DyeColor.WHITE);
 	}
 	
 	public static void registerPigments() {
-		register("white_pigment", WHITE_PIGMENT);
-		register("orange_pigment", ORANGE_PIGMENT);
-		register("magenta_pigment", MAGENTA_PIGMENT);
-		register("light_blue_pigment", LIGHT_BLUE_PIGMENT);
-		register("yellow_pigment", YELLOW_PIGMENT);
-		register("lime_pigment", LIME_PIGMENT);
-		register("pink_pigment", PINK_PIGMENT);
-		register("gray_pigment", GRAY_PIGMENT);
-		register("light_gray_pigment", LIGHT_GRAY_PIGMENT);
-		register("cyan_pigment", CYAN_PIGMENT);
-		register("purple_pigment", PURPLE_PIGMENT);
-		register("blue_pigment", BLUE_PIGMENT);
-		register("brown_pigment", BROWN_PIGMENT);
-		register("green_pigment", GREEN_PIGMENT);
-		register("red_pigment", RED_PIGMENT);
-		register("black_pigment", BLACK_PIGMENT);
+		register("white_pigment", WHITE_PIGMENT, DyeColor.WHITE);
+		register("orange_pigment", ORANGE_PIGMENT, DyeColor.ORANGE);
+		register("magenta_pigment", MAGENTA_PIGMENT, DyeColor.MAGENTA);
+		register("light_blue_pigment", LIGHT_BLUE_PIGMENT, DyeColor.LIGHT_BLUE);
+		register("yellow_pigment", YELLOW_PIGMENT, DyeColor.YELLOW);
+		register("lime_pigment", LIME_PIGMENT, DyeColor.LIME);
+		register("pink_pigment", PINK_PIGMENT, DyeColor.PINK);
+		register("gray_pigment", GRAY_PIGMENT, DyeColor.GRAY);
+		register("light_gray_pigment", LIGHT_GRAY_PIGMENT, DyeColor.LIGHT_GRAY);
+		register("cyan_pigment", CYAN_PIGMENT, DyeColor.CYAN);
+		register("purple_pigment", PURPLE_PIGMENT, DyeColor.PURPLE);
+		register("blue_pigment", BLUE_PIGMENT, DyeColor.BLUE);
+		register("brown_pigment", BROWN_PIGMENT, DyeColor.BROWN);
+		register("green_pigment", GREEN_PIGMENT, DyeColor.GREEN);
+		register("red_pigment", RED_PIGMENT, DyeColor.RED);
+		register("black_pigment", BLACK_PIGMENT, DyeColor.BLACK);
 	}
 	
 	public static void registerCatkin() {
-		register("vibrant_cyan_catkin", VIBRANT_CYAN_CATKIN);
-		register("vibrant_magenta_catkin", VIBRANT_MAGENTA_CATKIN);
-		register("vibrant_yellow_catkin", VIBRANT_YELLOW_CATKIN);
-		register("vibrant_black_catkin", VIBRANT_BLACK_CATKIN);
-		register("vibrant_white_catkin", VIBRANT_WHITE_CATKIN);
+		register("vibrant_cyan_catkin", VIBRANT_CYAN_CATKIN, DyeColor.CYAN);
+		register("vibrant_magenta_catkin", VIBRANT_MAGENTA_CATKIN, DyeColor.MAGENTA);
+		register("vibrant_yellow_catkin", VIBRANT_YELLOW_CATKIN, DyeColor.YELLOW);
+		register("vibrant_black_catkin", VIBRANT_BLACK_CATKIN, DyeColor.BLACK);
+		register("vibrant_white_catkin", VIBRANT_WHITE_CATKIN, DyeColor.WHITE);
 		
-		register("lucid_cyan_catkin", LUCID_CYAN_CATKIN);
-		register("lucid_magenta_catkin", LUCID_MAGENTA_CATKIN);
-		register("lucid_yellow_catkin", LUCID_YELLOW_CATKIN);
-		register("lucid_black_catkin", LUCID_BLACK_CATKIN);
-		register("lucid_white_catkin", LUCID_WHITE_CATKIN);
+		register("lucid_cyan_catkin", LUCID_CYAN_CATKIN, DyeColor.CYAN);
+		register("lucid_magenta_catkin", LUCID_MAGENTA_CATKIN, DyeColor.MAGENTA);
+		register("lucid_yellow_catkin", LUCID_YELLOW_CATKIN, DyeColor.YELLOW);
+		register("lucid_black_catkin", LUCID_BLACK_CATKIN, DyeColor.BLACK);
+		register("lucid_white_catkin", LUCID_WHITE_CATKIN, DyeColor.WHITE);
 	}
 	
 	public static void registerResources() {
-		register("sparklestone_gem", SPARKLESTONE_GEM);
-		register("raw_azurite", RAW_AZURITE);
-		register("refined_azurite", REFINED_AZURITE);
-		register("paletur_fragments", PALETUR_FRAGMENTS);
-		register("paletur_gem", PALETUR_GEM);
-		register("scarlet_fragments", SCARLET_FRAGMENTS);
-		register("scarlet_gem", SCARLET_GEM);
-
-		register("quitoxic_powder", QUITOXIC_POWDER);
-		register("mermaids_gem", MERMAIDS_GEM);
-		register("lightning_stone", LIGHTNING_STONE);
-		register("shooting_star", SHOOTING_STAR);
-		register("stardust", STARDUST);
+		register("sparklestone_gem", SPARKLESTONE_GEM, DyeColor.YELLOW);
+		register("raw_azurite", RAW_AZURITE, DyeColor.BLUE);
+		register("refined_azurite", REFINED_AZURITE, DyeColor.BLUE);
+		register("paletur_fragments", PALETUR_FRAGMENTS, DyeColor.LIGHT_BLUE);
+		register("paletur_gem", PALETUR_GEM, DyeColor.LIGHT_BLUE);
+		register("scarlet_fragments", SCARLET_FRAGMENTS, DyeColor.RED);
+		register("scarlet_gem", SCARLET_GEM, DyeColor.RED);
 		
-		register("ancient_jade_vine_seeds", ANCIENT_JADE_VINE_SEEDS);
-		register("germinated_jade_vine_seeds", GERMINATED_JADE_VINE_SEEDS);
-		register("jade_vine_petals", JADE_VINE_PETALS);
-		register("moonstruck_nectar", MOONSTRUCK_NECTAR);
-
-		register("vegetal", VEGETAL);
-		register("neolith", NEOLITH);
-		register("bedrock_dust", BEDROCK_DUST);
-		register("midnight_aberration", MIDNIGHT_ABERRATION);
-		register("midnight_chip", MIDNIGHT_CHIP);
+		register("quitoxic_powder", QUITOXIC_POWDER, DyeColor.PURPLE);
+		register("mermaids_gem", MERMAIDS_GEM, DyeColor.LIGHT_BLUE);
+		register("lightning_stone", LIGHTNING_STONE, DyeColor.YELLOW);
+		register("shooting_star", SHOOTING_STAR, DyeColor.PURPLE);
+		register("stardust", STARDUST, DyeColor.PURPLE);
+		
+		register("ancient_jade_vine_seeds", ANCIENT_JADE_VINE_SEEDS, DyeColor.GRAY);
+		register("germinated_jade_vine_seeds", GERMINATED_JADE_VINE_SEEDS, DyeColor.LIME);
+		register("jade_vine_petals", JADE_VINE_PETALS, DyeColor.LIME);
+		register("moonstruck_nectar", MOONSTRUCK_NECTAR, DyeColor.LIME);
+		
+		register("vegetal", VEGETAL, DyeColor.LIME);
+		register("neolith", NEOLITH, DyeColor.PINK);
+		register("bedrock_dust", BEDROCK_DUST, DyeColor.BLACK);
+		register("midnight_aberration", MIDNIGHT_ABERRATION, DyeColor.GRAY);
+		register("midnight_chip", MIDNIGHT_CHIP, DyeColor.GRAY);
 	}
 	
 	public static void registerDecayBottles() {
-		register("bottle_of_fading", BOTTLE_OF_FADING);
-		register("bottle_of_failing", BOTTLE_OF_FAILING);
-		register("bottle_of_ruin", BOTTLE_OF_RUIN);
-		register("bottle_of_terror", BOTTLE_OF_TERROR);
-		register("bottle_of_decay_away", BOTTLE_OF_DECAY_AWAY);
+		register("bottle_of_fading", BOTTLE_OF_FADING, DyeColor.GRAY);
+		register("bottle_of_failing", BOTTLE_OF_FAILING, DyeColor.GRAY);
+		register("bottle_of_ruin", BOTTLE_OF_RUIN, DyeColor.GRAY);
+		register("bottle_of_terror", BOTTLE_OF_TERROR, DyeColor.GRAY);
+		register("bottle_of_decay_away", BOTTLE_OF_DECAY_AWAY, DyeColor.PINK);
 	}
 	
 	public static void registerPreEnchantedTools() {
-		register("multitool", MULTITOOL);
-		register("silker_pickaxe", SILKER_PICKAXE);
-		register("fortune_pickaxe", FORTUNE_PICKAXE);
-		register("looting_falchion", LOOTING_FALCHION);
-		register("voiding_pickaxe", VOIDING_PICKAXE);
-		register("resonant_pickaxe", RESONANT_PICKAXE);
-
-		register("emergency_helmet", EMERGENCY_HELMET);
-		register("emergency_chestplate", EMERGENCY_CHESTPLATE);
-		register("emergency_leggings", EMERGENCY_LEGGINGS);
-		register("emergency_boots", EMERGENCY_BOOTS);
+		register("multitool", MULTITOOL, DyeColor.BROWN);
+		register("silker_pickaxe", SILKER_PICKAXE, DyeColor.BLUE);
+		register("fortune_pickaxe", FORTUNE_PICKAXE, DyeColor.LIGHT_BLUE);
+		register("looting_falchion", LOOTING_FALCHION, DyeColor.RED);
+		register("voiding_pickaxe", VOIDING_PICKAXE, DyeColor.GRAY);
+		register("resonant_pickaxe", RESONANT_PICKAXE, DyeColor.WHITE);
 		
-		register("bedrock_pickaxe", BEDROCK_PICKAXE);
-		register("bedrock_axe", BEDROCK_AXE);
-		register("bedrock_shovel", BEDROCK_SHOVEL);
-		register("bedrock_sword", BEDROCK_SWORD);
-		register("bedrock_hoe", BEDROCK_HOE);
-		register("bedrock_bow", BEDROCK_BOW);
-		register("bedrock_crossbow", BEDROCK_CROSSBOW);
-		register("bedrock_shears", BEDROCK_SHEARS);
-		register("bedrock_fishing_rod", BEDROCK_FISHING_ROD);
-		register("bedrock_helmet", BEDROCK_HELMET);
-		register("bedrock_chestplate", BEDROCK_CHESTPLATE);
-		register("bedrock_leggings", BEDROCK_LEGGINGS);
-		register("bedrock_boots", BEDROCK_BOOTS);
+		register("emergency_helmet", EMERGENCY_HELMET, DyeColor.BLUE);
+		register("emergency_chestplate", EMERGENCY_CHESTPLATE, DyeColor.BLUE);
+		register("emergency_leggings", EMERGENCY_LEGGINGS, DyeColor.BLUE);
+		register("emergency_boots", EMERGENCY_BOOTS, DyeColor.BLUE);
+		
+		register("bedrock_pickaxe", BEDROCK_PICKAXE, DyeColor.BLACK);
+		register("bedrock_axe", BEDROCK_AXE, DyeColor.BLACK);
+		register("bedrock_shovel", BEDROCK_SHOVEL, DyeColor.BLACK);
+		register("bedrock_sword", BEDROCK_SWORD, DyeColor.BLACK);
+		register("bedrock_hoe", BEDROCK_HOE, DyeColor.BLACK);
+		register("bedrock_bow", BEDROCK_BOW, DyeColor.BLACK);
+		register("bedrock_crossbow", BEDROCK_CROSSBOW, DyeColor.BLACK);
+		register("bedrock_shears", BEDROCK_SHEARS, DyeColor.BLACK);
+		register("bedrock_fishing_rod", BEDROCK_FISHING_ROD, DyeColor.BLACK);
+		
+		register("bedrock_helmet", BEDROCK_HELMET, DyeColor.BLACK);
+		register("bedrock_chestplate", BEDROCK_CHESTPLATE, DyeColor.BLACK);
+		register("bedrock_leggings", BEDROCK_LEGGINGS, DyeColor.BLACK);
+		register("bedrock_boots", BEDROCK_BOOTS, DyeColor.BLACK);
 	}
 	
 	public static void registerMagicalTools() {
-		register("ender_bag", ENDER_BAG);
-		register("light_staff", RADIANCE_STAFF);
-		register("natures_staff", NATURES_STAFF);
-		register("placement_staff", PLACEMENT_STAFF);
-		register("exchange_staff", EXCHANGE_STAFF);
-		register("block_flooder", BLOCK_FLOODER);
-		register("ender_splice", ENDER_SPLICE);
-		register("end_portal_cracker", END_PORTAL_CRACKER);
-		register("crescent_clock", CRESCENT_CLOCK);
-		register("restoration_tea", RESTORATION_TEA);
+		register("ender_bag", ENDER_BAG, DyeColor.PURPLE);
+		register("light_staff", RADIANCE_STAFF, DyeColor.YELLOW);
+		register("natures_staff", NATURES_STAFF, DyeColor.LIME);
+		register("placement_staff", PLACEMENT_STAFF, DyeColor.LIGHT_GRAY);
+		register("exchange_staff", EXCHANGE_STAFF, DyeColor.LIGHT_GRAY);
+		register("block_flooder", BLOCK_FLOODER, DyeColor.LIGHT_GRAY);
+		register("ender_splice", ENDER_SPLICE, DyeColor.PURPLE);
+		register("end_portal_cracker", END_PORTAL_CRACKER, DyeColor.RED);
+		register("crescent_clock", CRESCENT_CLOCK, DyeColor.MAGENTA);
+		register("restoration_tea", RESTORATION_TEA, DyeColor.PINK);
 	}
 	
 	public static void registerTrinkets() {
-		register("fanciful_stone_ring", FANCIFUL_STONE_RING);
-		register("fanciful_belt", FANCIFUL_BELT);
-		register("fanciful_pendant", FANCIFUL_PENDANT);
-		register("fanciful_circlet", FANCIFUL_CIRCLET);
+		register("fanciful_stone_ring", FANCIFUL_STONE_RING, DyeColor.GREEN);
+		register("fanciful_belt", FANCIFUL_BELT, DyeColor.GREEN);
+		register("fanciful_pendant", FANCIFUL_PENDANT, DyeColor.GREEN);
+		register("fanciful_circlet", FANCIFUL_CIRCLET, DyeColor.GREEN);
 		
-		register("glow_vision_helmet", GLOW_VISION_GOGGLES);
-		register("jeopardant", JEOPARDANT);
-		register("seven_league_boots", SEVEN_LEAGUE_BOOTS);
-		register("radiance_pin", RADIANCE_PIN);
-		register("totem_pendant", TOTEM_PENDANT);
-		register("take_off_belt", TAKE_OFF_BELT);
-		register("azure_dike_belt", AZURE_DIKE_BELT);
-		register("azure_dike_ring", AZURE_DIKE_RING);
-		register("gleaming_pin", GLEAMING_PIN);
-		register("lesser_potion_pendant", LESSER_POTION_PENDANT);
-		register("greater_potion_pendant", GREATER_POTION_PENDANT);
-		register("ashen_circlet", ASHEN_CIRCLET);
-		register("tidal_circlet", TIDAL_CIRCLET);
-		register("puff_circlet", PUFF_CIRCLET);
-		register("whispy_circlet", WHISPY_CIRCLET);
-		register("neat_ring", NEAT_RING);
+		register("glow_vision_helmet", GLOW_VISION_GOGGLES, DyeColor.WHITE);
+		register("jeopardant", JEOPARDANT, DyeColor.RED);
+		register("seven_league_boots", SEVEN_LEAGUE_BOOTS, DyeColor.PURPLE);
+		register("radiance_pin", RADIANCE_PIN, DyeColor.BLUE);
+		register("totem_pendant", TOTEM_PENDANT, DyeColor.BLUE);
+		register("take_off_belt", TAKE_OFF_BELT, DyeColor.YELLOW);
+		register("azure_dike_belt", AZURE_DIKE_BELT, DyeColor.BLUE);
+		register("azure_dike_ring", AZURE_DIKE_RING, DyeColor.BLUE);
+		register("gleaming_pin", GLEAMING_PIN, DyeColor.YELLOW);
+		register("lesser_potion_pendant", LESSER_POTION_PENDANT, DyeColor.PINK);
+		register("greater_potion_pendant", GREATER_POTION_PENDANT, DyeColor.PINK);
+		register("ashen_circlet", ASHEN_CIRCLET, DyeColor.ORANGE);
+		register("tidal_circlet", TIDAL_CIRCLET, DyeColor.LIGHT_BLUE);
+		register("puff_circlet", PUFF_CIRCLET, DyeColor.WHITE);
+		register("whispy_circlet", WHISPY_CIRCLET, DyeColor.BROWN);
+		register("neat_ring", NEAT_RING, DyeColor.GREEN);
 		
-		register("ink_flask", INK_FLASK);
-		register("ink_assortment", INK_ASSORTMENT);
-		register("pigment_palette", PIGMENT_PALETTE);
-		register("artists_palette", ARTISTS_PALETTE);
+		register("ink_flask", INK_FLASK, DyeColor.PURPLE);
+		register("ink_assortment", INK_ASSORTMENT, DyeColor.PURPLE);
+		register("pigment_palette", PIGMENT_PALETTE, DyeColor.PURPLE);
+		register("artists_palette", ARTISTS_PALETTE, DyeColor.PURPLE);
 	}
 	
 	public static void registerFluidBuckets() {
-		register("liquid_crystal_bucket", LIQUID_CRYSTAL_BUCKET);
-		register("mud_bucket", MUD_BUCKET);
-		register("midnight_solution_bucket", MIDNIGHT_SOLUTION_BUCKET);
+		register("liquid_crystal_bucket", LIQUID_CRYSTAL_BUCKET, DyeColor.LIGHT_GRAY);
+		register("mud_bucket", MUD_BUCKET, DyeColor.BROWN);
+		register("midnight_solution_bucket", MIDNIGHT_SOLUTION_BUCKET, DyeColor.GRAY);
 	}
 	
 	public static void registerFuelRegistry() {

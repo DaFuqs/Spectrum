@@ -69,6 +69,7 @@ import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
 import de.dafuqs.spectrum.enums.BuiltinGemstoneColor;
 import de.dafuqs.spectrum.items.FourLeafCloverItem;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
+import de.dafuqs.spectrum.registries.color.ItemColors;
 import de.dafuqs.spectrum.worldgen.ColoredSaplingGenerator;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
@@ -823,46 +824,50 @@ public class SpectrumBlocks {
 		Registry.register(Registry.BLOCK, new Identifier(SpectrumCommon.MOD_ID, name), block);
 	}
 
-	private static void registerBlockItem(String name, BlockItem blockItem) {
+	private static void registerBlockItem(String name, BlockItem blockItem, DyeColor dyeColor) {
 		Registry.register(Registry.ITEM, new Identifier(SpectrumCommon.MOD_ID, name), blockItem);
+		ItemColors.ITEM_COLORS.registerColorMapping(blockItem, dyeColor);
 	}
 
-	private static void registerBlockWithItem(String name, Block block, FabricItemSettings itemSettings) {
+	private static void registerBlockWithItem(String name, Block block, FabricItemSettings itemSettings, DyeColor dyeColor) {
 		Registry.register(Registry.BLOCK, new Identifier(SpectrumCommon.MOD_ID, name), block);
-		Registry.register(Registry.ITEM, new Identifier(SpectrumCommon.MOD_ID, name), new BlockItem(block, itemSettings));
+		BlockItem blockItem = new BlockItem(block, itemSettings);
+		Registry.register(Registry.ITEM, new Identifier(SpectrumCommon.MOD_ID, name), blockItem);
+		ItemColors.ITEM_COLORS.registerColorMapping(blockItem, dyeColor);
 	}
 
-	private static void registerBlockWithItem(String name, Block block, BlockItem blockItem) {
+	private static void registerBlockWithItem(String name, Block block, BlockItem blockItem, DyeColor dyeColor) {
 		Registry.register(Registry.BLOCK, new Identifier(SpectrumCommon.MOD_ID, name), block);
 		Registry.register(Registry.ITEM, new Identifier(SpectrumCommon.MOD_ID, name), blockItem);
+		ItemColors.ITEM_COLORS.registerColorMapping(blockItem, dyeColor);
 	}
 
 	public static void register() {
-		registerBlockWithItem("pedestal_basic_topaz", PEDESTAL_BASIC_TOPAZ, new PedestalBlockItem(PEDESTAL_BASIC_TOPAZ, generalItemSettingsSingle, BuiltinPedestalVariant.BASIC_TOPAZ, "item.spectrum.pedestal.tooltip.basic_topaz"));
-		registerBlockWithItem("pedestal_basic_amethyst", PEDESTAL_BASIC_AMETHYST, new PedestalBlockItem(PEDESTAL_BASIC_AMETHYST, generalItemSettingsSingle, BuiltinPedestalVariant.BASIC_AMETHYST, "item.spectrum.pedestal.tooltip.basic_amethyst"));
-		registerBlockWithItem("pedestal_basic_citrine", PEDESTAL_BASIC_CITRINE, new PedestalBlockItem(PEDESTAL_BASIC_CITRINE, generalItemSettingsSingle, BuiltinPedestalVariant.BASIC_CITRINE, "item.spectrum.pedestal.tooltip.basic_citrine"));
-		registerBlockWithItem("pedestal_all_basic", PEDESTAL_ALL_BASIC, new PedestalBlockItem(PEDESTAL_ALL_BASIC, generalItemSettingsSingle, BuiltinPedestalVariant.CMY, "item.spectrum.pedestal.tooltip.all_basic"));
-		registerBlockWithItem("pedestal_onyx", PEDESTAL_ONYX, new PedestalBlockItem(PEDESTAL_ONYX, generalItemSettingsSingle, BuiltinPedestalVariant.ONYX, "item.spectrum.pedestal.tooltip.onyx"));
-		registerBlockWithItem("pedestal_moonstone", PEDESTAL_MOONSTONE, new PedestalBlockItem(PEDESTAL_MOONSTONE, generalItemSettingsSingle, BuiltinPedestalVariant.MOONSTONE, "item.spectrum.pedestal.tooltip.moonstone"));
-		registerBlockWithItem("fusion_shrine_basalt", FUSION_SHRINE_BASALT, generalItemSettingsSingle);
-		registerBlockWithItem("fusion_shrine_calcite", FUSION_SHRINE_CALCITE, generalItemSettingsSingle);
-		registerBlockWithItem("enchanter", ENCHANTER, generalItemSettingsSingle);
-		registerBlockWithItem("item_bowl_basalt", ITEM_BOWL_BASALT, generalItemSettingsSixteen);
-		registerBlockWithItem("item_bowl_calcite", ITEM_BOWL_CALCITE, generalItemSettingsSixteen);
-		registerBlockWithItem("potion_workshop", POTION_WORKSHOP, generalItemSettingsSingle);
+		registerBlockWithItem("pedestal_basic_topaz", PEDESTAL_BASIC_TOPAZ, new PedestalBlockItem(PEDESTAL_BASIC_TOPAZ, generalItemSettingsSingle, BuiltinPedestalVariant.BASIC_TOPAZ, "item.spectrum.pedestal.tooltip.basic_topaz"), DyeColor.WHITE);
+		registerBlockWithItem("pedestal_basic_amethyst", PEDESTAL_BASIC_AMETHYST, new PedestalBlockItem(PEDESTAL_BASIC_AMETHYST, generalItemSettingsSingle, BuiltinPedestalVariant.BASIC_AMETHYST, "item.spectrum.pedestal.tooltip.basic_amethyst"), DyeColor.WHITE);
+		registerBlockWithItem("pedestal_basic_citrine", PEDESTAL_BASIC_CITRINE, new PedestalBlockItem(PEDESTAL_BASIC_CITRINE, generalItemSettingsSingle, BuiltinPedestalVariant.BASIC_CITRINE, "item.spectrum.pedestal.tooltip.basic_citrine"), DyeColor.WHITE);
+		registerBlockWithItem("pedestal_all_basic", PEDESTAL_ALL_BASIC, new PedestalBlockItem(PEDESTAL_ALL_BASIC, generalItemSettingsSingle, BuiltinPedestalVariant.CMY, "item.spectrum.pedestal.tooltip.all_basic"), DyeColor.WHITE);
+		registerBlockWithItem("pedestal_onyx", PEDESTAL_ONYX, new PedestalBlockItem(PEDESTAL_ONYX, generalItemSettingsSingle, BuiltinPedestalVariant.ONYX, "item.spectrum.pedestal.tooltip.onyx"), DyeColor.WHITE);
+		registerBlockWithItem("pedestal_moonstone", PEDESTAL_MOONSTONE, new PedestalBlockItem(PEDESTAL_MOONSTONE, generalItemSettingsSingle, BuiltinPedestalVariant.MOONSTONE, "item.spectrum.pedestal.tooltip.moonstone"), DyeColor.WHITE);
+		registerBlockWithItem("fusion_shrine_basalt", FUSION_SHRINE_BASALT, generalItemSettingsSingle, DyeColor.GRAY);
+		registerBlockWithItem("fusion_shrine_calcite", FUSION_SHRINE_CALCITE, generalItemSettingsSingle, DyeColor.GRAY);
+		registerBlockWithItem("enchanter", ENCHANTER, generalItemSettingsSingle, DyeColor.PURPLE);
+		registerBlockWithItem("item_bowl_basalt", ITEM_BOWL_BASALT, generalItemSettingsSixteen, DyeColor.PINK);
+		registerBlockWithItem("item_bowl_calcite", ITEM_BOWL_CALCITE, generalItemSettingsSixteen, DyeColor.PINK);
+		registerBlockWithItem("potion_workshop", POTION_WORKSHOP, generalItemSettingsSingle, DyeColor.PURPLE);
 		
-		registerBlockWithItem("spirit_instiller", SPIRIT_INSTILLER, generalItemSettingsSingle);
-		registerBlockWithItem("memory", MEMORY, new MemoryItem(MEMORY, generalItemSettingsSingleUncommon));
+		registerBlockWithItem("spirit_instiller", SPIRIT_INSTILLER, generalItemSettingsSingle, DyeColor.WHITE);
+		registerBlockWithItem("memory", MEMORY, new MemoryItem(MEMORY, generalItemSettingsSingleUncommon), DyeColor.LIGHT_GRAY);
 		
-		registerBlockWithItem("upgrade_speed", UPGRADE_SPEED, new UpgradeBlockItem(UPGRADE_SPEED, generalItemSettingsEight, "upgrade_speed"));
-		registerBlockWithItem("upgrade_speed2", UPGRADE_SPEED2, new UpgradeBlockItem(UPGRADE_SPEED2, generalUncommonItemSettingsEight, "upgrade_speed2"));
-		registerBlockWithItem("upgrade_speed3", UPGRADE_SPEED3, new UpgradeBlockItem(UPGRADE_SPEED3, generalRareItemSettingsEight, "upgrade_speed3"));
-		registerBlockWithItem("upgrade_efficiency", UPGRADE_EFFICIENCY, new UpgradeBlockItem(UPGRADE_EFFICIENCY, generalUncommonItemSettingsEight, "upgrade_efficiency"));
-		registerBlockWithItem("upgrade_efficiency2", UPGRADE_EFFICIENCY2, new UpgradeBlockItem(UPGRADE_EFFICIENCY2, generalRareItemSettingsEight, "upgrade_efficiency2"));
-		registerBlockWithItem("upgrade_yield", UPGRADE_YIELD, new UpgradeBlockItem(UPGRADE_YIELD, generalUncommonItemSettingsEight, "upgrade_yield"));
-		registerBlockWithItem("upgrade_yield2", UPGRADE_YIELD2, new UpgradeBlockItem(UPGRADE_YIELD2, generalRareItemSettingsEight, "upgrade_yield2"));
-		registerBlockWithItem("upgrade_experience", UPGRADE_EXPERIENCE, new UpgradeBlockItem(UPGRADE_EXPERIENCE, generalItemSettingsEight, "upgrade_experience"));
-		registerBlockWithItem("upgrade_experience2", UPGRADE_EXPERIENCE2, new UpgradeBlockItem(UPGRADE_EXPERIENCE2, generalUncommonItemSettingsEight, "upgrade_experience2"));
+		registerBlockWithItem("upgrade_speed", UPGRADE_SPEED, new UpgradeBlockItem(UPGRADE_SPEED, generalItemSettingsEight, "upgrade_speed"), DyeColor.LIGHT_GRAY);
+		registerBlockWithItem("upgrade_speed2", UPGRADE_SPEED2, new UpgradeBlockItem(UPGRADE_SPEED2, generalUncommonItemSettingsEight, "upgrade_speed2"), DyeColor.LIGHT_GRAY);
+		registerBlockWithItem("upgrade_speed3", UPGRADE_SPEED3, new UpgradeBlockItem(UPGRADE_SPEED3, generalRareItemSettingsEight, "upgrade_speed3"), DyeColor.LIGHT_GRAY);
+		registerBlockWithItem("upgrade_efficiency", UPGRADE_EFFICIENCY, new UpgradeBlockItem(UPGRADE_EFFICIENCY, generalUncommonItemSettingsEight, "upgrade_efficiency"), DyeColor.LIGHT_GRAY);
+		registerBlockWithItem("upgrade_efficiency2", UPGRADE_EFFICIENCY2, new UpgradeBlockItem(UPGRADE_EFFICIENCY2, generalRareItemSettingsEight, "upgrade_efficiency2"), DyeColor.LIGHT_GRAY);
+		registerBlockWithItem("upgrade_yield", UPGRADE_YIELD, new UpgradeBlockItem(UPGRADE_YIELD, generalUncommonItemSettingsEight, "upgrade_yield"), DyeColor.LIGHT_GRAY);
+		registerBlockWithItem("upgrade_yield2", UPGRADE_YIELD2, new UpgradeBlockItem(UPGRADE_YIELD2, generalRareItemSettingsEight, "upgrade_yield2"), DyeColor.LIGHT_GRAY);
+		registerBlockWithItem("upgrade_experience", UPGRADE_EXPERIENCE, new UpgradeBlockItem(UPGRADE_EXPERIENCE, generalItemSettingsEight, "upgrade_experience"), DyeColor.LIGHT_GRAY);
+		registerBlockWithItem("upgrade_experience2", UPGRADE_EXPERIENCE2, new UpgradeBlockItem(UPGRADE_EXPERIENCE2, generalUncommonItemSettingsEight, "upgrade_experience2"), DyeColor.LIGHT_GRAY);
 		
 		registerStructureBlocks(generalItemSettings);
 		registerJadeVineBlocks(generalItemSettings);
@@ -871,8 +876,8 @@ public class SpectrumBlocks {
 		registerPastelNetworkNodes(generalItemSettingsSixteen);
 		registerStoneBlocks(decorationItemSettings);
 		registerGemBlocks(worldgenItemSettings);
-		registerBlockWithItem("spectral_shard_block", SPECTRAL_SHARD_BLOCK, worldgenItemSettingsRare);
-		registerBlockWithItem("bedrock_storage_block", BEDROCK_STORAGE_BLOCK, decorationItemSettingsRare);
+		registerBlockWithItem("spectral_shard_block", SPECTRAL_SHARD_BLOCK, worldgenItemSettingsRare, DyeColor.WHITE);
+		registerBlockWithItem("bedrock_storage_block", BEDROCK_STORAGE_BLOCK, decorationItemSettingsRare, DyeColor.BLACK);
 		registerShootingStarBlocks(resourcesItemSettingUncommonSingle);
 		
 		registerGemOreBlocks(worldgenItemSettings);
@@ -907,20 +912,21 @@ public class SpectrumBlocks {
 		registerBlock("mud", MUD);
 		registerBlock("liquid_crystal", LIQUID_CRYSTAL);
 		registerBlock("midnight_solution", MIDNIGHT_SOLUTION);
-		registerBlockWithItem("black_materia", BLACK_MATERIA, generalItemSettings);
-		registerBlockWithItem("frostbite_crystal", FROSTBITE_CRYSTAL, generalItemSettings);
-		registerBlockWithItem("blazing_crystal", BLAZING_CRYSTAL, generalItemSettings);
-		registerBlockWithItem("resonant_lily", RESONANT_LILY, generalItemSettings);
-		registerBlockWithItem("clover", CLOVER, worldgenItemSettings);
-		registerBlockWithItem("four_leaf_clover", FOUR_LEAF_CLOVER, new FourLeafCloverItem(FOUR_LEAF_CLOVER, worldgenItemSettings, new Identifier(SpectrumCommon.MOD_ID, "milestones/reveal_four_leaf_clover"), CLOVER.asItem()));
+		
+		registerBlockWithItem("black_materia", BLACK_MATERIA, generalItemSettings, DyeColor.GRAY);
+		registerBlockWithItem("frostbite_crystal", FROSTBITE_CRYSTAL, generalItemSettings, DyeColor.LIGHT_BLUE);
+		registerBlockWithItem("blazing_crystal", BLAZING_CRYSTAL, generalItemSettings, DyeColor.ORANGE);
+		registerBlockWithItem("resonant_lily", RESONANT_LILY, generalItemSettings, DyeColor.GREEN);
+		registerBlockWithItem("clover", CLOVER, worldgenItemSettings, DyeColor.LIME);
+		registerBlockWithItem("four_leaf_clover", FOUR_LEAF_CLOVER, new FourLeafCloverItem(FOUR_LEAF_CLOVER, worldgenItemSettings, new Identifier(SpectrumCommon.MOD_ID, "milestones/reveal_four_leaf_clover"), CLOVER.asItem()), DyeColor.LIME);
 
 		// Worldgen
-		registerBlockWithItem("quitoxic_reeds", QUITOXIC_REEDS, worldgenItemSettings);
-		registerBlockWithItem("mermaids_brush", MERMAIDS_BRUSH, worldgenItemSettings);
-		registerBlockWithItem("ender_treasure", ENDER_TREASURE, worldgenItemSettings);
+		registerBlockWithItem("quitoxic_reeds", QUITOXIC_REEDS, worldgenItemSettings, DyeColor.PURPLE);
+		registerBlockWithItem("mermaids_brush", MERMAIDS_BRUSH, worldgenItemSettings, DyeColor.LIGHT_BLUE);
+		registerBlockWithItem("ender_treasure", ENDER_TREASURE, worldgenItemSettings, DyeColor.PURPLE);
 
-		registerBlockWithItem("bedrock_anvil", BEDROCK_ANVIL, generalItemSettings);
-		registerBlockWithItem("cracked_end_portal_frame", CRACKED_END_PORTAL_FRAME, generalItemSettings);
+		registerBlockWithItem("bedrock_anvil", BEDROCK_ANVIL, generalItemSettings, DyeColor.BLACK);
+		registerBlockWithItem("cracked_end_portal_frame", CRACKED_END_PORTAL_FRAME, generalItemSettings, DyeColor.PURPLE);
 
 		// Technical Blocks without items
 		registerBlock("deeper_down_portal", DEEPER_DOWN_PORTAL);
@@ -934,67 +940,67 @@ public class SpectrumBlocks {
 	}
 
 	private static void registerRedstone(FabricItemSettings fabricItemSettings) {
-		registerBlockWithItem("light_level_detector", LIGHT_LEVEL_DETECTOR, fabricItemSettings);
-		registerBlockWithItem("weather_detector", WEATHER_DETECTOR, fabricItemSettings);
-		registerBlockWithItem("item_detector", ITEM_DETECTOR, fabricItemSettings);
-		registerBlockWithItem("player_detector", PLAYER_DETECTOR, fabricItemSettings);
-		registerBlockWithItem("entity_detector", ENTITY_DETECTOR, fabricItemSettings);
+		registerBlockWithItem("light_level_detector", LIGHT_LEVEL_DETECTOR, fabricItemSettings, DyeColor.RED);
+		registerBlockWithItem("weather_detector", WEATHER_DETECTOR, fabricItemSettings, DyeColor.RED);
+		registerBlockWithItem("item_detector", ITEM_DETECTOR, fabricItemSettings, DyeColor.RED);
+		registerBlockWithItem("player_detector", PLAYER_DETECTOR, fabricItemSettings, DyeColor.RED);
+		registerBlockWithItem("entity_detector", ENTITY_DETECTOR, fabricItemSettings, DyeColor.RED);
 
-		registerBlockWithItem("redstone_timer", REDSTONE_TIMER, fabricItemSettings);
-		registerBlockWithItem("redstone_calculator", REDSTONE_CALCULATOR, fabricItemSettings);
-		registerBlockWithItem("redstone_wireless", REDSTONE_WIRELESS, fabricItemSettings);
+		registerBlockWithItem("redstone_timer", REDSTONE_TIMER, fabricItemSettings, DyeColor.RED);
+		registerBlockWithItem("redstone_calculator", REDSTONE_CALCULATOR, fabricItemSettings, DyeColor.RED);
+		registerBlockWithItem("redstone_wireless", REDSTONE_WIRELESS, fabricItemSettings, DyeColor.RED);
 		
-		registerBlockWithItem("redstone_sand", REDSTONE_SAND, fabricItemSettings);
-		registerBlockWithItem("ender_glass", ENDER_GLASS, fabricItemSettings);
-		registerBlockWithItem("block_placer", BLOCK_PLACER, fabricItemSettings);
+		registerBlockWithItem("redstone_sand", REDSTONE_SAND, fabricItemSettings, DyeColor.RED);
+		registerBlockWithItem("ender_glass", ENDER_GLASS, fabricItemSettings, DyeColor.PURPLE);
+		registerBlockWithItem("block_placer", BLOCK_PLACER, fabricItemSettings, DyeColor.CYAN);
 	}
 
 	private static void registerMagicalBlocks(FabricItemSettings fabricItemSettings) {
-		registerBlockWithItem("private_chest", PRIVATE_CHEST, fabricItemSettings);
-		registerBlockWithItem("compacting_chest", COMPACTING_CHEST, generalItemSettings);
-		registerBlockWithItem("restocking_chest", RESTOCKING_CHEST, generalItemSettings);
-		registerBlockWithItem("sucking_chest", SUCKING_CHEST, generalItemSettings);
+		registerBlockWithItem("private_chest", PRIVATE_CHEST, fabricItemSettings, DyeColor.BLUE);
+		registerBlockWithItem("compacting_chest", COMPACTING_CHEST, generalItemSettings, DyeColor.YELLOW);
+		registerBlockWithItem("restocking_chest", RESTOCKING_CHEST, generalItemSettings, DyeColor.YELLOW);
+		registerBlockWithItem("sucking_chest", SUCKING_CHEST, generalItemSettings, DyeColor.LIGHT_GRAY);
 
-		registerBlockWithItem("ender_hopper", ENDER_HOPPER, fabricItemSettings);
-		registerBlockWithItem("ender_dropper", ENDER_DROPPER, fabricItemSettings);
-		registerBlockWithItem("particle_spawner", PARTICLE_SPAWNER, fabricItemSettings);
-		registerBlockWithItem("creative_particle_spawner", CREATIVE_PARTICLE_SPAWNER, new BlockItem(CREATIVE_PARTICLE_SPAWNER, new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).rarity(Rarity.EPIC)));
+		registerBlockWithItem("ender_hopper", ENDER_HOPPER, fabricItemSettings, DyeColor.PURPLE);
+		registerBlockWithItem("ender_dropper", ENDER_DROPPER, fabricItemSettings, DyeColor.PURPLE);
+		registerBlockWithItem("particle_spawner", PARTICLE_SPAWNER, fabricItemSettings, DyeColor.PINK);
+		registerBlockWithItem("creative_particle_spawner", CREATIVE_PARTICLE_SPAWNER, new BlockItem(CREATIVE_PARTICLE_SPAWNER, new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).rarity(Rarity.EPIC)), DyeColor.PINK);
 
-		registerBlockWithItem("glistering_melon", GLISTERING_MELON, generalItemSettings);
+		registerBlockWithItem("glistering_melon", GLISTERING_MELON, generalItemSettings, DyeColor.LIME);
 
-		registerBlockWithItem("lava_sponge", LAVA_SPONGE, fabricItemSettings);
-		registerBlockWithItem("wet_lava_sponge", WET_LAVA_SPONGE, new WetLavaSpongeItem(WET_LAVA_SPONGE, new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).maxCount(1).recipeRemainder(LAVA_SPONGE.asItem())));
+		registerBlockWithItem("lava_sponge", LAVA_SPONGE, fabricItemSettings, DyeColor.ORANGE);
+		registerBlockWithItem("wet_lava_sponge", WET_LAVA_SPONGE, new WetLavaSpongeItem(WET_LAVA_SPONGE, new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).maxCount(1).recipeRemainder(LAVA_SPONGE.asItem())), DyeColor.ORANGE);
 		
-		registerBlockWithItem("ethereal_platform", ETHEREAL_PLATFORM, fabricItemSettings);
-		registerBlockWithItem("universe_spyhole", UNIVERSE_SPYHOLE, fabricItemSettings);
+		registerBlockWithItem("ethereal_platform", ETHEREAL_PLATFORM, fabricItemSettings, DyeColor.LIGHT_GRAY);
+		registerBlockWithItem("universe_spyhole", UNIVERSE_SPYHOLE, fabricItemSettings, DyeColor.LIGHT_GRAY);
 	}
 
 	private static void registerPigmentStorageBlocks(FabricItemSettings fabricItemSettings) {
-		registerBlockWithItem("white_block", WHITE_BLOCK, fabricItemSettings);
-		registerBlockWithItem("orange_block", ORANGE_BLOCK, fabricItemSettings);
-		registerBlockWithItem("magenta_block", MAGENTA_BLOCK, fabricItemSettings);
-		registerBlockWithItem("light_blue_block", LIGHT_BLUE_BLOCK, fabricItemSettings);
-		registerBlockWithItem("yellow_block", YELLOW_BLOCK, fabricItemSettings);
-		registerBlockWithItem("lime_block", LIME_BLOCK, fabricItemSettings);
-		registerBlockWithItem("pink_block", PINK_BLOCK, fabricItemSettings);
-		registerBlockWithItem("gray_block", GRAY_BLOCK, fabricItemSettings);
-		registerBlockWithItem("light_gray_block", LIGHT_GRAY_BLOCK, fabricItemSettings);
-		registerBlockWithItem("cyan_block", CYAN_BLOCK, fabricItemSettings);
-		registerBlockWithItem("purple_block", PURPLE_BLOCK, fabricItemSettings);
-		registerBlockWithItem("blue_block", BLUE_BLOCK, fabricItemSettings);
-		registerBlockWithItem("brown_block", BROWN_BLOCK, fabricItemSettings);
-		registerBlockWithItem("green_block", GREEN_BLOCK, fabricItemSettings);
-		registerBlockWithItem("red_block", RED_BLOCK, fabricItemSettings);
-		registerBlockWithItem("black_block", BLACK_BLOCK, fabricItemSettings);
+		registerBlockWithItem("white_block", WHITE_BLOCK, fabricItemSettings, DyeColor.WHITE);
+		registerBlockWithItem("orange_block", ORANGE_BLOCK, fabricItemSettings, DyeColor.ORANGE);
+		registerBlockWithItem("magenta_block", MAGENTA_BLOCK, fabricItemSettings, DyeColor.MAGENTA);
+		registerBlockWithItem("light_blue_block", LIGHT_BLUE_BLOCK, fabricItemSettings, DyeColor.LIGHT_BLUE);
+		registerBlockWithItem("yellow_block", YELLOW_BLOCK, fabricItemSettings, DyeColor.YELLOW);
+		registerBlockWithItem("lime_block", LIME_BLOCK, fabricItemSettings, DyeColor.LIME);
+		registerBlockWithItem("pink_block", PINK_BLOCK, fabricItemSettings, DyeColor.PINK);
+		registerBlockWithItem("gray_block", GRAY_BLOCK, fabricItemSettings, DyeColor.GRAY);
+		registerBlockWithItem("light_gray_block", LIGHT_GRAY_BLOCK, fabricItemSettings, DyeColor.LIGHT_GRAY);
+		registerBlockWithItem("cyan_block", CYAN_BLOCK, fabricItemSettings, DyeColor.CYAN);
+		registerBlockWithItem("purple_block", PURPLE_BLOCK, fabricItemSettings, DyeColor.PURPLE);
+		registerBlockWithItem("blue_block", BLUE_BLOCK, fabricItemSettings, DyeColor.BLUE);
+		registerBlockWithItem("brown_block", BROWN_BLOCK, fabricItemSettings, DyeColor.BROWN);
+		registerBlockWithItem("green_block", GREEN_BLOCK, fabricItemSettings, DyeColor.GREEN);
+		registerBlockWithItem("red_block", RED_BLOCK, fabricItemSettings, DyeColor.RED);
+		registerBlockWithItem("black_block", BLACK_BLOCK, fabricItemSettings, DyeColor.BLACK);
 	}
 
 	private static void registerSpiritTree(FabricItemSettings fabricItemSettings) {
-		registerBlockWithItem("ominous_sapling", OMINOUS_SAPLING, new OminousSaplingBlockItem(OMINOUS_SAPLING, fabricItemSettings));
+		registerBlockWithItem("ominous_sapling", OMINOUS_SAPLING, new OminousSaplingBlockItem(OMINOUS_SAPLING, fabricItemSettings), DyeColor.GREEN);
 
-		registerBlockWithItem("spirit_sallow_roots", SPIRIT_SALLOW_ROOTS, fabricItemSettings);
-		registerBlockWithItem("spirit_sallow_log", SPIRIT_SALLOW_LOG, fabricItemSettings);
-		registerBlockWithItem("spirit_sallow_leaves", SPIRIT_SALLOW_LEAVES, fabricItemSettings);
-		registerBlockWithItem("spirit_sallow_heart", SPIRIT_SALLOW_HEART, fabricItemSettings);
+		registerBlockWithItem("spirit_sallow_roots", SPIRIT_SALLOW_ROOTS, fabricItemSettings, DyeColor.GREEN);
+		registerBlockWithItem("spirit_sallow_log", SPIRIT_SALLOW_LOG, fabricItemSettings, DyeColor.GREEN);
+		registerBlockWithItem("spirit_sallow_leaves", SPIRIT_SALLOW_LEAVES, fabricItemSettings, DyeColor.GREEN);
+		registerBlockWithItem("spirit_sallow_heart", SPIRIT_SALLOW_HEART, fabricItemSettings, DyeColor.GREEN);
 
 		registerBlock("cyan_spirit_sallow_vines_head", CYAN_SPIRIT_SALLOW_VINES_HEAD);
 		registerBlock("magenta_spirit_sallow_vines_head", MAGENTA_SPIRIT_SALLOW_VINES_HEAD);
@@ -1008,509 +1014,512 @@ public class SpectrumBlocks {
 		registerBlock("black_spirit_sallow_vines_body", BLACK_SPIRIT_SALLOW_VINES_BODY);
 		registerBlock("white_spirit_sallow_vines_body", WHITE_SPIRIT_SALLOW_VINES_BODY);
 
-		registerBlockWithItem("sacred_soil", SACRED_SOIL, fabricItemSettings);
+		registerBlockWithItem("sacred_soil", SACRED_SOIL, fabricItemSettings, DyeColor.LIME);
 	}
 
 	private static void registerOreBlocks(FabricItemSettings fabricItemSettings, FabricItemSettings fabricItemSettingsFireProof) {
-		registerBlockWithItem("sparklestone_ore", SPARKLESTONE_ORE, fabricItemSettings);
-		registerBlockWithItem("deepslate_sparklestone_ore", DEEPSLATE_SPARKLESTONE_ORE, fabricItemSettings);
+		registerBlockWithItem("sparklestone_ore", SPARKLESTONE_ORE, fabricItemSettings, DyeColor.YELLOW);
+		registerBlockWithItem("deepslate_sparklestone_ore", DEEPSLATE_SPARKLESTONE_ORE, fabricItemSettings, DyeColor.YELLOW);
 
-		registerBlockWithItem("azurite_ore", AZURITE_ORE, fabricItemSettings);
-		registerBlockWithItem("deepslate_azurite_ore", DEEPSLATE_AZURITE_ORE, fabricItemSettings);
+		registerBlockWithItem("azurite_ore", AZURITE_ORE, fabricItemSettings, DyeColor.BLUE);
+		registerBlockWithItem("deepslate_azurite_ore", DEEPSLATE_AZURITE_ORE, fabricItemSettings, DyeColor.BLUE);
 
-		registerBlockWithItem("scarlet_ore", SCARLET_ORE, new FloatBlockItem(SCARLET_ORE, fabricItemSettingsFireProof, 1.01F));
-		registerBlockWithItem("paletur_ore", PALETUR_ORE, new FloatBlockItem(PALETUR_ORE, fabricItemSettings, 0.99F));
+		registerBlockWithItem("scarlet_ore", SCARLET_ORE, new FloatBlockItem(SCARLET_ORE, fabricItemSettingsFireProof, 1.01F), DyeColor.RED);
+		registerBlockWithItem("paletur_ore", PALETUR_ORE, new FloatBlockItem(PALETUR_ORE, fabricItemSettings, 0.99F), DyeColor.CYAN);
 	}
 
 	private static void registerOreStorageBlocks(FabricItemSettings fabricItemSettings, FabricItemSettings fabricItemSettingsFireProof) {
-		registerBlockWithItem("topaz_storage_block", TOPAZ_STORAGE_BLOCK, fabricItemSettings);
-		registerBlockWithItem("amethyst_storage_block", AMETHYST_STORAGE_BLOCK, fabricItemSettings);
-		registerBlockWithItem("citrine_storage_block", CITRINE_STORAGE_BLOCK, fabricItemSettings);
-		registerBlockWithItem("onyx_storage_block", ONYX_STORAGE_BLOCK, fabricItemSettings);
-		registerBlockWithItem("moonstone_storage_block", MOONSTONE_STORAGE_BLOCK, fabricItemSettings);
-		registerBlockWithItem("spectral_shard_storage_block", SPECTRAL_SHARD_STORAGE_BLOCK, fabricItemSettings);
+		registerBlockWithItem("topaz_storage_block", TOPAZ_STORAGE_BLOCK, fabricItemSettings, DyeColor.CYAN);
+		registerBlockWithItem("amethyst_storage_block", AMETHYST_STORAGE_BLOCK, fabricItemSettings, DyeColor.MAGENTA);
+		registerBlockWithItem("citrine_storage_block", CITRINE_STORAGE_BLOCK, fabricItemSettings, DyeColor.YELLOW);
+		registerBlockWithItem("onyx_storage_block", ONYX_STORAGE_BLOCK, fabricItemSettings, DyeColor.BLACK);
+		registerBlockWithItem("moonstone_storage_block", MOONSTONE_STORAGE_BLOCK, fabricItemSettings, DyeColor.WHITE);
+		registerBlockWithItem("spectral_shard_storage_block", SPECTRAL_SHARD_STORAGE_BLOCK, fabricItemSettings, DyeColor.WHITE);
 		
-		registerBlockWithItem("azurite_block", AZURITE_BLOCK, decorationItemSettings);
-		registerBlockWithItem("sparklestone_block", SPARKLESTONE_BLOCK, decorationItemSettings);
-		registerBlockWithItem("scarlet_fragment_block", SCARLET_FRAGMENT_BLOCK, new FloatBlockItem(SCARLET_FRAGMENT_BLOCK, fabricItemSettingsFireProof, 1.02F));
-		registerBlockWithItem("paletur_fragment_block", PALETUR_FRAGMENT_BLOCK, new FloatBlockItem(PALETUR_FRAGMENT_BLOCK, fabricItemSettings, 0.98F));
-		registerBlockWithItem("hover_block", HOVER_BLOCK, new FloatBlockItem(HOVER_BLOCK, fabricItemSettings, 0.996F));
+		registerBlockWithItem("azurite_block", AZURITE_BLOCK, decorationItemSettings, DyeColor.BLUE);
+		registerBlockWithItem("sparklestone_block", SPARKLESTONE_BLOCK, decorationItemSettings, DyeColor.YELLOW);
+		registerBlockWithItem("scarlet_fragment_block", SCARLET_FRAGMENT_BLOCK, new FloatBlockItem(SCARLET_FRAGMENT_BLOCK, fabricItemSettingsFireProof, 1.02F), DyeColor.RED);
+		registerBlockWithItem("paletur_fragment_block", PALETUR_FRAGMENT_BLOCK, new FloatBlockItem(PALETUR_FRAGMENT_BLOCK, fabricItemSettings, 0.98F), DyeColor.CYAN);
+		registerBlockWithItem("hover_block", HOVER_BLOCK, new FloatBlockItem(HOVER_BLOCK, fabricItemSettings, 0.996F), DyeColor.GREEN);
 	}
 
 	private static void registerColoredLamps(FabricItemSettings fabricItemSettings) {
-		registerBlockWithItem("white_lamp", WHITE_LAMP, fabricItemSettings);
-		registerBlockWithItem("orange_lamp", ORANGE_LAMP, fabricItemSettings);
-		registerBlockWithItem("magenta_lamp", MAGENTA_LAMP, fabricItemSettings);
-		registerBlockWithItem("light_blue_lamp", LIGHT_BLUE_LAMP, fabricItemSettings);
-		registerBlockWithItem("yellow_lamp", YELLOW_LAMP, fabricItemSettings);
-		registerBlockWithItem("lime_lamp", LIME_LAMP, fabricItemSettings);
-		registerBlockWithItem("pink_lamp", PINK_LAMP, fabricItemSettings);
-		registerBlockWithItem("gray_lamp", GRAY_LAMP, fabricItemSettings);
-		registerBlockWithItem("light_gray_lamp", LIGHT_GRAY_LAMP, fabricItemSettings);
-		registerBlockWithItem("cyan_lamp", CYAN_LAMP, fabricItemSettings);
-		registerBlockWithItem("purple_lamp", PURPLE_LAMP, fabricItemSettings);
-		registerBlockWithItem("blue_lamp", BLUE_LAMP, fabricItemSettings);
-		registerBlockWithItem("brown_lamp", BROWN_LAMP, fabricItemSettings);
-		registerBlockWithItem("green_lamp", GREEN_LAMP, fabricItemSettings);
-		registerBlockWithItem("red_lamp", RED_LAMP, fabricItemSettings);
-		registerBlockWithItem("black_lamp", BLACK_LAMP, fabricItemSettings);
+		registerBlockWithItem("white_lamp", WHITE_LAMP, fabricItemSettings, DyeColor.WHITE);
+		registerBlockWithItem("orange_lamp", ORANGE_LAMP, fabricItemSettings, DyeColor.ORANGE);
+		registerBlockWithItem("magenta_lamp", MAGENTA_LAMP, fabricItemSettings, DyeColor.MAGENTA);
+		registerBlockWithItem("light_blue_lamp", LIGHT_BLUE_LAMP, fabricItemSettings, DyeColor.LIGHT_BLUE);
+		registerBlockWithItem("yellow_lamp", YELLOW_LAMP, fabricItemSettings, DyeColor.YELLOW);
+		registerBlockWithItem("lime_lamp", LIME_LAMP, fabricItemSettings, DyeColor.LIME);
+		registerBlockWithItem("pink_lamp", PINK_LAMP, fabricItemSettings, DyeColor.PINK);
+		registerBlockWithItem("gray_lamp", GRAY_LAMP, fabricItemSettings, DyeColor.GRAY);
+		registerBlockWithItem("light_gray_lamp", LIGHT_GRAY_LAMP, fabricItemSettings, DyeColor.LIGHT_GRAY);
+		registerBlockWithItem("cyan_lamp", CYAN_LAMP, fabricItemSettings, DyeColor.CYAN);
+		registerBlockWithItem("purple_lamp", PURPLE_LAMP, fabricItemSettings, DyeColor.PURPLE);
+		registerBlockWithItem("blue_lamp", BLUE_LAMP, fabricItemSettings, DyeColor.BLUE);
+		registerBlockWithItem("brown_lamp", BROWN_LAMP, fabricItemSettings, DyeColor.BROWN);
+		registerBlockWithItem("green_lamp", GREEN_LAMP, fabricItemSettings, DyeColor.GREEN);
+		registerBlockWithItem("red_lamp", RED_LAMP, fabricItemSettings, DyeColor.RED);
+		registerBlockWithItem("black_lamp", BLACK_LAMP, fabricItemSettings, DyeColor.BLACK);
 	}
 
 	private static void registerGemstoneGlass(FabricItemSettings fabricItemSettings) {
-		registerBlockWithItem("topaz_glass", TOPAZ_GLASS, fabricItemSettings);
-		registerBlockWithItem("amethyst_glass", AMETHYST_GLASS, fabricItemSettings);
-		registerBlockWithItem("citrine_glass", CITRINE_GLASS, fabricItemSettings);
-		registerBlockWithItem("onyx_glass", ONYX_GLASS, fabricItemSettings);
-		registerBlockWithItem("moonstone_glass", MOONSTONE_GLASS, fabricItemSettings);
+		registerBlockWithItem("topaz_glass", TOPAZ_GLASS, fabricItemSettings, DyeColor.CYAN);
+		registerBlockWithItem("amethyst_glass", AMETHYST_GLASS, fabricItemSettings, DyeColor.MAGENTA);
+		registerBlockWithItem("citrine_glass", CITRINE_GLASS, fabricItemSettings, DyeColor.YELLOW);
+		registerBlockWithItem("onyx_glass", ONYX_GLASS, fabricItemSettings, DyeColor.BLACK);
+		registerBlockWithItem("moonstone_glass", MOONSTONE_GLASS, fabricItemSettings, DyeColor.WHITE);
 
-		registerBlockWithItem("glowing_glass", RADIANT_GLASS, fabricItemSettings);
+		registerBlockWithItem("glowing_glass", RADIANT_GLASS, fabricItemSettings, DyeColor.WHITE);
 	}
 
 	private static void registerPlayerOnlyGlass(FabricItemSettings fabricItemSettings) {
-		registerBlockWithItem("vanilla_player_only_glass", VANILLA_PLAYER_ONLY_GLASS, fabricItemSettings);
-		registerBlockWithItem("tinted_player_only_glass", TINTED_PLAYER_ONLY_GLASS, fabricItemSettings);
-		registerBlockWithItem("glowing_player_only_glass", RADIANT_PLAYER_ONLY_GLASS, fabricItemSettings);
+		registerBlockWithItem("vanilla_player_only_glass", VANILLA_PLAYER_ONLY_GLASS, fabricItemSettings, DyeColor.WHITE);
+		registerBlockWithItem("tinted_player_only_glass", TINTED_PLAYER_ONLY_GLASS, fabricItemSettings, DyeColor.BLACK);
+		registerBlockWithItem("glowing_player_only_glass", RADIANT_PLAYER_ONLY_GLASS, fabricItemSettings, DyeColor.YELLOW);
 
-		registerBlockWithItem("topaz_player_only_glass", TOPAZ_PLAYER_ONLY_GLASS, fabricItemSettings);
-		registerBlockWithItem("amethyst_player_only_glass", AMETHYST_PLAYER_ONLY_GLASS, fabricItemSettings);
-		registerBlockWithItem("citrine_player_only_glass", CITRINE_PLAYER_ONLY_GLASS, fabricItemSettings);
-		registerBlockWithItem("onyx_player_only_glass", ONYX_PLAYER_ONLY_GLASS, fabricItemSettings);
-		registerBlockWithItem("moonstone_player_only_glass", MOONSTONE_PLAYER_ONLY_GLASS, fabricItemSettings);
+		registerBlockWithItem("topaz_player_only_glass", TOPAZ_PLAYER_ONLY_GLASS, fabricItemSettings, DyeColor.CYAN);
+		registerBlockWithItem("amethyst_player_only_glass", AMETHYST_PLAYER_ONLY_GLASS, fabricItemSettings, DyeColor.MAGENTA);
+		registerBlockWithItem("citrine_player_only_glass", CITRINE_PLAYER_ONLY_GLASS, fabricItemSettings, DyeColor.YELLOW);
+		registerBlockWithItem("onyx_player_only_glass", ONYX_PLAYER_ONLY_GLASS, fabricItemSettings, DyeColor.BLACK);
+		registerBlockWithItem("moonstone_player_only_glass", MOONSTONE_PLAYER_ONLY_GLASS, fabricItemSettings, DyeColor.WHITE);
 	}
 	
 	private static void registerGemstoneChimes(FabricItemSettings fabricItemSettings) {
-		registerBlockWithItem("amethyst_chime", AMETHYST_CHIME, fabricItemSettings);
-		registerBlockWithItem("topaz_chime", TOPAZ_CHIME, fabricItemSettings);
-		registerBlockWithItem("citrine_chime", CITRINE_CHIME, fabricItemSettings);
-		registerBlockWithItem("onyx_chime", ONYX_CHIME, fabricItemSettings);
-		registerBlockWithItem("moonstone_chime", MOONSTONE_CHIME, fabricItemSettings);
+		registerBlockWithItem("topaz_chime", TOPAZ_CHIME, fabricItemSettings, DyeColor.CYAN);
+		registerBlockWithItem("amethyst_chime", AMETHYST_CHIME, fabricItemSettings, DyeColor.MAGENTA);
+		registerBlockWithItem("citrine_chime", CITRINE_CHIME, fabricItemSettings, DyeColor.YELLOW);
+		registerBlockWithItem("onyx_chime", ONYX_CHIME, fabricItemSettings, DyeColor.BLACK);
+		registerBlockWithItem("moonstone_chime", MOONSTONE_CHIME, fabricItemSettings, DyeColor.WHITE);
 	}
 	
 	private static void registerDecoStones(FabricItemSettings fabricItemSettings) {
-		registerBlockWithItem("amethyst_decostone", AMETHYST_DECOSTONE, fabricItemSettings);
-		registerBlockWithItem("topaz_decostone", TOPAZ_DECOSTONE, fabricItemSettings);
-		registerBlockWithItem("citrine_decostone", CITRINE_DECOSTONE, fabricItemSettings);
-		registerBlockWithItem("onyx_decostone", ONYX_DECOSTONE, fabricItemSettings);
-		registerBlockWithItem("moonstone_decostone", MOONSTONE_DECOSTONE, fabricItemSettings);
+		registerBlockWithItem("amethyst_decostone", AMETHYST_DECOSTONE, fabricItemSettings, DyeColor.MAGENTA);
+		registerBlockWithItem("topaz_decostone", TOPAZ_DECOSTONE, fabricItemSettings, DyeColor.CYAN);
+		registerBlockWithItem("citrine_decostone", CITRINE_DECOSTONE, fabricItemSettings, DyeColor.YELLOW);
+		registerBlockWithItem("onyx_decostone", ONYX_DECOSTONE, fabricItemSettings, DyeColor.BLACK);
+		registerBlockWithItem("moonstone_decostone", MOONSTONE_DECOSTONE, fabricItemSettings, DyeColor.WHITE);
 	}
 
 	private static void registerStoneBlocks(FabricItemSettings fabricItemSettings) {
-		registerBlockWithItem("smooth_basalt_slab", SMOOTH_BASALT_SLAB, fabricItemSettings);
-		registerBlockWithItem("smooth_basalt_wall", SMOOTH_BASALT_WALL, fabricItemSettings);
-		registerBlockWithItem("smooth_basalt_stairs", SMOOTH_BASALT_STAIRS, fabricItemSettings);
+		registerBlockWithItem("smooth_basalt_slab", SMOOTH_BASALT_SLAB, fabricItemSettings, DyeColor.BROWN);
+		registerBlockWithItem("smooth_basalt_wall", SMOOTH_BASALT_WALL, fabricItemSettings, DyeColor.BROWN);
+		registerBlockWithItem("smooth_basalt_stairs", SMOOTH_BASALT_STAIRS, fabricItemSettings, DyeColor.BROWN);
 
-		registerBlockWithItem("calcite_slab", CALCITE_SLAB, fabricItemSettings);
-		registerBlockWithItem("calcite_wall", CALCITE_WALL, fabricItemSettings);
-		registerBlockWithItem("calcite_stairs", CALCITE_STAIRS, fabricItemSettings);
+		registerBlockWithItem("calcite_slab", CALCITE_SLAB, fabricItemSettings, DyeColor.BROWN);
+		registerBlockWithItem("calcite_wall", CALCITE_WALL, fabricItemSettings, DyeColor.BROWN);
+		registerBlockWithItem("calcite_stairs", CALCITE_STAIRS, fabricItemSettings, DyeColor.BROWN);
 
-		registerBlockWithItem("polished_basalt", POLISHED_BASALT, fabricItemSettings);
-		registerBlockWithItem("polished_basalt_pillar", POLISHED_BASALT_PILLAR, fabricItemSettings);
-		registerBlockWithItem("polished_basalt_crest", POLISHED_BASALT_CREST, fabricItemSettings);
-		registerBlockWithItem("chiseled_polished_basalt", CHISELED_POLISHED_BASALT, fabricItemSettings);
-		registerBlockWithItem("notched_polished_basalt", NOTCHED_POLISHED_BASALT, fabricItemSettings);
-		registerBlockWithItem("polished_basalt_slab", POLISHED_BASALT_SLAB, fabricItemSettings);
-		registerBlockWithItem("polished_basalt_wall", POLISHED_BASALT_WALL, fabricItemSettings);
-		registerBlockWithItem("polished_basalt_stairs", POLISHED_BASALT_STAIRS, fabricItemSettings);
-		registerBlockWithItem("basalt_bricks", BASALT_BRICKS, fabricItemSettings);
-		registerBlockWithItem("basalt_brick_slab", BASALT_BRICK_SLAB, fabricItemSettings);
-		registerBlockWithItem("basalt_brick_wall", BASALT_BRICK_WALL, fabricItemSettings);
-		registerBlockWithItem("basalt_brick_stairs", BASALT_BRICK_STAIRS, fabricItemSettings);
+		registerBlockWithItem("polished_basalt", POLISHED_BASALT, fabricItemSettings, DyeColor.BROWN);
+		registerBlockWithItem("polished_basalt_pillar", POLISHED_BASALT_PILLAR, fabricItemSettings, DyeColor.BROWN);
+		registerBlockWithItem("polished_basalt_crest", POLISHED_BASALT_CREST, fabricItemSettings, DyeColor.BROWN);
+		registerBlockWithItem("chiseled_polished_basalt", CHISELED_POLISHED_BASALT, fabricItemSettings, DyeColor.BROWN);
+		registerBlockWithItem("notched_polished_basalt", NOTCHED_POLISHED_BASALT, fabricItemSettings, DyeColor.BROWN);
+		registerBlockWithItem("polished_basalt_slab", POLISHED_BASALT_SLAB, fabricItemSettings, DyeColor.BROWN);
+		registerBlockWithItem("polished_basalt_wall", POLISHED_BASALT_WALL, fabricItemSettings, DyeColor.BROWN);
+		registerBlockWithItem("polished_basalt_stairs", POLISHED_BASALT_STAIRS, fabricItemSettings, DyeColor.BROWN);
+		registerBlockWithItem("basalt_bricks", BASALT_BRICKS, fabricItemSettings, DyeColor.BROWN);
+		registerBlockWithItem("basalt_brick_slab", BASALT_BRICK_SLAB, fabricItemSettings, DyeColor.BROWN);
+		registerBlockWithItem("basalt_brick_wall", BASALT_BRICK_WALL, fabricItemSettings, DyeColor.BROWN);
+		registerBlockWithItem("basalt_brick_stairs", BASALT_BRICK_STAIRS, fabricItemSettings, DyeColor.BROWN);
 
-		registerBlockWithItem("polished_calcite", POLISHED_CALCITE, fabricItemSettings);
-		registerBlockWithItem("polished_calcite_pillar", POLISHED_CALCITE_PILLAR, fabricItemSettings);
-		registerBlockWithItem("polished_calcite_crest", POLISHED_CALCITE_CREST, fabricItemSettings);
-		registerBlockWithItem("chiseled_polished_calcite", CHISELED_POLISHED_CALCITE, fabricItemSettings);
-		registerBlockWithItem("notched_polished_calcite", NOTCHED_POLISHED_CALCITE, fabricItemSettings);
-		registerBlockWithItem("polished_calcite_slab", POLISHED_CALCITE_SLAB, fabricItemSettings);
-		registerBlockWithItem("polished_calcite_wall", POLISHED_CALCITE_WALL, fabricItemSettings);
-		registerBlockWithItem("polished_calcite_stairs", POLISHED_CALCITE_STAIRS, fabricItemSettings);
-		registerBlockWithItem("calcite_bricks", CALCITE_BRICKS, fabricItemSettings);
-		registerBlockWithItem("calcite_brick_slab", CALCITE_BRICK_SLAB, fabricItemSettings);
-		registerBlockWithItem("calcite_brick_wall", CALCITE_BRICK_WALL, fabricItemSettings);
-		registerBlockWithItem("calcite_brick_stairs", CALCITE_BRICK_STAIRS, fabricItemSettings);
+		registerBlockWithItem("polished_calcite", POLISHED_CALCITE, fabricItemSettings, DyeColor.BROWN);
+		registerBlockWithItem("polished_calcite_pillar", POLISHED_CALCITE_PILLAR, fabricItemSettings, DyeColor.BROWN);
+		registerBlockWithItem("polished_calcite_crest", POLISHED_CALCITE_CREST, fabricItemSettings, DyeColor.BROWN);
+		registerBlockWithItem("chiseled_polished_calcite", CHISELED_POLISHED_CALCITE, fabricItemSettings, DyeColor.BROWN);
+		registerBlockWithItem("notched_polished_calcite", NOTCHED_POLISHED_CALCITE, fabricItemSettings, DyeColor.BROWN);
+		registerBlockWithItem("polished_calcite_slab", POLISHED_CALCITE_SLAB, fabricItemSettings, DyeColor.BROWN);
+		registerBlockWithItem("polished_calcite_wall", POLISHED_CALCITE_WALL, fabricItemSettings, DyeColor.BROWN);
+		registerBlockWithItem("polished_calcite_stairs", POLISHED_CALCITE_STAIRS, fabricItemSettings, DyeColor.BROWN);
+		registerBlockWithItem("calcite_bricks", CALCITE_BRICKS, fabricItemSettings, DyeColor.BROWN);
+		registerBlockWithItem("calcite_brick_slab", CALCITE_BRICK_SLAB, fabricItemSettings, DyeColor.BROWN);
+		registerBlockWithItem("calcite_brick_wall", CALCITE_BRICK_WALL, fabricItemSettings, DyeColor.BROWN);
+		registerBlockWithItem("calcite_brick_stairs", CALCITE_BRICK_STAIRS, fabricItemSettings, DyeColor.BROWN);
 	}
 
 	private static void registerRunes(FabricItemSettings fabricItemSettings) {
-		registerBlockWithItem("topaz_chiseled_basalt", TOPAZ_CHISELED_BASALT, fabricItemSettings);
-		registerBlockWithItem("amethyst_chiseled_basalt", AMETHYST_CHISELED_BASALT, fabricItemSettings);
-		registerBlockWithItem("citrine_chiseled_basalt", CITRINE_CHISELED_BASALT, fabricItemSettings);
-		registerBlockWithItem("onyx_chiseled_basalt", ONYX_CHISELED_BASALT, fabricItemSettings);
-		registerBlockWithItem("moonstone_chiseled_basalt", MOONSTONE_CHISELED_BASALT, fabricItemSettings);
+		registerBlockWithItem("topaz_chiseled_basalt", TOPAZ_CHISELED_BASALT, fabricItemSettings, DyeColor.CYAN);
+		registerBlockWithItem("amethyst_chiseled_basalt", AMETHYST_CHISELED_BASALT, fabricItemSettings, DyeColor.MAGENTA);
+		registerBlockWithItem("citrine_chiseled_basalt", CITRINE_CHISELED_BASALT, fabricItemSettings, DyeColor.YELLOW);
+		registerBlockWithItem("onyx_chiseled_basalt", ONYX_CHISELED_BASALT, fabricItemSettings, DyeColor.BLACK);
+		registerBlockWithItem("moonstone_chiseled_basalt", MOONSTONE_CHISELED_BASALT, fabricItemSettings, DyeColor.WHITE);
 
-		registerBlockWithItem("topaz_chiseled_calcite", TOPAZ_CHISELED_CALCITE, fabricItemSettings);
-		registerBlockWithItem("amethyst_chiseled_calcite", AMETHYST_CHISELED_CALCITE, fabricItemSettings);
-		registerBlockWithItem("citrine_chiseled_calcite", CITRINE_CHISELED_CALCITE, fabricItemSettings);
-		registerBlockWithItem("onyx_chiseled_calcite", ONYX_CHISELED_CALCITE, fabricItemSettings);
-		registerBlockWithItem("moonstone_chiseled_calcite", MOONSTONE_CHISELED_CALCITE, fabricItemSettings);
+		registerBlockWithItem("topaz_chiseled_calcite", TOPAZ_CHISELED_CALCITE, fabricItemSettings, DyeColor.CYAN);
+		registerBlockWithItem("amethyst_chiseled_calcite", AMETHYST_CHISELED_CALCITE, fabricItemSettings, DyeColor.MAGENTA);
+		registerBlockWithItem("citrine_chiseled_calcite", CITRINE_CHISELED_CALCITE, fabricItemSettings, DyeColor.YELLOW);
+		registerBlockWithItem("onyx_chiseled_calcite", ONYX_CHISELED_CALCITE, fabricItemSettings, DyeColor.BLACK);
+		registerBlockWithItem("moonstone_chiseled_calcite", MOONSTONE_CHISELED_CALCITE, fabricItemSettings, DyeColor.WHITE);
 	}
 
 	private static void registerGemstoneLamps(FabricItemSettings fabricItemSettings) {
-		registerBlockWithItem("topaz_calcite_lamp", TOPAZ_CALCITE_LAMP, fabricItemSettings);
-		registerBlockWithItem("amethyst_calcite_lamp", AMETHYST_CALCITE_LAMP, fabricItemSettings);
-		registerBlockWithItem("citrine_calcite_lamp", CITRINE_CALCITE_LAMP, fabricItemSettings);
-		registerBlockWithItem("onyx_calcite_lamp", ONYX_CALCITE_LAMP, fabricItemSettings);
-		registerBlockWithItem("moonstone_calcite_lamp", MOONSTONE_CALCITE_LAMP, fabricItemSettings);
-		registerBlockWithItem("topaz_basalt_lamp", TOPAZ_BASALT_LAMP, fabricItemSettings);
-		registerBlockWithItem("amethyst_basalt_lamp", AMETHYST_BASALT_LAMP, fabricItemSettings);
-		registerBlockWithItem("citrine_basalt_lamp", CITRINE_BASALT_LAMP, fabricItemSettings);
-		registerBlockWithItem("onyx_basalt_lamp", ONYX_BASALT_LAMP, fabricItemSettings);
-		registerBlockWithItem("moonstone_basalt_lamp", MOONSTONE_BASALT_LAMP, fabricItemSettings);
+		registerBlockWithItem("topaz_calcite_lamp", TOPAZ_CALCITE_LAMP, fabricItemSettings, DyeColor.CYAN);
+		registerBlockWithItem("amethyst_calcite_lamp", AMETHYST_CALCITE_LAMP, fabricItemSettings, DyeColor.MAGENTA);
+		registerBlockWithItem("citrine_calcite_lamp", CITRINE_CALCITE_LAMP, fabricItemSettings, DyeColor.YELLOW);
+		registerBlockWithItem("onyx_calcite_lamp", ONYX_CALCITE_LAMP, fabricItemSettings, DyeColor.BLACK);
+		registerBlockWithItem("moonstone_calcite_lamp", MOONSTONE_CALCITE_LAMP, fabricItemSettings, DyeColor.WHITE);
+		
+		registerBlockWithItem("topaz_basalt_lamp", TOPAZ_BASALT_LAMP, fabricItemSettings, DyeColor.CYAN);
+		registerBlockWithItem("amethyst_basalt_lamp", AMETHYST_BASALT_LAMP, fabricItemSettings, DyeColor.MAGENTA);
+		registerBlockWithItem("citrine_basalt_lamp", CITRINE_BASALT_LAMP, fabricItemSettings, DyeColor.YELLOW);
+		registerBlockWithItem("onyx_basalt_lamp", ONYX_BASALT_LAMP, fabricItemSettings, DyeColor.BLACK);
+		registerBlockWithItem("moonstone_basalt_lamp", MOONSTONE_BASALT_LAMP, fabricItemSettings, DyeColor.WHITE);
 	}
 
 	private static void registerColoredWood(FabricItemSettings fabricItemSettings) {
-		registerBlockWithItem("white_log", WHITE_LOG, fabricItemSettings);
-		registerBlockWithItem("orange_log", ORANGE_LOG, fabricItemSettings);
-		registerBlockWithItem("magenta_log", MAGENTA_LOG, fabricItemSettings);
-		registerBlockWithItem("light_blue_log", LIGHT_BLUE_LOG, fabricItemSettings);
-		registerBlockWithItem("yellow_log", YELLOW_LOG, fabricItemSettings);
-		registerBlockWithItem("lime_log", LIME_LOG, fabricItemSettings);
-		registerBlockWithItem("pink_log", PINK_LOG, fabricItemSettings);
-		registerBlockWithItem("gray_log", GRAY_LOG, fabricItemSettings);
-		registerBlockWithItem("light_gray_log", LIGHT_GRAY_LOG, fabricItemSettings);
-		registerBlockWithItem("cyan_log", CYAN_LOG, fabricItemSettings);
-		registerBlockWithItem("purple_log", PURPLE_LOG, fabricItemSettings);
-		registerBlockWithItem("blue_log", BLUE_LOG, fabricItemSettings);
-		registerBlockWithItem("brown_log", BROWN_LOG, fabricItemSettings);
-		registerBlockWithItem("green_log", GREEN_LOG, fabricItemSettings);
-		registerBlockWithItem("red_log", RED_LOG, fabricItemSettings);
-		registerBlockWithItem("black_log", BLACK_LOG, fabricItemSettings);
+		registerBlockWithItem("white_log",  WHITE_LOG,  fabricItemSettings, DyeColor.WHITE);
+		registerBlockWithItem("orange_log",  ORANGE_LOG,  fabricItemSettings, DyeColor.ORANGE);
+		registerBlockWithItem("magenta_log",  MAGENTA_LOG,  fabricItemSettings, DyeColor.MAGENTA);
+		registerBlockWithItem("light_blue_log",  LIGHT_BLUE_LOG,  fabricItemSettings, DyeColor.LIGHT_BLUE);
+		registerBlockWithItem("yellow_log",  YELLOW_LOG,  fabricItemSettings, DyeColor.YELLOW);
+		registerBlockWithItem("lime_log",  LIME_LOG,  fabricItemSettings, DyeColor.LIME);
+		registerBlockWithItem("pink_log",  PINK_LOG,  fabricItemSettings, DyeColor.PINK);
+		registerBlockWithItem("gray_log",  GRAY_LOG,  fabricItemSettings, DyeColor.GRAY);
+		registerBlockWithItem("light_gray_log",  LIGHT_GRAY_LOG,  fabricItemSettings, DyeColor.LIGHT_GRAY);
+		registerBlockWithItem("cyan_log",  CYAN_LOG,  fabricItemSettings, DyeColor.CYAN);
+		registerBlockWithItem("purple_log",  PURPLE_LOG,  fabricItemSettings, DyeColor.PURPLE);
+		registerBlockWithItem("blue_log",  BLUE_LOG,  fabricItemSettings, DyeColor.BLUE);
+		registerBlockWithItem("brown_log",  BROWN_LOG,  fabricItemSettings, DyeColor.BROWN);
+		registerBlockWithItem("green_log",  GREEN_LOG,  fabricItemSettings, DyeColor.GREEN);
+		registerBlockWithItem("red_log",  RED_LOG,  fabricItemSettings, DyeColor.RED);
+		registerBlockWithItem("black_log",  BLACK_LOG,  fabricItemSettings, DyeColor.BLACK);
 		
-		registerBlockWithItem("white_leaves", WHITE_LEAVES, fabricItemSettings);
-		registerBlockWithItem("orange_leaves", ORANGE_LEAVES, fabricItemSettings);
-		registerBlockWithItem("magenta_leaves", MAGENTA_LEAVES, fabricItemSettings);
-		registerBlockWithItem("light_blue_leaves", LIGHT_BLUE_LEAVES, fabricItemSettings);
-		registerBlockWithItem("yellow_leaves", YELLOW_LEAVES, fabricItemSettings);
-		registerBlockWithItem("lime_leaves", LIME_LEAVES, fabricItemSettings);
-		registerBlockWithItem("pink_leaves", PINK_LEAVES, fabricItemSettings);
-		registerBlockWithItem("gray_leaves", GRAY_LEAVES, fabricItemSettings);
-		registerBlockWithItem("light_gray_leaves", LIGHT_GRAY_LEAVES, fabricItemSettings);
-		registerBlockWithItem("cyan_leaves", CYAN_LEAVES, fabricItemSettings);
-		registerBlockWithItem("purple_leaves", PURPLE_LEAVES, fabricItemSettings);
-		registerBlockWithItem("blue_leaves", BLUE_LEAVES, fabricItemSettings);
-		registerBlockWithItem("brown_leaves", BROWN_LEAVES, fabricItemSettings);
-		registerBlockWithItem("green_leaves", GREEN_LEAVES, fabricItemSettings);
-		registerBlockWithItem("red_leaves", RED_LEAVES, fabricItemSettings);
-		registerBlockWithItem("black_leaves", BLACK_LEAVES, fabricItemSettings);
+		registerBlockWithItem("white_leaves",  WHITE_LEAVES,  fabricItemSettings, DyeColor.WHITE);
+		registerBlockWithItem("orange_leaves",  ORANGE_LEAVES,  fabricItemSettings, DyeColor.ORANGE);
+		registerBlockWithItem("magenta_leaves",  MAGENTA_LEAVES,  fabricItemSettings, DyeColor.MAGENTA);
+		registerBlockWithItem("light_blue_leaves",  LIGHT_BLUE_LEAVES,  fabricItemSettings, DyeColor.LIGHT_BLUE);
+		registerBlockWithItem("yellow_leaves",  YELLOW_LEAVES,  fabricItemSettings, DyeColor.YELLOW);
+		registerBlockWithItem("lime_leaves",  LIME_LEAVES,  fabricItemSettings, DyeColor.LIME);
+		registerBlockWithItem("pink_leaves",  PINK_LEAVES,  fabricItemSettings, DyeColor.PINK);
+		registerBlockWithItem("gray_leaves",  GRAY_LEAVES,  fabricItemSettings, DyeColor.GRAY);
+		registerBlockWithItem("light_gray_leaves",  LIGHT_GRAY_LEAVES,  fabricItemSettings, DyeColor.LIGHT_GRAY);
+		registerBlockWithItem("cyan_leaves",  CYAN_LEAVES,  fabricItemSettings, DyeColor.CYAN);
+		registerBlockWithItem("purple_leaves",  PURPLE_LEAVES,  fabricItemSettings, DyeColor.PURPLE);
+		registerBlockWithItem("blue_leaves",  BLUE_LEAVES,  fabricItemSettings, DyeColor.BLUE);
+		registerBlockWithItem("brown_leaves",  BROWN_LEAVES,  fabricItemSettings, DyeColor.BROWN);
+		registerBlockWithItem("green_leaves",  GREEN_LEAVES,  fabricItemSettings, DyeColor.GREEN);
+		registerBlockWithItem("red_leaves",  RED_LEAVES,  fabricItemSettings, DyeColor.RED);
+		registerBlockWithItem("black_leaves",  BLACK_LEAVES,  fabricItemSettings, DyeColor.BLACK);
 		
-		registerBlockWithItem("white_sapling", WHITE_SAPLING, fabricItemSettings);
-		registerBlockWithItem("orange_sapling", ORANGE_SAPLING, fabricItemSettings);
-		registerBlockWithItem("magenta_sapling", MAGENTA_SAPLING, fabricItemSettings);
-		registerBlockWithItem("light_blue_sapling", LIGHT_BLUE_SAPLING, fabricItemSettings);
-		registerBlockWithItem("yellow_sapling", YELLOW_SAPLING, fabricItemSettings);
-		registerBlockWithItem("lime_sapling", LIME_SAPLING, fabricItemSettings);
-		registerBlockWithItem("pink_sapling", PINK_SAPLING, fabricItemSettings);
-		registerBlockWithItem("gray_sapling", GRAY_SAPLING, fabricItemSettings);
-		registerBlockWithItem("light_gray_sapling", LIGHT_GRAY_SAPLING, fabricItemSettings);
-		registerBlockWithItem("cyan_sapling", CYAN_SAPLING, fabricItemSettings);
-		registerBlockWithItem("purple_sapling", PURPLE_SAPLING, fabricItemSettings);
-		registerBlockWithItem("blue_sapling", BLUE_SAPLING, fabricItemSettings);
-		registerBlockWithItem("brown_sapling", BROWN_SAPLING, fabricItemSettings);
-		registerBlockWithItem("green_sapling", GREEN_SAPLING, fabricItemSettings);
-		registerBlockWithItem("red_sapling", RED_SAPLING, fabricItemSettings);
-		registerBlockWithItem("black_sapling", BLACK_SAPLING, fabricItemSettings);
+		registerBlockWithItem("white_sapling",  WHITE_SAPLING,  fabricItemSettings, DyeColor.WHITE);
+		registerBlockWithItem("orange_sapling",  ORANGE_SAPLING,  fabricItemSettings, DyeColor.ORANGE);
+		registerBlockWithItem("magenta_sapling",  MAGENTA_SAPLING,  fabricItemSettings, DyeColor.MAGENTA);
+		registerBlockWithItem("light_blue_sapling",  LIGHT_BLUE_SAPLING,  fabricItemSettings, DyeColor.LIGHT_BLUE);
+		registerBlockWithItem("yellow_sapling",  YELLOW_SAPLING,  fabricItemSettings, DyeColor.YELLOW);
+		registerBlockWithItem("lime_sapling",  LIME_SAPLING,  fabricItemSettings, DyeColor.LIME);
+		registerBlockWithItem("pink_sapling",  PINK_SAPLING,  fabricItemSettings, DyeColor.PINK);
+		registerBlockWithItem("gray_sapling",  GRAY_SAPLING,  fabricItemSettings, DyeColor.GRAY);
+		registerBlockWithItem("light_gray_sapling",  LIGHT_GRAY_SAPLING,  fabricItemSettings, DyeColor.LIGHT_GRAY);
+		registerBlockWithItem("cyan_sapling",  CYAN_SAPLING,  fabricItemSettings, DyeColor.CYAN);
+		registerBlockWithItem("purple_sapling",  PURPLE_SAPLING,  fabricItemSettings, DyeColor.PURPLE);
+		registerBlockWithItem("blue_sapling",  BLUE_SAPLING,  fabricItemSettings, DyeColor.BLUE);
+		registerBlockWithItem("brown_sapling",  BROWN_SAPLING,  fabricItemSettings, DyeColor.BROWN);
+		registerBlockWithItem("green_sapling",  GREEN_SAPLING,  fabricItemSettings, DyeColor.GREEN);
+		registerBlockWithItem("red_sapling",  RED_SAPLING,  fabricItemSettings, DyeColor.RED);
+		registerBlockWithItem("black_sapling",  BLACK_SAPLING,  fabricItemSettings, DyeColor.BLACK);
 		
-		registerBlockWithItem("white_planks", WHITE_PLANKS, fabricItemSettings);
-		registerBlockWithItem("orange_planks", ORANGE_PLANKS, fabricItemSettings);
-		registerBlockWithItem("magenta_planks", MAGENTA_PLANKS, fabricItemSettings);
-		registerBlockWithItem("light_blue_planks", LIGHT_BLUE_PLANKS, fabricItemSettings);
-		registerBlockWithItem("yellow_planks", YELLOW_PLANKS, fabricItemSettings);
-		registerBlockWithItem("lime_planks", LIME_PLANKS, fabricItemSettings);
-		registerBlockWithItem("pink_planks", PINK_PLANKS, fabricItemSettings);
-		registerBlockWithItem("gray_planks", GRAY_PLANKS, fabricItemSettings);
-		registerBlockWithItem("light_gray_planks", LIGHT_GRAY_PLANKS, fabricItemSettings);
-		registerBlockWithItem("cyan_planks", CYAN_PLANKS, fabricItemSettings);
-		registerBlockWithItem("purple_planks", PURPLE_PLANKS, fabricItemSettings);
-		registerBlockWithItem("blue_planks", BLUE_PLANKS, fabricItemSettings);
-		registerBlockWithItem("brown_planks", BROWN_PLANKS, fabricItemSettings);
-		registerBlockWithItem("green_planks", GREEN_PLANKS, fabricItemSettings);
-		registerBlockWithItem("red_planks", RED_PLANKS, fabricItemSettings);
-		registerBlockWithItem("black_planks", BLACK_PLANKS, fabricItemSettings);
+		registerBlockWithItem("white_planks",  WHITE_PLANKS,  fabricItemSettings, DyeColor.WHITE);
+		registerBlockWithItem("orange_planks",  ORANGE_PLANKS,  fabricItemSettings, DyeColor.ORANGE);
+		registerBlockWithItem("magenta_planks",  MAGENTA_PLANKS,  fabricItemSettings, DyeColor.MAGENTA);
+		registerBlockWithItem("light_blue_planks",  LIGHT_BLUE_PLANKS,  fabricItemSettings, DyeColor.LIGHT_BLUE);
+		registerBlockWithItem("yellow_planks",  YELLOW_PLANKS,  fabricItemSettings, DyeColor.YELLOW);
+		registerBlockWithItem("lime_planks",  LIME_PLANKS,  fabricItemSettings, DyeColor.LIME);
+		registerBlockWithItem("pink_planks",  PINK_PLANKS,  fabricItemSettings, DyeColor.PINK);
+		registerBlockWithItem("gray_planks",  GRAY_PLANKS,  fabricItemSettings, DyeColor.GRAY);
+		registerBlockWithItem("light_gray_planks",  LIGHT_GRAY_PLANKS,  fabricItemSettings, DyeColor.LIGHT_GRAY);
+		registerBlockWithItem("cyan_planks",  CYAN_PLANKS,  fabricItemSettings, DyeColor.CYAN);
+		registerBlockWithItem("purple_planks",  PURPLE_PLANKS,  fabricItemSettings, DyeColor.PURPLE);
+		registerBlockWithItem("blue_planks",  BLUE_PLANKS,  fabricItemSettings, DyeColor.BLUE);
+		registerBlockWithItem("brown_planks",  BROWN_PLANKS,  fabricItemSettings, DyeColor.BROWN);
+		registerBlockWithItem("green_planks",  GREEN_PLANKS,  fabricItemSettings, DyeColor.GREEN);
+		registerBlockWithItem("red_planks",  RED_PLANKS,  fabricItemSettings, DyeColor.RED);
+		registerBlockWithItem("black_planks",  BLACK_PLANKS,  fabricItemSettings, DyeColor.BLACK);
 		
-		registerBlockWithItem("white_plank_stairs", WHITE_PLANK_STAIRS, fabricItemSettings);
-		registerBlockWithItem("orange_plank_stairs", ORANGE_PLANK_STAIRS, fabricItemSettings);
-		registerBlockWithItem("magenta_plank_stairs", MAGENTA_PLANK_STAIRS, fabricItemSettings);
-		registerBlockWithItem("light_blue_plank_stairs", LIGHT_BLUE_PLANK_STAIRS, fabricItemSettings);
-		registerBlockWithItem("yellow_plank_stairs", YELLOW_PLANK_STAIRS, fabricItemSettings);
-		registerBlockWithItem("lime_plank_stairs", LIME_PLANK_STAIRS, fabricItemSettings);
-		registerBlockWithItem("pink_plank_stairs", PINK_PLANK_STAIRS, fabricItemSettings);
-		registerBlockWithItem("gray_plank_stairs", GRAY_PLANK_STAIRS, fabricItemSettings);
-		registerBlockWithItem("light_gray_plank_stairs", LIGHT_GRAY_PLANK_STAIRS, fabricItemSettings);
-		registerBlockWithItem("cyan_plank_stairs", CYAN_PLANK_STAIRS, fabricItemSettings);
-		registerBlockWithItem("purple_plank_stairs", PURPLE_PLANK_STAIRS, fabricItemSettings);
-		registerBlockWithItem("blue_plank_stairs", BLUE_PLANK_STAIRS, fabricItemSettings);
-		registerBlockWithItem("brown_plank_stairs", BROWN_PLANK_STAIRS, fabricItemSettings);
-		registerBlockWithItem("green_plank_stairs", GREEN_PLANK_STAIRS, fabricItemSettings);
-		registerBlockWithItem("red_plank_stairs", RED_PLANK_STAIRS, fabricItemSettings);
-		registerBlockWithItem("black_plank_stairs", BLACK_PLANK_STAIRS, fabricItemSettings);
+		registerBlockWithItem("white_plank_stairs",  WHITE_PLANK_STAIRS,  fabricItemSettings, DyeColor.WHITE);
+		registerBlockWithItem("orange_plank_stairs",  ORANGE_PLANK_STAIRS,  fabricItemSettings, DyeColor.ORANGE);
+		registerBlockWithItem("magenta_plank_stairs",  MAGENTA_PLANK_STAIRS,  fabricItemSettings, DyeColor.MAGENTA);
+		registerBlockWithItem("light_blue_plank_stairs",  LIGHT_BLUE_PLANK_STAIRS,  fabricItemSettings, DyeColor.LIGHT_BLUE);
+		registerBlockWithItem("yellow_plank_stairs",  YELLOW_PLANK_STAIRS,  fabricItemSettings, DyeColor.YELLOW);
+		registerBlockWithItem("lime_plank_stairs",  LIME_PLANK_STAIRS,  fabricItemSettings, DyeColor.LIME);
+		registerBlockWithItem("pink_plank_stairs",  PINK_PLANK_STAIRS,  fabricItemSettings, DyeColor.PINK);
+		registerBlockWithItem("gray_plank_stairs",  GRAY_PLANK_STAIRS,  fabricItemSettings, DyeColor.GRAY);
+		registerBlockWithItem("light_gray_plank_stairs",  LIGHT_GRAY_PLANK_STAIRS,  fabricItemSettings, DyeColor.LIGHT_GRAY);
+		registerBlockWithItem("cyan_plank_stairs",  CYAN_PLANK_STAIRS,  fabricItemSettings, DyeColor.CYAN);
+		registerBlockWithItem("purple_plank_stairs",  PURPLE_PLANK_STAIRS,  fabricItemSettings, DyeColor.PURPLE);
+		registerBlockWithItem("blue_plank_stairs",  BLUE_PLANK_STAIRS,  fabricItemSettings, DyeColor.BLUE);
+		registerBlockWithItem("brown_plank_stairs",  BROWN_PLANK_STAIRS,  fabricItemSettings, DyeColor.BROWN);
+		registerBlockWithItem("green_plank_stairs",  GREEN_PLANK_STAIRS,  fabricItemSettings, DyeColor.GREEN);
+		registerBlockWithItem("red_plank_stairs",  RED_PLANK_STAIRS,  fabricItemSettings, DyeColor.RED);
+		registerBlockWithItem("black_plank_stairs",  BLACK_PLANK_STAIRS,  fabricItemSettings, DyeColor.BLACK);
 		
-		registerBlockWithItem("white_plank_pressure_plate", WHITE_PLANK_PRESSURE_PLATE, fabricItemSettings);
-		registerBlockWithItem("orange_plank_pressure_plate", ORANGE_PLANK_PRESSURE_PLATE, fabricItemSettings);
-		registerBlockWithItem("magenta_plank_pressure_plate", MAGENTA_PLANK_PRESSURE_PLATE, fabricItemSettings);
-		registerBlockWithItem("light_blue_plank_pressure_plate", LIGHT_BLUE_PLANK_PRESSURE_PLATE, fabricItemSettings);
-		registerBlockWithItem("yellow_plank_pressure_plate", YELLOW_PLANK_PRESSURE_PLATE, fabricItemSettings);
-		registerBlockWithItem("lime_plank_pressure_plate", LIME_PLANK_PRESSURE_PLATE, fabricItemSettings);
-		registerBlockWithItem("pink_plank_pressure_plate", PINK_PLANK_PRESSURE_PLATE, fabricItemSettings);
-		registerBlockWithItem("gray_plank_pressure_plate", GRAY_PLANK_PRESSURE_PLATE, fabricItemSettings);
-		registerBlockWithItem("light_gray_plank_pressure_plate", LIGHT_GRAY_PLANK_PRESSURE_PLATE, fabricItemSettings);
-		registerBlockWithItem("cyan_plank_pressure_plate", CYAN_PLANK_PRESSURE_PLATE, fabricItemSettings);
-		registerBlockWithItem("purple_plank_pressure_plate", PURPLE_PLANK_PRESSURE_PLATE, fabricItemSettings);
-		registerBlockWithItem("blue_plank_pressure_plate", BLUE_PLANK_PRESSURE_PLATE, fabricItemSettings);
-		registerBlockWithItem("brown_plank_pressure_plate", BROWN_PLANK_PRESSURE_PLATE, fabricItemSettings);
-		registerBlockWithItem("green_plank_pressure_plate", GREEN_PLANK_PRESSURE_PLATE, fabricItemSettings);
-		registerBlockWithItem("red_plank_pressure_plate", RED_PLANK_PRESSURE_PLATE, fabricItemSettings);
-		registerBlockWithItem("black_plank_pressure_plate", BLACK_PLANK_PRESSURE_PLATE, fabricItemSettings);
+		registerBlockWithItem("white_plank_pressure_plate",  WHITE_PLANK_PRESSURE_PLATE,  fabricItemSettings, DyeColor.WHITE);
+		registerBlockWithItem("orange_plank_pressure_plate",  ORANGE_PLANK_PRESSURE_PLATE,  fabricItemSettings, DyeColor.ORANGE);
+		registerBlockWithItem("magenta_plank_pressure_plate",  MAGENTA_PLANK_PRESSURE_PLATE,  fabricItemSettings, DyeColor.MAGENTA);
+		registerBlockWithItem("light_blue_plank_pressure_plate",  LIGHT_BLUE_PLANK_PRESSURE_PLATE,  fabricItemSettings, DyeColor.LIGHT_BLUE);
+		registerBlockWithItem("yellow_plank_pressure_plate",  YELLOW_PLANK_PRESSURE_PLATE,  fabricItemSettings, DyeColor.YELLOW);
+		registerBlockWithItem("lime_plank_pressure_plate",  LIME_PLANK_PRESSURE_PLATE,  fabricItemSettings, DyeColor.LIME);
+		registerBlockWithItem("pink_plank_pressure_plate",  PINK_PLANK_PRESSURE_PLATE,  fabricItemSettings, DyeColor.PINK);
+		registerBlockWithItem("gray_plank_pressure_plate",  GRAY_PLANK_PRESSURE_PLATE,  fabricItemSettings, DyeColor.GRAY);
+		registerBlockWithItem("light_gray_plank_pressure_plate",  LIGHT_GRAY_PLANK_PRESSURE_PLATE,  fabricItemSettings, DyeColor.LIGHT_GRAY);
+		registerBlockWithItem("cyan_plank_pressure_plate",  CYAN_PLANK_PRESSURE_PLATE,  fabricItemSettings, DyeColor.CYAN);
+		registerBlockWithItem("purple_plank_pressure_plate",  PURPLE_PLANK_PRESSURE_PLATE,  fabricItemSettings, DyeColor.PURPLE);
+		registerBlockWithItem("blue_plank_pressure_plate",  BLUE_PLANK_PRESSURE_PLATE,  fabricItemSettings, DyeColor.BLUE);
+		registerBlockWithItem("brown_plank_pressure_plate",  BROWN_PLANK_PRESSURE_PLATE,  fabricItemSettings, DyeColor.BROWN);
+		registerBlockWithItem("green_plank_pressure_plate",  GREEN_PLANK_PRESSURE_PLATE,  fabricItemSettings, DyeColor.GREEN);
+		registerBlockWithItem("red_plank_pressure_plate",  RED_PLANK_PRESSURE_PLATE,  fabricItemSettings, DyeColor.RED);
+		registerBlockWithItem("black_plank_pressure_plate",  BLACK_PLANK_PRESSURE_PLATE,  fabricItemSettings, DyeColor.BLACK);
 		
-		registerBlockWithItem("white_plank_fence", WHITE_PLANK_FENCE, fabricItemSettings);
-		registerBlockWithItem("orange_plank_fence", ORANGE_PLANK_FENCE, fabricItemSettings);
-		registerBlockWithItem("magenta_plank_fence", MAGENTA_PLANK_FENCE, fabricItemSettings);
-		registerBlockWithItem("light_blue_plank_fence", LIGHT_BLUE_PLANK_FENCE, fabricItemSettings);
-		registerBlockWithItem("yellow_plank_fence", YELLOW_PLANK_FENCE, fabricItemSettings);
-		registerBlockWithItem("lime_plank_fence", LIME_PLANK_FENCE, fabricItemSettings);
-		registerBlockWithItem("pink_plank_fence", PINK_PLANK_FENCE, fabricItemSettings);
-		registerBlockWithItem("gray_plank_fence", GRAY_PLANK_FENCE, fabricItemSettings);
-		registerBlockWithItem("light_gray_plank_fence", LIGHT_GRAY_PLANK_FENCE, fabricItemSettings);
-		registerBlockWithItem("cyan_plank_fence", CYAN_PLANK_FENCE, fabricItemSettings);
-		registerBlockWithItem("purple_plank_fence", PURPLE_PLANK_FENCE, fabricItemSettings);
-		registerBlockWithItem("blue_plank_fence", BLUE_PLANK_FENCE, fabricItemSettings);
-		registerBlockWithItem("brown_plank_fence", BROWN_PLANK_FENCE, fabricItemSettings);
-		registerBlockWithItem("green_plank_fence", GREEN_PLANK_FENCE, fabricItemSettings);
-		registerBlockWithItem("red_plank_fence", RED_PLANK_FENCE, fabricItemSettings);
-		registerBlockWithItem("black_plank_fence", BLACK_PLANK_FENCE, fabricItemSettings);
+		registerBlockWithItem("white_plank_fence",  WHITE_PLANK_FENCE,  fabricItemSettings, DyeColor.WHITE);
+		registerBlockWithItem("orange_plank_fence",  ORANGE_PLANK_FENCE,  fabricItemSettings, DyeColor.ORANGE);
+		registerBlockWithItem("magenta_plank_fence",  MAGENTA_PLANK_FENCE,  fabricItemSettings, DyeColor.MAGENTA);
+		registerBlockWithItem("light_blue_plank_fence",  LIGHT_BLUE_PLANK_FENCE,  fabricItemSettings, DyeColor.LIGHT_BLUE);
+		registerBlockWithItem("yellow_plank_fence",  YELLOW_PLANK_FENCE,  fabricItemSettings, DyeColor.YELLOW);
+		registerBlockWithItem("lime_plank_fence",  LIME_PLANK_FENCE,  fabricItemSettings, DyeColor.LIME);
+		registerBlockWithItem("pink_plank_fence",  PINK_PLANK_FENCE,  fabricItemSettings, DyeColor.PINK);
+		registerBlockWithItem("gray_plank_fence",  GRAY_PLANK_FENCE,  fabricItemSettings, DyeColor.GRAY);
+		registerBlockWithItem("light_gray_plank_fence",  LIGHT_GRAY_PLANK_FENCE,  fabricItemSettings, DyeColor.LIGHT_GRAY);
+		registerBlockWithItem("cyan_plank_fence",  CYAN_PLANK_FENCE,  fabricItemSettings, DyeColor.CYAN);
+		registerBlockWithItem("purple_plank_fence",  PURPLE_PLANK_FENCE,  fabricItemSettings, DyeColor.PURPLE);
+		registerBlockWithItem("blue_plank_fence",  BLUE_PLANK_FENCE,  fabricItemSettings, DyeColor.BLUE);
+		registerBlockWithItem("brown_plank_fence",  BROWN_PLANK_FENCE,  fabricItemSettings, DyeColor.BROWN);
+		registerBlockWithItem("green_plank_fence",  GREEN_PLANK_FENCE,  fabricItemSettings, DyeColor.GREEN);
+		registerBlockWithItem("red_plank_fence",  RED_PLANK_FENCE,  fabricItemSettings, DyeColor.RED);
+		registerBlockWithItem("black_plank_fence",  BLACK_PLANK_FENCE,  fabricItemSettings, DyeColor.BLACK);
 		
-		registerBlockWithItem("white_plank_fence_gate", WHITE_PLANK_FENCE_GATE, fabricItemSettings);
-		registerBlockWithItem("orange_plank_fence_gate", ORANGE_PLANK_FENCE_GATE, fabricItemSettings);
-		registerBlockWithItem("magenta_plank_fence_gate", MAGENTA_PLANK_FENCE_GATE, fabricItemSettings);
-		registerBlockWithItem("light_blue_plank_fence_gate", LIGHT_BLUE_PLANK_FENCE_GATE, fabricItemSettings);
-		registerBlockWithItem("yellow_plank_fence_gate", YELLOW_PLANK_FENCE_GATE, fabricItemSettings);
-		registerBlockWithItem("lime_plank_fence_gate", LIME_PLANK_FENCE_GATE, fabricItemSettings);
-		registerBlockWithItem("pink_plank_fence_gate", PINK_PLANK_FENCE_GATE, fabricItemSettings);
-		registerBlockWithItem("gray_plank_fence_gate", GRAY_PLANK_FENCE_GATE, fabricItemSettings);
-		registerBlockWithItem("light_gray_plank_fence_gate", LIGHT_GRAY_PLANK_FENCE_GATE, fabricItemSettings);
-		registerBlockWithItem("cyan_plank_fence_gate", CYAN_PLANK_FENCE_GATE, fabricItemSettings);
-		registerBlockWithItem("purple_plank_fence_gate", PURPLE_PLANK_FENCE_GATE, fabricItemSettings);
-		registerBlockWithItem("blue_plank_fence_gate", BLUE_PLANK_FENCE_GATE, fabricItemSettings);
-		registerBlockWithItem("brown_plank_fence_gate", BROWN_PLANK_FENCE_GATE, fabricItemSettings);
-		registerBlockWithItem("green_plank_fence_gate", GREEN_PLANK_FENCE_GATE, fabricItemSettings);
-		registerBlockWithItem("red_plank_fence_gate", RED_PLANK_FENCE_GATE, fabricItemSettings);
-		registerBlockWithItem("black_plank_fence_gate", BLACK_PLANK_FENCE_GATE, fabricItemSettings);
+		registerBlockWithItem("white_plank_fence_gate",  WHITE_PLANK_FENCE_GATE,  fabricItemSettings, DyeColor.WHITE);
+		registerBlockWithItem("orange_plank_fence_gate",  ORANGE_PLANK_FENCE_GATE,  fabricItemSettings, DyeColor.ORANGE);
+		registerBlockWithItem("magenta_plank_fence_gate",  MAGENTA_PLANK_FENCE_GATE,  fabricItemSettings, DyeColor.MAGENTA);
+		registerBlockWithItem("light_blue_plank_fence_gate",  LIGHT_BLUE_PLANK_FENCE_GATE,  fabricItemSettings, DyeColor.LIGHT_BLUE);
+		registerBlockWithItem("yellow_plank_fence_gate",  YELLOW_PLANK_FENCE_GATE,  fabricItemSettings, DyeColor.YELLOW);
+		registerBlockWithItem("lime_plank_fence_gate",  LIME_PLANK_FENCE_GATE,  fabricItemSettings, DyeColor.LIME);
+		registerBlockWithItem("pink_plank_fence_gate",  PINK_PLANK_FENCE_GATE,  fabricItemSettings, DyeColor.PINK);
+		registerBlockWithItem("gray_plank_fence_gate",  GRAY_PLANK_FENCE_GATE,  fabricItemSettings, DyeColor.GRAY);
+		registerBlockWithItem("light_gray_plank_fence_gate",  LIGHT_GRAY_PLANK_FENCE_GATE,  fabricItemSettings, DyeColor.LIGHT_GRAY);
+		registerBlockWithItem("cyan_plank_fence_gate",  CYAN_PLANK_FENCE_GATE,  fabricItemSettings, DyeColor.CYAN);
+		registerBlockWithItem("purple_plank_fence_gate",  PURPLE_PLANK_FENCE_GATE,  fabricItemSettings, DyeColor.PURPLE);
+		registerBlockWithItem("blue_plank_fence_gate",  BLUE_PLANK_FENCE_GATE,  fabricItemSettings, DyeColor.BLUE);
+		registerBlockWithItem("brown_plank_fence_gate",  BROWN_PLANK_FENCE_GATE,  fabricItemSettings, DyeColor.BROWN);
+		registerBlockWithItem("green_plank_fence_gate",  GREEN_PLANK_FENCE_GATE,  fabricItemSettings, DyeColor.GREEN);
+		registerBlockWithItem("red_plank_fence_gate",  RED_PLANK_FENCE_GATE,  fabricItemSettings, DyeColor.RED);
+		registerBlockWithItem("black_plank_fence_gate",  BLACK_PLANK_FENCE_GATE,  fabricItemSettings, DyeColor.BLACK);
 		
-		registerBlockWithItem("white_plank_button", WHITE_PLANK_BUTTON, fabricItemSettings);
-		registerBlockWithItem("orange_plank_button", ORANGE_PLANK_BUTTON, fabricItemSettings);
-		registerBlockWithItem("magenta_plank_button", MAGENTA_PLANK_BUTTON, fabricItemSettings);
-		registerBlockWithItem("light_blue_plank_button", LIGHT_BLUE_PLANK_BUTTON, fabricItemSettings);
-		registerBlockWithItem("yellow_plank_button", YELLOW_PLANK_BUTTON, fabricItemSettings);
-		registerBlockWithItem("lime_plank_button", LIME_PLANK_BUTTON, fabricItemSettings);
-		registerBlockWithItem("pink_plank_button", PINK_PLANK_BUTTON, fabricItemSettings);
-		registerBlockWithItem("gray_plank_button", GRAY_PLANK_BUTTON, fabricItemSettings);
-		registerBlockWithItem("light_gray_plank_button", LIGHT_GRAY_PLANK_BUTTON, fabricItemSettings);
-		registerBlockWithItem("cyan_plank_button", CYAN_PLANK_BUTTON, fabricItemSettings);
-		registerBlockWithItem("purple_plank_button", PURPLE_PLANK_BUTTON, fabricItemSettings);
-		registerBlockWithItem("blue_plank_button", BLUE_PLANK_BUTTON, fabricItemSettings);
-		registerBlockWithItem("brown_plank_button", BROWN_PLANK_BUTTON, fabricItemSettings);
-		registerBlockWithItem("green_plank_button", GREEN_PLANK_BUTTON, fabricItemSettings);
-		registerBlockWithItem("red_plank_button", RED_PLANK_BUTTON, fabricItemSettings);
-		registerBlockWithItem("black_plank_button", BLACK_PLANK_BUTTON, fabricItemSettings);
+		registerBlockWithItem("white_plank_button",  WHITE_PLANK_BUTTON,  fabricItemSettings, DyeColor.WHITE);
+		registerBlockWithItem("orange_plank_button",  ORANGE_PLANK_BUTTON,  fabricItemSettings, DyeColor.ORANGE);
+		registerBlockWithItem("magenta_plank_button",  MAGENTA_PLANK_BUTTON,  fabricItemSettings, DyeColor.MAGENTA);
+		registerBlockWithItem("light_blue_plank_button",  LIGHT_BLUE_PLANK_BUTTON,  fabricItemSettings, DyeColor.LIGHT_BLUE);
+		registerBlockWithItem("yellow_plank_button",  YELLOW_PLANK_BUTTON,  fabricItemSettings, DyeColor.YELLOW);
+		registerBlockWithItem("lime_plank_button",  LIME_PLANK_BUTTON,  fabricItemSettings, DyeColor.LIME);
+		registerBlockWithItem("pink_plank_button",  PINK_PLANK_BUTTON,  fabricItemSettings, DyeColor.PINK);
+		registerBlockWithItem("gray_plank_button",  GRAY_PLANK_BUTTON,  fabricItemSettings, DyeColor.GRAY);
+		registerBlockWithItem("light_gray_plank_button",  LIGHT_GRAY_PLANK_BUTTON,  fabricItemSettings, DyeColor.LIGHT_GRAY);
+		registerBlockWithItem("cyan_plank_button",  CYAN_PLANK_BUTTON,  fabricItemSettings, DyeColor.CYAN);
+		registerBlockWithItem("purple_plank_button",  PURPLE_PLANK_BUTTON,  fabricItemSettings, DyeColor.PURPLE);
+		registerBlockWithItem("blue_plank_button",  BLUE_PLANK_BUTTON,  fabricItemSettings, DyeColor.BLUE);
+		registerBlockWithItem("brown_plank_button",  BROWN_PLANK_BUTTON,  fabricItemSettings, DyeColor.BROWN);
+		registerBlockWithItem("green_plank_button",  GREEN_PLANK_BUTTON,  fabricItemSettings, DyeColor.GREEN);
+		registerBlockWithItem("red_plank_button",  RED_PLANK_BUTTON,  fabricItemSettings, DyeColor.RED);
+		registerBlockWithItem("black_plank_button",  BLACK_PLANK_BUTTON,  fabricItemSettings, DyeColor.BLACK);
 		
-		registerBlockWithItem("white_plank_slab", WHITE_PLANK_SLAB, fabricItemSettings);
-		registerBlockWithItem("orange_plank_slab", ORANGE_PLANK_SLAB, fabricItemSettings);
-		registerBlockWithItem("magenta_plank_slab", MAGENTA_PLANK_SLAB, fabricItemSettings);
-		registerBlockWithItem("light_blue_plank_slab", LIGHT_BLUE_PLANK_SLAB, fabricItemSettings);
-		registerBlockWithItem("yellow_plank_slab", YELLOW_PLANK_SLAB, fabricItemSettings);
-		registerBlockWithItem("lime_plank_slab", LIME_PLANK_SLAB, fabricItemSettings);
-		registerBlockWithItem("pink_plank_slab", PINK_PLANK_SLAB, fabricItemSettings);
-		registerBlockWithItem("gray_plank_slab", GRAY_PLANK_SLAB, fabricItemSettings);
-		registerBlockWithItem("light_gray_plank_slab", LIGHT_GRAY_PLANK_SLAB, fabricItemSettings);
-		registerBlockWithItem("cyan_plank_slab", CYAN_PLANK_SLAB, fabricItemSettings);
-		registerBlockWithItem("purple_plank_slab", PURPLE_PLANK_SLAB, fabricItemSettings);
-		registerBlockWithItem("blue_plank_slab", BLUE_PLANK_SLAB, fabricItemSettings);
-		registerBlockWithItem("brown_plank_slab", BROWN_PLANK_SLAB, fabricItemSettings);
-		registerBlockWithItem("green_plank_slab", GREEN_PLANK_SLAB, fabricItemSettings);
-		registerBlockWithItem("red_plank_slab", RED_PLANK_SLAB, fabricItemSettings);
-		registerBlockWithItem("black_plank_slab", BLACK_PLANK_SLAB, fabricItemSettings);
+		registerBlockWithItem("white_plank_slab",  WHITE_PLANK_SLAB,  fabricItemSettings, DyeColor.WHITE);
+		registerBlockWithItem("orange_plank_slab",  ORANGE_PLANK_SLAB,  fabricItemSettings, DyeColor.ORANGE);
+		registerBlockWithItem("magenta_plank_slab",  MAGENTA_PLANK_SLAB,  fabricItemSettings, DyeColor.MAGENTA);
+		registerBlockWithItem("light_blue_plank_slab",  LIGHT_BLUE_PLANK_SLAB,  fabricItemSettings, DyeColor.LIGHT_BLUE);
+		registerBlockWithItem("yellow_plank_slab",  YELLOW_PLANK_SLAB,  fabricItemSettings, DyeColor.YELLOW);
+		registerBlockWithItem("lime_plank_slab",  LIME_PLANK_SLAB,  fabricItemSettings, DyeColor.LIME);
+		registerBlockWithItem("pink_plank_slab",  PINK_PLANK_SLAB,  fabricItemSettings, DyeColor.PINK);
+		registerBlockWithItem("gray_plank_slab",  GRAY_PLANK_SLAB,  fabricItemSettings, DyeColor.GRAY);
+		registerBlockWithItem("light_gray_plank_slab",  LIGHT_GRAY_PLANK_SLAB,  fabricItemSettings, DyeColor.LIGHT_GRAY);
+		registerBlockWithItem("cyan_plank_slab",  CYAN_PLANK_SLAB,  fabricItemSettings, DyeColor.CYAN);
+		registerBlockWithItem("purple_plank_slab",  PURPLE_PLANK_SLAB,  fabricItemSettings, DyeColor.PURPLE);
+		registerBlockWithItem("blue_plank_slab",  BLUE_PLANK_SLAB,  fabricItemSettings, DyeColor.BLUE);
+		registerBlockWithItem("brown_plank_slab",  BROWN_PLANK_SLAB,  fabricItemSettings, DyeColor.BROWN);
+		registerBlockWithItem("green_plank_slab",  GREEN_PLANK_SLAB,  fabricItemSettings, DyeColor.GREEN);
+		registerBlockWithItem("red_plank_slab",  RED_PLANK_SLAB,  fabricItemSettings, DyeColor.RED);
+		registerBlockWithItem("black_plank_slab",  BLACK_PLANK_SLAB,  fabricItemSettings, DyeColor.BLACK);
 	}
 
 	private static void registerGlowBlocks(FabricItemSettings fabricItemSettings) {
-		registerBlockWithItem("white_glowblock", WHITE_GLOWBLOCK, fabricItemSettings);
-		registerBlockWithItem("orange_glowblock", ORANGE_GLOWBLOCK, fabricItemSettings);
-		registerBlockWithItem("magenta_glowblock", MAGENTA_GLOWBLOCK, fabricItemSettings);
-		registerBlockWithItem("light_blue_glowblock", LIGHT_BLUE_GLOWBLOCK, fabricItemSettings);
-		registerBlockWithItem("yellow_glowblock", YELLOW_GLOWBLOCK, fabricItemSettings);
-		registerBlockWithItem("lime_glowblock", LIME_GLOWBLOCK, fabricItemSettings);
-		registerBlockWithItem("pink_glowblock", PINK_GLOWBLOCK, fabricItemSettings);
-		registerBlockWithItem("gray_glowblock", GRAY_GLOWBLOCK, fabricItemSettings);
-		registerBlockWithItem("light_gray_glowblock", LIGHT_GRAY_GLOWBLOCK, fabricItemSettings);
-		registerBlockWithItem("cyan_glowblock", CYAN_GLOWBLOCK, fabricItemSettings);
-		registerBlockWithItem("purple_glowblock", PURPLE_GLOWBLOCK, fabricItemSettings);
-		registerBlockWithItem("blue_glowblock", BLUE_GLOWBLOCK, fabricItemSettings);
-		registerBlockWithItem("brown_glowblock", BROWN_GLOWBLOCK, fabricItemSettings);
-		registerBlockWithItem("green_glowblock", GREEN_GLOWBLOCK, fabricItemSettings);
-		registerBlockWithItem("red_glowblock", RED_GLOWBLOCK, fabricItemSettings);
-		registerBlockWithItem("black_glowblock", BLACK_GLOWBLOCK, fabricItemSettings);
+		registerBlockWithItem("white_glowblock", WHITE_GLOWBLOCK, fabricItemSettings, DyeColor.WHITE);
+		registerBlockWithItem("orange_glowblock", ORANGE_GLOWBLOCK, fabricItemSettings, DyeColor.ORANGE);
+		registerBlockWithItem("magenta_glowblock", MAGENTA_GLOWBLOCK, fabricItemSettings, DyeColor.MAGENTA);
+		registerBlockWithItem("light_blue_glowblock", LIGHT_BLUE_GLOWBLOCK, fabricItemSettings, DyeColor.LIGHT_BLUE);
+		registerBlockWithItem("yellow_glowblock", YELLOW_GLOWBLOCK, fabricItemSettings, DyeColor.YELLOW);
+		registerBlockWithItem("lime_glowblock", LIME_GLOWBLOCK, fabricItemSettings, DyeColor.LIME);
+		registerBlockWithItem("pink_glowblock", PINK_GLOWBLOCK, fabricItemSettings, DyeColor.PINK);
+		registerBlockWithItem("gray_glowblock", GRAY_GLOWBLOCK, fabricItemSettings, DyeColor.GRAY);
+		registerBlockWithItem("light_gray_glowblock", LIGHT_GRAY_GLOWBLOCK, fabricItemSettings, DyeColor.LIGHT_GRAY);
+		registerBlockWithItem("cyan_glowblock", CYAN_GLOWBLOCK, fabricItemSettings, DyeColor.CYAN);
+		registerBlockWithItem("purple_glowblock", PURPLE_GLOWBLOCK, fabricItemSettings, DyeColor.PURPLE);
+		registerBlockWithItem("blue_glowblock", BLUE_GLOWBLOCK, fabricItemSettings, DyeColor.BLUE);
+		registerBlockWithItem("brown_glowblock", BROWN_GLOWBLOCK, fabricItemSettings, DyeColor.BROWN);
+		registerBlockWithItem("green_glowblock", GREEN_GLOWBLOCK, fabricItemSettings, DyeColor.GREEN);
+		registerBlockWithItem("red_glowblock", RED_GLOWBLOCK, fabricItemSettings, DyeColor.RED);
+		registerBlockWithItem("black_glowblock", BLACK_GLOWBLOCK, fabricItemSettings, DyeColor.BLACK);
 	}
 
 	public static void registerSparklestoneLights(FabricItemSettings fabricItemSettings) {
-		registerBlockWithItem("basalt_sparklestone_light", BASALT_SPARKLESTONE_LIGHT, fabricItemSettings);
-		registerBlockWithItem("calcite_sparklestone_light", CALCITE_SPARKLESTONE_LIGHT, fabricItemSettings);
-		registerBlockWithItem("stone_sparklestone_light", STONE_SPARKLESTONE_LIGHT, fabricItemSettings);
-		registerBlockWithItem("granite_sparklestone_light", GRANITE_SPARKLESTONE_LIGHT, fabricItemSettings);
-		registerBlockWithItem("diorite_sparklestone_light", DIORITE_SPARKLESTONE_LIGHT, fabricItemSettings);
-		registerBlockWithItem("andesite_sparklestone_light", ANDESITE_SPARKLESTONE_LIGHT, fabricItemSettings);
-		registerBlockWithItem("deepslate_sparklestone_light", DEEPSLATE_SPARKLESTONE_LIGHT, fabricItemSettings);
+		registerBlockWithItem("basalt_sparklestone_light", BASALT_SPARKLESTONE_LIGHT, fabricItemSettings, DyeColor.YELLOW);
+		registerBlockWithItem("calcite_sparklestone_light", CALCITE_SPARKLESTONE_LIGHT, fabricItemSettings, DyeColor.YELLOW);
+		registerBlockWithItem("stone_sparklestone_light", STONE_SPARKLESTONE_LIGHT, fabricItemSettings, DyeColor.YELLOW);
+		registerBlockWithItem("granite_sparklestone_light", GRANITE_SPARKLESTONE_LIGHT, fabricItemSettings, DyeColor.YELLOW);
+		registerBlockWithItem("diorite_sparklestone_light", DIORITE_SPARKLESTONE_LIGHT, fabricItemSettings, DyeColor.YELLOW);
+		registerBlockWithItem("andesite_sparklestone_light", ANDESITE_SPARKLESTONE_LIGHT, fabricItemSettings, DyeColor.YELLOW);
+		registerBlockWithItem("deepslate_sparklestone_light", DEEPSLATE_SPARKLESTONE_LIGHT, fabricItemSettings, DyeColor.YELLOW);
 	}
 	
 	public static void registerShootingStarBlocks(FabricItemSettings fabricItemSettings) {
-		registerBlockWithItem("shooting_star_glistering", GLISTERING_SHOOTING_STAR, new ShootingStarItem(GLISTERING_SHOOTING_STAR, fabricItemSettings));
-		registerBlockWithItem("shooting_star_fiery", FIERY_SHOOTING_STAR, new ShootingStarItem(FIERY_SHOOTING_STAR, fabricItemSettings));
-		registerBlockWithItem("shooting_star_colorful", COLORFUL_SHOOTING_STAR, new ShootingStarItem(COLORFUL_SHOOTING_STAR, fabricItemSettings));
-		registerBlockWithItem("shooting_star_pristine", PRISTINE_SHOOTING_STAR, new ShootingStarItem(PRISTINE_SHOOTING_STAR, fabricItemSettings));
-		registerBlockWithItem("shooting_star_gemstone", GEMSTONE_SHOOTING_STAR, new ShootingStarItem(GEMSTONE_SHOOTING_STAR, fabricItemSettings));
+		registerBlockWithItem("shooting_star_glistering", GLISTERING_SHOOTING_STAR, new ShootingStarItem(GLISTERING_SHOOTING_STAR, fabricItemSettings), DyeColor.PURPLE);
+		registerBlockWithItem("shooting_star_fiery", FIERY_SHOOTING_STAR, new ShootingStarItem(FIERY_SHOOTING_STAR, fabricItemSettings), DyeColor.PURPLE);
+		registerBlockWithItem("shooting_star_colorful", COLORFUL_SHOOTING_STAR, new ShootingStarItem(COLORFUL_SHOOTING_STAR, fabricItemSettings), DyeColor.PURPLE);
+		registerBlockWithItem("shooting_star_pristine", PRISTINE_SHOOTING_STAR, new ShootingStarItem(PRISTINE_SHOOTING_STAR, fabricItemSettings), DyeColor.PURPLE);
+		registerBlockWithItem("shooting_star_gemstone", GEMSTONE_SHOOTING_STAR, new ShootingStarItem(GEMSTONE_SHOOTING_STAR, fabricItemSettings), DyeColor.PURPLE);
 	}
 	
 	public static void registerPastelNetworkNodes(FabricItemSettings fabricItemSettings) {
-		registerBlockWithItem("connection_node", CONNECTION_NODE, fabricItemSettings);
-		registerBlockWithItem("provider_node", PROVIDER_NODE, fabricItemSettings);
-		registerBlockWithItem("storage_node", STORAGE_NODE, fabricItemSettings);
-		registerBlockWithItem("pusher_node", PUSHER_NODE, fabricItemSettings);
-		registerBlockWithItem("puller_node", PULLER_NODE, fabricItemSettings);
-		registerBlockWithItem("interaction_node", INTERACTION_NODE, fabricItemSettings);
+		registerBlockWithItem("connection_node", CONNECTION_NODE, fabricItemSettings, DyeColor.GREEN);
+		registerBlockWithItem("provider_node", PROVIDER_NODE, fabricItemSettings, DyeColor.GREEN);
+		registerBlockWithItem("storage_node", STORAGE_NODE, fabricItemSettings, DyeColor.GREEN);
+		registerBlockWithItem("pusher_node", PUSHER_NODE, fabricItemSettings, DyeColor.GREEN);
+		registerBlockWithItem("puller_node", PULLER_NODE, fabricItemSettings, DyeColor.GREEN);
+		registerBlockWithItem("interaction_node", INTERACTION_NODE, fabricItemSettings, DyeColor.GREEN);
 	}
 	
 	public static void registerMachines(FabricItemSettings fabricItemSettings) {
-		registerBlockWithItem("crystal_apothecary", CRYSTAL_APOTHECARY, fabricItemSettings);
-		registerBlockWithItem("color_picker", COLOR_PICKER, fabricItemSettings);
-		registerBlockWithItem("inkwell", INKWELL, fabricItemSettings);
-		registerBlockWithItem("ink_duct", INK_DUCT, fabricItemSettings);
+		registerBlockWithItem("crystal_apothecary", CRYSTAL_APOTHECARY, fabricItemSettings, DyeColor.GREEN);
+		registerBlockWithItem("color_picker", COLOR_PICKER, fabricItemSettings, DyeColor.GREEN);
+		registerBlockWithItem("inkwell", INKWELL, fabricItemSettings, DyeColor.GREEN);
+		registerBlockWithItem("ink_duct", INK_DUCT, fabricItemSettings, DyeColor.GREEN);
 	}
 	
 	public static void registerSporeBlossoms(FabricItemSettings fabricItemSettings) {
-		registerBlockWithItem("white_spore_blossom", WHITE_SPORE_BLOSSOM, fabricItemSettings);
-		registerBlockWithItem("orange_spore_blossom", ORANGE_SPORE_BLOSSOM, fabricItemSettings);
-		registerBlockWithItem("magenta_spore_blossom", MAGENTA_SPORE_BLOSSOM, fabricItemSettings);
-		registerBlockWithItem("light_blue_spore_blossom", LIGHT_BLUE_SPORE_BLOSSOM, fabricItemSettings);
-		registerBlockWithItem("yellow_spore_blossom", YELLOW_SPORE_BLOSSOM, fabricItemSettings);
-		registerBlockWithItem("lime_spore_blossom", LIME_SPORE_BLOSSOM, fabricItemSettings);
-		registerBlockWithItem("pink_spore_blossom", PINK_SPORE_BLOSSOM, fabricItemSettings);
-		registerBlockWithItem("gray_spore_blossom", GRAY_SPORE_BLOSSOM, fabricItemSettings);
-		registerBlockWithItem("light_gray_spore_blossom", LIGHT_GRAY_SPORE_BLOSSOM, fabricItemSettings);
-		registerBlockWithItem("cyan_spore_blossom", CYAN_SPORE_BLOSSOM, fabricItemSettings);
-		registerBlockWithItem("purple_spore_blossom", PURPLE_SPORE_BLOSSOM, fabricItemSettings);
-		registerBlockWithItem("blue_spore_blossom", BLUE_SPORE_BLOSSOM, fabricItemSettings);
-		registerBlockWithItem("brown_spore_blossom", BROWN_SPORE_BLOSSOM, fabricItemSettings);
-		registerBlockWithItem("green_spore_blossom", GREEN_SPORE_BLOSSOM, fabricItemSettings);
-		registerBlockWithItem("red_spore_blossom", RED_SPORE_BLOSSOM, fabricItemSettings);
-		registerBlockWithItem("black_spore_blossom", BLACK_SPORE_BLOSSOM, fabricItemSettings);
+		registerBlockWithItem("white_spore_blossom", WHITE_SPORE_BLOSSOM, fabricItemSettings, DyeColor.WHITE);
+		registerBlockWithItem("orange_spore_blossom", ORANGE_SPORE_BLOSSOM, fabricItemSettings, DyeColor.ORANGE);
+		registerBlockWithItem("magenta_spore_blossom", MAGENTA_SPORE_BLOSSOM, fabricItemSettings, DyeColor.MAGENTA);
+		registerBlockWithItem("light_blue_spore_blossom", LIGHT_BLUE_SPORE_BLOSSOM, fabricItemSettings, DyeColor.LIGHT_BLUE);
+		registerBlockWithItem("yellow_spore_blossom", YELLOW_SPORE_BLOSSOM, fabricItemSettings, DyeColor.YELLOW);
+		registerBlockWithItem("lime_spore_blossom", LIME_SPORE_BLOSSOM, fabricItemSettings, DyeColor.LIME);
+		registerBlockWithItem("pink_spore_blossom", PINK_SPORE_BLOSSOM, fabricItemSettings, DyeColor.PINK);
+		registerBlockWithItem("gray_spore_blossom", GRAY_SPORE_BLOSSOM, fabricItemSettings, DyeColor.GRAY);
+		registerBlockWithItem("light_gray_spore_blossom", LIGHT_GRAY_SPORE_BLOSSOM, fabricItemSettings, DyeColor.LIGHT_GRAY);
+		registerBlockWithItem("cyan_spore_blossom", CYAN_SPORE_BLOSSOM, fabricItemSettings, DyeColor.CYAN);
+		registerBlockWithItem("purple_spore_blossom", PURPLE_SPORE_BLOSSOM, fabricItemSettings, DyeColor.PURPLE);
+		registerBlockWithItem("blue_spore_blossom", BLUE_SPORE_BLOSSOM, fabricItemSettings, DyeColor.BLUE);
+		registerBlockWithItem("brown_spore_blossom", BROWN_SPORE_BLOSSOM, fabricItemSettings, DyeColor.BROWN);
+		registerBlockWithItem("green_spore_blossom", GREEN_SPORE_BLOSSOM, fabricItemSettings, DyeColor.GREEN);
+		registerBlockWithItem("red_spore_blossom", RED_SPORE_BLOSSOM, fabricItemSettings, DyeColor.RED);
+		registerBlockWithItem("black_spore_blossom", BLACK_SPORE_BLOSSOM, fabricItemSettings, DyeColor.BLACK);
 	}
 
 	private static void registerGemBlocks(FabricItemSettings fabricItemSettings) {
-		registerBlockWithItem("topaz_block", TOPAZ_BLOCK, fabricItemSettings);
-		registerBlockWithItem("budding_topaz", BUDDING_TOPAZ, fabricItemSettings);
-		registerBlockWithItem("small_topaz_bud", SMALL_TOPAZ_BUD, fabricItemSettings);
-		registerBlockWithItem("medium_topaz_bud", MEDIUM_TOPAZ_BUD, fabricItemSettings);
-		registerBlockWithItem("large_topaz_bud", LARGE_TOPAZ_BUD, fabricItemSettings);
-		registerBlockWithItem("topaz_cluster", TOPAZ_CLUSTER, fabricItemSettings);
+		registerBlockWithItem("topaz_block", TOPAZ_BLOCK, fabricItemSettings, DyeColor.CYAN);
+		registerBlockWithItem("budding_topaz", BUDDING_TOPAZ, fabricItemSettings, DyeColor.CYAN);
+		registerBlockWithItem("small_topaz_bud", SMALL_TOPAZ_BUD, fabricItemSettings, DyeColor.CYAN);
+		registerBlockWithItem("medium_topaz_bud", MEDIUM_TOPAZ_BUD, fabricItemSettings, DyeColor.CYAN);
+		registerBlockWithItem("large_topaz_bud", LARGE_TOPAZ_BUD, fabricItemSettings, DyeColor.CYAN);
+		registerBlockWithItem("topaz_cluster", TOPAZ_CLUSTER, fabricItemSettings, DyeColor.CYAN);
 
-		registerBlockWithItem("citrine_block", CITRINE_BLOCK, fabricItemSettings);
-		registerBlockWithItem("budding_citrine", BUDDING_CITRINE, fabricItemSettings);
-		registerBlockWithItem("small_citrine_bud", SMALL_CITRINE_BUD, fabricItemSettings);
-		registerBlockWithItem("medium_citrine_bud", MEDIUM_CITRINE_BUD, fabricItemSettings);
-		registerBlockWithItem("large_citrine_bud", LARGE_CITRINE_BUD, fabricItemSettings);
-		registerBlockWithItem("citrine_cluster", CITRINE_CLUSTER, fabricItemSettings);
+		registerBlockWithItem("citrine_block", CITRINE_BLOCK, fabricItemSettings, DyeColor.YELLOW);
+		registerBlockWithItem("budding_citrine", BUDDING_CITRINE, fabricItemSettings, DyeColor.YELLOW);
+		registerBlockWithItem("small_citrine_bud", SMALL_CITRINE_BUD, fabricItemSettings, DyeColor.YELLOW);
+		registerBlockWithItem("medium_citrine_bud", MEDIUM_CITRINE_BUD, fabricItemSettings, DyeColor.YELLOW);
+		registerBlockWithItem("large_citrine_bud", LARGE_CITRINE_BUD, fabricItemSettings, DyeColor.YELLOW);
+		registerBlockWithItem("citrine_cluster", CITRINE_CLUSTER, fabricItemSettings, DyeColor.YELLOW);
 
-		registerBlockWithItem("onyx_block", ONYX_BLOCK, fabricItemSettings);
-		registerBlockWithItem("budding_onyx", BUDDING_ONYX, fabricItemSettings);
-		registerBlockWithItem("small_onyx_bud", SMALL_ONYX_BUD, fabricItemSettings);
-		registerBlockWithItem("medium_onyx_bud", MEDIUM_ONYX_BUD, fabricItemSettings);
-		registerBlockWithItem("large_onyx_bud", LARGE_ONYX_BUD, fabricItemSettings);
-		registerBlockWithItem("onyx_cluster", ONYX_CLUSTER, fabricItemSettings);
+		registerBlockWithItem("onyx_block", ONYX_BLOCK, fabricItemSettings, DyeColor.BLACK);
+		registerBlockWithItem("budding_onyx", BUDDING_ONYX, fabricItemSettings, DyeColor.BLACK);
+		registerBlockWithItem("small_onyx_bud", SMALL_ONYX_BUD, fabricItemSettings, DyeColor.BLACK);
+		registerBlockWithItem("medium_onyx_bud", MEDIUM_ONYX_BUD, fabricItemSettings, DyeColor.BLACK);
+		registerBlockWithItem("large_onyx_bud", LARGE_ONYX_BUD, fabricItemSettings, DyeColor.BLACK);
+		registerBlockWithItem("onyx_cluster", ONYX_CLUSTER, fabricItemSettings, DyeColor.BLACK);
 
-		registerBlockWithItem("moonstone_block", MOONSTONE_BLOCK, fabricItemSettings);
-		registerBlockWithItem("budding_moonstone", BUDDING_MOONSTONE, fabricItemSettings);
-		registerBlockWithItem("small_moonstone_bud", SMALL_MOONSTONE_BUD, fabricItemSettings);
-		registerBlockWithItem("medium_moonstone_bud", MEDIUM_MOONSTONE_BUD, fabricItemSettings);
-		registerBlockWithItem("large_moonstone_bud", LARGE_MOONSTONE_BUD, fabricItemSettings);
-		registerBlockWithItem("moonstone_cluster", MOONSTONE_CLUSTER, fabricItemSettings);
+		registerBlockWithItem("moonstone_block", MOONSTONE_BLOCK, fabricItemSettings, DyeColor.WHITE);
+		registerBlockWithItem("budding_moonstone", BUDDING_MOONSTONE, fabricItemSettings, DyeColor.WHITE);
+		registerBlockWithItem("small_moonstone_bud", SMALL_MOONSTONE_BUD, fabricItemSettings, DyeColor.WHITE);
+		registerBlockWithItem("medium_moonstone_bud", MEDIUM_MOONSTONE_BUD, fabricItemSettings, DyeColor.WHITE);
+		registerBlockWithItem("large_moonstone_bud", LARGE_MOONSTONE_BUD, fabricItemSettings, DyeColor.WHITE);
+		registerBlockWithItem("moonstone_cluster", MOONSTONE_CLUSTER, fabricItemSettings, DyeColor.WHITE);
+
 	}
 
 	private static void registerGemOreBlocks(FabricItemSettings fabricItemSettings) {
 		// stone ores
-		registerBlockWithItem("topaz_ore", TOPAZ_ORE, fabricItemSettings);
-		registerBlockWithItem("amethyst_ore", AMETHYST_ORE, fabricItemSettings);
-		registerBlockWithItem("citrine_ore", CITRINE_ORE, fabricItemSettings);
-		registerBlockWithItem("onyx_ore", ONYX_ORE, fabricItemSettings);
-		registerBlockWithItem("moonstone_ore", MOONSTONE_ORE, fabricItemSettings);
+		registerBlockWithItem("topaz_ore", TOPAZ_ORE, fabricItemSettings, DyeColor.CYAN);
+		registerBlockWithItem("amethyst_ore", AMETHYST_ORE, fabricItemSettings, DyeColor.MAGENTA);
+		registerBlockWithItem("citrine_ore", CITRINE_ORE, fabricItemSettings, DyeColor.YELLOW);
+		registerBlockWithItem("onyx_ore", ONYX_ORE, fabricItemSettings, DyeColor.BLACK);
+		registerBlockWithItem("moonstone_ore", MOONSTONE_ORE, fabricItemSettings, DyeColor.WHITE);
 
 		// deepslate ores
-		registerBlockWithItem("deepslate_topaz_ore", DEEPSLATE_TOPAZ_ORE, fabricItemSettings);
-		registerBlockWithItem("deepslate_amethyst_ore", DEEPSLATE_AMETHYST_ORE, fabricItemSettings);
-		registerBlockWithItem("deepslate_citrine_ore", DEEPSLATE_CITRINE_ORE, fabricItemSettings);
-		registerBlockWithItem("deepslate_onyx_ore", DEEPSLATE_ONYX_ORE, fabricItemSettings);
-		registerBlockWithItem("deepslate_moonstone_ore", DEEPSLATE_MOONSTONE_ORE, fabricItemSettings);
+		registerBlockWithItem("deepslate_topaz_ore", DEEPSLATE_TOPAZ_ORE, fabricItemSettings, DyeColor.CYAN);
+		registerBlockWithItem("deepslate_amethyst_ore", DEEPSLATE_AMETHYST_ORE, fabricItemSettings, DyeColor.MAGENTA);
+		registerBlockWithItem("deepslate_citrine_ore", DEEPSLATE_CITRINE_ORE, fabricItemSettings, DyeColor.YELLOW);
+		registerBlockWithItem("deepslate_onyx_ore", DEEPSLATE_ONYX_ORE, fabricItemSettings, DyeColor.BLACK);
+		registerBlockWithItem("deepslate_moonstone_ore", DEEPSLATE_MOONSTONE_ORE, fabricItemSettings, DyeColor.WHITE);
+
 	}
 
 	private static void registerStructureBlocks(FabricItemSettings fabricItemSettings) {
-		registerBlockWithItem("preservation_controller", PRESERVATION_CONTROLLER, fabricItemSettings);
-		registerBlockWithItem("preservation_stone", PRESERVATION_STONE, fabricItemSettings);
-		registerBlockWithItem("preservation_bricks", PRESERVATION_BRICKS, fabricItemSettings);
-		registerBlockWithItem("shimmering_preservation_bricks", SHIMMERING_PRESERVATION_BRICKS, fabricItemSettings);
-		registerBlockWithItem("dike_chiseled_preservation_stone", DIKE_CHISELED_PRESERVATION_STONE, fabricItemSettings);
-		registerBlockWithItem("preservation_glass", PRESERVATION_GLASS, fabricItemSettings);
-		registerBlockWithItem("tinted_preservation_glass", TINTED_PRESERVATION_GLASS, fabricItemSettings);
-		registerBlockWithItem("dike_gate_fountain", DIKE_GATE_FOUNTAIN, fabricItemSettings);
-		registerBlockWithItem("dike_gate", DIKE_GATE, fabricItemSettings);
-		registerBlockWithItem("courier_statue", COURIER_STATUE, fabricItemSettings);
-		registerBlockWithItem("treasure_chest", TREASURE_CHEST, fabricItemSettings);
+		registerBlockWithItem("preservation_controller", PRESERVATION_CONTROLLER, fabricItemSettings, DyeColor.BLUE);
+		registerBlockWithItem("preservation_stone", PRESERVATION_STONE, fabricItemSettings, DyeColor.BLUE);
+		registerBlockWithItem("preservation_bricks", PRESERVATION_BRICKS, fabricItemSettings, DyeColor.BLUE);
+		registerBlockWithItem("shimmering_preservation_bricks", SHIMMERING_PRESERVATION_BRICKS, fabricItemSettings, DyeColor.BLUE);
+		registerBlockWithItem("dike_chiseled_preservation_stone", DIKE_CHISELED_PRESERVATION_STONE, fabricItemSettings, DyeColor.BLUE);
+		registerBlockWithItem("preservation_glass", PRESERVATION_GLASS, fabricItemSettings, DyeColor.BLUE);
+		registerBlockWithItem("tinted_preservation_glass", TINTED_PRESERVATION_GLASS, fabricItemSettings, DyeColor.BLUE);
+		registerBlockWithItem("dike_gate_fountain", DIKE_GATE_FOUNTAIN, fabricItemSettings, DyeColor.BLUE);
+		registerBlockWithItem("dike_gate", DIKE_GATE, fabricItemSettings, DyeColor.BLUE);
+		registerBlockWithItem("courier_statue", COURIER_STATUE, fabricItemSettings, DyeColor.BLUE);
+		registerBlockWithItem("treasure_chest", TREASURE_CHEST, fabricItemSettings, DyeColor.BLUE);
 	}
 
 	private static void registerJadeVineBlocks(FabricItemSettings fabricItemSettings) {
 		registerBlock("jade_vines", JADE_VINES);
-		registerBlockWithItem("jade_vine_petal_block", JADE_VINE_PETAL_BLOCK, fabricItemSettings);
-		registerBlockWithItem("jade_vine_petal_carpet", JADE_VINE_PETAL_CARPET, fabricItemSettings);
+		registerBlockWithItem("jade_vine_petal_block", JADE_VINE_PETAL_BLOCK, fabricItemSettings, DyeColor.LIME);
+		registerBlockWithItem("jade_vine_petal_carpet", JADE_VINE_PETAL_CARPET, fabricItemSettings, DyeColor.LIME);
 	}
 	
 	private static void registerMobBlocks(FabricItemSettings fabricItemSettings) {
-		registerBlockWithItem("axolotl_mob_block", AXOLOTL_MOB_BLOCK, fabricItemSettings);
-		registerBlockWithItem("bat_mob_block", BAT_MOB_BLOCK, fabricItemSettings);
-		registerBlockWithItem("bee_mob_block", BEE_MOB_BLOCK, fabricItemSettings);
-		registerBlockWithItem("blaze_mob_block", BLAZE_MOB_BLOCK, fabricItemSettings);
-		registerBlockWithItem("cat_mob_block", CAT_MOB_BLOCK, fabricItemSettings);
-		registerBlockWithItem("chicken_mob_block", CHICKEN_MOB_BLOCK, fabricItemSettings);
-		registerBlockWithItem("cow_mob_block", COW_MOB_BLOCK, fabricItemSettings);
-		registerBlockWithItem("creeper_mob_block", CREEPER_MOB_BLOCK, fabricItemSettings);
-		registerBlockWithItem("ender_dragon_mob_block", ENDER_DRAGON_MOB_BLOCK, fabricItemSettings);
-		registerBlockWithItem("enderman_mob_block", ENDERMAN_MOB_BLOCK, fabricItemSettings);
-		registerBlockWithItem("endermite_mob_block", ENDERMITE_MOB_BLOCK, fabricItemSettings);
-		registerBlockWithItem("evoker_mob_block", EVOKER_MOB_BLOCK, fabricItemSettings);
-		registerBlockWithItem("fish_mob_block", FISH_MOB_BLOCK, fabricItemSettings);
-		registerBlockWithItem("fox_mob_block", FOX_MOB_BLOCK, fabricItemSettings);
-		registerBlockWithItem("ghast_mob_block", GHAST_MOB_BLOCK, fabricItemSettings);
-		registerBlockWithItem("glow_squid_mob_block", GLOW_SQUID_MOB_BLOCK, fabricItemSettings);
-		registerBlockWithItem("goat_mob_block", GOAT_MOB_BLOCK, fabricItemSettings);
-		registerBlockWithItem("guardian_mob_block", GUARDIAN_MOB_BLOCK, fabricItemSettings);
-		registerBlockWithItem("horse_mob_block", HORSE_MOB_BLOCK, fabricItemSettings);
-		registerBlockWithItem("illusioner_mob_block", ILLUSIONER_MOB_BLOCK, fabricItemSettings);
-		registerBlockWithItem("ocelot_mob_block", OCELOT_MOB_BLOCK, fabricItemSettings);
-		registerBlockWithItem("parrot_mob_block", PARROT_MOB_BLOCK, fabricItemSettings);
-		registerBlockWithItem("phantom_mob_block", PHANTOM_MOB_BLOCK, fabricItemSettings);
-		registerBlockWithItem("pig_mob_block", PIG_MOB_BLOCK, fabricItemSettings);
-		registerBlockWithItem("piglin_mob_block", PIGLIN_MOB_BLOCK, fabricItemSettings);
-		registerBlockWithItem("polar_bear_mob_block", POLAR_BEAR_MOB_BLOCK, fabricItemSettings);
-		registerBlockWithItem("pufferfish_mob_block", PUFFERFISH_MOB_BLOCK, fabricItemSettings);
-		registerBlockWithItem("rabbit_mob_block", RABBIT_MOB_BLOCK, fabricItemSettings);
-		registerBlockWithItem("sheep_mob_block", SHEEP_MOB_BLOCK, fabricItemSettings);
-		registerBlockWithItem("shulker_mob_block", SHULKER_MOB_BLOCK, fabricItemSettings);
-		registerBlockWithItem("silverfish_mob_block", SILVERFISH_MOB_BLOCK, fabricItemSettings);
-		registerBlockWithItem("skeleton_mob_block", SKELETON_MOB_BLOCK, fabricItemSettings);
-		registerBlockWithItem("slime_mob_block", SLIME_MOB_BLOCK, fabricItemSettings);
-		registerBlockWithItem("snow_golem_mob_block", SNOW_GOLEM_MOB_BLOCK, fabricItemSettings);
-		registerBlockWithItem("spider_mob_block", SPIDER_MOB_BLOCK, fabricItemSettings);
-		registerBlockWithItem("squid_mob_block", SQUID_MOB_BLOCK, fabricItemSettings);
-		registerBlockWithItem("stray_mob_block", STRAY_MOB_BLOCK, fabricItemSettings);
-		registerBlockWithItem("strider_mob_block", STRIDER_MOB_BLOCK, fabricItemSettings);
-		registerBlockWithItem("turtle_mob_block", TURTLE_MOB_BLOCK, fabricItemSettings);
-		registerBlockWithItem("witch_mob_block", WITCH_MOB_BLOCK, fabricItemSettings);
-		registerBlockWithItem("wither_mob_block", WITHER_MOB_BLOCK, fabricItemSettings);
-		registerBlockWithItem("wither_skeleton_mob_block", WITHER_SKELETON_MOB_BLOCK, fabricItemSettings);
-		registerBlockWithItem("zombie_mob_block", ZOMBIE_MOB_BLOCK, fabricItemSettings);
+		registerBlockWithItem("axolotl_mob_block", AXOLOTL_MOB_BLOCK, fabricItemSettings, DyeColor.PINK);
+		registerBlockWithItem("bat_mob_block", BAT_MOB_BLOCK, fabricItemSettings, DyeColor.PINK);
+		registerBlockWithItem("bee_mob_block", BEE_MOB_BLOCK, fabricItemSettings, DyeColor.PINK);
+		registerBlockWithItem("blaze_mob_block", BLAZE_MOB_BLOCK, fabricItemSettings, DyeColor.PINK);
+		registerBlockWithItem("cat_mob_block", CAT_MOB_BLOCK, fabricItemSettings, DyeColor.PINK);
+		registerBlockWithItem("chicken_mob_block", CHICKEN_MOB_BLOCK, fabricItemSettings, DyeColor.PINK);
+		registerBlockWithItem("cow_mob_block", COW_MOB_BLOCK, fabricItemSettings, DyeColor.PINK);
+		registerBlockWithItem("creeper_mob_block", CREEPER_MOB_BLOCK, fabricItemSettings, DyeColor.PINK);
+		registerBlockWithItem("ender_dragon_mob_block", ENDER_DRAGON_MOB_BLOCK, fabricItemSettings, DyeColor.PINK);
+		registerBlockWithItem("enderman_mob_block", ENDERMAN_MOB_BLOCK, fabricItemSettings, DyeColor.PINK);
+		registerBlockWithItem("endermite_mob_block", ENDERMITE_MOB_BLOCK, fabricItemSettings, DyeColor.PINK);
+		registerBlockWithItem("evoker_mob_block", EVOKER_MOB_BLOCK, fabricItemSettings, DyeColor.PINK);
+		registerBlockWithItem("fish_mob_block", FISH_MOB_BLOCK, fabricItemSettings, DyeColor.PINK);
+		registerBlockWithItem("fox_mob_block", FOX_MOB_BLOCK, fabricItemSettings, DyeColor.PINK);
+		registerBlockWithItem("ghast_mob_block", GHAST_MOB_BLOCK, fabricItemSettings, DyeColor.PINK);
+		registerBlockWithItem("glow_squid_mob_block", GLOW_SQUID_MOB_BLOCK, fabricItemSettings, DyeColor.PINK);
+		registerBlockWithItem("goat_mob_block", GOAT_MOB_BLOCK, fabricItemSettings, DyeColor.PINK);
+		registerBlockWithItem("guardian_mob_block", GUARDIAN_MOB_BLOCK, fabricItemSettings, DyeColor.PINK);
+		registerBlockWithItem("horse_mob_block", HORSE_MOB_BLOCK, fabricItemSettings, DyeColor.PINK);
+		registerBlockWithItem("illusioner_mob_block", ILLUSIONER_MOB_BLOCK, fabricItemSettings, DyeColor.PINK);
+		registerBlockWithItem("ocelot_mob_block", OCELOT_MOB_BLOCK, fabricItemSettings, DyeColor.PINK);
+		registerBlockWithItem("parrot_mob_block", PARROT_MOB_BLOCK, fabricItemSettings, DyeColor.PINK);
+		registerBlockWithItem("phantom_mob_block", PHANTOM_MOB_BLOCK, fabricItemSettings, DyeColor.PINK);
+		registerBlockWithItem("pig_mob_block", PIG_MOB_BLOCK, fabricItemSettings, DyeColor.PINK);
+		registerBlockWithItem("piglin_mob_block", PIGLIN_MOB_BLOCK, fabricItemSettings, DyeColor.PINK);
+		registerBlockWithItem("polar_bear_mob_block", POLAR_BEAR_MOB_BLOCK, fabricItemSettings, DyeColor.PINK);
+		registerBlockWithItem("pufferfish_mob_block", PUFFERFISH_MOB_BLOCK, fabricItemSettings, DyeColor.PINK);
+		registerBlockWithItem("rabbit_mob_block", RABBIT_MOB_BLOCK, fabricItemSettings, DyeColor.PINK);
+		registerBlockWithItem("sheep_mob_block", SHEEP_MOB_BLOCK, fabricItemSettings, DyeColor.PINK);
+		registerBlockWithItem("shulker_mob_block", SHULKER_MOB_BLOCK, fabricItemSettings, DyeColor.PINK);
+		registerBlockWithItem("silverfish_mob_block", SILVERFISH_MOB_BLOCK, fabricItemSettings, DyeColor.PINK);
+		registerBlockWithItem("skeleton_mob_block", SKELETON_MOB_BLOCK, fabricItemSettings, DyeColor.PINK);
+		registerBlockWithItem("slime_mob_block", SLIME_MOB_BLOCK, fabricItemSettings, DyeColor.PINK);
+		registerBlockWithItem("snow_golem_mob_block", SNOW_GOLEM_MOB_BLOCK, fabricItemSettings, DyeColor.PINK);
+		registerBlockWithItem("spider_mob_block", SPIDER_MOB_BLOCK, fabricItemSettings, DyeColor.PINK);
+		registerBlockWithItem("squid_mob_block", SQUID_MOB_BLOCK, fabricItemSettings, DyeColor.PINK);
+		registerBlockWithItem("stray_mob_block", STRAY_MOB_BLOCK, fabricItemSettings, DyeColor.PINK);
+		registerBlockWithItem("strider_mob_block", STRIDER_MOB_BLOCK, fabricItemSettings, DyeColor.PINK);
+		registerBlockWithItem("turtle_mob_block", TURTLE_MOB_BLOCK, fabricItemSettings, DyeColor.PINK);
+		registerBlockWithItem("witch_mob_block", WITCH_MOB_BLOCK, fabricItemSettings, DyeColor.PINK);
+		registerBlockWithItem("wither_mob_block", WITHER_MOB_BLOCK, fabricItemSettings, DyeColor.PINK);
+		registerBlockWithItem("wither_skeleton_mob_block", WITHER_SKELETON_MOB_BLOCK, fabricItemSettings, DyeColor.PINK);
+		registerBlockWithItem("zombie_mob_block", ZOMBIE_MOB_BLOCK, fabricItemSettings, DyeColor.PINK);
 	}
 
 	// Most mob heads vanilla is missing (vanilla only has: skeleton, wither skeleton, zombie, player, creeper, ender dragon)
@@ -1521,7 +1530,7 @@ public class SpectrumBlocks {
 			Block wallHead = new SpectrumWallSkullBlock(type, FabricBlockSettings.copyOf(Blocks.SKELETON_SKULL).dropsLike(head));
 			registerBlock(type.name().toLowerCase(Locale.ROOT) + "_wall_head", wallHead);
 			BlockItem headItem = new SpectrumSkullBlockItem(head, wallHead, (fabricItemSettings), type.entityType);
-			registerBlockItem(type.name().toLowerCase(Locale.ROOT) + "_head", headItem);
+			registerBlockItem(type.name().toLowerCase(Locale.ROOT) + "_head", headItem, DyeColor.GRAY);
 
 			MOB_HEADS.put(type, head);
 			MOB_WALL_HEADS.put(type, wallHead);

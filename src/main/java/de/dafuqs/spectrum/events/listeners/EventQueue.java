@@ -8,10 +8,7 @@ import net.minecraft.world.event.PositionSource;
 import net.minecraft.world.event.listener.GameEventListener;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 public abstract class EventQueue<D> implements GameEventListener {
 
@@ -19,7 +16,7 @@ public abstract class EventQueue<D> implements GameEventListener {
 	protected final int range;
 	protected final EventQueue.Callback callback;
 	private final Map<D, Integer> eventQueue;
-	private boolean frozen = false; // protect against ConcurrentModificationExceptions
+	//private boolean frozen = false; // protect against ConcurrentModificationExceptions
 
 	public EventQueue(PositionSource positionSource, int range, EventQueue.Callback listener) {
 		this.positionSource = positionSource;
@@ -30,20 +27,22 @@ public abstract class EventQueue<D> implements GameEventListener {
 
 	public void tick(World world) {
 		if(!eventQueue.isEmpty()) {
-			frozen = true;
-			Iterator<Map.Entry<D, Integer>> iterator = eventQueue.entrySet().iterator();
-			while (iterator.hasNext()) {
-				Map.Entry<D, Integer> next = iterator.next();
-				D eventEntry = next.getKey();
-				
-				if (next.getValue() >= 1) {
-					next.setValue(next.getValue()-1);
+			// TODO: test for ConcurrentModificationExceptions
+			//frozen = true;
+			Set<D> keys = eventQueue.keySet();
+			for(D key : keys) {
+				Integer tickCounter = eventQueue.get(key);
+				if (tickCounter >= 1) {
+					eventQueue.put(key, tickCounter-1);
 				} else {
-					this.callback.triggerEvent(world, this, eventEntry);
-					iterator.remove();
+					this.callback.triggerEvent(world, this, key);
+					eventQueue.remove(key);
+					/*synchronized (eventQueue) {
+					
+					}*/
 				}
 			}
-			frozen = false;
+			//frozen = false;
 		}
 	}
 
@@ -58,7 +57,7 @@ public abstract class EventQueue<D> implements GameEventListener {
 	@Override
 	public boolean listen(World world, GameEvent event, @Nullable Entity entity, BlockPos pos) {
 		Optional<BlockPos> positionSourcePosOptional = this.positionSource.getPos(world);
-		if (frozen || positionSourcePosOptional.isEmpty()) {
+		if (/*frozen ||*/ positionSourcePosOptional.isEmpty()) {
 			return false;
 		} else {
 			if (!this.callback.canAcceptEvent(world, this, pos, event, entity, positionSourcePosOptional.get())) {
@@ -73,9 +72,9 @@ public abstract class EventQueue<D> implements GameEventListener {
 	protected abstract void acceptEvent(World world, BlockPos pos, GameEvent event, @Nullable Entity entity, BlockPos sourcePos);
 	
 	protected void schedule(D object, int delay) {
-		if(!frozen) {
+		//if(!frozen) {
 			this.eventQueue.put(object, delay);
-		}
+		//}
 	}
 	
 	public interface Callback<D> {

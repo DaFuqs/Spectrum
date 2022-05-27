@@ -25,7 +25,7 @@ public abstract class LightningEntityMixin {
 	private void spawnLightningStoneAtImpact(CallbackInfo ci) {
 		World world = ((LightningEntity)(Object) this).world;
 
-		// do not spawn lightning stones when using other forms of
+		// do not spawn storm stones when using other forms of
 		// spawning thunder, like magic, ... in clear weather. Only when it is actually thundering
 		if(world.isThundering() && SpectrumCommon.CONFIG.LightningStonesWorlds.contains(world.getRegistryKey().getValue().toString())) {
 			spawnLightningStone(world, this.getAffectedBlockPos());

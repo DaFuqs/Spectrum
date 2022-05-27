@@ -12,7 +12,7 @@ import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.recipe.spirit_instiller.ISpiritInstillerRecipe;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
 import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
-import de.dafuqs.spectrum.registries.color.ItemColorRegistry;
+import de.dafuqs.spectrum.registries.color.ItemColors;
 import net.id.incubus_core.recipe.IngredientStack;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
@@ -141,7 +141,7 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 	
 	private void doInstillerParticles(@NotNull World world) {
 		Random random = world.random;
-		Optional<DyeColor> stackColor = ItemColorRegistry.ITEM_COLORS.getMapping(this.inventory.getStack(0).getItem());
+		Optional<DyeColor> stackColor = ItemColors.ITEM_COLORS.getMapping(this.inventory.getStack(0).getItem());
 		
 		if(stackColor.isPresent()) {
 			ParticleEffect particleEffect = SpectrumParticleTypes.getSparkleRisingParticle(stackColor.get());

@@ -26,11 +26,12 @@ public class GerminatedJadeVineSeedsItem extends CloakedItem {
 		World world = context.getWorld();
 		BlockPos pos = context.getBlockPos();
 
-		if(JadeVinesBlock.canBePlantedOn(world.getBlockState(pos))) {
+		if(JadeVineRootsBlock.canBePlantedOn(world.getBlockState(pos)) && world.getBlockState(pos.down()).isAir()) {
 			if(context.getWorld().isClient) {
 				return ActionResult.SUCCESS;
 			} else {
-				world.setBlockState(pos, SpectrumBlocks.JADE_VINES.getDefaultState());
+				world.setBlockState(pos, SpectrumBlocks.JADE_VINE_ROOTS.getDefaultState());
+				world.setBlockState(pos.down(), SpectrumBlocks.JADE_VINE_BULB.getDefaultState());
 				return ActionResult.CONSUME;
 			}
 		}

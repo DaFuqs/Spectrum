@@ -19,13 +19,13 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class JadeVinesBlockEntity extends BlockEntity {
+public class JadeVineRootsBlockEntity extends BlockEntity {
 	
 	private BlockState fenceBlockState;
 	private long lastGrowthTick = -1;
 	
-	public JadeVinesBlockEntity(BlockPos pos, BlockState state) {
-		super(SpectrumBlockEntityRegistry.JADE_VINES, pos, state);
+	public JadeVineRootsBlockEntity(BlockPos pos, BlockState state) {
+		super(SpectrumBlockEntityRegistry.JADE_VINE_ROOTS, pos, state);
 		this.fenceBlockState = Blocks.OAK_FENCE.getDefaultState();
 	}
 	

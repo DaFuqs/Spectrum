@@ -1,0 +1,298 @@
+package de.dafuqs.spectrum.blocks.jade_vines;
+
+import de.dafuqs.spectrum.registries.SpectrumBlocks;
+import de.dafuqs.spectrum.registries.SpectrumItems;
+import net.minecraft.block.*;
+import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
+import net.minecraft.state.StateManager;
+import net.minecraft.state.property.BooleanProperty;
+import net.minecraft.state.property.Properties;
+import net.minecraft.tag.BlockTags;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.Random;
+
+public class JadeVineRootsBlock extends BlockWithEntity implements JadeVine{
+	
+	public static final BooleanProperty DEAD = JadeVine.DEAD;
+	
+	public JadeVineRootsBlock(Settings settings) {
+		super(settings);
+		this.setDefaultState(this.stateManager.getDefaultState().with(DEAD, false));
+	}
+	
+	@Override
+	public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
+		super.randomDisplayTick(state, world, pos, random);
+		if(!state.get(DEAD)) {
+			JadeVine.spawnParticles(world, pos);
+		}
+	}
+	
+	@Override
+	public BlockRenderType getRenderType(BlockState state) {
+		return BlockRenderType.MODEL;
+	}
+	
+	@Override
+	public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state) {
+		return SpectrumItems.GERMINATED_JADE_VINE_SEEDS.getDefaultStack();
+	}
+	
+	@Override
+	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+		return SHAPE;
+	}
+	
+	@Override
+	public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
+		super.onBlockAdded(state, world, pos, oldState, notify);
+		if(oldState.getBlock() instanceof FenceBlock) {
+			BlockEntity blockEntity = world.getBlockEntity(pos);
+			if (blockEntity instanceof JadeVineRootsBlockEntity jadeVineRootsBlockEntity) {
+				jadeVineRootsBlockEntity.setFenceBlockState(oldState.getBlock().getDefaultState());
+			}
+		}
+	}
+	
+	@Override
+	public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
+		super.onStateReplaced(state, world, pos, newState, moved);
+		if(!newState.isOf(this)) {
+			BlockEntity blockEntity = world.getBlockEntity(pos);
+			if (blockEntity instanceof JadeVineRootsBlockEntity jadeVineRootsBlockEntity) {
+				world.setBlockState(pos, jadeVineRootsBlockEntity.getFenceBlockState());
+			}
+		}
+	}
+	
+	@Override
+	public boolean canPlaceAt(@NotNull BlockState state, WorldView world, BlockPos pos) {
+		return canBePlantedOn(world.getBlockState(pos));
+	}
+	
+	public static boolean canBePlantedOn(BlockState blockState) {
+		return blockState.isIn(BlockTags.WOODEN_FENCES);
+	}
+	
+	@Override
+	protected void appendProperties(StateManager.@NotNull Builder<Block, BlockState> builder) {
+		builder.add(DEAD);
+	}
+	
+	@Nullable
+	@Override
+	public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+		return new JadeVineRootsBlockEntity(pos, state);
+	}
+	
+	@Override
+	public boolean hasRandomTicks(BlockState state) {
+		return !state.get(DEAD);
+	}
+	
+	@Override
+	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
+		super.randomTick(state, world, pos, random);
+		
+		if(hasRandomTicks(state)) {
+			// TODO
+			// die in sunlight
+			if(JadeVine.doesDie(world, pos)) {
+				setDead(state, world, pos);
+				world.playSound(null, pos, SoundEvents.ITEM_CROP_PLANT, SoundCategory.BLOCKS, 0.5F, 0.9F + 0.2F * world.random.nextFloat() * 0.2F);
+			} else if(canGrow(world, pos)) {
+				if(world.random.nextInt(4) == 0 && tryGrowUpwards(state, world, pos)) {
+					rememberGrownTime(world, pos);
+					world.playSound(null, pos, SoundEvents.ITEM_CROP_PLANT, SoundCategory.BLOCKS, 0.5F, 0.9F + 0.2F * world.random.nextFloat() * 0.2F);
+				} else if(tryGrowDownwards(state, world, pos)) {
+					rememberGrownTime(world, pos);
+					world.playSound(null, pos, SoundEvents.ITEM_CROP_PLANT, SoundCategory.BLOCKS, 0.5F, 0.9F + 0.2F * world.random.nextFloat() * 0.2F);
+				} else {
+					int age = getAge(world, pos, state);
+					if(age != Properties.AGE_7_MAX) {
+						setPlantToAge(state, world, pos, age + 1);
+						rememberGrownTime(world, pos);
+						world.playSound(null, pos, SoundEvents.ITEM_CROP_PLANT, SoundCategory.BLOCKS, 0.5F, 0.9F + 0.2F * world.random.nextFloat() * 0.2F);
+					}
+				}
+			}
+		}
+	}
+	
+	
+	static void setPlantToAge(@NotNull BlockState blockState, @NotNull World world, @NotNull BlockPos blockPos, int age) {
+		world.setBlockState(blockPos, blockState.with(DEAD, true));
+		
+		// all upper roots
+		int i = 1;
+		while (true) {
+			BlockPos upPos = blockPos.up(i);
+			BlockState upState = world.getBlockState(upPos);
+			if(upState.getBlock() instanceof JadeVineRootsBlock jadeVineRootsBlock) {
+				jadeVineRootsBlock.setToAge(world, upPos, age);
+			} else {
+				break;
+			}
+			i++;
+		}
+		
+		// all lower roots
+		i = 1;
+		while (true) {
+			BlockPos downPos = blockPos.down(i);
+			BlockState downState = world.getBlockState(downPos);
+			if(downState.getBlock() instanceof JadeVineRootsBlock jadeVineRootsBlock) {
+				jadeVineRootsBlock.setToAge(world, downPos, age);
+			} else {
+				break;
+			}
+			i++;
+		}
+		
+		// bulb / plant
+		BlockPos plantPos = blockPos.down(i+1);
+		BlockState plantState = world.getBlockState(plantPos);
+		Block plantBlock = plantState.getBlock();
+		if(plantBlock instanceof JadeVinePlantBlock jadeVinePlantBlock) {
+			jadeVinePlantBlock.setToAge(world, plantPos, age);
+			jadeVinePlantBlock.setToAge(world, plantPos.down(), age);
+			jadeVinePlantBlock.setToAge(world, plantPos.down(2), age);
+		} else if (plantBlock instanceof JadeVineBulbBlock jadeVineBulbBlock) {
+			jadeVineBulbBlock.setToAge(world, plantPos, age);
+		} else if(plantState.isAir() && age > 0) {
+			// plant was destroyed? => grow a new bulb
+			world.setBlockState(plantPos, SpectrumBlocks.JADE_VINE_BULB.getDefaultState());
+		}
+	}
+	
+	int getAge(World world, BlockPos blockPos, BlockState blockState) {
+		if(blockState.get(DEAD)) {
+			return 0;
+		} else {
+			BlockPos lowestRootsPos = getLowestRootsPos(world, blockPos);
+			BlockState plantState = world.getBlockState(lowestRootsPos.down());
+			Block plantBlock = plantState.getBlock();
+			if (plantBlock instanceof JadeVinePlantBlock) {
+				return plantState.get(JadeVinePlantBlock.AGE);
+			}
+			return 1;
+		}
+	}
+	
+	boolean canGrow(@NotNull World world, @NotNull BlockPos blockPos) {
+		BlockEntity blockEntity = world.getBlockEntity(getLowestRootsPos(world, blockPos));
+		if (blockEntity instanceof JadeVineRootsBlockEntity jadeVineRootsBlockEntity) {
+			return world.getLightLevel(LightType.SKY, blockPos) > 8 && jadeVineRootsBlockEntity.isLaterNight(world);
+		}
+		return false;
+	}
+	
+	static boolean tryGrowUpwards(@NotNull BlockState blockState, @NotNull World world, @NotNull BlockPos blockPos) {
+		blockPos = blockPos.up();
+		while(world.getBlockState(blockPos).getBlock() instanceof JadeVineRootsBlock) {
+			// search up until no jade vines roots are hit anymore
+			blockPos = blockPos.up();
+		}
+		
+		BlockState targetState = world.getBlockState(blockPos);
+		if(canBePlantedOn(targetState)) {
+			world.setBlockState(blockPos, blockState);
+			BlockEntity blockEntity = world.getBlockEntity(blockPos);
+			if(blockEntity instanceof JadeVineRootsBlockEntity jadeVineRootsBlockEntity) {
+				jadeVineRootsBlockEntity.setFenceBlockState(targetState.getBlock().getDefaultState());
+			}
+			return true;
+		}
+		return false;
+	}
+	
+	static boolean tryGrowDownwards(@NotNull BlockState blockState, @NotNull World world, @NotNull BlockPos blockPos) {
+		blockPos = blockPos.down();
+		while(world.getBlockState(blockPos).getBlock() instanceof JadeVineRootsBlock) {
+			// search down until no jade vines roots are hit anymore
+			blockPos = blockPos.down();
+		}
+		
+		BlockState targetState = world.getBlockState(blockPos);
+		if(targetState.getBlock() instanceof JadeVineBulbBlock) {
+			// is there room to grow the whole plant?
+			if(world.getBlockState(blockPos.down()).isAir() && world.getBlockState(blockPos.down(2)).isAir()) {
+				world.setBlockState(blockPos, SpectrumBlocks.JADE_VINES.getDefaultState().with(JadeVinePlantBlock.PART, JadeVinePlantBlock.JadeVinesPlantPart.BASE));
+				world.setBlockState(blockPos.down(), SpectrumBlocks.JADE_VINES.getDefaultState().with(JadeVinePlantBlock.PART, JadeVinePlantBlock.JadeVinesPlantPart.MIDDLE));
+				world.setBlockState(blockPos.down(2), SpectrumBlocks.JADE_VINES.getDefaultState().with(JadeVinePlantBlock.PART, JadeVinePlantBlock.JadeVinesPlantPart.TIP));
+				return true;
+			}
+		} else if(targetState.isAir()) {
+			world.setBlockState(blockPos, SpectrumBlocks.JADE_VINE_BULB.getDefaultState());
+			return true;
+		} else if(canBePlantedOn(targetState)) {
+			world.setBlockState(blockPos, SpectrumBlocks.JADE_VINE_ROOTS.getDefaultState());
+			
+			long lastGrowTime = -1;
+			BlockEntity currentBlockEntity = world.getBlockEntity(blockPos.up());
+			if (currentBlockEntity instanceof JadeVineRootsBlockEntity rootsBlockEntity) {
+				lastGrowTime = rootsBlockEntity.getLastGrownTime();
+			}
+			
+			BlockEntity newBlockEntity = world.getBlockEntity(blockPos);
+			if (newBlockEntity instanceof JadeVineRootsBlockEntity rootsBlockEntity) {
+				rootsBlockEntity.setFenceBlockState(targetState.getBlock().getDefaultState());
+				if(lastGrowTime > 0) {
+					rootsBlockEntity.setLastGrownTime(lastGrowTime);
+				} else {
+					rootsBlockEntity.setLastGrownTime(world.getTime());
+				}
+			}
+			return true;
+		}
+		return false;
+	}
+	
+	static void setDead(@NotNull BlockState blockState, @NotNull World world, @NotNull BlockPos blockPos) {
+		setPlantToAge(blockState, world, blockPos, 0);
+	}
+	
+	void rememberGrownTime(@NotNull World world, @NotNull BlockPos blockPos) {
+		BlockEntity blockEntity = world.getBlockEntity(getLowestRootsPos(world, blockPos));
+		if (blockEntity instanceof JadeVineRootsBlockEntity jadeVineRootsBlockEntity) {
+			jadeVineRootsBlockEntity.setLastGrownTime(world.getTimeOfDay());
+		}
+	}
+	
+	// each root saves and renders the stick these roots are growing on,
+	// the lowest root in a stack is considered the "main" one, also keeping track
+	// when the plant has grown last
+	// => search for the lowest upper state in this column
+	public BlockPos getLowestRootsPos(@NotNull World world, @NotNull BlockPos blockPos) {
+		int i = 0;
+		do {
+			if(world.getBlockState(blockPos.down(i+1)).getBlock() instanceof JadeVineRootsBlock) {
+				i--;
+			} else {
+				break;
+			}
+		} while(blockPos.getY() - i < world.getBottomY());
+		return blockPos.down(i);
+	}
+	
+	@Override
+	public void setToAge(@NotNull World world, BlockPos blockPos, int age) {
+		BlockState currentState = world.getBlockState(blockPos);
+		boolean dead = currentState.get(DEAD);
+		if(age == 0 && !dead) {
+			world.setBlockState(blockPos, currentState.with(DEAD, true));
+		} else if(age > 0 && dead) {
+			world.setBlockState(blockPos, currentState.with(DEAD, false));
+		}
+	}
+	
+}

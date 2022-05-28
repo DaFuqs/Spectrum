@@ -16,14 +16,14 @@ import net.minecraft.client.util.math.MatrixStack;
 import java.util.Random;
 
 @Environment(EnvType.CLIENT)
-public class JadeVinesBlockEntityRenderer implements BlockEntityRenderer<JadeVinesBlockEntity> {
+public class JadeVineRootsBlockEntityRenderer implements BlockEntityRenderer<JadeVineRootsBlockEntity> {
 
-	public JadeVinesBlockEntityRenderer(BlockEntityRendererFactory.Context ctx) {
+	public JadeVineRootsBlockEntityRenderer(BlockEntityRendererFactory.Context ctx) {
 
 	}
 
 	@Override
-	public void render(JadeVinesBlockEntity entity, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light, int overlay) {
+	public void render(JadeVineRootsBlockEntity entity, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light, int overlay) {
 		if(entity.getWorld() != null) {
 			BlockState fenceBlockState = entity.getFenceBlockState();
 			if (fenceBlockState.getRenderType() == BlockRenderType.MODEL && fenceBlockState.getRenderType() != BlockRenderType.INVISIBLE) {

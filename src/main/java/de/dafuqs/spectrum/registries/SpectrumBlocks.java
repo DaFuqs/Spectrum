@@ -33,7 +33,9 @@ import de.dafuqs.spectrum.blocks.gemstone.SpectrumGemstoneBlock;
 import de.dafuqs.spectrum.blocks.gravity.FloatBlock;
 import de.dafuqs.spectrum.blocks.gravity.FloatBlockItem;
 import de.dafuqs.spectrum.blocks.item_bowl.ItemBowlBlock;
-import de.dafuqs.spectrum.blocks.jade_vines.JadeVinesBlock;
+import de.dafuqs.spectrum.blocks.jade_vines.JadeVineBulbBlock;
+import de.dafuqs.spectrum.blocks.jade_vines.JadeVinePlantBlock;
+import de.dafuqs.spectrum.blocks.jade_vines.JadeVineRootsBlock;
 import de.dafuqs.spectrum.blocks.lava_sponge.LavaSpongeBlock;
 import de.dafuqs.spectrum.blocks.lava_sponge.WetLavaSpongeBlock;
 import de.dafuqs.spectrum.blocks.lava_sponge.WetLavaSpongeItem;
@@ -617,7 +619,9 @@ public class SpectrumBlocks {
 	public static final Block TREASURE_CHEST = new TreasureChestBlock(FabricBlockSettings.copyOf(Blocks.CHEST).hardness(-1.0F));
 	
 	// JADE VINES
-	public static final Block JADE_VINES = new JadeVinesBlock(AbstractBlock.Settings.of(Material.PLANT, MapColor.PALE_GREEN).strength(1.0F).sounds(BlockSoundGroup.WOOL).ticksRandomly().nonOpaque());
+	public static final Block JADE_VINE_ROOTS = new JadeVineRootsBlock(AbstractBlock.Settings.of(Material.PLANT, MapColor.PALE_GREEN).strength(1.0F).sounds(BlockSoundGroup.WOOL).ticksRandomly().nonOpaque());
+	public static final Block JADE_VINE_BULB = new JadeVineBulbBlock(AbstractBlock.Settings.of(Material.PLANT, MapColor.PALE_GREEN).strength(1.0F).sounds(BlockSoundGroup.WOOL).nonOpaque());
+	public static final Block JADE_VINES = new JadeVinePlantBlock(AbstractBlock.Settings.of(Material.PLANT, MapColor.PALE_GREEN).strength(1.0F).sounds(BlockSoundGroup.WOOL).nonOpaque());
 	public static final Block JADE_VINE_PETAL_BLOCK = new Block(AbstractBlock.Settings.of(Material.WOOL, MapColor.PALE_GREEN).strength(0.1F).sounds(BlockSoundGroup.WOOL));
 	public static final Block JADE_VINE_PETAL_CARPET = new CarpetBlock(AbstractBlock.Settings.of(Material.CARPET, MapColor.PALE_GREEN).strength(0.1F).sounds(BlockSoundGroup.WOOL));
 	
@@ -1471,7 +1475,10 @@ public class SpectrumBlocks {
 	}
 
 	private static void registerJadeVineBlocks(FabricItemSettings fabricItemSettings) {
+		registerBlock("jade_vine_roots", JADE_VINE_ROOTS);
+		registerBlock("jade_vine_bulb", JADE_VINE_BULB);
 		registerBlock("jade_vines", JADE_VINES);
+		
 		registerBlockWithItem("jade_vine_petal_block", JADE_VINE_PETAL_BLOCK, fabricItemSettings, DyeColor.LIME);
 		registerBlockWithItem("jade_vine_petal_carpet", JADE_VINE_PETAL_CARPET, fabricItemSettings, DyeColor.LIME);
 	}
@@ -1696,6 +1703,8 @@ public class SpectrumBlocks {
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.ITEM_BOWL_BASALT, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.ITEM_BOWL_CALCITE, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.MEMORY, RenderLayer.getTranslucent());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.JADE_VINE_ROOTS, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.JADE_VINE_BULB, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.JADE_VINES, RenderLayer.getCutout());
 		
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.DIKE_GATE, RenderLayer.getTranslucent());

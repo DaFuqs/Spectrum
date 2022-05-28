@@ -113,6 +113,9 @@ public class SpectrumCommon implements ModInitializer {
 		logInfo("Registering Banner Patterns...");
 		SpectrumBannerPatterns.register();
 		
+		logInfo("Registering Block / Item Color Registries...");
+		ColorRegistry.registerColorRegistries();
+		
 		// Register ALL the stuff
 		logInfo("Registering Advancement Criteria...");
 		SpectrumAdvancementCriteria.register();
@@ -204,9 +207,6 @@ public class SpectrumCommon implements ModInitializer {
 		logInfo("Initializing Item Groups...");
 		SpectrumItemGroups.ITEM_GROUP_GENERAL.initialize();
 		SpectrumItemGroups.ITEM_GROUP_BLOCKS.initialize();
-
-		logInfo("Registering Block / Item Color Registries...");
-		ColorRegistry.registerColorRegistries();
 		
 		logInfo("Registering Special Recipes...");
 		registerRecipeSerializers(registerInRegistry(Registry.RECIPE_SERIALIZER));

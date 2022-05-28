@@ -56,6 +56,8 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.util.registry.RegistryKey;
+import net.minecraft.world.World;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -68,7 +70,9 @@ public class SpectrumCommon implements ModInitializer {
 
 	public static SpectrumConfig CONFIG;
 	private static final Logger LOGGER = LoggerFactory.getLogger("Spectrum");
-
+	
+	public static RegistryKey<World> DEEPER_DOWN = RegistryKey.of(Registry.WORLD_KEY, new Identifier(MOD_ID, "deeper_down"));
+	
 	public static MinecraftServer minecraftServer;
 	/**
 	 * Caches the luminance states from fluids as int
@@ -116,6 +120,8 @@ public class SpectrumCommon implements ModInitializer {
 		SpectrumParticleTypes.register();
 		logInfo("Registering Sound Events...");
 		SpectrumSoundEvents.register();
+		logInfo("Registering Music...");
+		SpectrumMusicType.register();
 		logInfo("Registering BlockSound Groups...");
 		SpectrumBlockSoundGroups.register();
 		logInfo("Registering Fluid Tags...");

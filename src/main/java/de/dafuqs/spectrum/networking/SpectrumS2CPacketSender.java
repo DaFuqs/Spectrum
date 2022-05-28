@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.networking;
 import de.dafuqs.spectrum.blocks.memory.MemoryBlockEntity;
 import de.dafuqs.spectrum.blocks.pedestal.PedestalVariant;
 import de.dafuqs.spectrum.entity.entity.ShootingStarEntity;
+import de.dafuqs.spectrum.particle.ParticlePattern;
 import de.dafuqs.spectrum.particle.effect.*;
 import de.dafuqs.spectrum.registries.color.ColorRegistry;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
@@ -29,7 +30,9 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Collection;
 import java.util.Optional;
+import java.util.UUID;
 
 public class SpectrumS2CPacketSender {
 	
@@ -128,7 +131,7 @@ public class SpectrumS2CPacketSender {
 	 * @param position the pos of the particles
 	 * @param particleEffect The particle effect to play
 	 */
-	public static void playParticleWithPatternAndVelocity(@Nullable PlayerEntity notThisPlayerEntity, ServerWorld world, @NotNull Vec3d position, @NotNull ParticleEffect particleEffect, SpectrumS2CPackets.@NotNull ParticlePattern pattern, double velocity) {
+	public static void playParticleWithPatternAndVelocity(@Nullable PlayerEntity notThisPlayerEntity, ServerWorld world, @NotNull Vec3d position, @NotNull ParticleEffect particleEffect, @NotNull ParticlePattern pattern, double velocity) {
 		PacketByteBuf buf = PacketByteBufs.create();
 		buf.writeDouble(position.x);
 		buf.writeDouble(position.y);
@@ -360,6 +363,17 @@ public class SpectrumS2CPacketSender {
 		for (ServerPlayerEntity player : PlayerLookup.tracking(serverWorld, blockPos)) {
 			ServerPlayNetworking.send(player, SpectrumS2CPackets.PLAY_MEMORY_MANIFESTING_PARTICLES, buf);
 		}
+	}
+	
+	public static void sendBossBarUpdatePropertiesPacket(UUID uuid, boolean serpentMusic, Collection<ServerPlayerEntity> players) {
+		PacketByteBuf buf = PacketByteBufs.create();
+		buf.writeUuid(uuid);
+		buf.writeBoolean(serpentMusic);
+		
+		for(ServerPlayerEntity player : players) {
+			ServerPlayNetworking.send(player, SpectrumS2CPackets.UPDATE_BOSS_BAR, buf);
+		}
+		
 	}
 	
 }

@@ -7,6 +7,12 @@ import net.minecraft.util.registry.Registry;
 
 public class SpectrumSoundEvents {
 	
+	// Music
+	public static final SoundEvent SPECTRUM_THEME = register("spectrum_theme");
+	public static final SoundEvent BOSS_THEME = register("boss_theme");
+	public static final SoundEvent DEEPER_DOWN_THEME = register("deeper_down_theme");
+	
+	// Sounds
 	public static final SoundEvent PEDESTAL_CRAFTING = register("pedestal_crafting");;
 	public static final SoundEvent PEDESTAL_CRAFTING_FINISHED_GENERIC = register("pedestal_crafting_finished_generic");
 	public static final SoundEvent PEDESTAL_CRAFTING_FINISHED_AMETHYST = register("pedestal_crafting_finished_amethyst");
@@ -34,8 +40,6 @@ public class SpectrumSoundEvents {
 	public static final SoundEvent USE_FAIL = register("use_fail");
 	public static final SoundEvent NEW_REVELATION = register("new_revelation");
 	public static final SoundEvent NEW_RECIPE = register("new_recipe");
-	public static final SoundEvent SPECTRUM_THEME = register("spectrum_theme");
-	public static final SoundEvent BOSS_THEME = register("boss_theme");
 	public static final SoundEvent DIMENSION_SOUNDS = register("dimension_sounds");
 	public static final SoundEvent ITEM_ARMOR_EQUIP_GLOW_VISION = register("armor_equip_glow_vision");
 	public static final SoundEvent PLAYER_TELEPORTS = register("player_teleports");

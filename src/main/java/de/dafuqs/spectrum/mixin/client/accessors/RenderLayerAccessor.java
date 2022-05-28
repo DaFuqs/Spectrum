@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.mixin.accessors;
+package de.dafuqs.spectrum.mixin.client.accessors;
 
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexFormat;

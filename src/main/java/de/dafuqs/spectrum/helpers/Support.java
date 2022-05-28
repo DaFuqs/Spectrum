@@ -8,6 +8,7 @@ import net.minecraft.advancement.Advancement;
 import net.minecraft.advancement.PlayerAdvancementTracker;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -32,6 +33,8 @@ import java.util.Optional;
 import java.util.Random;
 
 public class Support {
+	
+	private static final Identifier PROGRESSION_FINISHED_ADVANCEMENT_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "lategame/finish_progression");
 	
 	public static final List<Vec3d> VECTORS_4 = new ArrayList<>() {{
 		add(new Vec3d(1.0D, 0, 0.0D));
@@ -81,7 +84,7 @@ public class Support {
 		add(new Vec3d(0.7D, 0, -0.7D));
 		add(new Vec3d(0.75D, 0, -0.5D));
 	}};
-
+	
 	public static @NotNull Optional<TagKey<Block>> getFirstMatchingBlockTag(@NotNull BlockState blockState, @NotNull List<TagKey<Block>> tags) {
 		return blockState.streamTags().filter(tags::contains).findFirst();
 	}
@@ -252,4 +255,7 @@ public class Support {
 		}
 	}
 	
+	public static boolean hasPlayerFinishedMod() {
+		return Support.hasAdvancement(MinecraftClient.getInstance().player, PROGRESSION_FINISHED_ADVANCEMENT_IDENTIFIER);
+	}
 }

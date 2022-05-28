@@ -30,22 +30,6 @@ public class SpectrumS2CPackets {
 	public static final Identifier PLAY_SHOOTING_STAR_PARTICLES = new Identifier(SpectrumCommon.MOD_ID, "play_shooting_star_particles");
 	public static final Identifier START_SKY_LERPING = new Identifier(SpectrumCommon.MOD_ID, "start_sky_lerping");
 	public static final Identifier PLAY_MEMORY_MANIFESTING_PARTICLES = new Identifier(SpectrumCommon.MOD_ID, "play_memory_manifesting_particles");
-	
-	public enum ParticlePattern {
-		FOUR(Support.VECTORS_4),
-		EIGHT(Support.VECTORS_8),
-		EIGHT_OFFSET(Support.VECTORS_8_OFFSET),
-		SIXTEEN(Support.VECTORS_16);
-		
-		private final List<Vec3d> v;
-		
-		ParticlePattern(List<Vec3d> vectors) {
-			v = vectors;
-		}
-		
-		public List<Vec3d> getVectors() {
-			return v;
-		}
-	}
+	public static final Identifier UPDATE_BOSS_BAR = new Identifier(SpectrumCommon.MOD_ID, "update_boss_bar");
 	
 }

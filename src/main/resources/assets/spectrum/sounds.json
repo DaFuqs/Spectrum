@@ -143,6 +143,12 @@
       "spectrum:radiarc_irrelevance_fading"
     ]
   },
+  "deeper_down_theme": {
+    "subtitle": "spectrum.subtitles.deeper_down_theme_plays",
+    "sounds": [
+      "spectrum:sunsette_darker_than_hell"
+    ]
+  },
   "dimension_ambient": {
     "subtitle": "spectrum.subtitles.dimension_ambient",
     "sounds": [

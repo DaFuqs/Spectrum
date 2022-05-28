@@ -9,15 +9,20 @@ import de.dafuqs.spectrum.entity.entity.ShootingStarEntity;
 import de.dafuqs.spectrum.enums.PedestalRecipeTier;
 import de.dafuqs.spectrum.helpers.ColorHelper;
 import de.dafuqs.spectrum.helpers.Support;
+import de.dafuqs.spectrum.mixin.client.accessors.BossBarHudAccessor;
+import de.dafuqs.spectrum.particle.ParticlePattern;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.particle.effect.*;
 import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
+import de.dafuqs.spectrum.render.bossbar.SpectrumClientBossBar;
 import de.dafuqs.spectrum.sound.CraftingBlockSoundInstance;
 import de.dafuqs.spectrum.sound.TakeOffBeltSoundInstance;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.minecraft.block.Block;
+import net.minecraft.client.gui.hud.BossBarHud;
+import net.minecraft.client.gui.hud.ClientBossBar;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ItemStackParticleEffect;
 import net.minecraft.particle.ParticleEffect;
@@ -35,7 +40,9 @@ import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionType;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Map;
 import java.util.Random;
+import java.util.UUID;
 
 public class SpectrumS2CPacketReceiver {
 	
@@ -104,7 +111,7 @@ public class SpectrumS2CPacketReceiver {
 		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.PLAY_PARTICLE_PACKET_WITH_PATTERN_AND_VELOCITY_ID, (client, handler, buf, responseSender) -> {
 			Vec3d position = new Vec3d(buf.readDouble(), buf.readDouble(), buf.readDouble());
 			ParticleType<?> particleType = Registry.PARTICLE_TYPE.get(buf.readIdentifier());
-			SpectrumS2CPackets.ParticlePattern pattern = SpectrumS2CPackets.ParticlePattern.values()[buf.readInt()];
+			ParticlePattern pattern = ParticlePattern.values()[buf.readInt()];
 			double velocity = buf.readDouble();
 			if(particleType instanceof ParticleEffect particleEffect) {
 				client.execute(() -> {
@@ -320,9 +327,26 @@ public class SpectrumS2CPacketReceiver {
 		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.PLAY_TAKE_OFF_BELT_SOUND_INSTANCE, (client, handler, buf, responseSender) -> {
 			client.execute(TakeOffBeltSoundInstance::startSoundInstance);
 		});
+		
+		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.UPDATE_BOSS_BAR, (client, handler, buf, responseSender) -> {
+			UUID bossBarUUID = buf.readUuid();
+			boolean hasSerpentMusic = buf.readBoolean();
+			
+			client.execute(() -> {
+				// Everything in this lambda is running on the render thread
+				BossBarHud bossBarHud = client.getInstance().inGameHud.getBossBarHud();
+				Map<UUID, ClientBossBar> bossBars = ((BossBarHudAccessor) bossBarHud).getBossBars();
+				if(bossBars.containsKey(bossBarUUID)) {
+					ClientBossBar clientBossBar = bossBars.get(bossBarUUID);
+					if(clientBossBar instanceof SpectrumClientBossBar spectrumClientBossBar) {
+						spectrumClientBossBar.setSerpentMusic(hasSerpentMusic);
+					}
+				}
+			});
+		});
 	}
 	
-	public static void playParticleWithPatternAndVelocityClient(World world, Vec3d position, ParticleEffect particleEffect, @NotNull SpectrumS2CPackets.ParticlePattern pattern, double velocity) {
+	public static void playParticleWithPatternAndVelocityClient(World world, Vec3d position, ParticleEffect particleEffect, @NotNull ParticlePattern pattern, double velocity) {
 		for(Vec3d vec3d : pattern.getVectors()) {
 			world.addParticle(particleEffect, position.getX(), position.getY(), position.getZ(), vec3d.x * velocity, vec3d.y * velocity, vec3d.z * velocity);
 		}

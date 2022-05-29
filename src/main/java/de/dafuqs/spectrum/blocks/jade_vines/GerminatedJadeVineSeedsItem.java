@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.blocks.jade_vines;
 import de.dafuqs.spectrum.items.conditional.CloakedItem;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import net.minecraft.client.item.TooltipContext;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
@@ -41,6 +42,10 @@ public class GerminatedJadeVineSeedsItem extends CloakedItem {
 				world.setBlockState(pos.down(), SpectrumBlocks.JADE_VINE_BULB.getDefaultState());
 				world.playSound(null, pos, SoundEvents.ITEM_CROP_PLANT, SoundCategory.PLAYERS, 1.0F, 1.0F);
 				
+				PlayerEntity placer = context.getPlayer();
+				if(placer == null || !placer.isCreative()) {
+					context.getStack().decrement(1);
+				}
 				return ActionResult.CONSUME;
 			}
 		}

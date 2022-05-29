@@ -64,7 +64,7 @@ public class JadeVineBulbBlock extends Block implements JadeVine {
 	
 	@Override
 	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-		return SHAPE;
+		return BULB_SHAPE;
 	}
 	
 	@Override

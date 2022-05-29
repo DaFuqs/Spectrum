@@ -17,6 +17,7 @@ import java.util.Random;
 public interface JadeVine {
 	
 	BooleanProperty DEAD = BooleanProperty.of("dead");
+	VoxelShape BULB_SHAPE = Block.createCuboidShape(2.0D, 4.0D, 2.0D, 14.0D, 16.0D, 14.0D);
 	VoxelShape SHAPE = Block.createCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 16.0D, 14.0D);
 	
 	Identifier PETAL_HARVESTING_LOOT_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "dynamic/jade_vine_petal_harvesting");

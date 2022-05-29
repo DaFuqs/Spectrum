@@ -11,7 +11,7 @@
 					"conditions": [
 						{
 							"condition": "minecraft:block_state_property",
-							"block": "spectrum:jade_vines",
+							"block": "spectrum:jade_vine_bulb",
 							"properties": {
 								"dead": "false"
 							}
@@ -31,11 +31,11 @@
 			"entries": [
 				{
 					"type": "minecraft:item",
-					"name": "spectrum:germinated_jade_vine_seeds",
+					"name": "spectrum:hibernating_jade_vine_seeds",
 					"conditions": [
 						{
 							"condition": "minecraft:block_state_property",
-							"block": "spectrum:jade_vines",
+							"block": "spectrum:jade_vine_bulb",
 							"properties": {
 								"dead": "true"
 							}
@@ -75,7 +75,7 @@
 					"conditions": [
 						{
 							"condition": "minecraft:block_state_property",
-							"block": "spectrum:jade_vines",
+							"block": "spectrum:jade_vine_bulb",
 							"properties": {
 								"dead": "true"
 							}

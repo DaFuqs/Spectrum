@@ -1036,7 +1036,7 @@
   "block.spectrum.line_teleporting_mob_block.tooltip2": "§7in a straight line within %d blocks",
   "block.spectrum.feeding_mob_block.tooltip": "§7Feeds animals in a range of %d§7 blocks using food on the ground",
 
-  "item.spectrum.tooltip.loom_pattern_available": "✿Usable as Banner Pattern",
+  "item.spectrum.tooltip.loom_pattern_available": "✿ Usable as Banner Pattern",
   "item.spectrum.exchange_staff": "Exchanging Staff",
   "item.spectrum.exchange_staff.tooltip.range": "Exchanges blocks up to %s blocks around it",
   "item.spectrum.exchange_staff.tooltip.crouch": "Crouch to only exchange exposed blocks",
@@ -1565,10 +1565,10 @@
 
   "item.spectrum.shooting_star": "Star Fragment",
   "item.spectrum.stardust": "Stardust",
-  "item.spectrum.ancient_jade_vine_seeds": "Ancient Jade Vine Bulb",
-  "item.spectrum.ancient_jade_vine_seeds.tooltip": "kinda... deadish?",
+  "item.spectrum.hibernating_jade_vine_seeds": "Ancient Jade Vine Bulb",
+  "item.spectrum.hibernating_jade_vine_seeds.tooltip": "kinda... deadish?",
   "item.spectrum.germinated_jade_vine_seeds": "Germinated Jade Vine Bulb",
-  "item.spectrum.germinated_jade_vine_seeds.tooltip": "§7Grows on Wooden Fences",
+  "item.spectrum.germinated_jade_vine_seeds.tooltip": "§7Grows on the bottom of Wooden Fences",
   "item.spectrum.germinated_jade_vine_seeds.tooltip2": "§7Only grows when exposed to §fmoonlight",
   "item.spectrum.germinated_jade_vine_seeds.tooltip3": "§e⚠ Dies in direct sunlight",
   "item.spectrum.jade_vine_petals": "Jade Vine Petals",
@@ -1577,6 +1577,9 @@
   "item.spectrum.restoration_tea.tooltip": "§7Cures all negative Status Effects and",
   "item.spectrum.restoration_tea.tooltip2": "§7makes you immune to them for a short time",
   "item.spectrum.restoration_tea.tooltip_milk": "With Milk",
+  "item.spectrum.jade_jelly": "Jade Jelly",
+  "item.spectrum.jade_jelly.tooltip": "Nutritious, as well as tasty",
+
   "item.spectrum.crescent_clock": "Crescent Clock",
   "item.spectrum.gilded_book": "Gilded Book",
   "item.spectrum.gilded_book.tooltip.enchantability": "High Enchantability",

@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.registries;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.gravity.CloakedFloatItem;
 import de.dafuqs.spectrum.blocks.jade_vines.GerminatedJadeVineSeedsItem;
+import de.dafuqs.spectrum.blocks.jade_vines.JadeJellyItem;
 import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
 import de.dafuqs.spectrum.enums.BuiltinGemstoneColor;
 import de.dafuqs.spectrum.interfaces.Cloakable;
@@ -247,10 +248,11 @@ public class SpectrumItems {
 	public static final CloakedItem SHOOTING_STAR = new CloakedItem(resourcesItemSettingsSixteen, new Identifier(SpectrumCommon.MOD_ID, "milestones/unlock_shooting_stars"), Items.PURPLE_DYE);
 	public static final CloakedItem STARDUST = new CloakedItemWithLoomPattern(resourcesItemSettings, new Identifier(SpectrumCommon.MOD_ID, "milestones/unlock_shooting_stars"), Items.PURPLE_DYE, SpectrumBannerPatterns.SHIMMER);
 	
-	public static final Item ANCIENT_JADE_VINE_SEEDS = new ItemWithTooltip(resourcesItemSettingsSixteen, "item.spectrum.ancient_jade_vine_seeds.tooltip");
+	public static final Item HIBERNATING_JADE_VINE_SEEDS = new ItemWithTooltip(resourcesItemSettingsSixteen, "item.spectrum.hibernating_jade_vine_seeds.tooltip");
 	public static final CloakedItem GERMINATED_JADE_VINE_SEEDS = new GerminatedJadeVineSeedsItem(resourcesItemSettingsSixteen, new Identifier(SpectrumCommon.MOD_ID, "midgame/build_spirit_instiller_structure"), Items.LIME_DYE);
 	public static final CloakedItem JADE_VINE_PETALS = new CloakedItem(resourcesItemSettings, new Identifier(SpectrumCommon.MOD_ID, "midgame/build_spirit_instiller_structure"), Items.LIME_DYE);
 	public static final CloakedItem MOONSTRUCK_NECTAR = new CloakedItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(3).rarity(Rarity.UNCOMMON).maxCount(16).recipeRemainder(Items.GLASS_BOTTLE), new Identifier(SpectrumCommon.MOD_ID, "midgame/build_spirit_instiller_structure"), Items.LIME_DYE);
+	public static final Item JADE_JELLY = new JadeJellyItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).maxCount(64).rarity(Rarity.UNCOMMON).food(JadeJellyItem.FOOD_COMPONENT));
 	public static final Item RESTORATION_TEA = new RestorationTeaItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.UNCOMMON).maxCount(16).recipeRemainder(Items.GLASS_BOTTLE));
 
 	// Banner Patterns
@@ -434,7 +436,7 @@ public class SpectrumItems {
 		register("shooting_star", SHOOTING_STAR, DyeColor.PURPLE);
 		register("stardust", STARDUST, DyeColor.PURPLE);
 		
-		register("ancient_jade_vine_seeds", ANCIENT_JADE_VINE_SEEDS, DyeColor.GRAY);
+		register("ancient_jade_vine_seeds", HIBERNATING_JADE_VINE_SEEDS, DyeColor.GRAY);
 		register("germinated_jade_vine_seeds", GERMINATED_JADE_VINE_SEEDS, DyeColor.LIME);
 		register("jade_vine_petals", JADE_VINE_PETALS, DyeColor.LIME);
 		register("moonstruck_nectar", MOONSTRUCK_NECTAR, DyeColor.LIME);
@@ -494,6 +496,7 @@ public class SpectrumItems {
 		register("end_portal_cracker", END_PORTAL_CRACKER, DyeColor.RED);
 		register("crescent_clock", CRESCENT_CLOCK, DyeColor.MAGENTA);
 		register("restoration_tea", RESTORATION_TEA, DyeColor.PINK);
+		register("jade_jelly", JADE_JELLY, DyeColor.LIME);
 	}
 	
 	public static void registerTrinkets() {

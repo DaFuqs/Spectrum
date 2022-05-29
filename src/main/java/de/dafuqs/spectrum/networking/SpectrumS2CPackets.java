@@ -1,11 +1,7 @@
 package de.dafuqs.spectrum.networking;
 
 import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.helpers.Support;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.math.Vec3d;
-
-import java.util.List;
 
 public class SpectrumS2CPackets {
 	

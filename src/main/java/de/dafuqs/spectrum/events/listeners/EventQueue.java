@@ -8,7 +8,10 @@ import net.minecraft.world.event.PositionSource;
 import net.minecraft.world.event.listener.GameEventListener;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
 
 public abstract class EventQueue<D> implements GameEventListener {
 

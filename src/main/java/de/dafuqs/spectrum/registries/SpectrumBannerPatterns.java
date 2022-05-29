@@ -25,6 +25,7 @@ public class SpectrumBannerPatterns {
 	public static LoomPattern VEGETAL;
 	public static LoomPattern BEDROCK_DUST;
 	public static LoomPattern SHIMMERSTONE;
+	public static LoomPattern JADE_VINE;
 	
 	public static void register() {
 		SPECTRUM_LOGO = Registry.register(LoomPatterns.REGISTRY, new Identifier(SpectrumCommon.MOD_ID, "logo"), new LoomPattern(true));
@@ -44,6 +45,7 @@ public class SpectrumBannerPatterns {
 		VEGETAL = Registry.register(LoomPatterns.REGISTRY, new Identifier(SpectrumCommon.MOD_ID, "vegetal"), new LoomPattern(true));
 		BEDROCK_DUST = Registry.register(LoomPatterns.REGISTRY, new Identifier(SpectrumCommon.MOD_ID, "bedrock_dust"), new LoomPattern(true));
 		SHIMMERSTONE = Registry.register(LoomPatterns.REGISTRY, new Identifier(SpectrumCommon.MOD_ID, "shimmerstone"), new LoomPattern(true));
+		JADE_VINE = Registry.register(LoomPatterns.REGISTRY, new Identifier(SpectrumCommon.MOD_ID, "jade_vine"), new LoomPattern(true));
 	}
 	
 }

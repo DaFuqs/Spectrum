@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.blocks.jade_vines;
 
 import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.registries.SpectrumItems;
+import dev.architectury.event.events.common.ChatEvent;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
@@ -112,8 +113,11 @@ public class JadeVinePlantBlock extends Block implements JadeVine {
 	public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
 		super.randomDisplayTick(state, world, pos, random);
 		
-		if(state.get(AGE) > 0) {
-			JadeVine.spawnParticles(world, pos);
+		int age = state.get(AGE);
+		if(age == Properties.AGE_7_MAX) {
+			JadeVine.spawnBloomParticlesClient(world, pos);
+		} else if (age != 0){
+			JadeVine.spawnParticlesClient(world, pos);
 		}
 	}
 	
@@ -143,7 +147,7 @@ public class JadeVinePlantBlock extends Block implements JadeVine {
 						return ActionResult.SUCCESS;
 					} else {
 						handStack.decrement(1);
-						setHarvested(state, world, pos);
+						setHarvested(state, (ServerWorld) world, pos);
 						
 						List<ItemStack> harvestedStacks = getHarvestedStacks(state, (ServerWorld) world, pos, world.getBlockEntity(pos), player, handStack, NECTAR_HARVESTING_LOOT_IDENTIFIER);
 						for(ItemStack harvestedStack : harvestedStacks){
@@ -158,7 +162,7 @@ public class JadeVinePlantBlock extends Block implements JadeVine {
 			if(world.isClient) {
 				return ActionResult.SUCCESS;
 			} else {
-				setHarvested(state, world, pos);
+				setHarvested(state, (ServerWorld) world, pos);
 				
 				List<ItemStack> harvestedStacks = getHarvestedStacks(state, (ServerWorld) world, pos, world.getBlockEntity(pos), player, player.getMainHandStack(), PETAL_HARVESTING_LOOT_IDENTIFIER);
 				for(ItemStack harvestedStack : harvestedStacks){
@@ -191,7 +195,7 @@ public class JadeVinePlantBlock extends Block implements JadeVine {
 	
 	@Override
 	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-		return SHAPE;
+		return state.get(PART) == JadeVinesPlantPart.TIP ? TIP_SHAPE : SHAPE;
 	}
 	
 	@Override
@@ -213,22 +217,24 @@ public class JadeVinePlantBlock extends Block implements JadeVine {
 		builder.add(PART, AGE);
 	}
 	
-	static void setHarvested(@NotNull BlockState blockState, @NotNull World world, @NotNull BlockPos blockPos) {
+	static void setHarvested(@NotNull BlockState blockState, @NotNull ServerWorld world, @NotNull BlockPos blockPos) {
 		BlockPos rootsPos = blockState.get(PART).getLowestRootsPos(blockPos);
 		if(world.getBlockState(rootsPos).getBlock() instanceof JadeVineRootsBlock jadeVineRootsBlock) {
-			jadeVineRootsBlock.setPlantToAge(blockState, world, rootsPos, 1);
+			jadeVineRootsBlock.setPlantToAge(world, rootsPos, 1);
 		}
 	}
 	
 	@Override
-	public void setToAge(World world, BlockPos blockPos, int age) {
+	public boolean setToAge(World world, BlockPos blockPos, int age) {
 		BlockState currentState = world.getBlockState(blockPos);
 		if(currentState.getBlock() instanceof JadeVinePlantBlock) {
 			int currentAge = currentState.get(AGE);
 			if (age != currentAge) {
 				world.setBlockState(blockPos, currentState.with(AGE, age));
+				return true;
 			}
 		}
+		return false;
 	}
 	
 }

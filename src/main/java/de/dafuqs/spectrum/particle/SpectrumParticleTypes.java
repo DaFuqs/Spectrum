@@ -36,6 +36,7 @@ public class SpectrumParticleTypes {
 	public static DefaultParticleType SPIRIT_SALLOW;
 	public static DefaultParticleType DECAY_PLACE;
 	public static DefaultParticleType JADE_VINES;
+	public static DefaultParticleType JADE_VINES_BLOOM;
 
 	public static DefaultParticleType BLACK_FALLING_SPORE_BLOSSOM;
 	public static DefaultParticleType BLUE_FALLING_SPORE_BLOSSOM;
@@ -157,6 +158,7 @@ public class SpectrumParticleTypes {
 		DECAY_PLACE = register("decay_place", false);
 		SHOOTING_STAR = register("shooting_star", false);
 		JADE_VINES = register("jade_vines", false);
+		JADE_VINES_BLOOM = register("jade_vines_bloom", false);
 		
 
 		BLACK_FALLING_SPORE_BLOSSOM = register("black_falling_spore_blossom", false);

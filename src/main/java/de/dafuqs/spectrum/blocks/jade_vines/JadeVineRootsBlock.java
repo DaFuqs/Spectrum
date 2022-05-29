@@ -36,7 +36,7 @@ public class JadeVineRootsBlock extends BlockWithEntity implements JadeVine{
 	public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
 		super.randomDisplayTick(state, world, pos, random);
 		if(!state.get(DEAD)) {
-			JadeVine.spawnParticles(world, pos);
+			JadeVine.spawnParticlesClient(world, pos);
 		}
 	}
 	
@@ -107,10 +107,9 @@ public class JadeVineRootsBlock extends BlockWithEntity implements JadeVine{
 		super.randomTick(state, world, pos, random);
 		
 		if(hasRandomTicks(state)) {
-			// TODO
 			// die in sunlight
 			if(JadeVine.doesDie(world, pos)) {
-				setDead(state, world, pos);
+				setDead(world, pos);
 				world.playSound(null, pos, SoundEvents.ITEM_CROP_PLANT, SoundCategory.BLOCKS, 0.5F, 0.9F + 0.2F * world.random.nextFloat() * 0.2F);
 			} else if(canGrow(world, pos)) {
 				if(world.random.nextBoolean() && tryGrowUpwards(state, world, pos)) {
@@ -122,17 +121,21 @@ public class JadeVineRootsBlock extends BlockWithEntity implements JadeVine{
 				} else {
 					int age = getAge(world, pos, state);
 					if(age != Properties.AGE_7_MAX) {
-						setPlantToAge(state, world, pos, age + 1);
+						boolean couldGrow = setPlantToAge(world, pos, age + 1);
 						rememberGrownTime(world, pos);
-						world.playSound(null, pos, SoundEvents.ITEM_CROP_PLANT, SoundCategory.BLOCKS, 0.5F, 0.9F + 0.2F * world.random.nextFloat() * 0.2F);
+						if(couldGrow) {
+							world.playSound(null, pos, SoundEvents.ITEM_CROP_PLANT, SoundCategory.BLOCKS, 0.5F, 0.9F + 0.2F * world.random.nextFloat() * 0.2F);
+						}
 					}
 				}
 			}
 		}
 	}
 	
-	void setPlantToAge(@NotNull BlockState blockState, @NotNull World world, @NotNull BlockPos blockPos, int age) {
+	boolean setPlantToAge(@NotNull ServerWorld world, @NotNull BlockPos blockPos, int age) {
 		setToAge(world, blockPos, age);
+		
+		boolean anyGrown = false;
 		
 		// all upper roots
 		int i = 1;
@@ -140,7 +143,10 @@ public class JadeVineRootsBlock extends BlockWithEntity implements JadeVine{
 			BlockPos upPos = blockPos.up(i);
 			BlockState upState = world.getBlockState(upPos);
 			if(upState.getBlock() instanceof JadeVineRootsBlock jadeVineRootsBlock) {
-				jadeVineRootsBlock.setToAge(world, upPos, age);
+				if(jadeVineRootsBlock.setToAge(world, upPos, age)) {
+					anyGrown = true;
+					JadeVine.spawnParticlesServer(world, upPos, 8);
+				}
 			} else {
 				break;
 			}
@@ -153,7 +159,10 @@ public class JadeVineRootsBlock extends BlockWithEntity implements JadeVine{
 			BlockPos downPos = blockPos.down(i);
 			BlockState downState = world.getBlockState(downPos);
 			if(downState.getBlock() instanceof JadeVineRootsBlock jadeVineRootsBlock) {
-				jadeVineRootsBlock.setToAge(world, downPos, age);
+				if(jadeVineRootsBlock.setToAge(world, downPos, age)) {
+					anyGrown = true;
+					JadeVine.spawnParticlesServer(world, downPos, 8);
+				}
 			} else {
 				break;
 			}
@@ -165,15 +174,25 @@ public class JadeVineRootsBlock extends BlockWithEntity implements JadeVine{
 		BlockState plantState = world.getBlockState(plantPos);
 		Block plantBlock = plantState.getBlock();
 		if(plantBlock instanceof JadeVinePlantBlock jadeVinePlantBlock) {
-			jadeVinePlantBlock.setToAge(world, plantPos, age);
-			jadeVinePlantBlock.setToAge(world, plantPos.down(), age);
-			jadeVinePlantBlock.setToAge(world, plantPos.down(2), age);
+			if(jadeVinePlantBlock.setToAge(world, plantPos, age) && jadeVinePlantBlock.setToAge(world, plantPos.down(), age) && jadeVinePlantBlock.setToAge(world, plantPos.down(2), age)) {
+				anyGrown = true;
+				JadeVine.spawnParticlesServer(world, plantPos, 16);
+				JadeVine.spawnParticlesServer(world, plantPos.down(), 16);
+				JadeVine.spawnParticlesServer(world, plantPos.down(2), 16);
+			}
 		} else if (plantBlock instanceof JadeVineBulbBlock jadeVineBulbBlock) {
-			jadeVineBulbBlock.setToAge(world, plantPos, age);
+			if(jadeVineBulbBlock.setToAge(world, plantPos, age)) {
+				anyGrown = true;
+				JadeVine.spawnParticlesServer(world, plantPos, 16);
+			}
 		} else if(plantState.isAir() && age > 0) {
 			// plant was destroyed? => grow a new bulb
 			world.setBlockState(plantPos, SpectrumBlocks.JADE_VINE_BULB.getDefaultState());
+			anyGrown = true;
+			JadeVine.spawnParticlesServer(world, plantPos, 16);
 		}
+		
+		return anyGrown;
 	}
 	
 	int getAge(World world, BlockPos blockPos, BlockState blockState) {
@@ -259,8 +278,8 @@ public class JadeVineRootsBlock extends BlockWithEntity implements JadeVine{
 		return false;
 	}
 	
-	void setDead(@NotNull BlockState blockState, @NotNull World world, @NotNull BlockPos blockPos) {
-		setPlantToAge(blockState, world, blockPos, 0);
+	void setDead(@NotNull ServerWorld world, @NotNull BlockPos blockPos) {
+		setPlantToAge(world, blockPos, 0);
 	}
 	
 	void rememberGrownTime(@NotNull World world, @NotNull BlockPos blockPos) {
@@ -282,19 +301,22 @@ public class JadeVineRootsBlock extends BlockWithEntity implements JadeVine{
 			} else {
 				break;
 			}
-		} while(blockPos.getY() - i < world.getBottomY());
+		} while(blockPos.getY() - i >= world.getBottomY());
 		return blockPos.down(i);
 	}
 	
 	@Override
-	public void setToAge(@NotNull World world, BlockPos blockPos, int age) {
+	public boolean setToAge(@NotNull World world, BlockPos blockPos, int age) {
 		BlockState currentState = world.getBlockState(blockPos);
 		boolean dead = currentState.get(DEAD);
 		if(age == 0 && !dead) {
 			world.setBlockState(blockPos, currentState.with(DEAD, true));
+			return true;
 		} else if(age > 0 && dead) {
 			world.setBlockState(blockPos, currentState.with(DEAD, false));
+			return true;
 		}
+		return false;
 	}
 	
 }

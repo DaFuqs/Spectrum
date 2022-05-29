@@ -34,10 +34,18 @@
             },
             {
               "function": "minecraft:apply_bonus",
-              "enchantment": "spectrum:resonance",
+              "enchantment": "minecraft:fortune",
               "formula": "minecraft:uniform_bonus_count",
               "parameters": {
                 "bonusMultiplier": 2
+              }
+            },
+            {
+              "function": "minecraft:apply_bonus",
+              "enchantment": "spectrum:resonance",
+              "formula": "minecraft:uniform_bonus_count",
+              "parameters": {
+                "bonusMultiplier": 3
               }
             }
           ]

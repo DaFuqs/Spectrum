@@ -175,7 +175,7 @@ public class SpectrumItems {
 	public static final ToolItem BEDROCK_HOE = new BedrockHoeItem(BEDROCK_MATERIAL, -2, -0.0F, bedrockToolItemSettings);
 	public static final BedrockBowItem BEDROCK_BOW = new BedrockBowItem(bedrockToolItemSettings);
 	public static final BedrockCrossbowItem BEDROCK_CROSSBOW = new BedrockCrossbowItem(bedrockToolItemSettings);
-	public static final BedrockShearsItem BEDROCK_SHEARS = new BedrockShearsItem(bedrockToolItemSettings); // TODO: wait for fabric pull request to get shears drop: https://github.com/FabricMC/fabric/pull/1287
+	public static final BedrockShearsItem BEDROCK_SHEARS = new BedrockShearsItem(bedrockToolItemSettings);
 	public static final FishingRodItem BEDROCK_FISHING_ROD = new BedrockFishingRodItem(bedrockToolItemSettings);
 	
 	// Bedrock Armor
@@ -250,8 +250,8 @@ public class SpectrumItems {
 	public static final Item ANCIENT_JADE_VINE_SEEDS = new ItemWithTooltip(resourcesItemSettingsSixteen, "item.spectrum.ancient_jade_vine_seeds.tooltip");
 	public static final CloakedItem GERMINATED_JADE_VINE_SEEDS = new GerminatedJadeVineSeedsItem(resourcesItemSettingsSixteen, new Identifier(SpectrumCommon.MOD_ID, "midgame/build_spirit_instiller_structure"), Items.LIME_DYE);
 	public static final CloakedItem JADE_VINE_PETALS = new CloakedItem(resourcesItemSettings, new Identifier(SpectrumCommon.MOD_ID, "midgame/build_spirit_instiller_structure"), Items.LIME_DYE);
-	public static final CloakedItem MOONSTRUCK_NECTAR = new CloakedItem(resourcesItemSettings, new Identifier(SpectrumCommon.MOD_ID, "midgame/build_spirit_instiller_structure"), Items.LIME_DYE);
-	public static final Item RESTORATION_TEA = new RestorationTeaItem(toolUncommonItemSettingsSixteen);
+	public static final CloakedItem MOONSTRUCK_NECTAR = new CloakedItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(3).rarity(Rarity.UNCOMMON).maxCount(16).recipeRemainder(Items.GLASS_BOTTLE), new Identifier(SpectrumCommon.MOD_ID, "midgame/build_spirit_instiller_structure"), Items.LIME_DYE);
+	public static final Item RESTORATION_TEA = new RestorationTeaItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.UNCOMMON).maxCount(16).recipeRemainder(Items.GLASS_BOTTLE));
 
 	// Banner Patterns
 	public static final Item LOGO_BANNER_PATTERN = new SpectrumBannerPatternItem(toolRareItemSettingsSingle, SpectrumBannerPatterns.SPECTRUM_LOGO, "item.spectrum.logo_banner_pattern.desc");

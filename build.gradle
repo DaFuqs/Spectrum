@@ -41,6 +41,9 @@ repositories {
 	maven {
 		name = "JitPack"
 		url = 'https://jitpack.io'
+		metadataSources {// thank you, Incubus Core >:(
+			artifact() //Look directly for artifact
+		}
 	}
 	mavenCentral() // incubus core
 	//flatDir {
@@ -77,7 +80,6 @@ dependencies {
 	modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"
 
 	// https://github.com/emilyploszaj/trinkets
-	// https://maven.terraformersmc.com/releases/dev/emi/trinkets/
 	modImplementation "dev.emi:trinkets:${project.trinkets_version}"
 
 	// https://github.com/OnyxStudios/Cardinal-Components-API/wiki/
@@ -87,16 +89,12 @@ dependencies {
 	modImplementation "com.github.emilyploszaj:step-height-entity-attribute:${project.step_height_attribute_version}"
 	include "com.github.emilyploszaj:step-height-entity-attribute:${project.step_height_attribute_version}"
 
-	modImplementation "com.github.DaFuqs:AdditionalEntityAttributes:1.18.2-SNAPSHOT"
-	include "com.github.DaFuqs:AdditionalEntityAttributes:1.18.2-SNAPSHOT"
+	modImplementation "com.github.DaFuqs:AdditionalEntityAttributes:${project.additional_entity_attributes_version}"
+	include "com.github.DaFuqs:AdditionalEntityAttributes:${project.additional_entity_attributes_version}"
 
 	//modImplementation "com.jamieswhiteshirt:reach-entity-attributes:2.1.1"
 	//include "com.jamieswhiteshirt:reach-entity-attributes:2.1.1"
 
-	// outdated
-	// modImplementation "io.github.fablabsmc:bannerpp:2.0.4+mc.1.17-rc1"
-
-	// still breaks outside of dev env still currently.
 	modImplementation include("com.github.devs-immortal:Incubus-Core:${project.incubus_core_version}")
 
 	// Soft dependencies:

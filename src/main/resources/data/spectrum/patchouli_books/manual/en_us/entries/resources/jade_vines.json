@@ -1,10 +1,10 @@
 {
   "name": "Jade Vines",
-  "advancement": "spectrum:hidden/collect_ancient_jade_vine_seeds",
-  "icon": "spectrum:ancient_jade_vine_seeds",
+  "advancement": "spectrum:hidden/collect_hibernating_jade_vine_seeds",
+  "icon": "spectrum:hibernating_jade_vine_seeds",
   "category": "spectrum:resources_category",
   "extra_recipe_mappings": {
-    "spectrum:ancient_jade_vine_seeds": 0,
+    "spectrum:hibernating_jade_vine_seeds": 0,
     "spectrum:germinated_jade_vine_seeds": 0,
     "spectrum:jade_vine_petals": 0,
     "spectrum:moonstruck_nectar": 0
@@ -13,7 +13,7 @@
     {
       "type": "patchouli:spotlight",
       "title": "Jade Vine Seeds",
-      "item": "spectrum:ancient_jade_vine_seeds",
+      "item": "spectrum:hibernating_jade_vine_seeds",
 	  "text": "The remaining energy of this plant from aeons ago is barely still perceptible. So light and vulnerable that you think any wrong move could breathe the last bit of life out of your fragile bulb.$(br2)$(italic)Will the history of this plant remain elusive to you forever?"
     },
     {

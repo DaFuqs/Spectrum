@@ -436,7 +436,7 @@ public class SpectrumItems {
 		register("shooting_star", SHOOTING_STAR, DyeColor.PURPLE);
 		register("stardust", STARDUST, DyeColor.PURPLE);
 		
-		register("ancient_jade_vine_seeds", HIBERNATING_JADE_VINE_SEEDS, DyeColor.GRAY);
+		register("hibernating_jade_vine_seeds", HIBERNATING_JADE_VINE_SEEDS, DyeColor.GRAY);
 		register("germinated_jade_vine_seeds", GERMINATED_JADE_VINE_SEEDS, DyeColor.LIME);
 		register("jade_vine_petals", JADE_VINE_PETALS, DyeColor.LIME);
 		register("moonstruck_nectar", MOONSTRUCK_NECTAR, DyeColor.LIME);

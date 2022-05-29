@@ -10,7 +10,7 @@
     },
     "collected_seeds": {
       "trigger":"spectrum:has_advancement",
-      "conditions": { "advancement_identifier": "spectrum:hidden/collect_ancient_jade_vine_seeds" }
+      "conditions": { "advancement_identifier": "spectrum:hidden/collect_hibernating_jade_vine_seeds" }
     }
   }
 }

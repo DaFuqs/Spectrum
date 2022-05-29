@@ -120,13 +120,27 @@ public class JadeVineRootsBlock extends BlockWithEntity implements JadeVine{
 					world.playSound(null, pos, SoundEvents.ITEM_CROP_PLANT, SoundCategory.BLOCKS, 0.5F, 0.9F + 0.2F * world.random.nextFloat() * 0.2F);
 				} else {
 					int age = getAge(world, pos, state);
-					if(age != Properties.AGE_7_MAX) {
-						boolean couldGrow = setPlantToAge(world, pos, age + 1);
-						rememberGrownTime(world, pos);
-						if(couldGrow) {
+					int targetAge = age;
+					if(age == Properties.AGE_7_MAX - 1) {
+						// only reach full bloom on full moon nights
+						if(world.getMoonPhase() == 0) { // 0 = full moon
+							targetAge = Properties.AGE_7_MAX;
+						}
+					} else if(age == Properties.AGE_7_MAX) {
+						// 2 days after full moon: revert to petal stage
+						if(world.getMoonPhase() > 2) {
+							targetAge = Properties.AGE_7_MAX - 1;
+						}
+					} else {
+						targetAge = age + 1;
+					}
+					if(targetAge != age) {
+						boolean couldGrow = setPlantToAge(world, pos, targetAge);
+						if (couldGrow) {
 							world.playSound(null, pos, SoundEvents.ITEM_CROP_PLANT, SoundCategory.BLOCKS, 0.5F, 0.9F + 0.2F * world.random.nextFloat() * 0.2F);
 						}
 					}
+					rememberGrownTime(world, pos);
 				}
 			}
 		}

@@ -97,7 +97,7 @@ public abstract class DecayBlock extends Block {
 					&& (whiteListBlockTag == null || targetBlockState.isIn(whiteListBlockTag))
 					&& (blackListBlockTag == null || !targetBlockState.isIn(blackListBlockTag))
 					// bedrock is ok, but not other modded unbreakable blocks
-					&& (targetBlockState.getBlock() == Blocks.BEDROCK || (targetBlockState.getBlock().getHardness() > -1.0F && targetBlockState.getBlock().getBlastResistance() < 1000.0F))) {
+					&& (targetBlockState.getBlock() == Blocks.BEDROCK || (targetBlockState.getBlock().getHardness() > -1.0F && targetBlockState.getBlock().getBlastResistance() < 10000.0F))) {
 				
 				BlockState destinationBlockState = getSpreadState(state);
 				for (TagKey<Block> currentCheckTag : this.decayConversionsList) {

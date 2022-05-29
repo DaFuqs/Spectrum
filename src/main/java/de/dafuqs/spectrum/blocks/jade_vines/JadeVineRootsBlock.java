@@ -110,7 +110,7 @@ public class JadeVineRootsBlock extends BlockWithEntity implements JadeVine{
 				setDead(state, world, pos);
 				world.playSound(null, pos, SoundEvents.ITEM_CROP_PLANT, SoundCategory.BLOCKS, 0.5F, 0.9F + 0.2F * world.random.nextFloat() * 0.2F);
 			} else if(canGrow(world, pos)) {
-				if(world.random.nextInt(4) == 0 && tryGrowUpwards(state, world, pos)) {
+				if(world.random.nextBoolean() && tryGrowUpwards(state, world, pos)) {
 					rememberGrownTime(world, pos);
 					world.playSound(null, pos, SoundEvents.ITEM_CROP_PLANT, SoundCategory.BLOCKS, 0.5F, 0.9F + 0.2F * world.random.nextFloat() * 0.2F);
 				} else if(tryGrowDownwards(state, world, pos)) {
@@ -128,9 +128,8 @@ public class JadeVineRootsBlock extends BlockWithEntity implements JadeVine{
 		}
 	}
 	
-	
-	static void setPlantToAge(@NotNull BlockState blockState, @NotNull World world, @NotNull BlockPos blockPos, int age) {
-		world.setBlockState(blockPos, blockState.with(DEAD, true));
+	void setPlantToAge(@NotNull BlockState blockState, @NotNull World world, @NotNull BlockPos blockPos, int age) {
+		setToAge(world, blockPos, age);
 		
 		// all upper roots
 		int i = 1;
@@ -159,7 +158,7 @@ public class JadeVineRootsBlock extends BlockWithEntity implements JadeVine{
 		}
 		
 		// bulb / plant
-		BlockPos plantPos = blockPos.down(i+1);
+		BlockPos plantPos = blockPos.down(i);
 		BlockState plantState = world.getBlockState(plantPos);
 		Block plantBlock = plantState.getBlock();
 		if(plantBlock instanceof JadeVinePlantBlock jadeVinePlantBlock) {
@@ -196,7 +195,7 @@ public class JadeVineRootsBlock extends BlockWithEntity implements JadeVine{
 		return false;
 	}
 	
-	static boolean tryGrowUpwards(@NotNull BlockState blockState, @NotNull World world, @NotNull BlockPos blockPos) {
+	boolean tryGrowUpwards(@NotNull BlockState blockState, @NotNull World world, @NotNull BlockPos blockPos) {
 		blockPos = blockPos.up();
 		while(world.getBlockState(blockPos).getBlock() instanceof JadeVineRootsBlock) {
 			// search up until no jade vines roots are hit anymore
@@ -215,7 +214,7 @@ public class JadeVineRootsBlock extends BlockWithEntity implements JadeVine{
 		return false;
 	}
 	
-	static boolean tryGrowDownwards(@NotNull BlockState blockState, @NotNull World world, @NotNull BlockPos blockPos) {
+	boolean tryGrowDownwards(@NotNull BlockState blockState, @NotNull World world, @NotNull BlockPos blockPos) {
 		blockPos = blockPos.down();
 		while(world.getBlockState(blockPos).getBlock() instanceof JadeVineRootsBlock) {
 			// search down until no jade vines roots are hit anymore
@@ -257,7 +256,7 @@ public class JadeVineRootsBlock extends BlockWithEntity implements JadeVine{
 		return false;
 	}
 	
-	static void setDead(@NotNull BlockState blockState, @NotNull World world, @NotNull BlockPos blockPos) {
+	void setDead(@NotNull BlockState blockState, @NotNull World world, @NotNull BlockPos blockPos) {
 		setPlantToAge(blockState, world, blockPos, 0);
 	}
 	

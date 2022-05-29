@@ -10,7 +10,7 @@
 			"model": "spectrum:block/jade_vine_base_leaves"
 		},
 		"age=3,part=base": {
-			"model": "spectrum:block/jade_vine_base_leaves"
+			"model": "spectrum:block/jade_vine_base_petals"
 		},
 		"age=4,part=base": {
 			"model": "spectrum:block/jade_vine_base_petals"

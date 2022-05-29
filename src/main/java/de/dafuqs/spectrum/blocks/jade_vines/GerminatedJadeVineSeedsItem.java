@@ -6,6 +6,8 @@ import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.ActionResult;
@@ -28,10 +30,17 @@ public class GerminatedJadeVineSeedsItem extends CloakedItem {
 
 		if(JadeVineRootsBlock.canBePlantedOn(world.getBlockState(pos)) && world.getBlockState(pos.down()).isAir()) {
 			if(context.getWorld().isClient) {
+				for(int i = 0; i < 10; i++){
+					JadeVine.spawnParticles(world, pos);
+					JadeVine.spawnParticles(world, pos.down());
+				}
+				
 				return ActionResult.SUCCESS;
 			} else {
 				world.setBlockState(pos, SpectrumBlocks.JADE_VINE_ROOTS.getDefaultState());
 				world.setBlockState(pos.down(), SpectrumBlocks.JADE_VINE_BULB.getDefaultState());
+				world.playSound(null, pos, SoundEvents.ITEM_CROP_PLANT, SoundCategory.PLAYERS, 1.0F, 1.0F);
+				
 				return ActionResult.CONSUME;
 			}
 		}

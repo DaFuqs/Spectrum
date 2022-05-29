@@ -122,7 +122,7 @@ public class SpectrumBlockEntityRegistry<T extends BlockEntity> {
 		POTION_WORKSHOP = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "potion_workshop"), FabricBlockEntityTypeBuilder.create(PotionWorkshopBlockEntity::new, SpectrumBlocks.POTION_WORKSHOP).build());
 		SPIRIT_INSTILLER = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "spirit_instiller"), FabricBlockEntityTypeBuilder.create(SpiritInstillerBlockEntity::new, SpectrumBlocks.SPIRIT_INSTILLER).build());
 		MEMORY = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "memory"), FabricBlockEntityTypeBuilder.create(MemoryBlockEntity::new, SpectrumBlocks.MEMORY).build());
-		JADE_VINE_ROOTS = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "jade_vine_roots"), FabricBlockEntityTypeBuilder.create(JadeVineRootsBlockEntity::new, SpectrumBlocks.JADE_VINES).build());
+		JADE_VINE_ROOTS = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "jade_vine_roots"), FabricBlockEntityTypeBuilder.create(JadeVineRootsBlockEntity::new, SpectrumBlocks.JADE_VINE_ROOTS).build());
 		CRYSTAL_APOTHECARY = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "crystal_apothecary"), FabricBlockEntityTypeBuilder.create(CrystalApothecaryBlockEntity::new, SpectrumBlocks.CRYSTAL_APOTHECARY).build());
 		
 		// All the pastel network nodes

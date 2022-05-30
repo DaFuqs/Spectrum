@@ -3,7 +3,11 @@ package de.dafuqs.spectrum.blocks.mob_blocks;
 import net.minecraft.block.*;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
+import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemStack;
+import net.minecraft.recipe.RecipeManager;
+import net.minecraft.recipe.RecipeType;
+import net.minecraft.recipe.SmeltingRecipe;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -29,12 +33,31 @@ public class FirestarterMobBlock extends MobBlock {
 	// BlockState: The BlockState when Block is getting frozen
 	// Float: The chance to freeze
 	public static final Map<Block, Pair<BlockState, Float>> BURNING_MAP = new HashMap<>() {{
+		put(Blocks.RED_MUSHROOM, new Pair<>(Blocks.CRIMSON_FUNGUS.getDefaultState(), 0.2F));
+		put(Blocks.BROWN_MUSHROOM, new Pair<>(Blocks.WARPED_FUNGUS.getDefaultState(), 0.2F));
+		put(Blocks.SAND, new Pair<>(Blocks.RED_SAND.getDefaultState(), 1.0F));
+		put(Blocks.GRASS, new Pair<>(Blocks.MYCELIUM.getDefaultState(), 1.0F));
+		put(Blocks.CALCITE, new Pair<>(Blocks.BASALT.getDefaultState(), 1.0F));
 		put(Blocks.NETHERRACK, new Pair<>(Blocks.MAGMA_BLOCK.getDefaultState(), 0.25F));
 		put(Blocks.MAGMA_BLOCK, new Pair<>(Blocks.LAVA.getDefaultState(), 0.5F));
 	}};
 	
 	public FirestarterMobBlock(Settings settings) {
 		super(settings);
+	}
+	
+	public static void addBlockSmeltingRecipes(RecipeManager recipeManager) {
+		for(SmeltingRecipe recipe : recipeManager.listAllOfType(RecipeType.SMELTING)) {
+			ItemStack outputStack = recipe.getOutput();
+			if(outputStack.getItem() instanceof BlockItem outputBlockItem && outputBlockItem.getBlock() != Blocks.AIR) {
+				ItemStack[] inputStacks = recipe.getIngredients().get(0).getMatchingStacks();
+				for(ItemStack inputStack : inputStacks) {
+					if(inputStack.getItem() instanceof BlockItem inputBlockItem && inputBlockItem.getBlock() != Blocks.AIR) {
+						BURNING_MAP.put(inputBlockItem.getBlock(), new Pair<>(outputBlockItem.getBlock().getDefaultState(), 1.0F));
+					}
+				}
+			}
+		}
 	}
 	
 	@Override

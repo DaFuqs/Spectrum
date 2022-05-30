@@ -2,6 +2,7 @@ package de.dafuqs.spectrum;
 
 import com.google.common.collect.ImmutableMap;
 import de.dafuqs.spectrum.blocks.chests.CompactingChestBlockEntity;
+import de.dafuqs.spectrum.blocks.mob_blocks.FirestarterMobBlock;
 import de.dafuqs.spectrum.blocks.shooting_star.ShootingStarBlock;
 import de.dafuqs.spectrum.config.SpectrumConfig;
 import de.dafuqs.spectrum.dimension.DeeperDownDimension;
@@ -252,6 +253,7 @@ public class SpectrumCommon implements ModInitializer {
 				}
 			}
 			
+			FirestarterMobBlock.addBlockSmeltingRecipes(minecraftServer.getRecipeManager());
 			injectEnchantmentUpgradeRecipes(minecraftServer);
 		});
 		
@@ -278,6 +280,7 @@ public class SpectrumCommon implements ModInitializer {
 				
 				if(minecraftServer != null) {
 					injectEnchantmentUpgradeRecipes(minecraftServer);
+					FirestarterMobBlock.addBlockSmeltingRecipes(minecraftServer.getRecipeManager());
 				}
 			}
 

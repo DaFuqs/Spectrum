@@ -4,13 +4,6 @@
   "compatibilityLevel": "JAVA_17",
   "plugin": "de.dafuqs.spectrum.mixin.Plugin",
   "mixins": [
-    "accessors.FoxEntityAccessor",
-    "accessors.ItemAccessor",
-    "accessors.LootTableAccessor",
-    "accessors.MooshroomEntityAccessor",
-    "accessors.ShapedRecipeAccessor",
-    "accessors.SlimeEntityAccessor",
-    "accessors.StructureFeatureAccessor",
     "AnvilBlockMixin",
     "BlockMixin",
     "BuddingAmethystBlockMixin",
@@ -50,12 +43,17 @@
     "RedstoneOreMixin",
     "ServerPlayerEntityMixin",
     "ServerWorldMixin",
-    "WitherEntityMixin"
+    "WitherEntityMixin",
+    "accessors.FluidBlockAccessor",
+    "accessors.FoxEntityAccessor",
+    "accessors.ItemAccessor",
+    "accessors.LootTableAccessor",
+    "accessors.MooshroomEntityAccessor",
+    "accessors.ShapedRecipeAccessor",
+    "accessors.SlimeEntityAccessor",
+    "accessors.StructureFeatureAccessor"
   ],
   "client": [
-    "client.accessors.BossBarHudAccessor",
-    "client.accessors.RenderLayerAccessor",
-    "client.accessors.AccessorClientAdvancementManager",
     "client.BlockClientMixin",
     "client.BlockModelsMixin",
     "client.BlockOverlayRendererMixin",
@@ -70,6 +68,9 @@
     "client.PotionItemClientMixin",
     "client.TransparentBlockMixin",
     "client.WorldRendererMixin",
+    "client.accessors.AccessorClientAdvancementManager",
+    "client.accessors.BossBarHudAccessor",
+    "client.accessors.RenderLayerAccessor",
     "client.enchantment_descriptions.DescriptionManagerMixin"
   ],
   "injectors": {

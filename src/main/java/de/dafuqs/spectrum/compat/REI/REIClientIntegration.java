@@ -1,6 +1,8 @@
 package de.dafuqs.spectrum.compat.REI;
 
 import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.blocks.mob_blocks.FirestarterMobBlock;
+import de.dafuqs.spectrum.blocks.mob_blocks.FreezingMobBlock;
 import de.dafuqs.spectrum.inventories.PedestalScreen;
 import de.dafuqs.spectrum.inventories.PotionWorkshopScreen;
 import de.dafuqs.spectrum.items.magic_items.NaturesStaffItem;
@@ -44,6 +46,8 @@ public class REIClientIntegration implements REIClientPlugin {
 		registry.add(new PotionWorkshopCraftingCategory());
 		registry.add(new SpiritInstillerCategory());
 		registry.add(new MidnightSolutionConvertingCategory());
+		registry.add(new HeatingCategory());
+		registry.add(new FreezingCategory());
 		
 		registry.addWorkstations(BuiltinPlugin.CRAFTING, EntryStacks.of(SpectrumItems.CRAFTING_TABLET));
 		
@@ -65,6 +69,8 @@ public class REIClientIntegration implements REIClientPlugin {
 		);
 		registry.addWorkstations(SpectrumPlugins.FUSION_SHRINE, fusionShrineStacks);
 		registry.addWorkstations(SpectrumPlugins.NATURES_STAFF, EntryStacks.of(SpectrumItems.NATURES_STAFF));
+		registry.addWorkstations(SpectrumPlugins.HEATING, EntryStacks.of(SpectrumBlocks.BLAZE_MOB_BLOCK));
+		registry.addWorkstations(SpectrumPlugins.FREEZING, EntryStacks.of(SpectrumBlocks.POLAR_BEAR_MOB_BLOCK));
 		registry.addWorkstations(SpectrumPlugins.ENCHANTER, EntryStacks.of(SpectrumBlocks.ENCHANTER));
 		registry.addWorkstations(SpectrumPlugins.ENCHANTMENT_UPGRADE, EntryStacks.of(SpectrumBlocks.ENCHANTER));
 		
@@ -84,6 +90,8 @@ public class REIClientIntegration implements REIClientPlugin {
 		registry.removePlusButton(SpectrumPlugins.ENCHANTMENT_UPGRADE);
 		registry.removePlusButton(SpectrumPlugins.MIDNIGHT_SOLUTION_CONVERTING);
 		registry.removePlusButton(SpectrumPlugins.SPIRIT_INSTILLER);
+		registry.removePlusButton(SpectrumPlugins.HEATING);
+		registry.removePlusButton(SpectrumPlugins.FREEZING);
 	}
 
 	@Override
@@ -91,13 +99,17 @@ public class REIClientIntegration implements REIClientPlugin {
 		registry.registerFiller(AnvilCrushingRecipe.class, AnvilCrushingRecipeDisplay::new);
 		registry.registerRecipeFiller(PedestalCraftingRecipe.class, SpectrumRecipeTypes.PEDESTAL, PedestalCraftingRecipeDisplay::new);
 		registry.registerRecipeFiller(FusionShrineRecipe.class, SpectrumRecipeTypes.FUSION_SHRINE, FusionShrineRecipeDisplay::new);
-		NaturesStaffItem.BLOCK_CONVERSIONS.forEach((key, value) -> registry.add(new NaturesStaffConversionsDisplay(EntryStacks.of(key), EntryStacks.of(value.getBlock()))));
 		registry.registerRecipeFiller(EnchanterRecipe.class, SpectrumRecipeTypes.ENCHANTER, EnchanterRecipeDisplay::new);
 		registry.registerRecipeFiller(EnchantmentUpgradeRecipe.class, SpectrumRecipeTypes.ENCHANTMENT_UPGRADE, EnchantmentUpgradeRecipeDisplay::new);
 		registry.registerRecipeFiller(PotionWorkshopBrewingRecipe.class, SpectrumRecipeTypes.POTION_WORKSHOP_BREWING, PotionWorkshopBrewingRecipeDisplay::new);
 		registry.registerRecipeFiller(PotionWorkshopCraftingRecipe.class, SpectrumRecipeTypes.POTION_WORKSHOP_CRAFTING, PotionWorkshopCraftingRecipeDisplay::new);
 		registry.registerRecipeFiller(ISpiritInstillerRecipe.class, SpectrumRecipeTypes.SPIRIT_INSTILLER_RECIPE, SpiritInstillerRecipeDisplay::new);
 		registry.registerRecipeFiller(MidnightSolutionConvertingRecipe.class, SpectrumRecipeTypes.MIDNIGHT_SOLUTION_CONVERTING_RECIPE, MidnightSolutionConvertingDisplay::new);
+		
+		NaturesStaffItem.BLOCK_CONVERSIONS.forEach((key, value) -> registry.add(new NaturesStaffConversionsDisplay(EntryStacks.of(key), EntryStacks.of(value.getBlock()))));
+		FreezingMobBlock.FREEZING_STATE_MAP.forEach((key, value) -> registry.add(new FreezingDisplay(BlockToBlockWithChanceDisplay.blockToEntryStack(key.getBlock()), BlockToBlockWithChanceDisplay.blockToEntryStack(value.getLeft().getBlock()), value.getRight())));
+		FreezingMobBlock.FREEZING_MAP.forEach((key, value) -> registry.add(new FreezingDisplay(BlockToBlockWithChanceDisplay.blockToEntryStack(key), BlockToBlockWithChanceDisplay.blockToEntryStack(value.getLeft().getBlock()), value.getRight())));
+		FirestarterMobBlock.BURNING_MAP.forEach((key, value)  -> registry.add(new HeatingDisplay(BlockToBlockWithChanceDisplay.blockToEntryStack(key), BlockToBlockWithChanceDisplay.blockToEntryStack(value.getLeft().getBlock()), value.getRight())));
 		
 		if(!SpectrumCommon.CONFIG.REIListsRecipesAsNotUnlocked) {
 			// do not list recipes in REI at all, until they are unlocked

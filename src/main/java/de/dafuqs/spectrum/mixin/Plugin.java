@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.mixin;
 
-import net.fabricmc.loader.api.FabricLoader;
 import org.objectweb.asm.tree.ClassNode;
 import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
 import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
@@ -21,7 +20,8 @@ public final class Plugin implements IMixinConfigPlugin {
     @Override
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName){
         if(mixinClassName.equals("de.dafuqs.spectrum.mixin.client.enchantment_descriptions.DescriptionManagerMixin")){
-            return FabricLoader.getInstance().isModLoaded("enchdesc");
+            return false;
+            //return FabricLoader.getInstance().isModLoaded("enchdesc");
         } else {
             return true;
         }

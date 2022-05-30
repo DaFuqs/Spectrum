@@ -83,6 +83,9 @@
   "container.spectrum.rei.enchantment_upgrading.title": "Enchantment Upgrading",
   "container.spectrum.rei.enchantment_upgrade.required_item_count": "(%fx)",
   "container.spectrum.rei.midnight_solution_converting.title": "Midnight Dipping",
+  "container.spectrum.rei.heating.title": "Heating",
+  "container.spectrum.rei.freezing.title": "Freezing",
+  "container.spectrum.rei.chance": "Chance: %.0f %%",
 
   "container.spectrum.bedrock_anvil": "Repair & write Lore",
   "container.spectrum.bedrock_anvil.tooltip": "Indestructible. Free renaming, unlimited",

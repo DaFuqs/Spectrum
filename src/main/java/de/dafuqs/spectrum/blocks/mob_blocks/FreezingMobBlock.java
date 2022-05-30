@@ -32,6 +32,8 @@ public class FreezingMobBlock extends MobBlock {
 		put(Blocks.WATER, new Pair<>(Blocks.ICE.getDefaultState(), 1.0F));
 		put(Blocks.ICE, new Pair<>(Blocks.PACKED_ICE.getDefaultState(), 0.25F));
 		put(Blocks.PACKED_ICE, new Pair<>(Blocks.BLUE_ICE.getDefaultState(), 0.1F));
+		put(Blocks.GRASS, new Pair<>(Blocks.PODZOL.getDefaultState(), 0.25F));
+		put(Blocks.BASALT, new Pair<>(Blocks.CALCITE.getDefaultState(), 0.5F));
 	}};
 	public static final Map<BlockState, Pair<BlockState, Float>> FREEZING_STATE_MAP = new HashMap<>() {{
 		put(Blocks.LAVA.getDefaultState(), new Pair<>(Blocks.OBSIDIAN.getDefaultState(), 1.0F)); // just full, not flowing

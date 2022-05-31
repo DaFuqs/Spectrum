@@ -350,8 +350,8 @@
   "block.spectrum.treasure_chest": "Treasure Chest",
 
   "block.spectrum.jade_vines": "Jade Vines",
-  "block.spectrum.jade_vine_petal_block": "Jade Vine Petal Block",
-  "block.spectrum.jade_vine_petal_carpet": "Jade Vine Petal Carpet",
+  "block.spectrum.jade_vine_petal_block": "Jade Petal Block",
+  "block.spectrum.jade_vine_petal_carpet": "Jade Petal Carpet",
 
   "block.spectrum.spirit_sallow_roots": "Spirit Sallow Roots",
   "block.spectrum.spirit_sallow_log": "Spirit Sallow Log",
@@ -1597,7 +1597,7 @@
   "item.spectrum.germinated_jade_vine_seeds.tooltip": "§7Grows on the bottom of Wooden Fences",
   "item.spectrum.germinated_jade_vine_seeds.tooltip2": "§7Only grows when exposed to §fmoonlight",
   "item.spectrum.germinated_jade_vine_seeds.tooltip3": "§e⚠ Dies in direct sunlight",
-  "item.spectrum.jade_vine_petals": "Jade Vine Petals",
+  "item.spectrum.jade_vine_petals": "Jade Petals",
   "item.spectrum.moonstruck_nectar": "Moonstruck Nectar",
   "item.spectrum.restoration_tea": "Restoration Tea",
   "item.spectrum.restoration_tea.tooltip": "§7Cures all negative Status Effects and",

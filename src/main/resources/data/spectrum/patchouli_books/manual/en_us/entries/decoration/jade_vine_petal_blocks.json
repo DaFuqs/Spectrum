@@ -1,5 +1,5 @@
 {
-  "name": "Jade Vine Petal Blocks",
+  "name": "Jade Petal Blocks",
   "advancement": "spectrum:hidden/collect_jade_vine_petals",
   "icon": "spectrum:jade_vine_petal_block",
   "category": "spectrum:decoration_category",
@@ -10,7 +10,7 @@
   "pages": [
     {
       "type": "patchouli:crafting",
-      "title": "Jade Vine Petal Blocks",
+      "title": "Jade Petal Blocks",
       "recipe": "spectrum:crafting_table/jade_vines/jade_vine_petal_block",
       "text": "From the petals harvested from $(l:resources/jade_vines)Jade Vines$(/l) you created a small range of decoration blocks."
     },

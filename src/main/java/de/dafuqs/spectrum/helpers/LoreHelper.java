@@ -1,12 +1,14 @@
 package de.dafuqs.spectrum.helpers;
 
 import com.google.gson.JsonParseException;
+import me.shedaniel.rei.api.common.entry.EntryIngredient;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtList;
 import net.minecraft.nbt.NbtString;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
+import net.minecraft.text.TranslatableText;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -112,5 +114,16 @@ public class LoreHelper {
 		}
 		return false;
 	}
-
+	
+	public static void setLore(@NotNull ItemStack stack, @Nullable TranslatableText lore) {
+		NbtCompound nbtCompound = stack.getOrCreateSubNbt("display");
+		if (lore != null) {
+			NbtList nbtList = new NbtList();
+			nbtList.addElement(0, NbtString.of(Text.Serializer.toJson(lore)));
+			nbtCompound.put("Lore", nbtList);
+		} else {
+			nbtCompound.remove("Lore");
+		}
+	}
+	
 }

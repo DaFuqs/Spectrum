@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.blocks.spirit_instiller;
 
 import de.dafuqs.spectrum.blocks.MultiblockCrafter;
 import de.dafuqs.spectrum.blocks.decoration.GemstoneChimeBlock;
+import de.dafuqs.spectrum.blocks.enchanter.EnchanterBlockEntity;
 import de.dafuqs.spectrum.blocks.item_bowl.ItemBowlBlockEntity;
 import de.dafuqs.spectrum.blocks.upgrade.Upgradeable;
 import de.dafuqs.spectrum.helpers.Support;
@@ -69,6 +70,7 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 	private ISpiritInstillerRecipe currentRecipe;
 	private int craftingTime;
 	private int craftingTimeTotal;
+	private boolean canCraft;
 	
 	public SpiritInstillerBlockEntity(BlockPos pos, BlockState state) {
 		super(SpectrumBlockEntityRegistry.SPIRIT_INSTILLER, pos, state);
@@ -84,6 +86,7 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 		this.craftingTime = nbt.getShort("CraftingTime");
 		this.craftingTimeTotal = nbt.getShort("CraftingTimeTotal");
 		this.inventoryChanged = nbt.getBoolean("InventoryChanged");
+		this.canCraft = nbt.getBoolean("CanCraft");
 		if(nbt.contains("OwnerUUID")) {
 			this.ownerUUID = nbt.getUuid("OwnerUUID");
 		} else {
@@ -118,6 +121,7 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 		nbt.put("inventory", this.inventory.toNbtList());
 		nbt.putShort("CraftingTime", (short)this.craftingTime);
 		nbt.putShort("CraftingTimeTotal", (short)this.craftingTimeTotal);
+		nbt.putBoolean("CanCraft", this.canCraft);
 		nbt.putBoolean("InventoryChanged", this.inventoryChanged);
 		if(this.upgrades != null) {
 			nbt.put("Upgrades", Upgradeable.toNbt(this.upgrades));
@@ -209,7 +213,7 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 			spiritInstillerBlockEntity.inventoryChanged = false;
 		}
 		
-		if(spiritInstillerBlockEntity.currentRecipe != null) {
+		if(spiritInstillerBlockEntity.currentRecipe != null && spiritInstillerBlockEntity.canCraft) {
 			if(spiritInstillerBlockEntity.craftingTime % 60 == 1) {
 				if (!checkRecipeRequirements(world, blockPos, spiritInstillerBlockEntity)) {
 					spiritInstillerBlockEntity.craftingTime = 0;
@@ -279,6 +283,13 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 				spiritInstillerBlockEntity.craftingTimeTotal = (int) Math.ceil(spiritInstillerRecipe.getCraftingTime() / spiritInstillerBlockEntity.upgrades.get(Upgradeable.UpgradeType.SPEED));
 			}
 		}
+		
+		if(spiritInstillerBlockEntity.currentRecipe == null) {
+			spiritInstillerBlockEntity.canCraft = false;
+		} else {
+			spiritInstillerBlockEntity.canCraft = spiritInstillerBlockEntity.currentRecipe.canCraftWithStacks(instillerStack, spiritInstillerBlockEntity.autoCraftingInventory.getStack(1), spiritInstillerBlockEntity.autoCraftingInventory.getStack(1));
+		}
+		
 		spiritInstillerBlockEntity.updateInClientWorld();
 	}
 	
@@ -313,6 +324,7 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 			playerCanCraft = spiritInstillerBlockEntity.currentRecipe.canPlayerCraft(lastInteractedPlayer);
 		}
 
+
 		boolean structureComplete = SpiritInstillerBlock.verifyStructure(world, blockPos, null, spiritInstillerBlockEntity);
 		boolean canCraft = true;
 		if (!playerCanCraft || !structureComplete) {
@@ -326,6 +338,8 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 		if(lastInteractedPlayer instanceof ServerPlayerEntity serverPlayerEntity) {
 			testAndUnlockUnlockBossMemoryAdvancement(serverPlayerEntity, spiritInstillerBlockEntity.currentRecipe, canCraft);
 		}
+		
+		spiritInstillerBlockEntity.canCraft = canCraft;
 		return canCraft;
 	}
 	
@@ -341,8 +355,16 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 	}
 	
 	public static void craftSpiritInstillerRecipe(World world, @NotNull SpiritInstillerBlockEntity spiritInstillerBlockEntity, @NotNull ISpiritInstillerRecipe spiritInstillerRecipe) {
-		spiritInstillerRecipe.craft(spiritInstillerBlockEntity);
+		ItemStack resultStack = spiritInstillerRecipe.craft(spiritInstillerBlockEntity);
 		decrementItemsInInstillerAndBowls(spiritInstillerBlockEntity);
+		if(!resultStack.isEmpty()) {
+			// spawn the result stack in world
+			if(spiritInstillerBlockEntity.getStack(0).isEmpty()) {
+				spiritInstillerBlockEntity.setStack(0, resultStack);
+			} else {
+				EnchanterBlockEntity.spawnItemStackAsEntitySplitViaMaxCount(world, spiritInstillerBlockEntity.pos, resultStack, resultStack.getCount());
+			}
+		}
 		
 		playCraftingFinishedEffects(spiritInstillerBlockEntity);
 		spiritInstillerBlockEntity.craftingTime = 0;
@@ -446,7 +468,12 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 	// Called when the chunk is first loaded to initialize this be
 	public NbtCompound toInitialChunkDataNbt() {
 		NbtCompound nbtCompound = new NbtCompound();
-		this.writeNbt(nbtCompound);
+		nbtCompound.put("inventory", this.inventory.toNbtList());
+		nbtCompound.putShort("CraftingTime", (short)this.craftingTime);
+		nbtCompound.putShort("CraftingTimeTotal", (short)this.craftingTimeTotal);
+		if(this.currentRecipe != null && canCraft) {
+			nbtCompound.putString("CurrentRecipe", this.currentRecipe.getId().toString());
+		}
 		return nbtCompound;
 	}
 	

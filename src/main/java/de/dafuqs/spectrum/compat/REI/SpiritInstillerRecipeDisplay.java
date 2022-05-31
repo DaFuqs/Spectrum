@@ -1,13 +1,16 @@
 package de.dafuqs.spectrum.compat.REI;
 
 import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.helpers.LoreHelper;
 import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.recipe.spirit_instiller.ISpiritInstillerRecipe;
+import de.dafuqs.spectrum.recipe.spirit_instiller.spawner.SpawnerChangeRecipe;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.display.SimpleGridMenuDisplay;
 import me.shedaniel.rei.api.common.entry.EntryIngredient;
 import me.shedaniel.rei.api.common.util.EntryIngredients;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.NotNull;
 
@@ -26,7 +29,14 @@ public class SpiritInstillerRecipeDisplay implements SimpleGridMenuDisplay, Gate
 
 	public SpiritInstillerRecipeDisplay(@NotNull ISpiritInstillerRecipe recipe) {
 		this.craftingInputs = recipe.getIngredientStacks().stream().map(REIHelper::ofIngredientStack).collect(Collectors.toCollection(ArrayList::new));
-		this.output = EntryIngredients.of(recipe.getOutput());
+		
+		if(recipe instanceof SpawnerChangeRecipe spawnerChangeRecipe) {
+			ItemStack outputStack = recipe.getOutput();
+			LoreHelper.setLore(outputStack, spawnerChangeRecipe.getOutputLoreText());
+			this.output = EntryIngredients.of(outputStack);
+		} else {
+			this.output = EntryIngredients.of(recipe.getOutput());
+		}
 		this.experience = recipe.getExperience();
 		this.craftingTime = recipe.getCraftingTime();
 		this.requiredAdvancementIdentifier = recipe.getRequiredAdvancementIdentifier();

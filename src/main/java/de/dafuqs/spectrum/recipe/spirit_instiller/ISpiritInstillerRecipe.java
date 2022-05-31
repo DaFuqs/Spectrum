@@ -95,6 +95,8 @@ public interface ISpiritInstillerRecipe extends Recipe<Inventory>, GatedRecipe {
 	@Override
 	boolean canPlayerCraft(PlayerEntity playerEntity);
 	
+	boolean canCraftWithStacks(ItemStack instillerStack, ItemStack leftBowlStack, ItemStack rightBowlStack);
+	
 	static void grantPlayerSpiritInstillingAdvancementCriterion(World world, UUID playerUUID, ItemStack resultStack, int experience) {
 		ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity) PlayerOwned.getPlayerEntityIfOnline(world, playerUUID);
 		if(serverPlayerEntity != null) {

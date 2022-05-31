@@ -9,48 +9,40 @@
   },
   "pages": [
     {
-      "type": "patchouli:text",
-      "text": "TODO"
-    },
-    {
       "type": "patchouli:spotlight",
       "title": "Harvesting Spawners",
       "item": "spectrum:resonant_pickaxe",
-      "text": "The $(l:enchanting/resonance)Resonance$(/l) enchantment enables you to gather Spawners and actually get them to drop to be collected by you. Using the $(l:creating_life/spirit_instiller)Spirit Instiller$(/l) you can change that spawners properties to your liking."
+      "text": "The $(l:enchanting/resonance)Resonance$(/l) enchantment enables you to get Spawners to drop, to be collected by you.($br2)While you haven't yet figured out how to make these constructs yourself, you now feel more than capable of changing their properties in your favor, using the $(l:creating_life/spirit_instiller)Spirit Instiller$(/l)."
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
       "title": "Changing Creature",
-      "recipe": "spectrum:spirit_instiller/spawner_change",
-      "text": "Using a similar technique to $(l:creating_life/memory)remembering Memories$(/l) you can change the Spawners creature association."
+      "recipe": "spectrum:spirit_instiller/spawner/spawner_creature_change",
+      "text": "Using a similar technique to $(l:creating_life/memory)remembering Memories$(/l) you can change the Spawners creature association, making it spew out another type of creature alltogether."
     },
     {
-      "type": "patchouli:spotlight",
-      "advancement": "spectrum:spectrum:progression/enchantments/clovers_favor",
-      "title": "Clovers' Favor",
-      "item": "spectrum:spawner{Enchantments: [{id: \"spectrum:clovers_favor\", lvl: 1s}]}",
-      "text": "Increases the amount of mobs that is spawned in one cycle."
+      "type": "spectrum:spirit_instiller_crafting",
+      "title": "Lowering Spawn Delay",
+      "recipe": "spectrum:spirit_instiller/spawner/spawner_spawn_delay_change",
+      "text": "Lowers both min and max spawn delay."
     },
     {
-      "type": "patchouli:spotlight",
-      "advancement": "spectrum:spectrum:progression/enchantments/vanilla_projectile",
-      "title": "Quick Charge",
-      "item": "spectrum:spawner{Enchantments: [{id: \"minecraft:quick_charge\", lvl: 1s}]}",
-      "text": "Decreases the Delay between Spawns, making the Spawner spew out new creatures even quicker."
+      "type": "spectrum:spirit_instiller_crafting",
+      "title": "Increasing Spawn Count",
+      "recipe": "spectrum:spirit_instiller/spawner/spawner_spawn_count_change",
+      "text": "Increases the count of Creatures summoned with each cycle."
     },
     {
-      "type": "patchouli:spotlight",
-      "advancement": "spectrum:spectrum:progression/enchantments/pest_control",
-      "title": "Pest Control",
-      "item": "spectrum:spawner{Enchantments: [{id: \"spectrum:pest_control\", lvl: 1s}]}",
-      "text": "Normally, Spawners would suddenly stop working if they notice a lot of hostile auras around them. Almost like if waiting for you to do the next move.$(br)Enchanted with $(l:enchantments/pest_control)Pest Control$(/l) it will function much more relentless, spewing out wave after wave of enemies."
+      "type": "spectrum:spirit_instiller_crafting",
+      "title": "Improving Summoning Criteria",
+      "recipe": "spectrum:spirit_instiller/spawner/spawner_max_nearby_entities_change",
+      "text": "Increases the number of creatures allowed to be close to the spawner.$(br2)$(italic)Spawners seem to naturally stop spawning creatures when there are a lot of them close-by already. Almost like they want to give you a chance. Pathetic, isn't it? As if you would need that."
     },
     {
-      "type": "patchouli:spotlight",
-      "advancement": "spectrum:spectrum:progression/enchantments/clovers_favor",
-      "title": "Resonance",
-      "item": "spectrum:spawner{Enchantments: [{id: \"spectrum:resonance\", lvl: 1s}]}",
-      "text": "Makes the Spawner work even if no-one is close-by."
+      "type": "spectrum:spirit_instiller_crafting",
+      "title": "Increasing Player Range",
+      "recipe": "spectrum:spirit_instiller/spawner/spawner_required_player_range_change",
+      "text": "Increases the range you can stand for the spawner to still spawn creatures."
     }
   ]
 }

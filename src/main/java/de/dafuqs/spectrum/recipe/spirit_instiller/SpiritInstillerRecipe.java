@@ -94,12 +94,13 @@ public class SpiritInstillerRecipe implements ISpiritInstillerRecipe {
 	
 	@Override
 	public ItemStack craft(Inventory inv) {
+		ItemStack resultStack = ItemStack.EMPTY;
 		if(inv instanceof SpiritInstillerBlockEntity spiritInstillerBlockEntity) {
 			Map<Upgradeable.UpgradeType, Double> upgrades = spiritInstillerBlockEntity.getUpgrades();
 			World world = spiritInstillerBlockEntity.getWorld();
 			BlockPos pos = spiritInstillerBlockEntity.getPos();
 			
-			ItemStack resultStack = getOutput().copy();
+			resultStack = getOutput().copy();
 			
 			// Yield upgrade
 			if (!areYieldAndEfficiencyUpgradesDisabled() && upgrades.get(Upgradeable.UpgradeType.YIELD) != 1.0) {
@@ -114,20 +115,20 @@ public class SpiritInstillerRecipe implements ISpiritInstillerRecipe {
 				}
 			}
 			
-			// spawn the result stack in world
-			EnchanterBlockEntity.spawnItemStackAsEntitySplitViaMaxCount(world, pos, resultStack, resultStack.getCount());
-			
 			// Calculate and spawn experience
-			double experienceModifier = upgrades.get(Upgradeable.UpgradeType.EXPERIENCE);
-			float recipeExperienceBeforeMod = getExperience();
-			int awardedExperience = Support.getIntFromDecimalWithChance(recipeExperienceBeforeMod * experienceModifier, world.random);
-			MultiblockCrafter.spawnExperience(world, pos.up(), awardedExperience);
+			int awardedExperience = 0;
+			if (getExperience() > 0) {
+				double experienceModifier = upgrades.get(Upgradeable.UpgradeType.EXPERIENCE);
+				float recipeExperienceBeforeMod = getExperience();
+				awardedExperience = Support.getIntFromDecimalWithChance(recipeExperienceBeforeMod * experienceModifier, world.random);
+				MultiblockCrafter.spawnExperience(world, pos.up(), awardedExperience);
+			}
 			
 			// Run Advancement trigger
 			ISpiritInstillerRecipe.grantPlayerSpiritInstillingAdvancementCriterion(world, spiritInstillerBlockEntity.getOwnerUUID(), resultStack, awardedExperience);
 		}
 		
-		return ItemStack.EMPTY;
+		return resultStack;
 	}
 	
 	@Override
@@ -154,6 +155,11 @@ public class SpiritInstillerRecipe implements ISpiritInstillerRecipe {
 	@Override
 	public boolean canPlayerCraft(PlayerEntity playerEntity) {
 		return Support.hasAdvancement(playerEntity, UNLOCK_SPIRIT_INSTILLER_ADVANCEMENT_IDENTIFIER) && Support.hasAdvancement(playerEntity, this.requiredAdvancementIdentifier);
+	}
+	
+	@Override
+	public boolean canCraftWithStacks(ItemStack instillerStack, ItemStack leftBowlStack, ItemStack rightBowlStack) {
+		return true;
 	}
 	
 }

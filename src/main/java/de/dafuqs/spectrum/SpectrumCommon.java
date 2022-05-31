@@ -27,7 +27,7 @@ import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.recipe.enchantment_upgrade.EnchantmentUpgradeRecipe;
 import de.dafuqs.spectrum.recipe.enchantment_upgrade.EnchantmentUpgradeRecipeSerializer;
 import de.dafuqs.spectrum.recipe.potion_workshop.PotionWorkshopReagents;
-import de.dafuqs.spectrum.recipe.spirit_instiller.SpiritInstillerSpawnerChangeRecipe;
+import de.dafuqs.spectrum.recipe.spirit_instiller.spawner.*;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.registries.color.ColorRegistry;
 import de.dafuqs.spectrum.worldgen.SpectrumConfiguredFeatures;
@@ -320,7 +320,11 @@ public class SpectrumCommon implements ModInitializer {
 	}
 	
 	public static void registerRecipeSerializers(BiConsumer<RecipeSerializer<?>, Identifier> identifier) {
-		identifier.accept(SpiritInstillerSpawnerChangeRecipe.SERIALIZER, new Identifier(SpectrumCommon.MOD_ID, "spirit_instiller_spawner_change"));
+		identifier.accept(SpawnerCreatureChangeRecipe.SERIALIZER, new Identifier(SpectrumCommon.MOD_ID, "spirit_instiller_spawner_creature_change"));
+		identifier.accept(SpawnerMaxNearbyEntitiesChangeRecipe.SERIALIZER, new Identifier(SpectrumCommon.MOD_ID, "spirit_instiller_spawner_max_nearby_entities_change"));
+		identifier.accept(SpawnerRequiredPlayerRangeChangeRecipe.SERIALIZER, new Identifier(SpectrumCommon.MOD_ID, "spirit_instiller_spawner_spawner_player_range_change"));
+		identifier.accept(SpawnerSpawnCountChangeRecipe.SERIALIZER, new Identifier(SpectrumCommon.MOD_ID, "spirit_instiller_spawner_spawn_count_change"));
+		identifier.accept(SpawnerSpawnDelayChangeRecipe.SERIALIZER, new Identifier(SpectrumCommon.MOD_ID, "spirit_instiller_spawner_spawn_delay_change"));
 	}
 
 }

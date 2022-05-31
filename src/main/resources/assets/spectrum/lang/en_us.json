@@ -183,6 +183,7 @@
   "spectrum.subtitles.block.fading.place": "High pitched screeching",
   "spectrum.subtitles.block.failing.place": "High pitched screeching",
   "spectrum.subtitles.block.ruin.place": "High pitched screeching",
+  "spectrum.subtitles.enchanter_ding": "Enchanter Dings",
   "spectrum.subtitles.spectrum_theme_plays": "Spectrum theme plays",
   "spectrum.subtitles.boss_theme_plays": "Boss theme plays",
   "spectrum.subtitles.deeper_down_theme_plays": "Deeper Down theme plays",
@@ -1178,6 +1179,11 @@
   "item.spectrum.spawner.tooltip.max_spawn_delay": "Max Spawn Delay: %d",
   "item.spectrum.spawner.tooltip.spawn_range": "Spawn Range: %d",
   "item.spectrum.spawner.tooltip.required_player_range": "Required Player Range: %d",
+  "recipe.spectrum.spawner.lore.changed_creature": "Changes the creature to that of the head",
+  "recipe.spectrum.spawner.lore.increased_max_nearby_entities": "Less sensitive to creatures in proximity",
+  "recipe.spectrum.spawner.lore.increased_required_player_range": "Longer active when the player is farther away.",
+  "recipe.spectrum.spawner.lore.increased_spawn_count": "Increased count of spawned creatures",
+  "recipe.spectrum.spawner.lore.decreased_spawn_delay": "Decreased spawn delay",
 
   "item.spectrum.citrine_shard": "Citrine Shard",
   "item.spectrum.topaz_shard": "Topaz Shard",
@@ -1189,6 +1195,7 @@
   "item.spectrum.neolith": "Neolith",
   "item.spectrum.bedrock_dust": "Bedrock Dust",
   "item.spectrum.midnight_aberration": "Midnight Aberration",
+  "item.spectrum.midnight_chip": "Midnight Chip",
 
   "item.spectrum.logo_banner_pattern": "Banner Pattern",
   "item.spectrum.logo_banner_pattern.desc": "Color Theory",

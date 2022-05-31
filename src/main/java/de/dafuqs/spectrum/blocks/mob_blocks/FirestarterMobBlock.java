@@ -5,6 +5,7 @@ import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemStack;
+import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.RecipeManager;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.recipe.SmeltingRecipe;
@@ -16,6 +17,7 @@ import net.minecraft.tag.BlockTags;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Pair;
+import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.BlockView;
@@ -50,10 +52,13 @@ public class FirestarterMobBlock extends MobBlock {
 		for(SmeltingRecipe recipe : recipeManager.listAllOfType(RecipeType.SMELTING)) {
 			ItemStack outputStack = recipe.getOutput();
 			if(outputStack.getItem() instanceof BlockItem outputBlockItem && outputBlockItem.getBlock() != Blocks.AIR) {
-				ItemStack[] inputStacks = recipe.getIngredients().get(0).getMatchingStacks();
-				for(ItemStack inputStack : inputStacks) {
-					if(inputStack.getItem() instanceof BlockItem inputBlockItem && inputBlockItem.getBlock() != Blocks.AIR) {
-						BURNING_MAP.put(inputBlockItem.getBlock(), new Pair<>(outputBlockItem.getBlock().getDefaultState(), 1.0F));
+				DefaultedList<Ingredient> ingredients = recipe.getIngredients();
+				if(!ingredients.isEmpty()) {
+					ItemStack[] inputStacks = ingredients.get(0).getMatchingStacks();
+					for (ItemStack inputStack : inputStacks) {
+						if (inputStack.getItem() instanceof BlockItem inputBlockItem && inputBlockItem.getBlock() != Blocks.AIR) {
+							BURNING_MAP.put(inputBlockItem.getBlock(), new Pair<>(outputBlockItem.getBlock().getDefaultState(), 1.0F));
+						}
 					}
 				}
 			}

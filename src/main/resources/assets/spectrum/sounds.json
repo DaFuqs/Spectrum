@@ -12,7 +12,6 @@
     ]
   },
   "enchanter_ding": {
-    "subtitle": "spectrum.subtitles.enchanter_ding",
     "sounds": [
       "spectrum:enchanter_ding"
     ]

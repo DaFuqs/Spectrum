@@ -12,7 +12,7 @@
       "type": "patchouli:spotlight",
       "title": "Harvesting Spawners",
       "item": "spectrum:resonant_pickaxe",
-      "text": "The $(l:enchanting/resonance)Resonance$(/l) enchantment enables you to get Spawners to drop, to be collected by you.($br2)While you haven't yet figured out how to make these constructs yourself, you now feel more than capable of changing their properties in your favor, using the $(l:creating_life/spirit_instiller)Spirit Instiller$(/l)."
+      "text": "The $(l:enchanting/resonance)Resonance$(/l) enchantment enables you to get Spawners to drop, to be collected by you.$(br2)While you haven't yet figured out how to make these constructs yourself, you now feel more than capable of changing their properties in your favor, using the $(l:creating_life/spirit_instiller)Spirit Instiller$(/l)."
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
@@ -22,25 +22,25 @@
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
-      "title": "Lowering Spawn Delay",
+      "title": "Spawn Delay",
       "recipe": "spectrum:spirit_instiller/spawner/spawner_spawn_delay_change",
       "text": "Lowers both min and max spawn delay."
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
-      "title": "Increasing Spawn Count",
+      "title": "Spawn Count",
       "recipe": "spectrum:spirit_instiller/spawner/spawner_spawn_count_change",
       "text": "Increases the count of Creatures summoned with each cycle."
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
-      "title": "Improving Summoning Criteria",
+      "title": "Summoning Criteria",
       "recipe": "spectrum:spirit_instiller/spawner/spawner_max_nearby_entities_change",
-      "text": "Increases the number of creatures allowed to be close to the spawner.$(br2)$(italic)Spawners seem to naturally stop spawning creatures when there are a lot of them close-by already. Almost like they want to give you a chance. Pathetic, isn't it? As if you would need that."
+      "text": "Increases the number of creatures allowed to be close to the spawner.$(br)$(italic)Spawners seem to naturally stop spawning creatures when there are a lot of them close-by already. Almost like they want to give you a chance. Pathetic, isn't it? As if you would need that."
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
-      "title": "Increasing Player Range",
+      "title": "Activation Range",
       "recipe": "spectrum:spirit_instiller/spawner/spawner_required_player_range_change",
       "text": "Increases the range you can stand for the spawner to still spawn creatures."
     }

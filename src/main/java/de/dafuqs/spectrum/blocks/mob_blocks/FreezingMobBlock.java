@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.blocks.mob_blocks;
 
+import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -34,6 +35,7 @@ public class FreezingMobBlock extends MobBlock {
 		put(Blocks.PACKED_ICE, new Pair<>(Blocks.BLUE_ICE.getDefaultState(), 0.1F));
 		put(Blocks.GRASS, new Pair<>(Blocks.PODZOL.getDefaultState(), 0.25F));
 		put(Blocks.BASALT, new Pair<>(Blocks.CALCITE.getDefaultState(), 0.5F));
+		put(SpectrumBlocks.BLAZING_CRYSTAL, new Pair<>(SpectrumBlocks.FROSTBITE_CRYSTAL.getDefaultState(), 0.5F));
 	}};
 	public static final Map<BlockState, Pair<BlockState, Float>> FREEZING_STATE_MAP = new HashMap<>() {{
 		put(Blocks.LAVA.getDefaultState(), new Pair<>(Blocks.OBSIDIAN.getDefaultState(), 1.0F)); // just full, not flowing

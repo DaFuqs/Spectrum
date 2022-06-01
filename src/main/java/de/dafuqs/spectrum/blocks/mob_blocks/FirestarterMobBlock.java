@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.blocks.mob_blocks;
 
+import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import net.minecraft.block.*;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
@@ -42,6 +43,7 @@ public class FirestarterMobBlock extends MobBlock {
 		put(Blocks.CALCITE, new Pair<>(Blocks.BASALT.getDefaultState(), 0.5F));
 		put(Blocks.NETHERRACK, new Pair<>(Blocks.MAGMA_BLOCK.getDefaultState(), 0.25F));
 		put(Blocks.MAGMA_BLOCK, new Pair<>(Blocks.LAVA.getDefaultState(), 0.5F));
+		put(SpectrumBlocks.FROSTBITE_CRYSTAL, new Pair<>(SpectrumBlocks.BLAZING_CRYSTAL.getDefaultState(), 0.5F));
 	}};
 	
 	public FirestarterMobBlock(Settings settings) {

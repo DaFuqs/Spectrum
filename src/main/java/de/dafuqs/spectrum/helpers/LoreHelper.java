@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.helpers;
 
 import com.google.gson.JsonParseException;
-import me.shedaniel.rei.api.common.entry.EntryIngredient;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtList;

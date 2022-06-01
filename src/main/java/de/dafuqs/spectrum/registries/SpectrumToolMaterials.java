@@ -9,8 +9,8 @@ import java.util.function.Supplier;
 public class SpectrumToolMaterials {
 
 	public enum ToolMaterial implements net.minecraft.item.ToolMaterial {
-		BEDROCK(5, 0, 15.0F, 8.0F, 8, Ingredient::empty),
-		LOW_HEALTH(MiningLevels.IRON, 8, 4.0F, 2.0F, 3, Ingredient::empty),
+		BEDROCK(5, 0, 15.0F, 8.0F, 3, Ingredient::empty),
+		LOW_HEALTH(MiningLevels.IRON, 16, 4.0F, 2.0F, 10, Ingredient::empty),
 		VOIDING(MiningLevels.DIAMOND, 1143, 20.0F, 1.0F, 5, Ingredient::empty);
 
 		private final int miningLevel;

@@ -2,11 +2,14 @@ package de.dafuqs.spectrum.blocks.jade_vines;
 
 import de.dafuqs.spectrum.items.conditional.CloakedItem;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
+import net.minecraft.advancement.criterion.Criteria;
+import net.minecraft.block.BlockState;
 import net.minecraft.client.item.TooltipContext;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
@@ -15,6 +18,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.event.GameEvent;
 
 import java.util.List;
 
@@ -38,12 +42,22 @@ public class GerminatedJadeVineSeedsItem extends CloakedItem {
 				
 				return ActionResult.SUCCESS;
 			} else {
+				ServerPlayerEntity player = (ServerPlayerEntity) context.getPlayer();
+				
 				world.setBlockState(pos, SpectrumBlocks.JADE_VINE_ROOTS.getDefaultState());
-				world.setBlockState(pos.down(), SpectrumBlocks.JADE_VINE_BULB.getDefaultState());
+				BlockState bulbState = SpectrumBlocks.JADE_VINE_BULB.getDefaultState();
+				world.setBlockState(pos.down(), bulbState);
 				world.playSound(null, pos, SoundEvents.ITEM_CROP_PLANT, SoundCategory.PLAYERS, 1.0F, 1.0F);
 				
-				PlayerEntity placer = context.getPlayer();
-				if(placer == null || !placer.isCreative()) {
+				BlockSoundGroup blockSoundGroup = bulbState.getSoundGroup();
+				world.playSound(player, pos.down(), bulbState.getSoundGroup().getPlaceSound(), SoundCategory.BLOCKS, (blockSoundGroup.getVolume() + 1.0F) / 2.0F, blockSoundGroup.getPitch() * 0.8F);
+				world.emitGameEvent(player, GameEvent.BLOCK_PLACE, pos);
+				world.emitGameEvent(player, GameEvent.BLOCK_PLACE, pos.down());
+				
+				Criteria.PLACED_BLOCK.trigger(player, pos, context.getStack());
+				Criteria.PLACED_BLOCK.trigger(player, pos.down(), context.getStack());
+				
+				if(player == null || !player.isCreative()) {
 					context.getStack().decrement(1);
 				}
 				return ActionResult.CONSUME;

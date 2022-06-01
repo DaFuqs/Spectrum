@@ -19,11 +19,6 @@
           "items": [
             "spectrum:germinated_jade_vine_seeds"
           ]
-        },
-        "location": {
-          "block": {
-            "tag": "minecraft:wooden_fences"
-          }
         }
       }
     },

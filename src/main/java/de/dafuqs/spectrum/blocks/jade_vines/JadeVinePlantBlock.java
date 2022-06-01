@@ -114,7 +114,9 @@ public class JadeVinePlantBlock extends Block implements JadeVine {
 		
 		int age = state.get(AGE);
 		if(age == Properties.AGE_7_MAX) {
-			JadeVine.spawnBloomParticlesClient(world, pos);
+			if(random.nextFloat() < 0.3) {
+				JadeVine.spawnBloomParticlesClient(world, pos);
+			}
 		} else if (age != 0){
 			JadeVine.spawnParticlesClient(world, pos);
 		}

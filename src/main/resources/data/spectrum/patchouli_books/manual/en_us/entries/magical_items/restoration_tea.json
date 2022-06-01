@@ -1,6 +1,6 @@
 {
   "name": "Restoration Tea",
-  "advancement": "spectrum:build_basic_pedestal_structure",
+  "advancement": "spectrum:hidden/collect_jade_vine_petals",
   "icon": "spectrum:restoration_tea",
   "category": "spectrum:magical_items_category",
   "extra_recipe_mappings": {

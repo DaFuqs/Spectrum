@@ -5,7 +5,9 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ArmorMaterial;
+import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.collection.DefaultedList;
 
 import java.util.Map;
 
@@ -24,5 +26,12 @@ public class SpectrumArmorItem extends ArmorItem implements Preenchanted {
 	public ItemStack getDefaultStack() {
 		return getDefaultEnchantedStack(this);
 	}
-
+	
+	@Override
+	public void appendStacks(ItemGroup group, DefaultedList<ItemStack> stacks) {
+		if (this.isIn(group)) {
+			stacks.add(getDefaultEnchantedStack(this));
+		}
+	}
+	
 }

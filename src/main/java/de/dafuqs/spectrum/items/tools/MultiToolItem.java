@@ -9,12 +9,10 @@ import net.minecraft.block.BlockState;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.Enchantments;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUsageContext;
-import net.minecraft.item.Items;
-import net.minecraft.item.ToolMaterial;
+import net.minecraft.item.*;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -35,6 +33,13 @@ public class MultiToolItem extends SpectrumPickaxeItem implements Preenchanted, 
 	@Override
 	public ItemStack getDefaultStack() {
 		return getDefaultEnchantedStack(this);
+	}
+	
+	@Override
+	public void appendStacks(ItemGroup group, DefaultedList<ItemStack> stacks) {
+		if (this.isIn(group)) {
+			stacks.add(getDefaultEnchantedStack(this));
+		}
 	}
 	
 	@Override

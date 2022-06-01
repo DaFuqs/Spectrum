@@ -107,8 +107,9 @@ public class JadeVineRootsBlock extends BlockWithEntity implements JadeVine{
 		super.randomTick(state, world, pos, random);
 		
 		if(hasRandomTicks(state)) {
-			// die in sunlight
-			if(JadeVine.doesDie(world, pos)) {
+			// die in sunlight, or then the bulb / plant was destroyed
+			int age = getAge(world, pos, state);
+			if(JadeVine.doesDie(world, pos) || age < 0) {
 				setDead(world, pos);
 				world.playSound(null, pos, SoundEvents.ITEM_CROP_PLANT, SoundCategory.BLOCKS, 0.5F, 0.9F + 0.2F * world.random.nextFloat() * 0.2F);
 			} else if(canGrow(world, pos)) {
@@ -119,22 +120,21 @@ public class JadeVineRootsBlock extends BlockWithEntity implements JadeVine{
 					rememberGrownTime(world, pos);
 					world.playSound(null, pos, SoundEvents.ITEM_CROP_PLANT, SoundCategory.BLOCKS, 0.5F, 0.9F + 0.2F * world.random.nextFloat() * 0.2F);
 				} else {
-					int age = getAge(world, pos, state);
 					int targetAge = age;
-					if(age == Properties.AGE_7_MAX - 1) {
+					if (age == Properties.AGE_7_MAX - 1) {
 						// only reach full bloom on full moon nights
-						if(world.getMoonPhase() == 0) { // 0 = full moon
+						if (world.getMoonPhase() == 0) { // 0 = full moon
 							targetAge = Properties.AGE_7_MAX;
 						}
-					} else if(age == Properties.AGE_7_MAX) {
+					} else if (age == Properties.AGE_7_MAX) {
 						// 2 days after full moon: revert to petal stage
-						if(world.getMoonPhase() > 2) {
+						if (world.getMoonPhase() > 2) {
 							targetAge = Properties.AGE_7_MAX - 1;
 						}
 					} else {
 						targetAge = age + 1;
 					}
-					if(targetAge != age) {
+					if (targetAge != age) {
 						boolean couldGrow = setPlantToAge(world, pos, targetAge);
 						if (couldGrow) {
 							world.playSound(null, pos, SoundEvents.ITEM_CROP_PLANT, SoundCategory.BLOCKS, 0.5F, 0.9F + 0.2F * world.random.nextFloat() * 0.2F);
@@ -209,6 +209,8 @@ public class JadeVineRootsBlock extends BlockWithEntity implements JadeVine{
 		return anyGrown;
 	}
 	
+	// -1 means the plant is not valid anymore and should die off
+	// (like the bulb being removed and only roots left)
 	int getAge(World world, BlockPos blockPos, BlockState blockState) {
 		if(blockState.get(DEAD)) {
 			return 0;
@@ -218,8 +220,11 @@ public class JadeVineRootsBlock extends BlockWithEntity implements JadeVine{
 			Block plantBlock = plantState.getBlock();
 			if (plantBlock instanceof JadeVinePlantBlock) {
 				return plantState.get(JadeVinePlantBlock.AGE);
+			} else if(plantBlock instanceof JadeVineBulbBlock) {
+				return 1;
+			} else {
+				return -1;
 			}
-			return 1;
 		}
 	}
 	

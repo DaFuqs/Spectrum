@@ -122,7 +122,7 @@ public class JadeVinePlantBlock extends Block implements JadeVine {
 	
 	@Override
 	public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
-		if (!state.canPlaceAt(world, pos)) {
+		if (!state.canPlaceAt(world, pos) || missingBottom(state, world.getBlockState(pos.down()))) {
 			world.createAndScheduleBlockTick(pos, this, 1);
 		}
 		return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
@@ -130,8 +130,17 @@ public class JadeVinePlantBlock extends Block implements JadeVine {
 	
 	@Override
 	public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-		if (!state.canPlaceAt(world, pos)) {
+		if (!state.canPlaceAt(world, pos) || missingBottom(state, world.getBlockState(pos.down()))) {
 			world.breakBlock(pos, false);
+		}
+	}
+	
+	private boolean missingBottom(BlockState state, BlockState belowState) {
+		JadeVinesPlantPart part = state.get(PART);
+		if(part == JadeVinesPlantPart.TIP) {
+			return false;
+		} else {
+			return !(belowState.getBlock() instanceof JadeVinePlantBlock);
 		}
 	}
 	

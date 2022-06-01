@@ -249,7 +249,7 @@ public class SpectrumItems {
 	public static final CloakedItem STARDUST = new CloakedItemWithLoomPattern(resourcesItemSettings, new Identifier(SpectrumCommon.MOD_ID, "milestones/unlock_shooting_stars"), Items.PURPLE_DYE, SpectrumBannerPatterns.SHIMMER);
 	
 	public static final Item HIBERNATING_JADE_VINE_SEEDS = new ItemWithTooltip(resourcesItemSettingsSixteen, "item.spectrum.hibernating_jade_vine_seeds.tooltip");
-	public static final CloakedItem GERMINATED_JADE_VINE_SEEDS = new GerminatedJadeVineSeedsItem(resourcesItemSettingsSixteen, new Identifier(SpectrumCommon.MOD_ID, "midgame/build_spirit_instiller_structure"), Items.LIME_DYE);
+	public static final CloakedItem GERMINATED_JADE_VINE_SEEDS = new GerminatedJadeVineSeedsItem(resourcesItemSettingsSixteen, new Identifier(SpectrumCommon.MOD_ID, "hidden/collect_hibernating_jade_vine_seeds"), Items.LIME_DYE);
 	public static final CloakedItem JADE_VINE_PETALS = new CloakedItemWithLoomPattern(resourcesItemSettings, new Identifier(SpectrumCommon.MOD_ID, "midgame/build_spirit_instiller_structure"), Items.LIME_DYE, SpectrumBannerPatterns.JADE_VINE);
 	public static final CloakedItem MOONSTRUCK_NECTAR = new CloakedItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(3).rarity(Rarity.UNCOMMON).maxCount(16).recipeRemainder(Items.GLASS_BOTTLE), new Identifier(SpectrumCommon.MOD_ID, "midgame/build_spirit_instiller_structure"), Items.LIME_DYE);
 	public static final Item JADE_JELLY = new JadeJellyItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).maxCount(64).rarity(Rarity.UNCOMMON).food(JadeJellyItem.FOOD_COMPONENT));

@@ -10,6 +10,7 @@ import me.shedaniel.rei.api.common.display.SimpleGridMenuDisplay;
 import me.shedaniel.rei.api.common.entry.EntryIngredient;
 import me.shedaniel.rei.api.common.util.EntryIngredients;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.NotNull;
@@ -18,6 +19,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static de.dafuqs.spectrum.recipe.spirit_instiller.ISpiritInstillerRecipe.UNLOCK_SPIRIT_INSTILLER_ADVANCEMENT_IDENTIFIER;
 
 public class SpiritInstillerRecipeDisplay implements SimpleGridMenuDisplay, GatedRecipeDisplay {
 	
@@ -66,7 +69,8 @@ public class SpiritInstillerRecipeDisplay implements SimpleGridMenuDisplay, Gate
 	}
 
 	public boolean isUnlocked() {
-		return Support.hasAdvancement(MinecraftClient.getInstance().player, this.requiredAdvancementIdentifier);
+		PlayerEntity player = MinecraftClient.getInstance().player;
+		return Support.hasAdvancement(player, UNLOCK_SPIRIT_INSTILLER_ADVANCEMENT_IDENTIFIER) && Support.hasAdvancement(player, this.requiredAdvancementIdentifier);
 	}
 
 	@Override

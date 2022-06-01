@@ -2,7 +2,7 @@
   "criteria": {
     "has_jade_jelly": {
       "trigger": "minecraft:inventory_changed",
-      "conditions": { "items": [{ "item": "spectrum:jade_jelly" }] }
+      "conditions": { "items": [{ "items": ["spectrum:jade_jelly" ] }] }
     }
   }
 }

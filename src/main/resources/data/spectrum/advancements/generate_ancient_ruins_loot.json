@@ -27,7 +27,7 @@
             }
           }
         ],
-        "loot_table": "spectrum:ancient_ruins_loot"
+        "loot_table": "spectrum:chests/ancient_ruins_main"
       }
     },
     "gotten_previous": {

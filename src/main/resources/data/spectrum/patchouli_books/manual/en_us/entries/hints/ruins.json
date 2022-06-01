@@ -20,7 +20,7 @@
         "advancement": "spectrum:find_ancient_ruins",
         "completion_advancement": "spectrum:generate_ancient_ruins_loot",
         "cost": "spectrum:refined_azurite#12",
-        "text": "The entrance seems to be blocked by a powerful forcefield. Whoever built those was kind enough to leave you clues, however! The hearts on the forcefield's sides seem to indicate you have to have Azure Dike active"
+        "text": "The entrance seems to be blocked by a powerful forcefield. Whoever built those was kind enough to leave you clues, however! The hearts on the forcefield's sides seem to indicate you have to have Azure Dike active."
       }
     ]
 }

@@ -97,6 +97,8 @@ dependencies {
 
 	modImplementation include("com.github.devs-immortal:Incubus-Core:${project.incubus_core_version}")
 
+	modImplementation(include("io.github.ladysnake:satin:${project.satin_version}"))
+
 	// Soft dependencies:
 	// Descriptions for all Enchantments https://maven.blamejared.com/net/darkhax/enchdesc/
 	modCompileOnly("net.darkhax.enchdesc:EnchantmentDescriptions-Common-${project.enchantment_descriptions_mc_version}:${project.enchantment_descriptions_mod_version}")

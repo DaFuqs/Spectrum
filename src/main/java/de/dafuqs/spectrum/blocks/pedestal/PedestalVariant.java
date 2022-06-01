@@ -9,11 +9,11 @@ public interface PedestalVariant {
 	Block getPedestalBlock();
 	
 	default boolean isBetterThan(PedestalVariant other) {
-		return this.getRecipeTier().ordinal() > this.getRecipeTier().ordinal();
+		return this.getRecipeTier().ordinal() > other.getRecipeTier().ordinal();
 	}
 	
 	default boolean isEqualOrBetterThan(PedestalVariant other) {
-		return this.getRecipeTier().ordinal() >= this.getRecipeTier().ordinal();
+		return this.getRecipeTier().ordinal() >= other.getRecipeTier().ordinal();
 	}
 	
 	

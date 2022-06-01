@@ -2,7 +2,7 @@
   "name": "Pedestal CMY Upgrade",
   "icon": "spectrum:pedestal_all_basic",
   "sortnum": 8,
-  "advancement": "spectrum:collect_all_basic_shards",
+  "advancement": "spectrum:progression/unlock_cmy_pedestal",
   "category": "spectrum:general_category",
   "turnin": "spectrum:build_basic_pedestal_structure",
   "extra_recipe_mappings": {

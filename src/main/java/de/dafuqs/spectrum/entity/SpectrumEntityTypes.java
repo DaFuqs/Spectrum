@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.entity;
 
 import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.blocks.mob_blocks.LivingMarkerEntity;
 import de.dafuqs.spectrum.entity.entity.*;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.minecraft.entity.Entity;

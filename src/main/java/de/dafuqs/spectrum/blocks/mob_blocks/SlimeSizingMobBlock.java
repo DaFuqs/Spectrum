@@ -8,6 +8,7 @@ import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.mob.SlimeEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.particle.ParticleEffect;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
@@ -26,8 +27,8 @@ public class SlimeSizingMobBlock extends MobBlock {
 	protected int maxSize; // Huge Chungus
 	protected int range;
 	
-	public SlimeSizingMobBlock(Settings settings, int range, int maxSize) {
-		super(settings);
+	public SlimeSizingMobBlock(Settings settings, ParticleEffect particleEffect, int range, int maxSize) {
+		super(settings, particleEffect);
 		this.range = range;
 		this.maxSize = maxSize;
 	}

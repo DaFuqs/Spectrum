@@ -6,6 +6,7 @@ import net.minecraft.block.InfestedBlock;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.particle.ParticleEffect;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
@@ -19,8 +20,8 @@ import java.util.List;
 
 public class SilverfishInsertingMobBlock extends MobBlock {
 	
-	public SilverfishInsertingMobBlock(Settings settings) {
-		super(settings);
+	public SilverfishInsertingMobBlock(Settings settings, ParticleEffect particleEffect) {
+		super(settings, particleEffect);
 	}
 	
 	@Override

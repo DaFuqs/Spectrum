@@ -5,6 +5,7 @@ import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.particle.ParticleEffect;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
@@ -24,8 +25,8 @@ public class RandomTeleportingMobBlock extends MobBlock {
 	protected final int horizontalRange;
 	protected final int verticalRange;
 	
-	public RandomTeleportingMobBlock(Settings settings, int horizontalRange, int verticalRange) {
-		super(settings);
+	public RandomTeleportingMobBlock(Settings settings, ParticleEffect particleEffect, int horizontalRange, int verticalRange) {
+		super(settings, particleEffect);
 		this.horizontalRange = horizontalRange;
 		this.verticalRange = verticalRange;
 	}

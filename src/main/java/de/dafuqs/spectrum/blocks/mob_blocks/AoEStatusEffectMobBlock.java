@@ -7,6 +7,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.item.ItemStack;
+import net.minecraft.particle.ParticleEffect;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
@@ -26,8 +27,8 @@ public class AoEStatusEffectMobBlock extends MobBlock {
 	protected int duration;
 	protected final int range;
 	
-	public AoEStatusEffectMobBlock(Settings settings, StatusEffect statusEffect, int amplifier, int duration, int range) {
-		super(settings);
+	public AoEStatusEffectMobBlock(Settings settings, ParticleEffect particleEffect, StatusEffect statusEffect, int amplifier, int duration, int range) {
+		super(settings, particleEffect);
 		this.statusEffect = statusEffect;
 		this.amplifier = amplifier;
 		this.duration = duration;

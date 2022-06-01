@@ -4,6 +4,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.particle.ParticleEffect;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
@@ -21,8 +22,8 @@ public class LineTeleportingMobBlock extends MobBlock {
 	
 	protected final int range;
 	
-	public LineTeleportingMobBlock(Settings settings, int range) {
-		super(settings);
+	public LineTeleportingMobBlock(Settings settings, ParticleEffect particleEffect, int range) {
+		super(settings, particleEffect);
 		this.range = range;
 	}
 	
@@ -37,6 +38,7 @@ public class LineTeleportingMobBlock extends MobBlock {
 	public void onSteppedOn(World world, BlockPos pos, BlockState state, Entity entity) {
 		if(!world.isClient && !hasCooldown(state)) {
 			if(trigger((ServerWorld) world, pos, state, entity, getLookDirection(entity, true, false).getOpposite())) { // we want the movement direction here, instead of only "top"
+				playTriggerParticles((ServerWorld) world, pos);
 				playTriggerSound(world, pos);
 				triggerCooldown(world, pos);
 			}

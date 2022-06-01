@@ -7,6 +7,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.particle.ParticleEffect;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
@@ -21,8 +22,8 @@ public abstract class EntitySummoningMobBlock extends MobBlock {
 	
 	protected final EntityType entityType;
 	
-	public EntitySummoningMobBlock(Settings settings, EntityType entityType) {
-		super(settings);
+	public EntitySummoningMobBlock(Settings settings, ParticleEffect particleEffect, EntityType entityType) {
+		super(settings, particleEffect);
 		this.entityType = entityType;
 	}
 	

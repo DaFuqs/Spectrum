@@ -72,7 +72,7 @@
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier3/mob_blocks/blaze_mob_block",
-      "text": "Sets the creature that triggered it and blocks next to it on fire."
+      "text": "Sets the creature that triggered it and blocks next to it on fire.$(br)Also converts some blocks next to it to their scorched variants (Smelting Ore Blocks, Netherrack to Magma Blocks, ...)"
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -182,7 +182,7 @@
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier3/mob_blocks/polar_bear_mob_block",
-      "text": "Freezes blocks around it (Water to Ice, Snow to Snow Blocks)."
+      "text": "Freezes blocks around it (Water to Ice, Lava to Obsidian, ...)."
     },
     {
       "type": "spectrum:pedestal_crafting",

@@ -6,6 +6,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.particle.ParticleEffect;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
@@ -24,8 +25,8 @@ public class FeedingMobBlock extends MobBlock {
 	protected static final int LOVE_TICKS = 600;
 	protected int range;
 	
-	public FeedingMobBlock(Settings settings, int range) {
-		super(settings);
+	public FeedingMobBlock(Settings settings, ParticleEffect particleEffect, int range) {
+		super(settings, particleEffect);
 		this.range = range;
 	}
 	

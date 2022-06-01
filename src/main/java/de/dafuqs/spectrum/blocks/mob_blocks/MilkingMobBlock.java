@@ -13,6 +13,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.SuspiciousStewItem;
+import net.minecraft.particle.ParticleEffect;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
@@ -34,8 +35,8 @@ public class MilkingMobBlock extends MobBlock {
 	protected static final int BUCKET_SEARCH_RANGE = 7;
 	protected int milkingRange;
 	
-	public MilkingMobBlock(Settings settings, int milkingRange) {
-		super(settings);
+	public MilkingMobBlock(Settings settings, ParticleEffect particleEffect, int milkingRange) {
+		super(settings, particleEffect);
 		this.milkingRange = milkingRange;
 	}
 	

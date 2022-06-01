@@ -4,6 +4,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.particle.ParticleEffect;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
@@ -19,8 +20,8 @@ public class KnockbackMobBlock extends MobBlock {
 	protected float horizontalKnockback;
 	protected float verticalKnockback;
 	
-	public KnockbackMobBlock(Settings settings, float horizontalKnockback, float verticalKnockback) {
-		super(settings);
+	public KnockbackMobBlock(Settings settings, ParticleEffect particleEffect, float horizontalKnockback, float verticalKnockback) {
+		super(settings, particleEffect);
 		this.horizontalKnockback = horizontalKnockback;
 		this.verticalKnockback = verticalKnockback;
 	}

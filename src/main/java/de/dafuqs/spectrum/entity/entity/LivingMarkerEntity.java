@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.blocks.mob_blocks;
+package de.dafuqs.spectrum.entity.entity;
 
 import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.entity.Entity;

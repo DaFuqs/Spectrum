@@ -8,6 +8,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.particle.ParticleEffect;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
@@ -29,8 +30,8 @@ public abstract class ProjectileMobBlock extends MobBlock {
 	protected final float speed;
 	protected final float divergence;
 	
-	public ProjectileMobBlock(Settings settings, EntityType entityType, SoundEvent triggerSoundEvent, float speed, float divergence) {
-		super(settings);
+	public ProjectileMobBlock(Settings settings, ParticleEffect particleEffect, EntityType entityType, SoundEvent triggerSoundEvent, float speed, float divergence) {
+		super(settings, particleEffect);
 		this.entityType = entityType;
 		this.triggerSoundEvent = triggerSoundEvent;
 		this.speed = speed;

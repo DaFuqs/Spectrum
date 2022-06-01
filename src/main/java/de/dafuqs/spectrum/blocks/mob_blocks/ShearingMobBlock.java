@@ -6,6 +6,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.Shearable;
 import net.minecraft.item.ItemStack;
+import net.minecraft.particle.ParticleEffect;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.text.Text;
@@ -23,8 +24,8 @@ public class ShearingMobBlock extends MobBlock {
 	
 	protected int range;
 	
-	public ShearingMobBlock(Settings settings, int range) {
-		super(settings);
+	public ShearingMobBlock(Settings settings, ParticleEffect particleEffect, int range) {
+		super(settings, particleEffect);
 		this.range = range;
 	}
 	

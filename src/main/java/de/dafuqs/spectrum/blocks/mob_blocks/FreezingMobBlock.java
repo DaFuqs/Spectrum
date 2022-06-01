@@ -7,6 +7,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.particle.ParticleEffect;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
@@ -41,8 +42,8 @@ public class FreezingMobBlock extends MobBlock {
 		put(Blocks.LAVA.getDefaultState(), new Pair<>(Blocks.OBSIDIAN.getDefaultState(), 1.0F)); // just full, not flowing
 	}};
 	
-	public FreezingMobBlock(Settings settings) {
-		super(settings);
+	public FreezingMobBlock(Settings settings, ParticleEffect particleEffect) {
+		super(settings, particleEffect);
 	}
 	
 	@Override

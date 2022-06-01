@@ -14,6 +14,7 @@ import net.minecraft.loot.LootTables;
 import net.minecraft.loot.context.LootContext;
 import net.minecraft.loot.context.LootContextParameters;
 import net.minecraft.loot.context.LootContextTypes;
+import net.minecraft.particle.ParticleEffect;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
@@ -29,8 +30,8 @@ import java.util.List;
 
 public class PiglinTradeMobBlock extends MobBlock {
 	
-	public PiglinTradeMobBlock(Settings settings) {
-		super(settings);
+	public PiglinTradeMobBlock(Settings settings, ParticleEffect particleEffect) {
+		super(settings, particleEffect);
 	}
 	
 	@Override

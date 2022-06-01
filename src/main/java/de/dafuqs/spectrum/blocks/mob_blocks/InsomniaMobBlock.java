@@ -8,6 +8,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.mob.PhantomEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.particle.ParticleEffect;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
@@ -28,8 +29,8 @@ public class InsomniaMobBlock extends MobBlock {
 	
 	public final int additionalTicksSinceLastRest;
 	
-	public InsomniaMobBlock(Settings settings, int additionalTicksSinceLastRest) {
-		super(settings);
+	public InsomniaMobBlock(Settings settings, ParticleEffect particleEffect, int additionalTicksSinceLastRest) {
+		super(settings, particleEffect);
 		this.additionalTicksSinceLastRest = additionalTicksSinceLastRest;
 	}
 	

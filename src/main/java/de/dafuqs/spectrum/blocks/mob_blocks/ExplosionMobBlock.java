@@ -5,6 +5,7 @@ import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.item.ItemStack;
+import net.minecraft.particle.ParticleEffect;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
@@ -23,8 +24,8 @@ public class ExplosionMobBlock extends MobBlock {
 	protected boolean createFire;
 	protected Explosion.DestructionType destructionType;
 	
-	public ExplosionMobBlock(Settings settings, float power, boolean createFire, Explosion.DestructionType destructionType) {
-		super(settings);
+	public ExplosionMobBlock(Settings settings, ParticleEffect particleEffect, float power, boolean createFire, Explosion.DestructionType destructionType) {
+		super(settings, particleEffect);
 		this.power = power;
 		this.createFire = createFire;
 		this.destructionType = destructionType;

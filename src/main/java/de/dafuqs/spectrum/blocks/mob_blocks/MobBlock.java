@@ -1,5 +1,7 @@
 package de.dafuqs.spectrum.blocks.mob_blocks;
 
+import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
+import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.item.TooltipContext;
@@ -7,6 +9,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.particle.ParticleEffect;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.state.StateManager;
@@ -14,6 +17,7 @@ import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.DyeColor;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
@@ -28,9 +32,11 @@ import java.util.Random;
 public abstract class MobBlock extends Block {
 	
 	public static final BooleanProperty COOLDOWN = BooleanProperty.of("cooldown");
+	public final ParticleEffect particleEffect;
 	
-	public MobBlock(Settings settings) {
+	public MobBlock(Settings settings, ParticleEffect particleEffect) {
 		super(settings);
+		this.particleEffect = particleEffect;
 		setDefaultState(getStateManager().getDefaultState().with(COOLDOWN, false));
 	}
 	
@@ -49,6 +55,7 @@ public abstract class MobBlock extends Block {
 	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
 		if(!world.isClient) {
 			if(!hasCooldown(state) && trigger((ServerWorld) world, pos, state, player, hit.getSide())) {
+				playTriggerParticles((ServerWorld) world, pos);
 				playTriggerSound(world, pos);
 				triggerCooldown(world, pos);
 			}
@@ -69,6 +76,7 @@ public abstract class MobBlock extends Block {
 		super.onSteppedOn(world, pos, state, entity);
 		if(!world.isClient && !hasCooldown(state)) {
 			if(trigger((ServerWorld) world, pos, state, entity, Direction.UP)) {
+				playTriggerParticles((ServerWorld) world, pos);
 				playTriggerSound(world, pos);
 				triggerCooldown(world, pos);
 			}
@@ -79,6 +87,7 @@ public abstract class MobBlock extends Block {
 		if(!world.isClient) {
 			BlockPos hitPos = hit.getBlockPos();
 			if(!hasCooldown(state) && trigger((ServerWorld) world, hitPos, state, projectile.getOwner(), hit.getSide())) {
+				playTriggerParticles((ServerWorld) world, hit.getBlockPos());
 				playTriggerSound(world, hitPos);
 				triggerCooldown(world, hitPos);
 			}
@@ -86,6 +95,10 @@ public abstract class MobBlock extends Block {
 	}
 	
 	public abstract boolean trigger(ServerWorld world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side);
+	
+	public void playTriggerParticles(ServerWorld world, BlockPos blockPos) {
+		SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity(world, new Vec3d(blockPos.getX() + 0.5, blockPos.getY() + 0.2, blockPos.getZ() + 0.5), particleEffect, 10, new Vec3d(0.5, 0.5, 0.5), new Vec3d(0.2, 0.08, 0.2));
+	}
 	
 	public void playTriggerSound(World world, BlockPos blockPos) {
 		world.playSound(null, blockPos, this.soundGroup.getPlaceSound(), SoundCategory.PLAYERS, 1.0F, 1.0F);

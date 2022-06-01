@@ -1032,7 +1032,7 @@
   "block.spectrum.potion_effect_mob_block.tooltip": "§7Triggers %s",
   "block.spectrum.projectile_mob_block.tooltip": "§7Shoots a %s",
   "block.spectrum.shearing_mob_block.tooltip": "§7Shears close-by Entities",
-  "block.spectrum.silverfish_inserting_mob_block.tooltip": "§7Puts a Silverfish in the block above",
+  "block.spectrum.silverfish_inserting_mob_block.tooltip": "§7Invades neighboring Blocks with Silverfish",
   "block.spectrum.slime_sizing_mob_block.tooltip": "§7Increases close-by Slime's sizes",
   "block.spectrum.random_teleporting_mob_block.tooltip": "§7Teleports you up to %d blocks in a random direction",
   "block.spectrum.line_teleporting_mob_block.tooltip": "§7Teleports you on top of the next block of this type ",

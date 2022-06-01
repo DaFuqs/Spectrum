@@ -6,6 +6,7 @@ import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemStack;
+import net.minecraft.particle.ParticleEffect;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.RecipeManager;
 import net.minecraft.recipe.RecipeType;
@@ -46,8 +47,8 @@ public class FirestarterMobBlock extends MobBlock {
 		put(SpectrumBlocks.FROSTBITE_CRYSTAL, new Pair<>(SpectrumBlocks.BLAZING_CRYSTAL.getDefaultState(), 0.5F));
 	}};
 	
-	public FirestarterMobBlock(Settings settings) {
-		super(settings);
+	public FirestarterMobBlock(Settings settings, ParticleEffect particleEffect) {
+		super(settings, particleEffect);
 	}
 	
 	public static void addBlockSmeltingRecipes(RecipeManager recipeManager) {

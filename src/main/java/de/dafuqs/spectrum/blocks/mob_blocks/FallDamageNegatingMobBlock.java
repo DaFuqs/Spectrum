@@ -5,6 +5,7 @@ import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.item.ItemStack;
+import net.minecraft.particle.ParticleEffect;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
@@ -18,8 +19,8 @@ import java.util.List;
 
 public class FallDamageNegatingMobBlock extends MobBlock {
 	
-	public FallDamageNegatingMobBlock(Settings settings) {
-		super(settings);
+	public FallDamageNegatingMobBlock(Settings settings, ParticleEffect particleEffect) {
+		super(settings, particleEffect);
 	}
 	
 	@Override
@@ -45,8 +46,11 @@ public class FallDamageNegatingMobBlock extends MobBlock {
 	public void onLandedUpon(World world, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
 		if(!hasCooldown(state) && fallDistance > 3F) {
 			entity.handleFallDamage(fallDistance, 0.0F, DamageSource.FALL);
-			playTriggerSound(world, pos);
-			triggerCooldown(world, pos);
+			if(!world.isClient) {
+				playTriggerParticles((ServerWorld) world, pos);
+				playTriggerSound(world, pos);
+				triggerCooldown(world, pos);
+			}
 		}
 	}
 	

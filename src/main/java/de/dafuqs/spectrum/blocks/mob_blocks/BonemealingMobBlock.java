@@ -5,6 +5,7 @@ import net.minecraft.block.Fertilizable;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.particle.ParticleEffect;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
@@ -17,8 +18,8 @@ import java.util.List;
 
 public class BonemealingMobBlock extends MobBlock {
 	
-	public BonemealingMobBlock(Settings settings) {
-		super(settings);
+	public BonemealingMobBlock(Settings settings, ParticleEffect particleEffect) {
+		super(settings, particleEffect);
 	}
 	
 	@Override

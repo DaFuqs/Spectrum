@@ -13,7 +13,7 @@
   "parent": "spectrum:collect_vegetal",
   "criteria": {
     "planted_glistering_melon_seeds": {
-      "trigger": "minecraft:item_used_on_block",
+      "trigger": "minecraft:placed_block",
       "conditions": {
         "item": {
           "items": ["spectrum:glistering_melon_seeds"]

@@ -34,6 +34,7 @@ import de.dafuqs.spectrum.blocks.gravity.FloatBlock;
 import de.dafuqs.spectrum.blocks.gravity.FloatBlockItem;
 import de.dafuqs.spectrum.blocks.item_bowl.ItemBowlBlock;
 import de.dafuqs.spectrum.blocks.jade_vines.JadeVineBulbBlock;
+import de.dafuqs.spectrum.blocks.jade_vines.JadeVinePetalBlock;
 import de.dafuqs.spectrum.blocks.jade_vines.JadeVinePlantBlock;
 import de.dafuqs.spectrum.blocks.jade_vines.JadeVineRootsBlock;
 import de.dafuqs.spectrum.blocks.lava_sponge.LavaSpongeBlock;
@@ -619,11 +620,11 @@ public class SpectrumBlocks {
 	public static final Block TREASURE_CHEST = new TreasureChestBlock(FabricBlockSettings.copyOf(Blocks.CHEST).hardness(-1.0F));
 	
 	// JADE VINES
-	public static final Block JADE_VINE_ROOTS = new JadeVineRootsBlock(AbstractBlock.Settings.of(Material.PLANT, MapColor.PALE_GREEN).strength(0.1F).sounds(BlockSoundGroup.WOOL).ticksRandomly().nonOpaque());
-	public static final Block JADE_VINE_BULB = new JadeVineBulbBlock(AbstractBlock.Settings.of(Material.PLANT, MapColor.PALE_GREEN).strength(0.1F).noCollision().sounds(BlockSoundGroup.WOOL).nonOpaque());
-	public static final Block JADE_VINES = new JadeVinePlantBlock(AbstractBlock.Settings.of(Material.PLANT, MapColor.PALE_GREEN).strength(0.1F).noCollision().sounds(BlockSoundGroup.WOOL).nonOpaque());
-	public static final Block JADE_VINE_PETAL_BLOCK = new Block(AbstractBlock.Settings.of(Material.WOOL, MapColor.PALE_GREEN).strength(0.1F).sounds(BlockSoundGroup.WOOL));
-	public static final Block JADE_VINE_PETAL_CARPET = new CarpetBlock(AbstractBlock.Settings.of(Material.CARPET, MapColor.PALE_GREEN).strength(0.1F).sounds(BlockSoundGroup.WOOL));
+	public static final Block JADE_VINE_ROOTS = new JadeVineRootsBlock(FabricBlockSettings.of(Material.PLANT, MapColor.PALE_GREEN).strength(0.1F).sounds(BlockSoundGroup.WOOL).ticksRandomly().luminance((state) -> state.get(JadeVineRootsBlock.DEAD) ? 0 : 4).nonOpaque());
+	public static final Block JADE_VINE_BULB = new JadeVineBulbBlock(FabricBlockSettings.of(Material.PLANT, MapColor.PALE_GREEN).strength(0.1F).noCollision().sounds(BlockSoundGroup.WOOL).luminance((state) -> state.get(JadeVineBulbBlock.DEAD) ? 0 : 5).nonOpaque());
+	public static final Block JADE_VINES = new JadeVinePlantBlock(FabricBlockSettings.of(Material.PLANT, MapColor.PALE_GREEN).strength(0.1F).noCollision().sounds(BlockSoundGroup.WOOL).luminance((state) -> state.get(JadeVinePlantBlock.AGE) == 0 ? 0 : 5).nonOpaque());
+	public static final Block JADE_VINE_PETAL_BLOCK = new JadeVinePetalBlock(FabricBlockSettings.of(Material.LEAVES, MapColor.PALE_GREEN).strength(0.1F).nonOpaque().sounds(BlockSoundGroup.WOOL).luminance(3));
+	public static final Block JADE_VINE_PETAL_CARPET = new CarpetBlock(FabricBlockSettings.of(Material.CARPET, MapColor.PALE_GREEN).strength(0.1F).nonOpaque().sounds(BlockSoundGroup.WOOL).luminance(3));
 	
 	// ORES
 	public static final Block SPARKLESTONE_ORE = new SparklestoneOreBlock(FabricBlockSettings.copyOf(Blocks.IRON_ORE).requiresTool(), UniformIntProvider.create(2, 4), false);

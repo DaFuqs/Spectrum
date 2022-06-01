@@ -14,7 +14,7 @@
   "criteria": {
     "built_structure": {
       "trigger": "spectrum:completed_multiblock",
-      "conditions": { "multiblock_identifier": "spectrum:enchanter_structure" }
+      "conditions": { "multiblock_identifier": "spectrum:spirit_instiller_structure" }
     },
     "gotten_previous": {
       "trigger":"spectrum:has_advancement",

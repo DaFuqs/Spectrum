@@ -35,7 +35,7 @@ public abstract class MinecraftClientMixin {
 			if(shouldPlaySerpentMusic(thisClient.inGameHud.getBossBarHud())) {
 				cir.setReturnValue(SpectrumMusicType.BOSS_THEME);
 			} else {
-				if(Support.hasPlayerFinishedMod()) {
+				if(Support.hasPlayerFinishedMod(MinecraftClient.getInstance().player)) {
 					cir.setReturnValue(SpectrumMusicType.SPECTRUM_THEME);
 				} else {
 					cir.setReturnValue(SpectrumMusicType.DEEPER_DOWN_THEME);

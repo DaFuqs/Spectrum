@@ -255,7 +255,7 @@ public class Support {
 		}
 	}
 	
-	public static boolean hasPlayerFinishedMod() {
-		return Support.hasAdvancement(MinecraftClient.getInstance().player, PROGRESSION_FINISHED_ADVANCEMENT_IDENTIFIER);
+	public static boolean hasPlayerFinishedMod(PlayerEntity player) {
+		return Support.hasAdvancement(player, PROGRESSION_FINISHED_ADVANCEMENT_IDENTIFIER);
 	}
 }

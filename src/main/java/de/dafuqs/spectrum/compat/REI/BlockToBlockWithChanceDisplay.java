@@ -51,10 +51,6 @@ public class BlockToBlockWithChanceDisplay extends BasicDisplay implements Gated
 		return Support.hasAdvancement(MinecraftClient.getInstance().player, UNLOCK_ADVANCEMENT_IDENTIFIER);
 	}
 	
-	/*public static Serializer<BlockToBlockWithChanceDisplay> serializer() {
-		return Serializer.ofSimpleRecipeLess(BlockToBlockWithChanceDisplay::new);
-	}*/
-	
 	public static EntryStack blockToEntryStack(Block block) {
 		if(block instanceof FluidBlock inFluidBlock) {
 			return EntryStacks.of(((FluidBlockAccessor) inFluidBlock).getFlowableFluid());

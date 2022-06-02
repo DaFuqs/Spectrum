@@ -11,9 +11,9 @@ import net.minecraft.util.collection.DefaultedList;
 
 import java.util.Map;
 
-public class SpectrumArmorItem extends ArmorItem implements Preenchanted {
+public class BedrockArmorItem extends ArmorItem implements Preenchanted {
 
-	public SpectrumArmorItem(ArmorMaterial material, EquipmentSlot slot, Settings settings) {
+	public BedrockArmorItem(ArmorMaterial material, EquipmentSlot slot, Settings settings) {
 		super(material, slot, settings);
 	}
 	
@@ -25,6 +25,21 @@ public class SpectrumArmorItem extends ArmorItem implements Preenchanted {
 	@Override
 	public ItemStack getDefaultStack() {
 		return getDefaultEnchantedStack(this);
+	}
+	
+	@Override
+	public boolean isDamageable() {
+		return false;
+	}
+	
+	@Override
+	public boolean isEnchantable(ItemStack stack) {
+		return true;
+	}
+	
+	@Override
+	public boolean canRepair(ItemStack itemStack_1, ItemStack itemStack_2) {
+		return false;
 	}
 	
 	@Override

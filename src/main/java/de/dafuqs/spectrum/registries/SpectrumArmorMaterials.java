@@ -11,10 +11,8 @@ import java.util.function.Supplier;
 
 public enum SpectrumArmorMaterials implements ArmorMaterial {
 
-   BEDROCK("bedrock", 5, new int[]{6, 10, 14, 6}, 5, SoundEvents.ITEM_ARMOR_EQUIP_NETHERITE, 4.0F, 0.4F, Ingredient::empty),
-   EMERGENCY("gemstone", 9, new int[]{3, 5, 7, 3}, 15, SoundEvents.BLOCK_AMETHYST_BLOCK_CHIME, 0.0F, 0.0F, () -> {
-	  return Ingredient.fromTag(SpectrumItemTags.GEMSTONE_SHARDS);
-   });
+   BEDROCK("bedrock", 70, new int[]{6, 10, 14, 6}, 5, SoundEvents.ITEM_ARMOR_EQUIP_NETHERITE, 4.0F, 0.4F, Ingredient::empty),
+   EMERGENCY("gemstone", 9, new int[]{3, 5, 7, 3}, 15, SoundEvents.BLOCK_AMETHYST_BLOCK_CHIME, 0.0F, 0.0F, () -> Ingredient.fromTag(SpectrumItemTags.GEMSTONE_SHARDS));
 
    private static final int[] BASE_DURABILITY = new int[]{13, 15, 16, 11};
    private final String name;

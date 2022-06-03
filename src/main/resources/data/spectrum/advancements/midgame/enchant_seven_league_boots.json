@@ -5,7 +5,6 @@
       "item": "spectrum:seven_league_boots",
       "nbt": "{Enchantments: [{id: \"minecraft:power\", lvl: 1s}]}"
     },
-    "hidden": true,
     "title": {
       "translate": "advancements.spectrum.enchant_seven_league_boots.title"
     },

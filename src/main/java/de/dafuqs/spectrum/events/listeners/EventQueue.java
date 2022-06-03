@@ -19,7 +19,6 @@ public abstract class EventQueue<D> implements GameEventListener {
 	protected final int range;
 	protected final EventQueue.Callback callback;
 	private final Map<D, Integer> eventQueue;
-	//private boolean frozen = false; // protect against ConcurrentModificationExceptions
 
 	public EventQueue(PositionSource positionSource, int range, EventQueue.Callback listener) {
 		this.positionSource = positionSource;
@@ -31,8 +30,7 @@ public abstract class EventQueue<D> implements GameEventListener {
 	public void tick(World world) {
 		if(!eventQueue.isEmpty()) {
 			// TODO: test for ConcurrentModificationExceptions
-			//frozen = true;
-			Set<D> keys = eventQueue.keySet();
+			D[] keys = (D[]) eventQueue.keySet().toArray();
 			for(D key : keys) {
 				Integer tickCounter = eventQueue.get(key);
 				if (tickCounter >= 1) {
@@ -40,12 +38,8 @@ public abstract class EventQueue<D> implements GameEventListener {
 				} else {
 					this.callback.triggerEvent(world, this, key);
 					eventQueue.remove(key);
-					/*synchronized (eventQueue) {
-					
-					}*/
 				}
 			}
-			//frozen = false;
 		}
 	}
 
@@ -60,7 +54,7 @@ public abstract class EventQueue<D> implements GameEventListener {
 	@Override
 	public boolean listen(World world, GameEvent event, @Nullable Entity entity, BlockPos pos) {
 		Optional<BlockPos> positionSourcePosOptional = this.positionSource.getPos(world);
-		if (/*frozen ||*/ positionSourcePosOptional.isEmpty()) {
+		if (positionSourcePosOptional.isEmpty()) {
 			return false;
 		} else {
 			if (!this.callback.canAcceptEvent(world, this, pos, event, entity, positionSourcePosOptional.get())) {
@@ -75,9 +69,7 @@ public abstract class EventQueue<D> implements GameEventListener {
 	protected abstract void acceptEvent(World world, BlockPos pos, GameEvent event, @Nullable Entity entity, BlockPos sourcePos);
 	
 	protected void schedule(D object, int delay) {
-		//if(!frozen) {
-			this.eventQueue.put(object, delay);
-		//}
+		this.eventQueue.put(object, delay);
 	}
 	
 	public interface Callback<D> {

@@ -1,0 +1,17 @@
+{
+  "type": "spectrum:spirit_instiller",
+  "time": 200,
+  "experience": 2.0,
+  "ingredient1": {
+    "item": "spectrum:moonstruck_nectar"
+  },
+  "ingredient2": {
+    "item": "minecraft:seagrass"
+  },
+  "center_ingredient": {
+    "item": "spectrum:mermaids_gem"
+  },
+  "result" : {
+    "item": "minecraft:heart_of_the_sea"
+  }
+}

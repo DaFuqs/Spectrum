@@ -29,8 +29,9 @@
     },
     {
       "type": "patchouli:text",
+      "advancement": "spectrum:midgame/break_decayed_bedrock",
       "title": "A Friendly Reminder",
-      "text": "Should you be reading your notes here while some of that stuff is still roaming around free, you should change that as soon as possible otherwise you WILL regret it.$(br2)Luckily you already invented a $(l:creating_life/decay_away)suitable counteragent$(/l)"
+      "text": "Should you be reading your notes here while some of that stuff is still roaming around free, you should change that as soon as possible otherwise you WILL regret it.$(br2)Luckily you already invented a $(l:creating_life/decay_away)suitable counteragent$(/l)."
     }
   ]
 }

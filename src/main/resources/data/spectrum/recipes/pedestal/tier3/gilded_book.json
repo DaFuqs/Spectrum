@@ -3,9 +3,9 @@
   "time": 600,
   "tier": "advanced",
   "magenta": 0,
-  "yellow": 0,
+  "yellow": 4,
   "cyan": 0,
-  "black": 2,
+  "black": 0,
   "white": 0,
   "experience": 2.0,
   "pattern": [

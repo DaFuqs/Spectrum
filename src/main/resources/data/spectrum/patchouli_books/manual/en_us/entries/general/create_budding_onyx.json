@@ -19,13 +19,13 @@
     {
       "type": "patchouli:text",
       "title": "Creating Budding Onyx",
-      "text": "TODO"
+      "text": "Crafting onyx was always very nerdy, as it depended on the current phase of the moon, despite the $(l:magical_items/crescent_clock)Crescent Clock$(/l).$(br)By making Onyx farmable like the other gems, will save you a huge amount of time.$(br2)$(italic)Strangely, the same procedure does not seem to work for other colored gems?"
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
       "title": "Spirit Inst. Recipe",
       "recipe": "spectrum:spirit_instiller/budding_onyx",
-      "text": ""
+      "text": "Even if it seems expensive, having renewable onyx seems worth it.$(br)Better to craft a larger amount of these $(l:general/midnight_aberration)Midnight Aberrations$(/l) all at once, as they seem to crumble in your hands quickly."
     }
   ]
 }

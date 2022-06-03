@@ -24,7 +24,7 @@
       "item": "spectrum:midnight_aberration",
       "advancement": "spectrum:midgame/create_midnight_aberration",
       "title": "Midnight Aberration",
-      "text": "$(italic)This abomination of a Gemstone radiates an eerie aura."
+      "text": "$(italic)This abomination of a Gemstone radiates an eerie aura.$()$(br2)It looks loosely connected at best. No wonder it falls apart in your hands in no time. Total failure."
     },
     {
       "type": "patchouli:text",

@@ -4,8 +4,8 @@ import de.dafuqs.spectrum.SpectrumCommon;
 import net.minecraft.util.Identifier;
 
 public class SpectrumContainers {
-
-
+	
+	
 	public static Identifier PEDESTAL;
 	public static Identifier CRAFTING_TABLET;
 	public static Identifier RESTOCKING_CHEST;
@@ -14,6 +14,7 @@ public class SpectrumContainers {
 	public static Identifier COMPACTING_CHEST;
 	public static Identifier SUCKING_CHEST;
 	public static Identifier POTION_WORKSHOP;
+	public static Identifier COLOR_PICKER;
 
 	public static Identifier GENERIC_TIER1_9x3;
 	public static Identifier GENERIC_TIER2_9x3;
@@ -36,6 +37,7 @@ public class SpectrumContainers {
 		COMPACTING_CHEST = new Identifier(SpectrumCommon.MOD_ID, "compacting_chest");
 		SUCKING_CHEST = new Identifier(SpectrumCommon.MOD_ID, "sucking_chest");
 		POTION_WORKSHOP = new Identifier(SpectrumCommon.MOD_ID, "potion_workshop");
+		COLOR_PICKER = new Identifier(SpectrumCommon.MOD_ID, "color_picker");
 
 		GENERIC_TIER1_9x3 = new Identifier(SpectrumCommon.MOD_ID, "generic_tier1_9x3");
 		GENERIC_TIER2_9x3 = new Identifier(SpectrumCommon.MOD_ID, "generic_tier2_9x3");

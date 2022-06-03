@@ -10,6 +10,7 @@ import de.dafuqs.spectrum.blocks.enchanter.EnchanterBlockEntity;
 import de.dafuqs.spectrum.blocks.enchanter.EnchanterBlockEntityRenderer;
 import de.dafuqs.spectrum.blocks.ender.EnderDropperBlockEntity;
 import de.dafuqs.spectrum.blocks.ender.EnderHopperBlockEntity;
+import de.dafuqs.spectrum.blocks.energy.ColorPickerBlockEntity;
 import de.dafuqs.spectrum.blocks.energy.CrystalApothecaryBlockEntity;
 import de.dafuqs.spectrum.blocks.fusion_shrine.FusionShrineBlockEntity;
 import de.dafuqs.spectrum.blocks.fusion_shrine.FusionShrineBlockEntityRenderer;
@@ -72,7 +73,8 @@ public class SpectrumBlockEntityRegistry<T extends BlockEntity> {
 	public static BlockEntityType<PotionWorkshopBlockEntity> POTION_WORKSHOP;
 	
 	public static BlockEntityType<CrystalApothecaryBlockEntity> CRYSTAL_APOTHECARY;
-
+	public static BlockEntityType<ColorPickerBlockEntity> COLOR_PICKER;
+	
 	public static BlockEntityType<CompactingChestBlockEntity> COMPACTING_CHEST;
 	public static BlockEntityType<RestockingChestBlockEntity> RESTOCKING_CHEST;
 	public static BlockEntityType<PrivateChestBlockEntity> PRIVATE_CHEST;
@@ -123,7 +125,9 @@ public class SpectrumBlockEntityRegistry<T extends BlockEntity> {
 		SPIRIT_INSTILLER = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "spirit_instiller"), FabricBlockEntityTypeBuilder.create(SpiritInstillerBlockEntity::new, SpectrumBlocks.SPIRIT_INSTILLER).build());
 		MEMORY = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "memory"), FabricBlockEntityTypeBuilder.create(MemoryBlockEntity::new, SpectrumBlocks.MEMORY).build());
 		JADE_VINE_ROOTS = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "jade_vine_roots"), FabricBlockEntityTypeBuilder.create(JadeVineRootsBlockEntity::new, SpectrumBlocks.JADE_VINE_ROOTS).build());
+		
 		CRYSTAL_APOTHECARY = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "crystal_apothecary"), FabricBlockEntityTypeBuilder.create(CrystalApothecaryBlockEntity::new, SpectrumBlocks.CRYSTAL_APOTHECARY).build());
+		COLOR_PICKER = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "color_picker"), FabricBlockEntityTypeBuilder.create(ColorPickerBlockEntity::new, SpectrumBlocks.COLOR_PICKER).build());
 		
 		// All the pastel network nodes
 		CONNECTION_NODE = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "connection_node"), FabricBlockEntityTypeBuilder.create(PastelNetworkConnectionNode::new, SpectrumBlocks.CONNECTION_NODE).build());

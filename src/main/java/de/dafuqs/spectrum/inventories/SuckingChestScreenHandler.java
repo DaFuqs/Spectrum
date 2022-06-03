@@ -19,6 +19,7 @@ import net.minecraft.util.ClickType;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
+import org.apache.commons.lang3.NotImplementedException;
 
 import java.util.List;
 
@@ -51,10 +52,6 @@ public class SuckingChestScreenHandler extends ScreenHandler {
 
 	protected SuckingChestScreenHandler(ScreenHandlerType<?> type, int i, PlayerInventory playerInventory, Inventory filterInventory) {
 		this(type, i, playerInventory, new SimpleInventory(SuckingChestBlockEntity.INVENTORY_SIZE), filterInventory);
-	}
-
-	public SuckingChestScreenHandler(int syncId, PlayerInventory playerInventory, Inventory inventory, Inventory filterInventory) {
-		this(SpectrumScreenHandlerTypes.SUCKING_CHEST, syncId, playerInventory, inventory, filterInventory);
 	}
 
 	protected SuckingChestScreenHandler(ScreenHandlerType<?> type, int syncId, PlayerInventory playerInventory, Inventory inventory, Inventory filterInventory) {

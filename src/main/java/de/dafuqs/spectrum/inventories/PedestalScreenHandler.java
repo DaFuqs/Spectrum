@@ -24,6 +24,7 @@ import net.minecraft.screen.*;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import org.apache.commons.lang3.NotImplementedException;
 import org.jetbrains.annotations.NotNull;
 
 public class PedestalScreenHandler extends AbstractRecipeScreenHandler<Inventory> {
@@ -37,7 +38,7 @@ public class PedestalScreenHandler extends AbstractRecipeScreenHandler<Inventory
 	private final BlockPos pedestalPos;
 	private final PedestalRecipeTier pedestalRecipeTier;
 	private final PedestalRecipeTier maxPedestalRecipeTier;
-
+	
 	public PedestalScreenHandler(int syncId, PlayerInventory playerInventory, @NotNull PacketByteBuf buf) {
 		this(SpectrumScreenHandlerTypes.PEDESTAL, ScreenHandlerContext.EMPTY, RecipeBookCategory.CRAFTING, syncId, playerInventory, buf.readInt(), buf.readInt(), buf.readBlockPos());
 	}
@@ -122,7 +123,7 @@ public class PedestalScreenHandler extends AbstractRecipeScreenHandler<Inventory
 
 		this.addProperties(propertyDelegate);
 	}
-
+	
 	public void populateRecipeFinder(RecipeMatcher recipeMatcher) {
 		if (this.inventory != null) {
 			((RecipeInputProvider)this.inventory).provideRecipeInputs(recipeMatcher);

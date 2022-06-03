@@ -94,13 +94,13 @@ public class SuckingChestBlockEntity extends SpectrumChestBlockEntity implements
 			blockEntity.lidAnimator.step();
 		} else {
 			blockEntity.itemAndExperienceEventQueue.tick(world);
-			if(world.getTime() % 40 == 0 && !SpectrumChestBlock.isChestBlocked(world, pos)) {
-				triggerNearbyEntities(blockEntity);
+			if(world.getTime() % 80 == 0 && !SpectrumChestBlock.isChestBlocked(world, pos)) {
+				searchForNearbyEntities(blockEntity);
 			}
 		}
 	}
 
-	private static void triggerNearbyEntities(@NotNull SuckingChestBlockEntity blockEntity) {
+	private static void searchForNearbyEntities(@NotNull SuckingChestBlockEntity blockEntity) {
 		List<ItemEntity> itemEntities = blockEntity.world.getEntitiesByType(EntityType.ITEM, getBoxWithRadius(blockEntity.pos, RANGE), Entity::isAlive);
 		for(ItemEntity itemEntity : itemEntities) {
 			if(itemEntity.isAlive() && !itemEntity.getStack().isEmpty()) {
@@ -134,6 +134,9 @@ public class SuckingChestBlockEntity extends SpectrumChestBlockEntity implements
 	public boolean canAcceptEvent(World world, GameEventListener listener, BlockPos pos, GameEvent event, @Nullable Entity entity, BlockPos sourcePos) {
 		if(SpectrumChestBlock.isChestBlocked(world, this.pos)) {
 			return false;
+		}
+		if(entity instanceof ItemEntity) {
+			return true;
 		}
 		return entity instanceof ExperienceOrbEntity && hasExperienceStorageItem();
 	}

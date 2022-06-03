@@ -6,10 +6,10 @@
     "item": "spectrum:moonstruck_nectar"
   },
   "ingredient2": {
-    "item": "minecraft:seagrass"
+    "item": "spectrum:mermaids_gem"
   },
   "center_ingredient": {
-    "item": "spectrum:mermaids_gem"
+    "item": "minecraft:nautilus_shell"
   },
   "result" : {
     "item": "minecraft:heart_of_the_sea"

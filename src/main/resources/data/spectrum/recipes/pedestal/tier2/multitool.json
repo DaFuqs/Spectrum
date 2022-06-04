@@ -26,5 +26,5 @@
     "nbt": "{Enchantments: [{id: \"minecraft:efficiency\", lvl: 1s}]}",
     "count": 1
   },
-  "required_advancements": ["spectrum:build_basic_pedestal_structure"]
+  "required_advancement": "spectrum:build_basic_pedestal_structure"
 }

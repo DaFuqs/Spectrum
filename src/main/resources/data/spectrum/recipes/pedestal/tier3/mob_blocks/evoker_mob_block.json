@@ -32,5 +32,5 @@
     "item": "spectrum:evoker_mob_block",
     "count": 1
   },
-  "required_advancements": ["spectrum:progression/unlock_mob_blocks"]
+  "required_advancement": "spectrum:progression/unlock_mob_blocks"
 }

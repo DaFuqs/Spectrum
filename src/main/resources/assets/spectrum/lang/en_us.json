@@ -83,6 +83,7 @@
   "container.spectrum.rei.enchantment_upgrading.title": "Enchantment Upgrading",
   "container.spectrum.rei.enchantment_upgrade.required_item_count": "(%fx)",
   "container.spectrum.rei.midnight_solution_converting.title": "Midnight Dipping",
+  "container.spectrum.rei.ink_converting.title": "Ink Converting",
   "container.spectrum.rei.heating.title": "Heating",
   "container.spectrum.rei.freezing.title": "Freezing",
   "container.spectrum.rei.chance": "Chance: %.0f %%",
@@ -222,6 +223,10 @@
   "spectrum.toast.enchanter_recipes_unlocked.title": "New Enchanter recipes:",
   "spectrum.toast.potion_workshop_recipe_unlocked.title": "New Potion W. recipe:",
   "spectrum.toast.potion_workshop_recipes_unlocked.title": "New Potion W. recipes:",
+  "spectrum.toast.spirit_instiller_recipe_unlocked.title": "New Spirit Inst. recipe:",
+  "spectrum.toast.spirit_instiller_recipes_unlocked.title": "New Spirit Inst. recipes:",
+  "spectrum.toast.ink_converting_recipe_unlocked.title": "New Ink Converting recipe:",
+  "spectrum.toast.ink_converting_recipes_unlocked.title": "New Ink Converting recipes:",
 
   "spectrum.toast.message.second_advancement_tree_unlocked.title": "Chapter 2: Fall from Grace",
   "spectrum.toast.message.second_advancement_tree_unlocked.text": "You unlocked a new Advancement Tree",

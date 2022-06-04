@@ -31,5 +31,5 @@
     "item": "spectrum:emergency_chestplate",
     "count": 1
   },
-  "required_advancements": [ "spectrum:hidden/collect_vanilla/collect_nautilus_shell" ]
+  "required_advancement":  "spectrum:hidden/collect_vanilla/collect_nautilus_shell"
 }

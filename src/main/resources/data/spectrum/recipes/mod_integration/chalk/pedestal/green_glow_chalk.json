@@ -25,7 +25,7 @@
       "item": "minecraft:glow_ink_sac"
     }
   },
-  "required_advancements": ["spectrum:hidden/collect_pigment/collect_green_pigment"],
+  "required_advancement": "spectrum:hidden/collect_pigment/collect_green_pigment",
   "result" : {
     "item": "chalk:green_glow_chalk",
     "nbt": "{Unbreakable:1}"

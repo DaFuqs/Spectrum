@@ -7,15 +7,11 @@ import de.dafuqs.spectrum.enums.BuiltinGemstoneColor;
 import de.dafuqs.spectrum.enums.GemstoneColor;
 import de.dafuqs.spectrum.enums.PedestalRecipeTier;
 import de.dafuqs.spectrum.helpers.Support;
-import de.dafuqs.spectrum.progression.ClientRecipeToastManager;
 import de.dafuqs.spectrum.recipe.GatedRecipe;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.Item;
@@ -25,6 +21,7 @@ import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.sound.SoundEvent;
+import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
@@ -55,18 +52,16 @@ public class PedestalCraftingRecipe implements Recipe<Inventory>, GatedRecipe {
 	// - Yield upgrades disabled (item multiplication)
 	protected final boolean noBenefitsFromYieldUpgrades;
 
-	protected final List<Identifier> requiredAdvancementIdentifiers;
+	protected final Identifier requiredAdvancementIdentifier;
 
 	public PedestalCraftingRecipe(Identifier id, String group, PedestalRecipeTier tier, int width, int height,
 	                              DefaultedList<Ingredient> craftingInputs, HashMap<BuiltinGemstoneColor, Integer> gemstoneDustInputs, ItemStack output,
-	                              float experience, int craftingTime, boolean skipRecipeRemainders, boolean noBenefitsFromYieldUpgrades, List<Identifier> requiredAdvancementIdentifiers) {
+	                              float experience, int craftingTime, boolean skipRecipeRemainders, boolean noBenefitsFromYieldUpgrades, Identifier requiredAdvancementIdentifier) {
 		this.id = id;
 		this.group = group;
 		this.tier = tier;
-
 		this.width = width;
 		this.height = height;
-
 		this.craftingInputs = craftingInputs;
 		this.gemstoneDustInputs = gemstoneDustInputs;
 		this.output = output;
@@ -74,17 +69,9 @@ public class PedestalCraftingRecipe implements Recipe<Inventory>, GatedRecipe {
 		this.craftingTime = craftingTime;
 		this.skipRecipeRemainders = skipRecipeRemainders;
 		this.noBenefitsFromYieldUpgrades = noBenefitsFromYieldUpgrades;
+		this.requiredAdvancementIdentifier = requiredAdvancementIdentifier;
 
-		this.requiredAdvancementIdentifiers = requiredAdvancementIdentifiers;
-
-		if(FabricLoader.getInstance().getEnvironmentType() != EnvType.SERVER) {
-			registerInClientToastManager();
-		}
-	}
-
-	@Environment(EnvType.CLIENT)
-	private void registerInClientToastManager() {
-		ClientRecipeToastManager.registerUnlockablePedestalRecipe(this);
+		registerInToastManager(SpectrumRecipeTypes.PEDESTAL, this);
 	}
 
 	@Override
@@ -272,16 +259,7 @@ public class PedestalCraftingRecipe implements Recipe<Inventory>, GatedRecipe {
 	
 	@Override
 	public boolean canPlayerCraft(PlayerEntity playerEntity) {
-		return PedestalRecipeTier.hasUnlockedRequiredTier(playerEntity, this.tier) && hasUnlockedRequiredAdvancements(playerEntity);
-	}
-	
-	public boolean hasUnlockedRequiredAdvancements(PlayerEntity playerEntity) {
-		for(Identifier advancementIdentifier : this.requiredAdvancementIdentifiers) {
-			if(!Support.hasAdvancement(playerEntity, advancementIdentifier)) {
-				return false;
-			}
-		}
-		return true;
+		return PedestalRecipeTier.hasUnlockedRequiredTier(playerEntity, this.tier) && Support.hasAdvancement(playerEntity, this.requiredAdvancementIdentifier);
 	}
 
 	/**
@@ -301,8 +279,8 @@ public class PedestalCraftingRecipe implements Recipe<Inventory>, GatedRecipe {
 	 * The advancement the player has to have to let the recipe be craftable in the pedestal
 	 * @return The advancement identifier.
 	 */
-	public List<Identifier> getRequiredAdvancementIdentifiers() {
-		return requiredAdvancementIdentifiers;
+	public Identifier getRequiredAdvancementIdentifier() {
+		return requiredAdvancementIdentifier;
 	}
 	
 	@Override
@@ -316,6 +294,16 @@ public class PedestalCraftingRecipe implements Recipe<Inventory>, GatedRecipe {
 	
 	public boolean skipRecipeRemainders() {
 		return this.skipRecipeRemainders;
+	}
+	
+	@Override
+	public TranslatableText getSingleUnlockToastString() {
+		return new TranslatableText("spectrum.toast.pedestal_recipe_unlocked.title");
+	}
+	
+	@Override
+	public TranslatableText getMultipleUnlockToastString() {
+		return new TranslatableText("spectrum.toast.pedestal_recipes_unlocked.title");
 	}
 	
 }

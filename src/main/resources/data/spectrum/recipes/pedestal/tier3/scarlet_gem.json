@@ -25,6 +25,6 @@
     "item": "spectrum:scarlet_gem",
     "count": 1
   },
-  "required_advancements": ["spectrum:hidden/collect_scarlet_gem"],
+  "required_advancement": "spectrum:hidden/collect_scarlet_gem",
   "disable_yield_upgrades": true
 }

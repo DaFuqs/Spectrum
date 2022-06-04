@@ -29,5 +29,5 @@
     "item": "spectrum:green_lamp",
     "count": 2
   },
-  "required_advancements": [ "spectrum:progression/colored_lamps/unlock_green_lamp" ]
+  "required_advancement":  "spectrum:progression/colored_lamps/unlock_green_lamp"
 }

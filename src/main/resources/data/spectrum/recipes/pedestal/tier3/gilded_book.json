@@ -28,5 +28,5 @@
     "item": "spectrum:gilded_book",
     "count": 1
   },
-  "required_advancements": ["spectrum:progression/unlock_gilded_book"]
+  "required_advancement": "spectrum:progression/unlock_gilded_book"
 }

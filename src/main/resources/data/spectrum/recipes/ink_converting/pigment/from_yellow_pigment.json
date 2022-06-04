@@ -1,0 +1,10 @@
+{
+  "type": "spectrum:ink_converting",
+  "time": 10,
+  "ingredient": {
+    "item": "spectrum:yellow_pigment"
+  },
+  "color": "yellow",
+  "amount": 100,
+  "required_advancement": "spectrum:hidden/collect_pigment/collect_yellow_pigment"
+}

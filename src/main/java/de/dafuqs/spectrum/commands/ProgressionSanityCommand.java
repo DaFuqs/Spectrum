@@ -144,15 +144,8 @@ public class ProgressionSanityCommand {
 		
 		// Impossible to unlock pedestal recipes
 		for(PedestalCraftingRecipe recipe : SpectrumCommon.minecraftServer.getRecipeManager().listAllOfType(SpectrumRecipeTypes.PEDESTAL)) {
-			List<Identifier> advancementIdentifiers = recipe.getRequiredAdvancementIdentifiers();
-			if(advancementIdentifiers == null || advancementIdentifiers.isEmpty()) {
-				SpectrumCommon.logWarning("[SANITY: Pedestal Recipe Unlocks] Pedestal recipe '" + recipe.getId() + "' has no required advancements set!");
-			} else {
-				for (Identifier advancementIdentifier : advancementIdentifiers) {
-					if (!doesAdvancementExist(advancementIdentifier)) {
-						SpectrumCommon.logWarning("[SANITY: Pedestal Recipe Unlocks] Advancement '" + advancementIdentifier + "' in '" + recipe.getId() + "' does not exist");
-					}
-				}
+			if(!doesAdvancementExist(recipe.getRequiredAdvancementIdentifier())) {
+				SpectrumCommon.logWarning("[SANITY: Pedestal Recipe Unlocks] Advancement '" + recipe.getRequiredAdvancementIdentifier() + "' in recipe '" + recipe.getId() + "' does not exist");
 			}
 		}
 
@@ -189,7 +182,7 @@ public class ProgressionSanityCommand {
 		}
 		
 		// Impossible to unlock spirit instiller recipes
-		for(ISpiritInstillerRecipe recipe : SpectrumCommon.minecraftServer.getRecipeManager().listAllOfType(SpectrumRecipeTypes.SPIRIT_INSTILLER_RECIPE)) {
+		for(ISpiritInstillerRecipe recipe : SpectrumCommon.minecraftServer.getRecipeManager().listAllOfType(SpectrumRecipeTypes.SPIRIT_INSTILLING)) {
 			if(!doesAdvancementExist(recipe.getRequiredAdvancementIdentifier())) {
 				SpectrumCommon.logWarning("[SANITY: Spirit Instiller Recipe Unlocks] Advancement '" + recipe.getRequiredAdvancementIdentifier() + "' in recipe '" + recipe.getId() + "' does not exist");
 			}

@@ -25,5 +25,5 @@
     "item": "spectrum:void_bundle",
     "count": 1
   },
-  "required_advancements": ["spectrum:progression/unlock_void_bundle"]
+  "required_advancement": "spectrum:progression/unlock_void_bundle"
 }

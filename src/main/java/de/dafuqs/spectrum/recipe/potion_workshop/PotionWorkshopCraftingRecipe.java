@@ -2,12 +2,8 @@ package de.dafuqs.spectrum.recipe.potion_workshop;
 
 import de.dafuqs.spectrum.blocks.potion_workshop.PotionWorkshopBlockEntity;
 import de.dafuqs.spectrum.items.ExperienceStorageItem;
-import de.dafuqs.spectrum.progression.ClientRecipeToastManager;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.registries.SpectrumItems;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Ingredient;
@@ -32,16 +28,8 @@ public class PotionWorkshopCraftingRecipe extends PotionWorkshopRecipe {
 		this.requiredExperience = requiredExperience;
 		this.consumeBaseIngredient = consumeBaseIngredient;
 		
-		if(FabricLoader.getInstance().getEnvironmentType() != EnvType.SERVER) {
-			registerInClientToastManager();
-		}
+		registerInToastManager(SpectrumRecipeTypes.POTION_WORKSHOP_CRAFTING, this);
 	}
-	
-	@Environment(EnvType.CLIENT)
-	private void registerInClientToastManager() {
-		ClientRecipeToastManager.registerUnlockablePotionWorkshopRecipe(this);
-	}
-	
 	
 	public Ingredient getBaseIngredient() {
 		return baseIngredient;

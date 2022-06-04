@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.compat.REI;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.mob_blocks.FirestarterMobBlock;
 import de.dafuqs.spectrum.blocks.mob_blocks.FreezingMobBlock;
+import de.dafuqs.spectrum.compat.REI.plugins.*;
 import de.dafuqs.spectrum.inventories.PedestalScreen;
 import de.dafuqs.spectrum.inventories.PotionWorkshopScreen;
 import de.dafuqs.spectrum.items.magic_items.NaturesStaffItem;
@@ -11,6 +12,7 @@ import de.dafuqs.spectrum.recipe.anvil_crushing.AnvilCrushingRecipe;
 import de.dafuqs.spectrum.recipe.enchanter.EnchanterRecipe;
 import de.dafuqs.spectrum.recipe.enchantment_upgrade.EnchantmentUpgradeRecipe;
 import de.dafuqs.spectrum.recipe.fusion_shrine.FusionShrineRecipe;
+import de.dafuqs.spectrum.recipe.ink_converting.InkConvertingRecipe;
 import de.dafuqs.spectrum.recipe.midnight_solution_converting.MidnightSolutionConvertingRecipe;
 import de.dafuqs.spectrum.recipe.pedestal.PedestalCraftingRecipe;
 import de.dafuqs.spectrum.recipe.potion_workshop.PotionWorkshopBrewingRecipe;
@@ -48,6 +50,7 @@ public class REIClientIntegration implements REIClientPlugin {
 		registry.add(new MidnightSolutionConvertingCategory());
 		registry.add(new HeatingCategory());
 		registry.add(new FreezingCategory());
+		registry.add(new InkConvertingCategory());
 		
 		registry.addWorkstations(BuiltinPlugin.CRAFTING, EntryStacks.of(SpectrumItems.CRAFTING_TABLET));
 		
@@ -80,6 +83,7 @@ public class REIClientIntegration implements REIClientPlugin {
 		
 		registry.addWorkstations(SpectrumPlugins.MIDNIGHT_SOLUTION_CONVERTING, EntryStacks.of(SpectrumItems.MIDNIGHT_SOLUTION_BUCKET));
 		registry.addWorkstations(SpectrumPlugins.SPIRIT_INSTILLER, EntryStacks.of(SpectrumBlocks.SPIRIT_INSTILLER));
+		registry.addWorkstations(SpectrumPlugins.INK_CONVERTING, EntryStacks.of(SpectrumBlocks.COLOR_PICKER));
 
 		// For item crushing and others are in-world recipes there is no gui to fill
 		// therefore the plus button is obsolete
@@ -96,15 +100,16 @@ public class REIClientIntegration implements REIClientPlugin {
 
 	@Override
 	public void registerDisplays(DisplayRegistry registry) {
-		registry.registerFiller(AnvilCrushingRecipe.class, AnvilCrushingRecipeDisplay::new);
-		registry.registerRecipeFiller(PedestalCraftingRecipe.class, SpectrumRecipeTypes.PEDESTAL, PedestalCraftingRecipeDisplay::new);
-		registry.registerRecipeFiller(FusionShrineRecipe.class, SpectrumRecipeTypes.FUSION_SHRINE, FusionShrineRecipeDisplay::new);
-		registry.registerRecipeFiller(EnchanterRecipe.class, SpectrumRecipeTypes.ENCHANTER, EnchanterRecipeDisplay::new);
-		registry.registerRecipeFiller(EnchantmentUpgradeRecipe.class, SpectrumRecipeTypes.ENCHANTMENT_UPGRADE, EnchantmentUpgradeRecipeDisplay::new);
-		registry.registerRecipeFiller(PotionWorkshopBrewingRecipe.class, SpectrumRecipeTypes.POTION_WORKSHOP_BREWING, PotionWorkshopBrewingRecipeDisplay::new);
+		registry.registerFiller(AnvilCrushingRecipe.class, AnvilCrushingDisplay::new);
+		registry.registerRecipeFiller(PedestalCraftingRecipe.class, SpectrumRecipeTypes.PEDESTAL, PedestalCraftingDisplay::new);
+		registry.registerRecipeFiller(FusionShrineRecipe.class, SpectrumRecipeTypes.FUSION_SHRINE, FusionShrineDisplay::new);
+		registry.registerRecipeFiller(EnchanterRecipe.class, SpectrumRecipeTypes.ENCHANTER, EnchanterDisplay::new);
+		registry.registerRecipeFiller(EnchantmentUpgradeRecipe.class, SpectrumRecipeTypes.ENCHANTMENT_UPGRADE, EnchantmentUpgradeDisplay::new);
+		registry.registerRecipeFiller(PotionWorkshopBrewingRecipe.class, SpectrumRecipeTypes.POTION_WORKSHOP_BREWING, PotionWorkshopBrewingDisplay::new);
 		registry.registerRecipeFiller(PotionWorkshopCraftingRecipe.class, SpectrumRecipeTypes.POTION_WORKSHOP_CRAFTING, PotionWorkshopCraftingRecipeDisplay::new);
-		registry.registerRecipeFiller(ISpiritInstillerRecipe.class, SpectrumRecipeTypes.SPIRIT_INSTILLER_RECIPE, SpiritInstillerRecipeDisplay::new);
+		registry.registerRecipeFiller(ISpiritInstillerRecipe.class, SpectrumRecipeTypes.SPIRIT_INSTILLING, SpiritInstillerRecipeDisplay::new);
 		registry.registerRecipeFiller(MidnightSolutionConvertingRecipe.class, SpectrumRecipeTypes.MIDNIGHT_SOLUTION_CONVERTING_RECIPE, MidnightSolutionConvertingDisplay::new);
+		registry.registerRecipeFiller(InkConvertingRecipe.class, SpectrumRecipeTypes.INK_CONVERTING, InkConvertingDisplay::new);
 		
 		NaturesStaffItem.BLOCK_CONVERSIONS.forEach((key, value) -> registry.add(new NaturesStaffConversionsDisplay(EntryStacks.of(key), EntryStacks.of(value.getBlock()))));
 		FreezingMobBlock.FREEZING_STATE_MAP.forEach((key, value) -> registry.add(new FreezingDisplay(BlockToBlockWithChanceDisplay.blockToEntryStack(key.getBlock()), BlockToBlockWithChanceDisplay.blockToEntryStack(value.getLeft().getBlock()), value.getRight())));

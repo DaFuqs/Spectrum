@@ -22,7 +22,7 @@ public class PageSpiritInstillerCrafting extends PageDoubleRecipeRegistry<ISpiri
 	private static final ItemStack ITEM_BOWL_STACK = SpectrumBlocks.ITEM_BOWL_CALCITE.asItem().getDefaultStack();
 	
 	public PageSpiritInstillerCrafting() {
-		super(SpectrumRecipeTypes.SPIRIT_INSTILLER_RECIPE);
+		super(SpectrumRecipeTypes.SPIRIT_INSTILLING);
 	}
 
 	@Override

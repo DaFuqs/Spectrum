@@ -277,7 +277,7 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 				spiritInstillerBlockEntity.autoCraftingInventory.setStack(2, ItemStack.EMPTY);
 			}
 			
-			ISpiritInstillerRecipe spiritInstillerRecipe = world.getRecipeManager().getFirstMatch(SpectrumRecipeTypes.SPIRIT_INSTILLER_RECIPE, spiritInstillerBlockEntity.autoCraftingInventory, world).orElse(null);
+			ISpiritInstillerRecipe spiritInstillerRecipe = world.getRecipeManager().getFirstMatch(SpectrumRecipeTypes.SPIRIT_INSTILLING, spiritInstillerBlockEntity.autoCraftingInventory, world).orElse(null);
 			if (spiritInstillerRecipe != null) {
 				spiritInstillerBlockEntity.currentRecipe = spiritInstillerRecipe;
 				spiritInstillerBlockEntity.craftingTimeTotal = (int) Math.ceil(spiritInstillerRecipe.getCraftingTime() / spiritInstillerBlockEntity.upgrades.get(Upgradeable.UpgradeType.SPEED));

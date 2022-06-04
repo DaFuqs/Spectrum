@@ -29,5 +29,5 @@
     "item": "spectrum:onyx_decostone",
     "count": 1
   },
-  "required_advancements": ["spectrum:progression/decostones/unlock_onyx_decostone"]
+  "required_advancement": "spectrum:progression/decostones/unlock_onyx_decostone"
 }

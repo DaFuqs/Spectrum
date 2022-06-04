@@ -129,7 +129,7 @@ public class SpectrumItemGroups {
 				
 				// all memories that have spirit instiller recipes
 				Item memoryItem = SpectrumBlocks.MEMORY.asItem();
-				for(ISpiritInstillerRecipe recipe : SpectrumCommon.minecraftServer.getRecipeManager().listAllOfType(SpectrumRecipeTypes.SPIRIT_INSTILLER_RECIPE)) {
+				for(ISpiritInstillerRecipe recipe : SpectrumCommon.minecraftServer.getRecipeManager().listAllOfType(SpectrumRecipeTypes.SPIRIT_INSTILLING)) {
 					if(recipe.getOutput().isOf(memoryItem)) {
 						stacks.add(recipe.getOutput());
 					}

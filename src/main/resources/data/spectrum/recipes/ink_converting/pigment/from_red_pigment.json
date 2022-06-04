@@ -1,0 +1,10 @@
+{
+  "type": "spectrum:ink_converting",
+  "time": 10,
+  "ingredient": {
+    "item": "spectrum:red_pigment"
+  },
+  "color": "red",
+  "amount": 100,
+  "required_advancement": "spectrum:hidden/collect_pigment/collect_red_pigment"
+}

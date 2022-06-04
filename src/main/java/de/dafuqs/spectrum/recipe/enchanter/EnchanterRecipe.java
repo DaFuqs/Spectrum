@@ -3,13 +3,9 @@ package de.dafuqs.spectrum.recipe.enchanter;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.items.ExperienceStorageItem;
-import de.dafuqs.spectrum.progression.ClientRecipeToastManager;
 import de.dafuqs.spectrum.recipe.GatedRecipe;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
@@ -17,6 +13,7 @@ import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.RecipeType;
+import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
@@ -48,16 +45,9 @@ public class EnchanterRecipe implements Recipe<Inventory>, GatedRecipe {
 		this.requiredAdvancementIdentifier = requiredAdvancementIdentifier;
 		this.noBenefitsFromYieldAndEfficiencyUpgrades = noBenefitsFromYieldAndEfficiencyUpgrades;
 		
-		if(FabricLoader.getInstance().getEnvironmentType() != EnvType.SERVER) {
-			registerInClientToastManager();
-		}
+		registerInToastManager(SpectrumRecipeTypes.ENCHANTER, this);
 	}
-
-	@Environment(EnvType.CLIENT)
-	private void registerInClientToastManager() {
-		ClientRecipeToastManager.registerUnlockableEnchanterRecipe(this);
-	}
-
+	
 	@Override
 	public boolean equals(Object object) {
 		if(object instanceof EnchanterRecipe) {
@@ -157,6 +147,16 @@ public class EnchanterRecipe implements Recipe<Inventory>, GatedRecipe {
 	@Override
 	public boolean canPlayerCraft(PlayerEntity playerEntity) {
 		return Support.hasAdvancement(playerEntity, EnchanterRecipe.UNLOCK_ENCHANTING_ADVANCEMENT_IDENTIFIER) && Support.hasAdvancement(playerEntity, this.requiredAdvancementIdentifier);
+	}
+
+	@Override
+	public TranslatableText getSingleUnlockToastString() {
+		return new TranslatableText("spectrum.toast.enchanter_recipe_unlocked.title");
+	}
+	
+	@Override
+	public TranslatableText getMultipleUnlockToastString() {
+		return new TranslatableText("spectrum.toast.enchanter_recipes_unlocked.title");
 	}
 	
 }

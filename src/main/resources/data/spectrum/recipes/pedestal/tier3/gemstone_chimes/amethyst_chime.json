@@ -35,5 +35,5 @@
     "item": "spectrum:amethyst_chime",
     "count": 1
   },
-  "required_advancements": ["spectrum:progression/gemstone_chimes/unlock_amethyst_chime"]
+  "required_advancement": "spectrum:progression/gemstone_chimes/unlock_amethyst_chime"
 }

@@ -17,6 +17,7 @@ import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.RecipeType;
+import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
@@ -184,6 +185,16 @@ public class EnchantmentUpgradeRecipe implements Recipe<Inventory>, GatedRecipe 
 	@Override
 	public boolean canPlayerCraft(PlayerEntity playerEntity) {
 		return Support.hasAdvancement(playerEntity, EnchanterRecipe.UNLOCK_ENCHANTING_ADVANCEMENT_IDENTIFIER) && Support.hasAdvancement(playerEntity, this.requiredAdvancementIdentifier);
+	}
+	
+	@Override
+	public TranslatableText getSingleUnlockToastString() {
+		return new TranslatableText("spectrum.toast.enchanter_recipe_unlocked.title");
+	}
+	
+	@Override
+	public TranslatableText getMultipleUnlockToastString() {
+		return new TranslatableText("spectrum.toast.enchanter_recipes_unlocked.title");
 	}
 	
 }

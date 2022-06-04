@@ -28,5 +28,5 @@
     "item": "spectrum:glistering_melon_seeds",
     "count": 1
   },
-  "required_advancements": ["spectrum:collect_vegetal"]
+  "required_advancement": "spectrum:collect_vegetal"
 }

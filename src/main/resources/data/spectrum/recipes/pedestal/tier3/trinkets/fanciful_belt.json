@@ -25,5 +25,5 @@
     "item": "spectrum:fanciful_belt",
     "count": 1
   },
-  "required_advancements": ["spectrum:progression/unlock_fanciful_belt"]
+  "required_advancement": "spectrum:progression/unlock_fanciful_belt"
 }

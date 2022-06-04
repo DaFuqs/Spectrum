@@ -28,5 +28,5 @@
     "item": "spectrum:light_staff",
     "count": 1
   },
-  "required_advancements": ["spectrum:progression/unlock_light_staff"]
+  "required_advancement": "spectrum:progression/unlock_light_staff"
 }

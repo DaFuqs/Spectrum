@@ -26,5 +26,5 @@
     "item": "spectrum:green_glowblock",
     "count": 4
   },
-  "required_advancements": ["spectrum:hidden/collect_pigment/collect_green_pigment"]
+  "required_advancement": "spectrum:hidden/collect_pigment/collect_green_pigment"
 }

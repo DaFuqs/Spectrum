@@ -31,5 +31,5 @@
     "item": "spectrum:ink_duct",
     "count": 4
   },
-  "required_advancements": ["spectrum:progression/unlock_ink_duct"]
+  "required_advancement": "spectrum:progression/unlock_ink_duct"
 }

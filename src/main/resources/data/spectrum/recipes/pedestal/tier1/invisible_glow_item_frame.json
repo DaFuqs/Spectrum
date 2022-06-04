@@ -34,5 +34,5 @@
     "item": "spectrum:invisible_glow_item_frame",
     "count": 1
   },
-  "required_advancements": ["spectrum:collect_sparklestone"]
+  "required_advancement": "spectrum:collect_sparklestone"
 }

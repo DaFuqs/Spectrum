@@ -31,5 +31,5 @@
     "item": "spectrum:inkwell",
     "count": 1
   },
-  "required_advancements": ["spectrum:progression/unlock_inkwell"]
+  "required_advancement": "spectrum:progression/unlock_inkwell"
 }

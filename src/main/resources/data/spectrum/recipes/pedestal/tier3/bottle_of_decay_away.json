@@ -31,5 +31,5 @@
     "item": "spectrum:bottle_of_decay_away",
     "count": 1
   },
-  "required_advancements": ["spectrum:progression/unlock_bottle_of_decay_away"]
+  "required_advancement": "spectrum:progression/unlock_bottle_of_decay_away"
 }

@@ -26,7 +26,7 @@
     "item": "chalk:pink_chalk",
     "nbt": "{Unbreakable:1}"
   },
-  "required_advancements": ["spectrum:hidden/collect_pigment/collect_pink_pigment"],
+  "required_advancement": "spectrum:hidden/collect_pigment/collect_pink_pigment",
   "fabric:load_conditions": [
     {
       "condition": "fabric:all_mods_loaded",

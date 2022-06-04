@@ -29,30 +29,7 @@ import java.util.Map;
 
 @Environment(EnvType.CLIENT)
 public class UnlockedRecipeGroupToast implements Toast {
-
-	public enum UnlockedRecipeToastType {
-		PEDESTAL("spectrum.toast.pedestal_recipe_unlocked.title", "spectrum.toast.pedestal_recipes_unlocked.title"),
-		FUSION_SHRINE("spectrum.toast.fusion_shrine_recipe_unlocked.title", "spectrum.toast.fusion_shrine_recipes_unlocked.title"),
-		ENCHANTER("spectrum.toast.enchanter_recipe_unlocked.title", "spectrum.toast.enchanter_recipes_unlocked.title"),
-		POTION_WORKSHOP("spectrum.toast.potion_workshop_recipe_unlocked.title", "spectrum.toast.potion_workshop_recipes_unlocked.title");
-		
-		private final TranslatableText unlockToastTextSingle;
-		private final TranslatableText unlockToastTextGroup;
-		
-		UnlockedRecipeToastType(String unlockToastStringSingle, String unlockToastStringGroup) {
-			this.unlockToastTextSingle = new TranslatableText(unlockToastStringSingle);
-			this.unlockToastTextGroup = new TranslatableText(unlockToastStringGroup);
-		}
-		
-		public TranslatableText getUnlockToastTextSingle() {
-			return unlockToastTextSingle;
-		}
-		
-		public TranslatableText getUnlockToastTextGroup() {
-			return unlockToastTextGroup;
-		}
-	}
-
+	
 	private final Identifier TEXTURE = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/toasts.png");
 	private final Text title;
 	private final Text text;
@@ -67,14 +44,12 @@ public class UnlockedRecipeGroupToast implements Toast {
 		this.soundPlayed = false;
 	}
 
-	public static void showRecipeToast(@NotNull MinecraftClient client, ItemStack itemStack, @NotNull UnlockedRecipeToastType type) {
-		Text title = type.getUnlockToastTextSingle();
+	public static void showRecipeToast(@NotNull MinecraftClient client, ItemStack itemStack, TranslatableText title) {
 		Text text = getTextForItemStack(itemStack);
 		client.getToastManager().add(new UnlockedRecipeGroupToast(title, text, new ArrayList<>() {{ add(itemStack); }}));
 	}
 
-	public static void showRecipeGroupToast(@NotNull MinecraftClient client, String groupName, List<ItemStack> itemStacks, @NotNull UnlockedRecipeToastType type) {
-		Text title = type.getUnlockToastTextGroup();
+	public static void showRecipeGroupToast(@NotNull MinecraftClient client, String groupName, List<ItemStack> itemStacks, TranslatableText title) {
 		Text text = new TranslatableText("recipeGroup.spectrum." + groupName);
 		client.getToastManager().add(new UnlockedRecipeGroupToast(title, text, itemStacks));
 	}

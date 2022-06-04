@@ -28,11 +28,9 @@ public class ColorPickerScreen extends HandledScreen<ColorPickerScreenHandler> {
 		int titleX = (backgroundWidth - textRenderer.getWidth(title)) / 2;
 		int titleY = 6;
 		Text title = this.title;
-		int playerInventoryX = 8;
-		int playerInventoryY = 78;
 
 		this.textRenderer.draw(matrices, title, titleX, titleY, 3289650);
-		this.textRenderer.draw(matrices, this.playerInventoryTitle, playerInventoryX, playerInventoryY, 3289650);
+		this.textRenderer.draw(matrices, this.playerInventoryTitle, ColorPickerScreenHandler.PLAYER_INVENTORY_START_X, ColorPickerScreenHandler.PLAYER_INVENTORY_START_Y - 10, 3289650);
 	}
 
 	@Override

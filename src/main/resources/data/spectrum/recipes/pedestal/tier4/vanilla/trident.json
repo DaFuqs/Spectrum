@@ -28,5 +28,5 @@
     "item": "minecraft:trident",
     "count": 1
   },
-  "required_advancements": ["spectrum:lategame/build_complex_pedestal_structure"]
+  "required_advancement": "spectrum:lategame/build_complex_pedestal_structure"
 }

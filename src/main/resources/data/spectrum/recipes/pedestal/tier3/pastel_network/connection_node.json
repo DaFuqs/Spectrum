@@ -35,5 +35,5 @@
     "item": "spectrum:connection_node",
     "count": 1
   },
-  "required_advancements": ["spectrum:progression/pastel_network/unlock_basic_nodes"]
+  "required_advancement": "spectrum:progression/pastel_network/unlock_basic_nodes"
 }

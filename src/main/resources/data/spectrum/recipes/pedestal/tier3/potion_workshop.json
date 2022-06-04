@@ -34,5 +34,5 @@
     "item": "spectrum:potion_workshop",
     "count": 1
   },
-  "required_advancements": [ "spectrum:progression/unlock_potion_workshop" ]
+  "required_advancement":  "spectrum:progression/unlock_potion_workshop"
 }

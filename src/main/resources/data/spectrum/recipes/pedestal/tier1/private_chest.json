@@ -28,5 +28,5 @@
     "item": "spectrum:private_chest",
     "count": 1
   },
-  "required_advancements": ["spectrum:progression/unlock_private_chest"]
+  "required_advancement": "spectrum:progression/unlock_private_chest"
 }

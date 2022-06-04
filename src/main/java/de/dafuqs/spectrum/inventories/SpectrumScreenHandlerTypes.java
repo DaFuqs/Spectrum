@@ -47,12 +47,12 @@ public class SpectrumScreenHandlerTypes {
 		PARTICLE_SPAWNER = registerExtended(SpectrumContainers.PARTICLE_SPAWNER, ParticleSpawnerScreenHandler::new);
 		COMPACTING_CHEST = registerExtended(SpectrumContainers.COMPACTING_CHEST, CompactingChestScreenHandler::new);
 		SUCKING_CHEST = registerExtended(SpectrumContainers.SUCKING_CHEST, SuckingChestScreenHandler::new);
+		COLOR_PICKER = registerExtended(SpectrumContainers.COLOR_PICKER, ColorPickerScreenHandler::new);
 		
 		CRAFTING_TABLET = registerSimple(SpectrumContainers.CRAFTING_TABLET, CraftingTabletScreenHandler::new);
 		RESTOCKING_CHEST = registerSimple(SpectrumContainers.RESTOCKING_CHEST, RestockingChestScreenHandler::new);
 		BEDROCK_ANVIL = registerSimple(SpectrumContainers.BEDROCK_ANVIL, BedrockAnvilScreenHandler::new);
 		POTION_WORKSHOP = registerSimple(SpectrumContainers.POTION_WORKSHOP, PotionWorkshopScreenHandler::new);
-		COLOR_PICKER = registerSimple(SpectrumContainers.COLOR_PICKER, ColorPickerScreenHandler::new);
 		
 		GENERIC_TIER1_9X3 = registerSimple(SpectrumContainers.GENERIC_TIER1_9x3, GenericSpectrumContainerScreenHandler::createGeneric9x3_Tier1);
 		GENERIC_TIER2_9X3 = registerSimple(SpectrumContainers.GENERIC_TIER2_9x3, GenericSpectrumContainerScreenHandler::createGeneric9x3_Tier2);

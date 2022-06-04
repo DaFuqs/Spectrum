@@ -26,5 +26,5 @@
     "item": "spectrum:magenta_glowblock",
     "count": 4
   },
-  "required_advancements": ["spectrum:hidden/collect_pigment/collect_magenta_pigment"]
+  "required_advancement": "spectrum:hidden/collect_pigment/collect_magenta_pigment"
 }

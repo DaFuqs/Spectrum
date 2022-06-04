@@ -28,5 +28,5 @@
     "item": "spectrum:lava_sponge",
     "count": 1
   },
-  "required_advancements": ["spectrum:progression/unlock_lava_sponge"]
+  "required_advancement": "spectrum:progression/unlock_lava_sponge"
 }

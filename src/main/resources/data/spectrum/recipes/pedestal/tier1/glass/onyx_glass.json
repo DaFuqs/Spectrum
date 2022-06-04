@@ -26,5 +26,5 @@
     "item": "spectrum:onyx_glass",
     "count": 8
   },
-  "required_advancements": ["spectrum:create_onyx_shard"]
+  "required_advancement": "spectrum:create_onyx_shard"
 }

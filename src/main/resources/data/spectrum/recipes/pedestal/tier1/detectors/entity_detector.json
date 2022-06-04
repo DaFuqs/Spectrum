@@ -31,5 +31,5 @@
     "item": "spectrum:entity_detector",
     "count": 1
   },
-  "required_advancements": [ "spectrum:progression/detectors/unlock_entity_detector" ]
+  "required_advancement":  "spectrum:progression/detectors/unlock_entity_detector"
 }

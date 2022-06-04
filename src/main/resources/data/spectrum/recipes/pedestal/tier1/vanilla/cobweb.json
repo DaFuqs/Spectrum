@@ -28,5 +28,5 @@
     "item": "minecraft:cobweb",
     "count": 2
   },
-  "required_advancements": ["spectrum:collect_quitoxic_reeds"]
+  "required_advancement": "spectrum:collect_quitoxic_reeds"
 }

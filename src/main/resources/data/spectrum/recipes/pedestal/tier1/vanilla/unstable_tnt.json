@@ -26,5 +26,5 @@
     "nbt": "{BlockStateTag:{unstable:\"true\"},display: {Lore: ['{\"text\":\"unstable\"}']}}",
     "count": 2
   },
-  "required_advancements": ["spectrum:collect_quitoxic_reeds"]
+  "required_advancement": "spectrum:collect_quitoxic_reeds"
 }

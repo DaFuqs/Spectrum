@@ -48,8 +48,10 @@ public class SpiritInstillerRecipe implements ISpiritInstillerRecipe {
 		this.experience = experience;
 		this.requiredAdvancementIdentifier = requiredAdvancementIdentifier;
 		this.noBenefitsFromYieldAndEfficiencyUpgrades = noBenefitsFromYieldAndEfficiencyUpgrades;
+		
+		registerInToastManager(SpectrumRecipeTypes.SPIRIT_INSTILLING, this);
 	}
-
+	
 	@Override
 	public ItemStack getOutput() {
 		return outputItemStack.copy();
@@ -62,7 +64,7 @@ public class SpiritInstillerRecipe implements ISpiritInstillerRecipe {
 	
 	@Override
 	public RecipeSerializer<?> getSerializer() {
-		return SpectrumRecipeTypes.SPIRIT_INSTILLER_RECIPE_SERIALIZER;
+		return SpectrumRecipeTypes.SPIRIT_INSTILLING_SERIALIZER;
 	}
 
 	@Deprecated
@@ -153,7 +155,7 @@ public class SpiritInstillerRecipe implements ISpiritInstillerRecipe {
 	
 	@Override
 	public boolean canPlayerCraft(PlayerEntity playerEntity) {
-		return Support.hasAdvancement(playerEntity, UNLOCK_SPIRIT_INSTILLER_ADVANCEMENT_IDENTIFIER) && Support.hasAdvancement(playerEntity, this.requiredAdvancementIdentifier);
+		return Support.hasAdvancement(playerEntity, UNLOCK_ADVANCEMENT_IDENTIFIER) && Support.hasAdvancement(playerEntity, this.requiredAdvancementIdentifier);
 	}
 	
 	@Override

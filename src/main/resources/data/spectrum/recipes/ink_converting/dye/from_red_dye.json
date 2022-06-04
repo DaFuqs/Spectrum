@@ -1,0 +1,10 @@
+{
+  "type": "spectrum:ink_converting",
+  "time": 20,
+  "ingredient": {
+    "item": "minecraft:red_dye"
+  },
+  "color": "red",
+  "amount": 5,
+  "required_advancement": "spectrum:hidden/collect_pigment/collect_red_pigment"
+}

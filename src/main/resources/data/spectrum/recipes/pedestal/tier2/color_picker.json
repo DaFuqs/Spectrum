@@ -34,5 +34,5 @@
     "item": "spectrum:color_picker",
     "count": 1
   },
-  "required_advancements": ["spectrum:progression/unlock_color_picker"]
+  "required_advancement": "spectrum:progression/unlock_color_picker"
 }

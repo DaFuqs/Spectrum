@@ -29,5 +29,5 @@
     "item": "spectrum:pink_lamp",
     "count": 2
   },
-  "required_advancements": [ "spectrum:progression/colored_lamps/unlock_pink_lamp" ]
+  "required_advancement":  "spectrum:progression/colored_lamps/unlock_pink_lamp"
 }

@@ -26,5 +26,5 @@
     "item": "spectrum:moonstone_glass",
     "count": 8
   },
-  "required_advancements": ["spectrum:midgame/collect_moonstone_shard"]
+  "required_advancement": "spectrum:midgame/collect_moonstone_shard"
 }

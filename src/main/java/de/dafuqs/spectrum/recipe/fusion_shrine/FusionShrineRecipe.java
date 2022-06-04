@@ -1,13 +1,9 @@
 package de.dafuqs.spectrum.recipe.fusion_shrine;
 
 import de.dafuqs.spectrum.helpers.Support;
-import de.dafuqs.spectrum.progression.ClientRecipeToastManager;
 import de.dafuqs.spectrum.recipe.GatedRecipe;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.fabricmc.loader.api.FabricLoader;
 import net.id.incubus_core.recipe.IngredientStack;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluid;
@@ -18,6 +14,7 @@ import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.text.Text;
+import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
@@ -70,16 +67,9 @@ public class FusionShrineRecipe implements Recipe<Inventory>, GatedRecipe {
 		this.requiredAdvancementIdentifier = requiredAdvancementIdentifier;
 		this.description = description;
 		
-		if(FabricLoader.getInstance().getEnvironmentType() != EnvType.SERVER) {
-			registerInClientToastManager();
-		}
+		registerInToastManager(SpectrumRecipeTypes.FUSION_SHRINE, this);
 	}
-
-	@Environment(EnvType.CLIENT)
-	private void registerInClientToastManager() {
-		ClientRecipeToastManager.registerUnlockableFusionShrineRecipe(this);
-	}
-
+	
 	@Override
 	public boolean equals(Object object) {
 		if(object instanceof FusionShrineRecipe) {
@@ -248,6 +238,16 @@ public class FusionShrineRecipe implements Recipe<Inventory>, GatedRecipe {
 	@Override
 	public boolean canPlayerCraft(PlayerEntity playerEntity) {
 		return Support.hasAdvancement(playerEntity, this.requiredAdvancementIdentifier);
+	}
+	
+	@Override
+	public TranslatableText getSingleUnlockToastString() {
+		return new TranslatableText("spectrum.toast.fusion_shrine_recipe_unlocked.title");
+	}
+	
+	@Override
+	public TranslatableText getMultipleUnlockToastString() {
+		return new TranslatableText("spectrum.toast.fusion_shrine_recipes_unlocked.title");
 	}
 	
 }

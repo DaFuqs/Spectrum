@@ -29,5 +29,5 @@
     "item": "spectrum:topaz_decostone",
     "count": 1
   },
-  "required_advancements": ["spectrum:progression/decostones/unlock_topaz_decostone"]
+  "required_advancement": "spectrum:progression/decostones/unlock_topaz_decostone"
 }

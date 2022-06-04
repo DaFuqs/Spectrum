@@ -14,6 +14,7 @@ import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
@@ -23,7 +24,7 @@ import java.util.UUID;
 
 public interface ISpiritInstillerRecipe extends Recipe<Inventory>, GatedRecipe {
 	
-	Identifier UNLOCK_SPIRIT_INSTILLER_ADVANCEMENT_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "midgame/build_spirit_instiller_structure");
+	Identifier UNLOCK_ADVANCEMENT_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "midgame/build_spirit_instiller_structure");
 	
 	@Override
 	ItemStack getOutput();
@@ -43,7 +44,7 @@ public interface ISpiritInstillerRecipe extends Recipe<Inventory>, GatedRecipe {
 	
 	@Override
 	default RecipeType<?> getType() {
-		return SpectrumRecipeTypes.SPIRIT_INSTILLER_RECIPE;
+		return SpectrumRecipeTypes.SPIRIT_INSTILLING;
 	}
 	
 	@Override
@@ -102,6 +103,16 @@ public interface ISpiritInstillerRecipe extends Recipe<Inventory>, GatedRecipe {
 		if(serverPlayerEntity != null) {
 			SpectrumAdvancementCriteria.SPIRIT_INSTILLER_CRAFTING.trigger(serverPlayerEntity, resultStack, experience);
 		}
+	}
+	
+	@Override
+	default TranslatableText getSingleUnlockToastString() {
+		return new TranslatableText("spectrum.toast.spirit_instiller_recipe_unlocked.title");
+	}
+	
+	@Override
+	default TranslatableText getMultipleUnlockToastString() {
+		return new TranslatableText("spectrum.toast.spirit_instiller_recipes_unlocked.title");
 	}
 	
 }

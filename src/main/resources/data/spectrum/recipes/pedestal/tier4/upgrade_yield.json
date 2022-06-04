@@ -31,5 +31,5 @@
     "item": "spectrum:upgrade_yield",
     "count": 1
   },
-  "required_advancements": ["spectrum:lategame/collect_paletur"]
+  "required_advancement": "spectrum:lategame/collect_paletur"
 }

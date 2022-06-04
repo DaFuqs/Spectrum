@@ -29,5 +29,5 @@
     "item": "spectrum:topaz_player_only_glass",
     "count": 6
   },
-  "required_advancements": ["spectrum:midgame/build_advanced_pedestal_structure"]
+  "required_advancement": "spectrum:midgame/build_advanced_pedestal_structure"
 }

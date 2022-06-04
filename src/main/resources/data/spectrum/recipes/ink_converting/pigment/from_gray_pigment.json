@@ -1,0 +1,10 @@
+{
+  "type": "spectrum:ink_converting",
+  "time": 10,
+  "ingredient": {
+    "item": "spectrum:gray_pigment"
+  },
+  "color": "gray",
+  "amount": 100,
+  "required_advancement": "spectrum:hidden/collect_pigment/collect_gray_pigment"
+}

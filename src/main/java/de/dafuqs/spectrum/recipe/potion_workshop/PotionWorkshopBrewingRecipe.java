@@ -2,12 +2,8 @@ package de.dafuqs.spectrum.recipe.potion_workshop;
 
 import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.interfaces.PotionFillable;
-import de.dafuqs.spectrum.progression.ClientRecipeToastManager;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.registries.SpectrumItems;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.inventory.Inventory;
@@ -82,16 +78,8 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 			}
 		}
 		
-		if(FabricLoader.getInstance().getEnvironmentType() != EnvType.SERVER) {
-			registerInClientToastManager();
-		}
+		registerInToastManager(SpectrumRecipeTypes.POTION_WORKSHOP_BREWING, this);
 	}
-	
-	@Environment(EnvType.CLIENT)
-	private void registerInClientToastManager() {
-		ClientRecipeToastManager.registerUnlockablePotionWorkshopRecipe(this);
-	}
-	
 	
 	@Override
 	public boolean isValidBaseIngredient(ItemStack itemStack) {

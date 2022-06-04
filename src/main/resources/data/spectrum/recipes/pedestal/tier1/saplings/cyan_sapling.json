@@ -29,5 +29,5 @@
     "item": "spectrum:cyan_sapling",
     "count": 1
   },
-  "required_advancements": [ "spectrum:progression/colored_saplings/unlock_cyan_sapling" ]
+  "required_advancement":  "spectrum:progression/colored_saplings/unlock_cyan_sapling"
 }

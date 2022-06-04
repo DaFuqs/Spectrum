@@ -28,5 +28,5 @@
     "item": "spectrum:block_placer",
     "count": 1
   },
-  "required_advancements": ["spectrum:progression/unlock_block_placer"]
+  "required_advancement": "spectrum:progression/unlock_block_placer"
 }

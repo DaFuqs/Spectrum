@@ -1,0 +1,10 @@
+{
+  "type": "spectrum:ink_converting",
+  "time": 20,
+  "ingredient": {
+    "item": "minecraft:orange_dye"
+  },
+  "color": "orange",
+  "amount": 5,
+  "required_advancement": "spectrum:hidden/collect_pigment/collect_orange_pigment"
+}

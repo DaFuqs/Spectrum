@@ -28,5 +28,5 @@
     "item": "spectrum:crystal_apothecary",
     "count": 1
   },
-  "required_advancements": ["spectrum:progression/unlock_crystal_apothecary"]
+  "required_advancement": "spectrum:progression/unlock_crystal_apothecary"
 }

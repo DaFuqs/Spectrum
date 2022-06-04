@@ -28,5 +28,5 @@
     "item": "spectrum:block_flooder",
     "count": 4
   },
-  "required_advancements": ["spectrum:progression/unlock_block_flooder"]
+  "required_advancement": "spectrum:progression/unlock_block_flooder"
 }

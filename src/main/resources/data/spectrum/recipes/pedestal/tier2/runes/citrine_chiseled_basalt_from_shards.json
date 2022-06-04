@@ -26,5 +26,5 @@
     "item": "spectrum:citrine_chiseled_basalt",
     "count": 1
   },
-  "required_advancements": ["spectrum:create_onyx_shard"]
+  "required_advancement": "spectrum:create_onyx_shard"
 }

@@ -24,7 +24,7 @@
     "item": "botania:purple_shiny_flower",
     "count": 1
   },
-  "required_advancements": ["spectrum:collect_sparklestone"],
+  "required_advancement": "spectrum:collect_sparklestone",
   "fabric:load_conditions": [
     {
       "condition": "fabric:all_mods_loaded",

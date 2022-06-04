@@ -27,7 +27,7 @@
     "item": "botania:green_mushroom",
     "count": 3
   },
-  "required_advancements": ["spectrum:hidden/collect_pigment/collect_green_pigment"],
+  "required_advancement": "spectrum:hidden/collect_pigment/collect_green_pigment",
   "fabric:load_conditions": [
     {
       "condition": "fabric:all_mods_loaded",

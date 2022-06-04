@@ -28,5 +28,5 @@
     "item": "spectrum:exchange_staff",
     "count": 1
   },
-  "required_advancements": ["spectrum:progression/unlock_exchange_staff"]
+  "required_advancement": "spectrum:progression/unlock_exchange_staff"
 }

@@ -25,5 +25,5 @@
     "item": "minecraft:bundle",
     "count": 1
   },
-  "required_advancements": ["spectrum:hidden/collect_shards/collect_topaz_shard"]
+  "required_advancement": "spectrum:hidden/collect_shards/collect_topaz_shard"
 }

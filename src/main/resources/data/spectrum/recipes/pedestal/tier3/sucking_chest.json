@@ -31,5 +31,5 @@
     "item": "spectrum:sucking_chest",
     "count": 1
   },
-  "required_advancements": ["spectrum:progression/unlock_sucking_chest"]
+  "required_advancement": "spectrum:progression/unlock_sucking_chest"
 }

@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.compat.REI;
 
+import de.dafuqs.spectrum.compat.REI.plugins.PedestalCraftingDisplay;
 import de.dafuqs.spectrum.inventories.CraftingTabletScreenHandler;
 import de.dafuqs.spectrum.inventories.PedestalScreenHandler;
 import me.shedaniel.rei.api.common.display.DisplaySerializerRegistry;
@@ -14,7 +15,7 @@ public class REIServerIntegration implements REIServerPlugin {
     // For shift-clicking into crafting gui
     @Override
     public void registerDisplaySerializer(DisplaySerializerRegistry registry) {
-        registry.register(SpectrumPlugins.PEDESTAL_CRAFTING, PedestalCraftingRecipeDisplay.serializer());
+        registry.register(SpectrumPlugins.PEDESTAL_CRAFTING, PedestalCraftingDisplay.serializer());
     }
     
     @Override

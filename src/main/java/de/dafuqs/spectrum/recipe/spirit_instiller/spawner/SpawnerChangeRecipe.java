@@ -6,6 +6,7 @@ import de.dafuqs.spectrum.blocks.item_bowl.ItemBowlBlockEntity;
 import de.dafuqs.spectrum.blocks.spirit_instiller.SpiritInstillerBlockEntity;
 import de.dafuqs.spectrum.blocks.upgrade.Upgradeable;
 import de.dafuqs.spectrum.helpers.Support;
+import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.recipe.spirit_instiller.ISpiritInstillerRecipe;
 import de.dafuqs.spectrum.recipe.spirit_instiller.SpiritInstillerRecipe;
 import de.dafuqs.spectrum.registries.SpectrumItemTags;
@@ -35,6 +36,7 @@ public abstract class SpawnerChangeRecipe implements ISpiritInstillerRecipe {
 	public SpawnerChangeRecipe(Identifier identifier) {
 		super();
 		this.identifier = identifier;
+		registerInToastManager(SpectrumRecipeTypes.SPIRIT_INSTILLING, this);
 	}
 	
 	@Override
@@ -138,7 +140,7 @@ public abstract class SpawnerChangeRecipe implements ISpiritInstillerRecipe {
 	
 	@Override
 	public boolean canPlayerCraft(PlayerEntity playerEntity) {
-		return Support.hasAdvancement(playerEntity, SpiritInstillerRecipe.UNLOCK_SPIRIT_INSTILLER_ADVANCEMENT_IDENTIFIER) && Support.hasAdvancement(playerEntity, UNLOCK_IDENTIFIER);
+		return Support.hasAdvancement(playerEntity, SpiritInstillerRecipe.UNLOCK_ADVANCEMENT_IDENTIFIER) && Support.hasAdvancement(playerEntity, UNLOCK_IDENTIFIER);
 	}
 	
 	@Override

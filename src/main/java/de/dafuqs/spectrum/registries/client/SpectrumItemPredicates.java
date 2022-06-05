@@ -145,7 +145,7 @@ public class SpectrumItemPredicates {
 				return 0.0F;
 			} else {
 				long max = storage.getMaxTotal();
-				return (float) ((double) current / (double) max);
+				return (float) Math.max (0.01, (double) current / (double) max);
 			}
 		});
 	}

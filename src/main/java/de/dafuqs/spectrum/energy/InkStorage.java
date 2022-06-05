@@ -20,9 +20,6 @@ public interface InkStorage {
 	// returns the amount of energy that could not be added
 	long addEnergy(InkColor color, long amount);
 	
-	// returns true if all energy could be drained successfully
-    // boolean requestEnergy(Map<CMYKColor, Integer> colors);
-	
 	// returns requestedAmount of energy. Returns the amount of energy that could be drained
 	// In contrast to requestEnergy this drains the energy up until 0, even if not requestedAmount of energy is stored
 	long drainEnergy(InkColor color, long requestedAmount);
@@ -33,9 +30,6 @@ public interface InkStorage {
 	
 	// gets the amount of stored energy of that type
 	long getEnergy(InkColor color);
-	
-	// returns all stored energy with amounts
-    //Map<ICMYKColor, Integer> getEnergy();
 	
 	// gets the amount of energy that can be stored per individual color
 	long getMaxPerColor();
@@ -59,6 +53,11 @@ public interface InkStorage {
 	
 	long getRoom(InkColor color);
 	
+	// returns true if all energy could be drained successfully
+	// boolean requestEnergy(Map<CMYKColor, Integer> colors);
+	
+	// returns all stored energy with amounts
+	//Map<ICMYKColor, Integer> getEnergy();
 	
 	/**
 	 * Transfer Ink from one storage to another
@@ -90,13 +89,14 @@ public interface InkStorage {
 	/**
 	 * Transfer Ink from one storage to another
 	 * Transfers a fixed amount of energy
+	 * => Use the pressure like system without fixed amount, where possible
 	 * @param source The ink storage that is getting drawn from
 	 * @param destination The ink storage receiving energy
 	 * @param color The ink type to transfer
 	 * @param amount The fixed amount of ink to transfer
 	 * @return if > 0 energy could be transferred
 	 */
-	@Deprecated(since = "Use the pressure like system without fixed amount, where possible")
+	@Deprecated
 	static boolean transferInk(@NotNull InkStorage source, @NotNull InkStorage destination, @NotNull InkColor color, long amount) {
 		long sourceAmount = source.getEnergy(color);
 		if(sourceAmount > 0) {

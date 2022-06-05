@@ -4,7 +4,6 @@ import de.dafuqs.spectrum.energy.InkStorage;
 import de.dafuqs.spectrum.energy.InkStorageBlockEntity;
 import de.dafuqs.spectrum.energy.InkStorageItem;
 import de.dafuqs.spectrum.energy.color.InkColor;
-import de.dafuqs.spectrum.energy.color.InkColors;
 import de.dafuqs.spectrum.energy.storage.TotalCappedSimpleInkStorage;
 import de.dafuqs.spectrum.interfaces.PlayerOwned;
 import de.dafuqs.spectrum.inventories.ColorPickerScreenHandler;

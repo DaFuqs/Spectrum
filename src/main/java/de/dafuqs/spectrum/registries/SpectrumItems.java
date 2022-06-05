@@ -310,8 +310,8 @@ public class SpectrumItems {
 	public static final Item TAKE_OFF_BELT = new TakeOffBeltItem(toolUncommonItemSettingsSingle);
 	public static final Item AZURE_DIKE_BELT = new AzureDikeBeltItem(toolUncommonItemSettingsSingle);
 	public static final Item AZURE_DIKE_RING = new AzureDikeRingItem(toolUncommonItemSettingsSingle);
-	public static final Item EXTRA_HEART_RING = new ExtraHeartRingItem(toolUncommonItemSettingsSingle);
-	public static final Item EXTRA_REACH_GLOVES = new ExtraReachGlovesItem(toolUncommonItemSettingsSingle);
+	public static final ExtraHeartRingItem EXTRA_HEART_RING = new ExtraHeartRingItem(toolUncommonItemSettingsSingle);
+	public static final ExtraReachGlovesItem EXTRA_REACH_GLOVES = new ExtraReachGlovesItem(toolUncommonItemSettingsSingle);
 	
 	public static final InkFlaskItem INK_FLASK = new InkFlaskItem(toolItemSettingsSingle, 64 * 64 * 100); // 64 stacks of pigments (1 pigment => 100 energy)
 	public static final InkAssortmentItem INK_ASSORTMENT = new InkAssortmentItem(toolItemSettingsSingle, 64 * 100);

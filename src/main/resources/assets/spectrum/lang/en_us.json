@@ -178,7 +178,7 @@
   "spectrum.tooltip.ink_drain.tooltip.ink_for_next_step.pink": "%d §dPink§r Ink until next improvement",
   "spectrum.tooltip.ink_drain.tooltip.ink_for_next_step.purple": "%d §5Purple§r Ink until next improvement",
   "spectrum.tooltip.ink_drain.tooltip.ink_for_next_step.red": "%d §cRed§r Ink until next improvement",
-  "spectrum.tooltip.ink_drain.tooltip.maxed_out": "⭐MAXED OUT⭐",
+  "spectrum.tooltip.ink_drain.tooltip.maxed_out": "§f⭐§r MAXED OUT §f⭐§r",
 
   "spectrum.recipe.fusion_shrine.explanation.onyx_shard": "Midnight on a new moon only",
   "spectrum.recipe.fusion_shrine.explanation.decay_away":  "Requires a clear sky",

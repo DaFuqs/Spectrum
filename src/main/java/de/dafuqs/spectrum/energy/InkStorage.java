@@ -70,6 +70,10 @@ public interface InkStorage {
 	 * @return the amount of energy that could be transferred
 	 */
 	static long transferInk(@NotNull InkStorage source, @NotNull InkStorage destination, @NotNull InkColor color) {
+		if(!destination.accepts(color)) {
+			return 0;
+		}
+		
 		long sourceAmount = source.getEnergy(color);
 		if (sourceAmount > 0) {
 			long destinationRoom = destination.getRoom(color);
@@ -100,6 +104,10 @@ public interface InkStorage {
 	 */
 	@Deprecated
 	static long transferInk(@NotNull InkStorage source, @NotNull InkStorage destination, @NotNull InkColor color, long amount) {
+		if(!destination.accepts(color)) {
+			return 0;
+		}
+		
 		long sourceAmount = source.getEnergy(color);
 		if (sourceAmount > 0) {
 			long destinationRoom = destination.getRoom(color);

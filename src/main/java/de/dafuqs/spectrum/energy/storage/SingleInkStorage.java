@@ -19,9 +19,9 @@ import static de.dafuqs.spectrum.helpers.Support.getShortenedNumberString;
 
 public class SingleInkStorage implements InkStorage {
 	
-	private final long maxEnergy;
-	private InkColor storedColor;
-	private long storedEnergy;
+	protected final long maxEnergy;
+	protected InkColor storedColor;
+	protected long storedEnergy;
 	
 	/**
 	 * Stores a single type of Pigment Energy

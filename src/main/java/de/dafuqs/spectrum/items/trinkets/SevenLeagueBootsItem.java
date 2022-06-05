@@ -26,6 +26,7 @@ public class SevenLeagueBootsItem extends SpectrumTrinketItem implements Enchant
 		super(settings, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_seven_league_boots"));
 	}
 	
+	@Override
 	public Multimap<EntityAttribute, EntityAttributeModifier> getModifiers(ItemStack stack, SlotReference slot, LivingEntity entity, UUID uuid) {
 		Multimap<EntityAttribute, EntityAttributeModifier> modifiers = super.getModifiers(stack, slot, entity, uuid);
 		

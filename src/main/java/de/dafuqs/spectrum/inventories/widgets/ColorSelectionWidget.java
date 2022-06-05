@@ -5,13 +5,10 @@ import de.dafuqs.spectrum.energy.color.InkColors;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.Drawable;
-import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.client.gui.Element;
-import net.minecraft.client.gui.Selectable;
 import net.minecraft.client.gui.screen.narration.NarrationMessageBuilder;
 import net.minecraft.client.gui.screen.narration.NarrationPart;
 import net.minecraft.client.gui.widget.ClickableWidget;
-import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.math.MathHelper;
 import org.jetbrains.annotations.Nullable;
@@ -54,6 +51,7 @@ public class ColorSelectionWidget extends ClickableWidget implements Drawable, E
 			
 			// TODO: choose correct color
 			this.selectedColor = InkColors.BROWN;
+			onChanged(this.selectedColor);
 			return true;
 		} else {
 			return false;

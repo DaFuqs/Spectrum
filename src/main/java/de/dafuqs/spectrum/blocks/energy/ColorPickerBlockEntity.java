@@ -12,7 +12,6 @@ import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.recipe.ink_converting.InkConvertingRecipe;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
-import dev.architectury.event.events.common.ChatEvent;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.LootableContainerBlockEntity;
@@ -57,7 +56,7 @@ public class ColorPickerBlockEntity extends LootableContainerBlockEntity impleme
 		
 		this.inventory = DefaultedList.ofSize(INVENTORY_SIZE, ItemStack.EMPTY);
 		this.inkStorage = new TotalCappedSimpleInkStorage(STORAGE_AMOUNT);
-		this.selectedColor = InkColors.BLACK;
+		this.selectedColor = InkColors.PINK;
 	}
 	
 	public static void tick(World world, BlockPos pos, BlockState state, ColorPickerBlockEntity blockEntity) {
@@ -238,6 +237,10 @@ public class ColorPickerBlockEntity extends LootableContainerBlockEntity impleme
 		}
 		
 		return transferredAmount > 0;
+	}
+	
+	public InkColor getSelectedColor() {
+		return this.selectedColor;
 	}
 	
 }

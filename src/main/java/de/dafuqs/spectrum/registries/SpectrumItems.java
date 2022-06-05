@@ -310,6 +310,8 @@ public class SpectrumItems {
 	public static final Item TAKE_OFF_BELT = new TakeOffBeltItem(toolUncommonItemSettingsSingle);
 	public static final Item AZURE_DIKE_BELT = new AzureDikeBeltItem(toolUncommonItemSettingsSingle);
 	public static final Item AZURE_DIKE_RING = new AzureDikeRingItem(toolUncommonItemSettingsSingle);
+	public static final Item EXTRA_HEART_RING = new ExtraHeartRingItem(toolUncommonItemSettingsSingle);
+	public static final Item EXTRA_REACH_GLOVES = new ExtraReachGlovesItem(toolUncommonItemSettingsSingle);
 	
 	public static final InkFlaskItem INK_FLASK = new InkFlaskItem(toolItemSettingsSingle, 64 * 64 * 100); // 64 stacks of pigments (1 pigment => 100 energy)
 	public static final InkAssortmentItem INK_ASSORTMENT = new InkAssortmentItem(toolItemSettingsSingle, 64 * 100);
@@ -512,6 +514,8 @@ public class SpectrumItems {
 		register("take_off_belt", TAKE_OFF_BELT, DyeColor.YELLOW);
 		register("azure_dike_belt", AZURE_DIKE_BELT, DyeColor.BLUE);
 		register("azure_dike_ring", AZURE_DIKE_RING, DyeColor.BLUE);
+		register("extra_heart_ring", EXTRA_HEART_RING, DyeColor.PINK);
+		register("extra_reach_gloves", EXTRA_REACH_GLOVES, DyeColor.YELLOW);
 		register("gleaming_pin", GLEAMING_PIN, DyeColor.YELLOW);
 		register("lesser_potion_pendant", LESSER_POTION_PENDANT, DyeColor.PINK);
 		register("greater_potion_pendant", GREATER_POTION_PENDANT, DyeColor.PINK);

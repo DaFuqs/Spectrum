@@ -29,11 +29,11 @@ repositories {
 		name = "banner++"
 		url "https://maven.theepicblock.nl"
 	}
-	/*maven {
+	maven {
 		name "entity reach attribute"
 		url "https://maven.jamieswhiteshirt.com/libs-release/"
 	}
-	maven {
+	/*maven {
 		name "bannerpp"
 		url 'https://server.bbkr.space/artifactory/libs-release/'
 	}*/
@@ -71,10 +71,6 @@ dependencies {
 	modImplementation "vazkii.patchouli:Patchouli:${project.patchouli_version}"	// https://maven.blamejared.com/vazkii/patchouli/Patchouli/
 	modImplementation "io.wispforest:owo-lib:${project.owo_version}+1.18"
 
-	// https://github.com/TheEpicBlock/banner-plus-plus
-	modImplementation "io.github.fablabsmc:bannerpp:2.0.6-teb.1+mc.1.18.2"
-	include "io.github.fablabsmc:bannerpp:2.0.6-teb.1+mc.1.18.2"
-
 	// https://github.com/shedaniel/RoughlyEnoughItems
 	modCompileOnly "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"
 	modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"
@@ -86,23 +82,17 @@ dependencies {
 	modImplementation "dev.onyxstudios.cardinal-components-api:cardinal-components-base:${cca_version}"
 	modImplementation "dev.onyxstudios.cardinal-components-api:cardinal-components-entity:${cca_version}"
 
-	modImplementation "com.github.emilyploszaj:step-height-entity-attribute:${project.step_height_attribute_version}"
-	include "com.github.emilyploszaj:step-height-entity-attribute:${project.step_height_attribute_version}"
-
-	modImplementation "com.github.DaFuqs:AdditionalEntityAttributes:${project.additional_entity_attributes_version}"
-	include "com.github.DaFuqs:AdditionalEntityAttributes:${project.additional_entity_attributes_version}"
-
-	//modImplementation "com.jamieswhiteshirt:reach-entity-attributes:2.1.1"
-	//include "com.jamieswhiteshirt:reach-entity-attributes:2.1.1"
-
+	// https://github.com/TheEpicBlock/banner-plus-plus
+	modImplementation include("io.github.fablabsmc:bannerpp:2.0.6-teb.1+mc.1.18.2")
+	modImplementation include("com.github.emilyploszaj:step-height-entity-attribute:${project.step_height_attribute_version}")
+	modImplementation include("com.github.DaFuqs:AdditionalEntityAttributes:${project.additional_entity_attributes_version}")
+	modImplementation include("com.jamieswhiteshirt:reach-entity-attributes:2.1.1")
 	modImplementation include("com.github.devs-immortal:Incubus-Core:${project.incubus_core_version}")
-
-	modImplementation(include("io.github.ladysnake:satin:${project.satin_version}"))
+	modImplementation include("io.github.ladysnake:satin:${project.satin_version}")
 
 	// Soft dependencies:
 	// Descriptions for all Enchantments https://maven.blamejared.com/net/darkhax/enchdesc/
 	modCompileOnly("net.darkhax.enchdesc:EnchantmentDescriptions-Common-${project.enchantment_descriptions_mc_version}:${project.enchantment_descriptions_mod_version}")
-	//modImplementation("net.darkhax.enchdesc:EnchantmentDescriptions-Fabric-${project.enchantment_descriptions_mc_version}:${project.enchantment_descriptions_mod_version}")
 
 	// https://github.com/Gegy/colored-lights // uses colored_lights/light_colors.json
 }

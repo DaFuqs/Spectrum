@@ -129,6 +129,24 @@ public class CrystalApothecaryBlockEntity extends LootableContainerBlockEntity i
 		}
 	}
 	
+	@Override
+	protected void writeNbt(NbtCompound nbt) {
+		super.writeNbt(nbt);
+		if (!this.serializeLootTable(nbt)) {
+			Inventories.writeNbt(nbt, this.inventory);
+		}
+		nbt.putBoolean("ListenerPaused", this.listenerPaused);
+		if(this.world != null) {
+			nbt.putLong("LastWorldTime", this.world.getTime());
+		}
+		if(this.ownerUUID != null) {
+			nbt.putUuid("OwnerUUID", this.ownerUUID);
+		}
+		if(this.ownerName != null) {
+			nbt.putString("OwnerName", this.ownerName);
+		}
+	}
+	
 	/**
 	 * Scans the surrounding area for blocks in COMPENSATION_MAP
 	 * and puts items into it's inventory, simulating it working for
@@ -194,23 +212,6 @@ public class CrystalApothecaryBlockEntity extends LootableContainerBlockEntity i
 			}
 		}
 		return count;
-	}
-	
-	protected void writeNbt(NbtCompound nbt) {
-		super.writeNbt(nbt);
-		if (!this.serializeLootTable(nbt)) {
-			Inventories.writeNbt(nbt, this.inventory);
-		}
-		nbt.putBoolean("ListenerPaused", this.listenerPaused);
-		if(this.world != null) {
-			nbt.putLong("LastWorldTime", this.world.getTime());
-		}
-		if(this.ownerUUID != null) {
-			nbt.putUuid("OwnerUUID", this.ownerUUID);
-		}
-		if(this.ownerName != null) {
-			nbt.putString("OwnerName", this.ownerName);
-		}
 	}
 	
 	@Override

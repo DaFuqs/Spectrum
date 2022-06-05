@@ -1,9 +1,9 @@
 {
+  "parent": "spectrum:midgame/spectrum_midgame",
   "display": {
     "icon": {
       "item": "spectrum:color_picker"
     },
-    "parent": "spectrum:midgame/spectrum_midgame",
     "title": {
       "translate": "advancements.spectrum.place_color_picker.title"
     },
@@ -11,7 +11,6 @@
       "translate": "advancements.spectrum.place_color_picker.description"
     }
   },
-  "parent": "spectrum:spectrum",
   "criteria": {
     "used_pedestal": {
       "trigger": "minecraft:placed_block",

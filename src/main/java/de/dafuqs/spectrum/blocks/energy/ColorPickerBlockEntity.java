@@ -8,14 +8,17 @@ import de.dafuqs.spectrum.energy.color.InkColors;
 import de.dafuqs.spectrum.energy.storage.TotalCappedSimpleInkStorage;
 import de.dafuqs.spectrum.interfaces.PlayerOwned;
 import de.dafuqs.spectrum.inventories.ColorPickerScreenHandler;
+import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.recipe.ink_converting.InkConvertingRecipe;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
+import dev.architectury.event.events.common.ChatEvent;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.LootableContainerBlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.inventory.Inventories;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
@@ -78,6 +81,10 @@ public class ColorPickerBlockEntity extends LootableContainerBlockEntity impleme
 	@Override
 	public void readNbt(NbtCompound nbt) {
 		super.readNbt(nbt);
+		this.inventory = DefaultedList.ofSize(this.size(), ItemStack.EMPTY);
+		if (!this.deserializeLootTable(nbt)) {
+			Inventories.readNbt(nbt, this.inventory);
+		}
 		if(nbt.contains("InkStorage", NbtElement.COMPOUND_TYPE)) {
 			this.inkStorage = TotalCappedSimpleInkStorage.fromNbt(nbt.getCompound("InkStorage"));
 		}
@@ -93,6 +100,9 @@ public class ColorPickerBlockEntity extends LootableContainerBlockEntity impleme
 	
 	protected void writeNbt(NbtCompound nbt) {
 		super.writeNbt(nbt);
+		if (!this.serializeLootTable(nbt)) {
+			Inventories.writeNbt(nbt, this.inventory);
+		}
 		nbt.put("InkStorage", this.inkStorage.toNbt());
 		if(this.ownerUUID != null) {
 			nbt.putUuid("OwnerUUID", this.ownerUUID);
@@ -203,7 +213,7 @@ public class ColorPickerBlockEntity extends LootableContainerBlockEntity impleme
 	}
 	
 	protected boolean tryFillInkContainer() {
-		boolean didSomething = false;
+		long transferredAmount = 0;
 		
 		ItemStack stack = inventory.get(OUTPUT_SLOT_ID);
 		if(stack.getItem() instanceof InkStorageItem inkStorageItem) {
@@ -211,16 +221,23 @@ public class ColorPickerBlockEntity extends LootableContainerBlockEntity impleme
 			
 			if(this.selectedColor == null) {
 				for(InkColor color : InkColor.all()) {
-					didSomething = didSomething | InkStorage.transferInk(inkStorage, itemStorage, color);
+					transferredAmount = InkStorage.transferInk(inkStorage, itemStorage, color);
 				}
 			} else {
-				didSomething = InkStorage.transferInk(inkStorage, itemStorage, this.selectedColor);
+				transferredAmount = InkStorage.transferInk(inkStorage, itemStorage, this.selectedColor);
+			}
+			
+			if(transferredAmount > 0) {
+				PlayerEntity owner = getPlayerEntityIfOnline(world);
+				if (owner instanceof ServerPlayerEntity serverPlayerEntity) {
+					SpectrumAdvancementCriteria.INK_CONTAINER_INTERACTION.trigger(serverPlayerEntity, stack, itemStorage, this.selectedColor, transferredAmount);
+				}
 			}
 			
 			inkStorageItem.setEnergyStorage(stack, itemStorage);
 		}
 		
-		return didSomething;
+		return transferredAmount > 0;
 	}
 	
 }

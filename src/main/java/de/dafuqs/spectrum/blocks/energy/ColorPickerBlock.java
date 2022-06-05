@@ -14,6 +14,7 @@ import net.minecraft.text.TranslatableText;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
+import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
@@ -79,6 +80,19 @@ public class ColorPickerBlock extends BlockWithEntity {
 		if (blockEntity instanceof ColorPickerBlockEntity colorPickerBlockEntity) {
 			colorPickerBlockEntity.setOwner(player);
 			player.openHandledScreen(colorPickerBlockEntity);
+		}
+	}
+	
+	@Override
+	public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
+		if (!state.isOf(newState.getBlock())) {
+			BlockEntity blockEntity = world.getBlockEntity(pos);
+			if (blockEntity instanceof ColorPickerBlockEntity colorPickerBlockEntity) {
+				ItemScatterer.spawn(world, pos, colorPickerBlockEntity);
+				world.updateComparators(pos, this);
+			}
+			
+			super.onStateReplaced(state, world, pos, newState, moved);
 		}
 	}
 	

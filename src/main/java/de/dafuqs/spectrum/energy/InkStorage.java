@@ -66,24 +66,24 @@ public interface InkStorage {
 	 * @param source The ink storage that is getting drawn from
 	 * @param destination The ink storage receiving energy
 	 * @param color The ink type to transfer
-	 * @return if > 0 energy could be transferred
+	 * @return the amount of energy that could be transferred
 	 */
-	static boolean transferInk(@NotNull InkStorage source, @NotNull InkStorage destination, @NotNull InkColor color) {
+	static long transferInk(@NotNull InkStorage source, @NotNull InkStorage destination, @NotNull InkColor color) {
 		long sourceAmount = source.getEnergy(color);
 		if(sourceAmount > 0) {
 			long destinationRoom = destination.getRoom(color);
 			if(destinationRoom > 0) {
 				long destinationAmount = destination.getEnergy(color);
-				long transferAmount = Math.max(0, (sourceAmount - destinationAmount) / 4);
+				long transferAmount = Math.max(0, (sourceAmount - destinationAmount) / 32); // the constant here is simulating pressure flow
 				transferAmount = Math.min(transferAmount, Math.min(sourceAmount, destinationRoom));
 				if (transferAmount > 0) {
 					destination.addEnergy(color, transferAmount);
 					source.drainEnergy(color, transferAmount);
-					return true;
+					return transferAmount;
 				}
 			}
 		}
-		return false;
+		return 0;
 	}
 	
 	/**
@@ -94,10 +94,10 @@ public interface InkStorage {
 	 * @param destination The ink storage receiving energy
 	 * @param color The ink type to transfer
 	 * @param amount The fixed amount of ink to transfer
-	 * @return if > 0 energy could be transferred
+	 * @return the amount of energy that could be transferred
 	 */
 	@Deprecated
-	static boolean transferInk(@NotNull InkStorage source, @NotNull InkStorage destination, @NotNull InkColor color, long amount) {
+	static long transferInk(@NotNull InkStorage source, @NotNull InkStorage destination, @NotNull InkColor color, long amount) {
 		long sourceAmount = source.getEnergy(color);
 		if(sourceAmount > 0) {
 			long destinationRoom = destination.getRoom(color);
@@ -106,11 +106,11 @@ public interface InkStorage {
 				if (transferAmount > 0) {
 					destination.addEnergy(color, transferAmount);
 					source.drainEnergy(color, transferAmount);
-					return true;
+					return transferAmount;
 				}
 			}
 		}
-		return false;
+		return 0;
 	}
 	
 }

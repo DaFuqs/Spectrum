@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.energy.color;
 
+import net.minecraft.text.TranslatableText;
 import net.minecraft.util.DyeColor;
 
 import java.util.*;
@@ -54,7 +55,12 @@ public abstract class InkColor {
 	public int hashCode() {
 		return dyeColor.ordinal();
 	}
-
+	
+	public TranslatableText getName() {
+		return new TranslatableText("spectrum.ink.color." + this);
+	}
+	
+	
 }
 
 

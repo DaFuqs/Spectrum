@@ -14,8 +14,8 @@ public class SpectrumPlugins {
 	public static final CategoryIdentifier<EnchanterDisplay> ENCHANTER = CategoryIdentifier.of(new Identifier(SpectrumCommon.MOD_ID, "enchanter"));
 	public static final CategoryIdentifier<EnchantmentUpgradeDisplay> ENCHANTMENT_UPGRADE = CategoryIdentifier.of(new Identifier(SpectrumCommon.MOD_ID, "enchantment_upgrade"));
 	public static final CategoryIdentifier<PotionWorkshopBrewingDisplay> POTION_WORKSHOP_BREWING = CategoryIdentifier.of(new Identifier(SpectrumCommon.MOD_ID, "potion_workshop_brewing"));
-	public static final CategoryIdentifier<PotionWorkshopCraftingRecipeDisplay> POTION_WORKSHOP_CRAFTING = CategoryIdentifier.of(new Identifier(SpectrumCommon.MOD_ID, "potion_workshop_crafting"));
-	public static final CategoryIdentifier<SpiritInstillerRecipeDisplay> SPIRIT_INSTILLER = CategoryIdentifier.of(new Identifier(SpectrumCommon.MOD_ID, "spirit_instiller"));
+	public static final CategoryIdentifier<PotionWorkshopCraftingDisplay> POTION_WORKSHOP_CRAFTING = CategoryIdentifier.of(new Identifier(SpectrumCommon.MOD_ID, "potion_workshop_crafting"));
+	public static final CategoryIdentifier<SpiritInstillingDisplay> SPIRIT_INSTILLER = CategoryIdentifier.of(new Identifier(SpectrumCommon.MOD_ID, "spirit_instiller"));
 	public static final CategoryIdentifier<MidnightSolutionConvertingDisplay> MIDNIGHT_SOLUTION_CONVERTING = CategoryIdentifier.of(new Identifier(SpectrumCommon.MOD_ID, "midnight_solution_converting"));
 	public static final CategoryIdentifier<HeatingDisplay> HEATING = CategoryIdentifier.of(new Identifier(SpectrumCommon.MOD_ID, "heating"));
 	public static final CategoryIdentifier<FreezingDisplay> FREEZING = CategoryIdentifier.of(new Identifier(SpectrumCommon.MOD_ID, "freezing"));

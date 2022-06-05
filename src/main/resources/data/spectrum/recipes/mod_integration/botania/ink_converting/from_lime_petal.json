@@ -1,8 +1,7 @@
 {
   "type": "spectrum:ink_converting",
-  "time": 20,
   "ingredient": {
-    "item": "botania:red_petal"
+    "item": "botania:lime_petal"
   },
   "color": "lime",
   "amount": 25,

@@ -25,7 +25,7 @@ import java.util.stream.Collectors;
 
 import static de.dafuqs.spectrum.recipe.spirit_instiller.ISpiritInstillerRecipe.UNLOCK_ADVANCEMENT_IDENTIFIER;
 
-public class SpiritInstillerRecipeDisplay implements SimpleGridMenuDisplay, GatedRecipeDisplay {
+public class SpiritInstillingDisplay implements SimpleGridMenuDisplay, GatedRecipeDisplay {
 	
 	protected final List<EntryIngredient> craftingInputs;
 	protected final EntryIngredient output;
@@ -33,7 +33,7 @@ public class SpiritInstillerRecipeDisplay implements SimpleGridMenuDisplay, Gate
 	protected final int craftingTime;
 	protected final Identifier requiredAdvancementIdentifier;
 
-	public SpiritInstillerRecipeDisplay(@NotNull ISpiritInstillerRecipe recipe) {
+	public SpiritInstillingDisplay(@NotNull ISpiritInstillerRecipe recipe) {
 		this.craftingInputs = recipe.getIngredientStacks().stream().map(REIHelper::ofIngredientStack).collect(Collectors.toCollection(ArrayList::new));
 		
 		if(recipe instanceof SpawnerChangeRecipe spawnerChangeRecipe) {

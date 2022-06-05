@@ -16,7 +16,6 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientLifecycleEvents;
 import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
-import net.id.incubus_core.render.IncubusRenderLayers;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.text.TranslatableText;
 

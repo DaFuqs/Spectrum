@@ -47,12 +47,12 @@ public class RecipeUtils {
 		}
 	}
 	
-	public static List<IngredientStack> ingredientsFromJson(JsonArray array, int size) {
+	public static List<IngredientStack> ingredientStacksFromJson(JsonArray array, int size) {
 		List<IngredientStack> ingredients = new ArrayList<>(size);
 		int dif = size - array.size();
 		for (int i = 0; i < array.size() && i < size; i++) {
 			JsonObject object = array.get(i).getAsJsonObject();
-			ingredients.add(ingredientFromJson(object));
+			ingredients.add(ingredientStackFromJson(object));
 		}
 		if(dif > 0) {
 			for (int i = 0; i < dif; i++) {
@@ -62,7 +62,7 @@ public class RecipeUtils {
 		return ingredients;
 	}
 	
-	public static IngredientStack ingredientFromJson(JsonObject json) {
+	public static IngredientStack ingredientStackFromJson(JsonObject json) {
 		Ingredient ingredient = Ingredient.fromJson(json);
 		int count = json.has("count") ? json.get("count").getAsInt() : 1;
 		return IngredientStack.of(ingredient, count);

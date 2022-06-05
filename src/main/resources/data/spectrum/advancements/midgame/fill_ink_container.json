@@ -1,11 +1,10 @@
 {
-  "parent": "spectrum:midgame/spectrum_midgame",
+  "parent": "spectrum:midgame/place_color_picker",
   "display": {
     "icon": {
       "item": "spectrum:ink_flask",
       "nbt": "{EnergyStore: {MaxEnergyTotal: 409600L, Color: \"purple\", Amount: 409600L}}"
     },
-    "hidden": true,
     "title": {
       "translate": "advancements.spectrum.fill_ink_container.title"
     },
@@ -24,7 +23,7 @@
     },
     "gotten_previous": {
   	  "trigger":"spectrum:has_advancement",
-  	  "conditions": { "advancement_identifier": "spectrum:midgame/spectrum_midgame" }
+  	  "conditions": { "advancement_identifier": "spectrum:midgame/place_color_picker" }
     }
   }
 }

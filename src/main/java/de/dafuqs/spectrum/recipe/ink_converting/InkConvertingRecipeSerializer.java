@@ -25,9 +25,12 @@ public class InkConvertingRecipeSerializer implements RecipeSerializer<InkConver
 		InkColor inkColor = InkColor.of(JsonHelper.getString(jsonObject, "color"));
 		long inkAmount = JsonHelper.getLong(jsonObject, "amount");
 		
-		Identifier requiredAdvancementIdentifier = null;
+		Identifier requiredAdvancementIdentifier;
 		if(JsonHelper.hasString(jsonObject, "required_advancement")) {
 			requiredAdvancementIdentifier = Identifier.tryParse(JsonHelper.getString(jsonObject, "required_advancement"));
+		} else {
+			// No unlock advancement set. Will be set to the unlock advancement of the block itself
+			requiredAdvancementIdentifier = InkConvertingRecipe.UNLOCK_ADVANCEMENT_IDENTIFIER;
 		}
 
 		return this.recipeFactory.create(identifier, ingredient, inkColor, inkAmount, requiredAdvancementIdentifier);

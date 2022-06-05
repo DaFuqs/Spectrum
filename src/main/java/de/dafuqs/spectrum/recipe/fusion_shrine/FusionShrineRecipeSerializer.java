@@ -35,7 +35,7 @@ public class FusionShrineRecipeSerializer implements RecipeSerializer<FusionShri
 		String group = JsonHelper.getString(jsonObject, "group", "");
 
 		JsonArray ingredientArray = JsonHelper.getArray(jsonObject, "ingredients");
-		List<IngredientStack> craftingInputs = RecipeUtils.ingredientsFromJson(ingredientArray, ingredientArray.size());
+		List<IngredientStack> craftingInputs = RecipeUtils.ingredientStacksFromJson(ingredientArray, ingredientArray.size());
 
 		Fluid fluid = Fluids.EMPTY;
 		if(JsonHelper.hasString(jsonObject, "fluid")) {

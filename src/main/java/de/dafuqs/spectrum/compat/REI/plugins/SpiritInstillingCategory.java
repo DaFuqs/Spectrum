@@ -20,13 +20,13 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class SpiritInstillerCategory implements DisplayCategory<SpiritInstillerRecipeDisplay> {
+public class SpiritInstillingCategory implements DisplayCategory<SpiritInstillingDisplay> {
 	
 	private static final EntryIngredient SPIRIT_INSTILLER = EntryIngredients.of(new ItemStack(SpectrumBlocks.SPIRIT_INSTILLER));
 	private static final EntryIngredient ITEM_BOWL_CALCITE = EntryIngredients.of(new ItemStack(SpectrumBlocks.ITEM_BOWL_CALCITE));
 
 	@Override
-	public CategoryIdentifier<SpiritInstillerRecipeDisplay> getCategoryIdentifier() {
+	public CategoryIdentifier<SpiritInstillingDisplay> getCategoryIdentifier() {
 		return SpectrumPlugins.SPIRIT_INSTILLER;
 	}
 
@@ -41,7 +41,7 @@ public class SpiritInstillerCategory implements DisplayCategory<SpiritInstillerR
 	}
 
 	@Override
-	public List<Widget> setupDisplay(@NotNull SpiritInstillerRecipeDisplay display, @NotNull Rectangle bounds) {
+	public List<Widget> setupDisplay(@NotNull SpiritInstillingDisplay display, @NotNull Rectangle bounds) {
 		Point startPoint = new Point(bounds.getCenterX() - 58, bounds.getCenterY() - 23);
 		List<Widget> widgets = Lists.newArrayList();
 

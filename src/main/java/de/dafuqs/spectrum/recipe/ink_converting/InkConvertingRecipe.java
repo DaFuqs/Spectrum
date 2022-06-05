@@ -30,11 +30,8 @@ public class InkConvertingRecipe implements Recipe<Inventory>, GatedRecipe {
 	
 	protected final Identifier id;
 	protected final Ingredient inputIngredient;
-	
 	protected final InkColor color;
 	protected final long amount;
-	
-	@Nullable
 	protected final Identifier requiredAdvancementIdentifier;
 
 	public InkConvertingRecipe(Identifier id, Ingredient inputIngredient, InkColor color, long amount, @Nullable Identifier requiredAdvancementIdentifier) {

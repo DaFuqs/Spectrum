@@ -13,7 +13,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 import java.util.Optional;
 
-public class PotionWorkshopCraftingRecipeDisplay extends PotionWorkshopRecipeDisplay {
+public class PotionWorkshopCraftingDisplay extends PotionWorkshopRecipeDisplay {
 	
 	protected final Ingredient baseIngredient;
 	protected final boolean consumeBaseIngredient;
@@ -22,7 +22,7 @@ public class PotionWorkshopCraftingRecipeDisplay extends PotionWorkshopRecipeDis
 	 * When using the REI recipe functionality
 	 * @param recipe The recipe
 	 */
-	public PotionWorkshopCraftingRecipeDisplay(PotionWorkshopCraftingRecipe recipe) {
+	public PotionWorkshopCraftingDisplay(PotionWorkshopCraftingRecipe recipe) {
 		super(recipe);
 		this.baseIngredient = recipe.getBaseIngredient();
 		this.consumeBaseIngredient = recipe.consumesBaseIngredient();
@@ -31,7 +31,7 @@ public class PotionWorkshopCraftingRecipeDisplay extends PotionWorkshopRecipeDis
 	/**
 	 * When using Shift click on the plus button in the REI gui to autofill crafting grids
 	 */
-	public PotionWorkshopCraftingRecipeDisplay(List<EntryIngredient> inputs, List<EntryIngredient> outputs, PotionWorkshopCraftingRecipe recipe) {
+	public PotionWorkshopCraftingDisplay(List<EntryIngredient> inputs, List<EntryIngredient> outputs, PotionWorkshopCraftingRecipe recipe) {
 		super(inputs, outputs, recipe);
 		this.baseIngredient = recipe.getBaseIngredient();
 		this.consumeBaseIngredient = recipe.consumesBaseIngredient();
@@ -43,12 +43,12 @@ public class PotionWorkshopCraftingRecipeDisplay extends PotionWorkshopRecipeDis
 	}
 	
 	public static Serializer<PotionWorkshopRecipeDisplay> serializer() {
-		return Serializer.ofSimple(PotionWorkshopCraftingRecipeDisplay::simple).inputProvider(PotionWorkshopRecipeDisplay::getOrganisedInputEntries);
+		return Serializer.ofSimple(PotionWorkshopCraftingDisplay::simple).inputProvider(PotionWorkshopRecipeDisplay::getOrganisedInputEntries);
 	}
 	
 	private static @NotNull PotionWorkshopRecipeDisplay simple(List<EntryIngredient> inputs, List<EntryIngredient> outputs, @NotNull Optional<Identifier> identifier) {
 		Recipe<?> optionalRecipe = identifier.flatMap(resourceLocation -> RecipeManagerContext.getInstance().getRecipeManager().get(resourceLocation)).orElse(null);
-		return new PotionWorkshopCraftingRecipeDisplay(inputs, outputs, (PotionWorkshopCraftingRecipe) optionalRecipe);
+		return new PotionWorkshopCraftingDisplay(inputs, outputs, (PotionWorkshopCraftingRecipe) optionalRecipe);
 	}
 	
 }

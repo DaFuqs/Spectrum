@@ -1,0 +1,29 @@
+{
+  "display": {
+    "icon": {
+      "item": "spectrum:color_picker"
+    },
+    "parent": "spectrum:midgame/spectrum_midgame",
+    "title": {
+      "translate": "advancements.spectrum.place_color_picker.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.place_color_picker.description"
+    }
+  },
+  "parent": "spectrum:spectrum",
+  "criteria": {
+    "used_pedestal": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "item": {
+          "items": [ "spectrum:color_picker" ]
+        }
+      }
+    },
+    "gotten_previous": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:midgame/spectrum_midgame" }
+    }
+  }
+}

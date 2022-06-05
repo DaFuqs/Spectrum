@@ -21,9 +21,9 @@ public class SpiritInstillerRecipeSerializer implements RecipeSerializer<SpiritI
 	@Override
 	public SpiritInstillerRecipe read(Identifier identifier, JsonObject jsonObject) {
 		String group = JsonHelper.getString(jsonObject, "group", "");
-		IngredientStack ingredientStack1 = RecipeUtils.ingredientFromJson(JsonHelper.getObject(jsonObject, "ingredient1"));
-		IngredientStack ingredientStack2 = RecipeUtils.ingredientFromJson(JsonHelper.getObject(jsonObject, "ingredient2"));
-		IngredientStack centerIngredientStack = RecipeUtils.ingredientFromJson(JsonHelper.getObject(jsonObject, "center_ingredient"));
+		IngredientStack ingredientStack1 = RecipeUtils.ingredientStackFromJson(JsonHelper.getObject(jsonObject, "ingredient1"));
+		IngredientStack ingredientStack2 = RecipeUtils.ingredientStackFromJson(JsonHelper.getObject(jsonObject, "ingredient2"));
+		IngredientStack centerIngredientStack = RecipeUtils.ingredientStackFromJson(JsonHelper.getObject(jsonObject, "center_ingredient"));
 		ItemStack outputItemStack = RecipeUtils.itemStackWithNbtFromJson(JsonHelper.getObject(jsonObject, "result"));
 		
 		int craftingTime = JsonHelper.getInt(jsonObject, "time", 200);

@@ -18,7 +18,7 @@
   "type": "spectrum:color_picker",
   "time": 20,
   "ingredient": {
-    "item": "botania:red_petal"
+    "item": "botania:$_`_petal"
   },
   "color": "$_",
   "amount": 25,

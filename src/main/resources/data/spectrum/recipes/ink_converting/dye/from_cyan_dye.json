@@ -1,6 +1,5 @@
 {
   "type": "spectrum:ink_converting",
-  "time": 20,
   "ingredient": {
     "item": "minecraft:cyan_dye"
   },

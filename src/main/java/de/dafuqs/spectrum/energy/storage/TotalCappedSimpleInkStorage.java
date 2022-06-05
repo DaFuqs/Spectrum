@@ -140,6 +140,11 @@ public class TotalCappedSimpleInkStorage implements InkStorage {
 	}
 	
 	@Override
+	public long getRoom(InkColor color) {
+		return this.maxEnergyTotal - this.currentTotal;
+	}
+	
+	@Override
 	public void fillCompletely() {
 		long energyPerColor = this.maxEnergyTotal / this.storedEnergy.size();
 		this.storedEnergy.replaceAll((c, v) -> energyPerColor);

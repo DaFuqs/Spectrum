@@ -145,6 +145,15 @@ public class SingleInkStorage implements InkStorage {
 	}
 	
 	@Override
+	public long getRoom(InkColor color) {
+		if(this.storedEnergy == 0 || this.storedColor == color) {
+			return this.maxEnergy - this.storedEnergy;
+		} else {
+			return 0;
+		}
+	}
+	
+	@Override
 	public void fillCompletely() {
 		this.storedEnergy = this.maxEnergy;
 	}

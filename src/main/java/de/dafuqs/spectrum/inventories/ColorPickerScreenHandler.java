@@ -1,6 +1,8 @@
 package de.dafuqs.spectrum.inventories;
 
 import de.dafuqs.spectrum.blocks.energy.ColorPickerBlockEntity;
+import de.dafuqs.spectrum.inventories.slots.ColorPickerInputSlot;
+import de.dafuqs.spectrum.inventories.slots.InkStorageSlot;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -37,8 +39,8 @@ public class ColorPickerScreenHandler extends ScreenHandler {
 		colorPickerBlockEntity.onOpen(playerInventory.player);
 		
 		// color picker slots
-		this.addSlot(new Slot(colorPickerBlockEntity, 0, 26, 33));
-		this.addSlot(new Slot(colorPickerBlockEntity, 1, 133, 33));
+		this.addSlot(new ColorPickerInputSlot(colorPickerBlockEntity, 0, 26, 33));
+		this.addSlot(new InkStorageSlot(colorPickerBlockEntity, 1, 133, 33));
 		
 		// player inventory
 		for(int j = 0; j < 3; ++j) {
@@ -57,18 +59,40 @@ public class ColorPickerScreenHandler extends ScreenHandler {
 		return this.blockEntity;
 	}
 	
+	@Override
 	public boolean canUse(PlayerEntity player) {
 		return this.blockEntity.canPlayerUse(player);
 	}
-
-	@Override
-	public ItemStack transferSlot(PlayerEntity player, int index) {
-		return ItemStack.EMPTY;
-	}
 	
+	@Override
 	public void close(PlayerEntity player) {
 		super.close(player);
 		this.blockEntity.onClose(player);
+	}
+	
+	@Override
+	public ItemStack transferSlot(PlayerEntity player, int index) {
+		ItemStack itemStack = ItemStack.EMPTY;
+		Slot slot = this.slots.get(index);
+		if (slot.hasStack()) {
+			ItemStack itemStack2 = slot.getStack();
+			itemStack = itemStack2.copy();
+			if (index < ColorPickerBlockEntity.INVENTORY_SIZE) {
+				if (!this.insertItem(itemStack2, ColorPickerBlockEntity.INVENTORY_SIZE, this.slots.size(), true)) {
+					return ItemStack.EMPTY;
+				}
+			} else if (!this.insertItem(itemStack2, 0, ColorPickerBlockEntity.INVENTORY_SIZE, false)) {
+				return ItemStack.EMPTY;
+			}
+			
+			if (itemStack2.isEmpty()) {
+				slot.setStack(ItemStack.EMPTY);
+			} else {
+				slot.markDirty();
+			}
+		}
+		
+		return itemStack;
 	}
 	
 }

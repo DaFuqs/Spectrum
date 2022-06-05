@@ -218,6 +218,15 @@ public class TotalCappedElementalInkStorage implements InkStorage {
 		this.storedEnergy.replaceAll((c, v) -> energyPerColor);
 	}
 	
+	@Override
+	public long getRoom(InkColor color) {
+		if(color instanceof ElementalColor) {
+			return this.maxEnergyTotal - this.currentTotal;
+		} else {
+			return 0;
+		}
+	}
+	
 	@Environment(EnvType.CLIENT)
 	public void addTooltip(World world, List<Text> tooltip, TooltipContext context) {
 		tooltip.add(new TranslatableText("item.spectrum.artists_palette.tooltip", getShortenedNumberString(this.maxEnergyTotal)));

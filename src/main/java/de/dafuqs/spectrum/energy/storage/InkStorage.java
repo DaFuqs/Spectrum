@@ -56,4 +56,6 @@ public interface InkStorage {
 	
 	void addTooltip(World world, List<Text> tooltip, TooltipContext context);
 	
+	long getRoom(InkColor color);
+	
 }

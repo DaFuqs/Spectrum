@@ -149,6 +149,11 @@ public class IndividualCappedSimpleInkStorage implements InkStorage {
 		}
 	}
 	
+	@Override
+	public long getRoom(InkColor color) {
+		return maxEnergyPerColor - this.storedEnergy.get(color);
+	}
+	
 	public void fillCompletely() {
 		for(InkColor color : InkColor.all()) {
 			storedEnergy.put(color, this.maxEnergyPerColor);

@@ -19,29 +19,29 @@ import net.minecraft.world.World;
 import java.util.Random;
 
 public class SpectrumBuddingBlock extends BuddingAmethystBlock {
-
+	
 	private final Block smallBlock;
 	private final Block mediumBlock;
 	private final Block largeBlock;
 	private final Block clusterBlock;
-
+	
 	private final SoundEvent hitSoundEvent;
 	private final SoundEvent chimeSoundEvent;
-
+	
 	private static final Direction[] DIRECTIONS = Direction.values();
-
+	
 	public SpectrumBuddingBlock(Settings settings, Block smallBlock, Block mediumBlock, Block largeBlock, Block clusterBlock, SoundEvent hitSoundEvent, SoundEvent chimeSoundEvent) {
 		super(settings);
-
+		
 		this.smallBlock = smallBlock;
 		this.mediumBlock = mediumBlock;
 		this.largeBlock = largeBlock;
 		this.clusterBlock = clusterBlock;
-
+		
 		this.hitSoundEvent = hitSoundEvent;
 		this.chimeSoundEvent = chimeSoundEvent;
 	}
-
+	
 	@Override
 	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
 		if (random.nextInt(5) == 0) {
@@ -58,17 +58,17 @@ public class SpectrumBuddingBlock extends BuddingAmethystBlock {
 			} else if (blockState.isOf(largeBlock) && blockState.get(AmethystClusterBlock.FACING) == direction) {
 				block = clusterBlock;
 			}
-
+			
 			if (block != null) {
 				BlockState blockState2 = (block.getDefaultState().with(AmethystClusterBlock.FACING, direction)).with(AmethystClusterBlock.WATERLOGGED, blockState.getFluidState().getFluid() == Fluids.WATER);
 				world.setBlockState(blockPos, blockState2);
-				if(blockState2.isIn(SpectrumBlockTags.CRYSTAL_APOTHECARY_HARVESTABLE)) {
+				if (blockState2.isIn(SpectrumBlockTags.CRYSTAL_APOTHECARY_HARVESTABLE)) {
 					world.emitGameEvent(SpectrumGameEvents.CRYSTAL_APOTHECARY_HARVESTABLE_GROWN, blockPos);
 				}
 			}
 		}
 	}
-
+	
 	public void onProjectileHit(World world, BlockState state, BlockHitResult hit, ProjectileEntity projectile) {
 		if (!world.isClient) {
 			BlockPos blockPos = hit.getBlockPos();
@@ -76,5 +76,5 @@ public class SpectrumBuddingBlock extends BuddingAmethystBlock {
 			world.playSound(null, blockPos, chimeSoundEvent, SoundCategory.BLOCKS, 1.0F, 0.5F + world.random.nextFloat() * 1.2F);
 		}
 	}
-
+	
 }

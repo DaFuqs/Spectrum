@@ -24,61 +24,61 @@ import java.util.List;
 public class FusionShrineCategory implements DisplayCategory<FusionShrineDisplay> {
 	
 	private static final EntryIngredient FUSION_SHRINE_BASALT = EntryIngredients.of(new ItemStack(SpectrumBlocks.FUSION_SHRINE_BASALT));
-
+	
 	@Override
 	public CategoryIdentifier getCategoryIdentifier() {
 		return SpectrumPlugins.FUSION_SHRINE;
 	}
-
+	
 	@Override
 	public Text getTitle() {
 		return new TranslatableText("block.spectrum.fusion_shrine");
 	}
-
+	
 	@Override
 	public Renderer getIcon() {
 		return EntryStacks.of(SpectrumBlocks.FUSION_SHRINE_BASALT);
 	}
-
+	
 	@Override
 	public List<Widget> setupDisplay(@NotNull FusionShrineDisplay display, @NotNull Rectangle bounds) {
 		Point startPoint = new Point(bounds.getCenterX() - 58, bounds.getCenterY() - 43);
 		List<Widget> widgets = Lists.newArrayList();
-
+		
 		widgets.add(Widgets.createRecipeBase(bounds));
 		
-		if(!display.isUnlocked()) {
+		if (!display.isUnlocked()) {
 			widgets.add(Widgets.createLabel(new Point(startPoint.x - 6, startPoint.y + 33), new TranslatableText("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_1")).leftAligned().color(0x3f3f3f).noShadow());
 			widgets.add(Widgets.createLabel(new Point(startPoint.x - 6, startPoint.y + 43), new TranslatableText("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_2")).leftAligned().color(0x3f3f3f).noShadow());
 		} else {
 			List<EntryIngredient> output = display.getOutputEntries();
-
+			
 			// input slots
-			int ingredientSize  = display.craftingInputs.size();
+			int ingredientSize = display.craftingInputs.size();
 			int startX = Math.max(0, 10 - ingredientSize * 10);
-			for(int i = 0; i < display.craftingInputs.size(); i++) {
+			for (int i = 0; i < display.craftingInputs.size(); i++) {
 				EntryIngredient currentIngredient = display.craftingInputs.get(i);
 				widgets.add(Widgets.createSlot(new Point(startPoint.x + startX + i * 20, startPoint.y + 9)).markInput().entries(currentIngredient));
 			}
-
+			
 			// shrine + fluid
-			if(!display.fluidInput.equals(EntryIngredients.of(Fluids.EMPTY))) {
+			if (!display.fluidInput.equals(EntryIngredients.of(Fluids.EMPTY))) {
 				widgets.add(Widgets.createSlot(new Point(startPoint.x + 10, startPoint.y + 35)).entries(FUSION_SHRINE_BASALT).disableBackground());
 				widgets.add(Widgets.createSlot(new Point(startPoint.x + 30, startPoint.y + 35)).markInput().entries(display.fluidInput));
 			} else {
 				widgets.add(Widgets.createSlot(new Point(startPoint.x + 20, startPoint.y + 35)).entries(FUSION_SHRINE_BASALT).disableBackground());
 			}
-
+			
 			// output arrow and slot
 			widgets.add(Widgets.createArrow(new Point(startPoint.x + 60, startPoint.y + 35)));
 			widgets.add(Widgets.createResultSlotBackground(new Point(startPoint.x + 95, startPoint.y + 35)));
 			widgets.add(Widgets.createSlot(new Point(startPoint.x + 95, startPoint.y + 35)).markOutput().disableBackground().entries(output.get(0)));
-
-			if(display.getDescription().isPresent()) {
+			
+			if (display.getDescription().isPresent()) {
 				Text description = (Text) display.getDescription().get();
 				widgets.add(Widgets.createLabel(new Point(startPoint.x - 10, startPoint.y + 65), description).leftAligned().color(0x3f3f3f).noShadow());
 			}
-
+			
 			// description text
 			// special handling for "1 second". Looks nicer
 			TranslatableText text;
@@ -88,16 +88,15 @@ public class FusionShrineCategory implements DisplayCategory<FusionShrineDisplay
 				text = new TranslatableText("container.spectrum.rei.pedestal_crafting.crafting_time_and_xp", (display.craftingTime / 20), display.experience);
 			}
 			widgets.add(Widgets.createLabel(new Point(startPoint.x - 10, startPoint.y + 75), text).leftAligned().color(0x3f3f3f).noShadow());
-
-
-
+			
+			
 		}
 		return widgets;
 	}
-
+	
 	@Override
 	public int getDisplayHeight() {
 		return 100;
 	}
-
+	
 }

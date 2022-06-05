@@ -32,11 +32,11 @@ public abstract class SpectrumTrinketItem extends TrinketItem {
 	
 	@Override
 	public boolean canEquip(ItemStack stack, SlotReference slot, LivingEntity entity) {
-		if(entity instanceof PlayerEntity playerEntity) {
+		if (entity instanceof PlayerEntity playerEntity) {
 			// does the player have the matching advancement?
-			if(Support.hasAdvancement(playerEntity, getUnlockIdentifier())) {
+			if (Support.hasAdvancement(playerEntity, getUnlockIdentifier())) {
 				// Can only a single trinket of that type be equipped at once?
-				if(!canEquipMoreThanOne() && hasEquipped(entity, this)) {
+				if (!canEquipMoreThanOne() && hasEquipped(entity, this)) {
 					return false;
 				}
 				return super.canEquip(stack, slot, entity);
@@ -50,7 +50,7 @@ public abstract class SpectrumTrinketItem extends TrinketItem {
 	}
 	
 	public static boolean hasEquipped(Object entity, Item item) {
-		if(entity instanceof LivingEntity livingEntity) {
+		if (entity instanceof LivingEntity livingEntity) {
 			return hasEquipped(livingEntity, item);
 		}
 		return false;
@@ -75,7 +75,7 @@ public abstract class SpectrumTrinketItem extends TrinketItem {
 	@Override
 	public void onEquip(ItemStack stack, SlotReference slot, LivingEntity entity) {
 		super.onEquip(stack, slot, entity);
-		if(entity instanceof ServerPlayerEntity serverPlayerEntity) {
+		if (entity instanceof ServerPlayerEntity serverPlayerEntity) {
 			SpectrumAdvancementCriteria.TRINKET_CHANGE.trigger(serverPlayerEntity);
 		}
 	}
@@ -83,7 +83,7 @@ public abstract class SpectrumTrinketItem extends TrinketItem {
 	@Override
 	public void onUnequip(ItemStack stack, SlotReference slot, LivingEntity entity) {
 		super.onUnequip(stack, slot, entity);
-		if(entity instanceof ServerPlayerEntity serverPlayerEntity) {
+		if (entity instanceof ServerPlayerEntity serverPlayerEntity) {
 			SpectrumAdvancementCriteria.TRINKET_CHANGE.trigger(serverPlayerEntity);
 		}
 	}
@@ -91,7 +91,7 @@ public abstract class SpectrumTrinketItem extends TrinketItem {
 	@Override
 	public void onBreak(ItemStack stack, SlotReference slot, LivingEntity entity) {
 		super.onBreak(stack, slot, entity);
-		if(entity instanceof ServerPlayerEntity serverPlayerEntity) {
+		if (entity instanceof ServerPlayerEntity serverPlayerEntity) {
 			SpectrumAdvancementCriteria.TRINKET_CHANGE.trigger(serverPlayerEntity);
 		}
 	}

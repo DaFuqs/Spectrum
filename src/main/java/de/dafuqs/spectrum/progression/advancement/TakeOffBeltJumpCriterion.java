@@ -23,25 +23,25 @@ import java.util.List;
 import java.util.Optional;
 
 public class TakeOffBeltJumpCriterion extends AbstractCriterion<TakeOffBeltJumpCriterion.Conditions> {
-
+	
 	static final Identifier ID = new Identifier(SpectrumCommon.MOD_ID, "take_off_belt_jump");
-
+	
 	public Identifier getId() {
 		return ID;
 	}
-
+	
 	public TakeOffBeltJumpCriterion.Conditions conditionsFromJson(JsonObject jsonObject, EntityPredicate.Extended extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
 		ItemPredicate itemPredicate = ItemPredicate.fromJson(jsonObject.get("item"));
 		NumberRange.IntRange chargesRange = NumberRange.IntRange.fromJson(jsonObject.get("charges"));
 		return new TakeOffBeltJumpCriterion.Conditions(extended, itemPredicate, chargesRange);
 	}
-
+	
 	public void trigger(ServerPlayerEntity player) {
 		this.trigger(player, (conditions) -> {
 			Optional<TrinketComponent> component = TrinketsApi.getTrinketComponent(player);
-			if(component.isPresent()) {
+			if (component.isPresent()) {
 				List<Pair<SlotReference, ItemStack>> equipped = component.get().getEquipped(SpectrumItems.TAKE_OFF_BELT);
-				if(!equipped.isEmpty()) {
+				if (!equipped.isEmpty()) {
 					ItemStack firstBelt = equipped.get(0).getRight();
 					if (firstBelt != null) {
 						int charge = TakeOffBeltItem.getCurrentCharge(player);
@@ -54,31 +54,31 @@ public class TakeOffBeltJumpCriterion extends AbstractCriterion<TakeOffBeltJumpC
 			return false;
 		});
 	}
-
+	
 	public static TakeOffBeltJumpCriterion.Conditions create(ItemPredicate itemPredicate, NumberRange.IntRange chargesRange) {
 		return new TakeOffBeltJumpCriterion.Conditions(EntityPredicate.Extended.EMPTY, itemPredicate, chargesRange);
 	}
-
+	
 	public static class Conditions extends AbstractCriterionConditions {
 		private final ItemPredicate itemPredicate;
 		private final NumberRange.IntRange chargesRange;
-
+		
 		public Conditions(EntityPredicate.Extended player, ItemPredicate itemPredicate, NumberRange.IntRange chargesRange) {
 			super(ID, player);
 			this.itemPredicate = itemPredicate;
 			this.chargesRange = chargesRange;
 		}
-
+		
 		public JsonObject toJson(AdvancementEntityPredicateSerializer predicateSerializer) {
 			JsonObject jsonObject = super.toJson(predicateSerializer);
 			jsonObject.addProperty("item", this.itemPredicate.toString());
 			jsonObject.addProperty("charges", this.chargesRange.toString());
 			return jsonObject;
 		}
-
+		
 		public boolean matches(ItemStack beltStack, int charge) {
 			return itemPredicate.test(beltStack) && this.chargesRange.test(charge);
 		}
 	}
-
+	
 }

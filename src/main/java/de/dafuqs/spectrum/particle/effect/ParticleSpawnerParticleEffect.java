@@ -15,7 +15,7 @@ import net.minecraft.util.math.Vec3f;
 import net.minecraft.util.registry.Registry;
 
 public class ParticleSpawnerParticleEffect implements ParticleEffect {
-
+	
 	public static final Codec<ParticleSpawnerParticleEffect> CODEC = RecordCodecBuilder.create((instance) -> {
 		return instance.group(Vec3f.CODEC.fieldOf("color").forGetter((particleSpawnerParticleEffect) -> {
 			return particleSpawnerParticleEffect.color;
@@ -31,7 +31,7 @@ public class ParticleSpawnerParticleEffect implements ParticleEffect {
 			return particleSpawnerParticleEffect.collisions;
 		}), Codec.BOOL.fieldOf("glow_in_the_dark").forGetter((particleSpawnerParticleEffect) -> {
 			return particleSpawnerParticleEffect.glowInTheDark;
-		})).apply(instance, (Function7)(ParticleSpawnerParticleEffect::new));
+		})).apply(instance, (Function7) (ParticleSpawnerParticleEffect::new));
 	});
 	
 	public static final ParticleEffect.Factory<ParticleSpawnerParticleEffect> FACTORY = new ParticleEffect.Factory<>() {
@@ -48,10 +48,10 @@ public class ParticleSpawnerParticleEffect implements ParticleEffect {
 			stringReader.expect(' ');
 			boolean collisions = stringReader.readBoolean();
 			boolean glowInTheDark = stringReader.readBoolean();
-
+			
 			return new ParticleSpawnerParticleEffect(textureIdentifier, gravity, color, scale, lifetimeTicks, collisions, glowInTheDark);
 		}
-
+		
 		public ParticleSpawnerParticleEffect read(ParticleType<ParticleSpawnerParticleEffect> particleType, PacketByteBuf packetByteBuf) {
 			Vec3f color = AbstractDustParticleEffect.readColor(packetByteBuf);
 			Identifier textureIdentifier = packetByteBuf.readIdentifier();
@@ -60,11 +60,11 @@ public class ParticleSpawnerParticleEffect implements ParticleEffect {
 			float gravity = packetByteBuf.readFloat();
 			boolean collisions = packetByteBuf.readBoolean();
 			boolean glowInTheDark = packetByteBuf.readBoolean();
-
+			
 			return new ParticleSpawnerParticleEffect(textureIdentifier, gravity, color, scale, lifetimeTicks, collisions, glowInTheDark);
 		}
 	};
-
+	
 	public Identifier textureIdentifier;
 	public Vec3f color;
 	public float scale;
@@ -96,7 +96,7 @@ public class ParticleSpawnerParticleEffect implements ParticleEffect {
 	public ParticleSpawnerParticleEffect(Object o, Object o1, Object o2, Object o3, Object o4, Object o5, Object o6) {
 		new ParticleSpawnerParticleEffect((Identifier) o, (float) o1, (Vec3f) o2, (float) o3, (int) o4, (boolean) o5, (boolean) o6);
 	}
-
+	
 	public void write(PacketByteBuf buf) {
 		buf.writeString(this.textureIdentifier.toString());
 		buf.writeFloat(this.gravity);
@@ -108,15 +108,15 @@ public class ParticleSpawnerParticleEffect implements ParticleEffect {
 		buf.writeBoolean(this.collisions);
 		buf.writeBoolean(this.glowInTheDark);
 	}
-
+	
 	public String asString() {
 		return String.valueOf(Registry.PARTICLE_TYPE.getId(this.getType()));
 	}
-
+	
 	public ParticleType<ParticleSpawnerParticleEffect> getType() {
 		return SpectrumParticleTypes.PARTICLE_SPAWNER;
 	}
-
+	
 	public float getGravity() {
 		return this.gravity;
 	}

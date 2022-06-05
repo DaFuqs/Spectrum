@@ -12,7 +12,7 @@ public class EntityTypeMixin {
 	
 	@Inject(at = @At("RETURN"), method = "alwaysUpdateVelocity()Z", cancellable = true)
 	public void alwaysUpdateVelocity(CallbackInfoReturnable<Boolean> cir) {
-		if(cir.getReturnValue() && ((Object) this == SpectrumEntityTypes.INVISIBLE_ITEM_FRAME || (Object) this == SpectrumEntityTypes.INVISIBLE_GLOW_ITEM_FRAME)) {
+		if (cir.getReturnValue() && ((Object) this == SpectrumEntityTypes.INVISIBLE_ITEM_FRAME || (Object) this == SpectrumEntityTypes.INVISIBLE_GLOW_ITEM_FRAME)) {
 			cir.setReturnValue(false);
 		}
 	}

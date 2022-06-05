@@ -35,14 +35,14 @@ public class PlacementStaffItem extends BuildingStaffItem {
 	public PlacementStaffItem(Settings settings) {
 		super(settings);
 	}
-
+	
 	// The range grows with the players' progression
 	// this way the item is not overpowered at the start
 	// but not useless at the end
 	// this way the player does not need to craft 5 tiers
 	// of placementStaffs that each do basically feel the same
 	public static int getRange(PlayerEntity playerEntity) {
-		if(playerEntity == null || playerEntity.isCreative()) {
+		if (playerEntity == null || playerEntity.isCreative()) {
 			return CREATIVE_RANGE;
 		} else {
 			Optional<PedestalRecipeTier> highestUnlockedRecipeTier = PedestalRecipeTier.getHighestUnlockedRecipeTier(playerEntity);
@@ -81,17 +81,17 @@ public class PlacementStaffItem extends BuildingStaffItem {
 		
 		BlockState targetBlockState = world.getBlockState(pos);
 		
-		if((player != null && player.isCreative()) || !isBlacklisted(targetBlockState)) {
+		if ((player != null && player.isCreative()) || !isBlacklisted(targetBlockState)) {
 			Block targetBlock = targetBlockState.getBlock();
 			Item targetBlockItem = targetBlock.asItem();
 			
 			if (player != null && targetBlockItem != Items.AIR && context.getHand() == Hand.MAIN_HAND) {
 				int count;
-				if(player.isCreative()) {
+				if (player.isCreative()) {
 					count = Integer.MAX_VALUE;
 				} else {
 					Triplet<Block, Item, Integer> inventoryItemAndCount = BuildingHelper.getBuildingItemCountInInventoryIncludingSimilars(player, targetBlock);
-					if(targetBlock != inventoryItemAndCount.getA()) {
+					if (targetBlock != inventoryItemAndCount.getA()) {
 						targetBlockState = inventoryItemAndCount.getA().getDefaultState();
 					}
 					targetBlockItem = inventoryItemAndCount.getB();
@@ -132,7 +132,7 @@ public class PlacementStaffItem extends BuildingStaffItem {
 				}
 			}
 		} else {
-			if(player != null) {
+			if (player != null) {
 				world.playSound(null, player.getBlockPos(), SoundEvents.BLOCK_DISPENSER_FAIL, SoundCategory.PLAYERS, 1.0F, 1.0F);
 			}
 		}

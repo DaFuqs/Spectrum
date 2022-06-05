@@ -60,12 +60,12 @@ public class SpectrumScreenHandlerTypes {
 		GENERIC_TIER1_9X6 = registerSimple(SpectrumContainers.GENERIC_TIER1_9x6, GenericSpectrumContainerScreenHandler::createGeneric9x6_Tier1);
 		GENERIC_TIER2_9X6 = registerSimple(SpectrumContainers.GENERIC_TIER2_9x6, GenericSpectrumContainerScreenHandler::createGeneric9x6_Tier2);
 		GENERIC_TIER3_9X6 = registerSimple(SpectrumContainers.GENERIC_TIER3_9x6, GenericSpectrumContainerScreenHandler::createGeneric9x6_Tier3);
-
+		
 		GENERIC_TIER1_3X3 = registerSimple(SpectrumContainers.GENERIC_TIER1_3X3, Spectrum3x3ContainerScreenHandler::createTier1);
 		GENERIC_TIER2_3X3 = registerSimple(SpectrumContainers.GENERIC_TIER2_3X3, Spectrum3x3ContainerScreenHandler::createTier2);
 		GENERIC_TIER3_3X3 = registerSimple(SpectrumContainers.GENERIC_TIER3_3X3, Spectrum3x3ContainerScreenHandler::createTier3);
 	}
-
+	
 	public static void registerClient() {
 		HandledScreens.register(SpectrumScreenHandlerTypes.PEDESTAL, PedestalScreen::new);
 		HandledScreens.register(SpectrumScreenHandlerTypes.CRAFTING_TABLET, CraftingTabletScreen::new);

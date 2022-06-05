@@ -21,7 +21,7 @@ public class MidnightAberrationItem extends CloakedItem {
 	public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
 		super.inventoryTick(stack, world, entity, slot, selected);
 		
-		if(!world.isClient && world.getTime() % 20 == 0 && entity instanceof PlayerEntity playerEntity && world.random.nextFloat() < 0.2F) {
+		if (!world.isClient && world.getTime() % 20 == 0 && entity instanceof PlayerEntity playerEntity && world.random.nextFloat() < 0.2F) {
 			stack.decrement(1);
 			Support.givePlayer(playerEntity, Items.GUNPOWDER.getDefaultStack());
 			playerEntity.playSound(SpectrumSoundEvents.MIDNIGHT_ABERRATION_CRUMBLING, 0.5F, 1.0F);

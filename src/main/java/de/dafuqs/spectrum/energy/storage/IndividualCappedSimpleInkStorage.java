@@ -32,7 +32,7 @@ public class IndividualCappedSimpleInkStorage implements InkStorage {
 		this.currentTotal = 0;
 		
 		this.storedEnergy = new HashMap<>();
-		for(InkColor color : InkColor.all()) {
+		for (InkColor color : InkColor.all()) {
 			this.storedEnergy.put(color, 0L);
 		}
 	}
@@ -41,7 +41,7 @@ public class IndividualCappedSimpleInkStorage implements InkStorage {
 		this.maxEnergyPerColor = maxEnergyPerColor;
 		
 		this.storedEnergy = colors;
-		for(Map.Entry<InkColor, Long> color : colors.entrySet()) {
+		for (Map.Entry<InkColor, Long> color : colors.entrySet()) {
 			this.storedEnergy.put(color.getKey(), color.getValue());
 			this.currentTotal += color.getValue();
 		}
@@ -55,7 +55,7 @@ public class IndividualCappedSimpleInkStorage implements InkStorage {
 	@Override
 	public long addEnergy(InkColor color, long amount) {
 		long resultingAmount = this.storedEnergy.get(color) + amount;
-		if(resultingAmount > this.maxEnergyPerColor) {
+		if (resultingAmount > this.maxEnergyPerColor) {
 			long overflow = resultingAmount - this.maxEnergyPerColor;
 			this.currentTotal = this.maxEnergyPerColor;
 			this.storedEnergy.put(color, this.maxEnergyPerColor);
@@ -70,7 +70,7 @@ public class IndividualCappedSimpleInkStorage implements InkStorage {
 	@Override
 	public boolean requestEnergy(InkColor color, long amount) {
 		long storedAmount = this.storedEnergy.get(color);
-		if(storedAmount < amount) {
+		if (storedAmount < amount) {
 			return false;
 		} else {
 			this.currentTotal -= amount;
@@ -119,11 +119,11 @@ public class IndividualCappedSimpleInkStorage implements InkStorage {
 	}
 	
 	public static @Nullable IndividualCappedSimpleInkStorage fromNbt(@NotNull NbtCompound compound) {
-		if(compound.contains("MaxEnergyPerColor", NbtElement.LONG_TYPE)) {
+		if (compound.contains("MaxEnergyPerColor", NbtElement.LONG_TYPE)) {
 			long maxEnergyPerColor = compound.getLong("MaxEnergyPerColor");
 			
 			Map<InkColor, Long> colors = new HashMap<>();
-			for(InkColor color : InkColor.all()) {
+			for (InkColor color : InkColor.all()) {
 				colors.put(color, compound.getLong(color.toString()));
 			}
 			return new IndividualCappedSimpleInkStorage(maxEnergyPerColor, colors);
@@ -134,7 +134,7 @@ public class IndividualCappedSimpleInkStorage implements InkStorage {
 	public NbtCompound toNbt() {
 		NbtCompound compound = new NbtCompound();
 		compound.putLong("MaxEnergyPerColor", this.maxEnergyPerColor);
-		for(Map.Entry<InkColor, Long> color : this.storedEnergy.entrySet()) {
+		for (Map.Entry<InkColor, Long> color : this.storedEnergy.entrySet()) {
 			compound.putLong(color.getKey().toString(), color.getValue());
 		}
 		return compound;
@@ -143,9 +143,9 @@ public class IndividualCappedSimpleInkStorage implements InkStorage {
 	@Environment(EnvType.CLIENT)
 	public void addTooltip(World world, List<Text> tooltip, TooltipContext context) {
 		tooltip.add(new TranslatableText("item.spectrum.pigment_palette.tooltip", getShortenedNumberString(maxEnergyPerColor)));
-		for(Map.Entry<InkColor, Long> color : this.storedEnergy.entrySet()) {
-			if(color.getValue() > 0) {
-				tooltip.add(new TranslatableText("item.spectrum.pigment_palette.tooltip.stored_energy." + color.getKey().toString().toLowerCase(Locale.ROOT),  getShortenedNumberString(color.getValue())));
+		for (Map.Entry<InkColor, Long> color : this.storedEnergy.entrySet()) {
+			if (color.getValue() > 0) {
+				tooltip.add(new TranslatableText("item.spectrum.pigment_palette.tooltip.stored_energy." + color.getKey().toString().toLowerCase(Locale.ROOT), getShortenedNumberString(color.getValue())));
 			}
 		}
 	}
@@ -156,7 +156,7 @@ public class IndividualCappedSimpleInkStorage implements InkStorage {
 	}
 	
 	public void fillCompletely() {
-		for(InkColor color : InkColor.all()) {
+		for (InkColor color : InkColor.all()) {
 			storedEnergy.put(color, this.maxEnergyPerColor);
 		}
 	}

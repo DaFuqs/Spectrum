@@ -35,7 +35,7 @@ public class AttackRingItem extends SpectrumTrinketItem {
 	@Override
 	public void onUnequip(ItemStack stack, SlotReference slot, LivingEntity entity) {
 		super.onUnequip(stack, slot, entity);
-		if(entity.getAttributes().hasModifierForAttribute(EntityAttributes.GENERIC_ATTACK_DAMAGE, AttackRingItem.ATTACK_RING_DAMAGE_UUID)) {
+		if (entity.getAttributes().hasModifierForAttribute(EntityAttributes.GENERIC_ATTACK_DAMAGE, AttackRingItem.ATTACK_RING_DAMAGE_UUID)) {
 			Multimap<EntityAttribute, EntityAttributeModifier> map = Multimaps.newMultimap(Maps.newLinkedHashMap(), ArrayList::new);
 			EntityAttributeModifier modifier = new EntityAttributeModifier(AttackRingItem.ATTACK_RING_DAMAGE_UUID, "spectrum:jeopardant", AttackRingItem.getAttackModifierForEntity(entity), EntityAttributeModifier.Operation.MULTIPLY_TOTAL);
 			map.put(EntityAttributes.GENERIC_ATTACK_DAMAGE, modifier);
@@ -48,7 +48,7 @@ public class AttackRingItem extends SpectrumTrinketItem {
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
 		long mod = Math.round(getAttackModifierForEntity(MinecraftClient.getInstance().player) * 100);
-		if(mod == 0) {
+		if (mod == 0) {
 			tooltip.add(new TranslatableText("item.spectrum.jeopardant.tooltip.damage_zero"));
 		} else {
 			tooltip.add(new TranslatableText("item.spectrum.jeopardant.tooltip.damage", mod));
@@ -56,7 +56,7 @@ public class AttackRingItem extends SpectrumTrinketItem {
 	}
 	
 	public static double getAttackModifierForEntity(LivingEntity entity) {
-		if(entity == null) {
+		if (entity == null) {
 			return 0;
 		} else {
 			double mod = entity.getMaxHealth() / (entity.getHealth() * entity.getHealth() + 1); // starting with 1 % damage at 14 health up to 300 % damage at 1/20 health

@@ -34,7 +34,7 @@ import java.util.List;
 import static net.minecraft.state.property.Properties.WATERLOGGED;
 
 public class RadianceStaffItem extends Item implements EnchanterEnchantable {
-
+	
 	public static int USE_DURATION = 12;
 	public static int REACH_STEP_DISTANCE = 4;
 	public static int MAX_REACH_STEPS = 8;
@@ -48,32 +48,32 @@ public class RadianceStaffItem extends Item implements EnchanterEnchantable {
 	
 	@Override
 	public void appendTooltip(ItemStack itemStack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
-		if(EnchantmentHelper.getLevel(Enchantments.INFINITY, itemStack) == 0) {
+		if (EnchantmentHelper.getLevel(Enchantments.INFINITY, itemStack) == 0) {
 			tooltip.add(new TranslatableText("item.spectrum.light_staff.tooltip"));
 		}
 		tooltip.add(new TranslatableText("item.spectrum.light_staff.tooltip2"));
 	}
-
+	
 	public UseAction getUseAction(ItemStack stack) {
 		return UseAction.BOW;
 	}
-
+	
 	public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-		if(!world.isClient) {
+		if (!world.isClient) {
 			world.playSound(null, user.getX(), user.getY(), user.getZ(), SpectrumSoundEvents.LIGHT_STAFF_CHARGING, SoundCategory.PLAYERS, 1.0F, 1.0F);
 		}
 		return ItemUsage.consumeHeldItem(world, user, hand);
 	}
-
+	
 	public void usageTick(World world, LivingEntity user, ItemStack stack, int remainingUseTicks) {
 		// trigger the items' usage action every x ticks
-		if(world instanceof ServerWorld && user.getItemUseTime() > USE_DURATION && user.getItemUseTime() % USE_DURATION == 0) {
+		if (world instanceof ServerWorld && user.getItemUseTime() > USE_DURATION && user.getItemUseTime() % USE_DURATION == 0) {
 			usage(world, stack, user);
 		}
 	}
-
+	
 	public void usage(World world, ItemStack stack, LivingEntity user) {
-		if(user instanceof PlayerEntity playerEntity) {
+		if (user instanceof PlayerEntity playerEntity) {
 			int useTimes = (user.getItemUseTime() / USE_DURATION);
 			int maxCheckDistance = Math.min(MAX_REACH_STEPS, useTimes);
 			
@@ -85,7 +85,7 @@ public class RadianceStaffItem extends Item implements EnchanterEnchantable {
 				targetPos = targetPos.add(iteration - world.getRandom().nextInt(2 * iteration), iteration - world.getRandom().nextInt(2 * iteration), iteration - world.getRandom().nextInt(2 * iteration));
 				
 				if (world.getLightLevel(LightType.BLOCK, targetPos) < MIN_LIGHT_LEVEL) {
-					if(placeLight(world, targetPos, playerEntity, stack)) {
+					if (placeLight(world, targetPos, playerEntity, stack)) {
 						playSoundAndParticles(world, targetPos, playerEntity, useTimes, iteration);
 					} else {
 						playDenySound(world, playerEntity);
@@ -111,7 +111,7 @@ public class RadianceStaffItem extends Item implements EnchanterEnchantable {
 		}
 		return false;
 	}
-
+	
 	public static void playSoundAndParticles(World world, BlockPos targetPos, PlayerEntity playerEntity, int useTimes, int iteration) {
 		float pitch;
 		if (useTimes % 2 == 0) { // high ding <=> deep ding
@@ -120,7 +120,7 @@ public class RadianceStaffItem extends Item implements EnchanterEnchantable {
 			pitch = Math.min(1.5F, 0.7F + 0.1F * useTimes);
 		}
 		SpectrumS2CPacketSender.sendLightCreatedParticle(world, targetPos);
-		world.playSound(null, playerEntity.getX() + 0.5, playerEntity.getY() + 0.5, playerEntity.getZ() + 0.5, SpectrumSoundEvents.LIGHT_STAFF_PLACE, SoundCategory.PLAYERS, (float) Math.max(0.25, 1.0F-(float)iteration*0.1F), pitch);
+		world.playSound(null, playerEntity.getX() + 0.5, playerEntity.getY() + 0.5, playerEntity.getZ() + 0.5, SpectrumSoundEvents.LIGHT_STAFF_PLACE, SoundCategory.PLAYERS, (float) Math.max(0.25, 1.0F - (float) iteration * 0.1F), pitch);
 	}
 	
 	public static void playDenySound(World world, PlayerEntity playerEntity) {

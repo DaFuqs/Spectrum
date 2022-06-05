@@ -14,7 +14,7 @@ import net.minecraft.util.Identifier;
 import java.awt.*;
 
 public class PotionWorkshopScreen extends HandledScreen<PotionWorkshopScreenHandler> {
-
+	
 	public static final Identifier BACKGROUND_3_SLOTS = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/container/potion_workshop_3_slots.png");
 	public static final Identifier BACKGROUND_4_SLOTS = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/container/potion_workshop_4_slots.png");
 	private static final int[] BUBBLE_PROGRESS = new int[]{0, 4, 8, 11, 13, 17, 20, 24, 26, 30, 33, 36, 41};
@@ -25,7 +25,7 @@ public class PotionWorkshopScreen extends HandledScreen<PotionWorkshopScreenHand
 		super(handler, playerInventory, title);
 		this.backgroundHeight = 202;
 		
-		if(Support.hasAdvancement(playerInventory.player, PotionWorkshopBlockEntity.FOURTH_BREWING_SLOT_ADVANCEMENT_IDENTIFIER)) {
+		if (Support.hasAdvancement(playerInventory.player, PotionWorkshopBlockEntity.FOURTH_BREWING_SLOT_ADVANCEMENT_IDENTIFIER)) {
 			background = BACKGROUND_4_SLOTS;
 		} else {
 			background = BACKGROUND_3_SLOTS;
@@ -40,11 +40,11 @@ public class PotionWorkshopScreen extends HandledScreen<PotionWorkshopScreenHand
 		Text title = this.title;
 		int playerInventoryX = 8;
 		int playerInventoryY = 109;
-
+		
 		this.textRenderer.draw(matrices, title, titleX, titleY, 3289650);
 		this.textRenderer.draw(matrices, this.playerInventoryTitle, playerInventoryX, playerInventoryY, 3289650);
 	}
-
+	
 	@Override
 	protected void drawBackground(MatrixStack matrices, float delta, int mouseX, int mouseY) {
 		RenderSystem.setShader(GameRenderer::getPositionTexShader);
@@ -69,7 +69,7 @@ public class PotionWorkshopScreen extends HandledScreen<PotionWorkshopScreenHand
 			int potionColor = (this.handler).getPotionColor();
 			Color color = new Color(potionColor);
 			RenderSystem.setShaderColor(color.getRed() / 255F, color.getGreen() / 255F, color.getBlue() / 255F, 1.0F);
-			n = (int) (100.0F * ((float)brewTime / maxBrewTime));
+			n = (int) (100.0F * ((float) brewTime / maxBrewTime));
 			// the brew
 			if (n > 0) {
 				this.drawTexture(matrices, startX + 45, startY + 22, 0, 212, n, 44);

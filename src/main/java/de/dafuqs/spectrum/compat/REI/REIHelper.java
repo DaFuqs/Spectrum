@@ -15,7 +15,7 @@ public class REIHelper {
 		List<ItemStack> matchingStacks = ingredientStack.getStacks();
 		if (matchingStacks.isEmpty()) return EntryIngredient.empty();
 		
-		for(ItemStack stack : matchingStacks) {
+		for (ItemStack stack : matchingStacks) {
 			stack.setCount(ingredientStack.getCount());
 		}
 		

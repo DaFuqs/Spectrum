@@ -36,7 +36,7 @@ public class SpiritInstillerRecipe implements ISpiritInstillerRecipe {
 	protected final float experience;
 	protected final Identifier requiredAdvancementIdentifier;
 	protected final boolean noBenefitsFromYieldAndEfficiencyUpgrades;
-
+	
 	public SpiritInstillerRecipe(Identifier id, String group, IngredientStack inputIngredient1, IngredientStack inputIngredient2, IngredientStack centerIngredient, ItemStack outputItemStack, int craftingTime, float experience, boolean noBenefitsFromYieldAndEfficiencyUpgrades, Identifier requiredAdvancementIdentifier) {
 		this.id = id;
 		this.group = group;
@@ -66,7 +66,7 @@ public class SpiritInstillerRecipe implements ISpiritInstillerRecipe {
 	public RecipeSerializer<?> getSerializer() {
 		return SpectrumRecipeTypes.SPIRIT_INSTILLING_SERIALIZER;
 	}
-
+	
 	@Deprecated
 	@Override
 	public DefaultedList<Ingredient> getIngredients() {
@@ -87,7 +87,7 @@ public class SpiritInstillerRecipe implements ISpiritInstillerRecipe {
 	
 	@Override
 	public boolean equals(Object object) {
-		if(object instanceof SpiritInstillerRecipe spiritInstillerRecipe) {
+		if (object instanceof SpiritInstillerRecipe spiritInstillerRecipe) {
 			return spiritInstillerRecipe.getId().equals(this.getId());
 		}
 		return false;
@@ -96,7 +96,7 @@ public class SpiritInstillerRecipe implements ISpiritInstillerRecipe {
 	@Override
 	public ItemStack craft(Inventory inv) {
 		ItemStack resultStack = ItemStack.EMPTY;
-		if(inv instanceof SpiritInstillerBlockEntity spiritInstillerBlockEntity) {
+		if (inv instanceof SpiritInstillerBlockEntity spiritInstillerBlockEntity) {
 			Map<Upgradeable.UpgradeType, Double> upgrades = spiritInstillerBlockEntity.getUpgrades();
 			World world = spiritInstillerBlockEntity.getWorld();
 			BlockPos pos = spiritInstillerBlockEntity.getPos();

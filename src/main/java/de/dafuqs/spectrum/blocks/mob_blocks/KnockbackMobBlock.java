@@ -16,7 +16,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 
 public class KnockbackMobBlock extends MobBlock {
-
+	
 	protected float horizontalKnockback;
 	protected float verticalKnockback;
 	
@@ -28,7 +28,7 @@ public class KnockbackMobBlock extends MobBlock {
 	
 	@Override
 	public boolean trigger(ServerWorld world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
-		if(entity != null) {
+		if (entity != null) {
 			switch (side) {
 				case NORTH -> {
 					entity.addVelocity(0, verticalKnockback, -horizontalKnockback);
@@ -47,11 +47,11 @@ public class KnockbackMobBlock extends MobBlock {
 					entity.velocityModified = true;
 				}
 				case UP -> {
-					entity.addVelocity(0,  (horizontalKnockback/4), 0);
+					entity.addVelocity(0, (horizontalKnockback / 4), 0);
 					entity.velocityModified = true;
 				}
 				default -> {
-					entity.addVelocity(0, -(horizontalKnockback/4), 0);
+					entity.addVelocity(0, -(horizontalKnockback / 4), 0);
 					entity.velocityModified = true;
 				}
 			}
@@ -63,7 +63,7 @@ public class KnockbackMobBlock extends MobBlock {
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
 		super.appendTooltip(stack, world, tooltip, options);
-		tooltip.add(new TranslatableText( "block.spectrum.knockback_mob_block.tooltip"));
+		tooltip.add(new TranslatableText("block.spectrum.knockback_mob_block.tooltip"));
 	}
 	
 }

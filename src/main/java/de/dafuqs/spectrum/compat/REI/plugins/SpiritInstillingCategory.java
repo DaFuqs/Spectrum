@@ -24,37 +24,37 @@ public class SpiritInstillingCategory implements DisplayCategory<SpiritInstillin
 	
 	private static final EntryIngredient SPIRIT_INSTILLER = EntryIngredients.of(new ItemStack(SpectrumBlocks.SPIRIT_INSTILLER));
 	private static final EntryIngredient ITEM_BOWL_CALCITE = EntryIngredients.of(new ItemStack(SpectrumBlocks.ITEM_BOWL_CALCITE));
-
+	
 	@Override
 	public CategoryIdentifier<SpiritInstillingDisplay> getCategoryIdentifier() {
 		return SpectrumPlugins.SPIRIT_INSTILLER;
 	}
-
+	
 	@Override
 	public Text getTitle() {
 		return SpectrumBlocks.SPIRIT_INSTILLER.getName();
 	}
-
+	
 	@Override
 	public Renderer getIcon() {
 		return EntryStacks.of(SpectrumBlocks.SPIRIT_INSTILLER);
 	}
-
+	
 	@Override
 	public List<Widget> setupDisplay(@NotNull SpiritInstillingDisplay display, @NotNull Rectangle bounds) {
 		Point startPoint = new Point(bounds.getCenterX() - 58, bounds.getCenterY() - 23);
 		List<Widget> widgets = Lists.newArrayList();
-
+		
 		widgets.add(Widgets.createRecipeBase(bounds));
 		
-		if(!display.isUnlocked()) {
+		if (!display.isUnlocked()) {
 			widgets.add(Widgets.createLabel(new Point(startPoint.x - 6, startPoint.y + 13), new TranslatableText("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_1")).leftAligned().color(0x3f3f3f).noShadow());
 			widgets.add(Widgets.createLabel(new Point(startPoint.x - 6, startPoint.y + 23), new TranslatableText("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_2")).leftAligned().color(0x3f3f3f).noShadow());
 		} else {
 			List<EntryIngredient> output = display.getOutputEntries();
-
+			
 			// input slots
-			int ingredientSize  = display.craftingInputs.size();
+			int ingredientSize = display.craftingInputs.size();
 			int startX = Math.max(0, 10 - ingredientSize * 10);
 			widgets.add(Widgets.createSlot(new Point(startPoint.x + startX, startPoint.y)).markInput().entries(display.craftingInputs.get(0)));
 			widgets.add(Widgets.createSlot(new Point(startPoint.x + startX + 40, startPoint.y)).markInput().entries(display.craftingInputs.get(1)));
@@ -68,7 +68,7 @@ public class SpiritInstillingCategory implements DisplayCategory<SpiritInstillin
 			widgets.add(Widgets.createArrow(new Point(startPoint.x + 60, startPoint.y + 9)));
 			widgets.add(Widgets.createResultSlotBackground(new Point(startPoint.x + 95, startPoint.y + 9)));
 			widgets.add(Widgets.createSlot(new Point(startPoint.x + 95, startPoint.y + 9)).markOutput().disableBackground().entries(output.get(0)));
-
+			
 			// description text
 			// special handling for "1 second". Looks nicer
 			TranslatableText text;
@@ -81,10 +81,10 @@ public class SpiritInstillingCategory implements DisplayCategory<SpiritInstillin
 		}
 		return widgets;
 	}
-
+	
 	@Override
 	public int getDisplayHeight() {
 		return 60;
 	}
-
+	
 }

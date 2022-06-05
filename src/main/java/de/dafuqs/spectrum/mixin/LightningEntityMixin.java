@@ -18,24 +18,25 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(LightningEntity.class)
 public abstract class LightningEntityMixin {
-
-	@Shadow protected abstract BlockPos getAffectedBlockPos();
-
+	
+	@Shadow
+	protected abstract BlockPos getAffectedBlockPos();
+	
 	@Inject(method = "tick()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LightningEntity;cleanOxidation(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;)V"))
 	private void spawnLightningStoneAtImpact(CallbackInfo ci) {
-		World world = ((LightningEntity)(Object) this).world;
-
+		World world = ((LightningEntity) (Object) this).world;
+		
 		// do not spawn storm stones when using other forms of
 		// spawning thunder, like magic, ... in clear weather. Only when it is actually thundering
-		if(world.isThundering() && SpectrumCommon.CONFIG.LightningStonesWorlds.contains(world.getRegistryKey().getValue().toString())) {
+		if (world.isThundering() && SpectrumCommon.CONFIG.LightningStonesWorlds.contains(world.getRegistryKey().getValue().toString())) {
 			spawnLightningStone(world, this.getAffectedBlockPos());
 		}
 	}
-
+	
 	private void spawnLightningStone(@NotNull World world, BlockPos affectedBlockPos) {
 		BlockState blockState = world.getBlockState(affectedBlockPos);
 		BlockPos aboveGroundBlockPos;
-
+		
 		if (blockState.isOf(Blocks.LIGHTNING_ROD)) {
 			// if struck a lightning rod: check around the base of the rod instead
 			// always spawn a stone
@@ -43,19 +44,19 @@ public abstract class LightningEntityMixin {
 			aboveGroundBlockPos = blockPos2.offset(Direction.fromHorizontal(world.getRandom().nextInt(6))).up();
 		} else {
 			// there is chance involved
-			if(world.random.nextFloat() > SpectrumCommon.CONFIG.LightningStonesChance) {
+			if (world.random.nextFloat() > SpectrumCommon.CONFIG.LightningStonesChance) {
 				return;
 			}
 			aboveGroundBlockPos = affectedBlockPos.up();
 		}
-
-		if(world.isAir(aboveGroundBlockPos)) {
+		
+		if (world.isAir(aboveGroundBlockPos)) {
 			BlockState placementBlockState = SpectrumBlocks.STUCK_LIGHTNING_STONE.getDefaultState();
 			if (placementBlockState.canPlaceAt(world, aboveGroundBlockPos)) {
 				world.setBlockState(aboveGroundBlockPos, placementBlockState);
 			}
 		}
-
+		
 	}
-
+	
 }

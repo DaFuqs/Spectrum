@@ -23,7 +23,7 @@ public class BottomlessBundleBlockEntity extends BlockEntity implements SidedInv
 	protected final static int OUTPUT_SLOT_ID = 1;
 	protected ItemStack bottomlessBundleStack;
 	protected ItemStack acceptedItemStack; // caching for performance and to prevent the bundle being emptied
-	                                     // and then filled with different item type
+	// and then filled with different item type
 	protected ItemStack currentOutputStack;
 	
 	public BottomlessBundleBlockEntity(BlockPos pos, BlockState state) {
@@ -38,10 +38,10 @@ public class BottomlessBundleBlockEntity extends BlockEntity implements SidedInv
 		super.readNbt(nbt);
 		
 		NbtList nbtList = nbt.getList("Items", 10);
-		for(int i = 0; i < nbtList.size(); ++i) {
+		for (int i = 0; i < nbtList.size(); ++i) {
 			NbtCompound nbtCompound = nbtList.getCompound(i);
 			int j = nbtCompound.getByte("Slot") & 255;
-			if(j == 0) {
+			if (j == 0) {
 				this.bottomlessBundleStack = ItemStack.fromNbt(nbtCompound);
 				this.acceptedItemStack = BottomlessBundleItem.getFirstBundledStack(bottomlessBundleStack);
 			} else {
@@ -59,12 +59,12 @@ public class BottomlessBundleBlockEntity extends BlockEntity implements SidedInv
 		NbtList nbtList = new NbtList();
 		
 		NbtCompound nbtCompound = new NbtCompound();
-		nbtCompound.putByte("Slot", (byte)0);
+		nbtCompound.putByte("Slot", (byte) 0);
 		bottomlessBundleStack.writeNbt(nbtCompound);
 		nbtList.add(nbtCompound);
 		
 		NbtCompound nbtCompound2 = new NbtCompound();
-		nbtCompound2.putByte("Slot", (byte)1);
+		nbtCompound2.putByte("Slot", (byte) 1);
 		currentOutputStack.writeNbt(nbtCompound2);
 		nbtList.add(nbtCompound2);
 		
@@ -72,14 +72,14 @@ public class BottomlessBundleBlockEntity extends BlockEntity implements SidedInv
 	}
 	
 	public void setVoidBundle(@NotNull ItemStack itemStack) {
-		if(itemStack.getItem() instanceof BottomlessBundleItem) {
+		if (itemStack.getItem() instanceof BottomlessBundleItem) {
 			this.bottomlessBundleStack = itemStack;
 			this.acceptedItemStack = BottomlessBundleItem.getFirstBundledStack(itemStack);
 		}
 	}
 	
 	public ItemStack retrieveVoidBundle() {
-		if(this.bottomlessBundleStack.isEmpty()) {
+		if (this.bottomlessBundleStack.isEmpty()) {
 			return SpectrumItems.BOTTOMLESS_BUNDLE.getDefaultStack();
 		} else {
 			BottomlessBundleItem.addToBundle(this.bottomlessBundleStack, this.currentOutputStack);
@@ -89,7 +89,7 @@ public class BottomlessBundleBlockEntity extends BlockEntity implements SidedInv
 	
 	@Override
 	public int[] getAvailableSlots(Direction side) {
-		if(side == Direction.DOWN) {
+		if (side == Direction.DOWN) {
 			return new int[]{OUTPUT_SLOT_ID};
 		} else {
 			return new int[]{INPUT_SLOT_ID};
@@ -120,13 +120,13 @@ public class BottomlessBundleBlockEntity extends BlockEntity implements SidedInv
 	
 	@Override
 	public ItemStack getStack(int slot) {
-		if(slot == 0) {
+		if (slot == 0) {
 			return ItemStack.EMPTY;
 		} else {
 			this.markDirty();
-			if(currentOutputStack.isEmpty()) {
+			if (currentOutputStack.isEmpty()) {
 				Optional<ItemStack> newStack = BottomlessBundleItem.removeFirstBundledStack(this.bottomlessBundleStack);
-				if(newStack.isPresent()) {
+				if (newStack.isPresent()) {
 					currentOutputStack = newStack.get();
 				} else {
 					currentOutputStack = ItemStack.EMPTY;
@@ -138,7 +138,7 @@ public class BottomlessBundleBlockEntity extends BlockEntity implements SidedInv
 	
 	@Override
 	public ItemStack removeStack(int slot, int amount) {
-		if(slot == 0) {
+		if (slot == 0) {
 			return ItemStack.EMPTY;
 		} else {
 			this.markDirty();
@@ -148,10 +148,10 @@ public class BottomlessBundleBlockEntity extends BlockEntity implements SidedInv
 	
 	@Override
 	public ItemStack removeStack(int slot) {
-		if(slot == 1) {
+		if (slot == 1) {
 			ItemStack removedStack = this.currentOutputStack;
 			this.currentOutputStack = ItemStack.EMPTY;
-			if(!removedStack.isEmpty()) {
+			if (!removedStack.isEmpty()) {
 				this.markDirty();
 			}
 			return removedStack;
@@ -162,8 +162,8 @@ public class BottomlessBundleBlockEntity extends BlockEntity implements SidedInv
 	
 	@Override
 	public void setStack(int slot, ItemStack stack) {
-		if(slot == 0) {
-			if(this.acceptedItemStack.isEmpty()) {
+		if (slot == 0) {
+			if (this.acceptedItemStack.isEmpty()) {
 				this.acceptedItemStack = stack;
 			}
 			BottomlessBundleItem.addToBundle(this.bottomlessBundleStack, stack);

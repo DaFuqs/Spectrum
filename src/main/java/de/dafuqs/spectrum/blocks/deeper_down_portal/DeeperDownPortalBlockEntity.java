@@ -10,15 +10,15 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 
 public class DeeperDownPortalBlockEntity extends BlockEntity {
-
+	
 	protected DeeperDownPortalBlockEntity(BlockEntityType<?> blockEntityType, BlockPos blockPos, BlockState blockState) {
 		super(blockEntityType, blockPos, blockState);
 	}
-
+	
 	public DeeperDownPortalBlockEntity(BlockPos pos, BlockState state) {
 		this(SpectrumBlockEntityRegistry.DEEPER_DOWN_PORTAL, pos, state);
 	}
-
+	
 	@Environment(EnvType.CLIENT)
 	public boolean shouldDrawSide(Direction direction) {
 		return direction == Direction.UP;

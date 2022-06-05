@@ -11,11 +11,11 @@ import net.minecraft.util.collection.DefaultedList;
 import java.util.Map;
 
 public class BedrockBowItem extends BowItem implements Preenchanted {
-
+	
 	public BedrockBowItem(Settings settings) {
 		super(settings);
 	}
-
+	
 	@Override
 	public boolean isDamageable() {
 		return false;

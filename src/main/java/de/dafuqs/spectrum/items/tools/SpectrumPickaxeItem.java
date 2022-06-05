@@ -11,7 +11,7 @@ import net.minecraft.util.collection.DefaultedList;
 import java.util.Map;
 
 public class SpectrumPickaxeItem extends PickaxeItem implements Preenchanted {
-
+	
 	public SpectrumPickaxeItem(ToolMaterial material, int attackDamage, float attackSpeed, Settings settings) {
 		super(material, attackDamage, attackSpeed, settings);
 	}

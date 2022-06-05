@@ -18,23 +18,23 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
 
 public class TreasureHunterEnchantment extends SpectrumEnchantment {
-
+	
 	public TreasureHunterEnchantment(Rarity weight, Identifier unlockAdvancementIdentifier, EquipmentSlot... slotTypes) {
 		super(weight, EnchantmentTarget.WEAPON, slotTypes, unlockAdvancementIdentifier);
 	}
-
+	
 	public int getMinPower(int level) {
 		return 15;
 	}
-
+	
 	public int getMaxPower(int level) {
 		return super.getMinPower(level) + 30;
 	}
-
+	
 	public int getMaxLevel() {
 		return SpectrumCommon.CONFIG.TreasureHunterMaxLevel;
 	}
-
+	
 	public boolean canAccept(Enchantment other) {
 		return super.canAccept(other) && other != Enchantments.LOOTING;
 	}
@@ -42,13 +42,13 @@ public class TreasureHunterEnchantment extends SpectrumEnchantment {
 	public static void doTreasureHunterForPlayer(ServerPlayerEntity thisEntity, DamageSource source) {
 		if (!thisEntity.isSpectator() && source.getAttacker() instanceof LivingEntity) {
 			int damageSourceTreasureHunt = EnchantmentHelper.getEquipmentLevel(SpectrumEnchantments.TREASURE_HUNTER, (LivingEntity) source.getAttacker());
-			if(damageSourceTreasureHunt > 0) {
+			if (damageSourceTreasureHunt > 0) {
 				ServerWorld serverWorld = thisEntity.getWorld();
 				boolean shouldDropHead = serverWorld.getRandom().nextFloat() < 0.2 * damageSourceTreasureHunt;
-				if(shouldDropHead) {
+				if (shouldDropHead) {
 					ItemStack headItemStack = new ItemStack(Items.PLAYER_HEAD);
 					
-					NbtCompound compoundTag  = new NbtCompound();
+					NbtCompound compoundTag = new NbtCompound();
 					compoundTag.putString("SkullOwner", thisEntity.getName().getString());
 					
 					headItemStack.setNbt(compoundTag);

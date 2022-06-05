@@ -17,21 +17,21 @@ public class GemstonePlayerOnlyGlassBlock extends GemstoneGlassBlock {
 	public GemstonePlayerOnlyGlassBlock(Settings settings, GemstoneColor gemstoneColor) {
 		super(settings, gemstoneColor);
 	}
-
+	
 	@Override
 	public boolean canPathfindThrough(BlockState state, BlockView world, BlockPos pos, NavigationType type) {
 		return false;
 	}
-
+	
 	@Deprecated
 	public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-		if(context instanceof EntityShapeContext entityShapeContext) {
+		if (context instanceof EntityShapeContext entityShapeContext) {
 			Entity entity = entityShapeContext.getEntity();
-			if(entity instanceof PlayerEntity) {
+			if (entity instanceof PlayerEntity) {
 				return VoxelShapes.empty();
 			}
 		}
 		return state.getOutlineShape(world, pos);
 	}
-
+	
 }

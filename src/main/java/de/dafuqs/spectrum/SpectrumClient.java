@@ -25,23 +25,23 @@ public class SpectrumClient implements ClientModInitializer {
 	
 	@Environment(EnvType.CLIENT)
 	public static final SkyLerper skyLerper = new SkyLerper();
-
+	
 	@Environment(EnvType.CLIENT)
 	public static MinecraftClient minecraftClient;
 	
 	@Override
 	public void onInitializeClient() {
 		logInfo("Starting Client Startup");
-
+		
 		logInfo("Setting up Block Rendering...");
 		SpectrumBlocks.registerClient();
 		logInfo("Setting up Fluid Rendering...");
 		SpectrumFluids.registerClient();
-
+		
 		logInfo("Setting up GUIs...");
 		SpectrumContainers.register();
 		SpectrumScreenHandlerTypes.registerClient();
-
+		
 		logInfo("Setting up ItemPredicates...");
 		SpectrumItemPredicates.registerClient();
 		
@@ -49,18 +49,18 @@ public class SpectrumClient implements ClientModInitializer {
 		SpectrumBlockEntityRegistry.registerClient();
 		logInfo("Setting up Entity Renderers...");
 		SpectrumEntityRenderers.registerClient();
-
+		
 		logInfo("Registering Server to Client Package Receivers...");
 		SpectrumS2CPacketReceiver.registerS2CReceivers();
 		logInfo("Registering Particle Factories...");
 		SpectrumParticleFactories.register();
-
+		
 		logInfo("Registering Overlays...");
 		GuiOverlay.register();
 		
 		logInfo("Registering Item Tooltips...");
 		SpectrumTooltipComponents.registerTooltipComponents();
-
+		
 		logInfo("Registering custom Patchouli Pages...");
 		PatchouliPages.register();
 		
@@ -71,11 +71,11 @@ public class SpectrumClient implements ClientModInitializer {
 		});
 		
 		ItemTooltipCallback.EVENT.register((stack, context, lines) -> {
-			if(stack.isIn(SpectrumItemTags.COMING_SOON_TOOLTIP)) {
+			if (stack.isIn(SpectrumItemTags.COMING_SOON_TOOLTIP)) {
 				lines.add(new TranslatableText("spectrum.tooltip.coming_soon"));
 			}
 		});
-
+		
 		logInfo("Client startup completed!");
 	}
 	

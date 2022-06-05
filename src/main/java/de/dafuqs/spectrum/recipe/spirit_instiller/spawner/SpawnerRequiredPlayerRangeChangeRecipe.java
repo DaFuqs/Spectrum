@@ -26,7 +26,7 @@ public class SpawnerRequiredPlayerRangeChangeRecipe extends SpawnerChangeRecipe 
 	
 	@Override
 	public boolean canCraftWithBlockEntityTag(NbtCompound spawnerBlockEntityNbt, ItemStack leftBowlStack, ItemStack rightBowlStack) {
-		if(spawnerBlockEntityNbt.contains("RequiredPlayerRange")) {
+		if (spawnerBlockEntityNbt.contains("RequiredPlayerRange")) {
 			return spawnerBlockEntityNbt.getShort("RequiredPlayerRange") < 256;
 		}
 		return true;
@@ -57,12 +57,12 @@ public class SpawnerRequiredPlayerRangeChangeRecipe extends SpawnerChangeRecipe 
 		 */
 		
 		short requiredPlayerRange = 16;
-		if(spawnerBlockEntityNbt.contains("RequiredPlayerRange", NbtElement.SHORT_TYPE)) {
+		if (spawnerBlockEntityNbt.contains("RequiredPlayerRange", NbtElement.SHORT_TYPE)) {
 			requiredPlayerRange = spawnerBlockEntityNbt.getShort("RequiredPlayerRange");
 		}
 		
 		short newRequiredPlayerRange = (short) Math.pow(requiredPlayerRange, 1.02);
-		if(newRequiredPlayerRange == requiredPlayerRange) {
+		if (newRequiredPlayerRange == requiredPlayerRange) {
 			newRequiredPlayerRange = (short) (requiredPlayerRange + 1);
 		}
 		

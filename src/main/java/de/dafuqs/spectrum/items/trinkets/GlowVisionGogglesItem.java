@@ -33,7 +33,7 @@ public class GlowVisionGogglesItem extends SpectrumTrinketItem {
 		
 		World world = entity.getWorld();
 		if (world != null && world.getTimeOfDay() % 20 == 0) {
-			if(entity instanceof ServerPlayerEntity serverPlayerEntity) {
+			if (entity instanceof ServerPlayerEntity serverPlayerEntity) {
 				int lightLevelAtPlayerPos = world.getLightLevel(serverPlayerEntity.getBlockPos());
 				
 				if (lightLevelAtPlayerPos < 7) {
@@ -51,7 +51,7 @@ public class GlowVisionGogglesItem extends SpectrumTrinketItem {
 			}
 		}
 	}
-
+	
 	@Override
 	public void appendTooltip(ItemStack itemStack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
 		super.appendTooltip(itemStack, world, tooltip, tooltipContext);

@@ -36,7 +36,7 @@ public class PiglinTradeMobBlock extends MobBlock {
 	
 	@Override
 	public boolean trigger(ServerWorld world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
-		if(entity instanceof ItemEntity itemEntity) {
+		if (entity instanceof ItemEntity itemEntity) {
 			ItemStack stack = itemEntity.getStack();
 			if (stack.isOf(PiglinBrain.BARTERING_ITEM)) {
 				int newAmount = stack.getCount() - 1;
@@ -49,9 +49,9 @@ public class PiglinTradeMobBlock extends MobBlock {
 				outputLoot(world, blockPos, side);
 				return true;
 			}
-		} else if(entity instanceof PlayerEntity player) {
-			for(ItemStack handStack : player.getItemsHand()) {
-				if(handStack.isOf(PiglinBrain.BARTERING_ITEM)) {
+		} else if (entity instanceof PlayerEntity player) {
+			for (ItemStack handStack : player.getItemsHand()) {
+				if (handStack.isOf(PiglinBrain.BARTERING_ITEM)) {
 					handStack.decrement(1);
 					
 					outputLoot(world, blockPos, side);
@@ -64,7 +64,7 @@ public class PiglinTradeMobBlock extends MobBlock {
 	
 	private void outputLoot(ServerWorld world, BlockPos blockPos, Direction side) {
 		Position outputLocation = getOutputLocation(new BlockPointerImpl(world, blockPos), side);
-		for(ItemStack barteredStack : getBarteredStacks(world, blockPos)) {
+		for (ItemStack barteredStack : getBarteredStacks(world, blockPos)) {
 			ItemEntity itemEntity = new ItemEntity(world, outputLocation.getX(), outputLocation.getY(), outputLocation.getZ(), barteredStack);
 			itemEntity.addVelocity(side.getOffsetX() * 0.25, side.getOffsetY() * 0.25 + 0.03, side.getOffsetZ() * 0.25);
 			world.spawnEntity(itemEntity);
@@ -86,7 +86,7 @@ public class PiglinTradeMobBlock extends MobBlock {
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
 		super.appendTooltip(stack, world, tooltip, options);
-		tooltip.add(new TranslatableText( "block.spectrum.piglin_trade_mob_block.tooltip"));
+		tooltip.add(new TranslatableText("block.spectrum.piglin_trade_mob_block.tooltip"));
 	}
 	
 }

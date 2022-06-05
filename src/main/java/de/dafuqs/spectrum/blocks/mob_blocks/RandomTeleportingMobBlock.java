@@ -34,16 +34,16 @@ public class RandomTeleportingMobBlock extends MobBlock {
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
 		super.appendTooltip(stack, world, tooltip, options);
-		tooltip.add(new TranslatableText( "block.spectrum.random_teleporting_mob_block.tooltip", horizontalRange));
+		tooltip.add(new TranslatableText("block.spectrum.random_teleporting_mob_block.tooltip", horizontalRange));
 	}
 	
 	@Override
 	public boolean trigger(ServerWorld world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
 		if (entity != null) {
 			Random random = world.getRandom();
-			int x = (int) (blockPos.getX() + (random.nextDouble() - 0.5D) * (this.horizontalRange+this.horizontalRange));
-			int y = blockPos.getY() + (random.nextInt(this.verticalRange+this.verticalRange) - (this.verticalRange));
-			int z = (int) (blockPos.getZ() + (random.nextDouble() - 0.5D) * (this.horizontalRange+this.horizontalRange));
+			int x = (int) (blockPos.getX() + (random.nextDouble() - 0.5D) * (this.horizontalRange + this.horizontalRange));
+			int y = blockPos.getY() + (random.nextInt(this.verticalRange + this.verticalRange) - (this.verticalRange));
+			int z = (int) (blockPos.getZ() + (random.nextDouble() - 0.5D) * (this.horizontalRange + this.horizontalRange));
 			teleportTo(world, entity, x, y, z);
 			return true;
 		}
@@ -57,24 +57,24 @@ public class RandomTeleportingMobBlock extends MobBlock {
 	public static boolean teleportTo(ServerWorld world, Entity entity, BlockPos blockPos) {
 		BlockPos.Mutable mutable = new BlockPos.Mutable(blockPos.getX(), blockPos.getY(), blockPos.getZ());
 		// if in solid: move up
-		while(mutable.getY() < world.getTopY() && world.getBlockState(mutable).getMaterial().blocksMovement()) {
+		while (mutable.getY() < world.getTopY() && world.getBlockState(mutable).getMaterial().blocksMovement()) {
 			mutable.move(Direction.UP);
 		}
 		// if in air: move down
-		while(mutable.getY() > world.getBottomY() && !world.getBlockState(mutable).getMaterial().blocksMovement()) {
+		while (mutable.getY() > world.getBottomY() && !world.getBlockState(mutable).getMaterial().blocksMovement()) {
 			mutable.move(Direction.DOWN);
 		}
 		
 		BlockState blockState = world.getBlockState(mutable);
 		if (blockState.getMaterial().blocksMovement()) {
 			double boundingBoxY = entity.getBoundingBox().getYLength(); // bouncy
-			if(entity instanceof ServerPlayerEntity serverPlayerEntity) {
+			if (entity instanceof ServerPlayerEntity serverPlayerEntity) {
 				serverPlayerEntity.teleport((ServerWorld) serverPlayerEntity.world, mutable.getX() + 0.5, mutable.getY() + boundingBoxY, mutable.getZ() + 0.5, serverPlayerEntity.getYaw(), serverPlayerEntity.getPitch());
-				world.sendEntityStatus(serverPlayerEntity, (byte)46); // particles
+				world.sendEntityStatus(serverPlayerEntity, (byte) 46); // particles
 				return true;
-			} else if(entity instanceof LivingEntity livingEntity) {
+			} else if (entity instanceof LivingEntity livingEntity) {
 				boolean success = livingEntity.teleport(mutable.getX() + 0.5, mutable.getY() + boundingBoxY, mutable.getZ() + 0.5, true);
-				if(success) {
+				if (success) {
 					world.playSound(null, entity.prevX, entity.prevY, entity.prevZ, SoundEvents.ENTITY_ENDERMAN_TELEPORT, SoundCategory.BLOCKS, 1.0F, 1.0F);
 					entity.playSound(SoundEvents.ENTITY_ENDERMAN_TELEPORT, 1.0F, 1.0F);
 				}

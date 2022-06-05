@@ -57,9 +57,9 @@ public class JadeVinePlantBlock extends Block implements JadeVine {
 		}
 		
 		public BlockPos getLowestRootsPos(BlockPos blockPos) {
-			if(this == BASE) {
+			if (this == BASE) {
 				return blockPos.up();
-			} else if(this == MIDDLE) {
+			} else if (this == MIDDLE) {
 				return blockPos.up(2);
 			} else {
 				return blockPos.up(3);
@@ -75,11 +75,11 @@ public class JadeVinePlantBlock extends Block implements JadeVine {
 		BLOOM;
 		
 		public static JadeVinesGrowthStage fromAge(int age) {
-			if(age == 0) {
+			if (age == 0) {
 				return DEAD;
-			} else if(age == Properties.AGE_7_MAX) {
+			} else if (age == Properties.AGE_7_MAX) {
 				return BLOOM;
-			} else if(age > 2) {
+			} else if (age > 2) {
 				return PETALS;
 			} else {
 				return LEAVES;
@@ -113,11 +113,11 @@ public class JadeVinePlantBlock extends Block implements JadeVine {
 		super.randomDisplayTick(state, world, pos, random);
 		
 		int age = state.get(AGE);
-		if(age == Properties.AGE_7_MAX) {
-			if(random.nextFloat() < 0.3) {
+		if (age == Properties.AGE_7_MAX) {
+			if (random.nextFloat() < 0.3) {
 				JadeVine.spawnBloomParticlesClient(world, pos);
 			}
-		} else if (age != 0){
+		} else if (age != 0) {
 			JadeVine.spawnParticlesClient(world, pos);
 		}
 	}
@@ -139,7 +139,7 @@ public class JadeVinePlantBlock extends Block implements JadeVine {
 	
 	private boolean missingBottom(BlockState state, BlockState belowState) {
 		JadeVinesPlantPart part = state.get(PART);
-		if(part == JadeVinesPlantPart.TIP) {
+		if (part == JadeVinesPlantPart.TIP) {
 			return false;
 		} else {
 			return !(belowState.getBlock() instanceof JadeVinePlantBlock);
@@ -150,17 +150,17 @@ public class JadeVinePlantBlock extends Block implements JadeVine {
 	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
 		JadeVinesGrowthStage growthStage = JadeVinesGrowthStage.fromAge(state.get(AGE));
 		
-		if(growthStage.isFullyGrown()) {
+		if (growthStage.isFullyGrown()) {
 			for (ItemStack handStack : player.getItemsHand()) {
-				if(handStack.isOf(Items.GLASS_BOTTLE)) {
-					if(world.isClient) {
+				if (handStack.isOf(Items.GLASS_BOTTLE)) {
+					if (world.isClient) {
 						return ActionResult.SUCCESS;
 					} else {
 						handStack.decrement(1);
 						setHarvested(state, (ServerWorld) world, pos);
 						
 						List<ItemStack> harvestedStacks = getHarvestedStacks(state, (ServerWorld) world, pos, world.getBlockEntity(pos), player, handStack, NECTAR_HARVESTING_LOOT_IDENTIFIER);
-						for(ItemStack harvestedStack : harvestedStacks){
+						for (ItemStack harvestedStack : harvestedStacks) {
 							Support.givePlayer(player, harvestedStack);
 						}
 						
@@ -168,21 +168,21 @@ public class JadeVinePlantBlock extends Block implements JadeVine {
 					}
 				}
 			}
-		} else if(growthStage.canHarvestPetals()) {
-			if(world.isClient) {
+		} else if (growthStage.canHarvestPetals()) {
+			if (world.isClient) {
 				return ActionResult.SUCCESS;
 			} else {
 				setHarvested(state, (ServerWorld) world, pos);
 				
 				List<ItemStack> harvestedStacks = getHarvestedStacks(state, (ServerWorld) world, pos, world.getBlockEntity(pos), player, player.getMainHandStack(), PETAL_HARVESTING_LOOT_IDENTIFIER);
-				for(ItemStack harvestedStack : harvestedStacks){
+				for (ItemStack harvestedStack : harvestedStacks) {
 					Support.givePlayer(player, harvestedStack);
 				}
 				
 				return ActionResult.CONSUME;
 			}
 		}
-	
+		
 		return super.onUse(state, world, pos, player, hand, hit);
 	}
 	
@@ -213,9 +213,9 @@ public class JadeVinePlantBlock extends Block implements JadeVine {
 		BlockState upState = world.getBlockState(pos.up());
 		Block upBlock = upState.getBlock();
 		JadeVinesPlantPart part = state.get(PART);
-		if(part == JadeVinesPlantPart.BASE) {
+		if (part == JadeVinesPlantPart.BASE) {
 			return upBlock instanceof JadeVineRootsBlock;
-		} else if(part == JadeVinesPlantPart.MIDDLE) {
+		} else if (part == JadeVinesPlantPart.MIDDLE) {
 			return upBlock instanceof JadeVinePlantBlock && upState.get(PART) == JadeVinesPlantPart.BASE;
 		} else {
 			return upBlock instanceof JadeVinePlantBlock && upState.get(PART) == JadeVinesPlantPart.MIDDLE;
@@ -229,7 +229,7 @@ public class JadeVinePlantBlock extends Block implements JadeVine {
 	
 	static void setHarvested(@NotNull BlockState blockState, @NotNull ServerWorld world, @NotNull BlockPos blockPos) {
 		BlockPos rootsPos = blockState.get(PART).getLowestRootsPos(blockPos);
-		if(world.getBlockState(rootsPos).getBlock() instanceof JadeVineRootsBlock jadeVineRootsBlock) {
+		if (world.getBlockState(rootsPos).getBlock() instanceof JadeVineRootsBlock jadeVineRootsBlock) {
 			jadeVineRootsBlock.setPlantToAge(world, rootsPos, 1);
 		}
 	}
@@ -237,7 +237,7 @@ public class JadeVinePlantBlock extends Block implements JadeVine {
 	@Override
 	public boolean setToAge(World world, BlockPos blockPos, int age) {
 		BlockState currentState = world.getBlockState(blockPos);
-		if(currentState.getBlock() instanceof JadeVinePlantBlock) {
+		if (currentState.getBlock() instanceof JadeVinePlantBlock) {
 			int currentAge = currentState.get(AGE);
 			if (age != currentAge) {
 				world.setBlockState(blockPos, currentState.with(AGE, age));

@@ -11,11 +11,11 @@ import net.minecraft.util.collection.DefaultedList;
 import java.util.Map;
 
 public class BedrockPickaxeItem extends SpectrumPickaxeItem implements Preenchanted {
-
+	
 	public BedrockPickaxeItem(ToolMaterial material, int attackDamage, float attackSpeed, Settings settings) {
 		super(material, attackDamage, attackSpeed, settings);
 	}
-
+	
 	@Override
 	public boolean isDamageable() {
 		return false;

@@ -6,6 +6,7 @@ import net.minecraft.block.Block;
 public interface PedestalVariant {
 	
 	PedestalRecipeTier getRecipeTier();
+	
 	Block getPedestalBlock();
 	
 	default boolean isBetterThan(PedestalVariant other) {

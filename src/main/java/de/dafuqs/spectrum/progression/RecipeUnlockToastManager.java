@@ -39,11 +39,11 @@ public class RecipeUnlockToastManager {
 	public static void registerGatedRecipe(RecipeType recipeType, GatedRecipe gatedRecipe) {
 		Identifier requiredAdvancementIdentifier = gatedRecipe.getRequiredAdvancementIdentifier();
 		
-		if(gatedRecipes.containsKey(requiredAdvancementIdentifier)) {
+		if (gatedRecipes.containsKey(requiredAdvancementIdentifier)) {
 			Map<RecipeType, List<GatedRecipe>> recipeTypeListMap = gatedRecipes.get(requiredAdvancementIdentifier);
-			if(recipeTypeListMap.containsKey(recipeType)) {
+			if (recipeTypeListMap.containsKey(recipeType)) {
 				List<GatedRecipe> existingList = recipeTypeListMap.get(recipeType);
-				if(!existingList.contains(gatedRecipe)) {
+				if (!existingList.contains(gatedRecipe)) {
 					existingList.add(gatedRecipe);
 				}
 			} else {
@@ -59,19 +59,19 @@ public class RecipeUnlockToastManager {
 			gatedRecipes.put(requiredAdvancementIdentifier, recipeTypeListMap);
 		}
 	}
-
+	
 	public static void processAdvancements(List<Identifier> doneAdvancements, boolean showToast) {
-		if(showToast) {
+		if (showToast) {
 			HashMap<RecipeType, List<GatedRecipe>> unlockedRecipesByType = new HashMap<>();
 			List<Pair<ItemStack, String>> specialToasts = new ArrayList<>();
 			
 			for (Identifier doneAdvancement : doneAdvancements) {
-				if(gatedRecipes.containsKey(doneAdvancement)) {
+				if (gatedRecipes.containsKey(doneAdvancement)) {
 					Map<RecipeType, List<GatedRecipe>> recipesGatedByAdvancement = gatedRecipes.get(doneAdvancement);
 					
-					for(Map.Entry<RecipeType, List<GatedRecipe>> recipesByType : recipesGatedByAdvancement.entrySet()) {
+					for (Map.Entry<RecipeType, List<GatedRecipe>> recipesByType : recipesGatedByAdvancement.entrySet()) {
 						List<GatedRecipe> newRecipes;
-						if(unlockedRecipesByType.containsKey(recipesByType.getKey())) {
+						if (unlockedRecipesByType.containsKey(recipesByType.getKey())) {
 							newRecipes = unlockedRecipesByType.get(recipesByType.getKey());
 						} else {
 							newRecipes = new ArrayList<>();
@@ -91,14 +91,14 @@ public class RecipeUnlockToastManager {
 				Optional<PedestalRecipeTier> newlyUnlockedRecipeTier = PedestalRecipeTier.hasJustUnlockedANewRecipeTier(doneAdvancement);
 				if (newlyUnlockedRecipeTier.isPresent()) {
 					List<GatedRecipe> unlockedPedestalRecipes;
-					if(unlockedRecipesByType.containsKey(SpectrumRecipeTypes.PEDESTAL)) {
+					if (unlockedRecipesByType.containsKey(SpectrumRecipeTypes.PEDESTAL)) {
 						unlockedPedestalRecipes = unlockedRecipesByType.get(SpectrumRecipeTypes.PEDESTAL);
 					} else {
 						unlockedPedestalRecipes = new ArrayList<>();
 					}
 					List<GatedRecipe> pedestalRecipes = new ArrayList<>();
-					for(Map<RecipeType, List<GatedRecipe>> recipesByType : gatedRecipes.values()) {
-						if(recipesByType.containsKey(SpectrumRecipeTypes.PEDESTAL)) {
+					for (Map<RecipeType, List<GatedRecipe>> recipesByType : gatedRecipes.values()) {
+						if (recipesByType.containsKey(SpectrumRecipeTypes.PEDESTAL)) {
 							pedestalRecipes.addAll(recipesByType.get(SpectrumRecipeTypes.PEDESTAL));
 						}
 					}
@@ -110,23 +110,23 @@ public class RecipeUnlockToastManager {
 					}
 				}
 				
-				if(RecipeUnlockToastManager.messageToasts.containsKey(doneAdvancement)) {
+				if (RecipeUnlockToastManager.messageToasts.containsKey(doneAdvancement)) {
 					specialToasts.add(RecipeUnlockToastManager.messageToasts.get(doneAdvancement));
 				}
 			}
 			
-			for(List<GatedRecipe> unlockedRecipeList : unlockedRecipesByType.values()) {
+			for (List<GatedRecipe> unlockedRecipeList : unlockedRecipesByType.values()) {
 				showGroupedRecipeUnlockToasts(unlockedRecipeList);
 			}
 			
-			for(Pair<ItemStack, String> messageToast : specialToasts) {
+			for (Pair<ItemStack, String> messageToast : specialToasts) {
 				MessageToast.showMessageToast(MinecraftClient.getInstance(), messageToast.getLeft(), messageToast.getRight());
 			}
 		}
 	}
 	
 	private static void showGroupedRecipeUnlockToasts(List<GatedRecipe> unlockedRecipes) {
-		if(!unlockedRecipes.isEmpty()) {
+		if (!unlockedRecipes.isEmpty()) {
 			TranslatableText singleText = unlockedRecipes.get(0).getSingleUnlockToastString();
 			TranslatableText multipleText = unlockedRecipes.get(0).getMultipleUnlockToastString();
 			
@@ -167,19 +167,20 @@ public class RecipeUnlockToastManager {
 	/**
 	 * When the player upgraded their pedestal and built the new structure
 	 * show toasts for all recipes that he already meets the requirements for
+	 *
 	 * @param pedestalRecipeTier The new pedestal recipe tier the player unlocked
 	 */
 	private static @NotNull List<PedestalCraftingRecipe> getRecipesForTierWithAllConditionsMet(PedestalRecipeTier pedestalRecipeTier, List<GatedRecipe> pedestalRecipes) {
 		ClientPlayerEntity player = MinecraftClient.getInstance().player;
-
+		
 		List<PedestalCraftingRecipe> alreadyUnlockedRecipesAtNewTier = new ArrayList<>();
-		for(GatedRecipe recipe : pedestalRecipes) {
+		for (GatedRecipe recipe : pedestalRecipes) {
 			PedestalCraftingRecipe pedestalCraftingRecipe = (PedestalCraftingRecipe) recipe;
-			if(pedestalCraftingRecipe.getTier() == pedestalRecipeTier && !alreadyUnlockedRecipesAtNewTier.contains(recipe) && recipe.canPlayerCraft(player)) {
+			if (pedestalCraftingRecipe.getTier() == pedestalRecipeTier && !alreadyUnlockedRecipesAtNewTier.contains(recipe) && recipe.canPlayerCraft(player)) {
 				alreadyUnlockedRecipesAtNewTier.add(pedestalCraftingRecipe);
 			}
 		}
 		return alreadyUnlockedRecipesAtNewTier;
 	}
-
+	
 }

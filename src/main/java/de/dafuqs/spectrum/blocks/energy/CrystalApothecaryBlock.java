@@ -50,7 +50,7 @@ public class CrystalApothecaryBlock extends BlockWithEntity {
 	public void onPlaced(World world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack itemStack) {
 		BlockEntity blockEntity = world.getBlockEntity(pos);
 		if (blockEntity instanceof CrystalApothecaryBlockEntity crystalApothecaryBlockEntity) {
-			if(placer instanceof ServerPlayerEntity serverPlayerEntity) {
+			if (placer instanceof ServerPlayerEntity serverPlayerEntity) {
 				crystalApothecaryBlockEntity.setOwner(serverPlayerEntity);
 			}
 			if (itemStack.hasCustomName()) {

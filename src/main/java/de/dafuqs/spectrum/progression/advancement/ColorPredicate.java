@@ -10,22 +10,22 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Locale;
 
 public class ColorPredicate {
-
+	
 	public static final ColorPredicate ANY;
 	@Nullable
 	private final InkColor color;
-
+	
 	public ColorPredicate(@Nullable InkColor color) {
 		this.color = color;
 	}
-
+	
 	public boolean test(InkColor color) {
 		if (this == ANY || color == null) {
 			return true;
 		}
 		return this.color == color;
 	}
-
+	
 	public static ColorPredicate fromJson(@Nullable JsonElement json) {
 		if (json != null && !json.isJsonNull() && json instanceof JsonPrimitive) {
 			String colorString = json.getAsString();
@@ -35,7 +35,7 @@ public class ColorPredicate {
 			return ANY;
 		}
 	}
-
+	
 	public JsonElement toJson() {
 		if (this == ANY) {
 			return JsonNull.INSTANCE;
@@ -47,28 +47,28 @@ public class ColorPredicate {
 			return jsonObject;
 		}
 	}
-
+	
 	static {
 		ANY = new ColorPredicate(null);
 	}
-
+	
 	public static class Builder {
 		@Nullable
 		private InkColor color;
-
+		
 		private Builder() {
 			this.color = null;
 		}
-
+		
 		public static ColorPredicate.Builder create() {
 			return new ColorPredicate.Builder();
 		}
-
+		
 		public ColorPredicate.Builder color(InkColor color) {
 			this.color = color;
 			return this;
 		}
-
+		
 		public ColorPredicate build() {
 			return new ColorPredicate(this.color);
 		}

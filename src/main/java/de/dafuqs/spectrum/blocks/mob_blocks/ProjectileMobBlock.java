@@ -41,7 +41,7 @@ public abstract class ProjectileMobBlock extends MobBlock {
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
 		super.appendTooltip(stack, world, tooltip, options);
-		tooltip.add(new TranslatableText( "block.spectrum.projectile_mob_block.tooltip", this.entityType.getName()));
+		tooltip.add(new TranslatableText("block.spectrum.projectile_mob_block.tooltip", this.entityType.getName()));
 	}
 	
 	@Override
@@ -49,7 +49,7 @@ public abstract class ProjectileMobBlock extends MobBlock {
 		side = side.getOpposite(); // shoot out the other side of the block
 		
 		BlockPos outputBlockPos = blockPos.offset(side);
-		if(world.getBlockState(outputBlockPos).getCollisionShape(world, outputBlockPos).isEmpty()) {
+		if (world.getBlockState(outputBlockPos).getCollisionShape(world, outputBlockPos).isEmpty()) {
 			BlockPointer pointer = new BlockPointerImpl(world, blockPos);
 			Position outputLocation = getOutputLocation(pointer, side);
 			
@@ -67,13 +67,13 @@ public abstract class ProjectileMobBlock extends MobBlock {
 	@Override
 	public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
 		// lets the projectiles start really close to the block without blowing itself up
-		if(context instanceof EntityShapeContext entityShapeContext) {
+		if (context instanceof EntityShapeContext entityShapeContext) {
 			Entity entity = entityShapeContext.getEntity();
-			if(entity != null && entity.getType() == this.entityType && entity.age < 2) {
+			if (entity != null && entity.getType() == this.entityType && entity.age < 2) {
 				return VoxelShapes.empty();
 			}
 		}
 		return state.getOutlineShape(world, pos);
 	}
-
+	
 }

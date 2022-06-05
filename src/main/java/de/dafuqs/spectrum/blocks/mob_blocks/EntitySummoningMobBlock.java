@@ -30,7 +30,7 @@ public abstract class EntitySummoningMobBlock extends MobBlock {
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
 		super.appendTooltip(stack, world, tooltip, options);
-		tooltip.add(new TranslatableText( "block.spectrum.entity_summoning_mob_block.tooltip", entityType.getName()));
+		tooltip.add(new TranslatableText("block.spectrum.entity_summoning_mob_block.tooltip", entityType.getName()));
 	}
 	
 	@Override
@@ -39,7 +39,7 @@ public abstract class EntitySummoningMobBlock extends MobBlock {
 		Entity summonedEntity = entityType.create(world);
 		if (summonedEntity != null) {
 			summonedEntity.refreshPositionAndAngles(blockPos.up(), 0.0F, 0.0F);
-			if(summonedEntity instanceof MobEntity mobEntity) {
+			if (summonedEntity instanceof MobEntity mobEntity) {
 				mobEntity.initialize(world, world.getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, null, null);
 			}
 			afterSummon(world, summonedEntity);

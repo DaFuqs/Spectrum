@@ -9,7 +9,7 @@ public class BuildingStaffItem extends Item {
 	public BuildingStaffItem(Settings settings) {
 		super(settings);
 	}
-
+	
 	public static boolean isBlacklisted(BlockState blockState) {
 		return blockState.isIn(SpectrumBlockTags.BUILDING_STAFFS_BLACKLISTED) || blockState.getBlock().getHardness() < 0;
 	}

@@ -89,12 +89,13 @@ public class Support {
 	}
 	
 	private static final DecimalFormat df = new DecimalFormat("0.00");
+	
 	public static String getShortenedNumberString(double number) {
-		if(number > 1000000000D) {
+		if (number > 1000000000D) {
 			return df.format(number / 1000000000D) + "G";
-		} else if(number > 1000000D) {
+		} else if (number > 1000000D) {
 			return df.format(number / 1000000D) + "M";
-		} else if(number > 1000D) {
+		} else if (number > 1000D) {
 			return df.format(number / 1000D) + "K";
 		} else {
 			return df.format(number);
@@ -102,11 +103,11 @@ public class Support {
 	}
 	
 	public static String getShortenedNumberString(long number) {
-		if(number > 1000000000L) {
+		if (number > 1000000000L) {
 			return df.format(number / 1000000000D) + "G";
-		} else if(number > 1000000L) {
+		} else if (number > 1000000L) {
 			return df.format(number / 1000000D) + "M";
-		} else if(number > 1000L) {
+		} else if (number > 1000L) {
 			return df.format(number / 1000D) + "K";
 		} else {
 			return df.format(number);
@@ -116,8 +117,9 @@ public class Support {
 	/**
 	 * Adds a stack to the players inventory.
 	 * If there is not enough room drop it on the ground instead
+	 *
 	 * @param playerEntity The player to give the stack to
-	 * @param itemStack The item stack
+	 * @param itemStack    The item stack
 	 */
 	public static void givePlayer(PlayerEntity playerEntity, ItemStack itemStack) {
 		boolean insertInventorySuccess = playerEntity.getInventory().insertStack(itemStack);
@@ -142,7 +144,7 @@ public class Support {
 	
 	public static int getIntFromDecimalWithChance(double d, @NotNull Random random) {
 		boolean roundUp = (random.nextFloat() < d % 1);
-		if(roundUp) {
+		if (roundUp) {
 			return ((int) d) + 1;
 		} else {
 			return (int) d;
@@ -169,14 +171,14 @@ public class Support {
 			}
 		}
 	}
-
+	
 	public static void grantAdvancementCriterion(@NotNull ServerPlayerEntity serverPlayerEntity, Identifier advancementIdentifier, String criterion) {
 		ServerAdvancementLoader sal = SpectrumCommon.minecraftServer.getAdvancementLoader();
 		PlayerAdvancementTracker tracker = serverPlayerEntity.getAdvancementTracker();
 		
 		Advancement advancement = sal.get(advancementIdentifier);
-		if(advancement == null) {
-			SpectrumCommon.logError("Trying to grant a criterion \"" + criterion +  "\" for an advancement that does not exist: " + advancementIdentifier);
+		if (advancement == null) {
+			SpectrumCommon.logError("Trying to grant a criterion \"" + criterion + "\" for an advancement that does not exist: " + advancementIdentifier);
 		} else {
 			if (!tracker.getProgress(advancement).isDone()) {
 				tracker.grantCriterion(advancement, criterion);
@@ -189,9 +191,9 @@ public class Support {
 	}
 	
 	public static boolean hasAdvancement(PlayerEntity playerEntity, Identifier advancementIdentifier) {
-		if(playerEntity == null) {
+		if (playerEntity == null) {
 			return false;
-		} else if(advancementIdentifier == null) {
+		} else if (advancementIdentifier == null) {
 			return true;
 		}
 		
@@ -203,9 +205,9 @@ public class Support {
 			} else {
 				return ((ServerPlayerEntity) playerEntity).getAdvancementTracker().getProgress(advancement).isDone();
 			}
-		// we cannot test for "net.minecraft.client.network.ClientPlayerEntity" there because that will get obfuscated
-		// to "net.minecraft.class_xxxxx" in compiled versions => works in dev env, breaks in prod
-		} else if(playerEntity.getClass().getCanonicalName().startsWith("net.minecraft")) {
+			// we cannot test for "net.minecraft.client.network.ClientPlayerEntity" there because that will get obfuscated
+			// to "net.minecraft.class_xxxxx" in compiled versions => works in dev env, breaks in prod
+		} else if (playerEntity.getClass().getCanonicalName().startsWith("net.minecraft")) {
 			return hasAdvancementClient(advancementIdentifier);
 		} else {
 			// thank you, Kibe FakePlayerEntity
@@ -218,7 +220,7 @@ public class Support {
 	public static boolean hasAdvancementClient(Identifier advancementIdentifier) {
 		return ClientAdvancements.hasDone(advancementIdentifier);
 	}
-
+	
 	public static @NotNull String getReadableDimensionString(@NotNull String dimensionKeyString) {
 		switch (dimensionKeyString) {
 			case "minecraft:overworld":
@@ -228,7 +230,7 @@ public class Support {
 			case "minecraft:end":
 				return "End";
 			default:
-				if(dimensionKeyString.contains(":")) {
+				if (dimensionKeyString.contains(":")) {
 					return dimensionKeyString.substring(0, dimensionKeyString.indexOf(":"));
 				} else {
 					return dimensionKeyString;

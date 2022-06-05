@@ -62,11 +62,11 @@ public class NaturesStaffItem extends Item implements EnchanterEnchantable {
 		put(Blocks.COBBLESTONE, Blocks.MOSSY_COBBLESTONE.getDefaultState());
 		put(Blocks.STONE_BRICKS, Blocks.MOSSY_STONE_BRICKS.getDefaultState());
 		put(Blocks.INFESTED_STONE_BRICKS, Blocks.INFESTED_MOSSY_STONE_BRICKS.getDefaultState());
-
+		
 		// VEGETATION
 		put(Blocks.AZALEA_LEAVES, Blocks.FLOWERING_AZALEA_LEAVES.getDefaultState().with(LeavesBlock.PERSISTENT, true));
 		put(Blocks.DEAD_BUSH, Blocks.ACACIA_SAPLING.getDefaultState());
-
+		
 		// CORALS
 		put(Blocks.DEAD_BRAIN_CORAL, Blocks.BRAIN_CORAL.getDefaultState());
 		put(Blocks.DEAD_BRAIN_CORAL_BLOCK, Blocks.BRAIN_CORAL_BLOCK.getDefaultState());
@@ -93,44 +93,44 @@ public class NaturesStaffItem extends Item implements EnchanterEnchantable {
 	@Override
 	public void appendTooltip(ItemStack itemStack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
 		int efficiencyLevel = EnchantmentHelper.getLevel(Enchantments.EFFICIENCY, itemStack);
-		if(efficiencyLevel == 0) {
+		if (efficiencyLevel == 0) {
 			tooltip.add(new TranslatableText("item.spectrum.natures_staff.tooltip"));
 		} else {
-			int chancePercent = (int) Math.round(2.0 / (2+ efficiencyLevel) * 100);
+			int chancePercent = (int) Math.round(2.0 / (2 + efficiencyLevel) * 100);
 			tooltip.add(new TranslatableText("item.spectrum.natures_staff.tooltip_with_chance", chancePercent));
 		}
 	}
-
+	
 	public NaturesStaffItem(Settings settings) {
 		super(settings);
 	}
-
+	
 	public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-		if(world.isClient) {
+		if (world.isClient) {
 			startSoundInstance(user);
 		}
 		return ItemUsage.consumeHeldItem(world, user, hand);
 	}
-
+	
 	@Environment(EnvType.CLIENT)
 	public void startSoundInstance(PlayerEntity user) {
 		SpectrumClient.minecraftClient.getSoundManager().play(new NaturesStaffUseSoundInstance(user));
 	}
-
+	
 	public UseAction getUseAction(ItemStack stack) {
 		return UseAction.BOW;
 	}
-
+	
 	public void usageTick(World world, LivingEntity user, ItemStack stack, int remainingUseTicks) {
 		// trigger the items' usage action every x ticks
-		if(remainingUseTicks % 10 == 0 && world.isClient) {
+		if (remainingUseTicks % 10 == 0 && world.isClient) {
 			usageTickClient();
 		}
 	}
 	
 	@Environment(EnvType.CLIENT)
 	public void usageTickClient() {
-		if(MinecraftClient.getInstance().crosshairTarget.getType() == HitResult.Type.BLOCK) {
+		if (MinecraftClient.getInstance().crosshairTarget.getType() == HitResult.Type.BLOCK) {
 			MinecraftClient.getInstance().interactionManager.interactBlock(
 					MinecraftClient.getInstance().player,
 					MinecraftClient.getInstance().world,
@@ -139,16 +139,16 @@ public class NaturesStaffItem extends Item implements EnchanterEnchantable {
 			);
 		}
 	}
-
+	
 	public ActionResult useOnBlock(ItemUsageContext context) {
 		PlayerEntity user = context.getPlayer();
-
-		if(user != null && user.getItemUseTime() > 2) {
+		
+		if (user != null && user.getItemUseTime() > 2) {
 			World world = context.getWorld();
 			BlockPos blockPos = context.getBlockPos();
-
+			
 			if (world.isClient) {
-				if(context.getPlayer().isCreative() || context.getPlayer().getInventory().contains(COST)) {
+				if (context.getPlayer().isCreative() || context.getPlayer().getInventory().contains(COST)) {
 					BlockState blockState = world.getBlockState(blockPos);
 					if (blockState.isIn(SpectrumBlockTags.NATURES_STAFF_STACKABLE) || blockState.isOf(Blocks.BAMBOO)) {
 						int i = 0;
@@ -164,8 +164,8 @@ public class NaturesStaffItem extends Item implements EnchanterEnchantable {
 						BoneMealItem.createParticles(world, blockPos, 15);
 					}
 				}
-			} else if(user.getItemUseTime() % 10 == 0) {
-				if(context.getPlayer().isCreative() || context.getPlayer().getInventory().contains(COST)) {
+			} else if (user.getItemUseTime() % 10 == 0) {
+				if (context.getPlayer().isCreative() || context.getPlayer().getInventory().contains(COST)) {
 					int efficiencyLevel = EnchantmentHelper.getLevel(Enchantments.EFFICIENCY, context.getStack());
 					if ((efficiencyLevel == 0 && InventoryHelper.removeFromInventory(context.getPlayer(), COST))
 							|| (context.getWorld().random.nextFloat() > (2.0 / (2 + efficiencyLevel)) || InventoryHelper.removeFromInventory(context.getPlayer(), COST))) {
@@ -242,14 +242,14 @@ public class NaturesStaffItem extends Item implements EnchanterEnchantable {
 				}
 			}
 		}
-
+		
 		return ActionResult.PASS;
 	}
 	
 	private void playDenySound(@NotNull World world, @NotNull PlayerEntity playerEntity) {
 		world.playSound(null, playerEntity.getX(), playerEntity.getY(), playerEntity.getZ(), SpectrumSoundEvents.USE_FAIL, SoundCategory.PLAYERS, 1.0F, 0.8F + playerEntity.getRandom().nextFloat() * 0.4F);
 	}
-
+	
 	/**
 	 * Near identical copy of BonemealItem.useOnFertilizable
 	 * just with stack decrement removed
@@ -260,7 +260,7 @@ public class NaturesStaffItem extends Item implements EnchanterEnchantable {
 			if (fertilizable.isFertilizable(world, pos, blockState, world.isClient)) {
 				if (world instanceof ServerWorld) {
 					if (fertilizable.canGrow(world, world.random, pos, blockState)) {
-						fertilizable.grow((ServerWorld)world, world.random, pos, blockState);
+						fertilizable.grow((ServerWorld) world, world.random, pos, blockState);
 					}
 				}
 				return true;
@@ -268,7 +268,7 @@ public class NaturesStaffItem extends Item implements EnchanterEnchantable {
 		}
 		return false;
 	}
-
+	
 	/**
 	 * Near identical copy of BonemealItem.useOnGround
 	 * just with stack decrement removed
@@ -283,7 +283,7 @@ public class NaturesStaffItem extends Item implements EnchanterEnchantable {
 					BlockPos blockPos2 = blockPos;
 					BlockState blockState = Blocks.SEAGRASS.getDefaultState();
 					
-					for(int j = 0; j < i / 16; ++j) {
+					for (int j = 0; j < i / 16; ++j) {
 						blockPos2 = blockPos2.add(random.nextInt(3) - 1, (random.nextInt(3) - 1) * random.nextInt(3) / 2, random.nextInt(3) - 1);
 						if (world.getBlockState(blockPos2).isFullCube(world, blockPos2)) {
 							continue label78;
@@ -303,7 +303,7 @@ public class NaturesStaffItem extends Item implements EnchanterEnchantable {
 					}
 					
 					if (blockState.isIn(BlockTags.WALL_CORALS, (state) -> state.contains(DeadCoralWallFanBlock.FACING))) {
-						for(int k = 0; !blockState.canPlaceAt(world, blockPos2) && k < 4; ++k) {
+						for (int k = 0; !blockState.canPlaceAt(world, blockPos2) && k < 4; ++k) {
 							blockState = blockState.with(DeadCoralWallFanBlock.FACING, Direction.Type.HORIZONTAL.random(random));
 						}
 					}
@@ -313,7 +313,7 @@ public class NaturesStaffItem extends Item implements EnchanterEnchantable {
 						if (k.isOf(Blocks.WATER) && world.getFluidState(blockPos2).getLevel() == 8) {
 							world.setBlockState(blockPos2, blockState, 3);
 						} else if (k.isOf(Blocks.SEAGRASS) && random.nextInt(10) == 0) {
-							((Fertilizable)Blocks.SEAGRASS).grow((ServerWorld)world, random, blockPos2, k);
+							((Fertilizable) Blocks.SEAGRASS).grow((ServerWorld) world, random, blockPos2, k);
 						}
 					}
 				}
@@ -333,5 +333,5 @@ public class NaturesStaffItem extends Item implements EnchanterEnchantable {
 	public int getEnchantability() {
 		return 10;
 	}
-
+	
 }

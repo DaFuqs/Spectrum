@@ -10,13 +10,13 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
 
 public class InkConvertingRecipeSerializer implements RecipeSerializer<InkConvertingRecipe> {
-
+	
 	public final InkConvertingRecipeSerializer.RecipeFactory<InkConvertingRecipe> recipeFactory;
-
+	
 	public InkConvertingRecipeSerializer(InkConvertingRecipeSerializer.RecipeFactory<InkConvertingRecipe> recipeFactory) {
 		this.recipeFactory = recipeFactory;
 	}
-
+	
 	@Override
 	public InkConvertingRecipe read(Identifier identifier, JsonObject jsonObject) {
 		JsonElement jsonElement = JsonHelper.hasArray(jsonObject, "ingredient") ? JsonHelper.getArray(jsonObject, "ingredient") : JsonHelper.getObject(jsonObject, "ingredient");
@@ -26,13 +26,13 @@ public class InkConvertingRecipeSerializer implements RecipeSerializer<InkConver
 		long inkAmount = JsonHelper.getLong(jsonObject, "amount");
 		
 		Identifier requiredAdvancementIdentifier;
-		if(JsonHelper.hasString(jsonObject, "required_advancement")) {
+		if (JsonHelper.hasString(jsonObject, "required_advancement")) {
 			requiredAdvancementIdentifier = Identifier.tryParse(JsonHelper.getString(jsonObject, "required_advancement"));
 		} else {
 			// No unlock advancement set. Will be set to the unlock advancement of the block itself
 			requiredAdvancementIdentifier = InkConvertingRecipe.UNLOCK_ADVANCEMENT_IDENTIFIER;
 		}
-
+		
 		return this.recipeFactory.create(identifier, ingredient, inkColor, inkAmount, requiredAdvancementIdentifier);
 	}
 	
@@ -53,10 +53,10 @@ public class InkConvertingRecipeSerializer implements RecipeSerializer<InkConver
 		
 		return this.recipeFactory.create(identifier, ingredient, inkColor, inkAmount, requiredAdvancementIdentifier);
 	}
-
+	
 	
 	public interface RecipeFactory<InkConvertingRecipe> {
 		InkConvertingRecipe create(Identifier id, Ingredient inputIngredient, InkColor inkColor, long inkAmount, Identifier requiredAdvancementIdentifier);
 	}
-
+	
 }

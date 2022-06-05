@@ -10,12 +10,12 @@ import net.minecraft.util.BlockRotation;
 import net.minecraft.util.math.Direction;
 
 public class SpectrumFacingBlock extends FacingBlock {
-
+	
 	public SpectrumFacingBlock(Settings settings) {
 		super(settings);
 		this.setDefaultState((this.stateManager.getDefaultState()).with(FacingBlock.FACING, Direction.UP));
 	}
-
+	
 	@Override
 	public BlockState getPlacementState(ItemPlacementContext ctx) {
 		Direction direction = ctx.getSide();
@@ -30,7 +30,7 @@ public class SpectrumFacingBlock extends FacingBlock {
 	public BlockState mirror(BlockState state, BlockMirror mirror) {
 		return state.rotate(mirror.getRotation(state.get(FACING)));
 	}
-
+	
 	@Override
 	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
 		builder.add(FACING);

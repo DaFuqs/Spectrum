@@ -10,11 +10,11 @@ import net.minecraft.world.gen.feature.util.FeatureContext;
 import java.util.Random;
 
 public class WeightedRandomFeature extends Feature<WeightedRandomFeatureConfig> {
-
+	
 	public WeightedRandomFeature(Codec<WeightedRandomFeatureConfig> codec) {
 		super(codec);
 	}
-
+	
 	public boolean generate(FeatureContext<WeightedRandomFeatureConfig> context) {
 		Random random = context.getRandom();
 		StructureWorldAccess structureWorldAccess = context.getWorld();

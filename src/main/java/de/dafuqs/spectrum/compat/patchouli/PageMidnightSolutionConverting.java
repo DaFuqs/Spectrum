@@ -15,13 +15,13 @@ import vazkii.patchouli.client.book.gui.GuiBook;
 import vazkii.patchouli.client.book.page.abstr.PageDoubleRecipeRegistry;
 
 public class PageMidnightSolutionConverting extends PageDoubleRecipeRegistry<MidnightSolutionConvertingRecipe> {
-
+	
 	private static final Identifier BACKGROUND_TEXTURE = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/patchouli/midnight_solution.png");
-
+	
 	public PageMidnightSolutionConverting() {
 		super(SpectrumRecipeTypes.MIDNIGHT_SOLUTION_CONVERTING_RECIPE);
 	}
-
+	
 	@Override
 	protected ItemStack getRecipeOutput(MidnightSolutionConvertingRecipe recipe) {
 		if (recipe == null) {
@@ -30,13 +30,13 @@ public class PageMidnightSolutionConverting extends PageDoubleRecipeRegistry<Mid
 			return recipe.getOutput();
 		}
 	}
-
+	
 	@Override
 	protected void drawRecipe(MatrixStack ms, @NotNull MidnightSolutionConvertingRecipe recipe, int recipeX, int recipeY, int mouseX, int mouseY, boolean second) {
 		RenderSystem.setShaderTexture(0, BACKGROUND_TEXTURE);
 		RenderSystem.enableBlend();
 		DrawableHelper.drawTexture(ms, recipeX - 2, recipeY - 2, 0, 0, 104, 97, 128, 256);
-
+		
 		parent.drawCenteredStringNoShadow(ms, getTitle(second).asOrderedText(), GuiBook.PAGE_WIDTH / 2, recipeY - 10, book.headerColor);
 		
 		// fluid bucket
@@ -49,10 +49,10 @@ public class PageMidnightSolutionConverting extends PageDoubleRecipeRegistry<Mid
 		// the output
 		parent.renderItemStack(ms, recipeX + 75, recipeY + 7, mouseX, mouseY, recipe.getOutput());
 	}
-
+	
 	@Override
 	protected int getRecipeHeight() {
 		return 50;
 	}
-
+	
 }

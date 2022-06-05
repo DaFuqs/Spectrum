@@ -32,7 +32,7 @@ public class ArtistsPaletteItem extends SpectrumTrinketItem implements InkStorag
 	@Override
 	public ArtistsPaletteInkStorage getEnergyStorage(ItemStack itemStack) {
 		NbtCompound compound = itemStack.getNbt();
-		if(compound != null && compound.contains("EnergyStore")) {
+		if (compound != null && compound.contains("EnergyStore")) {
 			return ArtistsPaletteInkStorage.fromNbt(compound.getCompound("EnergyStore"));
 		}
 		return new ArtistsPaletteInkStorage(this.maxEnergyTotal);

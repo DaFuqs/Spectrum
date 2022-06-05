@@ -38,5 +38,5 @@ public class ItemEntityEventQueue extends EventQueue<ItemEntityEventQueue.EventE
 			SpectrumS2CPacketSender.sendItemTransferPacket((ServerWorld) world, new ItemTransfer(pos, this.positionSource, delay));
 		}
 	}
-
+	
 }

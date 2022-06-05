@@ -42,7 +42,7 @@ public class PotionWorkshopCraftingRecipe extends PotionWorkshopRecipe {
 	public RecipeSerializer<?> getSerializer() {
 		return SpectrumRecipeTypes.POTION_WORKSHOP_CRAFTING_RECIPE_SERIALIZER;
 	}
-
+	
 	public RecipeType<?> getType() {
 		return SpectrumRecipeTypes.POTION_WORKSHOP_CRAFTING;
 	}
@@ -79,7 +79,7 @@ public class PotionWorkshopCraftingRecipe extends PotionWorkshopRecipe {
 	
 	@Override
 	public boolean matches(@NotNull Inventory inv, World world) {
-		if(enoughExperienceSupplied(inv)) {
+		if (enoughExperienceSupplied(inv)) {
 			return super.matches(inv, world);
 		}
 		return false;
@@ -90,11 +90,11 @@ public class PotionWorkshopCraftingRecipe extends PotionWorkshopRecipe {
 	// Only one is supported and just a single ExperienceStorageItem
 	// should be used per recipe, tough
 	private boolean enoughExperienceSupplied(Inventory inv) {
-		if(this.requiredExperience > 0) {
-			for(int i : new int[]{PotionWorkshopBlockEntity.BASE_INPUT_SLOT_ID, PotionWorkshopBlockEntity.FIRST_INGREDIENT_SLOT,
-					PotionWorkshopBlockEntity.FIRST_INGREDIENT_SLOT+1, PotionWorkshopBlockEntity.FIRST_INGREDIENT_SLOT+2}) {
+		if (this.requiredExperience > 0) {
+			for (int i : new int[]{PotionWorkshopBlockEntity.BASE_INPUT_SLOT_ID, PotionWorkshopBlockEntity.FIRST_INGREDIENT_SLOT,
+					PotionWorkshopBlockEntity.FIRST_INGREDIENT_SLOT + 1, PotionWorkshopBlockEntity.FIRST_INGREDIENT_SLOT + 2}) {
 				
-				if((inv.getStack(i).getItem() instanceof ExperienceStorageItem)) {
+				if ((inv.getStack(i).getItem() instanceof ExperienceStorageItem)) {
 					return ExperienceStorageItem.getStoredExperience(inv.getStack(i)) >= requiredExperience;
 				}
 			}

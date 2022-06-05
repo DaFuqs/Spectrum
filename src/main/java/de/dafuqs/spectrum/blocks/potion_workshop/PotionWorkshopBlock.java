@@ -52,7 +52,7 @@ public class PotionWorkshopBlock extends BlockWithEntity {
 	@Nullable
 	@Override
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-		if(!world.isClient) {
+		if (!world.isClient) {
 			return checkType(type, SpectrumBlockEntityRegistry.POTION_WORKSHOP, PotionWorkshopBlockEntity::tick);
 		}
 		return null;
@@ -69,7 +69,7 @@ public class PotionWorkshopBlock extends BlockWithEntity {
 	}
 	
 	public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
-		if(!(newState.getBlock() instanceof PotionWorkshopBlock)) {
+		if (!(newState.getBlock() instanceof PotionWorkshopBlock)) {
 			BlockEntity blockEntity = world.getBlockEntity(pos);
 			if (blockEntity instanceof PotionWorkshopBlockEntity potionWorkshopBlockEntity) {
 				ItemScatterer.spawn(world, pos, potionWorkshopBlockEntity);

@@ -46,13 +46,13 @@ public abstract class MobBlock extends Block {
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
 		super.appendTooltip(stack, world, tooltip, options);
-		tooltip.add(new TranslatableText( "block.spectrum.mob_block.tooltip").formatted(Formatting.GRAY));
+		tooltip.add(new TranslatableText("block.spectrum.mob_block.tooltip").formatted(Formatting.GRAY));
 	}
 	
 	@Override
 	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-		if(!world.isClient) {
-			if(!hasCooldown(state) && trigger((ServerWorld) world, pos, state, player, hit.getSide())) {
+		if (!world.isClient) {
+			if (!hasCooldown(state) && trigger((ServerWorld) world, pos, state, player, hit.getSide())) {
 				playTriggerParticles((ServerWorld) world, pos);
 				playTriggerSound(world, pos);
 				triggerCooldown(world, pos);
@@ -72,8 +72,8 @@ public abstract class MobBlock extends Block {
 	@Override
 	public void onSteppedOn(World world, BlockPos pos, BlockState state, Entity entity) {
 		super.onSteppedOn(world, pos, state, entity);
-		if(!world.isClient && !hasCooldown(state)) {
-			if(trigger((ServerWorld) world, pos, state, entity, Direction.UP)) {
+		if (!world.isClient && !hasCooldown(state)) {
+			if (trigger((ServerWorld) world, pos, state, entity, Direction.UP)) {
 				playTriggerParticles((ServerWorld) world, pos);
 				playTriggerSound(world, pos);
 				triggerCooldown(world, pos);
@@ -82,9 +82,9 @@ public abstract class MobBlock extends Block {
 	}
 	
 	public void onProjectileHit(World world, BlockState state, BlockHitResult hit, ProjectileEntity projectile) {
-		if(!world.isClient) {
+		if (!world.isClient) {
 			BlockPos hitPos = hit.getBlockPos();
-			if(!hasCooldown(state) && trigger((ServerWorld) world, hitPos, state, projectile.getOwner(), hit.getSide())) {
+			if (!hasCooldown(state) && trigger((ServerWorld) world, hitPos, state, projectile.getOwner(), hit.getSide())) {
 				playTriggerParticles((ServerWorld) world, hit.getBlockPos());
 				playTriggerSound(world, hitPos);
 				triggerCooldown(world, hitPos);
@@ -116,9 +116,9 @@ public abstract class MobBlock extends Block {
 	}
 	
 	public Position getOutputLocation(BlockPointer pointer, Direction direction) {
-		double d = pointer.getX() + 0.7D * (double)direction.getOffsetX();
-		double e = pointer.getY() + 0.7D * (double)direction.getOffsetY();
-		double f = pointer.getZ() + 0.7D * (double)direction.getOffsetZ();
+		double d = pointer.getX() + 0.7D * (double) direction.getOffsetX();
+		double e = pointer.getY() + 0.7D * (double) direction.getOffsetY();
+		double f = pointer.getZ() + 0.7D * (double) direction.getOffsetZ();
 		return new PositionImpl(d, e, f);
 	}
 	

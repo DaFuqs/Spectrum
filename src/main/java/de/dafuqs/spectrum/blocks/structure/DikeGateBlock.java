@@ -25,18 +25,18 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
 public class DikeGateBlock extends AbstractGlassBlock {
-
+	
 	public DikeGateBlock(Settings settings) {
 		super(settings);
 	}
 	
 	@Deprecated
 	public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-		if(context instanceof EntityShapeContext entityShapeContext) {
+		if (context instanceof EntityShapeContext entityShapeContext) {
 			Entity entity = entityShapeContext.getEntity();
-			if(entity instanceof LivingEntity livingEntity) {
+			if (entity instanceof LivingEntity livingEntity) {
 				int charges = AzureDikeProvider.getAzureDikeCharges(livingEntity);
-				if(charges > 0) {
+				if (charges > 0) {
 					return VoxelShapes.empty();
 				}
 			}
@@ -67,12 +67,12 @@ public class DikeGateBlock extends AbstractGlassBlock {
 	}
 	
 	public void punishEntityWithoutAzureDike(BlockView world, BlockPos pos, Entity entity, boolean decreasedSounds) {
-		if(world instanceof ServerWorld serverWorld && entity instanceof LivingEntity livingEntity) {
+		if (world instanceof ServerWorld serverWorld && entity instanceof LivingEntity livingEntity) {
 			int charges = AzureDikeProvider.getAzureDikeCharges(livingEntity);
-			if(charges == 0) {
+			if (charges == 0) {
 				entity.damage(SpectrumDamageSources.DIKE_GATE, 1);
 				SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity(serverWorld, pos, SpectrumParticleTypes.BLUE_CRAFTING, 10);
-				if(entity instanceof ServerPlayerEntity serverPlayerEntity && (!decreasedSounds || ((ServerWorld) world).getTime() % 10 == 0)) {
+				if (entity instanceof ServerPlayerEntity serverPlayerEntity && (!decreasedSounds || ((ServerWorld) world).getTime() % 10 == 0)) {
 					serverPlayerEntity.playSound(SpectrumSoundEvents.USE_FAIL, SoundCategory.PLAYERS, 0.75F, 1.0F);
 				}
 			}

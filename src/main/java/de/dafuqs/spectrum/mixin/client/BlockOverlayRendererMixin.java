@@ -17,13 +17,13 @@ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 @Mixin(InGameOverlayRenderer.class)
 public class BlockOverlayRendererMixin {
-
+	
 	// Since the hack in SpectrumFluid to allow swimming, sounds, particles for fluids
 	// this does now work because "isSubmergedIn()" only matches for water
 	private static final Identifier TEXTURE_IN_LIQUID_CRYSTAL = new Identifier(SpectrumCommon.MOD_ID + ":textures/misc/liquid_crystal_overlay.png");
 	private static final Identifier TEXTURE_IN_MUD = new Identifier(SpectrumCommon.MOD_ID + ":textures/misc/mud_overlay.png");
 	private static final Identifier TEXTURE_IN_MIDNIGHT_SOLUTION = new Identifier(SpectrumCommon.MOD_ID + ":textures/misc/midnight_solution_overlay.png");
-
+	
 	@Inject(method = "renderOverlays(Lnet/minecraft/client/MinecraftClient;Lnet/minecraft/client/util/math/MatrixStack;)V", at = @At("TAIL"), locals = LocalCapture.CAPTURE_FAILSOFT)
 	private static void blockOverlay(MinecraftClient minecraftClient, MatrixStack matrixStack, CallbackInfo ci) {
 		if (!minecraftClient.player.isSpectator()) {
@@ -36,7 +36,7 @@ public class BlockOverlayRendererMixin {
 			}
 		}
 	}
-
+	
 	private static void renderOverlay(MinecraftClient client, MatrixStack matrixStack, Identifier textureIdentifier, float alpha) {
 		RenderSystem.setShader(GameRenderer::getPositionTexShader);
 		RenderSystem.enableTexture();
@@ -46,7 +46,7 @@ public class BlockOverlayRendererMixin {
 		RenderSystem.enableBlend();
 		RenderSystem.defaultBlendFunc();
 		RenderSystem.setShaderColor(f, f, f, alpha);
-
+		
 		float m = -client.player.getYaw() / 64.0F;
 		float n = client.player.getPitch() / 64.0F;
 		Matrix4f matrix4f = matrixStack.peek().getPositionMatrix();
@@ -59,5 +59,5 @@ public class BlockOverlayRendererMixin {
 		BufferRenderer.draw(bufferBuilder);
 		RenderSystem.disableBlend();
 	}
-
+	
 }

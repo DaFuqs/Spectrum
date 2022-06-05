@@ -18,7 +18,7 @@ import vazkii.patchouli.api.IMultiblock;
 import vazkii.patchouli.api.PatchouliAPI;
 
 public class PedestalScreen extends HandledScreen<PedestalScreenHandler> {
-
+	
 	public static final Identifier BACKGROUND1 = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/container/pedestal1.png");
 	public static final Identifier BACKGROUND2 = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/container/pedestal2.png");
 	public static final Identifier BACKGROUND3 = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/container/pedestal3.png");
@@ -26,11 +26,11 @@ public class PedestalScreen extends HandledScreen<PedestalScreenHandler> {
 	
 	int informationIconX = 95;
 	int informationIconY = 55;
-
+	
 	private final Identifier backgroundTexture;
 	private final PedestalRecipeTier maxPedestalRecipeTierForVariant;
 	private final boolean structureUpdateAvailable;
-
+	
 	public PedestalScreen(PedestalScreenHandler handler, PlayerInventory playerInventory, Text title) {
 		super(handler, playerInventory, title);
 		this.backgroundHeight = 194;
@@ -40,7 +40,7 @@ public class PedestalScreen extends HandledScreen<PedestalScreenHandler> {
 		PedestalRecipeTier maxPedestalRecipeTier = handler.getMaxPedestalRecipeTier();
 		this.structureUpdateAvailable = this.maxPedestalRecipeTierForVariant != maxPedestalRecipeTier;
 	}
-
+	
 	public static Identifier getBackgroundTextureForVariant(PedestalRecipeTier pedestalRecipeTier) {
 		switch (pedestalRecipeTier) {
 			case COMPLEX -> {
@@ -57,7 +57,7 @@ public class PedestalScreen extends HandledScreen<PedestalScreenHandler> {
 			}
 		}
 	}
-
+	
 	@Contract(pure = true)
 	public static Identifier getBackgroundTextureForTier(@NotNull PedestalRecipeTier recipeTier) {
 		switch (recipeTier) {
@@ -75,7 +75,7 @@ public class PedestalScreen extends HandledScreen<PedestalScreenHandler> {
 			}
 		}
 	}
-
+	
 	@Override
 	protected void drawForeground(MatrixStack matrices, int mouseX, int mouseY) {
 		// draw "title" and "inventory" texts
@@ -84,71 +84,71 @@ public class PedestalScreen extends HandledScreen<PedestalScreenHandler> {
 		Text title = this.title;
 		int inventoryX = 8;
 		int intInventoryY = 100;
-
+		
 		this.textRenderer.draw(matrices, title, titleX, titleY, 3289650);
 		this.textRenderer.draw(matrices, this.playerInventoryTitle, inventoryX, intInventoryY, 3289650);
-
+		
 		// if structure could be improved:
 		// show red blinking information icon
-		if(structureUpdateAvailable) {
-			if((client.world.getTime() >> 4) % 2 == 0) {
+		if (structureUpdateAvailable) {
+			if ((client.world.getTime() >> 4) % 2 == 0) {
 				this.textRenderer.draw(matrices, "ℹ", informationIconX, informationIconY, 11010048);
 			} else {
 				this.textRenderer.draw(matrices, "ℹ", informationIconX, informationIconY, 16252928);
 			}
 		}
 	}
-
+	
 	@Override
 	protected void drawBackground(MatrixStack matrices, float delta, int mouseX, int mouseY) {
 		RenderSystem.setShader(GameRenderer::getPositionTexShader);
 		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
 		RenderSystem.setShaderTexture(0, backgroundTexture);
-
+		
 		// background
 		int x = (width - backgroundWidth) / 2;
 		int y = (height - backgroundHeight) / 2;
 		drawTexture(matrices, x, y, 0, 0, backgroundWidth, backgroundHeight);
-
+		
 		// crafting arrow
 		boolean isCrafting = this.handler.isCrafting();
-		if(isCrafting) {
+		if (isCrafting) {
 			int progressWidth = (this.handler).getCraftingProgress();
 			// x+y: destination, u+v: original coordinates in texture file
 			this.drawTexture(matrices, x + 88, y + 37, 176, 0, progressWidth + 1, 16);
 		}
 	}
-
+	
 	@Override
 	public boolean mouseClicked(double mouseX, double mouseY, int button) {
-		if(mouseOverInformationIcon((int) mouseX,(int) mouseY)) {
+		if (mouseOverInformationIcon((int) mouseX, (int) mouseY)) {
 			IMultiblock currentMultiBlock = PatchouliAPI.get().getCurrentMultiblock();
 			IMultiblock multiblockToDisplay = PatchouliAPI.get().getMultiblock(SpectrumMultiblocks.getDisplayStructureIdentifierForTier(maxPedestalRecipeTierForVariant));
-			if(currentMultiBlock == multiblockToDisplay) {
+			if (currentMultiBlock == multiblockToDisplay) {
 				PatchouliAPI.get().clearMultiblock();
 			} else {
-				PatchouliAPI.get().showMultiblock(multiblockToDisplay, SpectrumMultiblocks.getPedestalStructureText(maxPedestalRecipeTierForVariant), this.handler.getPedestalPos().down(2) , BlockRotation.NONE);
+				PatchouliAPI.get().showMultiblock(multiblockToDisplay, SpectrumMultiblocks.getPedestalStructureText(maxPedestalRecipeTierForVariant), this.handler.getPedestalPos().down(2), BlockRotation.NONE);
 			}
 			return true;
 		} else {
 			return super.mouseClicked(mouseX, mouseY, button);
 		}
 	}
-
+	
 	@Override
 	public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
 		renderBackground(matrices);
 		super.render(matrices, mouseX, mouseY, delta);
-
-		if(mouseOverInformationIcon(mouseX, mouseY)) {
+		
+		if (mouseOverInformationIcon(mouseX, mouseY)) {
 			this.renderTooltip(matrices, new TranslatableText("multiblock.spectrum.pedestal.upgrade_available"), mouseX, mouseY);
 		} else {
 			drawMouseoverTooltip(matrices, mouseX, mouseY);
 		}
 	}
-
+	
 	private boolean mouseOverInformationIcon(int mouseX, int mouseY) {
-		return structureUpdateAvailable && mouseX > x+informationIconX-2 && mouseX < x+informationIconX+10 && mouseY > y+informationIconY-2 && mouseY < y+informationIconY+10;
+		return structureUpdateAvailable && mouseX > x + informationIconX - 2 && mouseX < x + informationIconX + 10 && mouseY > y + informationIconY - 2 && mouseY < y + informationIconY + 10;
 	}
-
+	
 }

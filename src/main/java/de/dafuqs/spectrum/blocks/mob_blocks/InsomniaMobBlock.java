@@ -38,7 +38,7 @@ public class InsomniaMobBlock extends MobBlock {
 	public boolean trigger(ServerWorld world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
 		// spawn phantoms regardless of gamerule
 		// makes phantom drops accessible even with gamerule disabled
-		if(entity instanceof ServerPlayerEntity serverPlayerEntity /*&& !world.getGameRules().getBoolean(GameRules.DO_INSOMNIA)*/) {
+		if (entity instanceof ServerPlayerEntity serverPlayerEntity /*&& !world.getGameRules().getBoolean(GameRules.DO_INSOMNIA)*/) {
 			Random random = world.random;
 			
 			// play a phantom sound
@@ -50,12 +50,12 @@ public class InsomniaMobBlock extends MobBlock {
 			serverPlayerEntity.getStatHandler().setStat(serverPlayerEntity, Stats.CUSTOM.getOrCreateStat(Stats.TIME_SINCE_REST), newValue);
 			
 			// if sky visible & night: immediately spawn phantom
-			if(world.isSkyVisible(blockPos.up()) && TimeHelper.getTimeOfDay(world).isNight()) {
+			if (world.isSkyVisible(blockPos.up()) && TimeHelper.getTimeOfDay(world).isNight()) {
 				PhantomEntity phantomEntity = EntityType.PHANTOM.create(world);
-				if(phantomEntity != null) {
+				if (phantomEntity != null) {
 					phantomEntity.refreshPositionAndAngles(blockPos.up(20 + random.nextInt(15)).east(-10 + random.nextInt(21)).south(-10 + random.nextInt(21)), 0.0F, 0.0F);
 					phantomEntity.initialize(world, world.getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, null, null);
-
+					
 					int phantomSize = Math.min(64, newValue / 24000);
 					phantomEntity.setPhantomSize(phantomSize);
 					
@@ -75,7 +75,7 @@ public class InsomniaMobBlock extends MobBlock {
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
 		super.appendTooltip(stack, world, tooltip, options);
-		tooltip.add(new TranslatableText( "block.spectrum.insomnia_mob_block.tooltip"));
+		tooltip.add(new TranslatableText("block.spectrum.insomnia_mob_block.tooltip"));
 	}
 	
 }

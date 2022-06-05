@@ -40,10 +40,10 @@ public class ItemAndExperienceEventQueue implements GameEventListener {
 	
 	@Override
 	public boolean listen(World world, GameEvent event, @Nullable Entity entity, BlockPos pos) {
-		if(event != SpectrumGameEvents.ENTITY_SPAWNED) {
+		if (event != SpectrumGameEvents.ENTITY_SPAWNED) {
 			return false;
 		}
-		if(entity instanceof ItemEntity && itemQueue.listen(world, event, entity, pos)) {
+		if (entity instanceof ItemEntity && itemQueue.listen(world, event, entity, pos)) {
 			return true;
 		}
 		return entity instanceof ExperienceOrbEntity && experienceQueue.listen(world, event, entity, pos);

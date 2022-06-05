@@ -47,9 +47,11 @@ public class LivingMarkerEntity extends LivingEntity {
 	public void tick() {
 	}
 	
-	public void readCustomDataFromNbt(NbtCompound nbt) { }
+	public void readCustomDataFromNbt(NbtCompound nbt) {
+	}
 	
-	public void writeCustomDataToNbt(NbtCompound nbt) {	}
+	public void writeCustomDataToNbt(NbtCompound nbt) {
+	}
 	
 	public Packet<?> createSpawnPacket() {
 		throw new IllegalStateException("Living Markers should never be sent");

@@ -9,7 +9,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Random;
 
 public class ColoredSaplingGenerator extends SaplingGenerator {
-
+	
 	private final DyeColor dyeColor;
 	
 	public ColoredSaplingGenerator(DyeColor dyeColor) {

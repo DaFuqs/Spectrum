@@ -27,7 +27,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class PedestalCraftingDisplay extends BasicDisplay implements SimpleGridMenuDisplay, GatedRecipeDisplay {
-
+	
 	private final PedestalCraftingRecipe pedestalCraftingRecipe;
 	protected final List<EntryIngredient> craftingInputs;
 	protected final EntryIngredient output;
@@ -37,6 +37,7 @@ public class PedestalCraftingDisplay extends BasicDisplay implements SimpleGridM
 	
 	/**
 	 * When using the REI recipe functionality
+	 *
 	 * @param recipe The recipe
 	 */
 	public PedestalCraftingDisplay(PedestalCraftingRecipe recipe) {
@@ -65,7 +66,7 @@ public class PedestalCraftingDisplay extends BasicDisplay implements SimpleGridM
 		
 		this.craftingInputs = inputs;
 		this.output = outputs.get(0);
-		if(recipe instanceof PedestalCraftingRecipe pedestalCraftingRecipe) {
+		if (recipe instanceof PedestalCraftingRecipe pedestalCraftingRecipe) {
 			this.pedestalCraftingRecipe = pedestalCraftingRecipe;
 			this.experience = pedestalCraftingRecipe.getExperience();
 			this.craftingTime = pedestalCraftingRecipe.getCraftingTime();
@@ -103,7 +104,7 @@ public class PedestalCraftingDisplay extends BasicDisplay implements SimpleGridM
 		}
 		
 		// gemstone powder ingredients
-		for(int k = gemstonePowderStartIndex; k < inputs.size(); k++) {
+		for (int k = gemstonePowderStartIndex; k < inputs.size(); k++) {
 			list.add(inputs.get(k));
 		}
 		return list;
@@ -120,9 +121,9 @@ public class PedestalCraftingDisplay extends BasicDisplay implements SimpleGridM
 	}
 	
 	private void addGemstonePowderCraftingInput(@NotNull HashMap<BuiltinGemstoneColor, Integer> gemstonePowderInputs, BuiltinGemstoneColor gemstoneColor, Item item) {
-		if(gemstonePowderInputs.containsKey(gemstoneColor)) {
+		if (gemstonePowderInputs.containsKey(gemstoneColor)) {
 			int amount = gemstonePowderInputs.get(gemstoneColor);
-			if(amount > 0) {
+			if (amount > 0) {
 				this.craftingInputs.add(EntryIngredients.of(new ItemStack(item, amount)));
 			} else {
 				this.craftingInputs.add(EntryIngredient.empty());
@@ -131,32 +132,32 @@ public class PedestalCraftingDisplay extends BasicDisplay implements SimpleGridM
 			this.craftingInputs.add(EntryIngredient.empty());
 		}
 	}
-
+	
 	@Override
 	public List<EntryIngredient> getInputEntries() {
-		if(this.isUnlocked()) {
+		if (this.isUnlocked()) {
 			return craftingInputs;
 		} else {
 			return new ArrayList<>();
 		}
 	}
-
+	
 	@Override
 	public List<EntryIngredient> getOutputEntries() {
-		if(this.isUnlocked() || SpectrumCommon.CONFIG.REIListsRecipesAsNotUnlocked) {
+		if (this.isUnlocked() || SpectrumCommon.CONFIG.REIListsRecipesAsNotUnlocked) {
 			return outputs;
 		} else {
 			return new ArrayList<>();
 		}
 	}
-
+	
 	@Override
 	public CategoryIdentifier<?> getCategoryIdentifier() {
 		return SpectrumPlugins.PEDESTAL_CRAFTING;
 	}
-
+	
 	public boolean isUnlocked() {
-		if(this.pedestalCraftingRecipe == null) {
+		if (this.pedestalCraftingRecipe == null) {
 			return true;
 		} else {
 			return FabricLoader.getInstance().getEnvironmentType() == EnvType.SERVER || isUnlockedClient();
@@ -167,20 +168,20 @@ public class PedestalCraftingDisplay extends BasicDisplay implements SimpleGridM
 	public boolean isUnlockedClient() {
 		return this.pedestalCraftingRecipe.canPlayerCraft(MinecraftClient.getInstance().player);
 	}
-
+	
 	@Override
 	public int getWidth() {
 		return this.pedestalCraftingRecipe.getWidth();
 	}
-
+	
 	@Override
 	public int getHeight() {
 		return this.pedestalCraftingRecipe.getHeight();
 	}
-
+	
 	public PedestalRecipeTier getTier() {
 		return this.pedestalRecipeTier;
 	}
-
-
+	
+	
 }

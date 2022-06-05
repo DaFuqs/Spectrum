@@ -14,35 +14,35 @@ import net.minecraft.util.collection.DefaultedList;
 import org.jetbrains.annotations.Nullable;
 
 public class EnchanterRecipeSerializer implements RecipeSerializer<EnchanterRecipe> {
-
+	
 	public final EnchanterRecipeSerializer.RecipeFactory<EnchanterRecipe> recipeFactory;
-
+	
 	public EnchanterRecipeSerializer(EnchanterRecipeSerializer.RecipeFactory<EnchanterRecipe> recipeFactory) {
 		this.recipeFactory = recipeFactory;
 	}
-
+	
 	@Override
 	public EnchanterRecipe read(Identifier identifier, JsonObject jsonObject) {
 		String group = JsonHelper.getString(jsonObject, "group", "");
 		
 		JsonArray ingredientArray = JsonHelper.getArray(jsonObject, "ingredients");
 		DefaultedList<Ingredient> craftingInputs = DefaultedList.ofSize(ingredientArray.size());
-		for(int i = 0; i < ingredientArray.size(); i++) {
+		for (int i = 0; i < ingredientArray.size(); i++) {
 			craftingInputs.add(Ingredient.fromJson(ingredientArray.get(i)));
 		}
-
+		
 		ItemStack output = RecipeUtils.itemStackWithNbtFromJson(JsonHelper.getObject(jsonObject, "result"));
 		
 		int requiredExperience = JsonHelper.getInt(jsonObject, "required_experience", 0);
 		int craftingTime = JsonHelper.getInt(jsonObject, "time", 200);
 		
 		boolean noBenefitsFromYieldAndEfficiencyUpgrades = false;
-		if(JsonHelper.hasPrimitive(jsonObject, "disable_yield_and_efficiency_upgrades")) {
+		if (JsonHelper.hasPrimitive(jsonObject, "disable_yield_and_efficiency_upgrades")) {
 			noBenefitsFromYieldAndEfficiencyUpgrades = JsonHelper.getBoolean(jsonObject, "disable_yield_and_efficiency_upgrades", false);
 		}
 		
 		Identifier requiredAdvancementIdentifier = null;
-		if(JsonHelper.hasString(jsonObject, "required_advancement")) {
+		if (JsonHelper.hasString(jsonObject, "required_advancement")) {
 			requiredAdvancementIdentifier = Identifier.tryParse(JsonHelper.getString(jsonObject, "required_advancement"));
 		} else {
 			// Recipe has no unlock advancement set. Will be set to the unlock advancement of the Enchanter itself
@@ -55,9 +55,9 @@ public class EnchanterRecipeSerializer implements RecipeSerializer<EnchanterReci
 	@Override
 	public void write(PacketByteBuf packetByteBuf, EnchanterRecipe enchanterRecipe) {
 		packetByteBuf.writeString(enchanterRecipe.group);
-
+		
 		packetByteBuf.writeShort(enchanterRecipe.inputs.size());
-		for(Ingredient ingredient : enchanterRecipe.inputs) {
+		for (Ingredient ingredient : enchanterRecipe.inputs) {
 			ingredient.write(packetByteBuf);
 		}
 		
@@ -74,7 +74,7 @@ public class EnchanterRecipeSerializer implements RecipeSerializer<EnchanterReci
 		
 		short craftingInputCount = packetByteBuf.readShort();
 		DefaultedList<Ingredient> ingredients = DefaultedList.ofSize(craftingInputCount, Ingredient.EMPTY);
-		for(short i = 0; i < craftingInputCount; i++) {
+		for (short i = 0; i < craftingInputCount; i++) {
 			ingredients.set(i, Ingredient.fromPacket(packetByteBuf));
 		}
 		
@@ -90,5 +90,5 @@ public class EnchanterRecipeSerializer implements RecipeSerializer<EnchanterReci
 	public interface RecipeFactory<EnchanterRecipe> {
 		EnchanterRecipe create(Identifier id, String group, DefaultedList<Ingredient> inputs, ItemStack output, int craftingTime, int requiredExperience, boolean noBenefitsFromYieldAndEfficiencyUpgrades, @Nullable Identifier requiredAdvancementIdentifier);
 	}
-
+	
 }

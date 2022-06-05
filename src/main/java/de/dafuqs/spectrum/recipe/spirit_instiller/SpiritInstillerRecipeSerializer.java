@@ -11,13 +11,13 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
 
 public class SpiritInstillerRecipeSerializer implements RecipeSerializer<SpiritInstillerRecipe> {
-
+	
 	public final SpiritInstillerRecipeSerializer.RecipeFactory<SpiritInstillerRecipe> recipeFactory;
-
+	
 	public SpiritInstillerRecipeSerializer(SpiritInstillerRecipeSerializer.RecipeFactory<SpiritInstillerRecipe> recipeFactory) {
 		this.recipeFactory = recipeFactory;
 	}
-
+	
 	@Override
 	public SpiritInstillerRecipe read(Identifier identifier, JsonObject jsonObject) {
 		String group = JsonHelper.getString(jsonObject, "group", "");
@@ -30,12 +30,12 @@ public class SpiritInstillerRecipeSerializer implements RecipeSerializer<SpiritI
 		float experience = JsonHelper.getFloat(jsonObject, "experience");
 		
 		boolean noBenefitsFromYieldAndEfficiencyUpgrades = false;
-		if(JsonHelper.hasPrimitive(jsonObject, "disable_yield_and_efficiency_upgrades")) {
+		if (JsonHelper.hasPrimitive(jsonObject, "disable_yield_and_efficiency_upgrades")) {
 			noBenefitsFromYieldAndEfficiencyUpgrades = JsonHelper.getBoolean(jsonObject, "disable_yield_and_efficiency_upgrades", false);
 		}
 		
 		Identifier requiredAdvancementIdentifier;
-		if(JsonHelper.hasString(jsonObject, "required_advancement")) {
+		if (JsonHelper.hasString(jsonObject, "required_advancement")) {
 			requiredAdvancementIdentifier = Identifier.tryParse(JsonHelper.getString(jsonObject, "required_advancement"));
 		} else {
 			// No unlock advancement set. Will be set to the unlock advancement of the block itself
@@ -72,11 +72,11 @@ public class SpiritInstillerRecipeSerializer implements RecipeSerializer<SpiritI
 		
 		return this.recipeFactory.create(identifier, group, ingredient1, ingredient2, centerIngredient, outputItemStack, craftingTime, experience, noBenefitsFromYieldAndEfficiencyUpgrades, requiredAdvancementIdentifier);
 	}
-
+	
 	
 	public interface RecipeFactory<SpiritInstillerRecipe> {
 		SpiritInstillerRecipe create(Identifier id, String group, IngredientStack inputIngredient1, IngredientStack inputIngredient2, IngredientStack centerIngredient, ItemStack outputItemStack,
 		                             int craftingTime, float experience, boolean noBenefitsFromYieldAndEfficiencyUpgrades, Identifier requiredAdvancementIdentifier);
 	}
-
+	
 }

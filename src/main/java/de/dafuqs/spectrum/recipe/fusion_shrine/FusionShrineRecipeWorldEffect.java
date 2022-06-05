@@ -27,7 +27,7 @@ public enum FusionShrineRecipeWorldEffect {
 	SINGLE_VISUAL_EXPLOSION_ON_SHRINE,
 	MAYBE_PLACE_MIDNIGHT_SOLUTION,
 	PLACE_MIDNIGHT_SOLUTION;
-
+	
 	public void doEffect(ServerWorld world, BlockPos shrinePos) {
 		switch (this) {
 			case WEATHER_CLEAR -> {
@@ -45,13 +45,13 @@ public enum FusionShrineRecipeWorldEffect {
 				lightningEntity.refreshPositionAfterTeleport(Vec3d.ofBottomCenter(shrinePos));
 				lightningEntity.setCosmetic(true);
 				world.spawnEntity(lightningEntity);
-
+				
 			}
 			case LIGHTNING_AROUND_SHRINE -> {
 				if (world.getRandom().nextFloat() < 0.05F) {
 					int randomX = shrinePos.getX() + 12 - world.getRandom().nextInt(24);
 					int randomZ = shrinePos.getZ() + 12 - world.getRandom().nextInt(24);
-
+					
 					BlockPos randomTopPos = new BlockPos(randomX, world.getTopY(Heightmap.Type.WORLD_SURFACE, randomX, randomZ), randomZ);
 					LightningEntity lightningEntity = EntityType.LIGHTNING_BOLT.create(world);
 					lightningEntity.refreshPositionAfterTeleport(Vec3d.ofBottomCenter(randomTopPos));
@@ -75,7 +75,7 @@ public enum FusionShrineRecipeWorldEffect {
 					int randomZ = shrinePos.getZ() + 5 - world.getRandom().nextInt(10);
 					
 					BlockPos randomTopPos = new BlockPos(randomX, world.getTopY(Heightmap.Type.WORLD_SURFACE, randomX, randomZ), randomZ);
-					if(world.isAir(randomTopPos)) {
+					if (world.isAir(randomTopPos)) {
 						world.setBlockState(randomTopPos, SpectrumBlocks.MIDNIGHT_SOLUTION.getDefaultState());
 						MidnightSolutionFluidBlock.playExtinguishSound(world, randomTopPos);
 					}
@@ -83,7 +83,7 @@ public enum FusionShrineRecipeWorldEffect {
 			}
 		}
 	}
-
+	
 	/**
 	 * True for all effects that should just play once.
 	 * Otherwise, it will be triggered each tick of the recipe
@@ -91,6 +91,6 @@ public enum FusionShrineRecipeWorldEffect {
 	public boolean isOneTimeEffect(FusionShrineRecipeWorldEffect effect) {
 		return effect == LIGHTNING_ON_SHRINE || effect == SINGLE_VISUAL_EXPLOSION_ON_SHRINE || effect == WEATHER_CLEAR || effect == WEATHER_RAIN || effect == WEATHER_THUNDER;
 	}
-
-
+	
+	
 }

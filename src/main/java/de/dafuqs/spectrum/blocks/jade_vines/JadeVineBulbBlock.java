@@ -32,7 +32,7 @@ public class JadeVineBulbBlock extends Block implements JadeVine {
 	@Override
 	public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
 		super.randomDisplayTick(state, world, pos, random);
-		if(!state.get(DEAD)) {
+		if (!state.get(DEAD)) {
 			JadeVine.spawnParticlesClient(world, pos);
 		}
 	}
@@ -81,10 +81,10 @@ public class JadeVineBulbBlock extends Block implements JadeVine {
 	public boolean setToAge(World world, BlockPos blockPos, int age) {
 		BlockState currentState = world.getBlockState(blockPos);
 		boolean dead = currentState.get(DEAD);
-		if(age == 0 && !dead) {
+		if (age == 0 && !dead) {
 			world.setBlockState(blockPos, currentState.with(DEAD, true));
 			return true;
-		} else if(age > 0 && dead) {
+		} else if (age > 0 && dead) {
 			world.setBlockState(blockPos, currentState.with(DEAD, false));
 			return true;
 		}

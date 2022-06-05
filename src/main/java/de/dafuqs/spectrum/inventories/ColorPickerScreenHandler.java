@@ -24,12 +24,12 @@ public class ColorPickerScreenHandler extends ScreenHandler {
 	public ColorPickerScreenHandler(int syncId, PlayerInventory playerInventory, PacketByteBuf buf) {
 		this(syncId, playerInventory, buf.readBlockPos());
 	}
-
+	
 	public ColorPickerScreenHandler(int syncId, PlayerInventory playerInventory, BlockPos readBlockPos) {
 		super(SpectrumScreenHandlerTypes.COLOR_PICKER, syncId);
 		this.world = playerInventory.player.world;
 		BlockEntity blockEntity = playerInventory.player.world.getBlockEntity(readBlockPos);
-		if(blockEntity instanceof ColorPickerBlockEntity colorPickerBlockEntity) {
+		if (blockEntity instanceof ColorPickerBlockEntity colorPickerBlockEntity) {
 			this.blockEntity = colorPickerBlockEntity;
 		} else {
 			throw new IllegalArgumentException("Color Picker GUI called with a position where no ColorPickerBlockEntity exists");
@@ -43,14 +43,14 @@ public class ColorPickerScreenHandler extends ScreenHandler {
 		this.addSlot(new InkStorageSlot(colorPickerBlockEntity, 1, 133, 33));
 		
 		// player inventory
-		for(int j = 0; j < 3; ++j) {
-			for(int k = 0; k < 9; ++k) {
+		for (int j = 0; j < 3; ++j) {
+			for (int k = 0; k < 9; ++k) {
 				this.addSlot(new Slot(playerInventory, k + j * 9 + 9, PLAYER_INVENTORY_START_X + k * 18, PLAYER_INVENTORY_START_Y + j * 18));
 			}
 		}
 		
 		// player hotbar
-		for(int j = 0; j < 9; ++j) {
+		for (int j = 0; j < 9; ++j) {
 			this.addSlot(new Slot(playerInventory, j, PLAYER_INVENTORY_START_X + j * 18, PLAYER_INVENTORY_START_Y + 58));
 		}
 	}

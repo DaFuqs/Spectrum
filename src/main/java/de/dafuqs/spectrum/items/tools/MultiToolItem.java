@@ -20,11 +20,11 @@ import java.util.List;
 import java.util.Map;
 
 public class MultiToolItem extends SpectrumPickaxeItem implements Preenchanted, LoomPatternProvider {
-
+	
 	public MultiToolItem(ToolMaterial material, int attackDamage, float attackSpeed, Settings settings) {
 		super(material, attackDamage, attackSpeed, settings);
 	}
-
+	
 	@Override
 	public Map<Enchantment, Integer> getDefaultEnchantments() {
 		return Map.of(Enchantments.EFFICIENCY, 1);
@@ -51,7 +51,7 @@ public class MultiToolItem extends SpectrumPickaxeItem implements Preenchanted, 
 	public float getMiningSpeedMultiplier(ItemStack stack, BlockState state) {
 		return miningSpeed;
 	}
-
+	
 	/**
 	 * Invoke shovel, axe and hoe right click actions (in this order)
 	 * Like stripping logs, tilling grass paths etc.
@@ -61,7 +61,7 @@ public class MultiToolItem extends SpectrumPickaxeItem implements Preenchanted, 
 		ActionResult actionResult = Items.IRON_SHOVEL.useOnBlock(context);
 		if (actionResult == ActionResult.PASS) {
 			actionResult = Items.IRON_AXE.useOnBlock(context);
-			if(actionResult == ActionResult.PASS) {
+			if (actionResult == ActionResult.PASS) {
 				actionResult = Items.IRON_HOE.useOnBlock(context);
 			}
 		}

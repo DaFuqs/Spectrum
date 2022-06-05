@@ -15,24 +15,24 @@ import java.util.Hashtable;
 import java.util.List;
 
 public class FourLeafCloverBlock extends CloverBlock implements Cloakable {
-
+	
 	public FourLeafCloverBlock(Settings settings) {
 		super(settings);
 		registerCloak();
 	}
-
+	
 	@Override
 	public Identifier getCloakAdvancementIdentifier() {
 		return new Identifier(SpectrumCommon.MOD_ID, "milestones/reveal_four_leaf_clover");
 	}
-
+	
 	@Override
 	public Hashtable<BlockState, BlockState> getBlockStateCloaks() {
 		Hashtable<BlockState, BlockState> hashtable = new Hashtable<>();
 		hashtable.put(this.getDefaultState(), SpectrumBlocks.CLOVER.getDefaultState());
 		return hashtable;
 	}
-
+	
 	@Override
 	public Pair<Item, Item> getItemCloak() {
 		return new Pair<>(this.asItem(), SpectrumBlocks.CLOVER.asItem());

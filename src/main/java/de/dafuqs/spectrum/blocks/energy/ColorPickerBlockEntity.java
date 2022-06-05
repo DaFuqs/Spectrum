@@ -45,7 +45,7 @@ public class ColorPickerBlockEntity extends LootableContainerBlockEntity impleme
 	public DefaultedList<ItemStack> inventory;
 	
 	public static final long TICKS_PER_CONVERSION = 5;
-	public static final long STORAGE_AMOUNT = 64*64*64;
+	public static final long STORAGE_AMOUNT = 64 * 64 * 64;
 	protected TotalCappedSimpleInkStorage inkStorage;
 	
 	protected boolean paused;
@@ -70,7 +70,7 @@ public class ColorPickerBlockEntity extends LootableContainerBlockEntity impleme
 			}
 			didSomething = didSomething | blockEntity.tryFillInkContainer(); // that's an OR
 			
-			if(didSomething) {
+			if (didSomething) {
 				blockEntity.markDirty();
 			} else {
 				blockEntity.paused = true;
@@ -85,15 +85,15 @@ public class ColorPickerBlockEntity extends LootableContainerBlockEntity impleme
 		if (!this.deserializeLootTable(nbt)) {
 			Inventories.readNbt(nbt, this.inventory);
 		}
-		if(nbt.contains("InkStorage", NbtElement.COMPOUND_TYPE)) {
+		if (nbt.contains("InkStorage", NbtElement.COMPOUND_TYPE)) {
 			this.inkStorage = TotalCappedSimpleInkStorage.fromNbt(nbt.getCompound("InkStorage"));
 		}
-		if(nbt.contains("OwnerUUID")) {
+		if (nbt.contains("OwnerUUID")) {
 			this.ownerUUID = nbt.getUuid("OwnerUUID");
 		} else {
 			this.ownerUUID = null;
 		}
-		if(nbt.contains("SelectedColor", NbtElement.STRING_TYPE)) {
+		if (nbt.contains("SelectedColor", NbtElement.STRING_TYPE)) {
 			this.selectedColor = InkColor.of(nbt.getString("SelectedColor"));
 		}
 	}
@@ -104,7 +104,7 @@ public class ColorPickerBlockEntity extends LootableContainerBlockEntity impleme
 			Inventories.writeNbt(nbt, this.inventory);
 		}
 		nbt.put("InkStorage", this.inkStorage.toNbt());
-		if(this.ownerUUID != null) {
+		if (this.ownerUUID != null) {
 			nbt.putUuid("OwnerUUID", this.ownerUUID);
 		}
 		nbt.putString("SelectedColor", this.selectedColor.toString());
@@ -134,7 +134,7 @@ public class ColorPickerBlockEntity extends LootableContainerBlockEntity impleme
 	public TotalCappedSimpleInkStorage getEnergyStorage() {
 		return inkStorage;
 	}
-
+	
 	
 	@Override
 	protected DefaultedList<ItemStack> getInvStackList() {
@@ -174,10 +174,10 @@ public class ColorPickerBlockEntity extends LootableContainerBlockEntity impleme
 	
 	protected boolean tryConvertPigmentToEnergy(World world) {
 		InkConvertingRecipe recipe = getInkConvertingRecipe(world);
-		if(recipe != null) {
+		if (recipe != null) {
 			InkColor color = recipe.getInkColor();
 			long amount = recipe.getInkAmount();
-			if(this.inkStorage.getEnergy(color) + amount <= this.inkStorage.getMaxPerColor()) {
+			if (this.inkStorage.getEnergy(color) + amount <= this.inkStorage.getMaxPerColor()) {
 				inventory.get(INPUT_SLOT_ID).decrement(1);
 				this.inkStorage.addEnergy(color, amount);
 				return true;
@@ -189,21 +189,21 @@ public class ColorPickerBlockEntity extends LootableContainerBlockEntity impleme
 	protected @Nullable InkConvertingRecipe getInkConvertingRecipe(World world) {
 		// is the current stack empty?
 		ItemStack inputStack = inventory.get(INPUT_SLOT_ID);
-		if(inputStack.isEmpty()) {
+		if (inputStack.isEmpty()) {
 			this.cachedRecipe = null;
 			return null;
 		}
 		
 		// does the cached recipe match?
-		if(this.cachedRecipe != null) {
-			if(this.cachedRecipe.getIngredients().get(0).test(inputStack)) {
+		if (this.cachedRecipe != null) {
+			if (this.cachedRecipe.getIngredients().get(0).test(inputStack)) {
 				return this.cachedRecipe;
 			}
 		}
 		
 		// search matching recipe
 		Optional<InkConvertingRecipe> recipe = world.getRecipeManager().getFirstMatch(SpectrumRecipeTypes.INK_CONVERTING, this, world);
-		if(recipe.isPresent()) {
+		if (recipe.isPresent()) {
 			this.cachedRecipe = recipe.get();
 			return this.cachedRecipe;
 		} else {
@@ -216,18 +216,18 @@ public class ColorPickerBlockEntity extends LootableContainerBlockEntity impleme
 		long transferredAmount = 0;
 		
 		ItemStack stack = inventory.get(OUTPUT_SLOT_ID);
-		if(stack.getItem() instanceof InkStorageItem inkStorageItem) {
+		if (stack.getItem() instanceof InkStorageItem inkStorageItem) {
 			InkStorage itemStorage = inkStorageItem.getEnergyStorage(stack);
 			
-			if(this.selectedColor == null) {
-				for(InkColor color : InkColor.all()) {
+			if (this.selectedColor == null) {
+				for (InkColor color : InkColor.all()) {
 					transferredAmount = InkStorage.transferInk(inkStorage, itemStorage, color);
 				}
 			} else {
 				transferredAmount = InkStorage.transferInk(inkStorage, itemStorage, this.selectedColor);
 			}
 			
-			if(transferredAmount > 0) {
+			if (transferredAmount > 0) {
 				PlayerEntity owner = getPlayerEntityIfOnline(world);
 				if (owner instanceof ServerPlayerEntity serverPlayerEntity) {
 					SpectrumAdvancementCriteria.INK_CONTAINER_INTERACTION.trigger(serverPlayerEntity, stack, itemStorage, this.selectedColor, transferredAmount);

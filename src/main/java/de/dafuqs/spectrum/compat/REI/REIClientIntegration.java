@@ -35,7 +35,7 @@ import net.minecraft.block.Blocks;
 
 @Environment(EnvType.CLIENT)
 public class REIClientIntegration implements REIClientPlugin {
-
+	
 	@Override
 	public void registerCategories(CategoryRegistry registry) {
 		registry.add(new PedestalCraftingCategory());
@@ -84,7 +84,7 @@ public class REIClientIntegration implements REIClientPlugin {
 		registry.addWorkstations(SpectrumPlugins.MIDNIGHT_SOLUTION_CONVERTING, EntryStacks.of(SpectrumItems.MIDNIGHT_SOLUTION_BUCKET));
 		registry.addWorkstations(SpectrumPlugins.SPIRIT_INSTILLER, EntryStacks.of(SpectrumBlocks.SPIRIT_INSTILLER));
 		registry.addWorkstations(SpectrumPlugins.INK_CONVERTING, EntryStacks.of(SpectrumBlocks.COLOR_PICKER));
-
+		
 		// For item crushing and others are in-world recipes there is no gui to fill
 		// therefore the plus button is obsolete
 		registry.removePlusButton(SpectrumPlugins.ANVIL_CRUSHING);
@@ -97,7 +97,7 @@ public class REIClientIntegration implements REIClientPlugin {
 		registry.removePlusButton(SpectrumPlugins.HEATING);
 		registry.removePlusButton(SpectrumPlugins.FREEZING);
 	}
-
+	
 	@Override
 	public void registerDisplays(DisplayRegistry registry) {
 		registry.registerFiller(AnvilCrushingRecipe.class, AnvilCrushingDisplay::new);
@@ -114,20 +114,20 @@ public class REIClientIntegration implements REIClientPlugin {
 		NaturesStaffItem.BLOCK_CONVERSIONS.forEach((key, value) -> registry.add(new NaturesStaffConversionsDisplay(EntryStacks.of(key), EntryStacks.of(value.getBlock()))));
 		FreezingMobBlock.FREEZING_STATE_MAP.forEach((key, value) -> registry.add(new FreezingDisplay(BlockToBlockWithChanceDisplay.blockToEntryStack(key.getBlock()), BlockToBlockWithChanceDisplay.blockToEntryStack(value.getLeft().getBlock()), value.getRight())));
 		FreezingMobBlock.FREEZING_MAP.forEach((key, value) -> registry.add(new FreezingDisplay(BlockToBlockWithChanceDisplay.blockToEntryStack(key), BlockToBlockWithChanceDisplay.blockToEntryStack(value.getLeft().getBlock()), value.getRight())));
-		FirestarterMobBlock.BURNING_MAP.forEach((key, value)  -> registry.add(new HeatingDisplay(BlockToBlockWithChanceDisplay.blockToEntryStack(key), BlockToBlockWithChanceDisplay.blockToEntryStack(value.getLeft().getBlock()), value.getRight())));
+		FirestarterMobBlock.BURNING_MAP.forEach((key, value) -> registry.add(new HeatingDisplay(BlockToBlockWithChanceDisplay.blockToEntryStack(key), BlockToBlockWithChanceDisplay.blockToEntryStack(value.getLeft().getBlock()), value.getRight())));
 		
-		if(!SpectrumCommon.CONFIG.REIListsRecipesAsNotUnlocked) {
+		if (!SpectrumCommon.CONFIG.REIListsRecipesAsNotUnlocked) {
 			// do not list recipes in REI at all, until they are unlocked
 			registry.registerVisibilityPredicate((category, display) -> {
-				if(display instanceof GatedRecipeDisplay gatedRecipeDisplay && !gatedRecipeDisplay.isUnlocked()) {
+				if (display instanceof GatedRecipeDisplay gatedRecipeDisplay && !gatedRecipeDisplay.isUnlocked()) {
 					return EventResult.interruptFalse();
 				}
 				return EventResult.pass();
 			});
 		}
-
+		
 	}
-
+	
 	/**
 	 * Where in the screens gui the player has to click
 	 * to get to the recipe overview
@@ -143,5 +143,5 @@ public class REIClientIntegration implements REIClientPlugin {
 		registry.registerContainerClickArea(new Rectangle(28, 41, 10, 42), PotionWorkshopScreen.class, SpectrumPlugins.POTION_WORKSHOP_BREWING);
 		registry.registerContainerClickArea(new Rectangle(28, 41, 10, 42), PotionWorkshopScreen.class, SpectrumPlugins.POTION_WORKSHOP_CRAFTING);
 	}
-
+	
 }

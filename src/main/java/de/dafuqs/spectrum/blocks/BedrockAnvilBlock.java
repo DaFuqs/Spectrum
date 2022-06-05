@@ -20,9 +20,9 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 
 public class BedrockAnvilBlock extends AnvilBlock {
-
+	
 	private static final Text TITLE = new TranslatableText("container.spectrum.bedrock_anvil");
-
+	
 	public BedrockAnvilBlock(Settings settings) {
 		super(settings);
 	}
@@ -31,7 +31,7 @@ public class BedrockAnvilBlock extends AnvilBlock {
 	protected void configureFallingBlockEntity(FallingBlockEntity entity) {
 		entity.setHurtEntities(3.0F, 64);
 	}
-
+	
 	@Nullable
 	public NamedScreenHandlerFactory createScreenHandlerFactory(BlockState state, World world, BlockPos pos) {
 		return new SimpleNamedScreenHandlerFactory((syncId, inventory, player) -> {
@@ -45,5 +45,5 @@ public class BedrockAnvilBlock extends AnvilBlock {
 		tooltip.add(new TranslatableText("container.spectrum.bedrock_anvil.tooltip").formatted(Formatting.GRAY));
 		tooltip.add(new TranslatableText("container.spectrum.bedrock_anvil.tooltip2").formatted(Formatting.GRAY));
 	}
-
+	
 }

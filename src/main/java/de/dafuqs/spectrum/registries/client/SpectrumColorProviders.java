@@ -59,7 +59,9 @@ public class SpectrumColorProviders {
 		
 		// MEMORIES
 		ColorProviderRegistry.BLOCK.register((state, world, pos, tintIndex) -> {
-			if (world == null) { return 0x0; }
+			if (world == null) {
+				return 0x0;
+			}
 			
 			BlockEntity blockEntity = world.getBlockEntity(pos);
 			if (blockEntity instanceof MemoryBlockEntity memoryBlockEntity) {

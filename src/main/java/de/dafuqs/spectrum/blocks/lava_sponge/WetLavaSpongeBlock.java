@@ -15,42 +15,42 @@ import net.minecraft.world.World;
 import java.util.Random;
 
 public class WetLavaSpongeBlock extends WetSpongeBlock {
-
+	
 	public WetLavaSpongeBlock(Settings settings) {
 		super(settings);
 	}
-
+	
 	@Override
 	public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
 		world.createAndScheduleBlockTick(pos, this, getRandomTickTime(world));
-
+		
 		if (world.getGameRules().getBoolean(GameRules.DO_FIRE_TICK)) {
 			int xOffset = 2 - random.nextInt(5);
 			int yOffset = 1 - random.nextInt(3);
 			int zOffset = 2 - random.nextInt(5);
-
+			
 			BlockPos targetPos = pos.add(xOffset, yOffset, zOffset);
 			if (world.getBlockState(targetPos).isAir() && world.getBlockState(targetPos.down()).getMaterial().isSolid()) {
 				world.setBlockState(targetPos, Blocks.FIRE.getDefaultState());
 			}
 		}
 	}
-
+	
 	@Override
 	public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
 		world.createAndScheduleBlockTick(pos, this, getRandomTickTime(world));
 	}
-
+	
 	// faster than fire (30+ 0-10)
 	// even more in the nether
 	private static int getRandomTickTime(World world) {
-		if(world.getDimension().isUltrawarm()) {
+		if (world.getDimension().isUltrawarm()) {
 			return 10 + world.random.nextInt(5);
 		} else {
 			return 20 + world.random.nextInt(10);
 		}
 	}
-
+	
 	@Environment(EnvType.CLIENT)
 	public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
 		Direction direction = Direction.random(random);
@@ -83,10 +83,10 @@ public class WetLavaSpongeBlock extends WetSpongeBlock {
 						}
 					}
 				}
-
+				
 				world.addParticle(ParticleTypes.DRIPPING_LAVA, d, e, f, 0.0D, 0.0D, 0.0D);
 			}
 		}
 	}
-
+	
 }

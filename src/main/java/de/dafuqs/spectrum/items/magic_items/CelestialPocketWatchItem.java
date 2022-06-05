@@ -21,22 +21,22 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 
 public class CelestialPocketWatchItem extends Item {
-
+	
 	// Since the watch can be triggered from an item frame, too
 	// and item frames can turn items in 8 directions this fits real fine
 	public static final int TIME_STEP_TICKS = 24000 / 8;
-
+	
 	public CelestialPocketWatchItem(Settings settings) {
 		super(settings);
 	}
-
+	
 	@Override
 	public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
 		ItemStack itemStack = user.getStackInHand(hand);
-
-		if(!world.isClient) {
+		
+		if (!world.isClient) {
 			// the clocks use is blocked if the world has a fixed daylight cycle
-			if(advanceTime((ServerPlayerEntity) user, (ServerWorld) world)) {
+			if (advanceTime((ServerPlayerEntity) user, (ServerWorld) world)) {
 				world.playSound(null, user.getBlockPos(), SpectrumSoundEvents.CELESTIAL_POCKET_WATCH_TICKING, SoundCategory.PLAYERS, 1.0F, 1.0F);
 			} else {
 				world.playSound(null, user.getBlockPos(), SpectrumSoundEvents.USE_FAIL, SoundCategory.PLAYERS, 1.0F, 1.0F);
@@ -45,7 +45,7 @@ public class CelestialPocketWatchItem extends Item {
 		}
 		return TypedActionResult.success(itemStack, true);
 	}
-
+	
 	public static boolean advanceTime(ServerPlayerEntity player, @NotNull ServerWorld world) {
 		GameRules.BooleanRule doDaylightCycleRule = world.getGameRules().get(GameRules.DO_DAYLIGHT_CYCLE);
 		if (doDaylightCycleRule.get()) {
@@ -62,12 +62,12 @@ public class CelestialPocketWatchItem extends Item {
 		}
 		return false;
 	}
-
+	
 	@Override
 	public void appendTooltip(ItemStack itemStack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
 		super.appendTooltip(itemStack, world, tooltip, tooltipContext);
-
-		if(world != null) {
+		
+		if (world != null) {
 			// the clocks use is blocked if the world has a fixed daylight cycle
 			GameRules.BooleanRule doDaylightCycleRule = world.getGameRules().get(GameRules.DO_DAYLIGHT_CYCLE);
 			if (doDaylightCycleRule.get()) {
@@ -81,5 +81,5 @@ public class CelestialPocketWatchItem extends Item {
 			}
 		}
 	}
-
+	
 }

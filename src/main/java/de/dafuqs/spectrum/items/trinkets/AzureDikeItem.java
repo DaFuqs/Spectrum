@@ -21,7 +21,7 @@ public interface AzureDikeItem {
 	float rechargeBonusAfterDamageTicks();
 	
 	default void recalculate(LivingEntity livingEntity) {
-		if(!livingEntity.getWorld().isClient) {
+		if (!livingEntity.getWorld().isClient) {
 			AzureDikeComponent azureDikeComponent = AzureDikeProvider.AZURE_DIKE_COMPONENT.get(livingEntity);
 			
 			Optional<TrinketComponent> trinketComponent = TrinketsApi.getTrinketComponent(livingEntity);

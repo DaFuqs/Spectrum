@@ -28,8 +28,8 @@ public class TreasureChestBlock extends SpectrumChestBlock {
 	public void openScreen(World world, BlockPos pos, PlayerEntity player) {
 		BlockEntity blockEntity = world.getBlockEntity(pos);
 		if (blockEntity instanceof TreasureChestBlockEntity treasureChestBlockEntity) {
-			if(!isChestBlocked(world, pos)) {
-				if(treasureChestBlockEntity.canOpen(player)) {
+			if (!isChestBlocked(world, pos)) {
+				if (treasureChestBlockEntity.canOpen(player)) {
 					player.openHandledScreen(treasureChestBlockEntity);
 				} else {
 					world.playSound(null, pos, SoundEvents.BLOCK_CHEST_LOCKED, SoundCategory.PLAYERS, 1.0F, 1.0F);

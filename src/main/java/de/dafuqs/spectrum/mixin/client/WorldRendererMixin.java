@@ -49,155 +49,163 @@ import java.util.Optional;
 @Environment(EnvType.CLIENT)
 @Mixin(value = WorldRenderer.class, priority = 900)
 public abstract class WorldRendererMixin implements WorldRendererAccessor {
-
-    @Shadow @Final private MinecraftClient client;
-    
-    @Shadow private ClientWorld world;
-    
-    @Shadow private static void drawShapeOutline(MatrixStack matrixStack, VertexConsumer vertexConsumer, VoxelShape voxelShape, double d, double e, double f, float g, float h, float i, float j) { }
-    
-    // if the mixin renders a bigger outline than the default 1:1. Cancels default outline
-    @Unique private boolean renderedExtendedOutline = false;
-
-    @Shadow
-    private BuiltChunkStorage chunks;
-
-    @Shadow public abstract void scheduleTerrainUpdate();
-    
-    @Shadow public abstract void playSong(@Nullable SoundEvent song, BlockPos songPosition);
-    
-    /**
-     * When triggered on client side lets the client redraw ALL chunks
-     * Warning: Costly + LagSpike!
-     */
-    public void rebuildAllChunks() {
-        if (MinecraftClient.getInstance().world != null) {
-            if (MinecraftClient.getInstance().worldRenderer != null && MinecraftClient.getInstance().player != null) {
-                for(ChunkBuilder.BuiltChunk chunk : this.chunks.chunks) {
-                    chunk.scheduleRebuild(true);
-                }
-                scheduleTerrainUpdate();
-            }
-        }
-    }
-
-    @Inject(method = "render(Lnet/minecraft/client/util/math/MatrixStack;FJZLnet/minecraft/client/render/Camera;Lnet/minecraft/client/render/GameRenderer;Lnet/minecraft/client/render/LightmapTextureManager;Lnet/minecraft/util/math/Matrix4f;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/util/hit/HitResult;getType()Lnet/minecraft/util/hit/HitResult$Type;"), locals = LocalCapture.CAPTURE_FAILHARD)
-    private void renderExtendedBlockOutline(MatrixStack matrices, float tickDelta, long limitTime, boolean renderBlockOutline, Camera camera, GameRenderer gameRenderer, LightmapTextureManager lightmapTextureManager, Matrix4f positionMatrix, CallbackInfo ci, Profiler profiler, boolean b, Vec3d vec3d, double d, double e, double f, Matrix4f matrix4f2, boolean b2, Frustum frustum2, float g, boolean b25, boolean b3, VertexConsumerProvider.Immediate immediate, HitResult hitResult2) {
-        renderedExtendedOutline = false;
-        GuiOverlay.doNotRenderOverlay();
-        
-        if(client.player != null && renderBlockOutline) {
-            ItemStack handItemStack = client.player.getEquippedStack(EquipmentSlot.MAINHAND);
-            Item handItem = handItemStack.getItem();
-            if(handItem instanceof PlacementStaffItem) {
-                HitResult hitResult = this.client.crosshairTarget;
-                if (hitResult != null && hitResult.getType() == HitResult.Type.BLOCK) {
-                    renderedExtendedOutline = renderPlacementStaffOutline(matrices, camera, d, e, f, immediate, (BlockHitResult) hitResult);
-                }
-            } else  if(handItem instanceof ExchangeStaffItem) {
-                HitResult hitResult = this.client.crosshairTarget;
-                if (hitResult != null && hitResult.getType() == HitResult.Type.BLOCK) {
-                    renderedExtendedOutline = renderExchangeStaffOutline(matrices, camera, d, e, f, immediate, handItemStack, (BlockHitResult) hitResult);
-                }
-            }
-        }
-    }
-    
-    private boolean renderPlacementStaffOutline(MatrixStack matrices, Camera camera, double d, double e, double f, VertexConsumerProvider.Immediate immediate, @NotNull BlockHitResult hitResult) {
-        BlockPos lookingAtPos = hitResult.getBlockPos();
-        BlockState lookingAtState = this.world.getBlockState(lookingAtPos);
-    
-        ClientPlayerEntity player = client.player;
-        if(player.isCreative() || !BuildingStaffItem.isBlacklisted(lookingAtState)) {
-            Block lookingAtBlock = lookingAtState.getBlock();
-            Item item = lookingAtBlock.asItem();
-            VoxelShape shape = VoxelShapes.empty();
-
-            if (item != Items.AIR) {
-                int itemCountInInventory;
-                if(player.isCreative()) {
-                    itemCountInInventory = Integer.MAX_VALUE;
-                } else {
-                    Triplet<Block, Item, Integer> inventoryItemAndCount = BuildingHelper.getBuildingItemCountInInventoryIncludingSimilars(player, lookingAtBlock);
-                    item = inventoryItemAndCount.getB();
-                    itemCountInInventory = inventoryItemAndCount.getC();
-                }
-                
-                boolean sneaking = player.isSneaking();
-                List<BlockPos> positions = BuildingHelper.calculateBuildingStaffSelection(world, lookingAtPos, hitResult.getSide(), itemCountInInventory, PlacementStaffItem.getRange(player), !sneaking);
-                if(itemCountInInventory == 0) {
-                    GuiOverlay.setItemStackToRender(new ItemStack(item), 0);
-                } else if (positions.size() > 0) {
-                    for (BlockPos newPosition : positions) {
-                        if (this.world.getWorldBorder().contains(newPosition)) {
-                            BlockPos testPos = lookingAtPos.subtract(newPosition);
-                            shape = VoxelShapes.union(shape, lookingAtState.getOutlineShape(this.world, lookingAtPos, ShapeContext.of(camera.getFocusedEntity())).offset(-testPos.getX(), -testPos.getY(), -testPos.getZ()));
-                        }
-                    }
-    
-                    GuiOverlay.setItemStackToRender(new ItemStack(item), positions.size());
-                    
-                    VertexConsumer linesBuffer = immediate.getBuffer(RenderLayer.getLines());
-                    drawShapeOutline(matrices, linesBuffer, shape, (double) lookingAtPos.getX() - d, (double) lookingAtPos.getY() - e, (double) lookingAtPos.getZ() - f, 0.0F, 0.0F, 0.0F, 0.4F);
-                    return true;
-                } else {
-                    GuiOverlay.setItemStackToRender(new ItemStack(item), 0);
-                }
-            }
-        }
-        
-        return false;
-    }
-    
-    private boolean renderExchangeStaffOutline(MatrixStack matrices, Camera camera, double d, double e, double f, VertexConsumerProvider.Immediate immediate, ItemStack exchangeStaffItemStack, @NotNull BlockHitResult hitResult) {
-        BlockPos lookingAtPos = hitResult.getBlockPos();
-        BlockState lookingAtState = this.world.getBlockState(lookingAtPos);
-    
-        ClientPlayerEntity player = client.player;
-        if(player.isCreative() || !BuildingStaffItem.isBlacklisted(lookingAtState)) {
-            Block lookingAtBlock = lookingAtState.getBlock();
-            Optional<Block> exchangeBlock = ExchangeStaffItem.getBlockTarget(exchangeStaffItemStack);
-            if(exchangeBlock.isPresent() && exchangeBlock.get() != lookingAtBlock) {
-                Item exchangeBlockItem = exchangeBlock.get().asItem();
-                VoxelShape shape = VoxelShapes.empty();
-    
-                if (exchangeBlockItem != Items.AIR) {
-                    int itemCountInInventory;
-                    if (player.isCreative()) {
-                        itemCountInInventory = Integer.MAX_VALUE;
-                    } else {
-                        itemCountInInventory = player.getInventory().count(exchangeBlockItem);
-                    }
-        
-                    if (itemCountInInventory > 0) {
-                        List<BlockPos> positions =BuildingHelper.getConnectedBlocks(world, lookingAtPos, itemCountInInventory, ExchangeStaffItem.getRange(player));
-                        for (BlockPos newPosition : positions) {
-                            if (this.world.getWorldBorder().contains(newPosition)) {
-                                BlockPos testPos = lookingAtPos.subtract(newPosition);
-                                shape = VoxelShapes.union(shape, lookingAtState.getOutlineShape(this.world, lookingAtPos, ShapeContext.of(camera.getFocusedEntity())).offset(-testPos.getX(), -testPos.getY(), -testPos.getZ()));
-                            }
-                        }
-    
-                        GuiOverlay.setItemStackToRender(new ItemStack(exchangeBlockItem), positions.size());
-                        
-                        VertexConsumer linesBuffer = immediate.getBuffer(RenderLayer.getLines());
-                        drawShapeOutline(matrices, linesBuffer, shape, (double) lookingAtPos.getX() - d, (double) lookingAtPos.getY() - e, (double) lookingAtPos.getZ() - f, 0.0F, 0.0F, 0.0F, 0.4F);
-                        return true;
-                    } else {
-                        GuiOverlay.setItemStackToRender(new ItemStack(exchangeBlockItem), 0);
-                    }
-                }
-            }
-        }
-        
-        return false;
-    }
-    
-    @Inject(method = "drawBlockOutline(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumer;Lnet/minecraft/entity/Entity;DDDLnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;)V", at = @At("HEAD"), cancellable = true)
-    private void cancelDrawBlockOutlineIfLargerOneIsDrawnInstead(MatrixStack matrixStack, VertexConsumer vertexConsumer, Entity entity, double d, double e, double f, BlockPos blockPos, BlockState blockState, CallbackInfo ci) {
-        if(renderedExtendedOutline) {
-            ci.cancel();
-        }
-    }
-    
+	
+	@Shadow
+	@Final
+	private MinecraftClient client;
+	
+	@Shadow
+	private ClientWorld world;
+	
+	@Shadow
+	private static void drawShapeOutline(MatrixStack matrixStack, VertexConsumer vertexConsumer, VoxelShape voxelShape, double d, double e, double f, float g, float h, float i, float j) {
+	}
+	
+	// if the mixin renders a bigger outline than the default 1:1. Cancels default outline
+	@Unique
+	private boolean renderedExtendedOutline = false;
+	
+	@Shadow
+	private BuiltChunkStorage chunks;
+	
+	@Shadow
+	public abstract void scheduleTerrainUpdate();
+	
+	@Shadow
+	public abstract void playSong(@Nullable SoundEvent song, BlockPos songPosition);
+	
+	/**
+	 * When triggered on client side lets the client redraw ALL chunks
+	 * Warning: Costly + LagSpike!
+	 */
+	public void rebuildAllChunks() {
+		if (MinecraftClient.getInstance().world != null) {
+			if (MinecraftClient.getInstance().worldRenderer != null && MinecraftClient.getInstance().player != null) {
+				for (ChunkBuilder.BuiltChunk chunk : this.chunks.chunks) {
+					chunk.scheduleRebuild(true);
+				}
+				scheduleTerrainUpdate();
+			}
+		}
+	}
+	
+	@Inject(method = "render(Lnet/minecraft/client/util/math/MatrixStack;FJZLnet/minecraft/client/render/Camera;Lnet/minecraft/client/render/GameRenderer;Lnet/minecraft/client/render/LightmapTextureManager;Lnet/minecraft/util/math/Matrix4f;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/util/hit/HitResult;getType()Lnet/minecraft/util/hit/HitResult$Type;"), locals = LocalCapture.CAPTURE_FAILHARD)
+	private void renderExtendedBlockOutline(MatrixStack matrices, float tickDelta, long limitTime, boolean renderBlockOutline, Camera camera, GameRenderer gameRenderer, LightmapTextureManager lightmapTextureManager, Matrix4f positionMatrix, CallbackInfo ci, Profiler profiler, boolean b, Vec3d vec3d, double d, double e, double f, Matrix4f matrix4f2, boolean b2, Frustum frustum2, float g, boolean b25, boolean b3, VertexConsumerProvider.Immediate immediate, HitResult hitResult2) {
+		renderedExtendedOutline = false;
+		GuiOverlay.doNotRenderOverlay();
+		
+		if (client.player != null && renderBlockOutline) {
+			ItemStack handItemStack = client.player.getEquippedStack(EquipmentSlot.MAINHAND);
+			Item handItem = handItemStack.getItem();
+			if (handItem instanceof PlacementStaffItem) {
+				HitResult hitResult = this.client.crosshairTarget;
+				if (hitResult != null && hitResult.getType() == HitResult.Type.BLOCK) {
+					renderedExtendedOutline = renderPlacementStaffOutline(matrices, camera, d, e, f, immediate, (BlockHitResult) hitResult);
+				}
+			} else if (handItem instanceof ExchangeStaffItem) {
+				HitResult hitResult = this.client.crosshairTarget;
+				if (hitResult != null && hitResult.getType() == HitResult.Type.BLOCK) {
+					renderedExtendedOutline = renderExchangeStaffOutline(matrices, camera, d, e, f, immediate, handItemStack, (BlockHitResult) hitResult);
+				}
+			}
+		}
+	}
+	
+	private boolean renderPlacementStaffOutline(MatrixStack matrices, Camera camera, double d, double e, double f, VertexConsumerProvider.Immediate immediate, @NotNull BlockHitResult hitResult) {
+		BlockPos lookingAtPos = hitResult.getBlockPos();
+		BlockState lookingAtState = this.world.getBlockState(lookingAtPos);
+		
+		ClientPlayerEntity player = client.player;
+		if (player.isCreative() || !BuildingStaffItem.isBlacklisted(lookingAtState)) {
+			Block lookingAtBlock = lookingAtState.getBlock();
+			Item item = lookingAtBlock.asItem();
+			VoxelShape shape = VoxelShapes.empty();
+			
+			if (item != Items.AIR) {
+				int itemCountInInventory;
+				if (player.isCreative()) {
+					itemCountInInventory = Integer.MAX_VALUE;
+				} else {
+					Triplet<Block, Item, Integer> inventoryItemAndCount = BuildingHelper.getBuildingItemCountInInventoryIncludingSimilars(player, lookingAtBlock);
+					item = inventoryItemAndCount.getB();
+					itemCountInInventory = inventoryItemAndCount.getC();
+				}
+				
+				boolean sneaking = player.isSneaking();
+				List<BlockPos> positions = BuildingHelper.calculateBuildingStaffSelection(world, lookingAtPos, hitResult.getSide(), itemCountInInventory, PlacementStaffItem.getRange(player), !sneaking);
+				if (itemCountInInventory == 0) {
+					GuiOverlay.setItemStackToRender(new ItemStack(item), 0);
+				} else if (positions.size() > 0) {
+					for (BlockPos newPosition : positions) {
+						if (this.world.getWorldBorder().contains(newPosition)) {
+							BlockPos testPos = lookingAtPos.subtract(newPosition);
+							shape = VoxelShapes.union(shape, lookingAtState.getOutlineShape(this.world, lookingAtPos, ShapeContext.of(camera.getFocusedEntity())).offset(-testPos.getX(), -testPos.getY(), -testPos.getZ()));
+						}
+					}
+					
+					GuiOverlay.setItemStackToRender(new ItemStack(item), positions.size());
+					
+					VertexConsumer linesBuffer = immediate.getBuffer(RenderLayer.getLines());
+					drawShapeOutline(matrices, linesBuffer, shape, (double) lookingAtPos.getX() - d, (double) lookingAtPos.getY() - e, (double) lookingAtPos.getZ() - f, 0.0F, 0.0F, 0.0F, 0.4F);
+					return true;
+				} else {
+					GuiOverlay.setItemStackToRender(new ItemStack(item), 0);
+				}
+			}
+		}
+		
+		return false;
+	}
+	
+	private boolean renderExchangeStaffOutline(MatrixStack matrices, Camera camera, double d, double e, double f, VertexConsumerProvider.Immediate immediate, ItemStack exchangeStaffItemStack, @NotNull BlockHitResult hitResult) {
+		BlockPos lookingAtPos = hitResult.getBlockPos();
+		BlockState lookingAtState = this.world.getBlockState(lookingAtPos);
+		
+		ClientPlayerEntity player = client.player;
+		if (player.isCreative() || !BuildingStaffItem.isBlacklisted(lookingAtState)) {
+			Block lookingAtBlock = lookingAtState.getBlock();
+			Optional<Block> exchangeBlock = ExchangeStaffItem.getBlockTarget(exchangeStaffItemStack);
+			if (exchangeBlock.isPresent() && exchangeBlock.get() != lookingAtBlock) {
+				Item exchangeBlockItem = exchangeBlock.get().asItem();
+				VoxelShape shape = VoxelShapes.empty();
+				
+				if (exchangeBlockItem != Items.AIR) {
+					int itemCountInInventory;
+					if (player.isCreative()) {
+						itemCountInInventory = Integer.MAX_VALUE;
+					} else {
+						itemCountInInventory = player.getInventory().count(exchangeBlockItem);
+					}
+					
+					if (itemCountInInventory > 0) {
+						List<BlockPos> positions = BuildingHelper.getConnectedBlocks(world, lookingAtPos, itemCountInInventory, ExchangeStaffItem.getRange(player));
+						for (BlockPos newPosition : positions) {
+							if (this.world.getWorldBorder().contains(newPosition)) {
+								BlockPos testPos = lookingAtPos.subtract(newPosition);
+								shape = VoxelShapes.union(shape, lookingAtState.getOutlineShape(this.world, lookingAtPos, ShapeContext.of(camera.getFocusedEntity())).offset(-testPos.getX(), -testPos.getY(), -testPos.getZ()));
+							}
+						}
+						
+						GuiOverlay.setItemStackToRender(new ItemStack(exchangeBlockItem), positions.size());
+						
+						VertexConsumer linesBuffer = immediate.getBuffer(RenderLayer.getLines());
+						drawShapeOutline(matrices, linesBuffer, shape, (double) lookingAtPos.getX() - d, (double) lookingAtPos.getY() - e, (double) lookingAtPos.getZ() - f, 0.0F, 0.0F, 0.0F, 0.4F);
+						return true;
+					} else {
+						GuiOverlay.setItemStackToRender(new ItemStack(exchangeBlockItem), 0);
+					}
+				}
+			}
+		}
+		
+		return false;
+	}
+	
+	@Inject(method = "drawBlockOutline(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumer;Lnet/minecraft/entity/Entity;DDDLnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;)V", at = @At("HEAD"), cancellable = true)
+	private void cancelDrawBlockOutlineIfLargerOneIsDrawnInstead(MatrixStack matrixStack, VertexConsumer vertexConsumer, Entity entity, double d, double e, double f, BlockPos blockPos, BlockState blockState, CallbackInfo ci) {
+		if (renderedExtendedOutline) {
+			ci.cancel();
+		}
+	}
+	
 }

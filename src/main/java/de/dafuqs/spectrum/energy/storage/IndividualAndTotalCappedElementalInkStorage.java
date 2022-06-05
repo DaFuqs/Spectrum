@@ -24,13 +24,13 @@ public class IndividualAndTotalCappedElementalInkStorage extends TotalCappedElem
 	
 	@Override
 	public long addEnergy(InkColor color, long amount) {
-		if(color instanceof ElementalColor elementalColor) {
+		if (color instanceof ElementalColor elementalColor) {
 			long currentAmount = this.storedEnergy.get(color);
 			long freeTotalEnergy = this.maxEnergyTotal - this.currentTotal;
 			long freeColorEnergy = this.maxEnergyPerColor - currentAmount;
 			long free = Math.min(freeTotalEnergy, freeColorEnergy);
 			
-			if(amount > free) {
+			if (amount > free) {
 				// overflow
 				this.storedEnergy.put(elementalColor, currentAmount + free);
 				return amount - free;
@@ -49,7 +49,7 @@ public class IndividualAndTotalCappedElementalInkStorage extends TotalCappedElem
 	}
 	
 	public static @Nullable IndividualAndTotalCappedElementalInkStorage fromNbt(@NotNull NbtCompound compound) {
-		if(compound.contains("MaxEnergyTotal", NbtElement.LONG_TYPE)) {
+		if (compound.contains("MaxEnergyTotal", NbtElement.LONG_TYPE)) {
 			long maxEnergyTotal = compound.getLong("MaxEnergyTotal");
 			long maxEnergyPerColor = compound.getLong("MaxEnergyPerColor");
 			long cyan = compound.getLong("Cyan");

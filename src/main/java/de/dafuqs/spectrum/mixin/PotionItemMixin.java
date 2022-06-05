@@ -13,7 +13,7 @@ public class PotionItemMixin {
 	
 	@Inject(method = "getMaxUseTime(Lnet/minecraft/item/ItemStack;)I", at = @At("RETURN"), cancellable = true)
 	private void spectrum$applyFastDrink(ItemStack stack, CallbackInfoReturnable<Integer> cir) {
-		if(cir.getReturnValue() > 4) {
+		if (cir.getReturnValue() > 4) {
 			NbtCompound compound = stack.getNbt();
 			if (compound != null && compound.contains("SpectrumFastDrinkable")) {
 				cir.setReturnValue(4);

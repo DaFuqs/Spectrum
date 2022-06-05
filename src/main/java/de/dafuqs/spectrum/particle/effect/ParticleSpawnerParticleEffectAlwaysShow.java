@@ -31,7 +31,7 @@ public class ParticleSpawnerParticleEffectAlwaysShow extends ParticleSpawnerPart
 			return particleSpawnerParticleEffect.collisions;
 		}), Codec.BOOL.fieldOf("glow_in_the_dark").forGetter((particleSpawnerParticleEffect) -> {
 			return particleSpawnerParticleEffect.glowInTheDark;
-		})).apply(instance, (Function7)(ParticleSpawnerParticleEffectAlwaysShow::new));
+		})).apply(instance, (Function7) (ParticleSpawnerParticleEffectAlwaysShow::new));
 	});
 	
 	public static final ParticleEffect.Factory<ParticleSpawnerParticleEffectAlwaysShow> FACTORY = new ParticleEffect.Factory<>() {
@@ -80,9 +80,9 @@ public class ParticleSpawnerParticleEffectAlwaysShow extends ParticleSpawnerPart
 	public String asString() {
 		return String.valueOf(Registry.PARTICLE_TYPE.getId(this.getType()));
 	}
-
+	
 	public ParticleType getType() {
 		return SpectrumParticleTypes.PARTICLE_SPAWNER_ALWAYS_SHOW;
 	}
-
+	
 }

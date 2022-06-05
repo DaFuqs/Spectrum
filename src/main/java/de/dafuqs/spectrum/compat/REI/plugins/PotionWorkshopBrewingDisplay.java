@@ -19,6 +19,7 @@ public class PotionWorkshopBrewingDisplay extends PotionWorkshopRecipeDisplay {
 	
 	/**
 	 * When using the REI recipe functionality
+	 *
 	 * @param recipe The recipe
 	 */
 	public PotionWorkshopBrewingDisplay(PotionWorkshopBrewingRecipe recipe) {
@@ -33,7 +34,7 @@ public class PotionWorkshopBrewingDisplay extends PotionWorkshopRecipeDisplay {
 		super(inputs, outputs, recipe);
 		this.statusEffect = recipe.getStatusEffect();
 	}
-
+	
 	@Override
 	public CategoryIdentifier<?> getCategoryIdentifier() {
 		return SpectrumPlugins.POTION_WORKSHOP_BREWING;

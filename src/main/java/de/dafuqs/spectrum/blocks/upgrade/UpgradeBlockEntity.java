@@ -6,9 +6,9 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.util.math.BlockPos;
 
 public class UpgradeBlockEntity extends BlockEntity {
-
+	
 	public UpgradeBlockEntity(BlockPos pos, BlockState state) {
 		super(SpectrumBlockEntityRegistry.UPGRADE_BLOCK, pos, state);
 	}
-
+	
 }

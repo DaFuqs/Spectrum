@@ -13,28 +13,28 @@ import net.minecraft.world.World;
 import java.util.Queue;
 
 public class LavaSpongeBlock extends SpongeBlock {
-
+	
 	public LavaSpongeBlock(Settings settings) {
 		super(settings);
 	}
-
+	
 	protected void update(World world, BlockPos pos) {
 		if (this.absorbLava(world, pos)) {
 			world.setBlockState(pos, SpectrumBlocks.WET_LAVA_SPONGE.getDefaultState(), 2);
 			world.syncWorldEvent(2001, pos, Block.getRawIdFromState(Blocks.LAVA.getDefaultState()));
 		}
 	}
-
+	
 	private boolean absorbLava(World world, BlockPos pos) {
 		Queue<Pair<BlockPos, Integer>> queue = Lists.newLinkedList();
 		queue.add(new Pair<>(pos, 0));
 		int i = 0;
-
-		while(!queue.isEmpty()) {
+		
+		while (!queue.isEmpty()) {
 			Pair<BlockPos, Integer> pair = queue.poll();
 			BlockPos blockPos = pair.getLeft();
 			int j = pair.getRight();
-
+			
 			for (Direction direction : Direction.values()) {
 				BlockPos blockPos2 = blockPos.offset(direction);
 				BlockState blockState = world.getBlockState(blockPos2);
@@ -54,13 +54,13 @@ public class LavaSpongeBlock extends SpongeBlock {
 					}
 				}
 			}
-
+			
 			if (i > 64) {
 				break;
 			}
 		}
-
+		
 		return i > 0;
 	}
-
+	
 }

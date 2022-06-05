@@ -37,7 +37,7 @@ public class GleamingPinItem extends SpectrumTrinketItem implements EnchanterEnc
 	public GleamingPinItem(Settings settings) {
 		super(settings, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_gleaming_pin"));
 	}
-
+	
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
@@ -49,7 +49,7 @@ public class GleamingPinItem extends SpectrumTrinketItem implements EnchanterEnc
 		SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity(world, player.getPos().add(0, 0.75, 0), SpectrumParticleTypes.LIQUID_CRYSTAL_SPARKLE, 100, new Vec3d(0, 0.5, 0), new Vec3d(2.5, 0.1, 2.5));
 		
 		world.getOtherEntities(player, player.getBoundingBox().expand(getEffectRange(gleamingPinStack)), EntityPredicates.VALID_LIVING_ENTITY).forEach((entity) -> {
-			if(entity instanceof LivingEntity livingEntity) {
+			if (entity instanceof LivingEntity livingEntity) {
 				livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.GLOWING, EFFECT_DURATION, 0, true, true));
 			}
 		});

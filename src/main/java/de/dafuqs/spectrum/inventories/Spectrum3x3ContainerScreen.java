@@ -13,30 +13,30 @@ import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 public class Spectrum3x3ContainerScreen extends HandledScreen<Spectrum3x3ContainerScreenHandler> {
-
+	
 	private static final Identifier TIER_1_TEXTURE_3x3 = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/container/generic_3x3_tier_1.png");
 	private static final Identifier TIER_2_TEXTURE_3x3 = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/container/generic_3x3_tier_2.png");
 	private static final Identifier TIER_3_TEXTURE_3x3 = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/container/generic_3x3_tier_3.png");
-
+	
 	private final Identifier backgroundTexture;
-
+	
 	public Spectrum3x3ContainerScreen(Spectrum3x3ContainerScreenHandler handler, PlayerInventory inventory, Text title) {
 		super(handler, inventory, title);
 		ProgressionStage tier = handler.getTier();
 		this.backgroundTexture = getBackground(tier);
 	}
-
+	
 	protected void init() {
 		super.init();
 		this.titleX = (this.backgroundWidth - this.textRenderer.getWidth(this.title)) / 2;
 	}
-
+	
 	public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
 		this.renderBackground(matrices);
 		super.render(matrices, mouseX, mouseY, delta);
 		this.drawMouseoverTooltip(matrices, mouseX, mouseY);
 	}
-
+	
 	/**
 	 * Draw with custom background
 	 */
@@ -48,7 +48,7 @@ public class Spectrum3x3ContainerScreen extends HandledScreen<Spectrum3x3Contain
 		int j = (this.height - this.backgroundHeight) / 2;
 		this.drawTexture(matrices, i, j, 0, 0, this.backgroundWidth, this.backgroundHeight);
 	}
-
+	
 	@Contract(pure = true)
 	private Identifier getBackground(@NotNull ProgressionStage tier) {
 		switch (tier) {
@@ -63,5 +63,5 @@ public class Spectrum3x3ContainerScreen extends HandledScreen<Spectrum3x3Contain
 			}
 		}
 	}
-
+	
 }

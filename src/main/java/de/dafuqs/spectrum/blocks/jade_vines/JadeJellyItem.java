@@ -20,7 +20,7 @@ public class JadeJellyItem extends Item {
 	public JadeJellyItem(Settings settings) {
 		super(settings);
 	}
-		
+	
 	@Override
 	public void appendTooltip(ItemStack itemStack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
 		super.appendTooltip(itemStack, world, tooltip, tooltipContext);

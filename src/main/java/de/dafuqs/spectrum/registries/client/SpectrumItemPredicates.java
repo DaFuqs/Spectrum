@@ -42,7 +42,7 @@ public class SpectrumItemPredicates {
 				
 				if (clientWorld == null) {
 					return 0.0F;
-				} else if(!clientWorld.getDimension().isNatural()) {
+				} else if (!clientWorld.getDimension().isNatural()) {
 					return 1.0F;
 				} else {
 					return clientWorld.getMoonPhase() / 8F;
@@ -145,7 +145,7 @@ public class SpectrumItemPredicates {
 				return 0.0F;
 			} else {
 				long max = storage.getMaxTotal();
-				return (float) Math.max (0.01, (double) current / (double) max);
+				return (float) Math.max(0.01, (double) current / (double) max);
 			}
 		});
 	}

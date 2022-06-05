@@ -48,7 +48,7 @@ public abstract class PastelNetworkNodeBlockEntity extends BlockEntity {
 	
 	public void updateConnectedInventory(World world, BlockPos blockPos, Direction facingDirection) {
 		BlockEntity connectedBlockEntity = world.getBlockEntity(blockPos.offset(facingDirection.getOpposite()));
-		if(connectedBlockEntity instanceof Inventory connectedInventory) {
+		if (connectedBlockEntity instanceof Inventory connectedInventory) {
 			this.connectedInventory = connectedInventory;
 		}
 	}
@@ -56,12 +56,12 @@ public abstract class PastelNetworkNodeBlockEntity extends BlockEntity {
 	public void initialize(World world, BlockPos pos, Direction facingDirection) {
 		tickTimer.checkCap();
 		updateConnectedInventory(world, pos, facingDirection);
-		if(this.network != null) {
+		if (this.network != null) {
 			this.network = PastelNetwork.getNetworkForNewNode(this);
 		}
 		
 		int range = this.getRange();
-		int range2 = range/2;
+		int range2 = range / 2;
 		for (int xOffset = -range; xOffset <= range; xOffset++) {
 			for (int yOffset = -range2; yOffset <= 0; yOffset++) {
 				for (int zOffset = -range; zOffset <= range; zOffset++) {
@@ -79,7 +79,7 @@ public abstract class PastelNetworkNodeBlockEntity extends BlockEntity {
 	}
 	
 	public void remove() {
-		if(this.network != null) {
+		if (this.network != null) {
 			this.network.removeNode(this);
 		}
 	}

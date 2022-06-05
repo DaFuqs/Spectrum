@@ -41,7 +41,7 @@ public class SpectrumStatusEffects {
 	public static boolean isIn(TagKey<StatusEffect> tag, StatusEffect effect) {
 		int id = Registry.STATUS_EFFECT.getRawId(effect);
 		Optional<RegistryEntry<StatusEffect>> entry = Registry.STATUS_EFFECT.getEntry(id);
-		if(entry.isEmpty()) {
+		if (entry.isEmpty()) {
 			return false;
 		} else {
 			return entry.get().isIn(tag);

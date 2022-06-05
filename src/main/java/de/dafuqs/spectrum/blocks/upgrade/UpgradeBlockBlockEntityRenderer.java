@@ -23,23 +23,23 @@ public class UpgradeBlockBlockEntityRenderer<PedestalUpgradeBlockEntity extends 
 	private SpriteIdentifier spriteIdentifier;
 	private final ModelPart root;
 	private final ModelPart disk;
-
+	
 	public UpgradeBlockBlockEntityRenderer(BlockEntityRendererFactory.Context ctx) {
 		TexturedModelData texturedModelData = getTexturedModelData(Upgradeable.UpgradeType.SPEED);
 		root = texturedModelData.createModel();
 		root.setPivot(8.0F, 8.0F, 8.0F);
 		disk = root.getChild("gemstone_disk");
 	}
-
+	
 	@Override
 	public void render(PedestalUpgradeBlockEntity entity, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light, int overlay) {
 		// do not render the floating disk when there is a block on top of the pedestal upgrade block
-		if(entity.getWorld() != null && !entity.getWorld().getBlockState(entity.getPos().up()).isAir()) {
+		if (entity.getWorld() != null && !entity.getWorld().getBlockState(entity.getPos().up()).isAir()) {
 			return;
 		}
 		
 		Block block = entity.getWorld().getBlockState(entity.getPos()).getBlock();
-		if(block instanceof UpgradeBlock upgradeBlock) {
+		if (block instanceof UpgradeBlock upgradeBlock) {
 			//upgradeType = upgradeBlock.getUpgradeType();
 			float upgradeMod = (float) upgradeBlock.getUpgradeMod();
 			
@@ -51,12 +51,12 @@ public class UpgradeBlockBlockEntityRenderer<PedestalUpgradeBlockEntity extends 
 			root.render(matrixStack, vertexConsumer, light, overlay);
 		}
 	}
-
+	
 	// TODO: Use a different model for each upgrade type
-	public @NotNull TexturedModelData getTexturedModelData(Upgradeable.@NotNull UpgradeType upgradeType){
+	public @NotNull TexturedModelData getTexturedModelData(Upgradeable.@NotNull UpgradeType upgradeType) {
 		ModelData modelData = new ModelData();
 		ModelPartData modelPartData = modelData.getRoot();
-
+		
 		switch (upgradeType) {
 			case SPEED -> {
 				spriteIdentifier = new SpriteIdentifier(SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE, new Identifier(SpectrumCommon.MOD_ID, "entity/pedestal_upgrade_speed"));
@@ -96,5 +96,5 @@ public class UpgradeBlockBlockEntityRenderer<PedestalUpgradeBlockEntity extends 
 			}
 		}
 	}
-
+	
 }

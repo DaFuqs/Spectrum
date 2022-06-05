@@ -25,10 +25,10 @@ import java.util.List;
 import java.util.Optional;
 
 public class FusionShrineRecipe implements Recipe<Inventory>, GatedRecipe {
-
+	
 	protected final Identifier id;
 	protected final String group;
-
+	
 	protected final List<IngredientStack> craftingInputs;
 	protected final Fluid fluidInput;
 	protected final ItemStack output;
@@ -42,24 +42,29 @@ public class FusionShrineRecipe implements Recipe<Inventory>, GatedRecipe {
 	protected final boolean noBenefitsFromYieldUpgrades;
 	
 	protected final List<FusionShrineRecipeWorldCondition> worldConditions;
-	@NotNull protected final FusionShrineRecipeWorldEffect startWorldEffect;
-	@NotNull protected final List<FusionShrineRecipeWorldEffect> duringWorldEffects;
-	@NotNull protected final FusionShrineRecipeWorldEffect finishWorldEffect;
-	@Nullable protected final Identifier requiredAdvancementIdentifier;
-	@Nullable protected final Text description;
-
+	@NotNull
+	protected final FusionShrineRecipeWorldEffect startWorldEffect;
+	@NotNull
+	protected final List<FusionShrineRecipeWorldEffect> duringWorldEffects;
+	@NotNull
+	protected final FusionShrineRecipeWorldEffect finishWorldEffect;
+	@Nullable
+	protected final Identifier requiredAdvancementIdentifier;
+	@Nullable
+	protected final Text description;
+	
 	public FusionShrineRecipe(Identifier id, String group, List<IngredientStack> craftingInputs, Fluid fluidInput, ItemStack output, float experience, int craftingTime, boolean noBenefitsFromYieldUpgrades, Identifier requiredAdvancementIdentifier,
 	                          List<FusionShrineRecipeWorldCondition> worldConditions, FusionShrineRecipeWorldEffect startWorldEffect, List<FusionShrineRecipeWorldEffect> duringWorldEffects, FusionShrineRecipeWorldEffect finishWorldEffect, Text description) {
 		this.id = id;
 		this.group = group;
-
+		
 		this.craftingInputs = craftingInputs;
 		this.fluidInput = fluidInput;
 		this.output = output;
 		this.experience = experience;
 		this.craftingTime = craftingTime;
 		this.noBenefitsFromYieldUpgrades = noBenefitsFromYieldUpgrades;
-
+		
 		this.worldConditions = worldConditions;
 		this.startWorldEffect = startWorldEffect;
 		this.duringWorldEffects = duringWorldEffects;
@@ -72,32 +77,32 @@ public class FusionShrineRecipe implements Recipe<Inventory>, GatedRecipe {
 	
 	@Override
 	public boolean equals(Object object) {
-		if(object instanceof FusionShrineRecipe) {
+		if (object instanceof FusionShrineRecipe) {
 			return ((FusionShrineRecipe) object).getId().equals(this.getId());
 		}
 		return false;
 	}
-
+	
 	/**
 	 * Only tests the items. The required fluid has to be tested manually by the crafting block
 	 */
 	@Override
 	public boolean matches(Inventory inv, World world) {
 		List<IngredientStack> ingredientStacks = this.getIngredientStacks();
-		if(inv.size() >= ingredientStacks.size()) {
+		if (inv.size() >= ingredientStacks.size()) {
 			int inputStackCount = 0;
-			for(int i = 0; i < inv.size(); i++) {
+			for (int i = 0; i < inv.size(); i++) {
 				ItemStack itemStack = inv.getStack(i);
 				if (!itemStack.isEmpty()) {
 					inputStackCount++;
 					boolean found = false;
-					for(IngredientStack ingredientStack : ingredientStacks) {
-						if(ingredientStack.test(inv.getStack(i))) {
+					for (IngredientStack ingredientStack : ingredientStacks) {
+						if (ingredientStack.test(inv.getStack(i))) {
 							found = true;
 							break;
 						}
 					}
-					if(!found) {
+					if (!found) {
 						return false;
 					}
 				}
@@ -108,26 +113,26 @@ public class FusionShrineRecipe implements Recipe<Inventory>, GatedRecipe {
 			return false;
 		}
 	}
-
+	
 	@Override
 	public ItemStack craft(Inventory inv) {
 		return null;
 	}
-
+	
 	@Override
 	public boolean fits(int width, int height) {
 		return true;
 	}
-
+	
 	@Override
 	public ItemStack getOutput() {
 		return output;
 	}
-
+	
 	public boolean isIgnoredInRecipeBook() {
 		return true;
 	}
-
+	
 	@Override
 	public ItemStack createIcon() {
 		return new ItemStack(SpectrumBlocks.FUSION_SHRINE_BASALT);
@@ -147,7 +152,7 @@ public class FusionShrineRecipe implements Recipe<Inventory>, GatedRecipe {
 	public RecipeType<?> getType() {
 		return SpectrumRecipeTypes.FUSION_SHRINE;
 	}
-
+	
 	// should not be used. Instead use getIngredientStacks(), which includes item counts
 	@Override
 	@Deprecated
@@ -158,63 +163,63 @@ public class FusionShrineRecipe implements Recipe<Inventory>, GatedRecipe {
 	public List<IngredientStack> getIngredientStacks() {
 		return this.craftingInputs;
 	}
-
+	
 	public float getExperience() {
 		return experience;
 	}
-
+	
 	/**
 	 * The advancement the player has to have to let the recipe be craftable
+	 *
 	 * @return The advancement identifier. A null value means the player is always able to craft this recipe
 	 */
 	@Nullable
 	public Identifier getRequiredAdvancementIdentifier() {
 		return requiredAdvancementIdentifier;
 	}
-
+	
 	/**
 	 * Returns a boolean depending on if the recipes condition is set
 	 * This can be always true, a specific day or moon phase, or weather.
 	 */
 	public boolean areConditionMetCurrently(World world) {
-		for(FusionShrineRecipeWorldCondition worldCondition : this.worldConditions) {
-			if(!worldCondition.isMetCurrently(world)) {
+		for (FusionShrineRecipeWorldCondition worldCondition : this.worldConditions) {
+			if (!worldCondition.isMetCurrently(world)) {
 				return false;
 			}
 		}
 		return true;
 	}
-
+	
 	public Fluid getFluidInput() {
 		return this.fluidInput;
 	}
-
+	
 	public int getCraftingTime() {
 		return this.craftingTime;
 	}
-
+	
 	/**
-	 *
 	 * @param tick The crafting tick if the fusion shrine recipe
 	 * @return The effect that should be played for the given recipe tick
 	 */
 	public FusionShrineRecipeWorldEffect getWorldEffectForTick(int tick) {
-		if(tick == 1) {
+		if (tick == 1) {
 			return this.startWorldEffect;
-		} else if(tick == this.craftingTime) {
+		} else if (tick == this.craftingTime) {
 			return this.finishWorldEffect;
 		} else {
-			if(this.duringWorldEffects.size() == 0) {
+			if (this.duringWorldEffects.size() == 0) {
 				return null;
-			} else if(this.duringWorldEffects.size() == 1) {
+			} else if (this.duringWorldEffects.size() == 1) {
 				return this.duringWorldEffects.get(0);
 			} else {
 				// we really have to calculate the current effect, huh?
 				float parts = (float) this.craftingTime / this.duringWorldEffects.size();
 				int index = (int) (tick / (parts));
 				FusionShrineRecipeWorldEffect effect = this.duringWorldEffects.get(index);
-				if(effect.isOneTimeEffect(effect)) {
-					if(index != (int) parts) {
+				if (effect.isOneTimeEffect(effect)) {
+					if (index != (int) parts) {
 						return null;
 					}
 				}
@@ -222,9 +227,9 @@ public class FusionShrineRecipe implements Recipe<Inventory>, GatedRecipe {
 			}
 		}
 	}
-
+	
 	public Optional<Text> getDescription() {
-		if(this.description == null) {
+		if (this.description == null) {
 			return Optional.empty();
 		} else {
 			return Optional.of(this.description);

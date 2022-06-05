@@ -15,7 +15,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Optional;
 
 public class BlockPosEventListener implements GameEventListener {
-
+	
 	protected final PositionSource positionSource;
 	protected final int range;
 	protected final BlockPosEventListener.Callback callback;
@@ -24,13 +24,13 @@ public class BlockPosEventListener implements GameEventListener {
 	protected BlockPos eventSourceBlockPos;
 	protected int distance;
 	protected int delay = 0;
-
+	
 	public BlockPosEventListener(PositionSource positionSource, int range, BlockPosEventListener.Callback listener) {
 		this.positionSource = positionSource;
 		this.range = range;
 		this.callback = listener;
 	}
-
+	
 	public void tick(World world) {
 		if (this.event.isPresent()) {
 			--this.delay;
@@ -41,15 +41,15 @@ public class BlockPosEventListener implements GameEventListener {
 			}
 		}
 	}
-
+	
 	public PositionSource getPositionSource() {
 		return this.positionSource;
 	}
-
+	
 	public int getRange() {
 		return this.range;
 	}
-
+	
 	public boolean listen(World world, GameEvent event, @Nullable Entity entity, BlockPos pos) {
 		if (!this.shouldActivate(event, entity)) {
 			return false;
@@ -73,7 +73,7 @@ public class BlockPosEventListener implements GameEventListener {
 	boolean shouldActivate(GameEvent event, @Nullable Entity entity) {
 		return true;
 	}
-
+	
 	private void listen(World world, GameEvent event, BlockPos pos, BlockPos sourcePos) {
 		this.event = Optional.of(event);
 		if (world instanceof ServerWorld) {
@@ -86,17 +86,17 @@ public class BlockPosEventListener implements GameEventListener {
 	public BlockPos getSourceBlockPos() {
 		return this.eventSourceBlockPos;
 	}
-
+	
 	public interface Callback {
 		/**
 		 * Returns whether the callback wants to accept this event.
 		 */
 		boolean accepts(World world, GameEventListener listener, BlockPos pos, GameEvent event, @Nullable Entity entity);
-
+		
 		/**
 		 * Accepts a game event after delay.
 		 */
 		void accept(World world, GameEventListener listener, GameEvent event, int distance);
 	}
-
+	
 }

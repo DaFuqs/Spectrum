@@ -26,27 +26,27 @@ import java.util.Random;
 public class FadingBlock extends DecayBlock {
 	
 	public static final EnumProperty<DecayConversion> DECAY_STATE = EnumProperty.of("decay_state", DecayConversion.class);
-
+	
 	public enum DecayConversion implements StringIdentifiable {
 		DEFAULT("default"),
 		LEAVES("leaves"),
 		MAGIC_LEAVES("magic_leaves");
-
+		
 		private final String name;
-
+		
 		DecayConversion(String name) {
 			this.name = name;
 		}
-
+		
 		public String toString() {
 			return this.name;
 		}
-
+		
 		public String asString() {
 			return this.name;
 		}
 	}
-
+	
 	public FadingBlock(Settings settings, TagKey<Block> whiteListBlockTag, TagKey<Block> blackListBlockTag, int tier, float damageOnTouching) {
 		super(settings, whiteListBlockTag, blackListBlockTag, tier, damageOnTouching);
 		setDefaultState(getStateManager().getDefaultState().with(DECAY_STATE, DecayConversion.DEFAULT));
@@ -67,12 +67,12 @@ public class FadingBlock extends DecayBlock {
 			Random random = world.getRandom();
 			world.addParticle(ParticleTypes.POOF, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, ((-1.0F + random.nextFloat() * 2.0F) / 12.0F), 0.05, ((-1.0F + random.nextFloat() * 2.0F) / 12.0F));
 			
-			for(int i = 0; i < 10; i ++) {
+			for (int i = 0; i < 10; i++) {
 				world.addParticle(SpectrumParticleTypes.DECAY_PLACE, pos.getX() + random.nextFloat(), pos.getY() + 1, pos.getZ() + random.nextFloat(), ((-1.0F + random.nextFloat() * 2.0F) / 12.0F), 0.05, ((-1.0F + random.nextFloat() * 2.0F) / 12.0F));
 			}
 		}
 	}
-
+	
 	@Override
 	protected float getSpreadChance() {
 		return SpectrumCommon.CONFIG.FadingDecayTickRate;
@@ -92,7 +92,7 @@ public class FadingBlock extends DecayBlock {
 	protected void appendProperties(StateManager.Builder<Block, BlockState> stateManager) {
 		stateManager.add(DECAY_STATE);
 	}
-
+	
 	@Environment(EnvType.CLIENT)
 	public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
 		if (state.get(FadingBlock.DECAY_STATE).equals(DecayConversion.MAGIC_LEAVES)) {
@@ -101,5 +101,5 @@ public class FadingBlock extends DecayBlock {
 			world.addParticle(new BlockStateParticleEffect(ParticleTypes.BLOCK, state), pos.getX() + xOffset, pos.getY() + 1, pos.getZ() + zOffset, 0.0D, 0.0D, 0.0D);
 		}
 	}
-
+	
 }

@@ -32,10 +32,10 @@ public class GerminatedJadeVineSeedsItem extends CloakedItem {
 	public ActionResult useOnBlock(ItemUsageContext context) {
 		World world = context.getWorld();
 		BlockPos pos = context.getBlockPos();
-
-		if(JadeVineRootsBlock.canBePlantedOn(world.getBlockState(pos)) && world.getBlockState(pos.down()).isAir()) {
-			if(context.getWorld().isClient) {
-				for(int i = 0; i < 16; i++){
+		
+		if (JadeVineRootsBlock.canBePlantedOn(world.getBlockState(pos)) && world.getBlockState(pos.down()).isAir()) {
+			if (context.getWorld().isClient) {
+				for (int i = 0; i < 16; i++) {
 					JadeVine.spawnParticlesClient(world, pos);
 					JadeVine.spawnParticlesClient(world, pos.down());
 				}
@@ -57,7 +57,7 @@ public class GerminatedJadeVineSeedsItem extends CloakedItem {
 				Criteria.PLACED_BLOCK.trigger(player, pos, context.getStack());
 				Criteria.PLACED_BLOCK.trigger(player, pos.down(), context.getStack());
 				
-				if(player == null || !player.isCreative()) {
+				if (player == null || !player.isCreative()) {
 					context.getStack().decrement(1);
 				}
 				return ActionResult.CONSUME;

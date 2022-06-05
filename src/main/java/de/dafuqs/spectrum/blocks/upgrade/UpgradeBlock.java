@@ -51,7 +51,7 @@ public class UpgradeBlock extends BlockWithEntity {
 	private final double upgradeMod;
 	
 	protected static final VoxelShape SHAPE_UP = Block.createCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 10.0D, 14.0D);
-
+	
 	public UpgradeBlock(Settings settings, Upgradeable.UpgradeType upgradeType, double upgradeMod) {
 		super(settings);
 		this.upgradeType = upgradeType;
@@ -59,37 +59,37 @@ public class UpgradeBlock extends BlockWithEntity {
 		
 		registeredUpgradeBlocks.add(this);
 	}
-
+	
 	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
 		return SHAPE_UP;
 	}
-
+	
 	public boolean canPathfindThrough(BlockState state, BlockView world, BlockPos pos, NavigationType type) {
 		return false;
 	}
-
+	
 	@Override
 	public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
 		super.onBlockAdded(state, world, pos, oldState, notify);
 		updateConnectedUpgradeBlock(world, pos);
 	}
-
-
+	
+	
 	@Override
 	public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
 		super.onStateReplaced(state, world, pos, newState, moved);
 		updateConnectedUpgradeBlock(world, pos);
 	}
-
+	
 	/**
 	 * When placed or removed the upgrade block searches for a valid Upgradeable block
 	 * and triggers it to update its upgrades
 	 */
 	private void updateConnectedUpgradeBlock(@NotNull World world, @NotNull BlockPos pos) {
-		for(Vec3i possibleUpgradeBlockOffset : possibleUpgradeBlockOffsets) {
+		for (Vec3i possibleUpgradeBlockOffset : possibleUpgradeBlockOffsets) {
 			BlockPos currentPos = pos.add(possibleUpgradeBlockOffset);
 			BlockEntity blockEntity = world.getBlockEntity(currentPos);
-			if(blockEntity instanceof Upgradeable upgradeable) {
+			if (blockEntity instanceof Upgradeable upgradeable) {
 				upgradeable.resetUpgrades();
 			}
 		}
@@ -106,7 +106,7 @@ public class UpgradeBlock extends BlockWithEntity {
 	public BlockRenderType getRenderType(BlockState state) {
 		return BlockRenderType.MODEL;
 	}
-
+	
 	@Nullable
 	@Override
 	public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {

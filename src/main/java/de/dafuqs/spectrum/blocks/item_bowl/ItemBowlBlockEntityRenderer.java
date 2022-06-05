@@ -19,12 +19,12 @@ public class ItemBowlBlockEntityRenderer implements BlockEntityRenderer<ItemBowl
 	public ItemBowlBlockEntityRenderer(BlockEntityRendererFactory.Context renderContext) {
 	
 	}
-
+	
 	public void render(ItemBowlBlockEntity blockEntity, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light, int overlay) {
 		ItemStack stack = blockEntity.inventory.getStack(0);
-		if(!stack.isEmpty()) {
+		if (!stack.isEmpty()) {
 			float time = blockEntity.getWorld().getTime() + tickDelta;
-
+			
 			matrixStack.push();
 			double currentRadiant = radiant + (radiant * (time / 16.0) / 8.0F);
 			double height = Math.sin((time + currentRadiant) / 8.0) / 7.0; // item height
@@ -34,5 +34,5 @@ public class ItemBowlBlockEntityRenderer implements BlockEntityRenderer<ItemBowl
 			matrixStack.pop();
 		}
 	}
-
+	
 }

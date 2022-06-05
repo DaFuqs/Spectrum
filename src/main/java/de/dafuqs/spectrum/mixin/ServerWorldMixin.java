@@ -16,13 +16,13 @@ import java.util.function.BooleanSupplier;
 public class ServerWorldMixin {
 	
 	@Inject(at = @At(value = "RETURN"), method = "tick")
-	void postEntityTick(BooleanSupplier shouldKeepTicking, CallbackInfo ci){
-		ShootingStarEntity.doShootingStarSpawns((ServerWorld)(Object) this);
+	void postEntityTick(BooleanSupplier shouldKeepTicking, CallbackInfo ci) {
+		ShootingStarEntity.doShootingStarSpawns((ServerWorld) (Object) this);
 	}
-
+	
 	@Inject(at = @At("TAIL"), method = "spawnEntity")
 	private void spawnEntity(Entity entity, final CallbackInfoReturnable<Boolean> info) {
 		entity.emitGameEvent(SpectrumGameEvents.ENTITY_SPAWNED);
 	}
-
+	
 }

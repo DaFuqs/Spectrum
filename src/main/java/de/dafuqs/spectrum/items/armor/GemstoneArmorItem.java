@@ -21,10 +21,10 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 
 public class GemstoneArmorItem extends ArmorItem implements ArmorWithHitEffect {
-
+	
 	private final EquipmentSlot equipmentSlot;
 	private final int armorSlotID;
-
+	
 	public GemstoneArmorItem(ArmorMaterial material, EquipmentSlot slot, Settings settings) {
 		super(material, slot, settings);
 		this.equipmentSlot = slot;
@@ -32,7 +32,7 @@ public class GemstoneArmorItem extends ArmorItem implements ArmorWithHitEffect {
 			case HEAD -> {
 				this.armorSlotID = 0;
 			}
-			case CHEST ->  {
+			case CHEST -> {
 				this.armorSlotID = 1;
 			}
 			case LEGS -> {
@@ -43,7 +43,7 @@ public class GemstoneArmorItem extends ArmorItem implements ArmorWithHitEffect {
 			}
 		}
 	}
-
+	
 	@Override
 	public void onHit(ItemStack itemStack, DamageSource source, LivingEntity targetEntity, float amount) {
 		// While mostly useful against mobs, being able to trigger this effect for all kinds of damage
@@ -51,49 +51,49 @@ public class GemstoneArmorItem extends ArmorItem implements ArmorWithHitEffect {
 		process(equipmentSlot, source, targetEntity);
 		targetEntity.world.playSound(null, targetEntity.getBlockPos(), SoundEvents.BLOCK_AMETHYST_BLOCK_HIT, SoundCategory.PLAYERS, 1.0F, 1.0F);
 		targetEntity.world.playSound(null, targetEntity.getBlockPos(), SoundEvents.ENTITY_SPLASH_POTION_BREAK, SoundCategory.PLAYERS, 1.0F, 1.0F);
-
+		
 		itemStack.damage(2, targetEntity, (e) -> {
 			e.sendEquipmentBreakStatus(EquipmentSlot.fromTypeIndex(EquipmentSlot.Type.ARMOR, this.armorSlotID));
 		});
 	}
-
+	
 	@Override
 	public void appendTooltip(ItemStack itemStack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
 		super.appendTooltip(itemStack, world, tooltip, tooltipContext);
 		addTooltip(tooltip, equipmentSlot);
 	}
-
+	
 	private void process(@NotNull EquipmentSlot equipmentSlot, DamageSource source, LivingEntity targetEntity) {
 		switch (equipmentSlot) {
 			case HEAD -> {
-				if(source.getAttacker() instanceof LivingEntity) {
-					StatusEffectInstance statusEffectInstance = new StatusEffectInstance(StatusEffects.WEAKNESS, 5*20, 2);
+				if (source.getAttacker() instanceof LivingEntity) {
+					StatusEffectInstance statusEffectInstance = new StatusEffectInstance(StatusEffects.WEAKNESS, 5 * 20, 2);
 					((LivingEntity) source.getAttacker()).addStatusEffect(statusEffectInstance);
-					statusEffectInstance = new StatusEffectInstance(StatusEffects.SLOWNESS, 5*20, 2);
+					statusEffectInstance = new StatusEffectInstance(StatusEffects.SLOWNESS, 5 * 20, 2);
 					((LivingEntity) source.getAttacker()).addStatusEffect(statusEffectInstance);
 				}
 			}
 			case CHEST -> {
-				StatusEffectInstance statusEffectInstance = new StatusEffectInstance(StatusEffects.ABSORPTION, 5*20, 1);
+				StatusEffectInstance statusEffectInstance = new StatusEffectInstance(StatusEffects.ABSORPTION, 5 * 20, 1);
 				targetEntity.addStatusEffect(statusEffectInstance);
 				statusEffectInstance = new StatusEffectInstance(StatusEffects.INSTANT_HEALTH, 1, 1);
 				targetEntity.addStatusEffect(statusEffectInstance);
 			}
 			case FEET -> {
-				StatusEffectInstance statusEffectInstance = new StatusEffectInstance(StatusEffects.RESISTANCE, 5*20, 2);
+				StatusEffectInstance statusEffectInstance = new StatusEffectInstance(StatusEffects.RESISTANCE, 5 * 20, 2);
 				targetEntity.addStatusEffect(statusEffectInstance);
-				statusEffectInstance = new StatusEffectInstance(StatusEffects.REGENERATION, 5*20, 1);
+				statusEffectInstance = new StatusEffectInstance(StatusEffects.REGENERATION, 5 * 20, 1);
 				targetEntity.addStatusEffect(statusEffectInstance);
 			}
 			case LEGS -> {
-				StatusEffectInstance statusEffectInstance = new StatusEffectInstance(StatusEffects.SPEED, 5*20, 2);
+				StatusEffectInstance statusEffectInstance = new StatusEffectInstance(StatusEffects.SPEED, 5 * 20, 2);
 				targetEntity.addStatusEffect(statusEffectInstance);
-				statusEffectInstance = new StatusEffectInstance(StatusEffects.INVISIBILITY, 5*20, 2);
+				statusEffectInstance = new StatusEffectInstance(StatusEffects.INVISIBILITY, 5 * 20, 2);
 				targetEntity.addStatusEffect(statusEffectInstance);
 			}
 		}
 	}
-
+	
 	public void addTooltip(List<Text> tooltip, @NotNull EquipmentSlot equipmentSlot) {
 		switch (equipmentSlot) {
 			case HEAD -> {
@@ -110,5 +110,5 @@ public class GemstoneArmorItem extends ArmorItem implements ArmorWithHitEffect {
 			}
 		}
 	}
-
+	
 }

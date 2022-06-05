@@ -66,9 +66,9 @@ import java.util.*;
 import java.util.function.BiConsumer;
 
 public class SpectrumCommon implements ModInitializer {
-
+	
 	public static final String MOD_ID = "spectrum";
-
+	
 	public static SpectrumConfig CONFIG;
 	private static final Logger LOGGER = LoggerFactory.getLogger("Spectrum");
 	
@@ -85,7 +85,7 @@ public class SpectrumCommon implements ModInitializer {
 	 * Like waterlogged, but for liquid crystal!
 	 */
 	public static final BooleanProperty LIQUID_CRYSTAL_LOGGED = BooleanProperty.of("liquidcrystallogged");
-
+	
 	public static void logInfo(String message) {
 		LOGGER.info("[Spectrum] " + message);
 	}
@@ -97,11 +97,11 @@ public class SpectrumCommon implements ModInitializer {
 	public static void logError(String message) {
 		LOGGER.error("[Spectrum] " + message);
 	}
-
+	
 	@Override
 	public void onInitialize() {
 		logInfo("Starting Common Startup");
-
+		
 		//Set up config
 		logInfo("Loading config file...");
 		AutoConfig.register(SpectrumConfig.class, JanksonConfigSerializer::new);
@@ -152,17 +152,17 @@ public class SpectrumCommon implements ModInitializer {
 		SpectrumFeatures.register();
 		logInfo("Registering Configured and Placed Features...");
 		SpectrumConfiguredFeatures.register();
-
+		
 		// Dimension
 		logInfo("Registering Dimension...");
 		DeeperDownDimension.setup();
-
+		
 		// Recipes
 		logInfo("Registering Recipe Types...");
 		SpectrumRecipeTypes.registerSerializer();
 		logInfo("Registering Loot Conditions...");
 		SpectrumLootConditionTypes.register();
-
+		
 		// GUI
 		logInfo("Registering Containers...");
 		SpectrumContainers.register();
@@ -172,13 +172,13 @@ public class SpectrumCommon implements ModInitializer {
 		// Status Effects
 		logInfo("Registering Status Effects...");
 		SpectrumStatusEffects.register();
-
+		
 		// Default enchantments for some items
 		logInfo("Registering Default Item Stack Damage Immunities...");
 		SpectrumItemStackDamageImmunities.registerDefaultItemStackImmunities();
 		logInfo("Registering Enchantment Drops...");
 		EnchantmentDrops.setup();
-
+		
 		logInfo("Registering Items to Fuel Registry...");
 		SpectrumItems.registerFuelRegistry();
 		logInfo("Registering Enchantments...");
@@ -187,10 +187,10 @@ public class SpectrumCommon implements ModInitializer {
 		SpectrumEntityTypes.register();
 		logInfo("Registering Commands...");
 		SpectrumCommands.register();
-
+		
 		logInfo("Registering Client To ServerPackage Receivers...");
 		SpectrumC2SPacketReceiver.registerC2SReceivers();
-
+		
 		logInfo("Registering Block Cloaker...");
 		BlockCloakManager.setupCloaks();
 		logInfo("Registering MultiBlocks...");
@@ -204,7 +204,7 @@ public class SpectrumCommon implements ModInitializer {
 		
 		logInfo("Registering Potion Workshop Reagents...");
 		PotionWorkshopReagents.register();
-
+		
 		logInfo("Initializing Item Groups...");
 		SpectrumItemGroups.ITEM_GROUP_GENERAL.initialize();
 		SpectrumItemGroups.ITEM_GROUP_BLOCKS.initialize();
@@ -221,7 +221,7 @@ public class SpectrumCommon implements ModInitializer {
 		DispenserBlock.registerBehavior(SpectrumBlocks.PRISTINE_SHOOTING_STAR.asItem(), new ShootingStarBlock.ShootingStarBlockDispenserBehavior());
 		
 		AttackBlockCallback.EVENT.register((player, world, hand, pos, direction) -> {
-			if(!world.isClient && !player.isSpectator()) {
+			if (!world.isClient && !player.isSpectator()) {
 				if (player.getMainHandStack().isOf(SpectrumItems.EXCHANGE_STAFF)) {
 					Optional<Block> blockTarget = ExchangeStaffItem.getBlockTarget(player.getMainHandStack());
 					if (blockTarget.isPresent()) {
@@ -229,7 +229,7 @@ public class SpectrumCommon implements ModInitializer {
 					}
 					return ActionResult.CONSUME;
 				} else if (player.getMainHandStack().isOf(SpectrumItems.RADIANCE_STAFF)) {
-					if(!world.getBlockState(pos).isOf(SpectrumBlocks.WAND_LIGHT_BLOCK)) { // those get destroyed instead
+					if (!world.getBlockState(pos).isOf(SpectrumBlocks.WAND_LIGHT_BLOCK)) { // those get destroyed instead
 						BlockPos targetPos = pos.offset(direction);
 						if (RadianceStaffItem.placeLight(world, targetPos, player, player.getMainHandStack())) {
 							RadianceStaffItem.playSoundAndParticles(world, targetPos, player, world.random.nextInt(5), world.random.nextInt(5));
@@ -242,13 +242,13 @@ public class SpectrumCommon implements ModInitializer {
 			}
 			return ActionResult.PASS;
 		});
-
+		
 		ServerWorldEvents.LOAD.register((minecraftServer, serverWorld) -> {
 			SpectrumCommon.minecraftServer = minecraftServer;
-
+			
 			for (Iterator<Block> it = Registry.BLOCK.stream().iterator(); it.hasNext(); ) {
 				Block block = it.next();
-				if(block instanceof FluidBlock fluidBlock) {
+				if (block instanceof FluidBlock fluidBlock) {
 					fluidLuminance.put(fluidBlock.getFluidState(fluidBlock.getDefaultState()).getFluid(), fluidBlock.getDefaultState().getLuminance());
 				}
 			}
@@ -262,7 +262,7 @@ public class SpectrumCommon implements ModInitializer {
 			// it gets fully healed and all negative status effects removed
 			
 			// When the sleep timer reached 100 the player is fully asleep
-			if(entity instanceof ServerPlayerEntity serverPlayerEntity
+			if (entity instanceof ServerPlayerEntity serverPlayerEntity
 					&& serverPlayerEntity.getSleepTimer() == 100
 					&& SpectrumTrinketItem.hasEquipped(entity, SpectrumItems.WHISPY_CIRCLET)) {
 				
@@ -270,33 +270,34 @@ public class SpectrumCommon implements ModInitializer {
 				WhispyCircletItem.removeNegativeStatusEffects(entity);
 			}
 		});
-
+		
 		logInfo("Registering RecipeCache reload listener");
 		ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(new SimpleSynchronousResourceReloadListener() {
 			private final Identifier id = new Identifier(SpectrumCommon.MOD_ID, "compacting_cache_clearer");
+			
 			@Override
 			public void reload(ResourceManager manager) {
 				CompactingChestBlockEntity.clearCache();
 				
-				if(minecraftServer != null) {
+				if (minecraftServer != null) {
 					injectEnchantmentUpgradeRecipes(minecraftServer);
 					FirestarterMobBlock.addBlockSmeltingRecipes(minecraftServer.getRecipeManager());
 				}
 			}
-
+			
 			@Override
 			public Identifier getFabricId() {
 				return id;
 			}
 		});
-
+		
 		logInfo("Common startup completed!");
 	}
 	
 	// It could have been so much easier and performant, but KubeJS overrides the ENTIRE recipe manager
 	// and cancels all sorts of functions at HEAD unconditionally, so Spectrum can not mixin into it
 	public void injectEnchantmentUpgradeRecipes(MinecraftServer minecraftServer) {
-		if(!EnchantmentUpgradeRecipeSerializer.enchantmentUpgradeRecipesToInject.isEmpty()) {
+		if (!EnchantmentUpgradeRecipeSerializer.enchantmentUpgradeRecipesToInject.isEmpty()) {
 			ImmutableMap<Identifier, Recipe<?>> collectedRecipes = EnchantmentUpgradeRecipeSerializer.enchantmentUpgradeRecipesToInject.stream().collect(ImmutableMap.toImmutableMap(EnchantmentUpgradeRecipe::getId, enchantmentUpgradeRecipe -> enchantmentUpgradeRecipe));
 			Map<RecipeType<?>, Map<Identifier, Recipe<?>>> recipes = ((RecipeManagerMixin) minecraftServer.getRecipeManager()).getRecipes();
 			
@@ -304,8 +305,8 @@ public class SpectrumCommon implements ModInitializer {
 			for (Map<Identifier, Recipe<?>> r : recipes.values()) {
 				newList.addAll(r.values());
 			}
-			for(Recipe<?> recipe : collectedRecipes.values()) {
-				if(!newList.contains(recipe)) {
+			for (Recipe<?> recipe : collectedRecipes.values()) {
+				if (!newList.contains(recipe)) {
 					newList.add(recipe);
 				}
 			}
@@ -326,5 +327,5 @@ public class SpectrumCommon implements ModInitializer {
 		identifier.accept(SpawnerSpawnCountChangeRecipe.SERIALIZER, new Identifier(SpectrumCommon.MOD_ID, "spirit_instiller_spawner_spawn_count_change"));
 		identifier.accept(SpawnerSpawnDelayChangeRecipe.SERIALIZER, new Identifier(SpectrumCommon.MOD_ID, "spirit_instiller_spawner_spawn_delay_change"));
 	}
-
+	
 }

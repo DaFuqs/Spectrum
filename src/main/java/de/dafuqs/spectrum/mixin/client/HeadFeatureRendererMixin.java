@@ -21,12 +21,12 @@ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 @Mixin(HeadFeatureRenderer.class)
 public class HeadFeatureRendererMixin<T extends LivingEntity, M extends EntityModel<T> & ModelWithHead> {
-
-	@Inject(method= "render(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;ILnet/minecraft/entity/LivingEntity;FFFFFF)V",
+	
+	@Inject(method = "render(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;ILnet/minecraft/entity/LivingEntity;FFFFFF)V",
 			at = @At(value = "INVOKE", target = "Lnet/minecraft/client/model/ModelPart;rotate(Lnet/minecraft/client/util/math/MatrixStack;)V", shift = At.Shift.AFTER),
 			cancellable = true, locals = LocalCapture.CAPTURE_FAILHARD)
 	private void render(MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light, T livingEntity, float animationProgress, float h, float j, float k, float l, float m, CallbackInfo ci, ItemStack itemStack, Item item, boolean bl) {
-		if (item instanceof BlockItem && ((BlockItem)item).getBlock() instanceof SpectrumSkullBlock spectrumSkullBlock) {
+		if (item instanceof BlockItem && ((BlockItem) item).getBlock() instanceof SpectrumSkullBlock spectrumSkullBlock) {
 			m = 1.1875F;
 			matrixStack.scale(m, -m, -m);
 			if (bl) {
@@ -42,5 +42,5 @@ public class HeadFeatureRendererMixin<T extends LivingEntity, M extends EntityMo
 			ci.cancel();
 		}
 	}
-
+	
 }

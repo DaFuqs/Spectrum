@@ -33,7 +33,7 @@ public class InkConvertingRecipe implements Recipe<Inventory>, GatedRecipe {
 	protected final InkColor color;
 	protected final long amount;
 	protected final Identifier requiredAdvancementIdentifier;
-
+	
 	public InkConvertingRecipe(Identifier id, Ingredient inputIngredient, InkColor color, long amount, @Nullable Identifier requiredAdvancementIdentifier) {
 		this.id = id;
 		this.inputIngredient = inputIngredient;
@@ -41,7 +41,7 @@ public class InkConvertingRecipe implements Recipe<Inventory>, GatedRecipe {
 		this.amount = amount;
 		this.requiredAdvancementIdentifier = requiredAdvancementIdentifier;
 		
-		for(ItemStack itemStack : inputIngredient.getMatchingStacks()) {
+		for (ItemStack itemStack : inputIngredient.getMatchingStacks()) {
 			Item item = itemStack.getItem();
 			if (!INPUT_ITEMS.contains(item)) {
 				INPUT_ITEMS.add(item);
@@ -57,17 +57,17 @@ public class InkConvertingRecipe implements Recipe<Inventory>, GatedRecipe {
 	public boolean matches(Inventory inv, World world) {
 		return this.inputIngredient.test(inv.getStack(0));
 	}
-
+	
 	@Override
 	public ItemStack craft(Inventory inv) {
 		return null;
 	}
-
+	
 	@Override
 	public boolean fits(int width, int height) {
 		return true;
 	}
-
+	
 	@Override
 	public ItemStack getOutput() {
 		return ItemStack.EMPTY;
@@ -77,7 +77,7 @@ public class InkConvertingRecipe implements Recipe<Inventory>, GatedRecipe {
 	public boolean isIgnoredInRecipeBook() {
 		return true;
 	}
-
+	
 	@Override
 	public ItemStack createIcon() {
 		return new ItemStack(SpectrumBlocks.COLOR_PICKER);
@@ -107,7 +107,7 @@ public class InkConvertingRecipe implements Recipe<Inventory>, GatedRecipe {
 	
 	@Override
 	public boolean equals(Object object) {
-		if(object instanceof InkConvertingRecipe inkConvertingRecipe) {
+		if (object instanceof InkConvertingRecipe inkConvertingRecipe) {
 			return inkConvertingRecipe.getId().equals(this.getId());
 		}
 		return false;

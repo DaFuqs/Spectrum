@@ -29,27 +29,27 @@ public class FailingBlock extends DecayBlock {
 	
 	public static final IntProperty AGE = Properties.AGE_15; // failing may spread 15 blocks max. It consuming obsidian resets that value
 	public static final EnumProperty<DecayConversion> DECAY_STATE = EnumProperty.of("decay_state", DecayConversion.class);
-
+	
 	public enum DecayConversion implements StringIdentifiable {
 		DEFAULT("default"),
 		OBSIDIAN("obsidian"),
 		CRYING_OBSIDIAN("crying_obsidian");
-
+		
 		private final String name;
-
+		
 		DecayConversion(String name) {
 			this.name = name;
 		}
-
+		
 		public String toString() {
 			return this.name;
 		}
-
+		
 		public String asString() {
 			return this.name;
 		}
 	}
-
+	
 	public FailingBlock(Settings settings, TagKey<Block> whiteListBlockTag, TagKey<Block> blackListBlockTag, int tier, float damageOnTouching) {
 		super(settings, whiteListBlockTag, blackListBlockTag, tier, damageOnTouching);
 		setDefaultState(getStateManager().getDefaultState().with(AGE, 0).with(DECAY_STATE, DecayConversion.DEFAULT));
@@ -71,7 +71,7 @@ public class FailingBlock extends DecayBlock {
 			Random random = world.getRandom();
 			world.addParticle(ParticleTypes.EXPLOSION, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, ((-1.0F + random.nextFloat() * 2.0F) / 12.0F), 0.05, ((-1.0F + random.nextFloat() * 2.0F) / 12.0F));
 			
-			for(int i = 0; i < 20; i ++) {
+			for (int i = 0; i < 20; i++) {
 				world.addParticle(SpectrumParticleTypes.DECAY_PLACE, pos.getX() - 0.2 + random.nextFloat() * 1.4, pos.getY() + random.nextFloat(), pos.getZ() - 0.2 + random.nextFloat() * 1.4, ((-1.0F + random.nextFloat() * 2.0F) / 12.0F), 0.05, ((-1.0F + random.nextFloat() * 2.0F) / 12.0F));
 			}
 		}
@@ -81,12 +81,12 @@ public class FailingBlock extends DecayBlock {
 	public boolean hasRandomTicks(BlockState state) {
 		return state.get(AGE) != Properties.AGE_15_MAX;
 	}
-
+	
 	@Override
 	protected float getSpreadChance() {
 		return SpectrumCommon.CONFIG.FailingDecayTickRate;
 	}
-
+	
 	@Override
 	protected void appendProperties(StateManager.Builder<Block, BlockState> stateManager) {
 		stateManager.add(AGE, DECAY_STATE);
@@ -101,7 +101,7 @@ public class FailingBlock extends DecayBlock {
 	protected BlockState getSpreadState(BlockState previousState) {
 		return this.getDefaultState().with(AGE, previousState.get(AGE) + 1);
 	}
-
+	
 	@Environment(EnvType.CLIENT)
 	public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
 		if (state.get(FailingBlock.DECAY_STATE).equals(DecayConversion.CRYING_OBSIDIAN)) {
@@ -110,5 +110,5 @@ public class FailingBlock extends DecayBlock {
 			world.addParticle(new BlockStateParticleEffect(ParticleTypes.BLOCK, state), pos.getX() + xOffset, pos.getY() + 1, pos.getZ() + zOffset, 0.0D, 0.0D, 0.0D);
 		}
 	}
-
+	
 }

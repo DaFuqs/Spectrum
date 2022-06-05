@@ -15,9 +15,9 @@ public class CrossbowItemMixin {
 	@Inject(method = "getSpeed(Lnet/minecraft/item/ItemStack;)F", at = @At("RETURN"), cancellable = true)
 	private static void getSpeed(ItemStack stack, CallbackInfoReturnable<Float> cir) {
 		int sniperLevel = EnchantmentHelper.getLevel(SpectrumEnchantments.SNIPER, stack);
-		if(sniperLevel > 0) {
+		if (sniperLevel > 0) {
 			cir.setReturnValue(cir.getReturnValue() + 1.0F * sniperLevel);
 		}
 	}
-
+	
 }

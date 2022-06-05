@@ -13,15 +13,15 @@ public class PotionWorkshopCraftingCategory extends PotionWorkshopCategory {
 	public CategoryIdentifier getCategoryIdentifier() {
 		return SpectrumPlugins.POTION_WORKSHOP_CRAFTING;
 	}
-
+	
 	@Override
 	public Identifier getIdentifier() {
 		return new Identifier(SpectrumCommon.MOD_ID, "potion_workshop_crafting");
 	}
-
+	
 	@Override
 	public Text getTitle() {
 		return new TranslatableText("container.spectrum.rei.potion_workshop_crafting.title");
 	}
-
+	
 }

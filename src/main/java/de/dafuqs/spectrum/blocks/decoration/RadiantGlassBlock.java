@@ -14,17 +14,17 @@ public class RadiantGlassBlock extends GlassBlock {
 	public RadiantGlassBlock(Settings settings) {
 		super(settings);
 	}
-
+	
 	@Environment(EnvType.CLIENT)
 	public boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
-		if(stateFrom.isOf(this) || stateFrom.isOf(SpectrumBlocks.RADIANT_PLAYER_ONLY_GLASS)) {
+		if (stateFrom.isOf(this) || stateFrom.isOf(SpectrumBlocks.RADIANT_PLAYER_ONLY_GLASS)) {
 			return true;
 		}
 		return super.isSideInvisible(state, stateFrom, direction);
 	}
-
+	
 	public boolean isTranslucent(BlockState state, BlockView world, BlockPos pos) {
 		return true;
 	}
-
+	
 }

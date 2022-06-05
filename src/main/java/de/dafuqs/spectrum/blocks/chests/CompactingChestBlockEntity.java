@@ -35,7 +35,7 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 	CraftingRecipe lastCraftingRecipe; // cache
 	ItemVariant lastItemVariant; // cache
 	boolean hasToCraft;
-
+	
 	private static Map<AutoCompactingInventory.AutoCraftingMode, Map<ItemVariant, Optional<CraftingRecipe>>> cache = new EnumMap<>(AutoCompactingInventory.AutoCraftingMode.class);
 	
 	public CompactingChestBlockEntity(BlockPos blockPos, BlockState blockState) {
@@ -65,7 +65,7 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 	
 	public void readNbt(NbtCompound tag) {
 		super.readNbt(tag);
-		if(tag.contains("AutoCraftingMode", NbtElement.INT_TYPE)) {
+		if (tag.contains("AutoCraftingMode", NbtElement.INT_TYPE)) {
 			int autoCraftingModeInt = tag.getInt("AutoCraftingMode");
 			this.autoCraftingMode = AutoCompactingInventory.AutoCraftingMode.values()[autoCraftingModeInt];
 		}
@@ -106,7 +106,7 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 			}
 		}
 		// search for other recipes
-		if(optionalCraftingRecipe.isEmpty()) {
+		if (optionalCraftingRecipe.isEmpty()) {
 			optionalCraftingRecipe = searchRecipeToCraft();
 		}
 		
@@ -191,14 +191,14 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 	
 	private static boolean smartAddToInventory(List<ItemStack> itemStacks, List<ItemStack> inventory, boolean test) {
 		List<ItemStack> additionStacks = new ArrayList<>();
-		for(ItemStack itemStack : itemStacks) {
+		for (ItemStack itemStack : itemStacks) {
 			additionStacks.add(itemStack.copy());
 		}
 		
 		boolean tryStackExisting = true;
-		for(int i = 0; i < inventory.size(); i++) {
+		for (int i = 0; i < inventory.size(); i++) {
 			ItemStack currentStack = inventory.get(i);
-			for(ItemStack additionStack : additionStacks) {
+			for (ItemStack additionStack : additionStacks) {
 				boolean doneStuff = false;
 				if (additionStack.getCount() > 0) {
 					if (currentStack.isEmpty() && (test || !tryStackExisting)) {
@@ -231,22 +231,22 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 					}
 					
 					// if there were changes: check if all stacks have count 0
-					if(doneStuff) {
+					if (doneStuff) {
 						boolean allEmpty = true;
-						for(ItemStack itemStack : additionStacks) {
+						for (ItemStack itemStack : additionStacks) {
 							if (itemStack.getCount() > 0) {
 								allEmpty = false;
 								break;
 							}
 						}
-						if(allEmpty) {
+						if (allEmpty) {
 							return true;
 						}
 					}
 				}
 			}
 			
-			if(tryStackExisting && !test && i == inventory.size() - 1) {
+			if (tryStackExisting && !test && i == inventory.size() - 1) {
 				tryStackExisting = false;
 				i = -1;
 			}
@@ -284,9 +284,9 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 		buf.writeBlockPos(this.pos);
 		buf.writeInt(this.autoCraftingMode.ordinal());
 	}
-
+	
 	public static void clearCache() {
 		cache.clear();
 	}
-
+	
 }

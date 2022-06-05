@@ -16,7 +16,7 @@ import net.minecraft.world.event.listener.GameEventListener;
 import java.util.Optional;
 
 public class ItemEntityListener implements GameEventListener {
-
+	
 	protected final PositionSource positionSource;
 	protected final int range;
 	protected final ItemEntityListener.Callback callback;
@@ -24,13 +24,13 @@ public class ItemEntityListener implements GameEventListener {
 	protected int distance;
 	protected int delay = 0;
 	protected ItemEntity itemEntity;
-
+	
 	public ItemEntityListener(PositionSource positionSource, int range, ItemEntityListener.Callback listener) {
 		this.positionSource = positionSource;
 		this.range = range;
 		this.callback = listener;
 	}
-
+	
 	public void tick(World world) {
 		if (this.event.isPresent()) {
 			--this.delay;
@@ -41,15 +41,15 @@ public class ItemEntityListener implements GameEventListener {
 			}
 		}
 	}
-
+	
 	public PositionSource getPositionSource() {
 		return this.positionSource;
 	}
-
+	
 	public int getRange() {
 		return this.range;
 	}
-
+	
 	public boolean listen(World world, GameEvent event, @Nullable Entity entity, BlockPos pos) {
 		if (!this.shouldActivate(event, entity)) {
 			return false;
@@ -69,16 +69,16 @@ public class ItemEntityListener implements GameEventListener {
 			}
 		}
 	}
-
+	
 	boolean shouldActivate(GameEvent event, @Nullable Entity entity) {
 		if (this.event.isEmpty()) {
-			if(entity instanceof ItemEntity itemEntity) {
+			if (entity instanceof ItemEntity itemEntity) {
 				return itemEntity.isAlive() && !itemEntity.getStack().isEmpty();
 			}
 		}
 		return false;
 	}
-
+	
 	private void listen(World world, GameEvent event, BlockPos pos, BlockPos sourcePos) {
 		this.event = Optional.of(event);
 		if (world instanceof ServerWorld) {
@@ -87,21 +87,21 @@ public class ItemEntityListener implements GameEventListener {
 			SpectrumS2CPacketSender.sendItemTransferPacket((ServerWorld) world, new ItemTransfer(pos, this.positionSource, this.delay));
 		}
 	}
-
+	
 	public ItemEntity getItemEntity() {
 		return this.itemEntity;
 	}
-
+	
 	public interface Callback {
 		/**
 		 * Returns whether the callback wants to accept this event.
 		 */
 		boolean accepts(World world, GameEventListener listener, BlockPos pos, GameEvent event, @Nullable Entity entity);
-
+		
 		/**
 		 * Accepts a game event after delay.
 		 */
 		void accept(World world, GameEventListener listener, GameEvent event, int distance);
 	}
-
+	
 }

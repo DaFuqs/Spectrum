@@ -33,10 +33,10 @@ public class PreservationControllerBlock extends BlockWithEntity {
 	
 	@Override
 	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-		if(!world.isClient && player.isCreative()) { // for testing and building structures
+		if (!world.isClient && player.isCreative()) { // for testing and building structures
 			BlockEntity blockEntity = world.getBlockEntity(pos);
-			if(blockEntity instanceof PreservationControllerBlockEntity preservationControllerBlockEntity) {
-				if(player.isSneaking()) {
+			if (blockEntity instanceof PreservationControllerBlockEntity preservationControllerBlockEntity) {
+				if (player.isSneaking()) {
 					preservationControllerBlockEntity.yeetPlayer(player);
 					preservationControllerBlockEntity.toggleParticles();
 				} else {
@@ -50,7 +50,7 @@ public class PreservationControllerBlock extends BlockWithEntity {
 	@Override
 	public BlockState getPlacementState(ItemPlacementContext ctx) {
 		Direction direction = ctx.getSide().getOpposite();
-		if(direction == Direction.UP || direction == Direction.DOWN) { // those do not exist in Properties.HORIZONTAL_FACING
+		if (direction == Direction.UP || direction == Direction.DOWN) { // those do not exist in Properties.HORIZONTAL_FACING
 			direction = Direction.NORTH;
 		}
 		return this.getDefaultState().with(FACING, direction);
@@ -65,7 +65,7 @@ public class PreservationControllerBlock extends BlockWithEntity {
 	@Nullable
 	@Override
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-		if(!world.isClient) {
+		if (!world.isClient) {
 			return checkType(type, SpectrumBlockEntityRegistry.PRESERVATION_CONTROLLER, PreservationControllerBlockEntity::serverTick);
 		}
 		return null;

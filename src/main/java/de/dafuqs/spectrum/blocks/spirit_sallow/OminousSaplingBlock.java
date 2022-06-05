@@ -24,14 +24,14 @@ import java.util.Random;
 import java.util.UUID;
 
 public class OminousSaplingBlock extends Block implements BlockEntityProvider {
-
+	
 	public OminousSaplingBlock(Settings settings) {
 		super(settings);
 	}
-
+	
 	@Override
 	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-		if(!world.isClient()) {
+		if (!world.isClient()) {
 			OminousSaplingBlockEntity ominousSaplingBlockEntity = getBlockEntity(world, pos);
 			if (ominousSaplingBlockEntity != null) {
 				player.sendMessage(Text.of("Sapling UUID: " + ominousSaplingBlockEntity.getOwnerUUID()), false);
@@ -41,43 +41,43 @@ public class OminousSaplingBlock extends Block implements BlockEntityProvider {
 		}
 		return ActionResult.SUCCESS;
 	}
-
+	
 	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
 		if (world.getLightLevel(pos.up()) >= 9 && random.nextInt(2) == 0) {
 			this.generateOminousTree(world, pos, state, random);
 		}
 	}
-
+	
 	private void generateOminousTree(ServerWorld world, BlockPos pos, BlockState state, Random random) {
 		OminousSaplingBlockEntity ominousSaplingBlockEntity = getBlockEntity(world, pos);
-		if(ominousSaplingBlockEntity != null) {
+		if (ominousSaplingBlockEntity != null) {
 			UUID ownerUUID = ominousSaplingBlockEntity.getOwnerUUID();
 			ServerPlayerEntity serverPlayerEntity = SpectrumCommon.minecraftServer.getPlayerManager().getPlayer(ownerUUID);
-			if(serverPlayerEntity != null) { // offline?
-				Support.grantAdvancementCriterion(serverPlayerEntity, "lategame/grow_ominous_sapling","grow");
+			if (serverPlayerEntity != null) { // offline?
+				Support.grantAdvancementCriterion(serverPlayerEntity, "lategame/grow_ominous_sapling", "grow");
 			}
 		}
-
+		
 		// TODO: grow!
 	}
-
+	
 	@Override
 	public @Nullable BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
 		return new OminousSaplingBlockEntity(SpectrumBlockEntityRegistry.OMINOUS_SAPLING, pos, state);
 	}
-
+	
 	@Override
 	public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
 		return null;
 	}
-
+	
 	private OminousSaplingBlockEntity getBlockEntity(World world, BlockPos blockPos) {
 		BlockEntity saplingBlockEntity = world.getBlockEntity(blockPos);
-		if(saplingBlockEntity instanceof OminousSaplingBlockEntity) {
+		if (saplingBlockEntity instanceof OminousSaplingBlockEntity) {
 			return (OminousSaplingBlockEntity) saplingBlockEntity;
 		} else {
 			return null;
 		}
 	}
-
+	
 }

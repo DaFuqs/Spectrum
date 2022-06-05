@@ -20,10 +20,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(MiningToolItem.class)
 public class MiningToolItemMixin {
-
-	@Inject(at=@At("HEAD"), method= "postMine(Lnet/minecraft/item/ItemStack;Lnet/minecraft/world/World;Lnet/minecraft/block/BlockState;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/entity/LivingEntity;)Z")
+	
+	@Inject(at = @At("HEAD"), method = "postMine(Lnet/minecraft/item/ItemStack;Lnet/minecraft/world/World;Lnet/minecraft/block/BlockState;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/entity/LivingEntity;)Z")
 	public void countInertiaBlocks(ItemStack stack, World world, BlockState state, BlockPos pos, LivingEntity miner, CallbackInfoReturnable<Boolean> cir) {
-		if(stack != null) { // thank you, gobber
+		if (stack != null) { // thank you, gobber
 			long inertiaAmount = 0;
 			
 			if (SpectrumEnchantments.INERTIA.canEntityUse(miner) && EnchantmentHelper.getLevel(SpectrumEnchantments.INERTIA, stack) > 0) {
@@ -39,16 +39,16 @@ public class MiningToolItemMixin {
 				}
 			}
 			
-			if(miner instanceof ServerPlayerEntity serverPlayerEntity) {
+			if (miner instanceof ServerPlayerEntity serverPlayerEntity) {
 				SpectrumAdvancementCriteria.INERTIA_USED.trigger(serverPlayerEntity, state, (int) inertiaAmount);
 			}
 			
 		}
 	}
-
-	@Inject(at = @At("RETURN"), method= "getMiningSpeedMultiplier(Lnet/minecraft/item/ItemStack;Lnet/minecraft/block/BlockState;)F", cancellable = true)
+	
+	@Inject(at = @At("RETURN"), method = "getMiningSpeedMultiplier(Lnet/minecraft/item/ItemStack;Lnet/minecraft/block/BlockState;)F", cancellable = true)
 	public void applyInertiaMiningSpeedMultiplier(ItemStack stack, BlockState state, CallbackInfoReturnable<Float> cir) {
-		if(stack != null) { // thank you, gobber
+		if (stack != null) { // thank you, gobber
 			int inertiaLevel = EnchantmentHelper.getLevel(SpectrumEnchantments.INERTIA, stack);
 			inertiaLevel = Math.min(4, inertiaLevel); // inertia is capped at 5 levels. Higher and the formula would do weird stuff
 			if (inertiaLevel > 0) {
@@ -65,5 +65,5 @@ public class MiningToolItemMixin {
 			}
 		}
 	}
-
+	
 }

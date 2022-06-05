@@ -30,16 +30,16 @@ public class SpectrumSkullBlock extends SkullBlock {
 	public SpectrumSkullBlock(SkullType skullType, Settings settings) {
 		super(skullType, settings);
 	}
-
+	
 	public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
 		return new SpectrumSkullBlockEntity(pos, state);
 	}
-
+	
 	@Nullable
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
 		return null;
 	}
-
+	
 	// TODO: differentiate parrot / fox / ... colors
 	public enum SpectrumSkullBlockType implements SkullBlock.SkullType {
 		AXOLOTL_BLUE(EntityType.AXOLOTL),
@@ -155,7 +155,7 @@ public class SpectrumSkullBlock extends SkullBlock {
 	@Override
 	public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
 		super.onPlaced(world, pos, state, placer, itemStack);
-
+		
 		// Trigger advancement if player builds a wither structure with using wither skulls
 		if (getSkullType().equals(SpectrumSkullBlockType.WITHER) && placer instanceof ServerPlayerEntity serverPlayerEntity) {
 			if (pos.getY() >= world.getBottomY()) {
@@ -171,7 +171,7 @@ public class SpectrumSkullBlock extends SkullBlock {
 	private static BlockPattern getWitherSkullPattern() {
 		if (witherBossPattern == null) {
 			witherBossPattern = BlockPatternBuilder.start().aisle("^^^", "###", "~#~").where('#', (pos) ->
-					pos.getBlockState().isIn(BlockTags.WITHER_SUMMON_BASE_BLOCKS))
+							pos.getBlockState().isIn(BlockTags.WITHER_SUMMON_BASE_BLOCKS))
 					.where('^', CachedBlockPosition.matchesBlockState(BlockStatePredicate.forBlock(SpectrumBlocks.getMobHead(SpectrumSkullBlockType.WITHER))
 							.or(BlockStatePredicate.forBlock(SpectrumBlocks.getMobWallHead(SpectrumSkullBlockType.WITHER)))))
 					.where('~', CachedBlockPosition.matchesBlockState(MaterialPredicate.create(Material.AIR))).build();

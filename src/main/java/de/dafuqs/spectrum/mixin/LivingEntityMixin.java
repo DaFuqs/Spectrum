@@ -49,20 +49,25 @@ import java.util.Optional;
 
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin {
-
-	@Shadow @Nullable protected PlayerEntity attackingPlayer;
 	
-	@Shadow @Final private DefaultedList<ItemStack> syncedArmorStacks;
+	@Shadow
+	@Nullable
+	protected PlayerEntity attackingPlayer;
 	
-	@Shadow public abstract boolean hasStatusEffect(StatusEffect effect);
+	@Shadow
+	@Final
+	private DefaultedList<ItemStack> syncedArmorStacks;
+	
+	@Shadow
+	public abstract boolean hasStatusEffect(StatusEffect effect);
 	
 	@ModifyArg(method = "dropXp()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/ExperienceOrbEntity;spawn(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/util/math/Vec3d;I)V"), index = 2)
 	protected int spectrum$applyExuberance(int originalXP) {
 		return (int) (originalXP * spectrum$getExuberanceMod(this.attackingPlayer));
 	}
-
+	
 	private float spectrum$getExuberanceMod(PlayerEntity attackingPlayer) {
-		if(attackingPlayer != null && SpectrumEnchantments.EXUBERANCE.canEntityUse(attackingPlayer)) {
+		if (attackingPlayer != null && SpectrumEnchantments.EXUBERANCE.canEntityUse(attackingPlayer)) {
 			int exuberanceLevel = EnchantmentHelper.getEquipmentLevel(SpectrumEnchantments.EXUBERANCE, attackingPlayer);
 			return 1.0F + exuberanceLevel * SpectrumCommon.CONFIG.ExuberanceBonusExperiencePercentPerLevel;
 		} else {
@@ -72,14 +77,14 @@ public abstract class LivingEntityMixin {
 	
 	@Inject(at = @At("HEAD"), method = "fall(DZLnet/minecraft/block/BlockState;Lnet/minecraft/util/math/BlockPos;)V")
 	public void spectrum$mitigateFallDamageWithPuffCirclet(double heightDifference, boolean onGround, BlockState landedState, BlockPos landedPosition, CallbackInfo ci) {
-		if(onGround) {
+		if (onGround) {
 			LivingEntity thisEntity = (LivingEntity) (Object) this;
 			if (thisEntity.fallDistance > thisEntity.getSafeFallDistance()) {
 				Optional<TrinketComponent> component = TrinketsApi.getTrinketComponent(thisEntity);
 				if (component.isPresent()) {
 					if (!component.get().getEquipped(SpectrumItems.PUFF_CIRCLET).isEmpty()) {
 						int charges = AzureDikeProvider.getAzureDikeCharges(thisEntity);
-						if(charges > 0) {
+						if (charges > 0) {
 							AzureDikeProvider.absorbDamage(thisEntity, PuffCircletItem.FALL_DAMAGE_NEGATING_COST);
 							
 							thisEntity.fallDistance = 0;
@@ -101,7 +106,7 @@ public abstract class LivingEntityMixin {
 	
 	@ModifyVariable(at = @At("HEAD"), method = "damage(Lnet/minecraft/entity/damage/DamageSource;F)Z", argsOnly = true)
 	public float spectrum$applyAzureDikeDamageProtection(float amount, DamageSource source) {
-		if(source.isOutOfWorld() || source.isUnblockable() || amount <= 0 || ((Entity)(Object) this).isInvulnerableTo(source) || source.isFire() && hasStatusEffect(StatusEffects.FIRE_RESISTANCE)) {
+		if (source.isOutOfWorld() || source.isUnblockable() || amount <= 0 || ((Entity) (Object) this).isInvulnerableTo(source) || source.isFire() && hasStatusEffect(StatusEffects.FIRE_RESISTANCE)) {
 			return amount;
 		} else {
 			return AzureDikeProvider.absorbDamage((LivingEntity) (Object) this, amount);
@@ -111,10 +116,10 @@ public abstract class LivingEntityMixin {
 	@Inject(at = @At("RETURN"), method = "damage(Lnet/minecraft/entity/damage/DamageSource;F)Z")
 	public void spectrum$applyDisarmingEnchantment(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
 		// true if the entity got hurt
-		if(cir.getReturnValue() != null && cir.getReturnValue()) {
-			if(source.getAttacker() instanceof LivingEntity livingSource && SpectrumEnchantments.DISARMING.canEntityUse(livingSource)) {
+		if (cir.getReturnValue() != null && cir.getReturnValue()) {
+			if (source.getAttacker() instanceof LivingEntity livingSource && SpectrumEnchantments.DISARMING.canEntityUse(livingSource)) {
 				int disarmingLevel = EnchantmentHelper.getLevel(SpectrumEnchantments.DISARMING, livingSource.getMainHandStack());
-				if(disarmingLevel > 0 &&  Math.random() < disarmingLevel * SpectrumCommon.CONFIG.DisarmingChancePerLevelMobs) {
+				if (disarmingLevel > 0 && Math.random() < disarmingLevel * SpectrumCommon.CONFIG.DisarmingChancePerLevelMobs) {
 					DisarmingEnchantment.disarmEntity((LivingEntity) (Object) this, this.syncedArmorStacks);
 				}
 			}
@@ -123,14 +128,14 @@ public abstract class LivingEntityMixin {
 	
 	@Inject(at = @At("RETURN"), method = "tryUseTotem(Lnet/minecraft/entity/damage/DamageSource;)Z", cancellable = true)
 	public void spectrum$checkForTotemPendant(DamageSource source, CallbackInfoReturnable<Boolean> cir) {
-		if(!cir.getReturnValue()) {
+		if (!cir.getReturnValue()) {
 			// if no other totem triggered: check for a totem pendant
 			LivingEntity thisEntity = (LivingEntity) (Object) this;
 			Optional<TrinketComponent> optionalTrinketComponent = TrinketsApi.getTrinketComponent(thisEntity);
-			if(optionalTrinketComponent.isPresent()) {
+			if (optionalTrinketComponent.isPresent()) {
 				List<Pair<SlotReference, ItemStack>> totems = optionalTrinketComponent.get().getEquipped(SpectrumItems.TOTEM_PENDANT);
-				for(Pair<SlotReference, ItemStack> pair : totems) {
-					if(pair.getRight().getCount() > 0) {
+				for (Pair<SlotReference, ItemStack> pair : totems) {
+					if (pair.getRight().getCount() > 0) {
 						// consume pendant
 						pair.getRight().decrement(1);
 						
@@ -140,7 +145,7 @@ public abstract class LivingEntityMixin {
 						thisEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 900, 1));
 						thisEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.ABSORPTION, 100, 1));
 						thisEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 800, 0));
-						thisEntity.world.sendEntityStatus(thisEntity, (byte)35);
+						thisEntity.world.sendEntityStatus(thisEntity, (byte) 35);
 						
 						// override the previous return value
 						cir.setReturnValue(true);
@@ -149,10 +154,10 @@ public abstract class LivingEntityMixin {
 			}
 		}
 	}
-
+	
 	@Inject(method = "damage(Lnet/minecraft/entity/damage/DamageSource;F)Z", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;isDead()Z", ordinal = 1))
 	public void spectrum$TriggerArmorWithHitEffect(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
-		if (!((LivingEntity)(Object) this).world.isClient) {
+		if (!((LivingEntity) (Object) this).world.isClient) {
 			if (((Object) this) instanceof MobEntity) {
 				MobEntity thisMobEntity = (MobEntity) (Object) this;
 				for (ItemStack armorItemStack : thisMobEntity.getArmorItems()) {
@@ -173,9 +178,9 @@ public abstract class LivingEntityMixin {
 	
 	@Inject(method = "canHaveStatusEffect(Lnet/minecraft/entity/effect/StatusEffectInstance;)Z", at = @At("RETURN"), cancellable = true)
 	public void canHaveStatusEffect(StatusEffectInstance statusEffectInstance, CallbackInfoReturnable<Boolean> cir) {
-		if(cir.getReturnValue() && this.hasStatusEffect(SpectrumStatusEffects.IMMUNITY) && !SpectrumStatusEffects.isUncurable(statusEffectInstance.getEffectType())) {
+		if (cir.getReturnValue() && this.hasStatusEffect(SpectrumStatusEffects.IMMUNITY) && !SpectrumStatusEffects.isUncurable(statusEffectInstance.getEffectType())) {
 			cir.setReturnValue(false);
 		}
 	}
-
+	
 }

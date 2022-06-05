@@ -32,7 +32,7 @@ public class ShearingMobBlock extends MobBlock {
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
 		super.appendTooltip(stack, world, tooltip, options);
-		tooltip.add(new TranslatableText( "block.spectrum.shearing_mob_block.tooltip"));
+		tooltip.add(new TranslatableText("block.spectrum.shearing_mob_block.tooltip"));
 	}
 	
 	@Override
@@ -40,8 +40,8 @@ public class ShearingMobBlock extends MobBlock {
 		int boxSize = range + range;
 		
 		List<LivingEntity> entities = world.getNonSpectatingEntities(LivingEntity.class, Box.of(Vec3d.ofCenter(blockPos), boxSize, boxSize, boxSize));
-		for(LivingEntity currentEntity : entities) {
-			if(currentEntity instanceof Shearable shearable && shearable.isShearable()) {
+		for (LivingEntity currentEntity : entities) {
+			if (currentEntity instanceof Shearable shearable && shearable.isShearable()) {
 				shearable.sheared(SoundCategory.BLOCKS);
 			}
 		}

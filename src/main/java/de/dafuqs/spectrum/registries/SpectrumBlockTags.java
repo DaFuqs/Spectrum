@@ -11,7 +11,7 @@ public class SpectrumBlockTags {
 	// PLANTS
 	public static TagKey<Block> MERMAIDS_BRUSH_PLANTABLE;
 	public static TagKey<Block> QUITOXIC_REEDS_PLANTABLE;
-
+	
 	// DECAY
 	public static TagKey<Block> DECAY;
 	public static TagKey<Block> DECAY_AWAY_CURABLES;
@@ -40,16 +40,16 @@ public class SpectrumBlockTags {
 	public static TagKey<Block> MEMORY_VERY_FAST_MANIFESTERS;
 	
 	public static TagKey<Block> UNBREAKABLE_STRUCTURE_BLOCKS;
-
+	
 	private static TagKey<Block> getReference(String id) {
 		return TagKey.of(Registry.BLOCK_KEY, new Identifier(SpectrumCommon.MOD_ID, id));
 	}
-
+	
 	public static void getReferences() {
 		// PLANTS
 		MERMAIDS_BRUSH_PLANTABLE = getReference("mermaids_brush_plantable");
 		QUITOXIC_REEDS_PLANTABLE = getReference("quitoxic_reeds_plantable");
-
+		
 		// DECAY
 		DECAY = getReference("decay");
 		DECAY_AWAY_CURABLES = getReference("decay_away_curables");

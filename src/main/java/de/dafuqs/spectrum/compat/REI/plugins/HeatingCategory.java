@@ -14,15 +14,15 @@ public class HeatingCategory extends BlockToBlockWithChanceCategory {
 	public CategoryIdentifier<? extends HeatingDisplay> getCategoryIdentifier() {
 		return SpectrumPlugins.HEATING;
 	}
-
+	
 	@Override
 	public Renderer getIcon() {
 		return EntryStacks.of(SpectrumBlocks.BLAZE_MOB_BLOCK);
 	}
-
+	
 	@Override
 	public Text getTitle() {
 		return new TranslatableText("container.spectrum.rei.heating.title");
 	}
-
+	
 }

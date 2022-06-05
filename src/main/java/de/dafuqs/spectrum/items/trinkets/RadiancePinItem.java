@@ -43,29 +43,29 @@ public class RadiancePinItem extends SpectrumTrinketItem {
 	public void tick(ItemStack stack, SlotReference slot, LivingEntity entity) {
 		super.tick(stack, slot, entity);
 		World world = entity.getWorld();
-		if(!world.isClient && world.getTime() % CHECK_EVERY_X_TICKS == 0) {
-			if(entity instanceof PlayerEntity playerEntity && playerEntity.isSpectator()) {
+		if (!world.isClient && world.getTime() % CHECK_EVERY_X_TICKS == 0) {
+			if (entity instanceof PlayerEntity playerEntity && playerEntity.isSpectator()) {
 				return;
 			}
 			
-			if(world.getLightLevel(entity.getBlockPos()) <= MAX_LIGHT_LEVEL) {
+			if (world.getLightLevel(entity.getBlockPos()) <= MAX_LIGHT_LEVEL) {
 				BlockState currentState = world.getBlockState(entity.getBlockPos());
 				boolean placed = false;
-				if(currentState.isAir()) {
+				if (currentState.isAir()) {
 					world.setBlockState(entity.getBlockPos(), LIGHT_BLOCK_STATE, 3);
 					placed = true;
-				} else if(currentState.equals(Blocks.WATER.getDefaultState())) {
+				} else if (currentState.equals(Blocks.WATER.getDefaultState())) {
 					world.setBlockState(entity.getBlockPos(), LIGHT_BLOCK_STATE_WATER, 3);
 					placed = true;
-				} else if(currentState.isOf(SpectrumBlocks.DECAYING_LIGHT_BLOCK)) {
-					if(currentState.get(LightBlock.WATERLOGGED)) {
+				} else if (currentState.isOf(SpectrumBlocks.DECAYING_LIGHT_BLOCK)) {
+					if (currentState.get(LightBlock.WATERLOGGED)) {
 						world.setBlockState(entity.getBlockPos(), LIGHT_BLOCK_STATE_WATER, 3);
 					} else {
 						world.setBlockState(entity.getBlockPos(), LIGHT_BLOCK_STATE, 3);
 					}
 					placed = true;
 				}
-				if(placed) {
+				if (placed) {
 					SpectrumS2CPacketSender.sendLightCreatedParticle(world, entity.getBlockPos());
 					world.playSound(null, entity.getX() + 0.5, entity.getY() + 0.5, entity.getZ() + 0.5, SpectrumSoundEvents.LIGHT_STAFF_PLACE, SoundCategory.PLAYERS, 0.4F, 0.9F + world.random.nextFloat() * 0.2F);
 				}

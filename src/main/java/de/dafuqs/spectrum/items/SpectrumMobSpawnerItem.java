@@ -19,19 +19,19 @@ import java.util.List;
 import java.util.Optional;
 
 public class SpectrumMobSpawnerItem extends BlockItem {
-
+	
 	public SpectrumMobSpawnerItem(Block block, FabricItemSettings fabricItemSettings) {
 		super(block, fabricItemSettings);
 	}
-
+	
 	@Override
 	public void appendTooltip(ItemStack itemStack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
-		if(itemStack.getNbt() != null && itemStack.getNbt().get("BlockEntityTag") != null) {
+		if (itemStack.getNbt() != null && itemStack.getNbt().get("BlockEntityTag") != null) {
 			Optional<EntityType<?>> entityType = Optional.empty();
-
+			
 			NbtCompound blockEntityTag = itemStack.getNbt().getCompound("BlockEntityTag");
-
-			if(blockEntityTag.contains("SpawnData", NbtElement.COMPOUND_TYPE)
+			
+			if (blockEntityTag.contains("SpawnData", NbtElement.COMPOUND_TYPE)
 					&& blockEntityTag.getCompound("SpawnData").contains("entity", NbtElement.COMPOUND_TYPE)
 					&& blockEntityTag.getCompound("SpawnData").getCompound("entity").contains("id", NbtElement.STRING_TYPE)) {
 				String spawningEntityType = blockEntityTag.getCompound("SpawnData").getCompound("entity").getString("id");
@@ -50,19 +50,19 @@ public class SpectrumMobSpawnerItem extends BlockItem {
 				} else {
 					tooltip.add(new TranslatableText("item.spectrum.spawner.tooltip.unknown_mob"));
 				}
-				if(spawnCount > 0) {
+				if (spawnCount > 0) {
 					tooltip.add(new TranslatableText("item.spectrum.spawner.tooltip.spawn_count", spawnCount).formatted(Formatting.GRAY));
 				}
-				if(minSpawnDelay > 0) {
+				if (minSpawnDelay > 0) {
 					tooltip.add(new TranslatableText("item.spectrum.spawner.tooltip.min_spawn_delay", minSpawnDelay).formatted(Formatting.GRAY));
 				}
-				if(maxSpawnDelay > 0) {
+				if (maxSpawnDelay > 0) {
 					tooltip.add(new TranslatableText("item.spectrum.spawner.tooltip.max_spawn_delay", maxSpawnDelay).formatted(Formatting.GRAY));
 				}
 				if (spawnRange > 0) {
 					tooltip.add(new TranslatableText("item.spectrum.spawner.tooltip.spawn_range", spawnRange).formatted(Formatting.GRAY));
 				}
-				if(requiredPlayerRange > 0) {
+				if (requiredPlayerRange > 0) {
 					tooltip.add(new TranslatableText("item.spectrum.spawner.tooltip.required_player_range", requiredPlayerRange).formatted(Formatting.GRAY));
 				}
 			} catch (Exception e) {
@@ -86,5 +86,5 @@ public class SpectrumMobSpawnerItem extends BlockItem {
 		itemStack.setNbt(itemStackTag);
 		return itemStack;
 	}
-
+	
 }

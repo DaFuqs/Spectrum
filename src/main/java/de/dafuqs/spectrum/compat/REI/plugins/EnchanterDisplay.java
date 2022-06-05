@@ -35,42 +35,42 @@ public class EnchanterDisplay implements SimpleGridMenuDisplay, GatedRecipeDispl
 		this.craftingTime = recipe.getCraftingTime();
 		this.requiredAdvancementIdentifier = recipe.getRequiredAdvancementIdentifier();
 	}
-
+	
 	@Override
 	public List<EntryIngredient> getInputEntries() {
-		if(this.isUnlocked() || SpectrumCommon.CONFIG.REIListsRecipesAsNotUnlocked) {
+		if (this.isUnlocked() || SpectrumCommon.CONFIG.REIListsRecipesAsNotUnlocked) {
 			return inputs;
 		} else {
 			return new ArrayList<>();
 		}
 	}
-
+	
 	@Override
 	public List<EntryIngredient> getOutputEntries() {
-		if(this.isUnlocked()) {
+		if (this.isUnlocked()) {
 			return Collections.singletonList(output);
 		} else {
 			return new ArrayList<>();
 		}
 	}
-
+	
 	@Override
 	public CategoryIdentifier<?> getCategoryIdentifier() {
 		return SpectrumPlugins.ENCHANTER;
 	}
-
+	
 	public boolean isUnlocked() {
 		return Support.hasAdvancement(MinecraftClient.getInstance().player, this.requiredAdvancementIdentifier);
 	}
-
+	
 	@Override
 	public int getWidth() {
 		return 3;
 	}
-
+	
 	@Override
 	public int getHeight() {
 		return 3;
 	}
-
+	
 }

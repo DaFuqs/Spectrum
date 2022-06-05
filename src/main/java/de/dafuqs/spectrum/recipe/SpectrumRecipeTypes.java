@@ -32,13 +32,13 @@ public class SpectrumRecipeTypes {
 	
 	public static RecipeSerializer<PedestalCraftingRecipe> PEDESTAL_RECIPE_SERIALIZER;
 	public static RecipeType<PedestalCraftingRecipe> PEDESTAL;
-
+	
 	public static RecipeSerializer<AnvilCrushingRecipe> ANVIL_CRUSHING_RECIPE_SERIALIZER;
 	public static RecipeType<AnvilCrushingRecipe> ANVIL_CRUSHING;
-
+	
 	public static RecipeSerializer<FusionShrineRecipe> FUSION_SHRINE_RECIPE_SERIALIZER;
 	public static RecipeType<FusionShrineRecipe> FUSION_SHRINE;
-
+	
 	public static RecipeSerializer<EnchanterRecipe> ENCHANTER_RECIPE_SERIALIZER;
 	public static RecipeType<EnchanterRecipe> ENCHANTER;
 	
@@ -59,76 +59,96 @@ public class SpectrumRecipeTypes {
 	
 	public static RecipeSerializer<InkConvertingRecipe> INK_CONVERTING_RECIPE_SERIALIZER;
 	public static RecipeType<InkConvertingRecipe> INK_CONVERTING;
-
+	
 	static <S extends RecipeSerializer<T>, T extends Recipe<?>> S registerSerializer(String id, S serializer) {
 		return Registry.register(Registry.RECIPE_SERIALIZER, new Identifier(SpectrumCommon.MOD_ID, id), serializer);
 	}
-
+	
 	static <S extends RecipeType<T>, T extends Recipe<?>> S registerRecipeType(String id, S serializer) {
 		return Registry.register(Registry.RECIPE_TYPE, new Identifier(SpectrumCommon.MOD_ID, id), serializer);
 	}
-
+	
 	public static void registerSerializer() {
 		PEDESTAL_RECIPE_SERIALIZER = registerSerializer("pedestal", new PedestalCraftingRecipeSerializer(PedestalCraftingRecipe::new));
 		PEDESTAL = registerRecipeType("pedestal", new RecipeType<PedestalCraftingRecipe>() {
 			@Override
-			public String toString() {return "spectrum:pedestal";}
+			public String toString() {
+				return "spectrum:pedestal";
+			}
 		});
-
+		
 		ANVIL_CRUSHING_RECIPE_SERIALIZER = registerSerializer("anvil_crushing", new AnvilCrushingRecipeSerializer(AnvilCrushingRecipe::new));
 		ANVIL_CRUSHING = registerRecipeType("anvil_crushing", new RecipeType<AnvilCrushingRecipe>() {
 			@Override
-			public String toString() {return "spectrum:anvil_crushing";}
+			public String toString() {
+				return "spectrum:anvil_crushing";
+			}
 		});
-
+		
 		FUSION_SHRINE_RECIPE_SERIALIZER = registerSerializer("fusion_shrine", new FusionShrineRecipeSerializer(FusionShrineRecipe::new));
 		FUSION_SHRINE = registerRecipeType("fusion_shrine", new RecipeType<FusionShrineRecipe>() {
 			@Override
-			public String toString() {return "spectrum:fusion_shrine";}
+			public String toString() {
+				return "spectrum:fusion_shrine";
+			}
 		});
 		
 		ENCHANTER_RECIPE_SERIALIZER = registerSerializer("enchanter", new EnchanterRecipeSerializer(EnchanterRecipe::new));
 		ENCHANTER = registerRecipeType("enchanter", new RecipeType<EnchanterRecipe>() {
 			@Override
-			public String toString() {return "spectrum:enchanter";}
+			public String toString() {
+				return "spectrum:enchanter";
+			}
 		});
 		
 		ENCHANTMENT_UPGRADE_RECIPE_SERIALIZER = registerSerializer("enchantment_upgrade", new EnchantmentUpgradeRecipeSerializer(EnchantmentUpgradeRecipe::new));
 		ENCHANTMENT_UPGRADE = registerRecipeType("enchantment_upgrade", new RecipeType<EnchantmentUpgradeRecipe>() {
 			@Override
-			public String toString() {return "spectrum:enchantment_upgrade";}
+			public String toString() {
+				return "spectrum:enchantment_upgrade";
+			}
 		});
 		
 		POTION_WORKSHOP_BREWING_RECIPE_SERIALIZER = registerSerializer("potion_workshop_brewing", new PotionWorkshopBrewingRecipeSerializer(PotionWorkshopBrewingRecipe::new));
 		POTION_WORKSHOP_BREWING = registerRecipeType("potion_workshop_brewing", new RecipeType<PotionWorkshopBrewingRecipe>() {
 			@Override
-			public String toString() {return "spectrum:potion_workshop_brewing";}
+			public String toString() {
+				return "spectrum:potion_workshop_brewing";
+			}
 		});
 		
 		POTION_WORKSHOP_CRAFTING_RECIPE_SERIALIZER = registerSerializer("potion_workshop_crafting", new PotionWorkshopCraftingRecipeSerializer(PotionWorkshopCraftingRecipe::new));
 		POTION_WORKSHOP_CRAFTING = registerRecipeType("potion_workshop_crafting", new RecipeType<PotionWorkshopCraftingRecipe>() {
 			@Override
-			public String toString() {return "spectrum:potion_workshop_crafting";}
+			public String toString() {
+				return "spectrum:potion_workshop_crafting";
+			}
 		});
 		
 		MIDNIGHT_SOLUTION_CONVERTING_RECIPE_SERIALIZER = registerSerializer("midnight_solution_converting", new MidnightSolutionConvertingRecipeSerializer(MidnightSolutionConvertingRecipe::new));
 		MIDNIGHT_SOLUTION_CONVERTING_RECIPE = registerRecipeType("midnight_solution_converting", new RecipeType<MidnightSolutionConvertingRecipe>() {
 			@Override
-			public String toString() {return "spectrum:midnight_solution_converting";}
+			public String toString() {
+				return "spectrum:midnight_solution_converting";
+			}
 		});
 		
 		SPIRIT_INSTILLING_SERIALIZER = registerSerializer("spirit_instiller", new SpiritInstillerRecipeSerializer(SpiritInstillerRecipe::new));
 		SPIRIT_INSTILLING = registerRecipeType("spirit_instiller", new RecipeType<ISpiritInstillerRecipe>() {
 			@Override
-			public String toString() {return "spectrum:spirit_instiller";}
+			public String toString() {
+				return "spectrum:spirit_instiller";
+			}
 		});
 		
 		INK_CONVERTING_RECIPE_SERIALIZER = registerSerializer("ink_converting", new InkConvertingRecipeSerializer(InkConvertingRecipe::new));
 		INK_CONVERTING = registerRecipeType("ink_converting", new RecipeType<InkConvertingRecipe>() {
 			@Override
-			public String toString() {return "spectrum:ink_converting";}
+			public String toString() {
+				return "spectrum:ink_converting";
+			}
 		});
-
+		
 	}
-
+	
 }

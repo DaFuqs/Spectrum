@@ -37,11 +37,11 @@ public class FloatBlockEntity extends BlockLikeEntity implements PostTickEntity 
 	private static final float DAMAGE_PER_FALLEN_BLOCK = 0.5F;
 	
 	private float gravityModifier = 1.0F;
-
+	
 	public FloatBlockEntity(EntityType<? extends FloatBlockEntity> entityType, World world) {
 		super(entityType, world);
 	}
-
+	
 	public FloatBlockEntity(World world, double x, double y, double z, BlockState blockState) {
 		this(SpectrumEntityTypes.FLOAT_BLOCK, world);
 		this.blockState = blockState;
@@ -52,7 +52,7 @@ public class FloatBlockEntity extends BlockLikeEntity implements PostTickEntity 
 		this.prevY = y;
 		this.prevZ = z;
 		this.setOrigin(new BlockPos(this.getPos()));
-		if(blockState.getBlock() instanceof FloatBlock) {
+		if (blockState.getBlock() instanceof FloatBlock) {
 			this.gravityModifier = ((FloatBlock) blockState.getBlock()).getGravityMod();
 		} else {
 			this.gravityModifier = 1.0F;
@@ -67,7 +67,7 @@ public class FloatBlockEntity extends BlockLikeEntity implements PostTickEntity 
 	@Override
 	public void postTickMovement() {
 		if (!this.hasNoGravity()) {
-			if(this.gravityModifier != 0) {
+			if (this.gravityModifier != 0) {
 				if (this.moveTime > 100) {
 					this.addVelocity(0.0D, (gravityModifier / 10), 0.0D);
 				} else {
@@ -112,7 +112,7 @@ public class FloatBlockEntity extends BlockLikeEntity implements PostTickEntity 
 	
 	@Override
 	public boolean handleFallDamage(float distance, float damageMultiplier, DamageSource damageSource) {
-		if(!world.isClient) {
+		if (!world.isClient) {
 			int traveledDistance = MathHelper.ceil(distance - 1.0F);
 			if (traveledDistance > 0) {
 				int damage = (int) Math.min(MathHelper.floor(traveledDistance * DAMAGE_PER_FALLEN_BLOCK), MAX_DAMAGE);
@@ -130,9 +130,9 @@ public class FloatBlockEntity extends BlockLikeEntity implements PostTickEntity 
 	
 	@Override
 	public ActionResult interact(PlayerEntity player, Hand hand) {
-		if(!this.world.isClient && player.isSneaking()) {
+		if (!this.world.isClient && player.isSneaking()) {
 			Item item = this.blockState.getBlock().asItem();
-			if(item != null) {
+			if (item != null) {
 				Support.givePlayer(player, item.getDefaultStack());
 				this.discard();
 			}
@@ -141,12 +141,12 @@ public class FloatBlockEntity extends BlockLikeEntity implements PostTickEntity 
 			return ActionResult.SUCCESS;
 		}
 	}
-
+	
 	@Override
 	@Environment(EnvType.CLIENT)
 	public void onSpawnPacket(EntitySpawnS2CPacket packet) {
 		super.onSpawnPacket(packet);
-		if(this.blockState.getBlock() instanceof FloatBlock) {
+		if (this.blockState.getBlock() instanceof FloatBlock) {
 			this.gravityModifier = ((FloatBlock) blockState.getBlock()).getGravityMod();
 		} else {
 			this.gravityModifier = 1.0F;
@@ -156,7 +156,7 @@ public class FloatBlockEntity extends BlockLikeEntity implements PostTickEntity 
 	@Override
 	public void postTickEntityCollision(Entity entity) {
 		super.postTickEntityCollision(entity);
-		if(isPaltaeriaCrimtaneCollision(entity)) {
+		if (isPaltaeriaCrimtaneCollision(entity)) {
 			world.createExplosion(this, this.getX(), this.getY(), this.getZ(), 1.0F, Explosion.DestructionType.NONE);
 			this.discard();
 			entity.discard();
@@ -169,7 +169,7 @@ public class FloatBlockEntity extends BlockLikeEntity implements PostTickEntity 
 	}
 	
 	public boolean isPaltaeriaCrimtaneCollision(Entity other) {
-		if(other instanceof BlockLikeEntity otherBlockLikeEntity) {
+		if (other instanceof BlockLikeEntity otherBlockLikeEntity) {
 			Block thisBlock = this.blockState.getBlock();
 			Block otherBlock = otherBlockLikeEntity.getBlockState().getBlock();
 			return thisBlock == SpectrumBlocks.PALETUR_FRAGMENT_BLOCK && otherBlock == SpectrumBlocks.SCARLET_FRAGMENT_BLOCK

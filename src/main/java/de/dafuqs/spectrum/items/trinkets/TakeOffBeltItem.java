@@ -54,11 +54,11 @@ public class TakeOffBeltItem extends SpectrumTrinketItem implements EnchanterEnc
 	public void tick(ItemStack stack, SlotReference slot, LivingEntity entity) {
 		super.tick(stack, slot, entity);
 		
-		if(!entity.getWorld().isClient) {
+		if (!entity.getWorld().isClient) {
 			if (entity.isSneaking() && entity.isOnGround()) {
-  				if (sneakingTimes.containsKey(entity)) {
+				if (sneakingTimes.containsKey(entity)) {
 					long sneakTicks = entity.getWorld().getTime() - sneakingTimes.get(entity);
-					if(sneakTicks % CHARGE_TIME_TICKS == 0) {
+					if (sneakTicks % CHARGE_TIME_TICKS == 0) {
 						if (sneakTicks > CHARGE_TIME_TICKS * MAX_CHARGES) {
 							entity.getWorld().playSound(null, entity.getX(), entity.getY(), entity.getZ(), SpectrumSoundEvents.USE_FAIL, SoundCategory.NEUTRAL, 4.0F, 1.05F);
 							SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) entity.getWorld(), entity.getPos(), SpectrumParticleTypes.BLACK_CRAFTING, 20, new Vec3d(0, 0, 0), new Vec3d(0.1, 0.05, 0.1));
@@ -67,27 +67,27 @@ public class TakeOffBeltItem extends SpectrumTrinketItem implements EnchanterEnc
 							int sneakTimeMod = (int) sneakTicks / CHARGE_TIME_TICKS;
 							
 							entity.getWorld().playSound(null, entity.getX(), entity.getY(), entity.getZ(), SpectrumSoundEvents.BLOCK_TOPAZ_BLOCK_HIT, SoundCategory.NEUTRAL, 1.0F, 1.0F);
-							for(Vec3d vec : Support.VECTORS_16) {
+							for (Vec3d vec : Support.VECTORS_16) {
 								SpectrumS2CPacketSender.playParticleWithExactOffsetAndVelocity((ServerWorld) entity.getWorld(), entity.getPos(), SpectrumParticleTypes.LIQUID_CRYSTAL_SPARKLE, 1, new Vec3d(0, 0, 0), vec.multiply(0.5));
 							}
 							
 							int powerEnchantmentLevel = EnchantmentHelper.getLevel(Enchantments.POWER, stack);
 							int featherFallingEnchantmentLevel = EnchantmentHelper.getLevel(Enchantments.FEATHER_FALLING, stack);
 							entity.addStatusEffect(new StatusEffectInstance(StatusEffects.JUMP_BOOST, CHARGE_TIME_TICKS, getJumpBoostAmplifier(sneakTimeMod, powerEnchantmentLevel), true, false, true));
-							if(featherFallingEnchantmentLevel > 0) {
+							if (featherFallingEnchantmentLevel > 0) {
 								entity.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOW_FALLING, CHARGE_TIME_TICKS + featherFallingEnchantmentLevel * 20, 0, true, false, true));
 							}
 						}
 					}
 				} else {
 					sneakingTimes.put(entity, entity.getWorld().getTime());
-					if(entity instanceof ServerPlayerEntity serverPlayerEntity) {
+					if (entity instanceof ServerPlayerEntity serverPlayerEntity) {
 						SpectrumS2CPacketSender.sendPlayTakeOffBeltSoundInstance(serverPlayerEntity);
 					}
 				}
 			} else if (entity.getWorld().getTime() % CHARGE_TIME_TICKS == 0 && sneakingTimes.containsKey(entity)) {
 				long lastSneakingTime = sneakingTimes.get(entity);
-				if(lastSneakingTime < entity.getWorld().getTime() + CHARGE_TIME_TICKS) {
+				if (lastSneakingTime < entity.getWorld().getTime() + CHARGE_TIME_TICKS) {
 					sneakingTimes.remove(entity);
 				}
 			}
@@ -99,7 +99,7 @@ public class TakeOffBeltItem extends SpectrumTrinketItem implements EnchanterEnc
 	}
 	
 	public static int getCurrentCharge(PlayerEntity playerEntity) {
-		if(sneakingTimes.containsKey(playerEntity)) {
+		if (sneakingTimes.containsKey(playerEntity)) {
 			return (int) (playerEntity.getWorld().getTime() - sneakingTimes.get(playerEntity)) / CHARGE_TIME_TICKS;
 		}
 		return 0;

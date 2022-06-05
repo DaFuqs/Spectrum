@@ -17,14 +17,14 @@ import vazkii.patchouli.client.book.page.abstr.PageDoubleRecipeRegistry;
 import java.util.List;
 
 public class PageSpiritInstillerCrafting extends PageDoubleRecipeRegistry<ISpiritInstillerRecipe> {
-
+	
 	private static final Identifier BACKGROUND_TEXTURE = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/patchouli/spirit_instiller.png");
 	private static final ItemStack ITEM_BOWL_STACK = SpectrumBlocks.ITEM_BOWL_CALCITE.asItem().getDefaultStack();
 	
 	public PageSpiritInstillerCrafting() {
 		super(SpectrumRecipeTypes.SPIRIT_INSTILLING);
 	}
-
+	
 	@Override
 	protected ItemStack getRecipeOutput(ISpiritInstillerRecipe recipe) {
 		if (recipe == null) {
@@ -33,15 +33,15 @@ public class PageSpiritInstillerCrafting extends PageDoubleRecipeRegistry<ISpiri
 			return recipe.getOutput();
 		}
 	}
-
+	
 	@Override
 	protected void drawRecipe(MatrixStack ms, @NotNull ISpiritInstillerRecipe recipe, int recipeX, int recipeY, int mouseX, int mouseY, boolean second) {
 		RenderSystem.setShaderTexture(0, BACKGROUND_TEXTURE);
 		RenderSystem.enableBlend();
 		DrawableHelper.drawTexture(ms, recipeX - 2, recipeY - 2, 0, 0, 104, 97, 128, 256);
-
+		
 		parent.drawCenteredStringNoShadow(ms, getTitle(second).asOrderedText(), GuiBook.PAGE_WIDTH / 2, recipeY - 10, book.headerColor);
-
+		
 		// the ingredients
 		List<IngredientStack> ingredients = recipe.getIngredientStacks();
 		PatchouliHelper.renderIngredientStack(parent, ms, recipeX + 3, recipeY + 8, mouseX, mouseY, ingredients.get(0)); // left
@@ -58,10 +58,10 @@ public class PageSpiritInstillerCrafting extends PageDoubleRecipeRegistry<ISpiri
 		// the output
 		parent.renderItemStack(ms, recipeX + 79, recipeY + 8, mouseX, mouseY, recipe.getOutput());
 	}
-
+	
 	@Override
 	protected int getRecipeHeight() {
 		return 58;
 	}
-
+	
 }

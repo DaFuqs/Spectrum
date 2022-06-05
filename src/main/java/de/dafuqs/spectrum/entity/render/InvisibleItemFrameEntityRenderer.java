@@ -49,7 +49,7 @@ public class InvisibleItemFrameEntityRenderer<T extends ItemFrameEntity> extends
 		Vec3d vec3d = this.getPositionOffset(itemFrameEntity, g);
 		matrixStack.translate(-vec3d.getX(), -vec3d.getY(), -vec3d.getZ());
 		double d = 0.46875D;
-		matrixStack.translate((double)direction.getOffsetX() * d, (double)direction.getOffsetY() * d, (double)direction.getOffsetZ() * d);
+		matrixStack.translate((double) direction.getOffsetX() * d, (double) direction.getOffsetY() * d, (double) direction.getOffsetZ() * d);
 		matrixStack.multiply(Vec3f.POSITIVE_X.getDegreesQuaternion(itemFrameEntity.getPitch()));
 		matrixStack.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(180.0F - itemFrameEntity.getYaw()));
 		boolean bl = itemFrameEntity.isInvisible();
@@ -73,7 +73,7 @@ public class InvisibleItemFrameEntityRenderer<T extends ItemFrameEntity> extends
 			}
 			
 			int bakedModelManager = blockRenderManager ? itemFrameEntity.getRotation() % 4 * 2 : itemFrameEntity.getRotation();
-			matrixStack.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion((float)bakedModelManager * 360.0F / 8.0F));
+			matrixStack.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion((float) bakedModelManager * 360.0F / 8.0F));
 			if (blockRenderManager) {
 				matrixStack.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion(180.0F));
 				float modelIdentifier = 0.0078125F;

@@ -22,13 +22,13 @@ import java.util.Random;
 
 @Environment(EnvType.CLIENT)
 public class ShootingStarEntityRenderer extends EntityRenderer<ShootingStarEntity> {
-
+	
 	public ShootingStarEntityRenderer(EntityRendererFactory.Context context) {
 		super(context);
 		this.shadowRadius = 0.15F;
 		this.shadowOpacity = 0.75F;
 	}
-
+	
 	public void render(ShootingStarEntity shootingStarEntity, float yaw, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light) {
 		BlockState blockState = shootingStarEntity.getShootingStarType().getBlock().getDefaultState();
 		
@@ -49,7 +49,7 @@ public class ShootingStarEntityRenderer extends EntityRenderer<ShootingStarEntit
 		
 		super.render(shootingStarEntity, yaw, tickDelta, matrixStack, vertexConsumerProvider, light);
 	}
-
+	
 	@Override
 	public Identifier getTexture(ShootingStarEntity entityIn) {
 		return SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE;

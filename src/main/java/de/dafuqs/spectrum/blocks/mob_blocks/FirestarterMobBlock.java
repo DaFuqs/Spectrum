@@ -52,11 +52,11 @@ public class FirestarterMobBlock extends MobBlock {
 	}
 	
 	public static void addBlockSmeltingRecipes(RecipeManager recipeManager) {
-		for(SmeltingRecipe recipe : recipeManager.listAllOfType(RecipeType.SMELTING)) {
+		for (SmeltingRecipe recipe : recipeManager.listAllOfType(RecipeType.SMELTING)) {
 			ItemStack outputStack = recipe.getOutput();
-			if(outputStack.getItem() instanceof BlockItem outputBlockItem && outputBlockItem.getBlock() != Blocks.AIR) {
+			if (outputStack.getItem() instanceof BlockItem outputBlockItem && outputBlockItem.getBlock() != Blocks.AIR) {
 				DefaultedList<Ingredient> ingredients = recipe.getIngredients();
-				if(!ingredients.isEmpty()) {
+				if (!ingredients.isEmpty()) {
 					ItemStack[] inputStacks = ingredients.get(0).getMatchingStacks();
 					for (ItemStack inputStack : inputStacks) {
 						if (inputStack.getItem() instanceof BlockItem inputBlockItem && inputBlockItem.getBlock() != Blocks.AIR) {
@@ -70,7 +70,7 @@ public class FirestarterMobBlock extends MobBlock {
 	
 	@Override
 	public boolean trigger(ServerWorld world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
-		for(Direction direction : Direction.values()) {
+		for (Direction direction : Direction.values()) {
 			causeFire(world, blockPos.offset(direction), direction);
 		}
 		return true;
@@ -83,13 +83,13 @@ public class FirestarterMobBlock extends MobBlock {
 			world.playSound(null, blockPos, SoundEvents.ITEM_FLINTANDSTEEL_USE, SoundCategory.BLOCKS, 1.0F, world.getRandom().nextFloat() * 0.4F + 0.8F);
 			world.setBlockState(blockPos, blockState.with(Properties.LIT, true), 11);
 			world.emitGameEvent(null, GameEvent.BLOCK_PLACE, blockPos);
-		} else if(blockState.isIn(BlockTags.ICE)) {
+		} else if (blockState.isIn(BlockTags.ICE)) {
 			// smelt ice
 			world.playSound(null, blockPos, SoundEvents.ITEM_FLINTANDSTEEL_USE, SoundCategory.BLOCKS, 1.0F, world.getRandom().nextFloat() * 0.4F + 0.8F);
 			world.setBlockState(blockPos, Blocks.WATER.getDefaultState());
-		} else if(BURNING_MAP.containsKey(blockState.getBlock())) {
+		} else if (BURNING_MAP.containsKey(blockState.getBlock())) {
 			Pair<BlockState, Float> dest = BURNING_MAP.get(blockState.getBlock());
-			if(dest.getRight() >= 1.0F || world.random.nextFloat() < dest.getRight()) {
+			if (dest.getRight() >= 1.0F || world.random.nextFloat() < dest.getRight()) {
 				// convert netherrack to magma blocks
 				world.setBlockState(blockPos, dest.getLeft(), 11);
 				world.emitGameEvent(null, GameEvent.BLOCK_PLACE, blockPos);
@@ -108,7 +108,7 @@ public class FirestarterMobBlock extends MobBlock {
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
 		super.appendTooltip(stack, world, tooltip, options);
-		tooltip.add(new TranslatableText( "block.spectrum.firestarter_mob_block.tooltip"));
+		tooltip.add(new TranslatableText("block.spectrum.firestarter_mob_block.tooltip"));
 	}
 	
 }

@@ -11,11 +11,11 @@ import net.minecraft.util.collection.DefaultedList;
 import java.util.Map;
 
 public class BedrockFishingRodItem extends FishingRodItem implements Preenchanted {
-
+	
 	public BedrockFishingRodItem(Settings settings) {
 		super(settings);
 	}
-
+	
 	@Override
 	public boolean isDamageable() {
 		return false;

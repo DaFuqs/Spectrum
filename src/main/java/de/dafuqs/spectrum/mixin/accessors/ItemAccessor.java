@@ -8,10 +8,10 @@ import java.util.UUID;
 
 @Mixin(Item.class)
 public interface ItemAccessor {
-
+	
 	@Accessor(value = "ATTACK_SPEED_MODIFIER_ID")
 	static UUID getAttackSpeedModifierId() {
 		throw new AssertionError();
 	}
-
+	
 }

@@ -54,13 +54,13 @@ public class DefaultAzureDikeComponent implements AzureDikeComponent, AutoSynced
 	@Override
 	public float absorbDamage(float incomingDamage) {
 		this.currentRechargeDelay = this.rechargeDelayTicksAfterDamage;
-		if(this.protection > 0) {
+		if (this.protection > 0) {
 			int usedProtection = Math.min(protection, (int) incomingDamage);
 			this.protection -= usedProtection;
 			
-			if(usedProtection > 0) {
+			if (usedProtection > 0) {
 				AzureDikeProvider.AZURE_DIKE_COMPONENT.sync(provider);
-				if(provider instanceof ServerPlayerEntity serverPlayerEntity) {
+				if (provider instanceof ServerPlayerEntity serverPlayerEntity) {
 					SpectrumAdvancementCriteria.AZURE_DIKE_CHARGE.trigger(serverPlayerEntity, this.protection, this.rechargeDelayDefault, -usedProtection);
 				}
 			}
@@ -77,7 +77,7 @@ public class DefaultAzureDikeComponent implements AzureDikeComponent, AutoSynced
 		this.rechargeDelayDefault = rechargeDelayDefault;
 		this.rechargeDelayTicksAfterDamage = fasterRechargeAfterDamageTicks;
 		this.currentRechargeDelay = this.rechargeDelayDefault;
-		if(resetCharge) {
+		if (resetCharge) {
 			this.protection = 0;
 		} else {
 			this.protection = Math.min(this.protection, this.maxProtection);
@@ -108,13 +108,13 @@ public class DefaultAzureDikeComponent implements AzureDikeComponent, AutoSynced
 	
 	@Override
 	public void serverTick() {
-		if(this.currentRechargeDelay > 0) {
+		if (this.currentRechargeDelay > 0) {
 			this.currentRechargeDelay--;
-		} else if(this.protection < this.maxProtection) {
+		} else if (this.protection < this.maxProtection) {
 			this.protection++;
 			this.currentRechargeDelay = this.rechargeDelayDefault;
 			AzureDikeProvider.AZURE_DIKE_COMPONENT.sync(provider);
-			if(provider instanceof ServerPlayerEntity serverPlayerEntity) {
+			if (provider instanceof ServerPlayerEntity serverPlayerEntity) {
 				SpectrumAdvancementCriteria.AZURE_DIKE_CHARGE.trigger(serverPlayerEntity, this.protection, this.rechargeDelayDefault, 1);
 			}
 		}

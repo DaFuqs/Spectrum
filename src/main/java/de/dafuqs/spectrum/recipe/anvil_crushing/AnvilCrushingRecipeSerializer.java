@@ -11,13 +11,13 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
 
 public class AnvilCrushingRecipeSerializer implements RecipeSerializer<AnvilCrushingRecipe> {
-
+	
 	public final AnvilCrushingRecipeSerializer.RecipeFactory<AnvilCrushingRecipe> recipeFactory;
-
+	
 	public AnvilCrushingRecipeSerializer(AnvilCrushingRecipeSerializer.RecipeFactory<AnvilCrushingRecipe> recipeFactory) {
 		this.recipeFactory = recipeFactory;
 	}
-
+	
 	@Override
 	public AnvilCrushingRecipe read(Identifier identifier, JsonObject jsonObject) {
 		JsonElement jsonElement = JsonHelper.hasArray(jsonObject, "ingredient") ? JsonHelper.getArray(jsonObject, "ingredient") : JsonHelper.getObject(jsonObject, "ingredient");
@@ -25,18 +25,18 @@ public class AnvilCrushingRecipeSerializer implements RecipeSerializer<AnvilCrus
 		ItemStack outputItemStack = RecipeUtils.itemStackWithNbtFromJson(JsonHelper.getObject(jsonObject, "result"));
 		float crushedItemsPerPointOfDamage = JsonHelper.getFloat(jsonObject, "crushedItemsPerPointOfDamage");
 		float experience = JsonHelper.getFloat(jsonObject, "experience");
-
+		
 		String particleEffectString = JsonHelper.getString(jsonObject, "particleEffectIdentifier");
 		Identifier particleEffectIdentifier = new Identifier(particleEffectString);
-
+		
 		int particleCount = 1;
-		if(JsonHelper.hasNumber(jsonObject, "particleCount")) {
+		if (JsonHelper.hasNumber(jsonObject, "particleCount")) {
 			particleCount = JsonHelper.getInt(jsonObject, "particleCount");
 		}
-
+		
 		String soundEventString = JsonHelper.getString(jsonObject, "soundEventIdentifier");
 		Identifier soundEventIdentifier = new Identifier(soundEventString);
-
+		
 		return this.recipeFactory.create(identifier, ingredient, outputItemStack, crushedItemsPerPointOfDamage, experience, particleEffectIdentifier, particleCount, soundEventIdentifier);
 	}
 	
@@ -62,10 +62,10 @@ public class AnvilCrushingRecipeSerializer implements RecipeSerializer<AnvilCrus
 		Identifier soundEventIdentifier = packetByteBuf.readIdentifier();
 		return this.recipeFactory.create(identifier, ingredient, outputItemStack, crushedItemsPerPointOfDamage, experience, particleEffectIdentifier, particleCount, soundEventIdentifier);
 	}
-
+	
 	
 	public interface RecipeFactory<AnvilCrushingRecipe> {
 		AnvilCrushingRecipe create(Identifier id, Ingredient inputIngredient, ItemStack outputItemStack, float crushedItemsPerPointOfDamage, float experience, Identifier particleEffectIdentifier, int particleCount, Identifier soundEventIdentifier);
 	}
-
+	
 }

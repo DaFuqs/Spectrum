@@ -51,13 +51,13 @@ public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 	}
 	
 	public void setData(LivingEntity livingEntity, @NotNull ItemStack creatureSpawnItemStack) {
-		if(livingEntity instanceof PlayerEntity playerEntity) {
+		if (livingEntity instanceof PlayerEntity playerEntity) {
 			setOwner(playerEntity);
 		}
-		if(creatureSpawnItemStack.getItem() instanceof MemoryItem) {
+		if (creatureSpawnItemStack.getItem() instanceof MemoryItem) {
 			this.memoryItemStack = creatureSpawnItemStack.copy();
 		}
-		if(!livingEntity.world.isClient) {
+		if (!livingEntity.world.isClient) {
 			this.updateInClientWorld();
 		}
 		this.markDirty();
@@ -67,7 +67,7 @@ public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 	public void readNbt(NbtCompound nbt) {
 		super.readNbt(nbt);
 		
-		if(nbt.contains("MemoryItem", NbtElement.COMPOUND_TYPE)) {
+		if (nbt.contains("MemoryItem", NbtElement.COMPOUND_TYPE)) {
 			NbtCompound creatureSpawnCompound = nbt.getCompound("MemoryItem");
 			this.memoryItemStack = ItemStack.fromNbt(creatureSpawnCompound);
 		}
@@ -76,7 +76,7 @@ public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 	@Override
 	protected void writeNbt(NbtCompound nbt) {
 		super.writeNbt(nbt);
-		if(this.memoryItemStack != null) {
+		if (this.memoryItemStack != null) {
 			NbtCompound creatureSpawnCompound = new NbtCompound();
 			memoryItemStack.writeNbt(creatureSpawnCompound);
 			nbt.put("MemoryItem", creatureSpawnCompound);
@@ -85,9 +85,9 @@ public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 	
 	public void advanceManifesting(ServerWorld world, BlockPos blockPos) {
 		int ticksToManifest = MemoryItem.getTicksToManifest(this.memoryItemStack.getNbt());
-		if(ticksToManifest > 0) {
+		if (ticksToManifest > 0) {
 			int additionalManifestAdvanceSteps = getManifestAdvanceSteps(world, blockPos);
-			if(additionalManifestAdvanceSteps > 0) {
+			if (additionalManifestAdvanceSteps > 0) {
 				int newTicksToManifest = ticksToManifest - additionalManifestAdvanceSteps;
 				if (newTicksToManifest <= 0) {
 					this.manifest(world, blockPos);
@@ -105,7 +105,7 @@ public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 	
 	public void manifest(@NotNull ServerWorld world, BlockPos blockPos) {
 		BlockState blockState = world.getBlockState(blockPos);
-		if(blockState.getBlock() instanceof Waterloggable && blockState.get(Properties.WATERLOGGED)) {
+		if (blockState.getBlock() instanceof Waterloggable && blockState.get(Properties.WATERLOGGED)) {
 			world.setBlockState(blockPos, Blocks.WATER.getDefaultState());
 		} else {
 			world.setBlockState(blockPos, Blocks.AIR.getDefaultState());
@@ -113,22 +113,22 @@ public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 		
 		Optional<Entity> hatchedEntity = hatchEntity(world, blockPos, this.memoryItemStack);
 		
-		if(hatchedEntity.isPresent()) {
+		if (hatchedEntity.isPresent()) {
 			SpectrumS2CPacketSender.playMemoryManifestingParticles(world, blockPos, hatchedEntity.get().getType(), 10);
 			
-			if(hatchedEntity.get() instanceof MobEntity hatchedMobEntity) {
+			if (hatchedEntity.get() instanceof MobEntity hatchedMobEntity) {
 				hatchedMobEntity.playAmbientSound();
 				hatchedMobEntity.playSpawnEffects();
 			}
-			if(this.ownerUUID != null) {
+			if (this.ownerUUID != null) {
 				if (hatchedEntity.get() instanceof HorseBaseEntity horseBaseEntity) {
 					horseBaseEntity.setOwnerUuid(this.ownerUUID);
 				} else if (hatchedEntity.get() instanceof FoxEntity foxEntity) {
 					((FoxEntityAccessor) foxEntity).invokeAddTrustedUuid(this.ownerUUID);
 				}
-				if(hatchedEntity.get() instanceof AnimalEntity animalEntity) {
+				if (hatchedEntity.get() instanceof AnimalEntity animalEntity) {
 					PlayerEntity player = getPlayerEntityIfOnline(world);
-					if(player != null) {
+					if (player != null) {
 						animalEntity.lovePlayer(player);
 						animalEntity.resetLoveTicks();
 					}
@@ -141,14 +141,14 @@ public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 	
 	protected void triggerManifestingAdvancementCriterion(Entity hatchedEntity) {
 		PlayerEntity owner = PlayerOwned.getPlayerEntityIfOnline(world, this.ownerUUID);
-		if(owner instanceof ServerPlayerEntity serverPlayerEntity) {
+		if (owner instanceof ServerPlayerEntity serverPlayerEntity) {
 			SpectrumAdvancementCriteria.MEMORY_MANIFESTING.trigger(serverPlayerEntity, hatchedEntity);
 		}
 	}
 	
 	public int getEggColor(int tintIndex) {
-		if(tint1 == -1) {
-			if(this.memoryItemStack == null) {
+		if (tint1 == -1) {
+			if (this.memoryItemStack == null) {
 				this.tint1 = 0x222222;
 				this.tint2 = 0xDDDDDD;
 			} else {
@@ -157,7 +157,7 @@ public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 			}
 		}
 		
-		if(tintIndex == 0) {
+		if (tintIndex == 0) {
 			return tint1;
 		} else {
 			return tint2;
@@ -178,19 +178,19 @@ public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 	@Contract("_ -> new")
 	public static @NotNull Pair<Integer, Integer> getEggColorsForEntity(EntityType entityType) {
 		SpawnEggItem spawnEggItem = SpawnEggItem.forEntity(entityType);
-		if(spawnEggItem != null) {
+		if (spawnEggItem != null) {
 			return new Pair<>(spawnEggItem.getColor(0), spawnEggItem.getColor(1));
 		}
 		return new Pair<>(0x222222, 0xDDDDDD);
 	}
 	
 	protected Optional<Entity> hatchEntity(ServerWorld world, BlockPos blockPos, ItemStack itemStack) {
-		if(this.memoryItemStack.getItem() instanceof MemoryItem) {
+		if (this.memoryItemStack.getItem() instanceof MemoryItem) {
 			Optional<EntityType<?>> entityType = MemoryItem.getEntityType(memoryItemStack.getNbt());
-			if(entityType.isPresent()) {
+			if (entityType.isPresent()) {
 				// alignPosition: center the mob in the center of the blockPos
 				Entity entity = entityType.get().spawnFromItemStack(world, memoryItemStack, null, blockPos, SpawnReason.SPAWN_EGG, true, false);
-				if(entity != null) {
+				if (entity != null) {
 					if (entity instanceof MobEntity mobEntity) {
 						mobEntity.setBaby(true);
 						if (itemStack.hasCustomName()) {
@@ -208,11 +208,11 @@ public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 	
 	public static int getManifestAdvanceSteps(@NotNull World world, @NotNull BlockPos blockPos) {
 		BlockState belowBlockState = world.getBlockState(blockPos.down());
-		if(belowBlockState.isIn(SpectrumBlockTags.MEMORY_NEVER_MANIFESTERS)) {
+		if (belowBlockState.isIn(SpectrumBlockTags.MEMORY_NEVER_MANIFESTERS)) {
 			return 0;
-		} else if(belowBlockState.isIn(SpectrumBlockTags.MEMORY_VERY_FAST_MANIFESTERS)) {
+		} else if (belowBlockState.isIn(SpectrumBlockTags.MEMORY_VERY_FAST_MANIFESTERS)) {
 			return 8;
-		} else if(belowBlockState.isIn(SpectrumBlockTags.MEMORY_FAST_MANIFESTERS)) {
+		} else if (belowBlockState.isIn(SpectrumBlockTags.MEMORY_FAST_MANIFESTERS)) {
 			return 3;
 		} else {
 			return 1;

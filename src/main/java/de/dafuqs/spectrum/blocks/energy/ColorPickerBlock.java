@@ -60,7 +60,7 @@ public class ColorPickerBlock extends BlockWithEntity {
 	@Nullable
 	@Override
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-		if(!world.isClient) {
+		if (!world.isClient) {
 			return checkType(type, SpectrumBlockEntityRegistry.COLOR_PICKER, ColorPickerBlockEntity::tick);
 		}
 		return null;

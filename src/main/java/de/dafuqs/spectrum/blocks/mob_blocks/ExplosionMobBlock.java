@@ -34,14 +34,14 @@ public class ExplosionMobBlock extends MobBlock {
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
 		super.appendTooltip(stack, world, tooltip, options);
-		tooltip.add(new TranslatableText( "block.spectrum.explosion_mob_block.tooltip", power));
+		tooltip.add(new TranslatableText("block.spectrum.explosion_mob_block.tooltip", power));
 	}
 	
 	@Override
 	public boolean trigger(ServerWorld world, final BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
 		// why power + 1 you ask? Since the explosion happens inside the block, some explosion power
 		// is blocked by this block itself, weakening it. So to better match the original value we have to make it a tad stronger
-		world.createExplosion(null, DamageSource.explosion((Explosion) null), new SpareBlockExplosionBehavior(blockPos), blockPos.getX() + 0.5, blockPos.getY() + 0.5, blockPos.getZ() + 0.5, this.power+1, this.createFire, Explosion.DestructionType.DESTROY);
+		world.createExplosion(null, DamageSource.explosion((Explosion) null), new SpareBlockExplosionBehavior(blockPos), blockPos.getX() + 0.5, blockPos.getY() + 0.5, blockPos.getZ() + 0.5, this.power + 1, this.createFire, Explosion.DestructionType.DESTROY);
 		return true;
 	}
 	

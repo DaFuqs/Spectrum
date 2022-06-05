@@ -178,7 +178,7 @@ public class ItemColors extends ColorRegistry<Item> {
 	@Override
 	public void registerColorMapping(Identifier identifier, DyeColor dyeColor) {
 		Item item = Registry.ITEM.get(identifier);
-		if(item != Items.AIR) {
+		if (item != Items.AIR) {
 			COLORS.put(item, dyeColor);
 		}
 	}
@@ -190,8 +190,8 @@ public class ItemColors extends ColorRegistry<Item> {
 	
 	@Override
 	public Optional<DyeColor> getMapping(Item item) {
-		if(COLORS.containsKey(item)) {
-			return  Optional.of(COLORS.get(item));
+		if (COLORS.containsKey(item)) {
+			return Optional.of(COLORS.get(item));
 		} else {
 			return Optional.empty();
 		}

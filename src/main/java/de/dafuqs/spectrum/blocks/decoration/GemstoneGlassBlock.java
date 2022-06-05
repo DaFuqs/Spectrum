@@ -14,26 +14,26 @@ public class GemstoneGlassBlock extends GlassBlock {
 	
 	@Nullable
 	GemstoneColor gemstoneColor;
-
+	
 	public GemstoneGlassBlock(Settings settings, @Nullable GemstoneColor gemstoneColor) {
 		super(settings);
 		this.gemstoneColor = gemstoneColor;
 	}
-
+	
 	@Environment(EnvType.CLIENT)
 	public boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
-		if(stateFrom.isOf(this)) {
+		if (stateFrom.isOf(this)) {
 			return true;
 		}
 		
-		if(state.getBlock() instanceof GemstoneGlassBlock sourceGemstoneGlassBlock && stateFrom.getBlock() instanceof GemstoneGlassBlock targetGemstoneGlassBlock) {
+		if (state.getBlock() instanceof GemstoneGlassBlock sourceGemstoneGlassBlock && stateFrom.getBlock() instanceof GemstoneGlassBlock targetGemstoneGlassBlock) {
 			return sourceGemstoneGlassBlock.gemstoneColor == targetGemstoneGlassBlock.gemstoneColor;
 		}
 		return super.isSideInvisible(state, stateFrom, direction);
 	}
-
+	
 	public boolean isTranslucent(BlockState state, BlockView world, BlockPos pos) {
 		return true;
 	}
-
+	
 }

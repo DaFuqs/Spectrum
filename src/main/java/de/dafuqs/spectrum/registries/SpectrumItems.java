@@ -104,14 +104,14 @@ public class SpectrumItems {
 	// Main items
 	public static final Item MANUAL = new ManualItem(toolItemSettingsSingle);
 	public static final Item CRAFTING_TABLET = new CraftingTabletItem(toolItemSettingsSingle);
-
+	
 	public static final Item PEDESTAL_TIER_1_STRUCTURE_PLACER = new StructurePlacerItem(toolItemSettingsSingle, new Identifier(SpectrumCommon.MOD_ID, "pedestal_simple_structure_place"));
 	public static final Item PEDESTAL_TIER_2_STRUCTURE_PLACER = new StructurePlacerItem(toolItemSettingsSingle, new Identifier(SpectrumCommon.MOD_ID, "pedestal_advanced_structure_place"));
 	public static final Item PEDESTAL_TIER_3_STRUCTURE_PLACER = new StructurePlacerItem(toolItemSettingsSingle, new Identifier(SpectrumCommon.MOD_ID, "pedestal_complex_structure_place"));
 	public static final Item FUSION_SHRINE_STRUCTURE_PLACER = new StructurePlacerItem(toolItemSettingsSingle, new Identifier(SpectrumCommon.MOD_ID, "fusion_shrine_structure"));
 	public static final Item ENCHANTER_STRUCTURE_PLACER = new StructurePlacerItem(toolItemSettingsSingle, new Identifier(SpectrumCommon.MOD_ID, "enchanter_structure"));
 	public static final Item SPIRIT_INSTILLER_STRUCTURE_PLACER = new StructurePlacerItem(toolItemSettingsSingle, new Identifier(SpectrumCommon.MOD_ID, "spirit_instiller_structure"));
-
+	
 	// Gem shards
 	public static final Item TOPAZ_SHARD = new Item(resourcesItemSettings);
 	public static final Item CITRINE_SHARD = new Item(resourcesItemSettings);
@@ -125,7 +125,7 @@ public class SpectrumItems {
 	public static final Item CITRINE_POWDER = new CloakedGemstoneColorItem(resourcesItemSettings, GEMSTONE_POWDER_CLOAK_IDENTIFIER, BuiltinGemstoneColor.YELLOW);
 	public static final Item ONYX_POWDER = new CloakedGemstoneColorItem(resourcesItemSettings, new Identifier(SpectrumCommon.MOD_ID, "create_onyx_shard"), BuiltinGemstoneColor.BLACK);
 	public static final Item MOONSTONE_POWDER = new CloakedGemstoneColorItem(resourcesItemSettings, new Identifier(SpectrumCommon.MOD_ID, "midgame/collect_moonstone_shard"), BuiltinGemstoneColor.WHITE);
-
+	
 	// Pigment
 	public static final Item BLACK_PIGMENT = new PigmentItem(resourcesItemSettings, DyeColor.BLACK);
 	public static final Item BLUE_PIGMENT = new PigmentItem(resourcesItemSettings, DyeColor.BLUE);
@@ -143,7 +143,7 @@ public class SpectrumItems {
 	public static final Item RED_PIGMENT = new PigmentItem(resourcesItemSettings, DyeColor.RED);
 	public static final Item WHITE_PIGMENT = new PigmentItem(resourcesItemSettings, DyeColor.WHITE);
 	public static final Item YELLOW_PIGMENT = new PigmentItem(resourcesItemSettings, DyeColor.YELLOW);
-
+	
 	// Preenchanted tools
 	public static final Item MULTITOOL = new MultiToolItem(ToolMaterials.IRON, 2, -2.4F, multiToolItemSettings);
 	public static final Item SILKER_PICKAXE = new SpectrumPickaxeItem(SpectrumToolMaterials.ToolMaterial.LOW_HEALTH, 1, -2.8F, lowHealthToolItemSettings) {
@@ -166,7 +166,7 @@ public class SpectrumItems {
 			return Map.of(SpectrumEnchantments.RESONANCE, 1);
 		}
 	};
-
+	
 	// Bedrock Tools
 	public static final SpectrumToolMaterials.ToolMaterial BEDROCK_MATERIAL = SpectrumToolMaterials.ToolMaterial.BEDROCK;
 	public static final ToolItem BEDROCK_PICKAXE = new BedrockPickaxeItem(BEDROCK_MATERIAL, 1, -2.8F, bedrockToolItemSettings);
@@ -204,7 +204,7 @@ public class SpectrumItems {
 			return Map.of(Enchantments.FIRE_PROTECTION, 5);
 		}
 	};
-
+	
 	// Armor
 	public static final ArmorMaterial EMERGENCY_ARMOR_MATERIAL = SpectrumArmorMaterials.EMERGENCY;
 	public static final Item EMERGENCY_HELMET = new GemstoneArmorItem(EMERGENCY_ARMOR_MATERIAL, EquipmentSlot.HEAD, gemstoneArmorItemSettings);
@@ -219,12 +219,12 @@ public class SpectrumItems {
 	
 	public static final Item MIDNIGHT_ABERRATION = new MidnightAberrationItem(resourcesRareItemSettings, new Identifier(SpectrumCommon.MOD_ID, "midgame/create_midnight_aberration"), SpectrumItems.SPECTRAL_SHARD);
 	public static final Item MIDNIGHT_CHIP = new CloakedItem(resourcesRareItemSettings, new Identifier(SpectrumCommon.MOD_ID, "midgame/create_midnight_aberration"), SpectrumItems.SPECTRAL_SHARD);
-
+	
 	// Fluid Buckets
 	public static final Item LIQUID_CRYSTAL_BUCKET = new BucketItem(LIQUID_CRYSTAL, new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).maxCount(1).recipeRemainder(Items.BUCKET));
 	public static final Item MUD_BUCKET = new BucketItem(MUD, new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).maxCount(1).recipeRemainder(Items.BUCKET));
 	public static final Item MIDNIGHT_SOLUTION_BUCKET = new BucketItem(MIDNIGHT_SOLUTION, new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).maxCount(1).recipeRemainder(Items.BUCKET));
-
+	
 	// Decay bottles
 	public static final Item BOTTLE_OF_FADING = new DecayPlacerItem(SpectrumBlocks.FADING, toolItemSettingsSixteen);
 	public static final Item BOTTLE_OF_FAILING = new DecayPlacerItem(SpectrumBlocks.FAILING, toolItemSettingsSixteen);
@@ -240,7 +240,7 @@ public class SpectrumItems {
 	public static final CloakedFloatItem SCARLET_GEM = new CloakedFloatItem(resourcesItemSettingsSixteenFireproof, 1.02F, ((Cloakable) SpectrumBlocks.SCARLET_ORE).getCloakAdvancementIdentifier(), Items.RED_DYE);
 	public static final CloakedFloatItem PALETUR_FRAGMENTS = new CloakedFloatItem(resourcesItemSettings, 0.997F, ((Cloakable) SpectrumBlocks.PALETUR_ORE).getCloakAdvancementIdentifier(), Items.CYAN_DYE);
 	public static final CloakedFloatItem PALETUR_GEM = new CloakedFloatItem(resourcesItemSettingsSixteen, 0.98F, ((Cloakable) SpectrumBlocks.PALETUR_ORE).getCloakAdvancementIdentifier(), Items.CYAN_DYE);
-
+	
 	public static final CloakedItem QUITOXIC_POWDER = new CloakedItem(resourcesItemSettings, ((Cloakable) SpectrumBlocks.QUITOXIC_REEDS).getCloakAdvancementIdentifier(), Items.PURPLE_DYE);
 	public static final CloakedItem LIGHTNING_STONE = new CloakedItem(resourcesItemSettingsSixteen, ((Cloakable) SpectrumBlocks.STUCK_LIGHTNING_STONE).getCloakAdvancementIdentifier(), Items.YELLOW_DYE);
 	public static final CloakedItem MERMAIDS_GEM = new CloakedItem(resourcesItemSettingsSixteen, new Identifier(SpectrumCommon.MOD_ID, "craft_using_pedestal"), Items.LIGHT_BLUE_DYE);
@@ -272,17 +272,17 @@ public class SpectrumItems {
 	
 	// Catkin
 	public static final Item VIBRANT_CYAN_CATKIN = new CatkinItem(BuiltinGemstoneColor.CYAN, false, resourcesItemSettings);
-	public static final Item VIBRANT_MAGENTA_CATKIN =  new CatkinItem(BuiltinGemstoneColor.MAGENTA, false, resourcesItemSettings);
+	public static final Item VIBRANT_MAGENTA_CATKIN = new CatkinItem(BuiltinGemstoneColor.MAGENTA, false, resourcesItemSettings);
 	public static final Item VIBRANT_YELLOW_CATKIN = new CatkinItem(BuiltinGemstoneColor.YELLOW, false, resourcesItemSettings);
 	public static final Item VIBRANT_BLACK_CATKIN = new CatkinItem(BuiltinGemstoneColor.BLACK, false, resourcesItemSettings);
 	public static final Item VIBRANT_WHITE_CATKIN = new CatkinItem(BuiltinGemstoneColor.WHITE, false, resourcesItemSettings);
 	
-	public static final Item LUCID_CYAN_CATKIN =  new CatkinItem(BuiltinGemstoneColor.CYAN, true, resourcesUncommonItemSettings);
+	public static final Item LUCID_CYAN_CATKIN = new CatkinItem(BuiltinGemstoneColor.CYAN, true, resourcesUncommonItemSettings);
 	public static final Item LUCID_MAGENTA_CATKIN = new CatkinItem(BuiltinGemstoneColor.MAGENTA, true, resourcesUncommonItemSettings);
 	public static final Item LUCID_YELLOW_CATKIN = new CatkinItem(BuiltinGemstoneColor.YELLOW, true, resourcesUncommonItemSettings);
 	public static final Item LUCID_BLACK_CATKIN = new CatkinItem(BuiltinGemstoneColor.BLACK, true, resourcesUncommonItemSettings);
 	public static final Item LUCID_WHITE_CATKIN = new CatkinItem(BuiltinGemstoneColor.WHITE, true, resourcesUncommonItemSettings);
-
+	
 	// Misc
 	public static final Item MUSIC_DISC_SPECTRUM_THEME = new SpectrumMusicDiscItem(1, SpectrumSoundEvents.SPECTRUM_THEME, toolRareItemSettingsSingle);
 	public static final Item MUSIC_DISC_DIMENSION_THEME = new SpectrumMusicDiscItem(2, SpectrumSoundEvents.BOSS_THEME, toolRareItemSettingsSingle);
@@ -290,7 +290,7 @@ public class SpectrumItems {
 	public static final Item GLISTERING_MELON_SEEDS = new AliasedBlockItem(SpectrumBlocks.GLISTERING_MELON_STEM, toolItemSettings);
 	public static final Item INVISIBLE_ITEM_FRAME = new InvisibleItemFrameItem(SpectrumEntityTypes.INVISIBLE_ITEM_FRAME, toolItemSettings);
 	public static final Item INVISIBLE_GLOW_ITEM_FRAME = new InvisibleGlowItemFrameItem(SpectrumEntityTypes.INVISIBLE_GLOW_ITEM_FRAME, toolItemSettings);
-
+	
 	public static final Item BOTTOMLESS_BUNDLE = new BottomlessBundleItem(toolItemSettingsSingle);
 	public static final Item KNOWLEDGE_GEM = new KnowledgeGemItem(toolUncommonItemSettingsSingle, 10000);
 	public static final Item CELESTIAL_POCKETWATCH = new CelestialPocketWatchItem(toolUncommonItemSettingsSingle);
@@ -318,18 +318,18 @@ public class SpectrumItems {
 	
 	public static final Item GLEAMING_PIN = new GleamingPinItem(toolUncommonItemSettingsSingle);
 	public static final Item LESSER_POTION_PENDANT = new PotionPendantItem(toolUncommonItemSettingsSingle, 1, 2, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_lesser_potion_pendant"));
-	public static final Item GREATER_POTION_PENDANT = new PotionPendantItem(toolUncommonItemSettingsSingle, 3, 0,  new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_greater_potion_pendant"));
+	public static final Item GREATER_POTION_PENDANT = new PotionPendantItem(toolUncommonItemSettingsSingle, 3, 0, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_greater_potion_pendant"));
 	public static final Item ASHEN_CIRCLET = new AshenCircletItem(toolUncommonItemSettingsSingleFireproof);
 	public static final Item TIDAL_CIRCLET = new TidalCircletItem(toolUncommonItemSettingsSingle);
 	public static final Item PUFF_CIRCLET = new PuffCircletItem(toolUncommonItemSettingsSingle);
 	public static final Item WHISPY_CIRCLET = new WhispyCircletItem(toolUncommonItemSettingsSingle);
 	public static final Item NEAT_RING = new NeatRingItem(toolRareItemSettingsSingle);
-
+	
 	private static void register(String name, Item item, DyeColor dyeColor) {
 		Registry.register(Registry.ITEM, new Identifier(SpectrumCommon.MOD_ID, name), item);
 		ItemColors.ITEM_COLORS.registerColorMapping(item, dyeColor);
 	}
-
+	
 	public static void register() {
 		register("manual", MANUAL, DyeColor.WHITE);
 		
@@ -685,5 +685,5 @@ public class SpectrumItems {
 		FuelRegistry.INSTANCE.add(SpectrumBlocks.WHITE_PLANK_SLAB.asItem(), 150);
 		FuelRegistry.INSTANCE.add(SpectrumBlocks.YELLOW_PLANK_SLAB.asItem(), 150);
 	}
-
+	
 }

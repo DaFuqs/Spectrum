@@ -26,7 +26,7 @@ public interface InkStorage {
 	
 	// returns true if the energy could be drained successfully
 	// if not enough energy is stored, the amount of stored energy remains unchanged
-    boolean requestEnergy(InkColor color, long requestedAmount);
+	boolean requestEnergy(InkColor color, long requestedAmount);
 	
 	// gets the amount of stored energy of that type
 	long getEnergy(InkColor color);
@@ -63,16 +63,17 @@ public interface InkStorage {
 	 * Transfer Ink from one storage to another
 	 * Transfers Ink using a "pressure like" system: Tries to balance the ink in source and destination.
 	 * The more energy is in source, the more is getting transferred, up to when both storages even out.
-	 * @param source The ink storage that is getting drawn from
+	 *
+	 * @param source      The ink storage that is getting drawn from
 	 * @param destination The ink storage receiving energy
-	 * @param color The ink type to transfer
+	 * @param color       The ink type to transfer
 	 * @return the amount of energy that could be transferred
 	 */
 	static long transferInk(@NotNull InkStorage source, @NotNull InkStorage destination, @NotNull InkColor color) {
 		long sourceAmount = source.getEnergy(color);
-		if(sourceAmount > 0) {
+		if (sourceAmount > 0) {
 			long destinationRoom = destination.getRoom(color);
-			if(destinationRoom > 0) {
+			if (destinationRoom > 0) {
 				long destinationAmount = destination.getEnergy(color);
 				long transferAmount = Math.max(0, (sourceAmount - destinationAmount) / 32); // the constant here is simulating pressure flow
 				transferAmount = Math.min(transferAmount, Math.min(sourceAmount, destinationRoom));
@@ -90,18 +91,19 @@ public interface InkStorage {
 	 * Transfer Ink from one storage to another
 	 * Transfers a fixed amount of energy
 	 * => Use the pressure like system without fixed amount, where possible
-	 * @param source The ink storage that is getting drawn from
+	 *
+	 * @param source      The ink storage that is getting drawn from
 	 * @param destination The ink storage receiving energy
-	 * @param color The ink type to transfer
-	 * @param amount The fixed amount of ink to transfer
+	 * @param color       The ink type to transfer
+	 * @param amount      The fixed amount of ink to transfer
 	 * @return the amount of energy that could be transferred
 	 */
 	@Deprecated
 	static long transferInk(@NotNull InkStorage source, @NotNull InkStorage destination, @NotNull InkColor color, long amount) {
 		long sourceAmount = source.getEnergy(color);
-		if(sourceAmount > 0) {
+		if (sourceAmount > 0) {
 			long destinationRoom = destination.getRoom(color);
-			if(destinationRoom > 0) {
+			if (destinationRoom > 0) {
 				long transferAmount = Math.min(amount, Math.min(sourceAmount, destinationRoom));
 				if (transferAmount > 0) {
 					destination.addEnergy(color, transferAmount);

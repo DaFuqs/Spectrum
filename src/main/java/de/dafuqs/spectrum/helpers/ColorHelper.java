@@ -18,9 +18,9 @@ public class ColorHelper {
 		return switch (dyeColor) {
 			case BLACK -> new Vec3f(0.1F, 0.1F, 0.1F);
 			case BLUE -> new Vec3f(0.05F, 0.011F, 0.95F);
-			case BROWN ->  new Vec3f(0.31F, 0.16F, 0.05F);
-			case CYAN ->  new Vec3f(0.0F, 1.0F, 1.0F);
-			case GRAY ->  new Vec3f(0.3F, 0.3F, 0.3F);
+			case BROWN -> new Vec3f(0.31F, 0.16F, 0.05F);
+			case CYAN -> new Vec3f(0.0F, 1.0F, 1.0F);
+			case GRAY -> new Vec3f(0.3F, 0.3F, 0.3F);
 			case GREEN -> new Vec3f(0.14F, 0.24F, 0.0F);
 			case LIGHT_BLUE -> new Vec3f(0.0F, 0.75F, 0.95F);
 			case LIGHT_GRAY -> new Vec3f(0.68F, 0.68F, 0.68F);
@@ -30,7 +30,7 @@ public class ColorHelper {
 			case PINK -> new Vec3f(1.0F, 0.78F, 0.87F);
 			case PURPLE -> new Vec3f(0.43F, 0.0F, 0.68F);
 			case RED -> new Vec3f(0.95F, 0.0F, 0.0F);
-			case WHITE -> new Vec3f( 0.97F, 0.97F, 0.97F);
+			case WHITE -> new Vec3f(0.97F, 0.97F, 0.97F);
 			default -> new Vec3f(0.93F, 0.93F, 0.0F);
 		};
 	}

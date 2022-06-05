@@ -16,7 +16,7 @@ public enum FusionShrineRecipeWorldCondition {
 	RAIN,
 	THUNDER,
 	NOT_THUNDER;
-
+	
 	public boolean isMetCurrently(World world) {
 		switch (this) {
 			case DAY -> {
@@ -58,6 +58,6 @@ public enum FusionShrineRecipeWorldCondition {
 		}
 		return false;
 	}
-
-
+	
+	
 }

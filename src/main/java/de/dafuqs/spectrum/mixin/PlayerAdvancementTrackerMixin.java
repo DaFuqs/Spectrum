@@ -17,21 +17,22 @@ import java.util.List;
 
 @Mixin(PlayerAdvancementTracker.class)
 public abstract class PlayerAdvancementTrackerMixin {
-
-	@Shadow private ServerPlayerEntity owner;
 	
-	@Inject(at=@At("RETURN"), method= "grantCriterion(Lnet/minecraft/advancement/Advancement;Ljava/lang/String;)Z")
+	@Shadow
+	private ServerPlayerEntity owner;
+	
+	@Inject(at = @At("RETURN"), method = "grantCriterion(Lnet/minecraft/advancement/Advancement;Ljava/lang/String;)Z")
 	public void triggerAdvancementCriteria(Advancement advancement, String criterionName, CallbackInfoReturnable<Boolean> cir) {
-		AdvancementProgress advancementProgress = ((PlayerAdvancementTracker)(Object) this).getProgress(advancement);
-		if(advancementProgress.isDone()) {
-
+		AdvancementProgress advancementProgress = ((PlayerAdvancementTracker) (Object) this).getProgress(advancement);
+		if (advancementProgress.isDone()) {
+			
 			SpectrumAdvancementCriteria.ADVANCEMENT_GOTTEN.trigger(owner, advancement);
-
+			
 			List<Cloakable> revealedBlocks = BlockCloakManager.getRevelationsForAdvancement(advancement.getId());
-			for(Cloakable block : revealedBlocks) {
+			for (Cloakable block : revealedBlocks) {
 				SpectrumAdvancementCriteria.HAD_REVELATION.trigger(owner, block);
 			}
 		}
 	}
-
+	
 }

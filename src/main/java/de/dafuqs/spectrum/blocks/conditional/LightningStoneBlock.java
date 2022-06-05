@@ -28,14 +28,14 @@ import java.util.List;
 import java.util.Random;
 
 public class LightningStoneBlock extends Block implements Cloakable {
-
+	
 	protected static final VoxelShape SHAPE = Block.createCuboidShape(4.0D, 0.0D, 4.0D, 11.0D, 2.0D, 11.0D);
-
+	
 	public LightningStoneBlock(Settings settings) {
 		super(settings);
 		registerCloak();
 	}
-
+	
 	@Override
 	public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
 		return world.getBlockState(pos.down()).isSolidBlock(world, pos);
@@ -44,10 +44,10 @@ public class LightningStoneBlock extends Block implements Cloakable {
 	@Override
 	public void onDestroyedByExplosion(World world, BlockPos pos, Explosion explosion) {
 		super.onDestroyedByExplosion(world, pos, explosion);
-
-		if(world.isSkyVisible(pos)) {
+		
+		if (world.isSkyVisible(pos)) {
 			LightningEntity lightningEntity = EntityType.LIGHTNING_BOLT.create(world);
-			if(lightningEntity != null) {
+			if (lightningEntity != null) {
 				lightningEntity.refreshPositionAfterTeleport(Vec3d.ofBottomCenter(pos));
 				world.spawnEntity(lightningEntity);
 			}
@@ -55,51 +55,51 @@ public class LightningStoneBlock extends Block implements Cloakable {
 		
 		int power = 2;
 		Biome biomeAtPos = world.getBiome(pos).value();
-		if(!biomeAtPos.isHot(pos) && !biomeAtPos.isCold(pos)) {
+		if (!biomeAtPos.isHot(pos) && !biomeAtPos.isCold(pos)) {
 			// there is no rain in deserts or snow
 			power = world.isThundering() ? 4 : world.isRaining() ? 3 : 2;
 		}
 		world.createExplosion(null, pos.getX(), pos.getY(), pos.getZ(), power, Explosion.DestructionType.BREAK);
 	}
-
+	
 	@Override
 	public Identifier getCloakAdvancementIdentifier() {
 		return new Identifier(SpectrumCommon.MOD_ID, "milestones/reveal_lightning_stones");
 	}
-
+	
 	@Deprecated
 	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-		if(this.isVisibleTo(context)) {
+		if (this.isVisibleTo(context)) {
 			return SHAPE;
 		}
 		return EMPTY_SHAPE;
 	}
-
+	
 	@Override
 	public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-		if(this.isVisibleTo(context)) {
+		if (this.isVisibleTo(context)) {
 			return SHAPE;
 		}
 		return EMPTY_SHAPE;
 	}
-
+	
 	@Override
 	public Hashtable<BlockState, BlockState> getBlockStateCloaks() {
 		Hashtable<BlockState, BlockState> hashtable = new Hashtable<>();
 		hashtable.put(this.getDefaultState(), Blocks.AIR.getDefaultState());
 		return hashtable;
 	}
-
+	
 	@Override
 	public Pair<Item, Item> getItemCloak() {
 		return null;
 	}
-
+	
 	/**
 	 * If it gets ticked there is a chance to vanish
 	 */
 	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-		if(random.nextFloat() < 0.1) {
+		if (random.nextFloat() < 0.1) {
 			world.setBlockState(pos, Blocks.AIR.getDefaultState(), 3);
 		}
 	}
@@ -108,5 +108,5 @@ public class LightningStoneBlock extends Block implements Cloakable {
 	public List<ItemStack> getDroppedStacks(BlockState state, LootContext.Builder builder) {
 		return getCloakedDroppedStacks(state, builder);
 	}
-
+	
 }

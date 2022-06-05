@@ -22,22 +22,22 @@ public class EnchantmentUpgradeRecipeSerializer implements RecipeSerializer<Ench
 	public static List<EnchantmentUpgradeRecipe> enchantmentUpgradeRecipesToInject = new ArrayList<>();
 	
 	public final EnchantmentUpgradeRecipeSerializer.RecipeFactory<EnchantmentUpgradeRecipe> recipeFactory;
-
+	
 	public EnchantmentUpgradeRecipeSerializer(EnchantmentUpgradeRecipeSerializer.RecipeFactory<EnchantmentUpgradeRecipe> recipeFactory) {
 		this.recipeFactory = recipeFactory;
 	}
-
+	
 	@Override
 	public EnchantmentUpgradeRecipe read(Identifier identifier, JsonObject jsonObject) {
 		Identifier enchantmentIdentifier = Identifier.tryParse(JsonHelper.getString(jsonObject, "enchantment"));
 		
-		if(!Registry.ENCHANTMENT.containsId(enchantmentIdentifier)) {
+		if (!Registry.ENCHANTMENT.containsId(enchantmentIdentifier)) {
 			throw new JsonParseException("Enchantment Upgrade Recipe " + identifier + " has an enchantment set that does not exist or is disabled: " + enchantmentIdentifier); // otherwise, recipe sync would break multiplayer joining with the non-existing enchantment
 		}
 		
 		Enchantment enchantment = Registry.ENCHANTMENT.get(enchantmentIdentifier);
 		Identifier requiredAdvancementIdentifier = null;
-		if(JsonHelper.hasString(jsonObject, "required_advancement")) {
+		if (JsonHelper.hasString(jsonObject, "required_advancement")) {
 			requiredAdvancementIdentifier = Identifier.tryParse(JsonHelper.getString(jsonObject, "required_advancement"));
 		} else {
 			// Recipe has no unlock advancement set. Will be set to the unlock advancement of the Enchanter itself
@@ -50,7 +50,7 @@ public class EnchantmentUpgradeRecipeSerializer implements RecipeSerializer<Ench
 		Item requiredItem;
 		int requiredItemCount;
 		EnchantmentUpgradeRecipe recipe = null;
-		for(int i = 0; i < levelArray.size(); i++) {
+		for (int i = 0; i < levelArray.size(); i++) {
 			JsonObject currentElement = levelArray.get(i).getAsJsonObject();
 			level = i + 2;
 			requiredExperience = JsonHelper.getInt(currentElement, "experience");
@@ -58,7 +58,7 @@ public class EnchantmentUpgradeRecipeSerializer implements RecipeSerializer<Ench
 			requiredItemCount = JsonHelper.getInt(currentElement, "item_count");
 			
 			recipe = this.recipeFactory.create(new Identifier(SpectrumCommon.MOD_ID, identifier.getPath() + "_level_" + (i + 2)), enchantment, level, requiredExperience, requiredItem, requiredItemCount, requiredAdvancementIdentifier);
-			if(!enchantmentUpgradeRecipesToInject.contains(recipe) && i < levelArray.size() -1) { // we return the last one, no need to inject
+			if (!enchantmentUpgradeRecipesToInject.contains(recipe) && i < levelArray.size() - 1) { // we return the last one, no need to inject
 				enchantmentUpgradeRecipesToInject.add(recipe);
 			}
 		}
@@ -91,5 +91,5 @@ public class EnchantmentUpgradeRecipeSerializer implements RecipeSerializer<Ench
 	public interface RecipeFactory<EnchantmentUpgradeRecipe> {
 		EnchantmentUpgradeRecipe create(Identifier id, Enchantment enchantment, int enchantmentDestinationLevel, int requiredExperience, Item requiredItem, int requiredItemCount, @Nullable Identifier requiredAdvancementIdentifier);
 	}
-
+	
 }

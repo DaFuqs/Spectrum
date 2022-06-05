@@ -44,17 +44,17 @@ public abstract class ServerPlayerEntityMixin {
 	public void spectrum$damageHead(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
 		// If the player is damaged by lava and wears an ashen circlet:
 		// cancel damage and grant fire resistance
-		if(source.equals(DamageSource.LAVA)) {
+		if (source.equals(DamageSource.LAVA)) {
 			PlayerEntity thisEntity = (PlayerEntity) (Object) this;
 			
 			Optional<ItemStack> ashenCircletStack = SpectrumTrinketItem.getFirstEquipped(thisEntity, SpectrumItems.ASHEN_CIRCLET);
-			if(ashenCircletStack.isPresent()) {
-				if(AshenCircletItem.getCooldownTicks(ashenCircletStack.get(), thisEntity.world) == 0) {
+			if (ashenCircletStack.isPresent()) {
+				if (AshenCircletItem.getCooldownTicks(ashenCircletStack.get(), thisEntity.world) == 0) {
 					AshenCircletItem.grantFireResistance(ashenCircletStack.get(), thisEntity);
 				}
 				cir.setReturnValue(false);
 			}
-		} else if(source.isFire() && SpectrumTrinketItem.hasEquipped((PlayerEntity) (Object) this, SpectrumItems.ASHEN_CIRCLET)) {
+		} else if (source.isFire() && SpectrumTrinketItem.hasEquipped((PlayerEntity) (Object) this, SpectrumItems.ASHEN_CIRCLET)) {
 			cir.setReturnValue(false);
 		}
 	}
@@ -74,7 +74,7 @@ public abstract class ServerPlayerEntityMixin {
 					
 					World world = thisPlayer.getWorld();
 					Optional<ItemStack> gleamingPinStack = SpectrumTrinketItem.getFirstEquipped(thisPlayer, SpectrumItems.GLEAMING_PIN);
-					if(gleamingPinStack.isPresent() && world.getTime() - this.spectrum$lastGleamingPinTriggerTick > GleamingPinItem.COOLDOWN_TICKS) {
+					if (gleamingPinStack.isPresent() && world.getTime() - this.spectrum$lastGleamingPinTriggerTick > GleamingPinItem.COOLDOWN_TICKS) {
 						GleamingPinItem.doGleamingPinEffect(thisPlayer, (ServerWorld) world, gleamingPinStack.get());
 						this.spectrum$lastGleamingPinTriggerTick = world.getTime();
 					}

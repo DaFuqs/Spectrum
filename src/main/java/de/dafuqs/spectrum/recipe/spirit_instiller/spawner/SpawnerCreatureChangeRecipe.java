@@ -33,7 +33,7 @@ public class SpawnerCreatureChangeRecipe extends SpawnerChangeRecipe {
 		ItemStack mobHeadStack;
 		if (leftBowlStack.isIn(SpectrumItemTags.MOB_HEADS)) {
 			mobHeadStack = leftBowlStack;
-		} else if(rightBowlStack.isIn(SpectrumItemTags.MOB_HEADS)) {
+		} else if (rightBowlStack.isIn(SpectrumItemTags.MOB_HEADS)) {
 			mobHeadStack = rightBowlStack;
 		} else {
 			return false;
@@ -44,11 +44,11 @@ public class SpawnerCreatureChangeRecipe extends SpawnerChangeRecipe {
 			return false;
 		}
 		
-		if(spawnerBlockEntityNbt.contains("SpawnData")) {
+		if (spawnerBlockEntityNbt.contains("SpawnData")) {
 			NbtCompound spawnData = spawnerBlockEntityNbt.getCompound("SpawnData");
-			if(spawnData.contains("entity")) {
+			if (spawnData.contains("entity")) {
 				NbtCompound entity = spawnData.getCompound("entity");
-				if(entity.contains("id")) {
+				if (entity.contains("id")) {
 					Identifier entityTypeIdentifier = Registry.ENTITY_TYPE.getId(entityType.get());
 					return !entityTypeIdentifier.toString().equals(entity.getString("id"));
 				}
@@ -71,7 +71,7 @@ public class SpawnerCreatureChangeRecipe extends SpawnerChangeRecipe {
 		ItemStack mobHeadStack;
 		if (firstBowlStack.isIn(SpectrumItemTags.MOB_HEADS)) {
 			mobHeadStack = firstBowlStack;
-		} else if(secondBowlStack.isIn(SpectrumItemTags.MOB_HEADS)) {
+		} else if (secondBowlStack.isIn(SpectrumItemTags.MOB_HEADS)) {
 			mobHeadStack = secondBowlStack;
 		} else {
 			return spawnerBlockEntityNbt;

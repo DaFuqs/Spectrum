@@ -33,7 +33,7 @@ public class FeedingMobBlock extends MobBlock {
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
 		super.appendTooltip(stack, world, tooltip, options);
-		tooltip.add(new TranslatableText( "block.spectrum.feeding_mob_block.tooltip", this.range));
+		tooltip.add(new TranslatableText("block.spectrum.feeding_mob_block.tooltip", this.range));
 	}
 	
 	@Override
@@ -45,28 +45,28 @@ public class FeedingMobBlock extends MobBlock {
 		List<ItemEntity> itemEntities = world.getNonSpectatingEntities(ItemEntity.class, Box.of(Vec3d.ofCenter(blockPos), boxSize, boxSize, boxSize));
 		
 		// put grown animals in love
-		for(AnimalEntity animalEntity : animalEntities) {
-			if(animalEntity.getBreedingAge() == 0 && !animalEntity.isInLove()) { // getBreedingAge() automatically checks for isChild (-1)
-				for(ItemEntity itemEntity : itemEntities) {
+		for (AnimalEntity animalEntity : animalEntities) {
+			if (animalEntity.getBreedingAge() == 0 && !animalEntity.isInLove()) { // getBreedingAge() automatically checks for isChild (-1)
+				for (ItemEntity itemEntity : itemEntities) {
 					ItemStack stack = itemEntity.getStack();
-					if(animalEntity.isBreedingItem(stack)) {
+					if (animalEntity.isBreedingItem(stack)) {
 						stack.decrement(1);
 						animalEntity.setLoveTicks(LOVE_TICKS);
-						world.sendEntityStatus(animalEntity, (byte)18);
+						world.sendEntityStatus(animalEntity, (byte) 18);
 					}
 				}
 			}
 		}
 		
 		// use remaining items to grow up animals
-		for(AnimalEntity animalEntity : animalEntities) {
-			if(animalEntity.isBaby()) {
-				for(ItemEntity itemEntity : itemEntities) {
+		for (AnimalEntity animalEntity : animalEntities) {
+			if (animalEntity.isBaby()) {
+				for (ItemEntity itemEntity : itemEntities) {
 					ItemStack stack = itemEntity.getStack();
-					if(animalEntity.isBreedingItem(stack)) {
+					if (animalEntity.isBreedingItem(stack)) {
 						stack.decrement(1);
 						int i = animalEntity.getBreedingAge();
-						animalEntity.growUp((int)((float)(-i / 20) * 0.1F), true);
+						animalEntity.growUp((int) ((float) (-i / 20) * 0.1F), true);
 						animalEntity.emitGameEvent(GameEvent.MOB_INTERACT, animalEntity.getCameraBlockPos());
 					}
 				}

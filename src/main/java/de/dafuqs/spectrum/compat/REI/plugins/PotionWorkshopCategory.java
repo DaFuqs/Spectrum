@@ -29,15 +29,15 @@ public abstract class PotionWorkshopCategory implements DisplayCategory<PotionWo
 	public List<Widget> setupDisplay(PotionWorkshopRecipeDisplay display, Rectangle bounds) {
 		Point startPoint = new Point(bounds.getCenterX() - 58, bounds.getCenterY() - 32);
 		List<Widget> widgets = Lists.newArrayList();
-
+		
 		widgets.add(Widgets.createRecipeBase(bounds));
 		
-		if(!display.isUnlocked()) {
+		if (!display.isUnlocked()) {
 			widgets.add(Widgets.createLabel(new Point(startPoint.x - 5, startPoint.y + 23), new TranslatableText("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_1")).leftAligned().color(0x3f3f3f).noShadow());
 			widgets.add(Widgets.createLabel(new Point(startPoint.x - 5, startPoint.y + 33), new TranslatableText("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_2")).leftAligned().color(0x3f3f3f).noShadow());
 		} else {
 			// bubbles
-			widgets.add(Widgets.createTexturedWidget(BACKGROUND_TEXTURE, startPoint.x + 18, startPoint.y+19, 197, 0, 10, 27));
+			widgets.add(Widgets.createTexturedWidget(BACKGROUND_TEXTURE, startPoint.x + 18, startPoint.y + 19, 197, 0, 10, 27));
 			widgets.add(Widgets.createArrow(new Point(startPoint.x + 60, startPoint.y + 18)));
 			
 			// input slots
@@ -57,13 +57,13 @@ public abstract class PotionWorkshopCategory implements DisplayCategory<PotionWo
 			TranslatableText text = new TranslatableText("container.spectrum.rei.potion_workshop.crafting_time", (display.craftingTime / 20));
 			widgets.add(Widgets.createLabel(new Point(startPoint.x + 40, startPoint.y + 54), text).leftAligned().color(0x3f3f3f).noShadow());
 		}
-
+		
 		return widgets;
 	}
-
+	
 	@Override
 	public int getDisplayHeight() {
 		return 80;
 	}
-
+	
 }

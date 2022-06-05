@@ -35,19 +35,19 @@ public class StatusEffectMobBlock extends MobBlock {
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
 		super.appendTooltip(stack, world, tooltip, options);
-		tooltip.add(new TranslatableText( "block.spectrum.potion_effect_mob_block.tooltip", this.statusEffect.getName()));
+		tooltip.add(new TranslatableText("block.spectrum.potion_effect_mob_block.tooltip", this.statusEffect.getName()));
 	}
 	
 	@Override
 	public boolean trigger(ServerWorld world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
-		if(entity instanceof LivingEntity livingEntity) {
+		if (entity instanceof LivingEntity livingEntity) {
 			livingEntity.addStatusEffect(new StatusEffectInstance(statusEffect, duration, amplifier, true, true));
 			
 			// if entity is burning: put out fire
-			if(statusEffect == StatusEffects.FIRE_RESISTANCE && livingEntity.isOnFire()) {
+			if (statusEffect == StatusEffects.FIRE_RESISTANCE && livingEntity.isOnFire()) {
 				livingEntity.setFireTicks(0);
 			}
-
+			
 			return true;
 		}
 		return false;

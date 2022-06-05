@@ -24,5 +24,5 @@ public class ColoredLightBlock extends RedstoneLampBlock {
 	public VoxelShape getCullingShape(BlockState state, BlockView world, BlockPos pos) {
 		return VoxelShapes.empty();
 	}
-
+	
 }

@@ -21,24 +21,24 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
  */
 @Mixin(FishingBobberEntityRenderer.class)
 public class FishingBobberEntityRendererMixin {
-
+	
 	private PlayerEntity bobberOwner;
-
+	
 	@Inject(method = "render", at = @At("HEAD"))
 	private void storeContext(FishingBobberEntity fishingBobberEntity, float f, float g, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i, CallbackInfo ci) {
 		bobberOwner = fishingBobberEntity.getPlayerOwner();
 	}
-
+	
 	@ModifyVariable(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;getHandSwingProgress(F)F"), index = 12)
 	private int render(int i) {
 		ItemStack itemStack = bobberOwner.getMainHandStack();
-
+		
 		if (itemStack.getItem() != Items.FISHING_ROD) {
-			if(itemStack.getItem().equals(SpectrumItems.BEDROCK_FISHING_ROD)) {
+			if (itemStack.getItem().equals(SpectrumItems.BEDROCK_FISHING_ROD)) {
 				return -i;
 			}
 		}
-
+		
 		return i;
 	}
 }

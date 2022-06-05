@@ -8,7 +8,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
 public class SpectrumEnchantments {
-
+	
 	public static final SpectrumEnchantment RESONANCE = new ResonanceEnchantment(Enchantment.Rarity.VERY_RARE, new Identifier(SpectrumCommon.MOD_ID, "progression/enchantments/resonance"), EquipmentSlot.MAINHAND); // Silk Touch, just for different blocks
 	public static final SpectrumEnchantment PEST_CONTROL = new PestControlEnchantment(Enchantment.Rarity.VERY_RARE, new Identifier(SpectrumCommon.MOD_ID, "progression/enchantments/pest_control"), EquipmentSlot.MAINHAND); // Kills silverfish when mining infested blocks
 	public static final SpectrumEnchantment FOUNDRY = new AutoSmeltEnchantment(Enchantment.Rarity.RARE, new Identifier(SpectrumCommon.MOD_ID, "progression/enchantments/autosmelt"), EquipmentSlot.MAINHAND); // applies smelting recipe before dropping items after mining
@@ -25,53 +25,53 @@ public class SpectrumEnchantments {
 	public static final SpectrumEnchantment SNIPER = new SniperEnchantment(Enchantment.Rarity.VERY_RARE, new Identifier(SpectrumCommon.MOD_ID, "progression/enchantments/sniper"), EquipmentSlot.MAINHAND); // Increases projectile speed => increased damage + range
 	public static final SpectrumEnchantment STEADFAST = new DamageProofEnchantment(Enchantment.Rarity.COMMON, new Identifier(SpectrumCommon.MOD_ID, "progression/enchantments/steadfast"), EquipmentSlot.MAINHAND); // ItemStacks with this enchantment are not destroyed by cactus, fire, lava, ...
 	public static final SpectrumEnchantment INDESTRUCTIBLE = new IndestructibleEnchantment(Enchantment.Rarity.RARE, new Identifier(SpectrumCommon.MOD_ID, "progression/enchantments/indestructible"), EquipmentSlot.MAINHAND); // Make tools not use up durability
-
+	
 	public static void register() {
 		Registry.register(Registry.ENCHANTMENT, new Identifier(SpectrumCommon.MOD_ID, "resonance"), RESONANCE);
 		Registry.register(Registry.ENCHANTMENT, new Identifier(SpectrumCommon.MOD_ID, "voiding"), VOIDING);
 		
-		if(SpectrumCommon.CONFIG.PestControlEnchantmentEnabled) {
+		if (SpectrumCommon.CONFIG.PestControlEnchantmentEnabled) {
 			Registry.register(Registry.ENCHANTMENT, new Identifier(SpectrumCommon.MOD_ID, "pest_control"), PEST_CONTROL);
 		}
-		if(SpectrumCommon.CONFIG.AutoSmeltEnchantmentEnabled) {
+		if (SpectrumCommon.CONFIG.AutoSmeltEnchantmentEnabled) {
 			Registry.register(Registry.ENCHANTMENT, new Identifier(SpectrumCommon.MOD_ID, "autosmelt"), FOUNDRY);
 		}
-		if(SpectrumCommon.CONFIG.InventoryInsertionEnchantmentEnabled) {
+		if (SpectrumCommon.CONFIG.InventoryInsertionEnchantmentEnabled) {
 			Registry.register(Registry.ENCHANTMENT, new Identifier(SpectrumCommon.MOD_ID, "inventory_insertion"), INVENTORY_INSERTION);
 		}
-		if(SpectrumCommon.CONFIG.ExuberanceEnchantmentEnabled) {
+		if (SpectrumCommon.CONFIG.ExuberanceEnchantmentEnabled) {
 			Registry.register(Registry.ENCHANTMENT, new Identifier(SpectrumCommon.MOD_ID, "exuberance"), EXUBERANCE);
 		}
-		if(SpectrumCommon.CONFIG.TreasureHunterEnchantmentEnabled) {
+		if (SpectrumCommon.CONFIG.TreasureHunterEnchantmentEnabled) {
 			Registry.register(Registry.ENCHANTMENT, new Identifier(SpectrumCommon.MOD_ID, "treasure_hunter"), TREASURE_HUNTER);
 		}
-		if(SpectrumCommon.CONFIG.DisarmingEnchantmentEnabled) {
+		if (SpectrumCommon.CONFIG.DisarmingEnchantmentEnabled) {
 			Registry.register(Registry.ENCHANTMENT, new Identifier(SpectrumCommon.MOD_ID, "disarming"), DISARMING);
 		}
-		if(SpectrumCommon.CONFIG.FirstStrikeEnchantmentEnabled) {
+		if (SpectrumCommon.CONFIG.FirstStrikeEnchantmentEnabled) {
 			Registry.register(Registry.ENCHANTMENT, new Identifier(SpectrumCommon.MOD_ID, "first_strike"), FIRST_STRIKE);
 		}
-		if(SpectrumCommon.CONFIG.ImprovedCriticalEnchantmentEnabled) {
+		if (SpectrumCommon.CONFIG.ImprovedCriticalEnchantmentEnabled) {
 			Registry.register(Registry.ENCHANTMENT, new Identifier(SpectrumCommon.MOD_ID, "improved_critical"), IMPROVED_CRITICAL);
 		}
-		if(SpectrumCommon.CONFIG.InertiaEnchantmentEnabled) {
+		if (SpectrumCommon.CONFIG.InertiaEnchantmentEnabled) {
 			Registry.register(Registry.ENCHANTMENT, new Identifier(SpectrumCommon.MOD_ID, "inertia"), INERTIA);
 		}
-		if(SpectrumCommon.CONFIG.CloversFavorEnchantmentEnabled) {
+		if (SpectrumCommon.CONFIG.CloversFavorEnchantmentEnabled) {
 			Registry.register(Registry.ENCHANTMENT, new Identifier(SpectrumCommon.MOD_ID, "clovers_favor"), CLOVERS_FAVOR);
 		}
-		if(SpectrumCommon.CONFIG.SniperEnchantmentEnabled) {
+		if (SpectrumCommon.CONFIG.SniperEnchantmentEnabled) {
 			Registry.register(Registry.ENCHANTMENT, new Identifier(SpectrumCommon.MOD_ID, "sniper"), SNIPER);
 		}
-		if(SpectrumCommon.CONFIG.TightGripEnchantmentEnabled) {
+		if (SpectrumCommon.CONFIG.TightGripEnchantmentEnabled) {
 			Registry.register(Registry.ENCHANTMENT, new Identifier(SpectrumCommon.MOD_ID, "tight_grip"), TIGHT_GRIP);
 		}
-		if(SpectrumCommon.CONFIG.SteadfastEnchantmentEnabled) {
+		if (SpectrumCommon.CONFIG.SteadfastEnchantmentEnabled) {
 			Registry.register(Registry.ENCHANTMENT, new Identifier(SpectrumCommon.MOD_ID, "steadfast"), STEADFAST);
 		}
-		if(SpectrumCommon.CONFIG.IndestructibleEnchantmentEnabled) {
+		if (SpectrumCommon.CONFIG.IndestructibleEnchantmentEnabled) {
 			Registry.register(Registry.ENCHANTMENT, new Identifier(SpectrumCommon.MOD_ID, "indestructible"), INDESTRUCTIBLE);
 		}
 	}
-
+	
 }

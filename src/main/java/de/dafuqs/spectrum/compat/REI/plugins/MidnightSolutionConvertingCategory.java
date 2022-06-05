@@ -22,24 +22,24 @@ public class MidnightSolutionConvertingCategory implements DisplayCategory<Midni
 	public CategoryIdentifier<? extends MidnightSolutionConvertingDisplay> getCategoryIdentifier() {
 		return SpectrumPlugins.MIDNIGHT_SOLUTION_CONVERTING;
 	}
-
+	
 	@Override
 	public Renderer getIcon() {
 		return EntryStacks.of(SpectrumItems.MIDNIGHT_SOLUTION_BUCKET);
 	}
-
+	
 	@Override
 	public Text getTitle() {
 		return new TranslatableText("container.spectrum.rei.midnight_solution_converting.title");
 	}
-
+	
 	@Override
 	public List<Widget> setupDisplay(MidnightSolutionConvertingDisplay display, Rectangle bounds) {
 		Point startPoint = new Point(bounds.getCenterX() - 41, bounds.getCenterY() - 13);
 		List<Widget> widgets = Lists.newArrayList();
 		widgets.add(Widgets.createRecipeBase(bounds));
 		
-		if(!display.isUnlocked()) {
+		if (!display.isUnlocked()) {
 			widgets.add(Widgets.createLabel(new Point(startPoint.x - 23, startPoint.y + 4), new TranslatableText("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_1")).leftAligned().color(0x3f3f3f).noShadow());
 			widgets.add(Widgets.createLabel(new Point(startPoint.x - 23, startPoint.y + 14), new TranslatableText("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_2")).leftAligned().color(0x3f3f3f).noShadow());
 		} else {
@@ -50,10 +50,10 @@ public class MidnightSolutionConvertingCategory implements DisplayCategory<Midni
 		}
 		return widgets;
 	}
-
+	
 	@Override
 	public int getDisplayHeight() {
 		return 36;
 	}
-
+	
 }

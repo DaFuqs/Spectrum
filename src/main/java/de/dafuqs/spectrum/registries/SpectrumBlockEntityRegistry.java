@@ -80,7 +80,7 @@ public class SpectrumBlockEntityRegistry<T extends BlockEntity> {
 	public static BlockEntityType<PrivateChestBlockEntity> PRIVATE_CHEST;
 	public static BlockEntityType<SuckingChestBlockEntity> SUCKING_CHEST;
 	public static BlockEntityType<TreasureChestBlockEntity> TREASURE_CHEST;
-
+	
 	public static BlockEntityType<PlayerDetectorBlockEntity> PLAYER_DETECTOR;
 	public static BlockEntityType<RedstoneCalculatorBlockEntity> REDSTONE_CALCULATOR;
 	public static BlockEntityType<RedstoneWirelessBlockEntity> REDSTONE_WIRELESS;
@@ -97,7 +97,7 @@ public class SpectrumBlockEntityRegistry<T extends BlockEntity> {
 	public static BlockEntityType<PastelNetworkPullerNodeBlockEntity> PULLER_NODE;
 	
 	public static BlockEntityType<PreservationControllerBlockEntity> PRESERVATION_CONTROLLER;
-
+	
 	public static void register() {
 		OMINOUS_SAPLING = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "ominous_sapling_block_entity"), FabricBlockEntityTypeBuilder.create(OminousSaplingBlockEntity::new, SpectrumBlocks.OMINOUS_SAPLING).build());
 		PEDESTAL = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "pedestal_block_entity"), FabricBlockEntityTypeBuilder.create(PedestalBlockEntity::new, SpectrumBlocks.PEDESTAL_BASIC_AMETHYST, SpectrumBlocks.PEDESTAL_BASIC_TOPAZ, SpectrumBlocks.PEDESTAL_BASIC_CITRINE, SpectrumBlocks.PEDESTAL_ALL_BASIC, SpectrumBlocks.PEDESTAL_ONYX, SpectrumBlocks.PEDESTAL_MOONSTONE).build());
@@ -148,12 +148,12 @@ public class SpectrumBlockEntityRegistry<T extends BlockEntity> {
 		List<Block> skullBlocksList = new ArrayList<>();
 		skullBlocksList.addAll(SpectrumBlocks.getMobHeads());
 		skullBlocksList.addAll(SpectrumBlocks.getMobWallHeads());
-
+		
 		Block[] skullBlocksArray = new Block[skullBlocksList.size()];
 		skullBlocksArray = skullBlocksList.toArray(skullBlocksArray);
 		SKULL = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "skull"), FabricBlockEntityTypeBuilder.create(SpectrumSkullBlockEntity::new, skullBlocksArray).build());
 	}
-
+	
 	public static void registerClient() {
 		BlockEntityRendererRegistry.register(SpectrumBlockEntityRegistry.PEDESTAL, PedestalBlockEntityRenderer::new);
 		BlockEntityRendererRegistry.register(SpectrumBlockEntityRegistry.PRIVATE_CHEST, PrivateChestBlockEntityRenderer::new);
@@ -175,10 +175,10 @@ public class SpectrumBlockEntityRegistry<T extends BlockEntity> {
 		BlockEntityRendererRegistry.register(SpectrumBlockEntityRegistry.STORAGE_NODE, PastelNetworkNodeBlockEntityRenderer::new);
 		BlockEntityRendererRegistry.register(SpectrumBlockEntityRegistry.PUSHER_NODE, PastelNetworkNodeBlockEntityRenderer::new);
 		BlockEntityRendererRegistry.register(SpectrumBlockEntityRegistry.PULLER_NODE, PastelNetworkNodeBlockEntityRenderer::new);
-
+		
 		registerTextureAtlasCallback();
 	}
-
+	
 	private static void registerTextureAtlasCallback() {
 		// textures that are only referenced in code have to be added to the texture atlas manually
 		
@@ -187,11 +187,11 @@ public class SpectrumBlockEntityRegistry<T extends BlockEntity> {
 			registry.register(new Identifier(SpectrumCommon.MOD_ID, "entity/private_chest"));
 			registry.register(new Identifier(SpectrumCommon.MOD_ID, "entity/treasure_chest"));
 		});
-
+		
 		//Register textures in block atlas
 		ClientSpriteRegistryCallback.event(SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE).register((texture, registry) -> {
 			registry.register(new Identifier(SpectrumCommon.MOD_ID, "entity/pedestal_upgrade_speed"));
 		});
 	}
-
+	
 }

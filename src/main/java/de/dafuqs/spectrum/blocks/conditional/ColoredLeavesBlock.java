@@ -16,32 +16,32 @@ import java.util.Hashtable;
 import java.util.List;
 
 public class ColoredLeavesBlock extends LeavesBlock implements Cloakable {
-
+	
 	public ColoredLeavesBlock(Settings settings) {
 		super(settings);
 		registerCloak();
 	}
-
+	
 	@Override
 	public Identifier getCloakAdvancementIdentifier() {
 		return new Identifier(SpectrumCommon.MOD_ID, "milestones/reveal_colored_trees");
 	}
-
+	
 	@Override
 	public Hashtable<BlockState, BlockState> getBlockStateCloaks() {
 		Hashtable<BlockState, BlockState> hashtable = new Hashtable<>();
-		for(int distance = 1; distance < 8; distance++) {
+		for (int distance = 1; distance < 8; distance++) {
 			hashtable.put(this.getDefaultState().with(LeavesBlock.DISTANCE, distance).with(LeavesBlock.PERSISTENT, false), Blocks.OAK_LEAVES.getDefaultState().with(LeavesBlock.DISTANCE, distance).with(LeavesBlock.PERSISTENT, false));
 			hashtable.put(this.getDefaultState().with(LeavesBlock.DISTANCE, distance).with(LeavesBlock.PERSISTENT, true), Blocks.OAK_LEAVES.getDefaultState().with(LeavesBlock.DISTANCE, distance).with(LeavesBlock.PERSISTENT, true));
 		}
 		return hashtable;
 	}
-
+	
 	@Override
 	public Pair<Item, Item> getItemCloak() {
 		return new Pair<>(this.asItem(), Blocks.OAK_LEAVES.asItem());
 	}
-
+	
 	@Override
 	public void onUncloak() {
 		if (SpectrumColorProviders.coloredLeavesBlockColorProvider != null && SpectrumColorProviders.coloredLeavesItemColorProvider != null) {
@@ -49,7 +49,7 @@ public class ColoredLeavesBlock extends LeavesBlock implements Cloakable {
 			SpectrumColorProviders.coloredLeavesItemColorProvider.setShouldApply(false);
 		}
 	}
-
+	
 	@Override
 	public void onCloak() {
 		if (SpectrumColorProviders.coloredLeavesBlockColorProvider != null && SpectrumColorProviders.coloredLeavesItemColorProvider != null) {
@@ -57,10 +57,10 @@ public class ColoredLeavesBlock extends LeavesBlock implements Cloakable {
 			SpectrumColorProviders.coloredLeavesItemColorProvider.setShouldApply(true);
 		}
 	}
-
+	
 	@Deprecated
 	public List<ItemStack> getDroppedStacks(BlockState state, LootContext.Builder builder) {
 		return getCloakedDroppedStacks(state, builder);
 	}
-
+	
 }

@@ -15,7 +15,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.function.Function;
 
 public class SpectrumParticleTypes {
-
+	
 	public static ParticleType<ParticleSpawnerParticleEffect> PARTICLE_SPAWNER;
 	public static ParticleType<ParticleSpawnerParticleEffectAlwaysShow> PARTICLE_SPAWNER_ALWAYS_SHOW;
 	public static ParticleType<ItemTransferParticleEffect> ITEM_TRANSFER;
@@ -37,7 +37,7 @@ public class SpectrumParticleTypes {
 	public static DefaultParticleType DECAY_PLACE;
 	public static DefaultParticleType JADE_VINES;
 	public static DefaultParticleType JADE_VINES_BLOOM;
-
+	
 	public static DefaultParticleType BLACK_FALLING_SPORE_BLOSSOM;
 	public static DefaultParticleType BLUE_FALLING_SPORE_BLOSSOM;
 	public static DefaultParticleType BROWN_FALLING_SPORE_BLOSSOM;
@@ -54,7 +54,7 @@ public class SpectrumParticleTypes {
 	public static DefaultParticleType RED_FALLING_SPORE_BLOSSOM;
 	public static DefaultParticleType WHITE_FALLING_SPORE_BLOSSOM;
 	public static DefaultParticleType YELLOW_FALLING_SPORE_BLOSSOM;
-
+	
 	public static DefaultParticleType BLACK_SPORE_BLOSSOM_AIR;
 	public static DefaultParticleType BLUE_SPORE_BLOSSOM_AIR;
 	public static DefaultParticleType BROWN_SPORE_BLOSSOM_AIR;
@@ -122,15 +122,15 @@ public class SpectrumParticleTypes {
 	public static DefaultParticleType RED_SPARKLE_RISING;
 	public static DefaultParticleType WHITE_SPARKLE_RISING;
 	public static DefaultParticleType YELLOW_SPARKLE_RISING;
-
+	
 	// Simple particles
 	public static DefaultParticleType register(String name, boolean alwaysShow) {
 		return Registry.register(Registry.PARTICLE_TYPE, new Identifier(SpectrumCommon.MOD_ID, name), FabricParticleTypes.simple(alwaysShow));
 	}
-
+	
 	// complex particles
 	private static <T extends ParticleEffect> ParticleType<T> register(String name, ParticleEffect.Factory<T> factory, final Function<ParticleType<T>, Codec<T>> function, boolean alwaysShow) {
-		return Registry.register(Registry.PARTICLE_TYPE,  new Identifier(SpectrumCommon.MOD_ID, name), new ParticleType<T>(alwaysShow, factory) {
+		return Registry.register(Registry.PARTICLE_TYPE, new Identifier(SpectrumCommon.MOD_ID, name), new ParticleType<T>(alwaysShow, factory) {
 			public Codec<T> getCodec() {
 				return function.apply(this);
 			}
@@ -160,7 +160,7 @@ public class SpectrumParticleTypes {
 		JADE_VINES = register("jade_vines", false);
 		JADE_VINES_BLOOM = register("jade_vines_bloom", false);
 		
-
+		
 		BLACK_FALLING_SPORE_BLOSSOM = register("black_falling_spore_blossom", false);
 		BLUE_FALLING_SPORE_BLOSSOM = register("blue_falling_spore_blossom", false);
 		BROWN_FALLING_SPORE_BLOSSOM = register("brown_falling_spore_blossom", false);
@@ -177,7 +177,7 @@ public class SpectrumParticleTypes {
 		RED_FALLING_SPORE_BLOSSOM = register("red_falling_spore_blossom", false);
 		WHITE_FALLING_SPORE_BLOSSOM = register("white_falling_spore_blossom", false);
 		YELLOW_FALLING_SPORE_BLOSSOM = register("yellow_falling_spore_blossom", false);
-
+		
 		BLACK_SPORE_BLOSSOM_AIR = register("black_spore_blossom_air", false);
 		BLUE_SPORE_BLOSSOM_AIR = register("blue_spore_blossom_air", false);
 		BROWN_SPORE_BLOSSOM_AIR = register("brown_spore_blossom_air", false);
@@ -267,7 +267,7 @@ public class SpectrumParticleTypes {
 			case YELLOW -> YELLOW_CRAFTING;
 			default -> WHITE_CRAFTING;
 		};
-	}	
+	}
 	
 	@NotNull
 	public static ParticleEffect getFluidRisingParticle(DyeColor dyeColor) {
@@ -312,5 +312,5 @@ public class SpectrumParticleTypes {
 			default -> WHITE_SPARKLE_RISING;
 		};
 	}
-
+	
 }

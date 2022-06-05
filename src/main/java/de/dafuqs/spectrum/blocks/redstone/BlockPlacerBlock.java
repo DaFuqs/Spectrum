@@ -11,12 +11,12 @@ import net.minecraft.util.math.BlockPos;
 import org.jetbrains.annotations.NotNull;
 
 public class BlockPlacerBlock extends DispenserBlock {
-
+	
 	public static DispenserBehavior BLOCK_PLACEMENT_BEHAVIOR;
-
+	
 	public BlockPlacerBlock(Settings settings) {
 		super(settings);
-
+		
 		BLOCK_PLACEMENT_BEHAVIOR = new BlockPlacementDispenserBehavior();
 		/*BLOCK_PLACEMENT_BEHAVIOR = (pointer, stack) -> {
 			if(stack.getItem() instanceof BlockItem blockItem) {
@@ -29,15 +29,15 @@ public class BlockPlacerBlock extends DispenserBlock {
 			return stack;
 		};*/
 	}
-
+	
 	@Override
 	public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
 		return new BlockPlacerBlockEntity(pos, state);
 	}
-
+	
 	@Override
 	protected DispenserBehavior getBehaviorForItem(@NotNull ItemStack stack) {
-		if(stack.getItem() instanceof BlockItem) {
+		if (stack.getItem() instanceof BlockItem) {
 			return BLOCK_PLACEMENT_BEHAVIOR;
 		}
 		// If it is not a block item do not handle the selected item at all
@@ -45,5 +45,5 @@ public class BlockPlacerBlock extends DispenserBlock {
 		// and not to dispense items into walls
 		return DispenserBehavior.NOOP;
 	}
-
+	
 }

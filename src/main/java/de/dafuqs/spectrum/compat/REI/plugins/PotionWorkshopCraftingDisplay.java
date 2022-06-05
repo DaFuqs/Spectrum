@@ -20,6 +20,7 @@ public class PotionWorkshopCraftingDisplay extends PotionWorkshopRecipeDisplay {
 	
 	/**
 	 * When using the REI recipe functionality
+	 *
 	 * @param recipe The recipe
 	 */
 	public PotionWorkshopCraftingDisplay(PotionWorkshopCraftingRecipe recipe) {
@@ -36,7 +37,7 @@ public class PotionWorkshopCraftingDisplay extends PotionWorkshopRecipeDisplay {
 		this.baseIngredient = recipe.getBaseIngredient();
 		this.consumeBaseIngredient = recipe.consumesBaseIngredient();
 	}
-
+	
 	@Override
 	public CategoryIdentifier<?> getCategoryIdentifier() {
 		return SpectrumPlugins.POTION_WORKSHOP_CRAFTING;

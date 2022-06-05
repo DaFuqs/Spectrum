@@ -13,7 +13,7 @@ import net.minecraft.entity.EntityType;
 
 @Environment(EnvType.CLIENT)
 public class SpectrumEntityRenderers {
-
+	
 	public static void registerClient() {
 		register(SpectrumEntityTypes.FLOAT_BLOCK, BlockLikeEntityRenderer::new);
 		register(SpectrumEntityTypes.SHOOTING_STAR, ShootingStarEntityRenderer::new);
@@ -21,9 +21,9 @@ public class SpectrumEntityRenderers {
 		register(SpectrumEntityTypes.INVISIBLE_GLOW_ITEM_FRAME, InvisibleItemFrameEntityRenderer::new);
 		register(SpectrumEntityTypes.BLOCK_FLOODER_PROJECTILE, FlyingItemEntityRenderer::new);
 	}
-
+	
 	private static <T extends Entity> void register(EntityType<? extends T> type, EntityRendererFactory<T> factory) {
 		EntityRendererRegistry.INSTANCE.register(type, factory);
 	}
-
+	
 }

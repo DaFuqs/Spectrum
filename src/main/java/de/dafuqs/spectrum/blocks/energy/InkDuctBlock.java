@@ -83,5 +83,5 @@ public class InkDuctBlock extends FacingBlock {
 			}
 		}
 	}
-
+	
 }

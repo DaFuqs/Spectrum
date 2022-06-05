@@ -16,6 +16,7 @@ public class TimeHelper {
 		public boolean isNight() {
 			return this == NIGHT || this == MIDNIGHT;
 		}
+		
 		public boolean isDay() {
 			return this == DAY || this == NOON;
 		}
@@ -27,15 +28,15 @@ public class TimeHelper {
 	
 	public static TimeOfDay getTimeOfDay(long timeOfDay) {
 		long timeMod = timeOfDay % 24000;
-		if(timeMod >= 6000 && timeMod < 7000) {
+		if (timeMod >= 6000 && timeMod < 7000) {
 			return TimeOfDay.NOON;
-		} else if(timeMod >= 0 && timeMod < 12000) {
+		} else if (timeMod >= 0 && timeMod < 12000) {
 			return TimeOfDay.DAY;
-		} else if(timeMod >= 12000 && timeMod < 13000) {
+		} else if (timeMod >= 12000 && timeMod < 13000) {
 			return TimeOfDay.SUNSET;
-		} else if(timeMod >= 23000) {
+		} else if (timeMod >= 23000) {
 			return TimeOfDay.SUNRISE;
-		} else if(timeMod >= 18000 && timeMod < 19000) {
+		} else if (timeMod >= 18000 && timeMod < 19000) {
 			return TimeOfDay.MIDNIGHT;
 		} else {
 			return TimeOfDay.NIGHT;

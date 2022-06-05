@@ -43,10 +43,10 @@ import vazkii.patchouli.api.PatchouliAPI;
 import java.util.Random;
 
 public class PedestalBlock extends BlockWithEntity implements RedstonePoweredBlock {
-
-    public static final Identifier UNLOCK_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "place_pedestal");
-
-    private final PedestalVariant variant;
+	
+	public static final Identifier UNLOCK_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "place_pedestal");
+	
+	private final PedestalVariant variant;
 	public static final BooleanProperty POWERED = BooleanProperty.of("powered");
 	
 	public PedestalBlock(Settings settings, PedestalVariant variant) {
@@ -54,11 +54,11 @@ public class PedestalBlock extends BlockWithEntity implements RedstonePoweredBlo
 		this.variant = variant;
 		setDefaultState(getStateManager().getDefaultState().with(POWERED, false));
 	}
-
+	
 	public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
-		if(placer instanceof ServerPlayerEntity) {
+		if (placer instanceof ServerPlayerEntity) {
 			BlockEntity blockEntity = world.getBlockEntity(pos);
-			if(blockEntity instanceof PedestalBlockEntity pedestalBlockEntity) {
+			if (blockEntity instanceof PedestalBlockEntity pedestalBlockEntity) {
 				pedestalBlockEntity.setOwner((ServerPlayerEntity) placer);
 				if (itemStack.hasCustomName()) {
 					pedestalBlockEntity.setCustomName(itemStack.getName());
@@ -67,12 +67,12 @@ public class PedestalBlock extends BlockWithEntity implements RedstonePoweredBlo
 			}
 		}
 	}
-
+	
 	@Override
 	protected void appendProperties(StateManager.Builder<Block, BlockState> stateManager) {
 		stateManager.add(POWERED);
 	}
-
+	
 	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
 		if (world.isClient) {
 			return ActionResult.SUCCESS;
@@ -81,7 +81,7 @@ public class PedestalBlock extends BlockWithEntity implements RedstonePoweredBlo
 			return ActionResult.CONSUME;
 		}
 	}
-
+	
 	protected void openScreen(World world, BlockPos pos, PlayerEntity player) {
 		BlockEntity blockEntity = world.getBlockEntity(pos);
 		if (blockEntity instanceof PedestalBlockEntity pedestalBlockEntity) {
@@ -89,9 +89,9 @@ public class PedestalBlock extends BlockWithEntity implements RedstonePoweredBlo
 			player.openHandledScreen((NamedScreenHandlerFactory) blockEntity);
 		}
 	}
-
+	
 	public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
-		if(newState.getBlock() instanceof PedestalBlock) {
+		if (newState.getBlock() instanceof PedestalBlock) {
 			if (!state.getBlock().equals(newState.getBlock())) {
 				// pedestal is getting upgraded. Keep the blockEntity with its contents
 				BlockEntity blockEntity = world.getBlockEntity(pos);
@@ -111,7 +111,7 @@ public class PedestalBlock extends BlockWithEntity implements RedstonePoweredBlo
 			super.onStateReplaced(state, world, pos, newState, moved);
 		}
 	}
-
+	
 	/**
 	 * Sets pedestal to a new tier
 	 * while keeping the inventory and all other data
@@ -119,45 +119,45 @@ public class PedestalBlock extends BlockWithEntity implements RedstonePoweredBlo
 	public static void upgradeToVariant(@NotNull World world, BlockPos blockPos, PedestalVariant newPedestalVariant) {
 		world.setBlockState(blockPos, newPedestalVariant.getPedestalBlock().getPlacementState(new AutomaticItemPlacementContext(world, blockPos, Direction.DOWN, null, Direction.UP)));
 	}
-
+	
 	@Nullable
 	public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
 		return new PedestalBlockEntity(pos, state);
 	}
-
+	
 	public BlockRenderType getRenderType(BlockState state) {
 		return BlockRenderType.MODEL;
 	}
-
+	
 	public boolean hasComparatorOutput(BlockState state) {
 		return true;
 	}
-
+	
 	public int getComparatorOutput(BlockState state, @NotNull World world, BlockPos pos) {
 		return ScreenHandler.calculateComparatorOutput(world.getBlockEntity(pos));
 	}
-
+	
 	@Override
 	@Nullable
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(@NotNull World world, BlockState state, BlockEntityType<T> type) {
-		if(world.isClient) {
+		if (world.isClient) {
 			return checkType(type, SpectrumBlockEntityRegistry.PEDESTAL, PedestalBlockEntity::clientTick);
 		} else {
 			return checkType(type, SpectrumBlockEntityRegistry.PEDESTAL, PedestalBlockEntity::serverTick);
 		}
 	}
-
+	
 	@Override
 	public void neighborUpdate(BlockState state, @NotNull World world, BlockPos pos, Block block, BlockPos fromPos, boolean notify) {
 		if (!world.isClient) {
-			if(this.checkGettingPowered(world, pos)) {
+			if (this.checkGettingPowered(world, pos)) {
 				this.power(world, pos);
 			} else {
 				this.unPower(world, pos);
 			}
 		}
 	}
-
+	
 	@Environment(EnvType.CLIENT)
 	public void randomDisplayTick(@NotNull BlockState state, World world, BlockPos pos, Random random) {
 		if (state.get(PedestalBlock.POWERED)) {
@@ -170,13 +170,13 @@ public class PedestalBlock extends BlockWithEntity implements RedstonePoweredBlo
 	
 	@Override
 	public void onBroken(WorldAccess world, BlockPos pos, BlockState state) {
-		if(world.isClient()) {
+		if (world.isClient()) {
 			clearCurrentlyRenderedMultiBlock((World) world);
 		}
 	}
 	
 	public static void clearCurrentlyRenderedMultiBlock(World world) {
-		if(world.isClient) {
+		if (world.isClient) {
 			IMultiblock currentlyRenderedMultiBlock = PatchouliAPI.get().getCurrentMultiblock();
 			if (currentlyRenderedMultiBlock != null
 					&& (currentlyRenderedMultiBlock.getID().equals(SpectrumMultiblocks.PEDESTAL_SIMPLE_STRUCTURE_IDENTIFIER_CHECK)
@@ -190,14 +190,14 @@ public class PedestalBlock extends BlockWithEntity implements RedstonePoweredBlo
 	
 	public BlockState getPlacementState(@NotNull ItemPlacementContext ctx) {
 		BlockState placementState = this.getDefaultState();
-
-		if(ctx.getWorld().getReceivedRedstonePower(ctx.getBlockPos()) > 0) {
+		
+		if (ctx.getWorld().getReceivedRedstonePower(ctx.getBlockPos()) > 0) {
 			placementState = placementState.with(POWERED, true);
 		}
-
+		
 		return placementState;
 	}
-
+	
 	public PedestalVariant getVariant() {
 		return this.variant;
 	}
@@ -205,6 +205,7 @@ public class PedestalBlock extends BlockWithEntity implements RedstonePoweredBlo
 	/**
 	 * Called when a pedestal is upgraded to a new tier
 	 * (like amethyst to the cmy variant). Spawns lots of matching particles.
+	 *
 	 * @param newPedestalRecipeTier The tier the pedestal has been upgraded to
 	 */
 	@Environment(EnvType.CLIENT)
@@ -229,7 +230,7 @@ public class PedestalBlock extends BlockWithEntity implements RedstonePoweredBlo
 				}
 				for (int i = 0; i < 25; i++) {
 					float randomX = random.nextFloat() * 1.2F;
-					world.addParticle(particleEffect, blockPos.getX() + randomX, blockPos.getY(), blockPos.getZ() -0.1, 0.0D, 0.03D, 0.0D);
+					world.addParticle(particleEffect, blockPos.getX() + randomX, blockPos.getY(), blockPos.getZ() - 0.1, 0.0D, 0.03D, 0.0D);
 				}
 			}
 			case ADVANCED -> {
@@ -248,7 +249,7 @@ public class PedestalBlock extends BlockWithEntity implements RedstonePoweredBlo
 				}
 				for (int i = 0; i < 25; i++) {
 					float randomX = random.nextFloat() * 1.2F;
-					world.addParticle(particleEffect, blockPos.getX() + randomX, blockPos.getY(), blockPos.getZ() -0.1, 0.0D, 0.03D, 0.0D);
+					world.addParticle(particleEffect, blockPos.getX() + randomX, blockPos.getY(), blockPos.getZ() - 0.1, 0.0D, 0.03D, 0.0D);
 				}
 			}
 			case SIMPLE -> {
@@ -264,15 +265,15 @@ public class PedestalBlock extends BlockWithEntity implements RedstonePoweredBlo
 					world.addParticle(particleEffectC, blockPos.getX() - 0.1, blockPos.getY() + 0.1, blockPos.getZ() + randomZ, 0.0D, 0.05D, 0.0D);
 				}
 				for (int i = 0; i < 25; i++) {
-					float randomX =  random.nextFloat() * 1.2F;
+					float randomX = random.nextFloat() * 1.2F;
 					world.addParticle(particleEffectM, blockPos.getX() + randomX, blockPos.getY() + 0.1, blockPos.getZ() + 1.1, 0.0D, 0.05D, 0.0D);
 				}
 				for (int i = 0; i < 25; i++) {
 					float randomX = random.nextFloat() * 1.2F;
-					world.addParticle(particleEffectM, blockPos.getX() + randomX, blockPos.getY() + 0.1, blockPos.getZ() -0.1, 0.0D, 0.05D, 0.0D);
+					world.addParticle(particleEffectM, blockPos.getX() + randomX, blockPos.getY() + 0.1, blockPos.getZ() - 0.1, 0.0D, 0.05D, 0.0D);
 				}
 			}
 		}
 	}
-
+	
 }

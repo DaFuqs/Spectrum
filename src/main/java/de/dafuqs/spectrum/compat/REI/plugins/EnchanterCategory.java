@@ -26,43 +26,43 @@ public class EnchanterCategory implements DisplayCategory<EnchanterDisplay> {
 	
 	public final static Identifier BACKGROUND_TEXTURE = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/container/enchanter.png");
 	public static final EntryIngredient ENCHANTER = EntryIngredients.of(new ItemStack(SpectrumBlocks.ENCHANTER));
-
+	
 	@Override
 	public CategoryIdentifier getCategoryIdentifier() {
 		return SpectrumPlugins.ENCHANTER;
 	}
-
+	
 	@Override
 	public Text getTitle() {
 		return new TranslatableText("container.spectrum.rei.enchanting.title");
 	}
-
+	
 	@Override
 	public Renderer getIcon() {
 		return EntryStacks.of(SpectrumBlocks.ENCHANTER);
 	}
-
+	
 	@Override
 	public List<Widget> setupDisplay(@NotNull EnchanterDisplay display, @NotNull Rectangle bounds) {
 		Point startPoint = new Point(bounds.getCenterX() - 58 - 7, bounds.getCenterY() - 49);
 		List<Widget> widgets = Lists.newArrayList();
-
+		
 		widgets.add(Widgets.createRecipeBase(bounds));
 		
-		if(!display.isUnlocked()) {
+		if (!display.isUnlocked()) {
 			widgets.add(Widgets.createLabel(new Point(startPoint.x, startPoint.y + 38), new TranslatableText("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_1")).leftAligned().color(0x3f3f3f).noShadow());
 			widgets.add(Widgets.createLabel(new Point(startPoint.x, startPoint.y + 48), new TranslatableText("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_2")).leftAligned().color(0x3f3f3f).noShadow());
 		} else {
 			// enchanter structure background					            destinationX	 destinationY   sourceX, sourceY, width, height
-			widgets.add(Widgets.createTexturedWidget(BACKGROUND_TEXTURE, startPoint.x + 12, startPoint.y+21, 0, 0, 54, 54));
-
+			widgets.add(Widgets.createTexturedWidget(BACKGROUND_TEXTURE, startPoint.x + 12, startPoint.y + 21, 0, 0, 54, 54));
+			
 			// Knowledge Gem and Enchanter
 			widgets.add(Widgets.createSlot(new Point(startPoint.x + 111, startPoint.y + 14)).markInput().entries(display.inputs.get(9)));
 			widgets.add(Widgets.createSlot(new Point(startPoint.x + 111, startPoint.y + 60)).entries(ENCHANTER).disableBackground());
-
+			
 			// center input slot
 			widgets.add(Widgets.createSlot(new Point(startPoint.x + 31, startPoint.y + 40)).markInput().entries(display.inputs.get(0)));
-
+			
 			// surrounding input slots
 			widgets.add(Widgets.createSlot(new Point(startPoint.x + 18, startPoint.y + 9)).markInput().entries(display.inputs.get(1)));
 			widgets.add(Widgets.createSlot(new Point(startPoint.x + 44, startPoint.y + 9)).markInput().entries(display.inputs.get(2)));
@@ -72,7 +72,7 @@ public class EnchanterCategory implements DisplayCategory<EnchanterDisplay> {
 			widgets.add(Widgets.createSlot(new Point(startPoint.x + 18, startPoint.y + 71)).markInput().entries(display.inputs.get(6)));
 			widgets.add(Widgets.createSlot(new Point(startPoint.x, startPoint.y + 53)).markInput().entries(display.inputs.get(7)));
 			widgets.add(Widgets.createSlot(new Point(startPoint.x, startPoint.y + 27)).markInput().entries(display.inputs.get(8)));
-
+			
 			// output arrow and slot
 			List<EntryIngredient> output = display.getOutputEntries();
 			widgets.add(Widgets.createArrow(new Point(startPoint.x + 80, startPoint.y + 40)));
@@ -91,10 +91,10 @@ public class EnchanterCategory implements DisplayCategory<EnchanterDisplay> {
 		}
 		return widgets;
 	}
-
+	
 	@Override
 	public int getDisplayHeight() {
 		return 100;
 	}
-
+	
 }

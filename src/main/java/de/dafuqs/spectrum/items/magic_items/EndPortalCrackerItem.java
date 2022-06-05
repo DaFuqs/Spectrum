@@ -14,11 +14,11 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 
 public class EndPortalCrackerItem extends Item {
-
+	
 	public EndPortalCrackerItem(Settings settings) {
 		super(settings);
 	}
-
+	
 	public ActionResult useOnBlock(ItemUsageContext context) {
 		World world = context.getWorld();
 		BlockPos blockPos = context.getBlockPos();
@@ -41,18 +41,18 @@ public class EndPortalCrackerItem extends Item {
 							.with(CrackedEndPortalFrameBlock.EYE_TYPE, CrackedEndPortalFrameBlock.EndPortalFrameEye.WITH_END_PORTAL_CRACKER)
 							.with(CrackedEndPortalFrameBlock.FACING_VERTICAL, facingVertical);
 				}
-
+				
 				Block.pushEntitiesUpBeforeBlockChange(blockState, targetBlockState, world, blockPos);
 				world.setBlockState(blockPos, targetBlockState, 2);
 				world.updateComparators(blockPos, Blocks.END_PORTAL_FRAME);
 				context.getStack().decrement(1);
 				world.syncWorldEvent(1503, blockPos, 0);
-
+				
 				return ActionResult.CONSUME;
 			}
 		} else {
 			return ActionResult.PASS;
 		}
 	}
-
+	
 }

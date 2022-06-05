@@ -14,15 +14,15 @@ public class FreezingCategory extends BlockToBlockWithChanceCategory {
 	public CategoryIdentifier<? extends FreezingDisplay> getCategoryIdentifier() {
 		return SpectrumPlugins.FREEZING;
 	}
-
+	
 	@Override
 	public Renderer getIcon() {
 		return EntryStacks.of(SpectrumBlocks.POLAR_BEAR_MOB_BLOCK);
 	}
-
+	
 	@Override
 	public Text getTitle() {
 		return new TranslatableText("container.spectrum.rei.freezing.title");
 	}
-
+	
 }

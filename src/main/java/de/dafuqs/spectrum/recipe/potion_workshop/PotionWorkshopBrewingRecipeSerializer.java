@@ -12,26 +12,26 @@ import net.minecraft.util.JsonHelper;
 import net.minecraft.util.registry.Registry;
 
 public class PotionWorkshopBrewingRecipeSerializer implements RecipeSerializer<PotionWorkshopBrewingRecipe> {
-
+	
 	public final PotionWorkshopBrewingRecipeSerializer.RecipeFactory<PotionWorkshopBrewingRecipe> recipeFactory;
-
+	
 	public PotionWorkshopBrewingRecipeSerializer(PotionWorkshopBrewingRecipeSerializer.RecipeFactory<PotionWorkshopBrewingRecipe> recipeFactory) {
 		this.recipeFactory = recipeFactory;
 	}
-
+	
 	@Override
 	public PotionWorkshopBrewingRecipe read(Identifier identifier, JsonObject jsonObject) {
 		String group = JsonHelper.getString(jsonObject, "group", "");
 		
 		Ingredient ingredient1 = Ingredient.fromJson(JsonHelper.getObject(jsonObject, "ingredient1"));
 		Ingredient ingredient2;
-		if(JsonHelper.hasJsonObject(jsonObject, "ingredient2")) {
+		if (JsonHelper.hasJsonObject(jsonObject, "ingredient2")) {
 			ingredient2 = Ingredient.fromJson(JsonHelper.getObject(jsonObject, "ingredient2"));
 		} else {
 			ingredient2 = Ingredient.EMPTY;
 		}
 		Ingredient ingredient3;
-		if(JsonHelper.hasJsonObject(jsonObject, "ingredient3")) {
+		if (JsonHelper.hasJsonObject(jsonObject, "ingredient3")) {
 			ingredient3 = Ingredient.fromJson(JsonHelper.getObject(jsonObject, "ingredient3"));
 		} else {
 			ingredient3 = Ingredient.EMPTY;
@@ -46,19 +46,19 @@ public class PotionWorkshopBrewingRecipeSerializer implements RecipeSerializer<P
 		float potencyModifier = JsonHelper.getFloat(jsonObject, "potency_modifier", 1.0F);
 		
 		Identifier statusEffectIdentifier = Identifier.tryParse(JsonHelper.getString(jsonObject, "effect"));
-		if(!Registry.STATUS_EFFECT.containsId(statusEffectIdentifier)) {
+		if (!Registry.STATUS_EFFECT.containsId(statusEffectIdentifier)) {
 			throw new JsonParseException("Potion Workshop Brewing Recipe " + identifier + " has a status effect set that does not exist or is disabled: " + statusEffectIdentifier); // otherwise, recipe sync would break multiplayer joining with the non-existing status effect
 		}
 		StatusEffect statusEffect = Registry.STATUS_EFFECT.get(statusEffectIdentifier);
 		
 		Identifier requiredAdvancementIdentifier;
-		if(JsonHelper.hasString(jsonObject, "required_advancement")) {
+		if (JsonHelper.hasString(jsonObject, "required_advancement")) {
 			requiredAdvancementIdentifier = Identifier.tryParse(JsonHelper.getString(jsonObject, "required_advancement"));
 		} else {
 			// Potion Workshop Recipe has no unlock advancement set. Will be set to the unlock advancement of the Potion Workshop itself
 			requiredAdvancementIdentifier = PotionWorkshopBlock.UNLOCK_IDENTIFIER;
 		}
-
+		
 		return this.recipeFactory.create(identifier, group, craftingTime, ingredient1, ingredient2, ingredient3, statusEffect, baseDurationTicks, potencyModifier, color, applicableToPotions, applicableToTippedArrows, applicableToPotionFillabes, requiredAdvancementIdentifier);
 	}
 	
@@ -96,10 +96,10 @@ public class PotionWorkshopBrewingRecipeSerializer implements RecipeSerializer<P
 		Identifier requiredAdvancementIdentifier = packetByteBuf.readIdentifier();
 		return this.recipeFactory.create(identifier, group, craftingTime, ingredient1, ingredient2, ingredient3, statusEffect, baseDurationTicks, potencyModifier, color, applicableToPotions, applicableToTippedArrows, applicableToPotionFillabes, requiredAdvancementIdentifier);
 	}
-
+	
 	
 	public interface RecipeFactory<PotionWorkshopBrewingRecipe> {
 		PotionWorkshopBrewingRecipe create(Identifier id, String group, int craftingTime, Ingredient ingredient1, Ingredient ingredient2, Ingredient ingredient3, StatusEffect statusEffect, int baseDurationTicks, float potencyModifier, int color, boolean applicableToPotions, boolean applicableToTippedArrows, boolean applicableToPotionFillabes, Identifier requiredAdvancementIdentifier);
 	}
-
+	
 }

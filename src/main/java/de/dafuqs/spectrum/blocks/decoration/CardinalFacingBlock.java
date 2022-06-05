@@ -16,7 +16,7 @@ public class CardinalFacingBlock extends FacingBlock {
 		super(settings);
 		this.setDefaultState((this.stateManager.getDefaultState()).with(CARDINAL_FACING, false));
 	}
-
+	
 	@Override
 	public BlockState getPlacementState(ItemPlacementContext ctx) {
 		Direction facing = ctx.getPlayerFacing();
@@ -28,6 +28,6 @@ public class CardinalFacingBlock extends FacingBlock {
 	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
 		builder.add(CARDINAL_FACING);
 	}
-
-
+	
+	
 }

@@ -16,7 +16,7 @@ public class BlockClientMixin {
 	@Inject(method = "getName()Lnet/minecraft/text/MutableText;", at = @At("RETURN"), cancellable = true)
 	private void getCloakedName(CallbackInfoReturnable<MutableText> callbackInfoReturnable) {
 		Block thisBlock = (Block) (Object) this;
-		if(ClientBlockCloaker.isCloaked(thisBlock)) {
+		if (ClientBlockCloaker.isCloaked(thisBlock)) {
 			// Get the localized name of the block and scatter it using §k to make it unreadable
 			Language language = Language.getInstance();
 			LiteralText newText = new LiteralText("§k" + language.get(thisBlock.getTranslationKey()));

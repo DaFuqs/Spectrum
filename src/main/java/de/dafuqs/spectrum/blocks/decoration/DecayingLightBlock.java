@@ -11,7 +11,7 @@ import net.minecraft.world.BlockView;
 import java.util.Random;
 
 public class DecayingLightBlock extends WandLightBlock {
-
+	
 	public DecayingLightBlock(Settings settings) {
 		super(settings);
 	}
@@ -24,8 +24,8 @@ public class DecayingLightBlock extends WandLightBlock {
 	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
 		super.randomTick(state, world, pos, random);
 		int light = state.get(LightBlock.LEVEL_15);
-		if(light < 2) {
-			if(state.get(WATERLOGGED)) {
+		if (light < 2) {
+			if (state.get(WATERLOGGED)) {
 				world.setBlockState(pos, Blocks.WATER.getDefaultState(), 3);
 			} else {
 				world.setBlockState(pos, Blocks.AIR.getDefaultState(), 3);
@@ -34,5 +34,5 @@ public class DecayingLightBlock extends WandLightBlock {
 			world.setBlockState(pos, state.with(LightBlock.LEVEL_15, light - 1), 3);
 		}
 	}
-
+	
 }

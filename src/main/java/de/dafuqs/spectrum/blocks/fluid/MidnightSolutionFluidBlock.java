@@ -54,7 +54,7 @@ public class MidnightSolutionFluidBlock extends FluidBlock {
 	public MidnightSolutionFluidBlock(FlowableFluid fluid, Settings settings) {
 		super(fluid, settings);
 	}
-
+	
 	@Override
 	public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
 		if (this.receiveNeighborFluids(world, pos, state)) {
@@ -73,7 +73,7 @@ public class MidnightSolutionFluidBlock extends FluidBlock {
 	public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
 		super.onEntityCollision(state, world, pos, entity);
 		
-		if(!world.isClient) {
+		if (!world.isClient) {
 			if (entity instanceof LivingEntity livingEntity) {
 				if (!livingEntity.isDead()) {
 					if (livingEntity.isSubmergedIn(SpectrumFluidTags.MIDNIGHT_SOLUTION) && world.getTime() % 20 == 0) {
@@ -140,21 +140,21 @@ public class MidnightSolutionFluidBlock extends FluidBlock {
 	}
 	
 	public MidnightSolutionConvertingRecipe getConversionRecipeFor(@NotNull World world, ItemStack itemStack) {
-		if(AUTO_INVENTORY == null) {
-			 AUTO_INVENTORY = new AutoCraftingInventory(1, 1);
+		if (AUTO_INVENTORY == null) {
+			AUTO_INVENTORY = new AutoCraftingInventory(1, 1);
 		}
 		AUTO_INVENTORY.setInputInventory(Collections.singletonList(itemStack));
 		return world.getRecipeManager().getFirstMatch(SpectrumRecipeTypes.MIDNIGHT_SOLUTION_CONVERTING_RECIPE, AUTO_INVENTORY, world).orElse(null);
 	}
-
+	
 	@Override
 	public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
 		super.randomDisplayTick(state, world, pos, random);
-		if(!world.getBlockState(pos.up()).isSolidBlock(world, pos.up()) && random.nextFloat() < 0.03F) {
-			world.addParticle(SpectrumParticleTypes.VOID_FOG, pos.getX() + random.nextDouble(), pos.getY()+1, pos.getZ() + random.nextDouble(), 0, random.nextDouble() * 0.1, 0);
+		if (!world.getBlockState(pos.up()).isSolidBlock(world, pos.up()) && random.nextFloat() < 0.03F) {
+			world.addParticle(SpectrumParticleTypes.VOID_FOG, pos.getX() + random.nextDouble(), pos.getY() + 1, pos.getZ() + random.nextDouble(), 0, random.nextDouble() * 0.1, 0);
 		}
 	}
-
+	
 	@Override
 	public boolean canPathfindThrough(BlockState state, BlockView world, BlockPos pos, NavigationType type) {
 		return false;
@@ -169,14 +169,14 @@ public class MidnightSolutionFluidBlock extends FluidBlock {
 		}
 		return false;
 	}
-
+	
 	public static void playExtinguishSound(@NotNull WorldAccess world, BlockPos pos) {
 		world.syncWorldEvent(1501, pos, 0);
 	}
 	
 	/**
 	 * @param world The world
-	 * @param pos The position in the world
+	 * @param pos   The position in the world
 	 * @param state BlockState of the midnight solution. Included the height/fluid level
 	 * @return Dunno, actually. I just mod things.
 	 */
@@ -192,7 +192,7 @@ public class MidnightSolutionFluidBlock extends FluidBlock {
 			FluidState neighborFluidState = world.getFluidState(neighborPos);
 			boolean neighborIsOtherFluid = !neighborFluidState.isEmpty() && !neighborFluidState.isOf(this.fluid);
 			if (neighborIsOtherFluid && !neighborFluidState.isIn(SpectrumFluidTags.MIDNIGHT_SOLUTION_CONVERTED)) {
-				if(!world.getBlockState(neighborPos).isOf(this)) {
+				if (!world.getBlockState(neighborPos).isOf(this)) {
 					world.setBlockState(neighborPos, SPREAD_BLOCKSTATE);
 					playExtinguishSound(world, neighborPos);
 				}
@@ -200,5 +200,5 @@ public class MidnightSolutionFluidBlock extends FluidBlock {
 		}
 		return true;
 	}
-
+	
 }

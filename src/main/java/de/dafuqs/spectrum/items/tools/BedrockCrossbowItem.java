@@ -11,11 +11,11 @@ import net.minecraft.util.collection.DefaultedList;
 import java.util.Map;
 
 public class BedrockCrossbowItem extends CrossbowItem implements Preenchanted {
-
+	
 	public BedrockCrossbowItem(Settings settings) {
 		super(settings);
 	}
-
+	
 	@Override
 	public boolean isDamageable() {
 		return false;

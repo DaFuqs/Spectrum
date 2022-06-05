@@ -21,91 +21,91 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AutoSmeltEnchantment extends SpectrumEnchantment {
-
+	
 	public static class AutoSmeltInventory implements Inventory, RecipeInputProvider {
 		ItemStack input = ItemStack.EMPTY;
-
+		
 		@Override
 		public int size() {
 			return 1;
 		}
-
+		
 		@Override
 		public boolean isEmpty() {
 			return input.isEmpty();
 		}
-
+		
 		@Override
 		public ItemStack getStack(int slot) {
 			return input;
 		}
-
+		
 		@Override
 		public ItemStack removeStack(int slot, int amount) {
 			return null;
 		}
-
+		
 		@Override
 		public ItemStack removeStack(int slot) {
 			return null;
 		}
-
+		
 		@Override
 		public void setStack(int slot, ItemStack stack) {
 			this.input = stack;
 		}
-
+		
 		@Override
 		public void markDirty() {
 		}
-
+		
 		@Override
 		public boolean canPlayerUse(PlayerEntity player) {
 			return false;
 		}
-
+		
 		@Override
 		public void clear() {
 			input = ItemStack.EMPTY;
 		}
-
+		
 		private SmeltingRecipe getRecipe(ItemStack itemStack, World world) {
 			setStack(0, itemStack);
 			return world.getRecipeManager().getFirstMatch(RecipeType.SMELTING, this, world).orElse(null);
 		}
-
+		
 		@Override
 		public void provideRecipeInputs(RecipeMatcher recipeMatcher) {
 			recipeMatcher.addInput(input);
 		}
-
+		
 	}
-
+	
 	private static final AutoSmeltInventory autoSmeltInventory = new AutoSmeltInventory();
-
+	
 	public AutoSmeltEnchantment(Rarity weight, Identifier unlockAdvancementIdentifier, EquipmentSlot... slotTypes) {
 		super(weight, EnchantmentTarget.DIGGER, slotTypes, unlockAdvancementIdentifier);
 	}
-
+	
 	public int getMinPower(int level) {
 		return 15;
 	}
-
+	
 	public int getMaxPower(int level) {
 		return super.getMinPower(level) + 50;
 	}
-
+	
 	public int getMaxLevel() {
 		return 1;
 	}
-
+	
 	public boolean canAccept(Enchantment other) {
 		return super.canAccept(other) && other != Enchantments.SILK_TOUCH && other != SpectrumEnchantments.RESONANCE;
 	}
-
+	
 	public static ItemStack getAutoSmeltedItemStack(ItemStack inputItemStack, World world) {
-	   SmeltingRecipe smeltingRecipe = autoSmeltInventory.getRecipe(inputItemStack, world);
-		if(smeltingRecipe != null) {
+		SmeltingRecipe smeltingRecipe = autoSmeltInventory.getRecipe(inputItemStack, world);
+		if (smeltingRecipe != null) {
 			ItemStack recipeOutputStack = smeltingRecipe.getOutput().copy();
 			recipeOutputStack.setCount(recipeOutputStack.getCount() * inputItemStack.getCount());
 			return recipeOutputStack;
@@ -113,14 +113,14 @@ public class AutoSmeltEnchantment extends SpectrumEnchantment {
 			return null;
 		}
 	}
-
+	
 	@NotNull
 	public static List<ItemStack> applyAutoSmelt(ServerWorld world, List<ItemStack> originalStacks) {
 		List<ItemStack> returnItemStacks = new ArrayList<>();
-
+		
 		for (ItemStack is : originalStacks) {
 			ItemStack smeltedStack = AutoSmeltEnchantment.getAutoSmeltedItemStack(is, world);
-			if(smeltedStack == null) {
+			if (smeltedStack == null) {
 				returnItemStacks.add(is);
 			} else {
 				while (smeltedStack.getCount() > 0) {
@@ -134,5 +134,5 @@ public class AutoSmeltEnchantment extends SpectrumEnchantment {
 		}
 		return returnItemStacks;
 	}
-
+	
 }

@@ -13,10 +13,10 @@ public class SpectrumUndergroundStructurePoolFeatureConfig extends StructurePool
 	
 	public static final Codec<SpectrumUndergroundStructurePoolFeatureConfig> CODEC = RecordCodecBuilder.create(
 			(instance) -> instance.group(StructurePool.REGISTRY_CODEC
-			.fieldOf("start_pool").forGetter(SpectrumUndergroundStructurePoolFeatureConfig::getStartPool),
-			Codec.intRange(0, 7).fieldOf("size").forGetter(SpectrumUndergroundStructurePoolFeatureConfig::getSize),
-			Codec.INT.fieldOf("min_y").forGetter(SpectrumUndergroundStructurePoolFeatureConfig::getMinY),
-			Codec.INT.fieldOf("max_y").forGetter(SpectrumUndergroundStructurePoolFeatureConfig::getMaxY)
+							.fieldOf("start_pool").forGetter(SpectrumUndergroundStructurePoolFeatureConfig::getStartPool),
+					Codec.intRange(0, 7).fieldOf("size").forGetter(SpectrumUndergroundStructurePoolFeatureConfig::getSize),
+					Codec.INT.fieldOf("min_y").forGetter(SpectrumUndergroundStructurePoolFeatureConfig::getMinY),
+					Codec.INT.fieldOf("max_y").forGetter(SpectrumUndergroundStructurePoolFeatureConfig::getMaxY)
 			).apply(instance, SpectrumUndergroundStructurePoolFeatureConfig::new)
 	);
 	

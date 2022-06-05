@@ -44,7 +44,7 @@ public class EnchantmentUpgradeDisplay implements SimpleGridMenuDisplay, GatedRe
 		
 		int requiredItemCountSplit = recipe.getRequiredItemCount() / 8;
 		int requiredItemCountModulo = recipe.getRequiredItemCount() % 8;
-		for(int i = 0; i < 8; i++) {
+		for (int i = 0; i < 8; i++) {
 			int addAmount = i < requiredItemCountModulo ? 1 : 0;
 			this.inputs.add(EntryIngredients.of(new ItemStack(recipe.getRequiredItem(), requiredItemCountSplit + addAmount)));
 		}
@@ -56,47 +56,47 @@ public class EnchantmentUpgradeDisplay implements SimpleGridMenuDisplay, GatedRe
 		this.requiredExperience = recipe.getRequiredExperience();
 		this.requiredAdvancementIdentifier = recipe.getRequiredAdvancementIdentifier();
 	}
-
+	
 	@Override
 	public List<EntryIngredient> getInputEntries() {
-		if(this.isUnlocked()) {
+		if (this.isUnlocked()) {
 			return inputs;
 		} else {
 			return new ArrayList<>();
 		}
 	}
-
+	
 	@Override
 	public List<EntryIngredient> getOutputEntries() {
-		if(this.isUnlocked() || SpectrumCommon.CONFIG.REIListsRecipesAsNotUnlocked) {
+		if (this.isUnlocked() || SpectrumCommon.CONFIG.REIListsRecipesAsNotUnlocked) {
 			return Collections.singletonList(output);
 		} else {
 			return new ArrayList<>();
 		}
 	}
-
+	
 	@Override
 	public CategoryIdentifier<?> getCategoryIdentifier() {
 		return SpectrumPlugins.ENCHANTMENT_UPGRADE;
 	}
-
+	
 	public boolean isUnlocked() {
-		if(enchantmentDestinationLevel > enchantment.getMaxLevel()) {
+		if (enchantmentDestinationLevel > enchantment.getMaxLevel()) {
 			return Support.hasAdvancement(MinecraftClient.getInstance().player, this.requiredAdvancementIdentifier)
 					&& Support.hasAdvancement(MinecraftClient.getInstance().player, EnchanterBlockEntity.OVERENCHANTING_ADVANCEMENT_IDENTIFIER);
 		} else {
 			return Support.hasAdvancement(MinecraftClient.getInstance().player, this.requiredAdvancementIdentifier);
 		}
 	}
-
+	
 	@Override
 	public int getWidth() {
 		return 3;
 	}
-
+	
 	@Override
 	public int getHeight() {
 		return 3;
 	}
-
+	
 }

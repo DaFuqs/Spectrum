@@ -32,11 +32,11 @@ public class SpiritInstillingDisplay implements SimpleGridMenuDisplay, GatedReci
 	protected final float experience;
 	protected final int craftingTime;
 	protected final Identifier requiredAdvancementIdentifier;
-
+	
 	public SpiritInstillingDisplay(@NotNull ISpiritInstillerRecipe recipe) {
 		this.craftingInputs = recipe.getIngredientStacks().stream().map(REIHelper::ofIngredientStack).collect(Collectors.toCollection(ArrayList::new));
 		
-		if(recipe instanceof SpawnerChangeRecipe spawnerChangeRecipe) {
+		if (recipe instanceof SpawnerChangeRecipe spawnerChangeRecipe) {
 			ItemStack outputStack = recipe.getOutput();
 			LoreHelper.setLore(outputStack, spawnerChangeRecipe.getOutputLoreText());
 			this.output = EntryIngredients.of(outputStack);
@@ -47,43 +47,43 @@ public class SpiritInstillingDisplay implements SimpleGridMenuDisplay, GatedReci
 		this.craftingTime = recipe.getCraftingTime();
 		this.requiredAdvancementIdentifier = recipe.getRequiredAdvancementIdentifier();
 	}
-
+	
 	@Override
 	public List<EntryIngredient> getInputEntries() {
-		if(this.isUnlocked()) {
+		if (this.isUnlocked()) {
 			return craftingInputs;
 		} else {
 			return new ArrayList<>();
 		}
 	}
-
+	
 	@Override
 	public List<EntryIngredient> getOutputEntries() {
-		if(this.isUnlocked() || SpectrumCommon.CONFIG.REIListsRecipesAsNotUnlocked) {
+		if (this.isUnlocked() || SpectrumCommon.CONFIG.REIListsRecipesAsNotUnlocked) {
 			return Collections.singletonList(output);
 		} else {
 			return new ArrayList<>();
 		}
 	}
-
+	
 	@Override
 	public CategoryIdentifier<?> getCategoryIdentifier() {
 		return SpectrumPlugins.SPIRIT_INSTILLER;
 	}
-
+	
 	public boolean isUnlocked() {
 		PlayerEntity player = MinecraftClient.getInstance().player;
 		return Support.hasAdvancement(player, UNLOCK_ADVANCEMENT_IDENTIFIER) && Support.hasAdvancement(player, this.requiredAdvancementIdentifier);
 	}
-
+	
 	@Override
 	public int getWidth() {
 		return 3;
 	}
-
+	
 	@Override
 	public int getHeight() {
 		return 3;
 	}
-
+	
 }

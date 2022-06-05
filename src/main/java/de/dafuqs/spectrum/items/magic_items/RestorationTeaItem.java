@@ -49,7 +49,7 @@ public class RestorationTeaItem extends Item {
 		if (stack.isEmpty()) {
 			return new ItemStack(Items.GLASS_BOTTLE);
 		} else {
-			if (user instanceof PlayerEntity playerEntity && !((PlayerEntity)user).getAbilities().creativeMode) {
+			if (user instanceof PlayerEntity playerEntity && !((PlayerEntity) user).getAbilities().creativeMode) {
 				Support.givePlayer(playerEntity, new ItemStack(Items.GLASS_BOTTLE));
 			}
 			
@@ -85,7 +85,7 @@ public class RestorationTeaItem extends Item {
 		tooltip.add(new TranslatableText("item.spectrum.restoration_tea.tooltip2"));
 		
 		NbtCompound nbtCompound = itemStack.getNbt();
-		if(nbtCompound != null && nbtCompound.contains("Milk")) {
+		if (nbtCompound != null && nbtCompound.contains("Milk")) {
 			tooltip.add(new TranslatableText("item.spectrum.restoration_tea.tooltip_milk"));
 		}
 	}

@@ -19,7 +19,7 @@ public class FluidColors extends ColorRegistry<Fluid> {
 	@Override
 	public void registerColorMapping(Identifier identifier, DyeColor dyeColor) {
 		Fluid fluid = Registry.FLUID.get(identifier);
-		if(fluid != Fluids.EMPTY) {
+		if (fluid != Fluids.EMPTY) {
 			COLORS.put(fluid, dyeColor);
 		}
 	}
@@ -31,8 +31,8 @@ public class FluidColors extends ColorRegistry<Fluid> {
 	
 	@Override
 	public Optional<DyeColor> getMapping(Fluid fluid) {
-		if(COLORS.containsKey(fluid)) {
-			return  Optional.of(COLORS.get(fluid));
+		if (COLORS.containsKey(fluid)) {
+			return Optional.of(COLORS.get(fluid));
 		} else {
 			return Optional.empty();
 		}

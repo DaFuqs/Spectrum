@@ -73,13 +73,13 @@ public class ShootingStarBlock extends BlockWithEntity {
 		
 		public static ShootingStarBlock.Type getWeightedRandomType(@NotNull Random random) {
 			int r = random.nextInt(11);
-			if(r == 0) {
+			if (r == 0) {
 				return FIERY;
-			} else if(r < 2) {
+			} else if (r < 2) {
 				return PRISTINE;
-			} else if(r < 4) {
+			} else if (r < 4) {
 				return GLISTERING;
-			} else if(r < 7) {
+			} else if (r < 7) {
 				return COLORFUL;
 			} else {
 				return GEMSTONE;
@@ -137,7 +137,7 @@ public class ShootingStarBlock extends BlockWithEntity {
 			switch (this) {
 				case GLISTERING -> {
 					int r = random.nextInt(5);
-					if(r == 0) {
+					if (r == 0) {
 						return ColorHelper.getVec(DyeColor.YELLOW);
 					} else if (r == 1) {
 						return ColorHelper.getVec(DyeColor.WHITE);
@@ -154,7 +154,7 @@ public class ShootingStarBlock extends BlockWithEntity {
 				}
 				case FIERY -> {
 					int r = random.nextInt(2);
-					if(r == 0) {
+					if (r == 0) {
 						return ColorHelper.getVec(DyeColor.ORANGE);
 					} else {
 						return ColorHelper.getVec(DyeColor.RED);
@@ -162,9 +162,9 @@ public class ShootingStarBlock extends BlockWithEntity {
 				}
 				case PRISTINE -> {
 					int r = random.nextInt(3);
-					if(r == 0) {
+					if (r == 0) {
 						return ColorHelper.getVec(DyeColor.BLUE);
-					} else if(r == 1) {
+					} else if (r == 1) {
 						return ColorHelper.getVec(DyeColor.LIGHT_BLUE);
 					} else {
 						return ColorHelper.getVec(DyeColor.CYAN);
@@ -172,11 +172,11 @@ public class ShootingStarBlock extends BlockWithEntity {
 				}
 				default -> {
 					int r = random.nextInt(4);
-					if(r == 0) {
+					if (r == 0) {
 						return ColorHelper.getVec(DyeColor.CYAN);
-					} else if(r == 1) {
+					} else if (r == 1) {
 						return ColorHelper.getVec(DyeColor.MAGENTA);
-					} else if(r == 2) {
+					} else if (r == 2) {
 						return ColorHelper.getVec(DyeColor.WHITE);
 					} else {
 						return ColorHelper.getVec(DyeColor.YELLOW);
@@ -226,7 +226,7 @@ public class ShootingStarBlock extends BlockWithEntity {
 				blockEntity.setStackNbt(itemStack);
 			});
 			
-			ItemEntity itemEntity = new ItemEntity(world, (double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D, itemStack);
+			ItemEntity itemEntity = new ItemEntity(world, (double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D, itemStack);
 			itemEntity.setToDefaultPickupDelay();
 			world.spawnEntity(itemEntity);
 		}
@@ -236,7 +236,7 @@ public class ShootingStarBlock extends BlockWithEntity {
 	
 	@Override
 	public void onPlaced(@NotNull World world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack itemStack) {
-		if(!world.isClient) {
+		if (!world.isClient) {
 			BlockEntity blockEntity = world.getBlockEntity(pos);
 			if (blockEntity instanceof ShootingStarBlockEntity shootingStarBlockEntity) {
 				shootingStarBlockEntity.setRemainingHits(ShootingStarItem.getRemainingHits(itemStack));

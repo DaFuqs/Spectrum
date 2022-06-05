@@ -24,21 +24,21 @@ public class ParticleSpawnerBlock extends BlockWithEntity implements RedstonePow
 	
 	protected static final VoxelShape SHAPE = Block.createCuboidShape(1.0D, 0.0D, 1.0D, 15.0D, 13.0D, 15.0D);
 	public static final BooleanProperty POWERED = BooleanProperty.of("powered");
-
+	
 	public ParticleSpawnerBlock(Settings settings) {
 		super(settings);
 		setDefaultState(getStateManager().getDefaultState().with(POWERED, false));
 	}
-
+	
 	@Override
 	protected void appendProperties(StateManager.Builder<Block, BlockState> stateManager) {
 		stateManager.add(POWERED);
 	}
-
+	
 	@Override
 	public void neighborUpdate(BlockState state, World world, BlockPos pos, Block block, BlockPos fromPos, boolean notify) {
 		if (!world.isClient) {
-			if(this.checkGettingPowered(world, pos)) {
+			if (this.checkGettingPowered(world, pos)) {
 				this.power(world, pos);
 			} else {
 				this.unPower(world, pos);
@@ -50,32 +50,32 @@ public class ParticleSpawnerBlock extends BlockWithEntity implements RedstonePow
 	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
 		return SHAPE;
 	}
-
+	
 	public BlockState getPlacementState(ItemPlacementContext ctx) {
 		BlockState placementState = this.getDefaultState();
-
-		if(ctx.getWorld().getReceivedRedstonePower(ctx.getBlockPos()) > 0) {
+		
+		if (ctx.getWorld().getReceivedRedstonePower(ctx.getBlockPos()) > 0) {
 			placementState = placementState.with(POWERED, true);
 		}
-
+		
 		return placementState;
 	}
-
+	
 	public BlockRenderType getRenderType(BlockState state) {
 		return BlockRenderType.MODEL;
 	}
-
+	
 	@Nullable
 	@Override
 	public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
 		return new ParticleSpawnerBlockEntity(pos, state);
 	}
-
+	
 	@Nullable
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
 		return world.isClient ? checkType(type, SpectrumBlockEntityRegistry.PARTICLE_SPAWNER, ParticleSpawnerBlockEntity::clientTick) : null;
 	}
-
+	
 	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
 		if (world.isClient) {
 			return ActionResult.SUCCESS;
@@ -84,12 +84,12 @@ public class ParticleSpawnerBlock extends BlockWithEntity implements RedstonePow
 			return ActionResult.CONSUME;
 		}
 	}
-
+	
 	protected void openScreen(World world, BlockPos pos, PlayerEntity player) {
 		BlockEntity blockEntity = world.getBlockEntity(pos);
 		if (blockEntity instanceof ParticleSpawnerBlockEntity) {
 			player.openHandledScreen((ExtendedScreenHandlerFactory) blockEntity);
 		}
 	}
-
+	
 }

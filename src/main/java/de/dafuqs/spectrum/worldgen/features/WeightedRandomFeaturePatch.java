@@ -13,7 +13,7 @@ public class WeightedRandomFeaturePatch extends Feature<WeightedRandomFeaturePat
 	public WeightedRandomFeaturePatch(Codec<WeightedRandomFeaturePatchConfig> codec) {
 		super(codec);
 	}
-
+	
 	public boolean generate(FeatureContext<WeightedRandomFeaturePatchConfig> context) {
 		Random random = context.getRandom();
 		WeightedRandomFeaturePatchConfig weightedRandomFeaturePatchConfig = context.getConfig();
@@ -33,5 +33,5 @@ public class WeightedRandomFeaturePatch extends Feature<WeightedRandomFeaturePat
 		}
 		return i > 0;
 	}
-
+	
 }

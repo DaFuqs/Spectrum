@@ -11,13 +11,13 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
 
 public class MidnightSolutionConvertingRecipeSerializer implements RecipeSerializer<MidnightSolutionConvertingRecipe> {
-
+	
 	public final MidnightSolutionConvertingRecipeSerializer.RecipeFactory<MidnightSolutionConvertingRecipe> recipeFactory;
-
+	
 	public MidnightSolutionConvertingRecipeSerializer(MidnightSolutionConvertingRecipeSerializer.RecipeFactory<MidnightSolutionConvertingRecipe> recipeFactory) {
 		this.recipeFactory = recipeFactory;
 	}
-
+	
 	@Override
 	public MidnightSolutionConvertingRecipe read(Identifier identifier, JsonObject jsonObject) {
 		JsonElement jsonElement = JsonHelper.getObject(jsonObject, "ingredient");
@@ -42,5 +42,5 @@ public class MidnightSolutionConvertingRecipeSerializer implements RecipeSeriali
 	public interface RecipeFactory<MidnightSolutionConvertingRecipe> {
 		MidnightSolutionConvertingRecipe create(Identifier id, Ingredient inputIngredient, ItemStack outputItemStack);
 	}
-
+	
 }

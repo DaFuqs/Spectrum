@@ -30,19 +30,19 @@ public class PedestalBlockEntityRenderer<T extends PedestalBlockEntity> implemen
 	
 	@Override
 	public void render(T entity, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light, int overlay) {
-		if(entity.getWorld() == null) {
+		if (entity.getWorld() == null) {
 			return;
 		}
 		
 		// render floating item stacks
 		Recipe currentRecipe = entity.getCurrentRecipe();
-		if(currentRecipe instanceof PedestalCraftingRecipe) {
+		if (currentRecipe instanceof PedestalCraftingRecipe) {
 			circle.yaw = (entity.getWorld().getTime() + tickDelta) / 25.0F;
 			circle.render(matrixStack, vertexConsumerProvider.getBuffer(SpectrumRenderLayers.GlowInTheDarkRenderLayer.get(GROUND_MARK)), light, overlay);
 			
 			ItemStack outputItemStack = entity.getCurrentRecipe().getOutput();
 			float time = entity.getWorld().getTime() + tickDelta;
-
+			
 			matrixStack.push();
 			double height = Math.sin((time) / 8.0) / 6.0; // item height
 			matrixStack.translate(0.5F, 1.3 + height, 0.5F); // position offset

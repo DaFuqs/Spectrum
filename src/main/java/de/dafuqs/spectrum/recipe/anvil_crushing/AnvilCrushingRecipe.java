@@ -15,7 +15,7 @@ import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 
 public class AnvilCrushingRecipe implements Recipe<Inventory> {
-
+	
 	protected final Identifier id;
 	protected final Ingredient inputIngredient;
 	protected final ItemStack outputItemStack;
@@ -24,7 +24,7 @@ public class AnvilCrushingRecipe implements Recipe<Inventory> {
 	protected final Identifier particleEffect;
 	protected final int particleCount;
 	protected final Identifier soundEvent;
-
+	
 	public AnvilCrushingRecipe(Identifier id, Ingredient inputIngredient, ItemStack outputItemStack, float crushedItemsPerPointOfDamage, float experience, Identifier particleEffectIdentifier, int particleCount, Identifier soundEventIdentifier) {
 		this.id = id;
 		this.inputIngredient = inputIngredient;
@@ -40,17 +40,17 @@ public class AnvilCrushingRecipe implements Recipe<Inventory> {
 	public boolean matches(Inventory inv, World world) {
 		return this.inputIngredient.test(inv.getStack(0));
 	}
-
+	
 	@Override
 	public ItemStack craft(Inventory inv) {
 		return null;
 	}
-
+	
 	@Override
 	public boolean fits(int width, int height) {
 		return true;
 	}
-
+	
 	@Override
 	public ItemStack getOutput() {
 		return outputItemStack.copy();
@@ -60,7 +60,7 @@ public class AnvilCrushingRecipe implements Recipe<Inventory> {
 	public boolean isIgnoredInRecipeBook() {
 		return true;
 	}
-
+	
 	@Override
 	public ItemStack createIcon() {
 		return new ItemStack(Blocks.ANVIL);
@@ -90,7 +90,7 @@ public class AnvilCrushingRecipe implements Recipe<Inventory> {
 	
 	@Override
 	public boolean equals(Object object) {
-		if(object instanceof AnvilCrushingRecipe anvilCrushingRecipe) {
+		if (object instanceof AnvilCrushingRecipe anvilCrushingRecipe) {
 			return anvilCrushingRecipe.getId().equals(this.getId());
 		}
 		return false;

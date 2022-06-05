@@ -28,57 +28,57 @@ import java.util.List;
 import java.util.Map;
 
 public class ManualItem extends Item implements LoomPatternProvider {
-
-
+	
+	
 	public ManualItem(Settings settings) {
 		super(settings);
 	}
-
+	
 	@Override
 	public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
 		if (!world.isClient && user instanceof ServerPlayerEntity) {
-
+			
 			ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity) user;
-
+			
 			// Workaround for new advancement unlocks getting added after spectrum has been installed
 			reprocessAdvancementUnlocks(serverPlayerEntity);
-
+			
 			// if the player has never opened the book before
 			// automatically open the introduction page
-			if(isNewPlayer(serverPlayerEntity)) {
+			if (isNewPlayer(serverPlayerEntity)) {
 				openManual(serverPlayerEntity, new Identifier(SpectrumCommon.MOD_ID, "general/intro"), 0);
 			} else {
 				openManual(serverPlayerEntity);
 			}
-
+			
 			user.incrementStat(Stats.USED.getOrCreateStat(this));
-
+			
 			return TypedActionResult.success(user.getStackInHand(hand));
 		} else {
 			return TypedActionResult.consume(user.getStackInHand(hand));
 		}
 	}
-
+	
 	private boolean isNewPlayer(ServerPlayerEntity serverPlayerEntity) {
 		return serverPlayerEntity.getStatHandler().getStat(Stats.USED, this) == 0;
 	}
-
+	
 	private void openManual(ServerPlayerEntity serverPlayerEntity) {
 		PatchouliAPI.get().openBookGUI(serverPlayerEntity, new Identifier(SpectrumCommon.MOD_ID, "manual"));
 	}
-
+	
 	private void openManual(ServerPlayerEntity serverPlayerEntity, Identifier entry, int page) {
 		PatchouliAPI.get().openBookEntry(serverPlayerEntity, new Identifier(SpectrumCommon.MOD_ID, "manual"), entry, page);
 	}
-
+	
 	public static void reprocessAdvancementUnlocks(ServerPlayerEntity serverPlayerEntity) {
 		PlayerAdvancementTracker tracker = serverPlayerEntity.getAdvancementTracker();
-
+		
 		// "has advancement" criteria with nonexistent advancements
-		for(Advancement advancement : SpectrumCommon.minecraftServer.getAdvancementLoader().getAdvancements()) {
-			if(advancement.getId().getNamespace().equals(SpectrumCommon.MOD_ID)) {
+		for (Advancement advancement : SpectrumCommon.minecraftServer.getAdvancementLoader().getAdvancements()) {
+			if (advancement.getId().getNamespace().equals(SpectrumCommon.MOD_ID)) {
 				AdvancementProgress hasAdvancement = tracker.getProgress(advancement);
-				if(!hasAdvancement.isDone()) {
+				if (!hasAdvancement.isDone()) {
 					for (Map.Entry<String, AdvancementCriterion> criterionEntry : advancement.getCriteria().entrySet()) {
 						CriterionConditions conditions = criterionEntry.getValue().getConditions();
 						if (conditions.getId().equals(HasAdvancementCriterion.ID) && conditions instanceof HasAdvancementCriterion.Conditions hasAdvancementConditions) {
@@ -107,5 +107,5 @@ public class ManualItem extends Item implements LoomPatternProvider {
 		super.appendTooltip(stack, world, tooltip, context);
 		SpectrumBannerPatternItem.addBannerPatternProviderTooltip(tooltip);
 	}
-
+	
 }

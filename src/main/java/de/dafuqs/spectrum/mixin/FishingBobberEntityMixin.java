@@ -11,10 +11,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(FishingBobberEntity.class)
 public abstract class FishingBobberEntityMixin {
-
+	
 	/**
 	 * The fishing bobber checks if the "owner" player still has a fishing rod in his hands
 	 * The fishing rod item is hardcoded => We have to add a check for the bedrock fishing rod
+	 *
 	 * @param playerEntity
 	 * @param callbackInfoReturnable
 	 */
@@ -24,9 +25,9 @@ public abstract class FishingBobberEntityMixin {
 		ItemStack itemStack2 = playerEntity.getOffHandStack();
 		boolean bl = itemStack.isOf(SpectrumItems.BEDROCK_FISHING_ROD);
 		boolean bl2 = itemStack2.isOf(SpectrumItems.BEDROCK_FISHING_ROD);
-		if (!playerEntity.isRemoved() && playerEntity.isAlive() && (bl || bl2) && (((FishingBobberEntity)(Object)this).squaredDistanceTo(playerEntity) < 1024.0D)) {
+		if (!playerEntity.isRemoved() && playerEntity.isAlive() && (bl || bl2) && (((FishingBobberEntity) (Object) this).squaredDistanceTo(playerEntity) < 1024.0D)) {
 			callbackInfoReturnable.setReturnValue(false);
 		}
 	}
-
+	
 }

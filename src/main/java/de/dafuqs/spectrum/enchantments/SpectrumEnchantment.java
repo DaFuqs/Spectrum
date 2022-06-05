@@ -45,7 +45,7 @@ public abstract class SpectrumEnchantment extends Enchantment {
 		} else {
 			mutableText.formatted(Formatting.GRAY);
 		}
-		if(!canEntityUse(MinecraftClient.getInstance().player)) {
+		if (!canEntityUse(MinecraftClient.getInstance().player)) {
 			mutableText.formatted(Formatting.byCode('k'));
 		}
 		
@@ -57,7 +57,7 @@ public abstract class SpectrumEnchantment extends Enchantment {
 	}
 	
 	public boolean canEntityUse(Entity entity) {
-		if(entity instanceof PlayerEntity playerEntity) {
+		if (entity instanceof PlayerEntity playerEntity) {
 			return Support.hasAdvancement(playerEntity, unlockAdvancementIdentifier);
 		} else {
 			return false;

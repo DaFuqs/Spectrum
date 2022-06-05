@@ -17,30 +17,30 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.World;
 
 public interface SpiritVines {
-
+	
 	enum YieldType implements StringIdentifiable {
 		NONE("none"),
 		NORMAL("normal"),
 		LUCID("lucid");
-
+		
 		private final String name;
-
+		
 		private YieldType(String name) {
 			this.name = name;
 		}
-
+		
 		public String toString() {
 			return this.name;
 		}
-
+		
 		public String asString() {
 			return this.name;
 		}
 	}
-
+	
 	VoxelShape SHAPE = Block.createCuboidShape(1.0D, 0.0D, 1.0D, 15.0D, 16.0D, 15.0D);
 	EnumProperty<YieldType> YIELD = EnumProperty.of("yield", YieldType.class);
-
+	
 	static ActionResult pick(BlockState blockState, World world, BlockPos blockPos) {
 		if (canBeHarvested(blockState)) {
 			Block.dropStack(world, blockPos, new ItemStack(getYieldItem(blockState, false), 1));
@@ -52,15 +52,15 @@ public interface SpiritVines {
 			return ActionResult.PASS;
 		}
 	}
-
+	
 	static boolean canBeHarvested(BlockState state) {
 		return state.contains(YIELD) && !state.get(YIELD).equals(YieldType.NONE);
 	}
-
+	
 	static Item getYieldItem(BlockState blockState, boolean pickStack) {
 		Comparable<YieldType> yield = blockState.get(YIELD);
-
-		if(yield.equals(YieldType.NORMAL)) {
+		
+		if (yield.equals(YieldType.NORMAL)) {
 			if (blockState.isOf(SpectrumBlocks.CYAN_SPIRIT_SALLOW_VINES_HEAD) || blockState.isOf(SpectrumBlocks.CYAN_SPIRIT_SALLOW_VINES_BODY)) {
 				return SpectrumItems.VIBRANT_CYAN_CATKIN;
 			}
@@ -76,7 +76,7 @@ public interface SpiritVines {
 			if (blockState.isOf(SpectrumBlocks.WHITE_SPIRIT_SALLOW_VINES_HEAD) || blockState.isOf(SpectrumBlocks.WHITE_SPIRIT_SALLOW_VINES_BODY)) {
 				return SpectrumItems.VIBRANT_WHITE_CATKIN;
 			}
-		} else if(yield.equals(YieldType.LUCID)) {
+		} else if (yield.equals(YieldType.LUCID)) {
 			if (blockState.isOf(SpectrumBlocks.CYAN_SPIRIT_SALLOW_VINES_HEAD) || blockState.isOf(SpectrumBlocks.CYAN_SPIRIT_SALLOW_VINES_BODY)) {
 				return SpectrumItems.LUCID_CYAN_CATKIN;
 			}
@@ -92,7 +92,7 @@ public interface SpiritVines {
 			if (blockState.isOf(SpectrumBlocks.WHITE_SPIRIT_SALLOW_VINES_HEAD) || blockState.isOf(SpectrumBlocks.WHITE_SPIRIT_SALLOW_VINES_BODY)) {
 				return SpectrumItems.LUCID_WHITE_CATKIN;
 			}
-		} else if(yield.equals(YieldType.NONE) && pickStack) {
+		} else if (yield.equals(YieldType.NONE) && pickStack) {
 			if (blockState.isOf(SpectrumBlocks.CYAN_SPIRIT_SALLOW_VINES_HEAD) || blockState.isOf(SpectrumBlocks.CYAN_SPIRIT_SALLOW_VINES_BODY)) {
 				return SpectrumItems.VIBRANT_CYAN_CATKIN;
 			}
@@ -111,5 +111,5 @@ public interface SpiritVines {
 		}
 		return null;
 	}
-
+	
 }

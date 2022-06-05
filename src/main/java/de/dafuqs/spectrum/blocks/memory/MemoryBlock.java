@@ -68,7 +68,7 @@ public class MemoryBlock extends BlockWithEntity implements Waterloggable {
 		super.randomTick(state, world, pos, random);
 		
 		BlockEntity blockEntity = world.getBlockEntity(pos);
-		if(blockEntity instanceof MemoryBlockEntity memoryBlockEntity) {
+		if (blockEntity instanceof MemoryBlockEntity memoryBlockEntity) {
 			memoryBlockEntity.advanceManifesting(world, pos);
 		}
 	}

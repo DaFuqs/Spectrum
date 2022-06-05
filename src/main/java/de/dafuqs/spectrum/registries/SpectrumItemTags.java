@@ -21,11 +21,11 @@ public class SpectrumItemTags {
 	public static TagKey<Item> MEMORY_BONDING_AGENTS_CONCEILABLE;
 	public static TagKey<Item> MOB_HEADS;
 	public static TagKey<Item> SPAWNERS;
-
+	
 	private static TagKey<Item> getReference(String id) {
 		return TagKey.of(Registry.ITEM_KEY, new Identifier(SpectrumCommon.MOD_ID, id));
 	}
-
+	
 	public static void getReferences() {
 		COLORED_SAPLINGS = getReference("colored_saplings");
 		GEMSTONE_SHARDS = getReference("gemstone_shards");

@@ -58,7 +58,7 @@ public class PastelNetworkNodeBlock extends FacingBlock implements BlockEntityPr
 	@Nullable
 	public NamedScreenHandlerFactory createScreenHandlerFactory(BlockState state, World world, BlockPos pos) {
 		BlockEntity blockEntity = world.getBlockEntity(pos);
-		return blockEntity instanceof NamedScreenHandlerFactory ? (NamedScreenHandlerFactory)blockEntity : null;
+		return blockEntity instanceof NamedScreenHandlerFactory ? (NamedScreenHandlerFactory) blockEntity : null;
 	}
 	
 	@Nullable
@@ -87,7 +87,7 @@ public class PastelNetworkNodeBlock extends FacingBlock implements BlockEntityPr
 	public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
 		super.onPlaced(world, pos, state, placer, itemStack);
 		PastelNetworkNodeBlockEntity pastelNetworkNodeBlockEntity = getBlockEntity(world, pos);
-		if(pastelNetworkNodeBlockEntity != null) {
+		if (pastelNetworkNodeBlockEntity != null) {
 			Direction facingDirection = state.get(FACING);
 			pastelNetworkNodeBlockEntity.initialize(world, pos, facingDirection);
 		}
@@ -97,7 +97,7 @@ public class PastelNetworkNodeBlock extends FacingBlock implements BlockEntityPr
 	public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
 		super.onBreak(world, pos, state, player);
 		PastelNetworkNodeBlockEntity pastelNetworkNodeBlockEntity = getBlockEntity(world, pos);
-		if(pastelNetworkNodeBlockEntity != null) {
+		if (pastelNetworkNodeBlockEntity != null) {
 			pastelNetworkNodeBlockEntity.remove();
 		}
 	}
@@ -140,7 +140,7 @@ public class PastelNetworkNodeBlock extends FacingBlock implements BlockEntityPr
 	
 	public @Nullable PastelNetworkNodeBlockEntity getBlockEntity(World world, BlockPos blockPos) {
 		BlockEntity blockEntity = world.getBlockEntity(blockPos);
-		if(blockEntity instanceof PastelNetworkNodeBlockEntity pastelNetworkNodeBlockEntity) {
+		if (blockEntity instanceof PastelNetworkNodeBlockEntity pastelNetworkNodeBlockEntity) {
 			return pastelNetworkNodeBlockEntity;
 		}
 		return null;

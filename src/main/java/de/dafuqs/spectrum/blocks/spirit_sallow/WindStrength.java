@@ -16,13 +16,13 @@ public class WindStrength {
 	public Vec3d cachedValue;
 	
 	public Vec3d getWindStrength(long tick) {
-		if(samplerX == null) {
+		if (samplerX == null) {
 			samplerX = new SimplexNoiseSampler(new SimpleRandom(0));
 			samplerY = new SimplexNoiseSampler(new SimpleRandom(1));
 			samplerZ = new SimplexNoiseSampler(new SimpleRandom(2));
 		}
 		
-		if(tick != cachedTick) {
+		if (tick != cachedTick) {
 			cachedValue = new Vec3d(
 					samplerX.sample(0, 0, (tick + MinecraftClient.getInstance().getTickDelta()) / 512D),
 					samplerY.sample(0, 0, (tick + MinecraftClient.getInstance().getTickDelta()) / 512D),

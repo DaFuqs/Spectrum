@@ -17,12 +17,12 @@ public class CraftingTabletScreen extends HandledScreen<CraftingTabletScreenHand
 	public static final Identifier BACKGROUND4 = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/container/crafting_tablet4.png");
 	
 	public static Identifier BACKGROUND = BACKGROUND1;
-
+	
 	public CraftingTabletScreen(CraftingTabletScreenHandler handler, PlayerInventory playerInventory, Text title) {
 		super(handler, playerInventory, title);
 		this.backgroundHeight = 194;
-
-		if(handler.getTier().isPresent()) {
+		
+		if (handler.getTier().isPresent()) {
 			switch (handler.getTier().get()) {
 				case COMPLEX -> {
 					BACKGROUND = BACKGROUND4;
@@ -36,7 +36,7 @@ public class CraftingTabletScreen extends HandledScreen<CraftingTabletScreenHand
 			}
 		}
 	}
-
+	
 	@Override
 	protected void drawForeground(MatrixStack matrices, int mouseX, int mouseY) {
 		// draw "title" and "inventory" texts
@@ -45,28 +45,28 @@ public class CraftingTabletScreen extends HandledScreen<CraftingTabletScreenHand
 		Text title = this.title;
 		int inventoryX = 8;
 		int intInventoryY = 100;
-
+		
 		this.textRenderer.draw(matrices, title, titleX, titleY, 3289650);
 		this.textRenderer.draw(matrices, this.playerInventoryTitle, inventoryX, intInventoryY, 3289650);
 	}
-
+	
 	@Override
 	protected void drawBackground(MatrixStack matrices, float delta, int mouseX, int mouseY) {
 		RenderSystem.setShader(GameRenderer::getPositionTexShader);
 		RenderSystem.setShaderTexture(0, BACKGROUND);
 		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-
+		
 		int x = (width - backgroundWidth) / 2;
 		int y = (height - backgroundHeight) / 2;
 		drawTexture(matrices, x, y, 0, 0, backgroundWidth, backgroundHeight);
 	}
-
+	
 	@Override
 	public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
 		renderBackground(matrices);
 		super.render(matrices, mouseX, mouseY, delta);
 		drawMouseoverTooltip(matrices, mouseX, mouseY);
 	}
-
-
+	
+	
 }

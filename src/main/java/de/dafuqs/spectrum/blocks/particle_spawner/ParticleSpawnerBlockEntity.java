@@ -35,7 +35,7 @@ import java.util.List;
 import java.util.Random;
 
 public class ParticleSpawnerBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory {
-
+	
 	public Identifier particleSpriteIdentifier;
 	public float particlesPerSecond; // >1 = every xth tick
 	public Vec3f particleSourcePosition;
@@ -49,20 +49,20 @@ public class ParticleSpawnerBlockEntity extends BlockEntity implements ExtendedS
 	public int lifetimeVariance;
 	public float gravity;
 	public boolean collisions;
-
+	
 	public boolean initialized = false;
-
+	
 	public ParticleSpawnerBlockEntity(BlockPos blockPos, BlockState blockState) {
 		this(SpectrumBlockEntityRegistry.PARTICLE_SPAWNER, blockPos, blockState);
 	}
 	
 	public ParticleSpawnerBlockEntity(BlockEntityType blockEntityType, BlockPos blockPos, BlockState blockState) {
 		super(blockEntityType, blockPos, blockState);
-
+		
 		List<DefaultParticleType> availableParticleEffects = new ArrayList<>();
 		availableParticleEffects.add(ParticleTypes.FLAME);
 		availableParticleEffects.add(ParticleTypes.BUBBLE);
-
+		
 		this.particleSpriteIdentifier = new Identifier(SpectrumCommon.MOD_ID, "particle/shooting_star");
 		this.particlesPerSecond = 10.0F;
 		this.particleSourcePosition = new Vec3f(0, 1, 0);
@@ -77,10 +77,10 @@ public class ParticleSpawnerBlockEntity extends BlockEntity implements ExtendedS
 		this.gravity = 0.02F;
 		this.collisions = true;
 	}
-
+	
 	public static void clientTick(World world, BlockPos pos, BlockState state, ParticleSpawnerBlockEntity blockEntity) {
 		BlockState blockState = world.getBlockState(pos);
-		if(blockState.getBlock() instanceof ParticleSpawnerBlock && world.getBlockState(pos).get(ParticleSpawnerBlock.POWERED).equals(true)) {
+		if (blockState.getBlock() instanceof ParticleSpawnerBlock && world.getBlockState(pos).get(ParticleSpawnerBlock.POWERED).equals(true)) {
 			blockEntity.spawnParticles();
 		}
 	}
@@ -109,20 +109,20 @@ public class ParticleSpawnerBlockEntity extends BlockEntity implements ExtendedS
 			particlesToSpawn--;
 		}
 	}
-
+	
 	private void spawnParticle(@NotNull BlockPos pos, Random random) {
 		double randomOffsetX = particleSourcePositionVariance.getX() == 0 ? 0 : particleSourcePositionVariance.getX() - random.nextDouble() * particleSourcePositionVariance.getX() * 2.0D;
 		double randomOffsetY = particleSourcePositionVariance.getY() == 0 ? 0 : particleSourcePositionVariance.getY() - random.nextDouble() * particleSourcePositionVariance.getY() * 2.0D;
 		double randomOffsetZ = particleSourcePositionVariance.getZ() == 0 ? 0 : particleSourcePositionVariance.getZ() - random.nextDouble() * particleSourcePositionVariance.getZ() * 2.0D;
-
+		
 		double randomVelocityX = velocityVariance.getX() == 0 ? 0 : velocityVariance.getX() - random.nextDouble() * velocityVariance.getX() * 2.0D;
 		double randomVelocityY = velocityVariance.getY() == 0 ? 0 : velocityVariance.getY() - random.nextDouble() * velocityVariance.getY() * 2.0D;
 		double randomVelocityZ = velocityVariance.getZ() == 0 ? 0 : velocityVariance.getZ() - random.nextDouble() * velocityVariance.getZ() * 2.0D;
-
+		
 		float randomScale = this.scaleVariance == 0 ? this.scale : (float) (this.scale + this.scaleVariance - random.nextDouble() * this.scaleVariance * 2.0D);
 		int randomLifetime = this.lifetimeVariance == 0 ? this.lifetimeTicks : (int) (this.lifetimeTicks + this.lifetimeVariance - random.nextDouble() * this.lifetimeVariance * 2.0D);
-
-		if(randomScale > 0 && randomLifetime > 0) {
+		
+		if (randomScale > 0 && randomLifetime > 0) {
 			MinecraftClient.getInstance().player.getEntityWorld().addParticle(
 					new ParticleSpawnerParticleEffect(this.particleSpriteIdentifier, this.gravity, this.color, randomScale, randomLifetime, this.collisions, false),
 					(double) pos.getX() + 0.5 + particleSourcePosition.getX() + randomOffsetX,
@@ -134,7 +134,7 @@ public class ParticleSpawnerBlockEntity extends BlockEntity implements ExtendedS
 			);
 		}
 	}
-
+	
 	public void writeNbt(NbtCompound tag) {
 		super.writeNbt(tag);
 		tag.putString("particle_identifier", this.particleSpriteIdentifier.toString());
@@ -161,10 +161,10 @@ public class ParticleSpawnerBlockEntity extends BlockEntity implements ExtendedS
 		tag.putFloat("particle_gravity", this.gravity);
 		tag.putBoolean("particle_collisions", this.collisions);
 	}
-
+	
 	public void readNbt(NbtCompound tag) {
 		super.readNbt(tag);
-		if(tag.getString("particle_identifier").isEmpty()) {
+		if (tag.getString("particle_identifier").isEmpty()) {
 			this.initialized = false;
 		} else {
 			this.particleSpriteIdentifier = new Identifier(tag.getString("particle_identifier"));
@@ -183,18 +183,18 @@ public class ParticleSpawnerBlockEntity extends BlockEntity implements ExtendedS
 			this.initialized = true;
 		}
 	}
-
+	
 	@Nullable
 	@Override
 	public ScreenHandler createMenu(int syncId, PlayerInventory inv, PlayerEntity player) {
 		return new ParticleSpawnerScreenHandler(syncId, inv, this);
 	}
-
+	
 	@Override
 	public Text getDisplayName() {
 		return new TranslatableText("block.spectrum.particle_spawner");
 	}
-
+	
 	public void writeSettings(@NotNull PacketByteBuf packetByteBuf) {
 		packetByteBuf.writeString(this.particleSpriteIdentifier.toString());
 		packetByteBuf.writeFloat(this.particlesPerSecond);
@@ -217,7 +217,7 @@ public class ParticleSpawnerBlockEntity extends BlockEntity implements ExtendedS
 		packetByteBuf.writeFloat(this.gravity);
 		packetByteBuf.writeBoolean(this.collisions);
 	}
-
+	
 	public void applySettings(@NotNull PacketByteBuf buf) {
 		Identifier particleSpriteIdentifier = new Identifier(buf.readString());
 		float particlesPerSecond = buf.readFloat();
@@ -232,14 +232,14 @@ public class ParticleSpawnerBlockEntity extends BlockEntity implements ExtendedS
 		int lifetimeVariance = buf.readInt();
 		float gravity = buf.readFloat();
 		boolean collisions = buf.readBoolean();
-
+		
 		applySettings(particleSpriteIdentifier, particlesPerSecond, particleSourcePosition, particleSourcePositionVariance,
 				velocity, velocityVariance, color, scale, scaleVariance, lifetimeTicks, lifetimeVariance, gravity, collisions
 		);
 	}
 	
 	public void applySettings(Identifier particleSpriteIdentifier, float particlesPerSecond, Vec3f ParticleSourcePosition, Vec3f particleSourcePositionVariance, Vec3f velocity, Vec3f velocityVariance,
-							  Vec3f color, float scale, float scaleVariance, int lifetimeTicks, int lifetimeVariance, float gravity, boolean collisions) {
+	                          Vec3f color, float scale, float scaleVariance, int lifetimeTicks, int lifetimeVariance, float gravity, boolean collisions) {
 		this.particleSpriteIdentifier = particleSpriteIdentifier;
 		this.particlesPerSecond = particlesPerSecond;
 		this.particleSourcePosition = ParticleSourcePosition;
@@ -253,16 +253,16 @@ public class ParticleSpawnerBlockEntity extends BlockEntity implements ExtendedS
 		this.lifetimeVariance = lifetimeVariance;
 		this.gravity = gravity;
 		this.collisions = collisions;
-
+		
 		this.initialized = true;
 		
 		this.updateInClientWorld();
 		this.markDirty();
 	}
-
+	
 	@Override
 	public void writeScreenOpeningData(ServerPlayerEntity player, @NotNull PacketByteBuf buf) {
 		buf.writeBlockPos(this.pos);
 	}
-
+	
 }

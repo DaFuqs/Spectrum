@@ -17,13 +17,13 @@ import vazkii.patchouli.client.book.gui.GuiBook;
 import vazkii.patchouli.client.book.page.abstr.PageDoubleRecipeRegistry;
 
 public class PageEnchanterRecipe extends PageDoubleRecipeRegistry<EnchanterRecipe> {
-
+	
 	private static final Identifier BACKGROUND_TEXTURE = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/patchouli/enchanter_crafting.png");
-
+	
 	public PageEnchanterRecipe() {
 		super(SpectrumRecipeTypes.ENCHANTER);
 	}
-
+	
 	@Override
 	protected ItemStack getRecipeOutput(EnchanterRecipe recipe) {
 		if (recipe == null) {
@@ -38,9 +38,9 @@ public class PageEnchanterRecipe extends PageDoubleRecipeRegistry<EnchanterRecip
 		RenderSystem.setShaderTexture(0, BACKGROUND_TEXTURE);
 		RenderSystem.enableBlend();
 		DrawableHelper.drawTexture(ms, recipeX, recipeY, 0, 0, 100, 80, 256, 256);
-
+		
 		parent.drawCenteredStringNoShadow(ms, getTitle(second).asOrderedText(), GuiBook.PAGE_WIDTH / 2, recipeY - 10, book.headerColor);
-
+		
 		// the ingredients
 		DefaultedList<Ingredient> ingredients = recipe.getIngredients();
 		
@@ -68,10 +68,10 @@ public class PageEnchanterRecipe extends PageDoubleRecipeRegistry<EnchanterRecip
 		// the output
 		parent.renderItemStack(ms, recipeX + 81, recipeY + 31, mouseX, mouseY, recipe.getOutput());
 	}
-
+	
 	@Override
 	protected int getRecipeHeight() {
 		return 94;
 	}
-
+	
 }

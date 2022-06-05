@@ -28,12 +28,12 @@ public class FixedVelocityParticle extends SpriteBillboardParticle {
 	}
 	
 	public int getBrightness(float tint) {
-		float f = ((float)this.age + tint) / (float)this.maxAge;
+		float f = ((float) this.age + tint) / (float) this.maxAge;
 		f = MathHelper.clamp(f, 0.0F, 1.0F);
 		int i = super.getBrightness(tint);
 		int j = i & 255;
 		int k = i >> 16 & 255;
-		j += (int)(f * 15.0F * 16.0F);
+		j += (int) (f * 15.0F * 16.0F);
 		if (j > 240) {
 			j = 240;
 		}
@@ -52,7 +52,7 @@ public class FixedVelocityParticle extends SpriteBillboardParticle {
 		
 		public Particle createParticle(DefaultParticleType defaultParticleType, ClientWorld clientWorld, double x, double y, double z, double velocityX, double velocityY, double velocityZ) {
 			FixedVelocityParticle craftingParticle = new FixedVelocityParticle(clientWorld, x, y, z, velocityX, velocityY, velocityZ);
-			craftingParticle.setMaxAge((int)(8.0D / (clientWorld.random.nextDouble() * 0.8D + 0.2D)));
+			craftingParticle.setMaxAge((int) (8.0D / (clientWorld.random.nextDouble() * 0.8D + 0.2D)));
 			craftingParticle.setSprite(this.spriteProvider);
 			return craftingParticle;
 		}

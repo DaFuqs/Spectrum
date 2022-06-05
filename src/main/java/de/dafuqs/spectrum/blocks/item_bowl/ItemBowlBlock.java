@@ -60,9 +60,9 @@ public class ItemBowlBlock extends BlockWithEntity {
 	
 	@Override
 	public void onLandedUpon(World world, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
-		if(!world.isClient && entity instanceof ItemEntity itemEntity) {
+		if (!world.isClient && entity instanceof ItemEntity itemEntity) {
 			ItemStack remainingStack = inputItem(world, pos, itemEntity.getStack());
-			if(remainingStack.isEmpty()) {
+			if (remainingStack.isEmpty()) {
 				itemEntity.remove(Entity.RemovalReason.DISCARDED);
 			} else {
 				itemEntity.setStack(remainingStack);
@@ -74,11 +74,11 @@ public class ItemBowlBlock extends BlockWithEntity {
 	
 	public ItemStack inputItem(World world, BlockPos pos, ItemStack itemStack) {
 		BlockEntity blockEntity = world.getBlockEntity(pos);
-		if(blockEntity instanceof ItemBowlBlockEntity itemBowlBlockEntity) {
+		if (blockEntity instanceof ItemBowlBlockEntity itemBowlBlockEntity) {
 			int previousCount = itemStack.getCount();
 			ItemStack remainingStack = InventoryHelper.smartAddToInventory(itemStack, itemBowlBlockEntity.getInventory(), null);
 			
-			if(remainingStack.getCount() != previousCount) {
+			if (remainingStack.getCount() != previousCount) {
 				itemBowlBlockEntity.markDirty();
 				itemBowlBlockEntity.updateInClientWorld();
 				updateConnectedMultiBlocks(world, pos);
@@ -97,7 +97,7 @@ public class ItemBowlBlock extends BlockWithEntity {
 	@Nullable
 	@Override
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-		if(world.isClient) {
+		if (world.isClient) {
 			return checkType(type, SpectrumBlockEntityRegistry.ITEM_BOWL, ItemBowlBlockEntity::clientTick);
 		} else {
 			return null;
@@ -125,35 +125,35 @@ public class ItemBowlBlock extends BlockWithEntity {
 	 * When placed or removed the item bowl searches for a valid block entity and triggers it to update its current recipe
 	 */
 	private void updateConnectedMultiBlocks(@NotNull World world, @NotNull BlockPos pos) {
-		for(Vec3i possibleUpgradeBlockOffset : possibleEnchanterOffsets) {
+		for (Vec3i possibleUpgradeBlockOffset : possibleEnchanterOffsets) {
 			BlockPos currentPos = pos.add(possibleUpgradeBlockOffset);
 			BlockEntity blockEntity = world.getBlockEntity(currentPos);
-			if(blockEntity instanceof EnchanterBlockEntity enchanterBlockEntity) {
+			if (blockEntity instanceof EnchanterBlockEntity enchanterBlockEntity) {
 				enchanterBlockEntity.inventoryChanged();
 				break;
 			}
 		}
 		
-		for(Vec3i possibleUpgradeBlockOffset : possibleSpiritInstillerOffsets) {
+		for (Vec3i possibleUpgradeBlockOffset : possibleSpiritInstillerOffsets) {
 			BlockPos currentPos = pos.add(possibleUpgradeBlockOffset);
 			BlockEntity blockEntity = world.getBlockEntity(currentPos);
-			if(blockEntity instanceof SpiritInstillerBlockEntity spiritInstillerBlockEntity) {
+			if (blockEntity instanceof SpiritInstillerBlockEntity spiritInstillerBlockEntity) {
 				spiritInstillerBlockEntity.inventoryChanged();
 				break;
 			}
 		}
 	}
-
+	
 	@Override
 	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-		if(world.isClient) {
+		if (world.isClient) {
 			return ActionResult.SUCCESS;
 		} else {
 			ItemStack handStack = player.getStackInHand(hand);
 			
 			// if the structure is valid the player can put / retrieve blocks into the shrine
 			BlockEntity blockEntity = world.getBlockEntity(pos);
-			if(blockEntity instanceof ItemBowlBlockEntity itemBowlBlockEntity) {
+			if (blockEntity instanceof ItemBowlBlockEntity itemBowlBlockEntity) {
 				boolean itemsChanged = false;
 				if (player.isSneaking()) {
 					Inventory inventory = itemBowlBlockEntity.getInventory();
@@ -165,7 +165,7 @@ public class ItemBowlBlock extends BlockWithEntity {
 				} else {
 					Inventory inventory = itemBowlBlockEntity.getInventory();
 					ItemStack currentStack = inventory.getStack(0);
-					if(!handStack.isEmpty() && !currentStack.isEmpty()) {
+					if (!handStack.isEmpty() && !currentStack.isEmpty()) {
 						inventory.setStack(0, handStack);
 						player.setStackInHand(hand, currentStack);
 						itemsChanged = true;
@@ -182,7 +182,7 @@ public class ItemBowlBlock extends BlockWithEntity {
 					}
 				}
 				
-				if(itemsChanged) {
+				if (itemsChanged) {
 					itemBowlBlockEntity.markDirty();
 					itemBowlBlockEntity.updateInClientWorld();
 					updateConnectedMultiBlocks(world, pos);

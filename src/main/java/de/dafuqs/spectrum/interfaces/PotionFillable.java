@@ -18,16 +18,16 @@ public interface PotionFillable {
 	int maxEffectAmplifier();
 	
 	default void addEffects(ItemStack potionFillableStack, List<StatusEffectInstance> newEffects) {
-		if(!isFull(potionFillableStack)) {
+		if (!isFull(potionFillableStack)) {
 			List<StatusEffectInstance> existingEffects = PotionUtil.getCustomPotionEffects(potionFillableStack);
 			int max = maxEffectCount();
 			int maxAmplifier = maxEffectAmplifier();
-			for(StatusEffectInstance newEffect : newEffects) {
-				if(newEffect.getAmplifier() > maxAmplifier) {
+			for (StatusEffectInstance newEffect : newEffects) {
+				if (newEffect.getAmplifier() > maxAmplifier) {
 					newEffect = new StatusEffectInstance(newEffect.getEffectType(), newEffect.getDuration(), maxAmplifier, newEffect.isAmbient(), newEffect.shouldShowParticles());
 				}
 				existingEffects.add(newEffect);
-				if(existingEffects.size() == max) {
+				if (existingEffects.size() == max) {
 					break;
 				}
 			}

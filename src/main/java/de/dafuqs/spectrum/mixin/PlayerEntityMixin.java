@@ -52,14 +52,14 @@ public abstract class PlayerEntityMixin {
 	
 	@Inject(at = @At("TAIL"), method = "jump()V")
 	protected void spectrum$jumpAdvancementCriterion(CallbackInfo ci) {
-		if((Object) this instanceof ServerPlayerEntity serverPlayerEntity) {
+		if ((Object) this instanceof ServerPlayerEntity serverPlayerEntity) {
 			SpectrumAdvancementCriteria.TAKE_OFF_BELT_JUMP.trigger(serverPlayerEntity);
 		}
 	}
 	
 	@Inject(at = @At("TAIL"), method = "isInvulnerableTo(Lnet/minecraft/entity/damage/DamageSource;)Z", cancellable = true)
 	public void spectrum$isInvulnerableTo(DamageSource damageSource, CallbackInfoReturnable<Boolean> cir) {
-		if(!cir.getReturnValue() && damageSource.isFire() && SpectrumTrinketItem.hasEquipped((PlayerEntity) (Object) this, SpectrumItems.ASHEN_CIRCLET)) {
+		if (!cir.getReturnValue() && damageSource.isFire() && SpectrumTrinketItem.hasEquipped((PlayerEntity) (Object) this, SpectrumItems.ASHEN_CIRCLET)) {
 			cir.setReturnValue(true);
 		}
 	}

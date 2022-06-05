@@ -11,12 +11,13 @@ public interface ExperienceStorageItem {
 	
 	/**
 	 * Returns the amount of experience this item stack has stored
+	 *
 	 * @param itemStack The item stack
 	 * @return The amount of stored experience
 	 */
 	static int getStoredExperience(ItemStack itemStack) {
 		NbtCompound nbtCompound = itemStack.getNbt();
-		if(nbtCompound == null || !nbtCompound.contains("stored_experience", NbtElement.INT_TYPE)) {
+		if (nbtCompound == null || !nbtCompound.contains("stored_experience", NbtElement.INT_TYPE)) {
 			return 0;
 		} else {
 			return nbtCompound.getInt("stored_experience");
@@ -26,12 +27,13 @@ public interface ExperienceStorageItem {
 	/**
 	 * Adds amount experience to an ExperienceProviderItem stack.
 	 * If the experience would be overflowing return the amount of experience that could not be stored
+	 *
 	 * @param itemStack The item stack
-	 * @param amount The amount of experience to store
+	 * @param amount    The amount of experience to store
 	 * @return The overflow amount that could not be stored
 	 */
 	static int addStoredExperience(ItemStack itemStack, int amount) {
-		if(itemStack.getItem() instanceof ExperienceStorageItem experienceStorageItem) {
+		if (itemStack.getItem() instanceof ExperienceStorageItem experienceStorageItem) {
 			int maxStorage = experienceStorageItem.getMaxStoredExperience(itemStack);
 			
 			NbtCompound nbtCompound = itemStack.getOrCreateNbt();
@@ -62,12 +64,13 @@ public interface ExperienceStorageItem {
 	/**
 	 * Removes amount experience from an ExperienceProviderItem stack.
 	 * If there is not enough experience that could be removed do nothing and return false
+	 *
 	 * @param itemStack The item stack
-	 * @param amount The amount of experience to remove
+	 * @param amount    The amount of experience to remove
 	 * @return If there was enough experience that could be removed
 	 */
 	static boolean removeStoredExperience(ItemStack itemStack, int amount) {
-		if(itemStack.getItem() instanceof ExperienceStorageItem) {
+		if (itemStack.getItem() instanceof ExperienceStorageItem) {
 			NbtCompound nbtCompound = itemStack.getNbt();
 			if (nbtCompound == null || !nbtCompound.contains("stored_experience", NbtElement.INT_TYPE)) {
 				return false;

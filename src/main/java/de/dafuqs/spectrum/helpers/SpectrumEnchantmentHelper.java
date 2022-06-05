@@ -26,30 +26,30 @@ public class SpectrumEnchantmentHelper {
 	public static ItemStack addOrExchangeEnchantment(ItemStack itemStack, Enchantment enchantment, int level, boolean forceEvenIfNotApplicable, boolean allowEnchantmentConflicts) {
 		Identifier enchantmentIdentifier = Registry.ENCHANTMENT.getId(enchantment);
 		
-		if(itemStack.isOf(Items.ENCHANTED_BOOK)) {
+		if (itemStack.isOf(Items.ENCHANTED_BOOK)) {
 			// all fine, nothing more to check here. Enchant away!
-		} else if(isEnchantableBook(itemStack)) {
+		} else if (isEnchantableBook(itemStack)) {
 			ItemStack enchantedBookStack = new ItemStack(Items.ENCHANTED_BOOK, itemStack.getCount());
 			enchantedBookStack.setNbt(itemStack.getNbt());
 			itemStack = enchantedBookStack;
-		} else if(itemStack.getItem() instanceof EnchanterEnchantable enchanterEnchantable) {
-			if(!enchanterEnchantable.canAcceptEnchantment(enchantment)) {
+		} else if (itemStack.getItem() instanceof EnchanterEnchantable enchanterEnchantable) {
+			if (!enchanterEnchantable.canAcceptEnchantment(enchantment)) {
 				return itemStack;
 			}
-		} else if(!forceEvenIfNotApplicable && !enchantment.isAcceptableItem(itemStack)) {
+		} else if (!forceEvenIfNotApplicable && !enchantment.isAcceptableItem(itemStack)) {
 			// item can not be enchanted with this enchantment
 			return itemStack;
 		}
 		
 		// if not forced check if the stack already has enchantments
 		// that conflict with the new one
-		if(!allowEnchantmentConflicts && hasEnchantmentThatConflictsWith(itemStack, enchantment)) {
+		if (!allowEnchantmentConflicts && hasEnchantmentThatConflictsWith(itemStack, enchantment)) {
 			return itemStack;
 		}
 		
 		NbtCompound nbtCompound = itemStack.getOrCreateNbt();
 		String nbtString;
-		if(itemStack.isOf(Items.ENCHANTED_BOOK)) {
+		if (itemStack.isOf(Items.ENCHANTED_BOOK)) {
 			nbtString = "StoredEnchantments";
 		} else {
 			nbtString = "Enchantments";
@@ -59,15 +59,15 @@ public class SpectrumEnchantmentHelper {
 		}
 		
 		NbtList nbtList = nbtCompound.getList(nbtString, 10);
-		for(int i = 0; i < nbtList.size(); i++) {
+		for (int i = 0; i < nbtList.size(); i++) {
 			NbtCompound enchantmentCompound = nbtList.getCompound(i);
-			if(enchantmentCompound.contains("id", NbtElement.STRING_TYPE) && Identifier.tryParse(enchantmentCompound.getString("id")).equals(enchantmentIdentifier)) {
+			if (enchantmentCompound.contains("id", NbtElement.STRING_TYPE) && Identifier.tryParse(enchantmentCompound.getString("id")).equals(enchantmentIdentifier)) {
 				nbtList.remove(i);
 				i--;
 			}
 		}
 		
-		nbtList.add(EnchantmentHelper.createNbt(EnchantmentHelper.getEnchantmentId(enchantment), (byte)level));
+		nbtList.add(EnchantmentHelper.createNbt(EnchantmentHelper.getEnchantmentId(enchantment), (byte) level));
 		nbtCompound.put(nbtString, nbtList);
 		itemStack.setNbt(nbtCompound);
 		
@@ -76,6 +76,7 @@ public class SpectrumEnchantmentHelper {
 	
 	/**
 	 * Checks if an itemstack can be used as the source to create an enchanted book
+	 *
 	 * @param itemStack The itemstack to check
 	 * @return true if it is a book that can be turned into an enchanted book by enchanting
 	 */
@@ -85,9 +86,9 @@ public class SpectrumEnchantmentHelper {
 	
 	public static boolean hasEnchantmentThatConflictsWith(ItemStack itemStack, Enchantment enchantment) {
 		Map<Enchantment, Integer> existingEnchantments = EnchantmentHelper.get(itemStack);
-		for(Enchantment existingEnchantment : existingEnchantments.keySet()) {
-			if(!existingEnchantment.equals(enchantment)) {
-				if(!existingEnchantment.canCombine(enchantment)) {
+		for (Enchantment existingEnchantment : existingEnchantments.keySet()) {
+			if (!existingEnchantment.equals(enchantment)) {
+				if (!existingEnchantment.canCombine(enchantment)) {
 					return true;
 				}
 			}
@@ -98,13 +99,13 @@ public class SpectrumEnchantmentHelper {
 	public static Map<Enchantment, Integer> collectHighestEnchantments(List<ItemStack> itemStacks) {
 		Map<Enchantment, Integer> enchantmentLevelMap = new HashMap<>();
 		
-		for(ItemStack itemStack : itemStacks) {
+		for (ItemStack itemStack : itemStacks) {
 			Map<Enchantment, Integer> itemStackEnchantments = EnchantmentHelper.get(itemStack);
-			for(Enchantment enchantment : itemStackEnchantments.keySet()) {
+			for (Enchantment enchantment : itemStackEnchantments.keySet()) {
 				int level = itemStackEnchantments.get(enchantment);
-				if(enchantmentLevelMap.containsKey(enchantment)) {
+				if (enchantmentLevelMap.containsKey(enchantment)) {
 					int storedLevel = enchantmentLevelMap.get(enchantment);
-					if(level > storedLevel) {
+					if (level > storedLevel) {
 						enchantmentLevelMap.put(enchantment, level);
 					}
 				} else {
@@ -117,7 +118,7 @@ public class SpectrumEnchantmentHelper {
 	}
 	
 	public static boolean canCombineAny(Map<Enchantment, Integer> existingEnchantments, Map<Enchantment, Integer> newEnchantments) {
-		if(existingEnchantments.isEmpty()) {
+		if (existingEnchantments.isEmpty()) {
 			return true;
 		} else {
 			for (Enchantment existingEnchantment : existingEnchantments.keySet()) {
@@ -144,7 +145,7 @@ public class SpectrumEnchantmentHelper {
 	
 	public static @NotNull ItemStack removeEnchantment(@NotNull ItemStack itemStack, Enchantment enchantment) {
 		NbtCompound compound = itemStack.getNbt();
-		if(compound == null) {
+		if (compound == null) {
 			return itemStack;
 		}
 		
@@ -156,9 +157,9 @@ public class SpectrumEnchantmentHelper {
 		}
 		
 		Identifier enchantmentIdentifier = Registry.ENCHANTMENT.getId(enchantment);
-		for(int i = 0; i < enchantmentList.size(); i++) {
+		for (int i = 0; i < enchantmentList.size(); i++) {
 			NbtCompound currentCompound = enchantmentList.getCompound(i);
-			if(currentCompound.contains("id", NbtElement.STRING_TYPE) && Objects.equals(Identifier.tryParse(currentCompound.getString("id")), enchantmentIdentifier)) {
+			if (currentCompound.contains("id", NbtElement.STRING_TYPE) && Objects.equals(Identifier.tryParse(currentCompound.getString("id")), enchantmentIdentifier)) {
 				enchantmentList.remove(i);
 				break;
 			}

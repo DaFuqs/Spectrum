@@ -50,7 +50,7 @@ public class MemoryItem extends BlockItem {
 	// Same nbt format as SpawnEggs
 	// That way we can reuse entityType.spawnFromItemStack()
 	public static int getTicksToManifest(@Nullable NbtCompound nbtCompound) {
-		if(nbtCompound != null && nbtCompound.contains("TicksToManifest", NbtElement.INT_TYPE)) {
+		if (nbtCompound != null && nbtCompound.contains("TicksToManifest", NbtElement.INT_TYPE)) {
 			return nbtCompound.getInt("TicksToManifest");
 		}
 		return -1;
@@ -58,15 +58,15 @@ public class MemoryItem extends BlockItem {
 	
 	public static void setTicksToManifest(@NotNull ItemStack itemStack, int newTicksToManifest) {
 		NbtCompound nbtCompound = itemStack.getNbt();
-		if(nbtCompound != null) {
+		if (nbtCompound != null) {
 			nbtCompound.putInt("TicksToManifest", newTicksToManifest);
 			itemStack.setNbt(nbtCompound);
 		}
 	}
 	
 	public static int getEggColor(NbtCompound nbtCompound, int tintIndex) {
-		if(nbtCompound == null || isEntityTypeUnrecognizable(nbtCompound)) {
-			if(tintIndex == 0) {
+		if (nbtCompound == null || isEntityTypeUnrecognizable(nbtCompound)) {
+			if (tintIndex == 0) {
 				return 0x222222;
 			} else {
 				return 0xDDDDDD;
@@ -74,9 +74,9 @@ public class MemoryItem extends BlockItem {
 		}
 		
 		Optional<EntityType<?>> entityType = MemoryItem.getEntityType(nbtCompound);
-		if(entityType.isPresent()) {
+		if (entityType.isPresent()) {
 			EntityType type = entityType.get();
-			if(customColors.containsKey(type)) {
+			if (customColors.containsKey(type)) {
 				// statically defined: fetch from map
 				return tintIndex == 0 ? customColors.get(type).getLeft() : customColors.get(type).getRight();
 			} else {
@@ -88,7 +88,7 @@ public class MemoryItem extends BlockItem {
 			}
 		}
 		
-		if(tintIndex == 0) {
+		if (tintIndex == 0) {
 			return 0x222222;
 		} else {
 			return 0xDDDDDD;
@@ -96,7 +96,7 @@ public class MemoryItem extends BlockItem {
 	}
 	
 	public static boolean isEntityTypeUnrecognizable(@Nullable NbtCompound nbtCompound) {
-		if(nbtCompound != null && nbtCompound.contains("Unrecognizable")) {
+		if (nbtCompound != null && nbtCompound.contains("Unrecognizable")) {
 			return nbtCompound.getBoolean("Unrecognizable");
 		}
 		return false;
@@ -116,8 +116,8 @@ public class MemoryItem extends BlockItem {
 		Optional<EntityType<?>> entityType = getEntityType(nbt);
 		int ticksToHatch = getTicksToManifest(nbt);
 		
-		if(entityType.isPresent()) {
-			if(isEntityTypeUnrecognizable(nbt)) {
+		if (entityType.isPresent()) {
+			if (isEntityTypeUnrecognizable(nbt)) {
 				tooltip.add(new TranslatableText("item.spectrum.memory.tooltip.unrecognizable_entity_type").formatted(Formatting.GRAY));
 			} else {
 				tooltip.add(new TranslatableText("item.spectrum.memory.tooltip.entity_type", entityType.get().getName()));
@@ -127,13 +127,13 @@ public class MemoryItem extends BlockItem {
 			return;
 		}
 		
-		if(ticksToHatch <= 0) {
+		if (ticksToHatch <= 0) {
 			tooltip.add(new TranslatableText("item.spectrum.memory.tooltip.does_not_manifest").formatted(Formatting.GRAY));
-		} else if(ticksToHatch > 100) {
+		} else if (ticksToHatch > 100) {
 			tooltip.add(new TranslatableText("item.spectrum.memory.tooltip.extra_long_time_to_manifest").formatted(Formatting.GRAY));
-		} else if(ticksToHatch > 20) {
+		} else if (ticksToHatch > 20) {
 			tooltip.add(new TranslatableText("item.spectrum.memory.tooltip.long_time_to_manifest").formatted(Formatting.GRAY));
-		} else if(ticksToHatch > 5) {
+		} else if (ticksToHatch > 5) {
 			tooltip.add(new TranslatableText("item.spectrum.memory.tooltip.medium_time_to_manifest").formatted(Formatting.GRAY));
 		} else {
 			tooltip.add(new TranslatableText("item.spectrum.memory.tooltip.short_time_to_manifest").formatted(Formatting.GRAY));

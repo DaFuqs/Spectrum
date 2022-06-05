@@ -28,7 +28,7 @@ public interface Upgradeable {
 	
 	static NbtList toNbt(@NotNull Map<UpgradeType, Double> upgrades) {
 		NbtList nbtList = new NbtList();
-		if(!upgrades.isEmpty()) {
+		if (!upgrades.isEmpty()) {
 			for (Map.Entry<UpgradeType, Double> upgrade : upgrades.entrySet()) {
 				NbtCompound upgradeCompound = new NbtCompound();
 				upgradeCompound.putString("Type", upgrade.getKey().toString());
@@ -42,7 +42,7 @@ public interface Upgradeable {
 	static Map<UpgradeType, Double> fromNbt(@NotNull NbtList nbtList) {
 		Map<UpgradeType, Double> map = Maps.newLinkedHashMap();
 		
-		for(int i = 0; i < nbtList.size(); ++i) {
+		for (int i = 0; i < nbtList.size(); ++i) {
 			NbtCompound nbtCompound = nbtList.getCompound(i);
 			
 			UpgradeType upgradeType = UpgradeType.valueOf(nbtCompound.getString("Type"));
@@ -68,19 +68,19 @@ public interface Upgradeable {
 		switch (multiblockRotation) {
 			case NONE: {
 				positions.add(blockPos.add(horizontalOffset, verticalOffset, -horizontalOffset));
-				positions.add(blockPos.add(horizontalOffset, verticalOffset,  horizontalOffset));
+				positions.add(blockPos.add(horizontalOffset, verticalOffset, horizontalOffset));
 			}
 			case CLOCKWISE_90: {
 				positions.add(blockPos.add(-horizontalOffset, verticalOffset, horizontalOffset));
-				positions.add(blockPos.add( horizontalOffset, verticalOffset, horizontalOffset));
+				positions.add(blockPos.add(horizontalOffset, verticalOffset, horizontalOffset));
 			}
 			case CLOCKWISE_180: {
-				positions.add(blockPos.add(-horizontalOffset, verticalOffset,  horizontalOffset));
+				positions.add(blockPos.add(-horizontalOffset, verticalOffset, horizontalOffset));
 				positions.add(blockPos.add(-horizontalOffset, verticalOffset, -horizontalOffset));
 			}
 			default: {
 				positions.add(blockPos.add(-horizontalOffset, verticalOffset, horizontalOffset));
-				positions.add(blockPos.add( horizontalOffset, verticalOffset, -horizontalOffset));
+				positions.add(blockPos.add(horizontalOffset, verticalOffset, -horizontalOffset));
 			}
 		}
 		
@@ -92,13 +92,13 @@ public interface Upgradeable {
 		// create a hash map of upgrade types and mods
 		HashMap<UpgradeType, List<Double>> upgradeMods = new HashMap<>();
 		int upgradeCount = 0;
-		for(BlockPos offsetPos : positions) {
+		for (BlockPos offsetPos : positions) {
 			Block block = world.getBlockState(offsetPos).getBlock();
-			if(block instanceof UpgradeBlock upgradeBlock) {
+			if (block instanceof UpgradeBlock upgradeBlock) {
 				UpgradeType upgradeType = upgradeBlock.getUpgradeType();
 				double upgradeMod = upgradeBlock.getUpgradeMod();
 				
-				if(upgradeMods.containsKey(upgradeType)) {
+				if (upgradeMods.containsKey(upgradeType)) {
 					upgradeMods.get(upgradeType).add(upgradeMod);
 				} else {
 					ArrayList<Double> arrayList = new ArrayList<>();
@@ -112,8 +112,8 @@ public interface Upgradeable {
 		
 		// iterate through that hash map, sort the mods descending by power and apply mali, if an upgrade type is used more than once
 		Map<UpgradeType, Double> upgradeMap = Maps.newLinkedHashMap();
-		for(UpgradeType upgradeType : UpgradeType.values()) {
-			if(upgradeMods.containsKey(upgradeType)) {
+		for (UpgradeType upgradeType : UpgradeType.values()) {
+			if (upgradeMods.containsKey(upgradeType)) {
 				List<Double> upgradeModList = upgradeMods.get(upgradeType);
 				Collections.sort(upgradeModList);
 				Collections.reverse(upgradeModList);
@@ -121,7 +121,7 @@ public interface Upgradeable {
 				double resultingMod = 0.0;
 				for (int i = 0; i < upgradeModList.size(); i++) {
 					// highest mod counts times 1.0, second: 0.75, third: 0.5, fourth: 0.25
-					resultingMod += upgradeModList.get(i) * ((4.0-i)/4.0);
+					resultingMod += upgradeModList.get(i) * ((4.0 - i) / 4.0);
 				}
 				upgradeMap.put(upgradeType, 1.0 + resultingMod);
 			} else {

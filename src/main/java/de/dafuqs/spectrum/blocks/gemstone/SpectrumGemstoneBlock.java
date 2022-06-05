@@ -10,16 +10,16 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class SpectrumGemstoneBlock extends AmethystBlock {
-
+	
 	private final SoundEvent hitSoundEvent;
 	private final SoundEvent chimeSoundEvent;
-
+	
 	public SpectrumGemstoneBlock(Settings settings, SoundEvent hitSoundEvent, SoundEvent chimeSoundEvent) {
 		super(settings);
 		this.hitSoundEvent = hitSoundEvent;
 		this.chimeSoundEvent = chimeSoundEvent;
 	}
-
+	
 	public void onProjectileHit(World world, BlockState state, BlockHitResult hit, ProjectileEntity projectile) {
 		if (!world.isClient) {
 			BlockPos blockPos = hit.getBlockPos();
@@ -27,5 +27,5 @@ public class SpectrumGemstoneBlock extends AmethystBlock {
 			world.playSound(null, blockPos, chimeSoundEvent, SoundCategory.BLOCKS, 1.0F, 0.5F + world.random.nextFloat() * 1.2F);
 		}
 	}
-
+	
 }

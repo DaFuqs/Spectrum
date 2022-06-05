@@ -6,6 +6,7 @@ import net.minecraft.util.DyeColor;
 public interface GemstoneColor {
 	
 	DyeColor getDyeColor();
+	
 	Item getGemstonePowderItem();
 	
 }

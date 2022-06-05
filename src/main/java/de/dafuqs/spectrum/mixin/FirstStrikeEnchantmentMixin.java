@@ -13,12 +13,12 @@ import org.spongepowered.asm.mixin.injection.ModifyVariable;
 
 @Mixin({LivingEntity.class, PlayerEntity.class})
 public class FirstStrikeEnchantmentMixin {
-
+	
 	@ModifyVariable(method = "applyDamage(Lnet/minecraft/entity/damage/DamageSource;F)V", at = @At("HEAD"), ordinal = 0, argsOnly = true)
 	public float applyAdditionalFirstStrikeEnchantmentDamage(float amount, DamageSource source) {
 		LivingEntity target = (LivingEntity) (Object) this;
-
-		if(source.getAttacker() instanceof LivingEntity livingAttacker) {
+		
+		if (source.getAttacker() instanceof LivingEntity livingAttacker) {
 			if (amount != 0F && target.getHealth() == target.getMaxHealth()) {
 				ItemStack mainHandStack = livingAttacker.getMainHandStack();
 				int level = EnchantmentHelper.getLevel(SpectrumEnchantments.FIRST_STRIKE, mainHandStack);
@@ -30,9 +30,9 @@ public class FirstStrikeEnchantmentMixin {
 		}
 		return amount;
 	}
-
+	
 	private float getAdditionalFirstStrikeEnchantmentDamage(int level) {
 		return SpectrumCommon.CONFIG.FirstStrikeDamagePerLevel * level;
 	}
-
+	
 }

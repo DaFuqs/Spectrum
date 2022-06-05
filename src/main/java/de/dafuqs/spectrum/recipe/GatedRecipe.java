@@ -14,10 +14,11 @@ import net.minecraft.util.Identifier;
 public interface GatedRecipe extends Recipe<Inventory> {
 	
 	boolean canPlayerCraft(PlayerEntity playerEntity);
+	
 	Identifier getRequiredAdvancementIdentifier();
 	
 	default void registerInToastManager(RecipeType recipeType, GatedRecipe gatedRecipe) {
-		if(FabricLoader.getInstance().getEnvironmentType() != EnvType.SERVER) {
+		if (FabricLoader.getInstance().getEnvironmentType() != EnvType.SERVER) {
 			registerInToastManagerClient(recipeType, gatedRecipe);
 		}
 	}
@@ -28,6 +29,7 @@ public interface GatedRecipe extends Recipe<Inventory> {
 	}
 	
 	TranslatableText getSingleUnlockToastString();
+	
 	TranslatableText getMultipleUnlockToastString();
 	
 }

@@ -14,7 +14,7 @@ public abstract class ColorRegistry<T> {
 		ITEM_COLORS = new ItemColors();
 		FLUID_COLORS = new FluidColors();
 	}
-
+	
 	public abstract void registerColorMapping(Identifier identifier, DyeColor dyeColor);
 	
 	public abstract void registerColorMapping(T object, DyeColor dyeColor);

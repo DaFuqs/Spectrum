@@ -18,7 +18,7 @@ import net.minecraft.util.Identifier;
 import java.util.UUID;
 
 public class SevenLeagueBootsItem extends SpectrumTrinketItem implements EnchanterEnchantable {
-
+	
 	public static final UUID STEP_BOOST_UUID = UUID.fromString("47b19f03-3211-4b4d-abf1-0c544a19dc70");
 	private static final EntityAttributeModifier STEP_BOOST_MODIFIER = new EntityAttributeModifier(STEP_BOOST_UUID, "spectrum:speed_boots", 0.75, EntityAttributeModifier.Operation.ADDITION);
 	

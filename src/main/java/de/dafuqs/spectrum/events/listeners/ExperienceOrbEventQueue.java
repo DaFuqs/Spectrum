@@ -38,5 +38,5 @@ public class ExperienceOrbEventQueue extends EventQueue<ExperienceOrbEventQueue.
 			SpectrumS2CPacketSender.sendExperienceOrbTransferPacket((ServerWorld) world, new ExperienceTransfer(pos, this.positionSource, delay));
 		}
 	}
-
+	
 }

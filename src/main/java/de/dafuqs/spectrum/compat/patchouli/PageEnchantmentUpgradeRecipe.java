@@ -20,13 +20,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PageEnchantmentUpgradeRecipe extends PageDoubleRecipeRegistry<EnchantmentUpgradeRecipe> {
-
+	
 	private static final Identifier BACKGROUND_TEXTURE = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/patchouli/enchanter_crafting.png");
-
+	
 	public PageEnchantmentUpgradeRecipe() {
 		super(SpectrumRecipeTypes.ENCHANTMENT_UPGRADE);
 	}
-
+	
 	@Override
 	protected ItemStack getRecipeOutput(EnchantmentUpgradeRecipe recipe) {
 		if (recipe == null) {
@@ -54,7 +54,7 @@ public class PageEnchantmentUpgradeRecipe extends PageDoubleRecipeRegistry<Encha
 		List<ItemStack> inputStacks = new ArrayList<>();
 		int requiredItemCountSplit = recipe.getRequiredItemCount() / 8;
 		int requiredItemCountModulo = recipe.getRequiredItemCount() % 8;
-		for(int i = 0; i < 8; i++) {
+		for (int i = 0; i < 8; i++) {
 			int addAmount = i < requiredItemCountModulo ? 1 : 0;
 			inputStacks.add(new ItemStack(recipe.getRequiredItem(), requiredItemCountSplit + addAmount));
 		}
@@ -84,5 +84,5 @@ public class PageEnchantmentUpgradeRecipe extends PageDoubleRecipeRegistry<Encha
 	protected int getRecipeHeight() {
 		return 94;
 	}
-
+	
 }

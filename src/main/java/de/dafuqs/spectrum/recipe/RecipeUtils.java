@@ -54,7 +54,7 @@ public class RecipeUtils {
 			JsonObject object = array.get(i).getAsJsonObject();
 			ingredients.add(ingredientStackFromJson(object));
 		}
-		if(dif > 0) {
+		if (dif > 0) {
 			for (int i = 0; i < dif; i++) {
 				ingredients.add(IngredientStack.EMPTY);
 			}

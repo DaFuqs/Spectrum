@@ -16,13 +16,13 @@ import java.util.function.Consumer;
 
 @Environment(EnvType.CLIENT)
 public class TransphereParticle extends SpriteBillboardParticle {
-
+	
 	private final Transphere transphere;
 	private float field_28250;
 	private float field_28248;
-
+	
 	public TransphereParticle(ClientWorld clientWorld, Transphere transphere, int i) {
-		super(clientWorld, ((float)transphere.getOrigin().getX() + 0.5F), ((float)transphere.getOrigin().getY() + 0.5F), ((float)transphere.getOrigin().getZ() + 0.5F), 0.0D, 0.0D, 0.0D);
+		super(clientWorld, ((float) transphere.getOrigin().getX() + 0.5F), ((float) transphere.getOrigin().getY() + 0.5F), ((float) transphere.getOrigin().getZ() + 0.5F), 0.0D, 0.0D, 0.0D);
 		this.scale = 0.2F;
 		this.transphere = transphere;
 		
@@ -32,7 +32,7 @@ public class TransphereParticle extends SpriteBillboardParticle {
 	}
 	
 	public void buildGeometry(VertexConsumer vertexConsumer, Camera camera, float tickDelta) {
-		float f = MathHelper.sin(((float)this.age + tickDelta - 6.2831855F) * 0.05F) * 2.0F;
+		float f = MathHelper.sin(((float) this.age + tickDelta - 6.2831855F) * 0.05F) * 2.0F;
 		float g = MathHelper.lerp(tickDelta, this.field_28248, this.field_28250);
 		float h = 1.0472F;
 		this.method_33078(vertexConsumer, camera, tickDelta, (quaternion) -> {
@@ -46,12 +46,12 @@ public class TransphereParticle extends SpriteBillboardParticle {
 			quaternion.hamiltonProduct(Vec3f.POSITIVE_Y.getRadialQuaternion(f));
 		});
 	}
-
+	
 	private void method_33078(VertexConsumer vertexConsumer, Camera camera, float tickDelta, Consumer<Quaternion> consumer) {
 		Vec3d vec3d = camera.getPos();
-		float g = (float)(MathHelper.lerp(tickDelta, this.prevPosX, this.x) - vec3d.getX());
-		float h = (float)(MathHelper.lerp(tickDelta, this.prevPosY, this.y) - vec3d.getY());
-		float i = (float)(MathHelper.lerp(tickDelta, this.prevPosZ, this.z) - vec3d.getZ());
+		float g = (float) (MathHelper.lerp(tickDelta, this.prevPosX, this.x) - vec3d.getX());
+		float h = (float) (MathHelper.lerp(tickDelta, this.prevPosY, this.y) - vec3d.getY());
+		float i = (float) (MathHelper.lerp(tickDelta, this.prevPosZ, this.z) - vec3d.getZ());
 		Vec3f vec3f = new Vec3f(0.5F, 0.5F, 0.5F);
 		vec3f.normalize();
 		Quaternion quaternion = new Quaternion(vec3f, 0.0F, true);
@@ -69,13 +69,13 @@ public class TransphereParticle extends SpriteBillboardParticle {
 			quaternion.hamiltonProduct(Vec3f.POSITIVE_Z.getRadialQuaternion(z));
 		}
 		
-		for(int k = 0; k < 4; ++k) {
+		for (int k = 0; k < 4; ++k) {
 			Vec3f vec3f3 = vec3fs[k];
 			vec3f3.rotate(quaternion);
 			vec3f3.scale(j);
 			vec3f3.add(g, h, i);
 		}
-
+		
 		float l = this.getMinU();
 		float m = this.getMaxU();
 		float n = this.getMinV();
@@ -86,30 +86,30 @@ public class TransphereParticle extends SpriteBillboardParticle {
 		vertexConsumer.vertex(vec3fs[2].getX(), vec3fs[2].getY(), vec3fs[2].getZ()).texture(l, n).color(this.red, this.green, this.blue, this.alpha).light(p).next();
 		vertexConsumer.vertex(vec3fs[3].getX(), vec3fs[3].getY(), vec3fs[3].getZ()).texture(l, o).color(this.red, this.green, this.blue, this.alpha).light(p).next();
 	}
-
+	
 	public int getBrightness(float tint) {
 		return 240;
 	}
-
+	
 	public ParticleTextureSheet getType() {
 		return ParticleTextureSheet.PARTICLE_SHEET_TRANSLUCENT;
 	}
-
+	
 	public void tick() {
 		super.tick();
 		Optional<BlockPos> optional = this.transphere.getDestination().getPos(this.world);
 		if (optional.isEmpty()) {
 			this.markDead();
 		} else {
-			double d = (double)this.age / (double)this.maxAge;
+			double d = (double) this.age / (double) this.maxAge;
 			BlockPos blockPos = this.transphere.getOrigin();
 			BlockPos blockPos2 = optional.get();
-			this.x = MathHelper.lerp(d, (double)blockPos.getX() + 0.5D, (double)blockPos2.getX() + 0.5D);
-			this.y = MathHelper.lerp(d, (double)blockPos.getY() + 0.5D, (double)blockPos2.getY() + 0.5D);
-			this.z = MathHelper.lerp(d, (double)blockPos.getZ() + 0.5D, (double)blockPos2.getZ() + 0.5D);
+			this.x = MathHelper.lerp(d, (double) blockPos.getX() + 0.5D, (double) blockPos2.getX() + 0.5D);
+			this.y = MathHelper.lerp(d, (double) blockPos.getY() + 0.5D, (double) blockPos2.getY() + 0.5D);
+			this.z = MathHelper.lerp(d, (double) blockPos.getZ() + 0.5D, (double) blockPos2.getZ() + 0.5D);
 			this.field_28248 = this.field_28250;
-			this.field_28250 = (float)MathHelper.atan2(this.x - (double)blockPos2.getX(), this.z - (double)blockPos2.getZ());
+			this.field_28250 = (float) MathHelper.atan2(this.x - (double) blockPos2.getX(), this.z - (double) blockPos2.getZ());
 		}
 	}
-
+	
 }

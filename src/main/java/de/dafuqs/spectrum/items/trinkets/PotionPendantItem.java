@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.Map;
 
 public class PotionPendantItem extends SpectrumTrinketItem implements PotionFillable {
-
+	
 	private final int TRIGGER_EVERY_X_TICKS = 200;
 	private final int EFFECT_DURATION = TRIGGER_EVERY_X_TICKS + 10;
 	
@@ -41,7 +41,7 @@ public class PotionPendantItem extends SpectrumTrinketItem implements PotionFill
 		super.appendTooltip(stack, world, tooltip, context);
 		
 		List<StatusEffectInstance> effects = PotionUtil.getCustomPotionEffects(stack);
-		if(effects.size() > 0) {
+		if (effects.size() > 0) {
 			List<Pair<EntityAttribute, EntityAttributeModifier>> attributeModifiers = Lists.newArrayList();
 			for (StatusEffectInstance effect : effects) {
 				TranslatableText mutableText = new TranslatableText(effect.getTranslationKey());
@@ -85,13 +85,13 @@ public class PotionPendantItem extends SpectrumTrinketItem implements PotionFill
 		}
 		
 		int maxEffectCount = maxEffectCount();
-		if(effects.size() < maxEffectCount) {
-			if(maxEffectCount == 1) {
+		if (effects.size() < maxEffectCount) {
+			if (maxEffectCount == 1) {
 				tooltip.add(new TranslatableText("item.spectrum.potion_pendant.tooltip_not_full_one"));
 			} else {
 				tooltip.add(new TranslatableText("item.spectrum.potion_pendant.tooltip_not_full_count", maxEffectCount));
 			}
-			tooltip.add(new TranslatableText("item.spectrum.potion_pendant.tooltip_max_level").append(new TranslatableText("enchantment.level." + (this.maxAmplifier+1))));
+			tooltip.add(new TranslatableText("item.spectrum.potion_pendant.tooltip_max_level").append(new TranslatableText("enchantment.level." + (this.maxAmplifier + 1))));
 		}
 	}
 	
@@ -114,14 +114,14 @@ public class PotionPendantItem extends SpectrumTrinketItem implements PotionFill
 	public void tick(ItemStack stack, SlotReference slot, LivingEntity entity) {
 		super.tick(stack, slot, entity);
 		
-		if(!entity.getWorld().isClient && entity.getWorld().getTime() % TRIGGER_EVERY_X_TICKS == 0) {
+		if (!entity.getWorld().isClient && entity.getWorld().getTime() % TRIGGER_EVERY_X_TICKS == 0) {
 			giveEffects(stack, entity);
 		}
 	}
 	
 	private void giveEffects(ItemStack stack, LivingEntity entity) {
 		List<StatusEffectInstance> effects = PotionUtil.getCustomPotionEffects(stack);
-		for(StatusEffectInstance effect : effects) {
+		for (StatusEffectInstance effect : effects) {
 			entity.addStatusEffect(new StatusEffectInstance(effect.getEffectType(), EFFECT_DURATION, effect.getAmplifier(), effect.isAmbient(), effect.shouldShowParticles(), true));
 		}
 	}

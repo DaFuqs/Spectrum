@@ -14,7 +14,7 @@ public enum PedestalRecipeTier {
 	SIMPLE,
 	ADVANCED,
 	COMPLEX;
-
+	
 	@Contract(pure = true)
 	public static GemstoneColor[] getAvailableGemstoneDustColors(@NotNull PedestalRecipeTier pedestalRecipeTier) {
 		switch (pedestalRecipeTier) {
@@ -29,21 +29,21 @@ public enum PedestalRecipeTier {
 			}
 		}
 	}
-
+	
 	@Contract(pure = true)
 	public static Optional<PedestalRecipeTier> getHighestUnlockedRecipeTier(PlayerEntity playerEntity) {
-		if(Support.hasAdvancement(playerEntity, new Identifier(SpectrumCommon.MOD_ID, "lategame/build_complex_pedestal_structure"))) {
+		if (Support.hasAdvancement(playerEntity, new Identifier(SpectrumCommon.MOD_ID, "lategame/build_complex_pedestal_structure"))) {
 			return Optional.of(PedestalRecipeTier.COMPLEX);
-		} else if(Support.hasAdvancement(playerEntity, new Identifier(SpectrumCommon.MOD_ID, "midgame/build_advanced_pedestal_structure"))) {
+		} else if (Support.hasAdvancement(playerEntity, new Identifier(SpectrumCommon.MOD_ID, "midgame/build_advanced_pedestal_structure"))) {
 			return Optional.of(PedestalRecipeTier.ADVANCED);
-		} else if(Support.hasAdvancement(playerEntity, new Identifier(SpectrumCommon.MOD_ID, "build_basic_pedestal_structure"))) {
+		} else if (Support.hasAdvancement(playerEntity, new Identifier(SpectrumCommon.MOD_ID, "build_basic_pedestal_structure"))) {
 			return Optional.of(PedestalRecipeTier.SIMPLE);
 		} else if (Support.hasAdvancement(playerEntity, new Identifier(SpectrumCommon.MOD_ID, "place_pedestal"))) {
 			return Optional.of(PedestalRecipeTier.BASIC);
 		}
 		return Optional.empty();
 	}
-
+	
 	public static boolean hasUnlockedRequiredTier(PlayerEntity playerEntity, @NotNull PedestalRecipeTier pedestalRecipeTier) {
 		switch (pedestalRecipeTier) {
 			case BASIC -> {
@@ -63,18 +63,18 @@ public enum PedestalRecipeTier {
 			}
 		}
 	}
-
+	
 	public static Optional<PedestalRecipeTier> hasJustUnlockedANewRecipeTier(@NotNull Identifier advancementIdentifier) {
-		if(advancementIdentifier.equals(new Identifier(SpectrumCommon.MOD_ID, "place_pedestal"))) {
+		if (advancementIdentifier.equals(new Identifier(SpectrumCommon.MOD_ID, "place_pedestal"))) {
 			return Optional.of(PedestalRecipeTier.BASIC);
-		} else if(advancementIdentifier.equals(new Identifier(SpectrumCommon.MOD_ID, "build_basic_pedestal_structure"))) {
+		} else if (advancementIdentifier.equals(new Identifier(SpectrumCommon.MOD_ID, "build_basic_pedestal_structure"))) {
 			return Optional.of(PedestalRecipeTier.SIMPLE);
-		} else if(advancementIdentifier.equals(new Identifier(SpectrumCommon.MOD_ID, "midgame/build_advanced_pedestal_structure"))) {
+		} else if (advancementIdentifier.equals(new Identifier(SpectrumCommon.MOD_ID, "midgame/build_advanced_pedestal_structure"))) {
 			return Optional.of(PedestalRecipeTier.ADVANCED);
-		} else if(advancementIdentifier.equals(new Identifier(SpectrumCommon.MOD_ID, "lategame/build_complex_pedestal_structure"))) {
+		} else if (advancementIdentifier.equals(new Identifier(SpectrumCommon.MOD_ID, "lategame/build_complex_pedestal_structure"))) {
 			return Optional.of(PedestalRecipeTier.COMPLEX);
 		}
 		return Optional.empty();
 	}
-
+	
 }

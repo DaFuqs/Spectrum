@@ -46,7 +46,7 @@ public class GemstoneChimeBlock extends Block {
 				pos.getZ() + 0.25 + random.nextDouble() * 0.5,
 				0, -0.02 - random.nextDouble() * 0.025, 0);
 		
-		if(random.nextFloat() < 0.2) {
+		if (random.nextFloat() < 0.2) {
 			world.playSound(pos.getX(), pos.getY(), pos.getZ(), soundEvent, SoundCategory.BLOCKS, 0.7F + random.nextFloat() * 0.4F, 0.75F + random.nextFloat() * 0.5F, true);
 		}
 	}

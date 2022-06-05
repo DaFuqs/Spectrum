@@ -66,7 +66,7 @@ public class BottomlessBundleBlock extends BlockWithEntity {
 				
 				world.setBlockState(pos, Blocks.AIR.getDefaultState());
 				
-				ItemEntity itemEntity = new ItemEntity(world, (double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D, itemStack);
+				ItemEntity itemEntity = new ItemEntity(world, (double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D, itemStack);
 				itemEntity.setToDefaultPickupDelay();
 				world.spawnEntity(itemEntity);
 				
@@ -94,7 +94,7 @@ public class BottomlessBundleBlock extends BlockWithEntity {
 	
 	@Override
 	public void onPlaced(World world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack itemStack) {
-		if(!world.isClient) {
+		if (!world.isClient) {
 			BlockEntity blockEntity = world.getBlockEntity(pos);
 			if (blockEntity instanceof BottomlessBundleBlockEntity bottomlessBundleBlockEntity) {
 				bottomlessBundleBlockEntity.setVoidBundle(itemStack.copy());

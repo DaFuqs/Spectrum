@@ -11,13 +11,13 @@ import net.minecraft.world.World;
 import java.util.Random;
 
 public class CloverBlock extends FernBlock {
-
+	
 	protected static final VoxelShape SHAPE = Block.createCuboidShape(2.0D, 0.0D, 1.0D, 14.0D, 2.0D, 14.0D);
-
+	
 	public CloverBlock(Settings settings) {
 		super(settings);
 	}
-
+	
 	@Deprecated
 	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
 		return SHAPE;

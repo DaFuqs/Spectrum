@@ -6,7 +6,7 @@ public class ExperienceHelper {
 		int levels = 0;
 		while (experience > 0) {
 			int nextLevelExperience = getNextLevelExperience(levels);
-			if(experience >= nextLevelExperience) {
+			if (experience >= nextLevelExperience) {
 				levels++;
 			}
 			experience -= nextLevelExperience;

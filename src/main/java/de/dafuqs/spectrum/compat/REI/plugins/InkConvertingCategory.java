@@ -23,12 +23,12 @@ public class InkConvertingCategory implements DisplayCategory<InkConvertingDispl
 	public CategoryIdentifier<? extends InkConvertingDisplay> getCategoryIdentifier() {
 		return SpectrumPlugins.INK_CONVERTING;
 	}
-
+	
 	@Override
 	public Renderer getIcon() {
 		return EntryStacks.of(SpectrumBlocks.COLOR_PICKER);
 	}
-
+	
 	@Override
 	public Text getTitle() {
 		return new TranslatableText("container.spectrum.rei.ink_converting.title");
@@ -42,7 +42,7 @@ public class InkConvertingCategory implements DisplayCategory<InkConvertingDispl
 		
 		widgets.add(Widgets.createRecipeBase(bounds));
 		
-		if(!display.isUnlocked()) {
+		if (!display.isUnlocked()) {
 			widgets.add(Widgets.createLabel(new Point(startPoint.x, startPoint.y + 38), new TranslatableText("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_1")).leftAligned().color(0x3f3f3f).noShadow());
 			widgets.add(Widgets.createLabel(new Point(startPoint.x, startPoint.y + 48), new TranslatableText("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_2")).leftAligned().color(0x3f3f3f).noShadow());
 		} else {

@@ -22,7 +22,7 @@ public class StatusEffectHelper {
 	}};
 	
 	public static @Nullable StatusEffect getPositiveVariant(@NotNull StatusEffect statusEffect) {
-		if(statusEffect.getCategory() == StatusEffectCategory.HARMFUL) {
+		if (statusEffect.getCategory() == StatusEffectCategory.HARMFUL) {
 			return negativeToPositiveEffect.getOrDefault(statusEffect, null);
 		} else {
 			return statusEffect;

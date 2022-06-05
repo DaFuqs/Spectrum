@@ -22,17 +22,17 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class FusionShrineDisplay implements SimpleGridMenuDisplay, GatedRecipeDisplay {
-
+	
 	protected final EntryIngredient fluidInput;
 	protected final List<EntryIngredient> craftingInputs;
 	protected final List<EntryIngredient> allInputs;
-
+	
 	protected final EntryIngredient output;
 	protected final float experience;
 	protected final int craftingTime;
 	protected final Identifier requiredAdvancementIdentifier;
 	protected final Optional<Text> description;
-
+	
 	public FusionShrineDisplay(@NotNull FusionShrineRecipe recipe) {
 		this.craftingInputs = recipe.getIngredientStacks().stream().map(REIHelper::ofIngredientStack).collect(Collectors.toCollection(ArrayList::new));
 		this.output = EntryIngredients.of(recipe.getOutput());
@@ -45,47 +45,47 @@ public class FusionShrineDisplay implements SimpleGridMenuDisplay, GatedRecipeDi
 		this.description = recipe.getDescription();
 		this.requiredAdvancementIdentifier = recipe.getRequiredAdvancementIdentifier();
 	}
-
+	
 	@Override
 	public List<EntryIngredient> getInputEntries() {
-		if(this.isUnlocked()) {
+		if (this.isUnlocked()) {
 			return allInputs;
 		} else {
 			return new ArrayList<>();
 		}
 	}
-
+	
 	@Override
 	public List<EntryIngredient> getOutputEntries() {
-		if(this.isUnlocked() || SpectrumCommon.CONFIG.REIListsRecipesAsNotUnlocked) {
+		if (this.isUnlocked() || SpectrumCommon.CONFIG.REIListsRecipesAsNotUnlocked) {
 			return Collections.singletonList(output);
 		} else {
 			return new ArrayList<>();
 		}
 	}
-
+	
 	@Override
 	public CategoryIdentifier<?> getCategoryIdentifier() {
 		return SpectrumPlugins.FUSION_SHRINE;
 	}
-
+	
 	public boolean isUnlocked() {
 		return Support.hasAdvancement(MinecraftClient.getInstance().player, this.requiredAdvancementIdentifier);
 	}
-
+	
 	@Override
 	public int getWidth() {
 		return 3;
 	}
-
+	
 	@Override
 	public int getHeight() {
 		return 3;
 	}
-
+	
 	public Optional<Text> getDescription() {
 		return this.description;
 	}
-
-
+	
+	
 }

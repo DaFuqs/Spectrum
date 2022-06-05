@@ -16,7 +16,7 @@ public class PaymentButtonWidget extends ButtonWidget {
 	}
 	
 	public void renderButton(MatrixStack matrices, int mouseX, int mouseY, float delta) {
-		if(pageHint.revealProgress < 0) {
+		if (pageHint.revealProgress < 0) {
 			super.renderButton(matrices, mouseX, mouseY, delta);
 			if (this.isHovered()) {
 				this.renderTooltip(matrices, mouseX, mouseY);

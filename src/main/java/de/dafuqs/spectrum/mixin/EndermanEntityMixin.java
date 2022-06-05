@@ -19,24 +19,26 @@ import java.util.Random;
 @Mixin(EndermanEntity.class)
 public abstract class EndermanEntityMixin {
 	
-	@Shadow @Nullable public abstract BlockState getCarriedBlock();
+	@Shadow
+	@Nullable
+	public abstract BlockState getCarriedBlock();
 	
 	BlockState carriedBlockState = SpectrumBlocks.ENDER_TREASURE.getDefaultState();
-
+	
 	@Inject(at = @At("TAIL"), method = "<init>")
 	private void init(CallbackInfo info) {
-		EndermanEntity endermanEntity = ((EndermanEntity)(Object) this);
-		if(endermanEntity.getEntityWorld() != null && endermanEntity.getEntityWorld() instanceof ServerWorld) {
+		EndermanEntity endermanEntity = ((EndermanEntity) (Object) this);
+		if (endermanEntity.getEntityWorld() != null && endermanEntity.getEntityWorld() instanceof ServerWorld) {
 			Random random = endermanEntity.getEntityWorld().random;
-
+			
 			float chance;
-			if(endermanEntity.getEntityWorld().getRegistryKey().equals(World.END)) {
+			if (endermanEntity.getEntityWorld().getRegistryKey().equals(World.END)) {
 				chance = SpectrumCommon.CONFIG.EndermanHoldingEnderTreasureInEndChance;
 			} else {
 				chance = SpectrumCommon.CONFIG.EndermanHoldingEnderTreasureChance;
 			}
-
-			if(random.nextFloat() < chance) {
+			
+			if (random.nextFloat() < chance) {
 				if (endermanEntity.getCarriedBlock() == null) {
 					endermanEntity.setCarriedBlock(carriedBlockState);
 				}
@@ -46,9 +48,9 @@ public abstract class EndermanEntityMixin {
 	
 	@Inject(at = @At("RETURN"), method = "cannotDespawn()Z", cancellable = true)
 	public void cannotDespawn(CallbackInfoReturnable<Boolean> cir) {
-		if(cir.getReturnValue() && this.getCarriedBlock() != null && this.getCarriedBlock().isOf(SpectrumBlocks.ENDER_TREASURE)) {
+		if (cir.getReturnValue() && this.getCarriedBlock() != null && this.getCarriedBlock().isOf(SpectrumBlocks.ENDER_TREASURE)) {
 			cir.setReturnValue(false);
 		}
 	}
-
+	
 }

@@ -12,7 +12,7 @@ public class CloakedFloatItem extends FloatItem implements Cloakable {
 	
 	Identifier cloakAdvancementIdentifier;
 	Item cloakItem;
-
+	
 	public CloakedFloatItem(Settings settings, float gravityMod, Identifier cloakAdvancementIdentifier, Item cloakItem) {
 		super(settings, gravityMod);
 		this.cloakAdvancementIdentifier = cloakAdvancementIdentifier;

@@ -15,33 +15,33 @@ import java.util.Hashtable;
 import java.util.List;
 
 public class EnderTreasureBlock extends Block implements Cloakable {
-
+	
 	public EnderTreasureBlock(Settings settings) {
 		super(settings);
 		registerCloak();
 	}
-
+	
 	@Override
 	public Identifier getCloakAdvancementIdentifier() {
 		return new Identifier(SpectrumCommon.MOD_ID, "milestones/reveal_ender_treasure");
 	}
-
+	
 	@Override
 	public Hashtable<BlockState, BlockState> getBlockStateCloaks() {
 		Hashtable<BlockState, BlockState> hashtable = new Hashtable<>();
 		hashtable.put(this.getDefaultState(), Blocks.COBBLESTONE.getDefaultState());
 		return hashtable;
 	}
-
+	
 	@Override
 	public Pair<Item, Item> getItemCloak() {
 		return new Pair<>(this.asItem(), Blocks.COBBLESTONE.asItem());
 	}
-
-
+	
+	
 	@Deprecated
 	public List<ItemStack> getDroppedStacks(BlockState state, LootContext.Builder builder) {
 		return getCloakedDroppedStacks(state, builder);
 	}
-
+	
 }

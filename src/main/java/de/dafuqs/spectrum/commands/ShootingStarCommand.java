@@ -13,7 +13,7 @@ import net.minecraft.text.TranslatableText;
 import java.util.Collection;
 
 public class ShootingStarCommand {
-
+	
 	public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
 		dispatcher.register((CommandManager.literal("spectrum_spawn_shooting_star").requires((source) -> {
 			return source.hasPermissionLevel(2);
@@ -23,7 +23,7 @@ public class ShootingStarCommand {
 			return execute(context.getSource(), EntityArgumentType.getPlayers(context, "targets"), IntegerArgumentType.getInteger(context, "amount"));
 		})))));
 	}
-
+	
 	private static int execute(ServerCommandSource source, Collection<? extends ServerPlayerEntity> targets, int amount) {
 		for (ServerPlayerEntity entity : targets) {
 			for (int i = 0; i < amount; i++) {
@@ -33,5 +33,5 @@ public class ShootingStarCommand {
 		source.sendFeedback(new TranslatableText("commands.spectrum.spawn_shooting_star.success", amount), false);
 		return amount;
 	}
-
+	
 }

@@ -12,7 +12,7 @@ import net.minecraft.world.World;
 import java.util.List;
 
 public class UpgradeBlockItem extends BlockItem {
-
+	
 	private final String tooltipString;
 	
 	public UpgradeBlockItem(Block block, Settings settings, String tooltipString) {
@@ -27,5 +27,5 @@ public class UpgradeBlockItem extends BlockItem {
 		tooltip.add(new TranslatableText("item.spectrum." + this.tooltipString + ".tooltip").formatted(Formatting.GRAY));
 		tooltip.add(new TranslatableText("item.spectrum.upgrade.tooltip_increase").formatted(Formatting.GRAY));
 	}
-
+	
 }

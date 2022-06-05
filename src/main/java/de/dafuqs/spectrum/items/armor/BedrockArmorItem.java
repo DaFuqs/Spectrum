@@ -12,7 +12,7 @@ import net.minecraft.util.collection.DefaultedList;
 import java.util.Map;
 
 public class BedrockArmorItem extends ArmorItem implements Preenchanted {
-
+	
 	public BedrockArmorItem(ArmorMaterial material, EquipmentSlot slot, Settings settings) {
 		super(material, slot, settings);
 	}

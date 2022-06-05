@@ -32,13 +32,13 @@ public class JadeVineRootsBlockEntity extends BlockEntity {
 	@Override
 	public void readNbt(NbtCompound nbt) {
 		super.readNbt(nbt);
-		if(nbt.contains("LastGrowthTick", NbtElement.LONG_TYPE)) {
+		if (nbt.contains("LastGrowthTick", NbtElement.LONG_TYPE)) {
 			this.lastGrowthTick = nbt.getLong("LastGrowthTick");
 		}
-		if(nbt.contains("FenceBlockIdentifier", NbtElement.STRING_TYPE)) {
+		if (nbt.contains("FenceBlockIdentifier", NbtElement.STRING_TYPE)) {
 			Identifier fenceBlockIdentifier = Identifier.tryParse(nbt.getString("FenceBlockIdentifier"));
 			Block block = Registry.BLOCK.get(fenceBlockIdentifier);
-			if(block instanceof FenceBlock) {
+			if (block instanceof FenceBlock) {
 				this.fenceBlockState = block.getDefaultState();
 			}
 		}
@@ -48,14 +48,14 @@ public class JadeVineRootsBlockEntity extends BlockEntity {
 	public void writeNbt(NbtCompound nbt) {
 		super.writeNbt(nbt);
 		nbt.putLong("LastGrowthTick", this.lastGrowthTick);
-		if(this.fenceBlockState != null) {
+		if (this.fenceBlockState != null) {
 			nbt.putString("FenceBlockIdentifier", Registry.BLOCK.getId(this.fenceBlockState.getBlock()).toString());
 		}
 	}
 	
 	public boolean isLaterNight(@NotNull World world) {
 		long dayTime = world.getTimeOfDay();
-		if(TimeHelper.getTimeOfDay(dayTime).isNight()) { // timeOfDay % 24000 >= 13000 && timeOfDay % 24000 < 23000
+		if (TimeHelper.getTimeOfDay(dayTime).isNight()) { // timeOfDay % 24000 >= 13000 && timeOfDay % 24000 < 23000
 			return TimeHelper.getDay(dayTime + 1000) != TimeHelper.getDay(lastGrowthTick + 1000);
 		}
 		return false;
@@ -83,7 +83,7 @@ public class JadeVineRootsBlockEntity extends BlockEntity {
 	// Called when the chunk is first loaded to initialize this be
 	public NbtCompound toInitialChunkDataNbt() {
 		NbtCompound nbtCompound = new NbtCompound();
-		if(this.fenceBlockState != null) {
+		if (this.fenceBlockState != null) {
 			nbtCompound.putString("FenceBlockIdentifier", Registry.BLOCK.getId(this.fenceBlockState.getBlock()).toString());
 		}
 		return nbtCompound;

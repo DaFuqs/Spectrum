@@ -62,7 +62,7 @@ public class PageHint extends BookPage {
 		rawText = text.as(Text.class);
 		
 		boolean isDone = isQuestDone(parent.book);
-		if(!isDone) {
+		if (!isDone) {
 			revealProgress = -1;
 			displayedText = calculateTextToRender(rawText);
 			
@@ -76,9 +76,9 @@ public class PageHint extends BookPage {
 	}
 	
 	private Text calculateTextToRender(Text text) {
-		if(revealProgress == 0) {
+		if (revealProgress == 0) {
 			return text;
-		} else if(revealProgress < 0) {
+		} else if (revealProgress < 0) {
 			return new LiteralText("$(obf)" + text.getString());
 		}
 		
@@ -86,12 +86,12 @@ public class PageHint extends BookPage {
 		LiteralText calculatedText = new LiteralText(text.asString().substring(0, (int) revealProgress) + "$(obf)" + text.asString().substring((int) revealProgress));
 		
 		long currentTime = MinecraftClient.getInstance().world.getTime();
-		if(currentTime != lastRevealTick) {
+		if (currentTime != lastRevealTick) {
 			lastRevealTick = currentTime;
 			
 			revealProgress++;
 			revealProgress = Math.min(text.asString().length(), revealProgress);
-			if(text.asString().length() < revealProgress) {
+			if (text.asString().length() < revealProgress) {
 				revealProgress = 0;
 				return text;
 			}
@@ -101,11 +101,11 @@ public class PageHint extends BookPage {
 	}
 	
 	protected String getEntryId() {
-		return entry.getId().toString()+ "_" + this.pageNum;
+		return entry.getId().toString() + "_" + this.pageNum;
 	}
 	
 	protected void paymentButtonClicked(ButtonWidget button) {
-		if(MinecraftClient.getInstance().player.isCreative() || InventoryHelper.removeFromInventory(List.of(ingredient), MinecraftClient.getInstance().player.getInventory(), true)) {
+		if (MinecraftClient.getInstance().player.isCreative() || InventoryHelper.removeFromInventory(List.of(ingredient), MinecraftClient.getInstance().player.getInventory(), true)) {
 			// mark as complete in book data
 			PersistentData.DataHolder.BookData data = PersistentData.data.getBookData(parent.book);
 			data.completedManualQuests.add(getEntryId());
@@ -125,16 +125,16 @@ public class PageHint extends BookPage {
 	public void render(MatrixStack ms, int mouseX, int mouseY, float pticks) {
 		super.render(ms, mouseX, mouseY, pticks);
 		
-		if(revealProgress >= 0) {
+		if (revealProgress >= 0) {
 			textRender = new BookTextRenderer(parent, calculateTextToRender(rawText), 0, getTextHeight());
 		}
 		textRender.render(ms, mouseX, mouseY);
-		if(revealProgress == -1) {
+		if (revealProgress == -1) {
 			parent.renderIngredient(ms, GuiBook.PAGE_WIDTH / 2 + 23, GuiBook.PAGE_HEIGHT - 34, mouseX, mouseY, ingredient);
 		}
 		
 		parent.drawCenteredStringNoShadow(ms, title == null || title.isEmpty() ? I18n.translate("patchouli.gui.lexicon.objective") : i18n(title), GuiBook.PAGE_WIDTH / 2, 0, book.headerColor);
 		GuiBook.drawSeparator(ms, book, 0, 12);
 	}
-
+	
 }

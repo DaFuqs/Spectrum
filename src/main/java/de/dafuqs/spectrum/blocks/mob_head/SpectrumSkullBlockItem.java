@@ -16,20 +16,20 @@ import java.util.List;
 import java.util.Optional;
 
 public class SpectrumSkullBlockItem extends WallStandingBlockItem {
-
+	
 	protected EntityType entityType;
 	protected String artistCached;
-
+	
 	public SpectrumSkullBlockItem(Block standingBlock, Block wallBlock, Settings settings, EntityType entityType) {
 		super(standingBlock, wallBlock, settings);
 		this.entityType = entityType;
 	}
-
+	
 	@Override
 	public void appendTooltip(ItemStack itemStack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
 		super.appendTooltip(itemStack, world, tooltip, tooltipContext);
-
-		if(tooltipContext.isAdvanced()) {
+		
+		if (tooltipContext.isAdvanced()) {
 			if (artistCached == null) {
 				artistCached = getHeadArtist(SpectrumBlocks.getSkullType(this.getBlock()));
 			}
@@ -59,7 +59,7 @@ public class SpectrumSkullBlockItem extends WallStandingBlockItem {
 	
 	public static Optional<EntityType> getEntityTypeOfSkullStack(ItemStack itemStack) {
 		Item item = itemStack.getItem();
-		if(item instanceof SpectrumSkullBlockItem spectrumSkullBlockItem) {
+		if (item instanceof SpectrumSkullBlockItem spectrumSkullBlockItem) {
 			return Optional.of(spectrumSkullBlockItem.entityType);
 		}
 		if (Items.CREEPER_HEAD.equals(item)) {
@@ -75,5 +75,5 @@ public class SpectrumSkullBlockItem extends WallStandingBlockItem {
 		}
 		return Optional.empty();
 	}
-
+	
 }

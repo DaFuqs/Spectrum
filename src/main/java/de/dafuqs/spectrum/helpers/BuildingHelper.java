@@ -46,7 +46,7 @@ public class BuildingHelper {
 	
 	public static Triplet<Block, Item, Integer> getBuildingItemCountInInventoryIncludingSimilars(PlayerEntity player, Block block) {
 		Item blockItem = block.asItem();
-		if(blockItem instanceof AliasedBlockItem) {
+		if (blockItem instanceof AliasedBlockItem) {
 			// do not process seeds and similar stuff
 			// otherwise players could place fully grown crops
 			return new Triplet<>(block, blockItem, 0);
@@ -80,9 +80,9 @@ public class BuildingHelper {
 		connectedPositions.add(blockPos);
 		visitedPositions.add(blockPos);
 		positionsToVisit.add(blockPos);
-		while(connectedPositions.size() < maxCount) {
+		while (connectedPositions.size() < maxCount) {
 			BlockPos currentPos = positionsToVisit.poll();
-			if(currentPos == null) {
+			if (currentPos == null) {
 				break;
 			} else {
 				for (Direction direction : Direction.values()) {
@@ -91,14 +91,14 @@ public class BuildingHelper {
 						visitedPositions.add(offsetPos);
 						if (blockPos.isWithinDistance(offsetPos, maxRange)) {
 							Block localBlock = world.getBlockState(offsetPos).getBlock();
-							if(localBlock.equals(originBlock) || SIMILAR_BLOCKS.containsKey(localBlock) && SIMILAR_BLOCKS.get(localBlock).equals(originBlock)) {
-							positionsToVisit.add(offsetPos);
-							connectedPositions.add(offsetPos);
-							if (connectedPositions.size() >= maxCount) {
-								break;
+							if (localBlock.equals(originBlock) || SIMILAR_BLOCKS.containsKey(localBlock) && SIMILAR_BLOCKS.get(localBlock).equals(originBlock)) {
+								positionsToVisit.add(offsetPos);
+								connectedPositions.add(offsetPos);
+								if (connectedPositions.size() >= maxCount) {
+									break;
+								}
 							}
 						}
-					}
 					}
 				}
 			}
@@ -115,11 +115,11 @@ public class BuildingHelper {
 		int count = 1;
 		
 		List<BlockPos> storedNeighbors = new ArrayList<>();
-		if(world.canPlace(originState, offsetPos, ShapeContext.absent())) {
+		if (world.canPlace(originState, offsetPos, ShapeContext.absent())) {
 			storedNeighbors.add(offsetPos);
 		}
 		
-		while(count < maxCount && !storedNeighbors.isEmpty()) {
+		while (count < maxCount && !storedNeighbors.isEmpty()) {
 			selectedPositions.addAll(storedNeighbors);
 			List<BlockPos> newNeighbors = new ArrayList<>();
 			
@@ -127,7 +127,7 @@ public class BuildingHelper {
 				List<BlockPos> facingNeighbors = getValidNeighbors(world, neighbor, direction, originState, sameBlockOnly);
 				
 				for (BlockPos facingNeighbor : facingNeighbors) {
-					if(count < maxCount && originPos.isWithinDistance(facingNeighbor, maxRange)) {
+					if (count < maxCount && originPos.isWithinDistance(facingNeighbor, maxRange)) {
 						if (!selectedPositions.contains(facingNeighbor) && !storedNeighbors.contains(facingNeighbor) && !newNeighbors.contains(facingNeighbor)) {
 							newNeighbors.add(facingNeighbor);
 							count++;
@@ -144,7 +144,7 @@ public class BuildingHelper {
 	
 	private static @NotNull List<BlockPos> getValidNeighbors(World world, BlockPos startPos, Direction facingDirection, BlockState originState, boolean sameBlockOnly) {
 		List<BlockPos> foundNeighbors = new ArrayList<>();
-		for(Vec3i neighborVectors : getNeighborVectors(facingDirection)) {
+		for (Vec3i neighborVectors : getNeighborVectors(facingDirection)) {
 			BlockPos targetPos = startPos.add(neighborVectors);
 			BlockState targetState = world.getBlockState(targetPos);
 			BlockState facingAgainstState = world.getBlockState(targetPos.offset(facingDirection.getOpposite()));
@@ -155,7 +155,7 @@ public class BuildingHelper {
 						foundNeighbors.add(targetPos);
 					}
 				} else {
-					if(!facingAgainstState.isAir()) {
+					if (!facingAgainstState.isAir()) {
 						foundNeighbors.add(targetPos);
 					}
 				}
@@ -166,7 +166,7 @@ public class BuildingHelper {
 	}
 	
 	private static @NotNull List<Vec3i> getNeighborVectors(@NotNull Direction direction) {
-		if(direction.getAxis() == Direction.Axis.Y) {
+		if (direction.getAxis() == Direction.Axis.Y) {
 			return NEIGHBOR_VECTORS_Y;
 		} else {
 			return new ArrayList<>() {{

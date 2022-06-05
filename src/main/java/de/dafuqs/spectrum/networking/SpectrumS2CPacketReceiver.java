@@ -52,10 +52,10 @@ public class SpectrumS2CPacketReceiver {
 			BlockPos position = buf.readBlockPos();
 			ParticleType<?> particleType = Registry.PARTICLE_TYPE.get(buf.readIdentifier());
 			int amount = buf.readInt();
-			if(particleType instanceof ParticleEffect particleEffect) {
+			if (particleType instanceof ParticleEffect particleEffect) {
 				client.execute(() -> {
 					// Everything in this lambda is running on the render thread
-					for(int i = 0; i < amount; i++) {
+					for (int i = 0; i < amount; i++) {
 						client.getInstance().player.world.addParticle(particleEffect, position.getX() + 0.5, position.getY() + 0.5, position.getZ() + 0.5, 0, 0, 0);
 					}
 				});
@@ -68,13 +68,13 @@ public class SpectrumS2CPacketReceiver {
 			int amount = buf.readInt();
 			Vec3d randomOffset = new Vec3d(buf.readDouble(), buf.readDouble(), buf.readDouble());
 			Vec3d randomVelocity = new Vec3d(buf.readDouble(), buf.readDouble(), buf.readDouble());
-			if(particleType instanceof ParticleEffect particleEffect) {
+			if (particleType instanceof ParticleEffect particleEffect) {
 				client.execute(() -> {
 					// Everything in this lambda is running on the render thread
 					
 					Random random = client.world.random;
 					
-					for(int i = 0; i < amount; i++) {
+					for (int i = 0; i < amount; i++) {
 						double randomOffsetX = randomOffset.x - random.nextDouble() * randomOffset.x * 2;
 						double randomOffsetY = randomOffset.y - random.nextDouble() * randomOffset.y * 2;
 						double randomOffsetZ = randomOffset.z - random.nextDouble() * randomOffset.z * 2;
@@ -96,10 +96,10 @@ public class SpectrumS2CPacketReceiver {
 			int amount = buf.readInt();
 			Vec3d randomOffset = new Vec3d(buf.readDouble(), buf.readDouble(), buf.readDouble());
 			Vec3d velocity = new Vec3d(buf.readDouble(), buf.readDouble(), buf.readDouble());
-			if(particleType instanceof ParticleEffect particleEffect) {
+			if (particleType instanceof ParticleEffect particleEffect) {
 				client.execute(() -> {
 					// Everything in this lambda is running on the render thread
-					for(int i = 0; i < amount; i++) {
+					for (int i = 0; i < amount; i++) {
 						client.getInstance().player.world.addParticle(particleEffect,
 								position.getX() + randomOffset.x, position.getY() + randomOffset.y, position.getZ() + randomOffset.z,
 								velocity.x, velocity.y, velocity.z);
@@ -113,48 +113,48 @@ public class SpectrumS2CPacketReceiver {
 			ParticleType<?> particleType = Registry.PARTICLE_TYPE.get(buf.readIdentifier());
 			ParticlePattern pattern = ParticlePattern.values()[buf.readInt()];
 			double velocity = buf.readDouble();
-			if(particleType instanceof ParticleEffect particleEffect) {
+			if (particleType instanceof ParticleEffect particleEffect) {
 				client.execute(() -> {
 					// Everything in this lambda is running on the render thread
 					playParticleWithPatternAndVelocityClient(client.world, position, particleEffect, pattern, velocity);
 				});
 			}
 		});
-
+		
 		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.PLAY_LIGHT_CREATED_PACKET_ID, (client, handler, buf, responseSender) -> {
 			BlockPos position = buf.readBlockPos();
 			client.execute(() -> {
 				Random random = client.world.random;
 				// Everything in this lambda is running on the render thread
-				for(int i = 0; i < 20; i++) {
+				for (int i = 0; i < 20; i++) {
 					client.getInstance().player.world.addParticle(SpectrumParticleTypes.SPARKLESTONE_SPARKLE, position.getX() + 0.5, position.getY() + 0.5, position.getZ() + 0.5, 0.3 - random.nextFloat() * 0.6, 0.3 - random.nextFloat() * 0.6, 0.3 - random.nextFloat() * 0.6);
 				}
 			});
 		});
-
+		
 		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.START_SKY_LERPING, (client, handler, buf, responseSender) -> {
 			DimensionType dimensionType = client.world.getDimension();
 			long sourceTime = buf.readLong();
 			long targetTime = buf.readLong();
 			SpectrumClient.skyLerper.trigger(dimensionType, sourceTime, client.getTickDelta(), targetTime);
 			
-			if(client.world.isSkyVisible(client.player.getBlockPos())) {
+			if (client.world.isSkyVisible(client.player.getBlockPos())) {
 				client.player.playSound(SpectrumSoundEvents.CELESTIAL_POCKET_WATCH_FLY_BY, SoundCategory.NEUTRAL, 0.15F, 1.0F);
 			}
 		});
-
+		
 		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.PLAY_PEDESTAL_CRAFTING_FINISHED_PARTICLE_PACKET_ID, (client, handler, buf, responseSender) -> {
 			BlockPos position = buf.readBlockPos(); // the block pos of the pedestal
 			ItemStack itemStack = buf.readItemStack(); // the item stack that was crafted
 			client.execute(() -> {
 				Random random = client.world.random;
 				// Everything in this lambda is running on the render thread
-				for(int i = 0; i < 10; i++) {
+				for (int i = 0; i < 10; i++) {
 					client.getInstance().player.world.addParticle(new ItemStackParticleEffect(ParticleTypes.ITEM, itemStack), position.getX() + 0.5, position.getY() + 1, position.getZ() + 0.5, 0.15 - random.nextFloat() * 0.3, random.nextFloat() * 0.15 + 0.1, 0.15 - random.nextFloat() * 0.3);
 				}
 			});
 		});
-
+		
 		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.PLAY_SHOOTING_STAR_PARTICLES, (client, handler, buf, responseSender) -> {
 			double x = buf.readDouble();
 			double y = buf.readDouble();
@@ -175,14 +175,14 @@ public class SpectrumS2CPacketReceiver {
 				
 				Vec3f color = ColorHelper.getVec(dyeColor);
 				float velocityModifier = 0.25F;
-				for(Vec3d velocity : Support.VECTORS_16) {
+				for (Vec3d velocity : Support.VECTORS_16) {
 					client.getInstance().player.world.addParticle(
 							new ParticleSpawnerParticleEffect(new Identifier("spectrum:particle/liquid_crystal_sparkle"), 0.0F, color, 1.5F, 40, false, true),
 							sourcePos.x, sourcePos.y, sourcePos.z,
 							velocity.x * velocityModifier, 0.0F, velocity.z * velocityModifier
 					);
 				}
-
+				
 			});
 		});
 		
@@ -198,7 +198,7 @@ public class SpectrumS2CPacketReceiver {
 				Vec3f colorVec1 = ColorHelper.colorIntToVec(color1);
 				Vec3f colorVec2 = ColorHelper.colorIntToVec(color2);
 				
-				for(int i = 0; i < amount; i++) {
+				for (int i = 0; i < amount; i++) {
 					int randomLifetime = 30 + random.nextInt(20);
 					
 					// color1
@@ -207,7 +207,7 @@ public class SpectrumS2CPacketReceiver {
 							position.getX() + 0.5, position.getY() + 0.5, position.getZ(),
 							0.15 - random.nextFloat() * 0.3, random.nextFloat() * 0.15 + 0.1, 0.15 - random.nextFloat() * 0.3
 					);
-				
+					
 					// color2
 					client.getInstance().player.world.addParticle(
 							new ParticleSpawnerParticleEffect(new Identifier("spectrum:particle/liquid_crystal_sparkle"), 0.5F, colorVec2, 1.0F, randomLifetime, false, true),
@@ -227,38 +227,38 @@ public class SpectrumS2CPacketReceiver {
 				PedestalBlock.spawnUpgradeParticleEffectsForTier(position, tier);
 			});
 		});
-
+		
 		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.CHANGE_PARTICLE_SPAWNER_SETTINGS_CLIENT_PACKET_ID, (client, handler, buf, responseSender) -> {
 			BlockPos pos = buf.readBlockPos();
-			if(client.getInstance().world.getBlockEntity(pos) instanceof ParticleSpawnerBlockEntity) {
+			if (client.getInstance().world.getBlockEntity(pos) instanceof ParticleSpawnerBlockEntity) {
 				((ParticleSpawnerBlockEntity) client.getInstance().world.getBlockEntity(pos)).applySettings(buf);
 			}
 		});
-
+		
 		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.INITIATE_ITEM_TRANSFER, (client, handler, buf, responseSender) -> {
 			ItemTransfer itemTransfer = ItemTransfer.readFromBuf(buf);
 			BlockPos blockPos = itemTransfer.getOrigin();
 			client.execute(() -> {
 				// Everything in this lambda is running on the render thread
-				client.getInstance().player.world.addImportantParticle(new ItemTransferParticleEffect(itemTransfer), true, (double)blockPos.getX() + 0.5D, (double)blockPos.getY() + 0.5D, (double)blockPos.getZ() + 0.5D, 0.0D, 0.0D, 0.0D);
+				client.getInstance().player.world.addImportantParticle(new ItemTransferParticleEffect(itemTransfer), true, (double) blockPos.getX() + 0.5D, (double) blockPos.getY() + 0.5D, (double) blockPos.getZ() + 0.5D, 0.0D, 0.0D, 0.0D);
 			});
 		});
-
+		
 		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.INITIATE_TRANSPHERE, (client, handler, buf, responseSender) -> {
 			Transphere transphere = Transphere.readFromBuf(buf);
 			BlockPos blockPos = transphere.getOrigin();
 			client.execute(() -> {
 				// Everything in this lambda is running on the render thread
-				client.getInstance().player.world.addImportantParticle(new TransphereParticleEffect(transphere), true, (double)blockPos.getX() + 0.5D, (double)blockPos.getY() + 0.5D, (double)blockPos.getZ() + 0.5D, 0.0D, 0.0D, 0.0D);
+				client.getInstance().player.world.addImportantParticle(new TransphereParticleEffect(transphere), true, (double) blockPos.getX() + 0.5D, (double) blockPos.getY() + 0.5D, (double) blockPos.getZ() + 0.5D, 0.0D, 0.0D, 0.0D);
 			});
 		});
-
+		
 		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.INITIATE_EXPERIENCE_TRANSFER, (client, handler, buf, responseSender) -> {
 			ExperienceTransfer experienceTransfer = ExperienceTransfer.readFromBuf(buf);
 			BlockPos blockPos = experienceTransfer.getOrigin();
 			client.execute(() -> {
 				// Everything in this lambda is running on the render thread
-				client.getInstance().player.world.addImportantParticle(new ExperienceTransferParticleEffect(experienceTransfer), true, (double)blockPos.getX() + 0.5D, (double)blockPos.getY() + 0.5D, (double)blockPos.getZ() + 0.5D, 0.0D, 0.0D, 0.0D);
+				client.getInstance().player.world.addImportantParticle(new ExperienceTransferParticleEffect(experienceTransfer), true, (double) blockPos.getX() + 0.5D, (double) blockPos.getY() + 0.5D, (double) blockPos.getZ() + 0.5D, 0.0D, 0.0D, 0.0D);
 			});
 		});
 		
@@ -267,37 +267,37 @@ public class SpectrumS2CPacketReceiver {
 			BlockPos blockPos = blockPosEventTransfer.getOrigin();
 			client.execute(() -> {
 				// Everything in this lambda is running on the render thread
-				client.getInstance().player.world.addImportantParticle(new BlockPosEventTransferParticleEffect(blockPosEventTransfer), true, (double)blockPos.getX() + 0.5D, (double)blockPos.getY() + 0.5D, (double)blockPos.getZ() + 0.5D, 0.0D, 0.0D, 0.0D);
+				client.getInstance().player.world.addImportantParticle(new BlockPosEventTransferParticleEffect(blockPosEventTransfer), true, (double) blockPos.getX() + 0.5D, (double) blockPos.getY() + 0.5D, (double) blockPos.getZ() + 0.5D, 0.0D, 0.0D, 0.0D);
 			});
 		});
-
+		
 		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.INITIATE_WIRELESS_REDSTONE_TRANSMISSION, (client, handler, buf, responseSender) -> {
 			WirelessRedstoneTransmission wirelessRedstoneTransmission = WirelessRedstoneTransmission.readFromBuf(buf);
 			BlockPos blockPos = wirelessRedstoneTransmission.getOrigin();
 			client.execute(() -> {
 				// Everything in this lambda is running on the render thread
-				for(int i = 0; i < 10; i++) {
-					client.getInstance().player.world.addImportantParticle(new WirelessRedstoneTransmissionParticleEffect(wirelessRedstoneTransmission), true, (double)blockPos.getX() + 0.5D, (double)blockPos.getY() + 0.5D, (double)blockPos.getZ() + 0.5D, 0.0D, 0.0D, 0.0D);
+				for (int i = 0; i < 10; i++) {
+					client.getInstance().player.world.addImportantParticle(new WirelessRedstoneTransmissionParticleEffect(wirelessRedstoneTransmission), true, (double) blockPos.getX() + 0.5D, (double) blockPos.getY() + 0.5D, (double) blockPos.getZ() + 0.5D, 0.0D, 0.0D, 0.0D);
 				}
 			});
 		});
-
+		
 		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.PLAY_ITEM_ENTITY_ABSORBED_PARTICLE_EFFECT_PACKET_ID, (client, handler, buf, responseSender) -> {
 			double posX = buf.readDouble();
 			double posY = buf.readDouble();
 			double posZ = buf.readDouble();
-
+			
 			client.execute(() -> {
 				// Everything in this lambda is running on the render thread
 				client.getInstance().player.world.addParticle(SpectrumParticleTypes.BLUE_BUBBLE_POP, posX, posY, posZ, 0, 0, 0);
 			});
 		});
-
+		
 		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.PLAY_EXPERIENCE_ORB_ENTITY_ABSORBED_PARTICLE_EFFECT_PACKET_ID, (client, handler, buf, responseSender) -> {
 			double posX = buf.readDouble();
 			double posY = buf.readDouble();
 			double posZ = buf.readDouble();
-
+			
 			client.execute(() -> {
 				// Everything in this lambda is running on the render thread
 				client.getInstance().player.world.addParticle(SpectrumParticleTypes.GREEN_BUBBLE_POP, posX, posY, posZ, 0, 0, 0);
@@ -305,7 +305,7 @@ public class SpectrumS2CPacketReceiver {
 		});
 		
 		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.PLAY_BLOCK_BOUND_SOUND_INSTANCE, (client, handler, buf, responseSender) -> {
-			if(SpectrumCommon.CONFIG.BlockSoundVolume > 0) {
+			if (SpectrumCommon.CONFIG.BlockSoundVolume > 0) {
 				Identifier soundEffectIdentifier = buf.readIdentifier();
 				Identifier blockIdentifier = buf.readIdentifier();
 				BlockPos blockPos = buf.readBlockPos();
@@ -336,9 +336,9 @@ public class SpectrumS2CPacketReceiver {
 				// Everything in this lambda is running on the render thread
 				BossBarHud bossBarHud = client.getInstance().inGameHud.getBossBarHud();
 				Map<UUID, ClientBossBar> bossBars = ((BossBarHudAccessor) bossBarHud).getBossBars();
-				if(bossBars.containsKey(bossBarUUID)) {
+				if (bossBars.containsKey(bossBarUUID)) {
 					ClientBossBar clientBossBar = bossBars.get(bossBarUUID);
-					if(clientBossBar instanceof SpectrumClientBossBar spectrumClientBossBar) {
+					if (clientBossBar instanceof SpectrumClientBossBar spectrumClientBossBar) {
 						spectrumClientBossBar.setSerpentMusic(hasSerpentMusic);
 					}
 				}
@@ -347,7 +347,7 @@ public class SpectrumS2CPacketReceiver {
 	}
 	
 	public static void playParticleWithPatternAndVelocityClient(World world, Vec3d position, ParticleEffect particleEffect, @NotNull ParticlePattern pattern, double velocity) {
-		for(Vec3d vec3d : pattern.getVectors()) {
+		for (Vec3d vec3d : pattern.getVectors()) {
 			world.addParticle(particleEffect, position.getX(), position.getY(), position.getZ(), vec3d.x * velocity, vec3d.y * velocity, vec3d.z * velocity);
 		}
 	}

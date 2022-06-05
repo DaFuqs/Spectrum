@@ -13,7 +13,7 @@ import org.jetbrains.annotations.NotNull;
 
 @Environment(EnvType.CLIENT)
 public class ParticleSpawnerParticle extends SpriteBillboardParticle {
-
+	
 	protected boolean glowInTheDark;
 	
 	public ParticleSpawnerParticle(ClientWorld clientWorld, double d, double e, double f, double velocityX, double velocityY, double velocityZ) {
@@ -27,18 +27,18 @@ public class ParticleSpawnerParticle extends SpriteBillboardParticle {
 	}
 	
 	public int getBrightness(float tint) {
-		if(glowInTheDark) {
+		if (glowInTheDark) {
 			return 16777215; // #FFFFFF
 		} else {
 			return super.getBrightness(tint);
 		}
 	}
-
+	
 	@Override
 	public ParticleTextureSheet getType() {
 		return ParticleTextureSheet.PARTICLE_SHEET_OPAQUE;
 	}
-
+	
 	public void apply(@NotNull ParticleSpawnerParticleEffect effect) {
 		Sprite sprite = ((ParticleManagerAccessor) MinecraftClient.getInstance().particleManager).getParticleAtlasTexture().getSprite(effect.textureIdentifier);
 		this.setSprite(sprite);
@@ -49,5 +49,5 @@ public class ParticleSpawnerParticle extends SpriteBillboardParticle {
 		this.collidesWithWorld = effect.collisions;
 		this.glowInTheDark = effect.glowInTheDark;
 	}
-
+	
 }

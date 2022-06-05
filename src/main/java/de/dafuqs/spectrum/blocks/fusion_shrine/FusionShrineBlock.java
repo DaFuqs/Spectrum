@@ -49,7 +49,7 @@ public class FusionShrineBlock extends BlockWithEntity {
 	protected static final VoxelShape SHAPE = Block.createCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 15.0D, 14.0D);
 	
 	public static final IntProperty LIGHT_LEVEL = IntProperty.of("light_level", 0, 15);
-
+	
 	public FusionShrineBlock(Settings settings) {
 		super(settings);
 		setDefaultState(getStateManager().getDefaultState().with(LIGHT_LEVEL, 0));
@@ -59,12 +59,12 @@ public class FusionShrineBlock extends BlockWithEntity {
 	public BlockRenderType getRenderType(BlockState state) {
 		return BlockRenderType.MODEL;
 	}
-
+	
 	@Override
 	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
 		builder.add(LIGHT_LEVEL);
 	}
-
+	
 	@Nullable
 	@Override
 	public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
@@ -78,13 +78,13 @@ public class FusionShrineBlock extends BlockWithEntity {
 	
 	@Override
 	public void onBroken(WorldAccess world, BlockPos pos, BlockState state) {
-		if(world.isClient()) {
+		if (world.isClient()) {
 			clearCurrentlyRenderedMultiBlock((World) world);
 		}
 	}
 	
 	public static void clearCurrentlyRenderedMultiBlock(World world) {
-		if(world.isClient) {
+		if (world.isClient) {
 			IMultiblock currentlyRenderedMultiBlock = PatchouliAPI.get().getCurrentMultiblock();
 			if (currentlyRenderedMultiBlock != null && currentlyRenderedMultiBlock.getID().equals(SpectrumMultiblocks.FUSION_SHRINE_IDENTIFIER)) {
 				PatchouliAPI.get().clearMultiblock();
@@ -94,8 +94,8 @@ public class FusionShrineBlock extends BlockWithEntity {
 	
 	@Override
 	public void onLandedUpon(World world, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
-		if(!world.isClient && entity instanceof ItemEntity itemEntity) {
-			if(itemEntity.getPos().x % 0.5 != 0 && itemEntity.getPos().z % 0.5 != 0) { // do not pick up items that were results of crafting
+		if (!world.isClient && entity instanceof ItemEntity itemEntity) {
+			if (itemEntity.getPos().x % 0.5 != 0 && itemEntity.getPos().z % 0.5 != 0) { // do not pick up items that were results of crafting
 				ItemStack remainingStack = inputItemStack(world, pos, itemEntity.getStack());
 				if (remainingStack.isEmpty()) {
 					itemEntity.remove(Entity.RemovalReason.DISCARDED);
@@ -110,8 +110,8 @@ public class FusionShrineBlock extends BlockWithEntity {
 	
 	public ItemStack inputItemStack(World world, BlockPos pos, ItemStack itemStack) {
 		BlockEntity blockEntity = world.getBlockEntity(pos);
-		if(blockEntity instanceof FusionShrineBlockEntity fusionShrineBlockEntity) {
-			if(itemStack.getItem() instanceof BucketItem) {
+		if (blockEntity instanceof FusionShrineBlockEntity fusionShrineBlockEntity) {
+			if (itemStack.getItem() instanceof BucketItem) {
 				return inputFluidViaBucket(world, pos, itemStack);
 			} else {
 				int previousCount = itemStack.getCount();
@@ -131,7 +131,7 @@ public class FusionShrineBlock extends BlockWithEntity {
 	public ItemStack inputFluidViaBucket(World world, BlockPos blockPos, ItemStack bucketStack) {
 		if (bucketStack.getItem() instanceof BucketItem) {
 			BlockEntity blockEntity = world.getBlockEntity(blockPos);
-			if(blockEntity instanceof FusionShrineBlockEntity fusionShrineBlockEntity) {
+			if (blockEntity instanceof FusionShrineBlockEntity fusionShrineBlockEntity) {
 				Fluid storedFluid = fusionShrineBlockEntity.getFluid();
 				Fluid bucketFluid = ((BucketItemAccessor) bucketStack.getItem()).fabric_getFluid();
 				if (storedFluid == Fluids.EMPTY && bucketFluid != Fluids.EMPTY) {
@@ -139,7 +139,7 @@ public class FusionShrineBlock extends BlockWithEntity {
 					fusionShrineBlockEntity.inventoryChanged();
 					
 					Optional<SoundEvent> soundEvent = storedFluid.getBucketFillSound();
-					if(soundEvent.isPresent()) {
+					if (soundEvent.isPresent()) {
 						world.playSound(null, blockPos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 0.8F, 0.8F + world.random.nextFloat() * 0.6F);
 					}
 					
@@ -149,7 +149,7 @@ public class FusionShrineBlock extends BlockWithEntity {
 					fusionShrineBlockEntity.inventoryChanged();
 					
 					Optional<SoundEvent> soundEvent = storedFluid.getBucketFillSound();
-					if(soundEvent.isPresent()) {
+					if (soundEvent.isPresent()) {
 						world.playSound(null, blockPos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 0.8F, 0.8F + world.random.nextFloat() * 0.6F);
 					}
 					
@@ -159,10 +159,10 @@ public class FusionShrineBlock extends BlockWithEntity {
 		}
 		return bucketStack;
 	}
-
+	
 	@Override
 	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-		if(world.isClient) {
+		if (world.isClient) {
 			verifyStructureWithSkyAccess(world, pos, null);
 			return ActionResult.SUCCESS;
 		} else {
@@ -171,7 +171,7 @@ public class FusionShrineBlock extends BlockWithEntity {
 			Optional<SoundEvent> soundToPlay = Optional.empty();
 			
 			BlockEntity blockEntity = world.getBlockEntity(pos);
-			if(blockEntity instanceof FusionShrineBlockEntity fusionShrineBlockEntity) {
+			if (blockEntity instanceof FusionShrineBlockEntity fusionShrineBlockEntity) {
 				if (itemStack.getItem() instanceof BucketItem) {
 					fusionShrineBlockEntity.setOwner(player);
 					
@@ -229,7 +229,7 @@ public class FusionShrineBlock extends BlockWithEntity {
 					}
 				}
 				
-				if(itemsChanged) {
+				if (itemsChanged) {
 					fusionShrineBlockEntity.inventoryChanged();
 					soundToPlay.ifPresent(soundEvent -> world.playSound(null, player.getBlockPos(), soundEvent, SoundCategory.PLAYERS, 0.8F, 0.8F + world.random.nextFloat() * 0.6F));
 				}
@@ -243,11 +243,11 @@ public class FusionShrineBlock extends BlockWithEntity {
 	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
 		return SHAPE;
 	}
-
+	
 	@Nullable
 	@Override
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-		if(world.isClient) {
+		if (world.isClient) {
 			return checkType(type, SpectrumBlockEntityRegistry.FUSION_SHRINE, FusionShrineBlockEntity::clientTick);
 		} else {
 			return checkType(type, SpectrumBlockEntityRegistry.FUSION_SHRINE, FusionShrineBlockEntity::serverTick);
@@ -255,12 +255,12 @@ public class FusionShrineBlock extends BlockWithEntity {
 	}
 	
 	public static boolean verifyStructureWithSkyAccess(World world, BlockPos blockPos, @Nullable ServerPlayerEntity serverPlayerEntity) {
-		if(!world.getBlockState(blockPos.up()).isAir()) {
+		if (!world.getBlockState(blockPos.up()).isAir()) {
 			world.playSound(null, blockPos, SpectrumSoundEvents.USE_FAIL, SoundCategory.NEUTRAL, 1.0F, 1.0F);
 			return false;
 		}
-		if(!world.isSkyVisible(blockPos)) {
-			if(world.isClient) {
+		if (!world.isSkyVisible(blockPos)) {
+			if (world.isClient) {
 				world.addParticle(SpectrumParticleTypes.WHITE_SPARKLE_RISING, blockPos.getX() + 0.5, blockPos.getY() + 1, blockPos.getZ() + 0.5, 0, 0.5, 0);
 				MinecraftClient.getInstance().player.playSound(SpectrumSoundEvents.USE_FAIL, SoundCategory.NEUTRAL, 1.0F, 1.0F);
 			}
@@ -268,19 +268,19 @@ public class FusionShrineBlock extends BlockWithEntity {
 		}
 		return FusionShrineBlock.verifyStructure(world, blockPos, serverPlayerEntity);
 	}
-
+	
 	private static boolean verifyStructure(World world, BlockPos blockPos, @Nullable ServerPlayerEntity serverPlayerEntity) {
 		IMultiblock multiblock = SpectrumMultiblocks.MULTIBLOCKS.get(SpectrumMultiblocks.FUSION_SHRINE_IDENTIFIER);
 		boolean valid = multiblock.validate(world, blockPos.down(), BlockRotation.NONE);
-
-		if(valid) {
+		
+		if (valid) {
 			if (serverPlayerEntity != null) {
 				SpectrumAdvancementCriteria.COMPLETED_MULTIBLOCK.trigger(serverPlayerEntity, multiblock);
 			}
 		} else {
-			if(world.isClient) {
+			if (world.isClient) {
 				IMultiblock currentMultiBlock = PatchouliAPI.get().getCurrentMultiblock();
-				if(currentMultiBlock == multiblock) {
+				if (currentMultiBlock == multiblock) {
 					PatchouliAPI.get().clearMultiblock();
 				} else {
 					PatchouliAPI.get().showMultiblock(multiblock, new TranslatableText("multiblock.spectrum.fusion_shrine.structure"), blockPos.down(2), BlockRotation.NONE);
@@ -289,19 +289,19 @@ public class FusionShrineBlock extends BlockWithEntity {
 				scatterContents(world, blockPos);
 			}
 		}
-
+		
 		return valid;
 	}
-
+	
 	// drop all currently stored items
 	@Override
 	public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
-		if(!newState.getBlock().equals(this)) { // happens when filling with fluid
+		if (!newState.getBlock().equals(this)) { // happens when filling with fluid
 			scatterContents(world, pos);
 		}
 		super.onStateReplaced(state, world, pos, newState, moved);
 	}
-
+	
 	public static void scatterContents(World world, BlockPos pos) {
 		Block block = world.getBlockState(pos).getBlock();
 		BlockEntity blockEntity = world.getBlockEntity(pos);
@@ -311,5 +311,5 @@ public class FusionShrineBlock extends BlockWithEntity {
 			fusionShrineBlockEntity.inventoryChanged();
 		}
 	}
-
+	
 }

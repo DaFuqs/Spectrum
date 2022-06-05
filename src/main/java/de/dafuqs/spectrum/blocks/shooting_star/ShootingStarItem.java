@@ -24,14 +24,14 @@ public class ShootingStarItem extends BlockItem {
 	}
 	
 	public ActionResult useOnBlock(@NotNull ItemUsageContext context) {
-		if(context.getPlayer().isSneaking()) {
+		if (context.getPlayer().isSneaking()) {
 			// place as block
 			return super.useOnBlock(context);
 		} else {
 			// place as entity
 			World world = context.getWorld();
 			
-			if(!world.isClient) {
+			if (!world.isClient) {
 				ItemStack itemStack = context.getStack();
 				Vec3d hitPos = context.getHitPos();
 				PlayerEntity user = context.getPlayer();
@@ -59,7 +59,7 @@ public class ShootingStarItem extends BlockItem {
 	
 	public static int getRemainingHits(@NotNull ItemStack itemStack) {
 		NbtCompound nbtCompound = itemStack.getNbt();
-		if(nbtCompound == null || !nbtCompound.contains("remaining_hits", NbtElement.INT_TYPE)) {
+		if (nbtCompound == null || !nbtCompound.contains("remaining_hits", NbtElement.INT_TYPE)) {
 			return 5;
 		} else {
 			return nbtCompound.getInt("remaining_hits");

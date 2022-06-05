@@ -32,12 +32,12 @@ import java.util.List;
 import java.util.Random;
 
 public class PedestalCraftingRecipe implements Recipe<Inventory>, GatedRecipe {
-
+	
 	protected final Identifier id;
 	protected final String group;
 	protected final int width;
 	protected final int height;
-
+	
 	protected final PedestalRecipeTier tier;
 	protected final DefaultedList<Ingredient> craftingInputs;
 	protected final HashMap<BuiltinGemstoneColor, Integer> gemstoneDustInputs;
@@ -51,9 +51,9 @@ public class PedestalCraftingRecipe implements Recipe<Inventory>, GatedRecipe {
 	// - the player should not get XP
 	// - Yield upgrades disabled (item multiplication)
 	protected final boolean noBenefitsFromYieldUpgrades;
-
+	
 	protected final Identifier requiredAdvancementIdentifier;
-
+	
 	public PedestalCraftingRecipe(Identifier id, String group, PedestalRecipeTier tier, int width, int height,
 	                              DefaultedList<Ingredient> craftingInputs, HashMap<BuiltinGemstoneColor, Integer> gemstoneDustInputs, ItemStack output,
 	                              float experience, int craftingTime, boolean skipRecipeRemainders, boolean noBenefitsFromYieldUpgrades, Identifier requiredAdvancementIdentifier) {
@@ -70,36 +70,36 @@ public class PedestalCraftingRecipe implements Recipe<Inventory>, GatedRecipe {
 		this.skipRecipeRemainders = skipRecipeRemainders;
 		this.noBenefitsFromYieldUpgrades = noBenefitsFromYieldUpgrades;
 		this.requiredAdvancementIdentifier = requiredAdvancementIdentifier;
-
+		
 		registerInToastManager(SpectrumRecipeTypes.PEDESTAL, this);
 	}
-
+	
 	@Override
 	public boolean matches(Inventory inv, World world) {
-		if(!matchesGrid(inv)) {
+		if (!matchesGrid(inv)) {
 			return false;
 		}
-
+		
 		int topazPowderAmount = this.gemstoneDustInputs.get(BuiltinGemstoneColor.CYAN);
 		int amethystPowderAmount = this.gemstoneDustInputs.get(BuiltinGemstoneColor.MAGENTA);
 		int citrinePowderAmount = this.gemstoneDustInputs.get(BuiltinGemstoneColor.YELLOW);
 		int onyxPowderAmount = this.gemstoneDustInputs.get(BuiltinGemstoneColor.BLACK);
 		int moonstonePowderAmount = this.gemstoneDustInputs.get(BuiltinGemstoneColor.WHITE);
-
+		
 		return ((topazPowderAmount == 0 || isStackAtLeast(inv.getStack(9), SpectrumItems.TOPAZ_POWDER, topazPowderAmount))
-			&& (amethystPowderAmount == 0 || isStackAtLeast(inv.getStack(10), SpectrumItems.AMETHYST_POWDER, amethystPowderAmount))
-			&& (citrinePowderAmount == 0 || isStackAtLeast(inv.getStack(11), SpectrumItems.CITRINE_POWDER, citrinePowderAmount))
-			&& (onyxPowderAmount == 0 || isStackAtLeast(inv.getStack(12), SpectrumItems.ONYX_POWDER, onyxPowderAmount))
-			&& (moonstonePowderAmount == 0 || isStackAtLeast(inv.getStack(13), SpectrumItems.MOONSTONE_POWDER, moonstonePowderAmount)));
+				&& (amethystPowderAmount == 0 || isStackAtLeast(inv.getStack(10), SpectrumItems.AMETHYST_POWDER, amethystPowderAmount))
+				&& (citrinePowderAmount == 0 || isStackAtLeast(inv.getStack(11), SpectrumItems.CITRINE_POWDER, citrinePowderAmount))
+				&& (onyxPowderAmount == 0 || isStackAtLeast(inv.getStack(12), SpectrumItems.ONYX_POWDER, onyxPowderAmount))
+				&& (moonstonePowderAmount == 0 || isStackAtLeast(inv.getStack(13), SpectrumItems.MOONSTONE_POWDER, moonstonePowderAmount)));
 	}
-
+	
 	public boolean matchesGrid(Inventory inv) {
-		for(int i = 0; i <= 3 - this.width; ++i) {
-			for(int j = 0; j <= 3 - this.height; ++j) {
+		for (int i = 0; i <= 3 - this.width; ++i) {
+			for (int j = 0; j <= 3 - this.height; ++j) {
 				if (this.matchesPattern(inv, i, j, true)) {
 					return true;
 				}
-
+				
 				if (this.matchesPattern(inv, i, j, false)) {
 					return true;
 				}
@@ -107,10 +107,10 @@ public class PedestalCraftingRecipe implements Recipe<Inventory>, GatedRecipe {
 		}
 		return false;
 	}
-
+	
 	public boolean matchesPattern(Inventory inv, int offsetX, int offsetY, boolean flipped) {
-		for(int i = 0; i < 3; ++i) {
-			for(int j = 0; j < 3; ++j) {
+		for (int i = 0; i < 3; ++i) {
+			for (int j = 0; j < 3; ++j) {
 				int k = i - offsetX;
 				int l = j - offsetY;
 				Ingredient ingredient = Ingredient.EMPTY;
@@ -121,24 +121,24 @@ public class PedestalCraftingRecipe implements Recipe<Inventory>, GatedRecipe {
 						ingredient = this.craftingInputs.get(k + l * this.width);
 					}
 				}
-
+				
 				if (!ingredient.test(inv.getStack(i + j * 3))) {
 					return false;
 				}
 			}
 		}
-
+		
 		return true;
 	}
-
+	
 	@Override
 	public boolean equals(Object object) {
-		if(object instanceof PedestalCraftingRecipe) {
+		if (object instanceof PedestalCraftingRecipe) {
 			return ((PedestalCraftingRecipe) object).getId().equals(this.getId());
 		}
 		return false;
 	}
-
+	
 	private boolean isStackAtLeast(ItemStack sourceItemStack, Item item, int amount) {
 		return sourceItemStack.getItem().equals(item) && sourceItemStack.getCount() >= amount;
 	}
@@ -147,7 +147,7 @@ public class PedestalCraftingRecipe implements Recipe<Inventory>, GatedRecipe {
 	public DefaultedList<Ingredient> getIngredients() {
 		return craftingInputs;
 	}
-
+	
 	@Override
 	public ItemStack craft(Inventory inv) {
 		return this.output.copy();
@@ -156,69 +156,70 @@ public class PedestalCraftingRecipe implements Recipe<Inventory>, GatedRecipe {
 	public PedestalRecipeTier getTier() {
 		return this.tier;
 	}
-
+	
 	@Override
 	public boolean fits(int width, int height) {
 		return true;
 	}
-
+	
 	@Override
 	public ItemStack getOutput() {
 		return this.output;
 	}
-
+	
 	@Override
 	public ItemStack createIcon() {
 		return new ItemStack(SpectrumBlocks.PEDESTAL_BASIC_AMETHYST);
 	}
-
+	
 	@Override
 	public boolean isIgnoredInRecipeBook() {
 		return true;
 	}
-
+	
 	@Override
 	public Identifier getId() {
 		return this.id;
 	}
-
+	
 	@Override
 	public RecipeSerializer<?> getSerializer() {
 		return SpectrumRecipeTypes.PEDESTAL_RECIPE_SERIALIZER;
 	}
-
+	
 	@Override
 	public RecipeType<?> getType() {
 		return SpectrumRecipeTypes.PEDESTAL;
 	}
-
+	
 	public int getGemstonePowderAmount(GemstoneColor gemstoneColor) {
 		return gemstoneDustInputs.getOrDefault(gemstoneColor, 0);
 	}
-
+	
 	public int getCraftingTime() {
 		return craftingTime;
 	}
-
+	
 	public float getExperience() {
 		return this.experience;
 	}
-
+	
 	public HashMap<BuiltinGemstoneColor, Integer> getGemstonePowderInputs() {
 		return this.gemstoneDustInputs;
 	}
-
+	
 	public int getWidth() {
 		return this.width;
 	}
-
+	
 	public int getHeight() {
 		return this.height;
 	}
-
+	
 	/**
 	 * Returns a sound event matching for this recipe.
 	 * Dependent on the amount of gemstone dust used in it
+	 *
 	 * @return The sound effect to play when this recipe is finished
 	 */
 	public SoundEvent getSoundEvent(Random random) {
@@ -246,10 +247,10 @@ public class PedestalCraftingRecipe implements Recipe<Inventory>, GatedRecipe {
 			return choices.get(random.nextInt(choices.size()));
 		}
 	}
-
+	
 	public boolean canCraft(PedestalBlockEntity pedestalBlockEntity) {
 		PlayerEntity playerEntity = pedestalBlockEntity.getPlayerEntityIfOnline(pedestalBlockEntity.getWorld());
-		if(playerEntity == null) {
+		if (playerEntity == null) {
 			return false;
 		} else {
 			// pedestal upgrade recipes do not require the structure
@@ -261,22 +262,23 @@ public class PedestalCraftingRecipe implements Recipe<Inventory>, GatedRecipe {
 	public boolean canPlayerCraft(PlayerEntity playerEntity) {
 		return PedestalRecipeTier.hasUnlockedRequiredTier(playerEntity, this.tier) && Support.hasAdvancement(playerEntity, this.requiredAdvancementIdentifier);
 	}
-
+	
 	/**
 	 * When a recipe is set to output a pedestal block item
 	 * it is treated as an upgrade recipe. Meaning the item does not
 	 * get crafted, but the current pedestal replaced with the new one.
 	 */
 	public static PedestalVariant getUpgradedPedestalVariantForOutput(ItemStack outputItemStack) {
-		if(outputItemStack.getItem() instanceof PedestalBlockItem) {
+		if (outputItemStack.getItem() instanceof PedestalBlockItem) {
 			return ((PedestalBlockItem) outputItemStack.getItem()).getVariant();
 		} else {
 			return null;
 		}
 	}
-
+	
 	/**
 	 * The advancement the player has to have to let the recipe be craftable in the pedestal
+	 *
 	 * @return The advancement identifier.
 	 */
 	public Identifier getRequiredAdvancementIdentifier() {
@@ -287,7 +289,7 @@ public class PedestalCraftingRecipe implements Recipe<Inventory>, GatedRecipe {
 	public String getGroup() {
 		return this.group;
 	}
-
+	
 	public boolean areYieldUpgradesDisabled() {
 		return noBenefitsFromYieldUpgrades;
 	}

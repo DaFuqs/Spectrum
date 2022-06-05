@@ -38,5 +38,5 @@ public class InkConvertingDisplay extends BasicDisplay implements GatedRecipeDis
 	public boolean isUnlocked() {
 		return Support.hasAdvancement(MinecraftClient.getInstance().player, InkConvertingRecipe.UNLOCK_ADVANCEMENT_IDENTIFIER) && Support.hasAdvancement(MinecraftClient.getInstance().player, this.requiredAdvancementIdentifier);
 	}
-
+	
 }

@@ -19,11 +19,11 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 
 public class BlockFlooderItem extends Item {
-
+	
 	public BlockFlooderItem(Settings settings) {
 		super(settings);
 	}
-
+	
 	public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
 		ItemStack itemStack = user.getStackInHand(hand);
 		world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_SNOWBALL_THROW, SoundCategory.NEUTRAL, 0.5F, 0.4F / (world.getRandom().nextFloat() * 0.4F + 0.8F));
@@ -33,15 +33,15 @@ public class BlockFlooderItem extends Item {
 			blockFlooderProjectile.setVelocity(user, user.getPitch(), user.getYaw(), 0.0F, 1.5F, 1.0F);
 			world.spawnEntity(blockFlooderProjectile);
 		}
-
+		
 		user.incrementStat(Stats.USED.getOrCreateStat(this));
 		if (!user.getAbilities().creativeMode) {
 			itemStack.decrement(1);
 		}
-
+		
 		return TypedActionResult.success(itemStack, world.isClient());
 	}
-
+	
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
@@ -50,5 +50,5 @@ public class BlockFlooderItem extends Item {
 		tooltip.add(new TranslatableText("item.spectrum.block_flooder.tooltip3").formatted(Formatting.GRAY));
 		tooltip.add(new TranslatableText("item.spectrum.block_flooder.tooltip4").formatted(Formatting.GRAY));
 	}
-
+	
 }

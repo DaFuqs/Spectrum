@@ -17,14 +17,14 @@ import java.util.Random;
 
 @Environment(EnvType.CLIENT)
 public class JadeVineRootsBlockEntityRenderer implements BlockEntityRenderer<JadeVineRootsBlockEntity> {
-
+	
 	public JadeVineRootsBlockEntityRenderer(BlockEntityRendererFactory.Context ctx) {
-
+	
 	}
-
+	
 	@Override
 	public void render(JadeVineRootsBlockEntity entity, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light, int overlay) {
-		if(entity.getWorld() != null) {
+		if (entity.getWorld() != null) {
 			BlockState fenceBlockState = entity.getFenceBlockState();
 			if (fenceBlockState.getRenderType() == BlockRenderType.MODEL && fenceBlockState.getRenderType() != BlockRenderType.INVISIBLE) {
 				matrixStack.push();
@@ -46,5 +46,5 @@ public class JadeVineRootsBlockEntityRenderer implements BlockEntityRenderer<Jad
 			}
 		}
 	}
-
+	
 }

@@ -10,7 +10,7 @@ import net.minecraft.world.World;
 public interface MultiblockCrafter extends RecipeInputProvider, Upgradeable, PlayerOwned {
 	
 	static void spawnExperience(World world, BlockPos blockPos, int spawnedXPAmount) {
-		if(spawnedXPAmount > 0) {
+		if (spawnedXPAmount > 0) {
 			ExperienceOrbEntity experienceOrbEntity = new ExperienceOrbEntity(world, blockPos.getX() + 0.5, blockPos.getY() + 1, blockPos.getZ() + 0.5, spawnedXPAmount);
 			world.spawnEntity(experienceOrbEntity);
 		}

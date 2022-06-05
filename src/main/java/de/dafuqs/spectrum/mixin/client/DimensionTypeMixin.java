@@ -12,7 +12,7 @@ public class DimensionTypeMixin {
 	
 	@ModifyArg(method = "getSkyAngle", at = @At(value = "INVOKE", target = "Ljava/util/OptionalLong;orElse(J)J"))
 	private long spectrum$getLerpedSkyAngle(long time) {
-		if(!MinecraftClient.getInstance().isPaused() && SpectrumClient.skyLerper.isActive((DimensionType) (Object) this)) {
+		if (!MinecraftClient.getInstance().isPaused() && SpectrumClient.skyLerper.isActive((DimensionType) (Object) this)) {
 			return SpectrumClient.skyLerper.tickLerp(time, MinecraftClient.getInstance().getTickDelta());
 		} else {
 			return time;

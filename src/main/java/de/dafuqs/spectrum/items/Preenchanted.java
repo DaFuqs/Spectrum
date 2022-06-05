@@ -13,7 +13,7 @@ public interface Preenchanted {
 	
 	default @NotNull ItemStack getDefaultEnchantedStack(Item item) {
 		ItemStack itemStack = new ItemStack(item);
-		for(Map.Entry<Enchantment, Integer> defaultEnchantment : getDefaultEnchantments().entrySet()) {
+		for (Map.Entry<Enchantment, Integer> defaultEnchantment : getDefaultEnchantments().entrySet()) {
 			itemStack.addEnchantment(defaultEnchantment.getKey(), defaultEnchantment.getValue());
 		}
 		return itemStack;

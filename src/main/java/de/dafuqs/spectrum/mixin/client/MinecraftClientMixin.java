@@ -27,15 +27,15 @@ public abstract class MinecraftClientMixin {
 	public void spectrum$onLogout(Screen screen, CallbackInfo info) {
 		ClientAdvancements.playerLogout();
 	}
-
+	
 	@Inject(at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;getRegistryKey()Lnet/minecraft/util/registry/RegistryKey;"), method = "getMusicType()Lnet/minecraft/sound/MusicSound;", cancellable = true)
 	public void spectrum$getMusicType(CallbackInfoReturnable<MusicSound> cir) {
-		MinecraftClient thisClient = (MinecraftClient)(Object) this;
+		MinecraftClient thisClient = (MinecraftClient) (Object) this;
 		if (thisClient.player.world.getRegistryKey() == SpectrumCommon.DEEPER_DOWN) {
-			if(shouldPlaySerpentMusic(thisClient.inGameHud.getBossBarHud())) {
+			if (shouldPlaySerpentMusic(thisClient.inGameHud.getBossBarHud())) {
 				cir.setReturnValue(SpectrumMusicType.BOSS_THEME);
 			} else {
-				if(Support.hasPlayerFinishedMod(MinecraftClient.getInstance().player)) {
+				if (Support.hasPlayerFinishedMod(MinecraftClient.getInstance().player)) {
 					cir.setReturnValue(SpectrumMusicType.SPECTRUM_THEME);
 				} else {
 					cir.setReturnValue(SpectrumMusicType.DEEPER_DOWN_THEME);
@@ -48,12 +48,12 @@ public abstract class MinecraftClientMixin {
 		Map<UUID, ClientBossBar> bossBars = ((BossBarHudAccessor) bossBarHud).getBossBars();
 		if (!bossBars.isEmpty()) {
 			for (ClientBossBar clientBossBar : bossBars.values()) {
-				if(clientBossBar instanceof SpectrumClientBossBar spectrumClientBossBar) {
+				if (clientBossBar instanceof SpectrumClientBossBar spectrumClientBossBar) {
 					return spectrumClientBossBar.hasSerpentBossMusic();
 				}
 			}
 		}
 		return false;
 	}
-
+	
 }

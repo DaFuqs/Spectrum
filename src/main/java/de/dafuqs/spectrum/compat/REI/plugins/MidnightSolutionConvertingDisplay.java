@@ -23,7 +23,7 @@ public class MidnightSolutionConvertingDisplay extends BasicDisplay implements G
 	public <T extends Recipe<?>> MidnightSolutionConvertingDisplay(MidnightSolutionConvertingRecipe recipe) {
 		this(Collections.singletonList(EntryIngredients.ofIngredient(recipe.getIngredients().get(0))), Collections.singletonList(EntryIngredients.of(recipe.getOutput())));
 	}
-
+	
 	public MidnightSolutionConvertingDisplay(List<EntryIngredient> inputs, List<EntryIngredient> outputs) {
 		super(inputs, outputs);
 	}
@@ -31,11 +31,11 @@ public class MidnightSolutionConvertingDisplay extends BasicDisplay implements G
 	public final EntryIngredient getIn() {
 		return getInputEntries().get(0);
 	}
-
+	
 	public final EntryIngredient getOut() {
 		return getOutputEntries().get(0);
 	}
-
+	
 	@Override
 	public CategoryIdentifier<?> getCategoryIdentifier() {
 		return SpectrumPlugins.MIDNIGHT_SOLUTION_CONVERTING;

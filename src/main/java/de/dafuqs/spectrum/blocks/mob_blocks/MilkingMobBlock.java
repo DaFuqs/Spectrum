@@ -46,8 +46,8 @@ public class MilkingMobBlock extends MobBlock {
 		
 		// Goats
 		List<GoatEntity> goatEntities = world.getNonSpectatingEntities(GoatEntity.class, Box.of(Vec3d.ofCenter(blockPos), boxSize, boxSize, boxSize));
-		for(GoatEntity goatEntity : goatEntities) {
-			if(!goatEntity.isBaby()) {
+		for (GoatEntity goatEntity : goatEntities) {
+			if (!goatEntity.isBaby()) {
 				boolean emptyBucketFound = findAndDecreaseClosestItemEntityOfItem(world, goatEntity, Items.BUCKET, BUCKET_SEARCH_RANGE);
 				if (emptyBucketFound) {
 					SoundEvent soundEvent = goatEntity.isScreaming() ? SoundEvents.ENTITY_GOAT_SCREAMING_MILK : SoundEvents.ENTITY_GOAT_MILK;
@@ -59,8 +59,8 @@ public class MilkingMobBlock extends MobBlock {
 		
 		// Cows
 		List<CowEntity> cowEntities = world.getNonSpectatingEntities(CowEntity.class, Box.of(Vec3d.ofCenter(blockPos), boxSize, boxSize, boxSize));
-		for(CowEntity cowEntity : cowEntities) {
-			if(!cowEntity.isBaby()) {
+		for (CowEntity cowEntity : cowEntities) {
+			if (!cowEntity.isBaby()) {
 				boolean emptyBucketFound = findAndDecreaseClosestItemEntityOfItem(world, cowEntity, Items.BUCKET, BUCKET_SEARCH_RANGE);
 				if (emptyBucketFound) {
 					world.playSound(null, cowEntity.getBlockPos(), SoundEvents.ENTITY_COW_MILK, SoundCategory.NEUTRAL, 1.0F, 1.0F);
@@ -71,8 +71,8 @@ public class MilkingMobBlock extends MobBlock {
 		
 		// Mooshrooms (Mooshroom Stew / Suspicious Stew)
 		List<MooshroomEntity> mooshroomEntities = world.getNonSpectatingEntities(MooshroomEntity.class, Box.of(Vec3d.ofCenter(blockPos), boxSize, boxSize, boxSize));
-		for(MooshroomEntity mooshroomEntity : mooshroomEntities) {
-			if(!mooshroomEntity.isBaby()) {
+		for (MooshroomEntity mooshroomEntity : mooshroomEntities) {
+			if (!mooshroomEntity.isBaby()) {
 				boolean emptyBowlFound = findAndDecreaseClosestItemEntityOfItem(world, mooshroomEntity, Items.BOWL, BUCKET_SEARCH_RANGE);
 				if (emptyBowlFound) {
 					MooshroomEntityAccessor accessor = (MooshroomEntityAccessor) mooshroomEntity;
@@ -106,11 +106,11 @@ public class MilkingMobBlock extends MobBlock {
 	
 	public boolean findAndDecreaseClosestItemEntityOfItem(@NotNull ServerWorld world, @NotNull Entity entity, Item item, int range) {
 		List<ItemEntity> itemEntities = world.getNonSpectatingEntities(ItemEntity.class, Box.of(entity.getPos(), range, range, range));
-		for(ItemEntity itemEntity : itemEntities) {
+		for (ItemEntity itemEntity : itemEntities) {
 			ItemStack stack = itemEntity.getStack();
-			if(stack.isOf(item)) {
+			if (stack.isOf(item)) {
 				stack.decrement(1);
-				if(stack.isEmpty()) {
+				if (stack.isEmpty()) {
 					itemEntity.discard();
 				}
 				return true;
@@ -122,8 +122,8 @@ public class MilkingMobBlock extends MobBlock {
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
 		super.appendTooltip(stack, world, tooltip, options);
-		tooltip.add(new TranslatableText( "block.spectrum.milking_mob_block.tooltip", this.milkingRange));
-		tooltip.add(new TranslatableText( "block.spectrum.milking_mob_block.tooltip2"));
+		tooltip.add(new TranslatableText("block.spectrum.milking_mob_block.tooltip", this.milkingRange));
+		tooltip.add(new TranslatableText("block.spectrum.milking_mob_block.tooltip2"));
 	}
 	
 }

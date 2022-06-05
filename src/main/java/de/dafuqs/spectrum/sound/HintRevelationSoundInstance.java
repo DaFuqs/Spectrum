@@ -11,12 +11,12 @@ import net.minecraft.sound.SoundCategory;
 
 @Environment(EnvType.CLIENT)
 public class HintRevelationSoundInstance extends AbstractSoundInstance implements TickableSoundInstance {
-
+	
 	private final PlayerEntity player;
 	private boolean done;
 	private final int duration;
 	private int playtime;
-
+	
 	public HintRevelationSoundInstance(PlayerEntity player, int duration) {
 		super(SpectrumSoundEvents.TEXT_REVEALED, SoundCategory.PLAYERS);
 		this.repeat = true;
@@ -30,17 +30,17 @@ public class HintRevelationSoundInstance extends AbstractSoundInstance implement
 		
 		this.playtime = 0;
 	}
-
+	
 	@Override
 	public boolean isDone() {
 		return this.done;
 	}
-
+	
 	@Override
 	public boolean shouldAlwaysPlay() {
 		return true;
 	}
-
+	
 	@Override
 	public void tick() {
 		playtime++;
@@ -48,7 +48,7 @@ public class HintRevelationSoundInstance extends AbstractSoundInstance implement
 			this.setDone();
 		}
 	}
-
+	
 	protected final void setDone() {
 		this.done = true;
 		this.repeat = false;

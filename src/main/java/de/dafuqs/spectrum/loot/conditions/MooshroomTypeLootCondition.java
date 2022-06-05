@@ -14,18 +14,18 @@ import net.minecraft.util.JsonHelper;
 import net.minecraft.util.JsonSerializer;
 
 public class MooshroomTypeLootCondition implements LootCondition {
-
+	
 	MooshroomEntity.Type mooshroomType;
-
+	
 	private MooshroomTypeLootCondition(MooshroomEntity.Type mooshroomType) {
 		this.mooshroomType = mooshroomType;
 	}
-
+	
 	@Override
 	public LootConditionType getType() {
 		return SpectrumLootConditionTypes.MOOSHROOM_TYPE_CONDITION;
 	}
-
+	
 	@Override
 	public boolean test(LootContext lootContext) {
 		Entity entity = lootContext.get(LootContextParameters.THIS_ENTITY);
@@ -35,26 +35,26 @@ public class MooshroomTypeLootCondition implements LootCondition {
 			return false;
 		}
 	}
-
+	
 	public static Builder builder(MooshroomEntity.Type mooshroomType) {
 		return () -> {
 			return new MooshroomTypeLootCondition(mooshroomType);
 		};
 	}
-
+	
 	public static class Serializer implements JsonSerializer<MooshroomTypeLootCondition> {
 		public Serializer() {
 		}
-
+		
 		public void toJson(JsonObject jsonObject, MooshroomTypeLootCondition mooshroomTypeLootCondition, JsonSerializationContext jsonSerializationContext) {
 			jsonObject.addProperty("mooshroom_type", mooshroomTypeLootCondition.mooshroomType.toString());
 		}
-
+		
 		public MooshroomTypeLootCondition fromJson(JsonObject jsonObject, JsonDeserializationContext jsonDeserializationContext) {
 			String mooshroomTypeString = JsonHelper.getString(jsonObject, "mooshroom_type");
 			MooshroomEntity.Type mooshroomType = MooshroomEntity.Type.valueOf(mooshroomTypeString);
 			return new MooshroomTypeLootCondition(mooshroomType);
 		}
 	}
-
+	
 }

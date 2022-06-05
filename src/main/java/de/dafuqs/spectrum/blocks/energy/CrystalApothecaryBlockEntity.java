@@ -58,7 +58,7 @@ public class CrystalApothecaryBlockEntity extends LootableContainerBlockEntity i
 	}};
 	
 	private static final int RANGE = 12;
-	private static final ItemStack HARVEST_ITEMSTACK =  ItemStack.EMPTY;
+	private static final ItemStack HARVEST_ITEMSTACK = ItemStack.EMPTY;
 	
 	private final BlockPosEventQueue blockPosEventTransferListener;
 	private DefaultedList<ItemStack> inventory;
@@ -78,7 +78,7 @@ public class CrystalApothecaryBlockEntity extends LootableContainerBlockEntity i
 	}
 	
 	protected Text getContainerName() {
-		if(hasOwner()) {
+		if (hasOwner()) {
 			return new TranslatableText("block.spectrum.crystal_apothecary").append(new TranslatableText("container.spectrum.owned_by_player", this.ownerName));
 		} else {
 			return new TranslatableText("block.spectrum.crystal_apothecary");
@@ -92,18 +92,19 @@ public class CrystalApothecaryBlockEntity extends LootableContainerBlockEntity i
 	public static void tick(World world, BlockPos pos, BlockState state, CrystalApothecaryBlockEntity blockEntity) {
 		if (!world.isClient) {
 			blockEntity.blockPosEventTransferListener.tick(world);
-			if(world.getTime() % 1000 == 0) {
+			if (world.getTime() % 1000 == 0) {
 				blockEntity.listenerPaused = false; // try to reset from time to time, to search for new clusters, even if full
 			}
-			if(blockEntity.compensationWorldTime > 0) {
+			if (blockEntity.compensationWorldTime > 0) {
 				long compensationTicks = world.getTime() - blockEntity.compensationWorldTime;
-				if(compensationTicks > 1200) { // only compensate if the time gap is at least 1 minute (lag)
+				if (compensationTicks > 1200) { // only compensate if the time gap is at least 1 minute (lag)
 					compensateGemstoneClusterDropsForUnloadedTicks(world, pos, blockEntity, compensationTicks);
 				}
 				blockEntity.compensationWorldTime = -1;
 			}
 		}
 	}
+	
 	@Override
 	public void readNbt(NbtCompound nbt) {
 		super.readNbt(nbt);
@@ -111,20 +112,20 @@ public class CrystalApothecaryBlockEntity extends LootableContainerBlockEntity i
 		if (!this.deserializeLootTable(nbt)) {
 			Inventories.readNbt(nbt, this.inventory);
 		}
-		if(nbt.contains("OwnerUUID")) {
+		if (nbt.contains("OwnerUUID")) {
 			this.ownerUUID = nbt.getUuid("OwnerUUID");
 		} else {
 			this.ownerUUID = null;
 		}
-		if(nbt.contains("ListenerPaused")) {
+		if (nbt.contains("ListenerPaused")) {
 			this.listenerPaused = nbt.getBoolean("ListenerPaused");
 		}
-		if(nbt.contains("OwnerName")) {
+		if (nbt.contains("OwnerName")) {
 			this.ownerName = nbt.getString("OwnerName");
 		} else {
 			this.ownerName = null;
 		}
-		if(nbt.contains("LastWorldTime")) {
+		if (nbt.contains("LastWorldTime")) {
 			this.compensationWorldTime = nbt.getLong("LastWorldTime");
 		}
 	}
@@ -136,13 +137,13 @@ public class CrystalApothecaryBlockEntity extends LootableContainerBlockEntity i
 			Inventories.writeNbt(nbt, this.inventory);
 		}
 		nbt.putBoolean("ListenerPaused", this.listenerPaused);
-		if(this.world != null) {
+		if (this.world != null) {
 			nbt.putLong("LastWorldTime", this.world.getTime());
 		}
-		if(this.ownerUUID != null) {
+		if (this.ownerUUID != null) {
 			nbt.putUuid("OwnerUUID", this.ownerUUID);
 		}
-		if(this.ownerName != null) {
+		if (this.ownerName != null) {
 			nbt.putString("OwnerName", this.ownerName);
 		}
 	}
@@ -152,14 +153,14 @@ public class CrystalApothecaryBlockEntity extends LootableContainerBlockEntity i
 	 * and puts items into it's inventory, simulating it working for
 	 * a specific amount of ticks, like when getting loaded after being
 	 * unloaded after some time
-	 *
+	 * <p>
 	 * To not use too much load this function works with estimates,
 	 * guessing how much time has passed and how many clusters would have grown
-	 *
+	 * <p>
 	 * There are /gamerule randomTickTime random ticks in each 16*16*16 cube per game tick (default: 3)
 	 * When a budding block it ticked, there is a 20 % chance to choose a random direction and check if a bud can grow/advance at that pos
 	 * Vanilla's and Spectrum's Buds all have 4 growth stages to get fully grown
-	 *
+	 * <p>
 	 * All this results in
 	 * (<randomTickSpeed> / 16*16*16) * empty_blocks_next_to_budding_blocks * grow_chance * (1 / growth_stages_count)
 	 * "grown" clusters per tick.
@@ -168,16 +169,16 @@ public class CrystalApothecaryBlockEntity extends LootableContainerBlockEntity i
 	 *
 	 * @param ticksToCompensate The # of ticks to simulate compensation for
 	 */
-	private static void compensateGemstoneClusterDropsForUnloadedTicks(World world,  BlockPos blockPos, CrystalApothecaryBlockEntity blockEntity, long ticksToCompensate) {
+	private static void compensateGemstoneClusterDropsForUnloadedTicks(World world, BlockPos blockPos, CrystalApothecaryBlockEntity blockEntity, long ticksToCompensate) {
 		Map<BlockState, Integer> matches = new HashMap<>();
 		
 		// search for blocks in working range
 		Set<BlockState> compensationBlocks = UNLOADED_COMPENSATION_MAP.keySet();
-		for(BlockPos pos : BlockPos.iterateOutwards(blockPos, RANGE, RANGE, RANGE)) {
+		for (BlockPos pos : BlockPos.iterateOutwards(blockPos, RANGE, RANGE, RANGE)) {
 			BlockState state = world.getBlockState(pos);
-			if(compensationBlocks.contains(state)) {
+			if (compensationBlocks.contains(state)) {
 				int validBlocks = countValidGemstoneClusterBlocksAroundBlockPos(world, pos);
-				if(matches.containsKey(state)) {
+				if (matches.containsKey(state)) {
 					matches.put(state, matches.get(state) + validBlocks);
 				} else {
 					matches.put(state, validBlocks);
@@ -188,15 +189,15 @@ public class CrystalApothecaryBlockEntity extends LootableContainerBlockEntity i
 		// for each of those blocks generate some loot
 		// (<randomTickSpeed> / 16*16*16) * 20 % * 1/4
 		float theoreticallyGrownClustersPerBlock = (world.getGameRules().get(GameRules.RANDOM_TICK_SPEED).get() / 4096F) * 0.05F * ticksToCompensate;
-		for(Map.Entry<BlockState, Integer> match : matches.entrySet()) {
+		for (Map.Entry<BlockState, Integer> match : matches.entrySet()) {
 			Pair<Item, Integer> drop = UNLOADED_COMPENSATION_MAP.get(match.getKey());
 			float theoreticallyGrownClusters = theoreticallyGrownClustersPerBlock * match.getValue();
 			float compensatedItemsCount = theoreticallyGrownClusters * drop.getRight() * (0.8F + world.random.nextFloat() * 0.4F);
-			if(compensatedItemsCount >= 1) {
+			if (compensatedItemsCount >= 1) {
 				ItemStack compensatedStack = drop.getLeft().getDefaultStack();
 				compensatedStack.setCount((int) compensatedItemsCount);
 				ItemStack remainingStack = InventoryHelper.smartAddToInventory(compensatedStack, blockEntity, null);
-				if(!remainingStack.isEmpty()) {
+				if (!remainingStack.isEmpty()) {
 					break; // overflow will be voided
 				}
 			}
@@ -205,9 +206,9 @@ public class CrystalApothecaryBlockEntity extends LootableContainerBlockEntity i
 	
 	public static int countValidGemstoneClusterBlocksAroundBlockPos(World world, BlockPos blockPos) {
 		int count = 0;
-		for(Direction direction : Direction.values()) {
+		for (Direction direction : Direction.values()) {
 			BlockState offsetState = world.getBlockState(blockPos.offset(direction));
-			if(offsetState.isAir() || offsetState.getBlock() == Blocks.WATER || offsetState.isIn(SpectrumBlockTags.GEMSTONE_BUDS)) {
+			if (offsetState.isAir() || offsetState.getBlock() == Blocks.WATER || offsetState.isIn(SpectrumBlockTags.GEMSTONE_BUDS)) {
 				count++;
 			}
 		}
@@ -221,7 +222,7 @@ public class CrystalApothecaryBlockEntity extends LootableContainerBlockEntity i
 	
 	@Override
 	public void setStack(int slot, ItemStack stack) {
-		if(stack.isEmpty() && this.listenerPaused) {
+		if (stack.isEmpty() && this.listenerPaused) {
 			this.listenerPaused = false;
 			harvestExistingClusters();
 		}
@@ -250,13 +251,13 @@ public class CrystalApothecaryBlockEntity extends LootableContainerBlockEntity i
 	
 	@Override
 	public void triggerEvent(World world, GameEventListener listener, Object entry) {
-		if(listener instanceof BlockPosEventQueue && this.world != null) {
+		if (listener instanceof BlockPosEventQueue && this.world != null) {
 			BlockPos eventPos = ((BlockPosEventQueue.EventEntry) entry).eventSourceBlockPos;
 			BlockState eventState = world.getBlockState(eventPos);
-			if(eventState.isIn(SpectrumBlockTags.CRYSTAL_APOTHECARY_HARVESTABLE)) {
+			if (eventState.isIn(SpectrumBlockTags.CRYSTAL_APOTHECARY_HARVESTABLE)) {
 				// harvest
 				BlockEntity blockEntity = eventState.hasBlockEntity() ? this.world.getBlockEntity(eventPos) : null;
-				LootContext.Builder builder = (new LootContext.Builder((ServerWorld)this.world))
+				LootContext.Builder builder = (new LootContext.Builder((ServerWorld) this.world))
 						.random(this.world.random)
 						.parameter(LootContextParameters.ORIGIN, Vec3d.ofCenter(eventPos))
 						.parameter(LootContextParameters.TOOL, HARVEST_ITEMSTACK)
@@ -264,21 +265,21 @@ public class CrystalApothecaryBlockEntity extends LootableContainerBlockEntity i
 				
 				List<ItemStack> drops = eventState.getDroppedStacks(builder);
 				boolean anyDropsUsed = drops.size() == 0;
-				for(ItemStack drop : drops) {
-					if(hasOwner()) {
+				for (ItemStack drop : drops) {
+					if (hasOwner()) {
 						PlayerEntity owner = getPlayerEntityIfOnline(world);
-						if(owner instanceof ServerPlayerEntity serverPlayerEntity) {
+						if (owner instanceof ServerPlayerEntity serverPlayerEntity) {
 							SpectrumAdvancementCriteria.CRYSTAL_APOTHECARY_COLLECTING.trigger(serverPlayerEntity, drop);
 						}
 					}
 					ItemStack remainingStack = InventoryHelper.smartAddToInventory(drop, this, null);
-					if(remainingStack.isEmpty() || drop.getCount() != remainingStack.getCount()) {
+					if (remainingStack.isEmpty() || drop.getCount() != remainingStack.getCount()) {
 						anyDropsUsed = true;
 					}
 					// remaining items are voided to not cause lag
 				}
 				
-				if(anyDropsUsed) {
+				if (anyDropsUsed) {
 					world.syncWorldEvent(WorldEvents.BLOCK_BROKEN, eventPos, Block.getRawIdFromState(eventState)); // block break particles & sound
 					if (eventState.getBlock() instanceof Waterloggable && eventState.get(Properties.WATERLOGGED)) {
 						world.setBlockState(eventPos, Blocks.WATER.getDefaultState());
@@ -309,7 +310,7 @@ public class CrystalApothecaryBlockEntity extends LootableContainerBlockEntity i
 	}
 	
 	public void harvestExistingClusters() {
-		if(world instanceof ServerWorld) {
+		if (world instanceof ServerWorld) {
 			for (BlockPos currPos : BlockPos.iterateOutwards(this.pos, RANGE, RANGE, RANGE)) {
 				if (world.getBlockState(currPos).isIn(SpectrumBlockTags.CRYSTAL_APOTHECARY_HARVESTABLE)) {
 					this.blockPosEventTransferListener.acceptEvent(world, currPos, SpectrumGameEvents.CRYSTAL_APOTHECARY_HARVESTABLE_GROWN, null, this.pos);

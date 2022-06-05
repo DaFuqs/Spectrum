@@ -38,7 +38,7 @@ public abstract class PotionWorkshopRecipe implements Recipe<Inventory>, GatedRe
 	
 	@Nullable
 	protected final Identifier requiredAdvancementIdentifier;
-
+	
 	public PotionWorkshopRecipe(Identifier id, String group, int craftingTime, int color, Ingredient ingredient1, Ingredient ingredient2, Ingredient ingredient3, @Nullable Identifier requiredAdvancementIdentifier) {
 		this.id = id;
 		this.group = group;
@@ -54,35 +54,35 @@ public abstract class PotionWorkshopRecipe implements Recipe<Inventory>, GatedRe
 	public String getGroup() {
 		return group;
 	}
-
+	
 	public List<Ingredient> getOtherIngredients() {
 		ArrayList<Ingredient> ingredients = new ArrayList<>();
 		ingredients.add(ingredient1);
-		if(!ingredient2.isEmpty()) {
+		if (!ingredient2.isEmpty()) {
 			ingredients.add(ingredient2);
-			if(!ingredient3.isEmpty()) {
+			if (!ingredient3.isEmpty()) {
 				ingredients.add(ingredient3);
 			}
 		}
 		return ingredients;
 	}
-
+	
 	public boolean matches(@NotNull Inventory inv, World world) {
-		if(inv.size() > 4 && inv.getStack(0).isOf(SpectrumItems.MERMAIDS_GEM) && isValidBaseIngredient(inv.getStack(1))) {
+		if (inv.size() > 4 && inv.getStack(0).isOf(SpectrumItems.MERMAIDS_GEM) && isValidBaseIngredient(inv.getStack(1))) {
 			// check reagents
-			if(usesReagents()) {
+			if (usesReagents()) {
 				// check if all items in reagent slots are actually reagents
-				for(int i : new int[]{5,6,7,8}) {
+				for (int i : new int[]{5, 6, 7, 8}) {
 					ItemStack itemStack = inv.getStack(i);
-					if(!itemStack.isEmpty() && !PotionWorkshopReagents.isReagent(itemStack.getItem())) {
+					if (!itemStack.isEmpty() && !PotionWorkshopReagents.isReagent(itemStack.getItem())) {
 						return false;
 					}
 				}
 			} else {
 				// check if all reagent slots are empty
-				for(int i : new int[]{5,6,7,8}) {
+				for (int i : new int[]{5, 6, 7, 8}) {
 					ItemStack itemStack = inv.getStack(i);
-					if(!itemStack.isEmpty()) {
+					if (!itemStack.isEmpty()) {
 						return false;
 					}
 				}
@@ -91,18 +91,18 @@ public abstract class PotionWorkshopRecipe implements Recipe<Inventory>, GatedRe
 			// check ingredients
 			int inputStackCount = 0;
 			List<Ingredient> ingredients = this.getOtherIngredients();
-			for(int i : new int[]{2, 3, 4}) {
+			for (int i : new int[]{2, 3, 4}) {
 				ItemStack itemStack = inv.getStack(i);
 				if (!itemStack.isEmpty()) {
 					inputStackCount++;
 					boolean found = false;
-					for(Ingredient ingredient : ingredients) {
-						if(ingredient.test(inv.getStack(i))) {
+					for (Ingredient ingredient : ingredients) {
+						if (ingredient.test(inv.getStack(i))) {
 							found = true;
 							break;
 						}
 					}
-					if(!found) {
+					if (!found) {
 						return false;
 					}
 				}
@@ -115,21 +115,21 @@ public abstract class PotionWorkshopRecipe implements Recipe<Inventory>, GatedRe
 	}
 	
 	public abstract boolean isValidBaseIngredient(ItemStack itemStack);
-
+	
 	@Override
 	public boolean fits(int width, int height) {
 		return true;
 	}
-
+	
 	public boolean isIgnoredInRecipeBook() {
 		return true;
 	}
-
+	
 	@Override
 	public ItemStack createIcon() {
 		return SpectrumBlocks.POTION_WORKSHOP.asItem().getDefaultStack();
 	}
-
+	
 	public Identifier getId() {
 		return this.id;
 	}
@@ -137,18 +137,18 @@ public abstract class PotionWorkshopRecipe implements Recipe<Inventory>, GatedRe
 	public int getCraftingTime() {
 		return this.craftingTime;
 	}
-
+	
 	public RecipeSerializer<?> getSerializer() {
 		return SpectrumRecipeTypes.ANVIL_CRUSHING_RECIPE_SERIALIZER;
 	}
-
+	
 	public RecipeType<?> getType() {
 		return SpectrumRecipeTypes.ANVIL_CRUSHING;
 	}
-
+	
 	@Override
 	public boolean equals(Object object) {
-		if(object instanceof PotionWorkshopRecipe) {
+		if (object instanceof PotionWorkshopRecipe) {
 			return ((PotionWorkshopRecipe) object).getId().equals(this.getId());
 		}
 		return false;
@@ -156,6 +156,7 @@ public abstract class PotionWorkshopRecipe implements Recipe<Inventory>, GatedRe
 	
 	/**
 	 * The advancement the player has to have to let the recipe be craftable
+	 *
 	 * @return The advancement identifier. A null value means the player is always able to craft this recipe
 	 */
 	@Nullable

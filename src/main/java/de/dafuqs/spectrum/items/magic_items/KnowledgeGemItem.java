@@ -38,7 +38,7 @@ public class KnowledgeGemItem extends Item implements ExperienceStorageItem, Enc
 	
 	// these are copies from the item model file
 	// and specify the sprite used for its texture
-	protected int[] displayTiers = { 1, 10, 25, 50, 100, 250, 500, 1000, 2500, 5000 };
+	protected int[] displayTiers = {1, 10, 25, 50, 100, 250, 500, 1000, 2500, 5000};
 	
 	public KnowledgeGemItem(Settings settings, int maxStorageBase) {
 		super(settings);
@@ -83,7 +83,7 @@ public class KnowledgeGemItem extends Item implements ExperienceStorageItem, Enc
 	@Override
 	public void usageTick(World world, LivingEntity user, ItemStack stack, int remainingUseTicks) {
 		super.usageTick(world, user, stack, remainingUseTicks);
-		if(user instanceof ServerPlayerEntity serverPlayerEntity) {
+		if (user instanceof ServerPlayerEntity serverPlayerEntity) {
 			
 			int playerExperience = serverPlayerEntity.totalExperience;
 			int itemExperience = ExperienceStorageItem.getStoredExperience(stack);
@@ -94,19 +94,19 @@ public class KnowledgeGemItem extends Item implements ExperienceStorageItem, Enc
 				int experienceToTransfer = serverPlayerEntity.isCreative() ? Math.min(transferableExperience, maxStorage - itemExperience) : Math.min(Math.min(transferableExperience, playerExperience), maxStorage - itemExperience);
 				
 				// Store experience
-				if(experienceToTransfer > 0 && itemExperience < maxStorage && removePlayerExperience(serverPlayerEntity, experienceToTransfer)) {
+				if (experienceToTransfer > 0 && itemExperience < maxStorage && removePlayerExperience(serverPlayerEntity, experienceToTransfer)) {
 					ExperienceStorageItem.addStoredExperience(stack, experienceToTransfer);
 					
-					if(remainingUseTicks % 4 == 0) {
+					if (remainingUseTicks % 4 == 0) {
 						world.playSound(null, user.getBlockPos(), SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.PLAYERS, 1.0F, 0.8F + world.getRandom().nextFloat() * 0.4F);
 					}
 				}
 			} else {
 				// drain experience
-				if(itemExperience > 0 && playerExperience != Integer.MAX_VALUE) {
+				if (itemExperience > 0 && playerExperience != Integer.MAX_VALUE) {
 					int experienceToTransfer = Math.min(Math.min(transferableExperience, itemExperience), Integer.MAX_VALUE - playerExperience);
 					
-					if(experienceToTransfer > 0) {
+					if (experienceToTransfer > 0) {
 						if (!serverPlayerEntity.isCreative()) {
 							serverPlayerEntity.addExperience(experienceToTransfer);
 						}
@@ -127,12 +127,12 @@ public class KnowledgeGemItem extends Item implements ExperienceStorageItem, Enc
 		
 		int maxExperience = getMaxStoredExperience(itemStack);
 		int storedExperience = ExperienceStorageItem.getStoredExperience(itemStack);
-		if(storedExperience == 0) {
+		if (storedExperience == 0) {
 			tooltip.add(new LiteralText("0 ").formatted(Formatting.DARK_GRAY).append(new TranslatableText("item.spectrum.knowledge_gem.tooltip.stored_experience", maxExperience).formatted(Formatting.GRAY)));
 		} else {
 			tooltip.add(new LiteralText(storedExperience + " ").formatted(Formatting.GREEN).append(new TranslatableText("item.spectrum.knowledge_gem.tooltip.stored_experience", maxExperience).formatted(Formatting.GRAY)));
 		}
-		if(shouldDisplayUsageTooltip(itemStack)) {
+		if (shouldDisplayUsageTooltip(itemStack)) {
 			tooltip.add(new TranslatableText("item.spectrum.knowledge_gem.tooltip.use", getTransferableExperiencePerTick(itemStack)).formatted(Formatting.GRAY));
 			SpectrumBannerPatternItem.addBannerPatternProviderTooltip(tooltip);
 		}
@@ -149,20 +149,20 @@ public class KnowledgeGemItem extends Item implements ExperienceStorageItem, Enc
 	}
 	
 	public boolean removePlayerExperience(@NotNull PlayerEntity playerEntity, int experience) {
-		if(playerEntity.isCreative()) {
+		if (playerEntity.isCreative()) {
 			return true;
-		} else if(playerEntity.totalExperience < experience) {
+		} else if (playerEntity.totalExperience < experience) {
 			return false;
 		} else {
 			playerEntity.totalExperience -= experience;
 			
 			// recalculate levels & level progress
-			playerEntity.experienceProgress -= (float)experience / (float)playerEntity.getNextLevelExperience();
-			while(playerEntity.experienceProgress < 0.0F) {
-				float f = playerEntity.experienceProgress * (float)playerEntity.getNextLevelExperience();
+			playerEntity.experienceProgress -= (float) experience / (float) playerEntity.getNextLevelExperience();
+			while (playerEntity.experienceProgress < 0.0F) {
+				float f = playerEntity.experienceProgress * (float) playerEntity.getNextLevelExperience();
 				if (playerEntity.experienceLevel > 0) {
 					playerEntity.addExperienceLevels(-1);
-					playerEntity.experienceProgress = 1.0F + f / (float)playerEntity.getNextLevelExperience();
+					playerEntity.experienceProgress = 1.0F + f / (float) playerEntity.getNextLevelExperience();
 				} else {
 					playerEntity.addExperienceLevels(-1);
 					playerEntity.experienceProgress = 0.0F;
@@ -178,8 +178,8 @@ public class KnowledgeGemItem extends Item implements ExperienceStorageItem, Enc
 	}
 	
 	public int getDisplayTierForExperience(int experience) {
-		for(int i = 0; i < displayTiers.length; i++) {
-			if(experience < displayTiers[i]) {
+		for (int i = 0; i < displayTiers.length; i++) {
+			if (experience < displayTiers[i]) {
 				return i;
 			}
 		}

@@ -10,7 +10,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
 public class SuckingChestScreen extends HandledScreen<SuckingChestScreenHandler> {
-
+	
 	public static final Identifier BACKGROUND = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/container/black_hole_chest.png");
 	
 	public SuckingChestScreen(SuckingChestScreenHandler handler, PlayerInventory playerInventory, Text title) {
@@ -30,11 +30,11 @@ public class SuckingChestScreen extends HandledScreen<SuckingChestScreenHandler>
 		Text title = this.title;
 		int inventoryX = 8;
 		int intInventoryY = 102;
-
+		
 		this.textRenderer.draw(matrices, title, titleX, titleY, 3289650);
 		this.textRenderer.draw(matrices, this.playerInventoryTitle, inventoryX, intInventoryY, 3289650);
 	}
-
+	
 	@Override
 	protected void drawBackground(MatrixStack matrices, float delta, int mouseX, int mouseY) {
 		RenderSystem.setShader(GameRenderer::getPositionTexShader);
@@ -45,7 +45,7 @@ public class SuckingChestScreen extends HandledScreen<SuckingChestScreenHandler>
 		int y = (height - backgroundHeight) / 2;
 		drawTexture(matrices, x, y, 0, 0, backgroundWidth, backgroundHeight);
 	}
-
+	
 	@Override
 	public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
 		renderBackground(matrices);

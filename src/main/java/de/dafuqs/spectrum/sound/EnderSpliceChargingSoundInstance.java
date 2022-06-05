@@ -15,11 +15,11 @@ import java.util.Random;
 
 @Environment(EnvType.CLIENT)
 public class EnderSpliceChargingSoundInstance extends AbstractSoundInstance implements TickableSoundInstance {
-
+	
 	private final PlayerEntity player;
 	private float distance = 0.0F;
 	private boolean done;
-
+	
 	public EnderSpliceChargingSoundInstance(PlayerEntity player) {
 		super(SpectrumSoundEvents.ENDER_SPLICE_CHARGES, SoundCategory.NEUTRAL);
 		this.repeat = true;
@@ -30,36 +30,36 @@ public class EnderSpliceChargingSoundInstance extends AbstractSoundInstance impl
 		this.y = player.getY();
 		this.z = player.getZ();
 	}
-
+	
 	@Override
 	public boolean isDone() {
 		return this.done;
 	}
-
+	
 	@Override
 	public boolean shouldAlwaysPlay() {
 		return true;
 	}
-
+	
 	@Override
 	public void tick() {
 		if (player == null || player.getItemUseTimeLeft() <= 0 || player.getItemUseTime() > 47) {
 			this.setDone();
 		} else {
-			this.x = ((float)this.player.getX());
-			this.y = ((float)this.player.getY());
-			this.z = ((float)this.player.getZ());
+			this.x = ((float) this.player.getX());
+			this.y = ((float) this.player.getY());
+			this.z = ((float) this.player.getZ());
 			this.distance = MathHelper.clamp(this.distance + 0.0025F, 0.0F, 1.0F);
-
+			
 			showParticles();
 		}
 	}
-
+	
 	private void showParticles() {
 		Vec3d pos = player.getPos();
 		Random random = player.getEntityWorld().random;
-
-		for(int i = 0; i < 10; i++) {
+		
+		for (int i = 0; i < 10; i++) {
 			player.getEntityWorld().addParticle(
 					ParticleTypes.PORTAL,
 					pos.x,
@@ -70,7 +70,7 @@ public class EnderSpliceChargingSoundInstance extends AbstractSoundInstance impl
 					random.nextDouble() * 1.6D - 0.8D);
 		}
 	}
-
+	
 	protected final void setDone() {
 		this.done = true;
 		this.repeat = false;

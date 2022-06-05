@@ -17,25 +17,25 @@ import java.util.Map;
 
 @Environment(EnvType.CLIENT)
 public class ClientAdvancements {
-
+	
 	private static boolean receivedFirstAdvancementPacket = false;
-
+	
 	public static void onClientPacket(AdvancementUpdateS2CPacket packet) {
 		boolean showToast = receivedFirstAdvancementPacket;
 		receivedFirstAdvancementPacket = true;
-
+		
 		List<Identifier> doneAdvancements = getDoneAdvancements(packet);
-
+		
 		ClientBlockCloaker.process(doneAdvancements, showToast);
 		RecipeUnlockToastManager.processAdvancements(doneAdvancements, showToast);
 	}
-
+	
 	public static boolean hasDone(Identifier identifier) {
 		// If we never received the initial packet: assume false
-		if(!receivedFirstAdvancementPacket) {
+		if (!receivedFirstAdvancementPacket) {
 			return false;
 		}
-
+		
 		if (identifier != null) {
 			ClientPlayNetworkHandler conn = MinecraftClient.getInstance().getNetworkHandler();
 			if (conn != null) {
@@ -50,29 +50,29 @@ public class ClientAdvancements {
 		}
 		return false;
 	}
-
+	
 	public static List<Identifier> getDoneAdvancements(AdvancementUpdateS2CPacket packet) {
 		List<Identifier> doneAdvancements = new ArrayList<>();
-
-		for(Identifier earnedAdvancementIdentifier : packet.getAdvancementsToEarn().keySet()) {
-			if(ClientAdvancements.hasDone(earnedAdvancementIdentifier)) {
+		
+		for (Identifier earnedAdvancementIdentifier : packet.getAdvancementsToEarn().keySet()) {
+			if (ClientAdvancements.hasDone(earnedAdvancementIdentifier)) {
 				doneAdvancements.add(earnedAdvancementIdentifier);
 			}
 		}
-		for(Identifier progressedAdvancementIdentifier : packet.getAdvancementsToProgress().keySet()) {
-			if(ClientAdvancements.hasDone(progressedAdvancementIdentifier)) {
-				if(!doneAdvancements.contains(progressedAdvancementIdentifier)) {
+		for (Identifier progressedAdvancementIdentifier : packet.getAdvancementsToProgress().keySet()) {
+			if (ClientAdvancements.hasDone(progressedAdvancementIdentifier)) {
+				if (!doneAdvancements.contains(progressedAdvancementIdentifier)) {
 					doneAdvancements.add(progressedAdvancementIdentifier);
 				}
 			}
 		}
-
+		
 		return doneAdvancements;
 	}
-
+	
 	public static void playerLogout() {
 		ClientBlockCloaker.cloakAll();
 		receivedFirstAdvancementPacket = false;
 	}
-
+	
 }

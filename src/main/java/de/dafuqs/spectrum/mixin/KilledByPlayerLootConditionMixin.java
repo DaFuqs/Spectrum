@@ -15,9 +15,9 @@ public class KilledByPlayerLootConditionMixin {
 	
 	@Inject(method = "test(Lnet/minecraft/loot/context/LootContext;)Z", at = @At(value = "RETURN"), cancellable = true)
 	private void spectrum$testDropPlayerLoot(LootContext lootContext, CallbackInfoReturnable<Boolean> cir) {
-		if(!cir.getReturnValue()) {
+		if (!cir.getReturnValue()) {
 			DamageSource damageSource = lootContext.get(LootContextParameters.DAMAGE_SOURCE);
-			if(damageSource instanceof SpectrumDamageSources.SpectrumDamageSource spectrumDamageSource && spectrumDamageSource.dropsPlayerLoot()) {
+			if (damageSource instanceof SpectrumDamageSources.SpectrumDamageSource spectrumDamageSource && spectrumDamageSource.dropsPlayerLoot()) {
 				cir.setReturnValue(true);
 			}
 		}

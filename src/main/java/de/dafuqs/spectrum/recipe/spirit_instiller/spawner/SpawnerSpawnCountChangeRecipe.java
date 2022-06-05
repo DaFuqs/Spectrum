@@ -26,7 +26,7 @@ public class SpawnerSpawnCountChangeRecipe extends SpawnerChangeRecipe {
 	
 	@Override
 	public boolean canCraftWithBlockEntityTag(NbtCompound spawnerBlockEntityNbt, ItemStack leftBowlStack, ItemStack rightBowlStack) {
-		if(spawnerBlockEntityNbt.contains("SpawnCount")) {
+		if (spawnerBlockEntityNbt.contains("SpawnCount")) {
 			return spawnerBlockEntityNbt.getShort("SpawnCount") < 16;
 		}
 		return true;
@@ -57,7 +57,7 @@ public class SpawnerSpawnCountChangeRecipe extends SpawnerChangeRecipe {
 		 */
 		
 		short spawnCount = 4;
-		if(spawnerBlockEntityNbt.contains("SpawnCount", NbtElement.SHORT_TYPE)) {
+		if (spawnerBlockEntityNbt.contains("SpawnCount", NbtElement.SHORT_TYPE)) {
 			spawnCount = spawnerBlockEntityNbt.getShort("SpawnCount");
 		}
 		spawnerBlockEntityNbt.putShort("SpawnCount", (short) Math.min(16, spawnCount + 1));

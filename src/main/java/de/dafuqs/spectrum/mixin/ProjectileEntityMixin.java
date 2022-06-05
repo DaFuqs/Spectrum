@@ -30,14 +30,15 @@ import java.util.Optional;
 @Mixin(ProjectileEntity.class)
 public abstract class ProjectileEntityMixin {
 	
-	@Shadow public abstract void setVelocity(double x, double y, double z, float speed, float divergence);
+	@Shadow
+	public abstract void setVelocity(double x, double y, double z, float speed, float divergence);
 	
 	@Inject(at = @At("HEAD"), method = "onEntityHit(Lnet/minecraft/util/hit/EntityHitResult;)V", cancellable = true)
 	protected void onProjectileHit(EntityHitResult entityHitResult, CallbackInfo ci) {
 		// if the target has a Puff circlet equipped
 		// protect it from this projectile
 		ProjectileEntity thisEntity = (ProjectileEntity) (Object) this;
-		if(!thisEntity.getWorld().isClient) {
+		if (!thisEntity.getWorld().isClient) {
 			Entity entity = entityHitResult.getEntity();
 			if (entity instanceof LivingEntity livingEntity) {
 				Optional<TrinketComponent> component = TrinketsApi.getTrinketComponent(livingEntity);

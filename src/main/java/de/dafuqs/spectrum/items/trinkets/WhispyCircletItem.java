@@ -25,8 +25,8 @@ import java.util.List;
 
 public class WhispyCircletItem extends SpectrumTrinketItem {
 	
-    private final int TRIGGER_EVERY_X_TICKS = 100;
-    private final int NEGATIVE_EFFECT_SHORTENING_TICKS = 200;
+	private final int TRIGGER_EVERY_X_TICKS = 100;
+	private final int NEGATIVE_EFFECT_SHORTENING_TICKS = 200;
 	
 	public WhispyCircletItem(Settings settings) {
 		super(settings, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_whispy_circlet"));
@@ -44,7 +44,7 @@ public class WhispyCircletItem extends SpectrumTrinketItem {
 	public void tick(ItemStack stack, SlotReference slot, LivingEntity entity) {
 		super.tick(stack, slot, entity);
 		
-		if(!entity.world.isClient) {
+		if (!entity.world.isClient) {
 			long time = entity.getWorld().getTime();
 			if (time % TRIGGER_EVERY_X_TICKS == 0) {
 				shortenNegativeStatusEffects(entity, NEGATIVE_EFFECT_SHORTENING_TICKS);
@@ -57,8 +57,8 @@ public class WhispyCircletItem extends SpectrumTrinketItem {
 	
 	public static void removeNegativeStatusEffects(@NotNull LivingEntity entity) {
 		Collection<StatusEffectInstance> currentEffects = entity.getStatusEffects();
-		for(StatusEffectInstance instance : currentEffects) {
-			if(affects(instance.getEffectType())) {
+		for (StatusEffectInstance instance : currentEffects) {
+			if (affects(instance.getEffectType())) {
 				entity.removeStatusEffect(instance.getEffectType());
 			}
 		}
@@ -69,22 +69,22 @@ public class WhispyCircletItem extends SpectrumTrinketItem {
 		Collection<StatusEffect> effectTypesToClear = new ArrayList<>();
 		
 		// remove them first, so hidden "stacked" effects are preserved
-		for(StatusEffectInstance instance : entity.getStatusEffects()) {
-			if(affects(instance.getEffectType())) {
+		for (StatusEffectInstance instance : entity.getStatusEffects()) {
+			if (affects(instance.getEffectType())) {
 				int newDurationTicks = instance.getDuration() - duration;
-				if(newDurationTicks > 0) {
+				if (newDurationTicks > 0) {
 					newEffects.add(new StatusEffectInstance(instance.getEffectType(), newDurationTicks, instance.getAmplifier(), instance.isAmbient(), instance.shouldShowParticles(), true));
 				}
-				if(!effectTypesToClear.contains(instance.getEffectType())) {
+				if (!effectTypesToClear.contains(instance.getEffectType())) {
 					effectTypesToClear.add(instance.getEffectType());
 				}
 			}
 		}
 		
-		for(StatusEffect effectTypeToClear : effectTypesToClear) {
+		for (StatusEffect effectTypeToClear : effectTypesToClear) {
 			entity.removeStatusEffect(effectTypeToClear);
 		}
-		for(StatusEffectInstance newEffect : newEffects) {
+		for (StatusEffectInstance newEffect : newEffects) {
 			entity.addStatusEffect(newEffect);
 		}
 	}

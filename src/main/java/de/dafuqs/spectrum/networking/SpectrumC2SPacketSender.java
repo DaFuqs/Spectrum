@@ -11,7 +11,7 @@ import net.minecraft.recipe.Ingredient;
 import net.minecraft.util.Identifier;
 
 public class SpectrumC2SPacketSender {
-
+	
 	public static final Identifier RENAME_ITEM_IN_BEDROCK_ANVIL_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "rename_item_in_bedrock_anvil");
 	public static final Identifier ADD_LORE_IN_BEDROCK_ANVIL_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "add_lore_to_item_in_bedrock_anvil");
 	public static final Identifier CHANGE_PARTICLE_SPAWNER_SETTINGS_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "change_particle_spawner_settings");
@@ -32,5 +32,5 @@ public class SpectrumC2SPacketSender {
 		packetByteBuf.writeInt(playerEntity.getId());
 		ClientPlayNetworking.send(SpectrumC2SPacketSender.BIND_ENDER_SPLICE_TO_PLAYER, packetByteBuf);
 	}
-
+	
 }

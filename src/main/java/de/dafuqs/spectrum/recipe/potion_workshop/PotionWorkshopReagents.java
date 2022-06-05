@@ -21,7 +21,7 @@ public class PotionWorkshopReagents {
 	}
 	
 	public static PotionMod modify(Item item, PotionMod potionMod, Random random) {
-		if(reagentEffects.containsKey(item)) {
+		if (reagentEffects.containsKey(item)) {
 			return reagentEffects.get(item).modify(potionMod, random);
 		}
 		return potionMod;

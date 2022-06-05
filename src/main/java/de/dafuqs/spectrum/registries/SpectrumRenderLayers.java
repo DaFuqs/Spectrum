@@ -50,5 +50,5 @@ public class SpectrumRenderLayers {
 			return RenderLayerAccessor.invokeOf("spectrum_portal", VertexFormats.POSITION, VertexFormat.DrawMode.QUADS, 256, false, false, multiPhaseParameters);
 		}
 	}
-
+	
 }

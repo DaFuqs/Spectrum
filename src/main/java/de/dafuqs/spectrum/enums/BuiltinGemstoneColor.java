@@ -41,5 +41,5 @@ public enum BuiltinGemstoneColor implements GemstoneColor {
 			}
 		}
 	}
-
+	
 }

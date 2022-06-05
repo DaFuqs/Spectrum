@@ -54,13 +54,13 @@ public class TidalCircletItem extends SpectrumTrinketItem {
 	public void tick(ItemStack stack, SlotReference slot, LivingEntity entity) {
 		super.tick(stack, slot, entity);
 		
-		if(!entity.getWorld().isClient) {
+		if (!entity.getWorld().isClient) {
 			long time = entity.getWorld().getTime();
 			if (entity.isSubmergedInWater()) {
-				if(time % TRIGGER_EVERY_X_TICKS == 0) {
+				if (time % TRIGGER_EVERY_X_TICKS == 0) {
 					giveEffects(entity);
 				}
-				if(time % HEAL_AXOLOTLS_EVERY_X_TICKS == 0 && entity instanceof ServerPlayerEntity serverPlayerEntity) {
+				if (time % HEAL_AXOLOTLS_EVERY_X_TICKS == 0 && entity instanceof ServerPlayerEntity serverPlayerEntity) {
 					healLovingAxolotls(serverPlayerEntity);
 				}
 			}
@@ -70,11 +70,11 @@ public class TidalCircletItem extends SpectrumTrinketItem {
 	private void giveEffects(@NotNull LivingEntity entity) {
 		entity.setAir(entity.getMaxAir());
 		Map<StatusEffect, StatusEffectInstance> effects = entity.getActiveStatusEffects();
-		if(!effects.containsKey(StatusEffects.DOLPHINS_GRACE) || effects.get(StatusEffects.DOLPHINS_GRACE).getDuration() < TRIGGER_EVERY_X_TICKS) {
+		if (!effects.containsKey(StatusEffects.DOLPHINS_GRACE) || effects.get(StatusEffects.DOLPHINS_GRACE).getDuration() < TRIGGER_EVERY_X_TICKS) {
 			entity.removeStatusEffect(StatusEffects.DOLPHINS_GRACE);
 			entity.addStatusEffect(new StatusEffectInstance(StatusEffects.DOLPHINS_GRACE, EFFECT_DURATION, 1, true, true));
 		}
-		if(!effects.containsKey(StatusEffects.CONDUIT_POWER) || effects.get(StatusEffects.CONDUIT_POWER).getDuration() < TRIGGER_EVERY_X_TICKS) {
+		if (!effects.containsKey(StatusEffects.CONDUIT_POWER) || effects.get(StatusEffects.CONDUIT_POWER).getDuration() < TRIGGER_EVERY_X_TICKS) {
 			entity.removeStatusEffect(StatusEffects.CONDUIT_POWER);
 			entity.addStatusEffect(new StatusEffectInstance(StatusEffects.CONDUIT_POWER, EFFECT_DURATION, 0, true, true));
 		}
@@ -82,8 +82,8 @@ public class TidalCircletItem extends SpectrumTrinketItem {
 	
 	private void healLovingAxolotls(@NotNull ServerPlayerEntity entity) {
 		List<AxolotlEntity> nearbyAxolotls = entity.getWorld().getEntitiesByType(EntityType.AXOLOTL, Box.of(entity.getPos(), MAX_AXOLOTL_DISTANCE, MAX_AXOLOTL_DISTANCE, MAX_AXOLOTL_DISTANCE), LivingEntity::isAlive);
-		for(AxolotlEntity axolotlEntity : nearbyAxolotls) {
-			if(axolotlEntity.getHealth() < axolotlEntity.getMaxHealth() && axolotlEntity.getLovingPlayer() != null && axolotlEntity.getLovingPlayer().equals(entity)) {
+		for (AxolotlEntity axolotlEntity : nearbyAxolotls) {
+			if (axolotlEntity.getHealth() < axolotlEntity.getMaxHealth() && axolotlEntity.getLovingPlayer() != null && axolotlEntity.getLovingPlayer().equals(entity)) {
 				axolotlEntity.heal(AXOLOTL_HEALING);
 				entity.playSound(SpectrumSoundEvents.BLOCK_CITRINE_BLOCK_CHIME, SoundCategory.NEUTRAL, 1.0F, 0.9F + entity.getWorld().random.nextFloat() * 0.2F);
 				SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) axolotlEntity.getWorld(), axolotlEntity.getPos(), ParticleTypes.WAX_OFF, 10, new Vec3d(0.5, 0.5, 0.5), new Vec3d(0, 0, 0));

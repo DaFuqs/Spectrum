@@ -48,7 +48,7 @@ public class FreezingMobBlock extends MobBlock {
 	
 	@Override
 	public boolean trigger(ServerWorld world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
-		for(Direction direction : Direction.values()) {
+		for (Direction direction : Direction.values()) {
 			freeze(world, blockPos.offset(direction));
 		}
 		return true;
@@ -56,18 +56,18 @@ public class FreezingMobBlock extends MobBlock {
 	
 	public static boolean freeze(@NotNull ServerWorld world, BlockPos blockPos) {
 		BlockState sourceState = world.getBlockState(blockPos);
-		if(FREEZING_MAP.containsKey(sourceState.getBlock())) {
+		if (FREEZING_MAP.containsKey(sourceState.getBlock())) {
 			Pair<BlockState, Float> recipe = FREEZING_MAP.get(sourceState.getBlock());
-			if(recipe.getRight() >= 1.0F || world.random.nextFloat() < recipe.getRight()) {
+			if (recipe.getRight() >= 1.0F || world.random.nextFloat() < recipe.getRight()) {
 				// freeze
 				world.setBlockState(blockPos, recipe.getLeft());
 				world.syncWorldEvent(WorldEvents.BLOCK_BROKEN, blockPos, Block.getRawIdFromState(recipe.getLeft())); // processed in WorldRenderer processGlobalEvent()
 				return true;
 			}
 		}
-		if(FREEZING_STATE_MAP.containsKey(sourceState)) {
+		if (FREEZING_STATE_MAP.containsKey(sourceState)) {
 			Pair<BlockState, Float> recipe = FREEZING_STATE_MAP.get(sourceState);
-			if(recipe.getRight() >= 1.0F || world.random.nextFloat() < recipe.getRight()) {
+			if (recipe.getRight() >= 1.0F || world.random.nextFloat() < recipe.getRight()) {
 				// freeze
 				world.setBlockState(blockPos, recipe.getLeft());
 				world.syncWorldEvent(WorldEvents.BLOCK_BROKEN, blockPos, Block.getRawIdFromState(recipe.getLeft())); // processed in WorldRenderer processGlobalEvent()
@@ -81,7 +81,7 @@ public class FreezingMobBlock extends MobBlock {
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
 		super.appendTooltip(stack, world, tooltip, options);
-		tooltip.add(new TranslatableText( "block.spectrum.freezing_mob_block.tooltip"));
+		tooltip.add(new TranslatableText("block.spectrum.freezing_mob_block.tooltip"));
 	}
 	
 }

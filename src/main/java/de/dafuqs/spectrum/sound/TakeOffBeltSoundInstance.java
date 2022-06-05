@@ -18,11 +18,11 @@ import java.util.Random;
 
 @Environment(EnvType.CLIENT)
 public class TakeOffBeltSoundInstance extends AbstractSoundInstance implements TickableSoundInstance {
-
+	
 	private float distance = 0.0F;
 	private boolean done;
 	private final long lastParticleTick;
-
+	
 	public TakeOffBeltSoundInstance() {
 		super(SpectrumSoundEvents.AIR_LAUNCH_BELT_CHARGING, SoundCategory.PLAYERS);
 		PlayerEntity player = MinecraftClient.getInstance().player;
@@ -46,31 +46,31 @@ public class TakeOffBeltSoundInstance extends AbstractSoundInstance implements T
 	public boolean isDone() {
 		return this.done;
 	}
-
+	
 	@Override
 	public boolean shouldAlwaysPlay() {
 		return true;
 	}
-
+	
 	@Override
 	public void tick() {
 		PlayerEntity player = MinecraftClient.getInstance().player;
 		if (player == null || !player.isSneaking() || !player.isOnGround()) {
 			this.setDone();
 		} else {
-			this.x = ((float)player.getX());
-			this.y = ((float)player.getY());
-			this.z = ((float)player.getZ());
+			this.x = ((float) player.getX());
+			this.y = ((float) player.getY());
+			this.z = ((float) player.getZ());
 			this.distance = MathHelper.clamp(this.distance + 0.0025F, 0.0F, 1.0F);
-
-			if(player.getWorld() != null && player.getWorld().getTime() < lastParticleTick) {
+			
+			if (player.getWorld() != null && player.getWorld().getTime() < lastParticleTick) {
 				spawnParticles(player);
 			} else {
 				this.volume = 0.0F;
 			}
 		}
 	}
-
+	
 	private void spawnParticles(PlayerEntity player) {
 		Random random = player.getEntityWorld().random;
 		
@@ -83,7 +83,7 @@ public class TakeOffBeltSoundInstance extends AbstractSoundInstance implements T
 				random.nextDouble() * 0.5,
 				0);
 	}
-
+	
 	protected final void setDone() {
 		this.done = true;
 		this.repeat = false;

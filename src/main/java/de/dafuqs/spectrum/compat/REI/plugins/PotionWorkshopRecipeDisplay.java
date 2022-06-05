@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public abstract class PotionWorkshopRecipeDisplay extends BasicDisplay implements SimpleGridMenuDisplay, GatedRecipeDisplay {
-
+	
 	private final PotionWorkshopRecipe potionWorkshopRecipe;
 	protected final List<EntryIngredient> craftingInputs;
 	protected final EntryIngredient output;
@@ -26,6 +26,7 @@ public abstract class PotionWorkshopRecipeDisplay extends BasicDisplay implement
 	
 	/**
 	 * When using the REI recipe functionality
+	 *
 	 * @param recipe The recipe
 	 */
 	public PotionWorkshopRecipeDisplay(PotionWorkshopRecipe recipe) {
@@ -63,16 +64,16 @@ public abstract class PotionWorkshopRecipeDisplay extends BasicDisplay implement
 	
 	@Override
 	public List<EntryIngredient> getInputEntries() {
-		if(this.isUnlocked()) {
+		if (this.isUnlocked()) {
 			return craftingInputs;
 		} else {
 			return new ArrayList<>();
 		}
 	}
-
+	
 	@Override
 	public List<EntryIngredient> getOutputEntries() {
-		if(this.isUnlocked() || SpectrumCommon.CONFIG.REIListsRecipesAsNotUnlocked) {
+		if (this.isUnlocked() || SpectrumCommon.CONFIG.REIListsRecipesAsNotUnlocked) {
 			return outputs;
 		} else {
 			return new ArrayList<>();
@@ -80,7 +81,7 @@ public abstract class PotionWorkshopRecipeDisplay extends BasicDisplay implement
 	}
 	
 	public boolean isUnlocked() {
-		if(this.potionWorkshopRecipe == null) {
+		if (this.potionWorkshopRecipe == null) {
 			return true;
 		} else {
 			return FabricLoader.getInstance().getEnvironmentType() == EnvType.SERVER || isUnlockedClient();

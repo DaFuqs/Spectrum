@@ -18,7 +18,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(EnderEyeItem.class)
 public class EnderEyeItemMixin {
-
+	
 	@Inject(method = "useOnBlock(Lnet/minecraft/item/ItemUsageContext;)Lnet/minecraft/util/ActionResult;", at = @At("HEAD"), cancellable = true)
 	public void useOnBlock(ItemUsageContext context, CallbackInfoReturnable<ActionResult> callbackInfoReturnable) {
 		World world = context.getWorld();
@@ -38,20 +38,20 @@ public class EnderEyeItemMixin {
 			world.updateComparators(blockPos, Blocks.END_PORTAL_FRAME);
 			eyeAdded = true;
 		}
-
-		if(eyeAdded) {
+		
+		if (eyeAdded) {
 			if (world.isClient) {
 				callbackInfoReturnable.setReturnValue(ActionResult.SUCCESS);
 			} else {
 				context.getStack().decrement(1);
 				world.syncWorldEvent(1503, blockPos, 0);
-
+				
 				// Search for a valid end portal position. Found => create portal!
 				CrackedEndPortalFrameBlock.checkAndFillEndPortal(world, blockPos);
-
+				
 				callbackInfoReturnable.setReturnValue(ActionResult.CONSUME);
 			}
 		}
 	}
-
+	
 }

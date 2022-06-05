@@ -36,9 +36,11 @@ import java.util.Map;
 @Mixin(ItemStack.class)
 public abstract class ItemStackMixin {
 	
-	@Shadow public abstract boolean isIn(TagKey<Item> tag);
+	@Shadow
+	public abstract boolean isIn(TagKey<Item> tag);
 	
-	@Shadow public abstract boolean isOf(Item item);
+	@Shadow
+	public abstract boolean isOf(Item item);
 	
 	// Injecting into onStackClicked instead of onClicked because onStackClicked is called first
 	@Inject(at = @At("HEAD"), method = "onStackClicked", cancellable = true)
@@ -49,22 +51,22 @@ public abstract class ItemStackMixin {
 			}
 		}
 	}
-
+	
 	@Inject(at = @At("HEAD"), method = "postMine(Lnet/minecraft/world/World;Lnet/minecraft/block/BlockState;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/entity/player/PlayerEntity;)V")
 	public void spectrum$postMine(World world, BlockState state, BlockPos pos, PlayerEntity miner, CallbackInfo ci) {
-		if(miner instanceof ServerPlayerEntity serverPlayerEntity) {
+		if (miner instanceof ServerPlayerEntity serverPlayerEntity) {
 			SpectrumAdvancementCriteria.BLOCK_BROKEN.trigger(serverPlayerEntity, state);
 		}
 	}
-
-	@Inject(at = @At("RETURN"), method= "getAttributeModifiers(Lnet/minecraft/entity/EquipmentSlot;)Lcom/google/common/collect/Multimap;", cancellable = true)
+	
+	@Inject(at = @At("RETURN"), method = "getAttributeModifiers(Lnet/minecraft/entity/EquipmentSlot;)Lcom/google/common/collect/Multimap;", cancellable = true)
 	public void spectrum$applyTightGripEnchantment(EquipmentSlot slot, CallbackInfoReturnable<Multimap<EntityAttribute, EntityAttributeModifier>> cir) {
-		int tightGripLevel = EnchantmentHelper.getLevel(SpectrumEnchantments.TIGHT_GRIP, (ItemStack)(Object) this);
-		if(tightGripLevel > 0) {
+		int tightGripLevel = EnchantmentHelper.getLevel(SpectrumEnchantments.TIGHT_GRIP, (ItemStack) (Object) this);
+		if (tightGripLevel > 0) {
 			ImmutableMultimap.Builder<EntityAttribute, EntityAttributeModifier> builder = ImmutableMultimap.builder();
-			for(Map.Entry<EntityAttribute, EntityAttributeModifier> s : cir.getReturnValue().entries()) {
-				if(s.getKey().equals(EntityAttributes.GENERIC_ATTACK_SPEED)) {
-					double newSpeed =  s.getValue().getValue() * Math.max(0.25, 1.0-tightGripLevel * 0.25);
+			for (Map.Entry<EntityAttribute, EntityAttributeModifier> s : cir.getReturnValue().entries()) {
+				if (s.getKey().equals(EntityAttributes.GENERIC_ATTACK_SPEED)) {
+					double newSpeed = s.getValue().getValue() * Math.max(0.25, 1.0 - tightGripLevel * 0.25);
 					builder.put(s.getKey(), new EntityAttributeModifier(ItemAccessor.getAttackSpeedModifierId(), "Weapon modifier", newSpeed, EntityAttributeModifier.Operation.ADDITION));
 				} else {
 					builder.put(s.getKey(), s.getValue());
@@ -74,9 +76,9 @@ public abstract class ItemStackMixin {
 		}
 	}
 	
-	@Inject(at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;getNbt()Lnet/minecraft/nbt/NbtCompound;"), method= "isDamageable()Z", cancellable = true)
+	@Inject(at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;getNbt()Lnet/minecraft/nbt/NbtCompound;"), method = "isDamageable()Z", cancellable = true)
 	public void spectrum$checkIndestructibleEnchantment(CallbackInfoReturnable<Boolean> cir) {
-		if(SpectrumCommon.CONFIG.IndestructibleEnchantmentEnabled && EnchantmentHelper.getLevel(SpectrumEnchantments.INDESTRUCTIBLE, (ItemStack)(Object) this) > 0) {
+		if (SpectrumCommon.CONFIG.IndestructibleEnchantmentEnabled && EnchantmentHelper.getLevel(SpectrumEnchantments.INDESTRUCTIBLE, (ItemStack) (Object) this) > 0) {
 			cir.setReturnValue(false);
 		}
 	}
@@ -92,5 +94,5 @@ public abstract class ItemStackMixin {
 		}
 	}
 	
-
+	
 }

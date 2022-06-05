@@ -26,7 +26,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Map;
 
 public class EnchantmentUpgradeRecipe implements Recipe<Inventory>, GatedRecipe {
-
+	
 	protected final Identifier id;
 	
 	protected final Enchantment enchantment;
@@ -34,7 +34,8 @@ public class EnchantmentUpgradeRecipe implements Recipe<Inventory>, GatedRecipe 
 	protected final int requiredExperience;
 	protected final Item requiredItem;
 	protected final int requiredItemCount;
-	@Nullable protected final Identifier requiredAdvancementIdentifier;
+	@Nullable
+	protected final Identifier requiredAdvancementIdentifier;
 	
 	protected final DefaultedList<Ingredient> inputs;
 	protected final ItemStack output;
@@ -52,7 +53,7 @@ public class EnchantmentUpgradeRecipe implements Recipe<Inventory>, GatedRecipe 
 		DefaultedList<Ingredient> inputs = DefaultedList.ofSize(2, Ingredient.EMPTY);
 		
 		ItemStack ingredientStack = new ItemStack(Items.ENCHANTED_BOOK);
-		ingredientStack.addEnchantment(enchantment, enchantmentDestinationLevel -1);
+		ingredientStack.addEnchantment(enchantment, enchantmentDestinationLevel - 1);
 		inputs.set(0, Ingredient.ofStacks(ingredientStack));
 		inputs.set(1, Ingredient.ofStacks(new ItemStack(requiredItem)));
 		this.inputs = inputs;
@@ -61,10 +62,10 @@ public class EnchantmentUpgradeRecipe implements Recipe<Inventory>, GatedRecipe 
 		outputStack.addEnchantment(enchantment, enchantmentDestinationLevel);
 		this.output = outputStack;
 	}
-
+	
 	@Override
 	public boolean equals(Object object) {
-		if(object instanceof EnchantmentUpgradeRecipe) {
+		if (object instanceof EnchantmentUpgradeRecipe) {
 			return ((EnchantmentUpgradeRecipe) object).getId().equals(this.getId());
 		}
 		return false;
@@ -72,15 +73,15 @@ public class EnchantmentUpgradeRecipe implements Recipe<Inventory>, GatedRecipe 
 	
 	@Override
 	public boolean matches(Inventory inv, World world) {
-		if(inv.size() > 9) {
-			if(!inputs.get(0).test(inv.getStack(0))) {
+		if (inv.size() > 9) {
+			if (!inputs.get(0).test(inv.getStack(0))) {
 				return false;
 			}
 			Map<Enchantment, Integer> enchantments = EnchantmentHelper.get(inv.getStack(0));
-			if(!enchantments.containsKey(enchantment) || enchantments.get(enchantment) != enchantmentDestinationLevel - 1) {
+			if (!enchantments.containsKey(enchantment) || enchantments.get(enchantment) != enchantmentDestinationLevel - 1) {
 				return false;
 			}
-			if(this.getRequiredExperience() > 0
+			if (this.getRequiredExperience() > 0
 					&& (!(inv.getStack(1).getItem() instanceof ExperienceStorageItem)
 					|| !(ExperienceStorageItem.getStoredExperience(inv.getStack(1)) >= this.getRequiredExperience()))) {
 				return false;
@@ -91,7 +92,7 @@ public class EnchantmentUpgradeRecipe implements Recipe<Inventory>, GatedRecipe 
 			for (int i = 1; i < 9; i++) {
 				ItemStack currentStack = inv.getStack(i + 1);
 				
-				if(!currentStack.isEmpty()) {
+				if (!currentStack.isEmpty()) {
 					if (inputIngredient.test(inv.getStack(i + 1))) {
 						ingredientFound = true;
 					} else {
@@ -104,26 +105,26 @@ public class EnchantmentUpgradeRecipe implements Recipe<Inventory>, GatedRecipe 
 		}
 		return false;
 	}
-
+	
 	@Override
 	public ItemStack craft(Inventory inv) {
 		return null;
 	}
-
+	
 	@Override
 	public boolean fits(int width, int height) {
 		return true;
 	}
-
+	
 	@Override
 	public ItemStack getOutput() {
 		return output;
 	}
-
+	
 	public boolean isIgnoredInRecipeBook() {
 		return true;
 	}
-
+	
 	@Override
 	public ItemStack createIcon() {
 		return new ItemStack(SpectrumBlocks.ENCHANTER);
@@ -143,18 +144,19 @@ public class EnchantmentUpgradeRecipe implements Recipe<Inventory>, GatedRecipe 
 	public RecipeType<?> getType() {
 		return SpectrumRecipeTypes.ENCHANTMENT_UPGRADE;
 	}
-
+	
 	@Override
 	public DefaultedList<Ingredient> getIngredients() {
 		return inputs;
 	}
-
+	
 	public int getRequiredExperience() {
 		return requiredExperience;
 	}
-
+	
 	/**
 	 * The advancement the player has to have to let the recipe be craftable in the pedestal
+	 *
 	 * @return The advancement identifier. A null value means the player is always able to craft this recipe
 	 */
 	@Nullable

@@ -23,7 +23,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Random;
 
-public class JadeVineRootsBlock extends BlockWithEntity implements JadeVine{
+public class JadeVineRootsBlock extends BlockWithEntity implements JadeVine {
 	
 	public static final BooleanProperty DEAD = JadeVine.DEAD;
 	
@@ -35,7 +35,7 @@ public class JadeVineRootsBlock extends BlockWithEntity implements JadeVine{
 	@Override
 	public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
 		super.randomDisplayTick(state, world, pos, random);
-		if(!state.get(DEAD)) {
+		if (!state.get(DEAD)) {
 			JadeVine.spawnParticlesClient(world, pos);
 		}
 	}
@@ -58,7 +58,7 @@ public class JadeVineRootsBlock extends BlockWithEntity implements JadeVine{
 	@Override
 	public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
 		super.onBlockAdded(state, world, pos, oldState, notify);
-		if(oldState.getBlock() instanceof FenceBlock) {
+		if (oldState.getBlock() instanceof FenceBlock) {
 			BlockEntity blockEntity = world.getBlockEntity(pos);
 			if (blockEntity instanceof JadeVineRootsBlockEntity jadeVineRootsBlockEntity) {
 				jadeVineRootsBlockEntity.setFenceBlockState(oldState.getBlock().getDefaultState());
@@ -68,7 +68,7 @@ public class JadeVineRootsBlock extends BlockWithEntity implements JadeVine{
 	
 	@Override
 	public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
-		if(!newState.isOf(this)) {
+		if (!newState.isOf(this)) {
 			BlockEntity blockEntity = world.getBlockEntity(pos);
 			if (blockEntity instanceof JadeVineRootsBlockEntity jadeVineRootsBlockEntity) {
 				world.setBlockState(pos, jadeVineRootsBlockEntity.getFenceBlockState());
@@ -106,17 +106,17 @@ public class JadeVineRootsBlock extends BlockWithEntity implements JadeVine{
 	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
 		super.randomTick(state, world, pos, random);
 		
-		if(hasRandomTicks(state)) {
+		if (hasRandomTicks(state)) {
 			// die in sunlight, or then the bulb / plant was destroyed
 			int age = getAge(world, pos, state);
-			if(JadeVine.doesDie(world, pos) || age < 0) {
+			if (JadeVine.doesDie(world, pos) || age < 0) {
 				setDead(world, pos);
 				world.playSound(null, pos, SoundEvents.ITEM_CROP_PLANT, SoundCategory.BLOCKS, 0.5F, 0.9F + 0.2F * world.random.nextFloat() * 0.2F);
-			} else if(canGrow(world, pos)) {
-				if(world.random.nextBoolean() && tryGrowUpwards(state, world, pos)) {
+			} else if (canGrow(world, pos)) {
+				if (world.random.nextBoolean() && tryGrowUpwards(state, world, pos)) {
 					rememberGrownTime(world, pos);
 					world.playSound(null, pos, SoundEvents.ITEM_CROP_PLANT, SoundCategory.BLOCKS, 0.5F, 0.9F + 0.2F * world.random.nextFloat() * 0.2F);
-				} else if(tryGrowDownwards(state, world, pos)) {
+				} else if (tryGrowDownwards(state, world, pos)) {
 					rememberGrownTime(world, pos);
 					world.playSound(null, pos, SoundEvents.ITEM_CROP_PLANT, SoundCategory.BLOCKS, 0.5F, 0.9F + 0.2F * world.random.nextFloat() * 0.2F);
 				} else {
@@ -156,8 +156,8 @@ public class JadeVineRootsBlock extends BlockWithEntity implements JadeVine{
 		while (true) {
 			BlockPos upPos = blockPos.up(i);
 			BlockState upState = world.getBlockState(upPos);
-			if(upState.getBlock() instanceof JadeVineRootsBlock jadeVineRootsBlock) {
-				if(jadeVineRootsBlock.setToAge(world, upPos, age)) {
+			if (upState.getBlock() instanceof JadeVineRootsBlock jadeVineRootsBlock) {
+				if (jadeVineRootsBlock.setToAge(world, upPos, age)) {
 					anyGrown = true;
 					JadeVine.spawnParticlesServer(world, upPos, 8);
 				}
@@ -172,8 +172,8 @@ public class JadeVineRootsBlock extends BlockWithEntity implements JadeVine{
 		while (true) {
 			BlockPos downPos = blockPos.down(i);
 			BlockState downState = world.getBlockState(downPos);
-			if(downState.getBlock() instanceof JadeVineRootsBlock jadeVineRootsBlock) {
-				if(jadeVineRootsBlock.setToAge(world, downPos, age)) {
+			if (downState.getBlock() instanceof JadeVineRootsBlock jadeVineRootsBlock) {
+				if (jadeVineRootsBlock.setToAge(world, downPos, age)) {
 					anyGrown = true;
 					JadeVine.spawnParticlesServer(world, downPos, 8);
 				}
@@ -187,19 +187,19 @@ public class JadeVineRootsBlock extends BlockWithEntity implements JadeVine{
 		BlockPos plantPos = blockPos.down(i);
 		BlockState plantState = world.getBlockState(plantPos);
 		Block plantBlock = plantState.getBlock();
-		if(plantBlock instanceof JadeVinePlantBlock jadeVinePlantBlock) {
-			if(jadeVinePlantBlock.setToAge(world, plantPos, age) && jadeVinePlantBlock.setToAge(world, plantPos.down(), age) && jadeVinePlantBlock.setToAge(world, plantPos.down(2), age)) {
+		if (plantBlock instanceof JadeVinePlantBlock jadeVinePlantBlock) {
+			if (jadeVinePlantBlock.setToAge(world, plantPos, age) && jadeVinePlantBlock.setToAge(world, plantPos.down(), age) && jadeVinePlantBlock.setToAge(world, plantPos.down(2), age)) {
 				anyGrown = true;
 				JadeVine.spawnParticlesServer(world, plantPos, 16);
 				JadeVine.spawnParticlesServer(world, plantPos.down(), 16);
 				JadeVine.spawnParticlesServer(world, plantPos.down(2), 16);
 			}
 		} else if (plantBlock instanceof JadeVineBulbBlock jadeVineBulbBlock) {
-			if(jadeVineBulbBlock.setToAge(world, plantPos, age)) {
+			if (jadeVineBulbBlock.setToAge(world, plantPos, age)) {
 				anyGrown = true;
 				JadeVine.spawnParticlesServer(world, plantPos, 16);
 			}
-		} else if(plantState.isAir() && age > 0) {
+		} else if (plantState.isAir() && age > 0) {
 			// plant was destroyed? => grow a new bulb
 			world.setBlockState(plantPos, SpectrumBlocks.JADE_VINE_BULB.getDefaultState());
 			anyGrown = true;
@@ -212,7 +212,7 @@ public class JadeVineRootsBlock extends BlockWithEntity implements JadeVine{
 	// -1 means the plant is not valid anymore and should die off
 	// (like the bulb being removed and only roots left)
 	int getAge(World world, BlockPos blockPos, BlockState blockState) {
-		if(blockState.get(DEAD)) {
+		if (blockState.get(DEAD)) {
 			return 0;
 		} else {
 			BlockPos lowestRootsPos = getLowestRootsPos(world, blockPos);
@@ -220,7 +220,7 @@ public class JadeVineRootsBlock extends BlockWithEntity implements JadeVine{
 			Block plantBlock = plantState.getBlock();
 			if (plantBlock instanceof JadeVinePlantBlock) {
 				return plantState.get(JadeVinePlantBlock.AGE);
-			} else if(plantBlock instanceof JadeVineBulbBlock) {
+			} else if (plantBlock instanceof JadeVineBulbBlock) {
 				return 1;
 			} else {
 				return -1;
@@ -238,16 +238,16 @@ public class JadeVineRootsBlock extends BlockWithEntity implements JadeVine{
 	
 	boolean tryGrowUpwards(@NotNull BlockState blockState, @NotNull World world, @NotNull BlockPos blockPos) {
 		blockPos = blockPos.up();
-		while(world.getBlockState(blockPos).getBlock() instanceof JadeVineRootsBlock) {
+		while (world.getBlockState(blockPos).getBlock() instanceof JadeVineRootsBlock) {
 			// search up until no jade vines roots are hit anymore
 			blockPos = blockPos.up();
 		}
 		
 		BlockState targetState = world.getBlockState(blockPos);
-		if(canBePlantedOn(targetState)) {
+		if (canBePlantedOn(targetState)) {
 			world.setBlockState(blockPos, blockState);
 			BlockEntity blockEntity = world.getBlockEntity(blockPos);
-			if(blockEntity instanceof JadeVineRootsBlockEntity jadeVineRootsBlockEntity) {
+			if (blockEntity instanceof JadeVineRootsBlockEntity jadeVineRootsBlockEntity) {
 				jadeVineRootsBlockEntity.setFenceBlockState(targetState.getBlock().getDefaultState());
 			}
 			return true;
@@ -257,24 +257,24 @@ public class JadeVineRootsBlock extends BlockWithEntity implements JadeVine{
 	
 	boolean tryGrowDownwards(@NotNull BlockState blockState, @NotNull World world, @NotNull BlockPos blockPos) {
 		blockPos = blockPos.down();
-		while(world.getBlockState(blockPos).getBlock() instanceof JadeVineRootsBlock) {
+		while (world.getBlockState(blockPos).getBlock() instanceof JadeVineRootsBlock) {
 			// search down until no jade vines roots are hit anymore
 			blockPos = blockPos.down();
 		}
 		
 		BlockState targetState = world.getBlockState(blockPos);
-		if(targetState.getBlock() instanceof JadeVineBulbBlock) {
+		if (targetState.getBlock() instanceof JadeVineBulbBlock) {
 			// is there room to grow the whole plant?
-			if(world.getBlockState(blockPos.down()).isAir() && world.getBlockState(blockPos.down(2)).isAir()) {
+			if (world.getBlockState(blockPos.down()).isAir() && world.getBlockState(blockPos.down(2)).isAir()) {
 				world.setBlockState(blockPos, SpectrumBlocks.JADE_VINES.getDefaultState().with(JadeVinePlantBlock.PART, JadeVinePlantBlock.JadeVinesPlantPart.BASE));
 				world.setBlockState(blockPos.down(), SpectrumBlocks.JADE_VINES.getDefaultState().with(JadeVinePlantBlock.PART, JadeVinePlantBlock.JadeVinesPlantPart.MIDDLE));
 				world.setBlockState(blockPos.down(2), SpectrumBlocks.JADE_VINES.getDefaultState().with(JadeVinePlantBlock.PART, JadeVinePlantBlock.JadeVinesPlantPart.TIP));
 				return true;
 			}
-		} else if(targetState.isAir()) {
+		} else if (targetState.isAir()) {
 			world.setBlockState(blockPos, SpectrumBlocks.JADE_VINE_BULB.getDefaultState());
 			return true;
-		} else if(canBePlantedOn(targetState)) {
+		} else if (canBePlantedOn(targetState)) {
 			world.setBlockState(blockPos, SpectrumBlocks.JADE_VINE_ROOTS.getDefaultState());
 			
 			long lastGrowTime = -1;
@@ -286,7 +286,7 @@ public class JadeVineRootsBlock extends BlockWithEntity implements JadeVine{
 			BlockEntity newBlockEntity = world.getBlockEntity(blockPos);
 			if (newBlockEntity instanceof JadeVineRootsBlockEntity rootsBlockEntity) {
 				rootsBlockEntity.setFenceBlockState(targetState.getBlock().getDefaultState());
-				if(lastGrowTime > 0) {
+				if (lastGrowTime > 0) {
 					rootsBlockEntity.setLastGrownTime(lastGrowTime);
 				} else {
 					rootsBlockEntity.setLastGrownTime(world.getTime());
@@ -315,12 +315,12 @@ public class JadeVineRootsBlock extends BlockWithEntity implements JadeVine{
 	public BlockPos getLowestRootsPos(@NotNull World world, @NotNull BlockPos blockPos) {
 		int i = 0;
 		do {
-			if(world.getBlockState(blockPos.down(i+1)).getBlock() instanceof JadeVineRootsBlock) {
+			if (world.getBlockState(blockPos.down(i + 1)).getBlock() instanceof JadeVineRootsBlock) {
 				i--;
 			} else {
 				break;
 			}
-		} while(blockPos.getY() - i >= world.getBottomY());
+		} while (blockPos.getY() - i >= world.getBottomY());
 		return blockPos.down(i);
 	}
 	
@@ -328,10 +328,10 @@ public class JadeVineRootsBlock extends BlockWithEntity implements JadeVine{
 	public boolean setToAge(@NotNull World world, BlockPos blockPos, int age) {
 		BlockState currentState = world.getBlockState(blockPos);
 		boolean dead = currentState.get(DEAD);
-		if(age == 0 && !dead) {
+		if (age == 0 && !dead) {
 			world.setBlockState(blockPos, currentState.with(DEAD, true));
 			return true;
-		} else if(age > 0 && dead) {
+		} else if (age > 0 && dead) {
 			world.setBlockState(blockPos, currentState.with(DEAD, false));
 			return true;
 		}

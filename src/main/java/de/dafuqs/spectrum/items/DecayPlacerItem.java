@@ -16,7 +16,7 @@ import net.minecraft.world.World;
 import java.util.List;
 
 public class DecayPlacerItem extends AliasedBlockItem {
-
+	
 	public DecayPlacerItem(Block block, Settings settings) {
 		super(block, settings);
 	}
@@ -24,16 +24,16 @@ public class DecayPlacerItem extends AliasedBlockItem {
 	@Override
 	public ActionResult useOnBlock(ItemUsageContext context) {
 		ActionResult actionResult = super.useOnBlock(context);
-		if(actionResult.isAccepted()) {
+		if (actionResult.isAccepted()) {
 			ItemPlacementContext itemPlacementContext = this.getPlacementContext(new ItemPlacementContext(context));
 			BlockPos blockPos = itemPlacementContext.getBlockPos();
 			
 			BlockState placedBlockState = context.getWorld().getBlockState(blockPos);
-			if(placedBlockState.isIn(SpectrumBlockTags.DECAY)) {
+			if (placedBlockState.isIn(SpectrumBlockTags.DECAY)) {
 				context.getWorld().createAndScheduleBlockTick(blockPos, placedBlockState.getBlock(), 40 + context.getWorld().random.nextInt(200), TickPriority.EXTREMELY_LOW);
 			}
 		}
-		if(!context.getWorld().isClient && actionResult.isAccepted() && context.getPlayer() != null && !context.getPlayer().isCreative()) {
+		if (!context.getWorld().isClient && actionResult.isAccepted() && context.getPlayer() != null && !context.getPlayer().isCreative()) {
 			context.getPlayer().giveItemStack(Items.GLASS_BOTTLE.getDefaultStack());
 		}
 		return actionResult;
@@ -42,17 +42,17 @@ public class DecayPlacerItem extends AliasedBlockItem {
 	@Override
 	public void appendTooltip(ItemStack itemStack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
 		super.appendTooltip(itemStack, world, tooltip, tooltipContext);
-
+		
 		Item item = itemStack.getItem();
-		if(item.equals(SpectrumItems.BOTTLE_OF_FADING)) {
+		if (item.equals(SpectrumItems.BOTTLE_OF_FADING)) {
 			tooltip.add(new TranslatableText("item.spectrum.bottle_of_fading.tooltip"));
-		} else if(item.equals(SpectrumItems.BOTTLE_OF_FAILING)) {
+		} else if (item.equals(SpectrumItems.BOTTLE_OF_FAILING)) {
 			tooltip.add(new TranslatableText("item.spectrum.bottle_of_failing.tooltip"));
-		} else if(item.equals(SpectrumItems.BOTTLE_OF_RUIN)) {
+		} else if (item.equals(SpectrumItems.BOTTLE_OF_RUIN)) {
 			tooltip.add(new TranslatableText("item.spectrum.bottle_of_ruin.tooltip"));
-		} else if(item.equals(SpectrumItems.BOTTLE_OF_DECAY_AWAY)) {
+		} else if (item.equals(SpectrumItems.BOTTLE_OF_DECAY_AWAY)) {
 			tooltip.add(new TranslatableText("item.spectrum.bottle_of_decay_away.tooltip"));
 		}
 	}
-
+	
 }

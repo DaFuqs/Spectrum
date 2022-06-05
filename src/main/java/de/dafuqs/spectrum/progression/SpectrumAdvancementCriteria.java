@@ -4,7 +4,7 @@ import de.dafuqs.spectrum.progression.advancement.*;
 import net.fabricmc.fabric.mixin.object.builder.CriteriaAccessor;
 
 public class SpectrumAdvancementCriteria {
-
+	
 	public static HasAdvancementCriterion ADVANCEMENT_GOTTEN;
 	public static HadRevelationCriterion HAD_REVELATION;
 	public static PedestalCraftingCriterion PEDESTAL_CRAFTING;
@@ -28,7 +28,7 @@ public class SpectrumAdvancementCriteria {
 	public static SpiritInstillerCraftingCriterion SPIRIT_INSTILLER_CRAFTING;
 	public static SlimeSizingCriterion SLIME_SIZING;
 	public static CrystalApothecaryCollectingCriterion CRYSTAL_APOTHECARY_COLLECTING;
-
+	
 	public static void register() {
 		ADVANCEMENT_GOTTEN = CriteriaAccessor.callRegister(new HasAdvancementCriterion());
 		HAD_REVELATION = CriteriaAccessor.callRegister(new HadRevelationCriterion());
@@ -54,5 +54,5 @@ public class SpectrumAdvancementCriteria {
 		SLIME_SIZING = CriteriaAccessor.callRegister(new SlimeSizingCriterion());
 		CRYSTAL_APOTHECARY_COLLECTING = CriteriaAccessor.callRegister(new CrystalApothecaryCollectingCriterion());
 	}
-
+	
 }

@@ -49,14 +49,14 @@ public class ColorPickerBlockEntity extends LootableContainerBlockEntity impleme
 	
 	protected boolean paused;
 	protected @Nullable InkConvertingRecipe cachedRecipe;
-	protected InkColor selectedColor;
+	protected @Nullable InkColor selectedColor;
 	
 	public ColorPickerBlockEntity(BlockPos blockPos, BlockState blockState) {
 		super(SpectrumBlockEntityRegistry.COLOR_PICKER, blockPos, blockState);
 		
 		this.inventory = DefaultedList.ofSize(INVENTORY_SIZE, ItemStack.EMPTY);
 		this.inkStorage = new TotalCappedSimpleInkStorage(STORAGE_AMOUNT);
-		this.selectedColor = InkColors.PINK;
+		this.selectedColor = null;
 	}
 	
 	public static void tick(World world, BlockPos pos, BlockState state, ColorPickerBlockEntity blockEntity) {
@@ -106,7 +106,9 @@ public class ColorPickerBlockEntity extends LootableContainerBlockEntity impleme
 		if (this.ownerUUID != null) {
 			nbt.putUuid("OwnerUUID", this.ownerUUID);
 		}
-		nbt.putString("SelectedColor", this.selectedColor.toString());
+		if(this.selectedColor != null) {
+			nbt.putString("SelectedColor", this.selectedColor.toString());
+		}
 	}
 	
 	@Override
@@ -219,21 +221,36 @@ public class ColorPickerBlockEntity extends LootableContainerBlockEntity impleme
 			InkStorage itemStorage = inkStorageItem.getEnergyStorage(stack);
 			
 			if (this.selectedColor == null) {
+				boolean searchedOwner = false;
+				ServerPlayerEntity owner = null;
 				for (InkColor color : InkColor.all()) {
-					transferredAmount = InkStorage.transferInk(inkStorage, itemStorage, color);
+					long amount = InkStorage.transferInk(inkStorage, itemStorage, color);
+					
+					if(amount > 0) {
+						if(!searchedOwner) {
+							owner = (ServerPlayerEntity) getPlayerEntityIfOnline(world);
+						}
+						if (owner != null) {
+							SpectrumAdvancementCriteria.INK_CONTAINER_INTERACTION.trigger(owner, stack, itemStorage, color, amount);
+						}
+					}
+					
+					transferredAmount += amount;
 				}
 			} else {
 				transferredAmount = InkStorage.transferInk(inkStorage, itemStorage, this.selectedColor);
-			}
-			
-			if (transferredAmount > 0) {
-				PlayerEntity owner = getPlayerEntityIfOnline(world);
-				if (owner instanceof ServerPlayerEntity serverPlayerEntity) {
-					SpectrumAdvancementCriteria.INK_CONTAINER_INTERACTION.trigger(serverPlayerEntity, stack, itemStorage, this.selectedColor, transferredAmount);
+				
+				if(transferredAmount > 0) {
+					PlayerEntity owner = getPlayerEntityIfOnline(world);
+					if (owner instanceof ServerPlayerEntity serverPlayerEntity) {
+						SpectrumAdvancementCriteria.INK_CONTAINER_INTERACTION.trigger(serverPlayerEntity, stack, itemStorage, this.selectedColor, transferredAmount);
+					}
 				}
 			}
 			
-			inkStorageItem.setEnergyStorage(stack, itemStorage);
+			if (transferredAmount > 0) {
+				inkStorageItem.setEnergyStorage(stack, itemStorage);
+			}
 		}
 		
 		return transferredAmount > 0;

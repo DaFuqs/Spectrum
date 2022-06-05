@@ -89,6 +89,7 @@ public class Support {
 	}
 	
 	private static final DecimalFormat df = new DecimalFormat("0.00");
+	private static final DecimalFormat df2 = new DecimalFormat("0");
 	
 	public static String getShortenedNumberString(double number) {
 		if (number > 1000000000D) {
@@ -98,7 +99,7 @@ public class Support {
 		} else if (number > 1000D) {
 			return df.format(number / 1000D) + "K";
 		} else {
-			return df.format(number);
+			return df2.format(number);
 		}
 	}
 	
@@ -110,7 +111,7 @@ public class Support {
 		} else if (number > 1000L) {
 			return df.format(number / 1000D) + "K";
 		} else {
-			return df.format(number);
+			return df2.format(number);
 		}
 	}
 	

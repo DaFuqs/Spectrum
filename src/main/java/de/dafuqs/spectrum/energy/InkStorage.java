@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.energy;
 
-import com.ibm.icu.text.UnicodeSet;
 import de.dafuqs.spectrum.energy.color.InkColor;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.text.Text;

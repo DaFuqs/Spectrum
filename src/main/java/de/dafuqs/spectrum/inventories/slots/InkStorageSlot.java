@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.inventories.slots;
 
 import de.dafuqs.spectrum.energy.InkStorageItem;
-import de.dafuqs.spectrum.recipe.ink_converting.InkConvertingRecipe;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.screen.slot.Slot;

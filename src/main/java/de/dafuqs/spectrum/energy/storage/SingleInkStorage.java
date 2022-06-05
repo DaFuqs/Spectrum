@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.energy.storage;
 
+import de.dafuqs.spectrum.energy.InkStorage;
 import de.dafuqs.spectrum.energy.color.InkColor;
 import de.dafuqs.spectrum.energy.color.InkColors;
 import net.minecraft.client.item.TooltipContext;

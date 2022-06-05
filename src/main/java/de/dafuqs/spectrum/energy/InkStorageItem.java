@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.energy;
 
-import de.dafuqs.spectrum.energy.storage.InkStorage;
 import net.minecraft.item.ItemStack;
 
 /**

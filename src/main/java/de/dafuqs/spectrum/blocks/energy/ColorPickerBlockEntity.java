@@ -4,7 +4,7 @@ import de.dafuqs.spectrum.energy.InkStorageBlockEntity;
 import de.dafuqs.spectrum.energy.InkStorageItem;
 import de.dafuqs.spectrum.energy.color.InkColor;
 import de.dafuqs.spectrum.energy.color.InkColors;
-import de.dafuqs.spectrum.energy.storage.InkStorage;
+import de.dafuqs.spectrum.energy.InkStorage;
 import de.dafuqs.spectrum.energy.storage.TotalCappedSimpleInkStorage;
 import de.dafuqs.spectrum.interfaces.PlayerOwned;
 import de.dafuqs.spectrum.inventories.ColorPickerScreenHandler;
@@ -27,7 +27,6 @@ import net.minecraft.text.TranslatableText;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
@@ -212,52 +211,16 @@ public class ColorPickerBlockEntity extends LootableContainerBlockEntity impleme
 			
 			if(this.selectedColor == null) {
 				for(InkColor color : InkColor.all()) {
-					didSomething = didSomething | transferInk(inkStorage, itemStorage, color);
+					didSomething = didSomething | InkStorage.transferInk(inkStorage, itemStorage, color);
 				}
 			} else {
-				didSomething = transferInk(inkStorage, itemStorage, this.selectedColor);
+				didSomething = InkStorage.transferInk(inkStorage, itemStorage, this.selectedColor);
 			}
 			
 			inkStorageItem.setEnergyStorage(stack, itemStorage);
 		}
 		
 		return didSomething;
-	}
-	
-	// TODO: move to InkStorage class
-	// TODO: move to "pressure" system instead of fixed amount where more energy is transferred when source is very full
-	public static boolean transferInk(@NotNull InkStorage source, @NotNull InkStorage destination, @NotNull InkColor color, long amount) {
-		long sourceAmount = source.getEnergy(color);
-		if(sourceAmount > 0) {
-			long destinationRoom = destination.getRoom(color);
-			if(destinationRoom > 0) {
-				long transferAmount = Math.min(amount, Math.min(sourceAmount, destinationRoom));
-				if (transferAmount > 0) {
-					destination.addEnergy(color, transferAmount);
-					source.drainEnergy(color, transferAmount);
-					return true;
-				}
-			}
-		}
-		return false;
-	}
-	
-	public static boolean transferInk(@NotNull InkStorage source, @NotNull InkStorage destination, @NotNull InkColor color) {
-		long sourceAmount = source.getEnergy(color);
-		if(sourceAmount > 0) {
-			long destinationRoom = destination.getRoom(color);
-			if(destinationRoom > 0) {
-				long destinationAmount = destination.getEnergy(color);
-				long transferAmount = Math.max(0, (sourceAmount - destinationAmount) / 4);
-				transferAmount = Math.min(transferAmount, Math.min(sourceAmount, destinationRoom));
-				if (transferAmount > 0) {
-					destination.addEnergy(color, transferAmount);
-					source.drainEnergy(color, transferAmount);
-					return true;
-				}
-			}
-		}
-		return false;
 	}
 	
 }

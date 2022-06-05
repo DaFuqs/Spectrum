@@ -4,7 +4,7 @@ import com.google.gson.JsonObject;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.energy.color.InkColor;
 import de.dafuqs.spectrum.energy.color.InkColors;
-import de.dafuqs.spectrum.energy.storage.InkStorage;
+import de.dafuqs.spectrum.energy.InkStorage;
 import net.minecraft.advancement.criterion.AbstractCriterion;
 import net.minecraft.advancement.criterion.AbstractCriterionConditions;
 import net.minecraft.item.ItemStack;

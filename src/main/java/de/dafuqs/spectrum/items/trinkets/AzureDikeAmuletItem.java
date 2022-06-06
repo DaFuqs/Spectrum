@@ -20,7 +20,7 @@ import java.util.List;
 public class AzureDikeAmuletItem extends InkDrainTrinketItem implements AzureDikeItem {
 	
 	public AzureDikeAmuletItem(Settings settings) {
-		super(settings, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_shieldgrasp_amulet"), InkColors.BLUE, 100L * (long) Math.pow(8, 15)); // 16 extra hearts (pretty much unobtainable
+		super(settings, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_shieldgrasp_amulet"), InkColors.BLUE, 100L * (long) Math.pow(8, 18)); // 20 extra hearts (pretty much unobtainable)
 	}
 	
 	@Environment(EnvType.CLIENT)
@@ -73,7 +73,7 @@ public class AzureDikeAmuletItem extends InkDrainTrinketItem implements AzureDik
 		if(storedInk < 100) {
 			return 0;
 		} else {
-			return 1 + (int) (Math.log(storedInk / 100) / Math.log(8));
+			return 2 + (int) (Math.log(storedInk / 100) / Math.log(8));
 		}
 	}
 	

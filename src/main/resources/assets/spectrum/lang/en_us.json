@@ -1253,6 +1253,7 @@
   "item.spectrum.neolith": "Neolith",
   "item.spectrum.bedrock_dust": "Bedrock Dust",
   "item.spectrum.midnight_aberration": "Midnight Aberration",
+  "item.spectrum.midnight_aberration.tooltip.stable": "§oHeld together by mysterious force",
   "item.spectrum.midnight_chip": "Midnight Chip",
 
   "item.spectrum.logo_banner_pattern": "Banner Pattern",

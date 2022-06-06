@@ -22,7 +22,22 @@ public class StructurePlacerItem extends Item {
 		if (context.getPlayer() != null && context.getPlayer().isCreative()) {
 			IMultiblock iMultiblock = SpectrumMultiblocks.MULTIBLOCKS.get(multiBlockIdentifier);
 			if (iMultiblock != null) {
-				iMultiblock.place(context.getWorld(), context.getBlockPos().up(), BlockRotation.NONE);
+				BlockRotation blockRotation;
+				switch (context.getPlayerFacing()) {
+					case EAST -> {
+						blockRotation = BlockRotation.CLOCKWISE_180;
+					}
+					case SOUTH -> {
+						blockRotation = BlockRotation.COUNTERCLOCKWISE_90;
+					}
+					case WEST -> {
+						blockRotation = BlockRotation.NONE;
+					}
+					default -> {
+						blockRotation = BlockRotation.CLOCKWISE_90;
+					}
+				}
+				iMultiblock.place(context.getWorld(), context.getBlockPos().up(), blockRotation);
 				return ActionResult.CONSUME;
 			}
 		}

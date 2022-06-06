@@ -8,6 +8,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
@@ -24,7 +25,7 @@ public class MidnightAberrationItem extends CloakedItem {
 		if (!world.isClient && world.getTime() % 20 == 0 && entity instanceof PlayerEntity playerEntity && world.random.nextFloat() < 0.2F) {
 			stack.decrement(1);
 			Support.givePlayer(playerEntity, Items.GUNPOWDER.getDefaultStack());
-			playerEntity.playSound(SpectrumSoundEvents.MIDNIGHT_ABERRATION_CRUMBLING, 0.5F, 1.0F);
+			world.playSoundFromEntity(null, playerEntity, SpectrumSoundEvents.MIDNIGHT_ABERRATION_CRUMBLING, SoundCategory.PLAYERS, 0.5F, 1.0F);
 		}
 	}
 	

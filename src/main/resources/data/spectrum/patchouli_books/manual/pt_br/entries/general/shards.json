@@ -1,0 +1,70 @@
+{
+  "name": "Fragmentos de Pedra Gema",
+  "icon": "minecraft:amethyst_shard",
+  "sortnum": 1,
+  "category": "spectrum:general_category",
+  "turnin": "spectrum:collect_all_basic_shards",
+  "extra_recipe_mappings": {
+    "spectrum:topaz_shard": 0,
+    "minecraft:amethyst_shard": 0,
+    "spectrum:citrine_shard": 0,
+    "spectrum:onyx_shard": 0,
+    "spectrum:moonstone_shard": 0,
+    "spectrum:spectral_shard": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Para começar a investigar Spectrum você primeiro tem que achar alguns fragmentos de Pedra Gema.$(br2)Cada tipo de pedra gema representa uma cor elemental e um tipo diferente de força natural."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "anchor": "topaz",
+      "advancement": "spectrum:hidden/collect_shards/collect_topaz_shard",
+      "title": "Fragmentos de Topázio",
+      "item": "spectrum:topaz_shard",
+      "text": "Fragmentos de Topázio são surpreendentemente pesados na sua mão. Frágeis de relance, esse pedra gema rapidamente se tornou um dos materias mais robustos que você conseguir - talvez apenas superado pelo diamante. Topázio é achado em geodos bem no topo de colinas íngremes e no topo de montanhas muito altas.$(br)O Topázio representa $(bold)$(c_cyan)MATÉRIA$()."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "anchor": "amethyst",
+      "advancement": "spectrum:hidden/collect_shards/collect_amethyst_shard",
+      "title": "Fragmentos de Ametista",
+      "item": "minecraft:amethyst_shard",
+      "text": "Magenta light refracts in this gemstone.$(br)Formed over eons in the geodes, this gemstone radiates awe. It is a symbol of permanence and found in the deepest layers of the world.$(br2)The Amethyst represents $(bold)$(c_purple)TIME$().",
+      "text": "A luz magenta refrata nessa pedra gema.$(br)Formada por eras nos geodos, essa pedra gema erradia temor. É um símbolo de permanência e achado nas camadas mais profunas o muno.$(br2)A Ametista representa $(bold)$(c_purple)TEMPO$()."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "anchor": "citrine",
+      "advancement": "spectrum:hidden/collect_shards/collect_citrine_shard",
+      "title": "Fragmentos de Citrino",
+      "item": "spectrum:citrine_shard",
+      "text": "Essa pedra gema amarela é achada perto do nível da superfície, one a luz o sol dissipa em calor.$(br2)Seu brilho amarelo vivo erradia $(bold)$(c_yellow)ENERGIA$() pura e é levemente quente ao toque a todo momento."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "anchor": "onyx",
+      "advancement": "spectrum:create_onyx_shard",
+      "title": "Fragmentos de Ônix",
+      "item": "spectrum:onyx_shard",
+      "text": "Ônix é quase um breu. Parece até que retiraria a luz do ambiente.$(br2)A Ônix, como uma combinação de energia, matéria, e tempo, serve como $(bold)$(c_black)reforço de foco e catalista$() para ferramentas e dispositívos mágicos."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "anchor": "moonstone",
+      "advancement": "spectrum:midgame/collect_moonstone_shard",
+      "title": "Fragmentos de Pedra da Lua",
+      "item": "spectrum:moonstone_shard",
+      "text": "Seu brilho branco azulada te lembra da luz acalmante da lua em uma noite calma de verão. A tranquilidade que exala deixa uma marca calma, mas significante, como um gato dormindo - bálsamo para a alma, mas também um predador, sempre de guarda.$(br2)A Pedra da Lua encarna $(bold)$(c_white)magia pura$()."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "anchor": "spectral",
+      "advancement": "spectrum:lategame/create_spectral_shard",
+      "title": "Fragmentos Espectrais",
+      "item": "spectrum:spectral_shard",
+      "text": "Fragmentos Espectrais brilham em todas as cores do arco-íris."
+    }
+  ]
+}

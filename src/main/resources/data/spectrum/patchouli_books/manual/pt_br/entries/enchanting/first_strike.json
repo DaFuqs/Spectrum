@@ -1,0 +1,30 @@
+{
+    "name": "Primeiro Ataque",
+    "icon": "minecraft:iron_sword",
+    "advancement": "spectrum:progression/enchantments/first_strike",
+    "category": "spectrum:enchanting_category",
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "$(italic)Tudo que precisa é de um ataque bem pensado... ou é o que dizem.$(br2)Que seja.$(br)Falando nisso: você inventou essa melhoria Primeiro Ataque. Vai ser uma grande ajuda especialmente contra vários oponentes fracos."
+        },
+        {
+            "type": "patchouli:spotlight",
+            "title": "Características",
+            "item": "minecraft:iron_sword{Enchantments: [{id: \"spectrum:first_strike\", lvl: 2s}]}",
+            "text": "Aumenta bastante o dano se o alvo tem vida cheia.$(br2)Nível Máximo: 2$(br)Aplicável a armas corpo a corpo."
+        },
+        {
+            "type": "spectrum:enchanter_crafting",
+            "title": "Receita de Encantador",
+            "recipe": "spectrum:enchanter/spectrum_books/book_first_strike",
+            "text": "Você pode infusionar um livro comum com Primeiro Ataque rodeando seu Encantador com Pigmento e outros materiais necessários."
+        },
+        {
+            "type": "spectrum:enchanter_upgrading",
+            "title": "Melhoria de Encantador",
+            "recipe": "spectrum:enchantment_upgrade/spectrum/first_strike_level_2",
+            "text": "Melhorar Primeiro Ataque do nível 1 ao nível 2 é razoavelmente barato no começo.$(br)Esse preço rapidamenta aumenta para mais e mais Pigmento e Experiência para cada nível adicional."
+        }
+    ]
+}

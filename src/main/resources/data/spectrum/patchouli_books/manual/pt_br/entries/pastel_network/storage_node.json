@@ -1,0 +1,19 @@
+{
+  "name": "Storage Node",
+  "icon": "spectrum:provider_node",
+  "advancement": "spectrum:progression/pastel_network/__unlock_basic_nodes",
+  "category": "spectrum:pastel_network_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Storage Node",
+      "text": "The Storage Node, while nothing spectacular itself, will show their greatest use in combination with $(l:pastel_network/pusher_node)Pusher Nodes$(/l) (Will push items to it) and $(l:pastel_network/puller_node)Puller Nodes$(/l) (pull items from it."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier3/pastel_network/storage_node",
+      "text": "Right click it to open its item filter. This filters allows you to specify which items the Storage Node will be able to receive & provide. Otherwise it will act as a general storage for all types of items."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "name": "Blocos de Pétala de Jade",
+  "advancement": "spectrum:hidden/collect_jade_vine_petals",
+  "icon": "spectrum:jade_vine_petal_block",
+  "category": "spectrum:decoration_category",
+  "extra_recipe_mappings": {
+    "spectrum:jade_vine_petal_block": 0,
+    "spectrum:jade_vine_petal_carpet": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:crafting",
+      "title": "Blocos de Pétala de Jade",
+      "recipe": "spectrum:crafting_table/jade_vines/jade_vine_petal_block",
+      "text": "Das pétalas coletadas de $(l:resources/jade_vines)Vinhas de Jade$(\l) você criou uma pequena quantidade de blocos de decoração."
+    },
+    {
+      "type": "patchouli:crafting",
+      "title": "Tapete",
+      "recipe": "spectrum:crafting_table/jade_vines/jade_vine_petal_carpet",
+      "text": ""
+    }
+  ]
+}

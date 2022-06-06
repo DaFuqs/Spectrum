@@ -1,0 +1,19 @@
+{
+  "name": "Provider Node",
+  "icon": "spectrum:provider_node",
+  "advancement": "spectrum:progression/pastel_network/__unlock_basic_nodes",
+  "category": "spectrum:pastel_network_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Provider Node",
+      "text": "Passively offers all items in the connected inventory to it's connected $(l:pastel_network/pastel_network)Pastel Network$(/l). Items will not be pushed to other nodes, but can be requested, for example by $(l:pastel_network/puller_node)Puller Nodes$(/l)."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier3/pastel_network/provider_node",
+      "text": ""
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "name": "Experimento #1: Desvanecimento",
+  "icon": "spectrum:bottle_of_fading",
+  "advancement": "spectrum:progression/unlock_bottle_of_fading",
+  "category": "spectrum:creating_life_category",
+  "turnin": "spectrum:collect_vegetal",
+  "extra_recipe_mappings": {
+    "spectrum:bottle_of_fading": 0,
+    "spectrum:vegetal": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:bottle_of_fading",
+      "text": "Não demorou tanto, a ideia de um plano de contrução veio a sua mente.$(br2)O organismo que você pensou é fraco, porém parece que seus planos de criar vida foram um sucesso, pelo menos em princípio! Confesso que é apenas um monte de microorganismos, mas eles estão vivos!"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Receita de Pedestal",
+      "recipe": "spectrum:pedestal/tier1/bottle_of_fading",
+      "text": "Todo ser vivo tem basicamente os mesmo objetivos: come & reproduzir.$() Então... o que será que essas criaturas comem? Outros Blocos? Com certeza algo fácil de digerir."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:collect_vegetal",
+      "title": "Vegetal",
+      "anchor": "vegetal",
+      "item": "spectrum:vegetal",
+      "text": "A resposta parece ser orgânicos! Realmente fáceis de digerir.$(br)Quando digeridos pelo organismo, um subproduto foi criao que você chamou de Vegetal. É feito de $(bold)pura energia ad natureza().$(br2)Você tem certeza que vai ser útil pra você."
+    }
+  ]
+}

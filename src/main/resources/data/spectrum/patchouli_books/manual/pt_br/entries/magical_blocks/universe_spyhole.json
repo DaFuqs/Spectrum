@@ -1,0 +1,21 @@
+{
+  "name": "Universe Spyhole",
+  "advancement": "spectrum:progression/unlock_universe_spyhole",
+  "icon": "spectrum:universe_spyhole",
+  "category": "spectrum:magical_blocks_category",
+  "extra_recipe_mappings": {
+    "spectrum:universe_spyhole": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "This strange blocks lets you vision penetrate ground and rock. Placed directly on a wall or on the ground, it allows you to glimpse the other side.$(br2)$(italic)The creations that Ender Treasure allows you to create with its strange properties never cease to amaze you."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier3/universe_spyhole",
+      "text": "$(italic)I see what you did there"
+    }
+  ]
+}

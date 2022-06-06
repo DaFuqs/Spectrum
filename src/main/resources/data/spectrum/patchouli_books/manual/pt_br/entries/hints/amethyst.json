@@ -1,0 +1,18 @@
+{
+  "name": "A Gemstone",
+  "category": "spectrum:hints_category",
+  "icon": "minecraft:writable_book",
+  "advancement": "spectrum:spectrum",
+  "secret": true,
+  "read_by_default": true,
+  "turnin": "spectrum:hidden/collect_shards/collect_amethyst_shard",
+    "pages": [
+        {
+            "type": "spectrum:hint",
+			"title": "Where to find",
+            "completion_advancement": "spectrum:hidden/collect_shards/collect_amethyst_shard",
+			"cost": "spectrum:citrine_shard#16",
+            "text": "There is a type of geode to be found deep underground."
+        }
+    ]
+}

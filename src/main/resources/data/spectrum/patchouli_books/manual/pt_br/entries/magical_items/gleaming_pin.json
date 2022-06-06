@@ -1,0 +1,28 @@
+{
+  "name": "Gleaming Pin",
+  "advancement": "spectrum:progression/unlock_gleaming_pin",
+  "icon": "spectrum:gleaming_pin",
+  "category": "spectrum:magical_items_category",
+  "extra_recipe_mappings": {
+    "spectrum:gleaming_pin": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "During your explorations you were hit by arrows again and again, only to completely miss your enemy while looking around in panic - if it hasn't already disappeared behind the next corner already.$(br2)When you get hit, the Gleaming Pin emits a magic surge that passes through walls and attaches to nearby creatures so you can easily track them down."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Fusion Recipe",
+      "recipe": "spectrum:fusion_shrine/trinkets/gleaming_pin",
+      "text": "$(br)$(italic)Can't run, can't hide"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:progression/enchantments/sniper",
+      "title": "Sniping",
+      "item": "spectrum:gleaming_pin{Enchantments: [{id: \"spectrum:sniping\", lvl: 2s}]}",
+      "text": "Enchanting the Gleaming Pin with Sniping allows the surge to pierce even more matter, further increasing its range."
+    }
+  ]
+}

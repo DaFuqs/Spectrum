@@ -1,0 +1,21 @@
+{
+  "name": "Radiance Pin",
+  "advancement": "spectrum:progression/unlock_radiance_pin",
+  "icon": "spectrum:radiance_pin",
+  "category": "spectrum:magical_items_category",
+  "extra_recipe_mappings": {
+    "spectrum:radiance_pin": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "You didn't randomly choose the name of the Radiance Pin to resemble the $(l:magical_items/radiance_staff)Radiance Staff$(/l).$(br)If you are in a dark area, the pin automatically creates an invisible light on you. Unlike the lights of the $(l:magical_items/radiance_staff)Radiance Staff$(/l), however, they slowly become fainter and fainter until they eventually dissipate completely."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Fusion Recipe",
+      "recipe": "spectrum:fusion_shrine/trinkets/radiance_pin",
+      "text": "Fantastic to see the paths you've already taken in your cave explorations."
+    }
+  ]
+}

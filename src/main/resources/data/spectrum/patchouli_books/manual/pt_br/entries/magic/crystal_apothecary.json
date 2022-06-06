@@ -1,0 +1,21 @@
+{
+  "name": "Crystal Apothecary",
+  "advancement": "spectrum:progression/unlock_crystal_apothecary",
+  "icon": "spectrum:crystal_apothecary",
+  "category": "spectrum:magic_category",
+  "extra_recipe_mappings": {
+    "spectrum:crystal_apothecary": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Placed in $(l:resources/geodes)Geodes$(/l), automatically harvests fully grown Gemstone Clusters.$(br2)Normally all your other constructions and even crops do pretty much freeze in time when you are away, but this construct  seems to continue working even then. Weird."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier3/crystal_apothecary",
+      "text": "While it is not as efficient as breaking the clusters with a Pickaxe, the ease of use surely comes in handy."
+    }
+  ]
+}

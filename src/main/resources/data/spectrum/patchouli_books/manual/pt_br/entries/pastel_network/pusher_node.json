@@ -1,0 +1,19 @@
+{
+  "name": "Pusher Node",
+  "icon": "spectrum:provider_node",
+  "advancement": "spectrum:progression/pastel_network/__unlock_basic_nodes",
+  "category": "spectrum:pastel_network_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Pusher Node",
+      "text": "The pusher node actively tries to keep the connected inventory empty from items."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier3/pastel_network/pusher_node",
+      "text": "The order, in which it pushes items to is as follows:$(br)1. $(l:pastel_network/puller_node)Puller Nodes$(/l)$(br)2. $(l:pastel_network/storage_node)Storage Nodes$(/l)"
+    }
+  ]
+}

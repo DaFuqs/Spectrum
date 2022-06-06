@@ -1,0 +1,28 @@
+{
+  "name": "Radiance Staff",
+  "advancement": "spectrum:progression/unlock_light_staff",
+  "icon": "spectrum:light_staff",
+  "category": "spectrum:magical_items_category",
+  "extra_recipe_mappings": {
+    "spectrum:light_staff": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Torches have one crucial weakness: you can only place them when you're already standing in the dark. In contrast the Radiance Staff can place lights far away and in the air, illuminating large caverns at a distance.$(br)As a final goodie, these lights are invisible, making them great for illuminating your structures atmospherically."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier2/light_staff",
+      "text": "Right click placed lights with the staff to adjust the emitted light level.$(br)They can even be summoned under water."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:midgame/build_enchanting_structure",
+      "title": "Enchanting - Infinity",
+      "item": "spectrum:light_staff{Enchantments: [{id: \"minecraft:infinity\", lvl: 1s}]}",
+      "text": "Enchanting the Radiance Staff with Infinity by using the $(l:enchanting/enchanting_items)Enchanter$(/l) will completely remove the need for Shimmerstone."
+    }
+  ]
+}

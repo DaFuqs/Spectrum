@@ -1,0 +1,21 @@
+{
+  "name": "Ink Assortment",
+  "advancement": "spectrum:progression/unlock_ink_assortment",
+  "icon": "spectrum:ink_assortment",
+  "category": "spectrum:magic_category",
+  "extra_recipe_mappings": {
+    "spectrum:ink_assortment": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "This collection of small vials is able to store all kinds of Ink, albeit just small amounts of it."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier2/ink_assortment",
+      "text": ""
+    }
+  ]
+}

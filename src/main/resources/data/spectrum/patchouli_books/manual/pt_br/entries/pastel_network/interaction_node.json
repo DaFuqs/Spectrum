@@ -1,0 +1,19 @@
+{
+  "name": "Interaction Node",
+  "icon": "spectrum:provider_node",
+  "advancement": "spectrum:progression/pastel_network/__unlock_interaction_node",
+  "category": "spectrum:pastel_network_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Interaction Node",
+      "text": "TODO. Getting close to it will present you a list of all items stored in its connected network. Just reach for it and it will be pulled out from the network for you, automatically."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier3/pastel_network/interaction_node",
+      "text": "TODO"
+    }
+  ]
+}

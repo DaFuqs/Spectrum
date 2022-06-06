@@ -1,0 +1,21 @@
+{
+  "name": "Restoration Tea",
+  "advancement": "spectrum:hidden/collect_jade_vine_petals",
+  "icon": "spectrum:restoration_tea",
+  "category": "spectrum:magical_items_category",
+  "extra_recipe_mappings": {
+    "spectrum:restoration_tea": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Is there anything cozier than sitting by your homemade fireplace on a rainy evening, sipping a cup of tea?$(br)Surely: killing a boss beforehand.$(br)This tea, brewed from the petals of $(l:resources/jade_vines)Jade Vines$(/l) is both good for relaxing and protecting you from the deadly effect of the Wither. $(italic)Convenient$()."
+    },
+    {
+      "type": "spectrum:potion_workshop_crafting",
+      "title": "Workshop Recipe",
+      "recipe": "spectrum:potion_workshop_crafting/restoration_tea",
+      "text": "$(italic)Don't even think about drinking that with milk!"
+    }
+  ]
+}

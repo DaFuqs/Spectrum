@@ -1,0 +1,32 @@
+{
+  "name": "Experimento #2: Falha",
+  "icon": "spectrum:bottle_of_failing",
+  "advancement": "spectrum:progression/unlock_bottle_of_failing",
+  "category": "spectrum:creating_life_category",
+  "turnin": "spectrum:midgame/collect_neolith",
+  "extra_recipe_mappings": {
+    "spectrum:bottle_of_failing": 0,
+    "spectrum:neolith": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:bottle_of_failing",
+      "text": "Usando o poder da energia potente do seu Ônix e Carmesim, esse segundo organismo claramente é... mais ativo que sua última criação.$(br2)$(bold)E DEFINITIVAMENTE mais faminto.$(br)MUITO mais faminto."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Receita de Pedestal",
+      "recipe": "spectrum:pedestal/tier3/bottle_of_failing",
+      "text": "Talvez um dos materiais mais resistentes que você conhece pode satisfazer a fome dele?"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:midgame/collect_neolith",
+      "title": "Neolito",
+      "anchor": "neolith",
+      "item": "spectrum:neolith",
+      "text": "A obsidiana foi literalmente pulverizada pelo seu experimento. Isso sim é poder!$(br2)O resultado foi um reagente resistente."
+    }
+  ]
+}

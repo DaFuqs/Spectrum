@@ -1,0 +1,46 @@
+{
+  "name": "Gemstone Armor",
+  "advancement": "spectrum:progression/unlock_gemstone_armor_category",
+  "icon": "spectrum:emergency_chestplate",
+  "category": "spectrum:magical_items_category",
+  "extra_recipe_mappings": {
+    "spectrum:emergency_helmet": 0,
+    "spectrum:emergency_chestplate": 0,
+    "spectrum:emergency_leggings": 0,
+    "spectrum:emergency_boots": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "You had more than enough time to develop your own individual fighting style.$(br)To best support this style, you've designed a range of matching gear out of interesting materials.$(br2)Disadvantage: The shards used in the production are kind of brittle. Therefore, this equipment has a comparatively low durability."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "To take advantage of their unique abilities you will need some special materials.$(br2)$(bold)Helmet:$() When nothingness meets hell$(br2)$(bold)Chestplate:$() The golden Ratio$(br2)$(bold)Leggings:$() The source of nightmares$(br2)$(bold)Boots:$() Mourning of the Nether$(br2)They can be repaired in Anvils by using $(l:general/gemstone_shards)Gemstone Shards$()."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "advancement": "spectrum:hidden/collect_vanilla/collect_ender_eye",
+      "recipe": "spectrum:pedestal/tier2/emergency_armor/emergency_helmet",
+      "text": "Gives attackers Weakness and Slowness when they hit you, letting you slip through their claws like a shadow."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "advancement": "spectrum:hidden/collect_vanilla/collect_nautilus_shell",
+      "recipe": "spectrum:pedestal/tier2/emergency_armor/emergency_chestplate",
+      "text": "Grants Absorption and Instant Health when you get hit, making you a formidable close combat fighter."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "advancement": "spectrum:hidden/collect_vanilla/collect_phantom_membrane",
+      "recipe": "spectrum:pedestal/tier2/emergency_armor/emergency_leggings",
+      "text": "Gives a short burst of Speed and Invisibility when you get hit, giving you an opportunity to retreat. Perfect for ranged combat."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "advancement": "spectrum:hidden/collect_vanilla/collect_ghast_tear",
+      "recipe": "spectrum:pedestal/tier2/emergency_armor/emergency_boots",
+      "text": "Gives you a short burst of Resistance and Regeneration on hit, making you a massive wall for a short duration."
+    }
+  ]
+}

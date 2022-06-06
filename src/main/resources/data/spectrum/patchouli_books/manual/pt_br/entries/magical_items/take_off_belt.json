@@ -1,0 +1,35 @@
+{
+  "name": "Take-Off Belt",
+  "advancement": "spectrum:progression/unlock_take_off_belt",
+  "icon": "spectrum:take_off_belt",
+  "category": "spectrum:magical_items_category",
+  "extra_recipe_mappings": {
+    "spectrum:take_off_belt": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Climbing mountains or misshapen caves is always very time-consuming. If you don't see an option to scramble up over misshapen ledges, you have no choice but to carve a path into the rock.$(br)Using your new Take-Off Belt you are able to put great vertical distances behind you, saving time and sparing your beautiful nature from destruction."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Fusion Recipe",
+      "recipe": "spectrum:fusion_shrine/trinkets/take_off_belt",
+      "text": "Sneak to charge a high jump, getting more powerful the longer you charge$(br2)$(italic)Although the name implies, please don't take it off."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:progression/enchantments/vanilla_projectile",
+      "title": "Power",
+      "item": "spectrum:take_off_belt{Enchantments: [{id: \"minecraft:power\", lvl: 5s}]}",
+      "text": "The Power enchantment increases the jump height even further."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:progression/enchantments/vanilla_quitoxic",
+      "title": "Feather Falling",
+      "item": "spectrum:take_off_belt{Enchantments: [{id: \"minecraft:feather_falling\", lvl: 4s}]}",
+      "text": "Feather Falling will grant you a short slow fall effect, allowing you to better navigate to where you want to land. A high level of Feather Falling may be a very viable way to safely descend down those cliffs again, actually."
+    }
+  ]
+}

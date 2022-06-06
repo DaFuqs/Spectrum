@@ -1,0 +1,23 @@
+{
+  "name": "Ender Dropper",
+  "advancement": "spectrum:progression/unlock_ender_blocks",
+  "icon": "spectrum:ender_dropper",
+  "category": "spectrum:magical_blocks_category",
+  "extra_recipe_mappings": {
+    "spectrum:ender_dropper": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "title": "Ender Dropper",
+      "item": "spectrum:ender_dropper",
+      "text": "The Ender Dropper is the counterpart to the Ender Hopper. With every redstone push it ejects an item from your personal Ender Chest.$(br2)Beware: The Ender Dropper only works as long as you are online. And who is stopping anyone from placing a button next to it and emptying your Ender Chest?"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier2/ender_dropper",
+      "text": ""
+    }
+  ]
+}

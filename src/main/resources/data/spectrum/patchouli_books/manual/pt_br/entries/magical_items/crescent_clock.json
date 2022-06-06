@@ -1,0 +1,21 @@
+{
+  "name": "Crescent Clock",
+  "advancement": "spectrum:progression/unlock_crescent_clock",
+  "icon": "spectrum:crescent_clock",
+  "category": "spectrum:magical_items_category",
+  "extra_recipe_mappings": {
+    "spectrum:crescent_clock": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "There seems to be something magical about the flow of time.$(br)This clock, formed from witnesses of time, is to show you a way in this never-ending stream of beginning and passing."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier2/crescent_clock",
+      "text": "$(italic)If we shadows have offended, Know but this and all is mended.$(br)That you have but slumbered here, While these visions did appear.$(br)And this weak and idle theme, No more yielding, but a dream."
+    }
+  ]
+}

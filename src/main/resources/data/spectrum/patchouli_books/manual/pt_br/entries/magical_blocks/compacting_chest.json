@@ -1,0 +1,21 @@
+{
+  "name": "Compacting Chest",
+  "advancement": "spectrum:progression/unlock_compacting_chest",
+  "icon": "spectrum:compacting_chest",
+  "category": "spectrum:magical_blocks_category",
+  "extra_recipe_mappings": {
+    "spectrum:compacting_chest": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(italic)You are long tired of creating new storage space for all the coal, iron, copper and gold that are piling up in your storage room. Then, assembling this stuff to more compact clumps again and again is no fun, either.$(br2)So you thought up the Compacting Chest that takes this monotonous work off your hands."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier1/compacting_chest",
+      "text": "The name says it all.$(br)The Compacting Chest will try to craft all the things you put into it in a 3x3, 2x2 or 1x1 pattern - able to be toggled in its GUI."
+    }
+  ]
+}

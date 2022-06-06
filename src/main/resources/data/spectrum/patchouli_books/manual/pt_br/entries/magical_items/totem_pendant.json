@@ -1,0 +1,21 @@
+{
+  "name": "Totem Pendant",
+  "advancement": "spectrum:progression/unlock_totem_pendant",
+  "icon": "spectrum:totem_pendant",
+  "category": "spectrum:magical_items_category",
+  "extra_recipe_mappings": {
+    "spectrum:totem_pendant": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Totems of Undying, while having a powerful effect, have the significant disadvantage that you always have to hold them in your hand.$(br)Using the protective powers of $(l:general/pigment#blue)Blue Pigment$(/l) as a focus you can keep its life-saving effect active, even when worn around the neck."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Fusion Recipe",
+      "recipe": "spectrum:fusion_shrine/trinkets/totem_pendant",
+      "text": "One-time protection from death. After it is triggered, crumbles into dust."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "name": "Glistering Melons",
+  "advancement": "spectrum:collect_vegetal",
+  "icon": "minecraft:glistering_melon_slice",
+  "category": "spectrum:magical_blocks_category",
+  "extra_recipe_mappings": {
+    "minecraft:glistering_melon_slice": 0,
+    "spectrum:glistering_melon": 0,
+    "spectrum:glistering_melon_seeds": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "title": "Glistering Melon Plants",
+      "item": "minecraft:glistering_melon_slice",
+      "text": "With the magic inherent in gemstone dust you have already managed to change seedlings. What's stopping you from trying it on other plants?$(br)Not because you're greedy or anything, of course."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier1/glistering_melon_seeds"
+    }
+  ]
+}

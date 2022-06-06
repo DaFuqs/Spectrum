@@ -1,0 +1,35 @@
+{
+  "name": "Caçador de Tesouros",
+  "icon": "minecraft:iron_sword",
+  "advancement": "spectrum:progression/enchantments/treasure_hunter",
+  "category": "spectrum:enchanting_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(italic)Em uma pintura você viu uma criatura fantástica que parece ser feita de Areia das Almas e Crânios de Esqueletos Wither. Por horas você fica em uma Fortaleza no Nether, quase perdendo a própria cabeça enquanto procura com um Esqueleto Wither com a espinha solta o suficiente para derrubar seu crânio. Paciência, você nunca foi de desistir fácil."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:cow_head",
+      "text": "$(italic)Mas tem os Creepers! Uma vez atingidos por um raio, eles causam uma explosão tão robusta que a explosão arranca a cabeça de seus oponentes do corpo (no pior caso: você).$(br)Num momento de epifania você pensou nesse novo encantamento usando $(l:resources/lightning_stones)Pedras de Tempestade$(/l).$(br)Então Caçador de Tesouros foi criado, permitindo você coletar $(l:creating_life/mob_heads)Cabeças de todos os tipo de Criaturas$(/l)."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Características",
+      "item": "minecraft:iron_sword{Enchantments: [{id: \"spectrum:treasure_hunter\", lvl: 3s}]}",
+      "text": "Ocasionalmente derruba cabeças de criaturas ao matar.$(br2)Nível Máximo: 3$(br)Aplicável a armas corpo a corpo.$(br)Mutualmente exclusivo com Saque."
+    },
+    {
+      "type": "spectrum:enchanter_crafting",
+      "title": "Receita de Encantador",
+      "recipe": "spectrum:enchanter/spectrum_books/book_treasure_hunter",
+      "text": "Você pode infusionar um livro comum com Caçador de Tesouros rodeando seu Encantador com Pigmento e outros materiais necessários."
+    },
+    {
+      "type": "spectrum:enchanter_upgrading",
+      "title": "Melhoria de Encantador",
+      "recipe": "spectrum:enchantment_upgrade/spectrum/treasure_hunter_level_2",
+      "text": "Melhorar Caçador de Tesouros do nível 1 ao nível 2 é razoavelmente barato no começo.$(br)Esse preço rapidamenta aumenta para mais e mais Pigmento e Experiência para cada nível adicional."
+    }
+  ]
+}

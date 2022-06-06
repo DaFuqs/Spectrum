@@ -1,0 +1,18 @@
+{
+  "name": "Inkwell",
+  "advancement": "spectrum:progression/unlock_inkwell",
+  "icon": "spectrum:inkwell",
+  "category": "spectrum:magic_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(italic)Your hands were shaking, as you brought this idea onto paper. This is going to be big.$()$(br2)Producing Ink always was a tedious process: from collecting $(l:general/shards)Gemstone Shards$(/l), $(l:general/anvil_crushing)crushing them$(/l), $(l:general/colored_trees)creating trees$(/l) just to cut them down again for their $(l:general/pigment)Pigment$(/l), just to convert it into Ink in the $(l:magic/color_picker)Color Picker$(/l).$(br)$(italic)Time to cut out all these intermediate stages."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier3/inkwell",
+      "text": "The Inkwell, placed on a $(l:magic/crystal_apothecary)Crystal Apothecary$(/l), directly converts the geodes energy into Ink, allowing it to be transmitted via $(l:magic/ink_duct)Ink Ducts$(/l)."
+    }
+  ]
+}

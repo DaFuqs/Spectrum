@@ -1,0 +1,19 @@
+{
+  "name": "Puller Node",
+  "icon": "spectrum:provider_node",
+  "advancement": "spectrum:progression/pastel_network/__unlock_basic_nodes",
+  "category": "spectrum:pastel_network_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Puller Node",
+      "text": "The Puller Node has the special feature of having an interface. There you are able to configure items that the Puller Node will actively request from other nodes to be placed in its connected inventory."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier3/pastel_network/puller_node",
+      "text": "The order, in which it checks other nodes to request items from is as follows:$(br)1. $(l:pastel_network/pusher_node)Pusher Nodes$(/l)$(br)2. $(l:pastel_network/provider_node)Provider Nodes$(/l)$(br)3. $(l:pastel_network/storage_node)Storage Nodes$(/l)"
+    }
+  ]
+}

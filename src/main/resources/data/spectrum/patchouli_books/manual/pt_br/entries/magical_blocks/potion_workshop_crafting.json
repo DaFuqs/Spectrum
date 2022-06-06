@@ -1,0 +1,70 @@
+{
+  "name": "Potion Works.: Crafting",
+  "icon": "spectrum:potion_workshop",
+  "advancement": "spectrum:progression/unlock_potion_workshop",
+  "category": "spectrum:magical_blocks_category",
+  "extra_recipe_mappings": {
+    "minecraft:water_bucket": 0,
+    "minecraft:lava_bucket": 0,
+    "spectrum:midnight_solution_bucket": 0,
+    "minecraft:honey_bottle": 0,
+    "minecraft:powder_snow_bucket": 0,
+    "minecraft:experience_bottle": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Workshop Crafting",
+      "text": "As the name implies the Potion Workshops main focus is the creation of powerful Potions.$(br)But you found great utility creating other things, too. With the help of the filigree and granular adjustable switches and valves you could also recreate the creation of Mud and Liquid Crystal here - way more efficient than before.$(br)$()All these recipes do not use $(l:magical_blocks/potion_workshop_reagents)Reagents$(/l)."
+    },
+    {
+      "type": "spectrum:potion_workshop_crafting",
+      "title": "Water",
+      "recipe": "spectrum:potion_workshop_crafting/water_bucket",
+      "text": ""
+    },
+    {
+      "type": "spectrum:potion_workshop_crafting",
+      "title": "Lava",
+      "recipe": "spectrum:potion_workshop_crafting/lava_bucket",
+      "text": "The $(l:magical_blocks/lava_sponge)Lava Sponge$(/l) will not get used up, allowing you to create large amounts of Lava quickly."
+    },
+    {
+      "type": "spectrum:potion_workshop_crafting",
+      "title": "Mud",
+      "recipe": "spectrum:potion_workshop_crafting/mud_bucket",
+      "text": ""
+    },
+    {
+      "type": "spectrum:potion_workshop_crafting",
+      "title": "Liquid Crystal",
+      "recipe": "spectrum:potion_workshop_crafting/liquid_crystal_bucket",
+      "text": ""
+    },
+    {
+      "type": "spectrum:potion_workshop_crafting",
+      "title": "Midnight Solution",
+      "advancement": "spectrum:midgame/collect_midnight_chip",
+      "recipe": "spectrum:potion_workshop_crafting/midnight_solution_bucket",
+      "text": ""
+    },
+    {
+      "type": "spectrum:potion_workshop_crafting",
+      "title": "Liquefying Honey",
+      "recipe": "spectrum:potion_workshop_crafting/honey_bottle",
+      "text": ""
+    },
+    {
+      "type": "spectrum:potion_workshop_crafting",
+      "title": "Powdering Snow",
+      "recipe": "spectrum:potion_workshop_crafting/powder_snow_bucket",
+      "text": ""
+    },
+    {
+      "type": "spectrum:potion_workshop_crafting",
+      "title": "Bottles o' Enchanting",
+      "recipe": "spectrum:potion_workshop_crafting/experience_bottle",
+      "text": "Will consume 10 XP from the Knowledge Gem"
+    }
+  ]
+}

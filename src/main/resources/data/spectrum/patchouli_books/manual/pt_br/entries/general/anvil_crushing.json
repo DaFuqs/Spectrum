@@ -1,0 +1,21 @@
+{
+  "name": "Esmagar Item",
+  "icon": "minecraft:anvil",
+  "sortnum": 3,
+  "advancement": "spectrum:place_pedestal",
+  "category": "spectrum:general_category",
+  "turnin": "spectrum:collect_gemstone_powder",
+  "pages": [
+    {
+      "type": "patchouli:image",
+      "title": "Esmagar Item",
+      "images": [ "spectrum:textures/gui/manual/anvil_crushing.png" ],
+      "border": true,
+      "text": "$(italic)\"Para criar algo novo$(br)você tem que ir pelo caminho da destruição\"      - alguém"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Até agora você usou sua bigorna principalmente para reparar e aprimorar suas ferramentas. Porém, um objeto tã̀o pesado como uma bigorna pode ser muito mais útil! Por que não usá-la para esmagar coisas até o pó por força bruta? Tipo a cabeça dos seus inimigos ... ou itens. É, isso é provavelmente melhor.$(br2)Você pode esmagar $(l:general/shards)Fragmentos de Pedra Gema$() em $(l:general/gemstone_powder)pó$().$(br2)$(italic)Dica: Quanto mais a bigorna cair, melhor."
+    }
+  ]
+}

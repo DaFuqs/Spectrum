@@ -1,0 +1,26 @@
+{
+  "name": "Pó de Pedra Gema",
+  "icon": "spectrum:amethyst_powder",
+  "sortnum": 4,
+  "advancement": "spectrum:place_pedestal",
+  "category": "spectrum:general_category",
+  "turnin": "spectrum:collect_gemstone_powder",
+  "extra_recipe_mappings": {
+    "spectrum:topaz_powder": 0,
+    "spectrum:amethyst_powder": 0,
+    "spectrum:citrine_powder": 0,
+    "spectrum:onyx_powder": 0,
+    "spectrum:moonstone_powder": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "A maioria das receitas no seue pedestal precisam de Pó de Pedra Gema como fonte de energia mágica.$(br2)Pó de Pedra Gema vem em várias cores e pode ser conseguido ao pulverizar fragmentos de pedra gema usando $(l:general/anvil_crushing)Esmagamento de Item$()."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Misturando Cores",
+      "text": "Não tem nada mais importante para um futuro artista que misturar a tinta certa.$(br)Infelizmente, você descobriu que no caso de Pó de Pedra Gema, não é tão fácil quanto pareceu no começo: Os pós não querem misturar direito. O resultado é sempre uma bagunça multicolorida.$(br2)Talvez você possa inventar alguma coisa depois?"
+    }
+  ]
+}

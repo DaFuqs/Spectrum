@@ -1,0 +1,37 @@
+{
+  "name": "Experimento #3: Ruína",
+  "icon": "spectrum:bottle_of_ruin",
+  "advancement": "spectrum:progression/unlock_bottle_of_ruin",
+  "category": "spectrum:creating_life_category",
+  "turnin": "spectrum:midgame/break_decayed_bedrock",
+  "extra_recipe_mappings": {
+    "spectrum:bottle_of_ruin": 0,
+    "spectrum:bedrock_dust": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:bottle_of_ruin",
+      "text": "É isso. A perfeição da sua receita. Você nem fazer isso sútil. Essa coisa é $(#ff0000)NOJENTA$() como planejado, você nem chamou daquilo pela diversão.$(br)Isso parece ser a coisa agressiva o suficiente pra destruir até materiais que antes eram ditos como inquebráveis.$(br)$(bold)Se você nao tomar cuidado você pode aruinar o mundo. Literalmente.$()"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Receita de Pedestal",
+      "recipe": "spectrum:pedestal/tier3/bottle_of_ruin",
+      "text": "Você pode não ter criado o tipo de vida que você imaginou inicialmente, mas você ainda criou alguma coisa claramente poderosa. Acho que conta?"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:midgame/break_decayed_bedrock",
+      "title": "Pó de Rocha-Mãe",
+      "item": "spectrum:bedrock_dust",
+      "text": "Até Rocha-Mãe não foi forte o suficiente para aguentar sua nova \"vida\" criada. Ela quebrou pela Rocha-Mãe que nem dentes de leão no concreto"
+    },
+    {
+      "type": "patchouli:text",
+      "advancement": "spectrum:midgame/break_decayed_bedrock",
+      "title": "Um Lembrete Amigo",
+      "text": "Você deveria estar lendo suas anotações enquanto aquela coisa ainda está livre por aí? Você deveria mudar isso assim que possível se não você VAI se arrepender.$(br2)Por sorte você já inventou um $(l:creating_life/decay_away)contra-agente adequado$(\l)."
+    }
+  ]
+}

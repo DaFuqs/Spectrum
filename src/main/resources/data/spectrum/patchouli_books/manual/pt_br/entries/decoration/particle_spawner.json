@@ -1,0 +1,22 @@
+{
+  "name": "Gerador de Particulas",
+  "advancement": "spectrum:progression/unlock_particle_spawner",
+  "icon": "spectrum:particle_spawner",
+  "category": "spectrum:decoration_category",
+  "extra_recipe_mappings": {
+    "spectrum:particle_spawner": 0,
+    "spectrum:creative_particle_spawner": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(italic)A Estrela Cadente que você pegou deixou uma chuva de particulas no seu caminho ao chão. Você criou o Gerador de Particulas para replicar esse espetáculo - e vários outros - você mesmo.$()$(br2)Uma chaminé? Particulas de lançamento de foguete? Particulas de chuva para a sua estrutura de Pedestal? O Gerador de Particulas consegue te ajudar."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Receita de Pedestal",
+      "recipe": "spectrum:pedestal/tier2/particle_spawner",
+      "text": "Na interface do gerador de particulas você pode configurar as particulas geradas a vontade. Use um sinal de redstone para começar a exibição fantástica."
+    }
+  ]
+}

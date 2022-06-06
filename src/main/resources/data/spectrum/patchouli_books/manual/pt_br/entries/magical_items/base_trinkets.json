@@ -1,0 +1,42 @@
+{
+  "name": "Basic Trinkets",
+  "advancement": "spectrum:progression/unlock_any_base_trinket",
+  "icon": "spectrum:fanciful_stone_ring",
+  "category": "spectrum:magical_items_category",
+  "extra_recipe_mappings": {
+    "spectrum:fanciful_stone_ring": 0,
+    "spectrum:fanciful_belt": 0,
+    "spectrum:fanciful_pendant": 0,
+    "spectrum:fanciful_circlet": 0
+  },
+  "pages": [
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Fanciful Stone Ring",
+      "recipe": "spectrum:pedestal/tier3/trinkets/fanciful_stone_ring",
+      "advancement": "spectrum:progression/unlock_fanciful_stone_ring",
+      "text": "These basic accessories are used as a base for more advanced Trinkets. All final Trinkets are created in the $(l:general/fusion_shrine)Fusion Shrine$()."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Fanciful Circlet",
+      "recipe": "spectrum:pedestal/tier3/trinkets/fanciful_circlet",
+      "advancement": "spectrum:progression/unlock_fanciful_circlet",
+      "text": ""
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Fanciful Belt",
+      "recipe": "spectrum:pedestal/tier3/trinkets/fanciful_belt",
+      "advancement": "spectrum:progression/unlock_fanciful_belt",
+      "text": ""
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Fanciful Pendant",
+      "recipe": "spectrum:pedestal/tier3/trinkets/fanciful_pendant",
+      "advancement": "spectrum:progression/unlock_fanciful_pendant",
+      "text": ""
+    }
+  ]
+}

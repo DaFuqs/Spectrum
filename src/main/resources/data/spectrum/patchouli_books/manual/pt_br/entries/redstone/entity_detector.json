@@ -1,0 +1,22 @@
+{
+  "name": "Entity Detector",
+  "advancement": "spectrum:progression/detectors/unlock_entity_detector",
+  "icon": "spectrum:player_detector",
+  "category": "spectrum:redstone_category",
+  "extra_recipe_mappings": {
+    "spectrum:entity_detector": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Creature Detector",
+      "text": "The gemstone built into the Mob Detector reacts to micro-vibrations in the ground. This gives the Mob Detector the ability to measure the number of creatures near it."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier1/detectors/entity_detector",
+      "text": "For each creature within a 10 block radius, the Mob Detector outputs an additional strength of 1."
+    }
+  ]
+}

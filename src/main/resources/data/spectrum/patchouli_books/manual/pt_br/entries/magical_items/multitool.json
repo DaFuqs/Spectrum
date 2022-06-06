@@ -1,0 +1,22 @@
+{
+  "name": "Multitool",
+  "advancement": "spectrum:build_basic_pedestal_structure",
+  "icon": "spectrum:multitool",
+  "category": "spectrum:magical_items_category",
+  "extra_recipe_mappings": {
+    "spectrum:multitool": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:multitool",
+      "text": "Whenever you leave your home, you carry half a tool shed with you. Given the tons of stone you can carry around with you, that is no even worth mentioning, though. Nevertheless, a universal tool that combines the abilities of a pickaxe, axe, shovel and hoe would suit you.$()$(br)"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier2/multitool",
+      "text": "It's not as efficient in the individual tasks, but it is much better than having to change tools every three seconds."
+    }
+  ]
+}

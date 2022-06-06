@@ -1,0 +1,38 @@
+{
+  "name": "Fragmento Espectral",
+  "advancement": "spectrum:lategame/spectrum_lategame",
+  "sortnum": 15,
+  "icon": "spectrum:spectral_shard",
+  "category": "spectrum:general_category",
+  "turnin": "spectrum:lategame/create_spectral_shard",
+  "extra_recipe_mappings": {
+    "spectrum:spectral_shard": 0,
+    "spectrum:spectral_shard_block": 0,
+    "spectrum:spectral_shard_storage_block": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Fragmento Espectral",
+      "text": "TODO"
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Receita de Fusão",
+      "recipe": "spectrum:fusion_shrine/spectral_shard",
+      "text": "TODO"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "advancement": "spectrum:lategame/create_spectral_shard",
+      "recipe": "spectrum:pedestal/tier1/compacting/spectral_shard_block",
+      "text": "$(italic)Bonito!$()"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "advancement": "spectrum:lategame/create_spectral_shard",
+      "recipe": "spectrum:pedestal/tier1/compacting/spectral_shard_storage_block",
+      "text": "$(italic)E você pensou que um sinalizador de Blocos de Netherita era excessivo?$()"
+    }
+  ]
+}

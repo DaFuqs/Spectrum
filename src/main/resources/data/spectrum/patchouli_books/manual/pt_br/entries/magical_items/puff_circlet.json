@@ -1,0 +1,21 @@
+{
+  "name": "Puff Circlet",
+  "advancement": "spectrum:progression/unlock_puff_circlet",
+  "icon": "spectrum:puff_circlet",
+  "category": "spectrum:magical_items_category",
+  "extra_recipe_mappings": {
+    "spectrum:puff_circlet": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "This glistening hoop creates a protective film of air around you.$(br)Grants you $(c_green)4$() points of $(c_blue)Azure Dike$(). $(br)Using those charges, it not only protects you from enemy projectiles, but can even cushion a deep fall.$(br)The Puff Circlet also prevents Farmland from being trampled."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Fusion Recipe",
+      "recipe": "spectrum:fusion_shrine/trinkets/puff_circlet",
+      "text": "$(italic)Gone are the days when skeletons sniped you from behind in an unforeseen moment."
+    }
+  ]
+}

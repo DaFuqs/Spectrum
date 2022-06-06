@@ -1,0 +1,26 @@
+{
+  "name": "Carrilhões de Pedra Preciosa",
+  "icon": "spectrum:amethyst_chime",
+  "advancement": "spectrum:progression/gemstone_chimes/unlock_any_chime",
+  "category": "spectrum:decoration_category",
+  "extra_recipe_mappings": {
+    "spectrum:topaz_chime": 0,
+    "spectrum:amethyst_chime": 0,
+    "spectrum:citrine_chime": 0,
+    "spectrum:onyx_chime": 0,
+    "spectrum:moonstone_chime": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Carrilhões de Pedra Preciosa",
+      "text": "$(italic)Tendo lidado com gemas o suficiente, você nota que agora conseuge dar forma a esses recursos frágeis de jeito muito fino.$(br2)Balançando lentamente ao vento, esses sons de carrilhão te lembram do começo da sua jornada - a primeira vez que você pisou em um geodo."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Receita de Pedestal",
+      "recipe": "spectrum:pedestal/tier3/gemstone_chimes/topaz_chime",
+      "text": "Cada Carrilhão emite o som suave da sua Pedra Gema correspondente."
+    }
+  ]
+}

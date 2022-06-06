@@ -1,0 +1,21 @@
+{
+  "name": "Livro Dourado",
+  "icon": "spectrum:gilded_book",
+  "advancement": "spectrum:progression/unlock_gilded_book",
+  "category": "spectrum:enchanting_category",
+  "extra_recipe_mappings": {
+    "spectrum:gilded_book": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Livro Dourados servrem como alternativas a Livros mundanos para encatamentos no $(l:enchanting/enchanter)Encantador$(/l). Sendo muito mais receptivos a magia, o processo de encantação vai ser mais rápido e mais barato.$(br)Mais que isso, eles podem ser usados para copiar encantamentos de todo tipo de Itens das Tijelas de Item em volta do Encantador (não só de livros Encantados)."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Receita de Pedestal",
+      "recipe": "spectrum:pedestal/tier3/gilded_book",
+      "text": "$(italic)Tudo que não é ouro brilho.$(br)Porém, esses livro são."
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "name": "Crafting Tablet",
+  "icon": "spectrum:crafting_tablet",
+  "advancement": "spectrum:progression/unlock_crafting_tablet",
+  "category": "spectrum:magical_items_category",
+  "extra_recipe_mappings": {
+    "spectrum:crafting_tablet": 0
+  },
+  "pages": [
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Crafting Tablet",
+      "recipe": "spectrum:pedestal/tier1/crafting_tablet",
+      "text": "The Crafting Tablet is so much more than a portable Crafting Table. It can save an inserted recipe and let's you craft it on demand."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Pedestal Automation",
+      "text": "There may come a time when you feel you need a certain material so often that you want to automate it. Or you are one of those masochists who automate every single item because they can.$(br2)The $(l:general/pedestal)Pigment Pedestal$() has a dedicated slot for a Crafting Tablet. When you add items with hoppers or similar to the pedestal, they will be placed appropriately and evenly, like specified in the saved recipe."
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "name": "Encantação Spectrum",
+  "icon": "spectrum:enchanter",
+  "priority": true,
+  "sortnum": 1,
+  "advancement": "spectrum:midgame/enter_liquid_crystal",
+  "category": "spectrum:enchanting_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Encantação Spectrum",
+      "text": "Usar o Encantador para encantar itens é bem fácil:$(br)Coloque Livros Encantados nas $(l:decoration/item_bowl)Tijelas de Item$(/l) e o item que você quer encantar no próprio Encantador.$(br2)Diferente de encatação normal, isso não consome os livros - mas vai precisar de uma quantidade de experiência muito maior."
+    },
+    {
+      "type": "patchouli:image",
+      "images": [ "spectrum:textures/gui/manual/enchanting_items.png" ],
+      "border": true,
+      "text": "Finalmente providencie uma fonte constante de experiência usando uma $(l:magical_items/knowledge_gem)Gema do Conhecimento$(/l) e está tudo pronto."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "minecraft:enchanted_book",
+      "title": "Copiar Livros Encantados",
+      "text": "Você também pode usar esse mecanismo para criar novos Livros Encantador. Basta colocar o(s) Livro(s) Encantado(s) que você quer colocar nas $(l:decoration/item_bowl)Tijelas de Item$(/l) e um livro simples no $(l:enchanting/enchanter)Encantador$(/l).$(br2)Por causa da natureza mundana dos livros isso vai precisar de muita experiência."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Experiência Necessária",
+      "text": "Você estima um valor $(bold)entre 50 e 200 pontos de experiência na maior parte dos casos por encantamento$().$(br)Quanto mais raro o encantamento, maior seu nível, melhor o alvo para receber os encantamentos, e alguns outros fatores afeta esse resultado.$(br)Interferências aumentam o custo, como encantamentos que não são para seu alvo."
+    }
+  ]
+}

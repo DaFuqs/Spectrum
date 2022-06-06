@@ -1,0 +1,18 @@
+{
+  "name": "Indo ao Mais Profundo",
+  "icon": "spectrum:bottle_of_ruin",
+  "sortnum": 0,
+  "advancement": "spectrum:lategame/__spectrum_lategame",
+  "category": "spectrum:dimension_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "TODO"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:bottle_of_ruin",
+      "text": "TODO"
+    }
+  ]
+}

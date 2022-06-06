@@ -273,7 +273,7 @@
   "text.autoconfig.Spectrum.option.TightGripEnchantmentEnabled": "Encantamento Aperto Firme disponível",
   "text.autoconfig.Spectrum.option.SteadfastEnchantmentEnabled": "Encantamento Firme disponível",
   "text.autoconfig.Spectrum.option.IndestructibleEnchantmentEnabled": "Encantamento Indestrutível disponível",
-  
+
   "text.autoconfig.Spectrum.option.TreasureHunterMaxLevel": "Nível máximo para encantamento Caçador de Tesouros",
   "text.autoconfig.Spectrum.option.DisarmingMaxLevel": "Nível máximo para encantamento Desarmamento",
   "text.autoconfig.Spectrum.option.FirstStrikeMaxLevel": "Nível máximo para encantamento Primeiro Ataque",
@@ -412,7 +412,7 @@
   "block.spectrum.entity_detector": "Detector de Criaturas",
   "block.spectrum.block_placer": "Colocador de Blocos",
   "block.spectrum.redstone_wireless": "Redstone Sem Fio",
-  
+
   "block.spectrum.redstone_calculator": "Calculador Redstone",
   "block.spectrum.redstone_calculator.mode_set": "Definir modo para: ",
   "block.spectrum.redstone_calculator.mode.addition": "Adição",
@@ -422,7 +422,7 @@
   "block.spectrum.redstone_calculator.mode.modulo": "Módulo",
   "block.spectrum.redstone_calculator.mode.min": "Mínimo",
   "block.spectrum.redstone_calculator.mode.max": "Máximo",
-  
+
   "block.spectrum.redstone_timer": "Temporizador de Redstrone",
   "block.spectrum.redstone_timer.setting.active": "Definir tempo ativo para: ",
   "block.spectrum.redstone_timer.setting.inactive": "Definir tempo inativo para: ",
@@ -431,7 +431,7 @@
   "block.spectrum.redstone_timer.setting.one_minute": "1 minuto",
   "block.spectrum.redstone_timer.setting.ten_minutes": "10 minutos",
   "block.spectrum.redstone_timer.setting.one_hour": "1 hora",
-  
+
   "block.spectrum.cyan_spirit_sallow_vines_head": "Vinhas Pálidas de Espírito Ciano",
   "block.spectrum.magenta_spirit_sallow_vines_head": "Vinhas Pálidas de Espírito Magenta",
   "block.spectrum.yellow_spirit_sallow_vines_head": "Vinhas Pálidas de Espírito Amarelo",
@@ -706,7 +706,7 @@
   "item.spectrum.mud_bucket": "Balde de Lama",
   "block.spectrum.mud": "Lama",
   "block.spectrum.flowing_mud": "Lama",
-  
+
   "item.spectrum.liquid_crystal_bucket": "Balde de Cristal Líquido",
   "block.spectrum.liquid_crystal": "Cristal Líquido",
   "block.spectrum.flowing_liquid_crystal": "Cristal Líquido",
@@ -796,8 +796,8 @@
   "block.spectrum.polished_calcite": "Calcita Polida",
   "block.spectrum.polished_calcite_pillar": "Pilar de Calcita Polida",
   "block.spectrum.polished_calcite_crest": "Calcita Polida Ornamental",
-  "block.spectrum.chiseled_polished_calcite": "Calcita Polida Talhado",
-  "block.spectrum.notched_polished_calcite": "Calcita Polida Entalhado",
+  "block.spectrum.chiseled_polished_calcite": "Calcita Polida Talhada",
+  "block.spectrum.notched_polished_calcite": "Calcita Polida Entalhada",
   "block.spectrum.polished_calcite_slab": "Lage de Calcita Polida",
   "block.spectrum.polished_calcite_wall": "Muro de Calcita Polida",
   "block.spectrum.polished_calcite_stairs": "Escadas de Calcita Polida",
@@ -827,7 +827,7 @@
   "block.spectrum.citrine_player_only_glass": "Vidro Semi-Permeável de Citrino",
   "block.spectrum.onyx_player_only_glass": "Vidro Semi-Permeável de Ônix",
   "block.spectrum.moonstone_player_only_glass": "Vidro Semi-Permeável de Pedra da Lua",
-  
+
   "block.spectrum.amethyst_calcite_lamp": "Lâmpada de Calcita e Ametista",
   "block.spectrum.topaz_calcite_lamp": "Lâmpada de Calcita e Topázio",
   "block.spectrum.citrine_calcite_lamp": "Lâmpada de Calcita e Citrino",
@@ -1015,7 +1015,7 @@
   "block.spectrum.wither_mob_block": "Ídolo Destrutivo",
   "block.spectrum.wither_skeleton_mob_block": "Ídolo Oculto",
   "block.spectrum.zombie_mob_block": "Ídolo Abandonado",
-  
+
   "block.spectrum.mob_block.tooltip": "Quano ativado por uso/ser pisado/ser atingido por projétil:",
   "block.spectrum.bonemealing_mob_block.tooltip": "§7Fertiza uma planta próxima",
   "block.spectrum.echolocating_mob_block.tooltip": "§7Ecolocaliza criaturas em um raio de %d blocos",
@@ -1033,7 +1033,7 @@
   "block.spectrum.potion_effect_mob_block.tooltip": "§7Ativa %s",
   "block.spectrum.projectile_mob_block.tooltip": "§7Atira um(a) %s",
   "block.spectrum.shearing_mob_block.tooltip": "§7Depila Entidade por perto (ações feitas com tesoura)",
-  "block.spectrum.silverfish_inserting_mob_block.tooltip": "§7Coloca uma Traça do bloco acima",
+  "block.spectrum.silverfish_inserting_mob_block.tooltip": "§7Invade Blocos vizinhos com Traça",
   "block.spectrum.slime_sizing_mob_block.tooltip": "§7Aumenta o Tamanho de Slimes por perto",
   "block.spectrum.random_teleporting_mob_block.tooltip": "§7Teletransporta você até %d blocos em uma direção aleatória",
   "block.spectrum.line_teleporting_mob_block.tooltip": "§7Teletransporta você em cima do próximo bloco desse tipo",
@@ -1117,7 +1117,7 @@
   "item.spectrum.emergency_chestplate.tooltip": "Te da Absorção & Vida Instantânea quando atingido",
   "item.spectrum.emergency_leggings.tooltip": "Te da Velocidade & Invencibilidade quando atingido",
   "item.spectrum.emergency_boots.tooltip": "Te da Resistência & Regeneraçã̀o quando atingido",
-  
+
   "item.spectrum.vibrant_cyan_catkin": "Amentilho Ciano Vibrante",
   "item.spectrum.vibrant_magenta_catkin": "Amentilho Magenta Vibrante",
   "item.spectrum.vibrant_yellow_catkin": "Amentilho Amarelo Vibrante",
@@ -1134,7 +1134,7 @@
   "item.spectrum.block_flooder.tooltip2": "§fArremesse para usar; Raio de 10 blocos",
   "item.spectrum.block_flooder.tooltip3": "Pega blocos apropriados direto do seu inventário",
   "item.spectrum.block_flooder.tooltip4": "Alternativamente usa Pedregulho",
-  
+
   "item.spectrum.black_pigment": "Pigmento Preto",
   "item.spectrum.blue_pigment": "Pigmento Azul",
   "item.spectrum.brown_pigment": "Pigmento Marrom",
@@ -1699,10 +1699,8 @@
   "advancements.spectrum.craft_bottle_of_fading.description": "Hora de experimentar com suas novas abilidades mágicas. Crie vida! Ou melhor... microorganismos. Fracos e lentos. É alguma coisa. O que que eles comem?",
   "advancements.spectrum.craft_bottle_of_failing.title": "O que Não Pode Ser",
   "advancements.spectrum.craft_bottle_of_failing.description": "Seus primeiros experimentos foram um sucesso. Mas tem que ter mais...",
-  "advancements.spectrum.craft_bottle_of_ruin.title": "Em breve(tm)",
-  "advancements.spectrum.craft_bottle_of_ruin.description": "-- ainda não disponível --",
-  "__advancements.spectrum.craft_bottle_of_ruin.title": "O que Nunca deveria ter Sido",
-  "__advancements.spectrum.craft_bottle_of_ruin.description": "Parece que ainda tem mais. Crie decaimento de mundos infundindo cristais puros com o poder do vazio",
+  "advancements.spectrum.craft_bottle_of_ruin.title": "O que Nunca deveria ter Sido",
+  "advancements.spectrum.craft_bottle_of_ruin.description": "Parece que ainda tem mais. Crie decaimento de mundos infundindo cristais puros com o poder do vazio",
   "advancements.spectrum.craft_colored_pedestal.title": "CMY ON",
   "advancements.spectrum.craft_colored_pedestal.description": "Aprimore seu Pedestal de Pigmento usando todos os fragmentos coletados",
   "advancements.spectrum.craft_colored_sapling.title": "Ei mudinha, você gosta de raça negra?",
@@ -1845,7 +1843,7 @@
   "advancements.spectrum.craft_blacklisted_memory_success.title": "Sucesso Novamente",
   "advancements.spectrum.craft_blacklisted_memory_success.description": "Com sucesso lembre de uma criatura poderosa como Memória. Você ta ficando bom niso, ein?",
   "advancements.spectrum.plant_jade_vines.title": "Legado de Tempos Distântes",
-  "advancements.spectrum.plant_jade_vines.description": "Germine Sementes de Vinha de Jade e plante-as em uma Cerca. Como todas as Vinhas, elas crescem para baixo. Escondidas por eras, a luz do sol vai ser muito intensa para sua planta. Elas so crescem quando expostas a luz gentil da lua",
+  "advancements.spectrum.plant_jade_vines.description": "Germine Sementes de Vinha de Jade e plante-as na parte de baixo de uma Cerca. Como todas as Vinhas, elas crescem para baixo. Escondidas por eras, a luz do sol vai ser muito intensa para sua planta. Elas so crescem quando expostas a luz gentil da lua",
   "advancements.spectrum.drink_restoration_tea_with_milk.title": "O Pagão",
   "advancements.spectrum.drink_restoration_tea_with_milk.description": "Beba Chá de Restauração com Leite",
   "advancements.spectrum.harvest_moonstruck_nectar.title": "Melhor Brilho noturno do Mundo",
@@ -1861,7 +1859,7 @@
   "advancements.spectrum.collect_hover_block.title": "Força Imparavel vs. A Própria",
   "advancements.spectrum.collect_hover_block.description": "Eu me pergunto...",
   "advancements.spectrum.wear_complete_set_of_bedrock_armor.title": "Cavaleiro Preto",
-  "advancements.spectrum.wear_complete_set_of_bedrock_armor.description": "das rosas, eterno. Vista um conjunto completo de Armadura de Rocha-Mãe.",
+  "advancements.spectrum.wear_complete_set_of_bedrock_armor.description": "Cavaleiro Preto das rosas, eterno. Vista um conjunto completo de Armadura de Rocha-Mãe.",
 
   "______name_changes_for_vanilla_blocks" : "Mudanças:",
   "block.minecraft.polished_basalt": "Pilar de Basalto",

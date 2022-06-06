@@ -1,0 +1,33 @@
+{
+  "name": "Azure Dike Equipment",
+  "advancement": "spectrum:progression/unlock_any_azure_dike_equipment",
+  "icon": "spectrum:azure_dike_ring",
+  "category": "spectrum:magical_items_category",
+  "extra_recipe_mappings": {
+    "spectrum:azure_dike_ring": 0,
+	"spectrum:azure_dike_belt": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "The results of combining $(l:resources/azurite)Azurite$(/l) and the protective properties of $(l:general/pigment#blue)Blue Pigment$(/l) really sparked your interest. The material seemed to surround itself with a transparent aura, which took some effort to penetrate when you reached for the lump.$(br2)$(italic)This is going to be interesting..."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Azure Dike",
+      "text": "A magical aura surrounding your body, shielding you from incoming damage.$(br)Slowly recharges up to a specific amount.$(br2)Each piece of Azure Dike Equipment increases the maximum amount of protection."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Azure Dike Ring",
+      "recipe": "spectrum:fusion_shrine/trinkets/azure_dike_ring",
+      "text": "Grants you $(c_green)4$() points of $(c_blue)Azure Dike$()."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Azure Dike Belt",
+      "recipe": "spectrum:fusion_shrine/trinkets/azure_dike_belt",
+      "text": "Grants you $(c_green)6$() points of $(c_blue)Azure Dike$()."
+    }
+  ]
+}

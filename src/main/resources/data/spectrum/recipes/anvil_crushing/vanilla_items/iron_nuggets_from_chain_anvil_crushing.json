@@ -1,0 +1,14 @@
+{
+  "type": "spectrum:anvil_crushing",
+  "ingredient": {
+    "item": "minecraft:chain"
+  },
+  "crushedItemsPerPointOfDamage": 0.2,
+  "experience": 0.0,
+  "result" : {
+    "item": "minecraft:iron_nugget",
+    "count": 6
+  },
+  "particleEffectIdentifier": "cloud",
+  "soundEventIdentifier": "block.metal.break"
+}

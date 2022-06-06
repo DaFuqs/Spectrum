@@ -1574,6 +1574,7 @@
   "item.spectrum.azure_dike_belt.tooltip": "§7Increases §9Azure Dike§7 recovery after getting hit",
   "item.spectrum.azure_dike_ring": "Azure Dike Ring",
   "item.spectrum.azure_dike_ring.tooltip": "§7Slightly increases §9Azure Dike§7 charging",
+  "item.spectrum.azure_dike_amulet": "Shieldgrasp Amulet",
   "item.spectrum.azure_dike_provider.tooltip": "§7Grants §a%d§7 units of §9Azure Dike",
 
   "item.spectrum.pigment_palette": "Pigment Palette",
@@ -1640,10 +1641,10 @@
   "item.spectrum.whispy_circlet.tooltip": "§7Prevents Spawning of Phantoms",
   "item.spectrum.whispy_circlet.tooltip2": "§7Reduces the duration of Negative Effects",
   "item.spectrum.whispy_circlet.tooltip3": "§7Sleeping fully heals",
-  "item.spectrum.extra_heart_ring": "Extra Heart Ring",
-  "item.spectrum.extra_heart_ring.tooltip": "Increases your max Health",
-  "item.spectrum.extra_reach_gloves": "Extra Reach Gloves",
-  "item.spectrum.extra_reach_gloves.tooltip": "Increases your Reach",
+  "item.spectrum.heartsingers_reward": "Heartsinger's Reward",
+  "item.spectrum.heartsingers_reward.tooltip": "Increases your max Health",
+  "item.spectrum.gloves_of_dawns_grasp": "Gloves of Dawn's Grasp",
+  "item.spectrum.gloves_of_dawns_grasp.tooltip": "Increases your Reach",
 
   "item.spectrum.crafting_tablet": "Crafting Tablet",
   "item.spectrum.crafting_tablet.tooltip.no_recipe": "Put items into the Crafting Grid to save a Recipe",

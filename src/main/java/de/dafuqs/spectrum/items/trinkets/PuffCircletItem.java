@@ -28,7 +28,7 @@ public class PuffCircletItem extends AzureDikeTrinketItem {
 	}
 	
 	@Override
-	public int maxAzureDike() {
+	public int maxAzureDike(ItemStack stack) {
 		return 4;
 	}
 	

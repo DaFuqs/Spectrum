@@ -21,15 +21,15 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.UUID;
 
-public class ExtraHeartRingItem extends InkDrainTrinketItem {
+public class ExtraHealthRingItem extends InkDrainTrinketItem {
 	
-	public ExtraHeartRingItem(Settings settings) {
-		super(settings, InkColors.PINK, 13421772800L, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_extra_heart_ring")); // 20 extra hearts
+	public ExtraHealthRingItem(Settings settings) {
+		super(settings, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_heartsingers_reward"), InkColors.PINK, 13421772800L); // 20 extra hearts
 	}
 	
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-		tooltip.add(new TranslatableText("item.spectrum.extra_heart_ring.tooltip").formatted(Formatting.GRAY));
+		tooltip.add(new TranslatableText("item.spectrum.heartsingers_reward.tooltip").formatted(Formatting.GRAY));
 		super.appendTooltip(stack, world, tooltip, context);
 	}
 	
@@ -41,7 +41,7 @@ public class ExtraHeartRingItem extends InkDrainTrinketItem {
 		long storedInk = inkStorage.getEnergy(inkStorage.getStoredColor());
 		int extraHearts = getExtraHearts(storedInk);
 		if(extraHearts != 0) {
-			modifiers.put(EntityAttributes.GENERIC_MAX_HEALTH, new EntityAttributeModifier(uuid, "spectrum:extra_heart_ring", extraHearts, EntityAttributeModifier.Operation.ADDITION));
+			modifiers.put(EntityAttributes.GENERIC_MAX_HEALTH, new EntityAttributeModifier(uuid, "spectrum:heartsingers_reward_ring", extraHearts, EntityAttributeModifier.Operation.ADDITION));
 		}
 		
 		return modifiers;

@@ -14,11 +14,11 @@ import java.util.Optional;
 
 public interface AzureDikeItem {
 	
-	int maxAzureDike();
+	int maxAzureDike(ItemStack stack);
 	
-	float azureDikeRechargeBonusTicks();
+	float azureDikeRechargeBonusTicks(ItemStack stack);
 	
-	float rechargeBonusAfterDamageTicks();
+	float rechargeBonusAfterDamageTicks(ItemStack stack);
 	
 	default void recalculate(LivingEntity livingEntity) {
 		if (!livingEntity.getWorld().isClient) {
@@ -30,10 +30,11 @@ public interface AzureDikeItem {
 				int rechargeRateDefaultBonus = 0;
 				int rechargeTicksAfterDamageBonus = 0;
 				for (Pair<SlotReference, ItemStack> pair : trinketComponent.get().getAllEquipped()) {
+					ItemStack stack = pair.getRight();
 					if (pair.getRight().getItem() instanceof AzureDikeItem azureDikeItem) {
-						maxProtection += azureDikeItem.maxAzureDike();
-						rechargeRateDefaultBonus += azureDikeItem.azureDikeRechargeBonusTicks();
-						rechargeTicksAfterDamageBonus += azureDikeItem.rechargeBonusAfterDamageTicks();
+						maxProtection += azureDikeItem.maxAzureDike(stack);
+						rechargeRateDefaultBonus += azureDikeItem.azureDikeRechargeBonusTicks(stack);
+						rechargeTicksAfterDamageBonus += azureDikeItem.rechargeBonusAfterDamageTicks(stack);
 					}
 				}
 				

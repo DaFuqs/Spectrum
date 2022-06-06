@@ -86,8 +86,9 @@ public class SpectrumItemGroups {
 				stacks.add(SpectrumItems.INK_ASSORTMENT.getFullStack());
 				stacks.add(SpectrumItems.PIGMENT_PALETTE.getFullStack());
 				stacks.add(SpectrumItems.ARTISTS_PALETTE.getFullStack());
-				stacks.add(SpectrumItems.EXTRA_HEART_RING.getFullStack());
-				stacks.add(SpectrumItems.EXTRA_REACH_GLOVES.getFullStack());
+				stacks.add(SpectrumItems.HEARTSINGERS_REWARD_RING.getFullStack());
+				stacks.add(SpectrumItems.GLOVES_OF_DAWNS_GRASP.getFullStack());
+				stacks.add(SpectrumItems.AZURE_DIKE_AMULET.getFullStack());
 				
 				// Bottomless Bundles willed with useful, basic materials
 				stacks.add(BottomlessBundleItem.getWithBlockAndCount(Items.COBBLESTONE.getDefaultStack(), 20000));

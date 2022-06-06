@@ -24,12 +24,12 @@ import java.util.UUID;
 public class ExtraReachGlovesItem extends InkDrainTrinketItem {
 
 	public ExtraReachGlovesItem(Settings settings) {
-		super(settings, InkColors.LIGHT_BLUE, 1677721600, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_extra_reach_gloves")); // 5 blocks of extra reach
+		super(settings, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_gloves_of_dawns_grasp"), InkColors.LIGHT_BLUE, 1677721600); // 5 blocks of extra reach
 	}
 	
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-		tooltip.add(new TranslatableText("item.spectrum.extra_reach_gloves.tooltip").formatted(Formatting.GRAY));
+		tooltip.add(new TranslatableText("item.spectrum.gloves_of_dawns_grasp.tooltip").formatted(Formatting.GRAY));
 		super.appendTooltip(stack, world, tooltip, context);
 	}
 	
@@ -41,8 +41,8 @@ public class ExtraReachGlovesItem extends InkDrainTrinketItem {
 		long storedInk = inkStorage.getEnergy(inkStorage.getStoredColor());
 		double extraReach = getExtraReach(storedInk);
 		if(extraReach != 0) {
-			modifiers.put(ReachEntityAttributes.REACH, new EntityAttributeModifier(uuid, "spectrum:reach_gloves", extraReach, EntityAttributeModifier.Operation.ADDITION));
-			modifiers.put(ReachEntityAttributes.ATTACK_RANGE, new EntityAttributeModifier(uuid, "spectrum:reach_gloves", extraReach, EntityAttributeModifier.Operation.ADDITION));
+			modifiers.put(ReachEntityAttributes.REACH, new EntityAttributeModifier(uuid, "spectrum:gloves_of_dawns_grasp", extraReach, EntityAttributeModifier.Operation.ADDITION));
+			modifiers.put(ReachEntityAttributes.ATTACK_RANGE, new EntityAttributeModifier(uuid, "spectrum:gloves_of_dawns_grasp", extraReach, EntityAttributeModifier.Operation.ADDITION));
 		}
 		
 		return modifiers;

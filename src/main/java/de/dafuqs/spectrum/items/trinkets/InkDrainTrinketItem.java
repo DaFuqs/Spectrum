@@ -22,7 +22,7 @@ public class InkDrainTrinketItem extends SpectrumTrinketItem implements InkStora
 	public final InkColor inkColor;
 	public final long maxInk;
 	
-	public InkDrainTrinketItem(Settings settings, InkColor inkColor, long maxInk, Identifier unlockIdentifier) {
+	public InkDrainTrinketItem(Settings settings, Identifier unlockIdentifier, InkColor inkColor, long maxInk) {
 		super(settings, unlockIdentifier);
 		this.inkColor = inkColor;
 		this.maxInk = maxInk;

@@ -1,7 +1,7 @@
 {
   "type": "spectrum:fusion_shrine",
-  "time": 600,
-  "experience": 6.0,
+  "time": 800,
+  "experience": 8.0,
   "fluid": "spectrum:liquid_crystal",
   "ingredients": [
     {

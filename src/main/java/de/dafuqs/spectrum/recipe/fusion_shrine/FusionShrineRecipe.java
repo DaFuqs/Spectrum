@@ -89,29 +89,35 @@ public class FusionShrineRecipe implements Recipe<Inventory>, GatedRecipe {
 	@Override
 	public boolean matches(Inventory inv, World world) {
 		List<IngredientStack> ingredientStacks = this.getIngredientStacks();
-		if (inv.size() >= ingredientStacks.size()) {
-			int inputStackCount = 0;
-			for (int i = 0; i < inv.size(); i++) {
-				ItemStack itemStack = inv.getStack(i);
-				if (!itemStack.isEmpty()) {
-					inputStackCount++;
-					boolean found = false;
-					for (IngredientStack ingredientStack : ingredientStacks) {
-						if (ingredientStack.test(inv.getStack(i))) {
-							found = true;
-							break;
-						}
-					}
-					if (!found) {
-						return false;
-					}
-				}
-			}
-			
-			return inputStackCount == ingredientStacks.size(); // no ingredients in unused slots
-		} else {
+		if(inv.size() < ingredientStacks.size()) {
 			return false;
 		}
+		
+		int inputStackCount = 0;
+		for(int i = 0; i < inv.size(); i++) {
+			if(!inv.getStack(i).isEmpty()) {
+				inputStackCount++;
+			}
+		}
+		if(inputStackCount != ingredientStacks.size()) {
+			return false;
+		}
+		
+		
+		for(IngredientStack ingredientStack : ingredientStacks) {
+			boolean found = false;
+			for(int i = 0; i < inv.size(); i++) {
+				inputStackCount++;
+				if(ingredientStack.test(inv.getStack(i))) {
+					found = true;
+					break;
+				}
+			}
+			if(!found) {
+				return false;
+			}
+		}
+		return true;
 	}
 	
 	@Override
@@ -203,23 +209,23 @@ public class FusionShrineRecipe implements Recipe<Inventory>, GatedRecipe {
 	 * @param tick The crafting tick if the fusion shrine recipe
 	 * @return The effect that should be played for the given recipe tick
 	 */
-	public FusionShrineRecipeWorldEffect getWorldEffectForTick(int tick) {
-		if (tick == 1) {
+	public FusionShrineRecipeWorldEffect getWorldEffectForTick(int tick, int totalTicks) {
+		if(tick == 1) {
 			return this.startWorldEffect;
-		} else if (tick == this.craftingTime) {
+		} else if(tick == totalTicks) {
 			return this.finishWorldEffect;
 		} else {
-			if (this.duringWorldEffects.size() == 0) {
+			if(this.duringWorldEffects.size() == 0) {
 				return null;
-			} else if (this.duringWorldEffects.size() == 1) {
+			} else if(this.duringWorldEffects.size() == 1) {
 				return this.duringWorldEffects.get(0);
 			} else {
 				// we really have to calculate the current effect, huh?
-				float parts = (float) this.craftingTime / this.duringWorldEffects.size();
+				float parts = (float) totalTicks / this.duringWorldEffects.size();
 				int index = (int) (tick / (parts));
 				FusionShrineRecipeWorldEffect effect = this.duringWorldEffects.get(index);
-				if (effect.isOneTimeEffect(effect)) {
-					if (index != (int) parts) {
+				if(effect.isOneTimeEffect(effect)) {
+					if(index != (int) parts) {
 						return null;
 					}
 				}

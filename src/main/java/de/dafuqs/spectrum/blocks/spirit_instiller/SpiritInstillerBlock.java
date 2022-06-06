@@ -52,7 +52,7 @@ public class SpiritInstillerBlock extends BlockWithEntity {
 	@Nullable
 	@Override
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-		if (world.isClient) {
+		if(world.isClient) {
 			return checkType(type, SpectrumBlockEntityRegistry.SPIRIT_INSTILLER, SpiritInstillerBlockEntity::clientTick);
 		} else {
 			return checkType(type, SpectrumBlockEntityRegistry.SPIRIT_INSTILLER, SpiritInstillerBlockEntity::serverTick);
@@ -66,13 +66,13 @@ public class SpiritInstillerBlock extends BlockWithEntity {
 	
 	@Override
 	public void onBroken(WorldAccess world, BlockPos pos, BlockState state) {
-		if (world.isClient()) {
+		if(world.isClient()) {
 			clearCurrentlyRenderedMultiBlock((World) world);
 		}
 	}
 	
 	public static void clearCurrentlyRenderedMultiBlock(World world) {
-		if (world.isClient) {
+		if(world.isClient) {
 			IMultiblock currentlyRenderedMultiBlock = PatchouliAPI.get().getCurrentMultiblock();
 			if (currentlyRenderedMultiBlock != null && currentlyRenderedMultiBlock.getID().equals(SpectrumMultiblocks.SPIRIT_INSTILLER_IDENTIFIER)) {
 				PatchouliAPI.get().clearMultiblock();
@@ -82,9 +82,9 @@ public class SpiritInstillerBlock extends BlockWithEntity {
 	
 	@Override
 	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-		if (world.isClient) {
+		if(world.isClient) {
 			BlockEntity blockEntity = world.getBlockEntity(pos);
-			if (blockEntity instanceof SpiritInstillerBlockEntity spiritInstillerBlockEntity) {
+			if(blockEntity instanceof SpiritInstillerBlockEntity spiritInstillerBlockEntity) {
 				verifyStructure(world, pos, null, spiritInstillerBlockEntity);
 			}
 			return ActionResult.SUCCESS;
@@ -93,7 +93,7 @@ public class SpiritInstillerBlock extends BlockWithEntity {
 			boolean itemsChanged = false;
 			
 			BlockEntity blockEntity = world.getBlockEntity(pos);
-			if (blockEntity instanceof SpiritInstillerBlockEntity spiritInstillerBlockEntity) {
+			if(blockEntity instanceof SpiritInstillerBlockEntity spiritInstillerBlockEntity) {
 				// if the structure is valid the player can put / retrieve blocks into the shrine
 				if (player.isSneaking()) {
 					Inventory inventory = spiritInstillerBlockEntity.getInventory();
@@ -105,7 +105,7 @@ public class SpiritInstillerBlock extends BlockWithEntity {
 				} else {
 					Inventory inventory = spiritInstillerBlockEntity.getInventory();
 					ItemStack currentStack = inventory.getStack(0);
-					if (!handStack.isEmpty() && !currentStack.isEmpty()) {
+					if(!handStack.isEmpty() && !currentStack.isEmpty()) {
 						inventory.setStack(0, handStack);
 						player.setStackInHand(hand, currentStack);
 						itemsChanged = true;
@@ -126,7 +126,7 @@ public class SpiritInstillerBlock extends BlockWithEntity {
 					spiritInstillerBlockEntity.setOwner(player);
 				}
 				
-				if (itemsChanged) {
+				if(itemsChanged) {
 					spiritInstillerBlockEntity.inventoryChanged();
 					world.playSound(null, player.getBlockPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 0.8F, 0.8F + world.random.nextFloat() * 0.6F);
 				}
@@ -144,10 +144,10 @@ public class SpiritInstillerBlock extends BlockWithEntity {
 		
 		// try all 4 rotations
 		BlockRotation checkRotation = lastBlockRotation;
-		for (int i = 0; i < BlockRotation.values().length; i++) {
-			valid = multiblock.validate(world, blockPos.down(2).offset(Support.directionFromRotation(lastBlockRotation), 2), lastBlockRotation);
-			if (valid) {
-				if (i != 0) {
+		for(int i = 0; i < BlockRotation.values().length; i++) {
+			valid = multiblock.validate(world, blockPos.down(2).offset(Support.directionFromRotation(checkRotation), 2), checkRotation);
+			if(valid) {
+				if(i != 0) {
 					spiritInstillerBlockEntity.setMultiblockRotation(checkRotation);
 				}
 				break;
@@ -156,14 +156,14 @@ public class SpiritInstillerBlock extends BlockWithEntity {
 			}
 		}
 		
-		if (valid) {
+		if(valid) {
 			if (serverPlayerEntity != null) {
 				SpectrumAdvancementCriteria.COMPLETED_MULTIBLOCK.trigger(serverPlayerEntity, multiblock);
 			}
 		} else {
-			if (world.isClient) {
+			if(world.isClient) {
 				IMultiblock currentMultiBlock = PatchouliAPI.get().getCurrentMultiblock();
-				if (currentMultiBlock == multiblock) {
+				if(currentMultiBlock == multiblock) {
 					lastBlockRotation = BlockRotation.values()[(lastBlockRotation.ordinal() + 1) % BlockRotation.values().length]; // cycle rotation
 					spiritInstillerBlockEntity.setMultiblockRotation(lastBlockRotation);
 				} else {

@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.enchantments;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentTarget;
 import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
 
 public class IndestructibleEnchantment extends SpectrumEnchantment {
@@ -25,6 +26,11 @@ public class IndestructibleEnchantment extends SpectrumEnchantment {
 	
 	public boolean canAccept(Enchantment other) {
 		return super.canAccept(other);
+	}
+	
+	@Override
+	public boolean isAcceptableItem(ItemStack stack) {
+		return stack.isDamageable();
 	}
 	
 }

@@ -10,8 +10,8 @@ public class PotionMod {
 	public float flatPotencyBonusPositiveEffects = 0.0F;
 	public float flatPotencyBonusNegativeEffects = 0.0F;
 	
-	public int additionalRandomPositiveEffectCount = 0;
-	public int additionalRandomNegativeEffectCount = 0;
+	public float additionalRandomPositiveEffectCount = 0;
+	public float additionalRandomNegativeEffectCount = 0;
 	
 	public float chanceToAddLastEffect = 0.0F;
 	public float lastEffectPotencyModifier = 1.0F;

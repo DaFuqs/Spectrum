@@ -22,7 +22,7 @@
       "item": "spectrum:purple_pigment"
     },
     "G": {
-      "item": "minecraft:glass"
+      "item": "minecraft:tinted_glass"
     }
   },
   "result" : {

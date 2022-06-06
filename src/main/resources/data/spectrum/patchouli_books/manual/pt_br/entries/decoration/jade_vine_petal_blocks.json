@@ -12,7 +12,7 @@
       "type": "patchouli:crafting",
       "title": "Blocos de Pétala de Jade",
       "recipe": "spectrum:crafting_table/jade_vines/jade_vine_petal_block",
-      "text": "Das pétalas coletadas de $(l:resources/jade_vines)Vinhas de Jade$(\l) você criou uma pequena quantidade de blocos de decoração."
+      "text": "Das pétalas coletadas de $(l:resources/jade_vines)Vinhas de Jade$(/l) você criou uma pequena quantidade de blocos de decoração."
     },
     {
       "type": "patchouli:crafting",

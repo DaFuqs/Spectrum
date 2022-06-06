@@ -11,19 +11,17 @@
       "type": "patchouli:spotlight",
       "title": "Memories",
       "item": "spectrum:memory{EntityTag: {id: \"minecraft:fox\"}, TicksToManifest: 20}",
-      "text": "Com o $(l:creating_life/spirit_instiller)Instilador de Espíritos$(\l), você pode trazer vida nova a uma criatura uma vez morta.$(br)Vai se materializar na forma de uma $(italic)Memória$()."
+      "text": "Com o $(l:creating_life/spirit_instiller)Instilador de Espíritos$(/l), você pode trazer vida nova a uma criatura uma vez morta.$(br)Vai se materializar na forma de uma $(italic)Memória$()."
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
       "title": "Receita de Inst. de Espíritos",
       "recipe": "spectrum:spirit_instiller/memories/fox",
-      "text": "To remember the memories about a creature, you need its $(l:creating_life/mob_heads)Head$(/l), as well as its most beloved item and $(l:creating_life/fading#vegetal)Vegetal$(/l) as a bonding agent.$(br)Using $(l:creating_life/failing#neolith)Neolith$(/l) seems to completely overpower the energies of the creature, making the resulting Memory unrecognizable, until it manifests.",
-      "text": "Para lembrar das memórias sobre uma criatura, você vai precisar da sua $(l:creating_life/mob_heads)Cabeça$(\l), assim com seu item favorito $(l:creating_life/fading#vegetal)Vegetal$(\l) como um agente e ligação.$(br)Usando $(l:creating_life/failing#neolith)Neolito$(\l) parece que completamente sobrecarrega as energias da criatura, fazendo a Memória resultante irreconhecivel, até se manifestar."
+      "text": "Para lembrar das memórias sobre uma criatura, você vai precisar da sua $(l:creating_life/mob_heads)Cabeça$(/l), assim com seu item favorito $(l:creating_life/fading#vegetal)Vegetal$(/l) como um agente e ligação.$(br)Usando $(l:creating_life/failing#neolith)Neolito$(/l) parece que completamente sobrecarrega as energias da criatura, fazendo a Memória resultante irreconhecivel, até se manifestar."
     },
     {
       "type": "patchouli:text",
       "title": "Manifestando",
-      "text": "Memories need a certain amount of time to manifest, almost like an egg: you have to place them down and wait. Depending on the creature, it may be reasonably quick, or take forever.$(br2)$(italic)Placing them on top of certain blocks seems to speed up that process or stop it entirely.",
       "text": "Memórias precisam de uma certa quantidade de tempo para manifestar, quase como um ovo: você tem que colocar no chão e experar. Dependendo da criatura, vai ser rasuavelmente mais rápido, ou pode  demorar pra sempre.$(br2)$(italic)Colocá-las em cima de certos blocos parece acelerar o processo ou pará-lo completamente."
     }
   ]

@@ -13,7 +13,6 @@
       "type": "spectrum:pedestal_crafting",
       "title": "Variante de Pedra da Lua",
       "recipe": "spectrum:pedestal/tier3/pedestal_moonstone",
-      "text": "Upgrade your $(l:general/pedestal)Pigment Pedestal$() by using one of your gathered $(l:general/shards#moonstone)Moonstone Shards$()",
       "text": "Aprimore seu $(l:general/pedestal)Pedestal de Pigmentos$() usando os $(l:general/shards#moonstone)Fragmentos de Pedra da Lua$() que você coletou."
     },
     {

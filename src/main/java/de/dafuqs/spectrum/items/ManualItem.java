@@ -36,9 +36,7 @@ public class ManualItem extends Item implements LoomPatternProvider {
 	
 	@Override
 	public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-		if (!world.isClient && user instanceof ServerPlayerEntity) {
-			
-			ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity) user;
+		if (!world.isClient && user instanceof ServerPlayerEntity serverPlayerEntity) {
 			
 			// Workaround for new advancement unlocks getting added after spectrum has been installed
 			reprocessAdvancementUnlocks(serverPlayerEntity);

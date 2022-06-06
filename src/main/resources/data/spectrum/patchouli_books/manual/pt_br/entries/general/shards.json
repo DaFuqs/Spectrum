@@ -31,7 +31,6 @@
       "advancement": "spectrum:hidden/collect_shards/collect_amethyst_shard",
       "title": "Fragmentos de Ametista",
       "item": "minecraft:amethyst_shard",
-      "text": "Magenta light refracts in this gemstone.$(br)Formed over eons in the geodes, this gemstone radiates awe. It is a symbol of permanence and found in the deepest layers of the world.$(br2)The Amethyst represents $(bold)$(c_purple)TIME$().",
       "text": "A luz magenta refrata nessa pedra gema.$(br)Formada por eras nos geodos, essa pedra gema erradia temor. É um símbolo de permanência e achado nas camadas mais profunas o muno.$(br2)A Ametista representa $(bold)$(c_purple)TEMPO$()."
     },
     {

@@ -12,7 +12,7 @@
       "type": "patchouli:spotlight",
       "title": "Coletando Geradores",
       "item": "spectrum:resonant_pickaxe",
-      "text": "O encantamento $(l:enchanting/resonance)Ressonância$(\l) permite que Geradores sejam derrubados como item para serem coletados. Mesmo que você não saiba fazer essas construções, você se sente mais capaz de trocar suas propriedades, usando o $(l:creating_life/spirit_instiller)Instilador de Espíritos$(\l)."
+      "text": "O encantamento $(l:enchanting/resonance)Ressonância$(/l) permite que Geradores sejam derrubados como item para serem coletados. Mesmo que você não saiba fazer essas construções, você se sente mais capaz de trocar suas propriedades, usando o $(l:creating_life/spirit_instiller)Instilador de Espíritos$(/l)."
     },
     {
       "type": "spectrum:spirit_instiller_crafting",

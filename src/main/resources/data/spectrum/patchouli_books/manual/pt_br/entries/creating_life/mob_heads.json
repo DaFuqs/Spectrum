@@ -111,7 +111,7 @@
       "type": "patchouli:spotlight",
       "title": "Cabeças de Monstros",
       "item": "spectrum:cow_head",
-      "text": "Usando o seu novo encantamento $(l:enchanting/treasure_hunter)Caçador de Tesouros$(\l) você pode coletar as cabeças de todo tipo de criaturas.$(br)Enquanto elas servem como uma ótima exibição de suas aquisiçõ̀es, elas ainda herdem uma pequena faísca da existência da criatura."
+      "text": "Usando o seu novo encantamento $(l:enchanting/treasure_hunter)Caçador de Tesouros$(/l) você pode coletar as cabeças de todo tipo de criaturas.$(br)Enquanto elas servem como uma ótima exibição de suas aquisiçõ̀es, elas ainda herdem uma pequena faísca da existência da criatura."
     }
   ]
 }

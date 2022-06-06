@@ -6,7 +6,7 @@
     "pages": [
         {
             "type": "patchouli:text",
-            "text": "$(italic)De vez em quando você tem sorte de um inimigo deixar um único item raro pra trás.$(br)Com a conexão da sorte de $(l:resources/clover)Trevos$(\l) e $(l:general/pigment#light_blue)Pigmento Azul-Claro$(\l) você pode aumentar essas chances drasticamente."
+            "text": "$(italic)De vez em quando você tem sorte de um inimigo deixar um único item raro pra trás.$(br)Com a conexão da sorte de $(l:resources/clover)Trevos$(/l) e $(l:general/pigment#light_blue)Pigmento Azul-Claro$(/l) você pode aumentar essas chances drasticamente."
         },
         {
             "type": "patchouli:spotlight",

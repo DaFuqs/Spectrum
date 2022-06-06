@@ -31,7 +31,7 @@
       "type": "patchouli:text",
       "advancement": "spectrum:midgame/break_decayed_bedrock",
       "title": "Um Lembrete Amigo",
-      "text": "Você deveria estar lendo suas anotações enquanto aquela coisa ainda está livre por aí? Você deveria mudar isso assim que possível se não você VAI se arrepender.$(br2)Por sorte você já inventou um $(l:creating_life/decay_away)contra-agente adequado$(\l)."
+      "text": "Você deveria estar lendo suas anotações enquanto aquela coisa ainda está livre por aí? Você deveria mudar isso assim que possível se não você VAI se arrepender.$(br2)Por sorte você já inventou um $(l:creating_life/decay_away)contra-agente adequado$(/l)."
     }
   ]
 }

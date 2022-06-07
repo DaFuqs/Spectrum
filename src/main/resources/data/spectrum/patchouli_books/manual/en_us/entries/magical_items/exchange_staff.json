@@ -30,6 +30,13 @@
       "title": "Silk Touch",
       "item": "spectrum:exchange_staff{Enchantments: [{id: \"spectrum:silk_touch\", lvl: 1s}]}",
       "text": "Enchanting an Exchanging Staff with Silk Touch by using the $(l:enchanting/enchanting_items)Enchanter$(/l) will give it the power to exchange blocks exactly how they appear in the world, without breaking the more fragile blocks, like Glass or Ores."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:lategame/create_resonance_enchanted_book",
+      "title": "Resonance",
+      "item": "spectrum:exchange_staff{Enchantments: [{id: \"spectrum:resonance\", lvl: 1s}]}",
+      "text": "Enchanting an Exchanging Staff with Resonance by using the $(l:enchanting/enchanting_items)Enchanter$(/l) will give it the power to harvest some special blocks as-is."
     }
   ]
 }

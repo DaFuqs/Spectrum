@@ -5,7 +5,8 @@
   "category": "spectrum:magical_items_category",
   "extra_recipe_mappings": {
     "spectrum:azure_dike_ring": 0,
-	"spectrum:azure_dike_belt": 0
+	"spectrum:azure_dike_belt": 0,
+	"spectrum:shieldgrasp_amulet": 0
   },
   "pages": [
     {
@@ -15,19 +16,28 @@
     {
       "type": "patchouli:text",
       "title": "Azure Dike",
-      "text": "A magical aura surrounding your body, shielding you from incoming damage.$(br)Slowly recharges up to a specific amount.$(br2)Each piece of Azure Dike Equipment increases the maximum amount of protection."
+      "text": "A magical aura surrounding your body, shielding you from incoming damage.$(br)Slowly, but steadily recharges up to a specific amount.$(br2)Each piece of Azure Dike Equipment increases the maximum amount of protection."
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "title": "Azure Dike Ring",
+      "advancement": "spectrum:progression/unlock_azure_dike_ring",
       "recipe": "spectrum:fusion_shrine/trinkets/azure_dike_ring",
-      "text": "Grants you $(c_green)4$() points of $(c_blue)Azure Dike$()."
+      "text": "$(li)Grants you $(c_green)4$() points of $(c_blue)Azure Dike$().$(li)Slightly speeds up $(c_blue)Azure Dike$() charging."
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "title": "Azure Dike Belt",
+      "advancement": "spectrum:progression/unlock_azure_dike_belt",
       "recipe": "spectrum:fusion_shrine/trinkets/azure_dike_belt",
-      "text": "Grants you $(c_green)6$() points of $(c_blue)Azure Dike$()."
+      "text": "$(li)Grants you $(c_green)6$() points of $(c_blue)Azure Dike$().$(li)Decreases $(c_blue)Azure Dike$() recovery after a hit, making it recharge quicker."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Shieldgrasp Amulet",
+      "advancement": "spectrum:progression/unlock_shieldgrasp_amulet",
+      "recipe": "spectrum:fusion_shrine/trinkets/shieldgrasp_amulet",
+      "text": "Infuse it with $(l:magic/ink)Blue Ink$(/l) to increase the amount of $(c_blue)Azure Dike$() provided.$(br)While cheap at first, the required energy to press more power into this amulet increases exponentially."
     }
   ]
 }

@@ -115,7 +115,7 @@ public class SpectrumItems {
 	public static final Item TAKE_OFF_BELT = new TakeOffBeltItem(toolUncommonItemSettingsSingle);
 	public static final Item AZURE_DIKE_BELT = new AzureDikeBeltItem(toolUncommonItemSettingsSingle);
 	public static final Item AZURE_DIKE_RING = new AzureDikeRingItem(toolUncommonItemSettingsSingle);
-	public static final AzureDikeAmuletItem AZURE_DIKE_AMULET = new AzureDikeAmuletItem(toolUncommonItemSettingsSingle);
+	public static final AzureDikeAmuletItem SHIELDGRASP_AMULET = new AzureDikeAmuletItem(toolUncommonItemSettingsSingle);
 	public static final ExtraHealthRingItem HEARTSINGERS_REWARD_RING = new ExtraHealthRingItem(toolUncommonItemSettingsSingle);
 	public static final ExtraReachGlovesItem GLOVES_OF_DAWNS_GRASP = new ExtraReachGlovesItem(toolUncommonItemSettingsSingle);
 	public static final PigmentPaletteItem PIGMENT_PALETTE = new PigmentPaletteItem(toolUncommonItemSettingsSingle, 64 * 64 * 64 * 100);
@@ -481,7 +481,7 @@ public class SpectrumItems {
 		register("take_off_belt", TAKE_OFF_BELT, DyeColor.YELLOW);
 		register("azure_dike_belt", AZURE_DIKE_BELT, DyeColor.BLUE);
 		register("azure_dike_ring", AZURE_DIKE_RING, DyeColor.BLUE);
-		register("azure_dike_amulet", AZURE_DIKE_AMULET, DyeColor.BLUE);
+		register("shieldgrasp_amulet", SHIELDGRASP_AMULET, DyeColor.BLUE);
 		register("heartsingers_reward", HEARTSINGERS_REWARD_RING, DyeColor.PINK);
 		register("gloves_of_dawns_grasp", GLOVES_OF_DAWNS_GRASP, DyeColor.YELLOW);
 		register("gleaming_pin", GLEAMING_PIN, DyeColor.YELLOW);

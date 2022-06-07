@@ -26,8 +26,8 @@ public class AzureDikeAmuletItem extends InkDrainTrinketItem implements AzureDik
 	@Environment(EnvType.CLIENT)
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-		super.appendTooltip(stack, world, tooltip, context);
 		tooltip.add(new TranslatableText("item.spectrum.azure_dike_provider.tooltip", maxAzureDike(stack)));
+		super.appendTooltip(stack, world, tooltip, context);
 	}
 	
 	@Override

@@ -1,0 +1,27 @@
+{
+  "type": "spectrum:fusion_shrine",
+  "time": 600,
+  "experience": 2.0,
+  "fluid": "spectrum:liquid_crystal",
+  "ingredients": [
+    {
+      "item": "spectrum:fanciful_stone_ring"
+    },
+    {
+      "item": "spectrum:four_leaf_clover",
+	  "count": 2
+    },
+    {
+      "item": "spectrum:pink_pigment",
+	  "count": 16
+    }
+  ],
+  "result" : {
+    "item": "spectrum:heartsingers_reward"
+  },
+  "required_advancement": "spectrum:progression/unlock_heartsingers_reward",
+  "world_conditions": [ ],
+  "start_crafting_effect": "nothing",
+  "during_crafting_effects": [ ],
+  "finish_crafting_effect": "single_visual_explosion_on_shrine"
+}

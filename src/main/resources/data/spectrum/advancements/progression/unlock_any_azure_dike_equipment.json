@@ -7,12 +7,17 @@
     "unlocked_azure_dike_ring": {
       "trigger":"spectrum:has_advancement",
       "conditions": { "advancement_identifier": "spectrum:progression/unlock_azure_dike_ring" }
+    },
+    "unlocked_shieldgrasp_amulet": {
+      "trigger":"spectrum:has_advancement",
+      "conditions": { "advancement_identifier": "spectrum:progression/unlock_shieldgrasp_amulet" }
     }
   },
   "requirements": [
     [
       "unlocked_azure_dike_belt",
-      "unlocked_azure_dike_ring"
+      "unlocked_azure_dike_ring",
+      "unlocked_shieldgrasp_amulet"
     ]
   ]
 }

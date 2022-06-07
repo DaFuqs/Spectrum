@@ -46,9 +46,6 @@ repositories {
 		}
 	}
 	mavenCentral() // incubus core
-	//flatDir {
-		//dirs 'I:\\FabricModding\\localdeps'
-	//}
 }
 
 dependencies {

@@ -28,12 +28,12 @@ import java.util.stream.Collectors;
 
 public class PedestalCraftingDisplay extends BasicDisplay implements SimpleGridMenuDisplay, GatedRecipeDisplay {
 	
-	private final PedestalCraftingRecipe pedestalCraftingRecipe;
 	protected final List<EntryIngredient> craftingInputs;
 	protected final EntryIngredient output;
 	protected final float experience;
 	protected final int craftingTime;
 	protected final PedestalRecipeTier pedestalRecipeTier;
+	private final PedestalCraftingRecipe pedestalCraftingRecipe;
 	
 	/**
 	 * When using the REI recipe functionality
@@ -90,6 +90,16 @@ public class PedestalCraftingDisplay extends BasicDisplay implements SimpleGridM
 		return new PedestalCraftingDisplay(inputs, outputs, optionalRecipe);
 	}
 	
+	public static int getSlotWithSize(@NotNull PedestalCraftingDisplay display, int index) {
+		return getSlotWithSize(display.getWidth(), index);
+	}
+	
+	public static int getSlotWithSize(int recipeWidth, int index) {
+		int x = index % recipeWidth;
+		int y = (index - x) / recipeWidth;
+		return 3 * y + x;
+	}
+	
 	public List<EntryIngredient> getOrganisedInputEntries() {
 		List<EntryIngredient> list = new ArrayList<>();
 		List<EntryIngredient> inputs = getInputEntries();
@@ -108,16 +118,6 @@ public class PedestalCraftingDisplay extends BasicDisplay implements SimpleGridM
 			list.add(inputs.get(k));
 		}
 		return list;
-	}
-	
-	public static int getSlotWithSize(@NotNull PedestalCraftingDisplay display, int index) {
-		return getSlotWithSize(display.getWidth(), index);
-	}
-	
-	public static int getSlotWithSize(int recipeWidth, int index) {
-		int x = index % recipeWidth;
-		int y = (index - x) / recipeWidth;
-		return 3 * y + x;
 	}
 	
 	private void addGemstonePowderCraftingInput(@NotNull HashMap<BuiltinGemstoneColor, Integer> gemstonePowderInputs, BuiltinGemstoneColor gemstoneColor, Item item) {

@@ -26,10 +26,6 @@ public class PigmentItem extends CloakedItem implements LoomPatternProvider {
 		this.color = color;
 	}
 	
-	public DyeColor getColor() {
-		return this.color;
-	}
-	
 	public static Item getDyeItemForDyeColor(DyeColor dyeColor) {
 		switch (dyeColor) {
 			case BLACK -> {
@@ -81,6 +77,10 @@ public class PigmentItem extends CloakedItem implements LoomPatternProvider {
 				return Items.YELLOW_DYE;
 			}
 		}
+	}
+	
+	public DyeColor getColor() {
+		return this.color;
 	}
 	
 	@Override

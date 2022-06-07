@@ -24,6 +24,12 @@ public class ShulkerColorLootCondition implements LootCondition {
 		this.dyeColor = dyeColor;
 	}
 	
+	public static Builder builder(DyeColor dyeColor) {
+		return () -> {
+			return new ShulkerColorLootCondition(dyeColor);
+		};
+	}
+	
 	@Override
 	public LootConditionType getType() {
 		return SpectrumLootConditionTypes.SHULKER_COLOR_CONDITION;
@@ -42,12 +48,6 @@ public class ShulkerColorLootCondition implements LootCondition {
 		} else {
 			return false;
 		}
-	}
-	
-	public static Builder builder(DyeColor dyeColor) {
-		return () -> {
-			return new ShulkerColorLootCondition(dyeColor);
-		};
 	}
 	
 	public static class Serializer implements JsonSerializer<ShulkerColorLootCondition> {

@@ -25,25 +25,6 @@ public class ColoredSporeBlossomBlock extends SporeBlossomBlock {
 		this.airParticleType = getAirParticleType(dyeColor);
 	}
 	
-	public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
-		int i = pos.getX();
-		int j = pos.getY();
-		int k = pos.getZ();
-		double d = (double) i + random.nextDouble();
-		double e = (double) j + 0.7D;
-		double f = (double) k + random.nextDouble();
-		world.addParticle(this.fallingParticleType, d, e, f, 0.0D, 0.0D, 0.0D);
-		BlockPos.Mutable mutable = new BlockPos.Mutable();
-		
-		for (int l = 0; l < 14; ++l) {
-			mutable.set(i + MathHelper.nextInt(random, -10, 10), j - random.nextInt(10), k + MathHelper.nextInt(random, -10, 10));
-			BlockState blockState = world.getBlockState(mutable);
-			if (!blockState.isFullCube(world, mutable)) {
-				world.addParticle(this.airParticleType, (double) mutable.getX() + random.nextDouble(), (double) mutable.getY() + random.nextDouble(), (double) mutable.getZ() + random.nextDouble(), 0.0D, 0.0D, 0.0D);
-			}
-		}
-	}
-	
 	public static ParticleEffect getFallingParticleType(@NotNull DyeColor dyeColor) {
 		switch (dyeColor) {
 			case BLACK -> {
@@ -146,6 +127,25 @@ public class ColoredSporeBlossomBlock extends SporeBlossomBlock {
 			}
 			default -> {
 				return SpectrumParticleTypes.YELLOW_SPORE_BLOSSOM_AIR;
+			}
+		}
+	}
+	
+	public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
+		int i = pos.getX();
+		int j = pos.getY();
+		int k = pos.getZ();
+		double d = (double) i + random.nextDouble();
+		double e = (double) j + 0.7D;
+		double f = (double) k + random.nextDouble();
+		world.addParticle(this.fallingParticleType, d, e, f, 0.0D, 0.0D, 0.0D);
+		BlockPos.Mutable mutable = new BlockPos.Mutable();
+		
+		for (int l = 0; l < 14; ++l) {
+			mutable.set(i + MathHelper.nextInt(random, -10, 10), j - random.nextInt(10), k + MathHelper.nextInt(random, -10, 10));
+			BlockState blockState = world.getBlockState(mutable);
+			if (!blockState.isFullCube(world, mutable)) {
+				world.addParticle(this.airParticleType, (double) mutable.getX() + random.nextDouble(), (double) mutable.getY() + random.nextDouble(), (double) mutable.getZ() + random.nextDouble(), 0.0D, 0.0D, 0.0D);
 			}
 		}
 	}

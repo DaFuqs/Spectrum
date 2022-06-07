@@ -12,18 +12,16 @@ import java.util.Locale;
 public class ColorPredicate {
 	
 	public static final ColorPredicate ANY;
+
+	static {
+		ANY = new ColorPredicate(null);
+	}
+	
 	@Nullable
 	private final InkColor color;
 	
 	public ColorPredicate(@Nullable InkColor color) {
 		this.color = color;
-	}
-	
-	public boolean test(InkColor color) {
-		if (this == ANY || color == null) {
-			return true;
-		}
-		return this.color == color;
 	}
 	
 	public static ColorPredicate fromJson(@Nullable JsonElement json) {
@@ -36,6 +34,13 @@ public class ColorPredicate {
 		}
 	}
 	
+	public boolean test(InkColor color) {
+		if (this == ANY || color == null) {
+			return true;
+		}
+		return this.color == color;
+	}
+	
 	public JsonElement toJson() {
 		if (this == ANY) {
 			return JsonNull.INSTANCE;
@@ -46,10 +51,6 @@ public class ColorPredicate {
 			}
 			return jsonObject;
 		}
-	}
-	
-	static {
-		ANY = new ColorPredicate(null);
 	}
 	
 	public static class Builder {

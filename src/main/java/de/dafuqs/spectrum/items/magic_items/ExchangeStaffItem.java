@@ -81,65 +81,6 @@ public class ExchangeStaffItem extends BuildingStaffItem implements EnchanterEnc
 		}
 	}
 	
-	@Override
-	@Environment(EnvType.CLIENT)
-	public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context) {
-		super.appendTooltip(stack, world, tooltip, context);
-		tooltip.add(new TranslatableText("item.spectrum.exchange_staff.tooltip.range", getRange(MinecraftClient.getInstance().player)).formatted(Formatting.GRAY));
-		tooltip.add(new TranslatableText("item.spectrum.exchange_staff.tooltip.crouch").formatted(Formatting.GRAY));
-		
-		Optional<Block> optionalBlock = getBlockTarget(stack);
-		if (optionalBlock.isPresent()) {
-			tooltip.add(new TranslatableText("item.spectrum.exchange_staff.tooltip.target", optionalBlock.get().getName()).formatted(Formatting.GRAY));
-		}
-	}
-	
-	@Override
-	public ActionResult useOnBlock(ItemUsageContext context) {
-		PlayerEntity player = context.getPlayer();
-		World world = context.getWorld();
-		BlockPos pos = context.getBlockPos();
-		BlockState targetBlockState = world.getBlockState(pos);
-		
-		ActionResult result = ActionResult.FAIL;
-		if ((player != null && player.isCreative()) || !isBlacklisted(targetBlockState)) {
-			Block targetBlock = targetBlockState.getBlock();
-			Item targetBlockItem = targetBlockState.getBlock().asItem();
-			if (player != null && targetBlockItem != Items.AIR && context.getHand() == Hand.MAIN_HAND) {
-				if (player.isSneaking()) {
-					if (world instanceof ServerWorld serverWorld) {
-						storeBlockAsTarget(context.getStack(), targetBlock);
-						world.playSound(null, player.getBlockPos(), SpectrumSoundEvents.EXCHANGE_STAFF_SELECT, SoundCategory.PLAYERS, 1.0F, 1.0F);
-						
-						Direction side = context.getSide();
-						Vec3d sourcePos = new Vec3d(context.getHitPos().getX() + side.getOffsetX() * 0.1, context.getHitPos().getY() + side.getOffsetY() * 0.1, context.getHitPos().getZ() + side.getOffsetZ() * 0.1);
-						SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity(serverWorld, sourcePos, SpectrumParticleTypes.SPARKLESTONE_SPARKLE_SMALL, 15, new Vec3d(0, 0, 0), new Vec3d(0.25, 0.25, 0.25));
-						result = ActionResult.CONSUME;
-					} else {
-						result = ActionResult.SUCCESS;
-					}
-				} else {
-					Optional<Block> exchangeBlock = getBlockTarget(context.getStack());
-					if (exchangeBlock.isPresent() && exchangeBlock.get().asItem() != Items.AIR && exchangeBlock.get() != targetBlock) {
-						result = exchange(world, pos, player, exchangeBlock.get(), context.getStack());
-					}
-				}
-			}
-		}
-		
-		if (result == ActionResult.FAIL && player != null) {
-			world.playSound(null, player.getBlockPos(), SoundEvents.BLOCK_DISPENSER_FAIL, SoundCategory.PLAYERS, 1.0F, 1.0F);
-		}
-		return result;
-	}
-	
-	public void storeBlockAsTarget(@NotNull ItemStack exchangeStaffItemStack, Block block) {
-		NbtCompound compound = exchangeStaffItemStack.getOrCreateNbt();
-		Identifier blockIdentifier = Registry.BLOCK.getId(block);
-		compound.putString("TargetBlock", blockIdentifier.toString());
-		exchangeStaffItemStack.setNbt(compound);
-	}
-	
 	public static Optional<Block> getBlockTarget(@NotNull ItemStack exchangeStaffItemStack) {
 		NbtCompound compound = exchangeStaffItemStack.getOrCreateNbt();
 		if (compound.contains("TargetBlock")) {
@@ -221,6 +162,65 @@ public class ExchangeStaffItem extends BuildingStaffItem implements EnchanterEnc
 		} else {
 			return ActionResult.FAIL;
 		}
+	}
+	
+	@Override
+	@Environment(EnvType.CLIENT)
+	public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context) {
+		super.appendTooltip(stack, world, tooltip, context);
+		tooltip.add(new TranslatableText("item.spectrum.exchange_staff.tooltip.range", getRange(MinecraftClient.getInstance().player)).formatted(Formatting.GRAY));
+		tooltip.add(new TranslatableText("item.spectrum.exchange_staff.tooltip.crouch").formatted(Formatting.GRAY));
+		
+		Optional<Block> optionalBlock = getBlockTarget(stack);
+		if (optionalBlock.isPresent()) {
+			tooltip.add(new TranslatableText("item.spectrum.exchange_staff.tooltip.target", optionalBlock.get().getName()).formatted(Formatting.GRAY));
+		}
+	}
+	
+	@Override
+	public ActionResult useOnBlock(ItemUsageContext context) {
+		PlayerEntity player = context.getPlayer();
+		World world = context.getWorld();
+		BlockPos pos = context.getBlockPos();
+		BlockState targetBlockState = world.getBlockState(pos);
+		
+		ActionResult result = ActionResult.FAIL;
+		if ((player != null && player.isCreative()) || !isBlacklisted(targetBlockState)) {
+			Block targetBlock = targetBlockState.getBlock();
+			Item targetBlockItem = targetBlockState.getBlock().asItem();
+			if (player != null && targetBlockItem != Items.AIR && context.getHand() == Hand.MAIN_HAND) {
+				if (player.isSneaking()) {
+					if (world instanceof ServerWorld serverWorld) {
+						storeBlockAsTarget(context.getStack(), targetBlock);
+						world.playSound(null, player.getBlockPos(), SpectrumSoundEvents.EXCHANGE_STAFF_SELECT, SoundCategory.PLAYERS, 1.0F, 1.0F);
+						
+						Direction side = context.getSide();
+						Vec3d sourcePos = new Vec3d(context.getHitPos().getX() + side.getOffsetX() * 0.1, context.getHitPos().getY() + side.getOffsetY() * 0.1, context.getHitPos().getZ() + side.getOffsetZ() * 0.1);
+						SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity(serverWorld, sourcePos, SpectrumParticleTypes.SPARKLESTONE_SPARKLE_SMALL, 15, new Vec3d(0, 0, 0), new Vec3d(0.25, 0.25, 0.25));
+						result = ActionResult.CONSUME;
+					} else {
+						result = ActionResult.SUCCESS;
+					}
+				} else {
+					Optional<Block> exchangeBlock = getBlockTarget(context.getStack());
+					if (exchangeBlock.isPresent() && exchangeBlock.get().asItem() != Items.AIR && exchangeBlock.get() != targetBlock) {
+						result = exchange(world, pos, player, exchangeBlock.get(), context.getStack());
+					}
+				}
+			}
+		}
+		
+		if (result == ActionResult.FAIL && player != null) {
+			world.playSound(null, player.getBlockPos(), SoundEvents.BLOCK_DISPENSER_FAIL, SoundCategory.PLAYERS, 1.0F, 1.0F);
+		}
+		return result;
+	}
+	
+	public void storeBlockAsTarget(@NotNull ItemStack exchangeStaffItemStack, Block block) {
+		NbtCompound compound = exchangeStaffItemStack.getOrCreateNbt();
+		Identifier blockIdentifier = Registry.BLOCK.getId(block);
+		compound.putString("TargetBlock", blockIdentifier.toString());
+		exchangeStaffItemStack.setNbt(compound);
 	}
 	
 	@Override

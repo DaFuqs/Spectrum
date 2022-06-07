@@ -89,31 +89,31 @@ public class FusionShrineRecipe implements Recipe<Inventory>, GatedRecipe {
 	@Override
 	public boolean matches(Inventory inv, World world) {
 		List<IngredientStack> ingredientStacks = this.getIngredientStacks();
-		if(inv.size() < ingredientStacks.size()) {
+		if (inv.size() < ingredientStacks.size()) {
 			return false;
 		}
 		
 		int inputStackCount = 0;
-		for(int i = 0; i < inv.size(); i++) {
-			if(!inv.getStack(i).isEmpty()) {
+		for (int i = 0; i < inv.size(); i++) {
+			if (!inv.getStack(i).isEmpty()) {
 				inputStackCount++;
 			}
 		}
-		if(inputStackCount != ingredientStacks.size()) {
+		if (inputStackCount != ingredientStacks.size()) {
 			return false;
 		}
 		
 		
-		for(IngredientStack ingredientStack : ingredientStacks) {
+		for (IngredientStack ingredientStack : ingredientStacks) {
 			boolean found = false;
-			for(int i = 0; i < inv.size(); i++) {
+			for (int i = 0; i < inv.size(); i++) {
 				inputStackCount++;
-				if(ingredientStack.test(inv.getStack(i))) {
+				if (ingredientStack.test(inv.getStack(i))) {
 					found = true;
 					break;
 				}
 			}
-			if(!found) {
+			if (!found) {
 				return false;
 			}
 		}
@@ -210,22 +210,22 @@ public class FusionShrineRecipe implements Recipe<Inventory>, GatedRecipe {
 	 * @return The effect that should be played for the given recipe tick
 	 */
 	public FusionShrineRecipeWorldEffect getWorldEffectForTick(int tick, int totalTicks) {
-		if(tick == 1) {
+		if (tick == 1) {
 			return this.startWorldEffect;
-		} else if(tick == totalTicks) {
+		} else if (tick == totalTicks) {
 			return this.finishWorldEffect;
 		} else {
-			if(this.duringWorldEffects.size() == 0) {
+			if (this.duringWorldEffects.size() == 0) {
 				return null;
-			} else if(this.duringWorldEffects.size() == 1) {
+			} else if (this.duringWorldEffects.size() == 1) {
 				return this.duringWorldEffects.get(0);
 			} else {
 				// we really have to calculate the current effect, huh?
 				float parts = (float) totalTicks / this.duringWorldEffects.size();
 				int index = (int) (tick / (parts));
 				FusionShrineRecipeWorldEffect effect = this.duringWorldEffects.get(index);
-				if(effect.isOneTimeEffect(effect)) {
-					if(index != (int) parts) {
+				if (effect.isOneTimeEffect(effect)) {
+					if (index != (int) parts) {
 						return null;
 					}
 				}

@@ -21,6 +21,12 @@ public class MooshroomTypeLootCondition implements LootCondition {
 		this.mooshroomType = mooshroomType;
 	}
 	
+	public static Builder builder(MooshroomEntity.Type mooshroomType) {
+		return () -> {
+			return new MooshroomTypeLootCondition(mooshroomType);
+		};
+	}
+	
 	@Override
 	public LootConditionType getType() {
 		return SpectrumLootConditionTypes.MOOSHROOM_TYPE_CONDITION;
@@ -34,12 +40,6 @@ public class MooshroomTypeLootCondition implements LootCondition {
 		} else {
 			return false;
 		}
-	}
-	
-	public static Builder builder(MooshroomEntity.Type mooshroomType) {
-		return () -> {
-			return new MooshroomTypeLootCondition(mooshroomType);
-		};
 	}
 	
 	public static class Serializer implements JsonSerializer<MooshroomTypeLootCondition> {

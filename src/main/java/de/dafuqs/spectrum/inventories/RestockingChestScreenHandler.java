@@ -16,8 +16,8 @@ import net.minecraft.world.World;
 
 public class RestockingChestScreenHandler extends ScreenHandler {
 	
-	private final Inventory inventory;
 	protected final World world;
+	private final Inventory inventory;
 	
 	public RestockingChestScreenHandler(int syncId, PlayerInventory playerInventory) {
 		this(SpectrumScreenHandlerTypes.RESTOCKING_CHEST, syncId, playerInventory);

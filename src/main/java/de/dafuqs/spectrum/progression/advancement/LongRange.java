@@ -16,6 +16,10 @@ public class LongRange extends NumberRange<Long> {
 	
 	public static final LongRange ANY = new LongRange(null, null);
 	
+	private LongRange(@Nullable Long min, @Nullable Long max) {
+		super(min, max);
+	}
+	
 	@Contract("_, null, _ -> new; _, !null, null -> new")
 	private static @NotNull LongRange parse(StringReader reader, @Nullable Long min, @Nullable Long max) throws CommandSyntaxException {
 		if (min != null && max != null && min > max) {
@@ -23,10 +27,6 @@ public class LongRange extends NumberRange<Long> {
 		} else {
 			return new LongRange(min, max);
 		}
-	}
-	
-	private LongRange(@Nullable Long min, @Nullable Long max) {
-		super(min, max);
 	}
 	
 	public static LongRange exactly(long value) {
@@ -45,14 +45,6 @@ public class LongRange extends NumberRange<Long> {
 		return new LongRange(null, value);
 	}
 	
-	public boolean test(long value) {
-		if (this.min != null && this.min > value) {
-			return false;
-		} else {
-			return this.max == null || this.max >= value;
-		}
-	}
-	
 	public static LongRange fromJson(@Nullable JsonElement element) {
 		return fromJson(element, ANY, JsonHelper::asLong, LongRange::new);
 	}
@@ -63,6 +55,14 @@ public class LongRange extends NumberRange<Long> {
 	
 	public static LongRange fromStringReader(StringReader reader, Function<Long, Long> converter) throws CommandSyntaxException {
 		return parse(reader);
+	}
+	
+	public boolean test(long value) {
+		if (this.min != null && this.min > value) {
+			return false;
+		} else {
+			return this.max == null || this.max >= value;
+		}
 	}
 	
 }

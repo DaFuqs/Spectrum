@@ -31,6 +31,10 @@ public class EnchanterBlockEntityRenderer implements BlockEntityRenderer<de.dafu
 		dispatcher = MinecraftClient.getInstance().getEntityRenderDispatcher();
 	}
 	
+	private static void vertex(@NotNull VertexConsumer vertexConsumer, Matrix4f positionMatrix, Matrix3f normalMatrix, float x, float y, int red, int green, int blue, float u, float v, int light) {
+		vertexConsumer.vertex(positionMatrix, x, y, 0.0F).color(red, green, blue, 128).texture(u, v).overlay(OverlayTexture.DEFAULT_UV).light(light).normal(normalMatrix, 0.0F, 1.0F, 0.0F).next();
+	}
+	
 	@Override
 	public void render(EnchanterBlockEntity blockEntity, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light, int overlay) {
 		
@@ -106,10 +110,6 @@ public class EnchanterBlockEntityRenderer implements BlockEntityRenderer<de.dafu
 		vertex(vertexConsumer, matrix4f, matrix3f, -0.5F, 0.75F, s, 255, u, h, l, i);
 		
 		matrixStack.pop();
-	}
-	
-	private static void vertex(@NotNull VertexConsumer vertexConsumer, Matrix4f positionMatrix, Matrix3f normalMatrix, float x, float y, int red, int green, int blue, float u, float v, int light) {
-		vertexConsumer.vertex(positionMatrix, x, y, 0.0F).color(red, green, blue, 128).texture(u, v).overlay(OverlayTexture.DEFAULT_UV).light(light).normal(normalMatrix, 0.0F, 1.0F, 0.0F).next();
 	}
 	
 	/*

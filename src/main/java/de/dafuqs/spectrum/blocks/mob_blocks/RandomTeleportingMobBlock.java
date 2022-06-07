@@ -31,25 +31,6 @@ public class RandomTeleportingMobBlock extends MobBlock {
 		this.verticalRange = verticalRange;
 	}
 	
-	@Override
-	public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
-		super.appendTooltip(stack, world, tooltip, options);
-		tooltip.add(new TranslatableText("block.spectrum.random_teleporting_mob_block.tooltip", horizontalRange));
-	}
-	
-	@Override
-	public boolean trigger(ServerWorld world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
-		if (entity != null) {
-			Random random = world.getRandom();
-			int x = (int) (blockPos.getX() + (random.nextDouble() - 0.5D) * (this.horizontalRange + this.horizontalRange));
-			int y = blockPos.getY() + (random.nextInt(this.verticalRange + this.verticalRange) - (this.verticalRange));
-			int z = (int) (blockPos.getZ() + (random.nextDouble() - 0.5D) * (this.horizontalRange + this.horizontalRange));
-			teleportTo(world, entity, x, y, z);
-			return true;
-		}
-		return false;
-	}
-	
 	public static boolean teleportTo(ServerWorld world, Entity entity, int x, int y, int z) {
 		return teleportTo(world, entity, new BlockPos(x, y, z));
 	}
@@ -88,6 +69,25 @@ public class RandomTeleportingMobBlock extends MobBlock {
 		} else {
 			return false;
 		}
+	}
+	
+	@Override
+	public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
+		super.appendTooltip(stack, world, tooltip, options);
+		tooltip.add(new TranslatableText("block.spectrum.random_teleporting_mob_block.tooltip", horizontalRange));
+	}
+	
+	@Override
+	public boolean trigger(ServerWorld world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
+		if (entity != null) {
+			Random random = world.getRandom();
+			int x = (int) (blockPos.getX() + (random.nextDouble() - 0.5D) * (this.horizontalRange + this.horizontalRange));
+			int y = blockPos.getY() + (random.nextInt(this.verticalRange + this.verticalRange) - (this.verticalRange));
+			int z = (int) (blockPos.getZ() + (random.nextDouble() - 0.5D) * (this.horizontalRange + this.horizontalRange));
+			teleportTo(world, entity, x, y, z);
+			return true;
+		}
+		return false;
 	}
 	
 }

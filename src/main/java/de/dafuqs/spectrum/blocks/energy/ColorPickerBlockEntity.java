@@ -35,20 +35,17 @@ import java.util.UUID;
 
 public class ColorPickerBlockEntity extends LootableContainerBlockEntity implements ExtendedScreenHandlerFactory, PlayerOwned, InkStorageBlockEntity<TotalCappedSimpleInkStorage> {
 	
-	private UUID ownerUUID;
-	
 	public static final int INVENTORY_SIZE = 2; // input & output slots
 	public static final int INPUT_SLOT_ID = 0;
 	public static final int OUTPUT_SLOT_ID = 1;
-	public DefaultedList<ItemStack> inventory;
-	
 	public static final long TICKS_PER_CONVERSION = 5;
 	public static final long STORAGE_AMOUNT = 64 * 64 * 64;
+	public DefaultedList<ItemStack> inventory;
 	protected TotalCappedSimpleInkStorage inkStorage;
-	
 	protected boolean paused;
 	protected @Nullable InkConvertingRecipe cachedRecipe;
 	protected @Nullable InkColor selectedColor;
+	private UUID ownerUUID;
 	
 	public ColorPickerBlockEntity(BlockPos blockPos, BlockState blockState) {
 		super(SpectrumBlockEntityRegistry.COLOR_PICKER, blockPos, blockState);
@@ -105,7 +102,7 @@ public class ColorPickerBlockEntity extends LootableContainerBlockEntity impleme
 		if (this.ownerUUID != null) {
 			nbt.putUuid("OwnerUUID", this.ownerUUID);
 		}
-		if(this.selectedColor != null) {
+		if (this.selectedColor != null) {
 			nbt.putString("SelectedColor", this.selectedColor.toString());
 		}
 	}
@@ -225,8 +222,8 @@ public class ColorPickerBlockEntity extends LootableContainerBlockEntity impleme
 				for (InkColor color : InkColor.all()) {
 					long amount = InkStorage.transferInk(inkStorage, itemStorage, color);
 					
-					if(amount > 0) {
-						if(!searchedOwner) {
+					if (amount > 0) {
+						if (!searchedOwner) {
 							owner = (ServerPlayerEntity) getPlayerEntityIfOnline(world);
 						}
 						if (owner != null) {
@@ -239,7 +236,7 @@ public class ColorPickerBlockEntity extends LootableContainerBlockEntity impleme
 			} else {
 				transferredAmount = InkStorage.transferInk(inkStorage, itemStorage, this.selectedColor);
 				
-				if(transferredAmount > 0) {
+				if (transferredAmount > 0) {
 					PlayerEntity owner = getPlayerEntityIfOnline(world);
 					if (owner instanceof ServerPlayerEntity serverPlayerEntity) {
 						SpectrumAdvancementCriteria.INK_CONTAINER_INTERACTION.trigger(serverPlayerEntity, stack, itemStorage, this.selectedColor, transferredAmount);

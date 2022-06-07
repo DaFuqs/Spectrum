@@ -17,11 +17,10 @@ import net.minecraft.client.util.math.MatrixStack;
 @Environment(EnvType.CLIENT)
 public class InkGaugeWidget extends DrawableHelper implements Drawable, Element, Selectable {
 	
-	protected int width;
-	protected int height;
 	public int x;
 	public int y;
-	
+	protected int width;
+	protected int height;
 	protected boolean hovered;
 	
 	public InkGaugeWidget(int x, int y, int width, int height) {

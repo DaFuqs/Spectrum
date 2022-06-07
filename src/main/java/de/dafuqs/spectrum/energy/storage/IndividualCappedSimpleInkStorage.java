@@ -24,8 +24,8 @@ import static de.dafuqs.spectrum.helpers.Support.getShortenedNumberString;
 public class IndividualCappedSimpleInkStorage implements InkStorage {
 	
 	protected final long maxEnergyPerColor;
-	protected long currentTotal; // This is a cache for quick lookup. Can be recalculated anytime using the values in storedEnergy.
 	protected final Map<InkColor, Long> storedEnergy;
+	protected long currentTotal; // This is a cache for quick lookup. Can be recalculated anytime using the values in storedEnergy.
 	
 	public IndividualCappedSimpleInkStorage(long maxEnergyPerColor) {
 		this.maxEnergyPerColor = maxEnergyPerColor;
@@ -45,6 +45,19 @@ public class IndividualCappedSimpleInkStorage implements InkStorage {
 			this.storedEnergy.put(color.getKey(), color.getValue());
 			this.currentTotal += color.getValue();
 		}
+	}
+	
+	public static @Nullable IndividualCappedSimpleInkStorage fromNbt(@NotNull NbtCompound compound) {
+		if (compound.contains("MaxEnergyPerColor", NbtElement.LONG_TYPE)) {
+			long maxEnergyPerColor = compound.getLong("MaxEnergyPerColor");
+			
+			Map<InkColor, Long> colors = new HashMap<>();
+			for (InkColor color : InkColor.all()) {
+				colors.put(color, compound.getLong(color.toString()));
+			}
+			return new IndividualCappedSimpleInkStorage(maxEnergyPerColor, colors);
+		}
+		return null;
 	}
 	
 	@Override
@@ -116,19 +129,6 @@ public class IndividualCappedSimpleInkStorage implements InkStorage {
 	@Override
 	public boolean isFull() {
 		return this.currentTotal >= this.getMaxTotal();
-	}
-	
-	public static @Nullable IndividualCappedSimpleInkStorage fromNbt(@NotNull NbtCompound compound) {
-		if (compound.contains("MaxEnergyPerColor", NbtElement.LONG_TYPE)) {
-			long maxEnergyPerColor = compound.getLong("MaxEnergyPerColor");
-			
-			Map<InkColor, Long> colors = new HashMap<>();
-			for (InkColor color : InkColor.all()) {
-				colors.put(color, compound.getLong(color.toString()));
-			}
-			return new IndividualCappedSimpleInkStorage(maxEnergyPerColor, colors);
-		}
-		return null;
 	}
 	
 	public NbtCompound toNbt() {

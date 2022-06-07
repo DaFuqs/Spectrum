@@ -35,20 +35,17 @@ public class BedrockAnvilScreenHandler extends ScreenHandler {
 	private static final int field_30818 = 30;
 	private static final int PLAYER_INVENTORY_END_INDEX = 39;
 	protected final CraftingResultInventory output = new CraftingResultInventory();
-	protected final Inventory input = new SimpleInventory(2) {
+	protected final ScreenHandlerContext context;	protected final Inventory input = new SimpleInventory(2) {
 		public void markDirty() {
 			super.markDirty();
 			onContentChanged(this);
 		}
 	};
-	protected final ScreenHandlerContext context;
 	protected final PlayerEntity player;
-	
+	private final Property levelCost;
 	private int repairItemCount;
 	private String newItemName;
 	private String newLoreString;
-	private final Property levelCost;
-	
 	public BedrockAnvilScreenHandler(int syncId, PlayerInventory inventory) {
 		this(syncId, inventory, ScreenHandlerContext.EMPTY);
 	}
@@ -86,6 +83,10 @@ public class BedrockAnvilScreenHandler extends ScreenHandler {
 		for (k = 0; k < 9; ++k) {
 			this.addSlot(new Slot(playerInventory, k, 8 + k * 18, 24 + 142));
 		}
+	}
+	
+	public static int getNextCost(int cost) {
+		return cost * 2 + 1;
 	}
 	
 	public void onContentChanged(Inventory inventory) {
@@ -350,10 +351,6 @@ public class BedrockAnvilScreenHandler extends ScreenHandler {
 		}
 	}
 	
-	public static int getNextCost(int cost) {
-		return cost * 2 + 1;
-	}
-	
 	public void setNewItemName(String newItemName) {
 		this.newItemName = newItemName;
 		
@@ -385,5 +382,7 @@ public class BedrockAnvilScreenHandler extends ScreenHandler {
 	public int getLevelCost() {
 		return this.levelCost.get();
 	}
+	
+
 	
 }

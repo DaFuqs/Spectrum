@@ -21,6 +21,12 @@ public class ParrotVariantLootCondition implements LootCondition {
 		this.variant = variant;
 	}
 	
+	public static Builder builder(int variant) {
+		return () -> {
+			return new ParrotVariantLootCondition(variant);
+		};
+	}
+	
 	@Override
 	public LootConditionType getType() {
 		return SpectrumLootConditionTypes.PARROT_VARIANT_CONDITION;
@@ -34,12 +40,6 @@ public class ParrotVariantLootCondition implements LootCondition {
 		} else {
 			return false;
 		}
-	}
-	
-	public static Builder builder(int variant) {
-		return () -> {
-			return new ParrotVariantLootCondition(variant);
-		};
 	}
 	
 	public static class Serializer implements JsonSerializer<ParrotVariantLootCondition> {

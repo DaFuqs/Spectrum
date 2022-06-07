@@ -34,7 +34,7 @@ public class InkDrainTrinketItem extends SpectrumTrinketItem implements InkStora
 		
 		FixedSingleInkDrain inkStorage = getEnergyStorage(stack);
 		long storedInk = inkStorage.getEnergy(inkStorage.getStoredColor());
-
+		
 		long nextStepInk;
 		int pow = 0;
 		do {
@@ -42,9 +42,9 @@ public class InkDrainTrinketItem extends SpectrumTrinketItem implements InkStora
 			pow++;
 		} while (storedInk > nextStepInk);
 		
-		if(nextStepInk == maxInk) {
+		if (nextStepInk == maxInk) {
 			tooltip.add(new TranslatableText("spectrum.tooltip.ink_drain.tooltip.maxed_out").formatted(Formatting.GRAY));
-		}else {
+		} else {
 			tooltip.add(new TranslatableText("spectrum.tooltip.ink_drain.tooltip.ink_for_next_step." + inkStorage.getStoredColor().toString(), Support.getShortenedNumberString(nextStepInk - storedInk)).formatted(Formatting.GRAY));
 		}
 	}
@@ -60,7 +60,7 @@ public class InkDrainTrinketItem extends SpectrumTrinketItem implements InkStora
 	public Rarity getRarity(ItemStack stack) {
 		FixedSingleInkDrain inkStorage = getEnergyStorage(stack);
 		long storedInk = inkStorage.getEnergy(inkStorage.getStoredColor());
-		if(storedInk == maxInk) {
+		if (storedInk == maxInk) {
 			return Rarity.EPIC;
 		} else {
 			return super.getRarity(stack);

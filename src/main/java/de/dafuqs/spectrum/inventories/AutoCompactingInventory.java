@@ -5,25 +5,8 @@ import net.minecraft.item.ItemStack;
 
 public class AutoCompactingInventory extends AutoInventory {
 	
-	public enum AutoCraftingMode {
-		OneXOne,
-		TwoXTwo,
-		ThreeXThree;
-		
-		public int getItemCount() {
-			if (this == AutoCraftingMode.OneXOne) {
-				return 1;
-			} else if (this == AutoCraftingMode.TwoXTwo) {
-				return 4;
-			} else {
-				return 9;
-			}
-		}
-	}
-	
-	private AutoCraftingMode autoCraftingMode;
 	ItemStack inputItemStack;
-	
+	private AutoCraftingMode autoCraftingMode;
 	public AutoCompactingInventory() {
 		super(3, 3);
 		this.inputItemStack = ItemStack.EMPTY;
@@ -80,6 +63,22 @@ public class AutoCompactingInventory extends AutoInventory {
 			case TwoXTwo -> 2;
 			default -> 3;
 		};
+	}
+	
+	public enum AutoCraftingMode {
+		OneXOne,
+		TwoXTwo,
+		ThreeXThree;
+		
+		public int getItemCount() {
+			if (this == AutoCraftingMode.OneXOne) {
+				return 1;
+			} else if (this == AutoCraftingMode.TwoXTwo) {
+				return 4;
+			} else {
+				return 9;
+			}
+		}
 	}
 	
 }

@@ -19,6 +19,10 @@ public class HadRevelationCriterion extends AbstractCriterion<HadRevelationCrite
 	
 	static final Identifier ID = new Identifier(SpectrumCommon.MOD_ID, "had_revelation");
 	
+	public static HadRevelationCriterion.Conditions create(Identifier id) {
+		return new HadRevelationCriterion.Conditions(EntityPredicate.Extended.EMPTY, id);
+	}
+	
 	public Identifier getId() {
 		return ID;
 	}
@@ -32,10 +36,6 @@ public class HadRevelationCriterion extends AbstractCriterion<HadRevelationCrite
 		this.trigger(player, (conditions) -> {
 			return conditions.matches(cloakable);
 		});
-	}
-	
-	public static HadRevelationCriterion.Conditions create(Identifier id) {
-		return new HadRevelationCriterion.Conditions(EntityPredicate.Extended.EMPTY, id);
 	}
 	
 	public static class Conditions extends AbstractCriterionConditions {

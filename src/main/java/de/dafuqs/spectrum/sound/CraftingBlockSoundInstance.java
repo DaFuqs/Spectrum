@@ -51,6 +51,27 @@ public class CraftingBlockSoundInstance extends AbstractSoundInstance implements
 		this.volume = SpectrumCommon.CONFIG.BlockSoundVolume;
 	}
 	
+	public static void startSoundInstance(SoundEvent soundEvent, BlockPos sourceBlockPos, Block sourceBlock, int maxDurationTicks) {
+		stopPlayingOnPos(sourceBlockPos);
+		
+		CraftingBlockSoundInstance newInstance = new CraftingBlockSoundInstance(soundEvent, MinecraftClient.getInstance().world.getRegistryKey(), sourceBlockPos, sourceBlock, maxDurationTicks);
+		playingSoundInstances.add(newInstance);
+		SpectrumClient.minecraftClient.getSoundManager().play(newInstance);
+	}
+	
+	// if there is already a sound instance playing at given pos: cancel it
+	public static void stopPlayingOnPos(BlockPos blockPos) {
+		List<CraftingBlockSoundInstance> newInstances = new ArrayList<>();
+		for (CraftingBlockSoundInstance soundInstance : playingSoundInstances) {
+			if (soundInstance.sourceBlockPos.equals(blockPos)) {
+				soundInstance.setDone();
+			} else {
+				newInstances.add(soundInstance);
+			}
+		}
+		playingSoundInstances = newInstances;
+	}
+	
 	@Override
 	public boolean isDone() {
 		return this.done;
@@ -78,14 +99,6 @@ public class CraftingBlockSoundInstance extends AbstractSoundInstance implements
 		}
 	}
 	
-	public static void startSoundInstance(SoundEvent soundEvent, BlockPos sourceBlockPos, Block sourceBlock, int maxDurationTicks) {
-		stopPlayingOnPos(sourceBlockPos);
-		
-		CraftingBlockSoundInstance newInstance = new CraftingBlockSoundInstance(soundEvent, MinecraftClient.getInstance().world.getRegistryKey(), sourceBlockPos, sourceBlock, maxDurationTicks);
-		playingSoundInstances.add(newInstance);
-		SpectrumClient.minecraftClient.getSoundManager().play(newInstance);
-	}
-	
 	private boolean shouldStopPlaying() {
 		BlockState blockState = MinecraftClient.getInstance().world.getBlockState(sourceBlockPos);
 		if (!blockState.getBlock().equals(sourceBlock)) {
@@ -104,19 +117,6 @@ public class CraftingBlockSoundInstance extends AbstractSoundInstance implements
 		this.ticksPlayed = this.maxDurationTicks;
 		this.done = true;
 		this.repeat = false;
-	}
-	
-	// if there is already a sound instance playing at given pos: cancel it
-	public static void stopPlayingOnPos(BlockPos blockPos) {
-		List<CraftingBlockSoundInstance> newInstances = new ArrayList<>();
-		for (CraftingBlockSoundInstance soundInstance : playingSoundInstances) {
-			if (soundInstance.sourceBlockPos.equals(blockPos)) {
-				soundInstance.setDone();
-			} else {
-				newInstances.add(soundInstance);
-			}
-		}
-		playingSoundInstances = newInstances;
 	}
 	
 }

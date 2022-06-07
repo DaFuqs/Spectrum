@@ -32,7 +32,7 @@ public class SpectrumItemGroups {
 	private static final Identifier ITEM_GROUP_BUTTON_TEXTURE_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/item_group_button.png");
 	
 	public static final OwoItemGroup ITEM_GROUP_GENERAL = new OwoItemGroup(new Identifier(SpectrumCommon.MOD_ID, "general")) {
-
+		
 		@Override
 		protected void setup() {
 			setCustomTexture(ITEM_GROUP_BACKGROUND_TEXTURE_IDENTIFIER);
@@ -76,12 +76,12 @@ public class SpectrumItemGroups {
 		public void appendStacks(DefaultedList<ItemStack> stacks) {
 			super.appendStacks(stacks);
 			
-			if(this.getSelectedTab() == ITEM_GROUP_BLOCKS.getTab(3)) {
+			if (this.getSelectedTab() == ITEM_GROUP_BLOCKS.getTab(3)) {
 				// fully filled Knowledge Gem
 				stacks.add(KnowledgeGemItem.getKnowledgeDropStackWithXP(10000));
 				stacks.add(SpectrumItems.MIDNIGHT_ABERRATION.getStableStack());
 				
-				for(InkColor color : InkColor.all()) {
+				for (InkColor color : InkColor.all()) {
 					stacks.add(SpectrumItems.INK_FLASK.getFullStack(color));
 				}
 				stacks.add(SpectrumItems.INK_ASSORTMENT.getFullStack());
@@ -90,7 +90,7 @@ public class SpectrumItemGroups {
 				stacks.add(SpectrumItems.HEARTSINGERS_REWARD_RING.getFullStack());
 				stacks.add(SpectrumItems.GLOVES_OF_DAWNS_GRASP.getFullStack());
 				stacks.add(SpectrumItems.AZURE_DIKE_AMULET.getFullStack());
-
+				
 				// Bottomless Bundles willed with useful, basic materials
 				stacks.add(BottomlessBundleItem.getWithBlockAndCount(Items.COBBLESTONE.getDefaultStack(), 20000));
 				stacks.add(BottomlessBundleItem.getWithBlockAndCount(Items.STONE.getDefaultStack(), 20000));
@@ -114,27 +114,27 @@ public class SpectrumItemGroups {
 				
 				// Enchanted books with the max upgrade level available via Enchantment Upgrading
 				HashMap<Enchantment, Integer> highestEnchantmentLevels = new HashMap<>();
-				for(EnchantmentUpgradeRecipe enchantmentUpgradeRecipe : EnchantmentUpgradeRecipeSerializer.enchantmentUpgradeRecipesToInject) {
+				for (EnchantmentUpgradeRecipe enchantmentUpgradeRecipe : EnchantmentUpgradeRecipeSerializer.enchantmentUpgradeRecipesToInject) {
 					Enchantment enchantment = enchantmentUpgradeRecipe.getEnchantment();
 					int destinationLevel = enchantmentUpgradeRecipe.getEnchantmentDestinationLevel();
-					if(highestEnchantmentLevels.containsKey(enchantment)) {
-						if(highestEnchantmentLevels.get(enchantment) < destinationLevel) {
+					if (highestEnchantmentLevels.containsKey(enchantment)) {
+						if (highestEnchantmentLevels.get(enchantment) < destinationLevel) {
 							highestEnchantmentLevels.put(enchantment, destinationLevel);
 						}
 					} else {
 						highestEnchantmentLevels.put(enchantment, destinationLevel);
 					}
 				}
-				for(Map.Entry<Enchantment, Integer> s : highestEnchantmentLevels.entrySet()) {
-					if(s.getValue() > s.getKey().getMaxLevel()) {
+				for (Map.Entry<Enchantment, Integer> s : highestEnchantmentLevels.entrySet()) {
+					if (s.getValue() > s.getKey().getMaxLevel()) {
 						stacks.add(EnchantedBookItem.forEnchantment(new EnchantmentLevelEntry(s.getKey(), s.getValue())));
 					}
 				}
 				
 				// all memories that have spirit instiller recipes
 				Item memoryItem = SpectrumBlocks.MEMORY.asItem();
-				for(ISpiritInstillerRecipe recipe : SpectrumCommon.minecraftServer.getRecipeManager().listAllOfType(SpectrumRecipeTypes.SPIRIT_INSTILLING)) {
-					if(recipe.getOutput().isOf(memoryItem)) {
+				for (ISpiritInstillerRecipe recipe : SpectrumCommon.minecraftServer.getRecipeManager().listAllOfType(SpectrumRecipeTypes.SPIRIT_INSTILLING)) {
+					if (recipe.getOutput().isOf(memoryItem)) {
 						stacks.add(recipe.getOutput());
 					}
 				}
@@ -147,5 +147,5 @@ public class SpectrumItemGroups {
 		}
 		
 	};
-
+	
 }

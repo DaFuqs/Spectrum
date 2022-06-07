@@ -19,11 +19,11 @@ import java.util.Random;
 @Mixin(EndermanEntity.class)
 public abstract class EndermanEntityMixin {
 	
+	BlockState carriedBlockState = SpectrumBlocks.ENDER_TREASURE.getDefaultState();
+	
 	@Shadow
 	@Nullable
 	public abstract BlockState getCarriedBlock();
-	
-	BlockState carriedBlockState = SpectrumBlocks.ENDER_TREASURE.getDefaultState();
 	
 	@Inject(at = @At("TAIL"), method = "<init>")
 	private void init(CallbackInfo info) {

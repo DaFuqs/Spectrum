@@ -24,11 +24,10 @@ import java.util.Random;
 
 public class EtherealGlassBlock extends AbstractGlassBlock {
 	
-	protected static final VoxelShape SHAPE = Block.createCuboidShape(0.0D, 15.0D, 0.0D, 16.0D, 16.0D, 16.0D);
-	
 	public static final int MAX_AGE = 5;
 	public static final BooleanProperty EXTEND = BooleanProperty.of("extend");
 	public static final IntProperty AGE = Properties.AGE_5;
+	protected static final VoxelShape SHAPE = Block.createCuboidShape(0.0D, 15.0D, 0.0D, 16.0D, 16.0D, 16.0D);
 	
 	public EtherealGlassBlock(Settings settings) {
 		super(settings);

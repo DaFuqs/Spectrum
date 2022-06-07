@@ -61,13 +61,11 @@ public class CrystalApothecaryBlockEntity extends LootableContainerBlockEntity i
 	private static final ItemStack HARVEST_ITEMSTACK = ItemStack.EMPTY;
 	
 	private final BlockPosEventQueue blockPosEventTransferListener;
+	protected long compensationWorldTime;
 	private DefaultedList<ItemStack> inventory;
 	private boolean listenerPaused;
-	
 	private UUID ownerUUID;
 	private String ownerName;
-	
-	protected long compensationWorldTime;
 	
 	public CrystalApothecaryBlockEntity(BlockPos blockPos, BlockState blockState) {
 		super(SpectrumBlockEntityRegistry.CRYSTAL_APOTHECARY, blockPos, blockState);
@@ -75,18 +73,6 @@ public class CrystalApothecaryBlockEntity extends LootableContainerBlockEntity i
 		this.inventory = DefaultedList.ofSize(27, ItemStack.EMPTY);
 		this.listenerPaused = false;
 		this.compensationWorldTime = -1;
-	}
-	
-	protected Text getContainerName() {
-		if (hasOwner()) {
-			return new TranslatableText("block.spectrum.crystal_apothecary").append(new TranslatableText("container.spectrum.owned_by_player", this.ownerName));
-		} else {
-			return new TranslatableText("block.spectrum.crystal_apothecary");
-		}
-	}
-	
-	public BlockPosEventQueue getEventListener() {
-		return this.blockPosEventTransferListener;
 	}
 	
 	public static void tick(World world, BlockPos pos, BlockState state, CrystalApothecaryBlockEntity blockEntity) {
@@ -102,49 +88,6 @@ public class CrystalApothecaryBlockEntity extends LootableContainerBlockEntity i
 				}
 				blockEntity.compensationWorldTime = -1;
 			}
-		}
-	}
-	
-	@Override
-	public void readNbt(NbtCompound nbt) {
-		super.readNbt(nbt);
-		this.inventory = DefaultedList.ofSize(this.size(), ItemStack.EMPTY);
-		if (!this.deserializeLootTable(nbt)) {
-			Inventories.readNbt(nbt, this.inventory);
-		}
-		if (nbt.contains("OwnerUUID")) {
-			this.ownerUUID = nbt.getUuid("OwnerUUID");
-		} else {
-			this.ownerUUID = null;
-		}
-		if (nbt.contains("ListenerPaused")) {
-			this.listenerPaused = nbt.getBoolean("ListenerPaused");
-		}
-		if (nbt.contains("OwnerName")) {
-			this.ownerName = nbt.getString("OwnerName");
-		} else {
-			this.ownerName = null;
-		}
-		if (nbt.contains("LastWorldTime")) {
-			this.compensationWorldTime = nbt.getLong("LastWorldTime");
-		}
-	}
-	
-	@Override
-	protected void writeNbt(NbtCompound nbt) {
-		super.writeNbt(nbt);
-		if (!this.serializeLootTable(nbt)) {
-			Inventories.writeNbt(nbt, this.inventory);
-		}
-		nbt.putBoolean("ListenerPaused", this.listenerPaused);
-		if (this.world != null) {
-			nbt.putLong("LastWorldTime", this.world.getTime());
-		}
-		if (this.ownerUUID != null) {
-			nbt.putUuid("OwnerUUID", this.ownerUUID);
-		}
-		if (this.ownerName != null) {
-			nbt.putString("OwnerName", this.ownerName);
 		}
 	}
 	
@@ -213,6 +156,61 @@ public class CrystalApothecaryBlockEntity extends LootableContainerBlockEntity i
 			}
 		}
 		return count;
+	}
+	
+	protected Text getContainerName() {
+		if (hasOwner()) {
+			return new TranslatableText("block.spectrum.crystal_apothecary").append(new TranslatableText("container.spectrum.owned_by_player", this.ownerName));
+		} else {
+			return new TranslatableText("block.spectrum.crystal_apothecary");
+		}
+	}
+	
+	public BlockPosEventQueue getEventListener() {
+		return this.blockPosEventTransferListener;
+	}
+	
+	@Override
+	public void readNbt(NbtCompound nbt) {
+		super.readNbt(nbt);
+		this.inventory = DefaultedList.ofSize(this.size(), ItemStack.EMPTY);
+		if (!this.deserializeLootTable(nbt)) {
+			Inventories.readNbt(nbt, this.inventory);
+		}
+		if (nbt.contains("OwnerUUID")) {
+			this.ownerUUID = nbt.getUuid("OwnerUUID");
+		} else {
+			this.ownerUUID = null;
+		}
+		if (nbt.contains("ListenerPaused")) {
+			this.listenerPaused = nbt.getBoolean("ListenerPaused");
+		}
+		if (nbt.contains("OwnerName")) {
+			this.ownerName = nbt.getString("OwnerName");
+		} else {
+			this.ownerName = null;
+		}
+		if (nbt.contains("LastWorldTime")) {
+			this.compensationWorldTime = nbt.getLong("LastWorldTime");
+		}
+	}
+	
+	@Override
+	protected void writeNbt(NbtCompound nbt) {
+		super.writeNbt(nbt);
+		if (!this.serializeLootTable(nbt)) {
+			Inventories.writeNbt(nbt, this.inventory);
+		}
+		nbt.putBoolean("ListenerPaused", this.listenerPaused);
+		if (this.world != null) {
+			nbt.putLong("LastWorldTime", this.world.getTime());
+		}
+		if (this.ownerUUID != null) {
+			nbt.putUuid("OwnerUUID", this.ownerUUID);
+		}
+		if (this.ownerName != null) {
+			nbt.putString("OwnerName", this.ownerName);
+		}
 	}
 	
 	@Override

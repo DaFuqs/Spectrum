@@ -39,6 +39,16 @@ public class SingleInkStorage implements InkStorage {
 		this.storedEnergy = amount;
 	}
 	
+	public static @Nullable SingleInkStorage fromNbt(@NotNull NbtCompound compound) {
+		if (compound.contains("MaxEnergyTotal", NbtElement.LONG_TYPE)) {
+			long maxEnergyTotal = compound.getLong("MaxEnergyTotal");
+			InkColor color = InkColor.of(compound.getString("Color"));
+			long amount = compound.getLong("Amount");
+			return new SingleInkStorage(maxEnergyTotal, color, amount);
+		}
+		return null;
+	}
+	
 	public InkColor getStoredColor() {
 		return storedColor;
 	}
@@ -118,16 +128,6 @@ public class SingleInkStorage implements InkStorage {
 	@Override
 	public boolean isFull() {
 		return this.storedEnergy >= this.maxEnergy;
-	}
-	
-	public static @Nullable SingleInkStorage fromNbt(@NotNull NbtCompound compound) {
-		if (compound.contains("MaxEnergyTotal", NbtElement.LONG_TYPE)) {
-			long maxEnergyTotal = compound.getLong("MaxEnergyTotal");
-			InkColor color = InkColor.of(compound.getString("Color"));
-			long amount = compound.getLong("Amount");
-			return new SingleInkStorage(maxEnergyTotal, color, amount);
-		}
-		return null;
 	}
 	
 	public NbtCompound toNbt() {

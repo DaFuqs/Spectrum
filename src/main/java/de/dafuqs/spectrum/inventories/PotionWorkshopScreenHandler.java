@@ -20,8 +20,8 @@ import net.minecraft.world.World;
 
 public class PotionWorkshopScreenHandler extends ScreenHandler {
 	
-	private final Inventory inventory;
 	protected final World world;
+	private final Inventory inventory;
 	private final PropertyDelegate propertyDelegate;
 	
 	public PotionWorkshopScreenHandler(int syncId, PlayerInventory playerInventory) {

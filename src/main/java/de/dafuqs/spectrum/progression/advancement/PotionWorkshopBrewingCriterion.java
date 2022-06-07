@@ -25,6 +25,10 @@ public class PotionWorkshopBrewingCriterion extends AbstractCriterion<PotionWork
 	
 	static final Identifier ID = new Identifier(SpectrumCommon.MOD_ID, "potion_workshop_brewing");
 	
+	public static PotionWorkshopBrewingCriterion.Conditions create(ItemPredicate itemPredicate, EntityEffectPredicate effectsPredicate, NumberRange.IntRange maxAmplifierRange, NumberRange.IntRange maxDurationRange, NumberRange.IntRange effectCountRange) {
+		return new PotionWorkshopBrewingCriterion.Conditions(EntityPredicate.Extended.EMPTY, itemPredicate, effectsPredicate, maxAmplifierRange, maxDurationRange, effectCountRange);
+	}
+	
 	public Identifier getId() {
 		return ID;
 	}
@@ -55,10 +59,6 @@ public class PotionWorkshopBrewingCriterion extends AbstractCriterion<PotionWork
 			
 			return conditions.matches(itemStack, effects, maxAmplifier, maxDuration, effects.size());
 		});
-	}
-	
-	public static PotionWorkshopBrewingCriterion.Conditions create(ItemPredicate itemPredicate, EntityEffectPredicate effectsPredicate, NumberRange.IntRange maxAmplifierRange, NumberRange.IntRange maxDurationRange, NumberRange.IntRange effectCountRange) {
-		return new PotionWorkshopBrewingCriterion.Conditions(EntityPredicate.Extended.EMPTY, itemPredicate, effectsPredicate, maxAmplifierRange, maxDurationRange, effectCountRange);
 	}
 	
 	public static class Conditions extends AbstractCriterionConditions {

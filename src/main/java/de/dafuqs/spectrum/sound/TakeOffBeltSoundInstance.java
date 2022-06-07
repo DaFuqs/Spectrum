@@ -19,9 +19,9 @@ import java.util.Random;
 @Environment(EnvType.CLIENT)
 public class TakeOffBeltSoundInstance extends AbstractSoundInstance implements TickableSoundInstance {
 	
+	private final long lastParticleTick;
 	private float distance = 0.0F;
 	private boolean done;
-	private final long lastParticleTick;
 	
 	public TakeOffBeltSoundInstance() {
 		super(SpectrumSoundEvents.AIR_LAUNCH_BELT_CHARGING, SoundCategory.PLAYERS);

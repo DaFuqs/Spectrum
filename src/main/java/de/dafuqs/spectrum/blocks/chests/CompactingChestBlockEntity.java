@@ -30,13 +30,12 @@ import java.util.*;
 
 public class CompactingChestBlockEntity extends SpectrumChestBlockEntity implements ExtendedScreenHandlerFactory {
 	
+	private static Map<AutoCompactingInventory.AutoCraftingMode, Map<ItemVariant, Optional<CraftingRecipe>>> cache = new EnumMap<>(AutoCompactingInventory.AutoCraftingMode.class);
 	AutoCompactingInventory autoCompactingInventory = new AutoCompactingInventory();
 	AutoCompactingInventory.AutoCraftingMode autoCraftingMode;
 	CraftingRecipe lastCraftingRecipe; // cache
 	ItemVariant lastItemVariant; // cache
 	boolean hasToCraft;
-	
-	private static Map<AutoCompactingInventory.AutoCraftingMode, Map<ItemVariant, Optional<CraftingRecipe>>> cache = new EnumMap<>(AutoCompactingInventory.AutoCraftingMode.class);
 	
 	public CompactingChestBlockEntity(BlockPos blockPos, BlockState blockState) {
 		super(SpectrumBlockEntityRegistry.COMPACTING_CHEST, blockPos, blockState);
@@ -44,10 +43,6 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 		this.lastItemVariant = null;
 		this.lastCraftingRecipe = null;
 		this.hasToCraft = false;
-	}
-	
-	protected Text getContainerName() {
-		return new TranslatableText("block.spectrum.compacting_chest");
 	}
 	
 	public static void tick(World world, BlockPos pos, BlockState state, CompactingChestBlockEntity compactingChestBlockEntity) {
@@ -61,6 +56,79 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 				}
 			}
 		}
+	}
+	
+	private static boolean smartAddToInventory(List<ItemStack> itemStacks, List<ItemStack> inventory, boolean test) {
+		List<ItemStack> additionStacks = new ArrayList<>();
+		for (ItemStack itemStack : itemStacks) {
+			additionStacks.add(itemStack.copy());
+		}
+		
+		boolean tryStackExisting = true;
+		for (int i = 0; i < inventory.size(); i++) {
+			ItemStack currentStack = inventory.get(i);
+			for (ItemStack additionStack : additionStacks) {
+				boolean doneStuff = false;
+				if (additionStack.getCount() > 0) {
+					if (currentStack.isEmpty() && (test || !tryStackExisting)) {
+						int maxStackCount = currentStack.getMaxCount();
+						int maxAcceptCount = Math.min(additionStack.getCount(), maxStackCount);
+						
+						if (!test) {
+							ItemStack newStack = additionStack.copy();
+							newStack.setCount(maxAcceptCount);
+							inventory.set(i, newStack);
+						}
+						additionStack.setCount(additionStack.getCount() - maxAcceptCount);
+						doneStuff = true;
+					} else if (additionStack.isItemEqual(currentStack)) {
+						// add to stack;
+						int maxStackCount = currentStack.getMaxCount();
+						int canAcceptCount = maxStackCount - currentStack.getCount();
+						
+						if (canAcceptCount > 0) {
+							if (!test) {
+								inventory.get(i).increment(Math.min(additionStack.getCount(), canAcceptCount));
+							}
+							if (canAcceptCount >= additionStack.getCount()) {
+								additionStack.setCount(0);
+							} else {
+								additionStack.setCount(additionStack.getCount() - canAcceptCount);
+							}
+							doneStuff = true;
+						}
+					}
+					
+					// if there were changes: check if all stacks have count 0
+					if (doneStuff) {
+						boolean allEmpty = true;
+						for (ItemStack itemStack : additionStacks) {
+							if (itemStack.getCount() > 0) {
+								allEmpty = false;
+								break;
+							}
+						}
+						if (allEmpty) {
+							return true;
+						}
+					}
+				}
+			}
+			
+			if (tryStackExisting && !test && i == inventory.size() - 1) {
+				tryStackExisting = false;
+				i = -1;
+			}
+		}
+		return false;
+	}
+	
+	public static void clearCache() {
+		cache.clear();
+	}
+	
+	protected Text getContainerName() {
+		return new TranslatableText("block.spectrum.compacting_chest");
 	}
 	
 	public void readNbt(NbtCompound tag) {
@@ -189,71 +257,6 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 		}
 	}
 	
-	private static boolean smartAddToInventory(List<ItemStack> itemStacks, List<ItemStack> inventory, boolean test) {
-		List<ItemStack> additionStacks = new ArrayList<>();
-		for (ItemStack itemStack : itemStacks) {
-			additionStacks.add(itemStack.copy());
-		}
-		
-		boolean tryStackExisting = true;
-		for (int i = 0; i < inventory.size(); i++) {
-			ItemStack currentStack = inventory.get(i);
-			for (ItemStack additionStack : additionStacks) {
-				boolean doneStuff = false;
-				if (additionStack.getCount() > 0) {
-					if (currentStack.isEmpty() && (test || !tryStackExisting)) {
-						int maxStackCount = currentStack.getMaxCount();
-						int maxAcceptCount = Math.min(additionStack.getCount(), maxStackCount);
-						
-						if (!test) {
-							ItemStack newStack = additionStack.copy();
-							newStack.setCount(maxAcceptCount);
-							inventory.set(i, newStack);
-						}
-						additionStack.setCount(additionStack.getCount() - maxAcceptCount);
-						doneStuff = true;
-					} else if (additionStack.isItemEqual(currentStack)) {
-						// add to stack;
-						int maxStackCount = currentStack.getMaxCount();
-						int canAcceptCount = maxStackCount - currentStack.getCount();
-						
-						if (canAcceptCount > 0) {
-							if (!test) {
-								inventory.get(i).increment(Math.min(additionStack.getCount(), canAcceptCount));
-							}
-							if (canAcceptCount >= additionStack.getCount()) {
-								additionStack.setCount(0);
-							} else {
-								additionStack.setCount(additionStack.getCount() - canAcceptCount);
-							}
-							doneStuff = true;
-						}
-					}
-					
-					// if there were changes: check if all stacks have count 0
-					if (doneStuff) {
-						boolean allEmpty = true;
-						for (ItemStack itemStack : additionStacks) {
-							if (itemStack.getCount() > 0) {
-								allEmpty = false;
-								break;
-							}
-						}
-						if (allEmpty) {
-							return true;
-						}
-					}
-				}
-			}
-			
-			if (tryStackExisting && !test && i == inventory.size() - 1) {
-				tryStackExisting = false;
-				i = -1;
-			}
-		}
-		return false;
-	}
-	
 	@Override
 	public SoundEvent getOpenSound() {
 		return SoundEvents.BLOCK_PISTON_EXTEND;
@@ -283,10 +286,6 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 	public void writeScreenOpeningData(ServerPlayerEntity player, PacketByteBuf buf) {
 		buf.writeBlockPos(this.pos);
 		buf.writeInt(this.autoCraftingMode.ordinal());
-	}
-	
-	public static void clearCache() {
-		cache.clear();
 	}
 	
 }

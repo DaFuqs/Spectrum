@@ -24,27 +24,6 @@ public class RedstoneTransparencyBlock extends Block {
 		setDefaultState(getStateManager().getDefaultState().with(TRANSPARENCY_STATE, TransparencyState.SOLID));
 	}
 	
-	
-	public enum TransparencyState implements StringIdentifiable {
-		SOLID("solid"),
-		TRANSLUCENT("translucent"),
-		NO_COLLISION("no_collision");
-		
-		private final String name;
-		
-		private TransparencyState(String name) {
-			this.name = name;
-		}
-		
-		public String toString() {
-			return this.name;
-		}
-		
-		public String asString() {
-			return this.name;
-		}
-	}
-	
 	@Override
 	protected void appendProperties(StateManager.Builder<Block, BlockState> stateManager) {
 		stateManager.add(TRANSPARENCY_STATE);
@@ -145,6 +124,26 @@ public class RedstoneTransparencyBlock extends Block {
 			return TransparencyState.SOLID;
 		} else {
 			return TransparencyState.TRANSLUCENT;
+		}
+	}
+	
+	public enum TransparencyState implements StringIdentifiable {
+		SOLID("solid"),
+		TRANSLUCENT("translucent"),
+		NO_COLLISION("no_collision");
+		
+		private final String name;
+		
+		private TransparencyState(String name) {
+			this.name = name;
+		}
+		
+		public String toString() {
+			return this.name;
+		}
+		
+		public String asString() {
+			return this.name;
 		}
 	}
 	

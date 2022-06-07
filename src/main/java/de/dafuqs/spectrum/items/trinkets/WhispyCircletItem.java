@@ -32,29 +32,6 @@ public class WhispyCircletItem extends SpectrumTrinketItem {
 		super(settings, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_whispy_circlet"));
 	}
 	
-	@Override
-	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-		super.appendTooltip(stack, world, tooltip, context);
-		tooltip.add(new TranslatableText("item.spectrum.whispy_circlet.tooltip").formatted(Formatting.GRAY));
-		tooltip.add(new TranslatableText("item.spectrum.whispy_circlet.tooltip2").formatted(Formatting.GRAY));
-		tooltip.add(new TranslatableText("item.spectrum.whispy_circlet.tooltip3").formatted(Formatting.GRAY));
-	}
-	
-	@Override
-	public void tick(ItemStack stack, SlotReference slot, LivingEntity entity) {
-		super.tick(stack, slot, entity);
-		
-		if (!entity.world.isClient) {
-			long time = entity.getWorld().getTime();
-			if (time % TRIGGER_EVERY_X_TICKS == 0) {
-				shortenNegativeStatusEffects(entity, NEGATIVE_EFFECT_SHORTENING_TICKS);
-			}
-			if (time % 10000 == 0 && entity instanceof ServerPlayerEntity serverPlayerEntity) {
-				preventPhantomSpawns(serverPlayerEntity);
-			}
-		}
-	}
-	
 	public static void removeNegativeStatusEffects(@NotNull LivingEntity entity) {
 		Collection<StatusEffectInstance> currentEffects = entity.getStatusEffects();
 		for (StatusEffectInstance instance : currentEffects) {
@@ -95,6 +72,29 @@ public class WhispyCircletItem extends SpectrumTrinketItem {
 	
 	public static void preventPhantomSpawns(@NotNull ServerPlayerEntity serverPlayerEntity) {
 		serverPlayerEntity.getStatHandler().setStat(serverPlayerEntity, Stats.CUSTOM.getOrCreateStat(Stats.TIME_SINCE_REST), 0);
+	}
+	
+	@Override
+	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+		super.appendTooltip(stack, world, tooltip, context);
+		tooltip.add(new TranslatableText("item.spectrum.whispy_circlet.tooltip").formatted(Formatting.GRAY));
+		tooltip.add(new TranslatableText("item.spectrum.whispy_circlet.tooltip2").formatted(Formatting.GRAY));
+		tooltip.add(new TranslatableText("item.spectrum.whispy_circlet.tooltip3").formatted(Formatting.GRAY));
+	}
+	
+	@Override
+	public void tick(ItemStack stack, SlotReference slot, LivingEntity entity) {
+		super.tick(stack, slot, entity);
+		
+		if (!entity.world.isClient) {
+			long time = entity.getWorld().getTime();
+			if (time % TRIGGER_EVERY_X_TICKS == 0) {
+				shortenNegativeStatusEffects(entity, NEGATIVE_EFFECT_SHORTENING_TICKS);
+			}
+			if (time % 10000 == 0 && entity instanceof ServerPlayerEntity serverPlayerEntity) {
+				preventPhantomSpawns(serverPlayerEntity);
+			}
+		}
 	}
 	
 }

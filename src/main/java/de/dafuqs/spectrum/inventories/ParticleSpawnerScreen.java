@@ -31,9 +31,7 @@ import java.util.function.Predicate;
 @Environment(EnvType.CLIENT)
 public class ParticleSpawnerScreen extends HandledScreen<ParticleSpawnerScreenHandler> {
 	
-	int textColor = 2236962;
 	private static final Identifier GUI_TEXTURE = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/container/particle_spawner.png");
-	
 	// when adding new particles do not forget adding them both in
 	// - the texture file (for the gui)
 	// - the available particle list
@@ -56,8 +54,10 @@ public class ParticleSpawnerScreen extends HandledScreen<ParticleSpawnerScreenHa
 		add(new Identifier("particle/bubble"));
 		add(new Identifier("particle/big_smoke_3"));
 	}};
-	
-	
+	int textColor = 2236962;
+	boolean collisionsEnabled = false;
+	int activeParticlePage = 0;
+	int particleSelectionIndex = 0;
 	private List<ClickableWidget> selectableWidgets;
 	private TextFieldWidget amountField;
 	private TextFieldWidget positionXField;
@@ -77,15 +77,10 @@ public class ParticleSpawnerScreen extends HandledScreen<ParticleSpawnerScreenHa
 	private TextFieldWidget duration;
 	private TextFieldWidget durationVariance;
 	private TextFieldWidget gravity;
-	
 	private ButtonWidget collisionsButton;
 	private ButtonWidget backButton;
 	private ButtonWidget forwardButton;
 	private List<ButtonWidget> particleButtons;
-	
-	boolean collisionsEnabled = false;
-	int activeParticlePage = 0;
-	int particleSelectionIndex = 0;
 	
 	public ParticleSpawnerScreen(ParticleSpawnerScreenHandler handler, PlayerInventory inventory, Text title) {
 		super(handler, inventory, title);

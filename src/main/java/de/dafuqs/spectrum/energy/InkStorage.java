@@ -14,6 +14,70 @@ import java.util.List;
  **/
 public interface InkStorage {
 	
+	/**
+	 * Transfer Ink from one storage to another
+	 * Transfers Ink using a "pressure like" system: Tries to balance the ink in source and destination.
+	 * The more energy is in source, the more is getting transferred, up to when both storages even out.
+	 *
+	 * @param source      The ink storage that is getting drawn from
+	 * @param destination The ink storage receiving energy
+	 * @param color       The ink type to transfer
+	 * @return the amount of energy that could be transferred
+	 */
+	static long transferInk(@NotNull InkStorage source, @NotNull InkStorage destination, @NotNull InkColor color) {
+		if (!destination.accepts(color)) {
+			return 0;
+		}
+		
+		long sourceAmount = source.getEnergy(color);
+		if (sourceAmount > 0) {
+			long destinationRoom = destination.getRoom(color);
+			if (destinationRoom > 0) {
+				long destinationAmount = destination.getEnergy(color);
+				long transferAmount = Math.max(0, (sourceAmount - destinationAmount) / 32); // the constant here is simulating pressure flow
+				transferAmount = Math.min(transferAmount, Math.min(sourceAmount, destinationRoom));
+				if (transferAmount > 0) {
+					destination.addEnergy(color, transferAmount);
+					source.drainEnergy(color, transferAmount);
+					return transferAmount;
+				}
+			}
+		}
+		return 0;
+	}
+	
+	/**
+	 * Transfer Ink from one storage to another
+	 * Transfers a fixed amount of energy
+	 * => Use the pressure like system without fixed amount, where possible
+	 *
+	 * @param source      The ink storage that is getting drawn from
+	 * @param destination The ink storage receiving energy
+	 * @param color       The ink type to transfer
+	 * @param amount      The fixed amount of ink to transfer
+	 * @return the amount of energy that could be transferred
+	 */
+	@Deprecated
+	static long transferInk(@NotNull InkStorage source, @NotNull InkStorage destination, @NotNull InkColor color, long amount) {
+		if (!destination.accepts(color)) {
+			return 0;
+		}
+		
+		long sourceAmount = source.getEnergy(color);
+		if (sourceAmount > 0) {
+			long destinationRoom = destination.getRoom(color);
+			if (destinationRoom > 0) {
+				long transferAmount = Math.min(amount, Math.min(sourceAmount, destinationRoom));
+				if (transferAmount > 0) {
+					destination.addEnergy(color, transferAmount);
+					source.drainEnergy(color, transferAmount);
+					return transferAmount;
+				}
+			}
+		}
+		return 0;
+	}
+	
 	// if the storage is able to store this kind of color
 	boolean accepts(InkColor color);
 	
@@ -49,78 +113,14 @@ public interface InkStorage {
 	// fill up the storage with as much energy as possible
 	void fillCompletely();
 	
-	void addTooltip(World world, List<Text> tooltip, TooltipContext context);
-	
-	long getRoom(InkColor color);
-	
 	// returns true if all energy could be drained successfully
 	// boolean requestEnergy(Map<CMYKColor, Integer> colors);
 	
 	// returns all stored energy with amounts
 	//Map<ICMYKColor, Integer> getEnergy();
 	
-	/**
-	 * Transfer Ink from one storage to another
-	 * Transfers Ink using a "pressure like" system: Tries to balance the ink in source and destination.
-	 * The more energy is in source, the more is getting transferred, up to when both storages even out.
-	 *
-	 * @param source      The ink storage that is getting drawn from
-	 * @param destination The ink storage receiving energy
-	 * @param color       The ink type to transfer
-	 * @return the amount of energy that could be transferred
-	 */
-	static long transferInk(@NotNull InkStorage source, @NotNull InkStorage destination, @NotNull InkColor color) {
-		if(!destination.accepts(color)) {
-			return 0;
-		}
-		
-		long sourceAmount = source.getEnergy(color);
-		if (sourceAmount > 0) {
-			long destinationRoom = destination.getRoom(color);
-			if (destinationRoom > 0) {
-				long destinationAmount = destination.getEnergy(color);
-				long transferAmount = Math.max(0, (sourceAmount - destinationAmount) / 32); // the constant here is simulating pressure flow
-				transferAmount = Math.min(transferAmount, Math.min(sourceAmount, destinationRoom));
-				if (transferAmount > 0) {
-					destination.addEnergy(color, transferAmount);
-					source.drainEnergy(color, transferAmount);
-					return transferAmount;
-				}
-			}
-		}
-		return 0;
-	}
+	void addTooltip(World world, List<Text> tooltip, TooltipContext context);
 	
-	/**
-	 * Transfer Ink from one storage to another
-	 * Transfers a fixed amount of energy
-	 * => Use the pressure like system without fixed amount, where possible
-	 *
-	 * @param source      The ink storage that is getting drawn from
-	 * @param destination The ink storage receiving energy
-	 * @param color       The ink type to transfer
-	 * @param amount      The fixed amount of ink to transfer
-	 * @return the amount of energy that could be transferred
-	 */
-	@Deprecated
-	static long transferInk(@NotNull InkStorage source, @NotNull InkStorage destination, @NotNull InkColor color, long amount) {
-		if(!destination.accepts(color)) {
-			return 0;
-		}
-		
-		long sourceAmount = source.getEnergy(color);
-		if (sourceAmount > 0) {
-			long destinationRoom = destination.getRoom(color);
-			if (destinationRoom > 0) {
-				long transferAmount = Math.min(amount, Math.min(sourceAmount, destinationRoom));
-				if (transferAmount > 0) {
-					destination.addEnergy(color, transferAmount);
-					source.drainEnergy(color, transferAmount);
-					return transferAmount;
-				}
-			}
-		}
-		return 0;
-	}
+	long getRoom(InkColor color);
 	
 }

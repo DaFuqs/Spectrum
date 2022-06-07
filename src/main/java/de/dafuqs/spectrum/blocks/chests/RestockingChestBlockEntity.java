@@ -25,24 +25,14 @@ import org.jetbrains.annotations.Nullable;
 
 public class RestockingChestBlockEntity extends SpectrumChestBlockEntity implements SidedInventory {
 	
-	private int coolDownTicks = 0;
-	
 	public static final int INVENTORY_SIZE = 27 + 4 + 4; // 27 items, 4 crafting tablets, 4 result slots
 	public static final int[] CHEST_SLOTS = new int[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26};
 	public static final int[] RECIPE_SLOTS = new int[]{27, 28, 29, 30};
 	public static final int[] RESULT_SLOTS = new int[]{31, 32, 33, 34};
+	private int coolDownTicks = 0;
 	
 	public RestockingChestBlockEntity(BlockPos blockPos, BlockState blockState) {
 		super(SpectrumBlockEntityRegistry.RESTOCKING_CHEST, blockPos, blockState);
-	}
-	
-	protected Text getContainerName() {
-		return new TranslatableText("block.spectrum.restocking_chest");
-	}
-	
-	@Override
-	protected ScreenHandler createScreenHandler(int syncId, PlayerInventory playerInventory) {
-		return new RestockingChestScreenHandler(syncId, playerInventory, this);
 	}
 	
 	public static void tick(World world, BlockPos pos, BlockState state, RestockingChestBlockEntity restockingChestBlockEntity) {
@@ -66,10 +56,6 @@ public class RestockingChestBlockEntity extends SpectrumChestBlockEntity impleme
 		}
 	}
 	
-	private void setCooldown(RestockingChestBlockEntity restockingChestBlockEntity, int cooldownTicks) {
-		restockingChestBlockEntity.coolDownTicks = cooldownTicks;
-	}
-	
 	private static boolean tickCooldown(RestockingChestBlockEntity restockingChestBlockEntity) {
 		restockingChestBlockEntity.coolDownTicks--;
 		if (restockingChestBlockEntity.coolDownTicks > 0) {
@@ -78,6 +64,19 @@ public class RestockingChestBlockEntity extends SpectrumChestBlockEntity impleme
 			restockingChestBlockEntity.coolDownTicks = 0;
 		}
 		return true;
+	}
+	
+	protected Text getContainerName() {
+		return new TranslatableText("block.spectrum.restocking_chest");
+	}
+	
+	@Override
+	protected ScreenHandler createScreenHandler(int syncId, PlayerInventory playerInventory) {
+		return new RestockingChestScreenHandler(syncId, playerInventory, this);
+	}
+	
+	private void setCooldown(RestockingChestBlockEntity restockingChestBlockEntity, int cooldownTicks) {
+		restockingChestBlockEntity.coolDownTicks = cooldownTicks;
 	}
 	
 	private boolean tryCraft(RestockingChestBlockEntity restockingChestBlockEntity, int index) {

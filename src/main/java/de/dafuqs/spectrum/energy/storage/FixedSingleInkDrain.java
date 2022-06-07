@@ -17,6 +17,16 @@ public class FixedSingleInkDrain extends SingleInkStorage {
 		super(maxEnergy, color, amount);
 	}
 	
+	public static @Nullable FixedSingleInkDrain fromNbt(@NotNull NbtCompound compound) {
+		if (compound.contains("MaxEnergyTotal", NbtElement.LONG_TYPE)) {
+			long maxEnergyTotal = compound.getLong("MaxEnergyTotal");
+			InkColor color = InkColor.of(compound.getString("Color"));
+			long amount = compound.getLong("Amount");
+			return new FixedSingleInkDrain(maxEnergyTotal, color, amount);
+		}
+		return null;
+	}
+	
 	public InkColor getStoredColor() {
 		return storedColor;
 	}
@@ -33,16 +43,6 @@ public class FixedSingleInkDrain extends SingleInkStorage {
 	
 	public long drainEnergy(InkColor color, long amount) {
 		return 0;
-	}
-	
-	public static @Nullable FixedSingleInkDrain fromNbt(@NotNull NbtCompound compound) {
-		if (compound.contains("MaxEnergyTotal", NbtElement.LONG_TYPE)) {
-			long maxEnergyTotal = compound.getLong("MaxEnergyTotal");
-			InkColor color = InkColor.of(compound.getString("Color"));
-			long amount = compound.getLong("Amount");
-			return new FixedSingleInkDrain(maxEnergyTotal, color, amount);
-		}
-		return null;
 	}
 	
 }

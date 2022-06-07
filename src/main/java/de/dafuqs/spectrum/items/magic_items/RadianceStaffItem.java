@@ -46,6 +46,37 @@ public class RadianceStaffItem extends Item implements EnchanterEnchantable {
 		super(settings);
 	}
 	
+	public static boolean placeLight(World world, BlockPos targetPos, PlayerEntity playerEntity, ItemStack stack) {
+		BlockState targetBlockState = world.getBlockState(targetPos);
+		if (targetBlockState.isAir()) {
+			if (EnchantmentHelper.getLevel(Enchantments.INFINITY, stack) > 0 || InventoryHelper.removeFromInventory(playerEntity, COST)) {
+				world.setBlockState(targetPos, SpectrumBlocks.WAND_LIGHT_BLOCK.getDefaultState(), 3);
+				return true;
+			}
+		} else if (targetBlockState.isOf(Blocks.WATER)) {
+			if (EnchantmentHelper.getLevel(Enchantments.INFINITY, stack) > 0 || InventoryHelper.removeFromInventory(playerEntity, COST)) {
+				world.setBlockState(targetPos, SpectrumBlocks.WAND_LIGHT_BLOCK.getDefaultState().with(WATERLOGGED, true), 3);
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public static void playSoundAndParticles(World world, BlockPos targetPos, PlayerEntity playerEntity, int useTimes, int iteration) {
+		float pitch;
+		if (useTimes % 2 == 0) { // high ding <=> deep ding
+			pitch = Math.min(1.35F, 0.7F + 0.1F * useTimes);
+		} else {
+			pitch = Math.min(1.5F, 0.7F + 0.1F * useTimes);
+		}
+		SpectrumS2CPacketSender.sendLightCreatedParticle(world, targetPos);
+		world.playSound(null, playerEntity.getX() + 0.5, playerEntity.getY() + 0.5, playerEntity.getZ() + 0.5, SpectrumSoundEvents.LIGHT_STAFF_PLACE, SoundCategory.PLAYERS, (float) Math.max(0.25, 1.0F - (float) iteration * 0.1F), pitch);
+	}
+	
+	public static void playDenySound(World world, PlayerEntity playerEntity) {
+		world.playSound(null, playerEntity.getX(), playerEntity.getY(), playerEntity.getZ(), SpectrumSoundEvents.USE_FAIL, SoundCategory.PLAYERS, 1.0F, 0.8F + playerEntity.getRandom().nextFloat() * 0.4F);
+	}
+	
 	@Override
 	public void appendTooltip(ItemStack itemStack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
 		if (EnchantmentHelper.getLevel(Enchantments.INFINITY, itemStack) == 0) {
@@ -94,37 +125,6 @@ public class RadianceStaffItem extends Item implements EnchanterEnchantable {
 				}
 			}
 		}
-	}
-	
-	public static boolean placeLight(World world, BlockPos targetPos, PlayerEntity playerEntity, ItemStack stack) {
-		BlockState targetBlockState = world.getBlockState(targetPos);
-		if (targetBlockState.isAir()) {
-			if (EnchantmentHelper.getLevel(Enchantments.INFINITY, stack) > 0 || InventoryHelper.removeFromInventory(playerEntity, COST)) {
-				world.setBlockState(targetPos, SpectrumBlocks.WAND_LIGHT_BLOCK.getDefaultState(), 3);
-				return true;
-			}
-		} else if (targetBlockState.isOf(Blocks.WATER)) {
-			if (EnchantmentHelper.getLevel(Enchantments.INFINITY, stack) > 0 || InventoryHelper.removeFromInventory(playerEntity, COST)) {
-				world.setBlockState(targetPos, SpectrumBlocks.WAND_LIGHT_BLOCK.getDefaultState().with(WATERLOGGED, true), 3);
-				return true;
-			}
-		}
-		return false;
-	}
-	
-	public static void playSoundAndParticles(World world, BlockPos targetPos, PlayerEntity playerEntity, int useTimes, int iteration) {
-		float pitch;
-		if (useTimes % 2 == 0) { // high ding <=> deep ding
-			pitch = Math.min(1.35F, 0.7F + 0.1F * useTimes);
-		} else {
-			pitch = Math.min(1.5F, 0.7F + 0.1F * useTimes);
-		}
-		SpectrumS2CPacketSender.sendLightCreatedParticle(world, targetPos);
-		world.playSound(null, playerEntity.getX() + 0.5, playerEntity.getY() + 0.5, playerEntity.getZ() + 0.5, SpectrumSoundEvents.LIGHT_STAFF_PLACE, SoundCategory.PLAYERS, (float) Math.max(0.25, 1.0F - (float) iteration * 0.1F), pitch);
-	}
-	
-	public static void playDenySound(World world, PlayerEntity playerEntity) {
-		world.playSound(null, playerEntity.getX(), playerEntity.getY(), playerEntity.getZ(), SpectrumSoundEvents.USE_FAIL, SoundCategory.PLAYERS, 1.0F, 0.8F + playerEntity.getRandom().nextFloat() * 0.4F);
 	}
 	
 	@Override

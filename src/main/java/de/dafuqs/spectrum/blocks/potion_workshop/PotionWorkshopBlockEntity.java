@@ -63,21 +63,17 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 	public static final int FIRST_INGREDIENT_SLOT = 2;
 	public static final int FIRST_REAGENT_SLOT = 5;
 	public static final int FIRST_INVENTORY_SLOT = 9;
-	
+	protected static final int BASE_POTION_COUNT_ON_BREWING = 3;
+	protected static final int BASE_ARROW_COUNT_ON_BREWING = 12;
+	protected final PropertyDelegate propertyDelegate;
 	protected DefaultedList<ItemStack> inventory;
 	protected boolean inventoryChanged;
-	
-	protected final PropertyDelegate propertyDelegate;
 	protected PotionWorkshopRecipe currentRecipe;
 	protected int brewTime;
 	protected int brewTimeTotal;
 	protected int potionColor;
-	
 	protected UUID ownerUUID;
 	protected StatusEffect lastBrewedStatusEffect;
-	
-	protected static final int BASE_POTION_COUNT_ON_BREWING = 3;
-	protected static final int BASE_ARROW_COUNT_ON_BREWING = 12;
 	
 	public PotionWorkshopBlockEntity(BlockPos pos, BlockState state) {
 		super(SpectrumBlockEntityRegistry.POTION_WORKSHOP, pos, state);
@@ -104,187 +100,6 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 				return 3;
 			}
 		};
-	}
-	
-	public void readNbt(NbtCompound nbt) {
-		super.readNbt(nbt);
-		this.inventory = DefaultedList.ofSize(INVENTORY_SIZE, ItemStack.EMPTY);
-		Inventories.readNbt(nbt, this.inventory);
-		if (nbt.contains("OwnerUUID")) {
-			this.ownerUUID = nbt.getUuid("OwnerUUID");
-		} else {
-			this.ownerUUID = null;
-		}
-		if (nbt.contains("LastBrewedStatusEffect")) {
-			this.lastBrewedStatusEffect = Registry.STATUS_EFFECT.get(Identifier.tryParse(nbt.getString("LastBrewedStatusEffect")));
-		} else {
-			this.lastBrewedStatusEffect = null;
-		}
-	}
-	
-	public void writeNbt(NbtCompound nbt) {
-		super.writeNbt(nbt);
-		Inventories.writeNbt(nbt, this.inventory);
-		if (this.ownerUUID != null) {
-			nbt.putUuid("OwnerUUID", this.ownerUUID);
-		}
-		if (this.lastBrewedStatusEffect != null) {
-			Identifier lastBrewedStatusEffectIdentifier = Registry.STATUS_EFFECT.getId(this.lastBrewedStatusEffect);
-			if (lastBrewedStatusEffectIdentifier != null) {
-				nbt.putString("LastBrewedStatusEffect", lastBrewedStatusEffectIdentifier.toString());
-			}
-		}
-	}
-	
-	private void playSound(SoundEvent soundEvent) {
-		Random random = world.random;
-		world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), soundEvent, SoundCategory.BLOCKS, 0.9F + random.nextFloat() * 0.2F, 0.9F + random.nextFloat() * 0.15F);
-	}
-	
-	@Override
-	public UUID getOwnerUUID() {
-		return this.ownerUUID;
-	}
-	
-	@Override
-	public boolean canExtract(int slot, ItemStack stack, Direction dir) {
-		return slot >= FIRST_INVENTORY_SLOT;
-	}
-	
-	@Override
-	public int size() {
-		return this.inventory.size();
-	}
-	
-	@Override
-	public boolean isEmpty() {
-		Iterator<ItemStack> var1 = this.inventory.iterator();
-		
-		ItemStack itemStack;
-		do {
-			if (!var1.hasNext()) {
-				return true;
-			}
-			
-			itemStack = var1.next();
-		} while (itemStack.isEmpty());
-		
-		return false;
-	}
-	
-	@Override
-	public ItemStack getStack(int slot) {
-		return this.inventory.get(slot);
-	}
-	
-	@Override
-	public ItemStack removeStack(int slot, int amount) {
-		ItemStack removedStack = Inventories.splitStack(this.inventory, slot, amount);
-		this.inventoryChanged = true;
-		this.markDirty();
-		return removedStack;
-	}
-	
-	@Override
-	public ItemStack removeStack(int slot) {
-		ItemStack removedStack = Inventories.removeStack(this.inventory, slot);
-		this.inventoryChanged = true;
-		this.markDirty();
-		return removedStack;
-	}
-	
-	@Override
-	public boolean canPlayerUse(PlayerEntity player) {
-		if (this.world.getBlockEntity(this.pos) != this) {
-			return false;
-		} else {
-			return player.squaredDistanceTo((double) this.pos.getX() + 0.5D, (double) this.pos.getY() + 0.5D, (double) this.pos.getZ() + 0.5D) <= 64.0D;
-		}
-	}
-	
-	@Override
-	public void provideRecipeInputs(RecipeMatcher recipeMatcher) {
-		recipeMatcher.addInput(this.inventory.get(2));
-		recipeMatcher.addInput(this.inventory.get(3));
-		recipeMatcher.addInput(this.inventory.get(4));
-	}
-	
-	@Override
-	public void setOwner(PlayerEntity playerEntity) {
-		this.ownerUUID = playerEntity.getUuid();
-	}
-	
-	@Override
-	public void clear() {
-		this.inventory.clear();
-		this.inventoryChanged = true;
-		this.markDirty();
-	}
-	
-	@Override
-	public boolean isValid(int slot, ItemStack stack) {
-		if (slot == MERMAIDS_GEM_INPUT_SLOT_ID) {
-			return stack.isOf(SpectrumItems.MERMAIDS_GEM);
-		} else if (slot == BASE_INPUT_SLOT_ID) {
-			return true;
-		} else if (slot < FIRST_REAGENT_SLOT) {
-			return true; // ingredients
-		} else if (slot < FIRST_INVENTORY_SLOT) {
-			return PotionWorkshopReagents.reagentEffects.containsKey(stack.getItem());
-		} else {
-			return false;
-		}
-	}
-	
-	@Override
-	public void setStack(int slot, @NotNull ItemStack stack) {
-		ItemStack itemStack = this.inventory.get(slot);
-		boolean isSameItem = !stack.isEmpty() && stack.isItemEqualIgnoreDamage(itemStack) && ItemStack.areNbtEqual(stack, itemStack);
-		this.inventory.set(slot, stack);
-		if (stack.getCount() > this.getMaxCountPerStack()) {
-			stack.setCount(this.getMaxCountPerStack());
-		}
-		
-		if (!isSameItem) {
-			this.inventoryChanged = true;
-		}
-		this.markDirty();
-	}
-	
-	@Override
-	public int[] getAvailableSlots(Direction side) {
-		if (side == Direction.DOWN) {
-			return new int[]{9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
-		} else if (side == Direction.UP) {
-			return new int[]{0, 1, 2, 3, 4};
-		} else {
-			if (this.hasFourthReagentSlotUnlocked()) {
-				return new int[]{5, 6, 7};
-			} else {
-				return new int[]{5, 6, 7, 8};
-			}
-		}
-	}
-	
-	@Override
-	public boolean canInsert(int slot, @NotNull ItemStack stack, @Nullable Direction dir) {
-		return isValid(slot, stack);
-	}
-	
-	private boolean hasFourthReagentSlotUnlocked(PlayerEntity playerEntity) {
-		if (playerEntity == null) {
-			return false;
-		} else {
-			return Support.hasAdvancement(playerEntity, FOURTH_BREWING_SLOT_ADVANCEMENT_IDENTIFIER);
-		}
-	}
-	
-	private boolean hasFourthReagentSlotUnlocked() {
-		if (this.ownerUUID == null) {
-			return false;
-		} else {
-			return hasFourthReagentSlotUnlocked((getPlayerEntityIfOnline(this.world)));
-		}
 	}
 	
 	public static void tick(World world, BlockPos blockPos, BlockState blockState, PotionWorkshopBlockEntity potionWorkshopBlockEntity) {
@@ -554,6 +369,187 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 			if (!currentStack.isEmpty()) {
 				currentStack.decrement(1);
 			}
+		}
+	}
+	
+	public void readNbt(NbtCompound nbt) {
+		super.readNbt(nbt);
+		this.inventory = DefaultedList.ofSize(INVENTORY_SIZE, ItemStack.EMPTY);
+		Inventories.readNbt(nbt, this.inventory);
+		if (nbt.contains("OwnerUUID")) {
+			this.ownerUUID = nbt.getUuid("OwnerUUID");
+		} else {
+			this.ownerUUID = null;
+		}
+		if (nbt.contains("LastBrewedStatusEffect")) {
+			this.lastBrewedStatusEffect = Registry.STATUS_EFFECT.get(Identifier.tryParse(nbt.getString("LastBrewedStatusEffect")));
+		} else {
+			this.lastBrewedStatusEffect = null;
+		}
+	}
+	
+	public void writeNbt(NbtCompound nbt) {
+		super.writeNbt(nbt);
+		Inventories.writeNbt(nbt, this.inventory);
+		if (this.ownerUUID != null) {
+			nbt.putUuid("OwnerUUID", this.ownerUUID);
+		}
+		if (this.lastBrewedStatusEffect != null) {
+			Identifier lastBrewedStatusEffectIdentifier = Registry.STATUS_EFFECT.getId(this.lastBrewedStatusEffect);
+			if (lastBrewedStatusEffectIdentifier != null) {
+				nbt.putString("LastBrewedStatusEffect", lastBrewedStatusEffectIdentifier.toString());
+			}
+		}
+	}
+	
+	private void playSound(SoundEvent soundEvent) {
+		Random random = world.random;
+		world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), soundEvent, SoundCategory.BLOCKS, 0.9F + random.nextFloat() * 0.2F, 0.9F + random.nextFloat() * 0.15F);
+	}
+	
+	@Override
+	public UUID getOwnerUUID() {
+		return this.ownerUUID;
+	}
+	
+	@Override
+	public boolean canExtract(int slot, ItemStack stack, Direction dir) {
+		return slot >= FIRST_INVENTORY_SLOT;
+	}
+	
+	@Override
+	public int size() {
+		return this.inventory.size();
+	}
+	
+	@Override
+	public boolean isEmpty() {
+		Iterator<ItemStack> var1 = this.inventory.iterator();
+		
+		ItemStack itemStack;
+		do {
+			if (!var1.hasNext()) {
+				return true;
+			}
+			
+			itemStack = var1.next();
+		} while (itemStack.isEmpty());
+		
+		return false;
+	}
+	
+	@Override
+	public ItemStack getStack(int slot) {
+		return this.inventory.get(slot);
+	}
+	
+	@Override
+	public ItemStack removeStack(int slot, int amount) {
+		ItemStack removedStack = Inventories.splitStack(this.inventory, slot, amount);
+		this.inventoryChanged = true;
+		this.markDirty();
+		return removedStack;
+	}
+	
+	@Override
+	public ItemStack removeStack(int slot) {
+		ItemStack removedStack = Inventories.removeStack(this.inventory, slot);
+		this.inventoryChanged = true;
+		this.markDirty();
+		return removedStack;
+	}
+	
+	@Override
+	public boolean canPlayerUse(PlayerEntity player) {
+		if (this.world.getBlockEntity(this.pos) != this) {
+			return false;
+		} else {
+			return player.squaredDistanceTo((double) this.pos.getX() + 0.5D, (double) this.pos.getY() + 0.5D, (double) this.pos.getZ() + 0.5D) <= 64.0D;
+		}
+	}
+	
+	@Override
+	public void provideRecipeInputs(RecipeMatcher recipeMatcher) {
+		recipeMatcher.addInput(this.inventory.get(2));
+		recipeMatcher.addInput(this.inventory.get(3));
+		recipeMatcher.addInput(this.inventory.get(4));
+	}
+	
+	@Override
+	public void setOwner(PlayerEntity playerEntity) {
+		this.ownerUUID = playerEntity.getUuid();
+	}
+	
+	@Override
+	public void clear() {
+		this.inventory.clear();
+		this.inventoryChanged = true;
+		this.markDirty();
+	}
+	
+	@Override
+	public boolean isValid(int slot, ItemStack stack) {
+		if (slot == MERMAIDS_GEM_INPUT_SLOT_ID) {
+			return stack.isOf(SpectrumItems.MERMAIDS_GEM);
+		} else if (slot == BASE_INPUT_SLOT_ID) {
+			return true;
+		} else if (slot < FIRST_REAGENT_SLOT) {
+			return true; // ingredients
+		} else if (slot < FIRST_INVENTORY_SLOT) {
+			return PotionWorkshopReagents.reagentEffects.containsKey(stack.getItem());
+		} else {
+			return false;
+		}
+	}
+	
+	@Override
+	public void setStack(int slot, @NotNull ItemStack stack) {
+		ItemStack itemStack = this.inventory.get(slot);
+		boolean isSameItem = !stack.isEmpty() && stack.isItemEqualIgnoreDamage(itemStack) && ItemStack.areNbtEqual(stack, itemStack);
+		this.inventory.set(slot, stack);
+		if (stack.getCount() > this.getMaxCountPerStack()) {
+			stack.setCount(this.getMaxCountPerStack());
+		}
+		
+		if (!isSameItem) {
+			this.inventoryChanged = true;
+		}
+		this.markDirty();
+	}
+	
+	@Override
+	public int[] getAvailableSlots(Direction side) {
+		if (side == Direction.DOWN) {
+			return new int[]{9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
+		} else if (side == Direction.UP) {
+			return new int[]{0, 1, 2, 3, 4};
+		} else {
+			if (this.hasFourthReagentSlotUnlocked()) {
+				return new int[]{5, 6, 7};
+			} else {
+				return new int[]{5, 6, 7, 8};
+			}
+		}
+	}
+	
+	@Override
+	public boolean canInsert(int slot, @NotNull ItemStack stack, @Nullable Direction dir) {
+		return isValid(slot, stack);
+	}
+	
+	private boolean hasFourthReagentSlotUnlocked(PlayerEntity playerEntity) {
+		if (playerEntity == null) {
+			return false;
+		} else {
+			return Support.hasAdvancement(playerEntity, FOURTH_BREWING_SLOT_ADVANCEMENT_IDENTIFIER);
+		}
+	}
+	
+	private boolean hasFourthReagentSlotUnlocked() {
+		if (this.ownerUUID == null) {
+			return false;
+		} else {
+			return hasFourthReagentSlotUnlocked((getPlayerEntityIfOnline(this.world)));
 		}
 	}
 	

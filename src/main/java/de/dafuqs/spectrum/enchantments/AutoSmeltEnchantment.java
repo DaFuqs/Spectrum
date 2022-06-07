@@ -22,6 +22,60 @@ import java.util.List;
 
 public class AutoSmeltEnchantment extends SpectrumEnchantment {
 	
+	private static final AutoSmeltInventory autoSmeltInventory = new AutoSmeltInventory();
+	
+	public AutoSmeltEnchantment(Rarity weight, Identifier unlockAdvancementIdentifier, EquipmentSlot... slotTypes) {
+		super(weight, EnchantmentTarget.DIGGER, slotTypes, unlockAdvancementIdentifier);
+	}
+	
+	public static ItemStack getAutoSmeltedItemStack(ItemStack inputItemStack, World world) {
+		SmeltingRecipe smeltingRecipe = autoSmeltInventory.getRecipe(inputItemStack, world);
+		if (smeltingRecipe != null) {
+			ItemStack recipeOutputStack = smeltingRecipe.getOutput().copy();
+			recipeOutputStack.setCount(recipeOutputStack.getCount() * inputItemStack.getCount());
+			return recipeOutputStack;
+		} else {
+			return null;
+		}
+	}
+	
+	@NotNull
+	public static List<ItemStack> applyAutoSmelt(ServerWorld world, List<ItemStack> originalStacks) {
+		List<ItemStack> returnItemStacks = new ArrayList<>();
+		
+		for (ItemStack is : originalStacks) {
+			ItemStack smeltedStack = AutoSmeltEnchantment.getAutoSmeltedItemStack(is, world);
+			if (smeltedStack == null) {
+				returnItemStacks.add(is);
+			} else {
+				while (smeltedStack.getCount() > 0) {
+					int currentAmount = Math.min(smeltedStack.getCount(), smeltedStack.getItem().getMaxCount());
+					ItemStack currentStack = smeltedStack.copy();
+					currentStack.setCount(currentAmount);
+					returnItemStacks.add(currentStack);
+					smeltedStack.setCount(smeltedStack.getCount() - currentAmount);
+				}
+			}
+		}
+		return returnItemStacks;
+	}
+	
+	public int getMinPower(int level) {
+		return 15;
+	}
+	
+	public int getMaxPower(int level) {
+		return super.getMinPower(level) + 50;
+	}
+	
+	public int getMaxLevel() {
+		return 1;
+	}
+	
+	public boolean canAccept(Enchantment other) {
+		return super.canAccept(other) && other != Enchantments.SILK_TOUCH && other != SpectrumEnchantments.RESONANCE;
+	}
+	
 	public static class AutoSmeltInventory implements Inventory, RecipeInputProvider {
 		ItemStack input = ItemStack.EMPTY;
 		
@@ -79,60 +133,6 @@ public class AutoSmeltEnchantment extends SpectrumEnchantment {
 			recipeMatcher.addInput(input);
 		}
 		
-	}
-	
-	private static final AutoSmeltInventory autoSmeltInventory = new AutoSmeltInventory();
-	
-	public AutoSmeltEnchantment(Rarity weight, Identifier unlockAdvancementIdentifier, EquipmentSlot... slotTypes) {
-		super(weight, EnchantmentTarget.DIGGER, slotTypes, unlockAdvancementIdentifier);
-	}
-	
-	public int getMinPower(int level) {
-		return 15;
-	}
-	
-	public int getMaxPower(int level) {
-		return super.getMinPower(level) + 50;
-	}
-	
-	public int getMaxLevel() {
-		return 1;
-	}
-	
-	public boolean canAccept(Enchantment other) {
-		return super.canAccept(other) && other != Enchantments.SILK_TOUCH && other != SpectrumEnchantments.RESONANCE;
-	}
-	
-	public static ItemStack getAutoSmeltedItemStack(ItemStack inputItemStack, World world) {
-		SmeltingRecipe smeltingRecipe = autoSmeltInventory.getRecipe(inputItemStack, world);
-		if (smeltingRecipe != null) {
-			ItemStack recipeOutputStack = smeltingRecipe.getOutput().copy();
-			recipeOutputStack.setCount(recipeOutputStack.getCount() * inputItemStack.getCount());
-			return recipeOutputStack;
-		} else {
-			return null;
-		}
-	}
-	
-	@NotNull
-	public static List<ItemStack> applyAutoSmelt(ServerWorld world, List<ItemStack> originalStacks) {
-		List<ItemStack> returnItemStacks = new ArrayList<>();
-		
-		for (ItemStack is : originalStacks) {
-			ItemStack smeltedStack = AutoSmeltEnchantment.getAutoSmeltedItemStack(is, world);
-			if (smeltedStack == null) {
-				returnItemStacks.add(is);
-			} else {
-				while (smeltedStack.getCount() > 0) {
-					int currentAmount = Math.min(smeltedStack.getCount(), smeltedStack.getItem().getMaxCount());
-					ItemStack currentStack = smeltedStack.copy();
-					currentStack.setCount(currentAmount);
-					returnItemStacks.add(currentStack);
-					smeltedStack.setCount(smeltedStack.getCount() - currentAmount);
-				}
-			}
-		}
-		return returnItemStacks;
 	}
 	
 }

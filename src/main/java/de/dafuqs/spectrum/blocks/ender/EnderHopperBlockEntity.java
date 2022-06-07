@@ -43,36 +43,6 @@ public class EnderHopperBlockEntity extends BlockEntity implements PlayerOwnedWi
 		super(SpectrumBlockEntityRegistry.ENDER_HOPPER, blockPos, blockState);
 	}
 	
-	protected Text getContainerName() {
-		if (hasOwner()) {
-			return new TranslatableText("block.spectrum.ender_hopper").append(new TranslatableText("container.spectrum.owned_by_player", this.ownerName));
-		} else {
-			return new TranslatableText("block.spectrum.ender_hopper");
-		}
-	}
-	
-	public double getHopperX() {
-		return this.pos.getX() + 0.5D;
-	}
-	
-	public double getHopperY() {
-		return this.pos.getY() + 0.5D;
-	}
-	
-	public double getHopperZ() {
-		return this.pos.getZ() + 0.5D;
-	}
-	
-	private VoxelShape getInputAreaShape() {
-		return INPUT_AREA_SHAPE;
-	}
-	
-	public ItemStack getStack(int slot) {
-		PlayerEntity playerEntity = world.getPlayerByUuid(this.ownerUUID);
-		EnderChestInventory enderInventory = playerEntity.getEnderChestInventory();
-		return enderInventory.getStack(slot);
-	}
-	
 	public static void onEntityCollided(World world, BlockPos pos, BlockState state, Entity entity, EnderHopperBlockEntity enderHopperBlockEntity) {
 		if (entity instanceof ItemEntity && VoxelShapes.matchesAnywhere(VoxelShapes.cuboid(entity.getBoundingBox().offset((-pos.getX()), (-pos.getY()), (-pos.getZ()))), enderHopperBlockEntity.getInputAreaShape(), BooleanBiFunction.AND)) {
 			insertIntoEnderChest(world, enderHopperBlockEntity, (ItemEntity) entity);
@@ -149,7 +119,6 @@ public class EnderHopperBlockEntity extends BlockEntity implements PlayerOwnedWi
 		return false;
 	}
 	
-	
 	public static ItemStack addToEnderInventory(ItemStack additionStack, PlayerEntity playerEntity, boolean test) {
 		EnderChestInventory enderChestInventory = playerEntity.getEnderChestInventory();
 		
@@ -198,6 +167,36 @@ public class EnderHopperBlockEntity extends BlockEntity implements PlayerOwnedWi
 	@Nullable
 	private static Inventory getInputInventory(World world, EnderHopperBlockEntity enderHopperBlockEntity) {
 		return InventoryHelper.getInventoryAt(world, enderHopperBlockEntity.getHopperX(), enderHopperBlockEntity.getHopperY() + 1.0D, enderHopperBlockEntity.getHopperZ());
+	}
+	
+	protected Text getContainerName() {
+		if (hasOwner()) {
+			return new TranslatableText("block.spectrum.ender_hopper").append(new TranslatableText("container.spectrum.owned_by_player", this.ownerName));
+		} else {
+			return new TranslatableText("block.spectrum.ender_hopper");
+		}
+	}
+	
+	public double getHopperX() {
+		return this.pos.getX() + 0.5D;
+	}
+	
+	public double getHopperY() {
+		return this.pos.getY() + 0.5D;
+	}
+	
+	public double getHopperZ() {
+		return this.pos.getZ() + 0.5D;
+	}
+	
+	private VoxelShape getInputAreaShape() {
+		return INPUT_AREA_SHAPE;
+	}
+	
+	public ItemStack getStack(int slot) {
+		PlayerEntity playerEntity = world.getPlayerByUuid(this.ownerUUID);
+		EnderChestInventory enderInventory = playerEntity.getEnderChestInventory();
+		return enderInventory.getStack(slot);
 	}
 	
 	private boolean isFull() {

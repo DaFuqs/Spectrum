@@ -16,8 +16,8 @@ import java.util.List;
 
 public class UpgradeBlock extends BlockWithEntity {
 	
+	protected static final VoxelShape SHAPE_UP = Block.createCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 10.0D, 14.0D);
 	private static final List<Block> registeredUpgradeBlocks = new ArrayList<>();
-	
 	// Positions to check on place / destroy to upgrade those blocks upgrade counts
 	private final List<Vec3i> possibleUpgradeBlockOffsets = new ArrayList<>() {{
 		// Pedestal
@@ -44,13 +44,10 @@ public class UpgradeBlock extends BlockWithEntity {
 		add(new Vec3i(4, -1, -4));
 		add(new Vec3i(-4, -1, -4));
 	}};
-	
 	// Like: The further the player progresses,
 	// the higher are the chances for good mods?
 	private final Upgradeable.UpgradeType upgradeType;
 	private final double upgradeMod;
-	
-	protected static final VoxelShape SHAPE_UP = Block.createCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 10.0D, 14.0D);
 	
 	public UpgradeBlock(Settings settings, Upgradeable.UpgradeType upgradeType, double upgradeMod) {
 		super(settings);
@@ -58,6 +55,10 @@ public class UpgradeBlock extends BlockWithEntity {
 		this.upgradeMod = upgradeMod;
 		
 		registeredUpgradeBlocks.add(this);
+	}
+	
+	public static List<Block> getRegisteredUpgradeBlocks() {
+		return registeredUpgradeBlocks;
 	}
 	
 	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
@@ -73,7 +74,6 @@ public class UpgradeBlock extends BlockWithEntity {
 		super.onBlockAdded(state, world, pos, oldState, notify);
 		updateConnectedUpgradeBlock(world, pos);
 	}
-	
 	
 	@Override
 	public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
@@ -111,10 +111,6 @@ public class UpgradeBlock extends BlockWithEntity {
 	@Override
 	public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
 		return new UpgradeBlockEntity(pos, state);
-	}
-	
-	public static List<Block> getRegisteredUpgradeBlocks() {
-		return registeredUpgradeBlocks;
 	}
 	
 }

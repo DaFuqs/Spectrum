@@ -56,17 +56,15 @@ public abstract class WorldRendererMixin implements WorldRendererAccessor {
 	
 	@Shadow
 	private ClientWorld world;
+	// if the mixin renders a bigger outline than the default 1:1. Cancels default outline
+	@Unique
+	private boolean renderedExtendedOutline = false;
+	@Shadow
+	private BuiltChunkStorage chunks;
 	
 	@Shadow
 	private static void drawShapeOutline(MatrixStack matrixStack, VertexConsumer vertexConsumer, VoxelShape voxelShape, double d, double e, double f, float g, float h, float i, float j) {
 	}
-	
-	// if the mixin renders a bigger outline than the default 1:1. Cancels default outline
-	@Unique
-	private boolean renderedExtendedOutline = false;
-	
-	@Shadow
-	private BuiltChunkStorage chunks;
 	
 	@Shadow
 	public abstract void scheduleTerrainUpdate();

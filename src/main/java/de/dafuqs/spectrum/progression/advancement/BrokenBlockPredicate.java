@@ -23,6 +23,11 @@ import java.util.Set;
 public class BrokenBlockPredicate {
 	
 	public static final BrokenBlockPredicate ANY;
+
+	static {
+		ANY = new BrokenBlockPredicate(null, null, StatePredicate.ANY);
+	}
+
 	@Nullable
 	private final TagKey<Block> tag;
 	@Nullable
@@ -33,20 +38,6 @@ public class BrokenBlockPredicate {
 		this.tag = tag;
 		this.blocks = blocks;
 		this.state = state;
-	}
-	
-	public boolean test(BlockState blockState) {
-		if (this == ANY) {
-			return true;
-		} else {
-			if (this.tag != null && !blockState.isIn(this.tag)) {
-				return false;
-			} else if (this.blocks != null && !this.blocks.contains(blockState.getBlock())) {
-				return false;
-			} else {
-				return this.state.test(blockState);
-			}
-		}
 	}
 	
 	public static BrokenBlockPredicate fromJson(@Nullable JsonElement json) {
@@ -80,6 +71,20 @@ public class BrokenBlockPredicate {
 		}
 	}
 	
+	public boolean test(BlockState blockState) {
+		if (this == ANY) {
+			return true;
+		} else {
+			if (this.tag != null && !blockState.isIn(this.tag)) {
+				return false;
+			} else if (this.blocks != null && !this.blocks.contains(blockState.getBlock())) {
+				return false;
+			} else {
+				return this.state.test(blockState);
+			}
+		}
+	}
+	
 	public JsonElement toJson() {
 		if (this == ANY) {
 			return JsonNull.INSTANCE;
@@ -102,10 +107,6 @@ public class BrokenBlockPredicate {
 			jsonObject.add("state", this.state.toJson());
 			return jsonObject;
 		}
-	}
-	
-	static {
-		ANY = new BrokenBlockPredicate(null, null, StatePredicate.ANY);
 	}
 	
 	public static class Builder {

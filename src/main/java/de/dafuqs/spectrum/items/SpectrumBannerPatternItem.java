@@ -26,6 +26,10 @@ public class SpectrumBannerPatternItem extends Item implements LoomPatternProvid
 		this.tooltipText = new TranslatableText(tooltipText);
 	}
 	
+	public static void addBannerPatternProviderTooltip(List<Text> tooltips) {
+		tooltips.add(TOOLTIP_TEXT.formatted(Formatting.GRAY));
+	}
+	
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		tooltip.add(tooltipText.formatted(Formatting.GRAY));
@@ -35,10 +39,6 @@ public class SpectrumBannerPatternItem extends Item implements LoomPatternProvid
 	@Override
 	public LoomPattern getPattern() {
 		return pattern;
-	}
-	
-	public static void addBannerPatternProviderTooltip(List<Text> tooltips) {
-		tooltips.add(TOOLTIP_TEXT.formatted(Formatting.GRAY));
 	}
 	
 }

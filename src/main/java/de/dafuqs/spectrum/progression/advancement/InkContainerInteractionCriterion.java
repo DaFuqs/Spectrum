@@ -19,6 +19,10 @@ public class InkContainerInteractionCriterion extends AbstractCriterion<InkConta
 	
 	static final Identifier ID = new Identifier(SpectrumCommon.MOD_ID, "ink_container_interaction");
 	
+	public static InkContainerInteractionCriterion.Conditions create(ItemPredicate itemPredicate, LongRange blackRange, LongRange blueRange, LongRange brownRange, LongRange cyanRange, LongRange grayRange, LongRange greenRange, LongRange lightBlueRange, LongRange lightGrayRange, LongRange limeRange, LongRange magentaRange, LongRange orangeRange, LongRange pinkRange, LongRange purpleRange, LongRange redRange, LongRange whiteRange, LongRange yellowRange, ColorPredicate changeColor, LongRange changeRange) {
+		return new InkContainerInteractionCriterion.Conditions(EntityPredicate.Extended.EMPTY, itemPredicate, blackRange, blueRange, brownRange, cyanRange, grayRange, greenRange, lightBlueRange, lightGrayRange, limeRange, magentaRange, orangeRange, pinkRange, purpleRange, redRange, whiteRange, yellowRange, changeColor, changeRange);
+	}
+	
 	public Identifier getId() {
 		return ID;
 	}
@@ -69,10 +73,6 @@ public class InkContainerInteractionCriterion extends AbstractCriterion<InkConta
 				changeColor,
 				changeAmount
 		));
-	}
-	
-	public static InkContainerInteractionCriterion.Conditions create(ItemPredicate itemPredicate, LongRange blackRange, LongRange blueRange, LongRange brownRange, LongRange cyanRange, LongRange grayRange, LongRange greenRange, LongRange lightBlueRange, LongRange lightGrayRange, LongRange limeRange, LongRange magentaRange, LongRange orangeRange, LongRange pinkRange, LongRange purpleRange, LongRange redRange, LongRange whiteRange, LongRange yellowRange, ColorPredicate changeColor, LongRange changeRange) {
-		return new InkContainerInteractionCriterion.Conditions(EntityPredicate.Extended.EMPTY, itemPredicate, blackRange, blueRange, brownRange, cyanRange, grayRange, greenRange, lightBlueRange, lightGrayRange, limeRange, magentaRange, orangeRange, pinkRange, purpleRange, redRange, whiteRange, yellowRange, changeColor, changeRange);
 	}
 	
 	public static class Conditions extends AbstractCriterionConditions {

@@ -28,6 +28,10 @@ public class MidnightSolutionConvertingDisplay extends BasicDisplay implements G
 		super(inputs, outputs);
 	}
 	
+	public static Serializer<MidnightSolutionConvertingDisplay> serializer() {
+		return Serializer.ofSimpleRecipeLess(MidnightSolutionConvertingDisplay::new);
+	}
+	
 	public final EntryIngredient getIn() {
 		return getInputEntries().get(0);
 	}
@@ -43,10 +47,6 @@ public class MidnightSolutionConvertingDisplay extends BasicDisplay implements G
 	
 	public boolean isUnlocked() {
 		return Support.hasAdvancement(MinecraftClient.getInstance().player, UNLOCK_ADVANCEMENT_IDENTIFIER);
-	}
-	
-	public static Serializer<MidnightSolutionConvertingDisplay> serializer() {
-		return Serializer.ofSimpleRecipeLess(MidnightSolutionConvertingDisplay::new);
 	}
 	
 }

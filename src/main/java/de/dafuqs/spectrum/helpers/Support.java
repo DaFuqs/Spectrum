@@ -34,15 +34,12 @@ import java.util.Random;
 
 public class Support {
 	
-	private static final Identifier PROGRESSION_FINISHED_ADVANCEMENT_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "lategame/finish_progression");
-	
 	public static final List<Vec3d> VECTORS_4 = new ArrayList<>() {{
 		add(new Vec3d(1.0D, 0, 0.0D));
 		add(new Vec3d(0.0D, 0, 1.0D));
 		add(new Vec3d(-1.0, 0, 0.0D));
 		add(new Vec3d(0.0D, 0, -1.0D));
 	}};
-	
 	public static final List<Vec3d> VECTORS_8 = new ArrayList<>() {{
 		add(new Vec3d(1.0D, 0, 0.0D));
 		add(new Vec3d(0.7D, 0, 0.7D));
@@ -53,7 +50,6 @@ public class Support {
 		add(new Vec3d(0.0D, 0, -1.0D));
 		add(new Vec3d(0.7D, 0, -0.7D));
 	}};
-	
 	// Like eight, just turned clockwise
 	public static final List<Vec3d> VECTORS_8_OFFSET = new ArrayList<>() {{
 		add(new Vec3d(0.75D, 0, 0.5D));
@@ -65,7 +61,6 @@ public class Support {
 		add(new Vec3d(0.5D, 0, -0.75D));
 		add(new Vec3d(0.75D, 0, -0.5D));
 	}};
-	
 	public static final List<Vec3d> VECTORS_16 = new ArrayList<>() {{
 		add(new Vec3d(1.0D, 0, 0.0D));
 		add(new Vec3d(0.75D, 0, 0.5D));
@@ -84,13 +79,13 @@ public class Support {
 		add(new Vec3d(0.7D, 0, -0.7D));
 		add(new Vec3d(0.75D, 0, -0.5D));
 	}};
-	
+	private static final Identifier PROGRESSION_FINISHED_ADVANCEMENT_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "lategame/finish_progression");
+	private static final DecimalFormat df = new DecimalFormat("0.00");
+	private static final DecimalFormat df2 = new DecimalFormat("0");
+
 	public static @NotNull Optional<TagKey<Block>> getFirstMatchingBlockTag(@NotNull BlockState blockState, @NotNull List<TagKey<Block>> tags) {
 		return blockState.streamTags().filter(tags::contains).findFirst();
 	}
-	
-	private static final DecimalFormat df = new DecimalFormat("0.00");
-	private static final DecimalFormat df2 = new DecimalFormat("0");
 	
 	public static String getShortenedNumberString(double number) {
 		if (number > 1000000000D) {

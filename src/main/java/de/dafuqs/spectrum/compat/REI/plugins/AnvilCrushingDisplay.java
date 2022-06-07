@@ -12,11 +12,10 @@ import java.util.List;
 
 public class AnvilCrushingDisplay implements Display {
 	
-	private final List<EntryIngredient> inputs;
-	private final EntryIngredient output;
-	
 	public final float experience;
 	public final float crushedItemsPerPointOfDamage;
+	private final List<EntryIngredient> inputs;
+	private final EntryIngredient output;
 	
 	public AnvilCrushingDisplay(AnvilCrushingRecipe recipe) {
 		this.inputs = recipe.getIngredients().stream().map(EntryIngredients::ofIngredient).toList();

@@ -20,6 +20,16 @@ public class WetLavaSpongeBlock extends WetSpongeBlock {
 		super(settings);
 	}
 	
+	// faster than fire (30+ 0-10)
+	// even more in the nether
+	private static int getRandomTickTime(World world) {
+		if (world.getDimension().isUltrawarm()) {
+			return 10 + world.random.nextInt(5);
+		} else {
+			return 20 + world.random.nextInt(10);
+		}
+	}
+	
 	@Override
 	public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
 		world.createAndScheduleBlockTick(pos, this, getRandomTickTime(world));
@@ -39,16 +49,6 @@ public class WetLavaSpongeBlock extends WetSpongeBlock {
 	@Override
 	public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
 		world.createAndScheduleBlockTick(pos, this, getRandomTickTime(world));
-	}
-	
-	// faster than fire (30+ 0-10)
-	// even more in the nether
-	private static int getRandomTickTime(World world) {
-		if (world.getDimension().isUltrawarm()) {
-			return 10 + world.random.nextInt(5);
-		} else {
-			return 20 + world.random.nextInt(10);
-		}
 	}
 	
 	@Environment(EnvType.CLIENT)

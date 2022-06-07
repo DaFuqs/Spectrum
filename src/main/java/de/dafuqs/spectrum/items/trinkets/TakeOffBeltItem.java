@@ -43,6 +43,17 @@ public class TakeOffBeltItem extends SpectrumTrinketItem implements EnchanterEnc
 		super(settings, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_take_off_belt"));
 	}
 	
+	public static int getJumpBoostAmplifier(int sneakTime, int powerEnchantmentLevel) {
+		return (int) Math.floor(sneakTime * (1.5 + powerEnchantmentLevel * 0.25));
+	}
+	
+	public static int getCurrentCharge(PlayerEntity playerEntity) {
+		if (sneakingTimes.containsKey(playerEntity)) {
+			return (int) (playerEntity.getWorld().getTime() - sneakingTimes.get(playerEntity)) / CHARGE_TIME_TICKS;
+		}
+		return 0;
+	}
+	
 	@Environment(EnvType.CLIENT)
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
@@ -92,17 +103,6 @@ public class TakeOffBeltItem extends SpectrumTrinketItem implements EnchanterEnc
 				}
 			}
 		}
-	}
-	
-	public static int getJumpBoostAmplifier(int sneakTime, int powerEnchantmentLevel) {
-		return (int) Math.floor(sneakTime * (1.5 + powerEnchantmentLevel * 0.25));
-	}
-	
-	public static int getCurrentCharge(PlayerEntity playerEntity) {
-		if (sneakingTimes.containsKey(playerEntity)) {
-			return (int) (playerEntity.getWorld().getTime() - sneakingTimes.get(playerEntity)) / CHARGE_TIME_TICKS;
-		}
-		return 0;
 	}
 	
 	@Override

@@ -26,6 +26,10 @@ public class NaturesStaffConversionsDisplay extends BasicDisplay implements Gate
 		super(inputs, outputs);
 	}
 	
+	public static BasicDisplay.Serializer<NaturesStaffConversionsDisplay> serializer() {
+		return BasicDisplay.Serializer.ofSimpleRecipeLess(NaturesStaffConversionsDisplay::new);
+	}
+	
 	public final EntryIngredient getIn() {
 		return getInputEntries().get(0);
 	}
@@ -41,9 +45,5 @@ public class NaturesStaffConversionsDisplay extends BasicDisplay implements Gate
 	
 	public boolean isUnlocked() {
 		return Support.hasAdvancement(MinecraftClient.getInstance().player, UNLOCK_ADVANCEMENT_IDENTIFIER);
-	}
-	
-	public static BasicDisplay.Serializer<NaturesStaffConversionsDisplay> serializer() {
-		return BasicDisplay.Serializer.ofSimpleRecipeLess(NaturesStaffConversionsDisplay::new);
 	}
 }

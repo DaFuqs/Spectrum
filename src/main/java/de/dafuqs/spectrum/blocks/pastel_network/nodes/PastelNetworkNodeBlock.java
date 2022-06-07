@@ -36,13 +36,17 @@ public class PastelNetworkNodeBlock extends FacingBlock implements BlockEntityPr
 	protected static final VoxelShape SHAPE_SOUTH = Block.createCuboidShape(4.0D, 4.0D, 0.0D, 12.0D, 12.0D, 8.0D);
 	protected static final VoxelShape SHAPE_EAST = Block.createCuboidShape(0.0D, 4.0D, 4.0D, 8.0D, 12.0D, 12.0D);
 	protected static final VoxelShape SHAPE_WEST = Block.createCuboidShape(8.0D, 4.0D, 4.0D, 16.0D, 12.0D, 12.0D);
-	
-	protected final Text nodeTypeTooltipText;
 	protected static final Text rangeTooltipText = new TranslatableText("block.spectrum.pastel_network_nodes.tooltip.range").formatted(Formatting.GRAY);
+	protected final Text nodeTypeTooltipText;
 	
 	public PastelNetworkNodeBlock(Settings settings, String tooltipName) {
 		super(settings);
 		this.nodeTypeTooltipText = new TranslatableText(tooltipName);
+	}
+	
+	@Nullable
+	protected static <E extends BlockEntity, A extends BlockEntity> BlockEntityTicker<A> checkType(BlockEntityType<A> givenType, BlockEntityType<E> expectedType, BlockEntityTicker<? super E> ticker) {
+		return expectedType == givenType ? (BlockEntityTicker<A>) ticker : null;
 	}
 	
 	public BlockRenderType getRenderType(BlockState state) {
@@ -59,11 +63,6 @@ public class PastelNetworkNodeBlock extends FacingBlock implements BlockEntityPr
 	public NamedScreenHandlerFactory createScreenHandlerFactory(BlockState state, World world, BlockPos pos) {
 		BlockEntity blockEntity = world.getBlockEntity(pos);
 		return blockEntity instanceof NamedScreenHandlerFactory ? (NamedScreenHandlerFactory) blockEntity : null;
-	}
-	
-	@Nullable
-	protected static <E extends BlockEntity, A extends BlockEntity> BlockEntityTicker<A> checkType(BlockEntityType<A> givenType, BlockEntityType<E> expectedType, BlockEntityTicker<? super E> ticker) {
-		return expectedType == givenType ? (BlockEntityTicker<A>) ticker : null;
 	}
 	
 	@Override

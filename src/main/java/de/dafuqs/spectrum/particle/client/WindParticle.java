@@ -15,16 +15,6 @@ public class WindParticle extends SpriteBillboardParticle {
 	
 	private static final WindStrength wind = new WindStrength();
 	
-	@Override
-	public void tick() {
-		super.tick();
-		
-		Vec3d windStrength = wind.getWindStrength(world.getTime());
-		this.velocityX += windStrength.getX() * 0.004;
-		this.velocityY += windStrength.getY() * 0.001;
-		this.velocityZ += windStrength.getZ() * 0.004;
-	}
-	
 	protected WindParticle(ClientWorld clientWorld, double x, double y, double z, double velocityX, double velocityY, double velocityZ) {
 		super(clientWorld, x, y - 0.125D, z, velocityX, velocityY, velocityZ);
 		
@@ -36,8 +26,23 @@ public class WindParticle extends SpriteBillboardParticle {
 	}
 	
 	@Override
+	public void tick() {
+		super.tick();
+		
+		Vec3d windStrength = wind.getWindStrength(world.getTime());
+		this.velocityX += windStrength.getX() * 0.004;
+		this.velocityY += windStrength.getY() * 0.001;
+		this.velocityZ += windStrength.getZ() * 0.004;
+	}
+	
+	@Override
 	public ParticleTextureSheet getType() {
 		return ParticleTextureSheet.PARTICLE_SHEET_OPAQUE;
+	}
+	
+	@Override
+	protected int getBrightness(float tint) {
+		return 15728880;
 	}
 	
 	public static class Factory implements ParticleFactory<DefaultParticleType> {
@@ -55,11 +60,6 @@ public class WindParticle extends SpriteBillboardParticle {
 			particle.setSprite(this.spriteProvider);
 			return particle;
 		}
-	}
-	
-	@Override
-	protected int getBrightness(float tint) {
-		return 15728880;
 	}
 	
 }

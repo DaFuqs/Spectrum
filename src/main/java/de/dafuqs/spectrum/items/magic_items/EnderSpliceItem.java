@@ -52,6 +52,52 @@ public class EnderSpliceItem extends Item implements EnchanterEnchantable {
 		super(settings);
 	}
 	
+	public static boolean isSameWorld(World world1, World world2) {
+		return world1.getRegistryKey().getValue().toString().equals(world2.getRegistryKey().getValue().toString());
+	}
+	
+	public static void setTeleportTargetPos(@NotNull ItemStack itemStack, World world, Vec3d pos) {
+		NbtCompound nbtCompound = itemStack.getOrCreateNbt();
+		
+		// Remove player tags, if present
+		if (nbtCompound.contains("TargetPlayerName")) {
+			nbtCompound.remove("TargetPlayerName");
+		}
+		if (nbtCompound.contains("TargetPlayerUUID")) {
+			nbtCompound.remove("TargetPlayerUUID");
+		}
+		
+		// Add pos
+		nbtCompound.putDouble("PosX", pos.getX());
+		nbtCompound.putDouble("PosY", pos.getY());
+		nbtCompound.putDouble("PosZ", pos.getZ());
+		nbtCompound.putString("Dimension", world.getRegistryKey().getValue().toString());
+		itemStack.setNbt(nbtCompound);
+	}
+	
+	public static void setTeleportTargetPlayer(@NotNull ItemStack itemStack, ServerPlayerEntity player) {
+		NbtCompound nbtCompound = itemStack.getOrCreateNbt();
+		
+		// Override target pos, if present
+		if (nbtCompound.contains("PosX")) {
+			nbtCompound.remove("PosX");
+		}
+		if (nbtCompound.contains("PosY")) {
+			nbtCompound.remove("PosY");
+		}
+		if (nbtCompound.contains("PosZ")) {
+			nbtCompound.remove("PosZ");
+		}
+		if (nbtCompound.contains("Dimension")) {
+			nbtCompound.remove("Dimension");
+		}
+		
+		// Add player
+		nbtCompound.putString("TargetPlayerName", player.getName().asString());
+		nbtCompound.putUuid("TargetPlayerUUID", player.getUuid());
+		itemStack.setNbt(nbtCompound);
+	}
+	
 	@Override
 	public ItemStack finishUsing(ItemStack itemStack, World world, LivingEntity user) {
 		if (world.isClient) {
@@ -138,10 +184,6 @@ public class EnderSpliceItem extends Item implements EnchanterEnchantable {
 		}
 	}
 	
-	public static boolean isSameWorld(World world1, World world2) {
-		return world1.getRegistryKey().getValue().toString().equals(world2.getRegistryKey().getValue().toString());
-	}
-	
 	public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
 		if (world.isClient) {
 			startSoundInstance(user);
@@ -186,48 +228,6 @@ public class EnderSpliceItem extends Item implements EnchanterEnchantable {
 		}
 		
 		tooltip.add(new TranslatableText("item.spectrum.ender_splice.tooltip.unbound"));
-	}
-	
-	public static void setTeleportTargetPos(@NotNull ItemStack itemStack, World world, Vec3d pos) {
-		NbtCompound nbtCompound = itemStack.getOrCreateNbt();
-		
-		// Remove player tags, if present
-		if (nbtCompound.contains("TargetPlayerName")) {
-			nbtCompound.remove("TargetPlayerName");
-		}
-		if (nbtCompound.contains("TargetPlayerUUID")) {
-			nbtCompound.remove("TargetPlayerUUID");
-		}
-		
-		// Add pos
-		nbtCompound.putDouble("PosX", pos.getX());
-		nbtCompound.putDouble("PosY", pos.getY());
-		nbtCompound.putDouble("PosZ", pos.getZ());
-		nbtCompound.putString("Dimension", world.getRegistryKey().getValue().toString());
-		itemStack.setNbt(nbtCompound);
-	}
-	
-	public static void setTeleportTargetPlayer(@NotNull ItemStack itemStack, ServerPlayerEntity player) {
-		NbtCompound nbtCompound = itemStack.getOrCreateNbt();
-		
-		// Override target pos, if present
-		if (nbtCompound.contains("PosX")) {
-			nbtCompound.remove("PosX");
-		}
-		if (nbtCompound.contains("PosY")) {
-			nbtCompound.remove("PosY");
-		}
-		if (nbtCompound.contains("PosZ")) {
-			nbtCompound.remove("PosZ");
-		}
-		if (nbtCompound.contains("Dimension")) {
-			nbtCompound.remove("Dimension");
-		}
-		
-		// Add player
-		nbtCompound.putString("TargetPlayerName", player.getName().asString());
-		nbtCompound.putUuid("TargetPlayerUUID", player.getUuid());
-		itemStack.setNbt(nbtCompound);
 	}
 	
 	public Optional<Pair<String, Vec3d>> getTeleportTargetPos(@NotNull ItemStack itemStack) {

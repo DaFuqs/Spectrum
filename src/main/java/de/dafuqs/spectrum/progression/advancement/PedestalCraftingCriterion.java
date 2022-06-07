@@ -20,6 +20,10 @@ public class PedestalCraftingCriterion extends AbstractCriterion<PedestalCraftin
 	
 	static final Identifier ID = new Identifier(SpectrumCommon.MOD_ID, "crafted_with_pedestal");
 	
+	public static PedestalCraftingCriterion.Conditions create(ItemPredicate[] item, NumberRange.IntRange experienceRange) {
+		return new PedestalCraftingCriterion.Conditions(EntityPredicate.Extended.EMPTY, item, experienceRange);
+	}
+	
 	public Identifier getId() {
 		return ID;
 	}
@@ -34,10 +38,6 @@ public class PedestalCraftingCriterion extends AbstractCriterion<PedestalCraftin
 		this.trigger(player, (conditions) -> {
 			return conditions.matches(itemStack, experience);
 		});
-	}
-	
-	public static PedestalCraftingCriterion.Conditions create(ItemPredicate[] item, NumberRange.IntRange experienceRange) {
-		return new PedestalCraftingCriterion.Conditions(EntityPredicate.Extended.EMPTY, item, experienceRange);
 	}
 	
 	public static class Conditions extends AbstractCriterionConditions {

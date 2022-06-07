@@ -34,32 +34,8 @@ public class AshenCircletItem extends SpectrumTrinketItem {
 	public static final double LAVA_MOVEMENT_SPEED_MOD = 0.4; // vanilla uses 0.5 to slow the player down to half its speed
 	public static final double LAVA_VIEW_DISTANCE_MOD = 24.0;
 	
-	@Override
-	public void tick(ItemStack stack, SlotReference slot, LivingEntity entity) {
-		super.tick(stack, slot, entity);
-		if (entity.isOnFire()) {
-			entity.setFireTicks(0);
-		}
-	}
-	
 	public AshenCircletItem(Settings settings) {
 		super(settings, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_ashen_circlet"));
-	}
-	
-	@Override
-	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-		super.appendTooltip(stack, world, tooltip, context);
-		tooltip.add(new TranslatableText("item.spectrum.ashen_circlet.tooltip").formatted(Formatting.GRAY));
-		tooltip.add(new TranslatableText("item.spectrum.ashen_circlet.tooltip2").formatted(Formatting.GRAY));
-		
-		if (world != null) {
-			long cooldownTicks = getCooldownTicks(stack, world);
-			if (cooldownTicks == 0) {
-				tooltip.add(new TranslatableText("item.spectrum.ashen_circlet.tooltip.cooldown_full"));
-			} else {
-				tooltip.add(new TranslatableText("item.spectrum.ashen_circlet.tooltip.cooldown_seconds", cooldownTicks / 20));
-			}
-		}
 	}
 	
 	public static long getCooldownTicks(@NotNull ItemStack ashenCircletStack, @NotNull World world) {
@@ -83,6 +59,30 @@ public class AshenCircletItem extends SpectrumTrinketItem {
 			livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, FIRE_RESISTANCE_EFFECT_DURATION, 0, true, true));
 			livingEntity.world.playSound(null, livingEntity.getBlockPos(), SoundEvents.ENTITY_SPLASH_POTION_BREAK, SoundCategory.PLAYERS, 1.0F, 1.0F);
 			setCooldown(ashenCircletStack, livingEntity.world);
+		}
+	}
+	
+	@Override
+	public void tick(ItemStack stack, SlotReference slot, LivingEntity entity) {
+		super.tick(stack, slot, entity);
+		if (entity.isOnFire()) {
+			entity.setFireTicks(0);
+		}
+	}
+	
+	@Override
+	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+		super.appendTooltip(stack, world, tooltip, context);
+		tooltip.add(new TranslatableText("item.spectrum.ashen_circlet.tooltip").formatted(Formatting.GRAY));
+		tooltip.add(new TranslatableText("item.spectrum.ashen_circlet.tooltip2").formatted(Formatting.GRAY));
+		
+		if (world != null) {
+			long cooldownTicks = getCooldownTicks(stack, world);
+			if (cooldownTicks == 0) {
+				tooltip.add(new TranslatableText("item.spectrum.ashen_circlet.tooltip.cooldown_full"));
+			} else {
+				tooltip.add(new TranslatableText("item.spectrum.ashen_circlet.tooltip.cooldown_seconds", cooldownTicks / 20));
+			}
 		}
 	}
 	

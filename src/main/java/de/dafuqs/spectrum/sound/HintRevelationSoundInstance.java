@@ -13,8 +13,8 @@ import net.minecraft.sound.SoundCategory;
 public class HintRevelationSoundInstance extends AbstractSoundInstance implements TickableSoundInstance {
 	
 	private final PlayerEntity player;
-	private boolean done;
 	private final int duration;
+	private boolean done;
 	private int playtime;
 	
 	public HintRevelationSoundInstance(PlayerEntity player, int duration) {

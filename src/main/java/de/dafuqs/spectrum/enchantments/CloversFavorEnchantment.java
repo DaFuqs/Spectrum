@@ -16,6 +16,16 @@ public class CloversFavorEnchantment extends SpectrumEnchantment {
 		super(weight, EnchantmentTarget.WEAPON, slotTypes, unlockAdvancementIdentifier);
 	}
 	
+	public static float rollChance(float baseChance, Entity entity) {
+		if (entity instanceof LivingEntity && SpectrumEnchantments.CLOVERS_FAVOR.canEntityUse(entity)) {
+			int rareLootLevel = EnchantmentHelper.getLevel(SpectrumEnchantments.CLOVERS_FAVOR, ((LivingEntity) entity).getMainHandStack());
+			if (rareLootLevel > 0) {
+				return baseChance * (float) rareLootLevel * rareLootLevel;
+			}
+		}
+		return 0;
+	}
+	
 	public int getMinPower(int level) {
 		return 20;
 	}
@@ -30,16 +40,6 @@ public class CloversFavorEnchantment extends SpectrumEnchantment {
 	
 	public boolean canAccept(Enchantment other) {
 		return super.canAccept(other);
-	}
-	
-	public static float rollChance(float baseChance, Entity entity) {
-		if (entity instanceof LivingEntity && SpectrumEnchantments.CLOVERS_FAVOR.canEntityUse(entity)) {
-			int rareLootLevel = EnchantmentHelper.getLevel(SpectrumEnchantments.CLOVERS_FAVOR, ((LivingEntity) entity).getMainHandStack());
-			if (rareLootLevel > 0) {
-				return baseChance * (float) rareLootLevel * rareLootLevel;
-			}
-		}
-		return 0;
 	}
 	
 	

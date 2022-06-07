@@ -67,29 +67,23 @@ import java.util.*;
 
 public class PedestalBlockEntity extends LockableContainerBlockEntity implements MultiblockCrafter, SidedInventory, ExtendedScreenHandlerFactory {
 	
+	public static final int INVENTORY_SIZE = 16; // 9 crafting, 5 gems, 1 craftingTablet, 1 output
+	public static final int CRAFTING_TABLET_SLOT_ID = 14;
+	public static final int OUTPUT_SLOT_ID = 15;
+	protected static AutoCraftingInventory autoCraftingInventory;
+	protected final PropertyDelegate propertyDelegate;
 	protected UUID ownerUUID;
 	protected PedestalVariant pedestalVariant;
-	
 	protected DefaultedList<ItemStack> inventory;
-	
 	protected boolean wasPoweredBefore;
 	protected float storedXP;
 	protected int craftingTime;
 	protected int craftingTimeTotal;
-	
-	protected final PropertyDelegate propertyDelegate;
 	protected Recipe currentRecipe;
-	
-	protected static AutoCraftingInventory autoCraftingInventory;
 	protected PedestalRecipeTier cachedMaxPedestalTier;
 	protected long cachedMaxPedestalTierTick;
-	
 	protected Map<UpgradeType, Double> upgrades;
 	protected boolean inventoryChanged;
-	
-	public static final int INVENTORY_SIZE = 16; // 9 crafting, 5 gems, 1 craftingTablet, 1 output
-	public static final int CRAFTING_TABLET_SLOT_ID = 14;
-	public static final int OUTPUT_SLOT_ID = 15;
 	
 	public PedestalBlockEntity(BlockPos blockPos, BlockState blockState) {
 		super(SpectrumBlockEntityRegistry.PEDESTAL, blockPos, blockState);
@@ -126,175 +120,8 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		};
 	}
 	
-	public void setVariant(PedestalVariant pedestalVariant) {
-		this.pedestalVariant = pedestalVariant;
-		this.propertyDelegate.set(2, pedestalVariant.getRecipeTier().ordinal());
-	}
-	
-	@Override
-	public Text getContainerName() {
-		return new TranslatableText("block.spectrum.pedestal");
-	}
-	
-	@Override
-	protected ScreenHandler createScreenHandler(int syncId, PlayerInventory playerInventory) {
-		return new PedestalScreenHandler(syncId, playerInventory, this, this.propertyDelegate, this.pedestalVariant.getRecipeTier().ordinal(), this.getHighestAvailableRecipeTierWithStructure().ordinal(), this.pos);
-	}
-	
-	@Override
-	public int size() {
-		return this.inventory.size();
-	}
-	
-	@Override
-	public boolean isEmpty() {
-		Iterator<ItemStack> var1 = this.inventory.iterator();
-		
-		ItemStack itemStack;
-		do {
-			if (!var1.hasNext()) {
-				return true;
-			}
-			
-			itemStack = var1.next();
-		} while (itemStack.isEmpty());
-		
-		return false;
-	}
-	
-	@Override
-	public ItemStack getStack(int slot) {
-		return this.inventory.get(slot);
-	}
-	
-	@Override
-	public ItemStack removeStack(int slot, int amount) {
-		ItemStack removedStack = Inventories.splitStack(this.inventory, slot, amount);
-		this.inventoryChanged = true;
-		this.markDirty();
-		return removedStack;
-	}
-	
-	@Override
-	public ItemStack removeStack(int slot) {
-		ItemStack removedStack = Inventories.removeStack(this.inventory, slot);
-		this.inventoryChanged = true;
-		this.markDirty();
-		return removedStack;
-	}
-	
-	@Override
-	public void setStack(int slot, @NotNull ItemStack stack) {
-		this.inventory.set(slot, stack);
-		if (stack.getCount() > this.getMaxCountPerStack()) {
-			stack.setCount(this.getMaxCountPerStack());
-		}
-		
-		this.inventoryChanged = true;
-		this.markDirty();
-	}
-	
-	@Override
-	public boolean canPlayerUse(PlayerEntity player) {
-		if (this.world.getBlockEntity(this.pos) != this) {
-			return false;
-		} else {
-			return player.squaredDistanceTo((double) this.pos.getX() + 0.5D, (double) this.pos.getY() + 0.5D, (double) this.pos.getZ() + 0.5D) <= 64.0D;
-		}
-	}
-	
-	@Override
-	public void provideRecipeInputs(RecipeMatcher recipeMatcher) {
-		for (ItemStack itemStack : this.inventory) {
-			recipeMatcher.addInput(itemStack);
-		}
-	}
-	
 	public static void updateInClientWorld(PedestalBlockEntity pedestalBlockEntity) {
 		((ServerWorld) pedestalBlockEntity.world).getChunkManager().markForUpdate(pedestalBlockEntity.pos);
-	}
-	
-	@Nullable
-	@Override
-	public Packet<ClientPlayPacketListener> toUpdatePacket() {
-		return BlockEntityUpdateS2CPacket.create(this);
-	}
-	
-	
-	// Called when the chunk is first loaded to initialize this be or manually synced via updateInClientWorld()
-	public NbtCompound toInitialChunkDataNbt() {
-		NbtCompound nbtCompound = new NbtCompound();
-		this.writeNbt(nbtCompound);
-		return nbtCompound;
-	}
-	
-	public void readNbt(NbtCompound nbt) {
-		super.readNbt(nbt);
-		this.inventory = DefaultedList.ofSize(INVENTORY_SIZE, ItemStack.EMPTY);
-		Inventories.readNbt(nbt, this.inventory);
-		if (nbt.contains("StoredXP")) {
-			this.storedXP = nbt.getFloat("StoredXP");
-		}
-		if (nbt.contains("CraftingTime")) {
-			this.craftingTime = nbt.getShort("CraftingTime");
-		}
-		if (nbt.contains("CraftingTimeTotal")) {
-			this.craftingTimeTotal = nbt.getShort("CraftingTimeTotal");
-		}
-		if (nbt.contains("Upgrades", NbtElement.LIST_TYPE)) {
-			this.upgrades = Upgradeable.fromNbt(nbt.getList("Upgrades", NbtElement.COMPOUND_TYPE));
-		}
-		if (nbt.contains("inventory_changed")) {
-			this.inventoryChanged = nbt.getBoolean("inventory_changed");
-		}
-		if (nbt.contains("CurrentRecipe")) {
-			String recipeString = nbt.getString("CurrentRecipe");
-			if (!recipeString.isEmpty() && world != null) {
-				Optional<? extends Recipe> optionalRecipe = world.getRecipeManager().get(new Identifier(recipeString));
-				if (optionalRecipe.isPresent()) {
-					this.currentRecipe = optionalRecipe.get();
-				} else {
-					this.currentRecipe = null;
-				}
-			} else {
-				this.currentRecipe = null;
-			}
-		} else {
-			this.currentRecipe = null;
-		}
-		if (nbt.contains("OwnerUUID")) {
-			this.ownerUUID = nbt.getUuid("OwnerUUID");
-		} else {
-			this.ownerUUID = null;
-		}
-	}
-	
-	public void writeNbt(NbtCompound nbt) {
-		super.writeNbt(nbt);
-		nbt.putFloat("StoredXP", this.storedXP);
-		nbt.putShort("CraftingTime", (short) this.craftingTime);
-		nbt.putShort("CraftingTimeTotal", (short) this.craftingTimeTotal);
-		nbt.putBoolean("inventory_changed", this.inventoryChanged);
-		if (this.upgrades != null) {
-			nbt.put("Upgrades", Upgradeable.toNbt(this.upgrades));
-		}
-		if (this.currentRecipe != null) {
-			nbt.putString("CurrentRecipe", this.currentRecipe.getId().toString());
-		}
-		
-		if (this.ownerUUID != null) {
-			nbt.putUuid("OwnerUUID", this.ownerUUID);
-		}
-		Inventories.writeNbt(nbt, this.inventory);
-	}
-	
-	@Override
-	public void clear() {
-		this.inventory.clear();
-	}
-	
-	public boolean isCrafting() {
-		return this.craftingTime > 0;
 	}
 	
 	public static void clientTick(@NotNull World world, BlockPos blockPos, BlockState blockState, PedestalBlockEntity pedestalBlockEntity) {
@@ -494,11 +321,6 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		return newRecipe;
 	}
 	
-	private void playSound(SoundEvent soundEvent) {
-		Random random = world.random;
-		world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), soundEvent, SoundCategory.BLOCKS, 0.9F + random.nextFloat() * 0.2F, 0.9F + random.nextFloat() * 0.15F);
-	}
-	
 	private static boolean canAcceptRecipeOutput(@Nullable Recipe<?> recipe, DefaultedList<ItemStack> defaultedList, int maxCountPerStack) {
 		if (recipe != null) {
 			ItemStack output = recipe.getOutput();
@@ -606,6 +428,198 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		}
 	}
 	
+	public static Item getGemstonePowderItemForSlot(int slot) {
+		return switch (slot) {
+			case 9 -> SpectrumItems.TOPAZ_POWDER;
+			case 10 -> SpectrumItems.AMETHYST_POWDER;
+			case 11 -> SpectrumItems.CITRINE_POWDER;
+			case 12 -> SpectrumItems.ONYX_POWDER;
+			case 13 -> SpectrumItems.MOONSTONE_POWDER;
+			default -> Items.AIR;
+		};
+	}
+	
+	public static int getSlotForGemstonePowder(BuiltinGemstoneColor gemstoneColor) {
+		return switch (gemstoneColor) {
+			case CYAN -> 9;
+			case MAGENTA -> 10;
+			case YELLOW -> 11;
+			case BLACK -> 12;
+			default -> 13; // WHITE
+		};
+	}
+	
+	public void setVariant(PedestalVariant pedestalVariant) {
+		this.pedestalVariant = pedestalVariant;
+		this.propertyDelegate.set(2, pedestalVariant.getRecipeTier().ordinal());
+	}
+	
+	@Override
+	public Text getContainerName() {
+		return new TranslatableText("block.spectrum.pedestal");
+	}
+	
+	@Override
+	protected ScreenHandler createScreenHandler(int syncId, PlayerInventory playerInventory) {
+		return new PedestalScreenHandler(syncId, playerInventory, this, this.propertyDelegate, this.pedestalVariant.getRecipeTier().ordinal(), this.getHighestAvailableRecipeTierWithStructure().ordinal(), this.pos);
+	}
+	
+	@Override
+	public int size() {
+		return this.inventory.size();
+	}
+	
+	@Override
+	public boolean isEmpty() {
+		Iterator<ItemStack> var1 = this.inventory.iterator();
+		
+		ItemStack itemStack;
+		do {
+			if (!var1.hasNext()) {
+				return true;
+			}
+			
+			itemStack = var1.next();
+		} while (itemStack.isEmpty());
+		
+		return false;
+	}
+	
+	@Override
+	public ItemStack getStack(int slot) {
+		return this.inventory.get(slot);
+	}
+	
+	@Override
+	public ItemStack removeStack(int slot, int amount) {
+		ItemStack removedStack = Inventories.splitStack(this.inventory, slot, amount);
+		this.inventoryChanged = true;
+		this.markDirty();
+		return removedStack;
+	}
+	
+	@Override
+	public ItemStack removeStack(int slot) {
+		ItemStack removedStack = Inventories.removeStack(this.inventory, slot);
+		this.inventoryChanged = true;
+		this.markDirty();
+		return removedStack;
+	}
+	
+	@Override
+	public void setStack(int slot, @NotNull ItemStack stack) {
+		this.inventory.set(slot, stack);
+		if (stack.getCount() > this.getMaxCountPerStack()) {
+			stack.setCount(this.getMaxCountPerStack());
+		}
+		
+		this.inventoryChanged = true;
+		this.markDirty();
+	}
+	
+	@Override
+	public boolean canPlayerUse(PlayerEntity player) {
+		if (this.world.getBlockEntity(this.pos) != this) {
+			return false;
+		} else {
+			return player.squaredDistanceTo((double) this.pos.getX() + 0.5D, (double) this.pos.getY() + 0.5D, (double) this.pos.getZ() + 0.5D) <= 64.0D;
+		}
+	}
+	
+	@Override
+	public void provideRecipeInputs(RecipeMatcher recipeMatcher) {
+		for (ItemStack itemStack : this.inventory) {
+			recipeMatcher.addInput(itemStack);
+		}
+	}
+	
+	@Nullable
+	@Override
+	public Packet<ClientPlayPacketListener> toUpdatePacket() {
+		return BlockEntityUpdateS2CPacket.create(this);
+	}
+	
+	// Called when the chunk is first loaded to initialize this be or manually synced via updateInClientWorld()
+	public NbtCompound toInitialChunkDataNbt() {
+		NbtCompound nbtCompound = new NbtCompound();
+		this.writeNbt(nbtCompound);
+		return nbtCompound;
+	}
+	
+	public void readNbt(NbtCompound nbt) {
+		super.readNbt(nbt);
+		this.inventory = DefaultedList.ofSize(INVENTORY_SIZE, ItemStack.EMPTY);
+		Inventories.readNbt(nbt, this.inventory);
+		if (nbt.contains("StoredXP")) {
+			this.storedXP = nbt.getFloat("StoredXP");
+		}
+		if (nbt.contains("CraftingTime")) {
+			this.craftingTime = nbt.getShort("CraftingTime");
+		}
+		if (nbt.contains("CraftingTimeTotal")) {
+			this.craftingTimeTotal = nbt.getShort("CraftingTimeTotal");
+		}
+		if (nbt.contains("Upgrades", NbtElement.LIST_TYPE)) {
+			this.upgrades = Upgradeable.fromNbt(nbt.getList("Upgrades", NbtElement.COMPOUND_TYPE));
+		}
+		if (nbt.contains("inventory_changed")) {
+			this.inventoryChanged = nbt.getBoolean("inventory_changed");
+		}
+		if (nbt.contains("CurrentRecipe")) {
+			String recipeString = nbt.getString("CurrentRecipe");
+			if (!recipeString.isEmpty() && world != null) {
+				Optional<? extends Recipe> optionalRecipe = world.getRecipeManager().get(new Identifier(recipeString));
+				if (optionalRecipe.isPresent()) {
+					this.currentRecipe = optionalRecipe.get();
+				} else {
+					this.currentRecipe = null;
+				}
+			} else {
+				this.currentRecipe = null;
+			}
+		} else {
+			this.currentRecipe = null;
+		}
+		if (nbt.contains("OwnerUUID")) {
+			this.ownerUUID = nbt.getUuid("OwnerUUID");
+		} else {
+			this.ownerUUID = null;
+		}
+	}
+	
+	public void writeNbt(NbtCompound nbt) {
+		super.writeNbt(nbt);
+		nbt.putFloat("StoredXP", this.storedXP);
+		nbt.putShort("CraftingTime", (short) this.craftingTime);
+		nbt.putShort("CraftingTimeTotal", (short) this.craftingTimeTotal);
+		nbt.putBoolean("inventory_changed", this.inventoryChanged);
+		if (this.upgrades != null) {
+			nbt.put("Upgrades", Upgradeable.toNbt(this.upgrades));
+		}
+		if (this.currentRecipe != null) {
+			nbt.putString("CurrentRecipe", this.currentRecipe.getId().toString());
+		}
+		
+		if (this.ownerUUID != null) {
+			nbt.putUuid("OwnerUUID", this.ownerUUID);
+		}
+		Inventories.writeNbt(nbt, this.inventory);
+	}
+	
+	@Override
+	public void clear() {
+		this.inventory.clear();
+	}
+	
+	public boolean isCrafting() {
+		return this.craftingTime > 0;
+	}
+	
+	private void playSound(SoundEvent soundEvent) {
+		Random random = world.random;
+		world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), soundEvent, SoundCategory.BLOCKS, 0.9F + random.nextFloat() * 0.2F, 0.9F + random.nextFloat() * 0.15F);
+	}
+	
 	private boolean craftVanillaRecipe(@Nullable CraftingRecipe recipe, DefaultedList<ItemStack> defaultedList, int maxCountPerStack) {
 		if (canAcceptRecipeOutput(recipe, defaultedList, maxCountPerStack)) {
 			
@@ -662,27 +676,6 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		} else {
 			return stack.getItem().equals(getGemstonePowderItemForSlot(slot));
 		}
-	}
-	
-	public static Item getGemstonePowderItemForSlot(int slot) {
-		return switch (slot) {
-			case 9 -> SpectrumItems.TOPAZ_POWDER;
-			case 10 -> SpectrumItems.AMETHYST_POWDER;
-			case 11 -> SpectrumItems.CITRINE_POWDER;
-			case 12 -> SpectrumItems.ONYX_POWDER;
-			case 13 -> SpectrumItems.MOONSTONE_POWDER;
-			default -> Items.AIR;
-		};
-	}
-	
-	public static int getSlotForGemstonePowder(BuiltinGemstoneColor gemstoneColor) {
-		return switch (gemstoneColor) {
-			case CYAN -> 9;
-			case MAGENTA -> 10;
-			case YELLOW -> 11;
-			case BLACK -> 12;
-			default -> 13; // WHITE
-		};
 	}
 	
 	@Override

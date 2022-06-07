@@ -27,22 +27,6 @@ public class ResonanceEnchantment extends SpectrumEnchantment {
 		super(weight, EnchantmentTarget.DIGGER, slotTypes, unlockAdvancementIdentifier);
 	}
 	
-	public int getMinPower(int level) {
-		return 15;
-	}
-	
-	public int getMaxPower(int level) {
-		return super.getMinPower(level) + 50;
-	}
-	
-	public int getMaxLevel() {
-		return 1;
-	}
-	
-	public boolean canAccept(Enchantment other) {
-		return super.canAccept(other) && other != SpectrumEnchantments.PEST_CONTROL && other != SpectrumEnchantments.FOUNDRY && other != Enchantments.FORTUNE;
-	}
-	
 	public static boolean checkResonanceForSpawnerMining(World world, BlockPos pos, @NotNull BlockState blockState, @Nullable BlockEntity blockEntity, ItemStack stack) {
 		if (blockState.equals(Blocks.SPAWNER.getDefaultState())) {
 			if (EnchantmentHelper.getLevel(SpectrumEnchantments.RESONANCE, stack) > 0) {
@@ -57,6 +41,22 @@ public class ResonanceEnchantment extends SpectrumEnchantment {
 			}
 		}
 		return false;
+	}
+	
+	public int getMinPower(int level) {
+		return 15;
+	}
+	
+	public int getMaxPower(int level) {
+		return super.getMinPower(level) + 50;
+	}
+	
+	public int getMaxLevel() {
+		return 1;
+	}
+	
+	public boolean canAccept(Enchantment other) {
+		return super.canAccept(other) && other != SpectrumEnchantments.PEST_CONTROL && other != SpectrumEnchantments.FOUNDRY && other != Enchantments.FORTUNE;
 	}
 	
 }

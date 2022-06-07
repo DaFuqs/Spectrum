@@ -51,8 +51,6 @@ import java.util.Random;
 
 public class NaturesStaffItem extends Item implements EnchanterEnchantable {
 	
-	public static ItemStack COST = new ItemStack(SpectrumItems.VEGETAL, 1);
-	
 	public static final Map<Block, BlockState> BLOCK_CONVERSIONS = new HashMap<>() {{
 		// BLOCKS
 		put(Blocks.DIRT, Blocks.GRASS_BLOCK.getDefaultState());
@@ -89,6 +87,85 @@ public class NaturesStaffItem extends Item implements EnchanterEnchantable {
 		put(Blocks.DEAD_TUBE_CORAL_FAN, Blocks.TUBE_CORAL_FAN.getDefaultState());
 		put(Blocks.DEAD_TUBE_CORAL_WALL_FAN, Blocks.TUBE_CORAL_WALL_FAN.getDefaultState());
 	}};
+	public static ItemStack COST = new ItemStack(SpectrumItems.VEGETAL, 1);
+	
+	public NaturesStaffItem(Settings settings) {
+		super(settings);
+	}
+	
+	/**
+	 * Near identical copy of BonemealItem.useOnFertilizable
+	 * just with stack decrement removed
+	 */
+	public static boolean useOnFertilizable(@NotNull World world, BlockPos pos) {
+		BlockState blockState = world.getBlockState(pos);
+		if (blockState.getBlock() instanceof Fertilizable fertilizable) {
+			if (fertilizable.isFertilizable(world, pos, blockState, world.isClient)) {
+				if (world instanceof ServerWorld) {
+					if (fertilizable.canGrow(world, world.random, pos, blockState)) {
+						fertilizable.grow((ServerWorld) world, world.random, pos, blockState);
+					}
+				}
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	/**
+	 * Near identical copy of BonemealItem.useOnGround
+	 * just with stack decrement removed
+	 */
+	public static boolean useOnGround(@NotNull World world, BlockPos blockPos, @Nullable Direction facing) {
+		if (world.getBlockState(blockPos).isOf(Blocks.WATER) && world.getFluidState(blockPos).getLevel() == 8) {
+			if (world instanceof ServerWorld) {
+				Random random = world.getRandom();
+				
+				label78:
+				for (int i = 0; i < 128; ++i) {
+					BlockPos blockPos2 = blockPos;
+					BlockState blockState = Blocks.SEAGRASS.getDefaultState();
+					
+					for (int j = 0; j < i / 16; ++j) {
+						blockPos2 = blockPos2.add(random.nextInt(3) - 1, (random.nextInt(3) - 1) * random.nextInt(3) / 2, random.nextInt(3) - 1);
+						if (world.getBlockState(blockPos2).isFullCube(world, blockPos2)) {
+							continue label78;
+						}
+					}
+					
+					RegistryEntry<Biome> j = world.getBiome(blockPos2);
+					if (j.matchesKey(BiomeKeys.WARM_OCEAN)) {
+						if (i == 0 && facing != null && facing.getAxis().isHorizontal()) {
+							blockState = Registry.BLOCK.getEntryList(BlockTags.WALL_CORALS).flatMap((blocks) -> blocks.getRandom(world.random)).map((blockEntry) -> (blockEntry.value()).getDefaultState()).orElse(blockState);
+							if (blockState.contains(DeadCoralWallFanBlock.FACING)) {
+								blockState = blockState.with(DeadCoralWallFanBlock.FACING, facing);
+							}
+						} else if (random.nextInt(4) == 0) {
+							blockState = Registry.BLOCK.getEntryList(BlockTags.UNDERWATER_BONEMEALS).flatMap((blocks) -> blocks.getRandom(world.random)).map((blockEntry) -> (blockEntry.value()).getDefaultState()).orElse(blockState);
+						}
+					}
+					
+					if (blockState.isIn(BlockTags.WALL_CORALS, (state) -> state.contains(DeadCoralWallFanBlock.FACING))) {
+						for (int k = 0; !blockState.canPlaceAt(world, blockPos2) && k < 4; ++k) {
+							blockState = blockState.with(DeadCoralWallFanBlock.FACING, Direction.Type.HORIZONTAL.random(random));
+						}
+					}
+					
+					if (blockState.canPlaceAt(world, blockPos2)) {
+						BlockState k = world.getBlockState(blockPos2);
+						if (k.isOf(Blocks.WATER) && world.getFluidState(blockPos2).getLevel() == 8) {
+							world.setBlockState(blockPos2, blockState, 3);
+						} else if (k.isOf(Blocks.SEAGRASS) && random.nextInt(10) == 0) {
+							((Fertilizable) Blocks.SEAGRASS).grow((ServerWorld) world, random, blockPos2, k);
+						}
+					}
+				}
+			}
+			return true;
+		} else {
+			return false;
+		}
+	}
 	
 	@Override
 	public void appendTooltip(ItemStack itemStack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
@@ -99,10 +176,6 @@ public class NaturesStaffItem extends Item implements EnchanterEnchantable {
 			int chancePercent = (int) Math.round(2.0 / (2 + efficiencyLevel) * 100);
 			tooltip.add(new TranslatableText("item.spectrum.natures_staff.tooltip_with_chance", chancePercent));
 		}
-	}
-	
-	public NaturesStaffItem(Settings settings) {
-		super(settings);
 	}
 	
 	public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
@@ -248,80 +321,6 @@ public class NaturesStaffItem extends Item implements EnchanterEnchantable {
 	
 	private void playDenySound(@NotNull World world, @NotNull PlayerEntity playerEntity) {
 		world.playSound(null, playerEntity.getX(), playerEntity.getY(), playerEntity.getZ(), SpectrumSoundEvents.USE_FAIL, SoundCategory.PLAYERS, 1.0F, 0.8F + playerEntity.getRandom().nextFloat() * 0.4F);
-	}
-	
-	/**
-	 * Near identical copy of BonemealItem.useOnFertilizable
-	 * just with stack decrement removed
-	 */
-	public static boolean useOnFertilizable(@NotNull World world, BlockPos pos) {
-		BlockState blockState = world.getBlockState(pos);
-		if (blockState.getBlock() instanceof Fertilizable fertilizable) {
-			if (fertilizable.isFertilizable(world, pos, blockState, world.isClient)) {
-				if (world instanceof ServerWorld) {
-					if (fertilizable.canGrow(world, world.random, pos, blockState)) {
-						fertilizable.grow((ServerWorld) world, world.random, pos, blockState);
-					}
-				}
-				return true;
-			}
-		}
-		return false;
-	}
-	
-	/**
-	 * Near identical copy of BonemealItem.useOnGround
-	 * just with stack decrement removed
-	 */
-	public static boolean useOnGround(@NotNull World world, BlockPos blockPos, @Nullable Direction facing) {
-		if (world.getBlockState(blockPos).isOf(Blocks.WATER) && world.getFluidState(blockPos).getLevel() == 8) {
-			if (world instanceof ServerWorld) {
-				Random random = world.getRandom();
-				
-				label78:
-				for (int i = 0; i < 128; ++i) {
-					BlockPos blockPos2 = blockPos;
-					BlockState blockState = Blocks.SEAGRASS.getDefaultState();
-					
-					for (int j = 0; j < i / 16; ++j) {
-						blockPos2 = blockPos2.add(random.nextInt(3) - 1, (random.nextInt(3) - 1) * random.nextInt(3) / 2, random.nextInt(3) - 1);
-						if (world.getBlockState(blockPos2).isFullCube(world, blockPos2)) {
-							continue label78;
-						}
-					}
-					
-					RegistryEntry<Biome> j = world.getBiome(blockPos2);
-					if (j.matchesKey(BiomeKeys.WARM_OCEAN)) {
-						if (i == 0 && facing != null && facing.getAxis().isHorizontal()) {
-							blockState = Registry.BLOCK.getEntryList(BlockTags.WALL_CORALS).flatMap((blocks) -> blocks.getRandom(world.random)).map((blockEntry) -> (blockEntry.value()).getDefaultState()).orElse(blockState);
-							if (blockState.contains(DeadCoralWallFanBlock.FACING)) {
-								blockState = blockState.with(DeadCoralWallFanBlock.FACING, facing);
-							}
-						} else if (random.nextInt(4) == 0) {
-							blockState = Registry.BLOCK.getEntryList(BlockTags.UNDERWATER_BONEMEALS).flatMap((blocks) -> blocks.getRandom(world.random)).map((blockEntry) -> (blockEntry.value()).getDefaultState()).orElse(blockState);
-						}
-					}
-					
-					if (blockState.isIn(BlockTags.WALL_CORALS, (state) -> state.contains(DeadCoralWallFanBlock.FACING))) {
-						for (int k = 0; !blockState.canPlaceAt(world, blockPos2) && k < 4; ++k) {
-							blockState = blockState.with(DeadCoralWallFanBlock.FACING, Direction.Type.HORIZONTAL.random(random));
-						}
-					}
-					
-					if (blockState.canPlaceAt(world, blockPos2)) {
-						BlockState k = world.getBlockState(blockPos2);
-						if (k.isOf(Blocks.WATER) && world.getFluidState(blockPos2).getLevel() == 8) {
-							world.setBlockState(blockPos2, blockState, 3);
-						} else if (k.isOf(Blocks.SEAGRASS) && random.nextInt(10) == 0) {
-							((Fertilizable) Blocks.SEAGRASS).grow((ServerWorld) world, random, blockPos2, k);
-						}
-					}
-				}
-			}
-			return true;
-		} else {
-			return false;
-		}
 	}
 	
 	@Override

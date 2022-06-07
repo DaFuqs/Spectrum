@@ -23,9 +23,6 @@ import java.util.*;
 
 public class BlockFlooderBlock extends BlockWithEntity {
 	
-	public short MAX_DISTANCE = 10;
-	public BlockState DEFAULT_BLOCK_STATE = Blocks.COBBLESTONE.getDefaultState();
-	
 	// when replacing blocks there may be cases when there is a good reason to use replacement blocks
 	// like using dirt instead of grass, because grass will be growing anyways and silk touching grass
 	// is absolutely not worth it / fun
@@ -36,9 +33,23 @@ public class BlockFlooderBlock extends BlockWithEntity {
 		put(BlockTags.SAND, Blocks.SAND);
 	}};
 	public static final List<TagKey<Block>> exchangeBlockTags = ImmutableList.copyOf(exchangeableBlocks.keySet()); // for quick lookup
+	public short MAX_DISTANCE = 10;
+	public BlockState DEFAULT_BLOCK_STATE = Blocks.COBBLESTONE.getDefaultState();
 	
 	public BlockFlooderBlock(Settings settings) {
 		super(settings);
+	}
+	
+	public static boolean isReplaceableBlock(World world, BlockPos blockPos) {
+		BlockState state = world.getBlockState(blockPos);
+		Block block = state.getBlock();
+		return world.getBlockEntity(blockPos) == null && !(block instanceof BlockFlooderBlock) && (state.isAir() || block instanceof FluidBlock || state.getMaterial().isReplaceable() || block instanceof AbstractPlantBlock || block instanceof FlowerBlock);
+	}
+	
+	public static boolean isValidCornerBlock(World world, BlockPos blockPos) {
+		BlockState state = world.getBlockState(blockPos);
+		Block block = state.getBlock();
+		return state.isSolidBlock(world, blockPos) || block instanceof FluidBlock || block instanceof BlockFlooderBlock;
 	}
 	
 	@Override
@@ -181,18 +192,6 @@ public class BlockFlooderBlock extends BlockWithEntity {
 			return (count >= 4);
 		}
 		return false;
-	}
-	
-	public static boolean isReplaceableBlock(World world, BlockPos blockPos) {
-		BlockState state = world.getBlockState(blockPos);
-		Block block = state.getBlock();
-		return world.getBlockEntity(blockPos) == null && !(block instanceof BlockFlooderBlock) && (state.isAir() || block instanceof FluidBlock || state.getMaterial().isReplaceable() || block instanceof AbstractPlantBlock || block instanceof FlowerBlock);
-	}
-	
-	public static boolean isValidCornerBlock(World world, BlockPos blockPos) {
-		BlockState state = world.getBlockState(blockPos);
-		Block block = state.getBlock();
-		return state.isSolidBlock(world, blockPos) || block instanceof FluidBlock || block instanceof BlockFlooderBlock;
 	}
 	
 }

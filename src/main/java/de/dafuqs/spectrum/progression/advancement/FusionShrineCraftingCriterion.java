@@ -20,6 +20,10 @@ public class FusionShrineCraftingCriterion extends AbstractCriterion<FusionShrin
 	
 	static final Identifier ID = new Identifier(SpectrumCommon.MOD_ID, "crafted_with_fusion_shrine");
 	
+	public static FusionShrineCraftingCriterion.Conditions create(ItemPredicate[] item, NumberRange.IntRange experienceRange) {
+		return new FusionShrineCraftingCriterion.Conditions(EntityPredicate.Extended.EMPTY, item, experienceRange);
+	}
+	
 	public Identifier getId() {
 		return ID;
 	}
@@ -34,10 +38,6 @@ public class FusionShrineCraftingCriterion extends AbstractCriterion<FusionShrin
 		this.trigger(player, (conditions) -> {
 			return conditions.matches(itemStack, experience);
 		});
-	}
-	
-	public static FusionShrineCraftingCriterion.Conditions create(ItemPredicate[] item, NumberRange.IntRange experienceRange) {
-		return new FusionShrineCraftingCriterion.Conditions(EntityPredicate.Extended.EMPTY, item, experienceRange);
 	}
 	
 	public static class Conditions extends AbstractCriterionConditions {

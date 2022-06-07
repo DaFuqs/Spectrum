@@ -13,18 +13,6 @@ import net.minecraft.world.event.PositionSource;
 
 public class ExperienceOrbEventQueue extends EventQueue<ExperienceOrbEventQueue.EventEntry> {
 	
-	public static class EventEntry {
-		public GameEvent gameEvent;
-		public ExperienceOrbEntity experienceOrbEntity;
-		public int distance;
-		
-		public EventEntry(GameEvent gameEvent, ExperienceOrbEntity experienceOrbEntity, int distance) {
-			this.gameEvent = gameEvent;
-			this.experienceOrbEntity = experienceOrbEntity;
-			this.distance = distance;
-		}
-	}
-	
 	public ExperienceOrbEventQueue(PositionSource positionSource, int range, Callback listener) {
 		super(positionSource, range, listener);
 	}
@@ -36,6 +24,18 @@ public class ExperienceOrbEventQueue extends EventQueue<ExperienceOrbEventQueue.
 			int delay = eventEntry.distance * 2;
 			this.schedule(eventEntry, delay);
 			SpectrumS2CPacketSender.sendExperienceOrbTransferPacket((ServerWorld) world, new ExperienceTransfer(pos, this.positionSource, delay));
+		}
+	}
+	
+	public static class EventEntry {
+		public GameEvent gameEvent;
+		public ExperienceOrbEntity experienceOrbEntity;
+		public int distance;
+		
+		public EventEntry(GameEvent gameEvent, ExperienceOrbEntity experienceOrbEntity, int distance) {
+			this.gameEvent = gameEvent;
+			this.experienceOrbEntity = experienceOrbEntity;
+			this.distance = distance;
 		}
 	}
 	

@@ -22,6 +22,19 @@ public class PigmentPaletteInkStorage extends IndividualCappedSimpleInkStorage {
 		super(maxEnergyPerColor, colors);
 	}
 	
+	public static @Nullable PigmentPaletteInkStorage fromNbt(@NotNull NbtCompound compound) {
+		if (compound.contains("MaxEnergyPerColor", NbtElement.LONG_TYPE)) {
+			long maxEnergyPerColor = compound.getLong("MaxEnergyPerColor");
+			
+			Map<InkColor, Long> colors = new HashMap<>();
+			for (InkColor color : InkColor.all()) {
+				colors.put(color, compound.getLong(color.toString()));
+			}
+			return new PigmentPaletteInkStorage(maxEnergyPerColor, colors);
+		}
+		return null;
+	}
+	
 	public long addEnergy(InkColor color, long amount, ItemStack stack, ServerPlayerEntity serverPlayerEntity) {
 		long leftoverEnergy = super.addEnergy(color, amount);
 		if (leftoverEnergy != amount) {
@@ -44,19 +57,6 @@ public class PigmentPaletteInkStorage extends IndividualCappedSimpleInkStorage {
 			SpectrumAdvancementCriteria.INK_CONTAINER_INTERACTION.trigger(serverPlayerEntity, stack, this, color, -drainedAmount);
 		}
 		return drainedAmount;
-	}
-	
-	public static @Nullable PigmentPaletteInkStorage fromNbt(@NotNull NbtCompound compound) {
-		if (compound.contains("MaxEnergyPerColor", NbtElement.LONG_TYPE)) {
-			long maxEnergyPerColor = compound.getLong("MaxEnergyPerColor");
-			
-			Map<InkColor, Long> colors = new HashMap<>();
-			for (InkColor color : InkColor.all()) {
-				colors.put(color, compound.getLong(color.toString()));
-			}
-			return new PigmentPaletteInkStorage(maxEnergyPerColor, colors);
-		}
-		return null;
 	}
 	
 }

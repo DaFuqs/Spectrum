@@ -24,8 +24,8 @@ import static de.dafuqs.spectrum.helpers.Support.getShortenedNumberString;
 public class TotalCappedSimpleInkStorage implements InkStorage {
 	
 	protected final long maxEnergyTotal;
-	protected long currentTotal; // This is a cache for quick lookup. Can be recalculated anytime using the values in storedEnergy.
 	protected final Map<InkColor, Long> storedEnergy;
+	protected long currentTotal; // This is a cache for quick lookup. Can be recalculated anytime using the values in storedEnergy.
 	
 	public TotalCappedSimpleInkStorage(long maxEnergyTotal) {
 		this.maxEnergyTotal = maxEnergyTotal;
@@ -45,6 +45,19 @@ public class TotalCappedSimpleInkStorage implements InkStorage {
 			this.storedEnergy.put(color.getKey(), color.getValue());
 			this.currentTotal += color.getValue();
 		}
+	}
+	
+	public static @Nullable TotalCappedSimpleInkStorage fromNbt(@NotNull NbtCompound compound) {
+		if (compound.contains("MaxEnergyTotal", NbtElement.LONG_TYPE)) {
+			long maxEnergyTotal = compound.getLong("MaxEnergyTotal");
+			
+			Map<InkColor, Long> colors = new HashMap<>();
+			for (InkColor color : InkColor.all()) {
+				colors.put(color, compound.getLong(color.toString()));
+			}
+			return new TotalCappedSimpleInkStorage(maxEnergyTotal, colors);
+		}
+		return null;
 	}
 	
 	@Override
@@ -116,19 +129,6 @@ public class TotalCappedSimpleInkStorage implements InkStorage {
 	@Override
 	public boolean isFull() {
 		return this.currentTotal >= this.maxEnergyTotal;
-	}
-	
-	public static @Nullable TotalCappedSimpleInkStorage fromNbt(@NotNull NbtCompound compound) {
-		if (compound.contains("MaxEnergyTotal", NbtElement.LONG_TYPE)) {
-			long maxEnergyTotal = compound.getLong("MaxEnergyTotal");
-			
-			Map<InkColor, Long> colors = new HashMap<>();
-			for (InkColor color : InkColor.all()) {
-				colors.put(color, compound.getLong(color.toString()));
-			}
-			return new TotalCappedSimpleInkStorage(maxEnergyTotal, colors);
-		}
-		return null;
 	}
 	
 	public NbtCompound toNbt() {

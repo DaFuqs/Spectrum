@@ -14,6 +14,11 @@ public class ExtraTickFarmlandBlock extends FarmlandBlock {
 		super(settings);
 	}
 	
+	private static boolean hasCrop(@NotNull BlockView world, @NotNull BlockPos pos) {
+		Block block = world.getBlockState(pos.up()).getBlock();
+		return block instanceof CropBlock || block instanceof StemBlock || block instanceof AttachedStemBlock;
+	}
+	
 	/**
 	 * If there is a crop block on top of this block: tick it, too
 	 * => the crop grows faster
@@ -26,11 +31,6 @@ public class ExtraTickFarmlandBlock extends FarmlandBlock {
 		}
 		
 		super.randomTick(state, world, pos, random);
-	}
-	
-	private static boolean hasCrop(@NotNull BlockView world, @NotNull BlockPos pos) {
-		Block block = world.getBlockState(pos.up()).getBlock();
-		return block instanceof CropBlock || block instanceof StemBlock || block instanceof AttachedStemBlock;
 	}
 	
 }

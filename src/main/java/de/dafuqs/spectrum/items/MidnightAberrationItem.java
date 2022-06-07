@@ -29,13 +29,13 @@ public class MidnightAberrationItem extends CloakedItem {
 	public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
 		super.inventoryTick(stack, world, entity, slot, selected);
 		
-		if(!world.isClient && world.getTime() % 20 == 0 && entity instanceof PlayerEntity playerEntity) {
+		if (!world.isClient && world.getTime() % 20 == 0 && entity instanceof PlayerEntity playerEntity) {
 			NbtCompound compound = stack.getNbt();
-			if(compound != null && compound.getBoolean("Stable")) {
+			if (compound != null && compound.getBoolean("Stable")) {
 				return;
 			}
 			
-			if(world.random.nextFloat() < 0.2F) {
+			if (world.random.nextFloat() < 0.2F) {
 				stack.decrement(1);
 				Support.givePlayer(playerEntity, Items.GUNPOWDER.getDefaultStack());
 				world.playSoundFromEntity(null, playerEntity, SpectrumSoundEvents.MIDNIGHT_ABERRATION_CRUMBLING, SoundCategory.PLAYERS, 0.5F, 1.0F);
@@ -48,7 +48,7 @@ public class MidnightAberrationItem extends CloakedItem {
 		super.appendTooltip(stack, world, tooltip, context);
 		
 		NbtCompound compound = stack.getNbt();
-		if(compound != null && compound.getBoolean("Stable")) {
+		if (compound != null && compound.getBoolean("Stable")) {
 			tooltip.add(new TranslatableText("item.spectrum.midnight_aberration.tooltip.stable"));
 		}
 	}

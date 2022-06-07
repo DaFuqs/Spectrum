@@ -19,10 +19,10 @@ import java.util.stream.Collectors;
 
 public abstract class PotionWorkshopRecipeDisplay extends BasicDisplay implements SimpleGridMenuDisplay, GatedRecipeDisplay {
 	
-	private final PotionWorkshopRecipe potionWorkshopRecipe;
 	protected final List<EntryIngredient> craftingInputs;
 	protected final EntryIngredient output;
 	protected final int craftingTime;
+	private final PotionWorkshopRecipe potionWorkshopRecipe;
 	
 	/**
 	 * When using the REI recipe functionality

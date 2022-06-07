@@ -52,7 +52,7 @@ public class AzureDikeAmuletItem extends InkDrainTrinketItem implements AzureDik
 	public int maxAzureDike(ItemStack stack) {
 		FixedSingleInkDrain inkStorage = getEnergyStorage(stack);
 		long storedInk = inkStorage.getEnergy(inkStorage.getStoredColor());
-		if(storedInk < 100) {
+		if (storedInk < 100) {
 			return 0;
 		} else {
 			return getDike(storedInk);
@@ -70,7 +70,7 @@ public class AzureDikeAmuletItem extends InkDrainTrinketItem implements AzureDik
 	}
 	
 	public int getDike(long storedInk) {
-		if(storedInk < 100) {
+		if (storedInk < 100) {
 			return 0;
 		} else {
 			return 2 + (int) (Math.log(storedInk / 100) / Math.log(8));

@@ -14,6 +14,14 @@ public class SkyLerper {
 	private int elapsedTicks;
 	private long lastWorldTime;
 	
+	public static float easeQuart(float num) {
+		if (num < 0.5) {
+			return 4 * num * num * num;
+		} else {
+			return (float) (1 - Math.pow(-2 * num + 2, 3) / 2);
+		}
+	}
+	
 	public boolean isActive(DimensionType dimensionType) {
 		return this.sourceDayTime != -1 && dimensionType == activeDimensionType;
 	}
@@ -48,14 +56,6 @@ public class SkyLerper {
 	private long getLerp(float tickDelta) {
 		float delta = (this.elapsedTicks + tickDelta) / (float) ANIMATION_TICKS;
 		return (long) MathHelper.lerp(easeQuart(delta), this.sourceDayTime + this.sourceTimeDelta, this.targetDayTime + tickDelta);
-	}
-	
-	public static float easeQuart(float num) {
-		if (num < 0.5) {
-			return 4 * num * num * num;
-		} else {
-			return (float) (1 - Math.pow(-2 * num + 2, 3) / 2);
-		}
 	}
 	
 }

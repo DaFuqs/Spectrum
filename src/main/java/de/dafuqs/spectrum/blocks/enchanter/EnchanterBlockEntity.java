@@ -107,107 +107,6 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 		this.currentItemProcessingTime = -1;
 	}
 	
-	public void readNbt(NbtCompound nbt) {
-		super.readNbt(nbt);
-		this.craftingTime = nbt.getInt("crafting_time");
-		this.craftingTimeTotal = nbt.getInt("crafting_time_total");
-		this.currentItemProcessingTime = nbt.getInt("current_item_processing_time");
-		
-		this.inventory = new SimpleInventory(INVENTORY_SIZE);
-		this.inventoryChanged = nbt.getBoolean("inventory_changed");
-		this.canOwnerApplyConflictingEnchantments = nbt.getBoolean("owner_can_apply_conflicting_enchantments");
-		this.canOwnerOverenchant = nbt.getBoolean("owner_can_overenchant");
-		this.inventory.readNbtList(nbt.getList("inventory", 10));
-		this.virtualInventoryRecipeOrientation = nbt.getInt("virtual_recipe_orientation");
-		this.virtualInventoryIncludingBowlStacks = new SimpleInventory(INVENTORY_SIZE + 8);
-		this.virtualInventoryIncludingBowlStacks.readNbtList(nbt.getList("virtual_inventory", 10));
-		if (nbt.contains("item_facing", NbtElement.STRING_TYPE)) {
-			this.itemFacing = Direction.valueOf(nbt.getString("item_facing").toUpperCase(Locale.ROOT));
-		}
-		if (nbt.contains("OwnerUUID")) {
-			this.ownerUUID = nbt.getUuid("OwnerUUID");
-		} else {
-			this.ownerUUID = null;
-		}
-		if (nbt.contains("CurrentRecipe")) {
-			String recipeString = nbt.getString("CurrentRecipe");
-			if (!recipeString.isEmpty()) {
-				Optional<? extends Recipe> optionalRecipe = Optional.empty();
-				if (world != null) {
-					optionalRecipe = world.getRecipeManager().get(new Identifier(recipeString));
-				}
-				if (optionalRecipe.isPresent() && (optionalRecipe.get() instanceof EnchanterRecipe || optionalRecipe.get() instanceof EnchantmentUpgradeRecipe)) {
-					this.currentRecipe = optionalRecipe.get();
-				} else {
-					this.currentRecipe = null;
-				}
-			} else {
-				this.currentRecipe = null;
-			}
-		} else {
-			this.currentRecipe = null;
-		}
-		if (nbt.contains("Upgrades", NbtElement.LIST_TYPE)) {
-			this.upgrades = Upgradeable.fromNbt(nbt.getList("Upgrades", NbtElement.COMPOUND_TYPE));
-		}
-	}
-	
-	public void writeNbt(NbtCompound nbt) {
-		super.writeNbt(nbt);
-		nbt.putInt("crafting_time", this.craftingTime);
-		nbt.putInt("crafting_time_total", this.craftingTimeTotal);
-		nbt.putInt("current_item_processing_time", this.currentItemProcessingTime);
-		
-		nbt.put("inventory", this.inventory.toNbtList());
-		nbt.putInt("virtual_recipe_orientation", this.virtualInventoryRecipeOrientation);
-		nbt.putBoolean("inventory_changed", this.inventoryChanged);
-		nbt.putBoolean("owner_can_apply_conflicting_enchantments", this.canOwnerApplyConflictingEnchantments);
-		nbt.putBoolean("owner_can_overenchant", this.canOwnerOverenchant);
-		nbt.put("virtual_inventory", this.virtualInventoryIncludingBowlStacks.toNbtList());
-		if (this.itemFacing != null) {
-			nbt.putString("item_facing", this.itemFacing.toString().toUpperCase(Locale.ROOT));
-		}
-		if (this.upgrades != null) {
-			nbt.put("Upgrades", Upgradeable.toNbt(this.upgrades));
-		}
-		if (this.ownerUUID != null) {
-			nbt.putUuid("OwnerUUID", this.ownerUUID);
-		}
-		if (this.currentRecipe != null) {
-			nbt.putString("CurrentRecipe", this.currentRecipe.getId().toString());
-		}
-	}
-	
-	// Called when the chunk is first loaded to initialize this be
-	public NbtCompound toInitialChunkDataNbt() {
-		NbtCompound nbtCompound = new NbtCompound();
-		this.writeNbt(nbtCompound);
-		return nbtCompound;
-	}
-	
-	@Nullable
-	@Override
-	public Packet<ClientPlayPacketListener> toUpdatePacket() {
-		return BlockEntityUpdateS2CPacket.create(this);
-	}
-	
-	public void updateInClientWorld() {
-		world.updateListeners(pos, world.getBlockState(pos), world.getBlockState(pos), Block.NO_REDRAW);
-	}
-	
-	public Inventory getInventory() {
-		return this.inventory;
-	}
-	
-	public void setItemFacingDirection(Direction facingDirection) {
-		this.itemFacing = facingDirection;
-	}
-	
-	public Direction getItemFacingDirection() {
-		// if placed via pipe or other sources
-		return Objects.requireNonNullElse(this.itemFacing, Direction.NORTH);
-	}
-	
 	public static void clientTick(World world, BlockPos blockPos, BlockState blockState, @NotNull EnchanterBlockEntity enchanterBlockEntity) {
 		if (enchanterBlockEntity.currentRecipe != null) {
 			ItemStack experienceStack = enchanterBlockEntity.getInventory().getStack(1);
@@ -231,16 +130,6 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 			if (world.getTime() % 12 == 0) {
 				((ClientWorld) world).playSound(enchanterBlockEntity.pos, SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.BLOCKS, 0.8F, 0.8F + world.random.nextFloat() * 0.4F, true);
 				enchanterBlockEntity.doItemBowlOrbs(world);
-			}
-		}
-	}
-	
-	private void doItemBowlOrbs(World world) {
-		for (int i = 0; i < 8; i++) {
-			BlockPos itemBowlPos = pos.add(getItemBowlPositionOffset(i, 0));
-			BlockEntity blockEntity = world.getBlockEntity(itemBowlPos);
-			if (blockEntity instanceof ItemBowlBlockEntity itemBowlBlockEntity) {
-				itemBowlBlockEntity.doEnchantingEffects(pos);
 			}
 		}
 	}
@@ -550,31 +439,6 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 		return -1;
 	}
 	
-	public boolean drainExperience(int amount) {
-		ItemStack experienceProviderStack = getInventory().getStack(1);
-		if (experienceProviderStack.getItem() instanceof ExperienceStorageItem experienceStorageItem) {
-			int currentStoredExperience = ExperienceStorageItem.getStoredExperience(experienceProviderStack);
-			if (currentStoredExperience > 0) {
-				int amountAfterExperienceMod = getExperienceWithMod(amount, this.upgrades.get(UpgradeType.EXPERIENCE), world.random);
-				int drainedExperience = Math.min(currentStoredExperience, amountAfterExperienceMod);
-				
-				if (experienceStorageItem instanceof KnowledgeGemItem knowledgeGemItem) {
-					if (knowledgeGemItem.changedDisplayTier(currentStoredExperience, currentStoredExperience - drainedExperience)) {
-						// There was enough experience drained from the knowledge gem that the visual changed
-						// To display the updated knowledge gem size clientside the inventory has to be synched
-						// to the clients for rendering purposes
-						SpectrumS2CPacketSender.playParticleWithPatternAndVelocity(null, (ServerWorld) world, new Vec3d(this.pos.getX() + 0.5, this.pos.getY() + 2.5, this.pos.getZ() + 0.5), SpectrumParticleTypes.LIME_CRAFTING, ParticlePattern.SIXTEEN, 0.05F);
-						this.updateInClientWorld();
-					}
-				}
-				
-				this.markDirty();
-				return ExperienceStorageItem.removeStoredExperience(experienceProviderStack, drainedExperience);
-			}
-		}
-		return false;
-	}
-	
 	public static int getExperienceWithMod(int experience, double mod, Random random) {
 		double modNormalized = 1.0 / (1.0 + Math.log10(mod));
 		return Support.getIntFromDecimalWithChance(experience * modNormalized, random);
@@ -767,6 +631,151 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 		return false;
 	}
 	
+	private static void grantPlayerEnchantingAdvancementCriterion(World world, UUID playerUUID, ItemStack resultStack, int experience) {
+		int levels = ExperienceHelper.getLevelForExperience(experience);
+		ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity) PlayerOwned.getPlayerEntityIfOnline(world, playerUUID);
+		if (serverPlayerEntity != null) {
+			serverPlayerEntity.incrementStat(Stats.ENCHANT_ITEM);
+			Criteria.ENCHANTED_ITEM.trigger(serverPlayerEntity, resultStack, levels);
+		}
+	}
+	
+	public void readNbt(NbtCompound nbt) {
+		super.readNbt(nbt);
+		this.craftingTime = nbt.getInt("crafting_time");
+		this.craftingTimeTotal = nbt.getInt("crafting_time_total");
+		this.currentItemProcessingTime = nbt.getInt("current_item_processing_time");
+		
+		this.inventory = new SimpleInventory(INVENTORY_SIZE);
+		this.inventoryChanged = nbt.getBoolean("inventory_changed");
+		this.canOwnerApplyConflictingEnchantments = nbt.getBoolean("owner_can_apply_conflicting_enchantments");
+		this.canOwnerOverenchant = nbt.getBoolean("owner_can_overenchant");
+		this.inventory.readNbtList(nbt.getList("inventory", 10));
+		this.virtualInventoryRecipeOrientation = nbt.getInt("virtual_recipe_orientation");
+		this.virtualInventoryIncludingBowlStacks = new SimpleInventory(INVENTORY_SIZE + 8);
+		this.virtualInventoryIncludingBowlStacks.readNbtList(nbt.getList("virtual_inventory", 10));
+		if (nbt.contains("item_facing", NbtElement.STRING_TYPE)) {
+			this.itemFacing = Direction.valueOf(nbt.getString("item_facing").toUpperCase(Locale.ROOT));
+		}
+		if (nbt.contains("OwnerUUID")) {
+			this.ownerUUID = nbt.getUuid("OwnerUUID");
+		} else {
+			this.ownerUUID = null;
+		}
+		if (nbt.contains("CurrentRecipe")) {
+			String recipeString = nbt.getString("CurrentRecipe");
+			if (!recipeString.isEmpty()) {
+				Optional<? extends Recipe> optionalRecipe = Optional.empty();
+				if (world != null) {
+					optionalRecipe = world.getRecipeManager().get(new Identifier(recipeString));
+				}
+				if (optionalRecipe.isPresent() && (optionalRecipe.get() instanceof EnchanterRecipe || optionalRecipe.get() instanceof EnchantmentUpgradeRecipe)) {
+					this.currentRecipe = optionalRecipe.get();
+				} else {
+					this.currentRecipe = null;
+				}
+			} else {
+				this.currentRecipe = null;
+			}
+		} else {
+			this.currentRecipe = null;
+		}
+		if (nbt.contains("Upgrades", NbtElement.LIST_TYPE)) {
+			this.upgrades = Upgradeable.fromNbt(nbt.getList("Upgrades", NbtElement.COMPOUND_TYPE));
+		}
+	}
+	
+	public void writeNbt(NbtCompound nbt) {
+		super.writeNbt(nbt);
+		nbt.putInt("crafting_time", this.craftingTime);
+		nbt.putInt("crafting_time_total", this.craftingTimeTotal);
+		nbt.putInt("current_item_processing_time", this.currentItemProcessingTime);
+		
+		nbt.put("inventory", this.inventory.toNbtList());
+		nbt.putInt("virtual_recipe_orientation", this.virtualInventoryRecipeOrientation);
+		nbt.putBoolean("inventory_changed", this.inventoryChanged);
+		nbt.putBoolean("owner_can_apply_conflicting_enchantments", this.canOwnerApplyConflictingEnchantments);
+		nbt.putBoolean("owner_can_overenchant", this.canOwnerOverenchant);
+		nbt.put("virtual_inventory", this.virtualInventoryIncludingBowlStacks.toNbtList());
+		if (this.itemFacing != null) {
+			nbt.putString("item_facing", this.itemFacing.toString().toUpperCase(Locale.ROOT));
+		}
+		if (this.upgrades != null) {
+			nbt.put("Upgrades", Upgradeable.toNbt(this.upgrades));
+		}
+		if (this.ownerUUID != null) {
+			nbt.putUuid("OwnerUUID", this.ownerUUID);
+		}
+		if (this.currentRecipe != null) {
+			nbt.putString("CurrentRecipe", this.currentRecipe.getId().toString());
+		}
+	}
+	
+	// Called when the chunk is first loaded to initialize this be
+	public NbtCompound toInitialChunkDataNbt() {
+		NbtCompound nbtCompound = new NbtCompound();
+		this.writeNbt(nbtCompound);
+		return nbtCompound;
+	}
+	
+	@Nullable
+	@Override
+	public Packet<ClientPlayPacketListener> toUpdatePacket() {
+		return BlockEntityUpdateS2CPacket.create(this);
+	}
+	
+	public void updateInClientWorld() {
+		world.updateListeners(pos, world.getBlockState(pos), world.getBlockState(pos), Block.NO_REDRAW);
+	}
+	
+	public Inventory getInventory() {
+		return this.inventory;
+	}
+	
+	public Direction getItemFacingDirection() {
+		// if placed via pipe or other sources
+		return Objects.requireNonNullElse(this.itemFacing, Direction.NORTH);
+	}
+	
+	public void setItemFacingDirection(Direction facingDirection) {
+		this.itemFacing = facingDirection;
+	}
+	
+	private void doItemBowlOrbs(World world) {
+		for (int i = 0; i < 8; i++) {
+			BlockPos itemBowlPos = pos.add(getItemBowlPositionOffset(i, 0));
+			BlockEntity blockEntity = world.getBlockEntity(itemBowlPos);
+			if (blockEntity instanceof ItemBowlBlockEntity itemBowlBlockEntity) {
+				itemBowlBlockEntity.doEnchantingEffects(pos);
+			}
+		}
+	}
+	
+	public boolean drainExperience(int amount) {
+		ItemStack experienceProviderStack = getInventory().getStack(1);
+		if (experienceProviderStack.getItem() instanceof ExperienceStorageItem experienceStorageItem) {
+			int currentStoredExperience = ExperienceStorageItem.getStoredExperience(experienceProviderStack);
+			if (currentStoredExperience > 0) {
+				int amountAfterExperienceMod = getExperienceWithMod(amount, this.upgrades.get(UpgradeType.EXPERIENCE), world.random);
+				int drainedExperience = Math.min(currentStoredExperience, amountAfterExperienceMod);
+				
+				if (experienceStorageItem instanceof KnowledgeGemItem knowledgeGemItem) {
+					if (knowledgeGemItem.changedDisplayTier(currentStoredExperience, currentStoredExperience - drainedExperience)) {
+						// There was enough experience drained from the knowledge gem that the visual changed
+						// To display the updated knowledge gem size clientside the inventory has to be synched
+						// to the clients for rendering purposes
+						SpectrumS2CPacketSender.playParticleWithPatternAndVelocity(null, (ServerWorld) world, new Vec3d(this.pos.getX() + 0.5, this.pos.getY() + 2.5, this.pos.getZ() + 0.5), SpectrumParticleTypes.LIME_CRAFTING, ParticlePattern.SIXTEEN, 0.05F);
+						this.updateInClientWorld();
+					}
+				}
+				
+				this.markDirty();
+				return ExperienceStorageItem.removeStoredExperience(experienceProviderStack, drainedExperience);
+			}
+		}
+		return false;
+	}
+	
 	public void inventoryChanged() {
 		virtualInventoryIncludingBowlStacks = new SimpleInventory(INVENTORY_SIZE + 8);
 		virtualInventoryIncludingBowlStacks.setStack(0, this.inventory.getStack(0)); // center item
@@ -800,15 +809,6 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 	public void playSound(SoundEvent soundEvent, float volume) {
 		Random random = world.random;
 		world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), soundEvent, SoundCategory.BLOCKS, volume, 0.9F + random.nextFloat() * 0.15F);
-	}
-	
-	private static void grantPlayerEnchantingAdvancementCriterion(World world, UUID playerUUID, ItemStack resultStack, int experience) {
-		int levels = ExperienceHelper.getLevelForExperience(experience);
-		ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity) PlayerOwned.getPlayerEntityIfOnline(world, playerUUID);
-		if (serverPlayerEntity != null) {
-			serverPlayerEntity.incrementStat(Stats.ENCHANT_ITEM);
-			Criteria.ENCHANTED_ITEM.trigger(serverPlayerEntity, resultStack, levels);
-		}
 	}
 	
 	// PLAYER OWNED

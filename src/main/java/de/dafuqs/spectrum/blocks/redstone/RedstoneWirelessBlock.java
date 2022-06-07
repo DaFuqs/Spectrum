@@ -44,6 +44,11 @@ public class RedstoneWirelessBlock extends AbstractRedstoneGateBlock implements 
 	}
 	
 	@Nullable
+	protected static <E extends BlockEntity, A extends BlockEntity> BlockEntityTicker<A> checkType(BlockEntityType<A> givenType, BlockEntityType<E> expectedType, BlockEntityTicker<? super E> ticker) {
+		return expectedType == givenType ? (BlockEntityTicker<A>) ticker : null;
+	}
+	
+	@Nullable
 	@Override
 	public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
 		return new RedstoneWirelessBlockEntity(pos, state);
@@ -145,11 +150,6 @@ public class RedstoneWirelessBlock extends AbstractRedstoneGateBlock implements 
 			return checkType(type, SpectrumBlockEntityRegistry.REDSTONE_WIRELESS, RedstoneWirelessBlockEntity::serverTick);
 		}
 		return null;
-	}
-	
-	@Nullable
-	protected static <E extends BlockEntity, A extends BlockEntity> BlockEntityTicker<A> checkType(BlockEntityType<A> givenType, BlockEntityType<E> expectedType, BlockEntityTicker<? super E> ticker) {
-		return expectedType == givenType ? (BlockEntityTicker<A>) ticker : null;
 	}
 	
 	@Override

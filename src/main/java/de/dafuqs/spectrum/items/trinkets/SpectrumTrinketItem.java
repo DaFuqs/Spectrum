@@ -26,29 +26,6 @@ public abstract class SpectrumTrinketItem extends TrinketItem {
 		this.unlockIdentifier = unlockIdentifier;
 	}
 	
-	protected Identifier getUnlockIdentifier() {
-		return this.unlockIdentifier;
-	}
-	
-	@Override
-	public boolean canEquip(ItemStack stack, SlotReference slot, LivingEntity entity) {
-		if (entity instanceof PlayerEntity playerEntity) {
-			// does the player have the matching advancement?
-			if (Support.hasAdvancement(playerEntity, getUnlockIdentifier())) {
-				// Can only a single trinket of that type be equipped at once?
-				if (!canEquipMoreThanOne() && hasEquipped(entity, this)) {
-					return false;
-				}
-				return super.canEquip(stack, slot, entity);
-			}
-		}
-		return false;
-	}
-	
-	public boolean canEquipMoreThanOne() {
-		return false;
-	}
-	
 	public static boolean hasEquipped(Object entity, Item item) {
 		if (entity instanceof LivingEntity livingEntity) {
 			return hasEquipped(livingEntity, item);
@@ -70,6 +47,29 @@ public abstract class SpectrumTrinketItem extends TrinketItem {
 			}
 		}
 		return Optional.empty();
+	}
+	
+	protected Identifier getUnlockIdentifier() {
+		return this.unlockIdentifier;
+	}
+	
+	@Override
+	public boolean canEquip(ItemStack stack, SlotReference slot, LivingEntity entity) {
+		if (entity instanceof PlayerEntity playerEntity) {
+			// does the player have the matching advancement?
+			if (Support.hasAdvancement(playerEntity, getUnlockIdentifier())) {
+				// Can only a single trinket of that type be equipped at once?
+				if (!canEquipMoreThanOne() && hasEquipped(entity, this)) {
+					return false;
+				}
+				return super.canEquip(stack, slot, entity);
+			}
+		}
+		return false;
+	}
+	
+	public boolean canEquipMoreThanOne() {
+		return false;
 	}
 	
 	@Override

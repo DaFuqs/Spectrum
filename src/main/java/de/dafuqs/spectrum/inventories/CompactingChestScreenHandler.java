@@ -16,9 +16,9 @@ import net.minecraft.world.World;
 
 public class CompactingChestScreenHandler extends ScreenHandler {
 	
-	protected int ROWS = 3;
-	private final Inventory inventory;
 	protected final World world;
+	private final Inventory inventory;
+	protected int ROWS = 3;
 	protected CompactingChestBlockEntity compactingChestBlockEntity;
 	protected AutoCompactingInventory.AutoCraftingMode currentCraftingMode;
 	

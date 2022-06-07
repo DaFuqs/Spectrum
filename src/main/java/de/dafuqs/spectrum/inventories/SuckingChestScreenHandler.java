@@ -24,9 +24,9 @@ import java.util.List;
 
 public class SuckingChestScreenHandler extends ScreenHandler {
 	
-	protected int ROWS = 3;
-	private final Inventory inventory;
 	protected final World world;
+	private final Inventory inventory;
+	protected int ROWS = 3;
 	protected SuckingChestBlockEntity suckingChestBlockEntity;
 	protected Inventory filterInventory;
 	
@@ -94,6 +94,22 @@ public class SuckingChestScreenHandler extends ScreenHandler {
 		}
 	}
 	
+	protected static Inventory getFilterInventoryFromPacket(PacketByteBuf packetByteBuf) {
+		Inventory inventory = new SimpleInventory(SuckingChestBlockEntity.ITEM_FILTER_SLOTS);
+		for (int i = 0; i < SuckingChestBlockEntity.ITEM_FILTER_SLOTS; i++) {
+			inventory.setStack(i, Registry.ITEM.get(packetByteBuf.readIdentifier()).getDefaultStack());
+		}
+		return inventory;
+	}
+	
+	protected static Inventory getFilterInventoryFromItems(List<Item> items) {
+		Inventory inventory = new SimpleInventory(SuckingChestBlockEntity.ITEM_FILTER_SLOTS);
+		for (int i = 0; i < SuckingChestBlockEntity.ITEM_FILTER_SLOTS; i++) {
+			inventory.setStack(i, items.get(i).getDefaultStack());
+		}
+		return inventory;
+	}
+	
 	public boolean canUse(PlayerEntity player) {
 		return this.inventory.canPlayerUse(player);
 	}
@@ -134,22 +150,6 @@ public class SuckingChestScreenHandler extends ScreenHandler {
 	
 	public SuckingChestBlockEntity getBlockEntity() {
 		return this.suckingChestBlockEntity;
-	}
-	
-	protected static Inventory getFilterInventoryFromPacket(PacketByteBuf packetByteBuf) {
-		Inventory inventory = new SimpleInventory(SuckingChestBlockEntity.ITEM_FILTER_SLOTS);
-		for (int i = 0; i < SuckingChestBlockEntity.ITEM_FILTER_SLOTS; i++) {
-			inventory.setStack(i, Registry.ITEM.get(packetByteBuf.readIdentifier()).getDefaultStack());
-		}
-		return inventory;
-	}
-	
-	protected static Inventory getFilterInventoryFromItems(List<Item> items) {
-		Inventory inventory = new SimpleInventory(SuckingChestBlockEntity.ITEM_FILTER_SLOTS);
-		for (int i = 0; i < SuckingChestBlockEntity.ITEM_FILTER_SLOTS; i++) {
-			inventory.setStack(i, items.get(i).getDefaultStack());
-		}
-		return inventory;
 	}
 	
 	protected class SuckingChestFilterSlot extends ShadowSlot {

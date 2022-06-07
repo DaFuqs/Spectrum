@@ -43,14 +43,12 @@ import java.util.*;
 
 public class QuitoxicReedsBlock extends Block implements Cloakable, WaterOrLiquidCrystalLogged {
 	
-	protected static final VoxelShape SHAPE = Block.createCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 16.0D, 14.0D);
-	
 	public static final IntProperty AGE = Properties.AGE_7;
 	public static final int MAX_GROWTH_HEIGHT_WATER = 5;
 	public static final int MAX_GROWTH_HEIGHT_CRYSTAL = 7;
-	
 	public static final IntProperty FLUIDLOGGED = WaterOrLiquidCrystalLogged.FLUIDLOGGED;
 	public static final BooleanProperty ALWAYS_DROP = BooleanProperty.of("always_drop");
+	protected static final VoxelShape SHAPE = Block.createCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 16.0D, 14.0D);
 	
 	public QuitoxicReedsBlock(Settings settings) {
 		super(settings);

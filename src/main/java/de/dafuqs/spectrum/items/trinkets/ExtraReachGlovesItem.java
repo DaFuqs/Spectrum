@@ -22,9 +22,16 @@ import java.util.List;
 import java.util.UUID;
 
 public class ExtraReachGlovesItem extends InkDrainTrinketItem {
-
+	
 	public ExtraReachGlovesItem(Settings settings) {
 		super(settings, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_gloves_of_dawns_grasp"), InkColors.LIGHT_BLUE, 1677721600); // 5 blocks of extra reach
+	}
+	
+	public static double roundHalf(double number) {
+		double diff = number - (int) number;
+		if (diff < 0.25) return (int) number;
+		else if (diff < 0.75) return (int) number + 0.5;
+		else return (int) number + 1;
 	}
 	
 	@Override
@@ -40,7 +47,7 @@ public class ExtraReachGlovesItem extends InkDrainTrinketItem {
 		FixedSingleInkDrain inkStorage = getEnergyStorage(stack);
 		long storedInk = inkStorage.getEnergy(inkStorage.getStoredColor());
 		double extraReach = getExtraReach(storedInk);
-		if(extraReach != 0) {
+		if (extraReach != 0) {
 			modifiers.put(ReachEntityAttributes.REACH, new EntityAttributeModifier(uuid, "spectrum:gloves_of_dawns_grasp", extraReach, EntityAttributeModifier.Operation.ADDITION));
 			modifiers.put(ReachEntityAttributes.ATTACK_RANGE, new EntityAttributeModifier(uuid, "spectrum:gloves_of_dawns_grasp", extraReach, EntityAttributeModifier.Operation.ADDITION));
 		}
@@ -49,18 +56,11 @@ public class ExtraReachGlovesItem extends InkDrainTrinketItem {
 	}
 	
 	public double getExtraReach(long storedInk) {
-		if(storedInk < 100) {
+		if (storedInk < 100) {
 			return 0;
 		} else {
 			return 1 + roundHalf(Math.log(storedInk / 100) / Math.log(64));
 		}
-	}
-	
-	public static double roundHalf(double number) {
-		double diff = number - (int)number;
-		if (diff < 0.25) return (int)number;
-		else if (diff < 0.75) return (int)number + 0.5;
-		else return (int)number + 1;
 	}
 	
 }

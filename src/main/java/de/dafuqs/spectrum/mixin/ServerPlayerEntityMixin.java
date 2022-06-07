@@ -30,10 +30,10 @@ import java.util.Optional;
 @Mixin(ServerPlayerEntity.class)
 public abstract class ServerPlayerEntityMixin {
 	
+	private long spectrum$lastGleamingPinTriggerTick = 0;
+	
 	@Shadow
 	public abstract ServerWorld getWorld();
-	
-	private long spectrum$lastGleamingPinTriggerTick = 0;
 	
 	@Inject(at = @At("HEAD"), method = "onDeath(Lnet/minecraft/entity/damage/DamageSource;)V")
 	protected void spectrum$dropPlayerHeadWithTreasureHunt(DamageSource source, CallbackInfo ci) {

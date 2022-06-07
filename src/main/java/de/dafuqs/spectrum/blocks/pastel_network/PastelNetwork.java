@@ -9,33 +9,13 @@ import java.util.List;
 
 public class PastelNetwork {
 	
-	List<String> networkNames = List.of(
-			"Alpha",
-			"Beta",
-			"Gamma",
-			"Delta",
-			"Epsilon",
-			"Zeta",
-			"Eta",
-			"Theta",
-			"Iota",
-			"Kappa",
-			"Lambda",
-			"My",
-			"Ny",
-			"Xi",
-			"Omikron",
-			"Pi",
-			"Rho",
-			"Sigma",
-			"Tau",
-			"Ypsilon",
-			"Phi",
-			"Chi",
-			"Psi",
-			"Omeg"
-	);
+	/**
+	 * MOONSTONE
+	 * Giant node. Getting close to it lets the player get items from the network
+	 */
+	//protected HashSet<InteractionNode> interactionNodes = new ArrayList<>();
 	
+	protected static List<PastelNetwork> networks = new ArrayList<>();
 	/**
 	 * Node network:
 	 * - Need to be placed on inventories (sided?)
@@ -72,16 +52,37 @@ public class PastelNetwork {
 	 * Requester Nodes, requests on redstone (active>passive>storage)
 	 */
 	protected HashSet<PastelNetworkPullerNodeBlockEntity> pastelNetworkPullerNodes = new HashSet<>();
-	
-	/**
-	 * MOONSTONE
-	 * Giant node. Getting close to it lets the player get items from the network
-	 */
-	//protected HashSet<InteractionNode> interactionNodes = new ArrayList<>();
-	
-	protected static List<PastelNetwork> networks = new ArrayList<>();
-	
 	protected String name;
+	List<String> networkNames = List.of(
+			"Alpha",
+			"Beta",
+			"Gamma",
+			"Delta",
+			"Epsilon",
+			"Zeta",
+			"Eta",
+			"Theta",
+			"Iota",
+			"Kappa",
+			"Lambda",
+			"My",
+			"Ny",
+			"Xi",
+			"Omikron",
+			"Pi",
+			"Rho",
+			"Sigma",
+			"Tau",
+			"Ypsilon",
+			"Phi",
+			"Chi",
+			"Psi",
+			"Omeg"
+	);
+	
+	public PastelNetwork(World world) {
+		this.name = networkNames.get(world.random.nextInt(networkNames.size()));
+	}
 	
 	public static PastelNetwork getNetworkForNewNode(PastelNetworkNodeBlockEntity pastelNetworkNodeBlockEntity) {
 		for (PastelNetwork network : networks) {
@@ -120,10 +121,6 @@ public class PastelNetwork {
 			}
 		}
 		return false;
-	}
-	
-	public PastelNetwork(World world) {
-		this.name = networkNames.get(world.random.nextInt(networkNames.size()));
 	}
 	
 	public void join(PastelNetwork network) {

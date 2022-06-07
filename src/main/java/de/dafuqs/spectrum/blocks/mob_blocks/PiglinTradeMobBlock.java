@@ -34,6 +34,18 @@ public class PiglinTradeMobBlock extends MobBlock {
 		super(settings, particleEffect);
 	}
 	
+	private static List<ItemStack> getBarteredStacks(@NotNull ServerWorld world, BlockPos blockPos) {
+		PiglinEntity piglin = new PiglinEntity(EntityType.PIGLIN, world);
+		piglin.setPos(blockPos.getX(), blockPos.getY(), blockPos.getZ());
+		
+		LootTable lootTable = world.getServer().getLootManager().getTable(LootTables.PIGLIN_BARTERING_GAMEPLAY);
+		List<ItemStack> loot = lootTable.generateLoot(new LootContext.Builder(world).parameter(LootContextParameters.THIS_ENTITY, piglin).random(world.random).build(LootContextTypes.BARTER));
+		
+		piglin.discard();
+		
+		return loot;
+	}
+	
 	@Override
 	public boolean trigger(ServerWorld world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
 		if (entity instanceof ItemEntity itemEntity) {
@@ -69,18 +81,6 @@ public class PiglinTradeMobBlock extends MobBlock {
 			itemEntity.addVelocity(side.getOffsetX() * 0.25, side.getOffsetY() * 0.25 + 0.03, side.getOffsetZ() * 0.25);
 			world.spawnEntity(itemEntity);
 		}
-	}
-	
-	private static List<ItemStack> getBarteredStacks(@NotNull ServerWorld world, BlockPos blockPos) {
-		PiglinEntity piglin = new PiglinEntity(EntityType.PIGLIN, world);
-		piglin.setPos(blockPos.getX(), blockPos.getY(), blockPos.getZ());
-		
-		LootTable lootTable = world.getServer().getLootManager().getTable(LootTables.PIGLIN_BARTERING_GAMEPLAY);
-		List<ItemStack> loot = lootTable.generateLoot(new LootContext.Builder(world).parameter(LootContextParameters.THIS_ENTITY, piglin).random(world.random).build(LootContextTypes.BARTER));
-		
-		piglin.discard();
-		
-		return loot;
 	}
 	
 	@Override

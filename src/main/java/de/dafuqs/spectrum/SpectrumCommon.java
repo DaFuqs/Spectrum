@@ -68,12 +68,13 @@ import java.util.function.BiConsumer;
 public class SpectrumCommon implements ModInitializer {
 	
 	public static final String MOD_ID = "spectrum";
-	
-	public static SpectrumConfig CONFIG;
+	/**
+	 * Like waterlogged, but for liquid crystal!
+	 */
+	public static final BooleanProperty LIQUID_CRYSTAL_LOGGED = BooleanProperty.of("liquidcrystallogged");
 	private static final Logger LOGGER = LoggerFactory.getLogger("Spectrum");
-	
+	public static SpectrumConfig CONFIG;
 	public static RegistryKey<World> DEEPER_DOWN = RegistryKey.of(Registry.WORLD_KEY, new Identifier(MOD_ID, "deeper_down"));
-	
 	public static MinecraftServer minecraftServer;
 	/**
 	 * Caches the luminance states from fluids as int
@@ -81,10 +82,6 @@ public class SpectrumCommon implements ModInitializer {
 	 * like the fusion shrine lighting up with lava or liquid crystal
 	 */
 	public static HashMap<Fluid, Integer> fluidLuminance = new HashMap<>();
-	/**
-	 * Like waterlogged, but for liquid crystal!
-	 */
-	public static final BooleanProperty LIQUID_CRYSTAL_LOGGED = BooleanProperty.of("liquidcrystallogged");
 	
 	public static void logInfo(String message) {
 		LOGGER.info("[Spectrum] " + message);
@@ -96,6 +93,18 @@ public class SpectrumCommon implements ModInitializer {
 	
 	public static void logError(String message) {
 		LOGGER.error("[Spectrum] " + message);
+	}
+	
+	private static <T> BiConsumer<T, Identifier> registerInRegistry(Registry<? super T> registry) {
+		return (t, id) -> Registry.register(registry, id, t);
+	}
+	
+	public static void registerRecipeSerializers(BiConsumer<RecipeSerializer<?>, Identifier> identifier) {
+		identifier.accept(SpawnerCreatureChangeRecipe.SERIALIZER, new Identifier(SpectrumCommon.MOD_ID, "spirit_instiller_spawner_creature_change"));
+		identifier.accept(SpawnerMaxNearbyEntitiesChangeRecipe.SERIALIZER, new Identifier(SpectrumCommon.MOD_ID, "spirit_instiller_spawner_max_nearby_entities_change"));
+		identifier.accept(SpawnerRequiredPlayerRangeChangeRecipe.SERIALIZER, new Identifier(SpectrumCommon.MOD_ID, "spirit_instiller_spawner_spawner_player_range_change"));
+		identifier.accept(SpawnerSpawnCountChangeRecipe.SERIALIZER, new Identifier(SpectrumCommon.MOD_ID, "spirit_instiller_spawner_spawn_count_change"));
+		identifier.accept(SpawnerSpawnDelayChangeRecipe.SERIALIZER, new Identifier(SpectrumCommon.MOD_ID, "spirit_instiller_spawner_spawn_delay_change"));
 	}
 	
 	@Override
@@ -314,18 +323,6 @@ public class SpectrumCommon implements ModInitializer {
 			minecraftServer.getRecipeManager().setRecipes(newList);
 		}
 		EnchantmentUpgradeRecipeSerializer.enchantmentUpgradeRecipesToInject.clear();
-	}
-	
-	private static <T> BiConsumer<T, Identifier> registerInRegistry(Registry<? super T> registry) {
-		return (t, id) -> Registry.register(registry, id, t);
-	}
-	
-	public static void registerRecipeSerializers(BiConsumer<RecipeSerializer<?>, Identifier> identifier) {
-		identifier.accept(SpawnerCreatureChangeRecipe.SERIALIZER, new Identifier(SpectrumCommon.MOD_ID, "spirit_instiller_spawner_creature_change"));
-		identifier.accept(SpawnerMaxNearbyEntitiesChangeRecipe.SERIALIZER, new Identifier(SpectrumCommon.MOD_ID, "spirit_instiller_spawner_max_nearby_entities_change"));
-		identifier.accept(SpawnerRequiredPlayerRangeChangeRecipe.SERIALIZER, new Identifier(SpectrumCommon.MOD_ID, "spirit_instiller_spawner_spawner_player_range_change"));
-		identifier.accept(SpawnerSpawnCountChangeRecipe.SERIALIZER, new Identifier(SpectrumCommon.MOD_ID, "spirit_instiller_spawner_spawn_count_change"));
-		identifier.accept(SpawnerSpawnDelayChangeRecipe.SERIALIZER, new Identifier(SpectrumCommon.MOD_ID, "spirit_instiller_spawner_spawn_delay_change"));
 	}
 	
 }

@@ -20,6 +20,10 @@ public class SpiritInstillerCraftingCriterion extends AbstractCriterion<SpiritIn
 	
 	static final Identifier ID = new Identifier(SpectrumCommon.MOD_ID, "crafted_with_spirit_instiller");
 	
+	public static Conditions create(ItemPredicate[] item, NumberRange.IntRange experienceRange) {
+		return new Conditions(EntityPredicate.Extended.EMPTY, item, experienceRange);
+	}
+	
 	public Identifier getId() {
 		return ID;
 	}
@@ -34,10 +38,6 @@ public class SpiritInstillerCraftingCriterion extends AbstractCriterion<SpiritIn
 		this.trigger(player, (conditions) -> {
 			return conditions.matches(itemStack, experience);
 		});
-	}
-	
-	public static Conditions create(ItemPredicate[] item, NumberRange.IntRange experienceRange) {
-		return new Conditions(EntityPredicate.Extended.EMPTY, item, experienceRange);
 	}
 	
 	public static class Conditions extends AbstractCriterionConditions {

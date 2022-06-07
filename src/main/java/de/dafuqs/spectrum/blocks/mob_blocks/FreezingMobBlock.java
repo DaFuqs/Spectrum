@@ -46,14 +46,6 @@ public class FreezingMobBlock extends MobBlock {
 		super(settings, particleEffect);
 	}
 	
-	@Override
-	public boolean trigger(ServerWorld world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
-		for (Direction direction : Direction.values()) {
-			freeze(world, blockPos.offset(direction));
-		}
-		return true;
-	}
-	
 	public static boolean freeze(@NotNull ServerWorld world, BlockPos blockPos) {
 		BlockState sourceState = world.getBlockState(blockPos);
 		if (FREEZING_MAP.containsKey(sourceState.getBlock())) {
@@ -76,6 +68,14 @@ public class FreezingMobBlock extends MobBlock {
 		}
 		
 		return false;
+	}
+	
+	@Override
+	public boolean trigger(ServerWorld world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
+		for (Direction direction : Direction.values()) {
+			freeze(world, blockPos.offset(direction));
+		}
+		return true;
 	}
 	
 	@Override

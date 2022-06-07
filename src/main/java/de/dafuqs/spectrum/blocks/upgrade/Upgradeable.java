@@ -15,17 +15,6 @@ import java.util.*;
 
 public interface Upgradeable {
 	
-	enum UpgradeType {
-		SPEED,      // faster crafting
-		EFFICIENCY, // chance to not use input resources (like gemstone powder)
-		YIELD,      // chance to increase output
-		EXPERIENCE; // increases XP output
-	}
-	
-	void resetUpgrades();
-	
-	void calculateUpgrades();
-	
 	static NbtList toNbt(@NotNull Map<UpgradeType, Double> upgrades) {
 		NbtList nbtList = new NbtList();
 		if (!upgrades.isEmpty()) {
@@ -130,6 +119,17 @@ public interface Upgradeable {
 		}
 		
 		return new Pair<>(upgradeCount, upgradeMap);
+	}
+	
+	void resetUpgrades();
+	
+	void calculateUpgrades();
+	
+	enum UpgradeType {
+		SPEED,      // faster crafting
+		EFFICIENCY, // chance to not use input resources (like gemstone powder)
+		YIELD,      // chance to increase output
+		EXPERIENCE; // increases XP output
 	}
 	
 }

@@ -13,6 +13,10 @@ public class ImprovedCriticalEnchantment extends SpectrumEnchantment {
 		super(weight, EnchantmentTarget.WEAPON, slotTypes, unlockAdvancementIdentifier);
 	}
 	
+	public static float getCritMultiplier(int critMultiplierLevel) {
+		return SpectrumCommon.CONFIG.ImprovedCriticalExtraDamageMultiplierPerLevel * critMultiplierLevel;
+	}
+	
 	public int getMinPower(int level) {
 		return 10;
 	}
@@ -27,10 +31,6 @@ public class ImprovedCriticalEnchantment extends SpectrumEnchantment {
 	
 	public boolean canAccept(Enchantment other) {
 		return other != Enchantments.SHARPNESS && super.canAccept(other);
-	}
-	
-	public static float getCritMultiplier(int critMultiplierLevel) {
-		return SpectrumCommon.CONFIG.ImprovedCriticalExtraDamageMultiplierPerLevel * critMultiplierLevel;
 	}
 	
 }

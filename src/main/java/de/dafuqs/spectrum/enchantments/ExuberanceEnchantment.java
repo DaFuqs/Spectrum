@@ -16,6 +16,15 @@ public class ExuberanceEnchantment extends SpectrumEnchantment {
 		super(weight, EnchantmentTarget.WEAPON, slotTypes, unlockAdvancementIdentifier);
 	}
 	
+	public static float getExuberanceMod(PlayerEntity breakingPlayer) {
+		if (breakingPlayer != null && EnchantmentHelper.getLevel(SpectrumEnchantments.EXUBERANCE, breakingPlayer.getMainHandStack()) > 0) {
+			int exuberanceLevel = EnchantmentHelper.getEquipmentLevel(SpectrumEnchantments.EXUBERANCE, breakingPlayer);
+			return 1.0F + exuberanceLevel * SpectrumCommon.CONFIG.ExuberanceBonusExperiencePercentPerLevel;
+		} else {
+			return 1.0F;
+		}
+	}
+	
 	public int getMinPower(int level) {
 		return 10;
 	}
@@ -35,15 +44,6 @@ public class ExuberanceEnchantment extends SpectrumEnchantment {
 	@Override
 	public boolean isAcceptableItem(ItemStack stack) {
 		return super.isAcceptableItem(stack) || EnchantmentTarget.DIGGER.isAcceptableItem(stack.getItem());
-	}
-	
-	public static float getExuberanceMod(PlayerEntity breakingPlayer) {
-		if (breakingPlayer != null && EnchantmentHelper.getLevel(SpectrumEnchantments.EXUBERANCE, breakingPlayer.getMainHandStack()) > 0) {
-			int exuberanceLevel = EnchantmentHelper.getEquipmentLevel(SpectrumEnchantments.EXUBERANCE, breakingPlayer);
-			return 1.0F + exuberanceLevel * SpectrumCommon.CONFIG.ExuberanceBonusExperiencePercentPerLevel;
-		} else {
-			return 1.0F;
-		}
 	}
 	
 }

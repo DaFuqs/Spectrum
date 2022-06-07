@@ -20,15 +20,13 @@ import java.util.Random;
 
 public class SpectrumBuddingBlock extends BuddingAmethystBlock {
 	
+	private static final Direction[] DIRECTIONS = Direction.values();
 	private final Block smallBlock;
 	private final Block mediumBlock;
 	private final Block largeBlock;
 	private final Block clusterBlock;
-	
 	private final SoundEvent hitSoundEvent;
 	private final SoundEvent chimeSoundEvent;
-	
-	private static final Direction[] DIRECTIONS = Direction.values();
 	
 	public SpectrumBuddingBlock(Settings settings, Block smallBlock, Block mediumBlock, Block largeBlock, Block clusterBlock, SoundEvent hitSoundEvent, SoundEvent chimeSoundEvent) {
 		super(settings);

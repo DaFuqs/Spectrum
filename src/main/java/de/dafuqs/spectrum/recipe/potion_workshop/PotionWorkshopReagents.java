@@ -12,10 +12,6 @@ public class PotionWorkshopReagents {
 	
 	public static final HashMap<Item, PotionReagentEffect> reagentEffects = new HashMap<>();
 	
-	public abstract static class PotionReagentEffect {
-		public abstract PotionMod modify(PotionMod potionMod, Random random);
-	}
-	
 	public static boolean isReagent(Item item) {
 		return reagentEffects.containsKey(item);
 	}
@@ -190,6 +186,10 @@ public class PotionWorkshopReagents {
 				return potionMod;
 			}
 		});
+	}
+	
+	public abstract static class PotionReagentEffect {
+		public abstract PotionMod modify(PotionMod potionMod, Random random);
 	}
 	
 }

@@ -30,7 +30,7 @@ public enum FusionShrineRecipeWorldEffect {
 	SINGLE_VISUAL_EXPLOSION_ON_SHRINE,
 	MAYBE_PLACE_MIDNIGHT_SOLUTION,
 	PLACE_MIDNIGHT_SOLUTION;
-
+	
 	public void doEffect(ServerWorld world, BlockPos shrinePos) {
 		switch (this) {
 			case WEATHER_CLEAR -> {
@@ -45,21 +45,21 @@ public enum FusionShrineRecipeWorldEffect {
 			}
 			case LIGHTNING_ON_SHRINE -> {
 				LightningEntity lightningEntity = EntityType.LIGHTNING_BOLT.create(world);
-				if(lightningEntity != null) {
+				if (lightningEntity != null) {
 					lightningEntity.refreshPositionAfterTeleport(Vec3d.ofBottomCenter(shrinePos));
 					lightningEntity.setCosmetic(true);
 					world.spawnEntity(lightningEntity);
 				}
-
+				
 			}
 			case LIGHTNING_AROUND_SHRINE -> {
 				if (world.getRandom().nextFloat() < 0.05F) {
 					int randomX = shrinePos.getX() + 12 - world.getRandom().nextInt(24);
 					int randomZ = shrinePos.getZ() + 12 - world.getRandom().nextInt(24);
-
+					
 					BlockPos randomTopPos = new BlockPos(randomX, world.getTopY(Heightmap.Type.WORLD_SURFACE, randomX, randomZ), randomZ);
 					LightningEntity lightningEntity = EntityType.LIGHTNING_BOLT.create(world);
-					if(lightningEntity != null) {
+					if (lightningEntity != null) {
 						lightningEntity.refreshPositionAfterTeleport(Vec3d.ofBottomCenter(randomTopPos));
 						lightningEntity.setCosmetic(false);
 						world.spawnEntity(lightningEntity);
@@ -79,7 +79,7 @@ public enum FusionShrineRecipeWorldEffect {
 			case PLACE_MIDNIGHT_SOLUTION, MAYBE_PLACE_MIDNIGHT_SOLUTION -> {
 				if (this == PLACE_MIDNIGHT_SOLUTION || world.getRandom().nextFloat() < 0.05F) {
 					Optional<BlockPos> targetPos = Support.getNexReplaceableBlockPosUpDown(world, shrinePos.add(5 - world.getRandom().nextInt(10), 1, 5 - world.getRandom().nextInt(10)), 5);
-					if(targetPos.isPresent()) {
+					if (targetPos.isPresent()) {
 						world.setBlockState(targetPos.get(), SpectrumBlocks.MIDNIGHT_SOLUTION.getDefaultState());
 						MidnightSolutionFluidBlock.playExtinguishSound(world, targetPos.get());
 					}
@@ -87,7 +87,7 @@ public enum FusionShrineRecipeWorldEffect {
 			}
 		}
 	}
-
+	
 	/**
 	 * True for all effects that should just play once.
 	 * Otherwise, it will be triggered each tick of the recipe
@@ -95,6 +95,6 @@ public enum FusionShrineRecipeWorldEffect {
 	public boolean isOneTimeEffect(FusionShrineRecipeWorldEffect effect) {
 		return effect == LIGHTNING_ON_SHRINE || effect == SINGLE_VISUAL_EXPLOSION_ON_SHRINE || effect == WEATHER_CLEAR || effect == WEATHER_RAIN || effect == WEATHER_THUNDER;
 	}
-
-
+	
+	
 }

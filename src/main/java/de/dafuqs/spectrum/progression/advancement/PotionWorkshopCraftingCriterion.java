@@ -19,6 +19,10 @@ public class PotionWorkshopCraftingCriterion extends AbstractCriterion<PotionWor
 	
 	static final Identifier ID = new Identifier(SpectrumCommon.MOD_ID, "crafted_with_potion_workshop");
 	
+	public static PotionWorkshopCraftingCriterion.Conditions create(ItemPredicate[] item) {
+		return new PotionWorkshopCraftingCriterion.Conditions(EntityPredicate.Extended.EMPTY, item);
+	}
+	
 	public Identifier getId() {
 		return ID;
 	}
@@ -30,10 +34,6 @@ public class PotionWorkshopCraftingCriterion extends AbstractCriterion<PotionWor
 	
 	public void trigger(ServerPlayerEntity player, ItemStack itemStack) {
 		this.trigger(player, (conditions) -> conditions.matches(itemStack));
-	}
-	
-	public static PotionWorkshopCraftingCriterion.Conditions create(ItemPredicate[] item) {
-		return new PotionWorkshopCraftingCriterion.Conditions(EntityPredicate.Extended.EMPTY, item);
 	}
 	
 	public static class Conditions extends AbstractCriterionConditions {

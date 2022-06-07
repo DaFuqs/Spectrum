@@ -28,10 +28,10 @@ import org.jetbrains.annotations.NotNull;
 
 public class PedestalScreenHandler extends AbstractRecipeScreenHandler<Inventory> {
 	
+	protected final World world;
 	private final PlayerEntity player;
 	private final Inventory inventory;
 	private final PropertyDelegate propertyDelegate;
-	protected final World world;
 	private final RecipeBookCategory category;
 	
 	private final BlockPos pedestalPos;

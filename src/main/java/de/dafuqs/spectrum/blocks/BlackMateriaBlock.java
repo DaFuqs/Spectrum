@@ -28,20 +28,6 @@ public class BlackMateriaBlock extends FallingBlock {
 		setDefaultState(this.stateManager.getDefaultState().with(Properties.AGE_3, 3));
 	}
 	
-	@Override
-	public boolean hasRandomTicks(BlockState state) {
-		return state.get(AGE) != Properties.AGE_3_MAX;
-	}
-	
-	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-		int age = state.get(AGE);
-		if (age < MAX_AGE) {
-			BlockState targetState = state.with(AGE, age + 1);
-			spreadBlackMateria(world, pos, random, targetState);
-			world.setBlockState(pos, targetState);
-		}
-	}
-	
 	public static boolean spreadBlackMateria(World world, BlockPos pos, Random random, BlockState targetState) {
 		boolean replacedAny = false;
 		for (int i = 0; i < PROPAGATION_TRIES; i++) {
@@ -55,6 +41,20 @@ public class BlackMateriaBlock extends FallingBlock {
 			}
 		}
 		return replacedAny;
+	}
+	
+	@Override
+	public boolean hasRandomTicks(BlockState state) {
+		return state.get(AGE) != Properties.AGE_3_MAX;
+	}
+	
+	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
+		int age = state.get(AGE);
+		if (age < MAX_AGE) {
+			BlockState targetState = state.with(AGE, age + 1);
+			spreadBlackMateria(world, pos, random, targetState);
+			world.setBlockState(pos, targetState);
+		}
 	}
 	
 	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {

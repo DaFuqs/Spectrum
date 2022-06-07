@@ -24,6 +24,22 @@ public class SpectrumMobSpawnerItem extends BlockItem {
 		super(block, fabricItemSettings);
 	}
 	
+	public static ItemStack toItemStack(MobSpawnerBlockEntity mobSpawnerBlockEntity) {
+		ItemStack itemStack = new ItemStack(SpectrumItems.SPAWNER, 1);
+		
+		NbtCompound blockEntityTag = mobSpawnerBlockEntity.createNbt();
+		blockEntityTag.remove("x");
+		blockEntityTag.remove("y");
+		blockEntityTag.remove("z");
+		blockEntityTag.remove("id");
+		blockEntityTag.remove("delay");
+		
+		NbtCompound itemStackTag = new NbtCompound();
+		itemStackTag.put("BlockEntityTag", blockEntityTag);
+		itemStack.setNbt(itemStackTag);
+		return itemStack;
+	}
+	
 	@Override
 	public void appendTooltip(ItemStack itemStack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
 		if (itemStack.getNbt() != null && itemStack.getNbt().get("BlockEntityTag") != null) {
@@ -69,22 +85,6 @@ public class SpectrumMobSpawnerItem extends BlockItem {
 				tooltip.add(new TranslatableText("item.spectrum.spawner.tooltip.unknown_mob"));
 			}
 		}
-	}
-	
-	public static ItemStack toItemStack(MobSpawnerBlockEntity mobSpawnerBlockEntity) {
-		ItemStack itemStack = new ItemStack(SpectrumItems.SPAWNER, 1);
-		
-		NbtCompound blockEntityTag = mobSpawnerBlockEntity.createNbt();
-		blockEntityTag.remove("x");
-		blockEntityTag.remove("y");
-		blockEntityTag.remove("z");
-		blockEntityTag.remove("id");
-		blockEntityTag.remove("delay");
-		
-		NbtCompound itemStackTag = new NbtCompound();
-		itemStackTag.put("BlockEntityTag", blockEntityTag);
-		itemStack.setNbt(itemStackTag);
-		return itemStack;
 	}
 	
 }

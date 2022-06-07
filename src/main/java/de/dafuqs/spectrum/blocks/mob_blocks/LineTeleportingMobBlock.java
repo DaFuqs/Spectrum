@@ -27,6 +27,28 @@ public class LineTeleportingMobBlock extends MobBlock {
 		this.range = range;
 	}
 	
+	public static Direction getLookDirection(@NotNull Entity entity, boolean mirrorVertical, boolean mirrorHorizontal) {
+		double pitch = entity.getPitch();
+		if (pitch < -60) {
+			return mirrorVertical ? Direction.UP : Direction.DOWN;
+		} else if (pitch > 60) {
+			return mirrorVertical ? Direction.DOWN : Direction.UP;
+		} else {
+			return mirrorHorizontal ? entity.getMovementDirection().getOpposite() : entity.getMovementDirection();
+		}
+	}
+	
+	public static Optional<BlockPos> searchForBlock(World world, BlockPos pos, BlockState searchedState, Direction direction, int range) {
+		BlockPos.Mutable mutable = pos.mutableCopy();
+		for (int i = 1; i < range; i++) {
+			BlockPos currPos = mutable.offset(direction, i);
+			if (world.getBlockState(currPos) == searchedState) {
+				return Optional.of(currPos);
+			}
+		}
+		return Optional.empty();
+	}
+	
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
 		super.appendTooltip(stack, world, tooltip, options);
@@ -42,17 +64,6 @@ public class LineTeleportingMobBlock extends MobBlock {
 				playTriggerSound(world, pos);
 				triggerCooldown(world, pos);
 			}
-		}
-	}
-	
-	public static Direction getLookDirection(@NotNull Entity entity, boolean mirrorVertical, boolean mirrorHorizontal) {
-		double pitch = entity.getPitch();
-		if (pitch < -60) {
-			return mirrorVertical ? Direction.UP : Direction.DOWN;
-		} else if (pitch > 60) {
-			return mirrorVertical ? Direction.DOWN : Direction.UP;
-		} else {
-			return mirrorHorizontal ? entity.getMovementDirection().getOpposite() : entity.getMovementDirection();
 		}
 	}
 	
@@ -73,17 +84,6 @@ public class LineTeleportingMobBlock extends MobBlock {
 	@Override
 	public int getCooldownTicks() {
 		return 10;
-	}
-	
-	public static Optional<BlockPos> searchForBlock(World world, BlockPos pos, BlockState searchedState, Direction direction, int range) {
-		BlockPos.Mutable mutable = pos.mutableCopy();
-		for (int i = 1; i < range; i++) {
-			BlockPos currPos = mutable.offset(direction, i);
-			if (world.getBlockState(currPos) == searchedState) {
-				return Optional.of(currPos);
-			}
-		}
-		return Optional.empty();
 	}
 	
 }

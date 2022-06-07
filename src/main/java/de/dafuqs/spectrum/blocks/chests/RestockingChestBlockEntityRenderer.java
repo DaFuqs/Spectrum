@@ -34,6 +34,15 @@ public class RestockingChestBlockEntityRenderer<RestockingChestBlockEntity exten
 		lid = root.getChild("lid");
 	}
 	
+	public static @NotNull TexturedModelData getTexturedModelData() {
+		ModelData modelData = new ModelData();
+		ModelPartData modelPartData = modelData.getRoot();
+		
+		modelPartData.addChild("bottom", ModelPartBuilder.create().uv(0, 16).cuboid(1.0F, 0.0F, 1.0F, 14.0F, 10.0F, 14.0F), ModelTransform.pivot(0.0F, 0.0F, 0.0F));
+		modelPartData.addChild("lid", ModelPartBuilder.create().uv(0, 0).cuboid(3.0F, 0.0F, 3.0F, 10.0F, 6.0F, 10.0F), ModelTransform.pivot(0.0F, 11.0F, 0.0F));
+		
+		return TexturedModelData.of(modelData, 64, 64);
+	}
 	
 	@Override
 	public void render(RestockingChestBlockEntity entity, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumers, int light, int overlay) {
@@ -57,16 +66,6 @@ public class RestockingChestBlockEntityRenderer<RestockingChestBlockEntity exten
 		root.render(matrixStack, vertexConsumer, light, overlay);
 		
 		matrixStack.pop();
-	}
-	
-	public static @NotNull TexturedModelData getTexturedModelData() {
-		ModelData modelData = new ModelData();
-		ModelPartData modelPartData = modelData.getRoot();
-		
-		modelPartData.addChild("bottom", ModelPartBuilder.create().uv(0, 16).cuboid(1.0F, 0.0F, 1.0F, 14.0F, 10.0F, 14.0F), ModelTransform.pivot(0.0F, 0.0F, 0.0F));
-		modelPartData.addChild("lid", ModelPartBuilder.create().uv(0, 0).cuboid(3.0F, 0.0F, 3.0F, 10.0F, 6.0F, 10.0F), ModelTransform.pivot(0.0F, 11.0F, 0.0F));
-		
-		return TexturedModelData.of(modelData, 64, 64);
 	}
 	
 }

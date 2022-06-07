@@ -26,6 +26,10 @@ public class TakeOffBeltJumpCriterion extends AbstractCriterion<TakeOffBeltJumpC
 	
 	static final Identifier ID = new Identifier(SpectrumCommon.MOD_ID, "take_off_belt_jump");
 	
+	public static TakeOffBeltJumpCriterion.Conditions create(ItemPredicate itemPredicate, NumberRange.IntRange chargesRange) {
+		return new TakeOffBeltJumpCriterion.Conditions(EntityPredicate.Extended.EMPTY, itemPredicate, chargesRange);
+	}
+	
 	public Identifier getId() {
 		return ID;
 	}
@@ -53,10 +57,6 @@ public class TakeOffBeltJumpCriterion extends AbstractCriterion<TakeOffBeltJumpC
 			}
 			return false;
 		});
-	}
-	
-	public static TakeOffBeltJumpCriterion.Conditions create(ItemPredicate itemPredicate, NumberRange.IntRange chargesRange) {
-		return new TakeOffBeltJumpCriterion.Conditions(EntityPredicate.Extended.EMPTY, itemPredicate, chargesRange);
 	}
 	
 	public static class Conditions extends AbstractCriterionConditions {

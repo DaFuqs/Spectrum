@@ -16,6 +16,10 @@ public class CrystalApothecaryCollectingCriterion extends AbstractCriterion<Crys
 	
 	static final Identifier ID = new Identifier(SpectrumCommon.MOD_ID, "collect_using_crystal_apothecary");
 	
+	public static CrystalApothecaryCollectingCriterion.Conditions create(ItemPredicate item) {
+		return new CrystalApothecaryCollectingCriterion.Conditions(EntityPredicate.Extended.EMPTY, item);
+	}
+	
 	public Identifier getId() {
 		return ID;
 	}
@@ -27,10 +31,6 @@ public class CrystalApothecaryCollectingCriterion extends AbstractCriterion<Crys
 	
 	public void trigger(ServerPlayerEntity player, ItemStack itemStack) {
 		this.trigger(player, (conditions) -> conditions.matches(itemStack));
-	}
-	
-	public static CrystalApothecaryCollectingCriterion.Conditions create(ItemPredicate item) {
-		return new CrystalApothecaryCollectingCriterion.Conditions(EntityPredicate.Extended.EMPTY, item);
 	}
 	
 	public static class Conditions extends AbstractCriterionConditions {

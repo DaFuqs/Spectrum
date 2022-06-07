@@ -33,6 +33,17 @@ public class PrivateChestBlockEntity extends SpectrumChestBlockEntity implements
 		this.lastNonOwnerOpenedTick = -1;
 	}
 	
+	public static int getPlayersLookingInChestCount(BlockView world, BlockPos pos) {
+		BlockState blockState = world.getBlockState(pos);
+		if (blockState.hasBlockEntity()) {
+			BlockEntity blockEntity = world.getBlockEntity(pos);
+			if (blockEntity instanceof PrivateChestBlockEntity) {
+				return ((PrivateChestBlockEntity) blockEntity).stateManager.getViewerCount();
+			}
+		}
+		return 0;
+	}
+	
 	protected void onInvOpenOrClose(World world, BlockPos pos, BlockState state, int oldViewerCount, int newViewerCount) {
 		super.onInvOpenOrClose(world, pos, state, oldViewerCount, newViewerCount);
 		
@@ -48,17 +59,6 @@ public class PrivateChestBlockEntity extends SpectrumChestBlockEntity implements
 		if (wasRecentlyTriedToOpenByNonOwner()) {
 			world.createAndScheduleBlockTick(pos, state.getBlock(), 10);
 		}
-	}
-	
-	public static int getPlayersLookingInChestCount(BlockView world, BlockPos pos) {
-		BlockState blockState = world.getBlockState(pos);
-		if (blockState.hasBlockEntity()) {
-			BlockEntity blockEntity = world.getBlockEntity(pos);
-			if (blockEntity instanceof PrivateChestBlockEntity) {
-				return ((PrivateChestBlockEntity) blockEntity).stateManager.getViewerCount();
-			}
-		}
-		return 0;
 	}
 	
 	protected Text getContainerName() {

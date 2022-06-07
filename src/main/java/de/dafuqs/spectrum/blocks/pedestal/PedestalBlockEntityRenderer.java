@@ -28,6 +28,16 @@ public class PedestalBlockEntityRenderer<T extends PedestalBlockEntity> implemen
 		this.circle = getTexturedModelData().createModel().getChild("circle");
 	}
 	
+	public static TexturedModelData getTexturedModelData() {
+		ModelData modelData = new ModelData();
+		ModelPartData modelPartData = modelData.getRoot();
+		
+		modelPartData.addChild("circle", ModelPartBuilder.create(), ModelTransform.pivot(8.0F, 0.1F, 8.0F));
+		modelPartData.getChild("circle").addChild("circle2", ModelPartBuilder.create().uv(0, 0).cuboid(-32.0F, 0.0F, -29F, 64.0F, 0.0F, 64.0F), ModelTransform.rotation(0.0F, 0.0F, 0.0F));
+		
+		return TexturedModelData.of(modelData, 256, 256);
+	}
+	
 	@Override
 	public void render(T entity, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light, int overlay) {
 		if (entity.getWorld() == null) {
@@ -54,16 +64,6 @@ public class PedestalBlockEntityRenderer<T extends PedestalBlockEntity> implemen
 			MinecraftClient.getInstance().getItemRenderer().renderItem(outputItemStack, ModelTransformation.Mode.GROUND, 15728768, overlay, matrixStack, vertexConsumerProvider, 0);
 			matrixStack.pop();
 		}
-	}
-	
-	public static TexturedModelData getTexturedModelData() {
-		ModelData modelData = new ModelData();
-		ModelPartData modelPartData = modelData.getRoot();
-		
-		modelPartData.addChild("circle", ModelPartBuilder.create(), ModelTransform.pivot(8.0F, 0.1F, 8.0F));
-		modelPartData.getChild("circle").addChild("circle2", ModelPartBuilder.create().uv(0, 0).cuboid(-32.0F, 0.0F, -29F, 64.0F, 0.0F, 64.0F), ModelTransform.rotation(0.0F, 0.0F, 0.0F));
-		
-		return TexturedModelData.of(modelData, 256, 256);
 	}
 	
 }

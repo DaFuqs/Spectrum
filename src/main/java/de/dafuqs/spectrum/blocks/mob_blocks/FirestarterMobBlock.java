@@ -68,14 +68,6 @@ public class FirestarterMobBlock extends MobBlock {
 		}
 	}
 	
-	@Override
-	public boolean trigger(ServerWorld world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
-		for (Direction direction : Direction.values()) {
-			causeFire(world, blockPos.offset(direction), direction);
-		}
-		return true;
-	}
-	
 	public static void causeFire(@NotNull ServerWorld world, BlockPos blockPos, Direction side) {
 		BlockState blockState = world.getBlockState(blockPos);
 		if (CampfireBlock.canBeLit(blockState) || CandleBlock.canBeLit(blockState) || CandleCakeBlock.canBeLit(blockState)) {
@@ -103,6 +95,14 @@ public class FirestarterMobBlock extends MobBlock {
 				world.emitGameEvent(null, GameEvent.BLOCK_PLACE, blockPos);
 			}
 		}
+	}
+	
+	@Override
+	public boolean trigger(ServerWorld world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
+		for (Direction direction : Direction.values()) {
+			causeFire(world, blockPos.offset(direction), direction);
+		}
+		return true;
 	}
 	
 	@Override

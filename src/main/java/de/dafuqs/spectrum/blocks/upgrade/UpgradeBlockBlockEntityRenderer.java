@@ -20,9 +20,9 @@ import org.jetbrains.annotations.NotNull;
 @Environment(EnvType.CLIENT)
 public class UpgradeBlockBlockEntityRenderer<PedestalUpgradeBlockEntity extends BlockEntity> implements BlockEntityRenderer<PedestalUpgradeBlockEntity> {
 	
-	private SpriteIdentifier spriteIdentifier;
 	private final ModelPart root;
 	private final ModelPart disk;
+	private SpriteIdentifier spriteIdentifier;
 	
 	public UpgradeBlockBlockEntityRenderer(BlockEntityRendererFactory.Context ctx) {
 		TexturedModelData texturedModelData = getTexturedModelData(Upgradeable.UpgradeType.SPEED);

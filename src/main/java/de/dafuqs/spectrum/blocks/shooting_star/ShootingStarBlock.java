@@ -31,6 +31,68 @@ import java.util.Random;
 public class ShootingStarBlock extends BlockWithEntity {
 	
 	protected static final VoxelShape SHAPE = Block.createCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 12.0D, 14.0D);
+	public final Type shootingStarType;
+	
+	public ShootingStarBlock(Settings settings, ShootingStarBlock.Type shootingStarType) {
+		super(settings);
+		this.shootingStarType = shootingStarType;
+	}
+	
+	@Nullable
+	@Override
+	public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+		return new ShootingStarBlockEntity(pos, state);
+	}
+	
+	@Override
+	public BlockRenderType getRenderType(BlockState state) {
+		return BlockRenderType.MODEL;
+	}
+	
+	@Override
+	public boolean canPathfindThrough(BlockState state, BlockView world, BlockPos pos, NavigationType type) {
+		return false;
+	}
+	
+	@Override
+	public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state) {
+		ItemStack itemStack = super.getPickStack(world, pos, state);
+		world.getBlockEntity(pos, SpectrumBlockEntityRegistry.SHOOTING_STAR).ifPresent((blockEntity) -> {
+			blockEntity.setStackNbt(itemStack);
+		});
+		return itemStack;
+	}
+	
+	@Override
+	public void onBreak(@NotNull World world, BlockPos pos, BlockState state, PlayerEntity player) {
+		if (!world.isClient && !player.isCreative()) {
+			ItemStack itemStack = this.shootingStarType.getBlock().asItem().getDefaultStack();
+			world.getBlockEntity(pos, SpectrumBlockEntityRegistry.SHOOTING_STAR).ifPresent((blockEntity) -> {
+				blockEntity.setStackNbt(itemStack);
+			});
+			
+			ItemEntity itemEntity = new ItemEntity(world, (double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D, itemStack);
+			itemEntity.setToDefaultPickupDelay();
+			world.spawnEntity(itemEntity);
+		}
+		
+		super.onBreak(world, pos, state, player);
+	}
+	
+	@Override
+	public void onPlaced(@NotNull World world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack itemStack) {
+		if (!world.isClient) {
+			BlockEntity blockEntity = world.getBlockEntity(pos);
+			if (blockEntity instanceof ShootingStarBlockEntity shootingStarBlockEntity) {
+				shootingStarBlockEntity.setRemainingHits(ShootingStarItem.getRemainingHits(itemStack));
+			}
+		}
+	}
+	
+	@Override
+	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+		return SHAPE;
+	}
 	
 	public enum Type {
 		GLISTERING("glistering"),
@@ -45,30 +107,6 @@ public class ShootingStarBlock extends BlockWithEntity {
 		
 		Type(String name) {
 			this.name = name;
-		}
-		
-		public String getName() {
-			return this.name;
-		}
-		
-		public Block getBlock() {
-			switch (this) {
-				case PRISTINE -> {
-					return SpectrumBlocks.PRISTINE_SHOOTING_STAR;
-				}
-				case GEMSTONE -> {
-					return SpectrumBlocks.GEMSTONE_SHOOTING_STAR;
-				}
-				case FIERY -> {
-					return SpectrumBlocks.FIERY_SHOOTING_STAR;
-				}
-				case COLORFUL -> {
-					return SpectrumBlocks.COLORFUL_SHOOTING_STAR;
-				}
-				default -> {
-					return SpectrumBlocks.GLISTERING_SHOOTING_STAR;
-				}
-			}
 		}
 		
 		public static ShootingStarBlock.Type getWeightedRandomType(@NotNull Random random) {
@@ -133,6 +171,30 @@ public class ShootingStarBlock extends BlockWithEntity {
 			}
 		}
 		
+		public String getName() {
+			return this.name;
+		}
+		
+		public Block getBlock() {
+			switch (this) {
+				case PRISTINE -> {
+					return SpectrumBlocks.PRISTINE_SHOOTING_STAR;
+				}
+				case GEMSTONE -> {
+					return SpectrumBlocks.GEMSTONE_SHOOTING_STAR;
+				}
+				case FIERY -> {
+					return SpectrumBlocks.FIERY_SHOOTING_STAR;
+				}
+				case COLORFUL -> {
+					return SpectrumBlocks.COLORFUL_SHOOTING_STAR;
+				}
+				default -> {
+					return SpectrumBlocks.GLISTERING_SHOOTING_STAR;
+				}
+			}
+		}
+		
 		public @NotNull Vec3f getRandomParticleColor(Random random) {
 			switch (this) {
 				case GLISTERING -> {
@@ -184,69 +246,6 @@ public class ShootingStarBlock extends BlockWithEntity {
 				}
 			}
 		}
-	}
-	
-	public final Type shootingStarType;
-	
-	public ShootingStarBlock(Settings settings, ShootingStarBlock.Type shootingStarType) {
-		super(settings);
-		this.shootingStarType = shootingStarType;
-	}
-	
-	@Nullable
-	@Override
-	public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
-		return new ShootingStarBlockEntity(pos, state);
-	}
-	
-	@Override
-	public BlockRenderType getRenderType(BlockState state) {
-		return BlockRenderType.MODEL;
-	}
-	
-	@Override
-	public boolean canPathfindThrough(BlockState state, BlockView world, BlockPos pos, NavigationType type) {
-		return false;
-	}
-	
-	@Override
-	public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state) {
-		ItemStack itemStack = super.getPickStack(world, pos, state);
-		world.getBlockEntity(pos, SpectrumBlockEntityRegistry.SHOOTING_STAR).ifPresent((blockEntity) -> {
-			blockEntity.setStackNbt(itemStack);
-		});
-		return itemStack;
-	}
-	
-	@Override
-	public void onBreak(@NotNull World world, BlockPos pos, BlockState state, PlayerEntity player) {
-		if (!world.isClient && !player.isCreative()) {
-			ItemStack itemStack = this.shootingStarType.getBlock().asItem().getDefaultStack();
-			world.getBlockEntity(pos, SpectrumBlockEntityRegistry.SHOOTING_STAR).ifPresent((blockEntity) -> {
-				blockEntity.setStackNbt(itemStack);
-			});
-			
-			ItemEntity itemEntity = new ItemEntity(world, (double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D, itemStack);
-			itemEntity.setToDefaultPickupDelay();
-			world.spawnEntity(itemEntity);
-		}
-		
-		super.onBreak(world, pos, state, player);
-	}
-	
-	@Override
-	public void onPlaced(@NotNull World world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack itemStack) {
-		if (!world.isClient) {
-			BlockEntity blockEntity = world.getBlockEntity(pos);
-			if (blockEntity instanceof ShootingStarBlockEntity shootingStarBlockEntity) {
-				shootingStarBlockEntity.setRemainingHits(ShootingStarItem.getRemainingHits(itemStack));
-			}
-		}
-	}
-	
-	@Override
-	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-		return SHAPE;
 	}
 	
 	public static class ShootingStarBlockDispenserBehavior extends ItemDispenserBehavior {

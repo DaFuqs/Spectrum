@@ -46,13 +46,70 @@ import java.util.Optional;
 public class FusionShrineBlock extends BlockWithEntity {
 	
 	public static final Identifier UNLOCK_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "collect_all_basic_pigments_besides_brown");
-	protected static final VoxelShape SHAPE = Block.createCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 15.0D, 14.0D);
-	
 	public static final IntProperty LIGHT_LEVEL = IntProperty.of("light_level", 0, 15);
+	protected static final VoxelShape SHAPE = Block.createCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 15.0D, 14.0D);
 	
 	public FusionShrineBlock(Settings settings) {
 		super(settings);
 		setDefaultState(getStateManager().getDefaultState().with(LIGHT_LEVEL, 0));
+	}
+	
+	public static void clearCurrentlyRenderedMultiBlock(World world) {
+		if (world.isClient) {
+			IMultiblock currentlyRenderedMultiBlock = PatchouliAPI.get().getCurrentMultiblock();
+			if (currentlyRenderedMultiBlock != null && currentlyRenderedMultiBlock.getID().equals(SpectrumMultiblocks.FUSION_SHRINE_IDENTIFIER)) {
+				PatchouliAPI.get().clearMultiblock();
+			}
+		}
+	}
+	
+	public static boolean verifyStructureWithSkyAccess(World world, BlockPos blockPos, @Nullable ServerPlayerEntity serverPlayerEntity) {
+		if (!world.getBlockState(blockPos.up()).isAir()) {
+			world.playSound(null, blockPos, SpectrumSoundEvents.USE_FAIL, SoundCategory.NEUTRAL, 1.0F, 1.0F);
+			return false;
+		}
+		if (!world.isSkyVisible(blockPos)) {
+			if (world.isClient) {
+				world.addParticle(SpectrumParticleTypes.WHITE_SPARKLE_RISING, blockPos.getX() + 0.5, blockPos.getY() + 1, blockPos.getZ() + 0.5, 0, 0.5, 0);
+				MinecraftClient.getInstance().player.playSound(SpectrumSoundEvents.USE_FAIL, SoundCategory.NEUTRAL, 1.0F, 1.0F);
+			}
+			return false;
+		}
+		return FusionShrineBlock.verifyStructure(world, blockPos, serverPlayerEntity);
+	}
+	
+	private static boolean verifyStructure(World world, BlockPos blockPos, @Nullable ServerPlayerEntity serverPlayerEntity) {
+		IMultiblock multiblock = SpectrumMultiblocks.MULTIBLOCKS.get(SpectrumMultiblocks.FUSION_SHRINE_IDENTIFIER);
+		boolean valid = multiblock.validate(world, blockPos.down(), BlockRotation.NONE);
+		
+		if (valid) {
+			if (serverPlayerEntity != null) {
+				SpectrumAdvancementCriteria.COMPLETED_MULTIBLOCK.trigger(serverPlayerEntity, multiblock);
+			}
+		} else {
+			if (world.isClient) {
+				IMultiblock currentMultiBlock = PatchouliAPI.get().getCurrentMultiblock();
+				if (currentMultiBlock == multiblock) {
+					PatchouliAPI.get().clearMultiblock();
+				} else {
+					PatchouliAPI.get().showMultiblock(multiblock, new TranslatableText("multiblock.spectrum.fusion_shrine.structure"), blockPos.down(2), BlockRotation.NONE);
+				}
+			} else {
+				scatterContents(world, blockPos);
+			}
+		}
+		
+		return valid;
+	}
+	
+	public static void scatterContents(World world, BlockPos pos) {
+		Block block = world.getBlockState(pos).getBlock();
+		BlockEntity blockEntity = world.getBlockEntity(pos);
+		if (blockEntity instanceof FusionShrineBlockEntity fusionShrineBlockEntity) {
+			ItemScatterer.spawn(world, pos, fusionShrineBlockEntity.getInventory());
+			world.updateComparators(pos, block);
+			fusionShrineBlockEntity.inventoryChanged();
+		}
 	}
 	
 	@Override
@@ -80,15 +137,6 @@ public class FusionShrineBlock extends BlockWithEntity {
 	public void onBroken(WorldAccess world, BlockPos pos, BlockState state) {
 		if (world.isClient()) {
 			clearCurrentlyRenderedMultiBlock((World) world);
-		}
-	}
-	
-	public static void clearCurrentlyRenderedMultiBlock(World world) {
-		if (world.isClient) {
-			IMultiblock currentlyRenderedMultiBlock = PatchouliAPI.get().getCurrentMultiblock();
-			if (currentlyRenderedMultiBlock != null && currentlyRenderedMultiBlock.getID().equals(SpectrumMultiblocks.FUSION_SHRINE_IDENTIFIER)) {
-				PatchouliAPI.get().clearMultiblock();
-			}
 		}
 	}
 	
@@ -254,45 +302,6 @@ public class FusionShrineBlock extends BlockWithEntity {
 		}
 	}
 	
-	public static boolean verifyStructureWithSkyAccess(World world, BlockPos blockPos, @Nullable ServerPlayerEntity serverPlayerEntity) {
-		if (!world.getBlockState(blockPos.up()).isAir()) {
-			world.playSound(null, blockPos, SpectrumSoundEvents.USE_FAIL, SoundCategory.NEUTRAL, 1.0F, 1.0F);
-			return false;
-		}
-		if (!world.isSkyVisible(blockPos)) {
-			if (world.isClient) {
-				world.addParticle(SpectrumParticleTypes.WHITE_SPARKLE_RISING, blockPos.getX() + 0.5, blockPos.getY() + 1, blockPos.getZ() + 0.5, 0, 0.5, 0);
-				MinecraftClient.getInstance().player.playSound(SpectrumSoundEvents.USE_FAIL, SoundCategory.NEUTRAL, 1.0F, 1.0F);
-			}
-			return false;
-		}
-		return FusionShrineBlock.verifyStructure(world, blockPos, serverPlayerEntity);
-	}
-	
-	private static boolean verifyStructure(World world, BlockPos blockPos, @Nullable ServerPlayerEntity serverPlayerEntity) {
-		IMultiblock multiblock = SpectrumMultiblocks.MULTIBLOCKS.get(SpectrumMultiblocks.FUSION_SHRINE_IDENTIFIER);
-		boolean valid = multiblock.validate(world, blockPos.down(), BlockRotation.NONE);
-		
-		if (valid) {
-			if (serverPlayerEntity != null) {
-				SpectrumAdvancementCriteria.COMPLETED_MULTIBLOCK.trigger(serverPlayerEntity, multiblock);
-			}
-		} else {
-			if (world.isClient) {
-				IMultiblock currentMultiBlock = PatchouliAPI.get().getCurrentMultiblock();
-				if (currentMultiBlock == multiblock) {
-					PatchouliAPI.get().clearMultiblock();
-				} else {
-					PatchouliAPI.get().showMultiblock(multiblock, new TranslatableText("multiblock.spectrum.fusion_shrine.structure"), blockPos.down(2), BlockRotation.NONE);
-				}
-			} else {
-				scatterContents(world, blockPos);
-			}
-		}
-		
-		return valid;
-	}
-	
 	// drop all currently stored items
 	@Override
 	public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
@@ -300,16 +309,6 @@ public class FusionShrineBlock extends BlockWithEntity {
 			scatterContents(world, pos);
 		}
 		super.onStateReplaced(state, world, pos, newState, moved);
-	}
-	
-	public static void scatterContents(World world, BlockPos pos) {
-		Block block = world.getBlockState(pos).getBlock();
-		BlockEntity blockEntity = world.getBlockEntity(pos);
-		if (blockEntity instanceof FusionShrineBlockEntity fusionShrineBlockEntity) {
-			ItemScatterer.spawn(world, pos, fusionShrineBlockEntity.getInventory());
-			world.updateComparators(pos, block);
-			fusionShrineBlockEntity.inventoryChanged();
-		}
 	}
 	
 }

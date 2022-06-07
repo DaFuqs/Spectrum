@@ -5,23 +5,6 @@ import org.jetbrains.annotations.NotNull;
 
 public class TimeHelper {
 	
-	public enum TimeOfDay {
-		DAY,
-		NOON,
-		NIGHT,
-		SUNRISE,
-		SUNSET,
-		MIDNIGHT;
-		
-		public boolean isNight() {
-			return this == NIGHT || this == MIDNIGHT;
-		}
-		
-		public boolean isDay() {
-			return this == DAY || this == NOON;
-		}
-	}
-	
 	public static TimeOfDay getTimeOfDay(@NotNull World world) {
 		return getTimeOfDay(world.getTimeOfDay());
 	}
@@ -50,6 +33,23 @@ public class TimeHelper {
 	
 	public static long getDay(long time) {
 		return time / 24000L % 2147483647L;
+	}
+	
+	public enum TimeOfDay {
+		DAY,
+		NOON,
+		NIGHT,
+		SUNRISE,
+		SUNSET,
+		MIDNIGHT;
+		
+		public boolean isNight() {
+			return this == NIGHT || this == MIDNIGHT;
+		}
+		
+		public boolean isDay() {
+			return this == DAY || this == NOON;
+		}
 	}
 	
 }

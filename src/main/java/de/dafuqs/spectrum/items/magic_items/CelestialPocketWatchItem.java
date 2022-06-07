@@ -30,22 +30,6 @@ public class CelestialPocketWatchItem extends Item {
 		super(settings);
 	}
 	
-	@Override
-	public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-		ItemStack itemStack = user.getStackInHand(hand);
-		
-		if (!world.isClient) {
-			// the clocks use is blocked if the world has a fixed daylight cycle
-			if (advanceTime((ServerPlayerEntity) user, (ServerWorld) world)) {
-				world.playSound(null, user.getBlockPos(), SpectrumSoundEvents.CELESTIAL_POCKET_WATCH_TICKING, SoundCategory.PLAYERS, 1.0F, 1.0F);
-			} else {
-				world.playSound(null, user.getBlockPos(), SpectrumSoundEvents.USE_FAIL, SoundCategory.PLAYERS, 1.0F, 1.0F);
-			}
-			return TypedActionResult.consume(itemStack);
-		}
-		return TypedActionResult.success(itemStack, true);
-	}
-	
 	public static boolean advanceTime(ServerPlayerEntity player, @NotNull ServerWorld world) {
 		GameRules.BooleanRule doDaylightCycleRule = world.getGameRules().get(GameRules.DO_DAYLIGHT_CYCLE);
 		if (doDaylightCycleRule.get()) {
@@ -61,6 +45,22 @@ public class CelestialPocketWatchItem extends Item {
 			player.sendMessage(new TranslatableText("item.spectrum.celestial_pocketwatch.tooltip.use_blocked_gamerule"), false);
 		}
 		return false;
+	}
+	
+	@Override
+	public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
+		ItemStack itemStack = user.getStackInHand(hand);
+		
+		if (!world.isClient) {
+			// the clocks use is blocked if the world has a fixed daylight cycle
+			if (advanceTime((ServerPlayerEntity) user, (ServerWorld) world)) {
+				world.playSound(null, user.getBlockPos(), SpectrumSoundEvents.CELESTIAL_POCKET_WATCH_TICKING, SoundCategory.PLAYERS, 1.0F, 1.0F);
+			} else {
+				world.playSound(null, user.getBlockPos(), SpectrumSoundEvents.USE_FAIL, SoundCategory.PLAYERS, 1.0F, 1.0F);
+			}
+			return TypedActionResult.consume(itemStack);
+		}
+		return TypedActionResult.success(itemStack, true);
 	}
 	
 	@Override

@@ -11,11 +11,11 @@ public interface MooshroomEntityAccessor {
 	@Accessor("stewEffect")
 	StatusEffect getStewEffect();
 	
-	@Accessor("stewEffectDuration")
-	int getStewEffectDuration();
-	
 	@Accessor("stewEffect")
 	void setStewEffect(StatusEffect statusEffect);
+	
+	@Accessor("stewEffectDuration")
+	int getStewEffectDuration();
 	
 	@Accessor("stewEffectDuration")
 	void setStewEffectDuration(int stewEffectDuration);

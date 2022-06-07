@@ -7,6 +7,13 @@ import java.util.UUID;
 
 public interface PlayerOwned {
 	
+	static PlayerEntity getPlayerEntityIfOnline(World world, UUID ownerUUID) {
+		if (ownerUUID != null) {
+			return world.getPlayerByUuid(ownerUUID);
+		}
+		return null;
+	}
+	
 	UUID getOwnerUUID();
 	
 	void setOwner(PlayerEntity playerEntity);
@@ -22,13 +29,6 @@ public interface PlayerOwned {
 	default PlayerEntity getPlayerEntityIfOnline(World world) {
 		if (this.getOwnerUUID() != null) {
 			return world.getPlayerByUuid(this.getOwnerUUID());
-		}
-		return null;
-	}
-	
-	static PlayerEntity getPlayerEntityIfOnline(World world, UUID ownerUUID) {
-		if (ownerUUID != null) {
-			return world.getPlayerByUuid(ownerUUID);
 		}
 		return null;
 	}

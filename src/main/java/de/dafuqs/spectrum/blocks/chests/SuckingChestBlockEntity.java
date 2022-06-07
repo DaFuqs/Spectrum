@@ -50,11 +50,10 @@ import java.util.List;
 
 public class SuckingChestBlockEntity extends SpectrumChestBlockEntity implements ExtendedScreenHandlerFactory, EventQueue.Callback {
 	
-	private static final int RANGE = 12;
 	public static final int INVENTORY_SIZE = 28;
 	public static final int ITEM_FILTER_SLOTS = 5;
 	public static final int EXPERIENCE_STORAGE_PROVIDER_ITEM_SLOT = 27;
-	
+	private static final int RANGE = 12;
 	private final ItemAndExperienceEventQueue itemAndExperienceEventQueue;
 	private final List<Item> filterItems;
 	
@@ -62,31 +61,6 @@ public class SuckingChestBlockEntity extends SpectrumChestBlockEntity implements
 		super(SpectrumBlockEntityRegistry.SUCKING_CHEST, blockPos, blockState);
 		this.itemAndExperienceEventQueue = new ItemAndExperienceEventQueue(new BlockPositionSource(this.pos), RANGE, this);
 		this.filterItems = DefaultedList.ofSize(ITEM_FILTER_SLOTS, Items.AIR);
-	}
-	
-	protected Text getContainerName() {
-		return new TranslatableText("block.spectrum.sucking_chest");
-	}
-	
-	@Override
-	protected ScreenHandler createScreenHandler(int syncId, PlayerInventory playerInventory) {
-		return new SuckingChestScreenHandler(syncId, playerInventory, this);
-	}
-	
-	public void writeNbt(NbtCompound tag) {
-		super.writeNbt(tag);
-		for (int i = 0; i < ITEM_FILTER_SLOTS; i++) {
-			tag.putString("Filter" + i, Registry.ITEM.getId(this.filterItems.get(i)).toString());
-		}
-	}
-	
-	public void readNbt(NbtCompound tag) {
-		super.readNbt(tag);
-		for (int i = 0; i < ITEM_FILTER_SLOTS; i++) {
-			if (tag.contains("Filter" + i, NbtElement.STRING_TYPE)) {
-				this.filterItems.set(i, Registry.ITEM.get(new Identifier(tag.getString("Filter" + i))));
-			}
-		}
 	}
 	
 	public static void tick(@NotNull World world, BlockPos pos, BlockState state, SuckingChestBlockEntity blockEntity) {
@@ -119,6 +93,31 @@ public class SuckingChestBlockEntity extends SpectrumChestBlockEntity implements
 	@Contract("_, _ -> new")
 	protected static @NotNull Box getBoxWithRadius(BlockPos blockPos, int radius) {
 		return Box.of(Vec3d.ofCenter(blockPos), radius, radius, radius);
+	}
+	
+	protected Text getContainerName() {
+		return new TranslatableText("block.spectrum.sucking_chest");
+	}
+	
+	@Override
+	protected ScreenHandler createScreenHandler(int syncId, PlayerInventory playerInventory) {
+		return new SuckingChestScreenHandler(syncId, playerInventory, this);
+	}
+	
+	public void writeNbt(NbtCompound tag) {
+		super.writeNbt(tag);
+		for (int i = 0; i < ITEM_FILTER_SLOTS; i++) {
+			tag.putString("Filter" + i, Registry.ITEM.getId(this.filterItems.get(i)).toString());
+		}
+	}
+	
+	public void readNbt(NbtCompound tag) {
+		super.readNbt(tag);
+		for (int i = 0; i < ITEM_FILTER_SLOTS; i++) {
+			if (tag.contains("Filter" + i, NbtElement.STRING_TYPE)) {
+				this.filterItems.set(i, Registry.ITEM.get(new Identifier(tag.getString("Filter" + i))));
+			}
+		}
 	}
 	
 	@Override

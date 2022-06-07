@@ -32,6 +32,10 @@ public class JadeVineRootsBlock extends BlockWithEntity implements JadeVine {
 		this.setDefaultState(this.stateManager.getDefaultState().with(DEAD, false));
 	}
 	
+	public static boolean canBePlantedOn(BlockState blockState) {
+		return blockState.isIn(BlockTags.WOODEN_FENCES);
+	}
+	
 	@Override
 	public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
 		super.randomDisplayTick(state, world, pos, random);
@@ -80,10 +84,6 @@ public class JadeVineRootsBlock extends BlockWithEntity implements JadeVine {
 	@Override
 	public boolean canPlaceAt(@NotNull BlockState state, WorldView world, BlockPos pos) {
 		return canBePlantedOn(world.getBlockState(pos));
-	}
-	
-	public static boolean canBePlantedOn(BlockState blockState) {
-		return blockState.isIn(BlockTags.WOODEN_FENCES);
 	}
 	
 	@Override

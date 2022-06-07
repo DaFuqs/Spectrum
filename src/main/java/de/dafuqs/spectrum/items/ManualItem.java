@@ -34,6 +34,32 @@ public class ManualItem extends Item implements LoomPatternProvider {
 		super(settings);
 	}
 	
+	public static void reprocessAdvancementUnlocks(ServerPlayerEntity serverPlayerEntity) {
+		PlayerAdvancementTracker tracker = serverPlayerEntity.getAdvancementTracker();
+		
+		// "has advancement" criteria with nonexistent advancements
+		for (Advancement advancement : SpectrumCommon.minecraftServer.getAdvancementLoader().getAdvancements()) {
+			if (advancement.getId().getNamespace().equals(SpectrumCommon.MOD_ID)) {
+				AdvancementProgress hasAdvancement = tracker.getProgress(advancement);
+				if (!hasAdvancement.isDone()) {
+					for (Map.Entry<String, AdvancementCriterion> criterionEntry : advancement.getCriteria().entrySet()) {
+						CriterionConditions conditions = criterionEntry.getValue().getConditions();
+						if (conditions.getId().equals(HasAdvancementCriterion.ID) && conditions instanceof HasAdvancementCriterion.Conditions hasAdvancementConditions) {
+							Identifier advancementIdentifier = hasAdvancementConditions.getAdvancementIdentifier();
+							Advancement advancementCriterionAdvancement = SpectrumCommon.minecraftServer.getAdvancementLoader().get(advancementIdentifier);
+							if (advancementCriterionAdvancement != null) {
+								AdvancementProgress hasAdvancementCriterionAdvancement = tracker.getProgress(advancementCriterionAdvancement);
+								if (hasAdvancementCriterionAdvancement.isDone()) {
+									tracker.grantCriterion(advancement, criterionEntry.getKey());
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	
 	@Override
 	public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
 		if (!world.isClient && user instanceof ServerPlayerEntity serverPlayerEntity) {
@@ -67,32 +93,6 @@ public class ManualItem extends Item implements LoomPatternProvider {
 	
 	private void openManual(ServerPlayerEntity serverPlayerEntity, Identifier entry, int page) {
 		PatchouliAPI.get().openBookEntry(serverPlayerEntity, new Identifier(SpectrumCommon.MOD_ID, "manual"), entry, page);
-	}
-	
-	public static void reprocessAdvancementUnlocks(ServerPlayerEntity serverPlayerEntity) {
-		PlayerAdvancementTracker tracker = serverPlayerEntity.getAdvancementTracker();
-		
-		// "has advancement" criteria with nonexistent advancements
-		for (Advancement advancement : SpectrumCommon.minecraftServer.getAdvancementLoader().getAdvancements()) {
-			if (advancement.getId().getNamespace().equals(SpectrumCommon.MOD_ID)) {
-				AdvancementProgress hasAdvancement = tracker.getProgress(advancement);
-				if (!hasAdvancement.isDone()) {
-					for (Map.Entry<String, AdvancementCriterion> criterionEntry : advancement.getCriteria().entrySet()) {
-						CriterionConditions conditions = criterionEntry.getValue().getConditions();
-						if (conditions.getId().equals(HasAdvancementCriterion.ID) && conditions instanceof HasAdvancementCriterion.Conditions hasAdvancementConditions) {
-							Identifier advancementIdentifier = hasAdvancementConditions.getAdvancementIdentifier();
-							Advancement advancementCriterionAdvancement = SpectrumCommon.minecraftServer.getAdvancementLoader().get(advancementIdentifier);
-							if (advancementCriterionAdvancement != null) {
-								AdvancementProgress hasAdvancementCriterionAdvancement = tracker.getProgress(advancementCriterionAdvancement);
-								if (hasAdvancementCriterionAdvancement.isDone()) {
-									tracker.grantCriterion(advancement, criterionEntry.getKey());
-								}
-							}
-						}
-					}
-				}
-			}
-		}
 	}
 	
 	@Override

@@ -16,6 +16,10 @@ public class CompletedMultiblockCriterion extends AbstractCriterion<CompletedMul
 	
 	static final Identifier ID = new Identifier(SpectrumCommon.MOD_ID, "completed_multiblock");
 	
+	public static CompletedMultiblockCriterion.Conditions create(Identifier id) {
+		return new CompletedMultiblockCriterion.Conditions(EntityPredicate.Extended.EMPTY, id);
+	}
+	
 	public Identifier getId() {
 		return ID;
 	}
@@ -29,10 +33,6 @@ public class CompletedMultiblockCriterion extends AbstractCriterion<CompletedMul
 		this.trigger(player, (conditions) -> {
 			return conditions.matches(iMultiblock);
 		});
-	}
-	
-	public static CompletedMultiblockCriterion.Conditions create(Identifier id) {
-		return new CompletedMultiblockCriterion.Conditions(EntityPredicate.Extended.EMPTY, id);
 	}
 	
 	public static class Conditions extends AbstractCriterionConditions {

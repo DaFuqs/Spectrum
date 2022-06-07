@@ -58,6 +58,15 @@ public class ItemBowlBlock extends BlockWithEntity {
 		super(settings);
 	}
 	
+	public static void scatterContents(World world, BlockPos pos) {
+		Block block = world.getBlockState(pos).getBlock();
+		BlockEntity blockEntity = world.getBlockEntity(pos);
+		if (blockEntity instanceof ItemBowlBlockEntity itemBowlBlockEntity) {
+			ItemScatterer.spawn(world, pos, itemBowlBlockEntity.getInventory());
+			world.updateComparators(pos, block);
+		}
+	}
+	
 	@Override
 	public void onLandedUpon(World world, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
 		if (!world.isClient && entity instanceof ItemEntity itemEntity) {
@@ -190,15 +199,6 @@ public class ItemBowlBlock extends BlockWithEntity {
 				}
 			}
 			return ActionResult.CONSUME;
-		}
-	}
-	
-	public static void scatterContents(World world, BlockPos pos) {
-		Block block = world.getBlockState(pos).getBlock();
-		BlockEntity blockEntity = world.getBlockEntity(pos);
-		if (blockEntity instanceof ItemBowlBlockEntity itemBowlBlockEntity) {
-			ItemScatterer.spawn(world, pos, itemBowlBlockEntity.getInventory());
-			world.updateComparators(pos, block);
 		}
 	}
 	

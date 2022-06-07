@@ -56,17 +56,13 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 		add(new Vec3i(2, 0, 0));
 		add(new Vec3i(-2, 0, 0));
 	}};
-	
-	private UUID ownerUUID;
-	private Map<UpgradeType, Double> upgrades;
-	
+	private final Inventory autoCraftingInventory;
 	protected int INVENTORY_SIZE = 1;
 	protected SimpleInventory inventory;
-	
-	private BlockRotation multiblockRotation = BlockRotation.NONE;
 	protected boolean inventoryChanged;
-	
-	private final Inventory autoCraftingInventory;
+	private UUID ownerUUID;
+	private Map<UpgradeType, Double> upgrades;
+	private BlockRotation multiblockRotation = BlockRotation.NONE;
 	private ISpiritInstillerRecipe currentRecipe;
 	private int craftingTime;
 	private int craftingTimeTotal;
@@ -78,128 +74,12 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 		this.autoCraftingInventory = new SimpleInventory(INVENTORY_SIZE + 2); // 2 item bowls
 	}
 	
-	@Override
-	public void readNbt(NbtCompound nbt) {
-		super.readNbt(nbt);
-		this.inventory = new SimpleInventory(INVENTORY_SIZE);
-		this.inventory.readNbtList(nbt.getList("inventory", 10));
-		this.craftingTime = nbt.getShort("CraftingTime");
-		this.craftingTimeTotal = nbt.getShort("CraftingTimeTotal");
-		this.inventoryChanged = nbt.getBoolean("InventoryChanged");
-		this.canCraft = nbt.getBoolean("CanCraft");
-		if (nbt.contains("OwnerUUID")) {
-			this.ownerUUID = nbt.getUuid("OwnerUUID");
-		} else {
-			this.ownerUUID = null;
-		}
-		if (nbt.contains("CurrentRecipe")) {
-			String recipeString = nbt.getString("CurrentRecipe");
-			if (!recipeString.isEmpty()) {
-				Optional<? extends Recipe> optionalRecipe = Optional.empty();
-				if (world != null) {
-					optionalRecipe = world.getRecipeManager().get(new Identifier(recipeString));
-				}
-				if (optionalRecipe.isPresent() && optionalRecipe.get() instanceof ISpiritInstillerRecipe spiritInstillerRecipe) {
-					this.currentRecipe = spiritInstillerRecipe;
-				} else {
-					this.currentRecipe = null;
-				}
-			} else {
-				this.currentRecipe = null;
-			}
-		} else {
-			this.currentRecipe = null;
-		}
-		if (nbt.contains("Upgrades", NbtElement.LIST_TYPE)) {
-			this.upgrades = Upgradeable.fromNbt(nbt.getList("Upgrades", NbtElement.COMPOUND_TYPE));
-		}
-	}
-	
-	@Override
-	public void writeNbt(NbtCompound nbt) {
-		super.writeNbt(nbt);
-		nbt.put("inventory", this.inventory.toNbtList());
-		nbt.putShort("CraftingTime", (short) this.craftingTime);
-		nbt.putShort("CraftingTimeTotal", (short) this.craftingTimeTotal);
-		nbt.putBoolean("CanCraft", this.canCraft);
-		nbt.putBoolean("InventoryChanged", this.inventoryChanged);
-		if (this.upgrades != null) {
-			nbt.put("Upgrades", Upgradeable.toNbt(this.upgrades));
-		}
-		if (this.ownerUUID != null) {
-			nbt.putUuid("OwnerUUID", this.ownerUUID);
-		}
-		if (this.currentRecipe != null) {
-			nbt.putString("CurrentRecipe", this.currentRecipe.getId().toString());
-		}
-	}
-	
 	public static void clientTick(World world, BlockPos blockPos, BlockState blockState, @NotNull SpiritInstillerBlockEntity spiritInstillerBlockEntity) {
 		if (spiritInstillerBlockEntity.currentRecipe != null) {
 			spiritInstillerBlockEntity.doInstillerParticles(world);
 			if (world.getTime() % 40 == 0) {
 				spiritInstillerBlockEntity.doChimeParticles(world);
 			}
-		}
-	}
-	
-	private void doInstillerParticles(@NotNull World world) {
-		Random random = world.random;
-		Optional<DyeColor> stackColor = ItemColors.ITEM_COLORS.getMapping(this.inventory.getStack(0).getItem());
-		
-		if (stackColor.isPresent()) {
-			ParticleEffect particleEffect = SpectrumParticleTypes.getSparkleRisingParticle(stackColor.get());
-			world.addParticle(particleEffect,
-					pos.getX() + 0.25 + random.nextDouble() * 0.5,
-					pos.getY() + 0.75,
-					pos.getZ() + 0.25 + random.nextDouble() * 0.5,
-					0.02 - random.nextDouble() * 0.04,
-					0.01 + random.nextDouble() * 0.05,
-					0.02 - random.nextDouble() * 0.04);
-		}
-	}
-	
-	private void doChimeParticles(@NotNull World world) {
-		doChimeInstillingParticles(world, pos.add(getItemBowlHorizontalPositionOffset(false).up(3)));
-		doChimeInstillingParticles(world, pos.add(getItemBowlHorizontalPositionOffset(true).up(3)));
-	}
-	
-	public void doChimeInstillingParticles(@NotNull World world, BlockPos pos) {
-		BlockState blockState = world.getBlockState(pos);
-		if (blockState.getBlock() instanceof GemstoneChimeBlock gemstoneChimeBlock) {
-			Random random = world.random;
-			ParticleEffect particleEffect = gemstoneChimeBlock.getParticleEffect();
-			for (int i = 0; i < 16; i++) {
-				world.addParticle(particleEffect,
-						pos.getX() + 0.25 + random.nextDouble() * 0.5,
-						pos.getY() + 0.15 + random.nextDouble() * 0.5,
-						pos.getZ() + 0.25 + random.nextDouble() * 0.5,
-						0.06 - random.nextDouble() * 0.12,
-						-0.1 - random.nextDouble() * 0.05,
-						0.06 - random.nextDouble() * 0.12);
-			}
-		}
-	}
-	
-	private void doItemBowlOrbs(@NotNull World world) {
-		BlockPos itemBowlPos = pos.add(getItemBowlHorizontalPositionOffset(false).up());
-		BlockEntity blockEntity = world.getBlockEntity(itemBowlPos);
-		if (blockEntity instanceof ItemBowlBlockEntity itemBowlBlockEntity) {
-			itemBowlBlockEntity.doEnchantingEffects(pos);
-		}
-		
-		itemBowlPos = pos.add(getItemBowlHorizontalPositionOffset(true).up());
-		blockEntity = world.getBlockEntity(itemBowlPos);
-		if (blockEntity instanceof ItemBowlBlockEntity itemBowlBlockEntity) {
-			itemBowlBlockEntity.doEnchantingEffects(pos);
-		}
-	}
-	
-	public Vec3i getItemBowlHorizontalPositionOffset(boolean right) {
-		if (this.multiblockRotation == BlockRotation.NONE || this.multiblockRotation == BlockRotation.CLOCKWISE_180) {
-			return itemBowlOffsetsHorizontal.get(right ? 1 : 0);
-		} else {
-			return itemBowlOffsetsVertical.get(right ? 1 : 0);
 		}
 	}
 	
@@ -423,6 +303,122 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 				new Vec3d(spiritInstillerBlockEntity.pos.getX() + 0.5D, spiritInstillerBlockEntity.pos.getY() + 0.5, spiritInstillerBlockEntity.pos.getZ() + 0.5D),
 				SpectrumParticleTypes.LIGHT_BLUE_CRAFTING, 75, new Vec3d(0.5D, 0.5D, 0.5D),
 				new Vec3d(0.1D, -0.1D, 0.1D));
+	}
+	
+	@Override
+	public void readNbt(NbtCompound nbt) {
+		super.readNbt(nbt);
+		this.inventory = new SimpleInventory(INVENTORY_SIZE);
+		this.inventory.readNbtList(nbt.getList("inventory", 10));
+		this.craftingTime = nbt.getShort("CraftingTime");
+		this.craftingTimeTotal = nbt.getShort("CraftingTimeTotal");
+		this.inventoryChanged = nbt.getBoolean("InventoryChanged");
+		this.canCraft = nbt.getBoolean("CanCraft");
+		if (nbt.contains("OwnerUUID")) {
+			this.ownerUUID = nbt.getUuid("OwnerUUID");
+		} else {
+			this.ownerUUID = null;
+		}
+		if (nbt.contains("CurrentRecipe")) {
+			String recipeString = nbt.getString("CurrentRecipe");
+			if (!recipeString.isEmpty()) {
+				Optional<? extends Recipe> optionalRecipe = Optional.empty();
+				if (world != null) {
+					optionalRecipe = world.getRecipeManager().get(new Identifier(recipeString));
+				}
+				if (optionalRecipe.isPresent() && optionalRecipe.get() instanceof ISpiritInstillerRecipe spiritInstillerRecipe) {
+					this.currentRecipe = spiritInstillerRecipe;
+				} else {
+					this.currentRecipe = null;
+				}
+			} else {
+				this.currentRecipe = null;
+			}
+		} else {
+			this.currentRecipe = null;
+		}
+		if (nbt.contains("Upgrades", NbtElement.LIST_TYPE)) {
+			this.upgrades = Upgradeable.fromNbt(nbt.getList("Upgrades", NbtElement.COMPOUND_TYPE));
+		}
+	}
+	
+	@Override
+	public void writeNbt(NbtCompound nbt) {
+		super.writeNbt(nbt);
+		nbt.put("inventory", this.inventory.toNbtList());
+		nbt.putShort("CraftingTime", (short) this.craftingTime);
+		nbt.putShort("CraftingTimeTotal", (short) this.craftingTimeTotal);
+		nbt.putBoolean("CanCraft", this.canCraft);
+		nbt.putBoolean("InventoryChanged", this.inventoryChanged);
+		if (this.upgrades != null) {
+			nbt.put("Upgrades", Upgradeable.toNbt(this.upgrades));
+		}
+		if (this.ownerUUID != null) {
+			nbt.putUuid("OwnerUUID", this.ownerUUID);
+		}
+		if (this.currentRecipe != null) {
+			nbt.putString("CurrentRecipe", this.currentRecipe.getId().toString());
+		}
+	}
+	
+	private void doInstillerParticles(@NotNull World world) {
+		Random random = world.random;
+		Optional<DyeColor> stackColor = ItemColors.ITEM_COLORS.getMapping(this.inventory.getStack(0).getItem());
+		
+		if (stackColor.isPresent()) {
+			ParticleEffect particleEffect = SpectrumParticleTypes.getSparkleRisingParticle(stackColor.get());
+			world.addParticle(particleEffect,
+					pos.getX() + 0.25 + random.nextDouble() * 0.5,
+					pos.getY() + 0.75,
+					pos.getZ() + 0.25 + random.nextDouble() * 0.5,
+					0.02 - random.nextDouble() * 0.04,
+					0.01 + random.nextDouble() * 0.05,
+					0.02 - random.nextDouble() * 0.04);
+		}
+	}
+	
+	private void doChimeParticles(@NotNull World world) {
+		doChimeInstillingParticles(world, pos.add(getItemBowlHorizontalPositionOffset(false).up(3)));
+		doChimeInstillingParticles(world, pos.add(getItemBowlHorizontalPositionOffset(true).up(3)));
+	}
+	
+	public void doChimeInstillingParticles(@NotNull World world, BlockPos pos) {
+		BlockState blockState = world.getBlockState(pos);
+		if (blockState.getBlock() instanceof GemstoneChimeBlock gemstoneChimeBlock) {
+			Random random = world.random;
+			ParticleEffect particleEffect = gemstoneChimeBlock.getParticleEffect();
+			for (int i = 0; i < 16; i++) {
+				world.addParticle(particleEffect,
+						pos.getX() + 0.25 + random.nextDouble() * 0.5,
+						pos.getY() + 0.15 + random.nextDouble() * 0.5,
+						pos.getZ() + 0.25 + random.nextDouble() * 0.5,
+						0.06 - random.nextDouble() * 0.12,
+						-0.1 - random.nextDouble() * 0.05,
+						0.06 - random.nextDouble() * 0.12);
+			}
+		}
+	}
+	
+	private void doItemBowlOrbs(@NotNull World world) {
+		BlockPos itemBowlPos = pos.add(getItemBowlHorizontalPositionOffset(false).up());
+		BlockEntity blockEntity = world.getBlockEntity(itemBowlPos);
+		if (blockEntity instanceof ItemBowlBlockEntity itemBowlBlockEntity) {
+			itemBowlBlockEntity.doEnchantingEffects(pos);
+		}
+		
+		itemBowlPos = pos.add(getItemBowlHorizontalPositionOffset(true).up());
+		blockEntity = world.getBlockEntity(itemBowlPos);
+		if (blockEntity instanceof ItemBowlBlockEntity itemBowlBlockEntity) {
+			itemBowlBlockEntity.doEnchantingEffects(pos);
+		}
+	}
+	
+	public Vec3i getItemBowlHorizontalPositionOffset(boolean right) {
+		if (this.multiblockRotation == BlockRotation.NONE || this.multiblockRotation == BlockRotation.CLOCKWISE_180) {
+			return itemBowlOffsetsHorizontal.get(right ? 1 : 0);
+		} else {
+			return itemBowlOffsetsVertical.get(right ? 1 : 0);
+		}
 	}
 	
 	public Inventory getInventory() {

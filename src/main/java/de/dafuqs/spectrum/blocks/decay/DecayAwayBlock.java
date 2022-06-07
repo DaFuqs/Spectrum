@@ -23,34 +23,6 @@ public class DecayAwayBlock extends Block {
 	
 	private static final EnumProperty<TargetConversion> TARGET_CONVERSION = EnumProperty.of("target_conversion", TargetConversion.class);
 	
-	public enum TargetConversion implements StringIdentifiable {
-		DEFAULT("default", Blocks.DIRT.getDefaultState()),
-		BEDROCK("bedrock", Blocks.BEDROCK.getDefaultState()),
-		OBSIDIAN("obsidian", Blocks.OBSIDIAN.getDefaultState()),
-		CRYING_OBSIDIAN("crying_obsidian", Blocks.CRYING_OBSIDIAN.getDefaultState());
-		
-		private final String name;
-		private final BlockState targetState;
-		
-		TargetConversion(String name, BlockState targetState) {
-			this.name = name;
-			this.targetState = targetState;
-		}
-		
-		public String toString() {
-			return this.name;
-		}
-		
-		public String asString() {
-			return this.name;
-		}
-		
-		public BlockState getTargetState() {
-			return this.targetState;
-		}
-	}
-	
-	
 	public DecayAwayBlock(Settings settings) {
 		super(settings);
 		setDefaultState(getStateManager().getDefaultState().with(TARGET_CONVERSION, TargetConversion.DEFAULT));
@@ -103,6 +75,33 @@ public class DecayAwayBlock extends Block {
 			}
 		}
 		return this.getDefaultState();
+	}
+	
+	public enum TargetConversion implements StringIdentifiable {
+		DEFAULT("default", Blocks.DIRT.getDefaultState()),
+		BEDROCK("bedrock", Blocks.BEDROCK.getDefaultState()),
+		OBSIDIAN("obsidian", Blocks.OBSIDIAN.getDefaultState()),
+		CRYING_OBSIDIAN("crying_obsidian", Blocks.CRYING_OBSIDIAN.getDefaultState());
+		
+		private final String name;
+		private final BlockState targetState;
+		
+		TargetConversion(String name, BlockState targetState) {
+			this.name = name;
+			this.targetState = targetState;
+		}
+		
+		public String toString() {
+			return this.name;
+		}
+		
+		public String asString() {
+			return this.name;
+		}
+		
+		public BlockState getTargetState() {
+			return this.targetState;
+		}
 	}
 	
 }

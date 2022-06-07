@@ -22,25 +22,13 @@ import org.jetbrains.annotations.Nullable;
 public class RedstoneWirelessBlockEntity extends BlockEntity implements WirelessRedstoneSignalEventQueue.Callback {
 	
 	private static final int RANGE = 16;
+	private final WirelessRedstoneSignalEventQueue listener;
 	private int cachedSignal;
 	private int currentSignal;
-	private final WirelessRedstoneSignalEventQueue listener;
 	
 	public RedstoneWirelessBlockEntity(BlockPos blockPos, BlockState blockState) {
 		super(SpectrumBlockEntityRegistry.REDSTONE_WIRELESS, blockPos, blockState);
 		this.listener = new WirelessRedstoneSignalEventQueue(new BlockPositionSource(this.pos), RANGE, this);
-	}
-	
-	public void writeNbt(NbtCompound tag) {
-		super.writeNbt(tag);
-		tag.putInt("signal", this.currentSignal);
-		tag.putInt("cached_signal", this.cachedSignal);
-	}
-	
-	public void readNbt(NbtCompound tag) {
-		super.readNbt(tag);
-		this.currentSignal = tag.getInt("output_signal");
-		this.cachedSignal = tag.getInt("cached_signal");
 	}
 	
 	private static boolean isSender(World world, BlockPos blockPos) {
@@ -59,6 +47,25 @@ public class RedstoneWirelessBlockEntity extends BlockEntity implements Wireless
 		} else {
 			blockEntity.listener.tick(world);
 		}
+	}
+	
+	public static DyeColor getChannel(World world, BlockPos pos) {
+		if (world == null) {
+			return DyeColor.RED;
+		}
+		return world.getBlockState(pos).get(RedstoneWirelessBlock.CHANNEL);
+	}
+	
+	public void writeNbt(NbtCompound tag) {
+		super.writeNbt(tag);
+		tag.putInt("signal", this.currentSignal);
+		tag.putInt("cached_signal", this.cachedSignal);
+	}
+	
+	public void readNbt(NbtCompound tag) {
+		super.readNbt(tag);
+		this.currentSignal = tag.getInt("output_signal");
+		this.cachedSignal = tag.getInt("cached_signal");
 	}
 	
 	public @Nullable WirelessRedstoneSignalEventQueue getEventListener() {
@@ -114,13 +121,6 @@ public class RedstoneWirelessBlockEntity extends BlockEntity implements Wireless
 	
 	public int getCurrentSignalStrength() {
 		return this.currentSignal;
-	}
-	
-	public static DyeColor getChannel(World world, BlockPos pos) {
-		if (world == null) {
-			return DyeColor.RED;
-		}
-		return world.getBlockState(pos).get(RedstoneWirelessBlock.CHANNEL);
 	}
 	
 }

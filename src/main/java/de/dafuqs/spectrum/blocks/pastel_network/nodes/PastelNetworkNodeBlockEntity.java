@@ -17,15 +17,12 @@ import java.util.HashSet;
 public abstract class PastelNetworkNodeBlockEntity extends BlockEntity {
 	
 	public static int RANGE = 16;
-	
-	protected PastelNetwork network;
-	protected Inventory connectedInventory;
-	
+	final HashSet<BlockPos> receivers = new HashSet<>();
 	private final TickLooper tickTimer = new TickLooper(40);
 	private final SchedulerMap<BlockPos> particleCooldowns = new SchedulerMap<>();
-	
 	private final HashSet<BlockPos> senders = new HashSet<>();
-	final HashSet<BlockPos> receivers = new HashSet<>();
+	protected PastelNetwork network;
+	protected Inventory connectedInventory;
 	
 	public PastelNetworkNodeBlockEntity(BlockEntityType blockEntityType, BlockPos blockPos, BlockState blockState) {
 		super(blockEntityType, blockPos, blockState);

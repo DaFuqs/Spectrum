@@ -19,6 +19,19 @@ public class ArtistsPaletteInkStorage extends TotalCappedElementalInkStorage {
 		super(maxEnergyTotal, cyan, magenta, yellow, black, white);
 	}
 	
+	public static @Nullable ArtistsPaletteInkStorage fromNbt(@NotNull NbtCompound compound) {
+		if (compound.contains("MaxEnergyTotal", NbtElement.LONG_TYPE)) {
+			long maxEnergyTotal = compound.getLong("MaxEnergyTotal");
+			long cyan = compound.getLong("Cyan");
+			long magenta = compound.getLong("Magenta");
+			long yellow = compound.getLong("Yellow");
+			long black = compound.getLong("Black");
+			long white = compound.getLong("White");
+			return new ArtistsPaletteInkStorage(maxEnergyTotal, cyan, magenta, yellow, black, white);
+		}
+		return null;
+	}
+	
 	public long addEnergy(InkColor color, long amount, ItemStack stack, ServerPlayerEntity serverPlayerEntity) {
 		long leftoverEnergy = super.addEnergy(color, amount);
 		if (leftoverEnergy != amount) {
@@ -41,19 +54,6 @@ public class ArtistsPaletteInkStorage extends TotalCappedElementalInkStorage {
 			SpectrumAdvancementCriteria.INK_CONTAINER_INTERACTION.trigger(serverPlayerEntity, stack, this, color, -drainedAmount);
 		}
 		return drainedAmount;
-	}
-	
-	public static @Nullable ArtistsPaletteInkStorage fromNbt(@NotNull NbtCompound compound) {
-		if (compound.contains("MaxEnergyTotal", NbtElement.LONG_TYPE)) {
-			long maxEnergyTotal = compound.getLong("MaxEnergyTotal");
-			long cyan = compound.getLong("Cyan");
-			long magenta = compound.getLong("Magenta");
-			long yellow = compound.getLong("Yellow");
-			long black = compound.getLong("Black");
-			long white = compound.getLong("White");
-			return new ArtistsPaletteInkStorage(maxEnergyTotal, cyan, magenta, yellow, black, white);
-		}
-		return null;
 	}
 	
 }

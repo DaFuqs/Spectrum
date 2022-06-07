@@ -23,13 +23,11 @@ public class PedestalScreen extends HandledScreen<PedestalScreenHandler> {
 	public static final Identifier BACKGROUND2 = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/container/pedestal2.png");
 	public static final Identifier BACKGROUND3 = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/container/pedestal3.png");
 	public static final Identifier BACKGROUND4 = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/container/pedestal4.png");
-	
-	int informationIconX = 95;
-	int informationIconY = 55;
-	
 	private final Identifier backgroundTexture;
 	private final PedestalRecipeTier maxPedestalRecipeTierForVariant;
 	private final boolean structureUpdateAvailable;
+	int informationIconX = 95;
+	int informationIconY = 55;
 	
 	public PedestalScreen(PedestalScreenHandler handler, PlayerInventory playerInventory, Text title) {
 		super(handler, playerInventory, title);

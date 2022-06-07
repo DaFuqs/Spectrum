@@ -17,6 +17,10 @@ public class EnchanterCraftingCriterion extends AbstractCriterion<EnchanterCraft
 	
 	static final Identifier ID = new Identifier(SpectrumCommon.MOD_ID, "enchanter_crafting");
 	
+	public static EnchanterCraftingCriterion.Conditions create(ItemPredicate item, NumberRange.IntRange experienceRange) {
+		return new EnchanterCraftingCriterion.Conditions(EntityPredicate.Extended.EMPTY, item, experienceRange);
+	}
+	
 	public Identifier getId() {
 		return ID;
 	}
@@ -31,10 +35,6 @@ public class EnchanterCraftingCriterion extends AbstractCriterion<EnchanterCraft
 		this.trigger(player, (conditions) -> {
 			return conditions.matches(itemStack, experience);
 		});
-	}
-	
-	public static EnchanterCraftingCriterion.Conditions create(ItemPredicate item, NumberRange.IntRange experienceRange) {
-		return new EnchanterCraftingCriterion.Conditions(EntityPredicate.Extended.EMPTY, item, experienceRange);
 	}
 	
 	public static class Conditions extends AbstractCriterionConditions {

@@ -38,6 +38,17 @@ public class CompactingChestBlockEntityRenderer<CompactingChestBlockEntity exten
 		lock = root.getChild("lock");
 	}
 	
+	public static @NotNull TexturedModelData getTexturedModelData() {
+		ModelData modelData = new ModelData();
+		ModelPartData modelPartData = modelData.getRoot();
+		
+		modelPartData.addChild("bottom", ModelPartBuilder.create().uv(0, 17).cuboid(1.0F, 0.0F, 1.0F, 14.0F, 11.0F, 14.0F), ModelTransform.pivot(0.0F, 0.0F, 0.0F));
+		modelPartData.addChild("lid", ModelPartBuilder.create().uv(0, 0).cuboid(1.0F, 0.0F, 1.0F, 14.0F, 3.0F, 14.0F), ModelTransform.pivot(0.0F, 13.0F, 0.0F));
+		modelPartData.addChild("column", ModelPartBuilder.create().uv(18, 32).cuboid(7.0F, -7.0F, 7.0F, 2.0F, 7.0F, 2.0F), ModelTransform.pivot(0.0F, 13.0F, 0.0F));
+		modelPartData.addChild("lock", ModelPartBuilder.create().uv(34, 4).cuboid(7.0F, -2.0F, 15.0F, 2.0F, 4.0F, 1.0F), ModelTransform.pivot(0.0F, 14.0F, 0.0F));
+		
+		return TexturedModelData.of(modelData, 64, 64);
+	}
 	
 	@Override
 	public void render(CompactingChestBlockEntity entity, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumers, int light, int overlay) {
@@ -64,18 +75,6 @@ public class CompactingChestBlockEntityRenderer<CompactingChestBlockEntity exten
 		root.render(matrixStack, vertexConsumer, light, overlay);
 		
 		matrixStack.pop();
-	}
-	
-	public static @NotNull TexturedModelData getTexturedModelData() {
-		ModelData modelData = new ModelData();
-		ModelPartData modelPartData = modelData.getRoot();
-		
-		modelPartData.addChild("bottom", ModelPartBuilder.create().uv(0, 17).cuboid(1.0F, 0.0F, 1.0F, 14.0F, 11.0F, 14.0F), ModelTransform.pivot(0.0F, 0.0F, 0.0F));
-		modelPartData.addChild("lid", ModelPartBuilder.create().uv(0, 0).cuboid(1.0F, 0.0F, 1.0F, 14.0F, 3.0F, 14.0F), ModelTransform.pivot(0.0F, 13.0F, 0.0F));
-		modelPartData.addChild("column", ModelPartBuilder.create().uv(18, 32).cuboid(7.0F, -7.0F, 7.0F, 2.0F, 7.0F, 2.0F), ModelTransform.pivot(0.0F, 13.0F, 0.0F));
-		modelPartData.addChild("lock", ModelPartBuilder.create().uv(34, 4).cuboid(7.0F, -2.0F, 15.0F, 2.0F, 4.0F, 1.0F), ModelTransform.pivot(0.0F, 14.0F, 0.0F));
-		
-		return TexturedModelData.of(modelData, 64, 64);
 	}
 	
 }

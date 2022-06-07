@@ -25,13 +25,24 @@ import org.jetbrains.annotations.Nullable;
 
 public class DecoStoneBlock extends Block {
 	
+	public static final EnumProperty<DoubleBlockHalf> HALF = Properties.DOUBLE_BLOCK_HALF;
 	protected static final VoxelShape TOP_SHAPE = Block.createCuboidShape(4.0D, 0.0D, 4.0D, 12.0D, 14.0D, 12.0D);
 	protected static final VoxelShape BOTTOM_SHAPE = Block.createCuboidShape(3.0D, 0.0D, 3.0D, 13.0D, 16.0D, 13.0D);
-	public static final EnumProperty<DoubleBlockHalf> HALF = Properties.DOUBLE_BLOCK_HALF;
 	
 	public DecoStoneBlock(Settings settings) {
 		super(settings);
 		this.setDefaultState((this.stateManager.getDefaultState()).with(HALF, DoubleBlockHalf.LOWER));
+	}
+	
+	protected static void onBreakInCreative(World world, BlockPos pos, BlockState state, PlayerEntity player) {
+		if (state.get(HALF) == DoubleBlockHalf.UPPER) {
+			BlockPos blockPos = pos.down();
+			BlockState blockState = world.getBlockState(blockPos);
+			if (blockState.isOf(state.getBlock()) && blockState.get(HALF) == DoubleBlockHalf.LOWER) {
+				world.setBlockState(blockPos, Blocks.AIR.getDefaultState(), 35);
+				world.syncWorldEvent(player, 2001, blockPos, Block.getRawIdFromState(blockState));
+			}
+		}
 	}
 	
 	@Override
@@ -87,17 +98,6 @@ public class DecoStoneBlock extends Block {
 	@Override
 	public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack stack) {
 		super.afterBreak(world, player, pos, Blocks.AIR.getDefaultState(), blockEntity, stack);
-	}
-	
-	protected static void onBreakInCreative(World world, BlockPos pos, BlockState state, PlayerEntity player) {
-		if (state.get(HALF) == DoubleBlockHalf.UPPER) {
-			BlockPos blockPos = pos.down();
-			BlockState blockState = world.getBlockState(blockPos);
-			if (blockState.isOf(state.getBlock()) && blockState.get(HALF) == DoubleBlockHalf.LOWER) {
-				world.setBlockState(blockPos, Blocks.AIR.getDefaultState(), 35);
-				world.syncWorldEvent(player, 2001, blockPos, Block.getRawIdFromState(blockState));
-			}
-		}
 	}
 	
 	@Override

@@ -40,7 +40,7 @@ public class ExtraHealthRingItem extends InkDrainTrinketItem {
 		FixedSingleInkDrain inkStorage = getEnergyStorage(stack);
 		long storedInk = inkStorage.getEnergy(inkStorage.getStoredColor());
 		int extraHearts = getExtraHearts(storedInk);
-		if(extraHearts != 0) {
+		if (extraHearts != 0) {
 			modifiers.put(EntityAttributes.GENERIC_MAX_HEALTH, new EntityAttributeModifier(uuid, "spectrum:heartsingers_reward_ring", extraHearts, EntityAttributeModifier.Operation.ADDITION));
 		}
 		
@@ -48,7 +48,7 @@ public class ExtraHealthRingItem extends InkDrainTrinketItem {
 	}
 	
 	public int getExtraHearts(long storedInk) {
-		if(storedInk < 100) {
+		if (storedInk < 100) {
 			return 0;
 		} else {
 			return 2 + 2 * (int) (Math.log(storedInk / 100) / Math.log(8));

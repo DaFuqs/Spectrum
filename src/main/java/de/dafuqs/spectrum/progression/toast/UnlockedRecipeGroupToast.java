@@ -56,6 +56,27 @@ public class UnlockedRecipeGroupToast implements Toast {
 		client.getToastManager().add(new UnlockedRecipeGroupToast(title, text, itemStacks));
 	}
 	
+	public static Text getTextForItemStack(@NotNull ItemStack itemStack) {
+		if (itemStack.isOf(Items.ENCHANTED_BOOK)) {
+			// special handling for enchanted books
+			// Instead of the text "enchanted book" the toast will
+			// read the first stored enchantment in the book
+			Map<Enchantment, Integer> enchantments = EnchantmentHelper.get(itemStack);
+			if (enchantments.size() > 0) {
+				Map.Entry<Enchantment, Integer> firstEnchantment = enchantments.entrySet().iterator().next();
+				return new TranslatableText(firstEnchantment.getKey().getTranslationKey());
+			}
+		} else if (itemStack.isOf(Items.POTION)) {
+			// special handling for potions
+			// use the name of the first custom potion effect
+			List<StatusEffectInstance> effects = PotionUtil.getCustomPotionEffects(itemStack);
+			if (effects.size() > 0) {
+				return new TranslatableText(effects.get(0).getTranslationKey()).append(" ").append(new TranslatableText("item.minecraft.potion"));
+			}
+		}
+		return itemStack.getName();
+	}
+	
 	@Override
 	public Visibility draw(MatrixStack matrices, @NotNull ToastManager manager, long startTime) {
 		RenderSystem.setShader(GameRenderer::getPositionTexShader);
@@ -79,27 +100,6 @@ public class UnlockedRecipeGroupToast implements Toast {
 		manager.getClient().getItemRenderer().renderInGui(currentItemStack, 8, 8);
 		
 		return startTime >= 5000L ? Visibility.HIDE : Visibility.SHOW;
-	}
-	
-	public static Text getTextForItemStack(@NotNull ItemStack itemStack) {
-		if (itemStack.isOf(Items.ENCHANTED_BOOK)) {
-			// special handling for enchanted books
-			// Instead of the text "enchanted book" the toast will
-			// read the first stored enchantment in the book
-			Map<Enchantment, Integer> enchantments = EnchantmentHelper.get(itemStack);
-			if (enchantments.size() > 0) {
-				Map.Entry<Enchantment, Integer> firstEnchantment = enchantments.entrySet().iterator().next();
-				return new TranslatableText(firstEnchantment.getKey().getTranslationKey());
-			}
-		} else if (itemStack.isOf(Items.POTION)) {
-			// special handling for potions
-			// use the name of the first custom potion effect
-			List<StatusEffectInstance> effects = PotionUtil.getCustomPotionEffects(itemStack);
-			if (effects.size() > 0) {
-				return new TranslatableText(effects.get(0).getTranslationKey()).append(" ").append(new TranslatableText("item.minecraft.potion"));
-			}
-		}
-		return itemStack.getName();
 	}
 	
 }

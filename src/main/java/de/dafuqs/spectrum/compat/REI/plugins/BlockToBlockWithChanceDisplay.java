@@ -32,6 +32,15 @@ public class BlockToBlockWithChanceDisplay extends BasicDisplay implements Gated
 		this.chance = chance;
 	}
 	
+	public static EntryStack blockToEntryStack(Block block) {
+		if (block instanceof FluidBlock inFluidBlock) {
+			return EntryStacks.of(((FluidBlockAccessor) inFluidBlock).getFlowableFluid());
+		} else {
+			return EntryStacks.of(block);
+		}
+		
+	}
+	
 	public final EntryIngredient getIn() {
 		return getInputEntries().get(0);
 	}
@@ -51,15 +60,6 @@ public class BlockToBlockWithChanceDisplay extends BasicDisplay implements Gated
 	
 	public boolean isUnlocked() {
 		return Support.hasAdvancement(MinecraftClient.getInstance().player, UNLOCK_ADVANCEMENT_IDENTIFIER);
-	}
-	
-	public static EntryStack blockToEntryStack(Block block) {
-		if (block instanceof FluidBlock inFluidBlock) {
-			return EntryStacks.of(((FluidBlockAccessor) inFluidBlock).getFlowableFluid());
-		} else {
-			return EntryStacks.of(block);
-		}
-		
 	}
 	
 }

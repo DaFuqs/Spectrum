@@ -36,9 +36,8 @@ import java.util.UUID;
 
 public class TreasureChestBlockEntity extends SpectrumChestBlockEntity {
 	
-	private Identifier requiredAdvancementIdentifierToOpen;
 	private final List<UUID> playersThatOpenedAlready = new ArrayList<>();
-	
+	private Identifier requiredAdvancementIdentifierToOpen;
 	private Vec3i controllerOffset;
 	
 	public TreasureChestBlockEntity(BlockEntityType<?> blockEntityType, BlockPos pos, BlockState state) {

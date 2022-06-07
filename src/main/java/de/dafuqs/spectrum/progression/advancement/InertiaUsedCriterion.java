@@ -22,6 +22,18 @@ public class InertiaUsedCriterion extends AbstractCriterion<InertiaUsedCriterion
 	
 	static final Identifier ID = new Identifier(SpectrumCommon.MOD_ID, "inertia_used");
 	
+	@Nullable
+	private static Block getBlock(JsonObject obj) {
+		if (obj.has("block")) {
+			Identifier identifier = new Identifier(JsonHelper.getString(obj, "block"));
+			return Registry.BLOCK.getOrEmpty(identifier).orElseThrow(() -> {
+				return new JsonSyntaxException("Unknown block type '" + identifier + "'");
+			});
+		} else {
+			return null;
+		}
+	}
+	
 	public Identifier getId() {
 		return ID;
 	}
@@ -37,18 +49,6 @@ public class InertiaUsedCriterion extends AbstractCriterion<InertiaUsedCriterion
 		NumberRange.IntRange amountRange = NumberRange.IntRange.fromJson(jsonObject.get("amount"));
 		
 		return new InertiaUsedCriterion.Conditions(extended, block, statePredicate, amountRange);
-	}
-	
-	@Nullable
-	private static Block getBlock(JsonObject obj) {
-		if (obj.has("block")) {
-			Identifier identifier = new Identifier(JsonHelper.getString(obj, "block"));
-			return Registry.BLOCK.getOrEmpty(identifier).orElseThrow(() -> {
-				return new JsonSyntaxException("Unknown block type '" + identifier + "'");
-			});
-		} else {
-			return null;
-		}
 	}
 	
 	public void trigger(ServerPlayerEntity player, BlockState state, int amount) {

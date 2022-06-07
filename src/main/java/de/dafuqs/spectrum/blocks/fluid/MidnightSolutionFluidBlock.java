@@ -55,6 +55,33 @@ public class MidnightSolutionFluidBlock extends FluidBlock {
 		super(fluid, settings);
 	}
 	
+	public static void spawnItemStackAsEntitySplitViaMaxCount(World world, Vec3d vec3d, ItemStack itemStack, int amount) {
+		while (amount > 0) {
+			int currentAmount = Math.min(amount, itemStack.getMaxCount());
+			
+			ItemStack resultStack = itemStack.copy();
+			resultStack.setCount(currentAmount);
+			ItemEntity itemEntity = new ItemEntity(world, vec3d.x, vec3d.y, vec3d.z, resultStack);
+			world.spawnEntity(itemEntity);
+			
+			amount -= currentAmount;
+		}
+	}
+	
+	public static boolean tryConvertNeighbor(@NotNull World world, BlockPos pos, BlockPos fromPos) {
+		FluidState fluidState = world.getFluidState(fromPos);
+		if (!fluidState.isEmpty() && fluidState.isIn(SpectrumFluidTags.MIDNIGHT_SOLUTION_CONVERTED)) {
+			world.setBlockState(fromPos, SpectrumBlocks.MIDNIGHT_SOLUTION.getDefaultState());
+			playExtinguishSound(world, fromPos);
+			return true;
+		}
+		return false;
+	}
+	
+	public static void playExtinguishSound(@NotNull WorldAccess world, BlockPos pos) {
+		world.syncWorldEvent(1501, pos, 0);
+	}
+	
 	@Override
 	public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
 		if (this.receiveNeighborFluids(world, pos, state)) {
@@ -126,19 +153,6 @@ public class MidnightSolutionFluidBlock extends FluidBlock {
 		}
 	}
 	
-	public static void spawnItemStackAsEntitySplitViaMaxCount(World world, Vec3d vec3d, ItemStack itemStack, int amount) {
-		while (amount > 0) {
-			int currentAmount = Math.min(amount, itemStack.getMaxCount());
-			
-			ItemStack resultStack = itemStack.copy();
-			resultStack.setCount(currentAmount);
-			ItemEntity itemEntity = new ItemEntity(world, vec3d.x, vec3d.y, vec3d.z, resultStack);
-			world.spawnEntity(itemEntity);
-			
-			amount -= currentAmount;
-		}
-	}
-	
 	public MidnightSolutionConvertingRecipe getConversionRecipeFor(@NotNull World world, ItemStack itemStack) {
 		if (AUTO_INVENTORY == null) {
 			AUTO_INVENTORY = new AutoCraftingInventory(1, 1);
@@ -158,20 +172,6 @@ public class MidnightSolutionFluidBlock extends FluidBlock {
 	@Override
 	public boolean canPathfindThrough(BlockState state, BlockView world, BlockPos pos, NavigationType type) {
 		return false;
-	}
-	
-	public static boolean tryConvertNeighbor(@NotNull World world, BlockPos pos, BlockPos fromPos) {
-		FluidState fluidState = world.getFluidState(fromPos);
-		if (!fluidState.isEmpty() && fluidState.isIn(SpectrumFluidTags.MIDNIGHT_SOLUTION_CONVERTED)) {
-			world.setBlockState(fromPos, SpectrumBlocks.MIDNIGHT_SOLUTION.getDefaultState());
-			playExtinguishSound(world, fromPos);
-			return true;
-		}
-		return false;
-	}
-	
-	public static void playExtinguishSound(@NotNull WorldAccess world, BlockPos pos) {
-		world.syncWorldEvent(1501, pos, 0);
 	}
 	
 	/**

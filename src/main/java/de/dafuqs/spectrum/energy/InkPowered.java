@@ -15,25 +15,25 @@ import java.util.List;
 import java.util.Optional;
 
 public interface InkPowered {
-
+	
 	/**
-	* The colors that the object requires for working.
-	* These are added as the player facing tooltip
-	**/
+	 * The colors that the object requires for working.
+	 * These are added as the player facing tooltip
+	 **/
 	List<InkColor> getUsedColors();
 	
 	/**
-	* The colors that the object requires for working.
-	* These are added as the player facing tooltip
-	**/
+	 * The colors that the object requires for working.
+	 * These are added as the player facing tooltip
+	 **/
 	default void addTooltip(List<Text> tooltip) {
-		for(InkColor color : getUsedColors()) {
+		for (InkColor color : getUsedColors()) {
 			tooltip.add(new TranslatableText("spectrum.tooltip.ink_powered" + color.toString()));
 		}
 	}
 	
 	default long tryDrainEnergy(ItemStack stack, InkColor color, long amount) {
-		if(stack.getItem() instanceof InkStorageItem inkStorageItem) {
+		if (stack.getItem() instanceof InkStorageItem inkStorageItem) {
 			InkStorage inkStorage = inkStorageItem.getEnergyStorage(stack);
 			return inkStorage.drainEnergy(color, amount);
 		} else {
@@ -42,18 +42,18 @@ public interface InkPowered {
 	}
 	
 	/**
-	* Searches an inventory
-	* for InkEnergyStorageItems and tries to drain the color energy.
-	* If enough could be drained returns true, else false.
-	* If not enough energy is available it will be drained as much as is available
-	* but return will still be false
-	**/
+	 * Searches an inventory
+	 * for InkEnergyStorageItems and tries to drain the color energy.
+	 * If enough could be drained returns true, else false.
+	 * If not enough energy is available it will be drained as much as is available
+	 * but return will still be false
+	 **/
 	default boolean tryPayCost(Inventory inventory, InkColor color, long amount) {
-		for(int i = 0; i < inventory.size(); i++) {
+		for (int i = 0; i < inventory.size(); i++) {
 			ItemStack currentStack = inventory.getStack(i);
-			if(!currentStack.isEmpty()) { // fast fail
+			if (!currentStack.isEmpty()) { // fast fail
 				amount -= tryDrainEnergy(currentStack, color, amount);
-				if(amount <= 0) {
+				if (amount <= 0) {
 					return true;
 				}
 			}
@@ -67,7 +67,7 @@ public interface InkPowered {
 	 * If enough could be drained returns true, else false.
 	 * If not enough energy is available it will be drained as much as is available
 	 * but return will still be false
-	 *
+	 * <p>
 	 * Check Order:
 	 * - Offhand
 	 * - Trinket Slots
@@ -75,29 +75,29 @@ public interface InkPowered {
 	 **/
 	default boolean tryPayCost(ServerPlayerEntity player, InkColor color, long amount) {
 		// offhand
-		for(ItemStack itemStack : player.getInventory().offHand) {
+		for (ItemStack itemStack : player.getInventory().offHand) {
 			amount -= tryDrainEnergy(itemStack, color, amount);
-			if(amount <= 0) {
+			if (amount <= 0) {
 				return true;
 			}
 		}
 		
 		// trinket slot
 		Optional<TrinketComponent> optionalTrinketComponent = TrinketsApi.getTrinketComponent(player);
-		if(optionalTrinketComponent.isPresent()) {
+		if (optionalTrinketComponent.isPresent()) {
 			List<Pair<SlotReference, ItemStack>> trinketInkStorages = optionalTrinketComponent.get().getEquipped(itemStack -> itemStack.getItem() instanceof InkStorage);
-			for(Pair<SlotReference, ItemStack> trinketEnergyStorageStack : trinketInkStorages) {
+			for (Pair<SlotReference, ItemStack> trinketEnergyStorageStack : trinketInkStorages) {
 				amount -= tryDrainEnergy(trinketEnergyStorageStack.getRight(), color, amount);
-				if(amount <= 0) {
+				if (amount <= 0) {
 					return true;
 				}
 			}
 		}
 		
 		// inventory
-		for(ItemStack itemStack : player.getInventory().main) {
+		for (ItemStack itemStack : player.getInventory().main) {
 			amount -= tryDrainEnergy(itemStack, color, amount);
-			if(amount <= 0) {
+			if (amount <= 0) {
 				return true;
 			}
 		}

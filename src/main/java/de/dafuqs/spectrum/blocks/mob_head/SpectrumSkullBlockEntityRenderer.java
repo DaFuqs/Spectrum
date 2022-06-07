@@ -40,19 +40,6 @@ public class SpectrumSkullBlockEntityRenderer implements BlockEntityRenderer<Spe
 		return entityModelLoader;
 	}
 	
-	public void render(SpectrumSkullBlockEntity spectrumSkullBlockEntity, float f, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light, int j) {
-		BlockState blockState = spectrumSkullBlockEntity.getCachedState();
-		boolean bl = blockState.getBlock() instanceof WallSkullBlock;
-		Direction direction = bl ? blockState.get(WallSkullBlock.FACING) : null;
-		float h = 22.5F * (float) (bl ? (2 + direction.getHorizontal()) * 4 : blockState.get(SkullBlock.ROTATION));
-		SpectrumSkullBlock.SpectrumSkullBlockType skullType = spectrumSkullBlockEntity.getSkullType();
-		if (skullType == null) {
-			skullType = SpectrumSkullBlock.SpectrumSkullBlockType.PIG;
-		}
-		RenderLayer renderLayer = getRenderLayer(skullType);
-		renderSkull(direction, h, 0, matrixStack, vertexConsumerProvider, light, renderLayer);
-	}
-	
 	public static void renderSkull(@Nullable Direction direction, float yaw, float animationProgress, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, RenderLayer renderLayer) {
 		matrices.push();
 		if (direction == null) {
@@ -77,6 +64,19 @@ public class SpectrumSkullBlockEntityRenderer implements BlockEntityRenderer<Spe
 		} else {
 			return renderLayer;
 		}
+	}
+	
+	public void render(SpectrumSkullBlockEntity spectrumSkullBlockEntity, float f, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light, int j) {
+		BlockState blockState = spectrumSkullBlockEntity.getCachedState();
+		boolean bl = blockState.getBlock() instanceof WallSkullBlock;
+		Direction direction = bl ? blockState.get(WallSkullBlock.FACING) : null;
+		float h = 22.5F * (float) (bl ? (2 + direction.getHorizontal()) * 4 : blockState.get(SkullBlock.ROTATION));
+		SpectrumSkullBlock.SpectrumSkullBlockType skullType = spectrumSkullBlockEntity.getSkullType();
+		if (skullType == null) {
+			skullType = SpectrumSkullBlock.SpectrumSkullBlockType.PIG;
+		}
+		RenderLayer renderLayer = getRenderLayer(skullType);
+		renderSkull(direction, h, 0, matrixStack, vertexConsumerProvider, light, renderLayer);
 	}
 	
 }

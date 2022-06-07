@@ -38,18 +38,6 @@ public class Transphere {
 		this((BlockPos) origin, (PositionSource) destination, (int) arrivalInTicks, DyeColor.values()[(int) dyeColor]);
 	}
 	
-	public int getArrivalInTicks() {
-		return this.arrivalInTicks;
-	}
-	
-	public BlockPos getOrigin() {
-		return this.origin;
-	}
-	
-	public PositionSource getDestination() {
-		return this.destination;
-	}
-	
 	public static Transphere readFromBuf(PacketByteBuf buf) {
 		BlockPos blockPos = buf.readBlockPos();
 		PositionSource positionSource = PositionSourceType.read(buf);
@@ -63,6 +51,18 @@ public class Transphere {
 		PositionSourceType.write(transphere.destination, buf);
 		buf.writeInt(transphere.getDyeColor().ordinal());
 		buf.writeVarInt(transphere.arrivalInTicks);
+	}
+	
+	public int getArrivalInTicks() {
+		return this.arrivalInTicks;
+	}
+	
+	public BlockPos getOrigin() {
+		return this.origin;
+	}
+	
+	public PositionSource getDestination() {
+		return this.destination;
 	}
 	
 	public DyeColor getDyeColor() {

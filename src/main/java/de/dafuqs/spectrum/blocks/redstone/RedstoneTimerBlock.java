@@ -28,36 +28,8 @@ import java.util.Random;
 
 public class RedstoneTimerBlock extends AbstractRedstoneGateBlock {
 	
-	public enum TimingStep implements StringIdentifiable {
-		OneSecond("one_second", 20, "block.spectrum.redstone_timer.setting.one_second"),
-		TenSeconds("ten_seconds", 10 * 20, "block.spectrum.redstone_timer.setting.ten_seconds"),
-		OneMinute("one_minute", 60 * 20, "block.spectrum.redstone_timer.setting.one_minute"),
-		TenMinutes("ten_minutes", 60 * 20 * 10, "block.spectrum.redstone_timer.setting.ten_minutes"),
-		OneHour("one_hour", 60 * 60 * 20, "block.spectrum.redstone_timer.setting.one_hour");
-		
-		private final String name;
-		public final int ticks;
-		public final String localizationString;
-		
-		TimingStep(String name, int ticks, String localizationString) {
-			this.name = name;
-			this.ticks = ticks;
-			this.localizationString = localizationString;
-		}
-		
-		public TimingStep next() {
-			return values()[(this.ordinal() + 1) % values().length];
-		}
-		
-		@Override
-		public String asString() {
-			return name;
-		}
-	}
-	
 	public static EnumProperty<TimingStep> ACTIVE_TIME = EnumProperty.of("active_time", TimingStep.class);
 	public static EnumProperty<TimingStep> INACTIVE_TIME = EnumProperty.of("inactive_time", TimingStep.class);
-	
 	public RedstoneTimerBlock(AbstractBlock.Settings settings) {
 		super(settings);
 		this.setDefaultState(this.stateManager.getDefaultState().with(FACING, Direction.NORTH).with(POWERED, false).with(ACTIVE_TIME, TimingStep.OneSecond).with(INACTIVE_TIME, TimingStep.OneSecond));
@@ -159,6 +131,33 @@ public class RedstoneTimerBlock extends AbstractRedstoneGateBlock {
 			double xOffset = (g * (float) direction.getOffsetX());
 			double zOffset = (g * (float) direction.getOffsetZ());
 			world.addParticle(DustParticleEffect.DEFAULT, x + xOffset, y, z + zOffset, 0.0D, 0.0D, 0.0D);
+		}
+	}
+	
+	public enum TimingStep implements StringIdentifiable {
+		OneSecond("one_second", 20, "block.spectrum.redstone_timer.setting.one_second"),
+		TenSeconds("ten_seconds", 10 * 20, "block.spectrum.redstone_timer.setting.ten_seconds"),
+		OneMinute("one_minute", 60 * 20, "block.spectrum.redstone_timer.setting.one_minute"),
+		TenMinutes("ten_minutes", 60 * 20 * 10, "block.spectrum.redstone_timer.setting.ten_minutes"),
+		OneHour("one_hour", 60 * 60 * 20, "block.spectrum.redstone_timer.setting.one_hour");
+		
+		public final int ticks;
+		public final String localizationString;
+		private final String name;
+		
+		TimingStep(String name, int ticks, String localizationString) {
+			this.name = name;
+			this.ticks = ticks;
+			this.localizationString = localizationString;
+		}
+		
+		public TimingStep next() {
+			return values()[(this.ordinal() + 1) % values().length];
+		}
+		
+		@Override
+		public String asString() {
+			return name;
 		}
 	}
 	

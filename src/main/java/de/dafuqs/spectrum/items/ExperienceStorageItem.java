@@ -7,8 +7,6 @@ import net.minecraft.nbt.NbtElement;
 
 public interface ExperienceStorageItem {
 	
-	int getMaxStoredExperience(ItemStack itemStack);
-	
 	/**
 	 * Returns the amount of experience this item stack has stored
 	 *
@@ -89,5 +87,7 @@ public interface ExperienceStorageItem {
 			return false;
 		}
 	}
+	
+	int getMaxStoredExperience(ItemStack itemStack);
 	
 }

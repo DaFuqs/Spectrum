@@ -12,18 +12,6 @@ import net.minecraft.world.event.PositionSource;
 
 public class BlockPosEventQueue extends EventQueue<BlockPosEventQueue.EventEntry> {
 	
-	public static class EventEntry {
-		public GameEvent gameEvent;
-		public BlockPos eventSourceBlockPos;
-		public int distance;
-		
-		public EventEntry(GameEvent gameEvent, BlockPos eventSourceBlockPos, int distance) {
-			this.gameEvent = gameEvent;
-			this.eventSourceBlockPos = eventSourceBlockPos;
-			this.distance = distance;
-		}
-	}
-	
 	public BlockPosEventQueue(PositionSource positionSource, int range, Callback listener) {
 		super(positionSource, range, listener);
 	}
@@ -35,6 +23,18 @@ public class BlockPosEventQueue extends EventQueue<BlockPosEventQueue.EventEntry
 			int delay = eventEntry.distance * 2;
 			this.schedule(eventEntry, delay);
 			SpectrumS2CPacketSender.sendBlockPosEventTransferPacket((ServerWorld) world, new BlockPosEventTransfer(pos, this.positionSource, delay));
+		}
+	}
+	
+	public static class EventEntry {
+		public GameEvent gameEvent;
+		public BlockPos eventSourceBlockPos;
+		public int distance;
+		
+		public EventEntry(GameEvent gameEvent, BlockPos eventSourceBlockPos, int distance) {
+			this.gameEvent = gameEvent;
+			this.eventSourceBlockPos = eventSourceBlockPos;
+			this.distance = distance;
 		}
 	}
 	

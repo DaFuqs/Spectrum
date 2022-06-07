@@ -34,10 +34,9 @@ import net.minecraft.world.World;
 )})
 public abstract class SpectrumChestBlockEntity extends LootableContainerBlockEntity implements ChestAnimationProgress {
 	
-	protected DefaultedList<ItemStack> inventory;
-	
-	protected final ChestLidAnimator lidAnimator;
 	public final ViewerCountManager stateManager;
+	protected final ChestLidAnimator lidAnimator;
+	protected DefaultedList<ItemStack> inventory;
 	
 	protected SpectrumChestBlockEntity(BlockEntityType<?> blockEntityType, BlockPos blockPos, BlockState blockState) {
 		super(blockEntityType, blockPos, blockState);
@@ -82,13 +81,13 @@ public abstract class SpectrumChestBlockEntity extends LootableContainerBlockEnt
 		world.playSound(null, pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, soundEvent, SoundCategory.BLOCKS, 0.5F, world.random.nextFloat() * 0.1F + 0.9F);
 	}
 	
+	public static void clientTick(World world, BlockPos pos, BlockState state, SpectrumChestBlockEntity blockEntity) {
+		blockEntity.lidAnimator.step();
+	}
+	
 	@Environment(EnvType.CLIENT)
 	public float getAnimationProgress(float tickDelta) {
 		return this.lidAnimator.getProgress(tickDelta);
-	}
-	
-	public static void clientTick(World world, BlockPos pos, BlockState state, SpectrumChestBlockEntity blockEntity) {
-		blockEntity.lidAnimator.step();
 	}
 	
 	public void onOpen() {

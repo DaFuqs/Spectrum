@@ -11,10 +11,6 @@ import java.util.Random;
 
 public class WeightedRandomFeatureConfig implements FeatureConfig {
 	
-	public final List<PlacedFeature> features;
-	public final List<Integer> weights;
-	public final int weightSum;
-	
 	public static final Codec<WeightedRandomFeatureConfig> CODEC = RecordCodecBuilder.create((instance) -> {
 		return instance.group(
 				Codecs.nonEmptyList(PlacedFeature.CODEC.listOf()).fieldOf("features").forGetter((weightedRandomFeatureConfig) -> {
@@ -23,6 +19,9 @@ public class WeightedRandomFeatureConfig implements FeatureConfig {
 					return weightedRandomFeatureConfig.weights;
 				})).apply(instance, WeightedRandomFeatureConfig::new);
 	});
+	public final List<PlacedFeature> features;
+	public final List<Integer> weights;
+	public final int weightSum;
 	
 	public WeightedRandomFeatureConfig(List<PlacedFeature> features, List<Integer> weights) {
 		this.features = features;

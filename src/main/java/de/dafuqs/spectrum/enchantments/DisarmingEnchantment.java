@@ -22,22 +22,6 @@ public class DisarmingEnchantment extends SpectrumEnchantment {
 		super(weight, EnchantmentTarget.WEAPON, slotTypes, unlockAdvancementIdentifier);
 	}
 	
-	public int getMinPower(int level) {
-		return 10;
-	}
-	
-	public int getMaxPower(int level) {
-		return super.getMinPower(level) + 30;
-	}
-	
-	public int getMaxLevel() {
-		return SpectrumCommon.CONFIG.DisarmingMaxLevel;
-	}
-	
-	public boolean canAccept(Enchantment other) {
-		return super.canAccept(other);
-	}
-	
 	public static void disarmPlayer(PlayerEntity player) {
 		int equipmentSlotCount = EquipmentSlot.values().length;
 		int randomSlot = (int) (Math.random() * equipmentSlotCount);
@@ -101,6 +85,22 @@ public class DisarmingEnchantment extends SpectrumEnchantment {
 			randomSlot = (randomSlot + 1) % 6;
 			slotsChecked++;
 		}
+	}
+	
+	public int getMinPower(int level) {
+		return 10;
+	}
+	
+	public int getMaxPower(int level) {
+		return super.getMinPower(level) + 30;
+	}
+	
+	public int getMaxLevel() {
+		return SpectrumCommon.CONFIG.DisarmingMaxLevel;
+	}
+	
+	public boolean canAccept(Enchantment other) {
+		return super.canAccept(other);
 	}
 	
 }

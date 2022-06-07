@@ -74,6 +74,19 @@ public class PedestalCraftingRecipe implements Recipe<Inventory>, GatedRecipe {
 		registerInToastManager(SpectrumRecipeTypes.PEDESTAL, this);
 	}
 	
+	/**
+	 * When a recipe is set to output a pedestal block item
+	 * it is treated as an upgrade recipe. Meaning the item does not
+	 * get crafted, but the current pedestal replaced with the new one.
+	 */
+	public static PedestalVariant getUpgradedPedestalVariantForOutput(ItemStack outputItemStack) {
+		if (outputItemStack.getItem() instanceof PedestalBlockItem) {
+			return ((PedestalBlockItem) outputItemStack.getItem()).getVariant();
+		} else {
+			return null;
+		}
+	}
+	
 	@Override
 	public boolean matches(Inventory inv, World world) {
 		if (!matchesGrid(inv)) {
@@ -261,19 +274,6 @@ public class PedestalCraftingRecipe implements Recipe<Inventory>, GatedRecipe {
 	@Override
 	public boolean canPlayerCraft(PlayerEntity playerEntity) {
 		return PedestalRecipeTier.hasUnlockedRequiredTier(playerEntity, this.tier) && Support.hasAdvancement(playerEntity, this.requiredAdvancementIdentifier);
-	}
-	
-	/**
-	 * When a recipe is set to output a pedestal block item
-	 * it is treated as an upgrade recipe. Meaning the item does not
-	 * get crafted, but the current pedestal replaced with the new one.
-	 */
-	public static PedestalVariant getUpgradedPedestalVariantForOutput(ItemStack outputItemStack) {
-		if (outputItemStack.getItem() instanceof PedestalBlockItem) {
-			return ((PedestalBlockItem) outputItemStack.getItem()).getVariant();
-		} else {
-			return null;
-		}
 	}
 	
 	/**

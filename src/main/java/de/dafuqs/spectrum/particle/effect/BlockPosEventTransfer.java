@@ -33,18 +33,6 @@ public class BlockPosEventTransfer {
 		this((BlockPos) origin, (PositionSource) destination, (int) arrivalInTicks);
 	}
 	
-	public int getArrivalInTicks() {
-		return this.arrivalInTicks;
-	}
-	
-	public BlockPos getOrigin() {
-		return this.origin;
-	}
-	
-	public PositionSource getDestination() {
-		return this.destination;
-	}
-	
 	public static BlockPosEventTransfer readFromBuf(PacketByteBuf buf) {
 		BlockPos blockPos = buf.readBlockPos();
 		PositionSource positionSource = PositionSourceType.read(buf);
@@ -56,5 +44,17 @@ public class BlockPosEventTransfer {
 		buf.writeBlockPos(experienceTransfer.origin);
 		PositionSourceType.write(experienceTransfer.destination, buf);
 		buf.writeVarInt(experienceTransfer.arrivalInTicks);
+	}
+	
+	public int getArrivalInTicks() {
+		return this.arrivalInTicks;
+	}
+	
+	public BlockPos getOrigin() {
+		return this.origin;
+	}
+	
+	public PositionSource getDestination() {
+		return this.destination;
 	}
 }

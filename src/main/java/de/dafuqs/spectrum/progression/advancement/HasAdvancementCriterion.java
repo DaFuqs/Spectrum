@@ -16,6 +16,10 @@ public class HasAdvancementCriterion extends AbstractCriterion<HasAdvancementCri
 	
 	public static final Identifier ID = new Identifier(SpectrumCommon.MOD_ID, "has_advancement");
 	
+	public static HasAdvancementCriterion.Conditions create(Identifier id) {
+		return new HasAdvancementCriterion.Conditions(EntityPredicate.Extended.EMPTY, id);
+	}
+	
 	public Identifier getId() {
 		return ID;
 	}
@@ -31,10 +35,6 @@ public class HasAdvancementCriterion extends AbstractCriterion<HasAdvancementCri
 	
 	public void trigger(ServerPlayerEntity player, Advancement advancement) {
 		this.trigger(player, (conditions) -> conditions.matches(advancement));
-	}
-	
-	public static HasAdvancementCriterion.Conditions create(Identifier id) {
-		return new HasAdvancementCriterion.Conditions(EntityPredicate.Extended.EMPTY, id);
 	}
 	
 	public static class Conditions extends AbstractCriterionConditions {

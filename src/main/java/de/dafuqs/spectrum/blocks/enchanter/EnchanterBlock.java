@@ -38,6 +38,47 @@ public class EnchanterBlock extends BlockWithEntity {
 		super(settings);
 	}
 	
+	public static void clearCurrentlyRenderedMultiBlock(World world) {
+		if (world.isClient) {
+			IMultiblock currentlyRenderedMultiBlock = PatchouliAPI.get().getCurrentMultiblock();
+			if (currentlyRenderedMultiBlock != null && currentlyRenderedMultiBlock.getID().equals(SpectrumMultiblocks.ENCHANTER_IDENTIFIER)) {
+				PatchouliAPI.get().clearMultiblock();
+			}
+		}
+	}
+	
+	public static boolean verifyStructure(World world, BlockPos blockPos, @Nullable ServerPlayerEntity serverPlayerEntity) {
+		IMultiblock multiblock = SpectrumMultiblocks.MULTIBLOCKS.get(SpectrumMultiblocks.ENCHANTER_IDENTIFIER);
+		boolean valid = multiblock.validate(world, blockPos.down(3), BlockRotation.NONE);
+		
+		if (valid) {
+			if (serverPlayerEntity != null) {
+				SpectrumAdvancementCriteria.COMPLETED_MULTIBLOCK.trigger(serverPlayerEntity, multiblock);
+			}
+		} else {
+			if (world.isClient) {
+				IMultiblock currentMultiBlock = PatchouliAPI.get().getCurrentMultiblock();
+				if (currentMultiBlock == multiblock) {
+					PatchouliAPI.get().clearMultiblock();
+				} else {
+					PatchouliAPI.get().showMultiblock(multiblock, new TranslatableText("multiblock.spectrum.enchanter.structure"), blockPos.down(4), BlockRotation.NONE);
+				}
+			}
+		}
+		
+		return valid;
+	}
+	
+	public static void scatterContents(@NotNull World world, BlockPos pos) {
+		Block block = world.getBlockState(pos).getBlock();
+		BlockEntity blockEntity = world.getBlockEntity(pos);
+		if (blockEntity instanceof EnchanterBlockEntity enchanterBlockEntity) {
+			ItemScatterer.spawn(world, pos, enchanterBlockEntity.getInventory());
+			enchanterBlockEntity.inventoryChanged = true;
+			world.updateComparators(pos, block);
+		}
+	}
+	
 	@Nullable
 	@Override
 	public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
@@ -66,15 +107,6 @@ public class EnchanterBlock extends BlockWithEntity {
 	public void onBroken(WorldAccess world, BlockPos pos, BlockState state) {
 		if (world.isClient()) {
 			clearCurrentlyRenderedMultiBlock((World) world);
-		}
-	}
-	
-	public static void clearCurrentlyRenderedMultiBlock(World world) {
-		if (world.isClient) {
-			IMultiblock currentlyRenderedMultiBlock = PatchouliAPI.get().getCurrentMultiblock();
-			if (currentlyRenderedMultiBlock != null && currentlyRenderedMultiBlock.getID().equals(SpectrumMultiblocks.ENCHANTER_IDENTIFIER)) {
-				PatchouliAPI.get().clearMultiblock();
-			}
 		}
 	}
 	
@@ -135,38 +167,6 @@ public class EnchanterBlock extends BlockWithEntity {
 				}
 			}
 			return ActionResult.CONSUME;
-		}
-	}
-	
-	public static boolean verifyStructure(World world, BlockPos blockPos, @Nullable ServerPlayerEntity serverPlayerEntity) {
-		IMultiblock multiblock = SpectrumMultiblocks.MULTIBLOCKS.get(SpectrumMultiblocks.ENCHANTER_IDENTIFIER);
-		boolean valid = multiblock.validate(world, blockPos.down(3), BlockRotation.NONE);
-		
-		if (valid) {
-			if (serverPlayerEntity != null) {
-				SpectrumAdvancementCriteria.COMPLETED_MULTIBLOCK.trigger(serverPlayerEntity, multiblock);
-			}
-		} else {
-			if (world.isClient) {
-				IMultiblock currentMultiBlock = PatchouliAPI.get().getCurrentMultiblock();
-				if (currentMultiBlock == multiblock) {
-					PatchouliAPI.get().clearMultiblock();
-				} else {
-					PatchouliAPI.get().showMultiblock(multiblock, new TranslatableText("multiblock.spectrum.enchanter.structure"), blockPos.down(4), BlockRotation.NONE);
-				}
-			}
-		}
-		
-		return valid;
-	}
-	
-	public static void scatterContents(@NotNull World world, BlockPos pos) {
-		Block block = world.getBlockState(pos).getBlock();
-		BlockEntity blockEntity = world.getBlockEntity(pos);
-		if (blockEntity instanceof EnchanterBlockEntity enchanterBlockEntity) {
-			ItemScatterer.spawn(world, pos, enchanterBlockEntity.getInventory());
-			enchanterBlockEntity.inventoryChanged = true;
-			world.updateComparators(pos, block);
 		}
 	}
 	

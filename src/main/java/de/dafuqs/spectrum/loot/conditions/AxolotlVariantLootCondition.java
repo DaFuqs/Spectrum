@@ -21,6 +21,12 @@ public class AxolotlVariantLootCondition implements LootCondition {
 		this.variant = variant;
 	}
 	
+	public static Builder builder(AxolotlEntity.Variant variant) {
+		return () -> {
+			return new AxolotlVariantLootCondition(variant);
+		};
+	}
+	
 	@Override
 	public LootConditionType getType() {
 		return SpectrumLootConditionTypes.AXOLOTL_VARIANT_CONDITION;
@@ -34,12 +40,6 @@ public class AxolotlVariantLootCondition implements LootCondition {
 		} else {
 			return false;
 		}
-	}
-	
-	public static Builder builder(AxolotlEntity.Variant variant) {
-		return () -> {
-			return new AxolotlVariantLootCondition(variant);
-		};
 	}
 	
 	public static class Serializer implements JsonSerializer<AxolotlVariantLootCondition> {

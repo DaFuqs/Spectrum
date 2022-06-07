@@ -29,6 +29,11 @@ public class VoidFogParticle extends SpriteBillboardParticle {
 		return ParticleTextureSheet.PARTICLE_SHEET_OPAQUE;
 	}
 	
+	@Override
+	protected int getBrightness(float tint) {
+		return 0;
+	}
+	
 	public static class Factory implements ParticleFactory<DefaultParticleType> {
 		private final SpriteProvider spriteProvider;
 		
@@ -44,11 +49,6 @@ public class VoidFogParticle extends SpriteBillboardParticle {
 			particle.setSprite(this.spriteProvider);
 			return particle;
 		}
-	}
-	
-	@Override
-	protected int getBrightness(float tint) {
-		return 0;
 	}
 	
 }

@@ -143,12 +143,25 @@ public class ShootingStarEntity extends Entity {
 		return SpectrumCommon.CONFIG.ShootingStarChance * multiplier;
 	}
 	
-	public boolean collidesWith(Entity other) {
-		return canCollide(this, other);
-	}
-	
 	public static boolean canCollide(Entity entity, @NotNull Entity other) {
 		return (other.isCollidable() || other.isPushable()) && !entity.isConnectedThroughVehicle(other);
+	}
+	
+	public static void playHitParticles(World world, double x, double y, double z, ShootingStarBlock.Type type, int amount) {
+		Random random = world.random;
+		// Everything in this lambda is running on the render thread
+		
+		for (int i = 0; i < amount; i++) {
+			float randomScale = 0.5F + random.nextFloat();
+			int randomLifetime = 10 + random.nextInt(20);
+			
+			ParticleEffect particleEffect = new ParticleSpawnerParticleEffectAlwaysShow(PARTICLE_SPRITE_IDENTIFIER, 0.98F, type.getRandomParticleColor(random), randomScale, randomLifetime, false, true);
+			world.addParticle(particleEffect, x, y, z, 0.35 - random.nextFloat() * 0.7, random.nextFloat() * 0.7, 0.35 - random.nextFloat() * 0.7);
+		}
+	}
+	
+	public boolean collidesWith(Entity other) {
+		return canCollide(this, other);
 	}
 	
 	public boolean isCollidable() {
@@ -352,19 +365,6 @@ public class ShootingStarEntity extends Entity {
 	
 	public void playHitParticles() {
 		playHitParticles(this.world, this.getX(), this.getY(), this.getZ(), this.getShootingStarType(), 25);
-	}
-	
-	public static void playHitParticles(World world, double x, double y, double z, ShootingStarBlock.Type type, int amount) {
-		Random random = world.random;
-		// Everything in this lambda is running on the render thread
-		
-		for (int i = 0; i < amount; i++) {
-			float randomScale = 0.5F + random.nextFloat();
-			int randomLifetime = 10 + random.nextInt(20);
-			
-			ParticleEffect particleEffect = new ParticleSpawnerParticleEffectAlwaysShow(PARTICLE_SPRITE_IDENTIFIER, 0.98F, type.getRandomParticleColor(random), randomScale, randomLifetime, false, true);
-			world.addParticle(particleEffect, x, y, z, 0.35 - random.nextFloat() * 0.7, random.nextFloat() * 0.7, 0.35 - random.nextFloat() * 0.7);
-		}
 	}
 	
 	public void doPlayerHitEffectsAndLoot(ServerWorld serverWorld, ServerPlayerEntity serverPlayerEntity) {

@@ -61,13 +61,13 @@ public class JadeVineRootsBlockEntity extends BlockEntity {
 		return false;
 	}
 	
+	public long getLastGrownTime() {
+		return lastGrowthTick;
+	}
+	
 	public void setLastGrownTime(long time) {
 		this.lastGrowthTick = time;
 		this.markDirty();
-	}
-	
-	public long getLastGrownTime() {
-		return lastGrowthTick;
 	}
 	
 	public BlockState getFenceBlockState() {

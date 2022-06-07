@@ -35,6 +35,11 @@ public abstract class SpectrumChestBlock extends BlockWithEntity {
 		this.setDefaultState((this.stateManager.getDefaultState()).with(FACING, Direction.NORTH));
 	}
 	
+	public static boolean isChestBlocked(WorldAccess world, BlockPos pos) {
+		BlockPos blockPos = pos.up();
+		return world.getBlockState(blockPos).isSolidBlock(world, blockPos);
+	}
+	
 	@Override
 	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
 		if (world.isClient) {
@@ -57,11 +62,6 @@ public abstract class SpectrumChestBlock extends BlockWithEntity {
 			
 			super.onStateReplaced(state, world, pos, newState, moved);
 		}
-	}
-	
-	public static boolean isChestBlocked(WorldAccess world, BlockPos pos) {
-		BlockPos blockPos = pos.up();
-		return world.getBlockState(blockPos).isSolidBlock(world, blockPos);
 	}
 	
 	public BlockState rotate(BlockState state, BlockRotation rotation) {

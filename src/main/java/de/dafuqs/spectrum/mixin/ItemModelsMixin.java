@@ -25,6 +25,10 @@ public class ItemModelsMixin {
 	@Final
 	private BakedModelManager modelManager;
 	
+	private static int getTheModelId(Item item) {
+		return Item.getRawId(item);
+	}
+	
 	@Inject(at = @At("HEAD"), method = "getModel(Lnet/minecraft/item/ItemStack;)Lnet/minecraft/client/render/model/BakedModel;", cancellable = true)
 	private void spectrum$getModel(ItemStack itemStack, CallbackInfoReturnable<BakedModel> callbackInfoReturnable) {
 		if (ClientBlockCloaker.isCloaked(itemStack.getItem())) {
@@ -33,10 +37,6 @@ public class ItemModelsMixin {
 			BakedModel overriddenModel = this.models.getOrDefault(getTheModelId(destinationItem), modelManager.getMissingModel());
 			callbackInfoReturnable.setReturnValue(overriddenModel);
 		}
-	}
-	
-	private static int getTheModelId(Item item) {
-		return Item.getRawId(item);
 	}
 	
 }

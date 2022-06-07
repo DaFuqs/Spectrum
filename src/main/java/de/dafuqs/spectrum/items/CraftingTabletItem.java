@@ -44,31 +44,6 @@ public class CraftingTabletItem extends Item implements LoomPatternProvider {
 		super(settings);
 	}
 	
-	@Override
-	public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-		ItemStack itemStack = user.getStackInHand(hand);
-		
-		if (!world.isClient) {
-			Recipe storedRecipe = getStoredRecipe(world, itemStack);
-			if (storedRecipe == null || user.isSneaking()) {
-				user.openHandledScreen(createScreenHandlerFactory(world, (ServerPlayerEntity) user, itemStack));
-			} else {
-				if (storedRecipe instanceof PedestalCraftingRecipe) {
-					return TypedActionResult.pass(user.getStackInHand(hand));
-				} else {
-					tryCraftRecipe((ServerPlayerEntity) user, storedRecipe);
-				}
-			}
-			return TypedActionResult.success(user.getStackInHand(hand));
-		} else {
-			return TypedActionResult.consume(user.getStackInHand(hand));
-		}
-	}
-	
-	public NamedScreenHandlerFactory createScreenHandlerFactory(World world, ServerPlayerEntity serverPlayerEntity, ItemStack itemStack) {
-		return new SimpleNamedScreenHandlerFactory((syncId, inventory, player) -> new CraftingTabletScreenHandler(syncId, inventory, ScreenHandlerContext.create(world, serverPlayerEntity.getBlockPos()), itemStack), TITLE);
-	}
-	
 	public static void setStoredRecipe(ItemStack craftingTabletItemStack, Recipe recipe) {
 		NbtCompound nbtCompound = craftingTabletItemStack.getOrCreateNbt();
 		nbtCompound.putString("recipe", recipe.getId().toString());
@@ -98,6 +73,31 @@ public class CraftingTabletItem extends Item implements LoomPatternProvider {
 			}
 		}
 		return null;
+	}
+	
+	@Override
+	public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
+		ItemStack itemStack = user.getStackInHand(hand);
+		
+		if (!world.isClient) {
+			Recipe storedRecipe = getStoredRecipe(world, itemStack);
+			if (storedRecipe == null || user.isSneaking()) {
+				user.openHandledScreen(createScreenHandlerFactory(world, (ServerPlayerEntity) user, itemStack));
+			} else {
+				if (storedRecipe instanceof PedestalCraftingRecipe) {
+					return TypedActionResult.pass(user.getStackInHand(hand));
+				} else {
+					tryCraftRecipe((ServerPlayerEntity) user, storedRecipe);
+				}
+			}
+			return TypedActionResult.success(user.getStackInHand(hand));
+		} else {
+			return TypedActionResult.consume(user.getStackInHand(hand));
+		}
+	}
+	
+	public NamedScreenHandlerFactory createScreenHandlerFactory(World world, ServerPlayerEntity serverPlayerEntity, ItemStack itemStack) {
+		return new SimpleNamedScreenHandlerFactory((syncId, inventory, player) -> new CraftingTabletScreenHandler(syncId, inventory, ScreenHandlerContext.create(world, serverPlayerEntity.getBlockPos()), itemStack), TITLE);
 	}
 	
 	private void tryCraftRecipe(ServerPlayerEntity serverPlayerEntity, Recipe recipe) {

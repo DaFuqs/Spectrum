@@ -18,6 +18,10 @@ public class EnchantmentUpgradedCriterion extends AbstractCriterion<EnchantmentU
 	
 	static final Identifier ID = new Identifier(SpectrumCommon.MOD_ID, "enchantment_upgraded");
 	
+	public static EnchantmentUpgradedCriterion.Conditions create(Enchantment enchantment, NumberRange.IntRange enchantmentLevelRange, NumberRange.IntRange experienceRange) {
+		return new EnchantmentUpgradedCriterion.Conditions(EntityPredicate.Extended.EMPTY, enchantment, enchantmentLevelRange, experienceRange);
+	}
+	
 	public Identifier getId() {
 		return ID;
 	}
@@ -34,10 +38,6 @@ public class EnchantmentUpgradedCriterion extends AbstractCriterion<EnchantmentU
 		this.trigger(player, (conditions) -> {
 			return conditions.matches(enchantment, enchantmentLevel, spentExperience);
 		});
-	}
-	
-	public static EnchantmentUpgradedCriterion.Conditions create(Enchantment enchantment, NumberRange.IntRange enchantmentLevelRange, NumberRange.IntRange experienceRange) {
-		return new EnchantmentUpgradedCriterion.Conditions(EntityPredicate.Extended.EMPTY, enchantment, enchantmentLevelRange, experienceRange);
 	}
 	
 	public static class Conditions extends AbstractCriterionConditions {

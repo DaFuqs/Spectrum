@@ -32,16 +32,6 @@ import java.util.Map;
 
 public class EnchantmentDrops {
 	
-	private static class TreasureHunterDropDefinition {
-		public Item skullItem;
-		public float treasureHunterMultiplier;
-		
-		public TreasureHunterDropDefinition(Item skullItem, float trophyHunterChance) {
-			this.skullItem = skullItem;
-			this.treasureHunterMultiplier = trophyHunterChance;
-		}
-	}
-	
 	private static final Map<Identifier, TreasureHunterDropDefinition> trophyHunterLootPools = new HashMap<>() {{
 		// Additional vanilla head drops
 		put(new Identifier("entities/creeper"), new TreasureHunterDropDefinition(Items.CREEPER_HEAD, 0.02F));
@@ -125,7 +115,6 @@ public class EnchantmentDrops {
 		put(new Identifier("entities/goat"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.GOAT).asItem(), 0.01F));
 		put(new Identifier("entities/glow_squid"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.GLOW_SQUID).asItem(), 0.01F));
 	}};
-	
 	private static final Map<Identifier, Item> resonanceBreakableLootPools = new HashMap<>() {{
 		put(new Identifier("blocks/budding_amethyst"), Blocks.BUDDING_AMETHYST.asItem());
 		put(new Identifier("blocks/infested_chiseled_stone_bricks"), Blocks.INFESTED_CHISELED_STONE_BRICKS.asItem());
@@ -264,7 +253,6 @@ public class EnchantmentDrops {
 		return poolBuilder.build();
 	}
 	
-	
 	private static LootPool getParrotLootPool(int variant, Item item, float chance) {
 		FabricLootPoolBuilder poolBuilder = FabricLootPoolBuilder.builder()
 				.rolls(ConstantLootNumberProvider.create(1))
@@ -272,6 +260,16 @@ public class EnchantmentDrops {
 				.withCondition(ParrotVariantLootCondition.builder(variant).build())
 				.withEntry(ItemEntry.builder(item).build());
 		return poolBuilder.build();
+	}
+	
+	private static class TreasureHunterDropDefinition {
+		public Item skullItem;
+		public float treasureHunterMultiplier;
+		
+		public TreasureHunterDropDefinition(Item skullItem, float trophyHunterChance) {
+			this.skullItem = skullItem;
+			this.treasureHunterMultiplier = trophyHunterChance;
+		}
 	}
 	
 	

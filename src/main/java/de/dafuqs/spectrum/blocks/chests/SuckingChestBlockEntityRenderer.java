@@ -26,6 +26,14 @@ public class SuckingChestBlockEntityRenderer<SuckingChestBlockEntity extends Spe
 		root = texturedModelData.createModel();
 	}
 	
+	public static @NotNull TexturedModelData getTexturedModelData() {
+		ModelData modelData = new ModelData();
+		ModelPartData modelPartData = modelData.getRoot();
+		modelPartData.addChild("lid", ModelPartBuilder.create().uv(1, 1).cuboid(5.0F, 7.0F, 5.0F, 6.0F, 3.0F, 6.0F), ModelTransform.pivot(0.0F, 0.0F, 0.0F));
+		modelPartData.addChild("lid2", ModelPartBuilder.create().uv(1, 1).cuboid(7.0F, 4.0F, 7.0F, 2.0F, 3.0F, 2.0F), ModelTransform.pivot(0.0F, 0.0F, 0.0F));
+		return TexturedModelData.of(modelData, 32, 32);
+	}
+	
 	@Override
 	public void render(SuckingChestBlockEntity entity, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumers, int light, int overlay) {
 		matrixStack.push();
@@ -42,14 +50,6 @@ public class SuckingChestBlockEntityRenderer<SuckingChestBlockEntity extends Spe
 		root.render(matrixStack, vertexConsumer, light, overlay);
 		
 		matrixStack.pop();
-	}
-	
-	public static @NotNull TexturedModelData getTexturedModelData() {
-		ModelData modelData = new ModelData();
-		ModelPartData modelPartData = modelData.getRoot();
-		modelPartData.addChild("lid", ModelPartBuilder.create().uv(1, 1).cuboid(5.0F, 7.0F, 5.0F, 6.0F, 3.0F, 6.0F), ModelTransform.pivot(0.0F, 0.0F, 0.0F));
-		modelPartData.addChild("lid2", ModelPartBuilder.create().uv(1, 1).cuboid(7.0F, 4.0F, 7.0F, 2.0F, 3.0F, 2.0F), ModelTransform.pivot(0.0F, 0.0F, 0.0F));
-		return TexturedModelData.of(modelData, 32, 32);
 	}
 	
 }

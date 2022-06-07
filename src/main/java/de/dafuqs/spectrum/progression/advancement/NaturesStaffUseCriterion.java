@@ -21,6 +21,16 @@ public class NaturesStaffUseCriterion extends AbstractCriterion<NaturesStaffUseC
 	
 	static final Identifier ID = new Identifier(SpectrumCommon.MOD_ID, "natures_staff_conversion");
 	
+	@Nullable
+	private static Block getBlock(JsonObject obj, String propertyName) {
+		if (obj.has(propertyName)) {
+			Identifier identifier = new Identifier(JsonHelper.getString(obj, propertyName));
+			return Registry.BLOCK.getOrEmpty(identifier).orElseThrow(() -> new JsonSyntaxException("Unknown block type '" + identifier + "'"));
+		} else {
+			return null;
+		}
+	}
+	
 	public Identifier getId() {
 		return ID;
 	}
@@ -44,16 +54,6 @@ public class NaturesStaffUseCriterion extends AbstractCriterion<NaturesStaffUseC
 		}
 		
 		return new NaturesStaffUseCriterion.Conditions(extended, sourceBlock, sourceStatePredicate, targetBlock, targetStatePredicate);
-	}
-	
-	@Nullable
-	private static Block getBlock(JsonObject obj, String propertyName) {
-		if (obj.has(propertyName)) {
-			Identifier identifier = new Identifier(JsonHelper.getString(obj, propertyName));
-			return Registry.BLOCK.getOrEmpty(identifier).orElseThrow(() -> new JsonSyntaxException("Unknown block type '" + identifier + "'"));
-		} else {
-			return null;
-		}
 	}
 	
 	public void trigger(ServerPlayerEntity player, BlockState sourceBlockState, BlockState targetBlockState) {

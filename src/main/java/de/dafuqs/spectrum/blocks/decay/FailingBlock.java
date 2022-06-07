@@ -30,26 +30,6 @@ public class FailingBlock extends DecayBlock {
 	public static final IntProperty AGE = Properties.AGE_15; // failing may spread 15 blocks max. It consuming obsidian resets that value
 	public static final EnumProperty<DecayConversion> DECAY_STATE = EnumProperty.of("decay_state", DecayConversion.class);
 	
-	public enum DecayConversion implements StringIdentifiable {
-		DEFAULT("default"),
-		OBSIDIAN("obsidian"),
-		CRYING_OBSIDIAN("crying_obsidian");
-		
-		private final String name;
-		
-		DecayConversion(String name) {
-			this.name = name;
-		}
-		
-		public String toString() {
-			return this.name;
-		}
-		
-		public String asString() {
-			return this.name;
-		}
-	}
-	
 	public FailingBlock(Settings settings, TagKey<Block> whiteListBlockTag, TagKey<Block> blackListBlockTag, int tier, float damageOnTouching) {
 		super(settings, whiteListBlockTag, blackListBlockTag, tier, damageOnTouching);
 		setDefaultState(getStateManager().getDefaultState().with(AGE, 0).with(DECAY_STATE, DecayConversion.DEFAULT));
@@ -108,6 +88,26 @@ public class FailingBlock extends DecayBlock {
 			float xOffset = random.nextFloat();
 			float zOffset = random.nextFloat();
 			world.addParticle(new BlockStateParticleEffect(ParticleTypes.BLOCK, state), pos.getX() + xOffset, pos.getY() + 1, pos.getZ() + zOffset, 0.0D, 0.0D, 0.0D);
+		}
+	}
+	
+	public enum DecayConversion implements StringIdentifiable {
+		DEFAULT("default"),
+		OBSIDIAN("obsidian"),
+		CRYING_OBSIDIAN("crying_obsidian");
+		
+		private final String name;
+		
+		DecayConversion(String name) {
+			this.name = name;
+		}
+		
+		public String toString() {
+			return this.name;
+		}
+		
+		public String asString() {
+			return this.name;
 		}
 	}
 	

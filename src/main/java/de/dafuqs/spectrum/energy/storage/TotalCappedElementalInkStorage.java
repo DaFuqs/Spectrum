@@ -25,8 +25,8 @@ import static de.dafuqs.spectrum.helpers.Support.getShortenedNumberString;
 public class TotalCappedElementalInkStorage implements InkStorage {
 	
 	protected final long maxEnergyTotal;
-	protected long currentTotal; // This is a cache for quick lookup. Can be recalculated anytime using the values in storedEnergy.
 	protected final Map<ElementalColor, Long> storedEnergy = new HashMap<>();
+	protected long currentTotal; // This is a cache for quick lookup. Can be recalculated anytime using the values in storedEnergy.
 	
 	public TotalCappedElementalInkStorage(long maxEnergyTotal) {
 		this.maxEnergyTotal = maxEnergyTotal;
@@ -46,6 +46,19 @@ public class TotalCappedElementalInkStorage implements InkStorage {
 		this.storedEnergy.put(InkColors.YELLOW, yellow);
 		this.storedEnergy.put(InkColors.BLACK, black);
 		this.storedEnergy.put(InkColors.WHITE, white);
+	}
+	
+	public static @Nullable TotalCappedElementalInkStorage fromNbt(@NotNull NbtCompound compound) {
+		if (compound.contains("MaxEnergyTotal", NbtElement.LONG_TYPE)) {
+			long maxEnergyTotal = compound.getLong("MaxEnergyTotal");
+			long cyan = compound.getLong("Cyan");
+			long magenta = compound.getLong("Magenta");
+			long yellow = compound.getLong("Yellow");
+			long black = compound.getLong("Black");
+			long white = compound.getLong("White");
+			return new TotalCappedElementalInkStorage(maxEnergyTotal, cyan, magenta, yellow, black, white);
+		}
+		return null;
 	}
 	
 	@Override
@@ -187,19 +200,6 @@ public class TotalCappedElementalInkStorage implements InkStorage {
 	@Override
 	public boolean isFull() {
 		return this.currentTotal >= this.maxEnergyTotal;
-	}
-	
-	public static @Nullable TotalCappedElementalInkStorage fromNbt(@NotNull NbtCompound compound) {
-		if (compound.contains("MaxEnergyTotal", NbtElement.LONG_TYPE)) {
-			long maxEnergyTotal = compound.getLong("MaxEnergyTotal");
-			long cyan = compound.getLong("Cyan");
-			long magenta = compound.getLong("Magenta");
-			long yellow = compound.getLong("Yellow");
-			long black = compound.getLong("Black");
-			long white = compound.getLong("White");
-			return new TotalCappedElementalInkStorage(maxEnergyTotal, cyan, magenta, yellow, black, white);
-		}
-		return null;
 	}
 	
 	public NbtCompound toNbt() {

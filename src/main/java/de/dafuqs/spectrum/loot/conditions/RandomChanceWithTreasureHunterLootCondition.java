@@ -36,6 +36,10 @@ public class RandomChanceWithTreasureHunterLootCondition implements LootConditio
 		this.advancementTriggerItemStack = new ItemStack(item);
 	}
 	
+	public static Builder builder(float chance, Item advancementTriggerItem) {
+		return () -> new RandomChanceWithTreasureHunterLootCondition(chance, advancementTriggerItem);
+	}
+	
 	public LootConditionType getType() {
 		return SpectrumLootConditionTypes.RANDOM_CHANCE_WITH_TREASURE_HUNTER;
 	}
@@ -67,10 +71,6 @@ public class RandomChanceWithTreasureHunterLootCondition implements LootConditio
 			}
 			return success;
 		}
-	}
-	
-	public static Builder builder(float chance, Item advancementTriggerItem) {
-		return () -> new RandomChanceWithTreasureHunterLootCondition(chance, advancementTriggerItem);
 	}
 	
 	public static class Serializer implements JsonSerializer<RandomChanceWithTreasureHunterLootCondition> {

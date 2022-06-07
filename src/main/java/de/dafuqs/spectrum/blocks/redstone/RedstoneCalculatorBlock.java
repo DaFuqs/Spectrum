@@ -33,32 +33,6 @@ import java.util.Random;
 
 public class RedstoneCalculatorBlock extends AbstractRedstoneGateBlock implements BlockEntityProvider {
 	
-	public enum CalculationMode implements StringIdentifiable {
-		ADDITION("addition", "block.spectrum.redstone_calculator.mode.addition"),
-		SUBTRACTION("subtraction", "block.spectrum.redstone_calculator.mode.subtraction"),
-		MULTIPLICATION("multiplication", "block.spectrum.redstone_calculator.mode.multiplication"),
-		DIVISION("division", "block.spectrum.redstone_calculator.mode.division"),
-		MODULO("modulo", "block.spectrum.redstone_calculator.mode.modulo"),
-		MIN("min", "block.spectrum.redstone_calculator.mode.min"),
-		MAX("max", "block.spectrum.redstone_calculator.mode.max");
-		
-		private final String name;
-		public final String localizationString;
-		
-		CalculationMode(String name, String localizationString) {
-			this.name = name;
-			this.localizationString = localizationString;
-		}
-		
-		public String toString() {
-			return this.name;
-		}
-		
-		public String asString() {
-			return this.name;
-		}
-	}
-	
 	public static EnumProperty<CalculationMode> CALCULATION_MODE = EnumProperty.of("calculation_mode", CalculationMode.class);
 	
 	public RedstoneCalculatorBlock(Settings settings) {
@@ -194,6 +168,32 @@ public class RedstoneCalculatorBlock extends AbstractRedstoneGateBlock implement
 		super.onPlaced(world, pos, state, placer, itemStack);
 		if (!world.isClient) {
 			updatePowered(world, pos, state);
+		}
+	}
+	
+	public enum CalculationMode implements StringIdentifiable {
+		ADDITION("addition", "block.spectrum.redstone_calculator.mode.addition"),
+		SUBTRACTION("subtraction", "block.spectrum.redstone_calculator.mode.subtraction"),
+		MULTIPLICATION("multiplication", "block.spectrum.redstone_calculator.mode.multiplication"),
+		DIVISION("division", "block.spectrum.redstone_calculator.mode.division"),
+		MODULO("modulo", "block.spectrum.redstone_calculator.mode.modulo"),
+		MIN("min", "block.spectrum.redstone_calculator.mode.min"),
+		MAX("max", "block.spectrum.redstone_calculator.mode.max");
+		
+		public final String localizationString;
+		private final String name;
+		
+		CalculationMode(String name, String localizationString) {
+			this.name = name;
+			this.localizationString = localizationString;
+		}
+		
+		public String toString() {
+			return this.name;
+		}
+		
+		public String asString() {
+			return this.name;
 		}
 	}
 	

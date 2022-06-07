@@ -44,6 +44,32 @@ public class PreservationControllerBlockEntity extends BlockEntity {
 		super(SpectrumBlockEntityRegistry.PRESERVATION_CONTROLLER, pos, state);
 	}
 	
+	public static void serverTick(@NotNull World world, BlockPos blockPos, BlockState blockState, PreservationControllerBlockEntity blockEntity) {
+		if (world.getTime() % 20 == 0 && blockEntity.entranceOffset != null && blockEntity.checkRange != null && blockEntity.requiredAdvancement != null) {
+			if (blockEntity.checkBox == null) {
+				calculateLocationData(world, blockPos, blockState, blockEntity);
+			}
+			
+			if (blockEntity.spawnParticles) {
+				blockEntity.spawnParticles();
+			}
+			
+			if (blockEntity.requiredAdvancement != null) {
+				blockEntity.yeetUnworthyPlayersAndGrantAdvancement();
+			}
+		}
+	}
+	
+	private static void calculateLocationData(World world, BlockPos blockPos, @NotNull BlockState blockState, @NotNull PreservationControllerBlockEntity blockEntity) {
+		Direction facing = world.getBlockState(blockPos).get(PreservationControllerBlock.FACING);
+		if (facing == Direction.NORTH || facing == Direction.SOUTH) {
+			blockEntity.checkBox = Box.of(Vec3d.ofCenter(blockPos), blockEntity.checkRange.getX() * 2, blockEntity.checkRange.getY() * 2, blockEntity.checkRange.getZ() * 2);
+		} else {
+			blockEntity.checkBox = Box.of(Vec3d.ofCenter(blockPos), blockEntity.checkRange.getZ() * 2, blockEntity.checkRange.getY() * 2, blockEntity.checkRange.getX() * 2);
+		}
+		blockEntity.destinationPos = Support.directionalOffset(blockEntity.pos, blockEntity.entranceOffset, blockState.get(PreservationControllerBlock.FACING));
+	}
+	
 	public void writeNbt(NbtCompound tag) {
 		super.writeNbt(tag);
 		
@@ -94,32 +120,6 @@ public class PreservationControllerBlockEntity extends BlockEntity {
 			this.unlockedAdvancement = Identifier.tryParse(tag.getString("UnlockedAdvancement"));
 			this.unlockedAdvancementCriterion = tag.getString("UnlockedAdvancementCriterion");
 		}
-	}
-	
-	public static void serverTick(@NotNull World world, BlockPos blockPos, BlockState blockState, PreservationControllerBlockEntity blockEntity) {
-		if (world.getTime() % 20 == 0 && blockEntity.entranceOffset != null && blockEntity.checkRange != null && blockEntity.requiredAdvancement != null) {
-			if (blockEntity.checkBox == null) {
-				calculateLocationData(world, blockPos, blockState, blockEntity);
-			}
-			
-			if (blockEntity.spawnParticles) {
-				blockEntity.spawnParticles();
-			}
-			
-			if (blockEntity.requiredAdvancement != null) {
-				blockEntity.yeetUnworthyPlayersAndGrantAdvancement();
-			}
-		}
-	}
-	
-	private static void calculateLocationData(World world, BlockPos blockPos, @NotNull BlockState blockState, @NotNull PreservationControllerBlockEntity blockEntity) {
-		Direction facing = world.getBlockState(blockPos).get(PreservationControllerBlock.FACING);
-		if (facing == Direction.NORTH || facing == Direction.SOUTH) {
-			blockEntity.checkBox = Box.of(Vec3d.ofCenter(blockPos), blockEntity.checkRange.getX() * 2, blockEntity.checkRange.getY() * 2, blockEntity.checkRange.getZ() * 2);
-		} else {
-			blockEntity.checkBox = Box.of(Vec3d.ofCenter(blockPos), blockEntity.checkRange.getZ() * 2, blockEntity.checkRange.getY() * 2, blockEntity.checkRange.getX() * 2);
-		}
-		blockEntity.destinationPos = Support.directionalOffset(blockEntity.pos, blockEntity.entranceOffset, blockState.get(PreservationControllerBlock.FACING));
 	}
 	
 	public void spawnParticles() {

@@ -119,6 +119,7 @@ public class SpectrumStructurePoolBasedGenerator {
 	}
 	
 	static final class StructurePoolGenerator {
+		final Deque<SpectrumStructurePoolBasedGenerator.ShapedPoolStructurePiece> structurePieces = Queues.newArrayDeque();
 		private final Registry<StructurePool> registry;
 		private final int maxSize;
 		private final SpectrumStructurePoolBasedGenerator.PieceFactory pieceFactory;
@@ -126,7 +127,6 @@ public class SpectrumStructurePoolBasedGenerator {
 		private final StructureManager structureManager;
 		private final List<? super PoolStructurePiece> children;
 		private final Random random;
-		final Deque<SpectrumStructurePoolBasedGenerator.ShapedPoolStructurePiece> structurePieces = Queues.newArrayDeque();
 		
 		StructurePoolGenerator(Registry<StructurePool> registry, int maxSize, SpectrumStructurePoolBasedGenerator.PieceFactory pieceFactory, ChunkGenerator chunkGenerator, StructureManager structureManager, List<? super PoolStructurePiece> children, Random random) {
 			this.registry = registry;

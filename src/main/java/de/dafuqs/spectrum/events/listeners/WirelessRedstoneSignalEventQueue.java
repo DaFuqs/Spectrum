@@ -13,16 +13,6 @@ import net.minecraft.world.event.PositionSource;
 
 public class WirelessRedstoneSignalEventQueue extends EventQueue<WirelessRedstoneSignalEventQueue.EventEntry> {
 	
-	public static class EventEntry {
-		public RedstoneTransferGameEvent gameEvent;
-		public int distance;
-		
-		public EventEntry(RedstoneTransferGameEvent gameEvent, int distance) {
-			this.gameEvent = gameEvent;
-			this.distance = distance;
-		}
-	}
-	
 	public WirelessRedstoneSignalEventQueue(PositionSource positionSource, int range, EventQueue.Callback listener) {
 		super(positionSource, range, listener);
 	}
@@ -34,6 +24,16 @@ public class WirelessRedstoneSignalEventQueue extends EventQueue<WirelessRedston
 			int delay = eventEntry.distance * 2;
 			this.schedule(eventEntry, delay);
 			SpectrumS2CPacketSender.sendWirelessRedstonePacket((ServerWorld) world, new WirelessRedstoneTransmission(pos, this.positionSource, delay));
+		}
+	}
+	
+	public static class EventEntry {
+		public RedstoneTransferGameEvent gameEvent;
+		public int distance;
+		
+		public EventEntry(RedstoneTransferGameEvent gameEvent, int distance) {
+			this.gameEvent = gameEvent;
+			this.distance = distance;
 		}
 	}
 	

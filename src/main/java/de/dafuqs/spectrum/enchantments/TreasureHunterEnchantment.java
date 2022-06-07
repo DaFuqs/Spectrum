@@ -23,22 +23,6 @@ public class TreasureHunterEnchantment extends SpectrumEnchantment {
 		super(weight, EnchantmentTarget.WEAPON, slotTypes, unlockAdvancementIdentifier);
 	}
 	
-	public int getMinPower(int level) {
-		return 15;
-	}
-	
-	public int getMaxPower(int level) {
-		return super.getMinPower(level) + 30;
-	}
-	
-	public int getMaxLevel() {
-		return SpectrumCommon.CONFIG.TreasureHunterMaxLevel;
-	}
-	
-	public boolean canAccept(Enchantment other) {
-		return super.canAccept(other) && other != Enchantments.LOOTING;
-	}
-	
 	public static void doTreasureHunterForPlayer(ServerPlayerEntity thisEntity, DamageSource source) {
 		if (!thisEntity.isSpectator() && source.getAttacker() instanceof LivingEntity) {
 			int damageSourceTreasureHunt = EnchantmentHelper.getEquipmentLevel(SpectrumEnchantments.TREASURE_HUNTER, (LivingEntity) source.getAttacker());
@@ -58,6 +42,22 @@ public class TreasureHunterEnchantment extends SpectrumEnchantment {
 				}
 			}
 		}
+	}
+	
+	public int getMinPower(int level) {
+		return 15;
+	}
+	
+	public int getMaxPower(int level) {
+		return super.getMinPower(level) + 30;
+	}
+	
+	public int getMaxLevel() {
+		return SpectrumCommon.CONFIG.TreasureHunterMaxLevel;
+	}
+	
+	public boolean canAccept(Enchantment other) {
+		return super.canAccept(other) && other != Enchantments.LOOTING;
 	}
 	
 }

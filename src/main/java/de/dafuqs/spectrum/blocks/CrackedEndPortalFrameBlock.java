@@ -29,27 +29,6 @@ import java.util.Random;
 
 public class CrackedEndPortalFrameBlock extends Block {
 	
-	public enum EndPortalFrameEye implements StringIdentifiable {
-		VANILLA_WITH_END_PORTAL_CRACKER("vanilla_cracker"),
-		NONE("none"),
-		WITH_EYE_OF_ENDER("ender"),
-		WITH_END_PORTAL_CRACKER("cracker");
-		
-		private final String name;
-		
-		EndPortalFrameEye(String name) {
-			this.name = name;
-		}
-		
-		public String toString() {
-			return this.name;
-		}
-		
-		public String asString() {
-			return this.name;
-		}
-	}
-	
 	public static final BooleanProperty FACING_VERTICAL;
 	public static final EnumProperty<EndPortalFrameEye> EYE_TYPE;
 	protected static final VoxelShape FRAME_SHAPE;
@@ -57,6 +36,14 @@ public class CrackedEndPortalFrameBlock extends Block {
 	protected static final VoxelShape FRAME_WITH_EYE_SHAPE;
 	private static BlockPattern COMPLETED_FRAME;
 	private static BlockPattern END_PORTAL;
+
+	static {
+		FACING_VERTICAL = BooleanProperty.of("facing_vertical");
+		EYE_TYPE = EnumProperty.of("eye_type", CrackedEndPortalFrameBlock.EndPortalFrameEye.class);
+		FRAME_SHAPE = Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 13.0D, 16.0D);
+		EYE_SHAPE = Block.createCuboidShape(4.0D, 13.0D, 4.0D, 12.0D, 16.0D, 12.0D);
+		FRAME_WITH_EYE_SHAPE = VoxelShapes.union(FRAME_SHAPE, EYE_SHAPE);
+	}
 	
 	public CrackedEndPortalFrameBlock(Settings settings) {
 		super(settings);
@@ -64,49 +51,6 @@ public class CrackedEndPortalFrameBlock extends Block {
 				this.stateManager.getDefaultState())
 				.with(FACING_VERTICAL, false))
 				.with(EYE_TYPE, EndPortalFrameEye.NONE));
-	}
-	
-	public boolean hasSidedTransparency(BlockState state) {
-		return true;
-	}
-	
-	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-		return state.get(EYE_TYPE).equals(EndPortalFrameEye.NONE) ? FRAME_SHAPE : FRAME_WITH_EYE_SHAPE;
-	}
-	
-	public BlockState getPlacementState(ItemPlacementContext ctx) {
-		Direction facing = ctx.getPlayerFacing();
-		boolean facingVertical = facing.equals(Direction.EAST) || facing.equals(Direction.WEST);
-		return (this.getDefaultState().with(FACING_VERTICAL, facingVertical).with(EYE_TYPE, EndPortalFrameEye.NONE));
-	}
-	
-	public BlockState rotate(BlockState state, BlockRotation rotation) {
-		return state.with(FACING_VERTICAL, !state.get(FACING_VERTICAL));
-	}
-	
-	public BlockState mirror(BlockState state, BlockMirror mirror) {
-		return state;
-	}
-	
-	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-		builder.add(FACING_VERTICAL, EYE_TYPE);
-	}
-	
-	public boolean canPathfindThrough(BlockState state, BlockView world, BlockPos pos, NavigationType type) {
-		return false;
-	}
-	
-	@Deprecated
-	public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
-	
-	}
-	
-	public boolean hasComparatorOutput(BlockState state) {
-		return true;
-	}
-	
-	public int getComparatorOutput(BlockState state, World world, BlockPos pos) {
-		return state.get(EYE_TYPE).equals(EndPortalFrameEye.WITH_EYE_OF_ENDER) ? 15 : 0;
 	}
 	
 	public static void checkAndFillEndPortal(World world, BlockPos blockPos) {
@@ -155,51 +99,6 @@ public class CrackedEndPortalFrameBlock extends Block {
 			
 			world.syncGlobalEvent(1038, portalTopLeft.add(1, 0, 1), 0);
 		}
-	}
-	
-	@Override
-	@Deprecated
-	public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
-		// when placed via end portal cracker => fuse
-		if (isVolatile(state)) {
-			world.createAndScheduleBlockTick(pos, this, 40);
-		}
-	}
-	
-	public boolean isVolatile(BlockState blockState) {
-		EndPortalFrameEye endPortalFrameEye = blockState.get(EYE_TYPE);
-		return endPortalFrameEye.equals(EndPortalFrameEye.VANILLA_WITH_END_PORTAL_CRACKER) || endPortalFrameEye.equals(EndPortalFrameEye.WITH_END_PORTAL_CRACKER);
-	}
-	
-	@Override
-	public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
-		if (isVolatile(world.getBlockState(pos))) {
-			double d = (double) pos.getX() + random.nextDouble();
-			double e = (double) pos.getY() + 1.05D;
-			double f = (double) pos.getZ() + random.nextDouble();
-			world.addParticle(ParticleTypes.SMOKE, d, e, f, 0.0D, 0.0D, 0.0D);
-		}
-	}
-	
-	@Deprecated
-	public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-		if (isVolatile(state)) {
-			// 10% chance to break portal
-			float randomFloat = random.nextFloat();
-			if (randomFloat < 0.05) {
-				world.createExplosion(null, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 2, Explosion.DestructionType.BREAK);
-				destroyPortals(world, pos);
-				world.breakBlock(pos, true);
-			} else if (randomFloat < 0.2) {
-				world.createExplosion(null, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 1, Explosion.DestructionType.BREAK);
-			} else {
-				double d = (double) pos.getX() + random.nextDouble();
-				double e = (double) pos.getY() + 0.8D;
-				double f = (double) pos.getZ() + random.nextDouble();
-				world.addParticle(ParticleTypes.SMOKE, d, e, f, 0.0D, 0.0D, 0.0D);
-			}
-		}
-		world.createAndScheduleBlockTick(pos, this, 10);
 	}
 	
 	public static BlockPattern getCompletedFramePattern() {
@@ -264,12 +163,113 @@ public class CrackedEndPortalFrameBlock extends Block {
 		return END_PORTAL;
 	}
 	
-	static {
-		FACING_VERTICAL = BooleanProperty.of("facing_vertical");
-		EYE_TYPE = EnumProperty.of("eye_type", CrackedEndPortalFrameBlock.EndPortalFrameEye.class);
-		FRAME_SHAPE = Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 13.0D, 16.0D);
-		EYE_SHAPE = Block.createCuboidShape(4.0D, 13.0D, 4.0D, 12.0D, 16.0D, 12.0D);
-		FRAME_WITH_EYE_SHAPE = VoxelShapes.union(FRAME_SHAPE, EYE_SHAPE);
+	public boolean hasSidedTransparency(BlockState state) {
+		return true;
+	}
+	
+	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+		return state.get(EYE_TYPE).equals(EndPortalFrameEye.NONE) ? FRAME_SHAPE : FRAME_WITH_EYE_SHAPE;
+	}
+	
+	public BlockState getPlacementState(ItemPlacementContext ctx) {
+		Direction facing = ctx.getPlayerFacing();
+		boolean facingVertical = facing.equals(Direction.EAST) || facing.equals(Direction.WEST);
+		return (this.getDefaultState().with(FACING_VERTICAL, facingVertical).with(EYE_TYPE, EndPortalFrameEye.NONE));
+	}
+	
+	public BlockState rotate(BlockState state, BlockRotation rotation) {
+		return state.with(FACING_VERTICAL, !state.get(FACING_VERTICAL));
+	}
+	
+	public BlockState mirror(BlockState state, BlockMirror mirror) {
+		return state;
+	}
+	
+	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+		builder.add(FACING_VERTICAL, EYE_TYPE);
+	}
+	
+	public boolean canPathfindThrough(BlockState state, BlockView world, BlockPos pos, NavigationType type) {
+		return false;
+	}
+	
+	@Deprecated
+	public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
+	
+	}
+	
+	public boolean hasComparatorOutput(BlockState state) {
+		return true;
+	}
+	
+	public int getComparatorOutput(BlockState state, World world, BlockPos pos) {
+		return state.get(EYE_TYPE).equals(EndPortalFrameEye.WITH_EYE_OF_ENDER) ? 15 : 0;
+	}
+	
+	@Override
+	@Deprecated
+	public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
+		// when placed via end portal cracker => fuse
+		if (isVolatile(state)) {
+			world.createAndScheduleBlockTick(pos, this, 40);
+		}
+	}
+	
+	public boolean isVolatile(BlockState blockState) {
+		EndPortalFrameEye endPortalFrameEye = blockState.get(EYE_TYPE);
+		return endPortalFrameEye.equals(EndPortalFrameEye.VANILLA_WITH_END_PORTAL_CRACKER) || endPortalFrameEye.equals(EndPortalFrameEye.WITH_END_PORTAL_CRACKER);
+	}
+	
+	@Override
+	public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
+		if (isVolatile(world.getBlockState(pos))) {
+			double d = (double) pos.getX() + random.nextDouble();
+			double e = (double) pos.getY() + 1.05D;
+			double f = (double) pos.getZ() + random.nextDouble();
+			world.addParticle(ParticleTypes.SMOKE, d, e, f, 0.0D, 0.0D, 0.0D);
+		}
+	}
+	
+	@Deprecated
+	public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
+		if (isVolatile(state)) {
+			// 10% chance to break portal
+			float randomFloat = random.nextFloat();
+			if (randomFloat < 0.05) {
+				world.createExplosion(null, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 2, Explosion.DestructionType.BREAK);
+				destroyPortals(world, pos);
+				world.breakBlock(pos, true);
+			} else if (randomFloat < 0.2) {
+				world.createExplosion(null, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 1, Explosion.DestructionType.BREAK);
+			} else {
+				double d = (double) pos.getX() + random.nextDouble();
+				double e = (double) pos.getY() + 0.8D;
+				double f = (double) pos.getZ() + random.nextDouble();
+				world.addParticle(ParticleTypes.SMOKE, d, e, f, 0.0D, 0.0D, 0.0D);
+			}
+		}
+		world.createAndScheduleBlockTick(pos, this, 10);
+	}
+	
+	public enum EndPortalFrameEye implements StringIdentifiable {
+		VANILLA_WITH_END_PORTAL_CRACKER("vanilla_cracker"),
+		NONE("none"),
+		WITH_EYE_OF_ENDER("ender"),
+		WITH_END_PORTAL_CRACKER("cracker");
+		
+		private final String name;
+		
+		EndPortalFrameEye(String name) {
+			this.name = name;
+		}
+		
+		public String toString() {
+			return this.name;
+		}
+		
+		public String asString() {
+			return this.name;
+		}
 	}
 	
 }

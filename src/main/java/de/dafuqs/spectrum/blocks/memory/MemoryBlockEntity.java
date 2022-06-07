@@ -50,6 +50,28 @@ public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 		super(SpectrumBlockEntityRegistry.MEMORY, pos, state);
 	}
 	
+	@Contract("_ -> new")
+	public static @NotNull Pair<Integer, Integer> getEggColorsForEntity(EntityType entityType) {
+		SpawnEggItem spawnEggItem = SpawnEggItem.forEntity(entityType);
+		if (spawnEggItem != null) {
+			return new Pair<>(spawnEggItem.getColor(0), spawnEggItem.getColor(1));
+		}
+		return new Pair<>(0x222222, 0xDDDDDD);
+	}
+	
+	public static int getManifestAdvanceSteps(@NotNull World world, @NotNull BlockPos blockPos) {
+		BlockState belowBlockState = world.getBlockState(blockPos.down());
+		if (belowBlockState.isIn(SpectrumBlockTags.MEMORY_NEVER_MANIFESTERS)) {
+			return 0;
+		} else if (belowBlockState.isIn(SpectrumBlockTags.MEMORY_VERY_FAST_MANIFESTERS)) {
+			return 8;
+		} else if (belowBlockState.isIn(SpectrumBlockTags.MEMORY_FAST_MANIFESTERS)) {
+			return 3;
+		} else {
+			return 1;
+		}
+	}
+	
 	public void setData(LivingEntity livingEntity, @NotNull ItemStack creatureSpawnItemStack) {
 		if (livingEntity instanceof PlayerEntity playerEntity) {
 			setOwner(playerEntity);
@@ -175,15 +197,6 @@ public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 		return nbtCompound;
 	}
 	
-	@Contract("_ -> new")
-	public static @NotNull Pair<Integer, Integer> getEggColorsForEntity(EntityType entityType) {
-		SpawnEggItem spawnEggItem = SpawnEggItem.forEntity(entityType);
-		if (spawnEggItem != null) {
-			return new Pair<>(spawnEggItem.getColor(0), spawnEggItem.getColor(1));
-		}
-		return new Pair<>(0x222222, 0xDDDDDD);
-	}
-	
 	protected Optional<Entity> hatchEntity(ServerWorld world, BlockPos blockPos, ItemStack itemStack) {
 		if (this.memoryItemStack.getItem() instanceof MemoryItem) {
 			Optional<EntityType<?>> entityType = MemoryItem.getEntityType(memoryItemStack.getNbt());
@@ -204,19 +217,6 @@ public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 			}
 		}
 		return Optional.empty();
-	}
-	
-	public static int getManifestAdvanceSteps(@NotNull World world, @NotNull BlockPos blockPos) {
-		BlockState belowBlockState = world.getBlockState(blockPos.down());
-		if (belowBlockState.isIn(SpectrumBlockTags.MEMORY_NEVER_MANIFESTERS)) {
-			return 0;
-		} else if (belowBlockState.isIn(SpectrumBlockTags.MEMORY_VERY_FAST_MANIFESTERS)) {
-			return 8;
-		} else if (belowBlockState.isIn(SpectrumBlockTags.MEMORY_FAST_MANIFESTERS)) {
-			return 3;
-		} else {
-			return 1;
-		}
 	}
 	
 	@Override

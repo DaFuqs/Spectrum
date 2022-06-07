@@ -30,9 +30,9 @@ import org.lwjgl.glfw.GLFW;
 public class BedrockAnvilScreen extends HandledScreen<BedrockAnvilScreenHandler> implements ScreenHandlerListener {
 	
 	private static final Identifier TEXTURE = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/container/bedrock_anvil.png");
+	private final PlayerEntity player;
 	private TextFieldWidget nameField;
 	private TextFieldWidget loreField;
-	private final PlayerEntity player;
 	
 	public BedrockAnvilScreen(BedrockAnvilScreenHandler handler, PlayerInventory inventory, Text title) {
 		super(handler, inventory, title);

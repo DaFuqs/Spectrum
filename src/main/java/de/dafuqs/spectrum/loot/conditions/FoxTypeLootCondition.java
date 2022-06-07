@@ -21,6 +21,12 @@ public class FoxTypeLootCondition implements LootCondition {
 		this.foxType = foxType;
 	}
 	
+	public static Builder builder(FoxEntity.Type foxType) {
+		return () -> {
+			return new FoxTypeLootCondition(foxType);
+		};
+	}
+	
 	@Override
 	public LootConditionType getType() {
 		return SpectrumLootConditionTypes.FOX_TYPE_CONDITION;
@@ -34,12 +40,6 @@ public class FoxTypeLootCondition implements LootCondition {
 		} else {
 			return false;
 		}
-	}
-	
-	public static Builder builder(FoxEntity.Type foxType) {
-		return () -> {
-			return new FoxTypeLootCondition(foxType);
-		};
 	}
 	
 	public static class Serializer implements JsonSerializer<FoxTypeLootCondition> {

@@ -35,11 +35,6 @@ public class PotionWorkshopBrewingDisplay extends PotionWorkshopRecipeDisplay {
 		this.statusEffect = recipe.getStatusEffect();
 	}
 	
-	@Override
-	public CategoryIdentifier<?> getCategoryIdentifier() {
-		return SpectrumPlugins.POTION_WORKSHOP_BREWING;
-	}
-	
 	public static Serializer<PotionWorkshopRecipeDisplay> serializer() {
 		return Serializer.ofSimple(PotionWorkshopBrewingDisplay::simple).inputProvider(PotionWorkshopRecipeDisplay::getOrganisedInputEntries);
 	}
@@ -47,6 +42,11 @@ public class PotionWorkshopBrewingDisplay extends PotionWorkshopRecipeDisplay {
 	private static @NotNull PotionWorkshopRecipeDisplay simple(List<EntryIngredient> inputs, List<EntryIngredient> outputs, @NotNull Optional<Identifier> identifier) {
 		Recipe<?> optionalRecipe = identifier.flatMap(resourceLocation -> RecipeManagerContext.getInstance().getRecipeManager().get(resourceLocation)).orElse(null);
 		return new PotionWorkshopBrewingDisplay(inputs, outputs, (PotionWorkshopBrewingRecipe) optionalRecipe);
+	}
+	
+	@Override
+	public CategoryIdentifier<?> getCategoryIdentifier() {
+		return SpectrumPlugins.POTION_WORKSHOP_BREWING;
 	}
 	
 }

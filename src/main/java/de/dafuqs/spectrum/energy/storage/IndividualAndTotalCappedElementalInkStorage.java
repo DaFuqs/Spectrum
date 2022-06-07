@@ -22,6 +22,20 @@ public class IndividualAndTotalCappedElementalInkStorage extends TotalCappedElem
 		this.maxEnergyPerColor = maxEnergyPerColor;
 	}
 	
+	public static @Nullable IndividualAndTotalCappedElementalInkStorage fromNbt(@NotNull NbtCompound compound) {
+		if (compound.contains("MaxEnergyTotal", NbtElement.LONG_TYPE)) {
+			long maxEnergyTotal = compound.getLong("MaxEnergyTotal");
+			long maxEnergyPerColor = compound.getLong("MaxEnergyPerColor");
+			long cyan = compound.getLong("Cyan");
+			long magenta = compound.getLong("Magenta");
+			long yellow = compound.getLong("Yellow");
+			long black = compound.getLong("Black");
+			long white = compound.getLong("White");
+			return new IndividualAndTotalCappedElementalInkStorage(maxEnergyTotal, maxEnergyPerColor, cyan, magenta, yellow, black, white);
+		}
+		return null;
+	}
+	
 	@Override
 	public long addEnergy(InkColor color, long amount) {
 		if (color instanceof ElementalColor elementalColor) {
@@ -46,20 +60,6 @@ public class IndividualAndTotalCappedElementalInkStorage extends TotalCappedElem
 	@Override
 	public long getMaxPerColor() {
 		return this.maxEnergyPerColor;
-	}
-	
-	public static @Nullable IndividualAndTotalCappedElementalInkStorage fromNbt(@NotNull NbtCompound compound) {
-		if (compound.contains("MaxEnergyTotal", NbtElement.LONG_TYPE)) {
-			long maxEnergyTotal = compound.getLong("MaxEnergyTotal");
-			long maxEnergyPerColor = compound.getLong("MaxEnergyPerColor");
-			long cyan = compound.getLong("Cyan");
-			long magenta = compound.getLong("Magenta");
-			long yellow = compound.getLong("Yellow");
-			long black = compound.getLong("Black");
-			long white = compound.getLong("White");
-			return new IndividualAndTotalCappedElementalInkStorage(maxEnergyTotal, maxEnergyPerColor, cyan, magenta, yellow, black, white);
-		}
-		return null;
 	}
 	
 	public NbtCompound toNbt() {

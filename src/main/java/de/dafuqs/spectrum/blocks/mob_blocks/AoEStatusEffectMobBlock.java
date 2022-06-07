@@ -22,10 +22,10 @@ import java.util.List;
 
 public class AoEStatusEffectMobBlock extends MobBlock {
 	
+	protected final int range;
 	protected StatusEffect statusEffect;
 	protected int amplifier;
 	protected int duration;
-	protected final int range;
 	
 	public AoEStatusEffectMobBlock(Settings settings, ParticleEffect particleEffect, StatusEffect statusEffect, int amplifier, int duration, int range) {
 		super(settings, particleEffect);

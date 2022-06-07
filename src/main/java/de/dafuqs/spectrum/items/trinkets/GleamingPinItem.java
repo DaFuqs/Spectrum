@@ -38,12 +38,6 @@ public class GleamingPinItem extends SpectrumTrinketItem implements EnchanterEnc
 		super(settings, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_gleaming_pin"));
 	}
 	
-	@Override
-	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-		super.appendTooltip(stack, world, tooltip, context);
-		tooltip.add(new TranslatableText("item.spectrum.gleaming_pin.tooltip"));
-	}
-	
 	public static void doGleamingPinEffect(@NotNull PlayerEntity player, @NotNull ServerWorld world, ItemStack gleamingPinStack) {
 		world.playSound(null, player.getX(), player.getY(), player.getZ(), SpectrumSoundEvents.RADIANCE_PIN_TRIGGER, SoundCategory.PLAYERS, 0.4F, 0.9F + world.getRandom().nextFloat() * 0.2F);
 		SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity(world, player.getPos().add(0, 0.75, 0), SpectrumParticleTypes.LIQUID_CRYSTAL_SPARKLE, 100, new Vec3d(0, 0.5, 0), new Vec3d(2.5, 0.1, 2.5));
@@ -57,6 +51,12 @@ public class GleamingPinItem extends SpectrumTrinketItem implements EnchanterEnc
 	
 	public static int getEffectRange(ItemStack stack) {
 		return BASE_RANGE + RANGE_BONUS_PER_LEVEL_OF_SNIPING * EnchantmentHelper.getLevel(SpectrumEnchantments.SNIPER, stack);
+	}
+	
+	@Override
+	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+		super.appendTooltip(stack, world, tooltip, context);
+		tooltip.add(new TranslatableText("item.spectrum.gleaming_pin.tooltip"));
 	}
 	
 	@Override

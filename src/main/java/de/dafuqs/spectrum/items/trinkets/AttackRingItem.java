@@ -32,6 +32,15 @@ public class AttackRingItem extends SpectrumTrinketItem {
 		super(settings, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_jeopardant"));
 	}
 	
+	public static double getAttackModifierForEntity(LivingEntity entity) {
+		if (entity == null) {
+			return 0;
+		} else {
+			double mod = entity.getMaxHealth() / (entity.getHealth() * entity.getHealth() + 1); // starting with 1 % damage at 14 health up to 300 % damage at 1/20 health
+			return Math.max(0, 1 + Math.log10(mod));
+		}
+	}
+	
 	@Override
 	public void onUnequip(ItemStack stack, SlotReference slot, LivingEntity entity) {
 		super.onUnequip(stack, slot, entity);
@@ -52,15 +61,6 @@ public class AttackRingItem extends SpectrumTrinketItem {
 			tooltip.add(new TranslatableText("item.spectrum.jeopardant.tooltip.damage_zero"));
 		} else {
 			tooltip.add(new TranslatableText("item.spectrum.jeopardant.tooltip.damage", mod));
-		}
-	}
-	
-	public static double getAttackModifierForEntity(LivingEntity entity) {
-		if (entity == null) {
-			return 0;
-		} else {
-			double mod = entity.getMaxHealth() / (entity.getHealth() * entity.getHealth() + 1); // starting with 1 % damage at 14 health up to 300 % damage at 1/20 health
-			return Math.max(0, 1 + Math.log10(mod));
 		}
 	}
 	

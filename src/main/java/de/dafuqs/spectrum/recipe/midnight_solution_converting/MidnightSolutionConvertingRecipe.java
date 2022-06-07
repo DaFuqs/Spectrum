@@ -19,11 +19,10 @@ import java.util.List;
 
 public class MidnightSolutionConvertingRecipe implements Recipe<Inventory> {
 	
+	private static final List<Item> outputItems = new ArrayList<>();
 	protected final Identifier id;
 	protected final Ingredient inputIngredient;
 	protected final ItemStack outputItemStack;
-	
-	private static final List<Item> outputItems = new ArrayList<>();
 	
 	public MidnightSolutionConvertingRecipe(Identifier id, @NotNull Ingredient inputIngredient, ItemStack outputItemStack) {
 		this.id = id;
@@ -31,6 +30,10 @@ public class MidnightSolutionConvertingRecipe implements Recipe<Inventory> {
 		this.outputItemStack = outputItemStack;
 		
 		outputItems.add(outputItemStack.getItem());
+	}
+	
+	public static boolean isExistingOutputItem(@NotNull ItemStack itemStack) {
+		return outputItems.contains(itemStack.getItem());
 	}
 	
 	@Override
@@ -91,10 +94,6 @@ public class MidnightSolutionConvertingRecipe implements Recipe<Inventory> {
 			return ((MidnightSolutionConvertingRecipe) object).getId().equals(this.getId());
 		}
 		return false;
-	}
-	
-	public static boolean isExistingOutputItem(@NotNull ItemStack itemStack) {
-		return outputItems.contains(itemStack.getItem());
 	}
 	
 }

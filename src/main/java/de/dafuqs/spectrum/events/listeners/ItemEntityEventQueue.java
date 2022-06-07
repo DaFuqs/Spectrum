@@ -13,18 +13,6 @@ import net.minecraft.world.event.PositionSource;
 
 public class ItemEntityEventQueue extends EventQueue<ItemEntityEventQueue.EventEntry> {
 	
-	public static class EventEntry {
-		public GameEvent gameEvent;
-		public ItemEntity itemEntity;
-		public int distance;
-		
-		public EventEntry(GameEvent gameEvent, ItemEntity itemEntity, int distance) {
-			this.gameEvent = gameEvent;
-			this.itemEntity = itemEntity;
-			this.distance = distance;
-		}
-	}
-	
 	public ItemEntityEventQueue(PositionSource positionSource, int range, Callback listener) {
 		super(positionSource, range, listener);
 	}
@@ -36,6 +24,18 @@ public class ItemEntityEventQueue extends EventQueue<ItemEntityEventQueue.EventE
 			int delay = eventEntry.distance * 2;
 			this.schedule(eventEntry, delay);
 			SpectrumS2CPacketSender.sendItemTransferPacket((ServerWorld) world, new ItemTransfer(pos, this.positionSource, delay));
+		}
+	}
+	
+	public static class EventEntry {
+		public GameEvent gameEvent;
+		public ItemEntity itemEntity;
+		public int distance;
+		
+		public EventEntry(GameEvent gameEvent, ItemEntity itemEntity, int distance) {
+			this.gameEvent = gameEvent;
+			this.itemEntity = itemEntity;
+			this.distance = distance;
 		}
 	}
 	

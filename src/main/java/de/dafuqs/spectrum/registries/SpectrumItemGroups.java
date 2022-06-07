@@ -79,6 +79,7 @@ public class SpectrumItemGroups {
 			if(this.getSelectedTab() == ITEM_GROUP_BLOCKS.getTab(3)) {
 				// fully filled Knowledge Gem
 				stacks.add(KnowledgeGemItem.getKnowledgeDropStackWithXP(10000));
+				stacks.add(SpectrumItems.MIDNIGHT_ABERRATION.getStableStack());
 				
 				for(InkColor color : InkColor.all()) {
 					stacks.add(SpectrumItems.INK_FLASK.getFullStack(color));
@@ -132,7 +133,7 @@ public class SpectrumItemGroups {
 				
 				// all memories that have spirit instiller recipes
 				Item memoryItem = SpectrumBlocks.MEMORY.asItem();
-				for(ISpiritInstillerRecipe recipe : SpectrumCommon.minecraftServer.getRecipeManager().listAllOfType(SpectrumRecipeTypes.SPIRIT_INSTILLER_RECIPE)) {
+				for(ISpiritInstillerRecipe recipe : SpectrumCommon.minecraftServer.getRecipeManager().listAllOfType(SpectrumRecipeTypes.SPIRIT_INSTILLING)) {
 					if(recipe.getOutput().isOf(memoryItem)) {
 						stacks.add(recipe.getOutput());
 					}

@@ -263,17 +263,17 @@ public class Support {
 	}
 	
 	public static Optional<BlockPos> getNexReplaceableBlockPosUpDown(World world, BlockPos blockPos, int maxUpDown) {
-		if(world.getBlockState(blockPos).getMaterial().isReplaceable()) {
+		if (world.getBlockState(blockPos).getMaterial().isReplaceable()) {
 			// search down
-			for(int i = 0; i < maxUpDown; i++) {
-				if(!world.getBlockState(blockPos.down(i+1)).getMaterial().isReplaceable()) {
+			for (int i = 0; i < maxUpDown; i++) {
+				if (!world.getBlockState(blockPos.down(i + 1)).getMaterial().isReplaceable()) {
 					return Optional.of(blockPos.down(i));
 				}
 			}
 		} else {
 			// search up
-			for(int i = 0; i < maxUpDown; i++) {
-				if(!world.getBlockState(blockPos.up(i+1)).getMaterial().isReplaceable()) {
+			for (int i = 1; i <= maxUpDown; i++) {
+				if (world.getBlockState(blockPos.up(i)).getMaterial().isReplaceable()) {
 					return Optional.of(blockPos.up(i));
 				}
 			}

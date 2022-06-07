@@ -22,6 +22,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.Vec3i;
+import net.minecraft.world.World;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
@@ -260,4 +261,24 @@ public class Support {
 	public static boolean hasPlayerFinishedMod(PlayerEntity player) {
 		return Support.hasAdvancement(player, PROGRESSION_FINISHED_ADVANCEMENT_IDENTIFIER);
 	}
+	
+	public static Optional<BlockPos> getNexReplaceableBlockPosUpDown(World world, BlockPos blockPos, int maxUpDown) {
+		if(world.getBlockState(blockPos).getMaterial().isReplaceable()) {
+			// search down
+			for(int i = 0; i < maxUpDown; i++) {
+				if(!world.getBlockState(blockPos.down(i+1)).getMaterial().isReplaceable()) {
+					return Optional.of(blockPos.down(i));
+				}
+			}
+		} else {
+			// search up
+			for(int i = 0; i < maxUpDown; i++) {
+				if(!world.getBlockState(blockPos.up(i+1)).getMaterial().isReplaceable()) {
+					return Optional.of(blockPos.up(i));
+				}
+			}
+		}
+		return Optional.empty();
+	}
+	
 }

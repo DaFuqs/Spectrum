@@ -1664,6 +1664,8 @@
   "item.spectrum.germinated_jade_vine_seeds.tooltip3": "§e⚠ Dies in direct sunlight",
   "item.spectrum.jade_vine_petals": "Jade Petals",
   "item.spectrum.moonstruck_nectar": "Moonstruck Nectar",
+  "item.spectrum.moonstruck_nectar.tooltip": "Restorative properties allow repairing any damaged tool",
+  "item.spectrum.moonstruck_nectar.tooltip2": "Can be drunk for a short burst of Regeneration",
   "item.spectrum.restoration_tea": "Restoration Tea",
   "item.spectrum.restoration_tea.tooltip": "§7Cures all negative Status Effects and",
   "item.spectrum.restoration_tea.tooltip2": "§7makes you immune to them for a short time",

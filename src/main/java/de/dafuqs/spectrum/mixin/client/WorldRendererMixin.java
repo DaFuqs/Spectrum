@@ -93,17 +93,20 @@ public abstract class WorldRendererMixin implements WorldRendererAccessor {
 		GuiOverlay.doNotRenderOverlay();
 		
 		if (client.player != null && renderBlockOutline) {
-			ItemStack handItemStack = client.player.getEquippedStack(EquipmentSlot.MAINHAND);
-			Item handItem = handItemStack.getItem();
-			if (handItem instanceof PlacementStaffItem) {
-				HitResult hitResult = this.client.crosshairTarget;
-				if (hitResult != null && hitResult.getType() == HitResult.Type.BLOCK) {
-					renderedExtendedOutline = renderPlacementStaffOutline(matrices, camera, d, e, f, immediate, (BlockHitResult) hitResult);
-				}
-			} else if (handItem instanceof ExchangeStaffItem) {
-				HitResult hitResult = this.client.crosshairTarget;
-				if (hitResult != null && hitResult.getType() == HitResult.Type.BLOCK) {
-					renderedExtendedOutline = renderExchangeStaffOutline(matrices, camera, d, e, f, immediate, handItemStack, (BlockHitResult) hitResult);
+			for(ItemStack handStack : client.player.getItemsHand()) {
+				Item handItem = handStack.getItem();
+				if (handItem instanceof PlacementStaffItem) {
+					HitResult hitResult = this.client.crosshairTarget;
+					if (hitResult != null && hitResult.getType() == HitResult.Type.BLOCK) {
+						renderedExtendedOutline = renderPlacementStaffOutline(matrices, camera, d, e, f, immediate, (BlockHitResult) hitResult);
+					}
+					break;
+				} else if (handItem instanceof ExchangeStaffItem) {
+					HitResult hitResult = this.client.crosshairTarget;
+					if (hitResult != null && hitResult.getType() == HitResult.Type.BLOCK) {
+						renderedExtendedOutline = renderExchangeStaffOutline(matrices, camera, d, e, f, immediate, handStack, (BlockHitResult) hitResult);
+					}
+					break;
 				}
 			}
 		}

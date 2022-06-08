@@ -188,8 +188,8 @@ public class ExchangeStaffItem extends BuildingStaffItem implements EnchanterEnc
 		if ((player != null && player.isCreative()) || !isBlacklisted(targetBlockState)) {
 			Block targetBlock = targetBlockState.getBlock();
 			Item targetBlockItem = targetBlockState.getBlock().asItem();
-			if (player != null && targetBlockItem != Items.AIR && context.getHand() == Hand.MAIN_HAND) {
-				if (player.isSneaking()) {
+			if (player != null && targetBlockItem != Items.AIR) {
+				if (context.getHand() == Hand.MAIN_HAND && player.isSneaking()) {
 					if (world instanceof ServerWorld serverWorld) {
 						storeBlockAsTarget(context.getStack(), targetBlock);
 						world.playSound(null, player.getBlockPos(), SpectrumSoundEvents.EXCHANGE_STAFF_SELECT, SoundCategory.PLAYERS, 1.0F, 1.0F);

@@ -85,7 +85,7 @@ public class PlacementStaffItem extends BuildingStaffItem {
 			Block targetBlock = targetBlockState.getBlock();
 			Item targetBlockItem = targetBlock.asItem();
 			
-			if (player != null && targetBlockItem != Items.AIR && context.getHand() == Hand.MAIN_HAND) {
+			if (player != null && targetBlockItem != Items.AIR) {
 				int count;
 				if (player.isCreative()) {
 					count = Integer.MAX_VALUE;

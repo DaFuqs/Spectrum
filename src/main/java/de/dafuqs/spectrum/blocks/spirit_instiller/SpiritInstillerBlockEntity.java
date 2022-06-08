@@ -61,7 +61,7 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 	protected SimpleInventory inventory;
 	protected boolean inventoryChanged;
 	private UUID ownerUUID;
-	private Map<UpgradeType, Double> upgrades;
+	private Map<UpgradeType, Float> upgrades;
 	private BlockRotation multiblockRotation = BlockRotation.NONE;
 	private ISpiritInstillerRecipe currentRecipe;
 	private int craftingTime;
@@ -438,8 +438,7 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 	
 	@Override
 	public void calculateUpgrades() {
-		Pair<Integer, Map<UpgradeType, Double>> upgrades = Upgradeable.checkUpgradeMods2(world, pos, multiblockRotation, 4, 1);
-		this.upgrades = upgrades.getRight();
+		this.upgrades = Upgradeable.calculateUpgradeMods2(world, pos, multiblockRotation, 4, 1, this.ownerUUID);
 		this.markDirty();
 	}
 	
@@ -541,7 +540,7 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 		this.inventory.clear();
 	}
 	
-	public Map<UpgradeType, Double> getUpgrades() {
+	public Map<UpgradeType, Float> getUpgrades() {
 		return this.upgrades;
 	}
 	

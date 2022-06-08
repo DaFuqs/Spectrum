@@ -90,7 +90,7 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 	protected int virtualInventoryRecipeOrientation;
 	
 	protected boolean inventoryChanged;
-	private Map<Upgradeable.UpgradeType, Double> upgrades;
+	private Map<Upgradeable.UpgradeType, Float> upgrades;
 	
 	private Recipe currentRecipe;
 	private int craftingTime;
@@ -833,8 +833,7 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 	}
 	
 	public void calculateUpgrades() {
-		Pair<Integer, Map<UpgradeType, Double>> upgrades = Upgradeable.checkUpgradeMods4(world, pos, 3, 0);
-		this.upgrades = upgrades.getRight();
+		this.upgrades = Upgradeable.calculateUpgradeMods4(world, pos, 3, 0, this.ownerUUID);
 		this.markDirty();
 	}
 	

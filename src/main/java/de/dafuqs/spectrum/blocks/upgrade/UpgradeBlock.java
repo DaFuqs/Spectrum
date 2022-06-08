@@ -47,9 +47,9 @@ public class UpgradeBlock extends BlockWithEntity {
 	// Like: The further the player progresses,
 	// the higher are the chances for good mods?
 	private final Upgradeable.UpgradeType upgradeType;
-	private final double upgradeMod;
+	private final float upgradeMod;
 	
-	public UpgradeBlock(Settings settings, Upgradeable.UpgradeType upgradeType, double upgradeMod) {
+	public UpgradeBlock(Settings settings, Upgradeable.UpgradeType upgradeType, float upgradeMod) {
 		super(settings);
 		this.upgradeType = upgradeType;
 		this.upgradeMod = upgradeMod;
@@ -99,7 +99,7 @@ public class UpgradeBlock extends BlockWithEntity {
 		return this.upgradeType;
 	}
 	
-	public double getUpgradeMod() {
+	public float getUpgradeMod() {
 		return this.upgradeMod;
 	}
 	

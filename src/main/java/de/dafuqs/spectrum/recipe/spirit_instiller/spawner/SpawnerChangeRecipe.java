@@ -79,7 +79,7 @@ public abstract class SpawnerChangeRecipe implements ISpiritInstillerRecipe {
 					// Calculate and spawn experience
 					int awardedExperience = 0;
 					if (getExperience() > 0) {
-						Map<Upgradeable.UpgradeType, Double> upgrades = spiritInstillerBlockEntity.getUpgrades();
+						Map<Upgradeable.UpgradeType, Float> upgrades = spiritInstillerBlockEntity.getUpgrades();
 						double experienceModifier = upgrades.get(Upgradeable.UpgradeType.EXPERIENCE);
 						float recipeExperienceBeforeMod = getExperience();
 						awardedExperience = Support.getIntFromDecimalWithChance(recipeExperienceBeforeMod * experienceModifier, world.random);

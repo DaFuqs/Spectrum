@@ -47,6 +47,7 @@ import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.lwjgl.system.CallbackI;
 
 import java.util.Map;
 import java.util.Optional;
@@ -59,7 +60,7 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 	protected SimpleInventory inventory;
 	protected @NotNull Fluid storedFluid;
 	private UUID ownerUUID;
-	private Map<Upgradeable.UpgradeType, Double> upgrades;
+	private Map<Upgradeable.UpgradeType, Float> upgrades;
 	private FusionShrineRecipe currentRecipe;
 	private int craftingTime;
 	private int craftingTimeTotal;
@@ -410,8 +411,7 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 	}
 	
 	public void calculateUpgrades() {
-		Pair<Integer, Map<Upgradeable.UpgradeType, Double>> upgrades = Upgradeable.checkUpgradeMods4(world, pos, 2, 0);
-		this.upgrades = upgrades.getRight();
+		this.upgrades = Upgradeable.calculateUpgradeMods4(world, pos, 2, 0, this.ownerUUID);
 		this.markDirty();
 	}
 	

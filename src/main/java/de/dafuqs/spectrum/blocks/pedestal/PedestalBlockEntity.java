@@ -7,7 +7,6 @@ import de.dafuqs.spectrum.enums.BuiltinGemstoneColor;
 import de.dafuqs.spectrum.enums.PedestalRecipeTier;
 import de.dafuqs.spectrum.helpers.InventoryHelper;
 import de.dafuqs.spectrum.helpers.Support;
-import de.dafuqs.spectrum.interfaces.PlayerOwned;
 import de.dafuqs.spectrum.inventories.AutoCraftingInventory;
 import de.dafuqs.spectrum.inventories.PedestalScreenHandler;
 import de.dafuqs.spectrum.items.CraftingTabletItem;
@@ -82,7 +81,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 	protected Recipe currentRecipe;
 	protected PedestalRecipeTier cachedMaxPedestalTier;
 	protected long cachedMaxPedestalTierTick;
-	protected Map<UpgradeType, Double> upgrades;
+	protected Map<UpgradeType, Float> upgrades;
 	protected boolean inventoryChanged;
 	
 	public PedestalBlockEntity(BlockPos blockPos, BlockState blockState) {
@@ -832,16 +831,8 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 	 * Search for upgrades at valid positions and apply
 	 */
 	public void calculateUpgrades() {
-		Pair<Integer, Map<UpgradeType, Double>> upgrades = Upgradeable.checkUpgradeMods4(world, pos, 3, 2);
-		this.upgrades = upgrades.getRight();
+		this.upgrades = Upgradeable.calculateUpgradeMods4(world, pos, 3, 2, this.ownerUUID);
 		this.markDirty();
-		
-		if (upgrades.getLeft() == 4) {
-			ServerPlayerEntity owner = (ServerPlayerEntity) getOwnerIfOnline();
-			if (owner != null) {
-				Support.grantAdvancementCriterion(owner, "midgame/use_all_pedestal_upgrades", "used_all");
-			}
-		}
 	}
 	
 	@Override

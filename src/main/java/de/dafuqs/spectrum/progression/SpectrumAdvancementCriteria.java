@@ -28,6 +28,7 @@ public class SpectrumAdvancementCriteria {
 	public static SpiritInstillerCraftingCriterion SPIRIT_INSTILLER_CRAFTING;
 	public static SlimeSizingCriterion SLIME_SIZING;
 	public static CrystalApothecaryCollectingCriterion CRYSTAL_APOTHECARY_COLLECTING;
+	public static UpgradePlaceCriterion UPGRADE_PLACING;
 	
 	public static void register() {
 		ADVANCEMENT_GOTTEN = CriteriaAccessor.callRegister(new HasAdvancementCriterion());
@@ -53,6 +54,7 @@ public class SpectrumAdvancementCriteria {
 		SPIRIT_INSTILLER_CRAFTING = CriteriaAccessor.callRegister(new SpiritInstillerCraftingCriterion());
 		SLIME_SIZING = CriteriaAccessor.callRegister(new SlimeSizingCriterion());
 		CRYSTAL_APOTHECARY_COLLECTING = CriteriaAccessor.callRegister(new CrystalApothecaryCollectingCriterion());
+		UPGRADE_PLACING = CriteriaAccessor.callRegister(new UpgradePlaceCriterion());
 	}
 	
 }

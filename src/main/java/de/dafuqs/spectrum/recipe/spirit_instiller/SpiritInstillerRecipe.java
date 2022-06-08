@@ -97,7 +97,7 @@ public class SpiritInstillerRecipe implements ISpiritInstillerRecipe {
 	public ItemStack craft(Inventory inv) {
 		ItemStack resultStack = ItemStack.EMPTY;
 		if (inv instanceof SpiritInstillerBlockEntity spiritInstillerBlockEntity) {
-			Map<Upgradeable.UpgradeType, Double> upgrades = spiritInstillerBlockEntity.getUpgrades();
+			Map<Upgradeable.UpgradeType, Float> upgrades = spiritInstillerBlockEntity.getUpgrades();
 			World world = spiritInstillerBlockEntity.getWorld();
 			BlockPos pos = spiritInstillerBlockEntity.getPos();
 			

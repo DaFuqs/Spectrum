@@ -21,6 +21,7 @@ public class SpectrumItemTags {
 	public static TagKey<Item> MEMORY_BONDING_AGENTS_CONCEILABLE;
 	public static TagKey<Item> MOB_HEADS;
 	public static TagKey<Item> SPAWNERS;
+	public static TagKey<Item> INDESTRUCTIBLE_BLACKLISTED;
 	
 	private static TagKey<Item> getReference(String id) {
 		return TagKey.of(Registry.ITEM_KEY, new Identifier(SpectrumCommon.MOD_ID, id));
@@ -40,5 +41,6 @@ public class SpectrumItemTags {
 		MEMORY_BONDING_AGENTS_CONCEILABLE = getReference("memory_bonding_agents_conceilable");
 		MOB_HEADS = getReference("mob_heads");
 		SPAWNERS = getReference("spawners");
+		INDESTRUCTIBLE_BLACKLISTED = getReference("indestructible_blacklisted");
 	}
 }

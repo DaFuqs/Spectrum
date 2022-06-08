@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.enchantments;
 
+import de.dafuqs.spectrum.registries.SpectrumItemTags;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentTarget;
 import net.minecraft.entity.EquipmentSlot;
@@ -30,7 +31,7 @@ public class IndestructibleEnchantment extends SpectrumEnchantment {
 	
 	@Override
 	public boolean isAcceptableItem(ItemStack stack) {
-		return stack.isDamageable();
+		return stack.isDamageable() && !stack.isIn(SpectrumItemTags.INDESTRUCTIBLE_BLACKLISTED);
 	}
 	
 }

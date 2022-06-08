@@ -14,11 +14,6 @@
     "spectrum:bedrock_bow",
     "spectrum:bedrock_crossbow",
     "spectrum:bedrock_shears",
-    "spectrum:bedrock_fishing_rod",
-
-    "spectrum:emergency_helmet",
-    "spectrum:emergency_chestplate",
-    "spectrum:emergency_leggings",
-    "spectrum:emergency_boots"
+    "spectrum:bedrock_fishing_rod"
   ]
 }

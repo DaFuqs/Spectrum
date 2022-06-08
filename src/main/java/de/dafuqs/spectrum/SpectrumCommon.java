@@ -24,6 +24,7 @@ import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.progression.BlockCloakManager;
 import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
+import de.dafuqs.spectrum.recipe.crafting.RepairAnythingRecipe;
 import de.dafuqs.spectrum.recipe.enchantment_upgrade.EnchantmentUpgradeRecipe;
 import de.dafuqs.spectrum.recipe.enchantment_upgrade.EnchantmentUpgradeRecipeSerializer;
 import de.dafuqs.spectrum.recipe.potion_workshop.PotionWorkshopReagents;
@@ -105,6 +106,8 @@ public class SpectrumCommon implements ModInitializer {
 		identifier.accept(SpawnerRequiredPlayerRangeChangeRecipe.SERIALIZER, new Identifier(SpectrumCommon.MOD_ID, "spirit_instiller_spawner_spawner_player_range_change"));
 		identifier.accept(SpawnerSpawnCountChangeRecipe.SERIALIZER, new Identifier(SpectrumCommon.MOD_ID, "spirit_instiller_spawner_spawn_count_change"));
 		identifier.accept(SpawnerSpawnDelayChangeRecipe.SERIALIZER, new Identifier(SpectrumCommon.MOD_ID, "spirit_instiller_spawner_spawn_delay_change"));
+		
+		identifier.accept(RepairAnythingRecipe.SERIALIZER, new Identifier(SpectrumCommon.MOD_ID, "repair_anything"));
 	}
 	
 	@Override

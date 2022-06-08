@@ -1,15 +1,16 @@
 package de.dafuqs.spectrum.interfaces;
 
+import de.dafuqs.spectrum.SpectrumCommon;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.UUID;
 
 public interface PlayerOwned {
 	
-	static PlayerEntity getPlayerEntityIfOnline(World world, UUID ownerUUID) {
+	static PlayerEntity getPlayerEntityIfOnline(UUID ownerUUID) {
 		if (ownerUUID != null) {
-			return world.getPlayerByUuid(ownerUUID);
+			return SpectrumCommon.minecraftServer.getPlayerManager().getPlayer(ownerUUID);
 		}
 		return null;
 	}
@@ -26,9 +27,11 @@ public interface PlayerOwned {
 		return playerEntity.getUuid().equals(getOwnerUUID());
 	}
 	
-	default PlayerEntity getPlayerEntityIfOnline(World world) {
-		if (this.getOwnerUUID() != null) {
-			return world.getPlayerByUuid(this.getOwnerUUID());
+	@Nullable
+	default PlayerEntity getOwnerIfOnline() {
+		UUID ownerUUID = this.getOwnerUUID();
+		if (ownerUUID != null) {
+			return SpectrumCommon.minecraftServer.getPlayerManager().getPlayer(ownerUUID);
 		}
 		return null;
 	}

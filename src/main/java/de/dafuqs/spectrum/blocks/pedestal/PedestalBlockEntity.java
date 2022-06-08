@@ -661,7 +661,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 	}
 	
 	private void grantPlayerPedestalCraftingAdvancement(PedestalCraftingRecipe recipe, int experience) {
-		ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity) PlayerOwned.getPlayerEntityIfOnline(world, this.ownerUUID);
+		ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity) getOwnerIfOnline();
 		if (serverPlayerEntity != null) {
 			SpectrumAdvancementCriteria.PEDESTAL_CRAFTING.trigger(serverPlayerEntity, recipe.getOutput(), experience);
 		}
@@ -795,7 +795,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 				boolean valid = multiblock.validate(world, pos.down(), BlockRotation.NONE);
 				if (valid) {
 					highestAvailableRecipeTier = PedestalRecipeTier.COMPLEX;
-					SpectrumAdvancementCriteria.COMPLETED_MULTIBLOCK.trigger((ServerPlayerEntity) this.getPlayerEntityIfOnline(world), multiblock);
+					SpectrumAdvancementCriteria.COMPLETED_MULTIBLOCK.trigger((ServerPlayerEntity) this.getOwnerIfOnline(), multiblock);
 					found = true;
 				}
 			}
@@ -804,7 +804,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 				boolean valid = multiblock.validate(world, pos.down(), BlockRotation.NONE);
 				if (valid) {
 					highestAvailableRecipeTier = PedestalRecipeTier.ADVANCED;
-					SpectrumAdvancementCriteria.COMPLETED_MULTIBLOCK.trigger((ServerPlayerEntity) this.getPlayerEntityIfOnline(world), multiblock);
+					SpectrumAdvancementCriteria.COMPLETED_MULTIBLOCK.trigger((ServerPlayerEntity) this.getOwnerIfOnline(), multiblock);
 					found = true;
 				}
 			}
@@ -813,7 +813,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 				boolean valid = multiblock.validate(world, pos.down(), BlockRotation.NONE);
 				if (valid) {
 					highestAvailableRecipeTier = PedestalRecipeTier.SIMPLE;
-					SpectrumAdvancementCriteria.COMPLETED_MULTIBLOCK.trigger((ServerPlayerEntity) this.getPlayerEntityIfOnline(world), multiblock);
+					SpectrumAdvancementCriteria.COMPLETED_MULTIBLOCK.trigger((ServerPlayerEntity) this.getOwnerIfOnline(), multiblock);
 				}
 			}
 			
@@ -837,7 +837,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		this.markDirty();
 		
 		if (upgrades.getLeft() == 4) {
-			ServerPlayerEntity owner = (ServerPlayerEntity) getPlayerEntityIfOnline(world);
+			ServerPlayerEntity owner = (ServerPlayerEntity) getOwnerIfOnline();
 			if (owner != null) {
 				Support.grantAdvancementCriterion(owner, "midgame/use_all_pedestal_upgrades", "used_all");
 			}

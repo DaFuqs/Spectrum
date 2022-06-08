@@ -149,7 +149,7 @@ public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 					((FoxEntityAccessor) foxEntity).invokeAddTrustedUuid(this.ownerUUID);
 				}
 				if (hatchedEntity.get() instanceof AnimalEntity animalEntity) {
-					PlayerEntity player = getPlayerEntityIfOnline(world);
+					PlayerEntity player = getOwnerIfOnline();
 					if (player != null) {
 						animalEntity.lovePlayer(player);
 						animalEntity.resetLoveTicks();
@@ -162,7 +162,7 @@ public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 	}
 	
 	protected void triggerManifestingAdvancementCriterion(Entity hatchedEntity) {
-		PlayerEntity owner = PlayerOwned.getPlayerEntityIfOnline(world, this.ownerUUID);
+		PlayerEntity owner = getOwnerIfOnline();
 		if (owner instanceof ServerPlayerEntity serverPlayerEntity) {
 			SpectrumAdvancementCriteria.MEMORY_MANIFESTING.trigger(serverPlayerEntity, hatchedEntity);
 		}

@@ -135,7 +135,7 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 			// check the crafting conditions from time to time
 			//  good for performance because of the many checks
 			if (fusionShrineBlockEntity.craftingTime % 60 == 0) {
-				PlayerEntity lastInteractedPlayer = PlayerOwned.getPlayerEntityIfOnline(world, fusionShrineBlockEntity.ownerUUID);
+				PlayerEntity lastInteractedPlayer = fusionShrineBlockEntity.getOwnerIfOnline();
 				
 				boolean recipeConditionsMet = recipe.canPlayerCraft(lastInteractedPlayer) && recipe.areConditionMetCurrently(world);
 				boolean structureCompleteWithSky = FusionShrineBlock.verifyStructureWithSkyAccess(world, blockPos, null);
@@ -341,7 +341,7 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 	}
 	
 	private void grantPlayerFusionCraftingAdvancement(FusionShrineRecipe recipe, int experience) {
-		ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity) PlayerOwned.getPlayerEntityIfOnline(this.world, this.ownerUUID);
+		ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity) getOwnerIfOnline();
 		if (serverPlayerEntity != null) {
 			SpectrumAdvancementCriteria.FUSION_SHRINE_CRAFTING.trigger(serverPlayerEntity, recipe.getOutput(), experience);
 		}

@@ -105,10 +105,8 @@ public class EnderSpliceItem extends Item implements EnchanterEnchantable {
 				interactWithEntityClient();
 			}
 		} else {
-			PlayerEntity playerEntity = user instanceof PlayerEntity ? (PlayerEntity) user : null;
-			if (playerEntity instanceof ServerPlayerEntity) {
-				Criteria.CONSUME_ITEM.trigger((ServerPlayerEntity) playerEntity, itemStack);
-			}
+			ServerPlayerEntity playerEntity = user instanceof ServerPlayerEntity ? (ServerPlayerEntity) user : null;
+			Criteria.CONSUME_ITEM.trigger(playerEntity, itemStack);
 			
 			boolean resonance = EnchantmentHelper.getLevel(SpectrumEnchantments.RESONANCE, itemStack) > 0;
 			
@@ -126,11 +124,11 @@ public class EnderSpliceItem extends Item implements EnchanterEnchantable {
 				} else {
 					// Nothing stored => Store current position
 					setTeleportTargetPos(itemStack, playerEntity.getEntityWorld(), playerEntity.getPos());
-					((ServerPlayerEntity) playerEntity).networkHandler.sendPacket(new PlaySoundIdS2CPacket(SpectrumSoundEvents.ENDER_SPLICE_BOUND.getId(), SoundCategory.PLAYERS, playerEntity.getPos(), 1.0F, 1.0F));
+					playerEntity.networkHandler.sendPacket(new PlaySoundIdS2CPacket(SpectrumSoundEvents.ENDER_SPLICE_BOUND.getId(), SoundCategory.PLAYERS, playerEntity.getPos(), 1.0F, 1.0F));
 				}
 			}
-			
 			playerEntity.incrementStat(Stats.USED.getOrCreateStat(this));
+			
 			if (!playerEntity.getAbilities().creativeMode) {
 				int unbreakingLevel = EnchantmentHelper.getLevel(Enchantments.UNBREAKING, itemStack);
 				if (unbreakingLevel == 0) {
@@ -157,7 +155,7 @@ public class EnderSpliceItem extends Item implements EnchanterEnchantable {
 	}
 	
 	private void teleportPlayerToPlayerWithUUID(World world, LivingEntity user, PlayerEntity playerEntity, UUID targetPlayerUUID, boolean hasResonance) {
-		PlayerEntity targetPlayer = PlayerOwned.getPlayerEntityIfOnline(world, targetPlayerUUID);
+		PlayerEntity targetPlayer = PlayerOwned.getPlayerEntityIfOnline(targetPlayerUUID);
 		if (targetPlayer != null) {
 			teleportPlayerToPos(targetPlayer.getEntityWorld(), user, playerEntity, targetPlayer.getEntityWorld(), targetPlayer.getPos(), hasResonance);
 		}

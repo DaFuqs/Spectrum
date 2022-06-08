@@ -73,7 +73,7 @@ public class BlockFlooderBlock extends BlockWithEntity {
 	private boolean calculateTargetBlockAndPropagate(BlockState state, World world, BlockPos pos, Random random) {
 		BlockEntity blockEntity = world.getBlockEntity(pos);
 		if (blockEntity instanceof BlockFlooderBlockEntity blockFlooderBlockEntity) {
-			PlayerEntity owner = PlayerOwned.getPlayerEntityIfOnline(world, blockFlooderBlockEntity.getOwnerUUID());
+			PlayerEntity owner = PlayerOwned.getPlayerEntityIfOnline(blockFlooderBlockEntity.getOwnerUUID());
 			if (owner == null) {
 				world.setBlockState(pos, DEFAULT_BLOCK_STATE, 3);
 				return false;
@@ -167,7 +167,7 @@ public class BlockFlooderBlock extends BlockWithEntity {
 					}
 				} else {
 					world.setBlockState(pos, targetState, 3);
-					PlayerEntity owner = PlayerOwned.getPlayerEntityIfOnline(world, blockFlooderBlockEntity.getOwnerUUID());
+					PlayerEntity owner = PlayerOwned.getPlayerEntityIfOnline(blockFlooderBlockEntity.getOwnerUUID());
 					if (!owner.isCreative()) {
 						InventoryHelper.removeFromInventory(new ItemStack(targetState.getBlock().asItem()), owner.getInventory().main);
 					}

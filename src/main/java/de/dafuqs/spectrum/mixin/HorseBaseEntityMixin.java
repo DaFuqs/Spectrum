@@ -25,8 +25,7 @@ public class HorseBaseEntityMixin {
 	
 	@Inject(at = @At("HEAD"), method = "tick()V")
 	public void tick(CallbackInfo callbackInfo) {
-		if ((Object) this instanceof AbstractDonkeyEntity && ((AbstractDonkeyEntity) (Object) this).world instanceof ServerWorld) {
-			AbstractDonkeyEntity thisEntity = (AbstractDonkeyEntity) (Object) this;
+		if ((Object) this instanceof AbstractDonkeyEntity thisEntity && thisEntity.world instanceof ServerWorld) {
 			
 			if (thisEntity.hasChest()) {
 				SimpleInventory var1 = this.items;
@@ -42,7 +41,7 @@ public class HorseBaseEntityMixin {
 				// about 3.1 stacks of paletur fragments will send an animal flying
 				// => trigger a hidden advancement
 				if (addedGravity > 0.081 && thisEntity.world.getTime() % 20 == 0) {
-					PlayerEntity ownerPlayerEntity = PlayerOwned.getPlayerEntityIfOnline(thisEntity.world, thisEntity.getOwnerUuid());
+					PlayerEntity ownerPlayerEntity = PlayerOwned.getPlayerEntityIfOnline(thisEntity.getOwnerUuid());
 					if (ownerPlayerEntity != null) {
 						Support.grantAdvancementCriterion((ServerPlayerEntity) ownerPlayerEntity, "lategame/put_too_many_low_gravity_blocks_into_animal", "gravity");
 					}

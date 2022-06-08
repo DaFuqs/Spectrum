@@ -262,7 +262,7 @@ public class PedestalCraftingRecipe implements Recipe<Inventory>, GatedRecipe {
 	}
 	
 	public boolean canCraft(PedestalBlockEntity pedestalBlockEntity) {
-		PlayerEntity playerEntity = pedestalBlockEntity.getPlayerEntityIfOnline(pedestalBlockEntity.getWorld());
+		PlayerEntity playerEntity = pedestalBlockEntity.getOwnerIfOnline();
 		if (playerEntity == null) {
 			return false;
 		} else {

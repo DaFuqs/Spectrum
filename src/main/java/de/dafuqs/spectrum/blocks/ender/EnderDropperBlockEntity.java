@@ -33,7 +33,7 @@ public class EnderDropperBlockEntity extends BlockEntity implements PlayerOwnedW
 	
 	public int chooseNonEmptySlot() {
 		if (this.hasOwner()) {
-			PlayerEntity playerEntity = world.getPlayerByUuid(this.ownerUUID);
+			PlayerEntity playerEntity = getOwnerIfOnline();
 			if (playerEntity == null) {
 				return -1; // player not online => no drop
 			} else {
@@ -55,15 +55,20 @@ public class EnderDropperBlockEntity extends BlockEntity implements PlayerOwnedW
 	}
 	
 	public ItemStack getStack(int slot) {
-		PlayerEntity playerEntity = world.getPlayerByUuid(this.ownerUUID);
-		EnderChestInventory enderInventory = playerEntity.getEnderChestInventory();
-		return enderInventory.getStack(slot);
+		PlayerEntity playerEntity = getOwnerIfOnline();
+		if(playerEntity != null) {
+			EnderChestInventory enderInventory = playerEntity.getEnderChestInventory();
+			return enderInventory.getStack(slot);
+		}
+		return ItemStack.EMPTY;
 	}
 	
 	public void setStack(int slot, ItemStack itemStack) {
-		PlayerEntity playerEntity = world.getPlayerByUuid(this.ownerUUID);
-		EnderChestInventory enderInventory = playerEntity.getEnderChestInventory();
-		enderInventory.setStack(slot, itemStack);
+		PlayerEntity playerEntity = getOwnerIfOnline();
+		if(playerEntity != null) {
+			EnderChestInventory enderInventory = playerEntity.getEnderChestInventory();
+			enderInventory.setStack(slot, itemStack);
+		}
 	}
 	
 	@Override

@@ -265,7 +265,7 @@ public class CrystalApothecaryBlockEntity extends LootableContainerBlockEntity i
 				boolean anyDropsUsed = drops.size() == 0;
 				for (ItemStack drop : drops) {
 					if (hasOwner()) {
-						PlayerEntity owner = getPlayerEntityIfOnline(world);
+						PlayerEntity owner = getOwnerIfOnline();
 						if (owner instanceof ServerPlayerEntity serverPlayerEntity) {
 							SpectrumAdvancementCriteria.CRYSTAL_APOTHECARY_COLLECTING.trigger(serverPlayerEntity, drop);
 						}

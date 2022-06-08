@@ -284,7 +284,7 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 	}
 	
 	private static boolean checkRecipeRequirements(World world, BlockPos blockPos, @NotNull EnchanterBlockEntity enchanterBlockEntity) {
-		PlayerEntity lastInteractedPlayer = PlayerOwned.getPlayerEntityIfOnline(world, enchanterBlockEntity.ownerUUID);
+		PlayerEntity lastInteractedPlayer = enchanterBlockEntity.getOwnerIfOnline();
 		
 		if (lastInteractedPlayer == null) {
 			return false;
@@ -328,10 +328,10 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 		
 		// vanilla
 		int spentExperience = enchanterBlockEntity.currentItemProcessingTime / EnchanterBlockEntity.REQUIRED_TICKS_FOR_EACH_EXPERIENCE_POINT;
-		grantPlayerEnchantingAdvancementCriterion(enchanterBlockEntity.world, enchanterBlockEntity.ownerUUID, centerStackCopy, spentExperience);
+		grantPlayerEnchantingAdvancementCriterion(enchanterBlockEntity.ownerUUID, centerStackCopy, spentExperience);
 		
 		// enchanter enchanting criterion
-		ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity) PlayerOwned.getPlayerEntityIfOnline(enchanterBlockEntity.world, enchanterBlockEntity.ownerUUID);
+		ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity) enchanterBlockEntity.getOwnerIfOnline();
 		if (serverPlayerEntity != null) {
 			SpectrumAdvancementCriteria.ENCHANTER_ENCHANTING.trigger(serverPlayerEntity, centerStackCopy, spentExperience);
 		}
@@ -484,10 +484,10 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 		}
 		
 		// vanilla
-		grantPlayerEnchantingAdvancementCriterion(world, enchanterBlockEntity.ownerUUID, resultStack, enchanterRecipe.getRequiredExperience());
+		grantPlayerEnchantingAdvancementCriterion(enchanterBlockEntity.ownerUUID, resultStack, enchanterRecipe.getRequiredExperience());
 		
 		// enchanter crafting criterion
-		ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity) PlayerOwned.getPlayerEntityIfOnline(world, enchanterBlockEntity.ownerUUID);
+		ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity) enchanterBlockEntity.getOwnerIfOnline();
 		if (serverPlayerEntity != null) {
 			SpectrumAdvancementCriteria.ENCHANTER_CRAFTING.trigger(serverPlayerEntity, resultStack, enchanterRecipe.getRequiredExperience());
 		}
@@ -553,10 +553,10 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 		enchanterBlockEntity.getInventory().setStack(0, resultStack);
 		
 		// vanilla
-		grantPlayerEnchantingAdvancementCriterion(world, enchanterBlockEntity.ownerUUID, resultStack, enchantmentUpgradeRecipe.getRequiredExperience());
+		grantPlayerEnchantingAdvancementCriterion(enchanterBlockEntity.ownerUUID, resultStack, enchantmentUpgradeRecipe.getRequiredExperience());
 		
 		// enchantment upgrading criterion
-		ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity) PlayerOwned.getPlayerEntityIfOnline(world, enchanterBlockEntity.ownerUUID);
+		ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity) enchanterBlockEntity.getOwnerIfOnline();
 		if (serverPlayerEntity != null) {
 			SpectrumAdvancementCriteria.ENCHANTER_UPGRADING.trigger(serverPlayerEntity, enchantmentUpgradeRecipe.getEnchantment(), enchantmentUpgradeRecipe.getEnchantmentDestinationLevel(), enchantmentUpgradeRecipe.getRequiredExperience());
 		}
@@ -631,9 +631,9 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 		return false;
 	}
 	
-	private static void grantPlayerEnchantingAdvancementCriterion(World world, UUID playerUUID, ItemStack resultStack, int experience) {
+	private static void grantPlayerEnchantingAdvancementCriterion(UUID playerUUID, ItemStack resultStack, int experience) {
 		int levels = ExperienceHelper.getLevelForExperience(experience);
-		ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity) PlayerOwned.getPlayerEntityIfOnline(world, playerUUID);
+		ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity) PlayerOwned.getPlayerEntityIfOnline(playerUUID);
 		if (serverPlayerEntity != null) {
 			serverPlayerEntity.incrementStat(Stats.ENCHANT_ITEM);
 			Criteria.ENCHANTED_ITEM.trigger(serverPlayerEntity, resultStack, levels);

@@ -44,8 +44,8 @@ public class EnderHopperBlockEntity extends BlockEntity implements PlayerOwnedWi
 	}
 	
 	public static void onEntityCollided(World world, BlockPos pos, BlockState state, Entity entity, EnderHopperBlockEntity enderHopperBlockEntity) {
-		if (entity instanceof ItemEntity && VoxelShapes.matchesAnywhere(VoxelShapes.cuboid(entity.getBoundingBox().offset((-pos.getX()), (-pos.getY()), (-pos.getZ()))), enderHopperBlockEntity.getInputAreaShape(), BooleanBiFunction.AND)) {
-			insertIntoEnderChest(world, enderHopperBlockEntity, (ItemEntity) entity);
+		if (entity instanceof ItemEntity itemEntity && VoxelShapes.matchesAnywhere(VoxelShapes.cuboid(entity.getBoundingBox().offset((-pos.getX()), (-pos.getY()), (-pos.getZ()))), enderHopperBlockEntity.getInputAreaShape(), BooleanBiFunction.AND)) {
+			insertIntoEnderChest(enderHopperBlockEntity, itemEntity);
 		}
 	}
 	
@@ -57,13 +57,13 @@ public class EnderHopperBlockEntity extends BlockEntity implements PlayerOwnedWi
 			Inventory sourceInventory = getInputInventory(world, enderHopperBlockEntity);
 			if (sourceInventory != null) {
 				// if there is a chest on top of the hopper: use that as source
-				insertIntoEnderChest(world, enderHopperBlockEntity, sourceInventory);
+				insertIntoEnderChest(enderHopperBlockEntity, sourceInventory);
 			} else {
-				// otherwise search for item stacks
+				// otherwise, search for item stacks
 				List<ItemEntity> entities = getInputItemEntities(world, enderHopperBlockEntity);
 				
 				for (ItemEntity entity : entities) {
-					insertIntoEnderChest(world, enderHopperBlockEntity, entity);
+					insertIntoEnderChest(enderHopperBlockEntity, entity);
 				}
 			}
 			enderHopperBlockEntity.setCooldown(8);
@@ -76,10 +76,10 @@ public class EnderHopperBlockEntity extends BlockEntity implements PlayerOwnedWi
 		}).collect(Collectors.toList());
 	}
 	
-	private static boolean insertIntoEnderChest(World world, EnderHopperBlockEntity enderHopperBlockEntity, Inventory sourceInventory) {
+	private static boolean insertIntoEnderChest(EnderHopperBlockEntity enderHopperBlockEntity, Inventory sourceInventory) {
 		UUID ownerUUID = enderHopperBlockEntity.getOwnerUUID();
 		if (ownerUUID != null) {
-			PlayerEntity playerEntity = enderHopperBlockEntity.getPlayerEntityIfOnline(world);
+			PlayerEntity playerEntity = enderHopperBlockEntity.getOwnerIfOnline();
 			if (playerEntity != null) {
 				for (int i = 0; i < sourceInventory.size(); i++) {
 					ItemStack sourceItemStack = sourceInventory.getStack(i).copy();
@@ -98,10 +98,10 @@ public class EnderHopperBlockEntity extends BlockEntity implements PlayerOwnedWi
 		return false;
 	}
 	
-	private static boolean insertIntoEnderChest(World world, EnderHopperBlockEntity enderHopperBlockEntity, ItemEntity itemEntity) {
+	private static boolean insertIntoEnderChest(EnderHopperBlockEntity enderHopperBlockEntity, ItemEntity itemEntity) {
 		UUID ownerUUID = enderHopperBlockEntity.getOwnerUUID();
 		if (ownerUUID != null) {
-			PlayerEntity playerEntity = enderHopperBlockEntity.getPlayerEntityIfOnline(world);
+			PlayerEntity playerEntity = enderHopperBlockEntity.getOwnerIfOnline();
 			if (playerEntity != null) {
 				ItemStack sourceItemStack = itemEntity.getStack();
 				if (!sourceItemStack.isEmpty()) {
@@ -199,19 +199,6 @@ public class EnderHopperBlockEntity extends BlockEntity implements PlayerOwnedWi
 		return enderInventory.getStack(slot);
 	}
 	
-	private boolean isFull() {
-		PlayerEntity playerEntity = world.getPlayerByUuid(this.ownerUUID);
-		EnderChestInventory enderInventory = playerEntity.getEnderChestInventory();
-		
-		for (int i = 0; i < enderInventory.size(); i++) {
-			ItemStack itemStack1 = enderInventory.getStack(i);
-			if (itemStack1.isEmpty() || itemStack1.getCount() == itemStack1.getMaxCount()) {
-				return false;
-			}
-		}
-		return true;
-	}
-	
 	private void setCooldown(int cooldown) {
 		this.transferCooldown = cooldown;
 	}
@@ -236,6 +223,7 @@ public class EnderHopperBlockEntity extends BlockEntity implements PlayerOwnedWi
 		this.ownerName = playerEntity.getName().asString();
 	}
 	
+	@Override
 	public void readNbt(NbtCompound tag) {
 		super.readNbt(tag);
 		
@@ -251,6 +239,7 @@ public class EnderHopperBlockEntity extends BlockEntity implements PlayerOwnedWi
 		}
 	}
 	
+	@Override
 	public void writeNbt(NbtCompound tag) {
 		super.writeNbt(tag);
 		

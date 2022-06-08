@@ -16,7 +16,7 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 public class PrivateChestBlock extends SpectrumChestBlock {
-	
+
 	public PrivateChestBlock(Settings settings) {
 		super(settings);
 	}
@@ -100,5 +100,11 @@ public class PrivateChestBlock extends SpectrumChestBlock {
 		}
 		return -1;
 	}
+	
+	@Override
+	public float getHardness() {
+		return -1;
+	}
+	
 	
 }

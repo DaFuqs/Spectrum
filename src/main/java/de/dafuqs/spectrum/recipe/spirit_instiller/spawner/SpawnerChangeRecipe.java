@@ -87,7 +87,7 @@ public abstract class SpawnerChangeRecipe implements ISpiritInstillerRecipe {
 					}
 					
 					// Run Advancement trigger
-					ISpiritInstillerRecipe.grantPlayerSpiritInstillingAdvancementCriterion(world, spiritInstillerBlockEntity.getOwnerUUID(), resultStack, awardedExperience);
+					ISpiritInstillerRecipe.grantPlayerSpiritInstillingAdvancementCriterion(spiritInstillerBlockEntity.getOwnerUUID(), resultStack, awardedExperience);
 				}
 			}
 		}

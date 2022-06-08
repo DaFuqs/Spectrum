@@ -224,7 +224,7 @@ public class ColorPickerBlockEntity extends LootableContainerBlockEntity impleme
 					
 					if (amount > 0) {
 						if (!searchedOwner) {
-							owner = (ServerPlayerEntity) getPlayerEntityIfOnline(world);
+							owner = (ServerPlayerEntity) getOwnerIfOnline();
 						}
 						if (owner != null) {
 							SpectrumAdvancementCriteria.INK_CONTAINER_INTERACTION.trigger(owner, stack, itemStorage, color, amount);
@@ -237,7 +237,7 @@ public class ColorPickerBlockEntity extends LootableContainerBlockEntity impleme
 				transferredAmount = InkStorage.transferInk(inkStorage, itemStorage, this.selectedColor);
 				
 				if (transferredAmount > 0) {
-					PlayerEntity owner = getPlayerEntityIfOnline(world);
+					PlayerEntity owner = getOwnerIfOnline();
 					if (owner instanceof ServerPlayerEntity serverPlayerEntity) {
 						SpectrumAdvancementCriteria.INK_CONTAINER_INTERACTION.trigger(serverPlayerEntity, stack, itemStorage, this.selectedColor, transferredAmount);
 					}

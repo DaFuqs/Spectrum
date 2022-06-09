@@ -134,8 +134,8 @@ public class SpectrumConfig implements ConfigData {
 			""")
 	public int azureDikeHudOffsetX = 0;
 	public int azureDikeHudOffsetY = 0;
-	public int azureDikeHudOffsetXLackingAir = 0;
-	public int azureDikeHudOffsetYLackingAir = -10;
+	public int azureDikeHudOffsetYWithArmor = -10;
+	public int azureDikeHudOffsetYForEachRowOfExtraHearts = -10;
 	
 	@Override
 	public void validatePostLoad() {

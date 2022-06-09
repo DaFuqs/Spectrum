@@ -9,7 +9,7 @@ import de.dafuqs.spectrum.particle.SpectrumParticleFactories;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.registries.client.SpectrumColorProviders;
 import de.dafuqs.spectrum.registries.client.SpectrumItemPredicates;
-import de.dafuqs.spectrum.render.GuiOverlay;
+import de.dafuqs.spectrum.render.HudRenderers;
 import de.dafuqs.spectrum.render.SkyLerper;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
@@ -56,7 +56,7 @@ public class SpectrumClient implements ClientModInitializer {
 		SpectrumParticleFactories.register();
 		
 		logInfo("Registering Overlays...");
-		GuiOverlay.register();
+		HudRenderers.register();
 		
 		logInfo("Registering Item Tooltips...");
 		SpectrumTooltipComponents.registerTooltipComponents();

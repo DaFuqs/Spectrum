@@ -20,7 +20,7 @@ import vazkii.patchouli.client.RenderHelper;
 import static net.minecraft.client.gui.DrawableHelper.GUI_ICONS_TEXTURE;
 
 @Environment(EnvType.CLIENT)
-public class GuiOverlay {
+public class HudRenderers {
 	
 	private static final TranslatableText noneText = new TranslatableText("item.spectrum.placement_staff.tooltip.none_in_inventory");
 	
@@ -39,53 +39,80 @@ public class GuiOverlay {
 		Entity entity = MinecraftClient.getInstance().cameraEntity;
 		if (entity instanceof LivingEntity livingEntity && !livingEntity.isInvulnerable()) {
 			int charges = AzureDikeProvider.getAzureDikeCharges(livingEntity);
-			int maxCharges = AzureDikeProvider.getMaxAzureDikeCharges(livingEntity);
 			
 			if (charges > 0) {
-				int v = 9;
-				int u = 0;
+				int maxCharges = AzureDikeProvider.getMaxAzureDikeCharges(livingEntity);
+				boolean wasRecentlyHit = livingEntity.getRecentDamageSource() != null;
+				boolean blink = false;
+				if(wasRecentlyHit && entity.getWorld() != null) {
+					blink = entity.getWorld().getTime() << 3 % 2 == 0;
+				}
 				
+				int fullCanisters = charges / 20;
+				int emptyCanisters = (maxCharges / 20) - fullCanisters;
+				int displayedHearts = charges % 20;
+				if (displayedHearts == 0) { // if the row is full render it as full instead of wrapping over
+					displayedHearts = 20;
+					fullCanisters--;
+					emptyCanisters++;
+				}
+				int renderedOutlines = emptyCanisters > 0 ? 10 : ((maxCharges % 20 / 2) + (maxCharges % 2 == 0 ? 0 : 1));
+				boolean renderBackRow = fullCanisters > 0;
+				
+				int additionalHeartRows = (int) livingEntity.getMaxHealth() / 20;
+				if(livingEntity.getMaxHealth() % 20 == 0) {
+					additionalHeartRows--;
+				}
+				boolean hasArmor = livingEntity.getArmor() > 0;
 				RenderSystem.setShaderTexture(0, AzureDikeComponent.AZURE_DIKE_BAR_TEXTURE);
 				
 				Window window = MinecraftClient.getInstance().getWindow();
+				int width = window.getScaledWidth() / 2 - 82;
 				int height = window.getScaledHeight() - 49;
-				int width = window.getScaledWidth() / 2 + 91;
 				
-				for (int i = 0; i < maxCharges / 2.0; i++) {
-					
-					int x;
-					int y;
-					boolean hasFullAir = livingEntity.getAir() == livingEntity.getMaxAir();
-					if (hasFullAir) {
-						x = width - i * 8 - 9 + SpectrumCommon.CONFIG.azureDikeHudOffsetX;
-						y = height + SpectrumCommon.CONFIG.azureDikeHudOffsetY;
-					} else {
-						x = width - i * 8 - 9 + SpectrumCommon.CONFIG.azureDikeHudOffsetXLackingAir;
-						y = height + SpectrumCommon.CONFIG.azureDikeHudOffsetYLackingAir;
+				int y = hasArmor ? height + additionalHeartRows * SpectrumCommon.CONFIG.azureDikeHudOffsetYForEachRowOfExtraHearts + SpectrumCommon.CONFIG.azureDikeHudOffsetYWithArmor : height + SpectrumCommon.CONFIG.azureDikeHudOffsetY;
+				int x = width - 9 + SpectrumCommon.CONFIG.azureDikeHudOffsetX;
+				
+				// back row
+				if(renderBackRow) {
+					for (int i = displayedHearts / 2; i < 10; i++) {
+						InGameHud.drawTexture(matrixStack, x + i * 8, y, 36, 9, 9, 9, 256, 256); // "back row" icon
 					}
-					
-					InGameHud.drawTexture(matrixStack, x, y, u, v, 9, 9, 256, 256); // background
 				}
 				
-				for (int i = 0; i < maxCharges; i++) {
-					
-					int x;
-					int y;
-					boolean hasFullAir = livingEntity.getAir() == livingEntity.getMaxAir();
-					if (hasFullAir) {
-						x = width - i * 8 - 9 + SpectrumCommon.CONFIG.azureDikeHudOffsetX;
-						y = height + SpectrumCommon.CONFIG.azureDikeHudOffsetY;
+				// outline
+				for (int i = 0; i < renderedOutlines; i++) {
+					if(renderBackRow) {
+						if (blink) {
+							InGameHud.drawTexture(matrixStack, x + i * 8, y, 54, 9, 9, 9, 256, 256); // background
+						} else {
+							InGameHud.drawTexture(matrixStack, x + i * 8, y, 45, 9, 9, 9, 256, 256); // background
+						}
 					} else {
-						x = width - i * 8 - 9 + SpectrumCommon.CONFIG.azureDikeHudOffsetXLackingAir;
-						y = height + SpectrumCommon.CONFIG.azureDikeHudOffsetYLackingAir;
+						if (blink) {
+							InGameHud.drawTexture(matrixStack, x + i * 8, y, 9, 9, 9, 9, 256, 256); // background
+						} else {
+							InGameHud.drawTexture(matrixStack, x + i * 8, y, 0, 9, 9, 9, 256, 256); // background
+						}
 					}
-					
-					if (i * 2 + 1 < charges) {
-						InGameHud.drawTexture(matrixStack, x, y, u + 18, v, 9, 9, 256, 256); // full charge icon
+				}
+				
+				// hearts
+				for (int i = 0; i < displayedHearts; i++) {
+					int q = i * 2 + 1;
+					if (q < displayedHearts) {
+						InGameHud.drawTexture(matrixStack, x + i * 8, y, 18, 9, 9, 9, 256, 256); // full charge icon
+					} else if (q == displayedHearts) {
+						InGameHud.drawTexture(matrixStack, x + i * 8, y, 27, 9, 9, 9, 256, 256); // half charge icon
 					}
-					if (i * 2 + 1 == charges) {
-						InGameHud.drawTexture(matrixStack, x, y, u + 27, v, 9, 9, 256, 256); // half charge icon
-					}
+				}
+				
+				// canisters
+				for(int i = 0; i < fullCanisters; i++) {
+					InGameHud.drawTexture(matrixStack, x + i * 8, y - 9, 0, 0, 9, 9, 256, 256); // full canisters
+				}
+				for(int i = fullCanisters; i < fullCanisters + emptyCanisters; i++) {
+					InGameHud.drawTexture(matrixStack, x + i * 8, y - 9, 9, 0, 9, 9, 256, 256); // empty canisters
 				}
 				
 				RenderSystem.setShaderTexture(0, GUI_ICONS_TEXTURE);
@@ -115,12 +142,12 @@ public class GuiOverlay {
 	}
 	
 	public static void setItemStackToRender(ItemStack itemStack, int amount) {
-		GuiOverlay.itemStackToRender = itemStack;
-		GuiOverlay.amount = amount;
+		HudRenderers.itemStackToRender = itemStack;
+		HudRenderers.amount = amount;
 	}
 	
 	public static void doNotRenderOverlay() {
-		GuiOverlay.amount = -1;
+		HudRenderers.amount = -1;
 	}
 	
 	

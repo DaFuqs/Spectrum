@@ -5,7 +5,7 @@ import de.dafuqs.spectrum.interfaces.WorldRendererAccessor;
 import de.dafuqs.spectrum.items.magic_items.BuildingStaffItem;
 import de.dafuqs.spectrum.items.magic_items.ExchangeStaffItem;
 import de.dafuqs.spectrum.items.magic_items.PlacementStaffItem;
-import de.dafuqs.spectrum.render.GuiOverlay;
+import de.dafuqs.spectrum.render.HudRenderers;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.Block;
@@ -18,7 +18,6 @@ import net.minecraft.client.render.chunk.ChunkBuilder;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -90,7 +89,7 @@ public abstract class WorldRendererMixin implements WorldRendererAccessor {
 	@Inject(method = "render(Lnet/minecraft/client/util/math/MatrixStack;FJZLnet/minecraft/client/render/Camera;Lnet/minecraft/client/render/GameRenderer;Lnet/minecraft/client/render/LightmapTextureManager;Lnet/minecraft/util/math/Matrix4f;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/util/hit/HitResult;getType()Lnet/minecraft/util/hit/HitResult$Type;"), locals = LocalCapture.CAPTURE_FAILHARD)
 	private void renderExtendedBlockOutline(MatrixStack matrices, float tickDelta, long limitTime, boolean renderBlockOutline, Camera camera, GameRenderer gameRenderer, LightmapTextureManager lightmapTextureManager, Matrix4f positionMatrix, CallbackInfo ci, Profiler profiler, boolean b, Vec3d vec3d, double d, double e, double f, Matrix4f matrix4f2, boolean b2, Frustum frustum2, float g, boolean b25, boolean b3, VertexConsumerProvider.Immediate immediate, HitResult hitResult2) {
 		renderedExtendedOutline = false;
-		GuiOverlay.doNotRenderOverlay();
+		HudRenderers.doNotRenderOverlay();
 		
 		if (client.player != null && renderBlockOutline) {
 			for(ItemStack handStack : client.player.getItemsHand()) {
@@ -135,7 +134,7 @@ public abstract class WorldRendererMixin implements WorldRendererAccessor {
 				boolean sneaking = player.isSneaking();
 				List<BlockPos> positions = BuildingHelper.calculateBuildingStaffSelection(world, lookingAtPos, hitResult.getSide(), itemCountInInventory, PlacementStaffItem.getRange(player), !sneaking);
 				if (itemCountInInventory == 0) {
-					GuiOverlay.setItemStackToRender(new ItemStack(item), 0);
+					HudRenderers.setItemStackToRender(new ItemStack(item), 0);
 				} else if (positions.size() > 0) {
 					for (BlockPos newPosition : positions) {
 						if (this.world.getWorldBorder().contains(newPosition)) {
@@ -144,13 +143,13 @@ public abstract class WorldRendererMixin implements WorldRendererAccessor {
 						}
 					}
 					
-					GuiOverlay.setItemStackToRender(new ItemStack(item), positions.size());
+					HudRenderers.setItemStackToRender(new ItemStack(item), positions.size());
 					
 					VertexConsumer linesBuffer = immediate.getBuffer(RenderLayer.getLines());
 					drawShapeOutline(matrices, linesBuffer, shape, (double) lookingAtPos.getX() - d, (double) lookingAtPos.getY() - e, (double) lookingAtPos.getZ() - f, 0.0F, 0.0F, 0.0F, 0.4F);
 					return true;
 				} else {
-					GuiOverlay.setItemStackToRender(new ItemStack(item), 0);
+					HudRenderers.setItemStackToRender(new ItemStack(item), 0);
 				}
 			}
 		}
@@ -187,13 +186,13 @@ public abstract class WorldRendererMixin implements WorldRendererAccessor {
 							}
 						}
 						
-						GuiOverlay.setItemStackToRender(new ItemStack(exchangeBlockItem), positions.size());
+						HudRenderers.setItemStackToRender(new ItemStack(exchangeBlockItem), positions.size());
 						
 						VertexConsumer linesBuffer = immediate.getBuffer(RenderLayer.getLines());
 						drawShapeOutline(matrices, linesBuffer, shape, (double) lookingAtPos.getX() - d, (double) lookingAtPos.getY() - e, (double) lookingAtPos.getZ() - f, 0.0F, 0.0F, 0.0F, 0.4F);
 						return true;
 					} else {
-						GuiOverlay.setItemStackToRender(new ItemStack(exchangeBlockItem), 0);
+						HudRenderers.setItemStackToRender(new ItemStack(exchangeBlockItem), 0);
 					}
 				}
 			}

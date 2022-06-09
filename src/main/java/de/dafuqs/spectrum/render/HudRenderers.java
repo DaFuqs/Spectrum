@@ -42,10 +42,9 @@ public class HudRenderers {
 			
 			if (charges > 0) {
 				int maxCharges = AzureDikeProvider.getMaxAzureDikeCharges(livingEntity);
-				boolean wasRecentlyHit = livingEntity.getRecentDamageSource() != null;
 				boolean blink = false;
-				if(wasRecentlyHit && entity.getWorld() != null) {
-					blink = entity.getWorld().getTime() << 3 % 2 == 0;
+				if(livingEntity.getRecentDamageSource() != null && entity.getWorld() != null) {
+					blink = (entity.getWorld().getTime() >> 3) % 2 == 0;
 				}
 				
 				int fullCanisters = charges / 20;
@@ -109,10 +108,10 @@ public class HudRenderers {
 				
 				// canisters
 				for(int i = 0; i < fullCanisters; i++) {
-					InGameHud.drawTexture(matrixStack, x + i * 8, y - 9, 0, 0, 9, 9, 256, 256); // full canisters
+					InGameHud.drawTexture(matrixStack, x + i * 6, y - 9, 0, 0, 9, 9, 256, 256); // full canisters
 				}
 				for(int i = fullCanisters; i < fullCanisters + emptyCanisters; i++) {
-					InGameHud.drawTexture(matrixStack, x + i * 8, y - 9, 9, 0, 9, 9, 256, 256); // empty canisters
+					InGameHud.drawTexture(matrixStack, x + i * 6, y - 9, 9, 0, 9, 9, 256, 256); // empty canisters
 				}
 				
 				RenderSystem.setShaderTexture(0, GUI_ICONS_TEXTURE);

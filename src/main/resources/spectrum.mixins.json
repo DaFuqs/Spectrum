@@ -61,7 +61,6 @@
     "client.ClientAdvancementManagerMixin",
     "client.DimensionTypeMixin",
     "client.HeadFeatureRendererMixin",
-    "client.InGameHudMixin",
     "client.ItemFrameEntityRendererMixin",
     "client.ItemMixin",
     "client.MinecraftClientMixin",

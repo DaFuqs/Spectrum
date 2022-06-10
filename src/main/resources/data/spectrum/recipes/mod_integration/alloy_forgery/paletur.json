@@ -1,0 +1,32 @@
+{
+  "type": "alloy_forgery:forging",
+  "inputs": [
+    {
+      "item": "spectrum:paletur_ore"
+    }
+  ],
+  "output": {
+    "id": "spectrum:paletur_fragments",
+    "count": 3
+  },
+  "overrides": {
+    "2": {
+      "id": "spectrum:paletur_fragments",
+      "count": 4
+    },
+    "3+": {
+      "id": "spectrum:paletur_fragments",
+      "count": 5
+    },
+    "4": {
+      "id": "spectrum:paletur_fragments",
+      "count": 6
+    },
+    "5": {
+      "id": "spectrum:paletur_fragments",
+      "count": 7
+    }
+  },
+  "min_forge_tier": 3,
+  "fuel_per_tick": 5
+}

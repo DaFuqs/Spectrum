@@ -24,14 +24,17 @@ public abstract class SpectrumEnchantment extends Enchantment {
 		this.unlockAdvancementIdentifier = unlockAdvancementIdentifier;
 	}
 	
+	@Override
 	public boolean isTreasure() {
 		return false;
 	}
 	
+	@Override
 	public boolean isAvailableForEnchantedBookOffer() {
 		return false;
 	}
 	
+	@Override
 	public boolean isAvailableForRandomSelection() {
 		return false;
 	}

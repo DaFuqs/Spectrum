@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.enchantments;
 
 import de.dafuqs.spectrum.items.SpectrumMobSpawnerItem;
+import de.dafuqs.spectrum.registries.SpectrumBlockTags;
 import de.dafuqs.spectrum.registries.SpectrumEnchantments;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -28,33 +29,35 @@ public class ResonanceEnchantment extends SpectrumEnchantment {
 	}
 	
 	public static boolean checkResonanceForSpawnerMining(World world, BlockPos pos, @NotNull BlockState blockState, @Nullable BlockEntity blockEntity, ItemStack stack) {
-		if (blockState.equals(Blocks.SPAWNER.getDefaultState())) {
-			if (EnchantmentHelper.getLevel(SpectrumEnchantments.RESONANCE, stack) > 0) {
-				if (blockEntity instanceof MobSpawnerBlockEntity mobSpawnerBlockEntity) {
-					ItemStack itemStack = SpectrumMobSpawnerItem.toItemStack(mobSpawnerBlockEntity);
-					
-					Block.dropStack(world, pos, itemStack);
-					world.playSound(null, pos, SoundEvents.BLOCK_METAL_BREAK, SoundCategory.BLOCKS, 1.0F, 0.8F + world.random.nextFloat() * 0.4F);
-					world.setBlockState(pos, Blocks.AIR.getDefaultState());
-					return true;
-				}
+		if (blockState.isIn(SpectrumBlockTags.SPAWNERS) && EnchantmentHelper.getLevel(SpectrumEnchantments.RESONANCE, stack) > 0) {
+			if (blockEntity instanceof MobSpawnerBlockEntity mobSpawnerBlockEntity) {
+				ItemStack itemStack = SpectrumMobSpawnerItem.toItemStack(mobSpawnerBlockEntity);
+				
+				Block.dropStack(world, pos, itemStack);
+				world.playSound(null, pos, SoundEvents.BLOCK_METAL_BREAK, SoundCategory.BLOCKS, 1.0F, 0.8F + world.random.nextFloat() * 0.4F);
+				world.setBlockState(pos, Blocks.AIR.getDefaultState());
+				return true;
 			}
 		}
 		return false;
 	}
 	
+	@Override
 	public int getMinPower(int level) {
-		return 15;
+		return 25;
 	}
 	
+	@Override
 	public int getMaxPower(int level) {
-		return super.getMinPower(level) + 50;
+		return super.getMinPower(level) + 75;
 	}
 	
+	@Override
 	public int getMaxLevel() {
 		return 1;
 	}
 	
+	@Override
 	public boolean canAccept(Enchantment other) {
 		return super.canAccept(other) && other != SpectrumEnchantments.PEST_CONTROL && other != SpectrumEnchantments.FOUNDRY && other != Enchantments.FORTUNE;
 	}

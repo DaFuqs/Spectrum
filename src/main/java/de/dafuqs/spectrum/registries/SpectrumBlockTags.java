@@ -17,18 +17,20 @@ public class SpectrumBlockTags {
 	public static TagKey<Block> DECAY_AWAY_CURABLES;
 	public static TagKey<Block> FADING_CONVERSIONS;
 	public static TagKey<Block> FADING_SPECIAL_CONVERSIONS;
-	public static TagKey<Block> MAGICAL_LEAVES;
 	public static TagKey<Block> FAILING_SAFE;
 	public static TagKey<Block> FAILING_CONVERSIONS;
 	public static TagKey<Block> FAILING_SPECIAL_CONVERSIONS;
 	public static TagKey<Block> RUIN_SAFE;
 	public static TagKey<Block> TERROR_SAFE;
 	public static TagKey<Block> RUIN_BEDROCK_CONVERSIONS;
+	public static TagKey<Block> BLACK_MATERIA_CONVERSIONS;
+	
+	public static TagKey<Block> MAGICAL_LEAVES;
 	public static TagKey<Block> NATURES_STAFF_TICKABLE;
 	public static TagKey<Block> NATURES_STAFF_STACKABLE;
-	public static TagKey<Block> BLACK_MATERIA_CONVERSIONS;
 	public static TagKey<Block> CRYSTAL_APOTHECARY_HARVESTABLE;
 	public static TagKey<Block> GEMSTONE_BUDS;
+	public static TagKey<Block> RESONANCE_HARVESTABLES;
 	
 	public static TagKey<Block> BUILDING_STAFFS_BLACKLISTED;
 	
@@ -40,6 +42,7 @@ public class SpectrumBlockTags {
 	public static TagKey<Block> MEMORY_VERY_FAST_MANIFESTERS;
 	
 	public static TagKey<Block> UNBREAKABLE_STRUCTURE_BLOCKS;
+	public static TagKey<Block> SPAWNERS;
 	
 	private static TagKey<Block> getReference(String id) {
 		return TagKey.of(Registry.BLOCK_KEY, new Identifier(SpectrumCommon.MOD_ID, id));
@@ -81,5 +84,7 @@ public class SpectrumBlockTags {
 		MEMORY_VERY_FAST_MANIFESTERS = getReference("memory_very_fast_manifesters");
 		
 		UNBREAKABLE_STRUCTURE_BLOCKS = getReference("unbreakable_structure_blocks");
+		RESONANCE_HARVESTABLES = getReference("resonance_harvestables");
+		SPAWNERS = getReference("spawners");
 	}
 }

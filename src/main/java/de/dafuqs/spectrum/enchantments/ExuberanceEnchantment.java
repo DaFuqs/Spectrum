@@ -25,18 +25,22 @@ public class ExuberanceEnchantment extends SpectrumEnchantment {
 		}
 	}
 	
+	@Override
 	public int getMinPower(int level) {
 		return 10;
 	}
 	
+	@Override
 	public int getMaxPower(int level) {
 		return super.getMinPower(level) + 30;
 	}
 	
+	@Override
 	public int getMaxLevel() {
 		return SpectrumCommon.CONFIG.ExuberanceMaxLevel;
 	}
 	
+	@Override
 	public boolean canAccept(Enchantment other) {
 		return super.canAccept(other);
 	}

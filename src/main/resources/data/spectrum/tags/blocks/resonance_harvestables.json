@@ -1,0 +1,21 @@
+{
+	"values": [
+		"#spectrum:budding_blocks",
+		"#spectrum:gemstone_buds",
+		"#spectrum:infested_blocks",
+		"#spectrum:gemstone_buds",
+		"#spectrum:spawners",
+		{
+			"id": "botania:enchanted_soil",
+			"required": false
+		},
+		{
+			"id": "minecraft:sculk_shrieker",
+			"required": false
+		},
+		{
+			"id": "minecraft:reinforced_deepslate",
+			"required": false
+		}
+	]
+}

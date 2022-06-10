@@ -3,9 +3,11 @@ package de.dafuqs.spectrum.mixin;
 import de.dafuqs.spectrum.enchantments.AutoSmeltEnchantment;
 import de.dafuqs.spectrum.enchantments.ExuberanceEnchantment;
 import de.dafuqs.spectrum.enchantments.ResonanceEnchantment;
+import de.dafuqs.spectrum.registries.SpectrumBlockTags;
 import de.dafuqs.spectrum.registries.SpectrumEnchantments;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.InfestedBlock;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -37,44 +39,48 @@ public abstract class BlockMixin {
 	
 	@Inject(method = "getDroppedStacks(Lnet/minecraft/block/BlockState;Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/entity/BlockEntity;Lnet/minecraft/entity/Entity;Lnet/minecraft/item/ItemStack;)Ljava/util/List;", at = @At("RETURN"), cancellable = true)
 	private static void spectrum$getDroppedStacks(BlockState state, ServerWorld world, BlockPos pos, BlockEntity blockEntity, Entity entity, ItemStack stack, CallbackInfoReturnable<List<ItemStack>> cir) {
-		List<ItemStack> returnStacks = cir.getReturnValue();
-		if (returnStacks.size() > 0) {
-			Map<Enchantment, Integer> enchantmentMap = EnchantmentHelper.get(stack);
-			
-			// Voiding curse: no drops
-			if (enchantmentMap.containsKey(SpectrumEnchantments.VOIDING)) {
-				world.spawnParticles(ParticleTypes.SMOKE, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 10, 0.5, 0.5, 0.5, 0.05);
-				cir.setReturnValue(new ArrayList<>());
-			} else {
-				// Foundry enchant: try smelting recipe for each stack
-				if (enchantmentMap.containsKey(SpectrumEnchantments.FOUNDRY) && SpectrumEnchantments.FOUNDRY.canEntityUse(entity)) {
-					returnStacks = AutoSmeltEnchantment.applyAutoSmelt(world, returnStacks);
-				}
-				// Inventory Insertion enchant? Add it to players inventory if there is room
-				if (enchantmentMap.containsKey(SpectrumEnchantments.INVENTORY_INSERTION) && SpectrumEnchantments.INVENTORY_INSERTION.canEntityUse(entity)) {
-					List<ItemStack> leftoverReturnStacks = new ArrayList<>();
-					
-					if (entity instanceof PlayerEntity playerEntity) {
-						for (ItemStack itemStack : returnStacks) {
-							Item item = itemStack.getItem();
-							int count = itemStack.getCount();
-							
-							if (playerEntity.getInventory().insertStack(itemStack)) {
-								if (itemStack.isEmpty()) {
-									itemStack.setCount(count);
-								}
-								playerEntity.increaseStat(Stats.PICKED_UP.getOrCreateStat(item), count);
-							} else {
-								leftoverReturnStacks.add(itemStack);
+		List<ItemStack> droppedStacks = new ArrayList<>();
+		Map<Enchantment, Integer> enchantmentMap = EnchantmentHelper.get(stack);
+		
+		// Voiding curse: no drops
+		if (enchantmentMap.containsKey(SpectrumEnchantments.VOIDING)) {
+			world.spawnParticles(ParticleTypes.SMOKE, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 10, 0.5, 0.5, 0.5, 0.05);
+		// Resonance: drop itself
+		} else if(enchantmentMap.containsKey(SpectrumEnchantments.RESONANCE) && (state.isIn(SpectrumBlockTags.RESONANCE_HARVESTABLES) || state.getBlock() instanceof InfestedBlock) && SpectrumEnchantments.RESONANCE.canEntityUse(entity)) {
+			droppedStacks.add(state.getBlock().asItem().getDefaultStack());
+		} else {
+			droppedStacks = cir.getReturnValue();
+		}
+		
+		if (droppedStacks.size() > 0) {
+			// Foundry enchant: try smelting recipe for each stack
+			if (enchantmentMap.containsKey(SpectrumEnchantments.FOUNDRY) && SpectrumEnchantments.FOUNDRY.canEntityUse(entity)) {
+				droppedStacks = AutoSmeltEnchantment.applyAutoSmelt(world, droppedStacks);
+			}
+			// Inventory Insertion enchant? Add it to players inventory if there is room
+			if (enchantmentMap.containsKey(SpectrumEnchantments.INVENTORY_INSERTION) && SpectrumEnchantments.INVENTORY_INSERTION.canEntityUse(entity)) {
+				List<ItemStack> leftoverReturnStacks = new ArrayList<>();
+				
+				if (entity instanceof PlayerEntity playerEntity) {
+					for (ItemStack itemStack : droppedStacks) {
+						Item item = itemStack.getItem();
+						int count = itemStack.getCount();
+						
+						if (playerEntity.getInventory().insertStack(itemStack)) {
+							if (itemStack.isEmpty()) {
+								itemStack.setCount(count);
 							}
+							playerEntity.increaseStat(Stats.PICKED_UP.getOrCreateStat(item), count);
+						} else {
+							leftoverReturnStacks.add(itemStack);
 						}
 					}
-					
-					returnStacks = leftoverReturnStacks;
 				}
-				cir.setReturnValue(returnStacks);
+				droppedStacks = leftoverReturnStacks;
 			}
 		}
+		
+		cir.setReturnValue(droppedStacks);
 	}
 	
 	@Inject(method = "afterBreak", at = @At("HEAD"))

@@ -12,18 +12,22 @@ public class TightGripEnchantment extends SpectrumEnchantment {
 		super(weight, EnchantmentTarget.WEAPON, slotTypes, unlockAdvancementIdentifier);
 	}
 	
+	@Override
 	public int getMinPower(int level) {
 		return 5;
 	}
 	
+	@Override
 	public int getMaxPower(int level) {
 		return super.getMinPower(level) + 30;
 	}
 	
+	@Override
 	public int getMaxLevel() {
 		return SpectrumCommon.CONFIG.TightGripMaxLevel;
 	}
 	
+	@Override
 	public boolean canAccept(Enchantment other) {
 		return super.canAccept(other);
 	}

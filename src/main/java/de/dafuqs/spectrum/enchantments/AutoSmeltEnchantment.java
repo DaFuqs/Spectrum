@@ -60,18 +60,22 @@ public class AutoSmeltEnchantment extends SpectrumEnchantment {
 		return returnItemStacks;
 	}
 	
+	@Override
 	public int getMinPower(int level) {
 		return 15;
 	}
 	
+	@Override
 	public int getMaxPower(int level) {
 		return super.getMinPower(level) + 50;
 	}
 	
+	@Override
 	public int getMaxLevel() {
 		return 1;
 	}
 	
+	@Override
 	public boolean canAccept(Enchantment other) {
 		return super.canAccept(other) && other != Enchantments.SILK_TOUCH && other != SpectrumEnchantments.RESONANCE;
 	}

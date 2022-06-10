@@ -11,18 +11,22 @@ public class DamageProofEnchantment extends SpectrumEnchantment {
 		super(weight, EnchantmentTarget.BREAKABLE, slotTypes, unlockAdvancementIdentifier);
 	}
 	
+	@Override
 	public int getMinPower(int level) {
 		return 30;
 	}
 	
+	@Override
 	public int getMaxPower(int level) {
 		return super.getMinPower(level) + 30;
 	}
 	
+	@Override
 	public int getMaxLevel() {
 		return 1;
 	}
 	
+	@Override
 	public boolean canAccept(Enchantment other) {
 		return super.canAccept(other);
 	}

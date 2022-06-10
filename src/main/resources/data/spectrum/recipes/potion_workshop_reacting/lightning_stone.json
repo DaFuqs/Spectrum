@@ -1,0 +1,7 @@
+{
+  "type": "spectrum:potion_workshop_reacting",
+  "item": "spectrum:lightning_stone",
+  "modifiers": {
+    "potent_decreasing_effect": true
+  }
+}

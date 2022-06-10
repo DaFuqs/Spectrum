@@ -1,0 +1,7 @@
+{
+  "type": "spectrum:potion_workshop_reacting",
+  "item": "minecraft:gunpowder",
+  "modifiers": {
+    "make_splashing": true
+  }
+}

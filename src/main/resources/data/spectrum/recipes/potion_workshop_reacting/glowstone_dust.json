@@ -1,0 +1,7 @@
+{
+  "type": "spectrum:potion_workshop_reacting",
+  "item": "minecraft:glowstone_dust",
+  "modifiers": {
+    "flat_potency_bonus": 1.0
+  }
+}

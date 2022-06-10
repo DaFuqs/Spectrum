@@ -210,7 +210,7 @@ public class ShootingStarEntity extends Entity {
 		this.move(MovementType.SELF, this.getVelocity());
 		
 		var collidingEntities = this.world.getOtherEntities(this, getBoundingBox().expand(0.25, 0.334, 0.25));
-		collidingEntities = collidingEntities.stream().filter(entity -> !(entity instanceof ShootingStarEntity)).collect(Collectors.toList());
+		collidingEntities = collidingEntities.stream().filter(entity -> !(entity instanceof ShootingStarEntity) && (entity.isPushable())).collect(Collectors.toList());
 		
 		// make it bounce back
 		boolean spawnLoot = false;

@@ -1,0 +1,21 @@
+{
+  "type": "spectrum:potion_workshop_reacting",
+  "item": "spectrum:four_leaf_clover",
+  "modifiers": [
+    {
+      "flat_duration_bonus_ticks": 1200
+    },
+    {
+      "flat_potency_bonus": 2.0
+    },
+    {
+      "multiplicative_duration_modifier": 2.0
+    },
+    {
+      "multiplicative_potency_modifier": 2.0
+    },
+    {
+      "flat_yield_bonus": 2.0
+    }
+  ]
+}

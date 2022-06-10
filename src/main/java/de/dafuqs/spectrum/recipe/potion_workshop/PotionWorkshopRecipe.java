@@ -74,7 +74,7 @@ public abstract class PotionWorkshopRecipe implements Recipe<Inventory>, GatedRe
 				// check if all items in reagent slots are actually reagents
 				for (int i : new int[]{5, 6, 7, 8}) {
 					ItemStack itemStack = inv.getStack(i);
-					if (!itemStack.isEmpty() && !PotionWorkshopReagents.isReagent(itemStack.getItem())) {
+					if (!itemStack.isEmpty() && !PotionWorkshopReactingRecipe.isReagent(itemStack.getItem())) {
 						return false;
 					}
 				}

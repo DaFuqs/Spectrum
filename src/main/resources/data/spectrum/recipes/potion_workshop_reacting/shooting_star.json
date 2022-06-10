@@ -1,0 +1,8 @@
+{
+  "type": "spectrum:potion_workshop_reacting",
+  "item": "spectrum:shooting_star",
+  "modifiers": {
+    "chance_to_add_last_effect": 1.0,
+    "last_effect_potency_modifier": 0.75
+  }
+}

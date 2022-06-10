@@ -1,0 +1,7 @@
+{
+  "type": "spectrum:potion_workshop_reacting",
+  "item": "spectrum:neolith",
+  "modifiers": {
+    "flat_yield_bonus": 1.0
+  }
+}

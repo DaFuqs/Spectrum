@@ -1,0 +1,7 @@
+{
+  "type": "spectrum:potion_workshop_reacting",
+  "item": "spectrum:moonstone_powder",
+  "modifiers": {
+    "make_effects_positive": true
+  }
+}

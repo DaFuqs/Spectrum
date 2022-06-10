@@ -76,14 +76,14 @@
       "title": "Quitoxic Powder",
       "item": "spectrum:quitoxic_powder",
       "advancement": "spectrum:collect_quitoxic_reeds",
-      "text": "Increases Potency of all negative Effects by flat +2"
+      "text": "Greatly increases Potency of all negative Effects"
     },
     {
       "type": "patchouli:spotlight",
       "title": "Crimtane",
       "item": "spectrum:scarlet_fragments",
       "advancement": "spectrum:midgame/collect_scarlet",
-      "text": "Flat +1 bonus to all Effects Potencies, at the cost of adding a random negative Effect"
+      "text": "Big flat bonus to Potency, at the cost of adding a random negative Effect"
     },
     {
       "type": "patchouli:spotlight",
@@ -122,7 +122,7 @@
     },
     {
       "type": "patchouli:spotlight",
-      "title": "Clover",
+      "title": "Four-Leaved Clover",
       "item": "spectrum:four_leaf_clover",
       "advancement": "spectrum:collect_four_leaf_clover",
       "text": "Provides a huge boost to a random stat"
@@ -132,7 +132,7 @@
       "title": "Vegetal",
       "item": "spectrum:vegetal",
       "advancement": "spectrum:collect_vegetal",
-      "text": "Doubles the potions Duration at the cost of their Potency"
+      "text": "Doubles the potions Duration at the cost of Potency"
     },
     {
       "type": "patchouli:spotlight",
@@ -146,14 +146,14 @@
       "title": "Midnight Chip",
       "item": "spectrum:midnight_chip",
       "advancement": "spectrum:midgame/collect_midnight Chip",
-      "text": "Increases Potency and adds 30 seconds to the Duration, but drastically lowers Yield."
+      "text": "Increases Potency and adds 30 seconds to the Duration, but drastically lowers Yield"
     },
     {
       "type": "patchouli:spotlight",
       "title": "Moonstruck Nectar",
       "item": "spectrum:moonstruck_nectar",
       "advancement": "spectrum:hidden/harvest_moonstruck_nectar",
-      "text": "Makes the Potion much more smooth, resulting in it being way faster to drink. Might come in handy when every second is crucial."
+      "text": "Makes the Potion much more smooth, resulting in it being way faster to drink. Might come in handy when every second is crucial"
     },
     {
       "type": "patchouli:spotlight",

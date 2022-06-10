@@ -342,8 +342,8 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 		PotionMod potionMod = new PotionMod();
 		for (int i : new int[]{5, 6, 7, 8}) {
 			ItemStack itemStack = potionWorkshopBlockEntity.getStack(i);
-			if (!itemStack.isEmpty() && PotionWorkshopReagents.isReagent(itemStack.getItem())) {
-				potionMod = PotionWorkshopReagents.modify(itemStack.getItem(), potionMod, potionWorkshopBlockEntity.world.random);
+			if (!itemStack.isEmpty() && PotionWorkshopReactingRecipe.isReagent(itemStack.getItem())) {
+				potionMod = PotionWorkshopReactingRecipe.modify(itemStack.getItem(), potionMod, potionWorkshopBlockEntity.world.random);
 			}
 		}
 		return potionMod;
@@ -496,7 +496,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 		} else if (slot < FIRST_REAGENT_SLOT) {
 			return true; // ingredients
 		} else if (slot < FIRST_INVENTORY_SLOT) {
-			return PotionWorkshopReagents.reagentEffects.containsKey(stack.getItem());
+			return PotionWorkshopReactingRecipe.isReagent(stack.getItem());
 		} else {
 			return false;
 		}

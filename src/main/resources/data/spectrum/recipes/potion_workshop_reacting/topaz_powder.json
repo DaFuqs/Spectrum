@@ -1,0 +1,7 @@
+{
+  "type": "spectrum:potion_workshop_reacting",
+  "item": "spectrum:topaz_powder",
+  "modifiers": {
+    "no_particles": true
+  }
+}

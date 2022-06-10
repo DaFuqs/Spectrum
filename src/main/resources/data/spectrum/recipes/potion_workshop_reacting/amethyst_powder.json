@@ -1,0 +1,8 @@
+{
+  "type": "spectrum:potion_workshop_reacting",
+  "item": "spectrum:amethyst_powder",
+  "modifiers": {
+    "flat_duration_bonus_ticks": 600
+  },
+  "required_advancement": "spectrum:"
+}

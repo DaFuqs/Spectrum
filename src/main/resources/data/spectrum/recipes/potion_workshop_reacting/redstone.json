@@ -1,0 +1,7 @@
+{
+  "type": "spectrum:potion_workshop_reacting",
+  "item": "minecraft:redstone",
+  "modifiers": {
+    "multiplicative_duration_modifier": 2.0
+  }
+}

@@ -15,10 +15,7 @@ import de.dafuqs.spectrum.recipe.midnight_solution_converting.MidnightSolutionCo
 import de.dafuqs.spectrum.recipe.midnight_solution_converting.MidnightSolutionConvertingRecipeSerializer;
 import de.dafuqs.spectrum.recipe.pedestal.PedestalCraftingRecipe;
 import de.dafuqs.spectrum.recipe.pedestal.PedestalCraftingRecipeSerializer;
-import de.dafuqs.spectrum.recipe.potion_workshop.PotionWorkshopBrewingRecipe;
-import de.dafuqs.spectrum.recipe.potion_workshop.PotionWorkshopBrewingRecipeSerializer;
-import de.dafuqs.spectrum.recipe.potion_workshop.PotionWorkshopCraftingRecipe;
-import de.dafuqs.spectrum.recipe.potion_workshop.PotionWorkshopCraftingRecipeSerializer;
+import de.dafuqs.spectrum.recipe.potion_workshop.*;
 import de.dafuqs.spectrum.recipe.spirit_instiller.ISpiritInstillerRecipe;
 import de.dafuqs.spectrum.recipe.spirit_instiller.SpiritInstillerRecipe;
 import de.dafuqs.spectrum.recipe.spirit_instiller.SpiritInstillerRecipeSerializer;
@@ -50,6 +47,9 @@ public class SpectrumRecipeTypes {
 	
 	public static RecipeSerializer<PotionWorkshopCraftingRecipe> POTION_WORKSHOP_CRAFTING_RECIPE_SERIALIZER;
 	public static RecipeType<PotionWorkshopCraftingRecipe> POTION_WORKSHOP_CRAFTING;
+	
+	public static RecipeSerializer<PotionWorkshopReactingRecipe> POTION_WORKSHOP_REACTING_SERIALIZER;
+	public static RecipeType<PotionWorkshopReactingRecipe> POTION_WORKSHOP_REACTING;
 	
 	public static RecipeSerializer<MidnightSolutionConvertingRecipe> MIDNIGHT_SOLUTION_CONVERTING_RECIPE_SERIALIZER;
 	public static RecipeType<MidnightSolutionConvertingRecipe> MIDNIGHT_SOLUTION_CONVERTING_RECIPE;
@@ -122,6 +122,14 @@ public class SpectrumRecipeTypes {
 			@Override
 			public String toString() {
 				return "spectrum:potion_workshop_crafting";
+			}
+		});
+		
+		POTION_WORKSHOP_REACTING_SERIALIZER = registerSerializer("potion_workshop_reacting", new PotionWorkshopReactingRecipeSerializer(PotionWorkshopReactingRecipe::new));
+		POTION_WORKSHOP_REACTING = registerRecipeType("potion_workshop_reacting", new RecipeType<PotionWorkshopReactingRecipe>() {
+			@Override
+			public String toString() {
+				return "spectrum:potion_workshop_reacting";
 			}
 		});
 		

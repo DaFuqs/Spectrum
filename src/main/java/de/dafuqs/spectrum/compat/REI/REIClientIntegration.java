@@ -17,6 +17,7 @@ import de.dafuqs.spectrum.recipe.midnight_solution_converting.MidnightSolutionCo
 import de.dafuqs.spectrum.recipe.pedestal.PedestalCraftingRecipe;
 import de.dafuqs.spectrum.recipe.potion_workshop.PotionWorkshopBrewingRecipe;
 import de.dafuqs.spectrum.recipe.potion_workshop.PotionWorkshopCraftingRecipe;
+import de.dafuqs.spectrum.recipe.potion_workshop.PotionWorkshopReactingRecipe;
 import de.dafuqs.spectrum.recipe.spirit_instiller.ISpiritInstillerRecipe;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import de.dafuqs.spectrum.registries.SpectrumItems;
@@ -46,6 +47,7 @@ public class REIClientIntegration implements REIClientPlugin {
 		registry.add(new EnchantmentUpgradeCategory());
 		registry.add(new PotionWorkshopBrewingCategory());
 		registry.add(new PotionWorkshopCraftingCategory());
+		registry.add(new PotionWorkshopReactingCategory());
 		registry.add(new SpiritInstillingCategory());
 		registry.add(new MidnightSolutionConvertingCategory());
 		registry.add(new HeatingCategory());
@@ -80,6 +82,7 @@ public class REIClientIntegration implements REIClientPlugin {
 		registry.addWorkstations(BuiltinPlugin.BREWING, EntryStacks.of(SpectrumBlocks.POTION_WORKSHOP));
 		registry.addWorkstations(SpectrumPlugins.POTION_WORKSHOP_BREWING, EntryStacks.of(SpectrumBlocks.POTION_WORKSHOP));
 		registry.addWorkstations(SpectrumPlugins.POTION_WORKSHOP_CRAFTING, EntryStacks.of(SpectrumBlocks.POTION_WORKSHOP));
+		registry.addWorkstations(SpectrumPlugins.POTION_WORKSHOP_REACTING, EntryStacks.of(SpectrumBlocks.POTION_WORKSHOP));
 		
 		registry.addWorkstations(SpectrumPlugins.MIDNIGHT_SOLUTION_CONVERTING, EntryStacks.of(SpectrumItems.MIDNIGHT_SOLUTION_BUCKET));
 		registry.addWorkstations(SpectrumPlugins.SPIRIT_INSTILLER, EntryStacks.of(SpectrumBlocks.SPIRIT_INSTILLER));
@@ -90,6 +93,7 @@ public class REIClientIntegration implements REIClientPlugin {
 		registry.removePlusButton(SpectrumPlugins.ANVIL_CRUSHING);
 		registry.removePlusButton(SpectrumPlugins.FUSION_SHRINE);
 		registry.removePlusButton(SpectrumPlugins.NATURES_STAFF);
+		registry.removePlusButton(SpectrumPlugins.POTION_WORKSHOP_REACTING);
 		registry.removePlusButton(SpectrumPlugins.ENCHANTER);
 		registry.removePlusButton(SpectrumPlugins.ENCHANTMENT_UPGRADE);
 		registry.removePlusButton(SpectrumPlugins.MIDNIGHT_SOLUTION_CONVERTING);
@@ -110,6 +114,7 @@ public class REIClientIntegration implements REIClientPlugin {
 		registry.registerRecipeFiller(ISpiritInstillerRecipe.class, SpectrumRecipeTypes.SPIRIT_INSTILLING, SpiritInstillingDisplay::new);
 		registry.registerRecipeFiller(MidnightSolutionConvertingRecipe.class, SpectrumRecipeTypes.MIDNIGHT_SOLUTION_CONVERTING_RECIPE, MidnightSolutionConvertingDisplay::new);
 		registry.registerRecipeFiller(InkConvertingRecipe.class, SpectrumRecipeTypes.INK_CONVERTING, InkConvertingDisplay::new);
+		registry.registerRecipeFiller(PotionWorkshopReactingRecipe.class, SpectrumRecipeTypes.POTION_WORKSHOP_REACTING, PotionWorkshopReactingDisplay::new);
 		
 		NaturesStaffItem.BLOCK_CONVERSIONS.forEach((key, value) -> registry.add(new NaturesStaffConversionsDisplay(EntryStacks.of(key), EntryStacks.of(value.getBlock()))));
 		FreezingMobBlock.FREEZING_STATE_MAP.forEach((key, value) -> registry.add(new FreezingDisplay(BlockToBlockWithChanceDisplay.blockToEntryStack(key.getBlock()), BlockToBlockWithChanceDisplay.blockToEntryStack(value.getLeft().getBlock()), value.getRight())));

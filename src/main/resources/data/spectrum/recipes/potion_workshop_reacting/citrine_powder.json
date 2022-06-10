@@ -1,0 +1,7 @@
+{
+  "type": "spectrum:potion_workshop_reacting",
+  "item": "spectrum:citrine_powder",
+  "modifiers": {
+    "multiplicative_potency_modifier": 1.25
+  }
+}

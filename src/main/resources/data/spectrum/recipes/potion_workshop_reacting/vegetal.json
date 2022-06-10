@@ -1,0 +1,8 @@
+{
+  "type": "spectrum:potion_workshop_reacting",
+  "item": "spectrum:vegetal",
+  "modifiers": {
+    "multiplicative_duration_modifier": 1.5,
+    "multiplicative_potency_modifier": 0.5
+  }
+}

@@ -27,7 +27,6 @@ import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.recipe.crafting.RepairAnythingRecipe;
 import de.dafuqs.spectrum.recipe.enchantment_upgrade.EnchantmentUpgradeRecipe;
 import de.dafuqs.spectrum.recipe.enchantment_upgrade.EnchantmentUpgradeRecipeSerializer;
-import de.dafuqs.spectrum.recipe.potion_workshop.PotionWorkshopReagents;
 import de.dafuqs.spectrum.recipe.spirit_instiller.spawner.*;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.registries.color.ColorRegistry;
@@ -213,9 +212,6 @@ public class SpectrumCommon implements ModInitializer {
 		SpectrumComposting.register();
 		logInfo("Registering Game Events...");
 		SpectrumGameEvents.register();
-		
-		logInfo("Registering Potion Workshop Reagents...");
-		PotionWorkshopReagents.register();
 		
 		logInfo("Initializing Item Groups...");
 		SpectrumItemGroups.ITEM_GROUP_GENERAL.initialize();

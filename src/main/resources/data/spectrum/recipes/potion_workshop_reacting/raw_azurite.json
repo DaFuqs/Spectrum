@@ -1,0 +1,7 @@
+{
+  "type": "spectrum:potion_workshop_reacting",
+  "item": "spectrum:raw_azurite",
+  "modifiers": {
+    "negate_decreasing_duration": true
+  }
+}

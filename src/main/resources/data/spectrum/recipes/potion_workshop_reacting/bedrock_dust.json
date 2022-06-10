@@ -1,0 +1,8 @@
+{
+  "type": "spectrum:potion_workshop_reacting",
+  "item": "spectrum:bedrock_dust",
+  "modifiers": {
+    "multiplicative_duration_modifier": 0.25,
+    "multiplicative_potency_modifier": 2.0
+  }
+}

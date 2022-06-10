@@ -1,0 +1,7 @@
+{
+  "type": "spectrum:potion_workshop_reacting",
+  "item": "spectrum:stardust",
+  "modifiers": {
+    "chance_to_add_last_effect": 0.33
+  }
+}

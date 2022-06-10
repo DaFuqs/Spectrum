@@ -1,0 +1,7 @@
+{
+  "type": "spectrum:potion_workshop_reacting",
+  "item": "spectrum:quitoxic_powder",
+  "modifiers": {
+    "flat_potency_bonus_negative_effects": 2.0
+  }
+}

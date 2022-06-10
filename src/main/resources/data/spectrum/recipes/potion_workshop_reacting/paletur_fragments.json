@@ -1,0 +1,7 @@
+{
+  "type": "spectrum:potion_workshop_reacting",
+  "item": "spectrum:paletur_fragments",
+  "modifiers": {
+    "additional_random_positive_effect_count": 1.0
+  }
+}

@@ -13,6 +13,7 @@ import net.minecraft.client.util.Window;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.TranslatableText;
 import vazkii.patchouli.client.RenderHelper;
@@ -37,7 +38,11 @@ public class HudRenderers {
 	
 	private static void renderAzureDike(MatrixStack matrixStack) {
 		Entity entity = MinecraftClient.getInstance().cameraEntity;
-		if (entity instanceof LivingEntity livingEntity && !livingEntity.isInvulnerable()) {
+		if (entity instanceof LivingEntity livingEntity && !livingEntity.isSpectator()) {
+			if(livingEntity instanceof PlayerEntity player && player.isCreative()) {
+				return;
+			}
+			
 			int charges = AzureDikeProvider.getAzureDikeCharges(livingEntity);
 			
 			if (charges > 0) {

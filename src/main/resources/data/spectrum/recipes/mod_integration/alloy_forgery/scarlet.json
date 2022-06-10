@@ -18,13 +18,9 @@
       "id": "spectrum:scarlet_fragments",
       "count": 5
     },
-    "4": {
+    "4+": {
       "id": "spectrum:scarlet_fragments",
       "count": 6
-    },
-    "5": {
-      "id": "spectrum:scarlet_fragments",
-      "count": 7
     }
   },
   "min_forge_tier": 2,

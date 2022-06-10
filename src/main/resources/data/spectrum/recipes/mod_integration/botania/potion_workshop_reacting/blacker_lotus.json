@@ -1,7 +1,9 @@
 {
   "type": "spectrum:potion_workshop_reacting",
-  "item": "botania:pixie_dust",
+  "item": "botania:blacker_lotus",
   "modifiers": {
-    "multiplicative_duration_modifier": 2.0
+    "additional_random_positive_effect_count": 3.0,
+    "additional_random_negative_effect_count": 0.25,
+    "unidentifiable": true
   }
 }

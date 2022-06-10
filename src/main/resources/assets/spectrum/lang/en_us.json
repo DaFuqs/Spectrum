@@ -130,6 +130,12 @@
   "spectrum.rei.potion_workshop_reacting.spectrum.topaz_powder": "Makes Effects not show any particles",
   "spectrum.rei.potion_workshop_reacting.spectrum.vegetal": "Doubles the potions Duration at the cost of Potency",
 
+  "spectrum.rei.potion_workshop_reacting.botania.pixie_dust": "Converts the Potions into Lingering Potions as a single reagent. This way it allows you to directly create Tipped Arrows, too!",
+  "spectrum.rei.potion_workshop_reacting.botania.black_lotus": "Infuses the Potion with a huge amount of additional positive as well as negative, effects, but it's black color also makes it completely unidentifiable. What might you get?",
+  "spectrum.rei.potion_workshop_reacting.botania.blacker_lotus": "Infuses the Potion with a huge amount of additional - mostly positive - effects, but it's black color also makes it completely unidentifiable. What might you get?",
+  "spectrum.rei.potion_workshop_reacting.botania.life_essence": "Makes your Potions much more potent, but at a huge loss of duration. If the duration will get too short the potion might end up useless altogether...",
+  "spectrum.rei.potion_workshop_reacting.botania.mana_powder": "Gives a small multiplicative boost to Duration and a tiny chance to add the last brewed effect, too",
+
   "multiblock.spectrum.pedestal.upgrade_available": "Structure Upgrade available!",
   "multiblock.spectrum.pedestal.simple_structure": "Spectrum Focus",
   "multiblock.spectrum.pedestal.advanced_structure": "Spectrum Temple",

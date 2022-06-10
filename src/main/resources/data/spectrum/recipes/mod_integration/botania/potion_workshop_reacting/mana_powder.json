@@ -1,7 +1,8 @@
 {
   "type": "spectrum:potion_workshop_reacting",
-  "item": "botania:pixie_dust",
+  "item": "botania:mana_powder",
   "modifiers": {
-    "multiplicative_duration_modifier": 2.0
+    "multiplicative_duration_modifier": 1.25,
+    "chance_to_add_last_effect": 0.15
   }
 }

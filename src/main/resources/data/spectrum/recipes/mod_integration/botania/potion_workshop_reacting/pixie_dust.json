@@ -2,6 +2,7 @@
   "type": "spectrum:potion_workshop_reacting",
   "item": "botania:pixie_dust",
   "modifiers": {
-    "multiplicative_duration_modifier": 2.0
+    "make_splashing": true,
+    "make_lingering": true
   }
 }

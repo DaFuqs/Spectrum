@@ -3,5 +3,6 @@
   "item": "spectrum:paletur_fragments",
   "modifiers": {
     "additional_random_positive_effect_count": 1.0
-  }
+  },
+  "required_advancement": "spectrum:lategame/collect_paletur"
 }

@@ -3,5 +3,6 @@
   "item": "spectrum:topaz_powder",
   "modifiers": {
     "no_particles": true
-  }
+  },
+  "required_advancement": "spectrum:hidden/collect_gemstone_dust/collect_topaz_powder"
 }

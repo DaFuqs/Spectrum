@@ -4,5 +4,6 @@
   "modifiers": {
     "multiplicative_duration_modifier": 0.25,
     "multiplicative_potency_modifier": 2.0
-  }
+  },
+  "required_advancement": "spectrum:midgame/break_decayed_bedrock"
 }

@@ -3,5 +3,6 @@
   "item": "spectrum:citrine_powder",
   "modifiers": {
     "multiplicative_potency_modifier": 1.25
-  }
+  },
+  "required_advancement": "spectrum:hidden/collect_gemstone_dust/collect_citrine_powder"
 }

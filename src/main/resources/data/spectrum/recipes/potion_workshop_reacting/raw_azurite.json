@@ -3,5 +3,6 @@
   "item": "spectrum:raw_azurite",
   "modifiers": {
     "negate_decreasing_duration": true
-  }
+  },
+  "required_advancement": "spectrum:midgame/collect_azurite"
 }

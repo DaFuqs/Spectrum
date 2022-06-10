@@ -3,5 +3,6 @@
   "item": "spectrum:onyx_powder",
   "modifiers": {
     "unidentifiable": true
-  }
+  },
+  "required_advancement": "spectrum:hidden/collect_gemstone_dust/collect_onyx_powder"
 }

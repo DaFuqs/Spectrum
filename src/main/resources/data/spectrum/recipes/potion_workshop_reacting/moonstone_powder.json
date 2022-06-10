@@ -3,5 +3,6 @@
   "item": "spectrum:moonstone_powder",
   "modifiers": {
     "make_effects_positive": true
-  }
+  },
+  "required_advancement": "spectrum:hidden/collect_gemstone_dust/collect_moonstone_powder"
 }

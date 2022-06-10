@@ -4,5 +4,5 @@
   "modifiers": {
     "flat_duration_bonus_ticks": 600
   },
-  "required_advancement": "spectrum:"
+  "required_advancement": "spectrum:hidden/collect_gemstone_dust/collect_amethyst_powder"
 }

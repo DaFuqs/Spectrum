@@ -3,5 +3,6 @@
   "item": "spectrum:moonstruck_nectar",
   "modifiers": {
     "fast_drinkable": true
-  }
+  },
+  "required_advancement": "spectrum:midgame/harvest_moonstruck_nectar"
 }

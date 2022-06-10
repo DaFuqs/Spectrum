@@ -63,7 +63,7 @@ public class PotionWorkshopReactingRecipe implements Recipe<Inventory>, Descript
 	
 	@Override
 	public ItemStack getOutput() {
-		return ItemStack.EMPTY;
+		return item.getDefaultStack();
 	}
 	
 	public boolean isIgnoredInRecipeBook() {
@@ -119,7 +119,7 @@ public class PotionWorkshopReactingRecipe implements Recipe<Inventory>, Descript
 	
 	@Override
 	public boolean canPlayerCraft(PlayerEntity playerEntity) {
-		return Support.hasAdvancement(playerEntity, PotionWorkshopRecipe.UNLOCK_POTION_WORKSHOP_ADVANCEMENT_IDENTIFIER);
+		return Support.hasAdvancement(playerEntity, PotionWorkshopRecipe.UNLOCK_POTION_WORKSHOP_ADVANCEMENT_IDENTIFIER) && Support.hasAdvancement(playerEntity, this.requiredAdvancementIdentifier);
 	}
 	
 	public static boolean isReagent(Item item) {

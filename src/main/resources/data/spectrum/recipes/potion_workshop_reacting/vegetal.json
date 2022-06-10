@@ -4,5 +4,6 @@
   "modifiers": {
     "multiplicative_duration_modifier": 1.5,
     "multiplicative_potency_modifier": 0.5
-  }
+  },
+  "required_advancement": "spectrum:collect_vegetal"
 }

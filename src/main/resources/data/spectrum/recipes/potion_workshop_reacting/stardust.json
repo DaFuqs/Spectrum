@@ -3,5 +3,6 @@
   "item": "spectrum:stardust",
   "modifiers": {
     "chance_to_add_last_effect": 0.33
-  }
+  },
+  "required_advancement": "spectrum:hidden/collect_stardust"
 }

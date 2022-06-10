@@ -18,6 +18,7 @@ import de.dafuqs.spectrum.recipe.fusion_shrine.FusionShrineRecipe;
 import de.dafuqs.spectrum.recipe.pedestal.PedestalCraftingRecipe;
 import de.dafuqs.spectrum.recipe.potion_workshop.PotionWorkshopBrewingRecipe;
 import de.dafuqs.spectrum.recipe.potion_workshop.PotionWorkshopCraftingRecipe;
+import de.dafuqs.spectrum.recipe.potion_workshop.PotionWorkshopReactingRecipe;
 import de.dafuqs.spectrum.recipe.spirit_instiller.ISpiritInstillerRecipe;
 import de.dafuqs.spectrum.registries.SpectrumBlockTags;
 import de.dafuqs.spectrum.registries.color.ColorRegistry;
@@ -178,6 +179,13 @@ public class ProgressionSanityCommand {
 		for (PotionWorkshopCraftingRecipe recipe : SpectrumCommon.minecraftServer.getRecipeManager().listAllOfType(SpectrumRecipeTypes.POTION_WORKSHOP_CRAFTING)) {
 			if (!doesAdvancementExist(recipe.getRequiredAdvancementIdentifier())) {
 				SpectrumCommon.logWarning("[SANITY: Potion Workshop Crafting Unlocks] Advancement '" + recipe.getRequiredAdvancementIdentifier() + "' in recipe '" + recipe.getId() + "' does not exist");
+			}
+		}
+		
+		// Impossible to unlock potion reagents
+		for (PotionWorkshopReactingRecipe recipe : SpectrumCommon.minecraftServer.getRecipeManager().listAllOfType(SpectrumRecipeTypes.POTION_WORKSHOP_REACTING)) {
+			if (!doesAdvancementExist(recipe.getRequiredAdvancementIdentifier())) {
+				SpectrumCommon.logWarning("[SANITY: Potion Workshop Reagents] Advancement '" + recipe.getRequiredAdvancementIdentifier() + "' in recipe '" + recipe.getId() + "' does not exist");
 			}
 		}
 		

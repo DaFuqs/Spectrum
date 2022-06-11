@@ -9,8 +9,8 @@ import net.minecraft.block.BlockState;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.WorldRenderer;
 import net.minecraft.item.Item;
-import net.minecraft.item.Items;
 import net.minecraft.util.Identifier;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
 
@@ -26,42 +26,94 @@ public class RevelationHolder {
 	private static final List<BlockState> activeBlockStateSwaps = new ArrayList<>();
 	private static final List<Item> activeItemSwaps = new ArrayList<>();
 	
-	public static void processAdvancements(List<Identifier> doneAdvancements, boolean triggerCallback) {
-		List<Item> revealedItems = new ArrayList<>();
-		List<BlockState> revealedBlockStates = new ArrayList<>();
-		List<Block> revealedBlocks = new ArrayList<>();
-		for (Identifier doneAdvancement : doneAdvancements) {
-			revealedItems.addAll(RevelationRegistry.getRevealedItems(doneAdvancement));
-			revealedBlockStates.addAll(RevelationRegistry.getRevealedBlockStates(doneAdvancement));
-			for(BlockState state : revealedBlockStates) {
-				Block block = state.getBlock();
-				if(!revealedBlocks.contains(block)) {
-					revealedBlocks.add(block);
+	public static void processNewAdvancements(List<Identifier> doneAdvancements, boolean triggerCallback) {
+		if(!doneAdvancements.isEmpty()) {
+			List<Item> revealedItems = new ArrayList<>();
+			List<BlockState> revealedBlockStates = new ArrayList<>();
+			List<Block> revealedBlocks = new ArrayList<>();
+			for (Identifier doneAdvancement : doneAdvancements) {
+				revealedItems.addAll(RevelationRegistry.getRevealedItems(doneAdvancement));
+				revealedBlockStates.addAll(RevelationRegistry.getRevealedBlockStates(doneAdvancement));
+				for (BlockState state : revealedBlockStates) {
+					Block block = state.getBlock();
+					if (!revealedBlocks.contains(block)) {
+						revealedBlocks.add(block);
+					}
+				}
+			}
+			
+			if (revealedBlockStates.size() > 0) {
+				// uncloak the blocks
+				for (BlockState revealedBlockState : revealedBlockStates) {
+					activeBlockStateSwaps.remove(revealedBlockState);
+					Item blockItem = revealedBlockState.getBlock().asItem();
+					if (blockItem != null) {
+						activeItemSwaps.remove(blockItem);
+					}
+				}
+				rebuildAllChunks();
+			}
+			
+			for (Block revealedBlock : revealedBlocks) {
+				if (revealedBlock instanceof RevelationAware revelationAware) {
+					revelationAware.onUncloak();
+				}
+			}
+			for (Item revealedItem : revealedItems) {
+				if (revealedItem instanceof RevelationAware revelationAware) {
+					revelationAware.onUncloak();
+				}
+			}
+			
+			if (triggerCallback && (!revealedBlocks.isEmpty() || !revealedItems.isEmpty())) {
+				for (UncloakCallback callback : callbacks) {
+					callback.trigger(doneAdvancements, revealedBlocks, revealedItems);
 				}
 			}
 		}
-		
-		if (revealedBlockStates.size() > 0) {
-			// uncloak the blocks
-			for (BlockState revealedBlockState : revealedBlockStates) {
-				activeBlockStateSwaps.remove(revealedBlockState);
-				Item blockItem = revealedBlockState.getBlock().asItem();
-				if (blockItem != null) {
-					activeItemSwaps.remove(blockItem);
+	}
+	
+	public static void processRemovedAdvancements(@NotNull Set<Identifier> removedAdvancements) {
+		if(!removedAdvancements.isEmpty()) {
+			List<Item> concealedItems = new ArrayList<>();
+			List<BlockState> concealedBlockStates = new ArrayList<>();
+			List<Block> concealedBlocks = new ArrayList<>();
+			for (Identifier removedAdvancement : removedAdvancements) {
+				concealedItems.addAll(RevelationRegistry.getRevealedItems(removedAdvancement));
+				concealedBlockStates.addAll(RevelationRegistry.getRevealedBlockStates(removedAdvancement));
+				for (BlockState state : concealedBlockStates) {
+					Block block = state.getBlock();
+					if (!concealedBlocks.contains(block)) {
+						concealedBlocks.add(block);
+					}
 				}
 			}
-			rebuildAllChunks();
-		}
-		
-		for(Block revealedBlock : revealedBlocks) {
-			if(revealedBlock instanceof RevelationAware revelationAware) {
-				revelationAware.onUncloak();
+			
+			if (concealedBlockStates.size() > 0) {
+				// uncloak the blocks
+				for (BlockState concealedBlockState : concealedBlockStates) {
+					if(!activeBlockStateSwaps.contains(concealedBlockState)) {
+						activeBlockStateSwaps.add(concealedBlockState);
+					}
+					Item blockItem = concealedBlockState.getBlock().asItem();
+					if (blockItem != null) {
+						if(!activeItemSwaps.contains(blockItem)) {
+							activeItemSwaps.add(blockItem);
+						}
+					}
+				}
+				rebuildAllChunks();
 			}
-		}
-		
-		if (triggerCallback) {
-			for(UncloakCallback callback : callbacks) {
-				callback.trigger(doneAdvancements, revealedBlocks, revealedItems);
+			
+			for (Block concealedBlock : concealedBlocks) {
+				if (concealedBlock instanceof RevelationAware revelationAware) {
+					revelationAware.onCloak();
+				}
+			}
+			for (Item concealedItem : concealedItems) {
+				if (concealedItem instanceof RevelationAware revelationAware) {
+					revelationAware.onCloak();
+				}
 			}
 		}
 	}

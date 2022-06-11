@@ -24,6 +24,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.Registry;
 
 import java.util.List;
 
@@ -87,7 +88,12 @@ public class SpectrumClient implements ClientModInitializer {
 		RevelationHolder.registerCallback(new RevelationHolder.UncloakCallback() {
 			@Override
 			public void trigger(List<Identifier> advancements, List<Block> blocks, List<Item> items) {
-				RevelationToast.showRevelationToast(MinecraftClient.getInstance(), new ItemStack(SpectrumBlocks.PEDESTAL_BASIC_AMETHYST.asItem()), SpectrumSoundEvents.NEW_REVELATION);
+				for(Block block : blocks) {
+					if(Registry.BLOCK.getId(block).getNamespace().equals(SpectrumCommon.MOD_ID)) {
+						RevelationToast.showRevelationToast(MinecraftClient.getInstance(), new ItemStack(SpectrumBlocks.PEDESTAL_BASIC_AMETHYST.asItem()), SpectrumSoundEvents.NEW_REVELATION);
+						break;
+					}
+				}
 			}
 		});
 		

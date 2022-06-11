@@ -60,7 +60,7 @@ public class RecipeUnlockToastManager {
 		}
 	}
 	
-	public static void processAdvancements(List<Identifier> doneAdvancements, boolean showToast) {
+	public static void processRemovedAdvancements(List<Identifier> doneAdvancements, boolean showToast) {
 		if (showToast) {
 			HashMap<RecipeType, List<GatedRecipe>> unlockedRecipesByType = new HashMap<>();
 			List<Pair<ItemStack, String>> specialToasts = new ArrayList<>();

@@ -11,24 +11,29 @@ import net.minecraft.client.network.ClientAdvancementManager;
 import net.minecraft.client.network.ClientPlayNetworkHandler;
 import net.minecraft.network.packet.s2c.play.AdvancementUpdateS2CPacket;
 import net.minecraft.util.Identifier;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 @Environment(EnvType.CLIENT)
 public class ClientAdvancements {
 	
 	private static boolean receivedFirstAdvancementPacket = false;
 	
-	public static void onClientPacket(AdvancementUpdateS2CPacket packet) {
+	public static void onClientPacket(@NotNull AdvancementUpdateS2CPacket packet) {
 		boolean showToast = receivedFirstAdvancementPacket;
 		receivedFirstAdvancementPacket = true;
 		
-		List<Identifier> doneAdvancements = getDoneAdvancements(packet);
+		RevelationHolder.processRemovedAdvancements(packet.getAdvancementIdsToRemove());
 		
-		RevelationHolder.processAdvancements(doneAdvancements, showToast);
-		RecipeUnlockToastManager.processAdvancements(doneAdvancements, showToast);
+		List<Identifier> doneAdvancements = getDoneAdvancements(packet);
+		RevelationHolder.processNewAdvancements(doneAdvancements, showToast);
+		RecipeUnlockToastManager.processRemovedAdvancements(doneAdvancements, showToast);
+		
+		
 	}
 	
 	public static boolean hasDone(Identifier identifier) {
@@ -52,7 +57,7 @@ public class ClientAdvancements {
 		return false;
 	}
 	
-	public static List<Identifier> getDoneAdvancements(AdvancementUpdateS2CPacket packet) {
+	public static @NotNull List<Identifier> getDoneAdvancements(@NotNull AdvancementUpdateS2CPacket packet) {
 		List<Identifier> doneAdvancements = new ArrayList<>();
 		
 		for (Identifier earnedAdvancementIdentifier : packet.getAdvancementsToEarn().keySet()) {

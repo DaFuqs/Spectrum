@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.mixin.client;
 
-import de.dafuqs.spectrum.progression.ClientBlockCloaker;
+import de.dafuqs.spectrum.progression.revelationary.RevelationHolder;
 import net.minecraft.block.Block;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
@@ -16,7 +16,7 @@ public class BlockClientMixin {
 	@Inject(method = "getName()Lnet/minecraft/text/MutableText;", at = @At("RETURN"), cancellable = true)
 	private void getCloakedName(CallbackInfoReturnable<MutableText> callbackInfoReturnable) {
 		Block thisBlock = (Block) (Object) this;
-		if (ClientBlockCloaker.isCloaked(thisBlock)) {
+		if (RevelationHolder.isCloaked(thisBlock)) {
 			// Get the localized name of the block and scatter it using §k to make it unreadable
 			Language language = Language.getInstance();
 			LiteralText newText = new LiteralText("§k" + language.get(thisBlock.getTranslationKey()));

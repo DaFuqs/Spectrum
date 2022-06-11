@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.blocks.conditional;
 
 import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.interfaces.Cloakable;
+import de.dafuqs.spectrum.interfaces.RevelationAware;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -17,6 +17,7 @@ import net.minecraft.util.Pair;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
@@ -27,7 +28,7 @@ import java.util.Hashtable;
 import java.util.List;
 import java.util.Random;
 
-public class LightningStoneBlock extends Block implements Cloakable {
+public class LightningStoneBlock extends Block implements RevelationAware {
 	
 	protected static final VoxelShape SHAPE = Block.createCuboidShape(4.0D, 0.0D, 4.0D, 11.0D, 2.0D, 11.0D);
 	
@@ -72,7 +73,7 @@ public class LightningStoneBlock extends Block implements Cloakable {
 		if (this.isVisibleTo(context)) {
 			return SHAPE;
 		}
-		return EMPTY_SHAPE;
+		return VoxelShapes.empty();
 	}
 	
 	@Override
@@ -80,7 +81,7 @@ public class LightningStoneBlock extends Block implements Cloakable {
 		if (this.isVisibleTo(context)) {
 			return SHAPE;
 		}
-		return EMPTY_SHAPE;
+		return VoxelShapes.empty();
 	}
 	
 	@Override

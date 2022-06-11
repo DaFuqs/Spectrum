@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.progression;
 
 import de.dafuqs.spectrum.mixin.client.accessors.AccessorClientAdvancementManager;
+import de.dafuqs.spectrum.progression.revelationary.RevelationHolder;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.advancement.Advancement;
@@ -26,7 +27,7 @@ public class ClientAdvancements {
 		
 		List<Identifier> doneAdvancements = getDoneAdvancements(packet);
 		
-		ClientBlockCloaker.process(doneAdvancements, showToast);
+		RevelationHolder.processAdvancements(doneAdvancements, showToast);
 		RecipeUnlockToastManager.processAdvancements(doneAdvancements, showToast);
 	}
 	
@@ -71,7 +72,7 @@ public class ClientAdvancements {
 	}
 	
 	public static void playerLogout() {
-		ClientBlockCloaker.cloakAll();
+		RevelationHolder.cloakAll();
 		receivedFirstAdvancementPacket = false;
 	}
 	

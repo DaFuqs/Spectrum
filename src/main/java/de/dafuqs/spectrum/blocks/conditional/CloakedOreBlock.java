@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.blocks.conditional;
 
-import de.dafuqs.spectrum.interfaces.Cloakable;
+import de.dafuqs.spectrum.interfaces.RevelationAware;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.OreBlock;
 import net.minecraft.entity.player.PlayerEntity;
@@ -16,7 +16,7 @@ import net.minecraft.util.math.intprovider.UniformIntProvider;
 import java.util.Hashtable;
 import java.util.List;
 
-public class CloakedOreBlock extends OreBlock implements Cloakable {
+public class CloakedOreBlock extends OreBlock implements RevelationAware {
 	
 	protected static boolean dropXP;
 	protected final Identifier cloakAdvancementIdentifier;

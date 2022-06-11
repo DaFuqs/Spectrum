@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.progression.advancement;
 
 import com.google.gson.JsonObject;
 import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.interfaces.Cloakable;
 import net.minecraft.advancement.criterion.AbstractCriterion;
 import net.minecraft.advancement.criterion.AbstractCriterionConditions;
 import net.minecraft.block.Block;
@@ -32,9 +31,9 @@ public class HadRevelationCriterion extends AbstractCriterion<HadRevelationCrite
 		return new HadRevelationCriterion.Conditions(extended, identifier);
 	}
 	
-	public void trigger(ServerPlayerEntity player, Cloakable cloakable) {
+	public void trigger(ServerPlayerEntity player, Block block) {
 		this.trigger(player, (conditions) -> {
-			return conditions.matches(cloakable);
+			return conditions.matches(block);
 		});
 	}
 	
@@ -52,15 +51,13 @@ public class HadRevelationCriterion extends AbstractCriterion<HadRevelationCrite
 			return jsonObject;
 		}
 		
-		public boolean matches(Cloakable cloakable) {
+		public boolean matches(Object object) {
 			if (identifier.getPath().isEmpty()) {
 				// if "revelation_identifier": "" => trigger with any revelation
 				return true;
-			} else if (cloakable instanceof Block) {
-				Block cloakableBlock = (Block) cloakable;
+			} else if (object instanceof Block cloakableBlock) {
 				return Registry.BLOCK.getId(cloakableBlock).equals(identifier);
-			} else if (cloakable instanceof Item) {
-				Item cloakableItem = (Item) cloakable;
+			} else if (object instanceof Item cloakableItem) {
 				return Registry.ITEM.getId(cloakableItem).equals(identifier);
 			} else {
 				return false;

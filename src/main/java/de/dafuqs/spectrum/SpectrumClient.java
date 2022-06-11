@@ -6,6 +6,8 @@ import de.dafuqs.spectrum.inventories.SpectrumContainers;
 import de.dafuqs.spectrum.inventories.SpectrumScreenHandlerTypes;
 import de.dafuqs.spectrum.networking.SpectrumS2CPacketReceiver;
 import de.dafuqs.spectrum.particle.SpectrumParticleFactories;
+import de.dafuqs.spectrum.progression.revelationary.RevelationHolder;
+import de.dafuqs.spectrum.progression.toast.RevelationToast;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.registries.client.SpectrumColorProviders;
 import de.dafuqs.spectrum.registries.client.SpectrumItemPredicates;
@@ -16,8 +18,14 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientLifecycleEvents;
 import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
+import net.minecraft.block.Block;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.text.TranslatableText;
+import net.minecraft.util.Identifier;
+
+import java.util.List;
 
 import static de.dafuqs.spectrum.SpectrumCommon.logInfo;
 
@@ -73,6 +81,13 @@ public class SpectrumClient implements ClientModInitializer {
 		ItemTooltipCallback.EVENT.register((stack, context, lines) -> {
 			if (stack.isIn(SpectrumItemTags.COMING_SOON_TOOLTIP)) {
 				lines.add(new TranslatableText("spectrum.tooltip.coming_soon"));
+			}
+		});
+		
+		RevelationHolder.registerCallback(new RevelationHolder.UncloakCallback() {
+			@Override
+			public void trigger(List<Identifier> advancements, List<Block> blocks, List<Item> items) {
+				RevelationToast.showRevelationToast(MinecraftClient.getInstance(), new ItemStack(SpectrumBlocks.PEDESTAL_BASIC_AMETHYST.asItem()), SpectrumSoundEvents.NEW_REVELATION);
 			}
 		});
 		

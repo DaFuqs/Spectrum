@@ -6,10 +6,9 @@ import de.dafuqs.spectrum.blocks.enchanter.EnchanterEnchantable;
 import de.dafuqs.spectrum.enchantments.SpectrumEnchantment;
 import de.dafuqs.spectrum.enums.BuiltinGemstoneColor;
 import de.dafuqs.spectrum.enums.PedestalRecipeTier;
-import de.dafuqs.spectrum.interfaces.Cloakable;
 import de.dafuqs.spectrum.mixin.accessors.LootTableAccessor;
-import de.dafuqs.spectrum.progression.BlockCloakManager;
 import de.dafuqs.spectrum.progression.advancement.HasAdvancementCriterion;
+import de.dafuqs.spectrum.progression.revelationary.RevelationRegistry;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.recipe.anvil_crushing.AnvilCrushingRecipe;
 import de.dafuqs.spectrum.recipe.enchanter.EnchanterRecipe;
@@ -233,7 +232,7 @@ public class ProgressionSanityCommand {
 		}
 		
 		// Impossible to unlock block cloaks
-		for (Map.Entry<Identifier, List<Cloakable>> cloaks : BlockCloakManager.getAdvancementIdentifiersAndRegisteredCloaks().entrySet()) {
+		for (Map.Entry<Identifier, List<BlockState>> cloaks : RevelationRegistry.getBlockStateEntries().entrySet()) {
 			if (!doesAdvancementExist(cloaks.getKey())) {
 				SpectrumCommon.logWarning("[SANITY: Block Cloaks] Advancement '" + cloaks.getKey().toString() + "' for block / item cloaking does not exist. Registered cloaks: " + cloaks.getValue().size());
 			}

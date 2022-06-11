@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.blocks.conditional;
 
 import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.interfaces.Cloakable;
+import de.dafuqs.spectrum.interfaces.RevelationAware;
 import de.dafuqs.spectrum.registries.SpectrumBlockTags;
 import de.dafuqs.spectrum.registries.SpectrumFluidTags;
 import de.dafuqs.spectrum.registries.SpectrumFluids;
@@ -40,7 +40,7 @@ import java.util.Hashtable;
 import java.util.List;
 import java.util.Random;
 
-public class MermaidsBrushBlock extends PlantBlock implements Cloakable, FluidFillable {
+public class MermaidsBrushBlock extends PlantBlock implements RevelationAware, FluidFillable {
 	
 	public static final BooleanProperty IN_LIQUID_CRYSTAL = BooleanProperty.of("in_liquid_crystal");
 	public static final IntProperty AGE = Properties.AGE_7;

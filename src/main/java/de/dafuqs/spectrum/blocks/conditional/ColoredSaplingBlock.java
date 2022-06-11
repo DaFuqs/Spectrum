@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.blocks.conditional;
 
 import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.interfaces.Cloakable;
+import de.dafuqs.spectrum.interfaces.RevelationAware;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.SaplingBlock;
@@ -15,7 +15,7 @@ import net.minecraft.util.Pair;
 import java.util.Hashtable;
 import java.util.List;
 
-public class ColoredSaplingBlock extends SaplingBlock implements Cloakable {
+public class ColoredSaplingBlock extends SaplingBlock implements RevelationAware {
 	
 	public ColoredSaplingBlock(SaplingGenerator generator, Settings settings) {
 		super(generator, settings);

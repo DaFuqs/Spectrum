@@ -1,11 +1,12 @@
 package de.dafuqs.spectrum.mixin;
 
-import de.dafuqs.spectrum.interfaces.Cloakable;
-import de.dafuqs.spectrum.progression.BlockCloakManager;
 import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
+import de.dafuqs.spectrum.progression.revelationary.RevelationRegistry;
 import net.minecraft.advancement.Advancement;
 import net.minecraft.advancement.AdvancementProgress;
 import net.minecraft.advancement.PlayerAdvancementTracker;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.server.network.ServerPlayerEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -25,12 +26,11 @@ public abstract class PlayerAdvancementTrackerMixin {
 	public void triggerAdvancementCriteria(Advancement advancement, String criterionName, CallbackInfoReturnable<Boolean> cir) {
 		AdvancementProgress advancementProgress = ((PlayerAdvancementTracker) (Object) this).getProgress(advancement);
 		if (advancementProgress.isDone()) {
-			
 			SpectrumAdvancementCriteria.ADVANCEMENT_GOTTEN.trigger(owner, advancement);
 			
-			List<Cloakable> revealedBlocks = BlockCloakManager.getRevelationsForAdvancement(advancement.getId());
-			for (Cloakable block : revealedBlocks) {
-				SpectrumAdvancementCriteria.HAD_REVELATION.trigger(owner, block);
+			List<Block> revelations = RevelationRegistry.getBlockEntries(advancement.getId());
+			for (Block revelation : revelations) {
+				SpectrumAdvancementCriteria.HAD_REVELATION.trigger(owner, revelation);
 			}
 		}
 	}

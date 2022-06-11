@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.recipe.potion_workshop;
 
 import de.dafuqs.spectrum.helpers.Support;
-import de.dafuqs.spectrum.interfaces.Cloakable;
 import de.dafuqs.spectrum.recipe.DescriptiveGatedRecipe;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;

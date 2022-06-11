@@ -1,8 +1,7 @@
 package de.dafuqs.spectrum.interfaces;
 
 import de.dafuqs.spectrum.helpers.Support;
-import de.dafuqs.spectrum.progression.BlockCloakManager;
-import net.minecraft.block.Block;
+import de.dafuqs.spectrum.progression.revelationary.RevelationRegistry;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.EntityShapeContext;
 import net.minecraft.block.ShapeContext;
@@ -18,21 +17,18 @@ import net.minecraft.loot.context.LootContextTypes;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Pair;
-import net.minecraft.util.shape.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Collections;
 import java.util.Hashtable;
 import java.util.List;
 
-public interface Cloakable {
-	
-	VoxelShape EMPTY_SHAPE = Block.createCuboidShape(0.0D, 0.0D, 0.0D, 0.0D, 0.0D, 0.0D);
+public interface RevelationAware {
 	
 	Identifier getCloakAdvancementIdentifier();
 	
 	default void registerCloak() {
-		BlockCloakManager.registerAdvancementCloak(this, getCloakAdvancementIdentifier());
+		RevelationRegistry.registerCloakable(this, getCloakAdvancementIdentifier());
 	}
 	
 	Hashtable<BlockState, BlockState> getBlockStateCloaks();
@@ -42,12 +38,8 @@ public interface Cloakable {
 	default void onCloak() {
 	}
 	
-	;
-	
 	default void onUncloak() {
 	}
-	
-	;
 	
 	default boolean isVisibleTo(ShapeContext context) {
 		if (context instanceof EntityShapeContext) {
@@ -82,7 +74,7 @@ public interface Cloakable {
 		Identifier identifier;
 		BlockState cloakedBlockState = null;
 		if (lootPlayerEntity == null || !isVisibleTo(lootPlayerEntity)) {
-			cloakedBlockState = BlockCloakManager.getBlockStateCloak(state);
+			cloakedBlockState = RevelationRegistry.getCloak(state);
 			if (cloakedBlockState == null) {
 				identifier = state.getBlock().getLootTableId();
 			} else {

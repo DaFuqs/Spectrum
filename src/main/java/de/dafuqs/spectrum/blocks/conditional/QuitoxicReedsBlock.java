@@ -2,7 +2,7 @@ package de.dafuqs.spectrum.blocks.conditional;
 
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.WaterOrLiquidCrystalLogged;
-import de.dafuqs.spectrum.interfaces.Cloakable;
+import de.dafuqs.spectrum.interfaces.RevelationAware;
 import de.dafuqs.spectrum.registries.SpectrumBlockTags;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import de.dafuqs.spectrum.registries.SpectrumFluidTags;
@@ -32,6 +32,7 @@ import net.minecraft.util.Pair;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
@@ -41,7 +42,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 
-public class QuitoxicReedsBlock extends Block implements Cloakable, WaterOrLiquidCrystalLogged {
+public class QuitoxicReedsBlock extends Block implements RevelationAware, WaterOrLiquidCrystalLogged {
 	
 	public static final IntProperty AGE = Properties.AGE_7;
 	public static final int MAX_GROWTH_HEIGHT_WATER = 5;
@@ -233,7 +234,7 @@ public class QuitoxicReedsBlock extends Block implements Cloakable, WaterOrLiqui
 		if (this.isVisibleTo(context)) {
 			return SHAPE;
 		}
-		return EMPTY_SHAPE;
+		return VoxelShapes.empty();
 	}
 	
 	/**

@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.blocks.conditional;
 
 import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.interfaces.Cloakable;
+import de.dafuqs.spectrum.interfaces.RevelationAware;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -14,7 +14,7 @@ import net.minecraft.util.Pair;
 import java.util.Hashtable;
 import java.util.List;
 
-public class EnderTreasureBlock extends Block implements Cloakable {
+public class EnderTreasureBlock extends Block implements RevelationAware {
 	
 	public EnderTreasureBlock(Settings settings) {
 		super(settings);

@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.blocks.conditional;
 
 import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.interfaces.Cloakable;
+import de.dafuqs.spectrum.interfaces.RevelationAware;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.PillarBlock;
@@ -15,7 +15,7 @@ import net.minecraft.util.math.Direction;
 import java.util.Hashtable;
 import java.util.List;
 
-public class ColoredLogBlock extends PillarBlock implements Cloakable {
+public class ColoredLogBlock extends PillarBlock implements RevelationAware {
 	
 	public ColoredLogBlock(Settings settings) {
 		super(settings);

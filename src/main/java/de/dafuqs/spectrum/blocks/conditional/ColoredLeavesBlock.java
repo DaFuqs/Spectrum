@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.blocks.conditional;
 
 import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.interfaces.Cloakable;
+import de.dafuqs.spectrum.interfaces.RevelationAware;
 import de.dafuqs.spectrum.registries.client.SpectrumColorProviders;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -15,7 +15,7 @@ import net.minecraft.util.Pair;
 import java.util.Hashtable;
 import java.util.List;
 
-public class ColoredLeavesBlock extends LeavesBlock implements Cloakable {
+public class ColoredLeavesBlock extends LeavesBlock implements RevelationAware {
 	
 	public ColoredLeavesBlock(Settings settings) {
 		super(settings);

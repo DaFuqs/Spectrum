@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.items.conditional;
 
-import de.dafuqs.spectrum.interfaces.Cloakable;
+import de.dafuqs.spectrum.interfaces.RevelationAware;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.BlockItem;
@@ -10,7 +10,7 @@ import net.minecraft.util.Pair;
 
 import java.util.Hashtable;
 
-public class CloakedBlockItem extends BlockItem implements Cloakable {
+public class CloakedBlockItem extends BlockItem implements RevelationAware {
 	
 	Identifier cloakAdvancementIdentifier;
 	Item cloakItem;

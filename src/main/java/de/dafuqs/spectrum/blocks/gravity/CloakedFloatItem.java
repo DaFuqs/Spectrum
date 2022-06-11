@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.blocks.gravity;
 
-import de.dafuqs.spectrum.interfaces.Cloakable;
+import de.dafuqs.spectrum.interfaces.RevelationAware;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.Item;
 import net.minecraft.util.Identifier;
@@ -8,7 +8,7 @@ import net.minecraft.util.Pair;
 
 import java.util.Hashtable;
 
-public class CloakedFloatItem extends FloatItem implements Cloakable {
+public class CloakedFloatItem extends FloatItem implements RevelationAware {
 	
 	Identifier cloakAdvancementIdentifier;
 	Item cloakItem;

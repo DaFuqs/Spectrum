@@ -4,10 +4,12 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.mojang.brigadier.StringReader;
 import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.interfaces.RevelationAware;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.command.argument.BlockArgumentParser;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.util.Identifier;
@@ -21,10 +23,12 @@ import java.util.*;
 
 public class RevelationRegistry {
     
-    private static final Map<Identifier, List<BlockState>> BLOCK_ADVANCEMENT_REGISTRY = new HashMap<>();
+    private static final Map<Identifier, List<BlockState>> ADVANCEMENT_BLOCK_REGISTRY = new HashMap<>();
+    private static final Map<BlockState, Identifier> BLOCK_ADVANCEMENT_REGISTRY = new HashMap<>();
     private static final Map<BlockState, BlockState> BLOCK_STATE_REGISTRY = new HashMap<>();
     
-    private static final Map<Identifier, List<Item>> ITEM_ADVANCEMENT_REGISTRY = new HashMap<>();
+    private static final Map<Identifier, List<Item>> ADVANCEMENT_ITEM_REGISTRY = new HashMap<>();
+    private static final Map<Item, Identifier> ITEM_ADVANCEMENT_REGISTRY = new HashMap<>();
     private static final Map<Item, Item> ITEM_REGISTRY = new HashMap<>();
 
     public static void clear() {
@@ -49,6 +53,14 @@ public class RevelationRegistry {
      @Nullable
     public static BlockState getCloak(BlockState blockState) {
         return BLOCK_STATE_REGISTRY.getOrDefault(blockState, null);
+    }
+    
+    public static boolean isVisibleTo(Item item, PlayerEntity player) {
+        return Support.hasAdvancement(player, ITEM_ADVANCEMENT_REGISTRY.getOrDefault(item, null));
+    }
+    
+    public static boolean isVisibleTo(BlockState state, PlayerEntity player) {
+        return Support.hasAdvancement(player, BLOCK_ADVANCEMENT_REGISTRY.getOrDefault(state, null));
     }
     
     private static final Map<RevelationAware, Identifier> notedCloakables = new HashMap<>();
@@ -99,13 +111,13 @@ public class RevelationRegistry {
     
     private static void registerBlockState(Identifier advancementIdentifier, BlockState sourceBlockState, BlockState targetBlockState) {
         List<BlockState> list;
-        if (BLOCK_ADVANCEMENT_REGISTRY.containsKey(advancementIdentifier)) {
-            list = BLOCK_ADVANCEMENT_REGISTRY.get(advancementIdentifier);
+        if (ADVANCEMENT_BLOCK_REGISTRY.containsKey(advancementIdentifier)) {
+            list = ADVANCEMENT_BLOCK_REGISTRY.get(advancementIdentifier);
             list.add(sourceBlockState);
         } else {
             list = new ArrayList<>();
             list.add(sourceBlockState);
-            BLOCK_ADVANCEMENT_REGISTRY.put(advancementIdentifier, list);
+            ADVANCEMENT_BLOCK_REGISTRY.put(advancementIdentifier, list);
         }
     
         Item sourceBlockItem = sourceBlockState.getBlock().asItem();
@@ -117,11 +129,12 @@ public class RevelationRegistry {
         }
         
         BLOCK_STATE_REGISTRY.put(sourceBlockState, targetBlockState);
+        BLOCK_ADVANCEMENT_REGISTRY.put(sourceBlockState, advancementIdentifier);
     }
     
     private static void registerItem(Identifier advancementIdentifier, Item sourceItem, Item targetItem) {
-        if(ITEM_ADVANCEMENT_REGISTRY.containsKey(advancementIdentifier)) {
-            List<Item> list = ITEM_ADVANCEMENT_REGISTRY.get(advancementIdentifier);
+        if(ADVANCEMENT_ITEM_REGISTRY.containsKey(advancementIdentifier)) {
+            List<Item> list = ADVANCEMENT_ITEM_REGISTRY.get(advancementIdentifier);
             if(list.contains(sourceItem)) {
                 return;
             }
@@ -129,15 +142,16 @@ public class RevelationRegistry {
         } else {
             List<Item> list = new ArrayList<>();
             list.add(sourceItem);
-            ITEM_ADVANCEMENT_REGISTRY.put(advancementIdentifier, list);
+            ADVANCEMENT_ITEM_REGISTRY.put(advancementIdentifier, list);
         }
         ITEM_REGISTRY.put(sourceItem, targetItem);
+        ITEM_ADVANCEMENT_REGISTRY.put(sourceItem, advancementIdentifier);
     }
     
     public static @NotNull Collection<Item> getRevealedItems(Identifier advancement) {
         List<Item> items = new ArrayList<>();
-        if(ITEM_ADVANCEMENT_REGISTRY.containsKey(advancement)) {
-            for (Object entry : ITEM_ADVANCEMENT_REGISTRY.get(advancement)) {
+        if(ADVANCEMENT_ITEM_REGISTRY.containsKey(advancement)) {
+            for (Object entry : ADVANCEMENT_ITEM_REGISTRY.get(advancement)) {
                 if (entry instanceof Item item) {
                     items.add(item);
                 }
@@ -148,8 +162,8 @@ public class RevelationRegistry {
     
     public static @NotNull Collection<BlockState> getRevealedBlockStates(Identifier advancement) {
         List<BlockState> blockStates = new ArrayList<>();
-        if(BLOCK_ADVANCEMENT_REGISTRY.containsKey(advancement)) {
-            for (Object entry : BLOCK_ADVANCEMENT_REGISTRY.get(advancement)) {
+        if(ADVANCEMENT_BLOCK_REGISTRY.containsKey(advancement)) {
+            for (Object entry : ADVANCEMENT_BLOCK_REGISTRY.get(advancement)) {
                 if (entry instanceof BlockState blockState) {
                     blockStates.add(blockState);
                 }
@@ -159,16 +173,16 @@ public class RevelationRegistry {
     }
     
     public static Map<Identifier, List<BlockState>> getBlockStateEntries() {
-        return BLOCK_ADVANCEMENT_REGISTRY;
+        return ADVANCEMENT_BLOCK_REGISTRY;
     }
     
     public static List<BlockState> getBlockStateEntries(Identifier advancement) {
-        return BLOCK_ADVANCEMENT_REGISTRY.getOrDefault(advancement, Collections.EMPTY_LIST);
+        return ADVANCEMENT_BLOCK_REGISTRY.getOrDefault(advancement, Collections.EMPTY_LIST);
     }
     
     public static List<Block> getBlockEntries() {
         List<Block> blocks = new ArrayList<>();
-        for(List<BlockState> states : BLOCK_ADVANCEMENT_REGISTRY.values()) {
+        for(List<BlockState> states : ADVANCEMENT_BLOCK_REGISTRY.values()) {
             for (BlockState state : states) {
                 Block block = state.getBlock();
                 if (!blocks.contains(block)) {
@@ -180,8 +194,8 @@ public class RevelationRegistry {
     }
     
     public static List<Block> getBlockEntries(Identifier advancement) {
-        if(BLOCK_ADVANCEMENT_REGISTRY.containsKey(advancement)) {
-            List<BlockState> states = BLOCK_ADVANCEMENT_REGISTRY.get(advancement);
+        if(ADVANCEMENT_BLOCK_REGISTRY.containsKey(advancement)) {
+            List<BlockState> states = ADVANCEMENT_BLOCK_REGISTRY.get(advancement);
             List<Block> blocks = new ArrayList<>();
             for(BlockState state : states) {
                 Block block = state.getBlock();
@@ -196,11 +210,11 @@ public class RevelationRegistry {
     }
     
     public static Map<Identifier, List<Item>> getItemEntries() {
-        return ITEM_ADVANCEMENT_REGISTRY;
+        return ADVANCEMENT_ITEM_REGISTRY;
     }
     
     public static List<Item> getItemEntries(Identifier advancement) {
-        return ITEM_ADVANCEMENT_REGISTRY.getOrDefault(advancement, Collections.EMPTY_LIST);
+        return ADVANCEMENT_ITEM_REGISTRY.getOrDefault(advancement, Collections.EMPTY_LIST);
     }
 
 }

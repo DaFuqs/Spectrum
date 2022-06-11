@@ -55,7 +55,8 @@ public interface RevelationAware {
 		return Support.hasAdvancement(playerEntity, getCloakAdvancementIdentifier());
 	}
 	
-	default PlayerEntity getLootPlayerEntity(LootContext.Builder lootContextBuilder) {
+	@Nullable
+	static PlayerEntity getLootPlayerEntity(LootContext.Builder lootContextBuilder) {
 		if (lootContextBuilder.getNullable(LootContextParameters.THIS_ENTITY) == null) {
 			return null;
 		} else {

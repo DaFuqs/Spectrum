@@ -85,7 +85,7 @@ public class SpectrumClient implements ClientModInitializer {
 			}
 		});
 		
-		RevelationHolder.registerCallback(new RevelationHolder.UncloakCallback() {
+		RevelationHolder.registerRevelationCallback(new RevelationHolder.UncloakCallback() {
 			@Override
 			public void trigger(List<Identifier> advancements, List<Block> blocks, List<Item> items) {
 				for(Block block : blocks) {

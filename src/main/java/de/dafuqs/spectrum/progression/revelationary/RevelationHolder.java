@@ -118,7 +118,7 @@ public class RevelationHolder {
 		}
 	}
 	
-	public static void registerCallback(UncloakCallback callback) {
+	public static void registerRevelationCallback(UncloakCallback callback) {
 		callbacks.add(callback);
 	}
 	
@@ -130,7 +130,6 @@ public class RevelationHolder {
 	
 	private static void cloak(BlockState blockState) {
 		activeBlockStateSwaps.add(blockState);
-		
 		if(blockState instanceof RevelationAware revelationAware) {
 			revelationAware.onCloak();
 		}

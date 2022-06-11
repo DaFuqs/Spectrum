@@ -4,6 +4,7 @@
   "compatibilityLevel": "JAVA_17",
   "plugin": "de.dafuqs.spectrum.mixin.Plugin",
   "mixins": [
+    "AbstractBlockMixin",
     "AnvilBlockMixin",
     "BlockMixin",
     "BuddingAmethystBlockMixin",

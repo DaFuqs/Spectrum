@@ -1,11 +1,11 @@
 {
   "criteria": {
     "built_complex_pedestal_structure": {
-      "trigger":"spectrum:has_advancement",
+      "trigger":"revelationary:advancement_gotten",
       "conditions": { "advancement_identifier": "spectrum:lategame/build_complex_pedestal_structure" }
     },
     "collected_paletur": {
-      "trigger":"spectrum:has_advancement",
+      "trigger":"revelationary:advancement_gotten",
       "conditions": { "advancement_identifier": "spectrum:lategame/collect_paletur" }
     }
   }

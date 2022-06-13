@@ -18,7 +18,7 @@
       "conditions": { "items": [{ "items": [ "spectrum:four_leaf_clover" ]}] }
     },
     "gotten_previous": {
-      "trigger":"spectrum:has_advancement",
+      "trigger":"revelationary:advancement_gotten",
       "conditions": { "advancement_identifier": "spectrum:collect_pigment" }
     }
   }

@@ -1,8 +1,8 @@
 package de.dafuqs.spectrum.blocks.conditional;
 
+import de.dafuqs.revelationary.api.revelations.RevelationAware;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.WaterOrLiquidCrystalLogged;
-import de.dafuqs.spectrum.interfaces.RevelationAware;
 import de.dafuqs.spectrum.registries.SpectrumBlockTags;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import de.dafuqs.spectrum.registries.SpectrumFluidTags;
@@ -54,7 +54,7 @@ public class QuitoxicReedsBlock extends Block implements RevelationAware, WaterO
 	public QuitoxicReedsBlock(Settings settings) {
 		super(settings);
 		this.setDefaultState(this.stateManager.getDefaultState().with(FLUIDLOGGED, 0).with(ALWAYS_DROP, false).with(AGE, 0));
-		registerCloak();
+		RevelationAware.register(this);
 	}
 	
 	@Override

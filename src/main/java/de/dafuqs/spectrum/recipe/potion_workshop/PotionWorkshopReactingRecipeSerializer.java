@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.recipe.potion_workshop;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
-import de.dafuqs.spectrum.blocks.pedestal.PedestalBlock;
 import de.dafuqs.spectrum.blocks.potion_workshop.PotionWorkshopBlock;
 import net.minecraft.item.Item;
 import net.minecraft.network.PacketByteBuf;

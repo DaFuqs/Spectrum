@@ -1,12 +1,12 @@
 package de.dafuqs.spectrum.registries;
 
+import de.dafuqs.revelationary.api.revelations.RevelationAware;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.gravity.CloakedFloatItem;
 import de.dafuqs.spectrum.blocks.jade_vines.GerminatedJadeVineSeedsItem;
 import de.dafuqs.spectrum.blocks.jade_vines.JadeJellyItem;
 import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
 import de.dafuqs.spectrum.enums.BuiltinGemstoneColor;
-import de.dafuqs.spectrum.interfaces.RevelationAware;
 import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.items.armor.BedrockArmorItem;
 import de.dafuqs.spectrum.items.armor.GemstoneArmorItem;
@@ -102,7 +102,7 @@ public class SpectrumItems {
 	
 	
 	// Main items
-	public static final Item MANUAL = new ManualItem(toolItemSettingsSingle);
+	public static final Item MANUAL = new GuidebookItem(toolItemSettingsSingle);
 	public static final Item CRAFTING_TABLET = new CraftingTabletItem(toolItemSettingsSingle);
 	
 	public static final Item PEDESTAL_TIER_1_STRUCTURE_PLACER = new StructurePlacerItem(toolItemSettingsSingle, new Identifier(SpectrumCommon.MOD_ID, "pedestal_simple_structure_place"));
@@ -218,7 +218,7 @@ public class SpectrumItems {
 	public static final Item BEDROCK_DUST = new CloakedItemWithLoomPattern(resourcesRareItemSettings, new Identifier(SpectrumCommon.MOD_ID, "midgame/break_decayed_bedrock"), Items.GUNPOWDER, SpectrumBannerPatterns.BEDROCK_DUST);
 	
 	public static final MidnightAberrationItem MIDNIGHT_ABERRATION = new MidnightAberrationItem(resourcesRareItemSettings, new Identifier(SpectrumCommon.MOD_ID, "midgame/create_midnight_aberration"), SpectrumItems.SPECTRAL_SHARD);
-	public static final Item MIDNIGHT_CHIP = new CloakedItem(resourcesRareItemSettings, new Identifier(SpectrumCommon.MOD_ID, "midgame/create_midnight_aberration"), SpectrumItems.SPECTRAL_SHARD);
+	public static final Item MIDNIGHT_CHIP = new CloakedItem(resourcesRareItemSettings, new Identifier(SpectrumCommon.MOD_ID, "midgame/create_midnight_aberration"), Items.GRAY_DYE);
 	
 	// Fluid Buckets
 	public static final Item LIQUID_CRYSTAL_BUCKET = new BucketItem(LIQUID_CRYSTAL, new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).maxCount(1).recipeRemainder(Items.BUCKET));

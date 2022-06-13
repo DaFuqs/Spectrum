@@ -1,11 +1,11 @@
 {
   "criteria": {
     "built_fusion_shrine": {
-      "trigger":"spectrum:has_advancement",
+      "trigger":"revelationary:advancement_gotten",
       "conditions": { "advancement_identifier": "spectrum:build_fusion_shrine" }
     },
     "collected_mermaids_gem": {
-      "trigger":"spectrum:has_advancement",
+      "trigger":"revelationary:advancement_gotten",
       "conditions": { "advancement_identifier": "spectrum:collect_mermaids_gem" }
     }
   }

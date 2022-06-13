@@ -1,8 +1,8 @@
 package de.dafuqs.spectrum.blocks.conditional;
 
+import de.dafuqs.revelationary.api.revelations.RevelationAware;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.decoration.CloverBlock;
-import de.dafuqs.spectrum.interfaces.RevelationAware;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.Item;
@@ -18,7 +18,7 @@ public class FourLeafCloverBlock extends CloverBlock implements RevelationAware 
 	
 	public FourLeafCloverBlock(Settings settings) {
 		super(settings);
-		registerCloak();
+		RevelationAware.register(this);
 	}
 	
 	@Override

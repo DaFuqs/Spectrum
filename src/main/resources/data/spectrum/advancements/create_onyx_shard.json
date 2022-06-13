@@ -18,7 +18,7 @@
       "conditions": { "items": [{ "items": [ "spectrum:onyx_shard" ]}] }
     },
     "gotten_previous": {
-      "trigger":"spectrum:has_advancement",
+      "trigger":"revelationary:advancement_gotten",
       "conditions": { "advancement_identifier": "spectrum:build_fusion_shrine" }
     }
   },

@@ -1,15 +1,15 @@
 {
   "criteria": {
     "crafted_using_pedestal": {
-      "trigger":"spectrum:has_advancement",
+      "trigger":"revelationary:advancement_gotten",
       "conditions": { "advancement_identifier": "spectrum:midgame/build_advanced_pedestal_structure" }
     },
     "has_quartz": {
-      "trigger":"spectrum:has_advancement",
+      "trigger":"revelationary:advancement_gotten",
       "conditions": { "advancement_identifier": "spectrum:hidden/collect_vanilla/collect_quartz" }
     },
     "collected_corresponding_shard": {
-      "trigger":"spectrum:has_advancement",
+      "trigger":"revelationary:advancement_gotten",
       "conditions": { "advancement_identifier": "spectrum:create_onyx_shard" }
     }
   }

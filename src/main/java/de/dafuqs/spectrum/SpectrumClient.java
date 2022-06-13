@@ -1,12 +1,12 @@
 package de.dafuqs.spectrum;
 
+import de.dafuqs.revelationary.api.revelations.RevealingCallback;
 import de.dafuqs.spectrum.compat.patchouli.PatchouliPages;
 import de.dafuqs.spectrum.entity.SpectrumEntityRenderers;
 import de.dafuqs.spectrum.inventories.SpectrumContainers;
 import de.dafuqs.spectrum.inventories.SpectrumScreenHandlerTypes;
 import de.dafuqs.spectrum.networking.SpectrumS2CPacketReceiver;
 import de.dafuqs.spectrum.particle.SpectrumParticleFactories;
-import de.dafuqs.spectrum.progression.revelationary.RevelationHolder;
 import de.dafuqs.spectrum.progression.toast.RevelationToast;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.registries.client.SpectrumColorProviders;
@@ -26,11 +26,11 @@ import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
-import java.util.List;
+import java.util.Set;
 
 import static de.dafuqs.spectrum.SpectrumCommon.logInfo;
 
-public class SpectrumClient implements ClientModInitializer {
+public class SpectrumClient implements ClientModInitializer, RevealingCallback {
 	
 	@Environment(EnvType.CLIENT)
 	public static final SkyLerper skyLerper = new SkyLerper();
@@ -84,20 +84,21 @@ public class SpectrumClient implements ClientModInitializer {
 				lines.add(new TranslatableText("spectrum.tooltip.coming_soon"));
 			}
 		});
-		
-		RevelationHolder.registerRevelationCallback(new RevelationHolder.UncloakCallback() {
-			@Override
-			public void trigger(List<Identifier> advancements, List<Block> blocks, List<Item> items) {
-				for(Block block : blocks) {
-					if(Registry.BLOCK.getId(block).getNamespace().equals(SpectrumCommon.MOD_ID)) {
-						RevelationToast.showRevelationToast(MinecraftClient.getInstance(), new ItemStack(SpectrumBlocks.PEDESTAL_BASIC_AMETHYST.asItem()), SpectrumSoundEvents.NEW_REVELATION);
-						break;
-					}
-				}
-			}
-		});
+		RevealingCallback.register(this);
 		
 		logInfo("Client startup completed!");
+	}
+	
+	@Override
+	public void trigger(Set<Identifier> advancements, Set<Block> blocks, Set<Item> items, boolean isJoinPacket) {
+		if(!isJoinPacket) {
+			for (Block block : blocks) {
+				if (Registry.BLOCK.getId(block).getNamespace().equals(SpectrumCommon.MOD_ID)) {
+					RevelationToast.showRevelationToast(MinecraftClient.getInstance(), new ItemStack(SpectrumBlocks.PEDESTAL_BASIC_AMETHYST.asItem()), SpectrumSoundEvents.NEW_REVELATION);
+					break;
+				}
+			}
+		}
 	}
 	
 }

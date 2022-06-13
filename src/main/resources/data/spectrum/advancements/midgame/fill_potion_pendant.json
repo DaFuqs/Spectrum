@@ -25,7 +25,7 @@
       }
     },
     "gotten_previous": {
-      "trigger":"spectrum:has_advancement",
+      "trigger":"revelationary:advancement_gotten",
       "conditions": { "advancement_identifier": "spectrum:midgame/brew_powerful_potion_in_potion_workshop" }
     }
   }

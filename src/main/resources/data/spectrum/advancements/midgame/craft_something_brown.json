@@ -18,7 +18,7 @@
         "items": [{ "items": [ "spectrum:brown_spore_blossom", "spectrum:brown_sapling", "spectrum:brown_lamp", "spectrum:brown_glowblock" ]}] }
     },
     "gotten_previous": {
-      "trigger":"spectrum:has_advancement",
+      "trigger":"revelationary:advancement_gotten",
       "conditions": { "advancement_identifier": "spectrum:midgame/build_advanced_pedestal_structure" }
     }
   }

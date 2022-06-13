@@ -3,18 +3,15 @@ package de.dafuqs.spectrum.mixin.client;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.mixin.client.accessors.BossBarHudAccessor;
-import de.dafuqs.spectrum.progression.ClientAdvancements;
 import de.dafuqs.spectrum.registries.SpectrumMusicType;
 import de.dafuqs.spectrum.render.bossbar.SpectrumClientBossBar;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.hud.BossBarHud;
 import net.minecraft.client.gui.hud.ClientBossBar;
-import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.sound.MusicSound;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.Map;
@@ -22,11 +19,6 @@ import java.util.UUID;
 
 @Mixin(MinecraftClient.class)
 public abstract class MinecraftClientMixin {
-	
-	@Inject(at = @At("HEAD"), method = "disconnect(Lnet/minecraft/client/gui/screen/Screen;)V")
-	public void spectrum$onLogout(Screen screen, CallbackInfo info) {
-		ClientAdvancements.playerLogout();
-	}
 	
 	@Inject(at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;getRegistryKey()Lnet/minecraft/util/registry/RegistryKey;"), method = "getMusicType()Lnet/minecraft/sound/MusicSound;", cancellable = true)
 	public void spectrum$getMusicType(CallbackInfoReturnable<MusicSound> cir) {

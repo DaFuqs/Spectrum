@@ -22,9 +22,6 @@ import de.dafuqs.spectrum.mixin.RecipeManagerMixin;
 import de.dafuqs.spectrum.networking.SpectrumC2SPacketReceiver;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
-import de.dafuqs.spectrum.progression.revelationary.RevelationDataLoader;
-import de.dafuqs.spectrum.progression.revelationary.RevelationHolder;
-import de.dafuqs.spectrum.progression.revelationary.RevelationRegistry;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.recipe.crafting.RepairAnythingRecipe;
 import de.dafuqs.spectrum.recipe.enchantment_upgrade.EnchantmentUpgradeRecipe;
@@ -151,9 +148,7 @@ public class SpectrumCommon implements ModInitializer {
 		SpectrumBlocks.register();
 		logInfo("Registering Items...");
 		SpectrumItems.register();
-		
-		ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(RevelationDataLoader.INSTANCE);
-		
+
 		// Tags
 		logInfo("Fetching Item Tags...");
 		SpectrumItemTags.getReferences();
@@ -202,8 +197,6 @@ public class SpectrumCommon implements ModInitializer {
 		SpectrumEntityTypes.register();
 		logInfo("Registering Commands...");
 		SpectrumCommands.register();
-		
-		RevelationRegistry.registerCloakables();
 		
 		logInfo("Registering Client To ServerPackage Receivers...");
 		SpectrumC2SPacketReceiver.registerC2SReceivers();

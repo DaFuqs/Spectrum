@@ -1,15 +1,15 @@
 {
   "criteria": {
     "collected_pigment": {
-      "trigger":"spectrum:has_advancement",
+      "trigger":"revelationary:advancement_gotten",
       "conditions": { "advancement_identifier": "spectrum:collect_pigment" }
     },
     "collected_shooting_star": {
-      "trigger":"spectrum:has_advancement",
+      "trigger":"revelationary:advancement_gotten",
       "conditions": { "advancement_identifier": "spectrum:collect_shooting_star" }
     },
     "collected_all_basic_pigments": {
-      "trigger":"spectrum:has_advancement",
+      "trigger":"revelationary:advancement_gotten",
       "conditions": { "advancement_identifier": "spectrum:collect_all_basic_pigments" }
     }
   }

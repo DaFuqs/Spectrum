@@ -18,7 +18,7 @@
       "conditions": { "items": [{ "items": [ "spectrum:resonant_pickaxe" ]}] }
     },
     "gotten_previous": {
-      "trigger":"spectrum:has_advancement",
+      "trigger":"revelationary:advancement_gotten",
       "conditions": { "advancement_identifier": "spectrum:lategame/collect_paletur" }
     }
   }

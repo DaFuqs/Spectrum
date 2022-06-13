@@ -15,7 +15,7 @@
   "parent": "spectrum:lategame/finish_progression",
   "criteria": {
     "completed_spectrum_without_tips": {
-      "trigger": "spectrum:has_advancement",
+      "trigger": "revelationary:advancement_gotten",
       "conditions": {
         "advancement_identifier": "spectrum:lategame/finish_progression",
         "player": [{
@@ -32,7 +32,7 @@
       }
     },
     "gotten_previous": {
-      "trigger":"spectrum:has_advancement",
+      "trigger":"revelationary:advancement_gotten",
       "conditions": { "advancement_identifier": "spectrum:lategame/finish_progression" }
     }
   },

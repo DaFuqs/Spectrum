@@ -1,11 +1,11 @@
 {
   "criteria": {
     "collected_gemstone_shard": {
-      "trigger":"spectrum:has_advancement",
+      "trigger":"revelationary:advancement_gotten",
       "conditions": { "advancement_identifier": "spectrum:create_onyx_shard" }
     },
     "collected_sparklestone_gem": {
-      "trigger":"spectrum:has_advancement",
+      "trigger":"revelationary:advancement_gotten",
       "conditions": { "advancement_identifier": "spectrum:collect_sparklestone" }
     }
   }

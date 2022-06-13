@@ -1,9 +1,0 @@
-{
-  "advancement": "spectrum:milestones/reveal_quitoxic_reeds",
-  "block_states": {
-    "minecraft:grass": "minecraft:glass"
-  },
-  "items": {
-    "minecraft:nether_star": "minecraft:gunpowder"
-  }
-}

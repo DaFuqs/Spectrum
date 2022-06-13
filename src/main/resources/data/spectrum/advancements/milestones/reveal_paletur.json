@@ -1,7 +1,7 @@
 {
   "criteria": {
     "entered_dimension": {
-      "trigger":"spectrum:has_advancement",
+      "trigger":"revelationary:advancement_gotten",
       "conditions": { "advancement_identifier": "spectrum:lategame/build_complex_pedestal_structure" }
     }
   }

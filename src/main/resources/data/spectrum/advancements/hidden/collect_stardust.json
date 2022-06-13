@@ -1,7 +1,7 @@
 {
   "criteria": {
     "collected_scarlet": {
-      "trigger":"spectrum:has_advancement",
+      "trigger":"revelationary:advancement_gotten",
       "conditions": { "advancement_identifier": "spectrum:milestones/unlock_shooting_stars" }
     },
     "has_stardust": {

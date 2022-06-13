@@ -17,7 +17,7 @@
       "conditions": { "multiblock_identifier": "spectrum:enchanter_structure" }
     },
     "gotten_previous": {
-      "trigger":"spectrum:has_advancement",
+      "trigger":"revelationary:advancement_gotten",
       "conditions": { "advancement_identifier": "spectrum:midgame/enter_liquid_crystal" }
     }
   },

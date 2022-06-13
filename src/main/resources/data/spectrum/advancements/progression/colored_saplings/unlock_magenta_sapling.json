@@ -1,11 +1,11 @@
 {
   "criteria": {
     "has_vegetal": {
-      "trigger":"spectrum:has_advancement",
+      "trigger":"revelationary:advancement_gotten",
       "conditions": { "advancement_identifier": "spectrum:collect_vegetal" }
     },
     "collected_amethyst_shard": {
-      "trigger":"spectrum:has_advancement",
+      "trigger":"revelationary:advancement_gotten",
       "conditions": { "advancement_identifier": "spectrum:hidden/collect_shards/collect_amethyst_shard" }
     }
   }

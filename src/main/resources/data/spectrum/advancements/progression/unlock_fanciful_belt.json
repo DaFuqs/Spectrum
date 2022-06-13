@@ -1,11 +1,11 @@
 {
   "criteria": {
     "unlocked_azure_dike_belt": {
-      "trigger":"spectrum:has_advancement",
+      "trigger":"revelationary:advancement_gotten",
       "conditions": { "advancement_identifier": "spectrum:progression/unlock_azure_dike_belt" }
     },
     "unlocked_take_off_belt": {
-      "trigger":"spectrum:has_advancement",
+      "trigger":"revelationary:advancement_gotten",
       "conditions": { "advancement_identifier": "spectrum:progression/unlock_take_off_belt" }
     }
   },

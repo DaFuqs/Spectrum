@@ -46,6 +46,9 @@ repositories {
 		}
 	}
 	mavenCentral() // incubus core
+	flatDir {
+		dirs 'I:\\FabricModding\\localdeps'
+	}
 }
 
 dependencies {
@@ -59,6 +62,8 @@ dependencies {
 
 	// dependencies
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+
+	modImplementation "de.dafuqs.revelationary:revelationary:1.0.0"
 
 	modApi("me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}"){
 		exclude(group: "net.fabricmc.fabric-api")

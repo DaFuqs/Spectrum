@@ -1,15 +1,15 @@
 {
   "criteria": {
     "built_advanced_structure": {
-      "trigger":"spectrum:has_advancement",
+      "trigger":"revelationary:advancement_gotten",
       "conditions": { "advancement_identifier": "spectrum:midgame/build_advanced_pedestal_structure" }
     },
     "collected_neolith": {
-      "trigger":"spectrum:has_advancement",
+      "trigger":"revelationary:advancement_gotten",
       "conditions": { "advancement_identifier": "spectrum:midgame/collect_neolith" }
     },
     "collected_azurite": {
-      "trigger":"spectrum:has_advancement",
+      "trigger":"revelationary:advancement_gotten",
       "conditions": { "advancement_identifier": "spectrum:midgame/collect_azurite" }
     }
   }

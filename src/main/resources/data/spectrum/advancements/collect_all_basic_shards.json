@@ -26,7 +26,7 @@
       "conditions": { "items": [{ "tag": "spectrum:citrine_crystals" }] }
     },
     "gotten_previous": {
-      "trigger":"spectrum:has_advancement",
+      "trigger":"revelationary:advancement_gotten",
       "conditions": { "advancement_identifier": "spectrum:spectrum" }
     }
   }

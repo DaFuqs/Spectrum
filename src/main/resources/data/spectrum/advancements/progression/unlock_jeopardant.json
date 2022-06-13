@@ -1,7 +1,7 @@
 {
   "criteria": {
     "collected_scarlet_gem": {
-      "trigger":"spectrum:has_advancement",
+      "trigger":"revelationary:advancement_gotten",
       "conditions": { "advancement_identifier": "spectrum:hidden/collect_scarlet_gem" }
     }
   }

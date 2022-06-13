@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.recipe.crafting;
 
-import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.registries.SpectrumItemTags;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.minecraft.inventory.CraftingInventory;

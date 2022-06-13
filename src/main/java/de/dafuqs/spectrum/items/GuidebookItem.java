@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.items;
 
+import de.dafuqs.revelationary.advancement_criteria.AdvancementGottenCriterion;
 import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.progression.advancement.HasAdvancementCriterion;
 import de.dafuqs.spectrum.registries.SpectrumBannerPatterns;
 import io.github.fablabsmc.fablabs.api.bannerpattern.v1.LoomPattern;
 import io.github.fablabsmc.fablabs.api.bannerpattern.v1.LoomPatternProvider;
@@ -27,10 +27,9 @@ import vazkii.patchouli.api.PatchouliAPI;
 import java.util.List;
 import java.util.Map;
 
-public class ManualItem extends Item implements LoomPatternProvider {
+public class GuidebookItem extends Item implements LoomPatternProvider {
 	
-	
-	public ManualItem(Settings settings) {
+	public GuidebookItem(Settings settings) {
 		super(settings);
 	}
 	
@@ -44,7 +43,7 @@ public class ManualItem extends Item implements LoomPatternProvider {
 				if (!hasAdvancement.isDone()) {
 					for (Map.Entry<String, AdvancementCriterion> criterionEntry : advancement.getCriteria().entrySet()) {
 						CriterionConditions conditions = criterionEntry.getValue().getConditions();
-						if (conditions.getId().equals(HasAdvancementCriterion.ID) && conditions instanceof HasAdvancementCriterion.Conditions hasAdvancementConditions) {
+						if (conditions.getId().equals(de.dafuqs.revelationary.advancement_criteria.HadRevelationCriterion.ID) && conditions instanceof AdvancementGottenCriterion.Conditions hasAdvancementConditions) {
 							Identifier advancementIdentifier = hasAdvancementConditions.getAdvancementIdentifier();
 							Advancement advancementCriterionAdvancement = SpectrumCommon.minecraftServer.getAdvancementLoader().get(advancementIdentifier);
 							if (advancementCriterionAdvancement != null) {

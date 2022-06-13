@@ -7,7 +7,6 @@ import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.entity.player.PlayerEntity;
 
 import static de.dafuqs.spectrum.recipe.potion_workshop.PotionWorkshopRecipe.UNLOCK_POTION_WORKSHOP_ADVANCEMENT_IDENTIFIER;
 

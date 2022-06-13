@@ -47,6 +47,7 @@
     "fabric": ">=0.48.0",
     "minecraft": ">=1.18.2",
     "java": ">=17",
+    "revelationary": ">=1.0.0",
     "cloth-config": ">=6.0.0",
     "patchouli": "*",
     "owo": ">=0.5.4",

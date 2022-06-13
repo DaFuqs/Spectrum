@@ -26,7 +26,7 @@
       "conditions": { "items": [{ "items": [ "spectrum:deepslate_azurite_ore" ]}] }
     },
     "gotten_previous": {
-      "trigger":"spectrum:has_advancement",
+      "trigger":"revelationary:advancement_gotten",
       "conditions": { "advancement_identifier": "spectrum:midgame/collect_neolith" }
     }
   },

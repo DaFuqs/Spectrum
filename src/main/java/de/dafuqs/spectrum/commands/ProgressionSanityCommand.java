@@ -1,14 +1,14 @@
 package de.dafuqs.spectrum.commands;
 
 import com.mojang.brigadier.CommandDispatcher;
+import de.dafuqs.revelationary.advancement_criteria.AdvancementGottenCriterion;
+import de.dafuqs.revelationary.revelationary.RevelationRegistry;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.enchanter.EnchanterEnchantable;
 import de.dafuqs.spectrum.enchantments.SpectrumEnchantment;
 import de.dafuqs.spectrum.enums.BuiltinGemstoneColor;
 import de.dafuqs.spectrum.enums.PedestalRecipeTier;
 import de.dafuqs.spectrum.mixin.accessors.LootTableAccessor;
-import de.dafuqs.spectrum.progression.advancement.HasAdvancementCriterion;
-import de.dafuqs.spectrum.progression.revelationary.RevelationRegistry;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.recipe.anvil_crushing.AnvilCrushingRecipe;
 import de.dafuqs.spectrum.recipe.enchanter.EnchanterRecipe;
@@ -243,7 +243,7 @@ public class ProgressionSanityCommand {
 			for (AdvancementCriterion criterion : advancement.getCriteria().values()) {
 				CriterionConditions conditions = criterion.getConditions();
 				Identifier id = conditions.getId();
-				if (id.equals(HasAdvancementCriterion.ID) && conditions instanceof HasAdvancementCriterion.Conditions hasAdvancementConditions) {
+				if (id.equals(AdvancementGottenCriterion.ID) && conditions instanceof AdvancementGottenCriterion.Conditions hasAdvancementConditions) {
 					Identifier advancementIdentifier = hasAdvancementConditions.getAdvancementIdentifier();
 					Advancement advancementCriterionAdvancement = SpectrumCommon.minecraftServer.getAdvancementLoader().get(advancementIdentifier);
 					if (advancementCriterionAdvancement == null) {
@@ -260,7 +260,7 @@ public class ProgressionSanityCommand {
 				for (String[] requirement : advancement.getRequirements()) {
 					if (requirement.length > 0 && requirement[0].equals("gotten_previous")) {
 						CriterionConditions conditions = advancement.getCriteria().get("gotten_previous").getConditions();
-						if (conditions instanceof HasAdvancementCriterion.Conditions advancementConditions) {
+						if (conditions instanceof AdvancementGottenCriterion.Conditions advancementConditions) {
 							previousAdvancementIdentifier = advancementConditions.getAdvancementIdentifier();
 							break;
 						} else {

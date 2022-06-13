@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.blocks.conditional;
 
+import de.dafuqs.revelationary.api.revelations.RevelationAware;
 import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.interfaces.RevelationAware;
 import de.dafuqs.spectrum.registries.client.SpectrumColorProviders;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -19,7 +19,7 @@ public class ColoredLeavesBlock extends LeavesBlock implements RevelationAware {
 	
 	public ColoredLeavesBlock(Settings settings) {
 		super(settings);
-		registerCloak();
+		RevelationAware.register(this);
 	}
 	
 	@Override

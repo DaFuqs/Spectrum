@@ -1,11 +1,11 @@
 {
   "criteria": {
     "collected_sparklestone": {
-      "trigger":"spectrum:has_advancement",
+      "trigger":"revelationary:advancement_gotten",
       "conditions": { "advancement_identifier": "spectrum:collect_sparklestone" }
     },
     "collected_stardust": {
-      "trigger":"spectrum:has_advancement",
+      "trigger":"revelationary:advancement_gotten",
       "conditions": { "advancement_identifier": "spectrum:hidden/collect_stardust" }
     }
   }

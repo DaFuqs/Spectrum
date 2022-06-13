@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.blocks.conditional;
 
+import de.dafuqs.revelationary.api.revelations.RevelationAware;
 import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.interfaces.RevelationAware;
 import de.dafuqs.spectrum.registries.SpectrumBlockTags;
 import de.dafuqs.spectrum.registries.SpectrumFluidTags;
 import de.dafuqs.spectrum.registries.SpectrumFluids;
@@ -48,7 +48,7 @@ public class MermaidsBrushBlock extends PlantBlock implements RevelationAware, F
 	public MermaidsBrushBlock(Settings settings) {
 		super(settings);
 		this.setDefaultState(this.stateManager.getDefaultState().with(AGE, 0).with(IN_LIQUID_CRYSTAL, false));
-		registerCloak();
+		RevelationAware.register(this);
 	}
 	
 	@Override

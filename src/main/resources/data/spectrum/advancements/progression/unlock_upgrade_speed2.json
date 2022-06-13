@@ -5,7 +5,7 @@
       "conditions": { "items": [{ "items": [ "spectrum:upgrade_speed" ]}] }
     },
     "collected_lightning_stone": {
-      "trigger":"spectrum:has_advancement",
+      "trigger":"revelationary:advancement_gotten",
       "conditions": { "advancement_identifier": "spectrum:midgame/collect_lightning_stone" }
     }
   }

@@ -1,15 +1,15 @@
 {
   "criteria": {
     "has_sparklestone_gem": {
-      "trigger":"spectrum:has_advancement",
+      "trigger":"revelationary:advancement_gotten",
       "conditions": { "advancement_identifier": "spectrum:collect_sparklestone" }
     },
     "has_citrine_shard": {
-      "trigger":"spectrum:has_advancement",
+      "trigger":"revelationary:advancement_gotten",
       "conditions": { "advancement_identifier": "spectrum:hidden/collect_shards/collect_citrine_shard" }
     },
     "has_light_gray_pigment": {
-      "trigger":"spectrum:has_advancement",
+      "trigger":"revelationary:advancement_gotten",
       "conditions": { "advancement_identifier": "spectrum:hidden/collect_pigment/collect_light_gray_pigment" }
     }
   }

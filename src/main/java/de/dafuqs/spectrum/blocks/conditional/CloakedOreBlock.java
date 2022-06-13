@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.blocks.conditional;
 
-import de.dafuqs.spectrum.interfaces.RevelationAware;
+import de.dafuqs.revelationary.api.revelations.RevelationAware;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.OreBlock;
 import net.minecraft.entity.player.PlayerEntity;
@@ -26,7 +26,7 @@ public class CloakedOreBlock extends OreBlock implements RevelationAware {
 		super(settings, uniformIntProvider);
 		this.cloakAdvancementIdentifier = cloakAdvancementIdentifier;
 		this.cloakBlockState = cloakBlockState;
-		registerCloak();
+		RevelationAware.register(this);
 	}
 	
 	@Override
@@ -57,7 +57,7 @@ public class CloakedOreBlock extends OreBlock implements RevelationAware {
 			dropXP = false;
 		}
 		
-		return getCloakedDroppedStacks(state, builder);
+		return super.getDroppedStacks(state, builder);
 	}
 	
 	@Override

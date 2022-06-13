@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.items.conditional;
 
-import de.dafuqs.spectrum.interfaces.RevelationAware;
+import de.dafuqs.revelationary.api.revelations.RevelationAware;
+import de.dafuqs.spectrum.registries.client.SpectrumColorProviders;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.Item;
 import net.minecraft.util.Identifier;
@@ -17,8 +18,7 @@ public class CloakedItem extends Item implements RevelationAware {
 		super(settings);
 		this.cloakAdvancementIdentifier = cloakAdvancementIdentifier;
 		this.cloakItem = cloakItem;
-		
-		registerCloak();
+		RevelationAware.register(this);
 	}
 	
 	@Override
@@ -34,6 +34,22 @@ public class CloakedItem extends Item implements RevelationAware {
 	@Override
 	public Pair<Item, Item> getItemCloak() {
 		return new Pair<>(this, cloakItem);
+	}
+	
+	@Override
+	public void onUncloak() {
+		if (SpectrumColorProviders.coloredLeavesBlockColorProvider != null && SpectrumColorProviders.coloredLeavesItemColorProvider != null) {
+			SpectrumColorProviders.coloredLeavesBlockColorProvider.setShouldApply(false);
+			SpectrumColorProviders.coloredLeavesItemColorProvider.setShouldApply(false);
+		}
+	}
+	
+	@Override
+	public void onCloak() {
+		if (SpectrumColorProviders.coloredLeavesBlockColorProvider != null && SpectrumColorProviders.coloredLeavesItemColorProvider != null) {
+			SpectrumColorProviders.coloredLeavesBlockColorProvider.setShouldApply(true);
+			SpectrumColorProviders.coloredLeavesItemColorProvider.setShouldApply(true);
+		}
 	}
 	
 }

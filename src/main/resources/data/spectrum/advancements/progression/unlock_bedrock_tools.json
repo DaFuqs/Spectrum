@@ -1,7 +1,7 @@
 {
   "criteria": {
     "collected_bedrock_dust": {
-      "trigger":"spectrum:has_advancement",
+      "trigger":"revelationary:advancement_gotten",
       "conditions": { "advancement_identifier": "spectrum:midgame/break_decayed_bedrock" }
     }
   }

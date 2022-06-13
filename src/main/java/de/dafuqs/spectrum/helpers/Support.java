@@ -1,9 +1,7 @@
 package de.dafuqs.spectrum.helpers;
 
+import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
 import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.progression.ClientAdvancements;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.advancement.Advancement;
 import net.minecraft.advancement.PlayerAdvancementTracker;
 import net.minecraft.block.Block;
@@ -205,17 +203,12 @@ public class Support {
 			// we cannot test for "net.minecraft.client.network.ClientPlayerEntity" there because that will get obfuscated
 			// to "net.minecraft.class_xxxxx" in compiled versions => works in dev env, breaks in prod
 		} else if (playerEntity.getClass().getCanonicalName().startsWith("net.minecraft")) {
-			return hasAdvancementClient(advancementIdentifier);
+			return AdvancementHelper.hasAdvancementClient(advancementIdentifier);
 		} else {
 			// thank you, Kibe FakePlayerEntity
 			// it neither is a ServerPlayerEntity, nor a ClientPlayerEntity
 			return false;
 		}
-	}
-	
-	@Environment(EnvType.CLIENT)
-	public static boolean hasAdvancementClient(Identifier advancementIdentifier) {
-		return ClientAdvancements.hasDone(advancementIdentifier);
 	}
 	
 	public static @NotNull String getReadableDimensionString(@NotNull String dimensionKeyString) {

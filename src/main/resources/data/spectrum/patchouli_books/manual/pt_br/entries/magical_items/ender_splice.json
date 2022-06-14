@@ -23,7 +23,7 @@
       "advancement": "spectrum:midgame/build_enchanting_structure",
       "title": "Unbreaking",
       "item": "spectrum:ender_splice{Enchantments: [{id: \"minecraft:unbreaking\", lvl: 3s}]}",
-      "text": "Enchanting an Ender Splice with Unbreaking by using the $(l:enchanter/enchanting_items)Enchanter$(/l) decreases the chance of it breaking on use."
+      "text": "Enchanting an Ender Splice with Unbreaking by using the $(l:enchanting/enchanting_items)Enchanter$(/l) decreases the chance of it breaking on use."
     },
     {
       "type": "patchouli:spotlight",

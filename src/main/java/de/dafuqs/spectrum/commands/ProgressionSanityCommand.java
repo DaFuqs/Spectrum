@@ -1,8 +1,8 @@
 package de.dafuqs.spectrum.commands;
 
 import com.mojang.brigadier.CommandDispatcher;
+import de.dafuqs.revelationary.RevelationRegistry;
 import de.dafuqs.revelationary.advancement_criteria.AdvancementGottenCriterion;
-import de.dafuqs.revelationary.revelationary.RevelationRegistry;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.enchanter.EnchanterEnchantable;
 import de.dafuqs.spectrum.enchantments.SpectrumEnchantment;

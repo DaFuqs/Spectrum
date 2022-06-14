@@ -15,6 +15,7 @@ import net.minecraft.util.math.intprovider.UniformIntProvider;
 
 import java.util.Hashtable;
 import java.util.List;
+import java.util.Map;
 
 public class CloakedOreBlock extends OreBlock implements RevelationAware {
 	
@@ -30,7 +31,7 @@ public class CloakedOreBlock extends OreBlock implements RevelationAware {
 	}
 	
 	@Override
-	public Hashtable<BlockState, BlockState> getBlockStateCloaks() {
+	public Map<BlockState, BlockState> getBlockStateCloaks() {
 		Hashtable<BlockState, BlockState> hashtable = new Hashtable<>();
 		hashtable.put(this.getDefaultState(), cloakBlockState);
 		return hashtable;

@@ -14,6 +14,7 @@ import net.minecraft.util.Pair;
 
 import java.util.Hashtable;
 import java.util.List;
+import java.util.Map;
 
 public class ColoredSaplingBlock extends SaplingBlock implements RevelationAware {
 	
@@ -28,7 +29,7 @@ public class ColoredSaplingBlock extends SaplingBlock implements RevelationAware
 	}
 	
 	@Override
-	public Hashtable<BlockState, BlockState> getBlockStateCloaks() {
+	public Map<BlockState, BlockState> getBlockStateCloaks() {
 		// Colored Logs => Oak logs
 		Hashtable<BlockState, BlockState> hashtable = new Hashtable<>();
 		for (int stage = 0; stage < 2; stage++) {
@@ -40,12 +41,6 @@ public class ColoredSaplingBlock extends SaplingBlock implements RevelationAware
 	@Override
 	public Pair<Item, Item> getItemCloak() {
 		return new Pair<>(this.asItem(), Blocks.OAK_SAPLING.asItem());
-	}
-	
-	
-	@Deprecated
-	public List<ItemStack> getDroppedStacks(BlockState state, LootContext.Builder builder) {
-		return getCloakedDroppedStacks(state, builder);
 	}
 	
 }

@@ -13,6 +13,7 @@ import net.minecraft.util.Pair;
 
 import java.util.Hashtable;
 import java.util.List;
+import java.util.Map;
 
 public class EnderTreasureBlock extends Block implements RevelationAware {
 	
@@ -27,7 +28,7 @@ public class EnderTreasureBlock extends Block implements RevelationAware {
 	}
 	
 	@Override
-	public Hashtable<BlockState, BlockState> getBlockStateCloaks() {
+	public Map<BlockState, BlockState> getBlockStateCloaks() {
 		Hashtable<BlockState, BlockState> hashtable = new Hashtable<>();
 		hashtable.put(this.getDefaultState(), Blocks.COBBLESTONE.getDefaultState());
 		return hashtable;
@@ -36,12 +37,6 @@ public class EnderTreasureBlock extends Block implements RevelationAware {
 	@Override
 	public Pair<Item, Item> getItemCloak() {
 		return new Pair<>(this.asItem(), Blocks.COBBLESTONE.asItem());
-	}
-	
-	
-	@Deprecated
-	public List<ItemStack> getDroppedStacks(BlockState state, LootContext.Builder builder) {
-		return getCloakedDroppedStacks(state, builder);
 	}
 	
 }

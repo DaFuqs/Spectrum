@@ -14,6 +14,7 @@ import net.minecraft.util.Pair;
 
 import java.util.Hashtable;
 import java.util.List;
+import java.util.Map;
 
 public class ColoredLeavesBlock extends LeavesBlock implements RevelationAware {
 	
@@ -28,7 +29,7 @@ public class ColoredLeavesBlock extends LeavesBlock implements RevelationAware {
 	}
 	
 	@Override
-	public Hashtable<BlockState, BlockState> getBlockStateCloaks() {
+	public Map<BlockState, BlockState> getBlockStateCloaks() {
 		Hashtable<BlockState, BlockState> hashtable = new Hashtable<>();
 		for (int distance = 1; distance < 8; distance++) {
 			hashtable.put(this.getDefaultState().with(LeavesBlock.DISTANCE, distance).with(LeavesBlock.PERSISTENT, false), Blocks.OAK_LEAVES.getDefaultState().with(LeavesBlock.DISTANCE, distance).with(LeavesBlock.PERSISTENT, false));
@@ -56,11 +57,6 @@ public class ColoredLeavesBlock extends LeavesBlock implements RevelationAware {
 			SpectrumColorProviders.coloredLeavesBlockColorProvider.setShouldApply(true);
 			SpectrumColorProviders.coloredLeavesItemColorProvider.setShouldApply(true);
 		}
-	}
-	
-	@Deprecated
-	public List<ItemStack> getDroppedStacks(BlockState state, LootContext.Builder builder) {
-		return getCloakedDroppedStacks(state, builder);
 	}
 	
 }

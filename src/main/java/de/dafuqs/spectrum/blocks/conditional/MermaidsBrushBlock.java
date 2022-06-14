@@ -38,6 +38,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Hashtable;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 public class MermaidsBrushBlock extends PlantBlock implements RevelationAware, FluidFillable {
@@ -70,7 +71,7 @@ public class MermaidsBrushBlock extends PlantBlock implements RevelationAware, F
 	}
 	
 	@Override
-	public Hashtable<BlockState, BlockState> getBlockStateCloaks() {
+	public Map<BlockState, BlockState> getBlockStateCloaks() {
 		Hashtable<BlockState, BlockState> hashtable = new Hashtable<>();
 		for (int i = 0; i < 8; i++) {
 			hashtable.put(this.getDefaultState().with(AGE, i).with(IN_LIQUID_CRYSTAL, false), Blocks.SEAGRASS.getDefaultState());
@@ -82,12 +83,6 @@ public class MermaidsBrushBlock extends PlantBlock implements RevelationAware, F
 	@Override
 	public Pair<Item, Item> getItemCloak() {
 		return new Pair<>(this.asItem(), Blocks.SEAGRASS.asItem());
-	}
-	
-	
-	@Deprecated
-	public List<ItemStack> getDroppedStacks(BlockState state, LootContext.Builder builder) {
-		return getCloakedDroppedStacks(state, builder);
 	}
 	
 	@Nullable

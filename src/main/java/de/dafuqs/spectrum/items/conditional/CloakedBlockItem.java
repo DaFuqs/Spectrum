@@ -10,6 +10,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.Pair;
 
 import java.util.Hashtable;
+import java.util.Map;
 
 public class CloakedBlockItem extends BlockItem implements RevelationAware {
 	
@@ -29,29 +30,13 @@ public class CloakedBlockItem extends BlockItem implements RevelationAware {
 	}
 	
 	@Override
-	public Hashtable<BlockState, BlockState> getBlockStateCloaks() {
+	public Map<BlockState, BlockState> getBlockStateCloaks() {
 		return new Hashtable<>();
 	}
 	
 	@Override
 	public Pair<Item, Item> getItemCloak() {
 		return new Pair<>(this, cloakItem);
-	}
-	
-	@Override
-	public void onUncloak() {
-		if (SpectrumColorProviders.coloredLeavesBlockColorProvider != null && SpectrumColorProviders.coloredLeavesItemColorProvider != null) {
-			SpectrumColorProviders.coloredLeavesBlockColorProvider.setShouldApply(false);
-			SpectrumColorProviders.coloredLeavesItemColorProvider.setShouldApply(false);
-		}
-	}
-	
-	@Override
-	public void onCloak() {
-		if (SpectrumColorProviders.coloredLeavesBlockColorProvider != null && SpectrumColorProviders.coloredLeavesItemColorProvider != null) {
-			SpectrumColorProviders.coloredLeavesBlockColorProvider.setShouldApply(true);
-			SpectrumColorProviders.coloredLeavesItemColorProvider.setShouldApply(true);
-		}
 	}
 	
 }

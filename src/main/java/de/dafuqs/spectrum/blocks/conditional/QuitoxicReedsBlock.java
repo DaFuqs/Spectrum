@@ -48,7 +48,7 @@ public class QuitoxicReedsBlock extends Block implements RevelationAware, WaterO
 	public static final int MAX_GROWTH_HEIGHT_WATER = 5;
 	public static final int MAX_GROWTH_HEIGHT_CRYSTAL = 7;
 	public static final IntProperty FLUIDLOGGED = WaterOrLiquidCrystalLogged.FLUIDLOGGED;
-	public static final BooleanProperty ALWAYS_DROP = BooleanProperty.of("always_drop");
+	public static final BooleanProperty ALWAYS_DROP = BooleanProperty.of("always_drop"); // I have no idea why this works anymore and at this point I am too afraid to ask
 	protected static final VoxelShape SHAPE = Block.createCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 16.0D, 14.0D);
 	
 	public QuitoxicReedsBlock(Settings settings) {
@@ -63,7 +63,7 @@ public class QuitoxicReedsBlock extends Block implements RevelationAware, WaterO
 	}
 	
 	@Override
-	public Hashtable<BlockState, BlockState> getBlockStateCloaks() {
+	public Map<BlockState, BlockState> getBlockStateCloaks() {
 		Hashtable<BlockState, BlockState> hashtable = new Hashtable<>();
 		for (int i = 0; i < 8; i++) {
 			hashtable.put(this.getDefaultState().with(FLUIDLOGGED, 0).with(AGE, i), Blocks.AIR.getDefaultState());
@@ -85,15 +85,6 @@ public class QuitoxicReedsBlock extends Block implements RevelationAware, WaterO
 	public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
 		if (!state.canPlaceAt(world, pos)) {
 			world.breakBlock(pos, true);
-		}
-	}
-	
-	@Deprecated
-	public List<ItemStack> getDroppedStacks(BlockState state, LootContext.Builder builder) {
-		if (state.get(ALWAYS_DROP)) {
-			return super.getDroppedStacks(state, builder);
-		} else {
-			return getCloakedDroppedStacks(state, builder);
 		}
 	}
 	

@@ -7,7 +7,9 @@ import net.minecraft.item.Item;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Pair;
 
+import java.util.HashMap;
 import java.util.Hashtable;
+import java.util.Map;
 
 public class CloakedItem extends Item implements RevelationAware {
 	
@@ -27,7 +29,7 @@ public class CloakedItem extends Item implements RevelationAware {
 	}
 	
 	@Override
-	public Hashtable<BlockState, BlockState> getBlockStateCloaks() {
+	public Map<BlockState, BlockState> getBlockStateCloaks() {
 		return new Hashtable<>();
 	}
 	

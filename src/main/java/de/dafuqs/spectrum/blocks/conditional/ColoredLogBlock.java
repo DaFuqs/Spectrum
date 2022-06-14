@@ -14,6 +14,7 @@ import net.minecraft.util.math.Direction;
 
 import java.util.Hashtable;
 import java.util.List;
+import java.util.Map;
 
 public class ColoredLogBlock extends PillarBlock implements RevelationAware {
 	
@@ -28,7 +29,7 @@ public class ColoredLogBlock extends PillarBlock implements RevelationAware {
 	}
 	
 	@Override
-	public Hashtable<BlockState, BlockState> getBlockStateCloaks() {
+	public Map<BlockState, BlockState> getBlockStateCloaks() {
 		Hashtable<BlockState, BlockState> hashtable = new Hashtable<>();
 		for (Direction.Axis axis : PillarBlock.AXIS.getValues()) {
 			hashtable.put(this.getDefaultState().with(PillarBlock.AXIS, axis), Blocks.OAK_LOG.getDefaultState().with(PillarBlock.AXIS, axis));
@@ -41,9 +42,5 @@ public class ColoredLogBlock extends PillarBlock implements RevelationAware {
 		return new Pair<>(this.asItem(), Blocks.OAK_LOG.asItem());
 	}
 	
-	@Deprecated
-	public List<ItemStack> getDroppedStacks(BlockState state, LootContext.Builder builder) {
-		return getCloakedDroppedStacks(state, builder);
-	}
 	
 }

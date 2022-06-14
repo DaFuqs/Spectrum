@@ -26,6 +26,7 @@ import net.minecraft.world.explosion.Explosion;
 
 import java.util.Hashtable;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 public class LightningStoneBlock extends Block implements RevelationAware {
@@ -85,7 +86,7 @@ public class LightningStoneBlock extends Block implements RevelationAware {
 	}
 	
 	@Override
-	public Hashtable<BlockState, BlockState> getBlockStateCloaks() {
+	public Map<BlockState, BlockState> getBlockStateCloaks() {
 		Hashtable<BlockState, BlockState> hashtable = new Hashtable<>();
 		hashtable.put(this.getDefaultState(), Blocks.AIR.getDefaultState());
 		return hashtable;
@@ -103,11 +104,6 @@ public class LightningStoneBlock extends Block implements RevelationAware {
 		if (random.nextFloat() < 0.1) {
 			world.setBlockState(pos, Blocks.AIR.getDefaultState(), 3);
 		}
-	}
-	
-	@Deprecated
-	public List<ItemStack> getDroppedStacks(BlockState state, LootContext.Builder builder) {
-		return getCloakedDroppedStacks(state, builder);
 	}
 	
 }

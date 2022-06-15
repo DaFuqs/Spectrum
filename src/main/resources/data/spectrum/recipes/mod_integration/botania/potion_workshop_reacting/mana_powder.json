@@ -4,5 +4,13 @@
   "modifiers": {
     "multiplicative_duration_modifier": 1.25,
     "chance_to_add_last_effect": 0.15
-  }
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "botania"
+      ]
+    }
+  ]
 }

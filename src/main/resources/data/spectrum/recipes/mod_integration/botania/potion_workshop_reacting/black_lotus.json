@@ -5,5 +5,13 @@
     "additional_random_positive_effect_count": 1.5,
     "additional_random_negative_effect_count": 1.5,
     "unidentifiable": true
-  }
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "botania"
+      ]
+    }
+  ]
 }

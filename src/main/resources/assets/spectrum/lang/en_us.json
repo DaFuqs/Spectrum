@@ -421,7 +421,7 @@
   "item.spectrum.memory.tooltip.entity_type": "§7Remembers a §f%s",
   "item.spectrum.memory.tooltip.unrecognizable_entity_type": "The memory is blurred",
   "item.spectrum.memory.tooltip.unset_entity_type": "Forgotten",
-  "item.spectrum.memory.tooltip.extra_long_time_to_manifest": "Manifesting will take Aeons",
+  "item.spectrum.memory.tooltip.extra_long_time_to_manifest": "Manifesting will take weeks",
   "item.spectrum.memory.tooltip.long_time_to_manifest": "Manifesting will take quite a while",
   "item.spectrum.memory.tooltip.medium_time_to_manifest": "May manifest the next few days",
   "item.spectrum.memory.tooltip.short_time_to_manifest": "Seems to manifest soon!",

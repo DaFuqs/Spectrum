@@ -1,0 +1,25 @@
+{
+  "type": "spectrum:potion_workshop_brewing",
+  "group": "resistance_potions",
+  "ingredient1": {
+    "item": "minecraft:nether_wart"
+  },
+  "ingredient2": {
+    "item": "conjuring:distilled_spirit"
+  },
+  "effect": "minecraft:resistance",
+  "base_duration_ticks": 1800,
+  "potency_modifier": 2.0,
+  "applicable_to_potions": true,
+  "applicable_to_tipped_arrows": true,
+  "applicable_to_potion_fillables": true,
+  "required_advancement": "spectrum:progression/potions/unlock_resistance_potion",
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "conjuring"
+      ]
+    }
+  ]
+}

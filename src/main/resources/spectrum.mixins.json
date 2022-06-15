@@ -57,6 +57,7 @@
     "client.DimensionTypeMixin",
     "client.HeadFeatureRendererMixin",
     "client.ItemFrameEntityRendererMixin",
+    "client.InGameHudMixin",
     "client.MinecraftClientMixin",
     "client.PotionItemClientMixin",
     "client.TransparentBlockMixin",

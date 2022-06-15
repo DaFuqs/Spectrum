@@ -42,8 +42,7 @@ public interface InkPowered {
 	}
 	
 	/**
-	 * Searches an inventory
-	 * for InkEnergyStorageItems and tries to drain the color energy.
+	 * Searches an inventory for InkEnergyStorageItems and tries to drain the color energy.
 	 * If enough could be drained returns true, else false.
 	 * If not enough energy is available it will be drained as much as is available
 	 * but return will still be false

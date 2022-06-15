@@ -74,7 +74,7 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 	}
 	
 	public static void clientTick(World world, BlockPos blockPos, BlockState blockState, @NotNull SpiritInstillerBlockEntity spiritInstillerBlockEntity) {
-		if (spiritInstillerBlockEntity.currentRecipe != null) {
+		if (spiritInstillerBlockEntity.currentRecipe != null && spiritInstillerBlockEntity.canCraft) {
 			spiritInstillerBlockEntity.doInstillerParticles(world);
 			if (world.getTime() % 40 == 0) {
 				spiritInstillerBlockEntity.doChimeParticles(world);
@@ -218,7 +218,7 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 			testAndUnlockUnlockBossMemoryAdvancement(serverPlayerEntity, spiritInstillerBlockEntity.currentRecipe, canCraft);
 		}
 		
-		spiritInstillerBlockEntity.canCraft = canCraft;
+		spiritInstillerBlockEntity.canCraft = canCraft & spiritInstillerBlockEntity.currentRecipe.canPlayerCraft(lastInteractedPlayer);
 		return canCraft;
 	}
 	

@@ -1139,6 +1139,7 @@
   "item.spectrum.placement_staff": "Constructors' Staff",
   "item.spectrum.placement_staff.tooltip.range": "Extends a block structure up to %s blocks",
   "item.spectrum.placement_staff.tooltip.crouch": "Crouch to include different source blocks",
+  "item.spectrum.placement_staff.tooltip.missing_ink": "missing Ink",
   "item.spectrum.placement_staff.tooltip.none_in_inventory": "none in inventory",
   "item.spectrum.light_staff": "Radiance Staff",
   "item.spectrum.light_staff.tooltip": "§7Uses §eShimmerstone Gems§7 to place lights",

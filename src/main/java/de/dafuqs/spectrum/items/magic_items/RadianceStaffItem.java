@@ -55,12 +55,12 @@ public class RadianceStaffItem extends Item implements InkPowered {
 	public boolean placeLight(World world, BlockPos targetPos, ServerPlayerEntity playerEntity) {
 		BlockState targetBlockState = world.getBlockState(targetPos);
 		if (targetBlockState.isAir()) {
-			if (playerEntity.isCreative() || tryPayCost(playerEntity, InkColors.YELLOW, 10L) || InventoryHelper.removeFromInventory(playerEntity, COST)) {
+			if (playerEntity.isCreative() || InkPowered.tryPayCost(playerEntity, InkColors.YELLOW, 10L) || InventoryHelper.removeFromInventory(playerEntity, COST)) {
 				world.setBlockState(targetPos, SpectrumBlocks.WAND_LIGHT_BLOCK.getDefaultState(), 3);
 				return true;
 			}
 		} else if (targetBlockState.isOf(Blocks.WATER)) {
-			if (playerEntity.isCreative() || tryPayCost(playerEntity, InkColors.YELLOW, 10L) || InventoryHelper.removeFromInventory(playerEntity, COST)) {
+			if (playerEntity.isCreative() || InkPowered.tryPayCost(playerEntity, InkColors.YELLOW, 10L) || InventoryHelper.removeFromInventory(playerEntity, COST)) {
 				world.setBlockState(targetPos, SpectrumBlocks.WAND_LIGHT_BLOCK.getDefaultState().with(WATERLOGGED, true), 3);
 				return true;
 			}

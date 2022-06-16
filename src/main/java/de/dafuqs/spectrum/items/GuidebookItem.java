@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.items;
 
 import de.dafuqs.revelationary.advancement_criteria.AdvancementGottenCriterion;
-import de.dafuqs.revelationary.advancement_criteria.HadRevelationCriterion;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.registries.SpectrumBannerPatterns;
 import io.github.fablabsmc.fablabs.api.bannerpattern.v1.LoomPattern;

@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.items.conditional;
 
 import de.dafuqs.revelationary.api.revelations.RevelationAware;
-import de.dafuqs.spectrum.registries.client.SpectrumColorProviders;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.BlockItem;

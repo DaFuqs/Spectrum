@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.enchantments;
 
-import de.dafuqs.spectrum.registries.SpectrumItemTags;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentTarget;
 import net.minecraft.entity.EquipmentSlot;

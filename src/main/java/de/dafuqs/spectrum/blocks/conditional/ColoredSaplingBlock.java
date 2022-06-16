@@ -7,13 +7,10 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.SaplingBlock;
 import net.minecraft.block.sapling.SaplingGenerator;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.loot.context.LootContext;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Pair;
 
 import java.util.Hashtable;
-import java.util.List;
 import java.util.Map;
 
 public class ColoredSaplingBlock extends SaplingBlock implements RevelationAware {

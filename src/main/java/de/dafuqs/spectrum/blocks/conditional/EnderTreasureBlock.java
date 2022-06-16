@@ -6,13 +6,10 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.loot.context.LootContext;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Pair;
 
 import java.util.Hashtable;
-import java.util.List;
 import java.util.Map;
 
 public class EnderTreasureBlock extends Block implements RevelationAware {

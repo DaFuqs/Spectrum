@@ -1,0 +1,27 @@
+{
+  "type": "spectrum:spirit_instiller",
+  "time": 400,
+  "experience": 8.0,
+  "ingredient1": {
+    "item": "spectrum:vegetal",
+    "count": 8
+  },
+  "ingredient2": {
+    "item": "minecraft:soul_torch",
+    "count": 8
+  },
+  "center_ingredient": {
+    "item": "conjuring:conjuration_essence"
+  },
+  "result" : {
+    "item": "spectrum:spawner"
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "conjuring"
+      ]
+    }
+  ]
+}

@@ -1,6 +1,9 @@
 package de.dafuqs.spectrum.items.magic_items;
 
 import de.dafuqs.spectrum.blocks.enchanter.EnchanterEnchantable;
+import de.dafuqs.spectrum.energy.InkPowered;
+import de.dafuqs.spectrum.energy.color.InkColor;
+import de.dafuqs.spectrum.energy.color.InkColors;
 import de.dafuqs.spectrum.enums.PedestalRecipeTier;
 import de.dafuqs.spectrum.helpers.BuildingHelper;
 import de.dafuqs.spectrum.helpers.Support;
@@ -24,6 +27,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -45,8 +49,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class ExchangeStaffItem extends BuildingStaffItem implements EnchanterEnchantable {
+public class ExchangeStaffItem extends BuildingStaffItem implements EnchanterEnchantable, InkPowered {
 	
+	public static final InkColor USED_COLOR = InkColors.CYAN;
+	public static final int INK_COST_PER_BLOCK = 5;
 	public static final int CREATIVE_RANGE = 5;
 	
 	public ExchangeStaffItem(Settings settings) {
@@ -57,7 +63,7 @@ public class ExchangeStaffItem extends BuildingStaffItem implements EnchanterEnc
 	// this way the item is not overpowered at the start
 	// but not useless at the end
 	// this way the player does not need to craft 5 tiers
-	// of placementStaffs that each do basically feel the same
+	// of staffs that each do basically feel the same
 	public static int getRange(PlayerEntity playerEntity) {
 		if (playerEntity == null || playerEntity.isCreative()) {
 			return CREATIVE_RANGE;
@@ -116,6 +122,13 @@ public class ExchangeStaffItem extends BuildingStaffItem implements EnchanterEnc
 		
 		if (single) {
 			exchangedForBlockItemCount = Math.min(1, exchangedForBlockItemCount);
+		} else {
+			int inkForBlocksAvailableAmount = 1 + (int) InkPowered.getAvailableInk(player, USED_COLOR) / INK_COST_PER_BLOCK;
+			if(InkPowered.canUse()) {
+				exchangedForBlockItemCount = Math.min(exchangedForBlockItemCount, inkForBlocksAvailableAmount);
+			} else {
+				exchangedForBlockItemCount = 0;
+			}
 		}
 		
 		if (exchangedForBlockItemCount > 0) {
@@ -151,6 +164,7 @@ public class ExchangeStaffItem extends BuildingStaffItem implements EnchanterEnc
 					for (ItemStack stack : stacks) {
 						Support.givePlayer(player, stack);
 					}
+					InkPowered.tryPayCost((ServerPlayerEntity) player, USED_COLOR, (long) targetPositions.size() * INK_COST_PER_BLOCK);
 				}
 				
 				if (blocksReplaced > 0) {
@@ -168,6 +182,7 @@ public class ExchangeStaffItem extends BuildingStaffItem implements EnchanterEnc
 	@Environment(EnvType.CLIENT)
 	public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
+		addInkPoweredTooltip(tooltip);
 		tooltip.add(new TranslatableText("item.spectrum.exchange_staff.tooltip.range", getRange(MinecraftClient.getInstance().player)).formatted(Formatting.GRAY));
 		tooltip.add(new TranslatableText("item.spectrum.exchange_staff.tooltip.crouch").formatted(Formatting.GRAY));
 		
@@ -185,7 +200,7 @@ public class ExchangeStaffItem extends BuildingStaffItem implements EnchanterEnc
 		BlockState targetBlockState = world.getBlockState(pos);
 		
 		ActionResult result = ActionResult.FAIL;
-		if ((player != null && player.isCreative()) || !isBlacklisted(targetBlockState)) {
+		if ((player != null && (player.isCreative()) || !isBlacklisted(targetBlockState))) {
 			Block targetBlock = targetBlockState.getBlock();
 			Item targetBlockItem = targetBlockState.getBlock().asItem();
 			if (player != null && targetBlockItem != Items.AIR) {
@@ -231,6 +246,11 @@ public class ExchangeStaffItem extends BuildingStaffItem implements EnchanterEnc
 	@Override
 	public int getEnchantability() {
 		return 3;
+	}
+	
+	@Override
+	public List<InkColor> getUsedColors() {
+		return List.of(USED_COLOR);
 	}
 	
 }

@@ -4,5 +4,13 @@
   "modifiers": {
     "flat_potency_bonus": 3.0,
     "flat_duration_bonus_ticks": -3600
-  }
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "botania"
+      ]
+    }
+  ]
 }

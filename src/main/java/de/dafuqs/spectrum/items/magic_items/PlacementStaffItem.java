@@ -1,5 +1,8 @@
 package de.dafuqs.spectrum.items.magic_items;
 
+import de.dafuqs.spectrum.energy.InkPowered;
+import de.dafuqs.spectrum.energy.color.InkColor;
+import de.dafuqs.spectrum.energy.color.InkColors;
 import de.dafuqs.spectrum.enums.PedestalRecipeTier;
 import de.dafuqs.spectrum.helpers.BuildingHelper;
 import net.fabricmc.api.EnvType;
@@ -13,8 +16,10 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
 import net.minecraft.item.Items;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.ActionResult;
@@ -27,8 +32,10 @@ import oshi.util.tuples.Triplet;
 import java.util.List;
 import java.util.Optional;
 
-public class PlacementStaffItem extends BuildingStaffItem {
+public class PlacementStaffItem extends BuildingStaffItem implements InkPowered {
 	
+	public static final InkColor USED_COLOR = InkColors.CYAN;
+	public static final int INK_COST_PER_BLOCK = 1;
 	public static final int CREATIVE_RANGE = 10;
 	
 	public PlacementStaffItem(Settings settings) {
@@ -39,7 +46,7 @@ public class PlacementStaffItem extends BuildingStaffItem {
 	// this way the item is not overpowered at the start
 	// but not useless at the end
 	// this way the player does not need to craft 5 tiers
-	// of placementStaffs that each do basically feel the same
+	// of staffs that each do basically feel the same
 	public static int getRange(PlayerEntity playerEntity) {
 		if (playerEntity == null || playerEntity.isCreative()) {
 			return CREATIVE_RANGE;
@@ -67,6 +74,7 @@ public class PlacementStaffItem extends BuildingStaffItem {
 	@Environment(EnvType.CLIENT)
 	public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
+		addInkPoweredTooltip(tooltip);
 		tooltip.add(new TranslatableText("item.spectrum.placement_staff.tooltip.range", getRange(MinecraftClient.getInstance().player)).formatted(Formatting.GRAY));
 		tooltip.add(new TranslatableText("item.spectrum.placement_staff.tooltip.crouch").formatted(Formatting.GRAY));
 	}
@@ -74,13 +82,11 @@ public class PlacementStaffItem extends BuildingStaffItem {
 	@Override
 	public ActionResult useOnBlock(ItemUsageContext context) {
 		PlayerEntity player = context.getPlayer();
-		
 		World world = context.getWorld();
 		BlockPos pos = context.getBlockPos();
-		
 		BlockState targetBlockState = world.getBlockState(pos);
 		
-		if ((player != null && player.isCreative()) || !isBlacklisted(targetBlockState)) {
+		if ((player != null && (player.isCreative()) || !isBlacklisted(targetBlockState))) {
 			Block targetBlock = targetBlockState.getBlock();
 			Item targetBlockItem = targetBlock.asItem();
 			
@@ -95,6 +101,12 @@ public class PlacementStaffItem extends BuildingStaffItem {
 					}
 					targetBlockItem = inventoryItemAndCount.getB();
 					count = inventoryItemAndCount.getC();
+					
+					if(InkPowered.canUse()) {
+						count = Math.min(count, 1 + (int) InkPowered.getAvailableInk(player, USED_COLOR) / INK_COST_PER_BLOCK);
+					} else {
+						count = 0;
+					}
 				}
 				
 				if (count > 0) {
@@ -120,6 +132,7 @@ public class PlacementStaffItem extends BuildingStaffItem {
 						if (!player.isCreative()) {
 							Item finalTargetBlockItem = targetBlockItem;
 							player.getInventory().remove(stack -> stack.getItem().equals(finalTargetBlockItem), taken, player.getInventory());
+							InkPowered.tryPayCost((ServerPlayerEntity) player, USED_COLOR, (long) targetPositions.size() * INK_COST_PER_BLOCK);
 						}
 						
 						if (taken > 0) {
@@ -139,5 +152,9 @@ public class PlacementStaffItem extends BuildingStaffItem {
 		return ActionResult.FAIL;
 	}
 	
+	@Override
+	public List<InkColor> getUsedColors() {
+		return List.of(USED_COLOR);
+	}
 	
 }

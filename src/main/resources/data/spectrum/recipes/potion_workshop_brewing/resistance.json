@@ -1,5 +1,6 @@
 {
   "type": "spectrum:potion_workshop_brewing",
+  "group": "resistance_potions",
   "ingredient1": {
     "item": "minecraft:nether_wart"
   },

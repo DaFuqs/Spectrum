@@ -1,0 +1,26 @@
+{
+  "type": "spectrum:spirit_instiller",
+  "time": 400,
+  "experience": 8.0,
+  "ingredient1": {
+    "tag": "spectrum:mob_heads"
+  },
+  "ingredient2": {
+    "item": "minecraft:soul_torch"
+  },
+  "center_ingredient": {
+    "item": "spectrum:quitoxic_powder",
+    "count": 4
+  },
+  "result" : {
+    "item": "conjuring:lesser_conjuration_essence"
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "conjuring"
+      ]
+    }
+  ]
+}

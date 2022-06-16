@@ -1,20 +1,38 @@
 package de.dafuqs.spectrum.energy;
 
+import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.energy.color.InkColor;
+import de.dafuqs.spectrum.helpers.Support;
 import dev.emi.trinkets.api.SlotReference;
 import dev.emi.trinkets.api.TrinketComponent;
 import dev.emi.trinkets.api.TrinketsApi;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
+import net.minecraft.util.Formatting;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.Pair;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface InkPowered {
+	
+	/**
+	 * The advancement the player needs to have in order to use ink powered tools
+	 */
+	Identifier REQUIRED_ADVANCEMENT = new Identifier(SpectrumCommon.MOD_ID, "milestones/unlock_ink_use");
+	
+	@Environment(EnvType.CLIENT)
+	static boolean canUse() {
+		return Support.hasAdvancement(MinecraftClient.getInstance().player, InkPowered.REQUIRED_ADVANCEMENT);
+	}
 	
 	/**
 	 * The colors that the object requires for working.
@@ -26,29 +44,34 @@ public interface InkPowered {
 	 * The colors that the object requires for working.
 	 * These are added as the player facing tooltip
 	 **/
-	default void addTooltip(List<Text> tooltip) {
-		for (InkColor color : getUsedColors()) {
-			tooltip.add(new TranslatableText("spectrum.tooltip.ink_powered" + color.toString()));
+	default void addInkPoweredTooltip(List<Text> tooltip) {
+		if(Support.hasAdvancement(MinecraftClient.getInstance().player, REQUIRED_ADVANCEMENT)) {
+			for (InkColor color : getUsedColors()) {
+				tooltip.add(new TranslatableText("spectrum.tooltip.ink_powered." + color.toString()).formatted(Formatting.GRAY));
+			}
 		}
 	}
 	
-	default long tryDrainEnergy(ItemStack stack, InkColor color, long amount) {
+	static long tryDrainEnergy(ItemStack stack, InkColor color, long amount) {
 		if (stack.getItem() instanceof InkStorageItem inkStorageItem) {
 			InkStorage inkStorage = inkStorageItem.getEnergyStorage(stack);
-			return inkStorage.drainEnergy(color, amount);
+			long drained = inkStorage.drainEnergy(color, amount);
+			if(drained > 0) {
+				inkStorageItem.setEnergyStorage(stack, inkStorage);
+			}
+			return drained;
 		} else {
 			return 0;
 		}
 	}
 	
 	/**
-	 * Searches an inventory
-	 * for InkEnergyStorageItems and tries to drain the color energy.
+	 * Searches an inventory for InkEnergyStorageItems and tries to drain the color energy.
 	 * If enough could be drained returns true, else false.
 	 * If not enough energy is available it will be drained as much as is available
 	 * but return will still be false
 	 **/
-	default boolean tryPayCost(Inventory inventory, InkColor color, long amount) {
+	static boolean tryPayCost(Inventory inventory, InkColor color, long amount) {
 		for (int i = 0; i < inventory.size(); i++) {
 			ItemStack currentStack = inventory.getStack(i);
 			if (!currentStack.isEmpty()) { // fast fail
@@ -73,9 +96,13 @@ public interface InkPowered {
 	 * - Trinket Slots
 	 * - Inventory
 	 **/
-	default boolean tryPayCost(ServerPlayerEntity player, InkColor color, long amount) {
-		// offhand
-		for (ItemStack itemStack : player.getInventory().offHand) {
+	static boolean tryPayCost(ServerPlayerEntity player, InkColor color, long amount) {
+		if(!Support.hasAdvancement(player, REQUIRED_ADVANCEMENT)) {
+			return false;
+		}
+		
+		// hands (main hand, too, if someone uses the staff from the offhand)
+		for (ItemStack itemStack : player.getItemsHand()) {
 			amount -= tryDrainEnergy(itemStack, color, amount);
 			if (amount <= 0) {
 				return true;
@@ -103,6 +130,42 @@ public interface InkPowered {
 		}
 		
 		return false;
+	}
+	
+	static long getAvailableInk(PlayerEntity player, InkColor color) {
+		if(!Support.hasAdvancement(player, REQUIRED_ADVANCEMENT)) {
+			return 0;
+		}
+		
+		long available = 0;
+		// offhand
+		for (ItemStack itemStack : player.getInventory().offHand) {
+			available += tryGetEnergy(itemStack, color);
+		}
+		
+		// trinket slot
+		Optional<TrinketComponent> optionalTrinketComponent = TrinketsApi.getTrinketComponent(player);
+		if (optionalTrinketComponent.isPresent()) {
+			List<Pair<SlotReference, ItemStack>> trinketInkStorages = optionalTrinketComponent.get().getEquipped(itemStack -> itemStack.getItem() instanceof InkStorage);
+			for (Pair<SlotReference, ItemStack> trinketEnergyStorageStack : trinketInkStorages) {
+				available += tryGetEnergy(trinketEnergyStorageStack.getRight(), color);
+			}
+		}
+		
+		// inventory
+		for (ItemStack itemStack : player.getInventory().main) {
+			available += tryGetEnergy(itemStack, color);
+		}
+		return available;
+	}
+	
+	static long tryGetEnergy(ItemStack stack, InkColor color) {
+		if (stack.getItem() instanceof InkStorageItem inkStorageItem) {
+			InkStorage inkStorage = inkStorageItem.getEnergyStorage(stack);
+			return inkStorage.getEnergy(color);
+		} else {
+			return 0;
+		}
 	}
 	
 }

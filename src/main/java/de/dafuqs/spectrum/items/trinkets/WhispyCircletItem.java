@@ -19,9 +19,7 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 public class WhispyCircletItem extends SpectrumTrinketItem {
 	
@@ -33,11 +31,16 @@ public class WhispyCircletItem extends SpectrumTrinketItem {
 	}
 	
 	public static void removeNegativeStatusEffects(@NotNull LivingEntity entity) {
+		Set<StatusEffect> effectsToRemove = new HashSet<>();
 		Collection<StatusEffectInstance> currentEffects = entity.getStatusEffects();
 		for (StatusEffectInstance instance : currentEffects) {
 			if (affects(instance.getEffectType())) {
-				entity.removeStatusEffect(instance.getEffectType());
+				effectsToRemove.add(instance.getEffectType());
 			}
+		}
+		
+		for(StatusEffect effect : effectsToRemove) {
+			entity.removeStatusEffect(effect);
 		}
 	}
 	

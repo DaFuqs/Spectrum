@@ -17,5 +17,5 @@
     "item": "spectrum:memory",
     "nbt": "{EntityTag: {id: \"minecraft:ender_dragon\"}, TicksToManifest: 160}"
   },
-  "advancement": "spectrum:milestones/unlock_remembering_boss_memories"
+  "required_advancement": "spectrum:milestones/unlock_remembering_boss_memories"
 }

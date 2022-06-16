@@ -80,7 +80,7 @@
     },
     {
       "type": "patchouli:spotlight",
-      "title": "Crimtane",
+      "title": "Stratine",
       "item": "spectrum:scarlet_fragments",
       "advancement": "spectrum:midgame/collect_scarlet",
       "text": "Big flat bonus to Potency, at the cost of adding a random negative Effect"

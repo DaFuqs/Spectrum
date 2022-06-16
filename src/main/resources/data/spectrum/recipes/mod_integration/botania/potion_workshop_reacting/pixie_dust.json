@@ -4,5 +4,13 @@
   "modifiers": {
     "make_splashing": true,
     "make_lingering": true
-  }
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "botania"
+      ]
+    }
+  ]
 }

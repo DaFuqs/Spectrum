@@ -1,0 +1,8 @@
+{
+  "criteria": {
+    "filled_ink_container": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:midgame/fill_ink_container" }
+    }
+  }
+}

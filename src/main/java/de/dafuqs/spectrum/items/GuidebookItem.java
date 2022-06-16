@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.items;
 
 import de.dafuqs.revelationary.advancement_criteria.AdvancementGottenCriterion;
+import de.dafuqs.revelationary.advancement_criteria.HadRevelationCriterion;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.registries.SpectrumBannerPatterns;
 import io.github.fablabsmc.fablabs.api.bannerpattern.v1.LoomPattern;
@@ -43,7 +44,7 @@ public class GuidebookItem extends Item implements LoomPatternProvider {
 				if (!hasAdvancement.isDone()) {
 					for (Map.Entry<String, AdvancementCriterion> criterionEntry : advancement.getCriteria().entrySet()) {
 						CriterionConditions conditions = criterionEntry.getValue().getConditions();
-						if (conditions.getId().equals(de.dafuqs.revelationary.advancement_criteria.HadRevelationCriterion.ID) && conditions instanceof AdvancementGottenCriterion.Conditions hasAdvancementConditions) {
+						if (conditions != null && conditions.getId().equals(AdvancementGottenCriterion.ID) && conditions instanceof AdvancementGottenCriterion.Conditions hasAdvancementConditions) {
 							Identifier advancementIdentifier = hasAdvancementConditions.getAdvancementIdentifier();
 							Advancement advancementCriterionAdvancement = SpectrumCommon.minecraftServer.getAdvancementLoader().get(advancementIdentifier);
 							if (advancementCriterionAdvancement != null) {

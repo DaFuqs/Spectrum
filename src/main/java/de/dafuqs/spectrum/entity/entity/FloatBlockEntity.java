@@ -156,7 +156,7 @@ public class FloatBlockEntity extends BlockLikeEntity implements PostTickEntity 
 	@Override
 	public void postTickEntityCollision(Entity entity) {
 		super.postTickEntityCollision(entity);
-		if (isPaltaeriaCrimtaneCollision(entity)) {
+		if (isPaltaeriaStratineCollision(entity)) {
 			world.createExplosion(this, this.getX(), this.getY(), this.getZ(), 1.0F, Explosion.DestructionType.NONE);
 			this.discard();
 			entity.discard();
@@ -168,7 +168,7 @@ public class FloatBlockEntity extends BlockLikeEntity implements PostTickEntity 
 		}
 	}
 	
-	public boolean isPaltaeriaCrimtaneCollision(Entity other) {
+	public boolean isPaltaeriaStratineCollision(Entity other) {
 		if (other instanceof BlockLikeEntity otherBlockLikeEntity) {
 			Block thisBlock = this.blockState.getBlock();
 			Block otherBlock = otherBlockLikeEntity.getBlockState().getBlock();

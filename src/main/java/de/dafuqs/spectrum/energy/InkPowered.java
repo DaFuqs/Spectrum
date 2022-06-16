@@ -6,6 +6,8 @@ import de.dafuqs.spectrum.helpers.Support;
 import dev.emi.trinkets.api.SlotReference;
 import dev.emi.trinkets.api.TrinketComponent;
 import dev.emi.trinkets.api.TrinketsApi;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
@@ -21,7 +23,15 @@ import java.util.Optional;
 
 public interface InkPowered {
 	
+	/**
+	 * The advancement the player needs to have in order to use ink powered tools
+	 */
 	Identifier REQUIRED_ADVANCEMENT = new Identifier(SpectrumCommon.MOD_ID, "milestones/unlock_ink_use");
+	
+	@Environment(EnvType.CLIENT)
+	static boolean canUse() {
+		return Support.hasAdvancement(MinecraftClient.getInstance().player, InkPowered.REQUIRED_ADVANCEMENT);
+	}
 	
 	/**
 	 * The colors that the object requires for working.

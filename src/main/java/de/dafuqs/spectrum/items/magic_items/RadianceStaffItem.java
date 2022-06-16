@@ -1,13 +1,19 @@
 package de.dafuqs.spectrum.items.magic_items;
 
 import de.dafuqs.spectrum.blocks.enchanter.EnchanterEnchantable;
+import de.dafuqs.spectrum.energy.InkPowered;
+import de.dafuqs.spectrum.energy.color.InkColor;
+import de.dafuqs.spectrum.energy.color.InkColors;
 import de.dafuqs.spectrum.helpers.InventoryHelper;
 import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -33,7 +39,7 @@ import java.util.List;
 
 import static net.minecraft.state.property.Properties.WATERLOGGED;
 
-public class RadianceStaffItem extends Item implements EnchanterEnchantable {
+public class RadianceStaffItem extends Item implements EnchanterEnchantable, InkPowered {
 	
 	public static int USE_DURATION = 12;
 	public static int REACH_STEP_DISTANCE = 4;
@@ -83,6 +89,7 @@ public class RadianceStaffItem extends Item implements EnchanterEnchantable {
 			tooltip.add(new TranslatableText("item.spectrum.light_staff.tooltip"));
 		}
 		tooltip.add(new TranslatableText("item.spectrum.light_staff.tooltip2"));
+		addInkPoweredTooltip(tooltip);
 	}
 	
 	public UseAction getUseAction(ItemStack stack) {
@@ -137,4 +144,8 @@ public class RadianceStaffItem extends Item implements EnchanterEnchantable {
 		return 8;
 	}
 	
+	@Override
+	public List<InkColor> getUsedColors() {
+		return List.of(InkColors.YELLOW);
+	}
 }

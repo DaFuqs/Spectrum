@@ -1,20 +1,27 @@
 package de.dafuqs.spectrum.energy;
 
+import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.energy.color.InkColor;
+import de.dafuqs.spectrum.helpers.Support;
 import dev.emi.trinkets.api.SlotReference;
 import dev.emi.trinkets.api.TrinketComponent;
 import dev.emi.trinkets.api.TrinketsApi;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
+import net.minecraft.util.Formatting;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.Pair;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface InkPowered {
+	
+	Identifier REQUIRED_ADVANCEMENT = new Identifier(SpectrumCommon.MOD_ID, "milestones/unlock_ink_use");
 	
 	/**
 	 * The colors that the object requires for working.
@@ -26,9 +33,11 @@ public interface InkPowered {
 	 * The colors that the object requires for working.
 	 * These are added as the player facing tooltip
 	 **/
-	default void addTooltip(List<Text> tooltip) {
-		for (InkColor color : getUsedColors()) {
-			tooltip.add(new TranslatableText("spectrum.tooltip.ink_powered" + color.toString()));
+	default void addInkPoweredTooltip(List<Text> tooltip) {
+		if(Support.hasAdvancement(MinecraftClient.getInstance().player, REQUIRED_ADVANCEMENT)) {
+			for (InkColor color : getUsedColors()) {
+				tooltip.add(new TranslatableText("spectrum.tooltip.ink_powered." + color.toString()).formatted(Formatting.GRAY));
+			}
 		}
 	}
 	
@@ -73,6 +82,10 @@ public interface InkPowered {
 	 * - Inventory
 	 **/
 	default boolean tryPayCost(ServerPlayerEntity player, InkColor color, long amount) {
+		if(!Support.hasAdvancement(player, REQUIRED_ADVANCEMENT)) {
+			return false;
+		}
+		
 		// offhand
 		for (ItemStack itemStack : player.getInventory().offHand) {
 			amount -= tryDrainEnergy(itemStack, color, amount);

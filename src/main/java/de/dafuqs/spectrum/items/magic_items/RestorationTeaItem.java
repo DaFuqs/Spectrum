@@ -46,6 +46,7 @@ public class RestorationTeaItem extends Item {
 			user.addStatusEffect(new StatusEffectInstance(SpectrumStatusEffects.IMMUNITY, EFFECT_DURATION_TICKS, 0, true, true));
 		}
 		
+		stack.decrement(1);
 		if (stack.isEmpty()) {
 			return new ItemStack(Items.GLASS_BOTTLE);
 		} else {

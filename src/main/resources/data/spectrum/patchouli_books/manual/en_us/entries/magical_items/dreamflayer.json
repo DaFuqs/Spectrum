@@ -1,0 +1,20 @@
+{
+  "name": "Dreamflayer",
+  "advancement": "spectrum:progression/unlock_dreamflayer",
+  "icon": "spectrum:dreamflayer",
+  "category": "spectrum:magical_items_category",
+  "extra_recipe_mappings": {
+    "spectrum:dreamflayer": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "A truly exceptional weapon, it embodies the definition of \"offense is the best defense.\"$(br)The Dreamflayer is in its nature to balance power: The more armored your opponent is compared to you, the more damage you do."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "recipe": "spectrum:fusion_shrine/dreamflayer",
+      "text": "$(italic)If you ever needed a reason to go full nudist, here it is"
+    }
+  ]
+}

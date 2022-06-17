@@ -1,0 +1,12 @@
+{
+  "criteria": {
+    "collected_hover_block": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": { "items": [{ "items": [ "spectrum:bismuth_chip" ]}] }
+    },
+    "gotten_previous": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:lategame/spectrum_lategame" }
+    }
+  }
+}

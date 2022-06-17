@@ -10,7 +10,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "$(italic)I just think they're neat."
+      "text": "$(italic)I just think it's neat."
     },
     {
       "type": "spectrum:fusion_shrine_crafting",

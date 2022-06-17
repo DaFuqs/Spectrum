@@ -181,7 +181,6 @@ public class NaturesStaffItem extends Item implements EnchanterEnchantable, InkP
 			int chancePercent = (int) Math.round(2.0 / (2 + efficiencyLevel) * 100);
 			tooltip.add(new TranslatableText("item.spectrum.natures_staff.tooltip_with_chance", chancePercent));
 		}
-
         addInkPoweredTooltip(tooltip);
 	}
 	
@@ -248,7 +247,9 @@ public class NaturesStaffItem extends Item implements EnchanterEnchantable, InkP
 				if (context.getPlayer().isCreative() || context.getPlayer().getInventory().contains(COST)) {
 					int efficiencyLevel = EnchantmentHelper.getLevel(Enchantments.EFFICIENCY, context.getStack());
 					if ((efficiencyLevel == 0 && InventoryHelper.removeFromInventory(context.getPlayer(), COST))
-							|| (context.getWorld().random.nextFloat() > (2.0 / (2 + efficiencyLevel)) || InventoryHelper.removeFromInventory(context.getPlayer(), COST))) {
+							|| (context.getWorld().random.nextFloat() > (2.0 / (2 + efficiencyLevel))
+                            || InventoryHelper.removeFromInventory(context.getPlayer(), COST)
+                            || InkPowered.tryPayCost(context.getPlayer().getInventory(), InkColors.LIME, 20))){
 						
 						BlockState blockState = world.getBlockState(blockPos);
 						
@@ -345,19 +346,4 @@ public class NaturesStaffItem extends Item implements EnchanterEnchantable, InkP
         return List.of(InkColors.LIME);
     }
 
-
-    @Override
-    public long tryDrainEnergy(ItemStack stack, InkColor color, long amount) {
-        return InkPowered.super.tryDrainEnergy(stack, color, amount);
-    }
-
-    @Override
-    public boolean tryPayCost(Inventory inventory, InkColor color, long amount) {
-        return InkPowered.super.tryPayCost(inventory, color, amount);
-    }
-
-    @Override
-    public boolean tryPayCost(ServerPlayerEntity player, InkColor color, long amount) {
-        return InkPowered.super.tryPayCost(player, color, amount);
-    }
 }

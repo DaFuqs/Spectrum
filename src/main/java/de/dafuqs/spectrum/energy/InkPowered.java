@@ -92,8 +92,9 @@ public interface InkPowered {
 		}
 		return false;
 	}
-	
-	/**
+
+
+    /**
 	 * Searches the players Trinkets for energy storage first and inventory second
 	 * for PigmentEnergyStorageItem and tries to drain the color energy.
 	 * If enough could be drained returns true, else false.
@@ -176,6 +177,5 @@ public interface InkPowered {
 			return 0;
 		}
 	}
-	
 }
 

@@ -27,7 +27,7 @@
     "item": "botania:fertilizer",
     "count": 4
   },
-  "required_advancement": "spectrum:collect_pigmentrequired_advancement",
+  "required_advancement": "spectrum:collect_pigment",
   "fabric:load_conditions": [
     {
       "condition": "fabric:all_mods_loaded",

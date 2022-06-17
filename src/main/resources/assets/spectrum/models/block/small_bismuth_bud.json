@@ -1,0 +1,6 @@
+{
+    "parent": "minecraft:block/crop",
+    "textures": {
+    "cross": "spectrum:block/small_bismuth_bud"
+    }
+}

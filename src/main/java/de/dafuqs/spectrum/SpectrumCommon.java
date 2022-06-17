@@ -44,6 +44,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.block.FluidBlock;
 import net.minecraft.fluid.Fluid;
+import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.RecipeType;
@@ -227,17 +228,16 @@ public class SpectrumCommon implements ModInitializer {
 		
 		AttackBlockCallback.EVENT.register((player, world, hand, pos, direction) -> {
 			if (!world.isClient && !player.isSpectator()) {
-				if (player.getMainHandStack().isOf(SpectrumItems.EXCHANGE_STAFF)) {
+				ItemStack mainHandStack = player.getMainHandStack();
+				if (mainHandStack.isOf(SpectrumItems.EXCHANGE_STAFF)) {
 					Optional<Block> blockTarget = ExchangeStaffItem.getBlockTarget(player.getMainHandStack());
-					if (blockTarget.isPresent()) {
-						ExchangeStaffItem.exchange(world, pos, player, blockTarget.get(), player.getMainHandStack(), true);
-					}
+					blockTarget.ifPresent(block -> ExchangeStaffItem.exchange(world, pos, player, block, player.getMainHandStack(), true));
 					return ActionResult.CONSUME;
-				} else if (player.getMainHandStack().isOf(SpectrumItems.RADIANCE_STAFF)) {
+				} else if (mainHandStack.isOf(SpectrumItems.RADIANCE_STAFF)) {
 					if (!world.getBlockState(pos).isOf(SpectrumBlocks.WAND_LIGHT_BLOCK)) { // those get destroyed instead
 						BlockPos targetPos = pos.offset(direction);
-						if (RadianceStaffItem.placeLight(world, targetPos, player, player.getMainHandStack())) {
-							RadianceStaffItem.playSoundAndParticles(world, targetPos, player, world.random.nextInt(5), world.random.nextInt(5));
+						if (((RadianceStaffItem) mainHandStack.getItem()).placeLight(world, targetPos, (ServerPlayerEntity) player)) {
+							RadianceStaffItem.playSoundAndParticles(world, targetPos, (ServerPlayerEntity) player, world.random.nextInt(5), world.random.nextInt(5));
 						} else {
 							RadianceStaffItem.playDenySound(world, player);
 						}

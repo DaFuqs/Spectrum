@@ -25,10 +25,12 @@ import static net.minecraft.client.gui.DrawableHelper.GUI_ICONS_TEXTURE;
 @Environment(EnvType.CLIENT)
 public class HudRenderers {
 	
+	private static final TranslatableText missingInkText = new TranslatableText("item.spectrum.placement_staff.tooltip.missing_ink");
 	private static final TranslatableText noneText = new TranslatableText("item.spectrum.placement_staff.tooltip.none_in_inventory");
 	
 	private static ItemStack itemStackToRender;
 	private static int amount;
+	private static boolean missingInk;
 	
 	public static void register() {
 		// That one is on Patchouli. ty <3
@@ -136,7 +138,9 @@ public class HudRenderers {
 			RenderHelper.renderItemStackInGui(matrixStack, itemStackToRender, (x + 8) * 2, (y + 8) * 2);
 			matrixStack.scale(2F, 2F, 1F);
 			MinecraftClient.getInstance().textRenderer.draw(matrixStack, itemStackToRender.getName(), x + 18, y + 8, 0xFFFFFF);
-			if (amount == 0) {
+			if(missingInk) {
+				MinecraftClient.getInstance().textRenderer.draw(matrixStack, missingInkText, x + 18, y + 19, 0xDDDDDD);
+			} else if (amount == 0) {
 				MinecraftClient.getInstance().textRenderer.draw(matrixStack, noneText, x + 18, y + 19, 0xDDDDDD);
 			} else {
 				MinecraftClient.getInstance().textRenderer.draw(matrixStack, amount + "x", x + 18, y + 19, 0xDDDDDD);
@@ -145,9 +149,10 @@ public class HudRenderers {
 		}
 	}
 	
-	public static void setItemStackToRender(ItemStack itemStack, int amount) {
+	public static void setItemStackToRender(ItemStack itemStack, int amount, boolean missingInk) {
 		HudRenderers.itemStackToRender = itemStack;
 		HudRenderers.amount = amount;
+		HudRenderers.missingInk = missingInk;
 	}
 	
 	public static void doNotRenderOverlay() {

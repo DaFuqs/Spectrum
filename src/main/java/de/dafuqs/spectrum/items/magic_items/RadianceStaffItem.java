@@ -1,10 +1,10 @@
 package de.dafuqs.spectrum.items.magic_items;
 
-import de.dafuqs.spectrum.blocks.enchanter.EnchanterEnchantable;
 import de.dafuqs.spectrum.energy.InkPowered;
 import de.dafuqs.spectrum.energy.color.InkColor;
 import de.dafuqs.spectrum.energy.color.InkColors;
 import de.dafuqs.spectrum.helpers.InventoryHelper;
+import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import de.dafuqs.spectrum.registries.SpectrumItems;
@@ -15,7 +15,6 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.item.TooltipContext;
-import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.LivingEntity;
@@ -23,6 +22,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsage;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.text.Text;
@@ -39,7 +39,7 @@ import java.util.List;
 
 import static net.minecraft.state.property.Properties.WATERLOGGED;
 
-public class RadianceStaffItem extends Item implements EnchanterEnchantable, InkPowered {
+public class RadianceStaffItem extends Item implements InkPowered {
 	
 	public static int USE_DURATION = 12;
 	public static int REACH_STEP_DISTANCE = 4;
@@ -52,15 +52,15 @@ public class RadianceStaffItem extends Item implements EnchanterEnchantable, Ink
 		super(settings);
 	}
 	
-	public static boolean placeLight(World world, BlockPos targetPos, PlayerEntity playerEntity, ItemStack stack) {
+	public boolean placeLight(World world, BlockPos targetPos, ServerPlayerEntity playerEntity) {
 		BlockState targetBlockState = world.getBlockState(targetPos);
 		if (targetBlockState.isAir()) {
-			if (EnchantmentHelper.getLevel(Enchantments.INFINITY, stack) > 0 || InventoryHelper.removeFromInventory(playerEntity, COST)) {
+			if (playerEntity.isCreative() || InkPowered.tryPayCost(playerEntity, InkColors.YELLOW, 10L) || InventoryHelper.removeFromInventory(playerEntity, COST)) {
 				world.setBlockState(targetPos, SpectrumBlocks.WAND_LIGHT_BLOCK.getDefaultState(), 3);
 				return true;
 			}
 		} else if (targetBlockState.isOf(Blocks.WATER)) {
-			if (EnchantmentHelper.getLevel(Enchantments.INFINITY, stack) > 0 || InventoryHelper.removeFromInventory(playerEntity, COST)) {
+			if (playerEntity.isCreative() || InkPowered.tryPayCost(playerEntity, InkColors.YELLOW, 10L) || InventoryHelper.removeFromInventory(playerEntity, COST)) {
 				world.setBlockState(targetPos, SpectrumBlocks.WAND_LIGHT_BLOCK.getDefaultState().with(WATERLOGGED, true), 3);
 				return true;
 			}
@@ -68,7 +68,7 @@ public class RadianceStaffItem extends Item implements EnchanterEnchantable, Ink
 		return false;
 	}
 	
-	public static void playSoundAndParticles(World world, BlockPos targetPos, PlayerEntity playerEntity, int useTimes, int iteration) {
+	public static void playSoundAndParticles(World world, BlockPos targetPos, ServerPlayerEntity playerEntity, int useTimes, int iteration) {
 		float pitch;
 		if (useTimes % 2 == 0) { // high ding <=> deep ding
 			pitch = Math.min(1.35F, 0.7F + 0.1F * useTimes);
@@ -84,12 +84,14 @@ public class RadianceStaffItem extends Item implements EnchanterEnchantable, Ink
 	}
 	
 	@Override
+	@Environment(EnvType.CLIENT)
 	public void appendTooltip(ItemStack itemStack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
-		if (EnchantmentHelper.getLevel(Enchantments.INFINITY, itemStack) == 0) {
+		if(InkPowered.canUse()) {
+			tooltip.add(new TranslatableText("item.spectrum.light_staff.tooltip.ink"));
+		} else {
 			tooltip.add(new TranslatableText("item.spectrum.light_staff.tooltip"));
 		}
 		tooltip.add(new TranslatableText("item.spectrum.light_staff.tooltip2"));
-		addInkPoweredTooltip(tooltip);
 	}
 	
 	public UseAction getUseAction(ItemStack stack) {
@@ -105,38 +107,31 @@ public class RadianceStaffItem extends Item implements EnchanterEnchantable, Ink
 	
 	public void usageTick(World world, LivingEntity user, ItemStack stack, int remainingUseTicks) {
 		// trigger the items' usage action every x ticks
-		if (world instanceof ServerWorld && user.getItemUseTime() > USE_DURATION && user.getItemUseTime() % USE_DURATION == 0) {
-			usage(world, stack, user);
+		if (user instanceof ServerPlayerEntity serverPlayerEntity && user.getItemUseTime() > USE_DURATION && user.getItemUseTime() % USE_DURATION == 0) {
+			usage(world, stack, serverPlayerEntity);
 		}
 	}
 	
-	public void usage(World world, ItemStack stack, LivingEntity user) {
-		if (user instanceof PlayerEntity playerEntity) {
-			int useTimes = (user.getItemUseTime() / USE_DURATION);
-			int maxCheckDistance = Math.min(MAX_REACH_STEPS, useTimes);
+	public void usage(World world, ItemStack stack, ServerPlayerEntity user) {
+		int useTimes = (user.getItemUseTime() / USE_DURATION);
+		int maxCheckDistance = Math.min(MAX_REACH_STEPS, useTimes);
+		
+		BlockPos sourcePos = user.getBlockPos();
+		Vec3d cameraVec = user.getRotationVec(0);
+		
+		for (int iteration = 1; iteration < maxCheckDistance; iteration++) {
+			BlockPos targetPos = sourcePos.add(cameraVec.x * (double) iteration * REACH_STEP_DISTANCE, cameraVec.y * (double) iteration * REACH_STEP_DISTANCE, cameraVec.z * (double) iteration * 4);
+			targetPos = targetPos.add(iteration - world.getRandom().nextInt(2 * iteration), iteration - world.getRandom().nextInt(2 * iteration), iteration - world.getRandom().nextInt(2 * iteration));
 			
-			BlockPos sourcePos = user.getBlockPos();
-			Vec3d cameraVec = user.getRotationVec(0);
-			
-			for (int iteration = 1; iteration < maxCheckDistance; iteration++) {
-				BlockPos targetPos = sourcePos.add(cameraVec.x * (double) iteration * REACH_STEP_DISTANCE, cameraVec.y * (double) iteration * REACH_STEP_DISTANCE, cameraVec.z * (double) iteration * 4);
-				targetPos = targetPos.add(iteration - world.getRandom().nextInt(2 * iteration), iteration - world.getRandom().nextInt(2 * iteration), iteration - world.getRandom().nextInt(2 * iteration));
-				
-				if (world.getLightLevel(LightType.BLOCK, targetPos) < MIN_LIGHT_LEVEL) {
-					if (placeLight(world, targetPos, playerEntity, stack)) {
-						playSoundAndParticles(world, targetPos, playerEntity, useTimes, iteration);
-					} else {
-						playDenySound(world, playerEntity);
-					}
-					break;
+			if (world.getLightLevel(LightType.BLOCK, targetPos) < MIN_LIGHT_LEVEL) {
+				if (placeLight(world, targetPos, user)) {
+					playSoundAndParticles(world, targetPos, user, useTimes, iteration);
+				} else {
+					playDenySound(world, user);
 				}
+				break;
 			}
 		}
-	}
-	
-	@Override
-	public boolean canAcceptEnchantment(Enchantment enchantment) {
-		return enchantment == Enchantments.INFINITY;
 	}
 	
 	@Override

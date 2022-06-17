@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.mixin.client;
 
+import de.dafuqs.spectrum.energy.InkPowered;
 import de.dafuqs.spectrum.helpers.BuildingHelper;
 import de.dafuqs.spectrum.items.magic_items.BuildingStaffItem;
 import de.dafuqs.spectrum.items.magic_items.ExchangeStaffItem;
@@ -104,18 +105,21 @@ public abstract class WorldRendererMixin {
 			
 			if (item != Items.AIR) {
 				int itemCountInInventory;
+				int inkLimit = Integer.MAX_VALUE;
 				if (player.isCreative()) {
 					itemCountInInventory = Integer.MAX_VALUE;
 				} else {
 					Triplet<Block, Item, Integer> inventoryItemAndCount = BuildingHelper.getBuildingItemCountInInventoryIncludingSimilars(player, lookingAtBlock);
 					item = inventoryItemAndCount.getB();
 					itemCountInInventory = inventoryItemAndCount.getC();
+					inkLimit = (int) InkPowered.getAvailableInk(player, PlacementStaffItem.USED_COLOR) / PlacementStaffItem.INK_COST_PER_BLOCK;
+					itemCountInInventory = Math.min(itemCountInInventory, inkLimit);
 				}
 				
 				boolean sneaking = player.isSneaking();
 				List<BlockPos> positions = BuildingHelper.calculateBuildingStaffSelection(world, lookingAtPos, hitResult.getSide(), itemCountInInventory, PlacementStaffItem.getRange(player), !sneaking);
 				if (itemCountInInventory == 0) {
-					HudRenderers.setItemStackToRender(new ItemStack(item), 0);
+					HudRenderers.setItemStackToRender(new ItemStack(item), 0, false);
 				} else if (positions.size() > 0) {
 					for (BlockPos newPosition : positions) {
 						if (this.world.getWorldBorder().contains(newPosition)) {
@@ -124,13 +128,12 @@ public abstract class WorldRendererMixin {
 						}
 					}
 					
-					HudRenderers.setItemStackToRender(new ItemStack(item), positions.size());
-					
+					HudRenderers.setItemStackToRender(new ItemStack(item), positions.size(), inkLimit == 0);
 					VertexConsumer linesBuffer = immediate.getBuffer(RenderLayer.getLines());
 					drawShapeOutline(matrices, linesBuffer, shape, (double) lookingAtPos.getX() - d, (double) lookingAtPos.getY() - e, (double) lookingAtPos.getZ() - f, 0.0F, 0.0F, 0.0F, 0.4F);
 					return true;
 				} else {
-					HudRenderers.setItemStackToRender(new ItemStack(item), 0);
+					HudRenderers.setItemStackToRender(new ItemStack(item), 0, false);
 				}
 			}
 		}
@@ -152,10 +155,13 @@ public abstract class WorldRendererMixin {
 				
 				if (exchangeBlockItem != Items.AIR) {
 					int itemCountInInventory;
+					int inkLimit = Integer.MAX_VALUE;
 					if (player.isCreative()) {
 						itemCountInInventory = Integer.MAX_VALUE;
 					} else {
 						itemCountInInventory = player.getInventory().count(exchangeBlockItem);
+						inkLimit = (int) InkPowered.getAvailableInk(player, ExchangeStaffItem.USED_COLOR) / ExchangeStaffItem.INK_COST_PER_BLOCK;
+						itemCountInInventory = Math.min(itemCountInInventory, inkLimit);
 					}
 					
 					if (itemCountInInventory > 0) {
@@ -167,13 +173,13 @@ public abstract class WorldRendererMixin {
 							}
 						}
 						
-						HudRenderers.setItemStackToRender(new ItemStack(exchangeBlockItem), positions.size());
+						HudRenderers.setItemStackToRender(new ItemStack(exchangeBlockItem), positions.size(), false);
 						
 						VertexConsumer linesBuffer = immediate.getBuffer(RenderLayer.getLines());
 						drawShapeOutline(matrices, linesBuffer, shape, (double) lookingAtPos.getX() - d, (double) lookingAtPos.getY() - e, (double) lookingAtPos.getZ() - f, 0.0F, 0.0F, 0.0F, 0.4F);
 						return true;
 					} else {
-						HudRenderers.setItemStackToRender(new ItemStack(exchangeBlockItem), 0);
+						HudRenderers.setItemStackToRender(new ItemStack(exchangeBlockItem), 0, inkLimit == 0);
 					}
 				}
 			}

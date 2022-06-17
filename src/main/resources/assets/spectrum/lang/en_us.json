@@ -1312,11 +1312,10 @@
   "item.spectrum.midnight_chip": "Midnight Chip",
 
   "block.spectrum.small_bismuth_bud": "Small Bismuth Bud",
-  "block.spectrum.medium_bismuth_bud": "Medium Bismuth Bud",
   "block.spectrum.large_bismuth_bud": "Large Bismuth Bud",
   "block.spectrum.bismuth_cluster": "Bismuth Cluster",
   "block.spectrum.bismuth_block": "Block of Bismuth",
-  "item.spectrum.bismuth_crystal": "Bismuth Crystal",
+  "item.spectrum.bismuth_crystal": "Bismuth Crystals",
   "item.spectrum.bismuth_chip": "Bismuth Chip",
 
   "item.spectrum.logo_banner_pattern": "Banner Pattern",
@@ -1908,7 +1907,7 @@
   "advancements.spectrum.get_tool_with_inertia_500_blocks_broken.title": "The fastest Pick in the West",
   "advancements.spectrum.get_tool_with_inertia_500_blocks_broken.description": "Break 500 identical Blocks using an Inertia enchanted Tool",
   "advancements.spectrum.use_natures_staff_on_dead_bush.title": "Revivify",
-  "advancements.spectrum.use_natures_staff_on_dead_bush.description": "Use the Natures' Staff and Vegetal on a Dead Bush to bring it back to Life",
+  "advancements.spectrum.use_natures_staff_on_dead_bush.description": "Use the Nature's Staff and Vegetal on a Dead Bush to bring it back to Life",
   "advancements.spectrum.enchant_item_worth_2500_xp.title": "Big Spender",
   "advancements.spectrum.enchant_item_worth_2500_xp.description": "Use the Enchanter to enchant a single Item with Enchantments worth 2500 XP",
   "advancements.spectrum.create_resonance_enchanted_book.title": "Better Vibrations",

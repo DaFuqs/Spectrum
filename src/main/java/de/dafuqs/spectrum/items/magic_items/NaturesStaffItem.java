@@ -21,7 +21,6 @@ import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.Inventory;
 import net.minecraft.item.*;
 import net.minecraft.particle.BlockStateParticleEffect;
 import net.minecraft.particle.ParticleTypes;
@@ -176,12 +175,11 @@ public class NaturesStaffItem extends Item implements EnchanterEnchantable, InkP
 		int efficiencyLevel = EnchantmentHelper.getLevel(Enchantments.EFFICIENCY, itemStack);
 		if (efficiencyLevel == 0) {
 			tooltip.add(new TranslatableText("item.spectrum.natures_staff.tooltip"));
-            //addTooltip(tooltip
 		} else {
 			int chancePercent = (int) Math.round(2.0 / (2 + efficiencyLevel) * 100);
 			tooltip.add(new TranslatableText("item.spectrum.natures_staff.tooltip_with_chance", chancePercent));
 		}
-
+		
         addInkPoweredTooltip(tooltip);
 	}
 	
@@ -344,20 +342,5 @@ public class NaturesStaffItem extends Item implements EnchanterEnchantable, InkP
     public List<InkColor> getUsedColors() {
         return List.of(InkColors.LIME);
     }
-
-
-    @Override
-    public long tryDrainEnergy(ItemStack stack, InkColor color, long amount) {
-        return InkPowered.super.tryDrainEnergy(stack, color, amount);
-    }
-
-    @Override
-    public boolean tryPayCost(Inventory inventory, InkColor color, long amount) {
-        return InkPowered.super.tryPayCost(inventory, color, amount);
-    }
-
-    @Override
-    public boolean tryPayCost(ServerPlayerEntity player, InkColor color, long amount) {
-        return InkPowered.super.tryPayCost(player, color, amount);
-    }
+	
 }

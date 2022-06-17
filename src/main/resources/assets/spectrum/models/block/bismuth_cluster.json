@@ -1,6 +1,6 @@
 {
-    "parent": "minecraft:block/crop",
-    "textures": {
-    "cross": "spectrum:block/bismuth_cluster"
-    }
+  "parent": "minecraft:block/crop",
+  "textures": {
+    "crop": "spectrum:block/bismuth_cluster"
+  }
 }

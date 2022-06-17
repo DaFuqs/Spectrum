@@ -162,7 +162,6 @@ public class SpectrumBlocks {
 	
 	public static final Block BISMUTH_CLUSTER = new AmethystClusterBlock(7, 3, FabricBlockSettings.of(Material.AMETHYST).mapColor(MapColor.DARK_AQUA).hardness(1.5F).nonOpaque().requiresTool().sounds(BlockSoundGroup.CHAIN));
 	public static final Block LARGE_BISMUTH_BUD = new AmethystClusterBlock(5, 3, FabricBlockSettings.copyOf(TOPAZ_CLUSTER).mapColor(MapColor.DARK_AQUA).sounds(BlockSoundGroup.CHAIN));
-	public static final Block MEDIUM_BISMUTH_BUD = new AmethystClusterBlock(4, 3, FabricBlockSettings.copyOf(TOPAZ_CLUSTER).mapColor(MapColor.DARK_AQUA).sounds(BlockSoundGroup.CHAIN));
 	public static final Block SMALL_BISMUTH_BUD = new AmethystClusterBlock(3, 4, FabricBlockSettings.copyOf(TOPAZ_CLUSTER).mapColor(MapColor.DARK_AQUA).sounds(BlockSoundGroup.CHAIN));
 	public static final Block BISMUTH_BLOCK = new Block(FabricBlockSettings.of(Material.METAL, MapColor.DARK_AQUA).requiresTool().strength(20.0F).sounds(BlockSoundGroup.CHAIN));
 	
@@ -858,7 +857,6 @@ public class SpectrumBlocks {
 		registerBlockWithItem("bedrock_storage_block", BEDROCK_STORAGE_BLOCK, decorationItemSettingsUncommon, DyeColor.BLACK);
 		
 		registerBlockWithItem("small_bismuth_bud", SMALL_BISMUTH_BUD, worldgenItemSettings, DyeColor.CYAN);
-		registerBlockWithItem("medium_bismuth_bud", MEDIUM_BISMUTH_BUD, worldgenItemSettings, DyeColor.CYAN);
 		registerBlockWithItem("large_bismuth_bud", LARGE_BISMUTH_BUD, worldgenItemSettings, DyeColor.CYAN);
 		registerBlockWithItem("bismuth_cluster", BISMUTH_CLUSTER, worldgenItemSettings, DyeColor.CYAN);
 		registerBlockWithItem("bismuth_block", BISMUTH_BLOCK, decorationItemSettingsUncommon, DyeColor.CYAN);
@@ -1574,6 +1572,10 @@ public class SpectrumBlocks {
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.SMALL_MOONSTONE_BUD, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.MEDIUM_MOONSTONE_BUD, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.LARGE_MOONSTONE_BUD, RenderLayer.getCutout());
+		
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.BISMUTH_CLUSTER, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.SMALL_BISMUTH_BUD, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.LARGE_BISMUTH_BUD, RenderLayer.getCutout());
 		
 		// Glass
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.TOPAZ_GLASS, RenderLayer.getTranslucent());

@@ -3,6 +3,8 @@ package de.dafuqs.spectrum.enchantments;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentTarget;
 import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.ShearsItem;
 import net.minecraft.util.Identifier;
 
 public class InventoryInsertionEnchantment extends SpectrumEnchantment {
@@ -29,6 +31,11 @@ public class InventoryInsertionEnchantment extends SpectrumEnchantment {
 	@Override
 	public boolean canAccept(Enchantment other) {
 		return super.canAccept(other);
+	}
+	
+	@Override
+	public boolean isAcceptableItem(ItemStack stack) {
+		return super.isAcceptableItem(stack) || stack.getItem() instanceof ShearsItem;
 	}
 	
 }

@@ -5,8 +5,11 @@
   "fluid": "spectrum:liquid_crystal",
   "ingredients": [
     {
+      "item": "spectrum:fanciful_gloves"
+    },
+    {
       "item": "minecraft:leather",
-	  "count": 8
+	  "count": 4
     },
     {
       "item": "spectrum:neolith",

@@ -179,6 +179,19 @@ public class SpectrumS2CPacketSender {
 	}
 	
 	/**
+	 * @param world    the world of the pedestal
+	 * @param blockPos the blockpos of the newly created light
+	 */
+	public static void sendSmallLightCreatedParticle(World world, BlockPos blockPos) {
+		PacketByteBuf buf = PacketByteBufs.create();
+		buf.writeBlockPos(blockPos);
+		// Iterate over all players tracking a position in the world and send the packet to each player
+		for (ServerPlayerEntity player : PlayerLookup.tracking((ServerWorld) world, blockPos)) {
+			ServerPlayNetworking.send(player, SpectrumS2CPackets.PLAY_SMALL_LIGHT_CREATED_PACKET_ID, buf);
+		}
+	}
+	
+	/**
 	 * @param world     the world of the pedestal
 	 * @param blockPos  the blockpos of the pedestal
 	 * @param itemStack the itemstack that was crafted

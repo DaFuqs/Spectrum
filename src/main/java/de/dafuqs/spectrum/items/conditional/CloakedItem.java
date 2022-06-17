@@ -7,7 +7,6 @@ import net.minecraft.item.Item;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Pair;
 
-import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Map;
 

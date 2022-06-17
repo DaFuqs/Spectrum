@@ -132,6 +132,17 @@ public class SpectrumS2CPacketReceiver {
 			});
 		});
 		
+		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.PLAY_SMALL_LIGHT_CREATED_PACKET_ID, (client, handler, buf, responseSender) -> {
+			BlockPos position = buf.readBlockPos();
+			client.execute(() -> {
+				Random random = client.world.random;
+				// Everything in this lambda is running on the render thread
+				for (int i = 0; i < 4; i++) {
+					client.getInstance().player.world.addParticle(SpectrumParticleTypes.SPARKLESTONE_SPARKLE, position.getX() + 0.5, position.getY() + 0.5, position.getZ() + 0.5, 0.1 - random.nextFloat() * 0.2, 0.1 - random.nextFloat() * 0.2, 0.1 - random.nextFloat() * 0.2);
+				}
+			});
+		});
+		
 		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.START_SKY_LERPING, (client, handler, buf, responseSender) -> {
 			DimensionType dimensionType = client.world.getDimension();
 			long sourceTime = buf.readLong();

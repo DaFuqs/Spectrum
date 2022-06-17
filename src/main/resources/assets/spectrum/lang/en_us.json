@@ -1283,6 +1283,8 @@
   "item.spectrum.bedrock_leggings": "Bedrock Leggings",
   "item.spectrum.bedrock_boots": "Bedrock Boots",
 
+  "item.spectrum.dreamflayer": "Dreamflayer",
+
   "item.spectrum.spawner": "Empty Spawner",
   "item.spectrum.spawner.tooltip.unknown_mob": "Unknown Mob",
   "item.spectrum.spawner.tooltip.spawn_count": "Spawn Count: %d",
@@ -1308,6 +1310,13 @@
   "item.spectrum.midnight_aberration": "Midnight Aberration",
   "item.spectrum.midnight_aberration.tooltip.stable": "§oHeld together by mysterious force",
   "item.spectrum.midnight_chip": "Midnight Chip",
+
+  "block.spectrum.small_bismuth_bud": "Small Bismuth Bud",
+  "block.spectrum.large_bismuth_bud": "Large Bismuth Bud",
+  "block.spectrum.bismuth_cluster": "Bismuth Cluster",
+  "block.spectrum.bismuth_block": "Block of Bismuth",
+  "item.spectrum.bismuth_crystal": "Bismuth Crystals",
+  "item.spectrum.bismuth_chip": "Bismuth Chip",
 
   "item.spectrum.logo_banner_pattern": "Banner Pattern",
   "item.spectrum.logo_banner_pattern.desc": "Color Theory",
@@ -1898,7 +1907,7 @@
   "advancements.spectrum.get_tool_with_inertia_500_blocks_broken.title": "The fastest Pick in the West",
   "advancements.spectrum.get_tool_with_inertia_500_blocks_broken.description": "Break 500 identical Blocks using an Inertia enchanted Tool",
   "advancements.spectrum.use_natures_staff_on_dead_bush.title": "Revivify",
-  "advancements.spectrum.use_natures_staff_on_dead_bush.description": "Use the Natures' Staff and Vegetal on a Dead Bush to bring it back to Life",
+  "advancements.spectrum.use_natures_staff_on_dead_bush.description": "Use the Nature's Staff and Vegetal on a Dead Bush to bring it back to Life",
   "advancements.spectrum.enchant_item_worth_2500_xp.title": "Big Spender",
   "advancements.spectrum.enchant_item_worth_2500_xp.description": "Use the Enchanter to enchant a single Item with Enchantments worth 2500 XP",
   "advancements.spectrum.create_resonance_enchanted_book.title": "Better Vibrations",
@@ -1981,6 +1990,8 @@
   "advancements.spectrum.wear_complete_set_of_bedrock_armor.description": "Black Knight of the roses, everlasting. Wear a full suit of Bedrock Armor",
   "advancements.spectrum.place_color_picker.title": "Being Picky",
   "advancements.spectrum.place_color_picker.description": "Craft and place down a Color Picker",
+  "advancements.spectrum.collect_bismuth_crystal.title": "Primordial Dream",
+  "advancements.spectrum.collect_bismuth_crystal.description": "Grow a Bismuth Crystal using the Crystallaerium",
 
   "______name_changes_for_vanilla_blocks" : "Changes:",
   "block.minecraft.polished_basalt": "Basalt Pillar",

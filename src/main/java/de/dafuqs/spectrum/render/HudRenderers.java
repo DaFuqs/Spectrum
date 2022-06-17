@@ -11,9 +11,6 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.client.util.Window;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.TranslatableText;
@@ -138,10 +135,10 @@ public class HudRenderers {
 			RenderHelper.renderItemStackInGui(matrixStack, itemStackToRender, (x + 8) * 2, (y + 8) * 2);
 			matrixStack.scale(2F, 2F, 1F);
 			MinecraftClient.getInstance().textRenderer.draw(matrixStack, itemStackToRender.getName(), x + 18, y + 8, 0xFFFFFF);
-			if(missingInk) {
-				MinecraftClient.getInstance().textRenderer.draw(matrixStack, missingInkText, x + 18, y + 19, 0xDDDDDD);
-			} else if (amount == 0) {
+			if (amount == 0) {
 				MinecraftClient.getInstance().textRenderer.draw(matrixStack, noneText, x + 18, y + 19, 0xDDDDDD);
+			} else if (missingInk) {
+				MinecraftClient.getInstance().textRenderer.draw(matrixStack, missingInkText, x + 18, y + 19, 0xDDDDDD);
 			} else {
 				MinecraftClient.getInstance().textRenderer.draw(matrixStack, amount + "x", x + 18, y + 19, 0xDDDDDD);
 			}

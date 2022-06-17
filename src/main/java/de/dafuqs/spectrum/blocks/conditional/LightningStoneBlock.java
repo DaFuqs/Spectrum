@@ -9,8 +9,6 @@ import net.minecraft.block.ShapeContext;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LightningEntity;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.loot.context.LootContext;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Pair;
@@ -25,7 +23,6 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.explosion.Explosion;
 
 import java.util.Hashtable;
-import java.util.List;
 import java.util.Map;
 import java.util.Random;
 

@@ -45,7 +45,7 @@ public class SpectrumItems {
 	// GENERAL TAB
 	public static FabricItemSettings generalItemSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(0);
 	public static FabricItemSettings generalItemSettingsSingle = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(0).maxCount(1);
-	public static FabricItemSettings generalItemSettingsSingleUncommon = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(0).maxCount(1).rarity(Rarity.UNCOMMON);
+	public static FabricItemSettings generalUncommonItemSettingsSingle = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(0).maxCount(1).rarity(Rarity.UNCOMMON);
 	public static FabricItemSettings generalItemSettingsEight = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(0).maxCount(8);
 	public static FabricItemSettings generalItemSettingsSixteen = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(0).maxCount(16);
 	public static FabricItemSettings generalUncommonItemSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(0).rarity(Rarity.UNCOMMON);
@@ -90,6 +90,7 @@ public class SpectrumItems {
 	// SECOND ITEM GROUP
 	// DECORATION TAB
 	public static FabricItemSettings decorationItemSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_BLOCKS).tab(0);
+	public static FabricItemSettings decorationItemSettingsUncommon = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_BLOCKS).tab(0).rarity(Rarity.UNCOMMON);
 	public static FabricItemSettings decorationItemSettingsRare = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_BLOCKS).tab(0).rarity(Rarity.RARE);
 	public static FabricItemSettings decorationItemSettingsFireProof = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_BLOCKS).tab(0).fireproof();
 	
@@ -179,6 +180,8 @@ public class SpectrumItems {
 	public static final BedrockShearsItem BEDROCK_SHEARS = new BedrockShearsItem(bedrockToolItemSettings);
 	public static final FishingRodItem BEDROCK_FISHING_ROD = new BedrockFishingRodItem(bedrockToolItemSettings);
 	
+	public static final SwordItem DREAMFLAYER = new DreamflayerItem(3, -1.8F, toolUncommonItemSettingsSingle);
+	
 	// Bedrock Armor
 	public static final Item BEDROCK_HELMET = new BedrockArmorItem(SpectrumArmorMaterials.BEDROCK, EquipmentSlot.HEAD, bedrockArmorItemSettings) {
 		@Override
@@ -219,6 +222,8 @@ public class SpectrumItems {
 	
 	public static final MidnightAberrationItem MIDNIGHT_ABERRATION = new MidnightAberrationItem(resourcesRareItemSettings, new Identifier(SpectrumCommon.MOD_ID, "midgame/create_midnight_aberration"), SpectrumItems.SPECTRAL_SHARD);
 	public static final Item MIDNIGHT_CHIP = new CloakedItem(resourcesRareItemSettings, new Identifier(SpectrumCommon.MOD_ID, "midgame/create_midnight_aberration"), Items.GRAY_DYE);
+	public static final Item BISMUTH_CHIP = new CloakedItem(resourcesRareItemSettings, new Identifier(SpectrumCommon.MOD_ID, "midgame/enter_dimension"), Items.CYAN_DYE);
+	public static final Item BISMUTH_CRYSTAL = new CloakedItem(resourcesRareItemSettings, new Identifier(SpectrumCommon.MOD_ID, "midgame/enter_dimension"), Items.CYAN_DYE);
 	
 	// Fluid Buckets
 	public static final Item LIQUID_CRYSTAL_BUCKET = new BucketItem(LIQUID_CRYSTAL, new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).maxCount(1).recipeRemainder(Items.BUCKET));
@@ -301,6 +306,7 @@ public class SpectrumItems {
 	public static final Item FANCIFUL_PENDANT = new Item(toolUncommonItemSettingsSixteen);
 	public static final Item FANCIFUL_STONE_RING = new Item(toolUncommonItemSettingsSixteen);
 	public static final Item FANCIFUL_CIRCLET = new Item(toolUncommonItemSettingsSixteen);
+	public static final Item FANCIFUL_GLOVES = new Item(toolUncommonItemSettingsSixteen);
 	
 	public static final Item GLOW_VISION_GOGGLES = new GlowVisionGogglesItem(toolUncommonItemSettingsSingle);
 	public static final Item JEOPARDANT = new AttackRingItem(toolUncommonItemSettingsSingle);
@@ -448,6 +454,8 @@ public class SpectrumItems {
 		register("bedrock_dust", BEDROCK_DUST, DyeColor.BLACK);
 		register("midnight_aberration", MIDNIGHT_ABERRATION, DyeColor.GRAY);
 		register("midnight_chip", MIDNIGHT_CHIP, DyeColor.GRAY);
+		register("bismuth_chip", BISMUTH_CHIP, DyeColor.CYAN);
+		register("bismuth_crystal", BISMUTH_CRYSTAL, DyeColor.CYAN);
 	}
 	
 	public static void registerDecayBottles() {
@@ -485,6 +493,8 @@ public class SpectrumItems {
 		register("bedrock_chestplate", BEDROCK_CHESTPLATE, DyeColor.BLACK);
 		register("bedrock_leggings", BEDROCK_LEGGINGS, DyeColor.BLACK);
 		register("bedrock_boots", BEDROCK_BOOTS, DyeColor.BLACK);
+		
+		register("dreamflayer", DREAMFLAYER, DyeColor.RED);
 	}
 	
 	public static void registerMagicalTools() {
@@ -506,6 +516,7 @@ public class SpectrumItems {
 		register("fanciful_belt", FANCIFUL_BELT, DyeColor.GREEN);
 		register("fanciful_pendant", FANCIFUL_PENDANT, DyeColor.GREEN);
 		register("fanciful_circlet", FANCIFUL_CIRCLET, DyeColor.GREEN);
+		register("fanciful_gloves", FANCIFUL_GLOVES, DyeColor.GREEN);
 		
 		register("glow_vision_helmet", GLOW_VISION_GOGGLES, DyeColor.WHITE);
 		register("jeopardant", JEOPARDANT, DyeColor.RED);

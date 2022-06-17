@@ -10,12 +10,14 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Pair;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,10 +37,17 @@ public interface InkPowered {
 	 **/
 	default void addInkPoweredTooltip(List<Text> tooltip) {
 		if(Support.hasAdvancement(MinecraftClient.getInstance().player, REQUIRED_ADVANCEMENT)) {
-			for (InkColor color : getUsedColors()) {
-				tooltip.add(new TranslatableText("spectrum.tooltip.ink_powered." + color.toString()).formatted(Formatting.GRAY));
-			}
-		}
+            // StringBuilder tooltipText = new StringBuilder();
+            if (getUsedColors().size() > 1) {
+                tooltip.add(new TranslatableText("spectrum.tooltip.ink_powered.prefix").formatted(Formatting.GRAY));
+                for (InkColor color : getUsedColors()) {
+                    tooltip.add(new TranslatableText("spectrum.tooltip.ink_powered.bullet." + color.toString()));
+
+                }
+            } else {
+                tooltip.add(new TranslatableText("spectrum.tooltip.ink_powered." + getUsedColors().get(0).toString()).formatted(Formatting.GRAY));
+            }
+        }
 	}
 	
 	default long tryDrainEnergy(ItemStack stack, InkColor color, long amount) {

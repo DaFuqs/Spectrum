@@ -2,6 +2,9 @@ package de.dafuqs.spectrum.items.magic_items;
 
 import de.dafuqs.spectrum.SpectrumClient;
 import de.dafuqs.spectrum.blocks.enchanter.EnchanterEnchantable;
+import de.dafuqs.spectrum.energy.InkPowered;
+import de.dafuqs.spectrum.energy.color.InkColor;
+import de.dafuqs.spectrum.energy.color.InkColors;
 import de.dafuqs.spectrum.helpers.InventoryHelper;
 import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
 import de.dafuqs.spectrum.registries.SpectrumBlockTags;
@@ -18,6 +21,7 @@ import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.Inventory;
 import net.minecraft.item.*;
 import net.minecraft.particle.BlockStateParticleEffect;
 import net.minecraft.particle.ParticleTypes;
@@ -49,7 +53,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-public class NaturesStaffItem extends Item implements EnchanterEnchantable {
+public class NaturesStaffItem extends Item implements EnchanterEnchantable, InkPowered {
 	
 	public static final Map<Block, BlockState> BLOCK_CONVERSIONS = new HashMap<>() {{
 		// BLOCKS
@@ -172,10 +176,13 @@ public class NaturesStaffItem extends Item implements EnchanterEnchantable {
 		int efficiencyLevel = EnchantmentHelper.getLevel(Enchantments.EFFICIENCY, itemStack);
 		if (efficiencyLevel == 0) {
 			tooltip.add(new TranslatableText("item.spectrum.natures_staff.tooltip"));
+            //addTooltip(tooltip
 		} else {
 			int chancePercent = (int) Math.round(2.0 / (2 + efficiencyLevel) * 100);
 			tooltip.add(new TranslatableText("item.spectrum.natures_staff.tooltip_with_chance", chancePercent));
 		}
+
+        addInkPoweredTooltip(tooltip);
 	}
 	
 	public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
@@ -332,5 +339,25 @@ public class NaturesStaffItem extends Item implements EnchanterEnchantable {
 	public int getEnchantability() {
 		return 10;
 	}
-	
+
+    @Override
+    public List<InkColor> getUsedColors() {
+        return List.of(InkColors.LIME);
+    }
+
+
+    @Override
+    public long tryDrainEnergy(ItemStack stack, InkColor color, long amount) {
+        return InkPowered.super.tryDrainEnergy(stack, color, amount);
+    }
+
+    @Override
+    public boolean tryPayCost(Inventory inventory, InkColor color, long amount) {
+        return InkPowered.super.tryPayCost(inventory, color, amount);
+    }
+
+    @Override
+    public boolean tryPayCost(ServerPlayerEntity player, InkColor color, long amount) {
+        return InkPowered.super.tryPayCost(player, color, amount);
+    }
 }

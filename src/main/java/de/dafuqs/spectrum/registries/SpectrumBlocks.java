@@ -87,6 +87,7 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.VexEntity;
 import net.minecraft.entity.projectile.*;
 import net.minecraft.entity.projectile.thrown.SnowballEntity;
+import net.minecraft.item.AliasedBlockItem;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.particle.ParticleTypes;
@@ -856,7 +857,7 @@ public class SpectrumBlocks {
 		registerGemBlocks(worldgenItemSettings);
 		registerBlockWithItem("bedrock_storage_block", BEDROCK_STORAGE_BLOCK, decorationItemSettingsUncommon, DyeColor.BLACK);
 		
-		registerBlockWithItem("small_bismuth_bud", SMALL_BISMUTH_BUD, worldgenItemSettings, DyeColor.CYAN);
+		registerBlockWithItem("small_bismuth_bud", SMALL_BISMUTH_BUD, new AliasedBlockItem(SMALL_BISMUTH_BUD, worldgenItemSettings), DyeColor.CYAN);
 		registerBlockWithItem("large_bismuth_bud", LARGE_BISMUTH_BUD, worldgenItemSettings, DyeColor.CYAN);
 		registerBlockWithItem("bismuth_cluster", BISMUTH_CLUSTER, worldgenItemSettings, DyeColor.CYAN);
 		registerBlockWithItem("bismuth_block", BISMUTH_BLOCK, decorationItemSettingsUncommon, DyeColor.CYAN);

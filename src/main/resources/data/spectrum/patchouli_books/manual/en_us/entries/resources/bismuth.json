@@ -1,27 +1,26 @@
 {
   "name": "Bismuth",
   "advancement": "spectrum:hidden/collect_bismuth",
-  "icon": "spectrum:bismuth_chip",
+  "icon": "spectrum:small_bismuth_bud",
   "category": "spectrum:resources_category",
   "extra_recipe_mappings": {
     "spectrum:bismuth_block": 0,
     "spectrum:small_bismuth_bud": 0,
     "spectrum:large_bismuth_bud": 0,
     "spectrum:bismuth_cluster": 0,
-    "spectrum:bismuth_chip": 0,
     "spectrum:bismuth_crystal": 0
   },
   "pages": [
     {
       "type": "patchouli:text",
       "title": "Bismuth",
-      "text": "A metal that shimmers in all the colors of the rainbow.$(br)It seems to have strong magical properties, almost like a $(l:dimension/dimension)Deeper Down$() analog of $(l:resources/azurite)Azurite$()."
+      "text": "A metal that shimmers in all the colors of the rainbow.$(br2)It seems to have strong magical properties, almost like a $(l:dimension/dimension)Deeper Down$() analog of $(l:resources/azurite)Azurite$()."
     },
     {
       "type": "patchouli:spotlight",
       "title": "Growing Bismuth",
-      "item": "spectrum:bismuth_crystal",
-      "text": "The small seedlings you collected are far too small to be used for any meaningful purpose. The shimmering metal seems to grow larger very slowly by absorbing the energy of other metals, such as iron blocks, within range."
+      "item": "spectrum:small_bismuth_bud",
+      "text": "The small seedlings you collected are far too small to be used for any meaningful purpose. The shimmering metal seems to grow larger very slowly by absorbing the energy of other metallic blocks in it's vicinity."
     },
     {
       "type": "patchouli:text",

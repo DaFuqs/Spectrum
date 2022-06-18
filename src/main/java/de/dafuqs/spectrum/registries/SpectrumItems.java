@@ -222,7 +222,6 @@ public class SpectrumItems {
 	
 	public static final MidnightAberrationItem MIDNIGHT_ABERRATION = new MidnightAberrationItem(resourcesRareItemSettings, new Identifier(SpectrumCommon.MOD_ID, "midgame/create_midnight_aberration"), SpectrumItems.SPECTRAL_SHARD);
 	public static final Item MIDNIGHT_CHIP = new CloakedItem(resourcesRareItemSettings, new Identifier(SpectrumCommon.MOD_ID, "midgame/create_midnight_aberration"), Items.GRAY_DYE);
-	public static final Item BISMUTH_CHIP = new CloakedItem(resourcesRareItemSettings, new Identifier(SpectrumCommon.MOD_ID, "midgame/enter_dimension"), Items.CYAN_DYE);
 	public static final Item BISMUTH_CRYSTAL = new CloakedItem(resourcesRareItemSettings, new Identifier(SpectrumCommon.MOD_ID, "midgame/enter_dimension"), Items.CYAN_DYE);
 	
 	// Fluid Buckets
@@ -454,7 +453,6 @@ public class SpectrumItems {
 		register("bedrock_dust", BEDROCK_DUST, DyeColor.BLACK);
 		register("midnight_aberration", MIDNIGHT_ABERRATION, DyeColor.GRAY);
 		register("midnight_chip", MIDNIGHT_CHIP, DyeColor.GRAY);
-		register("bismuth_chip", BISMUTH_CHIP, DyeColor.CYAN);
 		register("bismuth_crystal", BISMUTH_CRYSTAL, DyeColor.CYAN);
 	}
 	

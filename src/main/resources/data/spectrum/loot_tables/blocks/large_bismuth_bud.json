@@ -6,21 +6,30 @@
       "bonus_rolls": 0,
       "entries": [
         {
-          "type": "minecraft:item",
-          "name": "spectrum:large_bismuth_bud",
-          "conditions": [
+          "type": "minecraft:alternatives",
+          "children": [
             {
-              "condition": "minecraft:match_tool",
-              "predicate": {
-                "enchantments": [
-                  {
-                    "enchantment": "spectrum:resonance",
-                    "levels": {
-                      "min": 1
-                    }
+              "type": "minecraft:item",
+              "name": "spectrum:large_bismuth_bud",
+              "conditions": [
+                {
+                  "condition": "minecraft:match_tool",
+                  "predicate": {
+                    "enchantments": [
+                      {
+                        "enchantment": "spectrum:resonance",
+                        "levels": {
+                          "min": 1
+                        }
+                      }
+                    ]
                   }
-                ]
-              }
+                }
+              ]
+            },
+            {
+              "type": "minecraft:item",
+              "name": "spectrum:small_bismuth_bud"
             }
           ]
         }

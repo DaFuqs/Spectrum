@@ -1,6 +1,6 @@
 {
-  "parent": "minecraft:item/small_amethyst_bud",
+  "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "spectrum:block/small_bismuth_bud"
+    "layer0": "spectrum:item/bismuth_seed"
   }
 }

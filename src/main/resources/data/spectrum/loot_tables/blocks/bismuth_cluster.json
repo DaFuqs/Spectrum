@@ -35,11 +35,6 @@
                   "function": "minecraft:set_count",
                   "count": 3,
                   "add": false
-                },
-                {
-                  "function": "minecraft:apply_bonus",
-                  "enchantment": "minecraft:fortune",
-                  "formula": "minecraft:ore_drops"
                 }
               ],
               "conditions": [

@@ -1312,12 +1312,12 @@
   "item.spectrum.midnight_aberration.tooltip.stable": "§oHeld together by mysterious force",
   "item.spectrum.midnight_chip": "Midnight Chip",
 
+  "item.spectrum.small_bismuth_bud": "Bismuth Seed",
   "block.spectrum.small_bismuth_bud": "Small Bismuth Bud",
   "block.spectrum.large_bismuth_bud": "Large Bismuth Bud",
   "block.spectrum.bismuth_cluster": "Bismuth Cluster",
   "block.spectrum.bismuth_block": "Block of Bismuth",
-  "item.spectrum.bismuth_crystal": "Bismuth Crystals",
-  "item.spectrum.bismuth_chip": "Bismuth Chip",
+  "item.spectrum.bismuth_crystal": "Bismuth Crystal",
 
   "item.spectrum.logo_banner_pattern": "Banner Pattern",
   "item.spectrum.logo_banner_pattern.desc": "Color Theory",

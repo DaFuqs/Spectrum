@@ -34,6 +34,18 @@
       "spectrum:midnight_aberration_crumbling"
     ]
   },
+  "dreamflayer_activate": {
+    "subtitle": "spectrum.subtitles.dreamflayer_activates",
+    "sounds": [
+      "spectrum:dreamflayer_activate"
+    ]
+  },
+  "dreamflayer_deactivate": {
+    "subtitle": "spectrum.subtitles.dreamflayer_deactivates",
+    "sounds": [
+      "spectrum:dreamflayer_deactivate"
+    ]
+  },
   "celestial_pocket_watch_ticking": {
     "subtitle": "spectrum.subtitles.celestial_pocket_watch_ticking",
     "sounds": [

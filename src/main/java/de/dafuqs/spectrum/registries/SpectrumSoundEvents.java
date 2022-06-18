@@ -14,7 +14,6 @@ public class SpectrumSoundEvents {
 	
 	// Sounds
 	public static final SoundEvent PEDESTAL_CRAFTING = register("pedestal_crafting");
-	;
 	public static final SoundEvent PEDESTAL_CRAFTING_FINISHED_GENERIC = register("pedestal_crafting_finished_generic");
 	public static final SoundEvent PEDESTAL_CRAFTING_FINISHED_AMETHYST = register("pedestal_crafting_finished_amethyst");
 	public static final SoundEvent PEDESTAL_CRAFTING_FINISHED_CITRINE = register("pedestal_crafting_finished_citrine");
@@ -56,6 +55,9 @@ public class SpectrumSoundEvents {
 	
 	public static final SoundEvent SUCKING_CHEST_OPEN = register("sucking_chest_open");
 	public static final SoundEvent SUCKING_CHEST_CLOSE = register("sucking_chest_close");
+	
+	public static final SoundEvent DREAMFLAYER_ACTIVATE = register("dreamflayer_activate");
+	public static final SoundEvent DREAMFLAYER_DEACTIVATE = register("dreamflayer_deactivate");
 	
 	public static final SoundEvent LIGHT_STAFF_CHARGING = register("light_staff_charging");
 	public static final SoundEvent LIGHT_STAFF_PLACE = register("light_staff_place");

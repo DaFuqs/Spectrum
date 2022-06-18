@@ -106,7 +106,7 @@ public interface InkPowered {
 	 * - Trinket Slots
 	 * - Inventory
 	 **/
-	static boolean tryPayCost(ServerPlayerEntity player, InkColor color, long amount) {
+	static boolean tryPayCost(PlayerEntity player, InkColor color, long amount) {
 		if(!canUse(player)) {
 			return false;
 		}

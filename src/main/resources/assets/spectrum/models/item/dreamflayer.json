@@ -2,5 +2,13 @@
   "parent": "minecraft:item/handheld",
   "textures": {
     "layer0": "spectrum:item/dreamflayer"
-  }
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "activated": 1
+      },
+      "model": "spectrum:item/dreamflayer_activated"
+    }
+  ]
 }

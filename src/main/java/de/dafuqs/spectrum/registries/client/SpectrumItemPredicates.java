@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.registries.client;
 
 import de.dafuqs.spectrum.energy.storage.SingleInkStorage;
+import de.dafuqs.spectrum.items.ActivatableItem;
 import de.dafuqs.spectrum.items.ExperienceStorageItem;
 import de.dafuqs.spectrum.items.magic.InkFlaskItem;
 import de.dafuqs.spectrum.items.magic_items.EnderSpliceItem;
@@ -28,6 +29,17 @@ public class SpectrumItemPredicates {
 		registerAshenCircletPredicates(SpectrumItems.ASHEN_CIRCLET);
 		registerSinglePigmentEnergyStorageItemPredicates(SpectrumItems.INK_FLASK);
 		registerMoonPhasePredicates(SpectrumItems.CRESCENT_CLOCK);
+		registerActivatablePredicates(SpectrumItems.DREAMFLAYER);
+	}
+	
+	private static void registerActivatablePredicates(Item item) {
+		FabricModelPredicateProviderRegistry.register(item, new Identifier(ActivatableItem.NBT_STRING), (itemStack, clientWorld, livingEntity, i) -> {
+			if(ActivatableItem.isActivated(itemStack)) {
+				return 1.0F;
+			} else {
+				return 0.0F;
+			}
+		});
 	}
 	
 	private static void registerMoonPhasePredicates(Item item) {

@@ -180,7 +180,7 @@ public class SpectrumItems {
 	public static final BedrockShearsItem BEDROCK_SHEARS = new BedrockShearsItem(bedrockToolItemSettings);
 	public static final FishingRodItem BEDROCK_FISHING_ROD = new BedrockFishingRodItem(bedrockToolItemSettings);
 	
-	public static final SwordItem DREAMFLAYER = new DreamflayerItem(3, -1.8F, toolUncommonItemSettingsSingle);
+	public static final SwordItem DREAMFLAYER = new DreamflayerItem(SpectrumToolMaterials.ToolMaterial.DREAMFLAYER, 3, -1.8F, toolUncommonItemSettingsSingle);
 	
 	// Bedrock Armor
 	public static final Item BEDROCK_HELMET = new BedrockArmorItem(SpectrumArmorMaterials.BEDROCK, EquipmentSlot.HEAD, bedrockArmorItemSettings) {

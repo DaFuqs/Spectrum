@@ -15,7 +15,7 @@
         {
             "type": "patchouli:text",
             "title": "Bismuth",
-            "text": "A metal that shimmers in all the colors of the rainbow. It seems to have strong magical properties, almost a $(l:dimension/dimension)Deeper Down$() analog of $(l:resources/azurite)Azurite$()."
+            "text": "A metal that shimmers in all the colors of the rainbow.$(br)It seems to have strong magical properties, almost like a $(l:dimension/dimension)Deeper Down$() analog of $(l:resources/azurite)Azurite$()."
         },
         {
             "type": "patchouli:spotlight",
@@ -27,7 +27,7 @@
             "type": "patchouli:text",
             "advancement": "spectrum:progression/unlock_crystallarieum",
             "title": "Growing Bismuth",
-            "text": "Instead of providing metal blocks, the $(l:magical_blocks/crystallarieum)Crystallarieum$(), too, provides a controlled substrate and also finer way to provide feed."
+            "text": "Instead of providing metal blocks, the $(l:magical_blocks/crystallarieum)Crystallarieum$(), too, provides a controlled substrate and also finer and more efficient way to provide nutrients."
         }
     ]
 }

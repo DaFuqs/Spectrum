@@ -1623,6 +1623,7 @@
   "item.spectrum.fanciful_belt": "Fanciful Belt",
   "item.spectrum.fanciful_pendant": "Fanciful Pendant",
   "item.spectrum.fanciful_circlet": "Fanciful Circlet",
+  "item.spectrum.fanciful_gloves": "Fanciful Gloves",
   "item.spectrum.jeopardant": "Jeopardant",
   "item.spectrum.jeopardant.tooltip.damage_zero": "§7Increased Damage on low HP (currently §80 %%§7)",
   "item.spectrum.jeopardant.tooltip.damage": "§7Increased Damage on low HP (currently §a+%d %%§7)",

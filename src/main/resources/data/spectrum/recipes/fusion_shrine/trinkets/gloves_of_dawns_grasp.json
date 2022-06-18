@@ -8,16 +8,16 @@
       "item": "spectrum:fanciful_gloves"
     },
     {
-      "item": "minecraft:leather",
-      "count": 4
-    },
-    {
       "item": "spectrum:neolith",
       "count": 8
     },
     {
-      "item": "spectrum:green_pigment",
+      "item": "spectrum:light_blue_pigment",
       "count": 16
+    },
+    {
+      "item": "spectrum:green_pigment",
+      "count": 8
     }
   ],
   "result": {

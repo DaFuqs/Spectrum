@@ -269,11 +269,13 @@ public class FusionShrineBlock extends BlockWithEntity {
 					} else if (!itemStack.isEmpty() && verifyStructure(world, pos, (ServerPlayerEntity) player)) {
 						fusionShrineBlockEntity.setOwner(player);
 						
+						int previousCount = itemStack.getCount();
 						ItemStack remainingStack = InventoryHelper.smartAddToInventory(itemStack, fusionShrineBlockEntity.getInventory(), null);
-						player.setStackInHand(hand, remainingStack);
-						
-						soundToPlay = Optional.of(SoundEvents.ENTITY_ITEM_PICKUP);
-						itemsChanged = true;
+						if(remainingStack.getCount() != previousCount) {
+							player.setStackInHand(hand, remainingStack);
+							soundToPlay = Optional.of(SoundEvents.ENTITY_ITEM_PICKUP);
+							itemsChanged = true;
+						}
 					}
 				}
 				

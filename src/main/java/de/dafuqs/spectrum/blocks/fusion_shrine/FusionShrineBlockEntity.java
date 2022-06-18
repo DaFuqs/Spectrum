@@ -54,7 +54,7 @@ import java.util.UUID;
 
 public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputProvider, PlayerOwned, Upgradeable {
 	
-	protected int INVENTORY_SIZE = 8;
+	protected int INVENTORY_SIZE = 7;
 	protected SimpleInventory inventory;
 	protected @NotNull Fluid storedFluid;
 	private UUID ownerUUID;
